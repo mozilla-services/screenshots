@@ -1,0 +1,32 @@
+application: pageshotpages
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /favicon\.ico
+  static_files: ../../data/icon.png
+  upload: ../../data/icon.png
+
+- url: /newpage\.html
+  static_files: newpage.html
+  upload: newpage\.html
+
+- url: /pageshot\.xpi
+  static_files: ../../pageshot.xpi
+  upload: ../../pageshot\.xpi
+
+- url: /$
+  static_files: index.html
+  upload: index\.html
+
+- url: /js
+  static_dir: js
+
+- url: .*
+  script: main.app
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
