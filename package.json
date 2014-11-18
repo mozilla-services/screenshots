@@ -2,8 +2,8 @@
   "name": "pageshot",
   "fullName": "pageshot",
   "id": "jid1-NeEaf3sAHdKHPA",
-  "description": "a basic add-on",
-  "author": "",
+  "description": "Take and share shots of the sites you are on",
+  "author": "Ian Bicking",
   "license": "MPL 2.0",
   "version": "0.1",
   "preferences": [
@@ -12,7 +12,7 @@
       "title": "backend URL",
       "description": "URL of the backend service to store pages",
       "type": "string",
-      "value": "http://localhost:10080"
+      "value": "https://pageshotpages.appspot.com"
     }
   ]
 }

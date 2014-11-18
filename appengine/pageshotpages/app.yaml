@@ -6,16 +6,16 @@ threadsafe: yes
 
 handlers:
 - url: /favicon\.ico
-  static_files: ../../data/icon.png
-  upload: ../../data/icon.png
+  static_files: icon.png
+  upload: icon\.png
 
 - url: /newpage\.html
   static_files: newpage.html
   upload: newpage\.html
 
 - url: /pageshot\.xpi
-  static_files: ../../pageshot.xpi
-  upload: ../../pageshot\.xpi
+  static_files: pageshot.xpi
+  upload: pageshot\.xpi
 
 - url: /$
   static_files: index.html
