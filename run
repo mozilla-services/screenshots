@@ -1,0 +1,128 @@
+#!/usr/bin/env bash
+
+set -e
+
+base="$(dirname $BASH_SOURCE)"
+base="$(cd $base ; pwd)"
+cd $base
+
+help=
+publish=
+forever=
+server=
+run_server=
+
+while [[ -n "$1" ]] ; do
+    case "$1" in
+        -h | --help)
+            help=1
+            ;;
+        --local)
+            server=http://localhost:10080
+            ;;
+        --publish)
+            publish=1
+            ;;
+        --server)
+            server=$2
+            shift
+            ;;
+        -f | --forever)
+            forever=1
+            ;;
+        -S | --run-server)
+            run_server=1
+            ;;
+        *)
+            break
+            ;;
+    esac
+    shift
+done
+
+if [[ -n "$help" ]] ; then
+    if [[ -n "$help_message" ]] ; then
+        echo "$help_message"
+    fi
+    echo "Usage: $(basename $0)"
+    echo "Options:"
+    echo "  -f | --forever"
+    echo "      Restart the browser when it is terminated (normally)"
+    echo "      ^C in the terminal to stop."
+    echo "  --publish"
+    echo "      Upload the pageshotpages.appspot.com site"
+    echo "  --local"
+    echo "      Use the local server at http://localhost:10080"
+    echo "  --server URL"
+    echo "      The backend server to use"
+    echo "  --S | --run-server"
+    echo "      Run the local dev_appserver.py server"
+    echo "All other options are passed to cfx run"
+    if [[ -n "$help_message" ]] ; then
+        exit
+    else
+        exit 1
+    fi
+fi
+
+fail () {
+    echo "$@"
+    title
+    exit 2
+}
+
+title () {
+    echo -e "\033]0;$*\007"
+}
+
+breaker="$(python -c 'import os; print "*"*int(os.environ.get("COLUMNS", 80))')"
+
+if ! which -s cfx ; then
+    fail "You must install the Addon-SDK"
+fi
+
+firefoxes="
+/Applications/FirefoxNightly.app
+/Applications/FirefoxDeveloperEdition.app
+/Applications/FirefoxAurora.app
+"
+
+binary=
+for firefox in $firefoxes ; do
+    if [[ -e "$firefox" ]] ; then
+        binary="--binary $firefox"
+        break
+    fi
+done
+
+run () {
+    title FxPageShot
+    static_args=
+    if [[ -n "$server" ]] ; then
+        static_args="{\"backend\": \"$server\"}"
+    fi
+    cfx run $binary --profiledir Profile $static_args || fail
+    title
+}
+
+if [[ -n "$publish" ]] ; then
+    cfx xpi
+    appcfg.py update appengine/pageshotpages/
+elif [[ -n "$run_server" ]] ; then
+    dev_appserver.py --port 10080 appengine/pageshotpages/ "$@"
+else
+    if [[ -z "$forever" ]] ; then
+        run "$@"
+    else
+        while true ; do
+            run "$@" || fail
+            echo
+            echo
+            echo
+            echo -e "\033[46;34m${breaker}\033[0m"
+            echo
+            echo
+            echo
+        done
+    fi
+fi
