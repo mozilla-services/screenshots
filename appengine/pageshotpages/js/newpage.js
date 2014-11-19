@@ -1,3 +1,5 @@
+var IS_NEWPAGE = true;
+
 function injectData(docData) {
   docData = JSON.parse(docData);
   //var pre = document.createElement("pre");
@@ -5,9 +7,10 @@ function injectData(docData) {
   //document.body.appendChild(pre);
   var head = '<base href="' + docData.location + '">\n';
   head += docData.head;
-  document.head.innerHTML = head;
+  document.head.innerHTML += head;
   document.body.innerHTML = docData.body;
   history.pushState({}, "static page", location.origin + "/" + docData.id + "/" + docData.domain);
+  interfaceReady();
   var req = new XMLHttpRequest();
   req.open("PUT", location.origin + "/data/" + docData.id + "/" + docData.domain);
   req.onload = function () {

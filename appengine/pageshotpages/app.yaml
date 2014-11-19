@@ -9,9 +9,9 @@ handlers:
   static_files: icon.png
   upload: icon\.png
 
-- url: /newpage\.html
-  static_files: newpage.html
-  upload: newpage\.html
+#- url: /newpage\.html
+#  static_files: newpage.html
+#  upload: newpage\.html
 
 - url: /pageshot\.xpi
   static_files: pageshot.xpi
@@ -23,6 +23,9 @@ handlers:
 
 - url: /js
   static_dir: js
+
+- url: /css
+  static_dir: css
 
 - url: .*
   script: main.app

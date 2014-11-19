@@ -10,3 +10,6 @@ Known issues:
 
 - Iframes don't get frozen.  This is a permission problem with Add-ons.  I guess I have to do something [described here](https://developer.mozilla.org/en-US/Add-ons/SDK/Guides/Content_Scripts/Cross_Domain_Content_Scripts) (though how to do it for all domains is unclear).
 - You should be using Firefox Aurora (or Developer Edition), or Firefox Nightly
+- Trying to take a shot of a shot should make a copy, not a shot
+- Need to use good resets for the interface
+- Not sure how to add build step to project (for LESS/SASS or something)

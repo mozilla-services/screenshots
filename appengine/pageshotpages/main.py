@@ -17,6 +17,7 @@
 import webapp2
 import json
 import logging
+import os
 from google.appengine.ext import ndb
 
 
@@ -34,6 +35,22 @@ class PageData(ndb.Model):
             return result[0]
         else:
             return None
+
+scripts = '''
+<link rel="stylesheet" href="BASE/css/interface.css">
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="BASE/js/interface.js"></script>
+'''
+
+
+class NewPageHandler(webapp2.RequestHandler):
+
+    def get(self):
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "newpage.html")) as fp:
+            content = fp.read()
+        here_scripts = scripts.replace("BASE", self.request.host_url)
+        content = content.replace("SCRIPT", here_scripts)
+        self.response.write(content)
 
 
 class MainHandler(webapp2.RequestHandler):
@@ -57,12 +74,13 @@ class MainHandler(webapp2.RequestHandler):
                 meta = json.loads(meta.content)
             else:
                 meta = {}
+            here_scripts = scripts.replace("BASE", self.request.host_url)
             html = (
                 '<!DOCTYPE html>\n' +
                 '<html>\n' +
                 '<head>\n' +
                 '<base href="' + data_content["location"] + '">\n' +
-                ('<script src="%s/js/interface.js"></script>\n' % self.request.host_url) +
+                here_scripts +
                 meta.get("head", "") +
                 data_content["head"] +
                 '</head>\n' +
@@ -95,5 +113,6 @@ class MainHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/.*', MainHandler)
+        (r'/newpage\.html', NewPageHandler),
+        ('/.*', MainHandler),
 ], debug=True)
