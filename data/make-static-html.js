@@ -89,6 +89,12 @@ const skipElementsBadTags = {
 const TEXT_NODE = document.TEXT_NODE;
 const ELEMENT_NODE = document.ELEMENT_NODE;
 
+var idCount = 0;
+function makeId() {
+  idCount++;
+  return 'psid-' + idCount;
+}
+
 function staticHTML(el) {
   /* Converts the element to static HTML, dropping anything that isn't static */
   if (el.tagName == 'CANVAS') {
@@ -105,6 +111,9 @@ function staticHTML(el) {
     }
   }
   var s = '<' + el.tagName;
+  if (! el.id) {
+    s += ' id="' + makeId() + '"';
+  }
   var attrs = el.attributes;
   if (attrs && attrs.length) {
     var l = attrs.length;
@@ -113,12 +122,13 @@ function staticHTML(el) {
       if (name.substr(0, 2).toLowerCase() == "on") {
         continue;
       }
+      var value;
       if (name == 'src' && replSrc) {
-        var value = replSrc;
+        value = replSrc;
       } else if (name == "href" || name == "src" || name == "value") {
-        var value = el[name];
+        value = el[name];
       } else {
-        var value = attrs[i].nodeValue;
+        value = attrs[i].value;
       }
       s += ' ' + name + '="' + htmlQuote(value) + '"';
     }
