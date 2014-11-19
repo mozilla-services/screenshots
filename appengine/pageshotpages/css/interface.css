@@ -11,4 +11,5 @@
     border-left: 2px #999 solid;
     border-bottom: 2px #999 solid;
     border-radius: 2px 0 0 2px;
+    z-index: 10000;
 }

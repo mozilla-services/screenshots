@@ -13,3 +13,5 @@ Known issues:
 - Trying to take a shot of a shot should make a copy, not a shot
 - Need to use good resets for the interface
 - Not sure how to add build step to project (for LESS/SASS or something)
+- I have to use http (not https) on originally http sites, because of [mixed content](https://developer.mozilla.org/en-US/docs/Security/MixedContent) problems.  Seems so lame.
+- Would be nice to use screenshots, using [this](http://stackoverflow.com/questions/25332458/firefox-addon-api-for-taking-screenshot)
