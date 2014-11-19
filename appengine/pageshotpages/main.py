@@ -16,13 +16,14 @@
 #
 import webapp2
 import json
+import logging
 from google.appengine.ext import ndb
 
 
 class PageData(ndb.Model):
     """Models an individual Guestbook entry with content and date."""
     path = ndb.StringProperty()
-    content = ndb.StringProperty()
+    content = ndb.TextProperty()
     created = ndb.DateTimeProperty(auto_now_add=True)
 
     @classmethod
@@ -91,6 +92,7 @@ class MainHandler(webapp2.RequestHandler):
                             content=self.request.body)
             data.put()
         self.response.status = 204
+
 
 app = webapp2.WSGIApplication([
     ('/.*', MainHandler)
