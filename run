@@ -97,11 +97,13 @@ done
 
 run () {
     title FxPageShot
+    static_op=
     static_args=
     if [[ -n "$server" ]] ; then
+        static_op="--static-args"
         static_args="{\"backend\": \"$server\"}"
     fi
-    cfx run $binary --profiledir Profile $static_args || fail
+    cfx run $binary --profiledir Profile $static_op "$static_args" "$@" || fail
     title
 }
 
@@ -109,7 +111,9 @@ if [[ -n "$publish" ]] ; then
     cfx xpi
     appcfg.py update appengine/pageshotpages/
 elif [[ -n "$run_server" ]] ; then
-    dev_appserver.py --port 10080 appengine/pageshotpages/ "$@"
+    title PageShotServer
+    dev_appserver.py --port 10080 --log_level debug appengine/pageshotpages/ "$@"
+    title
 else
     if [[ -z "$forever" ]] ; then
         run "$@"
