@@ -13,3 +13,10 @@
     border-radius: 2px 0 0 2px;
     z-index: 10000;
 }
+
+.pageshot-highlight {
+    background-color: rgba(0, 0, 100, 0.3);
+    border: 2px solid rgb(0, 0, 100);
+    border-radius: 3px;
+    position: absolute;
+}

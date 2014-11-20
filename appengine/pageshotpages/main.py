@@ -81,12 +81,14 @@ class MainHandler(webapp2.RequestHandler):
                 '<head>\n' +
                 '<base href="' + data_content["location"] + '">\n' +
                 here_scripts +
+                "<!--METADATA-->" +
                 meta.get("head", "") +
+                "<!--ENDMETA-->" +
                 data_content["head"] +
                 '</head>\n' +
                 '<body>\n' +
                 data_content["body"] +
-                meta.get("body", "") +
+                '<div id="pageshot-meta">' + meta.get("body", "") + '</div>' +
                 '</body></html>')
             self.response.write(html)
 

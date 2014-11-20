@@ -7,8 +7,8 @@ function injectData(docData) {
   //document.body.appendChild(pre);
   var head = '<base href="' + docData.location + '">\n';
   head += docData.head;
-  document.head.innerHTML += head;
-  document.body.innerHTML = docData.body;
+  document.head.innerHTML += head + '<!--METADATA--><!--ENDMETA-->';
+  document.body.innerHTML = docData.body + '<div id="pageshot-meta"></div>';
   history.pushState({}, "static page", location.origin + "/" + docData.id + "/" + docData.domain);
   interfaceReady();
   var req = new XMLHttpRequest();
