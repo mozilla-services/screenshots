@@ -14,4 +14,9 @@ Known issues:
 - Need to use good resets for the interface
 - Not sure how to add build step to project (for LESS/SASS or something)
 - I have to use http (not https) on originally http sites, because of [mixed content](https://developer.mozilla.org/en-US/docs/Security/MixedContent) problems.  Seems so lame.
+- Freeze the favicon if it's only implied (by `/favicon.ico`)
+
+Things to do:
 - Would be nice to use screenshots, using [this](http://stackoverflow.com/questions/25332458/firefox-addon-api-for-taking-screenshot)
+- "Fuzz" things out.  I imagine selecting a range of the screen.  Then anything that seems to be inside that range (this is a little fuzzy) will be "fuzzed".  Fuzzing means replacing the text with random text of a similar size, and then applying a CSS blur effect.
+- Always create an accompanying screenshot of the visible area when "freezing".  Upload this alongside, and put it into some meta tag. og:image, maybe.
