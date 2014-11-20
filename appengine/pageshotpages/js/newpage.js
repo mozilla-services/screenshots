@@ -6,8 +6,9 @@ function injectData(docData) {
   //pre.textContent = JSON.stringify(docData, null, "  ");
   //document.body.appendChild(pre);
   var head = '<base href="' + docData.location + '">\n';
+  head += '<!--METADATA--><!--ENDMETA-->';
   head += docData.head;
-  document.head.innerHTML += head + '<!--METADATA--><!--ENDMETA-->';
+  document.head.innerHTML += head;
   document.body.innerHTML = docData.body + '<div id="pageshot-meta"></div>';
   history.pushState({}, "static page", location.origin + "/" + docData.id + "/" + docData.domain);
   interfaceReady();
