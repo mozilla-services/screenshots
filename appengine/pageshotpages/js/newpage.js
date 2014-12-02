@@ -10,7 +10,7 @@ function injectData(docData) {
   head += docData.head;
   document.head.innerHTML += head;
   document.body.innerHTML = docData.body + '<div id="pageshot-meta"></div>';
-  history.pushState({}, "static page", location.origin + "/" + docData.id + "/" + docData.domain);
+  history.pushState({}, "static page", location.origin + "/content/" + docData.id + "/" + docData.domain);
   interfaceReady();
   var req = new XMLHttpRequest();
   req.open("PUT", location.origin + "/data/" + docData.id + "/" + docData.domain);

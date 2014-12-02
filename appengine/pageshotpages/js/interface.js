@@ -6,8 +6,6 @@ $(function () {
 });
 
 function interfaceReady() {
-  var iface = $('<div id="pageshot-interface">shift+click to highlight</div>');
-  $(document.body).append(iface);
   $(document).focus(function (event) {
     $(this).blur();
   });

@@ -206,7 +206,8 @@ function documentStaticData() {
     htmlAttrs: htmlAttrs,
     head: head,
     body: body,
-    bodyAttrs: bodyAttrs
+    bodyAttrs: bodyAttrs,
+    title: document.title
   };
   console.log("serializing took " + (Date.now() - start) + " milliseconds");
 }

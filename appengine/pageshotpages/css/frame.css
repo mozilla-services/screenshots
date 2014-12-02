@@ -1,0 +1,52 @@
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+#container {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+}
+
+table td {
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+}
+
+#frame {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border: 0;
+}
+
+#toolbar {
+    height: 30px;
+    width: 100%;
+    overflow: truncate;
+    background-color: #222;
+    padding: 4px;
+    border-bottom: 2px solid #ddd;
+}
+
+a.sitelink, a.sitelink:visited {
+    text-decoration: none;
+    color: #ddd;
+}
+
+a.sitelink:hover, a.sitelink:visited:hover {
+    text-decoration: underline;
+}

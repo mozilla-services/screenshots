@@ -19,6 +19,7 @@ import json
 import logging
 import os
 from google.appengine.ext import ndb
+import re
 
 
 class PageData(ndb.Model):
@@ -42,6 +43,30 @@ scripts = '''
 <script src="BASE/js/interface.js"></script>
 '''
 
+scripts_with_newframe = scripts + '''
+<script src="BASE/js/newframe.js"></script>
+'''
+
+
+class NewFrameHandler(webapp2.RequestHandler):
+
+    def get(self):
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "frame.html")) as fp:
+            frame = fp.read()
+        here_scripts = scripts_with_newframe.replace("BASE", self.request.host_url)
+        vars = dict(
+            __TITLE__="",
+            __METAHEAD__="",
+            __SCRIPT__=here_scripts,
+            __LINK__="",
+            __LINK_TEXT="",
+            __IFRAME_SRC__=self.request.host_url + "/newpage.html",
+            )
+        for name, value in vars.iteritems():
+            value = value or ""
+            frame = frame.replace(name, value)
+        self.response.write(frame)
+
 
 class NewPageHandler(webapp2.RequestHandler):
 
@@ -56,15 +81,18 @@ class NewPageHandler(webapp2.RequestHandler):
 class MainHandler(webapp2.RequestHandler):
 
     def get(self):
-        if self.request.path_info_peek() in ('data', 'meta'):
+        prefix = self.request.path_info_peek()
+        if prefix in ('data', 'meta'):
             data = PageData.get_path(self.request.path)
             if data:
                 self.response.write(data.content)
             else:
                 self.response.status = 404
                 return
-        else:
-            data = PageData.get_path('/data' + self.request.path)
+        elif prefix == "content":
+            self.request.path_info_pop()
+            print prefix, self.request.path_info
+            data = PageData.get_path('/data' + self.request.path_info)
             if not data:
                 self.response.status = 404
                 return
@@ -91,6 +119,35 @@ class MainHandler(webapp2.RequestHandler):
                 '<div id="pageshot-meta">' + meta.get("body", "") + '</div>' +
                 '</body></html>')
             self.response.write(html)
+        else:
+            with open(os.path.join(os.path.dirname(__file__), "frame.html")) as fp:
+                frame = fp.read()
+            data = PageData.get_path("/data" + self.request.path)
+            if not data:
+                self.response.status = 404
+                return
+            data_content = json.loads(data.content)
+            meta = PageData.get_path("/meta" + self.request.path)
+            if meta:
+                meta = json.loads(meta.content)
+            else:
+                meta = {}
+            link_text = data_content["location"]
+            link_text = re.sub(r"^https?://", "", link_text, flags=re.I)
+            link_text = re.sub(r"/*$", "", link_text)
+            here_scripts = scripts.replace("BASE", self.request.host_url)
+            vars = dict(
+                __TITLE__=meta.get("title") or data_content["location"],
+                __METAHEAD__=meta.get("framehead"),
+                __LINK__=data_content["location"],
+                __LINK_TEXT__=link_text,
+                __IFRAME_SRC__="/content" + self.request.path,
+                __SCRIPT__=here_scripts,
+                )
+            for var, value in vars.iteritems():
+                value = str(value or "")
+                frame = frame.replace(var, value)
+            self.response.write(frame)
 
     def put(self):
         data = PageData.get_path(self.request.path)
@@ -115,6 +172,7 @@ class MainHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
+        (r'/newframe.html', NewFrameHandler),
         (r'/newpage\.html', NewPageHandler),
         ('/.*', MainHandler),
 ], debug=True)
