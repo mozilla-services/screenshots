@@ -55,7 +55,7 @@ if [[ -n "$help" ]] ; then
     echo "      Use the local server at http://localhost:10080"
     echo "  --server URL"
     echo "      The backend server to use"
-    echo "  --S | --run-server"
+    echo "  -S | --run-server"
     echo "      Run the local dev_appserver.py server"
     echo "All other options are passed to cfx run"
     if [[ -n "$help_message" ]] ; then
