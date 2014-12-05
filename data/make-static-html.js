@@ -190,8 +190,8 @@ function documentStaticData() {
   // FIXME: that maybe should be an error
   var bodyAttrs = null;
   if (body) {
-    body = staticChildren(body);
     bodyAttrs = getAttributes(body);
+    body = staticChildren(body);
   }
   var head = unsafeWindow.document.head;
   if (head) {

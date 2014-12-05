@@ -10,6 +10,8 @@ function injectData(docData) {
   head += docData.head;
   document.head.innerHTML += head;
   document.body.innerHTML = docData.body + '<div id="pageshot-meta"></div>';
+  setAttributes(document.documentElement, docData.htmlAttrs);
+  setAttributes(document.body, docData.bodyAttrs);
   history.pushState({}, "static page", location.origin + "/content/" + docData.id + "/" + docData.domain);
   interfaceReady();
   var req = new XMLHttpRequest();
@@ -18,4 +20,10 @@ function injectData(docData) {
     console.log("Saved");
   };
   req.send(JSON.stringify(docData));
+}
+
+function setAttributes(el, attrs) {
+  for (var i=0; i<attrs.length; i++) {
+    el.setAttribute(attrs[i][0], attrs[i][1]);
+  }
 }

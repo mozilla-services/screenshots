@@ -38,8 +38,13 @@ table td {
     width: 100%;
     overflow: truncate;
     background-color: #222;
+    color: #ddd;
     padding: 4px;
     border-bottom: 2px solid #ddd;
+}
+
+.instructions {
+    float: right;
 }
 
 a.sitelink, a.sitelink:visited {
