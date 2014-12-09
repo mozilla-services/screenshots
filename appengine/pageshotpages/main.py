@@ -20,6 +20,7 @@ import os
 from google.appengine.ext import ndb
 import re
 import urllib
+import cgi
 
 
 class PageData(ndb.Model):
@@ -113,9 +114,11 @@ class MainHandler(webapp2.RequestHandler):
             snippet = meta.get("snippet") or ""
             if snippet:
                 snippet = '<meta id="meta-snippet" property="og:image" content="' + snippet + '">\n'
+            bodyAttrs = serialize_attributes(data_content.get("bodyAttrs", []))
+            htmlAttrs = serialize_attributes(data_content.get("htmlAttrs", []))
             html = (
                 '<!DOCTYPE html>\n' +
-                '<html>\n' +
+                '<html' + htmlAttrs + '>\n' +
                 '<head>\n' +
                 '<base href="' + data_content["location"] + '" target="_top">\n' +
                 here_scripts +
@@ -126,7 +129,7 @@ class MainHandler(webapp2.RequestHandler):
                 '<meta property="og:image" content="' + data_content["screenshot"] + '">\n' +
                 snippet +
                 '</head>\n' +
-                '<body>\n' +
+                '<body' + bodyAttrs + '>\n' +
                 data_content["body"] +
                 '<div id="pageshot-meta">' + meta.get("body", "") + '</div>' +
                 '</body></html>')
@@ -189,6 +192,12 @@ class MainHandler(webapp2.RequestHandler):
             data.put()
         self.response.status = 204
 
+
+def serialize_attributes(attrs):
+    s = []
+    for name, value in attrs:
+        s.append('%s="%s"' % (name, cgi.escape(value)))
+    return " ".join(s)
 
 app = webapp2.WSGIApplication([
         (r'/newframe.html', NewFrameHandler),
