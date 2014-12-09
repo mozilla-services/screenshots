@@ -16,10 +16,10 @@
 #
 import webapp2
 import json
-import logging
 import os
 from google.appengine.ext import ndb
 import re
+import urllib
 
 
 class PageData(ndb.Model):
@@ -30,6 +30,7 @@ class PageData(ndb.Model):
 
     @classmethod
     def get_path(cls, path):
+        path = urllib.unquote(path)
         result = cls.query(cls.path == path)
         result = list(result)
         if result:
@@ -61,6 +62,9 @@ class NewFrameHandler(webapp2.RequestHandler):
             __LINK__="",
             __LINK_TEXT="",
             __IFRAME_SRC__=self.request.host_url + "/newpage.html",
+            __SHORTCUT_ICON="",
+            __SCREENSHOT__="",
+            __SNIPPET__="",
             )
         for name, value in vars.iteritems():
             value = value or ""
@@ -92,27 +96,35 @@ class MainHandler(webapp2.RequestHandler):
         elif prefix == "content":
             self.request.path_info_pop()
             print prefix, self.request.path_info
+            ## FIXME: quoting isn't quite right here:
             data = PageData.get_path('/data' + self.request.path_info)
             if not data:
+                print "nothing matched", repr("/data" + self.request.path_info)
                 self.response.status = 404
                 return
             data_content = json.loads(data.content)
-            meta = PageData.get_path('/meta' + self.request.path)
+            meta = PageData.get_path('/meta' + self.request.path_info)
             if meta:
                 meta = json.loads(meta.content)
             else:
+                print "no meta", repr('/meta' + self.request.path_info)
                 meta = {}
             here_scripts = scripts.replace("BASE", self.request.host_url)
+            snippet = meta.get("snippet") or ""
+            if snippet:
+                snippet = '<meta id="meta-snippet" property="og:image" content="' + snippet + '">\n'
             html = (
                 '<!DOCTYPE html>\n' +
                 '<html>\n' +
                 '<head>\n' +
-                '<base href="' + data_content["location"] + '">\n' +
+                '<base href="' + data_content["location"] + '" target="_top">\n' +
                 here_scripts +
                 "<!--METADATA-->" +
                 meta.get("head", "") +
                 "<!--ENDMETA-->" +
                 data_content["head"] +
+                '<meta property="og:image" content="' + data_content["screenshot"] + '">\n' +
+                snippet +
                 '</head>\n' +
                 '<body>\n' +
                 data_content["body"] +
@@ -122,12 +134,12 @@ class MainHandler(webapp2.RequestHandler):
         else:
             with open(os.path.join(os.path.dirname(__file__), "frame.html")) as fp:
                 frame = fp.read()
-            data = PageData.get_path("/data" + self.request.path)
+            data = PageData.get_path("/data" + self.request.path_info)
             if not data:
                 self.response.status = 404
                 return
             data_content = json.loads(data.content)
-            meta = PageData.get_path("/meta" + self.request.path)
+            meta = PageData.get_path("/meta" + self.request.path_info)
             if meta:
                 meta = json.loads(meta.content)
             else:
@@ -136,13 +148,20 @@ class MainHandler(webapp2.RequestHandler):
             link_text = re.sub(r"^https?://", "", link_text, flags=re.I)
             link_text = re.sub(r"/*$", "", link_text)
             here_scripts = scripts.replace("BASE", self.request.host_url)
+            snippet = ""
+            if meta.get("snippet"):
+                ## FIXME: I'm a terrible person:
+                snippet = '<meta id="meta-snippet" property="og:image" content="' + meta["snippet"] + '">\n'
             vars = dict(
                 __TITLE__=meta.get("title") or data_content["location"],
                 __METAHEAD__=meta.get("framehead"),
                 __LINK__=data_content["location"],
                 __LINK_TEXT__=link_text,
-                __IFRAME_SRC__="/content" + self.request.path,
+                __IFRAME_SRC__="/content" + urllib.quote(self.request.path_info, "/~$+"),
                 __SCRIPT__=here_scripts,
+                __SHORTCUT_ICON__=data_content.get("favicon"),
+                __SCREENSHOT__=data_content.get("screenshot"),
+                __SNIPPET__=snippet,
                 )
             for var, value in vars.iteritems():
                 value = str(value or "")
@@ -165,7 +184,7 @@ class MainHandler(webapp2.RequestHandler):
             data.content = self.request.body
             data.put()
         else:
-            data = PageData(path=self.request.path,
+            data = PageData(path=self.request.path_info,
                             content=self.request.body)
             data.put()
         self.response.status = 204

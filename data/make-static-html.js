@@ -201,13 +201,26 @@ function documentStaticData() {
   if (document.documentElement) {
     htmlAttrs = getAttributes(document.documentElement);
   }
+  var favicon = document.querySelector("link[rel='shortcut icon']");
+  if (favicon) {
+    favicon = favicon.href;
+  } else {
+    // FIXME: ideally test if this exists
+    favicon = location.origin + "/favicon.ico";
+  }
+  // FIXME: this is a bad estimate, we should use anchor-based scrolling
+  var totalHeight = document.body.clientHeight;
+  var scrollFraction = window.scrollY / totalHeight;
   return {
     location: location.href,
+    origin: location.origin,
+    favicon: favicon,
     htmlAttrs: htmlAttrs,
     head: head,
     body: body,
     bodyAttrs: bodyAttrs,
-    title: document.title
+    title: document.title,
+    initialScroll: scrollFraction
   };
   console.log("serializing took " + (Date.now() - start) + " milliseconds");
 }

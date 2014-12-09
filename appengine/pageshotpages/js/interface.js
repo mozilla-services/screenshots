@@ -37,17 +37,47 @@ function saveMeta() {
       }
     }
   }
+  var snippet = null;
+  if ($("#meta-snippet").length) {
+    snippet = $("#meta-snippet").attr("content");
+  }
   var data = {
     body: body,
-    head: head
+    head: head,
+    snippet: snippet
   };
   var xhr = new XMLHttpRequest();
-  xhr.open("PUT", location.origin + "/meta" + location.pathname);
+  var metaPath = location.origin + "/meta";
+  metaPath += location.pathname.replace(/^\/content/, "");
+  xhr.open("PUT", metaPath);
   xhr.send(JSON.stringify(data));
   xhr.onload = function () {
     console.log(JSON.stringify(data).length, "bytes of metadata saved");
   };
 }
+
+function requestShot() {
+  document.body.classList.add("prepare-screenshot");
+  var event = document.createEvent('CustomEvent');
+  var el = $(".pageshot-highlight");
+  event.initCustomEvent("request-screenshot", true, true, {
+    x: parseInt(el.css("left")),
+    y: parseInt(el.css("top")),
+    h: parseInt(el.css("height")),
+    w: parseInt(el.css("width"))
+  });
+  document.dispatchEvent(event);
+}
+
+document.addEventListener("got-screenshot", function (event) {
+  document.body.classList.remove("prepare-screenshot");
+  var detail = JSON.parse(event.detail);
+  var shot = detail.image;
+  $("#meta-snippet").remove();
+  var el = $('<meta property="og:image" id="meta-snippet">').attr("content", shot);
+  $(document.head).append(el);
+  saveMeta();
+}, false);
 
 function activateHighlight() {
 
@@ -76,6 +106,7 @@ function activateHighlight() {
     $(document).unbind("selectstart", selectoff);
     var hasBox = !! boxEl;
     boxEl = oldBoxEl = null;
+    requestShot();
     saveMeta();
     if (hasBox) {
       return false;

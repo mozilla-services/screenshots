@@ -9,14 +9,11 @@ Much of the interesting work about what you can do with the page after it is fro
 Known issues:
 
 - Iframes don't get frozen.  This is a permission problem with Add-ons.  I guess I have to do something [described here](https://developer.mozilla.org/en-US/Add-ons/SDK/Guides/Content_Scripts/Cross_Domain_Content_Scripts) (though how to do it for all domains is unclear).
-- You should be using Firefox Aurora (or Developer Edition), or Firefox Nightly
+- You should be using Firefox Aurora (or Developer Edition), or Firefox Nightly.  Also you *can't* have e10s enabled (look for underlines on your tab titles).
 - Trying to take a shot of a shot should make a copy, not a shot
-- Need to use good resets for the interface
-- Not sure how to add build step to project (for LESS/SASS or something)
+- Need to use good resets for the interface (though this is less of a concern since I moved to iframes)
+- Not sure how to add build step to project (for LESS/SASS or something).  May not be necessary with iframes (since the no-conflict stuff is less necessary).
 - I have to use http (not https) on originally http sites, because of [mixed content](https://developer.mozilla.org/en-US/docs/Security/MixedContent) problems.  Seems so lame.
-- Freeze the favicon if it's only implied (by `/favicon.ico`)
 
 Things to do:
-- Would be nice to use screenshots, using [this](http://stackoverflow.com/questions/25332458/firefox-addon-api-for-taking-screenshot)
 - "Fuzz" things out.  I imagine selecting a range of the screen.  Then anything that seems to be inside that range (this is a little fuzzy) will be "fuzzed".  Fuzzing means replacing the text with random text of a similar size, and then applying a CSS blur effect.
-- Always create an accompanying screenshot of the visible area when "freezing".  Upload this alongside, and put it into some meta tag. og:image, maybe.
