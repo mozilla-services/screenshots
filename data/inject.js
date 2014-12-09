@@ -4,7 +4,7 @@ self.port.on("data", function (docData) {
   unsafeWindow.injectData(JSON.stringify(docData));
 });
 
-var RANDOM_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-.,~$+";
+var RANDOM_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
 
 function makeRandom(length) {
   length = length || 10;
