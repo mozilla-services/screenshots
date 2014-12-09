@@ -47,6 +47,14 @@ table td {
     float: right;
 }
 
+a.sitelink {
+    display: block;
+    width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 a.sitelink, a.sitelink:visited {
     text-decoration: none;
     color: #ddd;
