@@ -1,0 +1,30 @@
+body {
+    font-family: sans-serif;
+    background-color: #ddd;
+}
+
+.item {
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 10px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2em;
+}
+
+a.embedded, a.embedded:visited {
+    color: #000;
+    text-decoration: none;
+}
+
+.screenshot-container {
+    float: left;
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
+
+.excerpt {
+    color: #333;
+    margin-left: 30px;
+}

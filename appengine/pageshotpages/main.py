@@ -31,6 +31,7 @@ import tempita
 frame_html = tempita.HTMLTemplate.from_filename(os.path.join(base, "frame.html"))
 content_html = tempita.HTMLTemplate.from_filename(os.path.join(base, "content.html"))
 readable_html = tempita.HTMLTemplate.from_filename(os.path.join(base, "readable.html"))
+collection_html = tempita.HTMLTemplate.from_filename(os.path.join(base, "collection.html"))
 
 
 class PageData(ndb.Model):
@@ -61,6 +62,14 @@ class PageData(ndb.Model):
         else:
             meta = {}
         return data, meta
+
+    @classmethod
+    def get_collection_items(cls, name):
+        data = cls.get_path("/collection-list/" + name)
+        if not data:
+            return []
+        data = json.loads(data.content)
+        return data
 
 
 class NewFrameHandler(webapp2.RequestHandler):
@@ -96,7 +105,7 @@ class MainHandler(webapp2.RequestHandler):
 
     def get(self):
         prefix = self.request.path_info_peek()
-        if prefix in ('data', 'meta'):
+        if prefix in ('data', 'meta', 'collection-list'):
             data = PageData.get_path(self.request.path)
             if data:
                 self.response.write(data.content)
@@ -132,6 +141,23 @@ class MainHandler(webapp2.RequestHandler):
                 base=self.request.host_url,
                 )
             self.response.write(html)
+        elif prefix == "collection":
+            self.request.path_info_pop()
+            collection_name = self.request.path_info.strip("/")
+            items = []
+            for item_name in PageData.get_collection_items(collection_name):
+                data, meta = PageData.get_data(item_name)
+                items.append([item_name, data, meta])
+            if not items:
+                self.response.status = 404
+                self.response.write("No such collection")
+                return
+            html = collection_html.substitute(
+                collection_name=collection_name,
+                items=items,
+                base=self.request.host_url,
+                )
+            self.response.write(html)
         else:
             data, meta = PageData.get_data(self.request.path_info)
             if not data:
@@ -161,7 +187,7 @@ class MainHandler(webapp2.RequestHandler):
                 self.response.status = 400
                 self.response.write("Must include head, body, and location")
                 return
-        elif peek != "meta":
+        elif peek not in ("meta", "collection-list"):
             self.response.status = 404
             return
         if data:
