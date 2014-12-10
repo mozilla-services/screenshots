@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html {{ html(htmlAttrs) }}>
+  <head>
+    <base href="{{ data.get('location') }}" target="_top">
+    <link rel="stylesheet" href="{{ base }}/css/interface.css">
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="{{ base }}/js/interface.js"></script>
+    {{if is_newpage}}
+    <script src="{{ base }}/js/newpage.js"></script>
+    {{endif}}
+    <!--METADATA-->
+    {{ meta.get("head") }}
+    <!--ENDMETA-->
+    {{ html(data.get("head")) }}
+    {{if data.get('screenshot')}}
+    <meta property="og:image" content="{{ data["screenshot"] }}">
+    {{endif}}
+    {{if meta.get('snippet')}}
+    <meta property="og:image" id="meta-snippet" content="{{ meta['snippet'] }}">
+    {{endif}}
+  </head>
+  <body {{ html(bodyAttrs) }}>
+    {{ html(data.get("body")) }}
+    <div id="pageshot-meta">
+      {{ html(meta.get("body", "")) }}
+    </div>
+  </body>
+</html>

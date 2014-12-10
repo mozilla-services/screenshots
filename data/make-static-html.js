@@ -186,6 +186,30 @@ function documentStaticData() {
   var start = Date.now();
   // unsafeWindow is quite a bit faster than the proxied access:
   var body = unsafeWindow.document.body;
+
+  var newDiv = document.createElement("div");
+  newDiv.innerHTML = body.innerHTML;
+  var reader = new Readability(location.href, newDiv);
+  var readable = reader.parse();
+  var MIN_IMAGE_WIDTH = 250;
+  var MIN_IMAGE_HEIGHT = 200;
+  var images = [];
+  var options = newDiv.getElementsByTagName("img");
+  for (var i=0; i<options.length; i++) {
+    var option = options[i];
+    if (option.width >= MIN_IMAGE_WIDTH
+        && option.height >= MIN_IMAGE_HEIGHT) {
+      // FIXME: would be nice to search for a caption
+      images.push({
+        title: option.getAttribute("title") || option.getAttribute("alt"),
+        src: option.src,
+        width: option.width,
+        height: option.height
+      });
+    }
+  }
+  reader = options = newDiv = null;
+
   // Generally this only happens when the document hasn't really loaded
   // FIXME: that maybe should be an error
   var bodyAttrs = null;
@@ -211,6 +235,7 @@ function documentStaticData() {
   // FIXME: this is a bad estimate, we should use anchor-based scrolling
   var totalHeight = document.body.clientHeight;
   var scrollFraction = window.scrollY / totalHeight;
+
   return {
     location: location.href,
     origin: location.origin,
@@ -220,7 +245,9 @@ function documentStaticData() {
     body: body,
     bodyAttrs: bodyAttrs,
     title: document.title,
-    initialScroll: scrollFraction
+    initialScroll: scrollFraction,
+    readable: readable,
+    images: images
   };
   console.log("serializing took " + (Date.now() - start) + " milliseconds");
 }

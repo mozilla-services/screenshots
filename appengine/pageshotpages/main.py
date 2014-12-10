@@ -14,6 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+import sys
+import os
+base = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(base, "vendor"))
 import webapp2
 import json
 import os
@@ -21,6 +25,12 @@ from google.appengine.ext import ndb
 import re
 import urllib
 import cgi
+import tempita
+
+
+frame_html = tempita.HTMLTemplate.from_filename(os.path.join(base, "frame.html"))
+content_html = tempita.HTMLTemplate.from_filename(os.path.join(base, "content.html"))
+readable_html = tempita.HTMLTemplate.from_filename(os.path.join(base, "readable.html"))
 
 
 class PageData(ndb.Model):
@@ -39,48 +49,47 @@ class PageData(ndb.Model):
         else:
             return None
 
-scripts = '''
-<link rel="stylesheet" href="BASE/css/interface.css">
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="BASE/js/interface.js"></script>
-'''
-
-scripts_with_newframe = scripts + '''
-<script src="BASE/js/newframe.js"></script>
-'''
+    @classmethod
+    def get_data(cls, path):
+        data = cls.get_path("/data" + path)
+        if not data:
+            return None, None
+        data = json.loads(data.content)
+        meta = cls.get_path("/meta" + path)
+        if meta:
+            meta = json.loads(meta.content)
+        else:
+            meta = {}
+        return data, meta
 
 
 class NewFrameHandler(webapp2.RequestHandler):
 
     def get(self):
-        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "frame.html")) as fp:
-            frame = fp.read()
-        here_scripts = scripts_with_newframe.replace("BASE", self.request.host_url)
-        vars = dict(
-            __TITLE__="",
-            __METAHEAD__="",
-            __SCRIPT__=here_scripts,
-            __LINK__="",
-            __LINK_TEXT="",
-            __IFRAME_SRC__=self.request.host_url + "/newpage.html",
-            __SHORTCUT_ICON="",
-            __SCREENSHOT__="",
-            __SNIPPET__="",
+        html = frame_html.substitute(
+            data={},
+            meta={},
+            link_text=None,
+            base=self.request.host_url,
+            iframe_src=self.request.host_url + "/newpage.html",
+            iframe_readable_src=None,
+            is_newpage=True,
             )
-        for name, value in vars.iteritems():
-            value = value or ""
-            frame = frame.replace(name, value)
-        self.response.write(frame)
+        self.response.write(html)
 
 
 class NewPageHandler(webapp2.RequestHandler):
 
     def get(self):
-        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "newpage.html")) as fp:
-            content = fp.read()
-        here_scripts = scripts.replace("BASE", self.request.host_url)
-        content = content.replace("SCRIPT", here_scripts)
-        self.response.write(content)
+        html = content_html.substitute(
+            data={},
+            meta={},
+            base=self.request.host_url,
+            is_newpage=True,
+            htmlAttrs="",
+            bodyAttrs="",
+            )
+        self.response.write(html)
 
 
 class MainHandler(webapp2.RequestHandler):
@@ -96,85 +105,57 @@ class MainHandler(webapp2.RequestHandler):
                 return
         elif prefix == "content":
             self.request.path_info_pop()
-            print prefix, self.request.path_info
-            ## FIXME: quoting isn't quite right here:
-            data = PageData.get_path('/data' + self.request.path_info)
+            data, meta = PageData.get_data(self.request.path_info)
             if not data:
-                print "nothing matched", repr("/data" + self.request.path_info)
                 self.response.status = 404
                 return
-            data_content = json.loads(data.content)
-            meta = PageData.get_path('/meta' + self.request.path_info)
-            if meta:
-                meta = json.loads(meta.content)
-            else:
-                print "no meta", repr('/meta' + self.request.path_info)
-                meta = {}
-            here_scripts = scripts.replace("BASE", self.request.host_url)
-            snippet = meta.get("snippet") or ""
-            if snippet:
-                snippet = '<meta id="meta-snippet" property="og:image" content="' + snippet + '">\n'
-            bodyAttrs = serialize_attributes(data_content.get("bodyAttrs", []))
-            htmlAttrs = serialize_attributes(data_content.get("htmlAttrs", []))
-            html = (
-                '<!DOCTYPE html>\n' +
-                '<html' + htmlAttrs + '>\n' +
-                '<head>\n' +
-                '<base href="' + data_content["location"] + '" target="_top">\n' +
-                here_scripts +
-                "<!--METADATA-->" +
-                meta.get("head", "") +
-                "<!--ENDMETA-->" +
-                data_content["head"] +
-                '<meta property="og:image" content="' + data_content["screenshot"] + '">\n' +
-                snippet +
-                '</head>\n' +
-                '<body' + bodyAttrs + '>\n' +
-                data_content["body"] +
-                '<div id="pageshot-meta">' + meta.get("body", "") + '</div>' +
-                '</body></html>')
+            bodyAttrs = serialize_attributes(data.get("bodyAttrs", []))
+            htmlAttrs = serialize_attributes(data.get("htmlAttrs", []))
+            html = content_html.substitute(
+                data=data,
+                meta=meta,
+                base=self.request.host_url,
+                bodyAttrs=bodyAttrs,
+                htmlAttrs=htmlAttrs,
+                is_newpage=False,
+                )
+            self.response.write(html)
+        elif prefix == "readable":
+            self.request.path_info_pop()
+            data, meta = PageData.get_data(self.request.path_info)
+            if not data:
+                self.response.status = 404
+                return
+            html = readable_html.substitute(
+                data=data,
+                meta=meta,
+                base=self.request.host_url,
+                )
             self.response.write(html)
         else:
-            with open(os.path.join(os.path.dirname(__file__), "frame.html")) as fp:
-                frame = fp.read()
-            data = PageData.get_path("/data" + self.request.path_info)
+            data, meta = PageData.get_data(self.request.path_info)
             if not data:
                 self.response.status = 404
                 return
-            data_content = json.loads(data.content)
-            meta = PageData.get_path("/meta" + self.request.path_info)
-            if meta:
-                meta = json.loads(meta.content)
-            else:
-                meta = {}
-            link_text = data_content["location"]
+            link_text = data["location"]
             link_text = re.sub(r"^https?://", "", link_text, flags=re.I)
             link_text = re.sub(r"/*$", "", link_text)
-            here_scripts = scripts.replace("BASE", self.request.host_url)
-            snippet = ""
-            if meta.get("snippet"):
-                ## FIXME: I'm a terrible person:
-                snippet = '<meta id="meta-snippet" property="og:image" content="' + meta["snippet"] + '">\n'
-            vars = dict(
-                __TITLE__=meta.get("title") or data_content["location"],
-                __METAHEAD__=meta.get("framehead"),
-                __LINK__=data_content["location"],
-                __LINK_TEXT__=link_text,
-                __IFRAME_SRC__="/content" + urllib.quote(self.request.path_info, "/~$+"),
-                __SCRIPT__=here_scripts,
-                __SHORTCUT_ICON__=data_content.get("favicon"),
-                __SCREENSHOT__=data_content.get("screenshot"),
-                __SNIPPET__=snippet,
+            html = frame_html.substitute(
+                data=data,
+                meta=meta,
+                base=self.request.host_url,
+                link_text=link_text,
+                iframe_src="/content" + urllib.quote(self.request.path_info),
+                iframe_readable_src="/readable" + urllib.quote(self.request.path_info),
+                is_newpage=False,
                 )
-            for var, value in vars.iteritems():
-                value = str(value or "")
-                frame = frame.replace(var, value)
-            self.response.write(frame)
+            self.response.write(html)
 
     def put(self):
         data = PageData.get_path(self.request.path)
         body = json.loads(self.request.body)
         peek = self.request.path_info_peek()
+        print "Saving %r kb of data" % (len(self.request.body) / 1000)
         if peek == "data":
             if 'head' not in body or 'body' not in body or 'location' not in body:
                 self.response.status = 400
@@ -189,6 +170,7 @@ class MainHandler(webapp2.RequestHandler):
         else:
             data = PageData(path=self.request.path_info,
                             content=self.request.body)
+            print "Saving data", len(self.request.body)
             data.put()
         self.response.status = 204
 

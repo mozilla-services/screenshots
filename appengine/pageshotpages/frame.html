@@ -1,31 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>__TITLE__</title>
+    <title>{{ data.get("title") or data.get("location") }}</title>
     <!--METAHEAD-->
-    __METAHEAD__
+    {{ meta.get("framehead") }}
     <!--ENDHEAD-->
-    __SCRIPT__
-    <script src="/js/frame.js"></script>
-    <link rel="stylesheet" href="/css/frame.css">
-    <link rel="shortcut icon" href="__SHORTCUT_ICON__">
-    <meta property="og:image" content="__SCREENSHOT__">
-    __SNIPPET__
+    <link rel="stylesheet" href="{{ base }}/css/interface.css">
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="{{ base }}/js/interface.js"></script>
+    <script src="{{ base }}/js/frame.js"></script>
+    {{if is_newpage}}
+    <script src="{{ base }}/js/newframe.js"></script>
+    {{endif}}
+    <link rel="stylesheet" href="{{ base }}/css/frame.css">
+    {{if data.get("favicon")}}
+    <link rel="shortcut icon" href="{{ data['favicon'] }}">
+    {{endif}}
+    {{if data.get("screenshot")}}
+    <meta property="og:image" content="{{ data['screenshot'] }}">
+    {{endif}}
+    {{if meta.get('snippet')}}
+    <meta property="og:image" id="meta-snippet" content="{{ meta['snippet'] }}">
+    {{endif}}
   </head>
   <body>
     <div id="container">
     <table style="height: 100%; width: 100%">
       <tr>
         <td id="toolbar">
-          <a class="sitelink" href="__LINK__">__LINK_TEXT__</a>
+          <a class="sitelink" href="{{ data.get('location') }}">{{ link_text }}</a>
           <span class="instructions">
             Shift+Click+Drag to highlight
           </span>
+          {{if is_newpage or data.get("readable")}}
+          <div id="readable-toggler">
+            <span id="readability-off" class="active">normal </span><span id="readability-on" class="inactive"> readable</span>
+          </div>
+          {{endif}}
         </td>
       </tr>
       <tr>
         <td>
-          <iframe id="frame" style="height: 100%; width: 100%" src="__IFRAME_SRC__"></iframe>
+          <iframe id="frame" style="height: 100%; width: 100%" src="{{ iframe_src }}" data-normal-src="{{ iframe_src }}" data-readable-src="{{ iframe_readable_src }}"></iframe>
         </td>
       </tr>
     </table></div>

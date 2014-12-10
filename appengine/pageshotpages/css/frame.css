@@ -63,3 +63,14 @@ a.sitelink, a.sitelink:visited {
 a.sitelink:hover, a.sitelink:visited:hover {
     text-decoration: underline;
 }
+
+.active {
+    color: #000;
+    background-color: #fff;
+    cursor: pointer;
+}
+.inactive {
+    color: #999;
+    background-color: #666;
+    cursor: pointer;
+}

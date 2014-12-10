@@ -1,2 +1,3 @@
 // FIXME: make sure page is fully loaded?
-self.port.emit("data", documentStaticData());
+var data = documentStaticData();
+self.port.emit("data", data);
