@@ -189,6 +189,9 @@ function documentStaticData() {
 
   var newDiv = document.createElement("div");
   newDiv.innerHTML = body.innerHTML;
+  // FIXME: location.href isn't what Readability expects (but I am
+  // working around the parts of the code that seem to expect
+  // something different)
   var reader = new Readability(location.href, newDiv);
   var readable = reader.parse();
   var MIN_IMAGE_WIDTH = 250;
