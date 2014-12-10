@@ -113,17 +113,14 @@ Readability.prototype = {
     let prePath = this._uri.prePath;
     let pathBase = this._uri.pathBase;
     let thisUri = (this._uri + "").replace(/#.*/, "");
-    console.log("base uri", thisUri);
 
     function toAbsoluteURI(uri) {
       // Leave internal anchors alone
-      console.log("convert", uri, uri.indexOf(thisUri) == 0);
       if (/^#/.test(uri)) {
         return uri;
       }
 
       if (uri.indexOf(thisUri + "#") == 0) {
-        console.log("replace", uri, uri.replace(/.*#/, "#"));
         return uri.replace(/.*#/, "#");
       }
 
@@ -150,8 +147,13 @@ Readability.prototype = {
         let elem = elems[i];
         let relativeURI = elem.getAttribute(propName);
         if (relativeURI != null) {
-          elem.setAttribute(propName, toAbsoluteURI(relativeURI));
-          console.log("set attr", elem.outerHTML);
+          // A far superior way to handle these!
+          var realUrl = elem[propName];
+          if (realUrl.indexOf(thisUri) == 0 && realUrl.indexOf("#") != -1) {
+            realUrl = realUrl.replace(/.*#/, "#");
+          }
+          elem.setAttribute(propName, realUrl);
+          //elem.setAttribute(propName, toAbsoluteURI(relativeURI));
         }
       }
     }
