@@ -13,15 +13,25 @@
       {{for url, data, meta in items}}
 
       <div class="item">
+
         <div class="screenshot-container">
           <a class="embedded" href="{{ url }}"><img src="{{ data['screenshot'] }}"></a>
         </div>
+
         <h3 class="item-title"><a class="embedded" href="{{ url }}">{{ (data.get("readable") and data["readable"].get("title")) or data.get("title") or data.get("location") }}</a></h3>
+
         {{if data.get("readable") and data["readable"].get("excerpt")}}
         <div class="excerpt">
           {{ data["readable"]["excerpt"] }}
         </div>
         {{endif}}
+
+        {{if meta.get("snippet")}}
+        <div class="snippet-container">
+          <a class="embedded" href="{{ url }}"><img src="{{ meta['snippet'] }}"></a>
+        </div>
+        {{endif}}
+
       </div>
 
       {{endfor}}
