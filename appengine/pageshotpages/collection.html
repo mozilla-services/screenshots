@@ -10,7 +10,7 @@
     <h1>Collection: {{ collection_name }}</h1>
 
     <div id="items">
-      {{for url, data, meta in items}}
+      {{for url, data, meta, images in items}}
 
       <div class="item" data-path="{{ url }}"
            data-images="{{ json.dumps(images) }}">
@@ -26,7 +26,7 @@
           </a>
         </div>
 
-        <h3 class="item-title"><a class="embedded" href="{{ url }}">{{ (data.get("readable") and data["readable"].get("title")) or data.get("title") or data.get("location") }}</a></h3>
+        <h3 class="item-title"><a class="embedded" href="{{ url }}">{{ meta.get("userTitle") or (data.get("readable") and data["readable"].get("title")) or data.get("title") or data.get("location") }}</a></h3>
 
         {{if data.get("readable") and data["readable"].get("excerpt")}}
         <div class="excerpt">

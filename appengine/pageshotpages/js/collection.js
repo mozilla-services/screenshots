@@ -81,4 +81,57 @@ $(function () {
     req.send();
   });
 
+  $(document).on("click", ".item-title", function (event) {
+    if (! event.shiftKey) {
+      return undefined;
+    }
+    var title = $(event.target);
+    var path = title.closest(".item").attr("data-path");
+    var el = $('<input type="text" class="title-replacement" style="width: 400px">');
+    el.val(title.text());
+    title.after(el);
+    title.hide();
+    el.keypress(function (event) {
+      if (event.which == 13) {
+        submit();
+        return false;
+      }
+      if (event.keyCode == 27) {
+        el.remove();
+        title.show();
+        return false;
+      }
+      return undefined;
+    });
+    el.focus();
+    el[0].setSelectionRange(el.val().length, el.val().length);
+    function submit() {
+      var newTitle = el.val();
+      el.remove();
+      title.text(newTitle);
+      title.show();
+      var req = new XMLHttpRequest();
+      req.open("GET", "/meta" + path);
+      req.onload = function () {
+        if (req.status >= 300) {
+          console.log("Error getting meta:", req);
+          return;
+        }
+        var data = JSON.parse(req.responseText);
+        data.userTitle = newTitle;
+        var putter = new XMLHttpRequest();
+        putter.open("PUT", "/meta" + path);
+        putter.onload = function () {
+          if (putter.status >= 300) {
+            console.log("Error putting meta:", putter);
+          } else {
+            console.log("Saved new title");
+          }
+        };
+        putter.send(JSON.stringify(data));
+      };
+      req.send();
+    }
+    return false;
+  });
 });

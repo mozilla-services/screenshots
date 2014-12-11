@@ -1,6 +1,7 @@
 body {
     font-family: sans-serif;
     background-color: #ddd;
+    margin-bottom: 400px;
 }
 
 .item {
@@ -22,6 +23,10 @@ a.embedded, a.embedded:visited {
     float: left;
     padding-right: 15px;
     padding-bottom: 15px;
+}
+
+.screenshot-container img {
+    max-width: 500px;
 }
 
 .excerpt {
@@ -61,4 +66,9 @@ a.embedded, a.embedded:visited {
 
 .image-up:hover, .image-down:hover {
     background-color: #ddd;
+}
+
+.title-replacement {
+    font-weight: bold;
+    font-size: 105%;
 }

@@ -147,16 +147,18 @@ class MainHandler(webapp2.RequestHandler):
             items = []
             for item_name in PageData.get_collection_items(collection_name):
                 data, meta = PageData.get_data(item_name)
-                items.append([item_name, data, meta])
+                images = [{
+                        "src": data["screenshot"],
+                        "title": "Screenshot",
+                        }]
+                images.extend(data["images"])
+                if meta.get("activeImage") >= len(images):
+                    meta["activeImage"] = 0
+                items.append([item_name, data, meta, images])
             if not items:
                 self.response.status = 404
                 self.response.write("No such collection")
                 return
-            images = [{
-                    "src": data["screenshot"],
-                    "title": "Screenshot",
-                    }]
-            images.extend(data["images"])
             html = collection_html.substitute(
                 collection_name=collection_name,
                 items=items,
