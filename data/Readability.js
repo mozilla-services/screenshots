@@ -630,7 +630,10 @@ Readability.prototype = {
         articleContent.id = "readability-content";
 
       let siblingScoreThreshold = Math.max(10, topCandidate.readability.contentScore * 0.2);
-      let siblingNodes = topCandidate.parentNode.childNodes;
+      let siblingNodes = [];
+      if (topCandidate.parentNode) {
+        siblingNodes = topCandidate.parentNode.childNodes;
+      }
 
       for (let s = 0, sl = siblingNodes.length; s < sl; s += 1) {
         let siblingNode = siblingNodes[s];
