@@ -37,3 +37,8 @@ a.embedded, a.embedded:visited {
     max-width: 1000px;
     overflow: inherit;
 }
+
+.closer {
+    float: right;
+    cursor: pointer;
+}

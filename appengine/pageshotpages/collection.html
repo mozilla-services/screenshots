@@ -6,13 +6,15 @@
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="{{ base }}/js/collection.js"></script>
   </head>
-  <body>
+  <body data-collection-name="{{ collection_name }}">
     <h1>Collection: {{ collection_name }}</h1>
 
     <div id="items">
       {{for url, data, meta in items}}
 
-      <div class="item">
+      <div class="item" data-path="{{ url }}">
+
+        <span class="closer">×</span>
 
         <div class="screenshot-container">
           <a class="embedded" href="{{ url }}"><img src="{{ data['screenshot'] }}"></a>
