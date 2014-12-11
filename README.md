@@ -14,7 +14,7 @@ Known issues:
 - Need to use good resets for the interface (though this is less of a concern since I moved to iframes)
 - Not sure how to add build step to project (for LESS/SASS or something).  May not be necessary with iframes (since the no-conflict stuff is less necessary).
 - I have to use http (not https) on originally http sites, because of [mixed content](https://developer.mozilla.org/en-US/docs/Security/MixedContent) problems.  Seems so lame.
-- snippet shot doesn't really shoot the iframe, it shoots the enclosing window, with peculiar effects.
+- The screenshot has whitespace on the sides.
 
 Things to do:
 - "Fuzz" things out.  I imagine selecting a range of the screen.  Then anything that seems to be inside that range (this is a little fuzzy) will be "fuzzed".  Fuzzing means replacing the text with random text of a similar size, and then applying a CSS blur effect.
