@@ -29,6 +29,10 @@ a.embedded, a.embedded:visited {
     max-width: 500px;
 }
 
+.item-shot {
+    border-radius: 5px;
+}
+
 .excerpt {
     color: #333;
     margin-left: 30px;
