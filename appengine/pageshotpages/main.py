@@ -152,10 +152,17 @@ class MainHandler(webapp2.RequestHandler):
                 self.response.status = 404
                 self.response.write("No such collection")
                 return
+            images = [{
+                    "src": data["screenshot"],
+                    "title": "Screenshot",
+                    }]
+            images.extend(data["images"])
             html = collection_html.substitute(
                 collection_name=collection_name,
                 items=items,
                 base=self.request.host_url,
+                images=images,
+                json=json,
                 )
             self.response.write(html)
         else:

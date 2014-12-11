@@ -34,11 +34,31 @@ a.embedded, a.embedded:visited {
 }
 
 .snippet:hover {
-    max-width: 1000px;
+    max-width: none;
+    max-height: none;
     overflow: inherit;
 }
 
 .closer {
     float: right;
     cursor: pointer;
+}
+
+.image-selector {
+    opacity: 0.2;
+    float: left;
+    position: absolute;
+    cursor: pointer;
+}
+
+.image-selector:hover {
+    opacity: 0.5;
+}
+
+.image-up, .image-down {
+    padding: 2px;
+}
+
+.image-up:hover, .image-down:hover {
+    background-color: #ddd;
 }
