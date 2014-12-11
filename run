@@ -108,6 +108,9 @@ run () {
 }
 
 if [[ -n "$publish" ]] ; then
+    if [ -e ~/appengine-password.txt ] ; then
+        echo "Appengine password: $(cat ~/appengine-password.txt)"
+    fi
     cfx xpi
     appcfg.py update appengine/pageshotpages/
 elif [[ -n "$run_server" ]] ; then
