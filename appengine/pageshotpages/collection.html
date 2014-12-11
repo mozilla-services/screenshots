@@ -28,7 +28,10 @@
 
         {{if meta.get("snippet")}}
         <div class="snippet-container">
-          <a class="embedded" href="{{ url }}"><img src="{{ meta['snippet'] }}"></a>
+          <hr>
+          <a class="embedded" href="{{ url }}">
+            <img class="snippet" src="{{ meta['snippet'] }}">
+          </a>
         </div>
         {{endif}}
 

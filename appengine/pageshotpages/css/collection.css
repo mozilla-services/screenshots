@@ -28,3 +28,12 @@ a.embedded, a.embedded:visited {
     color: #333;
     margin-left: 30px;
 }
+
+.snippet {
+    max-width: 500px;
+}
+
+.snippet:hover {
+    max-width: 1000px;
+    overflow: inherit;
+}
