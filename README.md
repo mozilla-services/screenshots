@@ -19,3 +19,6 @@ Known issues:
 Things to do:
 - "Fuzz" things out.  I imagine selecting a range of the screen.  Then anything that seems to be inside that range (this is a little fuzzy) will be "fuzzed".  Fuzzing means replacing the text with random text of a similar size, and then applying a CSS blur effect.
 - Have the link to the original content try to find the closest relevant anchor.
+- Control timespan of availability of a link
+- Rich copy of snippet image and link
+- Wire in to the lifespan of a Hello connection (pin to keep for longer)
