@@ -1,33 +1,28 @@
 $(function () {
 
   $(document).on("click", ".closer", function (event) {
+    // FIXME: need to change to use the new pattern
+    return;
     var el = $(event.target).closest(".item");
     var path = el.attr("data-path");
     el.remove();
     var collectionName = $(document.body).attr("data-collection-name");
-    var req = new XMLHttpRequest();
     localStorage.removeItem("collection:" + encodeURIComponent(path));
-    req.open("GET", "/collection-list/" + encodeURIComponent(collectionName));
-    req.onload = function () {
-      var data = JSON.parse(req.responseText);
-      var index = data.indexOf(path);
-      if (index == -1) {
-        console.warn("Could not find", path, "in existing collection data", data);
-        return;
-      }
-      data.splice(index, 1);
-      var putter = new XMLHttpRequest();
-      putter.open("PUT", "/collection-list/" + encodeURIComponent(collectionName));
-      putter.onload = function () {
-        if (putter.status >= 200 && putter.status < 300) {
-          console.log("Saved deletion of", path);
-        } else {
-          console.log("Error saving deletion of", path, ":", putter);
+    updateResource(
+      "/collection-list/" + encodeURIComponent(collectionName),
+      function (data) {
+        var index = data.indexOf(path);
+        if (index == -1) {
+          console.warn("Could not find", path, "in existing collection data", data);
+          return undefined;
         }
-      };
-      putter.send(JSON.stringify(data));
-    };
-    req.send();
+        data.splice(index, 1);
+        return data;
+      }, []).then(function () {
+        console.log("Saved deletion of", path);
+      }, function (error) {
+        console.log("Error saving deletion of", path, ":", error);
+      });
   });
 
   $(document).on("click", ".image-up, .image-down", function (event) {
@@ -58,27 +53,14 @@ $(function () {
     }
     var nextImage = images[next];
     current.attr("src", nextImage.src).attr("title", nextImage.title || "");
-    var req = new XMLHttpRequest();
-    req.open("GET", "/meta" + path);
-    req.onload = function () {
-      if (req.status != 200) {
-        console.log("failed to get meta", req);
-        return;
-      }
-      var data = JSON.parse(req.responseText);
+    updateResource("/meta" + path, function (data) {
       data['activeImage'] = next;
-      var putter = new XMLHttpRequest();
-      putter.open("PUT", "/meta" + path);
-      putter.onload = function () {
-        if (putter.status >= 200 && putter.status < 300) {
-          console.log("Image change saved");
-        } else {
-          console.log("Image change failed:", putter);
-        }
-      };
-      putter.send(JSON.stringify(data));
-    };
-    req.send();
+      return data;
+    }).then(function () {
+      console.log("Image change saved");
+    }, function (err) {
+      console.log("Image change failed:", err);
+    });
   });
 
   $(document).on("click", ".item-title", function (event) {
@@ -110,27 +92,13 @@ $(function () {
       el.remove();
       title.text(newTitle);
       title.show();
-      var req = new XMLHttpRequest();
-      req.open("GET", "/meta" + path);
-      req.onload = function () {
-        if (req.status >= 300) {
-          console.log("Error getting meta:", req);
-          return;
-        }
-        var data = JSON.parse(req.responseText);
+      updateResource("/meta", function (data) {
         data.userTitle = newTitle;
-        var putter = new XMLHttpRequest();
-        putter.open("PUT", "/meta" + path);
-        putter.onload = function () {
-          if (putter.status >= 300) {
-            console.log("Error putting meta:", putter);
-          } else {
-            console.log("Saved new title");
-          }
-        };
-        putter.send(JSON.stringify(data));
-      };
-      req.send();
+      }).then(function () {
+        console.log("Saved new title");
+      }, function (err) {
+        console.log("Error putting meta:", err);
+      });
     }
     return false;
   });

@@ -94,4 +94,104 @@ $(function () {
     };
     req.send();
   }
+
+  var $comment = $("#comment");
+  var $commentContainer = $("#comment-container");
+  var $editor = $("#comment-editor");
+  var $editorContainer = $("#comment-editor-container");
+  var $dispNone = $("#comment-instructions-no-comment");
+  var $dispSome = $("#comment-instructions-comment");
+  var $dispCollapse = $("#comment-instructions-collapse");
+  var $instructions = $("#comment-instructions");
+
+  $comment.click(function (event) {
+    if (event.target.tagName == "A") {
+      return;
+    }
+    showCommentEditor();
+  });
+
+  $editor.keypress(function (event) {
+    if (event.keyCode == 27) { // escape
+      $editorContainer.hide();
+      $comment.show();
+      return false;
+    }
+    if (event.keyCode == 13 && ! (event.shiftKey || event.ctrlKey)) {
+      $comment.html(htmlize($editor.val()));
+      $editorContainer.hide();
+      $comment.show();
+      updateResource("/meta" + location.pathname, function (data) {
+        data.comment = $comment.text();
+        return data;
+      }).then(function () {
+        console.log("comment saved");
+      }, function (err) {
+        console.log("Error saving comments:", err);
+      });
+      var tags = [];
+      $comment.find(".tag").each(function () {
+        var link = this.href.replace(/.*\//, "");
+        tags.push(link);
+      });
+      var req = new XMLHttpRequest();
+      req.open("PUT", "/tags-for" + location.pathname);
+      req.onload = function () {
+        if (req.status >= 300) {
+          console.log("Error saving tags:", req);
+          return;
+        }
+        console.log("tags saved");
+      };
+      req.send(JSON.stringify(tags));
+      return false;
+    }
+    return undefined;
+  });
+
+  function showCommentView() {
+    $comment.show();
+    $editorContainer.hide();
+  }
+
+  function showCommentEditor() {
+    $comment.hide();
+    $editorContainer.show();
+    var text = $comment.text();
+    $editor.val(text);
+    $editor.focus()[0].setSelectionRange(text.length, text.length);
+  }
+
+  $instructions.click(function () {
+    if ($commentContainer.is(":visible")) {
+      $commentContainer.hide();
+      $dispNone.hide();
+      $dispSome.hide();
+      $("#comment-expand-indicator").show();
+      $("#comment-collapse-indicator").hide();
+      $dispCollapse.hide();
+      if ($comment.text()) {
+        $dispNone.hide();
+        $dispSome.show();
+      } else {
+        $dispSome.show();
+        $dispNone.hide();
+      }
+    } else {
+      $commentContainer.show();
+      $dispNone.hide();
+      $dispSome.hide();
+      $dispCollapse.show();
+      var text = $comment.text();
+      if (text) {
+        showCommentView();
+      } else {
+        showCommentEditor();
+      }
+      $commentContainer.show();
+      $("#comment-expand-indicator").hide();
+      $("#comment-collapse-indicator").show();
+    }
+  });
+
 });

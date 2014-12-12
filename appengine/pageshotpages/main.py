@@ -1,19 +1,3 @@
-#!/usr/bin/env python
-#
-# Copyright 2007 Google Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
 import sys
 import os
 base = os.path.dirname(os.path.abspath(__file__))
@@ -72,6 +56,47 @@ class PageData(ndb.Model):
         return data
 
 
+class PageTags(ndb.Model):
+
+    path = ndb.StringProperty()
+    tag = ndb.StringProperty()
+    created = ndb.DateTimeProperty(auto_now_add=True)
+
+    @classmethod
+    def pages_for_tag(cls, tag):
+        query = cls.query(cls.tag == tag)
+        pages = query.fetch(1000, projection=[cls.path])
+        return [page.path for page in pages]
+
+    @classmethod
+    def tags_for_page(cls, path):
+        query = cls.query(cls.path == path)
+        tags = query.fetch(500, projection=[cls.tag])
+        return [tag.tag for tag in tags]
+
+    @classmethod
+    def associate(cls, path, tag):
+        asc = cls(path=path, tag=tag)
+        asc.put()
+
+    @classmethod
+    def disassociate(cls, path, tag):
+        query = cls.query(ndb.AND(cls.path == path, cls.tag == tag))
+        for asc in query:
+            asc.key.delete()
+
+    @classmethod
+    def set_tags(cls, path, tags):
+        query = cls.query(cls.path == path)
+        for tag in query.fetch(500, projection=[cls.tag]):
+            if tag.tag in tags:
+                tags.remove(tag.tag)
+            else:
+                tag.key.delete()
+        for tag in tags:
+            cls.associate(path, tag)
+
+
 class NewFrameHandler(webapp2.RequestHandler):
 
     def get(self):
@@ -82,6 +107,7 @@ class NewFrameHandler(webapp2.RequestHandler):
             base=self.request.host_url,
             iframe_src=self.request.host_url + "/newpage.html",
             iframe_readable_src=None,
+            comment="",
             is_newpage=True,
             )
         self.response.write(html)
@@ -141,11 +167,11 @@ class MainHandler(webapp2.RequestHandler):
                 base=self.request.host_url,
                 )
             self.response.write(html)
-        elif prefix == "collection":
+        elif prefix == "tag":
             self.request.path_info_pop()
             collection_name = self.request.path_info.strip("/")
             items = []
-            for item_name in PageData.get_collection_items(collection_name):
+            for item_name in PageTags.pages_for_tag(collection_name):
                 data, meta = PageData.get_data(item_name)
                 images = [{
                         "src": data["screenshot"],
@@ -175,6 +201,10 @@ class MainHandler(webapp2.RequestHandler):
             link_text = data["location"]
             link_text = re.sub(r"^https?://", "", link_text, flags=re.I)
             link_text = re.sub(r"/*$", "", link_text)
+            comment = ""
+            if "comment" in meta:
+                comment = htmlize(meta["comment"])
+                print "in", meta["comment"], "out", comment
             html = frame_html.substitute(
                 data=data,
                 meta=meta,
@@ -182,6 +212,7 @@ class MainHandler(webapp2.RequestHandler):
                 link_text=link_text,
                 iframe_src="/content" + urllib.quote(self.request.path_info),
                 iframe_readable_src="/readable" + urllib.quote(self.request.path_info),
+                comment=comment,
                 is_newpage=False,
                 )
             self.response.write(html)
@@ -196,6 +227,12 @@ class MainHandler(webapp2.RequestHandler):
                 self.response.status = 400
                 self.response.write("Must include head, body, and location")
                 return
+        if peek == "tags-for":
+            self.request.path_info_pop()
+            name = self.request.path_info
+            PageTags.set_tags(name, json.loads(self.request.body))
+            self.response.status = 204
+            return
         elif peek not in ("meta", "collection-list"):
             self.response.status = 404
             return
@@ -208,6 +245,24 @@ class MainHandler(webapp2.RequestHandler):
             print "Saving data", len(self.request.body)
             data.put()
         self.response.status = 204
+
+
+def htmlize(text):
+    text = cgi.escape(text)
+
+    def link_repl(match):
+        return '<a href="%s">%s</a>' % (match.group(0), match.group(0))
+
+    def hashtag_repl(match):
+        name = match.group(0)
+        link = re.sub(r"^#", "", name)
+        link = link.lower()
+        link = re.sub(r"_", "-", link)
+        return '<a class="tag" href="/tag/%s">%s</a>' % (link, name)
+
+    text = re.sub(r"https?:\/\/[^\s\]\)]+", link_repl, text, flags=re.I)
+    text = re.sub(r"\#[a-zA-Z0-9_\-]+", hashtag_repl, text)
+    return text
 
 
 def serialize_attributes(attrs):

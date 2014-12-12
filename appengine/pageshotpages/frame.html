@@ -7,6 +7,7 @@
     <!--ENDHEAD-->
     <link rel="stylesheet" href="{{ base }}/css/interface.css">
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="{{ base }}/js/util.js"></script>
     <script src="{{ base }}/js/interface.js"></script>
     <script src="{{ base }}/js/frame.js"></script>
     {{if is_newpage}}
@@ -41,10 +42,30 @@
                 <input type="text" id="new-collection-name" style="width: 100px">
               </label>
               <label style="display: none" id="part-of">
-                Part of <a id="collection-link" href=""><a>
+                Part of <a id="collection-link" href=""></a>
               </label>
             </div>
             <div class="instructions">
+              <span id="comment-instructions">
+                <span {{if comment}}style="display: none"{{endif}}
+                      id="comment-instructions-no-comment">
+                  Add comment
+                </span>
+                <span {{if not comment}}style="display: none"{{endif}}
+                      id="comment-instructions-comment">
+                  View comment
+                </span>
+                <span style="display: none"
+                      id="comment-instructions-collapse">
+                  Collapse
+                </span>
+                <span id="comment-expand-indicator">
+                  ▼
+                </span>
+                <span id="comment-collapse-indicator" style="display: none">
+                  ▲
+                </span>
+              </span>
               Shift+Click+Drag to highlight
             </div>
           </div><!-- /#controls -->
@@ -54,6 +75,13 @@
             <span id="readability-off" class="active">normal </span><span id="readability-on" class="inactive"> readable</span>
           </div>
           {{endif}}
+
+          <div id="comment-container" style="display: none">
+            <div id="comment">{{ html(comment) }}</div>
+            <div style="display: none" id="comment-editor-container">
+              <textarea id="comment-editor"></textarea>
+            </div>
+          </div><!-- /#comment-container -->
         </td>
       </tr>
       <tr>
