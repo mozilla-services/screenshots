@@ -55,3 +55,23 @@ function htmlize(text) {
   text = text.replace(/\n/g, "<br>\n");
   return text;
 }
+
+function updateTags(pagePath, el) {
+  // Update the page at pagePath to use the tags in the element el
+  // (using the links referred to in that element)
+  var tags = [];
+  el.find(".tag").each(function () {
+    var link = this.href.replace(/.*\//, "");
+    tags.push(link);
+  });
+  var req = new XMLHttpRequest();
+  req.open("PUT", "/tags-for" + pagePath);
+  req.onload = function () {
+    if (req.status >= 300) {
+      console.log("Error saving tags:", req);
+      return;
+    }
+    console.log("tags saved");
+  };
+  req.send(JSON.stringify(tags));
+}

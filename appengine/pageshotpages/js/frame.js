@@ -129,21 +129,7 @@ $(function () {
       }, function (err) {
         console.log("Error saving comments:", err);
       });
-      var tags = [];
-      $comment.find(".tag").each(function () {
-        var link = this.href.replace(/.*\//, "");
-        tags.push(link);
-      });
-      var req = new XMLHttpRequest();
-      req.open("PUT", "/tags-for" + location.pathname);
-      req.onload = function () {
-        if (req.status >= 300) {
-          console.log("Error saving tags:", req);
-          return;
-        }
-        console.log("tags saved");
-      };
-      req.send(JSON.stringify(tags));
+      updateTags(location.pathname, $comment);
       return false;
     }
     return undefined;

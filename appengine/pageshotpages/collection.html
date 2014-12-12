@@ -16,6 +16,19 @@
       <div class="item" data-path="{{ url }}"
            data-images="{{ json.dumps(images) }}">
 
+        <div class="comment-container {{if not meta.get('comment')}}comment-collapsed{{endif}}">
+          <div class="comment"
+               {{if not meta.get('comment')}}style="display: none"{{endif}}
+               >{{ html(htmlize(meta.get('comment', ''))) }}</div>
+
+          <div class="comment-editor-container" style="display: none">
+            <textarea class="comment-editor"></textarea>
+          </div>
+
+          <span class="add-comment"
+                {{if meta.get('comment')}}style="display: none"{{endif}}>+</span>
+        </div>
+
         <span class="closer">×</span>
 
         <div class="screenshot-container">

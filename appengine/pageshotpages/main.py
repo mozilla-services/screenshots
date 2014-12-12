@@ -173,10 +173,15 @@ class MainHandler(webapp2.RequestHandler):
             items = []
             for item_name in PageTags.pages_for_tag(collection_name):
                 data, meta = PageData.get_data(item_name)
-                images = [{
-                        "src": data["screenshot"],
-                        "title": "Screenshot",
-                        }]
+                if not data:
+                    print "Error: no page with name %r" % item_name
+                    continue
+                images = []
+                if data.get("screenshot"):
+                    images.append({
+                            "src": data["screenshot"],
+                            "title": "Screenshot",
+                            })
                 images.extend(data["images"])
                 if meta.get("activeImage") >= len(images):
                     meta["activeImage"] = 0
@@ -190,6 +195,7 @@ class MainHandler(webapp2.RequestHandler):
                 items=items,
                 base=self.request.host_url,
                 images=images,
+                htmlize=htmlize,
                 json=json,
                 )
             self.response.write(html)

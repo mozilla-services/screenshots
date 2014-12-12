@@ -12,6 +12,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 2em;
+    box-shadow: 2px 2px 4px #999;
 }
 
 a.embedded, a.embedded:visited {
@@ -75,4 +76,32 @@ a.embedded, a.embedded:visited {
 .title-replacement {
     font-weight: bold;
     font-size: 105%;
+}
+
+.comment-container {
+    width: 200px;
+    margin-left: -230px;
+    background-color: #fff;
+    box-shadow: 2px 2px 4px #999;
+    border-radius: 2px;
+    padding: 6px;
+    position: absolute;
+}
+
+.comment-container.comment-collapsed {
+    width: 35px;
+}
+
+.add-comment {
+    font-size: 120%;
+    cursor: pointer;
+}
+
+.comment-editor {
+    width: 100%;
+    height: 40px;
+}
+
+.comment {
+    cursor: pointer;
 }

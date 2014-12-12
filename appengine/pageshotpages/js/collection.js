@@ -7,6 +7,7 @@ $(function () {
     var path = el.attr("data-path");
     el.remove();
     var collectionName = $(document.body).attr("data-collection-name");
+
     localStorage.removeItem("collection:" + encodeURIComponent(path));
     updateResource(
       "/collection-list/" + encodeURIComponent(collectionName),
@@ -102,4 +103,51 @@ $(function () {
     }
     return false;
   });
+
+  $(document).on("click", ".add-comment, .comment", function (event) {
+    var item = $(event.target).closest(".item");
+    item.find(".comment-container").removeClass("comment-collapsed");
+    item.find(".comment").hide();
+    item.find(".add-comment").hide();
+    item.find(".comment-editor-container").show();
+    var text = item.find(".comment").text();
+    var $editor = item.find(".comment-editor");
+    $editor.val(text).focus()[0].setSelectionRange(text.length, text.length);
+  });
+
+  $(document).on("keypress", ".comment-editor", function (event) {
+    var item = $(event.target).closest(".item");
+    if (event.keyCode == 27) {
+      closeEditor(item);
+      return false;
+    } else if (event.keyCode == 13 && ! (event.shiftKey || event.ctrlKey)) {
+      var text = item.find(".comment-editor").val();
+      item.find(".comment").html(htmlize(text));
+      closeEditor(item);
+      updateResource("/meta" + item.attr("data-path"), function (data) {
+        data.comment = text;
+        return data;
+      }).then(function () {
+        console.log("comment saved");
+      }, function (err) {
+        console.log("comment could not be saved:", err);
+      });
+      updateTags(item.attr("data-path"), item.find(".comment"));
+      // FIXME: should detect if tag is removed (or I could refused to remove the tag?)
+      return false;
+    }
+    return undefined;
+  });
+
+  function closeEditor(item) {
+    item.find(".comment-editor-container").hide();
+    var text = item.find(".comment").text();
+    if (text) {
+      item.find(".comment").show();
+    } else {
+      item.find(".add-comment").show();
+      item.addClass("commen-collapsed");
+    }
+  }
+
 });
