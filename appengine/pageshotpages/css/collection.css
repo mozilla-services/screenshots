@@ -13,8 +13,13 @@ body {
     margin-right: auto;
     margin-bottom: 2em;
     box-shadow: 2px 2px 4px #999;
-    /* This is so that this element can't be smaller than the floating screenshot: */
-    overflow: auto;
+}
+
+.item:after {
+   content: " ";
+   display: block;
+   height: 0;
+   clear: both;
 }
 
 a.embedded, a.embedded:visited {
@@ -48,7 +53,7 @@ a.embedded, a.embedded:visited {
 .snippet:hover {
     max-width: none;
     max-height: none;
-    overflow: inherit;
+    overflow: visible;
 }
 
 .closer {
