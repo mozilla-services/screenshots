@@ -2,28 +2,22 @@ $(function () {
 
   $(document).on("click", ".closer", function (event) {
     // FIXME: need to change to use the new pattern
-    return;
-    var el = $(event.target).closest(".item");
-    var path = el.attr("data-path");
-    el.remove();
+    var item = $(event.target).closest(".item");
+    var path = item.attr("data-path");
+    var comment = item.find(".comment").text();
     var collectionName = $(document.body).attr("data-collection-name");
-
-    localStorage.removeItem("collection:" + encodeURIComponent(path));
-    updateResource(
-      "/collection-list/" + encodeURIComponent(collectionName),
-      function (data) {
-        var index = data.indexOf(path);
-        if (index == -1) {
-          console.warn("Could not find", path, "in existing collection data", data);
-          return undefined;
-        }
-        data.splice(index, 1);
-        return data;
-      }, []).then(function () {
-        console.log("Saved deletion of", path);
-      }, function (error) {
-        console.log("Error saving deletion of", path, ":", error);
-      });
+    comment = comment.replace(new RegExp("\\s*\\#" + collectionName, "ig"), "");
+    item.find(".comment").html(htmlize(comment));
+    updateTags(path, item.find(".comment"));
+    item.remove();
+    updateResource("/meta" + path, function (data) {
+      data.comment = comment;
+      return data;
+    }).then(function () {
+      console.log("Removed #" + collectionName + " from comment");
+    }, function (err) {
+      console.log("Error removing #" + collectionName + ":", err);
+    });
   });
 
   $(document).on("click", ".image-up, .image-down", function (event) {

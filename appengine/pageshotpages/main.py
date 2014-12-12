@@ -239,7 +239,7 @@ class MainHandler(webapp2.RequestHandler):
             PageTags.set_tags(name, json.loads(self.request.body))
             self.response.status = 204
             return
-        elif peek not in ("meta", "collection-list"):
+        elif peek not in ("meta", "data", "collection-list"):
             self.response.status = 404
             return
         if data:

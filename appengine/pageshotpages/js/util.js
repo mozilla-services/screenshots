@@ -59,6 +59,7 @@ function htmlize(text) {
 function updateTags(pagePath, el) {
   // Update the page at pagePath to use the tags in the element el
   // (using the links referred to in that element)
+  var def = $.Deferred();
   var tags = [];
   el.find(".tag").each(function () {
     var link = this.href.replace(/.*\//, "");
@@ -69,9 +70,12 @@ function updateTags(pagePath, el) {
   req.onload = function () {
     if (req.status >= 300) {
       console.log("Error saving tags:", req);
+      def.reject(req);
       return;
     }
     console.log("tags saved");
+    def.resolve(tags);
   };
   req.send(JSON.stringify(tags));
+  return def;
 }
