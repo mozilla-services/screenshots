@@ -9,6 +9,10 @@ handlers:
   static_files: icon.png
   upload: icon\.png
 
+- url: /clipboard-8-xl\.png
+  static_files: clipboard-8-xl.png
+  upload: clipboard-8-xl\.png
+
 #- url: /newpage\.html
 #  static_files: newpage.html
 #  upload: newpage\.html

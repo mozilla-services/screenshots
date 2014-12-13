@@ -180,4 +180,48 @@ $(function () {
     }
   });
 
+  $("#clip").click(function () {
+    var html = '<a href="' + location.href + '">' + location.href +
+        '<br>\n' + htmlEscape(document.title);
+    if ($("#meta-snippet").length) {
+      // FIXME: Gmail doesn't like pasted data: URLs
+      html += ('<br>\n' +
+               '<img src="' + (location.origin + "/clipboard-8-xl.png" || $("#meta-snippet").attr("content")) + '">');
+    }
+    html += '</a>';
+    var data = {
+      text: location.href,
+      html: html,
+      confirmationMessage: "Share link copied",
+      confirmationTitle: "Copied!"
+    };
+    var event = document.createEvent("CustomEvent");
+    console.log("sending clip", data);
+    event.initCustomEvent("request-clipboard", true, true, data);
+    document.dispatchEvent(event);
+  });
+
+  var hiInterval = setInterval(function () {
+    var frame = $("#frame")[0];
+    if (frame) {
+      frame.contentWindow.postMessage("hi", location.origin);
+    }
+  }, 100);
+
+  window.addEventListener("message", function (event) {
+    if (event.origin == location.origin) {
+      if (event.data == "hi") {
+        clearTimeout(hiInterval);
+      }
+      if (event.data.indexOf("{") == 0) {
+        var data = JSON.parse(event.data);
+        if (data.type == "set-snippet") {
+          $("#meta-snippet").remove();
+          var el = $('<meta id="meta-snippet" property="og:images">').attr("content", data.content);
+          $(document.head).append(el);
+        }
+      }
+    }
+  }, false);
+
 });

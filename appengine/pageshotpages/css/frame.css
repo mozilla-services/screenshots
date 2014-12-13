@@ -56,8 +56,7 @@ a:hover {
     text-decoration: underline;
 }
 
-a.sitelink {
-    display: block;
+#info {
     width: 300px;
     white-space: nowrap;
     overflow: hidden;
@@ -92,7 +91,7 @@ a.sitelink, a.sitelink:visited {
     width: 500px;
     min-height: 12px;
     padding: 9px;
-    top: 42px;
+    top: 40px;
     right: 10px;
     border-bottom: 2px solid #E66000;
     border-right: 2px solid #E66000;
@@ -109,5 +108,9 @@ a.sitelink, a.sitelink:visited {
 }
 
 #comment-instructions {
+    cursor: pointer;
+}
+
+#clip {
     cursor: pointer;
 }

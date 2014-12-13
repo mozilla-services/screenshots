@@ -79,3 +79,11 @@ function updateTags(pagePath, el) {
   req.send(JSON.stringify(tags));
   return def;
 }
+
+function htmlEscape(t) {
+  t = t.replace(/&/g, "&amp;");
+  t = t.replace(/</g, "&lt;");
+  t = t.replace(/>/g, "&gt;");
+  t = t.replace(/"/g, "&quot;");
+  return t;
+}

@@ -46,14 +46,18 @@ function saveMeta() {
     head: head,
     snippet: snippet
   };
-  var xhr = new XMLHttpRequest();
   var metaPath = location.origin + "/meta";
   metaPath += location.pathname.replace(/^\/content/, "");
-  xhr.open("PUT", metaPath);
-  xhr.send(JSON.stringify(data));
-  xhr.onload = function () {
-    console.log(JSON.stringify(data).length, "bytes of metadata saved");
-  };
+  updateResource(metaPath, function (data) {
+    data.body = body;
+    data.head = head;
+    data.snippet = snippet;
+    return data;
+  }).then(function () {
+    console.log("saved meta", snippet ? "with snippet" : "without snippet");
+  }, function (err) {
+    console.log("error saving meta:", err);
+  });
 }
 
 function requestShot() {
@@ -77,7 +81,39 @@ document.addEventListener("got-screenshot", function (event) {
   var el = $('<meta property="og:image" id="meta-snippet">').attr("content", shot);
   $(document.head).append(el);
   saveMeta();
+  sendParentMessage({
+    type: "set-snippet",
+    content: shot
+  });
 }, false);
+
+var parentWindow;
+var pendingMessages = [];
+
+window.addEventListener("message", function (event) {
+  if (event.origin == location.origin) {
+    parentWindow = event.source;
+    if (pendingMessages.length) {
+      pendingMessages.forEach(function (msg) {
+        parentWindow.postMessage(msg, location.origin);
+      });
+    }
+  }
+  if (event.data == "hi") {
+    event.source.postMessage("hi", location.origin);
+  }
+}, false);
+
+function sendParentMessage(msg) {
+  if (typeof msg != "string") {
+    msg = JSON.stringify(msg);
+  }
+  if (parentWindow) {
+    parentWindow.postMessage(msg, location.origin);
+  } else {
+    pendingMessages.push(msg);
+  }
+}
 
 function activateHighlight() {
 

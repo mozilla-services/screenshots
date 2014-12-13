@@ -54,7 +54,11 @@
               Shift+Click+Drag to highlight
             </div>
           </div><!-- /#controls -->
-          <a class="sitelink" href="{{ data.get('location') }}">{{ link_text }}</a>
+          <div id="info">
+            <span id="clip"><img title="Copy shareable link to the clipboard"
+                                 src="{{ base }}/clipboard-8-xl.png" style="height: 1em;"></span>
+            <a class="sitelink" href="{{ data.get('location') }}">{{ link_text }}</a>
+          </div>
           {{if is_newpage or data.get("readable")}}
           <div id="readable-toggler">
             <span id="readability-off" class="active">normal </span><span id="readability-on" class="inactive"> readable</span>
