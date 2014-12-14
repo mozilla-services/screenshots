@@ -181,8 +181,8 @@ $(function () {
   });
 
   $("#clip").click(function () {
-    var html = '<a href="' + location.href + '">' + location.href +
-        '<br>\n' + htmlEscape(document.title);
+    var html = '<a href="' + location.href + '">' + htmlEscape(document.title) +
+        '<br>\n' + location.href;
     if ($("#meta-snippet").length) {
       // FIXME: Gmail doesn't like pasted data: URLs
       html += ('<br>\n' +
