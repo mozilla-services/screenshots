@@ -201,6 +201,21 @@ class MainHandler(webapp2.RequestHandler):
                 json=json,
                 )
             self.response.write(html)
+        elif prefix == "snippet":
+            self.request.path_info_pop()
+            data, meta = PageData.get_data(self.request.path_info)
+            if not meta or not meta.get('snippet'):
+                self.response.status = 404
+                return
+            s = meta['snippet']
+            assert s.startswith('data:')
+            s = s[5:]
+            content_type, s = s.split(';', 1)
+            assert s.startswith('base64,')
+            s = s.split('base64,', 1)[1]
+            body = s.decode('base64')
+            self.response.content_type = str(content_type)
+            self.response.write(body)
         else:
             data, meta = PageData.get_data(self.request.path_info)
             if not data:

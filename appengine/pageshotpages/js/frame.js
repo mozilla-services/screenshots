@@ -186,7 +186,7 @@ $(function () {
     if ($("#meta-snippet").length) {
       // FIXME: Gmail doesn't like pasted data: URLs
       html += ('<br>\n' +
-               '<img src="' + (location.origin + "/clipboard-8-xl.png" || $("#meta-snippet").attr("content")) + '">');
+               '<img src="' + (location.origin + "/snippet" + location.pathname) + '">');
     }
     html += '</a>';
     var data = {
