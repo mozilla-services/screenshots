@@ -197,20 +197,32 @@ function documentStaticData() {
   var MIN_IMAGE_WIDTH = 250;
   var MIN_IMAGE_HEIGHT = 200;
   var images = [];
-  var options = newDiv.getElementsByTagName("img");
-  for (var i=0; i<options.length; i++) {
-    var option = options[i];
-    if (option.width >= MIN_IMAGE_WIDTH
-        && option.height >= MIN_IMAGE_HEIGHT) {
+  var imageMap = {};
+
+  function scanImage(img) {
+    if (img.width >= MIN_IMAGE_WIDTH
+        && img.height >= MIN_IMAGE_HEIGHT
+        && ! imageMap[img.src]) {
       // FIXME: would be nice to search for a caption
       images.push({
-        title: option.getAttribute("title") || option.getAttribute("alt"),
-        src: option.src,
-        width: option.width,
-        height: option.height
+        title: img.getAttribute("title") || img.getAttribute("alt"),
+        src: img.src,
+        width: img.width,
+        height: img.height
       });
+      imageMap[img.src] = true;
     }
   }
+
+  var options = newDiv.getElementsByTagName("img");
+  for (var i=0; i<options.length; i++) {
+    scanImage(options[i]);
+  }
+  options = document.body.getElementsByTagName("img");
+  for (var i=0; i<options.length; i++) {
+    scanImage(options[i]);
+  }
+
   reader = options = newDiv = null;
 
   // Generally this only happens when the document hasn't really loaded
