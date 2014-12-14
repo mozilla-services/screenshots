@@ -112,3 +112,21 @@ a.embedded, a.embedded:visited {
 .comment {
     cursor: pointer;
 }
+
+.title-link {
+    font-size: 70%;
+    text-transform: uppercase;
+    padding: 4px 0 4px 35px;
+}
+
+.title-link a:visited, .title-link a:link {
+    color: #777;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

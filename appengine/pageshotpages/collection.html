@@ -48,6 +48,10 @@
         </div>
         {{endif}}
 
+        <div class="title-link">
+          <a href="{{ data.get('location') }}">{{ domain(data.get('location', '')) }}</a>
+        </div>
+
         {{if meta.get("snippet")}}
         <div class="snippet-container">
           <hr>

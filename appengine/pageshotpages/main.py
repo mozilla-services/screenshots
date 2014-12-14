@@ -10,6 +10,7 @@ import re
 import urllib
 import cgi
 import tempita
+import urlparse
 
 
 frame_html = tempita.HTMLTemplate.from_filename(os.path.join(base, "frame.html"))
@@ -196,6 +197,7 @@ class MainHandler(webapp2.RequestHandler):
                 base=self.request.host_url,
                 images=images,
                 htmlize=htmlize,
+                domain=domain,
                 json=json,
                 )
             self.response.write(html)
@@ -269,6 +271,10 @@ def htmlize(text):
     text = re.sub(r"https?:\/\/[^\s\]\)]+", link_repl, text, flags=re.I)
     text = re.sub(r"\#[a-zA-Z0-9_\-]+", hashtag_repl, text)
     return text
+
+
+def domain(link):
+    return urlparse.urlsplit(link).netloc.split(":")[0]
 
 
 def serialize_attributes(attrs):
