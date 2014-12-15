@@ -130,3 +130,27 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+#search-container {
+    position: absolute;
+    width: 120px;
+    right: 10px;
+    top: 10px;
+    padding-right: 20px;
+}
+
+#search {
+    border-radius: 10px;
+    width: 100%;
+    padding: 3px 5px 3px 5px;
+}
+
+#search-summary {
+    width: 230px;
+    right: 145px;
+    top: 6px;
+    text-align: right;
+    position: absolute;
+    font-size: 85%;
+    color: #666;
+}

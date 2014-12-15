@@ -8,13 +8,20 @@
     <script src="{{ base }}/js/collection.js"></script>
   </head>
   <body data-collection-name="{{ collection_name }}">
+
+    <div id="search-container">
+      <div id="search-summary"></div>
+      <input type="text" id="search">
+    </div>
+
     <h1>Tag: #{{ collection_name }}</h1>
 
     <div id="items">
       {{for url, data, meta, images in items}}
 
       <div class="item" data-path="{{ url }}"
-           data-images="{{ json.dumps(images) }}">
+           data-images="{{ json.dumps(images) }}"
+           data-readable="{{ data.get('readable') and data['readable'].get('content') }}">
 
         <div class="comment-container {{if not meta.get('comment')}}comment-collapsed{{endif}}">
           <div class="comment"
@@ -49,7 +56,7 @@
         {{endif}}
 
         <div class="title-link">
-          <a href="{{ data.get('location') }}">{{ domain(data.get('location', '')) }}</a>
+          <a class="direct-link" href="{{ data.get('location') }}">{{ domain(data.get('location', '')) }}</a>
         </div>
 
         {{if meta.get("snippet")}}

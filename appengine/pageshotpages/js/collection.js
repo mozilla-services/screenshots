@@ -144,4 +144,53 @@ $(function () {
     }
   }
 
+  var searchInit = false;
+
+  $("#search").change(search);
+  $("#search").keyup(search);
+
+  function search() {
+    var term = $("#search").val();
+    console.log("search with term", term);
+    if (! term) {
+      $(".item").show();
+      $("#search-summary").text("");
+      return;
+    }
+    term = term.toLowerCase();
+    if (! searchInit) {
+      $(".item").each(function () {
+        var item = $(this);
+        var extra = [
+          item.attr("data-readable"),
+          item.attr("data-images"),
+          item.find(".direct-link").attr("href")
+        ];
+        item.attr("data-searchable", extra.join(" "));
+      });
+    }
+    var found = 0;
+    var total = 0;
+    $(".item").each(function () {
+      total++;
+      var item = $(this);
+      var text = item.textContent;
+      text += " " + item.attr("data-searchable");
+      text = text.toLowerCase();
+      console.log("indexOf", item.find(".direct-link").attr("href"), term, text.indexOf(term));
+      if (text.indexOf(term) == -1) {
+        item.hide();
+      } else {
+        item.show();
+        found++;
+      }
+    });
+    if (! found) {
+      $(".item").show();
+      $("#search-summary").text("no results");
+    } else {
+      $("#search-summary").text("showing " + found + " of " + total);
+    }
+  }
+
 });
