@@ -107,7 +107,7 @@ function staticHTML(el) {
       var html = staticHTML(el.contentWindow.document.documentElement);
       replSrc = encodeData('text/html', html);
     } catch (e) {
-      console.log('Had to skip iframe for permission reasons:', e);
+      console.log('Had to skip iframe for permission reasons:', e+"");
     }
   }
   var s = '<' + el.tagName;
