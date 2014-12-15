@@ -5,7 +5,7 @@ function updateResource(url, callback, defaultValue) {
   req.onload = function () {
     var value = defaultValue;
     if (req.status != 200) {
-      if (defaultValue !== undefined) {
+      if (defaultValue === undefined) {
         def.reject(req);
         return;
       }

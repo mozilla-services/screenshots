@@ -53,7 +53,7 @@ function saveMeta() {
     data.head = head;
     data.snippet = snippet;
     return data;
-  }).then(function () {
+  }, {}).then(function () {
     console.log("saved meta", snippet ? "with snippet" : "without snippet");
   }, function (err) {
     console.log("error saving meta:", err);

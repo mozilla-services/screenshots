@@ -13,7 +13,7 @@ $(function () {
     updateResource("/meta" + path, function (data) {
       data.comment = comment;
       return data;
-    }).then(function () {
+    }, {}).then(function () {
       console.log("Removed #" + collectionName + " from comment");
     }, function (err) {
       console.log("Error removing #" + collectionName + ":", err);
@@ -51,7 +51,7 @@ $(function () {
     updateResource("/meta" + path, function (data) {
       data['activeImage'] = next;
       return data;
-    }).then(function () {
+    }, {}).then(function () {
       console.log("Image change saved");
     }, function (err) {
       console.log("Image change failed:", err);
@@ -89,7 +89,7 @@ $(function () {
       title.show();
       updateResource("/meta", function (data) {
         data.userTitle = newTitle;
-      }).then(function () {
+      }, {}).then(function () {
         console.log("Saved new title");
       }, function (err) {
         console.log("Error putting meta:", err);
@@ -121,7 +121,7 @@ $(function () {
       updateResource("/meta" + item.attr("data-path"), function (data) {
         data.comment = text;
         return data;
-      }).then(function () {
+      }, {}).then(function () {
         console.log("comment saved");
       }, function (err) {
         console.log("comment could not be saved:", err);

@@ -124,7 +124,7 @@ $(function () {
       updateResource("/meta" + location.pathname, function (data) {
         data.comment = $comment.text();
         return data;
-      }).then(function () {
+      }, {}).then(function () {
         console.log("comment saved");
       }, function (err) {
         console.log("Error saving comments:", err);
