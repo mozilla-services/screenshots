@@ -240,7 +240,7 @@ function documentStaticData() {
   if (document.documentElement) {
     htmlAttrs = getAttributes(document.documentElement);
   }
-  var favicon = document.querySelector("link[rel='shortcut icon']");
+  var favicon = document.querySelector("link[rel='shortcut icon'], link[rel='icon']");
   if (favicon) {
     favicon = favicon.href;
   } else {
