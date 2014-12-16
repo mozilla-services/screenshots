@@ -5,6 +5,8 @@ document.addEventListener("has-url", function (event) {
 self.port.on("data", function (docData) {
   docData.id = makeRandom();
   docData.domain = domain(docData.location);
+  // FIXME: I should figure out a different way to do this
+  // I think this might be why history.replaceState doesn't work
   unsafeWindow.injectData(JSON.stringify(docData));
 });
 

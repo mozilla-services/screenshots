@@ -138,12 +138,14 @@ class MainHandler(webapp2.RequestHandler):
                 self.response.write(data.content)
             else:
                 self.response.status = 404
+                self.response.write("No %s for page" % prefix)
                 return
         elif prefix == "content":
             self.request.path_info_pop()
             data, meta = PageData.get_data(self.request.path_info)
             if not data:
                 self.response.status = 404
+                self.response.write("No such page")
                 return
             bodyAttrs = serialize_attributes(data.get("bodyAttrs", []))
             htmlAttrs = serialize_attributes(data.get("htmlAttrs", []))
@@ -161,6 +163,7 @@ class MainHandler(webapp2.RequestHandler):
             data, meta = PageData.get_data(self.request.path_info)
             if not data:
                 self.response.status = 404
+                self.response.write("No such page")
                 return
             html = readable_html.substitute(
                 data=data,
@@ -207,6 +210,10 @@ class MainHandler(webapp2.RequestHandler):
             data, meta = PageData.get_data(self.request.path_info)
             if not meta or not meta.get('snippet'):
                 self.response.status = 404
+                if not data:
+                    self.response.write("No such page")
+                else:
+                    self.response.write("No such snippet")
                 return
             s = meta['snippet']
             assert s.startswith('data:')
@@ -226,6 +233,7 @@ class MainHandler(webapp2.RequestHandler):
             data, meta = PageData.get_data(self.request.path_info)
             if not data:
                 self.response.status = 404
+                self.response.write("No such page")
                 return
             link_text = data["location"]
             link_text = re.sub(r"^https?://", "", link_text, flags=re.I)
