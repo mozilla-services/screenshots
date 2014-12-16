@@ -1,5 +1,6 @@
 var IS_NEWPAGE = true;
 var docName;
+var SET_COMMENT_ON_LOAD = null;
 
 function injectData(docData) {
   docData = JSON.parse(docData);
@@ -12,6 +13,14 @@ function injectData(docData) {
   docName = "/" + docData.id + "/" + docData.domain;
   history.pushState({}, "static page", location.origin + docName);
   tryInject(docData);
+  if (docData.autoTag) {
+    if (window.saveComment) {
+      window.saveComment("#" + docData.autoTag);
+    } else {
+      SET_COMMENT_ON_LOAD = "#" + docData.autoTag;
+    }
+    $("#comment-instructions").click();
+  }
 }
 
 function tryInject(docData) {

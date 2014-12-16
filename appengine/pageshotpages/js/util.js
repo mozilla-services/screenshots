@@ -59,25 +59,30 @@ function htmlize(text) {
 function updateTags(pagePath, el) {
   // Update the page at pagePath to use the tags in the element el
   // (using the links referred to in that element)
-  var def = $.Deferred();
   var tags = [];
   el.find(".tag").each(function () {
     var link = this.href.replace(/.*\//, "");
     tags.push(link);
   });
-  var req = new XMLHttpRequest();
-  req.open("PUT", "/tags-for" + pagePath);
-  req.onload = function () {
-    if (req.status >= 300) {
-      console.log("Error saving tags:", req);
-      def.reject(req);
-      return;
+  updateResource("/tags-for" + pagePath, function (existing) {
+    var newTags = [];
+    for (var i=0; i<tags.length; i++) {
+      if (existing.indexOf(tags[i]) == -1) {
+        newTags.push(tags[i]);
+      }
     }
-    console.log("tags saved");
-    def.resolve(tags);
-  };
-  req.send(JSON.stringify(tags));
-  return def;
+    if (newTags.length) {
+      console.log("notifying of new tags:", newTags);
+      var event = document.createEvent("CustomEvent");
+      event.initCustomEvent("add-tags", true, true, newTags);
+      document.dispatchEvent(event);
+    }
+    return tags;
+  }).then(function () {
+    console.log("tags saved", tags);
+  }, function (err) {
+    console.log("Error saving tags", err);
+  });
 }
 
 function htmlEscape(t) {

@@ -118,22 +118,28 @@ $(function () {
       return false;
     }
     if (event.keyCode == 13 && ! (event.shiftKey || event.ctrlKey)) {
-      $comment.html(htmlize($editor.val()));
-      $editorContainer.hide();
-      $comment.show();
-      updateResource("/meta" + location.pathname, function (data) {
-        data.comment = $comment.text();
-        return data;
-      }, {}).then(function () {
-        console.log("comment saved");
-      }, function (err) {
-        console.log("Error saving comments:", err);
-      });
-      updateTags(location.pathname, $comment);
+      saveComment($editor.val());
       return false;
     }
     return undefined;
   });
+
+  function saveComment(text) {
+    $comment.html(htmlize(text));
+    $editorContainer.hide();
+    $comment.show();
+    updateResource("/meta" + location.pathname, function (data) {
+      data.comment = $comment.text();
+      return data;
+    }, {}).then(function () {
+      console.log("comment saved");
+    }, function (err) {
+      console.log("Error saving comments:", err);
+    });
+    updateTags(location.pathname, $comment);
+  }
+
+  window.saveComment = saveComment;
 
   function showCommentView() {
     $comment.show();
@@ -196,7 +202,6 @@ $(function () {
       confirmationTitle: "Copied!"
     };
     var event = document.createEvent("CustomEvent");
-    console.log("sending clip", data);
     event.initCustomEvent("request-clipboard", true, true, data);
     document.dispatchEvent(event);
   });
@@ -223,5 +228,9 @@ $(function () {
       }
     }
   }, false);
+
+  if (window.SET_COMMENT_ON_LOAD) {
+    saveComment(window.SET_COMMENT_ON_LOAD);
+  }
 
 });
