@@ -1,6 +1,7 @@
 var IS_NEWPAGE = true;
-var docName;
 var SET_COMMENT_ON_LOAD = null;
+var shotUrl = location.href;
+var shotPath;
 
 function injectData(docData) {
   docData = JSON.parse(docData);
@@ -10,8 +11,14 @@ function injectData(docData) {
   if (! docData.readable) {
     $("#readable-toggler").hide();
   }
-  docName = "/" + docData.id + "/" + docData.domain;
-  history.pushState({}, "static page", location.origin + docName);
+  shotPath = "/" + docData.id + "/" + docData.domain;
+  var destUrl = location.origin + shotPath;
+  try {
+    history.replaceState({}, "static page", destUrl);
+  } catch (e) {
+    console.log("Error using replaceState, continuing anyway:", e+"");
+  }
+  shotUrl = destUrl;
   tryInject(docData);
   if (docData.autoTag) {
     if (window.saveComment) {
@@ -21,12 +28,15 @@ function injectData(docData) {
     }
     $("#comment-instructions").click();
   }
+  var event = document.createEvent("CustomEvent");
+  event.initCustomEvent("has-url", true, true, destUrl);
+  document.dispatchEvent(event);
 }
 
 function tryInject(docData) {
   var frame = $("#frame")[0];
-  frame.setAttribute("data-normal-src", location.origin + "/content" + docName);
-  frame.setAttribute("data-readable-src", location.origin + "/readable" + docName);
+  frame.setAttribute("data-normal-src", location.origin + "/content" + shotPath);
+  frame.setAttribute("data-readable-src", location.origin + "/readable" + shotPath);
   if (frame.contentWindow.injectData) {
     frame.contentWindow.injectData(JSON.stringify(docData));
   } else {

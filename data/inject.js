@@ -1,3 +1,7 @@
+document.addEventListener("has-url", function (event) {
+  self.port.emit("hasUrl", event.detail);
+});
+
 self.port.on("data", function (docData) {
   docData.id = makeRandom();
   docData.domain = domain(docData.location);

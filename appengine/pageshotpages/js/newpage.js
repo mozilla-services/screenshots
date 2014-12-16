@@ -1,4 +1,6 @@
 var IS_NEWPAGE = true;
+var shotUrl = location.href;
+var shotPath;
 
 function injectData(docData) {
   if (! document.body) {
@@ -24,7 +26,13 @@ function injectData(docData) {
     console.log("scroll to", pos, docData.initialScroll, document.body.clientHeight);
     window.scroll(0, pos);
   }
-  history.pushState({}, "static page", location.origin + "/content/" + docData.id + "/" + docData.domain);
+  try {
+    history.replaceState({}, "static page", location.origin + "/content/" + docData.id + "/" + docData.domain);
+  } catch (e) {
+    console.log("Error in replaceHistory, continuing anyway:", e+"");
+  }
+  shotPath = docData.id;
+  shotUrl = location.origin + "/content/" + docData.id;
   interfaceReady();
   var req = new XMLHttpRequest();
   req.open("PUT", location.origin + "/data/" + docData.id + "/" + docData.domain);

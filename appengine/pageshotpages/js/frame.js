@@ -1,3 +1,10 @@
+if (typeof shotPath == "undefined") {
+  shotPath = location.pathname;
+}
+if (typeof shotUrl == "undefined") {
+  shotUrl = location.href;
+}
+
 $(function () {
   $("#readability-on").click(function () {
     $("#readability-on").addClass("active").removeClass("inactive");
@@ -61,11 +68,11 @@ $(function () {
     $("#collection-link")
         .attr("href", location.origin + "/collection/" + encodeURIComponent(name))
         .text(name);
-    localStorage.setItem("collection:" + encodeURIComponent(location.pathname),
+    localStorage.setItem("collection:" + encodeURIComponent(shotPath),
                          name);
   }
 
-  var currentCollection = localStorage.getItem("collection:" + encodeURIComponent(location.pathname));
+  var currentCollection = localStorage.getItem("collection:" + encodeURIComponent(shotPath));
   if (currentCollection) {
     setCollection(currentCollection);
   }
@@ -78,8 +85,8 @@ $(function () {
       if (req.status != 404) {
         data = JSON.parse(req.responseText);
       }
-      if (data.indexOf(location.pathname) == -1) {
-        data.push(location.pathname);
+      if (data.indexOf(shotPath) == -1) {
+        data.push(shotPath);
       }
       var putter = new XMLHttpRequest();
       putter.open("PUT", location.origin + "/collection-list/" + encodeURIComponent(name));
@@ -128,7 +135,7 @@ $(function () {
     $comment.html(htmlize(text));
     $editorContainer.hide();
     $comment.show();
-    updateResource("/meta" + location.pathname, function (data) {
+    updateResource("/meta" + shotPath, function (data) {
       data.comment = $comment.text();
       return data;
     }, {}).then(function () {
@@ -136,7 +143,7 @@ $(function () {
     }, function (err) {
       console.log("Error saving comments:", err);
     });
-    updateTags(location.pathname, $comment);
+    updateTags(shotPath, $comment);
   }
 
   window.saveComment = saveComment;
@@ -187,16 +194,16 @@ $(function () {
   });
 
   $("#clip").click(function () {
-    var html = '<a href="' + location.href + '">' + htmlEscape(document.title) +
-        '<br>\n' + location.href;
+    var html = '<a href="' + shotUrl + '">' + htmlEscape(document.title) +
+        '<br>\n' + shotUrl;
     if ($("#meta-snippet").length) {
       // FIXME: Gmail doesn't like pasted data: URLs
       html += ('<br>\n' +
-               '<img src="' + (location.origin + "/snippet" + location.pathname) + '">');
+               '<img src="' + (location.origin + "/snippet" + shotPath) + '">');
     }
     html += '</a>';
     var data = {
-      text: location.href,
+      text: shotUrl,
       html: html,
       confirmationMessage: "Share link copied",
       confirmationTitle: "Copied!"

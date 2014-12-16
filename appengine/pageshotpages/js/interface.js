@@ -1,3 +1,10 @@
+if (typeof shotPath == "undefined") {
+  shotPath = location.pathname;
+}
+if (typeof shotUrl == "undefined") {
+  shotUrl = location.href;
+}
+
 $(function () {
   if (window.IS_NEWPAGE) {
     return;
@@ -47,7 +54,7 @@ function saveMeta() {
     snippet: snippet
   };
   var metaPath = location.origin + "/meta";
-  metaPath += location.pathname.replace(/^\/content/, "");
+  metaPath += shotPath.replace(/^\/content/, "");
   updateResource(metaPath, function (data) {
     data.body = body;
     data.head = head;
