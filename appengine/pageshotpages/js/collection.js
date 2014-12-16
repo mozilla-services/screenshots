@@ -144,53 +144,128 @@ $(function () {
     }
   }
 
-  var searchInit = false;
-
   $("#search").change(search);
-  $("#search").keyup(search);
+  $("#search").keyup(function (event) {
+    if (event.keyCode == 13) {
+      var select = $(".item.enter-to-select");
+      if (select.length) {
+        var href = select.find(".item-title a").attr("href");
+        location.href = href;
+        return;
+      }
+      doSearch();
+    } else if (event.keyCode == 27) {
+      $("#search").val("");
+      search();
+    } else {
+      search();
+    }
+  });
+
+  var searchTimeout;
 
   function search() {
+    if (searchTimeout) {
+      clearTimeout(searchTimeout);
+    }
+    setTimeout(doSearch, 300);
+  }
+
+  var searchMatch = /q=([^&]+)/.exec(location.hash);
+  if (searchMatch) {
+    $("#search").val(decodeURIComponent(searchMatch[1]));
+    doSearch();
+  }
+
+  function doSearch() {
+    clearTimeout(searchTimeout);
     var term = $("#search").val();
-    console.log("search with term", term);
+    if (term) {
+      location.hash = '#q=' + encodeURIComponent(term);
+    } else {
+      location.hash = "";
+    }
     if (! term) {
       $(".item").show();
       $("#search-summary").text("");
       return;
     }
-    term = term.toLowerCase();
-    if (! searchInit) {
-      $(".item").each(function () {
-        var item = $(this);
-        var extra = [
-          item.attr("data-readable"),
-          item.attr("data-images"),
-          item.find(".direct-link").attr("href")
-        ];
-        item.attr("data-searchable", extra.join(" "));
-      });
-    }
+    var terms = parseTerms(term);
+    console.log("terms", terms);
     var found = 0;
     var total = 0;
     $(".item").each(function () {
-      total++;
       var item = $(this);
-      var text = item.textContent;
-      text += " " + item.attr("data-searchable");
-      text = text.toLowerCase();
-      console.log("indexOf", item.find(".direct-link").attr("href"), term, text.indexOf(term));
-      if (text.indexOf(term) == -1) {
-        item.hide();
-      } else {
+      var searchText = item.data("search-text");
+      if (! searchText) {
+        var extra = [
+          item.attr("data-readable"),
+          objectValues(item.attr("data-images")).join(" "),
+          item.find(".direct-link").attr("href")
+        ];
+        searchText = extra.join(" ").toLowerCase();
+        item.data("search-text", searchText);
+      }
+      total++;
+      var text = item.text().toLowerCase();
+      if (searchMatches(text, terms) || searchMatches(searchText, terms)) {
         item.show();
         found++;
+      } else {
+        item.hide();
       }
+      item.removeClass("enter-to-select");
     });
+    var $summary = $("#search-summary");
     if (! found) {
       $(".item").show();
-      $("#search-summary").text("no results");
+      $summary.text("no results");
     } else {
-      $("#search-summary").text("showing " + found + " of " + total);
+      $summary.text("showing " + found + " of " + total);
+      if (found == 1) {
+        $summary.text($summary.text() + " enter to open");
+        $(".item:visible").addClass("enter-to-select");
+      }
     }
   }
+
+  function parseTerms(term) {
+    var terms = [];
+    term = term.replace(/"([^"]*)"/g, function (match, word) {
+      terms.push(word.toLowerCase());
+      return "";
+    });
+    term = term.replace(/"/g, "");
+    term = term.split(/\s+/g);
+    for (var i=0; i<term.length; i++) {
+      var t = term[i];
+      if (t) {
+        terms.push(t.toLowerCase());
+      }
+    }
+    return terms;
+  }
+
+  function objectValues(obj) {
+    var result = [];
+    for (var attr in obj) {
+      result.push(obj[attr]);
+    }
+    return result;
+  }
+
+  function searchMatches(text, terms) {
+    for (var i=0; i<terms.length; i++) {
+      if (text.indexOf(terms[i]) == -1) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  $("#search-clear").click(function () {
+    $("#search").val("").focus();
+    doSearch();
+  });
 
 });

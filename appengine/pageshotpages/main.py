@@ -198,6 +198,7 @@ class MainHandler(webapp2.RequestHandler):
                 images=images,
                 htmlize=htmlize,
                 domain=domain,
+                normalize_text=normalize_text,
                 json=json,
                 )
             self.response.write(html)
@@ -286,6 +287,15 @@ def htmlize(text):
     text = re.sub(r"https?:\/\/[^\s\]\)]+", link_repl, text, flags=re.I)
     text = re.sub(r"\#[a-zA-Z0-9_\-]+", hashtag_repl, text)
     return text
+
+
+def normalize_text(t):
+    if not t:
+        return ""
+    t = re.sub(r'<.*?>', t, '')
+    t = re.sub(r'\s+', t, ' ')
+    t = t.strip()
+    return t
 
 
 def domain(link):

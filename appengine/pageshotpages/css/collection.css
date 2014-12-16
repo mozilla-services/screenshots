@@ -145,6 +145,16 @@ a:hover {
     padding: 3px 5px 3px 5px;
 }
 
+#search-clear {
+    z-index: 1;
+    position: absolute;
+    top: 4px;
+    right: 10px;
+    cursor: pointer;
+    width: 1em;
+    color: #666;
+}
+
 #search-summary {
     width: 230px;
     right: 145px;
@@ -153,4 +163,8 @@ a:hover {
     position: absolute;
     font-size: 85%;
     color: #666;
+}
+
+.item.enter-to-select {
+    background-color: #ffb;
 }

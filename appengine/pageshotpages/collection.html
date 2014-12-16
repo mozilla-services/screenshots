@@ -11,7 +11,8 @@
 
     <div id="search-container">
       <div id="search-summary"></div>
-      <input type="text" id="search">
+      <input type="text" id="search" placeholder="search">
+      <span id="search-clear">×</div>
     </div>
 
     <h1>Tag: #{{ collection_name }}</h1>
@@ -21,7 +22,7 @@
 
       <div class="item" data-path="{{ url }}"
            data-images="{{ json.dumps(images) }}"
-           data-readable="{{ data.get('readable') and data['readable'].get('content') }}">
+           data-readable="{{ normalize_text(data.get('readable') and data['readable'].get('content')) }}">
 
         <div class="comment-container {{if not meta.get('comment')}}comment-collapsed{{endif}}">
           <div class="comment"
