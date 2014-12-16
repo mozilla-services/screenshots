@@ -217,6 +217,11 @@ class MainHandler(webapp2.RequestHandler):
             body = s.decode('base64')
             self.response.content_type = str(content_type)
             self.response.write(body)
+        elif prefix == "tags-for":
+            self.request.path_info_pop()
+            tags = PageTags.tags_for_page(self.request.path_info)
+            self.response.content_type = "application/json"
+            self.response.write(json.dumps(tags))
         else:
             data, meta = PageData.get_data(self.request.path_info)
             if not data:
