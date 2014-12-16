@@ -40,7 +40,8 @@ table td {
     background-color: #00539F;
     color: #eef;
     padding: 4px;
-    border-bottom: 2px solid #E66000;
+    /* Skipping borders for now
+    border-bottom: 2px solid #E66000; */
 }
 
 .instructions {
@@ -93,9 +94,10 @@ a.sitelink, a.sitelink:visited {
     padding: 9px;
     top: 40px;
     right: 10px;
+    /* Skipping borders for now
     border-bottom: 2px solid #E66000;
     border-right: 2px solid #E66000;
-    border-left: 2px solid #E66000;
+    border-left: 2px solid #E66000; */
     border-radius: 0 0 4px 4px;
     z-index: 100;
     background-color: #00539F;
