@@ -168,3 +168,10 @@ a:hover {
 .item.enter-to-select {
     background-color: #ffb;
 }
+
+#clip {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    cursor: pointer;
+}

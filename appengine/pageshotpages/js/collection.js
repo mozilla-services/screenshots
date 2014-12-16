@@ -278,4 +278,42 @@ $(function () {
     return undefined;
   });
 
+  $("#clip").click(function () {
+    var html = '<h3><a href="' + location.href + '">' + htmlEscape(document.title) + '</a></h3>\n';
+    $(".item").each(function () {
+      var el = $(this);
+      html += "<hr>\n";
+      html += '<h4><a href="' + location.origin + el.attr("data-path") + '">' +
+          el.find(".item-title").text() + '</a></h4>\n';
+      var excerpt = el.find(".excerpt").text();
+      if (excerpt) {
+        html += '<blockquote>' + htmlEscape(excerpt) + '</blockquote>\n';
+      }
+      var itemSrc = el.find(".item-shot")[0].src;
+      if (itemSrc.indexOf("data:") !== 0) {
+        // FIXME: right now data: urls don't work well with some
+        // pasting, so we leave them out, but like snippets we should
+        // have a way of getting a URL for the image
+        html += '<img src="' + itemSrc + '"><br>\n';
+      }
+      var comment = el.find(".comment").text();
+      comment = comment.replace(new RegExp("#" + $(document.body).attr("data-collection-name"), "ig"), "");
+      comment = comment.replace(/^\s+/, "").replace(/\s+$/, "");
+      if (comment) {
+        html += comment + '<br>\n';
+      }
+      if (el.find(".snippet-container img").length) {
+        html += '<img src="' + (location.origin + "/snippet" + el.attr("data-path")) + '"><br>\n';
+      }
+    });
+    var data = {
+      html: html,
+      confirmationMessage: "List of pages copied",
+      confirmationTitle: "Copied!"
+    };
+    var event = document.createEvent("CustomEvent");
+    event.initCustomEvent("request-clipboard", true, true, data);
+    document.dispatchEvent(event);
+  });
+
 });
