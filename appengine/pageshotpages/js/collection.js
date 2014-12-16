@@ -155,7 +155,7 @@ $(function () {
       }
       doSearch();
     } else if (event.keyCode == 27) {
-      $("#search").val("");
+      $("#search").blur().val("");
       search();
     } else {
       search();
@@ -191,7 +191,6 @@ $(function () {
       return;
     }
     var terms = parseTerms(term);
-    console.log("terms", terms);
     var found = 0;
     var total = 0;
     $(".item").each(function () {
@@ -266,6 +265,17 @@ $(function () {
   $("#search-clear").click(function () {
     $("#search").val("").focus();
     doSearch();
+  });
+
+  $(document).keydown(function (event) {
+    console.log("keyup", event, event.key == "/");
+    if (event.key == "/" && ! $(event.target).is("#search")) {
+      $("#search").focus();
+      var val = $("#search").val();
+      $("#search")[0].setSelectionRange(val.length, val.length);
+      return false;
+    }
+    return undefined;
   });
 
 });

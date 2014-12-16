@@ -262,7 +262,8 @@ function documentStaticData() {
     title: document.title,
     initialScroll: scrollFraction,
     readable: readable,
-    images: images
+    images: images,
+    captured: Date.now()
   };
   console.log("serializing took " + (Date.now() - start) + " milliseconds");
 }
