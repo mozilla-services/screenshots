@@ -31,8 +31,8 @@ function injectData(docData) {
   } catch (e) {
     console.log("Error in replaceHistory, continuing anyway:", e+"");
   }
-  shotPath = docData.id;
-  shotUrl = location.origin + "/content/" + docData.id;
+  shotPath = "/" + docData.id + "/" + docData.domain;
+  shotUrl = location.origin + "/content" + docData.id;
   interfaceReady();
   var req = new XMLHttpRequest();
   req.open("PUT", location.origin + "/data/" + docData.id + "/" + docData.domain);
