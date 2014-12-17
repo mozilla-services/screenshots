@@ -103,7 +103,14 @@ run () {
         static_op="--static-args"
         static_args="{\"backend\": \"$server\"}"
     fi
-    cfx run $binary --profiledir Profile $static_op "$static_args" "$@" || fail
+    cfx run $binary --profiledir Profile $static_op "$static_args" "$@" \
+        2>&1 \
+        | grep --line-buffered \
+        -v -e 'WARNING: content window passed to PrivateBrowsingUtils.isWindowPrivate' \
+        -v -e '^JavaScript Warning' \
+        -v -e 'Using ... to indicate sourceMappingURL' \
+        -v -e 'JavaScript 1.7.s let blocks' \
+        || fail
     title
 }
 
