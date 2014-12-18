@@ -18,7 +18,9 @@
   <body>
     <h1>{{ data["readable"]["title"] }}</h1>
     <div class="byline">{{ data["readable"]["byline"] }}</div>
-    <blockquote class="excerpt">{{ data["readable"]["excerpt"] }}</blockquote>
+    {{if data["readable"].get("excerpt")}}
+      <blockquote class="excerpt">{{ data["readable"]["excerpt"] }}</blockquote>
+    {{endif}}
     <div class="content">
       {{ html(data["readable"]["content"]) }}
     </div>
