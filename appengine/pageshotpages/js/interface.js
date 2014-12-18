@@ -1,5 +1,5 @@
 if (typeof shotPath == "undefined") {
-  shotPath = location.pathname;
+  shotPath = location.pathname.replace(/^\/content/, "");
 }
 if (typeof shotUrl == "undefined") {
   shotUrl = location.href;
@@ -18,6 +18,7 @@ function interfaceReady() {
   });
   activateHighlight();
   onLoadScroll();
+  activateSelectionDetector();
 }
 
 function saveMeta() {
@@ -53,9 +54,7 @@ function saveMeta() {
     head: head,
     snippet: snippet
   };
-  var metaPath = location.origin + "/meta";
-  metaPath += shotPath.replace(/^\/content/, "");
-  updateResource(metaPath, function (data) {
+  updateResource(location.origin + "/meta" + shotPath, function (data) {
     data.body = body;
     data.head = head;
     data.snippet = snippet;
@@ -63,7 +62,7 @@ function saveMeta() {
   }, {}).then(function () {
     console.log("saved meta", snippet ? "with snippet" : "without snippet");
   }, function (err) {
-    console.log("error saving meta:", err);
+    console.warn("error saving meta:", err);
   });
 }
 
@@ -98,16 +97,36 @@ var parentWindow;
 var pendingMessages = [];
 
 window.addEventListener("message", function (event) {
-  if (event.origin == location.origin) {
+  if (event.origin != location.origin) {
+    // Some iframe message not for us
+    return;
+  }
+  if (! parentWindow) {
     parentWindow = event.source;
     if (pendingMessages.length) {
       pendingMessages.forEach(function (msg) {
         parentWindow.postMessage(msg, location.origin);
       });
+      pendingMessages = null;
     }
   }
   if (event.data == "hi") {
     event.source.postMessage("hi", location.origin);
+  }
+  if (event.data.indexOf("{") == 0) {
+    var msg = JSON.parse(event.data);
+    console.debug("Got parent frame message:", msg);
+    if (msg.type == "goto-anchor") {
+      var el = $(msg.anchor);
+      if (! el.length) {
+        console.warn("No element with selector", msg.anchor);
+      }
+      el[0].scrollIntoView();
+      $(".pageshot-highlight-selection").removeClass("pageshot-highlight-selection");
+      el.addClass("pageshot-highlight-selection");
+    } else {
+      console.warn("Unknown message:", msg);
+    }
   }
 }, false);
 
@@ -205,4 +224,63 @@ function onLoadScroll() {
   }
   var middle = highlight.offset().top + (highlight.height() / 2);
   window.scroll(0, middle - (window.innerHeight / 2));
+}
+
+function activateSelectionDetector() {
+  var lastSelection = null;
+
+  $(document).mouseup(function (event) {
+    // After they raise the mouse we want to see if there's any selection
+    var $hover = $("#selection-hover");
+    var sel = window.getSelection();
+    if ((! sel) || (! sel.rangeCount) || sel.isCollapsed) {
+      // No real selection
+      $hover.hide();
+      return;
+    }
+    $hover.show();
+    $hover.css({
+      top: event.pageY - 25,
+      left: event.pageX + 5
+    });
+    lastSelection = {
+      text: sel+"",
+      start: sel.anchorNode,
+      startOffset: sel.anchorOffset,
+      end: sel.anchorNode,
+      endOffset: self.anchorOffset
+    };
+    if (lastSelection.start.nodeType == document.TEXT_NODE) {
+      lastSelection.start = lastSelection.start.parentNode;
+    }
+    if (lastSelection.end.nodeType == document.TEXT_NODE) {
+      lastSelection.end = lastSelection.end.parentNode;
+    }
+    lastSelection.start = lastSelection.start.id;
+    lastSelection.end = lastSelection.end.id;
+  });
+
+  $("#selection-hover").mouseup(function () {
+    saveSelection(lastSelection);
+  });
+
+  console.log("activted!", $("#selection-hover").length);
+}
+
+function saveSelection(sel) {
+  updateResource(location.origin + "/meta" + shotPath, function (data) {
+    if (! data.selections) {
+      data.selections = [];
+    }
+    data.selections.push(sel);
+    return data;
+  }, {}).then(function () {
+    console.log("selection saved:", sel);
+  }, function (err) {
+    console.warn("error saving selection:", err);
+  });
+  sendParentMessage({
+    type: "add-selection",
+    selection: sel
+  });
 }

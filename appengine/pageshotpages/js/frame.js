@@ -220,10 +220,18 @@ $(function () {
     }
   }, 100);
 
+  var pendingMessages = [];
+
   window.addEventListener("message", function (event) {
     if (event.origin == location.origin) {
       if (event.data == "hi") {
         clearTimeout(hiInterval);
+        if (pendingMessages && pendingMessages.length) {
+          pendingMessages.forEach(function (msg) {
+            $("#frame")[0].contentWindow.postMessage(msg, location.origin);
+          });
+        }
+        pendingMessages = null;
       }
       if (event.data.indexOf("{") == 0) {
         var data = JSON.parse(event.data);
@@ -231,13 +239,42 @@ $(function () {
           $("#meta-snippet").remove();
           var el = $('<meta id="meta-snippet" property="og:images">').attr("content", data.content);
           $(document.head).append(el);
+        } else if (data.type == "add-selection") {
+          console.log("data", data);
+          var selEl = $('<div class="selection">');
+          selEl.attr("data-info", JSON.stringify(data.selection));
+          selEl.text(data.selection.text);
+          selEl.prepend($('<span class="goto-selection">&gt;</span>'));
+          $("#selections").append(selEl);
+          $("#selections").show();
+        } else {
+          console.warn("Unknown child message:", data);
         }
       }
     }
   }, false);
 
+  function sendChildMessage(msg) {
+    if (typeof msg == "object") {
+      msg = JSON.stringify(msg);
+    }
+    if (pendingMessages === null) {
+      $("#frame")[0].contentWindow.postMessage(msg, location.origin);
+    } else {
+      pendingMessages.push(msg);
+    }
+  }
+
   if (window.SET_COMMENT_ON_LOAD) {
     saveComment(window.SET_COMMENT_ON_LOAD);
   }
 
+  $(document).on("click", ".goto-selection", function (event) {
+    var sel = $(event.target).closest(".selection");
+    var data = JSON.parse(sel.attr("data-info"));
+    sendChildMessage({
+      type: "goto-anchor",
+      anchor: "#" + data.start
+    });
+  });
 });

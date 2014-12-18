@@ -110,6 +110,7 @@ class NewFrameHandler(webapp2.RequestHandler):
             iframe_readable_src=None,
             comment="",
             is_newpage=True,
+            json=json,
             )
         self.response.write(html)
 
@@ -251,6 +252,7 @@ class MainHandler(webapp2.RequestHandler):
                 iframe_readable_src="/readable" + urllib.quote(self.request.path_info),
                 comment=comment,
                 is_newpage=False,
+                json=json,
                 )
             self.response.write(html)
 

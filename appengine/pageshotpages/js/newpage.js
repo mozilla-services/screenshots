@@ -18,7 +18,8 @@ function injectData(docData) {
   head += docData.head;
   head += '<meta property="og:image" content="' + docData.screenshot + '">\n';
   document.head.innerHTML += head;
-  document.body.innerHTML = docData.body + '<div id="pageshot-meta"></div>';
+  document.body.innerHTML = docData.body + '<div id="pageshot-meta"></div>' +
+      '<div id="pageshot-tools"><div id="selection-hover" style="display: none">+</div></div>';
   setAttributes(document.documentElement, docData.htmlAttrs);
   setAttributes(document.body, docData.bodyAttrs);
   if (docData.initialScroll) {

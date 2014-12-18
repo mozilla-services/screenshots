@@ -69,6 +69,16 @@
             <div style="display: none" id="comment-editor-container">
               <textarea id="comment-editor"></textarea>
             </div>
+            <div id="selections"
+                 {{if not meta.get('selections')}}style="display: none"{{endif}}>
+              {{for sel in meta.get('selections', [])}}
+              <div class="selection" data-info="{{json.dumps(sel)}}">
+                <span class="goto-selection">&gt;</span>
+                {{sel["text"]}}
+              </div>
+              {{endfor}}
+            </div>
+
           </div><!-- /#comment-container -->
         </td>
       </tr>

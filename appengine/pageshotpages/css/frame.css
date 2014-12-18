@@ -116,3 +116,12 @@ a.sitelink, a.sitelink:visited {
 #clip {
     cursor: pointer;
 }
+
+.selection {
+    border-top: 1px solid #999;
+}
+
+.goto-selection {
+    cursor: pointer;
+    float: right;
+}
