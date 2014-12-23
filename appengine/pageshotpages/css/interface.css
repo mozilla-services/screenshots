@@ -33,3 +33,7 @@
     border: 1px solid #dd8;
     border-radius: 2px;
 }
+
+.pageshot-selecting * {
+    cursor: crosshair;
+}

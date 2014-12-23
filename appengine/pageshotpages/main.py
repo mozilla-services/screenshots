@@ -199,7 +199,31 @@ class MainHandler(webapp2.RequestHandler):
                 collection_name=collection_name,
                 items=items,
                 base=self.request.host_url,
-                images=images,
+                htmlize=htmlize,
+                domain=domain,
+                normalize_text=normalize_text,
+                json=json,
+                )
+            self.response.write(html)
+        elif prefix == "summary":
+            self.request.path_info_pop()
+            data, meta = PageData.get_data(self.request.path_info)
+            if not data:
+                self.response.status = 404
+                self.response.write("No such page")
+                return
+            images = []
+            if data.get("screenshot"):
+                images.append({
+                        "src": data["screenshot"],
+                        "title": "Screenshot",
+                        })
+            images.extend(data["images"])
+            html = collection_html.substitute(
+                collection_name="Page",
+                # FIXME: add screenshot image:
+                items=[[self.request.path_info, data, meta, images]],
+                base=self.request.host_url,
                 htmlize=htmlize,
                 domain=domain,
                 normalize_text=normalize_text,
