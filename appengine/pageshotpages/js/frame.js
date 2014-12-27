@@ -20,8 +20,18 @@ $(function () {
   function setReadability(value) {
     if (value) {
       $("#frame").attr("src", $("#frame").attr("data-readable-src"));
+      try {
+        history.replaceState({}, "to readable mode", location.origin + location.pathname + "?readable");
+      } catch (e) {
+        console.log("Error in replaceHistory, continuing anyway:", e+"");
+      }
     } else {
       $("#frame").attr("src", $("#frame").attr("data-normal-src"));
+      try {
+        history.replaceState({}, "to normal mode", location.origin + location.pathname);
+      } catch (e) {
+        console.log("Error in replaceHistory, continuing anyway:", e+"");
+      }
     }
   }
 

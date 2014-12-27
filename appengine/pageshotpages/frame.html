@@ -60,7 +60,7 @@
           </div>
           {{if is_newpage or data.get("readable")}}
           <div id="readable-toggler">
-            <span id="readability-off" class="active">normal</span><span id="readability-on" class="inactive"> readable</span>
+            <span id="readability-off" class="{{'inactive' if readable else 'active'}}">normal</span><span id="readability-on" class="{{'active' if readable else 'inactive'}}"> readable</span>
           </div>
           {{endif}}
 
@@ -84,7 +84,7 @@
       </tr>
       <tr>
         <td>
-          <iframe id="frame" style="height: 100%; width: 100%" src="{{ iframe_src }}" data-normal-src="{{ iframe_src }}" data-readable-src="{{ iframe_readable_src }}"></iframe>
+          <iframe id="frame" style="height: 100%; width: 100%" src="{{ iframe_readable_src if readable else iframe_src }}" data-normal-src="{{ iframe_src }}" data-readable-src="{{ iframe_readable_src }}"></iframe>
         </td>
       </tr>
     </table></div>

@@ -108,6 +108,7 @@ class NewFrameHandler(webapp2.RequestHandler):
             base=self.request.host_url,
             iframe_src=self.request.host_url + "/newpage.html",
             iframe_readable_src=None,
+            readable=False,
             comment="",
             is_newpage=True,
             json=json,
@@ -267,7 +268,7 @@ class MainHandler(webapp2.RequestHandler):
             comment = ""
             if "comment" in meta:
                 comment = htmlize(meta["comment"])
-                print "in", meta["comment"], "out", comment
+            readable = 'readable' in self.request.query
             html = frame_html.substitute(
                 data=data,
                 meta=meta,
@@ -275,6 +276,7 @@ class MainHandler(webapp2.RequestHandler):
                 link_text=link_text,
                 iframe_src="/content" + urllib.quote(self.request.path_info),
                 iframe_readable_src="/readable" + urllib.quote(self.request.path_info),
+                readable=readable,
                 comment=comment,
                 is_newpage=False,
                 json=json,
