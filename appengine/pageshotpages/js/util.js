@@ -92,3 +92,10 @@ function htmlEscape(t) {
   t = t.replace(/"/g, "&quot;");
   return t;
 }
+
+function sendAddonEvent(eventType, detail) {
+  var event = document.createEvent("CustomEvent");
+  event.initCustomEvent(eventType, true, true, detail);
+  document.dispatchEvent(event);
+  console.log("sent", event);
+}
