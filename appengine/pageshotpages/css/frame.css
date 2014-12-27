@@ -72,15 +72,39 @@ a#collection-link {
 a.sitelink, a.sitelink:visited {
 }
 
+#readable-toggler span {
+    padding: 1px 3px 1px 3px;
+    font-size: 80%;
+}
+
+#readability-off {
+    border-top: 1.5px solid #E66000;
+    border-bottom: 1.5px solid #E66000;
+    border-left: 1.5px solid #E66000;
+    border-radius: 3px 0 0 3px;
+}
+
+#readability-on {
+    border-top: 1.5px solid #E66000;
+    border-bottom: 1.5px solid #E66000;
+    border-right: 1.5px solid #E66000;
+    border-radius: 0 3px 3px 0;
+}
+
 .active {
     color: #000;
     background-color: #fff;
-    cursor: pointer;
+    cursor: default;
 }
+
 .inactive {
     color: #999;
     background-color: #666;
     cursor: pointer;
+}
+
+.inactive:hover {
+    color: #fff;
 }
 
 #controls {
