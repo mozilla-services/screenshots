@@ -385,9 +385,37 @@ $(function () {
       confirmationMessage: "List of pages copied",
       confirmationTitle: "Copied!"
     };
-    var event = document.createEvent("CustomEvent");
-    event.initCustomEvent("request-clipboard", true, true, data);
-    document.dispatchEvent(event);
+    sendAddonEvent("request-clipboard", data);
   });
+
+  document.addEventListener("helper-ready", function () {
+    $(".item").each(function () {
+      var item = $(this);
+      var path = item.attr("data-path");
+      var url = item.attr("data-original-url");
+      var captured = parseInt(item.attr("data-captured"), 10);
+      if (! captured) {
+        return;
+      }
+      console.log("sending event re:", url, captured);
+      sendAddonEvent("check-captured", {
+        captured: captured,
+        path: path,
+        url: url
+      });
+    });
+  }, false);
+
+  document.addEventListener("check-captured-result", function (event) {
+    var detail = JSON.parse(event.detail);
+    var path = detail.path;
+    var status = detail.status;
+    var hasUpdated = status != 304;
+    var item = $(".item").filter(function () {
+      return this.getAttribute("data-path") == path;
+    });
+    console.log("result", path, status, item[0]);
+    item.addClass(hasUpdated ? "has-updated" : "has-not-updated");
+  }, false);
 
 });

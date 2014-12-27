@@ -22,6 +22,20 @@ body {
    clear: both;
 }
 
+.has-updated-indicator, .has-not-updated-indicator {
+    display: none;
+    float: right;
+    margin-right: 5px;
+}
+
+.item.has-updated .has-updated-indicator {
+    display: inherit;
+}
+
+.item.has-not-updated .has-not-updated-indicator {
+    display: inherit;
+}
+
 a.embedded, a.embedded:visited {
     color: #000;
     text-decoration: none;

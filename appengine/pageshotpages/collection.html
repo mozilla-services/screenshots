@@ -34,6 +34,8 @@
       {{for url, data, meta, images in items}}
 
       <div class="item" data-path="{{ url }}"
+           data-captured="{{ data.get('captured', 0) }}"
+           data-original-url="{{ data['location'] }}"
            data-images="{{ json.dumps(images) }}"
            data-readable="{{ normalize_text(data.get('readable') and data['readable'].get('content')) }}">
 
@@ -71,6 +73,11 @@
         {{if is_collection}}
         <span class="closer">×</span>
         {{endif}}
+
+        <!-- FIXME: the has-updated indicator isn't very good, because lots of pages
+             don't support 304s very well (dynamic content) -->
+        <!--<span class="has-updated-indicator badge"></span>-->
+        <span class="has-not-updated-indicator badge">up to date</span>
 
         <div class="screenshot-container">
           <div class="image-selector">
