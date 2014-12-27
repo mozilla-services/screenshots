@@ -5,18 +5,61 @@ $(function () {
     el.css({
       top: event.pageY
     });
-    var start = window.scrollY;
-    var end = event.pageY;
-    var pos = start;
+    scrollTo(event.pageY, function () {
+      el.hide();
+    });
+  });
+
+  function scrollTo(end, done) {
+    var pos = window.scrollY;
+    var dir = pos < end ? 1 : -1;
     var cancel = setInterval(function () {
-      if (end - pos < 50) {
+      var diff = Math.abs(end - pos);
+      if (diff < 50) {
         pos = end;
         clearTimeout(cancel);
-        el.hide();
+        if (done) {
+          done();
+        }
       } else {
-        pos = pos + (end-pos)*0.2;
+        pos = pos + dir*diff*0.2;
       }
       window.scroll(0, pos);
     }, 30);
+  }
+
+  var off = false;
+
+  var localSave;
+
+  $(window).scroll(function () {
+    if (window.scrollY < 5) {
+      $("#scroll-to-top").addClass("disabled");
+      off = true;
+    } else if (off) {
+      $("#scroll-to-top").removeClass("disabled");
+      off = false;
+    }
+    if (localSave) {
+      clearTimeout(localSave);
+    }
+    // FIXME: shouldn't be pixel position:
+    localSave = setTimeout(function () {
+      localStorage.setItem("pos:" + location.pathname, window.scrollY);
+    }, 500);
   });
+
+  var lastPos = localStorage.getItem("pos:" + location.pathname);
+  if (lastPos) {
+    lastPos = parseInt(lastPos, 10);
+    scrollTo(lastPos);
+  }
+
+  $(window).scroll();
+
+  $("#scroll-to-top").click(function () {
+    scrollTo(0);
+    return false;
+  });
+
 });

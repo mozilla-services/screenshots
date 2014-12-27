@@ -36,3 +36,27 @@ h1 {
     border: 1px solid #000;
     position: absolute;
 }
+
+#scroll-to-top {
+    font-size: 90px;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #eee;
+    opacity: 0.4;
+    border-left: 2px solid #999;
+    border-bottom: 2px solid #999;
+    border-radius: 0 0 0 8px;
+    cursor: pointer;
+}
+
+#scroll-to-top:hover {
+    opacity: 1.0;
+}
+
+#scroll-to-top.disabled {
+    opacity: 0.1;
+}
