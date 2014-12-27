@@ -113,6 +113,58 @@ a.embedded, a.embedded:visited {
     cursor: pointer;
 }
 
+.history-container {
+    width: 270px;
+    margin-left: 530px;
+    background-color: #fff;
+    box-shadow: 2px 2px 4px #999;
+    border-radius: 2px;
+    padding: 6px;
+    position: absolute;
+}
+
+.history-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.history-container .link {
+    display: block;
+    text-decoration: none;
+    padding: 4px 3px 4px 3px;
+}
+
+.history-container .link:hover {
+    background-color: #eee;
+    border-radius: 2px;
+    text-decoration: underline;
+}
+
+.history-toggler {
+    float: right;
+}
+
+.public, .private, .remove-history {
+    cursor: pointer;
+}
+
+.public:hover, .private:hover, .remove-history:hover {
+    background-color: #eee;
+}
+
+.badge {
+    font-size: 65%;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 1px 3px 1px 3px;
+    color: #888;
+}
+
+.history-container h3 {
+    margin: 0;
+    font-size: 100%;
+}
+
 .title-link {
     font-size: 70%;
     text-transform: uppercase;

@@ -197,6 +197,7 @@ class MainHandler(webapp2.RequestHandler):
                 return
             html = collection_html.substitute(
                 collection_name=collection_name,
+                is_collection=True,
                 items=items,
                 base=self.request.host_url,
                 htmlize=htmlize,
@@ -220,8 +221,8 @@ class MainHandler(webapp2.RequestHandler):
                         })
             images.extend(data["images"])
             html = collection_html.substitute(
-                collection_name="Page",
-                # FIXME: add screenshot image:
+                is_collection=False,
+                title=data['title'],
                 items=[[self.request.path_info, data, meta, images]],
                 base=self.request.host_url,
                 htmlize=htmlize,

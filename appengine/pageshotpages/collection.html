@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
+    {{if is_collection}}
     <title>Tag: #{{ collection_name }}</title>
+    {{else}}
+    <title>Page: {{title}}</title>
+    {{endif}}
     <link rel="stylesheet" href="{{ base }}/css/collection.css">
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="{{ base }}/js/util.js"></script>
     <script src="{{ base }}/js/collection.js"></script>
   </head>
-  <body data-collection-name="{{ collection_name }}">
+  <body {{if is_collection}}data-collection-name="{{ collection_name }}"{{endif}}>
 
     <div id="search-container">
       <div id="search-summary"></div>
@@ -20,7 +24,11 @@
            src="{{ base }}/clipboard-8-xl.png" style="height: 1em;">
     </div>
 
+    {{if is_collection}}
     <h1>Tag: #{{ collection_name }}</h1>
+    {{else}}
+    <h1>Page: {{title}}</h1>
+    {{endif}}
 
     <div id="items">
       {{for url, data, meta, images in items}}
@@ -42,7 +50,25 @@
                 {{if meta.get('comment')}}style="display: none"{{endif}}>+</span>
         </div>
 
+        <div class="history-container">
+          <h3>History</h3>
+          <ul>
+            {{for link in data.get("history", [])}}
+            <li>
+              <span class="history-toggler">
+                <span class="public badge" {{if not link.get('pub')}}style="display: none"{{endif}}>public</span>
+                <span class="private badge" {{if link.get('pub')}}style="display: none"{{endif}}>private</span>
+                <span class="remove-history">×</span>
+              </span>
+              <a class="link" href="{{link['url']}}" target="_blank">{{link['title']}}</a>
+            </li>
+            {{endfor}}
+          </ul>
+        </div>
+
+        {{if is_collection}}
         <span class="closer">×</span>
+        {{endif}}
 
         <div class="screenshot-container">
           <div class="image-selector">

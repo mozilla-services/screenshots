@@ -268,7 +268,6 @@ $(function () {
   });
 
   $(document).keydown(function (event) {
-    console.log("keyup", event, event.key == "/");
     if (event.key == "/" && ! $(event.target).is("#search")) {
       $("#search").focus();
       var val = $("#search").val();
@@ -276,6 +275,60 @@ $(function () {
       return false;
     }
     return undefined;
+  });
+
+  $(document).on("click", ".remove-history", function (event) {
+    var item = $(event.target).closest(".item");
+    var path = item.attr("data-path");
+    var url = $(event.target).closest("li").find("a").attr("href");
+    updateResource("/data" + path, function (data) {
+      for (var i=data.history.length; i--; i>= 0) {
+        if (data.history[i].url == url) {
+          data.history.splice(i, 1);
+        }
+      }
+      return data;
+    });
+    item.find(".link").each(function () {
+      var el = $(this);
+      if (el.attr("href") == url) {
+        el.closest("li").remove();
+      }
+    });
+  });
+
+  $(document).on("click", ".private, .public", function (event) {
+    var makePublic = $(event.target).is(".private");
+    var item = $(event.target).closest(".item");
+    var path = item.attr("data-path");
+    var url = $(event.target).closest("li").find("a").attr("href");
+    console.log("click", path, url);
+    updateResource("/data" + path, function (data) {
+      data.history.forEach(function (link) {
+        if (link.url == url) {
+          if (makePublic) {
+            link.pub = true;
+          } else {
+            delete link.pub;
+          }
+        }
+      });
+      return data;
+    });
+    item.find(".link").each(function () {
+      var el = $(this);
+      if (el.attr("href") == url) {
+        var pub = el.closest("li").find(".public");
+        var priv = el.closest("li").find(".private");
+        if (makePublic) {
+          pub.show();
+          priv.hide();
+        } else {
+          pub.hide();
+          priv.show();
+        }
+      }
+    });
   });
 
   $("#clip").click(function () {
