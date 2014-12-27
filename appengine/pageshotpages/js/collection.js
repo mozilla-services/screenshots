@@ -193,8 +193,21 @@ $(function () {
     var terms = parseTerms(term);
     var found = 0;
     var total = 0;
-    $(".item").each(function () {
-      var item = $(this);
+    var items = $(".item");
+    var curItem = 0;
+
+    function searchNext() {
+      searchItem(curItem);
+      curItem++;
+      if (curItem < items.length) {
+        setTimeout(searchNext);
+      } else {
+        finish();
+      }
+    }
+
+    function searchItem(n) {
+      var item = $(items[n]);
       var searchText = item.data("search-text");
       if (! searchText) {
         var extra = [
@@ -214,18 +227,26 @@ $(function () {
         item.hide();
       }
       item.removeClass("enter-to-select");
-    });
-    var $summary = $("#search-summary");
-    if (! found) {
-      $(".item").show();
-      $summary.text("no results");
-    } else {
-      $summary.text("showing " + found + " of " + total);
-      if (found == 1) {
-        $summary.text($summary.text() + " enter to open");
-        $(".item:visible").addClass("enter-to-select");
+    }
+
+    function finish() {
+      var $summary = $("#search-summary");
+      if (! found) {
+        // FIXME: this causes jitter, because a bunch of stuff is hidden, then
+        // all shown at the end.  Maybe we shouldn't show anything?
+        $(".item").show();
+        $summary.text("no results");
+      } else {
+        $summary.text("showing " + found + " of " + total);
+        if (found == 1) {
+          $summary.text($summary.text() + " enter to open");
+          $(".item:visible").addClass("enter-to-select");
+        }
       }
     }
+
+    setTimeout(searchNext);
+
   }
 
   function parseTerms(term) {
