@@ -19,6 +19,12 @@ readable_html = tempita.HTMLTemplate.from_filename(os.path.join(base, "readable.
 collection_html = tempita.HTMLTemplate.from_filename(os.path.join(base, "collection.html"))
 
 
+class User(ndb.Model):
+    nickname = ndb.StringProperty()
+    name = ndb.StringProperty()
+    path = ndb.StringProperty()
+
+
 class PageData(ndb.Model):
     """Models an individual Guestbook entry with content and date."""
     path = ndb.StringProperty()

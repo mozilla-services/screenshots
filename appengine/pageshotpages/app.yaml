@@ -25,11 +25,18 @@ handlers:
   static_files: index.html
   upload: index\.html
 
+- url: /no-e10s\.html
+  static_files: no-e10s.html
+  upload: no-e10s\.html
+
 - url: /js
   static_dir: js
 
 - url: /css
   static_dir: css
+
+- url: /static
+  static_dir: static
 
 - url: .*
   script: main.app
