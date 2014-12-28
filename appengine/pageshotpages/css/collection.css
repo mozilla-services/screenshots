@@ -68,6 +68,8 @@ a.embedded, a.embedded:visited {
     max-width: none;
     max-height: none;
     overflow: visible;
+    border-radius: 3px;
+    box-shadow: 1px 1px 2px #999;
 }
 
 .closer {
