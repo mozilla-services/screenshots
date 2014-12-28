@@ -11,7 +11,8 @@
     <script src="{{ base }}/js/util.js"></script>
     <script src="{{ base }}/js/collection.js"></script>
   </head>
-  <body {{if is_collection}}data-collection-name="{{ collection_name }}"{{endif}}>
+  <body {{if is_collection}}data-collection-name="{{ collection_name }}"{{endif}}
+        {{if is_panel}}class="panelized"{{endif}}>
 
     <div id="search-container">
       <div id="search-summary"></div>
@@ -127,5 +128,9 @@
 
       {{endfor}}
     </div><!-- /#items -->
+
+    {{if is_panel}}
+    <a href="{{self_url}}" target="_blank" id="panel-overlay"></a>
+    {{endif}}
   </body>
 </html>

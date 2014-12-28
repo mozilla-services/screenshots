@@ -274,3 +274,28 @@ a:hover {
     left: 4px;
     cursor: pointer;
 }
+
+/* These are styles (and overrides) specific to the panelized view: */
+
+#panel-overlay {
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    z-index: 1000;
+}
+
+.panelized #search-container {
+    display: none;
+}
+
+.panelized .screenshot-container img {
+    max-width: 100px;
+}
+
+.panelized h1 {
+    display: none;
+}
