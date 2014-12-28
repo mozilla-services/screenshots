@@ -39,18 +39,32 @@
            data-images="{{ json.dumps(images) }}"
            data-readable="{{ normalize_text(data.get('readable') and data['readable'].get('content')) }}">
 
-        <div class="comment-container {{if not meta.get('comment')}}comment-collapsed{{endif}}">
-          <div class="comment"
-               {{if not meta.get('comment')}}style="display: none"{{endif}}
-               >{{ html(htmlize(meta.get('comment', ''))) }}</div>
+        <div class="right-container">
 
-          <div class="comment-editor-container" style="display: none">
-            <textarea class="comment-editor"></textarea>
+          <div class="comment-container {{if not meta.get('comment')}}comment-collapsed{{endif}}">
+            <div class="comment"
+                 {{if not meta.get('comment')}}style="display: none"{{endif}}
+                 >{{ html(htmlize(meta.get('comment', ''))) }}</div>
+
+            <div class="comment-editor-container" style="display: none">
+              <textarea class="comment-editor"></textarea>
+            </div>
+
+            <span class="add-comment"
+                  {{if meta.get('comment')}}style="display: none"{{endif}}>+</span>
           </div>
 
-          <span class="add-comment"
-                {{if meta.get('comment')}}style="display: none"{{endif}}>+</span>
-        </div>
+          {{if meta.get('selections')}}
+          <div class="selections-container">
+            {{for sel in meta.get('selections', [])}}
+            <div class="selection" data-info="{{json.dumps(sel)}}">
+              {{sel["text"]}}
+            </div>
+            {{endfor}}
+          </div>
+          {{endif}}
+
+        </div><!--/.right-container-->
 
         {{if data.get("history")}}
         <div class="history-container">

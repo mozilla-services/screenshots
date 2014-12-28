@@ -99,14 +99,17 @@ a.embedded, a.embedded:visited {
     font-size: 105%;
 }
 
-.comment-container {
+.right-container {
     width: 200px;
     margin-left: -230px;
+    position: absolute;
+}
+
+.comment-container {
     background-color: #fff;
     box-shadow: 2px 2px 4px #999;
     border-radius: 2px;
     padding: 6px;
-    position: absolute;
 }
 
 .comment-container.comment-collapsed {
@@ -125,6 +128,34 @@ a.embedded, a.embedded:visited {
 
 .comment {
     cursor: pointer;
+}
+
+.selections-container {
+    margin-top: 10px;
+    background-color: #fff;
+    box-shadow: 2px 2px 4px #999;
+    border-radius: 2px;
+    padding: 6px;
+}
+
+.selection {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 5px;
+    background-image: url(/static/noun23.png);
+    background-position: top left;
+    background-repeat: no-repeat;
+    text-indent: 23px;
+    max-height: 40px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.selection:hover {
+    max-height: none;
+}
+
+.selection:last-child {
+    border-bottom: none;
 }
 
 .history-container {
