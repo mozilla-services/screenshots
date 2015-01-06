@@ -29,6 +29,10 @@ handlers:
   static_files: no-e10s.html
   upload: no-e10s\.html
 
+- url: /pitch
+  static_files: pitch.html
+  upload: pitch\.html
+
 - url: /js
   static_dir: js
 
