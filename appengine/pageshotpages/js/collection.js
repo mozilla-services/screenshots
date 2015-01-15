@@ -87,8 +87,9 @@ $(function () {
       el.remove();
       title.text(newTitle);
       title.show();
-      updateResource("/meta", function (data) {
+      updateResource("/meta" + path, function (data) {
         data.userTitle = newTitle;
+        return data;
       }, {}).then(function () {
         console.log("Saved new title");
       }, function (err) {
