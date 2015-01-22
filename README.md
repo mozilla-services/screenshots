@@ -8,6 +8,8 @@ It is implemented as a Firefox Add-on, using the [Add-on SDK](https://developer.
 
 Ian has been blogging about the [design, definition, and development process](http://www.ianbicking.org/tag/product-journal.html).
 
+There is an IRC channel `#pageshot` on irc.mozilla.org, though we have no particular culture or pattern in that channel; you may find a ghosttown.
+
 Planning and ideation is happening in the [issue tracker](https://github.com/ianb/pageshot/issues).  We use a pattern roughly like:
 
 * [Issues with no milestone](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+no%3Amilestone) are awaiting triage
@@ -17,3 +19,5 @@ Planning and ideation is happening in the [issue tracker](https://github.com/ian
 * [Issues with the needs-discussion label](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+label%3A%22needs+discussion%22) are for discussion at the next meeting.  We don't have a plan for open meetings (not that we don't want them, we just don't have a plan), so this is largely for internal use.
 
 Issue tags otherwise aren't very structured. [Experiment](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+label%3Aexperiment) means that the implementation should focus on creating something usable for analysis (i.e., something we can play with), not a committed feature. [Research](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+label%3Aresearch) is primarily analysis of other products that do something interesting, or some source material that could provide insight.  Input on these (things like "I like this because...") is very helpful!
+
+Code contributions are not encouraged at this moment (January 2015), because the code is all throw-away, and if you contribute something we'll probably throw it away too.
