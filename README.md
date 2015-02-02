@@ -20,4 +20,4 @@ Planning and ideation is happening in the [issue tracker](https://github.com/ian
 
 Issue tags otherwise aren't very structured. [Experiment](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+label%3Aexperiment) means that the implementation should focus on creating something usable for analysis (i.e., something we can play with), not a committed feature. [Research](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+label%3Aresearch) is primarily analysis of other products that do something interesting, or some source material that could provide insight.  Input on these (things like "I like this because...") is very helpful!
 
-Code contributions are not encouraged at this moment (January 2015), because the code is all throw-away, and if you contribute something we'll probably throw it away too.
+Code contributions are not encouraged at this moment (January 2015), because the code is all throw-away, and if you contribute something we'll probably throw it away too.  Idea contributions are very welcome, as is feedback on the interface.
