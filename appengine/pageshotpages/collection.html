@@ -32,7 +32,7 @@
     {{endif}}
 
     <div id="items">
-      {{for url, data, meta, images in items}}
+      {{for url, data, meta, images, microdatas in items}}
 
       <div class="item" data-path="{{ url }}"
            data-captured="{{ data.get('captured', 0) }}"
@@ -121,6 +121,20 @@
           <a class="embedded" href="{{ url }}">
             <img class="snippet" src="{{ meta['snippet'] }}">
           </a>
+        </div>
+        {{endif}}
+
+        {{for microdata_formatted in microdatas}}
+        <div class="microdata">
+          {{html(microdata_formatted)}}
+        </div>
+        {{endfor}}
+
+        {{if data.get("microdata") and show_microdata}}
+        <div class="microdata-container">
+          <pre>
+            {{json.dumps(data["microdata"], sort_keys=True, indent=2)}}
+          </pre>
         </div>
         {{endif}}
 

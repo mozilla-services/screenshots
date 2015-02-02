@@ -197,7 +197,8 @@ class MainHandler(webapp2.RequestHandler):
                 images.extend(data["images"])
                 if meta.get("activeImage") >= len(images):
                     meta["activeImage"] = 0
-                items.append([item_name, data, meta, images])
+                microdatas = format_microdatas(data.get('microdata'))
+                items.append([item_name, data, meta, images, microdatas])
             if not items:
                 self.response.status = 404
                 self.response.write("No such collection")
@@ -207,6 +208,7 @@ class MainHandler(webapp2.RequestHandler):
                 is_collection=True,
                 items=items,
                 is_panel='panel' in self.request.query,
+                show_microdata='microdata' in self.request.query,
                 self_url=self.request.path_url,
                 base=self.request.host_url,
                 htmlize=htmlize,
@@ -229,11 +231,13 @@ class MainHandler(webapp2.RequestHandler):
                         "title": "Screenshot",
                         })
             images.extend(data["images"])
+            microdatas = format_microdatas(data.get("microdata"))
             html = collection_html.substitute(
                 is_collection=False,
                 title=data['title'],
-                items=[[self.request.path_info, data, meta, images]],
+                items=[[self.request.path_info, data, meta, images, microdatas]],
                 is_panel='panel' in self.request.query,
+                show_microdata='microdata' in self.request.query,
                 self_url=self.request.path_url,
                 base=self.request.host_url,
                 htmlize=htmlize,
@@ -321,6 +325,38 @@ class MainHandler(webapp2.RequestHandler):
             print "Saving data", len(self.request.body)
             data.put()
         self.response.status = 204
+
+
+def format_microdatas(datas):
+    if not datas or not datas.get("items"):
+        return []
+    htmls = []
+    for item in datas["items"]:
+        types = item["type"]
+        for type in types:
+            type = type.lower()
+            type = re.sub(r'[^a-z\-]', "", type)
+            filename = os.path.join(base, "microformat", type + ".html")
+            print "check for", type, filename
+
+            def first(*names):
+                val = item["properties"]
+                for name in names:
+                    print "search", name, val
+                    if isinstance(val, list):
+                        val = val[0]
+                    val = val.get(name)
+                    if not val:
+                        return ""
+                if isinstance(val, basestring):
+                    return val
+                return val[0]
+
+            if os.path.exists(filename):
+                tmpl = tempita.HTMLTemplate.from_filename(filename)
+                htmls.append(tmpl.substitute(first=first, **item))
+                break
+    return htmls
 
 
 def htmlize(text):

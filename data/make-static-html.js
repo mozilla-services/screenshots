@@ -194,6 +194,7 @@ function documentStaticData() {
   // something different)
   var reader = new Readability(location.href, newDiv);
   var readable = reader.parse();
+  var microdata = microformats.getItems();
   var MIN_IMAGE_WIDTH = 250;
   var MIN_IMAGE_HEIGHT = 200;
   var images = [];
@@ -262,6 +263,7 @@ function documentStaticData() {
     title: document.title,
     initialScroll: scrollFraction,
     readable: readable,
+    microdata: microdata,
     images: images,
     captured: Date.now()
   };
