@@ -99,7 +99,9 @@
             <span class="image-down">&lt;</span><span class="image-up">&gt;</span>
           </div>
           <a class="embedded" href="{{ url }}">
+            {{if images}}
             <img class="item-shot" src="{{ images[meta.get('activeImage', 0)]['src'] }}">
+            {{endif}}
           </a>
         </div>
 
