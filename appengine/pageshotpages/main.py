@@ -198,7 +198,8 @@ class MainHandler(webapp2.RequestHandler):
                 if meta.get("activeImage") >= len(images):
                     meta["activeImage"] = 0
                 microdatas = format_microdatas(data.get('microdata'))
-                items.append([item_name, data, meta, images, microdatas])
+                url = fix_http_url(item_name, data, self.request)
+                items.append([url, data, meta, images, microdatas])
             if not items:
                 self.response.status = 404
                 self.response.write("No such collection")
@@ -232,10 +233,11 @@ class MainHandler(webapp2.RequestHandler):
                         })
             images.extend(data["images"])
             microdatas = format_microdatas(data.get("microdata"))
+            url = fix_http_url(self.request.path_info, data, self.request)
             html = collection_html.substitute(
                 is_collection=False,
                 title=data['title'],
-                items=[[self.request.path_info, data, meta, images, microdatas]],
+                items=[[url, data, meta, images, microdatas]],
                 is_panel='panel' in self.request.query,
                 show_microdata='microdata' in self.request.query,
                 self_url=self.request.path_url,
@@ -395,6 +397,16 @@ def serialize_attributes(attrs):
     for name, value in attrs:
         s.append('%s="%s"' % (name, cgi.escape(value)))
     return " ".join(s)
+
+
+def fix_http_url(item_name, data, request):
+    url = item_name
+    orig_scheme = urlparse.urlsplit(data['location']).scheme
+    cur_scheme = request.scheme
+    if orig_scheme != cur_scheme:
+        url = orig_scheme + "://"+ urlparse.urlsplit(request.url).netloc + item_name
+    return url
+
 
 app = webapp2.WSGIApplication([
         (r'/newframe.html', NewFrameHandler),
