@@ -1,5 +1,11 @@
 var canvas = content.document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
-//document.documentElement.appendChild(canvas);
+
+function getWindow() {
+  if (content.document.getElementById("frame")) {
+    return content.document.getElementById("frame").contentWindow;
+  }
+  return content;
+}
 
 function makeScreenShot(pos, maxSize, backgroundColor) {
   console.log("shooting area", pos.x, pos.y, "w/h", pos.w, pos.h, !!maxSize);
@@ -15,7 +21,7 @@ function makeScreenShot(pos, maxSize, backgroundColor) {
     ctx.scale(maxSize.w / pos.w, maxSize.h / pos.h);
   }
   backgroundColor = backgroundColor || "#000";
-  ctx.drawWindow(content, pos.x, pos.y, pos.w, pos.h, backgroundColor);
+  ctx.drawWindow(getWindow(), pos.x, pos.y, pos.w, pos.h, backgroundColor);
   return canvas.toDataURL();
 }
 
@@ -26,6 +32,8 @@ addMessageListener("pageshot@pageshot:request-screenshot", function (event) {
       imageUrl: makeScreenShot(event.data.pos, event.data.maxSize, event.data.backgroundColor)
     };
   } catch (e) {
+    console.log("Error making shot:", e);
+    console.trace();
     result = {
       error: {
         name: e.name,
