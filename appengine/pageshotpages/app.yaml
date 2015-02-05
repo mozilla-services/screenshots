@@ -25,10 +25,6 @@ handlers:
   static_files: index.html
   upload: index\.html
 
-- url: /no-e10s\.html
-  static_files: no-e10s.html
-  upload: no-e10s\.html
-
 - url: /pitch
   static_files: pitch.html
   upload: pitch\.html
