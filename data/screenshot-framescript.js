@@ -25,7 +25,7 @@ function makeScreenShot(pos, maxSize, backgroundColor) {
   return canvas.toDataURL();
 }
 
-addMessageListener("pageshot@pageshot:request-screenshot", function (event) {
+addMessageListener("pageshot@pageshot:request-screenshot", function handler(event) {
   var result;
   try {
     result = {
@@ -42,4 +42,5 @@ addMessageListener("pageshot@pageshot:request-screenshot", function (event) {
     };
   }
   sendAsyncMessage("pageshot@pageshot:get-screenshot", result);
+  removeMessageListener("pageshot@pageshot:request-screenshot", handler);
 });
