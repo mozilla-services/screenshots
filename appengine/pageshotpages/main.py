@@ -404,7 +404,7 @@ def fix_http_url(item_name, data, request):
     orig_scheme = urlparse.urlsplit(data['location']).scheme
     cur_scheme = request.scheme
     if orig_scheme != cur_scheme:
-        url = orig_scheme + "://"+ urlparse.urlsplit(request.url).netloc + item_name
+        url = orig_scheme + "://" + urlparse.urlsplit(request.url).netloc + item_name
     return url
 
 
