@@ -129,7 +129,9 @@ if [[ -n "$publish" ]] ; then
     if [ -e ~/appengine-password.txt ] ; then
         echo "Appengine password: $(cat ~/appengine-password.txt)"
     fi
-    cfx xpi
+    cfx xpi \
+        --update-link https://pageshotpages.appspot.com/pageshot.xpi \
+        --update-url https://pageshotpages.appspot.com/pageshot.update.rdf
     appcfg.py update appengine/pageshotpages/
 elif [[ -n "$run_server" ]] ; then
     title PageShotServer

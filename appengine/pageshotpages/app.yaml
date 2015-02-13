@@ -21,6 +21,10 @@ handlers:
   static_files: pageshot.xpi
   upload: pageshot\.xpi
 
+- url: /pageshot\.update\.rdf
+  static_files: pageshot.update.rdf
+  upload: pageshot\.update\.rdf
+
 - url: /$
   static_files: index.html
   upload: index\.html
