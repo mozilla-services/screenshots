@@ -27,7 +27,6 @@ function makeScreenShot(pos, maxSize, backgroundColor) {
 }
 
 addMessageListener("pageshot@screenshot:call", function handler(event) {
-  console.log("got message", event.data);
   var result;
   try {
     result = {
@@ -46,5 +45,3 @@ addMessageListener("pageshot@screenshot:call", function handler(event) {
   result.callId = event.data.callId;
   sendAsyncMessage("pageshot@screenshot:return", result);
 });
-
-console.log("loaded");
