@@ -263,8 +263,6 @@ function activateSelectionDetector() {
   $("#selection-hover").mouseup(function () {
     saveSelection(lastSelection);
   });
-
-  console.log("activted!", $("#selection-hover").length);
 }
 
 function saveSelection(sel) {
