@@ -1,14 +1,24 @@
 // Note, these are also contained in lib/quoting.js:
 
+function getDocument() {
+  return content.document;
+}
+
+function getLocation() {
+  return content.location;
+}
+
 function htmlQuote(s) {
   /* Does minimal quoting of a string for embedding as a literal in HTML */
   if (! s) {
     return s;
   }
-  if (s.search(/[&<"]/) == -1) {
+  // FIXME: my own stupid editor won't handle " in a regex, so replacing with
+  // \042 which is equivalent:
+  if (s.search(/[&<\042]/) == -1) {
     return s;
   }
-  return s.replace(/&/g, "&amp;").replace(/</g, '&lt;').replace(/"/g, "&quot;");
+  return s.replace(/&/g, "&amp;").replace(/</g, '&lt;').replace(/\042/g, "&quot;");
 }
 
 function encodeData(content_type, data) {
@@ -28,14 +38,14 @@ function skipElement(el) {
   // Note elements with children might have children with, e.g., absolute
   // positioning -- so they might not make the parent have any width, but
   // may still need to be displayed.
-  if ((el.style && el.style.display == 'none')
-      || ((el.clientWidth === 0 && el.clientHeight === 0) &&
-          (! skipElementsOKEmpty[tag]) &&
-          (! el.childNodes.length))) {
+  if ((el.style && el.style.display == 'none') ||
+      ((el.clientWidth === 0 && el.clientHeight === 0) &&
+        (! skipElementsOKEmpty[tag]) &&
+        (! el.childNodes.length))) {
     return true;
   }
   return false;
-};
+}
 
 // These are elements that are empty, i.e., have no closing tag:
 const voidElements = {
@@ -86,8 +96,8 @@ const skipElementsBadTags = {
 
 
 /* This is quite a bit faster than creating intermediate objects: */
-const TEXT_NODE = document.TEXT_NODE;
-const ELEMENT_NODE = document.ELEMENT_NODE;
+const TEXT_NODE = getDocument().TEXT_NODE;
+const ELEMENT_NODE = getDocument().ELEMENT_NODE;
 
 var idCount = 0;
 function makeId() {
@@ -142,6 +152,7 @@ function staticHTML(el) {
 }
 
 function getAttributes(el) {
+  var value;
   var result = [];
   var attrs = el.attributes;
   if (attrs && attrs.length) {
@@ -152,9 +163,9 @@ function getAttributes(el) {
         continue;
       }
       if (name == "href" || name == "src" || name == "value") {
-        var value = el[name];
+        value = el[name];
       } else {
-        var value = attrs[i].nodeValue;
+        value = attrs[i].nodeValue;
       }
       result.push([name, value]);
     }
@@ -185,53 +196,8 @@ function staticChildren(el) {
 function documentStaticData() {
   var start = Date.now();
   // unsafeWindow is quite a bit faster than the proxied access:
-  var body = unsafeWindow.document.body;
+  var body = getDocument().body;
 
-  var newDiv = document.createElement("div");
-  newDiv.innerHTML = body.innerHTML;
-  // FIXME: location.href isn't what Readability expects (but I am
-  // working around the parts of the code that seem to expect
-  // something different)
-  var reader = new Readability(location.href, newDiv);
-  var readable = reader.parse();
-  var microdata = microformats.getItems();
-  var MIN_IMAGE_WIDTH = 250;
-  var MIN_IMAGE_HEIGHT = 200;
-  var images = [];
-  var imageMap = {};
-
-  function scanImage(img) {
-    if (img.width >= MIN_IMAGE_WIDTH
-        && img.height >= MIN_IMAGE_HEIGHT
-        && ! imageMap[img.src]) {
-      // FIXME: would be nice to search for a caption
-      images.push({
-        title: img.getAttribute("title") || img.getAttribute("alt"),
-        src: img.src,
-        width: img.width,
-        height: img.height
-      });
-      imageMap[img.src] = true;
-    }
-  }
-
-  var options = newDiv.getElementsByTagName("img");
-  for (var i=0; i<options.length; i++) {
-    scanImage(options[i]);
-  }
-  options = document.body.getElementsByTagName("img");
-  for (var i=0; i<options.length; i++) {
-    scanImage(options[i]);
-  }
-
-  reader = options = newDiv = null;
-
-  // FIXME: this is commented out because the identical stuff happens in
-  // make-static-html-framescript.js, but that side doesn't do Readability and
-  // microformats.  This is a hacky half-measure until I'm confident
-  //to eliminate the redundancy.
-
-  /*
   // Generally this only happens when the document hasn't really loaded
   // FIXME: that maybe should be an error
   var bodyAttrs = null;
@@ -239,40 +205,56 @@ function documentStaticData() {
     bodyAttrs = getAttributes(body);
     body = staticChildren(body);
   }
-  var head = unsafeWindow.document.head;
+  var head = getDocument().head;
   if (head) {
     head = staticChildren(head);
   }
   var htmlAttrs = null;
-  if (document.documentElement) {
-    htmlAttrs = getAttributes(document.documentElement);
+  if (getDocument().documentElement) {
+    htmlAttrs = getAttributes(getDocument().documentElement);
   }
-  var favicon = document.querySelector("link[rel='shortcut icon'], link[rel='icon']");
+  var favicon = getDocument().querySelector("link[rel='shortcut icon'], link[rel='icon']");
   if (favicon) {
     favicon = favicon.href;
   } else {
     // FIXME: ideally test if this exists
-    favicon = location.origin + "/favicon.ico";
+    favicon = getLocation().origin + "/favicon.ico";
   }
   // FIXME: this is a bad estimate, we should use anchor-based scrolling
-  var totalHeight = document.body.clientHeight;
-  var scrollFraction = window.scrollY / totalHeight;
-  */
+  var totalHeight = getDocument().body.clientHeight;
+  var scrollFraction = content.scrollY / totalHeight;
+
+  console.log("serializing took " + (Date.now() - start) + " milliseconds");
 
   return {
-    location: location.href,
-    origin: location.origin,
-    //favicon: favicon,
-    //htmlAttrs: htmlAttrs,
-    //head: head,
-    //body: body,
-    //bodyAttrs: bodyAttrs,
-    //title: document.title,
-    //initialScroll: scrollFraction,
-    readable: readable,
-    microdata: microdata,
-    images: images,
+    location: getLocation().href,
+    origin: getLocation().origin,
+    favicon: favicon,
+    htmlAttrs: htmlAttrs,
+    head: head,
+    body: body,
+    bodyAttrs: bodyAttrs,
+    title: getDocument().title,
+    initialScroll: scrollFraction,
     captured: Date.now()
   };
-  console.log("serializing took " + (Date.now() - start) + " milliseconds");
 }
+
+addMessageListener("pageshot@documentStaticData:call", function (event) {
+  var result;
+  result = documentStaticData();
+  try {
+    result = documentStaticData();
+  } catch (e) {
+    console.log("Error getting static HTML:", e);
+    console.trace();
+    result = {
+      error: {
+        name: e.name,
+        description: e+""
+      }
+    };
+  }
+  result.callId = event.data.callId;
+  sendAsyncMessage("pageshot@documentStaticData:return", result);
+});
