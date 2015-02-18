@@ -16,11 +16,13 @@
   <body {{if is_collection}}data-collection-name="{{ collection_name }}"{{endif}}
         {{if is_panel}}class="panelized"{{endif}}>
 
+    {{if is_collection}}
     <div id="search-container">
       <div id="search-summary"></div>
       <input type="text" id="search" placeholder="search">
       <span id="search-clear">×</span>
     </div>
+    {{endif}}
 
     <div id="info">
       <div id="login-widget"></div>
