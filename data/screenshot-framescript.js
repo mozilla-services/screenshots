@@ -1,5 +1,5 @@
-var canvas = content.document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
-
+// FIXME: this is a hack to take a shot of the iframe in the viewer
+// instead of the container
 function getWindow() {
   if (content.document.getElementById("frame")) {
     return content.document.getElementById("frame").contentWindow;
@@ -9,6 +9,7 @@ function getWindow() {
 
 function makeScreenShot(pos, maxSize, backgroundColor) {
   console.log("shooting area", pos.x, pos.y, "w/h", pos.w, pos.h, !!maxSize);
+  var canvas = content.document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
   if (maxSize) {
     canvas.width = maxSize.w;
     canvas.height = maxSize.h;
@@ -41,6 +42,6 @@ addMessageListener("pageshot@pageshot:request-screenshot", function handler(even
       }
     };
   }
+  result.contextId = event.data.contextId;
   sendAsyncMessage("pageshot@pageshot:get-screenshot", result);
-  removeMessageListener("pageshot@pageshot:request-screenshot", handler);
 });
