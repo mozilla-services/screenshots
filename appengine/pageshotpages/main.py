@@ -292,6 +292,8 @@ class MainHandler(webapp2.RequestHandler):
                 link_text=link_text,
                 iframe_src="/content" + urllib.quote(self.request.path_info),
                 iframe_readable_src="/readable" + urllib.quote(self.request.path_info),
+                snippet_src=self.request.host_url + "/snippet" + urllib.quote(self.request.path_info) if meta.get('snippet') else None,
+                canonical_url=self.request.path_url,
                 readable=readable,
                 comment=comment,
                 is_newpage=False,

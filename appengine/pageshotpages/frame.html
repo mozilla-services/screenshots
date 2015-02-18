@@ -16,12 +16,19 @@
     {{if data.get("favicon")}}
     <link rel="shortcut icon" href="{{ data['favicon'] }}">
     {{endif}}
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ data.get("title") or data.get("location") }}">
+    <meta property="og:url" content="{{canonical_url}}">
+
+    {{if meta.get('snippet')}}
+    <meta property="og:image" id="meta-snippet" content="{{ snippet_src }}">
+    <meta property="og:image:type" content="image/png">
+    {{endif}}
+    <!-- FIXME: must be a URL
     {{if data.get("screenshot")}}
     <meta property="og:image" content="{{ data['screenshot'] }}">
     {{endif}}
-    {{if meta.get('snippet')}}
-    <meta property="og:image" id="meta-snippet" content="{{ meta['snippet'] }}">
-    {{endif}}
+    -->
   </head>
   <body>
     <div id="container">
