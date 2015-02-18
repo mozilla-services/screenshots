@@ -114,6 +114,8 @@ class NewFrameHandler(webapp2.RequestHandler):
             base=self.request.host_url,
             iframe_src=self.request.host_url + "/newpage.html",
             iframe_readable_src=None,
+            snippet_src=None,
+            canonical_url=None,
             readable=False,
             comment="",
             is_newpage=True,
