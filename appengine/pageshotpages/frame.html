@@ -9,10 +9,12 @@
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="{{ base }}/js/util.js"></script>
     <script src="{{ base }}/js/frame.js"></script>
+    <script src="{{ base }}/js/login.js"></script>
     {{if is_newpage}}
     <script src="{{ base }}/js/newframe.js"></script>
     {{endif}}
     <link rel="stylesheet" href="{{ base }}/css/frame.css">
+    <link rel="stylesheet" href="{{ base }}/css/login.css">
     {{if data.get("favicon")}}
     <link rel="shortcut icon" href="{{ data['favicon'] }}">
     {{endif}}
@@ -61,6 +63,7 @@
             </div>
           </div><!-- /#controls -->
           <div id="info">
+            <div id="login-widget"></div>
             <span id="clip"><img title="Copy shareable link to the clipboard"
                                  src="{{ base }}/clipboard-8-xl.png" style="height: 1em;"></span>
             <a class="sitelink" href="{{ data.get('location') }}">{{ link_text }}</a>

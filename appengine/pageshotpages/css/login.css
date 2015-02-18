@@ -1,0 +1,35 @@
+#login-widget {
+  display: inline-block;
+}
+
+#login-widget.logged-in .if-logged-out {
+  display: none;
+}
+
+#login-widget.logged-out .if-logged-in {
+  display: none;
+}
+
+#login-widget .login-collapsed #login-dropped {
+  display: none;
+}
+
+#logout {
+  cursor: pointer;
+}
+
+#login-drop {
+  cursor: pointer;
+}
+
+#login-dropped {
+  position: absolute;
+  top: 26px;
+  height: 90px;
+  width: 200px;
+  box-shadow: 2px 2px 4px #999;
+  background-color: #00539F;
+  border: 1px solid #555;
+  z-index: 100;
+  padding: 10px;
+}

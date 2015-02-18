@@ -268,10 +268,14 @@ a:hover {
     background-color: #ffb;
 }
 
-#clip {
+#info {
     position: absolute;
     top: 4px;
     left: 4px;
+}
+
+#clip {
+    display: inline-block;
     cursor: pointer;
 }
 

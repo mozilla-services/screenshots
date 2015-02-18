@@ -7,9 +7,11 @@
     <title>Page: {{title}}</title>
     {{endif}}
     <link rel="stylesheet" href="{{ base }}/css/collection.css">
+    <link rel="stylesheet" href="{{ base }}/css/login.css">
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="{{ base }}/js/util.js"></script>
     <script src="{{ base }}/js/collection.js"></script>
+    <script src="{{ base }}/js/login.js"></script>
   </head>
   <body {{if is_collection}}data-collection-name="{{ collection_name }}"{{endif}}
         {{if is_panel}}class="panelized"{{endif}}>
@@ -20,9 +22,12 @@
       <span id="search-clear">×</span>
     </div>
 
-    <div id="clip">
-      <img title="Copy shareable link to the clipboard"
-           src="{{ base }}/clipboard-8-xl.png" style="height: 1em;">
+    <div id="info">
+      <div id="login-widget"></div>
+      <div id="clip">
+        <img title="Copy shareable link to the clipboard"
+             src="{{ base }}/clipboard-8-xl.png" style="height: 1em;">
+      </div>
     </div>
 
     {{if is_collection}}
