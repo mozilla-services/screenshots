@@ -1,5 +1,6 @@
 self.port.on("set-list", function (list) {
   var container = document.getElementById("list");
+  var nothing = document.getElementById("nothing-here");
   container.innerHTML = "";
   list.forEach(function (item) {
     var el = document.createElement("div");
@@ -18,6 +19,11 @@ self.port.on("set-list", function (list) {
       self.port.emit("click", item);
     }, false);
   });
+  if (! list.length) {
+    nothing.style.display = "";
+  } else {
+    nothing.style.display = "none";
+  }
 });
 
 self.port.emit("hello");
