@@ -6,6 +6,7 @@ body {
     min-height: 100%;
     margin: 0;
     font-family: sans-serif;
+    background-color: #404040;
 }
 
 #container {
@@ -16,26 +17,23 @@ body {
 
 #frame-wrapper {
     position: absolute;
-    top: 50px;
-    left: 50px;
-    right: 50px;
-    bottom: 5px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    top: 40px;
+    left: 25px;
+    right: 25px;
+    bottom: 10px;
     border: 1px solid black;
-    border-right: 10px solid #868686;
-    border-bottom: 10px solid black;
+    box-shadow: 3px 3px 6px #898989;
 }
 
 #frame {
   border: none;
+  background-color: white;
 }
 
 #toolbar {
     height: 2.5em;
     width: 100%;
     overflow: truncate;
-    background-color: black;
     color: white;
     /* Skipping borders for now
     border-bottom: 2px solid #E66000; */
