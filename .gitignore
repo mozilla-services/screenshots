@@ -2,4 +2,4 @@ Profile
 .DS_Store
 pageshot.xpi
 pageshot.update.rdf
-  
+*.pyc

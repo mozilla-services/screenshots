@@ -26,11 +26,21 @@ table td {
     vertical-align: top;
 }
 
-#frame {
+#frame-wrapper {
     position: absolute;
-    height: 100%;
-    width: 100%;
-    border: 0;
+    top: 50px;
+    left: 50px;
+    right: 50px;
+    bottom: 5px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: 1px solid black;
+    border-right: 10px solid #868686;
+    border-bottom: 10px solid black;
+}
+
+#frame {
+  border: none;
 }
 
 #toolbar {
