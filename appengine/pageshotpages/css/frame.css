@@ -32,12 +32,11 @@ body {
 }
 
 #toolbar {
-    height: 30px;
+    height: 2.5em;
     width: 100%;
     overflow: truncate;
     background-color: black;
     color: white;
-    padding: 4px;
     /* Skipping borders for now
     border-bottom: 2px solid #E66000; */
 }
@@ -59,7 +58,7 @@ a:hover {
 
 #info {
     position: absolute;
-    top: 10px;
+    top: 0.5em;
     left: 100px;
     right: 100px;
     white-space: nowrap;
@@ -68,6 +67,11 @@ a:hover {
     text-align: center;
 }
 
+#login-widget {
+  position: relative;
+  top: 0.5em;
+  left: 0.5em;
+}
 a#collection-link {
     /* This specific element isn't clear as a link unless we underline */
     text-decoration: underline;
@@ -140,6 +144,7 @@ a.sitelink, a.sitelink:visited {
 
 #comment-instructions {
     cursor: pointer;
+    font-size: xx-small;
 }
 
 #clip {
