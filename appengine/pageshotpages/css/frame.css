@@ -14,18 +14,6 @@ body {
     position: absolute;
 }
 
-table {
-    border-collapse: collapse;
-    margin: 0;
-    padding: 0;
-}
-
-table td {
-    padding: 0;
-    margin: 0;
-    vertical-align: top;
-}
-
 #frame-wrapper {
     position: absolute;
     top: 50px;
@@ -47,15 +35,17 @@ table td {
     height: 30px;
     width: 100%;
     overflow: truncate;
-    background-color: #00539F;
-    color: #eef;
+    background-color: black;
+    color: white;
     padding: 4px;
     /* Skipping borders for now
     border-bottom: 2px solid #E66000; */
 }
 
 .instructions {
-    float: right;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
 }
 
 a, a:visited {
@@ -68,10 +58,14 @@ a:hover {
 }
 
 #info {
-    width: 300px;
+    position: absolute;
+    top: 10px;
+    left: 100px;
+    right: 100px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: center;
 }
 
 a#collection-link {
@@ -80,6 +74,11 @@ a#collection-link {
 }
 
 a.sitelink, a.sitelink:visited {
+}
+
+#readable-toggler {
+  position: relative;
+  top: -2px;
 }
 
 #readable-toggler span {
@@ -117,10 +116,6 @@ a.sitelink, a.sitelink:visited {
     color: #fff;
 }
 
-#controls {
-    float: right;
-}
-
 #comment-container {
     position: fixed;
     width: 500px;
@@ -149,6 +144,8 @@ a.sitelink, a.sitelink:visited {
 
 #clip {
     cursor: pointer;
+    position: relative;
+    top: 2px;
 }
 
 .selection {
