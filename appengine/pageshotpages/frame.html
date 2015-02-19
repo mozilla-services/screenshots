@@ -35,42 +35,41 @@
   <body>
     <div id="container">
       <div id="toolbar">
-        <div id="controls">
-          <div class="instructions">
-            <span id="comment-instructions">
-              <span {{if comment}}style="display: none"{{endif}}
-                    id="comment-instructions-no-comment">
-                Add comment
-              </span>
-              <span {{if not comment}}style="display: none"{{endif}}
-                    id="comment-instructions-comment">
-                View comment
-              </span>
-              <span style="display: none"
-                    id="comment-instructions-collapse">
-                Collapse
-              </span>
-              <span id="comment-expand-indicator">
-                ▼
-              </span>
-              <span id="comment-collapse-indicator" style="display: none">
-                ▲
-              </span>
+        <div id="login-widget"></div>
+
+        <div class="instructions">
+          <span id="comment-instructions">
+            <span {{if comment}}style="display: none"{{endif}}
+                  id="comment-instructions-no-comment">
+              Add comment
             </span>
-            Shift+Click+Drag to highlight
-          </div>
-        </div><!-- /#controls -->
+            <span {{if not comment}}style="display: none"{{endif}}
+                  id="comment-instructions-comment">
+              View comment
+            </span>
+            <span style="display: none"
+                  id="comment-instructions-collapse">
+              Collapse
+            </span>
+            <span id="comment-expand-indicator">
+              ▼
+            </span>
+            <span id="comment-collapse-indicator" style="display: none">
+              ▲
+            </span>
+          </span>
+        </div>
+
         <div id="info">
-          <div id="login-widget"></div>
+          <a class="sitelink" href="{{ data.get('location') }}">{{ link_text }}</a>
           <span id="clip"><img title="Copy shareable link to the clipboard"
                                src="{{ base }}/clipboard-8-xl.png" style="height: 1em;"></span>
-          <a class="sitelink" href="{{ data.get('location') }}">{{ link_text }}</a>
+          {{if is_newpage or data.get("readable")}}
+          <span id="readable-toggler">
+            <span id="readability-off" class="{{'inactive' if readable else 'active'}}">normal</span><span id="readability-on" class="{{'active' if readable else 'inactive'}}"> readable</span>
+          </span>
+          {{endif}}
         </div>
-        {{if is_newpage or data.get("readable")}}
-        <div id="readable-toggler">
-          <span id="readability-off" class="{{'inactive' if readable else 'active'}}">normal</span><span id="readability-on" class="{{'active' if readable else 'inactive'}}"> readable</span>
-        </div>
-        {{endif}}
   
         <div id="comment-container" style="display: none">
           <div id="comment">{{ html(comment) }}</div>
