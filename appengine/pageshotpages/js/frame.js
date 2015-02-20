@@ -5,6 +5,11 @@ if (typeof shotUrl == "undefined") {
   shotUrl = location.href;
 }
 
+function click_tag(url) {
+  $("#frame").attr("src", url);
+  $("#frame-wrapper").addClass("no-drop-shadow").removeClass("drop-shadow");
+}
+
 $(function () {
   $("#readability-on").click(function () {
     $("#readability-on").addClass("active").removeClass("inactive");

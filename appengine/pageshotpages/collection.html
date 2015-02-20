@@ -39,6 +39,7 @@
 
         <div class="right-container">
 
+          {{if is_collection}}
           <div class="comment-container {{if not meta.get('comment')}}comment-collapsed{{endif}}">
             <div class="comment"
                  {{if not meta.get('comment')}}style="display: none"{{endif}}
@@ -51,6 +52,8 @@
             <span class="add-comment"
                   {{if meta.get('comment')}}style="display: none"{{endif}}>+</span>
           </div>
+          {{endif}}
+          
 
           {{if meta.get('selections')}}
           <div class="selections-container">
