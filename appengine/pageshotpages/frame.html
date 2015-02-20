@@ -86,9 +86,10 @@
   
         </div><!-- /#comment-container -->
       </div>
-      <div id="frame-wrapper" class="{{'no-drop-shadow' if summarize else 'drop-shadow'}}">
-        <iframe id="frame" height="100%" width="100%" src="{{ iframe_readable_src if readable else iframe_src }}" data-normal-src="{{ iframe_src }}" data-readable-src="{{ iframe_readable_src }}" data-summarize-src="{{ iframe_summarize_src }}"></iframe>
+      <div id="frame-wrapper" class="drop-shadow">
+        <iframe id="frame" height="100%" width="100%" src="{{ iframe_readable_src if readable else iframe_src }}" data-normal-src="{{ iframe_src }}" data-readable-src="{{ iframe_readable_src }}"></iframe>
       </div>
     </div>
+    <iframe id="summary" class="hidden no-drop-shadow" height="100%" width="100%" src="{{ iframe_summarize_src }}" data-summarize-src="{{ iframe_summarize_src }}"></iframe>
   </body>
 </html>

@@ -20,6 +20,11 @@ body {
     top: 40px;
 }
 
+#summary {
+  position: absolute;
+  top: 40px;
+}
+
 .no-drop-shadow {
     bottom: 0px;
     left: 0px;
@@ -37,6 +42,10 @@ body {
 #frame {
   border: none;
   background-color: white;
+}
+
+.hidden {
+  display: none;
 }
 
 #toolbar {

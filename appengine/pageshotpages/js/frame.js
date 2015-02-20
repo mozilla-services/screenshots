@@ -15,28 +15,30 @@ $(function () {
     $("#readability-on").addClass("active").removeClass("inactive");
     $("#readability-off").addClass("inactive").removeClass("active");
     $("#summarize-on").addClass("inactive").removeClass("active");
-    $("#frame-wrapper").addClass("drop-shadow").removeClass("no-drop-shadow");
+    $("#summary").addClass("hidden");
+    $("#frame-wrapper").removeClass("hidden");
     setReadability(true, false);
   });
   $("#readability-off").click(function () {
     $("#readability-off").addClass("active").removeClass("inactive");
     $("#readability-on").addClass("inactive").removeClass("active");
     $("#summarize-on").addClass("inactive").removeClass("active");
-    $("#frame-wrapper").addClass("drop-shadow").removeClass("no-drop-shadow");
+    $("#summary").addClass("hidden");
+    $("#frame-wrapper").removeClass("hidden");
     setReadability(false, false);
   });
   $("#summarize-on").click(function() {
     $("#readability-on").addClass("inactive").removeClass("active");
     $("#readability-off").addClass("inactive").removeClass("active");
     $("#summarize-on").addClass("active").removeClass("inactive");
-    $("#frame-wrapper").addClass("no-drop-shadow").removeClass("drop-shadow");
+    $("#frame-wrapper").addClass("hidden");
+    $("#summary").removeClass("hidden");
     setReadability(false, true);
   });
 
   function setReadability(value, summarize) {
     if (summarize) {
-      console.log("summarize", summarize)
-      $("#frame").attr("src", $("#frame").attr("data-summarize-src"));
+      $("#summary").attr("src", $("#summary").attr("data-summarize-src"));
       try {
         history.replaceState({}, "to readable mode", location.origin + location.pathname + "?summarize");
       } catch (e) {
