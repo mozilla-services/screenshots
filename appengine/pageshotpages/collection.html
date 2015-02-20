@@ -24,18 +24,8 @@
     </div>
     {{endif}}
 
-    <div id="info">
-      <div id="login-widget"></div>
-      <div id="clip">
-        <img title="Copy shareable link to the clipboard"
-             src="{{ base }}/clipboard-8-xl.png" style="height: 1em;">
-      </div>
-    </div>
-
     {{if is_collection}}
     <h1>Tag: #{{ collection_name }}</h1>
-    {{else}}
-    <h1>Page: {{title}}</h1>
     {{endif}}
 
     <div id="items">
@@ -85,7 +75,7 @@
                 <span class="private badge" {{if link.get('pub')}}style="display: none"{{endif}}>private</span>
                 <span class="remove-history">×</span>
               </span>
-              <a class="link" href="{{link['url']}}" target="_blank">{{link['title']}}</a>
+              <a class="link" onclick="browse('{{link['url']}}')">{{link['title']}}</a>
             </li>
             {{endfor}}
           </ul>
@@ -105,14 +95,14 @@
           <div class="image-selector">
             <span class="image-down">&lt;</span><span class="image-up">&gt;</span>
           </div>
-          <a class="embedded" href="{{ url }}">
+          <a class="embedded" onclick="browse('{{url}}')">
             {{if images}}
             <img class="item-shot" src="{{ images[meta.get('activeImage', 0)]['src'] }}">
             {{endif}}
           </a>
         </div>
 
-        <h3 class="item-title"><a class="embedded" href="{{ url }}">{{ meta.get("userTitle") or (data.get("readable") and data["readable"].get("title")) or data.get("title") or data.get("location") }}</a></h3>
+        <h3 class="item-title"><a class="embedded" onclick="browse('{{url}}')">{{ meta.get("userTitle") or (data.get("readable") and data["readable"].get("title")) or data.get("title") or data.get("location") }}</a></h3>
 
         {{if data.get("readable") and data["readable"].get("excerpt")}}
         <div class="excerpt">
@@ -121,13 +111,13 @@
         {{endif}}
 
         <div class="title-link">
-          <a class="direct-link" href="{{ data.get('location') }}">{{ domain(data.get('location', '')) }}</a>
+          <a class="direct-link" onclick="browse('{{data.get('location')}}')">{{ domain(data.get('location', '')) }}</a>
         </div>
 
         {{if meta.get("snippet")}}
         <div class="snippet-container">
           <hr>
-          <a class="embedded" href="{{ url }}">
+          <a class="embedded" onclick="browse('{{url}}')">
             <img class="snippet" src="{{ meta['snippet'] }}">
           </a>
         </div>
@@ -153,7 +143,7 @@
     </div><!-- /#items -->
 
     {{if is_panel}}
-    <a href="{{self_url}}" target="_blank" id="panel-overlay"></a>
+    <a onclick="browse('{{self_url}}')" target="_blank" id="panel-overlay"></a>
     {{endif}}
   </body>
 </html>

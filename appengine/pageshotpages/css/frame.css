@@ -18,9 +18,18 @@ body {
 #frame-wrapper {
     position: absolute;
     top: 40px;
+}
+
+.no-drop-shadow {
+    bottom: 0px;
+    left: 0px;
+    right: 0px;    
+}
+
+.drop-shadow {
+    bottom: 40px;
     left: 25px;
     right: 25px;
-    bottom: 10px;
     border: 1px solid black;
     box-shadow: 3px 3px 6px #898989;
 }
@@ -96,6 +105,11 @@ a.sitelink, a.sitelink:visited {
 }
 
 #readability-on {
+    border-top: 1.5px solid #E66000;
+    border-bottom: 1.5px solid #E66000;
+}
+
+#summarize-on {
     border-top: 1.5px solid #E66000;
     border-bottom: 1.5px solid #E66000;
     border-right: 1.5px solid #E66000;
