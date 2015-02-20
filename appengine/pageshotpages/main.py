@@ -381,7 +381,7 @@ def htmlize(text):
         link = re.sub(r"^#", "", name)
         link = link.lower()
         link = re.sub(r"_", "-", link)
-        return '<a class="tag" href="/tag/%s">%s</a>' % (link, name)
+        return '<a class="tag" onclick="click_tag(\'/tag/%s\');">%s</a>' % (link, name)
 
     text = re.sub(r"https?:\/\/[^\s\]\)]+", link_repl, text, flags=re.I)
     text = re.sub(r"\#[a-zA-Z0-9_\-]+", hashtag_repl, text)
