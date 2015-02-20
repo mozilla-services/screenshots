@@ -1,7 +1,12 @@
 body {
     font-family: sans-serif;
-    background-color: #ddd;
+    background-color: #404040;
     margin-bottom: 400px;
+    color: white;
+}
+
+h1 {
+  margin-top: 0px;
 }
 
 .item {

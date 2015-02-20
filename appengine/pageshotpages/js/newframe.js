@@ -7,6 +7,9 @@ function injectData(docData) {
   docData = JSON.parse(docData);
   document.title = docData.title;
   var linkText = docData["location"].replace(/^https?:\/\//i, "").replace(/\/*$/, "");
+  if (linkText.length > 50) {
+    linkText = linkText.slice(0, 50) + "...";
+  }
   $(".sitelink").attr("href", docData["location"]).text(linkText);
   if (! docData.readable) {
     $("#readable-toggler").hide();
@@ -37,6 +40,7 @@ function tryInject(docData) {
   var frame = $("#frame")[0];
   frame.setAttribute("data-normal-src", location.origin + "/content" + shotPath);
   frame.setAttribute("data-readable-src", location.origin + "/readable" + shotPath);
+  frame.setAttribute("data-summarize-src", location.origin + "/summary" + shotPath);
   if (frame.contentWindow.injectData) {
     frame.contentWindow.injectData(JSON.stringify(docData));
   } else {

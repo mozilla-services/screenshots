@@ -16,15 +16,21 @@ body {
 
 #frame-wrapper {
     position: absolute;
-    top: 50px;
-    left: 50px;
-    right: 50px;
-    bottom: 5px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    top: 40px;
+}
+
+.no-drop-shadow {
+    bottom: 0px;
+    left: 0px;
+    right: 0px;    
+}
+
+.drop-shadow {
+    bottom: 40px;
+    left: 25px;
+    right: 25px;
     border: 1px solid black;
-    border-right: 10px solid #868686;
-    border-bottom: 10px solid black;
+    box-shadow: 3px 3px 6px #898989;
 }
 
 #frame {
@@ -98,6 +104,11 @@ a.sitelink, a.sitelink:visited {
 }
 
 #readability-on {
+    border-top: 1.5px solid #E66000;
+    border-bottom: 1.5px solid #E66000;
+}
+
+#summarize-on {
     border-top: 1.5px solid #E66000;
     border-bottom: 1.5px solid #E66000;
     border-right: 1.5px solid #E66000;

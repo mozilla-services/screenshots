@@ -61,14 +61,12 @@
         </div>
 
         <div id="info">
-          <a class="sitelink" href="{{ data.get('location') }}">{{ link_text }}</a>
+          <a class="sitelink" href="{{ data.get('location') }}">{{ '' if link_text is None else (link_text if len(link_text) < 50 else link_text[:50] + '...') }}</a>
           <span id="clip"><img title="Copy shareable link to the clipboard"
                                src="{{ base }}/clipboard-8-xl.png" style="height: 1em;"></span>
-          {{if is_newpage or data.get("readable")}}
           <span id="readable-toggler">
-            <span id="readability-off" class="{{'inactive' if readable else 'active'}}">normal</span><span id="readability-on" class="{{'active' if readable else 'inactive'}}"> readable</span>
+            <span id="readability-off" class="{{'active' if not readable and not summarize else 'inactive'}}">normal</span>{{if data.get("readable")}}<span id="readability-on" class="{{'active' if readable and not summarize else 'inactive'}}">readable</span>{{endif}}<span id="summarize-on" class="{{'active' if summarize else 'inactive'}}">summarize</span>
           </span>
-          {{endif}}
         </div>
   
         <div id="comment-container" style="display: none">
@@ -88,8 +86,8 @@
   
         </div><!-- /#comment-container -->
       </div>
-      <div id="frame-wrapper">
-        <iframe id="frame" height="100%" width="100%" src="{{ iframe_readable_src if readable else iframe_src }}" data-normal-src="{{ iframe_src }}" data-readable-src="{{ iframe_readable_src }}"></iframe>
+      <div id="frame-wrapper" class="{{'no-drop-shadow' if summarize else 'drop-shadow'}}">
+        <iframe id="frame" height="100%" width="100%" src="{{ iframe_readable_src if readable else iframe_src }}" data-normal-src="{{ iframe_src }}" data-readable-src="{{ iframe_readable_src }}" data-summarize-src="{{ iframe_summarize_src }}"></iframe>
       </div>
     </div>
   </body>

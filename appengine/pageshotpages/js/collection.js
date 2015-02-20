@@ -1,4 +1,8 @@
 $(function () {
+  function browse(url) {
+    parent.postMessage(JSON.stringify({browse: url}), "*");
+  }
+  window.browse = browse;
 
   $(document).on("click", ".closer", function (event) {
     // FIXME: need to change to use the new pattern
