@@ -8,7 +8,7 @@ function getLocation() {
   return content.location;
 }
 
-function htmlQuote(s) {
+function htmlQuote(s, leaveQuote) {
   /* Does minimal quoting of a string for embedding as a literal in HTML */
   if (! s) {
     return s;
@@ -18,7 +18,11 @@ function htmlQuote(s) {
   if (s.search(/[&<\042]/) == -1) {
     return s;
   }
-  return s.replace(/&/g, "&amp;").replace(/</g, '&lt;').replace(/\042/g, "&quot;");
+  s = s.replace(/&/g, "&amp;").replace(/</g, '&lt;');
+  if (! leaveQuote) {
+    s = s.replace(/\042/g, "&quot;");
+  }
+  return s;
 }
 
 function encodeData(content_type, data) {
@@ -185,7 +189,7 @@ function staticChildren(el) {
     }
     if (child.nodeType == TEXT_NODE) {
       var value = child.nodeValue;
-      s += htmlQuote(value);
+      s += htmlQuote(value, true);
     } else if (child.nodeType == ELEMENT_NODE) {
       s += staticHTML(child);
     }
