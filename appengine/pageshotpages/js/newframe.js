@@ -12,7 +12,7 @@ function injectData(docData) {
   }
   $(".sitelink").attr("href", docData["location"]).text(linkText);
   if (! docData.readable) {
-    $("#readable-toggler").hide();
+    $("#readability-on").hide();
   }
   shotPath = "/" + docData.id + "/" + docData.domain;
   var destUrl = location.origin + shotPath;

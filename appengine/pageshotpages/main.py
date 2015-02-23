@@ -108,7 +108,7 @@ class NewFrameHandler(webapp2.RequestHandler):
 
     def get(self):
         html = frame_html.substitute(
-            data={},
+            data={"readable": True},
             meta={},
             link_text=None,
             base=self.request.host_url,
