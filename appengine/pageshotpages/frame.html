@@ -68,7 +68,7 @@
             <span id="readability-off" class="{{'active' if not readable and not summarize else 'inactive'}}">normal</span>{{if data.get("readable")}}<span id="readability-on" class="{{'active' if readable and not summarize else 'inactive'}}">readable</span>{{endif}}<span id="summarize-on" class="{{'active' if summarize else 'inactive'}}">summarize</span>
           </span>
         </div>
-  
+
         <div id="comment-container" style="display: none">
           <div id="comment">{{ html(comment) }}</div>
           <div style="display: none" id="comment-editor-container">
@@ -83,7 +83,7 @@
             </div>
             {{endfor}}
           </div>
-  
+
         </div><!-- /#comment-container -->
       </div>
       <div id="frame-wrapper" class="{{'no-drop-shadow' if summarize else 'drop-shadow'}}">
