@@ -1,4 +1,7 @@
+/* jshint browser:true */
+/* globals self, console */
 // This is run on all pageshot viewer pages
+// FIXME: we shouldn't do name translations, and we should pipe messages as a loop:
 
 document.addEventListener("request-screenshot", function (event) {
   self.port.emit("requestScreenshot", event.detail);
@@ -16,6 +19,11 @@ document.addEventListener("check-captured", function (event) {
   self.port.emit("checkCaptured", event.detail);
 }, false);
 
+document.addEventListener("error", function (event) {
+  console.log("Error via helper from", location.href);
+  self.port.emit("alertError", event.detail);
+}, false);
+
 self.port.on("screenshot", function (image, info) {
   var event = document.createEvent("CustomEvent");
   event.initCustomEvent("got-screenshot", true, true, JSON.stringify({
@@ -31,6 +39,17 @@ self.port.on("checkCapturedResult", function (result) {
   document.dispatchEvent(event);
 });
 
-var event = document.createEvent("CustomEvent");
-event.initCustomEvent("helper-ready", true, true, null);
-document.dispatchEvent(event);
+var readyEvent = document.createEvent("CustomEvent");
+readyEvent.initCustomEvent("helper-ready", true, true, null);
+document.dispatchEvent(readyEvent);
+
+// FIXME: not sure if this might mess up an in-content onerror handler, though I suppose
+// we just shouldn't create one?
+window.onerror = function (message, url, line, col, error) {
+  console.log("Error from onerror", url);
+  self.port.emit("alertError", {
+    name: error.name || "ERROR",
+    message: message,
+    help: "Uncaught error: " + error + " at " + url + "@" + line + ":" + col
+  });
+};

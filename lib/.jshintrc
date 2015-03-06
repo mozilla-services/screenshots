@@ -1,0 +1,14 @@
+{
+  "curly": true,
+  "funcscope": true,
+  "latedef": false,
+  "noarg": true,
+  "nocomma": true,
+  "nonbsp": true,
+  "undef": true,
+  "unused": "vars",
+  "esnext": true,
+  "moz": true,
+  "newcap": false,
+  "predef": ["require", "exports", "console"]
+}
