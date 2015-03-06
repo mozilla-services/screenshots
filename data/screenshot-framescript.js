@@ -1,3 +1,4 @@
+/* globals content, console, addMessageListener, sendAsyncMessage */
 // FIXME: this is a hack to take a shot of the iframe in the viewer
 // instead of the container
 function getWindow() {
