@@ -1,3 +1,4 @@
+/* globals content, btoa, console, addMessageListener, sendAsyncMessage */
 // Note, these are also contained in lib/quoting.js:
 
 function getDocument() {
@@ -228,7 +229,7 @@ function documentStaticData() {
   var totalHeight = getDocument().body.clientHeight;
   var scrollFraction = content.scrollY / totalHeight;
 
-  console.log("serializing took " + (Date.now() - start) + " milliseconds");
+  console.log("framescript serializing took " + (Date.now() - start) + " milliseconds");
 
   return {
     location: getLocation().href,
@@ -246,7 +247,6 @@ function documentStaticData() {
 
 addMessageListener("pageshot@documentStaticData:call", function (event) {
   var result;
-  result = documentStaticData();
   try {
     result = documentStaticData();
   } catch (e) {
