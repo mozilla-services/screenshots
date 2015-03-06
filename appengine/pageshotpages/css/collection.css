@@ -118,6 +118,7 @@ a.embedded, a.embedded:visited {
     box-shadow: 2px 2px 4px #999;
     border-radius: 2px;
     padding: 6px;
+    color: black;
 }
 
 .comment-container.comment-collapsed {
@@ -175,6 +176,7 @@ a.embedded, a.embedded:visited {
     border-radius: 2px;
     padding: 6px;
     position: absolute;
+    color: black;
 }
 
 .history-container ul {
