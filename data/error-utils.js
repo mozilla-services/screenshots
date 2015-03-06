@@ -1,4 +1,4 @@
-/* globals self, FILENAME, console */
+/* globals FILENAME */
 /* exported unhandled, makeError, watchFunction */
 /** Similar to lib/errors.js, some helpers to catch or handle errors */
 

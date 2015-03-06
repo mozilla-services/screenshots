@@ -1,5 +1,3 @@
-/* jshint browser:true */
-/* globals self, console */
 // This is run on all pageshot viewer pages
 // FIXME: we shouldn't do name translations, and we should pipe messages as a loop:
 

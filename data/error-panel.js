@@ -1,6 +1,3 @@
-/* jshint browser:true */
-/* globals self */
-
 var errorContainer = document.getElementById("errors");
 
 self.port.on("showError", function (error) {

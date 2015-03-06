@@ -1,6 +1,3 @@
-/* globals content, btoa, console, addMessageListener, sendAsyncMessage */
-// Note, these are also contained in lib/quoting.js:
-
 function getDocument() {
   return content.document;
 }

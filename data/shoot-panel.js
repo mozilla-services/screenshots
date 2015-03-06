@@ -1,5 +1,4 @@
-/* jshint browser: true */
-/* globals self, watchFunction */
+/* globals watchFunction */
 /* exported FILENAME */
 var shot;
 var FILENAME = "shoot-panel.js";
