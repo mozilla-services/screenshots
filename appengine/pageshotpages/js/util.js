@@ -10,7 +10,13 @@ function updateResource(url, callback, defaultValue) {
         return;
       }
     } else {
-      value = JSON.parse(req.responseText);
+      try {
+        value = JSON.parse(req.responseText);
+      } catch (e) {
+        console.log("JSON parse failed:", e+"", req.responseText);
+        def.reject(e);
+        return;
+      }
     }
     var newValue;
     try {
