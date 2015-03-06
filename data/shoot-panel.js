@@ -1,6 +1,14 @@
 /* globals watchFunction */
 /* exported FILENAME */
+/** The worker for shoot-panel.html
+    This is setup and directly communicated to by main.js
+    The shot comes from `lib/shooter.js:ShotContext` (and the `Shot` model)
+    The outgoing messages are routed to `ShotContext.panelHandlers)
+    */
+
+// The shot variable holds the JSONable version of a Shot
 var shot;
+// For error messages:
 var FILENAME = "shoot-panel.js";
 
 self.port.on("shotData", function (data) {
@@ -8,6 +16,8 @@ self.port.on("shotData", function (data) {
   watchFunction(render)();
 });
 
+/** render() is called everytime the shot is updated, and updates everything
+    from scratch given that data */
 function render() {
   var el = document.createElement("div");
   el.innerHTML = document.getElementById("template").textContent;

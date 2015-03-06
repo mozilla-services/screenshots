@@ -1,3 +1,9 @@
+/** Framescript attached to documents to make a screenshot
+
+    This is written to be handled by `lib/framescripter.js`
+    */
+
+
 // FIXME: this is a hack to take a shot of the iframe in the viewer
 // instead of the container
 function getWindow() {
@@ -7,6 +13,12 @@ function getWindow() {
   return content;
 }
 
+/** Takes a screenshot of the position, which is like:
+      {x: absX, y: absY, w: width, h: height}
+
+    maxSize is optionally {w: width, h: height}
+
+    Returns a data: URL version of a png of the screenshot */
 function makeScreenShot(pos, maxSize, backgroundColor) {
   console.log("shooting area", pos.x, pos.y, "w/h", pos.w, pos.h, !!maxSize);
   var canvas = content.document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
@@ -26,6 +38,7 @@ function makeScreenShot(pos, maxSize, backgroundColor) {
   return canvas.toDataURL();
 }
 
+// framescripter infrastructure:
 addMessageListener("pageshot@screenshot:call", function handler(event) {
   var result;
   try {

@@ -1,3 +1,15 @@
+/** This file is used to turn the document into static HTML with no scripts
+
+    As a framescript this can access the document and its iframes without
+    cross-domain permission issues.
+
+    documentStaticData() is the main function that collects all the information
+    and returns a JSONable object.
+
+    This script also contains the infrastructure for communicating as a framescript
+    with lib/framescripter
+    */
+
 function getDocument() {
   return content.document;
 }
@@ -6,14 +18,13 @@ function getLocation() {
   return content.location;
 }
 
+/** Does standard HTML quoting, if `leaveQuote` is true it doesn't do &quot; */
 function htmlQuote(s, leaveQuote) {
   /* Does minimal quoting of a string for embedding as a literal in HTML */
   if (! s) {
     return s;
   }
-  // FIXME: my own stupid editor won't handle " in a regex, so replacing with
-  // \042 which is equivalent:
-  if (s.search(/[&<\042]/) == -1) {
+  if (s.search(/[&<"]/) == -1) {
     return s;
   }
   s = s.replace(/&/g, "&amp;").replace(/</g, '&lt;');
@@ -23,33 +34,13 @@ function htmlQuote(s, leaveQuote) {
   return s;
 }
 
-function encodeData(content_type, data) {
-  /* Encodes the given data as a data: URL */
+/** Encodes the given data as a data: URL */
+function encodeData(contentType, data) {
   // FIXME: utf8?
-  return 'data:' + content_type + ';base64,' + btoa(data);
+  return 'data:' + contentType + ';base64,' + btoa(data);
 }
 
-function skipElement(el) {
-  /* true if this element should be skipped when sending to the mirror */
-  var tag = el.tagName;
-  if (skipElementsBadTags[tag]) {
-    return true;
-  }
-  // Skip elements that can't be seen, and have no children, and are potentially
-  // "visible" elements (e.g., not STYLE)
-  // Note elements with children might have children with, e.g., absolute
-  // positioning -- so they might not make the parent have any width, but
-  // may still need to be displayed.
-  if ((el.style && el.style.display == 'none') ||
-      ((el.clientWidth === 0 && el.clientHeight === 0) &&
-        (! skipElementsOKEmpty[tag]) &&
-        (! el.childNodes.length))) {
-    return true;
-  }
-  return false;
-}
-
-// These are elements that are empty, i.e., have no closing tag:
+/** These are elements that are empty, i.e., have no closing tag: */
 const voidElements = {
   AREA: true,
   BASE: true,
@@ -69,7 +60,7 @@ const voidElements = {
   WBR: true
 };
 
-// These elements can have e.g., clientWidth of 0 but still be relevant:
+/** These elements can have e.g., clientWidth of 0 but still be relevant: */
 const skipElementsOKEmpty = {
   LINK: true,
   STYLE: true,
@@ -90,25 +81,47 @@ const skipElementsOKEmpty = {
   // COL, COLGROUP?
 };
 
-// These elements are never sent:
+/** These elements are never sent: */
 const skipElementsBadTags = {
   SCRIPT: true,
   NOSCRIPT: true
 };
 
+/** true if this element should be skipped when sending to the mirror */
+function skipElement(el) {
+  var tag = el.tagName;
+  if (skipElementsBadTags[tag]) {
+    return true;
+  }
+  // Skip elements that can't be seen, and have no children, and are potentially
+  // "visible" elements (e.g., not STYLE)
+  // Note elements with children might have children with, e.g., absolute
+  // positioning -- so they might not make the parent have any width, but
+  // may still need to be displayed.
+  if ((el.style && el.style.display == 'none') ||
+      ((el.clientWidth === 0 && el.clientHeight === 0) &&
+        (! skipElementsOKEmpty[tag]) &&
+        (! el.childNodes.length))) {
+    return true;
+  }
+  return false;
+}
 
-/* This is quite a bit faster than creating intermediate objects: */
+// This is quite a bit faster than looking up these numbers all the time:
 const TEXT_NODE = getDocument().TEXT_NODE;
 const ELEMENT_NODE = getDocument().ELEMENT_NODE;
 
 var idCount = 0;
+/** makeId() creates new ids that we give to elements that don't already have an id */
 function makeId() {
   idCount++;
   return 'psid-' + idCount;
 }
 
+/** Converts the element to static HTML, dropping anything that isn't static
+    The element must not be one that should be skipped.
+    */
 function staticHTML(el) {
-  /* Converts the element to static HTML, dropping anything that isn't static */
   if (el.tagName == 'CANVAS') {
     return '<IMG SRC="' + htmlQuote(el.toDataURL('image/png')) + '">';
   }
@@ -153,6 +166,7 @@ function staticHTML(el) {
   return s;
 }
 
+/** Returns a list of [[attrName, attrValue]] */
 function getAttributes(el) {
   var value;
   var result = [];
@@ -175,8 +189,8 @@ function getAttributes(el) {
   return result;
 }
 
+/** Traverses the children of an element and serializes that to text */
 function staticChildren(el) {
-  /* Converts all the children of the given element to static HTML */
   var s = '';
   var children = el.childNodes;
   var l = children.length;
@@ -195,6 +209,7 @@ function staticChildren(el) {
   return s;
 }
 
+/** Creates an object that represents a frozen version of the document */
 function documentStaticData() {
   var start = Date.now();
   // unsafeWindow is quite a bit faster than the proxied access:

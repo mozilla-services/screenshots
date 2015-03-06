@@ -1,3 +1,8 @@
+/** Worker to go with error-panel.html
+
+    This displays unexpected errors, and is controlled by `lib/errors.js`
+    */
+
 var errorContainer = document.getElementById("errors");
 
 self.port.on("showError", function (error) {
@@ -15,6 +20,7 @@ self.port.on("showError", function (error) {
 
 var MAX_AGE = 3 * 60 * 1000; // 3 minutes
 
+/** Get rid of any errors that are too old (when a new error comes in) */
 function cullErrors() {
   var now = Date.now();
   var children = errorContainer.querySelectorAll(".error");

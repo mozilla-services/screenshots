@@ -1,8 +1,19 @@
 /* globals Readability, microformats, watchFunction */
 /* exported FILENAME */
+/** extractor-worker is a content worker that is attached to a page when
+    making a shot
 
+    extractData() does the main work
+    */
+
+// Set for use in error messages:
 var FILENAME = "extractor-worker.js";
 
+/** Extracts data:
+    - Gets the Readability version of the page (`.readable`)
+    - Parses out microformats (`.microdata`)
+    - Finds images in roughly the preferred order (`.images`)
+    */
 function extractData() {
   // Readability is destructive, so we have to run it on a copy
   var readableDiv = document.createElement("div");
@@ -22,9 +33,13 @@ function extractData() {
   };
 }
 
+// Images smaller than either of these sizes are skipped:
 var MIN_IMAGE_WIDTH = 250;
 var MIN_IMAGE_HEIGHT = 200;
 
+/** Finds images in any of the given elements, avoiding duplicates
+    Looks for Open Graph og:image, then img elements, sorting img
+    elements by width (largest preferred) */
 function findImages(elements) {
   var images = [];
   var found = {};

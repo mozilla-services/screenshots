@@ -1,3 +1,6 @@
+// FIXME: this is not used currently, but has some useful functionality that 
+// needs to be copied elsewhere
+
 // FIXME: this contains all sorts of duplicated (mostly
 // copy-and-pasted) functionality from inject.js (the ID stuff) and
 // interface.js (the snippet stuff).

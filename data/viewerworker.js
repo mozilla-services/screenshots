@@ -1,6 +1,11 @@
-// This is run on all pageshot viewer pages
-// FIXME: we shouldn't do name translations, and we should pipe messages as a loop:
+/** This worker is attached to all documents served directly by PageShot
+    It effectively gives those pages some superpowers
 
+    The real work is generally done in `lib/helperworker.js`
+    */
+
+// FIXME: we shouldn't do name translations (e.g., request-screenshot to
+// requestScreenshot), and we should pipe messages as a loop:
 document.addEventListener("request-screenshot", function (event) {
   self.port.emit("requestScreenshot", event.detail);
 }, false);
