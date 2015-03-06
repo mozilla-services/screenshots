@@ -238,6 +238,7 @@ function documentStaticData() {
     favicon = getLocation().origin + "/favicon.ico";
   }
   // FIXME: this is a bad estimate, we should use anchor-based scrolling
+  // FIXME: maybe this shouldn't happen in this file, but instead in extractor-worker.js
   var totalHeight = getDocument().body.clientHeight;
   var scrollFraction = content.scrollY / totalHeight;
 
