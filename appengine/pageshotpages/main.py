@@ -198,7 +198,7 @@ class MainHandler(webapp2.RequestHandler):
                             "src": data["screenshot"],
                             "title": "Screenshot",
                             })
-                images.extend(data["images"])
+                images.extend(data.get("images", []))
                 if meta.get("activeImage") >= len(images):
                     meta["activeImage"] = 0
                 microdatas = format_microdatas(data.get('microdata'))
@@ -235,7 +235,7 @@ class MainHandler(webapp2.RequestHandler):
                         "src": data["screenshot"],
                         "title": "Screenshot",
                         })
-            images.extend(data["images"])
+            images.extend(data.get("images", []))
             microdatas = format_microdatas(data.get("microdata"))
             url = fix_http_url(self.request.path_info, data, self.request)
             html = collection_html.substitute(
@@ -316,6 +316,12 @@ class MainHandler(webapp2.RequestHandler):
         if peek == "data":
             if 'head' not in body or 'body' not in body or 'location' not in body:
                 self.response.status = 400
+                if 'head' not in body:
+                    print 'did not include head'
+                if 'body' not in body:
+                    print 'did not include body'
+                if 'location' not in body:
+                    print 'did not include location'
                 self.response.write("Must include head, body, and location")
                 return
         if peek == "tags-for":
