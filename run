@@ -115,7 +115,7 @@ run () {
             | grep --line-buffered \
             -v -e 'WARNING: content window passed to PrivateBrowsingUtils.isWindowPrivate' \
             -v -e '^JavaScript Warning' \
-            -v -e 'Using ... to indicate sourceMappingURL' \
+            -v -e 'Using ... to indicate source[a-zA-Z]*URL' \
             -v -e 'JavaScript 1.7.s let blocks' \
             || fail
         title
