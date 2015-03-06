@@ -10,5 +10,6 @@
   "esnext": true,
   "moz": true,
   "newcap": false,
-  "predef": ["require", "exports", "console"]
+  "predef": ["require", "exports", "console"],
+  "-W097": true
 }
