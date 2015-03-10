@@ -11,10 +11,10 @@ var shot;
 // For error messages:
 var FILENAME = "shoot-panel.js";
 
-self.port.on("shotData", function (data) {
+self.port.on("shotData", watchFunction(function (data) {
   shot = data;
-  watchFunction(render)();
-});
+  render();
+}));
 
 /** render() is called everytime the shot is updated, and updates everything
     from scratch given that data */
