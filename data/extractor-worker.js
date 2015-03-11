@@ -81,14 +81,4 @@ function findImages(elements) {
   return images;
 }
 
-try {
-  self.port.emit("data", watchFunction(extractData)());
-} catch (e) {
-  console.error("Error in extractor-worker.js:", e+"");
-  console.trace();
-  self.port.emit("alertError", {
-    name: e.name || "ERROR",
-    message: "Error in extractor-worker.js: " + e,
-    help: "There was an error getting data from the page."
-  });
-}
+self.port.emit("data", watchFunction(extractData)());
