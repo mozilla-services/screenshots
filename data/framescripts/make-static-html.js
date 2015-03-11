@@ -118,6 +118,9 @@ function makeId() {
   return 'psid-' + idCount;
 }
 
+// Used when an iframe fails to serialize:
+var NULL_IFRAME = '<html></html>';
+
 /** Converts the element to static HTML, dropping anything that isn't static
     The element must not be one that should be skipped.
     */
@@ -132,7 +135,11 @@ function staticHTML(el) {
       var html = staticHTML(el.contentWindow.document.documentElement);
       replSrc = encodeData('text/html', html);
     } catch (e) {
-      console.log('Had to skip iframe for permission reasons:', e+"");
+      if (e.name == "InvalidCharacterError") {
+        replSrc = encodeData('text/html', NULL_IFRAME);
+      } else {
+        console.log('Had to skip iframe for permission reasons:', e+"", "(" + e.name + ")");
+      }
     }
   }
   var s = '<' + el.tagName;

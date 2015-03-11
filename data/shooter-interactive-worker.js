@@ -25,10 +25,10 @@ var boxEl;
 
 function getPos() {
   return {
-    top: Math.min(mousedownY, cornerY),
-    left: Math.min(mousedownX, cornerX),
-    bottom: Math.max(mousedownY, cornerY),
-    right: Math.max(mousedownX, cornerX)
+    top: guessY(Math.min(mousedownY, cornerY)),
+    left: guessX(Math.min(mousedownX, cornerX)),
+    bottom: guessY(Math.max(mousedownY, cornerY)),
+    right: guessX(Math.max(mousedownX, cornerX))
   };
 }
 
@@ -161,7 +161,6 @@ function render() {
 
 function makeMousedown(el, movement) {
   return watchFunction(function (event) {
-    console.log("down", movement);
     event.stopPropagation();
     var mousedownX = event.pageX;
     var mousedownY = event.pageY;
@@ -181,7 +180,6 @@ function makeMousedown(el, movement) {
       var diffX = setEvent.pageX - mousedownX;
       var diffY = setEvent.pageY - mousedownY;
       if (movement[0]) {
-        console.log("set", movement[0], start[movement[0]], diffX, setEvent.pageX, mousedownX);
         setPos(movement[0], start[movement[0]] + diffX);
       }
       if (movement[1]) {
@@ -220,5 +218,102 @@ self.port.on("linkLocation", watchFunction(function (linkUrl) {
     document.head.appendChild(link);
   }
 }));
+
+var xSnaps = [];
+var ySnaps = [];
+
+// Calculate x/ySnaps:
+(function () {
+  var xFound = {};
+  var yFound = {};
+  var allTags = document.getElementsByTagName("*");
+  var allTagsLength = allTags.length;
+
+  for (var i=0; i<allTagsLength; i++) {
+    var tag = allTags[i];
+    var rect = tag.getBoundingClientRect();
+    // FIXME: some objects aren't visible, and should be excluded
+    var top = Math.floor(rect.top);
+    var bottom = Math.floor(rect.bottom);
+    var left = Math.floor(rect.left);
+    var right = Math.floor(rect.right);
+    if (! yFound[top]) {
+      ySnaps.push(top);
+      yFound[top] = true;
+    }
+    if (! yFound[bottom]) {
+      ySnaps.push(bottom);
+      yFound[bottom] = true;
+    }
+    if (! xFound[left]) {
+      xSnaps.push(left);
+      xFound[left] = true;
+    }
+    if (! xFound[right]) {
+      xSnaps.push(right);
+      xFound[right] = true;
+    }
+  }
+  // FIXME: should probably make sure all page edges are in the list
+  xSnaps.sort(function (a, b) {
+    if (a > b) {
+      return 1;
+    }
+    return -1;
+  });
+  ySnaps.sort(function (a, b) {
+    if (a > b) {
+      return 1;
+    }
+    return -1;
+  });
+})();
+
+var _lastClosestX = {};
+function guessX(x) {
+  return _guess(x, findClosest(x, xSnaps, xSnaps.length, _lastClosestX));
+}
+
+var _lastClosestY = {};
+function guessY(y) {
+  return _guess(y, findClosest(y, ySnaps, ySnaps.length, _lastClosestY));
+}
+
+var MIN_SNAP = 15;
+
+function _guess(pos, range) {
+  if (pos-range[0] < range[1]-pos &&
+      pos-range[0] < MIN_SNAP) {
+    return range[0];
+  } else if (range[1]-pos < MIN_SNAP) {
+    return range[1];
+  }
+  return pos;
+}
+
+function findClosest(pos, snaps, snapsLength, memo) {
+  if (memo.last && pos >= memo.last[0] && pos <= memo.last[1]) {
+    return memo.last;
+  }
+  var index = Math.floor(snapsLength/2);
+  var less = 0;
+  var more = snapsLength;
+  while (true) {
+    if (snaps[index] <= pos && snaps[index+1] >= pos) {
+      break;
+    }
+    if (snaps[index] > pos) {
+      more = index;
+    } else {
+      less = index;
+    }
+    index = Math.floor((less + more) / 2);
+  }
+  var result = [snaps[index], snaps[index+1]];
+  //memo.last = result;
+  return result;
+}
+
+
 
 self.port.emit("ready");
