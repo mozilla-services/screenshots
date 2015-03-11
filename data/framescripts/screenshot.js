@@ -20,22 +20,27 @@ function getWindow() {
 
     Returns a data: URL version of a png of the screenshot */
 function makeScreenShot(pos, maxSize, backgroundColor) {
-  console.log("shooting area", pos.x, pos.y, "w/h", pos.w, pos.h, !!maxSize);
-  var canvas = content.document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
-  if (maxSize) {
-    canvas.width = maxSize.w;
-    canvas.height = maxSize.h;
-  } else {
-    canvas.width = pos.w;
-    canvas.height = pos.h;
+  getWindow().document.body.classList.add("pageshot-hide-selection");
+  try {
+    console.log("shooting area", pos.x, pos.y, "w/h", pos.w, pos.h, !!maxSize);
+    var canvas = getWindow().document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
+    if (maxSize) {
+      canvas.width = maxSize.w;
+      canvas.height = maxSize.h;
+    } else {
+      canvas.width = pos.w;
+      canvas.height = pos.h;
+    }
+    let ctx = canvas.getContext('2d');
+    if (maxSize) {
+      ctx.scale(maxSize.w / pos.w, maxSize.h / pos.h);
+    }
+    backgroundColor = backgroundColor || "#000";
+    ctx.drawWindow(getWindow(), pos.x, pos.y, pos.w, pos.h, backgroundColor);
+    return canvas.toDataURL();
+  } finally {
+    getWindow().document.body.classList.remove("pageshot-hide-selection");
   }
-  let ctx = canvas.getContext('2d');
-  if (maxSize) {
-    ctx.scale(maxSize.w / pos.w, maxSize.h / pos.h);
-  }
-  backgroundColor = backgroundColor || "#000";
-  ctx.drawWindow(getWindow(), pos.x, pos.y, pos.w, pos.h, backgroundColor);
-  return canvas.toDataURL();
 }
 
 // framescripter infrastructure:
