@@ -15,7 +15,7 @@
   position: absolute;
   border: 1px solid #00f;
   background-color: #55f;
-  opacity: 0.4;
+  opacity: 0.2;
   z-index: 1000;
   pointer-events: none;
 }
