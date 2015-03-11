@@ -1,0 +1,82 @@
+.pageshot-highlight-activated {
+  cursor: crosshair;
+}
+
+.pageshot-hide-selection .pageshot-highlight,
+.pageshot-hide-selection .pageshot-mover {
+  display: none;
+}
+
+.pageshot-hide-movers .pageshot-mover {
+  display: none;
+}
+
+.pageshot-highlight {
+  position: absolute;
+  border: 1px solid #00f;
+  background-color: #55f;
+  opacity: 0.2;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.pageshot-mover {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  border: 1px solid #00f;
+  background-color: #55f;
+  pointer-events: auto;
+}
+
+.pageshot-topLeft {
+  cursor: nwse-resize;
+  top: -5px;
+  left: -5px;
+}
+
+.pageshot-top {
+  cursor: ns-resize;
+  top: -5px;
+  left: 50%;
+  margin-left: -5px;
+}
+
+.pageshot-topRight {
+  cursor: nesw-resize;
+  top: -5px;
+  right: -5px;
+}
+
+.pageshot-left {
+  cursor: ew-resize;
+  top: 50%;
+  margin-top: -5px;
+  left: -5px;
+}
+
+.pageshot-right {
+  cursor: ew-resize;
+  top: 50%;
+  margin-top: -5px;
+  right: -5px;
+}
+
+.pageshot-bottomLeft {
+  cursor: nesw-resize;
+  left: -5px;
+  bottom: -5px;
+}
+
+.pageshot-bottom {
+  cursor: ns-resize;
+  left: 50%;
+  margin-left: -5px;
+  bottom: -5px;
+}
+
+.pageshot-bottomRight {
+  cursor: nwse-resize;
+  bottom: -5px;
+  right: -5px;
+}
