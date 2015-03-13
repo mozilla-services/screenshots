@@ -68,7 +68,7 @@ self.port.on("setState", watchFunction(function (state) {
 }));
 
 function reportSelection() {
-  if (! mousedownX) {
+  if (typeof mousedownX != "number") {
     // Apparently no selection
     throw new Error("reportSelection() without any selection");
   }
@@ -110,6 +110,14 @@ function setState(state) {
 }
 
 var mousedown = watchFunction(function (event) {
+  if (event.button !== 0) {
+    // Not a left click
+    return;
+  }
+  if (event.ctrlKey || event.shiftKey || event.altKey || event.metaKey) {
+    // Modified click
+    return;
+  }
   document.body.classList.remove("pageshot-highlight-activated");
   mousedownX = event.pageX;
   mousedownY = event.pageY;
@@ -226,6 +234,8 @@ var ySnaps = [];
 (function () {
   var xFound = {};
   var yFound = {};
+  var scrollX = window.scrollX;
+  var scrollY = window.scrollY;
   var allTags = document.getElementsByTagName("*");
   var allTagsLength = allTags.length;
 
@@ -233,10 +243,10 @@ var ySnaps = [];
     var tag = allTags[i];
     var rect = tag.getBoundingClientRect();
     // FIXME: some objects aren't visible, and should be excluded
-    var top = Math.floor(rect.top);
-    var bottom = Math.floor(rect.bottom);
-    var left = Math.floor(rect.left);
-    var right = Math.floor(rect.right);
+    var top = Math.floor(rect.top + scrollY);
+    var bottom = Math.floor(rect.bottom + scrollY);
+    var left = Math.floor(rect.left + scrollX);
+    var right = Math.floor(rect.right + scrollX);
     if (! yFound[top]) {
       ySnaps.push(top);
       yFound[top] = true;
@@ -295,6 +305,10 @@ function findClosest(pos, snaps, snapsLength, memo) {
   if (memo.last && pos >= memo.last[0] && pos <= memo.last[1]) {
     return memo.last;
   }
+  if (pos > snaps[snapsLength-1] || pos < snaps[0]) {
+    console.warn("Got out of range position for snapping:", pos, snaps[0], snaps[snapsLength-1]);
+    return pos;
+  }
   var index = Math.floor(snapsLength/2);
   var less = 0;
   var more = snapsLength;
@@ -314,6 +328,122 @@ function findClosest(pos, snaps, snapsLength, memo) {
   return result;
 }
 
+var ELEMENT_NODE = document.ELEMENT_NODE;
 
+function autoSelect(ids) {
+  var i, el;
+  var els = [];
+  if (ids) {
+    for (i=0; i<ids.length; i++) {
+      el = document.getElementById(ids[i]);
+      var rect = el.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.scrollY + window.innerHeight) {
+        continue;
+      }
+      if (el) {
+        els.push(el);
+      } else {
+        console.warn("Readable element not found: #" + ids[i]);
+      }
+    }
+  }
+  if (! els.length) {
+    els.push(document.body);
+  }
+  var pos = {
+    top: null,
+    bottom: null,
+    left: null,
+    right: null
+  };
+  var screen = {
+    top: window.scrollY,
+    left: window.scrollX,
+    bottom: window.scrollY + window.innerHeight,
+    right: window.scrollX + window.innerWidth
+  };
+  function traverse(el) {
+    var rect = el.getBoundingClientRect();
+    rect = {
+      top: rect.top + screen.top,
+      bottom: rect.bottom + screen.top,
+      left: rect.left + screen.left,
+      right: rect.right + screen.left
+    };
+    if (rect.bottom < screen.top || rect.top > screen.bottom) {
+      return;
+    }
+    for (var i=0; i<el.childNodes.length; i++) {
+      var child = el.childNodes[i];
+      if (child.nodeType == ELEMENT_NODE) {
+        var display = window.getComputedStyle(child).display;
+        if (display == "flex" || display == "block" ||
+            display == "inline-block" || display.indexOf("table") === 0 ||
+            display == "list-item") {
+          traverse(child);
+        }
+      }
+    }
+    //var tag = el.tagName + "#" + el.id + " (" + rect.left + ", " + rect.top + ") - (" + rect.right + ", " + rect.bottom + ")";
+    if (rect.top < screen.top ||
+        rect.bottom > screen.bottom ||
+        rect.left < screen.left-200 ||
+        rect.right > screen.right+200) {
+      //console.log("skip", tag, screen);
+      return;
+    }
+    if (pos.top === null || rect.top < pos.top) {
+      //console.log("move top", pos.top, tag);
+      pos.top = rect.top;
+    }
+    if (pos.bottom === null || rect.bottom > pos.bottom) {
+      //console.log("move bottom", pos.bottom, tag);
+      pos.bottom = rect.bottom;
+    }
+    if (pos.left === null || rect.left < pos.left) {
+      //console.log("move left", pos.left, tag);
+      pos.left = rect.left;
+    }
+    if (pos.right === null || rect.right > pos.right) {
+      //console.log("move right", pos.right, tag);
+      pos.right = rect.right;
+    }
+  }
+  for (i=0; i<els.length; i++) {
+    el = els[i];
+    traverse(el);
+  }
+  if (pos.top === null) {
+    pos.top = screen.top;
+  }
+  if (pos.bottom === null) {
+    pos.bottom = screen.bottom;
+  }
+  if (pos.left === null) {
+    pos.left = screen.left;
+  }
+  if (pos.right === null) {
+    pos.right = screen.right;
+  }
+  mousedownX = pos.left;
+  mousedownY = pos.top;
+  cornerX = pos.right;
+  cornerY = pos.bottom;
+  render();
+  reportSelection();
+}
+
+self.port.on("extractedData", watchFunction(function (data) {
+  var ids = null;
+  if (data.readable) {
+    ids = data.readable.readableIds;
+    if (! ids.length) {
+      ids = null;
+    }
+  }
+  var now = Date.now();
+  autoSelect(ids);
+  console.log("autoSelect took:", Date.now() - now, "milliseconds")
+}));
 
 self.port.emit("ready");
