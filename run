@@ -129,6 +129,15 @@ if [[ -n "$publish" ]] ; then
     if [ -e ~/appengine-password.txt ] ; then
         echo "Appengine password: $(cat ~/appengine-password.txt)"
     fi
+    python -c 'import sys, re, time
+today = time.strftime("%Y%m%d%H%M")
+content = sys.stdin.read().strip()
+def repl(match):
+    return match.group(1) + today
+content = re.sub(r"(\"version\": \"\d+\.\d+\.)(\d+)", repl, content)
+print content
+' < package.json > package.json.tmp
+    mv package.json.tmp package.json
     cfx xpi \
         --update-link https://pageshotpages.appspot.com/pageshot.xpi \
         --update-url https://pageshotpages.appspot.com/pageshot.update.rdf

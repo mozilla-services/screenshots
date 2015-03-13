@@ -111,13 +111,6 @@ function skipElement(el) {
 const TEXT_NODE = getDocument().TEXT_NODE;
 const ELEMENT_NODE = getDocument().ELEMENT_NODE;
 
-var idCount = 0;
-/** makeId() creates new ids that we give to elements that don't already have an id */
-function makeId() {
-  idCount++;
-  return 'psid-' + idCount;
-}
-
 // Used when an iframe fails to serialize:
 var NULL_IFRAME = '<html></html>';
 
@@ -265,9 +258,31 @@ function documentStaticData() {
   };
 }
 
+var idCount = 0;
+/** makeId() creates new ids that we give to elements that don't already have an id */
+function makeId() {
+  idCount++;
+  return 'psid-' + idCount;
+}
+
+function setIds() {
+  var els = getDocument().getElementsByTagName("*");
+  var len = els.length;
+  for (var i=0; i<len; i++) {
+    var el = els[i];
+    var curId = el.id;
+    if (curId && curId.indexOf("psid-") === 0) {
+      idCount = parseInt(curId.substr(5), 10);
+    } else if (! curId) {
+      el.id = makeId();
+    }
+  }
+}
+
 addMessageListener("pageshot@documentStaticData:call", function (event) {
   var result;
   try {
+    setIds();
     result = documentStaticData();
   } catch (e) {
     console.log("Error getting static HTML:", e);
