@@ -9,6 +9,35 @@
 // Set for use in error messages:
 var FILENAME = "extractor-worker.js";
 
+function getDocument() {
+  return document;
+}
+
+// FIXME: this is an exact copy of the same code in make-static-html
+// But we are running it in both places, CONCURRENTLY, to try to make sure the
+// ids are set in both places consistently.  Crazy, I know.
+var idCount = 0;
+/** makeId() creates new ids that we give to elements that don't already have an id */
+function makeId() {
+  idCount++;
+  return 'psid-' + idCount;
+}
+
+function setIds() {
+  var els = getDocument().getElementsByTagName("*");
+  var len = els.length;
+  for (var i=0; i<len; i++) {
+    var el = els[i];
+    var curId = el.id;
+    if (curId && curId.indexOf("psid-") === 0) {
+      idCount = parseInt(curId.substr(5), 10);
+    } else if (! curId) {
+      el.id = makeId();
+    }
+  }
+}
+
+
 /** Extracts data:
     - Gets the Readability version of the page (`.readable`)
     - Parses out microformats (`.microdata`)
@@ -16,6 +45,7 @@ var FILENAME = "extractor-worker.js";
     */
 function extractData() {
   // Readability is destructive, so we have to run it on a copy
+  setIds();
   var readableDiv = document.createElement("div");
   readableDiv.innerHTML = document.body.innerHTML;
   // FIXME: location.href isn't what Readability expects (but I am
