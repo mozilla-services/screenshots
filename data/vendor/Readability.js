@@ -183,6 +183,11 @@ Readability.prototype = {
         curTitle = origTitle = this._getInnerText(doc.getElementsByTagName('title')[0]);
     } catch(e) {}
 
+    var ogTitle = doc.ownerDocument.querySelector("meta[content='og:title']");
+    if (ogTitle && ogTitle.getAttribute("content")) {
+      curTitle = ogTitle.getAttribute("content");
+    }
+
     if (curTitle.match(/ [\|\-] /)) {
       curTitle = origTitle.replace(/(.*)[\|\-] .*/gi,'$1');
 
@@ -1536,12 +1541,27 @@ Readability.prototype = {
     // }
 
     let excerpt = this._getExcerpt(articleContent);
+    var readableIds = [];
+    function traverse(parent) {
+      for (var i=0; i<parent.childNodes.length; i++) {
+        var el = parent.childNodes[i];
+        if (el.id && el.id.indexOf("readability-") === 0) {
+          traverse(el);
+          continue;
+        }
+        if (el.id) {
+          readableIds.push(el.id);
+        }
+      }
+    }
+    traverse(articleContent);
 
     return { title: articleTitle,
              byline: this._articleByline,
              dir: this._articleDir,
              content: articleContent.innerHTML,
              length: articleContent.textContent.length,
-             excerpt: excerpt };
+             excerpt: excerpt,
+             readableIds: readableIds };
   }
 };
