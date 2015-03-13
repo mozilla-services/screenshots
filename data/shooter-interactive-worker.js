@@ -72,6 +72,11 @@ function reportSelection() {
     // Apparently no selection
     throw new Error("reportSelection() without any selection");
   }
+  var pos = getPos();
+  if (pos.top == pos.bottom || pos.right == pos.left) {
+    console.log("Suppressing null selection");
+    return;
+  }
   self.port.emit("select", getPos());
 }
 
@@ -433,6 +438,20 @@ function autoSelect(ids) {
   reportSelection();
 }
 
+var origUrl = location.href;
+function checkUrl() {
+  var curUrl = location.href;
+  console.log("got url change", origUrl, curUrl);
+  if (origUrl != curUrl) {
+    self.port.emit("popstate", curUrl);
+    setState("cancel");
+  }
+}
+
+window.addEventListener("popstate", checkUrl, false);
+
+self.port.on("isShowing", checkUrl);
+
 self.port.on("extractedData", watchFunction(function (data) {
   var ids = null;
   if (data.readable) {
@@ -443,7 +462,7 @@ self.port.on("extractedData", watchFunction(function (data) {
   }
   var now = Date.now();
   autoSelect(ids);
-  console.log("autoSelect took:", Date.now() - now, "milliseconds")
+  console.log("autoSelect took:", Date.now() - now, "milliseconds");
 }));
 
 self.port.emit("ready");
