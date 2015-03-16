@@ -22,6 +22,8 @@ var mousedownX, mousedownY;
 var cornerX, cornerY;
 // The selection element:
 var boxEl;
+// Any text captured:
+var selectedText;
 
 function getPos() {
   return {
@@ -68,6 +70,7 @@ self.port.on("setState", watchFunction(function (state) {
 }));
 
 function reportSelection() {
+  captureEnclosedText(getPos());
   if (typeof mousedownX != "number") {
     // Apparently no selection
     throw new Error("reportSelection() without any selection");
@@ -78,6 +81,7 @@ function reportSelection() {
     return;
   }
   self.port.emit("select", getPos());
+  self.port.emit("selectText", selectedText);
 }
 
 function setState(state) {
@@ -150,6 +154,10 @@ var mousemove = watchFunction(function (event) {
   render();
 });
 
+// The <body> tag itself can have margins and offsets, which need to be used when
+// setting the position of the boxEl.
+var bodyRect;
+
 function render() {
   var name;
   var pos = getPos();
@@ -166,10 +174,19 @@ function render() {
     }
     document.body.appendChild(boxEl);
   }
-  boxEl.style.top = pos.top + "px";
-  boxEl.style.left = pos.left + "px";
-  boxEl.style.height = (pos.bottom - pos.top) + "px";
-  boxEl.style.width = (pos.right - pos.left) + "px";
+  if (! bodyRect) {
+    bodyRect = document.body.getBoundingClientRect();
+    bodyRect = {
+      top: bodyRect.top + window.scrollY,
+      bottom: bodyRect.bottom + window.scrollY,
+      left: bodyRect.left + window.scrollX,
+      right: bodyRect.right + window.scrollX
+    };
+  }
+  boxEl.style.top = (pos.top - bodyRect.top) + "px";
+  boxEl.style.left = (pos.left - bodyRect.left) + "px";
+  boxEl.style.height = (pos.bottom - pos.top - bodyRect.left) + "px";
+  boxEl.style.width = (pos.right - pos.left - bodyRect.left) + "px";
 }
 
 function makeMousedown(el, movement) {
@@ -331,6 +348,55 @@ function findClosest(pos, snaps, snapsLength, memo) {
   var result = [snaps[index], snaps[index+1]];
   //memo.last = result;
   return result;
+}
+
+// Pixels of wiggle the captured region gets in captureSelectedText:
+var CAPTURE_WIGGLE = 10;
+
+function captureEnclosedText(box) {
+  var scrollX = window.scrollX;
+  var scrollY = window.scrollY;
+  var text = [];
+  function traverse(el) {
+    var elBox = el.getBoundingClientRect();
+    elBox = {
+      top: elBox.top + scrollY,
+      bottom: elBox.bottom + scrollY,
+      left: elBox.left + scrollX,
+      right: elBox.right + scrollX
+    };
+    if (elBox.bottom < box.top ||
+        elBox.top > box.bottom ||
+        elBox.right < box.left ||
+        elBox.left > box.right) {
+      // Totally outside of the box
+      return;
+    }
+    if (elBox.bottom > box.bottom + CAPTURE_WIGGLE ||
+        elBox.top < box.top - CAPTURE_WIGGLE) {
+      // Partially outside the box
+      for (var i=0; i<el.childNodes.length; i++) {
+        var child = el.childNodes[i];
+        if (child.nodeType == ELEMENT_NODE) {
+          traverse(child);
+        }
+      }
+      return;
+    }
+    addText(el);
+  }
+  function addText(el) {
+    // FIXME: should use alt in images, and maybe titles, and maybe
+    // keep some markup, and other stuff
+    text.push(el.textContent);
+  }
+  traverse(document.body);
+  if (text.length) {
+    selectedText = text.join("\n");
+  } else {
+    selectedText = null;
+  }
+  //console.log("Found text:", selectedText);
 }
 
 var ELEMENT_NODE = document.ELEMENT_NODE;
