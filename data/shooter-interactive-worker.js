@@ -18,12 +18,16 @@ var movements = {
 
 // These record the coordinates where the mouse was clicked:
 var mousedownX, mousedownY;
+// These record where the mouse was clicked, before we know if it is a real drag:
+var startX, startY;
 // And these are the last known coordinates that the mouse moved to:
 var cornerX, cornerY;
 // The selection element:
 var boxEl;
 // Any text captured:
 var selectedText;
+// Number of pixels you have to move before we treat it as a selection
+var MIN_MOVE = 40;
 
 function getPos() {
   return {
@@ -128,10 +132,8 @@ var mousedown = watchFunction(function (event) {
     return;
   }
   document.body.classList.remove("pageshot-highlight-activated");
-  mousedownX = event.pageX;
-  mousedownY = event.pageY;
-  cornerX = mousedownX;
-  cornerY = mousedownY;
+  startX = event.pageX;
+  startY = event.pageY;
   document.addEventListener("mousemove", mousemove, false);
   document.addEventListener("mouseup", mouseup, false);
   event.stopPropagation();
@@ -140,15 +142,31 @@ var mousedown = watchFunction(function (event) {
 });
 
 var mouseup = watchFunction(function (event) {
-  cornerX = event.pageX;
-  cornerY = event.pageY;
-  render();
   document.removeEventListener("mousemove", mousemove, false);
   document.removeEventListener("mouseup", mouseup, false);
-  reportSelection();
+  if (! startX) {
+    // only do this if we moved enough...
+    cornerX = event.pageX;
+    cornerY = event.pageY;
+    render();
+    reportSelection();
+  } else {
+    startX = startY = null;
+  }
 });
 
 var mousemove = watchFunction(function (event) {
+  if (startX) {
+    // Have to test if we've moved enough...
+    if (Math.pow(startX - event.pageX, 2) + Math.pow(startY - event.pageY, 2) >
+        MIN_MOVE*MIN_MOVE) {
+      mousedownX = startX;
+      mousedownY = startY;
+      startX = startY = null;
+    } else {
+      return;
+    }
+  }
   cornerX = event.pageX;
   cornerY = event.pageY;
   render();
