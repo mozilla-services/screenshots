@@ -18,12 +18,19 @@ var movements = {
 
 // These record the coordinates where the mouse was clicked:
 var mousedownX, mousedownY;
+// These record where the mouse was clicked, before we know if it is a real drag:
+var startX, startY;
 // And these are the last known coordinates that the mouse moved to:
 var cornerX, cornerY;
 // The selection element:
 var boxEl;
 // Any text captured:
 var selectedText;
+// Number of pixels you have to move before we treat it as a selection
+const MIN_MOVE = 40;
+// Minimum width and height of the autoselect selection:
+const MIN_AUTOSELECT_HEIGHT = 100;
+const MIN_AUTOSELECT_WIDTH = 200;
 
 function getPos() {
   return {
@@ -128,10 +135,8 @@ var mousedown = watchFunction(function (event) {
     return;
   }
   document.body.classList.remove("pageshot-highlight-activated");
-  mousedownX = event.pageX;
-  mousedownY = event.pageY;
-  cornerX = mousedownX;
-  cornerY = mousedownY;
+  startX = event.pageX;
+  startY = event.pageY;
   document.addEventListener("mousemove", mousemove, false);
   document.addEventListener("mouseup", mouseup, false);
   event.stopPropagation();
@@ -140,15 +145,31 @@ var mousedown = watchFunction(function (event) {
 });
 
 var mouseup = watchFunction(function (event) {
-  cornerX = event.pageX;
-  cornerY = event.pageY;
-  render();
   document.removeEventListener("mousemove", mousemove, false);
   document.removeEventListener("mouseup", mouseup, false);
-  reportSelection();
+  if (! startX) {
+    // only do this if we moved enough...
+    cornerX = event.pageX;
+    cornerY = event.pageY;
+    render();
+    reportSelection();
+  } else {
+    startX = startY = null;
+  }
 });
 
 var mousemove = watchFunction(function (event) {
+  if (startX) {
+    // Have to test if we've moved enough...
+    if (Math.pow(startX - event.pageX, 2) + Math.pow(startY - event.pageY, 2) >
+        MIN_MOVE*MIN_MOVE) {
+      mousedownX = startX;
+      mousedownY = startY;
+      startX = startY = null;
+    } else {
+      return;
+    }
+  }
   cornerX = event.pageX;
   cornerY = event.pageY;
   render();
@@ -495,6 +516,22 @@ function autoSelect(ids) {
   }
   if (pos.right === null) {
     pos.right = screen.right;
+  }
+  if (pos.bottom - pos.top < MIN_AUTOSELECT_HEIGHT) {
+    // Expand down to see if we get enough selection...
+    pos.bottom = Math.min(pos.top + MIN_AUTOSELECT_HEIGHT, screen.bottom);
+    if (pos.bottom - pos.top < MIN_AUTOSELECT_HEIGHT) {
+      // If not, expand up...
+      pos.bottom = Math.max(pos.bottom - MIN_AUTOSELECT_HEIGHT, screen.top);
+    }
+  }
+  if (pos.right - pos.left < MIN_AUTOSELECT_WIDTH) {
+    // Expand right to see if we get enough selection...
+    pos.right = Math.min(pos.left + MIN_AUTOSELECT_WIDTH, screen.right);
+    if (pos.right - pos.left < MIN_AUTOSELECT_WIDTH) {
+      // If not, expand left...
+      pos.left = Math.max(pos.right - MIN_AUTOSELECT_WIDTH, screen.left);
+    }
   }
   mousedownX = pos.left;
   mousedownY = pos.top;
