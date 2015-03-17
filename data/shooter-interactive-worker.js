@@ -203,6 +203,10 @@ function render() {
       left: bodyRect.left + window.scrollX,
       right: bodyRect.right + window.scrollX
     };
+    // FIXME: I can't decide when this is necessary
+    // *not* necessary on http://patriciogonzalezvivo.com/2015/thebookofshaders/
+    // (actually causes mis-selection there)
+    bodyRect = {top: 0, bottom: 0, left: 0, right: 0};
   }
   boxEl.style.top = (pos.top - bodyRect.top) + "px";
   boxEl.style.left = (pos.left - bodyRect.left) + "px";
@@ -373,6 +377,7 @@ function findClosest(pos, snaps, snapsLength, memo) {
 
 // Pixels of wiggle the captured region gets in captureSelectedText:
 var CAPTURE_WIGGLE = 10;
+const ELEMENT_NODE = document.ELEMENT_NODE;
 
 function captureEnclosedText(box) {
   var scrollX = window.scrollX;
@@ -420,10 +425,27 @@ function captureEnclosedText(box) {
   //console.log("Found text:", selectedText);
 }
 
-var ELEMENT_NODE = document.ELEMENT_NODE;
+/** Returns true if the element should be ignored, typically for
+    heuristic reasons (ignoring for positions is handled in autoSelect
+    itself) */
+function ignoreElementForAutoSelect(el) {
+  var className = el.className || "";
+  if (className) {
+    if ((/navbar|top-bar/).test(className)) {
+      return true;
+    }
+  }
+  return false;
+}
 
 function autoSelect(ids) {
   var i, el;
+  var outerElements = {
+    top: null,
+    bottom: null,
+    left: null,
+    right: null
+  };
   var els = [];
   if (ids) {
     for (i=0; i<ids.length; i++) {
@@ -455,6 +477,9 @@ function autoSelect(ids) {
     right: window.scrollX + window.innerWidth
   };
   function traverse(el) {
+    if (ignoreElementForAutoSelect(el)) {
+      return;
+    }
     var rect = el.getBoundingClientRect();
     rect = {
       top: rect.top + screen.top,
@@ -476,34 +501,49 @@ function autoSelect(ids) {
         }
       }
     }
-    //var tag = el.tagName + "#" + el.id + " (" + rect.left + ", " + rect.top + ") - (" + rect.right + ", " + rect.bottom + ")";
     if (rect.top < screen.top ||
         rect.bottom > screen.bottom ||
         rect.left < screen.left-200 ||
         rect.right > screen.right+200) {
-      //console.log("skip", tag, screen);
       return;
     }
-    if (pos.top === null || rect.top < pos.top) {
-      //console.log("move top", pos.top, tag);
+    if ((rect.left <= 0 || rect.left <= screen.left) &&
+        (rect.right >= document.body.clientWidth - 10 || rect.right >= screen.right - 10)) {
+      // It's a full-width element, so we shouldn't use it to expand
+      return;
+    }
+    //el.style.backgroundColor = "rgba(255, 200, 200, 0.5)";
+    if (rect.top > 0 && pos.top === null || rect.top < pos.top) {
       pos.top = rect.top;
+      outerElements.top = el;
     }
     if (pos.bottom === null || rect.bottom > pos.bottom) {
-      //console.log("move bottom", pos.bottom, tag);
       pos.bottom = rect.bottom;
+      outerElements.bottom = el;
     }
-    if (pos.left === null || rect.left < pos.left) {
-      //console.log("move left", pos.left, tag);
+    if (rect.left > 0 && pos.left === null || rect.left < pos.left) {
       pos.left = rect.left;
+      outerElements.left = el;
     }
-    if (pos.right === null || rect.right > pos.right) {
-      //console.log("move right", pos.right, tag);
+    if (rect.right < screen.right && pos.right === null || rect.right > pos.right) {
       pos.right = rect.right;
+      outerElements.right = el;
     }
   }
   for (i=0; i<els.length; i++) {
     el = els[i];
     traverse(el);
+  }
+  if (pos.top === null && pos.bottom === null &&
+      pos.left === null && pos.right === null) {
+    console.log("No autoSelect elements found, expanding to full screen.");
+  } else if (pos.top === null || pos.bottom === null ||
+             pos.left === null || pos.right === null) {
+    console.log("Expanding autoSelect in directions:",
+                pos.top === null ? "top" : "",
+                pos.bottom === null ? "bottom" : "",
+                pos.left === null ? "left" : "",
+                pos.right === null ? "right" : "");
   }
   if (pos.top === null) {
     pos.top = screen.top;
@@ -533,6 +573,14 @@ function autoSelect(ids) {
       pos.left = Math.max(pos.right - MIN_AUTOSELECT_WIDTH, screen.left);
     }
   }
+  console.log("autoSelect outer elements:",
+              Object.keys(outerElements).map(function (attr) {
+                return attr + ": " +
+                  (outerElements[attr] ? outerElements[attr].id : "none");
+              }).join(", "));
+  /* Object.keys(outerElements).forEach(function (attr) {
+    if (outerElements[attr]) outerElements[attr].style.border = "#f00 dotted 3px";
+  }); */
   mousedownX = pos.left;
   mousedownY = pos.top;
   cornerX = pos.right;
@@ -544,8 +592,8 @@ function autoSelect(ids) {
 var origUrl = location.href;
 function checkUrl() {
   var curUrl = location.href;
-  console.log("got url change", origUrl, curUrl);
   if (origUrl != curUrl) {
+    console.log("got url change", origUrl, curUrl);
     self.port.emit("popstate", curUrl);
     setState("cancel");
   }
