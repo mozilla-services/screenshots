@@ -27,7 +27,10 @@ var boxEl;
 // Any text captured:
 var selectedText;
 // Number of pixels you have to move before we treat it as a selection
-var MIN_MOVE = 40;
+const MIN_MOVE = 40;
+// Minimum width and height of the autoselect selection:
+const MIN_AUTOSELECT_HEIGHT = 100;
+const MIN_AUTOSELECT_WIDTH = 200;
 
 function getPos() {
   return {
@@ -513,6 +516,22 @@ function autoSelect(ids) {
   }
   if (pos.right === null) {
     pos.right = screen.right;
+  }
+  if (pos.bottom - pos.top < MIN_AUTOSELECT_HEIGHT) {
+    // Expand down to see if we get enough selection...
+    pos.bottom = Math.min(pos.top + MIN_AUTOSELECT_HEIGHT, screen.bottom);
+    if (pos.bottom - pos.top < MIN_AUTOSELECT_HEIGHT) {
+      // If not, expand up...
+      pos.bottom = Math.max(pos.bottom - MIN_AUTOSELECT_HEIGHT, screen.top);
+    }
+  }
+  if (pos.right - pos.left < MIN_AUTOSELECT_WIDTH) {
+    // Expand right to see if we get enough selection...
+    pos.right = Math.min(pos.left + MIN_AUTOSELECT_WIDTH, screen.right);
+    if (pos.right - pos.left < MIN_AUTOSELECT_WIDTH) {
+      // If not, expand left...
+      pos.left = Math.max(pos.right - MIN_AUTOSELECT_WIDTH, screen.left);
+    }
   }
   mousedownX = pos.left;
   mousedownY = pos.top;
