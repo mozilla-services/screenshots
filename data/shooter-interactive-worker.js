@@ -515,6 +515,10 @@ function autoSelect(ids) {
       // It's a full-width element, so we shouldn't use it to expand
       return;
     }
+    if (rect.top == rect.bottom) {
+      // It's a zero-height element, probably not really visible
+      return;
+    }
     if (DEBUG_AUTOSELECT) {
       el.style.backgroundColor = "rgba(255, 200, 200, 0.5)";
     }
