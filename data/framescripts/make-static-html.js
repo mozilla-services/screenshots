@@ -151,7 +151,7 @@ function staticHTML(el) {
       if (name == 'src' && replSrc) {
         value = replSrc;
       } else if (name == "href" || name == "src" || name == "value") {
-        value = el[name];
+        value = el[name] + "";
       } else {
         value = attrs[i].value;
       }
@@ -181,7 +181,7 @@ function getAttributes(el) {
       if (name == "href" || name == "src" || name == "value") {
         value = el[name];
       } else {
-        value = attrs[i].nodeValue;
+        value = attrs[i].value;
       }
       result.push([name, value]);
     }
