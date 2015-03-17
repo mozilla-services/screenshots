@@ -35,6 +35,25 @@ const MIN_MOVE = 40;
 const MIN_AUTOSELECT_HEIGHT = 100;
 const MIN_AUTOSELECT_WIDTH = 200;
 
+function debugAnnotate(el, text, backgroundColor, borderColor) {
+  if (text) {
+    var cur = el.getAttribute("title");
+    if (cur) {
+      text = cur + " | " + text;
+    }
+    el.setAttribute("title", text);
+  }
+  if (backgroundColor) {
+    el.style.backgroundColor = backgroundColor;
+  }
+  if (borderColor) {
+    if ((/^#[a-f0-9]+$/i).test(borderColor)) {
+      borderColor += " 2px dotted";
+    }
+    el.style.outline = borderColor;
+  }
+}
+
 function getPos() {
   return {
     top: guessY(Math.min(mousedownY, cornerY)),
@@ -209,6 +228,7 @@ function render() {
     // FIXME: I can't decide when this is necessary
     // *not* necessary on http://patriciogonzalezvivo.com/2015/thebookofshaders/
     // (actually causes mis-selection there)
+    // *is* necessary on http://atirip.com/2015/03/17/sorry-sad-state-of-matrix-transforms-in-browsers/
     bodyRect = {top: 0, bottom: 0, left: 0, right: 0};
   }
   boxEl.style.top = (pos.top - bodyRect.top) + "px";
@@ -434,7 +454,7 @@ function captureEnclosedText(box) {
 function ignoreElementForAutoSelect(el) {
   var className = el.className || "";
   if (className) {
-    if ((/navbar|top-bar/).test(className)) {
+    if ((/navbar|top-bar|banner/).test(className)) {
       return true;
     }
   }
@@ -465,8 +485,12 @@ function autoSelect(ids) {
     }
   }
   if (! els.length) {
+    if (ids) {
+      console.log("Readable portion of page is entirely off-screen, expanding to entire document");
+    }
     els.push(document.body);
   }
+  console.log("Scanning elements:", els.map(function (e) {return e.tagName + "#" + e.id;}).join(", "));
   var pos = {
     top: null,
     bottom: null,
@@ -481,6 +505,9 @@ function autoSelect(ids) {
   };
   function traverse(el) {
     if (ignoreElementForAutoSelect(el)) {
+      if (DEBUG_AUTOSELECT) {
+        debugAnnotate(el, "Explicit ignore", "rgba(255, 0, 9, 0.5)");
+      }
       return;
     }
     var rect = el.getBoundingClientRect();
@@ -490,7 +517,12 @@ function autoSelect(ids) {
       left: rect.left + screen.left,
       right: rect.right + screen.left
     };
-    if (rect.bottom < screen.top || rect.top > screen.bottom) {
+    if (rect.bottom != rect.top &&
+        rect.bottom < screen.top || rect.top > screen.bottom) {
+      if (DEBUG_AUTOSELECT) {
+        debugAnnotate(el, rect.bottom < screen.top ? "Above screen" : "Below screen",
+                      "rgba(255, 255, 100, 0.5)");
+      }
       return;
     }
     for (var i=0; i<el.childNodes.length; i++) {
@@ -501,6 +533,8 @@ function autoSelect(ids) {
             display == "inline-block" || display.indexOf("table") === 0 ||
             display == "list-item") {
           traverse(child);
+        } else if (DEBUG_AUTOSELECT) {
+          debugAnnotate(child, "Display: " + display, null, "#aff");
         }
       }
     }
@@ -508,11 +542,30 @@ function autoSelect(ids) {
         rect.bottom > screen.bottom ||
         rect.left < screen.left-200 ||
         rect.right > screen.right+200) {
+      if (DEBUG_AUTOSELECT) {
+        var text = "";
+        if (rect.top < screen.top) {
+          text += "extends above screen ";
+        }
+        if (rect.bottom > screen.bottom) {
+          text += "extends below screen ";
+        }
+        if (rect.left < screen.left-200) {
+          text += "extends to left of screen ";
+        }
+        if (rect.right > screen.right + 200) {
+          text += "extends to right of screen ";
+        }
+        debugAnnotate(el, text, "rgba(255, 230, 90, 0.5)");
+      }
       return;
     }
     if ((rect.left <= 0 || rect.left <= screen.left) &&
         (rect.right >= document.body.clientWidth - 10 || rect.right >= screen.right - 10)) {
       // It's a full-width element, so we shouldn't use it to expand
+      if (DEBUG_AUTOSELECT) {
+        debugAnnotate(el, "Ignoring full width element", null, "dotted 1px #00f");
+      }
       return;
     }
     if (rect.top == rect.bottom) {
@@ -520,7 +573,7 @@ function autoSelect(ids) {
       return;
     }
     if (DEBUG_AUTOSELECT) {
-      el.style.backgroundColor = "rgba(255, 200, 200, 0.5)";
+      debugAnnotate(el, null, "rgba(200, 255, 200, 0.5)");
     }
     if (rect.top > 0 && pos.top === null || rect.top < pos.top) {
       pos.top = rect.top;
@@ -590,7 +643,7 @@ function autoSelect(ids) {
   if (DEBUG_AUTOSELECT) {
     Object.keys(outerElements).forEach(function (attr) {
       if (outerElements[attr]) {
-        outerElements[attr].style.outline = "#f00 dotted 3px";
+        debugAnnotate(outerElements[attr], "Represents " + attr, null, "#f00 dotted 3px");
       }
     });
   }
