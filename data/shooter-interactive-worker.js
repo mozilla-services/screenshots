@@ -16,6 +16,9 @@ var movements = {
   bottomRight: ["right", "bottom"],
 };
 
+// Set this to true to get have this set styles for more info:
+var DEBUG_AUTOSELECT = false;
+
 // These record the coordinates where the mouse was clicked:
 var mousedownX, mousedownY;
 // These record where the mouse was clicked, before we know if it is a real drag:
@@ -512,7 +515,9 @@ function autoSelect(ids) {
       // It's a full-width element, so we shouldn't use it to expand
       return;
     }
-    //el.style.backgroundColor = "rgba(255, 200, 200, 0.5)";
+    if (DEBUG_AUTOSELECT) {
+      el.style.backgroundColor = "rgba(255, 200, 200, 0.5)";
+    }
     if (rect.top > 0 && pos.top === null || rect.top < pos.top) {
       pos.top = rect.top;
       outerElements.top = el;
@@ -578,9 +583,13 @@ function autoSelect(ids) {
                 return attr + ": " +
                   (outerElements[attr] ? outerElements[attr].id : "none");
               }).join(", "));
-  /* Object.keys(outerElements).forEach(function (attr) {
-    if (outerElements[attr]) outerElements[attr].style.border = "#f00 dotted 3px";
-  }); */
+  if (DEBUG_AUTOSELECT) {
+    Object.keys(outerElements).forEach(function (attr) {
+      if (outerElements[attr]) {
+        outerElements[attr].style.outline = "#f00 dotted 3px";
+      }
+    });
+  }
   mousedownX = pos.left;
   mousedownY = pos.top;
   cornerX = pos.right;
