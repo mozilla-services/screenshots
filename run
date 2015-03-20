@@ -2,6 +2,10 @@
 
 set -e
 
+HTTP_HOST=pageshot.dev.mozaws.net
+SSH_HOST=ec2-52-1-53-38.compute-1.amazonaws.com
+
+
 base="$(dirname $BASH_SOURCE)"
 base="$(cd $base ; pwd)"
 cd $base
@@ -126,9 +130,6 @@ run () {
 }
 
 if [[ -n "$publish" ]] ; then
-    if [ -e ~/appengine-password.txt ] ; then
-        echo "Appengine password: $(cat ~/appengine-password.txt)"
-    fi
     python -c 'import sys, re, time
 today = time.strftime("%Y%m%d%H%M")
 content = sys.stdin.read().strip()
@@ -139,9 +140,11 @@ print content
 ' < package.json > package.json.tmp
     mv package.json.tmp package.json
     cfx xpi \
-        --update-link https://pageshotpages.appspot.com/pageshot.xpi \
-        --update-url https://pageshotpages.appspot.com/pageshot.update.rdf
-    appcfg.py update appengine/pageshotpages/
+        --update-link https://$HTTP_HOST/pageshot.xpi \
+        --update-url https://$HTTP_HOST/pageshot.update.rdf
+    scp pageshot.xpi pageshot.update.rdf $PS_HOST:el-stacko
+    ssh $SSH_HOST "cd pageshot && ./bin/update-source.sh"
+    #appcfg.py update appengine/pageshotpages/
 elif [[ -n "$run_server" ]] ; then
     title PageShotServer
     dev_appserver.py --port 10080 --log_level debug appengine/pageshotpages/ "$@"

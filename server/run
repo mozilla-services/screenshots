@@ -2,4 +2,4 @@
 
 require("babel/polyfill");
 
-require("./dist/server.js");
+require("./dist-production/server.js");
