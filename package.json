@@ -5,7 +5,7 @@
   "description": "Take and share shots of the sites you are on",
   "author": "Ian Bicking",
   "license": "MPL 2.0",
-  "version": "0.1.201503200028",
+  "version": "0.1.201503201734",
   "preferences": [
     {
       "name": "backend",

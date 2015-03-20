@@ -3,6 +3,7 @@
 set -e
 
 HTTP_HOST=pageshot.dev.mozaws.net
+SSH_USER=ubuntu
 SSH_HOST=ec2-52-1-53-38.compute-1.amazonaws.com
 
 
@@ -142,8 +143,8 @@ print content
     cfx xpi \
         --update-link https://$HTTP_HOST/pageshot.xpi \
         --update-url https://$HTTP_HOST/pageshot.update.rdf
-    scp pageshot.xpi pageshot.update.rdf $PS_HOST:el-stacko
-    ssh $SSH_HOST "cd pageshot && ./bin/update-source.sh"
+    scp pageshot.xpi pageshot.update.rdf $SSH_USER@$SSH_HOST:pageshot/
+    ssh $SSH_USER@$SSH_HOST "cd pageshot && ./bin/update-source.sh"
     #appcfg.py update appengine/pageshotpages/
 elif [[ -n "$run_server" ]] ; then
     title PageShotServer
