@@ -251,8 +251,8 @@ function render() {
     // *is* necessary on http://atirip.com/2015/03/17/sorry-sad-state-of-matrix-transforms-in-browsers/
     bodyRect = {top: 0, bottom: 0, left: 0, right: 0};
   }
-  var docHeight = document.documentElement.clientHeight;
-  var docWidth = document.documentElement.clientWidth;
+  var docHeight = document.documentElement.scrollHeight;
+  var docWidth = document.documentElement.scrollWidth;
   boxEl.style.top = (pos.top - bodyRect.top) + "px";
   boxEl.style.left = (pos.left - bodyRect.left) + "px";
   boxEl.style.height = (pos.bottom - pos.top - bodyRect.top) + "px";
