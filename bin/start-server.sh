@@ -2,7 +2,7 @@
 
 set -e
 
-cd /home/ubuntu/pageshot
+cd /home/ubuntu/pageshot/server
 export DB_HOST=pageshot.czvvrkdqhklf.us-east-1.rds.amazonaws.com
 export DB_USER=pageshot
 export DB_PASS=pageshot
