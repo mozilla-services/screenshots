@@ -1,5 +1,11 @@
-/* globals console, self, watchFunction */
-// FIXME: need to emit "select" when the user selects something
+/* globals console, self, watchFunction, extractSelection */
+
+
+/**********************************************************
+ * selection
+ */
+
+
 /** Worker used to handle the selection on a page after the shot was made
     Obviously needs some implementin' */
 
@@ -201,6 +207,8 @@ var mousemove = watchFunction(function (event) {
 // setting the position of the boxEl.
 var bodyRect;
 
+var boxTopEl, boxLeftEl, boxRightEl, boxBottomEl;
+
 function render() {
   var name;
   var pos = getPos();
@@ -216,6 +224,18 @@ function render() {
         "mousedown", makeMousedown(el, movements[name]), false);
     }
     document.body.appendChild(boxEl);
+    boxTopEl = document.createElement("div");
+    boxTopEl.className = "pageshot-bghighlight";
+    document.body.appendChild(boxTopEl);
+    boxLeftEl = document.createElement("div");
+    boxLeftEl.className = "pageshot-bghighlight";
+    document.body.appendChild(boxLeftEl);
+    boxRightEl = document.createElement("div");
+    boxRightEl.className = "pageshot-bghighlight";
+    document.body.appendChild(boxRightEl);
+    boxBottomEl = document.createElement("div");
+    boxBottomEl.className = "pageshot-bghighlight";
+    document.body.appendChild(boxBottomEl);
   }
   if (! bodyRect) {
     bodyRect = document.body.getBoundingClientRect();
@@ -231,10 +251,28 @@ function render() {
     // *is* necessary on http://atirip.com/2015/03/17/sorry-sad-state-of-matrix-transforms-in-browsers/
     bodyRect = {top: 0, bottom: 0, left: 0, right: 0};
   }
+  var docHeight = document.documentElement.scrollHeight;
+  var docWidth = document.documentElement.scrollWidth;
   boxEl.style.top = (pos.top - bodyRect.top) + "px";
   boxEl.style.left = (pos.left - bodyRect.left) + "px";
-  boxEl.style.height = (pos.bottom - pos.top - bodyRect.left) + "px";
+  boxEl.style.height = (pos.bottom - pos.top - bodyRect.top) + "px";
   boxEl.style.width = (pos.right - pos.left - bodyRect.left) + "px";
+  boxTopEl.style.top = "0px";
+  boxTopEl.style.height = (pos.top - bodyRect.top) + "px";
+  boxTopEl.style.left = "0px";
+  boxTopEl.style.width = docWidth + "px";
+  boxBottomEl.style.top = (pos.bottom - bodyRect.top) + "px";
+  boxBottomEl.style.height = docHeight - (pos.bottom - bodyRect.top) + "px";
+  boxBottomEl.style.left = "0px";
+  boxBottomEl.style.width = docWidth + "px";
+  boxLeftEl.style.top = (pos.top - bodyRect.top) + "px";
+  boxLeftEl.style.height = pos.bottom - pos.top  + "px";
+  boxLeftEl.style.left = "0px";
+  boxLeftEl.style.width = (pos.left - bodyRect.left) + "px";
+  boxRightEl.style.top = (pos.top - bodyRect.top) + "px";
+  boxRightEl.style.height = pos.bottom - pos.top + "px";
+  boxRightEl.style.left = (pos.right - bodyRect.left) + "px";
+  boxRightEl.style.width = docWidth - (pos.right - bodyRect.left) + "px";
 }
 
 function makeMousedown(el, movement) {
@@ -448,12 +486,19 @@ function captureEnclosedText(box) {
   //console.log("Found text:", selectedText);
 }
 
+/**********************************************************
+ * autoSelect handling
+ */
+
+
 /** Returns true if the element should be ignored, typically for
     heuristic reasons (ignoring for positions is handled in autoSelect
     itself) */
 function ignoreElementForAutoSelect(el) {
   var className = el.className || "";
   if (className) {
+    // navbar and top-bar are typically for navigation
+    // banner is probably bannerish!
     if ((/navbar|top-bar|banner/).test(className)) {
       return true;
     }
@@ -654,6 +699,26 @@ function autoSelect(ids) {
   render();
   reportSelection();
 }
+
+/**********************************************************
+ * text selection
+ */
+
+function captureSelection() {
+  console.log("trying selection", window.getSelection().getRangeAt(0));
+  var selection = extractSelection(window.getSelection().getRangeAt(0));
+  console.log("got selection", selection);
+  self.port.emit("textSelection", selection.outerHTML);
+}
+
+console.log("selection", window.getSelection().rangeCount, window.getSelection().isCollapsed);
+if (window.getSelection().rangeCount && ! window.getSelection().isCollapsed) {
+  watchFunction(captureSelection)();
+}
+
+/**********************************************************
+ * window.history catching
+ */
 
 var origUrl = location.href;
 function checkUrl() {

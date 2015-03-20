@@ -3,7 +3,8 @@
 }
 
 .pageshot-hide-selection .pageshot-highlight,
-.pageshot-hide-selection .pageshot-mover {
+.pageshot-hide-selection .pageshot-mover,
+.pageshot-hide-selection .pageshot-bghighlight {
   display: none;
 }
 
@@ -13,9 +14,8 @@
 
 .pageshot-highlight {
   position: absolute;
-  border: 1px solid #00f;
-  background-color: #55f;
-  opacity: 0.2;
+  border: 1px solid #000;
+  opacity: 0.5;
   z-index: 1000;
   pointer-events: none;
 }
@@ -24,9 +24,10 @@
   position: absolute;
   height: 10px;
   width: 10px;
-  border: 1px solid #00f;
-  background-color: #55f;
+  border: 1px solid #000;
+  background-color: #555;
   pointer-events: auto;
+  z-index: 1001;
 }
 
 .pageshot-topLeft {
@@ -79,4 +80,11 @@
   cursor: nwse-resize;
   bottom: -5px;
   right: -5px;
+}
+
+.pageshot-bghighlight {
+  position: absolute;
+  background-color: rgba(50, 50, 50, 0.5);
+  pointer-events: none;
+  z-index: 1000;
 }

@@ -38,6 +38,13 @@ function render() {
   } else {
     el.querySelector(".snippet").style.display = "none";
   }
+  var text = shot.textSelection;
+  if (! text) {
+    var textContainer = el.querySelector(".text-container");
+    textContainer.parentNode.removeChild(textContainer);
+  } else {
+    el.querySelector(".text").innerHTML = text;
+  }
   var input = el.querySelector(".comment-input");
   input.addEventListener("keyup", watchFunction(function (event) {
     if (event.which == 13) {
