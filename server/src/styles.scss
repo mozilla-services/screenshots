@@ -1,0 +1,140 @@
+
+$primary-color: #404040;
+$text-color: white;
+
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: sans-serif;
+  background-color: $primary-color;
+  box-sizing: border-box;
+}
+
+#container {
+  position: absolute;
+  left: 25px;
+  right: 25px;
+  top: 0px;
+}
+
+#frame {
+  border: none;
+  border: 1px solid black;
+  box-shadow: 3px 3px 6px #898989;
+}
+
+#toolbar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 2em;
+  padding: 0.5em;
+  overflow: truncate;
+  color: $text-color;
+  text-align: center;
+  background-color: $primary-color;
+}
+
+.instructions {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: #eef;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#info {
+  position: absolute;
+  top: 0.5em;
+  left: 100px;
+  right: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+a#collection-link {
+  /* This specific element isn't clear as a link unless we underline */
+  text-decoration: underline;
+}
+
+a.sitelink, a.sitelink:visited {
+}
+
+#comment-container {
+  position: fixed;
+  width: 500px;
+  min-height: 12px;
+  padding: 9px;
+  top: 40px;
+  right: 10px;
+  /* Skipping borders for now
+  border-bottom: 2px solid #E66000;
+  border-right: 2px solid #E66000;
+  border-left: 2px solid #E66000; */
+  border-radius: 0 0 4px 4px;
+  z-index: 100;
+  background-color: #00539F;
+  cursor: pointer;
+}
+
+#comment-editor {
+  width: 100%;
+  height: 35px;
+}
+
+#comment-instructions {
+  cursor: pointer;
+  font-size: xx-small;
+}
+
+#clip {
+  cursor: pointer;
+  position: relative;
+  top: 2px;
+}
+
+.selection {
+  border-top: 1px solid #999;
+}
+
+.goto-selection {
+  cursor: pointer;
+  float: right;
+}
+
+.white-background {
+  background-color: white;
+}
+
+.main-link {
+  
+}
+
+.main-link img {
+  height: 1em;
+  position: relative;
+  top: 2px;
+  left: 2px;
+}
+
+#main-title {
+  margin-top: 2.5em;
+  color: $text-color;
+}
+
