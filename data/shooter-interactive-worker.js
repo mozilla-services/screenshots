@@ -1,5 +1,11 @@
-/* globals console, self, watchFunction */
-// FIXME: need to emit "select" when the user selects something
+/* globals console, self, watchFunction, extractSelection */
+
+
+/**********************************************************
+ * selection
+ */
+
+
 /** Worker used to handle the selection on a page after the shot was made
     Obviously needs some implementin' */
 
@@ -448,12 +454,19 @@ function captureEnclosedText(box) {
   //console.log("Found text:", selectedText);
 }
 
+/**********************************************************
+ * autoSelect handling
+ */
+
+
 /** Returns true if the element should be ignored, typically for
     heuristic reasons (ignoring for positions is handled in autoSelect
     itself) */
 function ignoreElementForAutoSelect(el) {
   var className = el.className || "";
   if (className) {
+    // navbar and top-bar are typically for navigation
+    // banner is probably bannerish!
     if ((/navbar|top-bar|banner/).test(className)) {
       return true;
     }
@@ -654,6 +667,26 @@ function autoSelect(ids) {
   render();
   reportSelection();
 }
+
+/**********************************************************
+ * text selection
+ */
+
+function captureSelection() {
+  console.log("trying selection", window.getSelection().getRangeAt(0));
+  var selection = extractSelection(window.getSelection().getRangeAt(0));
+  console.log("got selection", selection);
+  self.port.emit("textSelection", selection.outerHTML);
+}
+
+console.log("selection", window.getSelection().rangeCount, window.getSelection().isCollapsed);
+if (window.getSelection().rangeCount && ! window.getSelection().isCollapsed) {
+  watchFunction(captureSelection)();
+}
+
+/**********************************************************
+ * window.history catching
+ */
 
 var origUrl = location.href;
 function checkUrl() {
