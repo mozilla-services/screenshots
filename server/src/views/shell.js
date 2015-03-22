@@ -1,8 +1,5 @@
-
-
 let React = require("react"),
   Router = require("react-router"),
-  Link = Router.Link,
   RouteHandler = Router.RouteHandler;
 
 exports.Shell = React.createClass({
@@ -22,5 +19,3 @@ exports.Shell = React.createClass({
     </html>;
   }
 });
-
-

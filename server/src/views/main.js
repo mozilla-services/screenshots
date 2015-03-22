@@ -1,16 +1,9 @@
-
-
-let React = require("react"),
-  Router = require("react-router"),
-  Link = Router.Link;
-
+let React = require("react");
 
 exports.Main = React.createClass({
   render: function () {
     return <div>
       Hello, World
-    </div>
+    </div>;
   }
 });
-
-

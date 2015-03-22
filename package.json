@@ -12,7 +12,7 @@
       "title": "backend URL",
       "description": "URL of the backend service to store pages",
       "type": "string",
-      "value": "https://pageshotpages.appspot.com"
+      "value": "https://pageshot.dev.mozaws.net"
     }
   ]
 }

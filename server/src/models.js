@@ -1,5 +1,3 @@
-
-
 let user = process.env["DB_USER"] || process.env["USER"],
   pass = process.env["DB_PASS"],
   host = process.env['DB_HOST'] || "localhost";
@@ -158,4 +156,3 @@ exports.data = exports.main;
 exports.meta = exports.main;
 exports.tags = exports.main;
 exports.newframe = exports.main;
-

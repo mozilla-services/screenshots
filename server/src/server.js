@@ -1,5 +1,3 @@
-
-
 let http = require("http"),
   path = require('path'),
   url = require('url'),
@@ -7,8 +5,7 @@ let http = require("http"),
   React = require("react"),
   Router = require("react-router"),
   routes = require("./routes.js"),
-  models = require("./models.js"),
-  request = require("superagent");
+  models = require("./models.js");
 
 const jspath = "/js/",
   jsext = ".js",
@@ -144,7 +141,7 @@ let server = http.createServer(function (req, res) {
         let response = React.renderToString(<Handler {...data} />),
           footer_index = response.indexOf(footer),
           header = response.slice(0, footer_index);
-  
+
         res.setHeader(content_type, "text/html; charset=utf-8");
         res.end(
           doctype +
@@ -162,6 +159,4 @@ let server = http.createServer(function (req, res) {
 });
 
 server.listen(10080);
-console.log("server listening on http://localhost:10080/")
-
-
+console.log("server listening on http://localhost:10080/");
