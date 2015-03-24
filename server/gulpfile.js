@@ -1,5 +1,3 @@
-
-
 var browserify = require("browserify"),
   gulp = require("gulp"),
   to5 = require("gulp-babel"),
@@ -40,5 +38,3 @@ gulp.task("default", ["transforms"], function () {
     tasks: ["transforms"]
   });
 });
-
-

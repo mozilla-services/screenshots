@@ -519,7 +519,8 @@ function autoSelect(ids) {
     for (i=0; i<ids.length; i++) {
       el = document.getElementById(ids[i]);
       var rect = el.getBoundingClientRect();
-      if (rect.bottom < 0 || rect.top > window.scrollY + window.innerHeight) {
+      if (rect.bottom < 0 || rect.top > window.scrollY + window.innerHeight ||
+          (rect.height === 0 && rect.width === 0)) {
         continue;
       }
       if (el) {
@@ -531,11 +532,11 @@ function autoSelect(ids) {
   }
   if (! els.length) {
     if (ids) {
-      console.log("Readable portion of page is entirely off-screen, expanding to entire document");
+      console.log("Readable portion of page is entirely off-screen, expanding search to entire document");
     }
     els.push(document.body);
   }
-  console.log("Scanning elements:", els.map(function (e) {return e.tagName + "#" + e.id;}).join(", "));
+  console.log("Scanning elements:", els.map(function (e) {return e.tagName + "#" + e.id + (ids && ids.indexOf(e.id) != -1 ? "(readable)" : "");}).join(", "));
   var pos = {
     top: null,
     bottom: null,

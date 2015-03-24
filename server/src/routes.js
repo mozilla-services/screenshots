@@ -1,4 +1,4 @@
-
+/* globals window */
 
 let request = require("superagent"),
   React = require("react"),
@@ -44,7 +44,5 @@ try {
   window.request = request;
   window.url = url;
 } catch (e) {
-  
+
 }
-
-

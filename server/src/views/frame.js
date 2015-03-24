@@ -1,9 +1,4 @@
-
-
-let React = require("react"),
-  Router = require("react-router"),
-  Link = Router.Link;
-
+let React = require("react");
 
 exports.Frame = React.createClass({
   render: function () {
@@ -16,7 +11,7 @@ exports.Frame = React.createClass({
     } else {
       this.props.favicon = "";
     }
-    
+
     if (this.props.meta.snippet) {
       this.props.snippet = <div>
         <meta property="og:image" id="meta-snippet" content={this.props.snippet_src} />
@@ -28,7 +23,7 @@ exports.Frame = React.createClass({
 
     if (this.props.data.screenshot !== undefined) {
       // FIXME: must be a url
-      this.props.screenshot = <meta property="og:image" content={this.props.data.screenshot} />
+      this.props.screenshot = <meta property="og:image" content={this.props.data.screenshot} />;
 
     } else {
       this.props.screenshot = "";
@@ -78,9 +73,6 @@ exports.Frame = React.createClass({
       <h1 id="main-title">{this.props.data.title || this.props.data.location}</h1>
       <img src={this.props.meta.snippet} style={{width: "100%"}} />
       <iframe width="100%" id="frame" src={"/content/" + this.props.identifier} />
-    </div>
+    </div>;
   }
 });
-
-
-
