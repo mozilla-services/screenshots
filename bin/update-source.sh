@@ -6,6 +6,7 @@ if [ ! -e .git ] ; then
   exit 3
 fi
 
+. ~/.bashrc
 nvm use 0.12
 git pull
 cd server
