@@ -146,7 +146,7 @@ print content
     scp pageshot.xpi pageshot.update.rdf $SSH_USER@$SSH_HOST:pageshot/
     ssh $SSH_USER@$SSH_HOST "cd pageshot && ./bin/update-source.sh"
     #appcfg.py update appengine/pageshotpages/
-    git checkout ~/package.json
+    git checkout ./package.json
 elif [[ -n "$run_server" ]] ; then
     title PageShotServer
     dev_appserver.py --port 10080 --log_level debug appengine/pageshotpages/ "$@"
