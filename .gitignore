@@ -4,5 +4,6 @@ pageshot.xpi
 pageshot.update.rdf
 *.pyc
 server/dist
+server/dist-production
 server/node_modules
  

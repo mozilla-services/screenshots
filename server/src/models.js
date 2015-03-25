@@ -106,6 +106,9 @@ class Model {
                     client.query("COMMIT", (err, result) => {
                       if (err) return rollback();
                       resolve();
+                      done();
+                      //let pool = pg.pools.all[Object.keys(pg.pools.all)[0]];
+                      //console.log("pool size", pool.getPoolSize(), pool.availableObjectsCount());
                     });
                   }
                 );
