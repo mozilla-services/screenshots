@@ -6,7 +6,8 @@ if [ ! -e .git ] ; then
   exit 3
 fi
 
-. ~/.bashrc
+export NVM_DIR="/home/ubuntu/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 nvm use 0.12
 git pull
 cd server
