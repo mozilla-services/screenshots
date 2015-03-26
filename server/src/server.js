@@ -88,10 +88,10 @@ let server = http.createServer(function (req, res) {
 
   if (pth.indexOf(modelspath) === 0) {
     modelname = pth.slice(modelspath.length);
-    storeMap = models.model_map;
+    storeMap = models.modelMap;
   } else if (pth.indexOf(metapath) === 0) {
     modelname = pth.slice(metapath.length);
-    storeMap = models.meta_map;
+    storeMap = models.metaMap;
   }
   if (modelname) {
     if (req.method === "PUT") {

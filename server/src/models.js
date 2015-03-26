@@ -31,9 +31,9 @@ getConnection().then(function ([client, done]) {
       console.log("tables created with err", err);
       done();
       // test put and get. FIXME remove this later
-      model_map.put("asdf", JSON.stringify({hello: "world"})).then(
+      modelMap.put("asdf", JSON.stringify({hello: "world"})).then(
         function () {
-          model_map.get("asdf").then(
+          modelMap.get("asdf").then(
             function (result) {
               let obj = JSON.parse(result);
               console.log(
@@ -123,11 +123,11 @@ class Model {
   }
 }
 
-let model_map = new Model("data"),
-  meta_map = new Model("meta");
+let modelMap = new Model("data"),
+  metaMap = new Model("meta");
 
-exports.model_map = model_map;
-exports.meta_map = meta_map;
+exports.modelMap = modelMap;
+exports.metaMap = metaMap;
 
 exports.main = function main(state) {
   return new Promise(function (resolve, reject) {
@@ -139,7 +139,7 @@ exports.shot = function shot(state) {
   let key = state.params.shotId + "/" + state.params.shotDomain;
 
   return Promise.all(
-    [model_map.get(key), meta_map.get(key)]
+    [modelMap.get(key), metaMap.get(key)]
   ).then(
     ([data, meta]) => Promise.resolve({data: JSON.parse(data), meta: JSON.parse(meta), identifier: key})
   );
@@ -148,7 +148,7 @@ exports.shot = function shot(state) {
 exports.content = function content(state) {
   let key = state.params.contentId + "/" + state.params.contentDomain;
 
-  return model_map.get(key).then(
+  return modelMap.get(key).then(
     data => Promise.resolve({data: JSON.parse(data), identifier: key})
   );
 }
