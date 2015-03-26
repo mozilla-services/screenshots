@@ -140,23 +140,22 @@ let server = http.createServer(function (req, res) {
         params: state.params,
         query: state.query}
     ).then(function (data) {
-      try {
-        let response = React.renderToString(<Handler {...data} />),
-          footerIndex = response.indexOf(footer),
-          header = response.slice(0, footerIndex);
+      let response = React.renderToString(<Handler {...data} />),
+        footer_index = response.indexOf(footer),
+        header = response.slice(0, footer_index);
 
-        res.setHeader(contentType, "text/html; charset=utf-8");
-        res.end(
-          doctype +
-          header +
-          "<script>var cachedData = " + JSON.stringify(data) + ";" +
-          script +
-          "</script>" +
-          footer);
-      } catch (e) {
-        res.setHeader(contentType, "text/plain; charset=utf-8");
-        res.end(e.stack);
-      }
+      res.setHeader(content_type, "text/html; charset=utf-8");
+      res.end(
+        doctype +
+        header +
+        "<script>var cached_data = " + JSON.stringify(data) + ";" +
+        script +
+        "</script>" +
+        footer);
+    }).catch(function (e) {
+      res.setHeader(content_type, "text/plain; charset=utf-8");
+      res.writeHead(500);
+      res.end(e.stack);
     });
   });
 });
