@@ -7,7 +7,7 @@ pass = (pass && ":" + pass) || "";
 let pg = require("pg"),
   constr = `postgres://${user}${pass}@${host}/${user}`;
 
-function get_connection() {
+function getConnection() {
   return new Promise(function (resolve, reject) {
     pg.connect(constr, function (err, client, done) {
       if (err) {
@@ -21,7 +21,7 @@ function get_connection() {
 
 console.log("creating tables on", constr);
 
-get_connection().then(function ([client, done]) {
+getConnection().then(function ([client, done]) {
   client.query("CREATE TABLE IF NOT EXISTS data " +
     "(id varchar(20) PRIMARY KEY, value text);" +
     "CREATE TABLE IF NOT EXISTS meta " +
@@ -54,7 +54,7 @@ class Model {
   }
 
   get(id) {
-    return get_connection().then(([client, done]) => {
+    return getConnection().then(([client, done]) => {
       return new Promise((resolve, reject) => {
         client.query(
           "SELECT (value) FROM " + this.table + " WHERE id = $1",
@@ -79,7 +79,7 @@ class Model {
   }
 
   put(id, value) {
-    return get_connection().then(([client, done]) => {
+    return getConnection().then(([client, done]) => {
       return new Promise((resolve, reject) => {
         function rollback(err) {
           client.query('ROLLBACK', function() {
