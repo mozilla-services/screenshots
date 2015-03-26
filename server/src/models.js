@@ -1,15 +1,16 @@
-let user = process.env["DB_USER"] || process.env["USER"],
-  pass = process.env["DB_PASS"],
-  host = process.env['DB_HOST'] || "localhost";
 
-pass = (pass && ":" + pass) || "";
+let connStr = process.env["CONN_STR"];
 
-let pg = require("pg"),
-  constr = `postgres://${user}${pass}@${host}/${user}`;
+if (connStr === undefined) {
+  let user = process.env["USER"];
+  connStr = `postgres://${user}@localhost/${user}`;
+}
+
+let pg = require("pg");
 
 function get_connection() {
   return new Promise(function (resolve, reject) {
-    pg.connect(constr, function (err, client, done) {
+    pg.connect(connStr, function (err, client, done) {
       if (err) {
         reject(err);
       } else {
@@ -19,7 +20,7 @@ function get_connection() {
   });
 }
 
-console.log("creating tables on", constr);
+console.log("creating tables on", connStr);
 
 get_connection().then(function ([client, done]) {
   client.query("CREATE TABLE IF NOT EXISTS data " +
