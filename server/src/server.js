@@ -63,7 +63,7 @@ let server = http.createServer(function (req, res) {
 
   console.log(req.method, pth, query);
 
-  if (req.method === "GET" && (pth.indexOf(jspath) === 0 || pth.indexOf(csspath) === 0 || pth.indexOf(imgpath) === 0 || pth === favicopath)) {
+  if (req.method === "GET" && (pth.startsWith(jspath) || pth.startsWith(csspath) || pth.startsWith(imgpath) || pth === favicopath)) {
     let filename = path.join(__dirname, pth);
     fs.exists(filename, function(exists) {
       if (exists) {
@@ -86,10 +86,10 @@ let server = http.createServer(function (req, res) {
   let modelname = "",
     storeMap = null;
 
-  if (pth.indexOf(modelspath) === 0) {
+  if (pth.startsWith(modelspath)) {
     modelname = pth.slice(modelspath.length);
     storeMap = models.modelMap;
-  } else if (pth.indexOf(metapath) === 0) {
+  } else if (pth.startsWith(metapath)) {
     modelname = pth.slice(metapath.length);
     storeMap = models.metaMap;
   }
@@ -102,6 +102,9 @@ let server = http.createServer(function (req, res) {
       req.on('end', function() {
         if (body.length && body[0] === "{") {
           storeMap.put(modelname, body).then(() => res.end());
+        } else {
+          res.writeHead(400);
+          res.end("Bad Request");
         }
       });
     } else if (req.method === 'GET') {
