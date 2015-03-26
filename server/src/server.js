@@ -102,6 +102,9 @@ let server = http.createServer(function (req, res) {
       req.on('end', function() {
         if (body.length && body[0] === "{") {
           store_map.put(modelname, body).then(() => res.end());
+        } else {
+          res.writeHead(400);
+          res.end("Bad Request");
         }
       });
     } else if (req.method === 'GET') {
