@@ -17,26 +17,26 @@ const jspath = "/js/",
   cssext = ".css",
   favicopath = "/favicon.ico",
   favicoext = ".ico",
-  content_type = "Content-type",
+  contentType = "Content-type",
   jstype = "application/javascript",
   csstype = "text/css",
   imgtype = "image/png",
   favicotype = "image/x-icon",
   jsontype = "application/json",
   accept = "Accept",
-  not_found = "Not Found",
+  notFound = "Not Found",
   doctype = "<!DOCTYPE html>",
   footer = "</body></html>",
   script = `
-function got_data(Handler, data) {
+function gotData(Handler, data) {
   React.render(React.createElement(Handler, data), document);
 }
 
 Router.run(routes.routes, Router.HistoryLocation, function (Handler, state) {
-  if (cached_data) {
-    var _d = cached_data;
-    cached_data = null;
-    got_data(Handler, _d);
+  if (cachedData) {
+    var _d = cachedData;
+    cachedData = null;
+    gotData(Handler, _d);
     return;
   }
 
@@ -51,7 +51,7 @@ Router.run(routes.routes, Router.HistoryLocation, function (Handler, state) {
   ).set(
     "Accept", "application/json"
   ).end(function (r) {
-    got_data(Handler, r.body);
+    gotData(Handler, r.body);
   });
 });
 `;
@@ -68,30 +68,30 @@ let server = http.createServer(function (req, res) {
     fs.exists(filename, function(exists) {
       if (exists) {
         if (filename.endsWith(jsext)) {
-          res.setHeader(content_type, jstype);
+          res.setHeader(contentType, jstype);
         } else if (filename.endsWith(cssext)) {
-          res.setHeader(content_type, csstype);
+          res.setHeader(contentType, csstype);
         } else if (filename.endsWith(imgext)) {
-          res.setHeader(content_type, imgtype);
+          res.setHeader(contentType, imgtype);
         } else if (filename.endsWith(favicoext)) {
-          res.setHeader(content_type, favicotype);
+          res.setHeader(contentType, favicotype);
         }
         fs.createReadStream(filename).pipe(res);
       } else {
-        res.writeHead(404); res.end(not_found);
+        res.writeHead(404); res.end(notFound);
       }
     });
     return;
   }
   let modelname = "",
-    store_map = null;
+    storeMap = null;
 
   if (pth.startsWith(modelspath)) {
     modelname = pth.slice(modelspath.length);
-    store_map = models.model_map;
+    storeMap = models.modelMap;
   } else if (pth.startsWith(metapath)) {
     modelname = pth.slice(metapath.length);
-    store_map = models.meta_map;
+    storeMap = models.metaMap;
   }
   if (modelname) {
     if (req.method === "PUT") {
@@ -101,17 +101,17 @@ let server = http.createServer(function (req, res) {
       });
       req.on('end', function() {
         if (body.length && body[0] === "{") {
-          store_map.put(modelname, body).then(() => res.end());
+          storeMap.put(modelname, body).then(() => res.end());
         } else {
           res.writeHead(400);
           res.end("Bad Request");
         }
       });
     } else if (req.method === 'GET') {
-      store_map.get(modelname).then((val) => {
+      storeMap.get(modelname).then((val) => {
         if (val === null) {
           res.writeHead(404);
-          res.end(not_found);
+          res.end(notFound);
         } else {
           res.end(val);
         }
@@ -128,7 +128,7 @@ let server = http.createServer(function (req, res) {
 
     if (appnames.length === 0 || models[appnames[0].name] === undefined) {
       res.writeHead(404);
-      res.end(not_found);
+      res.end(notFound);
       return;
     }
 

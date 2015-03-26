@@ -1,16 +1,15 @@
+let user = process.env["DB_USER"] || process.env["USER"],
+  pass = process.env["DB_PASS"],
+  host = process.env['DB_HOST'] || "localhost";
 
-let connStr = process.env["CONN_STR"];
+pass = (pass && ":" + pass) || "";
 
-if (connStr === undefined) {
-  let user = process.env["USER"];
-  connStr = `postgres://${user}@localhost/${user}`;
-}
+let pg = require("pg"),
+  constr = `postgres://${user}${pass}@${host}/${user}`;
 
-let pg = require("pg");
-
-function get_connection() {
+function getConnection() {
   return new Promise(function (resolve, reject) {
-    pg.connect(connStr, function (err, client, done) {
+    pg.connect(constr, function (err, client, done) {
       if (err) {
         reject(err);
       } else {
@@ -20,9 +19,9 @@ function get_connection() {
   });
 }
 
-console.log("creating tables on", connStr);
+console.log("creating tables on", constr);
 
-get_connection().then(function ([client, done]) {
+getConnection().then(function ([client, done]) {
   client.query("CREATE TABLE IF NOT EXISTS data " +
     "(id varchar(20) PRIMARY KEY, value text);" +
     "CREATE TABLE IF NOT EXISTS meta " +
@@ -32,9 +31,9 @@ get_connection().then(function ([client, done]) {
       console.log("tables created with err", err);
       done();
       // test put and get. FIXME remove this later
-      model_map.put("asdf", JSON.stringify({hello: "world"})).then(
+      modelMap.put("asdf", JSON.stringify({hello: "world"})).then(
         function () {
-          model_map.get("asdf").then(
+          modelMap.get("asdf").then(
             function (result) {
               let obj = JSON.parse(result);
               console.log(
@@ -55,7 +54,7 @@ class Model {
   }
 
   get(id) {
-    return get_connection().then(([client, done]) => {
+    return getConnection().then(([client, done]) => {
       return new Promise((resolve, reject) => {
         client.query(
           "SELECT (value) FROM " + this.table + " WHERE id = $1",
@@ -80,7 +79,7 @@ class Model {
   }
 
   put(id, value) {
-    return get_connection().then(([client, done]) => {
+    return getConnection().then(([client, done]) => {
       return new Promise((resolve, reject) => {
         function rollback(err) {
           client.query('ROLLBACK', function() {
@@ -124,11 +123,11 @@ class Model {
   }
 }
 
-let model_map = new Model("data"),
-  meta_map = new Model("meta");
+let modelMap = new Model("data"),
+  metaMap = new Model("meta");
 
-exports.model_map = model_map;
-exports.meta_map = meta_map;
+exports.modelMap = modelMap;
+exports.metaMap = metaMap;
 
 exports.main = function main(state) {
   return new Promise(function (resolve, reject) {
@@ -140,7 +139,7 @@ exports.shot = function shot(state) {
   let key = state.params.shotId + "/" + state.params.shotDomain;
 
   return Promise.all(
-    [model_map.get(key), meta_map.get(key)]
+    [modelMap.get(key), metaMap.get(key)]
   ).then(
     ([data, meta]) => Promise.resolve({data: JSON.parse(data), meta: JSON.parse(meta), identifier: key})
   );
@@ -149,7 +148,7 @@ exports.shot = function shot(state) {
 exports.content = function content(state) {
   let key = state.params.contentId + "/" + state.params.contentDomain;
 
-  return model_map.get(key).then(
+  return modelMap.get(key).then(
     data => Promise.resolve({data: JSON.parse(data), identifier: key})
   );
 }
