@@ -151,6 +151,7 @@ let server = http.createServer(function (req, res) {
         footer);
     }).catch(function (e) {
       res.setHeader(content_type, "text/plain; charset=utf-8");
+      res.writeHead(500);
       res.end(e.stack);
     });
   });
