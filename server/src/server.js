@@ -5,7 +5,8 @@ let http = require("http"),
   React = require("react"),
   Router = require("react-router"),
   routes = require("./routes.js"),
-  models = require("./models.js");
+  models = require("./models.js"),
+  lookupContentType = require('mime-types').contentType;
 
 const jspath = "/js/",
   jsext = ".js",
@@ -18,11 +19,6 @@ const jspath = "/js/",
   favicopath = "/favicon.ico",
   favicoext = ".ico",
   contentType = "Content-type",
-  jstype = "application/javascript",
-  csstype = "text/css",
-  imgtype = "image/png",
-  favicotype = "image/x-icon",
-  jsontype = "application/json",
   accept = "Accept",
   notFound = "Not Found",
   doctype = "<!DOCTYPE html>",
@@ -67,15 +63,7 @@ let server = http.createServer(function (req, res) {
     let filename = path.join(__dirname, pth);
     fs.exists(filename, function(exists) {
       if (exists) {
-        if (filename.endsWith(jsext)) {
-          res.setHeader(contentType, jstype);
-        } else if (filename.endsWith(cssext)) {
-          res.setHeader(contentType, csstype);
-        } else if (filename.endsWith(imgext)) {
-          res.setHeader(contentType, imgtype);
-        } else if (filename.endsWith(favicoext)) {
-          res.setHeader(contentType, favicotype);
-        }
+        res.setHeader(contentType, lookupContentType(path.extname(filename)));
         fs.createReadStream(filename).pipe(res);
       } else {
         res.writeHead(404); res.end(notFound);
