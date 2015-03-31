@@ -42,6 +42,7 @@ exports.Frame = React.createClass({
     }
 
     return <div id="container">
+      <script src="/js/parent-helper.js" />
       {this.props.favicon}
       {this.props.snippet}
       {this.props.screenshot}
