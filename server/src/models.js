@@ -4,8 +4,8 @@ let user = process.env.DB_USER || process.env.USER,
 
 pass = (pass && ":" + pass) || "";
 
-let modelMap = new Model("data"),
-  metaMap = new Model("meta");
+let modelMap = null,
+  metaMap = null;
 
 exports.modelMap = modelMap;
 exports.metaMap = metaMap;
@@ -128,6 +128,9 @@ class Model {
     });
   }
 }
+
+modelMap = new Model("data");
+metaMap = new Model("meta");
 
 exports.main = function main(state) {
   return new Promise(function (resolve, reject) {

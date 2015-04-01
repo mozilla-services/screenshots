@@ -1,3 +1,4 @@
+/*jslint browser: true */
 
 
 let loaded = false,
