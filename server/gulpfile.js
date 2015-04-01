@@ -1,6 +1,7 @@
 var browserify = require("browserify"),
   gulp = require("gulp"),
   to5 = require("gulp-babel"),
+  react = require("gulp-react"),
   sass = require("gulp-sass"),
   source = require("vinyl-source-stream"),
   nodemon = require("gulp-nodemon"),
@@ -35,7 +36,7 @@ gulp.task("transforms", ["sass", "javascript", "imgs"]);
 gulp.task("lint", function() {
   return gulp.src(
     ["./src/*.js", "./src/js/*.js"]
-  ).pipe(jshint()).pipe(jshint.reporter('default'));
+  ).pipe(react()).pipe(jshint()).pipe(jshint.reporter('default', {verbose: true}));
 });
 
 gulp.task("default", ["lint", "transforms"], function () {
