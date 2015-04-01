@@ -1,7 +1,6 @@
 /* globals window */
 
-let request = require("superagent"),
-  React = require("react"),
+let React = require("react"),
   Router = require("react-router"),
   Route = Router.Route,
   DefaultRoute = Router.DefaultRoute,
@@ -41,7 +40,6 @@ try {
   window.Router = Router;
   window.shell = shell;
   window.routes = exports;
-  window.request = request;
   window.url = url;
 } catch (e) {
 
