@@ -13,13 +13,13 @@ window.onmessage = function(e) {
   if (loaded) {
     doResize();
   }
-}
+};
 
 window.onload = function () {
   loaded = true;
   if (height) {
     doResize();
   }
-}
+};
 
 
