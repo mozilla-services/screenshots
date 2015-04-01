@@ -1,8 +1,14 @@
-let user = process.env["DB_USER"] || process.env["USER"],
-  pass = process.env["DB_PASS"],
-  host = process.env['DB_HOST'] || "localhost";
+let user = process.env.DB_USER || process.env.USER,
+  pass = process.env.DB_PASS,
+  host = process.env.DB_HOST || "localhost";
 
 pass = (pass && ":" + pass) || "";
+
+let modelMap = new Model("data"),
+  metaMap = new Model("meta");
+
+exports.modelMap = modelMap;
+exports.metaMap = metaMap;
 
 let pg = require("pg"),
   constr = `postgres://${user}${pass}@${host}/${user}`;
@@ -85,16 +91,16 @@ class Model {
           client.query('ROLLBACK', function() {
             client.end();
           });
-        };
+        }
 
         client.query(
           "BEGIN",
           (err, result) => {
-            if (err) return rollback();
+            if (err) { return rollback(); }
             client.query(
               "LOCK TABLE " + this.table + " IN SHARE ROW EXCLUSIVE MODE",
               (err, result) => {
-                if (err) return rollback();
+                if (err) { return rollback(); }
                 client.query(
                   "WITH upsert AS " +
                   "(UPDATE " + this.table + " SET value = $2 WHERE id = $1 returning *) " +
@@ -102,9 +108,9 @@ class Model {
                   "WHERE NOT EXISTS (SELECT * FROM upsert);",
                   [id, value],
                   (err, result) => {
-                    if (err) return rollback(err);
+                    if (err) { return rollback(err); }
                     client.query("COMMIT", (err, result) => {
-                      if (err) return rollback();
+                      if (err) { return rollback(); }
                       resolve();
                       done();
                       //let pool = pg.pools.all[Object.keys(pg.pools.all)[0]];
@@ -123,17 +129,11 @@ class Model {
   }
 }
 
-let modelMap = new Model("data"),
-  metaMap = new Model("meta");
-
-exports.modelMap = modelMap;
-exports.metaMap = metaMap;
-
 exports.main = function main(state) {
   return new Promise(function (resolve, reject) {
     resolve({hello: "world"});
   });
-}
+};
 
 exports.shot = function shot(state) {
   let key = state.params.shotId + "/" + state.params.shotDomain;
@@ -143,7 +143,7 @@ exports.shot = function shot(state) {
   ).then(
     ([data, meta]) => Promise.resolve({data: JSON.parse(data), meta: JSON.parse(meta), identifier: key})
   );
-}
+};
 
 exports.content = function content(state) {
   let key = state.params.contentId + "/" + state.params.contentDomain;
@@ -151,7 +151,7 @@ exports.content = function content(state) {
   return modelMap.get(key).then(
     data => Promise.resolve({data: JSON.parse(data), identifier: key})
   );
-}
+};
 
 exports.summary = exports.main;
 exports.tag = exports.main;
