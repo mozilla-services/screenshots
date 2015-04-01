@@ -18,7 +18,7 @@
     "browserify": "9.0.3",
     "pg": "4.3.0",
     "pg-patcher": "0.3.0",
-    "superagent": "1.1.0",
-    "mime-types": "2.0.10"
+    "mime-types": "2.0.10",
+    "gulp-jshint": "1.9.4"
   }
 }
