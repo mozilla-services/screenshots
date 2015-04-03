@@ -6,7 +6,10 @@ let http = require("http"),
   Router = require("react-router"),
   routes = require("./routes.js"),
   models = require("./models.js"),
-  lookupContentType = require('mime-types').contentType;
+  lookupContentType = require('mime-types').contentType,
+  git = require('git-rev');
+
+let git_revision = null;
 
 const jspath = "/js/",
   jsext = ".js",
@@ -81,6 +84,7 @@ let server = http.createServer(function (req, res) {
     modelname = pth.slice(metapath.length);
     storeMap = models.metaMap;
   }
+
   if (modelname) {
     if (req.method === "PUT") {
       let body = "";
@@ -128,6 +132,7 @@ let server = http.createServer(function (req, res) {
         params: state.params,
         query: state.query}
     ).then(function (data) {
+      data.git_revision = git_revision;
       let response = React.renderToString(<Handler {...data} />),
         footerIndex = response.indexOf(footer),
         header = response.slice(0, footerIndex);
@@ -149,5 +154,9 @@ let server = http.createServer(function (req, res) {
   });
 });
 
-server.listen(10080);
-console.log("server listening on http://localhost:10080/");
+git.long(function (str) {
+  git_revision = str;
+  console.log("git revision", git_revision);
+  server.listen(10080);
+  console.log("server listening on http://localhost:10080/");
+});

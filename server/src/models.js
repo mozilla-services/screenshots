@@ -129,6 +129,9 @@ let modelMap = new Model("data"),
 exports.modelMap = modelMap;
 exports.metaMap = metaMap;
 
+exports.modelMap = modelMap;
+exports.metaMap = metaMap;
+
 exports.main = function main(state) {
   return new Promise(function (resolve, reject) {
     resolve({hello: "world"});
