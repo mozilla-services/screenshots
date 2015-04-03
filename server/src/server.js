@@ -9,7 +9,7 @@ let http = require("http"),
   lookupContentType = require('mime-types').contentType,
   git = require('git-rev');
 
-let git_revision = null;
+let gitRevision = null;
 
 const jspath = "/js/",
   csspath = "/css/",
@@ -114,7 +114,7 @@ let server = http.createServer(function (req, res) {
         params: state.params,
         query: state.query}
     ).then(function (data) {
-      data.git_revision = git_revision;
+      data.gitRevision = gitRevision;
       let response = React.renderToString(<Handler {...data} />),
         footerIndex = response.indexOf(footer),
         header = response.slice(0, footerIndex);
@@ -137,8 +137,8 @@ let server = http.createServer(function (req, res) {
 });
 
 git.long(function (str) {
-  git_revision = str;
-  console.log("git revision", git_revision);
+  gitRevision = str;
+  console.log("git revision", gitRevision);
   server.listen(10080);
   console.log("server listening on http://localhost:10080/");
 });
