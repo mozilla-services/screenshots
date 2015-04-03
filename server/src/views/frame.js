@@ -42,7 +42,7 @@ exports.Frame = React.createClass({
     }
 
     return <div id="container">
-      <script src={"/js/parent-helper.js?git_revision=" + this.props.git_revision } />
+      <script src={"/js/parent-helper.js?gitRevision=" + this.props.gitRevision } />
       {this.props.favicon}
       {this.props.snippet}
       {this.props.screenshot}
@@ -68,7 +68,7 @@ exports.Frame = React.createClass({
         </div>
         <a className="main-link" href={this.props.data.location}>
           {this.props.link_text_short}
-          <img src={"/img/clipboard-8-xl.png?git_revision=" + this.props.git_revision } />
+          <img src={"/img/clipboard-8-xl.png?gitRevision=" + this.props.gitRevision } />
         </a>
       </div>
       <h1 id="main-title">{this.props.data.title || this.props.data.location}</h1>
