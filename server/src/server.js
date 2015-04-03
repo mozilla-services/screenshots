@@ -12,17 +12,12 @@ let http = require("http"),
 let git_revision = null;
 
 const jspath = "/js/",
-  jsext = ".js",
   csspath = "/css/",
   modelspath = "/data/",
   metapath = "/meta/",
   imgpath = "/img/",
-  imgext = ".png",
-  cssext = ".css",
   favicopath = "/favicon.ico",
-  favicoext = ".ico",
   contentType = "Content-type",
-  accept = "Accept",
   notFound = "Not Found",
   doctype = "<!DOCTYPE html>",
   footer = "</body></html>",
@@ -38,20 +33,7 @@ Router.run(routes.routes, Router.HistoryLocation, function (Handler, state) {
     gotData(Handler, _d);
     return;
   }
-
-  var appname = state.routes.filter(function (r) { return !!r.name })[0].name;
-  var querystring = "";
-  for (var n in state.query) {
-    querystring += n + "=" + state.query[n] + "&";
-  }
-  querystring = querystring.slice(0, querystring.length - 1);
-  request.get(
-    url.format({pathname: "/models/" + appname, query: {path: state.pathname, query: querystring}})
-  ).set(
-    "Accept", "application/json"
-  ).end(function (r) {
-    gotData(Handler, r.body);
-  });
+  console.error("Error: partial page refresh not currently implemented");
 });
 `;
 

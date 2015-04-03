@@ -1,4 +1,4 @@
-
+/*jslint browser: true */
 
 
 window.addEventListener(
