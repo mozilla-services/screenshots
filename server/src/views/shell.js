@@ -9,9 +9,9 @@ exports.Shell = React.createClass({
         <title>
           PageShot
         </title>
-        <script src={"/js/bundle.js?gitRevision=" + this.props.gitRevision } />
-        <link rel="stylesheet" href={"/css/styles.css?gitRevision=" + this.props.gitRevision } />
-        <link rel="stylesheet" href={"/css/login.css?gitRevision=" + this.props.gitRevision }/>
+        <script src={ this.props.linkify("/js/bundle.js") } />
+        <link rel="stylesheet" href={ this.props.linkify("/css/styles.css") } />
+        <link rel="stylesheet" href={ this.props.linkify("/css/login.css") }/>
       </head>
       <body>
         <RouteHandler {...this.props} />
