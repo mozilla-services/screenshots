@@ -4,7 +4,7 @@ exports.Content = React.createClass({
   render: function () {
 
     return <div>
-      <script src={"/js/content-helper.js?gitRevision=" + this.props.gitRevision } />
+      <script src={ this.props.linkify("/js/content-helper.js") } />
       <div dangerouslySetInnerHTML={{__html: this.props.data.head}}>
       </div>
       <div className="white-background" dangerouslySetInnerHTML={{__html: this.props.data.body}}>

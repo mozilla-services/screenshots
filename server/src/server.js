@@ -23,6 +23,14 @@ const jspath = "/js/",
   footer = "</body></html>",
   script = `
 function gotData(Handler, data) {
+  data.linkify = function (url) {
+    if (url.indexOf("?") !== -1) {
+      url += "&gitRevision=" + gitRevision;
+    } else {
+      url += "?gitRevision=" + gitRevision;
+    }
+    return url;
+  }
   React.render(React.createElement(Handler, data), document);
 }
 
@@ -115,6 +123,16 @@ let server = http.createServer(function (req, res) {
         query: state.query}
     ).then(function (data) {
       data.gitRevision = gitRevision;
+
+      data.linkify = function (url) {
+        if (url.indexOf("?") !== -1) {
+          url += "&gitRevision=" + gitRevision;
+        } else {
+          url += "?gitRevision=" + gitRevision;
+        }
+        return url;
+      };
+
       let response = React.renderToString(<Handler {...data} />),
         footerIndex = response.indexOf(footer),
         header = response.slice(0, footerIndex);
@@ -124,6 +142,7 @@ let server = http.createServer(function (req, res) {
         doctype +
         header +
         "<script>var cachedData = " + JSON.stringify(data) + ";" +
+        "var gitRevision = " + JSON.stringify(gitRevision) + ";" +
         script +
         "</script>" +
         footer);
