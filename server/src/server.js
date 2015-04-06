@@ -30,7 +30,7 @@ function gotData(Handler, data) {
       url += "?gitRevision=" + gitRevision;
     }
     return url;
-  }
+  };
   React.render(React.createElement(Handler, data), document);
 }
 
