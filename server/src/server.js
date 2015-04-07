@@ -9,8 +9,6 @@ let http = require("http"),
   lookupContentType = require('mime-types').contentType,
   git = require('git-rev');
 
-let gitRevision = null;
-
 const jspath = "/js/",
   csspath = "/css/",
   modelspath = "/data/",
@@ -23,14 +21,7 @@ const jspath = "/js/",
   footer = "</body></html>",
   script = `
 function gotData(Handler, data) {
-  data.linkify = function (url) {
-    if (url.indexOf("?") !== -1) {
-      url += "&gitRevision=" + gitRevision;
-    } else {
-      url += "?gitRevision=" + gitRevision;
-    }
-    return url;
-  };
+  data.linkify = linkify;
   React.render(React.createElement(Handler, data), document);
 }
 
@@ -122,16 +113,7 @@ let server = http.createServer(function (req, res) {
         params: state.params,
         query: state.query}
     ).then(function (data) {
-      data.gitRevision = gitRevision;
-
-      data.linkify = function (url) {
-        if (url.indexOf("?") !== -1) {
-          url += "&gitRevision=" + gitRevision;
-        } else {
-          url += "?gitRevision=" + gitRevision;
-        }
-        return url;
-      };
+      data.linkify = routes.linkify;
 
       let response = React.renderToString(<Handler {...data} />),
         footerIndex = response.indexOf(footer),
@@ -142,7 +124,6 @@ let server = http.createServer(function (req, res) {
         doctype +
         header +
         "<script>var cachedData = " + JSON.stringify(data) + ";" +
-        "var gitRevision = " + JSON.stringify(gitRevision) + ";" +
         script +
         "</script>" +
         footer);
@@ -155,9 +136,9 @@ let server = http.createServer(function (req, res) {
   });
 });
 
-git.long(function (str) {
-  gitRevision = str;
-  console.log("git revision", gitRevision);
+git.long(function (rev) {
+  routes.setGitRevision(rev);
+  console.log("git revision", rev);
   server.listen(10080);
   console.log("server listening on http://localhost:10080/");
 });
