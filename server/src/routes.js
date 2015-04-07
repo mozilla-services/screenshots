@@ -22,6 +22,20 @@ Tags: /tags-for/{id} - list of tags on the page, GET and PUT a JSON list
   Derived from meta comment, by parsing #hashtags
 */
 
+let gitRevision = null;
+
+exports.setGitRevision = function (rev) {
+  gitRevision = rev;
+};
+
+exports.linkify = function (url) {
+  if (url.includes("?")) {
+    url += "&gitRevision=" + gitRevision;
+  } else {
+    url += "?gitRevision=" + gitRevision;
+  }
+  return url;
+};
 
 exports.routes = (
   <Route path="/" handler={shell.Shell}>
@@ -39,8 +53,9 @@ try {
   window.React = React;
   window.Router = Router;
   window.shell = shell;
-  window.routes = exports;
+  window.routes = exports.routes;
   window.url = url;
+  window.linkify = exports.linkify;
 } catch (e) {
 
 }
