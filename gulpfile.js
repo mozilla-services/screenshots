@@ -1,5 +1,6 @@
 var browserify = require("browserify"),
   gulp = require("gulp"),
+  run = require("gulp-run"),
   to5 = require("gulp-babel"),
   react = require("gulp-react"),
   sass = require("gulp-sass"),
@@ -31,6 +32,14 @@ gulp.task("javascript", ["6to5"], function () {
   }());
 });
 
+gulp.task("transforms", ["sass", "javascript", "imgs"]);
+
+gulp.task("lint", function() {
+  return gulp.src(
+    ["server/src/*.js", "server/src/js/*.js"]
+  ).pipe(react()).pipe(jshint()).pipe(jshint.reporter('default', {verbose: true}));
+});
+
 gulp.task("data-addon", function () {
   return gulp.src("addon/data/**/*.{js,jsx}").pipe(to5()).pipe(gulp.dest("addon/dist/data"));
 });
@@ -58,15 +67,11 @@ gulp.task("javascript-addon", ["data-addon", "lib-addon", "test-addon", "static-
   }());
 });
 
-gulp.task("transforms", ["sass", "javascript", "imgs", "javascript-addon"]);
-
-gulp.task("lint", function() {
-  return gulp.src(
-    ["server/src/*.js", "server/src/js/*.js"]
-  ).pipe(react()).pipe(jshint()).pipe(jshint.reporter('default', {verbose: true}));
+gulp.task("addon", ["javascript-addon"], function () {
+  run("cd addon/dist && ./run --local").exec();
 });
 
-gulp.task("default", ["lint", "transforms"], function () {
+gulp.task("default", ["lint", "transforms", "addon"], function () {
   nodemon({
     script: "server/run",
     ignore: ["server/dist"],
