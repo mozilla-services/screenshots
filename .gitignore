@@ -5,5 +5,6 @@ pageshot.update.rdf
 *.pyc
 server/dist
 server/dist-production
-server/node_modules
+node_modules
+addon/dist
  
