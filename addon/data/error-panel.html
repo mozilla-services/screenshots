@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="panel.css">
+    <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .error {
+      padding: 5px;
+      width: 100%;
+    }
+    .error:not(:last-child) {
+      border-bottom: 1px solid #999;
+    }
+    .controls {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+    .controls button {
+      width: 47%;
+    }
+    h1 {
+      font-size: 120%;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>PageShot Error :(</h1>
+
+      <div id="errors">
+      </div>
+
+      <div class="controls">
+        <button id="clear">Clear</button>
+        <button id="ok">OK</button>
+      </div>
+    </div>
+  </body>
+</html>
