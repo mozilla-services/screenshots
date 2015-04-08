@@ -423,7 +423,16 @@ def fix_http_url(item_name, data, request):
     return url
 
 
+
+class RedirectHandler(webapp2.RequestHandler):
+
+    def get(self):
+        self.response.status = 301
+        self.response.location = "https://pageshot.dev.mozaws.net" + self.request.path
+
+
 app = webapp2.WSGIApplication([
+        (r'.*', RedirectHandler),
         (r'/newframe.html', NewFrameHandler),
         (r'/newpage\.html', NewPageHandler),
         ('/.*', MainHandler),
