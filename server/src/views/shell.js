@@ -9,7 +9,7 @@ exports.Shell = React.createClass({
         <title>
           PageShot
         </title>
-        <script src={ this.props.linkify("/js/bundle.js") } />
+        <script src={ this.props.linkify("/js/server-bundle.js") } />
         <link rel="stylesheet" href={ this.props.linkify("/css/styles.css") } />
         <link rel="stylesheet" href={ this.props.linkify("/css/login.css") }/>
       </head>
