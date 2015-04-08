@@ -44,7 +44,7 @@ gulp.task("test-addon", function () {
 });
 
 gulp.task("static-addon", function () {
-  return gulp.src(["addon/**/*.{html,css,png}", "addon/run", "addon/addon-main.js"]).pipe(gulp.dest("addon/dist"));
+  return gulp.src(["addon/**/*.{html,css,png}", "addon/run", "addon/addon-main.js", "addon/package.json"]).pipe(gulp.dest("addon/dist"));
 });
 
 gulp.task("javascript-addon", ["data-addon", "lib-addon", "test-addon", "static-addon"], function () {
