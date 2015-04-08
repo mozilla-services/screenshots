@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="panel.css">
+    <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 5px;
+    }
+    img.snippet {
+      width: 100%;
+    }
+    .row {
+      width: 100%;
+      border-bottom: 1px solid #999;
+    }
+    .comment-input {
+      width: 100%;
+      border: 1px solid #666;
+      border-radius: 2px;
+    }
+    .text {
+      border: 1px solid #999;
+      border-radius: 4px;
+      padding: 6px;
+      box-shadow: 3px 3px 5px #666;
+      font-size: 90%;
+    }
+    .ps-selected {
+      background-color: #f83;
+    }
+    </style>
+    <script type="template" id="template">
+
+<div class="container">
+  <div class="row" style="display: flex">
+    <a href="#" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" class="link" target="_blank"></a>
+    <button type="button" class="copy" data-normal-text="Copy Link" data-copied-text="Copied!">Copy Link</button>
+  </div>
+  <div class="row">
+    <img class="snippet">
+  </div>
+  <div class="text-container row">
+    <div class="text"></div>
+  </div>
+  <div class="comment row">
+  </div>
+  <div class="row">
+    <input type="text" placeholder="Say something" class="comment-input">
+  </div>
+</div>
+
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

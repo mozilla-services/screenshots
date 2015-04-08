@@ -1,0 +1,51 @@
+/*
+Common CSS for all panels
+Panels should have a structure like:
+
+<body>
+  <div class="container">
+  </div>
+</body>
+
+*/
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  font-family: sans-serif;
+  font-size: 110%;
+}
+
+button {
+  background-color: #ddd;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 4px;
+  white-space: nowrap;
+}
+
+button:hover {
+  background-color: #eee;
+}
+
+a {
+  text-decoration: none;
+  color: #339;
+}
+
+a:visited {
+  color: #339;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+input[type=text] {
+  border: 1px solid #999;
+  border-radius: 1px;
+}
