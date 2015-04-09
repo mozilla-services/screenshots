@@ -1,3 +1,5 @@
+/* jshint node:true */
+
 var browserify = require("browserify"),
   gulp = require("gulp"),
   run = require("gulp-run"),
