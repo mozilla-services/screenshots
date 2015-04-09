@@ -131,7 +131,12 @@ let server = http.createServer(function (req, res) {
       console.log("Error:", e.stack);
       res.setHeader(contentType, "text/plain; charset=utf-8");
       res.writeHead(500);
-      res.end(e.stack);
+      if (e.code == "ECONNREFUSED") {
+        // Database connection error
+        res.end("Cannot connect to database");
+      } else {
+        res.end(e.stack);
+      }
     });
   });
 });

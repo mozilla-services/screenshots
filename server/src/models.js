@@ -25,9 +25,8 @@ function getConnection() {
   });
 }
 
-console.log("creating tables on", constr);
-
 getConnection().then(function ([client, done]) {
+  console.log("creating tables on", constr);
   client.query("CREATE TABLE IF NOT EXISTS data " +
     "(id varchar(20) PRIMARY KEY, value text);" +
     "CREATE TABLE IF NOT EXISTS meta " +
@@ -51,6 +50,12 @@ getConnection().then(function ([client, done]) {
       );
     }
   );
+}).catch(function (error) {
+  if (error.code === "ECONNREFUSED") {
+    console.warn(`Could not connect to database on ${constr}`);
+  } else {
+    console.warn("Failed to create table:", error);
+  }
 });
 
 
@@ -80,7 +85,12 @@ class Model {
         );
       });
     }).catch(function (err) {
-      console.log("Error in Model.get:", err);
+      if (err.code == "ECONNREFUSED") {
+        console.warn("Error connecting to database");
+      } else {
+        console.warn("Error in Model.get():", err);
+      }
+      throw err;
     });
   }
 
@@ -123,8 +133,6 @@ class Model {
           }
         );
       });
-    }).catch(function (err) {
-      console.log("Error in Model.put:", err);
     });
   }
 }
@@ -147,7 +155,12 @@ exports.shot = function shot(state) {
   return Promise.all(
     [modelMap.get(key), metaMap.get(key)]
   ).then(
-    ([data, meta]) => Promise.resolve({data: JSON.parse(data), meta: JSON.parse(meta), identifier: key})
+    ([data, meta]) => {
+      if (! (data && meta)) {
+        return Promise.reject(new Error("No data or returned from model"));
+      }
+      return Promise.resolve({data: JSON.parse(data), meta: JSON.parse(meta), identifier: key});
+    }
   );
 };
 
