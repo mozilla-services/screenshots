@@ -1,6 +1,6 @@
 let user = process.env.DB_USER || process.env.USER,
   pass = process.env.DB_PASS,
-  host = process.env.DB_HOST || "localhost";
+  host = process.env.DB_HOST || "localhost:5432";
 
 pass = (pass && ":" + pass) || "";
 
