@@ -49,3 +49,51 @@ input[type=text] {
   border: 1px solid #999;
   border-radius: 1px;
 }
+
+/*
+  
+  CSS specific to the pageshot panel
+
+*/
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 5px;
+}
+
+img.snippet {
+  width: 100%;
+}
+
+.row {
+  width: 100%;
+  border-bottom: 1px solid #999;
+}
+
+.comment-input {
+  width: 100%;
+  border: 1px solid #666;
+  border-radius: 2px;
+}
+
+.text {
+  border: 1px solid #999;
+  border-radius: 4px;
+  padding: 6px;
+  box-shadow: 3px 3px 5px #666;
+  font-size: 90%;
+}
+
+.ps-selected {
+  background-color: #f83;
+}
+
+.link {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

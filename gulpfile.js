@@ -53,17 +53,17 @@ gulp.task("test-addon", function () {
 });
 
 gulp.task("static-addon", function () {
-  return gulp.src(["addon/**/*.{html,css,png,svg}", "addon/run", "addon/addon-main.js", "addon/package.json"]).pipe(gulp.dest("addon/dist"));
+  return gulp.src(["addon/**/*.{html,css,png,svg}", "addon/run", "addon/package.json"]).pipe(gulp.dest("addon/dist"));
 });
 
 gulp.task("javascript-addon", ["data-addon", "lib-addon", "test-addon", "static-addon"], function () {
   var bundler = browserify({
-    entries: ["./addon/dist/addon-main.js"],
+    entries: ["./addon/dist/data/shoot-panel.js"],
     debug: true
   });
 
   return (function () {
-    return bundler.bundle().pipe(source("addon-bundle.js")).pipe(gulp.dest("addon/dist"));
+    return bundler.bundle().pipe(source("panel-bundle.js")).pipe(gulp.dest("addon/dist/data"));
   }());
 });
 
@@ -71,11 +71,11 @@ gulp.task("addon", ["javascript-addon"], function () {
   run("cd addon/dist && ./run --local").exec();
 });
 
-gulp.task("default", ["lint", "transforms", "addon"], function () {
+gulp.task("default", ["lint", "transforms", "javascript-addon"], function () {
   nodemon({
     script: "server/run",
-    ignore: ["server/dist"],
-    ext: "js scss",
-    tasks: ["lint", "transforms"]
+    ignore: ["server/dist", "server/dist-production", "addon/dist"],
+    ext: "js jsx scss",
+    tasks: ["lint", "transforms", "javascript-addon"]
   });
 });

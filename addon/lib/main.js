@@ -30,7 +30,7 @@ exports.shootButton = shootButton;
 
 var shootPanel = panels.Panel({
   contentURL: self.data.url("shoot-panel.html"),
-  contentScriptFile: [self.data.url("error-utils.js"), self.data.url("shoot-panel.js")],
+  contentScriptFile: [self.data.url("panel-bundle.js")],
   position: shootButton,
   height: 400,
   width: 400,

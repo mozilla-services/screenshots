@@ -47,3 +47,11 @@ function watchFunction(func) {
     return result;
   };
 }
+
+if (typeof exports !== "undefined") {
+  exports.unhandled = unhandled;
+  exports.getFilename = getFilename;
+  exports.makeError = makeError;
+  exports.watchFunction = watchFunction;
+}
+
