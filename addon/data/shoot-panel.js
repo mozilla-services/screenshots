@@ -71,42 +71,4 @@ let ShootPanel = React.createClass({
     from scratch given that data */
 function render() {
   React.render(React.createElement(ShootPanel, shot), document.getElementById("container"));
-  return;
-
-  var snippet = shot.snippet;
-  if (! snippet) {
-    snippet = shot.screenshot;
-  }
-  if (snippet) {
-    el.querySelector(".snippet").src = snippet;
-  } else {
-    el.querySelector(".snippet").style.display = "none";
-  }
-  var text = shot.textSelection;
-  if (! text) {
-    var textContainer = el.querySelector(".text-container");
-    textContainer.parentNode.removeChild(textContainer);
-  } else {
-    el.querySelector(".text").innerHTML = text;
-  }
-  var input = el.querySelector(".comment-input");
-  input.addEventListener("keyup", err.watchFunction(function (event) {
-    if (event.which == 13) {
-      self.port.emit("addComment", input.value);
-      input.value = "";
-    }
-  }), false);
-  if (shot.comment) {
-    el.querySelector(".comment").textContent = shot.comment;
-  } else {
-    el.querySelector(".comment").style.display = "none";
-  }
-  var link = el.querySelector(".link");
-  link.href = link.textContent = shot.viewUrl;
-  link.addEventListener("click", err.watchFunction(function (event) {
-    self.port.emit("openLink", shot.viewUrl);
-    event.preventDefault();
-  }), false);
-  document.body.innerHTML = "";
-  document.body.appendChild(el);
 }
