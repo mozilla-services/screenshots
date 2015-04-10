@@ -4,15 +4,23 @@ var browserify = require("browserify"),
   gulp = require("gulp"),
   run = require("gulp-run"),
   to5 = require("gulp-babel"),
+  sourcemaps = require("gulp-sourcemaps"),
+  concat = require("gulp-concat-util"),
   react = require("gulp-react"),
   sass = require("gulp-sass"),
   source = require("vinyl-source-stream"),
   nodemon = require("gulp-nodemon"),
   jshint = require('gulp-jshint');
 
-
 gulp.task("6to5", function () {
-  return gulp.src("server/src/**/*.{js,jsx}").pipe(to5()).pipe(gulp.dest("server/dist"));
+  return gulp.src("server/src/**/*.{js,jsx}")
+    .pipe(sourcemaps.init())
+    .pipe(to5())
+    .pipe(concat.header(
+      "//# sourceMappingURL=<% print(file.path.replace('/src/', '/dist/')) %>.map\n" +
+      "require('source-map-support').install();\n"))
+    .pipe(sourcemaps.write(".", {sourceRoot: __dirname + "/server/src"}))
+    .pipe(gulp.dest("server/dist"));
 });
 
 gulp.task("sass", function () {
@@ -81,4 +89,5 @@ gulp.task("default", ["lint", "transforms", "javascript-addon"], function () {
     tasks: ["lint", "transforms", "javascript-addon"]
   });
 });
+
 
