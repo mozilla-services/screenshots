@@ -84,10 +84,8 @@ gulp.task("addon", ["javascript-addon"], function () {
 gulp.task("default", ["lint", "transforms", "javascript-addon"], function () {
   nodemon({
     script: "server/run",
-    ignore: ["server/dist", "server/dist-production", "addon/dist"],
+    ignore: ["server/dist", "server/dist-production", "addon/dist", "**/Profile", "pageshot-presentation", "**/node_modules"],
     ext: "js jsx scss",
     tasks: ["lint", "transforms", "javascript-addon"]
   });
 });
-
-
