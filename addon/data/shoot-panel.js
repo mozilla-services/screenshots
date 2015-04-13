@@ -15,7 +15,7 @@ let FILENAME = "shoot-panel.js";
 let ShootPanel = React.createClass({
   onCopyClick: function (e) {
     self.port.emit("copyLink");
-    let node = this.refs.copy.getDOMNode();
+    let node = React.findDOMNode(this.refs.copy);
     node.textContent = node.getAttribute("data-copied-text");
     setTimeout(err.watchFunction(function () {
       node.textContent = node.getAttribute("data-normal-text");
@@ -29,7 +29,7 @@ let ShootPanel = React.createClass({
 
   onKeyup: function (e) {
     console.log("onKeyup");
-    let input = this.refs.input.getDOMNode();
+    let input = React.findDOMNode(this.refs.input);
     if (e.which == 13) {
       self.port.emit("addComment", input.value);
       input.value = "";
