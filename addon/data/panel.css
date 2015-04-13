@@ -130,6 +130,10 @@ img.snippet {
   width: 90%;
 }
 
+/* These elements are marked display: none because they are not currently
+  included in the latest mockups, but they may be included in the future.
+*/
+
 .text {
   display: none;
   border: 1px solid #999;
