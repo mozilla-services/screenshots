@@ -38,11 +38,11 @@ tabs.on("ready", function (tab) {
     // Duplicate item in history
     return;
   }
-  history.push({url: tab.url, title: tab.title, time: Date.now()});
+  history.push({url: tab.url, docTitle: tab.title, opened: Date.now()});
   tab.history = history;
 });
 
 for (let tab of tabs) {
   tab.history = tab.history || [];
-  tab.history.push({url: tab.url, title: tab.title, time: Date.now()});
+  tab.history.push({url: tab.url, docTitle: tab.title, opened: Date.now()});
 }

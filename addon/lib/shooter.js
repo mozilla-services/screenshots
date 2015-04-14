@@ -13,6 +13,7 @@ const { defer } = require('sdk/core/promise');
 const { Class } = require('sdk/core/heritage');
 const { watchPromise, watchFunction, watchWorker } = require("errors");
 const clipboard = require("sdk/clipboard");
+const { AbstractShot } = require("shot");
 
 // If a page is in history for less time than this, we ignore it
 // (probably a redirect of some sort):
@@ -21,9 +22,8 @@ var MIN_PAGE_VISIT_TIME = 5000; // 5 seconds
 /** Takes `tab.history` and returns a list suitable for uploading.  This removes
     duplicate items, culls pages that are too brief, and filters out some
     pages like about: pages that shouldn't show up. */
-function processHistory(tab) {
+function processHistory(history, tab) {
   var seen = {};
-  var history = [];
 
   function addHistory(histList, previousTab) {
     if (! histList) {
@@ -45,7 +45,7 @@ function processHistory(tab) {
       if (item.url == tab.url) {
         continue;
       }
-      if (next && next.time - item.time < MIN_PAGE_VISIT_TIME) {
+      if (next && next.opened - item.opened < MIN_PAGE_VISIT_TIME) {
         continue;
       }
       if (item.title == item.url) {
@@ -57,13 +57,12 @@ function processHistory(tab) {
         continue;
       }
       seen[item.url] = true;
-      history.push(item);
+      history.add(item);
     }
   }
 
   addHistory(tab.openedFromHistory, true);
   addHistory(tab.history, false);
-  return history;
 }
 
 /** Runs the extract worker on the given tab, and returns a promise that
@@ -93,11 +92,11 @@ const ShotContext = Class({
   _idGen: 0,
   initialize: function (panelContext, backend) {
     this.id = ++this._idGen;
-    this.shot = Shot(backend, Math.floor(Date.now()) + "/xxx");
-    clipboard.set(this.shot.viewUrl, "text");
-    this._deregisters = [];
     this.tab = tabs.activeTab;
     this.tabUrl = this.tab.url;
+    this.shot = new Shot(backend, Math.floor(Date.now()) + "/xxx", this.tabUrl);
+    clipboard.set(this.shot.viewUrl, "text");
+    this._deregisters = [];
     this.panelContext = panelContext;
     this._workerActive = false;
     this.watchTab("deactivate", function () {
@@ -147,12 +146,43 @@ const ShotContext = Class({
         w: pos.right - pos.left
       };
       watchPromise(captureTab(this.tab, info).then((function (imgUrl) {
-        this.updateShot({snippet: imgUrl});
+        this.shot.addClip({
+          createdDate: Date.now(),
+          image: {
+            url: imgUrl,
+            location: {
+              top: pos.top,
+              left: pos.left,
+              right: pos.right,
+              bottom: pos.bottom,
+              // FIXME: get location
+              topLeftElement: "",
+              topLeftOffset: {x: 0, y: 0},
+              bottomRightElement: "",
+              bottomRightOffset: {x: 0, y: 0}
+            }
+          }
+        });
+        this.updateShot();
         this.panelContext.show(this);
       }).bind(this)));
     }, this));
     this.interactiveWorker.port.on("textSelection", watchFunction(function (html) {
-      this.updateShot({textSelection: html});
+      this.shot.addClip({
+        createdDate: Date.now(),
+        text: {
+          html: html,
+          location: {
+            contextStart: "",
+            contextEnd: "",
+            selectionStart: "",
+            selectionEnd: "",
+            startOffset: 0,
+            endOffset: 0
+          }
+        }
+      });
+      this.updateShot();
     }, this));
     this.interactiveWorker.port.on("popstate", watchFunction(function (newUrl) {
       this.destroy();
@@ -179,11 +209,13 @@ const ShotContext = Class({
   /** These are methods that are called by the PanelContext */
   panelHandlers: {
     addComment: function (comment) {
-      let existing = this.shot.comment;
-      if (existing) {
-        comment = existing + "\n" + comment;
-      }
-      this.updateShot({comment: comment});
+      this.shot.addComment({
+        // FIXME: proper user
+        user: "unknown",
+        createdDate: Date.now(),
+        text: comment
+      });
+      this.updateShot();
     },
     copyLink: function () {
       clipboard.set(this.shot.viewUrl, "text");
@@ -198,20 +230,23 @@ const ShotContext = Class({
       shot as that information comes in */
   collectInformation: function () {
     var promises = [];
-    this.shot.history = processHistory(this.tab);
-    promises.push(watchPromise(captureTab(this.tab, null, {h: 200, w: 350}).then((function (url) {
+    processHistory(this.shot.history, this.tab);
+    // FIXME: we no longer have screenshots in our model, not sure if we want them back or not:
+    /*promises.push(watchPromise(captureTab(this.tab, null, {h: 200, w: 350}).then((function (url) {
       this.updateShot({screenshot: url}, true);
-    }.bind(this)))));
+    }.bind(this)))));*/
     promises.push(watchPromise(extractWorker(this.tab)).then(watchFunction(function (attrs) {
       this.interactiveWorker.port.emit("extractedData", attrs);
-      this.updateShot(attrs, true);
+      this.shot.update(attrs);
+      this.updateShot();
     }, this)));
     promises.push(watchPromise(callScript(
       this.tab,
       self.data.url("framescripts/make-static-html.js"),
       "pageshot@documentStaticData",
       {})).then(watchFunction(function (attrs) {
-        this.updateShot(attrs, true);
+        this.shot.update(attrs);
+        this.updateShot();
       }, this)));
     watchPromise(allPromisesComplete(promises).then((function () {
       this.shot.save();
@@ -219,11 +254,7 @@ const ShotContext = Class({
   },
 
   /** Sets attributes on the shot, saves it, and updates the panel */
-  updateShot: function (attrs, dontSave) {
-    this.shot.set(attrs);
-    if (! dontSave) {
-      this.shot.save();
-    }
+  updateShot: function () {
     this.panelContext.updateShot(this);
   },
 
@@ -257,224 +288,52 @@ const ShotContext = Class({
 
 exports.ShotContext = ShotContext;
 
-/** Represents a shot that has been uploaded.  Can be incrementally added to.
-    You must call .save() to upload any changes */
-const Shot = Class({
-  // Since things are split between data and meta, we have to same some
-  // in some places, others in other places, we just keep track of it here:
-  // These attributes are saved to /data/{id}
-  DATA_ATTRS: [
-    "title", "location", "origin", "initialScroll", "favicon", "screenshot", "readable", "images",
-    "microdata", "bodyAttrs", "headAttrs", "htmlAttrs", "head", "body",
-    "captured", "history"
-  ],
-  // These attributes are saved to /meta/{id}
-  META_ATTRS: [
-    "framehead", "snippet", "selections", "comment", "activeImage", "head",
-    "body", "userTitle", "textSelection"
-  ],
-  // These attributes are derived, but we include them in the JSON anyway
-  EXTRA_ATTRS: [
-    "id", "viewUrl"
-  ],
-  // No point saving the article until these attributes have
-  // been created:
-  SERVER_REQUIRED_ATTRS: [
-    "head", "body", "location"
-  ],
+class Shot extends AbstractShot {
+  constructor(backend, id, attrs) {
+    //super(backend, id, attrs);
+    AbstractShot.call(this, backend, id, attrs);
+  }
 
-  initialize: function (backend, id) {
-    id = id.replace(/^\/+/, "");
-    backend = backend.replace(/\/+$/, "");
-    this.backend = backend;
-    this.id = id;
-    this.resourceLocks = {};
-    this.dirtyData = [];
-    this.dirtyMeta = [];
-    this.created = false;
-    this.viewUrl = backend + "/" + id;
-    this.dataUrl = backend + "/data/" + id;
-    this.metaUrl = backend + "/meta/" + id;
-  },
+  save() {
+    // Until patching works:
+    return this.create();
+    /*
+    let attrs = this.dirtyJson();
+    return this._sendJson(attrs, "post");
+    */
+  }
 
-  /** Set attributes in the passed-in `attrs` object. Will mark attributes as
-      dirty so they will be saved on Shot.save() */
-  set: function (attrs) {
-    for (let attr in attrs) {
-      if (this.DATA_ATTRS.indexOf(attr) != -1) {
-        this.dirtyData.push(attr);
-      } else if (this.META_ATTRS.indexOf(attr) != -1) {
-        this.dirtyMeta.push(attr);
-      } else {
-        throw new Error("Unknown attribute: " + attr);
-      }
-      this[attr] = attrs[attr];
-    }
-    if (attrs.location) {
-      if (attrs.location.search(/^http:/i) === 0) {
-        // Need to fix up viewUrl so it matches scheme of original site
-        this.viewUrl = this.viewUrl.replace(/^https:/, "http:");
-      }
-    }
-  },
+  create() {
+    let attrs = this.asJson();
+    return this._sendJson(attrs, "put");
+  }
 
-  /** Saves any dirty attributes from .set(), to one or both of `/data/{id}` and
-      `/meta/{id}` - returns a promise that resolves when save is complete */
-  save: function () {
+  _sendJson(attrs, method) {
     let deferred = defer();
-    // We keep copies of these lists so we don't get confused if more items are
-    // added to these lists while we are being called:
-    // FIXME: maybe we should actually clear these lists right away, and unclear
-    // them if the update fails?  Then we would catch two overlapping updates
-    // of the same attribute
-    let dirtyMeta = this.dirtyMeta.slice();
-    let dirtyData = this.dirtyData.slice();
-    for (let i=0; i<this.SERVER_REQUIRED_ATTRS.length; i++) {
-      let attr = this.SERVER_REQUIRED_ATTRS[i];
-      if (! this[attr]) {
-        // Skip saving for now, we'll assume the rest of
-        // the attributes are picked up later
-        deferred.resolve();
-        return deferred.promise;
-      }
+    if (! Object.keys(attrs).length) {
+      deferred.resolve(false);
+      return deferred.promise;
     }
-    let metaDone = ! dirtyMeta.length;
-    let dataDone = ! (dirtyData.length || ! this.created);
-    if (! dataDone) {
-      // FIXME: we should also refresh any data when we have the opporunity here:
-      let dirtyDataAttrs = this._collectAttrs(dirtyData);
-      this._updateInPlace(this.dataUrl, dirtyDataAttrs)
-          .then((function () {
-            dataDone = true;
-            removeListItems(this.dirtyData, dirtyData);
-            if (metaDone) {
-              deferred.resolve();
-            }
-          }).bind(this)).catch(function (error) {
-            deferred.reject(error);
-          });
-    }
-    if (! metaDone) {
-      let dirtyMetaAttrs = this._collectAttrs(dirtyMeta);
-      this._updateInPlace(this.metaUrl, dirtyMetaAttrs)
-        .then((function () {
-          metaDone = true;
-          removeListItems(this.dirtyMeta, dirtyMeta);
-          if (dataDone) {
-            deferred.resolve();
-          }
-        }).bind(this)).catch(function (error) {
-          deferred.reject(error);
-        });
-    }
-    if (dataDone && metaDone) {
-      // No work to do
-      deferred.resolve();
-    }
-    return deferred.promise;
-  },
-
-  /** Returns a JSON object appropriate to sending elsewhere. */
-  allData: function () {
-    let result = {};
-    for (let attr in this) {
-      if ((this.DATA_ATTRS.indexOf(attr) != -1) ||
-          (this.META_ATTRS.indexOf(attr) != -1) ||
-          (this.EXTRA_ATTRS.indexOf(attr) != -1)) {
-        result[attr] = this[attr];
-      }
-    }
-    return result;
-  },
-
-  /** Take a list of attribute names, and return an object with those attributes
-      copied from this object */
-  _collectAttrs: function (attrs) {
-    let collected = {};
-    for (let i=0; i<attrs.length; i++) {
-      collected[attrs[i]] = this[attrs[i]];
-    }
-    return collected;
-  },
-
-  /** GETs the JSON object at `url` and overwrites all the given `attrs` (an
-      object), then PUTs the new object.  If a 404, then make a new object at
-      the url. Returns a promise that resolves when the save is done. */
-  _updateInPlace: function (url, attrs) {
-    if (this.resourceLocks[url]) {
-      // An update is already happening
-      console.log("Deferring save to", url, "due to lock");
-      return watchPromise(this.resourceLocks[url].then((function () {
-        console.log("Retrying save of", Object.keys(attrs).join(", "));
-        this._updateInPlace(url, attrs);
-      }).bind(this), (function () {
-        console.log("Retrying save of", Object.keys(attrs).join(", "), "after failure");
-        this._updateInPlace(url, attrs);
-      }).bind(this)));
-    }
-    let promise = this._doUpdateInPlace(url, attrs);
-    this.resourceLocks[url] = promise;
-    promise.then((function () {
-      delete this.resourceLocks[url];
-    }).bind(this), (function () {
-      delete this.resourceLocks[url];
-    }).bind(this));
-    return promise;
-  },
-
-  _doUpdateInPlace: function (url, attrs) {
-    var deferred = defer();
-    console.log("GET", url);
+    let url = this.jsonUrl;
     Request({
       url: url,
-      onComplete: function (response) {
-        let body = {};
-        if (response.status != 404) {
-          if (response.status != 200) {
-            deferred.reject({
-              name: "REQUEST_ERROR",
-              message: "The request to " + url + " returned a response " + response.status,
-              response: response
-            });
-            return;
-          }
-          body = response.json;
+      content: JSON.stringify(attrs),
+      contentType: "application/json",
+      onComplete: watchFunction(function (response) {
+        if (response.status >= 200 && response.status < 300) {
+          deferred.resolve(true);
+        } else {
+          deferred.reject({
+            name: "REQUEST_ERROR",
+            message: "The request to " + url + "return a response " + response.status,
+            response: response
+          });
         }
-        for (let attr in attrs) {
-          body[attr] = attrs[attr];
-        }
-        console.log("PUT", url, "with updates", Object.keys(attrs).join(", "));
-        Request({
-          url: url,
-          content: JSON.stringify(body),
-          contentType: "application/json",
-          onComplete: function (response) {
-            if (response.status >= 200 && response.status < 300) {
-              deferred.resolve();
-            } else {
-              deferred.reject({
-                name: "REQUEST_ERROR",
-                message: "The saving request to " + url + " returned a response: " + response.status,
-                response: response
-              });
-            }
-          }
-        }).put();
-      }
-    }).get();
+      })
+    })[method]();
     return deferred.promise;
   }
 
-});
-
-function removeListItems(list, toRemove) {
-  for (var i=0; i<toRemove.length; i++) {
-    var index = list.indexOf(toRemove[i]);
-    if (index == -1) {
-      throw new Error("Item " + JSON.stringify(toRemove[i]) + " not found in list " + JSON.stringify(list));
-    }
-    list.splice(index, 1);
-  }
 }
 
 /** Returns a promise that resolves when all the promises in the array are complete
