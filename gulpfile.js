@@ -78,14 +78,45 @@ gulp.task("javascript-addon", ["data-addon", "lib-addon", "test-addon", "static-
 });
 
 gulp.task("addon", ["javascript-addon"], function () {
-  run("cd addon/dist && ./run --local").exec();
+  nodemon({
+    script: "helper.js",
+    ignore: ["server", "addon/dist", "**/Profile", "pageshot-presentation", "**/node_modules"],
+    ext: "html css png js",
+    tasks: ["javascript-addon"]
+  });
+//  run("cd addon/dist && ./run --local").exec();
 });
 
-gulp.task("default", ["lint", "transforms", "javascript-addon"], function () {
+gulp.task("default", ["lint", "transforms"], function () {
   nodemon({
     script: "server/run",
-    ignore: ["server/dist", "server/dist-production", "addon/dist", "**/Profile", "pageshot-presentation", "**/node_modules"],
+    ignore: ["server/dist", "server/dist-production", "addon", "**/Profile", "pageshot-presentation", "**/node_modules"],
     ext: "js jsx scss",
-    tasks: ["lint", "transforms", "javascript-addon"]
+    tasks: ["lint", "transforms"]
   });
+
+  // Run the addon in a different process so that we can nodemon different things
+  var add = require("child_process").spawn("gulp", ["addon"]);
+
+  function log(where) {
+    return function (data) {
+      var lines = data.toString().split("\n");
+      for (var i in lines) {
+        if (lines[i]) {
+          where("addon:", lines[i]);
+        }
+      }
+    }
+  }
+
+  add.stdout.on("data", log(console.log.bind(console)));
+
+  add.stderr.on("data", log(console.error.bind(console)));
+
+  add.on("close", function (code) {
+    console.log("addon build process finished with code", code);
+  });
+
 });
+
+
