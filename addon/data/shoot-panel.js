@@ -9,20 +9,13 @@
 let err = require("./error-utils.js"),
   React = require("react");
 
-// The shot variable holds the JSONable version of a Shot
-let shot;
 // For error messages:
 let FILENAME = "shoot-panel.js";
-
-self.port.on("shotData", err.watchFunction(function (data) {
-  shot = data;
-  render();
-}));
 
 let ShootPanel = React.createClass({
   onCopyClick: function (e) {
     self.port.emit("copyLink");
-    let node = this.refs.copy.getDOMNode();
+    let node = React.findDOMNode(this.refs.copy);
     node.textContent = node.getAttribute("data-copied-text");
     setTimeout(err.watchFunction(function () {
       node.textContent = node.getAttribute("data-normal-text");
@@ -36,7 +29,7 @@ let ShootPanel = React.createClass({
 
   onKeyup: function (e) {
     console.log("onKeyup");
-    let input = this.refs.input.getDOMNode();
+    let input = React.findDOMNode(this.refs.input);
     if (e.which == 13) {
       self.port.emit("addComment", input.value);
       input.value = "";
@@ -48,27 +41,38 @@ let ShootPanel = React.createClass({
     if (! snippet) {
       snippet = this.props.screenshot;
     }
-    return <div class="container">
-      <div class="row">
-        <a class="link" target="_blank" href={ this.props.viewUrl } onClick={ this.onLinkClick }>{ this.props.viewUrl }</a>
-        <button ref="copy" type="button" class="copy" data-normal-text="Copy Link" data-copied-text="Copied!" onClick={ this.onCopyClick }>Copy Link</button>
+
+    return <div className="container">
+      <div className="modes-row">
+        <span className="mode mode-selected">
+          Auto-detect
+        </span>
+        <span className="mode">
+          Selection
+        </span>
+        <span className="mode">
+          Visible
+        </span>
       </div>
-      <div class="row">
-        <img class="snippet" src={ snippet }/>
+      <img className="snippet" src={ snippet }/>
+      <div className="snippets-row">
+        <a href="#">+</a>
       </div>
-      <div class="text-container row">
-        <div class="text">{ this.props.textSelection }</div>
+      <div className="link-row">
+        <a className="link" target="_blank" href={ this.props.viewUrl } onClick={ this.onLinkClick }>{ this.props.viewUrl }</a>
+        <button className="copy" ref="copy" type="button" data-normal-text="Copy Link" data-copied-text="Copied!" onClick={ this.onCopyClick }>Copy Link</button>
       </div>
-      <div class="comment row">{ this.props.comment}</div>
-      <div class="row">
-        <input ref="input" type="text" placeholder="Say something" class="comment-input" onKeyup={ this.onKeyup }/>
-      </div>
+
+
+      <div className="text">{ this.props.textSelection }</div>
+      <div className="comment">{ this.props.comment}</div>
+      <input className="comment-input" ref="input" type="text" placeholder="Say something" onKeyup={ this.onKeyup }/>
     </div>;
   }
 });
 
-/** render() is called everytime the shot is updated, and updates everything
-    from scratch given that data */
-function render() {
-  React.render(React.createElement(ShootPanel, shot), document.getElementById("container"));
-}
+self.port.on("shotData", err.watchFunction(function (data) {
+  React.render(React.createElement(ShootPanel, data), document.body);
+}));
+
+

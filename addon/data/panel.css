@@ -18,6 +18,7 @@ body {
   min-height: 100%;
   font-family: sans-serif;
   font-size: 110%;
+  box-sizing: border-box;
 }
 
 button {
@@ -57,28 +58,84 @@ input[type=text] {
 */
 
 .container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 5px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  overflow: hidden;
+}
+
+.modes-row {
+  position: absolute;
+  top: 0.5em;
+  left: 0.5em;
+  right: 0.5em;
+  text-align: center;
+}
+
+.mode {
+  display: inline-block;
+  width: 33%;
+  border-bottom: 1px solid black;
+  height: 2em;
+  padding-top: 1em;
+  text-align: center;
+}
+
+.mode-selected {
+  border-bottom: 2px solid orange;
+  background-color: #ababab;
+}
+
+.snippets-row {
+  position: absolute;
+  bottom: 2.5em;
+  left: 0px;
+  right: 0px;
+  text-align: center;
+}
+
+.link-row {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 2em;
+  border-top: 1px solid black;
+}
+
+.link {
+  position: absolute;
+  bottom: 0.275em;
+  left: 0.5em;
+  right: 5.5em;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.copy {
+  position: absolute;
+  bottom: 0.5em;
+  right: 0.5em;
+  width: 6em;
 }
 
 img.snippet {
-  width: 100%;
+  position: absolute;
+  top: 4.5em;
+  left: 5%;
+  width: 90%;
 }
 
-.row {
-  width: 100%;
-  border-bottom: 1px solid #999;
-}
-
-.comment-input {
-  width: 100%;
-  border: 1px solid #666;
-  border-radius: 2px;
-}
+/* These elements are marked display: none because they are not currently
+  included in the latest mockups, but they may be included in the future.
+*/
 
 .text {
+  display: none;
   border: 1px solid #999;
   border-radius: 4px;
   padding: 6px;
@@ -86,14 +143,19 @@ img.snippet {
   font-size: 90%;
 }
 
+.comment {
+  display: none;
+}
+
+.comment-input {
+  display: none;
+  width: 100%;
+  border: 1px solid #666;
+  border-radius: 2px;
+}
+
 .ps-selected {
   background-color: #f83;
 }
 
-.link {
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
