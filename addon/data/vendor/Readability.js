@@ -318,8 +318,14 @@ Readability.prototype = {
   },
 
   _setNodeTag: function (node, tag) {
-    node.localName = tag.toLowerCase();
-    node.tagName = tag.toUpperCase();
+    //console.log("READABLE", typeof node, node, node.localName, node.nodeType);
+    try {
+      node.localName = tag.toLowerCase();
+      node.tagName = tag.toUpperCase();
+    } catch (e) {
+      // Do nothing
+      // FIXME: not sure why these raise exceptions sometimes
+    }
   },
 
   /**

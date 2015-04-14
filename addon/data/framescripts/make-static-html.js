@@ -235,8 +235,12 @@ function documentStaticData() {
     favicon = favicon.href;
   } else {
     // FIXME: ideally test if this exists
-    favicon = getLocation().origin + "/favicon.ico";
+    let origin = getLocation().origin;
+    if (origin && origin != "null") {
+      favicon = origin + "/favicon.ico";
+    }
   }
+
   // FIXME: this is a bad estimate, we should use anchor-based scrolling
   // FIXME: maybe this shouldn't happen in this file, but instead in extractor-worker.js
   var totalHeight = getDocument().body.clientHeight;
