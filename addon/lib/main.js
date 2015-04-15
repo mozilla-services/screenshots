@@ -84,7 +84,7 @@ const PanelContext = {
     shootPanel.show();
     shotContext.isShowing();
     shootButton.checked = true;
-    this.updateShot(this._activeContext, this._activeContext.shot.allData());
+    this.updateShot(this._activeContext, this._activeContext.shot.asJson());
   },
 
   /** Fired whenever the toolbar button is clicked, this activates
@@ -128,7 +128,7 @@ const PanelContext = {
     if (this._activeContext !== shotContext) {
       return;
     }
-    shootPanel.port.emit("shotData", shotContext.shot.allData());
+    shootPanel.port.emit("shotData", shotContext.shot.asJson());
   },
 
   /** Called when a ShotContext is going away, to remove its
