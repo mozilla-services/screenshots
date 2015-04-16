@@ -18,7 +18,7 @@ function assert(condition) {
 /** True if `url` is a valid URL */
 function isUrl(url) {
   // FIXME: this is rather naive, obviously
-  if ((/^about:[a-zA-Z0-9_\-]+$/i).test(url)) {
+  if ((/^about:.+$/i).test(url)) {
     return true;
   }
   if ((/^file:\/.*$/i).test(url)) {
