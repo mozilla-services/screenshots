@@ -106,15 +106,9 @@ const ShotContext = Class({
       panelContext.show(this);
     });
     this.watchTab("pageshow", function (tab) {
-      this._workerActive = false;
-      if (tab.url != this.tabUrl) {
-        // FIXME: not sure if we should destroy?  Or only when the tab is
-        // closed?  If you click a link, then go back, then you'll have lost
-        // this shot.  Maybe that's okay.
-        this.destroy();
-      } else {
-        panelContext.show(this);
-      }
+      // We'll call any pageshow as a sign that at least we reloaded, and should
+      // stop the pageshot
+      this.destroy();
     });
     this.watchTab("close", function () {
       this.destroy();
