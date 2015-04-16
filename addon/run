@@ -112,7 +112,7 @@ run () {
         cmd="exec $cmd"
     fi
     title FxPageShot
-    echo "Starting Firefox+PageShot----------------------------------------"
+    echo "Starting Firefox+PageShot $(date)--------------------------"
     static_op=
     static_args=
     if [[ -n "$server" ]] ; then
@@ -127,6 +127,7 @@ run () {
             -v -e '^JavaScript Warning' \
             -v -e 'Using ... to indicate source[a-zA-Z]*URL' \
             -v -e 'JavaScript 1.7.s let blocks' \
+            -v -e 'mutating the ..Prototype.. of an object' \
             || fail
         title
     else

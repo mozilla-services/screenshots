@@ -690,8 +690,10 @@ class _Clip {
     return this._image;
   }
   set image(image) {
-    assert(checkObject(image, ["url"], ["dimensions", "text", "location"]), "Bad attrs for Clip Image:", Object.keys(image));
+    assert(checkObject(image, ["url"], ["dimensions", "text", "location", "captureType"]), "Bad attrs for Clip Image:", Object.keys(image));
     assert(isUrl(image.url), "Bad Clip image URL:", image.url);
+    assert(image.captureType == "selection" || image.captureType == "fullscreen" || ! image.captureType, "Bad image.captureType:", image.captureType);
+    assert(typeof image.text == "string" || ! image.text);
     if (image.dimensions) {
       assert(typeof image.dimensions.x == "number" && typeof image.dimensions.y == "number", "Bad Clip image dimensions:", image.dimensions);
       assert(typeof image.text == "string" || ! image.text, "Bad Clip image text:", image.text);
@@ -700,13 +702,19 @@ class _Clip {
       typeof image.location.left == "number" &&
       typeof image.location.right == "number" &&
       typeof image.location.top == "number" &&
-      typeof image.location.bottom == "number" &&
-      typeof image.location.topLeftElement == "string" &&
-      typeof image.location.topLeftOffset.x == "number" &&
-      typeof image.location.topLeftOffset.y == "number" &&
-      typeof image.location.bottomRightElement == "string" &&
-      typeof image.location.bottomRightOffset.x == "number" &&
-      typeof image.location.bottomRightOffset.y == "number", "Bad Clip image location:", image.location);
+      typeof image.location.bottom == "number", "Bad Clip image pixel location:", image.location);
+    if (image.location.topLeftElement || image.location.topLeftOffset ||
+        image.location.bottomRightElement || image.location.bottomRightOffset) {
+      assert(typeof image.location.topLeftElement == "string" &&
+        image.location.topLeftOffset &&
+        typeof image.location.topLeftOffset.x == "number" &&
+        typeof image.location.topLeftOffset.y == "number" &&
+        typeof image.location.bottomRightElement == "string" &&
+        image.location.bottomRightOffset &&
+        typeof image.location.bottomRightOffset.x == "number" &&
+        typeof image.location.bottomRightOffset.y == "number",
+        "Bad Clip image element location:", image.location);
+    }
     assert(! this._text, "Clip cannot have both image and text");
     this._dirty("image");
     this._image = image;

@@ -1,4 +1,4 @@
-/* globals console, self, watchFunction, extractSelection */
+/* globals console, self, watchFunction, extractSelection, annotatePosition */
 
 
 /**********************************************************
@@ -115,9 +115,27 @@ function reportSelection() {
     console.log("Suppressing null selection");
     return;
   }
-  self.port.emit("select", getPos());
-  self.port.emit("selectText", selectedText);
+  annotatePosition(pos);
+  self.port.emit("select", pos, selectedText);
 }
+
+function reportNoSelection() {
+  self.port.emit("noAutoSelection");
+}
+
+self.port.on("getScreenPosition", watchFunction(function () {
+  var pos = {
+    top: window.scrollY,
+    bottom: window.scrollY + window.innerHeight,
+    left: window.scrollX,
+    right: window.scrollX + window.innerWidth
+  };
+  // FIXME: maybe annotating based on the corners is a bad idea,
+  // should instead annotate based on an inner element, and not worry about
+  // left and right
+  annotatePosition(pos);
+  self.port.emit("screenPosition", pos);
+}));
 
 function setState(state) {
   // state can be one of:
@@ -644,7 +662,9 @@ function autoSelect(ids) {
   }
   if (pos.top === null && pos.bottom === null &&
       pos.left === null && pos.right === null) {
-    console.log("No autoSelect elements found, expanding to full screen.");
+    console.log("No autoSelect elements found, doing no selection");
+    reportNoSelection();
+    return;
   } else if (pos.top === null || pos.bottom === null ||
              pos.left === null || pos.right === null) {
     console.log("Expanding autoSelect in directions:",
@@ -712,7 +732,6 @@ function captureSelection() {
   self.port.emit("textSelection", selection.outerHTML);
 }
 
-console.log("selection", window.getSelection().rangeCount, window.getSelection().isCollapsed);
 if (window.getSelection().rangeCount && ! window.getSelection().isCollapsed) {
   watchFunction(captureSelection)();
 }
