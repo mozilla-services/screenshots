@@ -2,10 +2,13 @@
 
 console.log("Addon transformation complete.");
 
-var output = require("child_process").spawnSync("bash", ["-c", "cd addon/dist && ./run --local > ../../addon.log"]).output;
+var firefox;
 
-for (var i in output) {
-  if (output[i]) {
-    console.log(output[i].toString());
+process.on('SIGTERM', function () {
+  if (firefox) {
+    console.log("sending TERM", firefox);
+    firefox.kill();
   }
-}
+});
+
+firefox = require("child_process").spawn("bash", ["-c", "cd addon/dist && SHOULD_EXEC=1 exec ./run --local >& ../../addon.log"]);
