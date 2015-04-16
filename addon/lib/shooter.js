@@ -124,6 +124,7 @@ const ShotContext = Class({
     this.interactiveWorker = watchWorker(this.tab.attach({
       contentScriptFile: [
         self.data.url("error-utils.js"),
+        self.data.url("annotate-position.js"),
         self.data.url("capture-selection.js"),
         self.data.url("shooter-interactive-worker.js")]
     }));
@@ -131,8 +132,8 @@ const ShotContext = Class({
       this.interactiveWorker.port.emit("linkLocation", self.data.url("inline-selection.css"));
       this.interactiveWorker.port.emit("setState", "select");
     }).bind(this));
-    this.interactiveWorker.port.on("select", watchFunction(function (pos) {
-      // FIXME: there shouldn't be this disconnect between arguments
+    this.interactiveWorker.port.on("select", watchFunction(function (pos, shotText) {
+      // FIXME: there shouldn't be this disconnect between arguments to captureTab
       var info = {
         x: pos.left,
         y: pos.top,
@@ -145,13 +146,8 @@ const ShotContext = Class({
           image: {
             url: imgUrl,
             captureType: "selection",
-            text: pos.text,
-            location: {
-              top: pos.top,
-              left: pos.left,
-              right: pos.right,
-              bottom: pos.bottom
-            }
+            text: shotText,
+            location: pos
           }
         });
         this.updateShot();

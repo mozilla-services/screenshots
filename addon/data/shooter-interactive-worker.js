@@ -1,4 +1,4 @@
-/* globals console, self, watchFunction, extractSelection */
+/* globals console, self, watchFunction, extractSelection, annotatePosition */
 
 
 /**********************************************************
@@ -115,8 +115,8 @@ function reportSelection() {
     console.log("Suppressing null selection");
     return;
   }
-  pos.text = selectedText;
-  self.port.emit("select", pos);
+  annotatePosition(pos);
+  self.port.emit("select", pos, selectedText);
 }
 
 function reportNoSelection() {
@@ -124,12 +124,17 @@ function reportNoSelection() {
 }
 
 self.port.on("getScreenPosition", watchFunction(function () {
-  self.port.emit("screenPosition", {
+  var pos = {
     top: window.scrollY,
     bottom: window.scrollY + window.innerHeight,
     left: window.scrollX,
     right: window.scrollX + window.innerWidth
-  });
+  };
+  // FIXME: maybe annotating based on the corners is a bad idea,
+  // should instead annotate based on an inner element, and not worry about
+  // left and right
+  annotatePosition(pos);
+  self.port.emit("screenPosition", pos);
 }));
 
 function setState(state) {
