@@ -112,7 +112,7 @@ run () {
         cmd="exec $cmd"
     fi
     title FxPageShot
-    echo "Starting Firefox+PageShot----------------------------------------"
+    echo "Starting Firefox+PageShot $(date)--------------------------"
     static_op=
     static_args=
     if [[ -n "$server" ]] ; then
