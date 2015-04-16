@@ -214,12 +214,12 @@ class AbstractShot {
       of `json.clips` */
   update(json) {
     let ALL_ATTRS = ["clips"].concat(this.REGULAR_ATTRS);
-    assert(checkObject(json, [], ALL_ATTRS), "Bad attr to new Shot()");
+    assert(checkObject(json, [], ALL_ATTRS), "Bad attr to new Shot():", Object.keys(json));
     for (let attr in json) {
       if (attr == "clips") {
         continue;
       }
-      if (typeof json[attr] == "object" && typeof this[attr] == "object") {
+      if (typeof json[attr] == "object" && typeof this[attr] == "object" && this[attr] !== null) {
         let val = this[attr];
         if (val.asJson) {
           val = val.asJson();
@@ -452,6 +452,16 @@ class AbstractShot {
     delete this._clips[name];
   }
 
+  // FIXME: we should check this object more thoroughly
+  get microdata() {
+    return this._microdata;
+  }
+  set microdata(val) {
+    assert(typeof val == "object" || ! val);
+    this._dirty("microdata");
+    this._microdata = val;
+  }
+
   get head() {
     return this._head;
   }
@@ -484,17 +494,17 @@ class AbstractShot {
     }
   }
 
-  get headAttrs() {
-    return this._headAttrs;
+  get htmlAttrs() {
+    return this._htmlAttrs;
   }
-  set headAttrs(val) {
+  set htmlAttrs(val) {
     if (! val) {
-      this._headAttrs = null;
-      this._dirty("headAttrs");
+      this._htmlAttrs = null;
+      this._dirty("htmlAttrs");
     } else {
-      assert(isAttributePairs(val), "Bad headAttrs:", val);
-      this._headAttrs = val;
-      this._dirty("headAttrs");
+      assert(isAttributePairs(val), "Bad htmlAttrs:", val);
+      this._htmlAttrs = val;
+      this._dirty("htmlAttrs");
     }
   }
 
@@ -503,6 +513,7 @@ class AbstractShot {
 AbstractShot.prototype.REGULAR_ATTRS = (`
 url docTitle ogTitle userTitle createdDate createdDevice favicon
 history comments hashtags hashtags images readable head body htmlAttrs bodyAttrs
+microdata
 `).split(/\s+/g);
 
 /** Represents the list of history items leading up to the given shot */
@@ -516,7 +527,7 @@ class _History {
   }
 
   add(val) {
-    assert(checkObject(val, ["url"], ["opened", "viewingTime", "docTitle", "favicon", "public"]), "Bad attrs in history item:", val);
+    assert(checkObject(val, ["url"], ["opened", "viewingTime", "docTitle", "favicon", "public"]), "Bad attrs in history item:", Object.keys(val));
     val.public = !! val.public;
     assert(isUrl(val.url), "Bad history item URL:", val.url);
     assert(typeof val.docTitle == "string" || ! val.docTitle, "Bad history item title:", val.docTitle);
@@ -545,7 +556,7 @@ class _Comment {
   // FIXME: either we have to notify the shot of updates, or make
   // this read-only (as a result this is read-only *but not enforced*)
   constructor(json) {
-    assert(checkObject(json, ["user", "createdDate", "text"], ["hidden", "flagged"]), "Bad attrs for Comment:", json);
+    assert(checkObject(json, ["user", "createdDate", "text"], ["hidden", "flagged"]), "Bad attrs for Comment:", Object.keys(json));
     assert(typeof json.user == "string" && json.user, "Bad Comment user:", json.user);
     this.user = json.user;
     assert(typeof json.createdDate == "number", "Bad Comment createdDate:", json.createdDate);
@@ -568,7 +579,7 @@ class _Image {
   // FIXME: either we have to notify the shot of updates, or make
   // this read-only
   constructor(json) {
-    assert(checkObject(json, ["url"], ["dimensions", "isReadable", "title", "alt"]), "Bad attrs for Image:", json);
+    assert(checkObject(json, ["url"], ["dimensions", "isReadable", "title", "alt"]), "Bad attrs for Image:", Object.keys(json));
     assert(isUrl(json.url), "Bad Image url:", json.url);
     this.url = json.url;
     assert((! json.dimensions) ||

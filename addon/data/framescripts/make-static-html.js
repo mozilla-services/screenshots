@@ -248,17 +248,18 @@ function documentStaticData() {
 
   console.log("framescript serializing took " + (Date.now() - start) + " milliseconds");
 
+  // FIXME: figure out if we still want things like origin:
   return {
-    location: getLocation().href,
-    origin: getLocation().origin,
+    url: getLocation().href,
+    //origin: getLocation().origin,
     favicon: favicon,
     htmlAttrs: htmlAttrs,
     head: head,
     body: body,
     bodyAttrs: bodyAttrs,
-    title: getDocument().title,
-    initialScroll: scrollFraction,
-    captured: Date.now()
+    docTitle: getDocument().title
+    //initialScroll: scrollFraction,
+    //captured: Date.now()
   };
 }
 
