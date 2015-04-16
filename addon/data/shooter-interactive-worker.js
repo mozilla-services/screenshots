@@ -115,9 +115,22 @@ function reportSelection() {
     console.log("Suppressing null selection");
     return;
   }
-  self.port.emit("select", getPos());
-  self.port.emit("selectText", selectedText);
+  pos.text = selectedText;
+  self.port.emit("select", pos);
 }
+
+function reportNoSelection() {
+  self.port.emit("noAutoSelection");
+}
+
+self.port.on("getScreenPosition", watchFunction(function () {
+  self.port.emit("screenPosition", {
+    top: window.scrollY,
+    bottom: window.scrollY + window.innerHeight,
+    left: window.scrollX,
+    right: window.scrollX + window.innerWidth
+  });
+}));
 
 function setState(state) {
   // state can be one of:
@@ -644,7 +657,9 @@ function autoSelect(ids) {
   }
   if (pos.top === null && pos.bottom === null &&
       pos.left === null && pos.right === null) {
-    console.log("No autoSelect elements found, expanding to full screen.");
+    console.log("No autoSelect elements found, doing no selection");
+    reportNoSelection();
+    return;
   } else if (pos.top === null || pos.bottom === null ||
              pos.left === null || pos.right === null) {
     console.log("Expanding autoSelect in directions:",

@@ -144,19 +144,23 @@ const ShotContext = Class({
           createdDate: Date.now(),
           image: {
             url: imgUrl,
+            captureType: "selection",
+            text: pos.text,
             location: {
               top: pos.top,
               left: pos.left,
               right: pos.right,
-              bottom: pos.bottom,
-              // FIXME: get location
-              topLeftElement: "",
-              topLeftOffset: {x: 0, y: 0},
-              bottomRightElement: "",
-              bottomRightOffset: {x: 0, y: 0}
+              bottom: pos.bottom
             }
           }
         });
+        this.updateShot();
+        this.panelContext.show(this);
+      }).bind(this)));
+    }, this));
+    this.interactiveWorker.port.on("noAutoSelection", watchFunction(function () {
+      watchPromise(this.makeScreenshot().then((function (clipData) {
+        this.shot.addClip(clipData);
         this.updateShot();
         this.panelContext.show(this);
       }).bind(this)));
@@ -180,6 +184,13 @@ const ShotContext = Class({
     }, this));
     this.interactiveWorker.port.on("popstate", watchFunction(function (newUrl) {
       this.destroy();
+    }, this));
+    this._pendingScreenPositions = [];
+    this.interactiveWorker.port.on("screenPosition", watchFunction(function (pos) {
+      for (let deferred of this._pendingScreenPositions) {
+        deferred.resolve(pos);
+      }
+      this._pendingScreenPositions = [];
     }, this));
     this._workerActive = true;
   },
@@ -258,6 +269,28 @@ const ShotContext = Class({
     callback = watchFunction(callback.bind(this));
     this.tab.on(eventName, callback);
     this._deregisters.push(['tab', eventName, callback]);
+  },
+
+  makeScreenshot: function () {
+    return captureTab(this.tab, null).then(function (imgUrl) {
+      return this.getScreenPosition().then(function (pos) {
+        return {
+          createdDate: Date.now(),
+          image: {
+            url: imgUrl,
+            captureType: "fullscreen",
+            location: pos
+          }
+        };
+      });
+    });
+  },
+
+  getScreenPosition: function () {
+    let deferred = defer();
+    this._pendingScreenPositions.push(deferred);
+    this.interactiveWorker.port.emit("getScreenPosition");
+    return deferred.promise;
   },
 
   /** Renders this object unusable, and unregisters any handlers */
