@@ -165,14 +165,13 @@ function makeUuid() {
 
 class AbstractShot {
 
-  constructor(backend, id, url, attrs) {
+  constructor(backend, id, attrs) {
     this.clearDirty();
     attrs = attrs || {};
     assert((/^[a-zA-Z0-9]+\/[a-z0-9\.-]+$/).test(id), "Bad ID (should be alphanumeric):", id);
     this._backend = backend;
     this._id = id;
-    assert(isUrl(url), "Bad URL:", url);
-    this._url = url;
+    this.url = attrs.url;
     this.docTitle = attrs.docTitle || null;
     this.ogTitle = attrs.ogTitle || null;
     this.userTitle = attrs.userTitle || null;
@@ -203,7 +202,7 @@ class AbstractShot {
       }
     }
     for (let attr in attrs) {
-      if (attr != "clips" && ! checkObject(attrs, this.REGULAR_ATTRS)) {
+      if (attr != "clips" && this.REGULAR_ATTRS.indexOf(attr) == -1) {
         throw new Error("Unexpected attribute: " + attr);
       }
     }
@@ -264,8 +263,7 @@ class AbstractShot {
   /** Returns a JSON version of this shot */
   asJson() {
     let result = {
-      id: this.id,
-      url: this.url
+      id: this.id
     };
     for (let attr of this.REGULAR_ATTRS) {
       var val = this[attr];
@@ -315,6 +313,11 @@ class AbstractShot {
 
   get url() {
     return this._url;
+  }
+  set url(val) {
+    assert(val && isUrl(val), "Bad URL:", val);
+    this._dirty("url");
+    this._url = val;
   }
 
   get viewUrl() {
@@ -498,7 +501,7 @@ class AbstractShot {
 }
 
 AbstractShot.prototype.REGULAR_ATTRS = (`
-docTitle ogTitle userTitle createdDate createdDevice favicon
+url docTitle ogTitle userTitle createdDate createdDevice favicon
 history comments hashtags hashtags images readable head body htmlAttrs bodyAttrs
 `).split(/\s+/g);
 
