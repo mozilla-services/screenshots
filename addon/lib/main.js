@@ -129,7 +129,7 @@ const PanelContext = {
       return;
     }
     shootPanel.port.emit("shotData",
-      shotContext.shot.backend, shotContext.backend.id, shotContext.shot.asJson());
+      shotContext.shot.backend, shotContext.shot.id, shotContext.shot.asJson());
   },
 
   /** Called when a ShotContext is going away, to remove its
