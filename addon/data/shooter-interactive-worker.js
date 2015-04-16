@@ -727,7 +727,6 @@ function captureSelection() {
   self.port.emit("textSelection", selection.outerHTML);
 }
 
-console.log("selection", window.getSelection().rangeCount, window.getSelection().isCollapsed);
 if (window.getSelection().rangeCount && ! window.getSelection().isCollapsed) {
   watchFunction(captureSelection)();
 }
