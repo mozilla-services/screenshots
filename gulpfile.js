@@ -82,9 +82,23 @@ gulp.task("addon", ["javascript-addon"], function () {
     script: "helper.js",
     ignore: ["server", "addon/dist", "**/Profile", "pageshot-presentation", "**/node_modules"],
     ext: "html css png js",
-    tasks: ["javascript-addon"]
+    tasks: ["notify-start-addon", "notify-end-addon"]
   });
 //  run("cd addon/dist && ./run --local").exec();
+});
+
+var afplayExists = require("fs").existsSync("/usr/bin/afplay");
+
+gulp.task("notify-start-addon", function () {
+  if (afplayExists) {
+    require("child_process").spawn("/usr/bin/afplay", ["bin/sharpen-knife.mp3"]);
+  }
+});
+
+gulp.task("notify-end-addon", ["javascript-addon"], function () {
+  if (afplayExists) {
+    require("child_process").spawn("/usr/bin/afplay", ["bin/elevator-ding.mp3"]);
+  }
 });
 
 gulp.task("default", ["lint", "transforms"], function () {
@@ -106,7 +120,7 @@ gulp.task("default", ["lint", "transforms"], function () {
           where("addon:", lines[i]);
         }
       }
-    }
+    };
   }
 
   add.stdout.on("data", log(console.log.bind(console)));
@@ -118,5 +132,3 @@ gulp.task("default", ["lint", "transforms"], function () {
   });
 
 });
-
-

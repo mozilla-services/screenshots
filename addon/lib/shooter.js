@@ -94,7 +94,7 @@ const ShotContext = Class({
     this.id = ++this._idGen;
     this.tab = tabs.activeTab;
     this.tabUrl = this.tab.url;
-    this.shot = new Shot(backend, Math.floor(Date.now()) + "/xxx", this.tabUrl);
+    this.shot = new Shot(backend, Math.floor(Date.now()) + "/xxx", {url: this.tabUrl});
     clipboard.set(this.shot.viewUrl, "text");
     this._deregisters = [];
     this.panelContext = panelContext;
@@ -290,8 +290,8 @@ exports.ShotContext = ShotContext;
 
 class Shot extends AbstractShot {
   constructor(backend, id, attrs) {
-    //super(backend, id, attrs);
-    AbstractShot.call(this, backend, id, attrs);
+    super(backend, id, attrs);
+    //AbstractShot.call(this, backend, id, attrs);
   }
 
   save() {
