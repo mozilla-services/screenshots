@@ -163,14 +163,15 @@ exports.shot = function shot(state) {
       if (! data) {
         return Promise.reject(new Error("No data or returned from model"));
       }
-      console.log("shot_model", shot_model);
+
+      // FIXME we need some way to configure the url
       let backend = "http://localhost:10080/";
       let myShot = new shot_model.AbstractShot(
         backend,
-        // FIXME we need some way to configure the url
-        state.params.shotId.toString(),
-        data
+        key,
+        JSON.parse(data)
       );
+
       return Promise.resolve({
           shot: myShot,
           backend: backend,

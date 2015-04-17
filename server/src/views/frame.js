@@ -8,13 +8,13 @@ exports.Frame = React.createClass({
 
     let favicon = "";
     if (this.props.shot.favicon) {
-      favicon = <link rel="shortcut icon" href={this.props.data.favicon} />;
+      favicon = <link rel="shortcut icon" href={this.props.shot.favicon} />;
     }
 
     let snippet = "",
       clipNames = this.props.shot.clipNames();
 
-    if (clipNames) {
+    if (clipNames.length) {
       snippet = this.props.shot.getClip(clipNames[0]).image.url;
     }
 
@@ -51,7 +51,7 @@ exports.Frame = React.createClass({
           </div>
         </div>
         <a className="main-link" href={ this.props.shot.url }>
-          { link_text_short }
+          { linkTextShort }
           <img src={ this.props.linkify("/img/clipboard-8-xl.png") } />
         </a>
       </div>
