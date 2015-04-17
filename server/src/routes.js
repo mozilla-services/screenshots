@@ -8,7 +8,9 @@ let React = require("react"),
   shell = require("./views/shell.js"),
   main = require("./views/main.js"),
   frame = require("./views/frame.js"),
-  content = require("./views/content.js");
+  content = require("./views/content.js"),
+  shot_model = require("../../addon/dist/lib/shot.js");
+
 
 /*
 Shot view: /{random/domainName}
@@ -56,6 +58,7 @@ try {
   window.routes = exports.routes;
   window.url = url;
   window.linkify = exports.linkify;
+  window.AbstractShot = shot_model.AbstractShot;
 } catch (e) {
 
 }

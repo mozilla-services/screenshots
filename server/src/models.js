@@ -10,6 +10,8 @@ let modelMap = null,
 exports.modelMap = modelMap;
 exports.metaMap = metaMap;
 
+let {AbstractShot} = require("../../addon/dist/lib/shot.js");
+
 let pg = require("pg"),
   constr = `postgres://${user}${pass}@${host}/${user}`;
 
@@ -156,10 +158,22 @@ exports.shot = function shot(state) {
     [modelMap.get(key), metaMap.get(key)]
   ).then(
     ([data, meta]) => {
-      if (! (data && meta)) {
+      if (! data) {
         return Promise.reject(new Error("No data or returned from model"));
       }
-      return Promise.resolve({data: JSON.parse(data), meta: JSON.parse(meta), identifier: key});
+
+      // FIXME we need some way to configure the url
+      let backend = "http://localhost:10080/";
+      let myShot = new AbstractShot(
+        backend,
+        key,
+        JSON.parse(data)
+      );
+
+      return Promise.resolve({
+          shot: myShot,
+          backend: backend,
+          id: state.params.shotId});
     }
   );
 };
