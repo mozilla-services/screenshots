@@ -9,7 +9,7 @@ let React = require("react"),
   main = require("./views/main.js"),
   frame = require("./views/frame.js"),
   content = require("./views/content.js"),
-  shot_model = require("../../addon/dist/lib/shot.js");
+  {AbstractShot} = require("../../addon/dist/lib/shot.js");
 
 
 /*
@@ -58,7 +58,7 @@ try {
   window.routes = exports.routes;
   window.url = url;
   window.linkify = exports.linkify;
-  window.AbstractShot = shot_model.AbstractShot;
+  window.AbstractShot = AbstractShot;
 } catch (e) {
 
 }
