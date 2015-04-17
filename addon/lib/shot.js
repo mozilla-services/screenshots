@@ -168,7 +168,7 @@ class AbstractShot {
   constructor(backend, id, attrs) {
     this.clearDirty();
     attrs = attrs || {};
-    assert((/^[a-zA-Z0-9]+\/[a-z0-9\.-]+$/).test(id), "Bad ID (should be alphanumeric):", id);
+    assert((/^[a-zA-Z0-9]+\/[a-z0-9\.-]+$/).test(id), "Bad ID (should be alphanumeric):", JSON.stringify(id));
     this._backend = backend;
     this._id = id;
     this.url = attrs.url;
@@ -436,7 +436,9 @@ class AbstractShot {
   }
 
   clipNames() {
-    return Object.getOwnPropertyNames(this._clips);
+    let names = Object.getOwnPropertyNames(this._clips);
+    names.sort();
+    return names;
   }
   getClip(name) {
     return this._clips[name];
@@ -699,7 +701,7 @@ class _Clip {
   set image(image) {
     assert(checkObject(image, ["url"], ["dimensions", "text", "location", "captureType"]), "Bad attrs for Clip Image:", Object.keys(image));
     assert(isUrl(image.url), "Bad Clip image URL:", image.url);
-    assert(image.captureType == "selection" || image.captureType == "fullscreen" || ! image.captureType, "Bad image.captureType:", image.captureType);
+    assert(image.captureType == "selection" || image.captureType == "visible" || image.captureType == "auto" || ! image.captureType, "Bad image.captureType:", image.captureType);
     assert(typeof image.text == "string" || ! image.text);
     if (image.dimensions) {
       assert(typeof image.dimensions.x == "number" && typeof image.dimensions.y == "number", "Bad Clip image dimensions:", image.dimensions);

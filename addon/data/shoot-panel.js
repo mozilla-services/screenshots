@@ -41,22 +41,30 @@ let ShootPanel = React.createClass({
   render: function () {
     let clipNames = this.props.shot.clipNames();
     console.log("render panel", this.props.shot.viewUrl);
-    console.log("clipnames", clipNames);
-    let snippet = "";
-    if (clipNames.length) {
-      snippet = this.props.shot.getClip(clipNames[0]).image.url;
+    let snippet = "icons/loading.png";
+    let clip = null;
+    if (clipNames[this.props.panelState.activeClipIndex]) {
+      clip = this.props.shot.getClip(clipNames[this.props.panelState.activeClipIndex]);
+      snippet = clip.image.url;
     }
     //console.log("snippet", Object.getOwnPropertyNames(snippet));
+    let modeClasses = {
+      auto: "mode",
+      selection: "mode",
+      visible: "mode"
+    };
+    let clipType = (clip ? clip.image.captureType : null) || "auto";
+    modeClasses[clipType] += " mode-selected";
 
     return <div className="container">
       <div className="modes-row">
-        <span className="mode mode-selected">
+        <span className={modeClasses.auto} onClick={this.setAuto}>
           Auto-detect
         </span>
-        <span className="mode">
+        <span className={modeClasses.selection} onClick={this.setSelection}>
           Selection
         </span>
-        <span className="mode">
+        <span className={modeClasses.visible} onClick={this.setVisible}>
           Visible
         </span>
       </div>
@@ -69,15 +77,40 @@ let ShootPanel = React.createClass({
         <button className="copy" ref="copy" type="button" data-normal-text="Copy Link" data-copied-text="Copied!" onClick={ this.onCopyClick }>Copy Link</button>
       </div>
 
-      <div className="comment">{ this.props.shot.comment}</div>
+      <div className="comment">{this.props.shot.comment}</div>
       <input className="comment-input" ref="input" type="text" placeholder="Say something" onKeyup={ this.onKeyup }/>
     </div>;
+  },
+
+  setAuto: function () {
+    this.setCaptureType("auto");
+  },
+  setSelection: function () {
+    this.setCaptureType("selection");
+  },
+  setVisible: function () {
+    this.setCaptureType("visible");
+  },
+
+  setCaptureType: function (type) {
+    self.port.emit("setCaptureType", this.props.panelState.activeClipIndex, type);
   }
 });
+
+let panelState = {
+  lastClipId: null,
+  activeClipIndex: null
+};
 
 self.port.on("shotData", err.watchFunction(function (data) {
   console.log("shotData", Object.getOwnPropertyNames(data));
   let myShot = new shot.AbstractShot(data.backend, data.id, data.shot);
+  if (myShot.id != panelState.lastClipId) {
+    panelState = {
+      lastClipId: myShot.id,
+      activeClipIndex: 0
+    };
+  }
   React.render(
-    React.createElement(ShootPanel, {shot: myShot}), document.body);
+    React.createElement(ShootPanel, {panelState: panelState, shot: myShot}), document.body);
 }));

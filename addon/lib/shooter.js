@@ -96,6 +96,7 @@ const ShotContext = Class({
     this.tabUrl = this.tab.url;
     this.shot = new Shot(backend, Math.floor(Date.now()) + "/xxx", {url: this.tabUrl});
     clipboard.set(this.shot.viewUrl, "text");
+    this.activeClipIndex = null;
     this._deregisters = [];
     this.panelContext = panelContext;
     this._workerActive = false;
@@ -130,9 +131,9 @@ const ShotContext = Class({
     }));
     this.interactiveWorker.port.on("ready", watchFunction(function () {
       this.interactiveWorker.port.emit("linkLocation", self.data.url("inline-selection.css"));
-      this.interactiveWorker.port.emit("setState", "select");
+      this.interactiveWorker.port.emit("setState", "auto");
     }).bind(this));
-    this.interactiveWorker.port.on("select", watchFunction(function (pos, shotText) {
+    this.interactiveWorker.port.on("select", watchFunction(function (pos, shotText, captureType) {
       // FIXME: there shouldn't be this disconnect between arguments to captureTab
       var info = {
         x: pos.left,
@@ -141,22 +142,36 @@ const ShotContext = Class({
         w: pos.right - pos.left
       };
       watchPromise(captureTab(this.tab, info).then((function (imgUrl) {
-        this.shot.addClip({
+        let clip = null;
+        if (this.activeClipIndex !== null) {
+          clip = this.shot.getClip(this.shot.clipNames()[this.activeClipIndex]);
+        }
+        let data = {
           createdDate: Date.now(),
           image: {
             url: imgUrl,
-            captureType: "selection",
+            captureType: captureType,
             text: shotText,
             location: pos
           }
-        });
+        };
+        if (clip) {
+          clip.image = data.image;
+        } else {
+          this.shot.addClip(data);
+        }
         this.updateShot();
         this.panelContext.show(this);
       }).bind(this)));
     }, this));
     this.interactiveWorker.port.on("noAutoSelection", watchFunction(function () {
       watchPromise(this.makeScreenshot().then((function (clipData) {
-        this.shot.addClip(clipData);
+        if (this.activeClipIndex !== null) {
+          let clip = this.shot.getClip(this.shot.clipNames()[this.activeClipIndex]);
+          clip.image = clipData.image;
+        } else {
+          this.shot.addClip(clipData);
+        }
         this.updateShot();
         this.panelContext.show(this);
       }).bind(this)));
@@ -223,6 +238,24 @@ const ShotContext = Class({
     },
     openLink: function (link) {
       tabs.open(link);
+    },
+    setCaptureType: function (index, type) {
+      this.activeClipIndex = index;
+      let clip = this.shot.getClip(this.shot.clipNames()[index]);
+      if (type == "visible") {
+        this.interactiveWorker.port.emit("setState", "cancel");
+        watchPromise(this.makeScreenshot().then((imgData) => {
+          clip.image = imgData.image;
+          this.updateShot();
+        }));
+      } else if (type == "selection") {
+        this.interactiveWorker.port.emit("setState", "selection");
+        this.panelContext.hide(this);
+      } else if (type == "auto") {
+        this.interactiveWorker.port.emit("setState", "auto");
+      } else {
+        throw new Error("UnexpectedType: " + type);
+      }
     }
   },
 
@@ -274,7 +307,7 @@ const ShotContext = Class({
           createdDate: Date.now(),
           image: {
             url: imgUrl,
-            captureType: "fullscreen",
+            captureType: "visible",
             location: pos
           }
         };

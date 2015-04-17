@@ -41,6 +41,9 @@ const MIN_MOVE = 40;
 const MIN_AUTOSELECT_HEIGHT = 100;
 const MIN_AUTOSELECT_WIDTH = 200;
 
+// The ids of elements we should use for autoselecting
+let autoIds = null;
+
 function debugAnnotate(el, text, backgroundColor, borderColor) {
   if (text) {
     var cur = el.getAttribute("title");
@@ -104,7 +107,7 @@ self.port.on("setState", watchFunction(function (state) {
   self.port.emit("stateSet", state);
 }));
 
-function reportSelection() {
+function reportSelection(captureType) {
   captureEnclosedText(getPos());
   if (typeof mousedownX != "number") {
     // Apparently no selection
@@ -116,7 +119,7 @@ function reportSelection() {
     return;
   }
   annotatePosition(pos);
-  self.port.emit("select", pos, selectedText);
+  self.port.emit("select", pos, selectedText, captureType);
 }
 
 function reportNoSelection() {
@@ -139,23 +142,28 @@ self.port.on("getScreenPosition", watchFunction(function () {
 
 function setState(state) {
   // state can be one of:
-  //   "cancel": do nothing
-  //   "select": make a selection, or adjust the selection
+  //   "cancel": do nothing, hide anything showing
+  //   "selection": make a selection with crosshairs (erase any previous selection)
+  //   "auto": make an autoselection
   //   "hide": keep the selection, but make it hidden
   //   "show": show the selection, but don't let it be recreated
   if (state == "cancel") {
+    deleteSelection();
     document.body.classList.remove("pageshot-hide-selection");
     document.body.classList.remove("pageshot-highlight-activated");
     document.body.classList.remove("pageshot-hide-movers");
-    if (boxEl) {
-      boxEl.parentNode.removeChild(boxEl);
-      boxEl = null;
-    }
     removeHandlers();
-  } else if (state == "select") {
+  } else if (state == "selection") {
+    deleteSelection();
     document.body.classList.remove("pageshot-hide-selection");
     document.body.classList.remove("pageshot-hide-movers");
     addHandlers();
+    // FIXME: do crosshairs
+  } else if (state == "auto") {
+    document.body.classList.remove("pageshot-hide-selection");
+    document.body.classList.remove("pageshot-hide-movers");
+    addHandlers();
+    autoSelect();
   } else if (state == "show") {
     document.body.classList.remove("pageshot-hide-selection");
     document.body.classList.remove("pageshot-highlight-activated");
@@ -198,7 +206,7 @@ var mouseup = watchFunction(function (event) {
     cornerX = event.pageX;
     cornerY = event.pageY;
     render();
-    reportSelection();
+    reportSelection("selection");
   } else {
     startX = startY = null;
   }
@@ -293,6 +301,24 @@ function render() {
   boxRightEl.style.width = docWidth - (pos.right - bodyRect.left) + "px";
 }
 
+function deleteSelection() {
+  function removeEl(el) {
+    if (el) {
+      el.parentNode.removeChild(el);
+    }
+  }
+  removeEl(boxEl);
+  boxEl = null;
+  removeEl(boxTopEl);
+  boxTopEl = null;
+  removeEl(boxRightEl);
+  boxRightEl = null;
+  removeEl(boxLeftEl);
+  boxLeftEl = null;
+  removeEl(boxBottomEl);
+  boxBottomEl = null;
+}
+
 function makeMousedown(el, movement) {
   return watchFunction(function (event) {
     event.stopPropagation();
@@ -306,7 +332,7 @@ function makeMousedown(el, movement) {
       document.removeEventListener("mousemove", mousemove, false);
       document.removeEventListener("mouseup", mouseup, false);
       set(upEvent);
-      reportSelection();
+      reportSelection("selection");
     }
     document.addEventListener("mousemove", mousemove, false);
     document.addEventListener("mouseup", mouseup, false);
@@ -525,6 +551,7 @@ function ignoreElementForAutoSelect(el) {
 }
 
 function autoSelect(ids) {
+  ids = ids || autoIds;
   var i, el;
   var outerElements = {
     top: null,
@@ -718,7 +745,7 @@ function autoSelect(ids) {
   cornerX = pos.right;
   cornerY = pos.bottom;
   render();
-  reportSelection();
+  reportSelection("auto");
 }
 
 /**********************************************************
@@ -755,16 +782,12 @@ window.addEventListener("popstate", checkUrl, false);
 self.port.on("isShowing", checkUrl);
 
 self.port.on("extractedData", watchFunction(function (data) {
-  var ids = null;
   if (data.readable) {
-    ids = data.readable.readableIds;
-    if (! ids.length) {
-      ids = null;
+    autoIds = data.readable.readableIds;
+    if (! autoIds.length) {
+      autoIds = null;
     }
   }
-  var now = Date.now();
-  autoSelect(ids);
-  console.log("autoSelect took:", Date.now() - now, "milliseconds");
 }));
 
 self.port.emit("ready");
