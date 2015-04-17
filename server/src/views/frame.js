@@ -6,46 +6,30 @@ exports.Frame = React.createClass({
       return <div>Not Found</div>;
     }
 
-    if (this.props.data.favicon) {
-      this.props.favicon = <link rel="shortcut icon" href={this.props.data.favicon} />;
-    } else {
-      this.props.favicon = "";
+    let favicon = "";
+    if (this.props.shot.favicon) {
+      favicon = <link rel="shortcut icon" href={this.props.data.favicon} />;
     }
 
-    if (this.props.meta.snippet) {
-      this.props.snippet = <div>
-        <meta property="og:image" id="meta-snippet" content={this.props.snippet_src} />
-        <meta property="og:image:type" content="image/png" />
-      </div>;
-    } else {
-      this.props.snippet = "";
+    let snippet = "",
+      clipNames = this.props.shot.clipNames();
+
+    if (clipNames) {
+      snippet = this.props.shot.getClip(clipNames[0]).image.url;
     }
 
-    if (this.props.data.screenshot !== undefined) {
-      // FIXME: must be a url
-      this.props.screenshot = <meta property="og:image" content={this.props.data.screenshot} />;
-
-    } else {
-      this.props.screenshot = "";
-    }
-
-//    console.log(Object.getOwnPropertyNames(this.props.data));
-//    console.log(Object.getOwnPropertyNames(this.props.meta));
-    if (this.props.data.location) {
-      let txt = this.props.data.location;
+    let linkTextShort = "";
+    if (this.props.shot.url) {
+      let txt = this.props.shot.url;
       if (txt.length > 50) {
         txt = txt.slice(0, 50) + '...';
       }
-      this.props.link_text_short = txt;
-    } else {
-      this.props.link_text_short = "";
+      linkTextShort = txt;
     }
 
     return <div id="container">
       <script src={ this.props.linkify("/js/parent-helper.js") } />
-      {this.props.favicon}
-      {this.props.snippet}
-      {this.props.screenshot}
+      { favicon }
       <div id="toolbar">
         <div className="logged-out" id="login-widget">
           <div id="login-dropdown" className="login-collapsed">
@@ -66,14 +50,15 @@ exports.Frame = React.createClass({
             </div>
           </div>
         </div>
-        <a className="main-link" href={this.props.data.location}>
-          {this.props.link_text_short}
+        <a className="main-link" href={ this.props.shot.url }>
+          { link_text_short }
           <img src={ this.props.linkify("/img/clipboard-8-xl.png") } />
         </a>
       </div>
-      <h1 id="main-title">{this.props.data.title || this.props.data.location}</h1>
-      <img src={this.props.meta.snippet} style={{width: "100%"}} />
+      <h1 id="main-title">{this.props.shot.docTitle || this.props.shot.url}</h1>
+      <img src={snippet} style={{width: "100%"}} />
       <iframe width="100%" id="frame" src={"/content/" + this.props.identifier} />
     </div>;
   }
 });
+
