@@ -168,7 +168,7 @@ class AbstractShot {
   constructor(backend, id, attrs) {
     this.clearDirty();
     attrs = attrs || {};
-    assert((/^[a-zA-Z0-9]+\/[a-z0-9\.-]+$/).test(id), "Bad ID (should be alphanumeric):", id);
+    assert((/^[a-zA-Z0-9]+\/[a-z0-9\.-]+$/).test(id), "Bad ID (should be alphanumeric):", JSON.stringify(id));
     this._backend = backend;
     this._id = id;
     this.url = attrs.url;
