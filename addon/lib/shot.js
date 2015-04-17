@@ -205,6 +205,9 @@ class AbstractShot {
     for (let attr in attrs) {
       if (attr !== "clips" && attr !== "id" && this.REGULAR_ATTRS.indexOf(attr) === -1) {
         throw new Error("Unexpected attribute: " + attr);
+      } else if (attr === "id") {
+        console.warn("passing id in attrs in AbstractShot constructor");
+        assert(attrs.id === this.id);
       }
     }
     // Reset all the dirty items that were unnecessarily set:

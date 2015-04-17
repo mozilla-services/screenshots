@@ -77,9 +77,9 @@ let ShootPanel = React.createClass({
 
 self.port.on("shotData", err.watchFunction(function (data) {
   console.log("shotData", Object.getOwnPropertyNames(data));
-  let as = new shot.AbstractShot(data.backend, data.id, data.shot);
+  let myShot = new shot.AbstractShot(data.backend, data.id, data.shot);
   React.render(
-    React.createElement(ShootPanel, {shot: as}), document.body);
+    React.createElement(ShootPanel, {shot: myShot}), document.body);
 }));
 
 
