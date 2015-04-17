@@ -1,4 +1,4 @@
-/* globals watchFunction */
+/* globals watchFunction, require */
 /* exported FILENAME */
 /** The worker for shoot-panel.html
     This is setup and directly communicated to by main.js
@@ -6,8 +6,10 @@
     The outgoing messages are routed to `ShotContext.panelHandlers)
     */
 
+
 let err = require("./error-utils.js"),
-  React = require("react");
+  React = require("react"),
+  shot = require("../lib/shot.js");
 
 // For error messages:
 let FILENAME = "shoot-panel.js";
@@ -23,7 +25,7 @@ let ShootPanel = React.createClass({
   },
 
   onLinkClick: function (e) {
-    self.port.emit("openLink", this.props.viewUrl);
+    self.port.emit("openLink", this.props.shot.viewUrl);
     e.preventDefault();
   },
 
@@ -37,20 +39,32 @@ let ShootPanel = React.createClass({
   },
 
   render: function () {
-    var snippet = this.props.snippet;
-    if (! snippet) {
-      snippet = this.props.screenshot;
+    let clipNames = this.props.shot.clipNames();
+    console.log("render panel", this.props.shot.viewUrl);
+    let snippet = "icons/loading.png";
+    let clip = null;
+    if (clipNames[this.props.panelState.activeClipIndex]) {
+      clip = this.props.shot.getClip(clipNames[this.props.panelState.activeClipIndex]);
+      snippet = clip.image.url;
     }
+    //console.log("snippet", Object.getOwnPropertyNames(snippet));
+    let modeClasses = {
+      auto: "mode",
+      selection: "mode",
+      visible: "mode"
+    };
+    let clipType = (clip ? clip.image.captureType : null) || "auto";
+    modeClasses[clipType] += " mode-selected";
 
     return <div className="container">
       <div className="modes-row">
-        <span className="mode mode-selected">
+        <span className={modeClasses.auto} onClick={this.setAuto}>
           Auto-detect
         </span>
-        <span className="mode">
+        <span className={modeClasses.selection} onClick={this.setSelection}>
           Selection
         </span>
-        <span className="mode">
+        <span className={modeClasses.visible} onClick={this.setVisible}>
           Visible
         </span>
       </div>
@@ -59,20 +73,44 @@ let ShootPanel = React.createClass({
         <a href="#">+</a>
       </div>
       <div className="link-row">
-        <a className="link" target="_blank" href={ this.props.viewUrl } onClick={ this.onLinkClick }>{ this.props.viewUrl }</a>
+        <a className="link" target="_blank" href={ this.props.shot.viewUrl } onClick={ this.onLinkClick }>{ this.props.shot.viewUrl }</a>
         <button className="copy" ref="copy" type="button" data-normal-text="Copy Link" data-copied-text="Copied!" onClick={ this.onCopyClick }>Copy Link</button>
       </div>
 
-
-      <div className="text">{ this.props.textSelection }</div>
-      <div className="comment">{ this.props.comment}</div>
+      <div className="comment">{this.props.shot.comment}</div>
       <input className="comment-input" ref="input" type="text" placeholder="Say something" onKeyup={ this.onKeyup }/>
     </div>;
+  },
+
+  setAuto: function () {
+    this.setCaptureType("auto");
+  },
+  setSelection: function () {
+    this.setCaptureType("selection");
+  },
+  setVisible: function () {
+    this.setCaptureType("visible");
+  },
+
+  setCaptureType: function (type) {
+    self.port.emit("setCaptureType", this.props.panelState.activeClipIndex, type);
   }
 });
 
+let panelState = {
+  lastClipId: null,
+  activeClipIndex: null
+};
+
 self.port.on("shotData", err.watchFunction(function (data) {
-  React.render(React.createElement(ShootPanel, data), document.body);
+  console.log("shotData", Object.getOwnPropertyNames(data));
+  let myShot = new shot.AbstractShot(data.backend, data.id, data.shot);
+  if (myShot.id != panelState.lastClipId) {
+    panelState = {
+      lastClipId: myShot.id,
+      activeClipIndex: 0
+    };
+  }
+  React.render(
+    React.createElement(ShootPanel, {panelState: panelState, shot: myShot}), document.body);
 }));
-
-

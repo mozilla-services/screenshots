@@ -107,7 +107,12 @@ for firefox in $firefoxes ; do
 done
 
 run () {
+    cmd="cfx"
+    if [ -n "$SHOULD_EXEC" ] ; then
+        cmd="exec $cmd"
+    fi
     title FxPageShot
+    echo "Starting Firefox+PageShot $(date)--------------------------"
     static_op=
     static_args=
     if [[ -n "$server" ]] ; then
@@ -115,17 +120,18 @@ run () {
         static_args="{\"backend\": \"$server\"}"
     fi
     if [[ -z "$no_filter" ]] ; then
-        cfx run $binary --profiledir Profile $static_op "$static_args" "$@" \
+        $cmd run $binary --profiledir Profile $static_op "$static_args" "$@" \
             2>&1 \
             | grep --line-buffered \
             -v -e 'WARNING: content window passed to PrivateBrowsingUtils.isWindowPrivate' \
             -v -e '^JavaScript Warning' \
             -v -e 'Using ... to indicate source[a-zA-Z]*URL' \
             -v -e 'JavaScript 1.7.s let blocks' \
+            -v -e 'mutating the ..Prototype.. of an object' \
             || fail
         title
     else
-        cfx run $binary --profiledir Profile $static_op "$static_args" "$@"
+        $cmd run $binary --profiledir Profile $static_op "$static_args" "$@"
         title
     fi
 }
