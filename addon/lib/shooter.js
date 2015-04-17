@@ -95,8 +95,8 @@ const ShotContext = Class({
     this.tab = tabs.activeTab;
     this.tabUrl = this.tab.url;
     this.shot = new Shot(backend, Math.floor(Date.now()) + "/xxx", {url: this.tabUrl});
+    this.activeClipName = null;
     clipboard.set(this.shot.viewUrl, "text");
-    this.activeClipIndex = null;
     this._deregisters = [];
     this.panelContext = panelContext;
     this._workerActive = false;
@@ -143,8 +143,8 @@ const ShotContext = Class({
       };
       watchPromise(captureTab(this.tab, info).then((function (imgUrl) {
         let clip = null;
-        if (this.activeClipIndex !== null) {
-          clip = this.shot.getClip(this.shot.clipNames()[this.activeClipIndex]);
+        if (this.activeClipName) {
+          clip = this.shot.getClip(this.activeClipName);
         }
         let data = {
           createdDate: Date.now(),
@@ -158,7 +158,7 @@ const ShotContext = Class({
         if (clip) {
           clip.image = data.image;
         } else {
-          this.shot.addClip(data);
+          this.activeClipName = this.shot.addClip(data);
         }
         this.updateShot();
         this.panelContext.show(this);
@@ -166,11 +166,11 @@ const ShotContext = Class({
     }, this));
     this.interactiveWorker.port.on("noAutoSelection", watchFunction(function () {
       watchPromise(this.makeScreenshot().then((function (clipData) {
-        if (this.activeClipIndex !== null) {
-          let clip = this.shot.getClip(this.shot.clipNames()[this.activeClipIndex]);
+        if (this.activeClipName) {
+          let clip = this.shot.getClip(this.activeClipName);
           clip.image = clipData.image;
         } else {
-          this.shot.addClip(clipData);
+          this.activeClipName = this.shot.addClip(clipData);
         }
         this.updateShot();
         this.panelContext.show(this);
@@ -212,6 +212,13 @@ const ShotContext = Class({
       this._activateWorker();
     }
     this.interactiveWorker.port.emit("isShowing");
+    if (this.activeClipName) {
+      let clip = this.shot.getClip(this.activeClipName);
+      if (clip.image && clip.image.captureType !== "visible") {
+        console.log("restoring", clip.image.location);
+        this.interactiveWorker.port.emit("restore", clip.image.captureType, clip.image.location);
+      }
+    }
   },
 
   /** True if it would be reasonable to open this context's panel */
@@ -222,7 +229,7 @@ const ShotContext = Class({
     return false;
   },
 
-  /** These are methods that are called by the PanelContext */
+  /** These are methods that are called by the PanelContext based on messages from the panel */
   panelHandlers: {
     addComment: function (comment) {
       this.shot.addComment({
@@ -239,9 +246,11 @@ const ShotContext = Class({
     openLink: function (link) {
       tabs.open(link);
     },
-    setCaptureType: function (index, type) {
-      this.activeClipIndex = index;
-      let clip = this.shot.getClip(this.shot.clipNames()[index]);
+    setCaptureType: function (type) {
+      if (! this.activeClipName) {
+        throw new Error("setCaptureType " + type + " with no activeClipName");
+      }
+      let clip = this.shot.getClip(this.activeClipName);
       if (type == "visible") {
         this.interactiveWorker.port.emit("setState", "cancel");
         watchPromise(this.makeScreenshot().then((imgData) => {
@@ -257,6 +266,11 @@ const ShotContext = Class({
         throw new Error("UnexpectedType: " + type);
       }
     }
+  },
+
+  /** Called by PanelContext when the panel is hidden */
+  isHidden: function () {
+    this.interactiveWorker.port.emit("setState", "maybeCancel");
   },
 
   /** Collects/extracts information from the tab: the screenshot, readable and
@@ -348,6 +362,11 @@ class Shot extends AbstractShot {
   constructor(backend, id, attrs) {
     super(backend, id, attrs);
     //AbstractShot.call(this, backend, id, attrs);
+    this._activeClip = null;
+    let clipNames = this.clipNames();
+    if (clipNames.length) {
+      this._activeClip = clipNames[0];
+    }
   }
 
   save() {

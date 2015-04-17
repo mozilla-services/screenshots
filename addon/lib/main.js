@@ -37,10 +37,12 @@ var shootPanel = panels.Panel({
   onHide: watchFunction(function () {
     shootButton.state("window", null);
     shootButton.checked = false;
+    PanelContext.shootPanelHidden();
   }),
   onShow: watchFunction(function () {
     shootButton.state("window", null);
     shootButton.checked = true;
+    PanelContext.shootPanelShown();
   })
 });
 
@@ -68,6 +70,18 @@ const PanelContext = {
     this._activeContext = null;
     shootPanel.hide();
     shootButton.checked = false;
+  },
+
+  shootPanelHidden: function () {
+    if (this._activeContext) {
+      this._activeContext.isHidden();
+    }
+  },
+
+  shootPanelShown: function () {
+    if (this._activeContext) {
+      this._activeContext.isShowing();
+    }
   },
 
   /** Show a ShotContext, hiding any other if necessary */
@@ -132,7 +146,8 @@ const PanelContext = {
       {
         backend: shotContext.shot.backend,
         id: shotContext.shot.id,
-        shot: shotContext.shot.asJson()
+        shot: shotContext.shot.asJson(),
+        activeClipName: shotContext.activeClipName
       }
     );
   },

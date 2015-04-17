@@ -43,8 +43,8 @@ let ShootPanel = React.createClass({
     console.log("render panel", this.props.shot.viewUrl);
     let snippet = "icons/loading.png";
     let clip = null;
-    if (clipNames[this.props.panelState.activeClipIndex]) {
-      clip = this.props.shot.getClip(clipNames[this.props.panelState.activeClipIndex]);
+    if (this.props.activeClipName) {
+      clip = this.props.shot.getClip(this.props.activeClipName);
       snippet = clip.image.url;
     }
     //console.log("snippet", Object.getOwnPropertyNames(snippet));
@@ -93,24 +93,13 @@ let ShootPanel = React.createClass({
   },
 
   setCaptureType: function (type) {
-    self.port.emit("setCaptureType", this.props.panelState.activeClipIndex, type);
+    self.port.emit("setCaptureType", type);
   }
 });
-
-let panelState = {
-  lastClipId: null,
-  activeClipIndex: null
-};
 
 self.port.on("shotData", err.watchFunction(function (data) {
   console.log("shotData", Object.getOwnPropertyNames(data));
   let myShot = new shot.AbstractShot(data.backend, data.id, data.shot);
-  if (myShot.id != panelState.lastClipId) {
-    panelState = {
-      lastClipId: myShot.id,
-      activeClipIndex: 0
-    };
-  }
   React.render(
-    React.createElement(ShootPanel, {panelState: panelState, shot: myShot}), document.body);
+    React.createElement(ShootPanel, {activeClipName: data.activeClipName, shot: myShot}), document.body);
 }));
