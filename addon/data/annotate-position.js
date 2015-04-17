@@ -9,7 +9,7 @@ function annotatePosition(pos) {
       element = document.body;
     }
     if (! element.id) {
-      throw new Error("Element has no id:", element);
+      throw new Error("Element has no id:", element.tagName + "." + (element.className || "(no class)"));
     }
     let bodyRect = document.body.getBoundingClientRect();
     let elementRect = element.getBoundingClientRect();
@@ -23,12 +23,17 @@ function annotatePosition(pos) {
       width: elementRect.width
     };
   }
-  let pos1 = findElement(pos.left, pos.top);
-  pos.topLeftElement = pos1.element;
-  pos.topLeftOffset = {x: pos1.x, y: pos1.y, height: pos1.height, width: pos1.width};
-  if (typeof pos.bottom == "number") {
-    let pos2 = findElement(pos.right, pos.bottom);
-    pos.bottomRightElement = pos2.element;
-    pos.bottomRightOffset = {x: pos2.x, y: pos2.y, height: pos2.height, width: pos2.width};
+  document.body.classList.add("pageshot-hide-selection");
+  try {
+    let pos1 = findElement(pos.left, pos.top);
+    pos.topLeftElement = pos1.element;
+    pos.topLeftOffset = {x: pos1.x, y: pos1.y, height: pos1.height, width: pos1.width};
+    if (typeof pos.bottom == "number") {
+      let pos2 = findElement(pos.right, pos.bottom);
+      pos.bottomRightElement = pos2.element;
+      pos.bottomRightOffset = {x: pos2.x, y: pos2.y, height: pos2.height, width: pos2.width};
+    }
+  } finally {
+    document.body.classList.remove("pageshot-hide-selection");
   }
 }
