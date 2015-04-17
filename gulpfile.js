@@ -91,7 +91,7 @@ var afplayExists = require("fs").existsSync("/usr/bin/afplay");
 
 gulp.task("notify-start-addon", function () {
   if (afplayExists) {
-    require("child_process").spawn("/usr/bin/afplay", ["bin/sharpen-knife.mp3"]);
+    require("child_process").spawn("/usr/bin/afplay", ["bin/elevator-ding-reverse.mp3"]);
   }
 });
 
