@@ -67,7 +67,6 @@ class Model {
   }
 
   get(id) {
-    console.log("GET", JSON.stringify(id));
     return getConnection().then(([client, done]) => {
       return new Promise((resolve, reject) => {
         client.query(
@@ -98,7 +97,6 @@ class Model {
   }
 
   put(id, value) {
-    console.log("PUT", JSON.stringify(id));
     return getConnection().then(([client, done]) => {
       return new Promise((resolve, reject) => {
         function rollback(err) {
