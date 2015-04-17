@@ -128,7 +128,13 @@ const PanelContext = {
     if (this._activeContext !== shotContext) {
       return;
     }
-    shootPanel.port.emit("shotData", shotContext.shot.asJson());
+    shootPanel.port.emit("shotData",
+      {
+        backend: shotContext.shot.backend,
+        id: shotContext.shot.id,
+        shot: shotContext.shot.asJson()
+      }
+    );
   },
 
   /** Called when a ShotContext is going away, to remove its

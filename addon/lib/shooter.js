@@ -94,8 +94,9 @@ const ShotContext = Class({
     this.id = ++this._idGen;
     this.tab = tabs.activeTab;
     this.tabUrl = this.tab.url;
-    this.shot = new Shot(backend, Math.floor(Date.now()) + "/xxx", this.tabUrl);
+    this.shot = new Shot(backend, Math.floor(Date.now()) + "/xxx", {url: this.tabUrl});
     clipboard.set(this.shot.viewUrl, "text");
+    this.activeClipIndex = null;
     this._deregisters = [];
     this.panelContext = panelContext;
     this._workerActive = false;
@@ -106,15 +107,9 @@ const ShotContext = Class({
       panelContext.show(this);
     });
     this.watchTab("pageshow", function (tab) {
-      this._workerActive = false;
-      if (tab.url != this.tabUrl) {
-        // FIXME: not sure if we should destroy?  Or only when the tab is
-        // closed?  If you click a link, then go back, then you'll have lost
-        // this shot.  Maybe that's okay.
-        this.destroy();
-      } else {
-        panelContext.show(this);
-      }
+      // We'll call any pageshow as a sign that at least we reloaded, and should
+      // stop the pageshot
+      this.destroy();
     });
     this.watchTab("close", function () {
       this.destroy();
@@ -130,15 +125,16 @@ const ShotContext = Class({
     this.interactiveWorker = watchWorker(this.tab.attach({
       contentScriptFile: [
         self.data.url("error-utils.js"),
+        self.data.url("annotate-position.js"),
         self.data.url("capture-selection.js"),
         self.data.url("shooter-interactive-worker.js")]
     }));
     this.interactiveWorker.port.on("ready", watchFunction(function () {
       this.interactiveWorker.port.emit("linkLocation", self.data.url("inline-selection.css"));
-      this.interactiveWorker.port.emit("setState", "select");
+      this.interactiveWorker.port.emit("setState", "auto");
     }).bind(this));
-    this.interactiveWorker.port.on("select", watchFunction(function (pos) {
-      // FIXME: there shouldn't be this disconnect between arguments
+    this.interactiveWorker.port.on("select", watchFunction(function (pos, shotText, captureType) {
+      // FIXME: there shouldn't be this disconnect between arguments to captureTab
       var info = {
         x: pos.left,
         y: pos.top,
@@ -146,23 +142,36 @@ const ShotContext = Class({
         w: pos.right - pos.left
       };
       watchPromise(captureTab(this.tab, info).then((function (imgUrl) {
-        this.shot.addClip({
+        let clip = null;
+        if (this.activeClipIndex !== null) {
+          clip = this.shot.getClip(this.shot.clipNames()[this.activeClipIndex]);
+        }
+        let data = {
           createdDate: Date.now(),
           image: {
             url: imgUrl,
-            location: {
-              top: pos.top,
-              left: pos.left,
-              right: pos.right,
-              bottom: pos.bottom,
-              // FIXME: get location
-              topLeftElement: "",
-              topLeftOffset: {x: 0, y: 0},
-              bottomRightElement: "",
-              bottomRightOffset: {x: 0, y: 0}
-            }
+            captureType: captureType,
+            text: shotText,
+            location: pos
           }
-        });
+        };
+        if (clip) {
+          clip.image = data.image;
+        } else {
+          this.shot.addClip(data);
+        }
+        this.updateShot();
+        this.panelContext.show(this);
+      }).bind(this)));
+    }, this));
+    this.interactiveWorker.port.on("noAutoSelection", watchFunction(function () {
+      watchPromise(this.makeScreenshot().then((function (clipData) {
+        if (this.activeClipIndex !== null) {
+          let clip = this.shot.getClip(this.shot.clipNames()[this.activeClipIndex]);
+          clip.image = clipData.image;
+        } else {
+          this.shot.addClip(clipData);
+        }
         this.updateShot();
         this.panelContext.show(this);
       }).bind(this)));
@@ -186,6 +195,13 @@ const ShotContext = Class({
     }, this));
     this.interactiveWorker.port.on("popstate", watchFunction(function (newUrl) {
       this.destroy();
+    }, this));
+    this._pendingScreenPositions = [];
+    this.interactiveWorker.port.on("screenPosition", watchFunction(function (pos) {
+      for (let deferred of this._pendingScreenPositions) {
+        deferred.resolve(pos);
+      }
+      this._pendingScreenPositions = [];
     }, this));
     this._workerActive = true;
   },
@@ -222,6 +238,24 @@ const ShotContext = Class({
     },
     openLink: function (link) {
       tabs.open(link);
+    },
+    setCaptureType: function (index, type) {
+      this.activeClipIndex = index;
+      let clip = this.shot.getClip(this.shot.clipNames()[index]);
+      if (type == "visible") {
+        this.interactiveWorker.port.emit("setState", "cancel");
+        watchPromise(this.makeScreenshot().then((imgData) => {
+          clip.image = imgData.image;
+          this.updateShot();
+        }));
+      } else if (type == "selection") {
+        this.interactiveWorker.port.emit("setState", "selection");
+        this.panelContext.hide(this);
+      } else if (type == "auto") {
+        this.interactiveWorker.port.emit("setState", "auto");
+      } else {
+        throw new Error("UnexpectedType: " + type);
+      }
     }
   },
 
@@ -266,6 +300,28 @@ const ShotContext = Class({
     this._deregisters.push(['tab', eventName, callback]);
   },
 
+  makeScreenshot: function () {
+    return captureTab(this.tab, null).then((imgUrl) => {
+      return this.getScreenPosition().then(function (pos) {
+        return {
+          createdDate: Date.now(),
+          image: {
+            url: imgUrl,
+            captureType: "visible",
+            location: pos
+          }
+        };
+      });
+    });
+  },
+
+  getScreenPosition: function () {
+    let deferred = defer();
+    this._pendingScreenPositions.push(deferred);
+    this.interactiveWorker.port.emit("getScreenPosition");
+    return deferred.promise;
+  },
+
   /** Renders this object unusable, and unregisters any handlers */
   destroy: function () {
     for (let i=0; i<this._deregisters.length; i++) {
@@ -290,8 +346,8 @@ exports.ShotContext = ShotContext;
 
 class Shot extends AbstractShot {
   constructor(backend, id, attrs) {
-    //super(backend, id, attrs);
-    AbstractShot.call(this, backend, id, attrs);
+    super(backend, id, attrs);
+    //AbstractShot.call(this, backend, id, attrs);
   }
 
   save() {

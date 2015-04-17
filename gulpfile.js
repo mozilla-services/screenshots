@@ -82,9 +82,35 @@ gulp.task("addon", ["javascript-addon"], function () {
     script: "helper.js",
     ignore: ["server", "addon/dist", "**/Profile", "pageshot-presentation", "**/node_modules"],
     ext: "html css png js",
-    tasks: ["javascript-addon"]
+    tasks: ["notify-start-addon", "notify-end-addon"]
   });
 //  run("cd addon/dist && ./run --local").exec();
+});
+
+var afplayExists = require("fs").existsSync("/usr/bin/afplay");
+
+gulp.task("notify-start-addon", function () {
+  if (afplayExists) {
+    require("child_process").spawn("/usr/bin/afplay", ["bin/elevator-ding-reverse.mp3"]);
+  }
+});
+
+gulp.task("notify-end-addon", ["javascript-addon"], function () {
+  if (afplayExists) {
+    require("child_process").spawn("/usr/bin/afplay", ["bin/elevator-ding.mp3"]);
+  }
+});
+
+gulp.task("notify-start-transforms", function () {
+  if (afplayExists) {
+    require("child_process").spawn("/usr/bin/afplay", ["bin/hole-punch-reverse.mp3"]);
+  }
+});
+
+gulp.task("notify-end-transforms", ["transforms"], function () {
+  if (afplayExists) {
+    require("child_process").spawn("/usr/bin/afplay", ["bin/hole-punch.mp3"]);
+  }
 });
 
 gulp.task("default", ["lint", "transforms"], function () {
@@ -92,7 +118,7 @@ gulp.task("default", ["lint", "transforms"], function () {
     script: "server/run",
     ignore: ["server/dist", "server/dist-production", "addon", "**/Profile", "pageshot-presentation", "**/node_modules"],
     ext: "js jsx scss",
-    tasks: ["lint", "transforms"]
+    tasks: ["lint", "notify-start-transforms", "notify-end-transforms"]
   });
 
   // Run the addon in a different process so that we can nodemon different things
@@ -106,7 +132,7 @@ gulp.task("default", ["lint", "transforms"], function () {
           where("addon:", lines[i]);
         }
       }
-    }
+    };
   }
 
   add.stdout.on("data", log(console.log.bind(console)));
@@ -118,5 +144,3 @@ gulp.task("default", ["lint", "transforms"], function () {
   });
 
 });
-
-

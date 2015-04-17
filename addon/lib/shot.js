@@ -18,7 +18,7 @@ function assert(condition) {
 /** True if `url` is a valid URL */
 function isUrl(url) {
   // FIXME: this is rather naive, obviously
-  if ((/^about:[a-zA-Z0-9_\-]+$/i).test(url)) {
+  if ((/^about:.+$/i).test(url)) {
     return true;
   }
   if ((/^file:\/.*$/i).test(url)) {
@@ -165,14 +165,13 @@ function makeUuid() {
 
 class AbstractShot {
 
-  constructor(backend, id, url, attrs) {
+  constructor(backend, id, attrs) {
     this.clearDirty();
     attrs = attrs || {};
-    assert((/^[a-zA-Z0-9]+\/[a-z0-9\.-]+$/).test(id), "Bad ID (should be alphanumeric):", id);
+    assert((/^[a-zA-Z0-9]+\/[a-z0-9\.-]+$/).test(id), "Bad ID (should be alphanumeric):", JSON.stringify(id));
     this._backend = backend;
     this._id = id;
-    assert(isUrl(url), "Bad URL:", url);
-    this._url = url;
+    this.url = attrs.url;
     this.docTitle = attrs.docTitle || null;
     this.ogTitle = attrs.ogTitle || null;
     this.userTitle = attrs.userTitle || null;
@@ -199,12 +198,16 @@ class AbstractShot {
     if (attrs.clips) {
       for (let clipId in attrs.clips) {
         let clip = attrs.clips[clipId];
-        this.clips[clipId] = new this.Clip(this, clipId, clip);
+        this._clips[clipId] = new this.Clip(this, clipId, clip);
       }
     }
+
     for (let attr in attrs) {
-      if (attr != "clips" && ! checkObject(attrs, this.REGULAR_ATTRS)) {
+      if (attr !== "clips" && attr !== "id" && this.REGULAR_ATTRS.indexOf(attr) === -1) {
         throw new Error("Unexpected attribute: " + attr);
+      } else if (attr === "id") {
+        console.warn("passing id in attrs in AbstractShot constructor");
+        assert(attrs.id === this.id);
       }
     }
     // Reset all the dirty items that were unnecessarily set:
@@ -215,12 +218,12 @@ class AbstractShot {
       of `json.clips` */
   update(json) {
     let ALL_ATTRS = ["clips"].concat(this.REGULAR_ATTRS);
-    assert(checkObject(json, [], ALL_ATTRS), "Bad attr to new Shot()");
+    assert(checkObject(json, [], ALL_ATTRS), "Bad attr to new Shot():", Object.keys(json));
     for (let attr in json) {
       if (attr == "clips") {
         continue;
       }
-      if (typeof json[attr] == "object" && typeof this[attr] == "object") {
+      if (typeof json[attr] == "object" && typeof this[attr] == "object" && this[attr] !== null) {
         let val = this[attr];
         if (val.asJson) {
           val = val.asJson();
@@ -264,8 +267,7 @@ class AbstractShot {
   /** Returns a JSON version of this shot */
   asJson() {
     let result = {
-      id: this.id,
-      url: this.url
+      id: this.id
     };
     for (let attr of this.REGULAR_ATTRS) {
       var val = this[attr];
@@ -315,6 +317,11 @@ class AbstractShot {
 
   get url() {
     return this._url;
+  }
+  set url(val) {
+    assert(val && isUrl(val), "Bad URL:", val);
+    this._dirty("url");
+    this._url = val;
   }
 
   get viewUrl() {
@@ -428,6 +435,11 @@ class AbstractShot {
     this._dirty("readable");
   }
 
+  clipNames() {
+    let names = Object.getOwnPropertyNames(this._clips);
+    names.sort();
+    return names;
+  }
   getClip(name) {
     return this._clips[name];
   }
@@ -447,6 +459,16 @@ class AbstractShot {
     }
     this._dirtyClip(name);
     delete this._clips[name];
+  }
+
+  // FIXME: we should check this object more thoroughly
+  get microdata() {
+    return this._microdata;
+  }
+  set microdata(val) {
+    assert(typeof val == "object" || ! val);
+    this._dirty("microdata");
+    this._microdata = val;
   }
 
   get head() {
@@ -481,25 +503,26 @@ class AbstractShot {
     }
   }
 
-  get headAttrs() {
-    return this._headAttrs;
+  get htmlAttrs() {
+    return this._htmlAttrs;
   }
-  set headAttrs(val) {
+  set htmlAttrs(val) {
     if (! val) {
-      this._headAttrs = null;
-      this._dirty("headAttrs");
+      this._htmlAttrs = null;
+      this._dirty("htmlAttrs");
     } else {
-      assert(isAttributePairs(val), "Bad headAttrs:", val);
-      this._headAttrs = val;
-      this._dirty("headAttrs");
+      assert(isAttributePairs(val), "Bad htmlAttrs:", val);
+      this._htmlAttrs = val;
+      this._dirty("htmlAttrs");
     }
   }
 
 }
 
 AbstractShot.prototype.REGULAR_ATTRS = (`
-docTitle ogTitle userTitle createdDate createdDevice favicon
+url docTitle ogTitle userTitle createdDate createdDevice favicon
 history comments hashtags hashtags images readable head body htmlAttrs bodyAttrs
+microdata
 `).split(/\s+/g);
 
 /** Represents the list of history items leading up to the given shot */
@@ -508,12 +531,12 @@ class _History {
     this._shot = shot;
     this._history = [];
     if (json && json.items) {
-      json.forEach((val) => this.add(val));
+      json.items.forEach((val) => this.add(val));
     }
   }
 
   add(val) {
-    assert(checkObject(val, ["url"], ["opened", "viewingTime", "docTitle", "favicon", "public"]), "Bad attrs in history item:", val);
+    assert(checkObject(val, ["url"], ["opened", "viewingTime", "docTitle", "favicon", "public"]), "Bad attrs in history item:", Object.keys(val));
     val.public = !! val.public;
     assert(isUrl(val.url), "Bad history item URL:", val.url);
     assert(typeof val.docTitle == "string" || ! val.docTitle, "Bad history item title:", val.docTitle);
@@ -542,7 +565,7 @@ class _Comment {
   // FIXME: either we have to notify the shot of updates, or make
   // this read-only (as a result this is read-only *but not enforced*)
   constructor(json) {
-    assert(checkObject(json, ["user", "createdDate", "text"], ["hidden", "flagged"]), "Bad attrs for Comment:", json);
+    assert(checkObject(json, ["user", "createdDate", "text"], ["hidden", "flagged"]), "Bad attrs for Comment:", Object.keys(json));
     assert(typeof json.user == "string" && json.user, "Bad Comment user:", json.user);
     this.user = json.user;
     assert(typeof json.createdDate == "number", "Bad Comment createdDate:", json.createdDate);
@@ -565,7 +588,7 @@ class _Image {
   // FIXME: either we have to notify the shot of updates, or make
   // this read-only
   constructor(json) {
-    assert(checkObject(json, ["url"], ["dimensions", "isReadable", "title", "alt"]), "Bad attrs for Image:", json);
+    assert(checkObject(json, ["url"], ["dimensions", "isReadable", "title", "alt"]), "Bad attrs for Image:", Object.keys(json));
     assert(isUrl(json.url), "Bad Image url:", json.url);
     this.url = json.url;
     assert((! json.dimensions) ||
@@ -676,8 +699,10 @@ class _Clip {
     return this._image;
   }
   set image(image) {
-    assert(checkObject(image, ["url"], ["dimensions", "text", "location"]), "Bad attrs for Clip Image:", Object.keys(image));
+    assert(checkObject(image, ["url"], ["dimensions", "text", "location", "captureType"]), "Bad attrs for Clip Image:", Object.keys(image));
     assert(isUrl(image.url), "Bad Clip image URL:", image.url);
+    assert(image.captureType == "selection" || image.captureType == "visible" || image.captureType == "auto" || ! image.captureType, "Bad image.captureType:", image.captureType);
+    assert(typeof image.text == "string" || ! image.text);
     if (image.dimensions) {
       assert(typeof image.dimensions.x == "number" && typeof image.dimensions.y == "number", "Bad Clip image dimensions:", image.dimensions);
       assert(typeof image.text == "string" || ! image.text, "Bad Clip image text:", image.text);
@@ -686,13 +711,19 @@ class _Clip {
       typeof image.location.left == "number" &&
       typeof image.location.right == "number" &&
       typeof image.location.top == "number" &&
-      typeof image.location.bottom == "number" &&
-      typeof image.location.topLeftElement == "string" &&
-      typeof image.location.topLeftOffset.x == "number" &&
-      typeof image.location.topLeftOffset.y == "number" &&
-      typeof image.location.bottomRightElement == "string" &&
-      typeof image.location.bottomRightOffset.x == "number" &&
-      typeof image.location.bottomRightOffset.y == "number", "Bad Clip image location:", image.location);
+      typeof image.location.bottom == "number", "Bad Clip image pixel location:", image.location);
+    if (image.location.topLeftElement || image.location.topLeftOffset ||
+        image.location.bottomRightElement || image.location.bottomRightOffset) {
+      assert(typeof image.location.topLeftElement == "string" &&
+        image.location.topLeftOffset &&
+        typeof image.location.topLeftOffset.x == "number" &&
+        typeof image.location.topLeftOffset.y == "number" &&
+        typeof image.location.bottomRightElement == "string" &&
+        image.location.bottomRightOffset &&
+        typeof image.location.bottomRightOffset.x == "number" &&
+        typeof image.location.bottomRightOffset.y == "number",
+        "Bad Clip image element location:", image.location);
+    }
     assert(! this._text, "Clip cannot have both image and text");
     this._dirty("image");
     this._image = image;
