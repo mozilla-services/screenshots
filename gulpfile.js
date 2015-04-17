@@ -101,12 +101,24 @@ gulp.task("notify-end-addon", ["javascript-addon"], function () {
   }
 });
 
+gulp.task("notify-start-transforms", function () {
+  if (afplayExists) {
+    require("child_process").spawn("/usr/bin/afplay", ["bin/hole-punch-reverse.mp3"]);
+  }
+});
+
+gulp.task("notify-end-transforms", ["transforms"], function () {
+  if (afplayExists) {
+    require("child_process").spawn("/usr/bin/afplay", ["bin/hole-punch.mp3"]);
+  }
+});
+
 gulp.task("default", ["lint", "transforms"], function () {
   nodemon({
     script: "server/run",
     ignore: ["server/dist", "server/dist-production", "addon", "**/Profile", "pageshot-presentation", "**/node_modules"],
     ext: "js jsx scss",
-    tasks: ["lint", "transforms"]
+    tasks: ["lint", "notify-start-transforms", "notify-end-transforms"]
   });
 
   // Run the addon in a different process so that we can nodemon different things
