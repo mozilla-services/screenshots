@@ -1,4 +1,4 @@
-/* globals watchFunction */
+/* globals watchFunction, require */
 /* exported FILENAME */
 /** The worker for shoot-panel.html
     This is setup and directly communicated to by main.js
@@ -43,7 +43,7 @@ let ShootPanel = React.createClass({
     console.log("render panel", this.props.shot.viewUrl);
     console.log("clipnames", clipNames);
     let snippet = "";
-    if (clipNames) {
+    if (clipNames.length) {
       snippet = this.props.shot.getClip(clipNames[0]).image.url;
     }
     //console.log("snippet", Object.getOwnPropertyNames(snippet));
@@ -81,6 +81,3 @@ self.port.on("shotData", err.watchFunction(function (data) {
   React.render(
     React.createElement(ShootPanel, {shot: myShot}), document.body);
 }));
-
-
-
