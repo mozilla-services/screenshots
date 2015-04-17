@@ -268,7 +268,7 @@ const ShotContext = Class({
   },
 
   makeScreenshot: function () {
-    return captureTab(this.tab, null).then(function (imgUrl) {
+    return captureTab(this.tab, null).then((imgUrl) => {
       return this.getScreenPosition().then(function (pos) {
         return {
           createdDate: Date.now(),

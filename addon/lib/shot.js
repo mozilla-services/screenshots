@@ -198,11 +198,12 @@ class AbstractShot {
     if (attrs.clips) {
       for (let clipId in attrs.clips) {
         let clip = attrs.clips[clipId];
-        this.clips[clipId] = new this.Clip(this, clipId, clip);
+        this._clips[clipId] = new this.Clip(this, clipId, clip);
       }
     }
+
     for (let attr in attrs) {
-      if (attr != "clips" && this.REGULAR_ATTRS.indexOf(attr) == -1) {
+      if (attr !== "clips" && attr !== "id" && this.REGULAR_ATTRS.indexOf(attr) == -1) {
         throw new Error("Unexpected attribute: " + attr);
       }
     }
@@ -431,6 +432,9 @@ class AbstractShot {
     this._dirty("readable");
   }
 
+  clipNames() {
+    return Object.getOwnPropertyNames(this._clips);
+  }
   getClip(name) {
     return this._clips[name];
   }
@@ -522,7 +526,7 @@ class _History {
     this._shot = shot;
     this._history = [];
     if (json && json.items) {
-      json.forEach((val) => this.add(val));
+      json.items.forEach((val) => this.add(val));
     }
   }
 
