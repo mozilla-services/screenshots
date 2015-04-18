@@ -437,7 +437,9 @@ class AbstractShot {
 
   clipNames() {
     let names = Object.getOwnPropertyNames(this._clips);
-    names.sort();
+    names.sort(function (a, b) {
+      return a.sortOrder < b.sortOrder ? 1 : 0;
+    });
     return names;
   }
   getClip(name) {
@@ -644,7 +646,16 @@ class _Clip {
     assert(typeof id == "string" && id, "Bad Clip id:", id);
     this.id = id;
     this.createdDate = json.createdDate;
-    this.sortOrder = json.sortOrder;
+    assert(typeof json.sortOrder == "number" || ! json.sortOrder, "Bad Clip sortOrder:", json.sortOrder);
+    if (json.sortOrder) {
+      this.sortOrder = json.sortOrder;
+    } else {
+      let biggestOrder = 0;
+      for (let clipId of shot.clipNames()) {
+        biggestOrder = Math.max(biggestOrder, shot.getClip(clipId).sortOrder);
+      }
+      this.sortOrder = biggestOrder + 100;
+    }
     if (json.image) {
       this.image = json.image;
     } else if (json.text) {

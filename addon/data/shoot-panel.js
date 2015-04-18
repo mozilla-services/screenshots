@@ -1,4 +1,4 @@
-/* globals watchFunction, require */
+/* globals require, self */
 /* exported FILENAME */
 /** The worker for shoot-panel.html
     This is setup and directly communicated to by main.js
@@ -13,6 +13,8 @@ let err = require("./error-utils.js"),
 
 // For error messages:
 let FILENAME = "shoot-panel.js";
+let isAdding = {};
+let lastData;
 
 let ShootPanel = React.createClass({
   onCopyClick: function (e) {
@@ -39,7 +41,9 @@ let ShootPanel = React.createClass({
   },
 
   render: function () {
-    let clipNames = this.props.shot.clipNames();
+    if (isAdding[this.props.shot.id] !== undefined) {
+      return this.renderAddScreen();
+    }
     console.log("render panel", this.props.shot.viewUrl);
     let snippet = "icons/loading.png";
     let clip = null;
@@ -55,8 +59,20 @@ let ShootPanel = React.createClass({
     };
     let clipType = (clip ? clip.image.captureType : null) || "auto";
     modeClasses[clipType] += " mode-selected";
+    let selectors = [];
+    let clipNames = this.props.shot.clipNames();
+    if (clipNames.length > 1) {
+      for (let i=0; i<clipNames.length; i++) {
+        let selectorClass = "clip-selector";
+        if (clipNames[i] == this.props.activeClipName) {
+          selectorClass += " clip-selector-selected";
+        }
+        let selector = <span className={selectorClass} data-clip-id={clipNames[i]} onClick={this.selectClip}>{i+1}</span>;
+        selectors.push(selector);
+      }
+    }
 
-    return <div className="container">
+    return (<div className="container">
       <div className="modes-row">
         <span className={modeClasses.auto} onClick={this.setAuto}>
           Auto-detect
@@ -70,7 +86,8 @@ let ShootPanel = React.createClass({
       </div>
       <img className="snippet" src={ snippet }/>
       <div className="snippets-row">
-        <a href="#">+</a>
+        {selectors}
+        <span className="clip-selector" onClick={this.addClip}>+</span>
       </div>
       <div className="link-row">
         <a className="link" target="_blank" href={ this.props.shot.viewUrl } onClick={ this.onLinkClick }>{ this.props.shot.viewUrl }</a>
@@ -79,7 +96,19 @@ let ShootPanel = React.createClass({
 
       <div className="comment">{this.props.shot.comment}</div>
       <input className="comment-input" ref="input" type="text" placeholder="Say something" onKeyup={ this.onKeyup }/>
-    </div>;
+    </div>);
+  },
+
+  selectClip: function (event) {
+    let clipId = event.target.getAttribute("data-clip-id");
+    self.port.emit("selectClip", clipId);
+  },
+
+  addClip: function () {
+    isAdding[this.props.shot.id] = this.props.shot.clipNames().length;
+    setTimeout(function () {
+      renderData(lastData);
+    });
   },
 
   setAuto: function () {
@@ -94,12 +123,67 @@ let ShootPanel = React.createClass({
 
   setCaptureType: function (type) {
     self.port.emit("setCaptureType", type);
+  },
+
+  renderAddScreen: function () {
+    return (<div className="container">
+      <div className="add-row">
+        <div className="button-row">
+          <button onClick={this.addAuto}>Add Auto-Detect</button>
+        </div>
+      </div>
+      <div className="add-row">
+        <div className="button-row">
+          <button onClick={this.addSelection}>Add Selection</button>
+        </div>
+      </div>
+      <div className="add-row">
+        <div className="button-row">
+          <button onClick={this.addVisible}>Add Visible</button>
+        </div>
+      </div>
+      <div className="add-row">
+        <div className="button-row">
+          <button onClick={this.addCancel}>Cancel</button>
+        </div>
+      </div>
+    </div>);
+  },
+
+  addAuto: function () {
+    self.port.emit("addClip", "auto");
+  },
+
+  addSelection: function () {
+    self.port.emit("addClip", "selection");
+  },
+
+  addVisible: function () {
+    self.port.emit("addClip", "visible");
+  },
+
+  addCancel: function () {
+    delete isAdding[this.props.shot.id];
+    setTimeout(function () {
+      renderData(lastData);
+    });
   }
+
 });
 
 self.port.on("shotData", err.watchFunction(function (data) {
+  renderData(data);
+}));
+
+function renderData(data) {
+  lastData = data;
   console.log("shotData", Object.getOwnPropertyNames(data));
   let myShot = new shot.AbstractShot(data.backend, data.id, data.shot);
+  if (isAdding[myShot.id] !== undefined) {
+    if (myShot.clipNames().length > isAdding[myShot.id]) {
+      delete isAdding[myShot.id];
+    }
+  }
   React.render(
     React.createElement(ShootPanel, {activeClipName: data.activeClipName, shot: myShot}), document.body);
-}));
+}

@@ -247,14 +247,18 @@ const ShotContext = Class({
       tabs.open(link);
     },
     setCaptureType: function (type) {
-      if (! this.activeClipName) {
-        throw new Error("setCaptureType " + type + " with no activeClipName");
+      let clip;
+      if (this.activeClipName) {
+        clip = this.shot.getClip(this.activeClipName);
       }
-      let clip = this.shot.getClip(this.activeClipName);
       if (type == "visible") {
         this.interactiveWorker.port.emit("setState", "cancel");
         watchPromise(this.makeScreenshot().then((imgData) => {
-          clip.image = imgData.image;
+          if (clip) {
+            clip.image = imgData.image;
+          } else {
+            this.activeClipName = this.shot.addClip(imgData);
+          }
           this.updateShot();
         }));
       } else if (type == "selection") {
@@ -265,6 +269,14 @@ const ShotContext = Class({
       } else {
         throw new Error("UnexpectedType: " + type);
       }
+    },
+    addClip: function (type) {
+      this.activeClipName = null;
+      this.panelHandlers.setCaptureType.call(this, type);
+    },
+    selectClip: function (clipId) {
+      this.activeClipName = clipId;
+      this.updateShot();
     }
   },
 
