@@ -208,6 +208,10 @@ function restore(state, pos) {
     return;
   }
   console.log("restoring from", currentState, state);
+  lastCaptureState = state;
+  if (state == "selection") {
+    state = "madeSelection";
+  }
   setState(state);
   mousedownX = pos.left;
   mousedownY = pos.top;
