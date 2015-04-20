@@ -160,12 +160,9 @@ exports.shot = function shot(state) {
         return Promise.reject(new Error("No data or returned from model"));
       }
 
-      // FIXME we need some way to configure the url
-      let backend = "http://localhost:10080/";
-
       return Promise.resolve({
           shot: JSON.parse(data),
-          backend: backend,
+          backend: state.backend,
           id: key});
     }
   );

@@ -108,14 +108,18 @@ let server = http.createServer(function (req, res) {
 
     console.log("App:", appnames[0].name);
 
+    let backend = "http://" + req.headers.host;
+
     models[appnames[0].name](
       {method: req.method,
+        backend: backend,
         path: state.path,
         params: state.params,
         query: state.query}
     ).then(function (data) {
       data.linkify = routes.linkify;
       data.gitRevision = routes.getGitRevision();
+      data.backend = backend;
 
       let response = React.renderToString(<Handler {...data} />),
         footerIndex = response.indexOf(footer),

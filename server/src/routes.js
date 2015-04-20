@@ -30,7 +30,7 @@ exports.setGitRevision = function (rev) {
 
 exports.getGitRevision = function () {
   return gitRevision;
-}
+};
 
 exports.linkify = function (url) {
   if (url.indexOf("?") !== -1) {
