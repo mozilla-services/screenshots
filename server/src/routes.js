@@ -8,9 +8,7 @@ let React = require("react"),
   shell = require("./views/shell.js"),
   main = require("./views/main.js"),
   frame = require("./views/frame.js"),
-  content = require("./views/content.js"),
-  {AbstractShot} = require("../../addon/dist/lib/shot.js");
-
+  content = require("./views/content.js");
 
 /*
 Shot view: /{random/domainName}
@@ -30,8 +28,12 @@ exports.setGitRevision = function (rev) {
   gitRevision = rev;
 };
 
+exports.getGitRevision = function () {
+  return gitRevision;
+};
+
 exports.linkify = function (url) {
-  if (url.includes("?")) {
+  if (url.indexOf("?") !== -1) {
     url += "&gitRevision=" + gitRevision;
   } else {
     url += "?gitRevision=" + gitRevision;
@@ -55,10 +57,9 @@ try {
   window.React = React;
   window.Router = Router;
   window.shell = shell;
-  window.routes = exports.routes;
+  window.routes = exports;
   window.url = url;
   window.linkify = exports.linkify;
-  window.AbstractShot = AbstractShot;
 } catch (e) {
 
 }

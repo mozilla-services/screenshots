@@ -18,7 +18,7 @@ gulp.task("6to5", function () {
     .pipe(to5())
     .pipe(concat.header(
       "//# sourceMappingURL=<% print(file.path.replace('/src/', '/dist/')) %>.map\n" +
-      "require('source-map-support').install();\n"))
+      "if (typeof require !== 'undefined') { require('source-map-support').install(); }\n"))
     .pipe(sourcemaps.write(".", {sourceRoot: __dirname + "/server/src"}))
     .pipe(gulp.dest("server/dist"));
 });
@@ -38,7 +38,7 @@ gulp.task("javascript", ["6to5"], function () {
   });
 
   return (function () {
-    return bundler.bundle().pipe(source("bundle.js")).pipe(gulp.dest("server/dist/js"));
+    return bundler.bundle().pipe(source("server-bundle.js")).pipe(gulp.dest("server/dist/js"));
   }());
 });
 
