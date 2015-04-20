@@ -316,6 +316,7 @@ const ShotContext = Class({
   /** Sets attributes on the shot, saves it, and updates the panel */
   updateShot: function () {
     this.panelContext.updateShot(this);
+    this.shot.save();
   },
 
   /** Watches for the given event on this context's tab.  The callback will be
