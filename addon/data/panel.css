@@ -52,7 +52,7 @@ input[type=text] {
 }
 
 /*
-  
+
   CSS specific to the pageshot panel
 
 */
@@ -81,11 +81,25 @@ input[type=text] {
   height: 2em;
   padding-top: 1em;
   text-align: center;
+  cursor: pointer;
 }
 
 .mode-selected {
   border-bottom: 2px solid orange;
   background-color: #ababab;
+}
+
+.clip-selector {
+  padding: 0 4px 0 4px;
+  cursor: pointer;
+}
+
+.clip-selector:hover {
+  background-color: #999;
+}
+
+.clip-selector-selected {
+  font-weight: bold;
 }
 
 .snippets-row {
@@ -158,4 +172,11 @@ img.snippet {
   background-color: #f83;
 }
 
+.button-row {
+  margin: 10px 30px 10px 30px;
+}
 
+.button-row button {
+  width: 100%;
+  display: inline-block;
+}

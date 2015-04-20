@@ -107,6 +107,10 @@ self.port.on("setState", watchFunction(function (state) {
   self.port.emit("stateSet", state);
 }));
 
+self.port.on("restore", watchFunction(function (state, pos) {
+  restore(state, pos);
+}));
+
 function reportSelection(captureType) {
   captureEnclosedText(getPos());
   if (typeof mousedownX != "number") {
@@ -140,13 +144,25 @@ self.port.on("getScreenPosition", watchFunction(function () {
   self.port.emit("screenPosition", pos);
 }));
 
+let lastCaptureState;
+let currentState;
+
 function setState(state) {
   // state can be one of:
   //   "cancel": do nothing, hide anything showing
   //   "selection": make a selection with crosshairs (erase any previous selection)
+  //   "madeSelection": after a selection has been made
   //   "auto": make an autoselection
   //   "hide": keep the selection, but make it hidden
   //   "show": show the selection, but don't let it be recreated
+  //   "maybeCancel": set to cancel *if* the mode is not selection
+  if (state == "maybeCancel") {
+    if (currentState == "selection") {
+      // Do nothing in this case
+      return;
+    }
+    state = "cancel";
+  }
   if (state == "cancel") {
     deleteSelection();
     document.body.classList.remove("pageshot-hide-selection");
@@ -159,6 +175,10 @@ function setState(state) {
     document.body.classList.remove("pageshot-hide-movers");
     addHandlers();
     // FIXME: do crosshairs
+  } else if (state == "madeSelection") {
+    document.body.classList.remove("pageshot-hide-selection");
+    document.body.classList.remove("pageshot-hide-movers");
+    removeHandlers();
   } else if (state == "auto") {
     document.body.classList.remove("pageshot-hide-selection");
     document.body.classList.remove("pageshot-hide-movers");
@@ -177,6 +197,27 @@ function setState(state) {
   } else {
     throw new Error("Unknown state: " + state);
   }
+  if (state == "auto" || state == "selection") {
+    lastCaptureState = state;
+  }
+  currentState = state;
+}
+
+function restore(state, pos) {
+  if (currentState != "cancel") {
+    return;
+  }
+  console.log("restoring from", currentState, state);
+  lastCaptureState = state;
+  if (state == "selection") {
+    state = "madeSelection";
+  }
+  setState(state);
+  mousedownX = pos.left;
+  mousedownY = pos.top;
+  cornerX = pos.right;
+  cornerY = pos.bottom;
+  render();
 }
 
 var mousedown = watchFunction(function (event) {
@@ -207,6 +248,7 @@ var mouseup = watchFunction(function (event) {
     cornerY = event.pageY;
     render();
     reportSelection("selection");
+    setState("madeSelection");
   } else {
     startX = startY = null;
   }
@@ -319,6 +361,7 @@ function deleteSelection() {
   boxBottomEl = null;
 }
 
+/** mousedown event for the move handles */
 function makeMousedown(el, movement) {
   return watchFunction(function (event) {
     event.stopPropagation();
@@ -332,7 +375,12 @@ function makeMousedown(el, movement) {
       document.removeEventListener("mousemove", mousemove, false);
       document.removeEventListener("mouseup", mouseup, false);
       set(upEvent);
-      reportSelection("selection");
+      let captureType = currentState;
+      if (currentState == "cancel") {
+        // Happens because resizing can cause a cancel to happen
+        captureType = lastCaptureState;
+      }
+      reportSelection(captureType);
     }
     document.addEventListener("mousemove", mousemove, false);
     document.addEventListener("mouseup", mouseup, false);
