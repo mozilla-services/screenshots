@@ -7,9 +7,6 @@ exports.Frame = React.createClass({
       return <div>Not Found</div>;
     }
 
-    console.log("props.id", this.props.id);
-    console.log("props", Object.getOwnPropertyNames(this.props.shot));
-
     let shot = new AbstractShot("http://localhost:10080/", this.props.id, this.props.shot);
 
     let favicon = "";
