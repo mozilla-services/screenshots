@@ -176,19 +176,12 @@ const ShotContext = Class({
         this.panelContext.show(this);
       }).bind(this)));
     }, this));
-    this.interactiveWorker.port.on("textSelection", watchFunction(function (html) {
-      this.shot.addClip({
+    this.interactiveWorker.port.on("textSelection", watchFunction(function (textSelection) {
+      this.activeClipName = this.shot.addClip({
         createdDate: Date.now(),
         text: {
-          html: html,
-          location: {
-            contextStart: "",
-            contextEnd: "",
-            selectionStart: "",
-            selectionEnd: "",
-            startOffset: 0,
-            endOffset: 0
-          }
+          html: textSelection.html,
+          text: textSelection.text
         }
       });
       this.updateShot();

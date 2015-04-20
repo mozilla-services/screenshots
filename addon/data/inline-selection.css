@@ -88,3 +88,18 @@
   pointer-events: none;
   z-index: 1000;
 }
+
+.pageshot-textbutton {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #666;
+    box-shadow: 5px 5px 10px #999;
+    border-radius: 2px;
+    text-align: center;
+    vertical-align: center;
+    color: #000;
+    background-color: #fff;
+    z-index: 2000;
+    cursor: pointer;
+}

@@ -759,7 +759,8 @@ class _Clip {
     assert(checkObject(text, ["html"], ["text", "location"]), "Bad attrs in Clip text:", Object.keys(text));
     assert(typeof text.html == "string" && text.html, "Bad Clip text html:", text.html);
     assert(typeof text.text == "string" || ! text.text, "Bad Clip text text:", text.text);
-    assert(text.location &&
+    if (text.location) {
+    assert(
       typeof text.location.contextStart == "string" &&
       typeof text.location.contextEnd == "string" &&
       typeof text.location.selectionStart == "string" &&
@@ -767,6 +768,7 @@ class _Clip {
       typeof text.location.startOffset == "number" &&
       typeof text.location.endOffset == "number",
       "Bad Clip text location:", text.location);
+    }
     assert(! this._image, "Clip cannot have both image and text");
     this._dirty("text");
     this._text = text;
