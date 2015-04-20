@@ -465,6 +465,13 @@ class AbstractShot {
     this._dirtyClip(name);
     delete this._clips[name];
   }
+  biggestClipSortOrder() {
+    let biggest = 0;
+    for (let clipId in this._clips) {
+      biggest = Math.max(biggest, this._clips[clipId].sortOrder);
+    }
+    return biggest;
+  }
 
   // FIXME: we should check this object more thoroughly
   get microdata() {
@@ -648,16 +655,13 @@ class _Clip {
     this._initialized = false;
     assert(checkObject(json, ["createdDate"], ["sortOrder", "image", "text", "comments"]), "Bad attrs for Clip:", Object.keys(json));
     assert(typeof id == "string" && id, "Bad Clip id:", id);
-    this.id = id;
+    this._id = id;
     this.createdDate = json.createdDate;
     assert(typeof json.sortOrder == "number" || ! json.sortOrder, "Bad Clip sortOrder:", json.sortOrder);
     if (json.sortOrder) {
       this.sortOrder = json.sortOrder;
     } else {
-      let biggestOrder = 0;
-      for (let clipId of shot.clipNames()) {
-        biggestOrder = Math.max(biggestOrder, shot.getClip(clipId).sortOrder);
-      }
+      let biggestOrder = shot.biggestClipSortOrder();
       this.sortOrder = biggestOrder + 100;
     }
     if (json.image) {
@@ -690,6 +694,10 @@ class _Clip {
         (comment) => comment.asJson());
     }
     return result;
+  }
+
+  get id() {
+    return this._id;
   }
 
   get comments() {
@@ -761,7 +769,7 @@ class _Clip {
       "Bad Clip text location:", text.location);
     assert(! this._image, "Clip cannot have both image and text");
     this._dirty("text");
-    this.text = text;
+    this._text = text;
   }
 
   get sortOrder() {
