@@ -22,9 +22,7 @@ const jspath = "/js/",
   script = `
 function gotData(Handler, data) {
   data.linkify = linkify;
-  if (data.shot) {
-    data.shot = new AbstractModel(data.backend, data.id, data.shot);
-  }
+  routes.setGitRevision(data.gitRevision);
   React.render(React.createElement(Handler, data), document);
 }
 
@@ -117,14 +115,11 @@ let server = http.createServer(function (req, res) {
         query: state.query}
     ).then(function (data) {
       data.linkify = routes.linkify;
+      data.gitRevision = routes.getGitRevision();
 
       let response = React.renderToString(<Handler {...data} />),
         footerIndex = response.indexOf(footer),
         header = response.slice(0, footerIndex);
-
-      if (data.shot) {
-        data.shot = data.shot.asJson();
-      }
 
       res.setHeader(contentType, "text/html; charset=utf-8");
       res.end(

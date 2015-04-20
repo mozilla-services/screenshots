@@ -1,4 +1,5 @@
-let React = require("react");
+let React = require("react"),
+  {AbstractShot} = require("../../../addon/dist/lib/shot.js");
 
 exports.Frame = React.createClass({
   render: function () {
@@ -6,21 +7,29 @@ exports.Frame = React.createClass({
       return <div>Not Found</div>;
     }
 
+    console.log("props.id", this.props.id);
+    console.log("props", Object.getOwnPropertyNames(this.props.shot));
+
+    let shot = new AbstractShot("http://localhost:10080/", this.props.id, this.props.shot);
+
     let favicon = "";
-    if (this.props.shot.favicon) {
-      favicon = <link rel="shortcut icon" href={this.props.shot.favicon} />;
+    if (shot.favicon) {
+      favicon = <link rel="shortcut icon" href={shot.favicon} />;
     }
 
     let snippet = "",
-      clipNames = this.props.shot.clipNames();
+      clipNames = shot.clipNames();
 
     if (clipNames.length) {
-      snippet = this.props.shot.getClip(clipNames[0]).image.url;
+      snippet = shot.getClip(clipNames[0]).image.url;
     }
 
+    console.log("shot names", Object.getOwnPropertyNames(shot));
+    console.log("clipNames", clipNames);
+
     let linkTextShort = "";
-    if (this.props.shot.url) {
-      let txt = this.props.shot.url;
+    if (shot.url) {
+      let txt = shot.url;
       if (txt.length > 50) {
         txt = txt.slice(0, 50) + '...';
       }
@@ -34,10 +43,10 @@ exports.Frame = React.createClass({
         <div className="logged-out" id="login-widget">
           <div id="login-dropdown" className="login-collapsed">
             <div id="login-compact">
-              <img src="https://pageshotpages.appspot.com/static/default-profile.svg" id="login-drop" className="user-avatar" style={{height: "20px", width: "20px"}} />
+              <img src="https://pageshotpages.appspot.com/static/default-profile.svg" id="login-drop" className="user-avatar" style={{ height: "20px", width: "20px" }} />
             </div>
             <div id="login-dropped">
-              <img src="https://pageshotpages.appspot.com/static/default-profile.svg" className="user-avatar" style={{height: "50px", width: "50px"}} />
+              <img src="https://pageshotpages.appspot.com/static/default-profile.svg" className="user-avatar" style={{ height: "50px", width: "50px" }} />
               <div className="if-logged-in">
                 <span className="user-email">-</span>
                 <br />
@@ -50,15 +59,15 @@ exports.Frame = React.createClass({
             </div>
           </div>
         </div>
-        <a className="main-link" href={ this.props.shot.url }>
+        <a className="main-link" href={ shot.url }>
           { linkTextShort }
           <img src={ this.props.linkify("/img/clipboard-8-xl.png") } />
         </a>
       </div>
-      <h1 id="main-title">{this.props.shot.docTitle || this.props.shot.url}</h1>
+      <h1 id="main-title">{ shot.docTitle ||  shot.url }</h1>
       <p>FIXME clip image currently broken</p>
-      <img src={snippet} style={{width: "100%", display: "none"}} />
-      <iframe width="100%" id="frame" src={"/content/" + this.props.shot.id} />
+      <img src={snippet} style={{ width: "100%", display: "none" }} />
+      <iframe width="100%" id="frame" src={ "/content/" +  shot.id } />
     </div>;
   }
 });
