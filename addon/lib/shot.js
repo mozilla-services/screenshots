@@ -664,6 +664,7 @@ class _Clip {
       let biggestOrder = shot.biggestClipSortOrder();
       this.sortOrder = biggestOrder + 100;
     }
+    assert(! (json.image && json.text), "Clip cannot have both .image and .text", Object.keys(json));
     if (json.image) {
       this.image = json.image;
     } else if (json.text) {
@@ -722,13 +723,17 @@ class _Clip {
     return this._image;
   }
   set image(image) {
+    if (! image) {
+      this._image = undefined;
+      this._dirty("image");
+      return;
+    }
     assert(checkObject(image, ["url"], ["dimensions", "text", "location", "captureType"]), "Bad attrs for Clip Image:", Object.keys(image));
     assert(isUrl(image.url), "Bad Clip image URL:", image.url);
     assert(image.captureType == "selection" || image.captureType == "visible" || image.captureType == "auto" || ! image.captureType, "Bad image.captureType:", image.captureType);
-    assert(typeof image.text == "string" || ! image.text);
+    assert(typeof image.text == "string" || ! image.text, "Bad Clip image text:", image.text);
     if (image.dimensions) {
       assert(typeof image.dimensions.x == "number" && typeof image.dimensions.y == "number", "Bad Clip image dimensions:", image.dimensions);
-      assert(typeof image.text == "string" || ! image.text, "Bad Clip image text:", image.text);
     }
     assert(image.location &&
       typeof image.location.left == "number" &&
@@ -747,7 +752,7 @@ class _Clip {
         typeof image.location.bottomRightOffset.y == "number",
         "Bad Clip image element location:", image.location);
     }
-    assert(! this._text, "Clip cannot have both image and text");
+    assert(! this._text, "Clip with .image cannot have .text", JSON.stringify(this._text));
     this._dirty("image");
     this._image = image;
   }
@@ -756,6 +761,11 @@ class _Clip {
     return this._text;
   }
   set text(text) {
+    if (! text) {
+      this._text = undefined;
+      this._dirty("text");
+      return;
+    }
     assert(checkObject(text, ["html"], ["text", "location"]), "Bad attrs in Clip text:", Object.keys(text));
     assert(typeof text.html == "string" && text.html, "Bad Clip text html:", text.html);
     assert(typeof text.text == "string" || ! text.text, "Bad Clip text text:", text.text);
@@ -769,7 +779,7 @@ class _Clip {
       typeof text.location.endOffset == "number",
       "Bad Clip text location:", text.location);
     }
-    assert(! this._image, "Clip cannot have both image and text");
+    assert(! this._image, "Clip with .text cannot have .image", JSON.stringify(this._image));
     this._dirty("text");
     this._text = text;
   }

@@ -145,6 +145,13 @@ const ShotContext = Class({
         let clip = null;
         if (this.activeClipName) {
           clip = this.shot.getClip(this.activeClipName);
+          if (clip && clip.text && captureType == "auto") {
+            // Don't overwrite a text clip with an auto
+            return;
+          }
+          if (clip && clip.text) {
+            clip.text = null;
+          }
         }
         let data = {
           createdDate: Date.now(),
