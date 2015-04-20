@@ -47,6 +47,9 @@ function isAttributePairs(val) {
 /** Check if the given object has all of the required attributes, and no extra
     attributes exception those in optional */
 function checkObject(obj, required, optional) {
+  if (typeof obj != "object" || obj === null) {
+    throw new Error("Cannot check non-object: " + (typeof obj) + " that is " + JSON.stringify(obj));
+  }
   required = required || [];
   for (let attr of required) {
     if (! (attr in obj)) {
@@ -437,7 +440,9 @@ class AbstractShot {
 
   clipNames() {
     let names = Object.getOwnPropertyNames(this._clips);
-    names.sort();
+    names.sort(function (a, b) {
+      return a.sortOrder < b.sortOrder ? 1 : 0;
+    });
     return names;
   }
   getClip(name) {
@@ -588,6 +593,7 @@ class _Image {
   // FIXME: either we have to notify the shot of updates, or make
   // this read-only
   constructor(json) {
+    assert(typeof json === "object", "Clip Image given a non-object", json);
     assert(checkObject(json, ["url"], ["dimensions", "isReadable", "title", "alt"]), "Bad attrs for Image:", Object.keys(json));
     assert(isUrl(json.url), "Bad Image url:", json.url);
     this.url = json.url;
@@ -644,7 +650,16 @@ class _Clip {
     assert(typeof id == "string" && id, "Bad Clip id:", id);
     this.id = id;
     this.createdDate = json.createdDate;
-    this.sortOrder = json.sortOrder;
+    assert(typeof json.sortOrder == "number" || ! json.sortOrder, "Bad Clip sortOrder:", json.sortOrder);
+    if (json.sortOrder) {
+      this.sortOrder = json.sortOrder;
+    } else {
+      let biggestOrder = 0;
+      for (let clipId of shot.clipNames()) {
+        biggestOrder = Math.max(biggestOrder, shot.getClip(clipId).sortOrder);
+      }
+      this.sortOrder = biggestOrder + 100;
+    }
     if (json.image) {
       this.image = json.image;
     } else if (json.text) {
