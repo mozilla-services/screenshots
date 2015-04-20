@@ -47,6 +47,9 @@ function isAttributePairs(val) {
 /** Check if the given object has all of the required attributes, and no extra
     attributes exception those in optional */
 function checkObject(obj, required, optional) {
+  if (typeof obj != "object" || obj === null) {
+    throw new Error("Cannot check non-object: " + (typeof obj) + " that is " + JSON.stringify(obj));
+  }
   required = required || [];
   for (let attr of required) {
     if (! (attr in obj)) {
@@ -590,6 +593,7 @@ class _Image {
   // FIXME: either we have to notify the shot of updates, or make
   // this read-only
   constructor(json) {
+    assert(typeof json === "object", "Clip Image given a non-object", json);
     assert(checkObject(json, ["url"], ["dimensions", "isReadable", "title", "alt"]), "Bad attrs for Image:", Object.keys(json));
     assert(isUrl(json.url), "Bad Image url:", json.url);
     this.url = json.url;

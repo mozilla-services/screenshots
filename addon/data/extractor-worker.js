@@ -55,7 +55,10 @@ function extractData() {
   var readable = reader.parse();
   var microdata = microformats.getItems();
   // FIXME: need to include found images too
-  var images = findImages([document.head, readableDiv, document.body]);
+  var images = findImages([
+    {element: document.head, isReadable: false},
+    {element: readableDiv, isReadable: true},
+    {element: document.body, isReadable: false}]);
   return {
     readable: readable,
     microdata: microdata,
@@ -73,24 +76,27 @@ var MIN_IMAGE_HEIGHT = 200;
 function findImages(elements) {
   var images = [];
   var found = {};
-  function addImage(url) {
-    if (! url) {
+  function addImage(imgData) {
+    if (! (imgData && imgData.src)) {
       return;
     }
     // FIXME: handle relative links
-    if (found[url]) {
+    if (found[imgData.url]) {
       return;
     }
-    images.push(url);
-    found[url] = true;
+    images.push(imgData);
+    found[imgData.url] = true;
   }
   for (var i=0; i<elements.length; i++) {
-    var el = elements[i];
+    var el = elements[i].element;
+    var isReadable = elements[i].isReadable;
     var ogs = el.querySelectorAll("meta[property='og:image']");
     var j;
     for (j=0; j<ogs.length; j++) {
       var src = ogs[i].getAttribute("content");
-      addImage(src);
+      addImage({
+        url: src
+      });
     }
     var imgs = el.querySelectorAll("img");
     imgs = Array.prototype.slice.call(imgs);
@@ -104,7 +110,13 @@ function findImages(elements) {
     for (j=0; j<imgs.length; j++) {
       var img = imgs[j];
       if (img.width >= MIN_IMAGE_WIDTH && img.height >= MIN_IMAGE_HEIGHT) {
-        addImage(img.src);
+        addImage({
+          src: img.src,
+          dimensions: {x: img.width, y: img.height},
+          title: img.getAttribute("title") || null,
+          alt: img.getAttribute("alt") || null,
+          isReadable: isReadable
+        });
       }
     }
   }
