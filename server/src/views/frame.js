@@ -24,9 +24,6 @@ exports.Frame = React.createClass({
       snippet = shot.getClip(clipNames[0]).image.url;
     }
 
-    console.log("shot names", Object.getOwnPropertyNames(shot));
-    console.log("clipNames", clipNames);
-
     let linkTextShort = "";
     if (shot.url) {
       let txt = shot.url;
