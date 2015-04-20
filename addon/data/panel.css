@@ -137,11 +137,25 @@ input[type=text] {
   width: 6em;
 }
 
-img.snippet {
+.snippet-container img {
   position: absolute;
   top: 4.5em;
   left: 5%;
   width: 90%;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  box-shadow: 5px 3px 3px #999;
+}
+
+.snippet-text {
+  position: absolute;
+  top: 4.5em;
+  left: 5%;
+  width: 90%;
+  padding: 6px;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  box-shadow: 5px 3px 3px #999;
 }
 
 /* These elements are marked display: none because they are not currently

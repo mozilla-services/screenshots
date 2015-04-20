@@ -16,6 +16,28 @@ let FILENAME = "shoot-panel.js";
 let isAdding = {};
 let lastData;
 
+/** Renders the image of the clip inside the panel */
+let ImageClip = React.createClass({
+  render: function () {
+    return <img src={this.props.clip.image.url} />;
+  }
+});
+
+/** Renders a the text of a text clip inside the panel */
+let TextClip = React.createClass({
+  render: function () {
+    let html = {__html: this.props.clip.text.html};
+    return <div className="snippet-text" dangerouslySetInnerHTML={html}></div>;
+  }
+});
+
+/** Renders when no clips have yet been added to the shot */
+let LoadingClip = React.createClass({
+  render: function () {
+    return <img src="icons/loading.png" />;
+  }
+});
+
 let ShootPanel = React.createClass({
   onCopyClick: function (e) {
     self.port.emit("copyLink");
@@ -45,20 +67,19 @@ let ShootPanel = React.createClass({
       return this.renderAddScreen();
     }
     console.log("render panel", this.props.shot.viewUrl);
-    let snippet = "icons/loading.png";
     let clip = null;
     if (this.props.activeClipName) {
       clip = this.props.shot.getClip(this.props.activeClipName);
-      snippet = clip.image.url;
     }
-    //console.log("snippet", Object.getOwnPropertyNames(snippet));
     let modeClasses = {
       auto: "mode",
       selection: "mode",
       visible: "mode"
     };
-    let clipType = (clip ? clip.image.captureType : null) || "auto";
-    modeClasses[clipType] += " mode-selected";
+    let clipType = clip && clip.image && clip.image.captureType;
+    if (clipType) {
+      modeClasses[clipType] += " mode-selected";
+    }
     let selectors = [];
     let clipNames = this.props.shot.clipNames();
     if (clipNames.length > 1) {
@@ -70,6 +91,17 @@ let ShootPanel = React.createClass({
         let selector = <span className={selectorClass} data-clip-id={clipNames[i]} onClick={this.selectClip}>{i+1}</span>;
         selectors.push(selector);
       }
+    }
+
+    let clipComponent;
+    if (! clip) {
+      clipComponent = <LoadingClip />;
+    } else if (clip.image) {
+      clipComponent = <ImageClip clip={clip} />;
+    } else if (clip.text) {
+      clipComponent = <TextClip clip={clip} />;
+    } else {
+      throw new Error("Weird clip, no .text or .image");
     }
 
     return (<div className="container">
@@ -84,7 +116,9 @@ let ShootPanel = React.createClass({
           Visible
         </span>
       </div>
-      <img className="snippet" src={ snippet }/>
+      <div className="snippet-container">
+        {clipComponent}
+      </div>
       <div className="snippets-row">
         {selectors}
         <span className="clip-selector" onClick={this.addClip}>+</span>

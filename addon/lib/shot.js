@@ -465,6 +465,13 @@ class AbstractShot {
     this._dirtyClip(name);
     delete this._clips[name];
   }
+  biggestClipSortOrder() {
+    let biggest = 0;
+    for (let clipId in this._clips) {
+      biggest = Math.max(biggest, this._clips[clipId].sortOrder);
+    }
+    return biggest;
+  }
 
   // FIXME: we should check this object more thoroughly
   get microdata() {
@@ -648,18 +655,16 @@ class _Clip {
     this._initialized = false;
     assert(checkObject(json, ["createdDate"], ["sortOrder", "image", "text", "comments"]), "Bad attrs for Clip:", Object.keys(json));
     assert(typeof id == "string" && id, "Bad Clip id:", id);
-    this.id = id;
+    this._id = id;
     this.createdDate = json.createdDate;
     assert(typeof json.sortOrder == "number" || ! json.sortOrder, "Bad Clip sortOrder:", json.sortOrder);
     if (json.sortOrder) {
       this.sortOrder = json.sortOrder;
     } else {
-      let biggestOrder = 0;
-      for (let clipId of shot.clipNames()) {
-        biggestOrder = Math.max(biggestOrder, shot.getClip(clipId).sortOrder);
-      }
+      let biggestOrder = shot.biggestClipSortOrder();
       this.sortOrder = biggestOrder + 100;
     }
+    assert(! (json.image && json.text), "Clip cannot have both .image and .text", Object.keys(json));
     if (json.image) {
       this.image = json.image;
     } else if (json.text) {
@@ -692,6 +697,10 @@ class _Clip {
     return result;
   }
 
+  get id() {
+    return this._id;
+  }
+
   get comments() {
     return this._comments.slice();
   }
@@ -714,13 +723,17 @@ class _Clip {
     return this._image;
   }
   set image(image) {
+    if (! image) {
+      this._image = undefined;
+      this._dirty("image");
+      return;
+    }
     assert(checkObject(image, ["url"], ["dimensions", "text", "location", "captureType"]), "Bad attrs for Clip Image:", Object.keys(image));
     assert(isUrl(image.url), "Bad Clip image URL:", image.url);
     assert(image.captureType == "selection" || image.captureType == "visible" || image.captureType == "auto" || ! image.captureType, "Bad image.captureType:", image.captureType);
-    assert(typeof image.text == "string" || ! image.text);
+    assert(typeof image.text == "string" || ! image.text, "Bad Clip image text:", image.text);
     if (image.dimensions) {
       assert(typeof image.dimensions.x == "number" && typeof image.dimensions.y == "number", "Bad Clip image dimensions:", image.dimensions);
-      assert(typeof image.text == "string" || ! image.text, "Bad Clip image text:", image.text);
     }
     assert(image.location &&
       typeof image.location.left == "number" &&
@@ -739,7 +752,7 @@ class _Clip {
         typeof image.location.bottomRightOffset.y == "number",
         "Bad Clip image element location:", image.location);
     }
-    assert(! this._text, "Clip cannot have both image and text");
+    assert(! this._text, "Clip with .image cannot have .text", JSON.stringify(this._text));
     this._dirty("image");
     this._image = image;
   }
@@ -748,10 +761,16 @@ class _Clip {
     return this._text;
   }
   set text(text) {
+    if (! text) {
+      this._text = undefined;
+      this._dirty("text");
+      return;
+    }
     assert(checkObject(text, ["html"], ["text", "location"]), "Bad attrs in Clip text:", Object.keys(text));
     assert(typeof text.html == "string" && text.html, "Bad Clip text html:", text.html);
     assert(typeof text.text == "string" || ! text.text, "Bad Clip text text:", text.text);
-    assert(text.location &&
+    if (text.location) {
+    assert(
       typeof text.location.contextStart == "string" &&
       typeof text.location.contextEnd == "string" &&
       typeof text.location.selectionStart == "string" &&
@@ -759,9 +778,10 @@ class _Clip {
       typeof text.location.startOffset == "number" &&
       typeof text.location.endOffset == "number",
       "Bad Clip text location:", text.location);
-    assert(! this._image, "Clip cannot have both image and text");
+    }
+    assert(! this._image, "Clip with .text cannot have .image", JSON.stringify(this._image));
     this._dirty("text");
-    this.text = text;
+    this._text = text;
   }
 
   get sortOrder() {

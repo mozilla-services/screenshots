@@ -575,7 +575,6 @@ function captureEnclosedText(box) {
   } else {
     selectedText = null;
   }
-  //console.log("Found text:", selectedText);
 }
 
 /**********************************************************
@@ -801,15 +800,60 @@ function autoSelect(ids) {
  */
 
 function captureSelection() {
-  console.log("trying selection", window.getSelection().getRangeAt(0));
-  var selection = extractSelection(window.getSelection().getRangeAt(0));
-  console.log("got selection", selection);
-  self.port.emit("textSelection", selection.outerHTML);
+  let range = window.getSelection().getRangeAt(0);
+  console.log("trying selection", range.toString());
+  var selection = extractSelection(range);
+  self.port.emit("textSelection", {
+    html: selection.outerHTML,
+    text: range.toString
+    // FIXME: add location
+  });
 }
 
 if (window.getSelection().rangeCount && ! window.getSelection().isCollapsed) {
   watchFunction(captureSelection)();
 }
+
+let textSelectButton;
+
+window.addEventListener("mouseup", watchFunction(function (event) {
+  if (textSelectButton) {
+    textSelectButton.parentNode.removeChild(textSelectButton);
+    textSelectButton = null;
+  }
+  if (event.target.className == "pageshot-textbutton") {
+    return;
+  }
+  if ((! window.getSelection()) || (! window.getSelection().rangeCount) ||
+      window.getSelection().isCollapsed) {
+    return;
+  }
+  let range = window.getSelection().getRangeAt(0);
+  if (! range) {
+    return;
+  }
+  let rects = range.getClientRects();
+  let rect = rects[0];
+  if (! rect) {
+    throw new Error("No rects in range.getClientRects()");
+  }
+  let button = document.createElement("div");
+  button.className = "pageshot-textbutton";
+  button.setAttribute("title", "Add this selection as a clip");
+  button.textContent = "+";
+  button.addEventListener("mouseup", function (clickEvent) {
+    clickEvent.stopPropagation();
+    textSelectButton.parentNode.removeChild(textSelectButton);
+    textSelectButton = null;
+    captureSelection();
+    return false;
+  }, false);
+  button.style.top = rect.top + document.documentElement.scrollTop - bodyRect.top - 21 + "px";
+  button.style.left = rect.left + document.documentElement.scrollLeft - bodyRect.left + "px";
+  document.body.appendChild(button);
+  textSelectButton = button;
+}), false);
+
 
 /**********************************************************
  * window.history catching
