@@ -26,6 +26,7 @@ let ImageClip = React.createClass({
 /** Renders a the text of a text clip inside the panel */
 let TextClip = React.createClass({
   render: function () {
+    //return <textarea className="snippet-text" value={this.props.clip.text.html} />;
     let html = {__html: this.props.clip.text.html};
     return <div className="snippet-text" dangerouslySetInnerHTML={html}></div>;
   }
