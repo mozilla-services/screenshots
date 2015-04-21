@@ -21,7 +21,7 @@ if [ -e ./pageshot.xpi ] ; then
   mv ./pageshot.xpi server/dist/
   mv ./pageshot.update.rdf server/dist/
 fi
-mv dist-production dist-production.obsolete
-mv dist dist-production
-rm -r dist-production.obsolete
+mv server/dist-production server/dist-production.obsolete
+mv server/dist server/dist-production
+rm -r server/dist-production.obsolete
 sudo service pageshot restart
