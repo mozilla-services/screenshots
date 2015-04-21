@@ -159,7 +159,8 @@ const ShotContext = Class({
             url: imgUrl,
             captureType: captureType,
             text: shotText,
-            location: pos
+            location: pos,
+            dimensions: {x: pos.right - pos.left, y: pos.bottom - pos.top}
           }
         };
         if (clip) {
@@ -343,7 +344,8 @@ const ShotContext = Class({
           image: {
             url: imgUrl,
             captureType: "visible",
-            location: pos
+            location: pos,
+            dimensions: {x: pos.right - pos.left, y: pos.bottom - pos.top}
           }
         };
       });
