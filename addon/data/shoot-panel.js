@@ -54,7 +54,6 @@ let ShootPanel = React.createClass({
   },
 
   onKeyup: function (e) {
-    console.log("onKeyup");
     let input = React.findDOMNode(this.refs.input);
     if (e.which == 13) {
       self.port.emit("addComment", input.value);
@@ -66,7 +65,6 @@ let ShootPanel = React.createClass({
     if (isAdding[this.props.shot.id] !== undefined) {
       return this.renderAddScreen();
     }
-    console.log("render panel", this.props.shot.viewUrl);
     let clip = null;
     if (this.props.activeClipName) {
       clip = this.props.shot.getClip(this.props.activeClipName);
@@ -211,7 +209,6 @@ self.port.on("shotData", err.watchFunction(function (data) {
 
 function renderData(data) {
   lastData = data;
-  console.log("shotData", Object.getOwnPropertyNames(data));
   let myShot = new shot.AbstractShot(data.backend, data.id, data.shot);
   if (isAdding[myShot.id] !== undefined) {
     if (myShot.clipNames().length > isAdding[myShot.id]) {
