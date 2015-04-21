@@ -6,7 +6,6 @@
 function assert(condition) {
   if (! condition) {
     console.log.apply(console, ["Failed assertion:"].concat(Array.prototype.slice.call(arguments, 1)));
-    console.trace();
     if (arguments.length > 1) {
       throw new Error("Failed assertion: " + Array.prototype.slice.call(arguments, 1).join(" "));
     } else {
@@ -210,6 +209,7 @@ class AbstractShot {
         throw new Error("Unexpected attribute: " + attr);
       } else if (attr === "id") {
         console.warn("passing id in attrs in AbstractShot constructor");
+        console.trace();
         assert(attrs.id === this.id);
       }
     }
@@ -269,9 +269,7 @@ class AbstractShot {
 
   /** Returns a JSON version of this shot */
   asJson() {
-    let result = {
-      id: this.id
-    };
+    let result = {};
     for (let attr of this.REGULAR_ATTRS) {
       var val = this[attr];
       if (val && val.asJson) {

@@ -107,8 +107,8 @@ self.port.on("setState", watchFunction(function (state) {
   self.port.emit("stateSet", state);
 }));
 
-self.port.on("restore", watchFunction(function (state, pos) {
-  restore(state, pos);
+self.port.on("restore", watchFunction(function (state, pos, scrollIntoView) {
+  restore(state, pos, scrollIntoView);
 }));
 
 function reportSelection(captureType) {
@@ -169,6 +169,11 @@ function setState(state) {
     document.body.classList.remove("pageshot-highlight-activated");
     document.body.classList.remove("pageshot-hide-movers");
     removeHandlers();
+  } else if (state == "_restore") {
+    deleteSelection();
+    document.body.classList.remove("pageshot-hide-selection");
+    document.body.classList.remove("pageshot-hide-movers");
+    removeHandlers();
   } else if (state == "selection") {
     deleteSelection();
     document.body.classList.remove("pageshot-hide-selection");
@@ -203,21 +208,27 @@ function setState(state) {
   currentState = state;
 }
 
-function restore(state, pos) {
-  if (currentState != "cancel") {
-    return;
-  }
-  console.log("restoring from", currentState, state);
+/** Restores a selection that was hidden for some reason */
+function restore(state, pos, scrollIntoView) {
+  setState("_restore");
   lastCaptureState = state;
   if (state == "selection") {
     state = "madeSelection";
   }
-  setState(state);
+  currentState = state;
   mousedownX = pos.left;
   mousedownY = pos.top;
   cornerX = pos.right;
   cornerY = pos.bottom;
   render();
+  if (scrollIntoView) {
+    var windowTop = window.scrollY;
+    var windowBottom = window.scrollY + window.innerHeight;
+    if (pos.top > windowBottom || pos.bottom < windowTop) {
+      var newScroll = (pos.top + pos.bottom) / 2 - (window.innerHeight / 2);
+      window.scrollTo(0, newScroll);
+    }
+  }
 }
 
 var mousedown = watchFunction(function (event) {
@@ -801,7 +812,6 @@ function autoSelect(ids) {
 
 function captureSelection() {
   let range = window.getSelection().getRangeAt(0);
-  console.log("trying selection", range.toString());
   var selection = extractSelection(range);
   self.port.emit("textSelection", {
     html: selection.outerHTML,
@@ -835,7 +845,10 @@ window.addEventListener("mouseup", watchFunction(function (event) {
   let rects = range.getClientRects();
   let rect = rects[0];
   if (! rect) {
-    throw new Error("No rects in range.getClientRects()");
+    // FIXME: haven't figured out when this happens, seems to be related to a
+    // selection that doesn't cover any clear area
+    console.warn("No rects in range.getClientRects()");
+    return;
   }
   let button = document.createElement("div");
   button.className = "pageshot-textbutton";

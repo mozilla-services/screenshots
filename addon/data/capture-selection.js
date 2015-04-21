@@ -298,10 +298,20 @@ function insertMarker(container, offset) {
   return marker;
 }
 
+function ignoreElement(node) {
+  if (! node.offsetParent) {
+    return true;
+  }
+  return false;
+}
+
 function copyNode(node, goodClasses) {
   var result = copyOneNode(node, goodClasses);
   for (var i=0; i<node.childNodes.length; i++) {
     var child = node.childNodes[i];
+    if (ignoreElement(child)) {
+      continue;
+    }
     if (isText(child)) {
       result.appendChild(node.ownerDocument.createTextNode(child.nodeValue));
     } else if (isNode(child)) {
@@ -337,11 +347,21 @@ function copyOneNode(node, goodClasses) {
       }
     }
   }
+  if (node.tagName == "IMG") {
+    result.setAttribute("height", node.clientHeight);
+    result.setAttribute("width", node.clientWidth);
+  }
+  if (node.tagName == "A") {
+    result.setAttribute("target", "_blank");
+  }
   return result;
 }
 copyOneNode.copyAttrs = {
   A: ["href"],
-  IMG: ["src"]
+  IMG: ["src"],
+  INPUT: ["type", "value", "checked"],
+  SELECT: ["multiple"],
+  OPTION: ["value", "selected"]
 };
 copyOneNode.translateElements = {
   BODY: "div"

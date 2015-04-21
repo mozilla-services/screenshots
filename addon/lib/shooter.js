@@ -172,6 +172,7 @@ const ShotContext = Class({
       }).bind(this)));
     }, this));
     this.interactiveWorker.port.on("noAutoSelection", watchFunction(function () {
+      this.interactiveWorker.port.emit("cancel");
       watchPromise(this.makeScreenshot().then((function (clipData) {
         if (this.activeClipName) {
           let clip = this.shot.getClip(this.activeClipName);
@@ -192,6 +193,7 @@ const ShotContext = Class({
         }
       });
       this.updateShot();
+      this.panelContext.show(this);
     }, this));
     this.interactiveWorker.port.on("popstate", watchFunction(function (newUrl) {
       this.destroy();
@@ -215,8 +217,7 @@ const ShotContext = Class({
     if (this.activeClipName) {
       let clip = this.shot.getClip(this.activeClipName);
       if (clip.image && clip.image.captureType !== "visible") {
-        console.log("restoring", clip.image.location);
-        this.interactiveWorker.port.emit("restore", clip.image.captureType, clip.image.location);
+        this.interactiveWorker.port.emit("restore", clip.image.captureType, clip.image.location, false);
       }
     }
   },
@@ -276,6 +277,12 @@ const ShotContext = Class({
     },
     selectClip: function (clipId) {
       this.activeClipName = clipId;
+      let clip = this.shot.getClip(clipId);
+      if (clip.image && clip.image.captureType !== "visible") {
+        this.interactiveWorker.port.emit("restore", clip.image.captureType, clip.image.location, true);
+      } else {
+        this.interactiveWorker.port.emit("setState", "cancel");
+      }
       this.updateShot();
     }
   },
@@ -315,6 +322,7 @@ const ShotContext = Class({
 
   /** Sets attributes on the shot, saves it, and updates the panel */
   updateShot: function () {
+    this.shot.save();
     this.panelContext.updateShot(this);
     this.shot.save();
   },
@@ -375,11 +383,6 @@ class Shot extends AbstractShot {
   constructor(backend, id, attrs) {
     super(backend, id, attrs);
     //AbstractShot.call(this, backend, id, attrs);
-    this._activeClip = null;
-    let clipNames = this.clipNames();
-    if (clipNames.length) {
-      this._activeClip = clipNames[0];
-    }
   }
 
   save() {
