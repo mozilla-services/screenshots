@@ -1,4 +1,4 @@
-## Pageshot
+## Pageshot [![Build Status](https://travis-ci.org/mozilla-services/pageshot.png)](https://travis-ci.org/mozilla-services/pageshot)
 
 [![Build Status](https://travis-ci.org/mozilla-services/pageshot.svg)](https://travis-ci.org/mozilla-services/pageshot)
 
