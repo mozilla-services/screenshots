@@ -13,7 +13,7 @@ var pageMod = require("sdk/page-mod");
 var clipboard = require("sdk/clipboard");
 var notifications = require("sdk/notifications");
 var { XMLHttpRequest } = require("sdk/net/xhr");
-const { watchFunction, watchWorker } = require("errors");
+const { watchFunction, watchWorker } = require("./errors");
 
 var existing;
 

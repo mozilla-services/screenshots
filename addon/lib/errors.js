@@ -21,7 +21,8 @@ panel.port.on("close", function () {
 
 /** Should be called when any unexpected error happens */
 exports.unhandled = function (error) {
-  panel.show({position: require("main").shootButton});
+  // TODO: remove this circular dependency
+  panel.show({position: require("./main").shootButton});
   panel.port.emit("showError", error);
 };
 
