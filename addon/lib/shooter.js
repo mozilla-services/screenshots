@@ -324,6 +324,7 @@ const ShotContext = Class({
   updateShot: function () {
     this.shot.save();
     this.panelContext.updateShot(this);
+    this.shot.save();
   },
 
   /** Watches for the given event on this context's tab.  The callback will be

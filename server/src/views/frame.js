@@ -59,8 +59,7 @@ exports.Frame = React.createClass({
         </a>
       </div>
       <h1 id="main-title">{ shot.docTitle ||  shot.url }</h1>
-      <p>FIXME clip image currently broken</p>
-      <img src={snippet} style={{ width: "100%", display: "none" }} />
+      <img src={snippet} style={{ width: "100%" }} />
       <iframe width="100%" id="frame" src={ "/content/" +  shot.id } />
     </div>;
   }
