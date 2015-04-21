@@ -18,8 +18,8 @@ if [ -e ./pageshot.xpi ] ; then
     echo "Missing pageshot.update.rdf"
     exit 2
   fi
-  mv ./pageshot.xpi dist/
-  mv ./pageshot.update.rdf dist/
+  mv ./pageshot.xpi server/dist/
+  mv ./pageshot.update.rdf server/dist/
 fi
 mv dist-production dist-production.obsolete
 mv dist dist-production
