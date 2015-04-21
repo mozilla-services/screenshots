@@ -16,10 +16,29 @@ let FILENAME = "shoot-panel.js";
 let isAdding = {};
 let lastData;
 
+const MAX_WIDTH = 375,
+  MAX_HEIGHT = 238;
+
 /** Renders the image of the clip inside the panel */
 let ImageClip = React.createClass({
   render: function () {
-    return <img src={this.props.clip.image.url} />;
+    var width = this.props.clip.image.dimensions.x,
+      height = this.props.clip.image.dimensions.y;
+
+    if (width > MAX_WIDTH) {
+      let factor = MAX_WIDTH / width;
+      width = MAX_WIDTH;
+      height = height * factor;
+    } else if (height > MAX_HEIGHT) {
+      let factor =  MAX_HEIGHT / height;
+      height = MAX_HEIGHT;
+      width = width * factor;
+    }
+
+    height = height + 'px';
+    width = width + 'px';
+
+    return <img src={this.props.clip.image.url} style={{ height: height, width: width }} />;
   }
 });
 
@@ -127,8 +146,10 @@ let ShootPanel = React.createClass({
         <button className="copy" ref="copy" type="button" data-normal-text="Copy Link" data-copied-text="Copied!" onClick={ this.onCopyClick }>Copy Link</button>
       </div>
 
-      <div className="comment">{this.props.shot.comment}</div>
-      <input className="comment-input" ref="input" type="text" placeholder="Say something" onKeyup={ this.onKeyup }/>
+      <div className="comment-area">
+        <div className="comment">{this.props.shot.comment}</div>
+        <input className="comment-input" ref="input" type="text" placeholder="Say something" onKeyup={ this.onKeyup }/>
+      </div>
     </div>);
   },
 

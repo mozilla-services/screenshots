@@ -137,11 +137,25 @@ input[type=text] {
   width: 6em;
 }
 
-.snippet-container img {
+.snippet-container {
   position: absolute;
   top: 4.5em;
-  left: 5%;
-  width: 90%;
+  left: 0.5em;
+  right: 0.5em;
+  bottom: 5.5em;
+  overflow: auto;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.snippet-container img {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: 0;
   border: 1px solid #aaa;
   border-radius: 3px;
   box-shadow: 5px 3px 3px #999;
@@ -171,12 +185,18 @@ input[type=text] {
   font-size: 90%;
 }
 
+.comment-area {
+  position: absolute;
+  bottom: 4em;
+  left: 0.5em;
+  right: 0.5em;
+  text-align: center;
+}
+
 .comment {
-  display: none;
 }
 
 .comment-input {
-  display: none;
   width: 100%;
   border: 1px solid #666;
   border-radius: 2px;

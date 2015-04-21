@@ -59,7 +59,7 @@ exports.Frame = React.createClass({
         </a>
       </div>
       <h1 id="main-title">{ shot.docTitle ||  shot.url }</h1>
-      <img src={snippet} style={{ width: "100%" }} />
+      <img src={ snippet } />
       <iframe width="100%" id="frame" src={ "/content/" +  shot.id } />
     </div>;
   }
