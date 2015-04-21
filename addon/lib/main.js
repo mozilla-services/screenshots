@@ -10,12 +10,12 @@ controls some error-specific UI
 require("sdk/preferences/service").set("javascript.options.strict", false);
 
 const self = require("sdk/self");
-const shooter = require("shooter");
+const shooter = require("./shooter");
 const { prefs } = require('sdk/simple-prefs');
 const helperworker = require("./helperworker");
 const { ToggleButton } = require('sdk/ui/button/toggle');
 const panels = require("sdk/panel");
-const { watchFunction, watchWorker } = require("errors");
+const { watchFunction, watchWorker } = require("./errors");
 
 // FIXME: this button should somehow keep track of whether there is an active shot associated with this page
 var shootButton = ToggleButton({
