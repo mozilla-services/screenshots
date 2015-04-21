@@ -7,6 +7,10 @@ exports["test main"] = function(assert) {
   assert.pass("Unit test running!");
 };
 
+exports["test fail"] = function(assert) {
+  assert.pass(false, "This should fail");
+};
+
 /*exports["test main async"] = function(assert, done) {
   assert.pass("async Unit test running!");
   done();
