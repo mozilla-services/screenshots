@@ -86,7 +86,7 @@ let ShootPanel = React.createClass({
         if (clipNames[i] == this.props.activeClipName) {
           selectorClass += " clip-selector-selected";
         }
-        let selector = <span className={selectorClass} data-clip-id={clipNames[i]} onClick={this.selectClip}>{i+1}</span>;
+        let selector = <span className={selectorClass} data-clip-id={clipNames[i]} onClick={this.selectClip} key={clipNames[i]}>{i+1}</span>;
         selectors.push(selector);
       }
     }

@@ -276,7 +276,6 @@ const ShotContext = Class({
       this.panelHandlers.setCaptureType.call(this, type);
     },
     selectClip: function (clipId) {
-      console.log("viewing clip", clipId, this.shot.clipNames());
       this.activeClipName = clipId;
       let clip = this.shot.getClip(clipId);
       if (clip.image && clip.image.captureType !== "visible") {
