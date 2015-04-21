@@ -1,4 +1,4 @@
-## Pageshot
+## Pageshot [![Build Status](https://travis-ci.org/mozilla-services/pageshot.png)](https://travis-ci.org/mozilla-services/pageshot)
 
 This is a prototype for a product to create better sharable assets. It uses techniques like copying/freezing the DOM, optionally showing history, allowing inline comments, taking snippets and screenshots.
 
