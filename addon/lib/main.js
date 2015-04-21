@@ -10,12 +10,12 @@ controls some error-specific UI
 require("sdk/preferences/service").set("javascript.options.strict", false);
 
 const self = require("sdk/self");
-const shooter = require("shooter");
+const shooter = require("./shooter");
 const { prefs } = require('sdk/simple-prefs');
 const helperworker = require("./helperworker");
 const { ToggleButton } = require('sdk/ui/button/toggle');
 const panels = require("sdk/panel");
-const { watchFunction, watchWorker } = require("errors");
+const { watchFunction, watchWorker } = require("./errors");
 
 // FIXME: this button should somehow keep track of whether there is an active shot associated with this page
 var shootButton = ToggleButton({
@@ -173,7 +173,7 @@ const PanelContext = {
 
 // This pipes all messages that ShotContext expects over to the
 // active context:
-Object.keys(require("shooter.js").ShotContext.prototype.panelHandlers).forEach(function (messageType) {
+Object.keys(shooter.ShotContext.prototype.panelHandlers).forEach(function (messageType) {
   shootPanel.port.on(messageType, watchFunction(function () {
     if (! PanelContext._activeContext) {
       console.warn("Got " + messageType + " with no activeContext");
@@ -200,7 +200,7 @@ exports.main = function (options) {
   }
 
   // Activates history tracking implicitly:
-  //require("historytracker");
+  //require("./historytracker");
 
   helperworker.trackMods(backendOverride || null);
 };
