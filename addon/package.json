@@ -1,11 +1,12 @@
 {
   "name": "pageshot",
-  "fullName": "pageshot",
-  "id": "jid1-NeEaf3sAHdKHPA",
+  "title": "pageshot",
+  "id": "jid1-NeEaf3sAHdKHPA@jetpack",
   "description": "Take and share shots of the sites you are on",
   "author": "Ian Bicking",
   "license": "MPL 2.0",
-  "version": "0.1.0000",
+  "version": "0.1.0",
+  "main": "./lib/main",
   "preferences": [
     {
       "name": "backend",

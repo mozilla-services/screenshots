@@ -1,6 +1,6 @@
-/* jshint node:true */
+/* jshint node: true */
 
-var main = require("./main");
+var main = require("../lib/main");
 
 exports["test main"] = function(assert) {
   assert.pass(main.getBackend(), "getBackend returned something");
