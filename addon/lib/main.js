@@ -173,7 +173,7 @@ const PanelContext = {
 
 // This pipes all messages that ShotContext expects over to the
 // active context:
-Object.keys(require("shooter.js").ShotContext.prototype.panelHandlers).forEach(function (messageType) {
+Object.keys(shooter.ShotContext.prototype.panelHandlers).forEach(function (messageType) {
   shootPanel.port.on(messageType, watchFunction(function () {
     if (! PanelContext._activeContext) {
       console.warn("Got " + messageType + " with no activeContext");
@@ -200,7 +200,7 @@ exports.main = function (options) {
   }
 
   // Activates history tracking implicitly:
-  //require("historytracker");
+  //require("./historytracker");
 
   helperworker.trackMods(backendOverride || null);
 };
