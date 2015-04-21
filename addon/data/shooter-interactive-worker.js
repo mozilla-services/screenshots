@@ -845,7 +845,10 @@ window.addEventListener("mouseup", watchFunction(function (event) {
   let rects = range.getClientRects();
   let rect = rects[0];
   if (! rect) {
-    throw new Error("No rects in range.getClientRects()");
+    // FIXME: haven't figured out when this happens, seems to be related to a
+    // selection that doesn't cover any clear area
+    console.warn("No rects in range.getClientRects()");
+    return;
   }
   let button = document.createElement("div");
   button.className = "pageshot-textbutton";
