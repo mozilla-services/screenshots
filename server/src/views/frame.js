@@ -14,11 +14,17 @@ exports.Frame = React.createClass({
       favicon = <link rel="shortcut icon" href={shot.favicon} />;
     }
 
-    let snippet = "",
-      clipNames = shot.clipNames();
+    let snippets = [];
 
-    if (clipNames.length) {
-      snippet = shot.getClip(clipNames[0]).image.url;
+    for (let name of shot.clipNames()) {
+      let clip = shot.getClip(name);
+      if (clip.image !== undefined) {
+        snippets.push(<img src={ clip.image.url } />);
+      } else {
+        snippets.push(<p style={{ color: "white"}}>
+          FIXME: Support text clips
+        </p>);
+      }
     }
 
     let linkTextShort = "";
@@ -59,7 +65,7 @@ exports.Frame = React.createClass({
         </a>
       </div>
       <h1 id="main-title">{ shot.docTitle ||  shot.url }</h1>
-      <img src={ snippet } />
+      { snippets }
       <iframe width="100%" id="frame" src={ "/content/" +  shot.id } />
     </div>;
   }
