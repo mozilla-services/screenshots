@@ -18,8 +18,9 @@ if [ -e ./pageshot.xpi ] ; then
     echo "Missing pageshot.update.rdf"
     exit 2
   fi
-  mv ./pageshot.xpi server/dist/
-  mv ./pageshot.update.rdf server/dist/
+  mkdir -p server/dist/xpi
+  mv ./pageshot.xpi server/dist/xpi/
+  mv ./pageshot.update.rdf server/dist/xpi/
 fi
 mv server/dist-production server/dist-production.obsolete
 mv server/dist server/dist-production
