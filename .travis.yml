@@ -1,0 +1,19 @@
+sudo: false
+language: node_js
+node_js:
+  - "0.10"
+
+before_install:
+  - "export DISPLAY=:99.0"
+  - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 -extension RANDR"
+
+before_script:
+  - npm install jpm -g
+  - npm install fx-download -g
+  - cd ..
+  - fx-download --branch nightly -c prerelease --host ftp.mozilla.org firefox
+  - export JPM_FIREFOX_BINARY=$TRAVIS_BUILD_DIR/../firefox/firefox
+  - cd $TRAVIS_BUILD_DIR/addon
+
+script:
+  - jpm test -v
