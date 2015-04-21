@@ -142,7 +142,7 @@ input[type=text] {
   top: 4.5em;
   left: 0.5em;
   right: 0.5em;
-  bottom: 4.5em;
+  bottom: 5.5em;
   overflow: auto;
   display:flex;
   flex-direction: row;
@@ -185,12 +185,18 @@ input[type=text] {
   font-size: 90%;
 }
 
+.comment-area {
+  position: absolute;
+  bottom: 4em;
+  left: 0.5em;
+  right: 0.5em;
+  text-align: center;
+}
+
 .comment {
-  display: none;
 }
 
 .comment-input {
-  display: none;
   width: 100%;
   border: 1px solid #666;
   border-radius: 2px;

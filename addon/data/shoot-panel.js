@@ -145,8 +145,10 @@ let ShootPanel = React.createClass({
         <button className="copy" ref="copy" type="button" data-normal-text="Copy Link" data-copied-text="Copied!" onClick={ this.onCopyClick }>Copy Link</button>
       </div>
 
-      <div className="comment">{this.props.shot.comment}</div>
-      <input className="comment-input" ref="input" type="text" placeholder="Say something" onKeyup={ this.onKeyup }/>
+      <div className="comment-area">
+        <div className="comment">{this.props.shot.comment}</div>
+        <input className="comment-input" ref="input" type="text" placeholder="Say something" onKeyup={ this.onKeyup }/>
+      </div>
     </div>);
   },
 

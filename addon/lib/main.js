@@ -32,7 +32,7 @@ var shootPanel = panels.Panel({
   contentURL: self.data.url("shoot-panel.html"),
   contentScriptFile: [self.data.url("panel-bundle.js")],
   position: shootButton,
-  height: 400,
+  height: 450,
   width: 400,
   onHide: watchFunction(function () {
     shootButton.state("window", null);
