@@ -1,4 +1,15 @@
-
+/* FIXME: doesn't belong here */
+.frontpage a {
+  color: #449;
+}
+.frontpage a:visited {
+  color: #949;
+}
+.frontpage {
+  background-color: #fff;
+  color: #000;
+  padding: 0 2em 4em 2em;
+}
 
 #login-widget {
   position: absolute;
@@ -40,5 +51,3 @@
   z-index: 100;
   padding: 10px;
 }
-
-
