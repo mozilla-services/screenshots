@@ -1,7 +1,10 @@
 sudo: false
 language: node_js
 node_js:
-  - "0.10"
+  - "0.12"
+
+notifications:
+  irc: "irc.mozilla.org#pageshot"
 
 before_install:
   - "export DISPLAY=:99.0"
@@ -19,4 +22,4 @@ before_script:
   - cd $TRAVIS_BUILD_DIR/addon
 
 script:
-  - cd addon/dist && jpm test -v
+  - pwd && ls && cd $TRAVIS_BUILD_DIR/addon/dist && jpm test -v
