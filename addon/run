@@ -147,8 +147,8 @@ print content
 ' < package.json > package.json.tmp
     mv package.json.tmp package.json
     cfx xpi \
-        --update-link https://$HTTP_HOST/pageshot.xpi \
-        --update-url https://$HTTP_HOST/pageshot.update.rdf
+        --update-link https://$HTTP_HOST/xpi/pageshot.xpi \
+        --update-url https://$HTTP_HOST/xpi/pageshot.update.rdf
     scp pageshot.xpi pageshot.update.rdf $SSH_USER@$SSH_HOST:pageshot/
     ssh $SSH_USER@$SSH_HOST "cd pageshot && ./bin/update-source.sh"
     #appcfg.py update appengine/pageshotpages/
