@@ -14,6 +14,7 @@ let err = require("./error-utils.js"),
 // For error messages:
 let FILENAME = "shoot-panel.js";
 let isAdding = {};
+let hasDeleted = {};
 let lastData;
 
 const MAX_WIDTH = 375,
@@ -38,7 +39,7 @@ let ImageClip = React.createClass({
     height = height + 'px';
     width = width + 'px';
 
-    return <img src={this.props.clip.image.url} style={{ height: height, width: width }} />;
+    return <img className="snippet-image" src={this.props.clip.image.url} style={{ height: height, width: width }} />;
   }
 });
 
@@ -82,7 +83,8 @@ let ShootPanel = React.createClass({
   },
 
   render: function () {
-    if (isAdding[this.props.shot.id] !== undefined) {
+    if (isAdding[this.props.shot.id] !== undefined ||
+        (hasDeleted[this.props.shot.id] && ! this.props.activeClipName)) {
       return this.renderAddScreen();
     }
     let clip = null;
@@ -112,8 +114,12 @@ let ShootPanel = React.createClass({
     }
 
     let clipComponent;
+    let deleter = (
+      <img className="delete" src="icons/delete-thumbnail.svg"
+           title="Remove this clip" onClick={this.deleteClip} />);
     if (! clip) {
       clipComponent = <LoadingClip />;
+      deleter = null;
     } else if (clip.image) {
       clipComponent = <ImageClip clip={clip} />;
     } else if (clip.text) {
@@ -136,6 +142,7 @@ let ShootPanel = React.createClass({
       </div>
       <div className="snippet-container">
         {clipComponent}
+        {deleter}
       </div>
       <div className="snippets-row">
         {selectors}
@@ -156,6 +163,11 @@ let ShootPanel = React.createClass({
   selectClip: function (event) {
     let clipId = event.target.getAttribute("data-clip-id");
     self.port.emit("selectClip", clipId);
+  },
+
+  deleteClip: function () {
+    hasDeleted[this.props.shot.id] = true;
+    self.port.emit("deleteClip", this.props.activeClipName);
   },
 
   addClip: function () {
@@ -221,6 +233,9 @@ let ShootPanel = React.createClass({
     setTimeout(function () {
       renderData(lastData);
     });
+    if (! this.props.shot.clipNames().length) {
+      self.port.emit("hide");
+    }
   }
 
 });
