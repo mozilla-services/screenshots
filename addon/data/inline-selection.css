@@ -4,7 +4,8 @@
 
 .pageshot-hide-selection .pageshot-highlight,
 .pageshot-hide-selection .pageshot-mover,
-.pageshot-hide-selection .pageshot-bghighlight {
+.pageshot-hide-selection .pageshot-bghighlight,
+.pageshot-hide-selection .pageshot-textbutton {
   display: none;
 }
 

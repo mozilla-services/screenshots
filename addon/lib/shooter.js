@@ -276,15 +276,37 @@ const ShotContext = Class({
       this.activeClipName = null;
       this.panelHandlers.setCaptureType.call(this, type);
     },
+    deleteClip: function (clipId) {
+      let ids = this.shot.clipNames();
+      let index = ids.indexOf(clipId) - 1;
+      this.shot.delClip(clipId);
+      if (index < 0) {
+        index = 0;
+      }
+      ids = this.shot.clipNames();
+      if (! ids.length) {
+        this.activeClipName = null;
+      } else {
+        this.activeClipName = ids[index];
+      }
+      this.panelHandlers.selectClip.call(this, this.activeClipName);
+    },
     selectClip: function (clipId) {
       this.activeClipName = clipId;
-      let clip = this.shot.getClip(clipId);
-      if (clip.image && clip.image.captureType !== "visible") {
-        this.interactiveWorker.port.emit("restore", clip.image.captureType, clip.image.location, true);
+      if (clipId) {
+        let clip = this.shot.getClip(clipId);
+        if (clip.image && clip.image.captureType !== "visible") {
+          this.interactiveWorker.port.emit("restore", clip.image.captureType, clip.image.location, true);
+        } else {
+          this.interactiveWorker.port.emit("setState", "cancel");
+        }
       } else {
         this.interactiveWorker.port.emit("setState", "cancel");
       }
       this.updateShot();
+    },
+    hide: function () {
+      this.panelContext.hide(this);
     }
   },
 
