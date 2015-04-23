@@ -1,7 +1,49 @@
 let React = require("react"),
   {AbstractShot} = require("../../../addon/dist/lib/shot.js");
 
+let Snippet = React.createClass({
+  onClickFullPage: function (e) {
+    e.preventDefault();
+    alert("FIXME: Navigate not implemented yet");
+  },
+
+  onClickComment: function (e) {
+    e.preventDefault();
+    alert("FIXME: Comment display not implemented yet");
+  },
+
+  render: function () {
+    let clip = this.props.clip;
+
+    if (clip.image === undefined) {
+      return <p>
+        FIXME: Support text clips
+      </p>;
+    }
+    return <div class="snippet-container">
+      <a href="#" onClick={ this.onClickFullPage }>
+        <img src={ clip.image.url } />
+        <p>
+          <a href="#" onClick={ this.onClickComment }>
+            <img src={ this.props.linkify("/img/comment.png") } />
+          </a>
+          &nbsp;
+          See in full page
+        </p>
+      </a>
+    </div>;
+  }
+});
+
 exports.Frame = React.createClass({
+  onClickNavigateNext: function (e) {
+    e.preventDefault();
+    alert("FIXME: Not implemented yet");
+  },
+  onClickNavigatePrevious: function (e) {
+    e.preventDefault();
+    alert("FIXME: Not implemented yet");
+  },
   render: function () {
     if (this.props.data === null) {
       return <div>Not Found</div>;
@@ -17,14 +59,16 @@ exports.Frame = React.createClass({
     let snippets = [];
 
     for (let name of shot.clipNames()) {
-      let clip = shot.getClip(name);
-      if (clip.image !== undefined) {
-        snippets.push(<img src={ clip.image.url } />);
-      } else {
-        snippets.push(<p style={{ color: "white"}}>
-          FIXME: Support text clips
-        </p>);
-      }
+      snippets.push(<Snippet key={ name } clip={ shot.getClip(name) } linkify={ this.props.linkify } />);
+    }
+
+    let numberOfClips = shot.clipNames().length;
+    if (numberOfClips === 1) {
+      numberOfClips = "1 clip";
+    } else if (numberOfClips === 0) {
+      numberOfClips = "No clips";
+    } else {
+      numberOfClips = numberOfClips + " clips";
     }
 
     let linkTextShort = "";
@@ -40,31 +84,24 @@ exports.Frame = React.createClass({
       <script src={ this.props.linkify("/js/parent-helper.js") } />
       { favicon }
       <div id="toolbar">
-        <div className="logged-out" id="login-widget">
-          <div id="login-dropdown" className="login-collapsed">
-            <div id="login-compact">
-              <img src="https://pageshotpages.appspot.com/static/default-profile.svg" id="login-drop" className="user-avatar" style={{ height: "20px", width: "20px" }} />
-            </div>
-            <div id="login-dropped">
-              <img src="https://pageshotpages.appspot.com/static/default-profile.svg" className="user-avatar" style={{ height: "50px", width: "50px" }} />
-              <div className="if-logged-in">
-                <span className="user-email">-</span>
-                <br />
-                <span id="logout">logout</span>
-              </div>
-              <div className="if-logged-out">
-                Log in:
-                <input id="log-in-email" placeholder="email" type="text" />
-              </div>
-            </div>
-          </div>
-        </div>
         <a className="main-link" href={ shot.url }>
+          { shot.docTitle }
+          &nbsp;&mdash;&nbsp;
           { linkTextShort }
           <img src={ this.props.linkify("/img/clipboard-8-xl.png") } />
         </a>
+        <div className="navigate-toolbar">
+          <span className="clip-count">
+            { numberOfClips }
+          </span>
+          <img className="navigate-clips" src={ this.props.linkify("/img/up-arrow.png") } onClick={ this.onClickNavigatePrevious } />
+          <img className="navigate-clips" src={ this.props.linkify("/img/down-arrow.png") } onClick={ this.onClickNavigateNext } />
+        </div>
       </div>
-      <h1 id="main-title">{ shot.docTitle ||  shot.url }</h1>
+      <div className="metadata">
+        <h1 id="main-title">{ shot.docTitle }</h1>
+        <p><a href={ shot.url }>{ linkTextShort }</a></p>
+      </div>
       { snippets }
       <iframe width="100%" id="frame" src={ "/content/" +  shot.id } />
     </div>;
