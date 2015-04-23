@@ -13,20 +13,22 @@ body {
   margin: 0;
   font-family: sans-serif;
   background-color: $primary-color;
+  color: $text-color;
   box-sizing: border-box;
 }
 
 #container {
   position: absolute;
-  left: 25px;
-  right: 25px;
+  left: 0px;
+  right: 0px;
   top: 0px;
+  text-align: center;
 }
 
 #frame {
   border: none;
-  border: 1px solid black;
-  box-shadow: 3px 3px 6px #898989;
+  margin-top: 500px;
+  margin-bottom: 4em;
 }
 
 #toolbar {
@@ -38,8 +40,20 @@ body {
   padding: 0.5em;
   overflow: truncate;
   color: $text-color;
-  text-align: center;
+  text-align: left;
   background-color: $primary-color;
+}
+
+.navigate-toolbar {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+}
+
+.clip-count {
+  position: relative;
+  top: -0.25em;
+  left: -0.5em;
 }
 
 .instructions {
@@ -50,7 +64,7 @@ body {
 
 a, a:visited {
   text-decoration: none;
-  color: #eef;
+  color: $text-color;
 }
 
 a:hover {
@@ -136,5 +150,9 @@ a.sitelink, a.sitelink:visited {
 #main-title {
   margin-top: 2.5em;
   color: $text-color;
+}
+
+.metadata {
+  margin-bottom: 4em;
 }
 
