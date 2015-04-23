@@ -680,6 +680,16 @@ class _Clip {
     this._initialized = true;
   }
 
+  toString() {
+    let s = `[Shot Clip id=${this.id} sortOrder=${this.sortOrder}`;
+    if (this.image) {
+      s += ` image ${this.image.dimensions.x}x${this.image.dimensions.y}]`;
+    } else {
+      s += ` text length ${this.text.text.length}]`;
+    }
+    return s;
+  }
+
   _dirty(property) {
     if (this._initialized) {
       this._shot._dirtyClip(this.id);
