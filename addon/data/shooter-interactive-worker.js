@@ -43,6 +43,8 @@ const MIN_AUTOSELECT_WIDTH = 200;
 
 // The ids of elements we should use for autoselecting
 let autoIds = null;
+// True if there was a text selection right when this is activated
+let initialSelection = false;
 
 function debugAnnotate(el, text, backgroundColor, borderColor) {
   if (text) {
@@ -156,12 +158,19 @@ function setState(state) {
   //   "hide": keep the selection, but make it hidden
   //   "show": show the selection, but don't let it be recreated
   //   "maybeCancel": set to cancel *if* the mode is not selection
+  //   "initialAuto": set to auto, *if* there isn't a text selection
   if (state == "maybeCancel") {
     if (currentState == "selection") {
       // Do nothing in this case
       return;
     }
     state = "cancel";
+  }
+  if (state == "initialAuto") {
+    if (initialSelection) {
+      return;
+    }
+    state = "auto";
   }
   if (state == "cancel") {
     deleteSelection();
@@ -813,14 +822,16 @@ function autoSelect(ids) {
 function captureSelection() {
   let range = window.getSelection().getRangeAt(0);
   var selection = extractSelection(range);
+  console.log("got selection", selection.outerHTML, range.toString());
   self.port.emit("textSelection", {
     html: selection.outerHTML,
-    text: range.toString
+    text: range.toString()
     // FIXME: add location
   });
 }
 
 if (window.getSelection().rangeCount && ! window.getSelection().isCollapsed) {
+  initialSelection = true;
   watchFunction(captureSelection)();
 }
 
