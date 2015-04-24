@@ -4,7 +4,10 @@ let React = require("react"),
 let Snippet = React.createClass({
   onClickFullPage: function (e) {
     e.preventDefault();
-    alert("FIXME: Navigate not implemented yet");
+    let frame = document.getElementById("frame");
+    frame.contentWindow.postMessage({
+      show: this.props.clip.image.location.topLeftElement.slice(1)
+    }, window.location.origin);
   },
 
   onClickComment: function (e) {
@@ -20,8 +23,9 @@ let Snippet = React.createClass({
         FIXME: Support text clips
       </p>;
     }
-    return <div class="snippet-container">
-      <a href="#" onClick={ this.onClickFullPage }>
+
+    return <div className="snippet-container">
+      <a href={ "#?clip=" + clip.id } onClick={ this.onClickFullPage }>
         <img src={ clip.image.url } />
         <p>
           <a href="#" onClick={ this.onClickComment }>

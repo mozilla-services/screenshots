@@ -8,4 +8,16 @@ window.addEventListener(
     window.location.origin)
 );
 
+window.addEventListener(
+  "message",
+  (m) => {
+    let node = document.getElementById(m.data.show),
+      boundingRect = node.getBoundingClientRect();
 
+    window.parent.postMessage({
+      scrollX: boundingRect.x, scrollY: boundingRect.y,
+      clipWidth: boundingRect.width, clipHeight: boundingRect.height
+    },
+    window.location.origin);
+  }
+)
