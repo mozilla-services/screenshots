@@ -353,7 +353,7 @@ microformats.Parser.prototype = {
 						value = getNameAttr(dom, descendant);
 					}
 					if(node.children.length > 0){
-						child = this.domUtils.isSingleDescendant(dom, node);
+						var child = this.domUtils.isSingleDescendant(dom, node);
 						if(child){
 							descendant = this.
 
