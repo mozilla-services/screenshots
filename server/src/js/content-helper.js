@@ -11,6 +11,9 @@ window.addEventListener(
 window.addEventListener(
   "message",
   (m) => {
+    if (m.origin !== location.origin) {
+      return;
+    }
     let node = document.getElementById(m.data.show),
       boundingRect = node.getBoundingClientRect();
 

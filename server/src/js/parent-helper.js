@@ -9,6 +9,9 @@ function doResize() {
 }
 
 window.onmessage = function(e) {
+  if (e.origin !== location.origin) {
+    return;
+  }
   if (e.data.height) {
     height = e.data.height;
     if (loaded) {
