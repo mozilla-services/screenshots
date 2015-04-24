@@ -131,7 +131,7 @@ const ShotContext = Class({
     }));
     this.interactiveWorker.port.on("ready", watchFunction(function () {
       this.interactiveWorker.port.emit("linkLocation", self.data.url("inline-selection.css"));
-      this.interactiveWorker.port.emit("setState", "auto");
+      this.interactiveWorker.port.emit("setState", "initialAuto");
     }).bind(this));
     this.interactiveWorker.port.on("select", watchFunction(function (pos, shotText, captureType) {
       // FIXME: there shouldn't be this disconnect between arguments to captureTab

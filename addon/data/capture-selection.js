@@ -23,6 +23,10 @@ const SEL_TEXT_NODE = document.TEXT_NODE;
     Tags are copied over and specific attributes.
     */
 function extractSelection(range) {
+  // First we find the startBlock and endBlock in the page itself
+  // Then we add class names to these to serve as identifiers of the elements
+  //   (we don't want to use ids, as they are singular in both the document and
+  //   the element, while classes are additive)
   var startContainer = range.startContainer;
   var startOffset = range.startOffset;
   var endContainer = range.endContainer;
@@ -33,29 +37,41 @@ function extractSelection(range) {
   var endBlock = findEndBlock(range);
   var endBlockClass = genSelectionId();
   endBlock.classList.add(endBlockClass);
+  // Then we find an element that contains both the start and the end:
   var commonAncestor = findCommonAncestor([startBlock, endBlock, startContainer, endContainer]);
+  // We put <span></span> elements in to mark the start and end of the range,
+  // so that it will persist after copying:
   var endSpan = insertMarker(endContainer, endOffset);
   var endClass = endSpan.className = genSelectionId();
   var startSpan = insertMarker(startContainer, startOffset);
   var startClass = startSpan.className = genSelectionId();
+  // This messes up the selection, so we fix up the active selection:
   range.setStartAfter(startSpan);
   range.setEndBefore(endSpan);
+  // Then we create a new stand-alone <div class="ps-selection"> element that will be the result:
   var result = startBlock.ownerDocument.createElement("div");
   result.className = "ps-selection";
+  // And append a copy of the ancestor; now we can trim the result down destructively
+  // because we are using a copy.  Classes are wiped out, except the classes that
+  // we list (which we use as identifiers).
   result.appendChild(copyNode(commonAncestor, [startBlockClass, endBlockClass, startClass, endClass]));
+  // Then we fix up the original document, removing markers and class names:
   endSpan.parentNode.removeChild(endSpan);
   startSpan.parentNode.removeChild(startSpan);
   startBlock.classList.remove(startBlockClass);
   endBlock.classList.remove(endBlockClass);
+  // And we get the copied versions of those elements:
   startBlock = result.getElementsByClassName(startBlockClass)[0];
   startBlock.classList.remove(startBlockClass);
   endBlock = result.getElementsByClassName(endBlockClass)[0];
   endBlock.classList.remove(endBlockClass);
   startSpan = result.getElementsByClassName(startClass)[0];
   endSpan = result.getElementsByClassName(endClass)[0];
+  // This trims selection down so only a little context is retained:
   removeBefore(startBlock, result);
   removeAfter(endBlock, result);
   traverse(startSpan, endSpan);
+  // And we finally get rid of the markers:
   startSpan.parentNode.removeChild(startSpan);
   endSpan.parentNode.removeChild(endSpan);
   return result;
@@ -309,12 +325,9 @@ function copyNode(node, goodClasses) {
   var result = copyOneNode(node, goodClasses);
   for (var i=0; i<node.childNodes.length; i++) {
     var child = node.childNodes[i];
-    if (ignoreElement(child)) {
-      continue;
-    }
     if (isText(child)) {
       result.appendChild(node.ownerDocument.createTextNode(child.nodeValue));
-    } else if (isNode(child)) {
+    } else if (isNode(child) && ! ignoreElement(child)) {
       result.appendChild(copyNode(child, goodClasses));
     }
   }
