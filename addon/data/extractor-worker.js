@@ -111,7 +111,7 @@ function findImages(elements) {
       var img = imgs[j];
       if (img.width >= MIN_IMAGE_WIDTH && img.height >= MIN_IMAGE_HEIGHT) {
         addImage({
-          src: img.src,
+          url: img.src,
           dimensions: {x: img.width, y: img.height},
           title: img.getAttribute("title") || null,
           alt: img.getAttribute("alt") || null,
