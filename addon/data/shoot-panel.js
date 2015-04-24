@@ -16,6 +16,8 @@ let FILENAME = "shoot-panel.js";
 let isAdding = {};
 let hasDeleted = {};
 let lastData;
+let debugDisplayTextSource = false;
+
 
 const MAX_WIDTH = 375,
   MAX_HEIGHT = 238;
@@ -46,7 +48,9 @@ let ImageClip = React.createClass({
 /** Renders a the text of a text clip inside the panel */
 let TextClip = React.createClass({
   render: function () {
-    //return <textarea className="snippet-text" value={this.props.clip.text.html} />;
+    if (debugDisplayTextSource) {
+      return <textarea className="snippet-text" value={this.props.clip.text.html} />;
+    }
     let html = {__html: this.props.clip.text.html};
     return <div className="snippet-text" dangerouslySetInnerHTML={html}></div>;
   }
@@ -74,10 +78,13 @@ let ShootPanel = React.createClass({
     e.preventDefault();
   },
 
-  onKeyup: function (e) {
+  onKeyUp: function (e) {
+    console.log("keyup", e.which);
     let input = React.findDOMNode(this.refs.input);
     if (e.which == 13) {
-      self.port.emit("addComment", input.value);
+      if (! processDebugCommand(this, input.value)) {
+        self.port.emit("addComment", input.value);
+      }
       input.value = "";
     }
   },
@@ -155,7 +162,7 @@ let ShootPanel = React.createClass({
 
       <div className="comment-area">
         <div className="comment">{this.props.shot.comment}</div>
-        <input className="comment-input" ref="input" type="text" placeholder="Say something" onKeyup={ this.onKeyup }/>
+        <input className="comment-input" ref="input" type="text" placeholder="Say something" onKeyUp={ this.onKeyUp }/>
       </div>
     </div>);
   },
@@ -172,9 +179,7 @@ let ShootPanel = React.createClass({
 
   addClip: function () {
     isAdding[this.props.shot.id] = this.props.shot.clipNames().length;
-    setTimeout(function () {
-      renderData(lastData);
-    });
+    setTimeout(renderData);
   },
 
   setAuto: function () {
@@ -240,11 +245,46 @@ let ShootPanel = React.createClass({
 
 });
 
+const debugCommandHelp = `
+Debug commands available in comments:
+/source
+  Replaces a text clip with a textarea containing the text clip's source
+/viewsource
+  Opens the HTML of the text clip in a new tab
+`;
+
+function processDebugCommand(component, command) {
+  command = command.replace(/^\s*/, "").replace(/\s*$/, "");
+  if (command == "/source") {
+    debugDisplayTextSource = ! debugDisplayTextSource;
+    setTimeout(renderData);
+    return true;
+  } else if (command == "/viewsource") {
+    let clip = component.props.shot.getClip(component.props.activeClipName);
+    if (clip && clip.text) {
+      let html = clip.text.html;
+      html = '<!DOCTYPE html><html><body><!-- text selection: -->' + html + '</body></html>';
+      html = html.replace(/>/g, '>\n');
+      let url = "view-source:data:text/html;base64," + btoa(html);
+      self.port.emit("openLink", url);
+    }
+    return true;
+  } else if (command.search(/^\/help/i) != -1) {
+    let url = "data:text/plain;base64," + btoa(debugCommandHelp);
+    self.port.emit("openLink", url);
+    return true;
+  }
+  return false;
+}
+
 self.port.on("shotData", err.watchFunction(function (data) {
   renderData(data);
 }));
 
 function renderData(data) {
+  if (! data) {
+    data = lastData;
+  }
   lastData = data;
   let myShot = new shot.AbstractShot(data.backend, data.id, data.shot);
   if (isAdding[myShot.id] !== undefined) {
