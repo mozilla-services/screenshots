@@ -25,7 +25,7 @@ let Snippet = React.createClass({
     }
 
     return <div className="snippet-container">
-      <a href={ "#?clip=" + clip.id } onClick={ this.onClickFullPage }>
+      <a href={ "#?clip=" + encodeURIComponent(clip.id) } onClick={ this.onClickFullPage }>
         <img src={ clip.image.url } />
         <p>
           <a href="#" onClick={ this.onClickComment }>
