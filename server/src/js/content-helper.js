@@ -23,7 +23,6 @@ window.addEventListener(
         clipHeight: m.data.location.bottom - m.data.location.top
       },
       window.location.origin);
-      return;
     } else {
       let boundingRect = node !== null && node.getBoundingClientRect();
   
