@@ -1,15 +1,9 @@
 let React = require("react"),
+  Router = require("react-router"),
+  Link = Router.Link,
   {AbstractShot} = require("../../../addon/dist/lib/shot.js");
 
 let Snippet = React.createClass({
-  onClickFullPage: function (e) {
-    e.preventDefault();
-    let frame = document.getElementById("frame");
-    frame.contentWindow.postMessage({
-      show: this.props.clip.image.location.topLeftElement.slice(1)
-    }, window.location.origin);
-  },
-
   onClickComment: function (e) {
     e.preventDefault();
     alert("FIXME: Comment display not implemented yet");
@@ -25,48 +19,91 @@ let Snippet = React.createClass({
     }
 
     return <div className="snippet-container">
-      <a href={ "#?clip=" + encodeURIComponent(clip.id) } onClick={ this.onClickFullPage }>
+      <Link to="shot" params={{shotId: this.props.shotId, shotDomain: this.props.shotDomain}} query={{clip: clip.id}}>
         <img src={ clip.image.url } />
-        <p>
-          <a href="#" onClick={ this.onClickComment }>
-            <img src={ this.props.linkify("/img/comment.png") } />
-          </a>
-          &nbsp;
-          See in full page
-        </p>
-      </a>
+        <p className="clip-anchor-link">See in full page</p>
+      </Link>
     </div>;
   }
 });
 
 exports.Frame = React.createClass({
-  onClickNavigateNext: function (e) {
-    e.preventDefault();
-    alert("FIXME: Not implemented yet");
-  },
-  onClickNavigatePrevious: function (e) {
-    e.preventDefault();
-    alert("FIXME: Not implemented yet");
+  contextTypes: {
+    router: React.PropTypes.func
   },
   render: function () {
     if (this.props.data === null) {
       return <div>Not Found</div>;
     }
 
-    let shot = new AbstractShot(this.props.backend, this.props.id, this.props.shot);
+    let shot = new AbstractShot(this.props.backend, this.props.id, this.props.shot),
+      params = this.context.router.getCurrentParams(),
+      query = this.context.router.getCurrentQuery(),
+      shotId = params.shotId,
+      shotDomain = params.shotDomain;
 
     let favicon = "";
     if (shot.favicon) {
       favicon = <link rel="shortcut icon" href={shot.favicon} />;
     }
 
-    let snippets = [];
+    let snippets = [],
+      clipNames = shot.clipNames(),
+      previousClip = null,
+      nextClip = null;
 
-    for (let name of shot.clipNames()) {
-      snippets.push(<Snippet key={ name } clip={ shot.getClip(name) } linkify={ this.props.linkify } />);
+    for (let i = 0; i < clipNames.length; i++) {
+      let name = clipNames[i],
+        clip = shot.getClip(name);
+  
+      snippets.push(<Snippet key={ name } clip={ clip } linkify={ this.props.linkify } shotId={ shotId } shotDomain={ shotDomain } previousClip={ previousClip } nextClip={ nextClip } />);
+
+      if (query.clip === name) {
+        console.log("query.clip === name", i, clipNames);
+        if (typeof window !== "undefined") {
+          let frame = document.getElementById("frame");
+
+          console.log("clip.image.location", clip.image.location);
+          function cb() {
+            frame.contentWindow.postMessage({
+              show: clip.image.location.topLeftElement.slice(1),
+              location: clip.image.location
+            }, window.location.origin);
+          }
+          if (frame.contentDocument.readyState === "complete") {
+            cb()
+          } else {
+            frame.contentWindow.onload = cb;
+          }
+        }
+
+        if (i > 0) {
+          previousClip = clipNames[i - 1];
+        }
+        if (i < clipNames.length) {
+          nextClip = clipNames[i + 1];
+        }
+      }
     }
 
-    let numberOfClips = shot.clipNames().length;
+    let previousClipNode = "",
+      nextClipNode = "";
+
+    console.log("previous, next", previousClip, nextClip);
+
+    if (previousClip) {
+      previousClipNode = <Link to="shot" params={{shotId: shotId, shotDomain: shotDomain}} query={{clip: previousClip}}>
+        <img className="navigate-clips" src={ this.props.linkify("/img/up-arrow.png") } />
+      </Link>;
+    }
+
+    if (nextClip || query.clip === undefined) {
+      nextClipNode = <Link to="shot" params={{shotId: shotId, shotDomain: shotDomain}} query={{clip: nextClip || clipNames[0]}}>
+        <img className="navigate-clips" src={ this.props.linkify("/img/down-arrow.png") } />
+      </Link>;
+    }
+
+    let numberOfClips = clipNames.length;
     if (numberOfClips === 1) {
       numberOfClips = "1 clip";
     } else if (numberOfClips === 0) {
@@ -98,8 +135,8 @@ exports.Frame = React.createClass({
           <span className="clip-count">
             { numberOfClips }
           </span>
-          <img className="navigate-clips" src={ this.props.linkify("/img/up-arrow.png") } onClick={ this.onClickNavigatePrevious } />
-          <img className="navigate-clips" src={ this.props.linkify("/img/down-arrow.png") } onClick={ this.onClickNavigateNext } />
+          { previousClipNode }
+          { nextClipNode }
         </div>
       </div>
       <div className="metadata">

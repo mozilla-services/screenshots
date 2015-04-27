@@ -123,6 +123,10 @@ a.sitelink, a.sitelink:visited {
   top: 2px;
 }
 
+.clip-anchor-link {
+  margin-bottom: 4em;
+}
+
 .selection {
   border-top: 1px solid #999;
 }
@@ -134,6 +138,8 @@ a.sitelink, a.sitelink:visited {
 
 .white-background {
   background-color: white;
+  text-color: black;
+  text-align: left;
 }
 
 .main-link {
