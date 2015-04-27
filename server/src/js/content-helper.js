@@ -24,7 +24,7 @@ window.addEventListener(
       },
       window.location.origin);
     } else {
-      let boundingRect = node !== null && node.getBoundingClientRect();
+      let boundingRect = node.getBoundingClientRect();
   
       window.parent.postMessage({
         scrollX: boundingRect.x, scrollY: boundingRect.y,
