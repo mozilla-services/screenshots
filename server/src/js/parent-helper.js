@@ -18,8 +18,7 @@ window.onmessage = function(e) {
       doResize();
     }
   } else if (e.data.clipWidth) {
-    window.scrollTo(0, 0);
-    let frameOffset = document.getElementById("frame").getBoundingClientRect().top,
+    let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY,
       toolbarHeight = document.getElementById("toolbar").clientHeight,
       scrollY = frameOffset + e.data.scrollY - toolbarHeight;
 
