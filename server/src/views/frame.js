@@ -59,11 +59,9 @@ exports.Frame = React.createClass({
       snippets.push(<Snippet key={ name } clip={ clip } linkify={ this.props.linkify } shotId={ shotId } shotDomain={ shotDomain } previousClip={ previousClip } nextClip={ nextClip } />);
 
       if (query.clip === name) {
-        console.log("query.clip === name", i, clipNames);
         if (typeof window !== "undefined") {
           let frame = document.getElementById("frame");
 
-          console.log("clip.image.location", clip.image.location);
           function cb() {
             frame.contentWindow.postMessage({
               show: clip.image.location.topLeftElement.slice(1),
@@ -88,8 +86,6 @@ exports.Frame = React.createClass({
 
     let previousClipNode = "",
       nextClipNode = "";
-
-    console.log("previous, next", previousClip, nextClip);
 
     if (previousClip) {
       previousClipNode = <Link to="shot" params={{shotId: shotId, shotDomain: shotDomain}} query={{clip: previousClip}}>
