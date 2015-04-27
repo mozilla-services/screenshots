@@ -23,8 +23,6 @@ window.onmessage = function(e) {
       toolbarHeight = document.getElementById("toolbar").clientHeight,
       scrollY = frameOffset + e.data.scrollY - toolbarHeight;
 
-    console.log("scrolling in parent", e.data, frameOffset, toolbarHeight, scrollY);
-
     let s = document.getElementById("selected-node-highlight");
     if (s) {
       s.parentNode.removeChild(s);
