@@ -33,7 +33,40 @@ Router.run(routes.routes, Router.HistoryLocation, function (Handler, state) {
     gotData(Handler, _d);
     return;
   }
-  console.error("Error: partial page refresh not currently implemented");
+
+  var appnames = [],
+    app = null;
+  for (var i in state.routes) {
+    if (!!state.routes[i].name) {
+      appnames.push(state.routes[i].name);
+      if (app === null) {
+        app = state.routes[i];
+      }
+    }
+  }
+  if (!appnames.length) {
+    console.error("Error: No app was routed");
+    return;
+  }
+
+  console.log("Route to app", appnames[0]);
+
+  if (appnames[0] === "shot") {
+    var key = state.params.shotId + "/" + state.params.shotDomain,
+      xhr = new XMLHttpRequest();
+
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        var data = JSON.parse(xhr.responseText);
+        gotData(Handler, {backend: location.origin, id: key, shot: data});    
+      } else {
+        console.error("Error: Bad response: ", xhr.status, xhr.responseText);
+      }
+    };
+
+    xhr.open("GET", "/data/" + key);
+    xhr.send();  
+  }
 });
 `;
 
