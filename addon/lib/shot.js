@@ -713,7 +713,7 @@ class _Clip {
     return this._comments.slice();
   }
   addComment(json) {
-    let comment = new this.shot.Comment(json);
+    let comment = new this._shot.Comment(json);
     this._comments.push(comment);
     this._dirty("comments");
   }
