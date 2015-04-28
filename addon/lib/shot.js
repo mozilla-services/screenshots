@@ -365,6 +365,11 @@ class AbstractShot {
     this._comments.push(comment);
     this._dirty("comments");
   }
+  updateComment(index, json) {
+    let comment = new this._shot.Comment(json);
+    this._comments[index] = comment;
+    this._dirty("comments");
+  }
   // FIXME: no delete, nor comment editing
 
   get ogTitle() {
@@ -715,6 +720,11 @@ class _Clip {
   addComment(json) {
     let comment = new this._shot.Comment(json);
     this._comments.push(comment);
+    this._dirty("comments");
+  }
+  updateComment(index, json) {
+    let comment = new this._shot.Comment(json);
+    this._comments[index] = comment;
     this._dirty("comments");
   }
 
