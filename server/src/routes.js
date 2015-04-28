@@ -7,8 +7,7 @@ let React = require("react"),
   url = require("url"),
   shell = require("./views/shell.js"),
   main = require("./views/main.js"),
-  frame = require("./views/frame.js"),
-  content = require("./views/content.js");
+  frame = require("./views/frame.js");
 
 /*
 Shot view: /{random/domainName}
