@@ -49,7 +49,7 @@ let ImageClip = React.createClass({
 let TextClip = React.createClass({
   render: function () {
     if (debugDisplayTextSource) {
-      return <textarea className="snippet-text" value={this.props.clip.text.html} />;
+      return <textarea readOnly="1" className="snippet-text" value={this.props.clip.text.html} />;
     }
     let html = {__html: this.props.clip.text.html};
     return <div className="snippet-text" dangerouslySetInnerHTML={html}></div>;
@@ -84,8 +84,23 @@ let ShootPanel = React.createClass({
       if (! processDebugCommand(this, input.value)) {
         self.port.emit("addComment", input.value);
       }
-      input.value = "";
+      input.blur();
+      let id = this.props.activeClipName ? "comment_" + this.props.activeClipName : "globalComment";
+      this.setState({
+        [id]: null
+      });
     }
+  },
+
+  onChange: function (e) {
+    let id = this.props.activeClipName ? "comment_" + this.props.activeClipName : "globalComment";
+    this.setState({
+      [id]: e.target.value
+    });
+  },
+
+  getInitialState: function () {
+    return {};
   },
 
   render: function () {
@@ -133,6 +148,21 @@ let ShootPanel = React.createClass({
     } else {
       throw new Error("Weird clip, no .text or .image");
     }
+    let clipComment = "";
+    let commentId = this.props.activeClipName ? "comment_" + this.props.activeClipName : "globalComment";
+    if (typeof this.state[commentId] == "string") {
+      clipComment = this.state[commentId];
+    } else if (clip) {
+      if (clip.comments.length) {
+        // FIXME: need to find the first comment *by this user*
+        clipComment = clip.comments[0].text;
+      }
+    } else {
+      if (this.props.shot.comments.length) {
+        // FIXME: first comment for this user
+        clipComment = this.props.shot.comments[0].text;
+      }
+    }
 
     return (<div className="container">
       <div className="modes-row">
@@ -160,8 +190,7 @@ let ShootPanel = React.createClass({
       </div>
 
       <div className="comment-area">
-        <div className="comment">{this.props.shot.comment}</div>
-        <input className="comment-input" ref="input" type="text" placeholder="Say something" onKeyUp={ this.onKeyUp }/>
+        <input className="comment-input" ref="input" type="text" value={ clipComment } placeholder="Say something" onKeyUp={ this.onKeyUp } onChange={ this.onChange }/>
       </div>
     </div>);
   },

@@ -47,8 +47,20 @@ a:hover {
 }
 
 input[type=text] {
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 1px;
+  cursor: pointer;
+}
+
+input[type=text]:hover {
+  background-color: #ddf;
+}
+
+input[type=text]:focus {
   border: 1px solid #999;
   border-radius: 1px;
+  cursor: text;
+  background-color: #fff;
 }
 
 /*

@@ -234,12 +234,33 @@ const ShotContext = Class({
   /** These are methods that are called by the PanelContext based on messages from the panel */
   panelHandlers: {
     addComment: function (comment) {
-      this.shot.addComment({
+      let clip;
+      if (this.activeClipName) {
+        clip = this.shot.getClip(this.activeClipName);
+      }
+      let commentObject = {
         // FIXME: proper user
         user: "unknown",
         createdDate: Date.now(),
         text: comment
-      });
+      };
+      if (clip) {
+        if (clip.comments.length) {
+          commentObject = clip.comments[0].asJson();
+          commentObject.text = comment;
+          clip.updateComment(0, commentObject);
+        } else {
+          clip.addComment(commentObject);
+        }
+      } else {
+        if (this.shot.comments.length) {
+          commentObject = this.shot.comments[0].asJson();
+          commentObject.text = comment;
+          this.shot.updateComment(0, commentObject);
+        } else {
+          this.shot.addComment(commentObject);
+        }
+      }
       this.updateShot();
     },
     copyLink: function () {
