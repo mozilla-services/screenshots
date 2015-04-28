@@ -43,7 +43,6 @@ exports.linkify = function (url) {
 
 exports.routes = (
   <Route path="/" handler={shell.Shell}>
-    <Route name="content" path="content/:contentId/:contentDomain" handler={content.Content} />
     <Route name="summary" path="summary/:summaryId" handler={main.Main} />
     <Route name="tag" path="tag/:tagId" handler={main.Main} />
     <Route name="meta" path="meta/:metaId" handler={main.Main} />
