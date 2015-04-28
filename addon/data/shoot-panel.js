@@ -79,7 +79,6 @@ let ShootPanel = React.createClass({
   },
 
   onKeyUp: function (e) {
-    console.log("keyup", e.which);
     let input = React.findDOMNode(this.refs.input);
     if (e.which == 13) {
       if (! processDebugCommand(this, input.value)) {
