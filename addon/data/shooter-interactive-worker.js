@@ -293,7 +293,26 @@ var mousemove = watchFunction(function (event) {
 
 // The <body> tag itself can have margins and offsets, which need to be used when
 // setting the position of the boxEl.
-var bodyRect;
+function getBodyRect() {
+  if (getBodyRect.cached) {
+    return getBodyRect.cached;
+  }
+  let rect = document.body.getBoundingClientRect();
+  let cached = {
+    top: rect.top + window.scrollY,
+    bottom: rect.bottom + window.scrollY,
+    left: rect.left + window.scrollX,
+    right: rect.right + window.scrollX
+  };
+  // FIXME: I can't decide when this is necessary
+  // *not* necessary on http://patriciogonzalezvivo.com/2015/thebookofshaders/
+  // (actually causes mis-selection there)
+  // *is* necessary on http://atirip.com/2015/03/17/sorry-sad-state-of-matrix-transforms-in-browsers/
+  cached = {top: 0, bottom: 0, left: 0, right: 0};
+  getBodyRect.cached = cached;
+  return cached;
+}
+
 
 var boxTopEl, boxLeftEl, boxRightEl, boxBottomEl;
 
@@ -325,20 +344,7 @@ function render() {
     boxBottomEl.className = "pageshot-bghighlight";
     document.body.appendChild(boxBottomEl);
   }
-  if (! bodyRect) {
-    bodyRect = document.body.getBoundingClientRect();
-    bodyRect = {
-      top: bodyRect.top + window.scrollY,
-      bottom: bodyRect.bottom + window.scrollY,
-      left: bodyRect.left + window.scrollX,
-      right: bodyRect.right + window.scrollX
-    };
-    // FIXME: I can't decide when this is necessary
-    // *not* necessary on http://patriciogonzalezvivo.com/2015/thebookofshaders/
-    // (actually causes mis-selection there)
-    // *is* necessary on http://atirip.com/2015/03/17/sorry-sad-state-of-matrix-transforms-in-browsers/
-    bodyRect = {top: 0, bottom: 0, left: 0, right: 0};
-  }
+  let bodyRect = getBodyRect();
   var docHeight = document.documentElement.scrollHeight;
   var docWidth = document.documentElement.scrollWidth;
   boxEl.style.top = (pos.top - bodyRect.top) + "px";
@@ -822,7 +828,6 @@ function autoSelect(ids) {
 function captureSelection() {
   let range = window.getSelection().getRangeAt(0);
   var selection = extractSelection(range);
-  console.log("got selection", selection.outerHTML, range.toString());
   self.port.emit("textSelection", {
     html: selection.outerHTML,
     text: range.toString()
@@ -865,13 +870,20 @@ window.addEventListener("mouseup", watchFunction(function (event) {
   button.className = "pageshot-textbutton";
   button.setAttribute("title", "Add this selection as a clip");
   button.textContent = "+";
+  // the button click can ruin the range we had, so we keep a copy:
+  let buttonRange = range.cloneRange();
   button.addEventListener("mouseup", function (clickEvent) {
     clickEvent.stopPropagation();
+    clickEvent.preventDefault();
+    let existing = window.getSelection().getRangeAt(0);
+    existing.setStart(buttonRange.startContainer, buttonRange.startOffset);
+    existing.setEnd(buttonRange.endContainer, buttonRange.endOffset);
     textSelectButton.parentNode.removeChild(textSelectButton);
     textSelectButton = null;
     captureSelection();
     return false;
   }, false);
+  let bodyRect = getBodyRect();
   button.style.top = rect.top + document.documentElement.scrollTop - bodyRect.top - 21 + "px";
   button.style.left = rect.left + document.documentElement.scrollLeft - bodyRect.left + "px";
   document.body.appendChild(button);
