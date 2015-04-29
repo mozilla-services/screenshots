@@ -176,9 +176,9 @@ let ShootPanel = React.createClass({
           Visible
         </span>
       </div>
+      {deleter}
       <div className="snippet-container">
         {clipComponent}
-        {deleter}
       </div>
       <div className="snippets-row">
         {selectors}
