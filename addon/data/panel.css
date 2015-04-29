@@ -233,6 +233,6 @@ img.snippet-image {
   z-index: 10;
   cursor: pointer;
   position: absolute;
-  right: 0px;
-  top: 0px;
+  left: 0.5em;
+  top: 4.5em;
 }
