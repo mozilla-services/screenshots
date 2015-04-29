@@ -788,14 +788,14 @@ class _Clip {
     assert(typeof text.html == "string" && text.html, "Bad Clip text html:", text.html);
     assert(typeof text.text == "string" || ! text.text, "Bad Clip text text:", text.text);
     if (text.location) {
-    assert(
-      typeof text.location.contextStart == "string" &&
-      typeof text.location.contextEnd == "string" &&
-      typeof text.location.selectionStart == "string" &&
-      typeof text.location.selectionEnd == "string" &&
-      typeof text.location.startOffset == "number" &&
-      typeof text.location.endOffset == "number",
-      "Bad Clip text location:", text.location);
+      assert(
+        typeof text.location.contextStart == "string" &&
+        typeof text.location.contextEnd == "string" &&
+        typeof text.location.selectionStart == "string" &&
+        typeof text.location.selectionEnd == "string" &&
+        typeof text.location.startOffset == "number" &&
+        typeof text.location.endOffset == "number",
+        "Bad Clip text location:", JSON.stringify(text.location));
     }
     assert(! this._image, "Clip with .text cannot have .image", JSON.stringify(this._image));
     this._dirty("text");

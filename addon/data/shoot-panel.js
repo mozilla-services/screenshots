@@ -1,4 +1,4 @@
-/* globals require, self */
+/* globals require, self, unescape */
 /* exported FILENAME */
 /** The worker for shoot-panel.html
     This is setup and directly communicated to by main.js
@@ -190,7 +190,7 @@ let ShootPanel = React.createClass({
       </div>
 
       <div className="comment-area">
-        <input className="comment-input" ref="input" type="text" value={ clipComment } placeholder="Say something" onKeyUp={ this.onKeyUp } onChange={ this.onChange }/>
+        <input className="comment-input" ref="input" type="text" value={ clipComment } placeholder="Say something about this clip" onKeyUp={ this.onKeyUp } onChange={ this.onChange }/>
       </div>
     </div>);
   },
@@ -279,7 +279,13 @@ Debug commands available in comments:
   Replaces a text clip with a textarea containing the text clip's source
 /viewsource
   Opens the HTML of the text clip in a new tab
+/data
+  Opens the JSON data in a new tab
 `;
+
+function unicodeBtoa(s) {
+  return btoa(unescape(encodeURIComponent(s)));
+}
 
 function processDebugCommand(component, command) {
   command = command.replace(/^\s*/, "").replace(/\s*$/, "");
@@ -293,9 +299,14 @@ function processDebugCommand(component, command) {
       let html = clip.text.html;
       html = '<!DOCTYPE html><html><body><!-- text selection: -->' + html + '</body></html>';
       html = html.replace(/>/g, '>\n');
-      let url = "view-source:data:text/html;base64," + btoa(html);
+      let url = "view-source:data:text/html;charset=UTF-8;base64," + unicodeBtoa(html);
       self.port.emit("openLink", url);
     }
+    return true;
+  } else if (command == "/data") {
+    let text = JSON.stringify(truncatedCopy(component.props.shot.asJson()), null, "  ");
+    let url = "data:text/plain;charset=UTF-8;base64," + unicodeBtoa(text);
+    self.port.emit("openLink", url);
     return true;
   } else if (command.search(/^\/help/i) != -1) {
     let url = "data:text/plain;base64," + btoa(debugCommandHelp);
@@ -303,6 +314,27 @@ function processDebugCommand(component, command) {
     return true;
   }
   return false;
+}
+
+/** Copy the object, truncating any very long string values (for nicer display of JSON) */
+function truncatedCopy(obj) {
+  if (typeof obj == "string") {
+    if (obj.length > 70) {
+      return obj.substr(0, 30) + "..." + obj.substr(obj.length-30);
+    }
+    return obj;
+  }
+  if (obj === null || typeof obj != "object") {
+    return obj;
+  }
+  if (Array.isArray(obj)) {
+    return obj.map((item) => truncatedCopy(item));
+  }
+  let result = {};
+  for (let attr in obj) {
+    result[attr] = truncatedCopy(obj[attr]);
+  }
+  return result;
 }
 
 self.port.on("shotData", err.watchFunction(function (data) {
