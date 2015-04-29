@@ -828,11 +828,9 @@ function autoSelect(ids) {
 function captureSelection() {
   let range = window.getSelection().getRangeAt(0);
   var selection = extractSelection(range);
-  self.port.emit("textSelection", {
-    html: selection.outerHTML,
-    text: range.toString()
-    // FIXME: add location
-  });
+  selection.html = selection.node.outerHTML;
+  delete selection.node;
+  self.port.emit("textSelection", selection);
 }
 
 if (window.getSelection().rangeCount && ! window.getSelection().isCollapsed) {

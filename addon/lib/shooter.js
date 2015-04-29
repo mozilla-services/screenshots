@@ -188,10 +188,7 @@ const ShotContext = Class({
     this.interactiveWorker.port.on("textSelection", watchFunction(function (textSelection) {
       this.activeClipName = this.shot.addClip({
         createdDate: Date.now(),
-        text: {
-          html: textSelection.html,
-          text: textSelection.text
-        }
+        text: textSelection
       });
       this.updateShot();
       this.panelContext.show(this);

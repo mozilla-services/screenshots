@@ -27,14 +27,24 @@ function extractSelection(range) {
   // Then we add class names to these to serve as identifiers of the elements
   //   (we don't want to use ids, as they are singular in both the document and
   //   the element, while classes are additive)
+  var captureInfo = {
+    text: range.toString(),
+    location: {}
+  };
   var startContainer = range.startContainer;
+  captureInfo.location.selectionStart = getNode(startContainer).id;
   var startOffset = range.startOffset;
+  captureInfo.location.startOffset = startOffset;
   var endContainer = range.endContainer;
+  captureInfo.location.selectionEnd = getNode(endContainer).id;
   var endOffset = range.endOffset;
+  captureInfo.location.endOffset = endOffset;
   var startBlock = findStartBlock(range);
+  captureInfo.location.contextStart = startBlock.id;
   var startBlockClass = genSelectionId();
   startBlock.classList.add(startBlockClass);
   var endBlock = findEndBlock(range);
+  captureInfo.location.contextEnd = endBlock.id;
   var endBlockClass = genSelectionId();
   endBlock.classList.add(endBlockClass);
   // Then we find an element that contains both the start and the end:
@@ -74,7 +84,8 @@ function extractSelection(range) {
   // And we finally get rid of the markers:
   startSpan.parentNode.removeChild(startSpan);
   endSpan.parentNode.removeChild(endSpan);
-  return result;
+  captureInfo.node = result;
+  return captureInfo;
 }
 
 function genSelectionId() {
