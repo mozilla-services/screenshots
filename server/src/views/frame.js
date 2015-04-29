@@ -10,17 +10,20 @@ let Snippet = React.createClass({
   },
 
   render: function () {
-    let clip = this.props.clip;
+    let clip = this.props.clip,
+      node = null;
 
     if (clip.image === undefined) {
-      return <p>
-        FIXME: Support text clips
+      node = <p className="text-snippet">
+        <span dangerouslySetInnerHTML={{__html: clip.text.html}} />
       </p>;
+    } else {
+      node = <img src={ clip.image.url } />;
     }
 
     return <div className="snippet-container">
       <Link to="shot" params={{shotId: this.props.shotId, shotDomain: this.props.shotDomain}} query={{clip: clip.id}}>
-        <img src={ clip.image.url } />
+        { node }
         <p className="clip-anchor-link">See in full page</p>
       </Link>
     </div>;
@@ -60,18 +63,29 @@ exports.Frame = React.createClass({
 
       if (query.clip === name) {
         if (typeof window !== "undefined") {
-          let frame = document.getElementById("frame");
+          let frame = document.getElementById("frame"),
+            showElement = null,
+            location = null;
 
-          function cb() {
-            frame.contentWindow.postMessage({
-              show: clip.image.location.topLeftElement.slice(1),
-              location: clip.image.location
-            }, window.location.origin);
-          }
-          if (frame.contentDocument.readyState === "complete") {
-            cb()
+          if (clip.image !== undefined) {
+            showElement = clip.image.location.topLeftElement.slice(1);
+            location = clip.image.location;
           } else {
-            frame.contentWindow.onload = cb;
+            alert("FIXME: jumping to a text clip is not yet supported");
+          }
+
+          if (showElement) {
+            function cb() {
+              frame.contentWindow.postMessage({
+                show: showElement,
+                location: clip.image.location
+              }, window.location.origin);
+            }
+            if (frame.contentDocument.readyState === "complete") {
+              cb()
+            } else {
+              frame.contentWindow.onload = cb;
+            }
           }
         }
 
