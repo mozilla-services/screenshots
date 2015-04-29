@@ -12,6 +12,7 @@ let http = require("http"),
 const jspath = "/js/",
   csspath = "/css/",
   modelspath = "/data/",
+  contentpath = "/content/",
   metapath = "/meta/",
   imgpath = "/img/",
   favicopath = "/favicon.ico",
@@ -127,6 +128,32 @@ let server = http.createServer(function (req, res) {
       res.writeHead(405);
       res.end("Method Not Allowed");
     }
+    return;
+  }
+
+  if (pth.startsWith(contentpath)) {
+    let key = pth.slice(contentpath.length);
+    models.modelMap.get(key).then(
+      data => {
+        let parsed = JSON.parse(data);
+        res.writeHead(200);
+        res.end('<!DOCTYPE html><head><script src="/js/content-helper.js"></script>' +
+          parsed.head +
+          '</head><body style="background-color: white; color: black; text-align: left">' +
+          parsed.body +
+          '</body></html>');
+      }
+    ).catch(function (e) {
+      console.log("Error:", e.stack);
+      res.setHeader(contentType, "text/plain; charset=utf-8");
+      res.writeHead(500);
+      if (e.code == "ECONNREFUSED") {
+        // Database connection error
+        res.end("Cannot connect to database");
+      } else {
+        res.end(e.stack);
+      }
+    });
     return;
   }
 

@@ -7,8 +7,7 @@ let React = require("react"),
   url = require("url"),
   shell = require("./views/shell.js"),
   main = require("./views/main.js"),
-  frame = require("./views/frame.js"),
-  content = require("./views/content.js");
+  frame = require("./views/frame.js");
 
 /*
 Shot view: /{random/domainName}
@@ -43,7 +42,6 @@ exports.linkify = function (url) {
 
 exports.routes = (
   <Route path="/" handler={shell.Shell}>
-    <Route name="content" path="content/:contentId/:contentDomain" handler={content.Content} />
     <Route name="summary" path="summary/:summaryId" handler={main.Main} />
     <Route name="tag" path="tag/:tagId" handler={main.Main} />
     <Route name="meta" path="meta/:metaId" handler={main.Main} />
