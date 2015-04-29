@@ -71,14 +71,15 @@ exports.Frame = React.createClass({
             showElement = clip.image.location.topLeftElement.slice(1);
             location = clip.image.location;
           } else {
-            alert("FIXME: jumping to a text clip is not yet supported");
+            showElement = clip.text.location.selectionStart;
+            location = clip.text.location;
           }
 
           if (showElement) {
             function cb() {
               frame.contentWindow.postMessage({
                 show: showElement,
-                location: clip.image.location
+                location: location
               }, window.location.origin);
             }
             if (frame.contentDocument.readyState === "complete") {
