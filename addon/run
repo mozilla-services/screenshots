@@ -137,6 +137,7 @@ run () {
 }
 
 if [[ -n "$publish" ]] ; then
+    cd dist/
     python -c 'import sys, re, time
 today = time.strftime("%Y%m%d%H%M")
 content = sys.stdin.read().strip()
@@ -151,8 +152,7 @@ print content
         --update-url https://$HTTP_HOST/xpi/pageshot.update.rdf
     scp pageshot.xpi pageshot.update.rdf $SSH_USER@$SSH_HOST:pageshot/
     ssh $SSH_USER@$SSH_HOST "cd pageshot && ./bin/update-source.sh"
-    #appcfg.py update appengine/pageshotpages/
-    git checkout ./package.json
+    cd ..
 elif [[ -n "$run_server" ]] ; then
     title PageShotServer
     dev_appserver.py --port 10080 --log_level debug appengine/pageshotpages/ "$@"
