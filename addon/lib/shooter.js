@@ -14,6 +14,7 @@ const { Class } = require('sdk/core/heritage');
 const { watchPromise, watchFunction, watchWorker } = require("./errors");
 const clipboard = require("sdk/clipboard");
 const { AbstractShot } = require("./shot");
+const { getUserInfo } = require("./user");
 
 // If a page is in history for less time than this, we ignore it
 // (probably a redirect of some sort):
@@ -94,7 +95,10 @@ const ShotContext = Class({
     this.id = ++this._idGen;
     this.tab = tabs.activeTab;
     this.tabUrl = this.tab.url;
-    this.shot = new Shot(backend, Math.floor(Date.now()) + "/xxx", {url: this.tabUrl});
+    this.shot = new Shot(backend, Math.floor(Date.now()) + "/xxx", {
+      url: this.tabUrl,
+      userId: getUserInfo().userId
+    });
     this.activeClipName = null;
     clipboard.set(this.shot.viewUrl, "text");
     this._deregisters = [];

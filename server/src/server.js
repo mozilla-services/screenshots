@@ -7,15 +7,18 @@ let http = require("http"),
   routes = require("./routes.js"),
   models = require("./models.js"),
   lookupContentType = require('mime-types').contentType,
-  git = require('git-rev');
+  git = require('git-rev'),
+  Cookies = require("cookies"),
+  qs = require('querystring');
 
 const jspath = "/js/",
   csspath = "/css/",
   modelspath = "/data/",
   contentpath = "/content/",
-  metapath = "/meta/",
   imgpath = "/img/",
   favicopath = "/favicon.ico",
+  loginpath = "/api/login",
+  registerpath = "/api/register",
   contentType = "Content-type",
   notFound = "Not Found",
   doctype = "<!DOCTYPE html>",
@@ -59,19 +62,21 @@ Router.run(routes.routes, Router.HistoryLocation, function (Handler, state) {
     xhr.onload = function () {
       if (xhr.status === 200) {
         var data = JSON.parse(xhr.responseText);
-        gotData(Handler, {backend: location.origin, id: key, shot: data});    
+        gotData(Handler, {backend: location.origin, id: key, shot: data});
       } else {
         console.error("Error: Bad response: ", xhr.status, xhr.responseText);
       }
     };
 
     xhr.open("GET", "/data/" + key);
-    xhr.send();  
+    xhr.send();
   }
 });
 `;
 
 let server = http.createServer(function (req, res) {
+  let cookies = new Cookies(req, res, models.keys);
+  req.userId = cookies.get("userId", {signed: true});
   let parsed = url.parse(req.url, true),
     pth = parsed.pathname,
     query = parsed.query;
@@ -93,12 +98,15 @@ let server = http.createServer(function (req, res) {
   let modelname = "",
     storeMap = null;
 
+  if (pth.startsWith(registerpath)) {
+    return handleRegister(req, res);
+  } else if (pth.startsWith(loginpath)) {
+    return handleLogin(req, res);
+  }
+
   if (pth.startsWith(modelspath)) {
     modelname = pth.slice(modelspath.length);
     storeMap = models.modelMap;
-  } else if (pth.startsWith(metapath)) {
-    modelname = pth.slice(metapath.length);
-    storeMap = models.metaMap;
   }
 
   if (modelname) {
@@ -109,14 +117,35 @@ let server = http.createServer(function (req, res) {
       });
       req.on('end', function() {
         if (body.length && body[0] === "{") {
-          storeMap.put(modelname, body).then(() => res.end());
+          let bodyObj = JSON.parse(body);
+          if (! bodyObj.userId) {
+            simpleResponse(res, "No userId in body", 400);
+            return;
+          }
+          if (! req.userId) {
+            simpleResponse(res, "Not logged in", 401);
+            return;
+          }
+          if (req.userId != bodyObj.userId) {
+            // FIXME: this doesn't make sense for comments or other stuff, see https://github.com/mozilla-services/pageshot/issues/245
+            simpleResponse(res, "Cannot save a page on behalf of another user", 403);
+          }
+          // FIXME: this needs to confirm that the userid doesn't change on an
+          // update; right now anyone can overwrite a shot so long as they
+          // update the userId appropriately:
+          storeMap.put(modelname, {value: body, userId: req.userId})
+            .then(() => res.end())
+            .catch((err) => {
+              errorResponse(res, "Error saving object:", err);
+            });
         } else {
           res.writeHead(400);
           res.end("Bad Request");
         }
       });
     } else if (req.method === 'GET') {
-      storeMap.get(modelname).then((val) => {
+      storeMap.get(modelname, ["value"]).then((val) => {
+        val = val && val.value;
         if (val === null) {
           res.writeHead(404);
           res.end(notFound);
@@ -206,6 +235,84 @@ let server = http.createServer(function (req, res) {
     });
   });
 });
+
+function handleRegister(req, res) {
+  parsePost(req).then(function (vars) {
+    // FIXME: should also handle updating
+    // FIXME: need to hash secret
+    return models.userMap.insert(vars.userId, {
+      secret: vars.secret,
+      nickname: vars.nickname || null,
+      avatar_url: vars.avatar_url || null
+    }).then(function (result) {
+      if (result) {
+        let cookies = new Cookies(req, res, models.keys);
+        cookies.set("userId", vars.userId, {signed: true});
+        simpleResponse(res, "Created", 200);
+      } else {
+        simpleResponse(res, "User exists", 401);
+      }
+    });
+  }).catch(function (err) {
+    errorResponse(res, "Error registering:", err);
+  });
+}
+
+function parsePost(req) {
+  return new Promise((resolve, reject) => {
+    let body = '';
+    req.on('data', function (data) {
+      body += data;
+      // Too much POST data, kill the connection!
+      if (body.length > 1e6) {
+        req.connection.destroy();
+        reject(new Error("Request body too large"));
+      }
+    });
+    req.on('end', function () {
+      let post = qs.parse(body);
+      resolve(post);
+    });
+  });
+}
+
+function handleLogin(req, res) {
+  parsePost(req).then(function (vars) {
+    return models.userMap.get(vars.userId, ["secret"]).then(function (row) {
+      if (! row) {
+        simpleResponse(res, "Error: no such user", 404);
+      } else if (vars.secret == row.secret) {
+        let cookies = new Cookies(req, res, models.keys);
+        cookies.set("user", vars.userId, {signed: true});
+        simpleResponse(res, "User logged in", 200);
+      } else {
+        simpleResponse(res, "Invalid login", 401);
+      }
+    });
+  }).catch(function (err) {
+    errorResponse(err, "Error in login:", err);
+  });
+}
+
+function simpleResponse(res, message, status) {
+  status = status || 200;
+  res.setHeader(contentType, "text/plain; charset=utf-8");
+  res.writeHead(status);
+  res.end(message);
+}
+
+function errorResponse(res, message, err) {
+  res.setHeader(contentType, "text/plain; charset=utf-8");
+  res.writeHead(500);
+  if (err) {
+    message += "\n" + err;
+    if (err.stack) {
+      message += "\n\n" + err.stack;
+    }
+  }
+  res.end(message);
+  console.error("Error: " + message, err+"", err);
+}
 
 git.long(function (rev) {
   routes.setGitRevision(rev);
