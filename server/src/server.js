@@ -243,7 +243,7 @@ function handleRegister(req, res) {
     return models.userMap.insert(vars.userId, {
       secret: vars.secret,
       nickname: vars.nickname || null,
-      avatar_url: vars.avatar_url || null
+      avatarurl: vars.avatarurl || null
     }).then(function (result) {
       if (result) {
         let cookies = new Cookies(req, res, models.keys);
