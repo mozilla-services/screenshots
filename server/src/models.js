@@ -199,6 +199,7 @@ class Model {
     return getConnection().then(([client, done]) => {
       return new Promise((resolve, reject) => {
         function rollback(err) {
+          console.error("DB Query was rolled back:", err);
           client.query('ROLLBACK', function() {
             client.end();
           });
@@ -207,21 +208,23 @@ class Model {
         client.query(
           "BEGIN",
           (err, result) => {
-            if (err) { return rollback(); }
+            if (err) { return rollback(err); }
             client.query(
               "LOCK TABLE " + this.table + " IN SHARE ROW EXCLUSIVE MODE",
               (err, result) => {
-                if (err) { return rollback(); }
-                client.query(`
+                if (err) { return rollback(err); }
+                let query = `
                   WITH upsert AS
                   (UPDATE ${this.table} SET ${propSetSQL.join(", ")} WHERE id = $1 returning *)
-                  INSERT INTO ${this.table} (id, ${propNames.join(", ")}) SELECT $1, ${propSelectSQL.join(", ")}
-                  WHERE NOT EXISTS (SELECT * FROM upsert)`,
+                  INSERT INTO ${this.table} ("id", ${propNames.join(", ")}) SELECT $1, ${propSelectSQL.join(", ")}
+                  WHERE NOT EXISTS (SELECT * FROM upsert)`;
+                //console.log("PUT QUERY", query);
+                client.query(query,
                   propValues,
                   (err, result) => {
                     if (err) { return rollback(err); }
                     client.query("COMMIT", (err, result) => {
-                      if (err) { return rollback(); }
+                      if (err) { return rollback(err); }
                       resolve();
                       done();
                       //let pool = pg.pools.all[Object.keys(pg.pools.all)[0]];
