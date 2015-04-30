@@ -203,4 +203,5 @@ exports.main = function (options) {
   //require("./historytracker");
 
   helperworker.trackMods(backendOverride || null);
+  require("user").initialize(exports.getBackend());
 };

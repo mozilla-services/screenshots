@@ -196,6 +196,7 @@ class AbstractShot {
     if (attrs.readable) {
       this.readable = new this.Readable(attrs.readable);
     }
+    this.userId = attrs.userId || null;
     this._clips = {};
     if (attrs.clips) {
       for (let clipId in attrs.clips) {
@@ -532,10 +533,20 @@ class AbstractShot {
     }
   }
 
+  get userId() {
+    return this._userId;
+  }
+  set userId(val) {
+    assert(typeof val == "string" || ! val);
+    val = val || null;
+    this._userId = val;
+    this._dirty("userId");
+  }
+
 }
 
 AbstractShot.prototype.REGULAR_ATTRS = (`
-url docTitle ogTitle userTitle createdDate createdDevice favicon
+userId url docTitle ogTitle userTitle createdDate createdDevice favicon
 history comments hashtags hashtags images readable head body htmlAttrs bodyAttrs
 microdata
 `).split(/\s+/g);

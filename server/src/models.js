@@ -1,3 +1,5 @@
+const Keygrip = require('keygrip');
+
 let user = process.env.DB_USER || process.env.USER,
   pass = process.env.DB_PASS,
   host = process.env.DB_HOST || "localhost:5432";
@@ -5,13 +7,34 @@ let user = process.env.DB_USER || process.env.USER,
 pass = (pass && ":" + pass) || "";
 
 let modelMap = null,
-  metaMap = null;
+  userMap = null;
 
 exports.modelMap = modelMap;
-exports.metaMap = metaMap;
+exports.userMap = userMap;
 
 let pg = require("pg"),
   constr = `postgres://${user}${pass}@${host}/${user}`;
+
+const createSQL = `
+CREATE TABLE IF NOT EXISTS users (
+  id varchar(200) PRIMARY KEY,
+  secret varchar(200) NOT NULL,
+  nickname TEXT,
+  avatarurl TEXT
+);
+
+CREATE TABLE IF NOT EXISTS data (
+  id varchar(20) PRIMARY KEY,
+  userid varchar(200) REFERENCES users (id),
+  created TIMESTAMP DEFAULT NOW(),
+  value text
+);
+
+CREATE TABLE IF NOT EXISTS signing_keys (
+  created TIMESTAMP DEFAULT NOW(),
+  key TEXT
+);
+`;
 
 function getConnection() {
   return new Promise(function (resolve, reject) {
@@ -27,25 +50,24 @@ function getConnection() {
 
 getConnection().then(function ([client, done]) {
   console.log("creating tables on", constr);
-  client.query("CREATE TABLE IF NOT EXISTS data " +
-    "(id varchar(20) PRIMARY KEY, value text);" +
-    "CREATE TABLE IF NOT EXISTS meta " +
-    "(id varchar(20) PRIMARY KEY, value text);",
+  client.query(createSQL,
     [],
     function (err, result) {
-      console.log("tables created with err", err);
+      if (err) {
+        console.log("tables created with err", err);
+      }
       done();
       // test put and get. FIXME remove this later
-      modelMap.put("asdf", JSON.stringify({hello: "world"})).then(
+      modelMap.put("test_row", {value: JSON.stringify({hello: "world"})}).then(
         function () {
-          modelMap.get("asdf").then(
+          modelMap.get("test_row", ["value"]).then(
             function (result) {
-              let obj = JSON.parse(result);
+              let obj = JSON.parse(result.value);
               console.log(
-                "put/get asdf success?",
+                "put/get test_row success?",
                 obj.hello === "world");
             }
-          );
+          ).then(loadKeys);
         }
       );
     }
@@ -58,24 +80,82 @@ getConnection().then(function ([client, done]) {
   }
 });
 
+function loadKeys() {
+  return getConnection().then(function ([client, done]) {
+    client.query(
+      `SELECT key FROM signing_keys ORDER BY CREATED`,
+      [],
+      function (err, result) {
+        if (err) {
+          console.warn("Could not select signing key:", err);
+          done();
+          return;
+        }
+        if (result.rows.length) {
+          let textKeys = [];
+          for (let i=0; i<result.rows.length; i++) {
+            textKeys.push(result.rows[i].key);
+          }
+          exports.keys = new Keygrip(textKeys);
+          done();
+        } else {
+          done();
+          makeKey().then(function (key) {
+            client.query(
+              `INSERT INTO signing_keys (created, key) VALUES (NOW(), $1)`,
+              [key],
+              function (err, result) {
+                if (err) {
+                  console.warn("Could not create signing key:", err);
+                  done();
+                  return;
+                }
+                exports.keys = new Keygrip([key]);
+                console.log("created new secret key");
+                done();
+              }
+            );
+          }).catch(function (err) {
+            console.warn("Error creating signing key:", err);
+          });
+        }
+      });
+    }
+  ).catch(function (err) {
+    console.warn("Could not load signing key because of connection error:", err);
+  });
+}
+
+function makeKey() {
+  return new Promise(function (resolve, reject) {
+    require('crypto').randomBytes(48, function(err, buf) {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve(buf.toString('base64'));
+    });
+  });
+}
 
 class Model {
   constructor(table) {
     this.table = table;
   }
 
-  get(id) {
+  get(id, attrs) {
+    let sqlAttrs = attrs.map((a) => '"' + a + '"');
     return getConnection().then(([client, done]) => {
       return new Promise((resolve, reject) => {
         client.query(
-          "SELECT (value) FROM " + this.table + " WHERE id = $1",
+          `SELECT (${sqlAttrs.join(", ")}) FROM ${this.table} WHERE id = $1`,
           [id],
           function (err, result) {
             if (err) {
               reject(err);
             } else {
               if (result.rows.length) {
-                resolve(result.rows[0].value);
+                resolve(result.rows[0]);
               } else {
                 resolve(null);
               }
@@ -94,7 +174,28 @@ class Model {
     });
   }
 
-  put(id, value) {
+  put(id, props) {
+    if (! id) {
+      throw new Error("Must have id");
+    }
+    let propSetSQL = [];
+    let propSelectSQL = [];
+    let propNames = [];
+    // id is treated differently from other properties:
+    let propValues = [id];
+    for (let attr in props) {
+      if (attr.search(/^[a-zA-Z_]+$/) == -1) {
+        throw new Error("Bad attr: " + JSON.stringify(attr));
+      }
+      if (attr == "id") {
+        throw new Error("Cannot include id attr in map");
+      }
+      propNames.push('"' + attr + '"');
+      let number = propSetSQL.length+2;
+      propSetSQL.push('"' + attr + '" = $' + number);
+      propSelectSQL.push("$" + number);
+      propValues.push(props[attr]);
+    }
     return getConnection().then(([client, done]) => {
       return new Promise((resolve, reject) => {
         function rollback(err) {
@@ -111,12 +212,12 @@ class Model {
               "LOCK TABLE " + this.table + " IN SHARE ROW EXCLUSIVE MODE",
               (err, result) => {
                 if (err) { return rollback(); }
-                client.query(
-                  "WITH upsert AS " +
-                  "(UPDATE " + this.table + " SET value = $2 WHERE id = $1 returning *) " +
-                  "INSERT INTO " + this.table + " (id, value) SELECT $1, $2 " +
-                  "WHERE NOT EXISTS (SELECT * FROM upsert);",
-                  [id, value],
+                client.query(`
+                  WITH upsert AS
+                  (UPDATE ${this.table} SET ${propSetSQL.join(", ")} WHERE id = $1 returning *)
+                  INSERT INTO ${this.table} (id, ${propNames.join(", ")}) SELECT $1, ${propSelectSQL.join(", ")}
+                  WHERE NOT EXISTS (SELECT * FROM upsert)`,
+                  propValues,
                   (err, result) => {
                     if (err) { return rollback(err); }
                     client.query("COMMIT", (err, result) => {
@@ -135,13 +236,48 @@ class Model {
       });
     });
   }
+
+  insert(id, props) {
+    if (! id) {
+      throw new Error("No id given to INSERT");
+    }
+    let propNames = [];
+    let propNums = [];
+    let propValues = [id];
+    for (let attr in props) {
+      let count = propNames.length + 2;
+      propNames.push('"' + attr + '"');
+      propNums.push('$' + count);
+      propValues.push(props[attr]);
+    }
+    return getConnection().then(([client, done]) => {
+      return new Promise((resolve, reject) => {
+        client.query(`
+          INSERT INTO ${this.table} (id, ${propNames.join(", ")})
+          VALUES ($1, ${propNums.join(", ")})`,
+          propValues,
+          (err, result) => {
+            if (err && err.code == '23505') {
+              // constraint error, duplicate key
+              resolve(false);
+            } else if (err) {
+              reject(err);
+            } else {
+              resolve(true);
+            }
+            done();
+          }
+        );
+      });
+    });
+  }
 }
 
 modelMap = new Model("data");
-metaMap = new Model("meta");
+userMap = new Model("users");
 
 exports.modelMap = modelMap;
-exports.metaMap = metaMap;
+exports.userMap = userMap;
 
 exports.main = function main(state) {
   return new Promise(function (resolve, reject) {
@@ -152,16 +288,14 @@ exports.main = function main(state) {
 exports.shot = function shot(state) {
   let key = state.params.shotId + "/" + state.params.shotDomain;
 
-  return Promise.all(
-    [modelMap.get(key), metaMap.get(key)]
-  ).then(
-    ([data, meta]) => {
+  return modelMap.get(key, ["value"]).then(
+    (data) => {
       if (! data) {
         return Promise.reject(new Error("No data or returned from model"));
       }
 
       return Promise.resolve({
-          shot: JSON.parse(data),
+          shot: JSON.parse(data.value),
           backend: state.backend,
           id: key});
     }
@@ -171,14 +305,13 @@ exports.shot = function shot(state) {
 exports.content = function content(state) {
   let key = state.params.contentId + "/" + state.params.contentDomain;
 
-  return modelMap.get(key).then(
-    data => Promise.resolve({data: JSON.parse(data), identifier: key})
+  return modelMap.get(key, ["value"]).then(
+    data => Promise.resolve({data: JSON.parse(data.value), identifier: key})
   );
 };
 
 exports.summary = exports.main;
 exports.tag = exports.main;
 exports.data = exports.main;
-exports.meta = exports.main;
 exports.tags = exports.main;
 exports.newframe = exports.main;
