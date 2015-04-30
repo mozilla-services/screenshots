@@ -9,8 +9,10 @@ exports.initialize = function (backend) {
       userId: "anon" + makeUuid() + "",
       secret: makeUuid()+""
     };
+    console.info("Generating new device authentication ID", info.userId);
     watchPromise(saveLogin(backend, info).then(function () {
       ss.storage.userInfo = info;
+      console.info("Successfully saved ID");
     }));
   } else {
     let info = ss.storage.userInfo;
@@ -41,7 +43,7 @@ function saveLogin(backend, info) {
         if (response.status == 200) {
           resolve();
         } else {
-          reject(response);
+          reject(new Error("Bad response: " + response.status));
         }
       }
     }).post();

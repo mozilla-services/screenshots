@@ -95,9 +95,13 @@ const ShotContext = Class({
     this.id = ++this._idGen;
     this.tab = tabs.activeTab;
     this.tabUrl = this.tab.url;
+    let userInfo = getUserInfo();
+    if (! userInfo) {
+      throw new Error("Could not get device authentication information");
+    }
     this.shot = new Shot(backend, Math.floor(Date.now()) + "/xxx", {
       url: this.tabUrl,
-      userId: getUserInfo().userId
+      userId: userInfo.userId
     });
     this.activeClipName = null;
     clipboard.set(this.shot.viewUrl, "text");
