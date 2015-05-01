@@ -8,4 +8,5 @@ server/dist-production
 node_modules
 addon/dist
 addon.log
- 
+shared/dist
+
