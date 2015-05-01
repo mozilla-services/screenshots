@@ -76,7 +76,7 @@ Router.run(routes.routes, Router.HistoryLocation, function (Handler, state) {
 
 let server = http.createServer(function (req, res) {
   let cookies = new Cookies(req, res, models.keys);
-  req.userId = cookies.get("userId", {signed: true});
+  req.userId = cookies.get("user", {signed: true});
   let parsed = url.parse(req.url, true),
     pth = parsed.pathname,
     query = parsed.query;
@@ -133,7 +133,7 @@ let server = http.createServer(function (req, res) {
           // FIXME: this needs to confirm that the userid doesn't change on an
           // update; right now anyone can overwrite a shot so long as they
           // update the userId appropriately:
-          storeMap.put(modelname, {value: body, userId: req.userId})
+          storeMap.put(modelname, {value: body, userid: req.userId})
             .then(() => res.end())
             .catch((err) => {
               errorResponse(res, "Error saving object:", err);
@@ -162,15 +162,20 @@ let server = http.createServer(function (req, res) {
 
   if (pth.startsWith(contentpath)) {
     let key = pth.slice(contentpath.length);
-    models.modelMap.get(key).then(
+    models.modelMap.get(key, ["value"]).then(
       data => {
-        let parsed = JSON.parse(data);
-        res.writeHead(200);
-        res.end('<!DOCTYPE html><head><script src="/js/content-helper.js"></script>' +
-          parsed.head +
-          '</head><body style="background-color: white; color: black; text-align: left">' +
-          parsed.body +
-          '</body></html>');
+        if (data && data.value) {
+          let parsed = JSON.parse(data.value);
+          res.writeHead(200);
+          res.end('<!DOCTYPE html><head><script src="/js/content-helper.js"></script>' +
+            parsed.head +
+            '</head><body style="background-color: white; color: black; text-align: left">' +
+            parsed.body +
+            '</body></html>');
+        } else {
+          res.writeHead(404);
+          res.end("Not Found");
+        }
       }
     ).catch(function (e) {
       console.log("Error:", e.stack);
