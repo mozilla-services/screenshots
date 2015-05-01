@@ -77,7 +77,7 @@ gulp.task("static-addon", function () {
   return gulp.src(["addon/**/*.{html,css,png,svg}", "addon/run", "addon/package.json", "!addon/dist/**/*"]).pipe(gulp.dest("addon/dist"));
 });
 
-gulp.task("javascript-addon", ["data-addon", "lib-addon", "test-addon", "static-addon"], function () {
+gulp.task("javascript-addon", ["data-addon", "lib-addon", "test-addon", "static-addon", "shared"], function () {
   var bundler = browserify({
     entries: ["./addon/dist/data/shoot-panel.js"],
     debug: true
@@ -127,7 +127,7 @@ gulp.task("notify-end-transforms", ["transforms"], function () {
 gulp.task("default", ["lint", "transforms"], function () {
   nodemon({
     script: "server/run",
-    ignore: ["server/dist", "server/dist-production", "addon", "**/Profile", "pageshot-presentation", "**/node_modules"],
+    ignore: ["shared/dist", "server/dist", "server/dist-production", "addon", "**/Profile", "pageshot-presentation", "**/node_modules"],
     ext: "js jsx scss",
     tasks: ["lint", "notify-start-transforms", "notify-end-transforms"]
   });
