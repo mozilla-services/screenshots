@@ -13,7 +13,7 @@ const { defer } = require('sdk/core/promise');
 const { Class } = require('sdk/core/heritage');
 const { watchPromise, watchFunction, watchWorker } = require("./errors");
 const clipboard = require("sdk/clipboard");
-const { AbstractShot } = require("shared/shot");
+const { AbstractShot } = require("./shared/shot");
 const { getUserInfo } = require("./user");
 
 // If a page is in history for less time than this, we ignore it
