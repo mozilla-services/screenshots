@@ -156,6 +156,8 @@ exports.Frame = React.createClass({
       </div>
       { snippets }
       <iframe width="100%" id="frame" src={ "/content/" +  shot.id } />
+      <a className="pageshot-footer" href="https://github.com/mozilla-services/pageshot">PageShot</a>
+      <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl }>Send Feedback</a>
     </div>;
   }
 });

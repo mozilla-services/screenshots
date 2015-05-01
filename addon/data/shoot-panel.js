@@ -185,13 +185,16 @@ let ShootPanel = React.createClass({
         {selectors}
         <span className="clip-selector" onClick={this.addClip}>+</span>
       </div>
+      <div className="comment-area">
+        <input className="comment-input" ref="input" type="text" value={ clipComment } placeholder="Say something about this clip" onKeyUp={ this.onKeyUp } onChange={ this.onChange }/>
+      </div>
       <div className="link-row">
         <a className="link" target="_blank" href={ this.props.shot.viewUrl } onClick={ this.onLinkClick }>{ this.props.shot.viewUrl }</a>
         <button className="copy" ref="copy" type="button" data-normal-text="Copy Link" data-copied-text="Copied!" onClick={ this.onCopyClick }>Copy Link</button>
       </div>
-
-      <div className="comment-area">
-        <input className="comment-input" ref="input" type="text" value={ clipComment } placeholder="Say something about this clip" onKeyUp={ this.onKeyUp } onChange={ this.onChange }/>
+      <div className="feedback-row">
+        <a className="pageshot-footer" target="_blank" href="https://github.com/mozilla-services/pageshot">PageShot</a>
+        <a className="feedback-footer" target="_blank" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + this.props.shot.viewUrl }>Send Feedback</a>
       </div>
     </div>);
   },

@@ -169,3 +169,16 @@ a.sitelink, a.sitelink:visited {
 .metadata {
   margin-bottom: 4em;
 }
+
+.pageshot-footer {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+}
+
+.feedback-footer {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  text-align: right;
+}
