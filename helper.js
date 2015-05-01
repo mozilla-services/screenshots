@@ -2,14 +2,12 @@
 
 console.log("Addon transformation complete.");
 
-var firefox,
-  interval = setInterval(function () { }, 1000);
+var firefox;
 
 process.on('SIGTERM', function () {
   if (firefox) {
     console.log("sending TERM", firefox);
     firefox.kill();
-    clearInterval(interval);
   }
 });
 
