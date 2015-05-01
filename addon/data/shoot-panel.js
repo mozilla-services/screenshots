@@ -227,6 +227,9 @@ let ShootPanel = React.createClass({
 
   renderAddScreen: function () {
     return (<div className="container">
+      <p className="add-screen-header">
+        I want to select:
+      </p>
       <div className="add-row">
         <div className="button-row">
           <button onClick={this.addAuto}>Add Auto-Detect</button>
@@ -242,7 +245,7 @@ let ShootPanel = React.createClass({
           <button onClick={this.addVisible}>Add Visible</button>
         </div>
       </div>
-      <div className="add-row">
+      <div className="add-row cancel-row">
         <div className="button-row">
           <button onClick={this.addCancel}>Cancel</button>
         </div>

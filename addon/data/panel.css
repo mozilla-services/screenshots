@@ -78,6 +78,12 @@ input[type=text]:focus {
   overflow: hidden;
 }
 
+.add-screen-header {
+  margin: 2em;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+
 .modes-row {
   position: absolute;
   top: 0.5em;
@@ -225,6 +231,12 @@ img.snippet-image {
 .button-row button {
   width: 100%;
   display: inline-block;
+}
+
+.cancel-row {
+  position: absolute;
+  bottom: 1em;
+  width: 100%;
 }
 
 .delete {
