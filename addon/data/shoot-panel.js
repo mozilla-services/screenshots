@@ -9,7 +9,7 @@
 
 let err = require("./error-utils.js"),
   React = require("react"),
-  shot = require("../lib/shot.js");
+  {AbstractShot} = require("../lib/shared/shot.js");
 
 // For error messages:
 let FILENAME = "shoot-panel.js";
@@ -17,6 +17,7 @@ let isAdding = {};
 let hasDeleted = {};
 let lastData;
 let debugDisplayTextSource = false;
+
 
 
 const MAX_WIDTH = 375,
@@ -346,7 +347,7 @@ function renderData(data) {
     data = lastData;
   }
   lastData = data;
-  let myShot = new shot.AbstractShot(data.backend, data.id, data.shot);
+  let myShot = new AbstractShot(data.backend, data.id, data.shot);
   if (isAdding[myShot.id] !== undefined) {
     if (myShot.clipNames().length > isAdding[myShot.id]) {
       delete isAdding[myShot.id];

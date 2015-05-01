@@ -12,6 +12,17 @@ var browserify = require("browserify"),
   nodemon = require("gulp-nodemon"),
   jshint = require('gulp-jshint');
 
+gulp.task("clean", function () {
+  run("rm -rf addon/dist server/dist shared/dist").exec();
+});
+
+gulp.task("shared", function () {
+  return gulp.src("shared/**/*.{js,jsx}")
+    .pipe(to5())
+    .pipe(gulp.dest("shared/dist"))
+    .pipe(gulp.dest("addon/dist/lib/shared"));
+});
+
 gulp.task("6to5", function () {
   return gulp.src("server/src/**/*.{js,jsx}")
     .pipe(sourcemaps.init())
@@ -31,7 +42,7 @@ gulp.task("imgs", function () {
   return gulp.src("server/src/img/*").pipe(gulp.dest("server/dist/img"));
 });
 
-gulp.task("javascript", ["6to5"], function () {
+gulp.task("javascript", ["6to5", "shared"], function () {
   var bundler = browserify({
     entries: ["./server/dist/routes.js"],
     debug: true
@@ -142,5 +153,4 @@ gulp.task("default", ["lint", "transforms"], function () {
   add.on("close", function (code) {
     console.log("addon build process finished with code", code);
   });
-
 });

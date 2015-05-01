@@ -1,7 +1,7 @@
 let React = require("react"),
   Router = require("react-router"),
   Link = Router.Link,
-  {AbstractShot} = require("../../../addon/dist/lib/shot.js");
+  {AbstractShot} = require("../../../shared/dist/shot.js");
 
 let Snippet = React.createClass({
   onClickComment: function (e) {
@@ -58,7 +58,7 @@ exports.Frame = React.createClass({
     for (let i = 0; i < clipNames.length; i++) {
       let name = clipNames[i],
         clip = shot.getClip(name);
-  
+
       snippets.push(<Snippet key={ name } clip={ clip } linkify={ this.props.linkify } shotId={ shotId } shotDomain={ shotDomain } previousClip={ previousClip } nextClip={ nextClip } />);
 
       if (query.clip === name) {
@@ -159,4 +159,3 @@ exports.Frame = React.createClass({
     </div>;
   }
 });
-
