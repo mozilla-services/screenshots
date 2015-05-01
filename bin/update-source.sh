@@ -11,7 +11,7 @@ export NVM_DIR="/home/ubuntu/.nvm"
 nvm use 0.12
 git pull
 npm install
-gulp transforms
+gulp lib-addon transforms
 if [ -e ./pageshot.xpi ] ; then
   echo "Updating XPI"
   if [ ! -e ./pageshot.update.rdf ] ; then

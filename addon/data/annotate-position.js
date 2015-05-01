@@ -9,7 +9,7 @@ function annotatePosition(pos) {
       element = document.body;
     }
     if (! element.id) {
-      throw new Error("Element has no id:", element.tagName + "." + (element.className || "(no class)"));
+      throw new Error("Element has no id:", element+"", element.tagName + "." + (element.className || "(no class)"));
     }
     let bodyRect = document.body.getBoundingClientRect();
     let elementRect = element.getBoundingClientRect();

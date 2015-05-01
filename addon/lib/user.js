@@ -27,6 +27,7 @@ exports.initialize = function (backend) {
         } else if (response.status >= 300) {
           throw new Error("Could not log in: " + response.status);
         }
+        console.log("logged in with headers:", response.headers, response.headers["set-cookie"]);
         // The only other thing we do is preload the cookies
       })
     }).post();
@@ -41,6 +42,7 @@ function saveLogin(backend, info) {
       content: info,
       onComplete: function (response) {
         if (response.status == 200) {
+          console.log("Saved login with headers:", response.headers, response.headers["set-cookie"]);
           resolve();
         } else {
           reject(new Error("Bad response: " + response.status));
