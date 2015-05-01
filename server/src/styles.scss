@@ -128,6 +128,10 @@ a.sitelink, a.sitelink:visited {
   margin-right: 3em;
 }
 
+.snippet-container a img {
+  max-width: 85%;
+}
+
 .clip-anchor-link {
   margin-bottom: 4em;
 }
@@ -148,7 +152,6 @@ a.sitelink, a.sitelink:visited {
 }
 
 .main-link {
-  
 }
 
 .main-link img {
@@ -166,4 +169,3 @@ a.sitelink, a.sitelink:visited {
 .metadata {
   margin-bottom: 4em;
 }
-
