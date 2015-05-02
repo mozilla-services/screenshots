@@ -15,6 +15,7 @@ const { watchPromise, watchFunction, watchWorker } = require("./errors");
 const clipboard = require("sdk/clipboard");
 const { AbstractShot } = require("./shared/shot");
 const { getUserInfo } = require("./user");
+const { URL } = require("sdk/url");
 
 // If a page is in history for less time than this, we ignore it
 // (probably a redirect of some sort):
@@ -99,10 +100,13 @@ const ShotContext = Class({
     if (! userInfo) {
       throw new Error("Could not get device authentication information");
     }
-    this.shot = new Shot(backend, Math.floor(Date.now()) + "/xxx", {
-      url: this.tabUrl,
-      userId: userInfo.userId
-    });
+    this.shot = new Shot(
+      backend,
+      randomString(8) + "/" + urlDomain(this.tabUrl),
+      {
+        url: this.tabUrl,
+        userId: userInfo.userId
+      });
     this.activeClipName = null;
     clipboard.set(this.shot.viewUrl, "text");
     this._deregisters = [];
@@ -492,4 +496,29 @@ function allPromisesComplete(promises) {
     promises[i].then(done, done);
   }
   return deferred.promise;
+}
+
+function urlDomain(urlString) {
+  let urlObj = URL(urlString);
+  let domain = urlObj.host;
+  if (domain) {
+    if (domain.indexOf(":") != -1) {
+      domain = domain.replace(/:.*/, "");
+    }
+  } else {
+    domain = urlString.split(":")[0];
+    if (! domain) {
+      domain = "unknown";
+    }
+  }
+  return domain;
+}
+
+function randomString(length) {
+  // FIXME: would like to get better random numbers than this
+  let s = "";
+  for (var i=0; i<length; i++) {
+    s += Math.floor(Math.random()*36).toString(36);
+  }
+  return s;
 }
