@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE TABLE IF NOT EXISTS data (
-  id varchar(20) PRIMARY KEY,
+  id varchar(120) PRIMARY KEY,
   userid varchar(200) REFERENCES users (id),
   created TIMESTAMP DEFAULT NOW(),
   value text
