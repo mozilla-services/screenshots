@@ -1,11 +1,9 @@
-.pageshot-highlight-activated {
-  cursor: crosshair;
-}
-
 .pageshot-hide-selection .pageshot-highlight,
 .pageshot-hide-selection .pageshot-mover,
 .pageshot-hide-selection .pageshot-bghighlight,
-.pageshot-hide-selection .pageshot-textbutton {
+.pageshot-hide-selection .pageshot-textbutton,
+.pageshot-hide-selection .pageshot-horizcross,
+.pageshot-hide-selection .pageshot-vertcross {
   display: none;
 }
 
@@ -103,4 +101,20 @@
     background-color: #fff;
     z-index: 2000;
     cursor: pointer;
+}
+
+.pageshot-horizcross {
+  position: absolute;
+  left: 0px;
+  width: 100%;
+  height: 0px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.pageshot-vertcross {
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  width: 0px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
 }

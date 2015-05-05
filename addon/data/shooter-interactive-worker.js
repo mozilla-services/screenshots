@@ -175,7 +175,6 @@ function setState(state) {
   if (state == "cancel") {
     deleteSelection();
     document.body.classList.remove("pageshot-hide-selection");
-    document.body.classList.remove("pageshot-highlight-activated");
     document.body.classList.remove("pageshot-hide-movers");
     removeHandlers();
   } else if (state == "_restore") {
@@ -188,6 +187,7 @@ function setState(state) {
     document.body.classList.remove("pageshot-hide-selection");
     document.body.classList.remove("pageshot-hide-movers");
     addHandlers();
+    addCrosshairs();
     // FIXME: do crosshairs
   } else if (state == "madeSelection") {
     document.body.classList.remove("pageshot-hide-selection");
@@ -200,12 +200,10 @@ function setState(state) {
     autoSelect();
   } else if (state == "show") {
     document.body.classList.remove("pageshot-hide-selection");
-    document.body.classList.remove("pageshot-highlight-activated");
     document.body.classList.add("pageshot-hide-movers");
     removeHandlers();
   } else if (state == "hide") {
     document.body.classList.add("pageshot-hide-selection");
-    document.body.classList.remove("pageshot-highlight-activated");
     document.body.classList.remove("pageshot-hide-movers");
     removeHandlers();
   } else {
@@ -249,13 +247,13 @@ var mousedown = watchFunction(function (event) {
     // Modified click
     return;
   }
-  document.body.classList.remove("pageshot-highlight-activated");
   startX = event.pageX;
   startY = event.pageY;
   document.addEventListener("mousemove", mousemove, false);
   document.addEventListener("mouseup", mouseup, false);
   event.stopPropagation();
   event.preventDefault();
+  removeCrosshairs();
   return false;
 });
 
@@ -429,9 +427,6 @@ function makeMousedown(el, movement) {
 
 function addHandlers() {
   document.addEventListener("mousedown", mousedown, false);
-  if (! boxEl) {
-    document.body.classList.add("pageshot-highlight-activated");
-  }
 }
 
 function removeHandlers() {
@@ -440,6 +435,37 @@ function removeHandlers() {
   document.removeEventListener("mousemove", mousemove, false);
   // We'll rely on the selection movers being hidden so that the
   // event listeners go away there
+}
+
+let vertCross;
+let horizCross;
+
+function crosshairsMousemove(event) {
+  if (! vertCross) {
+    vertCross = document.createElement("div");
+    vertCross.className = "pageshot-vertcross";
+    //vertCross.style.height = document.body.clientHeight + "px";
+    document.body.appendChild(vertCross);
+    horizCross = document.createElement("div");
+    horizCross.className = "pageshot-horizcross";
+    document.body.appendChild(horizCross);
+  }
+  let x = guessX(event.pageX);
+  let y = guessY(event.pageY);
+  vertCross.style.left = x + "px";
+  horizCross.style.top = y + "px";
+}
+
+function addCrosshairs() {
+  document.addEventListener("mousemove", crosshairsMousemove, false);
+}
+
+function removeCrosshairs() {
+  document.removeEventListener("mousemove", crosshairsMousemove, false);
+  vertCross.parentNode.removeChild(vertCross);
+  vertCross = null;
+  horizCross.parentNode.removeChild(horizCross);
+  horizCross = null;
 }
 
 self.port.on("linkLocation", watchFunction(function (linkUrl) {
