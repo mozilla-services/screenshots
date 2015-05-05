@@ -391,6 +391,10 @@ class AbstractShot {
     this._userTitle = val;
   }
 
+  get title() {
+    return this.userTitle || this.ogTitle || this.docTitle || this.url;
+  }
+
   get createdDate() {
     return this._createdDate;
   }

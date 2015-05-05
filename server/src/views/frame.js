@@ -137,7 +137,7 @@ exports.Frame = React.createClass({
       { favicon }
       <div id="toolbar">
         <a className="main-link" href={ shot.url }>
-          { shot.docTitle }
+          { shot.title }
           &nbsp;&mdash;&nbsp;
           { linkTextShort }
           <img src={ this.props.linkify("/img/clipboard-8-xl.png") } />
@@ -151,7 +151,7 @@ exports.Frame = React.createClass({
         </div>
       </div>
       <div className="metadata">
-        <h1 id="main-title">{ shot.docTitle }</h1>
+        <h1 id="main-title">{ shot.title }</h1>
         <p><a href={ shot.url }>{ linkTextShort }</a></p>
       </div>
       { snippets }
