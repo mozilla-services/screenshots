@@ -46,6 +46,9 @@ let autoIds = null;
 // True if there was a text selection right when this is activated
 let initialSelection = false;
 
+let lastCaptureState;
+let currentState;
+
 function debugAnnotate(el, text, backgroundColor, borderColor) {
   if (text) {
     var cur = el.getAttribute("title");
@@ -66,12 +69,17 @@ function debugAnnotate(el, text, backgroundColor, borderColor) {
 }
 
 function getPos() {
-  return {
+  let result = {
     top: guessY(Math.min(mousedownY, cornerY)),
     left: guessX(Math.min(mousedownX, cornerX)),
     bottom: guessY(Math.max(mousedownY, cornerY)),
     right: guessX(Math.max(mousedownX, cornerX))
   };
+  if (currentState == "auto") {
+    result.left = Math.max(result.left - 4, 0);
+    result.top = Math.max(result.top - 1, 0);
+  }
+  return result;
 }
 
 function setPos(attr, val) {
@@ -114,12 +122,12 @@ self.port.on("restore", watchFunction(function (state, pos, scrollIntoView) {
 }));
 
 function reportSelection(captureType) {
-  captureEnclosedText(getPos());
+  var pos = getPos();
+  captureEnclosedText(pos);
   if (typeof mousedownX != "number") {
     // Apparently no selection
     throw new Error("reportSelection() without any selection");
   }
-  var pos = getPos();
   if (pos.top == pos.bottom || pos.right == pos.left) {
     console.log("Suppressing null selection");
     return;
@@ -146,9 +154,6 @@ self.port.on("getScreenPosition", watchFunction(function () {
   self.port.emit("screenPosition", pos);
 }));
 
-let lastCaptureState;
-let currentState;
-
 function setState(state) {
   // state can be one of:
   //   "cancel": do nothing, hide anything showing
@@ -172,6 +177,10 @@ function setState(state) {
     }
     state = "auto";
   }
+  if (state == "auto" || state == "selection") {
+    lastCaptureState = state;
+  }
+  currentState = state;
   if (state == "cancel") {
     deleteSelection();
     document.body.classList.remove("pageshot-hide-selection");
@@ -209,10 +218,6 @@ function setState(state) {
   } else {
     throw new Error("Unknown state: " + state);
   }
-  if (state == "auto" || state == "selection") {
-    lastCaptureState = state;
-  }
-  currentState = state;
 }
 
 /** Restores a selection that was hidden for some reason */
