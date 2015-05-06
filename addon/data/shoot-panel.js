@@ -42,8 +42,6 @@ let ImageClip = React.createClass({
     height = height + 'px';
     width = width + 'px';
 
-    console.log("rendering image", this.props.clip.image.url.substr(0, 20));
-
     return <img className="snippet-image" src={this.props.clip.image.url} style={{ height: height, width: width }} />;
   }
 });
@@ -68,9 +66,12 @@ let LoadingClip = React.createClass({
 
 let ShootPanel = React.createClass({
   onCopyClick: function (e) {
-    self.port.emit("copyLink");
+    self.port.emit("copyLink", this.props.shot.viewUrl);
     let node = React.findDOMNode(this.refs.copy);
     node.textContent = node.getAttribute("data-copied-text");
+    // FIXME: this causes a (harmless) warning if you do something like click
+    // the copy button, then click the title so that this element isn't showing
+    // in 1sec when we try to reset the copy text:
     setTimeout(err.watchFunction(function () {
       node.textContent = node.getAttribute("data-normal-text");
     }), 3000);

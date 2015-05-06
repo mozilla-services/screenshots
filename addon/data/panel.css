@@ -271,6 +271,8 @@ img.snippet-image {
   top: 4.5em;
 }
 
+/* Recall-related styles: */
+
 ul.recall-list {
   padding: 0;
 }
@@ -288,7 +290,7 @@ ul.recall-list .title {
 }
 
 ul.recall-list li:hover {
-  background-color: #999;
+  background-color: #ddd;
 }
 
 ul.recall-list li:not(:last-child) {
