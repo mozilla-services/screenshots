@@ -1,19 +1,13 @@
 const Keygrip = require('keygrip');
 
-let user = process.env.DB_USER || process.env.USER,
-  pass = process.env.DB_PASS,
-  host = process.env.DB_HOST || "localhost:5432";
+let user = process.env.DB_USER || process.env.USER;
+let pass = process.env.DB_PASS;
+let host = process.env.DB_HOST || "localhost:5432";
 
-pass = (pass && ":" + pass) || "";
+pass = pass ? ":" + pass : "";
 
-let modelMap = null,
-  userMap = null;
-
-exports.modelMap = modelMap;
-exports.userMap = userMap;
-
-let pg = require("pg"),
-  constr = `postgres://${user}${pass}@${host}/${user}`;
+let pg = require("pg");
+let constr = `postgres://${user}${pass}@${host}/${user}`;
 
 const createSQL = `
 CREATE TABLE IF NOT EXISTS users (
@@ -48,38 +42,45 @@ function getConnection() {
   });
 }
 
-getConnection().then(function ([client, done]) {
-  console.log("creating tables on", constr);
-  client.query(createSQL,
-    [],
-    function (err, result) {
-      if (err) {
-        console.log("tables created with err", err);
-      }
-      done();
-      // test put and get. FIXME remove this later
-      modelMap.put("test_row", {value: JSON.stringify({hello: "world"})}).then(
-        function () {
-          modelMap.get("test_row", ["value"]).then(
-            function (result) {
-              let obj = JSON.parse(result.value);
-              console.log(
-                "put/get test_row success?",
-                obj.hello === "world");
-            }
-          ).then(loadKeys);
+/** Create all the tables */
+function createTables() {
+  getConnection().then(function ([client, done]) {
+    console.log("creating tables on", constr);
+    client.query(createSQL,
+      [],
+      function (err, result) {
+        if (err) {
+          console.log("tables created with err", err);
         }
-      );
+        done();
+        // test put and get. FIXME remove this later
+        modelMap.put("test_row", {value: JSON.stringify({hello: "world"})}).then(
+          function () {
+            modelMap.get("test_row", ["value"]).then(
+              function (result) {
+                let obj = JSON.parse(result.value);
+                console.log(
+                  "put/get test_row success?",
+                  obj.hello === "world");
+              }
+            ).then(loadKeys);
+          }
+        );
+      }
+    );
+  }).catch(function (error) {
+    if (error.code === "ECONNREFUSED") {
+      console.warn(`Could not connect to database on ${constr}`);
+    } else {
+      console.warn("Failed to create table:", error);
     }
-  );
-}).catch(function (error) {
-  if (error.code === "ECONNREFUSED") {
-    console.warn(`Could not connect to database on ${constr}`);
-  } else {
-    console.warn("Failed to create table:", error);
-  }
-});
+  });
+}
 
+createTables();
+
+/** Loads the random signing key from the database, or generates a new key
+    if none are found */
 function loadKeys() {
   return getConnection().then(function ([client, done]) {
     client.query(
@@ -126,6 +127,7 @@ function loadKeys() {
   });
 }
 
+/** Returns a promise that generates a new largish ASCII random key */
 function makeKey() {
   return new Promise(function (resolve, reject) {
     require('crypto').randomBytes(48, function(err, buf) {
@@ -282,12 +284,6 @@ userMap = new Model("users");
 exports.modelMap = modelMap;
 exports.userMap = userMap;
 
-exports.main = function main(state) {
-  return new Promise(function (resolve, reject) {
-    resolve({hello: "world"});
-  });
-};
-
 exports.shot = function shot(state) {
   let key = state.params.shotId + "/" + state.params.shotDomain;
 
@@ -312,9 +308,3 @@ exports.content = function content(state) {
     data => Promise.resolve({data: JSON.parse(data.value), identifier: key})
   );
 };
-
-exports.summary = exports.main;
-exports.tag = exports.main;
-exports.data = exports.main;
-exports.tags = exports.main;
-exports.newframe = exports.main;
