@@ -467,10 +467,14 @@ function addCrosshairs() {
 
 function removeCrosshairs() {
   document.removeEventListener("mousemove", crosshairsMousemove, false);
-  vertCross.parentNode.removeChild(vertCross);
-  vertCross = null;
-  horizCross.parentNode.removeChild(horizCross);
-  horizCross = null;
+  if (vertCross) {
+    vertCross.parentNode.removeChild(vertCross);
+    vertCross = null;
+  }
+  if (horizCross) {
+    horizCross.parentNode.removeChild(horizCross);
+    horizCross = null;
+  }
 }
 
 self.port.on("linkLocation", watchFunction(function (linkUrl) {
