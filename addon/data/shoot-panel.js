@@ -42,6 +42,8 @@ let ImageClip = React.createClass({
     height = height + 'px';
     width = width + 'px';
 
+    console.log("rendering image", this.props.clip.image.url.substr(0, 20));
+
     return <img className="snippet-image" src={this.props.clip.image.url} style={{ height: height, width: width }} />;
   }
 });
@@ -136,9 +138,12 @@ let ShootPanel = React.createClass({
     }
 
     let clipComponent;
-    let deleter = (
-      <img className="delete" src="icons/delete-thumbnail.svg"
-           title="Remove this clip" onClick={this.deleteClip} />);
+    let deleter;
+    if (! this.props.recall) {
+      deleter = (
+        <img className="delete" src="icons/delete-thumbnail.svg"
+             title="Remove this clip" onClick={this.deleteClip} />);
+    }
     if (! clip) {
       clipComponent = <LoadingClip />;
       deleter = null;
@@ -165,17 +170,33 @@ let ShootPanel = React.createClass({
       }
     }
 
-    return (<div className="container">
-      <div className="modes-row">
+    let modesRow;
+    if (! this.props.recall) {
+      modesRow = [
         <span className={modeClasses.auto} onClick={this.setAuto}>
           Auto-detect
-        </span>
+        </span>,
         <span className={modeClasses.selection} onClick={this.setSelection}>
           Selection
-        </span>
+        </span>,
         <span className={modeClasses.visible} onClick={this.setVisible}>
           Visible
         </span>
+      ];
+    } else {
+      modesRow = (
+        <span className="mode" onClick={this.recallBack}>&lt; back</span>
+      );
+    }
+
+    let adder;
+    if (! this.props.recall) {
+      adder = <span className="clip-selector" onClick={this.addClip}>+</span>;
+    }
+
+    return (<div className="container">
+      <div className="modes-row">
+        {modesRow}
       </div>
       {deleter}
       <div className="snippet-container">
@@ -183,7 +204,7 @@ let ShootPanel = React.createClass({
       </div>
       <div className="snippets-row">
         {selectors}
-        <span className="clip-selector" onClick={this.addClip}>+</span>
+        {adder}
       </div>
       <div className="comment-area">
         <input className="comment-input" ref="input" type="text" value={ clipComment } placeholder="Say something about this clip" onKeyUp={ this.onKeyUp } onChange={ this.onChange }/>
@@ -276,12 +297,17 @@ let ShootPanel = React.createClass({
     if (! this.props.shot.clipNames().length) {
       self.port.emit("hide");
     }
+  },
+
+  /* Recall-related functions */
+
+  recallBack: function () {
+    self.port.emit("viewRecallIndex");
   }
 
 });
 
-const debugCommandHelp = `
-Debug commands available in comments:
+const debugCommandHelp = `Debug commands available in comments:
 /source
   Replaces a text clip with a textarea containing the text clip's source
 /viewsource
@@ -362,3 +388,84 @@ function renderData(data) {
   React.render(
     React.createElement(ShootPanel, {activeClipName: data.activeClipName, shot: myShot}), document.body);
 }
+
+self.port.on("recallShot", err.watchFunction(function (data) {
+  let myShot = new AbstractShot(data.backend, data.id, data.shot);
+  React.render(
+    React.createElement(ShootPanel, {activeClipName: data.activeClipName, shot: myShot, recall: true}),
+    document.body);
+}));
+
+let RecallPanel = React.createClass({
+
+  getInitialState: function () {
+    return {copying: null};
+  },
+
+  copy: function (event) {
+    let url = event.target.getAttribute("data-url");
+    this.setState({copying: url});
+    setTimeout(() => {
+      this.setState({copying: null});
+    }, 1000);
+    self.port.emit("copyLink", url);
+  },
+
+  openShot: function (event) {
+    let el = event.target;
+    while (! el.hasAttribute("data-id")) {
+      el = el.parentNode;
+    }
+    let id = el.getAttribute("data-id");
+    self.port.emit("viewShot", id);
+  },
+
+  render: function () {
+    let history = [];
+    for (let shot of this.props.shots) {
+      let text = "copy";
+      if (this.state.copying == shot.viewUrl) {
+        text = "copied";
+      }
+      let favicon = <div className="empty-favicon"></div>;
+      if (shot.favicon) {
+        favicon = <div className="favicon"><img src={shot.favicon} alt="" /></div>;
+      }
+      history.push(
+        <li key={shot.id}>
+          <span className="copier" data-url={shot.viewUrl} onClick={this.copy}>{text}</span>
+          <div className="title" data-id={shot.id} onClick={this.openShot}>
+            {favicon}
+            {shot.title}
+          </div>
+        </li>
+      );
+    }
+    return (
+      <div className="container">
+        <ul className="recall-list">
+          {history}
+        </ul>
+        <div className="see-more-row">
+          <a href={ this.props.backend } target="_blank">View more on { this.props.backend }</a>
+        </div>
+      </div>);
+  }
+});
+
+self.port.on("recallIndex", err.watchFunction(function (data) {
+  renderRecall(data);
+}));
+
+function renderRecall(data) {
+  let backend = data.backend;
+  let shots = [];
+  for (let shotJson of data.shots) {
+    shots.push(new AbstractShot(backend, shotJson.id, shotJson.shot));
+  }
+  React.render(
+    React.createElement(RecallPanel, {shots: shots, backend: backend}),
+    document.body);
+}
+
+self.port.emit("ready");

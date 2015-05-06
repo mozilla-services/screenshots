@@ -377,7 +377,7 @@ const ShotContext = Class({
   updateShot: function () {
     this.shot.save();
     this.panelContext.updateShot(this);
-    this.shot.save();
+    require("recall").addRecall(this.shot);
   },
 
   /** Watches for the given event on this context's tab.  The callback will be

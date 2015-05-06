@@ -21,7 +21,7 @@ const { watchFunction, watchWorker } = require("./errors");
 var shootButton = ToggleButton({
   id: "pageshot-shooter",
   label: "Make shot",
-  icon: self.data.url("icons/icon-shoot.png"),
+  icon: self.data.url("icons/pageshot-camera-empty.svg"),
   onClick: watchFunction(function () {
     PanelContext.onShootButtonClicked();
   })
@@ -31,6 +31,9 @@ exports.shootButton = shootButton;
 var shootPanel = panels.Panel({
   contentURL: self.data.url("shoot-panel.html"),
   contentScriptFile: [self.data.url("panel-bundle.js")],
+  contentScriptOptions: {
+    type: "shoot"
+  },
   position: shootButton,
   height: 450,
   width: 400,
@@ -204,4 +207,5 @@ exports.main = function (options) {
 
   helperworker.trackMods(backendOverride || null);
   require("user").initialize(exports.getBackend());
+  require("recall");
 };

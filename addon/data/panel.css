@@ -270,3 +270,58 @@ img.snippet-image {
   left: 0.5em;
   top: 4.5em;
 }
+
+ul.recall-list {
+  padding: 0;
+}
+
+ul.recall-list li {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul.recall-list .title {
+  width: 80%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 1.1em;
+}
+
+ul.recall-list li:hover {
+  background-color: #999;
+}
+
+ul.recall-list li:not(:last-child) {
+  border-bottom: 1px solid #999;
+}
+
+.copier {
+  float: right;
+  height: 1em;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.title {
+  cursor: pointer;
+}
+
+.title .empty-favicon, .title .favicon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+}
+
+.title .favicon img {
+  width: 16px;
+  height: 16px;
+}
+
+.see-more-row {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 2em;
+  border-top: 1px solid black;
+}
