@@ -285,6 +285,19 @@ class AbstractShot {
     return result;
   }
 
+  /** A more minimal JSON representation for creating indexes of shots */
+  asRecallJson() {
+    let result = {};
+    for (let attr of this.RECALL_ATTRS) {
+      var val = this[attr];
+      if (val && val.asJson) {
+        val = val.asJson();
+      }
+      result[attr] = val;
+    }
+    return result;
+  }
+
   /** Returns a JSON version of any dirty attributes of this object */
   dirtyJson() {
     var result = {};
@@ -424,7 +437,7 @@ class AbstractShot {
     return this._hashtags || [];
   }
   set hashtags(val) {
-    assert (val === null || val instanceof Array, ".hashtags must be an array:", val);
+    assert (val === null || Array.isArray(val), ".hashtags must be an array:", val, typeof val);
     if (val) {
       val.forEach(
         (v) => assert(typeof v == "string", "hashtags array may only contain strings:", v));
@@ -551,8 +564,12 @@ class AbstractShot {
 
 AbstractShot.prototype.REGULAR_ATTRS = (`
 userId url docTitle ogTitle userTitle createdDate createdDevice favicon
-history comments hashtags hashtags images readable head body htmlAttrs bodyAttrs
+history comments hashtags images readable head body htmlAttrs bodyAttrs
 microdata
+`).split(/\s+/g);
+
+AbstractShot.prototype.RECALL_ATTRS = (`
+userId url docTitle ogTitle userTitle createdDate createdDevice favicon
 `).split(/\s+/g);
 
 /** Represents the list of history items leading up to the given shot */
