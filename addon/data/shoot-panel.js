@@ -424,7 +424,7 @@ let RecallPanel = React.createClass({
   render: function () {
     let history = [];
     for (let shot of this.props.shots) {
-      let text = "copy";
+      let text = "";
       if (this.state.copying == shot.viewUrl) {
         text = "copied";
       }

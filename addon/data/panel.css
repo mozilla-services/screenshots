@@ -19,6 +19,7 @@ body {
   font-family: sans-serif;
   font-size: 110%;
   box-sizing: border-box;
+  background-color: #faf9fa;
 }
 
 button {
@@ -274,12 +275,19 @@ img.snippet-image {
 /* Recall-related styles: */
 
 ul.recall-list {
-  padding: 0;
+  padding: 0px;
+  margin: 0px;
+  margin-top: 0.125em;
 }
 
 ul.recall-list li {
+  position: relative;
   list-style: none;
-  padding-left: 0;
+  padding: 0.125em;
+  padding-left: 0.5em;
+  margin-left: 0.125em;
+  margin-right: 0.125em;
+  border: 1px solid transparent;
 }
 
 ul.recall-list .title {
@@ -290,18 +298,24 @@ ul.recall-list .title {
 }
 
 ul.recall-list li:hover {
-  background-color: #ddd;
-}
-
-ul.recall-list li:not(:last-child) {
-  border-bottom: 1px solid #999;
+  background-color: #e0e0e0;
+  border: 1px solid #bcbcbc;
+  border-radius: 2px;
 }
 
 .copier {
-  float: right;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  display: inline-block;
   height: 1em;
+  width: 4em;
   overflow: hidden;
   cursor: pointer;
+  background-image: url(copy.png);
+  background-size: 1em;
+  background-position: right;
+  background-repeat: no-repeat;
 }
 
 .title {
@@ -324,6 +338,9 @@ ul.recall-list li:not(:last-child) {
   bottom: 0px;
   left: 0px;
   right: 0px;
-  height: 2em;
+  height: 1em;
+  padding: 0.5em;
   border-top: 1px solid black;
+  background-color: #dfdfdf;
+  text-align: center;
 }
