@@ -3,13 +3,13 @@ let React = require("react"),
   Link = Router.Link,
   {AbstractShot} = require("../../../shared/dist/shot.js");
 
-let Snippet = React.createClass({
-  onClickComment: function (e) {
+class Snippet extends React.Component {
+  onClickComment(e) {
     e.preventDefault();
     alert("FIXME: Comment display not implemented yet");
-  },
+  }
 
-  render: function () {
+  render() {
     let clip = this.props.clip,
       node = null;
 
@@ -28,7 +28,18 @@ let Snippet = React.createClass({
       </Link>
     </div>;
   }
-});
+}
+
+
+// FIXME: I can't convert this to an es6 class because I get an exception related
+// to the way this class uses contextTypes, even though I am doing what
+// google searches appear to indicate is the right thing:
+// export class Frame extends React.Component {
+//   ...
+// }
+// Frame.contextTypes = {
+//    router: React.PropTypes.func
+// }
 
 exports.Frame = React.createClass({
   contextTypes: {
