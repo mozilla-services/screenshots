@@ -1,9 +1,10 @@
+
 let React = require("react"),
   Router = require("react-router"),
   RouteHandler = Router.RouteHandler;
 
-exports.Shell = React.createClass({
-  render: function () {
+export class Shell extends React.Component {
+  render() {
     return <html>
       <head>
         <title>
@@ -18,4 +19,4 @@ exports.Shell = React.createClass({
       </body>
     </html>;
   }
-});
+}
