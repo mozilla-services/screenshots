@@ -24,8 +24,8 @@ const MAX_WIDTH = 375,
   MAX_HEIGHT = 238;
 
 /** Renders the image of the clip inside the panel */
-let ImageClip = React.createClass({
-  render: function () {
+class ImageClip extends React.Component {
+  render() {
     var width = this.props.clip.image.dimensions.x,
       height = this.props.clip.image.dimensions.y;
 
@@ -44,28 +44,33 @@ let ImageClip = React.createClass({
 
     return <img className="snippet-image" src={this.props.clip.image.url} style={{ height: height, width: width }} />;
   }
-});
+}
 
 /** Renders a the text of a text clip inside the panel */
-let TextClip = React.createClass({
-  render: function () {
+class TextClip extends React.Component {
+  render() {
     if (debugDisplayTextSource) {
       return <textarea readOnly="1" className="snippet-text" value={this.props.clip.text.html} />;
     }
     let html = {__html: this.props.clip.text.html};
     return <div className="snippet-text" dangerouslySetInnerHTML={html}></div>;
   }
-});
+}
 
 /** Renders when no clips have yet been added to the shot */
-let LoadingClip = React.createClass({
-  render: function () {
+class LoadingClip extends React.Component {
+  render() {
     return <img src="icons/loading.png" />;
   }
-});
+}
 
-let ShootPanel = React.createClass({
-  onCopyClick: function (e) {
+class ShootPanel extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  onCopyClick(e) {
     self.port.emit("copyLink", this.props.shot.viewUrl);
     let node = React.findDOMNode(this.refs.copy);
     node.textContent = node.getAttribute("data-copied-text");
@@ -75,14 +80,14 @@ let ShootPanel = React.createClass({
     setTimeout(err.watchFunction(function () {
       node.textContent = node.getAttribute("data-normal-text");
     }), 3000);
-  },
+  }
 
-  onLinkClick: function (e) {
+  onLinkClick(e) {
     self.port.emit("openLink", this.props.shot.viewUrl);
     e.preventDefault();
-  },
+  }
 
-  onKeyUp: function (e) {
+  onKeyUp(e) {
     let input = React.findDOMNode(this.refs.input);
     if (e.which == 13) {
       if (! processDebugCommand(this, input.value)) {
@@ -94,20 +99,16 @@ let ShootPanel = React.createClass({
         [id]: null
       });
     }
-  },
+  }
 
-  onChange: function (e) {
+  onChange(e) {
     let id = this.props.activeClipName ? "comment_" + this.props.activeClipName : "globalComment";
     this.setState({
       [id]: e.target.value
     });
-  },
+  }
 
-  getInitialState: function () {
-    return {};
-  },
-
-  render: function () {
+  render() {
     if (isAdding[this.props.shot.id] !== undefined ||
         (hasDeleted[this.props.shot.id] && ! this.props.activeClipName)) {
       return this.renderAddScreen();
@@ -219,38 +220,40 @@ let ShootPanel = React.createClass({
         <a className="feedback-footer" target="_blank" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + this.props.shot.viewUrl }>Send Feedback</a>
       </div>
     </div>);
-  },
+  }
 
-  selectClip: function (event) {
+  selectClip(event) {
     let clipId = event.target.getAttribute("data-clip-id");
     self.port.emit("selectClip", clipId);
-  },
+  }
 
-  deleteClip: function () {
+  deleteClip() {
     hasDeleted[this.props.shot.id] = true;
     self.port.emit("deleteClip", this.props.activeClipName);
-  },
+  }
 
-  addClip: function () {
+  addClip() {
     isAdding[this.props.shot.id] = this.props.shot.clipNames().length;
     setTimeout(renderData);
-  },
+  }
 
-  setAuto: function () {
+  setAuto() {
     this.setCaptureType("auto");
-  },
-  setSelection: function () {
+  }
+
+  setSelection() {
     this.setCaptureType("selection");
-  },
-  setVisible: function () {
+  }
+
+  setVisible() {
     this.setCaptureType("visible");
-  },
+  }
 
-  setCaptureType: function (type) {
+  setCaptureType(type) {
     self.port.emit("setCaptureType", type);
-  },
+  }
 
-  renderAddScreen: function () {
+  renderAddScreen() {
     return (<div className="container">
       <p className="add-screen-header">
         I want to select:
@@ -276,21 +279,21 @@ let ShootPanel = React.createClass({
         </div>
       </div>
     </div>);
-  },
+  }
 
-  addAuto: function () {
+  addAuto() {
     self.port.emit("addClip", "auto");
-  },
+  }
 
-  addSelection: function () {
+  addSelection() {
     self.port.emit("addClip", "selection");
-  },
+  }
 
-  addVisible: function () {
+  addVisible() {
     self.port.emit("addClip", "visible");
-  },
+  }
 
-  addCancel: function () {
+  addCancel() {
     delete isAdding[this.props.shot.id];
     setTimeout(function () {
       renderData(lastData);
@@ -298,15 +301,15 @@ let ShootPanel = React.createClass({
     if (! this.props.shot.clipNames().length) {
       self.port.emit("hide");
     }
-  },
+  }
 
   /* Recall-related functions */
 
-  recallBack: function () {
+  recallBack() {
     self.port.emit("viewRecallIndex");
   }
 
-});
+}
 
 const debugCommandHelp = `Debug commands available in comments:
 /source
@@ -397,31 +400,31 @@ self.port.on("recallShot", err.watchFunction(function (data) {
     document.body);
 }));
 
-let RecallPanel = React.createClass({
+class RecallPanel extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {copying: null};
+  }
 
-  getInitialState: function () {
-    return {copying: null};
-  },
-
-  copy: function (event) {
+  copy(event) {
     let url = event.target.getAttribute("data-url");
     this.setState({copying: url});
     setTimeout(() => {
       this.setState({copying: null});
     }, 1000);
     self.port.emit("copyLink", url);
-  },
+  }
 
-  openShot: function (event) {
+  openShot(event) {
     let el = event.target;
     while (! el.hasAttribute("data-id")) {
       el = el.parentNode;
     }
     let id = el.getAttribute("data-id");
     self.port.emit("viewShot", id);
-  },
+  }
 
-  render: function () {
+  render() {
     let history = [];
     for (let shot of this.props.shots) {
       let text = "";
@@ -452,7 +455,7 @@ let RecallPanel = React.createClass({
         </div>
       </div>);
   }
-});
+}
 
 self.port.on("recallIndex", err.watchFunction(function (data) {
   renderRecall(data);
