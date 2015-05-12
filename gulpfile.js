@@ -17,7 +17,7 @@ gulp.task("clean", function () {
 });
 
 gulp.task("shared", function () {
-  return gulp.src("shared/**/*.{js,jsx}")
+  return gulp.src(["shared/**/*.{js,jsx}", "!shared/dist/**/*"])
     .pipe(to5())
     .pipe(gulp.dest("shared/dist"))
     .pipe(gulp.dest("addon/dist/lib/shared"));
