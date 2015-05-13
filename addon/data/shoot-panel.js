@@ -134,7 +134,7 @@ class ShootPanel extends React.Component {
         if (clipNames[i] == this.props.activeClipName) {
           selectorClass += " clip-selector-selected";
         }
-        let selector = <span className={selectorClass} data-clip-id={clipNames[i]} onClick={this.selectClip} key={clipNames[i]}>{i+1}</span>;
+        let selector = <span className={selectorClass} data-clip-id={clipNames[i]} onClick={this.selectClip.bind(this)} key={clipNames[i]}>{i+1}</span>;
         selectors.push(selector);
       }
     }
@@ -144,7 +144,7 @@ class ShootPanel extends React.Component {
     if (! this.props.recall) {
       deleter = (
         <img className="delete" src="icons/delete-thumbnail.svg"
-             title="Remove this clip" onClick={this.deleteClip} />);
+             title="Remove this clip" onClick={this.deleteClip.bind(this)} />);
     }
     if (! clip) {
       clipComponent = <LoadingClip />;
@@ -175,25 +175,25 @@ class ShootPanel extends React.Component {
     let modesRow;
     if (! this.props.recall) {
       modesRow = [
-        <span className={modeClasses.auto} onClick={this.setAuto}>
+        <span className={modeClasses.auto} onClick={this.setAuto.bind(this)}>
           Auto-detect
         </span>,
-        <span className={modeClasses.selection} onClick={this.setSelection}>
+        <span className={modeClasses.selection} onClick={this.setSelection.bind(this)}>
           Selection
         </span>,
-        <span className={modeClasses.visible} onClick={this.setVisible}>
+        <span className={modeClasses.visible} onClick={this.setVisible.bind(this)}>
           Visible
         </span>
       ];
     } else {
       modesRow = (
-        <span className="mode" onClick={this.recallBack}>&lt; back</span>
+        <span className="mode" onClick={this.recallBack.bind(this)}>&lt; back</span>
       );
     }
 
     let adder;
     if (! this.props.recall) {
-      adder = <span className="clip-selector" onClick={this.addClip}>+</span>;
+      adder = <span className="clip-selector" onClick={this.addClip.bind(this)}>+</span>;
     }
 
     return (<div className="container">
@@ -209,11 +209,11 @@ class ShootPanel extends React.Component {
         {adder}
       </div>
       <div className="comment-area">
-        <input className="comment-input" ref="input" type="text" value={ clipComment } placeholder="Say something about this clip" onKeyUp={ this.onKeyUp } onChange={ this.onChange }/>
+        <input className="comment-input" ref="input" type="text" value={ clipComment } placeholder="Say something about this clip" onKeyUp={ this.onKeyUp.bind(this) } onChange={ this.onChange.bind(this) }/>
       </div>
       <div className="link-row">
-        <a className="link" target="_blank" href={ this.props.shot.viewUrl } onClick={ this.onLinkClick }>{ this.props.shot.viewUrl }</a>
-        <button className="copy" ref="copy" type="button" data-normal-text="Copy Link" data-copied-text="Copied!" onClick={ this.onCopyClick }>Copy Link</button>
+        <a className="link" target="_blank" href={ this.props.shot.viewUrl } onClick={ this.onLinkClick.bind(this) }>{ this.props.shot.viewUrl }</a>
+        <button className="copy" ref="copy" type="button" data-normal-text="Copy Link" data-copied-text="Copied!" onClick={ this.onCopyClick.bind(this) }>Copy Link</button>
       </div>
       <div className="feedback-row">
         <a className="pageshot-footer" target="_blank" href="https://github.com/mozilla-services/pageshot">PageShot</a>
@@ -260,22 +260,22 @@ class ShootPanel extends React.Component {
       </p>
       <div className="add-row">
         <div className="button-row">
-          <button onClick={this.addAuto}>Add Auto-Detect</button>
+          <button onClick={this.addAuto.bind(this)}>Add Auto-Detect</button>
         </div>
       </div>
       <div className="add-row">
         <div className="button-row">
-          <button onClick={this.addSelection}>Add Selection</button>
+          <button onClick={this.addSelection.bind(this)}>Add Selection</button>
         </div>
       </div>
       <div className="add-row">
         <div className="button-row">
-          <button onClick={this.addVisible}>Add Visible</button>
+          <button onClick={this.addVisible.bind(this)}>Add Visible</button>
         </div>
       </div>
       <div className="add-row cancel-row">
         <div className="button-row">
-          <button onClick={this.addCancel}>Cancel</button>
+          <button onClick={this.addCancel.bind(this)}>Cancel</button>
         </div>
       </div>
     </div>);
@@ -437,8 +437,8 @@ class RecallPanel extends React.Component {
       }
       history.push(
         <li key={shot.id}>
-          <span className="copier" data-url={shot.viewUrl} onClick={this.copy}>{text}</span>
-          <div className="title" data-id={shot.id} onClick={this.openShot}>
+          <span className="copier" data-url={shot.viewUrl} onClick={this.copy.bind(this)}>{text}</span>
+          <div className="title" data-id={shot.id} onClick={this.openShot.bind(this)}>
             {favicon}
             {shot.title}
           </div>
