@@ -42,10 +42,6 @@ exports.linkify = function (url) {
 
 exports.routes = (
   <Route path="/" handler={shell.Shell}>
-    <Route name="summary" path="summary/:summaryId" handler={main.Main} />
-    <Route name="tag" path="tag/:tagId" handler={main.Main} />
-    <Route name="meta" path="meta/:metaId" handler={main.Main} />
-    <Route name="tags" path="tags-for/:tagsId" handler={main.Main} />
     <Route name="shot" path=":shotId/:shotDomain" handler={frame.Frame} />
     <DefaultRoute name="main" handler={main.Main} />
   </Route>
