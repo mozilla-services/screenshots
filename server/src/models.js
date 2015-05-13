@@ -284,6 +284,13 @@ userMap = new Model("users");
 exports.modelMap = modelMap;
 exports.userMap = userMap;
 
+exports.main = function main(state) {
+  return new Promise(function (resolve, reject) {
+    // There's no dynamic data needed to render the homepage
+    resolve({});
+  });
+};
+
 exports.shot = function shot(state) {
   let key = state.params.shotId + "/" + state.params.shotDomain;
 
