@@ -160,58 +160,68 @@ function setState(state) {
   //   "selection": make a selection with crosshairs (erase any previous selection)
   //   "madeSelection": after a selection has been made
   //   "auto": make an autoselection
+  //   "text": make a text selection
   //   "hide": keep the selection, but make it hidden
   //   "show": show the selection, but don't let it be recreated
   //   "maybeCancel": set to cancel *if* the mode is not selection
   //   "initialAuto": set to auto, *if* there isn't a text selection
-  if (state == "maybeCancel") {
-    if (currentState == "selection") {
+  if (state === "maybeCancel") {
+    if (currentState === "selection" || currentState === "text" || currentState === "cancelForText") {
       // Do nothing in this case
       return;
     }
     state = "cancel";
   }
-  if (state == "initialAuto") {
+  if (state === "initialAuto") {
     if (initialSelection) {
       return;
     }
     state = "auto";
   }
-  if (state == "auto" || state == "selection") {
+  if (state === "auto" || state === "selection") {
     lastCaptureState = state;
   }
   currentState = state;
-  if (state == "cancel") {
+  if (state === "cancel") {
     deleteSelection();
     document.body.classList.remove("pageshot-hide-selection");
     document.body.classList.remove("pageshot-hide-movers");
     removeHandlers();
-  } else if (state == "_restore") {
+  } else if (state === "cancelForText") {
+    deleteSelection();
+    document.body.classList.add("pageshot-hide-selection");
+    document.body.classList.add("pageshot-hide-movers");
+    removeHandlers();
+    currentState = "text";
+  } else if (state === "_restore") {
     deleteSelection();
     document.body.classList.remove("pageshot-hide-selection");
     document.body.classList.remove("pageshot-hide-movers");
     removeHandlers();
-  } else if (state == "selection") {
+  } else if (state === "selection") {
     deleteSelection();
     document.body.classList.remove("pageshot-hide-selection");
     document.body.classList.remove("pageshot-hide-movers");
     addHandlers();
     addCrosshairs();
     // FIXME: do crosshairs
-  } else if (state == "madeSelection") {
+  } else if (state === "madeSelection") {
     document.body.classList.remove("pageshot-hide-selection");
     document.body.classList.remove("pageshot-hide-movers");
     removeHandlers();
-  } else if (state == "auto") {
+  } else if (state === "auto") {
     document.body.classList.remove("pageshot-hide-selection");
     document.body.classList.remove("pageshot-hide-movers");
     addHandlers();
     autoSelect();
-  } else if (state == "show") {
+  } else if (state === "text") {
+    document.body.classList.add("pageshot-hide-selection");
+    document.body.classList.add("pageshot-hide-movers");
+  } else if (state === "show") {
     document.body.classList.remove("pageshot-hide-selection");
     document.body.classList.add("pageshot-hide-movers");
     removeHandlers();
-  } else if (state == "hide") {
+  } else if (state === "hide") {
     document.body.classList.add("pageshot-hide-selection");
     document.body.classList.remove("pageshot-hide-movers");
     removeHandlers();
@@ -880,9 +890,11 @@ window.addEventListener("mouseup", watchFunction(function (event) {
     textSelectButton.parentNode.removeChild(textSelectButton);
     textSelectButton = null;
   }
-  if (event.target.className == "pageshot-textbutton") {
+
+  if (event.target.className === "pageshot-textbutton" && currentState !== "text") {
     return;
   }
+
   if ((! window.getSelection()) || (! window.getSelection().rangeCount) ||
       window.getSelection().isCollapsed) {
     return;
@@ -899,6 +911,11 @@ window.addEventListener("mouseup", watchFunction(function (event) {
     console.warn("No rects in range.getClientRects()");
     return;
   }
+  if (currentState === "text") {
+    captureSelection();
+    return;
+  }
+
   let button = document.createElement("div");
   button.className = "pageshot-textbutton";
   button.setAttribute("title", "Add this selection as a clip");
