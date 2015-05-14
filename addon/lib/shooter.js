@@ -379,13 +379,13 @@ const ShotContext = Class({
         this.updateShot();
       }, this)));
     watchPromise(allPromisesComplete(promises).then((function () {
-      this.shot.save();
+      return this.shot.save();
     }).bind(this)));
   },
 
   /** Sets attributes on the shot, saves it, and updates the panel */
   updateShot: function () {
-    this.shot.save();
+    watchPromise(this.shot.save());
     this.panelContext.updateShot(this);
     require("recall").addRecall(this.shot);
   },
@@ -478,9 +478,15 @@ class Shot extends AbstractShot {
         if (response.status >= 200 && response.status < 300) {
           deferred.resolve(true);
         } else {
+          let message;
+          if (response.status === 0) {
+            message = "The request to " + url + " didn't complete due to the server being unavailable";
+          } else {
+            message = "The request to " + url + " returned a response " + response.status;
+          }
           deferred.reject({
             name: "REQUEST_ERROR",
-            message: "The request to " + url + "return a response " + response.status,
+            message: message,
             response: response
           });
         }

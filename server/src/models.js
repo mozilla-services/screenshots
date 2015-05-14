@@ -9,6 +9,8 @@ pass = pass ? ":" + pass : "";
 let pg = require("pg");
 let constr = `postgres://${user}${pass}@${host}/${user}`;
 
+let modelMap, userMap;
+
 const createSQL = `
 CREATE TABLE IF NOT EXISTS users (
   id varchar(200) PRIMARY KEY,
@@ -278,11 +280,42 @@ class Model {
   }
 }
 
+exports.getClipImage = function (shotId, clipId) {
+  return modelMap.get(shotId, ["value"]).then((row) => {
+    let shotJson = JSON.parse(row.value);
+    let clip = shotJson.clips[clipId];
+    if (! clip) {
+      throw new Error("No such clip: " + clipId);
+    }
+    if (! (clip.image && clip.image.url)) {
+      throw new Error("Not an image clip");
+    }
+    let url = clip.image.url;
+    let match = (/^data:([^;]*);base64,/).exec(url);
+    if (! match) {
+      throw new Error("Bad clip URL");
+    }
+    let imageData = url.substr(match[0].length);
+    imageData = new Buffer(imageData, 'base64');
+    return {
+      contentType: match[1],
+      data: imageData
+    };
+  });
+};
+
 modelMap = new Model("data");
 userMap = new Model("users");
 
 exports.modelMap = modelMap;
 exports.userMap = userMap;
+
+exports.main = function main(state) {
+  return new Promise(function (resolve, reject) {
+    // There's no dynamic data needed to render the homepage
+    resolve({});
+  });
+};
 
 exports.shot = function shot(state) {
   let key = state.params.shotId + "/" + state.params.shotDomain;
