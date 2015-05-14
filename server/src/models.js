@@ -1,13 +1,5 @@
 const Keygrip = require('keygrip');
-
-let user = process.env.DB_USER || process.env.USER;
-let pass = process.env.DB_PASS;
-let host = process.env.DB_HOST || "localhost:5432";
-
-pass = pass ? ":" + pass : "";
-
-let pg = require("pg");
-let constr = `postgres://${user}${pass}@${host}/${user}`;
+const { getConnection, constr } = require("./db");
 
 let modelMap, userMap;
 
@@ -32,17 +24,6 @@ CREATE TABLE IF NOT EXISTS signing_keys (
 );
 `;
 
-function getConnection() {
-  return new Promise(function (resolve, reject) {
-    pg.connect(constr, function (err, client, done) {
-      if (err) {
-        reject(err);
-      } else {
-        resolve([client, done]);
-      }
-    });
-  });
-}
 
 /** Create all the tables */
 function createTables() {
@@ -279,30 +260,6 @@ class Model {
     });
   }
 }
-
-exports.getClipImage = function (shotId, clipId) {
-  return modelMap.get(shotId, ["value"]).then((row) => {
-    let shotJson = JSON.parse(row.value);
-    let clip = shotJson.clips[clipId];
-    if (! clip) {
-      throw new Error("No such clip: " + clipId);
-    }
-    if (! (clip.image && clip.image.url)) {
-      throw new Error("Not an image clip");
-    }
-    let url = clip.image.url;
-    let match = (/^data:([^;]*);base64,/).exec(url);
-    if (! match) {
-      throw new Error("Bad clip URL");
-    }
-    let imageData = url.substr(match[0].length);
-    imageData = new Buffer(imageData, 'base64');
-    return {
-      contentType: match[1],
-      data: imageData
-    };
-  });
-};
 
 modelMap = new Model("data");
 userMap = new Model("users");
