@@ -1,7 +1,7 @@
 const Keygrip = require('keygrip');
 const { getConnection, constr } = require("./db");
 
-let modelMap, userMap;
+let modelMap;
 
 const createSQL = `
 CREATE TABLE IF NOT EXISTS users (
@@ -262,10 +262,8 @@ class Model {
 }
 
 modelMap = new Model("data");
-userMap = new Model("users");
 
 exports.modelMap = modelMap;
-exports.userMap = userMap;
 
 exports.main = function main(state) {
   return new Promise(function (resolve, reject) {

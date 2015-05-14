@@ -63,7 +63,7 @@ exports.update = function (sql, args) {
         if (err) {
           reject(err);
         } else {
-          resolve(true);
+          resolve(result.rowCount);
         }
         done();
       });

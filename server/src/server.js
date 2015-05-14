@@ -12,6 +12,7 @@ let http = require("http"),
   qs = require('querystring');
 
 const { Shot } = require("./servershot");
+const { checkLogin, registerLogin } = require("./users");
 
 const jspath = "/js/",
   csspath = "/css/",
@@ -269,12 +270,13 @@ function handleRegister(req, res) {
   parsePost(req).then(function (vars) {
     // FIXME: should also handle updating
     // FIXME: need to hash secret
-    return models.userMap.insert(vars.userId, {
+    let canUpdate = vars.userId === req.userId;
+    return registerLogin(vars.userId, {
       secret: vars.secret,
       nickname: vars.nickname || null,
       avatarurl: vars.avatarurl || null
-    }).then(function (result) {
-      if (result) {
+    }, canUpdate).then(function (ok) {
+      if (ok) {
         let cookies = new Cookies(req, res, models.keys);
         cookies.set("userId", vars.userId, {signed: true});
         simpleResponse(res, "Created", 200);
@@ -307,10 +309,8 @@ function parsePost(req) {
 
 function handleLogin(req, res) {
   parsePost(req).then(function (vars) {
-    return models.userMap.get(vars.userId, ["secret"]).then(function (row) {
-      if (! row) {
-        simpleResponse(res, "Error: no such user", 404);
-      } else if (vars.secret == row.secret) {
+    checkLogin(vars.userId, vars.secret).then((ok) => {
+      if (ok) {
         let cookies = new Cookies(req, res, models.keys);
         cookies.set("user", vars.userId, {signed: true});
         simpleResponse(res, "User logged in", 200);
