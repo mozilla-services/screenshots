@@ -913,30 +913,31 @@ window.addEventListener("mouseup", watchFunction(function (event) {
   }
   if (currentState === "text") {
     captureSelection();
-  } else {
-    let button = document.createElement("div");
-    button.className = "pageshot-textbutton";
-    button.setAttribute("title", "Add this selection as a clip");
-    button.textContent = "+";
-    // the button click can ruin the range we had, so we keep a copy:
-    let buttonRange = range.cloneRange();
-    button.addEventListener("mouseup", function (clickEvent) {
-      clickEvent.stopPropagation();
-      clickEvent.preventDefault();
-      let existing = window.getSelection().getRangeAt(0);
-      existing.setStart(buttonRange.startContainer, buttonRange.startOffset);
-      existing.setEnd(buttonRange.endContainer, buttonRange.endOffset);
-      textSelectButton.parentNode.removeChild(textSelectButton);
-      textSelectButton = null;
-      captureSelection();
-      return false;
-    }, false);
-    let bodyRect = getBodyRect();
-    button.style.top = rect.top + document.documentElement.scrollTop - bodyRect.top - 21 + "px";
-    button.style.left = rect.left + document.documentElement.scrollLeft - bodyRect.left + "px";
-    document.body.appendChild(button);
-    textSelectButton = button;
+    return;
   }
+
+  let button = document.createElement("div");
+  button.className = "pageshot-textbutton";
+  button.setAttribute("title", "Add this selection as a clip");
+  button.textContent = "+";
+  // the button click can ruin the range we had, so we keep a copy:
+  let buttonRange = range.cloneRange();
+  button.addEventListener("mouseup", function (clickEvent) {
+    clickEvent.stopPropagation();
+    clickEvent.preventDefault();
+    let existing = window.getSelection().getRangeAt(0);
+    existing.setStart(buttonRange.startContainer, buttonRange.startOffset);
+    existing.setEnd(buttonRange.endContainer, buttonRange.endOffset);
+    textSelectButton.parentNode.removeChild(textSelectButton);
+    textSelectButton = null;
+    captureSelection();
+    return false;
+  }, false);
+  let bodyRect = getBodyRect();
+  button.style.top = rect.top + document.documentElement.scrollTop - bodyRect.top - 21 + "px";
+  button.style.left = rect.left + document.documentElement.scrollLeft - bodyRect.left + "px";
+  document.body.appendChild(button);
+  textSelectButton = button;
 }), false);
 
 
