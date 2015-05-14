@@ -273,6 +273,11 @@ class ShootPanel extends React.Component {
           <button onClick={this.addVisible.bind(this)}>Add Visible</button>
         </div>
       </div>
+      <div className="add-row">
+        <div className="button-row">
+          <button onClick={this.addText.bind(this)}>Add Text Selection</button>
+        </div>
+      </div>
       <div className="add-row cancel-row">
         <div className="button-row">
           <button onClick={this.addCancel.bind(this)}>Cancel</button>
@@ -291,6 +296,10 @@ class ShootPanel extends React.Component {
 
   addVisible() {
     self.port.emit("addClip", "visible");
+  }
+
+  addText() {
+    self.port.emit("addClip", "text");
   }
 
   addCancel() {
