@@ -11,6 +11,8 @@ let http = require("http"),
   Cookies = require("cookies"),
   qs = require('querystring');
 
+const { Shot } = require("./servershot");
+
 const jspath = "/js/",
   csspath = "/css/",
   modelspath = "/data/",
@@ -81,6 +83,7 @@ let server = http.createServer(function (req, res) {
   let parsed = url.parse(req.url, true),
     pth = parsed.pathname,
     query = parsed.query;
+  let backend = "http://" + req.headers.host;
 
   console.log(req.method, pth, query);
 
@@ -116,7 +119,13 @@ let server = http.createServer(function (req, res) {
     if (! match) {
       return simpleResponse(res, "Bad clip path", 404);
     }
-    models.getClipImage(match[1], match[2]).then((image) => {
+    Shot.get(backend, match[1]).then((shot) => {
+      let clip = shot.getClip(match[2]);
+      if (! clip) {
+        simpleResponse(res, "No such clip", 404);
+        return;
+      }
+      let image = clip.imageBinary();
       res.setHeader(contentType, image.contentType);
       res.writeHead(200);
       res.end(image.data);
@@ -218,8 +227,6 @@ let server = http.createServer(function (req, res) {
     }
 
     console.log("App:", appnames[0].name);
-
-    let backend = "http://" + req.headers.host;
 
     models[appnames[0].name](
       {method: req.method,
