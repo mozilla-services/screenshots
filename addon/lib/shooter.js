@@ -200,7 +200,14 @@ const ShotContext = Class({
     this.interactiveWorker.port.on("textSelection", watchFunction(function (textSelection) {
       if (this.activeClipName){
         let c = this.shot.getClip(this.activeClipName);
-        c.text = textSelection;
+        if (c.text === undefined) {
+          this.activeClipName = this.shot.addClip({
+            createdDate: Date.now(),
+            text: textSelection
+          });
+        } else {
+          c.text = textSelection;
+        }
       } else {
         this.activeClipName = this.shot.addClip({
           createdDate: Date.now(),
