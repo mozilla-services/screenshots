@@ -251,10 +251,6 @@ function restore(state, pos, scrollIntoView) {
       window.scrollTo(0, newScroll);
     }
   }
-
-  if (state === "text") {
-    addHandlers();
-  }
 }
 
 var mousedown = watchFunction(function (event) {
