@@ -198,10 +198,15 @@ const ShotContext = Class({
       }).bind(this)));
     }, this));
     this.interactiveWorker.port.on("textSelection", watchFunction(function (textSelection) {
-      this.activeClipName = this.shot.addClip({
-        createdDate: Date.now(),
-        text: textSelection
-      });
+      if (this.activeClipName){
+        let c = this.shot.getClip(this.activeClipName);
+        c.text = textSelection;
+      } else {
+        this.activeClipName = this.shot.addClip({
+          createdDate: Date.now(),
+          text: textSelection
+        });
+      }
       this.updateShot();
       this.panelContext.show(this);
     }, this));
@@ -283,7 +288,7 @@ const ShotContext = Class({
       if (this.activeClipName) {
         clip = this.shot.getClip(this.activeClipName);
       }
-      if (type == "visible") {
+      if (type === "visible") {
         this.interactiveWorker.port.emit("setState", "cancel");
         watchPromise(this.makeScreenshot().then((imgData) => {
           if (clip) {
@@ -293,11 +298,14 @@ const ShotContext = Class({
           }
           this.updateShot();
         }));
-      } else if (type == "selection") {
+      } else if (type === "selection") {
         this.interactiveWorker.port.emit("setState", "selection");
         this.panelContext.hide(this);
-      } else if (type == "auto") {
+      } else if (type === "auto") {
         this.interactiveWorker.port.emit("setState", "auto");
+      } else if (type === "text") {
+        this.interactiveWorker.port.emit("setState", "text");
+        this.panelContext.hide(this);
       } else {
         throw new Error("UnexpectedType: " + type);
       }
@@ -327,8 +335,10 @@ const ShotContext = Class({
         let clip = this.shot.getClip(clipId);
         if (clip.image && clip.image.captureType !== "visible") {
           this.interactiveWorker.port.emit("restore", clip.image.captureType, clip.image.location, true);
-        } else {
+        } else if (clip.text === undefined) {
           this.interactiveWorker.port.emit("setState", "cancel");
+        } else {
+          this.interactiveWorker.port.emit("setState", "cancelForText");
         }
       } else {
         this.interactiveWorker.port.emit("setState", "cancel");
