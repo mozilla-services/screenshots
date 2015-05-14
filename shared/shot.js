@@ -1,5 +1,6 @@
 // Note: in this library we can't use any "system" dependencies because this can be used from multiple
 // environments
+/* globals console */
 
 /** Throws an error if the condition isn't true.  Any extra arguments after the condition
     are used as console.log() arguments. */
