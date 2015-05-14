@@ -25,3 +25,5 @@ Planning and ideation is happening in the [issue tracker](https://github.com/ian
 * [Issues with the needs-discussion label](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+label%3A%22needs+discussion%22) are for discussion at the next meeting.  We don't have a plan for open meetings (not that we don't want them, we just don't have a plan), so this is largely for internal use.
 
 Issue tags otherwise aren't very structured. [Experiment](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+label%3Aexperiment) means that the implementation should focus on creating something usable for analysis (i.e., something we can play with), not a committed feature. [Research](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+label%3Aresearch) is primarily analysis of other products that do something interesting, or some source material that could provide insight.  Input on these (things like "I like this product because...") is very helpful!
+
+Also Ian [blogs regularly about PageShot](http://www.ianbicking.org/tag/product-journal.html).
