@@ -19,6 +19,7 @@ const jspath = "/js/",
   favicopath = "/favicon.ico",
   loginpath = "/api/login",
   registerpath = "/api/register",
+  clipImagePath = "/clip/",
   contentType = "Content-type",
   notFound = "Not Found",
   doctype = "<!DOCTYPE html>",
@@ -107,6 +108,22 @@ let server = http.createServer(function (req, res) {
   if (pth.startsWith(modelspath)) {
     modelname = pth.slice(modelspath.length);
     storeMap = models.modelMap;
+  }
+
+  if (pth.startsWith(clipImagePath)) {
+    let rest = pth.slice(clipImagePath.length);
+    let match = (/^([^\/]+\/[^\/]+)\/(.*)$/).exec(rest);
+    if (! match) {
+      return simpleResponse(res, "Bad clip path", 404);
+    }
+    models.getClipImage(match[1], match[2]).then((image) => {
+      res.setHeader(contentType, image.contentType);
+      res.writeHead(200);
+      res.end(image.data);
+    }).catch((err) => {
+      errorResponse(res, "Failed to get clip", err);
+    });
+    return;
   }
 
   if (modelname) {
