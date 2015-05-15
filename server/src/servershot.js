@@ -22,8 +22,8 @@ class Shot extends AbstractShot {
     return db.update(
       `UPDATE data SET value = $1 WHERE id = $2 AND userid = $3`,
       [value, this.id, this.ownerId]
-    ).then((result) => {
-      if (! result.rowCount) {
+    ).then((rowCount) => {
+      if (! rowCount) {
         throw new Error("No row updated");
       }
     });
@@ -55,6 +55,13 @@ class ServerClip extends AbstractShot.prototype.Clip {
 Shot.prototype.Clip = ServerClip;
 
 Shot.get = function (backend, id) {
+  return Shot.getRawValue(id).then((rawValue) => {
+    let json = JSON.parse(rawValue.value);
+    return new Shot(rawValue.userid, backend, id, json);
+  });
+};
+
+Shot.getRawValue = function (id) {
   if (! id) {
     throw new Error("Empty id: " + id);
   }
@@ -66,7 +73,9 @@ Shot.get = function (backend, id) {
       return null;
     }
     let row = rows[0];
-    let json = JSON.parse(row.value);
-    return new Shot(row.userid, backend, id, json);
+    return {
+      userid: row.userid,
+      value: row.value
+    };
   });
 };

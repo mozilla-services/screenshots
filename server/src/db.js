@@ -57,13 +57,22 @@ exports.insert = function (sql, args) {
 };
 
 exports.update = function (sql, args) {
+  return exports.exec(sql, args).then((result) => {
+    return result.rowCount;
+  });
+};
+
+// These happen to have the same logic:
+exports.del = exports.update;
+
+exports.exec = function (sql, args) {
   return getConnection().then(function ([client, done]) {
     return new Promise((resolve, reject) => {
       client.query(sql, args, function (err, result) {
         if (err) {
           reject(err);
         } else {
-          resolve(true);
+          resolve(result);
         }
         done();
       });

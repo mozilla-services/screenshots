@@ -166,6 +166,28 @@ function makeUuid() {
   return id;
 }
 
+function formatAttributes(attrs) {
+  if (! attrs) {
+    return "";
+  }
+  let result = [];
+  for (let item of attrs) {
+    let name = item[0];
+    let value = item[1];
+    result.push(` ${name}="${escapeAttribute(value)}"`);
+  }
+  return result.join("");
+}
+
+function escapeAttribute(value) {
+  if (! value) {
+    return "";
+  }
+  value = value.replace(/&/g, "&amp;");
+  value = value.replace(/"/g, "&quot;");
+  return value;
+}
+
 class AbstractShot {
 
   constructor(backend, id, attrs) {
@@ -181,6 +203,11 @@ class AbstractShot {
     this.createdDate = attrs.createdDate || Date.now();
     this.createdDevice = attrs.createdDevice || null;
     this.favicon = attrs.favicon || null;
+    this.body = attrs.body || null;
+    this.head = attrs.head || null;
+    this.htmlAttrs = attrs.htmlAttrs || null;
+    this.bodyAttrs = attrs.bodyAttrs || null;
+    this.headAttrs = attrs.headAttrs || null;
     this._history = new this.History(this, attrs.history);
     this._comments = [];
     if (attrs.comments) {
@@ -188,6 +215,7 @@ class AbstractShot {
         (json) => new this.Comment(json));
     }
     this.hashtags = attrs.hashtags || null;
+    this.microdata = attrs.microdata || null;
     this.images = [];
     if (attrs.images) {
       this.images = attrs.images.map(
@@ -321,6 +349,22 @@ class AbstractShot {
       }
     }
     return result;
+  }
+
+  staticHtml(options) {
+    options = options || "";
+    return `<!DOCTYPE html>
+<html${formatAttributes(this.htmlAttrs)}>
+<head${formatAttributes(this.headAttrs)}>
+${options.addHead || ""}
+<base href="${this.url}">
+${this.head}
+</head>
+<body${formatAttributes(this.bodyAttrs)}>
+${this.body}
+${options.addBody || ""}
+</body>
+</html>`;
   }
 
   get backend() {
@@ -529,12 +573,11 @@ class AbstractShot {
   set bodyAttrs(val) {
     if (! val) {
       this._bodyAttrs = null;
-      this._dirty("bodyAttrs");
     } else {
       assert(isAttributePairs(val), "Bad bodyAttrs:", val);
       this._bodyAttrs = val;
-      this._dirty("bodyAttrs");
     }
+    this._dirty("bodyAttrs");
   }
 
   get htmlAttrs() {
@@ -543,12 +586,24 @@ class AbstractShot {
   set htmlAttrs(val) {
     if (! val) {
       this._htmlAttrs = null;
-      this._dirty("htmlAttrs");
     } else {
       assert(isAttributePairs(val), "Bad htmlAttrs:", val);
       this._htmlAttrs = val;
-      this._dirty("htmlAttrs");
     }
+    this._dirty("htmlAttrs");
+  }
+
+  get headAttrs() {
+    return this._headAttrs;
+  }
+  set headAttrs(val) {
+    if (! val) {
+      this._headAttrs = null;
+    } else {
+      assert(isAttributePairs(val), "Bad headAttrs:", val);
+      this._headAttrs = val;
+    }
+    this._dirty("headAttrs");
   }
 
   get userId() {
@@ -566,7 +621,7 @@ class AbstractShot {
 AbstractShot.prototype.REGULAR_ATTRS = (`
 userId url docTitle ogTitle userTitle createdDate createdDevice favicon
 history comments hashtags images readable head body htmlAttrs bodyAttrs
-microdata
+headAttrs microdata
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`

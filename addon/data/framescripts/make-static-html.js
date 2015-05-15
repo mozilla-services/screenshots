@@ -222,8 +222,10 @@ function documentStaticData() {
     bodyAttrs = getAttributes(body);
     body = staticChildren(body);
   }
+  var headAttrs = null;
   var head = getDocument().head;
   if (head) {
+    headAttrs = getAttributes(head);
     head = staticChildren(head);
   }
   var htmlAttrs = null;
@@ -241,11 +243,6 @@ function documentStaticData() {
     }
   }
 
-  // FIXME: this is a bad estimate, we should use anchor-based scrolling
-  // FIXME: maybe this shouldn't happen in this file, but instead in extractor-worker.js
-  var totalHeight = getDocument().body.clientHeight;
-  var scrollFraction = content.scrollY / totalHeight;
-
   console.log("framescript serializing took " + (Date.now() - start) + " milliseconds");
 
   // FIXME: figure out if we still want things like origin:
@@ -255,6 +252,7 @@ function documentStaticData() {
     favicon: favicon,
     htmlAttrs: htmlAttrs,
     head: head,
+    headAttrs: headAttrs,
     body: body,
     bodyAttrs: bodyAttrs,
     docTitle: getDocument().title
