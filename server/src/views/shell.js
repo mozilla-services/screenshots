@@ -20,7 +20,7 @@ export class Shell extends React.Component {
       }
     }
     let ogTitle = "";
-    if (this.props.shot.ogTitle) {
+    if (this.props.shot && this.props.shot.ogTitle) {
       ogTitle = <meta propery="og:title" content={this.props.shot.ogTitle} />;
     }
     return <html prefix="og: http://ogp.me/ns#">
