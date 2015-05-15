@@ -123,9 +123,12 @@ a.sitelink, a.sitelink:visited {
   top: 2px;
 }
 
+.snippet-container {
+  margin-bottom: 3em;
+}
+
 .snippet-container div {
-  margin-left: 3em;
-  margin-right: 3em;
+  margin: 3em;
 }
 
 .snippet-container a img {
@@ -181,4 +184,44 @@ a.sitelink, a.sitelink:visited {
   bottom: 1em;
   right: 1em;
   text-align: right;
+}
+
+.comment {
+}
+
+.comment-bubble {
+  cursor: pointer;
+  margin-right: 0.5em;
+  position: relative;
+  top: 18px;
+}
+
+.comment-holder {
+  line-height: 36px;
+  display: inline-block;
+  position: relative;
+  top: -3.25em;
+  width: 400px;
+  background-color: $text-color;
+  color: $primary-color;
+  border-radius: 4px 4px 4px 4px;
+  text-align: left;
+}
+
+.comment-holder div {
+  margin: 1.5em;
+}
+
+.comment-user {
+  display: inline-block;
+  width: 10em;
+}
+
+.comment-date {
+  display: inline-block;
+  width: 5em;
+}
+
+.comment-text {
+  display: inline-block;
 }

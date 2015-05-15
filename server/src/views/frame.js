@@ -6,12 +6,26 @@ let React = require("react"),
 class Snippet extends React.Component {
   onClickComment(e) {
     e.preventDefault();
-    alert("FIXME: Comment display not implemented yet");
+    let node = React.findDOMNode(this.refs.commentHolder),
+      img = React.findDOMNode(this.refs.commentBubble);
+
+    if (node.style.display === "none") {
+      node.style.display = "inline-block";
+    } else {
+      node.style.display = "none";
+    }
+    console.log("img.src", img.src);
+    if (img.src.indexOf("/img/comment-bubble-open.png") !== -1) {
+      img.src = this.props.linkify("/img/comment-bubble.png");
+    } else {
+      img.src = this.props.linkify("/img/comment-bubble-open.png");
+    }
   }
 
   render() {
     let clip = this.props.clip,
-      node = null;
+      node = null,
+      comments_nodes = [];
 
     if (clip.image === undefined) {
       node = <p className="text-snippet">
@@ -21,11 +35,43 @@ class Snippet extends React.Component {
       node = <img src={ clip.image.url } />;
     }
 
+    let comments = clip.comments,
+      closed = false;
+    if (comments.length === 0) {
+      comments = [{text: "No comments."}];
+      closed = true;
+    }
+
+    for (let i = 0, l = comments.length; i < l; i++) {
+      let c = comments[i];
+      // FIXME add the username once implemented
+      //           <span className="comment-user">{ c.user }</span>
+      comments_nodes.push(
+        <div
+          key={ `comment.${i}` }
+          className="comment">
+          <span className="comment-text">{ c.text }</span>
+        </div>
+      );
+    }
+
     return <div className="snippet-container">
       <Link to="shot" params={{shotId: this.props.shotId, shotDomain: this.props.shotDomain}} query={{clip: clip.id}}>
         { node }
-        <p className="clip-anchor-link">See in full page</p>
       </Link>
+      <p>
+        <img ref="commentBubble" className="comment-bubble"
+          src={ this.props.linkify(closed ? "/img/comment-bubble.png" : "/img/comment-bubble-open.png") }
+          onClick={ this.onClickComment.bind(this) } />
+        <Link to="shot" params={{shotId: this.props.shotId, shotDomain: this.props.shotDomain}} query={{clip: clip.id}}>
+          <span className="clip-anchor-link">See in full page</span>
+        </Link>
+      </p>
+      <div ref="commentHolder"
+        className="comment-holder"
+        style={{ display: closed ? "none" : "inline-block" }}>
+        { comments_nodes }
+      </div>
     </div>;
   }
 }
