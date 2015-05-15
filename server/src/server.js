@@ -13,6 +13,7 @@ let http = require("http"),
 
 const { Shot } = require("./servershot");
 const { checkLogin, registerLogin } = require("./users");
+const dbschema = require("./dbschema");
 
 const jspath = "/js/",
   csspath = "/css/",
@@ -78,8 +79,11 @@ Router.run(routes.routes, Router.HistoryLocation, function (Handler, state) {
 });
 `;
 
+dbschema.createTables();
+dbschema.createKeygrip();
+
 let server = http.createServer(function (req, res) {
-  let cookies = new Cookies(req, res, models.keys);
+  let cookies = new Cookies(req, res, dbschema.getKeygrip());
   req.userId = cookies.get("user", {signed: true});
   let parsed = url.parse(req.url, true),
     pth = parsed.pathname,
@@ -160,24 +164,34 @@ let server = http.createServer(function (req, res) {
           // FIXME: this needs to confirm that the userid doesn't change on an
           // update; right now anyone can overwrite a shot so long as they
           // update the userId appropriately:
-          storeMap.put(modelname, {value: body, userid: req.userId})
-            .then(() => res.end())
-            .catch((err) => {
-              errorResponse(res, "Error saving object:", err);
-            });
+          let shot = new Shot(req.userId, backend, modelname, bodyObj);
+          shot.insert().then((inserted) => {
+            if (! inserted) {
+              return shot.update();
+            }
+            return null;
+          }).then(() => {
+            simpleResponse(res, "Saved", 200);
+          }).catch((err) => {
+            errorResponse(res, "Error saving Object:", err);
+          });
         } else {
           res.writeHead(400);
           res.end("Bad Request");
         }
       });
     } else if (req.method === 'GET') {
-      storeMap.get(modelname, ["value"]).then((val) => {
-        val = val && val.value;
-        if (val === null) {
+      Shot.getRawValue(modelname).then((data) => {
+        if (! data) {
           res.writeHead(404);
           res.end(notFound);
         } else {
-          res.end(val);
+          let value = data.value;
+          if ('format' in query) {
+            value = JSON.stringify(JSON.parse(value), null, '  ');
+          }
+          res.setHeader(contentType, "application/json");
+          res.end(value);
         }
       });
     } else {
@@ -189,22 +203,17 @@ let server = http.createServer(function (req, res) {
 
   if (pth.startsWith(contentpath)) {
     let key = pth.slice(contentpath.length);
-    models.modelMap.get(key, ["value"]).then(
-      data => {
-        if (data && data.value) {
-          let parsed = JSON.parse(data.value);
-          res.writeHead(200);
-          res.end('<!DOCTYPE html><head><script src="/js/content-helper.js"></script>' +
-            parsed.head +
-            '</head><body style="background-color: white; color: black; text-align: left">' +
-            parsed.body +
-            '</body></html>');
-        } else {
-          res.writeHead(404);
-          res.end("Not Found");
-        }
+    Shot.get(backend, key).then((shot) => {
+      if (! shot) {
+        res.writeHead(404);
+        res.end("Not Found");
+        return;
       }
-    ).catch(function (e) {
+      res.writeHead(200);
+      res.end(shot.staticHtml({
+        addHead: `<script src="${backend}/js/content-helper.js"></script>`
+      }));
+    }).catch(function (e) {
       console.log("Error:", e.stack);
       res.setHeader(contentType, "text/plain; charset=utf-8");
       res.writeHead(500);
@@ -277,7 +286,7 @@ function handleRegister(req, res) {
       avatarurl: vars.avatarurl || null
     }, canUpdate).then(function (ok) {
       if (ok) {
-        let cookies = new Cookies(req, res, models.keys);
+        let cookies = new Cookies(req, res, dbschema.getKeygrip());
         cookies.set("userId", vars.userId, {signed: true});
         simpleResponse(res, "Created", 200);
       } else {
@@ -311,7 +320,7 @@ function handleLogin(req, res) {
   parsePost(req).then(function (vars) {
     checkLogin(vars.userId, vars.secret).then((ok) => {
       if (ok) {
-        let cookies = new Cookies(req, res, models.keys);
+        let cookies = new Cookies(req, res, dbschema.getKeygrip());
         cookies.set("user", vars.userId, {signed: true});
         simpleResponse(res, "User logged in", 200);
       } else {
