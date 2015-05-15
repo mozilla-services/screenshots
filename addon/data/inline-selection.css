@@ -14,7 +14,6 @@
 .pageshot-highlight {
   position: absolute;
   border: 1px solid #000;
-  opacity: 0.5;
   z-index: 1000;
   pointer-events: none;
 }
@@ -23,8 +22,7 @@
   position: absolute;
   height: 10px;
   width: 10px;
-  border: 1px solid #000;
-  background-color: #555;
+  background-color: #348CFF;
   pointer-events: auto;
   z-index: 1001;
 }
