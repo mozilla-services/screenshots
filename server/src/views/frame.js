@@ -14,7 +14,6 @@ class Snippet extends React.Component {
     } else {
       node.style.display = "none";
     }
-    console.log("img.src", img.src);
     if (img.src.indexOf("/img/comment-bubble-open.png") !== -1) {
       img.src = this.props.linkify("/img/comment-bubble.png");
     } else {
