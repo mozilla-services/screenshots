@@ -343,7 +343,6 @@ function render() {
       el.addEventListener(
         "mousedown", makeMousedown(el, movements[name]), false);
     }
-    document.body.appendChild(boxEl);
     boxTopEl = document.createElement("div");
     boxTopEl.className = "pageshot-bghighlight";
     document.body.appendChild(boxTopEl);
@@ -356,6 +355,7 @@ function render() {
     boxBottomEl = document.createElement("div");
     boxBottomEl.className = "pageshot-bghighlight";
     document.body.appendChild(boxBottomEl);
+    document.body.appendChild(boxEl);
   }
   let bodyRect = getBodyRect();
   var docHeight = document.documentElement.scrollHeight;
