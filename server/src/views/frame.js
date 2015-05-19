@@ -3,6 +3,14 @@ let React = require("react"),
   Link = Router.Link,
   {AbstractShot} = require("../../../shared/dist/shot.js");
 
+let IS_BROWSER = true;
+
+try {
+  window;
+} catch (e) {
+  IS_BROWSER = false;
+}
+
 class Snippet extends React.Component {
   onClickComment(e) {
     e.preventDefault();
@@ -90,6 +98,12 @@ exports.Frame = React.createClass({
   contextTypes: {
     router: React.PropTypes.func
   },
+
+  closeGetPageshotBanner: function () {
+    let node = document.getElementById("use-pageshot-to-create");
+    node.style.display = "none";
+  },
+
   render: function () {
     if (this.props.data === null) {
       return <div>Not Found</div>;
@@ -188,7 +202,26 @@ exports.Frame = React.createClass({
       linkTextShort = txt;
     }
 
+    if (IS_BROWSER) {
+      let timer = setTimeout(function () {
+        timer = null;
+        let node = document.getElementById("use-pageshot-to-create");
+        node.style.display = "block";
+      }, 2000);
+      document.addEventListener("helper-ready", function() {
+        if (timer === null) {
+          console.error("helper-ready took more than 2 seconds to fire!");
+        } else {
+          clearTimeout(timer);
+        }
+      });
+    }
+
     return <div id="container">
+      <div id="use-pageshot-to-create" style={{ display: "none" }}>
+        To create your own shots, get the Firefox extension <a href="http://pageshot.dev.mozaws.net">PageShot</a>.
+        <a id="banner-close" onClick={ this.closeGetPageshotBanner }>X</a>
+      </div>
       <script src={ this.props.linkify("/js/parent-helper.js") } />
       { favicon }
       <div id="toolbar">

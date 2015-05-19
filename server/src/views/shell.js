@@ -11,10 +11,10 @@ export class Shell extends React.Component {
         let clip = this.props.shot.clips[clipId];
         if (clip.image) {
           let clipUrl = this.props.backend + "/clip/" + this.props.id + "/" + clipId;
-          ogImage.push(<meta property="og:image" content={clipUrl} />);
+          ogImage.push(<meta key={`ogimage.${clipId}`} property="og:image" content={clipUrl} />);
           if (clip.image.dimensions) {
-            ogImage.push(<meta property="og:image:width" content={clip.image.dimensions.x} />);
-            ogImage.push(<meta property="og:image:height" content={clip.image.dimensions.y} />);
+            ogImage.push(<meta key={`ogimagewidth.${clipId}`} property="og:image:width" content={clip.image.dimensions.x} />);
+            ogImage.push(<meta key={`ogimageheight.${clipId}`} property="og:image:height" content={clip.image.dimensions.y} />);
           }
         }
       }

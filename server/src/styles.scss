@@ -225,3 +225,26 @@ a.sitelink, a.sitelink:visited {
 .comment-text {
   display: inline-block;
 }
+
+#use-pageshot-to-create {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  padding: 1em;
+  background-color: $text-color;
+  color: $primary-color;
+  z-index: 2000;
+}
+
+#use-pageshot-to-create a {
+  color: $primary-color;
+  text-decoration: underline;
+}
+
+#banner-close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+}
