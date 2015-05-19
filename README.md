@@ -10,6 +10,22 @@ It is implemented as a Firefox Add-on, using the [Add-on SDK](https://developer.
 
 Ian has been blogging about the [design, definition, and development process](http://www.ianbicking.org/tag/product-journal.html).
 
+### Installation and Setup
+
+Install [Postgres](http://www.postgresql.org/).
+
+Install [cfx](https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/cfx).
+
+Install [node.js](https://nodejs.org/). Version 0.12 is required.
+
+Clone the [repository](https://github.com/mozilla-services/pageshot/).
+
+Inside the local clone, run `npm install`.
+
+Inside the clone, run `gulp`. `gulp` will run the server and display the output in this terminal. It will also create the addon and run a copy of Firefox with the addon installed. To see the output from this Firefox process, run `tail -f addon.log` in another terminal window.
+
+By default, PageShot will connect to a postgres database on localhost:5432. To change which database and user it connects to, pass the DB_USER, DB_PASS, and DB_HOST environment variables when running gulp.
+
 ### Participation
 
 There is an IRC channel `#pageshot` on irc.mozilla.org.
