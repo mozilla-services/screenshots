@@ -9,7 +9,7 @@ const { AbstractShot } = require("./shared/shot");
 const recallButton = ToggleButton({
   id: "pageshot-recall",
   label: "View your shots",
-  icon: self.data.url("icons/icon-recall.png"),
+  icon: self.data.url("icons/library-empty.svg"),
   onChange: function (state) {
     if (state.checked) {
       recallPanel.show();
