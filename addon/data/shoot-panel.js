@@ -174,7 +174,7 @@ class ShootPanel extends React.Component {
 
     let modesRow;
     if (! this.props.recall) {
-      modesRow = [
+      modesRow = <div className="modes-row">
         <span className={modeClasses.auto} onClick={this.setAuto.bind(this)}>
           Auto-detect
         </span>,
@@ -184,11 +184,13 @@ class ShootPanel extends React.Component {
         <span className={modeClasses.visible} onClick={this.setVisible.bind(this)}>
           Visible
         </span>
-      ];
+      </div>;
     } else {
-      modesRow = (
-        <span className="mode" onClick={this.recallBack.bind(this)}>&lt; back</span>
-      );
+      modesRow = <div>
+        <span className="recall-back" onClick={this.recallBack.bind(this)}>&lt; back</span>
+        <span className="recall-title">{ this.props.shot.title }</span>
+        <a className="recall-url" href={ this.props.shot.url }>{ this.props.shot.url }</a>
+      </div>;
     }
 
     let adder;
@@ -197,9 +199,7 @@ class ShootPanel extends React.Component {
     }
 
     return (<div className="container">
-      <div className="modes-row">
-        {modesRow}
-      </div>
+      {modesRow}
       {deleter}
       <div className="snippet-container">
         {clipComponent}
