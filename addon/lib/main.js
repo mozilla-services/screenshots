@@ -35,7 +35,7 @@ var shootPanel = panels.Panel({
     type: "shoot"
   },
   position: shootButton,
-  height: 450,
+  height: 525,
   width: 400,
   onHide: watchFunction(function () {
     shootButton.state("window", null);
