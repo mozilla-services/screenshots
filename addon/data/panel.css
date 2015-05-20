@@ -360,3 +360,37 @@ ul.recall-list li:hover {
   background-color: #dfdfdf;
   text-align: center;
 }
+
+.recall-back {
+  position: absolute;
+  color: blue;
+  cursor: pointer;
+  top: 0.5em;
+  left: 0.5em;
+  font-size: small;
+}
+
+.recall-title {
+  position: absolute;
+  top: 1.5em;
+  left: 0.5em;
+  right: 0.5em;
+  height: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.recall-url {
+  position: absolute;
+  top: 4em;
+  left: 0.5em;
+  right: 0.5em;
+  height: 1em;
+  font-size: small;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+}
