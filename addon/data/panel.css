@@ -87,7 +87,7 @@ input[type=text]:focus {
 
 .modes-row {
   position: absolute;
-  top: 0.5em;
+  top: 4.5em;
   left: 0.5em;
   right: 0.5em;
   text-align: center;
@@ -95,17 +95,17 @@ input[type=text]:focus {
 
 .mode {
   display: inline-block;
+  box-sizing: border-box;
   width: 33%;
-  border-bottom: 1px solid black;
   height: 2em;
-  padding-top: 1em;
+  padding: 0.5em;
   text-align: center;
   cursor: pointer;
 }
 
 .mode-selected {
-  border-bottom: 2px solid orange;
-  background-color: #ababab;
+  border: 2px solid #67aede;
+  background-color: #dcedf6;
 }
 
 .clip-selector {
@@ -131,29 +131,45 @@ input[type=text]:focus {
 
 .link-row {
   position: absolute;
-  bottom: 2em;
+  top: 0px;
   left: 0px;
   right: 0px;
   height: 2em;
-  border-top: 1px solid black;
+  text-align: center;
+  background-color: #E4E4E4;
 }
 
 .link {
   position: absolute;
   bottom: 0.275em;
   left: 0.5em;
-  right: 5.5em;
+  right: 0.5em;
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.copy {
+.share-row {
   position: absolute;
-  bottom: 0.5em;
-  right: 0.5em;
+  top: 2em;
+  left: 0px;
+  right: 0px;
+  height: 2em;
+  text-align: center;
+  background-color: #E4E4E4;
+}
+
+.share-row a {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.copy {
   width: 6em;
+  margin-left: 0.5em;
+  position: relative;
+  top: -2px;
 }
 
 .feedback-row {
@@ -180,7 +196,7 @@ input[type=text]:focus {
 
 .snippet-container {
   position: absolute;
-  top: 4.5em;
+  top: 6.5em;
   left: 0.5em;
   right: 0.5em;
   bottom: 5.5em;
@@ -213,7 +229,7 @@ img.snippet-image {
   box-shadow: 5px 3px 3px #999;
 }
 
-/* These elements are marked display: none because they are not currently
+/* This element are marked display: none because they are not currently
   included in the latest mockups, but they may be included in the future.
 */
 
@@ -228,7 +244,7 @@ img.snippet-image {
 
 .comment-area {
   position: absolute;
-  bottom: 6em;
+  bottom: 3em;
   left: 0.5em;
   right: 0.5em;
   text-align: center;
@@ -269,7 +285,7 @@ img.snippet-image {
   cursor: pointer;
   position: absolute;
   left: 0.5em;
-  top: 4.5em;
+  top: 7em;
 }
 
 /* Recall-related styles: */

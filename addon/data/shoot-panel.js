@@ -72,14 +72,6 @@ class ShootPanel extends React.Component {
 
   onCopyClick(e) {
     self.port.emit("copyLink", this.props.shot.viewUrl);
-    let node = React.findDOMNode(this.refs.copy);
-    node.textContent = node.getAttribute("data-copied-text");
-    // FIXME: this causes a (harmless) warning if you do something like click
-    // the copy button, then click the title so that this element isn't showing
-    // in 1sec when we try to reset the copy text:
-    setTimeout(err.watchFunction(function () {
-      node.textContent = node.getAttribute("data-normal-text");
-    }), 3000);
   }
 
   onLinkClick(e) {
@@ -114,9 +106,12 @@ class ShootPanel extends React.Component {
       return this.renderAddScreen();
     }
     let clip = null;
+    let clipUrl = "";
     if (this.props.activeClipName) {
       clip = this.props.shot.getClip(this.props.activeClipName);
+      clipUrl = this.props.backend + "/clip/" + this.props.shot.id + "/" + this.props.activeClipName;
     }
+
     let modeClasses = {
       auto: "mode",
       selection: "mode",
@@ -197,6 +192,26 @@ class ShootPanel extends React.Component {
     }
 
     return (<div className="container">
+      <div className="link-row">
+        <a className="link" target="_blank" href={ this.props.shot.viewUrl } onClick={ this.onLinkClick.bind(this) }>{ this.props.shot.viewUrl }</a>
+      </div>
+      <div className="share-row">
+        <a target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + this.props.shot.viewUrl }>
+          <img src="icons/facebook-16.png" />
+        </a>
+        <a target="_blank" href={"https://twitter.com/home?status=" + this.props.shot.viewUrl }>
+          <img src="icons/twitter-16.png" />
+        </a>
+        <a target="_blank" href={"https://pinterest.com/pin/create/button/?url=" + this.props.shot.viewUrl + "&media=" + clipUrl + "&description=" }>
+          <img src="icons/pinterest-16.png" />
+        </a>
+        <a target="_blank" href={ "mailto:?subject=Check%20out%20this%20PageShot%20page&body=" + this.props.shot.viewUrl }>
+          <img src="icons/email.png" />
+        </a>
+        <a onClick={ this.onCopyClick.bind(this) }>
+          <img src="icons/link.png" />
+        </a>
+      </div>
       <div className="modes-row">
         {modesRow}
       </div>
@@ -210,10 +225,6 @@ class ShootPanel extends React.Component {
       </div>
       <div className="comment-area">
         <input className="comment-input" ref="input" type="text" value={ clipComment } placeholder="Say something about this clip" onKeyUp={ this.onKeyUp.bind(this) } onChange={ this.onChange.bind(this) }/>
-      </div>
-      <div className="link-row">
-        <a className="link" target="_blank" href={ this.props.shot.viewUrl } onClick={ this.onLinkClick.bind(this) }>{ this.props.shot.viewUrl }</a>
-        <button className="copy" ref="copy" type="button" data-normal-text="Copy Link" data-copied-text="Copied!" onClick={ this.onCopyClick.bind(this) }>Copy Link</button>
       </div>
       <div className="feedback-row">
         <a className="pageshot-footer" target="_blank" href="https://github.com/mozilla-services/pageshot">PageShot</a>
