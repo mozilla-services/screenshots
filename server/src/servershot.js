@@ -56,6 +56,9 @@ Shot.prototype.Clip = ServerClip;
 
 Shot.get = function (backend, id) {
   return Shot.getRawValue(id).then((rawValue) => {
+    if (! rawValue) {
+      return null;
+    }
     let json = JSON.parse(rawValue.value);
     return new Shot(rawValue.userid, backend, id, json);
   });
