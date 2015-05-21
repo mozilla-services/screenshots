@@ -8,23 +8,20 @@ const dbschema = require("./dbschema");
 const express = require("express");
 const bodyParser = require('body-parser');
 const morgan = require("morgan");
-
+const linker = require("./linker");
 
 const contentType = "Content-type";
 
 dbschema.createTables();
 dbschema.createKeygrip();
 
-let gitRevision = null;
-
 const app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '100mb'}));
 
 app.use("/static", express.static(path.join(__dirname, "static"), {
-  index: false,
-  maxAge: "1d"
+  index: false
 }));
 
 app.use(morgan("dev"));
@@ -32,10 +29,13 @@ app.use(morgan("dev"));
 app.use(function (req, res, next) {
   let cookies = new Cookies(req, res, dbschema.getKeygrip());
   req.userId = cookies.get("user", {signed: true});
-  console.log("checked userId", JSON.stringify(req.userId));
   // FIXME: should detect https:
   req.backend = "http://" + req.headers.host;
-  req.gitRevision = gitRevision;
+  next();
+});
+
+app.use(function (req, res, next) {
+  req.staticLink = linker.staticLink.bind(null, req);
   next();
 });
 
@@ -56,7 +56,7 @@ app.post("/api/register", function (req, res) {
   }, canUpdate).then(function (ok) {
     if (ok) {
       let cookies = new Cookies(req, res, dbschema.getKeygrip());
-      cookies.set("userId", vars.userId, {signed: true});
+      cookies.set("user", vars.userId, {signed: true});
       simpleResponse(res, "Created", 200);
     } else {
       simpleResponse(res, "User exists", 401);
@@ -68,10 +68,7 @@ app.post("/api/register", function (req, res) {
 
 app.post("/api/login", function (req, res) {
   let vars = req.body;
-  console.log("logging in", vars.userId, vars.secret);
-  console.log("params", req.params, req.body);
   checkLogin(vars.userId, vars.secret).then((ok) => {
-    console.log("  result:", ok);
     if (ok) {
       let cookies = new Cookies(req, res, dbschema.getKeygrip());
       cookies.set("user", vars.userId, {signed: true});
@@ -110,7 +107,6 @@ app.put("/data/:id/:domain", function (req, res) {
 
   if (! bodyObj.userId) {
     console.warn("No userId in request body", req.url);
-    console.log(JSON.stringify(bodyObj, null, "  "));
     simpleResponse(res, "No userId in body", 400);
     return;
   }
@@ -151,6 +147,8 @@ app.get("/data/:id/:domain", function (req, res) {
       res.setHeader(contentType, "application/json");
       res.end(value);
     }
+  }).catch(function (err) {
+    errorResponse(res, "Error serving data:", err);
   });
 });
 
@@ -163,7 +161,7 @@ app.get("/content/:id/:domain", function (req, res) {
     }
     res.writeHead(200);
     res.end(shot.staticHtml({
-      addHead: `<script src="${req.backend}/js/content-helper.js"></script>`
+      addHead: `<script src="${req.staticLink("js/content-helper.js")}"></script>`
     }));
   }).catch(function (e) {
     errorResponse(res, "Failed to load shot", e);
@@ -176,15 +174,15 @@ app.get("/", function (req, res) {
 
 app.get("/:id/:domain", function (req, res) {
   let shotId = req.params.id + "/" + req.params.domain;
-  console.log("getting shot", shotId);
   Shot.get(req.backend, shotId).then((shot) => {
-    console.log("shot got", shot.id);
     if (! shot) {
       simpleResponse(res, "Not found", 404);
       return;
     }
     req.shot = shot;
-    require("./views/frame").render(req, res);
+    return require("./views/frame").render(req, res);
+  }).catch(function (err) {
+    errorResponse(res, "Error rendering page:", err);
   });
 });
 
@@ -208,9 +206,9 @@ function errorResponse(res, message, err) {
   console.error("Error: " + message, err+"", err);
 }
 
-git.long(function (rev) {
-  gitRevision = rev;
-  console.log("git revision", rev);
+linker.init().then(() => {
   app.listen(10080);
   console.log("server listening on http://localhost:10080/");
+}).catch((err) => {
+  console.error("Error getting revision:", err, err.stack);
 });

@@ -74,10 +74,10 @@ class Snippet extends React.Component {
     } else {
       node.style.display = "none";
     }
-    if (img.src.indexOf("/img/comment-bubble-open.png") !== -1) {
-      img.src = "/img/comment-bubble.png";
+    if (img.src.indexOf("/static/img/comment-bubble-open.png") !== -1) {
+      img.src = "/static/img/comment-bubble.png";
     } else {
-      img.src = "/img/comment-bubble-open.png";
+      img.src = "/static/img/comment-bubble-open.png";
     }
   }
 
@@ -120,7 +120,7 @@ class Snippet extends React.Component {
       </a>
       <p>
         <img ref="commentBubble" className="comment-bubble"
-          src={ closed ? "/img/comment-bubble.png" : "/img/comment-bubble-open.png" }
+          src={ closed ? this.props.staticLink("img/comment-bubble.png") : this.props.staticLink("img/comment-bubble-open.png") }
           onClick={ this.onClickComment.bind(this) } />
         <a href={'#clip=' + encodeURIComponent(clip.id)}>
           <span className="clip-anchor-link">See in full page</span>
@@ -170,11 +170,14 @@ const Frame = React.createClass({
   },
 
   render: function () {
-    return (
-      <Shell title={`PageShot: ${this.props.shot.title}`}>
-        {this.renderHead()}
-        {this.renderBody()}
+    let head = this.renderHead();
+    let body = this.renderBody();
+    let result = (
+      <Shell title={`PageShot: ${this.props.shot.title}`} staticLink={this.props.staticLink}>
+        {head}
+        {body}
       </Shell>);
+    return result;
   },
   renderHead: function () {
     let ogImage = [];
@@ -234,7 +237,7 @@ const Frame = React.createClass({
         previousClip = shot.getClip(clipNames[i-1]);
       }
 
-      snippets.push(<Snippet key={ clipId } clip={ clip }  shotId={ shotId } shotDomain={ shotDomain } previousClip={ previousClip } nextClip={ nextClip } />);
+      snippets.push(<Snippet staticLink={this.props.staticLink} key={ clipId } clip={ clip }  shotId={ shotId } shotDomain={ shotDomain } previousClip={ previousClip } nextClip={ nextClip } />);
 
       if (query.clip === clipId) {
         if (typeof window !== "undefined") {
@@ -262,13 +265,14 @@ const Frame = React.createClass({
 
     if (previousClip) {
       previousClipNode = <a href={'#clip=' + encodeURIComponent(previousClip.id)}>
-        <img className="navigate-clips" src="/img/up-arrow.png" />
+        <img className="navigate-clips" src={ this.props.staticLink("img/up-arrow.png") } />
       </a>;
     }
 
     if (nextClip || query.clip === undefined) {
-      nextClipNode = <a href={'#clip=' + nextClip.id}>
-        <img className="navigate-clips" src="/img/down-arrow.png" />
+      let nextId = nextClip ? nextClip.id : clipNames[0];
+      nextClipNode = <a href={'#clip=' + nextId}>
+        <img className="navigate-clips" src={ this.props.staticLink("img/down-arrow.png") } />
       </a>;
     }
 
@@ -309,17 +313,17 @@ const Frame = React.createClass({
       <body>
         <div id="container">
           <div id="use-pageshot-to-create" style={{ display: "none" }}>
-            To create your own shots, get the Firefox extension <a href="http://pageshot.dev.mozaws.net">PageShot</a>.
+            To create your own shots, get the Firefox extension <a href={ this.props.backend }>PageShot</a>.
             <a id="banner-close" onClick={ this.closeGetPageshotBanner }>X</a>
           </div>
-          <script src={ this.props.linkify("/js/parent-helper.js") } />
+          <script src={ this.props.staticLink("js/parent-helper.js") } />
         { favicon }
         <div id="toolbar">
           <a className="main-link" href={ shot.url }>
             { shot.title }
             &nbsp;&mdash;&nbsp;
             { linkTextShort }
-            <img src={ this.props.linkify("/img/clipboard-8-xl.png") } />
+            <img src={ this.props.staticLink("img/clipboard-8-xl.png") } />
           </a>
           <div className="navigate-toolbar">
             <span className="clip-count">
@@ -345,8 +349,8 @@ const Frame = React.createClass({
 let FrameFactory = React.createFactory(Frame);
 
 exports.render = function (req, res) {
-  console.log("starting");
   let frame = FrameFactory({
+    staticLink: req.staticLink,
     backend: req.backend,
     shot: req.shot,
     id: req.shot.id,
@@ -354,9 +358,7 @@ exports.render = function (req, res) {
     query: req.query,
     params: req.params
   });
-  console.log("made frame", Object.keys(frame));
   let body = React.renderToString(frame);
-  console.log("rendering shot", req.shot.id, body.length);
+  body = '<!DOCTYPE html>\n' + body;
   res.send(body);
-  console.log("done");
 };

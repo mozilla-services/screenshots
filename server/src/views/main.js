@@ -4,7 +4,7 @@ const { Shell } = require("./shell");
 class Main extends React.Component {
   render() {
     return (
-      <Shell title="PageShot">
+      <Shell title="PageShot" staticLink={this.props.staticLink}>
         <head>
         </head>
         <body>
@@ -45,6 +45,8 @@ class Main extends React.Component {
 let MainFactory = React.createFactory(Main);
 
 exports.render = function (req, res) {
-  let page = MainFactory({});
-  res.send(React.renderToString(page));
+  let page = MainFactory({staticLink: req.staticLink});
+  let body = React.renderToString(page);
+  body = '<!DOCTYPE html>\n' + body;
+  res.send(body);
 };
