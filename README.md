@@ -30,7 +30,7 @@ By default, PageShot will connect to a postgres database on localhost:5432. To c
 
 There is an IRC channel `#pageshot` on irc.mozilla.org.
 
-We hold daily standups each weekday at 11am Eastern, 10am Central, 8am Pacific.  Meetings typically last 20 minutes, and we just discuss whatever we're working on.  Feel free to stop by and say hi.  Follow [this link](https://v.mozilla.com/flex.html?roomdirect.html&key=HKjEDYoY2zMqhoZ8by7z3UTLKA) to join the meeting (you'll have to install the Vidyo  video conferencing software, sorry).  Please don't join with your video turned off, it's a conversational meeting and we like to know who is part of the conversation.  If someone is out for some reason we may cancel this meeting, check in on IRC if you are unsure.
+We hold daily standups each weekday at 11:30am Eastern, 10:30am Central, 8:30am Pacific.  Meetings typically last 20 minutes, and we just discuss whatever we're working on.  Feel free to stop by and say hi.  Follow [this link](https://v.mozilla.com/flex.html?roomdirect.html&key=HKjEDYoY2zMqhoZ8by7z3UTLKA) to join the meeting (you'll have to install the Vidyo  video conferencing software, sorry).  Please don't join with your video turned off, it's a conversational meeting and we like to know who is part of the conversation.  If someone is out for some reason we may cancel this meeting, check in on IRC if you are unsure.
 
 Planning and ideation is happening in the [issue tracker](https://github.com/ianb/pageshot/issues).  We use a pattern roughly like:
 
