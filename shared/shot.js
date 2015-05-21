@@ -356,6 +356,7 @@ class AbstractShot {
     return `<!DOCTYPE html>
 <html${formatAttributes(this.htmlAttrs)}>
 <head${formatAttributes(this.headAttrs)}>
+<meta charset="UTF-8">
 ${options.addHead || ""}
 <base href="${this.url}">
 ${this.head}
