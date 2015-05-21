@@ -160,6 +160,7 @@ let server = http.createServer(function (req, res) {
           if (req.userId != bodyObj.userId) {
             // FIXME: this doesn't make sense for comments or other stuff, see https://github.com/mozilla-services/pageshot/issues/245
             simpleResponse(res, "Cannot save a page on behalf of another user", 403);
+            return;
           }
           // FIXME: this needs to confirm that the userid doesn't change on an
           // update; right now anyone can overwrite a shot so long as they
@@ -287,7 +288,7 @@ function handleRegister(req, res) {
     }, canUpdate).then(function (ok) {
       if (ok) {
         let cookies = new Cookies(req, res, dbschema.getKeygrip());
-        cookies.set("userId", vars.userId, {signed: true});
+        cookies.set("user", vars.userId, {signed: true});
         simpleResponse(res, "Created", 200);
       } else {
         simpleResponse(res, "User exists", 401);
