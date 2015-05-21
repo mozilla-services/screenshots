@@ -19,6 +19,7 @@ exports.initialize = function (backend) {
     let loginUrl = backend + "/api/login";
     Request({
       url: loginUrl,
+      contentType: "application/x-www-form-urlencoded",
       content: {userId: info.userId, secret: info.secret},
       onComplete: watchFunction(function (response) {
         if (response.status == 404) {
@@ -41,6 +42,7 @@ function saveLogin(backend, info) {
   return new Promise(function (resolve, reject) {
     Request({
       url: registerUrl,
+      contentType: "application/x-www-form-urlencoded",
       content: info,
       onComplete: function (response) {
         if (response.status == 200) {
