@@ -28,8 +28,8 @@ app.use(morgan("dev"));
 app.use(function (req, res, next) {
   let cookies = new Cookies(req, res, dbschema.getKeygrip());
   req.userId = cookies.get("user", {signed: true});
-  // FIXME: should detect https:
-  req.backend = "http://" + req.headers.host;
+  let proto = req.headers["x-forwarded-proto"] || "http";
+  req.backend = proto + "://" + req.headers.host;
   next();
 });
 
