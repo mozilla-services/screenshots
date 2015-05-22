@@ -332,15 +332,15 @@ const Frame = React.createClass({
             { previousClipNode }
             { nextClipNode }
           </div>
-          <div className="metadata">
-            <h1 id="main-title">{ shot.title }</h1>
-            <p><a href={ shot.url }>{ linkTextShort }</a></p>
-          </div>
-          { snippets }
-          <iframe width="100%" id="frame" src={ "/content/" +  shot.id } />
-          <a className="pageshot-footer" href="https://github.com/mozilla-services/pageshot">PageShot</a>
-          <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl }>Send Feedback</a>
         </div>
+        <div className="metadata">
+          <h1 id="main-title">{ shot.title }</h1>
+          <p><a href={ shot.url }>{ linkTextShort }</a></p>
+        </div>
+        { snippets }
+        <iframe width="100%" id="frame" src={ "/content/" +  shot.id } />
+        <a className="pageshot-footer" href="https://github.com/mozilla-services/pageshot">PageShot</a>
+        <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl }>Send Feedback</a>
       </div>
     </body>);
   }
