@@ -47,5 +47,3 @@ window.onload = function () {
     doResize();
   }
 };
-
-

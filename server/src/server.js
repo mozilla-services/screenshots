@@ -1,5 +1,4 @@
 const path = require('path');
-const git = require('git-rev');
 const Cookies = require("cookies");
 
 const { Shot } = require("./servershot");

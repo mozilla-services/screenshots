@@ -25,7 +25,7 @@ window.addEventListener(
       window.location.origin);
     } else {
       let boundingRect = node.getBoundingClientRect();
-  
+
       window.parent.postMessage({
         scrollX: boundingRect.x, scrollY: boundingRect.y,
         clipWidth: boundingRect.width, clipHeight: boundingRect.height
@@ -34,5 +34,3 @@ window.addEventListener(
     }
   }
 );
-
-
