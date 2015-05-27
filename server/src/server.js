@@ -99,8 +99,8 @@ app.get("/clip/:id/:domain/:clipId", function (req, res) {
 
 app.put("/data/:id/:domain", function (req, res) {
   let bodyObj = req.body;
-  if (typeof bodyObj == "string") {
-    bodyObj = JSON.parse(bodyObj);
+  if (typeof bodyObj != "object") {
+    throw new Error("Got unexpected req.body type: " + typeof bodyObj);
   }
   let shotId = req.params.id + "/" + req.params.domain;
 
