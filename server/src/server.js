@@ -16,7 +16,7 @@ dbschema.createKeygrip();
 
 const app = express();
 
-app.set('trust proxy', true)
+app.set('trust proxy', true);
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json({limit: '100mb'}));
@@ -90,9 +90,8 @@ app.get("/clip/:id/:domain/:clipId", function (req, res) {
       return;
     }
     let image = clip.imageBinary();
-    res.setHeader(contentType, image.contentType);
-    res.writeHead(200);
-    res.end(image.data);
+    res.set("Content-Type", image.contentType);
+    res.send(image.data);
   }).catch((err) => {
     errorResponse(res, "Failed to get clip", err);
   });
@@ -144,8 +143,8 @@ app.get("/data/:id/:domain", function (req, res) {
       if ('format' in req.query) {
         value = JSON.stringify(JSON.parse(value), null, '  ');
       }
-      res.setHeader(contentType, "application/json");
-      res.end(value);
+      res.set("Content-Type", "application/json");
+      res.send(value);
     }
   }).catch(function (err) {
     errorResponse(res, "Error serving data:", err);
@@ -159,8 +158,7 @@ app.get("/content/:id/:domain", function (req, res) {
       simpleResponse(res, "Not found", 404);
       return;
     }
-    res.writeHead(200);
-    res.end(shot.staticHtml({
+    res.send(shot.staticHtml({
       addHead: `<script src="${req.staticLink("js/content-helper.js")}"></script>`
     }));
   }).catch(function (e) {
@@ -188,21 +186,21 @@ app.get("/:id/:domain", function (req, res) {
 
 function simpleResponse(res, message, status) {
   status = status || 200;
-  res.setHeader(contentType, "text/plain; charset=utf-8");
-  res.writeHead(status);
-  res.end(message);
+  res.set("Content-Type", "text/plain; charset=utf-8");
+  res.status(status);
+  res.send(message);
 }
 
 function errorResponse(res, message, err) {
-  res.setHeader(contentType, "text/plain; charset=utf-8");
-  res.writeHead(500);
+  res.set("Content-Type", "text/plain; charset=utf-8");
+  res.status(500);
   if (err) {
     message += "\n" + err;
     if (err.stack) {
       message += "\n\n" + err.stack;
     }
   }
-  res.end(message);
+  res.send(message);
   console.error("Error: " + message, err+"", err);
 }
 
