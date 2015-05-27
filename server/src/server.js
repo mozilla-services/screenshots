@@ -16,6 +16,8 @@ dbschema.createKeygrip();
 
 const app = express();
 
+app.set('trust proxy', true)
+
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json({limit: '100mb'}));
 
@@ -28,8 +30,7 @@ app.use(morgan("dev"));
 app.use(function (req, res, next) {
   let cookies = new Cookies(req, res, dbschema.getKeygrip());
   req.userId = cookies.get("user", {signed: true});
-  let proto = req.headers["x-forwarded-proto"] || "http";
-  req.backend = proto + "://" + req.headers.host;
+  req.backend = req.protocol + "://" + req.headers.host;
   next();
 });
 
