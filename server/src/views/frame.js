@@ -2,58 +2,7 @@
 
 const React = require("react");
 const { Shell } = require("./shell");
-
-let script = `
-function gotData(Handler, data) {
-  data.linkify = linkify;
-  routes.setGitRevision(data.gitRevision);
-  React.render(React.createElement(Handler, data), document);
-}
-
-Router.run(routes.routes, Router.HistoryLocation, function (Handler, state) {
-  if (cachedData) {
-    var _d = cachedData;
-    cachedData = null;
-    gotData(Handler, _d);
-    return;
-  }
-
-  var appnames = [],
-    app = null;
-  for (var i in state.routes) {
-    if (!!state.routes[i].name) {
-      appnames.push(state.routes[i].name);
-      if (app === null) {
-        app = state.routes[i];
-      }
-    }
-  }
-  if (!appnames.length) {
-    console.error("Error: No app was routed");
-    return;
-  }
-
-  console.log("Route to app", appnames[0]);
-
-  if (appnames[0] === "shot") {
-    var key = state.params.shotId + "/" + state.params.shotDomain,
-      xhr = new XMLHttpRequest();
-
-    xhr.onload = function () {
-      if (xhr.status === 200) {
-        var data = JSON.parse(xhr.responseText);
-        gotData(Handler, {backend: location.origin, id: key, shot: data});
-      } else {
-        console.error("Error: Bad response: ", xhr.status, xhr.responseText);
-      }
-    };
-
-    xhr.open("GET", "/data/" + key);
-    xhr.send();
-  }
-});
-`;
-
+const { getGitRevision } = require("../linker");
 
 let IS_BROWSER = true;
 
@@ -115,14 +64,14 @@ class Snippet extends React.Component {
     }
 
     return <div className="snippet-container">
-      <a href={'#clip=' + encodeURIComponent(clip.id)}>
+      <a href={'?clip=' + encodeURIComponent(clip.id)}>
         { node }
       </a>
       <p>
         <img ref="commentBubble" className="comment-bubble"
           src={ closed ? this.props.staticLink("img/comment-bubble.png") : this.props.staticLink("img/comment-bubble-open.png") }
           onClick={ this.onClickComment.bind(this) } />
-        <a href={'#clip=' + encodeURIComponent(clip.id)}>
+        <a href={'?clip=' + encodeURIComponent(clip.id)}>
           <span className="clip-anchor-link">See in full page</span>
         </a>
       </p>
@@ -135,12 +84,13 @@ class Snippet extends React.Component {
   }
 }
 
-function sendShowElement(frame, showElement, location) {
+function sendShowElement(frame, showElement, loc) {
   function post() {
-    frame.contentWindow.postMessage({
+    let tosend = {
       show: showElement,
-      location: location
-    });
+      location: loc
+    };
+    frame.contentWindow.postMessage(tosend, location.origin);
   }
   if (frame.contentDocument.readyState == "complete") {
     post();
@@ -149,27 +99,13 @@ function sendShowElement(frame, showElement, location) {
   }
 }
 
-// FIXME: I can't convert this to an es6 class because I get an exception related
-// to the way this class uses contextTypes, even though I am doing what
-// google searches appear to indicate is the right thing:
-// export class Frame extends React.Component {
-//   ...
-// }
-// Frame.contextTypes = {
-//    router: React.PropTypes.func
-// }
-
-const Frame = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.func
-  },
-
-  closeGetPageshotBanner: function () {
+class Frame extends React.Component {
+  closeGetPageshotBanner() {
     let node = document.getElementById("use-pageshot-to-create");
     node.style.display = "none";
-  },
+  }
 
-  render: function () {
+  render() {
     let head = this.renderHead();
     let body = this.renderBody();
     let result = (
@@ -178,18 +114,19 @@ const Frame = React.createClass({
         {body}
       </Shell>);
     return result;
-  },
-  renderHead: function () {
+  }
+
+  renderHead() {
     let ogImage = [];
     if (this.props.shot) {
       for (let clipId in this.props.shot.clips) {
         let clip = this.props.shot.clips[clipId];
         if (clip.image) {
           let clipUrl = this.props.backend + "/clip/" + this.props.shot.id + "/" + clipId;
-          ogImage.push(<meta property="og:image" content={clipUrl} />);
+          ogImage.push(<meta key={ "ogimage" + this.props.shot.id } property="og:image" content={clipUrl} />);
           if (clip.image.dimensions) {
-            ogImage.push(<meta property="og:image:width" content={clip.image.dimensions.x} />);
-            ogImage.push(<meta property="og:image:height" content={clip.image.dimensions.y} />);
+            ogImage.push(<meta key={ "ogimagewidth" + this.props.shot.id } property="og:image:width" content={clip.image.dimensions.x} />);
+            ogImage.push(<meta key={ "ogimageheight" + this.props.shot.id } property="og:image:height" content={clip.image.dimensions.y} />);
           }
         }
       }
@@ -204,8 +141,9 @@ const Frame = React.createClass({
         {ogTitle}
         {ogImage}
       </head>);
-  },
-  renderBody: function () {
+  }
+
+  renderBody() {
     if (! this.props.shot) {
       return <body><div>Not Found</div></body>;
     }
@@ -225,14 +163,12 @@ const Frame = React.createClass({
       previousClip = null,
       nextClip = null;
 
-    for (let i=0; i<clipNames.length; i++) {
+    for (let i=0; i < clipNames.length; i++) {
       let clipId = clipNames[i];
       let clip = shot.getClip(clipId);
-      let nextClip = null;
       if (i + 1 < clipNames.length) {
         nextClip = shot.getClip(clipNames[i+1]);
       }
-      let previousClip = null;
       if (i > 0) {
         previousClip = shot.getClip(clipNames[i-1]);
       }
@@ -260,18 +196,18 @@ const Frame = React.createClass({
       }
     }
 
-    let previousClipNode = "",
-      nextClipNode = "";
+    let previousClipNode = null,
+      nextClipNode = null;
 
     if (previousClip) {
-      previousClipNode = <a href={'#clip=' + encodeURIComponent(previousClip.id)}>
+      previousClipNode = <a href={'?clip=' + encodeURIComponent(previousClip.id)}>
         <img className="navigate-clips" src={ this.props.staticLink("img/up-arrow.png") } />
       </a>;
     }
 
     if (nextClip || query.clip === undefined) {
       let nextId = nextClip ? nextClip.id : clipNames[0];
-      nextClipNode = <a href={'#clip=' + nextId}>
+      nextClipNode = <a href={'?clip=' + nextId}>
         <img className="navigate-clips" src={ this.props.staticLink("img/down-arrow.png") } />
       </a>;
     }
@@ -344,9 +280,11 @@ const Frame = React.createClass({
       </div>
     </body>);
   }
-});
+}
 
 let FrameFactory = React.createFactory(Frame);
+
+exports.FrameFactory = FrameFactory;
 
 exports.render = function (req, res) {
   let frame = FrameFactory({
@@ -355,10 +293,25 @@ exports.render = function (req, res) {
     shot: req.shot,
     id: req.shot.id,
     shotDomain: req.url, // FIXME: should be a property of the shot
-    query: req.query,
-    params: req.params
+    query: req.query
   });
+  let clientPayload = {
+    gitRevision: getGitRevision(),
+    backend: req.backend,
+    shot: req.shot.asJson(),
+    id: req.shot.id,
+    shotDomain: req.url,
+    query: req.query
+  }
   let body = React.renderToString(frame);
-  body = '<!DOCTYPE html>\n' + body;
+  let footer = "</body></html>";
+  let json = JSON.stringify(clientPayload);
+  body = ('<!DOCTYPE html>\n'
+    + body.slice(0, body.length - footer.length)
+    + "<script>var _cachedData = " + json + ";"
+    + "clientGlue(_cachedData)"
+    + "</script>"
+    + footer
+  );
   res.send(body);
 };
