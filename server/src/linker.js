@@ -11,12 +11,24 @@ exports.init = function () {
   });
 };
 
-exports.staticLink = function (req, resource) {
+exports.setGitRevision = function (rev) {
+  gitRevision = rev;
+};
+
+exports.getGitRevision = function () {
+  return gitRevision;
+};
+
+exports.staticLink = function (resource) {
   if (resource.charAt(0) != "/") {
     resource = "/" + resource;
   }
   if (resource.startsWith("/static")) {
     throw new Error("staticLink URL should not start with /static: " + resource);
   }
-  return "//" + req.headers.host + "/static" + resource + "?rev=" + gitRevision;
+  return "/static" + resource + "?rev=" + gitRevision;
+};
+
+exports.staticLinkWithHost = function (req, resource) {
+  return "//" + req.headers.host + exports.staticLink(resource);
 };

@@ -9,8 +9,6 @@ const bodyParser = require('body-parser');
 const morgan = require("morgan");
 const linker = require("./linker");
 
-const contentType = "Content-type";
-
 dbschema.createTables();
 dbschema.createKeygrip();
 
@@ -35,7 +33,7 @@ app.use(function (req, res, next) {
 });
 
 app.use(function (req, res, next) {
-  req.staticLink = linker.staticLink.bind(null, req);
+  req.staticLink = linker.staticLink;
   next();
 });
 
@@ -46,7 +44,7 @@ app.use(function (err, req, res, next) {
 });
 
 app.post("/api/register", function (req, res) {
-  let vars = req.params;
+  let vars = req.body;
   // FIXME: need to hash secret
   let canUpdate = vars.userId === req.userId;
   return registerLogin(vars.userId, {

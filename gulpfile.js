@@ -44,7 +44,7 @@ gulp.task("imgs", function () {
 
 gulp.task("javascript", ["6to5", "shared"], function () {
   var bundler = browserify({
-    entries: ["./server/dist/routes.js"],
+    entries: ["./server/dist/clientglue.js"],
     debug: true
   });
 
