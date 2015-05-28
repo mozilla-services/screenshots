@@ -161,7 +161,7 @@ const PanelContext = {
     if (! this._contexts[shotContext.id]) {
       // FIXME: this sometimes throws on browser shutdown,
       // not sure why.  Something must be double-destroying.
-      throw new Error("No such context: " + shotContext.id);
+      console.warn("No such context:", shotContext.id);
     }
     if (this._activeContext == shotContext) {
       this.hide(shotContext);

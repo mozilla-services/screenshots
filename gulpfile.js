@@ -35,21 +35,21 @@ gulp.task("6to5", function () {
 });
 
 gulp.task("sass", function () {
-  return gulp.src("server/src/**/*.scss").pipe(sass()).pipe(gulp.dest("server/dist/css"));
+  return gulp.src("server/src/**/*.scss").pipe(sass()).pipe(gulp.dest("server/dist/static/css"));
 });
 
 gulp.task("imgs", function () {
-  return gulp.src("server/src/img/*").pipe(gulp.dest("server/dist/img"));
+  return gulp.src("server/src/static/img/*").pipe(gulp.dest("server/dist/static/img"));
 });
 
 gulp.task("javascript", ["6to5", "shared"], function () {
   var bundler = browserify({
-    entries: ["./server/dist/routes.js"],
+    entries: ["./server/dist/clientglue.js"],
     debug: true
   });
 
   return (function () {
-    return bundler.bundle().pipe(source("server-bundle.js")).pipe(gulp.dest("server/dist/js"));
+    return bundler.bundle().pipe(source("server-bundle.js")).pipe(gulp.dest("server/dist/static/js"));
   }());
 });
 

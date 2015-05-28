@@ -59,10 +59,12 @@ function extractData() {
     {element: document.head, isReadable: false},
     {element: readableDiv, isReadable: true},
     {element: document.body, isReadable: false}]);
+  var siteName = findSiteName();
   return {
     readable: readable,
     microdata: microdata,
-    images: images
+    images: images,
+    siteName: siteName
   };
 }
 
@@ -121,6 +123,19 @@ function findImages(elements) {
     }
   }
   return images;
+}
+
+function findSiteName() {
+  let el = document.querySelector("meta[property='og:site_name']");
+  if (el) {
+    return el.getAttribute("content");
+  }
+  // nytimes.com uses this property:
+  el = document.querySelector("meta[name='cre']");
+  if (el) {
+    return el.getAttribute("content");
+  }
+  return null;
 }
 
 self.port.emit("data", watchFunction(extractData)());

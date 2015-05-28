@@ -1,42 +1,27 @@
 
-let React = require("react"),
-  Router = require("react-router"),
-  RouteHandler = Router.RouteHandler;
+const React = require("react");
 
 export class Shell extends React.Component {
   render() {
-    let ogImage = [];
-    if (this.props.shot) {
-      for (let clipId in this.props.shot.clips) {
-        let clip = this.props.shot.clips[clipId];
-        if (clip.image) {
-          let clipUrl = this.props.backend + "/clip/" + this.props.id + "/" + clipId;
-          ogImage.push(<meta key={`ogimage.${clipId}`} property="og:image" content={clipUrl} />);
-          if (clip.image.dimensions) {
-            ogImage.push(<meta key={`ogimagewidth.${clipId}`} property="og:image:width" content={clip.image.dimensions.x} />);
-            ogImage.push(<meta key={`ogimageheight.${clipId}`} property="og:image:height" content={clip.image.dimensions.y} />);
-          }
-        }
-      }
+    if (this.props.children.length != 2) {
+      throw new Error("Shell needs exactly two children (head and body)");
     }
-    let ogTitle = "";
-    if (this.props.shot && this.props.shot.ogTitle) {
-      ogTitle = <meta propery="og:title" content={this.props.shot.ogTitle} />;
+    if (this.props.children[0].type != "head") {
+      throw new Error("Shell first child must be <head> (not " + this.props.children[0].type + ")");
+    }
+    if (this.props.children[1].type != "body") {
+      throw new Error("Shell second child must be <body> (not " + this.props.children[1].type + ")");
     }
     return <html prefix="og: http://ogp.me/ns#">
       <head>
-        <title>
-          PageShot
-        </title>
-        <meta property="og:type" content="website" />
-        {ogTitle}
-        {ogImage}
-        <script src={ this.props.linkify("/js/server-bundle.js") } />
-        <link rel="stylesheet" href={ this.props.linkify("/css/styles.css") } />
-        <link rel="stylesheet" href={ this.props.linkify("/css/login.css") }/>
+        <title>{this.props.title}</title>
+        <script src={ this.props.staticLink("js/server-bundle.js") } />
+        <link rel="stylesheet" href={ this.props.staticLink("css/styles.css") } />
+        <link rel="stylesheet" href={ this.props.staticLink("css/login.css") } />
+        {this.props.children[0].props.children}
       </head>
       <body>
-        <RouteHandler {...this.props} />
+        {this.props.children[1].props.children}
       </body>
     </html>;
   }

@@ -216,6 +216,7 @@ class AbstractShot {
     }
     this.hashtags = attrs.hashtags || null;
     this.microdata = attrs.microdata || null;
+    this.siteName = attrs.siteName || null;
     this.images = [];
     if (attrs.images) {
       this.images = attrs.images.map(
@@ -356,6 +357,7 @@ class AbstractShot {
     return `<!DOCTYPE html>
 <html${formatAttributes(this.htmlAttrs)}>
 <head${formatAttributes(this.headAttrs)}>
+<meta charset="UTF-8">
 ${options.addHead || ""}
 <base href="${this.url}">
 ${this.head}
@@ -549,6 +551,15 @@ ${options.addBody || ""}
     this._microdata = val;
   }
 
+  get siteName() {
+    return this._siteName || null;
+  }
+  set siteName(val) {
+    assert(typeof val == "string" || ! val);
+    this._dirty("siteName");
+    this._siteName = val;
+  }
+
   get head() {
     return this._head;
   }
@@ -621,7 +632,7 @@ ${options.addBody || ""}
 AbstractShot.prototype.REGULAR_ATTRS = (`
 userId url docTitle ogTitle userTitle createdDate createdDevice favicon
 history comments hashtags images readable head body htmlAttrs bodyAttrs
-headAttrs microdata
+headAttrs microdata siteName
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`

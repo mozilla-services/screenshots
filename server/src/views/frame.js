@@ -1,7 +1,8 @@
-let React = require("react"),
-  Router = require("react-router"),
-  Link = Router.Link,
-  {AbstractShot} = require("../../../shared/dist/shot.js");
+/* globals window, document */
+
+const React = require("react");
+const { Shell } = require("./shell");
+const { getGitRevision } = require("../linker");
 
 let IS_BROWSER = true;
 
@@ -22,10 +23,10 @@ class Snippet extends React.Component {
     } else {
       node.style.display = "none";
     }
-    if (img.src.indexOf("/img/comment-bubble-open.png") !== -1) {
-      img.src = this.props.linkify("/img/comment-bubble.png");
+    if (img.src.indexOf("/static/img/comment-bubble-open.png") !== -1) {
+      img.src = "/static/img/comment-bubble.png";
     } else {
-      img.src = this.props.linkify("/img/comment-bubble-open.png");
+      img.src = "/static/img/comment-bubble-open.png";
     }
   }
 
@@ -63,16 +64,16 @@ class Snippet extends React.Component {
     }
 
     return <div className="snippet-container">
-      <Link to="shot" params={{shotId: this.props.shotId, shotDomain: this.props.shotDomain}} query={{clip: clip.id}}>
+      <a href={'?clip=' + encodeURIComponent(clip.id)}>
         { node }
-      </Link>
+      </a>
       <p>
         <img ref="commentBubble" className="comment-bubble"
-          src={ this.props.linkify(closed ? "/img/comment-bubble.png" : "/img/comment-bubble-open.png") }
+          src={ closed ? this.props.staticLink("img/comment-bubble.png") : this.props.staticLink("img/comment-bubble-open.png") }
           onClick={ this.onClickComment.bind(this) } />
-        <Link to="shot" params={{shotId: this.props.shotId, shotDomain: this.props.shotDomain}} query={{clip: clip.id}}>
+        <a href={'?clip=' + encodeURIComponent(clip.id)}>
           <span className="clip-anchor-link">See in full page</span>
-        </Link>
+        </a>
       </p>
       <div ref="commentHolder"
         className="comment-holder"
@@ -83,37 +84,74 @@ class Snippet extends React.Component {
   }
 }
 
+function sendShowElement(frame, showElement, loc) {
+  function post() {
+    let tosend = {
+      show: showElement,
+      location: loc
+    };
+    frame.contentWindow.postMessage(tosend, location.origin);
+  }
+  if (frame.contentDocument.readyState == "complete") {
+    post();
+  } else {
+    frame.contentWindow.onload = post;
+  }
+}
 
-// FIXME: I can't convert this to an es6 class because I get an exception related
-// to the way this class uses contextTypes, even though I am doing what
-// google searches appear to indicate is the right thing:
-// export class Frame extends React.Component {
-//   ...
-// }
-// Frame.contextTypes = {
-//    router: React.PropTypes.func
-// }
-
-exports.Frame = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.func
-  },
-
-  closeGetPageshotBanner: function () {
+class Frame extends React.Component {
+  closeGetPageshotBanner() {
     let node = document.getElementById("use-pageshot-to-create");
     node.style.display = "none";
-  },
+  }
 
-  render: function () {
-    if (this.props.data === null) {
-      return <div>Not Found</div>;
+  render() {
+    let head = this.renderHead();
+    let body = this.renderBody();
+    let result = (
+      <Shell title={`PageShot: ${this.props.shot.title}`} staticLink={this.props.staticLink}>
+        {head}
+        {body}
+      </Shell>);
+    return result;
+  }
+
+  renderHead() {
+    let ogImage = [];
+    if (this.props.shot) {
+      for (let clipId in this.props.shot.clips) {
+        let clip = this.props.shot.clips[clipId];
+        if (clip.image) {
+          let clipUrl = this.props.backend + "/clip/" + this.props.shot.id + "/" + clipId;
+          ogImage.push(<meta key={ "ogimage" + this.props.shot.id } property="og:image" content={clipUrl} />);
+          if (clip.image.dimensions) {
+            ogImage.push(<meta key={ "ogimagewidth" + this.props.shot.id } property="og:image:width" content={clip.image.dimensions.x} />);
+            ogImage.push(<meta key={ "ogimageheight" + this.props.shot.id } property="og:image:height" content={clip.image.dimensions.y} />);
+          }
+        }
+      }
+    }
+    let ogTitle = "";
+    if (this.props.shot && this.props.shot.ogTitle) {
+      ogTitle = <meta propery="og:title" content={this.props.shot.ogTitle} />;
+    }
+    return (
+      <head>
+        <meta property="og:type" content="website" />
+        {ogTitle}
+        {ogImage}
+      </head>);
+  }
+
+  renderBody() {
+    if (! this.props.shot) {
+      return <body><div>Not Found</div></body>;
     }
 
-    let shot = new AbstractShot(this.props.backend, this.props.id, this.props.shot),
-      params = this.context.router.getCurrentParams(),
-      query = this.context.router.getCurrentQuery(),
-      shotId = params.shotId,
-      shotDomain = params.shotDomain;
+    let shot = this.props.shot;
+    let query = this.props.query;
+    let shotId = this.props.shot.id;
+    let shotDomain = this.props.shot.url; // FIXME: calculate
 
     let favicon = "";
     if (shot.favicon) {
@@ -125,13 +163,19 @@ exports.Frame = React.createClass({
       previousClip = null,
       nextClip = null;
 
-    for (let i = 0; i < clipNames.length; i++) {
-      let name = clipNames[i],
-        clip = shot.getClip(name);
+    for (let i=0; i < clipNames.length; i++) {
+      let clipId = clipNames[i];
+      let clip = shot.getClip(clipId);
+      if (i + 1 < clipNames.length) {
+        nextClip = shot.getClip(clipNames[i+1]);
+      }
+      if (i > 0) {
+        previousClip = shot.getClip(clipNames[i-1]);
+      }
 
-      snippets.push(<Snippet key={ name } clip={ clip } linkify={ this.props.linkify } shotId={ shotId } shotDomain={ shotDomain } previousClip={ previousClip } nextClip={ nextClip } />);
+      snippets.push(<Snippet staticLink={this.props.staticLink} key={ clipId } clip={ clip }  shotId={ shotId } shotDomain={ shotDomain } previousClip={ previousClip } nextClip={ nextClip } />);
 
-      if (query.clip === name) {
+      if (query.clip === clipId) {
         if (typeof window !== "undefined") {
           let frame = document.getElementById("frame"),
             showElement = null,
@@ -146,42 +190,26 @@ exports.Frame = React.createClass({
           }
 
           if (showElement) {
-            function cb() {
-              frame.contentWindow.postMessage({
-                show: showElement,
-                location: location
-              }, window.location.origin);
-            }
-            if (frame.contentDocument.readyState === "complete") {
-              cb()
-            } else {
-              frame.contentWindow.onload = cb;
-            }
+            sendShowElement(frame, showElement, location);
           }
-        }
-
-        if (i > 0) {
-          previousClip = clipNames[i - 1];
-        }
-        if (i < clipNames.length) {
-          nextClip = clipNames[i + 1];
         }
       }
     }
 
-    let previousClipNode = "",
-      nextClipNode = "";
+    let previousClipNode = null,
+      nextClipNode = null;
 
     if (previousClip) {
-      previousClipNode = <Link to="shot" params={{shotId: shotId, shotDomain: shotDomain}} query={{clip: previousClip}}>
-        <img className="navigate-clips" src={ this.props.linkify("/img/up-arrow.png") } />
-      </Link>;
+      previousClipNode = <a href={'?clip=' + encodeURIComponent(previousClip.id)}>
+        <img className="navigate-clips" src={ this.props.staticLink("img/up-arrow.png") } />
+      </a>;
     }
 
     if (nextClip || query.clip === undefined) {
-      nextClipNode = <Link to="shot" params={{shotId: shotId, shotDomain: shotDomain}} query={{clip: nextClip || clipNames[0]}}>
-        <img className="navigate-clips" src={ this.props.linkify("/img/down-arrow.png") } />
-      </Link>;
+      let nextId = nextClip ? nextClip.id : clipNames[0];
+      nextClipNode = <a href={'?clip=' + nextId}>
+        <img className="navigate-clips" src={ this.props.staticLink("img/down-arrow.png") } />
+      </a>;
     }
 
     let numberOfClips = clipNames.length;
@@ -217,36 +245,73 @@ exports.Frame = React.createClass({
       });
     }
 
-    return <div id="container">
-      <div id="use-pageshot-to-create" style={{ display: "none" }}>
-        To create your own shots, get the Firefox extension <a href="http://pageshot.dev.mozaws.net">PageShot</a>.
-        <a id="banner-close" onClick={ this.closeGetPageshotBanner }>X</a>
-      </div>
-      <script src={ this.props.linkify("/js/parent-helper.js") } />
-      { favicon }
-      <div id="toolbar">
-        <a className="main-link" href={ shot.url }>
-          { shot.title }
-          &nbsp;&mdash;&nbsp;
-          { linkTextShort }
-          <img src={ this.props.linkify("/img/clipboard-8-xl.png") } />
-        </a>
-        <div className="navigate-toolbar">
-          <span className="clip-count">
-            { numberOfClips }
-          </span>
-          { previousClipNode }
-          { nextClipNode }
+    return (
+      <body>
+        <div id="container">
+          <div id="use-pageshot-to-create" style={{ display: "none" }}>
+            To create your own shots, get the Firefox extension <a href={ this.props.backend }>PageShot</a>.
+            <a id="banner-close" onClick={ this.closeGetPageshotBanner }>X</a>
+          </div>
+          <script src={ this.props.staticLink("js/parent-helper.js") } />
+        { favicon }
+        <div id="toolbar">
+          <a className="main-link" href={ shot.url }>
+            { shot.title }
+            &nbsp;&mdash;&nbsp;
+            { linkTextShort }
+            <img src={ this.props.staticLink("img/clipboard-8-xl.png") } />
+          </a>
+          <div className="navigate-toolbar">
+            <span className="clip-count">
+              { numberOfClips }
+            </span>
+            { previousClipNode }
+            { nextClipNode }
+          </div>
         </div>
+        <div className="metadata">
+          <h1 id="main-title">{ shot.title }</h1>
+          <p><a href={ shot.url }>{ linkTextShort }</a></p>
+        </div>
+        { snippets }
+        <iframe width="100%" id="frame" src={ "/content/" +  shot.id } />
+        <a className="pageshot-footer" href="https://github.com/mozilla-services/pageshot">PageShot</a>
+        <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl }>Send Feedback</a>
       </div>
-      <div className="metadata">
-        <h1 id="main-title">{ shot.title }</h1>
-        <p><a href={ shot.url }>{ linkTextShort }</a></p>
-      </div>
-      { snippets }
-      <iframe width="100%" id="frame" src={ "/content/" +  shot.id } />
-      <a className="pageshot-footer" href="https://github.com/mozilla-services/pageshot">PageShot</a>
-      <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl }>Send Feedback</a>
-    </div>;
+    </body>);
   }
-});
+}
+
+let FrameFactory = React.createFactory(Frame);
+
+exports.FrameFactory = FrameFactory;
+
+exports.render = function (req, res) {
+  let frame = FrameFactory({
+    staticLink: req.staticLink,
+    backend: req.backend,
+    shot: req.shot,
+    id: req.shot.id,
+    shotDomain: req.url, // FIXME: should be a property of the shot
+    query: req.query
+  });
+  let clientPayload = {
+    gitRevision: getGitRevision(),
+    backend: req.backend,
+    shot: req.shot.asJson(),
+    id: req.shot.id,
+    shotDomain: req.url,
+    query: req.query
+  }
+  let body = React.renderToString(frame);
+  let footer = "</body></html>";
+  let json = JSON.stringify(clientPayload);
+  body = ('<!DOCTYPE html>\n'
+    + body.slice(0, body.length - footer.length)
+    + "<script>var _cachedData = " + json + ";"
+    + "clientGlue(_cachedData)"
+    + "</script>"
+    + footer
+  );
+  res.send(body);
+};
