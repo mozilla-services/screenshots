@@ -3,9 +3,7 @@
 require("babel/polyfill");
 
 try {
-  require("./dist-production/server.js");
+  require("../dist-production/server/server.js");
 } catch (e) {
-  require("./dist/server.js");
+  require("../dist/server/server.js");
 }
-
-
