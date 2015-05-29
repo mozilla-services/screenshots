@@ -35,11 +35,11 @@ gulp.task("6to5", function () {
 });
 
 gulp.task("sass", function () {
-  return gulp.src("server/src/**/*.scss").pipe(sass()).pipe(gulp.dest("dist/server/static/css"));
+  return gulp.src("static/css/**/*.scss").pipe(sass()).pipe(gulp.dest("dist/server/static/css"));
 });
 
 gulp.task("imgs", function () {
-  return gulp.src("server/src/static/img/*").pipe(gulp.dest("dist/server/static/img"));
+  return gulp.src("static/img/*").pipe(gulp.dest("dist/server/static/img"));
 });
 
 gulp.task("javascript", ["6to5", "shared"], function () {
