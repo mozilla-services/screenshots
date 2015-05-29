@@ -157,7 +157,11 @@ app.get("/content/:id/:domain", function (req, res) {
       return;
     }
     res.send(shot.staticHtml({
-      addHead: `<script src="${req.staticLink("js/content-helper.js")}"></script>`
+      // FIXME: make these links fully qualified:
+      addHead: `
+      <script src="${req.staticLink("js/content-helper.js")}"></script>
+      <link rel="stylesheet" href="${req.staticLink("css/content.css")}">
+      `
     }));
   }).catch(function (e) {
     errorResponse(res, "Failed to load shot", e);

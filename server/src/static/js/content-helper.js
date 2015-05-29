@@ -4,7 +4,7 @@
 window.addEventListener(
   "load",
   () => window.parent.postMessage(
-    {height: document.body.scrollHeight},
+    {type: "setHeight", height: document.body.scrollHeight},
     window.location.origin)
 );
 
@@ -12,25 +12,80 @@ window.addEventListener(
   "message",
   (m) => {
     if (m.origin !== location.origin) {
+      console.warn("Content iframe received message from unexpected origin:", m.origin, "instead of", location.origin);
       return;
     }
-    let node = document.getElementById(m.data.show);
-
-    if (node === null) {
-      window.parent.postMessage({
-        scrollX: m.data.location.left, scrollY: m.data.location.top,
-        clipWidth: m.data.location.right - m.data.location.left,
-        clipHeight: m.data.location.bottom - m.data.location.top
-      },
-      window.location.origin);
+    let message = m.data;
+    let type = message.type;
+    console.log("incoming message", type, message);
+    if (! type) {
+      console.warn("Content iframe received message with no .type:", message);
+      return;
+    }
+    if (type == "displayClip") {
+      displayClip(message.clip);
+    } else if (type == "removeDisplayClip") {
+      removeDisplayClip();
     } else {
-      let boundingRect = node.getBoundingClientRect();
-
-      window.parent.postMessage({
-        scrollX: boundingRect.x, scrollY: boundingRect.y,
-        clipWidth: boundingRect.width, clipHeight: boundingRect.height
-      },
-      window.location.origin);
+      console.warn("Content iframe received message with unknown .type:", message);
     }
   }
 );
+
+let highlightElement;
+
+function displayClip(clip) {
+  console.log("displaying clip", clip, clip.location);
+  if (clip.text) {
+    console.log("FIXME: not scrolling to text");
+    return;
+  }
+  let loc = clip.image.location;
+  let pos = {
+    top: loc.top,
+    bottom: loc.bottom,
+    left: loc.left,
+    right: loc.right
+  };
+  let topLeft = findElement(loc.topLeftElement);
+  if (topLeft) {
+    let rect = topLeft.getBoundingClientRect();
+    // FIXME: adjust using height/width
+    pos.top = rect.top + loc.topLeftOffset.y;
+    pos.left = rect.left + loc.topLeftOffset.x;
+  }
+  let bottomRight = findElement(loc.bottomLeftElement);
+  if (bottomRight) {
+    let rect = bottomRight.getBoundingClientRect();
+    pos.bottom = rect.top + rect.height + loc.bottomRightOffset.y;
+    pos.right = rect.left + rect.width + loc.bottomRightOffset.x;
+  }
+  createHighlight(pos);
+  console.log("emitting scrollTo", pos);
+  window.parent.postMessage({
+    type: "scrollTo",
+    position: pos
+  }, location.origin);
+}
+
+function findElement(selector) {
+  return document.querySelector(selector);
+}
+
+function createHighlight(pos) {
+  removeDisplayClip();
+  highlightElement = document.createElement("div");
+  highlightElement.className = "pageshot-highlight";
+  highlightElement.style.top = pos.top + "px";
+  highlightElement.style.left = pos.left + "px";
+  highlightElement.style.height = (pos.bottom - pos.top) + "px";
+  highlightElement.style.width = (pos.right - pos.left) + "px";
+  document.body.appendChild(highlightElement);
+}
+
+function removeDisplayClip() {
+  if (highlightElement) {
+    highlightElement.parentNode.removeChild(highlightElement);
+    highlightElement = null;
+  }
+}

@@ -1,5 +1,5 @@
 /*jslint browser: true */
-
+/*global console */
 
 let loaded = false,
   height = null;
@@ -8,38 +8,39 @@ function doResize() {
   document.getElementById("frame").height = height;
 }
 
-window.onmessage = function(e) {
-  if (e.origin !== location.origin) {
+window.onmessage = function(m) {
+  if (m.origin !== location.origin) {
+    console.warn("Parent iframe received message from unexpected origin:", m.origin, "instead of", location.origin);
     return;
   }
-  if (e.data.height) {
-    height = e.data.height;
-    if (loaded) {
-      doResize();
-    }
-  } else if (e.data.clipWidth) {
-    let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY,
-      toolbarHeight = document.getElementById("toolbar").clientHeight,
-      scrollY = frameOffset + e.data.scrollY - toolbarHeight;
-
-    let s = document.getElementById("selected-node-highlight");
-    if (s) {
-      s.parentNode.removeChild(s);
-    }
-
-    let d = document.createElement("div");
-    d.id = "selected-node-highlight";
-    d.style.position = "absolute";
-    d.style.border = "3px dashed yellow";
-    d.style.top = (e.data.scrollY + frameOffset) + "px";
-    d.style.left = e.data.scrollX + "px";
-    d.style.height = e.data.clipHeight + "px";
-    d.style.width = e.data.clipWidth + "px";
-    document.body.appendChild(d);
-
-    window.scrollTo(0, scrollY);
+  let message = m.data;
+  let type = message.type;
+  if (! type) {
+    console.warn("Parent iframe received message with no type:", message);
+    return;
+  }
+  if (type == "setHeight") {
+    setHeight(message.height);
+  } else if (type == "scrollTo") {
+    scrollPageTo(message.position);
+  } else {
+    console.warn("Parent iframe received message with unknown .type:", message);
   }
 };
+
+function setHeight(h) {
+  height = h;
+  if (loaded) {
+    doResize();
+  }
+}
+
+function scrollPageTo(pos) {
+  let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
+  let toolbarHeight = document.getElementById("toolbar").clientHeight;
+  let scrollY = frameOffset + pos.top - toolbarHeight;
+  window.scroll(0, scrollY);
+}
 
 window.onload = function () {
   loaded = true;
