@@ -13,43 +13,43 @@ var browserify = require("browserify"),
   jshint = require('gulp-jshint');
 
 gulp.task("clean", function () {
-  run("rm -rf addon/dist server/dist shared/dist").exec();
+  run("rm -rf dist").exec();
 });
 
 gulp.task("shared", function () {
-  return gulp.src(["shared/**/*.{js,jsx}", "!shared/dist/**/*"])
+  return gulp.src("shared/**/*.{js,jsx}")
     .pipe(to5())
     .pipe(gulp.dest("shared/dist"))
-    .pipe(gulp.dest("addon/dist/lib/shared"));
+    .pipe(gulp.dest("dist/addon/lib/shared"));
 });
 
 gulp.task("6to5", function () {
-  return gulp.src("server/src/**/*.{js,jsx}")
+  return gulp.src(["server/src/**/*.{js,jsx}"])
     .pipe(sourcemaps.init())
     .pipe(to5())
     .pipe(concat.header(
       "//# sourceMappingURL=<% print(file.path.replace('/src/', '/dist/')) %>.map\n" +
       "if (typeof require !== 'undefined') { require('source-map-support').install(); }\n"))
     .pipe(sourcemaps.write(".", {sourceRoot: __dirname + "/server/src"}))
-    .pipe(gulp.dest("server/dist"));
+    .pipe(gulp.dest("dist/server"));
 });
 
 gulp.task("sass", function () {
-  return gulp.src("server/src/**/*.scss").pipe(sass()).pipe(gulp.dest("server/dist/static/css"));
+  return gulp.src("server/src/**/*.scss").pipe(sass()).pipe(gulp.dest("dist/server/static/css"));
 });
 
 gulp.task("imgs", function () {
-  return gulp.src("server/src/static/img/*").pipe(gulp.dest("server/dist/static/img"));
+  return gulp.src("server/src/static/img/*").pipe(gulp.dest("dist/server/static/img"));
 });
 
 gulp.task("javascript", ["6to5", "shared"], function () {
   var bundler = browserify({
-    entries: ["./server/dist/clientglue.js"],
+    entries: ["./dist/server/clientglue.js"],
     debug: true
   });
 
   return (function () {
-    return bundler.bundle().pipe(source("server-bundle.js")).pipe(gulp.dest("server/dist/static/js"));
+    return bundler.bundle().pipe(source("server-bundle.js")).pipe(gulp.dest("dist/server/static/js"));
   }());
 });
 
@@ -62,36 +62,36 @@ gulp.task("lint", function() {
 });
 
 gulp.task("data-addon", function () {
-  return gulp.src("addon/data/**/*.{js,jsx}").pipe(to5()).pipe(gulp.dest("addon/dist/data"));
+  return gulp.src("addon/data/**/*.{js,jsx}").pipe(to5()).pipe(gulp.dest("dist/addon/data"));
 });
 
 gulp.task("lib-addon", function () {
-  return gulp.src("addon/lib/**/*.{js,jsx}").pipe(to5()).pipe(gulp.dest("addon/dist/lib"));
+  return gulp.src("addon/lib/**/*.{js,jsx}").pipe(to5()).pipe(gulp.dest("dist/addon/lib"));
 });
 
 gulp.task("test-addon", function () {
-  return gulp.src("addon/test/**/*.{js,jsx}").pipe(to5()).pipe(gulp.dest("addon/dist/test"));
+  return gulp.src("addon/test/**/*.{js,jsx}").pipe(to5()).pipe(gulp.dest("dist/addon/test"));
 });
 
 gulp.task("static-addon", function () {
-  return gulp.src(["addon/**/*.{html,css,png,svg}", "addon/run", "addon/package.json", "!addon/dist/**/*"]).pipe(gulp.dest("addon/dist"));
+  return gulp.src(["addon/**/*.{html,css,png,svg}", "addon/run", "addon/package.json"]).pipe(gulp.dest("dist/addon"));
 });
 
 gulp.task("javascript-addon", ["data-addon", "lib-addon", "test-addon", "static-addon", "shared"], function () {
   var bundler = browserify({
-    entries: ["./addon/dist/data/shoot-panel.js"],
+    entries: ["./dist/addon/data/shoot-panel.js"],
     debug: true
   });
 
   return (function () {
-    return bundler.bundle().pipe(source("panel-bundle.js")).pipe(gulp.dest("addon/dist/data"));
+    return bundler.bundle().pipe(source("panel-bundle.js")).pipe(gulp.dest("dist/addon/data"));
   }());
 });
 
 gulp.task("addon", ["javascript-addon"], function () {
   nodemon({
     script: "helper.js",
-    ignore: ["server", "addon/dist", "**/Profile", "pageshot-presentation", "**/node_modules"],
+    ignore: ["server", "dist", "**/Profile", "pageshot-presentation", "**/node_modules"],
     ext: "html css png js",
     tasks: ["notify-start-addon", "notify-end-addon"]
   });
@@ -127,7 +127,7 @@ gulp.task("notify-end-transforms", ["transforms"], function () {
 gulp.task("default", ["lint", "transforms"], function () {
   nodemon({
     script: "server/run",
-    ignore: ["shared/dist", "server/dist", "server/dist-production", "addon", "**/Profile", "pageshot-presentation", "**/node_modules"],
+    ignore: ["dist", "addon", "**/Profile", "pageshot-presentation", "**/node_modules"],
     ext: "js jsx scss",
     tasks: ["lint", "notify-start-transforms", "notify-end-transforms"]
   });
