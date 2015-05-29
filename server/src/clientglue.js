@@ -46,8 +46,6 @@ function refreshHash() {
   sendShowElement(clipId);
 }
 
-let _pendingMessage;
-
 function sendShowElement(clipId) {
   let frame = document.getElementById("frame");
   if (! frame) {
@@ -68,22 +66,19 @@ function sendShowElement(clipId) {
       type: "removeDisplayClip"
     };
   }
-  function post(message) {
-    message = message || _pendingMessage;
+  function post() {
     try {
-      frame.contentWindow.postMessage(message, location.origin);
+      frame.contentWindow.postMessage(postMessage, location.origin);
     } catch (e) {
       console.error("Error sending postMessage:", e);
-      console.error("Message:", message);
+      console.error("Message:", postMessage);
       throw e;
     }
-    _pendingMessage = null;
   }
   if (frame.contentDocument.readyState == "complete") {
-    post(postMessage);
+    post();
   } else {
-    _pendingMessage = postMessage;
-    frame.contentWindow.onload = function () {post();};
+    frame.contentWindow.onload = post;
   }
 }
 
