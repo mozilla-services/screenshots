@@ -95,7 +95,6 @@ gulp.task("addon", ["javascript-addon"], function () {
     ext: "html css png js",
     tasks: ["notify-start-addon", "notify-end-addon"]
   });
-//  run("cd addon/dist && ./run --local").exec();
 });
 
 var afplayExists = require("fs").existsSync("/usr/bin/afplay");
