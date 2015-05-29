@@ -4,7 +4,7 @@ const React = require("react");
 const { Shell } = require("./shell");
 const { getGitRevision } = require("../linker");
 
-let IS_BROWSER = typeof window != "undefined";
+let IS_BROWSER = typeof window !== "undefined";
 
 class Snippet extends React.Component {
   onClickComment(e) {

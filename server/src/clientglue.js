@@ -5,6 +5,7 @@ let React = require("react"),
   { setGitRevision, staticLink } = require("./linker"),
   { AbstractShot } = require("../../shared/dist/shot");
 
+// This represents the model we are rendering:
 let model;
 
 exports.setModel = function (data) {
@@ -12,7 +13,6 @@ exports.setModel = function (data) {
   model = data;
   model.shot = new AbstractShot(data.backend, data.id, data.shot);
   render();
-  console.log("firstSet", firstSet);
   if (firstSet) {
     window.addEventListener("hashchange", refreshHash, false);
     refreshHash();
@@ -37,7 +37,6 @@ function refreshHash() {
   if (match) {
     clipId = decodeURIComponent(match[1]);
   }
-  console.log("refresh hash", clipId, model.activeClipId);
   if ((model.activeClipId || null) === clipId) {
     // No change
     return;
@@ -54,32 +53,37 @@ function sendShowElement(clipId) {
   if (! frame) {
     throw new Error("Could not find #frame");
   }
-  let message;
+  let postMessage;
   if (clipId) {
     let clip = model.shot.getClip(clipId);
     if (! clip) {
       throw new Error("Could not find clip with id " + clipId);
     }
-    message = {
+    postMessage = {
       type: "displayClip",
       clip: clip.asJson()
     };
   } else {
-    message = {
+    postMessage = {
       type: "removeDisplayClip"
     };
   }
   function post(message) {
     message = message || _pendingMessage;
-    console.log("sending to child", message);
-    frame.contentWindow.postMessage(message, location.origin);
+    try {
+      frame.contentWindow.postMessage(message, location.origin);
+    } catch (e) {
+      console.error("Error sending postMessage:", e);
+      console.error("Message:", message);
+      throw e;
+    }
     _pendingMessage = null;
   }
   if (frame.contentDocument.readyState == "complete") {
-    post(message);
+    post(postMessage);
   } else {
-    _pendingMessage = message;
-    frame.contentWindow.onload = post;
+    _pendingMessage = postMessage;
+    frame.contentWindow.onload = function () {post();};
   }
 }
 

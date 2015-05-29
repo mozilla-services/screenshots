@@ -17,14 +17,13 @@ window.addEventListener(
     }
     let message = m.data;
     let type = message.type;
-    console.log("incoming message", type, message);
     if (! type) {
       console.warn("Content iframe received message with no .type:", message);
       return;
     }
-    if (type == "displayClip") {
+    if (type === "displayClip") {
       displayClip(message.clip);
-    } else if (type == "removeDisplayClip") {
+    } else if (type === "removeDisplayClip") {
       removeDisplayClip();
     } else {
       console.warn("Content iframe received message with unknown .type:", message);
@@ -35,9 +34,7 @@ window.addEventListener(
 let highlightElement;
 
 function displayClip(clip) {
-  console.log("displaying clip", clip, clip.location);
   if (clip.text) {
-    console.log("FIXME: not scrolling to text");
     return;
   }
   let loc = clip.image.location;
@@ -61,7 +58,6 @@ function displayClip(clip) {
     pos.right = rect.left + rect.width + loc.bottomRightOffset.x;
   }
   createHighlight(pos);
-  console.log("emitting scrollTo", pos);
   window.parent.postMessage({
     type: "scrollTo",
     position: pos

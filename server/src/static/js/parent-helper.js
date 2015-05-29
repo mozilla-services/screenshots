@@ -19,9 +19,9 @@ window.onmessage = function(m) {
     console.warn("Parent iframe received message with no type:", message);
     return;
   }
-  if (type == "setHeight") {
+  if (type === "setHeight") {
     setHeight(message.height);
-  } else if (type == "scrollTo") {
+  } else if (type === "scrollTo") {
     scrollPageTo(message.position);
   } else {
     console.warn("Parent iframe received message with unknown .type:", message);
