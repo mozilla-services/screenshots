@@ -1,16 +1,10 @@
-/* globals window, document */
+/* globals window, document, location */
 
 const React = require("react");
 const { Shell } = require("./shell");
 const { getGitRevision } = require("../linker");
 
-let IS_BROWSER = true;
-
-try {
-  window;
-} catch (e) {
-  IS_BROWSER = false;
-}
+let IS_BROWSER = typeof window !== "undefined";
 
 class Snippet extends React.Component {
   onClickComment(e) {
@@ -64,14 +58,14 @@ class Snippet extends React.Component {
     }
 
     return <div className="snippet-container">
-      <a href={'?clip=' + encodeURIComponent(clip.id)}>
+      <a href={'#clip=' + encodeURIComponent(clip.id)}>
         { node }
       </a>
       <p>
         <img ref="commentBubble" className="comment-bubble"
           src={ closed ? this.props.staticLink("img/comment-bubble.png") : this.props.staticLink("img/comment-bubble-open.png") }
           onClick={ this.onClickComment.bind(this) } />
-        <a href={'?clip=' + encodeURIComponent(clip.id)}>
+        <a href={'#clip=' + encodeURIComponent(clip.id)}>
           <span className="clip-anchor-link">See in full page</span>
         </a>
       </p>
@@ -81,21 +75,6 @@ class Snippet extends React.Component {
         { comments_nodes }
       </div>
     </div>;
-  }
-}
-
-function sendShowElement(frame, showElement, loc) {
-  function post() {
-    let tosend = {
-      show: showElement,
-      location: loc
-    };
-    frame.contentWindow.postMessage(tosend, location.origin);
-  }
-  if (frame.contentDocument.readyState == "complete") {
-    post();
-  } else {
-    frame.contentWindow.onload = post;
   }
 }
 
@@ -149,7 +128,7 @@ class Frame extends React.Component {
     }
 
     let shot = this.props.shot;
-    let query = this.props.query;
+    let activeClipId = this.props.activeClipId;
     let shotId = this.props.shot.id;
     let shotDomain = this.props.shot.url; // FIXME: calculate
 
@@ -174,42 +153,33 @@ class Frame extends React.Component {
       }
 
       snippets.push(<Snippet staticLink={this.props.staticLink} key={ clipId } clip={ clip }  shotId={ shotId } shotDomain={ shotDomain } previousClip={ previousClip } nextClip={ nextClip } />);
-
-      if (query.clip === clipId) {
-        if (typeof window !== "undefined") {
-          let frame = document.getElementById("frame"),
-            showElement = null,
-            location = null;
-
-          if (clip.image !== undefined) {
-            showElement = clip.image.location.topLeftElement.slice(1);
-            location = clip.image.location;
-          } else {
-            showElement = clip.text.location.selectionStart;
-            location = clip.text.location;
-          }
-
-          if (showElement) {
-            sendShowElement(frame, showElement, location);
-          }
-        }
-      }
     }
 
     let previousClipNode = null,
-      nextClipNode = null;
+      nextClipNode = null,
+      clipIndex = activeClipId ? clipNames.indexOf(activeClipId) : -1;
 
-    if (previousClip) {
-      previousClipNode = <a href={'?clip=' + encodeURIComponent(previousClip.id)}>
-        <img className="navigate-clips" src={ this.props.staticLink("img/up-arrow.png") } />
-      </a>;
+    let prevLink = null;
+    if (clipIndex >= 1) {
+      prevLink = '#clip=' + encodeURIComponent(clipNames[clipIndex-1]);
+    } else if (clipIndex === 0) {
+      prevLink = "#";
     }
 
-    if (nextClip || query.clip === undefined) {
-      let nextId = nextClip ? nextClip.id : clipNames[0];
-      nextClipNode = <a href={'?clip=' + nextId}>
+    if (prevLink) {
+      previousClipNode = <a href={prevLink}>
+        <img className="navigate-clips" src={ this.props.staticLink("img/up-arrow.png") } />
+      </a>;
+    } else {
+      previousClipNode = <img className="navigate-clips disabled" src={ this.props.staticLink("img/up-arrow.png") } />;
+    }
+
+    if (clipIndex < clipNames.length - 1) {
+      nextClipNode = <a href={'#clip=' + encodeURIComponent(clipNames[clipIndex + 1])}>
         <img className="navigate-clips" src={ this.props.staticLink("img/down-arrow.png") } />
       </a>;
+    } else {
+      nextClipNode = <img className="navigate-clips disabled" src={ this.props.staticLink("img/down-arrow.png") } />;
     }
 
     let numberOfClips = clipNames.length;
@@ -219,6 +189,9 @@ class Frame extends React.Component {
       numberOfClips = "No clips";
     } else {
       numberOfClips = numberOfClips + " clips";
+    }
+    if (clipIndex >= 0) {
+      numberOfClips = (clipIndex + 1) + " of " + numberOfClips;
     }
 
     let linkTextShort = "";
@@ -292,26 +265,26 @@ exports.render = function (req, res) {
     backend: req.backend,
     shot: req.shot,
     id: req.shot.id,
-    shotDomain: req.url, // FIXME: should be a property of the shot
-    query: req.query
+    shotDomain: req.url // FIXME: should be a property of the shot
   });
   let clientPayload = {
     gitRevision: getGitRevision(),
     backend: req.backend,
     shot: req.shot.asJson(),
     id: req.shot.id,
-    shotDomain: req.url,
-    query: req.query
-  }
+    shotDomain: req.url
+  };
   let body = React.renderToString(frame);
   let footer = "</body></html>";
+  let frontmatter = body.slice(0, body.length - footer.length);
   let json = JSON.stringify(clientPayload);
-  body = ('<!DOCTYPE html>\n'
-    + body.slice(0, body.length - footer.length)
-    + "<script>var _cachedData = " + json + ";"
-    + "clientGlue(_cachedData)"
-    + "</script>"
-    + footer
+  body = (`<!DOCTYPE html>
+${frontmatter}
+<script>
+  var serverData = ${json};
+  clientglue.setModel(serverData);
+</script>
+${footer}`
   );
   res.send(body);
 };

@@ -172,10 +172,10 @@ class ShootPanel extends React.Component {
       modesRow = <div className="modes-row">
         <span className={modeClasses.auto} onClick={this.setAuto.bind(this)}>
           Auto-detect
-        </span>,
+        </span>
         <span className={modeClasses.selection} onClick={this.setSelection.bind(this)}>
           Selection
-        </span>,
+        </span>
         <span className={modeClasses.visible} onClick={this.setVisible.bind(this)}>
           Visible
         </span>

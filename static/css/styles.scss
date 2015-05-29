@@ -248,3 +248,8 @@ a.sitelink, a.sitelink:visited {
   top: 15px;
   cursor: pointer;
 }
+
+/* When the clip navigation buttons are disabled: */
+.navigate-clips.disabled {
+  opacity: 0.5;
+}
