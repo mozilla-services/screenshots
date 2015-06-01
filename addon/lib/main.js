@@ -16,6 +16,7 @@ const helperworker = require("./helperworker");
 const { ToggleButton } = require('sdk/ui/button/toggle');
 const panels = require("sdk/panel");
 const { watchFunction, watchWorker } = require("./errors");
+const user = require("user");
 
 // FIXME: this button should somehow keep track of whether there is an active shot associated with this page
 var shootButton = ToggleButton({
@@ -50,6 +51,15 @@ var shootPanel = panels.Panel({
 });
 
 watchWorker(shootPanel);
+
+shootPanel.port.on("signIn", function () {
+  let oAuthHandler = new user.OAuthHandler('http://localhost:10080');
+  oAuthHandler.logIn().then(results => {
+    console.log('FxA login succeeded', results);
+  }, err => {
+    console.error('FxA authentication error', err);
+  });
+});
 
 /** PanelContext manages the ShotContext (defined in shooter.js) that
     is associated with the panel.  Because the panel is a singleton,
@@ -217,6 +227,6 @@ exports.main = function (options) {
   //require("./historytracker");
 
   helperworker.trackMods(backendOverride || null);
-  require("user").initialize(exports.getBackend());
+  user.initialize(exports.getBackend());
   require("recall");
 };

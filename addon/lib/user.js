@@ -1,7 +1,10 @@
+const { Cc, Ci, Cu } = require('chrome');
 const ss = require("sdk/simple-storage");
 const { uuid } = require('sdk/util/uuid');
 const { Request } = require("sdk/request");
 const { watchFunction, watchPromise } = require("./errors");
+const { URL } = require('sdk/url');
+const { FxAccountsOAuthClient } = Cu.import('resource://gre/modules/FxAccountsOAuthClient.jsm', {});
 
 exports.initialize = function (backend) {
   if (! (ss.storage.userInfo && ss.storage.userInfo.userId && ss.storage.userInfo.secret)) {
@@ -63,4 +66,73 @@ function makeUuid() {
 
 exports.getUserInfo = function () {
   return ss.storage.userInfo;
+};
+
+exports.OAuthHandler = class OAuthHandler {
+  constructor(backend) {
+    // The PageShot server URL.
+    this.backend = backend;
+    this.oAuthParams = null;
+  }
+
+  getOAuthParams() {
+    if (this.oAuthParams) {
+      return Promise.resolve(this.oAuthParams);
+    }
+    return new Promise((resolve, reject) => {
+      let url = new URL('/api/fxa-oauth/params', this.backend);
+      Request({
+        url,
+        onComplete: response => {
+          let { json } = response;
+          if (response.status >= 200 && response.status < 300) {
+            this.oAuthParams = json;
+            resolve(json);
+            return;
+          }
+          let err = new Error('Error fetching OAuth params');
+          err.status = response.status;
+          err.json = json;
+          reject(err);
+        }
+      }).get();
+    });
+  }
+
+  tradeCode(tokenData) {
+    return new Promise((resolve, reject) => {
+      let url = new URL('/api/fxa-oauth/token', this.backend);
+      Request({
+        url,
+        content: tokenData,
+        onComplete: response => {
+          let { json } = response;
+          if (response.status >= 200 && response.status < 300) {
+            resolve(json);
+            return;
+          }
+          let err = new Error('Error trading OAuth code');
+          err.status = response.status;
+          err.json = json;
+          reject(err);
+        }
+      }).post();
+    })
+  }
+
+  logIn() {
+    return this.getOAuthParams().then(parameters => {
+      return new Promise((resolve, reject) => {
+        let client = new FxAccountsOAuthClient({parameters});
+        client.onComplete = resolve;
+        client.onError = reject;
+        client.launchWebFlow();
+      });
+    }).then(tokenData => {
+      return this.tradeCode(tokenData);
+    }).catch(e => {
+      console.log('OAuth client error!', String(e));
+      throw e;
+    });
+  }
 };
