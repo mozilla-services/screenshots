@@ -1,4 +1,4 @@
-const { AbstractShot } = require("../../shared/dist/shot");
+const { AbstractShot } = require("../shared/shot");
 const db = require("./db");
 
 class Shot extends AbstractShot {

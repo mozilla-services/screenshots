@@ -19,7 +19,7 @@ gulp.task("clean", function () {
 gulp.task("shared", function () {
   return gulp.src("shared/**/*.{js,jsx}")
     .pipe(to5())
-    .pipe(gulp.dest("shared/dist"))
+    .pipe(gulp.dest("dist/shared"))
     .pipe(gulp.dest("dist/addon/lib/shared"));
 });
 
@@ -125,6 +125,7 @@ gulp.task("notify-end-transforms", ["transforms"], function () {
 
 gulp.task("default", ["lint", "transforms"], function () {
   nodemon({
+    verbose: true,
     script: "server/run",
     ignore: ["dist", "addon", "**/Profile", "pageshot-presentation", "**/node_modules"],
     ext: "js jsx scss",
