@@ -87,7 +87,7 @@ input[type=text]:focus {
 
 .modes-row {
   position: absolute;
-  top: 4.5em;
+  top: 2.25em;
   left: 0.5em;
   right: 0.5em;
   text-align: center;
@@ -227,19 +227,6 @@ img.snippet-image {
   border: 1px solid #aaa;
   border-radius: 3px;
   box-shadow: 5px 3px 3px #999;
-}
-
-/* This element are marked display: none because they are not currently
-  included in the latest mockups, but they may be included in the future.
-*/
-
-.text {
-  display: none;
-  border: 1px solid #999;
-  border-radius: 4px;
-  padding: 6px;
-  box-shadow: 3px 3px 5px #666;
-  font-size: 90%;
 }
 
 .comment-area {
