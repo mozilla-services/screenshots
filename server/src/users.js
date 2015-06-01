@@ -31,7 +31,7 @@ exports.registerLogin = function (userId, data, canUpdate) {
       return db.update(
         `UPDATE devices
          SET secret = $1, nickname = $2, avatarurl = $3
-         WHERE id = $1`,
+         WHERE id = $4`,
         [data.secret || null, data.nickname || null, data.avatarurl || null, userId]
       ).then((rowCount) => {
         return !! rowCount;
