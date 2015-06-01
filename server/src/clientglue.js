@@ -3,7 +3,7 @@
 let React = require("react"),
   { FrameFactory } = require("./views/frame.js"),
   { setGitRevision, staticLink } = require("./linker"),
-  { AbstractShot } = require("../../shared/dist/shot");
+  { AbstractShot } = require("../shared/shot");
 
 // This represents the model we are rendering:
 let model;
