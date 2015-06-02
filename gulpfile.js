@@ -91,7 +91,7 @@ gulp.task("javascript-addon", ["data-addon", "lib-addon", "test-addon", "static-
 gulp.task("addon", ["javascript-addon"], function () {
   nodemon({
     script: "helper.js",
-    ignore: ["server", "dist", "**/Profile", "pageshot-presentation", "**/node_modules"],
+    ignore: [".git", "server", "dist", "**/Profile", "pageshot-presentation", "**/node_modules"],
     ext: "html css png js",
     tasks: ["notify-start-addon", "notify-end-addon"]
   });
@@ -127,7 +127,7 @@ gulp.task("default", ["lint", "transforms"], function () {
   nodemon({
     verbose: true,
     script: "server/run",
-    ignore: ["dist", "addon", "**/Profile", "pageshot-presentation", "**/node_modules"],
+    ignore: [".git", "dist", "addon", "**/Profile", "pageshot-presentation", "**/node_modules"],
     ext: "js jsx scss",
     tasks: ["lint", "notify-start-transforms", "notify-end-transforms"]
   });
