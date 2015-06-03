@@ -16,6 +16,7 @@ const clipboard = require("sdk/clipboard");
 const { AbstractShot } = require("./shared/shot");
 const { getUserInfo } = require("./user");
 const { URL } = require("sdk/url");
+const notifications = require("sdk/notifications");
 
 // If a page is in history for less time than this, we ignore it
 // (probably a redirect of some sort):
@@ -286,6 +287,13 @@ const ShotContext = Class({
     },
     copyLink: function () {
       clipboard.set(this.shot.viewUrl, "text");
+      notifications.notify({
+        title: "Link Copied",
+        text: "Link to the shot detail copied to the clipboard.",
+        data: "",
+        onClick: function (data) {
+        }
+      });
     },
     openLink: function (link) {
       tabs.open(link);
