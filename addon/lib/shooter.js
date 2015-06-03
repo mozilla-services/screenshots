@@ -289,10 +289,8 @@ const ShotContext = Class({
       clipboard.set(this.shot.viewUrl, "text");
       notifications.notify({
         title: "Link Copied",
-        text: "Link to the shot detail copied to the clipboard.",
-        data: "",
-        onClick: function (data) {
-        }
+        text: "The link to your shot has been copied to the clipboard.",
+        iconURL: self.data.url("../data/copy.png")
       });
     },
     openLink: function (link) {
