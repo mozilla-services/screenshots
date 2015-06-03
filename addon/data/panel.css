@@ -381,3 +381,15 @@ ul.recall-list li:hover {
   text-overflow: ellipsis;
   text-align: center;
 }
+
+.simplified-instructions {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  padding: 0.5em;
+  background-color: #E4E4E4;
+  font-size: x-large;
+}
+
+.simplified-share-buttons {
