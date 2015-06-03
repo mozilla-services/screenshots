@@ -14,11 +14,10 @@ let err = require("./error-utils.js"),
 // For error messages:
 let FILENAME = "shoot-panel.js";
 let isAdding = {};
+let isEditing = {};
 let hasDeleted = {};
 let lastData;
 let debugDisplayTextSource = false;
-
-
 
 const MAX_WIDTH = 375,
   MAX_HEIGHT = 238;
@@ -61,6 +60,59 @@ class TextClip extends React.Component {
 class LoadingClip extends React.Component {
   render() {
     return <img src="icons/loading.png" />;
+  }
+}
+
+class ShareButtons extends React.Component {
+  render() {
+    return <div className="share-row">
+      <a target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + this.props.shot.viewUrl }>
+        <img src="icons/facebook-16.png" />
+      </a>
+      <a target="_blank" href={"https://twitter.com/home?status=" + this.props.shot.viewUrl }>
+        <img src="icons/twitter-16.png" />
+      </a>
+      <a target="_blank" href={"https://pinterest.com/pin/create/button/?url=" + this.props.shot.viewUrl + "&media=" + this.props.clipUrl + "&description=" }>
+        <img src="icons/pinterest-16.png" />
+      </a>
+      <a target="_blank" href={ "mailto:?subject=Check%20out%20this%20PageShot%20page&body=" + this.props.shot.viewUrl }>
+        <img src="icons/email.png" />
+      </a>
+      <a onClick={ this.props.onCopyClick }>
+        <img src="icons/link.png" />
+      </a>
+    </div>;
+  }
+}
+
+class SimplifiedPanel extends React.Component {
+  onClickLink(e) {
+    self.port.emit("openLink", this.props.shot.viewUrl);
+    e.preventDefault();
+  }
+
+  render() {
+    return <div className="container">
+      <div className="simplified-instructions">
+        <div>
+          We&apos;ve saved a clip of this page and copied the link to your clipboard
+        </div>
+        <a className="simplified-link" href="#" onClick={ this.onClickLink.bind(this) }>
+          { this.props.shot.viewUrl }
+        </a>
+      </div>
+      <div className="simplified-share-buttons">
+        <div>
+          Now go and share it!
+        </div>
+        <ShareButtons { ...this.props } />
+      </div>
+      <div className="simplified-edit-container">
+        <button className="simplified-edit-button" onClick={ this.props.onClickEdit }>
+          Edit
+        </button>
+      </div>
+    </div>;
   }
 }
 
@@ -110,6 +162,22 @@ class ShootPanel extends React.Component {
     if (this.props.activeClipName) {
       clip = this.props.shot.getClip(this.props.activeClipName);
       clipUrl = this.props.backend + "/clip/" + this.props.shot.id + "/" + this.props.activeClipName;
+    }
+
+    if (isEditing[this.props.shot.id] === undefined) {
+      self.port.emit("setSize", "small");
+      let onClickEdit = (e) => {
+        isEditing[this.props.shot.id] = true;
+        e.preventDefault();
+        self.port.emit("setSize", "large");
+        this.setState({editing: true});
+      };
+      return <SimplifiedPanel
+        clipUrl={ clipUrl }
+        onClickEdit={ onClickEdit }
+        onCopyClick={ this.onCopyClick.bind(this) }
+        { ...this.props }
+      />;
     }
 
     let modeClasses = {
@@ -197,22 +265,12 @@ class ShootPanel extends React.Component {
       <div className="link-row">
         <a className="link" target="_blank" href={ this.props.shot.viewUrl } onClick={ this.onLinkClick.bind(this) }>{ this.props.shot.viewUrl }</a>
       </div>
-      <div className="share-row">
-        <a target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + this.props.shot.viewUrl }>
-          <img src="icons/facebook-16.png" />
-        </a>
-        <a target="_blank" href={"https://twitter.com/home?status=" + this.props.shot.viewUrl }>
-          <img src="icons/twitter-16.png" />
-        </a>
-        <a target="_blank" href={"https://pinterest.com/pin/create/button/?url=" + this.props.shot.viewUrl + "&media=" + clipUrl + "&description=" }>
-          <img src="icons/pinterest-16.png" />
-        </a>
-        <a target="_blank" href={ "mailto:?subject=Check%20out%20this%20PageShot%20page&body=" + this.props.shot.viewUrl }>
-          <img src="icons/email.png" />
-        </a>
-        <a onClick={ this.onCopyClick.bind(this) }>
-          <img src="icons/link.png" />
-        </a>
+      <div className="share-row-container">
+        <ShareButtons
+          clipUrl={ clipUrl }
+          onCopyClick={ this.onCopyClick.bind(this) }
+          { ...this.props }
+        />
       </div>
       <div className="modes-row">
         {modesRow}

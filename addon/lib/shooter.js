@@ -290,6 +290,9 @@ const ShotContext = Class({
     openLink: function (link) {
       tabs.open(link);
     },
+    setSize: function(size) {
+      this.panelContext.setSize(size);
+    },
     setCaptureType: function (type) {
       let clip;
       if (this.activeClipName) {
