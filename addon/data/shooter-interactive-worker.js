@@ -643,6 +643,9 @@ function captureEnclosedText(box) {
   traverse(document.body);
   if (text.length) {
     selectedText = text.join("\n");
+    selectedText = selectedText.replace(/^\s+/, "");
+    selectedText = selectedText.replace(/\s+$/, "");
+    selectedText = selectedText.replace(/[ \t]+\n/g, "\n");
   } else {
     selectedText = null;
   }
