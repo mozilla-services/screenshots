@@ -175,7 +175,7 @@ app.get("/", function (req, res) {
 app.get("/:id/:domain", function (req, res) {
   let shotId = req.params.id + "/" + req.params.domain;
   Shot.get(req.backend, shotId).then((shot) => {
-    if (! shot) {
+    if (! shot || shot.clipNames().length === 0) {
       simpleResponse(res, "Not found", 404);
       return;
     }
