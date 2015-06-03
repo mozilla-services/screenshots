@@ -79,6 +79,13 @@ input[type=text]:focus {
   overflow: hidden;
 }
 
+.alpha-badge {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  pointer-events: none;
+}
+
 .add-screen-header {
   margin: 2em;
   margin-bottom: 0.5em;
