@@ -112,6 +112,7 @@ class SimplifiedPanel extends React.Component {
           Edit
         </button>
       </div>
+      <img className="alpha-badge" src="icons/alpha-badge.png" />
     </div>;
   }
 }
@@ -290,6 +291,7 @@ class ShootPanel extends React.Component {
         <a className="pageshot-footer" target="_blank" href="https://github.com/mozilla-services/pageshot">PageShot</a>
         <a className="feedback-footer" target="_blank" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + this.props.shot.viewUrl }>Send Feedback</a>
       </div>
+      <img className="alpha-badge" src="icons/alpha-badge.png" />
     </div>);
   }
 
