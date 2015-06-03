@@ -150,14 +150,17 @@ input[type=text]:focus {
   text-overflow: ellipsis;
 }
 
-.share-row {
+.share-row-container {
   position: absolute;
   top: 2em;
   left: 0px;
   right: 0px;
-  height: 2em;
-  text-align: center;
+  height: 1.5em;
   background-color: #E4E4E4;
+}
+
+.share-row {
+  text-align: center;
 }
 
 .share-row a {
@@ -380,4 +383,43 @@ ul.recall-list li:hover {
   white-space: nowrap;
   text-overflow: ellipsis;
   text-align: center;
+}
+
+.simplified-instructions {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  padding: 0.5em;
+  background-color: #E4E4E4;
+  text-align: center;
+}
+
+.simplified-instructions div {
+  margin-bottom: 0.5em;
+}
+
+.simplified-link {
+  font-size: x-large;
+}
+
+.simplified-share-buttons {
+  text-align: center;
+  padding-top: 8em;
+}
+
+.simplified-share-buttons div {
+  margin-bottom: 0.5em;
+}
+
+.simplified-edit-container {
+  position: absolute;
+  bottom: 0.5em;
+  left: 0.5em;
+  right: 0.5em;
+  text-align: center;
+}
+
+.simplified-edit-button {
+  width: 10em;
 }

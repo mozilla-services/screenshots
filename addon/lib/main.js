@@ -35,7 +35,7 @@ var shootPanel = panels.Panel({
     type: "shoot"
   },
   position: shootButton,
-  height: 525,
+  height: 250,
   width: 400,
   onHide: watchFunction(function () {
     shootButton.state("window", null);
@@ -153,6 +153,17 @@ const PanelContext = {
         activeClipName: shotContext.activeClipName
       }
     );
+  },
+
+  /** Called when the panel is switching from simple to edit view or vice versa */
+  setSize: function (size) {
+    if (size === "large") {
+      shootPanel.resize(400, 525);
+    } else if (size === "small") {
+      shootPanel.resize(400, 250);
+    } else {
+      console.warn("setSize called with unknown size:", size, new Error().stack);
+    }
   },
 
   /** Called when a ShotContext is going away, to remove its
