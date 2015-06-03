@@ -469,12 +469,10 @@ function renderData(data) {
       delete isAdding[myShot.id];
     }
   }
-  // This seems like an odd thing to do, but for reasons we do not understand it
-  // fixes https://github.com/mozilla-services/pageshot/issues/377 :
-  let el = document.querySelector(".snippet-image");
-  if (el) {
-    el.setAttribute("style", "");
-  }
+  // FIXME: this fixes a couple bugs, but doesn't fix them the right way, just covers them over:
+  // https://github.com/mozilla-services/pageshot/issues/377
+  // https://github.com/mozilla-services/pageshot/issues/436
+  document.body.innerHTML = "";
   React.render(
     React.createElement(ShootPanel, {activeClipName: data.activeClipName, shot: myShot}), document.body);
 }
