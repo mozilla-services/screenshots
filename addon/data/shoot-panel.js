@@ -98,7 +98,7 @@ class SimplifiedPanel extends React.Component {
           We&apos;ve saved a clip of this page and copied the link to your clipboard
         </div>
         <a className="simplified-link" href="#" onClick={ this.onClickLink.bind(this) }>
-          { this.props.shot.viewUrl }
+          { this.props.shot.viewUrl.slice(this.props.shot.viewUrl.indexOf("://") + 3) }
         </a>
       </div>
       <div className="simplified-share-buttons">
