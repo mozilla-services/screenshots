@@ -22,6 +22,10 @@ let debugDisplayTextSource = false;
 const MAX_WIDTH = 375,
   MAX_HEIGHT = 238;
 
+function stripProtocol(url) {
+  return url.replace(/^https?:\/\//i, "");
+}
+
 /** Renders the image of the clip inside the panel */
 class ImageClip extends React.Component {
   render() {
@@ -98,7 +102,7 @@ class SimplifiedPanel extends React.Component {
           We&apos;ve saved a clip of this page and copied the link to your clipboard
         </div>
         <a className="simplified-link" href="#" onClick={ this.onClickLink.bind(this) }>
-          { this.props.shot.viewUrl }
+          { stripProtocol(this.props.shot.viewUrl) }
         </a>
       </div>
       <div className="simplified-share-buttons">
