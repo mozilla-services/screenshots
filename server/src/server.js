@@ -159,6 +159,7 @@ app.get("/content/:id/:domain", function (req, res) {
     res.send(shot.staticHtml({
       // FIXME: make these links fully qualified:
       addHead: `
+      <base href="${shot.url}" target="_blank" />
       <script src="${req.staticLink("js/content-helper.js")}"></script>
       <link rel="stylesheet" href="${req.staticLink("css/content.css")}">
       `
