@@ -1,9 +1,10 @@
 {
-  "name": "el-stacko",
-  "description": "A combo of web libraries for building a thing.",
+  "name": "pageshot",
+  "description": "An experiment in creating better shareable versions of content
+https://pageshot.dev.mozaws.net",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fzzzy/el-stacko.git"
+    "url": "https://github.com/mozilla-services/pageshot"
   },
   "dependencies": {
     "babel": "5.2.17",
