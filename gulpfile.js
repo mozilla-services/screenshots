@@ -35,11 +35,16 @@ gulp.task("6to5", function () {
 });
 
 gulp.task("sass", function () {
-  return gulp.src("static/css/**/*.scss").pipe(sass()).pipe(gulp.dest("dist/server/static/css"));
+  return gulp.src("static/css/**/*.scss")
+    .pipe(sass())
+    .pipe(gulp.dest("dist/server/static/css"))
+    .pipe(gulp.dest("dist/addon/data"));
 });
 
 gulp.task("imgs", function () {
-  return gulp.src("static/img/*").pipe(gulp.dest("dist/server/static/img"));
+  return gulp.src("static/img/*")
+    .pipe(gulp.dest("dist/server/static/img"))
+    .pipe(gulp.dest("dist/addon/data/icons"));
 });
 
 gulp.task("javascript", ["6to5", "shared"], function () {
@@ -91,7 +96,7 @@ gulp.task("javascript-addon", ["data-addon", "lib-addon", "test-addon", "static-
 gulp.task("addon", ["javascript-addon"], function () {
   nodemon({
     script: "helper.js",
-    ignore: [".git", "server", "dist", "**/Profile", "pageshot-presentation", "**/node_modules"],
+    ignore: [".DS_Store", "**/.DS_Store", ".git", "server", "dist", "**/Profile", "pageshot-presentation", "node_modules", "**/node_modules"],
     ext: "html css png js",
     tasks: ["notify-start-addon", "notify-end-addon"]
   });
@@ -127,7 +132,7 @@ gulp.task("default", ["lint", "transforms"], function () {
   nodemon({
     verbose: true,
     script: "server/run",
-    ignore: [".git", "dist", "addon", "**/Profile", "pageshot-presentation", "**/node_modules"],
+    ignore: [".DS_Store", "**/.DS_Store", ".git", "dist", "addon", "**/Profile", "pageshot-presentation", "node_modules", "**/node_modules"],
     ext: "js jsx scss",
     tasks: ["lint", "notify-start-transforms", "notify-end-transforms"]
   });
