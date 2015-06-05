@@ -12,7 +12,6 @@ base="$(cd $base ; pwd)"
 cd $base
 
 help=
-publish=
 forever=
 server=
 run_server=
@@ -25,9 +24,6 @@ while [[ -n "$1" ]] ; do
             ;;
         --local)
             server=http://localhost:10080
-            ;;
-        --publish)
-            publish=1
             ;;
         --server)
             server=$2
@@ -58,8 +54,6 @@ if [[ -n "$help" ]] ; then
     echo "  -f | --forever"
     echo "      Restart the browser when it is terminated (normally)"
     echo "      ^C in the terminal to stop."
-    echo "  --publish"
-    echo "      Upload the pageshotpages.appspot.com site"
     echo "  --local"
     echo "      Use the local server at http://localhost:10080"
     echo "  --server URL"
@@ -136,26 +130,7 @@ run () {
     fi
 }
 
-if [[ -n "$publish" ]] ; then
-    cd ..
-    gulp javascript-addon
-    cd dist/addon
-    python -c 'import sys, re, time
-today = time.strftime("%Y%m%d%H%M")
-content = sys.stdin.read().strip()
-def repl(match):
-    return match.group(1) + today
-content = re.sub(r"(\"version\": \"\d+\.\d+\.)(\d+)", repl, content)
-print content
-' < package.json > package.json.tmp
-    mv package.json.tmp package.json
-    cfx xpi \
-        --update-link https://$HTTP_HOST/xpi/pageshot.xpi \
-        --update-url https://$HTTP_HOST/xpi/pageshot.update.rdf
-    scp pageshot.xpi pageshot.update.rdf $SSH_USER@$SSH_HOST:pageshot/
-    ssh $SSH_USER@$SSH_HOST "cd pageshot && ./bin/update-source.sh"
-    cd ..
-elif [[ -n "$run_server" ]] ; then
+if [[ -n "$run_server" ]] ; then
     title PageShotServer
     dev_appserver.py --port 10080 --log_level debug appengine/pageshotpages/ "$@"
     title
