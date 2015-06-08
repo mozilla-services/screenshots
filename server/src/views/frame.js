@@ -117,6 +117,7 @@ class Frame extends React.Component {
     return (
       <head>
         <meta property="og:type" content="website" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         {ogTitle}
         {ogImage}
       </head>);
@@ -234,13 +235,13 @@ class Frame extends React.Component {
             { linkTextShort }
             <img src={ this.props.staticLink("img/clipboard-8-xl.png") } />
           </a>
-          <div className="navigate-toolbar">
-            <span className="clip-count">
-              { numberOfClips }
-            </span>
-            { previousClipNode }
-            { nextClipNode }
-          </div>
+        </div>
+        <div className="navigate-toolbar">
+          <span className="clip-count">
+            { numberOfClips }
+          </span>
+          { previousClipNode }
+          { nextClipNode }
         </div>
         <div className="metadata">
           <h1 id="main-title">{ shot.title }</h1>

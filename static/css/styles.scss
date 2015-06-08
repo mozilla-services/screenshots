@@ -35,10 +35,11 @@ body {
   position: fixed;
   top: 0px;
   left: 0px;
-  right: 0px;
+  right: 8em;
   height: 2em;
   padding: 0.5em;
-  overflow: truncate;
+  text-overflow: ellipsis;
+  overflow: hidden;
   color: $text-color;
   text-align: left;
   background-color: $primary-color;
