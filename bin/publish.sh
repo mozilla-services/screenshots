@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 HTTP_HOST=pageshot.dev.mozaws.net
 SSH_USER=ubuntu
 SSH_HOST=ec2-52-1-53-38.compute-1.amazonaws.com
