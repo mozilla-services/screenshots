@@ -34,6 +34,7 @@ app.use(function (req, res, next) {
 
 app.use(function (req, res, next) {
   req.staticLink = linker.staticLink;
+  req.staticLinkWithHost = linker.staticLinkWithHost.bind(null, req);
   next();
 });
 
@@ -157,11 +158,10 @@ app.get("/content/:id/:domain", function (req, res) {
       return;
     }
     res.send(shot.staticHtml({
-      // FIXME: make these links fully qualified:
       addHead: `
       <base href="${shot.url}" target="_blank" />
-      <script src="${req.staticLink("js/content-helper.js")}"></script>
-      <link rel="stylesheet" href="${req.staticLink("css/content.css")}">
+      <script src="http:${req.staticLinkWithHost("js/content-helper.js")}"></script>
+      <link rel="stylesheet" href="http:${req.staticLinkWithHost("css/content.css")}">
       `
     }));
   }).catch(function (e) {
