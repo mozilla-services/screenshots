@@ -35,8 +35,8 @@ body {
   position: fixed;
   top: 0px;
   left: 0px;
-  right: 8em;
-  height: 2em;
+  right: 160px;
+  height: 35px;
   padding: 0.5em;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -46,9 +46,14 @@ body {
 }
 
 .navigate-toolbar {
-  position: absolute;
-  top: 0.5em;
-  right: 0.5em;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  padding: 0.5em;
+  height: 35px;
+  background-color: $primary-color;
+  width: 160px;
+  text-align: right;
 }
 
 .clip-count {
