@@ -1,15 +1,10 @@
 /*jslint browser: true */
 
-console.log("content-helper!")
-
 window.addEventListener(
   "load",
-  () => {
-    console.log("child load event");
-    window.parent.postMessage(
-      {type: "setHeight", height: document.body.scrollHeight},
-      window.location.origin);
-  }
+  () => window.parent.postMessage(
+    {type: "setHeight", height: document.body.scrollHeight},
+    window.location.origin)
 );
 
 window.addEventListener(
