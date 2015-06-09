@@ -223,8 +223,8 @@ class Frame extends React.Component {
       <body>
         <div id="container">
           <div id="use-pageshot-to-create" style={{ display: "none" }}>
-            To create your own shots, get the Firefox extension <a href={ this.props.backend }>PageShot</a>.
-            <a id="banner-close" onClick={ this.closeGetPageshotBanner }>X</a>
+            <a href={ this.props.backend }>To create your own shots, get the Firefox extension PageShot</a>.
+            <a id="banner-close" onClick={ this.closeGetPageshotBanner }>&times;</a>
           </div>
           <script src={ this.props.staticLink("js/parent-helper.js") } />
         { favicon }
