@@ -1,6 +1,5 @@
 /*jslint browser: true */
 
-
 window.addEventListener(
   "load",
   () => window.parent.postMessage(
