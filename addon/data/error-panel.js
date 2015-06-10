@@ -11,7 +11,11 @@ self.port.on("showError", function (error) {
   if (error.helpHtml) {
     thisError.innerHTML = error.helpHtml;
   } else {
-    thisError.textContent = error.help || error.message || error.name;
+    thisError.textContent = error.help || error.message || error.name || JSON.stringify(error);
+  }
+  console.error(new Date(), "PageShot Error :-(", thisError.textContent);
+  if (error.stack) {
+    console.error(error.stack);
   }
   thisError.setAttribute("data-timestamp", Date.now());
   cullErrors();
