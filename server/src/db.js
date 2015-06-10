@@ -1,8 +1,10 @@
 const config = require("./config").root();
 
 let pg = require("pg");
-let credentials = config.db.password ? `${config.db.user}:${config.db.password}` : config.db.user;
-let constr = `postgres://${credentials}@${config.db.host}/${config.db.user}`;
+
+let user = encodeURIComponent(config.db.user);
+let credentials = config.db.password ? `${user}:${encodeURIComponent(config.db.password)}` : user;
+let constr = `postgres://${credentials}@${config.db.host}/${user}`;
 
 function getConnection() {
   return new Promise(function (resolve, reject) {
