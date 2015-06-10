@@ -49,7 +49,7 @@ function resetPageMod(backend) {
         if (action != "signup" && action != "signin") {
           worker.port.emit("account", id, {
             ok: false,
-            error: errors.paramsInvalid()
+            error: errors.badParams()
           });
           return;
         }
@@ -87,9 +87,12 @@ function resetPageMod(backend) {
       }));
 
       worker.port.on("requestProfileUpdate", watchFunction(function (info) {
-        worker.port.emit("profileUpdate", id, {
-          ok: false,
-          error: errors.unsupported()
+        let { id, options: { nickname, avatarurl } } = info;
+        user.updateLogin(backend, { nickname, avatarurl }).then(() => {
+          worker.port.emit("profileUpdate", id, { ok: true, result: null });
+        }).catch(err => {
+          let error = exports.extBadUpdate(err);
+          worker.port.emit("profileUpdate", id, { ok: false, error });
         });
       }));
 

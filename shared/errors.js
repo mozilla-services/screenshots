@@ -17,11 +17,11 @@ exports.create = function create(status, errno, message, data) {
   return err;
 };
 
-exports.paramsRequired = function paramsRequired() {
+exports.missingParams = function missingParams() {
   return exports.create(400, 201, 'Missing request parameters');
 };
 
-exports.paramsInvalid = function paramsInvalid() {
+exports.badParams = function badParams() {
   return exports.create(400, 202, 'Invalid request parameters');
 };
 
@@ -29,20 +29,24 @@ exports.dupeLogin = function dupeLogin() {
   return exports.create(409, 301, 'Login in progress');
 };
 
-exports.sessionRequired = function sessionRequired() {
+exports.missingSession = function missingSession() {
   return exports.create(403, 302, 'Session required');
 };
 
 exports.badToken = function badToken() {
-  return exports.create(403, 304, 'Bad OAuth access token');
+  return exports.create(403, 304, 'Invalid OAuth access token');
 };
 
 exports.badProfile = function badProfile() {
   return exports.create(500, 305, 'Error fetching profile');
 };
 
-exports.invalidState = function invalidState() {
+exports.badState = function badState() {
   return exports.create(403, 306, 'Bad OAuth state');
+};
+
+exports.badSession = function badSession() {
+  return exports.create(403, 307, 'Invalid session');
 };
 
 exports.unsupported = function unsupported() {
@@ -59,4 +63,12 @@ exports.extTimeout = function extTimeout(cause) {
 
 exports.extAlreadySignedIn = function extAlreadySignedIn() {
   return exports.create(409, 1102, 'User already signed in');
+};
+
+exports.extBadUpdate = function extBadUpdate(response) {
+  let err = exports.create(500, 1103, 'Error updating device info');
+  if (response) {
+    err.output.payload.response = response;
+  }
+  return err;
 };

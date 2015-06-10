@@ -77,6 +77,24 @@ exports.getProfileInfo = function () {
   return ss.storage.profileInfo;
 };
 
+exports.updateLogin = function (backend, info) {
+  let updateUrl = backend + "/api/update";
+  return new Promise((resolve, reject) => {
+    Request({
+      url: updateUrl,
+      contentType: "application/x-www-form-urlencoded",
+      content: info,
+      onComplete: function (response) {
+        if (response.status >= 200 && response.status < 300) {
+          resolve();
+        } else {
+          reject(response.json);
+        }
+      }
+    }).post();
+  });
+};
+
 exports.OAuthHandler = class OAuthHandler {
   constructor(backend) {
     this.backend = backend;

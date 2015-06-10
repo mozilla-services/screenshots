@@ -5,6 +5,7 @@ const { Shot } = require("./servershot");
 const {
   checkLogin,
   registerLogin,
+  updateLogin,
   setState,
   checkState,
   tradeCode,
@@ -82,6 +83,27 @@ app.post("/api/register", function (req, res) {
   }).catch(function (err) {
     errorResponse(res, "Error registering:", err);
   });
+});
+
+app.post("/api/update", function (req, res, next) {
+  if (! req.userId) {
+    next(errors.missingSession());
+    return;
+  }
+  if (! req.body) {
+    res.sendStatus(204);
+    return;
+  }
+  let { nickname, avatarurl } = req.body;
+  updateLogin(req.userId, { nickname, avatarurl }).then(ok => {
+    if (! ok) {
+      throw errors.badSession();
+    }
+    res.sendStatus(204);
+  }, err => {
+    console.warn("Error updating device info", err);
+    throw errors.badParams();
+  }).catch(next);
 });
 
 app.post("/api/login", function (req, res) {
@@ -209,7 +231,7 @@ app.get("/:id/:domain", function (req, res) {
 // Get OAuth client params for the client-side authorization flow.
 app.get('/api/fxa-oauth/params', function (req, res, next) {
   if (! req.userId) {
-    next(errors.sessionRequired());
+    next(errors.missingSession());
     return;
   }
   randomBytes(32).then(stateBytes => {
@@ -239,17 +261,17 @@ app.get('/api/fxa-oauth/params', function (req, res, next) {
 // Exchange an OAuth authorization code for an access token.
 app.post('/api/fxa-oauth/token', function (req, res, next) {
   if (! req.userId) {
-    next(errors.sessionRequired());
+    next(errors.missingSession());
     return;
   }
   if (! req.body) {
-    next(errors.paramsRequired());
+    next(errors.missingParams());
     return;
   }
   let { code, state } = req.body;
   checkState(req.userId, state).then(isValid => {
     if (!isValid) {
-      throw errors.invalidState();
+      throw errors.badState();
     }
     return tradeCode(code);
   }).then(({ access_token: accessToken }) => {

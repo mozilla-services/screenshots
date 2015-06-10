@@ -45,6 +45,18 @@ exports.registerLogin = function (userId, data, canUpdate) {
   });
 };
 
+exports.updateLogin = function (userId, data) {
+  if (! userId) {
+    throw new Error("No userId given");
+  }
+  return db.update(
+    `UPDATE devices
+     SET nickname = $1, avatarurl = $2
+     WHERE id = $3`,
+    [data.nickname || null, data.avatarurl || null, userId]
+  ).then(rowCount => !! rowCount);
+};
+
 exports.setState = function (deviceId, state) {
   return db.insert(
     `INSERT INTO states (state, deviceid)
