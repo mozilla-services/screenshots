@@ -3,9 +3,8 @@ const Keygrip = require('keygrip');
 
 const createSQL = `
 CREATE TABLE IF NOT EXISTS accounts (
-  id TEXT PRIMARY KEY,
-  token TEXT,
-  email varchar(256) NOT NULL
+  id CHAR(32) PRIMARY KEY,
+  token CHAR(64)
 );
 
 CREATE TABLE IF NOT EXISTS devices (
@@ -13,7 +12,7 @@ CREATE TABLE IF NOT EXISTS devices (
   secret varchar(200) NOT NULL,
   nickname TEXT,
   avatarurl TEXT,
-  accountid TEXT REFERENCES accounts(id) ON DELETE SET NULL
+  accountid CHAR(32) REFERENCES accounts(id) ON DELETE SET NULL
 );
 
 CREATE INDEX ON devices(accountid);
@@ -31,7 +30,7 @@ CREATE TABLE IF NOT EXISTS signing_keys (
 );
 
 CREATE TABLE IF NOT EXISTS states (
-  state TEXT PRIMARY KEY,
+  state CHAR(64) PRIMARY KEY,
   deviceid VARCHAR(200) REFERENCES devices(id) ON DELETE CASCADE
 );
 

@@ -261,22 +261,19 @@ app.post('/api/fxa-oauth/token', function (req, res, next) {
         'content-type': 'application/json'
       },
       json: true
-    }).then(([profileRes, body]) => {
-      if (profileRes.statusCode < 200 || profileRes.statusCode > 299) {
+    }).then(([oAuthRes, body]) => {
+      if (oAuthRes.statusCode < 200 || oAuthRes.statusCode > 299) {
         throw errors.badToken();
       }
       let { access_token: accessToken } = body;
-      return getProfile(accessToken).then(profile => {
-        let {
-          uid: accountId,
-          email
-        } = profile;
+      return getAccountId(accessToken).then(profile => {
+        let { uid: accountId } = profile;
         return db.transaction(client => {
           return db.upsertWithClient(
             client,
-            `INSERT INTO accounts (id, token, email) SELECT $1, $2, $3`,
-            `UPDATE accounts SET token = $2, email = $3 WHERE id = $1`,
-            [accountId, accessToken, email]
+            `INSERT INTO accounts (id, token) SELECT $1, $2`,
+            `UPDATE accounts SET token = $2 WHERE id = $1`,
+            [accountId, accessToken]
           ).then(() => {
             return db.queryWithClient(
               client,
@@ -309,8 +306,8 @@ function checkState(deviceId, state) {
   ).then(rowCount => !! rowCount);
 }
 
-function getProfile(accessToken) {
-  let profileURI = `${profileBaseURI}/profile`;
+function getAccountId(accessToken) {
+  let profileURI = `${profileBaseURI}/uid`;
   return helpers.request('GET', profileURI, {
     headers: {
       authorization: `Bearer ${accessToken}`
