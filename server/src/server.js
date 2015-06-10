@@ -221,6 +221,8 @@ app.get('/api/fxa-oauth/params', function (req, res, next) {
     });
   }).then(stateHex => {
     res.send({
+      // FxA profile server URL.
+      profile_uri: profileBaseURI,
       // FxA OAuth server URL.
       oauth_uri: oAuthBaseURI,
       redirect_uri: 'urn:ietf:wg:oauth:2.0:fx:webchannel',

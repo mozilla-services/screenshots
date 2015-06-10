@@ -14,8 +14,18 @@ var clipboard = require("sdk/clipboard");
 var notifications = require("sdk/notifications");
 var { XMLHttpRequest } = require("sdk/net/xhr");
 const { watchFunction, watchWorker } = require("./errors");
+const user = require("./user");
 
 var existing;
+
+// TODO: Move `server/errors.js` to `shared/errors.js` and
+// replace `makeError` with common errors.
+function makeError(code, message) {
+  return {
+    ok: false,
+    error: { code, message }
+  };
+}
 
 function resetPageMod(backend) {
   backend = backend || simplePrefs.prefs.backend;
@@ -31,6 +41,59 @@ function resetPageMod(backend) {
     contentScriptFile: [self.data.url("viewerworker.js")],
     onAttach: function (worker) {
       watchWorker(worker);
+
+      worker.port.on("requestAccount", watchFunction(function (info) {
+        let { id, options: { action } } = info;
+
+        let currentProfile = user.getProfileInfo();
+        if (currentProfile) {
+          let response = makeError(1102, "User already signed in");
+          worker.port.emit("account", id, response);
+          return;
+        }
+
+        if (action != "signup" && action != "signin") {
+          worker.port.emit("account", id, makeError(202, "Invalid action"));
+          return;
+        }
+
+        let handler = new user.OAuthHandler(backend);
+        handler.getOAuthParams().then(defaults => {
+          worker.port.emit("account", id, { ok: true, result: null });
+
+          let params = Object.assign({ action }, defaults);
+          return handler.logInWithParams(params).then(response => {
+            return handler.getProfileInfo();
+          }).then(profile => {
+            user.setProfileInfo({
+              email: profile.email,
+              nickname: profile.display_name,
+              avatarurl: profile.avatar
+            });
+            worker.port.emit("profileRefresh");
+          }).catch(error => {
+            console.error("Error fetching profile", error);
+          });
+
+        }, error => {
+          worker.port.emit("account", id, { ok: false, error });
+        });
+      }));
+
+      worker.port.on("requestProfile", watchFunction(function (info) {
+        let { id } = info;
+        let result = user.getProfileInfo();
+        worker.port.emit("profile", id, {
+          ok: true,
+          result
+        });
+      }));
+
+      worker.port.on("requestProfileUpdate", watchFunction(function (info) {
+        let response = makeError(401, "Profile updates not yet implemented");
+        worker.port.emit("profileUpdate", id, response);
+      }));
+
       worker.port.on("requestScreenshot", watchFunction(function (info) {
         captureTab(worker.tab, info).then(function (image) {
           worker.port.emit("screenshot", image, info);

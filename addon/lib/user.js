@@ -4,7 +4,8 @@ const { uuid } = require('sdk/util/uuid');
 const { Request } = require("sdk/request");
 const { watchFunction, watchPromise } = require("./errors");
 const { URL } = require('sdk/url');
-const { FxAccountsOAuthClient } = Cu.import('resource://gre/modules/FxAccountsOAuthClient.jsm', {});
+const { FxAccountsOAuthClient } = Cu.import("resource://gre/modules/FxAccountsOAuthClient.jsm", {});
+const { FxAccountsProfileClient } = Cu.import("resource://gre/modules/FxAccountsProfileClient.jsm", {});
 
 exports.initialize = function (backend) {
   if (! (ss.storage.userInfo && ss.storage.userInfo.userId && ss.storage.userInfo.secret)) {
@@ -68,11 +69,27 @@ exports.getUserInfo = function () {
   return ss.storage.userInfo;
 };
 
+exports.setProfileInfo = function (profile) {
+  ss.storage.profileInfo = profile;
+};
+
+exports.getProfileInfo = function () {
+  return ss.storage.profileInfo;
+};
+
 exports.OAuthHandler = class OAuthHandler {
   constructor(backend) {
-    // The PageShot server URL.
     this.backend = backend;
     this.oAuthParams = null;
+    this.withProfile = new Promise((resolve, reject) => {
+      this.profileDeferred = { resolve, reject };
+    });
+  }
+
+  getProfileInfo() {
+    return this.withProfile.then(client => {
+      return client.fetchProfile();
+    });
   }
 
   getOAuthParams() {
@@ -80,7 +97,7 @@ exports.OAuthHandler = class OAuthHandler {
       return Promise.resolve(this.oAuthParams);
     }
     return new Promise((resolve, reject) => {
-      let url = new URL('/api/fxa-oauth/params', this.backend);
+      let url = new URL("/api/fxa-oauth/params", this.backend);
       Request({
         url,
         onComplete: response => {
@@ -90,7 +107,7 @@ exports.OAuthHandler = class OAuthHandler {
             resolve(json);
             return;
           }
-          let err = new Error('Error fetching OAuth params');
+          let err = new Error("Error fetching OAuth params");
           err.status = response.status;
           err.json = json;
           reject(err);
@@ -101,7 +118,7 @@ exports.OAuthHandler = class OAuthHandler {
 
   tradeCode(tokenData) {
     return new Promise((resolve, reject) => {
-      let url = new URL('/api/fxa-oauth/token', this.backend);
+      let url = new URL("/api/fxa-oauth/token", this.backend);
       Request({
         url,
         content: tokenData,
@@ -111,7 +128,7 @@ exports.OAuthHandler = class OAuthHandler {
             resolve(json);
             return;
           }
-          let err = new Error('Error trading OAuth code');
+          let err = new Error("Error trading OAuth code");
           err.status = response.status;
           err.json = json;
           reject(err);
@@ -120,19 +137,26 @@ exports.OAuthHandler = class OAuthHandler {
     })
   }
 
-  logIn() {
-    return this.getOAuthParams().then(parameters => {
-      return new Promise((resolve, reject) => {
-        let client = new FxAccountsOAuthClient({parameters});
-        client.onComplete = resolve;
-        client.onError = reject;
-        client.launchWebFlow();
-      });
+  logInWithParams(parameters) {
+    return new Promise((resolve, reject) => {
+      let client = new FxAccountsOAuthClient({ parameters });
+      client.onComplete = resolve;
+      client.onError = reject;
+      client.launchWebFlow();
     }).then(tokenData => {
       return this.tradeCode(tokenData);
-    }).catch(e => {
-      console.log('OAuth client error!', String(e));
-      throw e;
+    }).then(response => {
+      this.profileDeferred.resolve(new FxAccountsProfileClient({
+        serverURL: parameters.profile_uri,
+        token: response.access_token
+      }));
+      return response;
+    });
+  }
+
+  logIn() {
+    return this.getOAuthParams().then(params => {
+      return this.logInWithParams(params);
     });
   }
 };
