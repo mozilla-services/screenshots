@@ -8,6 +8,7 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const morgan = require("morgan");
 const linker = require("./linker");
+const config = require("./config").root();
 
 dbschema.createTables();
 dbschema.createKeygrip();
@@ -208,8 +209,8 @@ function errorResponse(res, message, err) {
 }
 
 linker.init().then(() => {
-  app.listen(10080);
-  console.log("server listening on http://localhost:10080/");
+  app.listen(config.port);
+  console.log(`server listening on http://localhost:${config.port}/`);
 }).catch((err) => {
   console.error("Error getting revision:", err, err.stack);
 });
