@@ -873,17 +873,21 @@ function autoSelect(ids) {
  * text selection
  */
 
-function captureSelection() {
+function captureSelection(makeNewSelection) {
   let range = window.getSelection().getRangeAt(0);
   var selection = extractSelection(range);
   selection.html = selection.node.outerHTML;
   delete selection.node;
-  self.port.emit("textSelection", selection);
+  if (makeNewSelection) {
+    self.port.emit("makeNewTextSelection", selection);
+  } else {
+    self.port.emit("textSelection", selection);
+  }
 }
 
 if (window.getSelection().rangeCount && ! window.getSelection().isCollapsed) {
   initialSelection = true;
-  watchFunction(captureSelection)();
+  watchFunction(captureSelection)(false);
 }
 
 let textSelectButton;
@@ -915,7 +919,7 @@ window.addEventListener("mouseup", watchFunction(function (event) {
     return;
   }
   if (currentState === "text") {
-    captureSelection();
+    captureSelection(false);
     return;
   }
 
@@ -933,7 +937,7 @@ window.addEventListener("mouseup", watchFunction(function (event) {
     existing.setEnd(buttonRange.endContainer, buttonRange.endOffset);
     textSelectButton.parentNode.removeChild(textSelectButton);
     textSelectButton = null;
-    captureSelection();
+    captureSelection(true);
     return false;
   }, false);
   let bodyRect = getBodyRect();
