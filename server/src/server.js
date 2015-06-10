@@ -17,7 +17,7 @@ const bodyParser = require('body-parser');
 const morgan = require("morgan");
 const linker = require("./linker");
 const { randomBytes } = require("./helpers");
-const errors = require("./errors");
+const errors = require("../shared/errors");
 const config = require("./config").root();
 
 dbschema.createTables();

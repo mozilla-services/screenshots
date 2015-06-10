@@ -15,17 +15,9 @@ var notifications = require("sdk/notifications");
 var { XMLHttpRequest } = require("sdk/net/xhr");
 const { watchFunction, watchWorker } = require("./errors");
 const user = require("./user");
+const errors = require("./shared/errors");
 
 var existing;
-
-// TODO: Move `server/errors.js` to `shared/errors.js` and
-// replace `makeError` with common errors.
-function makeError(code, message) {
-  return {
-    ok: false,
-    error: { code, message }
-  };
-}
 
 function resetPageMod(backend) {
   backend = backend || simplePrefs.prefs.backend;
@@ -47,13 +39,18 @@ function resetPageMod(backend) {
 
         let currentProfile = user.getProfileInfo();
         if (currentProfile) {
-          let response = makeError(1102, "User already signed in");
-          worker.port.emit("account", id, response);
+          worker.port.emit("account", id, {
+            ok: false,
+            error: errors.extAlreadySignedIn()
+          });
           return;
         }
 
         if (action != "signup" && action != "signin") {
-          worker.port.emit("account", id, makeError(202, "Invalid action"));
+          worker.port.emit("account", id, {
+            ok: false,
+            error: errors.paramsInvalid()
+          });
           return;
         }
 
@@ -90,8 +87,10 @@ function resetPageMod(backend) {
       }));
 
       worker.port.on("requestProfileUpdate", watchFunction(function (info) {
-        let response = makeError(401, "Profile updates not yet implemented");
-        worker.port.emit("profileUpdate", id, response);
+        worker.port.emit("profileUpdate", id, {
+          ok: false,
+          error: errors.unsupported()
+        });
       }));
 
       worker.port.on("requestScreenshot", watchFunction(function (info) {

@@ -1,7 +1,7 @@
 /* jshint browser:true */
 
 const React = require("react");
-const errors = require("../errors");
+const errors = require("../../shared/errors");
 
 const PROFILE_CREATE = 'create';
 const PROFILE_FETCH = 'fetch';

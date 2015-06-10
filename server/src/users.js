@@ -1,6 +1,6 @@
 const config = require("./config").root();
 const db = require("./db");
-const errors = require("./errors");
+const errors = require("../shared/errors");
 const { request } = require("./helpers");
 
 exports.checkLogin = function (userId, secret) {
