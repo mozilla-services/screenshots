@@ -33,24 +33,40 @@ window.addEventListener(
 let highlightElement;
 
 function displayClip(clip) {
-  if (clip.text) {
-    return;
-  }
-  let loc = clip.image.location;
+  let topLeft = null;
+  let bottomRight = null;
+  let loc = null;
   let pos = {
-    top: loc.top,
-    bottom: loc.bottom,
-    left: loc.left,
-    right: loc.right
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0
   };
-  let topLeft = findElement(loc.topLeftElement);
+
+  if (clip.text) {
+    topLeft = findElement("#" + clip.text.location.selectionStart);
+    bottomRight = findElement("#" + clip.text.location.selectionEnd);
+    loc = {
+      topLeftOffset: {x: 0, y: 0},
+      bottomRightOffset: {x: 0, y: 0}
+    };
+  } else {
+    loc = clip.image.location;
+    pos = {
+      top: loc.top,
+      bottom: loc.bottom,
+      left: loc.left,
+      right: loc.right
+    };
+    topLeft = findElement(loc.topLeftElement);
+    bottomRight = findElement(loc.bottomLeftElement);
+  }
   if (topLeft) {
     let rect = topLeft.getBoundingClientRect();
     // FIXME: adjust using height/width
     pos.top = rect.top + loc.topLeftOffset.y;
     pos.left = rect.left + loc.topLeftOffset.x;
   }
-  let bottomRight = findElement(loc.bottomLeftElement);
   if (bottomRight) {
     let rect = bottomRight.getBoundingClientRect();
     pos.bottom = rect.top + rect.height + loc.bottomRightOffset.y;
