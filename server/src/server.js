@@ -211,15 +211,15 @@ app.get('/api/fxa-oauth/params', function (req, res, next) {
     next(errors.sessionRequired());
     return;
   }
-  helpers.randomBytes(32).then(state => {
+  helpers.randomBytes(32).then(stateBytes => {
+    let state = stateBytes.toString('hex');
     return setState(req.userId, state).then(inserted => {
       if (!inserted) {
         throw errors.dupeLogin();
       }
-      let stateHex = state.toString('hex');
-      return stateHex;
+      return state;
     });
-  }).then(stateHex => {
+  }).then(state => {
     res.send({
       // FxA profile server URL.
       profile_uri: profileBaseURI,
@@ -229,7 +229,7 @@ app.get('/api/fxa-oauth/params', function (req, res, next) {
       client_id: oAuthClientId,
       // FxA content server URL.
       content_uri: contentBaseURI,
-      state: stateHex,
+      state,
       scope: 'profile'
     });
   }).catch(next);
@@ -245,8 +245,7 @@ app.post('/api/fxa-oauth/token', function (req, res, next) {
     next(errors.paramsRequired());
     return;
   }
-  let { code, state: stateHex } = req.body;
-  let state = new Buffer(stateHex, 'hex');
+  let { code, state } = req.body;
   checkState(req.userId, state).then(isValid => {
     if (!isValid) {
       throw errors.invalidState();
@@ -266,14 +265,12 @@ app.post('/api/fxa-oauth/token', function (req, res, next) {
       if (profileRes.statusCode < 200 || profileRes.statusCode > 299) {
         throw errors.badToken();
       }
-      let { access_token: accessTokenHex } = body;
-      let accessToken = new Buffer(accessTokenHex, 'hex');
-      return getProfile(accessTokenHex).then(profile => {
+      let { access_token: accessToken } = body;
+      return getProfile(accessToken).then(profile => {
         let {
-          uid: accountIdHex,
+          uid: accountId,
           email
         } = profile;
-        let accountId = new Buffer(accountIdHex, 'hex');
         return db.transaction(client => {
           return db.upsertWithClient(
             client,
@@ -289,7 +286,7 @@ app.post('/api/fxa-oauth/token', function (req, res, next) {
           });
         }).then(() => {
           res.send({
-            access_token: accessTokenHex
+            access_token: accessToken
           });
         });
       });
