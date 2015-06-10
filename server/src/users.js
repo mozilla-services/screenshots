@@ -1,4 +1,7 @@
+const config = require("./config").root();
 const db = require("./db");
+const errors = require("./errors");
+const { request } = require("./helpers");
 
 exports.checkLogin = function (userId, secret) {
   return db.select(
@@ -39,5 +42,72 @@ exports.registerLogin = function (userId, data, canUpdate) {
     } else {
       return false;
     }
+  });
+};
+
+exports.setState = function (deviceId, state) {
+  return db.insert(
+    `INSERT INTO states (state, deviceid)
+    VALUES ($1, $2)`,
+    [state, deviceId]
+  );
+};
+
+exports.checkState = function (deviceId, state) {
+  return db.del(
+    `DELETE FROM states WHERE state = $1 AND deviceid = $2`,
+    [state, deviceId]
+  ).then(rowCount => !! rowCount);
+};
+
+exports.tradeCode = function (code) {
+  let oAuthURI = `${config.oAuth.profileServer}/token`;
+  return request('POST', oAuthURI, {
+    payload: JSON.stringify({
+      code,
+      client_id: config.oAuth.clientId,
+      client_secret: config.oAuth.clientSecret
+    }),
+    headers: {
+      'content-type': 'application/json'
+    },
+    json: true
+  }).then(([res, body]) => {
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      return body;
+    }
+    throw errors.badToken();
+  });
+};
+
+exports.getAccountId = function (accessToken) {
+  let profileURI = `${config.oAuth.oAuthServer}/uid`;
+  return request('GET', profileURI, {
+    headers: {
+      authorization: `Bearer ${accessToken}`
+    },
+    json: true
+  }).then(([res, body]) => {
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      return body;
+    }
+    throw errors.badProfile();
+  });
+};
+
+exports.registerAccount = function (userId, accountId, accessToken) {
+  return db.transaction(client => {
+    return db.upsertWithClient(
+      client,
+      `INSERT INTO accounts (id, token) SELECT $1, $2`,
+      `UPDATE accounts SET token = $2 WHERE id = $1`,
+      [accountId, accessToken]
+    ).then(() => {
+      return db.queryWithClient(
+        client,
+        `UPDATE devices SET accountid = $2 WHERE id = $1`,
+        [accountId, userId]
+      );
+    });
   });
 };

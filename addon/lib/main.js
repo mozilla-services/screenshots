@@ -52,15 +52,6 @@ var shootPanel = panels.Panel({
 
 watchWorker(shootPanel);
 
-shootPanel.port.on("signIn", function () {
-  let oAuthHandler = new user.OAuthHandler('http://localhost:10080');
-  oAuthHandler.logIn().then(results => {
-    console.log('FxA login succeeded', results);
-  }, err => {
-    console.error('FxA authentication error', err);
-  });
-});
-
 /** PanelContext manages the ShotContext (defined in shooter.js) that
     is associated with the panel.  Because the panel is a singleton,
     and any tab may have its own shot associated with it, we have to

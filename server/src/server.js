@@ -1,15 +1,22 @@
 const path = require('path');
 const Cookies = require("cookies");
-const helpers = require("./helpers");
 
 const { Shot } = require("./servershot");
-const { checkLogin, registerLogin } = require("./users");
-const db = require("./db");
+const {
+  checkLogin,
+  registerLogin,
+  setState,
+  checkState,
+  tradeCode,
+  getAccountId,
+  registerAccount
+} = require("./users");
 const dbschema = require("./dbschema");
 const express = require("express");
 const bodyParser = require('body-parser');
 const morgan = require("morgan");
 const linker = require("./linker");
+const { randomBytes } = require("./helpers");
 const errors = require("./errors");
 const config = require("./config").root();
 
@@ -199,19 +206,13 @@ app.get("/:id/:domain", function (req, res) {
   });
 });
 
-const oAuthBaseURI = 'http://127.0.0.1:9010/v1',
-  contentBaseURI = 'http://127.0.0.1:3030',
-  profileBaseURI = 'http://127.0.0.1:1111/v1',
-  oAuthClientId = 'ac7ee3c317531aab',
-  oAuthClientSecret = 'eb7c92bd4616a7c1f86595492f360f55cc453974b062e71456d2d4b104f307f8';
-
 // Get OAuth client params for the client-side authorization flow.
 app.get('/api/fxa-oauth/params', function (req, res, next) {
   if (! req.userId) {
     next(errors.sessionRequired());
     return;
   }
-  helpers.randomBytes(32).then(stateBytes => {
+  randomBytes(32).then(stateBytes => {
     let state = stateBytes.toString('hex');
     return setState(req.userId, state).then(inserted => {
       if (!inserted) {
@@ -222,13 +223,13 @@ app.get('/api/fxa-oauth/params', function (req, res, next) {
   }).then(state => {
     res.send({
       // FxA profile server URL.
-      profile_uri: profileBaseURI,
+      profile_uri: config.oAuth.profileServer,
       // FxA OAuth server URL.
-      oauth_uri: oAuthBaseURI,
+      oauth_uri: config.oAuth.oAuthServer,
       redirect_uri: 'urn:ietf:wg:oauth:2.0:fx:webchannel',
-      client_id: oAuthClientId,
+      client_id: config.oAuth.clientId,
       // FxA content server URL.
-      content_uri: contentBaseURI,
+      content_uri: config.oAuth.contentServer,
       state,
       scope: 'profile'
     });
@@ -250,76 +251,19 @@ app.post('/api/fxa-oauth/token', function (req, res, next) {
     if (!isValid) {
       throw errors.invalidState();
     }
-    let oAuthURI = `${oAuthBaseURI}/token`;
-    return helpers.request('POST', oAuthURI, {
-      payload: JSON.stringify({
-        code,
-        client_id: oAuthClientId,
-        client_secret: oAuthClientSecret
-      }),
-      headers: {
-        'content-type': 'application/json'
-      },
-      json: true
-    }).then(([oAuthRes, body]) => {
-      if (oAuthRes.statusCode < 200 || oAuthRes.statusCode > 299) {
-        throw errors.badToken();
-      }
-      let { access_token: accessToken } = body;
-      return getAccountId(accessToken).then(profile => {
-        let { uid: accountId } = profile;
-        return db.transaction(client => {
-          return db.upsertWithClient(
-            client,
-            `INSERT INTO accounts (id, token) SELECT $1, $2`,
-            `UPDATE accounts SET token = $2 WHERE id = $1`,
-            [accountId, accessToken]
-          ).then(() => {
-            return db.queryWithClient(
-              client,
-              `UPDATE devices SET accountid = $2 WHERE id = $1`,
-              [accountId, req.userId]
-            );
-          });
-        }).then(() => {
-          res.send({
-            access_token: accessToken
-          });
-        });
+    return tradeCode(code);
+  }).then(({ access_token: accessToken }) => {
+    return getAccountId(accessToken).then(({ uid: accountId }) => {
+      return registerAccount(req.userId, accountId, accessToken);
+    }).then(() => {
+      res.send({
+        access_token: accessToken
       });
     });
   }).catch(next);
 });
 
-function setState(deviceId, state) {
-  return db.insert(
-    `INSERT INTO states (state, deviceid)
-    VALUES ($1, $2)`,
-    [state, deviceId]
-  );
-}
 
-function checkState(deviceId, state) {
-  return db.del(
-    `DELETE FROM states WHERE state = $1 AND deviceid = $2`,
-    [state, deviceId]
-  ).then(rowCount => !! rowCount);
-}
-
-function getAccountId(accessToken) {
-  let profileURI = `${profileBaseURI}/uid`;
-  return helpers.request('GET', profileURI, {
-    headers: {
-      authorization: `Bearer ${accessToken}`
-    },
-    json: true
-  }).then(([res, body]) => {
-    if (res.statusCode >= 200 && res.statusCode < 300) {
-      return body;
-    }
-    throw errors.badProfile();
-  });
-}
 
 function simpleResponse(res, message, status) {
   status = status || 200;
