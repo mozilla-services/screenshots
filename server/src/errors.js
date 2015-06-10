@@ -1,9 +1,19 @@
-const boom = require('boom');
-
-exports.create = function create(statusCode, errno, message, data) {
-  let err = boom.create(statusCode, message, data);
-  err.output.payload.errno = errno;
+exports.create = function create(status, errno, message, data) {
+  let err = message ? new Error(message) : new Error();
+  let statusCode = +status;
+  if (! isFinite(statusCode)) {
+    throw new Error('Invalid error status code');
+  }
   err.isAppError = true;
+  err.output = {
+    statusCode,
+    payload: {
+      statusCode,
+      errno,
+      message: statusCode == 500 ? 'Internal server error' : err.message
+    },
+    headers: {}
+  };
   return err;
 };
 

@@ -46,7 +46,7 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
   console.error("Error:", err);
   console.error(err.stack);
-  if (err.isBoom && err.isAppError) {
+  if (err.isAppError) {
     let { statusCode, headers, payload } = err.output;
     res.status(statusCode);
     res.header(headers);
