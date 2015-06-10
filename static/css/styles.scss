@@ -139,6 +139,19 @@ a.sitelink, a.sitelink:visited {
 
 .snippet-container a img {
   max-width: 85%;
+  border: 1px solid #aaa;
+  box-shadow: 5px 3px 3px #999;
+}
+
+.text-snippet {
+  background-color: white;
+  color: black;
+  border: 1px solid #aaa;
+  box-shadow: 5px 3px 3px #999;
+}
+
+.text-snippet a {
+  color: black;
 }
 
 .clip-anchor-link {

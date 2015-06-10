@@ -30,9 +30,7 @@ class Snippet extends React.Component {
       comments_nodes = [];
 
     if (clip.image === undefined) {
-      node = <p className="text-snippet">
-        <span dangerouslySetInnerHTML={{__html: clip.text.html}} />
-      </p>;
+      node = <div className="text-snippet" dangerouslySetInnerHTML={{__html: clip.text.html}} />;
     } else {
       node = <img src={ clip.image.url } />;
     }
