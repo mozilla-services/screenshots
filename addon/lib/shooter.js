@@ -198,7 +198,7 @@ const ShotContext = Class({
         this.panelContext.show(this);
       }).bind(this)));
     }, this));
-    this.interactiveWorker.port.on("textSelection", watchFunction(function (textSelection) {
+    function makeTextSelection(textSelection) {
       if (this.activeClipName){
         let c = this.shot.getClip(this.activeClipName);
         if (c.text === undefined) {
@@ -217,7 +217,13 @@ const ShotContext = Class({
       }
       this.updateShot();
       this.panelContext.show(this);
-    }, this));
+    }
+    function makeNewTextSelection(textSelection) {
+      this.activeClipName = null;
+      makeTextSelection.call(this, textSelection);
+    }
+    this.interactiveWorker.port.on("makeNewTextSelection", watchFunction(makeNewTextSelection, this));
+    this.interactiveWorker.port.on("textSelection", watchFunction(makeTextSelection, this));
     this.interactiveWorker.port.on("popstate", watchFunction(function (newUrl) {
       this.destroy();
     }, this));
