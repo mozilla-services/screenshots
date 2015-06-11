@@ -69,21 +69,22 @@ class LoadingClip extends React.Component {
 
 class ShareButtons extends React.Component {
   render() {
+    let size = this.props.large ? "32" : "16";
     return <div className="share-row">
       <a target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + this.props.shot.viewUrl }>
-        <img src="icons/facebook-16.png" />
+        <img src={ `icons/facebook-${size}.png` } />
       </a>
       <a target="_blank" href={"https://twitter.com/home?status=" + this.props.shot.viewUrl }>
-        <img src="icons/twitter-16.png" />
+        <img src={ `icons/twitter-${size}.png` } />
       </a>
       <a target="_blank" href={"https://pinterest.com/pin/create/button/?url=" + this.props.shot.viewUrl + "&media=" + this.props.clipUrl + "&description=" }>
-        <img src="icons/pinterest-16.png" />
+        <img src={ `icons/pinterest-${size}.png` } />
       </a>
       <a target="_blank" href={ "mailto:?subject=Check%20out%20this%20PageShot%20page&body=" + this.props.shot.viewUrl }>
-        <img src="icons/email.png" />
+        <img src={ `icons/email-${size}.png` } />
       </a>
       <a onClick={ this.props.onCopyClick }>
-        <img src="icons/link.png" />
+        <img src={ `icons/link-${size}.png` } />
       </a>
     </div>;
   }
@@ -109,7 +110,7 @@ class SimplifiedPanel extends React.Component {
         <div>
           Now go and share it!
         </div>
-        <ShareButtons { ...this.props } />
+        <ShareButtons large={ true } { ...this.props } />
       </div>
       <div className="simplified-edit-container">
         <button className="simplified-edit-button" onClick={ this.props.onClickEdit }>
