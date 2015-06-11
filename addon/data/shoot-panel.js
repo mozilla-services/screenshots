@@ -158,11 +158,6 @@ class ShootPanel extends React.Component {
     });
   }
 
-  onSignInClick(e) {
-    console.log("Emitting sign in event");
-    self.port.emit("signIn");
-  }
-
   render() {
     if (isAdding[this.props.shot.id] !== undefined ||
         (hasDeleted[this.props.shot.id] && ! this.props.activeClipName)) {

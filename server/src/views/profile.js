@@ -3,11 +3,6 @@
 const React = require("react");
 const errors = require("../../shared/errors");
 
-const PROFILE_CREATE = 'create';
-const PROFILE_FETCH = 'fetch';
-const PROFILE_READY = 'ready';
-const PROFILE_UPDATE = 'update';
-
 function delay(duration) {
   return new Promise(resolve => setTimeout(resolve, duration));
 }
@@ -64,7 +59,7 @@ exports.ProfileButton = class ProfileButton extends React.Component {
     }, err => {
       if (err.errno == 1101) {
         // TODO: Handle extension timeouts.
-        console.log("Timed out fetching profile", err);
+        console.error("Timed out fetching profile", err);
         return;
       }
       if (err.errno == 1102) {
@@ -213,7 +208,8 @@ exports.Profile = class Profile extends React.Component {
   }
 
   renderSignedIn() {
-    // Show a list of connected devices with PageShot installed, too.
+    // TODO: Maybe show a list of connected devices with PageShot here?
+    // This could also be the "send to mobile" UI...
     return (
       <div className="sync-status">
         <p>You are signed in as {this.props.email}.</p>

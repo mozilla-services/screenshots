@@ -16,7 +16,6 @@ const helperworker = require("./helperworker");
 const { ToggleButton } = require('sdk/ui/button/toggle');
 const panels = require("sdk/panel");
 const { watchFunction, watchWorker } = require("./errors");
-const user = require("user");
 
 // FIXME: this button should somehow keep track of whether there is an active shot associated with this page
 var shootButton = ToggleButton({
@@ -218,6 +217,6 @@ exports.main = function (options) {
   //require("./historytracker");
 
   helperworker.trackMods(backendOverride || null);
-  user.initialize(exports.getBackend());
+  require("user").initialize(exports.getBackend());
   require("recall");
 };
