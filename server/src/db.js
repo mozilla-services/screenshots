@@ -1,11 +1,10 @@
-let user = process.env.DB_USER || process.env.USER;
-let pass = process.env.DB_PASS;
-let host = process.env.DB_HOST || "localhost:5432";
-
-pass = pass ? ":" + pass : "";
+const config = require("./config").root();
 
 let pg = require("pg");
-let constr = `postgres://${user}${pass}@${host}/${user}`;
+
+let user = encodeURIComponent(config.db.user);
+let credentials = config.db.password ? `${user}:${encodeURIComponent(config.db.password)}` : user;
+let constr = `postgres://${credentials}@${config.db.host}/${user}`;
 
 function getConnection() {
   return new Promise(function (resolve, reject) {
