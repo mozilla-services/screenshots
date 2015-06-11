@@ -3,16 +3,17 @@ const { Shell } = require("./shell");
 
 class Main extends React.Component {
   render() {
+    let productName = this.props.productName;
     return (
-      <Shell title="PageShot" staticLink={this.props.staticLink}>
+      <Shell title={productName} staticLink={this.props.staticLink}>
         <head>
         </head>
         <body>
           <div className="frontpage">
-            <h1>Pageshot <em>alpha</em></h1>
+            <h1>{productName} <em>alpha</em></h1>
 
             <p>
-              PageShot is an experiment
+              {productName} is an experiment
               by <a href="https://blog.mozilla.org/services/">Mozilla Cloud
               Services</a> and: <a href="mailto:ibicking@mozilla.com">Ian
               Bicking</a>, <a href="http://www.brampitoyo.com/">Bram Pitoyo</a>,
@@ -45,7 +46,7 @@ class Main extends React.Component {
 let MainFactory = React.createFactory(Main);
 
 exports.render = function (req, res) {
-  let page = MainFactory({staticLink: req.staticLink});
+  let page = MainFactory({staticLink: req.staticLink, productName: req.config.productName});
   let body = React.renderToString(page);
   body = '<!DOCTYPE html>\n' + body;
   res.send(body);

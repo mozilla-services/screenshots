@@ -38,6 +38,13 @@ let conf = convict({
       env: "DB_HOST",
       arg: "db-host"
     }
+  },
+  productName: {
+    doc: "Override the 'PageShot' product name",
+    format: String,
+    default: "PageShot",
+    env: "PRODUCT_NAME",
+    arg: "product-name"
   }
 });
 

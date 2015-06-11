@@ -86,7 +86,7 @@ class Frame extends React.Component {
     let head = this.renderHead();
     let body = this.renderBody();
     let result = (
-      <Shell title={`PageShot: ${this.props.shot.title}`} staticLink={this.props.staticLink}>
+      <Shell title={`${this.props.productName}: ${this.props.shot.title}`} staticLink={this.props.staticLink}>
         {head}
         {body}
       </Shell>);
@@ -221,7 +221,7 @@ class Frame extends React.Component {
       <body>
         <div id="container">
           <div id="use-pageshot-to-create" style={{ display: "none" }}>
-            <a href={ this.props.backend }>To create your own shots, get the Firefox extension PageShot</a>.
+            <a href={ this.props.backend }>To create your own shots, get the Firefox extension {this.props.productName}</a>.
             <a id="banner-close" onClick={ this.closeGetPageshotBanner }>&times;</a>
           </div>
           <script src={ this.props.staticLink("js/parent-helper.js") } />
@@ -247,7 +247,7 @@ class Frame extends React.Component {
         </div>
         { snippets }
         <iframe width="100%" id="frame" src={ "/content/" +  shot.id } />
-        <a className="pageshot-footer" href="https://github.com/mozilla-services/pageshot">PageShot</a>
+        <a className="pageshot-footer" href="https://github.com/mozilla-services/pageshot">{this.props.productName}</a>
         <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl }>Send Feedback</a>
       </div>
     </body>);
@@ -264,6 +264,7 @@ exports.render = function (req, res) {
     backend: req.backend,
     shot: req.shot,
     id: req.shot.id,
+    productName: req.config.productName,
     shotDomain: req.url // FIXME: should be a property of the shot
   });
   let clientPayload = {
@@ -271,6 +272,7 @@ exports.render = function (req, res) {
     backend: req.backend,
     shot: req.shot.asJson(),
     id: req.shot.id,
+    productName: req.config.productName,
     shotDomain: req.url
   };
   let body = React.renderToString(frame);

@@ -30,6 +30,7 @@ app.use(function (req, res, next) {
   let cookies = new Cookies(req, res, dbschema.getKeygrip());
   req.userId = cookies.get("user", {signed: true});
   req.backend = req.protocol + "://" + req.headers.host;
+  req.config = config;
   next();
 });
 

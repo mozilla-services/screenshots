@@ -11,4 +11,9 @@ process.on('SIGTERM', function () {
   }
 });
 
-firefox = require("child_process").spawn("bash", ["-c", "cd dist/addon && SHOULD_EXEC=1 exec ./run --local >& ../../addon.log"]);
+var localArg = "--local";
+if (process.env.SITE_URL) {
+  localArg = "--server " + process.env.SITE_URL;
+}
+
+firefox = require("child_process").spawn("bash", ["-c", "cd dist/addon && SHOULD_EXEC=1 exec ./run " + localArg + " >& ../../addon.log"]);
