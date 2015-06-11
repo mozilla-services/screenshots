@@ -51,19 +51,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(function (err, req, res, next) {
-  console.error("Error:", err);
-  console.error(err.stack);
-  if (err.isAppError) {
-    let { statusCode, headers, payload } = err.output;
-    res.status(statusCode);
-    res.header(headers);
-    res.send(payload);
-    return;
-  }
-  errorResponse(res, "General error:", err);
-});
-
 app.post("/api/register", function (req, res) {
   let vars = req.body;
   // FIXME: need to hash secret
@@ -285,7 +272,18 @@ app.post('/api/fxa-oauth/token', function (req, res, next) {
   }).catch(next);
 });
 
-
+app.use(function (err, req, res, next) {
+  console.error("Error:", err);
+  console.error(err.stack);
+  if (err.isAppError) {
+    let { statusCode, headers, payload } = err.output;
+    res.status(statusCode);
+    res.header(headers);
+    res.send(payload);
+    return;
+  }
+  errorResponse(res, "General error:", err);
+});
 
 function simpleResponse(res, message, status) {
   status = status || 200;
