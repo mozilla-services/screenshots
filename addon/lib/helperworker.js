@@ -62,7 +62,9 @@ function resetPageMod(backend) {
           return handler.logInWithParams(params).then(response => {
             return handler.getProfileInfo();
           }).then(profile => {
-            user.setProfileInfo({
+            // TODO: Don't clobber profile info if the user has already set a
+            // name or avatar.
+            user.updateProfileInfo({
               email: profile.email,
               nickname: profile.display_name,
               avatarurl: profile.avatar

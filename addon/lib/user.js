@@ -69,8 +69,8 @@ exports.getUserInfo = function () {
   return ss.storage.userInfo;
 };
 
-exports.setProfileInfo = function (profile) {
-  ss.storage.profileInfo = profile;
+exports.updateProfileInfo = function (profile) {
+  ss.storage.profileInfo = Object.assign(ss.storage.profileInfo || {}, profile);
 };
 
 exports.getProfileInfo = function () {
@@ -86,6 +86,9 @@ exports.updateLogin = function (backend, info) {
       content: info,
       onComplete: function (response) {
         if (response.status >= 200 && response.status < 300) {
+          // Update cached profile info. TODO: Invalidate the cache and fetch
+          // the profile from the server instead.
+          exports.updateProfileInfo(info);
           resolve();
         } else {
           reject(response.json);
