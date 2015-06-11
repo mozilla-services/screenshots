@@ -62,11 +62,12 @@ exports.ProfileButton = class ProfileButton extends React.Component {
     ]).then(() => {
       this.setState({ isExpanded: false });
     }, err => {
-      if (err.code == 1101) {
+      if (err.errno == 1101) {
         // TODO: Handle extension timeouts.
+        console.log("Timed out fetching profile", err);
         return;
       }
-      if (err.code == 1102) {
+      if (err.errno == 1102) {
         // User already signed in. Fetch their profile and refresh the view.
         this.fetchProfile();
         return;
@@ -82,11 +83,11 @@ exports.ProfileButton = class ProfileButton extends React.Component {
     ]).then(() => {
       this.setState({ isExpanded: false });
     }, err => {
-      if (err.code == 1101) {
+      if (err.errno == 1101) {
         // TODO: Timeouts.
         return;
       }
-      if (err.code == 1102) {
+      if (err.errno == 1102) {
         this.fetchProfile();
         return;
       }
@@ -144,7 +145,7 @@ exports.ProfileButton = class ProfileButton extends React.Component {
 
   render() {
     let { isExpanded, status, lastError } = this.state;
-    if (lastError && lastError.code == 1101) {
+    if (lastError && lastError.errno == 1101) {
       return null;
     }
     if (status == 'loading') {

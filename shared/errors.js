@@ -72,3 +72,7 @@ exports.extBadUpdate = function extBadUpdate(response) {
   }
   return err;
 };
+
+exports.extInternalError = function extInternalError() {
+  return exports.create(500, 1999, 'Internal extension error');
+};
