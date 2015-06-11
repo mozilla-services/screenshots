@@ -73,7 +73,7 @@ exports.checkState = function (deviceId, state) {
 };
 
 exports.tradeCode = function (code) {
-  let oAuthURI = `${config.oAuth.profileServer}/token`;
+  let oAuthURI = `${config.oAuth.oAuthServer}/token`;
   return request('POST', oAuthURI, {
     payload: JSON.stringify({
       code,
@@ -93,7 +93,7 @@ exports.tradeCode = function (code) {
 };
 
 exports.getAccountId = function (accessToken) {
-  let profileURI = `${config.oAuth.oAuthServer}/uid`;
+  let profileURI = `${config.oAuth.profileServer}/uid`;
   return request('GET', profileURI, {
     headers: {
       authorization: `Bearer ${accessToken}`
@@ -118,7 +118,7 @@ exports.registerAccount = function (userId, accountId, accessToken) {
       return db.queryWithClient(
         client,
         `UPDATE devices SET accountid = $2 WHERE id = $1`,
-        [accountId, userId]
+        [userId, accountId]
       );
     });
   });

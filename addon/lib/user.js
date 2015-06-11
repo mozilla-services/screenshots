@@ -70,7 +70,19 @@ exports.getUserInfo = function () {
 };
 
 exports.updateProfileInfo = function (profile) {
-  ss.storage.profileInfo = Object.assign(ss.storage.profileInfo || {}, profile);
+  if (! profile) {
+    return;
+  }
+  let currentInfo = ss.storage.profileInfo;
+  if (! currentInfo) {
+    currentInfo = ss.storage.profileInfo = {};
+  }
+  let attrs = Object.keys(profile);
+  for (let attr of attrs) {
+    if (! currentInfo[attr] || profile[attr] && currentInfo[attr] != profile[attr]) {
+      currentInfo[attr] = profile[attr];
+    }
+  }
 };
 
 exports.getProfileInfo = function () {
@@ -101,7 +113,7 @@ exports.updateLogin = function (backend, info) {
 exports.OAuthHandler = class OAuthHandler {
   constructor(backend) {
     this.backend = backend;
-    this.oAuthParams = null;
+    this.withParams = null;
     this.withProfile = new Promise((resolve, reject) => {
       this.profileDeferred = { resolve, reject };
     });
@@ -114,17 +126,16 @@ exports.OAuthHandler = class OAuthHandler {
   }
 
   getOAuthParams() {
-    if (this.oAuthParams) {
-      return Promise.resolve(this.oAuthParams);
+    if (this.withParams) {
+      return this.withParams;
     }
-    return new Promise((resolve, reject) => {
+    this.withParams = new Promise((resolve, reject) => {
       let url = new URL("/api/fxa-oauth/params", this.backend);
       Request({
         url,
         onComplete: response => {
           let { json } = response;
           if (response.status >= 200 && response.status < 300) {
-            this.oAuthParams = json;
             resolve(json);
             return;
           }
@@ -135,6 +146,7 @@ exports.OAuthHandler = class OAuthHandler {
         }
       }).get();
     });
+    return this.withParams;
   }
 
   tradeCode(tokenData) {

@@ -41,12 +41,14 @@ let conf = convict({
     clientId: {
       doc: "The OAuth client ID",
       format: String,
+      default: "",
       env: "CLIENT_ID",
       arg: "client-id"
     },
     clientSecret: {
       doc: "The OAuth client secret",
       format: String,
+      default: "",
       env: "CLIENT_SECRET",
       arg: "client-secret"
     }
