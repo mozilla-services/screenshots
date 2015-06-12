@@ -246,7 +246,7 @@ class Frame extends React.Component {
           <p><a href={ shot.url }>{ linkTextShort }</a></p>
         </div>
         { snippets }
-        <iframe width="100%" id="frame" src={ "/content/" +  shot.id } />
+        <iframe width="100%" id="frame" src={ "/content/" +  shot.id } style={ {backgroundColor: "#fff"} } />
         <a className="pageshot-footer" href="https://github.com/mozilla-services/pageshot">{this.props.productName}</a>
         <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl }>Send Feedback</a>
       </div>
