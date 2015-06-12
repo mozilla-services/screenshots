@@ -3,8 +3,8 @@ const Keygrip = require('keygrip');
 
 const createSQL = `
 CREATE TABLE IF NOT EXISTS accounts (
-  id CHAR(32) PRIMARY KEY,
-  token CHAR(64)
+  id VARCHAR(200) PRIMARY KEY,
+  token TEXT
 );
 
 CREATE TABLE IF NOT EXISTS devices (
@@ -12,10 +12,22 @@ CREATE TABLE IF NOT EXISTS devices (
   secret varchar(200) NOT NULL,
   nickname TEXT,
   avatarurl TEXT,
-  accountid CHAR(32) REFERENCES accounts(id) ON DELETE SET NULL
+  accountid VARCHAR(200) REFERENCES accounts(id) ON DELETE SET NULL
 );
 
-CREATE INDEX ON devices(accountid);
+-- This is a very long-winded way to create an index only if it doesn't exist:
+DO $$
+BEGIN
+IF NOT EXISTS (
+    SELECT 1
+    FROM   pg_class c
+    JOIN   pg_namespace n ON n.oid = c.relnamespace
+    WHERE  c.relname = 'device_accountid_idx'
+    AND    n.nspname = 'public'
+    ) THEN
+    CREATE INDEX device_accountid_idx ON devices(accountid);
+END IF;
+END$$;
 
 CREATE TABLE IF NOT EXISTS data (
   id varchar(120) PRIMARY KEY,
@@ -30,7 +42,7 @@ CREATE TABLE IF NOT EXISTS signing_keys (
 );
 
 CREATE TABLE IF NOT EXISTS states (
-  state CHAR(64) PRIMARY KEY,
+  state VARCHAR(64) PRIMARY KEY,
   deviceid VARCHAR(200) REFERENCES devices(id) ON DELETE CASCADE
 );
 
