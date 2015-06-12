@@ -94,7 +94,7 @@ function extractWorker(tab) {
 const ShotContext = Class({
   _idGen: 0,
   initialize: function (panelContext, backend) {
-    this.id = ++this._idGen;
+    this.id = ++ShotContext._idGen;
     this.tab = tabs.activeTab;
     this.tabUrl = this.tab.url;
     let userInfo = getUserInfo();
@@ -103,7 +103,7 @@ const ShotContext = Class({
     }
     this.shot = new Shot(
       backend,
-      randomString(8) + "/" + urlDomain(this.tabUrl),
+      randomString(8) + "/" + urlDomainForId(this.tabUrl),
       {
         url: this.tabUrl,
         userId: userInfo.userId
@@ -465,6 +465,8 @@ const ShotContext = Class({
 
 exports.ShotContext = ShotContext;
 
+ShotContext._idGen = 0;
+
 class Shot extends AbstractShot {
   constructor(backend, id, attrs) {
     super(backend, id, attrs);
@@ -536,7 +538,10 @@ function allPromisesComplete(promises) {
   return deferred.promise;
 }
 
-function urlDomain(urlString) {
+/** Returns the domain of a URL, but safely and in ASCII; URLs without domains
+    (such as about:blank) return the scheme, Unicode domains get stripped down
+    to ASCII */
+function urlDomainForId(urlString) {
   let urlObj = URL(urlString);
   let domain = urlObj.host;
   if (domain) {
@@ -547,6 +552,14 @@ function urlDomain(urlString) {
     domain = urlString.split(":")[0];
     if (! domain) {
       domain = "unknown";
+    }
+  }
+  if (domain.search(/^[a-z0-9.\-]+$/i) == -1) {
+    // Probably a unicode domain; we could use punycode but it wouldn't decode
+    // well in the URL anyway.  Instead we'll punt.
+    domain = domain.replace(/[^a-z0-9.\-]/ig, "");
+    if (! domain) {
+      domain = "site";
     }
   }
   return domain;
