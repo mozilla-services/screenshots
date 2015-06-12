@@ -3,6 +3,7 @@
 const React = require("react");
 const { Shell } = require("./shell");
 const { getGitRevision } = require("../linker");
+const { ProfileButton, Profile } = require("./profile");
 
 let IS_BROWSER = typeof window !== "undefined";
 
@@ -227,6 +228,15 @@ class Frame extends React.Component {
           <script src={ this.props.staticLink("js/parent-helper.js") } />
         { favicon }
         <div id="toolbar">
+          <ProfileButton
+            staticLink={ this.props.staticLink }
+            ready={ this.props.ready }
+            signUp={ this.props.signUp }
+            signIn={ this.props.signIn }
+            getProfile={ this.props.getProfile }
+            updateProfile={ this.props.updateProfile }
+            initialExpanded={ false }
+          />
           <a className="main-link" href={ shot.url }>
             { shot.title }
             &nbsp;&mdash;&nbsp;

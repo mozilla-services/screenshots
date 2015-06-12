@@ -1,7 +1,11 @@
+const { Cc, Ci, Cu } = require('chrome');
 const ss = require("sdk/simple-storage");
 const { uuid } = require('sdk/util/uuid');
 const { Request } = require("sdk/request");
 const { watchFunction, watchPromise } = require("./errors");
+const { URL } = require('sdk/url');
+const { FxAccountsOAuthClient } = Cu.import("resource://gre/modules/FxAccountsOAuthClient.jsm", {});
+const { FxAccountsProfileClient } = Cu.import("resource://gre/modules/FxAccountsProfileClient.jsm", {});
 
 exports.initialize = function (backend) {
   if (! (ss.storage.userInfo && ss.storage.userInfo.userId && ss.storage.userInfo.secret)) {
@@ -63,4 +67,129 @@ function makeUuid() {
 
 exports.getUserInfo = function () {
   return ss.storage.userInfo;
+};
+
+exports.updateProfileInfo = function (profile) {
+  if (! profile) {
+    return;
+  }
+  let currentInfo = ss.storage.profileInfo;
+  if (! currentInfo) {
+    currentInfo = ss.storage.profileInfo = {};
+  }
+  let attrs = Object.keys(profile);
+  for (let attr of attrs) {
+    if (! currentInfo[attr] || profile[attr] && currentInfo[attr] != profile[attr]) {
+      currentInfo[attr] = profile[attr];
+    }
+  }
+};
+
+exports.getProfileInfo = function () {
+  return ss.storage.profileInfo;
+};
+
+exports.updateLogin = function (backend, info) {
+  let updateUrl = backend + "/api/update";
+  return new Promise((resolve, reject) => {
+    Request({
+      url: updateUrl,
+      contentType: "application/x-www-form-urlencoded",
+      content: info,
+      onComplete: function (response) {
+        if (response.status >= 200 && response.status < 300) {
+          // Update cached profile info. TODO: Invalidate the cache and fetch
+          // the profile from the server instead.
+          exports.updateProfileInfo(info);
+          resolve();
+        } else {
+          reject(response.json);
+        }
+      }
+    }).post();
+  });
+};
+
+exports.OAuthHandler = class OAuthHandler {
+  constructor(backend) {
+    this.backend = backend;
+    this.withParams = null;
+    this.withProfile = new Promise((resolve, reject) => {
+      this.profileDeferred = { resolve, reject };
+    });
+  }
+
+  getProfileInfo() {
+    return this.withProfile.then(client => {
+      return client.fetchProfile();
+    });
+  }
+
+  getOAuthParams() {
+    if (this.withParams) {
+      return this.withParams;
+    }
+    this.withParams = new Promise((resolve, reject) => {
+      let url = new URL("/api/fxa-oauth/params", this.backend);
+      Request({
+        url,
+        onComplete: response => {
+          let { json } = response;
+          if (response.status >= 200 && response.status < 300) {
+            resolve(json);
+            return;
+          }
+          let err = new Error("Error fetching OAuth params");
+          err.status = response.status;
+          err.json = json;
+          reject(err);
+        }
+      }).get();
+    });
+    return this.withParams;
+  }
+
+  tradeCode(tokenData) {
+    return new Promise((resolve, reject) => {
+      let url = new URL("/api/fxa-oauth/token", this.backend);
+      Request({
+        url,
+        content: tokenData,
+        onComplete: response => {
+          let { json } = response;
+          if (response.status >= 200 && response.status < 300) {
+            resolve(json);
+            return;
+          }
+          let err = new Error("Error trading OAuth code");
+          err.status = response.status;
+          err.json = json;
+          reject(err);
+        }
+      }).post();
+    })
+  }
+
+  logInWithParams(parameters) {
+    return new Promise((resolve, reject) => {
+      let client = new FxAccountsOAuthClient({ parameters });
+      client.onComplete = resolve;
+      client.onError = reject;
+      client.launchWebFlow();
+    }).then(tokenData => {
+      return this.tradeCode(tokenData);
+    }).then(response => {
+      this.profileDeferred.resolve(new FxAccountsProfileClient({
+        serverURL: parameters.profile_uri,
+        token: response.access_token
+      }));
+      return response;
+    });
+  }
+
+  logIn() {
+    return this.getOAuthParams().then(params => {
+      return this.logInWithParams(params);
+    });
+  }
 };

@@ -2,16 +2,24 @@ const db = require("./db");
 const Keygrip = require('keygrip');
 
 const createSQL = `
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE IF NOT EXISTS accounts (
+  id CHAR(32) PRIMARY KEY,
+  token CHAR(64)
+);
+
+CREATE TABLE IF NOT EXISTS devices (
   id varchar(200) PRIMARY KEY,
   secret varchar(200) NOT NULL,
   nickname TEXT,
-  avatarurl TEXT
+  avatarurl TEXT,
+  accountid CHAR(32) REFERENCES accounts(id) ON DELETE SET NULL
 );
+
+CREATE INDEX ON devices(accountid);
 
 CREATE TABLE IF NOT EXISTS data (
   id varchar(120) PRIMARY KEY,
-  userid varchar(200) REFERENCES users (id),
+  deviceid varchar(200) REFERENCES devices (id),
   created TIMESTAMP DEFAULT NOW(),
   value text
 );
@@ -20,6 +28,13 @@ CREATE TABLE IF NOT EXISTS signing_keys (
   created TIMESTAMP DEFAULT NOW(),
   key TEXT
 );
+
+CREATE TABLE IF NOT EXISTS states (
+  state CHAR(64) PRIMARY KEY,
+  deviceid VARCHAR(200) REFERENCES devices(id) ON DELETE CASCADE
+);
+
+CREATE INDEX ON states(deviceid);
 `;
 
 /** Create all the tables */
@@ -30,7 +45,7 @@ exports.createTables = function () {
     console.log("Created tables on", db.constr);
     let newId = "tmp" + Date.now();
     return db.insert(
-      `INSERT INTO data (id, userid, value)
+      `INSERT INTO data (id, deviceid, value)
        VALUES ($1, NULL, $2)`,
       [newId, "test value"]
     ).then((inserted) => {

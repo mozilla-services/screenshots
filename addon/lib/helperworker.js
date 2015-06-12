@@ -14,8 +14,27 @@ var clipboard = require("sdk/clipboard");
 var notifications = require("sdk/notifications");
 var { XMLHttpRequest } = require("sdk/net/xhr");
 const { watchFunction, watchWorker } = require("./errors");
+const user = require("./user");
+const errors = require("./shared/errors");
 
 var existing;
+
+function toSuccessResponse(result) {
+  return { ok: true, result };
+}
+
+function toErrorResponse(error) {
+  if (error) {
+    if (error.isAppError) {
+      error = error.output.payload;
+    } else {
+      // Avoid exposing raw errors to content code.
+      console.error("Unwrapped error response", error);
+      error = errors.extInternalError();
+    }
+  }
+  return { ok: false, error };
+}
 
 function resetPageMod(backend) {
   backend = backend || simplePrefs.prefs.backend;
@@ -31,6 +50,64 @@ function resetPageMod(backend) {
     contentScriptFile: [self.data.url("viewerworker.js")],
     onAttach: function (worker) {
       watchWorker(worker);
+
+      worker.port.on("requestAccount", watchFunction(function (info) {
+        let { id, options: { action } } = info;
+
+        let currentProfile = user.getProfileInfo();
+        if (currentProfile && currentProfile.email) {
+          let err = errors.extAlreadySignedIn();
+          worker.port.emit("account", id, toErrorResponse(err));
+          return;
+        }
+
+        if (action != "signup" && action != "signin") {
+          let err = errors.badParams();
+          worker.port.emit("account", id, toErrorResponse(err));
+          return;
+        }
+
+        let handler = new user.OAuthHandler(backend);
+        handler.getOAuthParams().then(defaults => {
+          worker.port.emit("account", id, toSuccessResponse());
+
+          let params = Object.assign({ action }, defaults);
+          return handler.logInWithParams(params).then(response => {
+            return handler.getProfileInfo();
+          }).then(profile => {
+            // TODO: Don't clobber profile info if the user has already set a
+            // name or avatar.
+            user.updateProfileInfo({
+              email: profile.email,
+              nickname: profile.display_name,
+              avatarurl: profile.avatar
+            });
+            worker.port.emit("profileRefresh");
+          }).catch(error => {
+            console.error("Error fetching profile", error);
+          });
+
+        }, error => {
+          worker.port.emit("account", id, toErrorResponse(error));
+        });
+      }));
+
+      worker.port.on("requestProfile", watchFunction(function (info) {
+        let { id } = info;
+        let profile = user.getProfileInfo();
+        worker.port.emit("profile", id, toSuccessResponse(profile));
+      }));
+
+      worker.port.on("requestProfileUpdate", watchFunction(function (info) {
+        let { id, options: { nickname, avatarurl } } = info;
+        user.updateLogin(backend, { nickname, avatarurl }).then(() => {
+          worker.port.emit("profileUpdate", id, toSuccessResponse());
+        }).catch(err => {
+          let error = exports.extBadUpdate(err);
+          worker.port.emit("profileUpdate", id, toErrorResponse(error));
+        });
+      }));
+
       worker.port.on("requestScreenshot", watchFunction(function (info) {
         captureTab(worker.tab, info).then(function (image) {
           worker.port.emit("screenshot", image, info);

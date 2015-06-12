@@ -2,12 +2,23 @@ const path = require('path');
 const Cookies = require("cookies");
 
 const { Shot } = require("./servershot");
-const { checkLogin, registerLogin } = require("./users");
+const {
+  checkLogin,
+  registerLogin,
+  updateLogin,
+  setState,
+  checkState,
+  tradeCode,
+  getAccountId,
+  registerAccount
+} = require("./users");
 const dbschema = require("./dbschema");
 const express = require("express");
 const bodyParser = require('body-parser');
 const morgan = require("morgan");
 const linker = require("./linker");
+const { randomBytes } = require("./helpers");
+const errors = require("../shared/errors");
 const config = require("./config").root();
 
 dbschema.createTables();
@@ -40,12 +51,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(function (err, req, res, next) {
-  console.error("Error:", err);
-  console.error(err.stack);
-  errorResponse(res, "General error:", err);
-});
-
 app.post("/api/register", function (req, res) {
   let vars = req.body;
   // FIXME: need to hash secret
@@ -65,6 +70,27 @@ app.post("/api/register", function (req, res) {
   }).catch(function (err) {
     errorResponse(res, "Error registering:", err);
   });
+});
+
+app.post("/api/update", function (req, res, next) {
+  if (! req.userId) {
+    next(errors.missingSession());
+    return;
+  }
+  if (! req.body) {
+    res.sendStatus(204);
+    return;
+  }
+  let { nickname, avatarurl } = req.body;
+  updateLogin(req.userId, { nickname, avatarurl }).then(ok => {
+    if (! ok) {
+      throw errors.badSession();
+    }
+    res.sendStatus(204);
+  }, err => {
+    console.warn("Error updating device info", err);
+    throw errors.badParams();
+  }).catch(next);
 });
 
 app.post("/api/login", function (req, res) {
@@ -187,6 +213,76 @@ app.get("/:id/:domain", function (req, res) {
   }).catch(function (err) {
     errorResponse(res, "Error rendering page:", err);
   });
+});
+
+// Get OAuth client params for the client-side authorization flow.
+app.get('/api/fxa-oauth/params', function (req, res, next) {
+  if (! req.userId) {
+    next(errors.missingSession());
+    return;
+  }
+  randomBytes(32).then(stateBytes => {
+    let state = stateBytes.toString('hex');
+    return setState(req.userId, state).then(inserted => {
+      if (!inserted) {
+        throw errors.dupeLogin();
+      }
+      return state;
+    });
+  }).then(state => {
+    res.send({
+      // FxA profile server URL.
+      profile_uri: config.oAuth.profileServer,
+      // FxA OAuth server URL.
+      oauth_uri: config.oAuth.oAuthServer,
+      redirect_uri: 'urn:ietf:wg:oauth:2.0:fx:webchannel',
+      client_id: config.oAuth.clientId,
+      // FxA content server URL.
+      content_uri: config.oAuth.contentServer,
+      state,
+      scope: 'profile'
+    });
+  }).catch(next);
+});
+
+// Exchange an OAuth authorization code for an access token.
+app.post('/api/fxa-oauth/token', function (req, res, next) {
+  if (! req.userId) {
+    next(errors.missingSession());
+    return;
+  }
+  if (! req.body) {
+    next(errors.missingParams());
+    return;
+  }
+  let { code, state } = req.body;
+  checkState(req.userId, state).then(isValid => {
+    if (!isValid) {
+      throw errors.badState();
+    }
+    return tradeCode(code);
+  }).then(({ access_token: accessToken }) => {
+    return getAccountId(accessToken).then(({ uid: accountId }) => {
+      return registerAccount(req.userId, accountId, accessToken);
+    }).then(() => {
+      res.send({
+        access_token: accessToken
+      });
+    });
+  }).catch(next);
+});
+
+app.use(function (err, req, res, next) {
+  console.error("Error:", err);
+  console.error(err.stack);
+  if (err.isAppError) {
+    let { statusCode, headers, payload } = err.output;
+    res.status(statusCode);
+    res.header(headers);
+    res.send(payload);
+    return;
+  }
+  errorResponse(res, "General error:", err);
 });
 
 function simpleResponse(res, message, status) {
