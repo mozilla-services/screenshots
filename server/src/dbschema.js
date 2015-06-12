@@ -46,7 +46,18 @@ CREATE TABLE IF NOT EXISTS states (
   deviceid VARCHAR(200) REFERENCES devices(id) ON DELETE CASCADE
 );
 
-CREATE INDEX ON states(deviceid);
+DO $$
+BEGIN
+IF NOT EXISTS (
+    SELECT 1
+    FROM   pg_class c
+    JOIN   pg_namespace n ON n.oid = c.relnamespace
+    WHERE  c.relname = 'state_deviceid_idx'
+    AND    n.nspname = 'public'
+    ) THEN
+    CREATE INDEX state_deviceid_idx ON states(deviceid);
+END IF;
+END$$;
 `;
 
 /** Create all the tables */
