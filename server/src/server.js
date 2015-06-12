@@ -21,8 +21,9 @@ const { randomBytes } = require("./helpers");
 const errors = require("../shared/errors");
 const config = require("./config").root();
 
-dbschema.createTables();
-dbschema.createKeygrip();
+dbschema.createTables().then(() => {
+  dbschema.createKeygrip();
+});
 
 const app = express();
 
@@ -100,11 +101,13 @@ app.post("/api/login", function (req, res) {
       let cookies = new Cookies(req, res, dbschema.getKeygrip());
       cookies.set("user", vars.userId, {signed: true});
       simpleResponse(res, "User logged in", 200);
+    } else if (ok === null) {
+      simpleResponse(res, "No such user", 404);
     } else {
       simpleResponse(res, "Invalid login", 401);
     }
   }).catch(function (err) {
-    errorResponse(err, "Error in login:", err);
+    errorResponse(res, "Error in login:", err);
   });
 });
 
@@ -287,13 +290,13 @@ app.use(function (err, req, res, next) {
 
 function simpleResponse(res, message, status) {
   status = status || 200;
-  res.set("Content-Type", "text/plain; charset=utf-8");
+  res.header("Content-Type", "text/plain; charset=utf-8");
   res.status(status);
   res.send(message);
 }
 
 function errorResponse(res, message, err) {
-  res.set("Content-Type", "text/plain; charset=utf-8");
+  res.header("Content-Type", "text/plain; charset=utf-8");
   res.status(500);
   if (err) {
     message += "\n" + err;

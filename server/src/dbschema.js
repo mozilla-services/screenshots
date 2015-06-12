@@ -39,7 +39,7 @@ CREATE INDEX ON states(deviceid);
 
 /** Create all the tables */
 exports.createTables = function () {
-  db.exec(
+  return db.exec(
     createSQL, []
   ).then((result) => {
     console.log("Created tables on", db.constr);

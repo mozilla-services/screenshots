@@ -9,7 +9,7 @@ exports.checkLogin = function (userId, secret) {
     [userId]
   ).then((rows) => {
     if (! rows.length) {
-      throw new Error("No such user: " + userId);
+      return null;
     }
     return rows[0].secret == secret;
   });
