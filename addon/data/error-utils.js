@@ -21,7 +21,8 @@ function getFilename() {
 function makeError(exc, info) {
   var result = {
     name: exc.name || "ERROR",
-    message: exc+""
+    message: exc+"",
+    stack: exc.stack
   };
   if (info) {
     for (var attr in info) {
@@ -38,9 +39,11 @@ function watchFunction(func) {
     try {
       result = func.apply(this, arguments);
     } catch (e) {
-      console.log("------Error in worker script", getFilename(), ":", e+"");
+      console.error("------Error in worker script", getFilename(), ":", String(e));
+      console.error(e.stack);
+      console.error("Called from:");
       console.trace();
-      console.log("------------------------------------------------------------");
+      console.error("------------------------------------------------------------");
       unhandled(makeError(e));
       throw e;
     }
@@ -54,4 +57,3 @@ if (typeof exports !== "undefined") {
   exports.makeError = makeError;
   exports.watchFunction = watchFunction;
 }
-
