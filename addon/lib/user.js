@@ -83,6 +83,7 @@ exports.updateProfileInfo = function (profile) {
       currentInfo[attr] = profile[attr];
     }
   }
+  ss.storage.profileInfo = currentInfo;
 };
 
 exports.getProfileInfo = function () {
@@ -167,7 +168,7 @@ exports.OAuthHandler = class OAuthHandler {
           reject(err);
         }
       }).post();
-    })
+    });
   }
 
   logInWithParams(parameters) {
