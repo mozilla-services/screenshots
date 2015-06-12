@@ -1185,6 +1185,7 @@ microformats.Parser.prototype = {
 	// looks at nodes in DOM structures find href and src and expandes relative URLs
 	expandURLs: function(dom, node, baseUrl){
 		var context = this;
+    var href;
 		node = this.domUtils.clone(dom, node)
 		expand( this.domUtils.getNodesByAttribute(dom, node, 'href'), 'href' );
 		expand( this.domUtils.getNodesByAttribute(dom, node, 'src'), 'src' );
