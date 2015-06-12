@@ -3,10 +3,7 @@ const envc = require("envc");
 
 // Populate `process.env` with overrides from environment-specific `.env`
 // files as a side effect. See `https://npmjs.org/envc` for more info.
-envc({
-  booleans: true,
-  numbers: true
-});
+envc();
 
 let conf = convict({
   port: {

@@ -120,7 +120,7 @@ app.get("/clip/:id/:domain/:clipId", function (req, res) {
       return;
     }
     let image = clip.imageBinary();
-    res.set("Content-Type", image.contentType);
+    res.header("Content-Type", image.contentType);
     res.send(image.data);
   }).catch((err) => {
     errorResponse(res, "Failed to get clip", err);
@@ -173,7 +173,7 @@ app.get("/data/:id/:domain", function (req, res) {
       if ('format' in req.query) {
         value = JSON.stringify(JSON.parse(value), null, '  ');
       }
-      res.set("Content-Type", "application/json");
+      res.header("Content-Type", "application/json");
       res.send(value);
     }
   }).catch(function (err) {
