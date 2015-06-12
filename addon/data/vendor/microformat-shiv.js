@@ -1,5 +1,5 @@
 /* Copied in from:
-   https://raw.githubusercontent.com/glennjones/microformat-shiv/4b8d049307f008b1c0b3afda89f7a93dc7baf05c/microformat-shiv.js 
+   https://raw.githubusercontent.com/glennjones/microformat-shiv/4b8d049307f008b1c0b3afda89f7a93dc7baf05c/microformat-shiv.js
 */
 
 /*!
@@ -35,16 +35,16 @@ microformats.Parser = function () {
 
 microformats.Parser.prototype = {
 
-	// internal parse function 
+	// internal parse function
 	get: function(dom, rootNode, options) {
 		var errors = null,
-			items, 
-			children, 
+			items,
+			children,
 			data = [],
 			ufs = [],
 			x,
 			i,
-			z,			
+			z,
 			y,
 			rels,
 			baseTag,
@@ -62,7 +62,7 @@ microformats.Parser.prototype = {
 			if(this.options.includes){
 				this.addIncludes(dom, rootNode);
 			}
-			
+
 			// find base tag to set baseUrl
  			baseTag = dom.querySelector('base');
 			if(baseTag) {
@@ -84,7 +84,7 @@ microformats.Parser.prototype = {
 						z = 0;
 						y = ufs.length;
 						while(z < y) {
-							// make sure its a valid structure and apply filter if its requested  
+							// make sure its a valid structure and apply filter if its requested
 							if(ufs[z] && this.utils.hasProperties(ufs[z].properties) && this.shouldInclude(ufs[z], this.options.filters)) {
 								// find any children in the microformats dom tree that are not attached toa property
 								if(this.options.children){
@@ -124,7 +124,7 @@ microformats.Parser.prototype = {
 			x,
 			i;
 
-		items = this.findRootNodes(dom, rootNode);	
+		items = this.findRootNodes(dom, rootNode);
 		i = items.length;
 		while(i--) {
 			classItems = this.domUtils.getAttributeList(dom, items[i], 'class');
@@ -143,7 +143,7 @@ microformats.Parser.prototype = {
 				}
 			}
 		}
-		
+
 		function append(name, count){
 			if(out[name]){
 				out[name] = out[name] + count;
@@ -151,7 +151,7 @@ microformats.Parser.prototype = {
 				out[name] = count;
 			}
 		}
-	
+
 		return out;
 	},
 
@@ -176,12 +176,12 @@ microformats.Parser.prototype = {
 
 	// finds uf within the tree of a parent uf but where they have on property
 	findChildItems: function(dom, rootNode, ufName) {
-		var items, 
+		var items,
 			out = [],
 			ufs = [],
 			x,
 			i,
-			z,			
+			z,
 			y,
 			rels;
 
@@ -197,7 +197,7 @@ microformats.Parser.prototype = {
 					y = ufs.length;
 					z = 0;
 					while(z < y) {
-						// make sure its a valid structure 
+						// make sure its a valid structure
 						if(ufs[z] && this.utils.hasProperties(ufs[z].properties)) {
 							out.push(ufs[z]);
 						}
@@ -225,8 +225,8 @@ microformats.Parser.prototype = {
 
 	// returns all the root nodes in a document
 	findRootNodes: function(dom, rootNode, fromChildren) {
-		var arr = null,			
-			out = [], 
+		var arr = null,
+			out = [],
 			classList = [],
 			test,
 			items,
@@ -236,12 +236,12 @@ microformats.Parser.prototype = {
 			key;
 
 
-		// build any array of v1 root names    
+		// build any array of v1 root names
 		for(key in this.maps) {
 			classList.push(this.maps[key].root);
 		}
 
-		// get all elements that have a class attribute  
+		// get all elements that have a class attribute
 		fromChildren = (fromChildren) ? fromChildren : false;
 		if(fromChildren) {
 			arr = this.domUtils.getNodesByAttribute(dom, rootNode, 'class');
@@ -251,7 +251,7 @@ microformats.Parser.prototype = {
 
 
 		// loop elements that have a class attribute
-		x = 0;    
+		x = 0;
 		i = arr.length;
 		while(x < i) {
 
@@ -260,7 +260,7 @@ microformats.Parser.prototype = {
 			// loop classes on an element
 			y = items.length;
 			while(y--) {
-				// match v1 root names 
+				// match v1 root names
 				if(classList.indexOf(items[y]) > -1) {
 					out.push(arr[x]);
 					break;
@@ -334,15 +334,15 @@ microformats.Parser.prototype = {
 
 
 		if(uf && uf.properties) {
-			
+
 			// implied name rule
 			/*
 				img.h-x[alt]
-				abbr.h-x[title] 
-				.h-x>img:only-node[alt] 
-				.h-x>abbr:only-node[title] 
+				abbr.h-x[title]
+				.h-x>img:only-node[alt]
+				.h-x>abbr:only-node[title]
 				.h-x>:only-node>img:only-node[alt]
-				.h-x>:only-node>abbr:only-node[title] 
+				.h-x>:only-node>abbr:only-node[title]
 			*/
 
 			if(!uf.properties.name) {
@@ -375,12 +375,12 @@ microformats.Parser.prototype = {
 
 			// implied photo rule
 			/*
-				img.h-x[src] 
-				object.h-x[data] 
+				img.h-x[src]
+				object.h-x[data]
 				.h-x>img[src]:only-of-type
-				.h-x>object[data]:only-of-type 
-				.h-x>:only-child>img[src]:only-of-type 
-				.h-x>:only-child>object[data]:only-of-type 
+				.h-x>object[data]:only-of-type
+				.h-x>:only-child>img[src]:only-of-type
+				.h-x>:only-child>object[data]:only-of-type
 			*/
 			if(!uf.properties.photo) {
 				value = getPhotoAttr(dom, node);
@@ -442,14 +442,14 @@ microformats.Parser.prototype = {
 			i,
 			x,
 			y,
-			z, 
+			z,
 			child;
 
 		y = 0;
 		z = node.children.length;
 		while(y < z) {
 			child = node.children[y];
-	
+
 			// get uf classes for this single element
 			var classes = context.getUfClassNames(dom, child, ufName);
 
@@ -457,7 +457,7 @@ microformats.Parser.prototype = {
 			if(classes.root.length > 0 && classes.properties.length > 0) {
 				// create object with type, property and value
 				rootItem = context.createUfObject(
-					classes.root, 
+					classes.root,
 					this.text.parse(dom, child, this.options.textFormat)
 				);
 
@@ -482,7 +482,7 @@ microformats.Parser.prototype = {
 
 			// a property which is NOT a microformat and has not been use for a given root element
 			if(classes.root.length === 0 && classes.properties.length > 0) {
-				
+
 				x = 0;
 				i = classes.properties.length;
 				while(x < i) {
@@ -490,11 +490,11 @@ microformats.Parser.prototype = {
 					value = context.getValue(dom, child, classes.properties[x], out);
 					propertyName = context.removePropPrefix(classes.properties[x]);
 
-					// if the value is not empty 
+					// if the value is not empty
 					// and we have not added this value into a property with the same name already
 					if(value !== '' && !context.hasRootID(dom, child, rootID, propertyName)) {
 					//if(value !== '') {
-						// add the property as a an array of properties 
+						// add the property as a an array of properties
 						if(out.properties[propertyName]) {
 							out.properties[propertyName].push(value);
 						} else {
@@ -671,7 +671,7 @@ microformats.Parser.prototype = {
 				}
 				return this.dates.parseAmPmTime(out);
 			} else {
-				// returns a date - uf profile 
+				// returns a date - uf profile
 				if(out.indexOf(' ') > 0){
 					format = 'HTML5'
 				}
@@ -757,8 +757,8 @@ microformats.Parser.prototype = {
 	},
 
 
-	// returns a single string of the 'title' attr from all 
-	// the child nodes with the class 'value-title' 
+	// returns a single string of the 'title' attr from all
+	// the child nodes with the class 'value-title'
 	getValueTitle: function(dom, node) {
 		var out = [],
 			items,
@@ -767,7 +767,7 @@ microformats.Parser.prototype = {
 
 		items = this.domUtils.getNodesByAttributeValue(dom, node, 'class', 'value-title');
 		x = 0;
-		i = items.length;		
+		i = items.length;
 		while(x < i) {
 			if(this.domUtils.hasAttribute(dom, items[x], 'title')) {
 				out.push(this.domUtils.getAttribute(dom, items[x], 'title'));
@@ -850,7 +850,7 @@ microformats.Parser.prototype = {
 
 							if(key === item) {
 								if(prop.uf) {
-									// loop all the classList make sure 
+									// loop all the classList make sure
 									//   1. this property is a root
 									//   2. that there is not already a equivalent v2 property ie url and u-url on the same element
 									y = 0;
@@ -924,11 +924,11 @@ microformats.Parser.prototype = {
 			x;
 
 		out = this.createUfObject(map.name);
-		hasSecondRoot = false;	
+		hasSecondRoot = false;
 
 		// loop the classList to see if there is a second root
 		x = 0;
-		i = classList.length;	
+		i = classList.length;
 		while(x < i) {
 			var item = this.utils.trim(classList[x]);
 			for(var key in this.maps) {
@@ -1038,7 +1038,7 @@ microformats.Parser.prototype = {
 
 
 		// get all elements that have a rel attribute
-		fromChildren = (fromChildren) ? fromChildren : false; 
+		fromChildren = (fromChildren) ? fromChildren : false;
 		if(fromChildren) {
 			arr = this.domUtils.getNodesByAttribute(dom, rootNode, 'rel');
 		} else {
@@ -1163,7 +1163,7 @@ microformats.Parser.prototype = {
 	},
 
 
-	// add a attribute to all the child microformats roots  
+	// add a attribute to all the child microformats roots
 	markIncludeChildren: function(dom, rootNode) {
 		var arr,
 			x,
@@ -1269,7 +1269,7 @@ microformats.getCounts = function(options) {
 if (typeof exports !== 'undefined') {
 	exports.microformats = microformats;
 }
-	
+
 
 
 
@@ -1283,7 +1283,7 @@ if (typeof exports !== 'undefined') {
    Utilities
    Copyright (C) 2010 - 2013 Glenn Jones. All Rights Reserved.
    MIT License: https://raw.github.com/glennjones/microformat-shiv/master/license.txt
-   
+
    */
 
 microformats.parser.utils = {
@@ -1328,7 +1328,7 @@ microformats.parser.utils = {
     },
 
 
-    // simple function to find out if a object has any properties. 
+    // simple function to find out if a object has any properties.
     hasProperties: function( obj ) {
         var key;
         for(key in obj) {
@@ -1349,7 +1349,7 @@ microformats.parser.utils = {
    DOM Utilities
    Copyright (C) 2010 - 2013 Glenn Jones. All Rights Reserved.
    MIT License: https://raw.github.com/glennjones/microformat-shiv/master/license.txt
-   
+
    */
 
 
@@ -1364,7 +1364,7 @@ microformats.parser.domUtils = {
 	hasAttribute: function(dom, node, attributeName) {
 		return (node.attributes[attributeName]) ? true : false;
 	},
-	
+
 
 	// returns the string value of an attribute
 	getAttribute: function(dom, node, attributeName) {
@@ -1506,7 +1506,7 @@ microformats.parser.domUtils = {
 
 
 
-	// return a node if it is the only descendant of a type ie CSS :only-of-type 
+	// return a node if it is the only descendant of a type ie CSS :only-of-type
 	isOnlySingleDescendantOfType: function(dom, rootNode, tagNames) {
 		var i = rootNode.children.length,
 			count = 0,
@@ -1555,7 +1555,7 @@ microformats.parser.domUtils = {
 	},
 
 
-	// simple dom node cloning function 
+	// simple dom node cloning function
 	clone: function(dom, node) {
 		var newNode = node.cloneNode(true);
 		newNode.removeAttribute('id');
@@ -1582,7 +1582,7 @@ microformats.parser.domUtils = {
 	}
 
 
-};   
+};
 
 
 
@@ -1634,7 +1634,7 @@ microformats.parser.domUtils = {
 
     // Mess with DOMParser.prototype (less than optimal...) if one of the above worked
     // Assume can write to the prototype, if not, make this a stand alone function
-    if (DOMParser.prototype && (htmlElInnerHTML || textXML)) { 
+    if (DOMParser.prototype && (htmlElInnerHTML || textXML)) {
         DOMParser_proto = DOMParser.prototype;
         real_parseFromString = DOMParser_proto.parseFromString;
 
@@ -1657,7 +1657,7 @@ microformats.parser.domUtils = {
                     // Make sure markup is wrapped in HTML tags
                     // Should probably allow for a DOCTYPE
                     if (!(/^<html.*html>$/i.test(markup))) {
-                        markup = '<html>' + markup + '<\/html>'; 
+                        markup = '<html>' + markup + '<\/html>';
                     }
                     doc = (new DOMParser).parseFromString(markup, 'text/xml');
                     doc_el = doc.documentElement;
@@ -1705,7 +1705,7 @@ function ISODate() {
     this.format = 'uf'; // uf or W3C or RFC3339 or HTML5
     this.setFormatSep();
 
-    // optional should be full iso date/time string 
+    // optional should be full iso date/time string
     if(arguments[0]) {
         this.parse(arguments[0]);
     }
@@ -1731,7 +1731,7 @@ ISODate.prototype = {
             datePart = parts[0];
             timePart = parts[1];
 
-            // zulu UTC                 
+            // zulu UTC
             if(timePart.indexOf( 'Z' ) > -1) {
                 this.z = true;
             }
@@ -1893,7 +1893,7 @@ ISODate.prototype = {
                 out += (iso.tM > -1 && iso.tM < 61) ? this.tsep + iso.tM : this.tsep + '00';
                 out += (iso.tS > -1 && iso.tS < 61) ? this.tsep + iso.tS : this.tsep + '00';
                 out += (iso.tD > -1) ? '.' + iso.tD : '';
-                // time zone offset 
+                // time zone offset
                 if(iso.z) {
                     out += 'Z';
                 } else {
@@ -2004,20 +2004,20 @@ microformats.parser.dates = {
 
 
     // is str a time or timezone
-    // ie HH-MM-SS or z+-HH-MM-SS 08:43 | 15:23:00:0567 | 10:34pm | 10:34 p.m. | +01:00:00 | -02:00 | z15:00 
+    // ie HH-MM-SS or z+-HH-MM-SS 08:43 | 15:23:00:0567 | 10:34pm | 10:34 p.m. | +01:00:00 | -02:00 | z15:00
     isTime: function(str) {
         if(this.utils.isString(str)){
             str = str.toLowerCase();
             str = this.utils.trim( str );
             // start with timezone char
-            if( str.match(':') 
-                && ( this.utils.startWith(str, 'z') 
-                    || this.utils.startWith(str, '-') 
+            if( str.match(':')
+                && ( this.utils.startWith(str, 'z')
+                    || this.utils.startWith(str, '-')
                     || this.utils.startWith(str, '+') )) {
                 return true;
             }
             // has ante meridiem or post meridiem
-            if( str.match(/^[0-9]/) && 
+            if( str.match(/^[0-9]/) &&
                 ( this.hasAM(str) || this.hasPM(str) )) {
                 return true;
             }
@@ -2092,7 +2092,7 @@ microformats.parser.dates = {
     },
 
 
-    // passed an array of date/time string fragments it creates an iso 
+    // passed an array of date/time string fragments it creates an iso
     // datetime string using microformat rules for value and value-title
     concatFragments: function (arr) {
         var out = null,
@@ -2111,7 +2111,7 @@ microformats.parser.dates = {
             // if it looks like a date
             if(value.charAt(4) === '-') {
                 date = value;
-                // if it looks like a timezone    
+                // if it looks like a timezone
             } else if((value.charAt(0) === '-') || (value.charAt(0) === '+') || (value === 'Z')) {
                 if(value.length === 2) {
                     offset = value[0] + '0' + value[1];
@@ -2119,7 +2119,7 @@ microformats.parser.dates = {
                     offset = value;
                 }
             } else {
-                // else if could be a time 
+                // else if could be a time
                 time = this.parseAmPmTime(value);
             }
         }
@@ -2142,12 +2142,12 @@ microformats.parser.dates = {
 
 
 /*
-    InnerText Parser 
+    InnerText Parser
     extracts plain text from DOM nodes
     Copyright (C) 2010 - 2013 Glenn Jones. All Rights Reserved.
     MIT License: https://raw.github.com/glennjones/microformat-shiv/master/license.txt
 
-    The text parser works like textContent but with five additional parsing rules 
+    The text parser works like textContent but with five additional parsing rules
     * It excluded the content from tag in the "excludeTags" list ie noframes script etc
     * It adds a single space behind the text string of any node considered block level
     * It removes all line return/feeds and tabs
@@ -2161,18 +2161,18 @@ microformats.parser.dates = {
 function Text(){
     this.textFormat = 'normalised'; // normalised or whitespace
     this.blockLevelTags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'hr', 'pre', 'table',
-        'address', 'article', 'aside', 'blockquote', 'caption', 'col', 'colgroup', 'dd', 'div', 
-        'dt', 'dir', 'fieldset', 'figcaption', 'figure', 'footer', 'form',  'header', 'hgroup', 'hr', 
-        'li', 'map', 'menu', 'nav', 'optgroup', 'option', 'section', 'tbody', 'testarea', 
+        'address', 'article', 'aside', 'blockquote', 'caption', 'col', 'colgroup', 'dd', 'div',
+        'dt', 'dir', 'fieldset', 'figcaption', 'figure', 'footer', 'form',  'header', 'hgroup', 'hr',
+        'li', 'map', 'menu', 'nav', 'optgroup', 'option', 'section', 'tbody', 'testarea',
         'tfoot', 'th', 'thead', 'tr', 'td', 'ul', 'ol', 'dl', 'details'];
 
     this.excludeTags = ['noframe', 'noscript', 'script', 'style', 'frames', 'frameset'];
-} 
+}
 
 
 Text.prototype = {
 
-    // gets the text from dom node 
+    // gets the text from dom node
     parse: function(dom, node, textFormat){
         var out;
 
@@ -2189,7 +2189,7 @@ Text.prototype = {
                 return undefined;
             }
         }else{
-           return dom(node).text(); 
+           return dom(node).text();
         }
     },
 
@@ -2206,7 +2206,7 @@ Text.prototype = {
 
         // if node is a text node get its text
         if(node.nodeType && node.nodeType === 3){
-            out += this.getElementText( node ); 
+            out += this.getElementText( node );
         }
 
         // get the text of the child nodes
@@ -2222,10 +2222,10 @@ Text.prototype = {
         // if its a block level tag add an additional space at the end
         if(this.blockLevelTags.indexOf( node.name ) !== -1){
             out += ' ';
-        } 
-        
+        }
+
         return (out === '')? undefined : out ;
-    },    
+    },
 
 
     // get the text from a node in the dom
@@ -2260,14 +2260,14 @@ microformats.parser.text = {};
 microformats.parser.text.parse = function(dom, node, textFormat){
     var text = new Text();
     return text.parse(dom, node, textFormat);
-} 
+}
 
 
 
 /*
     Copyright (C) 2010 - 2013 Glenn Jones. All Rights Reserved.
     MIT License: https://raw.github.com/glennjones/microformat-shiv/master/license.txt
-    
+
   */
 microformats.parser.maps['h-adr'] = {
 	root: 'adr',
@@ -2288,7 +2288,7 @@ microformats.parser.maps['h-adr'] = {
 /*
     Copyright (C) 2010 - 2013 Glenn Jones. All Rights Reserved.
     MIT License: https://raw.github.com/glennjones/microformat-shiv/master/license.txt
-    
+
   */
 microformats.parser.maps['h-card'] =  {
 	root: 'vcard',
@@ -2315,7 +2315,7 @@ microformats.parser.maps['h-card'] =  {
 			'map': 'u-email'
 		},
 		'geo': {
-			'map': 'p-geo', 
+			'map': 'p-geo',
 			'uf': ['h-geo']
 		},
 		'key': {},
@@ -2362,7 +2362,7 @@ microformats.parser.maps['h-card'] =  {
 /*
     Copyright (C) 2010 - 2013 Glenn Jones. All Rights Reserved.
     MIT License: https://raw.github.com/glennjones/microformat-shiv/master/license.txt
-    
+
   */
 microformats.parser.maps['h-entry'] = {
 	root: 'hentry',
@@ -2383,7 +2383,7 @@ microformats.parser.maps['h-entry'] = {
 		'updated': {
 			'map': 'dt-updated'
 		},
-		'author': { 
+		'author': {
 			'uf': ['h-card']
 		},
 		'category': {
@@ -2391,7 +2391,7 @@ microformats.parser.maps['h-entry'] = {
 			'relAlt': ['tag']
 		},
 		'geo': {
-			'map': 'p-geo', 
+			'map': 'p-geo',
 			'uf': ['h-geo']
 		},
 		'latitude': {},
@@ -2407,9 +2407,9 @@ microformats.parser.maps['h-entry'] = {
 /*
     Copyright (C) 2010 - 2013 Glenn Jones. All Rights Reserved.
     MIT License: https://raw.github.com/glennjones/microformat-shiv/master/license.txt
-    
+
   */
-microformats.parser.maps['h-event'] = {  
+microformats.parser.maps['h-event'] = {
 	root: 'vevent',
 	name: 'h-event',
 	properties: {
@@ -2455,7 +2455,7 @@ microformats.parser.maps['h-event'] = {
 			'map': 'u-attach'
 		},
 		'status': {},
-		'rdate': {}, 
+		'rdate': {},
 		'rrule': {}
 	}
 };
@@ -2464,7 +2464,7 @@ microformats.parser.maps['h-event'] = {
 /*
     Copyright (C) 2010 - 2013 Glenn Jones. All Rights Reserved.
     MIT License: https://raw.github.com/glennjones/microformat-shiv/master/license.txt
-    
+
   */
 microformats.parser.maps['h-geo'] = {
 	root: 'geo',
@@ -2479,7 +2479,7 @@ microformats.parser.maps['h-geo'] = {
 /*
     Copyright (C) 2010 - 2013 Glenn Jones. All Rights Reserved.
     MIT License: https://raw.github.com/glennjones/microformat-shiv/master/license.txt
-    
+
   */
 microformats.parser.maps['h-item'] = {
 	root: 'item',
@@ -2502,7 +2502,7 @@ microformats.parser.maps['h-item'] = {
 /*
     Copyright (C) 2010 - 2013 Glenn Jones. All Rights Reserved.
     MIT License: https://raw.github.com/glennjones/microformat-shiv/master/license.txt
-    
+
   */
 microformats.parser.maps['h-listing'] = {
   root: 'hlisting',
@@ -2536,7 +2536,7 @@ microformats.parser.maps['h-listing'] = {
 /*
     Copyright (C) 2010 - 2013 Glenn Jones. All Rights Reserved.
     MIT License: https://raw.github.com/glennjones/microformat-shiv/master/license.txt
-    
+
   */
 microformats.parser.maps['h-news'] = {
   root: 'hnews',
@@ -2560,7 +2560,7 @@ microformats.parser.maps['h-news'] = {
       'map': 'u-item-license'
     },
     'principles': {
-      'map': 'u-principles', 
+      'map': 'u-principles',
       'relAlt': ['principles']
     }
   }
@@ -2571,7 +2571,7 @@ microformats.parser.maps['h-news'] = {
 /*
     Copyright (C) 2010 - 2013 Glenn Jones. All Rights Reserved.
     MIT License: https://raw.github.com/glennjones/microformat-shiv/master/license.txt
-    
+
   */
 microformats.parser.maps['h-org'] = {
     root: 'h-x-org',  // drop this from v1 as it causes issue with fn org hcard pattern
@@ -2587,7 +2587,7 @@ microformats.parser.maps['h-org'] = {
 /*
     Copyright (C) 2010 - 2013 Glenn Jones. All Rights Reserved.
     MIT License: https://raw.github.com/glennjones/microformat-shiv/master/license.txt
-    
+
   */
 microformats.parser.maps['h-product'] = {
   root: 'hproduct',
@@ -2629,7 +2629,7 @@ microformats.parser.maps['h-product'] = {
 /*
     Copyright (C) 2010 - 2013 Glenn Jones. All Rights Reserved.
     MIT License: https://raw.github.com/glennjones/microformat-shiv/master/license.txt
-    
+
   */
 microformats.parser.maps['h-recipe'] = {
   root: 'hrecipe',
@@ -2668,7 +2668,7 @@ microformats.parser.maps['h-recipe'] = {
 /*
     Copyright (C) 2010 - 2013 Glenn Jones. All Rights Reserved.
     MIT License: https://raw.github.com/glennjones/microformat-shiv/master/license.txt
-    
+
   */
 microformats.parser.maps['h-resume'] = {
 	root: 'hresume',
@@ -2695,7 +2695,7 @@ microformats.parser.maps['h-resume'] = {
 /*
     Copyright (C) 2010 - 2013 Glenn Jones. All Rights Reserved.
     MIT License: https://raw.github.com/glennjones/microformat-shiv/master/license.txt
-    
+
   */
 microformats.parser.maps['h-review-aggregate'] = {
     root: 'hreview-aggregate',
@@ -2711,7 +2711,7 @@ microformats.parser.maps['h-review-aggregate'] = {
         'rating': {},
         'average': {},
         'best': {},
-        'worst': {},       
+        'worst': {},
         'count': {},
         'votes': {},
         'category': {
@@ -2730,7 +2730,7 @@ microformats.parser.maps['h-review-aggregate'] = {
 /*
     Copyright (C) 2010 - 2013 Glenn Jones. All Rights Reserved.
     MIT License: https://raw.github.com/glennjones/microformat-shiv/master/license.txt
-    
+
   */
 microformats.parser.maps['h-review'] = {
     root: 'hreview',
@@ -2770,31 +2770,31 @@ microformats.parser.maps['h-review'] = {
 /*
     Copyright (C) 2010 - 2013 Glenn Jones. All Rights Reserved.
     MIT License: https://raw.github.com/glennjones/microformat-shiv/master/license.txt
-    
+
   */
 microformats.parser.rels = {
 	// xfn
 	//        ['link', 'a or area'] yes, no or external
-	'friend': [ 'yes','external'], 
-	'acquaintance': [ 'yes','external'],  
-	'contact': [ 'yes','external'], 
-	'met': [ 'yes','external'], 
-	'co-worker': [ 'yes','external'],  
-	'colleague': [ 'yes','external'], 
-	'co-resident': [ 'yes','external'],  
-	'neighbor': [ 'yes','external'], 
-	'child': [ 'yes','external'],  
-	'parent': [ 'yes','external'],  
-	'sibling': [ 'yes','external'],  
-	'spouse': [ 'yes','external'],  
-	'kin': [ 'yes','external'], 
-	'muse': [ 'yes','external'],  
-	'crush': [ 'yes','external'],  
-	'date': [ 'yes','external'],  
-	'sweetheart': [ 'yes','external'], 
-	'me': [ 'yes','external'], 
+	'friend': [ 'yes','external'],
+	'acquaintance': [ 'yes','external'],
+	'contact': [ 'yes','external'],
+	'met': [ 'yes','external'],
+	'co-worker': [ 'yes','external'],
+	'colleague': [ 'yes','external'],
+	'co-resident': [ 'yes','external'],
+	'neighbor': [ 'yes','external'],
+	'child': [ 'yes','external'],
+	'parent': [ 'yes','external'],
+	'sibling': [ 'yes','external'],
+	'spouse': [ 'yes','external'],
+	'kin': [ 'yes','external'],
+	'muse': [ 'yes','external'],
+	'crush': [ 'yes','external'],
+	'date': [ 'yes','external'],
+	'sweetheart': [ 'yes','external'],
+	'me': [ 'yes','external'],
 
-	// other rel= 
+	// other rel=
 	'license': [ 'yes','yes'],
 	'nofollow': [ 'no','external'],
 	'tag': [ 'no','yes'],
@@ -2809,8 +2809,3 @@ microformats.parser.rels = {
 	'principles': [ 'no','external']
 
 };
-
-
-
-
-
