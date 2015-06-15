@@ -351,17 +351,21 @@ class ShootPanel extends React.Component {
           <button onClick={this.addVisible.bind(this)}>Add Visible</button>
         </div>
       </div>
-      <div className="add-row">
-        <div className="button-row">
-          <button onClick={this.addText.bind(this)}>Add Text Selection</button>
-        </div>
-      </div>
       <div className="add-row cancel-row">
         <div className="button-row">
           <button onClick={this.addCancel.bind(this)}>Cancel</button>
         </div>
       </div>
     </div>);
+
+    // The button for adding a text selection is currently commented out due to bug #515
+/*
+<div className="add-row">
+  <div className="button-row">
+    <button onClick={this.addText.bind(this)}>Add Text Selection</button>
+  </div>
+</div>
+*/
   }
 
   addAuto() {

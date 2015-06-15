@@ -885,10 +885,14 @@ function captureSelection(makeNewSelection) {
   }
 }
 
+// The following code which checks for an initial text selection
+// is commented out due to issue #515
+/*
 if (window.getSelection().rangeCount && ! window.getSelection().isCollapsed) {
   initialSelection = true;
   watchFunction(captureSelection)(false);
 }
+*/
 
 let textSelectButton;
 
@@ -923,6 +927,9 @@ window.addEventListener("mouseup", watchFunction(function (event) {
     return;
   }
 
+  // The following code for creating the + button when text is selected
+  // is commented out due to issue #515
+/*
   let button = document.createElement("div");
   button.className = "pageshot-textbutton";
   button.setAttribute("title", "Add this selection as a clip");
@@ -945,6 +952,8 @@ window.addEventListener("mouseup", watchFunction(function (event) {
   button.style.left = rect.left + document.documentElement.scrollLeft - bodyRect.left + "px";
   document.body.appendChild(button);
   textSelectButton = button;
+*/
+
 }), false);
 
 
