@@ -14,7 +14,6 @@ let err = require("./error-utils.js"),
 // For error messages:
 let FILENAME = "shoot-panel.js";
 let isAdding = {};
-let isEditing = {};
 let hasDeleted = {};
 let lastData;
 let debugDisplayTextSource = false;
@@ -170,13 +169,12 @@ class ShootPanel extends React.Component {
       clipUrl = this.props.backend + "/clip/" + this.props.shot.id + "/" + this.props.activeClipName;
     }
 
-    if (isEditing[this.props.shot.id] === undefined) {
-      self.port.emit("setSize", "small");
+    if (!this.props.isEditing) {
       let onClickEdit = (e) => {
-        isEditing[this.props.shot.id] = true;
         e.preventDefault();
-        self.port.emit("setSize", "large");
-        this.setState({editing: true});
+        self.port.emit("setEditing", true);
+        lastData.isEditing = true;
+        renderData();
       };
       return <SimplifiedPanel
         clipUrl={ clipUrl }
@@ -386,9 +384,7 @@ class ShootPanel extends React.Component {
 
   addCancel() {
     delete isAdding[this.props.shot.id];
-    setTimeout(function () {
-      renderData(lastData);
-    });
+    setTimeout(renderData);
     if (! this.props.shot.clipNames().length) {
       self.port.emit("hide");
     }
@@ -485,7 +481,8 @@ function renderData(data) {
   // https://github.com/mozilla-services/pageshot/issues/436
   document.body.innerHTML = "";
   React.render(
-    React.createElement(ShootPanel, {activeClipName: data.activeClipName, shot: myShot}), document.body);
+    <ShootPanel activeClipName={ data.activeClipName } shot={ myShot } isEditing={ data.isEditing } />,
+    document.body);
 }
 
 self.port.on("recallShot", err.watchFunction(function (data) {
