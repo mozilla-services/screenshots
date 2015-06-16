@@ -72,9 +72,16 @@ function displayClip(clip) {
     pos.bottom = rect.top + rect.height + loc.bottomRightOffset.y;
     pos.right = rect.left + rect.width + loc.bottomRightOffset.x;
   }
+  let bodyRect = document.body.getBoundingClientRect();
+  console.log("adjusting", pos, bodyRect);
+  pos.top -= bodyRect.top;
+  pos.bottom -= bodyRect.top;
+  pos.left -= bodyRect.left;
+  // FIXME: this doesn't seem to do the right thing, but I don't know why:
+  //pos.right -= bodyRect.left;
   createHighlight(pos);
   window.parent.postMessage({
-    type: "scrollTo",
+    type: "scrollToMiddle",
     position: pos
   }, location.origin);
 }

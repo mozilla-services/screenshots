@@ -1,7 +1,7 @@
 const self = require("sdk/self");
 const { ToggleButton } = require('sdk/ui/button/toggle');
 const { Panel } = require("sdk/panel");
-const { watchFunction, watchWorker } = require("./errors");
+const { watchFunction, watchWorker, unhandled } = require("./errors");
 const ss = require("sdk/simple-storage");
 const clipboard = require("sdk/clipboard");
 const { AbstractShot } = require("./shared/shot");
@@ -69,7 +69,23 @@ recallPanel.port.on("viewShot", watchFunction(function (id) {
   require("sdk/request").Request({
     url: url,
     onComplete: watchFunction(function (response) {
+      if (response.status === 404) {
+        let origUrl = getOrigUrlForId(id) || backend + id;
+        origUrl = origUrl.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+        unhandled({
+          title: "Shot not found",
+          message: "The shot has been lost",
+          helpHtml: `
+          We are sorry, the shot has been lost from the server.
+          Go to <a target="_blank" href="${origUrl}">${origUrl}</a> to see the original page.
+          `
+        });
+        return;
+      }
       let json = response.json;
+      if (! json) {
+        console.error("No/null JSON received from server at:", url, "status:", response.status);
+      }
       console.log("got viewShot data", Object.keys(json));
       console.log("clips:", Object.keys(json.clips));
       let clipId = Object.keys(json.clips)[0];
@@ -99,6 +115,15 @@ function sendIndex() {
     backend: backend,
     shots: ss.storage.recentShots || []
   });
+}
+
+function getOrigUrlForId(id) {
+  for (let item of (ss.storage.recentShots || [])) {
+    if (item.id === id) {
+      return item.shot.url;
+    }
+  }
+  return null;
 }
 
 let lastShot;
