@@ -1,12 +1,12 @@
 /*jshint node:true */
 
-console.log("Addon transformation complete.");
+console.info("Addon transformation complete.");
 
 var firefox;
 
 process.on('SIGTERM', function () {
   if (firefox) {
-    console.log("sending TERM", firefox);
+    console.info("sending TERM", firefox);
     firefox.kill();
   }
 });

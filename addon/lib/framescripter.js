@@ -27,7 +27,7 @@ function logDebug() {
       args.push(arguments[i]);
     }
   }
-  console.log.apply(console, args);
+  console.info.apply(console, args);
 }
 
 /** Gets the XUL browser object for a given tab (XUL tab or SDK tab) */

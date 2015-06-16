@@ -3,10 +3,10 @@
 /* globals console */
 
 /** Throws an error if the condition isn't true.  Any extra arguments after the condition
-    are used as console.log() arguments. */
+    are used as console.error() arguments. */
 function assert(condition) {
   if (! condition) {
-    console.log.apply(console, ["Failed assertion:"].concat(Array.prototype.slice.call(arguments, 1)));
+    console.error.apply(console, ["Failed assertion:"].concat(Array.prototype.slice.call(arguments, 1)));
     if (arguments.length > 1) {
       throw new Error("Failed assertion: " + Array.prototype.slice.call(arguments, 1).join(" "));
     } else {
