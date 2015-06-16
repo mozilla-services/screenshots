@@ -37,6 +37,13 @@ let conf = convict({
       default: "localhost:5432",
       env: "DB_HOST",
       arg: "db-host"
+    },
+    dbname: {
+      doc: "The Postgres database",
+      format: String,
+      default: null,
+      env: "DB_NAME",
+      arg: "dn-name"
     }
   },
   productName: {
