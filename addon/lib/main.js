@@ -17,8 +17,6 @@ const { ToggleButton } = require('sdk/ui/button/toggle');
 const panels = require("sdk/panel");
 const { watchFunction, watchWorker } = require("./errors");
 
-let isEditing = new Map();
-
 // FIXME: this button should somehow keep track of whether there is an active shot associated with this page
 var shootButton = ToggleButton({
   id: "pageshot-shooter",
@@ -104,7 +102,7 @@ const PanelContext = {
     shotContext.isShowing();
     shootButton.checked = true;
     this.updateShot(this._activeContext, this._activeContext.shot.asJson());
-    if (isEditing.get(this._activeContext.shot.id)) {
+    if (this._activeContext.isEditing) {
       shootPanel.resize(400, 525);
     } else {
       shootPanel.resize(400, 250);
@@ -158,14 +156,14 @@ const PanelContext = {
         id: shotContext.shot.id,
         shot: shotContext.shot.asJson(),
         activeClipName: shotContext.activeClipName,
-        isEditing: isEditing.get(shotContext.shot.id)
+        isEditing: shotContext.isEditing
       }
     );
   },
 
   /** Called when the panel is switching from simple to edit view or vice versa */
   setEditing: function (editing) {
-    isEditing.set(this._activeContext.shot.id, editing);
+    this._activeContext.isEditing = editing;
     if (editing) {
       shootPanel.resize(400, 525);
     } else {
