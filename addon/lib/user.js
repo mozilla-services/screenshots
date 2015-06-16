@@ -1,4 +1,4 @@
-const { Cc, Ci, Cu } = require('chrome');
+const { Cu } = require('chrome');
 const ss = require("sdk/simple-storage");
 const { uuid } = require('sdk/util/uuid');
 const { Request } = require("sdk/request");
@@ -209,12 +209,6 @@ exports.OAuthHandler = class OAuthHandler {
         token: response.access_token
       }));
       return response;
-    });
-  }
-
-  logIn() {
-    return this.getOAuthParams().then(params => {
-      return this.logInWithParams(params);
     });
   }
 };
