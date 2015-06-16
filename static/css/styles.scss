@@ -1,6 +1,6 @@
-
 $primary-color: #404040;
-$text-color: white;
+$text-color: #f2f2f2;
+$shadow-color: rgba(0, 0, 0, 0.5);
 
 
 html {
@@ -13,6 +13,7 @@ body {
   margin: 0;
   font-family: sans-serif;
   background-color: $primary-color;
+  background-image: url("/static/img/bgtexture.png");
   color: $text-color;
   box-sizing: border-box;
 }
@@ -29,6 +30,7 @@ body {
   border: none;
   margin-top: 500px;
   margin-bottom: 4em;
+  box-shadow: 0 -5px 5px $shadow-color;
 }
 
 #toolbar {
@@ -43,23 +45,26 @@ body {
   color: $text-color;
   text-align: left;
   background-color: $primary-color;
+  background-image: url("/static/img/bgtexture.png");
 }
 
 .navigate-toolbar {
   position: fixed;
   top: 0px;
   right: 0px;
-  padding: 0.5em;
-  height: 35px;
+  padding: 14px;
+  height: 23px;
   background-color: $primary-color;
+  background-image: url("/static/img/bgtexture.png");
   width: 160px;
   text-align: right;
+  font-size: 12px;
 }
 
 .clip-count {
   position: relative;
-  top: -0.25em;
-  left: -0.5em;
+  bottom: 7px;
+  right: 15px;
 }
 
 .instructions {
@@ -74,7 +79,7 @@ a, a:visited {
 }
 
 a:hover {
-  text-decoration: underline;
+  //text-decoration: underline;
 }
 
 #info {
@@ -140,14 +145,14 @@ a.sitelink, a.sitelink:visited {
 .snippet-container a img {
   max-width: 85%;
   border: 1px solid #aaa;
-  box-shadow: 5px 3px 3px #999;
+  box-shadow: 0 2px 5px $shadow-color;
 }
 
 .text-snippet {
   background-color: white;
   color: black;
   border: 1px solid #aaa;
-  box-shadow: 5px 3px 3px #999;
+  box-shadow: 0 2px 5px $shadow-color;
 }
 
 .text-snippet a {
@@ -156,6 +161,12 @@ a.sitelink, a.sitelink:visited {
 
 .clip-anchor-link {
   margin-bottom: 4em;
+  font-size: 13px;
+  color: #959595;
+}
+
+.clip-anchor-link:hover {
+  color: $text-color;
 }
 
 .selection {
@@ -183,9 +194,30 @@ a.sitelink, a.sitelink:visited {
   left: 2px;
 }
 
+.shot-title {
+  padding-top: 2px;
+}
+
+.shot-subtitle {
+  padding-top: 3px;
+  font-size: 12px;
+  color: #959595;
+}
+
+.shot-subtitle .subheading-link {
+  font-size: 12px;
+}
+
 #main-title {
   margin-top: 2.5em;
+  font-size: 24px;
+  font-weight: 300;
   color: $text-color;
+}
+
+a.subheading-link {
+  font-size: 13px;
+  color: #0095dd;
 }
 
 .metadata {
@@ -216,7 +248,7 @@ a.sitelink, a.sitelink:visited {
 }
 
 .comment-holder {
-  line-height: 36px;
+  //line-height: 36px;
   display: inline-block;
   position: relative;
   top: -3.25em;
@@ -228,7 +260,8 @@ a.sitelink, a.sitelink:visited {
 }
 
 .comment-holder div {
-  margin: 1.5em;
+  margin: 0;
+  padding: 15px 20px 15px 20px;
 }
 
 .comment-user {
@@ -243,6 +276,8 @@ a.sitelink, a.sitelink:visited {
 
 .comment-text {
   display: inline-block;
+  font-size: 13px;
+  line-height: 18px;
 }
 
 #use-pageshot-to-create {
@@ -254,6 +289,7 @@ a.sitelink, a.sitelink:visited {
   background-color: $text-color;
   color: $primary-color;
   z-index: 2000;
+  box-shadow: 0 -2px 5px $shadow-color;
 }
 
 #use-pageshot-to-create a {
@@ -267,7 +303,12 @@ a.sitelink, a.sitelink:visited {
   cursor: pointer;
 }
 
+.navigate-clips {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
 /* When the clip navigation buttons are disabled: */
 .navigate-clips.disabled {
   opacity: 0.5;
+  background-color: inherit;
 }

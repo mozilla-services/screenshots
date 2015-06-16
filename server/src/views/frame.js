@@ -1,4 +1,4 @@
-/* globals window, document, location */
+/* globals window, document */
 
 const React = require("react");
 const { Shell } = require("./shell");
@@ -196,9 +196,9 @@ class Frame extends React.Component {
     let linkTextShort = "";
     if (shot.url) {
       let txt = shot.url;
-      if (txt.length > 50) {
-        txt = txt.slice(0, 50) + '...';
-      }
+      txt = txt.replace(/[a-z]+:\/\//i, "");
+      txt = txt.replace(/\/.*/, "");
+      txt = txt.replace(/^www\./i, "");
       linkTextShort = txt;
     }
 
@@ -217,6 +217,22 @@ class Frame extends React.Component {
       });
     }
 
+    let timeDiff;
+    let seconds = (Date.now() - shot.createdDate) / 1000;
+    if (seconds < 20) {
+      timeDiff = "just now";
+    } else if (seconds < 60) {
+      timeDiff = "1 minute ago";
+    } else if (seconds < 60*60) {
+      timeDiff = `${Math.floor(seconds / 60)} minutes ago`;
+    } else if (seconds < 60*60*24) {
+      timeDiff = `${Math.floor(seconds / (60*60))} hours ago`;
+    } else if (seconds < 60*60*48) {
+      timeDiff = "yesterday";
+    } else {
+      timeDiff = `${Math.floor(seconds / (60*60*24))} days ago`;
+    }
+
     return (
       <body>
         <div id="container">
@@ -227,12 +243,11 @@ class Frame extends React.Component {
           <script src={ this.props.staticLink("js/parent-helper.js") } />
         { favicon }
         <div id="toolbar">
-          <a className="main-link" href={ shot.url }>
-            { shot.title }
-            &nbsp;&mdash;&nbsp;
-            { linkTextShort }
-            <img src={ this.props.staticLink("img/clipboard-8-xl.png") } />
-          </a>
+          <div className="shot-title">{ shot.title }</div>
+          <div className="shot-subtitle">
+            <span>source </span><a className="subheading-link" href="{ shot.url }">{ linkTextShort }</a>
+            <span style={{paddingLeft: "15px"}}>saved { timeDiff }</span>
+          </div>
         </div>
         <div className="navigate-toolbar">
           <span className="clip-count">
@@ -243,7 +258,7 @@ class Frame extends React.Component {
         </div>
         <div className="metadata">
           <h1 id="main-title">{ shot.title }</h1>
-          <p><a href={ shot.url }>{ linkTextShort }</a></p>
+          <p><a className="subheading-link" href={ shot.url }>{ linkTextShort }</a></p>
         </div>
         { snippets }
         <iframe width="100%" id="frame" src={ "/content/" +  shot.id } style={ {backgroundColor: "#fff"} } />
