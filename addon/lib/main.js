@@ -17,6 +17,8 @@ const { ToggleButton } = require('sdk/ui/button/toggle');
 const panels = require("sdk/panel");
 const { watchFunction, watchWorker } = require("./errors");
 
+let isEditing = new Map();
+
 // FIXME: this button should somehow keep track of whether there is an active shot associated with this page
 var shootButton = ToggleButton({
   id: "pageshot-shooter",
@@ -102,13 +104,18 @@ const PanelContext = {
     shotContext.isShowing();
     shootButton.checked = true;
     this.updateShot(this._activeContext, this._activeContext.shot.asJson());
+    if (isEditing.get(this._activeContext.shot.id)) {
+      shootPanel.resize(400, 525);
+    } else {
+      shootPanel.resize(400, 250);
+    }
   },
 
   /** Fired whenever the toolbar button is clicked, this activates
       a ShotContext, or creates a new one, or hides the panel */
   onShootButtonClicked: function () {
     /* FIXME: remove, once I'm sure the panel really works right...
-    console.log(
+    console.info(
       "onShootButtonClicked.  activeContext:",
       this._activeContext ? this._activeContext.tabUrl : "none",
       this._activeContext ? this._activeContext.couldBeActive() : "",
@@ -150,19 +157,19 @@ const PanelContext = {
         backend: shotContext.shot.backend,
         id: shotContext.shot.id,
         shot: shotContext.shot.asJson(),
-        activeClipName: shotContext.activeClipName
+        activeClipName: shotContext.activeClipName,
+        isEditing: isEditing.get(shotContext.shot.id)
       }
     );
   },
 
   /** Called when the panel is switching from simple to edit view or vice versa */
-  setSize: function (size) {
-    if (size === "large") {
+  setEditing: function (editing) {
+    isEditing.set(this._activeContext.shot.id, editing);
+    if (editing) {
       shootPanel.resize(400, 525);
-    } else if (size === "small") {
-      shootPanel.resize(400, 250);
     } else {
-      console.warn("setSize called with unknown size:", size, new Error().stack);
+      shootPanel.resize(400, 250);
     }
   },
 
