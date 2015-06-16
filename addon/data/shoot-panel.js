@@ -99,7 +99,7 @@ class SimplifiedPanel extends React.Component {
     return <div className="container">
       <div className="simplified-instructions">
         <div>
-          We&apos;ve saved a clip of this page and copied the link to your clipboard
+          Copy of page saved:
         </div>
         <a className="simplified-link" href="#" onClick={ this.onClickLink.bind(this) }>
           { stripProtocol(this.props.shot.viewUrl) }
