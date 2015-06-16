@@ -69,21 +69,28 @@ exports.getDeviceInfo = function () {
   return ss.storage.deviceInfo;
 };
 
-exports.updateProfileInfo = function (profile) {
-  if (! profile) {
-    return;
+exports.setDefaultProfileInfo = function (attrs) {
+  if (! attrs) {
+    throw new Error("Missing default profile information");
   }
-  let currentInfo = ss.storage.profileInfo;
-  if (! currentInfo) {
-    currentInfo = ss.storage.profileInfo = {};
-  }
-  let attrs = Object.keys(profile);
-  for (let attr of attrs) {
-    if (! currentInfo[attr] || profile[attr] && currentInfo[attr] != profile[attr]) {
-      currentInfo[attr] = profile[attr];
+  let info = ss.storage.profileInfo || {};
+  for (let attr of Object.keys(attrs)) {
+    // Only update the attribute if the user hasn't already set a value.
+    if (! info[attr]) {
+      info[attr] = profile[attr];
     }
   }
-  ss.storage.profileInfo = currentInfo;
+  ss.storage.profileInfo = info;
+  return info;
+};
+
+exports.updateProfileInfo = function (attrs) {
+  if (! attrs) {
+    throw new Error("Missing profile information");
+  }
+  let info = Object.assign(ss.storage.profileInfo || {}, attrs);
+  ss.storage.profileInfo = info;
+  return info;
 };
 
 exports.getProfileInfo = function () {
@@ -91,6 +98,9 @@ exports.getProfileInfo = function () {
 };
 
 exports.updateLogin = function (backend, info) {
+  if (! info) {
+    throw new Error("Missing updated profile information");
+  }
   let updateUrl = backend + "/api/update";
   return new Promise((resolve, reject) => {
     Request({
@@ -101,8 +111,8 @@ exports.updateLogin = function (backend, info) {
         if (response.status >= 200 && response.status < 300) {
           // Update cached profile info. TODO: Invalidate the cache and fetch
           // the profile from the server instead.
-          exports.updateProfileInfo(info);
-          resolve();
+          let newInfo = exports.updateProfileInfo(info);
+          resolve(newInfo);
         } else {
           reject(response.json);
         }

@@ -29,15 +29,11 @@ function handleOAuthFlow(worker, backend, action) {
     return handler.logInWithParams(params).then(() => {
       return handler.getProfileInfo();
     }).then(profile => {
-      // TODO: Don't clobber profile info if the user has already set a
-      // name or avatar.
-      user.updateProfileInfo({
+      let newProfile = user.setDefaultProfileInfo({
         email: profile.email,
         nickname: profile.display_name,
         avatarurl: profile.avatar
       });
-      // Send the merged profile to the add-on.
-      let newProfile = user.getProfileInfo();
       worker.port.emit("profile", newProfile);
     });
   });
@@ -77,8 +73,7 @@ function resetPageMod(backend) {
 
       worker.port.on("setProfileState", watchFunction(function (profile) {
         let { nickname, avatarurl } = profile;
-        user.updateLogin(backend, { nickname, avatarurl }).then(() => {
-          let newProfile = user.getProfileInfo();
+        user.updateLogin(backend, { nickname, avatarurl }).then(newProfile => {
           worker.port.emit("profile", newProfile);
         }).catch(error => {
           console.error("Error updating profile state", error);
