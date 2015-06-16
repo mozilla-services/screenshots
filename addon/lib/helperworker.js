@@ -15,25 +15,32 @@ var notifications = require("sdk/notifications");
 var { XMLHttpRequest } = require("sdk/net/xhr");
 const { watchFunction, watchWorker } = require("./errors");
 const user = require("./user");
-const errors = require("./shared/errors");
 
 var existing;
 
-function toSuccessResponse(result) {
-  return { ok: true, result };
-}
-
-function toErrorResponse(error) {
-  if (error) {
-    if (error.isAppError) {
-      error = error.output.payload;
-    } else {
-      // Avoid exposing raw errors to content code.
-      console.error("Unwrapped error response", error);
-      error = errors.extInternalError();
-    }
+function handleOAuthFlow(worker, backend, action) {
+  let currentProfile = user.getProfileInfo();
+  if (currentProfile && currentProfile.email) {
+    worker.port.emit("profile", currentProfile);
   }
-  return { ok: false, error };
+  let handler = new user.OAuthHandler(backend);
+  return handler.getOAuthParams().then(defaults => {
+    let params = Object.assign({ action }, defaults);
+    return handler.logInWithParams(params).then(() => {
+      return handler.getProfileInfo();
+    }).then(profile => {
+      // TODO: Don't clobber profile info if the user has already set a
+      // name or avatar.
+      user.updateProfileInfo({
+        email: profile.email,
+        nickname: profile.display_name,
+        avatarurl: profile.avatar
+      });
+      // Send the merged profile to the add-on.
+      let newProfile = user.getProfileInfo();
+      worker.port.emit("profile", newProfile);
+    });
+  });
 }
 
 function resetPageMod(backend) {
@@ -51,60 +58,30 @@ function resetPageMod(backend) {
     onAttach: function (worker) {
       watchWorker(worker);
 
-      worker.port.on("requestAccount", watchFunction(function (info) {
-        let { id, options: { action } } = info;
-
-        let currentProfile = user.getProfileInfo();
-        if (currentProfile && currentProfile.email) {
-          let err = errors.extAlreadySignedIn();
-          worker.port.emit("account", id, toErrorResponse(err));
-          return;
-        }
-
-        if (action != "signup" && action != "signin") {
-          let err = errors.badParams();
-          worker.port.emit("account", id, toErrorResponse(err));
-          return;
-        }
-
-        let handler = new user.OAuthHandler(backend);
-        handler.getOAuthParams().then(defaults => {
-          worker.port.emit("account", id, toSuccessResponse());
-
-          let params = Object.assign({ action }, defaults);
-          return handler.logInWithParams(params).then(response => {
-            return handler.getProfileInfo();
-          }).then(profile => {
-            // TODO: Don't clobber profile info if the user has already set a
-            // name or avatar.
-            user.updateProfileInfo({
-              email: profile.email,
-              nickname: profile.display_name,
-              avatarurl: profile.avatar
-            });
-            worker.port.emit("profileRefresh");
-          }).catch(error => {
-            console.error("Error fetching profile", error);
-          });
-
-        }, error => {
-          worker.port.emit("account", id, toErrorResponse(error));
+      worker.port.on("requestSignUp", watchFunction(function () {
+        handleOAuthFlow(worker, backend, "signup").catch(error => {
+          console.error("Error creating account", error);
         });
       }));
 
-      worker.port.on("requestProfile", watchFunction(function (info) {
-        let { id } = info;
-        let profile = user.getProfileInfo();
-        worker.port.emit("profile", id, toSuccessResponse(profile));
+      worker.port.on("requestSignIn", watchFunction(function () {
+        handleOAuthFlow(worker, backend, "signin").catch(error => {
+          console.error("Error signing in", error);
+        });
       }));
 
-      worker.port.on("requestProfileUpdate", watchFunction(function (info) {
-        let { id, options: { nickname, avatarurl } } = info;
+      worker.port.on("requestProfile", watchFunction(function () {
+        let profile = user.getProfileInfo();
+        worker.port.emit("profile", profile);
+      }));
+
+      worker.port.on("setProfileState", watchFunction(function (profile) {
+        let { nickname, avatarurl } = profile;
         user.updateLogin(backend, { nickname, avatarurl }).then(() => {
-          worker.port.emit("profileUpdate", id, toSuccessResponse());
-        }).catch(err => {
-          let error = exports.extBadUpdate(err);
-          worker.port.emit("profileUpdate", id, toErrorResponse(error));
+          let newProfile = user.getProfileInfo();
+          worker.port.emit("profile", newProfile);
+        }).catch(error => {
+          console.error("Error updating profile state", error);
         });
       }));
 

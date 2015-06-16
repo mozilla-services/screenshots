@@ -230,11 +230,6 @@ class Frame extends React.Component {
         <div id="toolbar">
           <ProfileButton
             staticLink={ this.props.staticLink }
-            ready={ this.props.ready }
-            signUp={ this.props.signUp }
-            signIn={ this.props.signIn }
-            getProfile={ this.props.getProfile }
-            updateProfile={ this.props.updateProfile }
             initialExpanded={ false }
           />
           <a className="main-link" href={ shot.url }>

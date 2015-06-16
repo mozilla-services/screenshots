@@ -27,48 +27,21 @@ document.addEventListener("error", function (event) {
   self.port.emit("alertError", event.detail);
 }, false);
 
-document.addEventListener("request-account", function (event) {
-  self.port.emit("requestAccount", event.detail);
+document.addEventListener("request-sign-up", function (event) {
+  self.port.emit("requestSignUp");
 });
-
+document.addEventListener("request-sign-in", function (event) {
+  self.port.emit("requestSignIn");
+});
 document.addEventListener("request-profile", function (event) {
-  self.port.emit("requestProfile", event.detail);
-}, false);
-
-document.addEventListener("request-profile-update", function (event) {
-  self.port.emit("requestProfileUpdate", event.detail);
-}, false);
-
-self.port.on("account", function (id, response) {
-  var event = document.createEvent("CustomEvent");
-  event.initCustomEvent("got-account", true, true, JSON.stringify({
-    response,
-    id
-  }));
-  document.dispatchEvent(event);
+  self.port.emit("requestProfile");
 });
-
-self.port.on("profile", function (id, response) {
-  var event = document.createEvent("CustomEvent");
-  event.initCustomEvent("got-profile", true, true, JSON.stringify({
-    response,
-    id
-  }));
-  document.dispatchEvent(event);
+document.addEventListener("set-profile-state", function (event) {
+  self.port.emit("setProfileState", event.detail);
 });
-
-self.port.on("profileUpdate", function (id, response) {
+self.port.on("profile", function (profile) {
   var event = document.createEvent("CustomEvent");
-  event.initCustomEvent("got-profile-update", true, true, JSON.stringify({
-    response,
-    id
-  }));
-  document.dispatchEvent(event);
-});
-
-self.port.on("profileRefresh", function () {
-  var event = document.createEvent("CustomEvent");
-  event.initCustomEvent("profile-refresh", true, true, null);
+  event.initCustomEvent("got-profile", true, true, JSON.stringify(profile));
   document.dispatchEvent(event);
 });
 

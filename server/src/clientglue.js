@@ -3,8 +3,7 @@
 let React = require("react"),
   { FrameFactory } = require("./views/frame.js"),
   { setGitRevision, staticLink } = require("./linker"),
-  { AbstractShot } = require("../shared/shot"),
-  { ready, signUp, signIn, getProfile, updateProfile } = require("./frame/client");
+  { AbstractShot } = require("../shared/shot");
 
 // This represents the model we are rendering:
 let model;
@@ -22,7 +21,7 @@ exports.setModel = function (data) {
 
 function render() {
   setGitRevision(model.gitRevision);
-  let attrs = { staticLink, ready, signUp, signIn, getProfile, updateProfile };
+  let attrs = { staticLink };
   for (let attr in model) {
     attrs[attr] = model[attr];
   }

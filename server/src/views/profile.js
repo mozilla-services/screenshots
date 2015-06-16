@@ -1,6 +1,7 @@
 /* jshint browser:true */
 
 const React = require("react");
+const events = require("../events");
 const errors = require("../../shared/errors");
 
 function delay(duration) {
@@ -16,97 +17,29 @@ exports.ProfileButton = class ProfileButton extends React.Component {
       avatarurl: null,
       nickname: null,
       email: null,
-      isExpanded: props.initialExpanded,
-      isFetching: false
+      isExpanded: props.initialExpanded
     };
   }
 
-  fetchProfile() {
-    this.setState({
-      isFetching: true,
-      lastError: null
-    }, function () {
-      Promise.race([
-        this.props.getProfile(),
-        delay(5000).then(() => Promise.reject(errors.extTimeout('fetchProfile')))
-      ]).then(
-        profile => {
-          this.setState({
-            isFetching: false,
-            avatarurl: profile && profile.avatarurl,
-            nickname: profile && profile.nickname,
-            email: profile && profile.email
-          });
-        },
-        err => {
-          this.setState({
-            isFetching: false,
-            lastError: err
-          });
-        }
-      ).catch(err => {
-        console.error("Error refreshing profile", err);
-      });
-    });
-  }
-
   signIn() {
-    Promise.race([
-      this.props.signIn(),
-      delay(2000).then(() => Promise.reject(errors.extTimeout('signIn')))
-    ]).then(() => {
-      this.setState({ isExpanded: false });
-    }, err => {
-      if (err.errno == 1101) {
-        // TODO: Handle extension timeouts.
-        console.error("Timed out fetching profile", err);
-        return;
-      }
-      if (err.errno == 1102) {
-        // User already signed in. Fetch their profile and refresh the view.
-        this.fetchProfile();
-        return;
-      }
-      this.setState({ lastError: err });
-    });
+    events.signIn();
+    this.setState({ isExpanded: false });
   }
 
   signUp() {
-    Promise.race([
-      this.props.signUp(),
-      delay(2000).then(() => Promise.reject(errors.extTimeout('signUp')))
-    ]).then(() => {
-      this.setState({ isExpanded: false });
-    }, err => {
-      if (err.errno == 1101) {
-        // TODO: Timeouts.
-        return;
-      }
-      if (err.errno == 1102) {
-        this.fetchProfile();
-        return;
-      }
-      this.setState({ lastError: err });
-    });
-  }
-
-  updateProfile(profile) {
-    this.props.updateProfile(profile).then(() => {
-      this.fetchProfile();
-    }).catch(err => {
-      console.error("Error updating profile", err);
-    });
+    events.signUp();
+    this.setState({ isExpanded: false });
   }
 
   componentDidMount() {
     window.addEventListener("click", this.onDocumentClick);
-    document.addEventListener("profile-refresh", this.onRefreshProfileBound);
-    this.props.ready().then(() => this.fetchProfile());
+    document.addEventListener("got-profile", this.onRefreshProfileBound);
+    events.requestProfile();
   }
 
   componentWillUnmount() {
     window.removeEventListener('click', this.onDocumentClick);
-    document.removeEventListener("profile-refresh", this.onRefreshProfileBound);
+    document.removeEventListener("got-profile", this.onRefreshProfileBound);
   }
 
   dismiss(e) {
@@ -121,7 +54,12 @@ exports.ProfileButton = class ProfileButton extends React.Component {
   // Triggered by the add-on when the user finishes signing in.
   onRefreshProfile(e) {
     console.log("User signed in; refreshing profile");
-    this.fetchProfile();
+    let profile = JSON.parse(event.detail);
+    this.setState({
+      avatarurl: profile.avatarurl,
+      nickname: profile.nickname,
+      email: profile.email
+    });
   }
 
   hideProfile() {
@@ -139,19 +77,11 @@ exports.ProfileButton = class ProfileButton extends React.Component {
   }
 
   render() {
-    let { isExpanded, status, lastError } = this.state;
-    if (lastError && lastError.errno == 1101) {
-      return null;
-    }
-    if (status == 'loading') {
-      // TODO: Render the cached account state if we're refreshing.
-      return null;
-    }
     let { avatarurl } = this.state;
     if (! avatarurl) {
       avatarurl = this.props.staticLink("img/profile-anonymous.svg");
     }
-    if (isExpanded) {
+    if (this.state.isExpanded) {
       return (
         <span className="account">
           <img src={ this.props.staticLink("img/profile-open.png") } onClick={ this.onClickProfile.bind(this) } />
@@ -159,7 +89,6 @@ exports.ProfileButton = class ProfileButton extends React.Component {
             ref="panel"
             signUp={ this.signUp.bind(this) }
             signIn={ this.signIn.bind(this) }
-            updateProfile={ this.updateProfile.bind(this) }
             avatarurl={ avatarurl }
             nickname={ this.state.nickname }
             email={ this.state.email }
@@ -199,7 +128,7 @@ exports.Profile = class Profile extends React.Component {
     let input = React.findDOMNode(this.refs.nickname);
     if (e.which == 13) {
       input.blur();
-      this.props.updateProfile({ nickname: this.state.nickname });
+      events.setProfileState({ nickname: this.state.nickname });
     }
   }
 
