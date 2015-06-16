@@ -78,7 +78,7 @@ app.post("/api/login", function (req, res) {
       simpleResponse(res, "Invalid login", 401);
     }
   }).catch(function (err) {
-    errorResponse(err, "Error in login:", err);
+    errorResponse(res, "Error in login:", err);
   });
 });
 
