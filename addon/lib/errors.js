@@ -53,7 +53,7 @@ exports.makeError = function (error) {
 exports.watchPromise = function (promise) {
   return promise.catch(function (error) {
     let exc = exports.makeError(error);
-    console.log("Promise rejected with error:", exc);
+    console.error("Promise rejected with error:", exc);
     exports.unhandled(exc);
     return error;
   });
@@ -92,12 +92,12 @@ exports.watchFunction = function (func, context) {
     on the worker's port. */
 exports.watchWorker = function (worker) {
   worker.port.on("alertError", function (error) {
-    console.log("Error from worker:", worker.url.replace(/.*\//, ""), ":", JSON.stringify(error));
+    console.error("Error from worker:", worker.url.replace(/.*\//, ""), ":", JSON.stringify(error));
     exports.unhandled(error);
   });
   // Workers also automatically emit an error message:
   worker.port.on("error", function (exc) {
-    console.log("Uncaught error from worker:", worker.url.replace(/.*\//, ""), ":", exc+"");
+    console.error("Uncaught error from worker:", worker.url.replace(/.*\//, ""), ":", exc+"");
     exports.unhandled(exports.makeError(exc));
   });
   return worker;

@@ -24,13 +24,13 @@ exports.initialize = function (backend) {
       onComplete: watchFunction(function (response) {
         if (response.status == 404) {
           // Need to save login anyway...
-          console.log("Login failed with 404, trying to register");
+          console.info("Login failed with 404, trying to register");
           watchPromise(saveLogin(backend, info));
           return;
         } else if (response.status >= 300) {
           throw new Error("Could not log in: " + response.status);
         }
-        console.log("logged in with cookie:", !!response.headers["Set-Cookie"]);
+        console.info("logged in with cookie:", !!response.headers["Set-Cookie"]);
         // The only other thing we do is preload the cookies
       })
     }).post();
@@ -46,7 +46,7 @@ function saveLogin(backend, info) {
       content: info,
       onComplete: function (response) {
         if (response.status == 200) {
-          console.log("Registered login with cookie:", !!response.headers["Set-Cookie"]);
+          console.info("Registered login with cookie:", !!response.headers["Set-Cookie"]);
           resolve();
         } else {
           reject(new Error("Bad response: " + response.status));

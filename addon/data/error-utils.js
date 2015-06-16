@@ -4,7 +4,7 @@
 
 /** Call with an error object (with .name, .message, .help, etc) */
 function unhandled(error) {
-  console.log("Internal error", location.href);
+  console.error("Internal error", location.href);
   self.port.emit("alertError", error);
 }
 

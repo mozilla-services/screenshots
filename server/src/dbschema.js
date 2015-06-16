@@ -27,7 +27,7 @@ exports.createTables = function () {
   db.exec(
     createSQL, []
   ).then((result) => {
-    console.log("Created tables on", db.constr);
+    console.info("Created tables on", db.constr);
     let newId = "tmp" + Date.now();
     return db.insert(
       `INSERT INTO data (id, userid, value)

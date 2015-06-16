@@ -20,7 +20,7 @@
  */
 
 function dump(msg) {
-  console.log(msg);
+  console.info(msg);
 }
 
 var Readability = function(uri, doc) {
@@ -318,7 +318,7 @@ Readability.prototype = {
   },
 
   _setNodeTag: function (node, tag) {
-    //console.log("READABLE", typeof node, node, node.localName, node.nodeType);
+    //console.info("READABLE", typeof node, node, node.localName, node.nodeType);
     try {
       node.localName = tag.toLowerCase();
       node.tagName = tag.toUpperCase();

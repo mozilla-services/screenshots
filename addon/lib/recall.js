@@ -65,7 +65,7 @@ recallPanel.port.on("viewShot", watchFunction(function (id) {
   }
   let backend = require("main").getBackend();
   let url = backend + "/data/" + id;
-  console.log("requesting", url);
+  console.info("requesting", url);
   require("sdk/request").Request({
     url: url,
     onComplete: watchFunction(function (response) {
@@ -86,12 +86,12 @@ recallPanel.port.on("viewShot", watchFunction(function (id) {
       if (! json) {
         console.error("No/null JSON received from server at:", url, "status:", response.status);
       }
-      console.log("got viewShot data", Object.keys(json));
-      console.log("clips:", Object.keys(json.clips));
+      console.info("got viewShot data", Object.keys(json));
+      console.info("clips:", Object.keys(json.clips));
       let clipId = Object.keys(json.clips)[0];
       if (clipId) {
         let clip = json.clips[clipId];
-        console.log("clip", clipId, clip.image.url.length);
+        console.info("clip", clipId, clip.image.url.length);
       }
       let shot = new AbstractShot(backend, id, json);
       panelViewingId = shot.id;

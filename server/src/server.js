@@ -78,7 +78,7 @@ app.post("/api/login", function (req, res) {
       simpleResponse(res, "Invalid login", 401);
     }
   }).catch(function (err) {
-    errorResponse(res, "Error in login:", err);
+    errorResponse(err, "Error in login:", err);
   });
 });
 
@@ -211,7 +211,7 @@ function errorResponse(res, message, err) {
 
 linker.init().then(() => {
   app.listen(config.port);
-  console.log(`server listening on http://localhost:${config.port}/`);
+  console.info(`server listening on http://localhost:${config.port}/`);
 }).catch((err) => {
   console.error("Error getting revision:", err, err.stack);
 });
