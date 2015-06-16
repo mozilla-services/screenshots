@@ -8,23 +8,23 @@ const { FxAccountsOAuthClient } = Cu.import("resource://gre/modules/FxAccountsOA
 const { FxAccountsProfileClient } = Cu.import("resource://gre/modules/FxAccountsProfileClient.jsm", {});
 
 exports.initialize = function (backend) {
-  if (! (ss.storage.userInfo && ss.storage.userInfo.userId && ss.storage.userInfo.secret)) {
+  if (! (ss.storage.deviceInfo && ss.storage.deviceInfo.deviceId && ss.storage.deviceInfo.secret)) {
     let info = {
-      userId: "anon" + makeUuid() + "",
+      deviceId: "anon" + makeUuid() + "",
       secret: makeUuid()+""
     };
-    console.info("Generating new device authentication ID", info.userId);
+    console.info("Generating new device authentication ID", info.deviceId);
     watchPromise(saveLogin(backend, info).then(function () {
-      ss.storage.userInfo = info;
+      ss.storage.deviceInfo = info;
       console.info("Successfully saved ID");
     }));
   } else {
-    let info = ss.storage.userInfo;
+    let info = ss.storage.deviceInfo;
     let loginUrl = backend + "/api/login";
     Request({
       url: loginUrl,
       contentType: "application/x-www-form-urlencoded",
-      content: {userId: info.userId, secret: info.secret},
+      content: {deviceId: info.deviceId, secret: info.secret},
       onComplete: watchFunction(function (response) {
         if (response.status == 404) {
           // Need to save login anyway...
@@ -65,8 +65,8 @@ function makeUuid() {
   return s.replace(/\{/g, "").replace(/\}/g, "");
 }
 
-exports.getUserInfo = function () {
-  return ss.storage.userInfo;
+exports.getDeviceInfo = function () {
+  return ss.storage.deviceInfo;
 };
 
 exports.updateProfileInfo = function (profile) {

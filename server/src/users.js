@@ -3,10 +3,10 @@ const db = require("./db");
 const errors = require("../shared/errors");
 const { request } = require("./helpers");
 
-exports.checkLogin = function (userId, secret) {
+exports.checkLogin = function (deviceId, secret) {
   return db.select(
     `SELECT secret FROM devices WHERE id = $1`,
-    [userId]
+    [deviceId]
   ).then((rows) => {
     if (! rows.length) {
       return null;
@@ -15,14 +15,14 @@ exports.checkLogin = function (userId, secret) {
   });
 };
 
-exports.registerLogin = function (userId, data, canUpdate) {
-  if (! userId) {
-    throw new Error("No userId given");
+exports.registerLogin = function (deviceId, data, canUpdate) {
+  if (! deviceId) {
+    throw new Error("No deviceId given");
   }
   return db.insert(
     `INSERT INTO devices (id, secret, nickname, avatarurl)
      VALUES ($1, $2, $3, $4)`,
-    [userId, data.secret, data.nickname || null, data.avatarurl || null]
+    [deviceId, data.secret, data.nickname || null, data.avatarurl || null]
   ).then((inserted) => {
     if (inserted) {
       return true;
@@ -35,7 +35,7 @@ exports.registerLogin = function (userId, data, canUpdate) {
         `UPDATE devices
          SET secret = $1, nickname = $2, avatarurl = $3
          WHERE id = $4`,
-        [data.secret || null, data.nickname || null, data.avatarurl || null, userId]
+        [data.secret || null, data.nickname || null, data.avatarurl || null, deviceId]
       ).then((rowCount) => {
         return !! rowCount;
       });
@@ -45,15 +45,15 @@ exports.registerLogin = function (userId, data, canUpdate) {
   });
 };
 
-exports.updateLogin = function (userId, data) {
-  if (! userId) {
-    throw new Error("No userId given");
+exports.updateLogin = function (deviceId, data) {
+  if (! deviceId) {
+    throw new Error("No deviceId given");
   }
   return db.update(
     `UPDATE devices
      SET nickname = $1, avatarurl = $2
      WHERE id = $3`,
-    [data.nickname || null, data.avatarurl || null, userId]
+    [data.nickname || null, data.avatarurl || null, deviceId]
   ).then(rowCount => !! rowCount);
 };
 
@@ -107,7 +107,7 @@ exports.getAccountId = function (accessToken) {
   });
 };
 
-exports.registerAccount = function (userId, accountId, accessToken) {
+exports.registerAccount = function (deviceId, accountId, accessToken) {
   return db.transaction(client => {
     return db.upsertWithClient(
       client,
@@ -118,7 +118,7 @@ exports.registerAccount = function (userId, accountId, accessToken) {
       return db.queryWithClient(
         client,
         `UPDATE devices SET accountid = $2 WHERE id = $1`,
-        [userId, accountId]
+        [deviceId, accountId]
       );
     });
   });
