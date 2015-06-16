@@ -21,8 +21,8 @@ window.onmessage = function(m) {
   }
   if (type === "setHeight") {
     setHeight(message.height);
-  } else if (type === "scrollTo") {
-    scrollPageTo(message.position);
+  } else if (type === "scrollToMiddle") {
+    scrollPageToMiddle(message.position);
   } else {
     console.warn("Parent iframe received message with unknown .type:", message);
   }
@@ -35,10 +35,12 @@ function setHeight(h) {
   }
 }
 
-function scrollPageTo(pos) {
+function scrollPageToMiddle(pos) {
   let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
   let toolbarHeight = document.getElementById("toolbar").clientHeight;
-  let scrollY = frameOffset + pos.top - toolbarHeight;
+  let visibleHeight = window.innerHeight - toolbarHeight;
+  let frameTop = frameOffset - toolbarHeight;
+  let scrollY = frameTop + (pos.top + pos.bottom) / 2 - (visibleHeight / 2);
   window.scroll(0, scrollY);
 }
 
