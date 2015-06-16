@@ -11,14 +11,8 @@ function delay(duration) {
 exports.ProfileButton = class ProfileButton extends React.Component {
   constructor(props) {
     super(props);
-    this.onDocumentClick = this.dismiss.bind(this);
-    this.onRefreshProfileBound = this.onRefreshProfile.bind(this);
-    this.state = {
-      avatarurl: null,
-      nickname: null,
-      email: null,
-      isExpanded: props.initialExpanded
-    };
+    this.onWindowClick = this.dismiss.bind(this);
+    this.state = { isExpanded: props.initialExpanded };
   }
 
   signIn() {
@@ -32,14 +26,11 @@ exports.ProfileButton = class ProfileButton extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener("click", this.onDocumentClick);
-    document.addEventListener("got-profile", this.onRefreshProfileBound);
-    events.requestProfile();
+    window.addEventListener("click", this.onWindowClick);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('click', this.onDocumentClick);
-    document.removeEventListener("got-profile", this.onRefreshProfileBound);
+    window.removeEventListener("click", this.onWindowClick);
   }
 
   dismiss(e) {
@@ -49,17 +40,6 @@ exports.ProfileButton = class ProfileButton extends React.Component {
         this.setState({ isExpanded: false });
       }
     }
-  }
-
-  // Triggered by the add-on when the user finishes signing in.
-  onRefreshProfile(e) {
-    console.log("User signed in; refreshing profile");
-    let profile = JSON.parse(event.detail);
-    this.setState({
-      avatarurl: profile.avatarurl,
-      nickname: profile.nickname,
-      email: profile.email
-    });
   }
 
   hideProfile() {
@@ -77,7 +57,7 @@ exports.ProfileButton = class ProfileButton extends React.Component {
   }
 
   render() {
-    let { avatarurl } = this.state;
+    let { avatarurl } = this.props;
     if (! avatarurl) {
       avatarurl = this.props.staticLink("img/profile-anonymous.svg");
     }
@@ -90,8 +70,8 @@ exports.ProfileButton = class ProfileButton extends React.Component {
             signUp={ this.signUp.bind(this) }
             signIn={ this.signIn.bind(this) }
             avatarurl={ avatarurl }
-            nickname={ this.state.nickname }
-            email={ this.state.email }
+            nickname={ this.props.nickname }
+            email={ this.props.email }
           />
         </span>
       );
@@ -107,9 +87,7 @@ exports.ProfileButton = class ProfileButton extends React.Component {
 exports.Profile = class Profile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      nickname: this.props.nickname
-    };
+    this.state = { nickname: this.props.nickname };
   }
 
   onClickSignUp(e) {

@@ -41,7 +41,7 @@ document.addEventListener("set-profile-state", function (event) {
 });
 self.port.on("profile", function (profile) {
   var event = document.createEvent("CustomEvent");
-  event.initCustomEvent("got-profile", true, true, JSON.stringify(profile));
+  event.initCustomEvent("refresh-profile", true, true, JSON.stringify(profile));
   document.dispatchEvent(event);
 });
 

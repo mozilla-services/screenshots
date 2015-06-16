@@ -3,7 +3,8 @@
 let React = require("react"),
   { FrameFactory } = require("./views/frame.js"),
   { setGitRevision, staticLink } = require("./linker"),
-  { AbstractShot } = require("../shared/shot");
+  { AbstractShot } = require("../shared/shot"),
+  { requestProfile } = require("./events");
 
 // This represents the model we are rendering:
 let model;
@@ -14,19 +15,31 @@ exports.setModel = function (data) {
   model.shot = new AbstractShot(data.backend, data.id, data.shot);
   render();
   if (firstSet) {
+    document.addEventListener("helper-ready", onHelperReady, false);
+    document.addEventListener("refresh-profile", refreshProfile, false);
     window.addEventListener("hashchange", refreshHash, false);
     refreshHash();
   }
 };
 
-function render() {
+function onHelperReady(e) {
+  document.removeEventListener("helper-ready", onHelperReady, false);
+  requestProfile();
+}
+
+function render(props) {
   setGitRevision(model.gitRevision);
-  let attrs = { staticLink };
+  let attrs = Object.assign({ staticLink }, props);
   for (let attr in model) {
     attrs[attr] = model[attr];
   }
   let frame = FrameFactory(attrs);
   React.render(frame, document);
+}
+
+function refreshProfile(e) {
+  let profile = JSON.parse(e.detail);
+  render(profile);
 }
 
 function refreshHash() {

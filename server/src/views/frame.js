@@ -231,6 +231,9 @@ class Frame extends React.Component {
           <ProfileButton
             staticLink={ this.props.staticLink }
             initialExpanded={ false }
+            avatarurl={ this.props.avatarurl }
+            nickname={ this.props.nickname }
+            email={ this.props.email }
           />
           <a className="main-link" href={ shot.url }>
             { shot.title }

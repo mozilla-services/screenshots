@@ -69,55 +69,69 @@ exports.getDeviceInfo = function () {
   return ss.storage.deviceInfo;
 };
 
+// Serializes profile updates to ensure that concurrent writes don't clobber
+// one another (e.g., if a user updates her avatar, then immediately changes
+// her nickname).
+let pendingProfileUpdates = Promise.resolve();
+function enqueueProfileUpdate(func) {
+  let result = pendingProfileUpdates.then(func);
+  // Swallow rejections to avoid deadlocking queued updates. Since we return
+  // the promise, callers can still handle rejections.
+  pendingProfileUpdates = result.catch(() => {});
+  return result;
+}
+
 exports.setDefaultProfileInfo = function (attrs) {
-  if (! attrs) {
-    throw new Error("Missing default profile information");
-  }
-  let info = ss.storage.profileInfo || {};
-  for (let attr of Object.keys(attrs)) {
-    // Only update the attribute if the user hasn't already set a value.
-    if (! info[attr]) {
-      info[attr] = profile[attr];
+  return enqueueProfileUpdate(() => {
+    if (! attrs) {
+      throw new Error("Missing default profile information");
     }
-  }
-  ss.storage.profileInfo = info;
-  return info;
+    let info = ss.storage.profileInfo || {};
+    for (let attr of Object.keys(attrs)) {
+      // Only update the attribute if the user hasn't already set a value.
+      if (! info[attr]) {
+        info[attr] = attrs[attr];
+      }
+    }
+    ss.storage.profileInfo = info;
+    return info;
+  });
 };
 
-exports.updateProfileInfo = function (attrs) {
-  if (! attrs) {
-    throw new Error("Missing profile information");
-  }
+function updateLocalProfileInfo(attrs) {
   let info = Object.assign(ss.storage.profileInfo || {}, attrs);
   ss.storage.profileInfo = info;
   return info;
-};
+}
 
 exports.getProfileInfo = function () {
-  return ss.storage.profileInfo;
+  return enqueueProfileUpdate(() => {
+    return ss.storage.profileInfo;
+  });
 };
 
-exports.updateLogin = function (backend, info) {
-  if (! info) {
-    throw new Error("Missing updated profile information");
-  }
-  let updateUrl = backend + "/api/update";
-  return new Promise((resolve, reject) => {
-    Request({
-      url: updateUrl,
-      contentType: "application/x-www-form-urlencoded",
-      content: info,
-      onComplete: function (response) {
-        if (response.status >= 200 && response.status < 300) {
-          // Update cached profile info. TODO: Invalidate the cache and fetch
-          // the profile from the server instead.
-          let newInfo = exports.updateProfileInfo(info);
-          resolve(newInfo);
-        } else {
-          reject(response.json);
+exports.updateProfile = function (backend, info) {
+  return enqueueProfileUpdate(() => {
+    if (! info) {
+      throw new Error("Missing updated profile information");
+    }
+    let updateUrl = backend + "/api/update";
+    return new Promise((resolve, reject) => {
+      Request({
+        url: updateUrl,
+        contentType: "application/json",
+        content: JSON.stringify(info),
+        onComplete: function (response) {
+          if (response.status >= 200 && response.status < 300) {
+            // Update stored profile info.
+            let newInfo = updateLocalProfileInfo(info);
+            resolve(newInfo);
+          } else {
+            reject(response.json);
+          }
         }
-      }
-    }).post();
+      }).post();
+    });
   });
 };
 
