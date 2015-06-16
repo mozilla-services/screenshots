@@ -13,6 +13,8 @@ self.port.on("showError", function (error) {
   } else {
     thisError.textContent = error.help || error.message || error.name || JSON.stringify(error);
   }
+  var titleElement = document.querySelector("h1");
+  titleElement.textContent = error.title || "PageShot Error :(";
   console.error(new Date(), "PageShot Error :-(", thisError.textContent);
   if (error.stack) {
     console.error(error.stack);
