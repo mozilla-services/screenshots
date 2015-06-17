@@ -138,16 +138,20 @@ class ShootPanel extends React.Component {
 
   onKeyUp(e) {
     let input = React.findDOMNode(this.refs.input);
-    if (e.which == 13) {
-      if (! processDebugCommand(this, input.value)) {
-        self.port.emit("addComment", input.value);
-      }
+    if (e.which == 13) { /* return key */
       input.blur();
-      let id = this.props.activeClipName ? "comment_" + this.props.activeClipName : "globalComment";
-      this.setState({
-        [id]: null
-      });
     }
+  }
+
+  onBlur(e) {
+    let input = React.findDOMNode(this.refs.input);
+    if (! processDebugCommand(this, input.value)) {
+      self.port.emit("addComment", input.value);
+    }
+    let id = this.props.activeClipName ? "comment_" + this.props.activeClipName : "globalComment";
+    this.setState({
+      [id]: null
+    });
   }
 
   onChange(e) {
@@ -288,7 +292,7 @@ class ShootPanel extends React.Component {
         {adder}
       </div>
       <div className="comment-area">
-        <input className="comment-input" ref="input" type="text" value={ clipComment } placeholder="Say something about this clip" onKeyUp={ this.onKeyUp.bind(this) } onChange={ this.onChange.bind(this) }/>
+        <input className="comment-input" ref="input" type="text" value={ clipComment } placeholder="Say something about this clip" onKeyUp={ this.onKeyUp.bind(this) } onBlur={ this.onBlur.bind(this) } onChange={ this.onChange.bind(this) }/>
       </div>
       <div className="feedback-row">
         <a className="pageshot-footer" target="_blank" href="https://github.com/mozilla-services/pageshot">PageShot</a>
