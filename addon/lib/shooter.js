@@ -14,7 +14,7 @@ const { Class } = require('sdk/core/heritage');
 const { watchPromise, watchFunction, watchWorker } = require("./errors");
 const clipboard = require("sdk/clipboard");
 const { AbstractShot } = require("./shared/shot");
-const { getUserInfo } = require("./user");
+const { getDeviceInfo } = require("./user");
 const { URL } = require("sdk/url");
 const notifications = require("sdk/notifications");
 
@@ -97,8 +97,8 @@ const ShotContext = Class({
     this.id = ++ShotContext._idGen;
     this.tab = tabs.activeTab;
     this.tabUrl = this.tab.url;
-    let userInfo = getUserInfo();
-    if (! userInfo) {
+    let deviceInfo = getDeviceInfo();
+    if (! deviceInfo) {
       throw new Error("Could not get device authentication information");
     }
     this.shot = new Shot(
@@ -106,7 +106,7 @@ const ShotContext = Class({
       randomString(8) + "/" + urlDomainForId(this.tabUrl),
       {
         url: this.tabUrl,
-        userId: userInfo.userId
+        deviceId: deviceInfo.deviceId
       });
     this.activeClipName = null;
     clipboard.set(this.shot.viewUrl, "text");

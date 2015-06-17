@@ -226,7 +226,7 @@ class AbstractShot {
     if (attrs.readable) {
       this.readable = new this.Readable(attrs.readable);
     }
-    this.userId = attrs.userId || null;
+    this.deviceId = attrs.deviceId || null;
     this._clips = {};
     if (attrs.clips) {
       for (let clipId in attrs.clips) {
@@ -617,26 +617,26 @@ ${options.addBody || ""}
     this._dirty("headAttrs");
   }
 
-  get userId() {
-    return this._userId;
+  get deviceId() {
+    return this._deviceId;
   }
-  set userId(val) {
+  set deviceId(val) {
     assert(typeof val == "string" || ! val);
     val = val || null;
-    this._userId = val;
-    this._dirty("userId");
+    this._deviceId = val;
+    this._dirty("deviceId");
   }
 
 }
 
 AbstractShot.prototype.REGULAR_ATTRS = (`
-userId url docTitle ogTitle userTitle createdDate createdDevice favicon
+deviceId url docTitle ogTitle userTitle createdDate createdDevice favicon
 history comments hashtags images readable head body htmlAttrs bodyAttrs
 headAttrs microdata siteName
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`
-userId url docTitle ogTitle userTitle createdDate createdDevice favicon
+deviceId url docTitle ogTitle userTitle createdDate createdDevice favicon
 `).split(/\s+/g);
 
 /** Represents the list of history items leading up to the given shot */

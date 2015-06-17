@@ -2,16 +2,28 @@ const path = require('path');
 const Cookies = require("cookies");
 
 const { Shot } = require("./servershot");
-const { checkLogin, registerLogin } = require("./users");
+const {
+  checkLogin,
+  registerLogin,
+  updateLogin,
+  setState,
+  checkState,
+  tradeCode,
+  getAccountId,
+  registerAccount
+} = require("./users");
 const dbschema = require("./dbschema");
 const express = require("express");
 const bodyParser = require('body-parser');
 const morgan = require("morgan");
 const linker = require("./linker");
+const { randomBytes } = require("./helpers");
+const errors = require("../shared/errors");
 const config = require("./config").root();
 
-dbschema.createTables();
-dbschema.createKeygrip();
+dbschema.createTables().then(() => {
+  dbschema.createKeygrip();
+});
 
 const app = express();
 
@@ -28,7 +40,7 @@ app.use(morgan("dev"));
 
 app.use(function (req, res, next) {
   let cookies = new Cookies(req, res, dbschema.getKeygrip());
-  req.userId = cookies.get("user", {signed: true});
+  req.deviceId = cookies.get("user", {signed: true});
   req.backend = req.protocol + "://" + req.headers.host;
   req.config = config;
   next();
@@ -40,24 +52,18 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(function (err, req, res, next) {
-  console.error("Error:", err);
-  console.error(err.stack);
-  errorResponse(res, "General error:", err);
-});
-
 app.post("/api/register", function (req, res) {
   let vars = req.body;
   // FIXME: need to hash secret
-  let canUpdate = vars.userId === req.userId;
-  return registerLogin(vars.userId, {
+  let canUpdate = vars.deviceId === req.deviceId;
+  return registerLogin(vars.deviceId, {
     secret: vars.secret,
     nickname: vars.nickname || null,
     avatarurl: vars.avatarurl || null
   }, canUpdate).then(function (ok) {
     if (ok) {
       let cookies = new Cookies(req, res, dbschema.getKeygrip());
-      cookies.set("user", vars.userId, {signed: true});
+      cookies.set("user", vars.deviceId, {signed: true});
       simpleResponse(res, "Created", 200);
     } else {
       simpleResponse(res, "User exists", 401);
@@ -67,18 +73,41 @@ app.post("/api/register", function (req, res) {
   });
 });
 
+app.post("/api/update", function (req, res, next) {
+  if (! req.deviceId) {
+    next(errors.missingSession());
+    return;
+  }
+  if (! req.body) {
+    res.sendStatus(204);
+    return;
+  }
+  let { nickname, avatarurl } = req.body;
+  updateLogin(req.deviceId, { nickname, avatarurl }).then(ok => {
+    if (! ok) {
+      throw errors.badSession();
+    }
+    res.sendStatus(204);
+  }, err => {
+    console.warn("Error updating device info", err);
+    throw errors.badParams();
+  }).catch(next);
+});
+
 app.post("/api/login", function (req, res) {
   let vars = req.body;
-  checkLogin(vars.userId, vars.secret).then((ok) => {
+  checkLogin(vars.deviceId, vars.secret).then((ok) => {
     if (ok) {
       let cookies = new Cookies(req, res, dbschema.getKeygrip());
-      cookies.set("user", vars.userId, {signed: true});
+      cookies.set("user", vars.deviceId, {signed: true});
       simpleResponse(res, "User logged in", 200);
+    } else if (ok === null) {
+      simpleResponse(res, "No such user", 404);
     } else {
       simpleResponse(res, "Invalid login", 401);
     }
   }).catch(function (err) {
-    errorResponse(err, "Error in login:", err);
+    errorResponse(res, "Error in login:", err);
   });
 });
 
@@ -91,7 +120,7 @@ app.get("/clip/:id/:domain/:clipId", function (req, res) {
       return;
     }
     let image = clip.imageBinary();
-    res.set("Content-Type", image.contentType);
+    res.header("Content-Type", image.contentType);
     res.send(image.data);
   }).catch((err) => {
     errorResponse(res, "Failed to get clip", err);
@@ -105,23 +134,23 @@ app.put("/data/:id/:domain", function (req, res) {
   }
   let shotId = req.params.id + "/" + req.params.domain;
 
-  if (! bodyObj.userId) {
-    console.warn("No userId in request body", req.url);
-    simpleResponse(res, "No userId in body", 400);
+  if (! bodyObj.deviceId) {
+    console.warn("No deviceId in request body", req.url);
+    simpleResponse(res, "No deviceId in body", 400);
     return;
   }
-  if (! req.userId) {
+  if (! req.deviceId) {
     console.warn("Attempted to PUT without logging in", req.url);
     simpleResponse(res, "Not logged in", 401);
     return;
   }
-  if (req.userId != bodyObj.userId) {
+  if (req.deviceId != bodyObj.deviceId) {
     // FIXME: this doesn't make sense for comments or other stuff, see https://github.com/mozilla-services/pageshot/issues/245
-    console.warn("Attempted to PUT a page with a different userId than the login userId");
+    console.warn("Attempted to PUT a page with a different deviceId than the login deviceId");
     simpleResponse(res, "Cannot save a page on behalf of another user", 403);
     return;
   }
-  let shot = new Shot(req.userId, req.backend, shotId, bodyObj);
+  let shot = new Shot(req.deviceId, req.backend, shotId, bodyObj);
   shot.insert().then((inserted) => {
     if (! inserted) {
       return shot.update();
@@ -144,7 +173,7 @@ app.get("/data/:id/:domain", function (req, res) {
       if ('format' in req.query) {
         value = JSON.stringify(JSON.parse(value), null, '  ');
       }
-      res.set("Content-Type", "application/json");
+      res.header("Content-Type", "application/json");
       res.send(value);
     }
   }).catch(function (err) {
@@ -189,15 +218,85 @@ app.get("/:id/:domain", function (req, res) {
   });
 });
 
+// Get OAuth client params for the client-side authorization flow.
+app.get('/api/fxa-oauth/params', function (req, res, next) {
+  if (! req.deviceId) {
+    next(errors.missingSession());
+    return;
+  }
+  randomBytes(32).then(stateBytes => {
+    let state = stateBytes.toString('hex');
+    return setState(req.deviceId, state).then(inserted => {
+      if (!inserted) {
+        throw errors.dupeLogin();
+      }
+      return state;
+    });
+  }).then(state => {
+    res.send({
+      // FxA profile server URL.
+      profile_uri: config.oAuth.profileServer,
+      // FxA OAuth server URL.
+      oauth_uri: config.oAuth.oAuthServer,
+      redirect_uri: 'urn:ietf:wg:oauth:2.0:fx:webchannel',
+      client_id: config.oAuth.clientId,
+      // FxA content server URL.
+      content_uri: config.oAuth.contentServer,
+      state,
+      scope: 'profile'
+    });
+  }).catch(next);
+});
+
+// Exchange an OAuth authorization code for an access token.
+app.post('/api/fxa-oauth/token', function (req, res, next) {
+  if (! req.deviceId) {
+    next(errors.missingSession());
+    return;
+  }
+  if (! req.body) {
+    next(errors.missingParams());
+    return;
+  }
+  let { code, state } = req.body;
+  checkState(req.deviceId, state).then(isValid => {
+    if (!isValid) {
+      throw errors.badState();
+    }
+    return tradeCode(code);
+  }).then(({ access_token: accessToken }) => {
+    return getAccountId(accessToken).then(({ uid: accountId }) => {
+      return registerAccount(req.deviceId, accountId, accessToken);
+    }).then(() => {
+      res.send({
+        access_token: accessToken
+      });
+    });
+  }).catch(next);
+});
+
+app.use(function (err, req, res, next) {
+  console.error("Error:", err);
+  console.error(err.stack);
+  if (err.isAppError) {
+    let { statusCode, headers, payload } = err.output;
+    res.status(statusCode);
+    res.header(headers);
+    res.send(payload);
+    return;
+  }
+  errorResponse(res, "General error:", err);
+});
+
 function simpleResponse(res, message, status) {
   status = status || 200;
-  res.set("Content-Type", "text/plain; charset=utf-8");
+  res.header("Content-Type", "text/plain; charset=utf-8");
   res.status(status);
   res.send(message);
 }
 
 function errorResponse(res, message, err) {
-  res.set("Content-Type", "text/plain; charset=utf-8");
+  res.header("Content-Type", "text/plain; charset=utf-8");
   res.status(500);
   if (err) {
     message += "\n" + err;
