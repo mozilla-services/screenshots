@@ -23,7 +23,7 @@ document.addEventListener("check-captured", function (event) {
 }, false);
 
 document.addEventListener("error", function (event) {
-  console.log("Error via helper from", location.href);
+  console.error("Error via helper from", location.href);
   self.port.emit("alertError", event.detail);
 }, false);
 
@@ -67,7 +67,7 @@ document.dispatchEvent(readyEvent);
 // FIXME: not sure if this might mess up an in-content onerror handler, though I suppose
 // we just shouldn't create one?
 window.onerror = function (message, url, line, col, error) {
-  console.log("Error from onerror", url);
+  console.error("Error from onerror", url);
   self.port.emit("alertError", {
     name: error.name || "ERROR",
     message: message,

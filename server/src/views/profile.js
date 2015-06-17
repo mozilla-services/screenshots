@@ -63,7 +63,7 @@ exports.ProfileButton = class ProfileButton extends React.Component {
     }
     if (this.state.isExpanded) {
       return (
-        <span className="account">
+        <span className="toolbar-button">
           <img src={ this.props.staticLink("img/profile-open.png") } onClick={ this.onClickProfile.bind(this) } />
           <exports.Profile
             ref="panel"
@@ -77,7 +77,7 @@ exports.ProfileButton = class ProfileButton extends React.Component {
       );
     }
     return (
-      <span className="account">
+      <span className="toolbar-button">
         <img src={ this.props.staticLink("img/profile.png") } onClick={ this.onClickProfile.bind(this) } />
       </span>
     );

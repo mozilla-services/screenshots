@@ -22,7 +22,7 @@ function getWindow() {
 function makeScreenShot(pos, maxSize, backgroundColor) {
   getWindow().document.body.classList.add("pageshot-hide-selection");
   try {
-    console.log("shooting area", pos.x, pos.y, "w/h", pos.w, pos.h, !!maxSize);
+    console.info("shooting area", pos.x, pos.y, "w/h", pos.w, pos.h, !!maxSize);
     var canvas = getWindow().document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
     if (maxSize) {
       canvas.width = maxSize.w;
@@ -51,7 +51,7 @@ addMessageListener("pageshot@screenshot:call", function handler(event) {
       imageUrl: makeScreenShot(event.data.pos, event.data.maxSize, event.data.backgroundColor)
     };
   } catch (e) {
-    console.log("Error making shot:", e);
+    console.error("Error making shot:", e);
     console.trace();
     result = {
       error: {

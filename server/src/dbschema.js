@@ -65,7 +65,7 @@ exports.createTables = function () {
   return db.exec(
     createSQL, []
   ).then((result) => {
-    console.log("Created tables on", db.constr);
+    console.info("Created tables on", db.constr);
     let newId = "tmp" + Date.now();
     return db.insert(
       `INSERT INTO data (id, deviceid, value)

@@ -129,7 +129,7 @@ function reportSelection(captureType) {
     throw new Error("reportSelection() without any selection");
   }
   if (pos.top == pos.bottom || pos.right == pos.left) {
-    console.log("Suppressing null selection");
+    console.info("Suppressing null selection");
     return;
   }
   annotatePosition(pos);
@@ -698,11 +698,11 @@ function autoSelect(ids) {
   }
   if (! els.length) {
     if (ids) {
-      console.log("Readable portion of page is entirely off-screen, expanding search to entire document");
+      console.info("Readable portion of page is entirely off-screen, expanding search to entire document");
     }
     els.push(document.body);
   }
-  console.log("Scanning elements:", els.map(function (e) {return e.tagName + "#" + e.id + (ids && ids.indexOf(e.id) != -1 ? "(readable)" : "");}).join(", "));
+  console.info("Scanning elements:", els.map(function (e) {return e.tagName + "#" + e.id + (ids && ids.indexOf(e.id) != -1 ? "(readable)" : "");}).join(", "));
   var pos = {
     top: null,
     bottom: null,
@@ -810,12 +810,12 @@ function autoSelect(ids) {
   }
   if (pos.top === null && pos.bottom === null &&
       pos.left === null && pos.right === null) {
-    console.log("No autoSelect elements found, doing no selection");
+    console.info("No autoSelect elements found, doing no selection");
     reportNoSelection();
     return;
   } else if (pos.top === null || pos.bottom === null ||
              pos.left === null || pos.right === null) {
-    console.log("Expanding autoSelect in directions:",
+    console.info("Expanding autoSelect in directions:",
                 pos.top === null ? "top" : "",
                 pos.bottom === null ? "bottom" : "",
                 pos.left === null ? "left" : "",
@@ -849,7 +849,7 @@ function autoSelect(ids) {
       pos.left = Math.max(pos.right - MIN_AUTOSELECT_WIDTH, screen.left);
     }
   }
-  console.log("autoSelect outer elements:",
+  console.info("autoSelect outer elements:",
               Object.keys(outerElements).map(function (attr) {
                 return attr + ": " +
                   (outerElements[attr] ? outerElements[attr].id : "none");
@@ -885,10 +885,14 @@ function captureSelection(makeNewSelection) {
   }
 }
 
+// The following code which checks for an initial text selection
+// is commented out due to issue #515
+/*
 if (window.getSelection().rangeCount && ! window.getSelection().isCollapsed) {
   initialSelection = true;
   watchFunction(captureSelection)(false);
 }
+*/
 
 let textSelectButton;
 
@@ -923,6 +927,9 @@ window.addEventListener("mouseup", watchFunction(function (event) {
     return;
   }
 
+  // The following code for creating the + button when text is selected
+  // is commented out due to issue #515
+/*
   let button = document.createElement("div");
   button.className = "pageshot-textbutton";
   button.setAttribute("title", "Add this selection as a clip");
@@ -945,6 +952,8 @@ window.addEventListener("mouseup", watchFunction(function (event) {
   button.style.left = rect.left + document.documentElement.scrollLeft - bodyRect.left + "px";
   document.body.appendChild(button);
   textSelectButton = button;
+*/
+
 }), false);
 
 
@@ -956,7 +965,7 @@ var origUrl = location.href;
 function checkUrl() {
   var curUrl = location.href;
   if (origUrl != curUrl) {
-    console.log("got url change", origUrl, curUrl);
+    console.info("got url change", origUrl, curUrl);
     self.port.emit("popstate", curUrl);
     setState("cancel");
   }

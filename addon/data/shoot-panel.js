@@ -14,7 +14,6 @@ let err = require("./error-utils.js"),
 // For error messages:
 let FILENAME = "shoot-panel.js";
 let isAdding = {};
-let isEditing = {};
 let hasDeleted = {};
 let lastData;
 let debugDisplayTextSource = false;
@@ -100,7 +99,7 @@ class SimplifiedPanel extends React.Component {
     return <div className="container">
       <div className="simplified-instructions">
         <div>
-          We&apos;ve saved a clip of this page and copied the link to your clipboard
+          Copy of page saved:
         </div>
         <a className="simplified-link" href="#" onClick={ this.onClickLink.bind(this) }>
           { stripProtocol(this.props.shot.viewUrl) }
@@ -170,13 +169,12 @@ class ShootPanel extends React.Component {
       clipUrl = this.props.backend + "/clip/" + this.props.shot.id + "/" + this.props.activeClipName;
     }
 
-    if (isEditing[this.props.shot.id] === undefined) {
-      self.port.emit("setSize", "small");
+    if (!this.props.isEditing) {
       let onClickEdit = (e) => {
-        isEditing[this.props.shot.id] = true;
         e.preventDefault();
-        self.port.emit("setSize", "large");
-        this.setState({editing: true});
+        self.port.emit("setEditing", true);
+        lastData.isEditing = true;
+        renderData();
       };
       return <SimplifiedPanel
         clipUrl={ clipUrl }
@@ -351,17 +349,21 @@ class ShootPanel extends React.Component {
           <button onClick={this.addVisible.bind(this)}>Add Visible</button>
         </div>
       </div>
-      <div className="add-row">
-        <div className="button-row">
-          <button onClick={this.addText.bind(this)}>Add Text Selection</button>
-        </div>
-      </div>
       <div className="add-row cancel-row">
         <div className="button-row">
           <button onClick={this.addCancel.bind(this)}>Cancel</button>
         </div>
       </div>
     </div>);
+
+    // The button for adding a text selection is currently commented out due to bug #515
+/*
+<div className="add-row">
+  <div className="button-row">
+    <button onClick={this.addText.bind(this)}>Add Text Selection</button>
+  </div>
+</div>
+*/
   }
 
   addAuto() {
@@ -382,9 +384,7 @@ class ShootPanel extends React.Component {
 
   addCancel() {
     delete isAdding[this.props.shot.id];
-    setTimeout(function () {
-      renderData(lastData);
-    });
+    setTimeout(renderData);
     if (! this.props.shot.clipNames().length) {
       self.port.emit("hide");
     }
@@ -481,7 +481,8 @@ function renderData(data) {
   // https://github.com/mozilla-services/pageshot/issues/436
   document.body.innerHTML = "";
   React.render(
-    React.createElement(ShootPanel, {activeClipName: data.activeClipName, shot: myShot}), document.body);
+    <ShootPanel activeClipName={ data.activeClipName } shot={ myShot } isEditing={ data.isEditing } />,
+    document.body);
 }
 
 self.port.on("recallShot", err.watchFunction(function (data) {

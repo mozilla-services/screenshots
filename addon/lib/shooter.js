@@ -110,6 +110,11 @@ const ShotContext = Class({
       });
     this.activeClipName = null;
     clipboard.set(this.shot.viewUrl, "text");
+    notifications.notify({
+      title: "Link Copied",
+      text: "The link to your shot has been copied to the clipboard.",
+      iconURL: self.data.url("../data/copy.png")
+    });
     this._deregisters = [];
     this.panelContext = panelContext;
     this._workerActive = false;
@@ -302,8 +307,8 @@ const ShotContext = Class({
     openLink: function (link) {
       tabs.open(link);
     },
-    setSize: function(size) {
-      this.panelContext.setSize(size);
+    setEditing: function(editing) {
+      this.panelContext.setEditing(editing);
     },
     setCaptureType: function (type) {
       let clip;

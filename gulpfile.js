@@ -151,11 +151,11 @@ gulp.task("default", ["lint", "transforms"], function () {
     };
   }
 
-  add.stdout.on("data", log(console.log.bind(console)));
+  add.stdout.on("data", log(console.info.bind(console)));
 
   add.stderr.on("data", log(console.error.bind(console)));
 
   add.on("close", function (code) {
-    console.log("addon build process finished with code", code);
+    console.info("addon build process finished with code", code);
   });
 });

@@ -131,7 +131,7 @@ function staticHTML(el) {
       if (e.name == "InvalidCharacterError") {
         replSrc = encodeData('text/html', NULL_IFRAME);
       } else {
-        console.log('Had to skip iframe for permission reasons:', e+"", "(" + e.name + ")");
+        console.warn('Had to skip iframe for permission reasons:', e+"", "(" + e.name + ")");
       }
     }
   }
@@ -243,7 +243,7 @@ function documentStaticData() {
     }
   }
 
-  console.log("framescript serializing took " + (Date.now() - start) + " milliseconds");
+  console.info("framescript serializing took " + (Date.now() - start) + " milliseconds");
 
   // FIXME: figure out if we still want things like origin:
   return {
@@ -288,7 +288,7 @@ addMessageListener("pageshot@documentStaticData:call", function (event) {
     setIds();
     result = documentStaticData();
   } catch (e) {
-    console.log("Error getting static HTML:", e);
+    console.error("Error getting static HTML:", e);
     console.trace();
     result = {
       error: {

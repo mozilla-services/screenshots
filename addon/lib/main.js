@@ -102,13 +102,18 @@ const PanelContext = {
     shotContext.isShowing();
     shootButton.checked = true;
     this.updateShot(this._activeContext, this._activeContext.shot.asJson());
+    if (this._activeContext.isEditing) {
+      shootPanel.resize(400, 525);
+    } else {
+      shootPanel.resize(400, 250);
+    }
   },
 
   /** Fired whenever the toolbar button is clicked, this activates
       a ShotContext, or creates a new one, or hides the panel */
   onShootButtonClicked: function () {
     /* FIXME: remove, once I'm sure the panel really works right...
-    console.log(
+    console.info(
       "onShootButtonClicked.  activeContext:",
       this._activeContext ? this._activeContext.tabUrl : "none",
       this._activeContext ? this._activeContext.couldBeActive() : "",
@@ -150,19 +155,19 @@ const PanelContext = {
         backend: shotContext.shot.backend,
         id: shotContext.shot.id,
         shot: shotContext.shot.asJson(),
-        activeClipName: shotContext.activeClipName
+        activeClipName: shotContext.activeClipName,
+        isEditing: shotContext.isEditing
       }
     );
   },
 
   /** Called when the panel is switching from simple to edit view or vice versa */
-  setSize: function (size) {
-    if (size === "large") {
+  setEditing: function (editing) {
+    this._activeContext.isEditing = editing;
+    if (editing) {
       shootPanel.resize(400, 525);
-    } else if (size === "small") {
-      shootPanel.resize(400, 250);
     } else {
-      console.warn("setSize called with unknown size:", size, new Error().stack);
+      shootPanel.resize(400, 250);
     }
   },
 
