@@ -3,8 +3,7 @@
 const React = require("react");
 const { Shell } = require("./shell");
 const { getGitRevision } = require("../linker");
-
-let IS_BROWSER = typeof window !== "undefined";
+const { ProfileButton, Profile } = require("./profile");
 
 class Snippet extends React.Component {
   onClickComment(e) {
@@ -202,21 +201,6 @@ class Frame extends React.Component {
       linkTextShort = txt;
     }
 
-    if (IS_BROWSER) {
-      let timer = setTimeout(function () {
-        timer = null;
-        let node = document.getElementById("use-pageshot-to-create");
-        node.style.display = "block";
-      }, 2000);
-      document.addEventListener("helper-ready", function() {
-        if (timer === null) {
-          console.error("helper-ready took more than 2 seconds to fire!");
-        } else {
-          clearTimeout(timer);
-        }
-      });
-    }
-
     let timeDiff;
     let seconds = (Date.now() - shot.createdDate) / 1000;
     if (seconds < 20) {
@@ -236,13 +220,17 @@ class Frame extends React.Component {
     return (
       <body>
         <div id="container">
-          <div id="use-pageshot-to-create" style={{ display: "none" }}>
-            <a href={ this.props.backend }>To create your own shots, get the Firefox extension {this.props.productName}</a>.
-            <a id="banner-close" onClick={ this.closeGetPageshotBanner }>&times;</a>
-          </div>
+          { this.renderExtRequired() }
           <script src={ this.props.staticLink("js/parent-helper.js") } />
         { favicon }
         <div id="toolbar">
+          <ProfileButton
+            staticLink={ this.props.staticLink }
+            initialExpanded={ false }
+            avatarurl={ this.props.avatarurl }
+            nickname={ this.props.nickname }
+            email={ this.props.email }
+          />
           <div className="shot-title">{ shot.title }</div>
           <div className="shot-subtitle">
             <span>source </span><a className="subheading-link" href="{ shot.url }">{ linkTextShort }</a>
@@ -267,6 +255,16 @@ class Frame extends React.Component {
       </div>
     </body>);
   }
+
+  renderExtRequired() {
+    if (this.props.isExtInstalled) {
+      return null;
+    }
+    return <div id="use-pageshot-to-create">
+      <a href={ this.props.backend }>To create your own shots, get the Firefox extension {this.props.productName}</a>.
+      <a id="banner-close" onClick={ this.closeGetPageshotBanner }>&times;</a>
+    </div>;
+  }
 }
 
 let FrameFactory = React.createFactory(Frame);
@@ -280,6 +278,7 @@ exports.render = function (req, res) {
     shot: req.shot,
     id: req.shot.id,
     productName: req.config.productName,
+    isExtInstalled: true,
     shotDomain: req.url // FIXME: should be a property of the shot
   });
   let clientPayload = {

@@ -3,10 +3,7 @@ const envc = require("envc");
 
 // Populate `process.env` with overrides from environment-specific `.env`
 // files as a side effect. See `https://npmjs.org/envc` for more info.
-envc({
-  booleans: true,
-  numbers: true
-});
+envc();
 
 let conf = convict({
   port: {
@@ -15,6 +12,43 @@ let conf = convict({
     default: 10080,
     env: "PORT",
     arg: "port"
+  },
+  oAuth: {
+    oAuthServer: {
+      doc: "The FxA OAuth server base URL",
+      format: String,
+      default: "https://oauth-stable.dev.lcip.org/v1",
+      env: "OAUTH_SERVER",
+      arg: "oauth-server",
+    },
+    contentServer: {
+      doc: "The FxA content server base URL",
+      format: String,
+      default: "https://stable.dev.lcip.org",
+      env: "CONTENT_SERVER",
+      arg: "content-server",
+    },
+    profileServer: {
+      doc: "The FxA profile server base URL",
+      format: String,
+      default: "https://stable.dev.lcip.org/profile/v1",
+      env: "PROFILE_SERVER",
+      arg: "profile-server",
+    },
+    clientId: {
+      doc: "The OAuth client ID",
+      format: String,
+      default: "",
+      env: "CLIENT_ID",
+      arg: "client-id"
+    },
+    clientSecret: {
+      doc: "The OAuth client secret",
+      format: String,
+      default: "",
+      env: "CLIENT_SECRET",
+      arg: "client-secret"
+    }
   },
   db: {
     user: {

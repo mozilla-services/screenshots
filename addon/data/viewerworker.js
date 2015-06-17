@@ -27,6 +27,24 @@ document.addEventListener("error", function (event) {
   self.port.emit("alertError", event.detail);
 }, false);
 
+document.addEventListener("request-sign-up", function (event) {
+  self.port.emit("requestSignUp");
+});
+document.addEventListener("request-sign-in", function (event) {
+  self.port.emit("requestSignIn");
+});
+document.addEventListener("request-profile", function (event) {
+  self.port.emit("requestProfile");
+});
+document.addEventListener("set-profile-state", function (event) {
+  self.port.emit("setProfileState", event.detail);
+});
+self.port.on("profile", function (profile) {
+  var event = document.createEvent("CustomEvent");
+  event.initCustomEvent("refresh-profile", true, true, JSON.stringify(profile));
+  document.dispatchEvent(event);
+});
+
 self.port.on("screenshot", function (image, info) {
   var event = document.createEvent("CustomEvent");
   event.initCustomEvent("got-screenshot", true, true, JSON.stringify({

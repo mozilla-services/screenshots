@@ -11,7 +11,7 @@ class Shot extends AbstractShot {
   insert() {
     let value = JSON.stringify(this.asJson());
     return db.insert(
-      `INSERT INTO data (id, userid, value)
+      `INSERT INTO data (id, deviceid, value)
        VALUES ($1, $2, $3)`,
       [this.id, this.ownerId, value]
     );
@@ -20,7 +20,7 @@ class Shot extends AbstractShot {
   update() {
     let value = JSON.stringify(this.asJson());
     return db.update(
-      `UPDATE data SET value = $1 WHERE id = $2 AND userid = $3`,
+      `UPDATE data SET value = $1 WHERE id = $2 AND deviceid = $3`,
       [value, this.id, this.ownerId]
     ).then((rowCount) => {
       if (! rowCount) {
@@ -69,7 +69,7 @@ Shot.getRawValue = function (id) {
     throw new Error("Empty id: " + id);
   }
   return db.select(
-    `SELECT value, userid FROM data WHERE id = $1`,
+    `SELECT value, deviceid FROM data WHERE id = $1`,
     [id]
   ).then((rows) => {
     if (! rows.length) {
@@ -77,7 +77,7 @@ Shot.getRawValue = function (id) {
     }
     let row = rows[0];
     return {
-      userid: row.userid,
+      userid: row.deviceid,
       value: row.value
     };
   });

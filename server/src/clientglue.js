@@ -3,10 +3,17 @@
 let React = require("react"),
   { FrameFactory } = require("./views/frame.js"),
   { setGitRevision, staticLink } = require("./linker"),
-  { AbstractShot } = require("../shared/shot");
+  { AbstractShot } = require("../shared/shot"),
+  { requestProfile } = require("./events");
 
 // This represents the model we are rendering:
 let model;
+
+// This represents the current user's profile.
+let profile;
+
+// Assume the extension is installed when we load the page.
+let isExtInstalled = true;
 
 exports.setModel = function (data) {
   let firstSet = ! model;
@@ -14,6 +21,23 @@ exports.setModel = function (data) {
   model.shot = new AbstractShot(data.backend, data.id, data.shot);
   render();
   if (firstSet) {
+    let timer = setTimeout(function () {
+      timer = null;
+      isExtInstalled = false;
+      render();
+    }, 2000);
+    document.addEventListener("helper-ready", function onHelperReady(e) {
+      document.removeEventListener("helper-ready", onHelperReady, false);
+      if (timer === null) {
+        console.error("helper-ready took more than 2 seconds to fire!");
+        isExtInstalled = true;
+        render();
+      } else {
+        clearTimeout(timer);
+      }
+      requestProfile();
+    }, false);
+    document.addEventListener("refresh-profile", refreshProfile, false);
     window.addEventListener("hashchange", refreshHash, false);
     refreshHash();
   }
@@ -21,14 +45,20 @@ exports.setModel = function (data) {
 
 function render() {
   setGitRevision(model.gitRevision);
-  let attrs = {
-    staticLink: staticLink
-  };
+  let attrs = { staticLink, isExtInstalled };
   for (let attr in model) {
     attrs[attr] = model[attr];
   }
+  for (let attr in profile) {
+    attrs[attr] = profile[attr];
+  }
   let frame = FrameFactory(attrs);
   React.render(frame, document);
+}
+
+function refreshProfile(e) {
+  profile = JSON.parse(e.detail);
+  render();
 }
 
 function refreshHash() {
