@@ -41,7 +41,7 @@ let conf = convict({
     dbname: {
       doc: "The Postgres database",
       format: String,
-      default: null,
+      default: "",
       env: "DB_NAME",
       arg: "dn-name"
     }
