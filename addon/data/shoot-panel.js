@@ -561,7 +561,14 @@ function renderRecall(data) {
   let backend = data.backend;
   let shots = [];
   for (let shotJson of data.shots) {
-    shots.push(new AbstractShot(backend, shotJson.id, shotJson.shot));
+    let shot;
+    try {
+      shot = new AbstractShot(backend, shotJson.id, shotJson.shot);
+    } catch (e) {
+      console.warn("Could not render shot", shotJson.id, "because of error (old data?):", e+"");
+      continue;
+    }
+    shots.push(shot);
   }
   React.render(
     React.createElement(RecallPanel, {shots: shots, backend: backend}),
