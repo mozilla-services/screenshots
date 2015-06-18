@@ -70,16 +70,16 @@ class ShareButtons extends React.Component {
   render() {
     let size = this.props.large ? "32" : "16";
     return <div className="share-row">
-      <a target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + this.props.shot.viewUrl }>
+      <a target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }>
         <img src={ `icons/facebook-${size}.png` } />
       </a>
-      <a target="_blank" href={"https://twitter.com/home?status=" + this.props.shot.viewUrl }>
+      <a target="_blank" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }>
         <img src={ `icons/twitter-${size}.png` } />
       </a>
-      <a target="_blank" href={"https://pinterest.com/pin/create/button/?url=" + this.props.shot.viewUrl + "&media=" + this.props.clipUrl + "&description=" }>
+      <a target="_blank" href={"https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" }>
         <img src={ `icons/pinterest-${size}.png` } />
       </a>
-      <a target="_blank" href={ "mailto:?subject=Check%20out%20this%20PageShot%20page&body=" + this.props.shot.viewUrl }>
+      <a target="_blank" href={ "mailto:?subject=Check%20out%20this%20PageShot%20page&body=" + encodeURIComponent(this.props.shot.viewUrl) }>
         <img src={ `icons/email-${size}.png` } />
       </a>
       <a onClick={ this.props.onCopyClick }>
@@ -258,7 +258,7 @@ class ShootPanel extends React.Component {
       </div>;
     } else {
       modesRow = <div>
-        <span className="recall-back" onClick={this.recallBack.bind(this)}>&lt; back</span>
+        <span className="recall-back" onClick={this.recallBack.bind(this)}>&#12296; Back</span>
         <span className="recall-title">{ this.props.shot.title }</span>
         <a className="recall-url" href={ this.props.shot.url }>{ this.props.shot.url }</a>
       </div>;
@@ -271,7 +271,7 @@ class ShootPanel extends React.Component {
 
     return (<div className="container">
       <div className="link-row">
-        <a className="link" target="_blank" href={ this.props.shot.viewUrl } onClick={ this.onLinkClick.bind(this) }>{ this.props.shot.viewUrl }</a>
+        <a className="link" target="_blank" href={ this.props.shot.viewUrl } onClick={ this.onLinkClick.bind(this) }>{ stripProtocol(this.props.shot.viewUrl) }</a>
       </div>
       <div className="share-row-container">
         <ShareButtons
@@ -492,7 +492,7 @@ function renderData(data) {
 self.port.on("recallShot", err.watchFunction(function (data) {
   let myShot = new AbstractShot(data.backend, data.id, data.shot);
   React.render(
-    React.createElement(ShootPanel, {activeClipName: data.activeClipName, shot: myShot, recall: true}),
+    React.createElement(ShootPanel, {activeClipName: data.activeClipName, shot: myShot, recall: true, isEditing: true}),
     document.body);
 }));
 
