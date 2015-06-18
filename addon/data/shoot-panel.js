@@ -492,7 +492,7 @@ function renderData(data) {
 self.port.on("recallShot", err.watchFunction(function (data) {
   let myShot = new AbstractShot(data.backend, data.id, data.shot);
   React.render(
-    React.createElement(ShootPanel, {activeClipName: data.activeClipName, shot: myShot, recall: true}),
+    React.createElement(ShootPanel, {activeClipName: data.activeClipName, shot: myShot, recall: true, isEditing: true}),
     document.body);
 }));
 
