@@ -499,9 +499,10 @@ class Shot extends AbstractShot {
       return deferred.promise;
     }
     let url = this.jsonUrl;
+    let body = JSON.stringify(attrs);
     Request({
       url: url,
-      content: JSON.stringify(attrs),
+      content: body,
       contentType: "application/json",
       onComplete: watchFunction(function (response) {
         if (response.status >= 200 && response.status < 300) {
@@ -511,7 +512,7 @@ class Shot extends AbstractShot {
           if (response.status === 0) {
             message = "The request to " + url + " didn't complete due to the server being unavailable";
           } else {
-            message = "The request to " + url + " returned a response " + response.status;
+            message = "The request to " + url + " (" + Math.floor(body.length / 1000) + "Kb) returned a response " + response.status;
           }
           deferred.reject({
             name: "REQUEST_ERROR",
