@@ -153,6 +153,14 @@ exports.addRecall = function (shot) {
   let existing = ss.storage.recentShots || [];
   let found = false;
   for (let i=0; i<existing.length; i++) {
+    try {
+      new AbstractShot(require("main").getBackend(), existing[i].id, existing[i].shot);
+    } catch (e) {
+      console.error("Bad shot; removing:", existing[i].id);
+      existing.splice(i, 1);
+      i--;
+      continue;
+    }
     if (existing[i].id == shotJson.id) {
       existing[i] = shotJson;
       found = true;
