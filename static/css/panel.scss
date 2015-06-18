@@ -16,6 +16,13 @@ html, body {
 
 body {
   min-height: 100%;
+  /* FIXME: it seems like any font attribute can be set to -moz-use-system-font,
+  and then that attribute will inherit from system settings. Maybe we should
+  be using it for more than font-family */
+  /* FIXME: currently font-family: -moz-use-system-font results in a serif
+  font, presumably I'm doing it wrong?
+  font-family: -moz-use-system-font;
+  */
   font-family: sans-serif;
   font-size: 110%;
   box-sizing: border-box;
@@ -362,8 +369,8 @@ ul.recall-list li:hover {
   position: absolute;
   color: blue;
   cursor: pointer;
-  top: 0.5em;
-  left: 0.5em;
+  top: -2px;
+  left: 8px;
   font-size: small;
 }
 
