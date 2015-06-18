@@ -672,6 +672,7 @@ function ignoreElementForAutoSelect(el) {
 }
 
 function autoSelect(ids) {
+  var startTime = Date.now();
   ids = ids || autoIds;
   var i, el;
   var outerElements = {
@@ -866,6 +867,7 @@ function autoSelect(ids) {
   cornerX = pos.right;
   cornerY = pos.bottom;
   render();
+  console.info("total autoSelect time:", Date.now() - startTime, "ms");
   reportSelection("auto");
 }
 
@@ -975,6 +977,7 @@ window.addEventListener("popstate", checkUrl, false);
 
 self.port.on("isShowing", checkUrl);
 
+let loadTime = Date.now();
 self.port.on("extractedData", watchFunction(function (data) {
   if (data.readable) {
     autoIds = data.readable.readableIds;
@@ -982,6 +985,7 @@ self.port.on("extractedData", watchFunction(function (data) {
       autoIds = null;
     }
   }
+  console.log("getting extractedData:", Date.now() - loadTime, "ms");
 }));
 
 self.port.emit("ready");

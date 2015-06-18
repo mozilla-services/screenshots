@@ -44,6 +44,7 @@ function setIds() {
     - Finds images in roughly the preferred order (`.images`)
     */
 function extractData() {
+  let start = Date.now();
   // Readability is destructive, so we have to run it on a copy
   setIds();
   var readableDiv = document.createElement("div");
@@ -51,15 +52,22 @@ function extractData() {
   // FIXME: location.href isn't what Readability expects (but I am
   // working around the parts of the code that seem to expect
   // something different)
+  let startReader = Date.now();
   var reader = new Readability(location.href, readableDiv);
   var readable = reader.parse();
+  console.info("Readability time:", Date.now() - startReader, "ms");
+  let startMicro = Date.now();
   var microdata = microformats.getItems();
+  console.info("Microdata time:", Date.now() - startMicro, "ms");
   // FIXME: need to include found images too
+  let startImage = Date.now();
   var images = findImages([
     {element: document.head, isReadable: false},
     {element: readableDiv, isReadable: true},
     {element: document.body, isReadable: false}]);
+  console.info("Image time:", Date.now() - startImage, "ms");
   var siteName = findSiteName();
+  console.info("extractData time:", Date.now() - start, "ms");
   return {
     readable: readable,
     microdata: microdata,
