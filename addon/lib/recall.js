@@ -135,6 +135,7 @@ function sendShot(shot) {
   if (! shot) {
     shot = lastShot;
   }
+  lastShot = shot;
   let backend = require("main").getBackend();
   recallPanel.port.emit("recallShot", {
     backend: backend,

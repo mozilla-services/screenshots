@@ -233,7 +233,7 @@ class Frame extends React.Component {
           />
           <div className="shot-title">{ shot.title }</div>
           <div className="shot-subtitle">
-            <span>source </span><a className="subheading-link" href="{ shot.url }">{ linkTextShort }</a>
+            <span>source </span><a className="subheading-link" href={ shot.url }>{ linkTextShort }</a>
             <span style={{paddingLeft: "15px"}}>saved { timeDiff }</span>
           </div>
         </div>

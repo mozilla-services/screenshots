@@ -269,6 +269,15 @@ class ShootPanel extends React.Component {
       adder = <span className="clip-selector" onClick={this.addClip.bind(this)}>+</span>;
     }
 
+    let comment = null;
+    if (! this.props.recall) {
+      comment = (
+        <div className="comment-area">
+          <input className="comment-input" ref="input" type="text" value={ clipComment } placeholder="Say something about this clip" onKeyUp={ this.onKeyUp.bind(this) } onBlur={ this.onBlur.bind(this) } onChange={ this.onChange.bind(this) }/>
+        </div>
+      );
+    }
+
     return (<div className="container">
       <div className="link-row">
         <a className="link" target="_blank" href={ this.props.shot.viewUrl } onClick={ this.onLinkClick.bind(this) }>{ stripProtocol(this.props.shot.viewUrl) }</a>
@@ -291,9 +300,9 @@ class ShootPanel extends React.Component {
         {selectors}
         {adder}
       </div>
-      <div className="comment-area">
-        <input className="comment-input" ref="input" type="text" value={ clipComment } placeholder="Say something about this clip" onKeyUp={ this.onKeyUp.bind(this) } onBlur={ this.onBlur.bind(this) } onChange={ this.onChange.bind(this) }/>
-      </div>
+
+      {comment}
+
       <div className="feedback-row">
         <a className="pageshot-footer" target="_blank" href="https://github.com/mozilla-services/pageshot">PageShot</a>
         <a className="feedback-footer" target="_blank" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + this.props.shot.viewUrl }>Send Feedback</a>

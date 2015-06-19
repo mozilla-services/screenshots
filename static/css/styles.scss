@@ -196,6 +196,11 @@ a.sitelink, a.sitelink:visited {
 
 .shot-title {
   padding-top: 2px;
+  white-space: nowrap;
+  /* FIXME: ellipsis doesn't really work, because the end of the title is
+  obscured by the clip selector */
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .shot-subtitle {

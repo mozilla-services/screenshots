@@ -114,7 +114,7 @@ run () {
         static_args="{\"backend\": \"$server\"}"
     fi
     if [[ -z "$no_filter" ]] ; then
-        $cmd run $binary --profiledir Profile $static_op "$static_args" "$@" \
+        $cmd run $binary --profiledir ../Profile $static_op "$static_args" "$@" \
             2>&1 \
             | grep --line-buffered \
             -v -e 'WARNING: content window passed to PrivateBrowsingUtils.isWindowPrivate' \
