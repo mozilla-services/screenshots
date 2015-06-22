@@ -25,6 +25,10 @@ function stripProtocol(url) {
   return url.replace(/^https?:\/\//i, "");
 }
 
+function domainOnly(url) {
+  return url.replace(/^https?:\/\//i, "").replace(/\/.*$/, "");
+}
+
 /** Renders the image of the clip inside the panel */
 class ImageClip extends React.Component {
   render() {
@@ -260,7 +264,7 @@ class ShootPanel extends React.Component {
       modesRow = <div>
         <span className="recall-back" onClick={this.recallBack.bind(this)}>&#12296; Back</span>
         <span className="recall-title">{ this.props.shot.title }</span>
-        <a className="recall-url" href={ this.props.shot.url }>{ this.props.shot.url }</a>
+        <a className="recall-url" href={ this.props.shot.url }>{ domainOnly(this.props.shot.url) }</a>
       </div>;
     }
 
@@ -281,8 +285,6 @@ class ShootPanel extends React.Component {
     return (<div className="container">
       <div className="link-row">
         <a className="link" target="_blank" href={ this.props.shot.viewUrl } onClick={ this.onLinkClick.bind(this) }>{ stripProtocol(this.props.shot.viewUrl) }</a>
-      </div>
-      <div className="share-row-container">
         <ShareButtons
           clipUrl={ clipUrl }
           onCopyClick={ this.onCopyClick.bind(this) }
