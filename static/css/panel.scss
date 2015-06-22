@@ -310,20 +310,20 @@ ul.recall-list {
 }
 
 ul.recall-list li {
-  position: relative;
   list-style: none;
   padding: 0.125em;
   padding-left: 0.5em;
   margin-left: 0.125em;
   margin-right: 0.125em;
   border: 1px solid transparent;
+  height: 18px;
 }
 
 ul.recall-list .title {
-  width: 80%;
+  width: 95%;
+  white-space: nowrap;
   text-overflow: ellipsis;
-  overflow: hidden;
-  height: 1.1em;
+  overflow-x: hidden;
 }
 
 ul.recall-list li:hover {
@@ -349,12 +349,17 @@ ul.recall-list li:hover {
 
 .title {
   cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .title .empty-favicon, .title .favicon {
   display: inline-block;
   width: 16px;
   height: 16px;
+  padding-right: 8px;
 }
 
 .title .favicon img {
@@ -369,9 +374,15 @@ ul.recall-list li:hover {
   right: 0px;
   height: 1em;
   padding: 0.5em;
-  border-top: 1px solid black;
-  background-color: #dfdfdf;
+  border-top: 1px solid #ccc;
+  background-color: #eaeaea;
   text-align: center;
+  font-size: 13px;
+}
+
+.see-more-row a, .see-more-row a:visited {
+  display: block;
+  color: #0095dd;
 }
 
 .recall-back {
