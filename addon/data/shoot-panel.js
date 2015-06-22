@@ -26,7 +26,7 @@ function stripProtocol(url) {
 }
 
 function domainOnly(url) {
-  return url.replace(/^https?:\/\//i, "").replace(/\/.*$/, "");
+  return url.replace(/^https?:\/\//i, "").replace(/\/.*$/, "").replace(/^www\./i, "");
 }
 
 /** Renders the image of the clip inside the panel */
