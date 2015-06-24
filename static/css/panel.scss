@@ -9,6 +9,8 @@ Panels should have a structure like:
 
 */
 
+$shadow-color: rgba(0, 0, 0, 0.5);
+
 html, body {
   margin: 0;
   height: 100%;
@@ -54,23 +56,6 @@ a:hover {
   text-decoration: underline;
 }
 
-input[type=text] {
-  border: 1px solid rgba(0, 0, 0, 0);
-  border-radius: 1px;
-  cursor: pointer;
-}
-
-input[type=text]:hover {
-  background-color: #ddf;
-}
-
-input[type=text]:focus {
-  border: 1px solid #999;
-  border-radius: 1px;
-  cursor: text;
-  background-color: #fff;
-}
-
 /*
 
   CSS specific to the pageshot panel
@@ -105,6 +90,7 @@ input[type=text]:focus {
   left: 0.5em;
   right: 0.5em;
   text-align: center;
+  font-size: 13px;
 }
 
 .mode {
@@ -118,8 +104,8 @@ input[type=text]:focus {
 }
 
 .mode-selected {
-  border: 2px solid #67aede;
-  background-color: #dcedf6;
+  border: 2px solid rgba(0, 149, 221, 0.5);
+  background-color: rgba(0, 149, 221, 0.1);
 }
 
 .clip-selector {
@@ -241,7 +227,7 @@ img.snippet-image {
   flex-basis: 0;
   border: 1px solid #aaa;
   border-radius: 3px;
-  box-shadow: 5px 3px 3px #999;
+  box-shadow: 0 2px 5px $shadow-color;
 }
 
 .snippet-text {
@@ -252,7 +238,7 @@ img.snippet-image {
   padding: 6px;
   border: 1px solid #aaa;
   border-radius: 3px;
-  box-shadow: 5px 3px 3px #999;
+  box-shadow: 0 2px 5px $shadow-color;
 }
 
 .comment-area {
@@ -268,8 +254,7 @@ img.snippet-image {
 
 .comment-input {
   width: 100%;
-  border: 1px solid #666;
-  border-radius: 2px;
+  font-size: 13px;
 }
 
 .ps-selected {
