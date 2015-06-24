@@ -86,7 +86,7 @@ class ShareButtons extends React.Component {
       <a target="_blank" href={ "mailto:?subject=Check%20out%20this%20PageShot%20page&body=" + encodeURIComponent(this.props.shot.viewUrl) }>
         <img src={ `icons/email-${size}.png` } />
       </a>
-      <a onClick={ this.props.onCopyClick }>
+      <a href="#" onClick={ this.props.onCopyClick }>
         <img src={ `icons/link-${size}.png` } />
       </a>
     </div>;
@@ -264,7 +264,7 @@ class ShootPanel extends React.Component {
       modesRow = <div>
         <span className="recall-back" onClick={this.recallBack.bind(this)}>&#12296; Back</span>
         <span className="recall-title">{ this.props.shot.title }</span>
-        <a className="recall-url" href={ this.props.shot.url }>{ domainOnly(this.props.shot.url) }</a>
+        <a className="recall-url" target="_blank" href={ this.props.shot.url }>{ domainOnly(this.props.shot.url) }</a>
       </div>;
     }
 
