@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="16px" height="14px" viewBox="0 0 16 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
-    <title>Slice 1</title>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>camera-empty</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="camera-empty" sketch:type="MSLayerGroup">
-            <g id="Page-1" sketch:type="MSShapeGroup">
-                <g id="camera-empty---vectorised">
-                    <path d="M2,2 L1.99695205,2 C0.903208229,2 0,2.8992496 0,4.0085302 L0,11.9914698 C0,13.0980496 0.892771196,14 1.99406028,14 L14.0059397,14 C15.1054862,14 16,13.1007504 16,11.9914698 L16,4.0085302 C16,2.90195036 15.1037918,2 13.9982629,2 L11.0134277,2 L7.17163086,2 L6,2 L6,1.5 C6,0.943864822 5.54809015,0.5 4.9906311,0.5 L3.0093689,0.5 C2.44335318,0.5 2,0.94771525 2,1.5 L2,2 L2,2 Z" id="Rectangle-4" fill="#575757"></path>
-                    <path d="M2,4 L14,4 L14,12 L2,12 L2,4 L2,4 Z" id="Rectangle-4-path" fill="#FFFFFF"></path>
-                    <path d="M9,12 C11.209139,12 13,10.209139 13,8 C13,5.790861 11.209139,4 9,4 C6.790861,4 5,5.790861 5,8 C5,10.209139 6.790861,12 9,12 L9,12 Z" id="Oval-3" fill="#575757"></path>
-                    <path d="M9,10 C10.1045695,10 11,9.1045695 11,8 C11,6.8954305 10.1045695,6 9,6 C7.8954305,6 7,6.8954305 7,8 C7,9.1045695 7.8954305,10 9,10 L9,10 Z" id="Oval-3-path" fill="#FFFFFF"></path>
-                    <path d="M3,11.5 L3,12 L4,12 L4,11.5 L4,4.5 L4,4 L3,4 L3,4.5 L3,11.5 L3,11.5 Z" id="Line" fill-opacity="0.5" fill="#575757"></path>
-                </g>
-            </g>
+        <g id="camera-empty---vectorised" sketch:type="MSLayerGroup" transform="translate(0.000000, 1.000000)" fill="#4D4D4D">
+            <path d="M2,2 L1.99695205,2 C0.903208229,2 0,2.8992496 0,4.0085302 L0,11.9914698 C0,13.0980496 0.892771196,14 1.99406028,14 L14.0059397,14 C15.1054862,14 16,13.1007504 16,11.9914698 L16,4.0085302 C16,2.90195036 15.1037918,2 13.9982629,2 L11.0134277,2 L7.17163086,2 L6,2 L6,1.5 C6,0.943864822 5.54809015,0.5 4.9906311,0.5 L3.0093689,0.5 C2.44335318,0.5 2,0.94771525 2,1.5 L2,2 Z M2,4 L14,4 L14,12 L2,12 L2,4 Z" id="Rectangle-4" sketch:type="MSShapeGroup"></path>
+            <path d="M9,12 C11.209139,12 13,10.209139 13,8 C13,5.790861 11.209139,4 9,4 C6.790861,4 5,5.790861 5,8 C5,10.209139 6.790861,12 9,12 Z M9,10 C10.1045695,10 11,9.1045695 11,8 C11,6.8954305 10.1045695,6 9,6 C7.8954305,6 7,6.8954305 7,8 C7,9.1045695 7.8954305,10 9,10 Z" id="Oval-3" sketch:type="MSShapeGroup"></path>
+            <path d="M3,11.5 L3,12 L4,12 L4,11.5 L4,4.5 L4,4 L3,4 L3,4.5 L3,11.5 Z" id="Line" fill-opacity="0.5" sketch:type="MSShapeGroup"></path>
         </g>
     </g>
 </svg>

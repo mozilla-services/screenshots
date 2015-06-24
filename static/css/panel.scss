@@ -9,6 +9,8 @@ Panels should have a structure like:
 
 */
 
+$shadow-color: rgba(0, 0, 0, 0.5);
+
 html, body {
   margin: 0;
   height: 100%;
@@ -54,23 +56,6 @@ a:hover {
   text-decoration: underline;
 }
 
-input[type=text] {
-  border: 1px solid rgba(0, 0, 0, 0);
-  border-radius: 1px;
-  cursor: pointer;
-}
-
-input[type=text]:hover {
-  background-color: #ddf;
-}
-
-input[type=text]:focus {
-  border: 1px solid #999;
-  border-radius: 1px;
-  cursor: text;
-  background-color: #fff;
-}
-
 /*
 
   CSS specific to the pageshot panel
@@ -105,6 +90,7 @@ input[type=text]:focus {
   left: 0.5em;
   right: 0.5em;
   text-align: center;
+  font-size: 13px;
 }
 
 .mode {
@@ -118,12 +104,13 @@ input[type=text]:focus {
 }
 
 .mode-selected {
-  border: 2px solid #67aede;
-  background-color: #dcedf6;
+  border: 2px solid rgba(0, 149, 221, 0.5);
+  background-color: rgba(0, 149, 221, 0.1);
 }
 
 .clip-selector {
-  padding: 0 4px 0 4px;
+  padding: 0 5px 0 5px;
+  font-size: 16px;
   cursor: pointer;
 }
 
@@ -149,16 +136,22 @@ input[type=text]:focus {
   left: 0px;
   right: 0px;
   height: 2em;
-  text-align: center;
   background-color: #E4E4E4;
+  font-size: 15px;
+}
+
+.link-row .share-row {
+  position: absolute;
+  width: 50%;
+  top: 8px;
+  right: 0px;
 }
 
 .link {
   position: absolute;
-  bottom: 0.275em;
-  left: 0.5em;
-  right: 0.5em;
-  display: inline-block;
+  width: 50%;
+  top: 8px;
+  left: 30px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -195,7 +188,9 @@ input[type=text]:focus {
   left: 0px;
   right: 0px;
   height: 2em;
-  border-top: 1px solid black;
+  font-size: 12px;
+  background-color: #eaeaea;
+  border-top: 1px solid #ccc;
 }
 
 .pageshot-footer {
@@ -232,7 +227,7 @@ img.snippet-image {
   flex-basis: 0;
   border: 1px solid #aaa;
   border-radius: 3px;
-  box-shadow: 5px 3px 3px #999;
+  box-shadow: 0 2px 5px $shadow-color;
 }
 
 .snippet-text {
@@ -243,7 +238,7 @@ img.snippet-image {
   padding: 6px;
   border: 1px solid #aaa;
   border-radius: 3px;
-  box-shadow: 5px 3px 3px #999;
+  box-shadow: 0 2px 5px $shadow-color;
 }
 
 .comment-area {
@@ -259,8 +254,7 @@ img.snippet-image {
 
 .comment-input {
   width: 100%;
-  border: 1px solid #666;
-  border-radius: 2px;
+  font-size: 13px;
 }
 
 .ps-selected {
@@ -301,20 +295,20 @@ ul.recall-list {
 }
 
 ul.recall-list li {
-  position: relative;
   list-style: none;
   padding: 0.125em;
   padding-left: 0.5em;
   margin-left: 0.125em;
   margin-right: 0.125em;
   border: 1px solid transparent;
+  height: 18px;
 }
 
 ul.recall-list .title {
-  width: 80%;
+  width: 95%;
+  white-space: nowrap;
   text-overflow: ellipsis;
-  overflow: hidden;
-  height: 1.1em;
+  overflow-x: hidden;
 }
 
 ul.recall-list li:hover {
@@ -340,12 +334,17 @@ ul.recall-list li:hover {
 
 .title {
   cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .title .empty-favicon, .title .favicon {
   display: inline-block;
   width: 16px;
   height: 16px;
+  padding-right: 8px;
 }
 
 .title .favicon img {
@@ -360,18 +359,24 @@ ul.recall-list li:hover {
   right: 0px;
   height: 1em;
   padding: 0.5em;
-  border-top: 1px solid black;
-  background-color: #dfdfdf;
+  border-top: 1px solid #ccc;
+  background-color: #eaeaea;
   text-align: center;
+  font-size: 13px;
+}
+
+.see-more-row a, .see-more-row a:visited {
+  display: block;
+  color: #0095dd;
 }
 
 .recall-back {
   position: absolute;
   color: blue;
   cursor: pointer;
-  top: -2px;
-  left: 8px;
-  font-size: small;
+  top: 0px;
+  left: -7px;
+  font-size: 12px;
 }
 
 .recall-title {
@@ -384,6 +389,7 @@ ul.recall-list li:hover {
   white-space: nowrap;
   text-overflow: ellipsis;
   text-align: center;
+  font-size: 15px;
 }
 
 .recall-url {
@@ -397,6 +403,7 @@ ul.recall-list li:hover {
   white-space: nowrap;
   text-overflow: ellipsis;
   text-align: center;
+  font-size: 13px;
 }
 
 .simplified-instructions {
