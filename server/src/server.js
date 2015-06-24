@@ -56,6 +56,11 @@ app.post("/api/register", function (req, res) {
   let vars = req.body;
   // FIXME: need to hash secret
   let canUpdate = vars.deviceId === req.deviceId;
+  if (! vars.deviceId) {
+    console.error("Bad register request:", JSON.stringify(vars, null, "  "));
+    simpleResponse(res, "Bad request, no deviceId", 400);
+    return;
+  }
   return registerLogin(vars.deviceId, {
     secret: vars.secret,
     nickname: vars.nickname || null,
@@ -191,8 +196,8 @@ app.get("/content/:id/:domain", function (req, res) {
     res.send(shot.staticHtml({
       addHead: `
       <base href="${shot.url}" target="_blank" />
-      <script src="http:${req.staticLinkWithHost("js/content-helper.js")}"></script>
-      <link rel="stylesheet" href="http:${req.staticLinkWithHost("css/content.css")}">
+      <script src="${req.staticLinkWithHost("js/content-helper.js")}"></script>
+      <link rel="stylesheet" href="${req.staticLinkWithHost("css/content.css")}">
       `
     }));
   }).catch(function (e) {

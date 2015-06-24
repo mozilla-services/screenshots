@@ -30,5 +30,5 @@ exports.staticLink = function (resource) {
 };
 
 exports.staticLinkWithHost = function (req, resource) {
-  return "//" + req.headers.host + exports.staticLink(resource);
+  return req.protocol + "://" + req.headers.host + exports.staticLink(resource);
 };
