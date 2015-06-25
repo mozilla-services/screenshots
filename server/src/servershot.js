@@ -87,7 +87,8 @@ Shot.getShotsForDevice = function (backend, deviceId) {
   if (! deviceId) {
     throw new Error("Empty deviceId: " + deviceId);
   }
-  let start = Date.now();
+  let timeStart = Date.now();
+  let timeMid;
   return db.select(
     `SELECT DISTINCT devices.id
      FROM devices, devices AS devices2
@@ -97,6 +98,7 @@ Shot.getShotsForDevice = function (backend, deviceId) {
     `,
     [deviceId]
   ).then((rows) => {
+    timeMid = Date.now();
     let ids = [];
     let idNums = [];
     for (let i=0; i<rows.length; i++) {
@@ -112,7 +114,7 @@ Shot.getShotsForDevice = function (backend, deviceId) {
       ids
     );
   }).then((rows) => {
-    console.log("done", Date.now() - start);
+    console.info("Index query:", Date.now() - timeStart, "ms total; device query:", timeMid - timeStart, "ms");
     let result = [];
     for (let i=0; i<rows.length; i++) {
       let row = rows[i];
