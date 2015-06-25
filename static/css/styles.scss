@@ -180,7 +180,7 @@ a.sitelink, a.sitelink:visited {
 
 .white-background {
   background-color: white;
-  text-color: black;
+  color: black;
   text-align: left;
 }
 
@@ -316,4 +316,37 @@ a.subheading-link {
 .navigate-clips.disabled {
   opacity: 0.5;
   background-color: inherit;
+}
+
+/* Shot index page styles */
+
+#shot-index {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 20px;
+
+  .shot {
+    background-color: #fff;
+    border-radius: 2px;
+    padding: 5px;
+    box-shadow: 0 -2px 5px $shadow-color;
+    width: 250px;
+    margin: 8px;
+  }
+
+  .shot-link-container {
+    text-align: center;
+  }
+
+  h2 {
+    a {
+      color: #000;
+    }
+    font-size: 16px;
+    margin: 0px 0px 3px 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

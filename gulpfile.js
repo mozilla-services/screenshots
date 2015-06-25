@@ -49,7 +49,7 @@ gulp.task("imgs", function () {
 
 gulp.task("javascript", ["6to5", "shared"], function () {
   var bundler = browserify({
-    entries: ["./dist/server/clientglue.js"],
+    entries: ["./dist/server/clientglue.js", "./dist/server/shotindexglue.js"],
     debug: true
   });
 

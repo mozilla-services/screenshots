@@ -1,9 +1,10 @@
-/* globals window, document */
+/* globals document */
 
 const React = require("react");
 const { Shell } = require("./shell");
 const { getGitRevision } = require("../linker");
-const { ProfileButton, Profile } = require("./profile");
+const { ProfileButton } = require("./profile");
+const { addReactScripts } = require("../reactutils");
 
 class Snippet extends React.Component {
   onClickComment(e) {
@@ -192,14 +193,7 @@ class Frame extends React.Component {
       numberOfClips = (clipIndex + 1) + " of " + numberOfClips;
     }
 
-    let linkTextShort = "";
-    if (shot.url) {
-      let txt = shot.url;
-      txt = txt.replace(/[a-z]+:\/\//i, "");
-      txt = txt.replace(/\/.*/, "");
-      txt = txt.replace(/^www\./i, "");
-      linkTextShort = txt;
-    }
+    let linkTextShort = shot.urlDisplay
 
     let timeDiff;
     let seconds = (Date.now() - shot.createdDate) / 1000;
@@ -290,16 +284,10 @@ exports.render = function (req, res) {
     shotDomain: req.url
   };
   let body = React.renderToString(frame);
-  let footer = "</body></html>";
-  let frontmatter = body.slice(0, body.length - footer.length);
   let json = JSON.stringify(clientPayload);
-  body = (`<!DOCTYPE html>
-${frontmatter}
-<script>
-  var serverData = ${json};
-  clientglue.setModel(serverData);
-</script>
-${footer}`
-  );
+  body = addReactScripts(body, `
+    var serverData = ${json};
+    clientglue.setModel(serverData);
+  `);
   res.send(body);
 };
