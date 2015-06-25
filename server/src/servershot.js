@@ -82,3 +82,44 @@ Shot.getRawValue = function (id) {
     };
   });
 };
+
+Shot.getShotsForDevice = function (backend, deviceId) {
+  if (! deviceId) {
+    throw new Error("Empty deviceId: " + deviceId);
+  }
+  let start = Date.now();
+  return db.select(
+    `SELECT DISTINCT devices.id
+     FROM devices, devices AS devices2
+     WHERE devices.id = $1
+           OR (devices.accountid = devices2.accountid
+               AND devices2.id = $1)
+    `,
+    [deviceId]
+  ).then((rows) => {
+    let ids = [];
+    let idNums = [];
+    for (let i=0; i<rows.length; i++) {
+      ids.push(rows[i].id);
+      idNums.push("$" + (i+1));
+    }
+    return db.select(
+      `SELECT data.id, data.value, data.deviceid
+       FROM data
+       WHERE data.deviceid IN (${idNums.join(", ")})
+       ORDER BY data.created
+      `,
+      ids
+    );
+  }).then((rows) => {
+    console.log("done", Date.now() - start);
+    let result = [];
+    for (let i=0; i<rows.length; i++) {
+      let row = rows[i];
+      let json = JSON.parse(row.value);
+      let shot = new Shot(row.deviceid, backend, row.id, json);
+      result.push(shot);
+    }
+    return result;
+  });
+};

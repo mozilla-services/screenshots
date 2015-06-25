@@ -386,6 +386,20 @@ ${options.addBody || ""}
     this._url = val;
   }
 
+  get urlDisplay() {
+    if (this.url.search(/^https?/i) != -1) {
+      let txt = this.url;
+      txt = txt.replace(/[a-z]+:\/\//i, "");
+      txt = txt.replace(/\/.*/, "");
+      txt = txt.replace(/^www\./i, "");
+      return txt;
+    } else {
+      let txt = this.url;
+      txt = txt.replace(/\?.*/, "");
+      return txt;
+    }
+  }
+
   get viewUrl() {
     let url = this.backend + "/" + this.id;
     if (this.url.startsWith("http://")) {
