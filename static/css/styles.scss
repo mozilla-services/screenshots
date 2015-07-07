@@ -291,6 +291,7 @@ a.subheading-link {
   right: 0px;
   bottom: 0px;
   padding: 1em;
+  padding-right: 3em;
   background-color: $text-color;
   color: $primary-color;
   z-index: 2000;
@@ -303,8 +304,9 @@ a.subheading-link {
 
 #banner-close {
   position: absolute;
-  right: 15px;
-  top: 15px;
+  right: 0px;
+  top: 0px;
+  padding: 1em;
   cursor: pointer;
 }
 
