@@ -296,11 +296,30 @@ const ShotContext = Class({
       }
       this.updateShot();
     },
-    copyLink: function () {
-      clipboard.set(this.shot.viewUrl, "text");
+    copyLink: function (url) {
+      clipboard.set(url, "text");
       notifications.notify({
         title: "Link Copied",
         text: "The link to your shot has been copied to the clipboard.",
+        iconURL: self.data.url("../data/copy.png")
+      });
+    },
+    copyImage: function (img) {
+      clipboard.set(img, "image");
+      notifications.notify({
+        title: "Image Copied",
+        text: "Your shot has been copied to the clipboard.",
+        iconURL: self.data.url("../data/copy.png")
+      });
+    },
+    copyRich: function (url, img, title) {
+      // Use "text" instead of "html" so that pasting into a text area or text editor
+      // pastes the html instead of the plain text stripped out of the html.
+      clipboard.set(
+        `<a href="${url}"><img src="${img}" /><div>${title}</div></a>`, "text");
+      notifications.notify({
+        title: "HTML Copied",
+        text: "The link to your shot and an image have been copied to the clipboard.",
         iconURL: self.data.url("../data/copy.png")
       });
     },
