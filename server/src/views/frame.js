@@ -82,6 +82,14 @@ class Frame extends React.Component {
     node.style.display = "none";
   }
 
+  clickFullPageButton(e) {
+    let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
+    let toolbarHeight = document.getElementById("toolbar").clientHeight;
+    let visibleHeight = window.innerHeight - toolbarHeight;
+    let frameTop = frameOffset - toolbarHeight;
+    window.scroll(0, frameTop);
+  }
+
   render() {
     let head = this.renderHead();
     let body = this.renderBody();
@@ -238,11 +246,19 @@ class Frame extends React.Component {
           { previousClipNode }
           { nextClipNode }
         </div>
+        <div id="full-page-button">
+          <img src={ this.props.staticLink("img/full-page-button.png") }
+            onClick={ this.clickFullPageButton.bind(this) } />
+        </div>
         <div className="metadata">
           <h1 id="main-title">{ shot.title }</h1>
           <p><a className="subheading-link" href={ shot.url }>{ linkTextShort }</a></p>
         </div>
         { snippets }
+        <div id="full-page-button-scrollable">
+          <img src={ this.props.staticLink("img/full-page-button.png") }
+            onClick={ this.clickFullPageButton.bind(this) } />
+        </div>
         <iframe width="100%" id="frame" src={ "/content/" +  shot.id } style={ {backgroundColor: "#fff"} } />
         <a className="pageshot-footer" href="https://github.com/mozilla-services/pageshot">{this.props.productName}</a>
         <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl }>Send Feedback</a>

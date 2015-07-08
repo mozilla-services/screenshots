@@ -28,7 +28,7 @@ body {
 
 #frame {
   border: none;
-  margin-top: 500px;
+  margin-top: 16px;
   margin-bottom: 4em;
   box-shadow: 0 -5px 5px $shadow-color;
 }
@@ -61,6 +61,29 @@ body {
   width: 160px;
   text-align: right;
   font-size: 12px;
+}
+
+#full-page-button {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  height: 2em;
+  text-align: center;
+}
+
+#full-page-button img {
+  cursor: pointer;
+}
+
+#full-page-button-scrollable {
+  height: 2em;
+  margin-top: 500px;
+  text-align: center;
+}
+
+#full-page-button-scrollable img {
+  cursor: pointer;
 }
 
 .clip-count {
