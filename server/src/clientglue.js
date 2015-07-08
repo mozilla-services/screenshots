@@ -29,6 +29,7 @@ exports.setModel = function (data) {
     let toolbar = document.getElementById("toolbar");
     let navigateToolbar = document.getElementById("navigate-toolbar");
     let fullPageButton = document.getElementById("full-page-button");
+    let fullPageButtonScrollable = document.getElementById("full-page-button-scrollable");
     let frameElement = document.getElementById("frame");
     window.onscroll = function (e) {
       if (e.pageY > 0) {
@@ -38,10 +39,12 @@ exports.setModel = function (data) {
         let toolbarHeight = toolbar.clientHeight;
         let visibleHeight = window.innerHeight - toolbarHeight;
         let frameTop = frameOffset - toolbarHeight;
-        if (e.pageY >= frameTop - visibleHeight - 48) {
+        if (e.pageY >= frameTop - visibleHeight - 16) {
           fullPageButton.style.visibility = "hidden";
+          fullPageButtonScrollable.style.visibility = "visible";
         } else {
           fullPageButton.style.visibility = "visible";
+        fullPageButtonScrollable.style.visibility = "hidden";
         }
       } else {
         toolbar.style.visibility = "hidden";
