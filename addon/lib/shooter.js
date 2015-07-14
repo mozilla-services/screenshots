@@ -22,6 +22,10 @@ const notifications = require("sdk/notifications");
 // (probably a redirect of some sort):
 var MIN_PAGE_VISIT_TIME = 5000; // 5 seconds
 
+function escapeForHTML(text) {
+  return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+}
+
 /** Takes `tab.history` and returns a list suitable for uploading.  This removes
     duplicate items, culls pages that are too brief, and filters out some
     pages like about: pages that shouldn't show up. */
@@ -319,7 +323,7 @@ const ShotContext = Class({
       let clip = this.shot.getClip(activeClipName);
       let url = this.shot.viewUrl;
       let img = clip.image.url;
-      let title = this.shot.title;
+      let title = escapeForHTML(this.shot.title);
 
       clipboard.set(
         `<a href="${url}"><img src="${img}" /><div>${title}</div></a>`, "text");
