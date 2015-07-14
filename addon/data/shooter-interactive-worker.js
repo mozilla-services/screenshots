@@ -213,7 +213,9 @@ function setState(state) {
     document.body.classList.remove("pageshot-hide-selection");
     document.body.classList.remove("pageshot-hide-movers");
     addHandlers();
-    autoSelect();
+    if (!autoSelect()) {
+      self.port.emit("visibleSelection");
+    }
   } else if (state === "text") {
     document.body.classList.add("pageshot-hide-selection");
     document.body.classList.add("pageshot-hide-movers");
@@ -813,7 +815,7 @@ function autoSelect(ids) {
       pos.left === null && pos.right === null) {
     console.info("No autoSelect elements found, doing no selection");
     reportNoSelection();
-    return;
+    return false;
   } else if (pos.top === null || pos.bottom === null ||
              pos.left === null || pos.right === null) {
     console.info("Expanding autoSelect in directions:",
@@ -869,6 +871,7 @@ function autoSelect(ids) {
   render();
   console.info("total autoSelect time:", Date.now() - startTime, "ms");
   reportSelection("auto");
+  return true;
 }
 
 /**********************************************************
