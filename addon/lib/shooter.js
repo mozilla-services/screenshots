@@ -324,9 +324,9 @@ const ShotContext = Class({
       let url = this.shot.viewUrl;
       let img = clip.image.url;
       let title = escapeForHTML(this.shot.title);
-
-      clipboard.set(
-        `<a href="${url}"><img src="${img}" /><div>${title}</div></a>`, "text");
+      let html = `<a href="${url}"><img src="${img}" /><div>${title}</div></a>`;
+      clipboard.set(html, "html");
+      clipboard.set(html, "text");
       notifications.notify({
         title: "HTML Copied",
         text: "The link to your shot and an image have been copied to the clipboard.",
