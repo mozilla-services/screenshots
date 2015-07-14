@@ -89,6 +89,12 @@ class ShareButtons extends React.Component {
       <a href="#" onClick={ this.props.onCopyClick }>
         <img src={ `icons/link-${size}.png` } />
       </a>
+      <a href="#" onClick={ this.props.onCopyImageClick }>
+        <img src={ `icons/copy-image-${size}.png` } />
+      </a>
+      <a href="#" onClick={ this.props.onCopyRichClick }>
+        <img src={ `icons/copy-rich-${size}.png` } />
+      </a>
     </div>;
   }
 }
@@ -132,7 +138,18 @@ class ShootPanel extends React.Component {
   }
 
   onCopyClick(e) {
-    self.port.emit("copyLink", this.props.shot.viewUrl);
+    e.preventDefault();
+    self.port.emit("copyLink");
+  }
+
+  onCopyImageClick(e) {
+    e.preventDefault();
+    self.port.emit("copyImage", this.props.activeClipName);
+  }
+
+  onCopyRichClick(e) {
+    e.preventDefault();
+    self.port.emit("copyRich", this.props.activeClipName);
   }
 
   onLinkClick(e) {
@@ -188,6 +205,8 @@ class ShootPanel extends React.Component {
         clipUrl={ clipUrl }
         onClickEdit={ onClickEdit }
         onCopyClick={ this.onCopyClick.bind(this) }
+        onCopyImageClick={ this.onCopyImageClick.bind(this) }
+        onCopyRichClick={ this.onCopyRichClick.bind(this) }
         { ...this.props }
       />;
     }
@@ -219,7 +238,7 @@ class ShootPanel extends React.Component {
     if (! this.props.recall) {
       deleter = (
         <img className="delete" src="icons/delete-thumbnail.svg"
-             title="Remove this clip" onClick={this.deleteClip.bind(this)} />);
+             title="Remove this clip" onClick={ this.deleteClip.bind(this) } />);
     }
     if (! clip) {
       clipComponent = <LoadingClip />;
@@ -288,6 +307,8 @@ class ShootPanel extends React.Component {
         <ShareButtons
           clipUrl={ clipUrl }
           onCopyClick={ this.onCopyClick.bind(this) }
+          onCopyImageClick={ this.onCopyImageClick.bind(this) }
+          onCopyRichClick={ this.onCopyRichClick.bind(this) }
           { ...this.props }
         />
       </div>

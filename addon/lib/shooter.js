@@ -22,6 +22,10 @@ const notifications = require("sdk/notifications");
 // (probably a redirect of some sort):
 var MIN_PAGE_VISIT_TIME = 5000; // 5 seconds
 
+function escapeForHTML(text) {
+  return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+}
+
 /** Takes `tab.history` and returns a list suitable for uploading.  This removes
     duplicate items, culls pages that are too brief, and filters out some
     pages like about: pages that shouldn't show up. */
@@ -304,6 +308,31 @@ const ShotContext = Class({
       notifications.notify({
         title: "Link Copied",
         text: "The link to your shot has been copied to the clipboard.",
+        iconURL: self.data.url("../data/copy.png")
+      });
+    },
+    copyImage: function (activeClipName) {
+      let clip = this.shot.getClip(activeClipName);
+      clipboard.set(clip.image.url, "image");
+      notifications.notify({
+        title: "Image Copied",
+        text: "Your shot has been copied to the clipboard.",
+        iconURL: self.data.url("../data/copy.png")
+      });
+    },
+    copyRich: function (activeClipName) {
+      // Use "text" instead of "html" so that pasting into a text area or text editor
+      // pastes the html instead of the plain text stripped out of the html.
+      let clip = this.shot.getClip(activeClipName);
+      let url = this.shot.viewUrl;
+      let img = clip.image.url;
+      let title = escapeForHTML(this.shot.title);
+      let html = `<a href="${url}"><img src="${img}" /><div>${title}</div></a>`;
+      clipboard.set(html, "html");
+      clipboard.set(html, "text");
+      notifications.notify({
+        title: "HTML Copied",
+        text: "The link to your shot and an image have been copied to the clipboard.",
         iconURL: self.data.url("../data/copy.png")
       });
     },
