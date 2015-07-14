@@ -139,20 +139,17 @@ class ShootPanel extends React.Component {
 
   onCopyClick(e) {
     e.preventDefault();
-    self.port.emit("copyLink", this.props.shot.viewUrl);
+    self.port.emit("copyLink");
   }
 
   onCopyImageClick(e) {
     e.preventDefault();
-    let clip = this.props.shot.getClip(this.props.activeClipName);
-    self.port.emit("copyImage", clip.image.url);
+    self.port.emit("copyImage", this.props.activeClipName);
   }
 
   onCopyRichClick(e) {
     e.preventDefault();
-    let clip = this.props.shot.getClip(this.props.activeClipName);
-    self.port.emit("copyRich",
-      this.props.shot.viewUrl, clip.image.url, this.props.shot.title);
+    self.port.emit("copyRich", this.props.activeClipName);
   }
 
   onLinkClick(e) {
