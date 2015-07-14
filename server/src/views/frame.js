@@ -231,7 +231,7 @@ class Frame extends React.Component {
             <span style={{paddingLeft: "15px"}}>saved { timeDiff }</span>
           </div>
         </div>
-        <div className="navigate-toolbar">
+        <div id="navigate-toolbar">
           <span className="clip-count">
             { numberOfClips }
           </span>

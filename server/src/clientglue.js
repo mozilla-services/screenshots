@@ -26,6 +26,18 @@ exports.setModel = function (data) {
       isExtInstalled = false;
       render();
     }, 2000);
+    let toolbar = document.getElementById("toolbar");
+    let navigateToolbar = document.getElementById("navigate-toolbar");
+    window.onscroll = function (e) {
+      if (e.pageY > 0) {
+        toolbar.style.visibility = "visible";
+        navigateToolbar.style.visibility = "visible";
+      } else {
+        toolbar.style.visibility = "hidden";
+        navigateToolbar.style.visibility = "hidden";
+      }
+    };
+
     document.addEventListener("helper-ready", function onHelperReady(e) {
       document.removeEventListener("helper-ready", onHelperReady, false);
       if (timer === null) {
