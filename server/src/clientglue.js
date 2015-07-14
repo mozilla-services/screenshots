@@ -28,10 +28,25 @@ exports.setModel = function (data) {
     }, 2000);
     let toolbar = document.getElementById("toolbar");
     let navigateToolbar = document.getElementById("navigate-toolbar");
+    let fullPageButton = document.getElementById("full-page-button");
+    let fullPageButtonScrollable = document.getElementById("full-page-button-scrollable");
+    let frameElement = document.getElementById("frame");
+    let offset = (fullPageButtonScrollable.clientHeight / 2);
     window.onscroll = function (e) {
       if (e.pageY > 0) {
         toolbar.style.visibility = "visible";
         navigateToolbar.style.visibility = "visible";
+        let frameOffset = frameElement.getBoundingClientRect().top + window.scrollY;
+        let toolbarHeight = toolbar.clientHeight;
+        let visibleHeight = window.innerHeight - toolbarHeight;
+        let frameTop = frameOffset - toolbarHeight;
+        if (e.pageY >= frameTop - visibleHeight - offset) {
+          fullPageButton.style.visibility = "hidden";
+          fullPageButtonScrollable.style.visibility = "visible";
+        } else {
+          fullPageButton.style.visibility = "visible";
+        fullPageButtonScrollable.style.visibility = "hidden";
+        }
       } else {
         toolbar.style.visibility = "hidden";
         navigateToolbar.style.visibility = "hidden";
