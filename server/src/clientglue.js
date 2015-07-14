@@ -31,6 +31,7 @@ exports.setModel = function (data) {
     let fullPageButton = document.getElementById("full-page-button");
     let fullPageButtonScrollable = document.getElementById("full-page-button-scrollable");
     let frameElement = document.getElementById("frame");
+    let offset = (fullPageButtonScrollable.clientHeight / 2);
     window.onscroll = function (e) {
       if (e.pageY > 0) {
         toolbar.style.visibility = "visible";
@@ -39,7 +40,7 @@ exports.setModel = function (data) {
         let toolbarHeight = toolbar.clientHeight;
         let visibleHeight = window.innerHeight - toolbarHeight;
         let frameTop = frameOffset - toolbarHeight;
-        if (e.pageY >= frameTop - visibleHeight - 16) {
+        if (e.pageY >= frameTop - visibleHeight - offset) {
           fullPageButton.style.visibility = "hidden";
           fullPageButtonScrollable.style.visibility = "visible";
         } else {
