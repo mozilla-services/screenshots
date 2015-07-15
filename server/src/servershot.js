@@ -109,7 +109,7 @@ Shot.getShotsForDevice = function (backend, deviceId) {
       `SELECT data.id, data.value, data.deviceid
        FROM data
        WHERE data.deviceid IN (${idNums.join(", ")})
-       ORDER BY data.created
+       ORDER BY data.created DESC
       `,
       ids
     );
