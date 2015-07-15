@@ -234,7 +234,7 @@ const ShotContext = Class({
     this.interactiveWorker.port.on("makeNewTextSelection", watchFunction(makeNewTextSelection, this));
     this.interactiveWorker.port.on("textSelection", watchFunction(makeTextSelection, this));
     this.interactiveWorker.port.on("visibleSelection", watchFunction(function() {
-      this.panelHandlers.setCaptureType("visible");
+      this.panelHandlers.setCaptureType.call(this, "visible");
     }, this));
     this.interactiveWorker.port.on("popstate", watchFunction(function (newUrl) {
       this.destroy();
