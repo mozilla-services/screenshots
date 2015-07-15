@@ -360,7 +360,8 @@ function render() {
     document.body.appendChild(boxEl);
   }
   let bodyRect = getBodyRect();
-  var docHeight = document.documentElement.scrollHeight;
+  // Note, document.documentElement.scrollHeight is zero on some strange pages (such as the page created when you load an image):
+  var docHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
   var docWidth = document.documentElement.scrollWidth;
   boxEl.style.top = (pos.top - bodyRect.top) + "px";
   boxEl.style.left = (pos.left - bodyRect.left) + "px";
