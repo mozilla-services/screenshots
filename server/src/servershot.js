@@ -34,6 +34,7 @@ class Shot extends AbstractShot {
         ).then((rows) => {
           let clip = this.getClip(clipId);
           let imageId = `${this.id}/${clipId}`;
+          // TODO don't hardcode localhost
           clip.image.url = `http://localhost:10080/images/${imageId}`;
           console.log("updated image url", clip.image.url);
           return rows;
@@ -114,6 +115,18 @@ class ServerClip extends AbstractShot.prototype.Clip {
     };
   }
 }
+
+ServerClip.getRawBytesForClip = function (id, domain, clipId) {
+  let key = `${id}/${domain}/${clipId}`;
+  return db.select("SELECT image FROM images WHERE id = $1", [key]).then((rows) => {
+    console.log("rows", Object.getOwnPropertyNames(rows));
+    if (! rows.length) {
+      return null;
+    } else {
+      return rows[0].image;
+    }
+  });
+};
 
 Shot.prototype.Clip = ServerClip;
 

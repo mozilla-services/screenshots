@@ -205,6 +205,20 @@ app.get("/content/:id/:domain", function (req, res) {
   });
 });
 
+app.get("/images/:id/:domain/:clipId", function (req, res) {
+  Shot.prototype.Clip.getRawBytesForClip(
+    req.params.id, req.params.domain, req.params.clipId
+  ).then((bytes) => {
+    if (bytes === null) {
+      simpleResponse(res, "Not Found", 404);
+    } else {
+      res.header("Content-Type", "image/png");
+      res.status(200);
+      res.send(bytes);
+    }
+  });
+});
+
 app.get("/", function (req, res) {
   if (req.deviceId) {
     Shot.getShotsForDevice(req.backend, req.deviceId).then((shots) => {
