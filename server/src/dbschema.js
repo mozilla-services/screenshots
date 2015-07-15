@@ -2,6 +2,12 @@ const db = require("./db");
 const Keygrip = require('keygrip');
 
 const createSQL = `
+
+CREATE TABLE IF NOT EXISTS images (
+  id VARCHAR(200) PRIMARY KEY,
+  image BYTEA
+);
+
 CREATE TABLE IF NOT EXISTS accounts (
   id VARCHAR(200) PRIMARY KEY,
   token TEXT

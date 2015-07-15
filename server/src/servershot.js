@@ -8,24 +8,86 @@ class Shot extends AbstractShot {
     this.ownerId = ownerId;
   }
 
-  insert() {
-    let value = JSON.stringify(this.asJson());
-    return db.insert(
-      `INSERT INTO data (id, deviceid, value)
-       VALUES ($1, $2, $3)`,
-      [this.id, this.ownerId, value]
+  convertAnyDataUrls(client, json, possibleClipsToInsert) {
+    return Promise.all(
+      possibleClipsToInsert.map((clipId) => {
+        let clip = this.getClip(clipId);
+        console.log("clip", clipId);
+        try {
+          let data = clip.imageBinary();
+        } catch (e) {
+          if (e.message !== "Bad clip URL") {
+            throw e;
+          }
+          // It's already in the db, and the clip has an http url
+          return true;
+        }
+        console.log("we need to put it in the db", data);
+        return db.queryWithClient(
+          client,
+          "INSERT INTO images (id, image) VALUES ($1, $2)",
+          [`${this.id}/${clipId}`, data]
+        ).then((rows) => {
+          if (rows.rowCount) {
+            // TODO replace url here
+          } else {
+            throw new Error("no row inserted");
+          }
+          return rows;
+        });
+        // TODO if the client provided us a data url but that clip is already in the
+        // db, we need to update the existing record with the value in the data url
+      })
     );
   }
 
+  insert() {
+    let json = this.asJson();
+    let possibleClipsToInsert = this.clipNames();
+    return db.transaction((client) => {
+      return db.queryWithClient(
+        client, "SELECT id FROM data WHERE id = $1", [this.id]
+      ).then((rows) => {
+        if (rows.rowCount) {
+          // duplicate key
+          console.log("duplicate key");
+          return false;
+        }
+
+        // If the key doesn't already exist, go through the clips being inserted and
+        // check to see if we need to store any data: url encoded images
+        console.log("checking clips", possibleClipsToInsert);
+        return this.convertAnyDataUrls(client, json, possibleClipsToInsert).then((oks) => {
+          console.log("got all the way to insert!", oks);
+          return db.queryWithClient(
+            client,
+            `INSERT INTO data (id, deviceid, value)
+             VALUES ($1, $2, $3)`,
+            [this.id, this.ownerId, JSON.stringify(json)]
+          ).then((rows) => {
+            console.log("inserted?", rows.rowCount);
+            return true;
+          });
+        });
+      });
+    });
+  }
+
   update() {
-    let value = JSON.stringify(this.asJson());
-    return db.update(
-      `UPDATE data SET value = $1 WHERE id = $2 AND deviceid = $3`,
-      [value, this.id, this.ownerId]
-    ).then((rowCount) => {
-      if (! rowCount) {
-        throw new Error("No row updated");
-      }
+    let json = this.asJson();
+    let possibleClipsToInsert = this.clipNames();
+    return db.transaction((client) => {
+      return this.convertAnyDataUrls(client, json, possibleClipsToInsert).then((oks) => {
+        return db.queryWithClient(
+          client,
+          `UPDATE data SET value = $1 WHERE id = $2 AND deviceid = $3`,
+          [JSON.stringify(json), this.id, this.ownerId]
+        ).then((rowCount) => {
+          if (! rowCount) {
+            throw new Error("No row updated");
+          }
+        });
+      });
     });
   }
 
