@@ -4,10 +4,10 @@
     representing shots.
     */
 
-var self = require("sdk/self");
-var tabs = require("sdk/tabs");
-var { captureTab } = require("./screenshot");
-var Request = require("sdk/request").Request;
+const self = require("sdk/self");
+const tabs = require("sdk/tabs");
+const { captureTab } = require("./screenshot");
+const Request = require("sdk/request").Request;
 const { callScript } = require("./framescripter");
 const { defer } = require('sdk/core/promise');
 const { Class } = require('sdk/core/heritage');
@@ -149,10 +149,12 @@ const ShotContext = Class({
         self.data.url("error-utils.js"),
         self.data.url("annotate-position.js"),
         self.data.url("capture-selection.js"),
-        self.data.url("shooter-interactive-worker.js")]
+        self.data.url("shooter-interactive-worker.js")],
+      contentScriptOptions: {
+        "inline-selection.css": self.data.url("inline-selection.css")
+      }
     }));
     this.interactiveWorker.port.on("ready", watchFunction(function () {
-      this.interactiveWorker.port.emit("linkLocation", self.data.url("inline-selection.css"));
       this.interactiveWorker.port.emit("setState", "initialAuto");
     }).bind(this));
     this.interactiveWorker.port.on("select", watchFunction(function (pos, shotText, captureType) {
@@ -234,7 +236,7 @@ const ShotContext = Class({
     this.interactiveWorker.port.on("makeNewTextSelection", watchFunction(makeNewTextSelection, this));
     this.interactiveWorker.port.on("textSelection", watchFunction(makeTextSelection, this));
     this.interactiveWorker.port.on("visibleSelection", watchFunction(function() {
-      this.panelHandlers.setCaptureType("visible");
+      this.panelHandlers.setCaptureType.call(this, "visible");
     }, this));
     this.interactiveWorker.port.on("popstate", watchFunction(function (newUrl) {
       this.destroy();
