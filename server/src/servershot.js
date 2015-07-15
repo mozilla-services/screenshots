@@ -12,31 +12,32 @@ class Shot extends AbstractShot {
     return Promise.all(
       possibleClipsToInsert.map((clipId) => {
         let clip = this.getClip(clipId);
+        let imageId = `${this.id}/${clipId}`;
         console.log("clip", clipId);
+        let data;
         try {
-          let data = clip.imageBinary();
+          data = clip.imageBinary();
         } catch (e) {
           if (e.message !== "Bad clip URL") {
             throw e;
           }
           // It's already in the db, and the clip has an http url
+          console.log("already has http url:", clip.image.url);
           return true;
         }
-        console.log("we need to put it in the db", data);
-        return db.queryWithClient(
+        console.log("we need to put it in the db", data.data);
+        return db.upsertWithClient(
           client,
-          "INSERT INTO images (id, image) VALUES ($1, $2)",
-          [`${this.id}/${clipId}`, data]
+          "INSERT INTO images (image, id) SELECT $1, $2",
+          "UPDATE images SET image = $1 WHERE id = $2",
+          [data.data, imageId]
         ).then((rows) => {
-          if (rows.rowCount) {
-            // TODO replace url here
-          } else {
-            throw new Error("no row inserted");
-          }
+          let clip = this.getClip(clipId);
+          let imageId = `${this.id}/${clipId}`;
+          clip.image.url = `http://localhost:10080/images/${imageId}`;
+          console.log("updated image url", clip.image.url);
           return rows;
         });
-        // TODO if the client provided us a data url but that clip is already in the
-        // db, we need to update the existing record with the value in the data url
       })
     );
   }
