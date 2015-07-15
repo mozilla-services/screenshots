@@ -97,7 +97,10 @@ exports.watchWorker = function (worker) {
   });
   // Workers also automatically emit an error message:
   worker.port.on("error", function (exc) {
-    console.error("Uncaught error from worker:", worker.url.replace(/.*\//, ""), ":", exc+"");
+    console.error("Uncaught error from worker (" + worker.url.replace(/.*\//, "") + "):", exc+"");
+    if (exc.stack) {
+      console.error("Stack:", exc.stack);
+    }
     exports.unhandled(exports.makeError(exc));
   });
   return worker;
