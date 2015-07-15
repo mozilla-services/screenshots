@@ -2,10 +2,12 @@
 
 window.addEventListener(
   "load",
-  () => window.parent.postMessage(
-    {type: "setHeight", height: document.body.scrollHeight},
-    window.location.origin)
-);
+  function () {
+    window.parent.postMessage(
+      {type: "setHeight", height: document.documentElement.scrollHeight || document.body.scrollHeight},
+      window.location.origin);
+  },
+  false);
 
 window.addEventListener(
   "message",
