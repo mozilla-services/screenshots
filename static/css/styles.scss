@@ -41,6 +41,8 @@ body {
   right: 160px;
   height: 35px;
   padding: 0.5em;
+  /* Causes toolbar to go over comment bubble and other position: relative elements: */
+  z-index: 1;
   text-overflow: ellipsis;
   overflow: hidden;
   color: $text-color;
@@ -273,7 +275,7 @@ a.subheading-link {
   cursor: pointer;
   margin-right: 0.5em;
   position: relative;
-  top: 18px;
+  top: 19px;
 }
 
 .comment-holder {
