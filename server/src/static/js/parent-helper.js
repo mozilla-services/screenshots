@@ -44,9 +44,9 @@ function scrollPageToMiddle(pos) {
   window.scroll(0, scrollY);
 }
 
-window.onload = function () {
+window.addEventListener("load", function () {
   loaded = true;
   if (height) {
     doResize();
   }
-};
+}, false);
