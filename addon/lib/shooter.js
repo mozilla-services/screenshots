@@ -149,10 +149,12 @@ const ShotContext = Class({
         self.data.url("error-utils.js"),
         self.data.url("annotate-position.js"),
         self.data.url("capture-selection.js"),
-        self.data.url("shooter-interactive-worker.js")]
+        self.data.url("shooter-interactive-worker.js")],
+      contentScriptOptions: {
+        "inline-selection.css": self.data.url("inline-selection.css")
+      }
     }));
     this.interactiveWorker.port.on("ready", watchFunction(function () {
-      this.interactiveWorker.port.emit("linkLocation", self.data.url("inline-selection.css"));
       this.interactiveWorker.port.emit("setState", "initialAuto");
     }).bind(this));
     this.interactiveWorker.port.on("select", watchFunction(function (pos, shotText, captureType) {

@@ -490,7 +490,8 @@ function removeCrosshairs() {
   }
 }
 
-self.port.on("linkLocation", watchFunction(function (linkUrl) {
+function addStylesheet() {
+  let linkUrl = self.options["inline-selection.css"];
   var link = document.getElementById("pageshot-stylesheet");
   if (! link) {
     link = document.createElement("link");
@@ -499,7 +500,9 @@ self.port.on("linkLocation", watchFunction(function (linkUrl) {
     link.setAttribute("href", linkUrl);
     document.head.appendChild(link);
   }
-}));
+}
+
+addStylesheet();
 
 var xSnaps = [];
 var ySnaps = [];
