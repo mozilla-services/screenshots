@@ -4,10 +4,10 @@
     representing shots.
     */
 
-var self = require("sdk/self");
-var tabs = require("sdk/tabs");
-var { captureTab } = require("./screenshot");
-var Request = require("sdk/request").Request;
+const self = require("sdk/self");
+const tabs = require("sdk/tabs");
+const { captureTab } = require("./screenshot");
+const Request = require("sdk/request").Request;
 const { callScript } = require("./framescripter");
 const { defer } = require('sdk/core/promise');
 const { Class } = require('sdk/core/heritage');
