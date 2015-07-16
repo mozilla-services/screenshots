@@ -554,6 +554,12 @@ ${options.addBody || ""}
     }
     return biggest;
   }
+  updateClipUrl(clipId, clipUrl) {
+    let clip = this.getClip(clipId);
+    if (clip && clip.image) {
+      clip.image.url = clipUrl;
+    }
+  }
 
   // FIXME: we should check this object more thoroughly
   get microdata() {
