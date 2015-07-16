@@ -536,8 +536,12 @@ class Shot extends AbstractShot {
       url: url,
       content: body,
       contentType: "application/json",
-      onComplete: watchFunction(function (response) {
+      onComplete: watchFunction((response) => {
         if (response.status >= 200 && response.status < 300) {
+          for (let clipId in response.json.clips) {
+            let clip = this.getClip(clipId);
+            clip.image.url = response.json.clips[clipId].image.url;
+          }
           deferred.resolve(true);
         } else {
           let message;
