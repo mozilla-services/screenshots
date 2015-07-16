@@ -139,11 +139,6 @@ class Frame extends React.Component {
     let shotId = this.props.shot.id;
     let shotDomain = this.props.shot.url; // FIXME: calculate
 
-    let favicon = "";
-    if (shot.favicon) {
-      favicon = <link rel="shortcut icon" href={shot.favicon} />;
-    }
-
     let snippets = [],
       clipNames = shot.clipNames(),
       previousClip = null,
@@ -224,7 +219,6 @@ class Frame extends React.Component {
         <div id="container">
           { this.renderExtRequired() }
           <script src={ this.props.staticLink("js/parent-helper.js") } />
-        { favicon }
         <div id="toolbar">
           <ProfileButton
             staticLink={ this.props.staticLink }
