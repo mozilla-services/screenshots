@@ -540,7 +540,9 @@ class Shot extends AbstractShot {
         if (response.status >= 200 && response.status < 300) {
           for (let clipId in response.json.clips) {
             let clip = this.getClip(clipId);
-            clip.image.url = response.json.clips[clipId].image.url;
+            if (clip && clip.image) {
+              clip.image.url = response.json.clips[clipId].image.url;
+            }
           }
           deferred.resolve(true);
         } else {
