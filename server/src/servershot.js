@@ -13,7 +13,6 @@ class Shot extends AbstractShot {
       possibleClipsToInsert.map((clipId) => {
         let clip = this.getClip(clipId);
         let imageId = `${this.id}/${clipId}`;
-        console.log("clip", clipId);
         let data;
         try {
           data = clip.imageBinary();
@@ -22,10 +21,8 @@ class Shot extends AbstractShot {
             throw e;
           }
           // It's already in the db, and the clip has an http url
-          console.log("already has http url:", clip.image.url);
           return true;
         }
-        console.log("we need to put it in the db", data.data);
         return db.upsertWithClient(
           client,
           "INSERT INTO images (image, id) SELECT $1, $2",
@@ -36,7 +33,6 @@ class Shot extends AbstractShot {
           let imageId = `${this.id}/${clipId}`;
           // TODO don't hardcode localhost
           clip.image.url = `http://localhost:10080/images/${imageId}`;
-          console.log("updated image url", clip.image.url);
           return rows;
         });
       })
@@ -52,22 +48,18 @@ class Shot extends AbstractShot {
       ).then((rows) => {
         if (rows.rowCount) {
           // duplicate key
-          console.log("duplicate key");
           return false;
         }
 
         // If the key doesn't already exist, go through the clips being inserted and
         // check to see if we need to store any data: url encoded images
-        console.log("checking clips", possibleClipsToInsert);
         return this.convertAnyDataUrls(client, json, possibleClipsToInsert).then((oks) => {
-          console.log("got all the way to insert!", oks);
           return db.queryWithClient(
             client,
             `INSERT INTO data (id, deviceid, value)
              VALUES ($1, $2, $3)`,
             [this.id, this.ownerId, JSON.stringify(json)]
           ).then((rows) => {
-            console.log("inserted?", rows.rowCount);
             return true;
           });
         });
@@ -119,7 +111,6 @@ class ServerClip extends AbstractShot.prototype.Clip {
 ServerClip.getRawBytesForClip = function (id, domain, clipId) {
   let key = `${id}/${domain}/${clipId}`;
   return db.select("SELECT image FROM images WHERE id = $1", [key]).then((rows) => {
-    console.log("rows", Object.getOwnPropertyNames(rows));
     if (! rows.length) {
       return null;
     } else {

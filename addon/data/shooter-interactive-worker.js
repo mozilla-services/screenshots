@@ -988,7 +988,7 @@ self.port.on("extractedData", watchFunction(function (data) {
       autoIds = null;
     }
   }
-  console.log("getting extractedData:", Date.now() - loadTime, "ms");
+  console.info("getting extractedData:", Date.now() - loadTime, "ms");
 }));
 
 self.port.emit("ready");
