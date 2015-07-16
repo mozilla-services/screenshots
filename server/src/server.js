@@ -210,7 +210,7 @@ app.get("/content/:id/:domain", function (req, res) {
 });
 
 app.get("/images/:id/:domain/:clipId", function (req, res) {
-  Shot.prototype.Clip.getRawBytesForClip(
+  Shot.getRawBytesForClip(
     req.params.id, req.params.domain, req.params.clipId
   ).then((bytes) => {
     if (bytes === null) {

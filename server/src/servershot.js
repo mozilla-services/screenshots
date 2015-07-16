@@ -85,6 +85,17 @@ class Shot extends AbstractShot {
 
 }
 
+Shot.getRawBytesForClip = function (id, domain, clipId) {
+  let key = `${id}/${domain}/${clipId}`;
+  return db.select("SELECT image FROM images WHERE id = $1", [key]).then((rows) => {
+    if (! rows.length) {
+      return null;
+    } else {
+      return rows[0].image;
+    }
+  });
+}
+
 exports.Shot = Shot;
 
 class ServerClip extends AbstractShot.prototype.Clip {
@@ -105,17 +116,6 @@ class ServerClip extends AbstractShot.prototype.Clip {
     };
   }
 }
-
-ServerClip.getRawBytesForClip = function (id, domain, clipId) {
-  let key = `${id}/${domain}/${clipId}`;
-  return db.select("SELECT image FROM images WHERE id = $1", [key]).then((rows) => {
-    if (! rows.length) {
-      return null;
-    } else {
-      return rows[0].image;
-    }
-  });
-};
 
 Shot.prototype.Clip = ServerClip;
 

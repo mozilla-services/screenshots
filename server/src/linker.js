@@ -41,4 +41,4 @@ exports.imageLink = function (urlBase, resource) {
     throw new Error("imageLink URL should not start with /images: " + resource);
   }
   return urlBase + "/images" + resource;
-}
+};
