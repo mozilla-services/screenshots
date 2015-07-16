@@ -20,7 +20,7 @@ exports.getGitRevision = function () {
 };
 
 exports.staticLink = function (resource) {
-  if (resource.charAt(0) != "/") {
+  if (! resource.startsWith("/")) {
     resource = "/" + resource;
   }
   if (resource.startsWith("/static")) {
@@ -34,7 +34,7 @@ exports.staticLinkWithHost = function (req, resource) {
 };
 
 exports.imageLink = function (urlBase, resource) {
-  if (resource.charAt(0) != "/") {
+  if (! resource.startsWith("/")) {
     resource = "/" + resource;
   }
   if (resource.startsWith("/images")) {
