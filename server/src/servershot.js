@@ -15,7 +15,7 @@ class Shot extends AbstractShot {
         let clip = this.getClip(clipId);
         if (clip.isHttpUrl()) {
           // It's already in the db, and the clip has an http url
-          return true;
+          return false;
         }
         let uid = uuid.v4();
         let data = clip.imageBinary();
@@ -31,7 +31,7 @@ class Shot extends AbstractShot {
         }).then((rows) => {
           let clip = this.getClip(clipId);
           clip.image.url = this.imageLink(uid);
-          return rows;
+          return {updateClipUrl: {clipId: clipId, url: clip.image.url}};
         });
       })
     );
@@ -58,7 +58,7 @@ class Shot extends AbstractShot {
              VALUES ($1, $2, $3)`,
             [this.id, this.ownerId, JSON.stringify(json)]
           ).then((rows) => {
-            return true;
+            return oks;
           });
         });
       });
@@ -78,6 +78,7 @@ class Shot extends AbstractShot {
           if (! rowCount) {
             throw new Error("No row updated");
           }
+          return oks;
         });
       });
     });

@@ -165,8 +165,9 @@ app.put("/data/:id/:domain", function (req, res) {
       return shot.update();
     }
     return null;
-  }).then((ok) => {
-    simpleResponse(res, JSON.stringify(shot.asJson()), 200);
+  }).then((commands) => {
+    commands = commands || [];
+    simpleResponse(res, JSON.stringify({updates: commands.filter((x) => !!x)}), 200);
   }).catch((err) => {
     errorResponse(res, "Error saving Object:", err);
   });
