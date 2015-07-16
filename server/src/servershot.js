@@ -13,16 +13,11 @@ class Shot extends AbstractShot {
       possibleClipsToInsert.map((clipId) => {
         let clip = this.getClip(clipId);
         let imageId = `${this.id}/${clipId}`;
-        let data;
-        try {
-          data = clip.imageBinary();
-        } catch (e) {
-          if (e.message !== "Bad clip URL") {
-            throw e;
-          }
+        if (clip.isHttpUrl()) {
           // It's already in the db, and the clip has an http url
           return true;
         }
+        let data = clip.imageBinary();
         return db.upsertWithClient(
           client,
           "INSERT INTO images (image, id) SELECT $1, $2",
