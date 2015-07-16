@@ -32,3 +32,13 @@ exports.staticLink = function (resource) {
 exports.staticLinkWithHost = function (req, resource) {
   return req.protocol + "://" + req.headers.host + exports.staticLink(resource);
 };
+
+exports.imageLink = function (urlBase, resource) {
+  if (resource.charAt(0) != "/") {
+    resource = "/" + resource;
+  }
+  if (resource.startsWith("/images")) {
+    throw new Error("imageLink URL should not start with /images: " + resource);
+  }
+  return urlBase + "/images" + resource;
+}

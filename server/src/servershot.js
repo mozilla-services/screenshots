@@ -30,9 +30,7 @@ class Shot extends AbstractShot {
           [data.data, imageId]
         ).then((rows) => {
           let clip = this.getClip(clipId);
-          let imageId = `${this.id}/${clipId}`;
-          // TODO don't hardcode localhost
-          clip.image.url = `http://localhost:10080/images/${imageId}`;
+          clip.image.url = this.imageLink(`${this.id}/${clipId}`);
           return rows;
         });
       })
