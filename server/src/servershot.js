@@ -1,5 +1,6 @@
 const { AbstractShot } = require("../shared/shot");
 const db = require("./db");
+const uuid = require("uuid");
 
 class Shot extends AbstractShot {
 
@@ -12,20 +13,24 @@ class Shot extends AbstractShot {
     return Promise.all(
       possibleClipsToInsert.map((clipId) => {
         let clip = this.getClip(clipId);
-        let imageId = `${this.id}/${clipId}`;
         if (clip.isHttpUrl()) {
           // It's already in the db, and the clip has an http url
           return true;
         }
+        let uid = uuid.v4();
         let data = clip.imageBinary();
-        return db.upsertWithClient(
+        return db.queryWithClient(
           client,
-          "INSERT INTO images (image, id) SELECT $1, $2",
-          "UPDATE images SET image = $1 WHERE id = $2",
-          [data.data, imageId]
+          "DELETE FROM images WHERE shotid = $1 AND clipid = $2",
+          [this.id, clipId]
         ).then((rows) => {
+          return db.queryWithClient(
+            client,
+            "INSERT INTO images (id, shotid, clipid, image, contenttype) VALUES ($1, $2, $3, $4, $5)",
+            [uid, this.id, clipId, data.data, data.contentType]);
+        }).then((rows) => {
           let clip = this.getClip(clipId);
-          clip.image.url = this.imageLink(`${this.id}/${clipId}`);
+          clip.image.url = this.imageLink(uid);
           return rows;
         });
       })
@@ -80,16 +85,17 @@ class Shot extends AbstractShot {
 
 }
 
-Shot.getRawBytesForClip = function (id, domain, clipId) {
-  let key = `${id}/${domain}/${clipId}`;
-  return db.select("SELECT image FROM images WHERE id = $1", [key]).then((rows) => {
+Shot.getRawBytesForClip = function (uid) {
+  return db.select(
+    "SELECT image, contenttype FROM images WHERE id = $1", [uid]
+  ).then((rows) => {
     if (! rows.length) {
       return null;
     } else {
-      return rows[0].image;
+      return {data: rows[0].image, contentType: rows[0].contenttype};
     }
   });
-}
+};
 
 exports.Shot = Shot;
 

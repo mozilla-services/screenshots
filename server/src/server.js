@@ -209,16 +209,16 @@ app.get("/content/:id/:domain", function (req, res) {
   });
 });
 
-app.get("/images/:id/:domain/:clipId", function (req, res) {
+app.get("/images/:uid", function (req, res) {
   Shot.getRawBytesForClip(
-    req.params.id, req.params.domain, req.params.clipId
-  ).then((bytes) => {
-    if (bytes === null) {
+    req.params.uid
+  ).then((obj) => {
+    if (obj === null) {
       simpleResponse(res, "Not Found", 404);
     } else {
-      res.header("Content-Type", "image/png");
+      res.header("Content-Type", obj.contentType);
       res.status(200);
-      res.send(bytes);
+      res.send(obj.data);
     }
   });
 });
