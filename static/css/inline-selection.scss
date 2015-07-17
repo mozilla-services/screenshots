@@ -1,3 +1,13 @@
+// This is how far outside the selection the mover target extends:
+$mover-outer: 10px;
+// And this is how far inside the selection it extends:
+$mover-inner: 40px;
+// This is the size of the little blue handles:
+$handle-size: 10px;
+// And some calculated values based on these that will be used below:
+$handle-mover-offset: $mover-outer - ($handle-size / 2);
+$mover-size: $mover-outer + $mover-inner;
+
 .pageshot-hide-selection .pageshot-highlight,
 .pageshot-hide-selection .pageshot-mover,
 .pageshot-hide-selection .pageshot-bghighlight,
@@ -18,65 +28,130 @@
   pointer-events: none;
 }
 
+.pageshot-mover-target {
+  position: absolute;
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.pageshot-mover-target.pageshot-topLeft {
+  cursor: nwse-resize;
+  top: - $mover-outer;
+  left: - $mover-outer;
+  width: $mover-size;
+  height: $mover-size;
+}
+.pageshot-mover-target.pageshot-top {
+  cursor: ns-resize;
+  top: - $mover-outer;
+  left: 0;
+  width: 100%;
+  height: $mover-size;
+  // It will be too wide, but this will place it below topLeft/etc:
+  z-index: 4;
+}
+.pageshot-mover-target.pageshot-topRight {
+  cursor: nesw-resize;
+  top: - $mover-outer;
+  right: - $mover-outer;
+  height: $mover-size;
+  width: $mover-size;
+}
+.pageshot-mover-target.pageshot-left {
+  cursor: ew-resize;
+  top: 0;
+  left: - $mover-outer;
+  height: 100%;
+  width: $mover-size;
+  z-index: 4;
+}
+.pageshot-mover-target.pageshot-right {
+  cursor: ew-resize;
+  top: 0;
+  right: - $mover-outer;
+  height: 100%;
+  width: $mover-size;
+  z-index: 4;
+}
+.pageshot-mover-target.pageshot-bottomLeft {
+  cursor: nesw-resize;
+  left: - $mover-outer;
+  bottom: - $mover-outer;
+  width: $mover-size;
+  height: $mover-size;
+}
+.pageshot-mover-target.pageshot-bottom {
+  cursor: ns-resize;
+  left: 0;
+  bottom: - $mover-outer;
+  width: 100%;
+  height: $mover-size;
+  z-index: 4;
+}
+.pageshot-mover-target.pageshot-bottomRight {
+  cursor: nwse-resize;
+  bottom: - $mover-outer;
+  right: - $mover-outer;
+  width: $mover-size;
+  height: $mover-size;
+}
+
+.pageshot-mover-target:hover .pageshot-mover {
+  opacity: 1.0;
+}
+
+
 .pageshot-mover {
   position: absolute;
-  height: 10px;
-  width: 10px;
+  height: $mover-size;
+  width: $mover-size;
   background-color: #348CFF;
-  pointer-events: auto;
+  opacity: 0.5;
   z-index: 1001;
 }
 
-.pageshot-topLeft {
-  cursor: nwse-resize;
-  top: -5px;
-  left: -5px;
+.pageshot-topLeft .pageshot-mover {
+  top: $handle-mover-offset;
+  left: $handle-mover-offset;
 }
 
-.pageshot-top {
-  cursor: ns-resize;
-  top: -5px;
+.pageshot-top .pageshot-mover {
+  top: $handle-mover-offset;
   left: 50%;
-  margin-left: -5px;
+  margin-left: $handle-size / 2;
 }
 
-.pageshot-topRight {
-  cursor: nesw-resize;
-  top: -5px;
-  right: -5px;
+.pageshot-topRight .pageshot-mover {
+  top: $handle-mover-offset;
+  right: $handle-mover-offset;
 }
 
-.pageshot-left {
-  cursor: ew-resize;
+.pageshot-left .pageshot-mover {
   top: 50%;
-  margin-top: -5px;
-  left: -5px;
+  margin-top: $handle-size / 2;
+  left: $handle-mover-offset;
 }
 
-.pageshot-right {
-  cursor: ew-resize;
+.pageshot-right .pageshot-mover {
   top: 50%;
-  margin-top: -5px;
-  right: -5px;
+  margin-top: $handle-size / 2;
+  right: $handle-mover-offset;
 }
 
-.pageshot-bottomLeft {
-  cursor: nesw-resize;
-  left: -5px;
-  bottom: -5px;
+.pageshot-bottomLeft .pageshot-mover {
+  bottom: $handle-mover-offset;
+  left: $handle-mover-offset;
 }
 
-.pageshot-bottom {
-  cursor: ns-resize;
+.pageshot-bottom .pageshot-mover {
   left: 50%;
-  margin-left: -5px;
-  bottom: -5px;
+  margin-left: $handle-size / 2;
+  bottom: $handle-mover-offset;
 }
 
-.pageshot-bottomRight {
-  cursor: nwse-resize;
-  bottom: -5px;
-  right: -5px;
+.pageshot-bottomRight .pageshot-mover {
+  right: $handle-mover-offset;
+  bottom: $handle-mover-offset;
 }
 
 .pageshot-bghighlight {

@@ -337,13 +337,15 @@ function render() {
   if (! boxEl) {
     boxEl = document.createElement("div");
     boxEl.className = "pageshot-highlight";
-    boxEl.innerHTML = '<div class="pageshot-bottomright"></div>';
     for (name in movements) {
-      var el = document.createElement("div");
-      el.className = "pageshot-mover pageshot-" + name;
-      boxEl.appendChild(el);
-      el.addEventListener(
-        "mousedown", makeMousedown(el, movements[name]), false);
+      let elTarget = document.createElement("div");
+      let elMover = document.createElement("div");
+      elTarget.className = "pageshot-mover-target pageshot-" + name;
+      elMover.className = "pageshot-mover";
+      elTarget.appendChild(elMover);
+      boxEl.appendChild(elTarget);
+      elTarget.addEventListener(
+        "mousedown", makeMousedown(elTarget, movements[name]), false);
     }
     boxTopEl = document.createElement("div");
     boxTopEl.className = "pageshot-bghighlight";
