@@ -114,3 +114,11 @@ exports.exec = function (sql, args) {
     });
   });
 };
+
+exports.markersForArgs = function (starting, numberOfArgs) {
+  let result = [];
+  for (var i=starting; i<starting+numberOfArgs; i++) {
+    result.push("$" + i);
+  }
+  return result.join(", ");
+};

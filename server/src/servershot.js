@@ -11,31 +11,51 @@ class Shot extends AbstractShot {
   }
 
   convertAnyDataUrls(client, json, possibleClipsToInsert) {
-    return Promise.all(
-      possibleClipsToInsert.map((clipId) => {
-        let clip = this.getClip(clipId);
+    let clips = possibleClipsToInsert.map((name) => this.getClip(name));
+    let unedited = [];
+    let toInsert = [];
+    for (let clip of clips) {
+      if (clip.image) {
         if (! clip.isDataUrl()) {
-          // It's already in the db, and the clip has an http url
-          return false;
+          toInsert.push(clip);
+        } else {
+          unedited.push(clip.id);
         }
-        let uid = uuid.v4();
-        let data = clip.imageBinary();
-        return db.queryWithClient(
-          client,
-          "DELETE FROM images WHERE shotid = $1 AND clipid = $2",
-          [this.id, clipId]
-        ).then((rows) => {
+      }
+    }
+    let promise = Promise.resolve();
+    if (unedited.length) {
+      let deleteSql = `DELETE FROM images WHERE shotid = $1
+      AND clipid NOT IN (${db.markersForArgs(2, unedited.length)})`;
+      promise = db.queryWithClient(
+        client,
+        deleteSql,
+        [this.id].concat(unedited)
+      )
+    }
+    return promise.then(() => {
+      return Promise.all(
+        toInsert.map((clipId) => {
+          let clip = this.getClip(clipId);
+          let uid = uuid.v4();
+          let data = clip.imageBinary();
           return db.queryWithClient(
             client,
-            "INSERT INTO images (id, shotid, clipid, image, contenttype) VALUES ($1, $2, $3, $4, $5)",
-            [uid, this.id, clipId, data.data, data.contentType]);
-        }).then((rows) => {
-          let clip = this.getClip(clipId);
-          clip.image.url = linker.imageLinkWithHost(uid);
-          return {updateClipUrl: {clipId: clipId, url: clip.image.url}};
-        });
-      })
-    );
+            "DELETE FROM images WHERE shotid = $1 AND clipid = $2",
+            [this.id, clipId]
+          ).then((rows) => {
+            return db.queryWithClient(
+              client,
+              "INSERT INTO images (id, shotid, clipid, image, contenttype) VALUES ($1, $2, $3, $4, $5)",
+              [uid, this.id, clipId, data.data, data.contentType]);
+          }).then((rows) => {
+            let clip = this.getClip(clipId);
+            clip.image.url = linker.imageLinkWithHost(uid);
+            return {updateClipUrl: {clipId: clipId, url: clip.image.url}};
+          });
+        })
+      );
+    });
   }
 
   insert() {
