@@ -208,9 +208,9 @@ app.get("/content/:id/:domain", function (req, res) {
   });
 });
 
-app.get("/images/:uid", function (req, res) {
+app.get("/images/:imageid", function (req, res) {
   Shot.getRawBytesForClip(
-    req.params.uid
+    req.params.imageid
   ).then((obj) => {
     if (obj === null) {
       simpleResponse(res, "Not Found", 404);
