@@ -2,6 +2,15 @@ const db = require("./db");
 const Keygrip = require('keygrip');
 
 const createSQL = `
+
+CREATE TABLE IF NOT EXISTS images (
+  id VARCHAR(200) PRIMARY KEY,
+  shotid VARCHAR(200) NOT NULL REFERENCES data (id) ON DELETE CASCADE,
+  clipid VARCHAR(200) NOT NULL,
+  image BYTEA NOT NULL,
+  contenttype TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS accounts (
   id VARCHAR(200) PRIMARY KEY,
   token TEXT

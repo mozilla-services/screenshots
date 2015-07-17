@@ -75,7 +75,7 @@ function displayClip(clip) {
     pos.right = rect.left + rect.width + loc.bottomRightOffset.x;
   }
   let bodyRect = document.body.getBoundingClientRect();
-  console.log("adjusting", pos, bodyRect);
+  console.info("adjusting", pos, bodyRect);
   pos.top -= bodyRect.top;
   pos.bottom -= bodyRect.top;
   pos.left -= bodyRect.left;

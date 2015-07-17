@@ -554,6 +554,14 @@ ${options.addBody || ""}
     }
     return biggest;
   }
+  updateClipUrl(clipId, clipUrl) {
+    let clip = this.getClip(clipId);
+    if ( clip && clip.image ) {
+      clip.image.url = clipUrl;
+    } else {
+      console.warn("Tried to update the url of a clip with no image:", clip);
+    }
+  }
 
   // FIXME: we should check this object more thoroughly
   get microdata() {
@@ -886,6 +894,12 @@ class _Clip {
     assert(! this._text, "Clip with .image cannot have .text", JSON.stringify(this._text));
     this._dirty("image");
     this._image = image;
+  }
+
+  isDataUrl() {
+    if (this.image) {
+      return this.image.url.startsWith("data:");
+    }
   }
 
   get text() {

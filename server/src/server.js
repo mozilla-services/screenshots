@@ -49,6 +49,8 @@ app.use(function (req, res, next) {
 app.use(function (req, res, next) {
   req.staticLink = linker.staticLink;
   req.staticLinkWithHost = linker.staticLinkWithHost.bind(null, req);
+  let base = req.protocol + "://" + req.headers.host;
+  linker.imageLinkWithHost = linker.imageLink.bind(null, base);
   next();
 });
 
@@ -161,8 +163,9 @@ app.put("/data/:id/:domain", function (req, res) {
       return shot.update();
     }
     return null;
-  }).then(() => {
-    simpleResponse(res, "Saved", 200);
+  }).then((commands) => {
+    commands = commands || [];
+    simpleResponse(res, JSON.stringify({updates: commands.filter((x) => !!x)}), 200);
   }).catch((err) => {
     errorResponse(res, "Error saving Object:", err);
   });
@@ -202,6 +205,20 @@ app.get("/content/:id/:domain", function (req, res) {
     }));
   }).catch(function (e) {
     errorResponse(res, "Failed to load shot", e);
+  });
+});
+
+app.get("/images/:imageid", function (req, res) {
+  Shot.getRawBytesForClip(
+    req.params.imageid
+  ).then((obj) => {
+    if (obj === null) {
+      simpleResponse(res, "Not Found", 404);
+    } else {
+      res.header("Content-Type", obj.contentType);
+      res.status(200);
+      res.send(obj.data);
+    }
   });
 });
 

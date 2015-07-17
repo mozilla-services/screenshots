@@ -1,5 +1,7 @@
 const { AbstractShot } = require("../shared/shot");
 const db = require("./db");
+const uuid = require("uuid");
+const linker = require("./linker");
 
 class Shot extends AbstractShot {
 
@@ -8,28 +10,114 @@ class Shot extends AbstractShot {
     this.ownerId = ownerId;
   }
 
+  convertAnyDataUrls(client, json, possibleClipsToInsert) {
+    let clips = possibleClipsToInsert.map((name) => this.getClip(name));
+    let unedited = [];
+    let toInsert = [];
+    for (let clip of clips) {
+      if (clip.image) {
+        if (! clip.isDataUrl()) {
+          toInsert.push(clip);
+        } else {
+          unedited.push(clip.id);
+        }
+      }
+    }
+    let promise = Promise.resolve();
+    if (unedited.length) {
+      let deleteSql = `DELETE FROM images WHERE shotid = $1
+      AND clipid NOT IN (${db.markersForArgs(2, unedited.length)})`;
+      promise = db.queryWithClient(
+        client,
+        deleteSql,
+        [this.id].concat(unedited)
+      )
+    }
+    return promise.then(() => {
+      return Promise.all(
+        toInsert.map((clipId) => {
+          let clip = this.getClip(clipId);
+          let uid = uuid.v4();
+          let data = clip.imageBinary();
+          return db.queryWithClient(
+            client,
+            "DELETE FROM images WHERE shotid = $1 AND clipid = $2",
+            [this.id, clipId]
+          ).then((rows) => {
+            return db.queryWithClient(
+              client,
+              "INSERT INTO images (id, shotid, clipid, image, contenttype) VALUES ($1, $2, $3, $4, $5)",
+              [uid, this.id, clipId, data.data, data.contentType]);
+          }).then((rows) => {
+            let clip = this.getClip(clipId);
+            clip.image.url = linker.imageLinkWithHost(uid);
+            return {updateClipUrl: {clipId: clipId, url: clip.image.url}};
+          });
+        })
+      );
+    });
+  }
+
   insert() {
-    let value = JSON.stringify(this.asJson());
-    return db.insert(
-      `INSERT INTO data (id, deviceid, value)
-       VALUES ($1, $2, $3)`,
-      [this.id, this.ownerId, value]
-    );
+    let json = this.asJson();
+    let possibleClipsToInsert = this.clipNames();
+    return db.transaction((client) => {
+      return db.queryWithClient(
+        client, "SELECT id FROM data WHERE id = $1", [this.id]
+      ).then((rows) => {
+        if (rows.rowCount) {
+          // duplicate key
+          return false;
+        }
+
+        // If the key doesn't already exist, go through the clips being inserted and
+        // check to see if we need to store any data: url encoded images
+        return this.convertAnyDataUrls(client, json, possibleClipsToInsert).then((oks) => {
+          return db.queryWithClient(
+            client,
+            `INSERT INTO data (id, deviceid, value)
+             VALUES ($1, $2, $3)`,
+            [this.id, this.ownerId, JSON.stringify(json)]
+          ).then((rows) => {
+            return oks;
+          });
+        });
+      });
+    });
   }
 
   update() {
-    let value = JSON.stringify(this.asJson());
-    return db.update(
-      `UPDATE data SET value = $1 WHERE id = $2 AND deviceid = $3`,
-      [value, this.id, this.ownerId]
-    ).then((rowCount) => {
-      if (! rowCount) {
-        throw new Error("No row updated");
-      }
+    let json = this.asJson();
+    let possibleClipsToInsert = this.clipNames();
+    return db.transaction((client) => {
+      return this.convertAnyDataUrls(client, json, possibleClipsToInsert).then((oks) => {
+        return db.queryWithClient(
+          client,
+          `UPDATE data SET value = $1 WHERE id = $2 AND deviceid = $3`,
+          [JSON.stringify(json), this.id, this.ownerId]
+        ).then((rowCount) => {
+          if (! rowCount) {
+            throw new Error("No row updated");
+          }
+          return oks;
+        });
+      });
     });
   }
 
 }
+
+Shot.getRawBytesForClip = function (uid) {
+  return db.select(
+    "SELECT image, contenttype FROM images WHERE id = $1", [uid]
+  ).then((rows) => {
+    if (! rows.length) {
+      return null;
+    } else {
+      return {data: rows[0].image, contentType: rows[0].contenttype};
+    }
+  });
+};
 
 exports.Shot = Shot;
 
