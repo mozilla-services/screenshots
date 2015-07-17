@@ -119,8 +119,12 @@ Shot.getShotsForDevice = function (backend, deviceId) {
     for (let i=0; i<rows.length; i++) {
       let row = rows[i];
       let json = JSON.parse(row.value);
-      let shot = new Shot(row.deviceid, backend, row.id, json);
-      result.push(shot);
+      if (json === null) {
+        console.warn("Unable to parse json for row", row.deviceid, row.id, row.value);
+      } else {
+        let shot = new Shot(row.deviceid, backend, row.id, json);
+        result.push(shot);
+      }
     }
     return result;
   });

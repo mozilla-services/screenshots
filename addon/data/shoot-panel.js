@@ -579,7 +579,7 @@ class RecallPanel extends React.Component {
           {history}
         </ul>
         <div className="see-more-row">
-          <a href={ this.props.backend } target="_blank">View more on { this.props.backend }</a>
+          <a href={ `${this.props.backend}/shots` } target="_blank">View more on { this.props.backend }</a>
         </div>
       </div>);
   }

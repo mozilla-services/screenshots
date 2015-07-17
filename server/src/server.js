@@ -206,16 +206,16 @@ app.get("/content/:id/:domain", function (req, res) {
 });
 
 app.get("/", function (req, res) {
-  if (req.deviceId) {
-    Shot.getShotsForDevice(req.backend, req.deviceId).then((shots) => {
-      req.shots = shots;
-      require("./views/shot-index").render(req, res);
-    }).catch((err) => {
-      errorResponse(res, "Error rendering page:", err);
-    });
-  } else {
-    require("./views/main").render(req, res);
-  }
+  require("./views/main").render(req, res);
+});
+
+app.get("/shots", function (req, res) {
+  Shot.getShotsForDevice(req.backend, req.deviceId).then((shots) => {
+    req.shots = shots;
+    require("./views/shot-index").render(req, res);
+  }).catch((err) => {
+    errorResponse(res, "Error rendering page:", err);
+  });
 });
 
 app.get("/:id/:domain", function (req, res) {
