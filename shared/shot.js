@@ -558,6 +558,8 @@ ${options.addBody || ""}
     let clip = this.getClip(clipId);
     if (clip && clip.image) {
       clip.image.url = clipUrl;
+    } else {
+      console.warn("Tried to update the url of a clip with no image:", clip);
     }
   }
 
