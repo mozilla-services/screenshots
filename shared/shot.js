@@ -894,9 +894,9 @@ class _Clip {
     this._image = image;
   }
 
-  isHttpUrl() {
+  isDataUrl() {
     if (this.image) {
-      return this.image.url.startsWith("http://");
+      return this.image.url.startsWith("data:");
     }
   }
 

@@ -13,7 +13,7 @@ class Shot extends AbstractShot {
     return Promise.all(
       possibleClipsToInsert.map((clipId) => {
         let clip = this.getClip(clipId);
-        if (clip.isHttpUrl()) {
+        if (! clip.isDataUrl()) {
           // It's already in the db, and the clip has an http url
           return false;
         }
