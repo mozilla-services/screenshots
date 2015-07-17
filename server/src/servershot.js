@@ -1,6 +1,7 @@
 const { AbstractShot } = require("../shared/shot");
 const db = require("./db");
 const uuid = require("uuid");
+const linker = require("./linker");
 
 class Shot extends AbstractShot {
 
@@ -30,7 +31,7 @@ class Shot extends AbstractShot {
             [uid, this.id, clipId, data.data, data.contentType]);
         }).then((rows) => {
           let clip = this.getClip(clipId);
-          clip.image.url = this.imageLink(uid);
+          clip.image.url = linker.imageLinkWithHost(uid);
           return {updateClipUrl: {clipId: clipId, url: clip.image.url}};
         });
       })

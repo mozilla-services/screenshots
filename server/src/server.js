@@ -49,10 +49,8 @@ app.use(function (req, res, next) {
 app.use(function (req, res, next) {
   req.staticLink = linker.staticLink;
   req.staticLinkWithHost = linker.staticLinkWithHost.bind(null, req);
-  if (Shot.prototype.imageLink === undefined) {
-    let base = req.protocol + "://" + req.headers.host;
-    Shot.prototype.imageLink = linker.imageLink.bind(null, base);
-  }
+  let base = req.protocol + "://" + req.headers.host;
+  linker.imageLinkWithHost = linker.imageLink.bind(null, base);
   next();
 });
 
