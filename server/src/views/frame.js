@@ -83,6 +83,7 @@ class Frame extends React.Component {
   }
 
   clickFullPageButton(e) {
+    e.preventDefault();
     let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
     let toolbarHeight = document.getElementById("toolbar").clientHeight;
     let visibleHeight = window.innerHeight - toolbarHeight;
@@ -241,8 +242,11 @@ class Frame extends React.Component {
           { nextClipNode }
         </div>
         <div id="full-page-button">
-          <img src={ this.props.staticLink("img/full-page-button.png") }
-            onClick={ this.clickFullPageButton.bind(this) } />
+          <a href="#" className="full-page-button-styles" onClick={ this.clickFullPageButton.bind(this) }>
+            <span className="full-page-button-arrow">▾</span>
+            <span className="full-page-button-text"> Full Page </span>
+            <span className="full-page-button-arrow">▾</span>
+          </a>
         </div>
         <div className="metadata">
           <h1 id="main-title">{ shot.title }</h1>
@@ -250,8 +254,11 @@ class Frame extends React.Component {
         </div>
         { snippets }
         <div id="full-page-button-scrollable">
-          <img src={ this.props.staticLink("img/full-page-button.png") }
-            onClick={ this.clickFullPageButton.bind(this) } />
+          <a href="#" className="full-page-button-styles" onClick={ this.clickFullPageButton.bind(this) }>
+            <span className="full-page-button-arrow">▾</span>
+            <span className="full-page-button-text"> Full Page </span>
+            <span className="full-page-button-arrow">▾</span>
+          </a>
         </div>
         <iframe width="100%" id="frame" src={ "/content/" +  shot.id } style={ {backgroundColor: "#fff"} } />
         <a className="pageshot-footer" href="https://github.com/mozilla-services/pageshot">{this.props.productName}</a>
