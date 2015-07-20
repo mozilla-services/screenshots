@@ -74,20 +74,30 @@ body {
   text-align: center;
 }
 
-#full-page-button img {
-  cursor: pointer;
-}
-
 #full-page-button-scrollable {
   height: 2em;
   margin-top: 500px;
   text-align: center;
 }
 
-#full-page-button-scrollable img {
-  cursor: pointer;
+.full-page-button-arrow {
+  color: #333333;
 }
 
+.full-page-button-text {
+  color: #000000;
+}
+
+.full-page-button-styles {
+  background-color: #ffffff;
+  background-image: linear-gradient(#ffffff, #f4f4f4);
+  border-radius: 99px;
+  color: #0095dd;
+  display: inline-block;
+  font-size: 12px;
+  padding: .4em 1.5em;
+  text-decoration: none;
+}
 .clip-count {
   position: relative;
   bottom: 7px;
