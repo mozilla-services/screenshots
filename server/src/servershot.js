@@ -1,4 +1,5 @@
 const { AbstractShot } = require("../shared/shot");
+const renderOembedString = require("./views/oembed.js").renderString;
 const db = require("./db");
 const uuid = require("uuid");
 const linker = require("./linker");
@@ -56,6 +57,31 @@ class Shot extends AbstractShot {
         })
       );
     });
+
+  oembedJson({maxheight, maxwidth}) {
+    let body = renderOembedString({shot: this, maxheight, maxwidth, backend: this.backend});
+    return {
+      // Attributes we could set, but don't (yet):
+      //author_name: "",
+      //author_url: "",
+      //cache_age: "",
+      //thumbnail_url: "",
+      //thumbnail_width: "",
+      //thumbnail_height: "",
+      type: "rich",
+      version: "1.0",
+      title: this.title,
+      provider_name: "PageShot",
+      provider_url: this.backend,
+      html: body,
+      // I don't really understand how these relate to maxheight/maxwidth, or how we should set them:
+      height: 300,
+      width: 400
+    };
+  }
+
+  get oembedUrl() {
+    return this.backend + "/oembed?url=" + encodeURIComponent(this.viewUrl);
   }
 
   insert() {

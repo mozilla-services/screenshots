@@ -1,4 +1,4 @@
-/* globals document */
+/* globals document, window */
 
 const React = require("react");
 const { Shell } = require("./shell");
@@ -124,6 +124,7 @@ class Frame extends React.Component {
       <head>
         <meta property="og:type" content="website" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />
         {ogTitle}
         {ogImage}
       </head>);

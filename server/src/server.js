@@ -249,6 +249,41 @@ app.get("/:id/:domain", function (req, res) {
   });
 });
 
+app.get("/oembed", function (req, res) {
+  let url = req.query.url;
+  let format = req.query.format || "json";
+  if (format !== "json") {
+    return simpleResponse(res, "Only JSON OEmbed is supported", 501);
+  }
+  let maxwidth = req.query.maxwidth || null;
+  if (maxwidth) {
+    maxwidth = parseInt(maxwidth, 10);
+  }
+  let maxheight = req.query.maxheight || null;
+  if (maxheight) {
+    maxheight = parseInt(maxheight, 10);
+  }
+  url = url.replace(/^http:\/\//i, "https://");
+  let backend = req.backend.replace(/^http:\/\//i, "https://");
+  if (! url.startsWith(backend)) {
+    return simpleResponse(res, "Error: URL is not hosted here (" + req.backend + ")", 501);
+  }
+  url = url.substr(backend.length);
+  let match = /^\/*([^\/]+)\/([^\/]+)/.exec(url);
+  if (! match) {
+    return simpleResponse(res, "Error: not a Shot url", 404);
+  }
+  let shotId = match[1] + "/" + match[2];
+  Shot.get(req.backend, shotId).then((shot) => {
+    if (! shot) {
+      return simpleResponse(res, "No such shot", 404);
+    }
+    let body = shot.oembedJson({maxheight, maxwidth});
+    res.header("Content-Type", "application/json");
+    res.send(body);
+  });
+});
+
 // Get OAuth client params for the client-side authorization flow.
 app.get('/api/fxa-oauth/params', function (req, res, next) {
   if (! req.deviceId) {
