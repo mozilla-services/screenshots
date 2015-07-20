@@ -254,7 +254,9 @@ class Frame extends React.Component {
             onClick={ this.clickFullPageButton.bind(this) } />
         </div>
         <iframe width="100%" id="frame" src={ "/content/" +  shot.id } style={ {backgroundColor: "#fff"} } />
-        <a className="pageshot-footer" href="https://github.com/mozilla-services/pageshot">{this.props.productName}</a>
+        <div className="pageshot-footer">
+          <a href="https://github.com/mozilla-services/pageshot">{this.props.productName}</a> — <a href={`https://github.com/mozilla-services/pageshot/commit/${getGitRevision()}`}>Updated {BUILD_TIMESTAMP}</a>
+        </div>
         <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl }>Send Feedback</a>
       </div>
     </body>);
