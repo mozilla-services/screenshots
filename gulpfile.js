@@ -29,7 +29,8 @@ gulp.task("6to5", function () {
     .pipe(to5())
     .pipe(concat.header(
       "//# sourceMappingURL=<% print(file.path.replace('/src/', '/dist/')) %>.map\n" +
-      "if (typeof require !== 'undefined') { require('source-map-support').install(); }\n"))
+      "if (typeof require !== 'undefined') { require('source-map-support').install(); }\n" +
+      "var BUILD_TIMESTAMP = '" + new Date() + "';\n"))
     .pipe(sourcemaps.write(".", {sourceRoot: __dirname + "/server/src"}))
     .pipe(gulp.dest("dist/server"));
 });
