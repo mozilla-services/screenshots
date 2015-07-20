@@ -221,14 +221,16 @@ class Frame extends React.Component {
         <div id="container">
           { this.renderExtRequired() }
           <script src={ this.props.staticLink("js/parent-helper.js") } />
+          <div id="profile-widget">
+            <ProfileButton
+              staticLink={ this.props.staticLink }
+              initialExpanded={ false }
+              avatarurl={ this.props.avatarurl }
+              nickname={ this.props.nickname }
+              email={ this.props.email }
+            />
+          </div>
         <div id="toolbar">
-          <ProfileButton
-            staticLink={ this.props.staticLink }
-            initialExpanded={ false }
-            avatarurl={ this.props.avatarurl }
-            nickname={ this.props.nickname }
-            email={ this.props.email }
-          />
           <div className="shot-title">{ shot.title }</div>
           <div className="shot-subtitle">
             <span>source </span><a className="subheading-link" href={ shot.url }>{ linkTextShort }</a>

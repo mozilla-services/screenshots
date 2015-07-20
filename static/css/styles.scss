@@ -38,9 +38,10 @@ body {
   position: fixed;
   top: 0px;
   left: 0px;
-  right: 160px;
+  right: 0px;
   height: 35px;
-  padding: 0.5em;
+  padding: 15px;
+  padding-left: 60px;
   /* Causes toolbar to go over comment bubble and other position: relative elements: */
   z-index: 1;
   text-overflow: ellipsis;
@@ -51,17 +52,23 @@ body {
   background-image: url("/static/img/bgtexture.png");
 }
 
+#profile-widget {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 2;
+}
+
 #navigate-toolbar {
-  visibility: hidden;
   position: fixed;
   top: 0px;
   right: 0px;
   padding: 14px;
+  z-index: 2;
   height: 23px;
-  background-color: $primary-color;
-  background-image: url("/static/img/bgtexture.png");
   width: 160px;
   text-align: right;
+  text-shadow: 1px 1px 2px black;
   font-size: 12px;
 }
 
@@ -72,6 +79,7 @@ body {
   bottom: 0px;
   height: 2em;
   text-align: center;
+  z-index: 1001;
 }
 
 #full-page-button-scrollable {

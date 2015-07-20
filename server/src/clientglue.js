@@ -19,7 +19,6 @@ exports.setModel = function (data) {
   let firstSet = ! model;
   model = data;
   model.shot = new AbstractShot(data.backend, data.id, data.shot);
-  render();
   if (firstSet) {
     let timer = setTimeout(function () {
       timer = null;
@@ -27,7 +26,6 @@ exports.setModel = function (data) {
       render();
     }, 2000);
     let toolbar = document.getElementById("toolbar");
-    let navigateToolbar = document.getElementById("navigate-toolbar");
     let fullPageButton = document.getElementById("full-page-button");
     let fullPageButtonScrollable = document.getElementById("full-page-button-scrollable");
     let frameElement = document.getElementById("frame");
@@ -35,7 +33,6 @@ exports.setModel = function (data) {
     window.onscroll = function (e) {
       if (e.pageY > 0) {
         toolbar.style.visibility = "visible";
-        navigateToolbar.style.visibility = "visible";
         let frameOffset = frameElement.getBoundingClientRect().top + window.scrollY;
         let toolbarHeight = toolbar.clientHeight;
         let visibleHeight = window.innerHeight - toolbarHeight;
@@ -45,11 +42,10 @@ exports.setModel = function (data) {
           fullPageButtonScrollable.style.visibility = "visible";
         } else {
           fullPageButton.style.visibility = "visible";
-        fullPageButtonScrollable.style.visibility = "hidden";
+          fullPageButtonScrollable.style.visibility = "hidden";
         }
       } else {
         toolbar.style.visibility = "hidden";
-        navigateToolbar.style.visibility = "hidden";
       }
     };
 
@@ -68,6 +64,7 @@ exports.setModel = function (data) {
     window.addEventListener("hashchange", refreshHash, false);
     refreshHash();
   }
+  render();
 };
 
 function render() {
