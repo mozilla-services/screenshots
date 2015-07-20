@@ -32,7 +32,7 @@ class Shot extends AbstractShot {
         client,
         deleteSql,
         [this.id].concat(unedited)
-      )
+      );
     }
     return promise.then(() => {
       return Promise.all(
@@ -57,6 +57,7 @@ class Shot extends AbstractShot {
         })
       );
     });
+  }
 
   oembedJson({maxheight, maxwidth}) {
     let body = renderOembedString({shot: this, maxheight, maxwidth, backend: this.backend});
