@@ -86,6 +86,13 @@ let conf = convict({
     default: "PageShot",
     env: "PRODUCT_NAME",
     arg: "product-name"
+  },
+  gaId: {
+    doc: "Give the Google Analytics code",
+    format: String,
+    default: "",
+    env: "GA_ID",
+    arg: "ga-id"
   }
 });
 

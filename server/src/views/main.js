@@ -5,7 +5,7 @@ class Main extends React.Component {
   render() {
     let productName = this.props.productName;
     return (
-      <Shell title={productName} staticLink={this.props.staticLink}>
+      <Shell title={productName} staticLink={this.props.staticLink} gaId={this.props.gaId}>
         <head>
         </head>
         <body>
@@ -46,8 +46,12 @@ class Main extends React.Component {
 let MainFactory = React.createFactory(Main);
 
 exports.render = function (req, res) {
-  let page = MainFactory({staticLink: req.staticLink, productName: req.config.productName});
-  let body = React.renderToString(page);
+  let page = MainFactory({
+    staticLink: req.staticLink,
+    productName: req.config.productName,
+    gaId: req.config.gaId}
+  );
+  let body = React.renderToStaticMarkup(page);
   body = '<!DOCTYPE html>\n' + body;
   res.send(body);
 };

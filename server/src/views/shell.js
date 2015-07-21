@@ -1,4 +1,3 @@
-
 const React = require("react");
 
 export class Shell extends React.Component {
@@ -12,9 +11,33 @@ export class Shell extends React.Component {
     if (this.props.children[1].type != "body") {
       throw new Error("Shell second child must be <body> (not " + this.props.children[1].type + ")");
     }
+    let gaScript = null;
+    let gaCode = null;
+    if (this.props.gaId) {
+      if (this.props.gaId.search(/^[a-z0-9\-]+$/i) === -1) {
+        // Doesn't look like a valid code
+        console.warn("Invalid Google Analytics code:", this.props.gaId);
+      }
+      let gaJs = `
+       (function () {
+         window.GoogleAnalyticsObject = "ga";
+         window.ga = window.ga || function () {
+           (window.ga.q = window.ga.q || []).push(arguments);
+         };
+         window.ga.l = 1 * new Date();
+         ga("create", "${this.props.gaId}", "auto");
+         ga("send", "pageview");
+       })();
+      `;
+      gaScript = <script src="//www.google-analytics.com/analytics.js" async="1"></script>;
+      gaCode = <script dangerouslySetInnerHTML={{__html: gaJs}}></script>;
+    }
+
     return <html prefix="og: http://ogp.me/ns#">
       <head>
         <title>{this.props.title}</title>
+        {gaScript}
+        {gaCode}
         <script src={ this.props.staticLink("js/server-bundle.js") } />
         <link rel="stylesheet" href={ this.props.staticLink("css/styles.css") } />
         <link rel="stylesheet" href={ this.props.staticLink("css/profile.css") } />

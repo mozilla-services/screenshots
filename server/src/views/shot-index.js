@@ -8,7 +8,7 @@ class ShotIndex extends React.Component {
     let head = this.renderHead();
     let body = this.renderBody();
     let result = (
-      <Shell title="Your Shots" staticLink={this.props.staticLink}>
+      <Shell title="Your Shots" staticLink={this.props.staticLink} gaId={this.props.gaId}>
         {head}
         {body}
       </Shell>);
@@ -51,6 +51,7 @@ let ShotIndexFactory = exports.ShotIndexFactory = React.createFactory(ShotIndex)
 exports.render = function (req, res) {
   let args = {
     staticLink: req.staticLink,
+    gaId: req.config.gaId,
     shots: req.shots
   };
   let shotsJson = [];
@@ -59,6 +60,7 @@ exports.render = function (req, res) {
   }
   let clientArgs = {
     gitRevision: getGitRevision(),
+    gaId: req.config.gaId,
     shots: shotsJson,
     backend: req.backend
   };

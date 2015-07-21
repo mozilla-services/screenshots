@@ -95,7 +95,7 @@ class Frame extends React.Component {
     let head = this.renderHead();
     let body = this.renderBody();
     let result = (
-      <Shell title={`${this.props.productName}: ${this.props.shot.title}`} staticLink={this.props.staticLink}>
+      <Shell title={`${this.props.productName}: ${this.props.shot.title}`} staticLink={this.props.staticLink} gaId={this.props.gaId}>
         {head}
         {body}
       </Shell>);
@@ -293,6 +293,7 @@ exports.render = function (req, res) {
     id: req.shot.id,
     productName: req.config.productName,
     isExtInstalled: true,
+    gaId: req.config.gaId,
     shotDomain: req.url // FIXME: should be a property of the shot
   });
   let clientPayload = {
@@ -301,6 +302,7 @@ exports.render = function (req, res) {
     shot: req.shot.asJson(),
     id: req.shot.id,
     productName: req.config.productName,
+    gaId: req.config.gaId,
     shotDomain: req.url
   };
   let body = React.renderToString(frame);
