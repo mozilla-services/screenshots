@@ -3,9 +3,11 @@ $mover-outer: 10px;
 // And this is how far inside the selection it extends:
 $mover-inner: 40px;
 // This is the size of the little blue handles:
-$handle-size: 10px;
+$handle-size: 25px;
+// This is how far out of the box the handles go:
+$handle-outside-extent: 0px;
 // And some calculated values based on these that will be used below:
-$handle-mover-offset: $mover-outer - ($handle-size / 2);
+$handle-mover-offset: $mover-outer - ($handle-outside-extent / 2);
 $mover-size: $mover-outer + $mover-inner;
 
 .pageshot-hide-selection .pageshot-highlight,
@@ -103,8 +105,8 @@ $mover-size: $mover-outer + $mover-inner;
 
 .pageshot-mover {
   position: absolute;
-  height: $mover-size;
-  width: $mover-size;
+  height: $handle-size;
+  width: $handle-size;
   background-color: #348CFF;
   opacity: 0.5;
   z-index: 1001;
@@ -118,7 +120,7 @@ $mover-size: $mover-outer + $mover-inner;
 .pageshot-top .pageshot-mover {
   top: $handle-mover-offset;
   left: 50%;
-  margin-left: $handle-size / 2;
+  margin-left: - $handle-size / 2;
 }
 
 .pageshot-topRight .pageshot-mover {
@@ -128,13 +130,13 @@ $mover-size: $mover-outer + $mover-inner;
 
 .pageshot-left .pageshot-mover {
   top: 50%;
-  margin-top: $handle-size / 2;
+  margin-top: - $handle-size / 2;
   left: $handle-mover-offset;
 }
 
 .pageshot-right .pageshot-mover {
   top: 50%;
-  margin-top: $handle-size / 2;
+  margin-top: - $handle-size / 2;
   right: $handle-mover-offset;
 }
 
@@ -145,7 +147,7 @@ $mover-size: $mover-outer + $mover-inner;
 
 .pageshot-bottom .pageshot-mover {
   left: 50%;
-  margin-left: $handle-size / 2;
+  margin-left: - $handle-size / 2;
   bottom: $handle-mover-offset;
 }
 
