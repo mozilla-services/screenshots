@@ -40,6 +40,13 @@ function encodeData(contentType, data) {
   return 'data:' + contentType + ';base64,' + btoa(data);
 }
 
+function checkLink(link) {
+  if (link.search(/^javascript:/i) !== -1) {
+    return "#";
+  }
+  return link;
+}
+
 /** These are elements that are empty, i.e., have no closing tag: */
 const voidElements = {
   AREA: true,
@@ -149,6 +156,9 @@ function staticHTML(el) {
         value = replSrc;
       } else if (name == "href" || name == "src" || name == "value") {
         value = el[name] + "";
+        if (name === "href" || name === "src") {
+          value = checkLink(value);
+        }
       } else {
         value = attrs[i].value;
       }
@@ -177,6 +187,9 @@ function getAttributes(el) {
       }
       if (name == "href" || name == "src" || name == "value") {
         value = el[name];
+        if (name === "href" || name === "src") {
+          value = checkLink(value);
+        }
       } else {
         value = attrs[i].value;
       }
@@ -231,7 +244,7 @@ function documentStaticData() {
   }
   var favicon = getDocument().querySelector("link[rel='shortcut icon'], link[rel='icon']");
   if (favicon) {
-    favicon = favicon.href;
+    favicon = checkLink(favicon.href);
   } else {
     // FIXME: ideally test if this exists
     let origin = getLocation().origin;
