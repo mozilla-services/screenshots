@@ -331,10 +331,12 @@ const ShotContext = Class({
       let clip = this.shot.getClip(activeClipName);
       let url = this.shot.viewUrl;
       let img = clip.image.url;
-      let title = escapeForHTML(this.shot.title);
-      let html = `<a href="${url}"><img src="${img}" /><div>${title}</div></a>`;
-      clipboard.set(html, "html");
-      clipboard.set(html, "text");
+      let title = this.shot.title;
+      let html = `<a href="${escapeForHTML(url)}"><img src="${img}" /><div>${escapeForHTML(title)}</div></a>`;
+      require("./multiclip").copyMultiple({
+        html,
+        text: `${title}\n${url}`
+      });
       notifications.notify({
         title: "HTML Copied",
         text: "The link to your shot and an image have been copied to the clipboard.",
