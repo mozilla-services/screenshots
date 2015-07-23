@@ -44,7 +44,11 @@ function makeScreenShot(pos, maxSize, backgroundColor) {
 }
 
 // framescripter infrastructure:
+let isDisabled = false;
 addMessageListener("pageshot@screenshot:call", function handler(event) {
+  if (isDisabled) {
+    return;
+  }
   var result;
   try {
     result = {
@@ -62,4 +66,8 @@ addMessageListener("pageshot@screenshot:call", function handler(event) {
   }
   result.callId = event.data.callId;
   sendAsyncMessage("pageshot@screenshot:return", result);
+});
+
+addMessageListener("pageshot@disable", function (event) {
+  isDisabled = true;
 });

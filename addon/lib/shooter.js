@@ -113,12 +113,6 @@ const ShotContext = Class({
         deviceId: deviceInfo.deviceId
       });
     this.activeClipName = null;
-    clipboard.set(this.shot.viewUrl, "text");
-    notifications.notify({
-      title: "Link Copied",
-      text: "The link to your shot has been copied to the clipboard.",
-      iconURL: self.data.url("../data/copy.png")
-    });
     this._deregisters = [];
     this.panelContext = panelContext;
     this._workerActive = false;
@@ -138,6 +132,15 @@ const ShotContext = Class({
     });
     this.collectInformation();
     this._activateWorker();
+  },
+
+  copyLink: function () {
+    clipboard.set(this.shot.viewUrl, "text");
+    notifications.notify({
+      title: "Link Copied",
+      text: "The link to your shot has been copied to the clipboard.",
+      iconURL: self.data.url("../data/copy.png")
+    });
   },
 
   /** Activate the worker.  Note that on reload the same url may be active,
@@ -420,27 +423,41 @@ const ShotContext = Class({
       microformat stuff, the HTML, and other misc stuff.  Immediately updates the
       shot as that information comes in */
   collectInformation: function () {
-    var promises = [];
-    processHistory(this.shot.history, this.tab);
-    // FIXME: we no longer have screenshots in our model, not sure if we want them back or not:
-    /*promises.push(watchPromise(captureTab(this.tab, null, {h: 200, w: 350}).then((function (url) {
-      this.updateShot({screenshot: url}, true);
-    }.bind(this)))));*/
-    promises.push(watchPromise(extractWorker(this.tab)).then(watchFunction(function (attrs) {
-      this.interactiveWorker.port.emit("extractedData", attrs);
-      this.shot.update(attrs);
-      this.updateShot();
-    }, this)));
-    promises.push(watchPromise(callScript(
+    watchPromise(callScript(
       this.tab,
-      self.data.url("framescripts/make-static-html.js"),
-      "pageshot@documentStaticData",
-      {})).then(watchFunction(function (attrs) {
+      self.data.url("framescripts/add-ids.js"),
+      "pageshot@addIds",
+      {}
+    ).then((function (result) {
+      if (result.isXul) {
+        // Abandon hope all ye who enter!
+        this.destroy();
+        // FIXME: maybe pop up an explanation here?
+        return;
+      }
+      this.copyLink();
+      var promises = [];
+      processHistory(this.shot.history, this.tab);
+      // FIXME: we no longer have screenshots in our model, not sure if we want them back or not:
+      /*promises.push(watchPromise(captureTab(this.tab, null, {h: 200, w: 350}).then((function (url) {
+        this.updateShot({screenshot: url}, true);
+      }.bind(this)))));*/
+      promises.push(watchPromise(extractWorker(this.tab)).then(watchFunction(function (attrs) {
+        this.interactiveWorker.port.emit("extractedData", attrs);
         this.shot.update(attrs);
         this.updateShot();
       }, this)));
-    watchPromise(allPromisesComplete(promises).then((function () {
-      return this.shot.save();
+      promises.push(watchPromise(callScript(
+        this.tab,
+        self.data.url("framescripts/make-static-html.js"),
+        "pageshot@documentStaticData",
+        {})).then(watchFunction(function (attrs) {
+          this.shot.update(attrs);
+          this.updateShot();
+        }, this)));
+      watchPromise(allPromisesComplete(promises).then((function () {
+        return this.shot.save();
+      }).bind(this)));
     }).bind(this)));
   },
 

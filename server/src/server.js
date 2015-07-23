@@ -118,6 +118,12 @@ app.post("/api/login", function (req, res) {
   });
 });
 
+app.post("/api/unload", function (req, res) {
+  let reason = req.body.reason;
+  console.info("Device", req.deviceId, "unloaded for reason:", reason);
+  simpleResponse(res, "Noted", 200);
+});
+
 app.get("/clip/:id/:domain/:clipId", function (req, res) {
   let shotId = req.params.id + "/" + req.params.domain;
   Shot.get(req.backend, shotId).then((shot) => {
