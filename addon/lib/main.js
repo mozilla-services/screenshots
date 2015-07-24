@@ -17,6 +17,9 @@ const { ToggleButton } = require('sdk/ui/button/toggle');
 const panels = require("sdk/panel");
 const { watchFunction, watchWorker } = require("./errors");
 
+const PANEL_SHORT_HEIGHT = 190;
+const PANEL_TALL_HEIGHT = 500;
+
 // FIXME: this button should somehow keep track of whether there is an active shot associated with this page
 var shootButton = ToggleButton({
   id: "pageshot-shooter",
@@ -35,7 +38,7 @@ var shootPanel = panels.Panel({
     type: "shoot"
   },
   position: shootButton,
-  height: 250,
+  height: PANEL_SHORT_HEIGHT,
   width: 400,
   onHide: watchFunction(function () {
     shootButton.state("window", null);
@@ -103,9 +106,9 @@ const PanelContext = {
     shootButton.checked = true;
     this.updateShot(this._activeContext, this._activeContext.shot.asJson());
     if (this._activeContext.isEditing) {
-      shootPanel.resize(400, 525);
+      shootPanel.resize(400, PANEL_TALL_HEIGHT);
     } else {
-      shootPanel.resize(400, 250);
+      shootPanel.resize(400, PANEL_SHORT_HEIGHT);
     }
   },
 
@@ -165,9 +168,9 @@ const PanelContext = {
   setEditing: function (editing) {
     this._activeContext.isEditing = editing;
     if (editing) {
-      shootPanel.resize(400, 525);
+      shootPanel.resize(400, PANEL_TALL_HEIGHT);
     } else {
-      shootPanel.resize(400, 250);
+      shootPanel.resize(400, PANEL_SHORT_HEIGHT);
     }
   },
 

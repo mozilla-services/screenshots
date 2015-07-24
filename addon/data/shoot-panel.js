@@ -108,7 +108,7 @@ class SimplifiedPanel extends React.Component {
   render() {
     return <div className="container">
       <div className="simplified-instructions">
-        <div>
+        <div className="instructions-text">
           Copy of page saved:
         </div>
         <a className="simplified-link" href="#" onClick={ this.onClickLink.bind(this) }>
@@ -116,14 +116,14 @@ class SimplifiedPanel extends React.Component {
         </a>
       </div>
       <div className="simplified-share-buttons">
-        <div>
+        <div className="instructions-text">
           Now go and share it!
         </div>
         <ShareButtons large={ true } { ...this.props } />
       </div>
       <div className="simplified-edit-container">
         <button className="simplified-edit-button" onClick={ this.props.onClickEdit }>
-          Edit
+          Edit / Add
         </button>
       </div>
       <img className="alpha-badge" src="icons/alpha-badge.png" />
