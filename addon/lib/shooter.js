@@ -414,6 +414,9 @@ const ShotContext = Class({
     },
     hide: function () {
       this.panelContext.hide(this);
+    },
+    stickyPanel: function () {
+      this.panelContext.toggleStickyPanel();
     }
   },
 

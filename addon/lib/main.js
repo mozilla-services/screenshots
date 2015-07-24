@@ -66,6 +66,7 @@ watchWorker(shootPanel);
 const PanelContext = {
   _contexts: {},
   _activeContext: null,
+  _stickyPanel: false,
 
   /** Hides the given ShotContext; error if you try to hide when
       you are not active */
@@ -82,12 +83,19 @@ const PanelContext = {
     if (this._activeContext) {
       this._activeContext.isHidden();
     }
+    if (this._stickyPanel && this._activeContext) {
+      this.show(this._activeContext);
+    }
   },
 
   shootPanelShown: function () {
     if (this._activeContext) {
       this._activeContext.isShowing();
     }
+  },
+
+  toggleStickyPanel: function () {
+    this._stickyPanel = ! this._stickPanel;
   },
 
   /** Show a ShotContext, hiding any other if necessary */
