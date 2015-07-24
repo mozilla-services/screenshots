@@ -17,6 +17,7 @@ const { AbstractShot } = require("./shared/shot");
 const { getDeviceInfo } = require("./user");
 const { URL } = require("sdk/url");
 const notifications = require("sdk/notifications");
+const { randomString } = require("./randomstring");
 
 // If a page is in history for less time than this, we ignore it
 // (probably a redirect of some sort):
@@ -625,13 +626,4 @@ function urlDomainForId(urlString) {
     }
   }
   return domain;
-}
-
-function randomString(length) {
-  // FIXME: would like to get better random numbers than this
-  let s = "";
-  for (var i=0; i<length; i++) {
-    s += Math.floor(Math.random()*36).toString(36);
-  }
-  return s;
 }
