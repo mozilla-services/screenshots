@@ -100,12 +100,23 @@ class Shot extends AbstractShot {
         // If the key doesn't already exist, go through the clips being inserted and
         // check to see if we need to store any data: url encoded images
         return this.convertAnyDataUrls(client, json, possibleClipsToInsert).then((oks) => {
+          let contentId = uuid.v4();
+          let head = json.head;
+          let body = json.body;
+          json.head = "";
+          json.body = "";
           return db.queryWithClient(
             client,
             `INSERT INTO data (id, deviceid, value)
              VALUES ($1, $2, $3)`,
             [this.id, this.ownerId, JSON.stringify(json)]
           ).then((rows) => {
+            return db.queryWithClient(
+              client,
+              "INSERT INTO content (id, shotid, head, body) VALUES ($1, $2, $3, $4)",
+              [contentId, this.id, head, body]
+            );
+          }).then((rows) => {
             return oks;
           });
         });
@@ -118,11 +129,24 @@ class Shot extends AbstractShot {
     let possibleClipsToInsert = this.clipNames();
     return db.transaction((client) => {
       return this.convertAnyDataUrls(client, json, possibleClipsToInsert).then((oks) => {
+        let head = json.head;
+        let body = json.body;
+        json.head = "";
+        json.body = "";
         return db.queryWithClient(
           client,
           `UPDATE data SET value = $1 WHERE id = $2 AND deviceid = $3`,
           [JSON.stringify(json), this.id, this.ownerId]
         ).then((rowCount) => {
+          if (! rowCount) {
+            throw new Error("No row updated");
+          }
+          return db.queryWithClient(
+            client,
+            "UPDATE content SET head = $1, body = $2 WHERE shotid = $3",
+            [head, body, this.id]
+          );
+        }).then((rowCount) => {
           if (! rowCount) {
             throw new Error("No row updated");
           }
@@ -145,6 +169,18 @@ Shot.getRawBytesForClip = function (uid) {
     }
   });
 };
+
+Shot.getContent = function (id) {
+  return db.select(
+    "SELECT head, body FROM content WHERE shotid = $1", [id]
+  ).then((rows) => {
+    if (! rows.length) {
+      return null;
+    } else {
+      return {head: rows[0].head, body: rows[0].body};
+    }
+  });
+}
 
 exports.Shot = Shot;
 

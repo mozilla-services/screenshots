@@ -51,6 +51,7 @@ app.use(function (req, res, next) {
   req.staticLinkWithHost = linker.staticLinkWithHost.bind(null, req);
   let base = req.protocol + "://" + req.headers.host;
   linker.imageLinkWithHost = linker.imageLink.bind(null, base);
+  linker.contentLinkWithHost = linker.contentLink.bind(null, base);
   next();
 });
 
@@ -195,6 +196,28 @@ app.get("/data/:id/:domain", function (req, res) {
   });
 });
 
+function formatAttributes(attrs) {
+  if (! attrs) {
+    return "";
+  }
+  let result = [];
+  for (let item of attrs) {
+    let name = item[0];
+    let value = item[1];
+    result.push(` ${name}="${escapeAttribute(value)}"`);
+  }
+  return result.join("");
+}
+
+function escapeAttribute(value) {
+  if (! value) {
+    return "";
+  }
+  value = value.replace(/&/g, "&amp;");
+  value = value.replace(/"/g, "&quot;");
+  return value;
+}
+
 app.get("/content/:id/:domain", function (req, res) {
   let shotId = req.params.id + "/" + req.params.domain;
   Shot.get(req.backend, shotId).then((shot) => {
@@ -202,13 +225,24 @@ app.get("/content/:id/:domain", function (req, res) {
       simpleResponse(res, "Not found", 404);
       return;
     }
-    res.send(shot.staticHtml({
-      addHead: `
-      <base href="${shot.url}" target="_blank" />
-      <script src="${req.staticLinkWithHost("js/content-helper.js")}"></script>
-      <link rel="stylesheet" href="${req.staticLinkWithHost("css/content.css")}">
-      `
-    }));
+
+    return Shot.getContent(shotId).then((content) => {
+      let response = `<!DOCTYPE html>
+<html${formatAttributes(shot.htmlAttrs)}>
+<head${formatAttributes(shot.headAttrs)}>
+<meta charset="UTF-8">
+<base href="${shot.url}" target="_blank" />
+<script src="${req.staticLinkWithHost("js/content-helper.js")}"></script>
+<link rel="stylesheet" href="${req.staticLinkWithHost("css/content.css")}">
+<base href="${shot.url}">
+${content.head}
+</head>
+<body${formatAttributes(shot.bodyAttrs)}>
+${content.body}
+</body>
+</html>`;
+      res.send(response);
+    });
   }).catch(function (e) {
     errorResponse(res, "Failed to load shot", e);
   });
