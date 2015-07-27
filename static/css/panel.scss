@@ -32,15 +32,15 @@ body {
 }
 
 button {
-  background-color: #ddd;
-  border: 1px solid #aaa;
-  border-radius: 3px;
+  //background-color: #ddd;
+  //border: 1px solid #aaa;
+  //border-radius: 3px;
   padding: 4px;
   white-space: nowrap;
 }
 
 button:hover {
-  background-color: #eee;
+  //background-color: #eee;
 }
 
 a {
@@ -374,7 +374,7 @@ ul.recall-list li:hover {
   position: absolute;
   color: blue;
   cursor: pointer;
-  top: 0px;
+  top: 10px;
   left: -7px;
   font-size: 12px;
 }
@@ -412,21 +412,28 @@ ul.recall-list li:hover {
   left: 0px;
   right: 0px;
   padding: 0.5em;
-  background-color: #E4E4E4;
+  background-color: #eaeaea;
   text-align: center;
+  border-bottom: 1px solid #cccccc;
+}
+
+.instructions-text {
+  font-size: 13px;
 }
 
 .simplified-instructions div {
   margin-bottom: 0.5em;
 }
 
-.simplified-link {
-  font-size: x-large;
+a.simplified-link, a.simplified-link:visited, a.simplified-link:link {
+  font-size: 24px;
+  color: #0095dd;
+  white-space: nowrap;
 }
 
 .simplified-share-buttons {
   text-align: center;
-  padding-top: 8em;
+  padding-top: 85px;
 }
 
 .simplified-share-buttons div {

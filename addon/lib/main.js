@@ -17,6 +17,9 @@ const { ToggleButton } = require('sdk/ui/button/toggle');
 const panels = require("sdk/panel");
 const { watchFunction, watchWorker } = require("./errors");
 
+const PANEL_SHORT_HEIGHT = 190;
+const PANEL_TALL_HEIGHT = 500;
+
 // FIXME: this button should somehow keep track of whether there is an active shot associated with this page
 var shootButton = ToggleButton({
   id: "pageshot-shooter",
@@ -35,7 +38,7 @@ var shootPanel = panels.Panel({
     type: "shoot"
   },
   position: shootButton,
-  height: 250,
+  height: PANEL_SHORT_HEIGHT,
   width: 400,
   onHide: watchFunction(function () {
     shootButton.state("window", null);
@@ -63,6 +66,7 @@ watchWorker(shootPanel);
 const PanelContext = {
   _contexts: {},
   _activeContext: null,
+  _stickyPanel: false,
 
   /** Hides the given ShotContext; error if you try to hide when
       you are not active */
@@ -79,12 +83,19 @@ const PanelContext = {
     if (this._activeContext) {
       this._activeContext.isHidden();
     }
+    if (this._stickyPanel && this._activeContext) {
+      this.show(this._activeContext);
+    }
   },
 
   shootPanelShown: function () {
     if (this._activeContext) {
       this._activeContext.isShowing();
     }
+  },
+
+  toggleStickyPanel: function () {
+    this._stickyPanel = ! this._stickPanel;
   },
 
   /** Show a ShotContext, hiding any other if necessary */
@@ -103,9 +114,9 @@ const PanelContext = {
     shootButton.checked = true;
     this.updateShot(this._activeContext, this._activeContext.shot.asJson());
     if (this._activeContext.isEditing) {
-      shootPanel.resize(400, 525);
+      shootPanel.resize(400, PANEL_TALL_HEIGHT);
     } else {
-      shootPanel.resize(400, 250);
+      shootPanel.resize(400, PANEL_SHORT_HEIGHT);
     }
   },
 
@@ -165,9 +176,9 @@ const PanelContext = {
   setEditing: function (editing) {
     this._activeContext.isEditing = editing;
     if (editing) {
-      shootPanel.resize(400, 525);
+      shootPanel.resize(400, PANEL_TALL_HEIGHT);
     } else {
-      shootPanel.resize(400, 250);
+      shootPanel.resize(400, PANEL_SHORT_HEIGHT);
     }
   },
 
@@ -212,6 +223,7 @@ exports.getBackend = function () {
   return backendOverride || prefs.backend;
 };
 
+// For reasons see https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Listening_for_load_and_unload
 exports.main = function (options) {
   if (options.staticArgs.backend) {
     console.info("Using backend", options.staticArgs.backend, "instead of", prefs.backend);
@@ -222,6 +234,20 @@ exports.main = function (options) {
   //require("./historytracker");
 
   helperworker.trackMods(backendOverride || null);
-  require("user").initialize(exports.getBackend());
+  require("user").initialize(exports.getBackend(), options.loadReason);
   require("recall");
+};
+
+exports.onUnload = function (reason) {
+  if (reason == "shutdown") {
+    return;
+  }
+  console.info("Unloading PageShot framescripts");
+  require("framescripter").unload();
+  console.info("Informing site of unload reason:", reason);
+  require("sdk/request").Request({
+    url: exports.getBackend() + "/api/unload",
+    contentType: "application/x-www-form-urlencoded",
+    content: {reason}
+  }).post();
 };

@@ -40,6 +40,13 @@ function encodeData(contentType, data) {
   return 'data:' + contentType + ';base64,' + btoa(data);
 }
 
+function checkLink(link) {
+  if (link.search(/^javascript:/i) !== -1) {
+    return "#";
+  }
+  return link;
+}
+
 /** These are elements that are empty, i.e., have no closing tag: */
 const voidElements = {
   AREA: true,
@@ -136,9 +143,6 @@ function staticHTML(el) {
     }
   }
   var s = '<' + el.tagName;
-  if (! el.id) {
-    s += ' id="' + makeId() + '"';
-  }
   var attrs = el.attributes;
   if (attrs && attrs.length) {
     var l = attrs.length;
@@ -152,6 +156,9 @@ function staticHTML(el) {
         value = replSrc;
       } else if (name == "href" || name == "src" || name == "value") {
         value = el[name] + "";
+        if (name === "href" || name === "src") {
+          value = checkLink(value);
+        }
       } else {
         value = attrs[i].value;
       }
@@ -180,6 +187,9 @@ function getAttributes(el) {
       }
       if (name == "href" || name == "src" || name == "value") {
         value = el[name];
+        if (name === "href" || name === "src") {
+          value = checkLink(value);
+        }
       } else {
         value = attrs[i].value;
       }
@@ -234,7 +244,7 @@ function documentStaticData() {
   }
   var favicon = getDocument().querySelector("link[rel='shortcut icon'], link[rel='icon']");
   if (favicon) {
-    favicon = favicon.href;
+    favicon = checkLink(favicon.href);
   } else {
     // FIXME: ideally test if this exists
     let origin = getLocation().origin;
@@ -261,31 +271,13 @@ function documentStaticData() {
   };
 }
 
-var idCount = 0;
-/** makeId() creates new ids that we give to elements that don't already have an id */
-function makeId() {
-  idCount++;
-  return 'psid-' + idCount;
-}
-
-function setIds() {
-  var els = getDocument().getElementsByTagName("*");
-  var len = els.length;
-  for (var i=0; i<len; i++) {
-    var el = els[i];
-    var curId = el.id;
-    if (curId && curId.indexOf("psid-") === 0) {
-      idCount = parseInt(curId.substr(5), 10);
-    } else if (! curId) {
-      el.id = makeId();
-    }
-  }
-}
-
+let isDisabled = false;
 addMessageListener("pageshot@documentStaticData:call", function (event) {
+  if (isDisabled) {
+    return;
+  }
   var result;
   try {
-    setIds();
     result = documentStaticData();
   } catch (e) {
     console.error("Error getting static HTML:", e);
@@ -299,4 +291,8 @@ addMessageListener("pageshot@documentStaticData:call", function (event) {
   }
   result.callId = event.data.callId;
   sendAsyncMessage("pageshot@documentStaticData:return", result);
+});
+
+addMessageListener("pageshot@disable", function (event) {
+  isDisabled = true;
 });

@@ -143,12 +143,14 @@ exports.Profile = class Profile extends React.Component {
         <div className="avatar-container">
           <img className="avatar" src={ this.props.avatarurl } />
         </div>
-        <h3>Name</h3>
-        <input type="text" ref="nickname" defaultValue={ this.state.nickname }
-          onChange={ this.onChangeName.bind(this )}
-          onKeyPress={ this.onKeyPressName.bind(this) }
-          placeholder="Pick a name for yourself" />
-        <h3>Sync</h3>
+        <div className="label"><label for="nickname">Name</label></div>
+        <div>
+          <input type="text" ref="nickname" id="nickname" defaultValue={ this.state.nickname }
+            onChange={ this.onChangeName.bind(this )}
+            onKeyPress={ this.onKeyPressName.bind(this) }
+            placeholder="Pick a name for yourself" />
+        </div>
+        <div className="label">Sync</div>
         {syncStatus}
       </div>
     );

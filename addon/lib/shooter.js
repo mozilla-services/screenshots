@@ -17,6 +17,7 @@ const { AbstractShot } = require("./shared/shot");
 const { getDeviceInfo } = require("./user");
 const { URL } = require("sdk/url");
 const notifications = require("sdk/notifications");
+const { randomString } = require("./randomstring");
 
 // If a page is in history for less time than this, we ignore it
 // (probably a redirect of some sort):
@@ -113,12 +114,6 @@ const ShotContext = Class({
         deviceId: deviceInfo.deviceId
       });
     this.activeClipName = null;
-    clipboard.set(this.shot.viewUrl, "text");
-    notifications.notify({
-      title: "Link Copied",
-      text: "The link to your shot has been copied to the clipboard.",
-      iconURL: self.data.url("../data/copy.png")
-    });
     this._deregisters = [];
     this.panelContext = panelContext;
     this._workerActive = false;
@@ -138,6 +133,15 @@ const ShotContext = Class({
     });
     this.collectInformation();
     this._activateWorker();
+  },
+
+  copyLink: function () {
+    clipboard.set(this.shot.viewUrl, "text");
+    notifications.notify({
+      title: "Link Copied",
+      text: "The link to your shot has been copied to the clipboard.",
+      iconURL: self.data.url("../data/copy.png")
+    });
   },
 
   /** Activate the worker.  Note that on reload the same url may be active,
@@ -328,10 +332,12 @@ const ShotContext = Class({
       let clip = this.shot.getClip(activeClipName);
       let url = this.shot.viewUrl;
       let img = clip.image.url;
-      let title = escapeForHTML(this.shot.title);
-      let html = `<a href="${url}"><img src="${img}" /><div>${title}</div></a>`;
-      clipboard.set(html, "html");
-      clipboard.set(html, "text");
+      let title = this.shot.title;
+      let html = `<a href="${escapeForHTML(url)}"><img src="${img}" /><div>${escapeForHTML(title)}</div></a>`;
+      require("./multiclip").copyMultiple({
+        html,
+        text: `${title}\n${url}`
+      });
       notifications.notify({
         title: "HTML Copied",
         text: "The link to your shot and an image have been copied to the clipboard.",
@@ -408,6 +414,9 @@ const ShotContext = Class({
     },
     hide: function () {
       this.panelContext.hide(this);
+    },
+    stickyPanel: function () {
+      this.panelContext.toggleStickyPanel();
     }
   },
 
@@ -420,27 +429,41 @@ const ShotContext = Class({
       microformat stuff, the HTML, and other misc stuff.  Immediately updates the
       shot as that information comes in */
   collectInformation: function () {
-    var promises = [];
-    processHistory(this.shot.history, this.tab);
-    // FIXME: we no longer have screenshots in our model, not sure if we want them back or not:
-    /*promises.push(watchPromise(captureTab(this.tab, null, {h: 200, w: 350}).then((function (url) {
-      this.updateShot({screenshot: url}, true);
-    }.bind(this)))));*/
-    promises.push(watchPromise(extractWorker(this.tab)).then(watchFunction(function (attrs) {
-      this.interactiveWorker.port.emit("extractedData", attrs);
-      this.shot.update(attrs);
-      this.updateShot();
-    }, this)));
-    promises.push(watchPromise(callScript(
+    watchPromise(callScript(
       this.tab,
-      self.data.url("framescripts/make-static-html.js"),
-      "pageshot@documentStaticData",
-      {})).then(watchFunction(function (attrs) {
+      self.data.url("framescripts/add-ids.js"),
+      "pageshot@addIds",
+      {}
+    ).then((function (result) {
+      if (result.isXul) {
+        // Abandon hope all ye who enter!
+        this.destroy();
+        // FIXME: maybe pop up an explanation here?
+        return;
+      }
+      this.copyLink();
+      var promises = [];
+      processHistory(this.shot.history, this.tab);
+      // FIXME: we no longer have screenshots in our model, not sure if we want them back or not:
+      /*promises.push(watchPromise(captureTab(this.tab, null, {h: 200, w: 350}).then((function (url) {
+        this.updateShot({screenshot: url}, true);
+      }.bind(this)))));*/
+      promises.push(watchPromise(extractWorker(this.tab)).then(watchFunction(function (attrs) {
+        this.interactiveWorker.port.emit("extractedData", attrs);
         this.shot.update(attrs);
         this.updateShot();
       }, this)));
-    watchPromise(allPromisesComplete(promises).then((function () {
-      return this.shot.save();
+      promises.push(watchPromise(callScript(
+        this.tab,
+        self.data.url("framescripts/make-static-html.js"),
+        "pageshot@documentStaticData",
+        {})).then(watchFunction(function (attrs) {
+          this.shot.update(attrs);
+          this.updateShot();
+        }, this)));
+      watchPromise(allPromisesComplete(promises).then((function () {
+        return this.shot.save();
+      }).bind(this)));
     }).bind(this)));
   },
 
@@ -606,13 +629,4 @@ function urlDomainForId(urlString) {
     }
   }
   return domain;
-}
-
-function randomString(length) {
-  // FIXME: would like to get better random numbers than this
-  let s = "";
-  for (var i=0; i<length; i++) {
-    s += Math.floor(Math.random()*36).toString(36);
-  }
-  return s;
 }

@@ -8,6 +8,7 @@ const { defer } = require('sdk/core/promise');
 const { viewFor } = require("sdk/view/core");
 
 let DEBUG = false;
+let loadedTimestamp = Date.now();
 
 /** call setDebug(true) to get debug information on the console */
 exports.setDebug = function (val) {
@@ -57,10 +58,23 @@ exports.addScript = function (tab, script) {
       console.error("Could not get messageManager from " + browser);
       throw new Error("Could not get messageManager");
     }
-    browserMM.loadFrameScript(script, false);
+    browserMM.loadFrameScript(script + "?bust=" + loadedTimestamp, false);
     scripts[script] = {};
   } else {
     logDebug("Script already loaded:", script);
+  }
+};
+
+exports.unload = function () {
+  for (let tab of require("sdk/tabs")) {
+    let browser = getBrowser(tab);
+    let scripts = browser.framescripterEnabledScripts;
+    if (! scripts) {
+      continue;
+    }
+    let browserMM = browser.messageManager;
+    browserMM.sendAsyncMessage("pageshot@disable");
+    delete browser.framescripterEnabledScripts;
   }
 };
 
