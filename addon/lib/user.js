@@ -6,13 +6,15 @@ const { watchFunction, watchPromise } = require("./errors");
 const { URL } = require('sdk/url');
 const { FxAccountsOAuthClient } = Cu.import("resource://gre/modules/FxAccountsOAuthClient.jsm", {});
 const { FxAccountsProfileClient } = Cu.import("resource://gre/modules/FxAccountsProfileClient.jsm", {});
+const { deviceInfo } = require('./deviceinfo');
 
 exports.initialize = function (backend, reason) {
   if (! (ss.storage.deviceInfo && ss.storage.deviceInfo.deviceId && ss.storage.deviceInfo.secret)) {
     let info = {
       deviceId: "anon" + makeUuid() + "",
       secret: makeUuid()+"",
-      reason
+      reason,
+      deviceInfo: JSON.stringify(deviceInfo())
     };
     console.info("Generating new device authentication ID", info.deviceId);
     watchPromise(saveLogin(backend, info).then(function () {
@@ -25,7 +27,12 @@ exports.initialize = function (backend, reason) {
     Request({
       url: loginUrl,
       contentType: "application/x-www-form-urlencoded",
-      content: {deviceId: info.deviceId, secret: info.secret, reason},
+      content: {
+        deviceId: info.deviceId,
+        secret: info.secret,
+        reason,
+        deviceInfo: JSON.stringify(deviceInfo())
+      },
       onComplete: watchFunction(function (response) {
         if (response.status == 404) {
           // Need to save login anyway...

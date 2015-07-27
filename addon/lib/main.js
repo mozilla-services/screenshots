@@ -245,9 +245,13 @@ exports.onUnload = function (reason) {
   console.info("Unloading PageShot framescripts");
   require("framescripter").unload();
   console.info("Informing site of unload reason:", reason);
+  let deviceInfo = require("./deviceinfo").deviceInfo();
   require("sdk/request").Request({
     url: exports.getBackend() + "/api/unload",
     contentType: "application/x-www-form-urlencoded",
-    content: {reason}
+    content: {
+      reason,
+      deviceInfo: JSON.stringify(deviceInfo)
+    }
   }).post();
 };
