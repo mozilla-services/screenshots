@@ -2,11 +2,6 @@
 
 const React = require("react");
 const events = require("../events");
-const errors = require("../../shared/errors");
-
-function delay(duration) {
-  return new Promise(resolve => setTimeout(resolve, duration));
-}
 
 exports.ProfileButton = class ProfileButton extends React.Component {
   constructor(props) {
