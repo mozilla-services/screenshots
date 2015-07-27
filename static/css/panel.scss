@@ -428,6 +428,7 @@ ul.recall-list li:hover {
 a.simplified-link, a.simplified-link:visited, a.simplified-link:link {
   font-size: 24px;
   color: #0095dd;
+  white-space: nowrap;
 }
 
 .simplified-share-buttons {
