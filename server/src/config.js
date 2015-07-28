@@ -13,6 +13,20 @@ let conf = convict({
     env: "PORT",
     arg: "port"
   },
+  contentPort: {
+    doc: "The content server port",
+    format: "port",
+    default: 10080,
+    env: "CONTENT_PORT",
+    arg: "contentPort"
+  },
+  contentHost: {
+    doc: "The content server host",
+    format: String,
+    default: "localhost",
+    env: "CONTENT_HOST",
+    arg: "contentHost"
+  },
   oAuth: {
     oAuthServer: {
       doc: "The FxA OAuth server base URL",

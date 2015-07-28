@@ -565,7 +565,13 @@ class Shot extends AbstractShot {
       onComplete: watchFunction((response) => {
         if (response.status >= 200 && response.status < 300) {
           for (let update of response.json.updates) {
-            this.updateClipUrl(update.clipId, update.url);
+            if (update.clipId && update.url) {
+              this.updateClipUrl(update.clipId, update.url);
+            } else if (update.setHead) {
+              this.head = update.setHead;
+            } else if (update.setBody) {
+              this.body = update.setBody;
+            }
           }
           deferred.resolve(true);
         } else {

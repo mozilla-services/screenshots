@@ -263,7 +263,7 @@ class Frame extends React.Component {
             <span className="full-page-button-arrow">▾</span>
           </a>
         </div>
-        <iframe width="100%" id="frame" src={ "/content/" +  shot.id } style={ {backgroundColor: "#fff"} } />
+        <iframe width="100%" id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } />
         <div className="pageshot-footer">
           <a href="https://github.com/mozilla-services/pageshot">{this.props.productName}</a> — <a href={`https://github.com/mozilla-services/pageshot/commit/${getGitRevision()}`}>Updated {BUILD_TIMESTAMP}</a>
         </div>
@@ -302,6 +302,8 @@ exports.render = function (req, res) {
     gitRevision: getGitRevision(),
     backend: req.backend,
     shot: req.shot.asJson(),
+    contentHost: req.config.contentHost,
+    contentPort: req.config.contentPort,
     id: req.shot.id,
     productName: req.config.productName,
     gaId: req.config.gaId,

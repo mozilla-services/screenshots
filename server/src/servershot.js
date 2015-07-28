@@ -3,6 +3,7 @@ const renderOembedString = require("./views/oembed.js").renderString;
 const db = require("./db");
 const uuid = require("uuid");
 const linker = require("./linker");
+const config = require("./config").root();
 
 class Shot extends AbstractShot {
 
@@ -85,6 +86,10 @@ class Shot extends AbstractShot {
     return this.backend + "/oembed?url=" + encodeURIComponent(this.viewUrl);
   }
 
+  get contentUrl() {
+    return "//" + config.contentHost + ":" + config.contentPort + "/content/" + this.id;
+  }
+
   insert() {
     let json = this.asJson();
     let possibleClipsToInsert = this.clipNames();
@@ -100,12 +105,18 @@ class Shot extends AbstractShot {
         // If the key doesn't already exist, go through the clips being inserted and
         // check to see if we need to store any data: url encoded images
         return this.convertAnyDataUrls(client, json, possibleClipsToInsert).then((oks) => {
+          let head = json.head;
+          let body = json.body;
+          json.head = null;
+          json.body = null;
+          oks.push({setHead: null});
+          oks.push({setBody: null});
           return db.queryWithClient(
             client,
-            `INSERT INTO data (id, deviceid, value)
-             VALUES ($1, $2, $3)`,
-            [this.id, this.ownerId, JSON.stringify(json)]
-          ).then((rows) => {
+            `INSERT INTO data (id, deviceid, value, head, body)
+             VALUES ($1, $2, $3, $4, $5)`,
+            [this.id, this.ownerId, JSON.stringify(json), head, body]
+          ).then((rowCount) => {
             return oks;
           });
         });
@@ -118,11 +129,33 @@ class Shot extends AbstractShot {
     let possibleClipsToInsert = this.clipNames();
     return db.transaction((client) => {
       return this.convertAnyDataUrls(client, json, possibleClipsToInsert).then((oks) => {
-        return db.queryWithClient(
-          client,
-          `UPDATE data SET value = $1 WHERE id = $2 AND deviceid = $3`,
-          [JSON.stringify(json), this.id, this.ownerId]
-        ).then((rowCount) => {
+        let head = json.head;
+        let body = json.body;
+        json.head = null;
+        json.body = null;
+        if (head !== null) {
+          oks.push({setHead: null});
+        }
+        if (body !== null) {
+          oks.push({setBody: null});
+        }
+        let promise;
+        if (head === null && body === null) {
+          promise = db.queryWithClient(
+            client,
+            `UPDATE data SET value = $1
+            WHERE id = $2 AND deviceid = $3`,
+            [JSON.stringify(json), this.id, this.ownerId]
+          );
+        } else {
+          promise = db.queryWithClient(
+            client,
+            `UPDATE data SET value = $1, head = $2, body = $3
+            WHERE id = $4 AND deviceid = $5`,
+            [JSON.stringify(json), head, body, this.id, this.ownerId]
+          );
+        }
+        return promise.then((rowCount) => {
           if (! rowCount) {
             throw new Error("No row updated");
           }
@@ -176,6 +209,27 @@ Shot.get = function (backend, id) {
     }
     let json = JSON.parse(rawValue.value);
     return new Shot(rawValue.userid, backend, id, json);
+  });
+};
+
+Shot.getFullShot = function (backend, id) {
+  if (! id) {
+    throw new Error("Empty id: " + id);
+  }
+  return db.select(
+    `SELECT value, deviceid, head, body FROM data
+    WHERE data.id = $1`,
+    [id]
+  ).then((rows) => {
+    if (! rows.length) {
+      return null;
+    }
+    let row = rows[0];
+    let json = JSON.parse(row.value);
+    let shot = new Shot(row.userid, backend, id, json);
+    shot.head = row.head;
+    shot.body = row.body;
+    return shot;
   });
 };
 

@@ -208,7 +208,7 @@ app.get("/data/:id/:domain", function (req, res) {
 
 app.get("/content/:id/:domain", function (req, res) {
   let shotId = req.params.id + "/" + req.params.domain;
-  Shot.get(req.backend, shotId).then((shot) => {
+  Shot.getFullShot(req.backend, shotId).then((shot) => {
     if (! shot) {
       simpleResponse(res, "Not found", 404);
       return;

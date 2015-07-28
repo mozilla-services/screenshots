@@ -3,14 +3,6 @@ const Keygrip = require('keygrip');
 
 const createSQL = `
 
-CREATE TABLE IF NOT EXISTS images (
-  id VARCHAR(200) PRIMARY KEY,
-  shotid VARCHAR(200) NOT NULL REFERENCES data (id) ON DELETE CASCADE,
-  clipid VARCHAR(200) NOT NULL,
-  image BYTEA NOT NULL,
-  contenttype TEXT NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS accounts (
   id VARCHAR(200) PRIMARY KEY,
   token TEXT
@@ -42,7 +34,17 @@ CREATE TABLE IF NOT EXISTS data (
   id varchar(120) PRIMARY KEY,
   deviceid varchar(200) REFERENCES devices (id),
   created TIMESTAMP DEFAULT NOW(),
-  value text
+  value TEXT NOT NULL,
+  head TEXT NOT NULL,
+  body TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS images (
+  id VARCHAR(200) PRIMARY KEY,
+  shotid VARCHAR(200) NOT NULL REFERENCES data (id) ON DELETE CASCADE,
+  clipid VARCHAR(200) NOT NULL,
+  image BYTEA NOT NULL,
+  contenttype TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS signing_keys (
@@ -77,9 +79,9 @@ exports.createTables = function () {
     console.info("Created tables on", db.constr);
     let newId = "tmp" + Date.now();
     return db.insert(
-      `INSERT INTO data (id, deviceid, value)
-       VALUES ($1, NULL, $2)`,
-      [newId, "test value"]
+      `INSERT INTO data (id, deviceid, value, head, body)
+       VALUES ($1, NULL, $2, $3, $4)`,
+      [newId, "test value", "test head", "test body"]
     ).then((inserted) => {
       if (! inserted) {
         throw new Error("Could not insert");
