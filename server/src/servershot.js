@@ -100,23 +100,16 @@ class Shot extends AbstractShot {
         // If the key doesn't already exist, go through the clips being inserted and
         // check to see if we need to store any data: url encoded images
         return this.convertAnyDataUrls(client, json, possibleClipsToInsert).then((oks) => {
-          let contentId = uuid.v4();
           let head = json.head;
           let body = json.body;
           json.head = null;
           json.body = null;
           return db.queryWithClient(
             client,
-            `INSERT INTO data (id, deviceid, value)
-             VALUES ($1, $2, $3)`,
-            [this.id, this.ownerId, JSON.stringify(json)]
-          ).then((rows) => {
-            return db.queryWithClient(
-              client,
-              "INSERT INTO content (id, shotid, head, body) VALUES ($1, $2, $3, $4)",
-              [contentId, this.id, head, body]
-            );
-          }).then((rows) => {
+            `INSERT INTO data (id, deviceid, value, head, body)
+             VALUES ($1, $2, $3, $4, $5)`,
+            [this.id, this.ownerId, JSON.stringify(json), head, body]
+          ).then((rowCount) => {
             return oks;
           });
         });
@@ -135,18 +128,9 @@ class Shot extends AbstractShot {
         json.body = "";
         return db.queryWithClient(
           client,
-          `UPDATE data SET value = $1 WHERE id = $2 AND deviceid = $3`,
-          [JSON.stringify(json), this.id, this.ownerId]
+          `UPDATE data SET value = $1, head = $2, body = $3 WHERE id = $4 AND deviceid = $5`,
+          [JSON.stringify(json), head, body, this.id, this.ownerId]
         ).then((rowCount) => {
-          if (! rowCount) {
-            throw new Error("No row updated");
-          }
-          return db.queryWithClient(
-            client,
-            "UPDATE content SET head = $1, body = $2 WHERE shotid = $3",
-            [head, body, this.id]
-          );
-        }).then((rowCount) => {
           if (! rowCount) {
             throw new Error("No row updated");
           }
@@ -208,7 +192,8 @@ Shot.getFullShot = function (backend, id) {
     throw new Error("Empty id: " + id);
   }
   return db.select(
-    `SELECT data.value, data.deviceid, content.head, content.body FROM data INNER JOIN content ON data.id = content.shotid WHERE data.id = $1`,
+    `SELECT value, deviceid, head, body FROM data
+    WHERE data.id = $1`,
     [id]
   ).then((rows) => {
     if (! rows.length) {
