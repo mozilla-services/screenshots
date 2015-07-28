@@ -50,7 +50,8 @@ app.use(function (req, res, next) {
 app.use(function (req, res, next) {
   req.staticLink = linker.staticLink;
   req.staticLinkWithHost = linker.staticLinkWithHost.bind(null, req);
-  linker.imageLinkWithHost = linker.imageLink.bind(null, req.protocol + "://" + req.headers.host);
+  let base = req.protocol + "://" + req.headers.host;
+  linker.imageLinkWithHost = linker.imageLink.bind(null, base);
   next();
 });
 
