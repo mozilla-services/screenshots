@@ -103,8 +103,8 @@ class Shot extends AbstractShot {
           let contentId = uuid.v4();
           let head = json.head;
           let body = json.body;
-          json.head = "";
-          json.body = "";
+          json.head = null;
+          json.body = null;
           return db.queryWithClient(
             client,
             `INSERT INTO data (id, deviceid, value)
