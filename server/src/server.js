@@ -207,53 +207,20 @@ app.get("/data/:id/:domain", function (req, res) {
   });
 });
 
-function formatAttributes(attrs) {
-  if (! attrs) {
-    return "";
-  }
-  let result = [];
-  for (let item of attrs) {
-    let name = item[0];
-    let value = item[1];
-    result.push(` ${name}="${escapeAttribute(value)}"`);
-  }
-  return result.join("");
-}
-
-function escapeAttribute(value) {
-  if (! value) {
-    return "";
-  }
-  value = value.replace(/&/g, "&amp;");
-  value = value.replace(/"/g, "&quot;");
-  return value;
-}
-
 app.get("/content/:id/:domain", function (req, res) {
   let shotId = req.params.id + "/" + req.params.domain;
-  Shot.get(req.backend, shotId).then((shot) => {
+  Shot.getFullShot(req.backend, shotId).then((shot) => {
     if (! shot) {
       simpleResponse(res, "Not found", 404);
       return;
     }
-
-    return Shot.getContent(shotId).then((content) => {
-      let response = `<!DOCTYPE html>
-<html${formatAttributes(shot.htmlAttrs)}>
-<head${formatAttributes(shot.headAttrs)}>
-<meta charset="UTF-8">
-<base href="${shot.url}" target="_blank" />
-<script src="${req.staticLinkWithHost("js/content-helper.js")}"></script>
-<link rel="stylesheet" href="${req.staticLinkWithHost("css/content.css")}">
-<base href="${shot.url}">
-${content.head}
-</head>
-<body${formatAttributes(shot.bodyAttrs)}>
-${content.body}
-</body>
-</html>`;
-      res.send(response);
-    });
+    res.send(shot.staticHtml({
+      addHead: `
+      <base href="${shot.url}" target="_blank" />
+      <script src="${req.staticLinkWithHost("js/content-helper.js")}"></script>
+      <link rel="stylesheet" href="${req.staticLinkWithHost("css/content.css")}">
+      `
+    }));
   }).catch(function (e) {
     errorResponse(res, "Failed to load shot", e);
   });

@@ -170,18 +170,6 @@ Shot.getRawBytesForClip = function (uid) {
   });
 };
 
-Shot.getContent = function (id) {
-  return db.select(
-    "SELECT head, body FROM content WHERE shotid = $1", [id]
-  ).then((rows) => {
-    if (! rows.length) {
-      return null;
-    } else {
-      return {head: rows[0].head, body: rows[0].body};
-    }
-  });
-}
-
 exports.Shot = Shot;
 
 class ServerClip extends AbstractShot.prototype.Clip {
@@ -212,6 +200,26 @@ Shot.get = function (backend, id) {
     }
     let json = JSON.parse(rawValue.value);
     return new Shot(rawValue.userid, backend, id, json);
+  });
+};
+
+Shot.getFullShot = function (backend, id) {
+  if (! id) {
+    throw new Error("Empty id: " + id);
+  }
+  return db.select(
+    `SELECT data.value, data.deviceid, content.head, content.body FROM data INNER JOIN content ON data.id = content.shotid WHERE data.id = $1`,
+    [id]
+  ).then((rows) => {
+    if (! rows.length) {
+      return null;
+    }
+    let row = rows[0];
+    let json = JSON.parse(row.value);
+    let shot = new Shot(row.userid, backend, id, json);
+    shot.head = row.head;
+    shot.body = row.body;
+    return shot;
   });
 };
 
