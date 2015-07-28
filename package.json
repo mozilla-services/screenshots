@@ -11,6 +11,7 @@
     "browserify": "10.1.3",
     "convict": "0.8.0",
     "cookies": "0.5.0",
+    "domino": "1.0.18",
     "envc": "2.2.0",
     "express": "4.12.3",
     "git-rev": "0.2.1",
@@ -32,8 +33,8 @@
     "react": "0.13.3",
     "react-router": "0.13.3",
     "source-map-support": "0.2.10",
+    "uuid": "2.0.1",
     "vinyl-source-stream": "1.1.0",
-    "wreck": "5.5.1",
-    "uuid": "2.0.1"
+    "wreck": "5.5.1"
   }
 }
