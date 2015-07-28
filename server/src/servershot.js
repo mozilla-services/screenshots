@@ -109,6 +109,8 @@ class Shot extends AbstractShot {
           let body = json.body;
           json.head = null;
           json.body = null;
+          oks.push({setHead: null});
+          oks.push({setBody: null});
           return db.queryWithClient(
             client,
             `INSERT INTO data (id, deviceid, value, head, body)
@@ -129,13 +131,31 @@ class Shot extends AbstractShot {
       return this.convertAnyDataUrls(client, json, possibleClipsToInsert).then((oks) => {
         let head = json.head;
         let body = json.body;
-        json.head = "";
-        json.body = "";
-        return db.queryWithClient(
-          client,
-          `UPDATE data SET value = $1, head = $2, body = $3 WHERE id = $4 AND deviceid = $5`,
-          [JSON.stringify(json), head, body, this.id, this.ownerId]
-        ).then((rowCount) => {
+        json.head = null;
+        json.body = null;
+        if (head !== null) {
+          oks.push({setHead: null});
+        }
+        if (body !== null) {
+          oks.push({setBody: null});
+        }
+        let promise;
+        if (head === null && body === null) {
+          promise = db.queryWithClient(
+            client,
+            `UPDATE data SET value = $1
+            WHERE id = $2 AND deviceid = $3`,
+            [JSON.stringify(json), this.id, this.ownerId]
+          );
+        } else {
+          promise = db.queryWithClient(
+            client,
+            `UPDATE data SET value = $1, head = $2, body = $3
+            WHERE id = $4 AND deviceid = $5`,
+            [JSON.stringify(json), head, body, this.id, this.ownerId]
+          );
+        }
+        return promise.then((rowCount) => {
           if (! rowCount) {
             throw new Error("No row updated");
           }
