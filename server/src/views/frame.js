@@ -87,7 +87,7 @@ class Frame extends React.Component {
     let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
     let toolbarHeight = document.getElementById("toolbar").clientHeight;
     let visibleHeight = window.innerHeight - toolbarHeight;
-    let frameTop = frameOffset - toolbarHeight;
+    let frameTop = frameOffset - (toolbarHeight * 2);
     window.scroll(0, frameTop);
   }
 
