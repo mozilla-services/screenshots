@@ -2,6 +2,8 @@
 
 set -e
 
+base="$(dirname $BASH_SOURCE)"
+
 make_id () {
   echo "$(date +'%Y%m%dT%H%M%S')"
 }
@@ -10,7 +12,7 @@ device_id="testdevice-$(make_id)"
 secret="secret$(make_id)"
 
 endpoint=http://localhost:10080
-cookiejar="./cookie-jar.txt"
+cookiejar="${base}/cookie-jar.txt"
 
 curl -X POST \
   --cookie-jar $cookiejar \
