@@ -42,13 +42,3 @@ exports.imageLink = function (urlBase, resource) {
   }
   return urlBase + "/images" + resource;
 };
-
-exports.contentLink = function (urlBase, resource) {
-  if (! resource.startsWith("/")) {
-    resource = "/" + resource;
-  }
-  if (resource.startsWith("/content")) {
-    throw new Error("imageLink URL should not start with /content: " + resource);
-  }
-  return urlBase + "/content" + resource;
-};

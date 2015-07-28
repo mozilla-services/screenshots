@@ -3,6 +3,7 @@ const renderOembedString = require("./views/oembed.js").renderString;
 const db = require("./db");
 const uuid = require("uuid");
 const linker = require("./linker");
+const config = require("./config").root();
 
 class Shot extends AbstractShot {
 
@@ -83,6 +84,10 @@ class Shot extends AbstractShot {
 
   get oembedUrl() {
     return this.backend + "/oembed?url=" + encodeURIComponent(this.viewUrl);
+  }
+
+  get contentUrl() {
+    return "//" + config.contentHost + ":" + config.contentPort + "/content/" + this.id;
   }
 
   insert() {
