@@ -118,6 +118,12 @@ class Shot extends AbstractShot {
             [this.id, this.ownerId, JSON.stringify(json), head, body]
           ).then((rowCount) => {
             return oks;
+          }).catch((err) => {
+            if (err.code == '23505') {
+              // This is a duplicate key error, means the insert failed
+              return false;
+            }
+            throw err;
           });
         });
       });
