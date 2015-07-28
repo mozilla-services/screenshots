@@ -133,7 +133,7 @@ gulp.task("default", ["lint", "transforms"], function () {
   nodemon({
     verbose: true,
     script: "server/run",
-    ignore: [".DS_Store", "**/.DS_Store", ".git", "dist", "addon", "**/Profile", "pageshot-presentation", "node_modules", "**/node_modules"],
+    ignore: [".DS_Store", "**/.DS_Store", ".git", "dist", "addon", "**/Profile", "pageshot-presentation", "node_modules", "**/node_modules", "bin/"],
     ext: "js jsx scss",
     tasks: ["lint", "notify-start-transforms", "notify-end-transforms"]
   });

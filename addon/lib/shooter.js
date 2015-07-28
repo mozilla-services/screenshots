@@ -443,7 +443,8 @@ const ShotContext = Class({
       }
       this.copyLink();
       var promises = [];
-      processHistory(this.shot.history, this.tab);
+      // Note: removed until we have some need or use for history in our shot pages:
+      /* processHistory(this.shot.history, this.tab); */
       // FIXME: we no longer have screenshots in our model, not sure if we want them back or not:
       /*promises.push(watchPromise(captureTab(this.tab, null, {h: 200, w: 350}).then((function (url) {
         this.updateShot({screenshot: url}, true);

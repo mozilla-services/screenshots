@@ -20,6 +20,7 @@ const linker = require("./linker");
 const { randomBytes } = require("./helpers");
 const errors = require("../shared/errors");
 const config = require("./config").root();
+const { checkContent, checkAttributes } = require("./contentcheck");
 
 dbschema.createTables().then(() => {
   dbschema.createKeygrip();
@@ -162,6 +163,16 @@ app.put("/data/:id/:domain", function (req, res) {
     // FIXME: this doesn't make sense for comments or other stuff, see https://github.com/mozilla-services/pageshot/issues/245
     console.warn("Attempted to PUT a page with a different deviceId than the login deviceId");
     simpleResponse(res, "Cannot save a page on behalf of another user", 403);
+    return;
+  }
+  let errors = checkContent(bodyObj.head)
+    .concat(checkContent(bodyObj.body))
+    .concat(checkAttributes(bodyObj.headAttrs, "head"))
+    .concat(checkAttributes(bodyObj.bodyAttrs, "body"))
+    .concat(checkAttributes(bodyObj.htmlAttrs, "html"));
+  if (errors.length) {
+    console.warn("Attempted to submit page with invalid HTML:", errors.join("; ").substr(0, 60));
+    simpleResponse(res, "Errors in submission", 400);
     return;
   }
   let shot = new Shot(req.deviceId, req.backend, shotId, bodyObj);
