@@ -66,7 +66,7 @@ class TextClip extends React.Component {
 /** Renders when no clips have yet been added to the shot */
 class LoadingClip extends React.Component {
   render() {
-    return <img src="icons/loading.png" />;
+    return <img src="icons/pageshot-camera-empty.svg" />;
   }
 }
 

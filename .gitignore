@@ -7,4 +7,4 @@ dist
 dist-production
 node_modules
 addon.log
-
+cookie-jar.txt
