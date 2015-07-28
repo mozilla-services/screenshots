@@ -83,7 +83,7 @@ class ShareButtons extends React.Component {
       <a target="_blank" href={"https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" }>
         <img src={ `icons/pinterest-${size}.png` } />
       </a>
-      <a target="_blank" href={ "mailto:?subject=Check%20out%20this%20PageShot%20page&body=" + encodeURIComponent(this.props.shot.viewUrl) }>
+      <a target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
         <img src={ `icons/email-${size}.png` } />
       </a>
       <a href="#" onClick={ this.props.onCopyClick }>
