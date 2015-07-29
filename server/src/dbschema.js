@@ -35,8 +35,8 @@ CREATE TABLE IF NOT EXISTS data (
   deviceid varchar(200) REFERENCES devices (id),
   created TIMESTAMP DEFAULT NOW(),
   value TEXT NOT NULL,
-  head TEXT NOT NULL,
-  body TEXT NOT NULL
+  head TEXT,
+  body TEXT
 );
 
 CREATE TABLE IF NOT EXISTS images (
