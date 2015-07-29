@@ -897,7 +897,6 @@ function setVisible() {
   cornerX = screen.right;
   cornerY = screen.bottom;
   render();
-  console.log("SET STATE TO VISIBLE");
 }
 
 /**********************************************************
