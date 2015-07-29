@@ -82,10 +82,6 @@ class Shot extends AbstractShot {
     };
   }
 
-  get oembedUrl() {
-    return this.backend + "/oembed?url=" + encodeURIComponent(this.viewUrl);
-  }
-
   get contentUrl() {
     return "//" + config.contentHost + ":" + config.contentPort + "/content/" + this.id;
   }
