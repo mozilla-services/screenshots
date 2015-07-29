@@ -263,7 +263,7 @@ const ShotContext = Class({
     this.interactiveWorker.port.emit("isShowing");
     if (this.activeClipName) {
       let clip = this.shot.getClip(this.activeClipName);
-      if (clip.image && clip.image.captureType !== "visible") {
+      if (clip.image) {
         this.interactiveWorker.port.emit("restore", clip.image.captureType, clip.image.location, false);
       }
     }
@@ -356,7 +356,7 @@ const ShotContext = Class({
         clip = this.shot.getClip(this.activeClipName);
       }
       if (type === "visible") {
-        this.interactiveWorker.port.emit("setState", "cancel");
+        this.interactiveWorker.port.emit("setState", "visible");
         watchPromise(this.makeScreenshot().then((imgData) => {
           if (clip) {
             clip.image = imgData.image;
