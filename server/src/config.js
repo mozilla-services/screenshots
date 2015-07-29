@@ -13,10 +13,17 @@ let conf = convict({
     env: "PORT",
     arg: "port"
   },
+  host: {
+    doc: "The server host",
+    format: String,
+    default: "localhost",
+    env: "HOST",
+    arg: "host"
+  },
   contentPort: {
     doc: "The content server port",
     format: "port",
-    default: 10080,
+    default: 10081,
     env: "CONTENT_PORT",
     arg: "contentPort"
   },

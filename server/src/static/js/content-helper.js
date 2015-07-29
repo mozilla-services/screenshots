@@ -1,19 +1,20 @@
 /*jslint browser: true */
+/* global POST_MESSAGE_ORIGIN */
 
 window.addEventListener(
   "load",
   function () {
     window.parent.postMessage(
       {type: "setHeight", height: document.documentElement.scrollHeight || document.body.scrollHeight},
-      window.location.origin);
+      POST_MESSAGE_ORIGIN);
   },
   false);
 
 window.addEventListener(
   "message",
   (m) => {
-    if (m.origin !== location.origin) {
-      console.warn("Content iframe received message from unexpected origin:", m.origin, "instead of", location.origin);
+    if (m.origin !== POST_MESSAGE_ORIGIN) {
+      console.warn("Content iframe received message from unexpected origin:", m.origin, "instead of", POST_MESSAGE_ORIGIN);
       return;
     }
     let message = m.data;
@@ -85,7 +86,7 @@ function displayClip(clip) {
   window.parent.postMessage({
     type: "scrollToMiddle",
     position: pos
-  }, location.origin);
+  }, POST_MESSAGE_ORIGIN);
 }
 
 function findElement(selector) {

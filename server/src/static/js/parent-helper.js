@@ -2,16 +2,28 @@
 /*global console */
 
 let loaded = false,
-  height = null;
+  height = null,
+  resolveChildReference;
+
+window.childReferencePromise = new Promise((resolve, reject) => {
+  resolveChildReference = resolve;
+});
 
 function doResize() {
   document.getElementById("frame").height = height;
 }
 
 window.onmessage = function(m) {
-  if (m.origin !== location.origin) {
-    console.warn("Parent iframe received message from unexpected origin:", m.origin, "instead of", location.origin);
+  if (m.origin !== POST_MESSAGE_ORIGIN) {
+    console.warn("Parent iframe received message from unexpected origin:", m.origin, "instead of", POST_MESSAGE_ORIGIN);
     return;
+  }
+  if (resolveChildReference) {
+    let resolve = resolveChildReference;
+    resolveChildReference = null;
+    resolve(m.source);
+    window.childReference = m.source;
+    window.childReferencePromise = null;
   }
   let message = m.data;
   let type = message.type;

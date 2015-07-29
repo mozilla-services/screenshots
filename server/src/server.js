@@ -206,25 +206,6 @@ app.get("/data/:id/:domain", function (req, res) {
   });
 });
 
-app.get("/content/:id/:domain", function (req, res) {
-  let shotId = req.params.id + "/" + req.params.domain;
-  Shot.getFullShot(req.backend, shotId).then((shot) => {
-    if (! shot) {
-      simpleResponse(res, "Not found", 404);
-      return;
-    }
-    res.send(shot.staticHtml({
-      addHead: `
-      <base href="${shot.url}" target="_blank" />
-      <script src="${req.staticLinkWithHost("js/content-helper.js")}"></script>
-      <link rel="stylesheet" href="${req.staticLinkWithHost("css/content.css")}">
-      `
-    }));
-  }).catch(function (e) {
-    errorResponse(res, "Failed to load shot", e);
-  });
-});
-
 app.get("/images/:imageid", function (req, res) {
   Shot.getRawBytesForClip(
     req.params.imageid
@@ -371,6 +352,41 @@ app.use(function (err, req, res, next) {
   errorResponse(res, "General error:", err);
 });
 
+const contentApp = express();
+
+contentApp.use("/static", express.static(path.join(__dirname, "static"), {
+  index: false
+}));
+
+contentApp.use(function (req, res, next) {
+  req.staticLink = linker.staticLink;
+  req.staticLinkWithHost = linker.staticLinkWithHost.bind(null, req);
+  let base = req.protocol + "://" + req.headers.host;
+  linker.imageLinkWithHost = linker.imageLink.bind(null, base);
+  next();
+});
+
+
+contentApp.get("/content/:id/:domain", function (req, res) {
+  let shotId = req.params.id + "/" + req.params.domain;
+  Shot.getFullShot(req.backend, shotId).then((shot) => {
+    if (! shot) {
+      simpleResponse(res, "Not found", 404);
+      return;
+    }
+    res.send(shot.staticHtml({
+      addHead: `
+      <base href="${shot.url}" target="_blank" />
+      <script>var POST_MESSAGE_ORIGIN = "${req.protocol}://${config.host}:${config.port}";</script>
+      <script src="${req.staticLinkWithHost("js/content-helper.js")}"></script>
+      <link rel="stylesheet" href="${req.staticLinkWithHost("css/content.css")}">
+      `
+    }));
+  }).catch(function (e) {
+    errorResponse(res, "Failed to load shot", e);
+  });
+});
+
 function simpleResponse(res, message, status) {
   status = status || 200;
   res.header("Content-Type", "text/plain; charset=utf-8");
@@ -394,6 +410,8 @@ function errorResponse(res, message, err) {
 linker.init().then(() => {
   app.listen(config.port);
   console.info(`server listening on http://localhost:${config.port}/`);
+  contentApp.listen(config.contentPort);
+  console.info(`content server listening on http://localhost:${config.contentPort}/`);
 }).catch((err) => {
   console.error("Error getting revision:", err, err.stack);
 });
