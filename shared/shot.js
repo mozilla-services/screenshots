@@ -412,6 +412,10 @@ ${options.addBody || ""}
     return this.backend + "/data/" + this.id;
   }
 
+  get oembedUrl() {
+    return this.backend + "/oembed?url=" + encodeURIComponent(this.viewUrl);
+  }
+
   get createdDevice() {
     return this._createdDevice;
   }
