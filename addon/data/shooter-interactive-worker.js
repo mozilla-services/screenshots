@@ -204,7 +204,12 @@ function setState(state) {
     document.body.classList.remove("pageshot-hide-movers");
     addHandlers();
     addCrosshairs();
-    // FIXME: do crosshairs
+  } else if (state === "visible") {
+    deleteSelection();
+    document.body.classList.remove("pageshot-hide-selection");
+    document.body.classList.remove("pageshot-hide-movers");
+    addHandlers();
+    setVisible();
   } else if (state === "madeSelection") {
     document.body.classList.remove("pageshot-hide-selection");
     document.body.classList.remove("pageshot-hide-movers");
@@ -878,6 +883,21 @@ function autoSelect(ids) {
   console.info("total autoSelect time:", Date.now() - startTime, "ms");
   reportSelection("auto");
   return true;
+}
+
+function setVisible() {
+  var screen = {
+    top: window.scrollY,
+    left: window.scrollX,
+    bottom: window.scrollY + window.innerHeight,
+    right: window.scrollX + window.innerWidth
+  };
+  mousedownX = screen.left;
+  mousedownY = screen.top;
+  cornerX = screen.right;
+  cornerY = screen.bottom;
+  render();
+  console.log("SET STATE TO VISIBLE");
 }
 
 /**********************************************************
