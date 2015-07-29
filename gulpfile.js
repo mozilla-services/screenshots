@@ -48,6 +48,11 @@ gulp.task("imgs", function () {
     .pipe(gulp.dest("dist/addon/data/icons"));
 });
 
+gulp.task("homepage", function () {
+  return gulp.src("server/src/static/homepage/**")
+    .pipe(gulp.dest("dist/server/static/homepage"));
+});
+
 gulp.task("javascript", ["6to5", "shared"], function () {
   var bundler = browserify({
     entries: ["./dist/server/clientglue.js", "./dist/server/shotindexglue.js"],
@@ -59,7 +64,7 @@ gulp.task("javascript", ["6to5", "shared"], function () {
   }());
 });
 
-gulp.task("transforms", ["sass", "javascript", "imgs"]);
+gulp.task("transforms", ["sass", "javascript", "imgs", "homepage"]);
 
 gulp.task("lint", function() {
   return gulp.src(
