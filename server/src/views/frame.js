@@ -216,10 +216,13 @@ class Frame extends React.Component {
       timeDiff = `${Math.floor(seconds / (60*60*24))} days ago`;
     }
 
+    let postMessageOrigin = `${this.props.contentProtocol}://${this.props.contentHost}:${this.props.contentPort}`;
+
     return (
       <body>
         <div id="container">
           { this.renderExtRequired() }
+          <script dangerouslySetInnerHTML={{__html: `var CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`}}></script>
           <script src={ this.props.staticLink("js/parent-helper.js") } />
           <div id="profile-widget">
             <ProfileButton
@@ -292,6 +295,9 @@ exports.render = function (req, res) {
     staticLink: req.staticLink,
     backend: req.backend,
     shot: req.shot,
+    contentHost: req.config.contentHost,
+    contentPort: req.config.contentPort,
+    contentProtocol: req.protocol,
     id: req.shot.id,
     productName: req.config.productName,
     isExtInstalled: true,
@@ -304,6 +310,7 @@ exports.render = function (req, res) {
     shot: req.shot.asJson(),
     contentHost: req.config.contentHost,
     contentPort: req.config.contentPort,
+    contentProtocol: req.protocol,
     id: req.shot.id,
     productName: req.config.productName,
     gaId: req.config.gaId,

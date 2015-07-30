@@ -1,4 +1,4 @@
-/* jshint browser:true */
+/* jslint browser:true */
 
 let React = require("react"),
   { FrameFactory } = require("./views/frame.js"),
@@ -97,8 +97,8 @@ function refreshHash() {
     return;
   }
   model.activeClipId = clipId;
-  render();
   sendShowElement(clipId);
+  render();
 }
 
 function sendShowElement(clipId) {
@@ -121,19 +121,13 @@ function sendShowElement(clipId) {
       type: "removeDisplayClip"
     };
   }
-  function post() {
-    try {
-      frame.contentWindow.postMessage(postMessage, location.origin);
-    } catch (e) {
-      console.error("Error sending postMessage:", e);
-      console.error("Message:", postMessage);
-      throw e;
-    }
-  }
-  if (frame.contentDocument.readyState == "complete") {
-    post();
-  } else {
-    frame.contentWindow.onload = post;
+
+  try {
+    window.sendToChild(postMessage);
+  } catch (e) {
+    console.error("Error sending postMessage:", e);
+    console.error("Message:", postMessage);
+    throw e;
   }
 }
 

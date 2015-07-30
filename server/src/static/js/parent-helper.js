@@ -1,17 +1,34 @@
 /*jslint browser: true */
-/*global console */
+/*global console,CONTENT_HOSTING_ORIGIN */
 
 let loaded = false,
-  height = null;
+  height = null,
+  resolveChildReference;
+
+function sendToChild(message) {
+  if (! sendToChild.childReference) {
+    sendToChild.queue.push(message);
+  }
+  sendToChild.childReference.postMessage(message, CONTENT_HOSTING_ORIGIN);
+}
+
+sendToChild.queue = [];
 
 function doResize() {
   document.getElementById("frame").height = height;
 }
 
 window.onmessage = function(m) {
-  if (m.origin !== location.origin) {
-    console.warn("Parent iframe received message from unexpected origin:", m.origin, "instead of", location.origin);
+  if (m.origin !== CONTENT_HOSTING_ORIGIN) {
+    console.warn("Parent iframe received message from unexpected origin:", m.origin, "instead of", CONTENT_HOSTING_ORIGIN);
     return;
+  }
+  if (! sendToChild.childReference) {
+    sendToChild.childReference = m.source;
+    while (sendToChild.queue.length) {
+      let msg = sendToChild.queue.shift();
+      sendToChild(msg);
+    }
   }
   let message = m.data;
   let type = message.type;
