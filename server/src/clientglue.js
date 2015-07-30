@@ -1,5 +1,4 @@
 /* jslint browser:true */
-/* global CONTENT_HOSTING_ORIGIN */
 
 let React = require("react"),
   { FrameFactory } = require("./views/frame.js"),
@@ -122,22 +121,13 @@ function sendShowElement(clipId) {
       type: "removeDisplayClip"
     };
   }
-  function post(child) {
-    try {
-      child.postMessage(postMessage, CONTENT_HOSTING_ORIGIN);
-    } catch (e) {
-      console.error("Error sending postMessage:", e);
-      console.error("Message:", postMessage);
-      throw e;
-    }
-  }
-  if (window.childReferencePromise) {
-    window.childReferencePromise.then((child) => {
-      post(child);
-      return child;
-    });
-  } else {
-    post(window.childReference);
+
+  try {
+    window.sendToChild(postMessage);
+  } catch (e) {
+    console.error("Error sending postMessage:", e);
+    console.error("Message:", postMessage);
+    throw e;
   }
 }
 

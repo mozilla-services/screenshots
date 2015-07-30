@@ -218,10 +218,6 @@ class Frame extends React.Component {
 
     let postMessageOrigin = `${this.props.contentProtocol}://${this.props.contentHost}:${this.props.contentPort}`;
 
-    if (typeof window !== "undefined") {
-      window.clientglue.CONTENT_HOSTING_ORIGIN = postMessageOrigin;
-    }
-
     return (
       <body>
         <div id="container">
