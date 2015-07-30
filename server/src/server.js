@@ -37,6 +37,10 @@ app.use("/static", express.static(path.join(__dirname, "static"), {
   index: false
 }));
 
+app.use("/homepage", express.static(path.join(__dirname, "static/homepage"), {
+  index: false
+}));
+
 app.use(morgan("dev"));
 
 app.use(function (req, res, next) {
@@ -240,7 +244,15 @@ app.get("/images/:imageid", function (req, res) {
 });
 
 app.get("/", function (req, res) {
-  require("./views/main").render(req, res);
+  let page = path.join(__dirname, "static/homepage/index.html");
+  require("fs").readFile(page, function (err, data) {
+    if (err) {
+      errorResponse(res, "Error", err);
+      return;
+    }
+    res.header("Content-Type", "text/html");
+    res.send(data);
+  });
 });
 
 app.get("/shots", function (req, res) {
