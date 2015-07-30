@@ -1,5 +1,5 @@
 /* jslint browser:true */
-/* global POST_MESSAGE_ORIGIN */
+/* global CONTENT_HOSTING_ORIGIN */
 
 let React = require("react"),
   { FrameFactory } = require("./views/frame.js"),
@@ -124,7 +124,7 @@ function sendShowElement(clipId) {
   }
   function post(child) {
     try {
-      child.postMessage(postMessage, POST_MESSAGE_ORIGIN);
+      child.postMessage(postMessage, CONTENT_HOSTING_ORIGIN);
     } catch (e) {
       console.error("Error sending postMessage:", e);
       console.error("Message:", postMessage);

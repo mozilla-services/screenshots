@@ -377,7 +377,7 @@ contentApp.get("/content/:id/:domain", function (req, res) {
     res.send(shot.staticHtml({
       addHead: `
       <base href="${shot.url}" target="_blank" />
-      <script>var POST_MESSAGE_ORIGIN = "${req.protocol}://${config.host}:${config.port}";</script>
+      <script>var SITE_ORIGIN = "${req.protocol}://${config.host}:${config.port}";</script>
       <script src="${req.staticLinkWithHost("js/content-helper.js")}"></script>
       <link rel="stylesheet" href="${req.staticLinkWithHost("css/content.css")}">
       `

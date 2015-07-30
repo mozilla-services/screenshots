@@ -1,5 +1,5 @@
 /*jslint browser: true */
-/*global console */
+/*global console,CONTENT_HOSTING_ORIGIN */
 
 let loaded = false,
   height = null,
@@ -14,8 +14,8 @@ function doResize() {
 }
 
 window.onmessage = function(m) {
-  if (m.origin !== POST_MESSAGE_ORIGIN) {
-    console.warn("Parent iframe received message from unexpected origin:", m.origin, "instead of", POST_MESSAGE_ORIGIN);
+  if (m.origin !== CONTENT_HOSTING_ORIGIN) {
+    console.warn("Parent iframe received message from unexpected origin:", m.origin, "instead of", CONTENT_HOSTING_ORIGIN);
     return;
   }
   if (resolveChildReference) {

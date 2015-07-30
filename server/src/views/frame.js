@@ -219,14 +219,14 @@ class Frame extends React.Component {
     let postMessageOrigin = `${this.props.contentProtocol}://${this.props.contentHost}:${this.props.contentPort}`;
 
     if (typeof window !== "undefined") {
-      window.clientglue.POST_MESSAGE_ORIGIN = postMessageOrigin;
+      window.clientglue.CONTENT_HOSTING_ORIGIN = postMessageOrigin;
     }
 
     return (
       <body>
         <div id="container">
           { this.renderExtRequired() }
-          <script dangerouslySetInnerHTML={{__html: `var POST_MESSAGE_ORIGIN = "${postMessageOrigin}";`}}></script>
+          <script dangerouslySetInnerHTML={{__html: `var CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`}}></script>
           <script src={ this.props.staticLink("js/parent-helper.js") } />
           <div id="profile-widget">
             <ProfileButton
