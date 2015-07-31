@@ -38,6 +38,10 @@ eval "$($bin/pg_vars)"
 
 dump () {
   pg_dump --schema-only | grep -Ev '^(--|GRANT|REVOKE|SET|ALTER TABLE.*OWNER|COMMENT|CREATE EXTENSION)' | grep -v '^$'
+  patch="$(psql -t -c "SELECT value FROM property WHERE key = 'patch'")"
+  # Strip whitespace:
+  patch="$(echo $patch)"
+  echo "-- pg-patch version: $patch"
 }
 
 if [ -n "$diff" ] ; then
