@@ -24,17 +24,17 @@ Green
 ----------------------------------------------- */
 @font-face {
   font-family: openSansRegular;
-  src: url('../../togetherjs/fonts/OpenSans-Regular.ttf');
+  src: url('/homepage/fonts/OpenSans-Regular.ttf');
 }
 
 @font-face {
   font-family: openSansLight;
-  src: url('../../togetherjs/fonts/OpenSans-Light.ttf');
+  src: url('/homepage/fonts/OpenSans-Light.ttf');
 }
 
 @font-face {
   font-family: openSansBold;
-  src: url('../../togetherjs/fonts/OpenSans-Bold.ttf');
+  src: url('/homepage/fonts/OpenSans-Bold.ttf');
 }
 
 body {
