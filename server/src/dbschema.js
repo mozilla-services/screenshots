@@ -1,87 +1,35 @@
 const db = require("./db");
 const Keygrip = require('keygrip');
+const pgpatcher = require("pg-patcher");
+const path = require("path");
 
-const createSQL = `
-
-CREATE TABLE IF NOT EXISTS accounts (
-  id VARCHAR(200) PRIMARY KEY,
-  token TEXT
-);
-
-CREATE TABLE IF NOT EXISTS devices (
-  id varchar(200) PRIMARY KEY,
-  secret varchar(200) NOT NULL,
-  nickname TEXT,
-  avatarurl TEXT,
-  accountid VARCHAR(200) REFERENCES accounts(id) ON DELETE SET NULL
-);
-
--- This is a very long-winded way to create an index only if it doesn't exist:
-DO $$
-BEGIN
-IF NOT EXISTS (
-    SELECT 1
-    FROM   pg_class c
-    JOIN   pg_namespace n ON n.oid = c.relnamespace
-    WHERE  c.relname = 'device_accountid_idx'
-    AND    n.nspname = 'public'
-    ) THEN
-    CREATE INDEX device_accountid_idx ON devices(accountid);
-END IF;
-END$$;
-
-CREATE TABLE IF NOT EXISTS data (
-  id varchar(120) PRIMARY KEY,
-  deviceid varchar(200) REFERENCES devices (id),
-  created TIMESTAMP DEFAULT NOW(),
-  value TEXT NOT NULL,
-  head TEXT,
-  body TEXT
-);
-
-CREATE TABLE IF NOT EXISTS images (
-  id VARCHAR(200) PRIMARY KEY,
-  shotid VARCHAR(200) NOT NULL REFERENCES data (id) ON DELETE CASCADE,
-  clipid VARCHAR(200) NOT NULL,
-  image BYTEA NOT NULL,
-  contenttype TEXT NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS signing_keys (
-  created TIMESTAMP DEFAULT NOW(),
-  key TEXT
-);
-
-CREATE TABLE IF NOT EXISTS states (
-  state VARCHAR(64) PRIMARY KEY,
-  deviceid VARCHAR(200) REFERENCES devices(id) ON DELETE CASCADE
-);
-
-DO $$
-BEGIN
-IF NOT EXISTS (
-    SELECT 1
-    FROM   pg_class c
-    JOIN   pg_namespace n ON n.oid = c.relnamespace
-    WHERE  c.relname = 'state_deviceid_idx'
-    AND    n.nspname = 'public'
-    ) THEN
-    CREATE INDEX state_deviceid_idx ON states(deviceid);
-END IF;
-END$$;
-`;
+const MAX_DB_LEVEL = 2;
 
 /** Create all the tables */
 exports.createTables = function () {
-  return db.exec(
-    createSQL, []
-  ).then((result) => {
-    console.info("Created tables on", db.constr);
+  console.info("Setting up tables on", db.constr);
+  return db.getConnection().then(([conn, done]) => {
+    // This is assuming we are running from dist/server/dbschema.js, and need to
+    // find the path of server/db-patches/ (not dist):
+    let dirname = path.join(__dirname, "..", "..", "server", "db-patches");
+    return new Promise((resolve, reject) => {
+      pgpatcher(conn, MAX_DB_LEVEL, {dir: dirname}, function(err) {
+        if (err) {
+          console.error(`Error patching database to level ${MAX_DB_LEVEL}!`, err);
+          done();
+          reject(err);
+        } else {
+          console.info(`Database is now at level ${MAX_DB_LEVEL}`);
+          resolve();
+        }
+      });
+    });
+  }).then(() => {
     let newId = "tmp" + Date.now();
     return db.insert(
-      `INSERT INTO data (id, deviceid, value, head, body)
-       VALUES ($1, NULL, $2, $3, $4)`,
-      [newId, "test value", "test head", "test body"]
+      `INSERT INTO data (id, deviceid, value)
+       VALUES ($1, NULL, $2)`,
+      [newId, "test value"]
     ).then((inserted) => {
       if (! inserted) {
         throw new Error("Could not insert");

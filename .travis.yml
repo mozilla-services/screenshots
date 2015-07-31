@@ -4,7 +4,12 @@ node_js:
   - "0.12"
 
 notifications:
-  irc: "irc.mozilla.org#pageshot"
+  irc:
+    channels:
+      - "irc.mozilla.org#pageshot"
+    on_success: change
+    template:
+      - "%{message}: %{repository}#%{build_number} (%{branch} - %{commit} : %{author}) %{build_url}"
 
 before_install:
   - "export DISPLAY=:99.0"
