@@ -2,8 +2,7 @@ const db = require("./db");
 const Keygrip = require('keygrip');
 const pgpatcher = require("pg-patcher");
 
-// MAKE SURE TO SET THE PATCH LEVEL TO THE HIGHEST LEVEL
-// IN THE STATEMENT INSERT INTO property(key, value) VALUES('patch', 2);
+const MAX_DB_LEVEL = 2;
 
 const createSQL = `
 
@@ -12,7 +11,7 @@ CREATE TABLE property (
     value TEXT
 );
 
-INSERT INTO property(key, value) VALUES('patch', 2);
+INSERT INTO property(key, value) VALUES('patch', ${MAX_DB_LEVEL});
 
 CREATE TABLE IF NOT EXISTS accounts (
   id VARCHAR(200) PRIMARY KEY,
@@ -106,12 +105,12 @@ exports.createTables = function () {
           throw new Error("Should have deleted one row");
         }
         return db.getConnection().then(([conn, done]) => {
-          pgpatcher(conn, 2, function(err) {
+          pgpatcher(conn, MAX_DB_LEVEL, function(err) {
             if (err) {
-              console.error("Error patching database to level 2!", err);
+              console.error(`Error patching database to level ${MAX_DB_LEVEL}!`, err);
               done();
             } else {
-              console.info("Database is now at level 2");
+              console.info(`Database is now at level ${MAX_DB_LEVEL}`);
               done();
             }
           });
