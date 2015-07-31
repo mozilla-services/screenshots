@@ -1,3 +1,4 @@
+/* Note: do not use ES6 features here, we need to use this module from gulp */
 const convict = require("convict");
 const envc = require("envc");
 
@@ -5,7 +6,7 @@ const envc = require("envc");
 // files as a side effect. See `https://npmjs.org/envc` for more info.
 envc();
 
-let conf = convict({
+var conf = convict({
   port: {
     doc: "The PageShot server port",
     format: "port",

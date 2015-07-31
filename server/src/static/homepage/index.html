@@ -27,9 +27,37 @@
 
     <script src="//mozorg.cdn.mozilla.net/tabzilla/tabzilla.js"></script>
 
+    <!--<script src="//www.google-analytics.com/analytics_debug.js" async></script>-->
     <script>
-    // FIXME: replace with GA snippet
+    (function () {
+      var gaId = "GA_ID";
+      var scriptSrc = "//www.google-analytics.com/analytics.js"
+      if (gaId == "NOT_SET") {
+        window.ga = function () {
+          console.info.apply(console, ["stubbed ga("].concat(arguments).concat([")"]));
+        };
+      } else {
+        window.GoogleAnalyticsObject = "ga";
+        window.ga = window.ga || function () {
+          (window.ga.q = window.ga.q || []).push(arguments);
+        };
+        window.ga.l = 1 * new Date();
+        var gaOptions = "auto";
+        if (location.hostname == "localhost") {
+          gaOptions = {cookieDomain: "none"};
+          ga('_setLocalRemoteServerMode');
+          scriptSrc = scriptSrc.replace("analytics.js", "analytics_debug.js");
+        }
+        ga("create", gaId, gaOptions);
+        ga("send", "pageview");
+        var script = document.createElement("script");
+        script.setAttribute("async", "1");
+        script.setAttribute("src", scriptSrc);
+        document.head.appendChild(script);
+      }
+    })();
     </script>
+    <script src="homepage/js/ga-setup.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="homepage/css/bootstrap.css" rel="stylesheet">
@@ -108,7 +136,7 @@
             <h4 class="hero-tagline">Save, highlight, send
             </h4>
             <p>
-              <a class="btn btn-primary btn-lg main-get-started scrollnav" href="/xpi/pageshot.xpi">Install</a>
+              <a class="btn btn-primary btn-lg main-get-started scrollnav installer" href="/xpi/pageshot.xpi">Install</a>
             </p>
           </div>
           <div class="col-md-7" id="video-area">
@@ -156,7 +184,7 @@
                 <tr class="howto-animation-01">
                   <td class="col-xs-6 col-sm-6" style="vertical-align:middle">
                     <h4 class="text-right">Install the Firefox Addon.</h4>
-                    <p class="text-right smtextright"><a href="/xpi/pageshot.xpi">Install the addon</a> and you'll get a new button to create shots.</p>
+                    <p class="text-right smtextright"><a href="/xpi/pageshot.xpi" class="installer">Install the addon</a> and you'll get a new button to create shots.</p>
                   </td>
                   <td class="col-xs-6 col-sm-6">
                     <!-- FIREFOX FIX -->

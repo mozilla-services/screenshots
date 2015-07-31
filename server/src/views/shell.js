@@ -19,11 +19,6 @@ export class Shell extends React.Component {
         // Doesn't look like a valid code
         console.warn("Invalid Google Analytics code:", this.props.gaId);
       }
-      let createOption = '"auto"';
-      if (this.props.staticLink("").search(/\/\/localhost/i) != -1) {
-        // Running on localhost, to set the cookie we need this option:
-        createOption = '{"cookieDomain": "none"}';
-      }
       gaJs = `
        (function () {
          window.GoogleAnalyticsObject = "ga";
@@ -31,7 +26,11 @@ export class Shell extends React.Component {
            (window.ga.q = window.ga.q || []).push(arguments);
          };
          window.ga.l = 1 * new Date();
-         ga("create", "${this.props.gaId}", ${createOption});
+         var gaOptions = "auto";
+         if (location.hostname == "localhost") {
+           gaOptions = {cookieDomain: "none"};
+         }
+         ga("create", "${this.props.gaId}", gaOptions);
          ga("send", "pageview");
        })();
       `;
