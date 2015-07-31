@@ -1,0 +1,2 @@
+ALTER TABLE data ADD head TEXT;
+ALTER TABLE data ADD body TEXT;

@@ -1,7 +1,18 @@
 const db = require("./db");
 const Keygrip = require('keygrip');
+const pgpatcher = require("pg-patcher");
+
+// MAKE SURE TO SET THE PATCH LEVEL TO THE HIGHEST LEVEL
+// IN THE STATEMENT INSERT INTO property(key, value) VALUES('patch', 2);
 
 const createSQL = `
+
+CREATE TABLE property (
+    key   TEXT PRIMARY KEY,
+    value TEXT
+);
+
+INSERT INTO property(key, value) VALUES('patch', 2);
 
 CREATE TABLE IF NOT EXISTS accounts (
   id VARCHAR(200) PRIMARY KEY,
@@ -79,9 +90,9 @@ exports.createTables = function () {
     console.info("Created tables on", db.constr);
     let newId = "tmp" + Date.now();
     return db.insert(
-      `INSERT INTO data (id, deviceid, value, head, body)
-       VALUES ($1, NULL, $2, $3, $4)`,
-      [newId, "test value", "test head", "test body"]
+      `INSERT INTO data (id, deviceid, value)
+       VALUES ($1, NULL, $2)`,
+      [newId, "test value"]
     ).then((inserted) => {
       if (! inserted) {
         throw new Error("Could not insert");
@@ -94,6 +105,17 @@ exports.createTables = function () {
         if (count != 1) {
           throw new Error("Should have deleted one row");
         }
+        return db.getConnection().then(([conn, done]) => {
+          pgpatcher(conn, 2, function(err) {
+            if (err) {
+              console.error("Error patching database to level 2!", err);
+              done();
+            } else {
+              console.info("Database is now at level 2");
+              done();
+            }
+          });
+        });
       });
     });
   }).catch((err) => {
