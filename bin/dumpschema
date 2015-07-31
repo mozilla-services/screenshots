@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+set -e
+
+diff=
+
+help () {
+  echo "Usage: $(dirname $0) [-h] [--diff FILENAME]"
+}
+
+while [ -n "$1" ] ; do
+  case "$1" in
+    -h|--help)
+      help
+      exit
+      ;;
+    --diff)
+      diff="$2"
+      shift
+      shift
+      ;;
+    *)
+      help
+      exit 2
+  esac
+done
+
+
+bin="$(dirname $BASH_SOURCE)"
+
+eval "$($bin/pg_vars)"
+
+dump () {
+  pg_dump --schema-only | grep -Ev '^(--|GRANT|REVOKE|SET|ALTER TABLE.*OWNER|COMMENT|CREATE EXTENSION)' | grep -v '^$'
+}
+
+if [ -z "$diff" ] ; then
+  dump
+else
+  tmpfile="/tmp/schema-$(date +%Y%m%dT%H%M%S).sql"
+  dump > $tmpfile
+  diff -u $tmpfile $diff
+  rm $tmpfile
+fi
