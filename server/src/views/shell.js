@@ -13,26 +13,36 @@ export class Shell extends React.Component {
     }
     let gaScript = null;
     let gaCode = null;
+    let gaJs;
     if (this.props.gaId) {
       if (this.props.gaId.search(/^[a-z0-9\-]+$/i) === -1) {
         // Doesn't look like a valid code
         console.warn("Invalid Google Analytics code:", this.props.gaId);
       }
-      let gaJs = `
+      gaJs = `
        (function () {
          window.GoogleAnalyticsObject = "ga";
          window.ga = window.ga || function () {
            (window.ga.q = window.ga.q || []).push(arguments);
          };
          window.ga.l = 1 * new Date();
-         ga("create", "${this.props.gaId}", "auto");
+         var gaOptions = "auto";
+         if (location.hostname == "localhost") {
+           gaOptions = {cookieDomain: "none"};
+         }
+         ga("create", "${this.props.gaId}", gaOptions);
          ga("send", "pageview");
        })();
       `;
       gaScript = <script src="//www.google-analytics.com/analytics.js" async="1"></script>;
-      gaCode = <script dangerouslySetInnerHTML={{__html: gaJs}}></script>;
+    } else {
+      gaJs = `
+      window.ga = function () {
+        console.info.apply(console, ["stubbed ga("].concat(arguments).concat([")"]));
+      };
+      `;
     }
-
+    gaCode = <script dangerouslySetInnerHTML={{__html: gaJs}}></script>;
     return <html prefix="og: http://ogp.me/ns#">
       <head>
         <title>{this.props.title}</title>

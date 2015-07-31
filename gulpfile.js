@@ -10,7 +10,9 @@ var browserify = require("browserify"),
   sass = require("gulp-sass"),
   source = require("vinyl-source-stream"),
   nodemon = require("gulp-nodemon"),
-  jshint = require('gulp-jshint');
+  jshint = require('gulp-jshint'),
+  change = require('gulp-change');
+const config = require("./server/src/config").root();
 
 gulp.task("clean", function () {
   run("rm -rf dist").exec();
@@ -48,8 +50,18 @@ gulp.task("imgs", function () {
     .pipe(gulp.dest("dist/addon/data/icons"));
 });
 
-gulp.task("homepage", function () {
-  return gulp.src("server/src/static/homepage/**")
+function setHomepageGA(content) {
+  return content.replace(/GA_ID/g, config.gaId || 'NOT_SET');
+}
+
+gulp.task("homepage", ["homepage-static"], function () {
+  return gulp.src("server/src/static/homepage/index.html")
+    .pipe(change(setHomepageGA))
+    .pipe(gulp.dest("dist/server/static/homepage"));
+});
+
+gulp.task("homepage-static", function () {
+  return gulp.src(["server/src/static/homepage/**", "!server/src/static/homepage/index.html"])
     .pipe(gulp.dest("dist/server/static/homepage"));
 });
 
