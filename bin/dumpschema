@@ -3,9 +3,10 @@
 set -e
 
 diff=
+record=
 
 help () {
-  echo "Usage: $(dirname $0) [-h] [--diff FILENAME]"
+  echo "Usage: $(dirname $0) [-h] [--diff] [--record]"
 }
 
 while [ -n "$1" ] ; do
@@ -15,8 +16,11 @@ while [ -n "$1" ] ; do
       exit
       ;;
     --diff)
-      diff="$2"
+      diff="1"
       shift
+      ;;
+    --record)
+      record=1
       shift
       ;;
     *)
@@ -27,6 +31,8 @@ done
 
 
 bin="$(dirname $BASH_SOURCE)"
+record_filename="$(dirname $bin)/server/schema.sql"
+
 
 eval "$($bin/pg_vars)"
 
@@ -34,11 +40,14 @@ dump () {
   pg_dump --schema-only | grep -Ev '^(--|GRANT|REVOKE|SET|ALTER TABLE.*OWNER|COMMENT|CREATE EXTENSION)' | grep -v '^$'
 }
 
-if [ -z "$diff" ] ; then
-  dump
-else
+if [ -n "$diff" ] ; then
   tmpfile="/tmp/schema-$(date +%Y%m%dT%H%M%S).sql"
   dump > $tmpfile
-  diff -u $tmpfile $diff
+  diff -u $tmpfile $record_filename
   rm $tmpfile
+elif [ -n "$record" ] ; then
+  echo "Saving to $record_filename"
+  dump > $record_filename
+else
+  dump
 fi
