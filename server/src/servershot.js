@@ -83,7 +83,7 @@ class Shot extends AbstractShot {
   }
 
   get contentUrl() {
-    return "//" + config.contentHost + ":" + config.contentPort + "/content/" + this.id;
+    return "//" + config.contentOrigin + "/content/" + this.id;
   }
 
   insert() {

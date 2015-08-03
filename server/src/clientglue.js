@@ -19,7 +19,7 @@ exports.setModel = function (data) {
   let firstSet = ! model;
   model = data;
   model.shot = new AbstractShot(data.backend, data.id, data.shot);
-  model.shot.contentUrl = `//${data.contentHost}:${data.contentPort}/${model.shot.id}`;
+  model.shot.contentUrl = `//${data.contentOrigin}/${model.shot.id}`;
   if (firstSet) {
     let timer = setTimeout(function () {
       timer = null;
