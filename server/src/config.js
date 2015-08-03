@@ -14,12 +14,12 @@ var conf = convict({
     env: "PORT",
     arg: "port"
   },
-  host: {
-    doc: "The server host",
+  siteOrigin: {
+    doc: "The server public origin (except protocol)",
     format: String,
-    default: "localhost",
-    env: "HOST",
-    arg: "host"
+    default: "localhost:10080",
+    env: "SITE_ORIGIN",
+    arg: "siteOrigin"
   },
   contentPort: {
     doc: "The content server port",
@@ -28,12 +28,12 @@ var conf = convict({
     env: "CONTENT_PORT",
     arg: "contentPort"
   },
-  contentHost: {
-    doc: "The content server host",
+  contentOrigin: {
+    doc: "The content server public origin (except protocol)",
     format: String,
-    default: "localhost",
-    env: "CONTENT_HOST",
-    arg: "contentHost"
+    default: "localhost:10081",
+    env: "CONTENT_ORIGIN",
+    arg: "contentOrigin"
   },
   oAuth: {
     oAuthServer: {

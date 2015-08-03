@@ -216,7 +216,7 @@ class Frame extends React.Component {
       timeDiff = `${Math.floor(seconds / (60*60*24))} days ago`;
     }
 
-    let postMessageOrigin = `${this.props.contentProtocol}://${this.props.contentHost}:${this.props.contentPort}`;
+    let postMessageOrigin = `${this.props.contentProtocol}://${this.props.contentOrigin}`;
 
     return (
       <body>
@@ -295,8 +295,7 @@ exports.render = function (req, res) {
     staticLink: req.staticLink,
     backend: req.backend,
     shot: req.shot,
-    contentHost: req.config.contentHost,
-    contentPort: req.config.contentPort,
+    contentOrigin: req.config.contentOrigin,
     contentProtocol: req.protocol,
     id: req.shot.id,
     productName: req.config.productName,
@@ -308,8 +307,7 @@ exports.render = function (req, res) {
     gitRevision: getGitRevision(),
     backend: req.backend,
     shot: req.shot.asJson(),
-    contentHost: req.config.contentHost,
-    contentPort: req.config.contentPort,
+    contentOrigin: req.config.contentOrigin,
     contentProtocol: req.protocol,
     id: req.shot.id,
     productName: req.config.productName,
