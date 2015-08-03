@@ -236,6 +236,16 @@ app.get("/", function (req, res) {
   });
 });
 
+app.get("/__version__", function (req, res) {
+  let response = {
+    source: "https://github.com/mozilla-services/pageshot/",
+    version: BUILD_TIMESTAMP,
+    commit: linker.getGitRevision()
+  };
+  res.header("Content-Type", "application/json; charset=utf-8");
+  res.send(JSON.stringify(response));
+});
+
 app.get("/shots", function (req, res) {
   Shot.getShotsForDevice(req.backend, req.deviceId).then((shots) => {
     req.shots = shots;
