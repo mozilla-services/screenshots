@@ -10,10 +10,10 @@ base="$(dirname $BASH_SOURCE)"
 base="$(cd $base ; pwd)"
 cd $base
 cd ..
-gulp javascript-addon
+gulp transforms
 cd dist/addon
 python -c 'import sys, re, time
-today = time.strftime("%Y%m%d%H%M")
+today = time.strftime("%Y%m%d%H%M", time.gmtime())
 content = sys.stdin.read().strip()
 def repl(match):
   return match.group(1) + today
