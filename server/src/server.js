@@ -1,3 +1,5 @@
+/* globals BUILD_TIMESTAMP */
+
 const path = require('path');
 const Cookies = require("cookies");
 
