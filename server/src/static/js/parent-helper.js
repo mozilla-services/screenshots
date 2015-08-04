@@ -8,6 +8,7 @@ let loaded = false,
 function sendToChild(message) {
   if (! sendToChild.childReference) {
     sendToChild.queue.push(message);
+    return;
   }
   sendToChild.childReference.postMessage(message, CONTENT_HOSTING_ORIGIN);
 }
