@@ -1,21 +1,21 @@
 CREATE TABLE accounts (
-    id character(32) NOT NULL,
-    token character(64)
+    id character varying(200) NOT NULL,
+    token text
 );
 CREATE TABLE data (
     id character varying(120) NOT NULL,
     deviceid character varying(200),
     created timestamp without time zone DEFAULT now(),
-    value text,
-    body text,
-    head text
+    value text NOT NULL,
+    head text,
+    body text
 );
 CREATE TABLE devices (
     id character varying(200) NOT NULL,
     secret character varying(200) NOT NULL,
     nickname text,
     avatarurl text,
-    accountid character(32)
+    accountid character varying(200)
 );
 CREATE TABLE images (
     id character varying(200) NOT NULL,
@@ -33,14 +33,8 @@ CREATE TABLE signing_keys (
     key text
 );
 CREATE TABLE states (
-    state character(64) NOT NULL,
+    state character varying(64) NOT NULL,
     deviceid character varying(200)
-);
-CREATE TABLE users (
-    id character varying(200) NOT NULL,
-    secret character varying(200) NOT NULL,
-    nickname text,
-    avatarurl text
 );
 ALTER TABLE ONLY accounts
     ADD CONSTRAINT accounts_pkey PRIMARY KEY (id);
@@ -54,11 +48,7 @@ ALTER TABLE ONLY property
     ADD CONSTRAINT property_pkey PRIMARY KEY (key);
 ALTER TABLE ONLY states
     ADD CONSTRAINT states_pkey PRIMARY KEY (state);
-ALTER TABLE ONLY users
-    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
-CREATE INDEX device_accountid_idx ON devices USING btree (accountid);
 CREATE INDEX devices_accountid_idx ON devices USING btree (accountid);
-CREATE INDEX state_deviceid_idx ON states USING btree (deviceid);
 CREATE INDEX states_deviceid_idx ON states USING btree (deviceid);
 ALTER TABLE ONLY data
     ADD CONSTRAINT data_deviceid_fkey FOREIGN KEY (deviceid) REFERENCES devices(id);

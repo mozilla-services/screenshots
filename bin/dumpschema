@@ -5,8 +5,13 @@ set -e
 diff=
 record=
 
+bin="$(dirname $BASH_SOURCE)"
+record_filename="$(dirname $bin)/server/schema.sql"
+
 help () {
   echo "Usage: $(dirname $0) [-h] [--diff] [--record]"
+  echo "  --record and --diff use the SQL file: ${record_filename}"
+  echo "  Try ${bin}/pg_vars to see pg connection config information"
 }
 
 while [ -n "$1" ] ; do
@@ -15,11 +20,11 @@ while [ -n "$1" ] ; do
       help
       exit
       ;;
-    --diff)
+    --diff|-diff)
       diff="1"
       shift
       ;;
-    --record)
+    --record|-record)
       record=1
       shift
       ;;
@@ -28,11 +33,6 @@ while [ -n "$1" ] ; do
       exit 2
   esac
 done
-
-
-bin="$(dirname $BASH_SOURCE)"
-record_filename="$(dirname $bin)/server/schema.sql"
-
 
 eval "$($bin/pg_vars)"
 
@@ -45,7 +45,7 @@ dump () {
 }
 
 if [ -n "$diff" ] ; then
-  tmpfile="/tmp/schema-$(date +%Y%m%dT%H%M%S).sql"
+  tmpfile="/tmp/current-schema-$(date +%Y%m%dT%H%M%S).sql"
   dump > $tmpfile
   diff -u $tmpfile $record_filename
   rm $tmpfile
@@ -53,5 +53,7 @@ elif [ -n "$record" ] ; then
   echo "Saving to $record_filename"
   dump > $record_filename
 else
+  echo "- Deletions indicate something unexpected in the local database"
+  echo "+ Additions indicate something that is missing from the local database"
   dump
 fi

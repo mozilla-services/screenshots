@@ -19,7 +19,7 @@ CREATE TABLE devices (
   accountid VARCHAR(200) REFERENCES accounts(id) ON DELETE SET NULL
 );
 
-CREATE INDEX device_accountid_idx ON devices(accountid);
+CREATE INDEX devices_accountid_idx ON devices(accountid);
 
 CREATE TABLE data (
   id varchar(120) PRIMARY KEY,
@@ -38,4 +38,4 @@ CREATE TABLE states (
   deviceid VARCHAR(200) REFERENCES devices(id) ON DELETE CASCADE
 );
 
-CREATE INDEX state_deviceid_idx ON states(deviceid);
+CREATE INDEX states_deviceid_idx ON states(deviceid);
