@@ -96,7 +96,7 @@ function findElement(selector) {
 function createHighlight(pos) {
   removeDisplayClip();
   highlightElement = document.createElement("div");
-  highlightElement.className = "pageshot-highlight";
+  highlightElement.className = "pageshot-clip-highlight";
   highlightElement.style.top = pos.top + "px";
   highlightElement.style.left = pos.left + "px";
   highlightElement.style.height = (pos.bottom - pos.top) + "px";
