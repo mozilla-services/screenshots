@@ -63,7 +63,7 @@ recallPanel.port.on("viewShot", watchFunction(function (id) {
   if (! id) {
     throw new Error("Bad viewShot id: " + id);
   }
-  let backend = require("main").getBackend();
+  let backend = require("./main").getBackend();
   let url = backend + "/data/" + id;
   console.info("requesting", url);
   require("sdk/request").Request({
@@ -110,7 +110,7 @@ function sendIndex() {
   if (! panelReady) {
     return;
   }
-  let backend = require("main").getBackend();
+  let backend = require("./main").getBackend();
   recallPanel.port.emit("recallIndex", {
     backend: backend,
     shots: ss.storage.recentShots || []
@@ -136,7 +136,7 @@ function sendShot(shot) {
     shot = lastShot;
   }
   lastShot = shot;
-  let backend = require("main").getBackend();
+  let backend = require("./main").getBackend();
   recallPanel.port.emit("recallShot", {
     backend: backend,
     id: shot.id,
@@ -155,7 +155,7 @@ exports.addRecall = function (shot) {
   let found = false;
   for (let i=0; i<existing.length; i++) {
     try {
-      new AbstractShot(require("main").getBackend(), existing[i].id, existing[i].shot);
+      new AbstractShot(require("./main").getBackend(), existing[i].id, existing[i].shot);
     } catch (e) {
       console.error("Bad shot; removing:", existing[i].id);
       existing.splice(i, 1);

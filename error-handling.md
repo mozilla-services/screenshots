@@ -62,7 +62,7 @@ self.port.emit("alertError", {name: "ERROR", ...});
 If code in an addon receives an error and cannot handle it, it should call:
 
 ```javascript
-require("errors").unhandled(errorObject);
+require("./errors").unhandled(errorObject);
 ```
 
 Generally you should use `watchPromise()` if you call `promise.then(success)` and don't include any failure handler.  You should call `watchWorker(worker)` on every worker you create.  And you should add `watchFunction()` around any function that is called in an event handler.  These are all examples of cases when your code is either being called by something that won't handle errors (like a Jetpack event invoker), or we need to wire up processes, or we are clearly ignoring a value.
@@ -74,7 +74,7 @@ Generally if you return a promise, you don't need this error handling if you sim
 Everything described here can be a bit challenging.  Some helpers exist:
 
 ```javascript
-const { watchPromise, watchFunction, watchWorker, watchRun } = require("errors");
+const { watchPromise, watchFunction, watchWorker, watchRun } = require("./errors");
 
 // Adds a .reject() handler to the promise
 watchPromise(deferred.promise);
