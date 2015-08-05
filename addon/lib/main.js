@@ -84,7 +84,11 @@ const PanelContext = {
       this._activeContext.isHidden();
     }
     if (this._stickyPanel && this._activeContext) {
-      this.show(this._activeContext);
+      require("sdk/timers").setTimeout(() => {
+        if (this._activeContext) {
+          this.show(this._activeContext);
+        }
+      }, 5000);
     }
   },
 
@@ -95,7 +99,11 @@ const PanelContext = {
   },
 
   toggleStickyPanel: function () {
-    this._stickyPanel = ! this._stickPanel;
+    this._stickyPanel = ! this._stickyPanel;
+    require("sdk/notifications").notify({
+      title: "Sticky",
+      text: this._stickyPanel ? "Sticky panel debugging ON" : "Sticky panel debugging OFF",
+    });
   },
 
   /** Show a ShotContext, hiding any other if necessary */
