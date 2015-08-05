@@ -14,13 +14,11 @@ Ian has been blogging about the [design, definition, and development process](ht
 
 Install [Postgres](http://www.postgresql.org/).
 
-Install [cfx](https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/cfx).
-
 Install [node.js](https://nodejs.org/). Version 0.12 is required.
 
 Clone the [repository](https://github.com/mozilla-services/pageshot/).
 
-Inside the local clone, run `npm install` and `npm install -g gulp`.
+Inside the local clone, run `npm install` and `npm install -g gulp jpm`
 
 Inside the clone, run `gulp`. `gulp` will run the server and display the output in this terminal. It will also create the addon and run a copy of Firefox with the addon installed. To see the output from this Firefox process, run `tail -f addon.log` in another terminal window.
 
