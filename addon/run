@@ -62,6 +62,9 @@ if [[ -n "$help" ]] ; then
     echo "      Run the local dev_appserver.py server"
     echo "  --no-filter"
     echo "      Don't filter output"
+    echo "Environment variables:"
+    echo "  \$SCRATCH_PROFILE"
+    echo "    If set, do not reuse a profile"
     echo "All other options are passed to cfx run"
     if [[ -n "$help_message" ]] ; then
         exit
@@ -100,8 +103,27 @@ for firefox in $firefoxes ; do
     fi
 done
 
+_tempfile=""
+writefile () {
+  _tempfile=".jpm-json-$$.json"
+  echo "$1" > $_tempfile
+  echo "$_tempfile"
+}
+
+_cleantemp () {
+  if [ -n "$_tempfile" ] ; then
+    rm -f "$_tempfile"
+  fi
+}
+
+trap _cleantemp EXIT
+
 run () {
-    cmd="cfx"
+    cmd="jpm"
+    profile_arg="--profile ../Profile --no-copy"
+    if [ -n "$SCRATCH_PROFILE" ] ; then
+      profile_arg=""
+    fi
     if [ -n "$SHOULD_EXEC" ] ; then
         cmd="exec $cmd"
     fi
@@ -109,12 +131,15 @@ run () {
     echo "Starting Firefox+PageShot $(date)--------------------------"
     static_op=
     static_args=
+    prefs="{\"xpinstall.signatures.required\": false"
     if [[ -n "$server" ]] ; then
-        static_op="--static-args"
-        static_args="{\"backend\": \"$server\"}"
+        prefs="${prefs}, \"extensions.jid1-NeEaf3sAHdKHPA@jetpack.backend\": \"$server\""
     fi
+    prefs="${prefs}}"
+    file="$(writefile "$prefs")"
+    static_op="--prefs $file"
     if [[ -z "$no_filter" ]] ; then
-        $cmd run $binary --profiledir ../Profile $static_op "$static_args" "$@" \
+        $cmd run $binary $profile_arg $static_op "$@" \
             2>&1 \
             | grep --line-buffered \
             -v -e 'WARNING: content window passed to PrivateBrowsingUtils.isWindowPrivate' \
@@ -125,7 +150,7 @@ run () {
             || fail
         title
     else
-        $cmd run $binary --profiledir Profile $static_op "$static_args" "$@"
+        $cmd run $binary $profile_arg $static_op "$@"
         title
     fi
 }

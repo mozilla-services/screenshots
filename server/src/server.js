@@ -249,6 +249,9 @@ app.get("/__version__", function (req, res) {
 });
 
 app.get("/shots", function (req, res) {
+  if (! req.deviceId) {
+    return simpleResponse(res, "You must have the addon installed to see your shot index", 403);
+  }
   Shot.getShotsForDevice(req.backend, req.deviceId).then((shots) => {
     req.shots = shots;
     require("./views/shot-index").render(req, res);

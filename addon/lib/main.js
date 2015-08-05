@@ -233,17 +233,9 @@ exports.getBackend = function () {
 
 // For reasons see https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Listening_for_load_and_unload
 exports.main = function (options) {
-  if (options.staticArgs.backend) {
-    console.info("Using backend", options.staticArgs.backend, "instead of", prefs.backend);
-    backendOverride = options.staticArgs.backend;
-  }
-
-  // Activates history tracking implicitly:
-  //require("./historytracker");
-
   helperworker.trackMods(backendOverride || null);
-  require("user").initialize(exports.getBackend(), options.loadReason);
-  require("recall");
+  require("./user").initialize(exports.getBackend(), options.loadReason);
+  require("./recall");
 };
 
 exports.onUnload = function (reason) {
@@ -251,7 +243,7 @@ exports.onUnload = function (reason) {
     return;
   }
   console.info("Unloading PageShot framescripts");
-  require("framescripter").unload();
+  require("./framescripter").unload();
   console.info("Informing site of unload reason:", reason);
   let deviceInfo = require("./deviceinfo").deviceInfo();
   require("sdk/request").Request({
