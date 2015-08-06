@@ -89,21 +89,16 @@ gulp.task("data-addon", function () {
 });
 
 gulp.task("lib-addon", function () {
-  return gulp.src("addon/lib/**/*.{js,jsx}").pipe(to5()).pipe(gulp.dest("dist/addon/lib"));
+  return gulp.src("addon/lib/**/*.{js,jsx}").pipe(gulp.dest("dist/addon/lib"));
 });
 
 gulp.task("test-addon", function () {
-  return gulp.src("addon/test/**/*.{js,jsx}").pipe(to5()).pipe(gulp.dest("dist/addon/test"));
+  return gulp.src("addon/test/**/*.{js,jsx}").pipe(gulp.dest("dist/addon/test"));
 });
 
 gulp.task("static-addon", function () {
   return gulp.src(["addon/**/*.{html,css,png,svg}", "addon/run", "addon/package.json"]).pipe(gulp.dest("dist/addon"));
 });
-
-/** Remove references to Function.prototype, which triggers addon warnings */
-function removeFunctionPrototype(content) {
-  return content.replace(/Function\.prototype/, "Object.getPrototypeOf(function () {})");
-}
 
 gulp.task("javascript-addon", ["data-addon", "lib-addon", "test-addon", "static-addon", "shared"], function () {
   var bundler = browserify({
