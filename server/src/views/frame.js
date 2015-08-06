@@ -76,6 +76,43 @@ class Snippet extends React.Component {
   }
 }
 
+class TimeDiff extends React.Component {
+  render() {
+    let timeDiff;
+    let seconds = (Date.now() - this.props.date) / 1000;
+    if (seconds > 0) {
+      if (seconds < 20) {
+        timeDiff = "just now";
+      } else if (seconds > 0 && seconds < 60) {
+        timeDiff = "1 minute ago";
+      } else if (seconds < 60*60) {
+        timeDiff = `${Math.floor(seconds / 60)} minutes ago`;
+      } else if (seconds < 60*60*24) {
+        timeDiff = `${Math.floor(seconds / (60*60))} hours ago`;
+      } else if (seconds < 60*60*48) {
+        timeDiff = "yesterday";
+      } else if (seconds > 0) {
+        timeDiff = `${Math.floor(seconds / (60*60*24))} days ago`;
+      }
+    } else {
+      if (seconds > -20) {
+        timeDiff = "very soon";
+      } else if (seconds > -60) {
+        timeDiff = "in 1 minute";
+      } else if (seconds > -60*60) {
+        timeDiff = `${Math.floor(seconds / -60)} minutes from now`;
+      } else if (seconds > -60*60*24) {
+        timeDiff = `${Math.floor(seconds / (-60*60))} hours from now`;
+      } else if (seconds > -60*60*48) {
+        timeDiff = "tomorrow";
+      } else {
+        timeDiff = `${Math.floor(seconds / (-60*60*24))} days from now`;
+      }
+    }
+    return <span title={this.props.date.toString()}>{timeDiff}</span>;
+  }
+}
+
 class Frame extends React.Component {
   closeGetPageshotBanner() {
     let node = document.getElementById("use-pageshot-to-create");
@@ -93,7 +130,24 @@ class Frame extends React.Component {
 
   render() {
     let head = this.renderHead();
-    let body = this.renderBody();
+    let body;
+    if (Date.now() > this.props.shot.expireTime) {
+      body = <body>
+        <div id="container">
+          <p>&nbsp;</p>
+          <p>
+            This shot has expired. You may visit the original page it was originally created from:
+          </p>
+          <p>
+            <a href={this.props.shot.urlIfDeleted}>
+              {this.props.shot.urlIfDeleted}
+            </a>
+          </p>
+        </div>
+      </body>;
+    } else {
+      body = this.renderBody();
+    }
     let result = (
       <Shell title={`${this.props.productName}: ${this.props.shot.title}`} staticLink={this.props.staticLink} gaId={this.props.gaId}>
         {head}
@@ -200,21 +254,8 @@ class Frame extends React.Component {
 
     let linkTextShort = shot.urlDisplay
 
-    let timeDiff;
-    let seconds = (Date.now() - shot.createdDate) / 1000;
-    if (seconds < 20) {
-      timeDiff = "just now";
-    } else if (seconds < 60) {
-      timeDiff = "1 minute ago";
-    } else if (seconds < 60*60) {
-      timeDiff = `${Math.floor(seconds / 60)} minutes ago`;
-    } else if (seconds < 60*60*24) {
-      timeDiff = `${Math.floor(seconds / (60*60))} hours ago`;
-    } else if (seconds < 60*60*48) {
-      timeDiff = "yesterday";
-    } else {
-      timeDiff = `${Math.floor(seconds / (60*60*24))} days ago`;
-    }
+    let timeDiff = <TimeDiff date={shot.createdDate} />;
+    let expiresDiff = <TimeDiff date={shot.expireTime} />;
 
     let postMessageOrigin = `${this.props.contentProtocol}://${this.props.contentOrigin}`;
 
@@ -237,7 +278,7 @@ class Frame extends React.Component {
           <div className="shot-title">{ shot.title }</div>
           <div className="shot-subtitle">
             <span>source </span><a className="subheading-link" href={ shot.url }>{ linkTextShort }</a>
-            <span style={{paddingLeft: "15px"}}>saved { timeDiff }</span>
+            <span style={{paddingLeft: "15px"}}>saved { timeDiff } (expires { expiresDiff })</span>
           </div>
         </div>
         <div id="navigate-toolbar">
@@ -257,6 +298,7 @@ class Frame extends React.Component {
         <div className="metadata">
           <h1 id="main-title">{ shot.title }</h1>
           <p><a className="subheading-link" href={ shot.url }>{ linkTextShort }</a></p>
+          <p>saved {timeDiff} (expires { expiresDiff })</p>
         </div>
         { snippets }
         <div id="full-page-button-scrollable">
@@ -312,7 +354,10 @@ exports.render = function (req, res) {
     id: req.shot.id,
     productName: req.config.productName,
     gaId: req.config.gaId,
-    shotDomain: req.url
+    shotDomain: req.url,
+    urlIfDeleted: req.shot.urlIfDeleted,
+    expireTime: req.shot.expireTime.getTime(),
+    deleted: req.shot.deleted
   };
   let body = React.renderToString(frame);
   let json = JSON.stringify(clientPayload);

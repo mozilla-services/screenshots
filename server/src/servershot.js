@@ -109,9 +109,9 @@ class Shot extends AbstractShot {
           oks.push({setBody: null});
           return db.queryWithClient(
             client,
-            `INSERT INTO data (id, deviceid, value, head, body)
-             VALUES ($1, $2, $3, $4, $5)`,
-            [this.id, this.ownerId, JSON.stringify(json), head, body]
+            `INSERT INTO data (id, deviceid, value, head, body, url)
+             VALUES ($1, $2, $3, $4, $5, $6)`,
+            [this.id, this.ownerId, JSON.stringify(json), head, body, json.url]
           ).then((rowCount) => {
             return oks;
           }).catch((err) => {
@@ -210,7 +210,11 @@ Shot.get = function (backend, id) {
       return null;
     }
     let json = JSON.parse(rawValue.value);
-    return new Shot(rawValue.userid, backend, id, json);
+    let shot = new Shot(rawValue.userid, backend, id, json);
+    shot.urlIfDeleted = rawValue.url;
+    shot.expireTime = rawValue.expireTime;
+    shot.deleted = rawValue.deleted;
+    return shot;
   });
 };
 
@@ -240,7 +244,7 @@ Shot.getRawValue = function (id) {
     throw new Error("Empty id: " + id);
   }
   return db.select(
-    `SELECT value, deviceid FROM data WHERE id = $1`,
+    `SELECT value, deviceid, url, expire_time, deleted FROM data WHERE id = $1`,
     [id]
   ).then((rows) => {
     if (! rows.length) {
@@ -249,7 +253,10 @@ Shot.getRawValue = function (id) {
     let row = rows[0];
     return {
       userid: row.deviceid,
-      value: row.value
+      value: row.value,
+      url: row.url,
+      expireTime: row.expire_time,
+      deleted: row.deleted
     };
   });
 };

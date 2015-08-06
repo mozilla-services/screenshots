@@ -20,6 +20,10 @@ exports.setModel = function (data) {
   model = data;
   model.shot = new AbstractShot(data.backend, data.id, data.shot);
   model.shot.contentUrl = `//${data.contentOrigin}/${model.shot.id}`;
+  model.shot.urlIfDeleted = data.urlIfDeleted;
+  model.shot.expireTime = new Date(data.expireTime);
+  model.shot.deleted = data.deleted;
+
   if (firstSet) {
     let timer = setTimeout(function () {
       timer = null;
@@ -32,7 +36,7 @@ exports.setModel = function (data) {
     let frameElement = document.getElementById("frame");
     let offset = (fullPageButtonScrollable.clientHeight / 2);
     window.onscroll = function (e) {
-      if (e.pageY > 0) {
+      if (e.pageY > 40) {
         toolbar.style.visibility = "visible";
         let frameOffset = frameElement.getBoundingClientRect().top + window.scrollY;
         let toolbarHeight = toolbar.clientHeight;
