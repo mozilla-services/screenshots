@@ -1,4 +1,4 @@
-/* globals document, window */
+/* globals document, window, BUILD_TIMESTAMP */
 
 const React = require("react");
 const { Shell } = require("./shell");
@@ -280,9 +280,13 @@ class Frame extends React.Component {
       return null;
     }
     return <div id="use-pageshot-to-create">
-      <a href={ this.props.backend }>To create your own shots, get the Firefox extension {this.props.productName}</a>.
+      <a href={ this.props.backend } onClick={ this.clickedCreate.bind(this) }>To create your own shots, get the Firefox extension {this.props.productName}</a>.
       <a id="banner-close" onClick={ this.closeGetPageshotBanner }>&times;</a>
     </div>;
+  }
+
+  clickedCreate() {
+    window.ga('send', 'event', 'click', 'install-banner', {useBeacon: true});
   }
 }
 

@@ -89,11 +89,11 @@ gulp.task("data-addon", function () {
 });
 
 gulp.task("lib-addon", function () {
-  return gulp.src("addon/lib/**/*.{js,jsx}").pipe(to5()).pipe(gulp.dest("dist/addon/lib"));
+  return gulp.src("addon/lib/**/*.{js,jsx}").pipe(gulp.dest("dist/addon/lib"));
 });
 
 gulp.task("test-addon", function () {
-  return gulp.src("addon/test/**/*.{js,jsx}").pipe(to5()).pipe(gulp.dest("dist/addon/test"));
+  return gulp.src("addon/test/**/*.{js,jsx}").pipe(gulp.dest("dist/addon/test"));
 });
 
 gulp.task("static-addon", function () {
@@ -107,7 +107,9 @@ gulp.task("javascript-addon", ["data-addon", "lib-addon", "test-addon", "static-
   });
 
   return (function () {
-    return bundler.bundle().pipe(source("panel-bundle.js")).pipe(gulp.dest("dist/addon/data"));
+    return bundler.bundle()
+      .pipe(source("panel-bundle.js"))
+      .pipe(gulp.dest("dist/addon/data"));
   }());
 });
 
