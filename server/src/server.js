@@ -381,6 +381,8 @@ app.use(function (err, req, res, next) {
 
 const contentApp = express();
 
+contentApp.set('trust proxy', true);
+
 contentApp.use("/static", express.static(path.join(__dirname, "static"), {
   index: false
 }));
