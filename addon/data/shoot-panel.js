@@ -346,7 +346,7 @@ class ShootPanel extends React.Component {
 
   addClip() {
     isAdding[this.props.shot.id] = this.props.shot.clipNames().length;
-    setTimeout(renderData);
+    setTimeout(() => renderData);
   }
 
   setAuto() {
@@ -420,7 +420,7 @@ class ShootPanel extends React.Component {
 
   addCancel() {
     delete isAdding[this.props.shot.id];
-    setTimeout(renderData);
+    setTimeout(() => renderData);
     if (! this.props.shot.clipNames().length) {
       self.port.emit("hide");
     }
@@ -454,7 +454,7 @@ function processDebugCommand(component, command) {
   command = command.replace(/^\s*/, "").replace(/\s*$/, "");
   if (command == "/source") {
     debugDisplayTextSource = ! debugDisplayTextSource;
-    setTimeout(renderData);
+    setTimeout(() => renderData);
     return true;
   } else if (command == "/viewsource") {
     let clip = component.props.shot.getClip(component.props.activeClipName);

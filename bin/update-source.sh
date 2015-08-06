@@ -12,15 +12,15 @@ nvm use 0.12
 git pull
 npm install
 gulp lib-addon transforms
-if [ -e ./pageshot.xpi ] ; then
+if [ -e ./mozilla-pageshot.xpi ] ; then
   echo "Updating XPI"
-  if [ ! -e ./pageshot.update.rdf ] ; then
+  if [ ! -e ./mozilla-pageshot.update.rdf ] ; then
     echo "Missing pageshot.update.rdf"
     exit 2
   fi
   mkdir -p server/dist/xpi
-  mv ./pageshot.xpi server/dist/xpi/
-  mv ./pageshot.update.rdf server/dist/xpi/
+  mv ./mozilla-pageshot.xpi server/dist/xpi/
+  mv ./mozilla-pageshot.update.rdf server/dist/xpi/
 fi
 mv server/dist-production server/dist-production.obsolete
 mv server/dist server/dist-production

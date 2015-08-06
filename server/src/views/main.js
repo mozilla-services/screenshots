@@ -27,7 +27,7 @@ class Main extends React.Component {
             </p>
 
             <p>
-              To use this service, download the <a href="https://pageshot.dev.mozaws.net/xpi/pageshot.xpi">Firefox Add On</a>
+              To use this service, download the <a href="https://pageshot.dev.mozaws.net/xpi/mozilla-pageshot.xpi">Firefox Add On</a>
             </p>
 
             <p>

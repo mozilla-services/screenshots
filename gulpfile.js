@@ -100,6 +100,11 @@ gulp.task("static-addon", function () {
   return gulp.src(["addon/**/*.{html,css,png,svg}", "addon/run", "addon/package.json"]).pipe(gulp.dest("dist/addon"));
 });
 
+/** Remove references to Function.prototype, which triggers addon warnings */
+function removeFunctionPrototype(content) {
+  return content.replace(/Function\.prototype/, "Object.getPrototypeOf(function () {})");
+}
+
 gulp.task("javascript-addon", ["data-addon", "lib-addon", "test-addon", "static-addon", "shared"], function () {
   var bundler = browserify({
     entries: ["./dist/addon/data/shoot-panel.js"],
@@ -107,7 +112,12 @@ gulp.task("javascript-addon", ["data-addon", "lib-addon", "test-addon", "static-
   });
 
   return (function () {
-    return bundler.bundle().pipe(source("panel-bundle.js")).pipe(gulp.dest("dist/addon/data"));
+    return bundler.bundle()
+      .pipe(source("panel-bundle.js"))
+      // FIXME: change() doesn't work here:
+      //   (did it in bin/publish.sh instead)
+      //.pipe(change(removeFunctionPrototype))
+      .pipe(gulp.dest("dist/addon/data"));
   }());
 });
 
