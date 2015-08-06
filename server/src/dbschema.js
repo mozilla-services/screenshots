@@ -27,9 +27,9 @@ exports.createTables = function () {
   }).then(() => {
     let newId = "tmp" + Date.now();
     return db.insert(
-      `INSERT INTO data (id, deviceid, value)
-       VALUES ($1, NULL, $2)`,
-      [newId, "test value"]
+      `INSERT INTO data (id, deviceid, value, url)
+       VALUES ($1, NULL, $2, $3)`,
+      [newId, "test value", ""]
     ).then((inserted) => {
       if (! inserted) {
         throw new Error("Could not insert");
