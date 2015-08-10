@@ -1,0 +1,12 @@
+#!/usr/bin/env python
+"""
+Sets the version parameter in package.json using a date
+"""
+
+import sys, re, time
+today = time.strftime("%Y%m%d%H%M", time.gmtime())
+content = sys.stdin.read().strip()
+def repl(match):
+  return match.group(1) + today
+content = re.sub(r"(\"version\": \"\d+\.\d+\.)(\d+)", repl, content)
+print content

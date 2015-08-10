@@ -18,11 +18,22 @@ Install [node.js](https://nodejs.org/). Version 0.12 is required.
 
 Clone the [repository](https://github.com/mozilla-services/pageshot/).
 
-Inside the local clone, run `npm install` and `npm install -g gulp jpm`
+Inside the local clone, run `npm install` and `npm install -g jpm`
 
-Inside the clone, run `gulp`. `gulp` will run the server and display the output in this terminal. It will also create the addon and run a copy of Firefox with the addon installed. To see the output from this Firefox process, run `tail -f addon.log` in another terminal window.
+There are two scripts to run the server locally and develop the addon:
 
-By default, PageShot will connect to a postgres database on localhost:5432. To change which database and user it connects to, pass the DB_USER, DB_PASS, and DB_HOST environment variables when running gulp.
+- `./bin/run-server` will run the server on localhost:10080 and automatically restart if there are changes
+- `./bin/run-addon` will build the addon, start Firefox with the addon installed (you must have Nightly or Developer Edition)
+
+By default, PageShot will connect to a postgres database on localhost:5432. To change which database and user it connects to set/export the environmental variables: DB_USER, DB_PASS, and DB_HOST
+
+The server will automatically setup the tables in your database, and keep them up to date over time (using [pg-patcher](https://github.com/chilts/pg-patcher/)).
+
+We apologize but we have no story for development on Windows.
+
+#### Addon auto-reloading
+
+To make the auto-reloading of the addon work, after you first start Firefox using `run-addon` you must manually install the [autoinstaller](https://addons.mozilla.org/en-US/firefox/addon/autoinstaller/) addon into your development profile.  This will allow the script to push updates into the browser without browser restarts.
 
 ### Participation
 
@@ -33,11 +44,11 @@ We hold daily standups each weekday at 11:30am Eastern, 10:30am Central, 8:30am 
 Planning and ideation is happening in the [issue tracker](https://github.com/ianb/pageshot/issues).  We use a pattern roughly like:
 
 * [Issues with no milestone](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+no%3Amilestone) are awaiting triage
-* [Issues set to the next milestone](https://github.com/mozilla-services/pageshot/milestones/The%20Shallow%20MVP) can be worked on any time (this link will rot!)
+* [Issues set to the next milestone](https://github.com/mozilla-services/pageshot/milestones/First%20Launch) can be worked on any time (this link will rot!)
 * [Issues in Next Tasks](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+milestone%3A%22Next+Tasks%22) will be re-triaged when the current milestone is done
 * [Issues in Blue Sky](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+milestone%3A%22Blue+Sky%22) are mostly shelved; we'd like to do them but have no plans to move forward.  (If you see something you care about there, comment on it -- otherwise we may not notice it)
 * [Issues with the needs-discussion label](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+label%3A%22needs+discussion%22) are for discussion at the next meeting.  We don't have a plan for open meetings (not that we don't want them, we just don't have a plan), so this is largely for internal use.
 
-Issue tags otherwise aren't very structured. [Experiment](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+label%3Aexperiment) means that the implementation should focus on creating something usable for analysis (i.e., something we can play with), not a committed feature. [Research](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+label%3Aresearch) is primarily analysis of other products that do something interesting, or some source material that could provide insight.  Input on these (things like "I like this product because...") is very helpful!
+Issue tags otherwise aren't very structured. [Research](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+label%3Aresearch) is primarily analysis of other products that do something interesting, or some source material that could provide insight.  Input on these (things like "I like this product because...") is very helpful!
 
 Also Ian [blogs regularly about PageShot](http://www.ianbicking.org/tag/product-journal.html).
