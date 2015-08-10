@@ -16,15 +16,14 @@ before_install:
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 -extension RANDR"
 
 before_script:
-  - npm install jpm -g
-  - npm install fx-download -g
-  - npm install gulp -g
+  - npm install -g jpm
+  - npm install -g mozilla-download
   - npm install
-  - gulp javascript-addon
+  - make all
   - cd ..
-  - fx-download --branch nightly -c prerelease --host ftp.mozilla.org firefox
+  - mozilla-download --branch mozilla-central --product firefox firefox
   - export JPM_FIREFOX_BINARY=$TRAVIS_BUILD_DIR/../firefox/firefox
-  - cd $TRAVIS_BUILD_DIR/addon
+  - cd $TRAVIS_BUILD_DIR/
 
 script:
-  - pwd && ls && cd $TRAVIS_BUILD_DIR/dist/addon && jpm test -v
+  - pwd && ls && cd $TRAVIS_BUILD_DIR/build/addon && jpm test -v
