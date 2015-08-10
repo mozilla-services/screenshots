@@ -533,8 +533,8 @@ ShotContext._idGen = 0;
 class Shot extends AbstractShot {
   constructor(backend, id, attrs) {
     // ES6 requires super(), but Firefox doesn't allow it:
-    //super(backend, id, attrs);
-    AbstractShot.call(this, backend, id, attrs);
+    super(backend, id, attrs);
+    //AbstractShot.call(this, backend, id, attrs);
   }
 
   save() {
