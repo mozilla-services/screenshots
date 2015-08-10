@@ -8,7 +8,10 @@ CREATE TABLE data (
     created timestamp without time zone DEFAULT now(),
     value text NOT NULL,
     head text,
-    body text
+    body text,
+    url text NOT NULL,
+    expire_time timestamp without time zone DEFAULT (now() + '14 days'::interval),
+    deleted boolean DEFAULT false NOT NULL
 );
 CREATE TABLE devices (
     id character varying(200) NOT NULL,
@@ -58,4 +61,4 @@ ALTER TABLE ONLY images
     ADD CONSTRAINT images_shotid_fkey FOREIGN KEY (shotid) REFERENCES data(id) ON DELETE CASCADE;
 ALTER TABLE ONLY states
     ADD CONSTRAINT states_deviceid_fkey FOREIGN KEY (deviceid) REFERENCES devices(id) ON DELETE CASCADE;
--- pg-patch version: 2
+-- pg-patch version: 3
