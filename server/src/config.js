@@ -1,4 +1,4 @@
-/* Note: do not use ES6 features here, we need to use this module from gulp */
+/* Note: do not use ES6 features here, we need to use this module from the build system before translation */
 const convict = require("convict");
 const envc = require("envc");
 

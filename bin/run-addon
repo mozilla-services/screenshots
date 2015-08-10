@@ -1,0 +1,125 @@
+#!/bin/bash
+
+set -e
+cd "$(dirname $BASH_SOURCE)/.."
+base="$(pwd)"
+PATH="node_modules/.bin:$PATH"
+no_auto=
+upload=
+nodemon_pid=
+server=http://localhost:10080
+
+binary=
+firefoxes="
+/Applications/FirefoxNightly.app
+/Applications/FirefoxDeveloperEdition.app
+/Applications/FirefoxAurora.app
+"
+
+for firefox in $firefoxes ; do
+  if [[ -e "$firefox" ]] ; then
+    binary="$firefox"
+    break
+  fi
+done
+
+_tempfile=""
+writefile () {
+  local _tempfile="$base/.jpm-json-$$.json"
+  echo "$1" > $_tempfile
+  echo "$_tempfile"
+}
+
+_cleanup () {
+  if [[ -n "$_tempfile" ]] ; then
+    rm -f "$_tempfile"
+  fi
+  if [[ -n "$nodemon_pid" ]] ; then
+    # Seems to usually be dead by this point?  Good I guess?
+    kill $nodemon_pid >& /dev/null || true
+  fi
+}
+
+trap _cleanup EXIT
+
+help () {
+  echo "Usage: $(basename $0) [OPTIONS]"
+  echo "  Options:"
+  echo "    --no-auto"
+  echo "      Do not watch for changes in the addon"
+  echo "    -b or --binary BINARY"
+  echo "      Use BINARY as the Firefox to run (default $binary)"
+}
+
+playsound () {
+  if [[ -e /usr/bin/afplay ]] ; then
+    afplay $1
+  fi
+}
+
+while [[ -n "$1" ]] ; do
+  case "$1" in
+    help|-h|--help)
+      help
+      exit
+      ;;
+    --no-auto)
+      no_auto=1
+      shift
+      ;;
+    -b|--binary)
+      binary="$2"
+      shift
+      shift
+      ;;
+    --upload)
+      # Note: --upload is a hidden option used when nodemon triggers a restart
+      upload=1
+      shift
+      ;;
+    *)
+      help
+      exit 2
+      ;;
+  esac
+done
+
+if [[ -n "$upload" ]] ; then
+  playsound bin/elevator-ding-reverse.mp3
+  make addon xpi
+  echo "Uploading to the browser"
+  # Doesn't return any content, leads to an unnecessary error:
+  wget --post-file=build/mozilla-pageshot.xpi http://localhost:8888 || echo "no content"
+  playsound bin/elevator-ding.mp3
+  exit
+fi
+
+prefs="{\"xpinstall.signatures.required\": false"
+if [[ -n "$server" ]] ; then
+  prefs="${prefs}, \"extensions.jid1-NeEaf3sAHdKHPA@jetpack.backend\": \"$server\""
+fi
+prefs="${prefs}}"
+file="$(writefile "$prefs")"
+_tempfile=$file
+make addon
+
+if [[ -z "$no_auto" ]] ; then
+  nodemon \
+    -w addon/ -w static/ -w shared/ \
+    -w Makefile \
+    --on-change-only \
+    -e .js,.scss,.css,.png,.svg,.ttf,.html \
+    --exec bash $0 -- --upload &
+  nodemon_pid=$!
+
+fi
+
+cd build/addon
+jpm run --binary $binary --profile ../../Profile --no-copy \
+  2>&1 \
+  | grep --line-buffered \
+    -v -e 'WARNING: content window passed to PrivateBrowsingUtils.isWindowPrivate' \
+    -v -e '^JavaScript Warning' \
+    -v -e 'Using ... to indicate source[a-zA-Z]*URL' \
+    -v -e 'JavaScript 1.7.s let blocks' \
+    -v -e 'mutating the ..Prototype.. of an object' \

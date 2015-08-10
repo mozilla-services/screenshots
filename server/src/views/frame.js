@@ -1,4 +1,4 @@
-/* globals document, window, BUILD_TIMESTAMP */
+/* globals document, window */
 
 const React = require("react");
 const { Shell } = require("./shell");
@@ -310,7 +310,7 @@ class Frame extends React.Component {
         </div>
         <iframe width="100%" id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } />
         <div className="pageshot-footer">
-          <a href="https://github.com/mozilla-services/pageshot">{this.props.productName}</a> — <a href={`https://github.com/mozilla-services/pageshot/commit/${getGitRevision()}`}>Updated {BUILD_TIMESTAMP}</a>
+          <a href="https://github.com/mozilla-services/pageshot">{this.props.productName}</a> — <a href={`https://github.com/mozilla-services/pageshot/commit/${getGitRevision()}`}>Updated {this.props.buildTime}</a>
         </div>
         <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl }>Send Feedback</a>
       </div>
@@ -337,6 +337,7 @@ let FrameFactory = React.createFactory(Frame);
 exports.FrameFactory = FrameFactory;
 
 exports.render = function (req, res) {
+  let buildTime = require("../build-time").string;
   let frame = FrameFactory({
     staticLink: req.staticLink,
     backend: req.backend,
@@ -347,6 +348,7 @@ exports.render = function (req, res) {
     productName: req.config.productName,
     isExtInstalled: true,
     gaId: req.config.gaId,
+    buildTime: buildTime,
     shotDomain: req.url // FIXME: should be a property of the shot
   });
   let clientPayload = {
@@ -361,7 +363,8 @@ exports.render = function (req, res) {
     shotDomain: req.url,
     urlIfDeleted: req.shot.urlIfDeleted,
     expireTime: req.shot.expireTime.getTime(),
-    deleted: req.shot.deleted
+    deleted: req.shot.deleted,
+    buildTime: buildTime
   };
   let body = React.renderToString(frame);
   let json = JSON.stringify(clientPayload);
