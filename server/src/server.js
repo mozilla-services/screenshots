@@ -1,5 +1,3 @@
-/* globals BUILD_TIMESTAMP */
-
 const path = require('path');
 const Cookies = require("cookies");
 
@@ -23,6 +21,7 @@ const { randomBytes } = require("./helpers");
 const errors = require("../shared/errors");
 const config = require("./config").root();
 const { checkContent, checkAttributes } = require("./contentcheck");
+const buildTime = require("./build-time").string;
 
 dbschema.createTables().then(() => {
   dbschema.createKeygrip();
@@ -241,7 +240,7 @@ app.get("/", function (req, res) {
 app.get("/__version__", function (req, res) {
   let response = {
     source: "https://github.com/mozilla-services/pageshot/",
-    version: BUILD_TIMESTAMP,
+    version: buildTime,
     commit: linker.getGitRevision()
   };
   res.header("Content-Type", "application/json; charset=utf-8");
