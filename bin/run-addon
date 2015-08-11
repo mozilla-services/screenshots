@@ -115,7 +115,7 @@ if [[ -z "$no_auto" ]] ; then
 fi
 
 cd build/addon
-jpm run --binary $binary --profile ../../Profile --no-copy \
+jpm run --binary $binary --profile ../../dist/Profile --no-copy \
   2>&1 \
   | grep --line-buffered \
     -v -e 'WARNING: content window passed to PrivateBrowsingUtils.isWindowPrivate' \
