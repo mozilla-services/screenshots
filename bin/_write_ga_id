@@ -15,11 +15,11 @@ if (fs.existsSync(filename)) {
 }
 if (text === null || gaId !== text) {
   if (text === null) {
-    console.log("Creating build/ga-id.txt with", gaId);
+    console.info("Creating build/ga-id.txt with", gaId);
   } else {
-    console.log("Updating build/ga-id.txt to", gaId);
+    console.info("Updating build/ga-id.txt to", gaId);
   }
   fs.writeFileSync(filename, gaId, {encoding: "UTF-8"});
 } else {
-  console.log("build/ga-id.txt up to date");
+  console.info("build/ga-id.txt up to date");
 }

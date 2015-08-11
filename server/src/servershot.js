@@ -18,8 +18,8 @@ class Shot extends AbstractShot {
     let toInsert = [];
     for (let clip of clips) {
       if (clip.image) {
-        if (! clip.isDataUrl()) {
-          toInsert.push(clip);
+        if (clip.isDataUrl()) {
+          toInsert.push(clip.id);
         } else {
           unedited.push(clip.id);
         }
@@ -54,9 +54,13 @@ class Shot extends AbstractShot {
             let clip = this.getClip(clipId);
             clip.image.url = linker.imageLinkWithHost(uid);
             return {updateClipUrl: {clipId: clipId, url: clip.image.url}};
+          }).catch((err) => {
+            console.error("Error updating image:", clipId, err);
           });
         })
       );
+    }).catch((err) => {
+      console.error("Error converting data urls:", err);
     });
   }
 
