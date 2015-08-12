@@ -116,7 +116,7 @@ build/addon/data/panel-bundle.js: $(shoot_panel_dependencies)
 	@mkdir -p $(@D)
 	# Save the bundle dependencies:
 	browserify --list -e ./build/addon/data/shoot-panel.js | sed "s!$(shell pwd)/!!g" > build/shoot-panel-dependencies.txt
-	browserify -o $@ -e ./build/addon/data/shoot-panel.js
+	browserify -e ./build/addon/data/shoot-panel.js | ./bin/_fixup_panel_js > $@
 
 # We don't need babel on these specific modules:
 build/addon/lib/shared/%.js: build/shared/%.js
