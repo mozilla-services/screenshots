@@ -2,6 +2,7 @@
 
 const React = require("react");
 const events = require("../events");
+const helpers = require("../helpers");
 
 exports.ProfileButton = class ProfileButton extends React.Component {
   constructor(props) {
@@ -109,12 +110,23 @@ exports.Profile = class Profile extends React.Component {
     this.setState({ nickname: e.target.value });
   }
 
+  onClickDeleteEverything(e) {
+    e.preventDefault();
+    let ok = confirm("Are you sure you want to permanently delete everything you have created using PageShot?");
+    if (ok) {
+      events.deleteEverything();
+      helpers.request("POST", "/delete");
+      window.location = "/?accountDeleted=true";
+    }
+  }
+
   renderSignedIn() {
     // TODO: Maybe show a list of connected devices with PageShot here?
     // This could also be the "send to mobile" UI...
     return (
       <div className="sync-status">
         <p>You are signed in as {this.props.email}.</p>
+        <p><a href="#" onClick={ this.onClickDeleteEverything.bind(this) }>Permanently delete all my data</a></p>
       </div>
     );
   }
@@ -126,6 +138,7 @@ exports.Profile = class Profile extends React.Component {
         <ul className="sync-buttons">
           <li><a href="#" onClick={ this.onClickSignUp.bind(this) }>Create Account</a></li>
           <li><a href="#" onClick={ this.onClickSignIn.bind(this) }>Sign In</a></li>
+          <li><a href="#" onClick={ this.onClickDeleteEverything.bind(this) }>Permanently delete all my data</a></li>
         </ul>
       </div>
     );
@@ -138,7 +151,7 @@ exports.Profile = class Profile extends React.Component {
         <div className="avatar-container">
           <img className="avatar" src={ this.props.avatarurl } />
         </div>
-        <div className="label"><label for="nickname">Name</label></div>
+        <div className="label"><label htmlFor="nickname">Name</label></div>
         <div>
           <input type="text" ref="nickname" id="nickname" defaultValue={ this.state.nickname }
             onChange={ this.onChangeName.bind(this )}

@@ -77,6 +77,10 @@ function resetPageMod(backend) {
         });
       }));
 
+      worker.port.on("deleteEverything", watchFunction(function () {
+        user.deleteEverything();
+      }));
+
       worker.port.on("setProfileState", watchFunction(function ({ nickname, avatarurl }) {
         user.updateProfile(backend, { nickname, avatarurl }).then(newProfile => {
           worker.port.emit("profile", newProfile);

@@ -21,5 +21,10 @@ module.exports = {
       detail: profile
     });
     document.dispatchEvent(event);
+  },
+
+  deleteEverything() {
+    let event = new CustomEvent("delete-everything");
+    document.dispatchEvent(event);
   }
 };
