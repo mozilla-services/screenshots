@@ -333,7 +333,5 @@ Shot.deleteEverythingForDevice = function (backend, deviceId) {
       ids
     );
 
-  }).catch((e) => {
-    console.error("Error getting devices:", e);
   });
 };
