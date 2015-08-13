@@ -259,6 +259,18 @@ app.get("/shots", function (req, res) {
   });
 });
 
+app.post("/delete", function (req, res) {
+  if (! req.deviceId) {
+    return simpleResponse(res, "You must have the addon installed delete your account", 403);
+  }
+  Shot.deleteEverythingForDevice(req.backend, req.deviceId).then(() => {
+    return simpleResponse(res, "Goodbye.", 200);
+  }).catch((e) => {
+    console.error("An error occurred trying to delete:", e);
+    return simpleResponse(res, "An error occurred.", 500);
+  });
+});
+
 app.get("/:id/:domain", function (req, res) {
   let shotId = req.params.id + "/" + req.params.domain;
   Shot.get(req.backend, shotId).then((shot) => {
