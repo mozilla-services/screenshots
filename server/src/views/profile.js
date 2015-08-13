@@ -116,7 +116,7 @@ exports.Profile = class Profile extends React.Component {
     if (ok) {
       events.deleteEverything();
       helpers.request("POST", "/delete");
-      window.location = "/";
+      window.location = "/?accountDeleted=true";
     }
   }
 
