@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -ex
+set -e
 
 if [ ! -e .git ] ; then
   echo "Error: $0 must be run from the root of the pageshot checkout"
@@ -23,6 +23,7 @@ if [ -e ./mozilla-pageshot.xpi ] ; then
   echo "Updating XPI"
   mkdir -p static-xpi/
   mv ./mozilla-pageshot.xpi static-xpi/
+  chmod a+r static-xpi/*
   #mv ./mozilla-pageshot.update.rdf server/dist/xpi/
 fi
 sudo service pageshot restart
