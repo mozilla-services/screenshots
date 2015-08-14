@@ -6,7 +6,7 @@ if [ ! -e .git ] ; then
   exit 3
 fi
 
-if [ -e ./mozilla-pageshot.xpi ] && [ ! -e .mozilla-pageshot.update.rdf ] ; then
+if [ -e ./mozilla-pageshot.xpi ] && [ ! -e ./mozilla-pageshot.update.rdf ] ; then
   echo "Error: mozilla-pageshot.update.rdf must exist to update addon xpi"
   exit 4
 fi
