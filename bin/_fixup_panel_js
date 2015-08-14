@@ -12,5 +12,5 @@ for line, repl in [
     if not content.count(line):
         sys.stderr.write("Warning: could not find match in panel-bundle: %r\n" % line)
     content = content.replace(line, repl);
-sys.stderr.write("Rewrote panel-bundle from %i to %i bytes" % (len(orig_content), len(content))
+sys.stderr.write("Rewrote panel-bundle from %i to %i bytes" % (len(orig_content), len(content)))
 sys.stdout.write(content)
