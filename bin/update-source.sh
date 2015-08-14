@@ -12,9 +12,13 @@ nvm use 0.12
 git pull
 npm install
 make server
-mv build-production build-production.obsolete
+if [[ -e build-production ]] ; then
+  mv build-production build-production.obsolete
+fi
 mv build build-production
-rm -r build-production.obsolete
+if [[ -e build-production.obsolete ]] ; then
+  rm -r build-production.obsolete
+fi
 if [ -e ./mozilla-pageshot.xpi ] ; then
   echo "Updating XPI"
   mkdir -p static-xpi/
