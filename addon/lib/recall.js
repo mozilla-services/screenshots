@@ -179,3 +179,7 @@ exports.addRecall = function (shot) {
     sendShot(shot);
   }
 };
+
+exports.deleteEverything = function () {
+  ss.storage.recentShots = [];
+}

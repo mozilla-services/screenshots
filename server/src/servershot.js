@@ -311,3 +311,27 @@ Shot.getShotsForDevice = function (backend, deviceId) {
     return result;
   });
 };
+
+Shot.deleteEverythingForDevice = function (backend, deviceId) {
+  return db.select(
+    `SELECT DISTINCT devices.id
+     FROM devices, devices AS devices2
+     WHERE devices.id = $1
+           OR (devices.accountid = devices2.accountid
+               AND devices2.id = $1)
+    `,
+    [deviceId]
+  ).then((rows) => {
+    let ids = [];
+    for (let i=0; i<rows.length; i++) {
+      ids.push(rows[i].id);
+    }
+    let deleteSql = `DELETE FROM devices WHERE
+     id IN (${db.markersForArgs(1, ids.length)})`;
+    return db.update(
+      deleteSql,
+      ids
+    );
+
+  });
+};
