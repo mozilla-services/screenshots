@@ -11,18 +11,14 @@ export NVM_DIR="/home/ubuntu/.nvm"
 nvm use 0.12
 git pull
 npm install
-gulp lib-addon transforms
+make server
+mv build-production build-production.obsolete
+mv build build-production
+rm -r build-production.obsolete
 if [ -e ./mozilla-pageshot.xpi ] ; then
   echo "Updating XPI"
-  if [ ! -e ./mozilla-pageshot.update.rdf ] ; then
-    echo "Missing pageshot.update.rdf"
-    exit 2
-  fi
-  mkdir -p server/dist/xpi
-  mv ./mozilla-pageshot.xpi server/dist/xpi/
-  mv ./mozilla-pageshot.update.rdf server/dist/xpi/
+  mkdir -p static-xpi/
+  mv ./mozilla-pageshot.xpi static-xpi/
+  #mv ./mozilla-pageshot.update.rdf server/dist/xpi/
 fi
-mv server/dist-production server/dist-production.obsolete
-mv server/dist server/dist-production
-rm -r server/dist-production.obsolete
 sudo service pageshot restart
