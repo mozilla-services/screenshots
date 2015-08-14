@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -ex
 
 if [ ! -e .git ] ; then
   echo "Error: $0 must be run from the root of the pageshot checkout"
