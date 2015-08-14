@@ -19,5 +19,5 @@
       "value": "https://pageshot.dev.mozaws.net"
     }
   ],
-  "updateURL": "https://pageshot.dev.mozaws.net/xpi/mozilla-pageshot.xpi"
+  "updateURL": "https://pageshot.dev.mozaws.net/xpi/mozilla-pageshot.update.rdf"
 }

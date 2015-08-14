@@ -6,9 +6,15 @@ if [ ! -e .git ] ; then
   exit 3
 fi
 
+if [ -e ./mozilla-pageshot.xpi ] && [ ! -e .mozilla-pageshot.update.rdf ] ; then
+  echo "Error: mozilla-pageshot.update.rdf must exist to update addon xpi"
+  exit 4
+fi
+
 export NVM_DIR="/home/ubuntu/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 nvm use 0.12
+cp -r node_modules node_modules.obsolete
 git pull
 npm install
 make server
@@ -22,8 +28,8 @@ fi
 if [ -e ./mozilla-pageshot.xpi ] ; then
   echo "Updating XPI"
   mkdir -p static-xpi/
-  mv ./mozilla-pageshot.xpi static-xpi/
+  mv ./mozilla-pageshot.xpi ./mozilla-pageshot.update.rdf static-xpi/
   chmod a+r static-xpi/*
-  #mv ./mozilla-pageshot.update.rdf server/dist/xpi/
 fi
 sudo service pageshot restart
+rm -r node_modules.obsolete

@@ -22,5 +22,5 @@ else
   echo "Error: $xpi is not signed"
   exit 3
 fi
-scp build/mozilla-pageshot.xpi $SSH_USER@$SSH_HOST:pageshot/
+scp build/mozilla-pageshot.xpi build/mozilla-pageshot.update.rdf $SSH_USER@$SSH_HOST:pageshot/
 ssh $SSH_USER@$SSH_HOST "cd pageshot && ./bin/update-source.sh"

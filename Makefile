@@ -146,6 +146,9 @@ build/mozilla-pageshot.xpi: addon addon/package.json
 	cd build/addon && jpm xpi
 	mv build/addon/jid1-NeEaf3sAHdKHPA@jetpack-*.xpi build/mozilla-pageshot.xpi
 
+build/mozilla-pageshot.update.rdf: addon/template.update.rdf build/mozilla-pageshot.xpi
+	_sub_rdf_checkout_version < build/addon/package.json > build/mozilla-pageshot.update.rdf
+
 # FIXME: not sure what purpose this has, given _set_package_version
 build/addon/package.json: addon/package.json
 	@mkdir -p $(@D)
@@ -153,7 +156,7 @@ build/addon/package.json: addon/package.json
 
 addon: $(data_dest) $(vendor_dest) $(lib_dest) $(sass_addon_dest) $(imgs_addon_dest) $(static_addon_dest) $(shared_addon_dest) build/addon/data/panel-bundle.js build/addon/package.json
 
-xpi: build/mozilla-pageshot.xpi
+xpi: build/mozilla-pageshot.xpi build/mozilla-pageshot.update.rdf
 
 ## Server related rules:
 
