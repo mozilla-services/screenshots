@@ -6,7 +6,6 @@ const ss = require("sdk/simple-storage");
 const clipboard = require("sdk/clipboard");
 const { AbstractShot } = require("./shared/shot");
 
-let showInfoPanel = null;
 let hideInfoPanel = null;
 
 const recallButton = ToggleButton({
@@ -188,7 +187,6 @@ exports.deleteEverything = function () {
   ss.storage.recentShots = [];
 }
 
-exports.initialize = function (showIp, hideIp) {
-  showInfoPanel = showIp;
+exports.initialize = function (hideIp) {
   hideInfoPanel = hideIp;
 }

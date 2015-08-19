@@ -283,7 +283,7 @@ exports.main = function (options) {
   }
   helperworker.trackMods(backendOverride || null);
   require("./user").initialize(exports.getBackend(), options.loadReason);
-  require("./recall").initialize(showInfoPanel, hideInfoPanel);
+  require("./recall").initialize(hideInfoPanel);
 };
 
 exports.onUnload = function (reason) {
