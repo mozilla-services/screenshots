@@ -101,7 +101,11 @@ class ShareButtons extends React.Component {
 
 class SimplifiedPanel extends React.Component {
   onClickLink(e) {
-    self.port.emit("openLink", this.props.shot.viewUrl);
+    let url = this.props.shot.viewUrl;
+    if (this.props.loadReason === "install") {
+      url += "?showIntro=true";
+    }
+    self.port.emit("openLink", url, this.props.loadReason);
     e.preventDefault();
   }
 
@@ -114,10 +118,13 @@ class SimplifiedPanel extends React.Component {
         <a className="simplified-link" href="#" onClick={ this.onClickLink.bind(this) }>
           { stripProtocol(this.props.shot.viewUrl) }
         </a>
+        <div className="instructions-text">
+          Click the link to go to the shot page...
+        </div>
       </div>
       <div className="simplified-share-buttons">
         <div className="instructions-text">
-          Now go and share it!
+          ...or use the buttons below to share the link.
         </div>
         <ShareButtons large={ true } { ...this.props } />
       </div>
@@ -503,11 +510,11 @@ function truncatedCopy(obj) {
   return result;
 }
 
-self.port.on("shotData", err.watchFunction(function (data) {
-  renderData(data);
+self.port.on("shotData", err.watchFunction(function (data, loadReason) {
+  renderData(data, loadReason);
 }));
 
-function renderData(data) {
+function renderData(data, loadReason) {
   if (! data) {
     data = lastData;
   }
@@ -523,7 +530,7 @@ function renderData(data) {
   // https://github.com/mozilla-services/pageshot/issues/436
   document.body.innerHTML = "";
   React.render(
-    <ShootPanel activeClipName={ data.activeClipName } shot={ myShot } isEditing={ data.isEditing } />,
+    <ShootPanel activeClipName={ data.activeClipName } shot={ myShot } isEditing={ data.isEditing } loadReason={ loadReason } />,
     document.body);
 }
 

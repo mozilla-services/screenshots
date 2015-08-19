@@ -32,7 +32,11 @@ class Snippet extends React.Component {
     if (clip.image === undefined) {
       node = <div className="text-snippet" dangerouslySetInnerHTML={{__html: clip.text.html}} />;
     } else {
-      node = <img src={ clip.image.url } />;
+      if (this.props.previousClip === null) {
+        node = <img data-step="1" data-intro="This is the clip, saved as an image." src={ clip.image.url } />;
+      } else {
+        node = <img src={ clip.image.url } />;
+      }
     }
 
     let comments = clip.comments,
@@ -259,6 +263,12 @@ class Frame extends React.Component {
 
     let postMessageOrigin = `${this.props.contentProtocol}://${this.props.contentOrigin}`;
 
+    let introJsStart = null;
+
+    if (this.props.showIntro) {
+        introJsStart = <script dangerouslySetInnerHTML={{__html: "introJs().start();"}} />;
+    }
+
     return (
       <body>
         <div id="container">
@@ -302,7 +312,7 @@ class Frame extends React.Component {
         </div>
         { snippets }
         <div id="full-page-button-scrollable">
-          <a href="#" className="full-page-button-styles" onClick={ this.clickFullPageButton.bind(this) }>
+          <a data-step="2" data-intro="Scroll down or click here to see the full copy of the page." href="#" className="full-page-button-styles" onClick={ this.clickFullPageButton.bind(this) }>
             <span className="full-page-button-arrow">▾</span>
             <span className="full-page-button-text"> Full Page </span>
             <span className="full-page-button-arrow">▾</span>
@@ -314,6 +324,7 @@ class Frame extends React.Component {
         </div>
         <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl }>Send Feedback</a>
       </div>
+      { introJsStart }
     </body>);
   }
 
@@ -337,6 +348,7 @@ let FrameFactory = React.createFactory(Frame);
 exports.FrameFactory = FrameFactory;
 
 exports.render = function (req, res) {
+  let showIntro = !!req.query.showIntro;
   let buildTime = require("../build-time").string;
   let frame = FrameFactory({
     staticLink: req.staticLink,
@@ -349,6 +361,7 @@ exports.render = function (req, res) {
     isExtInstalled: true,
     gaId: req.config.gaId,
     buildTime: buildTime,
+    showIntro: showIntro,
     shotDomain: req.url // FIXME: should be a property of the shot
   });
   let clientPayload = {
@@ -364,7 +377,8 @@ exports.render = function (req, res) {
     urlIfDeleted: req.shot.urlIfDeleted,
     expireTime: req.shot.expireTime.getTime(),
     deleted: req.shot.deleted,
-    buildTime: buildTime
+    buildTime: buildTime,
+    showIntro: showIntro
   };
   let body = React.renderToString(frame);
   let json = JSON.stringify(clientPayload);

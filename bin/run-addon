@@ -115,11 +115,24 @@ if [[ -z "$no_auto" ]] ; then
 fi
 
 cd build/addon
-jpm run --binary $binary --profile ../../Profile --no-copy --prefs $file \
-  2>&1 \
-  | grep --line-buffered \
-    -v -e 'WARNING: content window passed to PrivateBrowsingUtils.isWindowPrivate' \
-    -v -e '^JavaScript Warning' \
-    -v -e 'Using ... to indicate source[a-zA-Z]*URL' \
-    -v -e 'JavaScript 1.7.s let blocks' \
-    -v -e 'mutating the ..Prototype.. of an object' \
+
+if [[ -e "../../Profile" ]] ; then
+  jpm run --binary $binary --profile ../../Profile --no-copy --prefs $file \
+    2>&1 \
+    | grep --line-buffered \
+      -v -e 'WARNING: content window passed to PrivateBrowsingUtils.isWindowPrivate' \
+      -v -e '^JavaScript Warning' \
+      -v -e 'Using ... to indicate source[a-zA-Z]*URL' \
+      -v -e 'JavaScript 1.7.s let blocks' \
+      -v -e 'mutating the ..Prototype.. of an object'
+else
+  jpm run --binary $binary --prefs $file \
+    2>&1 \
+    | grep --line-buffered \
+      -v -e 'WARNING: content window passed to PrivateBrowsingUtils.isWindowPrivate' \
+      -v -e '^JavaScript Warning' \
+      -v -e 'Using ... to indicate source[a-zA-Z]*URL' \
+      -v -e 'JavaScript 1.7.s let blocks' \
+      -v -e 'mutating the ..Prototype.. of an object'
+fi
+
