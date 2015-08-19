@@ -535,17 +535,12 @@ self.port.on("recallShot", err.watchFunction(function (data) {
 }));
 
 class RecallPanel extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {copying: null};
-  }
-
   copy(event) {
-    let url = event.target.getAttribute("data-url");
-    this.setState({copying: url});
-    setTimeout(() => {
-      this.setState({copying: null});
-    }, 1000);
+    let el = event.target;
+    while (! el.hasAttribute("data-url")) {
+      el = el.parentNode;
+    }
+    let url = el.getAttribute("data-url");
     self.port.emit("copyLink", url);
   }
 
@@ -561,17 +556,14 @@ class RecallPanel extends React.Component {
   render() {
     let history = [];
     for (let shot of this.props.shots) {
-      let text = "";
-      if (this.state.copying == shot.viewUrl) {
-        text = "copied";
-      }
       let favicon = <div className="empty-favicon"></div>;
       if (shot.favicon) {
         favicon = <div className="favicon"><img src={shot.favicon} alt="" /></div>;
       }
+
       history.push(
         <li key={shot.id}>
-          <span className="copier" data-url={shot.viewUrl} onClick={this.copy.bind(this)}>{text}</span>
+          <span className="copier" data-url={shot.viewUrl} onClick={this.copy.bind(this)}>&nbsp;</span>
           <div className="title" data-id={shot.id} onClick={this.openShot.bind(this)}>
             {favicon}
             {shot.title}

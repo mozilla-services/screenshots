@@ -5,6 +5,7 @@ const { watchFunction, watchWorker, unhandled } = require("./errors");
 const ss = require("sdk/simple-storage");
 const clipboard = require("sdk/clipboard");
 const { AbstractShot } = require("./shared/shot");
+const notifications = require("sdk/notifications");
 
 const recallButton = ToggleButton({
   id: "pageshot-recall",
@@ -47,6 +48,11 @@ recallPanel.port.on("copyLink", watchFunction(function (url) {
     throw new Error("Got copyLink with non-string argument: " + url);
   }
   clipboard.set(url, "text");
+  notifications.notify({
+    title: "Link Copied",
+    text: "The link to your shot has been copied to the clipboard.",
+    iconURL: self.data.url("../data/copy.png")
+  });
 }));
 
 recallPanel.port.on("openLink", watchFunction(function (url) {

@@ -318,12 +318,10 @@ ul.recall-list li:hover {
 }
 
 .copier {
-  position: absolute;
-  top: 2px;
-  right: 2px;
+  float: right;
   display: inline-block;
   height: 1em;
-  width: 4em;
+  width: 1em;
   overflow: hidden;
   cursor: pointer;
   background-image: url(copy.png);
