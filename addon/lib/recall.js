@@ -7,12 +7,15 @@ const clipboard = require("sdk/clipboard");
 const { AbstractShot } = require("./shared/shot");
 const notifications = require("sdk/notifications");
 
+let hideInfoPanel = null;
+
 const recallButton = ToggleButton({
   id: "pageshot-recall",
   label: "View your shots",
   icon: self.data.url("icons/library-empty.svg"),
   onChange: function (state) {
     if (state.checked) {
+      hideInfoPanel();
       recallPanel.show();
     }
   }
@@ -188,4 +191,8 @@ exports.addRecall = function (shot) {
 
 exports.deleteEverything = function () {
   ss.storage.recentShots = [];
+}
+
+exports.initialize = function (hideIp) {
+  hideInfoPanel = hideIp;
 }
