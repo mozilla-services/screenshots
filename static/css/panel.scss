@@ -309,6 +309,7 @@ ul.recall-list .title {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow-x: hidden;
+  color: #0095dd;
 }
 
 ul.recall-list li:hover {
@@ -348,6 +349,15 @@ ul.recall-list li:hover {
 .title .favicon img {
   width: 16px;
   height: 16px;
+}
+
+.recall-header {
+  height: 1em;
+  padding: 0.5em;
+  border-top: 1px solid #ccc;
+  background-color: #eaeaea;
+  text-align: center;
+  font-size: 13px;
 }
 
 .see-more-row {
