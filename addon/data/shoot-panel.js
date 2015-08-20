@@ -130,7 +130,10 @@ class SimplifiedPanel extends React.Component {
       </div>
       <div className="simplified-edit-container">
         <button className="simplified-edit-button" onClick={ this.props.onClickEdit }>
-          Edit / Add
+          Edit Shot
+        </button>
+        <button className="simplified-edit-button" onClick={ this.props.onClickAdd }>
+          Add Clip
         </button>
       </div>
       <img className="alpha-badge" src="icons/alpha-badge.png" />
@@ -211,6 +214,7 @@ class ShootPanel extends React.Component {
       return <SimplifiedPanel
         clipUrl={ clipUrl }
         onClickEdit={ onClickEdit }
+        onClickAdd={ this.addClip.bind(this) }
         onCopyClick={ this.onCopyClick.bind(this) }
         onCopyImageClick={ this.onCopyImageClick.bind(this) }
         onCopyRichClick={ this.onCopyRichClick.bind(this) }
