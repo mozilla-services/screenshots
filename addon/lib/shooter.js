@@ -344,7 +344,11 @@ const ShotContext = Class({
         iconURL: self.data.url("../data/copy.png")
       });
     },
-    openLink: function (link) {
+    openLink: function (link, loadReason) {
+      if (loadReason === "install") {
+        this.panelContext.hide(this);
+        this.panelContext.showRecallTutorial();
+      }
       tabs.open(link);
     },
     setEditing: function(editing) {
