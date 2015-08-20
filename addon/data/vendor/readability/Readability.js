@@ -396,8 +396,13 @@ Readability.prototype = {
   _setNodeTag: function (node, tag) {
     this.log("_setNodeTag", node, tag);
     if (node.__JSDOMParser__) {
-      node.localName = tag.toLowerCase();
-      node.tagName = tag.toUpperCase();
+      try {
+        node.localName = tag.toLowerCase();
+        node.tagName = tag.toUpperCase();
+      } catch (e) {
+        // Do nothing
+        // FIXME: not sure why these raise exceptions sometimes
+      }
       return node;
     }
 
@@ -1807,12 +1812,28 @@ Readability.prototype = {
       }
     }
 
+    var readableIds = [];
+    function traverse(parent) {
+      for (var i=0; i<parent.childNodes.length; i++) {
+        var el = parent.childNodes[i];
+        if (el.id && el.id.indexOf("readability-") === 0) {
+          traverse(el);
+          continue;
+        }
+        if (el.id) {
+          readableIds.push(el.id);
+        }
+      }
+    }
+    traverse(articleContent);
+
     return { uri: this._uri,
              title: articleTitle,
              byline: metadata.byline || this._articleByline,
              dir: this._articleDir,
              content: articleContent.innerHTML,
              length: articleContent.textContent.length,
-             excerpt: metadata.excerpt };
+             excerpt: metadata.excerpt,
+             readableIds: readableIds };
   }
 };
