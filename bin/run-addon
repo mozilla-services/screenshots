@@ -8,6 +8,7 @@ no_auto=
 upload=
 nodemon_pid=
 server=http://localhost:10080
+scratch=
 
 binary=
 firefoxes="
@@ -49,6 +50,8 @@ help () {
   echo "      Do not watch for changes in the addon"
   echo "    -b or --binary BINARY"
   echo "      Use BINARY as the Firefox to run (default $binary)"
+  echo "    --scratch"
+  echo "      Use a scratch profile"
 }
 
 playsound () {
@@ -75,6 +78,10 @@ while [[ -n "$1" ]] ; do
     --upload)
       # Note: --upload is a hidden option used when nodemon triggers a restart
       upload=1
+      shift
+      ;;
+    --scratch)
+      scratch=1
       shift
       ;;
     *)
@@ -115,7 +122,13 @@ if [[ -z "$no_auto" ]] ; then
 fi
 
 cd build/addon
-jpm run --binary $binary --profile ../../Profile --no-copy --prefs $file \
+profile_option=
+if [[ -z "$scratch" ]] ; then
+  mkdir -p ../../Profile
+  profile_option="--profile ../../Profile"
+fi
+
+jpm run --binary $binary $profile_option --no-copy --prefs $file \
   2>&1 \
   | grep --line-buffered \
     -v -e 'WARNING: content window passed to PrivateBrowsingUtils.isWindowPrivate' \
@@ -123,3 +136,4 @@ jpm run --binary $binary --profile ../../Profile --no-copy --prefs $file \
     -v -e 'Using ... to indicate source[a-zA-Z]*URL' \
     -v -e 'JavaScript 1.7.s let blocks' \
     -v -e 'mutating the ..Prototype.. of an object' \
+    -v -e '^AlarmService'

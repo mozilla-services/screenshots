@@ -28,6 +28,10 @@ shared_addon_dest := $(shared_source:shared/%.js=build/addon/lib/shared/%.js)
 static_addon_source := $(shell find addon -type f -name '*.png' -o -name '*.svg' -o -name '*.html')
 static_addon_dest := $(static_addon_source:%=build/%)
 
+# static/js only gets copied to the server
+static_js_source := $(wildcard static/js/*.js)
+static_js_dest := $(static_js_source:%.js=build/server/%.js)
+
 lib_source := $(wildcard addon/lib/*.js)
 lib_dest := $(lib_source:%.js=build/%.js)
 
@@ -69,6 +73,10 @@ build/addon/data/vendor/%.js: addon/data/vendor/%.js
 	cp $< $@
 
 build/server/static/homepage/%.js: server/src/static/homepage/%.js
+	@mkdir -p $(@D)
+	cp $< $@
+
+build/server/static/js/%.js: static/js/%.js
 	@mkdir -p $(@D)
 	cp $< $@
 
@@ -178,7 +186,7 @@ build/server/static/js/server-bundle.js: $(clientglue_dependencies)
 # The intention here is to only write build-time when something else needs
 # to be regenerated, but for some reason this gets rewritten every time
 # anyway:
-build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass_server_dest) $(imgs_server_dest) $(patsubst server/db-patches/%,build/server/db-patches/%,$(wildcard server/db-patches/*))
+build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass_server_dest) $(imgs_server_dest) $(static_js_dest) $(patsubst server/db-patches/%,build/server/db-patches/%,$(wildcard server/db-patches/*))
 	@mkdir -p $(@D)
 	./bin/_write_build_time > build/server/build-time.js
 

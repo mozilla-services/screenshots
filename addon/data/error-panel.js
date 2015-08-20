@@ -11,17 +11,23 @@ self.port.on("showError", function (error) {
   if (error.helpHtml) {
     thisError.innerHTML = error.helpHtml;
   } else {
-    thisError.textContent = error.help || error.message || error.name || JSON.stringify(error);
+    let errorFallback = JSON.stringify(error);
+    if (errorFallback == "{}") {
+      errorFallback = error + "";
+    }
+    thisError.textContent = error.help || error.message || error.name || errorFallback;
   }
   var titleElement = document.querySelector("h1");
   titleElement.textContent = error.title || "PageShot Error :(";
-  console.error(new Date(), "PageShot Error :-(", thisError.textContent);
+  console.warn(new Date(), "PageShot Error :-(", thisError.textContent);
   if (error.stack) {
     console.error(error.stack);
   }
   thisError.setAttribute("data-timestamp", Date.now());
   cullErrors();
-  errorContainer.insertBefore(thisError, null);
+  if (! errorExists(thisError)) {
+    errorContainer.insertBefore(thisError, null);
+  }
 });
 
 var MAX_AGE = 3 * 60 * 1000; // 3 minutes
@@ -41,6 +47,16 @@ function cullErrors() {
       child.parentNode.removeChild(child);
     }
   }
+}
+
+function errorExists(el) {
+  var children = errorContainer.querySelectorAll(".error");
+  for (var i=0; i<children.length; i++) {
+    if (children[i].innerHTML == el.innerHTML) {
+      return true;
+    }
+  }
+  return false;
 }
 
 document.getElementById("clear").addEventListener("click", function () {

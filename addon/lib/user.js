@@ -9,6 +9,8 @@ const { FxAccountsProfileClient } = Cu.import("resource://gre/modules/FxAccounts
 const { deviceInfo } = require('./deviceinfo');
 const recall = require("./recall");
 
+let initialized = false;
+
 exports.deleteEverything = function () {
   let backend = require("./main").getBackend();
   ss.storage.deviceInfo = null;
@@ -17,47 +19,74 @@ exports.deleteEverything = function () {
   // we need to re-initialize to give us a new random deviceId, otherwise
   // we get errors once the shot panel is accessed.
   exports.initialize(backend);
-}
+};
+
+exports.isInitialized = function () {
+  return initialized;
+};
+
+let cachedBackend, cachedReason;
 
 exports.initialize = function (backend, reason) {
-  if (! (ss.storage.deviceInfo && ss.storage.deviceInfo.deviceId && ss.storage.deviceInfo.secret)) {
-    let info = {
-      deviceId: "anon" + makeUuid() + "",
-      secret: makeUuid()+"",
-      reason,
-      deviceInfo: JSON.stringify(deviceInfo())
-    };
-    console.info("Generating new device authentication ID", info.deviceId);
-    watchPromise(saveLogin(backend, info).then(function () {
-      ss.storage.deviceInfo = info;
-      console.info("Successfully saved ID");
-    }));
-  } else {
-    let info = ss.storage.deviceInfo;
-    let loginUrl = backend + "/api/login";
-    Request({
-      url: loginUrl,
-      contentType: "application/x-www-form-urlencoded",
-      content: {
-        deviceId: info.deviceId,
-        secret: info.secret,
+  // This lets us retry initialize() with no parameters later if necessary:
+  cachedBackend = backend = backend || cachedBackend;
+  cachedReason = reason = reason || cachedReason;
+  return new Promise((resolve, reject) => {
+    if (! (ss.storage.deviceInfo && ss.storage.deviceInfo.deviceId && ss.storage.deviceInfo.secret)) {
+      let info = {
+        deviceId: "anon" + makeUuid() + "",
+        secret: makeUuid()+"",
         reason,
         deviceInfo: JSON.stringify(deviceInfo())
-      },
-      onComplete: watchFunction(function (response) {
-        if (response.status == 404) {
-          // Need to save login anyway...
-          console.info("Login failed with 404, trying to register");
-          watchPromise(saveLogin(backend, info));
-          return;
-        } else if (response.status >= 300) {
-          throw new Error("Could not log in: " + response.status);
-        }
-        console.info("logged in with cookie:", !!response.headers["Set-Cookie"]);
-        // The only other thing we do is preload the cookies
-      })
-    }).post();
-  }
+      };
+      console.info("Generating new device authentication ID", info.deviceId);
+      watchPromise(saveLogin(backend, info).then(function () {
+        ss.storage.deviceInfo = info;
+        console.info("Successfully saved ID");
+        resolve();
+      })).catch((error) => {
+        reject(error);
+      });
+    } else {
+      let info = ss.storage.deviceInfo;
+      let loginUrl = backend + "/api/login";
+      Request({
+        url: loginUrl,
+        contentType: "application/x-www-form-urlencoded",
+        content: {
+          deviceId: info.deviceId,
+          secret: info.secret,
+          reason,
+          deviceInfo: JSON.stringify(deviceInfo())
+        },
+        onComplete: watchFunction(function (response) {
+          if (response.status == 404) {
+            // Need to save login anyway...
+            console.info("Login failed with 404, trying to register");
+            watchPromise(saveLogin(backend, info)).then(
+              () => {
+                resolve();
+              },
+              (error) => {
+                reject(error);
+              });
+            return;
+          } else if (response.status >= 300) {
+            let error = new Error("Could not log in: " + response.status);
+            reject(error);
+            return;
+          } else if (response.status === 0) {
+            let error = new Error("Could not log in, server unavailable");
+            reject(error);
+            return;
+          }
+          initialized = true;
+          console.info("logged in with cookie:", !!response.headers["Set-Cookie"]);
+          // The only other thing we do is preload the cookies
+        })
+      }).post();
+    }
+  });
 };
 
 function saveLogin(backend, info) {
@@ -70,6 +99,7 @@ function saveLogin(backend, info) {
       onComplete: function (response) {
         if (response.status == 200) {
           console.info("Registered login with cookie:", !!response.headers["Set-Cookie"]);
+          initialized = true;
           resolve();
         } else {
           reject(new Error("Bad response: " + response.status));
