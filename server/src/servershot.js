@@ -12,58 +12,6 @@ class Shot extends AbstractShot {
     this.ownerId = ownerId;
   }
 
-  convertAnyDataUrls(client, json, possibleClipsToInsert) {
-    let clips = possibleClipsToInsert.map((name) => this.getClip(name));
-    let unedited = [];
-    let toInsert = [];
-    for (let clip of clips) {
-      if (clip.image) {
-        if (clip.isDataUrl()) {
-          toInsert.push(clip.id);
-        } else {
-          unedited.push(clip.id);
-        }
-      }
-    }
-    let promise = Promise.resolve();
-    if (unedited.length) {
-      let deleteSql = `DELETE FROM images WHERE shotid = $1
-      AND clipid NOT IN (${db.markersForArgs(2, unedited.length)})`;
-      promise = db.queryWithClient(
-        client,
-        deleteSql,
-        [this.id].concat(unedited)
-      );
-    }
-    return promise.then(() => {
-      return Promise.all(
-        toInsert.map((clipId) => {
-          let clip = this.getClip(clipId);
-          let uid = uuid.v4();
-          let data = clip.imageBinary();
-          return db.queryWithClient(
-            client,
-            "DELETE FROM images WHERE shotid = $1 AND clipid = $2",
-            [this.id, clipId]
-          ).then((rows) => {
-            return db.queryWithClient(
-              client,
-              "INSERT INTO images (id, shotid, clipid, image, contenttype) VALUES ($1, $2, $3, $4, $5)",
-              [uid, this.id, clipId, data.data, data.contentType]);
-          }).then((rows) => {
-            let clip = this.getClip(clipId);
-            clip.image.url = linker.imageLinkWithHost(uid);
-            return {updateClipUrl: {clipId: clipId, url: clip.image.url}};
-          }).catch((err) => {
-            console.error("Error updating image:", clipId, err);
-          });
-        })
-      );
-    }).catch((err) => {
-      console.error("Error converting data urls:", err);
-    });
-  }
-
   oembedJson({maxheight, maxwidth}) {
     let body = renderOembedString({shot: this, maxheight, maxwidth, backend: this.backend});
     return {
@@ -91,8 +39,6 @@ class Shot extends AbstractShot {
   }
 
   insert() {
-    let json = this.asJson();
-    let possibleClipsToInsert = this.clipNames();
     return db.transaction((client) => {
       return db.queryWithClient(
         client, "SELECT id FROM data WHERE id = $1", [this.id]
@@ -102,71 +48,76 @@ class Shot extends AbstractShot {
           return false;
         }
 
-        // If the key doesn't already exist, go through the clips being inserted and
-        // check to see if we need to store any data: url encoded images
-        return this.convertAnyDataUrls(client, json, possibleClipsToInsert).then((oks) => {
-          let head = json.head;
-          let body = json.body;
-          json.head = null;
-          json.body = null;
-          oks.push({setHead: null});
-          oks.push({setBody: null});
-          return db.queryWithClient(
-            client,
-            `INSERT INTO data (id, deviceid, value, head, body, url)
-             VALUES ($1, $2, $3, $4, $5, $6)`,
-            [this.id, this.ownerId, JSON.stringify(json), head, body, json.url]
-          ).then((rowCount) => {
-            return oks;
-          }).catch((err) => {
-            if (err.code == '23505') {
-              // This is a duplicate key error, means the insert failed
-              return false;
-            }
-            throw err;
-          });
+        let clipRewrites = new ClipRewrites(this);
+        clipRewrites.rewriteShotUrls();
+        let oks = [];
+        let json = this.asJson();
+        let head = json.head;
+        let body = json.body;
+        json.head = null;
+        json.body = null;
+        oks.push({setHead: null});
+        oks.push({setBody: null});
+        return db.queryWithClient(
+          client,
+          `INSERT INTO data (id, deviceid, value, head, body, url)
+           VALUES ($1, $2, $3, $4, $5, $6)`,
+          [this.id, this.ownerId, JSON.stringify(json), head, body, json.url]
+        ).then((rowCount) => {
+          return clipRewrites.commit(client);
+        }).then(() => {
+          return oks;
+        }).catch((err) => {
+          if (err.code == '23505') {
+            // This is a duplicate key error, means the insert failed
+            clipRewrites.revertShotUrls();
+            return false;
+          }
+          throw err;
         });
       });
     });
   }
 
   update() {
+    let clipRewrites = new ClipRewrites(this);
+    clipRewrites.rewriteShotUrls();
     let json = this.asJson();
-    let possibleClipsToInsert = this.clipNames();
+    let oks = [];
     return db.transaction((client) => {
-      return this.convertAnyDataUrls(client, json, possibleClipsToInsert).then((oks) => {
-        let head = json.head;
-        let body = json.body;
-        json.head = null;
-        json.body = null;
-        if (head !== null) {
-          oks.push({setHead: null});
+      let head = json.head;
+      let body = json.body;
+      json.head = null;
+      json.body = null;
+      if (head !== null) {
+        oks.push({setHead: null});
+      }
+      if (body !== null) {
+        oks.push({setBody: null});
+      }
+      let promise;
+      if (head === null && body === null) {
+        promise = db.queryWithClient(
+          client,
+          `UPDATE data SET value = $1
+          WHERE id = $2 AND deviceid = $3`,
+          [JSON.stringify(json), this.id, this.ownerId]
+        );
+      } else {
+        promise = db.queryWithClient(
+          client,
+          `UPDATE data SET value = $1, head = $2, body = $3
+          WHERE id = $4 AND deviceid = $5`,
+          [JSON.stringify(json), head, body, this.id, this.ownerId]
+        );
+      }
+      return promise.then((rowCount) => {
+        if (! rowCount) {
+          throw new Error("No row updated");
         }
-        if (body !== null) {
-          oks.push({setBody: null});
-        }
-        let promise;
-        if (head === null && body === null) {
-          promise = db.queryWithClient(
-            client,
-            `UPDATE data SET value = $1
-            WHERE id = $2 AND deviceid = $3`,
-            [JSON.stringify(json), this.id, this.ownerId]
-          );
-        } else {
-          promise = db.queryWithClient(
-            client,
-            `UPDATE data SET value = $1, head = $2, body = $3
-            WHERE id = $4 AND deviceid = $5`,
-            [JSON.stringify(json), head, body, this.id, this.ownerId]
-          );
-        }
-        return promise.then((rowCount) => {
-          if (! rowCount) {
-            throw new Error("No row updated");
-          }
-          return oks;
-        });
+        return clipRewrites.commit(client);
+      }).then(() => {
+        return oks;
       });
     });
   }
@@ -203,6 +154,12 @@ class ServerClip extends AbstractShot.prototype.Clip {
       contentType: match[1],
       data: imageData
     };
+  }
+
+  setUrlFromBinary(binaryData) {
+    let url = "data:" + binaryData.contentType + ";base64,";
+    url += binaryData.data.toString("base64");
+    this.image.url = url;
   }
 }
 
@@ -296,7 +253,6 @@ Shot.getShotsForDevice = function (backend, deviceId) {
       ids
     );
   }).then((rows) => {
-    console.info("Index query:", Date.now() - timeStart, "ms total; device query:", timeMid - timeStart, "ms");
     let result = [];
     for (let i=0; i<rows.length; i++) {
       let row = rows[i];
@@ -335,3 +291,88 @@ Shot.deleteEverythingForDevice = function (backend, deviceId) {
 
   });
 };
+
+class ClipRewrites {
+
+  constructor(shot) {
+    this.shot = shot;
+    this.committed = false;
+    this.unedited = [];
+    this.toInsertClipIds = [];
+    this.toInsert = {};
+    for (let name of this.shot.clipNames()) {
+      let clip = this.shot.getClip(name);
+      if (clip.image && clip.isDataUrl()) {
+        this.toInsertClipIds.push(clip.id);
+        let imageId = uuid.v4();
+        this.toInsert[clip.id] = {
+          uuid: imageId,
+          url: linker.imageLinkWithHost(imageId),
+          binary: clip.imageBinary()
+        };
+      } else {
+        this.unedited.push(clip.id);
+      }
+    }
+  }
+
+  rewriteShotUrls() {
+    for (let clipId of this.toInsertClipIds) {
+      let url = this.toInsert[clipId].url;
+      let clip = this.shot.getClip(clipId);
+      clip.image.url = url;
+    }
+  }
+
+  revertShotUrls() {
+    for (let clipId of this.toInsertClipIds) {
+      let data = this.toInsert[clipId];
+      let clip = this.shot.getClip(clipId);
+      clip.setUrlFromBinary(data.binary);
+    }
+  }
+
+  commands() {
+    let commands = [];
+    for (let clipId of this.toInsertClipIds) {
+      let url = this.toInsert[clipId].url;
+      commands.push({updateClipUrl: {clipId, url}});
+    }
+    return commands;
+  }
+
+  commit(client) {
+    if (! this.toInsertClipIds.length) {
+      return Promise.resolve();
+    }
+    let query;
+    if (this.unedited.length) {
+      query = `DELETE FROM images
+               WHERE shotid = $1
+                    AND clipid NOT IN (${db.markersForArgs(2, this.unedited.length)})
+              `;
+    } else {
+      query = `DELETE FROM images WHERE shotid = $1`;
+    }
+    return db.queryWithClient(
+      client,
+      query,
+      [this.shot.id].concat(this.unedited)
+    ).then(() => {
+      return Promise.all(
+        this.toInsertClipIds.map((clipId) => {
+          let data = this.toInsert[clipId];
+          return db.queryWithClient(
+            client,
+            `INSERT INTO images (id, shotid, clipid, image, contenttype)
+             VALUES ($1, $2, $3, $4, $5)
+            `,
+            [data.uuid, this.shot.id, clipId, data.binary.data, data.binary.contentType]);
+        })
+      );
+    }).then(() => {
+      this.committed = true;
+    });
+  }
+
+}

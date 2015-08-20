@@ -234,7 +234,9 @@ exports.getBackend = function () {
 // For reasons see https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Listening_for_load_and_unload
 exports.main = function (options) {
   helperworker.trackMods(backendOverride || null);
-  require("./user").initialize(exports.getBackend(), options.loadReason);
+  require("./user").initialize(exports.getBackend(), options.loadReason).catch((error) => {
+    console.warn("Failed to log in to server:", error+"");
+  });
   require("./recall");
 };
 
@@ -246,12 +248,12 @@ exports.onUnload = function (reason) {
   require("./framescripter").unload();
   console.info("Informing site of unload reason:", reason);
   let deviceInfo = require("./deviceinfo").deviceInfo();
-  require("sdk/request").Request({
-    url: exports.getBackend() + "/api/unload",
+  require("./req").request(exports.getBackend() + "/api/unload", {
+    ignoreLogin: true,
     contentType: "application/x-www-form-urlencoded",
     content: {
       reason,
       deviceInfo: JSON.stringify(deviceInfo)
     }
-  }).post();
+  });
 };
