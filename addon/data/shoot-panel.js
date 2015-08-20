@@ -580,6 +580,9 @@ class RecallPanel extends React.Component {
     }
     return (
       <div className="container">
+        <div className="recall-header">
+          Recently created shots:
+        </div>
         <ul className="recall-list">
           {history}
         </ul>
