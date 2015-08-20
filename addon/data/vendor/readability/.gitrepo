@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/ianb/readability.git
+	branch = master
+	commit = 85101066386a0872526a6c4ae164c18fcd6cc1db
+	parent = 3bd2effc96a3907cdd9496a289fa3879ad45f3fc
+	cmdver = 0.2.3
