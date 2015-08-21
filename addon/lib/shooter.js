@@ -79,7 +79,7 @@ function extractWorker(tab) {
   const deferred = defer();
   const worker = tab.attach({
     contentScriptFile: [self.data.url("error-utils.js"),
-                        self.data.url("vendor/Readability.js"),
+                        self.data.url("vendor/readability/Readability.js"),
                         self.data.url("vendor/microformat-shiv.js"),
                         self.data.url("extractor-worker.js")]
   });

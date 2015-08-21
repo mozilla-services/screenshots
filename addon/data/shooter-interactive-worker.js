@@ -685,6 +685,10 @@ function ignoreElementForAutoSelect(el) {
 }
 
 function autoSelect(ids) {
+  if ((! ids) && (! extractedDataReceived)) {
+    extractedDataReceived = "waiting";
+    return true;
+  }
   var startTime = Date.now();
   ids = ids || autoIds;
   var i, el;
@@ -1006,6 +1010,7 @@ window.addEventListener("popstate", checkUrl, false);
 self.port.on("isShowing", checkUrl);
 
 let loadTime = Date.now();
+let extractedDataReceived = false;
 self.port.on("extractedData", watchFunction(function (data) {
   if (data.readable) {
     autoIds = data.readable.readableIds;
@@ -1013,6 +1018,12 @@ self.port.on("extractedData", watchFunction(function (data) {
       autoIds = null;
     }
   }
+  if (extractedDataReceived == "waiting") {
+    if (!autoSelect()) {
+      self.port.emit("visibleSelection");
+    }
+  }
+  extractedDataReceived = true;
   console.info("getting extractedData:", Date.now() - loadTime, "ms");
 }));
 
