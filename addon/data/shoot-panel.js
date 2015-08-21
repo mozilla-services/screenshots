@@ -48,7 +48,7 @@ class ImageClip extends React.Component {
     height = height + 'px';
     width = width + 'px';
 
-    return <img className="snippet-image" src={this.props.clip.image.url} style={{ height: height, width: width }} />;
+    return <img className="clip-image" src={this.props.clip.image.url} style={{ height: height, width: width }} />;
   }
 }
 
@@ -56,10 +56,10 @@ class ImageClip extends React.Component {
 class TextClip extends React.Component {
   render() {
     if (debugDisplayTextSource) {
-      return <textarea readOnly="1" className="snippet-text" value={this.props.clip.text.html} />;
+      return <textarea readOnly="1" className="clip-text" value={this.props.clip.text.html} />;
     }
     let html = {__html: this.props.clip.text.html};
-    return <div className="snippet-text" dangerouslySetInnerHTML={html}></div>;
+    return <div className="clip-text" dangerouslySetInnerHTML={html}></div>;
   }
 }
 
@@ -327,10 +327,10 @@ class ShootPanel extends React.Component {
         {modesRow}
       </div>
       {deleter}
-      <div className="snippet-container">
+      <div className="clip-container">
         {clipComponent}
       </div>
-      <div className="snippets-row">
+      <div className="clips-row">
         {selectors}
         {adder}
       </div>
