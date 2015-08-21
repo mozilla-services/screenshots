@@ -137,6 +137,19 @@ Readability.prototype = {
     this._fixRelativeUris(articleContent);
   },
 
+  _getDocumentElement: function () {
+    if (this._doc.documentElement) {
+      return this._doc.documentElement;
+    } else if (this._doc.ownerDocument) {
+      return this._doc.ownerDocument.documentElement;
+    }
+  },
+
+  _createElement: function (elementName) {
+    var owner = this._doc.createElement ? this._doc : this._doc.ownerDocument;
+    return owner.createElement(elementName);
+  },
+
   /**
    * Iterate over a NodeList, which doesn't natively fully implement the Array
    * interface.
@@ -319,8 +332,8 @@ Readability.prototype = {
       styleNode.parentNode.removeChild(styleNode);
     });
 
-    if (doc.body) {
-      this._replaceBrs(doc.body);
+    if (doc.body || doc.nodeType == doc.ELEMENT_TYPE) {
+      this._replaceBrs(doc.body || doc);
     }
 
     this._forEachNode(doc.getElementsByTagName("font"), function(fontNode) {
@@ -372,7 +385,7 @@ Readability.prototype = {
       // all sibling nodes as children of the <p> until we hit another <br>
       // chain.
       if (replaced) {
-        var p = this._doc.createElement("p");
+        var p = this._createElement("p");
         br.parentNode.replaceChild(p, br);
 
         next = p.nextSibling;
@@ -403,6 +416,11 @@ Readability.prototype = {
         // Do nothing
         // FIXME: not sure why these raise exceptions sometimes
       }
+      return node;
+    }
+
+    if (! node.parentNode) {
+      // Can't replace the node if it's the most parent node
       return node;
     }
 
@@ -619,7 +637,7 @@ Readability.prototype = {
     this.log("**** grabArticle ****");
     var doc = this._doc;
     var isPaging = (page !== null ? true: false);
-    page = page ? page : this._doc.body;
+    page = page ? page : doc.body || doc;
 
     // We can't grab an article if we don't have a page!
     if (!page) {
@@ -630,7 +648,7 @@ Readability.prototype = {
     var pageCacheHtml = page.innerHTML;
 
     // Check if any "dir" is set on the toplevel document element
-    this._articleDir = doc.documentElement.getAttribute("dir");
+    this._articleDir = this._getDocumentElement().getAttribute("dir");
 
     while (true) {
       var stripUnlikelyCandidates = this._flagIsActive(this.FLAG_STRIP_UNLIKELYS);
@@ -639,7 +657,7 @@ Readability.prototype = {
       // class name "comment", etc), and turn divs into P tags where they have been
       // used inappropriately (as in, where they contain no other block level elements.)
       var elementsToScore = [];
-      var node = this._doc.documentElement;
+      var node = doc.documentElement ? doc.documentElement : doc;
 
       while (node) {
         var matchString = node.className + " " + node.id;
@@ -683,7 +701,7 @@ Readability.prototype = {
             // EXPERIMENTAL
             this._forEachNode(node.childNodes, function(childNode) {
               if (childNode.nodeType === Node.TEXT_NODE) {
-                var p = doc.createElement('p');
+                var p = this._createElement('p');
                 p.textContent = childNode.textContent;
                 p.style.display = 'inline';
                 p.className = 'readability-styled';
@@ -779,7 +797,7 @@ Readability.prototype = {
       // We also have to copy the body node so it is something we can modify.
       if (topCandidate === null || topCandidate.tagName === "BODY") {
         // Move all of the page's children into topCandidate
-        topCandidate = doc.createElement("DIV");
+        topCandidate = this._createElement("DIV");
         neededToCreateTopCandidate = true;
         // Move everything (not just elements, also text nodes etc.) into the container
         // so we even include text directly in the body:
@@ -821,7 +839,7 @@ Readability.prototype = {
       // Now that we have the top candidate, look through its siblings for content
       // that might also be related. Things like preambles, content split by ads
       // that we removed, etc.
-      var articleContent = doc.createElement("DIV");
+      var articleContent = this._createElement("DIV");
       if (isPaging)
         articleContent.id = "readability-content";
 
@@ -897,7 +915,7 @@ Readability.prototype = {
           topCandidate.id = "readability-page-1";
           topCandidate.className = "page";
         } else {
-          var div = doc.createElement("DIV");
+          var div = this._createElement("DIV");
           div.id = "readability-page-1";
           div.className = "page";
           var children = articleContent.childNodes;
@@ -1416,7 +1434,7 @@ Readability.prototype = {
     var doc = this._doc;
     this._curPageNum += 1;
 
-    var articlePage = doc.createElement("DIV");
+    var articlePage = this._createElement("DIV");
     articlePage.id = 'readability-page-' + this._curPageNum;
     articlePage.className = 'page';
     articlePage.innerHTML = '<p class="page-separator" title="Page ' + this._curPageNum + '">&sect;</p>';
@@ -1448,7 +1466,7 @@ Readability.prototype = {
           }
 
           // TODO: this ends up doubling up page numbers on NYTimes articles. Need to generically parse those away.
-          var page = doc.createElement("DIV");
+          var page = this._createElement("DIV");
 
           // Do some preprocessing to our HTML to make it ready for appending.
           // - Remove any script tags. Swap and reswap newlines with a unicode
@@ -1765,7 +1783,7 @@ Readability.prototype = {
       }
     }
 
-    if (typeof this._doc.documentElement.firstElementChild === "undefined") {
+    if (typeof this._getDocumentElement().firstElementChild === "undefined") {
       this._getNextNode = this._getNextNodeNoElementProperties;
     }
     // Remove script tags from the document.
