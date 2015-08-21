@@ -175,7 +175,7 @@ class Frame extends React.Component {
         }
       }
     }
-    let ogTitle = "";
+    let ogTitle = null;
     if (this.props.shot && this.props.shot.ogTitle) {
       ogTitle = <meta propery="og:title" content={this.props.shot.ogTitle} />;
     }
