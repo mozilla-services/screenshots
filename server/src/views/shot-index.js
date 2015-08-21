@@ -24,6 +24,9 @@ class ShotIndex extends React.Component {
     for (let shot of this.props.shots) {
       children.push(this.renderShot(shot));
     }
+    if (children.length === 0) {
+      children = "You don't have any shots. Go create some.";
+    }
     return (
       <body>
         <h1>Your Shots</h1>

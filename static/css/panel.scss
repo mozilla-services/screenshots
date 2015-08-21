@@ -122,7 +122,7 @@ a:hover {
   font-weight: bold;
 }
 
-.snippets-row {
+.clips-row {
   position: absolute;
   bottom: 4.5em;
   left: 0px;
@@ -206,7 +206,7 @@ a:hover {
   text-align: right;
 }
 
-.snippet-container {
+.clip-container {
   position: absolute;
   top: 6.5em;
   left: 0.5em;
@@ -221,7 +221,7 @@ a:hover {
   align-items: center;
 }
 
-img.snippet-image {
+img.clip-image {
   flex-grow: 0;
   flex-shrink: 1;
   flex-basis: 0;
@@ -230,7 +230,7 @@ img.snippet-image {
   box-shadow: 0 2px 5px $shadow-color;
 }
 
-.snippet-text {
+.clip-text {
   position: absolute;
   top: 4.5em;
   left: 5%;
@@ -354,7 +354,7 @@ ul.recall-list li:hover {
 .recall-header {
   height: 1em;
   padding: 0.5em;
-  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   background-color: #eaeaea;
   text-align: center;
   font-size: 13px;
@@ -458,5 +458,22 @@ a.simplified-link, a.simplified-link:visited, a.simplified-link:link {
 }
 
 .simplified-edit-button {
-  width: 10em;
+  margin-left: 16px;
+  margin-right: 16px;
+  background-color: #FBFBFB;
+  border: 1px solid #C1C1C1;
+  border-radius: 2px;
+  color: #333;
+  font-size: 13.75px;
+  height: 30px;
+  line-height: 17px;
+  min-width: 79px;
+}
+
+.simplified-edit-button:hover {
+  background-color: #EBEBEB;
+}
+
+.simplified-edit-button:active {
+  background-color: #DADADA;
 }

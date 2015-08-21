@@ -6,7 +6,7 @@ const { getGitRevision } = require("../linker");
 const { ProfileButton } = require("./profile");
 const { addReactScripts } = require("../reactutils");
 
-class Snippet extends React.Component {
+class Clip extends React.Component {
   onClickComment(e) {
     e.preventDefault();
     let node = React.findDOMNode(this.refs.commentHolder),
@@ -30,7 +30,7 @@ class Snippet extends React.Component {
       comments_nodes = [];
 
     if (clip.image === undefined) {
-      node = <div className="text-snippet" dangerouslySetInnerHTML={{__html: clip.text.html}} />;
+      node = <div className="text-clip" dangerouslySetInnerHTML={{__html: clip.text.html}} />;
     } else {
       if (this.props.previousClip === null) {
         node = <img data-step="1" data-intro="This is the clip, saved as an image." src={ clip.image.url } />;
@@ -59,7 +59,7 @@ class Snippet extends React.Component {
       );
     }
 
-    return <div className="snippet-container">
+    return <div className="clip-container">
       <a href={'#clip=' + encodeURIComponent(clip.id)}>
         { node }
       </a>
@@ -199,7 +199,7 @@ class Frame extends React.Component {
     let shotId = this.props.shot.id;
     let shotDomain = this.props.shot.url; // FIXME: calculate
 
-    let snippets = [],
+    let clips = [],
       clipNames = shot.clipNames(),
       previousClip = null,
       nextClip = null;
@@ -214,7 +214,7 @@ class Frame extends React.Component {
         previousClip = shot.getClip(clipNames[i-1]);
       }
 
-      snippets.push(<Snippet staticLink={this.props.staticLink} key={ clipId } clip={ clip }  shotId={ shotId } shotDomain={ shotDomain } previousClip={ previousClip } nextClip={ nextClip } />);
+      clips.push(<Clip staticLink={this.props.staticLink} key={ clipId } clip={ clip }  shotId={ shotId } shotDomain={ shotDomain } previousClip={ previousClip } nextClip={ nextClip } />);
     }
 
     let previousClipNode = null,
@@ -310,7 +310,7 @@ class Frame extends React.Component {
           <p><a className="subheading-link" href={ shot.url }>{ linkTextShort }</a></p>
           <p>saved {timeDiff} (expires { expiresDiff })</p>
         </div>
-        { snippets }
+        { clips }
         <div id="full-page-button-scrollable">
           <a data-step="2" data-intro="Scroll down or click here to see the full copy of the page." href="#" className="full-page-button-styles" onClick={ this.clickFullPageButton.bind(this) }>
             <span className="full-page-button-arrow">▾</span>
