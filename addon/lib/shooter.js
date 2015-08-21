@@ -123,6 +123,13 @@ const ShotContext = Class({
     this.watchTab("activate", function () {
       panelContext.show(this);
     });
+    // FIXME: this is to work around a bug where deactivate sometimes isn't called
+    this._activateWorkaround = (function (tab) {
+      if (tab != this.tab && this.panelContext._activeContext == this) {
+        panelContext.hide(this);
+      }
+    }).bind(this);
+    tabs.on("activate", this._activateWorkaround);
     this.watchTab("pageshow", function (tab) {
       // We'll call any pageshow as a sign that at least we reloaded, and should
       // stop the pageshot
@@ -524,6 +531,7 @@ const ShotContext = Class({
     }
     this.interactiveWorker.destroy();
     this.interactiveWorker = null;
+    tabs.removeListener("activate", this._activateWorkaround);
   }
 
 });

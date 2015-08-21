@@ -4,6 +4,7 @@ const db = require("./db");
 const uuid = require("uuid");
 const linker = require("./linker");
 const config = require("./config").root();
+let ClipRewrites;
 
 class Shot extends AbstractShot {
 
@@ -226,8 +227,6 @@ Shot.getShotsForDevice = function (backend, deviceId) {
   if (! deviceId) {
     throw new Error("Empty deviceId: " + deviceId);
   }
-  let timeStart = Date.now();
-  let timeMid;
   return db.select(
     `SELECT DISTINCT devices.id
      FROM devices, devices AS devices2
@@ -237,7 +236,6 @@ Shot.getShotsForDevice = function (backend, deviceId) {
     `,
     [deviceId]
   ).then((rows) => {
-    timeMid = Date.now();
     let ids = [];
     let idNums = [];
     for (let i=0; i<rows.length; i++) {
@@ -292,7 +290,7 @@ Shot.deleteEverythingForDevice = function (backend, deviceId) {
   });
 };
 
-class ClipRewrites {
+ClipRewrites = class ClipRewrites {
 
   constructor(shot) {
     this.shot = shot;
@@ -375,4 +373,4 @@ class ClipRewrites {
     });
   }
 
-}
+};
