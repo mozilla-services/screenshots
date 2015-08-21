@@ -354,7 +354,7 @@ ul.recall-list li:hover {
 .recall-header {
   height: 1em;
   padding: 0.5em;
-  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   background-color: #eaeaea;
   text-align: center;
   font-size: 13px;
@@ -458,5 +458,22 @@ a.simplified-link, a.simplified-link:visited, a.simplified-link:link {
 }
 
 .simplified-edit-button {
-  width: 10em;
+  margin-left: 16px;
+  margin-right: 16px;
+  background-color: #FBFBFB;
+  border: 1px solid #C1C1C1;
+  border-radius: 2px;
+  color: #333;
+  font-size: 13.75px;
+  height: 30px;
+  line-height: 17px;
+  min-width: 79px;
+}
+
+.simplified-edit-button:hover {
+  background-color: #EBEBEB;
+}
+
+.simplified-edit-button:active {
+  background-color: #DADADA;
 }
