@@ -122,7 +122,7 @@ a:hover {
   font-weight: bold;
 }
 
-.snippets-row {
+.clips-row {
   position: absolute;
   bottom: 4.5em;
   left: 0px;
@@ -206,7 +206,7 @@ a:hover {
   text-align: right;
 }
 
-.snippet-container {
+.clip-container {
   position: absolute;
   top: 6.5em;
   left: 0.5em;
@@ -221,7 +221,7 @@ a:hover {
   align-items: center;
 }
 
-img.snippet-image {
+img.clip-image {
   flex-grow: 0;
   flex-shrink: 1;
   flex-basis: 0;
@@ -230,7 +230,7 @@ img.snippet-image {
   box-shadow: 0 2px 5px $shadow-color;
 }
 
-.snippet-text {
+.clip-text {
   position: absolute;
   top: 4.5em;
   left: 5%;
