@@ -7,7 +7,7 @@
 const self = require("sdk/self");
 const tabs = require("sdk/tabs");
 const { captureTab } = require("./screenshot");
-const Request = require("sdk/request").Request;
+const { request } = require("./req");
 const { callScript } = require("./framescripter");
 const { defer } = require('sdk/core/promise');
 const { Class } = require('sdk/core/heritage');
@@ -79,7 +79,7 @@ function extractWorker(tab) {
   const deferred = defer();
   const worker = tab.attach({
     contentScriptFile: [self.data.url("error-utils.js"),
-                        self.data.url("vendor/Readability.js"),
+                        self.data.url("vendor/readability/Readability.js"),
                         self.data.url("vendor/microformat-shiv.js"),
                         self.data.url("extractor-worker.js")]
   });
@@ -123,6 +123,13 @@ const ShotContext = Class({
     this.watchTab("activate", function () {
       panelContext.show(this);
     });
+    // FIXME: this is to work around a bug where deactivate sometimes isn't called
+    this._activateWorkaround = (function (tab) {
+      if (tab != this.tab && this.panelContext._activeContext == this) {
+        panelContext.hide(this);
+      }
+    }).bind(this);
+    tabs.on("activate", this._activateWorkaround);
     this.watchTab("pageshow", function (tab) {
       // We'll call any pageshow as a sign that at least we reloaded, and should
       // stop the pageshot
@@ -344,7 +351,11 @@ const ShotContext = Class({
         iconURL: self.data.url("../data/copy.png")
       });
     },
-    openLink: function (link) {
+    openLink: function (link, loadReason) {
+      if (loadReason === "install") {
+        this.panelContext.hide(this);
+        this.panelContext.showRecallTutorial();
+      }
       tabs.open(link);
     },
     setEditing: function(editing) {
@@ -452,7 +463,6 @@ const ShotContext = Class({
       promises.push(watchPromise(extractWorker(this.tab)).then(watchFunction(function (attrs) {
         this.interactiveWorker.port.emit("extractedData", attrs);
         this.shot.update(attrs);
-        this.updateShot();
       }, this)));
       promises.push(watchPromise(callScript(
         this.tab,
@@ -460,7 +470,6 @@ const ShotContext = Class({
         "pageshot@documentStaticData",
         {})).then(watchFunction(function (attrs) {
           this.shot.update(attrs);
-          this.updateShot();
         }, this)));
       watchPromise(allPromisesComplete(promises).then((function () {
         return this.shot.save();
@@ -522,6 +531,7 @@ const ShotContext = Class({
     }
     this.interactiveWorker.destroy();
     this.interactiveWorker = null;
+    tabs.removeListener("activate", this._activateWorkaround);
   }
 
 });
@@ -552,45 +562,40 @@ class Shot extends AbstractShot {
   }
 
   _sendJson(attrs, method) {
-    let deferred = defer();
     if (! Object.keys(attrs).length) {
-      deferred.resolve(false);
-      return deferred.promise;
+      return Promise.resolve(false);
     }
     let url = this.jsonUrl;
     let body = JSON.stringify(attrs);
-    Request({
-      url: url,
+    return request(url, {
       content: body,
       contentType: "application/json",
-      onComplete: watchFunction((response) => {
-        if (response.status >= 200 && response.status < 300) {
-          for (let update of response.json.updates) {
-            if (update.clipId && update.url) {
-              this.updateClipUrl(update.clipId, update.url);
-            } else if (update.setHead) {
-              this.head = update.setHead;
-            } else if (update.setBody) {
-              this.body = update.setBody;
-            }
+      method: method,
+    }).then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        for (let update of response.json.updates) {
+          if (update.clipId && update.url) {
+            this.updateClipUrl(update.clipId, update.url);
+          } else if (update.setHead) {
+            this.head = update.setHead;
+          } else if (update.setBody) {
+            this.body = update.setBody;
           }
-          deferred.resolve(true);
-        } else {
-          let message;
-          if (response.status === 0) {
-            message = "The request to " + url + " didn't complete due to the server being unavailable";
-          } else {
-            message = "The request to " + url + " (" + Math.floor(body.length / 1000) + "Kb) returned a response " + response.status;
-          }
-          deferred.reject({
-            name: "REQUEST_ERROR",
-            message: message,
-            response: response
-          });
         }
-      })
-    })[method]();
-    return deferred.promise;
+        return true;
+      } else {
+        let message;
+        if (response.status === 0) {
+          message = "The request to " + url + " didn't complete due to the server being unavailable";
+        } else {
+          message = "The request to " + url + " (" + Math.floor(body.length / 1000) + "Kb) returned a response " + response.status;
+        }
+        let error = new Error(message);
+        error.name = "REQUEST_ERROR";
+        error.response = response;
+        throw error;
+      }
+    });
   }
 
 }

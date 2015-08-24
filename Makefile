@@ -3,7 +3,7 @@ SHELL := /bin/bash
 BABEL := babel --retain-lines
 .DEFAULT_GOAL := help
 
-.PHONY: all clean server addon xpi homepage
+.PHONY: all clean server addon xpi homepage npm
 
 # This forces bin/_write_ga_id to be run before anything else, which
 # writes the configured Google Analytics ID to build/ga-id.txt
@@ -27,6 +27,10 @@ shared_addon_dest := $(shared_source:shared/%.js=build/addon/lib/shared/%.js)
 
 static_addon_source := $(shell find addon -type f -name '*.png' -o -name '*.svg' -o -name '*.html')
 static_addon_dest := $(static_addon_source:%=build/%)
+
+# static/js only gets copied to the server
+static_js_source := $(wildcard static/js/*.js)
+static_js_dest := $(static_js_source:%.js=build/server/%.js)
 
 lib_source := $(wildcard addon/lib/*.js)
 lib_dest := $(lib_source:%.js=build/%.js)
@@ -69,6 +73,10 @@ build/addon/data/vendor/%.js: addon/data/vendor/%.js
 	cp $< $@
 
 build/server/static/homepage/%.js: server/src/static/homepage/%.js
+	@mkdir -p $(@D)
+	cp $< $@
+
+build/server/static/js/%.js: static/js/%.js
 	@mkdir -p $(@D)
 	cp $< $@
 
@@ -116,7 +124,7 @@ build/addon/data/panel-bundle.js: $(shoot_panel_dependencies)
 	@mkdir -p $(@D)
 	# Save the bundle dependencies:
 	browserify --list -e ./build/addon/data/shoot-panel.js | sed "s!$(shell pwd)/!!g" > build/shoot-panel-dependencies.txt
-	browserify -o $@ -e ./build/addon/data/shoot-panel.js
+	browserify -e ./build/addon/data/shoot-panel.js | ./bin/_fixup_panel_js > $@
 
 # We don't need babel on these specific modules:
 build/addon/lib/shared/%.js: build/shared/%.js
@@ -146,14 +154,17 @@ build/mozilla-pageshot.xpi: addon addon/package.json
 	cd build/addon && jpm xpi
 	mv build/addon/jid1-NeEaf3sAHdKHPA@jetpack-*.xpi build/mozilla-pageshot.xpi
 
+build/mozilla-pageshot.update.rdf: addon/template.update.rdf build/mozilla-pageshot.xpi
+	_sub_rdf_checkout_version < build/addon/package.json > build/mozilla-pageshot.update.rdf
+
 # FIXME: not sure what purpose this has, given _set_package_version
 build/addon/package.json: addon/package.json
 	@mkdir -p $(@D)
 	cp $< $@
 
-addon: $(data_dest) $(vendor_dest) $(lib_dest) $(sass_addon_dest) $(imgs_addon_dest) $(static_addon_dest) $(shared_addon_dest) build/addon/data/panel-bundle.js build/addon/package.json
+addon: npm $(data_dest) $(vendor_dest) $(lib_dest) $(sass_addon_dest) $(imgs_addon_dest) $(static_addon_dest) $(shared_addon_dest) build/addon/data/panel-bundle.js build/addon/package.json
 
-xpi: build/mozilla-pageshot.xpi
+xpi: build/mozilla-pageshot.xpi build/mozilla-pageshot.update.rdf
 
 ## Server related rules:
 
@@ -175,11 +186,11 @@ build/server/static/js/server-bundle.js: $(clientglue_dependencies)
 # The intention here is to only write build-time when something else needs
 # to be regenerated, but for some reason this gets rewritten every time
 # anyway:
-build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass_server_dest) $(imgs_server_dest) $(patsubst server/db-patches/%,build/server/db-patches/%,$(wildcard server/db-patches/*))
+build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass_server_dest) $(imgs_server_dest) $(static_js_dest) $(patsubst server/db-patches/%,build/server/db-patches/%,$(wildcard server/db-patches/*))
 	@mkdir -p $(@D)
 	./bin/_write_build_time > build/server/build-time.js
 
-server: build/server/build-time.js build/server/static/js/server-bundle.js
+server: npm build/server/build-time.js build/server/static/js/server-bundle.js
 
 ## Homepage related rules:
 
@@ -194,7 +205,14 @@ build/server/static/homepage/%: build/server/src/static/homepage/%
 
 homepage: build/server/static/homepage/index.html $(patsubst server/src/static/homepage/%,build/server/static/homepage/%,$(shell find server/src/static/homepage -type f ! -name index.html))
 
-## General rules
+## npm rule
+
+npm: build/.npm-install.log
+
+build/.npm-install.log: package.json
+	# Essentially .npm-install.log is just a timestamp showing the last time we ran
+	# the command
+	npm install > build/.npm-install.log
 
 # This causes intermediate files to be kept (e.g., files in static/ which are copied to the addon and server but aren't used/required directly):
 .SECONDARY:

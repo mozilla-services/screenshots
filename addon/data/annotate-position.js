@@ -4,11 +4,17 @@
 function annotatePosition(pos) {
   function findElement(x, y) {
     let element = document.elementFromPoint(x, y);
-    if (! element) {
+    if ((! element) || (! element.id)) {
       // FIXME: not sure if this is a reasonable fallback
       element = document.body;
     }
-    if (! element.id) {
+    let id;
+    if (element == document.body) {
+      id = "body";
+    } else {
+      id = "#" + element.id;
+    }
+    if (! id) {
       throw new Error("Element has no id: " + element + " " + element.tagName + "." + (element.className || "(no class)"));
     }
     let bodyRect = document.body.getBoundingClientRect();
@@ -16,7 +22,7 @@ function annotatePosition(pos) {
     let elementTop = elementRect.top - bodyRect.top;
     let elementLeft = elementRect.left - bodyRect.left;
     return {
-      element: "#" + element.id,
+      element: id,
       x: x - elementLeft,
       y: y - elementTop,
       height: elementRect.height,

@@ -23,10 +23,7 @@
     "pg": "4.3.0",
     "pg-patcher": "0.3.0",
     "react": "0.13.3",
-    "react-router": "0.13.3",
-    "source-map-support": "0.2.10",
     "uuid": "2.0.1",
-    "vinyl-source-stream": "1.1.0",
     "wreck": "5.5.1"
   }
 }

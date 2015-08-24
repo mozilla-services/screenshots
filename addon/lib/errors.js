@@ -23,7 +23,20 @@ panel.port.on("close", function () {
 exports.unhandled = function (error) {
   // TODO: remove this circular dependency
   panel.show({position: require("./main").shootButton});
-  panel.port.emit("showError", error);
+  let errorObj = error;
+  if (error.help || error.message || error.name) {
+    errorObj = {
+      help: error.help,
+      message: error.message,
+      name: error.name
+    };
+  } else {
+    errorObj = JSON.stringify(error);
+    if (errorObj == "{}") {
+      errorObj = error + "";
+    }
+  }
+  panel.port.emit("showError", errorObj);
 };
 
 /** Turns an exception object (likely Error) into what might be a kind of
@@ -77,7 +90,7 @@ exports.watchFunction = function (func, context) {
     try {
       result = func.apply(this, arguments);
     } catch (e) {
-      console.error("Error in", func.name, ":", e+"");
+      console.warn("Error in", func.name, ":", e+"");
       exports.unhandled(exports.makeError(e));
       throw e;
     }

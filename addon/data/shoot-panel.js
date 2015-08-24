@@ -48,7 +48,7 @@ class ImageClip extends React.Component {
     height = height + 'px';
     width = width + 'px';
 
-    return <img className="snippet-image" src={this.props.clip.image.url} style={{ height: height, width: width }} />;
+    return <img className="clip-image" src={this.props.clip.image.url} style={{ height: height, width: width }} />;
   }
 }
 
@@ -56,10 +56,10 @@ class ImageClip extends React.Component {
 class TextClip extends React.Component {
   render() {
     if (debugDisplayTextSource) {
-      return <textarea readOnly="1" className="snippet-text" value={this.props.clip.text.html} />;
+      return <textarea readOnly="1" className="clip-text" value={this.props.clip.text.html} />;
     }
     let html = {__html: this.props.clip.text.html};
-    return <div className="snippet-text" dangerouslySetInnerHTML={html}></div>;
+    return <div className="clip-text" dangerouslySetInnerHTML={html}></div>;
   }
 }
 
@@ -101,7 +101,11 @@ class ShareButtons extends React.Component {
 
 class SimplifiedPanel extends React.Component {
   onClickLink(e) {
-    self.port.emit("openLink", this.props.shot.viewUrl);
+    let url = this.props.shot.viewUrl;
+    if (this.props.loadReason === "install") {
+      url += "?showIntro=true";
+    }
+    self.port.emit("openLink", url, this.props.loadReason);
     e.preventDefault();
   }
 
@@ -114,16 +118,22 @@ class SimplifiedPanel extends React.Component {
         <a className="simplified-link" href="#" onClick={ this.onClickLink.bind(this) }>
           { stripProtocol(this.props.shot.viewUrl) }
         </a>
+        <div className="instructions-text">
+          Click the link to go to the shot page...
+        </div>
       </div>
       <div className="simplified-share-buttons">
         <div className="instructions-text">
-          Now go and share it!
+          ...or use the buttons below to share the link.
         </div>
         <ShareButtons large={ true } { ...this.props } />
       </div>
       <div className="simplified-edit-container">
         <button className="simplified-edit-button" onClick={ this.props.onClickEdit }>
-          Edit / Add
+          Edit Shot
+        </button>
+        <button className="simplified-edit-button" onClick={ this.props.onClickAdd }>
+          Add Clip
         </button>
       </div>
       <img className="alpha-badge" src="icons/alpha-badge.png" />
@@ -204,6 +214,7 @@ class ShootPanel extends React.Component {
       return <SimplifiedPanel
         clipUrl={ clipUrl }
         onClickEdit={ onClickEdit }
+        onClickAdd={ this.addClip.bind(this) }
         onCopyClick={ this.onCopyClick.bind(this) }
         onCopyImageClick={ this.onCopyImageClick.bind(this) }
         onCopyRichClick={ this.onCopyRichClick.bind(this) }
@@ -316,10 +327,10 @@ class ShootPanel extends React.Component {
         {modesRow}
       </div>
       {deleter}
-      <div className="snippet-container">
+      <div className="clip-container">
         {clipComponent}
       </div>
-      <div className="snippets-row">
+      <div className="clips-row">
         {selectors}
         {adder}
       </div>
@@ -503,11 +514,11 @@ function truncatedCopy(obj) {
   return result;
 }
 
-self.port.on("shotData", err.watchFunction(function (data) {
-  renderData(data);
+self.port.on("shotData", err.watchFunction(function (data, loadReason) {
+  renderData(data, loadReason);
 }));
 
-function renderData(data) {
+function renderData(data, loadReason) {
   if (! data) {
     data = lastData;
   }
@@ -523,7 +534,7 @@ function renderData(data) {
   // https://github.com/mozilla-services/pageshot/issues/436
   document.body.innerHTML = "";
   React.render(
-    <ShootPanel activeClipName={ data.activeClipName } shot={ myShot } isEditing={ data.isEditing } />,
+    <ShootPanel activeClipName={ data.activeClipName } shot={ myShot } isEditing={ data.isEditing } loadReason={ loadReason } />,
     document.body);
 }
 
@@ -535,17 +546,12 @@ self.port.on("recallShot", err.watchFunction(function (data) {
 }));
 
 class RecallPanel extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {copying: null};
-  }
-
   copy(event) {
-    let url = event.target.getAttribute("data-url");
-    this.setState({copying: url});
-    setTimeout(() => {
-      this.setState({copying: null});
-    }, 1000);
+    let el = event.target;
+    while (! el.hasAttribute("data-url")) {
+      el = el.parentNode;
+    }
+    let url = el.getAttribute("data-url");
     self.port.emit("copyLink", url);
   }
 
@@ -561,17 +567,14 @@ class RecallPanel extends React.Component {
   render() {
     let history = [];
     for (let shot of this.props.shots) {
-      let text = "";
-      if (this.state.copying == shot.viewUrl) {
-        text = "copied";
-      }
       let favicon = <div className="empty-favicon"></div>;
       if (shot.favicon) {
         favicon = <div className="favicon"><img src={shot.favicon} alt="" /></div>;
       }
+
       history.push(
         <li key={shot.id}>
-          <span className="copier" data-url={shot.viewUrl} onClick={this.copy.bind(this)}>{text}</span>
+          <span className="copier" data-url={shot.viewUrl} onClick={this.copy.bind(this)}>&nbsp;</span>
           <div className="title" data-id={shot.id} onClick={this.openShot.bind(this)}>
             {favicon}
             {shot.title}
@@ -581,6 +584,9 @@ class RecallPanel extends React.Component {
     }
     return (
       <div className="container">
+        <div className="recall-header">
+          Recently created shots:
+        </div>
         <ul className="recall-list">
           {history}
         </ul>

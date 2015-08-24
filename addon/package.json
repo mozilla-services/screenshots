@@ -4,6 +4,9 @@
   "id": "jid1-NeEaf3sAHdKHPA@jetpack",
   "description": "Take and share shots of the sites you are on",
   "author": "Ian Bicking",
+  "contributors": ["Donovan Preston", "Bram Pitoyo"],
+  "homepage": "https://github.com/mozilla-services/pageshot",
+  "icon": "data/icons/pageshot-camera-empty.svg",
   "license": "MPL 2.0",
   "version": "0.1.0",
   "main": "./lib/main",
@@ -15,5 +18,6 @@
       "type": "string",
       "value": "https://pageshot.dev.mozaws.net"
     }
-  ]
+  ],
+  "updateURL": "https://pageshot.dev.mozaws.net/xpi/mozilla-pageshot.update.rdf"
 }

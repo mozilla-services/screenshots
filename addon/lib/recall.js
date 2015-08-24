@@ -5,6 +5,9 @@ const { watchFunction, watchWorker, unhandled } = require("./errors");
 const ss = require("sdk/simple-storage");
 const clipboard = require("sdk/clipboard");
 const { AbstractShot } = require("./shared/shot");
+const notifications = require("sdk/notifications");
+
+let hideInfoPanel = null;
 
 const recallButton = ToggleButton({
   id: "pageshot-recall",
@@ -12,6 +15,7 @@ const recallButton = ToggleButton({
   icon: self.data.url("icons/library-empty.svg"),
   onChange: function (state) {
     if (state.checked) {
+      hideInfoPanel();
       recallPanel.show();
     }
   }
@@ -47,6 +51,11 @@ recallPanel.port.on("copyLink", watchFunction(function (url) {
     throw new Error("Got copyLink with non-string argument: " + url);
   }
   clipboard.set(url, "text");
+  notifications.notify({
+    title: "Link Copied",
+    text: "The link to your shot has been copied to the clipboard.",
+    iconURL: self.data.url("../data/copy.png")
+  });
 }));
 
 recallPanel.port.on("openLink", watchFunction(function (url) {
@@ -66,39 +75,37 @@ recallPanel.port.on("viewShot", watchFunction(function (id) {
   let backend = require("./main").getBackend();
   let url = backend + "/data/" + id;
   console.info("requesting", url);
-  require("sdk/request").Request({
-    url: url,
-    onComplete: watchFunction(function (response) {
-      if (response.status === 404) {
-        let origUrl = getOrigUrlForId(id) || backend + id;
-        origUrl = origUrl.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
-        unhandled({
-          title: "Shot not found",
-          message: "The shot has been lost",
-          helpHtml: `
-          We are sorry, the shot has been lost from the server.
-          Go to <a target="_blank" href="${origUrl}">${origUrl}</a> to see the original page.
-          `
-        });
-        return;
-      }
-      let json = response.json;
-      if (! json) {
-        console.error("No/null JSON received from server at:", url, "status:", response.status);
-      }
-      console.info("got viewShot data", Object.keys(json));
-      console.info("clips:", Object.keys(json.clips));
-      let clipId = Object.keys(json.clips)[0];
-      if (clipId) {
-        let clip = json.clips[clipId];
-        console.info("clip", clipId, clip.image.url.length);
-      }
-      let shot = new AbstractShot(backend, id, json);
-      panelViewingId = shot.id;
-      panelViewingClips[shot.id] = shot.clipNames()[0];
-      sendShot(shot);
-    })
-  }).get();
+  require("./req").request(url, {
+  }).then((response) => {
+    if (response.status === 404) {
+      let origUrl = getOrigUrlForId(id) || backend + id;
+      origUrl = origUrl.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+      unhandled({
+        title: "Shot not found",
+        message: "The shot has been lost",
+        helpHtml: `
+        We are sorry, the shot has been lost from the server.
+        Go to <a target="_blank" href="${origUrl}">${origUrl}</a> to see the original page.
+        `
+      });
+      return;
+    }
+    let json = response.json;
+    if (! json) {
+      console.error("No/null JSON received from server at:", url, "status:", response.status);
+    }
+    console.info("got viewShot data", Object.keys(json));
+    console.info("clips:", Object.keys(json.clips));
+    let clipId = Object.keys(json.clips)[0];
+    if (clipId) {
+      let clip = json.clips[clipId];
+      console.info("clip", clipId, clip.image.url.length);
+    }
+    let shot = new AbstractShot(backend, id, json);
+    panelViewingId = shot.id;
+    panelViewingClips[shot.id] = shot.clipNames()[0];
+    sendShot(shot);
+  });
 }));
 
 recallPanel.port.on("viewRecallIndex", watchFunction(function () {
@@ -178,4 +185,12 @@ exports.addRecall = function (shot) {
   if (panelViewingId == shot.id) {
     sendShot(shot);
   }
+};
+
+exports.deleteEverything = function () {
+  ss.storage.recentShots = [];
+};
+
+exports.initialize = function (hideIp) {
+  hideInfoPanel = hideIp;
 };

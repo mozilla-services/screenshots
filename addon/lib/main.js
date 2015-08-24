@@ -1,3 +1,4 @@
+/* globals UITour */
 /** The main module is loaded on startup
 
 This also contains the UI that is directly in the browser,
@@ -16,8 +17,15 @@ const helperworker = require("./helperworker");
 const { ToggleButton } = require('sdk/ui/button/toggle');
 const panels = require("sdk/panel");
 const { watchFunction, watchWorker } = require("./errors");
+const {Cu} = require("chrome");
+const winutil = require("sdk/window/utils");
 
-const PANEL_SHORT_HEIGHT = 190;
+Cu.import("resource:///modules/UITour.jsm");
+
+let loadReason = null;
+let PanelContext;
+
+const PANEL_SHORT_HEIGHT = 220;
 const PANEL_TALL_HEIGHT = 500;
 
 // FIXME: this button should somehow keep track of whether there is an active shot associated with this page
@@ -26,6 +34,7 @@ var shootButton = ToggleButton({
   label: "Make shot",
   icon: self.data.url("icons/pageshot-camera-empty.svg"),
   onClick: watchFunction(function () {
+    hideInfoPanel();
     PanelContext.onShootButtonClicked();
   })
 });
@@ -63,7 +72,7 @@ watchWorker(shootPanel);
     messages from the panel (data/shoot-panel.js) to the individual
     ShotContext.
     */
-const PanelContext = {
+PanelContext = {
   _contexts: {},
   _activeContext: null,
   _stickyPanel: false,
@@ -169,6 +178,7 @@ const PanelContext = {
     if (this._activeContext !== shotContext) {
       return;
     }
+
     shootPanel.port.emit("shotData",
       {
         backend: shotContext.shot.backend,
@@ -176,7 +186,8 @@ const PanelContext = {
         shot: shotContext.shot.asJson(),
         activeClipName: shotContext.activeClipName,
         isEditing: shotContext.isEditing
-      }
+      },
+      loadReason
     );
   },
 
@@ -206,6 +217,13 @@ const PanelContext = {
 
   addContext: function (shotContext) {
     this._contexts[shotContext.id] = shotContext;
+  },
+
+  showRecallTutorial: function () {
+    showInfoPanel(
+      "toggle-button--jid1-neeaf3sahdkhpajetpack-pageshot-recall",
+      "Recall Panel",
+      "Click the recall button to access all the shots you have created.");
   }
 };
 
@@ -231,10 +249,44 @@ exports.getBackend = function () {
   return backendOverride || prefs.backend;
 };
 
+let infoPanelShownForWindow = null;
+
+function showInfoPanel(magicCookie, title, description) {
+  let win = winutil.getMostRecentBrowserWindow();
+  let target = {
+    node: win.document.getElementById(magicCookie),
+    targetName: magicCookie
+  };
+  UITour.showInfo(win, null, target, title, description);
+  UITour.showHighlight(win, target, "wobble");
+  infoPanelShownForWindow = win;
+}
+
+function hideInfoPanel() {
+  if (infoPanelShownForWindow) {
+    UITour.hideInfo(infoPanelShownForWindow);
+    UITour.hideHighlight(infoPanelShownForWindow);
+    infoPanelShownForWindow = null;
+  }
+}
+
 // For reasons see https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Listening_for_load_and_unload
 exports.main = function (options) {
+  loadReason = options.loadReason;
+  if (options.loadReason === "install") {
+    let helpurl = exports.getBackend() + "/homepage/help.html";
+    let win = winutil.getMostRecentBrowserWindow();
+    win.loadURI(helpurl);
+    showInfoPanel(
+      "toggle-button--jid1-neeaf3sahdkhpajetpack-pageshot-shooter",
+      "Welcome to PageShot",
+      "Click the camera button to take a carbon copy of any webpage");
+  }
   helperworker.trackMods(backendOverride || null);
-  require("./user").initialize(exports.getBackend(), options.loadReason);
+  require("./user").initialize(exports.getBackend(), options.loadReason).catch((error) => {
+    console.warn("Failed to log in to server:", error+"");
+  });
+  require("./recall").initialize(hideInfoPanel);
   require("./recall");
 };
 
@@ -246,12 +298,12 @@ exports.onUnload = function (reason) {
   require("./framescripter").unload();
   console.info("Informing site of unload reason:", reason);
   let deviceInfo = require("./deviceinfo").deviceInfo();
-  require("sdk/request").Request({
-    url: exports.getBackend() + "/api/unload",
+  require("./req").request(exports.getBackend() + "/api/unload", {
+    ignoreLogin: true,
     contentType: "application/x-www-form-urlencoded",
     content: {
       reason,
       deviceInfo: JSON.stringify(deviceInfo)
     }
-  }).post();
+  });
 };
