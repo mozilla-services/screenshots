@@ -23,9 +23,19 @@ function extractData() {
   // working around the parts of the code that seem to expect
   // something different)
   let startReader = Date.now();
-  var reader = new Readability(location.href, readableDiv);
+  let uri = {
+    spec: location.href,
+    host: location.host,
+    prePath: location.scheme + "://" + location.host,
+    scheme: location.scheme,
+    pathBase: location.href.replace(/\/[^\/]*$/, "/")
+  };
+  var reader = new Readability(uri, readableDiv);
   var readable = reader.parse();
-  console.info("Readability time:", Date.now() - startReader, "ms");
+  if (readable) {
+    delete readable.uri;
+  }
+  console.info("Readability time:", Date.now() - startReader, "ms", "success:", !! readable);
   let startMicro = Date.now();
   var microdata = microformats.getItems();
   console.info("Microdata time:", Date.now() - startMicro, "ms");

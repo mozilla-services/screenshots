@@ -1,3 +1,4 @@
+/* globals UITour */
 /** The main module is loaded on startup
 
 This also contains the UI that is directly in the browser,
@@ -18,11 +19,11 @@ const panels = require("sdk/panel");
 const { watchFunction, watchWorker } = require("./errors");
 const {Cu} = require("chrome");
 const winutil = require("sdk/window/utils");
-const timers = require("sdk/timers");
 
 Cu.import("resource:///modules/UITour.jsm");
 
 let loadReason = null;
+let PanelContext;
 
 const PANEL_SHORT_HEIGHT = 220;
 const PANEL_TALL_HEIGHT = 500;
@@ -71,7 +72,7 @@ watchWorker(shootPanel);
     messages from the panel (data/shoot-panel.js) to the individual
     ShotContext.
     */
-const PanelContext = {
+PanelContext = {
   _contexts: {},
   _activeContext: null,
   _stickyPanel: false,
@@ -255,7 +256,7 @@ function showInfoPanel(magicCookie, title, description) {
   let target = {
     node: win.document.getElementById(magicCookie),
     targetName: magicCookie
-  }
+  };
   UITour.showInfo(win, null, target, title, description);
   UITour.showHighlight(win, target, "wobble");
   infoPanelShownForWindow = win;
