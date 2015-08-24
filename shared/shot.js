@@ -389,10 +389,12 @@ ${options.addBody || ""}
   get urlDisplay() {
     if (this.url.search(/^https?/i) != -1) {
       let txt = this.url;
-      txt = txt.replace(/[a-z]+:\/\//i, "");
+      txt = txt.replace(/^[a-z]+:\/\//i, "");
       txt = txt.replace(/\/.*/, "");
       txt = txt.replace(/^www\./i, "");
       return txt;
+    } else if (this.url.startsWith("data:")) {
+      return "data:url";
     } else {
       let txt = this.url;
       txt = txt.replace(/\?.*/, "");
