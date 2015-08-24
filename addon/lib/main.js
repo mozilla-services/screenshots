@@ -300,10 +300,23 @@ exports.onUnload = function (reason) {
   let deviceInfo = require("./deviceinfo").deviceInfo();
   require("./req").request(exports.getBackend() + "/api/unload", {
     ignoreLogin: true,
+    method: "post",
     contentType: "application/x-www-form-urlencoded",
     content: {
       reason,
       deviceInfo: JSON.stringify(deviceInfo)
     }
   });
+  // We can't rely on the server removing cookies, because the request may not
+  // complete locally, since the addon is being destroyed
+  removeCookies();
 };
+
+/** Remove the user and user.sig cookies for the backend */
+function removeCookies() {
+  let namespace = {};
+  Cu.import('resource://gre/modules/Services.jsm', namespace);
+  let domain = require("sdk/url").URL(exports.getBackend()).hostname;
+  namespace.Services.cookies.add(domain, "/", "user", "", false, false, false, 0)
+  namespace.Services.cookies.add(domain, "/", "user.sig", "", false, false, false, 0)
+}
