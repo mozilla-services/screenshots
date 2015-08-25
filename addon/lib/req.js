@@ -3,6 +3,7 @@ const user = require("./user");
 
 exports.request = function (url, options) {
   options.method = options.method || "get";
+  options.method = options.method.toLowerCase();
   if (typeof options.expectedStatus === "string") {
     options.expectedStatus = [options.expectedStatus];
   }

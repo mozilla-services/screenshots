@@ -2,6 +2,7 @@ const React = require("react");
 const { Shell } = require("./shell");
 const { addReactScripts } = require("../reactutils");
 const { getGitRevision } = require("../linker");
+const { TimeDiff } = require("./frame");
 
 class ShotIndex extends React.Component {
   render() {
@@ -38,12 +39,28 @@ class ShotIndex extends React.Component {
   }
 
   renderShot(shot) {
+    let bgEl = null;
+    let img = shot.favicon;
+    if (shot.images && shot.images.length) {
+      img = shot.images[0].url;
+    }
+    if (img) {
+      bgEl = <img src={img} />;
+    }
     return (
       <div className="shot" key={shot.id}>
-        <h2 className="title"><a href={shot.viewUrl}>{shot.title}</a></h2>
-        <div className="shot-link-container"><a href={shot.url} className="subheading-link" target="_blank">
-          { shot.urlDisplay }
-        </a></div>
+        <div className="shot-background">{bgEl}</div>
+        <a href={shot.viewUrl}><div className="title-container">
+          <h2 className="title">{shot.title}</h2>
+        </div></a>
+        <div className="shot-footer">
+          <div className="shot-date">
+            <TimeDiff date={shot.createdDate} />
+          </div>
+          <div className="shot-link-container"><a href={shot.url} className="subheading-link" target="_blank">
+            { shot.urlDisplay }
+          </a></div>
+        </div>
       </div>
     );
   }
