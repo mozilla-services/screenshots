@@ -127,6 +127,10 @@ app.post("/api/login", function (req, res) {
 app.post("/api/unload", function (req, res) {
   let reason = req.body.reason;
   console.info("Device", req.deviceId, "unloaded for reason:", reason);
+  let cookies = new Cookies(req, res, dbschema.getKeygrip());
+  // This erases the session cookie:
+  cookies.set("user");
+  cookies.set("user.sig");
   simpleResponse(res, "Noted", 200);
 });
 

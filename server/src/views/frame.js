@@ -117,6 +117,8 @@ class TimeDiff extends React.Component {
   }
 }
 
+exports.TimeDiff = TimeDiff;
+
 class Frame extends React.Component {
   closeGetPageshotBanner() {
     let node = document.getElementById("use-pageshot-to-create");
@@ -282,6 +284,7 @@ class Frame extends React.Component {
               avatarurl={ this.props.avatarurl }
               nickname={ this.props.nickname }
               email={ this.props.email }
+              deviceId={ this.props.deviceId }
             />
           </div>
         <div id="toolbar">
@@ -360,6 +363,7 @@ exports.render = function (req, res) {
     productName: req.config.productName,
     isExtInstalled: true,
     gaId: req.config.gaId,
+    deviceId: req.deviceId,
     buildTime: buildTime,
     showIntro: showIntro,
     shotDomain: req.url // FIXME: should be a property of the shot
@@ -373,6 +377,7 @@ exports.render = function (req, res) {
     id: req.shot.id,
     productName: req.config.productName,
     gaId: req.config.gaId,
+    deviceId: req.deviceId,
     shotDomain: req.url,
     urlIfDeleted: req.shot.urlIfDeleted,
     expireTime: req.shot.expireTime.getTime(),
