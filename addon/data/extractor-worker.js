@@ -80,7 +80,7 @@ function findImages(elements) {
   for (var i=0; i<elements.length; i++) {
     var el = elements[i].element;
     var isReadable = elements[i].isReadable;
-    var ogs = el.querySelectorAll("meta[property='og:image']");
+    var ogs = el.querySelectorAll("meta[property='og:image'], meta[name='twitter:image']");
     var j;
     for (j=0; j<ogs.length; j++) {
       var src = ogs[i].getAttribute("content");

@@ -371,27 +371,54 @@ a.subheading-link {
   flex-wrap: wrap;
   padding: 20px;
 
-  .shot {
+  .shot-background {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    z-index: -1;
+    overflow: hidden;
     background-color: #fff;
     border-radius: 2px;
-    padding: 5px;
+  }
+
+  .shot-background img {
+    /* We have to expand the image to keep the blurred edges hidden: */
+    margin-left: -5px;
+    margin-top: -5px;
+    width: 210px;
+    height: 210px;
+    filter: blur(5px);
+  }
+
+  .shot {
+    border-radius: 2px;
+    padding: 0;
     box-shadow: 0 -2px 5px $shadow-color;
-    width: 250px;
+    width: 200px;
+    height: 200px;
     margin: 8px;
   }
 
-  .shot-link-container {
+  .shot-footer {
     text-align: center;
+    font-size: 13px;
+  }
+
+  .shot-date {
+    color: #000;
+  }
+
+  .title-container {
+    height: 80%;
   }
 
   h2 {
     a {
-      color: #000;
+      color: #fff;
     }
+    background: rgba(0, 0, 0, 0.6);
+    padding: 5px;
     font-size: 16px;
     margin: 0px 0px 3px 0px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 }
