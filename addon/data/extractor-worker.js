@@ -67,7 +67,7 @@ function findImages(elements) {
   var images = [];
   var found = {};
   function addImage(imgData) {
-    if (! (imgData && imgData.src)) {
+    if (! (imgData && imgData.url)) {
       return;
     }
     // FIXME: handle relative links
