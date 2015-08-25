@@ -53,6 +53,9 @@ exports.ProfileButton = class ProfileButton extends React.Component {
   }
 
   render() {
+    if (this.props.deviceId === undefined) {
+      return <span>&nbsp;</span>;
+    }
     let { avatarurl } = this.props;
     if (! avatarurl) {
       avatarurl = this.props.staticLink("img/profile-anonymous.svg");
@@ -158,7 +161,6 @@ exports.Profile = class Profile extends React.Component {
             onKeyPress={ this.onKeyPressName.bind(this) }
             placeholder="Pick a name for yourself" />
         </div>
-        <div className="label">Sync</div>
         {syncStatus}
       </div>
     );
