@@ -26,7 +26,7 @@ help () {
 
 playsound () {
   if [[ -e /usr/bin/afplay ]] ; then
-    afplay $1
+    afplay $1 &
   fi
 }
 
