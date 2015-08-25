@@ -34,7 +34,7 @@ export class Shell extends React.Component {
          ga("send", "pageview");
        })();
       `;
-      gaScript = <script src="//www.google-analytics.com/analytics.js"></script>;
+      gaScript = <script src="//www.google-analytics.com/analytics.js" async></script>;
     } else {
       gaJs = `
       window.ga = function () {
