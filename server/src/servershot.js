@@ -258,7 +258,13 @@ Shot.getShotsForDevice = function (backend, deviceId) {
       if (json === null) {
         console.warn("Unable to parse json for row", row.deviceid, row.id, row.value);
       } else {
-        let shot = new Shot(row.deviceid, backend, row.id, json);
+        let shot;
+        try {
+          shot = new Shot(row.deviceid, backend, row.id, json);
+        } catch (e) {
+          console.warn("Error instantiating shot:", e);
+          continue;
+        }
         result.push(shot);
       }
     }

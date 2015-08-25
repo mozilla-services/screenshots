@@ -117,6 +117,8 @@ class TimeDiff extends React.Component {
   }
 }
 
+exports.TimeDiff = TimeDiff;
+
 class Frame extends React.Component {
   closeGetPageshotBanner() {
     let node = document.getElementById("use-pageshot-to-create");
