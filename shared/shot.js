@@ -227,6 +227,8 @@ class AbstractShot {
       this.readable = new this.Readable(attrs.readable);
     }
     this.deviceId = attrs.deviceId || null;
+    this.openGraph = attrs.openGraph || null;
+    this.twitterCard = attrs.twitterCard || null;
     this._clips = {};
     if (attrs.clips) {
       for (let clipId in attrs.clips) {
@@ -453,6 +455,7 @@ ${options.addBody || ""}
   }
   // FIXME: no delete, nor comment editing
 
+  // FIXME: deprecate
   get ogTitle() {
     return this._ogTitle;
   }
@@ -460,6 +463,34 @@ ${options.addBody || ""}
     assert(val === null || typeof val == "string", "Bad ogTitle:", val);
     this._dirty("ogTitle");
     this._ogTitle = val;
+  }
+
+  get openGraph() {
+    return this._openGraph || null;
+  }
+  set openGraph(val) {
+    assert(val === null || typeof val == "object", "Bad openGraph:", val);
+    this._dirty("openGraph");
+    if (val) {
+      assert(checkObject(val, [], this._OPENGRAPH_PROPERTIES), "Bad attr to openGraph:", Object.keys(val));
+      this._openGraph = val;
+    } else {
+      this._openGraph = null;
+    }
+  }
+
+  get twitterCard() {
+    return this._twitterCard || null;
+  }
+  set twitterCard(val) {
+    assert(val === null || typeof val == "object", "Bad twitterCard:", val);
+    this._dirty("twitterCard");
+    if (val) {
+      assert(checkObject(val, [], this._TWITTERCARD_PROPERTIES), "Bad attr to twitterCard:", Object.keys(val));
+      this._twitterCard = val;
+    } else {
+      this._twitterCard = null;
+    }
   }
 
   get userTitle() {
@@ -472,7 +503,8 @@ ${options.addBody || ""}
   }
 
   get title() {
-    return this.userTitle || this.ogTitle || this.docTitle || this.url;
+    let ogTitle = this.openGraph && this.openGraph.title;
+    return this.userTitle || this.ogTitle || this.ogTitle || this.docTitle || this.url;
   }
 
   get createdDate() {
@@ -660,11 +692,27 @@ ${options.addBody || ""}
 AbstractShot.prototype.REGULAR_ATTRS = (`
 deviceId url docTitle ogTitle userTitle createdDate createdDevice favicon
 history comments hashtags images readable head body htmlAttrs bodyAttrs
-headAttrs microdata siteName
+headAttrs microdata siteName openGraph twitterCard
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`
 deviceId url docTitle ogTitle userTitle createdDate createdDevice favicon
+openGraph twitterCard images
+`).split(/\s+/g);
+
+AbstractShot.prototype._OPENGRAPH_PROPERTIES = (`
+title type url image audio description determiner locale site_name video
+image:secure_url image:type image:width image:height
+video:secure_url video:type video:width image:height
+audio:secure_url audio:type
+article:published_time article:modified_time article:expiration_time article:author article:section article:tag
+book:author book:isbn book:release_date book:tag
+profile:first_name profile:last_name profile:username profile:gender
+`).split(/\s+/g);
+
+AbstractShot.prototype._TWITTERCARD_PROPERTIES = (`
+card site title description image
+player player:width player:height player:stream player:stream:content_type
 `).split(/\s+/g);
 
 /** Represents the list of history items leading up to the given shot */
