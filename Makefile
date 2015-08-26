@@ -72,7 +72,7 @@ build/addon/data/vendor/%.js: addon/data/vendor/%.js
 	@mkdir -p $(@D)
 	cp $< $@
 
-build/server/static/homepage/%.js: server/src/static/homepage/%.js
+build/server/static/homepage/%.js: static/homepage/%.js
 	@mkdir -p $(@D)
 	cp $< $@
 
@@ -195,15 +195,15 @@ server: npm build/server/build-time.js build/server/static/js/server-bundle.js
 ## Homepage related rules:
 
 # The only non-static file, we substitute the Google Analytics ID in here:
-build/server/static/homepage/index.html: server/src/static/homepage/index.html build/ga-id.txt
+build/server/static/homepage/index.html: static/homepage/index.html build/ga-id.txt
 	mkdir -p $(@D)
 	sed "s/GA_ID/$(shell cat build/ga-id.txt)/g" < $< > $@
 
-build/server/static/homepage/%: server/src/static/homepage/%
+build/server/static/homepage/%: static/homepage/%
 	@mkdir -p $(@D)
 	cp $< $@
 
-homepage: build/server/static/homepage/index.html $(patsubst server/src/static/homepage/%,build/server/static/homepage/%,$(shell find server/src/static/homepage -type f ! -name index.html))
+homepage: build/server/static/homepage/index.html $(patsubst static/homepage/%,build/server/static/homepage/%,$(shell find static/homepage -type f ! -name index.html))
 
 ## npm rule
 
