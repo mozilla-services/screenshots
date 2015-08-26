@@ -199,7 +199,7 @@ build/server/static/homepage/index.html: server/src/static/homepage/index.html b
 	mkdir -p $(@D)
 	sed "s/GA_ID/$(shell cat build/ga-id.txt)/g" < $< > $@
 
-build/server/static/homepage/%: build/server/src/static/homepage/%
+build/server/static/homepage/%: server/src/static/homepage/%
 	@mkdir -p $(@D)
 	cp $< $@
 
