@@ -6,6 +6,7 @@
 const { getBrowserForTab } = require('sdk/tabs/utils');
 const { defer } = require('sdk/core/promise');
 const { viewFor } = require("sdk/view/core");
+const { setTimeout, clearTimeout } = require("sdk/timers");
 
 let DEBUG = false;
 let loadedTimestamp = Date.now();
@@ -86,6 +87,7 @@ function makeId() {
 }
 
 const pendingDeferreds = {};
+const pendingTimeouts = {};
 
 /** Adds the script to the given tab
 
@@ -98,7 +100,10 @@ const pendingDeferreds = {};
 
     Returns a promise that resolves when the return message is sent.
     */
-exports.callScript = function (tab, script, message, payload) {
+exports.callScript = function (tab, script, message, payload, timeout) {
+  if (timeout === undefined) {
+    timeout = 3000;
+  }
   exports.addScript(tab, script);
   let browser = getBrowser(tab);
   let messages = browser.framescripterEnabledScripts[script];
@@ -114,6 +119,20 @@ exports.callScript = function (tab, script, message, payload) {
   payload.callId = id;
   logDebug("Sending [" + message + ":call]/" + id + " with payload:", payload);
   browserMM.sendAsyncMessage(message + ":call", payload);
+  if (timeout) {
+    pendingTimeouts[id] = setTimeout(function () {
+      if (pendingDeferreds[id]) {
+        // The promise has not yet completed
+        var deferred = pendingDeferreds[id];
+        delete pendingDeferreds[id];
+        delete pendingTimeouts[id];
+        logDebug("Script timed out:", script, method, "after:", timeout);
+        deferred.reject(new Error("Timeout after " + timeout + "ms"));
+      } else {
+        logDebug("Timeout ran despite deferred being completed, for:", script, method);
+      }
+    }, timeout)
+  }
   return deferred.promise;
 };
 
@@ -125,6 +144,10 @@ function callScriptReturner(event) {
     throw new Error("Expired deferred");
   }
   delete pendingDeferreds[event.data.callId];
+  if (pendingTimeouts[event.data.callId]) {
+    clearTimeout(pendingTimeouts[event.data.callId]);
+    delete pendingTimeouts[event.data.callId];
+  }
   logDebug("Received /" + event.data.callId + " with payload:", event.data);
   if (event.data.error) {
     deferred.reject(event.data.error);
