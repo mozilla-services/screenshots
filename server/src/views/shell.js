@@ -48,8 +48,8 @@ export class Shell extends React.Component {
         <title>{this.props.title}</title>
         {gaScript}
         {gaCode}
-        <link rel="stylesheet" href={ this.props.staticLink("css/introjs.css") } />
-        <script src={ this.props.staticLink("js/intro.js") } />
+        <link rel="stylesheet" href={ this.props.staticLink("vendor/introjs/introjs.css") } />
+        <script src={ this.props.staticLink("vendor/introjs/intro.js") } />
         <script src={ this.props.staticLink("js/server-bundle.js") } />
         <link rel="stylesheet" href={ this.props.staticLink("css/styles.css") } />
         <link rel="stylesheet" href={ this.props.staticLink("css/profile.css") } />

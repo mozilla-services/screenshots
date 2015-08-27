@@ -32,6 +32,9 @@ static_addon_dest := $(static_addon_source:%=build/%)
 static_js_source := $(wildcard static/js/*.js)
 static_js_dest := $(static_js_source:%.js=build/server/%.js)
 
+static_vendor_source := $(shell find static/vendor -type f)
+static_vendor_dest := $(static_vendor_source:%=build/server/%)
+
 lib_source := $(wildcard addon/lib/*.js)
 lib_dest := $(lib_source:%.js=build/%.js)
 
@@ -72,11 +75,15 @@ build/addon/data/vendor/%.js: addon/data/vendor/%.js
 	@mkdir -p $(@D)
 	cp $< $@
 
+build/server/static/vendor/%: static/vendor/%
+	@mkdir -p $(@D)
+	cp $< $@
+
 build/server/static/homepage/%.js: static/homepage/%.js
 	@mkdir -p $(@D)
 	cp $< $@
 
-build/server/static/js/%.js: static/js/%.js
+build/server/static/js/%.js: build/static/js/%.js
 	@mkdir -p $(@D)
 	cp $< $@
 
@@ -186,7 +193,7 @@ build/server/static/js/server-bundle.js: $(clientglue_dependencies)
 # The intention here is to only write build-time when something else needs
 # to be regenerated, but for some reason this gets rewritten every time
 # anyway:
-build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass_server_dest) $(imgs_server_dest) $(static_js_dest) $(patsubst server/db-patches/%,build/server/db-patches/%,$(wildcard server/db-patches/*))
+build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass_server_dest) $(imgs_server_dest) $(static_js_dest) $(static_vendor_dest) $(patsubst server/db-patches/%,build/server/db-patches/%,$(wildcard server/db-patches/*))
 	@mkdir -p $(@D)
 	./bin/_write_build_time > build/server/build-time.js
 
