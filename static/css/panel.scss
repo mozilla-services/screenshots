@@ -79,8 +79,7 @@ a:hover {
 }
 
 .add-screen-header {
-  margin: 2em;
-  margin-bottom: 0.5em;
+  margin: 0.5em 2em;
   text-align: center;
 }
 
@@ -455,11 +454,12 @@ a.simplified-link, a.simplified-link:visited, a.simplified-link:link {
   left: 0.5em;
   right: 0.5em;
   text-align: center;
+  button {
+    margin: 0 16px;
+  }
 }
 
 .simplified-edit-button {
-  margin-left: 16px;
-  margin-right: 16px;
   background-color: #FBFBFB;
   border: 1px solid #C1C1C1;
   border-radius: 2px;

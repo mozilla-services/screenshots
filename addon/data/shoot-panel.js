@@ -383,22 +383,22 @@ class ShootPanel extends React.Component {
       </p>
       <div className="add-row">
         <div className="button-row">
-          <button onClick={this.addAuto.bind(this)}>Add Auto-Detect</button>
+          <button className="simplified-edit-button" onClick={this.addAuto.bind(this)}>Add Auto-Detect</button>
         </div>
       </div>
       <div className="add-row">
         <div className="button-row">
-          <button onClick={this.addSelection.bind(this)}>Add Selection</button>
+          <button className="simplified-edit-button" onClick={this.addSelection.bind(this)}>Add Selection</button>
         </div>
       </div>
       <div className="add-row">
         <div className="button-row">
-          <button onClick={this.addVisible.bind(this)}>Add Visible</button>
+          <button className="simplified-edit-button" onClick={this.addVisible.bind(this)}>Add Visible</button>
         </div>
       </div>
       <div className="add-row cancel-row">
         <div className="button-row">
-          <button onClick={this.addCancel.bind(this)}>Cancel</button>
+          <button className="simplified-edit-button" onClick={this.addCancel.bind(this)}>Cancel</button>
         </div>
       </div>
     </div>);
@@ -407,7 +407,7 @@ class ShootPanel extends React.Component {
 /*
 <div className="add-row">
   <div className="button-row">
-    <button onClick={this.addText.bind(this)}>Add Text Selection</button>
+    <button className="simplified-edit-button" onClick={this.addText.bind(this)}>Add Text Selection</button>
   </div>
 </div>
 */
