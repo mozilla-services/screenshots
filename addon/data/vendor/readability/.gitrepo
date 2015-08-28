@@ -6,6 +6,6 @@
 [subrepo]
 	remote = https://github.com/ianb/readability.git
 	branch = master
-	commit = 4eb7d736c038d58381fe28759a1b3ced45884956
-	parent = 5f022f47380f9fa43cd10e415d6b559d5772f996
+	commit = c0bf126d38f51f9af2a9d07a102e6f337fcb7df4
+	parent = affe7a4d9320b49bf69ae545f885440ee67c7f97
 	cmdver = 0.2.3

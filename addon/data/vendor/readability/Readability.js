@@ -150,6 +150,11 @@ Readability.prototype = {
     return owner.createElement(elementName);
   },
 
+  _createTextNode: function (content) {
+    var owner = this._doc.createTextNode ? this._doc : this._doc.ownerDocument;
+    return owner.createTextNode(content);
+  },
+
   /**
    * Iterate over a NodeList, which doesn't natively fully implement the Array
    * interface.
@@ -244,7 +249,7 @@ Readability.prototype = {
         // Replace links with javascript: URIs with text content, since
         // they won't work after scripts have been removed from the page.
         if (href.indexOf("javascript:") === 0) {
-          var text = this._doc.createTextNode(link.textContent);
+          var text = this._createTextNode(link.textContent);
           link.parentNode.replaceChild(text, link);
         } else {
           link.setAttribute("href", toAbsoluteURI(href));
@@ -272,6 +277,7 @@ Readability.prototype = {
     var origTitle = "";
 
     try {
+      // FIXME: won't get title in PageShot
       curTitle = origTitle = doc.title;
 
       // If they had an element with id "title" in their HTML
@@ -810,7 +816,7 @@ Readability.prototype = {
         page.appendChild(topCandidate);
 
         this._initializeNode(topCandidate);
-      } else if (topCandidate) {
+      } else if (topCandidate && topCandidate.parentNode) {
         // Because of our bonus system, parents of candidates might have scores
         // themselves. They get half of the node. There won't be nodes with higher
         // scores than our topCandidate, but if we see the score going *up* in the first
@@ -844,7 +850,7 @@ Readability.prototype = {
         articleContent.id = "readability-content";
 
       var siblingScoreThreshold = Math.max(10, topCandidate.readability.contentScore * 0.2);
-      var siblings = topCandidate.parentNode.children;
+      var siblings = topCandidate.parentNode ? topCandidate.parentNode.children : [topCandidate];
 
       for (var s = 0, sl = siblings.length; s < sl; s++) {
         var sibling = siblings[s];
@@ -976,6 +982,7 @@ Readability.prototype = {
   _getArticleMetadata: function() {
     var metadata = {};
     var values = {};
+    // FIXME: this will fail to get the meta elements in PageShot
     var metaElements = this._doc.getElementsByTagName("meta");
 
     // Match "description", or Twitter's "twitter:description" (Cards)
