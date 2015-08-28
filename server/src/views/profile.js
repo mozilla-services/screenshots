@@ -2,7 +2,6 @@
 
 const React = require("react");
 const events = require("../events");
-const helpers = require("../helpers");
 
 exports.ProfileButton = class ProfileButton extends React.Component {
   constructor(props) {
@@ -118,7 +117,9 @@ exports.Profile = class Profile extends React.Component {
     let ok = confirm("Are you sure you want to permanently delete everything you have created using PageShot?");
     if (ok) {
       events.deleteEverything();
-      helpers.request("POST", "/delete");
+      let req = new XMLHttpRequest();
+      req.open("POST", "/delete");
+      req.send();
       window.location = "/?accountDeleted=true";
     }
   }
