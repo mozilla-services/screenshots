@@ -126,10 +126,10 @@ exports.callScript = function (tab, script, message, payload, timeout) {
         var deferred = pendingDeferreds[id];
         delete pendingDeferreds[id];
         delete pendingTimeouts[id];
-        logDebug("Script timed out:", script, method, "after:", timeout);
+        logDebug("Script timed out:", script, message, "after:", timeout);
         deferred.reject(new Error("Timeout after " + timeout + "ms"));
       } else {
-        logDebug("Timeout ran despite deferred being completed, for:", script, method);
+        logDebug("Timeout ran despite deferred being completed, for:", script, message);
       }
     }, timeout)
   }
