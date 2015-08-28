@@ -102,7 +102,7 @@ const pendingTimeouts = {};
     */
 exports.callScript = function (tab, script, message, payload, timeout) {
   if (timeout === undefined) {
-    timeout = 3000;
+    timeout = 7000;
   }
   exports.addScript(tab, script);
   let browser = getBrowser(tab);
