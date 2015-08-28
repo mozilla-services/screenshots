@@ -154,7 +154,7 @@ function staticHTML(el) {
       var value;
       if (name == 'src' && replSrc) {
         value = replSrc;
-      } else if (name == "href" || name == "src" || name == "value") {
+      } else if (name == "href" || name == "src" || name == "value" || name == "checked" || name == "selected") {
         value = el[name] + "";
         if (name === "href" || name === "src") {
           value = checkLink(value);
@@ -162,10 +162,33 @@ function staticHTML(el) {
       } else {
         value = attrs[i].value;
       }
-      s += ' ' + name + '="' + htmlQuote(value) + '"';
+      if (value === false || value === null || value === undefined) {
+        continue;
+      } else if (value === true) {
+        s += ' ' + name;
+      } else {
+        s += ' ' + name + '="' + htmlQuote(value) + '"';
+      }
+    }
+  }
+  if (el.tagName === "INPUT") {
+    var elType = (el.getAttribute("type") || "text").toLowerCase();
+    if (elType === "checkbox" || elType == "radio") {
+      if ((! el.hasAttribute("checked")) && el.checked) {
+        s += " checked";
+      }
+    } else if ((! el.hasAttribute("value")) && el.value) {
+      s += ' value="' + htmlQuote(el.value) + '"';
+    }
+  } else if (el.tagName == "OPTION") {
+    if ((! el.hasAttribute("selected")) && el.selected) {
+      s += " selected";
     }
   }
   s += '>';
+  if (el.tagName == "TEXTAREA") {
+    s += htmlQuote(el.value);
+  }
   if (! voidElements[el.tagName]) {
     s += staticChildren(el);
     s += '</' + el.tagName + '>';
