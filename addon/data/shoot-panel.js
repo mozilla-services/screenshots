@@ -294,7 +294,7 @@ class ShootPanel extends React.Component {
       modesRow = <div>
         <span className="recall-back" onClick={this.recallBack.bind(this)}>&#12296; Back</span>
         <span className="recall-title">{ this.props.shot.title }</span>
-        <a className="recall-url" target="_blank" href={ this.props.shot.url }>{ domainOnly(this.props.shot.url) }</a>
+        <a className="recall-url" onClick={ this.openLink.bind(this) } href={ this.props.shot.url }>{ domainOnly(this.props.shot.url) }</a>
       </div>;
     }
 
@@ -443,6 +443,10 @@ class ShootPanel extends React.Component {
     self.port.emit("viewRecallIndex");
   }
 
+  openLink(event) {
+    self.port.emit("openLink", event.target.href);
+  }
+
 }
 
 const debugCommandHelp = `Debug commands available in comments:
@@ -564,6 +568,11 @@ class RecallPanel extends React.Component {
     self.port.emit("viewShot", id);
   }
 
+  openRecall() {
+    let recall = this.props.backend.replace(/\/*$/, "") + "/shots";
+    self.port.emit("openLink", recall);
+  }
+
   render() {
     let history = [];
     for (let shot of this.props.shots) {
@@ -591,7 +600,7 @@ class RecallPanel extends React.Component {
           {history}
         </ul>
         <div className="see-more-row">
-          <a href={ `${this.props.backend}/shots` } target="_blank">View more on { this.props.backend }</a>
+          <a href="#" onClick={ this.openRecall.bind(this) }>View more on { stripProtocol(this.props.backend) }</a>
         </div>
       </div>);
   }
