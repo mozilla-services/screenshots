@@ -9,6 +9,7 @@ upload=
 nodemon_pid=
 server=http://localhost:10080
 scratch=
+jpm="$base/node_modules/.bin/jpm"
 
 binary=
 firefoxes="
@@ -95,6 +96,7 @@ if [[ -n "$upload" ]] ; then
   playsound bin/elevator-ding-reverse.mp3
   make addon xpi
   echo "Uploading to the browser"
+  echo "  (if this fails, install: https://addons.mozilla.org/en-US/firefox/addon/autoinstaller/)"
   # Doesn't return any content, leads to an unnecessary error:
   wget --post-file=build/mozilla-pageshot.xpi http://localhost:8888 || echo "no content"
   playsound bin/elevator-ding.mp3
@@ -128,7 +130,7 @@ if [[ -z "$scratch" ]] ; then
   profile_option="--profile ../../Profile"
 fi
 
-jpm run --binary $binary $profile_option --no-copy --prefs $file \
+$jpm run --binary $binary $profile_option --no-copy --prefs $file \
   2>&1 \
   | grep --line-buffered \
     -v -e 'WARNING: content window passed to PrivateBrowsingUtils.isWindowPrivate' \
