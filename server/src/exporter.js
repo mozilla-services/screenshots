@@ -193,14 +193,16 @@ exports.setup = function (app) {
 
   app.get("/export", function (req, res) {
     if (! req.deviceId) {
-      return require("./server").simpleResponse(res, "You must have the addon installed to export your shots", 403);
+      res.set("Content-Type", "text/plain");
+      res.status(403).send("You must have the addon installed to export your shots");
     }
     require("./views/export").render(req, res);
   });
 
   app.post("/export", function (req, res) {
     if (! req.deviceId) {
-      return require("./server").simpleResponse(res, "You must have the addon installed to export your shots", 403);
+      res.set("Content-Type", "text/plain");
+      res.status(403).send("You must have the addon installed to export your shots");
     }
     launchWget(req.deviceId).then(() => {
       res.redirect("/export/status?started=" + encodeURIComponent(Date.now()));
@@ -211,7 +213,8 @@ exports.setup = function (app) {
 
   app.get("/export/status", function (req, res) {
     if (! req.deviceId) {
-      return require("./server").simpleResponse(res, "You must have the addon installed to export your shots", 403);
+      res.set("Content-Type", "text/plain");
+      res.status(403).send("You must have the addon installed to export your shots");
     }
     let started = parseInt(req.query.started, 10);
     getWgetStatus(req.deviceId).then((status) => {
@@ -233,7 +236,8 @@ exports.setup = function (app) {
 
   app.get("/export/download/pageshot-export.zip", function (req, res) {
     if (! req.deviceId) {
-      return require("./server").simpleResponse(res, "You must have the addon installed to download your shots", 403);
+      res.set("Content-Type", "text/plain");
+      res.status(403).send("You must have the addon installed to download your shots");
     }
     let dir = exportPath(req.deviceId);
     let fn = path.join(dir, "pageshot-export.zip");
@@ -242,7 +246,8 @@ exports.setup = function (app) {
 
   app.post("/export/remove", function (req, res) {
     if (! req.deviceId) {
-      return require("./server").simpleResponse(res, "You must have the addon installed", 403);
+      res.set("Content-Type", "text/plain");
+      res.status(403).send("You must have the addon installed");
     }
     let dir = exportPath(req.deviceId);
     removeExportPath(dir).then(() => {
