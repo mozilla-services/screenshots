@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -ex
+set -e
 
 bin="$(dirname $BASH_SOURCE)"
 cd $bin/..
@@ -36,7 +36,7 @@ while [[ -n "$1" ]] ; do
 done
 
 if [[ -z "$force" ]] ; then
-  echo "Use -f to actually delete these files:"
+  echo "Use -f or -i to actually delete these files:"
 fi
 
 options="-xd"
@@ -48,5 +48,5 @@ else
   options="${options}n"
 fi
 
-pwd
-echo git $options -e Profile -e scratch
+echo "  (in $(pwd))"
+git clean $options -e Profile -e scratch -e bin/cookie-jar.txt
