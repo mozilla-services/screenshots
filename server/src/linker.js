@@ -29,6 +29,13 @@ exports.staticLink = function (resource) {
   return "/static" + resource + "?rev=" + gitRevision;
 };
 
+exports.staticLink.simple = function (resource) {
+  if (! resource.startsWith("/")) {
+    resource = "/" + resource;
+  }
+  return "/static" + resource;
+};
+
 exports.staticLinkWithHost = function (req, resource) {
   return req.protocol + "://" + req.headers.host + exports.staticLink(resource);
 };

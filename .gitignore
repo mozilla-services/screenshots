@@ -11,3 +11,4 @@ addon.log
 cookie-jar.txt
 .env.production
 .jpm-json*
+scratch
