@@ -35,6 +35,8 @@ var cornerX, cornerY;
 var boxEl;
 // Any text captured:
 var selectedText;
+// The help message shown while making a selection:
+var selectionHelp;
 // Number of pixels you have to move before we treat it as a selection
 const MIN_MOVE = 40;
 // Minimum width and height of the autoselect selection:
@@ -204,6 +206,7 @@ function setState(state) {
     document.body.classList.remove("pageshot-hide-movers");
     addHandlers();
     addCrosshairs();
+    addSelectionHelp();
   } else if (state === "visible") {
     deleteSelection();
     document.body.classList.remove("pageshot-hide-selection");
@@ -408,6 +411,8 @@ function deleteSelection() {
   boxLeftEl = null;
   removeEl(boxBottomEl);
   boxBottomEl = null;
+  removeEl(selectionHelp);
+  selectionHelp = null;
 }
 
 /** mousedown event for the move handles */
@@ -483,6 +488,36 @@ function crosshairsMousemove(event) {
 
 function addCrosshairs() {
   document.addEventListener("mousemove", crosshairsMousemove, false);
+}
+
+function addSelectionHelp() {
+  selectionHelp = document.createElement("div");
+  selectionHelp.id = "selection-help-overlay";
+  selectionHelp.style.zIndex = "9998";
+  selectionHelp.style.position = "absolute";
+  selectionHelp.style.top = "0px";
+  selectionHelp.style.left = "0px";
+  selectionHelp.style.bottom = "0px";
+  selectionHelp.style.right = "0px";
+  selectionHelp.style.textAlign = "center";
+  let nested = document.createElement("div");
+  nested.style.color = "white";
+  nested.style.font = "caption";
+  nested.style.fontSize = "52px";
+  nested.style.fontWeight = "200";
+  nested.style.lineHeight = "0";
+  nested.style.zIndex = "9999";
+  nested.style.backgroundColor = "rgba(0, 0, 0, 0.85)";
+  nested.style.borderRadius = "15px";
+  nested.style.display = "inline-table";
+  nested.style.padding = "0 2em";
+  nested.style.margin = "400px 0";
+  nested.style.transition = "all .1s ease-in-out";
+  selectionHelp.appendChild(nested);
+  let p = document.createElement("p");
+  p.textContent = "Click and drag anywhere to make a selection";
+  nested.appendChild(p);
+  document.body.appendChild(selectionHelp);
 }
 
 function removeCrosshairs() {
