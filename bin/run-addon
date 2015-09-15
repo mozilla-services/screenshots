@@ -103,7 +103,7 @@ if [[ -n "$upload" ]] ; then
   exit
 fi
 
-prefs="{\"xpinstall.signatures.required\": false"
+prefs="{\"xpinstall.signatures.required\": false, \"extensions.sdk.console.logLevel\": \"all\""
 if [[ -n "$server" ]] ; then
   prefs="${prefs}, \"extensions.jid1-NeEaf3sAHdKHPA@jetpack.backend\": \"$server\""
 fi
