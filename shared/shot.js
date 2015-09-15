@@ -362,7 +362,7 @@ class AbstractShot {
 <head${formatAttributes(this.headAttrs)}>
 <meta charset="UTF-8">
 ${options.addHead || ""}
-<base href="${this.url}">
+<base href="${escapeAttribute(this.url)}">
 ${this.head}
 </head>
 <body${formatAttributes(this.bodyAttrs)}>
