@@ -1,6 +1,7 @@
 PATH := ./node_modules/.bin:./bin/:$(PATH)
 SHELL := /bin/bash
 BABEL := babel --retain-lines
+JPM := $(shell pwd)/node_modules/.bin/jpm
 .DEFAULT_GOAL := help
 
 .PHONY: all clean server addon xpi homepage npm
@@ -158,7 +159,7 @@ build/mozilla-pageshot.xpi: addon addon/package.json
 	_set_package_version < addon/package.json > build/addon/package.json
 	# Get rid of any stale xpis:
 	rm -f build/addon/jid1-NeEaf3sAHdKHPA@jetpack-*.xpi
-	cd build/addon && jpm xpi
+	cd build/addon && $(JPM) xpi
 	mv build/addon/jid1-NeEaf3sAHdKHPA@jetpack-*.xpi build/mozilla-pageshot.xpi
 
 build/mozilla-pageshot.update.rdf: addon/template.update.rdf build/mozilla-pageshot.xpi
