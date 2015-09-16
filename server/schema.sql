@@ -54,11 +54,11 @@ ALTER TABLE ONLY states
 CREATE INDEX devices_accountid_idx ON devices USING btree (accountid);
 CREATE INDEX states_deviceid_idx ON states USING btree (deviceid);
 ALTER TABLE ONLY data
-    ADD CONSTRAINT data_deviceid_fkey FOREIGN KEY (deviceid) REFERENCES devices(id);
+    ADD CONSTRAINT data_deviceid_fkey FOREIGN KEY (deviceid) REFERENCES devices(id) ON DELETE CASCADE;
 ALTER TABLE ONLY devices
     ADD CONSTRAINT devices_accountid_fkey FOREIGN KEY (accountid) REFERENCES accounts(id) ON DELETE SET NULL;
 ALTER TABLE ONLY images
     ADD CONSTRAINT images_shotid_fkey FOREIGN KEY (shotid) REFERENCES data(id) ON DELETE CASCADE;
 ALTER TABLE ONLY states
     ADD CONSTRAINT states_deviceid_fkey FOREIGN KEY (deviceid) REFERENCES devices(id) ON DELETE CASCADE;
--- pg-patch version: 3
+-- pg-patch version: 4
