@@ -28,7 +28,17 @@ function makeScreenShot(pos, maxSize, backgroundColor) {
     pos.x = win.scrollX;
     pos.y = win.scrollY;
   }
-  if (maxSize && (pos.w > maxSize.w || pos.h > maxSize.h)) {
+  if (pos.h === "full") {
+    pos.h = Math.max(win.document.body.clientHeight, win.document.documentElement.clientHeight);
+  }
+  if (pos.w == "full") {
+    pos.w = Math.max(win.document.body.clientWidth, win.document.documentElement.clientWidth);
+  }
+  if (maxSize && (! maxSize.h)) {
+    maxSize.h = (maxSize.w / pos.w) * pos.h;
+  } else if (maxSize && (! maxSize.w)) {
+    maxSize.w = (maxSize.h / pos.h) * pow.w;
+  } else if (maxSize && (pos.w > maxSize.w || pos.h > maxSize.h)) {
     if (pos.w / pos.h > maxSize.w / maxSize.h) {
       // Wider than tall
       maxSize.w = (maxSize.h / pos.h) * pos.w;
@@ -41,7 +51,7 @@ function makeScreenShot(pos, maxSize, backgroundColor) {
   }
   win.document.body.classList.add("pageshot-hide-selection");
   try {
-    console.info("shooting area", pos.x, pos.y, "w/h", pos.w, pos.h, !!maxSize);
+    console.info("shooting area", pos.x, pos.y, "w/h", pos.w, pos.h, maxSize ? "to " + maxSize.w + ", " + maxSize.h : "no max");
     var canvas = win.document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
     if (maxSize) {
       canvas.width = maxSize.w;
