@@ -14,13 +14,3 @@ exports.addReactScripts = function (body, addScript) {
     return `<!DOCTYPE html>\n${body}`;
   }
 };
-
-exports.extend = function (...objs) {
-  let obj = {};
-  for (let extender of objs) {
-    for (let attr in extender) {
-      obj[attr] = extender[attr];
-    }
-  }
-  return obj;
-};

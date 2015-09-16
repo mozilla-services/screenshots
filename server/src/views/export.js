@@ -1,6 +1,6 @@
 const React = require("react");
 const { Shell } = require("./shell");
-const { addReactScripts, extend } = require("../reactutils");
+const { addReactScripts } = require("../reactutils");
 
 class Confirm extends React.Component {
 
@@ -103,7 +103,7 @@ exports.render = function (req, res) {
     backend: req.backend,
     deleted: 'deleted' in req.query
   };
-  let page = ConfirmFactory(extend(params, {
+  let page = ConfirmFactory(Object.assign({}, params, {
     staticLink: req.staticLink
   }));
   let body = React.renderToString(page);
@@ -117,7 +117,7 @@ exports.renderStatus = function (req, res) {
     wgetStatus: req.wgetStatus,
     keepTime: req.keepTime
   };
-  let page = StatusFactory(extend(params, {
+  let page = StatusFactory(Object.assign({}, params, {
     staticLink: req.staticLink
   }));
   let body = React.renderToString(page);

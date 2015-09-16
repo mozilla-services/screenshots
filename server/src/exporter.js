@@ -60,7 +60,7 @@ function getWgetStatus(deviceId) {
     let dir = exportPath(deviceId);
     let result = {errors: []};
     let steps = 3;
-    function done() {
+    function resolveIfDone() {
       if (steps <= 0) {
         resolve(result);
       }
@@ -75,7 +75,7 @@ function getWgetStatus(deviceId) {
         result.running = true;
       }
       steps--;
-      done();
+      resolveIfDone();
     });
     fs.readFile(path.join(dir, "script-exit-code.txt"), {encoding: "UTF-8"}, (error, data) => {
       if (error && error.code == "ENOENT") {
@@ -91,7 +91,7 @@ function getWgetStatus(deviceId) {
         }
       }
       steps--;
-      done();
+      resolveIfDone();
     });
     fs.stat(path.join(dir, "pageshot-export.zip"), (error, stat) => {
       if (error && error.code == "ENOENT") {
@@ -106,7 +106,7 @@ function getWgetStatus(deviceId) {
         };
       }
       steps--;
-      done();
+      resolveIfDone();
     });
   });
 }
