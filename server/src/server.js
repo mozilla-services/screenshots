@@ -263,10 +263,9 @@ app.get("/shots", function (req, res) {
   if (! req.deviceId) {
     return simpleResponse(res, "You must have the addon installed to see your shot index", 403);
   }
-  let simple = shouldRenderSimple(req);
   Shot.getShotsForDevice(req.backend, req.deviceId).then((shots) => {
     req.shots = shots;
-    if (simple) {
+    if (shouldRenderSimple(req)) {
       require("./views/shot-index").renderSimple(req, res);
     } else {
       require("./views/shot-index").render(req, res);
@@ -293,14 +292,13 @@ require("./exporter").setup(app);
 
 app.get("/:id/:domain", function (req, res) {
   let shotId = req.params.id + "/" + req.params.domain;
-  let simple = shouldRenderSimple(req);
   Shot.get(req.backend, shotId).then((shot) => {
     if (! shot || shot.clipNames().length === 0) {
       simpleResponse(res, "Not found", 404);
       return;
     }
     req.shot = shot;
-    if (simple) {
+    if (shouldRenderSimple(req)) {
       return require("./views/frame").renderSimple(req, res);
     } else {
       return require("./views/frame").render(req, res);
