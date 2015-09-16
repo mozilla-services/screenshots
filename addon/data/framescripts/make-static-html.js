@@ -278,8 +278,8 @@ function documentStaticData() {
   }
 
   let documentSize = {
-    width: getDocument().body.clientWidth,
-    height: getDocument().body.clientHeight
+    width: Math.max(getDocument().documentElement.clientWidth, getDocument().body.clientWidth),
+    height: Math.max(getDocument().documentElement.clientHeight, getDocument().body.clientHeight)
   };
 
   console.info("framescript serializing took " + (Date.now() - start) + " milliseconds");

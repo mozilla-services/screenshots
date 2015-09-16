@@ -230,6 +230,7 @@ class AbstractShot {
     this.openGraph = attrs.openGraph || null;
     this.twitterCard = attrs.twitterCard || null;
     this.documentSize = attrs.documentSize || null;
+    this.fullScreenThumbnail = attrs.fullScreenThumbnail || null;
     this._clips = {};
     if (attrs.clips) {
       for (let clipId in attrs.clips) {
@@ -704,12 +705,26 @@ ${options.addBody || ""}
     this._dirty("documentSize");
   }
 
+  get fullScreenThumbnail() {
+    return this._fullScreenThumbnail;
+  }
+  set fullScreenThumbnail(val) {
+    assert(typeof val == "string" || ! val);
+    if (val) {
+      assert(isUrl(val));
+      this._fullScreenThumbnail = val;
+    } else {
+      this._fullScreenThumbnail = null;
+    }
+  }
+
 }
 
 AbstractShot.prototype.REGULAR_ATTRS = (`
 deviceId url docTitle ogTitle userTitle createdDate createdDevice favicon
 history comments hashtags images readable head body htmlAttrs bodyAttrs
 headAttrs microdata siteName openGraph twitterCard documentSize
+fullScreenThumbnail
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`
