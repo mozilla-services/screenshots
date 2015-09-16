@@ -53,9 +53,14 @@ exports.createTables = function () {
 };
 
 let keys;
+let textKeys;
 
 exports.getKeygrip = function () {
   return keys;
+};
+
+exports.getTextKeys = function () {
+  return textKeys;
 };
 
 /** Loads the random signing key from the database, or generates a new key
@@ -89,12 +94,15 @@ function loadKeys() {
 }
 
 exports.createKeygrip = function () {
-  loadKeys().then((textKeys) => {
+  loadKeys().then((fetchedTextKeys) => {
+    textKeys = fetchedTextKeys;
     keys = new Keygrip(textKeys);
   }).catch((err) => {
     console.warn("Could not create signing keys:", err);
   });
 };
+
+
 
 /** Returns a promise that generates a new largish ASCII random key */
 function makeKey() {

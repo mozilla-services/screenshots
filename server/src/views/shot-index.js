@@ -55,7 +55,7 @@ class ShotIndex extends React.Component {
         </div></a>
         <div className="shot-footer">
           <div className="shot-date">
-            <TimeDiff date={shot.createdDate} />
+            <TimeDiff date={shot.createdDate} simple={this.props.simple} />
           </div>
           <div className="shot-link-container"><a href={shot.url} className="subheading-link" target="_blank">
             { shot.urlDisplay }
@@ -90,5 +90,17 @@ exports.render = function (req, res) {
     var serverData = ${json};
     shotindexglue.setModel(serverData);
   `);
+  res.send(body);
+};
+
+exports.renderSimple = function (req, res) {
+  let body = ShotIndexFactory({
+    staticLink: req.staticLink.simple,
+    gaId: null,
+    shots: req.shots,
+    simple: true
+  });
+  body = React.renderToStaticMarkup(body);
+  body = '<!DOCTYPE HTML>\n' + body;
   res.send(body);
 };

@@ -105,6 +105,7 @@ function skipElement(el) {
   // Note elements with children might have children with, e.g., absolute
   // positioning -- so they might not make the parent have any width, but
   // may still need to be displayed.
+  // FIXME: should use el.offsetParent whose presence indicates the element is visible
   if ((el.style && el.style.display == 'none') ||
       ((el.clientWidth === 0 && el.clientHeight === 0) &&
         (! skipElementsOKEmpty[tag]) &&
@@ -276,6 +277,10 @@ function documentStaticData() {
     }
   }
 
+  let documentSize = {
+    width: getDocument().body.clientWidth,
+    height: getDocument().body.clientHeight
+  };
 
   console.info("framescript serializing took " + (Date.now() - start) + " milliseconds");
 
@@ -283,13 +288,14 @@ function documentStaticData() {
   return {
     url: getLocation().href,
     //origin: getLocation().origin,
-    favicon: favicon,
-    htmlAttrs: htmlAttrs,
-    head: head,
-    headAttrs: headAttrs,
-    body: body,
-    bodyAttrs: bodyAttrs,
+    favicon,
+    htmlAttrs,
+    head,
+    headAttrs,
+    body,
+    bodyAttrs,
     docTitle: getDocument().title,
+    documentSize,
     openGraph: getOpenGraph(),
     twitterCard: getTwitterCard()
     //initialScroll: scrollFraction,

@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+set -e
+
+bin="$(dirname $BASH_SOURCE)"
+cd $bin/..
+
+force=
+interactive=
+
+help () {
+  echo "Usage: $(basename $0) [-f|--force|-i|--interactive]"
+  echo "  Clean everything from the pageshot checkout except Profile/"
+  echo "  Only simulates unless you use -f or -i"
+}
+
+while [[ -n "$1" ]] ; do
+  case "$1" in
+    -h|--help)
+      help
+      exit
+      ;;
+    -f|--force)
+      force=1
+      shift
+      ;;
+    -i|--interactive)
+      interactive=1
+      shift
+      ;;
+    *)
+      help
+      exit 2
+      ;;
+  esac
+done
+
+if [[ -z "$force" ]] ; then
+  echo "Use -f or -i to actually delete these files:"
+fi
+
+options="-xd"
+if [[ -n "$force" ]] ; then
+  options="${options}f"
+elif [[ -n "$interactive" ]] ; then
+  options="${options}i"
+else
+  options="${options}n"
+fi
+
+echo "  (in $(pwd))"
+git clean $options -e Profile -e scratch -e bin/cookie-jar.txt
