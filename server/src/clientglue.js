@@ -12,9 +12,6 @@ let model;
 // This represents the current user's profile.
 let profile;
 
-// Assume the extension is installed when we load the page.
-let isExtInstalled = true;
-
 exports.setModel = function (data) {
   let firstSet = ! model;
   model = data;
@@ -25,11 +22,6 @@ exports.setModel = function (data) {
   model.shot.deleted = data.deleted;
 
   if (firstSet) {
-    let timer = setTimeout(function () {
-      timer = null;
-      isExtInstalled = false;
-      render();
-    }, 2000);
     let toolbar = document.getElementById("toolbar");
     let fullPageButton = document.getElementById("full-page-button");
     let fullPageButtonScrollable = document.getElementById("full-page-button-scrollable");
@@ -56,13 +48,6 @@ exports.setModel = function (data) {
 
     document.addEventListener("helper-ready", function onHelperReady(e) {
       document.removeEventListener("helper-ready", onHelperReady, false);
-      if (timer === null) {
-        console.error("helper-ready took more than 2 seconds to fire!");
-        isExtInstalled = true;
-        render();
-      } else {
-        clearTimeout(timer);
-      }
       requestProfile();
     }, false);
     document.addEventListener("refresh-profile", refreshProfile, false);
@@ -74,7 +59,7 @@ exports.setModel = function (data) {
 
 function render() {
   setGitRevision(model.gitRevision);
-  let attrs = { staticLink, isExtInstalled };
+  let attrs = { staticLink };
   for (let attr in model) {
     attrs[attr] = model[attr];
   }
