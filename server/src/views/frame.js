@@ -82,6 +82,9 @@ class Clip extends React.Component {
 
 class TimeDiff extends React.Component {
   render() {
+    if (this.props.simple) {
+      return this.renderSimple();
+    }
     let timeDiff;
     let seconds = (Date.now() - this.props.date) / 1000;
     if (seconds > 0) {
@@ -113,7 +116,32 @@ class TimeDiff extends React.Component {
         timeDiff = `${Math.floor(seconds / (-60*60*24))} days from now`;
       }
     }
-    return <span title={this.props.date.toString()}>{timeDiff}</span>;
+    return <span title={this.dateString(this.props.date)}>{timeDiff}</span>;
+  }
+
+  renderSimple() {
+    return <span>{this.dateString(this.props.date)}</span>;
+  }
+
+  dateString(d) {
+    if (! (d instanceof Date)) {
+      d = new Date(d);
+    }
+    let s = "";
+    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    let month = months[d.getMonth() - 1];
+    let hour = d.getHours();
+    if (hour === 0) {
+      hour = "12am";
+    } else if (hour === 12) {
+      hour = "12pm";
+    } else if (hour > 12) {
+      hour = (hour % 12) + "pm";
+    } else {
+      hour = hour + "am";
+    }
+    let year = 1900 + d.getYear();
+    return `${month} ${d.getDay()} ${year}, ${hour}`;
   }
 }
 
@@ -155,7 +183,7 @@ class Frame extends React.Component {
       body = this.renderBody();
     }
     let result = (
-      <Shell title={`${this.props.productName}: ${this.props.shot.title}`} staticLink={this.props.staticLink} gaId={this.props.gaId}>
+      <Shell title={`${this.props.productName}: ${this.props.shot.title}`} staticLink={this.props.staticLink} gaId={this.props.gaId} simple={this.props.simple}>
         {head}
         {body}
       </Shell>);
@@ -181,11 +209,15 @@ class Frame extends React.Component {
     if (this.props.shot && this.props.shot.ogTitle) {
       ogTitle = <meta propery="og:title" content={this.props.shot.ogTitle} />;
     }
+    let oembed;
+    if (! this.props.simple) {
+      oembed = <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />;
+    }
     return (
       <head>
         <meta property="og:type" content="website" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />
+        {oembed}
         {ogTitle}
         {ogImage}
       </head>);
@@ -260,8 +292,11 @@ class Frame extends React.Component {
 
     let linkTextShort = shot.urlDisplay
 
-    let timeDiff = <TimeDiff date={shot.createdDate} />;
-    let expiresDiff = <TimeDiff date={shot.expireTime} />;
+    let timeDiff = <TimeDiff date={shot.createdDate} simple={this.props.simple} />;
+    let expiresDiff = <span>(expires <TimeDiff date={shot.expireTime} simple={this.props.simple} />)</span>;
+    if (this.props.simple) {
+      expiresDiff = null;
+    }
 
     let postMessageOrigin = `${this.props.contentProtocol}://${this.props.contentOrigin}`;
 
@@ -269,6 +304,11 @@ class Frame extends React.Component {
 
     if (this.props.showIntro) {
         introJsStart = <script dangerouslySetInnerHTML={{__html: "introJs().start();"}} />;
+    }
+
+    let frameHeight = 100;
+    if (this.props.shot.documentSize) {
+      frameHeight = this.props.shot.documentSize.height;
     }
 
     return (
@@ -285,13 +325,14 @@ class Frame extends React.Component {
               nickname={ this.props.nickname }
               email={ this.props.email }
               deviceId={ this.props.deviceId }
+              simple={ this.props.simple }
             />
           </div>
         <div id="toolbar">
           <div className="shot-title">{ shot.title }</div>
           <div className="shot-subtitle">
             <span>source </span><a className="subheading-link" href={ shot.url }>{ linkTextShort }</a>
-            <span style={{paddingLeft: "15px"}}>saved { timeDiff } (expires { expiresDiff })</span>
+            <span style={{paddingLeft: "15px"}}>saved { timeDiff } { expiresDiff }</span>
           </div>
         </div>
         <div id="navigate-toolbar">
@@ -311,7 +352,7 @@ class Frame extends React.Component {
         <div className="metadata">
           <h1 id="main-title">{ shot.title }</h1>
           <p><a className="subheading-link" href={ shot.url }>{ linkTextShort }</a></p>
-          <p>saved {timeDiff} (expires { expiresDiff })</p>
+          <p>saved {timeDiff} { expiresDiff }</p>
         </div>
         { clips }
         <div id="full-page-button-scrollable">
@@ -321,7 +362,7 @@ class Frame extends React.Component {
             <span className="full-page-button-arrow">▾</span>
           </a>
         </div>
-        <iframe width="100%" id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } />
+        <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } />
         <div className="pageshot-footer">
           <a href="https://github.com/mozilla-services/pageshot">{this.props.productName}</a> — <a href={`https://github.com/mozilla-services/pageshot/commit/${getGitRevision()}`}>Updated {this.props.buildTime}</a>
         </div>
@@ -361,11 +402,12 @@ exports.render = function (req, res) {
     contentProtocol: req.protocol,
     id: req.shot.id,
     productName: req.config.productName,
-    isExtInstalled: true,
+    isExtInstalled: !!req.deviceId,
     gaId: req.config.gaId,
     deviceId: req.deviceId,
     buildTime: buildTime,
     showIntro: showIntro,
+    simple: false,
     shotDomain: req.url // FIXME: should be a property of the shot
   });
   let clientPayload = {
@@ -383,7 +425,8 @@ exports.render = function (req, res) {
     expireTime: req.shot.expireTime.getTime(),
     deleted: req.shot.deleted,
     buildTime: buildTime,
-    showIntro: showIntro
+    showIntro: showIntro,
+    simple: false
   };
   let body = React.renderToString(frame);
   let json = JSON.stringify(clientPayload);
@@ -391,5 +434,28 @@ exports.render = function (req, res) {
     var serverData = ${json};
     clientglue.setModel(serverData);
   `);
+  res.send(body);
+};
+
+exports.renderSimple = function (req, res) {
+  let buildTime = require("../build-time").string;
+  let frame = FrameFactory({
+    staticLink: req.staticLink.simple,
+    backend: req.backend,
+    shot: req.shot,
+    contentOrigin: req.config.contentOrigin,
+    contentProtocol: req.protocol,
+    id: req.shot.id,
+    productName: req.config.productName,
+    isExtInstalled: !!req.deviceId,
+    gaId: null,
+    deviceId: req.deviceId,
+    buildTime: buildTime,
+    showIntro: false,
+    simple: true,
+    shotDomain: req.url // FIXME: should be a property of the shot
+  });
+  let body = React.renderToStaticMarkup(frame);
+  body = '<!DOCTYPE HTML>\n' + body;
   res.send(body);
 };

@@ -52,7 +52,7 @@ exports.ProfileButton = class ProfileButton extends React.Component {
   }
 
   render() {
-    if (this.props.deviceId === undefined) {
+    if (this.props.deviceId === undefined || this.props.simple) {
       return <span>&nbsp;</span>;
     }
     let { avatarurl } = this.props;
@@ -130,7 +130,8 @@ exports.Profile = class Profile extends React.Component {
     return (
       <div className="sync-status">
         <p>You are signed in as {this.props.email}.</p>
-        <p><a href="#" onClick={ this.onClickDeleteEverything.bind(this) }>Permanently delete all my data</a></p>
+        <p><a href="#" onClick={ this.onClickDeleteEverything.bind(this) }>Permanently delete all my data!!!</a></p>
+        <p><a href="/export">Export my clips</a></p>
       </div>
     );
   }
@@ -143,6 +144,7 @@ exports.Profile = class Profile extends React.Component {
           <li><a href="#" onClick={ this.onClickSignUp.bind(this) }>Create Account</a></li>
           <li><a href="#" onClick={ this.onClickSignIn.bind(this) }>Sign In</a></li>
           <li><a href="#" onClick={ this.onClickDeleteEverything.bind(this) }>Permanently delete all my data</a></li>
+          <li><a href="/export">Export my clips</a></li>
         </ul>
       </div>
     );

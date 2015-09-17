@@ -1,6 +1,7 @@
 /* Note: do not use ES6 features here, we need to use this module from the build system before translation */
 const convict = require("convict");
 const envc = require("envc");
+const path = require("path");
 
 // Populate `process.env` with overrides from environment-specific `.env`
 // files as a side effect. See `https://npmjs.org/envc` for more info.
@@ -115,6 +116,20 @@ var conf = convict({
     default: "",
     env: "GA_ID",
     arg: "ga-id"
+  },
+  exportBase: {
+    doc: "File location to keep exports",
+    format: String,
+    default: path.join(path.dirname(__dirname), "export-files"),
+    env: "EXPORT_BASE",
+    arg: "export-base"
+  },
+  exportKeepTime: {
+    doc: "Minutes to keep an export",
+    format: "int",
+    default: 60,
+    env: "EXPORT_KEEP_TIME",
+    arg: "export-keep-time"
   }
 });
 

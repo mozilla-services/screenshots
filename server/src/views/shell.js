@@ -42,15 +42,22 @@ export class Shell extends React.Component {
       };
       `;
     }
+    let js = [
+      <link rel="stylesheet" href={ this.props.staticLink("vendor/introjs/introjs.css") } key="introjs-stylesheet" />,
+      <script src={ this.props.staticLink("vendor/introjs/intro.js") } key="introjs-js" />,
+      <script src={ this.props.staticLink("js/server-bundle.js") } key="server-bundle-js" />,
+    ];
+    if (this.props.simple) {
+      js = null;
+    }
     gaCode = <script dangerouslySetInnerHTML={{__html: gaJs}}></script>;
     return <html prefix="og: http://ogp.me/ns#">
       <head>
+        <meta charSet="UTF-8" />
         <title>{this.props.title}</title>
         {gaScript}
         {gaCode}
-        <link rel="stylesheet" href={ this.props.staticLink("vendor/introjs/introjs.css") } />
-        <script src={ this.props.staticLink("vendor/introjs/intro.js") } />
-        <script src={ this.props.staticLink("js/server-bundle.js") } />
+        {js}
         <link rel="stylesheet" href={ this.props.staticLink("css/styles.css") } />
         <link rel="stylesheet" href={ this.props.staticLink("css/profile.css") } />
         {this.props.children[0].props.children}

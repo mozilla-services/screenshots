@@ -6,6 +6,11 @@ cd $bin/..
 export NODE_ENV=dev
 PATH="node_modules/.bin:$PATH"
 
+if [[ ! -e "node_modules/.bin/nodemon" ]] ; then
+  echo "Installing node packages..."
+  npm install
+fi
+
 run () {
   if [[ -n "$restart" ]] ; then
     playsound bin/hole-punch-reverse.mp3
@@ -60,7 +65,7 @@ if [[ -z "$no_auto" ]] ; then
   nodemon \
     -w server -w static -w shared \
     -w Makefile \
-    -e .js,.scss,.css,.png,.svg,.ttf,.sql \
+    -e .js,.scss,.css,.png,.svg,.ttf,.sql,.sh \
     --exec bash $0 -- --restart
 else
   run

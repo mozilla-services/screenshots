@@ -464,6 +464,11 @@ const ShotContext = Class({
         this.interactiveWorker.port.emit("extractedData", attrs);
         this.shot.update(attrs);
       }, this)));
+      promises.push(watchPromise(this.makeFullScreenThumbnail().then((screenshot) => {
+        this.shot.update({
+          fullScreenThumbnail: screenshot
+        });
+      })));
       promises.push(watchPromise(callScript(
         this.tab,
         self.data.url("framescripts/make-static-html.js"),
@@ -506,6 +511,10 @@ const ShotContext = Class({
         };
       });
     });
+  },
+
+  makeFullScreenThumbnail: function () {
+    return captureTab(this.tab, {x: 0, y: 0, h: "full", w: "full"}, {h: null, w: 140});
   },
 
   getScreenPosition: function () {

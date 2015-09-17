@@ -53,6 +53,14 @@ app.use(function (req, res, next) {
 });
 
 app.use(function (req, res, next) {
+  let magicAuth = req.headers['x-magic-auth'];
+  if (magicAuth && dbschema.getTextKeys().indexOf(magicAuth) != -1) {
+    req.deviceId = req.headers['x-device-id'];
+  }
+  next();
+});
+
+app.use(function (req, res, next) {
   req.staticLink = linker.staticLink;
   req.staticLinkWithHost = linker.staticLinkWithHost.bind(null, req);
   let base = req.protocol + "://" + req.headers.host;
@@ -257,7 +265,11 @@ app.get("/shots", function (req, res) {
   }
   Shot.getShotsForDevice(req.backend, req.deviceId).then((shots) => {
     req.shots = shots;
-    require("./views/shot-index").render(req, res);
+    if (shouldRenderSimple(req)) {
+      require("./views/shot-index").renderSimple(req, res);
+    } else {
+      require("./views/shot-index").render(req, res);
+    }
   }).catch((err) => {
     errorResponse(res, "Error rendering page:", err);
   });
@@ -275,6 +287,9 @@ app.post("/delete", function (req, res) {
   });
 });
 
+// FIXME: this can't the right way to do this...
+require("./exporter").setup(app);
+
 app.get("/:id/:domain", function (req, res) {
   let shotId = req.params.id + "/" + req.params.domain;
   Shot.get(req.backend, shotId).then((shot) => {
@@ -283,7 +298,11 @@ app.get("/:id/:domain", function (req, res) {
       return;
     }
     req.shot = shot;
-    return require("./views/frame").render(req, res);
+    if (shouldRenderSimple(req)) {
+      return require("./views/frame").renderSimple(req, res);
+    } else {
+      return require("./views/frame").render(req, res);
+    }
   }).catch(function (err) {
     errorResponse(res, "Error rendering page:", err);
   });
@@ -431,6 +450,16 @@ contentApp.get("/content/:id/:domain", function (req, res) {
   });
 });
 
+function shouldRenderSimple(req) {
+  if ('simple' in req.query) {
+    return true;
+  }
+  if (req.headers["x-simple"]) {
+    return true;
+  }
+  return false;
+}
+
 function simpleResponse(res, message, status) {
   status = status || 200;
   res.header("Content-Type", "text/plain; charset=utf-8");
@@ -451,6 +480,9 @@ function errorResponse(res, message, err) {
   console.error("Error: " + message, err+"", err);
 }
 
+exports.simpleResponse = simpleResponse;
+exports.errorResponse = errorResponse;
+
 linker.init().then(() => {
   app.listen(config.port);
   console.info(`server listening on http://localhost:${config.port}/`);
@@ -459,3 +491,5 @@ linker.init().then(() => {
 }).catch((err) => {
   console.error("Error getting revision:", err, err.stack);
 });
+
+require("./jobs").start();
