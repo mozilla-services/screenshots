@@ -36,12 +36,14 @@ var boxEl;
 // Any text captured:
 var selectedText;
 // The help message shown while making a selection:
-var selectionHelp;
+var helpMessage;
 // Number of pixels you have to move before we treat it as a selection
 const MIN_MOVE = 40;
 // Minimum width and height of the autoselect selection:
 const MIN_AUTOSELECT_HEIGHT = 100;
 const MIN_AUTOSELECT_WIDTH = 200;
+// Minimum width of margin around page before we give up on autoselect:
+const MIN_MARGIN = 100;
 
 // The ids of elements we should use for autoselecting
 let autoIds = null;
@@ -136,6 +138,41 @@ function reportSelection(captureType) {
   }
   annotatePosition(pos);
   self.port.emit("select", pos, selectedText, captureType);
+}
+
+function showHelpMessage(message) {
+  helpMessage = document.createElement("div");
+  helpMessage.id = "help-overlay";
+  helpMessage.style.zIndex = "9998";
+  helpMessage.style.pointerEvents = "none";
+  helpMessage.style.position = "absolute";
+  helpMessage.style.top = "0px";
+  helpMessage.style.left = "0px";
+  helpMessage.style.bottom = "0px";
+  helpMessage.style.right = "0px";
+  helpMessage.style.textAlign = "center";
+  let nested = document.createElement("div");
+  nested.style.pointerEvents = "auto";
+  nested.style.color = "white";
+  nested.style.font = "caption";
+  nested.style.fontSize = "42px";
+  nested.style.fontWeight = "200";
+  nested.style.lineHeight = "0";
+  nested.style.zIndex = "9999";
+  nested.style.backgroundColor = "rgba(0, 0, 0, 0.85)";
+  nested.style.borderRadius = "15px";
+  nested.style.display = "inline-table";
+  nested.style.padding = "0 2em";
+  nested.style.margin = "400px 0";
+  nested.style.transition = "all .1s ease-in-out";
+  nested.onclick = function (e) {
+    helpMessage.parentNode.removeChild(helpMessage);
+  }
+  helpMessage.appendChild(nested);
+  let p = document.createElement("p");
+  p.textContent = message;
+  nested.appendChild(p);
+  document.body.appendChild(helpMessage);
 }
 
 function reportNoSelection() {
@@ -411,8 +448,6 @@ function deleteSelection() {
   boxLeftEl = null;
   removeEl(boxBottomEl);
   boxBottomEl = null;
-  removeEl(selectionHelp);
-  selectionHelp = null;
 }
 
 /** mousedown event for the move handles */
@@ -491,33 +526,7 @@ function addCrosshairs() {
 }
 
 function addSelectionHelp() {
-  selectionHelp = document.createElement("div");
-  selectionHelp.id = "selection-help-overlay";
-  selectionHelp.style.zIndex = "9998";
-  selectionHelp.style.position = "absolute";
-  selectionHelp.style.top = "0px";
-  selectionHelp.style.left = "0px";
-  selectionHelp.style.bottom = "0px";
-  selectionHelp.style.right = "0px";
-  selectionHelp.style.textAlign = "center";
-  let nested = document.createElement("div");
-  nested.style.color = "white";
-  nested.style.font = "caption";
-  nested.style.fontSize = "52px";
-  nested.style.fontWeight = "200";
-  nested.style.lineHeight = "0";
-  nested.style.zIndex = "9999";
-  nested.style.backgroundColor = "rgba(0, 0, 0, 0.85)";
-  nested.style.borderRadius = "15px";
-  nested.style.display = "inline-table";
-  nested.style.padding = "0 2em";
-  nested.style.margin = "400px 0";
-  nested.style.transition = "all .1s ease-in-out";
-  selectionHelp.appendChild(nested);
-  let p = document.createElement("p");
-  p.textContent = "Click and drag anywhere to make a selection";
-  nested.appendChild(p);
-  document.body.appendChild(selectionHelp);
+  showHelpMessage("Click and drag anywhere to make a selection");
 }
 
 function removeCrosshairs() {
@@ -863,7 +872,8 @@ function autoSelect(ids) {
   }
   if (pos.top === null && pos.bottom === null &&
       pos.left === null && pos.right === null) {
-    console.info("No autoSelect elements found, doing no selection");
+    console.warn("Auto-detect selection failed: No suitable element found");
+    showHelpMessage("Auto-detect selection failed. Selected visible area.");
     reportNoSelection();
     return false;
   } else if (pos.top === null || pos.bottom === null ||
@@ -918,6 +928,10 @@ function autoSelect(ids) {
   mousedownY = pos.top;
   cornerX = pos.right;
   cornerY = pos.bottom;
+  if (mousedownX - screen.left < MIN_MARGIN && mousedownY - screen.top < MIN_MARGIN && screen.right - cornerX < MIN_MARGIN && screen.bottom - cornerY < MIN_MARGIN) {
+    console.warn("Auto-detect selection failed: Selected area too close to visible area");
+    showHelpMessage("Auto-detect selection failed. Selected visible area.");
+  }
   render();
   console.info("total autoSelect time:", Date.now() - startTime, "ms");
   reportSelection("auto");
