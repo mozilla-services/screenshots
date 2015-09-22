@@ -183,11 +183,7 @@ class Frame extends React.Component {
       body = this.renderBody();
     }
     let result = (
-<<<<<<< HEAD
-      <Shell title={`${this.props.productName}: ${this.props.shot.title}`} staticLink={this.props.staticLink} gaId={this.props.gaId} deviceId={this.props.shot.deviceId}>
-=======
-      <Shell title={`${this.props.productName}: ${this.props.shot.title}`} staticLink={this.props.staticLink} gaId={this.props.gaId} simple={this.props.simple}>
->>>>>>> mozilla-services/master
+      <Shell title={`${this.props.productName}: ${this.props.shot.title}`} staticLink={this.props.staticLink} gaId={this.props.gaId} simple={this.props.simple} deviceId={this.props.shot.deviceId}>
         {head}
         {body}
       </Shell>);
