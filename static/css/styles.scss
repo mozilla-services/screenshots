@@ -363,6 +363,23 @@ a.subheading-link {
   background-color: inherit;
 }
 
+/* Exporter styles */
+
+.button {
+  // FIXME: copied from panel.scss .simplified-edit-button
+  display: inline-block;
+  background-color: #5CB85C;
+  color: #fff;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #4CAE4C;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 /* Shot index page styles */
 
 #shot-index {

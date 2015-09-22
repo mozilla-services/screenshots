@@ -191,10 +191,14 @@ build/server/static/js/server-bundle.js: $(clientglue_dependencies)
 	browserify --list -e ./build/server/clientglue.js | sed "s!$(shell pwd)/!!g" | grep -v build-time > build/clientglue-dependencies.txt
 	browserify -o $@ -e ./build/server/clientglue.js ./build/server/shotindexglue.js
 
+build/server/export-shots.sh: server/src/export-shots.sh
+	@mkdir -p $(@D)
+	cp -p $< $@
+
 # The intention here is to only write build-time when something else needs
 # to be regenerated, but for some reason this gets rewritten every time
 # anyway:
-build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass_server_dest) $(imgs_server_dest) $(static_js_dest) $(static_vendor_dest) $(patsubst server/db-patches/%,build/server/db-patches/%,$(wildcard server/db-patches/*))
+build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass_server_dest) $(imgs_server_dest) $(static_js_dest) $(static_vendor_dest) build/server/export-shots.sh $(patsubst server/db-patches/%,build/server/db-patches/%,$(wildcard server/db-patches/*))
 	@mkdir -p $(@D)
 	./bin/_write_build_time > build/server/build-time.js
 
