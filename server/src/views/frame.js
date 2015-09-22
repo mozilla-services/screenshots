@@ -155,7 +155,7 @@ class Frame extends React.Component {
       body = this.renderBody();
     }
     let result = (
-      <Shell title={`${this.props.productName}: ${this.props.shot.title}`} staticLink={this.props.staticLink} gaId={this.props.gaId}>
+      <Shell title={`${this.props.productName}: ${this.props.shot.title}`} staticLink={this.props.staticLink} gaId={this.props.gaId} deviceId={this.props.shot.deviceId}>
         {head}
         {body}
       </Shell>);
