@@ -26,9 +26,16 @@ export class Shell extends React.Component {
            (window.ga.q = window.ga.q || []).push(arguments);
          };
          window.ga.l = 1 * new Date();
+         var userId = "${this.props.deviceId}";
          var gaOptions = "auto";
-         if (location.hostname == "localhost") {
-           gaOptions = {cookieDomain: "none"};
+         if (userId) {
+           gaOptions = {userId: userId};
+         }
+         if (location.hostname === "localhost") {
+           if (typeof gaOptions === "string") {
+             gaOptions = {};
+           }
+           gaOptions.cookieDomain = "none";
          }
          ga("create", "${this.props.gaId}", gaOptions);
          ga("send", "pageview");
