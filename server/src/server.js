@@ -161,10 +161,10 @@ app.get("/clip/:id/:domain/:clipId", function (req, res) {
     }
     let image = clip.imageBinary();
     if (req.userAnalytics) {
-      req.userAnalytics.pageview(`/clip/${req.paramsid}/${req.params.domain}/${req.params.clipId}`).send();
+      req.userAnalytics.pageview(`/clip/${req.params.id}/${req.params.domain}/${req.params.clipId}`).send();
     } else {
       let anonAnalytics = ua(config.gaId);
-      anonAnalytics.pageview(`/clip/${req.paramsid}/${req.params.domain}/${req.params.clipId}`).send();
+      anonAnalytics.pageview(`/clip/${req.params.id}/${req.params.domain}/${req.params.clipId}`).send();
     }
     res.header("Content-Type", image.contentType);
     res.send(image.data);
