@@ -183,7 +183,7 @@ class Frame extends React.Component {
       body = this.renderBody();
     }
     let result = (
-      <Shell title={`${this.props.productName}: ${this.props.shot.title}`} staticLink={this.props.staticLink} gaId={this.props.gaId} simple={this.props.simple}>
+      <Shell title={`${this.props.productName}: ${this.props.shot.title}`} staticLink={this.props.staticLink} gaId={this.props.gaId} simple={this.props.simple} deviceId={this.props.shot.deviceId}>
         {head}
         {body}
       </Shell>);
@@ -402,7 +402,7 @@ exports.render = function (req, res) {
     contentProtocol: req.protocol,
     id: req.shot.id,
     productName: req.config.productName,
-    isExtInstalled: true,
+    isExtInstalled: !!req.deviceId,
     gaId: req.config.gaId,
     deviceId: req.deviceId,
     buildTime: buildTime,
@@ -447,7 +447,7 @@ exports.renderSimple = function (req, res) {
     contentProtocol: req.protocol,
     id: req.shot.id,
     productName: req.config.productName,
-    isExtInstalled: true,
+    isExtInstalled: !!req.deviceId,
     gaId: null,
     deviceId: req.deviceId,
     buildTime: buildTime,
