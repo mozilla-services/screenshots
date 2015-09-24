@@ -15,7 +15,8 @@ $mover-size: $mover-outer + $mover-inner;
 .pageshot-hide-selection .pageshot-bghighlight,
 .pageshot-hide-selection .pageshot-textbutton,
 .pageshot-hide-selection .pageshot-horizcross,
-.pageshot-hide-selection .pageshot-vertcross {
+.pageshot-hide-selection .pageshot-vertcross,
+.pageshot-hide-selection .pageshot-help-message {
   display: none;
 }
 
