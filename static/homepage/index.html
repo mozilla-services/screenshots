@@ -80,7 +80,20 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="/img/ico/apple-touch-icon-57-precomposed.png">
+    <script>
+var IS_FIREFOX=false;
+var IS_MOBILE=false;
 
+if (navigator.userAgent.indexOf("Firefox") !== -1
+    && navigator.userAgent.indexOf("Gecko") !== -1
+    && navigator.userAgent.indexOf("rv:") !== -1) {
+  IS_FIREFOX = true;
+}
+
+if (navigator.userAgent.indexOf("Mobile") !== -1) {
+  IS_MOBILE = true;
+}
+    </script>
   </head>
   <body >
     <img style="position: absolute; left: 0; right: 0; pointer-events: none; z-index: 100" alt="Alpha" src="/static/img/alpha-badge.png">
