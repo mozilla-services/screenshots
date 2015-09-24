@@ -142,6 +142,7 @@ function reportSelection(captureType) {
 
 function showHelpMessage(message) {
   helpMessage = document.createElement("div");
+  helpMessage.className = "pageshot-hide-selection pageshot-help-message";
   helpMessage.id = "help-overlay";
   helpMessage.style.zIndex = "9998";
   helpMessage.style.pointerEvents = "none";
@@ -873,9 +874,7 @@ function autoSelect(ids) {
   if (pos.top === null && pos.bottom === null &&
       pos.left === null && pos.right === null) {
     console.warn("Auto-detect selection failed: No suitable element found");
-    setTimeout(function() {
-      showHelpMessage("Cannot detect selection automatically.");
-    }, 500);
+    showHelpMessage("Cannot detect selection automatically.");
     reportNoSelection();
     return false;
   } else if (pos.top === null || pos.bottom === null ||
@@ -932,9 +931,7 @@ function autoSelect(ids) {
   cornerY = pos.bottom;
   if (mousedownX - screen.left < MIN_MARGIN && mousedownY - screen.top < MIN_MARGIN && screen.right - cornerX < MIN_MARGIN && screen.bottom - cornerY < MIN_MARGIN) {
     console.warn("Auto-detect selection failed: Selected area too close to visible area");
-    setTimeout(function() {
-      showHelpMessage("Cannot detect selection automatically.");
-    }, 500);
+    showHelpMessage("Cannot detect selection automatically.");
   }
   render();
   console.info("total autoSelect time:", Date.now() - startTime, "ms");
