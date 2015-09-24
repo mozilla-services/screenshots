@@ -160,11 +160,12 @@ app.get("/clip/:id/:domain/:clipId", function (req, res) {
       return;
     }
     let image = clip.imageBinary();
+    let analyticsUrl = `/clip/${encodeURIComponent(req.params.id)}/${encodeURIComponent(req.params.domain)}/${encodeURIComponent(req.params.clipId)}`;
     if (req.userAnalytics) {
-      req.userAnalytics.pageview(`/clip/${req.params.id}/${req.params.domain}/${req.params.clipId}`).send();
+      req.userAnalytics.pageview(analyticsUrl).send();
     } else {
       let anonAnalytics = ua(config.gaId);
-      anonAnalytics.pageview(`/clip/${req.params.id}/${req.params.domain}/${req.params.clipId}`).send();
+      anonAnalytics.pageview(analyticsUrl).send();
     }
     res.header("Content-Type", image.contentType);
     res.send(image.data);
@@ -245,11 +246,12 @@ app.get("/images/:imageid", function (req, res) {
     if (obj === null) {
       simpleResponse(res, "Not Found", 404);
     } else {
+      let analyticsUrl = `/images/${encodeURIComponent(req.params.imageid)}`;
       if (req.userAnalytics) {
-        req.userAnalytics.pageview(`/images/${req.params.imageid}`).send();
+        req.userAnalytics.pageview(analyticsUrl).send();
       } else {
         let anonAnalytics = ua(config.gaId);
-        anonAnalytics.pageview(`/images/${req.params.imageid}`).send();
+        anonAnalytics.pageview(analyticsUrl).send();
       }
       res.header("Content-Type", obj.contentType);
       res.status(200);
