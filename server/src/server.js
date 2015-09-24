@@ -82,6 +82,7 @@ app.post("/error", function (req, res) {
   userAnalytics.exception(
     bodyObj.name
   ).send();
+  simpleResponse(res, "Noted.", 200);
 });
 
 app.post("/api/register", function (req, res) {
