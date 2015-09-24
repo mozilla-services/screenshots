@@ -72,6 +72,18 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.post("/error", function (req, res) {
+  let bodyObj = req.body;
+  if (typeof bodyObj != "object") {
+    throw new Error("Got unexpected req.body type: " + typeof bodyObj);
+  }
+
+  let userAnalytics = ua(config.gaId);
+  userAnalytics.exception(
+    bodyObj.name
+  ).send();
+});
+
 app.post("/api/register", function (req, res) {
   let vars = req.body;
   // FIXME: need to hash secret
