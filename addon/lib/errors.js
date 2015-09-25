@@ -7,6 +7,8 @@
     */
 const panels = require("sdk/panel");
 const self = require("sdk/self");
+const req = require("./req");
+const main = require("./main");
 
 const panel = panels.Panel({
   contentURL: self.data.url("error-panel.html"),
@@ -37,6 +39,15 @@ exports.unhandled = function (error) {
     }
   }
   panel.port.emit("showError", errorObj);
+  if (typeof errorObj === "string") {
+    errorObj = {name: errorObj};
+  }
+  req.request(`${main.getBackend()}/error`, {
+    method: "POST",
+    content: JSON.stringify(errorObj),
+    contentType: "application/json",
+    ignoreLogin: true
+  });
 };
 
 /** Turns an exception object (likely Error) into what might be a kind of
