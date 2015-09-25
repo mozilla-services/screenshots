@@ -311,6 +311,8 @@ class Frame extends React.Component {
       frameHeight = this.props.shot.documentSize.height;
     }
 
+    let shotRedirectUrl = `/redirect?to=${encodeURIComponent(shot.url)}`;
+
     return (
       <body>
         <div id="container">
@@ -331,7 +333,7 @@ class Frame extends React.Component {
         <div id="toolbar">
           <div className="shot-title">{ shot.title }</div>
           <div className="shot-subtitle">
-            <span>source </span><a className="subheading-link" href={ shot.url }>{ linkTextShort }</a>
+            <span>source </span><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a>
             <span style={{paddingLeft: "15px"}}>saved { timeDiff } { expiresDiff }</span>
           </div>
         </div>
@@ -351,7 +353,7 @@ class Frame extends React.Component {
         </div>
         <div className="metadata">
           <h1 id="main-title">{ shot.title }</h1>
-          <p><a className="subheading-link" href={ shot.url }>{ linkTextShort }</a></p>
+          <p><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a></p>
           <p>saved {timeDiff} { expiresDiff }</p>
         </div>
         { clips }

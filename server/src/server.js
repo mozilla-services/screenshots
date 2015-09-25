@@ -85,6 +85,27 @@ app.post("/error", function (req, res) {
   simpleResponse(res, "Noted.", 200);
 });
 
+app.get("/redirect", function (req, res) {
+  if (req.query.to) {
+    res.header("Content-type", "text/html");
+    res.status(200);
+    res.send(`<html>
+  <head>
+    <title>Redirect</title>
+  </head>
+  <body>
+    <a href="${req.query.to}">If you are not automatically redirected, click here.</a>
+    <script>
+window.location = "${req.query.to}";
+    </script>
+  </body>
+</html>`);
+    console.log("REDIRECT", req.query.to);
+  } else {
+    simpleResponse(res, "Bad Request", 400);
+  }
+});
+
 app.post("/api/register", function (req, res) {
   let vars = req.body;
   // FIXME: need to hash secret
