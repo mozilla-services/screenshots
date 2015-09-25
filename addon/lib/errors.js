@@ -45,7 +45,8 @@ exports.unhandled = function (error) {
   req.request(`${main.getBackend()}/error`, {
     method: "POST",
     content: JSON.stringify(errorObj),
-    contentType: "application/json"
+    contentType: "application/json",
+    ignoreLogin: true
   });
 };
 
