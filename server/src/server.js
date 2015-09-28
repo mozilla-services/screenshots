@@ -89,17 +89,19 @@ app.get("/redirect", function (req, res) {
   if (req.query.to) {
     res.header("Content-type", "text/html");
     res.status(200);
-    res.send(`<html>
+    let redirectUrl = JSON.stringify(req.query.to);
+    let output = `<html>
   <head>
     <title>Redirect</title>
   </head>
   <body>
-    <a href="${req.query.to}">If you are not automatically redirected, click here.</a>
+    <a href=${redirectUrl}>If you are not automatically redirected, click here.</a>
     <script>
-window.location = "${req.query.to}";
+window.location = ${redirectUrl};
     </script>
   </body>
-</html>`);
+</html>`;
+    res.send(output);
   } else {
     simpleResponse(res, "Bad Request", 400);
   }
