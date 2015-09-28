@@ -100,7 +100,6 @@ window.location = "${req.query.to}";
     </script>
   </body>
 </html>`);
-    console.log("REDIRECT", req.query.to);
   } else {
     simpleResponse(res, "Bad Request", 400);
   }
