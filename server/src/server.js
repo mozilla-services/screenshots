@@ -22,6 +22,7 @@ const errors = require("../shared/errors");
 const config = require("./config").root();
 const { checkContent, checkAttributes } = require("./contentcheck");
 const buildTime = require("./build-time").string;
+const ua = require("universal-analytics");
 
 dbschema.createTables().then(() => {
   dbschema.createKeygrip();
@@ -47,6 +48,9 @@ app.use(morgan("dev"));
 app.use(function (req, res, next) {
   let cookies = new Cookies(req, res, dbschema.getKeygrip());
   req.deviceId = cookies.get("user", {signed: true});
+  if (req.deviceId) {
+    req.userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
+  }
   req.backend = req.protocol + "://" + req.headers.host;
   req.config = config;
   next();
@@ -121,6 +125,8 @@ app.post("/api/login", function (req, res) {
     if (ok) {
       let cookies = new Cookies(req, res, dbschema.getKeygrip());
       cookies.set("user", vars.deviceId, {signed: true});
+      let userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
+      userAnalytics.pageview("/api/login").send();
       simpleResponse(res, "User logged in", 200);
     } else if (ok === null) {
       simpleResponse(res, "No such user", 404);
@@ -139,6 +145,9 @@ app.post("/api/unload", function (req, res) {
   // This erases the session cookie:
   cookies.set("user");
   cookies.set("user.sig");
+  if (req.userAnalytics) {
+    req.userAnalytics.pageview("/api/unload").send();
+  }
   simpleResponse(res, "Noted", 200);
 });
 
@@ -151,6 +160,13 @@ app.get("/clip/:id/:domain/:clipId", function (req, res) {
       return;
     }
     let image = clip.imageBinary();
+    let analyticsUrl = `/clip/${encodeURIComponent(req.params.id)}/${encodeURIComponent(req.params.domain)}/${encodeURIComponent(req.params.clipId)}`;
+    if (req.userAnalytics) {
+      req.userAnalytics.pageview(analyticsUrl).send();
+    } else {
+      let anonAnalytics = ua(config.gaId);
+      anonAnalytics.pageview(analyticsUrl).send();
+    }
     res.header("Content-Type", image.contentType);
     res.send(image.data);
   }).catch((err) => {
@@ -230,6 +246,13 @@ app.get("/images/:imageid", function (req, res) {
     if (obj === null) {
       simpleResponse(res, "Not Found", 404);
     } else {
+      let analyticsUrl = `/images/${encodeURIComponent(req.params.imageid)}`;
+      if (req.userAnalytics) {
+        req.userAnalytics.pageview(analyticsUrl).send();
+      } else {
+        let anonAnalytics = ua(config.gaId);
+        anonAnalytics.pageview(analyticsUrl).send();
+      }
       res.header("Content-Type", obj.contentType);
       res.status(200);
       res.send(obj.data);
