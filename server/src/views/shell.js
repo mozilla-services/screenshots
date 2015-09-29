@@ -61,6 +61,7 @@ export class Shell extends React.Component {
     return <html prefix="og: http://ogp.me/ns#">
       <head>
         <meta charSet="UTF-8" />
+        <meta name="referrer" content="origin" />
         <title>{this.props.title}</title>
         {gaScript}
         {gaCode}
