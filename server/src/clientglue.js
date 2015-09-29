@@ -66,7 +66,6 @@ function render() {
   for (let attr in profile) {
     attrs[attr] = profile[attr];
   }
-  attrs.renderBodyOnly = true;
   let frame = FrameFactory(attrs);
 
   React.render(
