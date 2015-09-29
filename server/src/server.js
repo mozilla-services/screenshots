@@ -85,6 +85,28 @@ app.post("/error", function (req, res) {
   simpleResponse(res, "Noted.", 200);
 });
 
+app.get("/redirect", function (req, res) {
+  if (req.query.to) {
+    res.header("Content-type", "text/html");
+    res.status(200);
+    let redirectUrl = JSON.stringify(req.query.to);
+    let output = `<html>
+  <head>
+    <title>Redirect</title>
+  </head>
+  <body>
+    <a href=${redirectUrl}>If you are not automatically redirected, click here.</a>
+    <script>
+window.location = ${redirectUrl};
+    </script>
+  </body>
+</html>`;
+    res.send(output);
+  } else {
+    simpleResponse(res, "Bad Request", 400);
+  }
+});
+
 app.post("/api/register", function (req, res) {
   let vars = req.body;
   // FIXME: need to hash secret
@@ -475,6 +497,7 @@ contentApp.get("/content/:id/:domain", function (req, res) {
     }
     res.send(shot.staticHtml({
       addHead: `
+      <meta name="referrer" content="origin" />
       <base href="${shot.url}" target="_blank" />
       <script>var SITE_ORIGIN = "${req.protocol}://${config.siteOrigin}";</script>
       <script src="${req.staticLinkWithHost("js/content-helper.js")}"></script>
