@@ -68,7 +68,6 @@ function render() {
   }
   attrs.renderBodyOnly = true;
   let frame = FrameFactory(attrs);
-  console.log("Frame-o", frame);
 
   React.render(
     frame,
