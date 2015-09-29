@@ -66,8 +66,13 @@ function render() {
   for (let attr in profile) {
     attrs[attr] = profile[attr];
   }
+  attrs.renderBodyOnly = true;
   let frame = FrameFactory(attrs);
-  React.render(frame, document);
+  console.log("Frame-o", frame);
+
+  React.render(
+    frame,
+    document.getElementById("react-body-container"));
 }
 
 function refreshProfile(e) {

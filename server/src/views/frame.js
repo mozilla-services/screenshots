@@ -181,11 +181,20 @@ class Frame extends React.Component {
       </body>;
     } else {
       body = this.renderBody();
+      if (this.props.renderBodyOnly) {
+        let s = React.renderToString(body);
+        //console.log("RENDERBODYONLY", s);
+        return body;
+      }
     }
     let result = (
       <Shell title={`${this.props.productName}: ${this.props.shot.title}`} staticLink={this.props.staticLink} gaId={this.props.gaId} simple={this.props.simple} deviceId={this.props.shot.deviceId}>
         {head}
-        {body}
+        <body>
+          <div id="react-body-container">
+          {body}
+          </div>
+        </body>
       </Shell>);
     return result;
   }
@@ -213,6 +222,7 @@ class Frame extends React.Component {
     if (! this.props.simple) {
       oembed = <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />;
     }
+    let postMessageOrigin = `${this.props.contentProtocol}://${this.props.contentOrigin}`;
     return (
       <head>
         <meta property="og:type" content="website" />
@@ -220,6 +230,8 @@ class Frame extends React.Component {
         {oembed}
         {ogTitle}
         {ogImage}
+        <script dangerouslySetInnerHTML={{__html: `var CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`}}></script>
+        <script src={ this.props.staticLink("js/parent-helper.js") } />
       </head>);
   }
 
@@ -298,8 +310,6 @@ class Frame extends React.Component {
       expiresDiff = null;
     }
 
-    let postMessageOrigin = `${this.props.contentProtocol}://${this.props.contentOrigin}`;
-
     let introJsStart = null;
 
     if (this.props.showIntro) {
@@ -312,11 +322,8 @@ class Frame extends React.Component {
     }
 
     return (
-      <body>
         <div id="container">
           { this.renderExtRequired() }
-          <script dangerouslySetInnerHTML={{__html: `var CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`}}></script>
-          <script src={ this.props.staticLink("js/parent-helper.js") } />
           <div id="profile-widget">
             <ProfileButton
               staticLink={ this.props.staticLink }
@@ -367,12 +374,13 @@ class Frame extends React.Component {
           <a href="https://github.com/mozilla-services/pageshot">{this.props.productName}</a> — <a href={`https://github.com/mozilla-services/pageshot/commit/${getGitRevision()}`}>Updated {this.props.buildTime}</a>
         </div>
         <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl }>Send Feedback</a>
+        { introJsStart }
       </div>
-      { introJsStart }
-    </body>);
+    );
   }
 
   renderExtRequired() {
+    console.log("ISEXTINSTALLED?", this.props.isExtInstalled);
     if (this.props.isExtInstalled) {
       return null;
     }
@@ -418,6 +426,7 @@ exports.render = function (req, res) {
     contentProtocol: req.protocol,
     id: req.shot.id,
     productName: req.config.productName,
+    isExtInstalled: !!req.deviceId,
     gaId: req.config.gaId,
     deviceId: req.deviceId,
     shotDomain: req.url,
