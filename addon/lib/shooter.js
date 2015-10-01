@@ -18,6 +18,7 @@ const { getDeviceInfo } = require("./user");
 const { URL } = require("sdk/url");
 const notifications = require("sdk/notifications");
 const { randomString } = require("./randomstring");
+const { setTimeout } = require("sdk/timers");
 
 // If a page is in history for less time than this, we ignore it
 // (probably a redirect of some sort):
@@ -142,11 +143,59 @@ const ShotContext = Class({
     this._activateWorker();
   },
 
-  copyLink: function () {
-    clipboard.set(this.shot.viewUrl, "text");
+  copyRichDataToClipboard: function (activeClipName, numberOfTries) {
+    // Use "text" instead of "html" so that pasting into a text area or text editor
+    // pastes the html instead of the plain text stripped out of the html.
+    let clip = this.shot.getClip(activeClipName);
+    if (clip === undefined) {
+      let names = this.shot.clipNames();
+      if (names.length === 0) {
+        // Copy just the raw url in case for some reason no clips ever become available
+        // But don't send a notification yet, otherwise the user will get two notifications
+        // in a row if the rich shot data is successfully copied to the clipboard later.
+        clipboard.set(this.shot.viewUrl, "text");
+        if (numberOfTries === undefined) {
+          numberOfTries = 1;
+        }
+        if (numberOfTries < 8) {
+          setTimeout(() => {
+            this.copyRichDataToClipboard(activeClipName, ++numberOfTries);
+          }, 500);
+        } else {
+          console.error("Could not copy rich shot data -- no clip was added to the shot within 4 seconds")
+          // If we failed to copy the rich shot data, just tell the user we copied the link
+          notifications.notify({
+            title: "Link Copied",
+            text: "The link to your shot has been copied to the clipboard.",
+            iconURL: self.data.url("../data/copy.png")
+          });
+        }
+        return;
+      }
+      clip = this.shot.getClip(names[0]);
+    }
+    let url = this.shot.viewUrl;
+    let img = clip.image.url;
+    let title = this.shot.title;
+    let origin = new URL(this.shot.url).hostname;
+    let html = (
+`<div>
+  <a href="${escapeForHTML(url)}">
+    <div>${escapeForHTML(title)}</div>
+    <img src="${img}" />
+  </a>
+  <div>
+    source: <a href="http://${origin}">${origin}</a>
+  </div>
+</div>`);
+    require("./multiclip").copyMultiple({
+      image: img,
+      html,
+      text: `${title} -- ${url}`
+    });
     notifications.notify({
-      title: "Link Copied",
-      text: "The link to your shot has been copied to the clipboard.",
+      title: "HTML Copied",
+      text: "The link to your shot and an image have been copied to the clipboard.",
       iconURL: self.data.url("../data/copy.png")
     });
   },
@@ -326,6 +375,7 @@ const ShotContext = Class({
       });
     },
     copyRich: function (activeClipName) {
+      this.copyRichDataToClipboard(activeClipName);
     },
     openLink: function (link, loadReason) {
       if (loadReason === "install") {
@@ -428,6 +478,7 @@ const ShotContext = Class({
         // FIXME: maybe pop up an explanation here?
         return;
       }
+      this.copyRichDataToClipboard();
       var promises = [];
       // Note: removed until we have some need or use for history in our shot pages:
       /* processHistory(this.shot.history, this.tab); */
