@@ -182,10 +182,10 @@ const ShotContext = Class({
 `<div>
   <a href="${escapeForHTML(url)}">
     <div>${escapeForHTML(title)}</div>
-    <img src="${img}" />
+    <img src="${escapeForHTML(img)}" />
   </a>
   <div>
-    source: <a href="http://${origin}">${origin}</a>
+    source: <a href="http://${escapeForHTML(origin)}">${escapeForHTML(origin)}</a>
   </div>
 </div>`);
     require("./multiclip").copyMultiple({
