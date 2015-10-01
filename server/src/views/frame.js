@@ -483,10 +483,10 @@ exports.render = function (req, res) {
   let body = React.renderToString(frame);
   let json = JSON.stringify(clientPayload);
   let result = addReactScripts(
-    `<html>
-  ` + headString + `
+`<html>
+  ${headString}
   <body>
-    <div id="react-body-container">` + body + `</div>
+    <div id="react-body-container">${body}</div>
   </body></html>`, `
     var serverData = ${json};
     clientglue.setModel(serverData);
