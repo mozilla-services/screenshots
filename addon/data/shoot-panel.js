@@ -217,7 +217,6 @@ class ShootPanel extends React.Component {
         onClickAdd={ this.addClip.bind(this) }
         onCopyClick={ this.onCopyClick.bind(this) }
         onCopyImageClick={ this.onCopyImageClick.bind(this) }
-        onCopyRichClick={ this.onCopyRichClick.bind(this) }
         { ...this.props }
       />;
     }
@@ -319,7 +318,6 @@ class ShootPanel extends React.Component {
           clipUrl={ clipUrl }
           onCopyClick={ this.onCopyClick.bind(this) }
           onCopyImageClick={ this.onCopyImageClick.bind(this) }
-          onCopyRichClick={ this.onCopyRichClick.bind(this) }
           { ...this.props }
         />
       </div>

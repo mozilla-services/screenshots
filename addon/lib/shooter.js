@@ -316,14 +316,6 @@ const ShotContext = Class({
       }
       this.updateShot();
     },
-    copyLink: function () {
-      clipboard.set(this.shot.viewUrl, "text");
-      notifications.notify({
-        title: "Link Copied",
-        text: "The link to your shot has been copied to the clipboard.",
-        iconURL: self.data.url("../data/copy.png")
-      });
-    },
     copyImage: function (activeClipName) {
       let clip = this.shot.getClip(activeClipName);
       clipboard.set(clip.image.url, "image");
@@ -334,22 +326,6 @@ const ShotContext = Class({
       });
     },
     copyRich: function (activeClipName) {
-      // Use "text" instead of "html" so that pasting into a text area or text editor
-      // pastes the html instead of the plain text stripped out of the html.
-      let clip = this.shot.getClip(activeClipName);
-      let url = this.shot.viewUrl;
-      let img = clip.image.url;
-      let title = this.shot.title;
-      let html = `<a href="${escapeForHTML(url)}"><img src="${img}" /><div>${escapeForHTML(title)}</div></a>`;
-      require("./multiclip").copyMultiple({
-        html,
-        text: `${title}\n${url}`
-      });
-      notifications.notify({
-        title: "HTML Copied",
-        text: "The link to your shot and an image have been copied to the clipboard.",
-        iconURL: self.data.url("../data/copy.png")
-      });
     },
     openLink: function (link, loadReason) {
       if (loadReason === "install") {
@@ -452,7 +428,6 @@ const ShotContext = Class({
         // FIXME: maybe pop up an explanation here?
         return;
       }
-      this.copyLink();
       var promises = [];
       // Note: removed until we have some need or use for history in our shot pages:
       /* processHistory(this.shot.history, this.tab); */
