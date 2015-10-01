@@ -516,8 +516,8 @@ exports.renderSimple = function (req, res) {
   let frame = FrameFactory(serverPayload);
   let body = React.renderToStaticMarkup(frame);
   body = `<!DOCTYPE HTML>
-  ` + headString + `
-  <body>` + body + `
+  ${headString}
+  <body>${body}
   </body></html>`;
   res.send(body);
 };
