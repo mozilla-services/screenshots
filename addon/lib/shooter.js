@@ -189,7 +189,6 @@ const ShotContext = Class({
   </div>
 </div>`);
     require("./multiclip").copyMultiple({
-      image: img,
       html,
       text: `${title} -- ${url}`
     });
