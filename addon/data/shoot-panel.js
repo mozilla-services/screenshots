@@ -87,13 +87,10 @@ class ShareButtons extends React.Component {
         <img src={ `icons/email-${size}.png` } />
       </a>
       <a href="#" onClick={ this.props.onCopyClick }>
-        <img src={ `icons/link-${size}.png` } />
+        <img src={ `icons/clipboard-${size}.png` } />
       </a>
       <a href="#" onClick={ this.props.onCopyImageClick }>
         <img src={ `icons/copy-image-${size}.png` } />
-      </a>
-      <a href="#" onClick={ this.props.onCopyRichClick }>
-        <img src={ `icons/copy-rich-${size}.png` } />
       </a>
     </div>;
   }
@@ -149,17 +146,12 @@ class ShootPanel extends React.Component {
 
   onCopyClick(e) {
     e.preventDefault();
-    self.port.emit("copyLink");
+    self.port.emit("copyRich");
   }
 
   onCopyImageClick(e) {
     e.preventDefault();
     self.port.emit("copyImage", this.props.activeClipName);
-  }
-
-  onCopyRichClick(e) {
-    e.preventDefault();
-    self.port.emit("copyRich", this.props.activeClipName);
   }
 
   onLinkClick(e) {
@@ -217,7 +209,6 @@ class ShootPanel extends React.Component {
         onClickAdd={ this.addClip.bind(this) }
         onCopyClick={ this.onCopyClick.bind(this) }
         onCopyImageClick={ this.onCopyImageClick.bind(this) }
-        onCopyRichClick={ this.onCopyRichClick.bind(this) }
         { ...this.props }
       />;
     }
@@ -319,7 +310,6 @@ class ShootPanel extends React.Component {
           clipUrl={ clipUrl }
           onCopyClick={ this.onCopyClick.bind(this) }
           onCopyImageClick={ this.onCopyImageClick.bind(this) }
-          onCopyRichClick={ this.onCopyRichClick.bind(this) }
           { ...this.props }
         />
       </div>
