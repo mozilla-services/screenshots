@@ -147,50 +147,8 @@ class TimeDiff extends React.Component {
 
 exports.TimeDiff = TimeDiff;
 
-class Frame extends React.Component {
-  closeGetPageshotBanner() {
-    let node = document.getElementById("use-pageshot-to-create");
-    node.style.display = "none";
-  }
-
-  clickFullPageButton(e) {
-    e.preventDefault();
-    let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
-    let toolbarHeight = document.getElementById("toolbar").clientHeight;
-    let visibleHeight = window.innerHeight - toolbarHeight;
-    let frameTop = frameOffset - (toolbarHeight * 2);
-    window.scroll(0, frameTop);
-  }
-
+class Head extends React.Component {
   render() {
-    let head = this.renderHead();
-    let body;
-    if (Date.now() > this.props.shot.expireTime) {
-      body = <body>
-        <div id="container">
-          <p>&nbsp;</p>
-          <p>
-            This shot has expired. You may visit the original page it was originally created from:
-          </p>
-          <p>
-            <a href={this.props.shot.urlIfDeleted}>
-              {this.props.shot.urlIfDeleted}
-            </a>
-          </p>
-        </div>
-      </body>;
-    } else {
-      body = this.renderBody();
-    }
-    let result = (
-      <Shell title={`${this.props.productName}: ${this.props.shot.title}`} staticLink={this.props.staticLink} gaId={this.props.gaId} simple={this.props.simple} deviceId={this.props.shot.deviceId}>
-        {head}
-        {body}
-      </Shell>);
-    return result;
-  }
-
-  renderHead() {
     let ogImage = [];
     if (this.props.shot) {
       for (let clipId in this.props.shot.clips) {
@@ -213,14 +171,109 @@ class Frame extends React.Component {
     if (! this.props.simple) {
       oembed = <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />;
     }
+    let postMessageOrigin = `${this.props.contentProtocol}://${this.props.contentOrigin}`;
+    let gaScript = null;
+    let gaCode = null;
+    let gaJs;
+    if (this.props.gaId) {
+      if (this.props.gaId.search(/^[a-z0-9\-]+$/i) === -1) {
+        // Doesn't look like a valid code
+        console.warn("Invalid Google Analytics code:", this.props.gaId);
+      }
+      gaJs = `
+       (function () {
+         window.GoogleAnalyticsObject = "ga";
+         window.ga = window.ga || function () {
+           (window.ga.q = window.ga.q || []).push(arguments);
+         };
+         window.ga.l = 1 * new Date();
+         var userId = "${this.props.deviceId}";
+         var gaOptions = "auto";
+         if (userId) {
+           gaOptions = {userId: userId};
+         }
+         if (location.hostname === "localhost") {
+           if (typeof gaOptions === "string") {
+             gaOptions = {};
+           }
+           gaOptions.cookieDomain = "none";
+         }
+         ga("create", "${this.props.gaId}", gaOptions);
+         ga("send", "pageview");
+       })();
+      `;
+      gaScript = <script src="//www.google-analytics.com/analytics.js" async></script>;
+    } else {
+      gaJs = `
+      window.ga = function () {
+        console.info.apply(console, ["stubbed ga("].concat(arguments).concat([")"]));
+      };
+      `;
+    }
+    let js = [
+      <link rel="stylesheet" href={ this.props.staticLink("vendor/introjs/introjs.css") } key="introjs-stylesheet" />,
+      <script src={ this.props.staticLink("vendor/introjs/intro.js") } key="introjs-js" />,
+      <script src={ this.props.staticLink("js/server-bundle.js") } key="server-bundle-js" />,
+    ];
+    if (this.props.simple) {
+      js = null;
+    }
+    gaCode = <script dangerouslySetInnerHTML={{__html: gaJs}}></script>;
     return (
       <head>
+        <meta charSet="UTF-8" />
+        <title>{this.props.title}</title>
+        {gaScript}
+        {gaCode}
+        {js}
+        <link rel="stylesheet" href={ this.props.staticLink("css/styles.css") } />
+        <link rel="stylesheet" href={ this.props.staticLink("css/profile.css") } />
         <meta property="og:type" content="website" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {oembed}
         {ogTitle}
         {ogImage}
+        <script dangerouslySetInnerHTML={{__html: `var CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`}}></script>
+        <script src={ this.props.staticLink("js/parent-helper.js") } />
       </head>);
+  }
+}
+
+class Frame extends React.Component {
+  closeGetPageshotBanner() {
+    let node = document.getElementById("use-pageshot-to-create");
+    node.style.display = "none";
+  }
+
+  clickFullPageButton(e) {
+    e.preventDefault();
+    let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
+    let toolbarHeight = document.getElementById("toolbar").clientHeight;
+    let visibleHeight = window.innerHeight - toolbarHeight;
+    let frameTop = frameOffset - (toolbarHeight * 2);
+    window.scroll(0, frameTop);
+  }
+
+  render() {
+    let body;
+    if (Date.now() > this.props.shot.expireTime) {
+      body = <body>
+        <div id="container">
+          <p>&nbsp;</p>
+          <p>
+            This shot has expired. You may visit the original page it was originally created from:
+          </p>
+          <p>
+            <a href={this.props.shot.urlIfDeleted}>
+              {this.props.shot.urlIfDeleted}
+            </a>
+          </p>
+        </div>
+      </body>;
+    } else {
+      body = this.renderBody();
+    }
+    return body;
   }
 
   renderBody() {
@@ -298,8 +351,6 @@ class Frame extends React.Component {
       expiresDiff = null;
     }
 
-    let postMessageOrigin = `${this.props.contentProtocol}://${this.props.contentOrigin}`;
-
     let introJsStart = null;
 
     if (this.props.showIntro) {
@@ -311,12 +362,11 @@ class Frame extends React.Component {
       frameHeight = this.props.shot.documentSize.height;
     }
 
+    let shotRedirectUrl = `/redirect?to=${encodeURIComponent(shot.url)}`;
+
     return (
-      <body>
         <div id="container">
           { this.renderExtRequired() }
-          <script dangerouslySetInnerHTML={{__html: `var CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`}}></script>
-          <script src={ this.props.staticLink("js/parent-helper.js") } />
           <div id="profile-widget">
             <ProfileButton
               staticLink={ this.props.staticLink }
@@ -331,7 +381,7 @@ class Frame extends React.Component {
         <div id="toolbar">
           <div className="shot-title">{ shot.title }</div>
           <div className="shot-subtitle">
-            <span>source </span><a className="subheading-link" href={ shot.url }>{ linkTextShort }</a>
+            <span>source </span><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a>
             <span style={{paddingLeft: "15px"}}>saved { timeDiff } { expiresDiff }</span>
           </div>
         </div>
@@ -351,7 +401,7 @@ class Frame extends React.Component {
         </div>
         <div className="metadata">
           <h1 id="main-title">{ shot.title }</h1>
-          <p><a className="subheading-link" href={ shot.url }>{ linkTextShort }</a></p>
+          <p><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a></p>
           <p>saved {timeDiff} { expiresDiff }</p>
         </div>
         { clips }
@@ -367,9 +417,9 @@ class Frame extends React.Component {
           <a href="https://github.com/mozilla-services/pageshot">{this.props.productName}</a> — <a href={`https://github.com/mozilla-services/pageshot/commit/${getGitRevision()}`}>Updated {this.props.buildTime}</a>
         </div>
         <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl }>Send Feedback</a>
+        { introJsStart }
       </div>
-      { introJsStart }
-    </body>);
+    );
   }
 
   renderExtRequired() {
@@ -388,13 +438,14 @@ class Frame extends React.Component {
 }
 
 let FrameFactory = React.createFactory(Frame);
+let HeadFactory = React.createFactory(Head);
 
 exports.FrameFactory = FrameFactory;
 
 exports.render = function (req, res) {
   let showIntro = !!req.query.showIntro;
   let buildTime = require("../build-time").string;
-  let frame = FrameFactory({
+  let serverPayload = {
     staticLink: req.staticLink,
     backend: req.backend,
     shot: req.shot,
@@ -409,7 +460,9 @@ exports.render = function (req, res) {
     showIntro: showIntro,
     simple: false,
     shotDomain: req.url // FIXME: should be a property of the shot
-  });
+  };
+  let headString = React.renderToStaticMarkup(HeadFactory(serverPayload));
+  let frame = FrameFactory(serverPayload);
   let clientPayload = {
     gitRevision: getGitRevision(),
     backend: req.backend,
@@ -418,6 +471,7 @@ exports.render = function (req, res) {
     contentProtocol: req.protocol,
     id: req.shot.id,
     productName: req.config.productName,
+    isExtInstalled: !!req.deviceId,
     gaId: req.config.gaId,
     deviceId: req.deviceId,
     shotDomain: req.url,
@@ -430,16 +484,21 @@ exports.render = function (req, res) {
   };
   let body = React.renderToString(frame);
   let json = JSON.stringify(clientPayload);
-  body = addReactScripts(body, `
+  let result = addReactScripts(
+`<html>
+  ${headString}
+  <body>
+    <div id="react-body-container">${body}</div>
+  </body></html>`, `
     var serverData = ${json};
     clientglue.setModel(serverData);
   `);
-  res.send(body);
+  res.send(result);
 };
 
 exports.renderSimple = function (req, res) {
   let buildTime = require("../build-time").string;
-  let frame = FrameFactory({
+  let serverPayload = {
     staticLink: req.staticLink.simple,
     backend: req.backend,
     shot: req.shot,
@@ -454,8 +513,13 @@ exports.renderSimple = function (req, res) {
     showIntro: false,
     simple: true,
     shotDomain: req.url // FIXME: should be a property of the shot
-  });
+  };
+  let headString = React.renderToStaticMarkup(HeadFactory(serverPayload));
+  let frame = FrameFactory(serverPayload);
   let body = React.renderToStaticMarkup(frame);
-  body = '<!DOCTYPE HTML>\n' + body;
+  body = `<!DOCTYPE HTML>
+  ${headString}
+  <body>${body}
+  </body></html>`;
   res.send(body);
 };
