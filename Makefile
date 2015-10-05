@@ -18,7 +18,7 @@ _dummy := $(shell ./bin/_write_ga_id)
 data_source := $(shell find addon/data -path addon/data/vendor -prune -o -name '*.js')
 data_dest := $(data_source:%.js=build/%.js)
 
-vendor_source := $(shell find addon/data/vendor -type f)
+vendor_source := $(shell find addon/data/vendor -path addon/data/vendor/readability/test -prune -name addon/data/vendor/readability/test -prune -o -type f)
 vendor_dest := $(vendor_source:%=build/%)
 
 # Note shared/ gets copied into two locations (server and addon)
@@ -26,7 +26,7 @@ shared_source := $(wildcard shared/*.js)
 shared_server_dest := $(shared_source:%.js=build/%.js)
 shared_addon_dest := $(shared_source:shared/%.js=build/addon/lib/shared/%.js)
 
-static_addon_source := $(shell find addon -type f -name '*.png' -o -name '*.svg' -o -name '*.html')
+static_addon_source := $(shell find addon -path addon/data/vendor/readability/test -prune -type f -o -name '*.png' -o -name '*.svg' -o -name '*.html')
 static_addon_dest := $(static_addon_source:%=build/%)
 
 # static/js only gets copied to the server
@@ -132,6 +132,10 @@ build/addon/data/panel-bundle.js: $(shoot_panel_dependencies)
 	@mkdir -p $(@D)
 	# Save the bundle dependencies:
 	browserify --list -e ./build/addon/data/shoot-panel.js | sed "s!$(shell pwd)/!!g" > build/shoot-panel-dependencies.txt
+	cat ./build/addon/lib/shooter.js | ./bin/_fixup_panel_js > ./build/addon/lib/shooter-new.js
+	mv ./build/addon/lib/shooter-new.js ./build/addon/lib/shooter.js
+	cat ./build/addon/data/shoot-panel.js | ./bin/_fixup_panel_js > ./build/addon/data/shoot-panel-new.js
+	mv ./build/addon/data/shoot-panel-new.js ./build/addon/data/shoot-panel.js
 	browserify -e ./build/addon/data/shoot-panel.js | ./bin/_fixup_panel_js > $@
 
 # We don't need babel on these specific modules:
