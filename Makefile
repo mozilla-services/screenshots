@@ -90,7 +90,7 @@ build/server/static/js/%.js: build/static/js/%.js
 
 build/%.js: %.js
 	@mkdir -p $(@D)
-	$(BABEL) $< > $@
+	$(BABEL) $< | bin/_fixup_panel_js > $@
 
 build/server/%.js: server/src/%.js
 	@mkdir -p $(@D)
@@ -132,10 +132,6 @@ build/addon/data/panel-bundle.js: $(shoot_panel_dependencies)
 	@mkdir -p $(@D)
 	# Save the bundle dependencies:
 	browserify --list -e ./build/addon/data/shoot-panel.js | sed "s!$(shell pwd)/!!g" > build/shoot-panel-dependencies.txt
-	cat ./build/addon/lib/shooter.js | ./bin/_fixup_panel_js > ./build/addon/lib/shooter-new.js
-	mv ./build/addon/lib/shooter-new.js ./build/addon/lib/shooter.js
-	cat ./build/addon/data/shoot-panel.js | ./bin/_fixup_panel_js > ./build/addon/data/shoot-panel-new.js
-	mv ./build/addon/data/shoot-panel-new.js ./build/addon/data/shoot-panel.js
 	browserify -e ./build/addon/data/shoot-panel.js | ./bin/_fixup_panel_js > $@
 
 # We don't need babel on these specific modules:
