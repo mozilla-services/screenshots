@@ -18,7 +18,7 @@ _dummy := $(shell ./bin/_write_ga_id)
 data_source := $(shell find addon/data -path addon/data/vendor -prune -o -name '*.js')
 data_dest := $(data_source:%.js=build/%.js)
 
-vendor_source := $(shell find addon/data/vendor -type f)
+vendor_source := $(shell find addon/data/vendor -path addon/data/vendor/readability/test -prune -name addon/data/vendor/readability/test -prune -o -type f)
 vendor_dest := $(vendor_source:%=build/%)
 
 # Note shared/ gets copied into two locations (server and addon)
@@ -26,7 +26,7 @@ shared_source := $(wildcard shared/*.js)
 shared_server_dest := $(shared_source:%.js=build/%.js)
 shared_addon_dest := $(shared_source:shared/%.js=build/addon/lib/shared/%.js)
 
-static_addon_source := $(shell find addon -type f -name '*.png' -o -name '*.svg' -o -name '*.html')
+static_addon_source := $(shell find addon -path addon/data/vendor/readability/test -prune -type f -o -name '*.png' -o -name '*.svg' -o -name '*.html')
 static_addon_dest := $(static_addon_source:%=build/%)
 
 # static/js only gets copied to the server
@@ -90,7 +90,7 @@ build/server/static/js/%.js: build/static/js/%.js
 
 build/%.js: %.js
 	@mkdir -p $(@D)
-	$(BABEL) $< > $@
+	$(BABEL) $< | bin/_fixup_panel_js > $@
 
 build/server/%.js: server/src/%.js
 	@mkdir -p $(@D)
