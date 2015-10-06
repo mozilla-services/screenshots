@@ -102,7 +102,7 @@ class SimplifiedPanel extends React.Component {
     if (this.props.loadReason === "install") {
       url += "?showIntro=true";
     }
-    self.port.emit("openLink", url, this.props.loadReason);
+    self.port.emit("openLink", url, this.props.loadReason, "simplified");
     e.preventDefault();
   }
 
@@ -155,7 +155,7 @@ class ShootPanel extends React.Component {
   }
 
   onLinkClick(e) {
-    self.port.emit("openLink", this.props.shot.viewUrl);
+    self.port.emit("openLink", this.props.shot.viewUrl, "normal");
     e.preventDefault();
   }
 
@@ -434,7 +434,7 @@ class ShootPanel extends React.Component {
   }
 
   openLink(event) {
-    self.port.emit("openLink", event.target.href);
+    self.port.emit("openLink", event.target.href, "recall");
   }
 
 }
@@ -468,17 +468,17 @@ function processDebugCommand(component, command) {
       html = '<!DOCTYPE html><html><body><!-- text selection: -->' + html + '</body></html>';
       html = html.replace(/>/g, '>\n');
       let url = "view-source:data:text/html;charset=UTF-8;base64," + unicodeBtoa(html);
-      self.port.emit("openLink", url);
+      self.port.emit("openLink", url, "debug-command-viewsource");
     }
     return true;
   } else if (command == "/data") {
     let text = JSON.stringify(truncatedCopy(component.props.shot.asJson()), null, "  ");
     let url = "data:text/plain;charset=UTF-8;base64," + unicodeBtoa(text);
-    self.port.emit("openLink", url);
+    self.port.emit("openLink", url, "debug-command-data");
     return true;
   } else if (command.search(/^\/help/i) != -1) {
     let url = "data:text/plain;base64," + btoa(debugCommandHelp);
-    self.port.emit("openLink", url);
+    self.port.emit("openLink", url, "debug-command-help");
     return true;
   } else if (command.search(/^\/sticky/i) != -1) {
     self.port.emit("stickyPanel");
@@ -560,7 +560,7 @@ class RecallPanel extends React.Component {
 
   openRecall() {
     let recall = this.props.backend.replace(/\/*$/, "") + "/shots";
-    self.port.emit("openLink", recall);
+    self.port.emit("openLink", recall, "recall-panel");
   }
 
   render() {

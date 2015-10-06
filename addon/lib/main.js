@@ -19,6 +19,7 @@ const panels = require("sdk/panel");
 const { watchFunction, watchWorker } = require("./errors");
 const {Cu} = require("chrome");
 const winutil = require("sdk/window/utils");
+const req = require("./req");
 
 Cu.import("resource:///modules/UITour.jsm");
 
@@ -36,6 +37,7 @@ var shootButton = ToggleButton({
   onClick: watchFunction(function () {
     hideInfoPanel();
     PanelContext.onShootButtonClicked();
+    req.sendEvent("click", "shot-button");
   })
 });
 exports.shootButton = shootButton;
@@ -196,6 +198,7 @@ PanelContext = {
     this._activeContext.isEditing = editing;
     if (editing) {
       shootPanel.resize(400, PANEL_TALL_HEIGHT);
+      req.sendEvent("click", "short-panel-edit");
     } else {
       shootPanel.resize(400, PANEL_SHORT_HEIGHT);
     }

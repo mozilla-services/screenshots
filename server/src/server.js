@@ -74,7 +74,7 @@ app.use(function (req, res, next) {
 
 app.post("/error", function (req, res) {
   let bodyObj = req.body;
-  if (typeof bodyObj != "object") {
+  if (typeof bodyObj !== "object") {
     throw new Error("Got unexpected req.body type: " + typeof bodyObj);
   }
 
@@ -82,7 +82,22 @@ app.post("/error", function (req, res) {
   userAnalytics.exception(
     bodyObj.name
   ).send();
-  simpleResponse(res, "Noted.", 200);
+  simpleResponse(res, "OK", 200);
+});
+
+app.post("/event", function (req, res) {
+  let bodyObj = req.body;
+  if (typeof bodyObj !== "object") {
+    throw new Error("Got unexpected req.body type: " + typeof bodyObj);
+  }
+  console.log("event", JSON.stringify(req.body));
+  let userAnalytics = ua(config.gaId);
+  userAnalytics.event(
+    bodyObj.event,
+    bodyObj.action,
+    bodyObj.label
+  ).send();
+  simpleResponse(res, "OK", 200);
 });
 
 app.get("/redirect", function (req, res) {
@@ -102,6 +117,11 @@ window.location = ${redirectUrl};
   </body>
 </html>`;
     res.send(output);
+    let userAnalytics = ua(config.gaId);
+    userAnalytics.event(
+      "click",
+      "original-link"
+    ).send();
   } else {
     simpleResponse(res, "Bad Request", 400);
   }

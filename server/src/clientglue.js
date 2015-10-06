@@ -91,6 +91,7 @@ function refreshHash() {
   model.activeClipId = clipId;
   sendShowElement(clipId);
   render();
+  ga("send", "event", "change-clip", {page: location.toString()});
 }
 
 function sendShowElement(clipId) {
