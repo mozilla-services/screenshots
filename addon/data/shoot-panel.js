@@ -71,19 +71,23 @@ class LoadingClip extends React.Component {
 }
 
 class ShareButtons extends React.Component {
+  onClickShareButton(whichButton) {
+    self.port.emit("shareButton", whichButton, this.props.eventSource);
+  }
+
   render() {
     let size = this.props.large ? "32" : "16";
     return <div className="share-row">
-      <a target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }>
+      <a onClick={ this.onClickShareButton.bind(this, "facebook") } target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }>
         <img src={ `icons/facebook-${size}.png` } />
       </a>
-      <a target="_blank" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }>
+      <a onClick={ this.onClickShareButton.bind(this, "twitter") }target="_blank" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }>
         <img src={ `icons/twitter-${size}.png` } />
       </a>
-      <a target="_blank" href={"https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" }>
+      <a onClick={ this.onClickShareButton.bind(this, "pinterest") }target="_blank" href={"https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" }>
         <img src={ `icons/pinterest-${size}.png` } />
       </a>
-      <a target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
+      <a onClick={ this.onClickShareButton.bind(this, "email") }target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
         <img src={ `icons/email-${size}.png` } />
       </a>
       <a href="#" onClick={ this.props.onCopyClick }>
@@ -123,7 +127,7 @@ class SimplifiedPanel extends React.Component {
         <div className="instructions-text">
           ...or use the buttons below to share the link.
         </div>
-        <ShareButtons large={ true } { ...this.props } />
+        <ShareButtons eventSource="simplified-panel" large={ true } { ...this.props } />
       </div>
       <div className="simplified-edit-container">
         <button className="simplified-edit-button" onClick={ this.props.onClickEdit }>
@@ -307,6 +311,7 @@ class ShootPanel extends React.Component {
       <div className="link-row">
         <a className="link" target="_blank" href={ this.props.shot.viewUrl } onClick={ this.onLinkClick.bind(this) }>{ stripProtocol(this.props.shot.viewUrl) }</a>
         <ShareButtons
+          eventSource={ this.props.recall ? "recall-panel" : "shoot-panel" }
           clipUrl={ clipUrl }
           onCopyClick={ this.onCopyClick.bind(this) }
           onCopyImageClick={ this.onCopyImageClick.bind(this) }

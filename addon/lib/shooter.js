@@ -383,6 +383,9 @@ const ShotContext = Class({
       this.copyRichDataToClipboard(activeClipName);
       sendEvent("click", "copy-rich");
     },
+    shareButton: function (whichButton, eventSource) {
+      sendEvent("click", `share-button-${whichButton}-${eventSource}`);
+    },
     openLink: function (link, loadReason, eventSource) {
       if (loadReason === "install") {
         this.panelContext.hide(this);
