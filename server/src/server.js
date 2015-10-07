@@ -102,6 +102,10 @@ app.post("/event", function (req, res) {
 
 app.get("/redirect", function (req, res) {
   if (req.query.to) {
+    let from = req.query.from;
+    if (!from) {
+      from = "shot-detail";
+    }
     res.header("Content-type", "text/html");
     res.status(200);
     let redirectUrl = JSON.stringify(req.query.to);
@@ -120,7 +124,7 @@ window.location = ${redirectUrl};
     let userAnalytics = ua(config.gaId);
     userAnalytics.event(
       "click",
-      "original-link"
+      `original-link-${from}`
     ).send();
   } else {
     simpleResponse(res, "Bad Request", 400);
