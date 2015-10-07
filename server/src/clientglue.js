@@ -84,6 +84,11 @@ function refreshHash() {
   if (match) {
     clipId = decodeURIComponent(match[1]);
   }
+  let source = "change-clip";
+  match = (/source=([^&]+)/).exec(location.hash);
+  if (match) {
+    source = decodeURIComponent(match[1]);
+  }
   if ((model.activeClipId || null) === clipId) {
     // No change
     return;
@@ -91,7 +96,7 @@ function refreshHash() {
   model.activeClipId = clipId;
   sendShowElement(clipId);
   render();
-  ga("send", "event", "change-clip", {page: location.toString()});
+  ga("send", "event", source, {page: location.toString()});
 }
 
 function sendShowElement(clipId) {
