@@ -610,6 +610,8 @@ class Shot extends AbstractShot {
         for (let update of response.json.updates) {
           if (update.clipId && update.url) {
             this.updateClipUrl(update.clipId, update.url);
+          } else if (update.updateThumbnailUrl) {
+            this.fullScreenThumbnail = update.updateThumbnailUrl;
           } else if (update.setHead) {
             this.head = update.setHead;
           } else if (update.setBody) {
