@@ -51,7 +51,7 @@ class Shot extends AbstractShot {
 
         let clipRewrites = new ClipRewrites(this);
         clipRewrites.rewriteShotUrls();
-        let oks = [];
+        let oks = clipRewrites.commands();
         let json = this.asJson();
         let head = json.head;
         let body = json.body;
@@ -83,8 +83,8 @@ class Shot extends AbstractShot {
   update() {
     let clipRewrites = new ClipRewrites(this);
     clipRewrites.rewriteShotUrls();
+    let oks = clipRewrites.commands();
     let json = this.asJson();
-    let oks = [];
     return db.transaction((client) => {
       let head = json.head;
       let body = json.body;

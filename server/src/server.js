@@ -271,7 +271,7 @@ app.put("/data/:id/:domain", function (req, res) {
     if (! inserted) {
       return shot.update();
     }
-    return null;
+    return inserted;
   }).then((commands) => {
     commands = commands || [];
     simpleResponse(res, JSON.stringify({updates: commands.filter((x) => !!x)}), 200);
