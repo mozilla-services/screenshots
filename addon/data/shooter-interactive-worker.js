@@ -142,7 +142,7 @@ function reportSelection(captureType) {
 
 function showHelpMessage(message) {
   helpMessage = document.createElement("div");
-  helpMessage.className = "pageshot-hide-selection pageshot-help-message";
+  helpMessage.className = "pageshot-hide-selection pageshot-help-message pageshot-reset";
   helpMessage.id = "help-overlay";
   helpMessage.style.zIndex = "9998";
   helpMessage.style.pointerEvents = "none";
@@ -155,10 +155,9 @@ function showHelpMessage(message) {
   let nested = document.createElement("div");
   nested.style.pointerEvents = "auto";
   nested.style.color = "white";
-  nested.style.font = "caption";
   nested.style.fontSize = "42px";
   nested.style.fontWeight = "200";
-  nested.style.lineHeight = "0";
+  nested.style.lineHeight = "1.5";
   nested.style.zIndex = "9999";
   nested.style.backgroundColor = "rgba(0, 0, 0, 0.85)";
   nested.style.borderRadius = "15px";
@@ -171,6 +170,7 @@ function showHelpMessage(message) {
   }
   helpMessage.appendChild(nested);
   let p = document.createElement("p");
+  p.style.fontFamily = "caption,sans-serif";
   p.textContent = message;
   nested.appendChild(p);
   document.body.appendChild(helpMessage);
