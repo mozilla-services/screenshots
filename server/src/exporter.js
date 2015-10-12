@@ -3,6 +3,7 @@ const path = require("path");
 const fs = require("fs");
 const child_process = require("child_process");
 const rimraf = require("rimraf");
+const ua = require("universal-analytics");
 
 // Convert to milliseconds:
 let keepTime = config.exportKeepTime * 60 * 1000;
@@ -204,6 +205,8 @@ exports.setup = function (app) {
       res.type("txt").status(403).send("You must have the addon installed to export your shots");
       return;
     }
+    let userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
+    userAnalytics.event("click", "export");
     launchWget(req.deviceId).then(() => {
       res.redirect("/export/status?started=" + encodeURIComponent(Date.now()));
     }).catch((e) => {

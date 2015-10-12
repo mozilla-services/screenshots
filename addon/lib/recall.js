@@ -6,6 +6,7 @@ const ss = require("sdk/simple-storage");
 const clipboard = require("sdk/clipboard");
 const { AbstractShot } = require("./shared/shot");
 const notifications = require("sdk/notifications");
+const req = require("./req");
 
 let hideInfoPanel = null;
 
@@ -18,6 +19,7 @@ const recallButton = ToggleButton({
       hideInfoPanel();
       recallPanel.show();
     }
+    req.sendEvent("click", "recall-button");
   }
 });
 
@@ -56,22 +58,26 @@ recallPanel.port.on("copyLink", watchFunction(function (url) {
     text: "The link to your shot has been copied to the clipboard.",
     iconURL: self.data.url("../data/copy.png")
   });
+  req.sendEvent("click", "recall-copy-link");
 }));
 
 recallPanel.port.on("openLink", watchFunction(function (url) {
   require("sdk/tabs").open(url);
   recallPanel.hide();
+  req.sendEvent("click", "recall-open-all-shot-list");
 }));
 
 recallPanel.port.on("selectClip", watchFunction(function (clipId) {
   panelViewingClips[panelViewingId] = clipId;
   sendShot();
+  req.sendEvent("click", "recall-select-clip", `${panelViewingId}-${clipId}`);
 }));
 
 recallPanel.port.on("viewShot", watchFunction(function (id) {
   if (! id) {
     throw new Error("Bad viewShot id: " + id);
   }
+  req.sendEvent("click", "recall-panel-shot-detail", id);
   let backend = require("./main").getBackend();
   let url = backend + "/data/" + id;
   console.info("requesting", url);
@@ -111,6 +117,7 @@ recallPanel.port.on("viewShot", watchFunction(function (id) {
 recallPanel.port.on("viewRecallIndex", watchFunction(function () {
   panelViewingId = null;
   sendIndex();
+  req.sendEvent("click", "recall-panel-view-index");
 }));
 
 function sendIndex() {

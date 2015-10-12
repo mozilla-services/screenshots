@@ -7,7 +7,7 @@
 const self = require("sdk/self");
 const tabs = require("sdk/tabs");
 const { captureTab } = require("./screenshot");
-const { request } = require("./req");
+const { request, sendEvent } = require("./req");
 const { callScript } = require("./framescripter");
 const { defer } = require('sdk/core/promise');
 const { Class } = require('sdk/core/heritage');
@@ -363,6 +363,11 @@ const ShotContext = Class({
         }
       }
       this.updateShot();
+      if (comment.length) {
+        sendEvent("comment", "add-comment");
+      } else {
+        sendEvent("comment", "clear-comment");
+      }
     },
     copyImage: function (activeClipName) {
       let clip = this.shot.getClip(activeClipName);
@@ -372,16 +377,25 @@ const ShotContext = Class({
         text: "Your shot has been copied to the clipboard.",
         iconURL: self.data.url("../data/copy.png")
       });
+      sendEvent("click", "copy-image");
     },
     copyRich: function (activeClipName) {
       this.copyRichDataToClipboard(activeClipName);
+      sendEvent("click", "copy-rich");
     },
-    openLink: function (link, loadReason) {
+    shareButton: function (whichButton, eventSource) {
+      sendEvent("click", `share-button-${whichButton}-${eventSource}`);
+    },
+    openLink: function (link, loadReason, eventSource) {
       if (loadReason === "install") {
         this.panelContext.hide(this);
         this.panelContext.showRecallTutorial();
       }
+      if (eventSource === undefined) {
+        eventSource = loadReason;
+      }
       tabs.open(link);
+      sendEvent("click", `open-link-${eventSource}`);
     },
     setEditing: function(editing) {
       this.panelContext.setEditing(editing);
@@ -416,6 +430,7 @@ const ShotContext = Class({
     addClip: function (type) {
       this.activeClipName = null;
       this.panelHandlers.setCaptureType.call(this, type);
+      sendEvent("click", `add-clip-${type}`);
     },
     deleteClip: function (clipId) {
       let ids = this.shot.clipNames();
@@ -431,6 +446,7 @@ const ShotContext = Class({
         this.activeClipName = ids[index];
       }
       this.panelHandlers.selectClip.call(this, this.activeClipName);
+      sendEvent("click", "delete-clip");
     },
     selectClip: function (clipId) {
       this.activeClipName = clipId;
@@ -447,6 +463,7 @@ const ShotContext = Class({
         this.interactiveWorker.port.emit("setState", "cancel");
       }
       this.updateShot();
+      sendEvent("click", "select-clip", clipId);
     },
     hide: function () {
       this.panelContext.hide(this);

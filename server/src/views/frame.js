@@ -60,14 +60,14 @@ class Clip extends React.Component {
     }
 
     return <div className="clip-container">
-      <a href={'#clip=' + encodeURIComponent(clip.id)}>
+      <a href={`#clip=${encodeURIComponent(clip.id)}&source=clip-link`}>
         { node }
       </a>
       <p>
         <img ref="commentBubble" className="comment-bubble"
           src={ closed ? this.props.staticLink("img/comment-bubble.png") : this.props.staticLink("img/comment-bubble-open.png") }
           onClick={ this.onClickComment.bind(this) } />
-        <a href={'#clip=' + encodeURIComponent(clip.id)}>
+        <a href={`#clip=${encodeURIComponent(clip.id)}&source=clip-see-full-page-link`}>
           <span className="clip-anchor-link">See in full page</span>
         </a>
       </p>
@@ -252,6 +252,7 @@ class Frame extends React.Component {
     let visibleHeight = window.innerHeight - toolbarHeight;
     let frameTop = frameOffset - (toolbarHeight * 2);
     window.scroll(0, frameTop);
+    ga("send", "event", "click", "full-page-button", {page: location.toString()});
   }
 
   render() {
@@ -310,7 +311,7 @@ class Frame extends React.Component {
 
     let prevLink = null;
     if (clipIndex >= 1) {
-      prevLink = '#clip=' + encodeURIComponent(clipNames[clipIndex-1]);
+      prevLink = `#clip=${encodeURIComponent(clipNames[clipIndex-1])}&source=clip-prev-link`;
     } else if (clipIndex === 0) {
       prevLink = "#";
     }
@@ -324,7 +325,7 @@ class Frame extends React.Component {
     }
 
     if (clipIndex < clipNames.length - 1) {
-      nextClipNode = <a href={'#clip=' + encodeURIComponent(clipNames[clipIndex + 1])}>
+      nextClipNode = <a href={`#clip=${encodeURIComponent(clipNames[clipIndex+1])}&source=clip-next-link`}>
         <img className="navigate-clips" src={ this.props.staticLink("img/down-arrow.png") } />
       </a>;
     } else {
