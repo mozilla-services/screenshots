@@ -393,6 +393,9 @@ class Frame extends React.Component {
           { previousClipNode }
           { nextClipNode }
         </div>
+        <div id="full-screen-thumbnail">
+          <img src={ this.props.shot.fullScreenThumbnail } onClick={ this.clickFullPageButton.bind(this) } />
+        </div>
         <div id="full-page-button">
           <a href="#" className="full-page-button-styles" onClick={ this.clickFullPageButton.bind(this) }>
             <span className="full-page-button-arrow">▾</span>
