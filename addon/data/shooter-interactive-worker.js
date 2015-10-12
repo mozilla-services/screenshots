@@ -141,6 +141,9 @@ function reportSelection(captureType) {
 }
 
 function showHelpMessage(message) {
+  if (helpMessage) {
+    helpMessage.parentNode.removeChild(helpMessage);
+  }
   helpMessage = document.createElement("div");
   helpMessage.className = "pageshot-hide-selection pageshot-help-message";
   helpMessage.id = "help-overlay";
