@@ -140,10 +140,15 @@ function reportSelection(captureType) {
   self.port.emit("select", pos, selectedText, captureType);
 }
 
-function showHelpMessage(message) {
+function hideHelpMessage() {
   if (helpMessage) {
     helpMessage.parentNode.removeChild(helpMessage);
+    helpMessage = null;
   }
+}
+
+function showHelpMessage(message) {
+  hideHelpMessage();
   helpMessage = document.createElement("div");
   helpMessage.className = "pageshot-hide-selection pageshot-help-message pageshot-reset";
   helpMessage.id = "help-overlay";
@@ -320,6 +325,7 @@ var mousedown = watchFunction(function (event) {
   event.stopPropagation();
   event.preventDefault();
   removeCrosshairs();
+  hideHelpMessage();
   return false;
 });
 
