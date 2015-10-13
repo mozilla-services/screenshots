@@ -82,6 +82,20 @@ body {
   z-index: 1001;
 }
 
+#full-screen-thumbnail {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  bottom: 2em;
+  text-align: center;
+  z-index: 1001;
+}
+
+#full-screen-thumbnail img {
+  box-shadow: 0 2px 5px $shadow-color;
+  cursor: pointer;
+}
+
 #full-page-button-scrollable {
   height: 2em;
   margin-top: 500px;
@@ -105,6 +119,7 @@ body {
   font-size: 12px;
   padding: .4em 1.5em;
   text-decoration: none;
+  border: 1px solid #ababab;
 }
 .clip-count {
   position: relative;

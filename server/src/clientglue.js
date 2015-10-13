@@ -24,6 +24,7 @@ exports.setModel = function (data) {
   if (firstSet) {
     let toolbar = document.getElementById("toolbar");
     let fullPageButton = document.getElementById("full-page-button");
+    let fullScreenThumbnail = document.getElementById("full-screen-thumbnail");
     let fullPageButtonScrollable = document.getElementById("full-page-button-scrollable");
     let frameElement = document.getElementById("frame");
     let offset = (fullPageButtonScrollable.clientHeight / 2);
@@ -36,9 +37,11 @@ exports.setModel = function (data) {
         let frameTop = frameOffset - toolbarHeight;
         if (e.pageY >= frameTop - visibleHeight - offset) {
           fullPageButton.style.visibility = "hidden";
+          fullScreenThumbnail.style.visibility = "hidden";
           fullPageButtonScrollable.style.visibility = "visible";
         } else {
           fullPageButton.style.visibility = "visible";
+          fullScreenThumbnail.style.visibility = "visible";
           fullPageButtonScrollable.style.visibility = "hidden";
         }
       } else {
@@ -84,6 +87,11 @@ function refreshHash() {
   if (match) {
     clipId = decodeURIComponent(match[1]);
   }
+  let source = "change-clip";
+  match = (/source=([^&]+)/).exec(location.hash);
+  if (match) {
+    source = decodeURIComponent(match[1]);
+  }
   if ((model.activeClipId || null) === clipId) {
     // No change
     return;
@@ -91,6 +99,7 @@ function refreshHash() {
   model.activeClipId = clipId;
   sendShowElement(clipId);
   render();
+  ga("send", "event", source, {page: location.toString()});
 }
 
 function sendShowElement(clipId) {
