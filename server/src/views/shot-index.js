@@ -47,17 +47,18 @@ class ShotIndex extends React.Component {
     if (img) {
       bgEl = <img src={img} />;
     }
+
     return (
       <div className="shot" key={shot.id}>
         <div className="shot-background">{bgEl}</div>
-        <a href={shot.viewUrl}><div className="title-container">
+        <a href={`/redirect?from=shot-index&to=${encodeURIComponent(shot.viewUrl)}` }><div className="title-container">
           <h2 className="title">{shot.title}</h2>
         </div></a>
         <div className="shot-footer">
           <div className="shot-date">
             <TimeDiff date={shot.createdDate} simple={this.props.simple} />
           </div>
-          <div className="shot-link-container"><a href={shot.url} className="subheading-link" target="_blank">
+          <div className="shot-link-container"><a href={`/redirect?from=shot-index-original-link&to=${encodeURIComponent(shot.url)}`} className="subheading-link" target="_blank">
             { shot.urlDisplay }
           </a></div>
         </div>

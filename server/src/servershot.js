@@ -51,7 +51,7 @@ class Shot extends AbstractShot {
 
         let clipRewrites = new ClipRewrites(this);
         clipRewrites.rewriteShotUrls();
-        let oks = [];
+        let oks = clipRewrites.commands();
         let json = this.asJson();
         let head = json.head;
         let body = json.body;
@@ -83,8 +83,8 @@ class Shot extends AbstractShot {
   update() {
     let clipRewrites = new ClipRewrites(this);
     clipRewrites.rewriteShotUrls();
+    let oks = clipRewrites.commands();
     let json = this.asJson();
-    let oks = [];
     return db.transaction((client) => {
       let head = json.head;
       let body = json.body;
@@ -318,6 +318,22 @@ ClipRewrites = class ClipRewrites {
         this.unedited.push(clip.id);
       }
     }
+    this.toInsertThumbnail = null;
+    this.oldFullScreenThumbnail = this.shot.fullScreenThumbnail;
+
+    let url = this.shot.fullScreenThumbnail;
+    let match = (/^data:([^;]*);base64,/).exec(url);
+    if (match) {
+      let imageData = url.substr(match[0].length);
+      imageData = new Buffer(imageData, 'base64');
+      let imageId = uuid.v4();
+      this.toInsertThumbnail = {
+        contentType: match[1],
+        data: imageData,
+        uuid: imageId,
+        url: linker.imageLinkWithHost(imageId)
+      };
+    }
   }
 
   rewriteShotUrls() {
@@ -325,6 +341,9 @@ ClipRewrites = class ClipRewrites {
       let url = this.toInsert[clipId].url;
       let clip = this.shot.getClip(clipId);
       clip.image.url = url;
+    }
+    if (this.toInsertThumbnail !== null) {
+      this.shot.fullScreenThumbnail = this.toInsertThumbnail.url;
     }
   }
 
@@ -334,10 +353,14 @@ ClipRewrites = class ClipRewrites {
       let clip = this.shot.getClip(clipId);
       clip.setUrlFromBinary(data.binary);
     }
+    this.shot.fullScreenThumbnail = this.oldFullScreenThumbnail;
   }
 
   commands() {
     let commands = [];
+    if (this.toInsertThumbnail !== null) {
+      commands.push({updateThumbnailUrl: this.toInsertThumbnail.url});
+    }
     for (let clipId of this.toInsertClipIds) {
       let url = this.toInsert[clipId].url;
       commands.push({updateClipUrl: {clipId, url}});

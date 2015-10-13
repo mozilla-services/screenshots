@@ -10,7 +10,9 @@ for line, repl in [
   ("isSupported = typeof element[eventName] === \x27function\x27;", "isSupported = true // disabled check"),
 ]:
     if not content.count(line):
-        sys.stderr.write("Warning: could not find match in panel-bundle: %r\n" % line)
-    content = content.replace(line, repl);
-sys.stderr.write("Rewrote panel-bundle from %i to %i bytes" % (len(orig_content), len(content)))
+        pass #sys.stderr.write("Warning: could not find match in panel-bundle: %r\n" % line)
+    else:
+        content = content.replace(line, repl)
+if len(orig_content) != len(content):
+    sys.stderr.write("  Rewrote from %i to %i bytes\n" % (len(orig_content), len(content)))
 sys.stdout.write(content)
