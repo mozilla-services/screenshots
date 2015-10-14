@@ -232,6 +232,7 @@ function setState(state) {
   currentState = state;
   if (state === "cancel") {
     deleteSelection();
+    hideHelpMessage();
     document.body.classList.remove("pageshot-hide-selection");
     document.body.classList.remove("pageshot-hide-movers");
     removeHandlers();
