@@ -355,7 +355,13 @@ class Frame extends React.Component {
     let introJsStart = null;
 
     if (this.props.showIntro) {
-        introJsStart = <script dangerouslySetInnerHTML={{__html: "introJs().start();"}} />;
+        introJsStart = <script dangerouslySetInnerHTML={{__html: `
+          introJs().setOption('showStepNumbers', false).onchange(function (el) {
+            if (el.getAttribute('data-step') === '3') {
+              setTimeout(function () { introJs().exit(); }, 1);
+              document.dispatchEvent(new CustomEvent('content-tour-complete'))
+            }
+          }).start();`}} />;
     }
 
     let frameHeight = 100;
@@ -379,7 +385,7 @@ class Frame extends React.Component {
               simple={ this.props.simple }
             />
           </div>
-        <div id="toolbar">
+        <div id="toolbar" data-step="3" data-intro="The recall panel can be used to access your previously made shots.">
           <div className="shot-title">{ shot.title }</div>
           <div className="shot-subtitle">
             <span>source </span><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a>

@@ -42,6 +42,9 @@ document.addEventListener("set-profile-state", function (event) {
 document.addEventListener("delete-everything", function (event) {
   self.port.emit("deleteEverything");
 });
+document.addEventListener("content-tour-complete", function (event) {
+  self.port.emit("contentTourComplete");
+});
 self.port.on("profile", function (profile) {
   var event = document.createEvent("CustomEvent");
   event.initCustomEvent("refresh-profile", true, true, JSON.stringify(profile));
