@@ -418,7 +418,7 @@ ul.recall-list li:hover {
   top: 0px;
   left: 0px;
   right: 0px;
-  padding: 0.5em;
+  padding: 0px;
   background-color: #eaeaea;
   text-align: center;
   border-bottom: 1px solid #cccccc;
@@ -438,6 +438,20 @@ a.simplified-link, a.simplified-link:visited, a.simplified-link:link {
   color: #0095dd;
   white-space: nowrap;
 }
+
+@keyframes border-pulsate {
+  0%   { border-color: rgba(0, 137, 219, 1); }
+  99%   { border-color: rgba(0, 137, 219, 1); }
+  100% { border-color: rgba(0, 137, 219, 0); }
+}
+
+a.simplified-link {
+  border: 2px solid rgba(0, 137, 219, 0);
+  padding: 0.25em;
+  animation: border-pulsate 2s;
+  border-radius: 2px;
+}
+
 
 .simplified-share-buttons {
   text-align: center;
