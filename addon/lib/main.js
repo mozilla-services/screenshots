@@ -283,7 +283,7 @@ exports.main = function (options) {
     showInfoPanel(
       "toggle-button--jid1-neeaf3sahdkhpajetpack-pageshot-shooter",
       "Welcome to PageShot",
-      "Click the camera button to take a carbon copy of any webpage");
+      "Click the camera button to clip a part of the page");
   }
   helperworker.trackMods(backendOverride || null);
   require("./user").initialize(exports.getBackend(), options.loadReason).catch((error) => {

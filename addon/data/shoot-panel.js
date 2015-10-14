@@ -120,12 +120,12 @@ class SimplifiedPanel extends React.Component {
           { stripProtocol(this.props.shot.viewUrl) }
         </a>
         <div className="instructions-text">
-          Click the link to go to the shot page...
+          Click the link to see your clip.
         </div>
       </div>
       <div className="simplified-share-buttons">
         <div className="instructions-text">
-          ...or use the buttons below to share the link.
+          Or, use the buttons below to share the link.
         </div>
         <ShareButtons eventSource="simplified-panel" large={ true } { ...this.props } />
       </div>
