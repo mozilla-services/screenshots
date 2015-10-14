@@ -387,10 +387,6 @@ const ShotContext = Class({
       sendEvent("click", `share-button-${whichButton}-${eventSource}`);
     },
     openLink: function (link, loadReason, eventSource) {
-      if (loadReason === "install") {
-        this.panelContext.hide(this);
-        this.panelContext.showRecallTutorial();
-      }
       if (eventSource === undefined) {
         eventSource = loadReason;
       }
