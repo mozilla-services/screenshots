@@ -49,6 +49,7 @@ exports.ProfileButton = class ProfileButton extends React.Component {
     e.preventDefault();
     e.stopPropagation();
     this.setState({ isExpanded: !this.state.isExpanded });
+    window.ga("send", "event", "click", "profile", {page: location.toString()});
   }
 
   render() {
@@ -92,12 +93,14 @@ exports.Profile = class Profile extends React.Component {
     e.preventDefault();
     e.stopPropagation();
     this.props.signUp();
+    window.ga("send", "event", "click", "profile-sign-up", {page: location.toString()});
   }
 
   onClickSignIn(e) {
     e.preventDefault();
     e.stopPropagation();
     this.props.signIn();
+    window.ga("send", "event", "click", "profile-sign-in", {page: location.toString()});
   }
 
   onKeyPressName(e) {
@@ -122,6 +125,7 @@ exports.Profile = class Profile extends React.Component {
       req.send();
       window.location = "/?accountDeleted=true";
     }
+    window.ga("send", "event", "click", "profile-delete-everything", {page: location.toString()});
   }
 
   renderSignedIn() {
