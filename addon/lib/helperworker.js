@@ -15,8 +15,11 @@ var notifications = require("sdk/notifications");
 var { XMLHttpRequest } = require("sdk/net/xhr");
 const { watchFunction, watchWorker } = require("./errors");
 const user = require("./user");
+const {Cu} = require("chrome");
 
 var existing;
+
+Cu.import("resource:///modules/UITour.jsm");
 
 function handleOAuthFlow(worker, backend, action) {
   return user.getProfileInfo().then(currentProfile => {
@@ -79,6 +82,20 @@ function resetPageMod(backend) {
 
       worker.port.on("deleteEverything", watchFunction(function () {
         user.deleteEverything();
+      }));
+
+      worker.port.on("contentTourComplete", watchFunction(function () {
+        const winutil = require("sdk/window/utils");
+        let win = winutil.getMostRecentBrowserWindow();
+        let magicCookie = "toggle-button--jid1-neeaf3sahdkhpajetpack-pageshot-recall";
+        let target = {
+          node: win.document.getElementById(magicCookie),
+          targetName: magicCookie
+        };
+        UITour.showInfo(win, null, target,
+          "Recall Panel",
+          "Click the recall button to access all the shots you have created.");
+        UITour.showHighlight(win, target, "wobble");
       }));
 
       worker.port.on("setProfileState", watchFunction(function ({ nickname, avatarurl }) {
