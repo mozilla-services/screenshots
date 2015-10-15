@@ -33,7 +33,7 @@ class Clip extends React.Component {
       node = <div className="text-clip" dangerouslySetInnerHTML={{__html: clip.text.html}} />;
     } else {
       if (this.props.previousClip === null) {
-        node = <img data-step="1" data-intro="This is the clip, saved as an image." src={ clip.image.url } />;
+        node = <img data-step="2" data-intro="This is the clip. Taking multiple clips is easy. After you click the camera button, click 'Add Clip'." src={ clip.image.url } />;
       } else {
         node = <img src={ clip.image.url } />;
       }
@@ -356,8 +356,11 @@ class Frame extends React.Component {
 
     if (this.props.showIntro) {
         introJsStart = <script dangerouslySetInnerHTML={{__html: `
-          introJs().setOption('showStepNumbers', false).onchange(function (el) {
-            if (el.getAttribute('data-step') === '3') {
+          introJs()
+          .setOption('showStepNumbers', false)
+          .setOption('highlightClass', 'intro-js-highlight-overlay')
+          .onchange(function (el) {
+            if (el.getAttribute('data-step') === '4') {
               setTimeout(function () { introJs().exit(); }, 1);
               document.dispatchEvent(new CustomEvent('content-tour-complete'))
             }
@@ -385,14 +388,14 @@ class Frame extends React.Component {
               simple={ this.props.simple }
             />
           </div>
-        <div id="toolbar" data-step="3" data-intro="The recall panel can be used to access your previously made shots.">
+        <div id="toolbar" data-step="1" data-intro="This is the title of the page and a link to it's source.">
           <div className="shot-title">{ shot.title }</div>
           <div className="shot-subtitle">
             <span>source </span><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a>
             <span style={{paddingLeft: "15px"}}>saved { timeDiff } { expiresDiff }</span>
           </div>
         </div>
-        <div id="navigate-toolbar">
+        <div id="navigate-toolbar" data-step="4" data-intro="The recall panel can be used to access your previously made shots.">
           <span className="clip-count">
             { numberOfClips }
           </span>
@@ -416,7 +419,7 @@ class Frame extends React.Component {
         </div>
         { clips }
         <div id="full-page-button-scrollable">
-          <a data-step="2" data-intro="Scroll down or click here to see the full copy of the page." href="#" className="full-page-button-styles" onClick={ this.clickFullPageButton.bind(this) }>
+          <a data-step="3" data-intro="Every time you take a clip, the full page is also saved." href="#" className="full-page-button-styles" onClick={ this.clickFullPageButton.bind(this) }>
             <span className="full-page-button-arrow">▾</span>
             <span className="full-page-button-text"> Full Page </span>
             <span className="full-page-button-arrow">▾</span>
