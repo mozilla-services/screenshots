@@ -356,12 +356,13 @@ class Frame extends React.Component {
 
     if (this.props.showIntro) {
         introJsStart = <script dangerouslySetInnerHTML={{__html: `
+          window.introJSRunning = true;
           introJs()
           .setOption('showStepNumbers', false)
           .setOption('highlightClass', 'intro-js-highlight-overlay')
           .onchange(function (el) {
             if (el.getAttribute('data-step') === '4') {
-              setTimeout(function () { introJs().exit(); }, 1);
+              setTimeout(function () { introJs().exit(); window.introJSRunning = false; }, 1);
               document.dispatchEvent(new CustomEvent('content-tour-complete'))
             }
           }).start();`}} />;
