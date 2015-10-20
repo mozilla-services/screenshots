@@ -221,13 +221,6 @@ PanelContext = {
   addContext: function (shotContext) {
     this._contexts[shotContext.id] = shotContext;
   },
-
-  showRecallTutorial: function () {
-    showInfoPanel(
-      "toggle-button--jid1-neeaf3sahdkhpajetpack-pageshot-recall",
-      "Recall Panel",
-      "Click the recall button to access all the shots you have created.");
-  }
 };
 
 // This pipes all messages that ShotContext expects over to the
@@ -254,7 +247,7 @@ exports.getBackend = function () {
 
 let infoPanelShownForWindow = null;
 
-function showInfoPanel(magicCookie, title, description) {
+exports.showInfoPanel = function showInfoPanel(magicCookie, title, description) {
   let win = winutil.getMostRecentBrowserWindow();
   let target = {
     node: win.document.getElementById(magicCookie),
@@ -280,7 +273,7 @@ exports.main = function (options) {
     let helpurl = exports.getBackend() + "/homepage/help.html";
     let win = winutil.getMostRecentBrowserWindow();
     win.loadURI(helpurl);
-    showInfoPanel(
+    exports.showInfoPanel(
       "toggle-button--jid1-neeaf3sahdkhpajetpack-pageshot-shooter",
       "Welcome to PageShot",
       "Click the camera button to clip a part of the page");
