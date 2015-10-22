@@ -329,7 +329,7 @@ ClipRewrites = class ClipRewrites {
       let imageId = uuid.v4();
       this.toInsertThumbnail = {
         contentType: match[1],
-        data: imageData,
+        binary: imageData,
         uuid: imageId,
         url: linker.imageLinkWithHost(imageId)
       };
@@ -369,9 +369,6 @@ ClipRewrites = class ClipRewrites {
   }
 
   commit(client) {
-    if (! this.toInsertClipIds.length) {
-      return Promise.resolve();
-    }
     let query;
     if (this.unedited.length) {
       query = `DELETE FROM images
@@ -397,6 +394,20 @@ ClipRewrites = class ClipRewrites {
             [data.uuid, this.shot.id, clipId, data.binary.data, data.binary.contentType]);
         })
       );
+    }).then(() => {
+      if (this.toInsertThumbnail === null) {
+        return Promise.resolve();
+      }
+      return db.queryWithClient(
+        client,
+        `INSERT INTO images (id, shotid, clipid, image, contenttype)
+        VALUES ($1, $2, $3, $4, $5)
+        `,
+        // Since we don't have a clipid for the thumbnail and the column is NOT NULL,
+        // Use the thumbnail uuid as the clipid. This allows figuring out which
+        // images are thumbnails, too.
+        [this.toInsertThumbnail.uuid, this.shot.id, this.toInsertThumbnail.uuid,
+        this.toInsertThumbnail.binary, this.toInsertThumbnail.contentType]);
     }).then(() => {
       this.committed = true;
     });
