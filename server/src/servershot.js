@@ -369,9 +369,6 @@ ClipRewrites = class ClipRewrites {
   }
 
   commit(client) {
-    if (! this.toInsertClipIds.length) {
-      return Promise.resolve();
-    }
     let query;
     if (this.unedited.length) {
       query = `DELETE FROM images
@@ -398,6 +395,9 @@ ClipRewrites = class ClipRewrites {
         })
       );
     }).then(() => {
+      if (this.toInsertThumbnail === null) {
+        return Promise.resolve();
+      }
       return db.queryWithClient(
         client,
         `INSERT INTO images (id, shotid, clipid, image, contenttype)
