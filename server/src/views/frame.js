@@ -362,7 +362,11 @@ class Frame extends React.Component {
           .setOption('highlightClass', 'intro-js-highlight-overlay')
           .onchange(function (el) {
             if (el.getAttribute('data-step') === '4') {
-              setTimeout(function () { introJs().exit(); window.introJSRunning = false; }, 1);
+              setTimeout(function () {
+                introJs().exit();
+                window.introJSRunning = false;
+                clientglue.render();
+              }, 1);
               document.dispatchEvent(new CustomEvent('content-tour-complete'))
             }
           }).start();`}} />;

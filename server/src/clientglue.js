@@ -57,10 +57,10 @@ exports.setModel = function (data) {
     window.addEventListener("hashchange", refreshHash, false);
     refreshHash();
   }
-  render();
+  exports.render();
 };
 
-function render() {
+exports.render = function render() {
   if (window.introJSRunning) {
     console.log("intro.js was running, not rendering.");
     return;
@@ -82,7 +82,7 @@ function render() {
 
 function refreshProfile(e) {
   profile = JSON.parse(e.detail);
-  render();
+  exports.render();
 }
 
 function refreshHash() {
@@ -102,7 +102,7 @@ function refreshHash() {
   }
   model.activeClipId = clipId;
   sendShowElement(clipId);
-  render();
+  exports.render();
   ga("send", "event", source, {page: location.toString()});
 }
 
