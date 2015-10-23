@@ -369,6 +369,10 @@ class Frame extends React.Component {
               }, 1);
               document.dispatchEvent(new CustomEvent('content-tour-complete'))
             }
+          })
+          .onexit(function () {
+            window.introJSRunning = false;
+            clientglue.render();
           }).start();`}} />;
     }
 
