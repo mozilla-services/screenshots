@@ -37,11 +37,11 @@ exports.setModel = function (data) {
         let frameTop = frameOffset - toolbarHeight;
         if (e.pageY >= frameTop - visibleHeight - offset) {
           fullPageButton.style.visibility = "hidden";
-          fullScreenThumbnail.style.visibility = "hidden";
+          //fullScreenThumbnail.style.visibility = "hidden";
           fullPageButtonScrollable.style.visibility = "visible";
         } else {
           fullPageButton.style.visibility = "visible";
-          fullScreenThumbnail.style.visibility = "visible";
+          //fullScreenThumbnail.style.visibility = "visible";
           fullPageButtonScrollable.style.visibility = "hidden";
         }
       } else {
