@@ -383,6 +383,12 @@ class Frame extends React.Component {
 
     let shotRedirectUrl = `/redirect?to=${encodeURIComponent(shot.url)}`;
 
+    /*
+    <div id="full-screen-thumbnail">
+      <img src={ this.props.shot.fullScreenThumbnail } onClick={ this.clickFullPageButton.bind(this) } />
+    </div>
+    */
+
     return (
         <div id="container">
           { this.renderExtRequired() }
@@ -410,9 +416,6 @@ class Frame extends React.Component {
           </span>
           { previousClipNode }
           { nextClipNode }
-        </div>
-        <div id="full-screen-thumbnail">
-          <img src={ this.props.shot.fullScreenThumbnail } onClick={ this.clickFullPageButton.bind(this) } />
         </div>
         <div id="full-page-button">
           <a href="#" className="full-page-button-styles" onClick={ this.clickFullPageButton.bind(this) }>
