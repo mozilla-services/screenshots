@@ -222,7 +222,7 @@ class Head extends React.Component {
     return (
       <head>
         <meta charSet="UTF-8" />
-        <title>{this.props.title}</title>
+        <title>{this.props.shot.title}</title>
         {gaScript}
         {gaCode}
         {js}
