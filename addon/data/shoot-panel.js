@@ -130,10 +130,8 @@ class SimplifiedPanel extends React.Component {
         <ShareButtons eventSource="simplified-panel" large={ true } { ...this.props } />
       </div>
       <div className="simplified-edit-container">
-        <button className="simplified-edit-button" onClick={ this.props.onClickEdit }>
           Edit Shot
         </button>
-        <button className="simplified-edit-button" onClick={ this.props.onClickAdd }>
           Add Clip
         </button>
       </div>
