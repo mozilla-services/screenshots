@@ -100,10 +100,13 @@ class ShareButtons extends React.Component {
   }
 }
 
+let showTutorial = true;
+
 class SimplifiedPanel extends React.Component {
   onClickLink(e) {
     let url = this.props.shot.viewUrl;
-    if (this.props.loadReason === "install") {
+    if (this.props.loadReason === "install" && showTutorial) {
+      showTutorial = false;
       url += "?showIntro=true";
     }
     self.port.emit("openLink", url, this.props.loadReason, "simplified");
