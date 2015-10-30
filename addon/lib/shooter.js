@@ -29,6 +29,7 @@ exports.showTourOnNextLinkClick = function() {
 // If a page is in history for less time than this, we ignore it
 // (probably a redirect of some sort):
 var MIN_PAGE_VISIT_TIME = 5000; // 5 seconds
+const RANDOM_STRING_LENGTH = 16;
 
 function escapeForHTML(text) {
   return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
@@ -115,7 +116,7 @@ const ShotContext = Class({
     }
     this.shot = new Shot(
       backend,
-      randomString(8) + "/" + urlDomainForId(this.tabUrl),
+      randomString(RANDOM_STRING_LENGTH) + "/" + urlDomainForId(this.tabUrl),
       {
         url: this.tabUrl,
         deviceId: deviceInfo.deviceId
