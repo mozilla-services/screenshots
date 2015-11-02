@@ -9,6 +9,7 @@ const notifications = require("sdk/notifications");
 const req = require("./req");
 
 let hideInfoPanel = null;
+let showTour = null;
 
 const recallButton = ToggleButton({
   id: "pageshot-recall",
@@ -46,6 +47,11 @@ let panelViewingClips = {};
 recallPanel.port.on("ready", watchFunction(function () {
   panelReady = true;
   sendIndex();
+}));
+
+recallPanel.port.on("showTour", watchFunction(function () {
+  recallPanel.hide();
+  showTour(true);
 }));
 
 recallPanel.port.on("copyLink", watchFunction(function (url) {
@@ -198,6 +204,7 @@ exports.deleteEverything = function () {
   ss.storage.recentShots = [];
 };
 
-exports.initialize = function (hideIp) {
+exports.initialize = function (hideIp, showTourFunc) {
   hideInfoPanel = hideIp;
+  showTour = showTourFunc;
 };

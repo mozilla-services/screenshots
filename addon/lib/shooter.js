@@ -20,6 +20,12 @@ const notifications = require("sdk/notifications");
 const { randomString } = require("./randomstring");
 const { setTimeout } = require("sdk/timers");
 
+let shouldShowTour = false;
+
+exports.showTourOnNextLinkClick = function() {
+  shouldShowTour = true;
+}
+
 // If a page is in history for less time than this, we ignore it
 // (probably a redirect of some sort):
 var MIN_PAGE_VISIT_TIME = 5000; // 5 seconds
@@ -390,6 +396,10 @@ const ShotContext = Class({
     openLink: function (link, loadReason, eventSource) {
       if (eventSource === undefined) {
         eventSource = loadReason;
+      }
+      if (eventSource === "install" || shouldShowTour) {
+        shouldShowTour = false;
+        link += "?showIntro=true";
       }
       tabs.open(link);
       sendEvent("click", `open-link-${eventSource}`);

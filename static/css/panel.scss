@@ -364,7 +364,7 @@ ul.recall-list li:hover {
   bottom: 0px;
   left: 0px;
   right: 0px;
-  height: 1em;
+  height: 33px;
   padding: 0.5em;
   border-top: 1px solid #ccc;
   background-color: #eaeaea;
@@ -373,6 +373,8 @@ ul.recall-list li:hover {
 }
 
 .see-more-row a, .see-more-row a:visited {
+  position: relative;
+  top: 10px;
   display: block;
   color: #0095dd;
 }
