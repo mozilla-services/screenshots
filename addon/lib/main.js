@@ -11,6 +11,7 @@ controls some error-specific UI
 require("sdk/preferences/service").set("javascript.options.strict", false);
 
 const self = require("sdk/self");
+const tabs = require("sdk/tabs");
 const shooter = require("./shooter");
 const { prefs } = require('sdk/simple-prefs');
 const helperworker = require("./helperworker");
@@ -236,6 +237,10 @@ Object.keys(shooter.ShotContext.prototype.panelHandlers).forEach(function (messa
   }));
 });
 
+shootPanel.port.on("showTour", watchFunction(function () {
+  showTour(true);
+}));
+
 /** We use backendOverride to temporarily change the backend with a
     command-line argument (as used in the `run` script), otherwise
     falls back to the addon pref */
@@ -258,6 +263,21 @@ exports.showInfoPanel = function showInfoPanel(magicCookie, title, description) 
   infoPanelShownForWindow = win;
 }
 
+function showTour(newTab) {
+  let helpurl = exports.getBackend() + "/homepage/help.html";
+  let win = winutil.getMostRecentBrowserWindow();
+  if (newTab) {
+    shooter.showTourOnNextLinkClick();
+    tabs.open(helpurl);
+  } else {
+    win.loadURI(helpurl);
+  }
+  exports.showInfoPanel(
+    "toggle-button--jid1-neeaf3sahdkhpajetpack-pageshot-shooter",
+    "Welcome to PageShot",
+    "Click the camera button to clip a part of the page");
+}
+
 function hideInfoPanel() {
   if (infoPanelShownForWindow) {
     UITour.hideInfo(infoPanelShownForWindow);
@@ -270,20 +290,13 @@ function hideInfoPanel() {
 exports.main = function (options) {
   loadReason = options.loadReason;
   if (options.loadReason === "install") {
-    let helpurl = exports.getBackend() + "/homepage/help.html";
-    let win = winutil.getMostRecentBrowserWindow();
-    win.loadURI(helpurl);
-    exports.showInfoPanel(
-      "toggle-button--jid1-neeaf3sahdkhpajetpack-pageshot-shooter",
-      "Welcome to PageShot",
-      "Click the camera button to clip a part of the page");
+    showTour();
   }
   helperworker.trackMods(backendOverride || null);
   require("./user").initialize(exports.getBackend(), options.loadReason).catch((error) => {
     console.warn("Failed to log in to server:", error+"");
   });
-  require("./recall").initialize(hideInfoPanel);
-  require("./recall");
+  require("./recall").initialize(hideInfoPanel, showTour);
 };
 
 exports.onUnload = function (reason) {
