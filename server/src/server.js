@@ -90,7 +90,6 @@ app.post("/event", function (req, res) {
   if (typeof bodyObj !== "object") {
     throw new Error("Got unexpected req.body type: " + typeof bodyObj);
   }
-  console.log("event", JSON.stringify(req.body));
   let userAnalytics = ua(config.gaId);
   userAnalytics.event(
     bodyObj.event,
