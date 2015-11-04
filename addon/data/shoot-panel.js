@@ -114,12 +114,16 @@ class SimplifiedPanel extends React.Component {
   }
 
   render() {
+    let simplifiedLinkClass = "simplified-link";
+    if (this.props.loadReason === "install" && showTutorial) {
+      simplifiedLinkClass = "simplified-link simplified-link-border";
+    }
     return <div className="container">
       <div className="simplified-instructions">
         <div className="instructions-text">
           Copy of page saved:
         </div>
-        <a className="simplified-link" href="#" onClick={ this.onClickLink.bind(this) }>
+        <a className={ simplifiedLinkClass } href="#" onClick={ this.onClickLink.bind(this) }>
           { stripProtocol(this.props.shot.viewUrl) }
         </a>
         <div className="instructions-text">
