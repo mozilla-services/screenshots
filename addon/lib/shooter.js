@@ -470,7 +470,7 @@ const ShotContext = Class({
         this.interactiveWorker.port.emit("setState", "cancel");
       }
       this.updateShot();
-      sendEvent("addon", "click-select-clip", clipId);
+      sendEvent("addon", "click-select-clip");
     },
     hide: function () {
       this.panelContext.hide(this);

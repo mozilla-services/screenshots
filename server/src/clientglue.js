@@ -103,7 +103,7 @@ function refreshHash() {
   model.activeClipId = clipId;
   sendShowElement(clipId);
   exports.render();
-  ga("send", "event", "website", source, {page: location.toString()});
+  ga("send", "event", "website", "navigated", {page: location.toString()});
 }
 
 function sendShowElement(clipId) {
