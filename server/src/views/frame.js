@@ -252,7 +252,7 @@ class Frame extends React.Component {
     let visibleHeight = window.innerHeight - toolbarHeight;
     let frameTop = frameOffset - (toolbarHeight * 2);
     window.scroll(0, frameTop);
-    ga("send", "event", "click", "full-page-button", {page: location.toString()});
+    ga("send", "event", "website", "click-full-page-button", {page: location.toString()});
   }
 
   render() {
@@ -458,7 +458,7 @@ class Frame extends React.Component {
   }
 
   clickedCreate() {
-    window.ga('send', 'event', 'click', 'install-banner', {useBeacon: true});
+    window.ga('send', 'event', 'website', 'click-install-banner', {useBeacon: true});
   }
 }
 
