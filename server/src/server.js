@@ -90,7 +90,7 @@ app.post("/event", function (req, res) {
   if (typeof bodyObj !== "object") {
     throw new Error("Got unexpected req.body type: " + typeof bodyObj);
   }
-  let userAnalytics = ua(config.gaId);
+  let userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
   userAnalytics.event(
     bodyObj.event,
     bodyObj.action,
@@ -120,7 +120,7 @@ window.location = ${redirectUrl};
   </body>
 </html>`;
     res.send(output);
-    let userAnalytics = ua(config.gaId);
+    let userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
     userAnalytics.event(
       "click",
       `original-link-${from}`
