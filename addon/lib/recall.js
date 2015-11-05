@@ -20,7 +20,7 @@ const recallButton = ToggleButton({
       hideInfoPanel();
       recallPanel.show();
     }
-    req.sendEvent("click", "recall-button");
+    req.sendEvent("addon", "click-recall-button");
   }
 });
 
@@ -64,26 +64,26 @@ recallPanel.port.on("copyLink", watchFunction(function (url) {
     text: "The link to your shot has been copied to the clipboard.",
     iconURL: self.data.url("../data/copy.png")
   });
-  req.sendEvent("click", "recall-copy-link");
+  req.sendEvent("addon", "click-recall-copy-link");
 }));
 
 recallPanel.port.on("openLink", watchFunction(function (url) {
   require("sdk/tabs").open(url);
   recallPanel.hide();
-  req.sendEvent("click", "recall-open-all-shot-list");
+  req.sendEvent("addon", "click-recall-open-all-shot-list");
 }));
 
 recallPanel.port.on("selectClip", watchFunction(function (clipId) {
   panelViewingClips[panelViewingId] = clipId;
   sendShot();
-  req.sendEvent("click", "recall-select-clip", `${panelViewingId}-${clipId}`);
+  req.sendEvent("addon", "click-recall-select-clip");
 }));
 
 recallPanel.port.on("viewShot", watchFunction(function (id) {
   if (! id) {
     throw new Error("Bad viewShot id: " + id);
   }
-  req.sendEvent("click", "recall-panel-shot-detail", id);
+  req.sendEvent("addon", "click-recall-panel-shot-detail");
   let backend = require("./main").getBackend();
   let url = backend + "/data/" + id;
   console.info("requesting", url);
@@ -123,7 +123,7 @@ recallPanel.port.on("viewShot", watchFunction(function (id) {
 recallPanel.port.on("viewRecallIndex", watchFunction(function () {
   panelViewingId = null;
   sendIndex();
-  req.sendEvent("click", "recall-panel-view-index");
+  req.sendEvent("addon", "click-recall-panel-view-index");
 }));
 
 function sendIndex() {

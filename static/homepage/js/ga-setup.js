@@ -3,6 +3,6 @@
 
 $(function () {
   $(".installer").click(function () {
-    ga('send', 'event', 'click', 'install', {useBeacon: true});
+    ga('send', 'event', 'website', 'click-install', {useBeacon: true});
   });
 });
