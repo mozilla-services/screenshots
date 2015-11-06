@@ -131,7 +131,7 @@ exports.callScript = function (tab, script, message, payload, timeout) {
       } else {
         logDebug("Timeout ran despite deferred being completed, for:", script, message);
       }
-    }, timeout)
+    }, timeout);
   }
   return deferred.promise;
 };
