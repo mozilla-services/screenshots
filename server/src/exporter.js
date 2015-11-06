@@ -112,11 +112,16 @@ function getWgetStatus(deviceId) {
   });
 }
 
+let warnedAboutExportsDirectory = false;
+
 exports.cleanExports = function () {
   let start = Date.now();
   fs.readdir(config.exportBase, (error, files) => {
     if (error && error.code == "ENOENT") {
-      console.info("EXPORT: Could not clean exports, directory", config.exportBase, "does not exist");
+      if (!warnedAboutExportsDirectory) {
+        warnedAboutExportsDirectory = true;
+        console.info("EXPORT: Could not clean exports, directory", config.exportBase, "does not exist");
+      }
       return;
     }
     if (error) {

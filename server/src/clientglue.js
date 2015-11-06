@@ -37,11 +37,11 @@ exports.setModel = function (data) {
         let frameTop = frameOffset - toolbarHeight;
         if (e.pageY >= frameTop - visibleHeight - offset) {
           fullPageButton.style.visibility = "hidden";
-          fullScreenThumbnail.style.visibility = "hidden";
+          //fullScreenThumbnail.style.visibility = "hidden";
           fullPageButtonScrollable.style.visibility = "visible";
         } else {
           fullPageButton.style.visibility = "visible";
-          fullScreenThumbnail.style.visibility = "visible";
+          //fullScreenThumbnail.style.visibility = "visible";
           fullPageButtonScrollable.style.visibility = "hidden";
         }
       } else {
@@ -62,7 +62,7 @@ exports.setModel = function (data) {
 
 exports.render = function render() {
   if (window.introJSRunning) {
-    console.log("intro.js was running, not rendering.");
+    console.info("intro.js was running, not rendering.");
     return;
   }
   setGitRevision(model.gitRevision);
@@ -103,7 +103,7 @@ function refreshHash() {
   model.activeClipId = clipId;
   sendShowElement(clipId);
   exports.render();
-  ga("send", "event", source, {page: location.toString()});
+  ga("send", "event", "website", "navigated", {page: location.toString()});
 }
 
 function sendShowElement(clipId) {

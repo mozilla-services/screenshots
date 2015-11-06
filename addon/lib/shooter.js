@@ -20,9 +20,16 @@ const notifications = require("sdk/notifications");
 const { randomString } = require("./randomstring");
 const { setTimeout } = require("sdk/timers");
 
+let shouldShowTour = false;
+
+exports.showTourOnNextLinkClick = function() {
+  shouldShowTour = true;
+}
+
 // If a page is in history for less time than this, we ignore it
 // (probably a redirect of some sort):
 var MIN_PAGE_VISIT_TIME = 5000; // 5 seconds
+const RANDOM_STRING_LENGTH = 16;
 
 function escapeForHTML(text) {
   return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
@@ -109,7 +116,7 @@ const ShotContext = Class({
     }
     this.shot = new Shot(
       backend,
-      randomString(8) + "/" + urlDomainForId(this.tabUrl),
+      randomString(RANDOM_STRING_LENGTH) + "/" + urlDomainForId(this.tabUrl),
       {
         url: this.tabUrl,
         deviceId: deviceInfo.deviceId
@@ -364,9 +371,9 @@ const ShotContext = Class({
       }
       this.updateShot();
       if (comment.length) {
-        sendEvent("comment", "add-comment");
+        sendEvent("addon", "add-comment");
       } else {
-        sendEvent("comment", "clear-comment");
+        sendEvent("addon", "clear-comment");
       }
     },
     copyImage: function (activeClipName) {
@@ -377,21 +384,25 @@ const ShotContext = Class({
         text: "Your shot has been copied to the clipboard.",
         iconURL: self.data.url("../data/copy.png")
       });
-      sendEvent("click", "copy-image");
+      sendEvent("addon", "click-copy-image");
     },
     copyRich: function (activeClipName) {
       this.copyRichDataToClipboard(activeClipName);
-      sendEvent("click", "copy-rich");
+      sendEvent("addon", "click-copy-rich");
     },
     shareButton: function (whichButton, eventSource) {
-      sendEvent("click", `share-button-${whichButton}-${eventSource}`);
+      sendEvent("addon", `click-share-button-${whichButton}-${eventSource}`);
     },
     openLink: function (link, loadReason, eventSource) {
       if (eventSource === undefined) {
         eventSource = loadReason;
       }
+      if (eventSource === "install" || shouldShowTour) {
+        shouldShowTour = false;
+        link += "?showIntro=true";
+      }
       tabs.open(link);
-      sendEvent("click", `open-link-${eventSource}`);
+      sendEvent("addon", `click-open-link-${eventSource}`);
     },
     setEditing: function(editing) {
       this.panelContext.setEditing(editing);
@@ -426,7 +437,7 @@ const ShotContext = Class({
     addClip: function (type) {
       this.activeClipName = null;
       this.panelHandlers.setCaptureType.call(this, type);
-      sendEvent("click", `add-clip-${type}`);
+      sendEvent("addon", `click-add-clip-${type}`);
     },
     deleteClip: function (clipId) {
       let ids = this.shot.clipNames();
@@ -442,7 +453,7 @@ const ShotContext = Class({
         this.activeClipName = ids[index];
       }
       this.panelHandlers.selectClip.call(this, this.activeClipName);
-      sendEvent("click", "delete-clip");
+      sendEvent("addon", "click-delete-clip");
     },
     selectClip: function (clipId) {
       this.activeClipName = clipId;
@@ -459,7 +470,7 @@ const ShotContext = Class({
         this.interactiveWorker.port.emit("setState", "cancel");
       }
       this.updateShot();
-      sendEvent("click", "select-clip", clipId);
+      sendEvent("addon", "click-select-clip");
     },
     hide: function () {
       this.panelContext.hide(this);

@@ -103,20 +103,21 @@ class ShareButtons extends React.Component {
 class SimplifiedPanel extends React.Component {
   onClickLink(e) {
     let url = this.props.shot.viewUrl;
-    if (this.props.loadReason === "install") {
-      url += "?showIntro=true";
-    }
     self.port.emit("openLink", url, this.props.loadReason, "simplified");
     e.preventDefault();
   }
 
   render() {
+    let simplifiedLinkClass = "simplified-link";
+    if (this.props.loadReason === "install" && showTutorial) {
+      simplifiedLinkClass = "simplified-link simplified-link-border";
+    }
     return <div className="container">
       <div className="simplified-instructions">
         <div className="instructions-text">
           Copy of page saved:
         </div>
-        <a className="simplified-link" href="#" onClick={ this.onClickLink.bind(this) }>
+        <a className={ simplifiedLinkClass } href="#" onClick={ this.onClickLink.bind(this) }>
           { stripProtocol(this.props.shot.viewUrl) }
         </a>
         <div className="instructions-text">
@@ -130,12 +131,15 @@ class SimplifiedPanel extends React.Component {
         <ShareButtons eventSource="simplified-panel" large={ true } { ...this.props } />
       </div>
       <div className="simplified-edit-container">
-        <button className="simplified-edit-button" onClick={ this.props.onClickEdit }>
+        <button className="simplified-edit-button" onClick={ this.props.onClickEdit.bind(this) }>
           Edit Shot
         </button>
-        <button className="simplified-edit-button" onClick={ this.props.onClickAdd }>
+        <button className="simplified-edit-button" onClick={ this.props.onClickAdd.bind(this) }>
           Add Clip
         </button>
+        <a href="#" onClick={ this.props.onClickHelp.bind(this) }>
+          <img src="icons/help-shooter.png" style={{position: "relative", top: "15px"}}/>
+        </a>
       </div>
       <img className="alpha-badge" src="icons/alpha-badge.png" />
     </div>;
@@ -146,6 +150,11 @@ class ShootPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+  onClickHelp(e) {
+    e.preventDefault();
+    self.port.emit("showTour");
   }
 
   onCopyClick(e) {
@@ -209,6 +218,7 @@ class ShootPanel extends React.Component {
       };
       return <SimplifiedPanel
         clipUrl={ clipUrl }
+        onClickHelp={ this.onClickHelp.bind(this) }
         onClickEdit={ onClickEdit }
         onClickAdd={ this.addClip.bind(this) }
         onCopyClick={ this.onCopyClick.bind(this) }
@@ -540,7 +550,7 @@ function renderData(data, loadReason) {
 self.port.on("recallShot", err.watchFunction(function (data) {
   let myShot = new AbstractShot(data.backend, data.id, data.shot);
   React.render(
-    React.createElement(ShootPanel, {activeClipName: data.activeClipName, shot: myShot, recall: true, isEditing: true}),
+    <ShootPanel activeClipName={ data.activeClipName } shot={ myShot } recall={ true } isEditing={ true } />,
     document.body);
 }));
 
@@ -552,6 +562,11 @@ class RecallPanel extends React.Component {
     }
     let url = el.getAttribute("data-url");
     self.port.emit("copyLink", url);
+  }
+
+  onClickHelp(e) {
+    e.preventDefault();
+    self.port.emit("showTour");
   }
 
   openShot(event) {
@@ -596,6 +611,9 @@ class RecallPanel extends React.Component {
         </ul>
         <div className="see-more-row">
           <a href="#" onClick={ this.openRecall.bind(this) }>View more on { stripProtocol(this.props.backend) }</a>
+          <a href="#" onClick={ this.onClickHelp.bind(this) } style={{position: "absolute", right: "0px", top: "0px"}}>
+            <img src="icons/help-recall.png" />
+          </a>
         </div>
       </div>);
   }

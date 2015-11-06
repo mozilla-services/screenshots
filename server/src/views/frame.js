@@ -222,7 +222,7 @@ class Head extends React.Component {
     return (
       <head>
         <meta charSet="UTF-8" />
-        <title>{this.props.title}</title>
+        <title>{this.props.shot.title}</title>
         {gaScript}
         {gaCode}
         {js}
@@ -252,7 +252,7 @@ class Frame extends React.Component {
     let visibleHeight = window.innerHeight - toolbarHeight;
     let frameTop = frameOffset - (toolbarHeight * 2);
     window.scroll(0, frameTop);
-    ga("send", "event", "click", "full-page-button", {page: location.toString()});
+    ga("send", "event", "website", "click-full-page-button", {page: location.toString()});
   }
 
   render() {
@@ -383,6 +383,12 @@ class Frame extends React.Component {
 
     let shotRedirectUrl = `/redirect?to=${encodeURIComponent(shot.url)}`;
 
+    /*
+    <div id="full-screen-thumbnail">
+      <img src={ this.props.shot.fullScreenThumbnail } onClick={ this.clickFullPageButton.bind(this) } />
+    </div>
+    */
+
     return (
         <div id="container">
           { this.renderExtRequired() }
@@ -410,9 +416,6 @@ class Frame extends React.Component {
           </span>
           { previousClipNode }
           { nextClipNode }
-        </div>
-        <div id="full-screen-thumbnail">
-          <img src={ this.props.shot.fullScreenThumbnail } onClick={ this.clickFullPageButton.bind(this) } />
         </div>
         <div id="full-page-button">
           <a href="#" className="full-page-button-styles" onClick={ this.clickFullPageButton.bind(this) }>
@@ -455,7 +458,7 @@ class Frame extends React.Component {
   }
 
   clickedCreate() {
-    window.ga('send', 'event', 'click', 'install-banner', {useBeacon: true});
+    window.ga('send', 'event', 'website', 'click-install-banner', {useBeacon: true});
   }
 }
 
