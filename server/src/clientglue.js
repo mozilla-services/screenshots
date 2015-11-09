@@ -22,30 +22,24 @@ exports.setModel = function (data) {
   model.shot.deleted = data.deleted;
 
   if (firstSet) {
-    let toolbar = document.getElementById("toolbar");
-    let fullPageButton = document.getElementById("full-page-button");
-    let fullScreenThumbnail = document.getElementById("full-screen-thumbnail");
-    let fullPageButtonScrollable = document.getElementById("full-page-button-scrollable");
-    let frameElement = document.getElementById("frame");
-    let offset = (fullPageButtonScrollable.clientHeight / 2);
+    let offset = document.getElementById("full-page-button-scrollable").clientHeight / 2;
+    document.body.className = "window-scrolled-up";
     window.onscroll = function (e) {
       if (e.pageY > 40) {
-        toolbar.style.visibility = "visible";
+        let toolbar = document.getElementById("toolbar");
+        let frameElement = document.getElementById("frame");
+        document.body.className = "window-scrolled-down";
         let frameOffset = frameElement.getBoundingClientRect().top + window.scrollY;
         let toolbarHeight = toolbar.clientHeight;
         let visibleHeight = window.innerHeight - toolbarHeight;
         let frameTop = frameOffset - toolbarHeight;
         if (e.pageY >= frameTop - visibleHeight - offset) {
-          fullPageButton.style.visibility = "hidden";
-          //fullScreenThumbnail.style.visibility = "hidden";
-          fullPageButtonScrollable.style.visibility = "visible";
+          document.body.className = "window-scrolled-fully";
         } else {
-          fullPageButton.style.visibility = "visible";
-          //fullScreenThumbnail.style.visibility = "visible";
-          fullPageButtonScrollable.style.visibility = "hidden";
+          document.body.className = "window-scrolled-down";
         }
       } else {
-        toolbar.style.visibility = "hidden";
+        document.body.className = "window-scrolled-up";
       }
     };
 

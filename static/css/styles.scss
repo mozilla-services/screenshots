@@ -52,6 +52,14 @@ body {
   background-image: url("/static/img/bgtexture.png");
 }
 
+.window-scrolled-down #toolbar {
+  visibility: visible;
+}
+
+.window-scrolled-fully #toolbar {
+  visibility: visible;
+}
+
 #profile-widget {
   position: fixed;
   top: 15px;
@@ -82,6 +90,10 @@ body {
   z-index: 1001;
 }
 
+.window-scrolled-fully #full-page-button {
+  visibility: hidden;
+}
+
 #full-screen-thumbnail {
   position: fixed;
   left: 0px;
@@ -97,9 +109,14 @@ body {
 }
 
 #full-page-button-scrollable {
+  visibility: hidden;
   height: 2em;
   margin-top: 500px;
   text-align: center;
+}
+
+.window-scrolled-fully #full-page-button-scrollable {
+  visibility: visible;
 }
 
 .full-page-button-arrow {
