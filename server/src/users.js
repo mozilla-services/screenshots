@@ -3,7 +3,7 @@ const db = require("./db");
 const errors = require("../shared/errors");
 const { request } = require("./helpers");
 
-exports.checkLogin = function (deviceId, secret) {
+exports.checkLogin = function (deviceId, secret, addonVersion) {
   return db.select(
     `SELECT secret FROM devices WHERE id = $1`,
     [deviceId]
@@ -11,7 +11,22 @@ exports.checkLogin = function (deviceId, secret) {
     if (! rows.length) {
       return null;
     }
-    return rows[0].secret == secret;
+    if (rows[0].secret == secret) {
+      db.update(
+        `UPDATE devices
+         SET last_login = NOW(),
+             session_count = session_count + 1,
+             last_addon_version = $1
+         WHERE id = $2
+        `,
+        [addonVersion, deviceId]
+      ).catch((error) => {
+        console.error("Error updating devices table:", error);
+      });
+      return true;
+    } else {
+      return false;
+    }
   });
 };
 
@@ -121,5 +136,28 @@ exports.registerAccount = function (deviceId, accountId, accessToken) {
         [deviceId, accountId]
       );
     });
+  });
+};
+
+exports.addDeviceActivity = function (deviceId, eventType, eventInfo) {
+  // Note we don't care when the database request completes
+  if (typeof eventType != "string" || ! eventType) {
+    throw new Error("Missing, empty, or invalid eventType");
+  }
+  if (typeof deviceId != "string" || ! deviceId) {
+    throw new Error("Missing, empty, or invalid deviceId");
+  }
+  if (eventInfo && typeof eventInfo != "string") {
+    eventInfo = JSON.stringify(eventInfo);
+  }
+  if (! eventInfo) {
+    eventInfo = null;
+  }
+  db.insert(
+    `INSERT INTO device_activity (deviceid, event_type, event_info)
+     VALUES ($1, $2, $3)`,
+    [deviceId, eventType, eventInfo]
+  ).catch((error) => {
+    console.error("Error inserting into device_activity:", error);
   });
 };
