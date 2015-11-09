@@ -38,7 +38,7 @@ var shootButton = ToggleButton({
   onClick: watchFunction(function () {
     hideInfoPanel();
     PanelContext.onShootButtonClicked();
-    req.sendEvent("click", "shot-button");
+    req.sendEvent("addon", "click-shot-button");
   })
 });
 exports.shootButton = shootButton;
@@ -199,7 +199,7 @@ PanelContext = {
     this._activeContext.isEditing = editing;
     if (editing) {
       shootPanel.resize(400, PANEL_TALL_HEIGHT);
-      req.sendEvent("click", "short-panel-edit");
+      req.sendEvent("addon", "click-short-panel-edit");
     } else {
       shootPanel.resize(400, PANEL_SHORT_HEIGHT);
     }
