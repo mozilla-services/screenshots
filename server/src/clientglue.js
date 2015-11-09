@@ -23,23 +23,27 @@ exports.setModel = function (data) {
 
   if (firstSet) {
     let offset = document.getElementById("full-page-button-scrollable").clientHeight / 2;
-    document.body.className = "window-scrolled-up";
+    document.body.classList.add("window-scrolled-up");
     window.onscroll = function (e) {
       if (e.pageY > 40) {
         let toolbar = document.getElementById("toolbar");
         let frameElement = document.getElementById("frame");
-        document.body.className = "window-scrolled-down";
+        document.body.classList.remove("window-scrolled-up");
         let frameOffset = frameElement.getBoundingClientRect().top + window.scrollY;
         let toolbarHeight = toolbar.clientHeight;
         let visibleHeight = window.innerHeight - toolbarHeight;
         let frameTop = frameOffset - toolbarHeight;
         if (e.pageY >= frameTop - visibleHeight - offset) {
-          document.body.className = "window-scrolled-fully";
+          document.body.classList.add("window-scrolled-fully");
+          document.body.classList.remove("window-scrolled-down");
         } else {
-          document.body.className = "window-scrolled-down";
+          document.body.classList.add("window-scrolled-down");
+          document.body.classList.remove("window-scrolled-fully");
         }
       } else {
-        document.body.className = "window-scrolled-up";
+        document.body.classList.add("window-scrolled-up");
+        document.body.classList.remove("window-scrolled-down");
+        document.body.classList.remove("window-scrolled-fully");
       }
     };
 
