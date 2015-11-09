@@ -62,7 +62,7 @@ exports.setModel = function (data) {
 
 exports.render = function render() {
   if (window.introJSRunning) {
-    console.log("intro.js was running, not rendering.");
+    console.info("intro.js was running, not rendering.");
     return;
   }
   setGitRevision(model.gitRevision);
