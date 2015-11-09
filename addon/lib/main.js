@@ -326,6 +326,6 @@ function removeCookies() {
   let namespace = {};
   Cu.import('resource://gre/modules/Services.jsm', namespace);
   let domain = require("sdk/url").URL(exports.getBackend()).hostname;
-  namespace.Services.cookies.add(domain, "/", "user", "", false, false, false, 0)
-  namespace.Services.cookies.add(domain, "/", "user.sig", "", false, false, false, 0)
+  namespace.Services.cookies.add(domain, "/", "user", "", false, false, false, 0);
+  namespace.Services.cookies.add(domain, "/", "user.sig", "", false, false, false, 0);
 }

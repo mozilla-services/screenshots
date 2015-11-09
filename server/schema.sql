@@ -13,12 +13,22 @@ CREATE TABLE data (
     expire_time timestamp without time zone DEFAULT (now() + '14 days'::interval),
     deleted boolean DEFAULT false NOT NULL
 );
+CREATE TABLE device_activity (
+    deviceid character varying(200),
+    event_date timestamp without time zone DEFAULT now(),
+    event_type text,
+    event_info text
+);
 CREATE TABLE devices (
     id character varying(200) NOT NULL,
     secret character varying(200) NOT NULL,
     nickname text,
     avatarurl text,
-    accountid character varying(200)
+    accountid character varying(200),
+    last_addon_version text,
+    last_login timestamp without time zone,
+    created timestamp without time zone DEFAULT now(),
+    session_count integer DEFAULT 0
 );
 CREATE TABLE images (
     id character varying(200) NOT NULL,
@@ -54,11 +64,13 @@ ALTER TABLE ONLY states
 CREATE INDEX devices_accountid_idx ON devices USING btree (accountid);
 CREATE INDEX states_deviceid_idx ON states USING btree (deviceid);
 ALTER TABLE ONLY data
-    ADD CONSTRAINT data_deviceid_fkey FOREIGN KEY (deviceid) REFERENCES devices(id);
+    ADD CONSTRAINT data_deviceid_fkey FOREIGN KEY (deviceid) REFERENCES devices(id) ON DELETE CASCADE;
+ALTER TABLE ONLY device_activity
+    ADD CONSTRAINT device_activity_deviceid_fkey FOREIGN KEY (deviceid) REFERENCES devices(id) ON DELETE CASCADE;
 ALTER TABLE ONLY devices
     ADD CONSTRAINT devices_accountid_fkey FOREIGN KEY (accountid) REFERENCES accounts(id) ON DELETE SET NULL;
 ALTER TABLE ONLY images
     ADD CONSTRAINT images_shotid_fkey FOREIGN KEY (shotid) REFERENCES data(id) ON DELETE CASCADE;
 ALTER TABLE ONLY states
     ADD CONSTRAINT states_deviceid_fkey FOREIGN KEY (deviceid) REFERENCES devices(id) ON DELETE CASCADE;
--- pg-patch version: 3
+-- pg-patch version: 5
