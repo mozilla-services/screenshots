@@ -22,30 +22,28 @@ exports.setModel = function (data) {
   model.shot.deleted = data.deleted;
 
   if (firstSet) {
-    let toolbar = document.getElementById("toolbar");
-    let fullPageButton = document.getElementById("full-page-button");
-    let fullScreenThumbnail = document.getElementById("full-screen-thumbnail");
-    let fullPageButtonScrollable = document.getElementById("full-page-button-scrollable");
-    let frameElement = document.getElementById("frame");
-    let offset = (fullPageButtonScrollable.clientHeight / 2);
+    let offset = document.getElementById("full-page-button-scrollable").clientHeight / 2;
+    document.body.classList.add("window-scrolled-up");
     window.onscroll = function (e) {
       if (e.pageY > 40) {
-        toolbar.style.visibility = "visible";
+        let toolbar = document.getElementById("toolbar");
+        let frameElement = document.getElementById("frame");
+        document.body.classList.remove("window-scrolled-up");
         let frameOffset = frameElement.getBoundingClientRect().top + window.scrollY;
         let toolbarHeight = toolbar.clientHeight;
         let visibleHeight = window.innerHeight - toolbarHeight;
         let frameTop = frameOffset - toolbarHeight;
         if (e.pageY >= frameTop - visibleHeight - offset) {
-          fullPageButton.style.visibility = "hidden";
-          //fullScreenThumbnail.style.visibility = "hidden";
-          fullPageButtonScrollable.style.visibility = "visible";
+          document.body.classList.add("window-scrolled-fully");
+          document.body.classList.remove("window-scrolled-down");
         } else {
-          fullPageButton.style.visibility = "visible";
-          //fullScreenThumbnail.style.visibility = "visible";
-          fullPageButtonScrollable.style.visibility = "hidden";
+          document.body.classList.add("window-scrolled-down");
+          document.body.classList.remove("window-scrolled-fully");
         }
       } else {
-        toolbar.style.visibility = "hidden";
+        document.body.classList.add("window-scrolled-up");
+        document.body.classList.remove("window-scrolled-down");
+        document.body.classList.remove("window-scrolled-fully");
       }
     };
 

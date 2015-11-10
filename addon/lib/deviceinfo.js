@@ -10,6 +10,6 @@ exports.deviceInfo = function () {
     build: system.build,
     appName: system.name,
     platformVersion: system.platformVersion,
-    appVendor: system.vendor    
+    appVendor: system.vendor
   };
 };
