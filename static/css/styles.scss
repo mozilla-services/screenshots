@@ -426,17 +426,9 @@ a.subheading-link {
     width: 200px;
     z-index: -1;
     overflow: hidden;
-    background-color: #fff;
     border-radius: 2px;
-  }
-
-  .shot-background img {
-    /* We have to expand the image to keep the blurred edges hidden: */
-    margin-left: -5px;
-    margin-top: -5px;
-    width: 210px;
-    height: 210px;
-    filter: blur(5px);
+    background-size: cover;
+    background-position: center;
   }
 
   .shot {
@@ -448,24 +440,34 @@ a.subheading-link {
     margin: 8px;
   }
 
+  .shot-text {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    height: 100%;
+  }
+
   .shot-footer {
     text-align: center;
     font-size: 13px;
-  }
-
-  .shot-date {
-    color: #000;
   }
 
   .title-container {
     height: 80%;
   }
 
+  div.favicon {
+    background-size: cover;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    margin-right: 4px;
+    vertical-align: -4px;
+  }
+
   h2 {
     a {
       color: #fff;
     }
-    background: rgba(0, 0, 0, 0.6);
     padding: 5px;
     font-size: 16px;
     margin: 0px 0px 3px 0px;

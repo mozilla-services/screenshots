@@ -39,28 +39,42 @@ class ShotIndex extends React.Component {
   }
 
   renderShot(shot) {
-    let bgEl = null;
-    let img = shot.favicon;
+    let bgStyle = null;
+    let img = null;
     if (shot.images && shot.images.length) {
       img = shot.images[0].url;
+    } else {
+      let clip = shot.getClip(shot.clipNames()[0]);
+      if (clip && clip.image && clip.image.url) {
+        img = clip.image.url;
+      }
     }
     if (img) {
-      bgEl = <img src={img} />;
+      bgStyle = {backgroundImage: `url("${img}")`};
+    }
+    let favicon = null;
+    if (shot.favicon) {
+      // We use background-image so if the image is broken it just doesn't show:
+      favicon = <div style={{backgroundImage: `url("${shot.favicon}")`}} className="favicon" />;
     }
 
     return (
       <div className="shot" key={shot.id}>
-        <div className="shot-background">{bgEl}</div>
-        <a href={`/redirect?from=shot-index&to=${encodeURIComponent(shot.viewUrl)}` }><div className="title-container">
-          <h2 className="title">{shot.title}</h2>
-        </div></a>
-        <div className="shot-footer">
-          <div className="shot-date">
-            <TimeDiff date={shot.createdDate} simple={this.props.simple} />
+        <div className="shot-background" style={bgStyle}></div>
+        <div className="shot-text">
+          <a href={`/redirect?from=shot-index&to=${encodeURIComponent(shot.viewUrl)}` }><div className="title-container">
+            <h2 className="title">{shot.title}</h2>
+          </div></a>
+          <div className="shot-footer">
+            <div className="shot-date">
+              <TimeDiff date={shot.createdDate} simple={this.props.simple} />
+            </div>
+            <div className="shot-link-container">
+              {favicon}
+              <a href={`/redirect?from=shot-index-original-link&to=${encodeURIComponent(shot.url)}`} className="subheading-link" target="_blank">
+              { shot.urlDisplay }
+            </a></div>
           </div>
-          <div className="shot-link-container"><a href={`/redirect?from=shot-index-original-link&to=${encodeURIComponent(shot.url)}`} className="subheading-link" target="_blank">
-            { shot.urlDisplay }
-          </a></div>
         </div>
       </div>
     );
