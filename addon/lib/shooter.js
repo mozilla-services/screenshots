@@ -84,23 +84,23 @@ function processHistory(history, tab) {
 /** Runs the extract worker on the given tab, and returns a promise that
     returns the extracted data */
 function extractWorker(tab) {
-  const deferred = defer();
-  const worker = tab.attach({
-    contentScriptFile: [self.data.url("error-utils.js"),
-                        self.data.url("vendor/readability/Readability.js"),
-                        self.data.url("vendor/microformat-shiv.js"),
-                        self.data.url("extractor-worker.js")]
+  return new Promise((resolve, reject) => {
+    const worker = tab.attach({
+      contentScriptFile: [self.data.url("error-utils.js"),
+                          self.data.url("vendor/readability/Readability.js"),
+                          self.data.url("vendor/microformat-shiv.js"),
+                          self.data.url("extractor-worker.js")]
+    });
+    watchWorker(worker);
+    worker.port.on("data", function (data) {
+      worker.destroy();
+      resolve(data);
+    });
+    worker.port.on("alertError", function (error) {
+      worker.destroy();
+      reject(error);
+    });
   });
-  watchWorker(worker);
-  worker.port.on("data", function (data) {
-    worker.destroy();
-    deferred.resolve(data);
-  });
-  worker.port.on("alertError", function (error) {
-    worker.destroy();
-    deferred.reject(error);
-  });
-  return deferred.promise;
 }
 
 /** Represents one shot action */
