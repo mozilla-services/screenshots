@@ -18,13 +18,13 @@ const { getDeviceInfo } = require("./user");
 const { URL } = require("sdk/url");
 const notifications = require("sdk/notifications");
 const { randomString } = require("./randomstring");
-const { setTimeout } = require("sdk/timers");
+const { setTimeout, clearTimeout } = require("sdk/timers");
 
 let shouldShowTour = false;
 
 exports.showTourOnNextLinkClick = function() {
   shouldShowTour = true;
-}
+};
 
 // If a page is in history for less time than this, we ignore it
 // (probably a redirect of some sort):
@@ -83,8 +83,19 @@ function processHistory(history, tab) {
 
 /** Runs the extract worker on the given tab, and returns a promise that
     returns the extracted data */
-function extractWorker(tab) {
+function extractWorker(tab, timeLimit) {
+  if (timeLimit === undefined) {
+    timeLimit = 10000; // 10 second default
+  }
   return new Promise((resolve, reject) => {
+    let timeoutId;
+    let timedOut = false;
+    if (timeLimit) {
+      timeoutId = setTimeout(function () {
+        timedOut = true;
+        reject(new Error("Extractor timed out"));
+      }, timeLimit);
+    }
     const worker = tab.attach({
       contentScriptFile: [self.data.url("error-utils.js"),
                           self.data.url("vendor/readability/Readability.js"),
@@ -94,10 +105,20 @@ function extractWorker(tab) {
     watchWorker(worker);
     worker.port.on("data", function (data) {
       worker.destroy();
+      if (timedOut) {
+        console.error("extractWorker resolved after timeout");
+        return;
+      }
+      clearTimeout(timeoutId);
       resolve(data);
     });
     worker.port.on("alertError", function (error) {
       worker.destroy();
+      if (timedOut) {
+        console.error("extractWorker errored out after timeout", error);
+        return;
+      }
+      clearTimeout(timeoutId);
       reject(error);
     });
   });
@@ -169,7 +190,7 @@ const ShotContext = Class({
             this.copyRichDataToClipboard(activeClipName, ++numberOfTries);
           }, 500);
         } else {
-          console.error("Could not copy rich shot data -- no clip was added to the shot within 4 seconds")
+          console.error("Could not copy rich shot data -- no clip was added to the shot within 4 seconds");
           // If we failed to copy the rich shot data, just tell the user we copied the link
           notifications.notify({
             title: "Link Copied",
