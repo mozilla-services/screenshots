@@ -172,6 +172,9 @@ Shot.get = function (backend, id) {
       return null;
     }
     let json = JSON.parse(rawValue.value);
+    if (! json.url && rawValue.url) {
+      json.url = rawValue.url;
+    }
     let shot = new Shot(rawValue.userid, backend, id, json);
     shot.urlIfDeleted = rawValue.url;
     shot.expireTime = rawValue.expireTime;
@@ -413,4 +416,34 @@ ClipRewrites = class ClipRewrites {
     });
   }
 
+};
+
+Shot.cleanDeletedShots = function () {
+  let retention = config.expiredRetentionTime;
+  return db.transaction((client) => {
+    return db.queryWithClient(
+      client,
+      `
+        UPDATE data
+        SET value = '{}', head = NULL, body = NULL, deleted = TRUE
+        WHERE expire_time + ($1)::INTERVAL < CURRENT_TIMESTAMP
+              AND NOT deleted
+      `,
+      [retention]
+    ).then((result) => {
+      return db.queryWithClient(
+        client,
+        `
+          DELETE FROM images
+          USING data
+          WHERE images.shotid = data.id
+                AND data.expire_time + ($1)::INTERVAL < CURRENT_TIMESTAMP
+                AND NOT data.deleted
+        `,
+        [retention]
+      ).then(() => {
+        return result.rowCount;
+      });
+    });
+  });
 };

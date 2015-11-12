@@ -130,6 +130,21 @@ var conf = convict({
     default: 60,
     env: "EXPORT_KEEP_TIME",
     arg: "export-keep-time"
+  },
+  // This is mostly configurable for debugging purposes:
+  checkDeletedInterval: {
+    doc: "Frequency in seconds to check for items that should be purged",
+    format: "int",
+    default: 60,
+    env: "CHECK_DELETED_INTERVAL",
+    arg: "check-deleted-interval"
+  },
+  expiredRetentionTime: {
+    doc: "Amount of time to keep an expired shot, in PostgreSQL time format",
+    format: String,
+    default: "14 DAYS",
+    env: "EXPIRED_RETENTION_TIME",
+    arg: "expired-retention-time"
   }
 });
 
