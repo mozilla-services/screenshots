@@ -83,7 +83,10 @@ function findImages(elements) {
     var ogs = el.querySelectorAll("meta[property='og:image'], meta[name='twitter:image']");
     var j;
     for (j=0; j<ogs.length; j++) {
-      var src = ogs[i].getAttribute("content");
+      var src = ogs[j].getAttribute("content");
+      if (src.startsWith("/")) {
+        src = location.origin + src;
+      }
       addImage({
         url: src
       });

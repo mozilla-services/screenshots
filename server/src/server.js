@@ -10,7 +10,8 @@ const {
   checkState,
   tradeCode,
   getAccountId,
-  registerAccount
+  registerAccount,
+  addDeviceActivity
 } = require("./users");
 const dbschema = require("./dbschema");
 const express = require("express");
@@ -149,9 +150,17 @@ app.post("/api/register", function (req, res) {
       cookies.set("user", vars.deviceId, {signed: true});
       simpleResponse(res, "Created", 200);
     } else {
+      addDeviceActivity(vars.deviceId, "invalid-register", {
+        hasSecret: !!vars.secret,
+        hasNickname: !!vars.nickname,
+        hasAvatarurl: !!vars.avatarurl
+      });
       simpleResponse(res, "User exists", 401);
     }
   }).catch(function (err) {
+    addDeviceActivity(vars.deviceId, "error-register", {
+      error: err+""
+    });
     errorResponse(res, "Error registering:", err);
   });
 });
@@ -170,6 +179,10 @@ app.post("/api/update", function (req, res, next) {
     if (! ok) {
       throw errors.badSession();
     }
+    addDeviceActivity(req.deviceId, "update-profile", {
+      hasNickname: !!nickname,
+      hasAvatarurl: !!avatarurl
+    });
     res.sendStatus(204);
   }, err => {
     console.warn("Error updating device info", err);
@@ -179,16 +192,23 @@ app.post("/api/update", function (req, res, next) {
 
 app.post("/api/login", function (req, res) {
   let vars = req.body;
-  checkLogin(vars.deviceId, vars.secret).then((ok) => {
+  checkLogin(vars.deviceId, vars.secret, vars.deviceInfo.addonVersion).then((ok) => {
     if (ok) {
       let cookies = new Cookies(req, res, dbschema.getKeygrip());
       cookies.set("user", vars.deviceId, {signed: true});
       let userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
       userAnalytics.pageview("/api/login").send();
       simpleResponse(res, "User logged in", 200);
+      addDeviceActivity(vars.deviceId, "login", {
+        deviceInfo: vars.deviceInfo
+      });
     } else if (ok === null) {
       simpleResponse(res, "No such user", 404);
     } else {
+      addDeviceActivity(vars.deviceId, "invalid-login", {
+        hasSecret: !!vars.secret,
+        deviceInfo: vars.deviceInfo
+      });
       simpleResponse(res, "Invalid login", 401);
     }
   }).catch(function (err) {
@@ -198,6 +218,7 @@ app.post("/api/login", function (req, res) {
 
 app.post("/api/unload", function (req, res) {
   let reason = req.body.reason;
+  reason = reason.replace(/[^a-zA-Z0-9]/g, "");
   console.info("Device", req.deviceId, "unloaded for reason:", reason);
   let cookies = new Cookies(req, res, dbschema.getKeygrip());
   // This erases the session cookie:
@@ -206,6 +227,10 @@ app.post("/api/unload", function (req, res) {
   if (req.userAnalytics) {
     req.userAnalytics.pageview("/api/unload").send();
   }
+  addDeviceActivity(req.deviceId, "unload", {
+    reason: reason,
+    deviceInfo: req.body.deviceInfo
+  });
   simpleResponse(res, "Noted", 200);
 });
 
@@ -360,6 +385,9 @@ app.post("/delete", function (req, res) {
   if (! req.deviceId) {
     return simpleResponse(res, "You must have the addon installed delete your account", 403);
   }
+  // FIXME: this just gets deleted due to ON DELETE CASCADE
+  // Maybe we should keep but anonymize device_activity on account deletion
+  addDeviceActivity(req.deviceId, "delete-account");
   Shot.deleteEverythingForDevice(req.backend, req.deviceId).then(() => {
     return simpleResponse(res, "Goodbye.", 200);
   }).catch((e) => {
@@ -474,6 +502,7 @@ app.post('/api/fxa-oauth/token', function (req, res, next) {
     return getAccountId(accessToken).then(({ uid: accountId }) => {
       return registerAccount(req.deviceId, accountId, accessToken);
     }).then(() => {
+      addDeviceActivity(req.deviceId, "fxa-login");
       res.send({
         access_token: accessToken
       });
