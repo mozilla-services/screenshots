@@ -1,0 +1,3 @@
+#!/bin/bash
+
+zip -r build/eb-app-latest.zip Dockerrun.aws.json .ebextensions/*.config

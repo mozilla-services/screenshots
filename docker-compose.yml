@@ -1,0 +1,11 @@
+db:
+  image: postgres:9.3
+
+server:
+  image: pageshot
+  links:
+    - db
+  environment:
+    - DB_HOST=db:5432
+    - DB_USER=postgres
+
