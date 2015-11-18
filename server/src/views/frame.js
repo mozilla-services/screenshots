@@ -1,7 +1,7 @@
-/* globals document, window */
+/* jshint browser: true */
+/* globals ga */
 
 const React = require("react");
-const { Shell } = require("./shell");
 const { getGitRevision } = require("../linker");
 const { ProfileButton } = require("./profile");
 const { addReactScripts } = require("../reactutils");
@@ -127,7 +127,6 @@ class TimeDiff extends React.Component {
     if (! (d instanceof Date)) {
       d = new Date(d);
     }
-    let s = "";
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     let month = months[d.getMonth() - 1];
     let hour = d.getHours();
@@ -249,7 +248,6 @@ class Frame extends React.Component {
     e.preventDefault();
     let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
     let toolbarHeight = document.getElementById("toolbar").clientHeight;
-    let visibleHeight = window.innerHeight - toolbarHeight;
     let frameTop = frameOffset - (toolbarHeight * 2);
     window.scroll(0, frameTop);
     ga("send", "event", "website", "click-full-page-button", {page: location.toString()});
@@ -264,6 +262,7 @@ class Frame extends React.Component {
           <p>
             This shot has expired. You may visit the original page it was originally created from:
           </p>
+          <h2><a href={this.props.shot.urlIfDeleted}>{this.props.shot.title}</a></h2>
           <p>
             <a href={this.props.shot.urlIfDeleted}>
               {this.props.shot.urlIfDeleted}
@@ -344,7 +343,7 @@ class Frame extends React.Component {
       numberOfClips = (clipIndex + 1) + " of " + numberOfClips;
     }
 
-    let linkTextShort = shot.urlDisplay
+    let linkTextShort = shot.urlDisplay;
 
     let timeDiff = <TimeDiff date={shot.createdDate} simple={this.props.simple} />;
     let expiresDiff = <span>(expires <TimeDiff date={shot.expireTime} simple={this.props.simple} />)</span>;
