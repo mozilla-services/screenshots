@@ -62,7 +62,7 @@ class ShotIndex extends React.Component {
       <div className="shot" key={shot.id}>
         <div className="shot-background" style={bgStyle}></div>
         <div className="shot-text">
-          <a href={`/redirect?from=shot-index&to=${encodeURIComponent(shot.viewUrl)}` }><div className="title-container">
+          <a href={ shot.viewUrl }><div className="title-container">
             <h2 className="title">{shot.title}</h2>
           </div></a>
           <div className="shot-footer">

@@ -505,8 +505,9 @@ ${options.addBody || ""}
   }
 
   get title() {
+    // FIXME: we shouldn't support both openGraph.title and ogTitle
     let ogTitle = this.openGraph && this.openGraph.title;
-    return this.userTitle || this.ogTitle || this.ogTitle || this.docTitle || this.url;
+    return this.userTitle || this.ogTitle || ogTitle || this.docTitle || this.url;
   }
 
   get createdDate() {

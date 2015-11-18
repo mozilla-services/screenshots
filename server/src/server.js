@@ -402,7 +402,13 @@ require("./exporter").setup(app);
 app.get("/:id/:domain", function (req, res) {
   let shotId = req.params.id + "/" + req.params.domain;
   Shot.get(req.backend, shotId).then((shot) => {
-    if (! shot || shot.clipNames().length === 0) {
+    let notFound = false;
+    if (! shot) {
+      notFound = true;
+    } else if (shot.clipNames().length === 0 && ! shot.deleted) {
+      // Deleted shots always appear to have no clips
+    }
+    if (notFound) {
       simpleResponse(res, "Not found", 404);
       return;
     }
