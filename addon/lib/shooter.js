@@ -724,3 +724,53 @@ function urlDomainForId(urlString) {
   }
   return domain;
 }
+
+exports.autoShot = function (tab, backend) {
+  // Runs the javascript cleanup utilities on the tab, takes a screenshot,
+  // creates a shot instance, and pushes the data to the backend server without
+  // asking anything via UI
+  
+  let deviceInfo = getDeviceInfo();
+  if (! deviceInfo) {
+    throw new Error("Could not get device authentication information");
+  }
+
+  const worker =  tab.attach({
+    contentScriptFile: [self.data.url("error-utils.js"),
+                        self.data.url("vendor/readability/Readability.js"),
+                        self.data.url("vendor/microformat-shiv.js"),
+                        self.data.url("extractor-worker.js")]
+  });
+
+  worker.port.on("data", function (attrs) {
+    // Add some missing data
+    attrs.url = tab.url;
+    attrs.deviceId = deviceInfo.deviceId;
+    var shot = new Shot(
+      backend, 
+      randomString(RANDOM_STRING_LENGTH) + "/" + urlDomainForId(tab.url),
+      attrs
+    );
+
+    // Heavy lifting happens here
+    var promises = [];
+    promises.push(watchPromise(
+      captureTab(tab, {x: 0, y: 0, h: "full", w: "full"}, {h: null, w: 140}).then((screenshot) => {
+        shot.update({
+          fullScreenThumbnail: screenshot
+        });
+      })
+    ));
+    promises.push(watchPromise(callScript(
+      tab,
+      self.data.url("framescripts/make-static-html.js"),
+      "pageshot@documentStaticData",
+      {}
+    )).then(watchFunction(function (attrs) {
+      shot.update(attrs);
+    }, this)));
+    watchPromise(allPromisesComplete(promises).then((function () {
+      shot.save();
+    }).bind(this)));
+  });
+};
