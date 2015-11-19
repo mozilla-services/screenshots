@@ -28,9 +28,11 @@ var backend;
 
 
 exports.init = function init(prefs) {
+  console.info("starting headless server");
   // set global backend, extractTab needs it
   backend = prefs.backend;
   let server = new Server(port, allowedIPs, callback);
+  console.info("headless server listening on PORT".replace('PORT', port));
 };
 
 
