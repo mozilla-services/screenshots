@@ -1841,7 +1841,7 @@ Readability.prototype = {
     function traverse(parent) {
       for (var i=0; i<parent.childNodes.length; i++) {
         var el = parent.childNodes[i];
-        if (el.id && el.id.indexOf("readability-") === 0) {
+        if ((el.id && el.id.indexOf("readability-") === 0) || ! el.id) {
           traverse(el);
           continue;
         }

@@ -44,7 +44,7 @@ print json.dumps(doc)
     curl --cookie $cookiejar -X PUT --header 'Content-Type: application/json' -d "$doc" -D - "$url"
     ;;
   *)
-    echo "Unknown option: $@"
+    echo "Unknown option: $*"
     echo "To use:"
     echo "  $(basename $0) put '{document}'"
     ;;
