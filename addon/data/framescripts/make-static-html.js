@@ -10,6 +10,10 @@
     with lib/framescripter
     */
 
+// This is an option that gets set by the caller of this module, but
+// we store it in a global:
+var prefInlineCss = false;
+
 function getDocument() {
   return content.document;
 }
@@ -112,6 +116,14 @@ function skipElement(el) {
         (! el.childNodes.length))) {
     return true;
   }
+  if (prefInlineCss) {
+    if (el.tagName == "STYLE") {
+      return true;
+    }
+    if (el.tagName == "LINK" && (el.getAttribute("rel") || "").toLowerCase() == "stylesheet") {
+      return true;
+    }
+  }
   return false;
 }
 
@@ -187,6 +199,9 @@ function staticHTML(el) {
     }
   }
   s += '>';
+  if (prefInlineCss && el.tagName == "HEAD") {
+    s += createStyle(el.contentWindow.document);
+  }
   if (el.tagName == "TEXTAREA") {
     s += htmlQuote(el.value);
   }
@@ -243,6 +258,99 @@ function staticChildren(el) {
   return s;
 }
 
+function createStyle(doc) {
+  let result = {
+    hrefs: [],
+    rulesKept: 0,
+    rulesOmitted: 0,
+    charsOmitted: 0,
+    rules: [],
+    addRule: function (rule) {
+      this.rulesKept++;
+      this.rules.push(rule.cssText);
+    },
+    mediaRules: {},
+    addMediaRule: function (media, rule) {
+      this.rulesKept++;
+      let mediaText = media.cssText.split("{")[0].trim();
+      if (! this.mediaRules[mediaText]) {
+        this.mediaRules[mediaText] = [];
+      }
+      this.mediaRules[mediaText].push(rule.cssText);
+    },
+    skipRule: function (rule) {
+      this.rulesOmitted++;
+      this.charsOmitted += rule.cssText.length;
+    },
+    toString: function () {
+      let styles = [];
+      for (let rule of this.rules) {
+        styles.push(rule);
+      }
+      for (let media in this.mediaRules) {
+        styles.push(media + " {");
+        for (let rule of this.mediaRules[media]) {
+          styles.push("  " + rule);
+        }
+        styles.push("}");
+      }
+      styles = styles.join("\n");
+      let header = [];
+      header.push("/* Styles from:");
+      for (let href of this.hrefs) {
+        header.push("       " + href);
+      }
+      header.push(`   Kept ${this.rulesKept}/${this.rulesKept + this.rulesOmitted} rules`);
+      header.push(`   Omitted ${this.charsOmitted} characters; kept ${styles.length} (saved ${Math.floor(100*this.charsOmitted/(this.charsOmitted + styles.length))}%)`);
+      header = htmlQuote(header.join("\n"), true) + " */";
+      return `<style type="text/css">\n${header}\n${htmlQuote(styles, true)}\n</style>`;
+    }
+  };
+  for (let stylesheet of doc.styleSheets) {
+    if (stylesheet.href.startsWith("resource:")) {
+      continue;
+    }
+    result.hrefs.push(stylesheet.href);
+    getStyleRules(result, doc, stylesheet);
+  }
+  return result.toString();
+}
+
+function getStyleRules(result, doc, stylesheet) {
+  let allRules = [];
+  function traverseRules(list) {
+    for (let rule of list) {
+      if (rule.type == rule.MEDIA_RULE) {
+        traverseRules(rule.cssRules);
+      } else if (rule.type == rule.STYLE_RULE) {
+        allRules.push(rule);
+      }
+    }
+  }
+  traverseRules(stylesheet.cssRules);
+  for (let rule of allRules) {
+    let sel = rule.cssText.split("{")[0].trim();
+    if (sel.startsWith(".pageshot-")) {
+      continue;
+    }
+    if ((! doc.querySelector(sel)) && sel.indexOf("a:visited") == -1) {
+      // Note, a:visited will never return an element, but is useful
+      result.skipRule(rule);
+      continue;
+    }
+    if (rule.parentRule && rule.parentRule.type == rule.MEDIA_RULE) {
+      result.addMediaRule(rule.parentRule, rule);
+    } else {
+      if (rule.parentRule) {
+        console.info("rule has parent rule:");
+        console.info("  Rule:", rule.cssText);
+        console.info("  Parent:", rule.parentRule.type, rule.parentRule.cssText);
+      }
+      result.addRule(rule);
+    }
+  }
+}
+
 /** Creates an object that represents a frozen version of the document */
 function documentStaticData() {
   var start = Date.now();
@@ -261,6 +369,10 @@ function documentStaticData() {
   if (head) {
     headAttrs = getAttributes(head);
     head = staticChildren(head);
+    if (prefInlineCss) {
+      let style = createStyle(getDocument());
+      head = style + head;
+    }
   }
   var htmlAttrs = null;
   if (getDocument().documentElement) {
@@ -365,10 +477,12 @@ addMessageListener("pageshot@documentStaticData:call", function (event) {
   }
   var result;
   try {
+    prefInlineCss = event.data.prefInlineCss;
+    console.error("IN FRMAESCRIPT prefInline:", prefInlineCss);
     result = documentStaticData();
   } catch (e) {
     console.error("Error getting static HTML:", e);
-    console.trace();
+    console.error(e.stack);
     result = {
       error: {
         name: e.name,
