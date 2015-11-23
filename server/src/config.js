@@ -78,29 +78,29 @@ var conf = convict({
       doc: "The Postgres user",
       format: String,
       default: process.env.USER,
-      env: "DB_USER",
+      env: "RDS_USERNAME",
       arg: "db-user"
     },
     password: {
       doc: "The Postgres password",
       format: String,
       default: "",
-      env: "DB_PASS",
+      env: "RDS_PASSWORD",
       arg: "db-pass"
     },
     host: {
       doc: "The Postgres server host and port",
       format: String,
       default: "localhost:5432",
-      env: "DB_HOST",
+      env: "RDS_HOSTNAME",
       arg: "db-host"
     },
     dbname: {
       doc: "The Postgres database",
       format: String,
       default: "",
-      env: "DB_NAME",
-      arg: "dn-name"
+      env: "RDS_NAME",
+      arg: "db-name"
     }
   },
   productName: {

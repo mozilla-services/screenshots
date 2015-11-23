@@ -6,6 +6,5 @@ server:
   links:
     - db
   environment:
-    - DB_HOST=db:5432
-    - DB_USER=postgres
-
+    - RDS_HOSTNAME=db:5432
+    - RDS_USERNAME=postgres
