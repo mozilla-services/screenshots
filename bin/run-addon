@@ -53,6 +53,8 @@ help () {
   echo "      Use BINARY as the Firefox to run (default $binary)"
   echo "    --scratch"
   echo "      Use a scratch profile"
+  echo "    -s or --server URL"
+  echo "      Use the given server (default localhost:10080)"
 }
 
 playsound () {
@@ -83,6 +85,11 @@ while [[ -n "$1" ]] ; do
       ;;
     --scratch)
       scratch=1
+      shift
+      ;;
+    --server|-s)
+      server="$2"
+      shift
       shift
       ;;
     *)
