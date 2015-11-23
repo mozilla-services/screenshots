@@ -239,6 +239,11 @@ class Head extends React.Component {
 }
 
 class Frame extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   closeGetPageshotBanner() {
     let node = document.getElementById("use-pageshot-to-create");
     node.style.display = "none";
@@ -255,7 +260,7 @@ class Frame extends React.Component {
 
   render() {
     let body;
-    if (Date.now() > this.props.shot.expireTime) {
+    if (this.props.expireTime !== null && Date.now() > this.props.expireTime) {
       body = <body>
         <div id="container">
           <p>&nbsp;</p>
@@ -346,7 +351,40 @@ class Frame extends React.Component {
     let linkTextShort = shot.urlDisplay;
 
     let timeDiff = <TimeDiff date={shot.createdDate} simple={this.props.simple} />;
-    let expiresDiff = <span>(expires <TimeDiff date={shot.expireTime} simple={this.props.simple} />)</span>;
+    let expiresDiff;
+    if (this.state.isChangingExpire) {
+      let minute = 60 * 1000;
+      let hour = minute * 60;
+      let day = hour * 24;
+      expiresDiff = (
+        <span><span>(expire in </span>
+            <select ref="expireTime">
+              <option value="0">Never</option>
+              <option value={ 10 * minute }>10 Minutes</option>
+              <option value={ hour }>1 Hour</option>
+              <option value={ day }>1 Day</option>
+              <option value={ 7 * day }>1 Week</option>
+              <option value={ 14 * day }>2 Weeks</option>
+              <option value={ 31 * day }>1 Month</option>
+            </select>
+            <span className="link-button" onClick={this.clickSaveExpire.bind(this)}>save</span>
+            <span className="link-button" onClick={this.clickCancelExpire.bind(this)}>cancel</span>
+            <span className="link-button delete-button" onClick={this.clickDelete.bind(this)}>delete</span>
+            )
+        </span>
+      );
+    } else if (this.props.expireTime === null) {
+      expiresDiff = (
+        <span>(does not expire <span className="link-button" onClick={this.clickChangeExpire.bind(this)}>change</span>)</span>
+      );
+    } else {
+      expiresDiff = (
+        <span><span>(expires </span>
+            <TimeDiff date={this.props.expireTime} simple={this.props.simple} />
+            <span className="link-button" onClick={this.clickChangeExpire.bind(this)}>change</span>)
+        </span>
+      );
+    }
     if (this.props.simple) {
       expiresDiff = null;
     }
@@ -459,6 +497,29 @@ class Frame extends React.Component {
   clickedCreate() {
     window.ga('send', 'event', 'website', 'click-install-banner', {useBeacon: true});
   }
+
+  clickChangeExpire() {
+    this.setState({isChangingExpire: true});
+  }
+
+  clickCancelExpire() {
+    this.setState({isChangingExpire: false});
+  }
+
+  clickSaveExpire() {
+    console.log("got ref", this.refs.expireTime, this.refs.expireTime.getDOMNode(), this.refs.expireTime.getDOMNode().value, parseInt(this.refs.expireTime.getDOMNode().value, 10));
+    let value = this.refs.expireTime.getDOMNode().value;
+    value = parseInt(value, 10);
+    this.props.clientglue.changeShotExpiration(this.props.shot, value);
+    this.setState({isChangingExpire: false});
+  }
+
+  clickDelete() {
+    if (window.confirm("Are you sure you want to delete the shot permanently?")) {
+      this.props.clientglue.deleteShot(this.props.shot);
+    }
+  }
+
 }
 
 let FrameFactory = React.createFactory(Frame);
@@ -483,7 +544,8 @@ exports.render = function (req, res) {
     buildTime: buildTime,
     showIntro: showIntro,
     simple: false,
-    shotDomain: req.url // FIXME: should be a property of the shot
+    shotDomain: req.url, // FIXME: should be a property of the shot
+    expireTime: req.shot.expireTime === null ? null: req.shot.expireTime.getTime()
   };
   let headString = React.renderToStaticMarkup(HeadFactory(serverPayload));
   let frame = FrameFactory(serverPayload);
@@ -500,7 +562,7 @@ exports.render = function (req, res) {
     deviceId: req.deviceId,
     shotDomain: req.url,
     urlIfDeleted: req.shot.urlIfDeleted,
-    expireTime: req.shot.expireTime.getTime(),
+    expireTime: req.shot.expireTime === null ? null : req.shot.expireTime.getTime(),
     deleted: req.shot.deleted,
     buildTime: buildTime,
     showIntro: showIntro,

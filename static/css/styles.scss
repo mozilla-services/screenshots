@@ -159,6 +159,16 @@ a:hover {
   //text-decoration: underline;
 }
 
+.link-button {
+  cursor: pointer;
+  color: #0095dd;
+  padding-left: 4px;
+  &.delete-button {
+    color: #dd0000;
+  }
+}
+
+
 #info {
   position: absolute;
   top: 0.5em;
