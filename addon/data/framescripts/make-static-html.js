@@ -478,7 +478,6 @@ addMessageListener("pageshot@documentStaticData:call", function (event) {
   var result;
   try {
     prefInlineCss = event.data.prefInlineCss;
-    console.error("IN FRMAESCRIPT prefInline:", prefInlineCss);
     result = documentStaticData();
   } catch (e) {
     console.error("Error getting static HTML:", e);
