@@ -23,30 +23,34 @@ exports.setModel = function (data) {
   model.shot.deleted = data.deleted;
 
   if (firstSet) {
-    let offset = document.getElementById("full-page-button-scrollable").clientHeight / 2;
-    document.body.classList.add("window-scrolled-up");
-    window.onscroll = function (e) {
-      if (e.pageY > 40) {
-        let toolbar = document.getElementById("toolbar");
-        let frameElement = document.getElementById("frame");
-        document.body.classList.remove("window-scrolled-up");
-        let frameOffset = frameElement.getBoundingClientRect().top + window.scrollY;
-        let toolbarHeight = toolbar.clientHeight;
-        let visibleHeight = window.innerHeight - toolbarHeight;
-        let frameTop = frameOffset - toolbarHeight;
-        if (e.pageY >= frameTop - visibleHeight - offset) {
-          document.body.classList.add("window-scrolled-fully");
-          document.body.classList.remove("window-scrolled-down");
+    let button = document.getElementById("full-page-button-scrollable");
+    if (button) {
+      // Button isn't present on expiration page
+      let offset = button.clientHeight / 2;
+      document.body.classList.add("window-scrolled-up");
+      window.onscroll = function (e) {
+        if (e.pageY > 40) {
+          let toolbar = document.getElementById("toolbar");
+          let frameElement = document.getElementById("frame");
+          document.body.classList.remove("window-scrolled-up");
+          let frameOffset = frameElement.getBoundingClientRect().top + window.scrollY;
+          let toolbarHeight = toolbar.clientHeight;
+          let visibleHeight = window.innerHeight - toolbarHeight;
+          let frameTop = frameOffset - toolbarHeight;
+          if (e.pageY >= frameTop - visibleHeight - offset) {
+            document.body.classList.add("window-scrolled-fully");
+            document.body.classList.remove("window-scrolled-down");
+          } else {
+            document.body.classList.add("window-scrolled-down");
+            document.body.classList.remove("window-scrolled-fully");
+          }
         } else {
-          document.body.classList.add("window-scrolled-down");
+          document.body.classList.add("window-scrolled-up");
+          document.body.classList.remove("window-scrolled-down");
           document.body.classList.remove("window-scrolled-fully");
         }
-      } else {
-        document.body.classList.add("window-scrolled-up");
-        document.body.classList.remove("window-scrolled-down");
-        document.body.classList.remove("window-scrolled-fully");
-      }
-    };
+      };
+    }
 
     document.addEventListener("helper-ready", function onHelperReady(e) {
       document.removeEventListener("helper-ready", onHelperReady, false);
@@ -81,6 +85,7 @@ exports.render = function render() {
 };
 
 exports.changeShotExpiration = function (shot, expiration) {
+  let wasExpired = model.expireTime !== null && model.expireTime < Date.now();
   let url = model.backend + "/api/set-expiration";
   let req = new XMLHttpRequest();
   req.open("POST", url);
@@ -97,6 +102,11 @@ exports.changeShotExpiration = function (shot, expiration) {
       exports.render();
     }
   };
+  if (wasExpired) {
+    req.onload = function () {
+      location.reload();
+    };
+  }
   req.send(`id=${encodeURIComponent(shot.id)}&expiration=${encodeURIComponent(expiration)}`);
 };
 
