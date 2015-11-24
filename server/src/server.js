@@ -322,6 +322,52 @@ app.get("/data/:id/:domain", function (req, res) {
   });
 });
 
+app.post("/api/delete-shot", function (req, res) {
+  if (! req.deviceId) {
+    simpleResponse(res, "Not logged in", 401);
+    return;
+  }
+  Shot.deleteShot(req.backend, req.body.id, req.deviceId).then((result) => {
+    if (result) {
+      simpleResponse(res, "ok", 200);
+    } else {
+      simpleResponse(res, "No such shot", 404);
+    }
+  }).catch((err) => {
+    errorResponse(res, "Error: could not delete shot", err);
+  });
+});
+
+app.get("/shot-deleted", function (req, res) {
+  require("./views/shot-deleted").render(req, res);
+});
+
+app.post("/api/set-expiration", function (req, res) {
+  if (! req.deviceId) {
+    simpleResponse(res, "Not logged in", 401);
+    return;
+  }
+  let shotId = req.body.id;
+  let expiration = parseInt(req.body.expiration, 10);
+  if (expiration < 0) {
+    errorResponse(res, "Error: negative expiration", 400);
+    return;
+  }
+  if (isNaN(expiration)) {
+    errorResponse(res, "Error: bad expiration (" + req.body.expiration + ")", 400);
+    return;
+  }
+  Shot.setExpiration(req.backend, shotId, req.deviceId, expiration).then((result) => {
+    if (result) {
+      simpleResponse(res, "ok", 200);
+    } else {
+      simpleResponse(res, "No such shot", 404);
+    }
+  }).catch((err) => {
+    errorResponse(res, "Error: could not set expiration on shot", err);
+  });
+});
+
 app.get("/images/:imageid", function (req, res) {
   Shot.getRawBytesForClip(
     req.params.imageid

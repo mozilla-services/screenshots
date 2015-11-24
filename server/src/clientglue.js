@@ -1,4 +1,5 @@
 /* jslint browser:true */
+/* globals ga */
 
 let React = require("react"),
   { FrameFactory } = require("./views/frame.js"),
@@ -71,12 +72,49 @@ exports.render = function render() {
   for (let attr in profile) {
     attrs[attr] = profile[attr];
   }
+  attrs.clientglue = exports;
   let frame = FrameFactory(attrs);
 
   React.render(
     frame,
     document.getElementById("react-body-container"));
-}
+};
+
+exports.changeShotExpiration = function (shot, expiration) {
+  let url = model.backend + "/api/set-expiration";
+  let req = new XMLHttpRequest();
+  req.open("POST", url);
+  req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+  req.onload = function () {
+    if (req.status >= 300) {
+      window.alert("Error saving expiration: " + req.status + " " + req.statusText);
+    } else {
+      if (expiration === 0) {
+        model.shot.expireTime = model.expireTime = null;
+      } else {
+        model.shot.expireTime = model.expireTime = new Date(Date.now() + expiration);
+      }
+      exports.render();
+    }
+  };
+  req.send(`id=${encodeURIComponent(shot.id)}&expiration=${encodeURIComponent(expiration)}`);
+};
+
+exports.deleteShot = function (shot) {
+  let url = model.backend + "/api/delete-shot";
+  let req = new XMLHttpRequest();
+  req.open("POST", url);
+  req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+  req.onload = function () {
+    if (req.status >= 300) {
+      // FIXME: a lame way to do an error message
+      window.alert("Error deleting shot: " + req.status + " " + req.statusText);
+    } else {
+      location.href = model.backend + "/shot-deleted";
+    }
+  };
+  req.send(`id=${encodeURIComponent(shot.id)}`);
+};
 
 function refreshProfile(e) {
   profile = JSON.parse(e.detail);
