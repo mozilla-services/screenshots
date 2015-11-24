@@ -17,6 +17,13 @@
       "description": "URL of the backend service to store pages",
       "type": "string",
       "value": "https://pageshot.dev.mozaws.net"
+    },
+    {
+      "name": "inlineCss",
+      "title": "inline CSS",
+      "description": "EXPERIMENTAL: instead of including CSS files, inline only necessary CSS in style tags",
+      "type": "bool",
+      "value": false
     }
   ],
   "updateURL": "https://pageshot.dev.mozaws.net/xpi/mozilla-pageshot.update.rdf"

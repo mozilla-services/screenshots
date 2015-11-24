@@ -523,6 +523,7 @@ const ShotContext = Class({
         return;
       }
       this.copyRichDataToClipboard();
+      var prefInlineCss = require("sdk/simple-prefs").prefs.inlineCss;
       var promises = [];
       // Note: removed until we have some need or use for history in our shot pages:
       /* processHistory(this.shot.history, this.tab); */
@@ -543,7 +544,7 @@ const ShotContext = Class({
         this.tab,
         self.data.url("framescripts/make-static-html.js"),
         "pageshot@documentStaticData",
-        {})).then(watchFunction(function (attrs) {
+        {prefInlineCss})).then(watchFunction(function (attrs) {
           this.shot.update(attrs);
         }, this)));
       watchPromise(allPromisesComplete(promises).then((function () {

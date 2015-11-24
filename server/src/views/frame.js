@@ -197,8 +197,28 @@ class Head extends React.Component {
            }
            gaOptions.cookieDomain = "none";
          }
-         ga("create", "${this.props.gaId}", gaOptions);
-         ga("send", "pageview");
+         if (window.crypto) {
+           var bytes = [];
+           for (var i=0; i<location.pathname.length; i++) {
+             bytes.push(location.pathname.charAt(i));
+           }
+           window.crypto.subtle.digest("sha-256", new Uint8Array(bytes)).then(function (result) {
+             result = new Uint8Array(result);
+             var c = [];
+             for (var i=0; i<10; i++) {
+               c.push(result[i].toString(16));
+             }
+             gaOptions.page = "/a-shot/" + c.join("");
+             finish();
+           });
+         } else {
+           gaOptions.page = "/a-shot/unknown";
+           finish();
+         }
+         function finish() {
+           ga("create", "${this.props.gaId}", gaOptions);
+           ga("send", "pageview");
+         }
        })();
       `;
       gaScript = <script src="//www.google-analytics.com/analytics.js" async></script>;
@@ -239,6 +259,11 @@ class Head extends React.Component {
 }
 
 class Frame extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   closeGetPageshotBanner() {
     let node = document.getElementById("use-pageshot-to-create");
     node.style.display = "none";
@@ -255,21 +280,24 @@ class Frame extends React.Component {
 
   render() {
     let body;
-    if (Date.now() > this.props.shot.expireTime) {
-      body = <body>
-        <div id="container">
-          <p>&nbsp;</p>
-          <p>
-            This shot has expired. You may visit the original page it was originally created from:
-          </p>
-          <h2><a href={this.props.shot.urlIfDeleted}>{this.props.shot.title}</a></h2>
-          <p>
-            <a href={this.props.shot.urlIfDeleted}>
-              {this.props.shot.urlIfDeleted}
-            </a>
-          </p>
-        </div>
-      </body>;
+    if (this.props.expireTime !== null && Date.now() > this.props.expireTime) {
+      // Note: any attributes used here need to be preserved
+      // in the render() function
+      body = <div id="container">
+        <p>&nbsp;</p>
+        <p>
+          This shot has expired. You may visit the original page it was originally created from:
+        </p>
+        <h2><a href={this.props.shot.urlIfDeleted}>{this.props.shot.title}</a></h2>
+        <p>
+          <a href={this.props.shot.urlIfDeleted}>
+            {this.props.shot.urlIfDeleted}
+          </a>
+        </p>
+        <p>
+          <ExpireWidget expireTime={this.props.expireTime} onSaveExpire={this.onSaveExpire.bind(this)} onDeleteShot={this.onDeleteShot.bind(this)} />
+        </p>
+      </div>;
     } else {
       body = this.renderBody();
     }
@@ -346,7 +374,10 @@ class Frame extends React.Component {
     let linkTextShort = shot.urlDisplay;
 
     let timeDiff = <TimeDiff date={shot.createdDate} simple={this.props.simple} />;
-    let expiresDiff = <span>(expires <TimeDiff date={shot.expireTime} simple={this.props.simple} />)</span>;
+    let expiresDiff = <ExpireWidget
+      expireTime={this.props.expireTime}
+      onSaveExpire={this.onSaveExpire.bind(this)}
+      onDeleteShot={this.onDeleteShot.bind(this)} />
     if (this.props.simple) {
       expiresDiff = null;
     }
@@ -406,7 +437,7 @@ class Frame extends React.Component {
           <div className="shot-title">{ shot.title }</div>
           <div className="shot-subtitle">
             <span>source </span><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a>
-            <span style={{paddingLeft: "15px"}}>saved { timeDiff } { expiresDiff }</span>
+            <span style={{paddingLeft: "15px"}}>saved { timeDiff } ({expiresDiff}) </span>
           </div>
         </div>
         <div id="navigate-toolbar" data-step="4" data-intro="The recall panel can be used to access your previously made shots.">
@@ -459,6 +490,104 @@ class Frame extends React.Component {
   clickedCreate() {
     window.ga('send', 'event', 'website', 'click-install-banner', {useBeacon: true});
   }
+
+  onSaveExpire(value) {
+    this.props.clientglue.changeShotExpiration(this.props.shot, value);
+  }
+
+  onDeleteShot() {
+    this.props.clientglue.deleteShot(this.props.shot);
+  }
+
+}
+
+class ExpireWidget extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {isChangingExpire: false};
+  }
+
+  render() {
+    if (this.state.isChangingExpire) {
+      return this.renderChanging();
+    } else if (this.props.expireTime === null) {
+      return this.renderNoExpiration();
+    } else {
+      return this.renderNormal();
+    }
+  }
+
+  renderChanging() {
+    let minute = 60 * 1000;
+    let hour = minute * 60;
+    let day = hour * 24;
+    return (
+      <span>
+        expire in <select ref="expireTime">
+          <option value="0">Never</option>
+          <option value={ 1000 }>1 Second</option>
+          <option value={ 10 * minute }>10 Minutes</option>
+          <option value={ hour }>1 Hour</option>
+          <option value={ day }>1 Day</option>
+          <option value={ 7 * day }>1 Week</option>
+          <option value={ 14 * day }>2 Weeks</option>
+          <option value={ 31 * day }>1 Month</option>
+        </select>
+        <span className="link-button" onClick={this.clickSaveExpire.bind(this)}>save</span>
+        <span className="link-button" onClick={this.clickCancelExpire.bind(this)}>cancel</span>
+        <span className="link-button delete-button" onClick={this.clickDelete.bind(this)}>delete</span>
+      </span>
+    );
+  }
+
+  renderNoExpiration() {
+    return (
+      <span>
+        does not expire <span className="link-button" onClick={this.clickChangeExpire.bind(this)}>change</span>
+      </span>
+    );
+  }
+
+  renderNormal() {
+    let desc = "expires";
+    if (this.props.expireTime < Date.now()) {
+      desc = "expired";
+    }
+    return (
+      <span>
+        {desc} <TimeDiff date={this.props.expireTime} simple={this.props.simple} />
+        <span className="link-button" onClick={this.clickChangeExpire.bind(this)}>change</span>
+      </span>
+    );
+  }
+
+  clickChangeExpire() {
+    window.ga('send', 'event', 'website', 'click-change-expire', {useBeacon: true});
+    this.setState({isChangingExpire: true});
+  }
+
+  clickCancelExpire() {
+    window.ga('send', 'event', 'website', 'click-cancel-expire', {useBeacon: true});
+    this.setState({isChangingExpire: false});
+  }
+
+  clickSaveExpire() {
+    // FIXME: save the value that it was changed to?  Yes!  Not sure where to put it.
+    let value = this.refs.expireTime.getDOMNode().value;
+    value = parseInt(value, 10);
+    window.ga('send', 'event', 'website', 'click-save-expire', {useBeacon: true, eventValue: value/60000});
+    this.props.onSaveExpire(value);
+    this.setState({isChangingExpire: false});
+  }
+
+  clickDelete() {
+    window.ga('send', 'event', 'website', 'click-delete-shot', {useBeacon: true});
+    if (window.confirm("Are you sure you want to delete the shot permanently?")) {
+      this.props.onDeleteShot();
+    }
+  }
+
 }
 
 let FrameFactory = React.createFactory(Frame);
@@ -483,7 +612,8 @@ exports.render = function (req, res) {
     buildTime: buildTime,
     showIntro: showIntro,
     simple: false,
-    shotDomain: req.url // FIXME: should be a property of the shot
+    shotDomain: req.url, // FIXME: should be a property of the shot
+    expireTime: req.shot.expireTime === null ? null: req.shot.expireTime.getTime()
   };
   let headString = React.renderToStaticMarkup(HeadFactory(serverPayload));
   let frame = FrameFactory(serverPayload);
@@ -500,12 +630,18 @@ exports.render = function (req, res) {
     deviceId: req.deviceId,
     shotDomain: req.url,
     urlIfDeleted: req.shot.urlIfDeleted,
-    expireTime: req.shot.expireTime.getTime(),
+    expireTime: req.shot.expireTime === null ? null : req.shot.expireTime.getTime(),
     deleted: req.shot.deleted,
     buildTime: buildTime,
     showIntro: showIntro,
     simple: false
   };
+  if (serverPayload.expireTime !== null && Date.now() > serverPayload.expireTime) {
+    serverPayload.shot = clientPayload.shot = {
+      url: req.shot.url,
+      docTitle: req.shot.title
+    };
+  }
   let body = React.renderToString(frame);
   let json = JSON.stringify(clientPayload);
   let result = addReactScripts(
