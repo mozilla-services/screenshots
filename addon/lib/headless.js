@@ -15,33 +15,51 @@
  *    let blah = new Server(port, allowedIPs, callback)
  */
 
-var port = 7777;
-var allowedIPs = "127.0.0.1";
-var callback = openTab;
-
+const { Cu } = require("chrome");
 const tabs = require("sdk/tabs");
+const { randomString } = require("./randomstring");
 
-const { Server } = require("./server");
-const { autoShot } = require("./shooter");
+const { autoShot, RANDOM_STRING_LENGTH, urlDomainForId } = require("./shooter");
+const { nsHttpServer } = Cu.import("file:///home/ben/dev/repos/xss/pageshot/addon/lib/httpd.js");
+
 
 var backend;
-
+var port = 7777;
 
 exports.init = function init(prefs) {
   console.info("starting headless server");
   // set global backend, extractTab needs it
   backend = prefs.backend;
-  let server = new Server(port, allowedIPs, callback);
+  var server = new nsHttpServer();
+  server.start(port);
+  server.registerPathHandler('/', handleRequest);
   console.info("headless server listening on PORT".replace('PORT', port));
 };
 
+function handleRequest(request, response)
+{
+  response.setStatusLine("1.1", 200, "OK");
+  response.setHeader("Connection", "KeepAlive", false);
 
-function openTab(url) {
+  console.log('handled request');
+  var url = request._queryString;
+  var backendUrl = randomString(RANDOM_STRING_LENGTH) + "/" + urlDomainForId(url);
+  console.log(url);
+  console.log(backendUrl);
+
+  response.write(backendUrl);
+  processTab(url, backendUrl);
+}
+
+function processTab(url, backendUrl) {
   // Opens a tab and registers extractTab to the load event
   tabs.open({
     "url": url,
     "onLoad": function (tab) {
-      autoShot(tab, backend);
+      autoShot(tab, backend, backendUrl);
+      tab.on("close", function (a) {
+        console.log('closed tab');
+      });
     }
   });
 }
