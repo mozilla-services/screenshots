@@ -554,9 +554,9 @@ class ExpireWidget extends React.Component {
 
   clickSaveExpire() {
     // FIXME: save the value that it was changed to?  Yes!  Not sure where to put it.
-    window.ga('send', 'event', 'website', 'click-save-expire', {useBeacon: true});
     let value = this.refs.expireTime.getDOMNode().value;
     value = parseInt(value, 10);
+    window.ga('send', 'event', 'website', 'click-save-expire', {useBeacon: true, eventValue: value/60000});
     this.props.onSaveExpire(value);
     this.setState({isChangingExpire: false});
   }
