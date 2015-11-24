@@ -197,8 +197,28 @@ class Head extends React.Component {
            }
            gaOptions.cookieDomain = "none";
          }
-         ga("create", "${this.props.gaId}", gaOptions);
-         ga("send", "pageview");
+         if (window.crypto) {
+           var bytes = [];
+           for (var i=0; i<location.pathname.length; i++) {
+             bytes.push(location.pathname.charAt(i));
+           }
+           window.crypto.subtle.digest("sha-256", new Uint8Array(bytes)).then(function (result) {
+             result = new Uint8Array(result);
+             var c = [];
+             for (var i=0; i<10; i++) {
+               c.push(result[i].toString(16));
+             }
+             gaOptions.page = "/a-shot/" + c.join("");
+             finish();
+           });
+         } else {
+           gaOptions.page = "/a-shot/unknown";
+           finish();
+         }
+         function finish() {
+           ga("create", "${this.props.gaId}", gaOptions);
+           ga("send", "pageview");
+         }
        })();
       `;
       gaScript = <script src="//www.google-analytics.com/analytics.js" async></script>;
