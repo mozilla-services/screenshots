@@ -725,12 +725,13 @@ function urlDomainForId(urlString) {
   return domain;
 }
 
-exports.autoShot = function (tab, backend) {
+exports.autoShot = function (tab, backend, backendUrl) {
   // Runs the javascript cleanup utilities on the tab, takes a screenshot,
   // creates a shot instance, and pushes the data to the backend server without
   // asking anything via UI
   
   let deviceInfo = getDeviceInfo();
+  console.log(deviceInfo);
   if (! deviceInfo) {
     throw new Error("Could not get device authentication information");
   }
@@ -748,7 +749,7 @@ exports.autoShot = function (tab, backend) {
     attrs.deviceId = deviceInfo.deviceId;
     var shot = new Shot(
       backend, 
-      randomString(RANDOM_STRING_LENGTH) + "/" + urlDomainForId(tab.url),
+      backendUrl,
       attrs
     );
 
@@ -771,6 +772,9 @@ exports.autoShot = function (tab, backend) {
     }, this)));
     watchPromise(allPromisesComplete(promises).then((function () {
       shot.save();
+      tab.close();
     }).bind(this)));
   });
 };
+exports.urlDomainForId = urlDomainForId;
+exports.RANDOM_STRING_LENGTH = RANDOM_STRING_LENGTH;
