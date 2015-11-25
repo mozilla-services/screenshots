@@ -37,7 +37,7 @@ function extractData() {
   }
   console.info("Readability time:", Date.now() - startReader, "ms", "success:", !! readable);
   let startMicro = Date.now();
-  collectCSS();
+  //collectCSS();
   var microdata = microformats.getItems();
   console.info("Microdata time:", Date.now() - startMicro, "ms");
   // FIXME: need to include found images too
@@ -181,8 +181,8 @@ function collectCSS ()
   }
   console.log('finished collecting css');
   console.log('removing links');
-  var links = removeLinks();
-  console.log(links);
+  //var links = removeLinks();
+  //console.log(links);
 }
 
 function removeLinks () 
