@@ -60,7 +60,7 @@ function processTab(url, backendUrl) {
     "onLoad": function (tab) {
       autoShot(tab, backend, backendUrl);
       tab.on("close", function (a) {
-        console.log('completed processing BACK'.format('BACK', backendUrl));
+        console.log('completed processing BACK'.replace('BACK', backendUrl));
       });
     }
   });
