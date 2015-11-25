@@ -42,11 +42,12 @@ function handleRequest(request, response)
   response.setStatusLine("1.1", 200, "OK");
   response.setHeader("Connection", "KeepAlive", false);
 
-  console.log('handled request');
   var url = request._queryString;
   var backendUrl = randomString(RANDOM_STRING_LENGTH) + "/" + urlDomainForId(url);
-  console.log(url);
-  console.log(backendUrl);
+  console.log('recieved request: URL -> BACK'
+                .replace('URL', url)
+                .replace('BACK', backendUrl)
+              );
 
   response.write(backendUrl);
   processTab(url, backendUrl);
@@ -59,7 +60,7 @@ function processTab(url, backendUrl) {
     "onLoad": function (tab) {
       autoShot(tab, backend, backendUrl);
       tab.on("close", function (a) {
-        console.log('closed tab');
+        console.log('completed processing BACK'.format('BACK', backendUrl));
       });
     }
   });
