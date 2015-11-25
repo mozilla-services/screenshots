@@ -37,7 +37,6 @@ function extractData() {
   }
   console.info("Readability time:", Date.now() - startReader, "ms", "success:", !! readable);
   let startMicro = Date.now();
-  //collectCSS();
   var microdata = microformats.getItems();
   console.info("Microdata time:", Date.now() - startMicro, "ms");
   // FIXME: need to include found images too
@@ -128,73 +127,6 @@ function findSiteName() {
     return el.getAttribute("content");
   }
   return null;
-}
-
-var DEFAULTS = new Object()
-  .getPropertyValue = function (key) {
-    return false; // Patched so it fails when empty
-  };
-
-var changelog = "";
-
-function addInlineStyle(element) 
-{
-  var output = "I {".replace("I", element.id);
-  var elementStyle = element.style;
-  var computedStyle = window.getComputedStyle(element, null);
-  for (var i = 0; i < computedStyle.length; i++) {
-    var key = computedStyle[i];
-    var value = computedStyle.getPropertyValue(key);
-    var originalValue = elementStyle.getPropertyValue(key);
-
-    // Disabling this so we can just get functional pages instead of messing
-    // about with CSS
-    //if ( value === DEFAULTS.getPropertyValue(key) ) {
-      //continue;
-    //}
-    
-    element.style[key] = value;
-    changelog += "  " + key + " = '" + originalValue + "' > '" + value + "'\n";
-    output += key + ": " + value + " ";
-  }
-  output += "} ";
-  //console.log(output);
-  return output;
-}
-
-function collectCSS () 
-{
-  // TODO: inject style
-  console.log('collecting css');
-  var CSS = "";
-  var els = document.getElementsByTagName("*");
-  var len = els.length;
-  for (var i=0; i<len; i++) {
-    var el = els[i];
-    if (!el.id) {
-      el.id = "id_N".replace("N", i);
-    }
-    CSS += addInlineStyle(el);
-    if ( el.tagName === "HTML" ) {
-      DEFAULTS = window.getComputedStyle(el);
-    }
-  }
-  console.log('finished collecting css');
-  console.log('removing links');
-  //var links = removeLinks();
-  //console.log(links);
-}
-
-function removeLinks () 
-{
-  var links = [];
-  Array.prototype.slice.call(document.getElementsByTagName('link')).forEach(
-    function(link) { 
-      links.push(link.href);
-      link.parentNode.removeChild(link); 
-    }
-  );
-  return links;
 }
 
 self.port.emit("data", watchFunction(extractData)());
