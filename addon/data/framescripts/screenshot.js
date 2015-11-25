@@ -37,7 +37,7 @@ function makeScreenShot(pos, maxSize, backgroundColor) {
   if (maxSize && (! maxSize.h)) {
     maxSize.h = (maxSize.w / pos.w) * pos.h;
   } else if (maxSize && (! maxSize.w)) {
-    maxSize.w = (maxSize.h / pos.h) * pow.w;
+    maxSize.w = (maxSize.h / pos.h) * pos.w;
   } else if (maxSize && (pos.w > maxSize.w || pos.h > maxSize.h)) {
     if (pos.w / pos.h > maxSize.w / maxSize.h) {
       // Wider than tall
