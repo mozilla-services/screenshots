@@ -1,11 +1,12 @@
 /* Headless server, for use with Pageshot:
  * https://github.com/mozilla-services/pageshot
- * relies on the server module from AutoInstaller
- * https://github.com/palant/autoinstaller/blob/master/lib/server.js
+ * relies on the server module from mozilla testing
+ * TODO: add link
  *
  * Accepts requests on the assigned port, from allowed IPs, and runs the given
  * function
  * usage to send a URL: 
+ * TODO update this
  * curl --data 'http://www.asdf.com' -H 'Expect:' localhost:7777
  *
  * The server takes the following args, more info can be found in server.js:
