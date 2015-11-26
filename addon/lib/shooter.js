@@ -731,31 +731,36 @@ exports.autoShot = function (tab, backend, backendUrl) {
   // creates a shot instance, and pushes the data to the backend server without
   // asking anything via UI
   
-  let deviceInfo = getDeviceInfo();
-  console.log(deviceInfo);
-  if (! deviceInfo) {
-    throw new Error("Could not get device authentication information");
-  }
+  watchPromise(callScript(
+    tab,
+    self.data.url("framescripts/add-ids.js"),
+    "pageshot@addIds",
+    {}
+  ).then((function (result) {
+    if (result.isXul) {
+      // Abandon hope all ye who enter!
+      // FIXME: maybe pop up an explanation here?
+      console.log('Abandon hope all ye who enter!');
+      return;
+    }
+    var prefInlineCss = require("sdk/simple-prefs").prefs.inlineCss;
+    console.debug('CSS? PREF'.replace('PREF', prefInlineCss));
+    let deviceInfo = getDeviceInfo();
+    if (! deviceInfo) {
+      throw new Error("Could not get device authentication information");
+    }
 
-  const worker =  tab.attach({
-    contentScriptFile: [self.data.url("error-utils.js"),
-                        self.data.url("vendor/readability/Readability.js"),
-                        self.data.url("vendor/microformat-shiv.js"),
-                        self.data.url("extractor-worker.js")]
-  });
-
-  worker.port.on("data", function (attrs) {
-    // Add some missing data
-    attrs.url = tab.url;
-    attrs.deviceId = deviceInfo.deviceId;
     var shot = new Shot(
       backend, 
       backendUrl,
-      attrs
+      { "url": tab.url, "deviceId": deviceInfo.deviceId }
     );
-
+   
     // Heavy lifting happens here
     var promises = [];
+    promises.push(watchPromise(extractWorker(tab)).then(watchFunction(function (attrs) {
+      shot.update(attrs);
+    }, this)));
     promises.push(watchPromise(
       captureTab(tab, {x: 0, y: 0, h: "full", w: "full"}, {h: null, w: 140}).then((screenshot) => {
         shot.update({
@@ -767,15 +772,15 @@ exports.autoShot = function (tab, backend, backendUrl) {
       tab,
       self.data.url("framescripts/make-static-html.js"),
       "pageshot@documentStaticData",
-      {}
-    )).then(watchFunction(function (attrs) {
-      shot.update(attrs);
-    }, this)));
+      {prefInlineCss})).then(watchFunction(function (attrs) {
+        shot.update(attrs);
+      }, this)));
+
     watchPromise(allPromisesComplete(promises).then((function () {
       shot.save();
       tab.close();
     }).bind(this)));
-  });
+  })));
 };
 exports.urlDomainForId = urlDomainForId;
 exports.RANDOM_STRING_LENGTH = RANDOM_STRING_LENGTH;
