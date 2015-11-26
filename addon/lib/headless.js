@@ -18,8 +18,8 @@
 
 const { Cu } = require("chrome");
 const tabs = require("sdk/tabs");
-const { randomString } = require("./randomstring");
 
+const { randomString } = require("./randomstring");
 const { autoShot, RANDOM_STRING_LENGTH, urlDomainForId } = require("./shooter");
 const { nsHttpServer } = Cu.import("file:///home/ben/dev/repos/xss/pageshot/addon/lib/httpd.js");
 
@@ -29,7 +29,7 @@ var port = 7777;
 
 exports.init = function init(prefs) {
   console.info("starting headless server");
-  // set global backend, extractTab needs it
+  // set global backend, processTab needs it
   backend = prefs.backend;
   var server = new nsHttpServer();
   server.start(port);
