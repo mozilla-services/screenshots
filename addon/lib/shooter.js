@@ -429,13 +429,13 @@ const ShotContext = Class({
       this.panelContext.setEditing(editing);
     },
     setCaptureType: function (type) {
-      let clip;
-      if (this.activeClipName) {
-        clip = this.shot.getClip(this.activeClipName);
-      }
       if (type === "visible") {
         this.interactiveWorker.port.emit("setState", "visible");
         watchPromise(this.makeScreenshot().then((imgData) => {
+          let clip;
+          if (this.activeClipName) {
+            clip = this.shot.getClip(this.activeClipName);
+          }
           if (clip) {
             clip.image = imgData.image;
           } else {

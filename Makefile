@@ -64,8 +64,8 @@ addon_js_dest := $(addon_js_source:%=build/%)
 #
 # To keep these commands from failing we touch the files just to be sure
 # they exist:
-shoot_panel_dependencies := $(shell touch build/shoot-panel-dependencies.txt ; cat build/shoot-panel-dependencies.txt)
-clientglue_dependencies = $(shell touch build/clientglue-dependencies.txt ; cat build/clientglue-dependencies.txt)
+shoot_panel_dependencies = $(shell if [[ -e build/shoot-panel-dependencies.txt ]] ; then cat build/shoot-panel-dependencies.txt ; fi)
+clientglue_dependencies = $(shell if [[ -e build/clientglue-dependencies.txt ]] ; then cat build/clientglue-dependencies.txt ; fi)
 
 ## General transforms:
 # These cover standard ways of building files given a source
