@@ -7,7 +7,7 @@
  * function
  * usage to send a URL: 
  * TODO update this
- * curl --data 'http://www.asdf.com' -H 'Expect:' localhost:7777
+ * curl 'localhost:7777/?http://www.asdf.com' 
  *
  * The server takes the following args, more info can be found in server.js:
  *    port:        port to listen on, integer
@@ -21,7 +21,7 @@ const tabs = require("sdk/tabs");
 
 const { randomString } = require("./randomstring");
 const { autoShot, RANDOM_STRING_LENGTH, urlDomainForId } = require("./shooter");
-const { nsHttpServer } = Cu.import("file:///home/ben/dev/repos/xss/pageshot/addon/lib/httpd.js");
+const { nsHttpServer } = Cu.import("file:///home/ben/dev/repos/pageshot/addon/lib/httpd.js");
 
 
 var backend;
@@ -40,7 +40,6 @@ exports.init = function init(prefs) {
 function handleRequest(request, response)
 {
   response.setStatusLine("1.1", 200, "OK");
-  response.setHeader("Connection", "KeepAlive", false);
 
   var url = request._queryString;
   var backendUrl = randomString(RANDOM_STRING_LENGTH) + "/" + urlDomainForId(url);
