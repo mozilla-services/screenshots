@@ -476,7 +476,7 @@ Shot.cleanDeletedShots = function () {
       `
         UPDATE data
         SET value = '{}', head = NULL, body = NULL, deleted = TRUE
-        WHERE expire_time + ($1)::INTERVAL < CURRENT_TIMESTAMP
+        WHERE expire_time + ($1 || ' SECONDS')::INTERVAL < CURRENT_TIMESTAMP
               AND NOT deleted
       `,
       [retention]
@@ -487,7 +487,7 @@ Shot.cleanDeletedShots = function () {
           DELETE FROM images
           USING data
           WHERE images.shotid = data.id
-                AND data.expire_time + ($1)::INTERVAL < CURRENT_TIMESTAMP
+                AND data.expire_time + ($1 || ' SECONDS')::INTERVAL < CURRENT_TIMESTAMP
                 AND NOT data.deleted
         `,
         [retention]
