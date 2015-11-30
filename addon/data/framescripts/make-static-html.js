@@ -307,10 +307,10 @@ function createStyle(doc) {
     }
   };
   for (let stylesheet of doc.styleSheets) {
-    if (stylesheet.href.startsWith("resource:")) {
+    if (stylesheet.href && stylesheet.href.startsWith("resource:")) {
       continue;
     }
-    result.hrefs.push(stylesheet.href);
+    result.hrefs.push(stylesheet.href || "inline");
     getStyleRules(result, doc, stylesheet);
   }
   return result.toString();

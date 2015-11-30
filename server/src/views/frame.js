@@ -99,6 +99,7 @@ class TimeDiff extends React.Component {
       } else if (seconds < 60*60*48) {
         timeDiff = "yesterday";
       } else if (seconds > 0) {
+        seconds += 60*60*2; // 2 hours fudge time
         timeDiff = `${Math.floor(seconds / (60*60*24))} days ago`;
       }
     } else {
@@ -113,6 +114,7 @@ class TimeDiff extends React.Component {
       } else if (seconds > -60*60*48) {
         timeDiff = "tomorrow";
       } else {
+        seconds -= 60*60*2; // 2 hours fudge time
         timeDiff = `${Math.floor(seconds / (-60*60*24))} days from now`;
       }
     }
@@ -197,8 +199,28 @@ class Head extends React.Component {
            }
            gaOptions.cookieDomain = "none";
          }
-         ga("create", "${this.props.gaId}", gaOptions);
-         ga("send", "pageview");
+         if (window.crypto) {
+           var bytes = [];
+           for (var i=0; i<location.pathname.length; i++) {
+             bytes.push(location.pathname.charAt(i));
+           }
+           window.crypto.subtle.digest("sha-256", new Uint8Array(bytes)).then(function (result) {
+             result = new Uint8Array(result);
+             var c = [];
+             for (var i=0; i<10; i++) {
+               c.push(result[i].toString(16));
+             }
+             gaOptions.page = "/a-shot/" + c.join("");
+             finish();
+           });
+         } else {
+           gaOptions.page = "/a-shot/unknown";
+           finish();
+         }
+         function finish() {
+           ga("create", "${this.props.gaId}", gaOptions);
+           ga("send", "pageview");
+         }
        })();
       `;
       gaScript = <script src="//www.google-analytics.com/analytics.js" async></script>;
@@ -261,20 +283,29 @@ class Frame extends React.Component {
   render() {
     let body;
     if (this.props.expireTime !== null && Date.now() > this.props.expireTime) {
-      body = <body>
-        <div id="container">
-          <p>&nbsp;</p>
-          <p>
-            This shot has expired. You may visit the original page it was originally created from:
-          </p>
-          <h2><a href={this.props.shot.urlIfDeleted}>{this.props.shot.title}</a></h2>
-          <p>
-            <a href={this.props.shot.urlIfDeleted}>
-              {this.props.shot.urlIfDeleted}
-            </a>
-          </p>
-        </div>
-      </body>;
+      let expireTime = this.props.expireTime;
+      if (typeof expireTime != "number") {
+        expireTime = expireTime.getTime();
+      }
+      let deleteTime = new Date(expireTime + this.props.retentionTime);
+      // Note: any attributes used here need to be preserved
+      // in the render() function
+      body = <div id="container">
+        <p>&nbsp;</p>
+        <p>
+          This shot has expired. You may visit the original page it was originally created from:
+        </p>
+        <h2><a href={this.props.shot.urlIfDeleted}>{this.props.shot.title}</a></h2>
+        <p>
+          <a href={this.props.shot.urlIfDeleted}>
+            {this.props.shot.urlIfDeleted}
+          </a>
+        </p>
+        <p>
+          Will be permanently deleted <TimeDiff date={deleteTime} />
+        &#8195;<span className="link-button" onClick={this.onRestore.bind(this)}>restore for {intervalDescription(this.props.defaultExpiration)}</span>
+        </p>
+      </div>;
     } else {
       body = this.renderBody();
     }
@@ -351,40 +382,10 @@ class Frame extends React.Component {
     let linkTextShort = shot.urlDisplay;
 
     let timeDiff = <TimeDiff date={shot.createdDate} simple={this.props.simple} />;
-    let expiresDiff;
-    if (this.state.isChangingExpire) {
-      let minute = 60 * 1000;
-      let hour = minute * 60;
-      let day = hour * 24;
-      expiresDiff = (
-        <span><span>(expire in </span>
-            <select ref="expireTime">
-              <option value="0">Never</option>
-              <option value={ 10 * minute }>10 Minutes</option>
-              <option value={ hour }>1 Hour</option>
-              <option value={ day }>1 Day</option>
-              <option value={ 7 * day }>1 Week</option>
-              <option value={ 14 * day }>2 Weeks</option>
-              <option value={ 31 * day }>1 Month</option>
-            </select>
-            <span className="link-button" onClick={this.clickSaveExpire.bind(this)}>save</span>
-            <span className="link-button" onClick={this.clickCancelExpire.bind(this)}>cancel</span>
-            <span className="link-button delete-button" onClick={this.clickDelete.bind(this)}>delete</span>
-            )
-        </span>
-      );
-    } else if (this.props.expireTime === null) {
-      expiresDiff = (
-        <span>(does not expire <span className="link-button" onClick={this.clickChangeExpire.bind(this)}>change</span>)</span>
-      );
-    } else {
-      expiresDiff = (
-        <span><span>(expires </span>
-            <TimeDiff date={this.props.expireTime} simple={this.props.simple} />
-            <span className="link-button" onClick={this.clickChangeExpire.bind(this)}>change</span>)
-        </span>
-      );
-    }
+    let expiresDiff = <ExpireWidget
+      expireTime={this.props.expireTime}
+      onSaveExpire={this.onSaveExpire.bind(this)}
+      onDeleteShot={this.onDeleteShot.bind(this)} />;
     if (this.props.simple) {
       expiresDiff = null;
     }
@@ -444,7 +445,7 @@ class Frame extends React.Component {
           <div className="shot-title">{ shot.title }</div>
           <div className="shot-subtitle">
             <span>source </span><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a>
-            <span style={{paddingLeft: "15px"}}>saved { timeDiff } { expiresDiff }</span>
+            <span style={{paddingLeft: "15px"}}>saved { timeDiff } – {expiresDiff} </span>
           </div>
         </div>
         <div id="navigate-toolbar" data-step="4" data-intro="The recall panel can be used to access your previously made shots.">
@@ -464,7 +465,7 @@ class Frame extends React.Component {
         <div className="metadata">
           <h1 id="main-title">{ shot.title }</h1>
           <p><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a></p>
-          <p>saved {timeDiff} { expiresDiff }</p>
+          <p>saved {timeDiff} – { expiresDiff }</p>
         </div>
         { clips }
         <div id="full-page-button-scrollable">
@@ -498,28 +499,159 @@ class Frame extends React.Component {
     window.ga('send', 'event', 'website', 'click-install-banner', {useBeacon: true});
   }
 
+  onSaveExpire(value) {
+    this.props.clientglue.changeShotExpiration(this.props.shot, value);
+  }
+
+  onDeleteShot() {
+    this.props.clientglue.deleteShot(this.props.shot);
+  }
+
+  onRestore() {
+    this.props.clientglue.changeShotExpiration(this.props.shot, this.props.defaultExpiration);
+  }
+
+}
+
+class ExpireWidget extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {isChangingExpire: false};
+  }
+
+  render() {
+    if (this.state.isChangingExpire) {
+      return this.renderChanging();
+    } else if (this.props.expireTime === null) {
+      return this.renderNoExpiration();
+    } else {
+      return this.renderNormal();
+    }
+  }
+
+  renderChanging() {
+    let minute = 60 * 1000;
+    let hour = minute * 60;
+    let day = hour * 24;
+    return (
+      <span>
+        keep for <select ref="expireTime">
+          <option value="cancel">Select time:</option>
+          <option value="0">Never</option>
+          <option value={ 10 * minute }>10 Minutes</option>
+          <option value={ hour }>1 Hour</option>
+          <option value={ day }>1 Day</option>
+          <option value={ 7 * day }>1 Week</option>
+          <option value={ 14 * day }>2 Weeks</option>
+          <option value={ 31 * day }>1 Month</option>
+        </select>
+        &#8195;<span className="link-button" onClick={this.clickSaveExpire.bind(this)}>save</span>
+        &#8195;<span className="link-button" onClick={this.clickCancelExpire.bind(this)}>cancel</span>
+        &#8195;<span className="link-button delete-button" onClick={this.clickDelete.bind(this)}>delete</span>
+      </span>
+    );
+  }
+
+  renderNoExpiration() {
+    return (
+      <span>
+        does not expire
+        &#8195;<span className="link-button" onClick={this.clickChangeExpire.bind(this)}>change</span>
+      </span>
+    );
+  }
+
+  renderNormal() {
+    let desc = "expires";
+    if (this.props.expireTime < Date.now()) {
+      desc = "expired";
+    }
+    return (
+      <span>
+        {desc} <TimeDiff date={this.props.expireTime} simple={this.props.simple} />
+        &#8195;<span className="link-button" onClick={this.clickChangeExpire.bind(this)}>change</span>
+      </span>
+    );
+  }
+
   clickChangeExpire() {
+    window.ga('send', 'event', 'website', 'click-change-expire', {useBeacon: true});
     this.setState({isChangingExpire: true});
   }
 
   clickCancelExpire() {
+    window.ga('send', 'event', 'website', 'click-cancel-expire', {useBeacon: true});
     this.setState({isChangingExpire: false});
   }
 
   clickSaveExpire() {
-    console.log("got ref", this.refs.expireTime, this.refs.expireTime.getDOMNode(), this.refs.expireTime.getDOMNode().value, parseInt(this.refs.expireTime.getDOMNode().value, 10));
+    // FIXME: save the value that it was changed to?  Yes!  Not sure where to put it.
     let value = this.refs.expireTime.getDOMNode().value;
+    if (value === "cancel") {
+      this.clickCancelExpire();
+      return;
+    }
     value = parseInt(value, 10);
-    this.props.clientglue.changeShotExpiration(this.props.shot, value);
+    window.ga('send', 'event', 'website', 'click-save-expire', {useBeacon: true, eventValue: value/60000});
+    this.props.onSaveExpire(value);
     this.setState({isChangingExpire: false});
   }
 
   clickDelete() {
+    window.ga('send', 'event', 'website', 'click-delete-shot', {useBeacon: true});
     if (window.confirm("Are you sure you want to delete the shot permanently?")) {
-      this.props.clientglue.deleteShot(this.props.shot);
+      this.props.onDeleteShot();
     }
   }
 
+}
+
+function intervalDescription(ms) {
+  let parts = [];
+  let second = 1000;
+  let minute = second*60;
+  let hour = minute*60;
+  let day = hour*24;
+  if (ms > day) {
+    let days = Math.floor(ms/day);
+    if (days === 1) {
+      parts.push("1 day");
+    } else {
+      parts.push(`${days} days`);
+    }
+    ms = ms % day;
+  }
+  if (ms > hour) {
+    let hours = Math.floor(ms/hour);
+    if (hours === 1) {
+      parts.push("1 hour");
+    } else {
+      parts.push(`{$hours} hours`);
+    }
+    ms = ms % hour;
+  }
+  if (ms > minute) {
+    let minutes = Math.floor(ms/minute);
+    if (minutes === 1) {
+      parts.push("1 minute");
+    } else {
+      parts.push(`${minutes} minutes`);
+    }
+    ms = ms % minute;
+  }
+  if (ms) {
+    let seconds = Math.floor(ms/second);
+    if (seconds === 1) {
+      parts.push("1 second");
+    } else {
+      parts.push(`${seconds} seconds`);
+    }
+  }
+  if (! parts.length) {
+    parts.push("immediately");
+  }
+  return parts.join(" ");
 }
 
 let FrameFactory = React.createFactory(Frame);
@@ -545,7 +677,9 @@ exports.render = function (req, res) {
     showIntro: showIntro,
     simple: false,
     shotDomain: req.url, // FIXME: should be a property of the shot
-    expireTime: req.shot.expireTime === null ? null: req.shot.expireTime.getTime()
+    expireTime: req.shot.expireTime === null ? null: req.shot.expireTime.getTime(),
+    retentionTime: req.config.expiredRetentionTime*1000,
+    defaultExpiration: req.config.defaultExpiration*1000
   };
   let headString = React.renderToStaticMarkup(HeadFactory(serverPayload));
   let frame = FrameFactory(serverPayload);
@@ -566,8 +700,16 @@ exports.render = function (req, res) {
     deleted: req.shot.deleted,
     buildTime: buildTime,
     showIntro: showIntro,
-    simple: false
+    simple: false,
+    retentionTime: req.config.expiredRetentionTime*1000,
+    defaultExpiration: req.config.defaultExpiration*1000
   };
+  if (serverPayload.expireTime !== null && Date.now() > serverPayload.expireTime) {
+    serverPayload.shot = clientPayload.shot = {
+      url: req.shot.url,
+      docTitle: req.shot.title
+    };
+  }
   let body = React.renderToString(frame);
   let json = JSON.stringify(clientPayload);
   let result = addReactScripts(

@@ -140,11 +140,18 @@ var conf = convict({
     arg: "check-deleted-interval"
   },
   expiredRetentionTime: {
-    doc: "Amount of time to keep an expired shot, in PostgreSQL time format",
-    format: String,
-    default: "14 DAYS",
+    doc: "Amount of time to keep an expired shot, in seconds",
+    format: "int",
+    default: 60*60*24*14, // 14 days
     env: "EXPIRED_RETENTION_TIME",
     arg: "expired-retention-time"
+  },
+  defaultExpiration: {
+    doc: "Default expiration time, in seconds",
+    format: "int",
+    default: 60*60*24*14, // 14 days
+    env: "DEFAULT_EXPIRATION",
+    arg: "default-expiration"
   }
 });
 
