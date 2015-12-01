@@ -488,7 +488,7 @@ function processDebugCommand(component, command) {
       html = '<!DOCTYPE html><html><body><!-- text selection: -->' + html + '</body></html>';
       html = html.replace(/>/g, '>\n');
       let url = "view-source:data:text/html;charset=UTF-8;base64," + unicodeBtoa(html);
-      self.port.emit("openLink", url, component.props.loadReason"debug-command-viewsource");
+      self.port.emit("openLink", url, component.props.loadReason, "debug-command-viewsource");
     }
     return true;
   } else if (command == "/data") {
