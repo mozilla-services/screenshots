@@ -27,11 +27,7 @@ exports.unhandled = function (error) {
   panel.show({position: require("./main").shootButton});
   let errorObj = error;
   if (error.help || error.message || error.name) {
-    errorObj = {
-      help: error.help,
-      message: error.message,
-      name: error.name
-    };
+    errorObj = error;
   } else {
     errorObj = JSON.stringify(error);
     if (errorObj == "{}") {
@@ -53,12 +49,25 @@ exports.unhandled = function (error) {
 /** Turns an exception object (likely Error) into what might be a kind of
     useful error message (as should be passed to unhandled) */
 exports.makeError = function (error) {
-  if (error instanceof Error) {
-    return {
+  if (error instanceof Error || (error.name && error.message)) {
+    let obj = {
       name: error.name,
       message: error.message,
       help: "An unexpected error occurred"
     };
+    if (error.stack) {
+      let stackLines = [];
+      for (let line of error.stack.split(/\n/g)) {
+        let match = (/resource:\/\/[a-zA-Z0-9-]*-at-jetpack\/(.*):(\d+):(\d+)/).exec(line);
+        if (match) {
+          stackLines.push(`${match[1]}:${match[2]}`);
+        }
+      }
+      if (stackLines.length) {
+        obj.stack = stackLines.join(" | ");
+      }
+    }
+    return obj;
   }
   return error;
 };
