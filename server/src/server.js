@@ -81,13 +81,29 @@ app.post("/error", function (req, res) {
   if (typeof bodyObj !== "object") {
     throw new Error("Got unexpected req.body type: " + typeof bodyObj);
   }
-
   let userAnalytics = ua(config.gaId);
-  userAnalytics.exception(
-    bodyObj.name, {
-      exDescription: JSON.stringify(bodyObj)
+  let desc = bodyObj.name;
+  let attrs = [];
+  for (let attr in bodyObj) {
+    if (attr == "name" || attr == "help") {
+      continue;
     }
+    let value = "" + bodyObj[attr];
+    // FIXME: maybe a crude attempt to ensure some santization of parameters:
+    value = value.replace(/\n/g, " / ");
+    value = value.replace(/[\t\r]/g, " ");
+    value = value.replace(/\s+/g, " ");
+    value = value.replace(/[^a-z0-9_\-=+\{\}\(\).,/\?:;\[\]\| ]/gi, "?");
+    value = value.substr(0, 100);
+    attrs.push(attr + ": " + value);
+  }
+  if (attrs.length) {
+    desc += " - " + attrs.join("; ");
+  }
+  userAnalytics.exception(
+    desc
   ).send();
+  console.info("Error received:", desc);
   simpleResponse(res, "OK", 200);
 });
 
