@@ -8,7 +8,6 @@ const MAX_DB_LEVEL = 6;
 /** Create all the tables */
 exports.createTables = function () {
   console.info("Setting up tables on", db.constr);
-  console.info("Environment: ", process.env);
   return db.getConnection().then(([conn, done]) => {
     // This is assuming we are running from dist/server/dbschema.js, and need to
     // find the path of server/db-patches/ (not dist):

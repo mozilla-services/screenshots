@@ -41,7 +41,6 @@ app.use("/static", express.static(path.join(__dirname, "static"), {
 }));
 
 let xpidir = path.join(__dirname, "..", "xpi");
-console.log("xpidir", xpidir);
 app.use("/xpi", express.static(xpidir, {index: false}));
 
 app.use("/homepage", express.static(path.join(__dirname, "static/homepage"), {
