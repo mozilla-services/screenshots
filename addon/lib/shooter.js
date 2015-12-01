@@ -415,10 +415,7 @@ const ShotContext = Class({
       sendEvent("addon", `click-share-button-${whichButton}-${eventSource}`);
     },
     openLink: function (link, loadReason, eventSource) {
-      if (eventSource === undefined) {
-        eventSource = loadReason;
-      }
-      if (eventSource === "install" || shouldShowTour) {
+      if (loadReason === "install" || shouldShowTour) {
         shouldShowTour = false;
         link += "?showIntro=true";
       }
