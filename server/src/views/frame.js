@@ -664,6 +664,7 @@ exports.render = function (req, res) {
   let showIntro = !!req.query.showIntro;
   let buildTime = require("../build-time").string;
   let serverPayload = {
+    allowExport: req.allowExport,
     staticLink: req.staticLink,
     backend: req.backend,
     shot: req.shot,
@@ -685,6 +686,7 @@ exports.render = function (req, res) {
   let headString = React.renderToStaticMarkup(HeadFactory(serverPayload));
   let frame = FrameFactory(serverPayload);
   let clientPayload = {
+    allowExport: req.allowExport,
     gitRevision: getGitRevision(),
     backend: req.backend,
     shot: req.shot.asJson(),
@@ -728,6 +730,7 @@ exports.render = function (req, res) {
 exports.renderSimple = function (req, res) {
   let buildTime = require("../build-time").string;
   let serverPayload = {
+    allowExport: req.allowExport,
     staticLink: req.staticLink.simple,
     backend: req.backend,
     shot: req.shot,
