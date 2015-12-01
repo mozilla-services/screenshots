@@ -38,6 +38,7 @@ exports.unhandled = function (error) {
   if (typeof errorObj === "string") {
     errorObj = {name: errorObj};
   }
+  errorObj.version = self.version;
   req.request(`${main.getBackend()}/error`, {
     method: "POST",
     content: JSON.stringify(errorObj),
