@@ -55,15 +55,16 @@ class Shot extends AbstractShot {
         let json = this.asJson();
         let head = json.head;
         let body = json.body;
+        let title = this.title;
         json.head = null;
         json.body = null;
         oks.push({setHead: null});
         oks.push({setBody: null});
         return db.queryWithClient(
           client,
-          `INSERT INTO data (id, deviceid, value, head, body, url)
-           VALUES ($1, $2, $3, $4, $5, $6)`,
-          [this.id, this.ownerId, JSON.stringify(json), head, body, json.url]
+          `INSERT INTO data (id, deviceid, value, head, body, url, title)
+           VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+          [this.id, this.ownerId, JSON.stringify(json), head, body, json.url, title]
         ).then((rowCount) => {
           return clipRewrites.commit(client);
         }).then(() => {
@@ -100,16 +101,16 @@ class Shot extends AbstractShot {
       if (head === null && body === null) {
         promise = db.queryWithClient(
           client,
-          `UPDATE data SET value = $1
-          WHERE id = $2 AND deviceid = $3`,
-          [JSON.stringify(json), this.id, this.ownerId]
+          `UPDATE data SET value = $1, url = $2, title=$3
+          WHERE id = $4 AND deviceid = $5`,
+          [JSON.stringify(json), this.url, this.title, this.id, this.ownerId]
         );
       } else {
         promise = db.queryWithClient(
           client,
-          `UPDATE data SET value = $1, head = $2, body = $3
-          WHERE id = $4 AND deviceid = $5`,
-          [JSON.stringify(json), head, body, this.id, this.ownerId]
+          `UPDATE data SET value = $1, url=$2, title=$3, head = $4, body = $5
+          WHERE id = $6 AND deviceid = $7`,
+          [JSON.stringify(json), this.url, this.title, head, body, this.id, this.ownerId]
         );
       }
       return promise.then((rowCount) => {
@@ -172,6 +173,13 @@ Shot.get = function (backend, id) {
       return null;
     }
     let json = JSON.parse(rawValue.value);
+    if (! json.url && rawValue.url) {
+      json.url = rawValue.url;
+    }
+    let jsonTitle = json.userTitle || json.ogTitle || (json.openGraph && json.openGraph.title) || json.docTitle;
+    if (! jsonTitle) {
+      json.docTitle = rawValue.title;
+    }
     let shot = new Shot(rawValue.userid, backend, id, json);
     shot.urlIfDeleted = rawValue.url;
     shot.expireTime = rawValue.expireTime;
@@ -180,6 +188,7 @@ Shot.get = function (backend, id) {
   });
 };
 
+// FIXME: What is the difference between Shot.getFullShot and Shot.get?
 Shot.getFullShot = function (backend, id) {
   if (! id) {
     throw new Error("Empty id: " + id);
@@ -206,7 +215,7 @@ Shot.getRawValue = function (id) {
     throw new Error("Empty id: " + id);
   }
   return db.select(
-    `SELECT value, deviceid, url, expire_time, deleted FROM data WHERE id = $1`,
+    `SELECT value, deviceid, url, title, expire_time, deleted FROM data WHERE id = $1`,
     [id]
   ).then((rows) => {
     if (! rows.length) {
@@ -217,6 +226,7 @@ Shot.getRawValue = function (id) {
       userid: row.deviceid,
       value: row.value,
       url: row.url,
+      title: row.title,
       expireTime: row.expire_time,
       deleted: row.deleted
     };
@@ -246,6 +256,8 @@ Shot.getShotsForDevice = function (backend, deviceId) {
       `SELECT data.id, data.value, data.deviceid
        FROM data
        WHERE data.deviceid IN (${idNums.join(", ")})
+             AND NOT data.deleted
+             AND (expire_time IS NULL OR expire_time > NOW())
        ORDER BY data.created DESC
       `,
       ids
@@ -270,6 +282,44 @@ Shot.getShotsForDevice = function (backend, deviceId) {
     }
     return result;
   });
+};
+
+Shot.setExpiration = function (backend, shotId, deviceId, expiration) {
+  if (expiration === 0) {
+    return db.update(
+      `UPDATE data
+       SET expire_time = NULL
+       WHERE id = $1
+             AND deviceid = $2
+      `,
+      [shotId, deviceId]
+    );
+  } else {
+    if (typeof expiration != "number") {
+      throw new Error("Bad expiration type");
+    } else if (expiration < 0) {
+      throw new Error("Expiration less than zero");
+    }
+    expiration = Math.floor(expiration / 1000);
+    return db.update(
+      `UPDATE data
+       SET expire_time = NOW() + ($1 || ' SECONDS')::INTERVAL
+       WHERE id = $2
+             AND deviceid = $3
+      `,
+      [expiration, shotId, deviceId]
+    );
+  }
+};
+
+Shot.deleteShot = function (backend, shotId, deviceId) {
+  return db.update(
+    `DELETE FROM data
+     WHERE id = $1
+           AND deviceid = $2
+    `,
+    [shotId, deviceId]
+  );
 };
 
 Shot.deleteEverythingForDevice = function (backend, deviceId) {
@@ -413,4 +463,37 @@ ClipRewrites = class ClipRewrites {
     });
   }
 
+};
+
+Shot.cleanDeletedShots = function () {
+  let retention = config.expiredRetentionTime;
+  // FIXME: active shots with no clips appear to be 404, but all deleted shots have
+  // no clips (because we delete that data).  But we don't do a hard delete of shots
+  // with no clip, meaning they become more visible only after they've expired
+  return db.transaction((client) => {
+    return db.queryWithClient(
+      client,
+      `
+        UPDATE data
+        SET value = '{}', head = NULL, body = NULL, deleted = TRUE
+        WHERE expire_time + ($1 || ' SECONDS')::INTERVAL < CURRENT_TIMESTAMP
+              AND NOT deleted
+      `,
+      [retention]
+    ).then((result) => {
+      return db.queryWithClient(
+        client,
+        `
+          DELETE FROM images
+          USING data
+          WHERE images.shotid = data.id
+                AND data.expire_time + ($1 || ' SECONDS')::INTERVAL < CURRENT_TIMESTAMP
+                AND NOT data.deleted
+        `,
+        [retention]
+      ).then(() => {
+        return result.rowCount;
+      });
+    });
+  });
 };

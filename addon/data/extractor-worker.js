@@ -48,11 +48,16 @@ function extractData() {
   console.info("Image time:", Date.now() - startImage, "ms");
   var siteName = findSiteName();
   console.info("extractData time:", Date.now() - start, "ms");
+  let passwordFields = [];
+  for (let el of document.querySelectorAll('input[type=password]')) {
+    passwordFields.push(el.name || null);
+  }
   return {
     readable: readable,
     microdata: microdata,
     images: images,
-    siteName: siteName
+    siteName: siteName,
+    passwordFields: passwordFields
   };
 }
 

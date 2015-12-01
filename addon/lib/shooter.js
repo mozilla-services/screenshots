@@ -18,13 +18,13 @@ const { getDeviceInfo } = require("./user");
 const { URL } = require("sdk/url");
 const notifications = require("sdk/notifications");
 const { randomString } = require("./randomstring");
-const { setTimeout } = require("sdk/timers");
+const { setTimeout, clearTimeout } = require("sdk/timers");
 
 let shouldShowTour = false;
 
 exports.showTourOnNextLinkClick = function() {
   shouldShowTour = true;
-}
+};
 
 // If a page is in history for less time than this, we ignore it
 // (probably a redirect of some sort):
@@ -83,24 +83,45 @@ function processHistory(history, tab) {
 
 /** Runs the extract worker on the given tab, and returns a promise that
     returns the extracted data */
-function extractWorker(tab) {
-  const deferred = defer();
-  const worker = tab.attach({
-    contentScriptFile: [self.data.url("error-utils.js"),
-                        self.data.url("vendor/readability/Readability.js"),
-                        self.data.url("vendor/microformat-shiv.js"),
-                        self.data.url("extractor-worker.js")]
+function extractWorker(tab, timeLimit) {
+  if (timeLimit === undefined) {
+    timeLimit = 10000; // 10 second default
+  }
+  return new Promise((resolve, reject) => {
+    let timeoutId;
+    let timedOut = false;
+    if (timeLimit) {
+      timeoutId = setTimeout(function () {
+        timedOut = true;
+        reject(new Error("Extractor timed out"));
+      }, timeLimit);
+    }
+    const worker = tab.attach({
+      contentScriptFile: [self.data.url("error-utils.js"),
+                          self.data.url("vendor/readability/Readability.js"),
+                          self.data.url("vendor/microformat-shiv.js"),
+                          self.data.url("extractor-worker.js")]
+    });
+    watchWorker(worker);
+    worker.port.on("data", function (data) {
+      worker.destroy();
+      if (timedOut) {
+        console.error("extractWorker resolved after timeout");
+        return;
+      }
+      clearTimeout(timeoutId);
+      resolve(data);
+    });
+    worker.port.on("alertError", function (error) {
+      worker.destroy();
+      if (timedOut) {
+        console.error("extractWorker errored out after timeout", error);
+        return;
+      }
+      clearTimeout(timeoutId);
+      reject(error);
+    });
   });
-  watchWorker(worker);
-  worker.port.on("data", function (data) {
-    worker.destroy();
-    deferred.resolve(data);
-  });
-  worker.port.on("alertError", function (error) {
-    worker.destroy();
-    deferred.reject(error);
-  });
-  return deferred.promise;
 }
 
 /** Represents one shot action */
@@ -169,7 +190,7 @@ const ShotContext = Class({
             this.copyRichDataToClipboard(activeClipName, ++numberOfTries);
           }, 500);
         } else {
-          console.error("Could not copy rich shot data -- no clip was added to the shot within 4 seconds")
+          console.error("Could not copy rich shot data -- no clip was added to the shot within 4 seconds");
           // If we failed to copy the rich shot data, just tell the user we copied the link
           notifications.notify({
             title: "Link Copied",
@@ -408,13 +429,13 @@ const ShotContext = Class({
       this.panelContext.setEditing(editing);
     },
     setCaptureType: function (type) {
-      let clip;
-      if (this.activeClipName) {
-        clip = this.shot.getClip(this.activeClipName);
-      }
       if (type === "visible") {
         this.interactiveWorker.port.emit("setState", "visible");
         watchPromise(this.makeScreenshot().then((imgData) => {
+          let clip;
+          if (this.activeClipName) {
+            clip = this.shot.getClip(this.activeClipName);
+          }
           if (clip) {
             clip.image = imgData.image;
           } else {
@@ -502,6 +523,7 @@ const ShotContext = Class({
         return;
       }
       this.copyRichDataToClipboard();
+      var prefInlineCss = require("sdk/simple-prefs").prefs.inlineCss;
       var promises = [];
       // Note: removed until we have some need or use for history in our shot pages:
       /* processHistory(this.shot.history, this.tab); */
@@ -510,6 +532,9 @@ const ShotContext = Class({
         this.updateShot({screenshot: url}, true);
       }.bind(this)))));*/
       promises.push(watchPromise(extractWorker(this.tab)).then(watchFunction(function (attrs) {
+        let passwordFields = attrs.passwordFields;
+        delete attrs.passwordFields;
+        this.checkIfPublic({passwordFields});
         this.interactiveWorker.port.emit("extractedData", attrs);
         this.shot.update(attrs);
       }, this)));
@@ -522,7 +547,7 @@ const ShotContext = Class({
         this.tab,
         self.data.url("framescripts/make-static-html.js"),
         "pageshot@documentStaticData",
-        {})).then(watchFunction(function (attrs) {
+        {prefInlineCss})).then(watchFunction(function (attrs) {
           this.shot.update(attrs);
         }, this)));
       watchPromise(allPromisesComplete(promises).then((function () {
@@ -571,6 +596,16 @@ const ShotContext = Class({
     this._pendingScreenPositions.push(deferred);
     this.interactiveWorker.port.emit("getScreenPosition");
     return deferred.promise;
+  },
+
+  checkIfPublic: function (info) {
+    watchPromise(
+      require("./is-public").checkIfPublic(this.tabUrl, info)
+      .then((isPublic) => {
+        this.shot.isPublic = isPublic;
+        console.log("updating shot", this.shot.isPublic, this.shot.asJson().isPublic);
+        this.updateShot();
+      }));
   },
 
   /** Renders this object unusable, and unregisters any handlers */

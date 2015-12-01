@@ -231,6 +231,7 @@ class AbstractShot {
     this.twitterCard = attrs.twitterCard || null;
     this.documentSize = attrs.documentSize || null;
     this.fullScreenThumbnail = attrs.fullScreenThumbnail || null;
+    this.isPublic = attrs.isPublic === undefined ? null : !! attrs.isPublic;
     this._clips = {};
     if (attrs.clips) {
       for (let clipId in attrs.clips) {
@@ -505,8 +506,9 @@ ${options.addBody || ""}
   }
 
   get title() {
+    // FIXME: we shouldn't support both openGraph.title and ogTitle
     let ogTitle = this.openGraph && this.openGraph.title;
-    return this.userTitle || this.ogTitle || this.ogTitle || this.docTitle || this.url;
+    return this.userTitle || this.ogTitle || ogTitle || this.docTitle || this.url;
   }
 
   get createdDate() {
@@ -716,6 +718,16 @@ ${options.addBody || ""}
     } else {
       this._fullScreenThumbnail = null;
     }
+    this._dirty("fullScreenThumbnail");
+  }
+
+  get isPublic() {
+    return this._isPublic;
+  }
+  set isPublic(val) {
+    assert(val === null || val === false || val === true, "isPublic should be true/false/null, not:", typeof val, val, JSON.stringify(val));
+    this._isPublic = val;
+    this._dirty("isPublic");
   }
 
 }
@@ -724,7 +736,7 @@ AbstractShot.prototype.REGULAR_ATTRS = (`
 deviceId url docTitle ogTitle userTitle createdDate createdDevice favicon
 history comments hashtags images readable head body htmlAttrs bodyAttrs
 headAttrs microdata siteName openGraph twitterCard documentSize
-fullScreenThumbnail
+fullScreenThumbnail isPublic
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`
