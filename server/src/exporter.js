@@ -199,6 +199,10 @@ exports.cleanExports = function () {
 exports.setup = function (app) {
 
   app.get("/export", function (req, res) {
+    if (! req.allowExport) {
+      res.type("txt").status(403).send("Export is not enabled on this server");
+      return;
+    }
     if (! req.deviceId) {
       res.type("txt").status(403).send("You must have the addon installed to export your shots");
       return;

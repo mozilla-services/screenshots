@@ -73,6 +73,11 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use(function (req, res, next) {
+  req.allowExport = config.allowExport;
+  next();
+});
+
 app.post("/error", function (req, res) {
   let bodyObj = req.body;
   if (typeof bodyObj !== "object") {

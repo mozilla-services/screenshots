@@ -439,6 +439,7 @@ class Frame extends React.Component {
               email={ this.props.email }
               deviceId={ this.props.deviceId }
               simple={ this.props.simple }
+              allowExport={ this.props.allowExport }
             />
           </div>
         <div id="toolbar" data-step="1" data-intro="This is the title of the page and a link to it's source.">

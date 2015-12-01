@@ -5,7 +5,7 @@ const path = require("path");
 
 // Populate `process.env` with overrides from environment-specific `.env`
 // files as a side effect. See `https://npmjs.org/envc` for more info.
-envc();
+envc({booleans: true});
 
 var conf = convict({
   port: {
@@ -152,6 +152,13 @@ var conf = convict({
     default: 60*60*24*14, // 14 days
     env: "DEFAULT_EXPIRATION",
     arg: "default-expiration"
+  },
+  allowExport: {
+    doc: "Whether to allow exporting shots",
+    format: Boolean,
+    default: false,
+    env: "ALLOW_EXPORT",
+    arg: "allow-export"
   }
 });
 
