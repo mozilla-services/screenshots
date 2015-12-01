@@ -5,7 +5,7 @@ const path = require("path");
 
 // Populate `process.env` with overrides from environment-specific `.env`
 // files as a side effect. See `https://npmjs.org/envc` for more info.
-envc();
+envc({booleans: true});
 
 var conf = convict({
   port: {
@@ -78,29 +78,29 @@ var conf = convict({
       doc: "The Postgres user",
       format: String,
       default: process.env.USER,
-      env: "DB_USER",
+      env: "RDS_USERNAME",
       arg: "db-user"
     },
     password: {
       doc: "The Postgres password",
       format: String,
       default: "",
-      env: "DB_PASS",
+      env: "RDS_PASSWORD",
       arg: "db-pass"
     },
     host: {
       doc: "The Postgres server host and port",
       format: String,
       default: "localhost:5432",
-      env: "DB_HOST",
+      env: "RDS_HOSTNAME",
       arg: "db-host"
     },
     dbname: {
       doc: "The Postgres database",
       format: String,
       default: "",
-      env: "DB_NAME",
-      arg: "dn-name"
+      env: "RDS_NAME",
+      arg: "db-name"
     }
   },
   productName: {
@@ -140,11 +140,25 @@ var conf = convict({
     arg: "check-deleted-interval"
   },
   expiredRetentionTime: {
-    doc: "Amount of time to keep an expired shot, in PostgreSQL time format",
-    format: String,
-    default: "14 DAYS",
+    doc: "Amount of time to keep an expired shot, in seconds",
+    format: "int",
+    default: 60*60*24*14, // 14 days
     env: "EXPIRED_RETENTION_TIME",
     arg: "expired-retention-time"
+  },
+  defaultExpiration: {
+    doc: "Default expiration time, in seconds",
+    format: "int",
+    default: 60*60*24*14, // 14 days
+    env: "DEFAULT_EXPIRATION",
+    arg: "default-expiration"
+  },
+  allowExport: {
+    doc: "Whether to allow exporting shots",
+    format: Boolean,
+    default: false,
+    env: "ALLOW_EXPORT",
+    arg: "allow-export"
   }
 });
 

@@ -40,6 +40,9 @@ app.use("/static", express.static(path.join(__dirname, "static"), {
   index: false
 }));
 
+let xpidir = path.join(__dirname, "..", "xpi");
+app.use("/xpi", express.static(xpidir, {index: false}));
+
 app.use("/homepage", express.static(path.join(__dirname, "static/homepage"), {
   index: false
 }));
@@ -319,6 +322,52 @@ app.get("/data/:id/:domain", function (req, res) {
     }
   }).catch(function (err) {
     errorResponse(res, "Error serving data:", err);
+  });
+});
+
+app.post("/api/delete-shot", function (req, res) {
+  if (! req.deviceId) {
+    simpleResponse(res, "Not logged in", 401);
+    return;
+  }
+  Shot.deleteShot(req.backend, req.body.id, req.deviceId).then((result) => {
+    if (result) {
+      simpleResponse(res, "ok", 200);
+    } else {
+      simpleResponse(res, "No such shot", 404);
+    }
+  }).catch((err) => {
+    errorResponse(res, "Error: could not delete shot", err);
+  });
+});
+
+app.get("/shot-deleted", function (req, res) {
+  require("./views/shot-deleted").render(req, res);
+});
+
+app.post("/api/set-expiration", function (req, res) {
+  if (! req.deviceId) {
+    simpleResponse(res, "Not logged in", 401);
+    return;
+  }
+  let shotId = req.body.id;
+  let expiration = parseInt(req.body.expiration, 10);
+  if (expiration < 0) {
+    errorResponse(res, "Error: negative expiration", 400);
+    return;
+  }
+  if (isNaN(expiration)) {
+    errorResponse(res, "Error: bad expiration (" + req.body.expiration + ")", 400);
+    return;
+  }
+  Shot.setExpiration(req.backend, shotId, req.deviceId, expiration).then((result) => {
+    if (result) {
+      simpleResponse(res, "ok", 200);
+    } else {
+      simpleResponse(res, "No such shot", 404);
+    }
+  }).catch((err) => {
+    errorResponse(res, "Error: could not set expiration on shot", err);
   });
 });
 

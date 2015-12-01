@@ -108,13 +108,18 @@ class SimplifiedPanel extends React.Component {
   }
 
   render() {
+    let warning;
+    if (this.props.shot.isPublic === false) {
+      warning = <span className="warning">WARNING: not a public page</span>;
+    }
     let simplifiedLinkClass = "simplified-link";
-    if (this.props.loadReason === "install" && showTutorial) {
+    if (this.props.loadReason === "install") {
       simplifiedLinkClass = "simplified-link simplified-link-border";
     }
     return <div className="container">
       <div className="simplified-instructions">
         <div className="instructions-text">
+          {warning}
           Copy of page saved:
         </div>
         <a className={ simplifiedLinkClass } href="#" onClick={ this.onClickLink.bind(this) }>
@@ -168,7 +173,7 @@ class ShootPanel extends React.Component {
   }
 
   onLinkClick(e) {
-    self.port.emit("openLink", this.props.shot.viewUrl, "normal");
+    self.port.emit("openLink", this.props.shot.viewUrl, this.props.loadReason, "normal");
     e.preventDefault();
   }
 
@@ -449,7 +454,7 @@ class ShootPanel extends React.Component {
   }
 
   openLink(event) {
-    self.port.emit("openLink", event.target.href, "recall");
+    self.port.emit("openLink", event.target.href, this.props.loadReason, "recall");
   }
 
 }
@@ -483,17 +488,17 @@ function processDebugCommand(component, command) {
       html = '<!DOCTYPE html><html><body><!-- text selection: -->' + html + '</body></html>';
       html = html.replace(/>/g, '>\n');
       let url = "view-source:data:text/html;charset=UTF-8;base64," + unicodeBtoa(html);
-      self.port.emit("openLink", url, "debug-command-viewsource");
+      self.port.emit("openLink", url, component.props.loadReason"debug-command-viewsource");
     }
     return true;
   } else if (command == "/data") {
     let text = JSON.stringify(truncatedCopy(component.props.shot.asJson()), null, "  ");
     let url = "data:text/plain;charset=UTF-8;base64," + unicodeBtoa(text);
-    self.port.emit("openLink", url, "debug-command-data");
+    self.port.emit("openLink", url, component.props.loadReason, "debug-command-data");
     return true;
   } else if (command.search(/^\/help/i) != -1) {
     let url = "data:text/plain;base64," + btoa(debugCommandHelp);
-    self.port.emit("openLink", url, "debug-command-help");
+    self.port.emit("openLink", url, component.props.loadReason, "debug-command-help");
     return true;
   } else if (command.search(/^\/sticky/i) != -1) {
     self.port.emit("stickyPanel");
@@ -580,7 +585,7 @@ class RecallPanel extends React.Component {
 
   openRecall() {
     let recall = this.props.backend.replace(/\/*$/, "") + "/shots";
-    self.port.emit("openLink", recall, "recall-panel");
+    self.port.emit("openLink", recall, this.props.loadReason, "recall-panel");
   }
 
   render() {

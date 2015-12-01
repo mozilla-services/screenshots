@@ -415,10 +415,7 @@ const ShotContext = Class({
       sendEvent("addon", `click-share-button-${whichButton}-${eventSource}`);
     },
     openLink: function (link, loadReason, eventSource) {
-      if (eventSource === undefined) {
-        eventSource = loadReason;
-      }
-      if (eventSource === "install" || shouldShowTour) {
+      if (loadReason === "install" || shouldShowTour) {
         shouldShowTour = false;
         link += "?showIntro=true";
       }
@@ -429,13 +426,13 @@ const ShotContext = Class({
       this.panelContext.setEditing(editing);
     },
     setCaptureType: function (type) {
-      let clip;
-      if (this.activeClipName) {
-        clip = this.shot.getClip(this.activeClipName);
-      }
       if (type === "visible") {
         this.interactiveWorker.port.emit("setState", "visible");
         watchPromise(this.makeScreenshot().then((imgData) => {
+          let clip;
+          if (this.activeClipName) {
+            clip = this.shot.getClip(this.activeClipName);
+          }
           if (clip) {
             clip.image = imgData.image;
           } else {
@@ -523,6 +520,7 @@ const ShotContext = Class({
         return;
       }
       this.copyRichDataToClipboard();
+      var prefInlineCss = require("sdk/simple-prefs").prefs.inlineCss;
       var promises = [];
       // Note: removed until we have some need or use for history in our shot pages:
       /* processHistory(this.shot.history, this.tab); */
@@ -531,6 +529,9 @@ const ShotContext = Class({
         this.updateShot({screenshot: url}, true);
       }.bind(this)))));*/
       promises.push(watchPromise(extractWorker(this.tab)).then(watchFunction(function (attrs) {
+        let passwordFields = attrs.passwordFields;
+        delete attrs.passwordFields;
+        this.checkIfPublic({passwordFields});
         this.interactiveWorker.port.emit("extractedData", attrs);
         this.shot.update(attrs);
       }, this)));
@@ -543,7 +544,7 @@ const ShotContext = Class({
         this.tab,
         self.data.url("framescripts/make-static-html.js"),
         "pageshot@documentStaticData",
-        {})).then(watchFunction(function (attrs) {
+        {prefInlineCss})).then(watchFunction(function (attrs) {
           this.shot.update(attrs);
         }, this)));
       watchPromise(allPromisesComplete(promises).then((function () {
@@ -592,6 +593,16 @@ const ShotContext = Class({
     this._pendingScreenPositions.push(deferred);
     this.interactiveWorker.port.emit("getScreenPosition");
     return deferred.promise;
+  },
+
+  checkIfPublic: function (info) {
+    watchPromise(
+      require("./is-public").checkIfPublic(this.tabUrl, info)
+      .then((isPublic) => {
+        this.shot.isPublic = isPublic;
+        console.log("updating shot", this.shot.isPublic, this.shot.asJson().isPublic);
+        this.updateShot();
+      }));
   },
 
   /** Renders this object unusable, and unregisters any handlers */
