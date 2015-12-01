@@ -1,0 +1,12 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "docker.io/fzzzy/pageshot",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "10080"
+    }
+  ]
+}
