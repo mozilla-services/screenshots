@@ -108,6 +108,10 @@ class SimplifiedPanel extends React.Component {
   }
 
   render() {
+    let warning;
+    if (this.props.shot.isPublic === false) {
+      warning = <span className="warning">WARNING: not a public page</span>;
+    }
     let simplifiedLinkClass = "simplified-link";
     if (this.props.loadReason === "install" && showTutorial) {
       simplifiedLinkClass = "simplified-link simplified-link-border";
@@ -115,6 +119,7 @@ class SimplifiedPanel extends React.Component {
     return <div className="container">
       <div className="simplified-instructions">
         <div className="instructions-text">
+          {warning}
           Copy of page saved:
         </div>
         <a className={ simplifiedLinkClass } href="#" onClick={ this.onClickLink.bind(this) }>
