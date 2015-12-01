@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+xpi="build/mozilla-pageshot.xpi"
+if [[ ! -e "$xpi" ]] ; then
+  echo "Error: $xpi does not exist; run \"make server; make xpi\" before running build-docker-image"
+  exit 2
+fi
+# The signing process adds this META-INF directory to the xpi file
+# (which is a zip file).  If it's not present then this is an unsigned
+# addon, which we don't accept!
+if unzip -v $xpi | grep -q META-INF ; then
+  echo "Signed xpi found"
+else
+  echo "Error: $xpi is not signed; sign it on the AMO website"
+  exit 3
+fi
+
+docker build -t pageshot .
+
+echo "Find the image name and tag it with docker tag [image hash] [docker username]/pageshot:latest"
+echo "Then, run docker push [docker username]/pageshot to push the image to dockerhub"
+
+docker images
+
