@@ -85,7 +85,7 @@ app.post("/error", function (req, res) {
   let desc = bodyObj.name;
   let attrs = [];
   for (let attr in bodyObj) {
-    if (attr == "name" || attr == "help") {
+    if (attr == "name" || attr == "help" || attr == "version") {
       continue;
     }
     let value = "" + bodyObj[attr];
@@ -93,16 +93,20 @@ app.post("/error", function (req, res) {
     value = value.replace(/\n/g, " / ");
     value = value.replace(/[\t\r]/g, " ");
     value = value.replace(/\s+/g, " ");
-    value = value.replace(/[^a-z0-9_\-=+\{\}\(\).,/\?:;\[\]\| ]/gi, "?");
+    value = value.replace(/[^a-z0-9_\-=+\{\}\(\).,/\?:\[\]\| ]/gi, "?");
     value = value.substr(0, 100);
     attrs.push(attr + ": " + value);
   }
   if (attrs.length) {
     desc += " - " + attrs.join("; ");
   }
-  userAnalytics.exception(
-    desc
-  ).send();
+  userAnalytics.exception({
+    hitType: "exception",
+    userAgentOverride: req.headers['user-agent'],
+    applicationName: "addon",
+    applicationVersion: bodyObj.version,
+    exceptionDescription: desc
+  }).send();
   console.info("Error received:", desc);
   simpleResponse(res, "OK", 200);
 });
