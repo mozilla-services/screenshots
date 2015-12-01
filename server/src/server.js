@@ -84,7 +84,9 @@ app.post("/error", function (req, res) {
 
   let userAnalytics = ua(config.gaId);
   userAnalytics.exception(
-    bodyObj.name
+    bodyObj.name, {
+      exDescription: JSON.stringify(bodyObj)
+    }
   ).send();
   simpleResponse(res, "OK", 200);
 });
