@@ -199,7 +199,7 @@ exports.cleanExports = function () {
 exports.setup = function (app) {
 
   app.get("/export", function (req, res) {
-    if (! req.allowExport) {
+    if (! req.config.allowExport) {
       res.type("txt").status(403).send("Export is not enabled on this server");
       return;
     }
