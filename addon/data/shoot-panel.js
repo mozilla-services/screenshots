@@ -113,7 +113,7 @@ class SimplifiedPanel extends React.Component {
       warning = <span className="warning">WARNING: not a public page</span>;
     }
     let simplifiedLinkClass = "simplified-link";
-    if (this.props.loadReason === "install" && showTutorial) {
+    if (this.props.loadReason === "install") {
       simplifiedLinkClass = "simplified-link simplified-link-border";
     }
     return <div className="container">
@@ -173,7 +173,7 @@ class ShootPanel extends React.Component {
   }
 
   onLinkClick(e) {
-    self.port.emit("openLink", this.props.shot.viewUrl, "normal");
+    self.port.emit("openLink", this.props.shot.viewUrl, this.props.loadReason, "normal");
     e.preventDefault();
   }
 
