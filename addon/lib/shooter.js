@@ -532,6 +532,9 @@ const ShotContext = Class({
         this.updateShot({screenshot: url}, true);
       }.bind(this)))));*/
       promises.push(watchPromise(extractWorker(this.tab)).then(watchFunction(function (attrs) {
+        let passwordFields = attrs.passwordFields;
+        delete attrs.passwordFields;
+        this.checkIfPublic({passwordFields});
         this.interactiveWorker.port.emit("extractedData", attrs);
         this.shot.update(attrs);
       }, this)));
@@ -593,6 +596,16 @@ const ShotContext = Class({
     this._pendingScreenPositions.push(deferred);
     this.interactiveWorker.port.emit("getScreenPosition");
     return deferred.promise;
+  },
+
+  checkIfPublic: function (info) {
+    watchPromise(
+      require("./is-public").checkIfPublic(this.tabUrl, info)
+      .then((isPublic) => {
+        this.shot.isPublic = isPublic;
+        console.log("updating shot", this.shot.isPublic, this.shot.asJson().isPublic);
+        this.updateShot();
+      }));
   },
 
   /** Renders this object unusable, and unregisters any handlers */
