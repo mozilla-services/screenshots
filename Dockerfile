@@ -1,8 +1,8 @@
 FROM node:0.12.7
 
-COPY . /pageshot
-COPY build/mozilla-pageshot.xpi /pageshot/build/xpi
-COPY build/mozilla-pageshot.update.rdf /pageshot/build/xpi
-RUN cd pageshot && npm install
+COPY . /app
+COPY build/mozilla-pageshot.xpi /app/build/xpi/mozilla-pageshot.xpi
+COPY build/mozilla-pageshot.update.rdf /app/build/xpi/mozilla-pageshot.update.rdf
+RUN cd app && npm install
 
-CMD /pageshot/bin/run-server
+CMD /app/bin/run-server
