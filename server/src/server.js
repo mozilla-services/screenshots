@@ -47,7 +47,7 @@ app.use("/homepage", express.static(path.join(__dirname, "static/homepage"), {
   index: false
 }));
 
-app.use(morgan("dev"));
+app.use(morgan("combined"));
 
 app.use(function (req, res, next) {
   let cookies = new Cookies(req, res, dbschema.getKeygrip());
