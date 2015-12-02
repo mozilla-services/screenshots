@@ -288,6 +288,15 @@ class Frame extends React.Component {
         expireTime = expireTime.getTime();
       }
       let deleteTime = new Date(expireTime + this.props.retentionTime);
+      let restoreWidget;
+      if (this.props.isOwner) {
+        restoreWidget = (
+          <p>
+            Will be permanently deleted <TimeDiff date={deleteTime} />
+            &#8195;<span className="link-button" onClick={this.onRestore.bind(this)}>restore for {intervalDescription(this.props.defaultExpiration)}</span>
+          </p>
+        );
+      }
       // Note: any attributes used here need to be preserved
       // in the render() function
       body = <div id="container">
@@ -301,10 +310,7 @@ class Frame extends React.Component {
             {this.props.shot.urlIfDeleted}
           </a>
         </p>
-        <p>
-          Will be permanently deleted <TimeDiff date={deleteTime} />
-        &#8195;<span className="link-button" onClick={this.onRestore.bind(this)}>restore for {intervalDescription(this.props.defaultExpiration)}</span>
-        </p>
+        { restoreWidget }
       </div>;
     } else {
       body = this.renderBody();
@@ -382,11 +388,11 @@ class Frame extends React.Component {
     let linkTextShort = shot.urlDisplay;
 
     let timeDiff = <TimeDiff date={shot.createdDate} simple={this.props.simple} />;
-    let expiresDiff = <ExpireWidget
+    let expiresDiff = <span>– <ExpireWidget
       expireTime={this.props.expireTime}
       onSaveExpire={this.onSaveExpire.bind(this)}
-      onDeleteShot={this.onDeleteShot.bind(this)} />;
-    if (this.props.simple) {
+      onDeleteShot={this.onDeleteShot.bind(this)} /></span>;
+    if (this.props.simple || ! this.props.isOwner) {
       expiresDiff = null;
     }
 
@@ -446,7 +452,7 @@ class Frame extends React.Component {
           <div className="shot-title">{ shot.title }</div>
           <div className="shot-subtitle">
             <span>source </span><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a>
-            <span style={{paddingLeft: "15px"}}>saved { timeDiff } – {expiresDiff} </span>
+            <span style={{paddingLeft: "15px"}}>saved { timeDiff } {expiresDiff} </span>
           </div>
         </div>
         <div id="navigate-toolbar" data-step="4" data-intro="The recall panel can be used to access your previously made shots.">
@@ -466,7 +472,7 @@ class Frame extends React.Component {
         <div className="metadata">
           <h1 id="main-title">{ shot.title }</h1>
           <p><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a></p>
-          <p>saved {timeDiff} – { expiresDiff }</p>
+          <p>saved {timeDiff} { expiresDiff }</p>
         </div>
         { clips }
         <div id="full-page-button-scrollable">
@@ -673,6 +679,7 @@ exports.render = function (req, res) {
     id: req.shot.id,
     productName: req.config.productName,
     isExtInstalled: !!req.deviceId,
+    isOwner: req.deviceId == req.shot.ownerId,
     gaId: req.config.gaId,
     deviceId: req.deviceId,
     buildTime: buildTime,
@@ -695,6 +702,7 @@ exports.render = function (req, res) {
     id: req.shot.id,
     productName: req.config.productName,
     isExtInstalled: !!req.deviceId,
+    isOwner: req.deviceId == req.shot.ownerId,
     gaId: req.config.gaId,
     deviceId: req.deviceId,
     shotDomain: req.url,

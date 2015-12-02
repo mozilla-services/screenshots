@@ -600,7 +600,6 @@ const ShotContext = Class({
       require("./is-public").checkIfPublic(this.tabUrl, info)
       .then((isPublic) => {
         this.shot.isPublic = isPublic;
-        console.log("updating shot", this.shot.isPublic, this.shot.asJson().isPublic);
         this.updateShot();
       }));
   },
