@@ -17,7 +17,6 @@ fi
 
 docker build -t pageshot .
 
-echo "Find the image name and tag it with docker tag -f [image hash] [docker username]/pageshot:latest"
+echo "Find the image hash and tag it with docker tag -f [image hash] [docker username]/pageshot:latest"
 echo "Then, run docker push [docker username]/pageshot to push the image to dockerhub"
 
-docker images
