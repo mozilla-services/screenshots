@@ -415,10 +415,7 @@ const ShotContext = Class({
       sendEvent("addon", `click-share-button-${whichButton}-${eventSource}`);
     },
     openLink: function (link, loadReason, eventSource) {
-      if (eventSource === undefined) {
-        eventSource = loadReason;
-      }
-      if (eventSource === "install" || shouldShowTour) {
+      if (loadReason === "install" || shouldShowTour) {
         shouldShowTour = false;
         link += "?showIntro=true";
       }
@@ -532,6 +529,9 @@ const ShotContext = Class({
         this.updateShot({screenshot: url}, true);
       }.bind(this)))));*/
       promises.push(watchPromise(extractWorker(this.tab)).then(watchFunction(function (attrs) {
+        let passwordFields = attrs.passwordFields;
+        delete attrs.passwordFields;
+        this.checkIfPublic({passwordFields});
         this.interactiveWorker.port.emit("extractedData", attrs);
         this.shot.update(attrs);
       }, this)));
@@ -593,6 +593,15 @@ const ShotContext = Class({
     this._pendingScreenPositions.push(deferred);
     this.interactiveWorker.port.emit("getScreenPosition");
     return deferred.promise;
+  },
+
+  checkIfPublic: function (info) {
+    watchPromise(
+      require("./is-public").checkIfPublic(this.tabUrl, info)
+      .then((isPublic) => {
+        this.shot.isPublic = isPublic;
+        this.updateShot();
+      }));
   },
 
   /** Renders this object unusable, and unregisters any handlers */

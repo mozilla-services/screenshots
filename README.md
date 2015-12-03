@@ -25,7 +25,7 @@ There are two scripts to run the server locally and develop the addon:
 - `./bin/run-server` will run the server on localhost:10080 and automatically restart if there are changes
 - `./bin/run-addon` will build the addon, start Firefox with the addon installed (you must have Nightly or Developer Edition)
 
-By default, PageShot will connect to a postgres database on localhost:5432. To change which database and user it connects to set/export the environmental variables: DB_USER, DB_PASS, and DB_HOST
+By default, PageShot will connect to a postgres database on localhost:5432. To change which database and user it connects to set/export the environmental variables: RDS_USERNAME, RDS_PASSWORD, and RDS_HOSTNAME
 
 The server will automatically setup the tables in your database, and keep them up to date over time (using [pg-patcher](https://github.com/chilts/pg-patcher/)).
 

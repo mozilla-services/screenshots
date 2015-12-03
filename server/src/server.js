@@ -40,11 +40,14 @@ app.use("/static", express.static(path.join(__dirname, "static"), {
   index: false
 }));
 
+let xpidir = path.join(__dirname, "..", "xpi");
+app.use("/xpi", express.static(xpidir, {index: false}));
+
 app.use("/homepage", express.static(path.join(__dirname, "static/homepage"), {
   index: false
 }));
 
-app.use(morgan("dev"));
+app.use(morgan("combined"));
 
 app.use(function (req, res, next) {
   let cookies = new Cookies(req, res, dbschema.getKeygrip());
@@ -78,11 +81,33 @@ app.post("/error", function (req, res) {
   if (typeof bodyObj !== "object") {
     throw new Error("Got unexpected req.body type: " + typeof bodyObj);
   }
-
   let userAnalytics = ua(config.gaId);
-  userAnalytics.exception(
-    bodyObj.name
-  ).send();
+  let desc = bodyObj.name;
+  let attrs = [];
+  for (let attr in bodyObj) {
+    if (attr == "name" || attr == "help" || attr == "version") {
+      continue;
+    }
+    let value = "" + bodyObj[attr];
+    // FIXME: maybe a crude attempt to ensure some santization of parameters:
+    value = value.replace(/\n/g, " / ");
+    value = value.replace(/[\t\r]/g, " ");
+    value = value.replace(/\s+/g, " ");
+    value = value.replace(/[^a-z0-9_\-=+\{\}\(\).,/\?:\[\]\| ]/gi, "?");
+    value = value.substr(0, 100);
+    attrs.push(attr + ": " + value);
+  }
+  if (attrs.length) {
+    desc += " - " + attrs.join("; ");
+  }
+  userAnalytics.exception({
+    hitType: "exception",
+    userAgentOverride: req.headers['user-agent'],
+    applicationName: "addon",
+    applicationVersion: bodyObj.version,
+    exceptionDescription: desc
+  }).send();
+  console.info("Error received:", desc);
   simpleResponse(res, "OK", 200);
 });
 

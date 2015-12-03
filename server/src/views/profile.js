@@ -131,16 +131,24 @@ exports.Profile = class Profile extends React.Component {
   renderSignedIn() {
     // TODO: Maybe show a list of connected devices with PageShot here?
     // This could also be the "send to mobile" UI...
+    let allowExport = null;
+    if (this.props.allowExport) {
+      allowExport = <p><a href="/export">Export my clips</a></p>;
+    }
     return (
       <div className="sync-status">
         <p>You are signed in as {this.props.email}.</p>
         <p><a href="#" onClick={ this.onClickDeleteEverything.bind(this) }>Permanently delete all my data!!!</a></p>
-        <p><a href="/export">Export my clips</a></p>
+        { allowExport }
       </div>
     );
   }
 
   renderSignedOut() {
+    let allowExport = null;
+    if (this.props.allowExport) {
+      allowExport = <li><a href="/export">Export my clips</a></li>;
+    }
     return (
       <div className="sync-status">
         <p>Access your snapshot history wherever you use Firefox.</p>
@@ -148,7 +156,7 @@ exports.Profile = class Profile extends React.Component {
           <li><a href="#" onClick={ this.onClickSignUp.bind(this) }>Create Account</a></li>
           <li><a href="#" onClick={ this.onClickSignIn.bind(this) }>Sign In</a></li>
           <li><a href="#" onClick={ this.onClickDeleteEverything.bind(this) }>Permanently delete all my data</a></li>
-          <li><a href="/export">Export my clips</a></li>
+          { allowExport }
         </ul>
       </div>
     );
