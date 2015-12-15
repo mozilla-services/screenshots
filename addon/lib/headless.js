@@ -1,22 +1,32 @@
 /* Headless server, for use with Pageshot:
  * https://github.com/mozilla-services/pageshot
- * relies on the server module from mozilla testing
- * TODO: add link
+ * Relies on the server module from mozilla testing:
+ * http://mxr.mozilla.org/mozilla-central/source/netwerk/test/httpserver/
  *
- * Accepts requests on the assigned port, from allowed IPs, and runs the given
- * function
- * usage to send a URL: 
- * TODO update this
- * curl 'localhost:7777/?http://www.asdf.com' 
+ * Listening IP address may be assigned to httpd, by default it is localhost. 
+ * The default is used in this implementation.
+ *    For more info:
+ *    http://mxr.mozilla.org/mozilla-central/source/netwerk/test/httpserver/nsIHttpServer.idl#282
  *
- * The server takes the following args, more info can be found in server.js:
- *    port:        port to listen on, integer
- *    allowedIPs   list of IPs to allow to talk to the server, space or comma separated string
- *    callback     function to be called on the data passed to the
- *    let blah = new Server(port, allowedIPs, callback)
+ * TODO:
+ *    Documentation
+ *    Check URL before opening
+ *    Fix autoShot - currently it leaves some errors about attrs
+ * 
+ * General usage: 
+ * When you make an HTTP request to this server on the appropriate port it will
+ * look for a query string and attempt to open the string as a URL, return a
+ * URL of where to find it when processing is done, and process the tab with
+ * an automatic shot function.
+ *
+ * Generally CSS parsing is enabled on this branch, which is EXPERIMENTAL.
+ *
+ * Syntax, assuming default IP, PORT, and target URL of asdf.com:
+ *    curl 'http://localhost:10082/?http://www.asdf.com' 
+ *
  */
 
-const { Cu } = require("chrome");
+const { Cc, Ci, Cu } = require("chrome");
 const tabs = require("sdk/tabs");
 
 const { randomString } = require("./randomstring");
@@ -25,12 +35,12 @@ const { nsHttpServer } = Cu.import("file:///home/ben/dev/repos/pageshot/addon/li
 
 
 var backend;
-var port = 7777;
+var port = 10082;
+var contentServerString = "http://localhost:10081/content/";
 
 exports.init = function init(prefs) {
-  console.info("starting headless server");
-  // set global backend, processTab needs it
-  backend = prefs.backend;
+  console.info("starting headless server on PORT".replace('PORT', port));
+  backend = prefs.backend;          // set global backend, processTab needs it
   var server = new nsHttpServer();
   server.start(port);
   server.registerPathHandler('/', handleRequest);
