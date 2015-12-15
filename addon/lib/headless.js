@@ -52,14 +52,22 @@ function handleRequest(request, response)
   processTab(url, backendUrl);
 }
 
-function processTab(url, backendUrl) {
+function handleRequest(request, response) {
   // Opens a tab and registers extractTab to the load event
+  response.processAsync();
+  var url = request._queryString;
+  var backendUrl = randomString(RANDOM_STRING_LENGTH) + "/" + urlDomainForId(url);
+  console.log('recieved request: URL -> BACK'
+                .replace('URL', url).replace('BACK', backendUrl));
   tabs.open({
     "url": url,
     "onLoad": function (tab) {
       autoShot(tab, backend, backendUrl);
       tab.on("close", function (a) {
         console.log('completed processing BACK'.replace('BACK', backendUrl));
+        response.setStatusLine("1.1", 200, "OK");
+        response.write(contentServerString + backendUrl + '\n');
+        response.finish();
       });
     }
   });
