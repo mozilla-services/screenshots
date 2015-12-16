@@ -6,6 +6,12 @@ const linker = require("./linker");
 const config = require("./config").root();
 let ClipRewrites;
 
+const AWS = require('aws-sdk');
+
+// Test a PUT to s3 because configuring this requires using the aws web interface
+// If the permissions are not set up correctly, then we want to know that asap
+var s3bucket = new AWS.S3({params: {Bucket: 'pageshot-images-bucket'}});
+
 class Shot extends AbstractShot {
 
   constructor(ownerId, backend, id, attrs) {
@@ -127,13 +133,28 @@ class Shot extends AbstractShot {
 }
 
 Shot.getRawBytesForClip = function (uid) {
+  console.log("getRawBytesForClip", uid);
   return db.select(
-    "SELECT image, contenttype FROM images WHERE id = $1", [uid]
+    "SELECT url, contenttype FROM images WHERE id = $1", [uid]
   ).then((rows) => {
     if (! rows.length) {
       return null;
     } else {
-      return {data: rows[0].image, contentType: rows[0].contenttype};
+      return new Promise((resolve, reject) => {
+        s3bucket.createBucket(() => {
+          var params = {Key: uid};
+          s3bucket.getObject(params, function(err, data) {
+            if (err) {
+              console.log("Error downloading data: ", err);
+              reject(err);
+            } else {
+              console.log("Successfully downloaded data from pageshot-images-bucket", uid);
+              console.log("data", data);
+              resolve({data: data.Body, contentType: rows[0].contenttype});
+            }
+          });
+        });
+      });
     }
   });
 };
@@ -436,28 +457,58 @@ ClipRewrites = class ClipRewrites {
       return Promise.all(
         this.toInsertClipIds.map((clipId) => {
           let data = this.toInsert[clipId];
+          console.log("toInsertClipId", clipId, data.uuid);
+
+          s3bucket.createBucket(() => {
+            var params = {Key: data.uuid, Body: data.binary.data};
+            console.log("Uploading data", params);
+            s3bucket.upload(params, function(err, result) {
+              if (err) {
+                console.log("Error uploading data during image: ", data.uuid, err);
+              } else {
+                console.log("Successfully uploaded data to pageshot-images-bucket", data.uuid);
+              }
+            });
+          });
+
           return db.queryWithClient(
             client,
-            `INSERT INTO images (id, shotid, clipid, image, contenttype)
+            `INSERT INTO images (id, shotid, clipid, url, contenttype)
              VALUES ($1, $2, $3, $4, $5)
             `,
-            [data.uuid, this.shot.id, clipId, data.binary.data, data.binary.contentType]);
+            [data.uuid, this.shot.id, clipId, data.url, data.binary.contentType]);
         })
       );
     }).then(() => {
       if (this.toInsertThumbnail === null) {
         return Promise.resolve();
       }
+
+      s3bucket.createBucket(() => {
+        var params = {
+          Key: this.toInsertThumbnail.uuid,
+          Body: this.toInsertThumbnail.binary
+        };
+        console.log("thumbnail params", params);
+        s3bucket.upload(params, (err, result) => {
+          if (err) {
+            console.log("Error uploading data during thumbnail: ", this.toInsertThumbnail.uuid, err);
+          } else {
+            console.log("Successfully uploaded data to pageshot-images-bucket for thumbnail", this.toInsertThumbnail.uuid);
+          }
+        });
+      });
+
       return db.queryWithClient(
         client,
-        `INSERT INTO images (id, shotid, clipid, image, contenttype)
+        `INSERT INTO images (id, shotid, clipid, url, contenttype)
         VALUES ($1, $2, $3, $4, $5)
         `,
         // Since we don't have a clipid for the thumbnail and the column is NOT NULL,
         // Use the thumbnail uuid as the clipid. This allows figuring out which
         // images are thumbnails, too.
         [this.toInsertThumbnail.uuid, this.shot.id, this.toInsertThumbnail.uuid,
-        this.toInsertThumbnail.binary, this.toInsertThumbnail.contentType]);
+        this.toInsertThumbnail.url, this.toInsertThumbnail.contentType]);
     }).then(() => {
       this.committed = true;
     });

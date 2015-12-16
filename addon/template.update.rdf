@@ -11,7 +11,7 @@
                 <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
                 <em:minVersion>26.0</em:minVersion>
                 <em:maxVersion>*</em:maxVersion>
-                <em:updateLink>https://pageshot.dev.mozaws.net/xpi/mozilla-pageshot.xpi</em:updateLink>
+                <em:updateLink>http://pageshotfzzzy.elasticbeanstalk.com/xpi/mozilla-pageshot.xpi</em:updateLink>
               </Description>
             </em:targetApplication>
           </Description>

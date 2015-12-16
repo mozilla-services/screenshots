@@ -24,6 +24,24 @@ const config = require("./config").root();
 const { checkContent, checkAttributes } = require("./contentcheck");
 const buildTime = require("./build-time").string;
 const ua = require("universal-analytics");
+const AWS = require('aws-sdk');
+
+// Test a PUT to s3 because configuring this requires using the aws web interface
+// If the permissions are not set up correctly, then we want to know that asap
+var s3bucket = new AWS.S3({params: {Bucket: 'pageshot-images-bucket'}});
+console.log(new Date(), "creating pageshot-images-bucket");
+// createBucket is a horribly named api; it creates a local object to access
+// an existing bucket
+s3bucket.createBucket(function() {
+  var params = {Key: 'test', Body: 'Hello!'};
+  s3bucket.upload(params, function(err, data) {
+    if (err) {
+      console.log("Error uploading data during test: ", err);
+    } else {
+      console.log("Successfully uploaded data to pageshot-images-bucket/test");
+    }
+  });
+});
 
 dbschema.createTables().then(() => {
   dbschema.createKeygrip();
