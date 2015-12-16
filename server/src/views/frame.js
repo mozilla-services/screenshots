@@ -210,16 +210,16 @@ class Head extends React.Component {
              for (var i=0; i<10; i++) {
                c.push(result[i].toString(16));
              }
-             gaOptions.page = "/a-shot/" + c.join("");
+             gaOptions.location = "/a-shot/" + c.join("");
              finish();
            });
          } else {
-           gaOptions.page = "/a-shot/unknown";
+           gaOptions.location = "/a-shot/unknown";
            finish();
          }
          function finish() {
            ga("create", "${this.props.gaId}", gaOptions);
-           ga("send", "pageview");
+           ga("send", "pageview", gaOptions.location);
          }
        })();
       `;

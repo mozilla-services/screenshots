@@ -47,7 +47,7 @@ dump () {
 if [ -n "$diff" ] ; then
   tmpfile="/tmp/current-schema-$(date +%Y%m%dT%H%M%S).sql"
   dump > $tmpfile
-  diff -u $tmpfile $record_filename
+  diff -u $record_filename $tmpfile
   rm $tmpfile
 elif [ -n "$record" ] ; then
   echo "Saving to $record_filename"
