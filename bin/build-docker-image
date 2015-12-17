@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if [ $# -eq 0 ] ; then
+  echo "Usage: $0 dockerhubusername"
+  exit 4
+fi
+
 xpi="build/mozilla-pageshot.xpi"
 if [[ ! -e "$xpi" ]] ; then
   echo "Error: $xpi does not exist; run \"make server; make xpi\" before running build-docker-image"
@@ -15,8 +20,5 @@ else
   exit 3
 fi
 
-docker build -t pageshot .
-
-echo "Find the image hash and tag it with docker tag -f [image hash] [docker username]/pageshot:latest"
-echo "Then, run docker push [docker username]/pageshot to push the image to dockerhub"
-
+docker build -t $1/pageshot:latest .
+docker push $1/pageshot
