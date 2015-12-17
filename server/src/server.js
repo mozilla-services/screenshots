@@ -29,7 +29,9 @@ const AWS = require('aws-sdk');
 // Test a PUT to s3 because configuring this requires using the aws web interface
 // If the permissions are not set up correctly, then we want to know that asap
 var s3bucket = new AWS.S3({params: {Bucket: 'pageshot-images-bucket'}});
-console.log(new Date(), "creating pageshot-images-bucket");
+console.info(new Date(), "creating pageshot-images-bucket");
+console.info("Environment", process.env);
+
 // createBucket is a horribly named api; it creates a local object to access
 // an existing bucket
 s3bucket.createBucket(function() {
@@ -618,22 +620,25 @@ app.use(function (err, req, res, next) {
   errorResponse(res, "General error:", err);
 });
 
-const contentApp = express();
+let contentApp = app;
 
-contentApp.set('trust proxy', true);
+if (!config.useSinglePort) {
+  contentApp = express();
 
-contentApp.use("/static", express.static(path.join(__dirname, "static"), {
-  index: false
-}));
+  contentApp.set('trust proxy', true);
 
-contentApp.use(function (req, res, next) {
-  req.staticLink = linker.staticLink;
-  req.staticLinkWithHost = linker.staticLinkWithHost.bind(null, req);
-  let base = req.protocol + "://" + req.headers.host;
-  linker.imageLinkWithHost = linker.imageLink.bind(null, base);
-  next();
-});
+  contentApp.use("/static", express.static(path.join(__dirname, "static"), {
+    index: false
+  }));
 
+  contentApp.use(function (req, res, next) {
+    req.staticLink = linker.staticLink;
+    req.staticLinkWithHost = linker.staticLinkWithHost.bind(null, req);
+    let base = req.protocol + "://" + req.headers.host;
+    linker.imageLinkWithHost = linker.imageLink.bind(null, base);
+    next();
+  });
+}
 
 contentApp.get("/content/:id/:domain", function (req, res) {
   let shotId = req.params.id + "/" + req.params.domain;

@@ -36,6 +36,13 @@ var conf = convict({
     env: "CONTENT_ORIGIN",
     arg: "contentOrigin"
   },
+  useSinglePort: {
+    doc: "If true, use the main site port for the content server, and ignore contentPort and contentOrigin",
+    format: Boolean,
+    default: false,
+    env: "USE_SINGLE_PORT",
+    arg: "useSinglePort"
+  },
   oAuth: {
     oAuthServer: {
       doc: "The FxA OAuth server base URL",
