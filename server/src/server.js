@@ -24,7 +24,8 @@ const config = require("./config").root();
 const { checkContent, checkAttributes } = require("./contentcheck");
 const buildTime = require("./build-time").string;
 const ua = require("universal-analytics");
-const AWS = require('aws-sdk');
+const AWS = require("aws-sdk");
+const vhost = require("vhost");
 
 if (!config.mockS3) {
   // Test a PUT to s3 because configuring this requires using the aws web interface
@@ -622,25 +623,21 @@ app.use(function (err, req, res, next) {
   errorResponse(res, "General error:", err);
 });
 
-let contentApp = app;
+const contentApp = express();
 
-if (!config.useSinglePort) {
-  contentApp = express();
+contentApp.set('trust proxy', true);
 
-  contentApp.set('trust proxy', true);
+contentApp.use("/static", express.static(path.join(__dirname, "static"), {
+  index: false
+}));
 
-  contentApp.use("/static", express.static(path.join(__dirname, "static"), {
-    index: false
-  }));
-
-  contentApp.use(function (req, res, next) {
-    req.staticLink = linker.staticLink;
-    req.staticLinkWithHost = linker.staticLinkWithHost.bind(null, req);
-    let base = req.protocol + "://" + req.headers.host;
-    linker.imageLinkWithHost = linker.imageLink.bind(null, base);
-    next();
-  });
-}
+contentApp.use(function (req, res, next) {
+  req.staticLink = linker.staticLink;
+  req.staticLinkWithHost = linker.staticLinkWithHost.bind(null, req);
+  let base = req.protocol + "://" + req.headers.host;
+  linker.imageLinkWithHost = linker.imageLink.bind(null, base);
+  next();
+});
 
 contentApp.get("/content/:id/:domain", function (req, res) {
   let shotId = req.params.id + "/" + req.params.domain;
@@ -697,10 +694,20 @@ exports.simpleResponse = simpleResponse;
 exports.errorResponse = errorResponse;
 
 linker.init().then(() => {
-  app.listen(config.port);
-  console.info(`server listening on http://localhost:${config.port}/`);
-  contentApp.listen(config.contentPort);
-  console.info(`content server listening on http://localhost:${config.contentPort}/`);
+  if (config.useSinglePort) {
+    const mainapp = express();
+    const siteName = config.siteOrigin.split(":")[0];
+    const contentName = config.contentOrigin.split(":")[0];
+    mainapp.use(vhost(siteName, app));
+    mainapp.use(vhost(contentName, contentApp));
+    mainapp.listen(config.port);
+    console.info(`virtual host server listening on http://localhost:${config.port}`);
+  } else {
+    app.listen(config.port);
+    console.info(`server listening on http://localhost:${config.port}/`);
+    contentApp.listen(config.contentPort);
+    console.info(`content server listening on http://localhost:${config.contentPort}/`);
+  }
 }).catch((err) => {
   console.error("Error getting revision:", err, err.stack);
 });
