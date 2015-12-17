@@ -4,13 +4,91 @@ const db = require("./db");
 const uuid = require("uuid");
 const linker = require("./linker");
 const config = require("./config").root();
+const fs = require("fs");
+
 let ClipRewrites;
 
-const AWS = require('aws-sdk');
+let s3bucket;
+let put;
+let get;
+let del;
 
-// Test a PUT to s3 because configuring this requires using the aws web interface
-// If the permissions are not set up correctly, then we want to know that asap
-var s3bucket = new AWS.S3({params: {Bucket: 'pageshot-images-bucket'}});
+if (config.mockS3) {
+  if (!fs.existsSync("data")){
+      fs.mkdirSync("data");
+  }
+
+  get = (uid, contentType) => {
+    console.info("mocked GET", uid, contentType);
+    return new Promise((resolve, reject) => {
+      fs.readFile("data/" + uid, (err, data) => {
+        if (err) {
+          reject(err);
+        } else {
+          console.log("got data", data.length);
+          resolve({data: data, contentType: contentType});
+        }
+      });
+    });
+  };
+  put = (uid, body, comment) => {
+    console.log('mocked PUT', uid, body.length, comment);
+    return new Promise((resolve, reject) => {
+      fs.writeFile("data/" + uid, body, (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          console.log("PUT resolved");
+          resolve();
+        }
+      });
+    });
+  };
+} else {
+  const AWS = require('aws-sdk');
+
+  // Test a PUT to s3 because configuring this requires using the aws web interface
+  // If the permissions are not set up correctly, then we want to know that asap
+  s3bucket = new AWS.S3({params: {Bucket: 'pageshot-images-bucket'}});
+
+  get = (uid, contentType) => {
+    console.log("GET", uid, contentType);
+    return new Promise((resolve, reject) => {
+      s3bucket.createBucket(() => {
+        var params = {Key: uid};
+        s3bucket.getObject(params, function(err, data) {
+          if (err) {
+            console.error("Error downloading data: ", err);
+            reject(err);
+          } else {
+            console.info("Successfully downloaded data from pageshot-images-bucket", uid);
+            console.log("data", data);
+            resolve({data: data.Body, contentType: contentType});
+          }
+        });
+      });
+    });
+  };
+
+  put = (uid, body, comment) => {
+    console.log("PUT", uid, body.length, comment);
+    return new Promise((resolve, reject) => {
+      s3bucket.createBucket(() => {
+        var params = {Key: uid, Body: body};
+        console.log("Uploading data", params);
+        s3bucket.upload(params, function(err, result) {
+          if (err) {
+            reject(err);
+            console.error("Error uploading data (" + comment + "):", uid, err);
+          } else {
+            resolve();
+            console.info("Successfully uploaded data (" + comment + "):", uid);
+          }
+        });
+      });
+    });
+  };
+}
 
 class Shot extends AbstractShot {
 
@@ -140,21 +218,7 @@ Shot.getRawBytesForClip = function (uid) {
     if (! rows.length) {
       return null;
     } else {
-      return new Promise((resolve, reject) => {
-        s3bucket.createBucket(() => {
-          var params = {Key: uid};
-          s3bucket.getObject(params, function(err, data) {
-            if (err) {
-              console.log("Error downloading data: ", err);
-              reject(err);
-            } else {
-              console.log("Successfully downloaded data from pageshot-images-bucket", uid);
-              console.log("data", data);
-              resolve({data: data.Body, contentType: rows[0].contenttype});
-            }
-          });
-        });
-      });
+      return get(uid, rows[0].contenttype);
     }
   });
 };
@@ -459,17 +523,7 @@ ClipRewrites = class ClipRewrites {
           let data = this.toInsert[clipId];
           console.log("toInsertClipId", clipId, data.uuid);
 
-          s3bucket.createBucket(() => {
-            var params = {Key: data.uuid, Body: data.binary.data};
-            console.log("Uploading data", params);
-            s3bucket.upload(params, function(err, result) {
-              if (err) {
-                console.log("Error uploading data during image: ", data.uuid, err);
-              } else {
-                console.log("Successfully uploaded data to pageshot-images-bucket", data.uuid);
-              }
-            });
-          });
+          put(data.uuid, data.binary.data, "image");
 
           return db.queryWithClient(
             client,
@@ -484,20 +538,7 @@ ClipRewrites = class ClipRewrites {
         return Promise.resolve();
       }
 
-      s3bucket.createBucket(() => {
-        var params = {
-          Key: this.toInsertThumbnail.uuid,
-          Body: this.toInsertThumbnail.binary
-        };
-        console.log("thumbnail params", params);
-        s3bucket.upload(params, (err, result) => {
-          if (err) {
-            console.log("Error uploading data during thumbnail: ", this.toInsertThumbnail.uuid, err);
-          } else {
-            console.log("Successfully uploaded data to pageshot-images-bucket for thumbnail", this.toInsertThumbnail.uuid);
-          }
-        });
-      });
+      put(this.toInsertThumbnail.uuid, this.toInsertThumbnail.binary, "thumbnail");
 
       return db.queryWithClient(
         client,

@@ -43,6 +43,13 @@ var conf = convict({
     env: "USE_SINGLE_PORT",
     arg: "useSinglePort"
   },
+  mockS3: {
+    doc: "If true, store files locally instead of in s3",
+    format: Boolean,
+    default: false,
+    env: "MOCK_S3",
+    arg: "mockS3"
+  },
   oAuth: {
     oAuthServer: {
       doc: "The FxA OAuth server base URL",
