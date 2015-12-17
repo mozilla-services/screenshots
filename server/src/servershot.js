@@ -19,26 +19,22 @@ if (config.mockS3) {
   }
 
   get = (uid, contentType) => {
-    console.info("mocked GET", uid, contentType);
     return new Promise((resolve, reject) => {
       fs.readFile("data/" + uid, (err, data) => {
         if (err) {
           reject(err);
         } else {
-          console.log("got data", data.length);
           resolve({data: data, contentType: contentType});
         }
       });
     });
   };
   put = (uid, body, comment) => {
-    console.log('mocked PUT', uid, body.length, comment);
     return new Promise((resolve, reject) => {
       fs.writeFile("data/" + uid, body, (err) => {
         if (err) {
           reject(err);
         } else {
-          console.log("PUT resolved");
           resolve();
         }
       });
@@ -52,7 +48,6 @@ if (config.mockS3) {
   s3bucket = new AWS.S3({params: {Bucket: 'pageshot-images-bucket'}});
 
   get = (uid, contentType) => {
-    console.log("GET", uid, contentType);
     return new Promise((resolve, reject) => {
       s3bucket.createBucket(() => {
         var params = {Key: uid};
@@ -61,8 +56,6 @@ if (config.mockS3) {
             console.error("Error downloading data: ", err);
             reject(err);
           } else {
-            console.info("Successfully downloaded data from pageshot-images-bucket", uid);
-            console.log("data", data);
             resolve({data: data.Body, contentType: contentType});
           }
         });
@@ -71,18 +64,15 @@ if (config.mockS3) {
   };
 
   put = (uid, body, comment) => {
-    console.log("PUT", uid, body.length, comment);
     return new Promise((resolve, reject) => {
       s3bucket.createBucket(() => {
         var params = {Key: uid, Body: body};
-        console.log("Uploading data", params);
         s3bucket.upload(params, function(err, result) {
           if (err) {
             reject(err);
             console.error("Error uploading data (" + comment + "):", uid, err);
           } else {
             resolve();
-            console.info("Successfully uploaded data (" + comment + "):", uid);
           }
         });
       });
@@ -211,7 +201,6 @@ class Shot extends AbstractShot {
 }
 
 Shot.getRawBytesForClip = function (uid) {
-  console.log("getRawBytesForClip", uid);
   return db.select(
     "SELECT url, contenttype FROM images WHERE id = $1", [uid]
   ).then((rows) => {
@@ -521,7 +510,6 @@ ClipRewrites = class ClipRewrites {
       return Promise.all(
         this.toInsertClipIds.map((clipId) => {
           let data = this.toInsert[clipId];
-          console.log("toInsertClipId", clipId, data.uuid);
 
           put(data.uuid, data.binary.data, "image");
 
