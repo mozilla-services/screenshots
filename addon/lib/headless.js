@@ -13,6 +13,7 @@
  *    Check URL before opening
  *    Fix autoShot - currently it leaves some errors about attrs
  *    Add preference for whether or not headless should run
+ *    Reimplement contentServerString?
  * 
  * General usage: 
  * When you make an HTTP request to this server on the appropriate port it will
@@ -40,16 +41,20 @@ const { randomString } = require("./randomstring");
 const { autoShot, RANDOM_STRING_LENGTH, urlDomainForId } = require("./shooter");
 
 var backend;
-var port = 10082;
-var contentServerString = "http://localhost:10081/content/";
 
 exports.init = function init(prefs) {
   /* Initializes the backend server, which listens for requests made to / and
    * passes them to the handleRequest function below
    */
-  console.info("starting headless server on PORT".replace('PORT', port));
+  if (!prefs.startHttpServer) { return; }
+  var ip = prefs.httpServerIp;
+  var port = prefs.httpServerPort;
   backend = prefs.backend;        // set global backend, handleRequest needs it
+  console.info("starting headless server on IP:PORT"
+                                                    .replace('IP', ip)
+                                                    .replace('PORT', port));
   var server = new nsHttpServer();
+  if (ip != "localhost") { server.identity.add("http", ip, port); }
   server.start(port);
   server.registerPathHandler('/', handleRequest);
 };
@@ -72,7 +77,7 @@ function handleRequest(request, response) {
       tab.on("close", function (a) {
         console.log('completed processing BACK'.replace('BACK', backendUrl));
         response.setStatusLine("1.1", 200, "OK");
-        response.write(contentServerString + backendUrl + '\n');
+        response.write(backendUrl + '\n');
         response.finish();
       });
     }
