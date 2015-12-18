@@ -29,20 +29,11 @@
 const { Cc, Ci, Cu } = require("chrome");
 const tabs = require("sdk/tabs");
 
+const HTTPD_MOD_URL = module.uri.replace("/headless.js", "/httpd.jsm");
+const { nsHttpServer } = Cu.import(HTTPD_MOD_URL);
+
 const { randomString } = require("./randomstring");
 const { autoShot, RANDOM_STRING_LENGTH, urlDomainForId } = require("./shooter");
-
-console.log("IMPORTING HTTPD");
-const self = require("sdk/self");
-const httpdUri = self.data.url("../lib/httpd.js"); //http://mxr.mozilla.org/mozilla-central/source/netwerk/test/httpserver/httpd.js
-console.log(httpdUri);
-// Loads find in a new tab, displaying contents
-tabs.open(httpdUri);
-// Works
-const { nsHttpServer } = Cu.import("file:///home/ben/dev/repos/pageshot/addon/lib/httpd.js");
-// Doesn't work
-//const { nsHttpServer } = Cu.import(httpdUri); //resource://jid1-neeaf3sahdkhpa-at-jetpack/lib/httpd.js
-
 
 var backend;
 var port = 10082;
