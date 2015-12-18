@@ -1,6 +1,6 @@
 {
   "name": "pageshot",
-  "description": "An experiment in creating better shareable versions of content http://pageshotfzzzy.dev.mozaws.net",
+  "description": "An experiment in creating better shareable versions of content https://pageshotfzzzy.dev.mozaws.net",
   "repository": {
     "type": "git",
     "url": "https://github.com/mozilla-services/pageshot"
