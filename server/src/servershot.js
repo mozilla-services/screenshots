@@ -19,6 +19,9 @@ if (! config.useS3) {
   }
 
   get = (uid, contentType) => {
+    if (uid.indexOf("/") !== -1 && uid.indexOf(".") !== -1) {
+      return Promise.reject("Invalid uid");
+    }
     return new Promise((resolve, reject) => {
       fs.readFile("data/" + uid, (err, data) => {
         if (err) {
@@ -30,6 +33,9 @@ if (! config.useS3) {
     });
   };
   put = (uid, body, comment) => {
+    if (uid.indexOf("/") !== -1 && uid.indexOf(".") !== -1) {
+      return Promise.reject("Invalid uid");
+    }
     return new Promise((resolve, reject) => {
       fs.writeFile("data/" + uid, body, (err) => {
         if (err) {
