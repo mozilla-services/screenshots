@@ -701,6 +701,9 @@ linker.init().then(() => {
     mainapp.use(vhost(siteName, app));
     mainapp.use(vhost(contentName, contentApp));
     mainapp.listen(config.port);
+    mainapp.get("/", function (req, res) {
+      res.send("ok");
+    });
     console.info(`virtual host server listening on http://localhost:${config.port}`);
   } else {
     app.listen(config.port);

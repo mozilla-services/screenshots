@@ -37,7 +37,7 @@ var conf = convict({
     arg: "contentOrigin"
   },
   useSinglePort: {
-    doc: "If true, use the main site port for the content server, and ignore contentPort and contentOrigin",
+    doc: "If true, use the main site port for the content server, and ignore contentPort. Virtual hosts will be used for SITE_ORIGIN and CONTENT_ORIGIN.",
     format: Boolean,
     default: false,
     env: "USE_SINGLE_PORT",

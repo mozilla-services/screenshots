@@ -1,0 +1,17 @@
+#!/bin/bash
+
+export RDS_USERNAME=postgres
+export RDS_HOSTNAME=pageshot-dev.czvvrkdqhklf.us-east-1.rds.amazonaws.com
+export USE_S3=true
+export USE_SINGLE_PORT=true
+export SITE_ORIGIN=pageshotfzzzy.dev.mozaws.net
+export CONTENT_ORIGIN=pageshotcontentfzzzy.dev.mozaws.net
+
+export PATH="/app/node_modules/.bin:$PATH"
+
+if [[ ! -e "node_modules/.bin/nodemon" ]] ; then
+  echo "Installing node packages..."
+  cd /app && npm install
+fi
+
+cd /app && node -e 'require("babel/polyfill"); require("./build/server/server");'
