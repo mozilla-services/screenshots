@@ -12,6 +12,7 @@
  *    Documentation
  *    Check URL before opening
  *    Fix autoShot - currently it leaves some errors about attrs
+ *    Add preference for whether or not headless should run
  * 
  * General usage: 
  * When you make an HTTP request to this server on the appropriate port it will
@@ -24,6 +25,9 @@
  * Syntax, assuming default IP, PORT, and target URL of asdf.com:
  *    curl 'http://localhost:10082/?http://www.asdf.com' 
  *
+ * Usage without X:
+ * To use this without X, start the server as normal. Then, in the bin/
+ * directory, run `sh ephemeral-x.sh ./run-addon`.
  */
 
 const { Cc, Ci, Cu } = require("chrome");
@@ -40,17 +44,22 @@ var port = 10082;
 var contentServerString = "http://localhost:10081/content/";
 
 exports.init = function init(prefs) {
+  /* Initializes the backend server, which listens for requests made to / and
+   * passes them to the handleRequest function below
+   */
   console.info("starting headless server on PORT".replace('PORT', port));
-  backend = prefs.backend;          // set global backend, processTab needs it
-  //var server = Components.classes["@mozilla.org/server/jshttp;1"]
-                         //.createInstance(Components.interfaces.nsIHttpServer);
+  backend = prefs.backend;        // set global backend, handleRequest needs it
   var server = new nsHttpServer();
   server.start(port);
   server.registerPathHandler('/', handleRequest);
 };
 
 function handleRequest(request, response) {
-  // Opens a tab and registers extractTab to the load event
+  /* Takes a request from the server, makes the response asynchronous so the
+   * client waits for a response, processes the query string from the request
+   * as a URL with the function autoShot from shooter.js and finally returns a
+   * URL which the processed content may be found at
+   */
   response.processAsync();
   var url = request._queryString;
   var backendUrl = randomString(RANDOM_STRING_LENGTH) + "/" + urlDomainForId(url);

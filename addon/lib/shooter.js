@@ -736,9 +736,10 @@ function urlDomainForId(urlString) {
 }
 
 exports.autoShot = function (tab, backend, backendUrl) {
-  // Runs the javascript cleanup utilities on the tab, takes a screenshot,
-  // creates a shot instance, and pushes the data to the backend server without
-  // asking anything via UI
+  /* Runs the javascript cleanup utilities on the tab, takes a screenshot,
+   * creates a shot instance, and pushes the data to the backend server without
+   * asking anything via UI
+   */
   
   watchPromise(callScript(
     tab,
