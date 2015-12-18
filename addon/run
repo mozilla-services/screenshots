@@ -2,7 +2,7 @@
 
 set -e
 
-HTTP_HOST=pageshotfzzzy.elasticbeanstalk.com
+HTTP_HOST=pageshotfzzzy.dev.mozaws.net
 
 base="$(dirname $BASH_SOURCE)"
 base="$(cd $base ; pwd)"
