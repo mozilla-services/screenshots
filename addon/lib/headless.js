@@ -39,17 +39,17 @@ const { nsHttpServer } = Cu.import(HTTPD_MOD_URL);
 
 const { randomString } = require("./randomstring");
 const { autoShot, RANDOM_STRING_LENGTH, urlDomainForId } = require("./shooter");
+const { prefs } = require("sdk/simple-prefs");
 
-var backend;
+var ip = prefs.httpServerIp;
+var port = prefs.httpServerPort;
+var backend = prefs.backend;    // set global backend, handleRequest needs it
 
-exports.init = function init(prefs) {
+exports.init = function init() {
   /* Initializes the backend server, which listens for requests made to / and
    * passes them to the handleRequest function below
    */
   if (!prefs.startHttpServer) { return; }
-  var ip = prefs.httpServerIp;
-  var port = prefs.httpServerPort;
-  backend = prefs.backend;        // set global backend, handleRequest needs it
   console.info("starting headless server on IP:PORT"
                                                     .replace('IP', ip)
                                                     .replace('PORT', port));
