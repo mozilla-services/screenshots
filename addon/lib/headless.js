@@ -1,7 +1,7 @@
 /* Headless server, for use with Pageshot:
- * https://github.com/mozilla-services/pageshot
+ *  https://github.com/mozilla-services/pageshot
  * Relies on the server module from mozilla testing:
- * http://mxr.mozilla.org/mozilla-central/source/netwerk/test/httpserver/
+ *  http://mxr.mozilla.org/mozilla-central/source/netwerk/test/httpserver/
  *
  * Listening IP address may be assigned to httpd, by default it is localhost. 
  * The default is used in this implementation.
@@ -31,7 +31,17 @@ const tabs = require("sdk/tabs");
 
 const { randomString } = require("./randomstring");
 const { autoShot, RANDOM_STRING_LENGTH, urlDomainForId } = require("./shooter");
+
+console.log("IMPORTING HTTPD");
+const self = require("sdk/self");
+const httpdUri = self.data.url("../lib/httpd.js"); //http://mxr.mozilla.org/mozilla-central/source/netwerk/test/httpserver/httpd.js
+console.log(httpdUri);
+// Loads find in a new tab, displaying contents
+tabs.open(httpdUri);
+// Works
 const { nsHttpServer } = Cu.import("file:///home/ben/dev/repos/pageshot/addon/lib/httpd.js");
+// Doesn't work
+//const { nsHttpServer } = Cu.import(httpdUri); //resource://jid1-neeaf3sahdkhpa-at-jetpack/lib/httpd.js
 
 
 var backend;
@@ -41,6 +51,8 @@ var contentServerString = "http://localhost:10081/content/";
 exports.init = function init(prefs) {
   console.info("starting headless server on PORT".replace('PORT', port));
   backend = prefs.backend;          // set global backend, processTab needs it
+  //var server = Components.classes["@mozilla.org/server/jshttp;1"]
+                         //.createInstance(Components.interfaces.nsIHttpServer);
   var server = new nsHttpServer();
   server.start(port);
   server.registerPathHandler('/', handleRequest);
@@ -64,7 +76,7 @@ function handleReadableRequest(request, response) {
   console.log('recieved request: URL -> BACK'   // Log both URLs
                 .replace('URL', url).replace('BACK', backendUrl));
 
-  tabs.open({   // Open a tab
+  tabs.open({                   // Open a tab
     "url": url,
     "onOpen": function (tab) {  // When the tab opens, run this on it
       tab.on("load", function (tab) { 
