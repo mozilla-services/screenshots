@@ -12,7 +12,8 @@ When you run docker, you should use --net=host and pass the following parameters
   RDS_HOSTNAME - the hostname of your postgres database
   SITE_ORIGIN - the publicly visible domain name for the main site
   CONTENT_ORIGIN - the publicly visible domain name for the content site
+  S3_BUCKET_NAME - the name of the s3 bucket to store images in
 
 Example command line:
 
-  docker run --net=host -e 'RDS_USERNAME=postgres RDS_PASSWORD=******** RDS_HOSTNAME=pageshot-dev.czvvrkdqhklf.us-east-1.rds.amazonaws.com SITE_ORIGIN=pageshotfzzzy.dev.mozaws.net CONTENT_ORIGIN=pageshotcontentfzzzy.dev.mozaws.net' fzzzy/pageshot
+  docker run --net=host -e 'RDS_USERNAME=postgres RDS_PASSWORD=******** RDS_HOSTNAME=pageshot-dev.czvvrkdqhklf.us-east-1.rds.amazonaws.com SITE_ORIGIN=pageshotfzzzy.dev.mozaws.net CONTENT_ORIGIN=pageshotcontentfzzzy.dev.mozaws.net S3_BUCKET_NAME=pageshot-images-bucket' fzzzy/pageshot

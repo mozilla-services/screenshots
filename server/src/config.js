@@ -50,6 +50,13 @@ var conf = convict({
     env: "USE_S3",
     arg: "useS3"
   },
+  s3BucketName: {
+    doc: "The name of the bucket to use on s3, if useS3 is true",
+    format: String,
+    default: "pageshot-images-bucket",
+    env: "S3_BUCKET_NAME",
+    arg: "s3BucketName"
+  },
   oAuth: {
     oAuthServer: {
       doc: "The FxA OAuth server base URL",
