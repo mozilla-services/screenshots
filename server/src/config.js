@@ -43,12 +43,12 @@ var conf = convict({
     env: "USE_SINGLE_PORT",
     arg: "useSinglePort"
   },
-  mockS3: {
-    doc: "If true, store files locally instead of in s3",
+  useS3: {
+    doc: "If true, store files in s3. If false, store them locally",
     format: Boolean,
     default: false,
-    env: "MOCK_S3",
-    arg: "mockS3"
+    env: "USE_S3",
+    arg: "useS3"
   },
   oAuth: {
     oAuthServer: {

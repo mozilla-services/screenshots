@@ -13,7 +13,7 @@ let put;
 let get;
 let del;
 
-if (config.mockS3) {
+if (! config.useS3) {
   if (!fs.existsSync("data")){
       fs.mkdirSync("data");
   }

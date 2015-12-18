@@ -27,7 +27,7 @@ const ua = require("universal-analytics");
 const AWS = require("aws-sdk");
 const vhost = require("vhost");
 
-if (!config.mockS3) {
+if (config.useS3) {
   // Test a PUT to s3 because configuring this requires using the aws web interface
   // If the permissions are not set up correctly, then we want to know that asap
   var s3bucket = new AWS.S3({params: {Bucket: 'pageshot-images-bucket'}});
