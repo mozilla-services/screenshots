@@ -423,7 +423,10 @@ app.get("/images/:imageid", function (req, res) {
     if (obj === null) {
       simpleResponse(res, "Not Found", 404);
     } else {
-      let analyticsUrl = `/images/${encodeURIComponent(req.params.imageid)}`;
+      let hasher = require("crypto").createHash("sha1");
+      hasher.update(req.params.imageid);
+      let hashedId = hasher.digest("hex").substr(0, 15);
+      let analyticsUrl = `/images/hash${encodeURIComponent(hashedId)}`;
       if (req.userAnalytics) {
         req.userAnalytics.pageview(analyticsUrl).send();
       } else {
