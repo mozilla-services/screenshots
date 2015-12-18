@@ -170,8 +170,12 @@ build/addon/package.json: addon/package.json
 	@mkdir -p $(@D)
 	cp $< $@
 
-addon: npm $(data_dest) $(vendor_dest) $(lib_dest) $(sass_addon_dest) $(imgs_addon_dest) $(static_addon_dest) $(shared_addon_dest) build/addon/data/panel-bundle.js build/addon/package.json
+build/addon/lib/httpd.jsm: addon/lib/httpd.jsm
+	@mkdir -p $(@D)
+	cp $< $@
 
+addon: npm $(data_dest) $(vendor_dest) $(lib_dest) $(sass_addon_dest) $(imgs_addon_dest) $(static_addon_dest) $(shared_addon_dest) build/addon/data/panel-bundle.js build/addon/package.json build/addon/lib/httpd.jsm
+ 
 xpi: build/mozilla-pageshot.xpi build/mozilla-pageshot.update.rdf
 
 ## Server related rules:
