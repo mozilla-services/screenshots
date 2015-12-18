@@ -32,7 +32,6 @@ if (config.useS3) {
   // If the permissions are not set up correctly, then we want to know that asap
   var s3bucket = new AWS.S3({params: {Bucket: 'pageshot-images-bucket'}});
   console.info(new Date(), "creating pageshot-images-bucket");
-  console.info("Environment", process.env);
 
   // createBucket is a horribly named api; it creates a local object to access
   // an existing bucket
@@ -40,9 +39,9 @@ if (config.useS3) {
     var params = {Key: 'test', Body: 'Hello!'};
     s3bucket.upload(params, function(err, data) {
       if (err) {
-        console.log("Error uploading data during test: ", err);
+        console.warn("Error uploading data during test: ", err);
       } else {
-        console.log("Successfully uploaded data to pageshot-images-bucket/test");
+        console.info("Successfully uploaded data to pageshot-images-bucket/test");
       }
     });
   });
