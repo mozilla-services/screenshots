@@ -1,11 +1,7 @@
 #!/bin/bash
 
-export RDS_USERNAME=postgres
-export RDS_HOSTNAME=pageshot-dev.czvvrkdqhklf.us-east-1.rds.amazonaws.com
 export USE_S3=true
 export USE_VIRTUAL_HOSTS=true
-export SITE_ORIGIN=pageshotfzzzy.dev.mozaws.net
-export CONTENT_ORIGIN=pageshotcontentfzzzy.dev.mozaws.net
 
 export PATH="/app/node_modules/.bin:$PATH"
 
