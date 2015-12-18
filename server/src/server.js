@@ -694,7 +694,7 @@ exports.simpleResponse = simpleResponse;
 exports.errorResponse = errorResponse;
 
 linker.init().then(() => {
-  if (config.useSinglePort) {
+  if (config.useVirtualHosts) {
     const mainapp = express();
     const siteName = config.siteOrigin.split(":")[0];
     const contentName = config.contentOrigin.split(":")[0];
