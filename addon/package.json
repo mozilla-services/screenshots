@@ -19,6 +19,27 @@
       "value": "https://pageshot.dev.mozaws.net"
     },
     {
+      "name": "startHttpServer",
+      "title": "start HTTP server",
+      "description": "start HTTP",
+      "type": "bool",
+      "value": false
+    },
+    {
+      "name": "httpServerPort",
+      "title": "HTTP server: port to listen on",
+      "description": "port for the HTTP server to listen on",
+      "type": "string",
+      "value": "10082"
+    },
+    {
+      "name": "httpServerIp",
+      "title": "HTTP server: IP to listen on",
+      "description": "IP for the HTTP server to listen on",
+      "type": "string",
+      "value": "localhost"
+    },
+    {
       "name": "inlineCss",
       "title": "inline CSS",
       "description": "EXPERIMENTAL: instead of including CSS files, inline only necessary CSS in style tags",

@@ -22,6 +22,9 @@ const {Cu} = require("chrome");
 const winutil = require("sdk/window/utils");
 const req = require("./req");
 
+// Give the server a chance to start if the pref is set
+require("./headless").init();
+
 Cu.import("resource:///modules/UITour.jsm");
 
 let loadReason = null;
