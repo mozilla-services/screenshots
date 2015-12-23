@@ -5,4 +5,4 @@ COPY build/mozilla-pageshot.xpi /app/build/xpi/mozilla-pageshot.xpi
 COPY build/mozilla-pageshot.update.rdf /app/build/xpi/mozilla-pageshot.update.rdf
 RUN cd app && npm install
 
-CMD /app/bin/run-docker
+CMD /app/bin/_run-docker
