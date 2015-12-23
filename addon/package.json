@@ -40,6 +40,13 @@
       "value": "localhost"
     },
     {
+      "name": "readableSleep",
+      "title": "HTTP server: sleep variable",
+      "description": "Amount of time (in ms) to sleep when handling a readable request",
+      "type": "integer",
+      "value": 200
+    },
+    {
       "name": "inlineCss",
       "title": "inline CSS",
       "description": "EXPERIMENTAL: instead of including CSS files, inline only necessary CSS in style tags",
