@@ -2,6 +2,7 @@
 
 if [ $# -eq 0 ] ; then
   echo "Usage: $0 dockerhubusername"
+  echo "  builds the pageshot docker image, tags it as [dockerhubusername]/pageshot:latest, and uploads it to dockerhub."
   exit 4
 fi
 
