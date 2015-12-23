@@ -130,7 +130,7 @@ function handleReadableRequest(request, response) {
       tab.on("close", function () {     // When the tab is closed we know autoshot is done, so return the URL
         console.log('completed processing BACK'.replace('BACK', backendUrl));
         response.setStatusLine("1.1", 200, "OK");
-        response.write(backendUrl + '\n');
+        response.write("localhost:10081/content/" + backendUrl + '\n');
         response.finish();
       });
     }
