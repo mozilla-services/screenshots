@@ -29,8 +29,8 @@
       "name": "httpServerPort",
       "title": "HTTP server: port to listen on",
       "description": "port for the HTTP server to listen on",
-      "type": "string",
-      "value": "10082"
+      "type": "integer",
+      "value": 10082
     },
     {
       "name": "httpServerIp",
