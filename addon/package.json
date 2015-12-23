@@ -16,7 +16,7 @@
       "title": "backend URL",
       "description": "URL of the backend service to store pages",
       "type": "string",
-      "value": "https://pageshotfzzzy.dev.mozaws.net/"
+      "value": "https://pageshotfzzzy.dev.mozaws.net"
     },
     {
       "name": "inlineCss",
