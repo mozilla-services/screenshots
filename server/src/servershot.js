@@ -46,6 +46,21 @@ if (! config.useS3) {
       });
     });
   };
+
+  del = (uid) => {
+    if (uid.indexOf("/") !== -1 && uid.indexOf(".") !== -1) {
+      return Promise.reject("Invalid uid");
+    }
+    return new Promise((resolve, reject) => {
+      fs.unlink("data/" + uid, function(err) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      })
+    });
+  }
 } else {
   const AWS = require('aws-sdk');
 
@@ -55,7 +70,7 @@ if (! config.useS3) {
     return new Promise((resolve, reject) => {
       s3bucket.createBucket(() => {
         var params = {Key: uid};
-        s3bucket.getObject(params, function(err, data) {
+        s3bucket.getObject(params, function (err, data) {
           if (err) {
             console.error("Error downloading data: ", err);
             reject(err);
@@ -71,10 +86,25 @@ if (! config.useS3) {
     return new Promise((resolve, reject) => {
       s3bucket.createBucket(() => {
         var params = {Key: uid, Body: body};
-        s3bucket.upload(params, function(err, result) {
+        s3bucket.upload(params, function (err, result) {
           if (err) {
             reject(err);
             console.error("Error uploading data (" + comment + "):", uid, err);
+          } else {
+            resolve();
+          }
+        });
+      });
+    });
+  };
+
+  del = (uid) => {
+    return new Promise((resolve, reject) => {
+      s3bucket.createBucket(() => {
+        var params = {Key: uid};
+        s3bucket.deleteObject(params, function (err, result) {
+          if (err) {
+            reject(err);
           } else {
             resolve();
           }
@@ -498,19 +528,35 @@ ClipRewrites = class ClipRewrites {
 
   commit(client) {
     let query;
-    if (this.unedited.length) {
-      query = `DELETE FROM images
-               WHERE shotid = $1
-                    AND clipid NOT IN (${db.markersForArgs(2, this.unedited.length)})
-              `;
+    let unedited = this.unedited;
+    if (unedited.length) {
+      query = `SELECT id FROM images WHERE shotid = $1
+        AND clipid NOT IN (${db.markersForArgs(2, this.unedited.length)})`;
     } else {
-      query = `DELETE FROM images WHERE shotid = $1`;
+      query = `SELECT id FROM images WHERE shotid = $1`;
     }
-    return db.queryWithClient(
+    let promise = db.queryWithClient(
       client,
       query,
       [this.shot.id].concat(this.unedited)
-    ).then(() => {
+    ).then((result) => {
+
+      // Fire and forget attempts to delete from s3
+      for (let i = 0; i < result.rows.length; i++) {
+        del(result.rows[i].id);
+      }
+
+      if (unedited.length) {
+        query = `DELETE FROM images
+               WHERE shotid = $1
+                    AND clipid NOT IN (${db.markersForArgs(2, this.unedited.length)})
+              `;
+      } else {
+        query = "DELETE FROM images WHERE shotid = $1";
+      }
+      return db.queryWithClient(client, query, [this.shot.id].concat(this.unedited));
+    });
+    return promise.then(() => {
       return Promise.all(
         this.toInsertClipIds.map((clipId) => {
           let data = this.toInsert[clipId];
