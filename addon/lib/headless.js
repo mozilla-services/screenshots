@@ -121,7 +121,7 @@ function handleReadableRequest(request, response) {
           });
           worker.port.on("done", function () { // When the worker emits done, wait a bit then fire autoshot
             console.log('readability should be finished');
-            sleep(500000);
+            sleep(prefs.readableSleep); // Sleep is required because if you fire autoShot immediately the DOM comes up empty
             autoShot(tab, backend, backendUrl);
           });
         }
