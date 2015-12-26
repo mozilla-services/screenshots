@@ -232,6 +232,7 @@ class AbstractShot {
     this.documentSize = attrs.documentSize || null;
     this.fullScreenThumbnail = attrs.fullScreenThumbnail || null;
     this.isPublic = attrs.isPublic === undefined ? null : !! attrs.isPublic;
+    this.resources = attrs.resources || {};
     this._clips = {};
     if (attrs.clips) {
       for (let clipId in attrs.clips) {
@@ -730,13 +731,32 @@ ${options.addBody || ""}
     this._dirty("isPublic");
   }
 
+  get resources() {
+    return this._resources;
+  }
+  set resources(val) {
+    if (val === null || val === undefined) {
+      this._resources = null;
+      this._dirty("resources");
+      return;
+    }
+    assert(typeof val == "object", "resources should be an object, not:", typeof val);
+    for (let key in val) {
+      assert(key.search(/^[a-zA-Z0-9\.\-]+$/) === 0, "Bad resource name: " + key);
+      let obj = val[key];
+      assert(checkObject(obj, ['url', 'tag', 'elId', 'attr'], ['hash', 'rel']), "Invalid resource " + key + ": " + JSON.stringify(obj));
+    }
+    this._resources = val;
+    this._dirty("resources");
+  }
+
 }
 
 AbstractShot.prototype.REGULAR_ATTRS = (`
 deviceId url docTitle ogTitle userTitle createdDate createdDevice favicon
 history comments hashtags images readable head body htmlAttrs bodyAttrs
 headAttrs microdata siteName openGraph twitterCard documentSize
-fullScreenThumbnail isPublic
+fullScreenThumbnail isPublic resources
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`
