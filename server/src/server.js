@@ -24,6 +24,9 @@ const config = require("./config").root();
 const { checkContent, checkAttributes } = require("./contentcheck");
 const buildTime = require("./build-time").string;
 const ua = require("universal-analytics");
+const urlParse = require("url").parse;
+const http = require("http");
+const https = require("https");
 
 dbschema.createTables().then(() => {
   dbschema.createKeygrip();
@@ -636,15 +639,61 @@ contentApp.get("/content/:id/:domain", function (req, res) {
       `,
       rewriteLinks: (key, data) => {
         let url = data.url;
+        let sig = dbschema.getKeygrip().sign(new Buffer(url, 'utf8'));
+        let proxy = `${req.protocol}://${req.headers.host}/proxy?url=${encodeURIComponent(url)}&sig=${encodeURIComponent(sig)}`;
         if (data.hash) {
-          url += "#" + data.hash;
+          proxy += "#" + data.hash;
         }
-        return url;
+        return proxy;
       }
     }));
   }).catch(function (e) {
     errorResponse(res, "Failed to load shot", e);
   });
+});
+
+contentApp.get("/proxy", function (req, res) {
+  let url = req.query.url;
+  let sig = req.query.sig;
+  let isValid = dbschema.getKeygrip().verify(new Buffer(url, 'utf8'), sig);
+  if (! isValid) {
+    return simpleResponse(res, "Bad signature", 403);
+  }
+  url = urlParse(url);
+  let httpModule = http;
+  if (url.protocol == "https:") {
+    httpModule = https;
+  }
+  let headers = {};
+  for (let passthrough of ["user-agent", "if-modified-since", "if-none-match"]) {
+    if (req.headers[passthrough]) {
+      headers[passthrough] = req.headers[passthrough];
+    }
+  }
+  let subreq = httpModule.request({
+    protocol: url.protocol,
+    host: url.host,
+    port: url.port,
+    method: "GET",
+    path: url.path,
+    headers: headers
+  });
+  subreq.on("response", function (subres) {
+    res.writeHead(subres.statusCode, subres.statusMessage, subres.headers);
+    subres.on("data", function (chunk) {
+      res.write(chunk);
+    });
+    subres.on("end", function () {
+      res.end();
+    });
+    subres.on("error", function (err) {
+      errorResponse(res, "Error getting response:", err);
+    });
+  });
+  subreq.on("error", function (err) {
+    errorResponse(res, "Error fetching:", err);
+  });
+  subreq.end();
 });
 
 function shouldRenderSimple(req) {
