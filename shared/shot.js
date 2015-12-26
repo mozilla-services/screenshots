@@ -231,7 +231,7 @@ class AbstractShot {
     this.twitterCard = attrs.twitterCard || null;
     this.documentSize = attrs.documentSize || null;
     this.fullScreenThumbnail = attrs.fullScreenThumbnail || null;
-    this.isPublic = attrs.isPublic === undefined ? null : !! attrs.isPublic;
+    this.isPublic = attrs.isPublic === undefined || attrs.isPublic === null ? null : !! attrs.isPublic;
     this.resources = attrs.resources || {};
     this._clips = {};
     if (attrs.clips) {
