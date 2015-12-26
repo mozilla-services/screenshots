@@ -360,16 +360,42 @@ class AbstractShot {
 
   staticHtml(options) {
     options = options || "";
+    let head = this.head;
+    let body = this.body;
+    let rewriter = (html) => {
+      let keys = Object.keys(this.resources);
+      for (let key of keys) {
+        if (key.search(/^[a-zA-Z0-9.\-]+$/) === -1) {
+          console.warn("Bad resource name:", key);
+          return;
+        }
+      }
+      let re = new RegExp(keys.join("|"), "g");
+      let newHtml = html.replace(re, (match) => {
+        return options.rewriteLinks(match, this.resources[match]);
+      });
+      newHtml = newHtml.replace(/"data:text\/html;base64,([^"]*)"/g, (match, group) => {
+        let html = this.atob(group);
+        html = rewriter(html);
+        let link = this.btoa(html);
+        return `"data:text/html;base64,${link}"`;
+      });
+      return newHtml;
+    };
+    if (options.rewriteLinks && this.resources) {
+      head = rewriter(head);
+      body = rewriter(body);
+    }
     return `<!DOCTYPE html>
 <html${formatAttributes(this.htmlAttrs)}>
 <head${formatAttributes(this.headAttrs)}>
 <meta charset="UTF-8">
 ${options.addHead || ""}
 <base href="${escapeAttribute(this.url)}">
-${this.head}
+${head}
 </head>
 <body${formatAttributes(this.bodyAttrs)}>
-${this.body}
+${body}
 ${options.addBody || ""}
 </body>
 </html>`;

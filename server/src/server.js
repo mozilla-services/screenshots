@@ -619,7 +619,6 @@ contentApp.use(function (req, res, next) {
   next();
 });
 
-
 contentApp.get("/content/:id/:domain", function (req, res) {
   let shotId = req.params.id + "/" + req.params.domain;
   Shot.getFullShot(req.backend, shotId).then((shot) => {
@@ -634,7 +633,14 @@ contentApp.get("/content/:id/:domain", function (req, res) {
       <script>var SITE_ORIGIN = "${req.protocol}://${config.siteOrigin}";</script>
       <script src="${req.staticLinkWithHost("js/content-helper.js")}"></script>
       <link rel="stylesheet" href="${req.staticLinkWithHost("css/content.css")}">
-      `
+      `,
+      rewriteLinks: (key, data) => {
+        let url = data.url;
+        if (data.hash) {
+          url += "#" + data.hash;
+        }
+        return url;
+      }
     }));
   }).catch(function (e) {
     errorResponse(res, "Failed to load shot", e);
