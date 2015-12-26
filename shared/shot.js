@@ -134,13 +134,13 @@ function deepEqual(a, b) {
     return false;
   }
   let seen = {};
-  for (let attr of a) {
+  for (let attr in a) {
     if (! deepEqual(a[attr], b[attr])) {
       return false;
     }
     seen[attr] = true;
   }
-  for (let attr of b) {
+  for (let attr in b) {
     if (! seen[attr]) {
       if (! deepEqual(a[attr], b[attr])) {
         return false;
