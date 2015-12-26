@@ -129,6 +129,7 @@ const skipElementsOKEmpty = {
   BDO: true,
   BR: true,
   OBJECT: true,
+  SOURCE: true,
   TD: true,
   TR: true,
   TH: true,
@@ -233,6 +234,10 @@ function staticHTML(el) {
         value = value.replace(/(dns-)?prefetch/ig, "");
       } else if (name == 'src' && replSrc) {
         value = replSrc;
+      } else if (name == 'srcset') {
+        let parts = attrs[i].value.split(/\s+/);
+        let link = rewriteResource(el, name, parts[0]);
+        value = link + " " + (parts[1] || "");
       } else if (name == "href" || name == "src" || name == "action" || name == "value" || name == "checked" || name == "selected") {
         value = el[name] + "";
         if (name === "href" || name === "src") {
