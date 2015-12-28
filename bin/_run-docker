@@ -1,0 +1,13 @@
+#!/bin/bash
+
+export USE_S3=true
+export USE_VIRTUAL_HOSTS=true
+
+export PATH="/app/node_modules/.bin:$PATH"
+
+if [[ ! -e "node_modules/.bin/nodemon" ]] ; then
+  echo "Installing node packages..."
+  cd /app && npm install
+fi
+
+cd /app && node -e 'require("babel/polyfill"); require("./build/server/server");'
