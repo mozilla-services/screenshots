@@ -27,6 +27,7 @@ const ua = require("universal-analytics");
 const urlParse = require("url").parse;
 const http = require("http");
 const https = require("https");
+const genUuid = require("nodify-uuid");
 
 dbschema.createTables().then(() => {
   dbschema.createKeygrip();
@@ -119,13 +120,20 @@ app.post("/event", function (req, res) {
   if (typeof bodyObj !== "object") {
     throw new Error("Got unexpected req.body type: " + typeof bodyObj);
   }
-  let userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
-  userAnalytics.event(
-    bodyObj.event,
-    bodyObj.action,
-    bodyObj.label
-  ).send();
-  simpleResponse(res, "OK", 200);
+  let userKey = dbschema.getTextKeys()[0] + req.deviceId;
+  genUuid.generate(genUuid.V_SHA1, genUuid.nil, userKey, function (err, userUuid) {
+    if (err) {
+      errorResponse(res, "Error creating user UUID:", err);
+      return;
+    }
+    let userAnalytics = ua(config.gaId, userUuid.toString());
+    userAnalytics.event(
+      bodyObj.event,
+      bodyObj.action,
+      bodyObj.label
+    ).send();
+    simpleResponse(res, "OK", 200);
+  });
 });
 
 app.get("/redirect", function (req, res) {
