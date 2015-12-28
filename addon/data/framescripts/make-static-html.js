@@ -198,6 +198,18 @@ const ELEMENT_NODE = getDocument().ELEMENT_NODE;
 // Used when an iframe fails to serialize:
 var NULL_IFRAME = '<html></html>';
 
+function staticHTMLDocument(doc) {
+  let html = staticHTML(doc.documentElement);
+  let parts = html.split(/<\/head>/i);
+  let base = `<base href="${htmlQuote(doc.location.href)}">`;
+  let rules = '';
+  if (prefInlineCss) {
+    rules = createStyle(doc);
+  }
+  html = `${parts[0]}\n${base}${rules}</head>${parts[1]}`;
+  return html;
+}
+
 /** Converts the element to static HTML, dropping anything that isn't static
     The element must not be one that should be skipped.
     */
@@ -207,9 +219,8 @@ function staticHTML(el) {
   }
   var replSrc = null;
   if (el.tagName == 'IFRAME') {
-    // FIXME: need to add <base> element
     try {
-      var html = staticHTML(el.contentWindow.document.documentElement);
+      var html = staticHTMLDocument(el.contentWindow.document);
       replSrc = encodeData('text/html', html);
     } catch (e) {
       if (e.name !== "InvalidCharacterError") {
@@ -355,6 +366,7 @@ function createStyle(doc) {
     skipRule: function (rule) {
       this.rulesOmitted++;
       this.charsOmitted += rule.cssText.length;
+      this.rules.push(`/* skipped: ${rule.cssText} */`);
     },
     toString: function () {
       let styles = [];
@@ -416,7 +428,15 @@ function getStyleRules(result, doc, stylesheet) {
       }
     }
   }
-  traverseRules(stylesheet.cssRules);
+  let rules;
+  try {
+    rules = stylesheet.cssRules;
+  } catch (e) {
+    console.warn("Could not access stylesheet rules: " + e);
+  }
+  if (rules) {
+    traverseRules(rules);
+  }
   for (let rule of allRules) {
     let sel = rule.cssText.split("{")[0].trim();
     if (sel.startsWith(".pageshot-")) {
