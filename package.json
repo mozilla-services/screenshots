@@ -1,6 +1,6 @@
 {
   "name": "pageshot",
-  "description": "An experiment in creating better shareable versions of content https://pageshot.dev.mozaws.net",
+  "description": "An experiment in creating better shareable versions of content https://pageshotfzzzy.dev.mozaws.net",
   "repository": {
     "type": "git",
     "url": "https://github.com/mozilla-services/pageshot"
@@ -9,6 +9,7 @@
   "main": "addon/lib/main",
   "dependencies": {
     "atob": "2.0.0",
+    "aws-sdk": "2.2.20",
     "babel": "5.8.23",
     "body-parser": "1.12.4",
     "browserify": "10.1.3",
@@ -32,6 +33,7 @@
     "rimraf": "2.4.3",
     "universal-analytics": "0.3.9",
     "uuid": "2.0.1",
+    "vhost": "3.0.2",
     "wreck": "5.5.1"
   }
 }

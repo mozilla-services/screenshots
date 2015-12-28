@@ -28,6 +28,28 @@ const urlParse = require("url").parse;
 const http = require("http");
 const https = require("https");
 const genUuid = require("nodify-uuid");
+const AWS = require("aws-sdk");
+const vhost = require("vhost");
+
+if (config.useS3) {
+  // Test a PUT to s3 because configuring this requires using the aws web interface
+  // If the permissions are not set up correctly, then we want to know that asap
+  var s3bucket = new AWS.S3({params: {Bucket: 'pageshot-images-bucket'}});
+  console.info(new Date(), "creating pageshot-images-bucket");
+
+  // createBucket is a horribly named api; it creates a local object to access
+  // an existing bucket
+  s3bucket.createBucket(function() {
+    var params = {Key: 'test', Body: 'Hello!'};
+    s3bucket.upload(params, function(err, data) {
+      if (err) {
+        console.warn("Error uploading data during test: ", err);
+      } else {
+        console.info("Successfully uploaded data to pageshot-images-bucket/test");
+      }
+    });
+  });
+}
 
 dbschema.createTables().then(() => {
   dbschema.createKeygrip();
@@ -738,10 +760,23 @@ exports.simpleResponse = simpleResponse;
 exports.errorResponse = errorResponse;
 
 linker.init().then(() => {
-  app.listen(config.port);
-  console.info(`server listening on http://localhost:${config.port}/`);
-  contentApp.listen(config.contentPort);
-  console.info(`content server listening on http://localhost:${config.contentPort}/`);
+  if (config.useVirtualHosts) {
+    const mainapp = express();
+    const siteName = config.siteOrigin.split(":")[0];
+    const contentName = config.contentOrigin.split(":")[0];
+    mainapp.use(vhost(siteName, app));
+    mainapp.use(vhost(contentName, contentApp));
+    mainapp.listen(config.port);
+    mainapp.get("/", function (req, res) {
+      res.send("ok");
+    });
+    console.info(`virtual host server listening on http://localhost:${config.port}`);
+  } else {
+    app.listen(config.port);
+    console.info(`server listening on http://localhost:${config.port}/`);
+    contentApp.listen(config.contentPort);
+    console.info(`content server listening on http://localhost:${config.contentPort}/`);
+  }
 }).catch((err) => {
   console.error("Error getting revision:", err, err.stack);
 });

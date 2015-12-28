@@ -36,6 +36,27 @@ var conf = convict({
     env: "CONTENT_ORIGIN",
     arg: "contentOrigin"
   },
+  useVirtualHosts: {
+    doc: "If true, use the main site port for the content server, and ignore contentPort. Virtual hosts will be used for SITE_ORIGIN and CONTENT_ORIGIN.",
+    format: Boolean,
+    default: false,
+    env: "USE_VIRTUAL_HOSTS",
+    arg: "useVirtualHosts"
+  },
+  useS3: {
+    doc: "If true, store files in s3. If false, store them locally",
+    format: Boolean,
+    default: false,
+    env: "USE_S3",
+    arg: "useS3"
+  },
+  s3BucketName: {
+    doc: "The name of the bucket to use on s3, if useS3 is true",
+    format: String,
+    default: "pageshot-images-bucket",
+    env: "S3_BUCKET_NAME",
+    arg: "s3BucketName"
+  },
   oAuth: {
     oAuthServer: {
       doc: "The FxA OAuth server base URL",
