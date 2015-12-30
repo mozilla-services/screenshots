@@ -471,64 +471,66 @@ function getStyleRules(result, doc, stylesheet) {
 
 /** Creates an object that represents a frozen version of the document */
 function documentStaticData() {
-  var start = Date.now();
-  var body = getDocument().body;
-  resources = {};
-  var bodyAttrs = null;
-  if (body) {
-    bodyAttrs = getAttributes(body);
-    body = staticChildren(body);
-  }
-  var headAttrs = null;
-  var head = getDocument().head;
-  if (head) {
-    headAttrs = getAttributes(head);
-    head = staticChildren(head);
-    if (prefInlineCss) {
-      let style = createStyle(getDocument());
-      head = style + head;
+  return new Promise((resolve, reject) => {
+    var start = Date.now();
+    var body = getDocument().body;
+    resources = {};
+    var bodyAttrs = null;
+    if (body) {
+      bodyAttrs = getAttributes(body);
+      body = staticChildren(body);
     }
-  }
-  var htmlAttrs = null;
-  if (getDocument().documentElement) {
-    htmlAttrs = getAttributes(getDocument().documentElement);
-  }
-  var favicon = getDocument().querySelector("link[rel='shortcut icon'], link[rel='icon']");
-  if (favicon) {
-    favicon = checkLink(favicon.href);
-  } else {
-    // FIXME: ideally test if this exists
-    let origin = getLocation().origin;
-    if (origin && origin != "null") {
-      favicon = origin + "/favicon.ico";
+    var headAttrs = null;
+    var head = getDocument().head;
+    if (head) {
+      headAttrs = getAttributes(head);
+      head = staticChildren(head);
+      if (prefInlineCss) {
+        let style = createStyle(getDocument());
+        head = style + head;
+      }
     }
-  }
+    var htmlAttrs = null;
+    if (getDocument().documentElement) {
+      htmlAttrs = getAttributes(getDocument().documentElement);
+    }
+    var favicon = getDocument().querySelector("link[rel='shortcut icon'], link[rel='icon']");
+    if (favicon) {
+      favicon = checkLink(favicon.href);
+    } else {
+      // FIXME: ideally test if this exists
+      let origin = getLocation().origin;
+      if (origin && origin != "null") {
+        favicon = origin + "/favicon.ico";
+      }
+    }
 
-  let documentSize = {
-    width: Math.max(getDocument().documentElement.clientWidth, getDocument().body.clientWidth),
-    height: Math.max(getDocument().documentElement.clientHeight, getDocument().body.clientHeight)
-  };
+    let documentSize = {
+      width: Math.max(getDocument().documentElement.clientWidth, getDocument().body.clientWidth),
+      height: Math.max(getDocument().documentElement.clientHeight, getDocument().body.clientHeight)
+    };
 
-  console.info("framescript serializing took " + (Date.now() - start) + " milliseconds");
+    console.info("framescript serializing took " + (Date.now() - start) + " milliseconds");
 
-  // FIXME: figure out if we still want things like origin:
-  return {
-    url: getLocation().href,
-    //origin: getLocation().origin,
-    favicon,
-    htmlAttrs,
-    head,
-    headAttrs,
-    body,
-    bodyAttrs,
-    docTitle: getDocument().title,
-    documentSize,
-    openGraph: getOpenGraph(),
-    twitterCard: getTwitterCard(),
-    resources
-    //initialScroll: scrollFraction,
-    //captured: Date.now()
-  };
+    // FIXME: figure out if we still want things like origin:
+    resolve({
+      url: getLocation().href,
+      //origin: getLocation().origin,
+      favicon,
+      htmlAttrs,
+      head,
+      headAttrs,
+      body,
+      bodyAttrs,
+      docTitle: getDocument().title,
+      documentSize,
+      openGraph: getOpenGraph(),
+      twitterCard: getTwitterCard(),
+      resources
+      //initialScroll: scrollFraction,
+      //captured: Date.now()
+    });
+  });
 }
 
 function getOpenGraph() {
@@ -588,25 +590,33 @@ function getTwitterCard() {
 
 let isDisabled = false;
 addMessageListener("pageshot@documentStaticData:call", function (event) {
+  function send(result) {
+    result.callId = event.data.callId;
+    sendAsyncMessage("pageshot@documentStaticData:return", result);
+  }
+  function sendError(error) {
+    console.error("Error getting static HTML:", error);
+    console.error(error.stack);
+    send({
+      error: {
+        name: error.name,
+        description: error+""
+      }
+    });
+  }
   if (isDisabled) {
     return;
   }
-  var result;
   try {
     prefInlineCss = event.data.prefInlineCss;
-    result = documentStaticData();
-  } catch (e) {
-    console.error("Error getting static HTML:", e);
-    console.error(e.stack);
-    result = {
-      error: {
-        name: e.name,
-        description: e+""
-      }
-    };
+    documentStaticData().then((result) => {
+      send(result);
+    }).catch((error) => {
+      sendError(error);
+    });
+  } catch (error) {
+    sendError(error);
   }
-  result.callId = event.data.callId;
-  sendAsyncMessage("pageshot@documentStaticData:return", result);
 });
 
 addMessageListener("pageshot@disable", function (event) {
