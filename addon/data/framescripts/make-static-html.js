@@ -1,3 +1,4 @@
+/* globals setTimeout */
 /** This file is used to turn the document into static HTML with no scripts
 
     As a framescript this can access the document and its iframes without
@@ -10,8 +11,11 @@
     with lib/framescripter
     */
 
+// Provides setTimeout:
+Components.utils.import("resource://gre/modules/Timer.jsm");
 const uuidGenerator = Components.classes["@mozilla.org/uuid-generator;1"]
                       .getService(Components.interfaces.nsIUUIDGenerator);
+
 
 function makeUuid() {
   var uuid = uuidGenerator.generateUUID();
@@ -213,7 +217,7 @@ function staticHTMLDocument(doc) {
 /** Converts the element to static HTML, dropping anything that isn't static
     The element must not be one that should be skipped.
     */
-function staticHTML(el) {
+function staticHTML(el, childLimit) {
   if (el.tagName == 'CANVAS') {
     return '<IMG SRC="' + htmlQuote(el.toDataURL('image/png')) + '">';
   }
@@ -290,11 +294,19 @@ function staticHTML(el) {
   if (el.tagName == "TEXTAREA") {
     s += htmlQuote(el.value);
   }
-  if (! voidElements[el.tagName]) {
-    s += staticChildren(el);
-    s += '</' + el.tagName + '>';
+  if (voidElements[el.tagName]) {
+    return s;
   }
-  return s;
+  let childrenHTML = staticChildren(el, childLimit);
+  if (typeof childrenHTML == "string") {
+    s += childrenHTML;
+    s += '</' + el.tagName + '>';
+    return s;
+  } else {
+    return childrenHTML.then(function (html) {
+      return s + html + '</' + el.tagName + '>';
+    });
+  }
 }
 
 /** Returns a list of [[attrName, attrValue]] */
@@ -324,28 +336,69 @@ function getAttributes(el) {
 }
 
 /** Traverses the children of an element and serializes that to text */
-function staticChildren(el) {
-  var s = '';
+function staticChildren(el, childLimit) {
   var children = el.childNodes;
   var l = children.length;
-  for (var i=0; i<l; i++) {
-    var child = children[i];
+  let pieces = [];
+  let promises = [];
+  for (let i=0; i<l; i++) {
+    let child = children[i];
     if (child.nodeType == TEXT_NODE) {
-      var value = child.nodeValue;
-      s += htmlQuote(value, true);
+      pieces.push(htmlQuote(child.nodeValue, true));
     } else if (child.nodeType == ELEMENT_NODE) {
       if (skipElement(child)) {
         continue;
       }
-      s += staticHTML(child);
+      if (l >= childLimit) {
+        pieces.push("");
+        promises.push(insertInto(doSoon(staticHTML, child, childLimit), pieces, pieces.length-1));
+      } else {
+        let result = staticHTML(child, childLimit);
+        if (typeof result == "string") {
+          pieces.push(result);
+        } else {
+          pieces.push("");
+          promises.push(insertInto(result, pieces, pieces.length-1));
+        }
+      }
     }
   }
-  return s;
+  return Promise.all(promises).then(() => {
+    return pieces.join("");
+  });
+}
+
+function doSoon(func, ...args) {
+  return new Promise((resolve, reject) => {
+    setTimeout(function () {
+      try {
+        let result = func.apply(null, args);
+        if (result.then) {
+          result.then(resolve, reject);
+        } else {
+          resolve(result);
+        }
+      } catch (e) {
+        reject(e);
+      }
+    });
+  });
+}
+
+function insertInto(promise, array, index) {
+  return promise.then((result) => {
+    array[index] = result;
+  });
 }
 
 function asyncStaticChildren(el) {
   return new Promise((resolve, reject) => {
-    resolve(staticChildren(el));
+    let result = staticChildren(el, 5);
+    if (typeof result == "string") {
+      resolve(result);
+    } else {
+      result.then(resolve, reject);
+    }
   });
 }
 
