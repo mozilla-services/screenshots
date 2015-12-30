@@ -5,6 +5,7 @@ const React = require("react");
 const { getGitRevision } = require("../linker");
 const { ProfileButton } = require("./profile");
 const { addReactScripts } = require("../reactutils");
+const { gaActivation } = require("../ga-activation");
 
 class Clip extends React.Component {
   onClickComment(e) {
@@ -173,79 +174,19 @@ class Head extends React.Component {
       oembed = <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />;
     }
     let postMessageOrigin = `${this.props.contentProtocol}://${this.props.contentOrigin}`;
-    let gaScript = null;
-    let gaCode = null;
-    let gaJs;
-    if (this.props.gaId) {
-      if (this.props.gaId.search(/^[a-z0-9\-]+$/i) === -1) {
-        // Doesn't look like a valid code
-        console.warn("Invalid Google Analytics code:", this.props.gaId);
-      }
-      gaJs = `
-       (function () {
-         window.GoogleAnalyticsObject = "ga";
-         window.ga = window.ga || function () {
-           (window.ga.q = window.ga.q || []).push(arguments);
-         };
-         window.ga.l = 1 * new Date();
-         var userId = "${this.props.deviceId}";
-         var gaOptions = "auto";
-         if (userId) {
-           gaOptions = {userId: userId};
-         }
-         if (location.hostname === "localhost") {
-           if (typeof gaOptions === "string") {
-             gaOptions = {};
-           }
-           gaOptions.cookieDomain = "none";
-         }
-         if (window.crypto) {
-           var bytes = [];
-           for (var i=0; i<location.pathname.length; i++) {
-             bytes.push(location.pathname.charAt(i));
-           }
-           window.crypto.subtle.digest("sha-256", new Uint8Array(bytes)).then(function (result) {
-             result = new Uint8Array(result);
-             var c = [];
-             for (var i=0; i<10; i++) {
-               c.push(result[i].toString(16));
-             }
-             gaOptions.location = "/a-shot/" + c.join("");
-             finish();
-           });
-         } else {
-           gaOptions.location = "/a-shot/unknown";
-           finish();
-         }
-         function finish() {
-           ga("create", "${this.props.gaId}", gaOptions);
-           ga("send", "pageview", gaOptions.location);
-         }
-       })();
-      `;
-      gaScript = <script src="//www.google-analytics.com/analytics.js" async></script>;
-    } else {
-      gaJs = `
-      window.ga = function () {
-        console.info.apply(console, ["stubbed ga("].concat(arguments).concat([")"]));
-      };
-      `;
-    }
     let js = [
       <link rel="stylesheet" href={ this.props.staticLink("vendor/introjs/introjs.css") } key="introjs-stylesheet" />,
       <script src={ this.props.staticLink("vendor/introjs/intro.js") } key="introjs-js" />,
       <script src={ this.props.staticLink("js/server-bundle.js") } key="server-bundle-js" />,
     ];
+    js = js.concat(gaActivation(this.props.gaId, this.props.deviceId));
     if (this.props.simple) {
-      js = null;
+      js = [];
     }
-    gaCode = <script dangerouslySetInnerHTML={{__html: gaJs}}></script>;
     return (
       <head>
         <meta charSet="UTF-8" />
         <title>{this.props.shot.title}</title>
-        {gaScript}
-        {gaCode}
         {js}
         <link rel="stylesheet" href={ this.props.staticLink("css/styles.css") } />
         <link rel="stylesheet" href={ this.props.staticLink("css/profile.css") } />
