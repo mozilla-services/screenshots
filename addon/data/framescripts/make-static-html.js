@@ -343,6 +343,12 @@ function staticChildren(el) {
   return s;
 }
 
+function asyncStaticChildren(el) {
+  return new Promise((resolve, reject) => {
+    resolve(staticChildren(el));
+  });
+}
+
 function createStyle(doc) {
   let result = {
     hrefs: [],
@@ -471,56 +477,64 @@ function getStyleRules(result, doc, stylesheet) {
 
 /** Creates an object that represents a frozen version of the document */
 function documentStaticData() {
-  return new Promise((resolve, reject) => {
-    var start = Date.now();
-    var result = {};
-    var body = getDocument().body;
-    resources = {};
-    result.bodyAttrs = null;
-    if (body) {
-      result.bodyAttrs = getAttributes(body);
-      result.body = staticChildren(body);
+  var start = Date.now();
+  var result = {};
+  var body = getDocument().body;
+  resources = {};
+  result.bodyAttrs = null;
+  if (body) {
+    result.bodyAttrs = getAttributes(body);
+  }
+  result.headAttrs = null;
+  var head = getDocument().head;
+  if (head) {
+    result.headAttrs = getAttributes(head);
+  }
+  result.htmlAttrs = null;
+  if (getDocument().documentElement) {
+    result.htmlAttrs = getAttributes(getDocument().documentElement);
+  }
+  result.favicon = getDocument().querySelector("link[rel='shortcut icon'], link[rel='icon']");
+  if (result.favicon) {
+    result.favicon = checkLink(result.favicon.href);
+  } else {
+    // FIXME: ideally test if this exists
+    let origin = getLocation().origin;
+    if (origin && origin != "null") {
+      result.favicon = origin + "/favicon.ico";
     }
-    result.headAttrs = null;
-    var head = getDocument().head;
-    if (head) {
-      result.headAttrs = getAttributes(head);
-      result.head = staticChildren(head);
+  }
+
+  result.documentSize = {
+    width: Math.max(getDocument().documentElement.clientWidth, getDocument().body.clientWidth),
+    height: Math.max(getDocument().documentElement.clientHeight, getDocument().body.clientHeight)
+  };
+
+  console.info("framescript serializing took " + (Date.now() - start) + " milliseconds");
+
+  result.url = getLocation().href;
+  result.docTitle = getDocument().title;
+  result.openGraph = getOpenGraph();
+  result.twitterCard = getTwitterCard();
+  result.resources = resources;
+
+  let promises = [];
+  if (body) {
+    promises.push(asyncStaticChildren(body).then((bodyHtml) => {
+      result.body = bodyHtml;
+    }));
+  }
+  if (head) {
+    promises.push(asyncStaticChildren(head).then((headHtml) => {
       if (prefInlineCss) {
         let style = createStyle(getDocument());
-        result.head = style + result.head;
+        headHtml = style + headHtml;
       }
-    }
-    result.htmlAttrs = null;
-    if (getDocument().documentElement) {
-      result.htmlAttrs = getAttributes(getDocument().documentElement);
-    }
-    result.favicon = getDocument().querySelector("link[rel='shortcut icon'], link[rel='icon']");
-    if (result.favicon) {
-      result.favicon = checkLink(result.favicon.href);
-    } else {
-      // FIXME: ideally test if this exists
-      let origin = getLocation().origin;
-      if (origin && origin != "null") {
-        result.favicon = origin + "/favicon.ico";
-      }
-    }
-
-    result.documentSize = {
-      width: Math.max(getDocument().documentElement.clientWidth, getDocument().body.clientWidth),
-      height: Math.max(getDocument().documentElement.clientHeight, getDocument().body.clientHeight)
-    };
-
-    console.info("framescript serializing took " + (Date.now() - start) + " milliseconds");
-
-    result.url = getLocation().href;
-    result.docTitle = getDocument().title;
-    result.openGraph = getOpenGraph();
-    result.twitterCard = getTwitterCard();
-    result.resources = resources;
-
-    // FIXME: figure out if we still want things like origin:
-    resolve(result);
+      result.head = headHtml;
+    }));
+  }
+  return Promise.all(promises).then(function () {
+    return result;
   });
 }
 
