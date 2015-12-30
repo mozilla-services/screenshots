@@ -473,63 +473,54 @@ function getStyleRules(result, doc, stylesheet) {
 function documentStaticData() {
   return new Promise((resolve, reject) => {
     var start = Date.now();
+    var result = {};
     var body = getDocument().body;
     resources = {};
-    var bodyAttrs = null;
+    result.bodyAttrs = null;
     if (body) {
-      bodyAttrs = getAttributes(body);
-      body = staticChildren(body);
+      result.bodyAttrs = getAttributes(body);
+      result.body = staticChildren(body);
     }
-    var headAttrs = null;
+    result.headAttrs = null;
     var head = getDocument().head;
     if (head) {
-      headAttrs = getAttributes(head);
-      head = staticChildren(head);
+      result.headAttrs = getAttributes(head);
+      result.head = staticChildren(head);
       if (prefInlineCss) {
         let style = createStyle(getDocument());
-        head = style + head;
+        result.head = style + result.head;
       }
     }
-    var htmlAttrs = null;
+    result.htmlAttrs = null;
     if (getDocument().documentElement) {
-      htmlAttrs = getAttributes(getDocument().documentElement);
+      result.htmlAttrs = getAttributes(getDocument().documentElement);
     }
-    var favicon = getDocument().querySelector("link[rel='shortcut icon'], link[rel='icon']");
-    if (favicon) {
-      favicon = checkLink(favicon.href);
+    result.favicon = getDocument().querySelector("link[rel='shortcut icon'], link[rel='icon']");
+    if (result.favicon) {
+      result.favicon = checkLink(result.favicon.href);
     } else {
       // FIXME: ideally test if this exists
       let origin = getLocation().origin;
       if (origin && origin != "null") {
-        favicon = origin + "/favicon.ico";
+        result.favicon = origin + "/favicon.ico";
       }
     }
 
-    let documentSize = {
+    result.documentSize = {
       width: Math.max(getDocument().documentElement.clientWidth, getDocument().body.clientWidth),
       height: Math.max(getDocument().documentElement.clientHeight, getDocument().body.clientHeight)
     };
 
     console.info("framescript serializing took " + (Date.now() - start) + " milliseconds");
 
+    result.url = getLocation().href;
+    result.docTitle = getDocument().title;
+    result.openGraph = getOpenGraph();
+    result.twitterCard = getTwitterCard();
+    result.resources = resources;
+
     // FIXME: figure out if we still want things like origin:
-    resolve({
-      url: getLocation().href,
-      //origin: getLocation().origin,
-      favicon,
-      htmlAttrs,
-      head,
-      headAttrs,
-      body,
-      bodyAttrs,
-      docTitle: getDocument().title,
-      documentSize,
-      openGraph: getOpenGraph(),
-      twitterCard: getTwitterCard(),
-      resources
-      //initialScroll: scrollFraction,
-      //captured: Date.now()
-    });
+    resolve(result);
   });
 }
 
