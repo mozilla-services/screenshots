@@ -1,3 +1,9 @@
+/* Code to create the Google Analytics code for a PageShot page.
+   Stubs out ga() if no gaId is configured
+   Disables analytics if Do-Not-Track is set
+   Hashes page names
+   */
+
 const React = require("react");
 
 const dntJs = `
@@ -72,7 +78,7 @@ const gaJs = `
     }
     gaOptions.cookieDomain = "none";
   }
-  if (window.crypto) {
+  if (__HASH_LOCATION__ && window.crypto) {
     var bytes = [];
     for (var i=0; i<location.pathname.length; i++) {
       bytes.push(location.pathname.charAt(i));
@@ -92,7 +98,7 @@ const gaJs = `
   }
   function finish() {
     ga("create", "__GA_ID__", gaOptions);
-    ga("send", "pageview", gaOptions.location);
+    ga("send", "pageview", gaOptions.location || location.href);
   }
 })();
 `;
@@ -101,7 +107,7 @@ const gaScript = <script src="//www.google-analytics.com/analytics.js" async key
 
 const idRegex = /^[a-zA-Z0-9_.,-]+$/;
 
-exports.gaActivation = function (gaId, userId) {
+exports.gaActivation = function (gaId, userId, hashLocation) {
   userId = userId || "";
   if (typeof userId != "string") {
     throw new Error("Invalid user ID type: " + typeof userId);
@@ -113,6 +119,7 @@ exports.gaActivation = function (gaId, userId) {
     return [stubGa()];
   }
   let script = gaJs.replace(/__GA_ID__/g, gaId).replace(/__USER_ID__/g, userId);
+  script = script.replace(/__HASH_LOCATION__/g, hashLocation ? "true" : "false");
   let scriptTag = <script dangerouslySetInnerHTML={{__html: script}} key="ga-activation"></script>;
   return [scriptTag, gaScript];
 };
