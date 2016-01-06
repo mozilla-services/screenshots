@@ -627,3 +627,6 @@ Shot.cleanDeletedShots = function () {
     });
   });
 };
+
+Shot.prototype.atob = require("atob");
+Shot.prototype.btoa = require("btoa");

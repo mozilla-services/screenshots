@@ -134,13 +134,13 @@ function deepEqual(a, b) {
     return false;
   }
   let seen = {};
-  for (let attr of a) {
+  for (let attr in a) {
     if (! deepEqual(a[attr], b[attr])) {
       return false;
     }
     seen[attr] = true;
   }
-  for (let attr of b) {
+  for (let attr in b) {
     if (! seen[attr]) {
       if (! deepEqual(a[attr], b[attr])) {
         return false;
@@ -231,7 +231,8 @@ class AbstractShot {
     this.twitterCard = attrs.twitterCard || null;
     this.documentSize = attrs.documentSize || null;
     this.fullScreenThumbnail = attrs.fullScreenThumbnail || null;
-    this.isPublic = attrs.isPublic === undefined ? null : !! attrs.isPublic;
+    this.isPublic = attrs.isPublic === undefined || attrs.isPublic === null ? null : !! attrs.isPublic;
+    this.resources = attrs.resources || {};
     this._clips = {};
     if (attrs.clips) {
       for (let clipId in attrs.clips) {
@@ -359,16 +360,42 @@ class AbstractShot {
 
   staticHtml(options) {
     options = options || "";
+    let head = this.head;
+    let body = this.body;
+    let rewriter = (html) => {
+      let keys = Object.keys(this.resources);
+      for (let key of keys) {
+        if (key.search(/^[a-zA-Z0-9.\-]+$/) === -1) {
+          console.warn("Bad resource name:", key);
+          return;
+        }
+      }
+      let re = new RegExp(keys.join("|"), "g");
+      let newHtml = html.replace(re, (match) => {
+        return options.rewriteLinks(match, this.resources[match]);
+      });
+      newHtml = newHtml.replace(/"data:text\/html;base64,([^"]*)"/g, (match, group) => {
+        let html = this.atob(group);
+        html = rewriter(html);
+        let link = this.btoa(html);
+        return `"data:text/html;base64,${link}"`;
+      });
+      return newHtml;
+    };
+    if (options.rewriteLinks && this.resources) {
+      head = rewriter(head);
+      body = rewriter(body);
+    }
     return `<!DOCTYPE html>
 <html${formatAttributes(this.htmlAttrs)}>
 <head${formatAttributes(this.headAttrs)}>
 <meta charset="UTF-8">
 ${options.addHead || ""}
 <base href="${escapeAttribute(this.url)}">
-${this.head}
+${head}
 </head>
 <body${formatAttributes(this.bodyAttrs)}>
-${this.body}
+${body}
 ${options.addBody || ""}
 </body>
 </html>`;
@@ -730,13 +757,32 @@ ${options.addBody || ""}
     this._dirty("isPublic");
   }
 
+  get resources() {
+    return this._resources;
+  }
+  set resources(val) {
+    if (val === null || val === undefined) {
+      this._resources = null;
+      this._dirty("resources");
+      return;
+    }
+    assert(typeof val == "object", "resources should be an object, not:", typeof val);
+    for (let key in val) {
+      assert(key.search(/^[a-zA-Z0-9\.\-]+$/) === 0, "Bad resource name: " + key);
+      let obj = val[key];
+      assert(checkObject(obj, ['url', 'tag', 'elId', 'attr'], ['hash', 'rel']), "Invalid resource " + key + ": " + JSON.stringify(obj));
+    }
+    this._resources = val;
+    this._dirty("resources");
+  }
+
 }
 
 AbstractShot.prototype.REGULAR_ATTRS = (`
 deviceId url docTitle ogTitle userTitle createdDate createdDevice favicon
 history comments hashtags images readable head body htmlAttrs bodyAttrs
 headAttrs microdata siteName openGraph twitterCard documentSize
-fullScreenThumbnail isPublic
+fullScreenThumbnail isPublic resources
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`
