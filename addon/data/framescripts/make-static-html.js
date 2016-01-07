@@ -184,6 +184,11 @@ function skipElement(el) {
       return true;
     }
   }
+  if (el.tagName == "INPUT" && (el.getAttribute("type") || '').search(/hidden/i) !== -1) {
+    // Probably hidden fields will get eliminated because they aren't visible
+    // but just to be double sure...
+    return true;
+  }
   if (prefInlineCss) {
     if (el.tagName == "STYLE") {
       return true;
@@ -275,7 +280,9 @@ function staticHTML(el, childLimit) {
   }
   if (el.tagName === "INPUT") {
     var elType = (el.getAttribute("type") || "text").toLowerCase();
-    if (elType === "checkbox" || elType == "radio") {
+    if (elType.search(/password/) !== -1) {
+      // do nothing, don't save value
+    } else if (elType === "checkbox" || elType == "radio") {
       if ((! el.hasAttribute("checked")) && el.checked) {
         s += " checked";
       }
@@ -425,7 +432,6 @@ function createStyle(doc) {
     skipRule: function (rule) {
       this.rulesOmitted++;
       this.charsOmitted += rule.cssText.length;
-      this.rules.push(`/* skipped: ${rule.cssText} */`);
     },
     toString: function () {
       let styles = [];
