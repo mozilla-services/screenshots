@@ -4,7 +4,7 @@
 
 This is a prototype for a product to create better sharable assets. It uses techniques like copying/freezing the DOM, optionally showing history, allowing inline comments, taking clips and screenshots.
 
-You can view the site (with a link to install the Add-on) at [pageshotpages.appspot.com](https://pageshotpages.appspot.com)
+You can view the site (with a link to install the Add-on) at [pageshot.dev.mozaws.net](https://pageshot.dev.mozaws.net/)
 
 It is implemented as a Firefox Add-on, using the [Add-on SDK](https://developer.mozilla.org/en-US/Add-ons/SDK) and a website using NodeJS.  The addon is in `addon/`, and the website is in `server/`
 
