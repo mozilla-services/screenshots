@@ -205,7 +205,7 @@ const ShotContext = Class({
     let url = this.shot.viewUrl;
     let img = clip.image.url;
     let title = this.shot.title;
-    let origin = new URL(this.shot.url).hostname;
+    let origin = (new URL(this.shot.url).hostname) || "none";
     let html = (
 `<div>
   <a href="${escapeForHTML(url)}">
@@ -691,6 +691,9 @@ class Shot extends AbstractShot {
 
 }
 
+Shot.prototype.atob = require("sdk/base64").decode;
+Shot.prototype.btoa = require("sdk/base64").encode;
+
 /** Returns a promise that resolves when all the promises in the array are complete
     (regardless of success or failure of each promise!) */
 function allPromisesComplete(promises) {
@@ -740,7 +743,7 @@ exports.autoShot = function (tab, backend, backendUrl) {
    * creates a shot instance, and pushes the data to the backend server without
    * asking anything via UI
    */
-  
+
   watchPromise(callScript(
     tab,
     self.data.url("framescripts/add-ids.js"),
@@ -761,11 +764,11 @@ exports.autoShot = function (tab, backend, backendUrl) {
     }
 
     var shot = new Shot(
-      backend, 
+      backend,
       backendUrl,
       { "url": tab.url, "deviceId": deviceInfo.deviceId }
     );
-   
+
     // Heavy lifting happens here
     var promises = [];
     promises.push(watchPromise(extractWorker(tab)).then(watchFunction(function (attrs) {

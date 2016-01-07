@@ -264,7 +264,7 @@ exports.showInfoPanel = function showInfoPanel(magicCookie, title, description) 
   UITour.showInfo(win, null, target, title, description);
   UITour.showHighlight(win, target, "wobble");
   infoPanelShownForWindow = win;
-}
+};
 
 function showTour(newTab) {
   let helpurl = exports.getBackend() + "/homepage/help.html";

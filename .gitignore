@@ -12,3 +12,4 @@ cookie-jar.txt
 .env.production
 .jpm-json*
 scratch
+data
