@@ -10,6 +10,16 @@
     with lib/framescripter
     */
 
+const uuidGenerator = Components.classes["@mozilla.org/uuid-generator;1"]
+                      .getService(Components.interfaces.nsIUUIDGenerator);
+
+function makeUuid() {
+  var uuid = uuidGenerator.generateUUID();
+  uuid = uuid.toString();
+  // Strips off {}:
+  return uuid.substr(1, uuid.length-2);
+}
+
 // This is an option that gets set by the caller of this module, but
 // we store it in a global:
 var prefInlineCss = false;
@@ -51,6 +61,41 @@ function checkLink(link) {
   return link;
 }
 
+// FIXME: this is a global that is reset on each run, and then added to by
+// rewriteResource (so we don't have to add another parameter to the functions
+// that traverse the tree).  But that's kind of icky.
+let resources;
+
+function rewriteResource(el, attr, url) {
+  if (url.startsWith("#")) {
+    return url;
+  }
+  if (url.search(/^[a-z]+:/i) !== -1 && url.search(/^https?:/i) === -1) {
+    // FIXME: not sure if resources should ever have funny protocols?
+    return url;
+  }
+  let hash = null;
+  if (url.includes("#")) {
+    [url, hash] = url.split("#")[1];
+  }
+  let repl = makeUuid();
+  let match = (/\.(jpg|jpeg|gif|png|webm|css|html)$/).exec(url);
+  if (match) {
+    repl += "." + match[1];
+  }
+  // Note this object is checked in shot.js:
+  resources[repl] = {
+    url,
+    hash,
+    tag: el.tagName,
+    elId: el.id,
+    attr,
+    rel: el.getAttribute("rel") || undefined
+  };
+  return repl;
+}
+
+
 /** These are elements that are empty, i.e., have no closing tag: */
 const voidElements = {
   AREA: true,
@@ -84,6 +129,7 @@ const skipElementsOKEmpty = {
   BDO: true,
   BR: true,
   OBJECT: true,
+  SOURCE: true,
   TD: true,
   TR: true,
   TH: true,
@@ -110,11 +156,29 @@ function skipElement(el) {
   // positioning -- so they might not make the parent have any width, but
   // may still need to be displayed.
   // FIXME: should use el.offsetParent whose presence indicates the element is visible
-  if ((el.style && el.style.display == 'none') ||
-      ((el.clientWidth === 0 && el.clientHeight === 0) &&
-        (! skipElementsOKEmpty[tag]) &&
-        (! el.childNodes.length))) {
+  if (el.style && el.style.display == 'none') {
     return true;
+  }
+  if (content.getComputedStyle(el).display == 'none') {
+    return true;
+  }
+  if ((el.clientWidth === 0 && el.clientHeight === 0) &&
+      (! skipElementsOKEmpty[tag]) &&
+      (! el.childNodes.length)) {
+    if (! (el instanceof content.SVGElement)) {
+      return true;
+    }
+  }
+  if (el.tagName == "IFRAME" && ! el.contentWindow) {
+    // FIXME: I'm not sure why this happens, but when it does we can't serialize
+    // the iframe usefully
+    return true;
+  }
+  if (el.tagName == "LINK") {
+    let rel = (el.getAttribute("rel") || "").toLowerCase();
+    if (rel == "prefetch" || rel == "dns-prefetch") {
+      return true;
+    }
   }
   if (prefInlineCss) {
     if (el.tagName == "STYLE") {
@@ -134,6 +198,18 @@ const ELEMENT_NODE = getDocument().ELEMENT_NODE;
 // Used when an iframe fails to serialize:
 var NULL_IFRAME = '<html></html>';
 
+function staticHTMLDocument(doc) {
+  let html = staticHTML(doc.documentElement);
+  let parts = html.split(/<\/head>/i);
+  let base = `<base href="${htmlQuote(doc.location.href)}">`;
+  let rules = '';
+  if (prefInlineCss) {
+    rules = createStyle(doc);
+  }
+  html = `${parts[0]}\n${base}${rules}</head>${parts[1]}`;
+  return html;
+}
+
 /** Converts the element to static HTML, dropping anything that isn't static
     The element must not be one that should be skipped.
     */
@@ -143,16 +219,14 @@ function staticHTML(el) {
   }
   var replSrc = null;
   if (el.tagName == 'IFRAME') {
-    // FIXME: need to add <base> element
     try {
-      var html = staticHTML(el.contentWindow.document.documentElement);
+      var html = staticHTMLDocument(el.contentWindow.document);
       replSrc = encodeData('text/html', html);
     } catch (e) {
-      if (e.name == "InvalidCharacterError") {
-        replSrc = encodeData('text/html', NULL_IFRAME);
-      } else {
+      if (e.name !== "InvalidCharacterError") {
         console.warn('Had to skip iframe for permission reasons:', e+"", "(" + e.name + ")");
       }
+      replSrc = encodeData('text/html', NULL_IFRAME);
     }
   }
   var s = '<' + el.tagName;
@@ -165,12 +239,23 @@ function staticHTML(el) {
         continue;
       }
       var value;
-      if (name == 'src' && replSrc) {
+      if (name == 'rel' && el.tagName == "LINK") {
+        // Remove any attempt to mark something as prefetch
+        value = attrs[i].value;
+        value = value.replace(/(dns-)?prefetch/ig, "");
+      } else if (name == 'src' && replSrc) {
         value = replSrc;
-      } else if (name == "href" || name == "src" || name == "value" || name == "checked" || name == "selected") {
+      } else if (name == 'srcset') {
+        let parts = attrs[i].value.split(/\s+/);
+        let link = rewriteResource(el, name, parts[0]);
+        value = link + " " + (parts[1] || "");
+      } else if (name == "href" || name == "src" || name == "action" || name == "value" || name == "checked" || name == "selected") {
         value = el[name] + "";
         if (name === "href" || name === "src") {
           value = checkLink(value);
+        }
+        if (el.tagName != "A" && (name === "href" || name === "src")) {
+          value = rewriteResource(el, name, value);
         }
       } else {
         value = attrs[i].value;
@@ -245,13 +330,13 @@ function staticChildren(el) {
   var l = children.length;
   for (var i=0; i<l; i++) {
     var child = children[i];
-    if (skipElement(child)) {
-      continue;
-    }
     if (child.nodeType == TEXT_NODE) {
       var value = child.nodeValue;
       s += htmlQuote(value, true);
     } else if (child.nodeType == ELEMENT_NODE) {
+      if (skipElement(child)) {
+        continue;
+      }
       s += staticHTML(child);
     }
   }
@@ -281,6 +366,7 @@ function createStyle(doc) {
     skipRule: function (rule) {
       this.rulesOmitted++;
       this.charsOmitted += rule.cssText.length;
+      this.rules.push(`/* skipped: ${rule.cssText} */`);
     },
     toString: function () {
       let styles = [];
@@ -310,6 +396,21 @@ function createStyle(doc) {
     if (stylesheet.href && stylesheet.href.startsWith("resource:")) {
       continue;
     }
+    if (stylesheet.media && stylesheet.media.length) {
+      let anyFound = false;
+      for (let media of stylesheet.media) {
+        media = media.toLowerCase();
+        if (media == "*" || media == "screen" || media == "all") {
+          anyFound = true;
+          break;
+        }
+      }
+      // Print- or speech-only stylesheet
+      // FIXME: these should be included except with the appropriate media restriction
+      if (! anyFound) {
+        continue;
+      }
+    }
     result.hrefs.push(stylesheet.href || "inline");
     getStyleRules(result, doc, stylesheet);
   }
@@ -327,14 +428,31 @@ function getStyleRules(result, doc, stylesheet) {
       }
     }
   }
-  traverseRules(stylesheet.cssRules);
+  let rules;
+  try {
+    rules = stylesheet.cssRules;
+  } catch (e) {
+    console.warn("Could not access stylesheet rules: " + e);
+  }
+  if (rules) {
+    traverseRules(rules);
+  }
   for (let rule of allRules) {
     let sel = rule.cssText.split("{")[0].trim();
     if (sel.startsWith(".pageshot-")) {
       continue;
     }
-    if ((! doc.querySelector(sel)) && sel.indexOf("a:visited") == -1) {
-      // Note, a:visited will never return an element, but is useful
+    // Crude attempt to get rid of pseudo-selectors which
+    // (like a:visited) won't be applicable to the next test:
+    let matchesElements = true;
+    let origSel = sel;
+    sel = sel.replace(/:?:[a-z]+/g, "");
+    try {
+      matchesElements = !!doc.querySelector(sel);
+    } catch (e) {
+      matchesElements = !!doc.querySelector(origSel);
+    }
+    if (! matchesElements) {
       result.skipRule(rule);
       continue;
     }
@@ -354,11 +472,8 @@ function getStyleRules(result, doc, stylesheet) {
 /** Creates an object that represents a frozen version of the document */
 function documentStaticData() {
   var start = Date.now();
-  // unsafeWindow is quite a bit faster than the proxied access:
   var body = getDocument().body;
-
-  // Generally this only happens when the document hasn't really loaded
-  // FIXME: that maybe should be an error
+  resources = {};
   var bodyAttrs = null;
   if (body) {
     bodyAttrs = getAttributes(body);
@@ -409,7 +524,8 @@ function documentStaticData() {
     docTitle: getDocument().title,
     documentSize,
     openGraph: getOpenGraph(),
-    twitterCard: getTwitterCard()
+    twitterCard: getTwitterCard(),
+    resources
     //initialScroll: scrollFraction,
     //captured: Date.now()
   };

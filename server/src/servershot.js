@@ -4,7 +4,115 @@ const db = require("./db");
 const uuid = require("uuid");
 const linker = require("./linker");
 const config = require("./config").root();
+const fs = require("fs");
+
 let ClipRewrites;
+
+let s3bucket;
+let put;
+let get;
+let del;
+
+if (! config.useS3) {
+  if (!fs.existsSync("data")){
+      fs.mkdirSync("data");
+  }
+
+  get = (uid, contentType) => {
+    if (uid.indexOf("/") !== -1 && uid.indexOf(".") !== -1) {
+      return Promise.reject("Invalid uid");
+    }
+    return new Promise((resolve, reject) => {
+      fs.readFile("data/" + uid, (err, data) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve({data: data, contentType: contentType});
+        }
+      });
+    });
+  };
+  put = (uid, body, comment) => {
+    if (uid.indexOf("/") !== -1 && uid.indexOf(".") !== -1) {
+      return Promise.reject("Invalid uid");
+    }
+    return new Promise((resolve, reject) => {
+      fs.writeFile("data/" + uid, body, (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
+  };
+
+  del = (uid) => {
+    if (uid.indexOf("/") !== -1 && uid.indexOf(".") !== -1) {
+      return Promise.reject("Invalid uid");
+    }
+    return new Promise((resolve, reject) => {
+      fs.unlink("data/" + uid, function(err) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      })
+    });
+  }
+} else {
+  const AWS = require('aws-sdk');
+
+  s3bucket = new AWS.S3({params: {Bucket: 'pageshot-images-bucket'}});
+
+  get = (uid, contentType) => {
+    return new Promise((resolve, reject) => {
+      s3bucket.createBucket(() => {
+        var params = {Key: uid};
+        s3bucket.getObject(params, function (err, data) {
+          if (err) {
+            console.error("Error downloading data: ", err);
+            reject(err);
+          } else {
+            resolve({data: data.Body, contentType: contentType});
+          }
+        });
+      });
+    });
+  };
+
+  put = (uid, body, comment) => {
+    return new Promise((resolve, reject) => {
+      s3bucket.createBucket(() => {
+        var params = {Key: uid, Body: body};
+        s3bucket.upload(params, function (err, result) {
+          if (err) {
+            reject(err);
+            console.error("Error uploading data (" + comment + "):", uid, err);
+          } else {
+            resolve();
+          }
+        });
+      });
+    });
+  };
+
+  del = (uid) => {
+    return new Promise((resolve, reject) => {
+      s3bucket.createBucket(() => {
+        var params = {Key: uid};
+        s3bucket.deleteObject(params, function (err, result) {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
+        });
+      });
+    });
+  };
+}
 
 class Shot extends AbstractShot {
 
@@ -128,12 +236,12 @@ class Shot extends AbstractShot {
 
 Shot.getRawBytesForClip = function (uid) {
   return db.select(
-    "SELECT image, contenttype FROM images WHERE id = $1", [uid]
+    "SELECT url, contenttype FROM images WHERE id = $1", [uid]
   ).then((rows) => {
     if (! rows.length) {
       return null;
     } else {
-      return {data: rows[0].image, contentType: rows[0].contenttype};
+      return get(uid, rows[0].contenttype);
     }
   });
 };
@@ -420,44 +528,66 @@ ClipRewrites = class ClipRewrites {
 
   commit(client) {
     let query;
-    if (this.unedited.length) {
-      query = `DELETE FROM images
-               WHERE shotid = $1
-                    AND clipid NOT IN (${db.markersForArgs(2, this.unedited.length)})
-              `;
+    let unedited = this.unedited;
+    if (unedited.length) {
+      query = `SELECT id FROM images WHERE shotid = $1
+        AND clipid NOT IN (${db.markersForArgs(2, this.unedited.length)})`;
     } else {
-      query = `DELETE FROM images WHERE shotid = $1`;
+      query = `SELECT id FROM images WHERE shotid = $1`;
     }
-    return db.queryWithClient(
+    let promise = db.queryWithClient(
       client,
       query,
       [this.shot.id].concat(this.unedited)
-    ).then(() => {
+    ).then((result) => {
+
+      // Fire and forget attempts to delete from s3
+      for (let i = 0; i < result.rows.length; i++) {
+        del(result.rows[i].id);
+      }
+
+      if (unedited.length) {
+        query = `DELETE FROM images
+               WHERE shotid = $1
+                    AND clipid NOT IN (${db.markersForArgs(2, this.unedited.length)})
+              `;
+      } else {
+        query = "DELETE FROM images WHERE shotid = $1";
+      }
+      return db.queryWithClient(client, query, [this.shot.id].concat(this.unedited));
+    });
+    return promise.then(() => {
       return Promise.all(
         this.toInsertClipIds.map((clipId) => {
           let data = this.toInsert[clipId];
+
+          put(data.uuid, data.binary.data, "image");
+
           return db.queryWithClient(
             client,
-            `INSERT INTO images (id, shotid, clipid, image, contenttype)
+            `INSERT INTO images (id, shotid, clipid, url, contenttype)
              VALUES ($1, $2, $3, $4, $5)
             `,
-            [data.uuid, this.shot.id, clipId, data.binary.data, data.binary.contentType]);
+            [data.uuid, this.shot.id, clipId, data.url, data.binary.contentType]);
         })
       );
     }).then(() => {
       if (this.toInsertThumbnail === null) {
         return Promise.resolve();
       }
+
+      put(this.toInsertThumbnail.uuid, this.toInsertThumbnail.binary, "thumbnail");
+
       return db.queryWithClient(
         client,
-        `INSERT INTO images (id, shotid, clipid, image, contenttype)
+        `INSERT INTO images (id, shotid, clipid, url, contenttype)
         VALUES ($1, $2, $3, $4, $5)
         `,
         // Since we don't have a clipid for the thumbnail and the column is NOT NULL,
         // Use the thumbnail uuid as the clipid. This allows figuring out which
         // images are thumbnails, too.
         [this.toInsertThumbnail.uuid, this.shot.id, this.toInsertThumbnail.uuid,
-        this.toInsertThumbnail.binary, this.toInsertThumbnail.contentType]);
+        this.toInsertThumbnail.url, this.toInsertThumbnail.contentType]);
     }).then(() => {
       this.committed = true;
     });
@@ -497,3 +627,6 @@ Shot.cleanDeletedShots = function () {
     });
   });
 };
+
+Shot.prototype.atob = require("atob");
+Shot.prototype.btoa = require("btoa");

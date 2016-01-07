@@ -8,5 +8,5 @@
   "undef": true,
   "unused": "vars",
   "esnext": true,
-  "predef": ["content", "btoa", "console", "addMessageListener", "sendAsyncMessage"]
+  "predef": ["content", "btoa", "console", "addMessageListener", "sendAsyncMessage", "Components"]
 }

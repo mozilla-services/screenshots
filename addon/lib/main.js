@@ -22,6 +22,9 @@ const {Cu} = require("chrome");
 const winutil = require("sdk/window/utils");
 const req = require("./req");
 
+// Give the server a chance to start if the pref is set
+require("./headless").init();
+
 Cu.import("resource:///modules/UITour.jsm");
 
 let loadReason = null;
@@ -261,7 +264,7 @@ exports.showInfoPanel = function showInfoPanel(magicCookie, title, description) 
   UITour.showInfo(win, null, target, title, description);
   UITour.showHighlight(win, target, "wobble");
   infoPanelShownForWindow = win;
-}
+};
 
 function showTour(newTab) {
   let helpurl = exports.getBackend() + "/homepage/help.html";

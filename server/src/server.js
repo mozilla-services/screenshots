@@ -24,6 +24,32 @@ const config = require("./config").root();
 const { checkContent, checkAttributes } = require("./contentcheck");
 const buildTime = require("./build-time").string;
 const ua = require("universal-analytics");
+const urlParse = require("url").parse;
+const http = require("http");
+const https = require("https");
+const genUuid = require("nodify-uuid");
+const AWS = require("aws-sdk");
+const vhost = require("vhost");
+
+if (config.useS3) {
+  // Test a PUT to s3 because configuring this requires using the aws web interface
+  // If the permissions are not set up correctly, then we want to know that asap
+  var s3bucket = new AWS.S3({params: {Bucket: 'pageshot-images-bucket'}});
+  console.info(new Date(), "creating pageshot-images-bucket");
+
+  // createBucket is a horribly named api; it creates a local object to access
+  // an existing bucket
+  s3bucket.createBucket(function() {
+    var params = {Key: 'test', Body: 'Hello!'};
+    s3bucket.upload(params, function(err, data) {
+      if (err) {
+        console.warn("Error uploading data during test: ", err);
+      } else {
+        console.info("Successfully uploaded data to pageshot-images-bucket/test");
+      }
+    });
+  });
+}
 
 dbschema.createTables().then(() => {
   dbschema.createKeygrip();
@@ -116,13 +142,20 @@ app.post("/event", function (req, res) {
   if (typeof bodyObj !== "object") {
     throw new Error("Got unexpected req.body type: " + typeof bodyObj);
   }
-  let userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
-  userAnalytics.event(
-    bodyObj.event,
-    bodyObj.action,
-    bodyObj.label
-  ).send();
-  simpleResponse(res, "OK", 200);
+  let userKey = dbschema.getTextKeys()[0] + req.deviceId;
+  genUuid.generate(genUuid.V_SHA1, genUuid.nil, userKey, function (err, userUuid) {
+    if (err) {
+      errorResponse(res, "Error creating user UUID:", err);
+      return;
+    }
+    let userAnalytics = ua(config.gaId, userUuid.toString());
+    userAnalytics.event(
+      bodyObj.event,
+      bodyObj.action,
+      bodyObj.label
+    ).send();
+    simpleResponse(res, "OK", 200);
+  });
 });
 
 app.get("/redirect", function (req, res) {
@@ -400,7 +433,10 @@ app.get("/images/:imageid", function (req, res) {
     if (obj === null) {
       simpleResponse(res, "Not Found", 404);
     } else {
-      let analyticsUrl = `/images/${encodeURIComponent(req.params.imageid)}`;
+      let hasher = require("crypto").createHash("sha1");
+      hasher.update(req.params.imageid);
+      let hashedId = hasher.digest("hex").substr(0, 15);
+      let analyticsUrl = `/images/hash${encodeURIComponent(hashedId)}`;
       if (req.userAnalytics) {
         req.userAnalytics.pageview(analyticsUrl).send();
       } else {
@@ -616,7 +652,6 @@ contentApp.use(function (req, res, next) {
   next();
 });
 
-
 contentApp.get("/content/:id/:domain", function (req, res) {
   let shotId = req.params.id + "/" + req.params.domain;
   Shot.getFullShot(req.backend, shotId).then((shot) => {
@@ -631,11 +666,64 @@ contentApp.get("/content/:id/:domain", function (req, res) {
       <script>var SITE_ORIGIN = "${req.protocol}://${config.siteOrigin}";</script>
       <script src="${req.staticLinkWithHost("js/content-helper.js")}"></script>
       <link rel="stylesheet" href="${req.staticLinkWithHost("css/content.css")}">
-      `
+      `,
+      rewriteLinks: (key, data) => {
+        let url = data.url;
+        let sig = dbschema.getKeygrip().sign(new Buffer(url, 'utf8'));
+        let proxy = `${req.protocol}://${req.headers.host}/proxy?url=${encodeURIComponent(url)}&sig=${encodeURIComponent(sig)}`;
+        if (data.hash) {
+          proxy += "#" + data.hash;
+        }
+        return proxy;
+      }
     }));
   }).catch(function (e) {
     errorResponse(res, "Failed to load shot", e);
   });
+});
+
+contentApp.get("/proxy", function (req, res) {
+  let url = req.query.url;
+  let sig = req.query.sig;
+  let isValid = dbschema.getKeygrip().verify(new Buffer(url, 'utf8'), sig);
+  if (! isValid) {
+    return simpleResponse(res, "Bad signature", 403);
+  }
+  url = urlParse(url);
+  let httpModule = http;
+  if (url.protocol == "https:") {
+    httpModule = https;
+  }
+  let headers = {};
+  for (let passthrough of ["user-agent", "if-modified-since", "if-none-match"]) {
+    if (req.headers[passthrough]) {
+      headers[passthrough] = req.headers[passthrough];
+    }
+  }
+  let subreq = httpModule.request({
+    protocol: url.protocol,
+    host: url.host,
+    port: url.port,
+    method: "GET",
+    path: url.path,
+    headers: headers
+  });
+  subreq.on("response", function (subres) {
+    res.writeHead(subres.statusCode, subres.statusMessage, subres.headers);
+    subres.on("data", function (chunk) {
+      res.write(chunk);
+    });
+    subres.on("end", function () {
+      res.end();
+    });
+    subres.on("error", function (err) {
+      errorResponse(res, "Error getting response:", err);
+    });
+  });
+  subreq.on("error", function (err) {
+    errorResponse(res, "Error fetching:", err);
+  });
+  subreq.end();
 });
 
 function shouldRenderSimple(req) {
@@ -672,10 +760,23 @@ exports.simpleResponse = simpleResponse;
 exports.errorResponse = errorResponse;
 
 linker.init().then(() => {
-  app.listen(config.port);
-  console.info(`server listening on http://localhost:${config.port}/`);
-  contentApp.listen(config.contentPort);
-  console.info(`content server listening on http://localhost:${config.contentPort}/`);
+  if (config.useVirtualHosts) {
+    const mainapp = express();
+    const siteName = config.siteOrigin.split(":")[0];
+    const contentName = config.contentOrigin.split(":")[0];
+    mainapp.use(vhost(siteName, app));
+    mainapp.use(vhost(contentName, contentApp));
+    mainapp.listen(config.port);
+    mainapp.get("/", function (req, res) {
+      res.send("ok");
+    });
+    console.info(`virtual host server listening on http://localhost:${config.port}`);
+  } else {
+    app.listen(config.port);
+    console.info(`server listening on http://localhost:${config.port}/`);
+    contentApp.listen(config.contentPort);
+    console.info(`content server listening on http://localhost:${config.contentPort}/`);
+  }
 }).catch((err) => {
   console.error("Error getting revision:", err, err.stack);
 });

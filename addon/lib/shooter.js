@@ -205,7 +205,7 @@ const ShotContext = Class({
     let url = this.shot.viewUrl;
     let img = clip.image.url;
     let title = this.shot.title;
-    let origin = new URL(this.shot.url).hostname;
+    let origin = (new URL(this.shot.url).hostname) || "none";
     let html = (
 `<div>
   <a href="${escapeForHTML(url)}">
@@ -691,6 +691,9 @@ class Shot extends AbstractShot {
 
 }
 
+Shot.prototype.atob = require("sdk/base64").decode;
+Shot.prototype.btoa = require("sdk/base64").encode;
+
 /** Returns a promise that resolves when all the promises in the array are complete
     (regardless of success or failure of each promise!) */
 function allPromisesComplete(promises) {
@@ -734,3 +737,63 @@ function urlDomainForId(urlString) {
   }
   return domain;
 }
+
+exports.autoShot = function (tab, backend, backendUrl) {
+  /* Runs the javascript cleanup utilities on the tab, takes a screenshot,
+   * creates a shot instance, and pushes the data to the backend server without
+   * asking anything via UI
+   */
+
+  watchPromise(callScript(
+    tab,
+    self.data.url("framescripts/add-ids.js"),
+    "pageshot@addIds",
+    {}
+  ).then((function (result) {
+    if (result.isXul) {
+      // Abandon hope all ye who enter!
+      // FIXME: maybe pop up an explanation here?
+      console.log('Abandon hope all ye who enter!');
+      return;
+    }
+    var prefInlineCss = require("sdk/simple-prefs").prefs.inlineCss;
+    console.debug('CSS? PREF'.replace('PREF', prefInlineCss));
+    let deviceInfo = getDeviceInfo();
+    if (! deviceInfo) {
+      throw new Error("Could not get device authentication information");
+    }
+
+    var shot = new Shot(
+      backend,
+      backendUrl,
+      { "url": tab.url, "deviceId": deviceInfo.deviceId }
+    );
+
+    // Heavy lifting happens here
+    var promises = [];
+    promises.push(watchPromise(extractWorker(tab)).then(watchFunction(function (attrs) {
+      shot.update(attrs);
+    }, this)));
+    promises.push(watchPromise(
+      captureTab(tab, {x: 0, y: 0, h: "full", w: "full"}, {h: null, w: 140}).then((screenshot) => {
+        shot.update({
+          fullScreenThumbnail: screenshot
+        });
+      })
+    ));
+    promises.push(watchPromise(callScript(
+      tab,
+      self.data.url("framescripts/make-static-html.js"),
+      "pageshot@documentStaticData",
+      {prefInlineCss})).then(watchFunction(function (attrs) {
+        shot.update(attrs);
+      }, this)));
+
+    watchPromise(allPromisesComplete(promises).then((function () {
+      shot.save();
+      tab.close();
+    }).bind(this)));
+  })));
+};
+exports.urlDomainForId = urlDomainForId;
+exports.RANDOM_STRING_LENGTH = RANDOM_STRING_LENGTH;
