@@ -162,11 +162,10 @@ function skipElement(el) {
   // Note elements with children might have children with, e.g., absolute
   // positioning -- so they might not make the parent have any width, but
   // may still need to be displayed.
-  // FIXME: should use el.offsetParent whose presence indicates the element is visible
   if (el.style && el.style.display == 'none') {
     return true;
   }
-  if (content.getComputedStyle(el).display == 'none') {
+  if ((! skipElementsOKEmpty[tag]) && content.getComputedStyle(el).display == 'none') {
     return true;
   }
   if ((el.clientWidth === 0 && el.clientHeight === 0) &&
@@ -372,6 +371,9 @@ function staticChildren(el, childLimit) {
         }
       }
     }
+  }
+  if (! promises.length) {
+    return pieces.join("");
   }
   return Promise.all(promises).then(() => {
     return pieces.join("");
