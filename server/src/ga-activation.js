@@ -112,8 +112,11 @@ exports.gaActivation = function (gaId, userId, hashLocation) {
   if (typeof userId != "string") {
     throw new Error("Invalid user ID type: " + typeof userId);
   }
-  if (gaId.search(idRegex) === -1 || userId.search(idRegex) === -1) {
-    throw new Error("Invalid gaId or userId");
+  if (gaId.search(idRegex) === -1) {
+    throw new Error("Invalid gaId: " + JSON.stringify(gaId));
+  }
+  if (userId && userId.search(idRegex) === -1) {
+    throw new Error("Invalid userId: " + JSON.stringify(userId));
   }
   if (! gaId) {
     return [stubGa()];
