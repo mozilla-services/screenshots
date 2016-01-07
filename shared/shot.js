@@ -364,6 +364,9 @@ class AbstractShot {
     let body = this.body;
     let rewriter = (html) => {
       let keys = Object.keys(this.resources);
+      if (! keys.length) {
+        return html;
+      }
       for (let key of keys) {
         if (key.search(/^[a-zA-Z0-9.\-]+$/) === -1) {
           console.warn("Bad resource name:", key);

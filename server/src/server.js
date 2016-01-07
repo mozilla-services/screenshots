@@ -670,6 +670,10 @@ contentApp.get("/content/:id/:domain", function (req, res) {
       <link rel="stylesheet" href="${req.staticLinkWithHost("css/content.css")}">
       `,
       rewriteLinks: (key, data) => {
+        if (! data) {
+          console.warn("Missing link for", JSON.stringify(key));
+          return key;
+        }
         let url = data.url;
         let sig = dbschema.getKeygrip().sign(new Buffer(url, 'utf8'));
         let proxy = `${req.protocol}://${req.headers.host}/proxy?url=${encodeURIComponent(url)}&sig=${encodeURIComponent(sig)}`;
