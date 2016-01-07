@@ -619,7 +619,7 @@ app.post('/api/fxa-oauth/token', function (req, res, next) {
       res.send({
         access_token: accessToken
       });
-    });
+    }).catch(next);
   }).catch(next);
 });
 
@@ -635,6 +635,8 @@ app.use(function (err, req, res, next) {
   }
   errorResponse(res, "General error:", err);
 });
+
+app.use("/admin", require("./pages/admin/server").app);
 
 const contentApp = express();
 
