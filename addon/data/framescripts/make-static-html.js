@@ -154,6 +154,9 @@ function skipElement(el) {
   if (skipElementsBadTags[tag]) {
     return true;
   }
+  if (el.id == "pageshot-stylesheet" || el.className.startsWith("pageshot-")) {
+    return true;
+  }
   // Skip elements that can't be seen, and have no children, and are potentially
   // "visible" elements (e.g., not STYLE)
   // Note elements with children might have children with, e.g., absolute
