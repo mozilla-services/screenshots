@@ -66,6 +66,7 @@ addon_js_dest := $(addon_js_source:%=build/%)
 # they exist:
 shoot_panel_dependencies = $(shell if [[ -e build/shoot-panel-dependencies.txt ]] ; then cat build/shoot-panel-dependencies.txt ; fi)
 clientglue_dependencies = $(shell if [[ -e build/clientglue-dependencies.txt ]] ; then cat build/clientglue-dependencies.txt ; fi)
+admin_dependencies = $(shell if [[ -e build/admin-dependencies.txt ]] ; then cat build/admin-dependencies.txt ; fi)
 
 ## General transforms:
 # These cover standard ways of building files given a source
@@ -175,7 +176,7 @@ build/addon/lib/httpd.jsm: addon/lib/httpd.jsm
 	cp $< $@
 
 addon: npm $(data_dest) $(vendor_dest) $(lib_dest) $(sass_addon_dest) $(imgs_addon_dest) $(static_addon_dest) $(shared_addon_dest) build/addon/data/panel-bundle.js build/addon/package.json build/addon/lib/httpd.jsm
- 
+
 xpi: build/mozilla-pageshot.xpi build/mozilla-pageshot.update.rdf
 
 ## Server related rules:
@@ -195,6 +196,12 @@ build/server/static/js/server-bundle.js: $(clientglue_dependencies)
 	browserify --list -e ./build/server/clientglue.js | sed "s!$(shell pwd)/!!g" | grep -v build-time > build/clientglue-dependencies.txt
 	browserify -o $@ -e ./build/server/clientglue.js ./build/server/shotindexglue.js
 
+build/server/static/js/admin-bundle.js: $(admin_dependencies) $(server_dest)
+	@mkdir -p $(@D)
+	# Generate/save dependency list:
+	browserify --list -e ./build/server/pages/admin/controller.js | sed "s!$(shell pwd)/!!g" | grep -v build-time > build/admin-dependencies.txt
+	browserify -o $@ -e ./build/server/pages/admin/controller.js
+
 build/server/export-shots.sh: server/src/export-shots.sh
 	@mkdir -p $(@D)
 	cp -p $< $@
@@ -206,7 +213,7 @@ build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass
 	@mkdir -p $(@D)
 	./bin/_write_build_time > build/server/build-time.js
 
-server: npm build/server/build-time.js build/server/static/js/server-bundle.js
+server: npm build/server/build-time.js build/server/static/js/server-bundle.js build/server/static/js/admin-bundle.js
 
 ## Homepage related rules:
 

@@ -72,6 +72,21 @@ exports.updateLogin = function (deviceId, data) {
   ).then(rowCount => !! rowCount);
 };
 
+exports.accountIdForDeviceId = function (deviceId) {
+  if (! deviceId) {
+    throw new Error("No deviceId given");
+  }
+  return db.select(
+    `SELECT accountid FROM devices WHERE id = $1`,
+    [deviceId]
+  ).then((rows) => {
+    if (! rows.length) {
+      return null;
+    }
+    return rows[0].accountid;
+  });
+};
+
 exports.setState = function (deviceId, state) {
   return db.insert(
     `INSERT INTO states (state, deviceid)

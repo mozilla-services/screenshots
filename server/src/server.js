@@ -619,7 +619,7 @@ app.post('/api/fxa-oauth/token', function (req, res, next) {
       res.send({
         access_token: accessToken
       });
-    });
+    }).catch(next);
   }).catch(next);
 });
 
@@ -635,6 +635,8 @@ app.use(function (err, req, res, next) {
   }
   errorResponse(res, "General error:", err);
 });
+
+app.use("/admin", require("./pages/admin/server").app);
 
 const contentApp = express();
 
@@ -668,6 +670,10 @@ contentApp.get("/content/:id/:domain", function (req, res) {
       <link rel="stylesheet" href="${req.staticLinkWithHost("css/content.css")}">
       `,
       rewriteLinks: (key, data) => {
+        if (! data) {
+          console.warn("Missing link for", JSON.stringify(key));
+          return key;
+        }
         let url = data.url;
         let sig = dbschema.getKeygrip().sign(new Buffer(url, 'utf8'));
         let proxy = `${req.protocol}://${req.headers.host}/proxy?url=${encodeURIComponent(url)}&sig=${encodeURIComponent(sig)}`;
