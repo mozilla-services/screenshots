@@ -72,19 +72,12 @@ exports.Page = class Page {
     return this.dir + "/model";
   }
 
-  get viewModuleName() {
-    return this.dir + "/view";
-  }
-
   get BodyFactory() {
-    // FIXME: this doesn't work well with browserify, hence a static require()
-    // (which could appear anywhere in the file)
-    require("./pages/admin/view");
-    return require("./" + this.viewModuleName).BodyFactory;
+    return this.viewModule.BodyFactory;
   }
 
 };
 
 exports.Page.prototype.ATTRS = `
-dir
+dir viewModule
 `.split(/\s+/g);
