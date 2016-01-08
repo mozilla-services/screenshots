@@ -69,6 +69,7 @@ const gaJs = `
   window.ga.l = 1 * new Date();
   var userId = "__USER_ID__";
   var gaOptions = "auto";
+  var gaLocation;
   if (userId) {
     gaOptions = {userId: userId};
   }
@@ -89,16 +90,19 @@ const gaJs = `
       for (var i=0; i<10; i++) {
         c.push(result[i].toString(16));
       }
-      gaOptions.location = "/a-shot/" + c.join("");
+      gaLocation = "/a-shot/" + c.join("");
       finish();
     });
   } else {
-    gaOptions.location = "/a-shot/unknown";
+    gaLocation = "/a-shot/unknown";
     finish();
   }
   function finish() {
     ga("create", "__GA_ID__", gaOptions);
-    ga("send", "pageview", gaOptions.location || location.href);
+    if (gaLocation) {
+      ga("set", "location", gaLocation);
+    }
+    ga("send", "pageview", gaLocation || location.href);
   }
 })();
 `;
