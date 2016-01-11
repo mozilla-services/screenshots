@@ -971,7 +971,7 @@
 
       //Scroll down
       } else {
-        window.scrollBy(0, bottom + 100); // 70px + 30px padding from edge to look nice
+        window.scrollBy(0, bottom + 150); // 70px + 30px padding from edge to look nice, adjusted by 50 so the whole help text box is visible on screen
       }
     }
 
