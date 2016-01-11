@@ -1,3 +1,4 @@
+/* globals setTimeout */
 /** This file is used to turn the document into static HTML with no scripts
 
     As a framescript this can access the document and its iframes without
@@ -10,8 +11,11 @@
     with lib/framescripter
     */
 
+// Provides setTimeout:
+Components.utils.import("resource://gre/modules/Timer.jsm");
 const uuidGenerator = Components.classes["@mozilla.org/uuid-generator;1"]
                       .getService(Components.interfaces.nsIUUIDGenerator);
+
 
 function makeUuid() {
   var uuid = uuidGenerator.generateUUID();
@@ -180,6 +184,11 @@ function skipElement(el) {
       return true;
     }
   }
+  if (el.tagName == "INPUT" && (el.getAttribute("type") || '').search(/hidden/i) !== -1) {
+    // Probably hidden fields will get eliminated because they aren't visible
+    // but just to be double sure...
+    return true;
+  }
   if (prefInlineCss) {
     if (el.tagName == "STYLE") {
       return true;
@@ -213,7 +222,7 @@ function staticHTMLDocument(doc) {
 /** Converts the element to static HTML, dropping anything that isn't static
     The element must not be one that should be skipped.
     */
-function staticHTML(el) {
+function staticHTML(el, childLimit) {
   if (el.tagName == 'CANVAS') {
     return '<IMG SRC="' + htmlQuote(el.toDataURL('image/png')) + '">';
   }
@@ -271,7 +280,9 @@ function staticHTML(el) {
   }
   if (el.tagName === "INPUT") {
     var elType = (el.getAttribute("type") || "text").toLowerCase();
-    if (elType === "checkbox" || elType == "radio") {
+    if (elType.search(/password/) !== -1) {
+      // do nothing, don't save value
+    } else if (elType === "checkbox" || elType == "radio") {
       if ((! el.hasAttribute("checked")) && el.checked) {
         s += " checked";
       }
@@ -290,11 +301,19 @@ function staticHTML(el) {
   if (el.tagName == "TEXTAREA") {
     s += htmlQuote(el.value);
   }
-  if (! voidElements[el.tagName]) {
-    s += staticChildren(el);
-    s += '</' + el.tagName + '>';
+  if (voidElements[el.tagName]) {
+    return s;
   }
-  return s;
+  let childrenHTML = staticChildren(el, childLimit);
+  if (typeof childrenHTML == "string") {
+    s += childrenHTML;
+    s += '</' + el.tagName + '>';
+    return s;
+  } else {
+    return childrenHTML.then(function (html) {
+      return s + html + '</' + el.tagName + '>';
+    });
+  }
 }
 
 /** Returns a list of [[attrName, attrValue]] */
@@ -324,23 +343,70 @@ function getAttributes(el) {
 }
 
 /** Traverses the children of an element and serializes that to text */
-function staticChildren(el) {
-  var s = '';
+function staticChildren(el, childLimit) {
   var children = el.childNodes;
   var l = children.length;
-  for (var i=0; i<l; i++) {
-    var child = children[i];
+  let pieces = [];
+  let promises = [];
+  for (let i=0; i<l; i++) {
+    let child = children[i];
     if (child.nodeType == TEXT_NODE) {
-      var value = child.nodeValue;
-      s += htmlQuote(value, true);
+      pieces.push(htmlQuote(child.nodeValue, true));
     } else if (child.nodeType == ELEMENT_NODE) {
       if (skipElement(child)) {
         continue;
       }
-      s += staticHTML(child);
+      if (l >= childLimit) {
+        pieces.push("");
+        promises.push(insertInto(doSoon(staticHTML, child, childLimit), pieces, pieces.length-1));
+      } else {
+        let result = staticHTML(child, childLimit);
+        if (typeof result == "string") {
+          pieces.push(result);
+        } else {
+          pieces.push("");
+          promises.push(insertInto(result, pieces, pieces.length-1));
+        }
+      }
     }
   }
-  return s;
+  return Promise.all(promises).then(() => {
+    return pieces.join("");
+  });
+}
+
+function doSoon(func, ...args) {
+  return new Promise((resolve, reject) => {
+    setTimeout(function () {
+      try {
+        let result = func.apply(null, args);
+        if (result.then) {
+          result.then(resolve, reject);
+        } else {
+          resolve(result);
+        }
+      } catch (e) {
+        reject(e);
+      }
+    });
+  });
+}
+
+function insertInto(promise, array, index) {
+  return promise.then((result) => {
+    array[index] = result;
+  });
+}
+
+function asyncStaticChildren(el) {
+  return new Promise((resolve, reject) => {
+    let result = staticChildren(el, 5);
+    if (typeof result == "string") {
+      resolve(result);
+    } else {
+      result.then(resolve, reject);
+    }
+  });
 }
 
 function createStyle(doc) {
@@ -366,7 +432,6 @@ function createStyle(doc) {
     skipRule: function (rule) {
       this.rulesOmitted++;
       this.charsOmitted += rule.cssText.length;
-      this.rules.push(`/* skipped: ${rule.cssText} */`);
     },
     toString: function () {
       let styles = [];
@@ -472,63 +537,64 @@ function getStyleRules(result, doc, stylesheet) {
 /** Creates an object that represents a frozen version of the document */
 function documentStaticData() {
   var start = Date.now();
+  var result = {};
   var body = getDocument().body;
   resources = {};
-  var bodyAttrs = null;
+  result.bodyAttrs = null;
   if (body) {
-    bodyAttrs = getAttributes(body);
-    body = staticChildren(body);
+    result.bodyAttrs = getAttributes(body);
   }
-  var headAttrs = null;
+  result.headAttrs = null;
   var head = getDocument().head;
   if (head) {
-    headAttrs = getAttributes(head);
-    head = staticChildren(head);
-    if (prefInlineCss) {
-      let style = createStyle(getDocument());
-      head = style + head;
-    }
+    result.headAttrs = getAttributes(head);
   }
-  var htmlAttrs = null;
+  result.htmlAttrs = null;
   if (getDocument().documentElement) {
-    htmlAttrs = getAttributes(getDocument().documentElement);
+    result.htmlAttrs = getAttributes(getDocument().documentElement);
   }
-  var favicon = getDocument().querySelector("link[rel='shortcut icon'], link[rel='icon']");
-  if (favicon) {
-    favicon = checkLink(favicon.href);
+  result.favicon = getDocument().querySelector("link[rel='shortcut icon'], link[rel='icon']");
+  if (result.favicon) {
+    result.favicon = checkLink(result.favicon.href);
   } else {
     // FIXME: ideally test if this exists
     let origin = getLocation().origin;
     if (origin && origin != "null") {
-      favicon = origin + "/favicon.ico";
+      result.favicon = origin + "/favicon.ico";
     }
   }
 
-  let documentSize = {
+  result.documentSize = {
     width: Math.max(getDocument().documentElement.clientWidth, getDocument().body.clientWidth),
     height: Math.max(getDocument().documentElement.clientHeight, getDocument().body.clientHeight)
   };
 
   console.info("framescript serializing took " + (Date.now() - start) + " milliseconds");
 
-  // FIXME: figure out if we still want things like origin:
-  return {
-    url: getLocation().href,
-    //origin: getLocation().origin,
-    favicon,
-    htmlAttrs,
-    head,
-    headAttrs,
-    body,
-    bodyAttrs,
-    docTitle: getDocument().title,
-    documentSize,
-    openGraph: getOpenGraph(),
-    twitterCard: getTwitterCard(),
-    resources
-    //initialScroll: scrollFraction,
-    //captured: Date.now()
-  };
+  result.url = getLocation().href;
+  result.docTitle = getDocument().title;
+  result.openGraph = getOpenGraph();
+  result.twitterCard = getTwitterCard();
+  result.resources = resources;
+
+  let promises = [];
+  if (body) {
+    promises.push(asyncStaticChildren(body).then((bodyHtml) => {
+      result.body = bodyHtml;
+    }));
+  }
+  if (head) {
+    promises.push(asyncStaticChildren(head).then((headHtml) => {
+      if (prefInlineCss) {
+        let style = createStyle(getDocument());
+        headHtml = style + headHtml;
+      }
+      result.head = headHtml;
+    }));
+  }
+  return Promise.all(promises).then(function () {
+    return result;
+  });
 }
 
 function getOpenGraph() {
@@ -588,25 +654,33 @@ function getTwitterCard() {
 
 let isDisabled = false;
 addMessageListener("pageshot@documentStaticData:call", function (event) {
+  function send(result) {
+    result.callId = event.data.callId;
+    sendAsyncMessage("pageshot@documentStaticData:return", result);
+  }
+  function sendError(error) {
+    console.error("Error getting static HTML:", error);
+    console.error(error.stack);
+    send({
+      error: {
+        name: error.name,
+        description: error+""
+      }
+    });
+  }
   if (isDisabled) {
     return;
   }
-  var result;
   try {
     prefInlineCss = event.data.prefInlineCss;
-    result = documentStaticData();
-  } catch (e) {
-    console.error("Error getting static HTML:", e);
-    console.error(e.stack);
-    result = {
-      error: {
-        name: e.name,
-        description: e+""
-      }
-    };
+    documentStaticData().then((result) => {
+      send(result);
+    }).catch((error) => {
+      sendError(error);
+    });
+  } catch (error) {
+    sendError(error);
   }
-  result.callId = event.data.callId;
-  sendAsyncMessage("pageshot@documentStaticData:return", result);
 });
 
 addMessageListener("pageshot@disable", function (event) {

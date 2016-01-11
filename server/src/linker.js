@@ -2,6 +2,7 @@ const git = require('git-rev');
 
 let gitRevision;
 
+// FIXME: move this to server.js or somewhere else, so git-rev doesn't get included in the bundle
 exports.init = function () {
   return new Promise((resolve, reject) => {
     git.long((rev) => {
