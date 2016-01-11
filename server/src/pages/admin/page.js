@@ -1,5 +1,6 @@
 const { Page } = require("../../reactruntime");
 
 exports.page = new Page({
-  dir: __dirname
+  dir: __dirname,
+  viewModule: require("./view.js")
 });

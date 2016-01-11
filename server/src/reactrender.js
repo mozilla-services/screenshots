@@ -5,7 +5,7 @@ const { getGitRevision } = require("./linker");
 exports.render = function (req, res, page) {
   console.log("rendering");
   let modelModule = require("./" + page.modelModuleName);
-  let viewModule = require("./" + page.viewModuleName);
+  let viewModule = page.viewModule;
   modelModule.createModel(req).then((model) => {
     model = {
       backend: req.backend,
@@ -22,9 +22,7 @@ exports.render = function (req, res, page) {
     <html>
       ${head}
       <body>
-        <div id="react-body-container">
-          ${body}
-        </div>
+        <div id="react-body-container">${body}</div>
       </body></html>
     `.trim();
     // FIXME: we should just inline the addReactScripts functionality in this function:
