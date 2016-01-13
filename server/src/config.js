@@ -180,6 +180,13 @@ var conf = convict({
     default: false,
     env: "ALLOW_EXPORT",
     arg: "allow-export"
+  },
+  sentryDSN: {
+    doc: "The sentry DSN URL to use for recording errors, if any. Sentry is not used unless this parameter is provided.",
+    format: String,
+    default: "",
+    env: "SENTRY_DSN",
+    arg: "sentry-dsn"
   }
 });
 
