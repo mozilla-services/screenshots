@@ -30,6 +30,7 @@ const https = require("https");
 const genUuid = require("nodify-uuid");
 const AWS = require("aws-sdk");
 const vhost = require("vhost");
+const raven = require("raven");
 
 if (config.useS3) {
   // Test a PUT to s3 because configuring this requires using the aws web interface
@@ -49,6 +50,13 @@ if (config.useS3) {
       }
     });
   });
+}
+
+let ravenClient = null;
+
+if (config.sentryDSN) {
+  ravenClient = new raven.Client(config.sentryDSN);
+  ravenClient.patchGlobal();
 }
 
 dbschema.createTables().then(() => {
@@ -100,6 +108,10 @@ app.use(function (req, res, next) {
   let base = req.protocol + "://" + req.headers.host;
   linker.imageLinkWithHost = linker.imageLink.bind(null, base);
   next();
+});
+
+app.get("/trigger-error", function (req, res) {
+  throw new Error("test error");
 });
 
 app.post("/error", function (req, res) {
@@ -626,6 +638,9 @@ app.post('/api/fxa-oauth/token', function (req, res, next) {
 app.use(function (err, req, res, next) {
   console.error("Error:", err);
   console.error(err.stack);
+  if (ravenClient) {
+    ravenClient.captureException(err);
+  }
   if (err.isAppError) {
     let { statusCode, headers, payload } = err.output;
     res.status(statusCode);
