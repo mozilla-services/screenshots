@@ -33,7 +33,7 @@ static_addon_dest := $(static_addon_source:%=build/%)
 static_js_source := $(wildcard static/js/*.js)
 static_js_dest := $(static_js_source:%.js=build/server/%.js)
 
-static_vendor_source := $(shell find static/vendor -type f)
+static_vendor_source := $(shell find -L static/vendor -type f)
 static_vendor_dest := $(static_vendor_source:%=build/server/%)
 
 lib_source := $(wildcard addon/lib/*.js)
