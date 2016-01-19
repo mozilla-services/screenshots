@@ -183,7 +183,7 @@ class Head extends React.Component {
     if (this.props.sentryDSN) {
       js = js.concat([
         <script src={ this.props.staticLink("vendor/raven.js") } key="raven-js-js" />,
-        <script dangerouslySetInnerHTML={{__html: `Raven.config("${this.props.sentryDSN}").install()`}}></script>,
+        <script dangerouslySetInnerHTML={{__html: `Raven.config("${this.props.sentryDSN}").install(); window.Raven = Raven;`}}></script>,
       ]);
     }
 

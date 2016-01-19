@@ -65,7 +65,7 @@ exports.setModel = function (data) {
     throw new Error("Test client side sentry integration");
   } catch (e) {
     console.log("capture exception", e);
-    Raven.captureException(e);
+    window.Raven.captureException(e);
   }
 };
 

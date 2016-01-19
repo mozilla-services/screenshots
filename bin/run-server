@@ -19,7 +19,7 @@ run () {
   if [[ -n "$restart" ]] ; then
     playsound bin/hole-punch.mp3
   fi
-  export SENTRY_DSN=https://d58fc53f92cd47bba7266ad6444514d8@sentry.prod.mozaws.net/74
+  export SENTRY_DSN=https://764b8b5b80374031a8d197552b29cbc9@sentry.prod.mozaws.net/76
   node -e 'require("babel/polyfill"); require("./build/server/server");'
 }
 
