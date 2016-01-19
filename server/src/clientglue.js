@@ -61,6 +61,12 @@ exports.setModel = function (data) {
     refreshHash();
   }
   exports.render();
+  try {
+    throw new Error("Test client side sentry integration");
+  } catch (e) {
+    console.log("capture exception", e);
+    Raven.captureException(e);
+  }
 };
 
 exports.render = function render() {

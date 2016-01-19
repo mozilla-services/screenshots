@@ -72,6 +72,7 @@ class LoadingClip extends React.Component {
 
 class ShareButtons extends React.Component {
   onClickShareButton(whichButton) {
+    throw new Error("test error");
     self.port.emit("shareButton", whichButton, this.props.eventSource);
   }
 
