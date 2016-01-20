@@ -60,12 +60,11 @@ exports.setModel = function (data) {
     window.addEventListener("hashchange", refreshHash, false);
     refreshHash();
   }
-  exports.render();
   try {
-    throw new Error("Test client side sentry integration");
+    exports.render();
   } catch (e) {
-    console.log("capture exception", e);
     window.Raven.captureException(e);
+    throw e;
   }
 };
 
