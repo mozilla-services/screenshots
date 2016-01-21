@@ -27,6 +27,8 @@ When you run docker, you should use --net=host and pass the following parameters
 
   SENTRY_DSN - the sentry dsn url to use for logging errors
 
+  SENTRY_PUBLIC_DSN - the sentry public dsn url to use for logging errors from content and the addon
+
 Example command line:
 
-  docker run --net=host -e 'RDS_USERNAME=postgres' -e 'RDS_PASSWORD=********' -e 'RDS_HOSTNAME=pageshot-dev.czvvrkdqhklf.us-east-1.rds.amazonaws.com' -e 'SITE_ORIGIN=pageshotfzzzy.dev.mozaws.net' -e 'CONTENT_ORIGIN=pageshotcontentfzzzy.dev.mozaws.net' -e 'S3_BUCKET_NAME=pageshot-images-bucket' -e 'GA_ID=********' -e 'SENTRY_DSN=********' fzzzy/pageshot
+  docker run --net=host -e 'RDS_USERNAME=postgres' -e 'RDS_PASSWORD=********' -e 'RDS_HOSTNAME=pageshot-dev.czvvrkdqhklf.us-east-1.rds.amazonaws.com' -e 'SITE_ORIGIN=pageshotfzzzy.dev.mozaws.net' -e 'CONTENT_ORIGIN=pageshotcontentfzzzy.dev.mozaws.net' -e 'S3_BUCKET_NAME=pageshot-images-bucket' -e 'GA_ID=********' -e 'SENTRY_DSN=********' -e 'SENTRY_DSN=********' fzzzy/pageshot
