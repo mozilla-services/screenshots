@@ -182,11 +182,18 @@ var conf = convict({
     arg: "allow-export"
   },
   sentryDSN: {
-    doc: "The sentry DSN URL to use for recording errors, if any. Sentry is not used unless this parameter is provided.",
+    doc: "The sentry DSN URL to use for recording errors, if any. Sentry is not used on the server unless this parameter is provided.",
     format: String,
     default: "",
     env: "SENTRY_DSN",
     arg: "sentry-dsn"
+  },
+  sentryPublicDSN: {
+    doc: "The public sentry DSN URL to use for recording errors from the site and from the addon. Sentry is not used on the client if this parameter is not provided.",
+    format: String,
+    default: "",
+    env: "SENTRY_PUBLIC_DSN",
+    arg: "sentry-public-dsn"
   }
 });
 

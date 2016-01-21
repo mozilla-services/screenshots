@@ -28,11 +28,31 @@
       font-size: 120%;
     }
     </style>
+    <script src="raven.js"></script>
+    <script>window.Raven = Raven;
+
+var firstError = true;
+
+function captureException(e) {
+  if (!e.sentryPublicDSN) {
+    return;
+  }
+  if (firstError) {
+    Raven.config(e.sentryPublicDSN).install();
+    firstError = false;
+  }
+  var err = new Error();
+  err.name = e.name;
+  err.message = e.message;
+  err.stack = e.stack;
+  err.version = e.version;
+  Raven.captureException(err);
+}
+    </script>
   </head>
   <body>
     <div class="container">
       <h1>PageShot Error :(</h1>
-
       <div id="errors">
       </div>
 

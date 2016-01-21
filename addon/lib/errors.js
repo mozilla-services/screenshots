@@ -9,6 +9,7 @@ const panels = require("sdk/panel");
 const self = require("sdk/self");
 const req = require("./req");
 const main = require("./main");
+const user = require("./user");
 
 const panel = panels.Panel({
   contentURL: self.data.url("error-panel.html"),
@@ -34,6 +35,8 @@ exports.unhandled = function (error) {
       errorObj = error + "";
     }
   }
+  errorObj.sentryPublicDSN = user.getSentryPublicDSN();
+
   panel.port.emit("showError", errorObj);
   if (typeof errorObj === "string") {
     errorObj = {name: errorObj};

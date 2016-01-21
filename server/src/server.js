@@ -268,21 +268,21 @@ app.post("/api/login", function (req, res) {
       cookies.set("user", vars.deviceId, {signed: true});
       let userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
       userAnalytics.pageview("/api/login").send();
-      simpleResponse(res, "User logged in", 200);
+      simpleResponse(res, JSON.stringify({"ok": "User logged in", "sentryPublicDSN": config.sentryPublicDSN}), 200);
       addDeviceActivity(vars.deviceId, "login", {
         deviceInfo: vars.deviceInfo
       });
     } else if (ok === null) {
-      simpleResponse(res, "No such user", 404);
+      simpleResponse(res, '{"error": "No such user"}', 404);
     } else {
       addDeviceActivity(vars.deviceId, "invalid-login", {
         hasSecret: !!vars.secret,
         deviceInfo: vars.deviceInfo
       });
-      simpleResponse(res, "Invalid login", 401);
+      simpleResponse(res, '{"error": "Invalid login"}', 401);
     }
   }).catch(function (err) {
-    errorResponse(res, "Error in login:", err);
+    errorResponse(res, JSON.stringify({"error": `Error in login: ${err}`}));
   });
 });
 
