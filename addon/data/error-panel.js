@@ -5,6 +5,8 @@
 
 var errorContainer = document.getElementById("errors");
 
+var firstError = true;
+
 self.port.on("showError", function (error) {
   var thisError = document.createElement("div");
   thisError.className = "error";
@@ -23,6 +25,15 @@ self.port.on("showError", function (error) {
   if (error.stack) {
     console.error(error.stack);
   }
+  if (firstError) {
+    // TODO Parameterize the dsn url
+    unsafeWindow.sentryDSN = cloneInto("https://debfcc92d9cc4487867f0dd221dc6595@sentry.prod.mozaws.net/79", unsafeWindow);
+    unsafeWindow.Raven.config(unsafeWindow.sentryDSN).install();
+    firstError = false;
+  }
+  unsafeWindow.error = cloneInto(error, unsafeWindow);
+  unsafeWindow.captureException(unsafeWindow.error);
+
   thisError.setAttribute("data-timestamp", Date.now());
   cullErrors();
   if (! errorExists(thisError)) {
