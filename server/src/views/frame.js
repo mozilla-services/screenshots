@@ -638,7 +638,7 @@ exports.render = function (req, res) {
     expireTime: req.shot.expireTime === null ? null: req.shot.expireTime.getTime(),
     retentionTime: req.config.expiredRetentionTime*1000,
     defaultExpiration: req.config.defaultExpiration*1000,
-    sentryPUblicDSN: req.config.sentryPublicDSN,
+    sentryPublicDSN: req.config.sentryPublicDSN,
   };
   let headString = React.renderToStaticMarkup(HeadFactory(serverPayload));
   let frame = FrameFactory(serverPayload);
