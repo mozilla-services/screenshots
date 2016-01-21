@@ -30,6 +30,7 @@
     "pg": "4.3.0",
     "pg-patcher": "0.3.0",
     "raven": "0.9.0",
+    "raven-js": "1.2",
     "react": "0.13.3",
     "rimraf": "2.4.3",
     "universal-analytics": "0.3.9",

@@ -23,6 +23,9 @@ self.port.on("showError", function (error) {
   if (error.stack) {
     console.error(error.stack);
   }
+  unsafeWindow.error = cloneInto(error, unsafeWindow);
+  unsafeWindow.captureException(unsafeWindow.error);
+
   thisError.setAttribute("data-timestamp", Date.now());
   cullErrors();
   if (! errorExists(thisError)) {

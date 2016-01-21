@@ -60,7 +60,12 @@ exports.setModel = function (data) {
     window.addEventListener("hashchange", refreshHash, false);
     refreshHash();
   }
-  exports.render();
+  try {
+    exports.render();
+  } catch (e) {
+    window.Raven.captureException(e);
+    throw e;
+  }
 };
 
 exports.render = function render() {

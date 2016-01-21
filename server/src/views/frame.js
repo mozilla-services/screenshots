@@ -1,5 +1,5 @@
 /* jshint browser: true */
-/* globals ga */
+/* globals ga, Raven */
 
 const React = require("react");
 const { getGitRevision } = require("../linker");
@@ -179,6 +179,14 @@ class Head extends React.Component {
       <script src={ this.props.staticLink("vendor/introjs/intro.js") } key="introjs-js" />,
       <script src={ this.props.staticLink("js/server-bundle.js") } key="server-bundle-js" />,
     ];
+
+    if (this.props.sentryPublicDSN) {
+      js = js.concat([
+        <script src={ this.props.staticLink("vendor/raven.js") } key="raven-js-js" />,
+        <script dangerouslySetInnerHTML={{__html: `Raven.config("${this.props.sentryPublicDSN}").install(); window.Raven = Raven;`}}></script>,
+      ]);
+    }
+
     js = js.concat(gaActivation(this.props.gaId, this.props.deviceId, true));
     if (this.props.simple) {
       js = [];
@@ -629,7 +637,8 @@ exports.render = function (req, res) {
     shotDomain: req.url, // FIXME: should be a property of the shot
     expireTime: req.shot.expireTime === null ? null: req.shot.expireTime.getTime(),
     retentionTime: req.config.expiredRetentionTime*1000,
-    defaultExpiration: req.config.defaultExpiration*1000
+    defaultExpiration: req.config.defaultExpiration*1000,
+    sentryPublicDSN: req.config.sentryPublicDSN,
   };
   let headString = React.renderToStaticMarkup(HeadFactory(serverPayload));
   let frame = FrameFactory(serverPayload);
