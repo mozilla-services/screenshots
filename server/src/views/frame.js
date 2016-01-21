@@ -180,10 +180,10 @@ class Head extends React.Component {
       <script src={ this.props.staticLink("js/server-bundle.js") } key="server-bundle-js" />,
     ];
 
-    if (this.props.sentryDSN) {
+    if (this.props.sentryPublicDSN) {
       js = js.concat([
         <script src={ this.props.staticLink("vendor/raven.js") } key="raven-js-js" />,
-        <script dangerouslySetInnerHTML={{__html: `Raven.config("${this.props.sentryDSN}").install(); window.Raven = Raven;`}}></script>,
+        <script dangerouslySetInnerHTML={{__html: `Raven.config("${this.props.sentryPublicDSN}").install(); window.Raven = Raven;`}}></script>,
       ]);
     }
 
@@ -638,7 +638,7 @@ exports.render = function (req, res) {
     expireTime: req.shot.expireTime === null ? null: req.shot.expireTime.getTime(),
     retentionTime: req.config.expiredRetentionTime*1000,
     defaultExpiration: req.config.defaultExpiration*1000,
-    sentryDSN: req.config.sentryDSN,
+    sentryPUblicDSN: req.config.sentryPublicDSN,
   };
   let headString = React.renderToStaticMarkup(HeadFactory(serverPayload));
   let frame = FrameFactory(serverPayload);
