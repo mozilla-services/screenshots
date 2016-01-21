@@ -8,8 +8,14 @@ const { FxAccountsOAuthClient } = Cu.import("resource://gre/modules/FxAccountsOA
 const { FxAccountsProfileClient } = Cu.import("resource://gre/modules/FxAccountsProfileClient.jsm", {});
 const { deviceInfo } = require('./deviceinfo');
 const recall = require("./recall");
+const errors = require("./errors");
 
 let initialized = false;
+let sentryPublicDSN = "";
+
+exports.getSentryPublicDSN = function() {
+  return sentryPublicDSN;
+}
 
 exports.deleteEverything = function () {
   let backend = require("./main").getBackend();
@@ -82,6 +88,12 @@ exports.initialize = function (backend, reason) {
           }
           initialized = true;
           console.info("logged in with cookie:", !!response.headers["Set-Cookie"]);
+          try {
+            sentryPublicDSN = response.json.sentryPublicDSN;
+            console.info("got sentry DSN response from server");
+          } catch (e) {
+            console.error("Error looking for the sentry DSN", e);
+          }
           // The only other thing we do is preload the cookies
         })
       }).post();

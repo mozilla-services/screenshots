@@ -30,13 +30,22 @@
     </style>
     <script src="raven.js"></script>
     <script>window.Raven = Raven;
+
+var firstError = true;
+
 function captureException(e) {
+  if (!e.sentryPublicDSN) {
+    return;
+  }
+  if (firstError) {
+    Raven.config(e.sentryPublicDSN).install();
+    firstError = false;
+  }
   var err = new Error();
   err.name = e.name;
   err.message = e.message;
   err.stack = e.stack;
   err.version = e.version;
-  console.error("CAPTURE EXCEPTION!+!!!!!!!!!", e);
   Raven.captureException(err);
 }
     </script>
