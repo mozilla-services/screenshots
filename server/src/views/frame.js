@@ -221,11 +221,6 @@ class Frame extends React.Component {
   }
 
   clickFullPageButton(e) {
-    e.preventDefault();
-    let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
-    let toolbarHeight = document.getElementById("toolbar").clientHeight;
-    let frameTop = frameOffset - (toolbarHeight * 2);
-    window.scroll(0, frameTop);
     ga("send", "event", "website", "click-full-page-button", {page: location.toString()});
   }
 
@@ -412,7 +407,7 @@ class Frame extends React.Component {
           { nextClipNode }
         </div>
         <div id="full-page-button">
-          <a href="#" className="full-page-button-styles" onClick={ this.clickFullPageButton.bind(this) }>
+          <a href="#fullpage" className="full-page-button-styles" onClick={ this.clickFullPageButton.bind(this) }>
             <span className="full-page-button-arrow">▾</span>
             <span className="full-page-button-text"> Full Page </span>
             <span className="full-page-button-arrow">▾</span>
@@ -425,7 +420,7 @@ class Frame extends React.Component {
         </div>
         { clips }
         <div id="full-page-button-scrollable">
-          <a data-step="3" data-intro="Every time you take a clip, the full page is also saved." href="#" className="full-page-button-styles" onClick={ this.clickFullPageButton.bind(this) }>
+          <a data-step="3" data-intro="Every time you take a clip, the full page is also saved." href="#fullpage" className="full-page-button-styles" onClick={ this.clickFullPageButton.bind(this) }>
             <span className="full-page-button-arrow">▾</span>
             <span className="full-page-button-text"> Full Page </span>
             <span className="full-page-button-arrow">▾</span>

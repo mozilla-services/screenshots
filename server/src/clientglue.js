@@ -137,6 +137,13 @@ function refreshProfile(e) {
 }
 
 function refreshHash() {
+  if (location.hash === "#fullpage") {
+    let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
+    let toolbarHeight = document.getElementById("toolbar").clientHeight;
+    let frameTop = frameOffset - (toolbarHeight * 2);
+    window.scroll(0, frameTop);
+    return;
+  }
   let clipId = null;
   let match = (/clip=([^&]+)/).exec(location.hash);
   if (match) {
