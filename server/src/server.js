@@ -32,6 +32,19 @@ const AWS = require("aws-sdk");
 const vhost = require("vhost");
 const raven = require("raven");
 
+const PROXY_HEADER_WHITELIST = {
+  "content-type": true,
+  "content-encoding": true,
+  "content-length": true,
+  "last-modified": true,
+  "etag": true,
+  "date": true,
+  "accept-ranges": true,
+  "content-range": true,
+  "retry-after": true,
+  "via": true
+};
+
 if (config.useS3) {
   // Test a PUT to s3 because configuring this requires using the aws web interface
   // If the permissions are not set up correctly, then we want to know that asap
@@ -730,10 +743,17 @@ contentApp.get("/proxy", function (req, res) {
     headers: headers
   });
   subreq.on("response", function (subres) {
-    let headers = JSON.parse(JSON.stringify(subres.headers));
+    let headers = {};
+    for (let h in subres.headers) {
+      if (PROXY_HEADER_WHITELIST[h]) {
+        headers[h] = subres.headers[h];
+      }
+    }
     // Cache for 30 days
     headers["cache-control"] = "public, max-age=2592000";
     headers["expires"] = new Date(Date.now() + 2592000000).toUTCString();
+    res.writeHead(subres.statusCode, subres.statusMessage, headers);
+
     subres.on("data", function (chunk) {
       res.write(chunk);
     });
