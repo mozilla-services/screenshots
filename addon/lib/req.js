@@ -44,6 +44,15 @@ exports.sendEvent = function (event, action, label) {
   });
 }
 
+exports.sendTiming = function(event, action, timing) {
+  let main = require("./main");
+  exports.request(`${main.getBackend()}/timing`, {
+    method: "POST",
+    content: JSON.stringify({event, action, timing}),
+    contentType: "application/json"
+  });
+}
+
 function timeout(time) {
   return new Promise((resolve, reject) => {
     require("sdk/timers").setTimeout(function () {

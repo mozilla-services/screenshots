@@ -7,7 +7,7 @@
 const self = require("sdk/self");
 const tabs = require("sdk/tabs");
 const { captureTab } = require("./screenshot");
-const { request, sendEvent } = require("./req");
+const { request, sendEvent, sendTiming } = require("./req");
 const { callScript } = require("./framescripter");
 const { defer } = require('sdk/core/promise');
 const { Class } = require('sdk/core/heritage');
@@ -84,6 +84,7 @@ function processHistory(history, tab) {
 /** Runs the extract worker on the given tab, and returns a promise that
     returns the extracted data */
 function extractWorker(tab, timeLimit) {
+  let timeStarted = new Date();
   if (timeLimit === undefined) {
     timeLimit = 10000; // 10 second default
   }
@@ -104,6 +105,8 @@ function extractWorker(tab, timeLimit) {
     });
     watchWorker(worker);
     worker.port.on("data", function (data) {
+      let timeFinished = new Date();
+      sendTiming("addon", "make-shot", timeFinished - timeStarted);
       worker.destroy();
       if (timedOut) {
         console.error("extractWorker resolved after timeout");

@@ -170,6 +170,27 @@ app.post("/event", function (req, res) {
   });
 });
 
+app.post("/timing", function (req, res) {
+  let bodyObj = req.body;
+  if (typeof bodyObj !== "object") {
+    throw new Error("Got unexpected req.body type: " + typeof bodyObj);
+  }
+  let userKey = dbschema.getTextKeys()[0] + req.deviceId;
+  genUuid.generate(genUuid.V_SHA1, genUuid.nil, userKey, function (err, userUuid) {
+    if (err) {
+      errorResponse(res, "Error creating user UUID:", err);
+      return;
+    }
+    let userAnalytics = ua(config.gaId, userUuid.toString());
+    userAnalytics.timing(
+      bodyObj.event,
+      bodyObj.action,
+      bodyObj.timing
+    ).send();
+    simpleResponse(res, "OK", 200);
+  });
+});
+
 app.get("/redirect", function (req, res) {
   if (req.query.to) {
     let from = req.query.from;
