@@ -730,7 +730,10 @@ contentApp.get("/proxy", function (req, res) {
     headers: headers
   });
   subreq.on("response", function (subres) {
-    res.writeHead(subres.statusCode, subres.statusMessage, subres.headers);
+    let headers = JSON.parse(JSON.stringify(subres.headers));
+    // Cache for 30 days
+    headers["cache-control"] = "public, max-age=2592000";
+    headers["expires"] = new Date(Date.now() + 2592000000).toUTCString();
     subres.on("data", function (chunk) {
       res.write(chunk);
     });
