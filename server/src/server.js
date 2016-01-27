@@ -304,29 +304,6 @@ app.post("/api/unload", function (req, res) {
   simpleResponse(res, "Noted", 200);
 });
 
-app.get("/clip/:id/:domain/:clipId", function (req, res) {
-  let shotId = req.params.id + "/" + req.params.domain;
-  Shot.get(req.backend, shotId).then((shot) => {
-    let clip = shot.getClip(req.params.clipId);
-    if (! clip) {
-      simpleResponse(res, "No such clip", 404);
-      return;
-    }
-    let image = clip.imageBinary();
-    let analyticsUrl = `/clip/${encodeURIComponent(req.params.id)}/${encodeURIComponent(req.params.domain)}/${encodeURIComponent(req.params.clipId)}`;
-    if (req.userAnalytics) {
-      req.userAnalytics.pageview(analyticsUrl).send();
-    } else {
-      let anonAnalytics = ua(config.gaId);
-      anonAnalytics.pageview(analyticsUrl).send();
-    }
-    res.header("Content-Type", image.contentType);
-    res.send(image.data);
-  }).catch((err) => {
-    errorResponse(res, "Failed to get clip", err);
-  });
-});
-
 app.put("/data/:id/:domain", function (req, res) {
   let bodyObj = req.body;
   if (typeof bodyObj != "object") {
