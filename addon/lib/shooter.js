@@ -106,7 +106,7 @@ function extractWorker(tab, timeLimit) {
     watchWorker(worker);
     worker.port.on("data", function (data) {
       let timeFinished = new Date();
-      sendTiming("addon", "make-shot", timeFinished - timeStarted);
+      sendTiming("addon", "extract-data", timeFinished - timeStarted);
       worker.destroy();
       if (timedOut) {
         console.error("extractWorker resolved after timeout");
