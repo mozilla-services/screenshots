@@ -272,6 +272,9 @@ function showTour(newTab) {
   if (newTab) {
     shooter.showTourOnNextLinkClick();
     tabs.open(helpurl);
+    let newtab = tabs[tabs.length - 1];
+    newtab.on("close", hideInfoPanel);
+    newtab.on("deactivate", hideInfoPanel);
   } else {
     win.loadURI(helpurl);
   }

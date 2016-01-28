@@ -32,6 +32,19 @@ const AWS = require("aws-sdk");
 const vhost = require("vhost");
 const raven = require("raven");
 
+const PROXY_HEADER_WHITELIST = {
+  "content-type": true,
+  "content-encoding": true,
+  "content-length": true,
+  "last-modified": true,
+  "etag": true,
+  "date": true,
+  "accept-ranges": true,
+  "content-range": true,
+  "retry-after": true,
+  "via": true
+};
+
 if (config.useS3) {
   // Test a PUT to s3 because configuring this requires using the aws web interface
   // If the permissions are not set up correctly, then we want to know that asap
@@ -302,29 +315,6 @@ app.post("/api/unload", function (req, res) {
     deviceInfo: req.body.deviceInfo
   });
   simpleResponse(res, "Noted", 200);
-});
-
-app.get("/clip/:id/:domain/:clipId", function (req, res) {
-  let shotId = req.params.id + "/" + req.params.domain;
-  Shot.get(req.backend, shotId).then((shot) => {
-    let clip = shot.getClip(req.params.clipId);
-    if (! clip) {
-      simpleResponse(res, "No such clip", 404);
-      return;
-    }
-    let image = clip.imageBinary();
-    let analyticsUrl = `/clip/${encodeURIComponent(req.params.id)}/${encodeURIComponent(req.params.domain)}/${encodeURIComponent(req.params.clipId)}`;
-    if (req.userAnalytics) {
-      req.userAnalytics.pageview(analyticsUrl).send();
-    } else {
-      let anonAnalytics = ua(config.gaId);
-      anonAnalytics.pageview(analyticsUrl).send();
-    }
-    res.header("Content-Type", image.contentType);
-    res.send(image.data);
-  }).catch((err) => {
-    errorResponse(res, "Failed to get clip", err);
-  });
 });
 
 app.put("/data/:id/:domain", function (req, res) {
@@ -730,7 +720,17 @@ contentApp.get("/proxy", function (req, res) {
     headers: headers
   });
   subreq.on("response", function (subres) {
-    res.writeHead(subres.statusCode, subres.statusMessage, subres.headers);
+    let headers = {};
+    for (let h in subres.headers) {
+      if (PROXY_HEADER_WHITELIST[h]) {
+        headers[h] = subres.headers[h];
+      }
+    }
+    // Cache for 30 days
+    headers["cache-control"] = "public, max-age=2592000";
+    headers["expires"] = new Date(Date.now() + 2592000000).toUTCString();
+    res.writeHead(subres.statusCode, subres.statusMessage, headers);
+
     subres.on("data", function (chunk) {
       res.write(chunk);
     });
