@@ -177,6 +177,7 @@ class Head extends React.Component {
     let js = [
       <link rel="stylesheet" href={ this.props.staticLink("vendor/introjs/introjs.css") } key="introjs-stylesheet" />,
       <script src={ this.props.staticLink("vendor/introjs/intro.js") } key="introjs-js" />,
+      <script src={ this.props.staticLink("vendor/core.js") } key="core-js-js" />,
       <script src={ this.props.staticLink("js/server-bundle.js") } key="server-bundle-js" />,
     ];
 
