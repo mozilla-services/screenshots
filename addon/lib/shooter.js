@@ -663,8 +663,8 @@ class Shot extends AbstractShot {
     }).then((response) => {
       if (response.status >= 200 && response.status < 300) {
         for (let update of response.json.updates) {
-          if (update.clipId && update.url) {
-            this.updateClipUrl(update.clipId, update.url);
+          if (update.updateClipUrl && update.updateClipUrl.clipId && update.updateClipUrl.url) {
+            this.updateClipUrl(update.updateClipUrl.clipId, update.updateClipUrl.url);
           } else if (update.updateThumbnailUrl) {
             this.fullScreenThumbnail = update.updateThumbnailUrl;
           } else if (update.setHead) {
