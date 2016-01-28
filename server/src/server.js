@@ -149,17 +149,25 @@ app.post("/error", function (req, res) {
   simpleResponse(res, "OK", 200);
 });
 
+function hashUserId(deviceId) {
+  return new Promise((resolve, reject) => {
+    let userKey = dbschema.getTextKeys()[0] + deviceId;
+    genUuid.generate(genUuid.V_SHA1, genUuid.nil, userKey, function (err, userUuid) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(userUuid);
+      }
+    });
+  });
+}
+
 app.post("/event", function (req, res) {
   let bodyObj = req.body;
   if (typeof bodyObj !== "object") {
     throw new Error("Got unexpected req.body type: " + typeof bodyObj);
   }
-  let userKey = dbschema.getTextKeys()[0] + req.deviceId;
-  genUuid.generate(genUuid.V_SHA1, genUuid.nil, userKey, function (err, userUuid) {
-    if (err) {
-      errorResponse(res, "Error creating user UUID:", err);
-      return;
-    }
+  hashUserId(req.deviceId).then((userUuid) => {
     let userAnalytics = ua(config.gaId, userUuid.toString());
     userAnalytics.event(
       bodyObj.event,
@@ -167,6 +175,8 @@ app.post("/event", function (req, res) {
       bodyObj.label
     ).send();
     simpleResponse(res, "OK", 200);
+  }).catch((e) => {
+    errorResponse(res, "Error creating user UUID:", err);
   });
 });
 
@@ -175,12 +185,7 @@ app.post("/timing", function (req, res) {
   if (typeof bodyObj !== "object") {
     throw new Error("Got unexpected req.body type: " + typeof bodyObj);
   }
-  let userKey = dbschema.getTextKeys()[0] + req.deviceId;
-  genUuid.generate(genUuid.V_SHA1, genUuid.nil, userKey, function (err, userUuid) {
-    if (err) {
-      errorResponse(res, "Error creating user UUID:", err);
-      return;
-    }
+  hashUserId(req.deviceId).then((userUuid) => {
     let userAnalytics = ua(config.gaId, userUuid.toString());
     userAnalytics.timing(
       bodyObj.event,
@@ -188,6 +193,8 @@ app.post("/timing", function (req, res) {
       bodyObj.timing
     ).send();
     simpleResponse(res, "OK", 200);
+  }).catch((e) => {
+    errorResponse(res, "Error creating user UUID:", err);
   });
 });
 
