@@ -112,6 +112,10 @@ const gaScript = <script src="//www.google-analytics.com/analytics.js" async key
 const idRegex = /^[a-zA-Z0-9_.,-]+$/;
 
 exports.gaActivation = function (gaId, userId, hashLocation) {
+  if (gaId === "") {
+    // Don't enable ga if no id was provided
+    return [];
+  }
   userId = userId || "";
   if (typeof userId != "string") {
     throw new Error("Invalid user ID type: " + typeof userId);
