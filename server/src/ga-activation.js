@@ -114,7 +114,7 @@ const idRegex = /^[a-zA-Z0-9_.,-]+$/;
 exports.gaActivation = function (gaId, userId, hashLocation) {
   if (gaId === "") {
     // Don't enable ga if no id was provided
-    return [];
+    return [stubGa()];
   }
   userId = userId || "";
   if (typeof userId != "string") {
@@ -125,9 +125,6 @@ exports.gaActivation = function (gaId, userId, hashLocation) {
   }
   if (userId && userId.search(idRegex) === -1) {
     throw new Error("Invalid userId: " + JSON.stringify(userId));
-  }
-  if (! gaId) {
-    return [stubGa()];
   }
   let script = gaJs.replace(/__GA_ID__/g, gaId).replace(/__USER_ID__/g, userId);
   script = script.replace(/__HASH_LOCATION__/g, hashLocation ? "true" : "false");
