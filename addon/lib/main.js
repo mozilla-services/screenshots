@@ -33,6 +33,24 @@ let PanelContext;
 const PANEL_SHORT_HEIGHT = 220;
 const PANEL_TALL_HEIGHT = 500;
 
+
+function showNotificationBar(shotcontext) {
+  var nb = require("./notificationbox");
+  let banner = nb.banner(
+    {msg:"Select part of the page to save",
+    buttons: [
+      nb.buttonMaker.yes({
+        label: "Upload",
+        callback: function(nb,b) {
+          console.log("YES BUTTON");
+          shotcontext.uploadShot();
+          shotcontext.copyRichDataToClipboard();
+          shotcontext.openInNewTab();
+        }
+      })
+    ]
+  });
+}
 // FIXME: this button should somehow keep track of whether there is an active shot associated with this page
 var shootButton = ToggleButton({
   id: "pageshot-shooter",
@@ -45,29 +63,6 @@ var shootButton = ToggleButton({
   })
 });
 exports.shootButton = shootButton;
-
-var shootPanel = panels.Panel({
-  contentURL: self.data.url("shoot-panel.html"),
-  contentScriptFile: [self.data.url("panel-bundle.js")],
-  contentScriptOptions: {
-    type: "shoot"
-  },
-  position: shootButton,
-  height: PANEL_SHORT_HEIGHT,
-  width: 400,
-  onHide: watchFunction(function () {
-    shootButton.state("window", null);
-    shootButton.checked = false;
-    PanelContext.shootPanelHidden();
-  }),
-  onShow: watchFunction(function () {
-    shootButton.state("window", null);
-    shootButton.checked = true;
-    PanelContext.shootPanelShown();
-  })
-});
-
-watchWorker(shootPanel);
 
 /** PanelContext manages the ShotContext (defined in shooter.js) that
     is associated with the panel.  Because the panel is a singleton,
@@ -90,7 +85,7 @@ PanelContext = {
       throw new Error("Hiding wrong shotContext");
     }
     this._activeContext = null;
-    shootPanel.hide();
+    //shootPanel.hide();
     shootButton.checked = false;
   },
 
@@ -124,7 +119,8 @@ PanelContext = {
   /** Show a ShotContext, hiding any other if necessary */
   show: function (shotContext) {
     if (this._activeContext === shotContext) {
-      shootPanel.show();
+      //shootPanel.show();
+      showNotificationBar(shotContext);
       shotContext.isShowing();
       return;
     }
@@ -132,14 +128,15 @@ PanelContext = {
       throw new Error("Another context (" + this._activeContext.id + ") is showing");
     }
     this._activeContext = shotContext;
-    shootPanel.show();
+    showNotificationBar(shotContext);
+    //shootPanel.show();
     shotContext.isShowing();
     shootButton.checked = true;
     this.updateShot(this._activeContext, this._activeContext.shot.asJson());
     if (this._activeContext.isEditing) {
-      shootPanel.resize(400, PANEL_TALL_HEIGHT);
+      //shootPanel.resize(400, PANEL_TALL_HEIGHT);
     } else {
-      shootPanel.resize(400, PANEL_SHORT_HEIGHT);
+      //shootPanel.resize(400, PANEL_SHORT_HEIGHT);
     }
   },
 
@@ -173,7 +170,8 @@ PanelContext = {
       this.show(shotContext);
     } else {
       if (this._activeContext.couldBeActive()) {
-        shootPanel.show(this._activeContext);
+        showNotificationBar(this._activeContext);
+        //shootPanel.show(this._activeContext);
       }
     }
   },
@@ -185,7 +183,7 @@ PanelContext = {
       return;
     }
 
-    shootPanel.port.emit("shotData",
+    /*shootPanel.port.emit("shotData",
       {
         backend: shotContext.shot.backend,
         id: shotContext.shot.id,
@@ -194,17 +192,17 @@ PanelContext = {
         isEditing: shotContext.isEditing
       },
       loadReason
-    );
+    );*/
   },
 
   /** Called when the panel is switching from simple to edit view or vice versa */
   setEditing: function (editing) {
     this._activeContext.isEditing = editing;
     if (editing) {
-      shootPanel.resize(400, PANEL_TALL_HEIGHT);
+      //shootPanel.resize(400, PANEL_TALL_HEIGHT);
       req.sendEvent("addon", "click-short-panel-edit");
     } else {
-      shootPanel.resize(400, PANEL_SHORT_HEIGHT);
+      //shootPanel.resize(400, PANEL_SHORT_HEIGHT);
     }
   },
 
@@ -230,19 +228,20 @@ PanelContext = {
 // This pipes all messages that ShotContext expects over to the
 // active context:
 Object.keys(shooter.ShotContext.prototype.panelHandlers).forEach(function (messageType) {
-  shootPanel.port.on(messageType, watchFunction(function () {
+  /*shootPanel.port.on(messageType, watchFunction(function () {
     if (! PanelContext._activeContext) {
       console.warn("Got " + messageType + " with no activeContext");
       return;
     }
     let method = PanelContext._activeContext.panelHandlers[messageType];
     method.apply(PanelContext._activeContext, arguments);
-  }));
+  }));*/
 });
 
-shootPanel.port.on("showTour", watchFunction(function () {
+/*shootPanel.port.on("showTour", watchFunction(function () {
   showTour(true);
 }));
+*/
 
 /** We use backendOverride to temporarily change the backend with a
     command-line argument (as used in the `run` script), otherwise

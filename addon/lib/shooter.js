@@ -174,6 +174,11 @@ const ShotContext = Class({
     this._activateWorker();
   },
 
+  uploadShot: function() {
+    let promise = this.shot.save();
+    return promise;
+  },
+
   copyRichDataToClipboard: function (activeClipName, numberOfTries) {
     // Use "text" instead of "html" so that pasting into a text area or text editor
     // pastes the html instead of the plain text stripped out of the html.
@@ -245,7 +250,7 @@ const ShotContext = Class({
       }
     }));
     this.interactiveWorker.port.on("ready", watchFunction(function () {
-      this.interactiveWorker.port.emit("setState", "initialAuto");
+      this.interactiveWorker.port.emit("setState", "selection");
     }).bind(this));
     this.interactiveWorker.port.on("select", watchFunction(function (pos, shotText, captureType) {
       // FIXME: there shouldn't be this disconnect between arguments to captureTab
@@ -361,6 +366,10 @@ const ShotContext = Class({
       return true;
     }
     return false;
+  },
+
+  openInNewTab: function(eventSource) {
+    this.panelHandlers.openLink(this.shot.viewUrl, "startup", eventSource);
   },
 
   /** These are methods that are called by the PanelContext based on messages from the panel */
@@ -522,7 +531,7 @@ const ShotContext = Class({
         // FIXME: maybe pop up an explanation here?
         return;
       }
-      this.copyRichDataToClipboard();
+      //this.copyRichDataToClipboard();
       var prefInlineCss = require("sdk/simple-prefs").prefs.inlineCss;
       var promises = [];
       // Note: removed until we have some need or use for history in our shot pages:
@@ -551,14 +560,14 @@ const ShotContext = Class({
           this.shot.update(attrs);
         }, this)));
       watchPromise(allPromisesComplete(promises).then((function () {
-        return this.shot.save();
+        //return this.shot.save();
       }).bind(this)));
     }).bind(this)));
   },
 
   /** Sets attributes on the shot, saves it, and updates the panel */
   updateShot: function () {
-    watchPromise(this.shot.save());
+    //watchPromise(this.shot.save());
     this.panelContext.updateShot(this);
     require("./recall").addRecall(this.shot);
   },
