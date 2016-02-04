@@ -21,6 +21,7 @@ const { watchFunction, watchWorker } = require("./errors");
 const {Cu} = require("chrome");
 const winutil = require("sdk/window/utils");
 const req = require("./req");
+const { setTimeout } = require("sdk/timers");
 
 // Give the server a chance to start if the pref is set
 require("./headless").init();
@@ -41,16 +42,22 @@ function showNotificationBar(shotcontext) {
     buttons: [
       nb.buttonMaker.yes({
         label: "Upload",
-        callback: function(nb,b) {
-          console.log("YES BUTTON");
-          shotcontext.uploadShot();
-          shotcontext.copyRichDataToClipboard();
-          shotcontext.openInNewTab();
+        callback: function(notebox, button) {
+          setTimeout(function () {
+            shotcontext.uploadShot();
+            shotcontext.copyRichDataToClipboard();
+            shotcontext.openInNewTab();
+          }, 0);
         }
       })
     ]
   });
 }
+
+function hideNotificationBar() {
+
+}
+
 // FIXME: this button should somehow keep track of whether there is an active shot associated with this page
 var shootButton = ToggleButton({
   id: "pageshot-shooter",

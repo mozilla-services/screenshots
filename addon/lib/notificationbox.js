@@ -91,6 +91,7 @@ const { Class, mix } = require('sdk/core/heritage');
 
 const validNumber = { is: ['number', 'undefined', 'null'] };
 
+const USE_PER_WINDOW_NOTIFICATIONS = false;
 
 /** get a top or bottom notifcation box (banner) element.
  *
@@ -115,8 +116,9 @@ const notificationbox = function (win, bottom){
                      .getService(chrome.Ci.nsIWindowMediator);
     win = win || wm.getMostRecentWindow("navigator:browser");  // is this dupe?
     let nb = win.document.getElementById("high-priority-global-notificationbox");
-    if (nb) return nb; // 33+?
-    else {
+    if (USE_PER_WINDOW_NOTIFICATIONS && nb) {
+      return nb; // 33+?
+    } else {
       return win.gBrowser.getNotificationBox();
     }
   }
@@ -266,5 +268,3 @@ buttonMaker.__noSuchMethod__ = function(method, args) {
 exports.notificationbox = notificationbox;
 exports.banner = banner;
 exports.buttonMaker = buttonMaker;
-
-
