@@ -18,7 +18,7 @@ const helperworker = require("./helperworker");
 const { ToggleButton } = require('sdk/ui/button/toggle');
 const panels = require("sdk/panel");
 const { watchFunction, watchWorker } = require("./errors");
-const {Cu} = require("chrome");
+const {Cu, Cc, Ci} = require("chrome");
 const winutil = require("sdk/window/utils");
 const req = require("./req");
 const { setTimeout } = require("sdk/timers");
@@ -37,8 +37,9 @@ const PANEL_TALL_HEIGHT = 500;
 
 function showNotificationBar(shotcontext) {
   var nb = require("./notificationbox");
-  let banner = nb.banner(
-    {msg:"Select part of the page to save",
+  let banner = nb.banner({
+    id: "pageshot-notification-banner",
+    msg:"Select part of the page to save",
     buttons: [
       nb.buttonMaker.yes({
         label: "Upload",
@@ -54,8 +55,21 @@ function showNotificationBar(shotcontext) {
   });
 }
 
-function hideNotificationBar() {
+function hideNotificationBar(browser) {
+  let wm = Cc["@mozilla.org/appshell/window-mediator;1"]
+                   .getService(Ci.nsIWindowMediator);
+  let win = wm.getMostRecentWindow("navigator:browser");
+  let gBrowser = win.gBrowser;
 
+  browser = browser || gBrowser.selectedBrowser;
+  let box = gBrowser.getNotificationBox(browser);
+  let notification = box.getNotificationWithValue("pageshot-notification-banner");
+  let removed = false;
+  if (notification) {
+    box.removeNotification(notification);
+    removed = true;
+  }
+  return removed;
 }
 
 // FIXME: this button should somehow keep track of whether there is an active shot associated with this page
@@ -92,6 +106,7 @@ PanelContext = {
       throw new Error("Hiding wrong shotContext");
     }
     this._activeContext = null;
+    hideNotificationBar();
     //shootPanel.hide();
     shootButton.checked = false;
   },
