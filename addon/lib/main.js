@@ -30,19 +30,36 @@ Cu.import("resource:///modules/UITour.jsm");
 
 let loadReason = null;
 let PanelContext;
+let initialized = false;
 
 const PANEL_SHORT_HEIGHT = 220;
 const PANEL_TALL_HEIGHT = 500;
 
+// Load our stylesheets.
+/*let styleSheetService = Cc["@mozilla.org/content/style-sheet-service;1"].getService(Ci.nsIStyleSheetService);
+let styleSheetURI = Services.io.newURI("chrome://loop-shared/skin/loop.css", null, null);
+styleSheetService.loadAndRegisterSheet(
+  styleSheetURI,
+  styleSheetService.AUTHOR_SHEET);
+*/
+
+function getNotificationBox(browser) {
+  let wm = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator);
+  let win = wm.getMostRecentWindow("navigator:browser");
+  let gBrowser = win.gBrowser;
+
+  browser = browser || gBrowser.selectedBrowser;
+  return gBrowser.getNotificationBox(browser);
+}
 
 function showNotificationBar(shotcontext) {
   var nb = require("./notificationbox");
   let banner = nb.banner({
-    id: "pageshot-notification-banner",
+    id: "pageshot-notification-bar",
     msg:"Select part of the page to save",
     buttons: [
       nb.buttonMaker.yes({
-        label: "Upload",
+        label: "Save",
         callback: function(notebox, button) {
           setTimeout(function () {
             shotcontext.uploadShot();
@@ -50,19 +67,40 @@ function showNotificationBar(shotcontext) {
             shotcontext.openInNewTab();
           }, 0);
         }
+      }),
+      nb.buttonMaker.no({
+        label: "Cancel",
+        callback: function(notebox, button) {
+          setTimeout(function () {
+            hideNotificationBar();
+          }, 0);
+        }
       })
+
     ]
   });
+
+  if (!initialized) {
+    Cu.import("resource://gre/modules/Services.jsm");
+
+    initialized = true;
+    // Load our stylesheets.
+    let styleSheetService = Cc["@mozilla.org/content/style-sheet-service;1"].getService(Ci.nsIStyleSheetService);
+
+    let cssurl = self.data.url("pageshot-notification-bar.css");
+
+    let styleSheetURI = Services.io.newURI(cssurl, null, null);
+    styleSheetService.loadAndRegisterSheet(styleSheetURI,
+                                           styleSheetService.AUTHOR_SHEET);
+  }
+/*  let box = getNotificationBox();
+  let notification = box.getNotificationWithValue("pageshot-notification-banner");
+  console.log("NOTIFICATION", notification);
+*/
 }
 
 function hideNotificationBar(browser) {
-  let wm = Cc["@mozilla.org/appshell/window-mediator;1"]
-                   .getService(Ci.nsIWindowMediator);
-  let win = wm.getMostRecentWindow("navigator:browser");
-  let gBrowser = win.gBrowser;
-
-  browser = browser || gBrowser.selectedBrowser;
-  let box = gBrowser.getNotificationBox(browser);
+  let box = getNotificationBox(browser);
   let notification = box.getNotificationWithValue("pageshot-notification-banner");
   let removed = false;
   if (notification) {

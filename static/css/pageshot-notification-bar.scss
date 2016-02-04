@@ -1,0 +1,17 @@
+
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/* Only apply to browser.xul documents */
+@-moz-document url("chrome://browser/content/browser.xul") {
+
+  notification[value="pageshot-notification-bar"] {
+    -moz-appearance: none;
+    height: 40px;
+    background-color: #00a9dc;
+    box-shadow: 0 -1px 1px rgba(0,0,0,.4) inset;
+  }
+
+  notification[value="pageshot-notification-bar"] .close-icon {
+    display: none;
+  }
+}
