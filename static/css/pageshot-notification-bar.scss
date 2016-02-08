@@ -7,11 +7,38 @@
   notification[value="pageshot-notification-bar"] {
     -moz-appearance: none;
     height: 40px;
-    background-color: #00a9dc;
+    padding: 0px;
+    padding-left: 10px;
+    background: #fbfbfb;
+    color: black;
     box-shadow: 0 -1px 1px rgba(0,0,0,.4) inset;
   }
 
+  notification[value="pageshot-notification-bar"] button {
+    height: 36px;
+    width: 150px;
+    border: 0px;
+    border-radius: 0px;
+    background: white;
+    margin: 0px;
+    color: black;
+  }
+
+  notification[value="pageshot-notification-bar"] button[label="Save"] {
+    background: #2fa8e1;
+    color: white;
+  }
+
+  notification[value="pageshot-notification-bar"] button[label="Cancel"] {
+    background: #bc3f2e;
+    color: white;
+  }
+
   notification[value="pageshot-notification-bar"] .close-icon {
+    display: none;
+  }
+
+  notification[value="pageshot-notification-bar"] .messageImage {
     display: none;
   }
 }
