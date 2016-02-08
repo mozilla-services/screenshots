@@ -86,24 +86,24 @@ function showNotificationBar(shotcontext) {
     ]
   });
 
+  let notice = banner.notice;
+  let viewShots = notice.lastChild;
+  notice.removeChild(notice.lastChild);
+  notice.insertBefore(viewShots, notice.firstChild);
+  let button = notice.ownerDocument.createElement("button");
+
+  let checkbox = notice.ownerDocument.createElement("checkbox");
+  checkbox.label = "Save full page";
+  let checkboxLabel = notice.ownerDocument.createTextNode("Save full page");
+  button.appendChild(checkbox);
+  button.appendChild(checkboxLabel);
+  button.onclick = function () {
+    console.log("SAVE FULL PAGE");
+    checkbox.checked = !checkbox.checked;
+  }
+  notice.insertBefore(button, notice.firstChild);
+
   if (!initialized) {
-    let notice = banner.notice;
-    let viewShots = notice.lastChild;
-    notice.removeChild(notice.lastChild);
-    notice.insertBefore(viewShots, notice.firstChild);
-    let button = notice.ownerDocument.createElement("button");
-
-    let checkbox = notice.ownerDocument.createElement("checkbox");
-    checkbox.label = "Save full page";
-    let checkboxLabel = notice.ownerDocument.createTextNode("Save full page");
-    button.appendChild(checkbox);
-    button.appendChild(checkboxLabel);
-    button.onclick = function () {
-      console.log("SAVE FULL PAGE");
-      checkbox.checked = !checkbox.checked;
-    }
-    notice.insertBefore(button, notice.firstChild);
-
     Cu.import("resource://gre/modules/Services.jsm");
 
     initialized = true;
