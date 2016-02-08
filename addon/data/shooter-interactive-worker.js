@@ -537,7 +537,7 @@ function addCrosshairs() {
 }
 
 function addSelectionHelp() {
-  showHelpMessage("Click and drag anywhere to make a selection");
+  //showHelpMessage("Click and drag anywhere to make a selection");
 }
 
 function removeCrosshairs() {
