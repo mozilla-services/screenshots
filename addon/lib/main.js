@@ -54,9 +54,25 @@ function getNotificationBox(browser) {
 
 function showNotificationBar(shotcontext) {
   var nb = require("./notificationbox");
+  if (nb.notificationbox().getNotificationWithValue("pageshot-notification-bar") !== null) {
+    return;
+  }
+  let thebox = nb.notificationbox()
+  let fragment = thebox.ownerDocument.createDocumentFragment();
+  let node = thebox.ownerDocument.createElement("button");
+  node.textContent = "View all my shots";
+  node.onclick = function () {
+    console.log("VIEW ALL MY SHOTS");
+    tabs.open(exports.getBackend() + "/shots");
+  };
+  let node2 = thebox.ownerDocument.createElement("span");
+  node2.style.marginLeft = "10px";
+  node2.textContent = " world";
+  fragment.appendChild(node);
+  fragment.appendChild(node2);
   let banner = nb.banner({
     id: "pageshot-notification-bar",
-    msg:"Select part of the page to save",
+    msg: fragment,
     buttons: [
       nb.buttonMaker.yes({
         label: "Save",
@@ -75,21 +91,17 @@ function showNotificationBar(shotcontext) {
             hideNotificationBar();
           }, 0);
         }
-      }),
-      nb.buttonMaker.more({
-        label: "View all my shots",
-        callback: function(notebox, button) {
-          console.log("VIEW ALL MY SHOTS");
-          tabs.open(exports.getBackend() + "/shots");
-        }
       })
     ]
   });
 
   let notice = banner.notice;
-  let viewShots = notice.lastChild;
-  notice.removeChild(notice.lastChild);
-  notice.insertBefore(viewShots, notice.firstChild);
+  let asdf = "";
+  for (var i in notice) {
+    asdf += i + " ";
+  }
+  //console.log("NOTICE", asdf);
+  //console.log("imAGE", typeof notice.shadowRoot);
   let button = notice.ownerDocument.createElement("button");
 
   let checkbox = notice.ownerDocument.createElement("checkbox");
@@ -98,8 +110,8 @@ function showNotificationBar(shotcontext) {
   button.appendChild(checkbox);
   button.appendChild(checkboxLabel);
   button.onclick = function () {
-    console.log("SAVE FULL PAGE");
     checkbox.checked = !checkbox.checked;
+    console.log("SAVE FULL PAGE", checkbox.checked);
   }
   notice.insertBefore(button, notice.firstChild);
 
