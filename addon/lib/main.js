@@ -65,9 +65,12 @@ function showNotificationBar(shotcontext) {
     console.log("VIEW ALL MY SHOTS");
     tabs.open(exports.getBackend() + "/shots");
   };
+  node.style.textAlign = "center";
+  node.style.fontWeight = "normal";
   let node2 = thebox.ownerDocument.createElement("span");
+  node2.style.border = "none";
   node2.style.marginLeft = "10px";
-  node2.textContent = " world";
+  node2.appendChild(thebox.ownerDocument.createTextNode("Select something"));
   fragment.appendChild(node);
   fragment.appendChild(node2);
   let banner = nb.banner({
@@ -102,7 +105,7 @@ function showNotificationBar(shotcontext) {
   }
   //console.log("NOTICE", asdf);
   //console.log("imAGE", typeof notice.shadowRoot);
-  let button = notice.ownerDocument.createElement("button");
+  /*let button = notice.ownerDocument.createElement("button");
 
   let checkbox = notice.ownerDocument.createElement("checkbox");
   checkbox.label = "Save full page";
@@ -113,7 +116,7 @@ function showNotificationBar(shotcontext) {
     checkbox.checked = !checkbox.checked;
     console.log("SAVE FULL PAGE", checkbox.checked);
   }
-  notice.insertBefore(button, notice.firstChild);
+  notice.insertBefore(button, notice.firstChild);*/
 
   if (!initialized) {
     Cu.import("resource://gre/modules/Services.jsm");

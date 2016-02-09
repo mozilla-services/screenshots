@@ -16,23 +16,14 @@
   notification[value="pageshot-notification-bar"] button {
     height: 36px;
     width: 150px;
-    border: 0px;
     border-radius: 0px;
-    background: white;
+    /*border: 0px;
+    background: white;*/
     margin: 0px;
     color: black;
   }
 
-  notification[value="pageshot-notification-bar"] description button {
-    height: 36px;
-    width: 150px;
-    border: 0px;
-    border-radius: 0px;
-    background: white;
-    margin: 0px;
-    color: black;
-  }
-
+/*
   notification[value="pageshot-notification-bar"] button[label="Save"] {
     background: #2fa8e1;
     color: white;
@@ -42,6 +33,7 @@
     background: #bc3f2e;
     color: white;
   }
+*/
 
   notification[value="pageshot-notification-bar"] .close-icon {
     display: none;
