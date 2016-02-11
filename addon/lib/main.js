@@ -60,17 +60,20 @@ function showNotificationBar(shotcontext) {
   let thebox = nb.notificationbox()
   let fragment = thebox.ownerDocument.createDocumentFragment();
   let node = thebox.ownerDocument.createElement("button");
-  node.textContent = "View all my shots";
+  node.textContent = "My shots";
   node.onclick = function () {
     console.log("VIEW ALL MY SHOTS");
     tabs.open(exports.getBackend() + "/shots");
   };
   node.style.textAlign = "center";
   node.style.fontWeight = "normal";
+  node.style.borderRadius = "4px";
+  node.style.background = "#fbfbfb";
+  node.style.color = "black";
   let node2 = thebox.ownerDocument.createElement("span");
   node2.style.border = "none";
   node2.style.marginLeft = "10px";
-  node2.appendChild(thebox.ownerDocument.createTextNode("Select something"));
+  node2.appendChild(thebox.ownerDocument.createTextNode("Select part of the page to save, or save full page without making a selection"));
   fragment.appendChild(node);
   fragment.appendChild(node2);
   let banner = nb.banner({

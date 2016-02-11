@@ -14,26 +14,27 @@
   }
 
   notification[value="pageshot-notification-bar"] button {
-    height: 36px;
+    height: 28px;
     width: 150px;
-    border-radius: 0px;
+    border-radius: 4px;
     /*border: 0px;
     background: white;*/
     margin: 0px;
+    margin-right: 5px;
     color: black;
   }
 
-/*
+
   notification[value="pageshot-notification-bar"] button[label="Save"] {
+    border-radius: 4px;
     background: #2fa8e1;
     color: white;
   }
 
   notification[value="pageshot-notification-bar"] button[label="Cancel"] {
-    background: #bc3f2e;
-    color: white;
+    border-radius: 4px;
+    background: #fbfbfb;
   }
-*/
 
   notification[value="pageshot-notification-bar"] .close-icon {
     display: none;
