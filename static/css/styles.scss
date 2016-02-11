@@ -1,5 +1,9 @@
-$primary-color: #404040;
+
+
+$primary-color: #fcfcfc;
+$toolbar-text-color: #464239;
 $text-color: #f2f2f2;
+$background-color: #404040;
 $shadow-color: rgba(0, 0, 0, 0.5);
 
 
@@ -12,7 +16,7 @@ body {
   width: 100%;
   margin: 0;
   font-family: sans-serif;
-  background-color: $primary-color;
+  background-color: $background-color;
   background-image: url("/static/img/bgtexture.png");
   color: $text-color;
   box-sizing: border-box;
@@ -23,6 +27,7 @@ body {
   left: 0px;
   right: 0px;
   top: 0px;
+  padding-top: 85px;
   text-align: center;
 }
 
@@ -34,7 +39,6 @@ body {
 }
 
 #toolbar {
-  visibility: hidden;
   position: fixed;
   top: 0px;
   left: 0px;
@@ -46,10 +50,9 @@ body {
   z-index: 1;
   text-overflow: ellipsis;
   overflow: hidden;
-  color: $text-color;
+  color: $toolbar-text-color;
   text-align: left;
   background-color: $primary-color;
-  background-image: url("/static/img/bgtexture.png");
 }
 
 .window-scrolled-down #toolbar {

@@ -73,7 +73,7 @@ function showNotificationBar(shotcontext) {
   let node2 = thebox.ownerDocument.createElement("span");
   node2.style.border = "none";
   node2.style.marginLeft = "10px";
-  node2.appendChild(thebox.ownerDocument.createTextNode("Select part of the page to save, or save full page without making a selection"));
+  node2.appendChild(thebox.ownerDocument.createTextNode("Select part of the page to save, or save full page without making a selection."));
   fragment.appendChild(node);
   fragment.appendChild(node2);
   let banner = nb.banner({

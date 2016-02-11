@@ -64,14 +64,6 @@ class Clip extends React.Component {
       <a href={`#clip=${encodeURIComponent(clip.id)}&source=clip-link`}>
         { node }
       </a>
-      <p>
-        <img ref="commentBubble" className="comment-bubble"
-          src={ closed ? this.props.staticLink("img/comment-bubble.png") : this.props.staticLink("img/comment-bubble-open.png") }
-          onClick={ this.onClickComment.bind(this) } />
-        <a href={`#clip=${encodeURIComponent(clip.id)}&source=clip-see-full-page-link`}>
-          <span className="clip-anchor-link">See in full page</span>
-        </a>
-      </p>
       <div ref="commentHolder"
         className="comment-holder"
         style={{ display: closed ? "none" : "inline-block" }}>
@@ -400,34 +392,7 @@ class Frame extends React.Component {
             <span style={{paddingLeft: "15px"}}>saved { timeDiff } {expiresDiff} </span>
           </div>
         </div>
-        <div id="navigate-toolbar" data-step="4" data-intro="The recall panel can be used to access your previously made shots.">
-          <span className="clip-count">
-            { numberOfClips }
-          </span>
-          { previousClipNode }
-          { nextClipNode }
-        </div>
-        <div id="full-page-button">
-          <a href="#fullpage" className="full-page-button-styles" onClick={ this.clickFullPageButton.bind(this) }>
-            <span className="full-page-button-arrow">▾</span>
-            <span className="full-page-button-text"> Full Page </span>
-            <span className="full-page-button-arrow">▾</span>
-          </a>
-        </div>
-        <div className="metadata">
-          <h1 id="main-title">{ shot.title }</h1>
-          <p><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a></p>
-          <p>saved {timeDiff} { expiresDiff }</p>
-        </div>
         { clips }
-        <div id="full-page-button-scrollable">
-          <a data-step="3" data-intro="Every time you take a clip, the full page is also saved." href="#fullpage" className="full-page-button-styles" onClick={ this.clickFullPageButton.bind(this) }>
-            <span className="full-page-button-arrow">▾</span>
-            <span className="full-page-button-text"> Full Page </span>
-            <span className="full-page-button-arrow">▾</span>
-          </a>
-        </div>
-        <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } />
         <div className="pageshot-footer">
           <a href="https://github.com/mozilla-services/pageshot">{this.props.productName}</a> — <a href={`https://github.com/mozilla-services/pageshot/commit/${getGitRevision()}`}>Updated {this.props.buildTime}</a>
         </div>
@@ -435,6 +400,18 @@ class Frame extends React.Component {
         { introJsStart }
       </div>
     );
+
+/*         <div id="navigate-toolbar" data-step="4" data-intro="The recall panel can be used to access your previously made shots.">
+          <span className="clip-count">
+            { numberOfClips }
+          </span>
+          { previousClipNode }
+          { nextClipNode }
+        </div>
+*/
+
+  //         <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } />
+
   }
 
   renderExtRequired() {
