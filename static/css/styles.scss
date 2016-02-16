@@ -27,7 +27,9 @@ body {
   left: 0px;
   right: 0px;
   top: 0px;
-  padding-top: 85px;
+  padding-top: 49px;
+  padding-left: 25px;
+  padding-right: 25px;
   text-align: center;
 }
 
@@ -225,7 +227,13 @@ a.sitelink, a.sitelink:visited {
 }
 
 .clip-container {
-  margin-bottom: 3em;
+  position: fixed;
+  top: 50px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  padding-top: 250px;
+  background-color: rgba(10, 10, 10, 0.5);
 }
 
 .clip-container div {

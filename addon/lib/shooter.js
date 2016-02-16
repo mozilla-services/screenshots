@@ -369,7 +369,7 @@ const ShotContext = Class({
   },
 
   openInNewTab: function(eventSource) {
-    this.panelHandlers.openLink(this.shot.viewUrl, "startup", eventSource);
+    this.panelHandlers.openLink(this.shot.viewUrl + "#clip=" + this.shot.clipNames()[0], "startup", eventSource);
   },
 
   /** These are methods that are called by the PanelContext based on messages from the panel */

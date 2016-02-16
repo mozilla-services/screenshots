@@ -8,6 +8,12 @@ const { addReactScripts } = require("../reactutils");
 const { gaActivation } = require("../ga-activation");
 
 class Clip extends React.Component {
+  onClick(e) {
+    console.log("ONCLICK");
+    let node = React.findDOMNode(this.refs.clipContainer);
+    node.style.display = "none";
+  }
+
   onClickComment(e) {
     e.preventDefault();
     let node = React.findDOMNode(this.refs.commentHolder),
@@ -59,9 +65,9 @@ class Clip extends React.Component {
         </div>
       );
     }
-
-    return <div className="clip-container">
-      <a href={`#clip=${encodeURIComponent(clip.id)}&source=clip-link`}>
+// <a href={`#clip=${encodeURIComponent(clip.id)}&source=clip-link`}>
+    return <div ref="clipContainer" className="clip-container" onClick={ this.onClick.bind(this) }>
+      <a href={ clip.image.url }>
         { node }
       </a>
     </div>;
@@ -388,6 +394,7 @@ class Frame extends React.Component {
           </div>
         </div>
         { clips }
+        <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } />
         <div className="pageshot-footer">
           <a href="https://github.com/mozilla-services/pageshot">{this.props.productName}</a> — <a href={`https://github.com/mozilla-services/pageshot/commit/${getGitRevision()}`}>Updated {this.props.buildTime}</a>
         </div>
@@ -404,8 +411,6 @@ class Frame extends React.Component {
           { nextClipNode }
         </div>
 */
-
-  //         <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } />
 
   }
 
