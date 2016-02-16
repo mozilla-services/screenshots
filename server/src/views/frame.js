@@ -64,11 +64,6 @@ class Clip extends React.Component {
       <a href={`#clip=${encodeURIComponent(clip.id)}&source=clip-link`}>
         { node }
       </a>
-      <div ref="commentHolder"
-        className="comment-holder"
-        style={{ display: closed ? "none" : "inline-block" }}>
-        { comments_nodes }
-      </div>
     </div>;
   }
 }
