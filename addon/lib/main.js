@@ -15,7 +15,7 @@ const tabs = require("sdk/tabs");
 const shooter = require("./shooter");
 const { prefs } = require('sdk/simple-prefs');
 const helperworker = require("./helperworker");
-const { ToggleButton } = require('sdk/ui/button/toggle');
+const { ActionButton } = require('sdk/ui/button/action');
 const panels = require("sdk/panel");
 const { watchFunction, watchWorker } = require("./errors");
 const {Cu, Cc, Ci} = require("chrome");
@@ -152,7 +152,7 @@ function hideNotificationBar(browser) {
 }
 
 // FIXME: this button should somehow keep track of whether there is an active shot associated with this page
-var shootButton = ToggleButton({
+var shootButton = ActionButton({
   id: "pageshot-shooter",
   label: "Make shot",
   icon: self.data.url("icons/pageshot-camera-empty.svg"),
