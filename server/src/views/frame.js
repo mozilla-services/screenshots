@@ -9,8 +9,11 @@ const { gaActivation } = require("../ga-activation");
 
 class Clip extends React.Component {
   onClick(e) {
-    let node = React.findDOMNode(this.refs.clipContainer);
-    node.style.display = "none";
+    let fullPageCheckbox = document.getElementById("full-page-checkbox");
+    if (fullPageCheckbox.checked) {
+      let node = React.findDOMNode(this.refs.clipContainer);
+      node.style.display = "none";
+    }
   }
 
   onClickComment(e) {
