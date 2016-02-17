@@ -137,6 +137,13 @@ function refreshProfile(e) {
 }
 
 function refreshHash() {
+  let fullPageCheckbox = document.getElementById("full-page-checkbox");
+  let frame = document.getElementById("frame");
+  if (fullPageCheckbox.checked) {
+    frame.style.display = "block";
+  } else {
+    frame.style.display = "none";
+  }
   if (location.hash === "#fullpage") {
     let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
     let toolbarHeight = document.getElementById("toolbar").clientHeight;

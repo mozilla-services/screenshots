@@ -9,7 +9,6 @@ const { gaActivation } = require("../ga-activation");
 
 class Clip extends React.Component {
   onClick(e) {
-    console.log("ONCLICK");
     let node = React.findDOMNode(this.refs.clipContainer);
     node.style.display = "none";
   }
@@ -218,6 +217,11 @@ class Frame extends React.Component {
     ga("send", "event", "website", "click-full-page-button", {page: location.toString()});
   }
 
+  onChange(e) {
+    let evt = new Event("hashchange");
+    window.dispatchEvent(evt);
+  }
+
   render() {
     let body;
     if (this.props.expireTime !== null && Date.now() > this.props.expireTime) {
@@ -371,26 +375,46 @@ class Frame extends React.Component {
     </div>
     */
 
+    /*
+    <div id="profile-widget">
+      <ProfileButton
+        staticLink={ this.props.staticLink }
+        initialExpanded={ false }
+        avatarurl={ this.props.avatarurl }
+        nickname={ this.props.nickname }
+        email={ this.props.email }
+        deviceId={ this.props.deviceId }
+        simple={ this.props.simple }
+        allowExport={ this.props.allowExport }
+      />
+    </div>
+    */
+
     return (
         <div id="container">
           { this.renderExtRequired() }
-          <div id="profile-widget">
-            <ProfileButton
-              staticLink={ this.props.staticLink }
-              initialExpanded={ false }
-              avatarurl={ this.props.avatarurl }
-              nickname={ this.props.nickname }
-              email={ this.props.email }
-              deviceId={ this.props.deviceId }
-              simple={ this.props.simple }
-              allowExport={ this.props.allowExport }
-            />
-          </div>
         <div id="toolbar" data-step="1" data-intro="This is the title of the page and a link to it's source.">
+          <a href="/shots">
+            <button className="my-shots-button">
+              My Shots
+            </button>
+          </a>
           <div className="shot-title">{ shot.title }</div>
           <div className="shot-subtitle">
             <span>source </span><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a>
             <span style={{paddingLeft: "15px"}}>saved { timeDiff } {expiresDiff} </span>
+          </div>
+          <div className="more-shot-actions">
+            <input id="full-page-checkbox" type="checkbox" onChange={ this.onChange.bind(this) } />
+            <label htmlFor="full-page-checkbox">Show in full page</label>
+            <button className="share-button">
+              Share
+            </button>
+            <select id="more-shot-actions-menu" name="select">
+              <option value="value1">...</option>
+              <option value="value2">Value 2</option>
+              <option value="value3">Value 3</option>
+            </select>
           </div>
         </div>
         { clips }
