@@ -139,6 +139,14 @@ function refreshProfile(e) {
 function refreshHash() {
   let fullPageCheckbox = document.getElementById("full-page-checkbox");
   let frame = document.getElementById("frame");
+  if (model.shot.clipNames().length === 0) {
+    fullPageCheckbox.checked = true;
+    fullPageCheckbox.style.visibility = "hidden";
+    fullPageCheckbox.nextSibling.style.visibility = "hidden";
+  } else {
+    fullPageCheckbox.style.visibility = "visible";
+    fullPageCheckbox.nextSibling.style.visibility = "visible";
+  }
   if (fullPageCheckbox.checked) {
     frame.style.display = "block";
   } else {
