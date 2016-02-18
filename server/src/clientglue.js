@@ -23,19 +23,23 @@ exports.setModel = function (data) {
   model.shot.deleted = data.deleted;
 
   if (firstSet) {
-    function onResize() {
-      let container = document.querySelector(".clip-container");
-      let img = container.querySelector("img");
-      let windowHeight = window.innerHeight;
-      let paddingTop = Math.floor((windowHeight - img.height - 35) / 2);
-      if (paddingTop < 16) {
-        paddingTop = 16;
-      }
-      container.style.paddingTop = paddingTop + "px";
-    }
-    window.addEventListener("resize", onResize, true);
+    if (model.shot.clipNames().length !== 0) {
 
-    onResize();
+      function onResize() {
+        let container = document.querySelector(".clip-container");
+        let img = container.querySelector("img");
+        let windowHeight = window.innerHeight;
+        let paddingTop = Math.floor((windowHeight - img.height - 35) / 2);
+        if (paddingTop < 16) {
+          paddingTop = 16;
+        }
+        container.style.paddingTop = paddingTop + "px";
+      }
+      window.addEventListener("resize", onResize, true);
+
+      onResize();
+
+    }
 
     let button = document.getElementById("full-page-button-scrollable");
     if (button) {
