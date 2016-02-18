@@ -83,10 +83,13 @@ function showNotificationBar(shotcontext) {
       nb.buttonMaker.yes({
         label: "Save",
         callback: function(notebox, button) {
+          hideNotificationBar();
           setTimeout(function () {
             shotcontext.uploadShot();
             shotcontext.copyRichDataToClipboard();
             shotcontext.openInNewTab();
+            shotcontext.panelHandlers.selectClip.call(shotcontext);
+            PanelContext.removeContext(shotcontext);
           }, 0);
         }
       }),

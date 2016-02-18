@@ -150,10 +150,11 @@ const ShotContext = Class({
     this.panelContext = panelContext;
     this._workerActive = false;
     this.watchTab("deactivate", function () {
-      panelContext.hide(this);
+      //panelContext.hide(this);
     });
     this.watchTab("activate", function () {
-      panelContext.show(this);
+      //console.log("WATCHTAB ACTIVATE");
+      //panelContext.show(this);
     });
     // FIXME: this is to work around a bug where deactivate sometimes isn't called
     this._activateWorkaround = (function (tab) {
