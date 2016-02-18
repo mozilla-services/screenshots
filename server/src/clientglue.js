@@ -146,6 +146,7 @@ function refreshHash() {
   } else {
     fullPageCheckbox.style.visibility = "visible";
     fullPageCheckbox.nextSibling.style.visibility = "visible";
+    fullPageCheckbox.nextSibling.style.visibility = "visible";
   }
   if (fullPageCheckbox.checked) {
     frame.style.display = "block";

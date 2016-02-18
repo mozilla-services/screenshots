@@ -413,11 +413,9 @@ class Frame extends React.Component {
             <button className="share-button">
               Share
             </button>
-            <select id="more-shot-actions-menu" name="select">
-              <option value="value1">...</option>
-              <option value="value2">Value 2</option>
-              <option value="value3">Value 3</option>
-            </select>
+            <button className="more-actions-menu-button">
+              ...
+            </button>
           </div>
         </div>
         { clips }

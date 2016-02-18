@@ -331,6 +331,15 @@ a.sitelink, a.sitelink:visited {
   height: 30px;
 }
 
+.more-actions-menu-button {
+  margin-left: 15px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,.35);
+  height: 30px;
+  background: #fcfcfc;
+  color: black;
+}
+
 .more-shot-actions {
   position: absolute;
   top: 6px;
