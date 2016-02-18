@@ -85,9 +85,10 @@ function showNotificationBar(shotcontext) {
         callback: function(notebox, button) {
           hideNotificationBar();
           setTimeout(function () {
-            shotcontext.uploadShot();
+            shotcontext.uploadShot().then(() => {
+              shotcontext.openInNewTab();
+            });
             shotcontext.copyRichDataToClipboard();
-            shotcontext.openInNewTab();
             shotcontext.panelHandlers.selectClip.call(shotcontext);
             PanelContext.removeContext(shotcontext);
           }, 0);
