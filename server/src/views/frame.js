@@ -7,6 +7,63 @@ const { ProfileButton } = require("./profile");
 const { addReactScripts } = require("../reactutils");
 const { gaActivation } = require("../ga-activation");
 
+class ShareButtons extends React.Component {
+  onClickShareButton(whichButton) {
+    //console.log("onClickShareButton", whichButton);
+    // FIXME implement analytics tracking here
+  }
+
+  onClickCopyButton(e) {
+    let target = e.target;
+    target.previousSibling.select();
+    document.execCommand("copy");
+    target.textContent = "Copied";
+    setTimeout(function() {
+      target.textContent = "Copy";
+    }, 1000);
+  }
+
+  onClickInputField(e) {
+    e.target.select();
+  }
+
+  onChange(e) {
+    // Do nothing -- we simply need this event handler to placate React
+  }
+
+  render() {
+    let size = this.props.large ? "32" : "16";
+    return <div id="share-buttons-panel" className="share-row">
+      <div>Share to email and social networks</div>
+      <a onClick={ this.onClickShareButton.bind(this, "facebook") } target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }>
+        <img src={ this.props.staticLink(`img/facebook-${size}.png`) } />
+      </a>
+      <a onClick={ this.onClickShareButton.bind(this, "twitter") }target="_blank" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }>
+        <img src={ this.props.staticLink(`img/twitter-${size}.png`) } />
+      </a>
+      <a onClick={ this.onClickShareButton.bind(this, "pinterest") }target="_blank" href={"https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" }>
+        <img src={ this.props.staticLink(`img/pinterest-${size}.png`) } />
+      </a>
+      <a onClick={ this.onClickShareButton.bind(this, "email") }target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
+        <img src={ this.props.staticLink(`img/email-${size}.png`) } />
+      </a>
+      <hr />
+      <div>Get a shareable link to your shot</div>
+      <a href="#" onClick={ this.onCopyClick }>
+        <input
+          value={ this.props.shot.viewUrl }
+          onClick={ this.onClickInputField.bind(this) }
+          onChange={ this.onChange.bind(this) } />
+        <button
+          className="copy-shot-link-button"
+          onClick={ this.onClickCopyButton.bind(this) }>
+          Copy
+        </button>
+      </a>
+    </div>;
+  }
+}
+
 class Clip extends React.Component {
   onClick(e) {
     let fullPageCheckbox = document.getElementById("full-page-checkbox");
@@ -234,6 +291,16 @@ class Frame extends React.Component {
     window.dispatchEvent(evt);
   }
 
+  onClickShareButton(e) {
+    let sharePanel = document.getElementById("share-buttons-panel");
+    console.log("SHARE STYLE", sharePanel.style.display);
+    if (sharePanel.style.display === "block") {
+      sharePanel.style.display = "none";
+    } else {
+      sharePanel.style.display = "block";
+    }
+  }
+
   render() {
     let body;
     if (this.props.expireTime !== null && Date.now() > this.props.expireTime) {
@@ -422,7 +489,7 @@ class Frame extends React.Component {
             <button id="upload-full-page" className="upload-full-page" onClick={ this.onClickUploadFullPage.bind(this) }>
               Upload full page
             </button>
-            <button className="share-button">
+            <button className="share-button" onClick={ this.onClickShareButton.bind(this) }>
               Share
             </button>
             <button className="trash-button">
@@ -430,6 +497,10 @@ class Frame extends React.Component {
             </button>
           </div>
         </div>
+        <ShareButtons
+          large={ true }
+          clipUrl={ shot.viewUrl }
+          { ...this.props } />
         { clips }
         <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } />
         <div className="pageshot-footer">

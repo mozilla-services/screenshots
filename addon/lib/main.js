@@ -62,7 +62,6 @@ function showNotificationBar(shotcontext) {
   let node = thebox.ownerDocument.createElement("button");
   node.textContent = "My shots";
   node.onclick = function () {
-    console.log("VIEW ALL MY SHOTS");
     tabs.open(exports.getBackend() + "/shots");
   };
   node.style.textAlign = "center";
@@ -89,6 +88,7 @@ function showNotificationBar(shotcontext) {
               shotcontext.openInNewTab();
             });
             shotcontext.copyRichDataToClipboard();
+            // Calling selectClip with no clip id has the side effect of sending a "cancel" message to the shot worker
             shotcontext.panelHandlers.selectClip.call(shotcontext);
             PanelContext.removeContext(shotcontext);
           }, 0);
@@ -97,6 +97,8 @@ function showNotificationBar(shotcontext) {
       nb.buttonMaker.no({
         label: "Cancel",
         callback: function(notebox, button) {
+          // Calling selectClip with no clip id has the side effect of sending a "cancel" message to the shot worker
+          shotcontext.panelHandlers.selectClip.call(shotcontext);
           setTimeout(function () {
             hideNotificationBar();
           }, 0);
