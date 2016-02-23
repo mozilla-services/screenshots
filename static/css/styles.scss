@@ -303,6 +303,12 @@ a.sitelink, a.sitelink:visited {
   cursor: pointer;
 }
 
+.my-shots-button img {
+  position: relative;
+  top: 4px;
+  left: -8px;
+}
+
 .shot-title {
   padding-top: 2px;
   white-space: nowrap;
@@ -322,6 +328,19 @@ a.sitelink, a.sitelink:visited {
   font-size: 12px;
 }
 
+.upload-full-page {
+  background: #2fa8e1;
+  color: white;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,.35);
+  height: 30px;
+  cursor: pointer;
+}
+
+#full-page-checkbox {
+  visibility: hidden;
+}
+
 .share-button {
   margin-left: 15px;
   background: #2fa8e1;
@@ -329,15 +348,17 @@ a.sitelink, a.sitelink:visited {
   border-radius: 4px;
   border: 1px solid rgba(0,0,0,.35);
   height: 30px;
+  cursor: pointer;
 }
 
-.more-actions-menu-button {
+.trash-button {
   margin-left: 15px;
   border-radius: 4px;
   border: 1px solid rgba(0,0,0,.35);
   height: 30px;
   background: #fcfcfc;
   color: black;
+  cursor: pointer;
 }
 
 .more-shot-actions {

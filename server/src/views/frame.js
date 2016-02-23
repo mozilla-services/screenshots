@@ -225,6 +225,15 @@ class Frame extends React.Component {
     window.dispatchEvent(evt);
   }
 
+  onClickUploadFullPage(e) {
+    let uploadFullPageButton = document.getElementById("upload-full-page");
+    uploadFullPageButton.parentNode.removeChild(uploadFullPageButton);
+    let node = document.getElementById("full-page-checkbox");
+    node.checked = true;
+    let evt = new Event("hashchange");
+    window.dispatchEvent(evt);
+  }
+
   render() {
     let body;
     if (this.props.expireTime !== null && Date.now() > this.props.expireTime) {
@@ -399,7 +408,8 @@ class Frame extends React.Component {
         <div id="toolbar" data-step="1" data-intro="This is the title of the page and a link to it's source.">
           <a href="/shots">
             <button className="my-shots-button">
-              My Shots
+              <img src={ this.props.staticLink("img/my-shots.png") } />
+              <span>My Shots</span>
             </button>
           </a>
           <div className="shot-title">{ shot.title }</div>
@@ -409,12 +419,14 @@ class Frame extends React.Component {
           </div>
           <div className="more-shot-actions">
             <input id="full-page-checkbox" type="checkbox" onChange={ this.onChange.bind(this) } />
-            <label htmlFor="full-page-checkbox">Show in full page</label>
+            <button id="upload-full-page" className="upload-full-page" onClick={ this.onClickUploadFullPage.bind(this) }>
+              Upload full page
+            </button>
             <button className="share-button">
               Share
             </button>
-            <button className="more-actions-menu-button">
-              ...
+            <button className="trash-button">
+              <img src={ this.props.staticLink("img/menu.png") } />
             </button>
           </div>
         </div>
