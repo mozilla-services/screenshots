@@ -49,17 +49,15 @@ class ShareButtons extends React.Component {
       </a>
       <hr />
       <div>Get a shareable link to your shot</div>
-      <a href="#" onClick={ this.onCopyClick }>
-        <input
-          value={ this.props.shot.viewUrl }
-          onClick={ this.onClickInputField.bind(this) }
-          onChange={ this.onChange.bind(this) } />
-        <button
-          className="copy-shot-link-button"
-          onClick={ this.onClickCopyButton.bind(this) }>
-          Copy
-        </button>
-      </a>
+      <input className="copy-shot-link-input"
+        value={ this.props.shot.viewUrl }
+        onClick={ this.onClickInputField.bind(this) }
+        onChange={ this.onChange.bind(this) } />
+      <button
+        className="copy-shot-link-button"
+        onClick={ this.onClickCopyButton.bind(this) }>
+        Copy
+      </button>
     </div>;
   }
 }
@@ -409,7 +407,7 @@ class Frame extends React.Component {
     let linkTextShort = shot.urlDisplay;
 
     let timeDiff = <TimeDiff date={shot.createdDate} simple={this.props.simple} />;
-    let expiresDiff = <span>– <ExpireWidget
+    let expiresDiff = <span> <ExpireWidget
       expireTime={this.props.expireTime}
       onSaveExpire={this.onSaveExpire.bind(this)}
       onDeleteShot={this.onDeleteShot.bind(this)} /></span>;
@@ -479,10 +477,17 @@ class Frame extends React.Component {
               <span>My Shots</span>
             </button>
           </a>
-          <div className="shot-title">{ shot.title }</div>
+          <span className="shot-title"> { shot.title } </span>
+          <span className="shot-subtitle">
+            <span> – source </span><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a>
+          </span>
           <div className="shot-subtitle">
-            <span>source </span><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a>
-            <span style={{paddingLeft: "15px"}}>saved { timeDiff } {expiresDiff} </span>
+            <img height="16" width="16" style={{
+              "margin-right": "7px",
+              "position": "relative",
+              "top": "4px"}}
+              src={ this.props.staticLink("img/clock.png") } />
+            saved { timeDiff } – { expiresDiff }
           </div>
           <div className="more-shot-actions">
             <input id="full-page-checkbox" type="checkbox" onChange={ this.onChange.bind(this) } />

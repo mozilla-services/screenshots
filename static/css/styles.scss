@@ -372,6 +372,12 @@ a.sitelink, a.sitelink:visited {
   padding: 7px;
 }
 
+.copy-shot-link-input {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  height: 22px;
+}
+
 .copy-shot-link-button {
   background: #2fa8e1;
   color: white;
@@ -379,7 +385,7 @@ a.sitelink, a.sitelink:visited {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   border: 1px solid rgba(0,0,0,.35);
-  height: 22px;
+  height: 28px;
   width: 75px;
   cursor: pointer;
 }
