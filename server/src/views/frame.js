@@ -299,6 +299,13 @@ class Frame extends React.Component {
     }
   }
 
+  onClickDelete(e) {
+    window.ga('send', 'event', 'website', 'click-delete-shot', {useBeacon: true});
+    if (window.confirm("Are you sure you want to delete the shot permanently?")) {
+      this.props.clientglue.deleteShot(this.props.shot);
+    }
+  }
+
   render() {
     let body;
     if (this.props.expireTime !== null && Date.now() > this.props.expireTime) {
@@ -407,10 +414,11 @@ class Frame extends React.Component {
     let linkTextShort = shot.urlDisplay;
 
     let timeDiff = <TimeDiff date={shot.createdDate} simple={this.props.simple} />;
-    let expiresDiff = <span> <ExpireWidget
-      expireTime={this.props.expireTime}
-      onSaveExpire={this.onSaveExpire.bind(this)}
-      onDeleteShot={this.onDeleteShot.bind(this)} /></span>;
+    let expiresDiff = <span>
+      <ExpireWidget
+        expireTime={this.props.expireTime}
+        onSaveExpire={this.onSaveExpire.bind(this)} />
+    </span>;
     if (this.props.simple || ! this.props.isOwner) {
       expiresDiff = null;
     }
@@ -497,7 +505,7 @@ class Frame extends React.Component {
             <button className="share-button" onClick={ this.onClickShareButton.bind(this) }>
               Share
             </button>
-            <button className="trash-button">
+            <button className="trash-button" onClick={ this.onClickDelete.bind(this) }>
               <img src={ this.props.staticLink("img/garbage-bin.png") } />
             </button>
           </div>
@@ -545,10 +553,6 @@ class Frame extends React.Component {
     this.props.clientglue.changeShotExpiration(this.props.shot, value);
   }
 
-  onDeleteShot() {
-    this.props.clientglue.deleteShot(this.props.shot);
-  }
-
   onRestore() {
     this.props.clientglue.changeShotExpiration(this.props.shot, this.props.defaultExpiration);
   }
@@ -590,7 +594,6 @@ class ExpireWidget extends React.Component {
         </select>
         &#8195;<span className="link-button" onClick={this.clickSaveExpire.bind(this)}>save</span>
         &#8195;<span className="link-button" onClick={this.clickCancelExpire.bind(this)}>cancel</span>
-        &#8195;<span className="link-button delete-button" onClick={this.clickDelete.bind(this)}>delete</span>
       </span>
     );
   }
@@ -639,14 +642,6 @@ class ExpireWidget extends React.Component {
     this.props.onSaveExpire(value);
     this.setState({isChangingExpire: false});
   }
-
-  clickDelete() {
-    window.ga('send', 'event', 'website', 'click-delete-shot', {useBeacon: true});
-    if (window.confirm("Are you sure you want to delete the shot permanently?")) {
-      this.props.onDeleteShot();
-    }
-  }
-
 }
 
 function intervalDescription(ms) {
