@@ -371,6 +371,8 @@ a.sitelink, a.sitelink:visited {
   right: 15px;
   z-index: 99;
   border-radius: 4px;
+  border: 1px solid rgba(0,0,0,.35);
+  box-shadow: 0 -2px 5px $shadow-color;
   color: black;
   background-color: white;
   padding: 15px;
