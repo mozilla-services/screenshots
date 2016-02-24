@@ -35,14 +35,6 @@ let initialized = false;
 const PANEL_SHORT_HEIGHT = 220;
 const PANEL_TALL_HEIGHT = 500;
 
-// Load our stylesheets.
-/*let styleSheetService = Cc["@mozilla.org/content/style-sheet-service;1"].getService(Ci.nsIStyleSheetService);
-let styleSheetURI = Services.io.newURI("chrome://loop-shared/skin/loop.css", null, null);
-styleSheetService.loadAndRegisterSheet(
-  styleSheetURI,
-  styleSheetService.AUTHOR_SHEET);
-*/
-
 function getNotificationBox(browser) {
   let wm = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator);
   let win = wm.getMostRecentWindow("navigator:browser");
@@ -106,26 +98,6 @@ function showNotificationBar(shotcontext) {
       })
     ]
   });
-
-  let notice = banner.notice;
-  let asdf = "";
-  for (var i in notice) {
-    asdf += i + " ";
-  }
-  //console.log("NOTICE", asdf);
-  //console.log("imAGE", typeof notice.shadowRoot);
-  /*let button = notice.ownerDocument.createElement("button");
-
-  let checkbox = notice.ownerDocument.createElement("checkbox");
-  checkbox.label = "Save full page";
-  let checkboxLabel = notice.ownerDocument.createTextNode("Save full page");
-  button.appendChild(checkbox);
-  button.appendChild(checkboxLabel);
-  button.onclick = function () {
-    checkbox.checked = !checkbox.checked;
-    console.log("SAVE FULL PAGE", checkbox.checked);
-  }
-  notice.insertBefore(button, notice.firstChild);*/
 
   if (!initialized) {
     Cu.import("resource://gre/modules/Services.jsm");
