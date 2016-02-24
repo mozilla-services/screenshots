@@ -366,7 +366,7 @@ a.sitelink, a.sitelink:visited {
 
 #share-buttons-panel {
   display: none;
-  position: absolute;
+  position: fixed;
   top: 75px;
   right: 15px;
   z-index: 99;

@@ -487,7 +487,7 @@ class Frame extends React.Component {
           </a>
           <span className="shot-title"> { shot.title } </span>
           <span className="shot-subtitle">
-            <span> – source </span><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a>
+            <span> – Saved from </span><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a>
           </span>
           <div className="shot-subtitle">
             <img height="16" width="16" style={{
