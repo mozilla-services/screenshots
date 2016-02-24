@@ -24,10 +24,10 @@ exports.setModel = function (data) {
 
   if (firstSet) {
     if (model.shot.clipNames().length !== 0) {
+      let container = document.querySelector(".clip-container");
+      let img = container.querySelector("img");
 
       function onResize() {
-        let container = document.querySelector(".clip-container");
-        let img = container.querySelector("img");
         let windowHeight = window.innerHeight;
         let paddingTop = Math.floor((windowHeight - img.height - 35) / 2);
         if (paddingTop < 16) {
