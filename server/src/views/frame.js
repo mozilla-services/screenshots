@@ -498,7 +498,7 @@ class Frame extends React.Component {
               Share
             </button>
             <button className="trash-button">
-              <img src={ this.props.staticLink("img/menu.png") } />
+              <img src={ this.props.staticLink("img/garbage-bin.png") } />
             </button>
           </div>
         </div>
