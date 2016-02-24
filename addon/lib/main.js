@@ -112,10 +112,6 @@ function showNotificationBar(shotcontext) {
     styleSheetService.loadAndRegisterSheet(styleSheetURI,
                                            styleSheetService.AUTHOR_SHEET);
   }
-/*  let box = getNotificationBox();
-  let notification = box.getNotificationWithValue("pageshot-notification-banner");
-  console.log("NOTIFICATION", notification);
-*/
 }
 
 function hideNotificationBar(browser) {
