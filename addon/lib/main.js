@@ -97,10 +97,10 @@ function showNotificationBar(shotcontext) {
       nb.buttonMaker.no({
         label: "Cancel",
         callback: function(notebox, button) {
-          // Calling selectClip with no clip id has the side effect of sending a "cancel" message to the shot worker
-          shotcontext.panelHandlers.selectClip.call(shotcontext);
+          hideNotificationBar();
           setTimeout(function () {
-            hideNotificationBar();
+            // Calling selectClip with no clip id has the side effect of sending a "cancel" message to the shot worker
+            shotcontext.panelHandlers.selectClip.call(shotcontext);
           }, 0);
         }
       })
