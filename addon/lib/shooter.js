@@ -149,13 +149,6 @@ const ShotContext = Class({
     this._deregisters = [];
     this.panelContext = panelContext;
     this._workerActive = false;
-    this.watchTab("deactivate", function () {
-      //panelContext.hide(this);
-    });
-    this.watchTab("activate", function () {
-      //console.log("WATCHTAB ACTIVATE");
-      //panelContext.show(this);
-    });
     // FIXME: this is to work around a bug where deactivate sometimes isn't called
     this._activateWorkaround = (function (tab) {
       if (tab != this.tab && this.panelContext._activeContext == this) {
@@ -176,8 +169,9 @@ const ShotContext = Class({
   },
 
   uploadShot: function() {
-    let promise = this.shot.save();
-    return promise;
+    return this._collectionCompletePromise.then(() => {
+      return this.shot.save();
+    });
   },
 
   copyRichDataToClipboard: function (activeClipName, numberOfTries) {
@@ -537,7 +531,6 @@ const ShotContext = Class({
         // FIXME: maybe pop up an explanation here?
         return;
       }
-      //this.copyRichDataToClipboard();
       var prefInlineCss = require("sdk/simple-prefs").prefs.inlineCss;
       var promises = [];
       // Note: removed until we have some need or use for history in our shot pages:
@@ -565,9 +558,7 @@ const ShotContext = Class({
         {prefInlineCss})).then(watchFunction(function (attrs) {
           this.shot.update(attrs);
         }, this)));
-      watchPromise(allPromisesComplete(promises).then((function () {
-        //return this.shot.save();
-      }).bind(this)));
+      this._collectionCompletePromise = watchPromise(allPromisesComplete(promises));
     }).bind(this)));
   },
 

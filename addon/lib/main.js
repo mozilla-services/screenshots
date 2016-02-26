@@ -16,12 +16,12 @@ const shooter = require("./shooter");
 const { prefs } = require('sdk/simple-prefs');
 const helperworker = require("./helperworker");
 const { ActionButton } = require('sdk/ui/button/action');
-const panels = require("sdk/panel");
-const { watchFunction, watchWorker } = require("./errors");
+const { watchFunction } = require("./errors");
 const {Cu, Cc, Ci} = require("chrome");
 const winutil = require("sdk/window/utils");
 const req = require("./req");
 const { setTimeout } = require("sdk/timers");
+let Services;
 
 // Give the server a chance to start if the pref is set
 require("./headless").init();
@@ -31,9 +31,6 @@ Cu.import("resource:///modules/UITour.jsm");
 let loadReason = null;
 let PanelContext;
 let initialized = false;
-
-const PANEL_SHORT_HEIGHT = 220;
-const PANEL_TALL_HEIGHT = 500;
 
 function getNotificationBox(browser) {
   let wm = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator);
@@ -49,7 +46,7 @@ function showNotificationBar(shotcontext) {
   if (nb.notificationbox().getNotificationWithValue("pageshot-notification-bar") !== null) {
     return;
   }
-  let thebox = nb.notificationbox()
+  let thebox = nb.notificationbox();
   let fragment = thebox.ownerDocument.createDocumentFragment();
   let node = thebox.ownerDocument.createElement("button");
   node.textContent = "My shots";
@@ -67,7 +64,7 @@ function showNotificationBar(shotcontext) {
   node2.appendChild(thebox.ownerDocument.createTextNode("Select part of the page to save, or save full page without making a selection."));
   fragment.appendChild(node);
   fragment.appendChild(node2);
-  let banner = nb.banner({
+  nb.banner({
     id: "pageshot-notification-bar",
     msg: fragment,
     buttons: [
@@ -100,7 +97,11 @@ function showNotificationBar(shotcontext) {
   });
 
   if (!initialized) {
-    Cu.import("resource://gre/modules/Services.jsm");
+    if (! Services) {
+      let importer = {};
+      Cu.import("resource://gre/modules/Services.jsm", importer);
+      Services = importer.Services;
+    }
 
     initialized = true;
     // Load our stylesheets.
@@ -160,7 +161,6 @@ PanelContext = {
     }
     this._activeContext = null;
     hideNotificationBar();
-    //shootPanel.hide();
     shootButton.checked = false;
   },
 
@@ -299,24 +299,6 @@ PanelContext = {
     this._contexts[shotContext.id] = shotContext;
   },
 };
-
-// This pipes all messages that ShotContext expects over to the
-// active context:
-Object.keys(shooter.ShotContext.prototype.panelHandlers).forEach(function (messageType) {
-  /*shootPanel.port.on(messageType, watchFunction(function () {
-    if (! PanelContext._activeContext) {
-      console.warn("Got " + messageType + " with no activeContext");
-      return;
-    }
-    let method = PanelContext._activeContext.panelHandlers[messageType];
-    method.apply(PanelContext._activeContext, arguments);
-  }));*/
-});
-
-/*shootPanel.port.on("showTour", watchFunction(function () {
-  showTour(true);
-}));
-*/
 
 /** We use backendOverride to temporarily change the backend with a
     command-line argument (as used in the `run` script), otherwise
