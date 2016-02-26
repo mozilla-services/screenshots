@@ -150,10 +150,11 @@ const ShotContext = Class({
     this.panelContext = panelContext;
     this._workerActive = false;
     this.watchTab("deactivate", function () {
-      panelContext.hide(this);
+      //panelContext.hide(this);
     });
     this.watchTab("activate", function () {
-      panelContext.show(this);
+      //console.log("WATCHTAB ACTIVATE");
+      //panelContext.show(this);
     });
     // FIXME: this is to work around a bug where deactivate sometimes isn't called
     this._activateWorkaround = (function (tab) {
@@ -172,6 +173,11 @@ const ShotContext = Class({
     });
     this.collectInformation();
     this._activateWorker();
+  },
+
+  uploadShot: function() {
+    let promise = this.shot.save();
+    return promise;
   },
 
   copyRichDataToClipboard: function (activeClipName, numberOfTries) {
@@ -245,7 +251,7 @@ const ShotContext = Class({
       }
     }));
     this.interactiveWorker.port.on("ready", watchFunction(function () {
-      this.interactiveWorker.port.emit("setState", "initialAuto");
+      this.interactiveWorker.port.emit("setState", "selection");
     }).bind(this));
     this.interactiveWorker.port.on("select", watchFunction(function (pos, shotText, captureType) {
       // FIXME: there shouldn't be this disconnect between arguments to captureTab
@@ -361,6 +367,15 @@ const ShotContext = Class({
       return true;
     }
     return false;
+  },
+
+  openInNewTab: function(eventSource) {
+    let firstClipName = this.shot.clipNames()[0];
+    let urlToOpen = this.shot.viewUrl;
+    if (firstClipName) {
+      urlToOpen += "#clip=" + firstClipName;
+    }
+    this.panelHandlers.openLink(urlToOpen, "startup", eventSource);
   },
 
   /** These are methods that are called by the PanelContext based on messages from the panel */
@@ -522,7 +537,7 @@ const ShotContext = Class({
         // FIXME: maybe pop up an explanation here?
         return;
       }
-      this.copyRichDataToClipboard();
+      //this.copyRichDataToClipboard();
       var prefInlineCss = require("sdk/simple-prefs").prefs.inlineCss;
       var promises = [];
       // Note: removed until we have some need or use for history in our shot pages:
@@ -551,16 +566,16 @@ const ShotContext = Class({
           this.shot.update(attrs);
         }, this)));
       watchPromise(allPromisesComplete(promises).then((function () {
-        return this.shot.save();
+        //return this.shot.save();
       }).bind(this)));
     }).bind(this)));
   },
 
   /** Sets attributes on the shot, saves it, and updates the panel */
   updateShot: function () {
-    watchPromise(this.shot.save());
+    //watchPromise(this.shot.save());
     this.panelContext.updateShot(this);
-    require("./recall").addRecall(this.shot);
+    //require("./recall").addRecall(this.shot);
   },
 
   /** Watches for the given event on this context's tab.  The callback will be

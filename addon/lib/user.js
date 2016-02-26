@@ -7,7 +7,7 @@ const { URL } = require('sdk/url');
 const { FxAccountsOAuthClient } = Cu.import("resource://gre/modules/FxAccountsOAuthClient.jsm", {});
 const { FxAccountsProfileClient } = Cu.import("resource://gre/modules/FxAccountsProfileClient.jsm", {});
 const { deviceInfo } = require('./deviceinfo');
-const recall = require("./recall");
+//const recall = require("./recall");
 const errors = require("./errors");
 
 let initialized = false;
@@ -20,7 +20,7 @@ exports.getSentryPublicDSN = function() {
 exports.deleteEverything = function () {
   let backend = require("./main").getBackend();
   ss.storage.deviceInfo = null;
-  recall.deleteEverything();
+  //recall.deleteEverything();
   // Once we have deleted everything associated with the old account,
   // we need to re-initialize to give us a new random deviceId, otherwise
   // we get errors once the shot panel is accessed.

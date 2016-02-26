@@ -15,12 +15,13 @@ const tabs = require("sdk/tabs");
 const shooter = require("./shooter");
 const { prefs } = require('sdk/simple-prefs');
 const helperworker = require("./helperworker");
-const { ToggleButton } = require('sdk/ui/button/toggle');
+const { ActionButton } = require('sdk/ui/button/action');
 const panels = require("sdk/panel");
 const { watchFunction, watchWorker } = require("./errors");
-const {Cu} = require("chrome");
+const {Cu, Cc, Ci} = require("chrome");
 const winutil = require("sdk/window/utils");
 const req = require("./req");
+const { setTimeout } = require("sdk/timers");
 
 // Give the server a chance to start if the pref is set
 require("./headless").init();
@@ -29,12 +30,103 @@ Cu.import("resource:///modules/UITour.jsm");
 
 let loadReason = null;
 let PanelContext;
+let initialized = false;
 
 const PANEL_SHORT_HEIGHT = 220;
 const PANEL_TALL_HEIGHT = 500;
 
+function getNotificationBox(browser) {
+  let wm = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator);
+  let win = wm.getMostRecentWindow("navigator:browser");
+  let gBrowser = win.gBrowser;
+
+  browser = browser || gBrowser.selectedBrowser;
+  return gBrowser.getNotificationBox(browser);
+}
+
+function showNotificationBar(shotcontext) {
+  var nb = require("./notificationbox");
+  if (nb.notificationbox().getNotificationWithValue("pageshot-notification-bar") !== null) {
+    return;
+  }
+  let thebox = nb.notificationbox()
+  let fragment = thebox.ownerDocument.createDocumentFragment();
+  let node = thebox.ownerDocument.createElement("button");
+  node.textContent = "My shots";
+  node.onclick = function () {
+    tabs.open(exports.getBackend() + "/shots");
+  };
+  node.style.textAlign = "center";
+  node.style.fontWeight = "normal";
+  node.style.borderRadius = "4px";
+  node.style.background = "#fbfbfb";
+  node.style.color = "black";
+  let node2 = thebox.ownerDocument.createElement("span");
+  node2.style.border = "none";
+  node2.style.marginLeft = "10px";
+  node2.appendChild(thebox.ownerDocument.createTextNode("Select part of the page to save, or save full page without making a selection."));
+  fragment.appendChild(node);
+  fragment.appendChild(node2);
+  let banner = nb.banner({
+    id: "pageshot-notification-bar",
+    msg: fragment,
+    buttons: [
+      nb.buttonMaker.yes({
+        label: "Save",
+        callback: function(notebox, button) {
+          hideNotificationBar();
+          setTimeout(function () {
+            shotcontext.uploadShot().then(() => {
+              shotcontext.openInNewTab();
+            });
+            shotcontext.copyRichDataToClipboard();
+            // Calling selectClip with no clip id has the side effect of sending a "cancel" message to the shot worker
+            shotcontext.panelHandlers.selectClip.call(shotcontext);
+            PanelContext.removeContext(shotcontext);
+          }, 0);
+        }
+      }),
+      nb.buttonMaker.no({
+        label: "Cancel",
+        callback: function(notebox, button) {
+          hideNotificationBar();
+          setTimeout(function () {
+            // Calling selectClip with no clip id has the side effect of sending a "cancel" message to the shot worker
+            shotcontext.panelHandlers.selectClip.call(shotcontext);
+          }, 0);
+        }
+      })
+    ]
+  });
+
+  if (!initialized) {
+    Cu.import("resource://gre/modules/Services.jsm");
+
+    initialized = true;
+    // Load our stylesheets.
+    let styleSheetService = Cc["@mozilla.org/content/style-sheet-service;1"].getService(Ci.nsIStyleSheetService);
+
+    let cssurl = self.data.url("pageshot-notification-bar.css");
+
+    let styleSheetURI = Services.io.newURI(cssurl, null, null);
+    styleSheetService.loadAndRegisterSheet(styleSheetURI,
+                                           styleSheetService.AUTHOR_SHEET);
+  }
+}
+
+function hideNotificationBar(browser) {
+  let box = getNotificationBox(browser);
+  let notification = box.getNotificationWithValue("pageshot-notification-banner");
+  let removed = false;
+  if (notification) {
+    box.removeNotification(notification);
+    removed = true;
+  }
+  return removed;
+}
+
 // FIXME: this button should somehow keep track of whether there is an active shot associated with this page
-var shootButton = ToggleButton({
+var shootButton = ActionButton({
   id: "pageshot-shooter",
   label: "Make shot",
   icon: self.data.url("icons/pageshot-camera-empty.svg"),
@@ -45,29 +137,6 @@ var shootButton = ToggleButton({
   })
 });
 exports.shootButton = shootButton;
-
-var shootPanel = panels.Panel({
-  contentURL: self.data.url("shoot-panel.html"),
-  contentScriptFile: [self.data.url("panel-bundle.js")],
-  contentScriptOptions: {
-    type: "shoot"
-  },
-  position: shootButton,
-  height: PANEL_SHORT_HEIGHT,
-  width: 400,
-  onHide: watchFunction(function () {
-    shootButton.state("window", null);
-    shootButton.checked = false;
-    PanelContext.shootPanelHidden();
-  }),
-  onShow: watchFunction(function () {
-    shootButton.state("window", null);
-    shootButton.checked = true;
-    PanelContext.shootPanelShown();
-  })
-});
-
-watchWorker(shootPanel);
 
 /** PanelContext manages the ShotContext (defined in shooter.js) that
     is associated with the panel.  Because the panel is a singleton,
@@ -90,7 +159,8 @@ PanelContext = {
       throw new Error("Hiding wrong shotContext");
     }
     this._activeContext = null;
-    shootPanel.hide();
+    hideNotificationBar();
+    //shootPanel.hide();
     shootButton.checked = false;
   },
 
@@ -124,7 +194,8 @@ PanelContext = {
   /** Show a ShotContext, hiding any other if necessary */
   show: function (shotContext) {
     if (this._activeContext === shotContext) {
-      shootPanel.show();
+      //shootPanel.show();
+      showNotificationBar(shotContext);
       shotContext.isShowing();
       return;
     }
@@ -132,14 +203,15 @@ PanelContext = {
       throw new Error("Another context (" + this._activeContext.id + ") is showing");
     }
     this._activeContext = shotContext;
-    shootPanel.show();
+    showNotificationBar(shotContext);
+    //shootPanel.show();
     shotContext.isShowing();
     shootButton.checked = true;
     this.updateShot(this._activeContext, this._activeContext.shot.asJson());
     if (this._activeContext.isEditing) {
-      shootPanel.resize(400, PANEL_TALL_HEIGHT);
+      //shootPanel.resize(400, PANEL_TALL_HEIGHT);
     } else {
-      shootPanel.resize(400, PANEL_SHORT_HEIGHT);
+      //shootPanel.resize(400, PANEL_SHORT_HEIGHT);
     }
   },
 
@@ -173,7 +245,8 @@ PanelContext = {
       this.show(shotContext);
     } else {
       if (this._activeContext.couldBeActive()) {
-        shootPanel.show(this._activeContext);
+        showNotificationBar(this._activeContext);
+        //shootPanel.show(this._activeContext);
       }
     }
   },
@@ -185,7 +258,7 @@ PanelContext = {
       return;
     }
 
-    shootPanel.port.emit("shotData",
+    /*shootPanel.port.emit("shotData",
       {
         backend: shotContext.shot.backend,
         id: shotContext.shot.id,
@@ -194,17 +267,17 @@ PanelContext = {
         isEditing: shotContext.isEditing
       },
       loadReason
-    );
+    );*/
   },
 
   /** Called when the panel is switching from simple to edit view or vice versa */
   setEditing: function (editing) {
     this._activeContext.isEditing = editing;
     if (editing) {
-      shootPanel.resize(400, PANEL_TALL_HEIGHT);
+      //shootPanel.resize(400, PANEL_TALL_HEIGHT);
       req.sendEvent("addon", "click-short-panel-edit");
     } else {
-      shootPanel.resize(400, PANEL_SHORT_HEIGHT);
+      //shootPanel.resize(400, PANEL_SHORT_HEIGHT);
     }
   },
 
@@ -230,19 +303,20 @@ PanelContext = {
 // This pipes all messages that ShotContext expects over to the
 // active context:
 Object.keys(shooter.ShotContext.prototype.panelHandlers).forEach(function (messageType) {
-  shootPanel.port.on(messageType, watchFunction(function () {
+  /*shootPanel.port.on(messageType, watchFunction(function () {
     if (! PanelContext._activeContext) {
       console.warn("Got " + messageType + " with no activeContext");
       return;
     }
     let method = PanelContext._activeContext.panelHandlers[messageType];
     method.apply(PanelContext._activeContext, arguments);
-  }));
+  }));*/
 });
 
-shootPanel.port.on("showTour", watchFunction(function () {
+/*shootPanel.port.on("showTour", watchFunction(function () {
   showTour(true);
 }));
+*/
 
 /** We use backendOverride to temporarily change the backend with a
     command-line argument (as used in the `run` script), otherwise
@@ -302,7 +376,9 @@ exports.main = function (options) {
   require("./user").initialize(exports.getBackend(), options.loadReason).catch((error) => {
     console.warn("Failed to log in to server:", error+"");
   });
+  /*
   require("./recall").initialize(hideInfoPanel, showTour);
+  */
 };
 
 exports.onUnload = function (reason) {

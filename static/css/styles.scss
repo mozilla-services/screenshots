@@ -1,5 +1,9 @@
-$primary-color: #404040;
+
+
+$primary-color: #fcfcfc;
+$toolbar-text-color: #464239;
 $text-color: #f2f2f2;
+$background-color: #404040;
 $shadow-color: rgba(0, 0, 0, 0.5);
 
 
@@ -12,7 +16,7 @@ body {
   width: 100%;
   margin: 0;
   font-family: sans-serif;
-  background-color: $primary-color;
+  background-color: $background-color;
   background-image: url("/static/img/bgtexture.png");
   color: $text-color;
   box-sizing: border-box;
@@ -23,33 +27,35 @@ body {
   left: 0px;
   right: 0px;
   top: 0px;
+  padding-top: 75px;
+  padding-left: 25px;
+  padding-right: 25px;
   text-align: center;
 }
 
 #frame {
   border: none;
+  display: none;
   margin-top: 16px;
   margin-bottom: 4em;
   box-shadow: 0 -5px 5px $shadow-color;
 }
 
 #toolbar {
-  visibility: hidden;
   position: fixed;
   top: 0px;
   left: 0px;
   right: 0px;
   height: 35px;
   padding: 15px;
-  padding-left: 60px;
+  padding-left: 150px;
   /* Causes toolbar to go over comment bubble and other position: relative elements: */
   z-index: 1;
   text-overflow: ellipsis;
   overflow: hidden;
-  color: $text-color;
+  color: $toolbar-text-color;
   text-align: left;
   background-color: $primary-color;
-  background-image: url("/static/img/bgtexture.png");
 }
 
 .window-scrolled-down #toolbar {
@@ -222,7 +228,13 @@ a.sitelink, a.sitelink:visited {
 }
 
 .clip-container {
-  margin-bottom: 3em;
+  position: fixed;
+  top: 50px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  padding-top: 100px;
+  background-color: rgba(10, 10, 10, 0.5);
 }
 
 .clip-container div {
@@ -280,6 +292,23 @@ a.sitelink, a.sitelink:visited {
   left: 2px;
 }
 
+.my-shots-button {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 125px;
+  height: 66px;
+  background: #ebebeb;
+  border: none;
+  cursor: pointer;
+}
+
+.my-shots-button img {
+  position: relative;
+  top: 4px;
+  left: -8px;
+}
+
 .shot-title {
   padding-top: 2px;
   white-space: nowrap;
@@ -297,6 +326,97 @@ a.sitelink, a.sitelink:visited {
 
 .shot-subtitle .subheading-link {
   font-size: 12px;
+}
+
+.upload-full-page {
+  background: #2fa8e1;
+  color: white;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,.35);
+  height: 32px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+#full-page-checkbox {
+  visibility: hidden;
+}
+
+.share-button {
+  margin-left: 15px;
+  background: #2fa8e1;
+  color: white;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,.35);
+  height: 32px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.trash-button {
+  margin-left: 15px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,.35);
+  height: 32px;
+  background: #fcfcfc;
+  color: black;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+#share-buttons-panel {
+  display: none;
+  position: fixed;
+  top: 75px;
+  right: 15px;
+  z-index: 99;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,.35);
+  box-shadow: 0 -2px 5px $shadow-color;
+  color: black;
+  background-color: white;
+  padding: 15px;
+  text-align: left;
+}
+
+#share-buttons-panel div {
+  margin-bottom: 7px;
+}
+
+#share-buttons-panel a {
+  padding: 7px;
+}
+
+.copy-shot-link-input {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  height: 22px;
+}
+
+.copy-shot-link-button {
+  background: #2fa8e1;
+  color: white;
+  border-radius: 4px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border: 1px solid rgba(0,0,0,.35);
+  height: 28px;
+  width: 75px;
+  cursor: pointer;
+}
+
+.more-shot-actions {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 33px;
+  padding: 15px;
+  color: #959595;
+  font-size: 12px;
+}
+
+#more-shot-actions-menu {
+  margin-left: 15px;
 }
 
 #main-title {

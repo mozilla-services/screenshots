@@ -23,6 +23,24 @@ exports.setModel = function (data) {
   model.shot.deleted = data.deleted;
 
   if (firstSet) {
+    if (model.shot.clipNames().length !== 0) {
+      let container = document.querySelector(".clip-container");
+      let img = container.querySelector("img");
+
+      function onResize() {
+        let windowHeight = window.innerHeight;
+        let paddingTop = Math.floor((windowHeight - img.height - 35) / 2);
+        if (paddingTop < 16) {
+          paddingTop = 16;
+        }
+        container.style.paddingTop = paddingTop + "px";
+      }
+      window.addEventListener("resize", onResize, true);
+
+      onResize();
+
+    }
+
     let button = document.getElementById("full-page-button-scrollable");
     if (button) {
       // Button isn't present on expiration page
@@ -137,6 +155,18 @@ function refreshProfile(e) {
 }
 
 function refreshHash() {
+  let fullPageCheckbox = document.getElementById("full-page-checkbox");
+  let frame = document.getElementById("frame");
+  if (model.shot.clipNames().length === 0) {
+    fullPageCheckbox.checked = true;
+    let uploadFullPage = document.getElementById("upload-full-page");
+    uploadFullPage.style.display = "none";
+  }
+  if (fullPageCheckbox.checked) {
+    frame.style.display = "block";
+  } else {
+    frame.style.display = "none";
+  }
   if (location.hash === "#fullpage") {
     let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
     let toolbarHeight = document.getElementById("toolbar").clientHeight;
