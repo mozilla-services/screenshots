@@ -584,7 +584,7 @@ class ExpireWidget extends React.Component {
       <span>
         keep for <select ref="expireTime">
           <option value="cancel">Select time:</option>
-          <option value="0">Forever</option>
+          <option value="0">Indefinitely</option>
           <option value={ 10 * minute }>10 Minutes</option>
           <option value={ hour }>1 Hour</option>
           <option value={ day }>1 Day</option>
