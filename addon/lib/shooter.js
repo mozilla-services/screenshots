@@ -19,6 +19,7 @@ const { URL } = require("sdk/url");
 const notifications = require("sdk/notifications");
 const { randomString } = require("./randomstring");
 const { setTimeout, clearTimeout } = require("sdk/timers");
+const shotstore = require("./shotstore");
 
 let shouldShowTour = false;
 
@@ -170,6 +171,12 @@ const ShotContext = Class({
 
   uploadShot: function() {
     return this._collectionCompletePromise.then(() => {
+      if (this.shot.clipNames().length) {
+        shotstore.saveShot(this.shot);
+        shotstore.clearSaved(this.shot);
+      } else {
+        this.shot.showPage = true;
+      }
       return this.shot.save();
     });
   },

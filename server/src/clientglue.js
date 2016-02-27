@@ -16,6 +16,7 @@ let profile;
 exports.setModel = function (data) {
   let firstSet = ! model;
   model = data;
+  model.hasSavedShot = false;
   model.shot = new AbstractShot(data.backend, data.id, data.shot);
   model.shot.contentUrl = `//${data.contentOrigin}/content/${model.shot.id}`;
   model.shot.urlIfDeleted = data.urlIfDeleted;
@@ -72,10 +73,23 @@ exports.setModel = function (data) {
 
     document.addEventListener("helper-ready", function onHelperReady(e) {
       document.removeEventListener("helper-ready", onHelperReady, false);
+      let event = document.createEvent("CustomEvent");
+      event.initCustomEvent("page-ready", true, true, null);
+      document.dispatchEvent(event);
       requestProfile();
+      requestHasSavedShot(model.shot.id);
     }, false);
     document.addEventListener("refresh-profile", refreshProfile, false);
     window.addEventListener("hashchange", refreshHash, false);
+    document.addEventListener("has-saved-shot-result", function (event) {
+      let result = JSON.parse(event.detail);
+      model.hasSavedShot = result;
+      exports.render();
+    }, false);
+    document.addEventListener("saved-shot-data", function (event) {
+      let result = JSON.parse(event.detail);
+      addSavedShotData(result);
+    }, false);
     refreshHash();
   }
   try {
@@ -155,18 +169,6 @@ function refreshProfile(e) {
 }
 
 function refreshHash() {
-  let fullPageCheckbox = document.getElementById("full-page-checkbox");
-  let frame = document.getElementById("frame");
-  if (model.shot.clipNames().length === 0) {
-    fullPageCheckbox.checked = true;
-    let uploadFullPage = document.getElementById("upload-full-page");
-    uploadFullPage.style.display = "none";
-  }
-  if (fullPageCheckbox.checked) {
-    frame.style.display = "block";
-  } else {
-    frame.style.display = "none";
-  }
   if (location.hash === "#fullpage") {
     let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
     let toolbarHeight = document.getElementById("toolbar").clientHeight;
@@ -197,7 +199,7 @@ function refreshHash() {
 function sendShowElement(clipId) {
   let frame = document.getElementById("frame");
   if (! frame) {
-    throw new Error("Could not find #frame");
+    return;
   }
   let postMessage;
   if (clipId) {
@@ -222,6 +224,49 @@ function sendShowElement(clipId) {
     console.error("Message:", postMessage);
     throw e;
   }
+}
+
+function requestHasSavedShot(id) {
+  let event = document.createEvent("CustomEvent");
+  event.initCustomEvent("has-saved-shot", true, true, id);
+  document.dispatchEvent(event);
+}
+
+exports.requestSavedShot = function () {
+  let event = document.createEvent("CustomEvent");
+  event.initCustomEvent("request-saved-shot", true, true, model.shot.id);
+  document.dispatchEvent(event);
+};
+
+function addSavedShotData(data) {
+  if (! data) {
+    model.hasSavedShot = false;
+    exports.render();
+    return;
+  }
+  for (let attr in data) {
+    if (! data[attr]) {
+      delete data[attr];
+    }
+  }
+  data.showPage = true;
+  model.shot.update(data);
+  model.hasSavedShot = false;
+  let url = model.backend + "/api/add-saved-shot-data/" + model.shot.id;
+  let req = new XMLHttpRequest();
+  req.onload = function () {
+    if (req.status >= 300) {
+      window.alert("Error saving expiration: " + req.status + " " + req.statusText);
+      return;
+    }
+    let event = document.createEvent("CustomEvent");
+    event.initCustomEvent("remove-saved-shot", true, true, model.shot.id);
+    document.dispatchEvent(event);
+    exports.render();
+  };
+  req.open("POST", url);
+  req.setRequestHeader("content-type", "application/json");
+  req.send(JSON.stringify(data));
 }
 
 if (typeof window != "undefined") {

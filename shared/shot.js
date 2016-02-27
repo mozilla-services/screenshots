@@ -232,6 +232,7 @@ class AbstractShot {
     this.documentSize = attrs.documentSize || null;
     this.fullScreenThumbnail = attrs.fullScreenThumbnail || null;
     this.isPublic = attrs.isPublic === undefined || attrs.isPublic === null ? null : !! attrs.isPublic;
+    this.showPage = attrs.showPage || false;
     this.resources = attrs.resources || {};
     this._clips = {};
     if (attrs.clips) {
@@ -363,6 +364,9 @@ class AbstractShot {
     let head = this.head;
     let body = this.body;
     let rewriter = (html) => {
+      if (! html) {
+        return html;
+      }
       let keys = Object.keys(this.resources);
       if (! keys.length) {
         return html;
@@ -760,6 +764,15 @@ ${options.addBody || ""}
     this._dirty("isPublic");
   }
 
+  get showPage() {
+    return this._showPage;
+  }
+  set showPage(val) {
+    assert(val === true || val === false, "showPage should true or false");
+    this._showPage = val;
+    this._dirty("showPage");
+  }
+
   get resources() {
     return this._resources;
   }
@@ -785,7 +798,7 @@ AbstractShot.prototype.REGULAR_ATTRS = (`
 deviceId url docTitle ogTitle userTitle createdDate createdDevice favicon
 history comments hashtags images readable head body htmlAttrs bodyAttrs
 headAttrs microdata siteName openGraph twitterCard documentSize
-fullScreenThumbnail isPublic resources
+fullScreenThumbnail isPublic resources showPage
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`

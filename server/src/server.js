@@ -426,6 +426,41 @@ app.post("/api/delete-shot", function (req, res) {
   });
 });
 
+app.post("/api/add-saved-shot-data/:id/:domain", function (req, res) {
+  let shotId = req.params.id + "/" + req.params.domain;
+  let bodyObj = req.body;
+  Shot.get(req.backend, shotId).then((shot) => {
+    if (! shot) {
+      simpleResponse(res, "No such shot", 404);
+      return;
+    }
+    let errors = checkContent(bodyObj.head)
+      .concat(checkContent(bodyObj.body))
+      .concat(checkAttributes(bodyObj.headAttrs, "head"))
+      .concat(checkAttributes(bodyObj.bodyAttrs, "body"))
+      .concat(checkAttributes(bodyObj.htmlAttrs, "html"));
+    if (errors.length) {
+      console.warn("Attempted to submit page with invalid HTML:", errors.join("; ").substr(0, 60));
+      simpleResponse(res, "Errors in submission", 400);
+      return;
+    }
+    for (let attr in bodyObj) {
+      if (! ["body", "head", "headAttrs", "bodyAttrs", "htmlAttrs", "showPage"].includes(attr)) {
+        console.warn("Unexpected attribute in update:", attr);
+        simpleResponse(res, "Unexpected attribute in submission", 400);
+        return;
+      }
+      shot[attr] = bodyObj[attr];
+    }
+    return shot.update().then(() => {
+      simpleResponse(res, "ok", 200);
+    });
+  }).catch((err) => {
+    errorResponse(res, "Error serving data:", err);
+  });
+
+});
+
 app.get("/shot-deleted", function (req, res) {
   require("./views/shot-deleted").render(req, res);
 });

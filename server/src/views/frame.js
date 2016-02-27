@@ -63,13 +63,6 @@ class ShareButtons extends React.Component {
 }
 
 class Clip extends React.Component {
-  onClick(e) {
-    let fullPageCheckbox = document.getElementById("full-page-checkbox");
-    if (fullPageCheckbox.checked) {
-      let node = React.findDOMNode(this.refs.clipContainer);
-      node.style.display = "none";
-    }
-  }
 
   onClickComment(e) {
     e.preventDefault();
@@ -123,7 +116,7 @@ class Clip extends React.Component {
       );
     }
 // <a href={`#clip=${encodeURIComponent(clip.id)}&source=clip-link`}>
-    return <div ref="clipContainer" className="clip-container" onClick={ this.onClick.bind(this) }>
+    return <div ref="clipContainer" className="clip-container">
       <a href={ clip.image.url }>
         { node }
       </a>
@@ -281,12 +274,7 @@ class Frame extends React.Component {
   }
 
   onClickUploadFullPage(e) {
-    let uploadFullPageButton = document.getElementById("upload-full-page");
-    uploadFullPageButton.parentNode.removeChild(uploadFullPageButton);
-    let node = document.getElementById("full-page-checkbox");
-    node.checked = true;
-    let evt = new Event("hashchange");
-    window.dispatchEvent(evt);
+    this.props.clientglue.requestSavedShot();
   }
 
   onClickShareButton(e) {
@@ -491,17 +479,18 @@ class Frame extends React.Component {
           </span>
           <div className="shot-subtitle">
             <img height="16" width="16" style={{
-              "margin-right": "7px",
-              "position": "relative",
-              "top": "4px"}}
+              marginRight: "7px",
+              position: "relative",
+              top: "4px"}}
               src={ this.props.staticLink("img/clock.png") } />
             saved { timeDiff } – { expiresDiff }
           </div>
           <div className="more-shot-actions">
-            <input id="full-page-checkbox" type="checkbox" onChange={ this.onChange.bind(this) } />
-            <button id="upload-full-page" className="upload-full-page" onClick={ this.onClickUploadFullPage.bind(this) }>
-              Upload full page
-            </button>
+            {this.props.hasSavedShot ?
+              <button id="upload-full-page" className="upload-full-page" onClick={ this.onClickUploadFullPage.bind(this) }>
+                Upload full page
+              </button>
+              : null}
             <button className="share-button" onClick={ this.onClickShareButton.bind(this) }>
               Share
             </button>
@@ -515,7 +504,8 @@ class Frame extends React.Component {
           clipUrl={ shot.viewUrl }
           { ...this.props } />
         { clips }
-        <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } />
+        { this.props.shot.showPage ?
+          <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } /> : null }
         <div className="pageshot-footer">
           <a href="https://github.com/mozilla-services/pageshot">{this.props.productName}</a> — <a href={`https://github.com/mozilla-services/pageshot/commit/${getGitRevision()}`}>Updated {this.props.buildTime}</a>
         </div>
