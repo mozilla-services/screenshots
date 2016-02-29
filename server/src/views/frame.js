@@ -8,6 +8,11 @@ const { addReactScripts } = require("../reactutils");
 const { gaActivation } = require("../ga-activation");
 
 class ShareButtons extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {copyText: "Copy"};
+  }
+
   onClickShareButton(whichButton) {
     //console.log("onClickShareButton", whichButton);
     // FIXME implement analytics tracking here
@@ -17,9 +22,9 @@ class ShareButtons extends React.Component {
     let target = e.target;
     target.previousSibling.select();
     document.execCommand("copy");
-    target.textContent = "Copied";
-    setTimeout(function() {
-      target.textContent = "Copy";
+    this.setState({copyText: "Copied"});
+    setTimeout(() => {
+      this.setState({copyText: "Copy"});
     }, 1000);
   }
 
@@ -56,7 +61,7 @@ class ShareButtons extends React.Component {
       <button
         className="copy-shot-link-button"
         onClick={ this.onClickCopyButton.bind(this) }>
-        Copy
+        { this.state.copyText }
       </button>
     </div>;
   }
