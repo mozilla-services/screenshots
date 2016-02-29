@@ -194,7 +194,6 @@ PanelContext = {
   /** Show a ShotContext, hiding any other if necessary */
   show: function (shotContext) {
     if (this._activeContext === shotContext) {
-      //shootPanel.show();
       showNotificationBar(shotContext);
       shotContext.isShowing();
       return;
@@ -204,15 +203,9 @@ PanelContext = {
     }
     this._activeContext = shotContext;
     showNotificationBar(shotContext);
-    //shootPanel.show();
     shotContext.isShowing();
     shootButton.checked = true;
     this.updateShot(this._activeContext, this._activeContext.shot.asJson());
-    if (this._activeContext.isEditing) {
-      //shootPanel.resize(400, PANEL_TALL_HEIGHT);
-    } else {
-      //shootPanel.resize(400, PANEL_SHORT_HEIGHT);
-    }
   },
 
   /** Fired whenever the toolbar button is clicked, this activates
@@ -246,7 +239,6 @@ PanelContext = {
     } else {
       if (this._activeContext.couldBeActive()) {
         showNotificationBar(this._activeContext);
-        //shootPanel.show(this._activeContext);
       }
     }
   },
@@ -257,27 +249,13 @@ PanelContext = {
     if (this._activeContext !== shotContext) {
       return;
     }
-
-    /*shootPanel.port.emit("shotData",
-      {
-        backend: shotContext.shot.backend,
-        id: shotContext.shot.id,
-        shot: shotContext.shot.asJson(),
-        activeClipName: shotContext.activeClipName,
-        isEditing: shotContext.isEditing
-      },
-      loadReason
-    );*/
   },
 
   /** Called when the panel is switching from simple to edit view or vice versa */
   setEditing: function (editing) {
     this._activeContext.isEditing = editing;
     if (editing) {
-      //shootPanel.resize(400, PANEL_TALL_HEIGHT);
       req.sendEvent("addon", "click-short-panel-edit");
-    } else {
-      //shootPanel.resize(400, PANEL_SHORT_HEIGHT);
     }
   },
 
