@@ -68,6 +68,25 @@ class ShareButtons extends React.Component {
 }
 
 class Clip extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {paddingTop: 66};
+  }
+
+  componentDidMount() {
+    let img = React.findDOMNode(this.refs.clipImage);
+    let onResize = () => {
+      let windowHeight = window.innerHeight;
+      let paddingTop = Math.floor((windowHeight - img.height - 35) / 2);
+      if (paddingTop < 66) {
+        paddingTop = 66;
+      }
+      this.setState({paddingTop});
+    }
+    window.addEventListener("resize", onResize, true);
+
+    onResize();
+  }
 
   onClickComment(e) {
     e.preventDefault();
@@ -94,11 +113,15 @@ class Clip extends React.Component {
     if (clip.image === undefined) {
       node = <div className="text-clip" dangerouslySetInnerHTML={{__html: clip.text.html}} />;
     } else {
+/*
       if (this.props.previousClip === null) {
-        node = <img data-step="2" data-intro="This is the clip. Taking multiple clips is easy. After you click the camera button, click 'Add Clip'." src={ clip.image.url } />;
+        node = <img ref="clipImage" data-step="2" data-intro="This is the clip. Taking multiple clips is easy. After you click the camera button, click 'Add Clip'." src={ clip.image.url } />;
       } else {
-        node = <img src={ clip.image.url } />;
+*/
+      node = <img style={{paddingTop: this.state.paddingTop}} ref="clipImage" src={ clip.image.url } />;
+/*
       }
+*/
     }
 
     let comments = clip.comments,

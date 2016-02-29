@@ -24,24 +24,6 @@ exports.setModel = function (data) {
   model.shot.deleted = data.deleted;
 
   if (firstSet) {
-    if (model.shot.clipNames().length !== 0) {
-      let container = document.querySelector(".clip-container");
-      let img = container.querySelector("img");
-
-      function onResize() {
-        let windowHeight = window.innerHeight;
-        let paddingTop = Math.floor((windowHeight - img.height - 35) / 2);
-        if (paddingTop < 16) {
-          paddingTop = 16;
-        }
-        container.style.paddingTop = paddingTop + "px";
-      }
-      window.addEventListener("resize", onResize, true);
-
-      onResize();
-
-    }
-
     let button = document.getElementById("full-page-button-scrollable");
     if (button) {
       // Button isn't present on expiration page
