@@ -14,7 +14,6 @@ class ShareButtons extends React.Component {
   }
 
   onClickShareButton(whichButton) {
-    //console.log("onClickShareButton", whichButton);
     // FIXME implement analytics tracking here
   }
 
@@ -284,7 +283,7 @@ class Head extends React.Component {
 class Frame extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {sharePanelDisplay: false};
   }
 
   closeGetPageshotBanner() {
@@ -301,13 +300,7 @@ class Frame extends React.Component {
   }
 
   onClickShareButton(e) {
-    let sharePanel = document.getElementById("share-buttons-panel");
-    console.log("SHARE STYLE", sharePanel.style.display);
-    if (sharePanel.style.display === "block") {
-      sharePanel.style.display = "none";
-    } else {
-      sharePanel.style.display = "block";
-    }
+    this.setState({sharePanelDisplay: !this.state.sharePanelDisplay});
   }
 
   onClickDelete(e) {
@@ -366,6 +359,7 @@ class Frame extends React.Component {
     let shotDomain = this.props.shot.url; // FIXME: calculate
 
     let clips = [],
+      shareButtons = [],
       clipNames = shot.clipNames(),
       previousClip = null,
       nextClip = null;
@@ -486,6 +480,13 @@ class Frame extends React.Component {
     </div>
     */
 
+    if (this.state.sharePanelDisplay) {
+      shareButtons = <ShareButtons
+                large={ true }
+                clipUrl={ shot.viewUrl }
+                { ...this.props } />
+    }
+
     return (
         <div id="container">
           { this.renderExtRequired() }
@@ -522,10 +523,7 @@ class Frame extends React.Component {
             </button>
           </div>
         </div>
-        <ShareButtons
-          large={ true }
-          clipUrl={ shot.viewUrl }
-          { ...this.props } />
+        { shareButtons }
         { clips }
         { this.props.shot.showPage ?
           <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } /> : null }
