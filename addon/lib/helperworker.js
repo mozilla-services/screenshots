@@ -13,6 +13,7 @@ var pageMod = require("sdk/page-mod");
 var clipboard = require("sdk/clipboard");
 var notifications = require("sdk/notifications");
 var { XMLHttpRequest } = require("sdk/net/xhr");
+const shotstore = require("./shotstore");
 const { watchFunction, watchWorker } = require("./errors");
 const user = require("./user");
 const {Cu} = require("chrome");
@@ -59,6 +60,18 @@ function resetPageMod(backend) {
     contentScriptFile: [self.data.url("viewerworker.js")],
     onAttach: function (worker) {
       watchWorker(worker);
+
+      worker.port.on("hasSavedShot", watchFunction(function (id) {
+        worker.port.emit("hasSavedShotResult", shotstore.hasShot(id));
+      }));
+
+      worker.port.on("requestSavedShot", watchFunction(function (id) {
+        worker.port.emit("savedShotData", shotstore.getShot(id));
+      }));
+
+      worker.port.on("removeSavedShot", watchFunction(function (id) {
+        shotstore.removeSaved(id);
+      }));
 
       worker.port.on("requestSignUp", watchFunction(function () {
         handleOAuthFlow(worker, backend, "signup").catch(error => {
