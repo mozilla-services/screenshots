@@ -273,11 +273,6 @@ class Frame extends React.Component {
     ga("send", "event", "website", "click-full-page-button", {page: location.toString()});
   }
 
-  onChange(e) {
-    let evt = new Event("hashchange");
-    window.dispatchEvent(evt);
-  }
-
   onClickUploadFullPage(e) {
     this.props.clientglue.requestSavedShot();
   }
