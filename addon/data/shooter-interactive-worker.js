@@ -236,6 +236,7 @@ function setState(state) {
     document.body.classList.remove("pageshot-hide-selection");
     document.body.classList.remove("pageshot-hide-movers");
     removeHandlers();
+    removeCrosshairs();
   } else if (state === "cancelForText") {
     deleteSelection();
     document.body.classList.add("pageshot-hide-selection");
@@ -537,7 +538,7 @@ function addCrosshairs() {
 }
 
 function addSelectionHelp() {
-  showHelpMessage("Click and drag anywhere to make a selection");
+  //showHelpMessage("Click and drag anywhere to make a selection");
 }
 
 function removeCrosshairs() {

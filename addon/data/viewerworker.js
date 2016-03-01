@@ -45,6 +45,15 @@ document.addEventListener("delete-everything", function (event) {
 document.addEventListener("content-tour-complete", function (event) {
   self.port.emit("contentTourComplete");
 });
+document.addEventListener("has-saved-shot", function (event) {
+  self.port.emit("hasSavedShot", event.detail);
+});
+document.addEventListener("request-saved-shot", function (event) {
+  self.port.emit("requestSavedShot", event.detail);
+});
+document.addEventListener("remove-saved-shot", function (event) {
+  self.port.emit("removeSavedShot", event.detail);
+});
 self.port.on("profile", function (profile) {
   var event = document.createEvent("CustomEvent");
   event.initCustomEvent("refresh-profile", true, true, JSON.stringify(profile));
@@ -66,9 +75,27 @@ self.port.on("checkCapturedResult", function (result) {
   document.dispatchEvent(event);
 });
 
-var readyEvent = document.createEvent("CustomEvent");
-readyEvent.initCustomEvent("helper-ready", true, true, null);
-document.dispatchEvent(readyEvent);
+self.port.on("hasSavedShotResult", function (hasShot) {
+  var event = document.createEvent("CustomEvent");
+  event.initCustomEvent("has-saved-shot-result", true, true, JSON.stringify(hasShot));
+  document.dispatchEvent(event);
+});
+
+self.port.on("savedShotData", function (data) {
+  var event = document.createEvent("CustomEvent");
+  event.initCustomEvent("saved-shot-data", true, true, JSON.stringify(data));
+  document.dispatchEvent(event);
+});
+
+let readyTimeout = setInterval(function () {
+  var readyEvent = document.createEvent("CustomEvent");
+  readyEvent.initCustomEvent("helper-ready", true, true, null);
+  document.dispatchEvent(readyEvent);
+}, 200);
+
+document.addEventListener("page-ready", function () {
+  clearTimeout(readyTimeout);
+}, false);
 
 // FIXME: not sure if this might mess up an in-content onerror handler, though I suppose
 // we just shouldn't create one?

@@ -7,7 +7,86 @@ const { ProfileButton } = require("./profile");
 const { addReactScripts } = require("../reactutils");
 const { gaActivation } = require("../ga-activation");
 
+class ShareButtons extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {copyText: "Copy"};
+  }
+
+  onClickShareButton(whichButton) {
+    // FIXME implement analytics tracking here
+  }
+
+  onClickCopyButton(e) {
+    let target = e.target;
+    target.previousSibling.select();
+    document.execCommand("copy");
+    this.setState({copyText: "Copied"});
+    setTimeout(() => {
+      this.setState({copyText: "Copy"});
+    }, 1000);
+  }
+
+  onClickInputField(e) {
+    e.target.select();
+  }
+
+  onChange(e) {
+    // Do nothing -- we simply need this event handler to placate React
+  }
+
+  render() {
+    let size = this.props.large ? "32" : "16";
+    return <div id="share-buttons-panel" className="share-row">
+      <div>Share to email and social networks</div>
+      <a onClick={ this.onClickShareButton.bind(this, "facebook") } target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }>
+        <img src={ this.props.staticLink(`img/facebook-${size}.png`) } />
+      </a>
+      <a onClick={ this.onClickShareButton.bind(this, "twitter") }target="_blank" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }>
+        <img src={ this.props.staticLink(`img/twitter-${size}.png`) } />
+      </a>
+      <a onClick={ this.onClickShareButton.bind(this, "pinterest") }target="_blank" href={"https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" }>
+        <img src={ this.props.staticLink(`img/pinterest-${size}.png`) } />
+      </a>
+      <a onClick={ this.onClickShareButton.bind(this, "email") }target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
+        <img src={ this.props.staticLink(`img/email-${size}.png`) } />
+      </a>
+      <hr />
+      <div>Get a shareable link to your shot</div>
+      <input className="copy-shot-link-input"
+        value={ this.props.shot.viewUrl }
+        onClick={ this.onClickInputField.bind(this) }
+        onChange={ this.onChange.bind(this) } />
+      <button
+        className="copy-shot-link-button"
+        onClick={ this.onClickCopyButton.bind(this) }>
+        { this.state.copyText }
+      </button>
+    </div>;
+  }
+}
+
 class Clip extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {paddingTop: 66};
+  }
+
+  componentDidMount() {
+    let img = React.findDOMNode(this.refs.clipImage);
+    let onResize = () => {
+      let windowHeight = window.innerHeight;
+      let paddingTop = Math.floor((windowHeight - img.height - 35) / 2);
+      if (paddingTop < 66) {
+        paddingTop = 66;
+      }
+      this.setState({paddingTop});
+    }
+    window.addEventListener("resize", onResize, true);
+
+    onResize();
+  }
+
   onClickComment(e) {
     e.preventDefault();
     let node = React.findDOMNode(this.refs.commentHolder),
@@ -33,11 +112,15 @@ class Clip extends React.Component {
     if (clip.image === undefined) {
       node = <div className="text-clip" dangerouslySetInnerHTML={{__html: clip.text.html}} />;
     } else {
+/*
       if (this.props.previousClip === null) {
-        node = <img data-step="2" data-intro="This is the clip. Taking multiple clips is easy. After you click the camera button, click 'Add Clip'." src={ clip.image.url } />;
+        node = <img ref="clipImage" data-step="2" data-intro="This is the clip. Taking multiple clips is easy. After you click the camera button, click 'Add Clip'." src={ clip.image.url } />;
       } else {
-        node = <img src={ clip.image.url } />;
+*/
+      node = <img style={{paddingTop: this.state.paddingTop}} ref="clipImage" src={ clip.image.url } />;
+/*
       }
+*/
     }
 
     let comments = clip.comments,
@@ -59,24 +142,11 @@ class Clip extends React.Component {
         </div>
       );
     }
-
-    return <div className="clip-container">
-      <a href={`#clip=${encodeURIComponent(clip.id)}&source=clip-link`}>
+// <a href={`#clip=${encodeURIComponent(clip.id)}&source=clip-link`}>
+    return <div ref="clipContainer" className="clip-container">
+      <a href={ clip.image.url }>
         { node }
       </a>
-      <p>
-        <img ref="commentBubble" className="comment-bubble"
-          src={ closed ? this.props.staticLink("img/comment-bubble.png") : this.props.staticLink("img/comment-bubble-open.png") }
-          onClick={ this.onClickComment.bind(this) } />
-        <a href={`#clip=${encodeURIComponent(clip.id)}&source=clip-see-full-page-link`}>
-          <span className="clip-anchor-link">See in full page</span>
-        </a>
-      </p>
-      <div ref="commentHolder"
-        className="comment-holder"
-        style={{ display: closed ? "none" : "inline-block" }}>
-        { comments_nodes }
-      </div>
     </div>;
   }
 }
@@ -213,7 +283,7 @@ class Head extends React.Component {
 class Frame extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {sharePanelDisplay: false};
   }
 
   closeGetPageshotBanner() {
@@ -223,6 +293,21 @@ class Frame extends React.Component {
 
   clickFullPageButton(e) {
     ga("send", "event", "website", "click-full-page-button", {page: location.toString()});
+  }
+
+  onClickUploadFullPage(e) {
+    this.props.clientglue.requestSavedShot();
+  }
+
+  onClickShareButton(e) {
+    this.setState({sharePanelDisplay: !this.state.sharePanelDisplay});
+  }
+
+  onClickDelete(e) {
+    window.ga('send', 'event', 'website', 'click-delete-shot', {useBeacon: true});
+    if (window.confirm("Are you sure you want to delete the shot permanently?")) {
+      this.props.clientglue.deleteShot(this.props.shot);
+    }
   }
 
   render() {
@@ -274,6 +359,7 @@ class Frame extends React.Component {
     let shotDomain = this.props.shot.url; // FIXME: calculate
 
     let clips = [],
+      shareButtons = [],
       clipNames = shot.clipNames(),
       previousClip = null,
       nextClip = null;
@@ -333,10 +419,11 @@ class Frame extends React.Component {
     let linkTextShort = shot.urlDisplay;
 
     let timeDiff = <TimeDiff date={shot.createdDate} simple={this.props.simple} />;
-    let expiresDiff = <span>– <ExpireWidget
-      expireTime={this.props.expireTime}
-      onSaveExpire={this.onSaveExpire.bind(this)}
-      onDeleteShot={this.onDeleteShot.bind(this)} /></span>;
+    let expiresDiff = <span>
+      <ExpireWidget
+        expireTime={this.props.expireTime}
+        onSaveExpire={this.onSaveExpire.bind(this)} />
+    </span>;
     if (this.props.simple || ! this.props.isOwner) {
       expiresDiff = null;
     }
@@ -378,56 +465,68 @@ class Frame extends React.Component {
     </div>
     */
 
+    /*
+    <div id="profile-widget">
+      <ProfileButton
+        staticLink={ this.props.staticLink }
+        initialExpanded={ false }
+        avatarurl={ this.props.avatarurl }
+        nickname={ this.props.nickname }
+        email={ this.props.email }
+        deviceId={ this.props.deviceId }
+        simple={ this.props.simple }
+        allowExport={ this.props.allowExport }
+      />
+    </div>
+    */
+
+    if (this.state.sharePanelDisplay) {
+      shareButtons = <ShareButtons
+                large={ true }
+                clipUrl={ shot.viewUrl }
+                { ...this.props } />
+    }
+
     return (
         <div id="container">
           { this.renderExtRequired() }
-          <div id="profile-widget">
-            <ProfileButton
-              staticLink={ this.props.staticLink }
-              initialExpanded={ false }
-              avatarurl={ this.props.avatarurl }
-              nickname={ this.props.nickname }
-              email={ this.props.email }
-              deviceId={ this.props.deviceId }
-              simple={ this.props.simple }
-              allowExport={ this.props.allowExport }
-            />
-          </div>
         <div id="toolbar" data-step="1" data-intro="This is the title of the page and a link to it's source.">
-          <div className="shot-title">{ shot.title }</div>
+          <a href="/shots">
+            <button className="my-shots-button">
+              <img src={ this.props.staticLink("img/my-shots.png") } />
+              <span>My Shots</span>
+            </button>
+          </a>
+          <span className="shot-title"> { shot.title } </span>
+          <span className="shot-subtitle">
+            <span> – Saved from </span><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a>
+          </span>
           <div className="shot-subtitle">
-            <span>source </span><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a>
-            <span style={{paddingLeft: "15px"}}>saved { timeDiff } {expiresDiff} </span>
+            <img height="16" width="16" style={{
+              marginRight: "7px",
+              position: "relative",
+              top: "4px"}}
+              src={ this.props.staticLink("img/clock.png") } />
+            saved { timeDiff } – { expiresDiff }
+          </div>
+          <div className="more-shot-actions">
+            {this.props.hasSavedShot ?
+              <button id="upload-full-page" className="upload-full-page" onClick={ this.onClickUploadFullPage.bind(this) }>
+                Upload full page
+              </button>
+              : null}
+            <button className="share-button" onClick={ this.onClickShareButton.bind(this) }>
+              Share
+            </button>
+            <button className="trash-button" onClick={ this.onClickDelete.bind(this) }>
+              <img src={ this.props.staticLink("img/garbage-bin.png") } />
+            </button>
           </div>
         </div>
-        <div id="navigate-toolbar" data-step="4" data-intro="The recall panel can be used to access your previously made shots.">
-          <span className="clip-count">
-            { numberOfClips }
-          </span>
-          { previousClipNode }
-          { nextClipNode }
-        </div>
-        <div id="full-page-button">
-          <a href="#fullpage" className="full-page-button-styles" onClick={ this.clickFullPageButton.bind(this) }>
-            <span className="full-page-button-arrow">▾</span>
-            <span className="full-page-button-text"> Full Page </span>
-            <span className="full-page-button-arrow">▾</span>
-          </a>
-        </div>
-        <div className="metadata">
-          <h1 id="main-title">{ shot.title }</h1>
-          <p><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a></p>
-          <p>saved {timeDiff} { expiresDiff }</p>
-        </div>
+        { shareButtons }
         { clips }
-        <div id="full-page-button-scrollable">
-          <a data-step="3" data-intro="Every time you take a clip, the full page is also saved." href="#fullpage" className="full-page-button-styles" onClick={ this.clickFullPageButton.bind(this) }>
-            <span className="full-page-button-arrow">▾</span>
-            <span className="full-page-button-text"> Full Page </span>
-            <span className="full-page-button-arrow">▾</span>
-          </a>
-        </div>
-        <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } />
+        { this.props.shot.showPage ?
+          <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } /> : null }
         <div className="pageshot-footer">
           <a href="https://github.com/mozilla-services/pageshot">{this.props.productName}</a> — <a href={`https://github.com/mozilla-services/pageshot/commit/${getGitRevision()}`}>Updated {this.props.buildTime}</a>
         </div>
@@ -435,6 +534,16 @@ class Frame extends React.Component {
         { introJsStart }
       </div>
     );
+
+/*         <div id="navigate-toolbar" data-step="4" data-intro="The recall panel can be used to access your previously made shots.">
+          <span className="clip-count">
+            { numberOfClips }
+          </span>
+          { previousClipNode }
+          { nextClipNode }
+        </div>
+*/
+
   }
 
   renderExtRequired() {
@@ -453,10 +562,6 @@ class Frame extends React.Component {
 
   onSaveExpire(value) {
     this.props.clientglue.changeShotExpiration(this.props.shot, value);
-  }
-
-  onDeleteShot() {
-    this.props.clientglue.deleteShot(this.props.shot);
   }
 
   onRestore() {
@@ -490,7 +595,7 @@ class ExpireWidget extends React.Component {
       <span>
         keep for <select ref="expireTime">
           <option value="cancel">Select time:</option>
-          <option value="0">Never</option>
+          <option value="0">Indefinitely</option>
           <option value={ 10 * minute }>10 Minutes</option>
           <option value={ hour }>1 Hour</option>
           <option value={ day }>1 Day</option>
@@ -500,7 +605,6 @@ class ExpireWidget extends React.Component {
         </select>
         &#8195;<span className="link-button" onClick={this.clickSaveExpire.bind(this)}>save</span>
         &#8195;<span className="link-button" onClick={this.clickCancelExpire.bind(this)}>cancel</span>
-        &#8195;<span className="link-button delete-button" onClick={this.clickDelete.bind(this)}>delete</span>
       </span>
     );
   }
@@ -549,14 +653,6 @@ class ExpireWidget extends React.Component {
     this.props.onSaveExpire(value);
     this.setState({isChangingExpire: false});
   }
-
-  clickDelete() {
-    window.ga('send', 'event', 'website', 'click-delete-shot', {useBeacon: true});
-    if (window.confirm("Are you sure you want to delete the shot permanently?")) {
-      this.props.onDeleteShot();
-    }
-  }
-
 }
 
 function intervalDescription(ms) {
