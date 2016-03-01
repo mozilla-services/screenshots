@@ -54,6 +54,7 @@ function showNotificationBar(shotcontext) {
     tabs.open(exports.getBackend() + "/shots");
   };
   node.style.textAlign = "center";
+  node.style.verticalAlign = "middle";
   node.style.fontWeight = "normal";
   node.style.borderRadius = "4px";
   node.style.background = "#fbfbfb";
