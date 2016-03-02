@@ -87,63 +87,17 @@ class Clip extends React.Component {
     onResize();
   }
 
-  onClickComment(e) {
-    e.preventDefault();
-    let node = React.findDOMNode(this.refs.commentHolder),
-      img = React.findDOMNode(this.refs.commentBubble);
-
-    if (node.style.display === "none") {
-      node.style.display = "inline-block";
-    } else {
-      node.style.display = "none";
-    }
-    if (img.src.indexOf("/static/img/comment-bubble-open.png") !== -1) {
-      img.src = "/static/img/comment-bubble.png";
-    } else {
-      img.src = "/static/img/comment-bubble-open.png";
-    }
-  }
-
   render() {
     let clip = this.props.clip,
-      node = null,
-      comments_nodes = [];
+      node = null;
 
     if (clip.image === undefined) {
       node = <div className="text-clip" dangerouslySetInnerHTML={{__html: clip.text.html}} />;
     } else {
-/*
-      if (this.props.previousClip === null) {
-        node = <img ref="clipImage" data-step="2" data-intro="This is the clip. Taking multiple clips is easy. After you click the camera button, click 'Add Clip'." src={ clip.image.url } />;
-      } else {
-*/
-      node = <img style={{paddingTop: this.state.paddingTop}} ref="clipImage" src={ clip.image.url } />;
-/*
-      }
-*/
+      node = <img ref="clipImage" src={ clip.image.url } />;
     }
 
-    let comments = clip.comments,
-      closed = false;
-    if (comments.length === 0) {
-      comments = [{text: "No comments."}];
-      closed = true;
-    }
-
-    for (let i = 0, l = comments.length; i < l; i++) {
-      let c = comments[i];
-      // FIXME add the username once implemented
-      //           <span className="comment-user">{ c.user }</span>
-      comments_nodes.push(
-        <div
-          key={ `comment.${i}` }
-          className="comment">
-          <span className="comment-text">{ c.text }</span>
-        </div>
-      );
-    }
-// <a href={`#clip=${encodeURIComponent(clip.id)}&source=clip-link`}>
-    return <div ref="clipContainer" className="clip-container">
+    return <div ref="clipContainer" className="clip-container" style={{paddingTop: this.state.paddingTop}}>
       <a href={ clip.image.url }>
         { node }
       </a>
@@ -283,12 +237,11 @@ class Head extends React.Component {
 class Frame extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {sharePanelDisplay: false};
+    this.state = {sharePanelDisplay: false, closePageshotBanner: false};
   }
 
   closeGetPageshotBanner() {
-    let node = document.getElementById("use-pageshot-to-create");
-    node.style.display = "none";
+    this.setState({closePageshotBanner: true});
   }
 
   clickFullPageButton(e) {
@@ -358,62 +311,15 @@ class Frame extends React.Component {
     let shotId = this.props.shot.id;
     let shotDomain = this.props.shot.url; // FIXME: calculate
 
-    let clips = [],
-      shareButtons = [],
-      clipNames = shot.clipNames(),
-      previousClip = null,
-      nextClip = null;
+    let clips = [];
+    let shareButtons = [];
+    let clipNames = shot.clipNames();
 
     for (let i=0; i < clipNames.length; i++) {
       let clipId = clipNames[i];
       let clip = shot.getClip(clipId);
-      if (i + 1 < clipNames.length) {
-        nextClip = shot.getClip(clipNames[i+1]);
-      }
-      if (i > 0) {
-        previousClip = shot.getClip(clipNames[i-1]);
-      }
 
-      clips.push(<Clip staticLink={this.props.staticLink} key={ clipId } clip={ clip }  shotId={ shotId } shotDomain={ shotDomain } previousClip={ previousClip } nextClip={ nextClip } />);
-    }
-
-    let previousClipNode = null,
-      nextClipNode = null,
-      clipIndex = activeClipId ? clipNames.indexOf(activeClipId) : -1;
-
-    let prevLink = null;
-    if (clipIndex >= 1) {
-      prevLink = `#clip=${encodeURIComponent(clipNames[clipIndex-1])}&source=clip-prev-link`;
-    } else if (clipIndex === 0) {
-      prevLink = "#";
-    }
-
-    if (prevLink) {
-      previousClipNode = <a href={prevLink}>
-        <img className="navigate-clips" src={ this.props.staticLink("img/up-arrow.png") } />
-      </a>;
-    } else {
-      previousClipNode = <img className="navigate-clips disabled" src={ this.props.staticLink("img/up-arrow.png") } />;
-    }
-
-    if (clipIndex < clipNames.length - 1) {
-      nextClipNode = <a href={`#clip=${encodeURIComponent(clipNames[clipIndex+1])}&source=clip-next-link`}>
-        <img className="navigate-clips" src={ this.props.staticLink("img/down-arrow.png") } />
-      </a>;
-    } else {
-      nextClipNode = <img className="navigate-clips disabled" src={ this.props.staticLink("img/down-arrow.png") } />;
-    }
-
-    let numberOfClips = clipNames.length;
-    if (numberOfClips === 1) {
-      numberOfClips = "1 clip";
-    } else if (numberOfClips === 0) {
-      numberOfClips = "No clips";
-    } else {
-      numberOfClips = numberOfClips + " clips";
-    }
-    if (clipIndex >= 0) {
-      numberOfClips = (clipIndex + 1) + " of " + numberOfClips;
+      clips.push(<Clip staticLink={this.props.staticLink} key={ clipId } clip={ clip }  shotId={ shotId } shotDomain={ shotDomain } />);
     }
 
     let linkTextShort = shot.urlDisplay;
@@ -424,6 +330,7 @@ class Frame extends React.Component {
         expireTime={this.props.expireTime}
         onSaveExpire={this.onSaveExpire.bind(this)} />
     </span>;
+
     if (this.props.simple || ! this.props.isOwner) {
       expiresDiff = null;
     }
@@ -534,20 +441,10 @@ class Frame extends React.Component {
         { introJsStart }
       </div>
     );
-
-/*         <div id="navigate-toolbar" data-step="4" data-intro="The recall panel can be used to access your previously made shots.">
-          <span className="clip-count">
-            { numberOfClips }
-          </span>
-          { previousClipNode }
-          { nextClipNode }
-        </div>
-*/
-
   }
 
   renderExtRequired() {
-    if (this.props.isExtInstalled) {
+    if (this.props.isExtInstalled || this.state.closePageshotBanner) {
       return null;
     }
     return <div id="use-pageshot-to-create">
