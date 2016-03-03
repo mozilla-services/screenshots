@@ -24,16 +24,18 @@ exports.checkIfPublic = function (url, info) {
           if (contentType.indexOf(";") != -1) {
             contentType = contentType.split(";")[0];
           }
-          let doc = parser.parseFromString(body, contentType);
-          let els = doc.querySelectorAll('input[type=password]');
-          let passwordFields = (info.passwordFields || []);
-          for (let el of els) {
-            let name = el.name || null;
-            if (passwordFields.indexOf(name) == -1) {
-              console.info(
-                "Page not public because it has password field:", name,
-                passwordFields.length ? "(not one of: " + passwordFields.join(", ") + ")" : "(no passwords expected)");
-              resolve(false);
+          if (contentType === "text/html") {
+            let doc = parser.parseFromString(body, contentType);
+            let els = doc.querySelectorAll('input[type=password]');
+            let passwordFields = (info.passwordFields || []);
+            for (let el of els) {
+              let name = el.name || null;
+              if (passwordFields.indexOf(name) == -1) {
+                console.info(
+                  "Page not public because it has password field:", name,
+                  passwordFields.length ? "(not one of: " + passwordFields.join(", ") + ")" : "(no passwords expected)");
+                resolve(false);
+              }
             }
           }
           resolve(true);
