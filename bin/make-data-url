@@ -1,0 +1,15 @@
+#!/usr/bin/env python
+
+import sys
+import mimetypes
+
+if not sys.argv[1:] or '-h' in sys.argv or '--help' in sys.argv:
+    print "Usage: make-data-url FILENAME"
+    print "  Prints out data url version of file"
+    sys.exit()
+
+filename = sys.argv[1]
+with open(filename, 'rb') as fp:
+    content = fp.read()
+    content_type, encoding = mimetypes.guess_type(filename, False)
+    print 'data:%s;base64,%s' % (content_type, content.encode('base64').replace('\n', ''))
