@@ -106,12 +106,10 @@ const voidElements = {
   BASE: true,
   BR: true,
   COL: true,
-  COMMAND: true,
   EMBED: true,
   HR: true,
   IMG: true,
   INPUT: true,
-  KEYGEN: true,
   LINK: true,
   META: true,
   PARAM: true,
@@ -145,7 +143,216 @@ const skipElementsOKEmpty = {
 /** These elements are never sent: */
 const skipElementsBadTags = {
   SCRIPT: true,
-  NOSCRIPT: true
+  NOSCRIPT: true,
+  KEYGEN: true,
+  APPLET: true,
+  COMMAND: true
+};
+
+// From https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
+const ATTRIBUTES = {
+  accept: ['form', 'input'],
+  'accept-charset': ['form', 'input'],
+  accesskey: '*',
+  //action: ['form'],
+  align: '*',
+  alt: ['applet', 'area', 'img', 'input'],
+  //async: ['script'],
+  autocomplete: ['form', 'input'],
+  autofocus: ['button', 'input', 'select', 'textarea'],
+  autoplay: ['audio', 'video'],
+  autosave: ['input'],
+  bgcolor: ['body', 'col', 'colgroup', 'marquee', 'table', 'tbody', 'tfoot', 'td', 'th', 'tr', 'embed'],
+  border: ['img', 'object', 'table'],
+  buffered: ['audio', 'video'],
+  charset: ['meta', 'script', 'a', 'link'],
+  checked: ['input'],
+  cite: ['blockquote', 'del', 'ins', 'q'],
+  "class": "*",
+  //code: ['applet'],
+  //codebase: ['applet'],
+  color: ['basefont', 'font', 'hr'],
+  cols: ['textarea', 'frameset'],
+  colspan: ['td', 'th'],
+  content: ['meta'],
+  //contenteditable: "*",
+  // FIXME: should we skip contextmenu, since the menus can't do anything?
+  contextmenu: "*",
+  controls: ['audio', 'video'],
+  coords: ['area'],
+  data: ['object'],
+  datetime: ['del', 'ins', 'time'],
+  "default": ['track'],
+  //defer: ['script'],
+  dir: "*",
+  dirname: ['input', 'textarea'],
+  disabled: ['button', 'fieldset', 'input', 'optgroup', 'option', 'select', 'textarea'],
+  download: ['a', 'area'],
+  //draggable: "*",
+  //dropzone: "*",
+  enctype: ['form'],
+  "for": ['label', 'output'],
+  form: ['button', 'fieldset', 'input', 'label', 'meter', 'object', 'output', 'progress', 'select', 'textarea'],
+  //formaction: ['input', 'button'],
+  headers: ['td', 'th'],
+  height: ['canvas', 'embed', 'iframe', 'img', 'input', 'object', 'video', 'td', 'th'],
+  // FIXME: should check that hidden elements are skipped
+  hidden: "*",
+  high: ['meter'],
+  href: ['a', 'area', 'base', 'link'],
+  hreflang: ['a', 'area', 'link'],
+  //"http-equiv": ['meta'],
+  id: "*",
+  ismap: ['img'],
+  kind: ['track'],
+  label: ['track', 'option', 'optgroup'],
+  lang: "*",
+  //language: ['script'],
+  list: ['input'],
+  loop: ['audio', 'bgsound', 'marquee', 'video', 'embed'],
+  low: ['meter'],
+  //manifest: ['html'],
+  max: ['input', 'meter', 'progress'],
+  maxlength: ['input', 'textarea'],
+  media: ['a', 'area', 'link', 'source', 'style'],
+  method: ['form'],
+  min: ['input', 'meter'],
+  multiple: ['input', 'select'],
+  name: ['button', 'form', 'fieldset', 'frame', 'iframe', 'input', 'object', 'output', 'select', 'textarea', 'map', 'meta', 'param', 'img', 'a'],
+  novalidate: ['form'],
+  open: ['details'],
+  optimum: ['meter'],
+  pattern: ['input'],
+  ping: ['a', 'area'],
+  placeholder: ['input', 'textarea'],
+  poster: ['video'],
+  preload: ['audio', 'video'],
+  property: ['meta'],
+  readonly: ['input', 'textarea'],
+  rel: ['a', 'area', 'link'],
+  required: ['input', 'select', 'textarea'],
+  reversed: ['ol'],
+  rows: ['textarea', 'frameset'],
+  rowspan: ['td', 'th'],
+  sandbox: ['iframe'],
+  scope: ['th', 'td'],
+  scoped: ['style'],
+  // FIXME: is seamless actually a thing?
+  seamless: ['iframe'],
+  selected: ['option'],
+  shape: ['a', 'area'],
+  size: ['input', 'select', 'hr', 'font', 'basefont', 'select'],
+  sizes: ['link', 'img', 'source'],
+  span: ['col', 'colgroup'],
+  spellcheck: "*",
+  src: ['audio', 'embed', 'frame', 'iframe', 'img', 'input', 'script', 'source', 'track', 'video'],
+  srcdoc: ['iframe'],
+  srclang: ['track'],
+  srcset: ['img', 'source'],
+  start: ['ol', 'audio', 'video'],
+  step: ['input'],
+  style: "*",
+  summary: ['table'],
+  tabindex: "*",
+  target: ['a', 'area', 'base', 'form', 'link'],
+  title: "*",
+  type: ['button', 'input', 'embed', 'object', 'script', 'source', 'style', 'menu', 'a', 'link', 'param', 'li', 'ol', 'ul'],
+  usemap: ['img',  'input', 'object'],
+  value: ['button', 'option', 'input', 'li', 'meter', 'progress', 'param', 'meta'],
+  width: ['canvas', 'embed', 'iframe', 'img', 'input', 'object', 'video', 'hr', 'table', 'td', 'th', 'applet', 'col', 'colgroup', 'pre'],
+  wrap: ['textarea'],
+  // HTML4 attributes:
+  // From https://www.w3.org/TR/html4/index/attributes.html
+  abbr: ["td", "th"],
+  alink: ["body"],
+  archive: ['applet', 'object'],
+  axis: ['td', 'th'],
+  background: ['body'],
+  ghcolor: ['table', 'tr', 'td', 'th', 'body'],
+  cellpadding: ['table'],
+  cellspacing: ['table'],
+  char: ['col', 'colgroup', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr'],
+  charoff: ['col', 'colgroup', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr'],
+  classid: ['object'],
+  clear: ['br'],
+  codetype: ['object'],
+  compact: ['dir', 'dl', 'menu', 'ol', 'ul'],
+  declare: ['object'],
+  face: ['basefont', 'font'],
+  frame: ['table'],
+  frameborder: ['frame', 'iframe'],
+  hspace: ['applet', 'img', 'object', 'iframe'],
+  link: ['body'],
+  longdesc: ['img', 'frame', 'iframe'],
+  marginheight: ['body', 'frame', 'iframe'],
+  marginwidth: ['body', 'frame', 'iframe'],
+  nohref: ['area'],
+  noresize: ['frame'],
+  noshade: ['hr'],
+  nowrap: ['td', 'th'],
+  profile: ['head'],
+  prompt: ['isindex'],
+  rev: ['a', 'link'],
+  rules: ['table'],
+  scheme: ['meta'],
+  scrolling: ['frame', 'iframe'],
+  standby: ['object'],
+  text: ['body'],
+  valign: ['col', 'colgroup', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'iframe'],
+  valuetype: ['param'],
+  //version: ['html'],
+  vspace: ['applet', 'img', 'object', 'iframe'],
+  // from https://developer.apple.com/library/iad/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html
+  "aria-checked": "*",
+  "aria-level": "*",
+  "aria-pressed": "*",
+  "aria-valuemax": "*",
+  "aria-valuemin": "*",
+  "aria-valuenow": "*",
+  autocapitalize: ['input'],
+  // FIXME: not sure what elements this can be on
+  autocorrect: ['input', 'select', 'textarea', 'form'],
+  behavior: ['marquee'],
+  bgproperties: ['body'],
+  bordercolor: ['table', 'tr', 'td', 'th'],
+  cellborder: ['td', 'th'],
+  composite: ['img'],
+  direction: ['marquee'],
+  end: ['audio', 'video'],
+  incremental: ['input'],
+  leftmargin: ['body'],
+  loopend: ['audio', 'video'],
+  loopstart: ['audio', 'video'],
+  playcount: ['audio', 'video'],
+  results: ['input'],
+  role: "*",
+  scrollamount: ['marquee'],
+  scrolldelay: ['marquee'],
+  topmargin: ['body'],
+  "webkit-playsinline": ['video'],
+  // Microdata attributes: http://www.htmlgoodies.com/html5/Web-Developer-Tutorial-HTML5-Microdata-3920016.htm#fbid=Ltd89va4VpM
+  itemscope: "*",
+  itemtype: "*",
+  itemid: "*",
+  itemprop: "*",
+  itemref: "*",
+  // Misc attributes
+  // From https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
+  allowfullscreen: ['iframe', 'embed'],
+  "aria-hidden": "*",
+  "aria-label": "*",
+  "aria-labelledby": "*",
+  "aria-multiline": "*",
+  // From https://msdn.microsoft.com/en-us/library/ms533072(v=vs.85).aspx
+  allowtransparency: ['iframe'],
+  webkitallowfullscreen: ['iframe'],
+  mozallowfullscreen: ['iframe'],
+  pubdate: ['time'],
+  verticalscrolling: ['iframe'],
+  horizontalscrolling: ['iframe'],
+  quality: ['embed'],
+  margin: ['iframe'],
+  xmlns: "*"
 };
 
 /** true if this element should be skipped when sending to the mirror */
@@ -154,7 +361,7 @@ function skipElement(el) {
   if (skipElementsBadTags[tag]) {
     return true;
   }
-  if (el.id == "pageshot-stylesheet" || el.className.startsWith("pageshot-")) {
+  if (el.id == "pageshot-stylesheet" || (typeof el.className == "string" && el.className.startsWith("pageshot-"))) {
     return true;
   }
   // Skip elements that can't be seen, and have no children, and are potentially
@@ -202,6 +409,38 @@ function skipElement(el) {
   return false;
 }
 
+const BORING_SKIPS = ["http-equiv", "action", "name", "contenteditable"];
+
+function skipAttribute(attrName, el) {
+  if (el instanceof content.SVGElement) {
+    // FIXME: just haven't enumerated svg attributes
+    return false;
+  }
+  attrName = attrName.toLowerCase();
+  if (attrName.startsWith("aria-")) {
+    return false;
+  }
+  let tagName = el.tagName.toLowerCase();
+  let tags = ATTRIBUTES[attrName];
+  if (! tags) {
+    if (! attrName.startsWith("data-") && ! BORING_SKIPS.includes(attrName)) {
+      console.info("Skipping unknown attribute", attrName, "on", tagName);
+    }
+    return true;
+  }
+  if (tags === "*") {
+    return false;
+  }
+  if (tags.includes(tagName)) {
+    return false;
+  } else {
+    if (! BORING_SKIPS.includes(attrName)) {
+      console.info("Attribute", attrName, "not expected on", tagName);
+    }
+    return true;
+  }
+}
+
 // This is quite a bit faster than looking up these numbers all the time:
 const TEXT_NODE = getDocument().TEXT_NODE;
 const ELEMENT_NODE = getDocument().ELEMENT_NODE;
@@ -247,6 +486,9 @@ function staticHTML(el, childLimit) {
     for (var i=0; i<l; i++) {
       var name = attrs[i].name;
       if (name.substr(0, 2).toLowerCase() == "on") {
+        continue;
+      }
+      if (skipAttribute(name, el)) {
         continue;
       }
       var value;
@@ -328,6 +570,9 @@ function getAttributes(el) {
     for (var i=0; i<l; i++) {
       var name = attrs[i].name;
       if (name.substr(0, 2).toLowerCase() == "on") {
+        continue;
+      }
+      if (skipAttribute(name, el)) {
         continue;
       }
       if (name == "href" || name == "src" || name == "value") {
