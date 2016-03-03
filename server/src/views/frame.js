@@ -52,7 +52,7 @@ class ShareButtons extends React.Component {
         <img src={ this.props.staticLink(`img/email-${size}.png`) } />
       </a>
       <hr />
-      <div>Get a shareable link to your shot</div>
+      <div>Get a shareable link to this shot</div>
       <input className="copy-shot-link-input"
         value={ this.props.shot.viewUrl }
         onClick={ this.onClickInputField.bind(this) }
@@ -261,7 +261,7 @@ class Frame extends React.Component {
         this.props.clientglue.deleteShot(this.props.shot);
       }
     } else {
-      console.log("FIXME implement flagging here");
+      window.open(`mailto:pageshot-feedback@mozilla.com?subject=Flagging%20shot%20for%20abuse&body=Flagging%20shot%20for%20abuse:%20${encodeURIComponent(this.props.shot.url)}`);
     }
   }
 
@@ -379,14 +379,29 @@ class Frame extends React.Component {
     } else {
       trashOrFlagButton = <img src={ this.props.staticLink("img/flag.png") } />;
     }
+
+    let myShotsHref = "/shots";
+    let myShotsText = "My Shots";
+    if (!this.props.isOwner) {
+      myShotsText = <span>
+        <span>
+          Made with
+        </span>
+        <br />
+        <span style={{fontWeight: "bold"}}>
+          PageShot
+        </span>
+      </span>;
+      myShotsHref = "/";
+    }
+
     return (
         <div id="container">
           { this.renderExtRequired() }
         <div id="toolbar" data-step="1" data-intro="This is the title of the page and a link to it's source.">
-          <a href="/shots">
-            <button className="my-shots-button">
-              <img src={ this.props.staticLink("img/my-shots.png") } />
-              <span>My Shots</span>
+          <a href={ myShotsHref }>
+            <button className="my-shots-button" style={{background: `no-repeat 10% center url(${this.props.staticLink("img/my-shots.png")}) #ebebeb`}}>
+              <span>{ myShotsText }</span>
             </button>
           </a>
           <span className="shot-title"> { shot.title } </span>
