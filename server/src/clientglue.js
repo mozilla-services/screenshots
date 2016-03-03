@@ -54,10 +54,6 @@ exports.setModel = function (data) {
 };
 
 exports.render = function render() {
-  if (window.introJSRunning) {
-    console.info("intro.js was running, not rendering.");
-    return;
-  }
   setGitRevision(model.gitRevision);
   let attrs = { staticLink };
   for (let attr in model) {

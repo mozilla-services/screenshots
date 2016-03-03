@@ -199,8 +199,6 @@ class Head extends React.Component {
     }
     let postMessageOrigin = `${this.props.contentProtocol}://${this.props.contentOrigin}`;
     let js = [
-      <link rel="stylesheet" href={ this.props.staticLink("vendor/introjs/introjs.css") } key="introjs-stylesheet" />,
-      <script src={ this.props.staticLink("vendor/introjs/intro.js") } key="introjs-js" />,
       <script src={ this.props.staticLink("vendor/core.js") } key="core-js-js" />,
       <script src={ this.props.staticLink("js/server-bundle.js") } key="server-bundle-js" />,
     ];
@@ -335,30 +333,6 @@ class Frame extends React.Component {
       expiresDiff = null;
     }
 
-    let introJsStart = null;
-
-    if (this.props.showIntro) {
-        introJsStart = <script dangerouslySetInnerHTML={{__html: `
-          window.introJSRunning = true;
-          introJs()
-          .setOption('showStepNumbers', false)
-          .setOption('highlightClass', 'intro-js-highlight-overlay')
-          .onchange(function (el) {
-            if (el.getAttribute('data-step') === '4') {
-              setTimeout(function () {
-                introJs().exit();
-                window.introJSRunning = false;
-                clientglue.render();
-              }, 1);
-              document.dispatchEvent(new CustomEvent('content-tour-complete'))
-            }
-          })
-          .onexit(function () {
-            window.introJSRunning = false;
-            clientglue.render();
-          }).start();`}} />;
-    }
-
     let frameHeight = 100;
     if (this.props.shot.documentSize) {
       frameHeight = this.props.shot.documentSize.height;
@@ -438,7 +412,6 @@ class Frame extends React.Component {
           <a href="https://github.com/mozilla-services/pageshot">{this.props.productName}</a> — <a href={`https://github.com/mozilla-services/pageshot/commit/${getGitRevision()}`}>Updated {this.props.buildTime}</a>
         </div>
         <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl }>Send Feedback</a>
-        { introJsStart }
       </div>
     );
   }
@@ -605,7 +578,6 @@ let HeadFactory = React.createFactory(Head);
 exports.FrameFactory = FrameFactory;
 
 exports.render = function (req, res) {
-  let showIntro = !!req.query.showIntro;
   let buildTime = require("../build-time").string;
   let serverPayload = {
     allowExport: req.config.allowExport,
@@ -621,7 +593,6 @@ exports.render = function (req, res) {
     gaId: req.config.gaId,
     deviceId: req.deviceId,
     buildTime: buildTime,
-    showIntro: showIntro,
     simple: false,
     shotDomain: req.url, // FIXME: should be a property of the shot
     expireTime: req.shot.expireTime === null ? null: req.shot.expireTime.getTime(),
@@ -649,7 +620,6 @@ exports.render = function (req, res) {
     expireTime: req.shot.expireTime === null ? null : req.shot.expireTime.getTime(),
     deleted: req.shot.deleted,
     buildTime: buildTime,
-    showIntro: showIntro,
     simple: false,
     retentionTime: req.config.expiredRetentionTime*1000,
     defaultExpiration: req.config.defaultExpiration*1000
@@ -689,7 +659,6 @@ exports.renderSimple = function (req, res) {
     gaId: null,
     deviceId: req.deviceId,
     buildTime: buildTime,
-    showIntro: false,
     simple: true,
     shotDomain: req.url // FIXME: should be a property of the shot
   };
