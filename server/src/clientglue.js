@@ -33,7 +33,6 @@ exports.setModel = function (data) {
       requestHasSavedShot(model.shot.id);
     }, false);
     document.addEventListener("refresh-profile", refreshProfile, false);
-    window.addEventListener("hashchange", refreshHash, false);
     document.addEventListener("has-saved-shot-result", function (event) {
       let result = JSON.parse(event.detail);
       model.hasSavedShot = result;
