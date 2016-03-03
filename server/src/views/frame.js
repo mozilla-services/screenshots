@@ -256,13 +256,13 @@ class Frame extends React.Component {
 
   onClickDelete(e) {
     window.ga('send', 'event', 'website', 'click-delete-shot', {useBeacon: true});
-    if (this.props.isOwner) {
-      if (window.confirm("Are you sure you want to delete the shot permanently?")) {
-        this.props.clientglue.deleteShot(this.props.shot);
-      }
-    } else {
-      window.open(`mailto:pageshot-feedback@mozilla.com?subject=Flagging%20shot%20for%20abuse&body=Flagging%20shot%20for%20abuse:%20${encodeURIComponent(this.props.shot.url)}`);
+    if (window.confirm("Are you sure you want to delete the shot permanently?")) {
+      this.props.clientglue.deleteShot(this.props.shot);
     }
+  }
+
+  onClickFlag(e) {
+    window.open(`mailto:pageshot-feedback@mozilla.com?subject=Flagging%20shot%20for%20abuse&body=Flagging%20shot%20for%20abuse:%20${encodeURIComponent(this.props.shot.url)}`);
   }
 
   render() {
@@ -375,9 +375,13 @@ class Frame extends React.Component {
 
     let trashOrFlagButton = null;
     if (this.props.isOwner) {
-      trashOrFlagButton = <img src={ this.props.staticLink("img/garbage-bin.png") } />;
+      trashOrFlagButton = <button className="trash-button" onClick={ this.onClickDelete.bind(this) }>
+        <img src={ this.props.staticLink("img/garbage-bin.png") } />
+      </button>;
     } else {
-      trashOrFlagButton = <img src={ this.props.staticLink("img/flag.png") } />;
+      trashOrFlagButton = <button className="flag-button" onClick={ this.onClickFlag.bind(this) }>
+        <img src={ this.props.staticLink("img/flag.png") } />
+      </button>;
     }
 
     let myShotsHref = "/shots";
@@ -425,9 +429,7 @@ class Frame extends React.Component {
             <button className="share-button" onClick={ this.onClickShareButton.bind(this) }>
               Share
             </button>
-            <button className="trash-button" onClick={ this.onClickDelete.bind(this) }>
-              { trashOrFlagButton }
-            </button>
+            { trashOrFlagButton }
           </div>
         </div>
         { shareButtons }
