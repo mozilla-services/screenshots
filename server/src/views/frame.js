@@ -256,8 +256,12 @@ class Frame extends React.Component {
 
   onClickDelete(e) {
     window.ga('send', 'event', 'website', 'click-delete-shot', {useBeacon: true});
-    if (window.confirm("Are you sure you want to delete the shot permanently?")) {
-      this.props.clientglue.deleteShot(this.props.shot);
+    if (this.props.isOwner) {
+      if (window.confirm("Are you sure you want to delete the shot permanently?")) {
+        this.props.clientglue.deleteShot(this.props.shot);
+      }
+    } else {
+      console.log("FIXME implement flagging here");
     }
   }
 
@@ -324,6 +328,7 @@ class Frame extends React.Component {
 
     let timeDiff = <TimeDiff date={shot.createdDate} simple={this.props.simple} />;
     let expiresDiff = <span>
+      –&nbsp;
       <ExpireWidget
         expireTime={this.props.expireTime}
         onSaveExpire={this.onSaveExpire.bind(this)} />
@@ -368,6 +373,12 @@ class Frame extends React.Component {
                 { ...this.props } />
     }
 
+    let trashOrFlagButton = null;
+    if (this.props.isOwner) {
+      trashOrFlagButton = <img src={ this.props.staticLink("img/garbage-bin.png") } />;
+    } else {
+      trashOrFlagButton = <img src={ this.props.staticLink("img/flag.png") } />;
+    }
     return (
         <div id="container">
           { this.renderExtRequired() }
@@ -388,7 +399,7 @@ class Frame extends React.Component {
               position: "relative",
               top: "4px"}}
               src={ this.props.staticLink("img/clock.png") } />
-            saved { timeDiff } – { expiresDiff }
+            saved { timeDiff } { expiresDiff }
           </div>
           <div className="more-shot-actions">
             {this.props.hasSavedShot ?
@@ -400,7 +411,7 @@ class Frame extends React.Component {
               Share
             </button>
             <button className="trash-button" onClick={ this.onClickDelete.bind(this) }>
-              <img src={ this.props.staticLink("img/garbage-bin.png") } />
+              { trashOrFlagButton }
             </button>
           </div>
         </div>
