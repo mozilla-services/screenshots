@@ -9,7 +9,7 @@ class ShotIndex extends React.Component {
     let head = this.renderHead();
     let body = this.renderBody();
     let result = (
-      <Shell title="Your Shots" staticLink={this.props.staticLink} gaId={this.props.gaId}>
+      <Shell title="Your Shots" staticLink={this.props.staticLink} gaId={this.props.gaId} bodyClass="shot-index">
         {head}
         {body}
       </Shell>);
@@ -30,7 +30,7 @@ class ShotIndex extends React.Component {
     }
     return (
       <body>
-        <h1>Your Shots</h1>
+        <h1 style={{color: "#444", paddingLeft: "40px"}}><img src={this.props.staticLink("img/pageshot-index.svg")} /> PageShot</h1>
         <div id="shot-index">
           {children}
         </div>
@@ -39,18 +39,14 @@ class ShotIndex extends React.Component {
   }
 
   renderShot(shot) {
-    let bgStyle = null;
-    let img = null;
-    if (shot.images && shot.images.length) {
-      img = shot.images[0].url;
+    let imageUrl;
+    let clip = shot.clipNames().length ? shot.getClip(shot.clipNames()[0]) : null;
+    if (clip && clip.image && clip.image.url) {
+      imageUrl = clip.image.url;
+    } else if (shot.images.length) {
+      imageUrl = shot.images[0].url;
     } else {
-      let clip = shot.getClip(shot.clipNames()[0]);
-      if (clip && clip.image && clip.image.url) {
-        img = clip.image.url;
-      }
-    }
-    if (img) {
-      bgStyle = {backgroundImage: `url("${img}")`};
+      imageUrl = this.props.staticLink("img/question-mark.svg");
     }
     let favicon = null;
     if (shot.favicon) {
@@ -60,21 +56,27 @@ class ShotIndex extends React.Component {
 
     return (
       <div className="shot" key={shot.id}>
-        <div className="shot-background" style={bgStyle}></div>
-        <div className="shot-text">
-          <a href={ shot.viewUrl }><div className="title-container">
-            <h2 className="title">{shot.title}</h2>
-          </div></a>
-          <div className="shot-footer">
-            <div className="shot-date">
-              <TimeDiff date={shot.createdDate} simple={this.props.simple} />
-            </div>
-            <div className="shot-link-container">
-              {favicon}
-              <a href={`/redirect?from=shot-index-original-link&to=${encodeURIComponent(shot.url)}`} className="subheading-link" target="_blank">
-              { shot.urlDisplay }
-            </a></div>
-          </div>
+        <div style={{
+          backgroundImage: `url(${imageUrl})`,
+          backgroundSize: "contain",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          width: "260px",
+          height: "260px",
+          margin: "10px",
+          borderBottom: "1px solid #666"
+        }}></div>
+        <div style={{
+          height: "50px",
+          padding: "10px"
+        }}>
+          <h2><a style={{color: "#000", textDecoration: "none"}} href={shot.viewUrl}>{shot.title}</a></h2>
+        </div>
+        <div style={{padding: "0px 10px"}}>
+          <a href={shot.url} style={{color: "#666"}}>
+            {favicon}
+            {shot.urlDisplay}
+          </a>
         </div>
       </div>
     );

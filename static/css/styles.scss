@@ -22,6 +22,10 @@ body {
   box-sizing: border-box;
 }
 
+body.shot-index {
+  background-color: #eee;
+}
+
 #container {
   position: absolute;
   left: 0px;
@@ -565,12 +569,12 @@ a.subheading-link {
   }
 
   .shot {
-    border-radius: 2px;
     padding: 0;
     box-shadow: 0 -2px 5px $shadow-color;
-    width: 200px;
-    height: 200px;
-    margin: 8px;
+    width: 280px;
+    height: 280px + 95px;
+    margin: 30px;
+    background-color: #fff;
   }
 
   .shot-text {

@@ -29,7 +29,7 @@ export class Shell extends React.Component {
         <link rel="stylesheet" href={ this.props.staticLink("css/profile.css") } />
         {this.props.children[0].props.children}
       </head>
-      <body>
+      <body className={this.props.bodyClass}>
         {this.props.children[1].props.children}
       </body>
     </html>;

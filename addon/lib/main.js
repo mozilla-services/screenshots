@@ -16,7 +16,7 @@ const shooter = require("./shooter");
 const { prefs } = require('sdk/simple-prefs');
 const helperworker = require("./helperworker");
 const { ActionButton } = require('sdk/ui/button/action');
-const { watchFunction } = require("./errors");
+const { watchFunction, watchPromise } = require("./errors");
 const {Cu, Cc, Ci} = require("chrome");
 const winutil = require("sdk/window/utils");
 const req = require("./req");
@@ -74,9 +74,9 @@ function showNotificationBar(shotcontext) {
         callback: function(notebox, button) {
           hideNotificationBar();
           setTimeout(function () {
-            shotcontext.uploadShot().then(() => {
+            watchPromise(shotcontext.uploadShot().then(() => {
               shotcontext.openInNewTab();
-            });
+            }));
             shotcontext.copyRichDataToClipboard();
             // Calling selectClip with no clip id has the side effect of sending a "cancel" message to the shot worker
             shotcontext.panelHandlers.selectClip.call(shotcontext);
