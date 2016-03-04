@@ -175,7 +175,7 @@ function showHelpMessage(message) {
   nested.style.transition = "all .1s ease-in-out";
   nested.onclick = function (e) {
     helpMessage.parentNode.removeChild(helpMessage);
-  }
+  };
   helpMessage.appendChild(nested);
   let p = document.createElement("p");
   p.style.fontFamily = "caption,sans-serif";
@@ -237,6 +237,8 @@ function setState(state) {
     document.body.classList.remove("pageshot-hide-movers");
     removeHandlers();
     removeCrosshairs();
+    removeSelectionPreview();
+    removePreviewOverlay();
   } else if (state === "cancelForText") {
     deleteSelection();
     document.body.classList.add("pageshot-hide-selection");
@@ -255,6 +257,7 @@ function setState(state) {
     addHandlers();
     addCrosshairs();
     addSelectionHelp();
+    addSelectionPreview();
   } else if (state === "visible") {
     deleteSelection();
     document.body.classList.remove("pageshot-hide-selection");
@@ -442,6 +445,7 @@ function render() {
   boxRightEl.style.height = pos.bottom - pos.top + "px";
   boxRightEl.style.left = (pos.right - bodyRect.left) + "px";
   boxRightEl.style.width = docWidth - (pos.right - bodyRect.left) + "px";
+  removePreviewOverlay();
 }
 
 function deleteSelection() {
@@ -518,6 +522,7 @@ let vertCross;
 let horizCross;
 
 function crosshairsMousemove(event) {
+  removeSelectionPreview();
   if (! vertCross) {
     vertCross = document.createElement("div");
     vertCross.className = "pageshot-vertcross";
@@ -529,8 +534,8 @@ function crosshairsMousemove(event) {
   }
   let x = guessX(event.pageX);
   let y = guessY(event.pageY);
-  vertCross.style.left = x + "px";
-  horizCross.style.top = y + "px";
+  vertCross.style.left = (x - window.scrollX) + "px";
+  horizCross.style.top = (y - window.scrollY) + "px";
 }
 
 function addCrosshairs() {
@@ -539,6 +544,41 @@ function addCrosshairs() {
 
 function addSelectionHelp() {
   //showHelpMessage("Click and drag anywhere to make a selection");
+}
+
+function addSelectionPreview() {
+  let el = document.createElement("div");
+  el.className = "pageshot-preview-overlay";
+  document.body.appendChild(el);
+  el = document.createElement("div");
+  el.className = "pageshot-crosshair-pulse";
+  let inner = document.createElement("div");
+  inner.className = "pageshot-crosshair-inner";
+  el.appendChild(inner);
+  document.body.appendChild(el);
+  el = document.createElement("div");
+  el.className = "pageshot-horizcross pageshot-crosshair-preview";
+  document.body.appendChild(el);
+  el = document.createElement("div");
+  el.className = "pageshot-vertcross pageshot-crosshair-preview";
+  document.body.appendChild(el);
+}
+
+function removeSelectionPreview() {
+  let els = document.querySelectorAll(`
+    .pageshot-crosshair-pulse,
+    .pageshot-horizcross.pageshot-crosshair-preview,
+    .pageshot-vertcross.pageshot-crosshair-preview`);
+  for (let el of els) {
+    el.parentNode.removeChild(el);
+  }
+}
+
+function removePreviewOverlay() {
+  let el = document.querySelector(".pageshot-preview-overlay");
+  if (el) {
+    el.parentNode.removeChild(el);
+  }
 }
 
 function removeCrosshairs() {
