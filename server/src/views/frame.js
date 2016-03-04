@@ -69,14 +69,17 @@ class ShareButtons extends React.Component {
 class Clip extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {paddingTop: 66};
+    this.state = {
+      paddingTop: 66,
+      hidden: false
+    };
   }
 
   componentDidMount() {
-    let img = React.findDOMNode(this.refs.clipImage);
+    let image = React.findDOMNode(this.refs.clipImage);
     let onResize = () => {
       let windowHeight = window.innerHeight;
-      let paddingTop = Math.floor((windowHeight - img.height - 35) / 2);
+      let paddingTop = Math.floor((windowHeight - image.height - 35) / 2);
       if (paddingTop < 66) {
         paddingTop = 66;
       }
@@ -87,7 +90,15 @@ class Clip extends React.Component {
     onResize();
   }
 
+  onClickClose() {
+    this.setState({hidden: true});
+  }
+
   render() {
+    if (this.state.hidden) {
+      return <span />;
+    }
+
     let clip = this.props.clip,
       node = null;
 
@@ -97,7 +108,20 @@ class Clip extends React.Component {
       node = <img ref="clipImage" src={ clip.image.url } />;
     }
 
+    let closeButton = null;
+    if (this.props.showCloseButton) {
+      closeButton = <img
+        style={{
+          position: "absolute",
+          top: "81px",
+          right: "15px",
+          height: "32px",
+          width: "32px"}}
+        src={ this.props.staticLink("img/close.svg") }
+        onClick={ this.onClickClose.bind(this) }/>;
+    }
     return <div ref="clipContainer" className="clip-container" style={{paddingTop: this.state.paddingTop}}>
+      { closeButton }
       <a href={ clip.image.url }>
         { node }
       </a>
@@ -321,7 +345,7 @@ class Frame extends React.Component {
       let clipId = clipNames[i];
       let clip = shot.getClip(clipId);
 
-      clips.push(<Clip staticLink={this.props.staticLink} key={ clipId } clip={ clip }  shotId={ shotId } shotDomain={ shotDomain } />);
+      clips.push(<Clip staticLink={this.props.staticLink} key={ clipId } clip={ clip }  shotId={ shotId } shotDomain={ shotDomain } showCloseButton={ this.props.shot.showPage } />);
     }
 
     let linkTextShort = shot.urlDisplay;
