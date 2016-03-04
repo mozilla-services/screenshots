@@ -237,6 +237,8 @@ function setState(state) {
     document.body.classList.remove("pageshot-hide-movers");
     removeHandlers();
     removeCrosshairs();
+    removeSelectionPreview();
+    removePreviewOverlay();
   } else if (state === "cancelForText") {
     deleteSelection();
     document.body.classList.add("pageshot-hide-selection");
