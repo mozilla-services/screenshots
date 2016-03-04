@@ -180,23 +180,66 @@ $mover-size: $mover-outer + $mover-inner;
 }
 
 .pageshot-horizcross {
-  position: absolute;
+  position: fixed;
   left: 0px;
   width: 100%;
   height: 0px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   z-index: 100000;
 }
 
 .pageshot-vertcross {
-  position: absolute;
+  position: fixed;
   top: 0px;
   height: 100%;
   width: 0px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   z-index: 100000;
 }
 
+.pageshot-preview-overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 90000
+}
+
+.pageshot-crosshair-pulse {
+  position: fixed;
+  top: 20%;
+  left: 60%;
+  margin-left: -20px;
+  margin-top: -20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 0, 0.5);
+  z-index: 110000;
+  background-image: radial-gradient(20px at 50% 50%, rgba(255, 255, 0, 0.1), rgba(255, 255, 0, 0.5));
+
+  .pageshot-crosshair-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -5px;
+    margin-top: -5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+}
+
+.pageshot-horizcross.pageshot-crosshair-preview {
+  top: 20%;
+}
+
+.pageshot-vertcross.pageshot-crosshair-preview {
+  left: 60%;
+}
 
 /* .pageshot reset */
 /* http://yuilibrary.com/yui/docs/cssreset/ */
