@@ -33,7 +33,6 @@ exports.setModel = function (data) {
       requestHasSavedShot(model.shot.id);
     }, false);
     document.addEventListener("refresh-profile", refreshProfile, false);
-    window.addEventListener("hashchange", refreshHash, false);
     document.addEventListener("has-saved-shot-result", function (event) {
       let result = JSON.parse(event.detail);
       model.hasSavedShot = result;
@@ -54,10 +53,6 @@ exports.setModel = function (data) {
 };
 
 exports.render = function render() {
-  if (window.introJSRunning) {
-    console.info("intro.js was running, not rendering.");
-    return;
-  }
   setGitRevision(model.gitRevision);
   let attrs = { staticLink };
   for (let attr in model) {

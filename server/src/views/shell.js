@@ -13,8 +13,6 @@ export class Shell extends React.Component {
       throw new Error("Shell second child must be <body> (not " + this.props.children[1].type + ")");
     }
     let js = [
-      <link rel="stylesheet" href={ this.props.staticLink("vendor/introjs/introjs.css") } key="introjs-stylesheet" />,
-      <script src={ this.props.staticLink("vendor/introjs/intro.js") } key="introjs-js" />,
       <script src={ this.props.staticLink("js/server-bundle.js") } key="server-bundle-js" />,
     ];
     js = js.concat(gaActivation(this.props.gaId, this.props.deviceId, false));
@@ -31,7 +29,7 @@ export class Shell extends React.Component {
         <link rel="stylesheet" href={ this.props.staticLink("css/profile.css") } />
         {this.props.children[0].props.children}
       </head>
-      <body>
+      <body className={this.props.bodyClass}>
         {this.props.children[1].props.children}
       </body>
     </html>;
