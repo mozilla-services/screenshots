@@ -48,26 +48,43 @@ function showNotificationBar(shotcontext) {
   }
   let thebox = nb.notificationbox();
   let fragment = thebox.ownerDocument.createDocumentFragment();
-  let node = thebox.ownerDocument.createElement("button");
-  node.textContent = "My shots";
-  node.onclick = function () {
-    tabs.open(exports.getBackend() + "/shots");
-  };
-  node.style.textAlign = "center";
-  node.style.verticalAlign = "middle";
-  node.style.fontWeight = "normal";
-  node.style.borderRadius = "4px";
-  node.style.background = "#fbfbfb";
-  node.style.color = "black";
-  let node2 = thebox.ownerDocument.createElement("span");
-  node2.style.border = "none";
-  node2.style.marginLeft = "10px";
-  node2.appendChild(thebox.ownerDocument.createTextNode("Select part of the page to save, or save full page without making a selection."));
-  fragment.appendChild(node);
-  fragment.appendChild(node2);
+  let myShots = thebox.ownerDocument.createElement("button");
+  myShots.className = "myshots";
+  myShots.setAttribute("label", "myshots");
+  let preMyShots = thebox.ownerDocument.createElement("span");
+  preMyShots.className = "pre-myshots";
+  myShots.appendChild(preMyShots);
+  let myShotsText = thebox.ownerDocument.createElement("span");
+  myShotsText.className = "myshots-text";
+  myShotsText.textContent = "My shots";
+  myShots.appendChild(myShotsText);
+  let postMyShots = thebox.ownerDocument.createElement("span");
+  postMyShots.className = "post-myshots";
+  myShots.appendChild(postMyShots);
+  myShots.className = "myshots";
+  myShots.onclick = watchFunction(function () {
+    hideNotificationBar();
+    setTimeout(() => {
+      tabs.open(exports.getBackend() + "/shots");
+    });
+  });
+  let messageNode = thebox.ownerDocument.createElement("span");
+  messageNode.style.border = "none";
+  messageNode.style.marginLeft = "10px";
+  messageNode.appendChild(thebox.ownerDocument.createTextNode("Select part of the page to save, or save full page without making a selection."));
+  fragment.appendChild(myShots);
+  fragment.appendChild(messageNode);
   nb.banner({
     id: "pageshot-notification-bar",
     msg: fragment,
+    callback: function (message) {
+      // Only message should be AlertClose
+      if (message !== "removed") {
+        console.warn("Unexpected message on notificationbox:", message);
+        return;
+      }
+      shotcontext.destroy();
+    },
     buttons: [
       nb.buttonMaker.yes({
         label: "Save",
@@ -118,7 +135,7 @@ function showNotificationBar(shotcontext) {
 
 function hideNotificationBar(browser) {
   let box = getNotificationBox(browser);
-  let notification = box.getNotificationWithValue("pageshot-notification-banner");
+  let notification = box.getNotificationWithValue("pageshot-notification-bar");
   let removed = false;
   if (notification) {
     box.removeNotification(notification);
