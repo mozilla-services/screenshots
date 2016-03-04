@@ -15,7 +15,9 @@ export class Shell extends React.Component {
     let js = [
       <script src={ this.props.staticLink("js/server-bundle.js") } key="server-bundle-js" />,
     ];
-    js = js.concat(gaActivation(this.props.gaId, this.props.deviceId, false));
+    if (this.props.gaId) {
+      js = js.concat(gaActivation(this.props.gaId, this.props.deviceId, false));
+    }
     if (this.props.simple) {
       js = null;
     }
