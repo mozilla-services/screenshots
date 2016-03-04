@@ -118,7 +118,7 @@ function showNotificationBar(shotcontext) {
 
 function hideNotificationBar(browser) {
   let box = getNotificationBox(browser);
-  let notification = box.getNotificationWithValue("pageshot-notification-banner");
+  let notification = box.getNotificationWithValue("pageshot-notification-bar");
   let removed = false;
   if (notification) {
     box.removeNotification(notification);
