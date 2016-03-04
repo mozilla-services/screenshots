@@ -219,6 +219,10 @@ $mover-size: $mover-outer + $mover-inner;
   border: 1px solid rgba(255, 255, 0, 0.5);
   z-index: 110000;
   background-image: radial-gradient(20px at 50% 50%, rgba(255, 255, 0, 0.1), rgba(255, 255, 0, 0.5));
+  animation-name: pageshot-pulse;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-iteration-count: 20;
 
   .pageshot-crosshair-inner {
     position: absolute;
@@ -231,6 +235,12 @@ $mover-size: $mover-outer + $mover-inner;
     border-radius: 5px;
     background-color: #fff;
   }
+}
+
+@keyframes pageshot-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
 
 .pageshot-horizcross.pageshot-crosshair-preview {
