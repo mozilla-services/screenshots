@@ -260,6 +260,8 @@ class Frame extends React.Component {
   constructor(props) {
     super(props);
     this.state = {sharePanelDisplay: false, closePageshotBanner: false};
+    // Need to bind this so we can add/remove the event listener
+    this.unsharePanelHandler = this.unsharePanelHandler.bind(this);
   }
 
   closeGetPageshotBanner() {
@@ -275,7 +277,25 @@ class Frame extends React.Component {
   }
 
   onClickShareButton(e) {
-    this.setState({sharePanelDisplay: !this.state.sharePanelDisplay});
+    let show = ! this.state.sharePanelDisplay;
+    this.setState({sharePanelDisplay: show});
+    if (show) {
+      document.addEventListener("click", this.unsharePanelHandler, false);
+    } else {
+      document.removeEventListener("click", this.unsharePanelHandler, false);
+    }
+  }
+
+  unsharePanelHandler(e) {
+    let el = e.target;
+    while (el) {
+      if (el.id === "share-buttons-panel") {
+        // A click in the share panel itself
+        return;
+      }
+      el = el.parentNode;
+    }
+    this.onClickShareButton();
   }
 
   onClickDelete(e) {
@@ -333,7 +353,6 @@ class Frame extends React.Component {
     }
 
     let shot = this.props.shot;
-    let activeClipId = this.props.activeClipId;
     let shotId = this.props.shot.id;
     let shotDomain = this.props.shot.url; // FIXME: calculate
 
@@ -394,7 +413,7 @@ class Frame extends React.Component {
       shareButtons = <ShareButtons
                 large={ true }
                 clipUrl={ shot.viewUrl }
-                { ...this.props } />
+                { ...this.props } />;
     }
 
     let trashOrFlagButton = null;
