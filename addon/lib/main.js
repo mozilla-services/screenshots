@@ -363,6 +363,7 @@ exports.onUnload = function (reason) {
   if (reason == "shutdown") {
     return;
   }
+  hideNotificationBar();
   console.info("Unloading PageShot framescripts");
   require("./framescripter").unload();
   console.info("Informing site of unload reason:", reason);
