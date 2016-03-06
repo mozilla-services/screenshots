@@ -120,7 +120,7 @@ class Clip extends React.Component {
         src={ this.props.staticLink("img/close.svg") }
         onClick={ this.onClickClose.bind(this) }/>;
     }
-    return <div ref="clipContainer" className="clip-container" style={{paddingTop: this.state.paddingTop}}>
+    return <div ref="clipContainer" className="clip-container" style={{paddingTop: this.state.paddingTop}} onClick={this.onClickClose.bind(this)}>
       { closeButton }
       <a href={ clip.image.url }>
         { node }
