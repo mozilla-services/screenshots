@@ -1,4 +1,3 @@
-// FIXME: need to keep creation time, and eventually expire values out of this
 const ss = require("sdk/simple-storage");
 const { setTimeout } = require("sdk/timers");
 const STORAGE_LIMIT = 100;

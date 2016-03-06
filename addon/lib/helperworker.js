@@ -66,7 +66,9 @@ function resetPageMod(backend) {
       }));
 
       worker.port.on("requestSavedShot", watchFunction(function (id) {
-        worker.port.emit("savedShotData", shotstore.getShot(id));
+        let data = Object.assign({}, shotstore.getShot(id));
+        delete data.created;
+        worker.port.emit("savedShotData", data);
       }));
 
       worker.port.on("removeSavedShot", watchFunction(function (id) {
