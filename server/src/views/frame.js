@@ -460,7 +460,7 @@ class Frame extends React.Component {
               marginRight: "7px",
               position: "relative",
               top: "4px"}}
-              src={ this.props.staticLink("img/clock.png") } />
+              src={ this.props.staticLink("img/clock.svg") } />
             saved { timeDiff } { expiresDiff }
           </div>
           <div className="more-shot-actions">
