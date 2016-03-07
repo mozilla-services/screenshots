@@ -394,10 +394,20 @@ a.sitelink, a.sitelink:visited {
   padding: 7px;
 }
 
+#share-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+#share-buttons a {
+  margin: auto;
+}
+
 .copy-shot-link-input {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   height: 22px;
+  width: 170px;
 }
 
 .copy-shot-link-button {

@@ -38,21 +38,23 @@ class ShareButtons extends React.Component {
   render() {
     let size = this.props.large ? "32" : "16";
     return <div id="share-buttons-panel" className="share-row">
-      <div>Share to email and social networks</div>
-      <a onClick={ this.onClickShareButton.bind(this, "facebook") } target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }>
-        <img src={ this.props.staticLink(`img/facebook-${size}.png`) } />
-      </a>
-      <a onClick={ this.onClickShareButton.bind(this, "twitter") }target="_blank" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }>
-        <img src={ this.props.staticLink(`img/twitter-${size}.png`) } />
-      </a>
-      <a onClick={ this.onClickShareButton.bind(this, "pinterest") }target="_blank" href={"https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" }>
-        <img src={ this.props.staticLink(`img/pinterest-${size}.png`) } />
-      </a>
-      <a onClick={ this.onClickShareButton.bind(this, "email") }target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
-        <img src={ this.props.staticLink(`img/email-${size}.png`) } />
-      </a>
+      <div>Share to email and social networks:</div>
+      <div id="share-buttons">
+        <a onClick={ this.onClickShareButton.bind(this, "facebook") } target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }>
+          <img src={ this.props.staticLink(`img/facebook-${size}.png`) } />
+        </a>
+        <a onClick={ this.onClickShareButton.bind(this, "twitter") }target="_blank" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }>
+          <img src={ this.props.staticLink(`img/twitter-${size}.png`) } />
+        </a>
+        <a onClick={ this.onClickShareButton.bind(this, "pinterest") }target="_blank" href={"https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" }>
+          <img src={ this.props.staticLink(`img/pinterest-${size}.png`) } />
+        </a>
+        <a onClick={ this.onClickShareButton.bind(this, "email") }target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
+          <img src={ this.props.staticLink(`img/email-${size}.png`) } />
+        </a>
+      </div>
       <hr />
-      <div>Get a shareable link to this shot</div>
+      <div>Get a shareable link to this shot:</div>
       <input className="copy-shot-link-input"
         value={ this.props.shot.viewUrl }
         onClick={ this.onClickInputField.bind(this) }
