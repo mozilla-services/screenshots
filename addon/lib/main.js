@@ -167,14 +167,14 @@ exports.getBackend = function () {
 let infoPanelShownForWindow = null;
 
 exports.showInfoPanel = function showInfoPanel(magicCookie, title, description) {
-  let win = winutil.getMostRecentBrowserWindow();
+  /*let win = winutil.getMostRecentBrowserWindow();
   let target = {
     node: win.document.getElementById(magicCookie),
     targetName: magicCookie
   };
   UITour.showInfo(win, null, target, title, description);
   UITour.showHighlight(win, target, "wobble");
-  infoPanelShownForWindow = win;
+  infoPanelShownForWindow = win;*/
 };
 
 function showTour(newTab) {
