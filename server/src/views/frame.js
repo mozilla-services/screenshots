@@ -445,7 +445,7 @@ class Frame extends React.Component {
     return (
         <div id="container">
           { this.renderExtRequired() }
-        <div id="toolbar" data-step="1" data-intro="This is the title of the page and a link to it's source.">
+        <div id="toolbar">
           <a href={ myShotsHref }>
             <button className="my-shots-button" style={{background: `no-repeat 10% center url(${this.props.staticLink("img/my-shots.png")}) #ebebeb`}}>
               <span>{ myShotsText }</span>
