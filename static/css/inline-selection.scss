@@ -37,6 +37,15 @@ $mover-size: $mover-outer + $mover-inner;
   pointer-events: auto;
 }
 
+.pageshot-highlight, .pageshot-mover-target {
+  background-color: transparent;
+  background-image: none;
+}
+
+.pageshot-mover-target, .pageshot-bghighlight {
+  border: none;
+}
+
 .pageshot-mover-target.pageshot-topLeft {
   cursor: nwse-resize;
   top: - $mover-outer;
