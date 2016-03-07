@@ -57,6 +57,7 @@ exports.init = function init() {
   server.start(port);
   server.registerPathHandler('/', handleRequest);
   server.registerPathHandler('/readable/', handleReadableRequest);
+  server.registerPathHandler('/data/', handleDataRequest);
 };
 
 function handleRequest(request, response) {
@@ -73,7 +74,7 @@ function handleRequest(request, response) {
   tabs.open({
     url: url,
     onLoad: function (tab) {
-      autoShot(tab, backend, backendUrl);
+      autoShot(tab, backend, backendUrl, true);
       tab.on("close", function (a) {
         console.log(`completed processing ${backendUrl}`);
         response.setStatusLine("1.1", 200, "OK");
@@ -83,6 +84,35 @@ function handleRequest(request, response) {
     }
   });
 }
+
+function handleDataRequest(request, response) {
+  /* Takes a request from the server, makes the response asynchronous so the
+   * client waits for a response, processes the query string from the request
+   * as a URL with the function autoShot from shooter.js and finally returns
+   * the JSON for the shot (this does NOT save the shot)
+   */
+  response.processAsync();
+  var url = request._queryString;
+  var backendUrl = randomString(RANDOM_STRING_LENGTH) + "/" + urlDomainForId(url);
+  console.log('recieved request: URL -> BACK'
+                .replace('URL', url).replace('BACK', backendUrl));
+  tabs.open({
+    url: url,
+    onLoad: function (tab) {
+      autoShot(tab, backend, backendUrl, false).then((shot) => {
+        console.log(`completed processing ${backendUrl}`);
+        response.setStatusLine("1.1", 200, "OK");
+        response.write(JSON.stringify(shot.asJson()));
+        response.finish();
+      }).catch((e) => {
+        response.setStatusLine("1.1", 500, "Error");
+        response.write("Error: " + e);
+        response.finish();
+      });
+    }
+  });
+}
+
 
 function sleep(milliseconds) {
   var start = new Date().getTime();
@@ -119,7 +149,7 @@ function handleReadableRequest(request, response) {
           worker.port.on("done", function () { // When the worker emits done, wait a bit then fire autoshot
             console.log('readability should be finished');
             sleep(prefs.readableSleep); // Sleep is required because if you fire autoShot immediately the DOM comes up empty
-            autoShot(tab, backend, backendUrl);
+            autoShot(tab, backend, backendUrl, true);
           });
         }
       });
