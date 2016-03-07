@@ -69,3 +69,11 @@ function cleanupShots() {
     }
   }
 }
+
+exports.deleteEverything = function () {
+  for (let key of Object.keys(ss.storage)) {
+    if (key.startsWith("page-")) {
+      delete ss.storage[key];
+    }
+  }
+};
