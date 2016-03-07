@@ -64,7 +64,6 @@ addon_js_dest := $(addon_js_source:%=build/%)
 #
 # To keep these commands from failing we touch the files just to be sure
 # they exist:
-shoot_panel_dependencies = $(shell if [[ -e build/shoot-panel-dependencies.txt ]] ; then cat build/shoot-panel-dependencies.txt ; fi)
 clientglue_dependencies = $(shell if [[ -e build/clientglue-dependencies.txt ]] ; then cat build/clientglue-dependencies.txt ; fi)
 admin_dependencies = $(shell if [[ -e build/admin-dependencies.txt ]] ; then cat build/admin-dependencies.txt ; fi)
 
@@ -129,12 +128,6 @@ build/%.html: %.html
 
 ## Addon related rules:
 
-build/addon/data/panel-bundle.js: $(shoot_panel_dependencies)
-	@mkdir -p $(@D)
-	# Save the bundle dependencies:
-	browserify --list -e ./build/addon/data/shoot-panel.js | sed "s!$(shell pwd)/!!g" > build/shoot-panel-dependencies.txt
-	browserify -e ./build/addon/data/shoot-panel.js | ./bin/_fixup_panel_js > $@
-
 # We don't need babel on these specific modules:
 build/addon/lib/shared/%.js: build/shared/%.js
 	@mkdir -p $(@D)
@@ -175,7 +168,7 @@ build/addon/lib/httpd.jsm: addon/lib/httpd.jsm
 	@mkdir -p $(@D)
 	cp $< $@
 
-addon: npm $(data_dest) $(vendor_dest) $(lib_dest) $(sass_addon_dest) $(imgs_addon_dest) $(static_addon_dest) $(shared_addon_dest) build/addon/data/panel-bundle.js build/addon/package.json build/addon/lib/httpd.jsm
+addon: npm $(data_dest) $(vendor_dest) $(lib_dest) $(sass_addon_dest) $(imgs_addon_dest) $(static_addon_dest) $(shared_addon_dest) build/addon/package.json build/addon/lib/httpd.jsm
 
 xpi: build/mozilla-pageshot.xpi build/mozilla-pageshot.update.rdf
 

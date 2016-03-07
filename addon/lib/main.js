@@ -29,7 +29,6 @@ require("./headless").init();
 Cu.import("resource:///modules/UITour.jsm");
 
 let loadReason = null;
-let PanelContext;
 let initialized = false;
 
 function getNotificationBox(browser) {
@@ -93,11 +92,9 @@ function showNotificationBar(shotcontext) {
           setTimeout(function () {
             watchPromise(shotcontext.uploadShot().then(() => {
               shotcontext.openInNewTab();
+              shotcontext.destroy();
             }));
             shotcontext.copyRichDataToClipboard();
-            // Calling selectClip with no clip id has the side effect of sending a "cancel" message to the shot worker
-            shotcontext.panelHandlers.selectClip.call(shotcontext);
-            PanelContext.removeContext(shotcontext);
           }, 0);
         }
       }),
@@ -106,8 +103,7 @@ function showNotificationBar(shotcontext) {
         callback: function(notebox, button) {
           hideNotificationBar();
           setTimeout(function () {
-            // Calling selectClip with no clip id has the side effect of sending a "cancel" message to the shot worker
-            shotcontext.panelHandlers.selectClip.call(shotcontext);
+            shotcontext.destroy();
           }, 0);
         }
       })
@@ -144,157 +140,20 @@ function hideNotificationBar(browser) {
   return removed;
 }
 
-// FIXME: this button should somehow keep track of whether there is an active shot associated with this page
+exports.hideNotificationBar = hideNotificationBar;
+
 var shootButton = ActionButton({
   id: "pageshot-shooter",
   label: "Make shot",
   icon: self.data.url("icons/pageshot-camera-empty.svg"),
   onClick: watchFunction(function () {
     hideInfoPanel();
-    PanelContext.onShootButtonClicked();
+    let shotContext = shooter.ShotContext(exports.getBackend());
+    showNotificationBar(shotContext);
     req.sendEvent("addon", "click-shot-button");
   })
 });
 exports.shootButton = shootButton;
-
-/** PanelContext manages the ShotContext (defined in shooter.js) that
-    is associated with the panel.  Because the panel is a singleton,
-    and any tab may have its own shot associated with it, we have to
-    manage these centrally.
-
-    This instantiates ShotContext as necessary.  It also routes all
-    messages from the panel (data/shoot-panel.js) to the individual
-    ShotContext.
-    */
-PanelContext = {
-  _contexts: {},
-  _activeContext: null,
-  _stickyPanel: false,
-
-  /** Hides the given ShotContext; error if you try to hide when
-      you are not active */
-  hide: function (shotContext) {
-    if (this._activeContext != shotContext) {
-      throw new Error("Hiding wrong shotContext");
-    }
-    this._activeContext = null;
-    hideNotificationBar();
-    shootButton.checked = false;
-  },
-
-  shootPanelHidden: function () {
-    if (this._activeContext) {
-      this._activeContext.isHidden();
-    }
-    if (this._stickyPanel && this._activeContext) {
-      require("sdk/timers").setTimeout(() => {
-        if (this._activeContext) {
-          this.show(this._activeContext);
-        }
-      }, 5000);
-    }
-  },
-
-  shootPanelShown: function () {
-    if (this._activeContext) {
-      this._activeContext.isShowing();
-    }
-  },
-
-  toggleStickyPanel: function () {
-    this._stickyPanel = ! this._stickyPanel;
-    require("sdk/notifications").notify({
-      title: "Sticky",
-      text: this._stickyPanel ? "Sticky panel debugging ON" : "Sticky panel debugging OFF",
-    });
-  },
-
-  /** Show a ShotContext, hiding any other if necessary */
-  show: function (shotContext) {
-    if (this._activeContext === shotContext) {
-      showNotificationBar(shotContext);
-      shotContext.isShowing();
-      return;
-    }
-    if (this._activeContext) {
-      throw new Error("Another context (" + this._activeContext.id + ") is showing");
-    }
-    this._activeContext = shotContext;
-    showNotificationBar(shotContext);
-    shotContext.isShowing();
-    shootButton.checked = true;
-    this.updateShot(this._activeContext, this._activeContext.shot.asJson());
-  },
-
-  /** Fired whenever the toolbar button is clicked, this activates
-      a ShotContext, or creates a new one, or hides the panel */
-  onShootButtonClicked: function () {
-    /* FIXME: remove, once I'm sure the panel really works right...
-    console.info(
-      "onShootButtonClicked.  activeContext:",
-      this._activeContext ? this._activeContext.tabUrl : "none",
-      this._activeContext ? this._activeContext.couldBeActive() : "",
-      "any good contexts?",
-      Object.keys(this._contexts).map((function (id) {
-        return this._contexts[id];
-      }).bind(this)).filter(function (context) {
-        return context.couldBeActive();
-      }).map(function (context) {
-        return context.tabUrl;
-      })
-    ); */
-    if (! this._activeContext) {
-      for (let id in this._contexts) {
-        let shotContext = this._contexts[id];
-        if (shotContext.couldBeActive()) {
-          this.show(shotContext);
-          return;
-        }
-      }
-      let shotContext = shooter.ShotContext(this, exports.getBackend());
-      this.addContext(shotContext);
-      this.show(shotContext);
-    } else {
-      if (this._activeContext.couldBeActive()) {
-        showNotificationBar(this._activeContext);
-      }
-    }
-  },
-
-  /** Called whenever the underlying data/model has been changed
-      for a shot */
-  updateShot: function (shotContext) {
-    if (this._activeContext !== shotContext) {
-      return;
-    }
-  },
-
-  /** Called when the panel is switching from simple to edit view or vice versa */
-  setEditing: function (editing) {
-    this._activeContext.isEditing = editing;
-    if (editing) {
-      req.sendEvent("addon", "click-short-panel-edit");
-    }
-  },
-
-  /** Called when a ShotContext is going away, to remove its
-      registration with this PanelContext */
-  removeContext: function (shotContext) {
-    if (! this._contexts[shotContext.id]) {
-      // FIXME: this sometimes throws on browser shutdown,
-      // not sure why.  Something must be double-destroying.
-      console.warn("No such context:", shotContext.id);
-    }
-    if (this._activeContext == shotContext) {
-      this.hide(shotContext);
-    }
-    delete this._contexts[shotContext.id];
-  },
-
-  addContext: function (shotContext) {
-    this._contexts[shotContext.id] = shotContext;
-  },
-};
 
 /** We use backendOverride to temporarily change the backend with a
     command-line argument (as used in the `run` script), otherwise
@@ -354,15 +213,13 @@ exports.main = function (options) {
   require("./user").initialize(exports.getBackend(), options.loadReason).catch((error) => {
     console.warn("Failed to log in to server:", error+"");
   });
-  /*
-  require("./recall").initialize(hideInfoPanel, showTour);
-  */
 };
 
 exports.onUnload = function (reason) {
   if (reason == "shutdown") {
     return;
   }
+  hideNotificationBar();
   console.info("Unloading PageShot framescripts");
   require("./framescripter").unload();
   console.info("Informing site of unload reason:", reason);

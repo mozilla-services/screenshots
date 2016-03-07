@@ -122,7 +122,7 @@ class Clip extends React.Component {
         src={ this.props.staticLink("img/close.svg") }
         onClick={ this.onClickClose.bind(this) }/>;
     }
-    return <div ref="clipContainer" className="clip-container" style={{paddingTop: this.state.paddingTop}}>
+    return <div ref="clipContainer" className="clip-container" style={{paddingTop: this.state.paddingTop}} onClick={this.onClickClose.bind(this)}>
       { closeButton }
       <a href={ clip.image.url }>
         { node }
@@ -461,7 +461,7 @@ class Frame extends React.Component {
               marginLeft: "7px",
               position: "relative",
               top: "4px"}}
-              src={ this.props.staticLink("img/clock.png") } />
+              src={ this.props.staticLink("img/clock.svg") } />
             { timeDiff } { expiresDiff }
           </div>
           <div className="more-shot-actions">
