@@ -143,8 +143,8 @@ var mousedown = watchFunction(function (event) {
     // Modified click
     return;
   }
-  startX = event.pageX;
-  startY = event.pageY;
+  startX = truncateX(event.pageX);
+  startY = truncateY(event.pageY);
   document.addEventListener("mousemove", mousemove, false);
   document.addEventListener("mouseup", mouseup, false);
   event.stopPropagation();
@@ -158,8 +158,8 @@ mouseup = watchFunction(function (event) {
   document.removeEventListener("mouseup", mouseup, false);
   if (! startX) {
     // only do this if we moved enough...
-    cornerX = event.pageX;
-    cornerY = event.pageY;
+    cornerX = truncateX(event.pageX);
+    cornerY = truncateY(event.pageY);
     render();
     reportSelection("selection");
   } else {
@@ -179,10 +179,30 @@ mousemove = watchFunction(function (event) {
       return;
     }
   }
-  cornerX = event.pageX;
-  cornerY = event.pageY;
+  cornerX = truncateX(event.pageX);
+  cornerY = truncateY(event.pageY);
   render();
 });
+
+function truncateX(x) {
+  if (x < 0) {
+    return 0;
+  } else if (x > document.documentElement.clientWidth) {
+    return document.documentElement.clientWidth;
+  } else {
+    return x;
+  }
+}
+
+function truncateY(y) {
+  if (y < 0) {
+    return 0;
+  } else if (y > document.documentElement.clientHeight) {
+    return document.documentElement.clientHeight;
+  } else {
+    return y;
+  }
+}
 
 // The <body> tag itself can have margins and offsets, which need to be used when
 // setting the position of the boxEl.
@@ -288,8 +308,8 @@ function deleteSelection() {
 function makeMousedown(el, movement) {
   return watchFunction(function (event) {
     event.stopPropagation();
-    var mousedownX = event.pageX;
-    var mousedownY = event.pageY;
+    var mousedownX = truncateX(event.pageX);
+    var mousedownY = truncateY(event.pageY);
     var start = getPos();
     function mousemove(moveEvent) {
       set(moveEvent);
