@@ -56,7 +56,7 @@ function showNotificationBar(shotcontext) {
   myShots.appendChild(preMyShots);
   let myShotsText = thebox.ownerDocument.createElement("span");
   myShotsText.className = "myshots-text";
-  myShotsText.textContent = "My shots";
+  myShotsText.textContent = "My Shots";
   myShots.appendChild(myShotsText);
   let postMyShots = thebox.ownerDocument.createElement("span");
   postMyShots.className = "post-myshots";

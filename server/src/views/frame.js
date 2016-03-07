@@ -69,14 +69,17 @@ class ShareButtons extends React.Component {
 class Clip extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {paddingTop: 66};
+    this.state = {
+      paddingTop: 66,
+      hidden: false
+    };
   }
 
   componentDidMount() {
-    let img = React.findDOMNode(this.refs.clipImage);
+    let image = React.findDOMNode(this.refs.clipImage);
     let onResize = () => {
       let windowHeight = window.innerHeight;
-      let paddingTop = Math.floor((windowHeight - img.height - 35) / 2);
+      let paddingTop = Math.floor((windowHeight - image.height - 35) / 2);
       if (paddingTop < 66) {
         paddingTop = 66;
       }
@@ -87,7 +90,15 @@ class Clip extends React.Component {
     onResize();
   }
 
+  onClickClose() {
+    this.setState({hidden: true});
+  }
+
   render() {
+    if (this.state.hidden) {
+      return <span />;
+    }
+
     let clip = this.props.clip,
       node = null;
 
@@ -97,7 +108,20 @@ class Clip extends React.Component {
       node = <img ref="clipImage" src={ clip.image.url } />;
     }
 
+    let closeButton = null;
+    if (this.props.showCloseButton) {
+      closeButton = <img
+        style={{
+          position: "absolute",
+          top: "81px",
+          right: "15px",
+          height: "32px",
+          width: "32px"}}
+        src={ this.props.staticLink("img/close.svg") }
+        onClick={ this.onClickClose.bind(this) }/>;
+    }
     return <div ref="clipContainer" className="clip-container" style={{paddingTop: this.state.paddingTop}}>
+      { closeButton }
       <a href={ clip.image.url }>
         { node }
       </a>
@@ -133,14 +157,14 @@ class TimeDiff extends React.Component {
       } else if (seconds > -60) {
         timeDiff = "in 1 minute";
       } else if (seconds > -60*60) {
-        timeDiff = `${Math.floor(seconds / -60)} minutes from now`;
+        timeDiff = `in ${Math.floor(seconds / -60)} minutes`;
       } else if (seconds > -60*60*24) {
-        timeDiff = `${Math.floor(seconds / (-60*60))} hours from now`;
+        timeDiff = `in ${Math.floor(seconds / (-60*60))} hours`;
       } else if (seconds > -60*60*48) {
         timeDiff = "tomorrow";
       } else {
         seconds -= 60*60*2; // 2 hours fudge time
-        timeDiff = `${Math.floor(seconds / (-60*60*24))} days from now`;
+        timeDiff = `in ${Math.floor(seconds / (-60*60*24))} days`;
       }
     }
     return <span title={this.dateString(this.props.date)}>{timeDiff}</span>;
@@ -236,6 +260,8 @@ class Frame extends React.Component {
   constructor(props) {
     super(props);
     this.state = {sharePanelDisplay: false, closePageshotBanner: false};
+    // Need to bind this so we can add/remove the event listener
+    this.unsharePanelHandler = this.unsharePanelHandler.bind(this);
   }
 
   closeGetPageshotBanner() {
@@ -251,7 +277,25 @@ class Frame extends React.Component {
   }
 
   onClickShareButton(e) {
-    this.setState({sharePanelDisplay: !this.state.sharePanelDisplay});
+    let show = ! this.state.sharePanelDisplay;
+    this.setState({sharePanelDisplay: show});
+    if (show) {
+      document.addEventListener("click", this.unsharePanelHandler, false);
+    } else {
+      document.removeEventListener("click", this.unsharePanelHandler, false);
+    }
+  }
+
+  unsharePanelHandler(e) {
+    let el = e.target;
+    while (el) {
+      if (el.id === "share-buttons-panel") {
+        // A click in the share panel itself
+        return;
+      }
+      el = el.parentNode;
+    }
+    this.onClickShareButton();
   }
 
   onClickDelete(e) {
@@ -309,7 +353,6 @@ class Frame extends React.Component {
     }
 
     let shot = this.props.shot;
-    let activeClipId = this.props.activeClipId;
     let shotId = this.props.shot.id;
     let shotDomain = this.props.shot.url; // FIXME: calculate
 
@@ -321,7 +364,7 @@ class Frame extends React.Component {
       let clipId = clipNames[i];
       let clip = shot.getClip(clipId);
 
-      clips.push(<Clip staticLink={this.props.staticLink} key={ clipId } clip={ clip }  shotId={ shotId } shotDomain={ shotDomain } />);
+      clips.push(<Clip staticLink={this.props.staticLink} key={ clipId } clip={ clip }  shotId={ shotId } shotDomain={ shotDomain } showCloseButton={ this.props.shot.showPage } />);
     }
 
     let linkTextShort = shot.urlDisplay;
@@ -370,7 +413,7 @@ class Frame extends React.Component {
       shareButtons = <ShareButtons
                 large={ true }
                 clipUrl={ shot.viewUrl }
-                { ...this.props } />
+                { ...this.props } />;
     }
 
     let trashOrFlagButton = null;
@@ -385,7 +428,7 @@ class Frame extends React.Component {
     }
 
     let myShotsHref = "/shots";
-    let myShotsText = "My Shots";
+    let myShotsText = <span style={{backgroundImage: `url(${this.props.staticLink("img/arrow-right.svg")})`, backgroundRepeat: "no-repeat", backgroundPosition: "100% 50%", backgroundSize: "8px 14px", paddingRight: "18px", paddingLeft: "20px", fontSize: "110%"}}>My Shots</span>;
     if (!this.props.isOwner) {
       myShotsText = <span>
         <span>
@@ -409,16 +452,15 @@ class Frame extends React.Component {
             </button>
           </a>
           <span className="shot-title"> { shot.title } </span>
-          <span className="shot-subtitle">
-            <span> – Saved from </span><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a>
-          </span>
           <div className="shot-subtitle">
+            <span>Saved from </span><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a>
             <img height="16" width="16" style={{
               marginRight: "7px",
+              marginLeft: "7px",
               position: "relative",
               top: "4px"}}
               src={ this.props.staticLink("img/clock.png") } />
-            saved { timeDiff } { expiresDiff }
+            { timeDiff } { expiresDiff }
           </div>
           <div className="more-shot-actions">
             {this.props.hasSavedShot ?
@@ -478,8 +520,6 @@ class ExpireWidget extends React.Component {
   render() {
     if (this.state.isChangingExpire) {
       return this.renderChanging();
-    } else if (this.props.expireTime === null) {
-      return this.renderNoExpiration();
     } else {
       return this.renderNormal();
     }
@@ -507,25 +547,28 @@ class ExpireWidget extends React.Component {
     );
   }
 
-  renderNoExpiration() {
-    return (
-      <span>
-        does not expire
-        &#8195;<span className="link-button" onClick={this.clickChangeExpire.bind(this)}>change</span>
-      </span>
-    );
-  }
-
   renderNormal() {
-    let desc = "expires";
-    if (this.props.expireTime < Date.now()) {
-      desc = "expired";
+    let button;
+    if (this.props.expireTime === null) {
+      button = <span>does not expire</span>;
+    } else {
+      let desc = "expires";
+      if (this.props.expireTime < Date.now()) {
+        desc = "expired";
+      }
+      button = <span>
+        {desc} <TimeDiff date={this.props.expireTime} simple={this.props.simple} />
+      </span>;
     }
     return (
-      <span>
-        {desc} <TimeDiff date={this.props.expireTime} simple={this.props.simple} />
-        &#8195;<span className="link-button" onClick={this.clickChangeExpire.bind(this)}>change</span>
-      </span>
+      <button onClick={this.clickChangeExpire.bind(this)} style={{
+        border: "1px solid #999",
+        borderRadius: "3px",
+        backgroundColor: "#f2f2f2",
+        color: "#858585"
+      }}>
+        {button}
+      </button>
     );
   }
 
