@@ -187,15 +187,11 @@ const ShotContext = Class({
       contentScriptFile: [
         self.data.url("error-utils.js"),
         self.data.url("annotate-position.js"),
-        self.data.url("capture-selection.js"),
         self.data.url("shooter-interactive-worker.js")],
       contentScriptOptions: {
         "inline-selection.css": self.data.url("inline-selection.css")
       }
     }));
-    this.interactiveWorker.port.on("ready", watchFunction(function () {
-      this.interactiveWorker.port.emit("setState", "selection");
-    }).bind(this));
     this.interactiveWorker.port.on("select", watchFunction(function (pos, shotText, captureType) {
       // FIXME: there shouldn't be this disconnect between arguments to captureTab
       var info = {
@@ -268,7 +264,6 @@ const ShotContext = Class({
         let passwordFields = attrs.passwordFields;
         delete attrs.passwordFields;
         this.checkIfPublic({passwordFields});
-        this.interactiveWorker.port.emit("extractedData", attrs);
         this.shot.update(attrs);
       }, this)));
       promises.push(watchPromise(this.makeFullScreenThumbnail().then((screenshot) => {
@@ -350,7 +345,7 @@ const ShotContext = Class({
     this._deregisters = null;
     if (this.interactiveWorker) {
       try {
-        this.interactiveWorker.port.emit("setState", "cancel");
+        this.interactiveWorker.port.emit("cancel");
       } catch (e) {
         // Ignore... it's just a best effort to cancel the state
       }
