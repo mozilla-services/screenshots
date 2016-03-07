@@ -145,7 +145,7 @@ exports.hideNotificationBar = hideNotificationBar;
 var shootButton = ActionButton({
   id: "pageshot-shooter",
   label: "Make shot",
-  icon: self.data.url("icons/pageshot-camera-empty.svg"),
+  icon: self.data.url("icons/pageshot-mac-32px.png"),
   onClick: watchFunction(function () {
     hideInfoPanel();
     let shotContext = shooter.ShotContext(exports.getBackend());
