@@ -213,9 +213,6 @@ exports.main = function (options) {
   require("./user").initialize(exports.getBackend(), options.loadReason).catch((error) => {
     console.warn("Failed to log in to server:", error+"");
   });
-  /*
-  require("./recall").initialize(hideInfoPanel, showTour);
-  */
 };
 
 exports.onUnload = function (reason) {

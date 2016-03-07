@@ -99,14 +99,6 @@ function resetPageMod(backend) {
         user.deleteEverything();
       }));
 
-      worker.port.on("contentTourComplete", watchFunction(function () {
-        const main = require("./main");
-        main.showInfoPanel(
-          "toggle-button--jid1-neeaf3sahdkhpajetpack-pageshot-recall",
-          "Recall Panel",
-          "Click the recall button to access all the shots you have created.");
-      }));
-
       worker.port.on("setProfileState", watchFunction(function ({ nickname, avatarurl }) {
         user.updateProfile(backend, { nickname, avatarurl }).then(newProfile => {
           worker.port.emit("profile", newProfile);
