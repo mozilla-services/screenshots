@@ -86,7 +86,7 @@ class Clip extends React.Component {
         paddingTop = 66;
       }
       this.setState({paddingTop});
-    }
+    };
     window.addEventListener("resize", onResize, true);
 
     onResize();
@@ -94,6 +94,20 @@ class Clip extends React.Component {
 
   onClickClose() {
     this.setState({hidden: true});
+  }
+
+  onClickCloseBackground(event) {
+    if (event.target.tagName == "A") {
+      // A click on the clip itself
+      return;
+    }
+    // FIXME: totally hacky way to handle this,
+    // but suppress the click action when the share panel
+    // is open:
+    if (document.getElementById("share-buttons-panel")) {
+      return;
+    }
+    this.onClickClose();
   }
 
   render() {
@@ -122,7 +136,7 @@ class Clip extends React.Component {
         src={ this.props.staticLink("img/close.svg") }
         onClick={ this.onClickClose.bind(this) }/>;
     }
-    return <div ref="clipContainer" className="clip-container" style={{paddingTop: this.state.paddingTop}} onClick={this.onClickClose.bind(this)}>
+    return <div ref="clipContainer" className="clip-container" style={{paddingTop: this.state.paddingTop}} onClick={this.onClickCloseBackground.bind(this)}>
       { closeButton }
       <a href={ clip.image.url }>
         { node }
