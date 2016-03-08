@@ -774,9 +774,10 @@ contentApp.get("/proxy", function (req, res) {
       headers[passthrough] = req.headers[passthrough];
     }
   }
+  let host = url.host.split(":")[0];
   let subreq = httpModule.request({
     protocol: url.protocol,
-    host: url.host,
+    host: host,
     port: url.port,
     method: "GET",
     path: url.path,

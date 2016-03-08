@@ -469,13 +469,13 @@ function urlDomainForId(urlString) {
   return domain;
 }
 
-exports.autoShot = function (tab, backend, backendUrl) {
+exports.autoShot = function (tab, backend, backendUrl, save) {
   /* Runs the javascript cleanup utilities on the tab, takes a screenshot,
    * creates a shot instance, and pushes the data to the backend server without
    * asking anything via UI
    */
 
-  watchPromise(callScript(
+  return watchPromise(callScript(
     tab,
     self.data.url("framescripts/add-ids.js"),
     "pageshot@addIds",
@@ -488,21 +488,21 @@ exports.autoShot = function (tab, backend, backendUrl) {
       return;
     }
     var prefInlineCss = require("sdk/simple-prefs").prefs.inlineCss;
-    console.debug('CSS? PREF'.replace('PREF', prefInlineCss));
     let deviceInfo = getDeviceInfo();
     if (! deviceInfo) {
       throw new Error("Could not get device authentication information");
     }
 
-    var shot = new Shot(
-      backend,
-      backendUrl,
-      { "url": tab.url, "deviceId": deviceInfo.deviceId }
-    );
+    var shot = new Shot(backend, backendUrl, {
+      url: tab.url,
+      deviceId: deviceInfo.deviceId,
+      showPage: true
+    });
 
     // Heavy lifting happens here
     var promises = [];
     promises.push(watchPromise(extractWorker(tab)).then(watchFunction(function (attrs) {
+      delete attrs.passwordFields;
       shot.update(attrs);
     }, this)));
     promises.push(watchPromise(
@@ -520,9 +520,15 @@ exports.autoShot = function (tab, backend, backendUrl) {
         shot.update(attrs);
       }, this)));
 
-    watchPromise(allPromisesComplete(promises).then((function () {
-      shot.save();
+    return watchPromise(allPromisesComplete(promises).then((function () {
       tab.close();
+      if (save) {
+        return shot.save().then(() => {
+          return shot;
+        });
+      } else {
+        return shot;
+      }
     }).bind(this)));
   })));
 };
