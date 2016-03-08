@@ -16,7 +16,7 @@ const shooter = require("./shooter");
 const { prefs } = require('sdk/simple-prefs');
 const helperworker = require("./helperworker");
 const { ActionButton } = require('sdk/ui/button/action');
-const { watchFunction } = require("./errors");
+const { watchFunction, watchPromise } = require("./errors");
 const {Cu, Cc, Ci} = require("chrome");
 const winutil = require("sdk/window/utils");
 const req = require("./req");
@@ -29,7 +29,6 @@ require("./headless").init();
 Cu.import("resource:///modules/UITour.jsm");
 
 let loadReason = null;
-let PanelContext;
 let initialized = false;
 
 function getNotificationBox(browser) {
@@ -48,39 +47,54 @@ function showNotificationBar(shotcontext) {
   }
   let thebox = nb.notificationbox();
   let fragment = thebox.ownerDocument.createDocumentFragment();
-  let node = thebox.ownerDocument.createElement("button");
-  node.textContent = "My shots";
-  node.onclick = function () {
-    tabs.open(exports.getBackend() + "/shots");
-  };
-  node.style.textAlign = "center";
-  node.style.verticalAlign = "middle";
-  node.style.fontWeight = "normal";
-  node.style.borderRadius = "4px";
-  node.style.background = "#fbfbfb";
-  node.style.color = "black";
-  let node2 = thebox.ownerDocument.createElement("span");
-  node2.style.border = "none";
-  node2.style.marginLeft = "10px";
-  node2.appendChild(thebox.ownerDocument.createTextNode("Select part of the page to save, or save full page without making a selection."));
-  fragment.appendChild(node);
-  fragment.appendChild(node2);
+  let myShots = thebox.ownerDocument.createElement("button");
+  myShots.className = "myshots";
+  myShots.setAttribute("label", "myshots");
+  let preMyShots = thebox.ownerDocument.createElement("span");
+  preMyShots.className = "pre-myshots";
+  myShots.appendChild(preMyShots);
+  let myShotsText = thebox.ownerDocument.createElement("span");
+  myShotsText.className = "myshots-text";
+  myShotsText.textContent = "My Shots";
+  myShots.appendChild(myShotsText);
+  let postMyShots = thebox.ownerDocument.createElement("span");
+  postMyShots.className = "post-myshots";
+  myShots.appendChild(postMyShots);
+  myShots.className = "myshots";
+  myShots.onclick = watchFunction(function () {
+    hideNotificationBar();
+    setTimeout(() => {
+      tabs.open(exports.getBackend() + "/shots");
+    });
+  });
+  let messageNode = thebox.ownerDocument.createElement("span");
+  messageNode.style.border = "none";
+  messageNode.style.marginLeft = "10px";
+  messageNode.appendChild(thebox.ownerDocument.createTextNode("Select part of the page to save, or save full page without making a selection."));
+  fragment.appendChild(myShots);
+  fragment.appendChild(messageNode);
   nb.banner({
     id: "pageshot-notification-bar",
     msg: fragment,
+    callback: function (message) {
+      // Only message should be AlertClose
+      if (message !== "removed") {
+        console.warn("Unexpected message on notificationbox:", message);
+        return;
+      }
+      shotcontext.destroy();
+    },
     buttons: [
       nb.buttonMaker.yes({
         label: "Save",
         callback: function(notebox, button) {
           hideNotificationBar();
           setTimeout(function () {
-            shotcontext.uploadShot().then(() => {
+            watchPromise(shotcontext.uploadShot().then(() => {
               shotcontext.openInNewTab();
-            });
+              shotcontext.destroy();
+            }));
             shotcontext.copyRichDataToClipboard();
-            // Calling selectClip with no clip id has the side effect of sending a "cancel" message to the shot worker
-            shotcontext.panelHandlers.selectClip.call(shotcontext);
-            PanelContext.removeContext(shotcontext);
           }, 0);
         }
       }),
@@ -89,8 +103,7 @@ function showNotificationBar(shotcontext) {
         callback: function(notebox, button) {
           hideNotificationBar();
           setTimeout(function () {
-            // Calling selectClip with no clip id has the side effect of sending a "cancel" message to the shot worker
-            shotcontext.panelHandlers.selectClip.call(shotcontext);
+            shotcontext.destroy();
           }, 0);
         }
       })
@@ -118,7 +131,7 @@ function showNotificationBar(shotcontext) {
 
 function hideNotificationBar(browser) {
   let box = getNotificationBox(browser);
-  let notification = box.getNotificationWithValue("pageshot-notification-banner");
+  let notification = box.getNotificationWithValue("pageshot-notification-bar");
   let removed = false;
   if (notification) {
     box.removeNotification(notification);
@@ -127,157 +140,20 @@ function hideNotificationBar(browser) {
   return removed;
 }
 
-// FIXME: this button should somehow keep track of whether there is an active shot associated with this page
+exports.hideNotificationBar = hideNotificationBar;
+
 var shootButton = ActionButton({
   id: "pageshot-shooter",
   label: "Make shot",
-  icon: self.data.url("icons/pageshot-camera-empty.svg"),
+  icon: self.data.url("icons/pageshot.svg"),
   onClick: watchFunction(function () {
     hideInfoPanel();
-    PanelContext.onShootButtonClicked();
+    let shotContext = shooter.ShotContext(exports.getBackend());
+    showNotificationBar(shotContext);
     req.sendEvent("addon", "click-shot-button");
   })
 });
 exports.shootButton = shootButton;
-
-/** PanelContext manages the ShotContext (defined in shooter.js) that
-    is associated with the panel.  Because the panel is a singleton,
-    and any tab may have its own shot associated with it, we have to
-    manage these centrally.
-
-    This instantiates ShotContext as necessary.  It also routes all
-    messages from the panel (data/shoot-panel.js) to the individual
-    ShotContext.
-    */
-PanelContext = {
-  _contexts: {},
-  _activeContext: null,
-  _stickyPanel: false,
-
-  /** Hides the given ShotContext; error if you try to hide when
-      you are not active */
-  hide: function (shotContext) {
-    if (this._activeContext != shotContext) {
-      throw new Error("Hiding wrong shotContext");
-    }
-    this._activeContext = null;
-    hideNotificationBar();
-    shootButton.checked = false;
-  },
-
-  shootPanelHidden: function () {
-    if (this._activeContext) {
-      this._activeContext.isHidden();
-    }
-    if (this._stickyPanel && this._activeContext) {
-      require("sdk/timers").setTimeout(() => {
-        if (this._activeContext) {
-          this.show(this._activeContext);
-        }
-      }, 5000);
-    }
-  },
-
-  shootPanelShown: function () {
-    if (this._activeContext) {
-      this._activeContext.isShowing();
-    }
-  },
-
-  toggleStickyPanel: function () {
-    this._stickyPanel = ! this._stickyPanel;
-    require("sdk/notifications").notify({
-      title: "Sticky",
-      text: this._stickyPanel ? "Sticky panel debugging ON" : "Sticky panel debugging OFF",
-    });
-  },
-
-  /** Show a ShotContext, hiding any other if necessary */
-  show: function (shotContext) {
-    if (this._activeContext === shotContext) {
-      showNotificationBar(shotContext);
-      shotContext.isShowing();
-      return;
-    }
-    if (this._activeContext) {
-      throw new Error("Another context (" + this._activeContext.id + ") is showing");
-    }
-    this._activeContext = shotContext;
-    showNotificationBar(shotContext);
-    shotContext.isShowing();
-    shootButton.checked = true;
-    this.updateShot(this._activeContext, this._activeContext.shot.asJson());
-  },
-
-  /** Fired whenever the toolbar button is clicked, this activates
-      a ShotContext, or creates a new one, or hides the panel */
-  onShootButtonClicked: function () {
-    /* FIXME: remove, once I'm sure the panel really works right...
-    console.info(
-      "onShootButtonClicked.  activeContext:",
-      this._activeContext ? this._activeContext.tabUrl : "none",
-      this._activeContext ? this._activeContext.couldBeActive() : "",
-      "any good contexts?",
-      Object.keys(this._contexts).map((function (id) {
-        return this._contexts[id];
-      }).bind(this)).filter(function (context) {
-        return context.couldBeActive();
-      }).map(function (context) {
-        return context.tabUrl;
-      })
-    ); */
-    if (! this._activeContext) {
-      for (let id in this._contexts) {
-        let shotContext = this._contexts[id];
-        if (shotContext.couldBeActive()) {
-          this.show(shotContext);
-          return;
-        }
-      }
-      let shotContext = shooter.ShotContext(this, exports.getBackend());
-      this.addContext(shotContext);
-      this.show(shotContext);
-    } else {
-      if (this._activeContext.couldBeActive()) {
-        showNotificationBar(this._activeContext);
-      }
-    }
-  },
-
-  /** Called whenever the underlying data/model has been changed
-      for a shot */
-  updateShot: function (shotContext) {
-    if (this._activeContext !== shotContext) {
-      return;
-    }
-  },
-
-  /** Called when the panel is switching from simple to edit view or vice versa */
-  setEditing: function (editing) {
-    this._activeContext.isEditing = editing;
-    if (editing) {
-      req.sendEvent("addon", "click-short-panel-edit");
-    }
-  },
-
-  /** Called when a ShotContext is going away, to remove its
-      registration with this PanelContext */
-  removeContext: function (shotContext) {
-    if (! this._contexts[shotContext.id]) {
-      // FIXME: this sometimes throws on browser shutdown,
-      // not sure why.  Something must be double-destroying.
-      console.warn("No such context:", shotContext.id);
-    }
-    if (this._activeContext == shotContext) {
-      this.hide(shotContext);
-    }
-    delete this._contexts[shotContext.id];
-  },
-
-  addContext: function (shotContext) {
-    this._contexts[shotContext.id] = shotContext;
-  },
-};
 
 /** We use backendOverride to temporarily change the backend with a
     command-line argument (as used in the `run` script), otherwise
@@ -291,14 +167,14 @@ exports.getBackend = function () {
 let infoPanelShownForWindow = null;
 
 exports.showInfoPanel = function showInfoPanel(magicCookie, title, description) {
-  let win = winutil.getMostRecentBrowserWindow();
+  /*let win = winutil.getMostRecentBrowserWindow();
   let target = {
     node: win.document.getElementById(magicCookie),
     targetName: magicCookie
   };
   UITour.showInfo(win, null, target, title, description);
   UITour.showHighlight(win, target, "wobble");
-  infoPanelShownForWindow = win;
+  infoPanelShownForWindow = win;*/
 };
 
 function showTour(newTab) {
@@ -337,15 +213,13 @@ exports.main = function (options) {
   require("./user").initialize(exports.getBackend(), options.loadReason).catch((error) => {
     console.warn("Failed to log in to server:", error+"");
   });
-  /*
-  require("./recall").initialize(hideInfoPanel, showTour);
-  */
 };
 
 exports.onUnload = function (reason) {
   if (reason == "shutdown") {
     return;
   }
+  hideNotificationBar();
   console.info("Unloading PageShot framescripts");
   require("./framescripter").unload();
   console.info("Informing site of unload reason:", reason);

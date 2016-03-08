@@ -66,7 +66,9 @@ function resetPageMod(backend) {
       }));
 
       worker.port.on("requestSavedShot", watchFunction(function (id) {
-        worker.port.emit("savedShotData", shotstore.getShot(id));
+        let data = Object.assign({}, shotstore.getShot(id));
+        delete data.created;
+        worker.port.emit("savedShotData", data);
       }));
 
       worker.port.on("removeSavedShot", watchFunction(function (id) {
@@ -95,14 +97,6 @@ function resetPageMod(backend) {
 
       worker.port.on("deleteEverything", watchFunction(function () {
         user.deleteEverything();
-      }));
-
-      worker.port.on("contentTourComplete", watchFunction(function () {
-        const main = require("./main");
-        main.showInfoPanel(
-          "toggle-button--jid1-neeaf3sahdkhpajetpack-pageshot-recall",
-          "Recall Panel",
-          "Click the recall button to access all the shots you have created.");
       }));
 
       worker.port.on("setProfileState", watchFunction(function ({ nickname, avatarurl }) {

@@ -27,59 +27,10 @@ exports.showTourOnNextLinkClick = function() {
   shouldShowTour = true;
 };
 
-// If a page is in history for less time than this, we ignore it
-// (probably a redirect of some sort):
-var MIN_PAGE_VISIT_TIME = 5000; // 5 seconds
 const RANDOM_STRING_LENGTH = 16;
 
 function escapeForHTML(text) {
   return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
-}
-
-/** Takes `tab.history` and returns a list suitable for uploading.  This removes
-    duplicate items, culls pages that are too brief, and filters out some
-    pages like about: pages that shouldn't show up. */
-function processHistory(history, tab) {
-  var seen = {};
-
-  function addHistory(histList, previousTab) {
-    if (! histList) {
-      return;
-    }
-    for (var i=0; i<histList.length; i++) {
-      var item = histList[i];
-      var next = histList[i+1];
-      if (previousTab) {
-        item = {};
-        for (var name in histList[i]) {
-          item[name] = histList[i][name];
-        }
-        item.previousTab = true;
-      }
-      if (item.url.indexOf("about:") === 0) {
-        continue;
-      }
-      if (item.url == tab.url) {
-        continue;
-      }
-      if (next && next.opened - item.opened < MIN_PAGE_VISIT_TIME) {
-        continue;
-      }
-      if (item.title == item.url) {
-        // Probably an item without a title
-        // often this is a redirect of some sort, not a real page
-        continue;
-      }
-      if (seen[item.url]) {
-        continue;
-      }
-      seen[item.url] = true;
-      history.add(item);
-    }
-  }
-
-  addHistory(tab.openedFromHistory, true);
-  addHistory(tab.history, false);
 }
 
 /** Runs the extract worker on the given tab, and returns a promise that
@@ -131,7 +82,7 @@ function extractWorker(tab, timeLimit) {
 /** Represents one shot action */
 const ShotContext = Class({
   _idGen: 0,
-  initialize: function (panelContext, backend) {
+  initialize: function (backend) {
     this.id = ++ShotContext._idGen;
     this.tab = tabs.activeTab;
     this.tabUrl = this.tab.url;
@@ -146,23 +97,16 @@ const ShotContext = Class({
         url: this.tabUrl,
         deviceId: deviceInfo.deviceId
       });
-    this.activeClipName = null;
     this._deregisters = [];
-    this.panelContext = panelContext;
     this._workerActive = false;
-    // FIXME: this is to work around a bug where deactivate sometimes isn't called
-    this._activateWorkaround = (function (tab) {
-      if (tab != this.tab && this.panelContext._activeContext == this) {
-        panelContext.hide(this);
-      }
-    }).bind(this);
-    tabs.on("activate", this._activateWorkaround);
     this.watchTab("pageshow", function (tab) {
       // We'll call any pageshow as a sign that at least we reloaded, and should
       // stop the pageshot
+      // FIXME: determine if the notification box is just automatically hidden in this case
       this.destroy();
     });
     this.watchTab("close", function () {
+      // FIXME: determine if the notification box is just automatically hidden in this case
       this.destroy();
     });
     this.collectInformation();
@@ -237,23 +181,17 @@ const ShotContext = Class({
     });
   },
 
-  /** Activate the worker.  Note that on reload the same url may be active,
-      but our worker will be gone. */
+  /** Activate the worker that handles selection */
   _activateWorker: function () {
-    // FIXME: do I need to do anything with old workers?
     this.interactiveWorker = watchWorker(this.tab.attach({
       contentScriptFile: [
         self.data.url("error-utils.js"),
         self.data.url("annotate-position.js"),
-        self.data.url("capture-selection.js"),
         self.data.url("shooter-interactive-worker.js")],
       contentScriptOptions: {
         "inline-selection.css": self.data.url("inline-selection.css")
       }
     }));
-    this.interactiveWorker.port.on("ready", watchFunction(function () {
-      this.interactiveWorker.port.emit("setState", "selection");
-    }).bind(this));
     this.interactiveWorker.port.on("select", watchFunction(function (pos, shotText, captureType) {
       // FIXME: there shouldn't be this disconnect between arguments to captureTab
       var info = {
@@ -266,13 +204,6 @@ const ShotContext = Class({
         let clip = null;
         if (this.activeClipName) {
           clip = this.shot.getClip(this.activeClipName);
-          if (clip && clip.text && captureType == "auto") {
-            // Don't overwrite a text clip with an auto
-            return;
-          }
-          if (clip && clip.text) {
-            clip.text = null;
-          }
         }
         let data = {
           createdDate: Date.now(),
@@ -290,52 +221,10 @@ const ShotContext = Class({
           this.activeClipName = this.shot.addClip(data);
         }
         this.updateShot();
-        this.panelContext.show(this);
       }).bind(this)));
-    }, this));
-    this.interactiveWorker.port.on("noAutoSelection", watchFunction(function () {
-      this.interactiveWorker.port.emit("cancel");
-      watchPromise(this.makeScreenshot().then((function (clipData) {
-        if (this.activeClipName) {
-          let clip = this.shot.getClip(this.activeClipName);
-          clip.image = clipData.image;
-        } else {
-          this.activeClipName = this.shot.addClip(clipData);
-        }
-        this.updateShot();
-        this.panelContext.show(this);
-      }).bind(this)));
-    }, this));
-    function makeTextSelection(textSelection) {
-      if (this.activeClipName){
-        let c = this.shot.getClip(this.activeClipName);
-        if (c.text === undefined) {
-          this.activeClipName = this.shot.addClip({
-            createdDate: Date.now(),
-            text: textSelection
-          });
-        } else {
-          c.text = textSelection;
-        }
-      } else {
-        this.activeClipName = this.shot.addClip({
-          createdDate: Date.now(),
-          text: textSelection
-        });
-      }
-      this.updateShot();
-      this.panelContext.show(this);
-    }
-    function makeNewTextSelection(textSelection) {
-      this.activeClipName = null;
-      makeTextSelection.call(this, textSelection);
-    }
-    this.interactiveWorker.port.on("makeNewTextSelection", watchFunction(makeNewTextSelection, this));
-    this.interactiveWorker.port.on("textSelection", watchFunction(makeTextSelection, this));
-    this.interactiveWorker.port.on("visibleSelection", watchFunction(function() {
-      this.panelHandlers.setCaptureType.call(this, "visible");
     }, this));
     this.interactiveWorker.port.on("popstate", watchFunction(function (newUrl) {
+      // Treat window.history popstate as a reload, and stop the shot
       this.destroy();
     }, this));
     this._pendingScreenPositions = [];
@@ -348,178 +237,9 @@ const ShotContext = Class({
     this._workerActive = true;
   },
 
-  /** Called by PanelContext.show() when this show is showing */
-  isShowing: function () {
-    if (! this._workerActive) {
-      this._activateWorker();
-    }
-    this.interactiveWorker.port.emit("isShowing");
-    if (this.activeClipName) {
-      let clip = this.shot.getClip(this.activeClipName);
-      if (clip.image) {
-        this.interactiveWorker.port.emit("restore", clip.image.captureType, clip.image.location, false);
-      }
-    }
-  },
-
-  /** True if it would be reasonable to open this context's panel */
-  couldBeActive: function () {
-    if (tabs.activeTab == this.tab && this.tab.url == this.tabUrl) {
-      return true;
-    }
-    return false;
-  },
-
-  openInNewTab: function(eventSource) {
-    let firstClipName = this.shot.clipNames()[0];
-    let urlToOpen = this.shot.viewUrl;
-    if (firstClipName) {
-      urlToOpen += "#clip=" + firstClipName;
-    }
-    this.panelHandlers.openLink(urlToOpen, "startup", eventSource);
-  },
-
-  /** These are methods that are called by the PanelContext based on messages from the panel */
-  panelHandlers: {
-    addComment: function (comment) {
-      let clip;
-      if (this.activeClipName) {
-        clip = this.shot.getClip(this.activeClipName);
-      }
-      let commentObject = {
-        // FIXME: proper user
-        user: "unknown",
-        createdDate: Date.now(),
-        text: comment
-      };
-      if (clip) {
-        if (clip.comments.length) {
-          commentObject = clip.comments[0].asJson();
-          commentObject.text = comment;
-          clip.updateComment(0, commentObject);
-        } else {
-          clip.addComment(commentObject);
-        }
-      } else {
-        if (this.shot.comments.length) {
-          commentObject = this.shot.comments[0].asJson();
-          commentObject.text = comment;
-          this.shot.updateComment(0, commentObject);
-        } else {
-          this.shot.addComment(commentObject);
-        }
-      }
-      this.updateShot();
-      if (comment.length) {
-        sendEvent("addon", "add-comment");
-      } else {
-        sendEvent("addon", "clear-comment");
-      }
-    },
-    copyImage: function (activeClipName) {
-      let clip = this.shot.getClip(activeClipName);
-      clipboard.set(clip.image.url, "image");
-      notifications.notify({
-        title: "Image Copied",
-        text: "Your shot has been copied to the clipboard.",
-        iconURL: self.data.url("../data/copy.png")
-      });
-      sendEvent("addon", "click-copy-image");
-    },
-    copyRich: function (activeClipName) {
-      this.copyRichDataToClipboard(activeClipName);
-      sendEvent("addon", "click-copy-rich");
-    },
-    shareButton: function (whichButton, eventSource) {
-      sendEvent("addon", `click-share-button-${whichButton}-${eventSource}`);
-    },
-    openLink: function (link, loadReason, eventSource) {
-      if (loadReason === "install" || shouldShowTour) {
-        shouldShowTour = false;
-        link += "?showIntro=true";
-      }
-      tabs.open(link);
-      sendEvent("addon", `click-open-link-${eventSource}`);
-    },
-    setEditing: function(editing) {
-      this.panelContext.setEditing(editing);
-    },
-    setCaptureType: function (type) {
-      if (type === "visible") {
-        this.interactiveWorker.port.emit("setState", "visible");
-        watchPromise(this.makeScreenshot().then((imgData) => {
-          let clip;
-          if (this.activeClipName) {
-            clip = this.shot.getClip(this.activeClipName);
-          }
-          if (clip) {
-            clip.image = imgData.image;
-          } else {
-            this.activeClipName = this.shot.addClip(imgData);
-          }
-          this.updateShot();
-        }));
-      } else if (type === "selection") {
-        this.interactiveWorker.port.emit("setState", "selection");
-        this.panelContext.hide(this);
-      } else if (type === "auto") {
-        this.interactiveWorker.port.emit("setState", "auto");
-      } else if (type === "text") {
-        this.interactiveWorker.port.emit("setState", "text");
-        this.panelContext.hide(this);
-      } else {
-        throw new Error("UnexpectedType: " + type);
-      }
-    },
-    addClip: function (type) {
-      this.activeClipName = null;
-      this.panelHandlers.setCaptureType.call(this, type);
-      sendEvent("addon", `click-add-clip-${type}`);
-    },
-    deleteClip: function (clipId) {
-      let ids = this.shot.clipNames();
-      let index = ids.indexOf(clipId) - 1;
-      this.shot.delClip(clipId);
-      if (index < 0) {
-        index = 0;
-      }
-      ids = this.shot.clipNames();
-      if (! ids.length) {
-        this.activeClipName = null;
-      } else {
-        this.activeClipName = ids[index];
-      }
-      this.panelHandlers.selectClip.call(this, this.activeClipName);
-      sendEvent("addon", "click-delete-clip");
-    },
-    selectClip: function (clipId) {
-      this.activeClipName = clipId;
-      if (clipId) {
-        let clip = this.shot.getClip(clipId);
-        if (clip.image && clip.image.captureType !== "visible") {
-          this.interactiveWorker.port.emit("restore", clip.image.captureType, clip.image.location, true);
-        } else if (clip.text === undefined) {
-          this.interactiveWorker.port.emit("setState", "cancel");
-        } else {
-          this.interactiveWorker.port.emit("setState", "cancelForText");
-        }
-      } else {
-        this.interactiveWorker.port.emit("setState", "cancel");
-      }
-      this.updateShot();
-      sendEvent("addon", "click-select-clip");
-    },
-    hide: function () {
-      this.panelContext.hide(this);
-    },
-    stickyPanel: function () {
-      this.panelContext.toggleStickyPanel();
-    }
-  },
-
-  /** Called by PanelContext when the panel is hidden */
-  isHidden: function () {
-    this.interactiveWorker.port.emit("setState", "maybeCancel");
+  openInNewTab: function() {
+    tabs.open(this.shot.viewUrl);
+    sendEvent("addon", `new-tab-after-save`);
   },
 
   /** Collects/extracts information from the tab: the screenshot, readable and
@@ -540,17 +260,10 @@ const ShotContext = Class({
       }
       var prefInlineCss = require("sdk/simple-prefs").prefs.inlineCss;
       var promises = [];
-      // Note: removed until we have some need or use for history in our shot pages:
-      /* processHistory(this.shot.history, this.tab); */
-      // FIXME: we no longer have screenshots in our model, not sure if we want them back or not:
-      /*promises.push(watchPromise(captureTab(this.tab, null, {h: 200, w: 350}).then((function (url) {
-        this.updateShot({screenshot: url}, true);
-      }.bind(this)))));*/
       promises.push(watchPromise(extractWorker(this.tab)).then(watchFunction(function (attrs) {
         let passwordFields = attrs.passwordFields;
         delete attrs.passwordFields;
         this.checkIfPublic({passwordFields});
-        this.interactiveWorker.port.emit("extractedData", attrs);
         this.shot.update(attrs);
       }, this)));
       promises.push(watchPromise(this.makeFullScreenThumbnail().then((screenshot) => {
@@ -569,9 +282,9 @@ const ShotContext = Class({
     }).bind(this)));
   },
 
-  /** Sets attributes on the shot, saves it, and updates the panel */
+  /** Called anytime the shot is updated; currently this has no side-effects so it does nothing */
   updateShot: function () {
-    this.panelContext.updateShot(this);
+    // Do nothing
   },
 
   /** Watches for the given event on this context's tab.  The callback will be
@@ -620,21 +333,25 @@ const ShotContext = Class({
 
   /** Renders this object unusable, and unregisters any handlers */
   destroy: function () {
-    for (let i=0; i<this._deregisters.length; i++) {
-      let item = this._deregisters[i];
-      this[item[0]].removeListener(item[1], item[2]);
+    if (this.tab === tabs.activeTab) {
+      require("./main").hideNotificationBar();
+    }
+    if (this._deregisters) {
+      for (let i=0; i<this._deregisters.length; i++) {
+        let item = this._deregisters[i];
+        this[item[0]].removeListener(item[1], item[2]);
+      }
     }
     this._deregisters = null;
-    this.panelContext.removeContext(this);
-    this.panelContext = null;
-    try {
-      this.interactiveWorker.port.emit("setState", "cancel");
-    } catch (e) {
-      // Ignore... it's just a best effort to cancel the state
+    if (this.interactiveWorker) {
+      try {
+        this.interactiveWorker.port.emit("cancel");
+      } catch (e) {
+        // Ignore... it's just a best effort to cancel the state
+      }
+      this.interactiveWorker.destroy();
     }
-    this.interactiveWorker.destroy();
     this.interactiveWorker = null;
-    tabs.removeListener("activate", this._activateWorkaround);
   }
 
 });
@@ -752,13 +469,13 @@ function urlDomainForId(urlString) {
   return domain;
 }
 
-exports.autoShot = function (tab, backend, backendUrl) {
+exports.autoShot = function (tab, backend, backendUrl, save) {
   /* Runs the javascript cleanup utilities on the tab, takes a screenshot,
    * creates a shot instance, and pushes the data to the backend server without
    * asking anything via UI
    */
 
-  watchPromise(callScript(
+  return watchPromise(callScript(
     tab,
     self.data.url("framescripts/add-ids.js"),
     "pageshot@addIds",
@@ -771,21 +488,21 @@ exports.autoShot = function (tab, backend, backendUrl) {
       return;
     }
     var prefInlineCss = require("sdk/simple-prefs").prefs.inlineCss;
-    console.debug('CSS? PREF'.replace('PREF', prefInlineCss));
     let deviceInfo = getDeviceInfo();
     if (! deviceInfo) {
       throw new Error("Could not get device authentication information");
     }
 
-    var shot = new Shot(
-      backend,
-      backendUrl,
-      { "url": tab.url, "deviceId": deviceInfo.deviceId }
-    );
+    var shot = new Shot(backend, backendUrl, {
+      url: tab.url,
+      deviceId: deviceInfo.deviceId,
+      showPage: true
+    });
 
     // Heavy lifting happens here
     var promises = [];
     promises.push(watchPromise(extractWorker(tab)).then(watchFunction(function (attrs) {
+      delete attrs.passwordFields;
       shot.update(attrs);
     }, this)));
     promises.push(watchPromise(
@@ -803,9 +520,15 @@ exports.autoShot = function (tab, backend, backendUrl) {
         shot.update(attrs);
       }, this)));
 
-    watchPromise(allPromisesComplete(promises).then((function () {
-      shot.save();
+    return watchPromise(allPromisesComplete(promises).then((function () {
       tab.close();
+      if (save) {
+        return shot.save().then(() => {
+          return shot;
+        });
+      } else {
+        return shot;
+      }
     }).bind(this)));
   })));
 };

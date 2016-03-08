@@ -22,6 +22,10 @@ body {
   box-sizing: border-box;
 }
 
+body.shot-index {
+  background-color: #eee;
+}
+
 #container {
   position: absolute;
   left: 0px;
@@ -302,12 +306,6 @@ a.sitelink, a.sitelink:visited {
   cursor: pointer;
 }
 
-.my-shots-button img {
-  position: relative;
-  top: 4px;
-  left: -8px;
-}
-
 .shot-title {
   padding-top: 2px;
   white-space: nowrap;
@@ -328,8 +326,8 @@ a.sitelink, a.sitelink:visited {
 }
 
 .upload-full-page {
-  background: #2fa8e1;
-  color: white;
+  background: #fcfcfc;
+  color: black;
   border-radius: 4px;
   border: 1px solid rgba(0,0,0,.35);
   height: 32px;
@@ -363,6 +361,17 @@ a.sitelink, a.sitelink:visited {
   vertical-align: middle;
 }
 
+.flag-button {
+  margin-left: 15px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,.35);
+  height: 32px;
+  background: #fcfcfc;
+  color: black;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
 #share-buttons-panel {
   position: fixed;
   top: 75px;
@@ -385,10 +394,20 @@ a.sitelink, a.sitelink:visited {
   padding: 7px;
 }
 
+#share-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+#share-buttons a {
+  margin: auto;
+}
+
 .copy-shot-link-input {
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   height: 22px;
+  width: 170px;
 }
 
 .copy-shot-link-button {
@@ -560,12 +579,12 @@ a.subheading-link {
   }
 
   .shot {
-    border-radius: 2px;
     padding: 0;
     box-shadow: 0 -2px 5px $shadow-color;
-    width: 200px;
-    height: 200px;
-    margin: 8px;
+    width: 280px;
+    height: 280px + 95px;
+    margin: 30px;
+    background-color: #fff;
   }
 
   .shot-text {
