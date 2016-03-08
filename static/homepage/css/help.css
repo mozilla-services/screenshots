@@ -1,217 +1,57 @@
 html {
-  background-color: #fbfbfb;
-}
-
-p {
-  font: caption;
-  font-size: 24px;
-  font-weight: 300;
-}
-
-.wrapper {
-  width: 480px;
-  margin: 0 auto;
+  background-color: #3a3b3e;
+  font-family: sans-serif;
   text-align: center;
 }
 
-.faces {
+@keyframes pageshot-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+#toolbar-buttons-arrow {
+  position: absolute;
+  top: 0px;
+  right: 53px;
+  text-align: right;
+  font-size: 48px;
+  color: rgb(255, 255, 0);
+  font-weight: bold;
+  animation-name: pageshot-pulse;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-iteration-count: 10;
+}
+
+ol {
+  text-align: left;
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+li {
+  padding: 7px;
+  clear: left;
+  vertical-align: middle;
+}
+
+li > img {
+  float: left;
+  vertical-align: middle;
+}
+
+button {
+  width: 150px;
+  height: 50px;
+  background-color: #29a0ff;
+}
+
+#container {
+  margin-top: 50px;
+  background-color: #efefef;
   display: inline-block;
-  margin: 3px;
-}
-
-.face-1 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 0;
-}
-
-.face-2 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -142px;
-}
-
-.face-3 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -284px;
-}
-
-.face-4 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -426px;
-}
-
-.face-5 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -568px;
-}
-
-.face-6 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -710px;
-}
-
-.face-7 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -852px;
-}
-
-.face-8 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -994px;
-}
-
-.face-9 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -1136px;
-}
-
-.face-10 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -1278px;
-}
-
-.face-11 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -1420px;
-}
-
-.face-12 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -1562px;
-}
-
-.face-13 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -1704px;
-}
-
-.face-14 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -1846px;
-}
-
-.face-15 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -1988px;
-}
-
-.face-16 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -2130px;
-}
-
-.face-17 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -2272px;
-}
-
-.face-18 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -2414px;
-}
-
-.face-19 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -2556px;
-}
-
-.face-20 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -2698px;
-}
-
-.face-21 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -2840px;
-}
-
-.face-22 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -2982px;
-}
-.face-23 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -3124px;
-}
-
-.face-24 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -3266px;
-}
-
-.face-25 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -3408px;
-}
-
-.face-26 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -3550px;
-}
-
-.face-27 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -3692px;
-}
-
-.face-28 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -3834px;
-}
-
-.face-29 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -3976px;
-}
-
-.face-30 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -4118px;
-}
-
-.face-31 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -4260px;
-}
-
-.face-32 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -4402px;
-}
-
-.face-33 {
-  width: 140px;
-  height: 140px;
-  background: url('/homepage/images/faces-color-sprite.jpg') 0 -4544px;
+  width: 300px;
+  border: 1px solid black;
+  border-radius: 4px;
 }
