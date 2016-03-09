@@ -90,6 +90,15 @@ class Clip extends React.Component {
     window.addEventListener("resize", onResize, true);
 
     onResize();
+
+    try {
+      window.sendToChild({
+        type: "displayClip",
+        clip: this.props.clip.asJson()
+      });
+    } catch (e) {
+      console.error("Error sending message to child", e);
+    }
   }
 
   onClickClose() {
@@ -275,9 +284,19 @@ class Head extends React.Component {
 class Frame extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {sharePanelDisplay: false, closePageshotBanner: false};
+    this.state = {
+      sharePanelDisplay: false,
+      closePageshotBanner: false,
+      closePrivacyNotice: false
+    };
     // Need to bind this so we can add/remove the event listener
     this.unsharePanelHandler = this.unsharePanelHandler.bind(this);
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this. setState({closePrivacyNotice: true});
+    }, 10000);
   }
 
   closeGetPageshotBanner() {
@@ -300,6 +319,10 @@ class Frame extends React.Component {
     } else {
       document.removeEventListener("click", this.unsharePanelHandler, false);
     }
+  }
+
+  onClickPrivacyNotice(e) {
+    this.setState({closePrivacyNotice: true});
   }
 
   unsharePanelHandler(e) {
@@ -458,6 +481,15 @@ class Frame extends React.Component {
       myShotsHref = "/";
     }
 
+    let isPublic = null;
+    if (this.props.isOwner && !this.state.closePrivacyNotice) {
+      if (shot.isPublic) {
+        isPublic = <span id="private-notice" onClick={ this.onClickPrivacyNotice.bind(this) }>This page is only visible to you until you share the link.</span>;
+      } else {
+        isPublic = <span id="private-notice" onClick={ this.onClickPrivacyNotice.bind(this) }>You've saved your personal version of this page. This page is only visible to you until you share the link.</span>;
+      }
+    }
+
     return (
         <div id="container">
           { this.renderExtRequired() }
@@ -498,6 +530,7 @@ class Frame extends React.Component {
           <a href="https://github.com/mozilla-services/pageshot">{this.props.productName}</a> — <a href={`https://github.com/mozilla-services/pageshot/commit/${getGitRevision()}`}>Updated {this.props.buildTime}</a>
         </div>
         <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl }>Send Feedback</a>
+        { isPublic }
       </div>
     );
   }
