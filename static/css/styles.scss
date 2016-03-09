@@ -3,7 +3,7 @@
 $primary-color: #fcfcfc;
 $toolbar-text-color: #464239;
 $text-color: #f2f2f2;
-$background-color: #404040;
+$background-color: #282d33;
 $shadow-color: rgba(0, 0, 0, 0.5);
 
 
@@ -32,14 +32,14 @@ body.shot-index {
   right: 0px;
   top: 0px;
   padding-top: 0px;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 0px;
+  padding-right: 0px;
   text-align: center;
 }
 
 #frame {
   border: none;
-  margin-top: 90px;
+  margin-top: 65px;
   margin-bottom: 4em;
   box-shadow: 0 -5px 5px $shadow-color;
 }
@@ -59,6 +59,7 @@ body.shot-index {
   color: $toolbar-text-color;
   text-align: left;
   background-color: $primary-color;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .window-scrolled-down #toolbar {
@@ -170,7 +171,9 @@ a:hover {
 
 .link-button {
   cursor: pointer;
-  color: #0095dd;
+  color: #858585;
+  background: transparent;
+  border: 1px solid #d4d4d4;
   padding-left: 4px;
   &.delete-button {
     color: #dd0000;
@@ -237,7 +240,7 @@ a.sitelink, a.sitelink:visited {
   right: 0px;
   bottom: 0px;
   padding-top: 0px;
-  background-color: rgba(10, 10, 10, 0.5);
+  background-color: rgba(0, 0, 0, 0.80);
 }
 
 .clip-container div {
@@ -246,7 +249,8 @@ a.sitelink, a.sitelink:visited {
 
 .clip-container a img {
   max-width: 85%;
-  box-shadow: 0 2px 5px $shadow-color;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 0 6px 20px $shadow-color;
 }
 
 .text-clip {
@@ -326,13 +330,15 @@ a.sitelink, a.sitelink:visited {
 }
 
 .upload-full-page {
-  background: #fcfcfc;
-  color: black;
+  color: #0996f8;
+  background: transparent;
   border-radius: 4px;
-  border: 1px solid rgba(0,0,0,.35);
+  border: 1px solid #0996f8;
   height: 32px;
   cursor: pointer;
   vertical-align: middle;
+  padding: 6px 15px;
+  font-size: 12px;
 }
 
 #full-page-checkbox {
@@ -341,24 +347,28 @@ a.sitelink, a.sitelink:visited {
 
 .share-button {
   margin-left: 15px;
-  background: #2fa8e1;
+  background: #0996f8;
   color: white;
   border-radius: 4px;
-  border: 1px solid rgba(0,0,0,.35);
+  border: 1px solid #0675d3;
   height: 32px;
   cursor: pointer;
   vertical-align: middle;
+  padding: 6px 15px;
+  font-size: 12px;
 }
 
 .trash-button {
   margin-left: 15px;
   border-radius: 4px;
-  border: 1px solid rgba(0,0,0,.35);
+  border: 1px solid #d4d4d4;
   height: 32px;
-  background: #fcfcfc;
+  background: transparent;
   color: black;
   cursor: pointer;
   vertical-align: middle;
+  padding: 6px 15px;
+  font-size: 12px;
 }
 
 .flag-button {
@@ -370,6 +380,7 @@ a.sitelink, a.sitelink:visited {
   color: black;
   cursor: pointer;
   vertical-align: middle;
+  padding: 8px 15px;
 }
 
 #share-buttons-panel {

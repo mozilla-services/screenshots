@@ -578,9 +578,11 @@ class ExpireWidget extends React.Component {
     }
     return (
       <button onClick={this.clickChangeExpire.bind(this)} style={{
-        border: "1px solid #999",
+        border: "1px solid #d4d4d4",
         borderRadius: "3px",
-        backgroundColor: "#f2f2f2",
+        backgroundColor: "transparent",
+        padding: "3px 10px",
+        fontSize: "11px",
         color: "#858585"
       }}>
         {button}
