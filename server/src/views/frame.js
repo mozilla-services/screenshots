@@ -73,7 +73,6 @@ class Clip extends React.Component {
     super(props);
     this.state = {
       paddingTop: 66,
-      hidden: false
     };
   }
 
@@ -102,7 +101,7 @@ class Clip extends React.Component {
   }
 
   onClickClose() {
-    this.setState({hidden: true});
+    this.props.onClickClose();
   }
 
   onClickCloseBackground(event) {
@@ -120,10 +119,6 @@ class Clip extends React.Component {
   }
 
   render() {
-    if (this.state.hidden) {
-      return <span />;
-    }
-
     let clip = this.props.clip,
       node = null;
 
@@ -285,6 +280,7 @@ class Frame extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      hidden: false,
       sharePanelDisplay: false,
       closePageshotBanner: false,
       closePrivacyNotice: false
@@ -323,6 +319,14 @@ class Frame extends React.Component {
 
   onClickPrivacyNotice(e) {
     this.setState({closePrivacyNotice: true});
+  }
+
+  onClickClose() {
+    this.setState({hidden: true});
+  }
+
+  onClickZoom() {
+    this.setState({hidden: false});
   }
 
   unsharePanelHandler(e) {
@@ -398,12 +402,18 @@ class Frame extends React.Component {
     let clips = [];
     let shareButtons = [];
     let clipNames = shot.clipNames();
+    let clipId = clipNames[0];
+    let clip = shot.getClip(clipId);
 
-    for (let i=0; i < clipNames.length; i++) {
-      let clipId = clipNames[i];
-      let clip = shot.getClip(clipId);
-
-      clips.push(<Clip staticLink={this.props.staticLink} key={ clipId } clip={ clip }  shotId={ shotId } shotDomain={ shotDomain } showCloseButton={ this.props.shot.showPage } />);
+    if (! this.state.hidden) {
+      clips.push(<Clip
+        staticLink={this.props.staticLink}
+        key={ clipId }
+        clip={ clip }
+        shotId={ shotId }
+        shotDomain={ shotDomain }
+        showCloseButton={ this.props.shot.showPage }
+        onClickClose={ this.onClickClose.bind(this) }/>);
     }
 
     let linkTextShort = shot.urlDisplay;
@@ -490,6 +500,19 @@ class Frame extends React.Component {
       }
     }
 
+    let zoomButton = null;
+    if (this.props.shot.showPage) {
+      zoomButton = <img
+        style={{
+          position: "absolute",
+          top: "81px",
+          right: "15px",
+          height: "32px",
+          width: "32px"}}
+        src={ this.props.staticLink("img/zoom.svg") }
+        onClick={ this.onClickZoom.bind(this) }/>;
+    }
+
     return (
         <div id="container">
           { this.renderExtRequired() }
@@ -523,6 +546,7 @@ class Frame extends React.Component {
           </div>
         </div>
         { shareButtons }
+        { zoomButton }
         { clips }
         { this.props.shot.showPage ?
           <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } /> : null }
