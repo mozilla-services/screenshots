@@ -1,6 +1,6 @@
 /** Makes screenshots, exporting only captureTab */
 const { data } = require("sdk/self");
-const { getTabContentWindow, getActiveTab } = require('sdk/tabs/utils');
+const { getActiveTab } = require('sdk/tabs/utils');
 const { getMostRecentBrowserWindow } = require('sdk/window/utils');
 const { viewFor } = require("sdk/view/core");
 const { callScript } = require("./framescripter");

@@ -42,7 +42,7 @@ exports.sendEvent = function (event, action, label) {
     content: JSON.stringify({event, action, label}),
     contentType: "application/json"
   });
-}
+};
 
 exports.sendTiming = function(event, action, timing) {
   let main = require("./main");
@@ -51,7 +51,7 @@ exports.sendTiming = function(event, action, timing) {
     content: JSON.stringify({event, action, timing}),
     contentType: "application/json"
   });
-}
+};
 
 function timeout(time) {
   return new Promise((resolve, reject) => {
