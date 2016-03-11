@@ -4,22 +4,12 @@
     The real work is generally done in `lib/helperworker.js`
     */
 
-// FIXME: we shouldn't do name translations (e.g., request-screenshot to
-// requestScreenshot), and we should pipe messages as a loop:
-document.addEventListener("request-screenshot", function (event) {
-  self.port.emit("requestScreenshot", event.detail);
-}, false);
-
 document.addEventListener("request-clipboard", function (event) {
   self.port.emit("requestClipboard", event.detail);
 }, false);
 
 document.addEventListener("add-tags", function (event) {
   self.port.emit("addTags", event.detail);
-}, false);
-
-document.addEventListener("check-captured", function (event) {
-  self.port.emit("checkCaptured", event.detail);
 }, false);
 
 document.addEventListener("error", function (event) {

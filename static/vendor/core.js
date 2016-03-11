@@ -1,1 +1,0 @@
-../../node_modules/babel/node_modules/babel-core/node_modules/core-js/client/core.js
