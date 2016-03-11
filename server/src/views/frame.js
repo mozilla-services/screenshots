@@ -402,20 +402,18 @@ class Frame extends React.Component {
     let clips = [];
     let shareButtons = [];
     let clipNames = shot.clipNames();
-    if (clipNames.length) {
+    if (clipNames.length && ! this.state.hidden) {
       let clipId = clipNames[0];
       let clip = shot.getClip(clipId);
 
-      if (! this.state.hidden) {
-        clips.push(<Clip
-          staticLink={this.props.staticLink}
-          key={ clipId }
-          clip={ clip }
-          shotId={ shotId }
-          shotDomain={ shotDomain }
-          showCloseButton={ this.props.shot.showPage }
-          onClickClose={ this.onClickClose.bind(this) }/>);
-      }
+      clips.push(<Clip
+        staticLink={this.props.staticLink}
+        key={ clipId }
+        clip={ clip }
+        shotId={ shotId }
+        shotDomain={ shotDomain }
+        showCloseButton={ this.props.shot.showPage }
+        onClickClose={ this.onClickClose.bind(this) }/>);
     }
 
     let linkTextShort = shot.urlDisplay;
@@ -503,10 +501,10 @@ class Frame extends React.Component {
     }
 
     let zoomButton = null;
-    if (this.props.shot.showPage && clips.length) {
+    if (clipNames.length && this.props.shot.showPage) {
       zoomButton = <img
         style={{
-          position: "absolute",
+          position: "fixed",
           top: "81px",
           right: "15px",
           height: "32px",
