@@ -1,3 +1,4 @@
+/* globals unsafeWindow, cloneInto */
 /** Worker to go with error-panel.html
 
     This displays unexpected errors, and is controlled by `lib/errors.js`
