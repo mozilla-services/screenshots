@@ -513,10 +513,15 @@ class Frame extends React.Component {
         onClick={ this.onClickZoom.bind(this) }/>;
     }
 
+    let toolbarPadding = "160px";
+    if (this.props.hasSavedShot) {
+      toolbarPadding = "315px";
+    };
+
     return (
         <div id="container">
           { this.renderExtRequired() }
-        <div id="toolbar">
+        <div id="toolbar" style={{ paddingRight: toolbarPadding }}>
           <a href={ myShotsHref }>
             <button className="my-shots-button" style={{background: `no-repeat 10% center url(${this.props.staticLink("img/my-shots.png")}) #ebebeb`}}>
               <span>{ myShotsText }</span>
@@ -536,7 +541,7 @@ class Frame extends React.Component {
           <div className="more-shot-actions">
             {this.props.hasSavedShot ?
               <button id="upload-full-page" className="upload-full-page" onClick={ this.onClickUploadFullPage.bind(this) }>
-                Upload full page
+                Save full page
               </button>
               : null}
             <button className="share-button" onClick={ this.onClickShareButton.bind(this) }>
