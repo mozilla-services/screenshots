@@ -392,8 +392,8 @@ function addSelectionPreview() {
   el.className = "pageshot-crosshair-pulse";
   let inner = document.createElement("div");
   inner.className = "pageshot-crosshair-inner";
-  el.appendChild(inner);
   document.body.appendChild(el);
+  document.body.appendChild(inner);
   el = document.createElement("div");
   el.className = "pageshot-horizcross pageshot-crosshair-preview";
   document.body.appendChild(el);
@@ -405,6 +405,7 @@ function addSelectionPreview() {
 function removeSelectionPreview() {
   let els = document.querySelectorAll(`
     .pageshot-crosshair-pulse,
+    .pageshot-crosshair-inner,
     .pageshot-horizcross.pageshot-crosshair-preview,
     .pageshot-vertcross.pageshot-crosshair-preview`);
   for (let el of els) {

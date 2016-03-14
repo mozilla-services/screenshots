@@ -137,7 +137,7 @@ class Clip extends React.Component {
           right: "15px",
           height: "32px",
           width: "32px"}}
-        src={ this.props.staticLink("img/close.svg") }
+        src={ this.props.staticLink("img/zoom-out.svg") }
         onClick={ this.onClickClose.bind(this) }/>;
     }
     return <div ref="clipContainer" className="clip-container" style={{paddingTop: this.state.paddingTop}} onClick={this.onClickCloseBackground.bind(this)}>
@@ -509,14 +509,19 @@ class Frame extends React.Component {
           right: "15px",
           height: "32px",
           width: "32px"}}
-        src={ this.props.staticLink("img/zoom.svg") }
+        src={ this.props.staticLink("img/zoom-in.svg") }
         onClick={ this.onClickZoom.bind(this) }/>;
     }
+
+    let toolbarPadding = "160px";
+    if (this.props.hasSavedShot) {
+      toolbarPadding = "315px";
+    };
 
     return (
         <div id="container">
           { this.renderExtRequired() }
-        <div id="toolbar">
+        <div id="toolbar" style={{ paddingRight: toolbarPadding }}>
           <a href={ myShotsHref }>
             <button className="my-shots-button" style={{background: `no-repeat 10% center url(${this.props.staticLink("img/my-shots.png")}) #ebebeb`}}>
               <span>{ myShotsText }</span>
@@ -536,7 +541,7 @@ class Frame extends React.Component {
           <div className="more-shot-actions">
             {this.props.hasSavedShot ?
               <button id="upload-full-page" className="upload-full-page" onClick={ this.onClickUploadFullPage.bind(this) }>
-                Upload full page
+                Save full page
               </button>
               : null}
             <button className="share-button" onClick={ this.onClickShareButton.bind(this) }>
