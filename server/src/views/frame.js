@@ -137,7 +137,7 @@ class Clip extends React.Component {
           right: "15px",
           height: "32px",
           width: "32px"}}
-        src={ this.props.staticLink("img/close.svg") }
+        src={ this.props.staticLink("img/zoom-out.svg") }
         onClick={ this.onClickClose.bind(this) }/>;
     }
     return <div ref="clipContainer" className="clip-container" style={{paddingTop: this.state.paddingTop}} onClick={this.onClickCloseBackground.bind(this)}>
@@ -509,7 +509,7 @@ class Frame extends React.Component {
           right: "15px",
           height: "32px",
           width: "32px"}}
-        src={ this.props.staticLink("img/zoom.svg") }
+        src={ this.props.staticLink("img/zoom-in.svg") }
         onClick={ this.onClickZoom.bind(this) }/>;
     }
 
