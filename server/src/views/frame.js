@@ -133,6 +133,7 @@ class Clip extends React.Component {
       closeButton = <img
         style={{
           position: "absolute",
+          cursor: "pointer",
           top: "81px",
           right: "15px",
           height: "32px",
@@ -505,6 +506,7 @@ class Frame extends React.Component {
       zoomButton = <img
         style={{
           position: "fixed",
+          cursor: "pointer",
           top: "81px",
           right: "15px",
           height: "32px",
