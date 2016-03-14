@@ -232,18 +232,19 @@ $mover-size: $mover-outer + $mover-inner;
   animation-duration: 1s;
   animation-fill-mode: both;
   animation-iteration-count: 20;
+}
 
-  .pageshot-crosshair-inner {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-left: -5px;
-    margin-top: -5px;
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
-    background-color: #fff;
-  }
+.pageshot-crosshair-inner {
+  position: fixed;
+  top: 20%;
+  left: 60%;
+  margin-left: -4px;
+  margin-top: -4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  z-index: 110001;
 }
 
 @keyframes pageshot-pulse {
