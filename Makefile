@@ -67,6 +67,8 @@ addon_js_dest := $(addon_js_source:%=build/%)
 clientglue_dependencies = $(shell if [[ -e build/clientglue-dependencies.txt ]] ; then cat build/clientglue-dependencies.txt ; fi)
 admin_dependencies = $(shell if [[ -e build/admin-dependencies.txt ]] ; then cat build/admin-dependencies.txt ; fi)
 
+core_js_location = $(shell node -e 'console.log(require.resolve("core-js/client/core"))')
+
 ## General transforms:
 # These cover standard ways of building files given a source
 
@@ -183,7 +185,11 @@ build/server/static/img/%: build/static/img/%
 	@mkdir -p $(@D)
 	cp $< $@
 
-build/server/static/js/server-bundle.js: $(clientglue_dependencies)
+build/server/static/vendor/core.js: $(core_js_location)
+	@mkdir -p $(@D)
+	cp $< $@
+
+build/server/static/js/server-bundle.js: $(clientglue_dependencies) build/server/static/vendor/core.js
 	@mkdir -p $(@D)
 	# Generate/save dependency list:
 	browserify --list -e ./build/server/clientglue.js | sed "s!$(shell pwd)/!!g" | grep -v build-time > build/clientglue-dependencies.txt
