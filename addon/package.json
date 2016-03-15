@@ -16,7 +16,7 @@
       "title": "backend URL",
       "description": "URL of the backend service to store pages",
       "type": "string",
-      "value": "https://pageshotfzzzy.dev.mozaws.net"
+      "value": "https://pageshot.dev.mozaws.net"
     },
     {
       "name": "startHttpServer",
@@ -54,5 +54,5 @@
       "value": false
     }
   ],
-  "updateURL": "https://pageshotfzzzy.dev.mozaws.net/xpi/mozilla-pageshot.update.rdf"
+  "updateURL": "https://pageshot.dev.mozaws.net/xpi/mozilla-pageshot.update.rdf"
 }
