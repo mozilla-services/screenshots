@@ -70,6 +70,7 @@ function showNotificationBar(shotcontext) {
   let messageNode = thebox.ownerDocument.createElement("span");
   messageNode.style.border = "none";
   messageNode.style.marginLeft = "10px";
+  messageNode.style.fontWeight = "normal";
   messageNode.appendChild(thebox.ownerDocument.createTextNode("Select part of the page to save, or save full page without making a selection."));
   fragment.appendChild(myShots);
   fragment.appendChild(messageNode);
