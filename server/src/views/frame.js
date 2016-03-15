@@ -493,11 +493,22 @@ class Frame extends React.Component {
     }
 
     let isPublic = null;
-    if (this.props.isOwner && !this.state.closePrivacyNotice) {
+    let arrowElement = <div className="arrow-up" />;
+    if (this.props.isOwner && !this.state.closePrivacyNotice && Date.now() - shot.createdDate < 30000) {
       if (shot.isPublic) {
-        isPublic = <span id="private-notice" onClick={ this.onClickPrivacyNotice.bind(this) }>This page is only visible to you until you share the link.</span>;
+        isPublic = <span
+          id="private-notice"
+          onClick={ this.onClickPrivacyNotice.bind(this) }>
+          This page is only visible to you until you share the link.
+          { arrowElement }
+        </span>;
       } else {
-        isPublic = <span id="private-notice" onClick={ this.onClickPrivacyNotice.bind(this) }>You&#39;ve saved your personal version of this page. This page is only visible to you until you share the link.</span>;
+        isPublic = <span
+          id="private-notice"
+          onClick={ this.onClickPrivacyNotice.bind(this) }>
+          You&#39;ve saved your personal version of this page. This page is only visible to you until you share the link.
+          { arrowElement }
+        </span>;
       }
     }
 

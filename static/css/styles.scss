@@ -66,14 +66,27 @@ body.shot-index {
 #private-notice {
   position: fixed;
   right: 75px;
-  top: 75px;
+  top: 55px;
   font-family: sans-serif;
   font-size: 11px;
   border-radius: 4px;
   padding: 7px;
-  background-color: yellow;
+  padding-bottom: 1px;
+  background-color: #ebd55a;
   color: black;
   cursor: pointer;
+  z-index: 2;
+}
+
+.arrow-up {
+  position: relative;
+  top: -24px;
+  left: 225px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #ebd55a;
 }
 
 .window-scrolled-down #toolbar {
