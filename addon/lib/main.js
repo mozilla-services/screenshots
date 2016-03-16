@@ -91,11 +91,7 @@ function showNotificationBar(shotcontext) {
         callback: function(notebox, button) {
           hideNotificationBar();
           setTimeout(function () {
-            watchPromise(shotcontext.uploadShot().then(() => {
-              shotcontext.openInNewTab();
-              shotcontext.destroy();
-            }));
-            shotcontext.copyRichDataToClipboard();
+            shotcontext.takeShot();
           }, 0);
         }
       }),

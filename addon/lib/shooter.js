@@ -113,6 +113,14 @@ const ShotContext = Class({
     this._activateWorker();
   },
 
+  takeShot: function () {
+    watchPromise(this.uploadShot().then(() => {
+      this.openInNewTab();
+      this.destroy();
+    }));
+    this.copyRichDataToClipboard();
+  },
+
   uploadShot: function() {
     return this._collectionCompletePromise.then(() => {
       if (this.shot.clipNames().length) {
@@ -229,6 +237,9 @@ const ShotContext = Class({
     }, this));
     this.interactiveWorker.port.on("deactivate", watchFunction(function (newUrl) {
       this.destroy();
+    }, this));
+    this.interactiveWorker.port.on("take-shot", watchFunction(function () {
+      this.takeShot();
     }, this));
 
     this._pendingScreenPositions = [];

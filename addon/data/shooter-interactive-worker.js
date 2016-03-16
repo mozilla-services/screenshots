@@ -385,6 +385,9 @@ function crosshairsKeyup(event) {
     deactivate();
     self.port.emit("deactivate");
   }
+  if (event.key === "Enter") {
+    self.port.emit("take-shot");
+  }
 }
 
 function addCrosshairs() {
