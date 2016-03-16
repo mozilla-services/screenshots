@@ -287,6 +287,7 @@ function render() {
 }
 
 function deleteSelection() {
+  document.removeEventListener("keyup", crosshairsKeyup, false);
   function removeEl(el) {
     if (el) {
       el.parentNode.removeChild(el);
@@ -437,7 +438,6 @@ function removePreviewOverlay() {
 
 function removeCrosshairs() {
   document.removeEventListener("mousemove", crosshairsMousemove, false);
-  document.removeEventListener("keyup", crosshairsKeyup, false);
   if (vertCross) {
     vertCross.parentNode.removeChild(vertCross);
     vertCross = null;
