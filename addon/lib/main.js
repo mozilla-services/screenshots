@@ -143,15 +143,23 @@ function hideNotificationBar(browser) {
 
 exports.hideNotificationBar = hideNotificationBar;
 
+function takeShot(source) {
+  let box = getNotificationBox();
+  let notification = box.getNotificationWithValue("pageshot-notification-bar");
+  if (!notification) {
+    hideInfoPanel();
+    let shotContext = shooter.ShotContext(exports.getBackend());
+    showNotificationBar(shotContext);
+    req.sendEvent("addon", source);
+  }
+}
+
 var shootButton = ActionButton({
   id: "pageshot-shooter",
   label: "Make shot",
   icon: self.data.url("icons/pageshot.svg"),
   onClick: watchFunction(function () {
-    hideInfoPanel();
-    let shotContext = shooter.ShotContext(exports.getBackend());
-    showNotificationBar(shotContext);
-    req.sendEvent("addon", "click-shot-button");
+    takeShot("click-shot-button");
   })
 });
 exports.shootButton = shootButton;
