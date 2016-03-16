@@ -324,13 +324,16 @@ class AbstractShot {
 
   /** A more minimal JSON representation for creating indexes of shots */
   asRecallJson() {
-    let result = {};
+    let result = {clips: {}};
     for (let attr of this.RECALL_ATTRS) {
       var val = this[attr];
       if (val && val.asJson) {
         val = val.asJson();
       }
       result[attr] = val;
+    }
+    for (let name of this.clipNames()) {
+      result.clips[name] = this.getClip(name).asJson();
     }
     return result;
   }
@@ -803,7 +806,7 @@ fullScreenThumbnail isPublic resources showPage
 
 AbstractShot.prototype.RECALL_ATTRS = (`
 deviceId url docTitle ogTitle userTitle createdDate createdDevice favicon
-openGraph twitterCard images
+openGraph twitterCard images fullScreenThumbnail
 `).split(/\s+/g);
 
 AbstractShot.prototype._OPENGRAPH_PROPERTIES = (`
