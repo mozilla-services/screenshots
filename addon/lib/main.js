@@ -21,6 +21,8 @@ const {Cu, Cc, Ci} = require("chrome");
 const winutil = require("sdk/window/utils");
 const req = require("./req");
 const { setTimeout } = require("sdk/timers");
+var { Hotkey } = require("sdk/hotkeys");
+
 let Services;
 
 // Give the server a chance to start if the pref is set
@@ -153,6 +155,13 @@ function takeShot(source) {
     req.sendEvent("addon", source);
   }
 }
+
+var hotKey = Hotkey({
+  combo: "accel-alt-control-c",
+  onPress: function() {
+    takeShot("press-shot-hotkey");
+  }
+});
 
 var shootButton = ActionButton({
   id: "pageshot-shooter",
