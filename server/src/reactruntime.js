@@ -1,4 +1,4 @@
-/* globals document */
+/* globals document, location */
 
 const React = require("react");
 const linker = require("./linker");
@@ -57,6 +57,12 @@ exports.Page = class Page {
     if (! model.staticLink) {
       linker.setGitRevision(model.gitRevision);
       model.staticLink = linker.staticLink;
+      model.staticLinkWithHost = linker.staticLinkWithHost.bind(null, {
+        protocol: location.protocol.replace(/:$/, ""),
+        headers: {
+          host: location.host
+        }
+      });
     }
     let body = this.BodyFactory(model);
     React.render(

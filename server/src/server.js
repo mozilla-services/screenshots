@@ -537,22 +537,6 @@ app.get("/__version__", function (req, res) {
   res.send(JSON.stringify(response));
 });
 
-app.get("/shots", function (req, res) {
-  if (! req.deviceId) {
-    return simpleResponse(res, "You must have the addon installed to see your shot index", 403);
-  }
-  Shot.getShotsForDevice(req.backend, req.deviceId).then((shots) => {
-    req.shots = shots;
-    if (shouldRenderSimple(req)) {
-      require("./views/shot-index").renderSimple(req, res);
-    } else {
-      require("./views/shot-index").render(req, res);
-    }
-  }).catch((err) => {
-    errorResponse(res, "Error rendering page:", err);
-  });
-});
-
 app.post("/delete", function (req, res) {
   if (! req.deviceId) {
     return simpleResponse(res, "You must have the addon installed delete your account", 403);
@@ -705,6 +689,7 @@ app.use(function (err, req, res, next) {
 });
 
 app.use("/admin", require("./pages/admin/server").app);
+app.use("/shots", require("./pages/shotindex/server").app);
 
 const contentApp = express();
 

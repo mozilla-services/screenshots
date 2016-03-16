@@ -312,7 +312,7 @@ const ShotContext = Class({
   },
 
   makeFullScreenThumbnail: function () {
-    return captureTab(this.tab, {x: 0, y: 0, h: "full", w: "full"}, {h: null, w: 140});
+    return captureTab(this.tab, {x: 0, y: 0, h: "full", w: "full"}, {h: null, w: 260});
   },
 
   getScreenPosition: function () {
