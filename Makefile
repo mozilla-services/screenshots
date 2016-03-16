@@ -66,6 +66,7 @@ addon_js_dest := $(addon_js_source:%=build/%)
 # they exist:
 clientglue_dependencies = $(shell if [[ -e build/clientglue-dependencies.txt ]] ; then cat build/clientglue-dependencies.txt ; fi)
 admin_dependencies = $(shell if [[ -e build/admin-dependencies.txt ]] ; then cat build/admin-dependencies.txt ; fi)
+shotindex_dependencies = $(shell if [[ -e build/shotindex-dependencies.txt ]] ; then cat build/shotindex-dependencies.txt ; fi)
 
 core_js_location = $(shell node -e 'console.log(require.resolve("core-js/client/core"))')
 
@@ -193,13 +194,19 @@ build/server/static/js/server-bundle.js: $(clientglue_dependencies) build/server
 	@mkdir -p $(@D)
 	# Generate/save dependency list:
 	browserify --list -e ./build/server/clientglue.js | sed "s!$(shell pwd)/!!g" | grep -v build-time > build/clientglue-dependencies.txt
-	browserify -o $@ -e ./build/server/clientglue.js ./build/server/shotindexglue.js
+	browserify -o $@ -e ./build/server/clientglue.js
 
 build/server/static/js/admin-bundle.js: $(admin_dependencies) $(server_dest)
 	@mkdir -p $(@D)
 	# Generate/save dependency list:
 	browserify --list -e ./build/server/pages/admin/controller.js | sed "s!$(shell pwd)/!!g" | grep -v build-time > build/admin-dependencies.txt
 	browserify -o $@ -e ./build/server/pages/admin/controller.js
+
+build/server/static/js/shotindex-bundle.js: $(shotindex_dependencies) $(server_dest)
+	@mkdir -p $(@D)
+	# Generate/save dependency list:
+	browserify --list -e ./build/server/pages/shotindex/controller.js | sed "s!$(shell pwd)/!!g" | grep -v build-time > build/shotindex-dependencies.txt
+	browserify -o $@ -e ./build/server/pages/shotindex/controller.js
 
 build/server/export-shots.sh: server/src/export-shots.sh
 	@mkdir -p $(@D)
@@ -212,7 +219,7 @@ build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass
 	@mkdir -p $(@D)
 	./bin/_write_build_time > build/server/build-time.js
 
-server: npm build/server/build-time.js build/server/static/js/server-bundle.js build/server/static/js/admin-bundle.js
+server: npm build/server/build-time.js build/server/static/js/server-bundle.js build/server/static/js/admin-bundle.js build/server/static/js/shotindex-bundle.js
 
 ## Homepage related rules:
 

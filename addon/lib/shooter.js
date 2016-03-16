@@ -113,6 +113,14 @@ const ShotContext = Class({
     this._activateWorker();
   },
 
+  takeShot: function () {
+    watchPromise(this.uploadShot().then(() => {
+      this.openInNewTab();
+      this.destroy();
+    }));
+    this.copyRichDataToClipboard();
+  },
+
   uploadShot: function() {
     return this._collectionCompletePromise.then(() => {
       if (this.shot.clipNames().length) {
@@ -227,6 +235,13 @@ const ShotContext = Class({
       // Treat window.history popstate as a reload, and stop the shot
       this.destroy();
     }, this));
+    this.interactiveWorker.port.on("deactivate", watchFunction(function (newUrl) {
+      this.destroy();
+    }, this));
+    this.interactiveWorker.port.on("take-shot", watchFunction(function () {
+      this.takeShot();
+    }, this));
+
     this._pendingScreenPositions = [];
     this.interactiveWorker.port.on("screenPosition", watchFunction(function (pos) {
       for (let deferred of this._pendingScreenPositions) {
@@ -312,7 +327,7 @@ const ShotContext = Class({
   },
 
   makeFullScreenThumbnail: function () {
-    return captureTab(this.tab, {x: 0, y: 0, h: "full", w: "full"}, {h: null, w: 140});
+    return captureTab(this.tab, {x: 0, y: 0, h: "full", w: "full"}, {h: null, w: 260});
   },
 
   getScreenPosition: function () {

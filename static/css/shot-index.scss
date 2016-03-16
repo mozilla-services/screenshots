@@ -1,0 +1,83 @@
+// FIXME: need to include these from a single location:
+// (also some body styles, currently shared with styles.scss)
+$shadow-color: rgba(0, 0, 0, 0.5);
+$text-color: #f2f2f2;
+
+/* Shot index page styles */
+
+body {
+  min-height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #eee;
+  color: $text-color;
+  box-sizing: border-box;
+}
+
+#shot-index {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0px;
+}
+
+.shot {
+  padding: 0;
+  box-shadow: 2px 2px 5px $shadow-color;
+  width: 280px;
+  margin: 15px;
+  background-color: #fff;
+  cursor: pointer;
+
+  & a, & a:visited, & a:link {
+    color: #000;
+    text-decoration: none;
+  }
+}
+
+.shot-image-container {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 260px;
+  height: 260px;
+  margin: 10px;
+}
+
+.title-container {
+  padding: 10px 15px 15px;
+  & > h2 {
+    margin: 0px 0px 10px;
+    & > a {
+      color: #000;
+      font-size: 16px;
+      text-decoration: none;
+    }
+  }
+  & > .link-container {
+    & > a {
+      height: 20px;
+      padding: 3px 10px;
+      font-size: 11px;
+      // FIXME: check border radius
+      border: 1px solid #0996f8;
+      color: #0996f8;
+      border-radius: 2px;
+    }
+    & > .favicon {
+      background-size: cover;
+      display: inline-block;
+      height: 16px;
+      width: 16px;
+      margin-right: 4px;
+      vertical-align: -4px;
+    }
+  }
+}
+
+.link-container {
+  & > a {
+    color: #666;
+  }
+}
