@@ -21,6 +21,8 @@ const {Cu, Cc, Ci} = require("chrome");
 const winutil = require("sdk/window/utils");
 const req = require("./req");
 const { setTimeout } = require("sdk/timers");
+var { Hotkey } = require("sdk/hotkeys");
+
 let Services;
 
 // Give the server a chance to start if the pref is set
@@ -91,11 +93,7 @@ function showNotificationBar(shotcontext) {
         callback: function(notebox, button) {
           hideNotificationBar();
           setTimeout(function () {
-            watchPromise(shotcontext.uploadShot().then(() => {
-              shotcontext.openInNewTab();
-              shotcontext.destroy();
-            }));
-            shotcontext.copyRichDataToClipboard();
+            shotcontext.takeShot();
           }, 0);
         }
       }),
@@ -143,15 +141,30 @@ function hideNotificationBar(browser) {
 
 exports.hideNotificationBar = hideNotificationBar;
 
+function takeShot(source) {
+  let box = getNotificationBox();
+  let notification = box.getNotificationWithValue("pageshot-notification-bar");
+  if (!notification) {
+    hideInfoPanel();
+    let shotContext = shooter.ShotContext(exports.getBackend());
+    showNotificationBar(shotContext);
+    req.sendEvent("addon", source);
+  }
+}
+
+var hotKey = Hotkey({
+  combo: "accel-alt-control-c",
+  onPress: function() {
+    takeShot("press-shot-hotkey");
+  }
+});
+
 var shootButton = ActionButton({
   id: "pageshot-shooter",
   label: "Make shot",
   icon: self.data.url("icons/pageshot.svg"),
   onClick: watchFunction(function () {
-    hideInfoPanel();
-    let shotContext = shooter.ShotContext(exports.getBackend());
-    showNotificationBar(shotContext);
-    req.sendEvent("addon", "click-shot-button");
+    takeShot("click-shot-button");
   })
 });
 exports.shootButton = shootButton;
