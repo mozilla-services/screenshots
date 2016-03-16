@@ -437,6 +437,7 @@ function removePreviewOverlay() {
 
 function removeCrosshairs() {
   document.removeEventListener("mousemove", crosshairsMousemove, false);
+  document.removeEventListener("keyup", crosshairsKeyup, false);
   if (vertCross) {
     vertCross.parentNode.removeChild(vertCross);
     vertCross = null;
