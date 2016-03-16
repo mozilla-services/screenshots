@@ -33,4 +33,25 @@ exports.onChangeLastShotTime = function (days) {
   req.send();
 };
 
+exports.onChangeNumberOfShotsTime = function (days) {
+  if (days <= 0) {
+    return;
+  }
+  model.numberOfShotsTime = days;
+  model.numberOfShotsBuckets = {1: 0};
+  render();
+  let req = new XMLHttpRequest();
+  req.open("GET", `./api/recent/numberOfShots?lastShotTimeDays=${encodeURIComponent(days)}`);
+  req.onload = function () {
+    if (req.status == 200) {
+      let data = JSON.parse(req.responseText);
+      model.numberOfShotsBuckets = data.buckets;
+      render();
+    } else {
+      alert("Failed: " + req.status);
+    }
+  };
+  req.send();
+};
+
 window.controller = exports;

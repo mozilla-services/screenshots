@@ -67,3 +67,13 @@ app.get("/api/recent/lastShotCount", function (req, res) {
     res.type("txt").status(500).send("Error: " + err);
   });
 });
+
+app.get("/api/recent/numberOfShots", function (req, res) {
+  let days = parseFloat(req.query.lastShotTimeDays);
+  const model = require("./model");
+  model.numberOfShots(days * model.secondsInDay).then((buckets) => {
+    res.send({buckets});
+  }).catch((err) => {
+    res.type("txt").status(500).send("Error: " + err);
+  });
+});
