@@ -227,6 +227,10 @@ const ShotContext = Class({
       // Treat window.history popstate as a reload, and stop the shot
       this.destroy();
     }, this));
+    this.interactiveWorker.port.on("deactivate", watchFunction(function (newUrl) {
+      this.destroy();
+    }, this));
+
     this._pendingScreenPositions = [];
     this.interactiveWorker.port.on("screenPosition", watchFunction(function (pos) {
       for (let deferred of this._pendingScreenPositions) {

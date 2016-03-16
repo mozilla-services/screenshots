@@ -376,8 +376,20 @@ function crosshairsMousemove(event) {
   horizCross.style.top = (y - window.scrollY) + "px";
 }
 
+function crosshairsKeyup(event) {
+  if (event.ctrlKey || event.shiftKey || event.altKey || event.metaKey) {
+    // Modified
+    return;
+  }
+  if (event.key === "Escape") {
+    deactivate();
+    self.port.emit("deactivate");
+  }
+}
+
 function addCrosshairs() {
   document.addEventListener("mousemove", crosshairsMousemove, false);
+  document.addEventListener("keyup", crosshairsKeyup)
 }
 
 function addSelectionHelp() {
