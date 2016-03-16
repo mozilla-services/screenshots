@@ -22,10 +22,6 @@ body {
   box-sizing: border-box;
 }
 
-body.shot-index {
-  background-color: #eee;
-}
-
 #container {
   position: absolute;
   left: 0px;
@@ -595,68 +591,6 @@ a.subheading-link {
 
   &:hover {
     text-decoration: underline;
-  }
-}
-
-/* Shot index page styles */
-
-#shot-index {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding: 20px;
-
-  .shot-background {
-    position: absolute;
-    height: 200px;
-    width: 200px;
-    z-index: -1;
-    overflow: hidden;
-    border-radius: 2px;
-    background-size: cover;
-    background-position: center;
-  }
-
-  .shot {
-    padding: 0;
-    box-shadow: 0 -2px 5px $shadow-color;
-    width: 280px;
-    height: 280px + 95px;
-    margin: 30px;
-    background-color: #fff;
-  }
-
-  .shot-text {
-    color: #fff;
-    background: rgba(0, 0, 0, 0.6);
-    height: 100%;
-  }
-
-  .shot-footer {
-    text-align: center;
-    font-size: 13px;
-  }
-
-  .title-container {
-    height: 80%;
-  }
-
-  div.favicon {
-    background-size: cover;
-    display: inline-block;
-    height: 16px;
-    width: 16px;
-    margin-right: 4px;
-    vertical-align: -4px;
-  }
-
-  h2 {
-    a {
-      color: #fff;
-    }
-    padding: 5px;
-    font-size: 16px;
-    margin: 0px 0px 3px 0px;
   }
 }
 

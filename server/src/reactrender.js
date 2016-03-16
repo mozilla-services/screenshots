@@ -3,19 +3,23 @@ const React = require("react");
 const { getGitRevision } = require("./linker");
 
 exports.render = function (req, res, page) {
-  console.log("rendering");
   let modelModule = require("./" + page.modelModuleName);
   let viewModule = page.viewModule;
   modelModule.createModel(req).then((model) => {
-    model = {
+    let jsonModel = model.jsonModel || model;
+    let serverModel = model.serverModel || model;
+    jsonModel = Object.assign({
       backend: req.backend,
-      gitRevision: getGitRevision(),
-      ...model
-    };
-    let serverModel = {
+      gitRevision: getGitRevision()
+    }, jsonModel);
+    serverModel = Object.assign({
       staticLink: req.staticLink,
-      ...model
-    };
+      staticLinkWithHost: req.staticLinkWithHost
+    }, serverModel);
+    if (req.query.data == "json") {
+      res.type("json").send(jsonModel);
+      return;
+    }
     let head = React.renderToStaticMarkup(viewModule.HeadFactory(serverModel));
     let body = React.renderToString(viewModule.BodyFactory(serverModel));
     let doc = `
@@ -26,7 +30,7 @@ exports.render = function (req, res, page) {
       </body></html>
     `.trim();
     // FIXME: we should just inline the addReactScripts functionality in this function:
-    doc = addReactScripts(doc, `controller.launch(${JSON.stringify(model)});`);
+    doc = addReactScripts(doc, `controller.launch(${JSON.stringify(jsonModel)});`);
     res.send(doc);
   }).catch((err) => {
     res.type("txt").status(500).send("Error: " + err + "\n" + err.stack);
