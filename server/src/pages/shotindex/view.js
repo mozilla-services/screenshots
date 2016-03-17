@@ -28,6 +28,9 @@ class Body extends React.Component {
     }
     return (
       <reactruntime.BodyTemplate {...this.props}>
+        <form action="/shots" method="GET">
+          <input type="text" name="q" placeholder="search" defaultValue={this.props.defaultSearch} style={{float: "right"}} />
+        </form>
         <h1 style={{color: "#444", paddingLeft: "40px"}}>
           <img src={this.props.staticLink("img/pageshot.svg")} style={{height: "30px", width: "32px", marginRight: "10px"}} />
           PageShot</h1>
