@@ -23,14 +23,14 @@ class Body extends React.Component {
         <fieldset>
           <legend>Recent users:</legend>
           <div>
-            Users with shots made in the last <input type="number" ref="lastShotTime" onChange={this.onChangeLastShotTime.bind(this)} defaultValue={this.props.lastShotTimeDays} /> days: <strong>{this.props.lastShotCount}</strong>
+            Users with shots made in the last <input type="number" min="1" ref="lastShotTime" onChange={this.onChangeLastShotTime.bind(this)} defaultValue={this.props.lastShotTimeDays} /> days: <strong>{this.props.lastShotCount}</strong>
           </div>
         </fieldset>
 
         <fieldset>
           <legend>Number of shots made:</legend>
           <div>
-            Number of clients that have shots in the last <input type="number" ref="numberOfShotsTime" onChange={this.onChangeNumberOfShotsTime.bind(this)} defaultValue={this.props.numberOfShotsTime} /> days:
+            Number of clients that have shots in the last <input type="number" min="1" ref="numberOfShotsTime" onChange={this.onChangeNumberOfShotsTime.bind(this)} defaultValue={this.props.numberOfShotsTime} /> days:
             {this.renderNumberOfShots()}
           </div>
         </fieldset>

@@ -1,6 +1,7 @@
 exports.createModel = function (req) {
   let serverModel = {
-    title: "My Shots"
+    title: "My Shots",
+    defaultSearch: req.query.q || null
   };
   serverModel.shots = req.shots;
   let jsonModel = Object.assign(

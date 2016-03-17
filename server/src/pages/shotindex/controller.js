@@ -7,6 +7,10 @@ let model;
 
 exports.launch = function (m) {
   m.shots = m.shots.map((shot) => new AbstractShot(m.backend, shot.id, shot.json));
+  let match = /[\?&]q=([^&]+)/.exec(location.href);
+  if (match) {
+    m.defaultSearch = decodeURIComponent(match[1]);
+  }
   model = m;
   render();
 };
