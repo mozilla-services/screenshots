@@ -445,7 +445,7 @@ app.post("/api/add-saved-shot-data/:id/:domain", function (req, res) {
       return;
     }
     for (let attr in bodyObj) {
-      if (! ["body", "head", "headAttrs", "bodyAttrs", "htmlAttrs", "showPage"].includes(attr)) {
+      if (! ["body", "head", "headAttrs", "bodyAttrs", "htmlAttrs", "showPage", "readable", "resources"].includes(attr)) {
         console.warn("Unexpected attribute in update:", attr);
         simpleResponse(res, "Unexpected attribute in submission", 400);
         return;
