@@ -36,9 +36,6 @@ function extractData() {
     delete readable.uri;
   }
   console.info("Readability time:", Date.now() - startReader, "ms", "success:", !! readable);
-  let startMicro = Date.now();
-  var microdata = microformats.getItems();
-  console.info("Microdata time:", Date.now() - startMicro, "ms");
   // FIXME: need to include found images too
   let startImage = Date.now();
   var images = findImages([
@@ -54,7 +51,6 @@ function extractData() {
   }
   return {
     readable: readable,
-    microdata: microdata,
     images: images,
     siteName: siteName,
     passwordFields: passwordFields
