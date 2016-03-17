@@ -35,8 +35,8 @@ CREATE TABLE images (
     id character varying(200) NOT NULL,
     shotid character varying(200) NOT NULL,
     clipid character varying(200) NOT NULL,
-    image bytea NOT NULL,
-    contenttype text NOT NULL
+    contenttype text NOT NULL,
+    url text
 );
 CREATE TABLE property (
     key text NOT NULL,
@@ -74,4 +74,4 @@ ALTER TABLE ONLY images
     ADD CONSTRAINT images_shotid_fkey FOREIGN KEY (shotid) REFERENCES data(id) ON DELETE CASCADE;
 ALTER TABLE ONLY states
     ADD CONSTRAINT states_deviceid_fkey FOREIGN KEY (deviceid) REFERENCES devices(id) ON DELETE CASCADE;
--- pg-patch version: 6
+-- pg-patch version: 7
