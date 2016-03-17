@@ -15,6 +15,9 @@ function render() {
 }
 
 exports.onChangeLastShotTime = function (days) {
+  if (days <= 0 || isNaN(days)) {
+    return;
+  }
   model.lastShotTimeDays = days;
   model.lastShotCount = '\u2B6E';
   render();
@@ -34,7 +37,7 @@ exports.onChangeLastShotTime = function (days) {
 };
 
 exports.onChangeNumberOfShotsTime = function (days) {
-  if (days <= 0) {
+  if (days <= 0 || isNaN(days)) {
     return;
   }
   model.numberOfShotsTime = days;

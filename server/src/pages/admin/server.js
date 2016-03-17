@@ -70,6 +70,10 @@ app.get("/api/recent/lastShotCount", function (req, res) {
 
 app.get("/api/recent/numberOfShots", function (req, res) {
   let days = parseFloat(req.query.lastShotTimeDays);
+  if (days <= 0 || isNaN(days)) {
+    res.type("txt").status(400).send("Error: bad lastShotTimeDays");
+    return;
+  }
   const model = require("./model");
   model.numberOfShots(days * model.secondsInDay).then((buckets) => {
     res.send({buckets});
