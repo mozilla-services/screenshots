@@ -185,20 +185,22 @@ mousemove = watchFunction(function (event) {
 });
 
 function truncateX(x) {
+  let max = Math.max(document.documentElement.clientWidth, document.body.clientWidth);
   if (x < 0) {
     return 0;
-  } else if (x > document.documentElement.clientWidth) {
-    return document.documentElement.clientWidth;
+  } else if (x > max) {
+    return max;
   } else {
     return x;
   }
 }
 
 function truncateY(y) {
+  let max = Math.max(document.documentElement.clientHeight, document.body.clientHeight);
   if (y < 0) {
     return 0;
-  } else if (y > document.documentElement.clientHeight) {
-    return document.documentElement.clientHeight;
+  } else if (y > max) {
+    return max;
   } else {
     return y;
   }

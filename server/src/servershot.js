@@ -6,6 +6,10 @@ const linker = require("./linker");
 const config = require("./config").root();
 const fs = require("fs");
 
+// FIXME: need to sometimes look for anything that has the wrong version
+// and refresh its searchable_text column
+const SEARCHABLE_VERSION = 1;
+
 let ClipRewrites;
 
 let s3bucket;
@@ -168,11 +172,12 @@ class Shot extends AbstractShot {
         json.body = null;
         oks.push({setHead: null});
         oks.push({setBody: null});
+        let searchable = this._makeSearchableText(9);
         return db.queryWithClient(
           client,
-          `INSERT INTO data (id, deviceid, value, head, body, url, title)
-           VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-          [this.id, this.ownerId, JSON.stringify(json), head, body, json.url, title]
+          `INSERT INTO data (id, deviceid, value, head, body, url, title, searchable_version, searchable_text)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, ${searchable.query})`,
+          [this.id, this.ownerId, JSON.stringify(json), head, body, json.url, title, searchable.version].concat(searchable.args)
         ).then((rowCount) => {
           return clipRewrites.commit(client);
         }).then(() => {
@@ -207,18 +212,20 @@ class Shot extends AbstractShot {
       }
       let promise;
       if (head === null && body === null) {
+        let searchable = this._makeSearchableText(7);
         promise = db.queryWithClient(
           client,
-          `UPDATE data SET value = $1, url = $2, title=$3
-          WHERE id = $4 AND deviceid = $5`,
-          [JSON.stringify(json), this.url, this.title, this.id, this.ownerId]
+          `UPDATE data SET value = $1, url = $2, title=$3, searchable_version = $4, searchable_text = ${searchable.query}
+          WHERE id = $5 AND deviceid = $6`,
+          [JSON.stringify(json), this.url, this.title, searchable.version, this.id, this.ownerId].concat(searchable.args)
         );
       } else {
+        let searchable = this._makeSearchableText(9);
         promise = db.queryWithClient(
           client,
-          `UPDATE data SET value = $1, url=$2, title=$3, head = $4, body = $5
-          WHERE id = $6 AND deviceid = $7`,
-          [JSON.stringify(json), this.url, this.title, head, body, this.id, this.ownerId]
+          `UPDATE data SET value = $1, url=$2, title=$3, head = $4, body = $5, searchable_version = $6, searchable_text = ${searchable.query}
+          WHERE id = $7 AND deviceid = $8`,
+          [JSON.stringify(json), this.url, this.title, head, body, searchable.version, this.id, this.ownerId].concat(searchable.args)
         );
       }
       return promise.then((rowCount) => {
@@ -230,6 +237,59 @@ class Shot extends AbstractShot {
         return oks;
       });
     });
+  }
+
+  _makeSearchableText(argStart) {
+    let queryParts = [];
+    let texts = [];
+    function addText(t) {
+      texts.push(t);
+      return "$" + (texts.length + argStart - 1);
+    }
+    function addWeight(t, weight, name) {
+      if (Array.isArray(t)) {
+        t = t.filter((i) => i).join(" ");
+      }
+      if (! t) {
+        return;
+      }
+      if (! ['A', 'B', 'C', 'D'].includes(weight)) {
+        throw new Error("Bad weight, should be A, B, C, or D");
+      }
+      queryParts.push(`setweight(to_tsvector(${addText(t)}), '${weight}') /* ${name} */`);
+    }
+    let domain = this.url.replace(/^.*:/, "").replace(/\/.*$/, "");
+    addWeight(this.title, 'A', 'title');
+    addWeight(domain, 'B', 'domain');
+    let openGraphProps = `
+      site_name description
+      article:author article:section article:tag
+      book:author book:tag
+      profile:first_name profile:back_name profile:username
+    `.split(/\s+/g);
+    addWeight(openGraphProps.map((n) => this.openGraph[n]), 'B', 'openGraph');
+    let twitterProps = `
+      site title description
+    `.split(/\s+/g);
+    addWeight(twitterProps.map((n) => this.twitterCard[n]), 'A', 'twitterCard');
+    for (let clipId of this.clipNames()) {
+      let clip = this.getClip(clipId);
+      addWeight(clip.image && clip.image.text, 'A', 'clip text');
+    }
+    let readableBody = this.readable ? this.readable.content.replace(/<[^>]*>/g, " ") : null;
+    let wholeBody = this.body ? this.body.replace(/<[^>]*>/g, " ") : null;
+    if (readableBody) {
+      addWeight(readableBody, 'C', 'readable');
+      addWeight(wholeBody, 'D', 'body');
+    } else {
+      addWeight(wholeBody, 'C', 'body');
+    }
+    return {
+      query: queryParts.join(' || '),
+      args: texts,
+      // Update this version if you update the algorithm:
+      version: SEARCHABLE_VERSION
+    };
   }
 
 }
@@ -341,7 +401,7 @@ Shot.getRawValue = function (id) {
   });
 };
 
-Shot.getShotsForDevice = function (backend, deviceId) {
+Shot.getShotsForDevice = function (backend, deviceId, searchQuery) {
   if (! deviceId) {
     throw new Error("Empty deviceId: " + deviceId);
   }
@@ -354,22 +414,38 @@ Shot.getShotsForDevice = function (backend, deviceId) {
     `,
     [deviceId]
   ).then((rows) => {
+    searchQuery = searchQuery || null;
     let ids = [];
     let idNums = [];
     for (let i=0; i<rows.length; i++) {
       ids.push(rows[i].id);
-      idNums.push("$" + (i+1));
+      idNums.push("$" + (i+(searchQuery ? 2 : 1)));
     }
-    return db.select(
-      `SELECT data.id, data.value, data.deviceid
-       FROM data
-       WHERE data.deviceid IN (${idNums.join(", ")})
-             AND NOT data.deleted
-             AND (expire_time IS NULL OR expire_time > NOW())
-       ORDER BY data.created DESC
-      `,
-      ids
-    );
+    let sql;
+    let args;
+    if (searchQuery) {
+      sql = `
+        SELECT data.id, data.value, data.deviceid, ts_rank_cd(data.searchable_text, query) AS rank
+        FROM data, to_tsquery($1) AS query
+        WHERE data.deviceid IN (${idNums.join(", ")})
+              AND NOT data.deleted
+              AND (expire_time IS NULL OR expire_time > NOW())
+              AND data.searchable_text @@ query
+        ORDER BY rank DESC
+        `;
+      args = [searchQuery].concat(ids);
+    } else {
+      sql = `
+      SELECT data.id, data.value, data.deviceid
+      FROM data
+      WHERE data.deviceid IN (${idNums.join(", ")})
+            AND NOT data.deleted
+            AND (expire_time IS NULL OR expire_time > NOW())
+      ORDER BY data.created DESC
+      `;
+      args = ids;
+    }
+    return db.select(sql, args);
   }).then((rows) => {
     let result = [];
     for (let i=0; i<rows.length; i++) {

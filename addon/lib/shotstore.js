@@ -16,7 +16,9 @@ exports.saveShot = function (shot) {
     bodyAttrs: shot.bodyAttrs || data.bodyAttrs,
     headAttrs: shot.headAttrs || data.headAttrs,
     htmlAttrs: shot.htmlAttrs || data.htmlAttrs,
-    created: Date.now()
+    created: Date.now(),
+    readable: shot.readable,
+    resources: shot.resources
   };
   ss.storage["page-" + shot.id] = newData;
 };
@@ -28,6 +30,8 @@ exports.clearSaved = function (shot) {
   shot.headAttrs = null;
   shot.htmlAttrs = null;
   shot.showPage = false;
+  shot.readable = null;
+  shot.resources = {};
 };
 
 exports.getShot = function (id) {
