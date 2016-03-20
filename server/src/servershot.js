@@ -62,9 +62,9 @@ if (! config.useS3) {
         } else {
           resolve();
         }
-      })
+      });
     });
-  }
+  };
 } else {
   const AWS = require('aws-sdk');
 
@@ -239,6 +239,18 @@ class Shot extends AbstractShot {
     });
   }
 
+  upgradeSearch() {
+    let searchable = this._makeSearchableText(3);
+    return db.transaction((client) => {
+      return db.queryWithClient(
+        client,
+        `UPDATE data SET searchable_version = $1, searchable_text = ${searchable.query}
+         WHERE id = $2`,
+        [searchable.version, this.id].concat(searchable.args)
+      );
+    });
+  }
+
   _makeSearchableText(argStart) {
     let queryParts = [];
     let texts = [];
@@ -261,20 +273,24 @@ class Shot extends AbstractShot {
     let domain = this.url.replace(/^.*:/, "").replace(/\/.*$/, "");
     addWeight(this.title, 'A', 'title');
     addWeight(domain, 'B', 'domain');
-    let openGraphProps = `
-      site_name description
-      article:author article:section article:tag
-      book:author book:tag
-      profile:first_name profile:back_name profile:username
-    `.split(/\s+/g);
-    addWeight(openGraphProps.map((n) => this.openGraph[n]), 'B', 'openGraph');
-    let twitterProps = `
-      site title description
-    `.split(/\s+/g);
-    addWeight(twitterProps.map((n) => this.twitterCard[n]), 'A', 'twitterCard');
-    for (let clipId of this.clipNames()) {
-      let clip = this.getClip(clipId);
-      addWeight(clip.image && clip.image.text, 'A', 'clip text');
+    if (this.openGraph) {
+      let openGraphProps = `
+        site_name description
+        article:author article:section article:tag
+        book:author book:tag
+        profile:first_name profile:back_name profile:username
+      `.split(/\s+/g);
+      addWeight(openGraphProps.map((n) => this.openGraph[n]), 'B', 'openGraph');
+    }
+    if (this.twitterCard) {
+      let twitterProps = `
+        site title description
+      `.split(/\s+/g);
+      addWeight(twitterProps.map((n) => this.twitterCard[n]), 'A', 'twitterCard');
+      for (let clipId of this.clipNames()) {
+        let clip = this.getClip(clipId);
+        addWeight(clip.image && clip.image.text, 'A', 'clip text');
+      }
     }
     let readableBody = this.readable ? this.readable.content.replace(/<[^>]*>/g, " ") : null;
     let wholeBody = this.body ? this.body.replace(/<[^>]*>/g, " ") : null;
@@ -702,6 +718,39 @@ Shot.cleanDeletedShots = function () {
       });
     });
   });
+};
+
+Shot.upgradeSearch = function () {
+  let batchSize = config.upgradeSearchBatchSize;
+  return db.select(
+    `SELECT id FROM data
+     WHERE searchable_version IS NULL OR searchable_version < $1
+     ORDER BY created DESC
+     LIMIT $2
+    `,
+    [SEARCHABLE_VERSION, batchSize]).then((rows) => {
+      if (! rows.length) {
+        return;
+      }
+      let index = 0;
+      return new Promise((resolve, reject) => {
+        function run() {
+          if (index >= rows.length) {
+            return resolve();
+          }
+          Shot.get("upgrade_search_only", rows[index].id).then((shot) => {
+            return shot.upgradeSearch();
+          }).then(() => {
+            index++;
+            run();
+          }).catch(reject);
+        }
+        run();
+      }).then(() => {
+        console.info(`Upgraded ${rows.length} records to SEARCHABLE_VERSION ${SEARCHABLE_VERSION}`);
+        setTimeout(Shot.upgradeSearch.bind(Shot), 10000);
+      });
+    });
 };
 
 Shot.prototype.atob = require("atob");

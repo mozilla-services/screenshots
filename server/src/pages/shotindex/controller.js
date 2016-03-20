@@ -19,10 +19,20 @@ function render() {
   page.render(model);
 }
 
+exports.onChangeSearch = function (query) {
+  model.defaultSearch = query;
+  window.history.pushState(null, "", "/shots?q=" + encodeURIComponent(query));
+  refreshModel();
+};
+
 // FIXME: this works, but we don't have a way to know when to trigger the refresh
 function refreshModel() {
   let req = new XMLHttpRequest();
-  req.open("GET", "/shots?data=json");
+  let url = "/shots?data=json";
+  if (model.defaultSearch) {
+    url += "&q=" + encodeURIComponent(model.defaultSearch);
+  }
+  req.open("GET", url);
   req.onload = function () {
     if (req.status != 200) {
       console.warn("Error refreshing:", req.status, req);
