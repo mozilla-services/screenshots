@@ -52,7 +52,6 @@ function extractWorker(tab, timeLimit) {
     const worker = tab.attach({
       contentScriptFile: [self.data.url("error-utils.js"),
                           self.data.url("vendor/readability/Readability.js"),
-                          self.data.url("vendor/microformat-shiv.js"),
                           self.data.url("extractor-worker.js")]
     });
     watchWorker(worker);
@@ -257,8 +256,8 @@ const ShotContext = Class({
     sendEvent("addon", `new-tab-after-save`);
   },
 
-  /** Collects/extracts information from the tab: the screenshot, readable and
-      microformat stuff, the HTML, and other misc stuff.  Immediately updates the
+  /** Collects/extracts information from the tab: the screenshot, readable view,
+      the HTML, and other misc stuff.  Immediately updates the
       shot as that information comes in */
   collectInformation: function () {
     watchPromise(callScript(

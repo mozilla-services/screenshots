@@ -215,7 +215,6 @@ class AbstractShot {
         (json) => new this.Comment(json));
     }
     this.hashtags = attrs.hashtags || null;
-    this.microdata = attrs.microdata || null;
     this.siteName = attrs.siteName || null;
     this.images = [];
     if (attrs.images) {
@@ -243,7 +242,7 @@ class AbstractShot {
     }
 
     for (let attr in attrs) {
-      if (attr !== "clips" && attr !== "id" && this.REGULAR_ATTRS.indexOf(attr) === -1) {
+      if (attr !== "clips" && attr !== "id" && this.REGULAR_ATTRS.indexOf(attr) === -1 && this.DEPRECATED_ATTRS.indexOf(attr) === -1) {
         throw new Error("Unexpected attribute: " + attr);
       } else if (attr === "id") {
         console.warn("passing id in attrs in AbstractShot constructor");
@@ -642,16 +641,6 @@ ${options.addBody || ""}
     }
   }
 
-  // FIXME: we should check this object more thoroughly
-  get microdata() {
-    return this._microdata;
-  }
-  set microdata(val) {
-    assert(typeof val == "object" || ! val);
-    this._dirty("microdata");
-    this._microdata = val;
-  }
-
   get siteName() {
     return this._siteName || null;
   }
@@ -800,8 +789,13 @@ ${options.addBody || ""}
 AbstractShot.prototype.REGULAR_ATTRS = (`
 deviceId url docTitle ogTitle userTitle createdDate createdDevice favicon
 history comments hashtags images readable head body htmlAttrs bodyAttrs
-headAttrs microdata siteName openGraph twitterCard documentSize
+headAttrs siteName openGraph twitterCard documentSize
 fullScreenThumbnail isPublic resources showPage
+`).split(/\s+/g);
+
+// Attributes that will be accepted in the constructor, but ignored/dropped
+AbstractShot.prototype.DEPRECATED_ATTRS = (`
+microdata
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`
