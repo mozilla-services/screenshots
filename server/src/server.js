@@ -845,6 +845,7 @@ linker.init().then(() => {
       res.send("ok");
     });
     console.info(`virtual host server listening on http://localhost:${config.port}`);
+    console.info(`  siteName="${siteName}"; contentName="${contentName}"`);
   } else {
     app.listen(config.port);
     console.info(`server listening on http://localhost:${config.port}/`);
