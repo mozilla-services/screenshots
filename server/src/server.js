@@ -73,7 +73,11 @@ if (config.sentryDSN) {
 }
 
 dbschema.createTables().then(() => {
-  dbschema.createKeygrip();
+  return dbschema.createKeygrip();
+}).then(() => {
+  return Shot.upgradeSearch();
+}).catch((e) => {
+  console.error("Error initializing database:", e, e.stack);
 });
 
 const app = express();
