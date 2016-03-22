@@ -372,6 +372,9 @@ function skipElement(el) {
   if (el.style && el.style.display == 'none') {
     return true;
   }
+  if (el.tagName == "META" && el.getAttribute("http-equiv")) {
+    return true;
+  }
   if ((! skipElementsOKEmpty[tag]) && content.getComputedStyle(el).display == 'none') {
     return true;
   }
