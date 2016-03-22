@@ -185,7 +185,7 @@ mousemove = watchFunction(function (event) {
 });
 
 function truncateX(x) {
-  let max = Math.max(document.documentElement.clientWidth, document.body.clientWidth);
+  let max = Math.max(document.documentElement.clientWidth, document.body.clientWidth, document.documentElement.scrollWidth, document.body.scrollWidth);
   if (x < 0) {
     return 0;
   } else if (x > max) {
@@ -196,7 +196,7 @@ function truncateX(x) {
 }
 
 function truncateY(y) {
-  let max = Math.max(document.documentElement.clientHeight, document.body.clientHeight);
+  let max = Math.max(document.documentElement.clientHeight, document.body.clientHeight, document.documentElement.scrollHeight, document.body.scrollHeight);
   if (y < 0) {
     return 0;
   } else if (y > max) {
