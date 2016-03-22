@@ -15,7 +15,9 @@
 Components.utils.import("resource://gre/modules/Timer.jsm");
 const uuidGenerator = Components.classes["@mozilla.org/uuid-generator;1"]
                       .getService(Components.interfaces.nsIUUIDGenerator);
-
+const newURI = Components.classes["@mozilla.org/network/io-service;1"]
+  .getService(Components.interfaces.nsIIOService)
+  .newURI;
 
 function makeUuid() {
   var uuid = uuidGenerator.generateUUID();
@@ -91,10 +93,10 @@ function rewriteResource(el, attr, url) {
   resources[repl] = {
     url,
     hash,
-    tag: el.tagName,
+    tag: typeof el == "string" ? el : el.tagName,
     elId: el.id,
     attr,
-    rel: el.getAttribute("rel") || undefined
+    rel: (el.getAttribute && el.getAttribute("rel")) || undefined
   };
   return repl;
 }
@@ -671,7 +673,7 @@ function createStyle(doc) {
     rules: [],
     addRule: function (rule) {
       this.rulesKept++;
-      this.rules.push(rule.cssText);
+      this.rules.push(resolveCssText(rule));
     },
     mediaRules: {},
     addMediaRule: function (media, rule) {
@@ -680,7 +682,7 @@ function createStyle(doc) {
       if (! this.mediaRules[mediaText]) {
         this.mediaRules[mediaText] = [];
       }
-      this.mediaRules[mediaText].push(rule.cssText);
+      this.mediaRules[mediaText].push(resolveCssText(rule));
     },
     skipRule: function (rule) {
       this.rulesOmitted++;
@@ -734,6 +736,26 @@ function createStyle(doc) {
   }
   return result.toString();
 }
+
+/** Gets the rule's .cssText, but also rewrites url("...") and sets resources */
+function resolveCssText(rule) {
+  let text = rule.cssText;
+  text = text.replace(/url\("([^"]*)"\)/gi, function (match, url) {
+    if (url.search(/^data:/i) !== -1) {
+      return match;
+    }
+    let parent = rule.parentStyleSheet;
+    if (parent) {
+      let href = parent.href;
+      let urlObj = newURI(url, "UTF-8", newURI(href, null, null));
+      url = urlObj.spec;
+    }
+    let newUrl = rewriteResource("(css)", null, url);
+    return `url("${newUrl}")`;
+  });
+  return text;
+}
+
 
 function getStyleRules(result, doc, stylesheet) {
   let allRules = [];
