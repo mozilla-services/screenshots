@@ -446,7 +446,7 @@ const TEXT_NODE = getDocument().TEXT_NODE;
 const ELEMENT_NODE = getDocument().ELEMENT_NODE;
 
 // Used when an iframe fails to serialize:
-var NULL_IFRAME = '<html></html>';
+var NULL_IFRAME = '<html><head><meta charset="UTF-8"></head><body></body></html>';
 
 function staticHTMLDocument(doc) {
   let html = staticHTML(doc.documentElement);
@@ -456,7 +456,7 @@ function staticHTMLDocument(doc) {
   if (prefInlineCss) {
     rules = createStyle(doc);
   }
-  html = `${parts[0]}\n${base}${rules}</head>${parts[1]}`;
+  html = `${parts[0]}\n<meta charset="UTF-8">\n${base}${rules}</head>${parts[1]}`;
   return html;
 }
 
