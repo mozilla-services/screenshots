@@ -59,9 +59,9 @@ class Body extends React.Component {
 
     return (
       <div className="shot" key={shot.id} onClick={this.onOpen.bind(this, shot.viewUrl)}>
-        <div className="shot-image-container" style={{
+        <a href={shot.viewUrl} className="shot-image-container" style={{
           backgroundImage: `url(${imageUrl})`
-        }}></div>
+        }}></a>
         <div className="title-container">
           <h2><a href={shot.viewUrl}>{shot.title}</a></h2>
           <div className="link-container">
@@ -75,7 +75,11 @@ class Body extends React.Component {
     );
   }
 
-  onOpen(url) {
+  onOpen(url, event) {
+    if (event.ctrlKey || event.metaKey) {
+      // Don't override what might be an open-in-another-tab click
+      return;
+    }
     location.href = url;
   }
 

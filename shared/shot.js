@@ -778,7 +778,7 @@ ${options.addBody || ""}
     for (let key in val) {
       assert(key.search(/^[a-zA-Z0-9\.\-]+$/) === 0, "Bad resource name: " + key);
       let obj = val[key];
-      assert(checkObject(obj, ['url', 'tag', 'elId', 'attr'], ['hash', 'rel']), "Invalid resource " + key + ": " + JSON.stringify(obj));
+      assert(checkObject(obj, ['url', 'tag'], ['elId', 'attr', 'hash', 'rel']), "Invalid resource " + key + ": " + JSON.stringify(obj));
     }
     this._resources = val;
     this._dirty("resources");

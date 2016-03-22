@@ -15,7 +15,9 @@
 Components.utils.import("resource://gre/modules/Timer.jsm");
 const uuidGenerator = Components.classes["@mozilla.org/uuid-generator;1"]
                       .getService(Components.interfaces.nsIUUIDGenerator);
-
+const newURI = Components.classes["@mozilla.org/network/io-service;1"]
+  .getService(Components.interfaces.nsIIOService)
+  .newURI;
 
 function makeUuid() {
   var uuid = uuidGenerator.generateUUID();
@@ -91,10 +93,10 @@ function rewriteResource(el, attr, url) {
   resources[repl] = {
     url,
     hash,
-    tag: el.tagName,
+    tag: typeof el == "string" ? el : el.tagName,
     elId: el.id,
     attr,
-    rel: el.getAttribute("rel") || undefined
+    rel: (el.getAttribute && el.getAttribute("rel")) || undefined
   };
   return repl;
 }
@@ -372,6 +374,9 @@ function skipElement(el) {
   if (el.style && el.style.display == 'none') {
     return true;
   }
+  if (el.tagName == "META" && el.getAttribute("http-equiv")) {
+    return true;
+  }
   if ((! skipElementsOKEmpty[tag]) && content.getComputedStyle(el).display == 'none') {
     return true;
   }
@@ -446,7 +451,7 @@ const TEXT_NODE = getDocument().TEXT_NODE;
 const ELEMENT_NODE = getDocument().ELEMENT_NODE;
 
 // Used when an iframe fails to serialize:
-var NULL_IFRAME = '<html></html>';
+var NULL_IFRAME = '<html><head><meta charset="UTF-8"></head><body></body></html>';
 
 function staticHTMLDocument(doc) {
   let html = staticHTML(doc.documentElement);
@@ -456,7 +461,7 @@ function staticHTMLDocument(doc) {
   if (prefInlineCss) {
     rules = createStyle(doc);
   }
-  html = `${parts[0]}\n${base}${rules}</head>${parts[1]}`;
+  html = `${parts[0]}\n<meta charset="UTF-8">\n${base}${rules}</head>${parts[1]}`;
   return html;
 }
 
@@ -668,7 +673,7 @@ function createStyle(doc) {
     rules: [],
     addRule: function (rule) {
       this.rulesKept++;
-      this.rules.push(rule.cssText);
+      this.rules.push(resolveCssText(rule));
     },
     mediaRules: {},
     addMediaRule: function (media, rule) {
@@ -677,7 +682,7 @@ function createStyle(doc) {
       if (! this.mediaRules[mediaText]) {
         this.mediaRules[mediaText] = [];
       }
-      this.mediaRules[mediaText].push(rule.cssText);
+      this.mediaRules[mediaText].push(resolveCssText(rule));
     },
     skipRule: function (rule) {
       this.rulesOmitted++;
@@ -731,6 +736,26 @@ function createStyle(doc) {
   }
   return result.toString();
 }
+
+/** Gets the rule's .cssText, but also rewrites url("...") and sets resources */
+function resolveCssText(rule) {
+  let text = rule.cssText;
+  text = text.replace(/url\("([^"]*)"\)/gi, function (match, url) {
+    if (url.search(/^data:/i) !== -1) {
+      return match;
+    }
+    let parent = rule.parentStyleSheet;
+    if (parent) {
+      let href = parent.href;
+      let urlObj = newURI(url, "UTF-8", newURI(href, null, null));
+      url = urlObj.spec;
+    }
+    let newUrl = rewriteResource("(css)", null, url);
+    return `url("${newUrl}")`;
+  });
+  return text;
+}
+
 
 function getStyleRules(result, doc, stylesheet) {
   let allRules = [];
@@ -802,16 +827,6 @@ function documentStaticData() {
   result.htmlAttrs = null;
   if (getDocument().documentElement) {
     result.htmlAttrs = getAttributes(getDocument().documentElement);
-  }
-  result.favicon = getDocument().querySelector("link[rel='shortcut icon'], link[rel='icon']");
-  if (result.favicon) {
-    result.favicon = checkLink(result.favicon.href);
-  } else {
-    // FIXME: ideally test if this exists
-    let origin = getLocation().origin;
-    if (origin && origin != "null") {
-      result.favicon = origin + "/favicon.ico";
-    }
   }
 
   result.documentSize = {

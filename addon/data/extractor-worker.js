@@ -30,7 +30,13 @@ function extractData() {
     pathBase: location.href.replace(/\/[^\/]*$/, "/")
   };
   var reader = new Readability(uri, readableDiv);
-  var readable = reader.parse();
+  let readable;
+  try {
+    readable = reader.parse();
+  } catch (e) {
+    console.warn("Exception getting readable version:", e);
+    console.warn("Traceback:", e.stack);
+  }
   if (readable) {
     delete readable.uri;
   }

@@ -1,6 +1,5 @@
 // FIXME: need to include these from a single location:
 // (also some body styles, currently shared with styles.scss)
-$shadow-color: rgba(0, 0, 0, 0.5);
 $text-color: #f2f2f2;
 
 /* Shot index page styles */
@@ -24,7 +23,6 @@ body {
 
 .shot {
   padding: 0;
-  box-shadow: 2px 2px 5px $shadow-color;
   width: 280px;
   margin: 15px;
   background-color: #fff;
@@ -37,6 +35,7 @@ body {
 }
 
 .shot-image-container {
+  display: block;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
