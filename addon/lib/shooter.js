@@ -6,6 +6,7 @@
 
 const self = require("sdk/self");
 const tabs = require("sdk/tabs");
+const { getFavicon } = require("sdk/places/favicon");
 const { captureTab } = require("./screenshot");
 const { request, sendEvent, sendTiming } = require("./req");
 const { callScript } = require("./framescripter");
@@ -292,6 +293,11 @@ const ShotContext = Class({
         {prefInlineCss})).then(watchFunction(function (attrs) {
           this.shot.update(attrs);
         }, this)));
+      promises.push(watchPromise(getFavicon(this.tab).then((url) => {
+        this.shot.update({
+          favicon: url
+        });
+      })));
       this._collectionCompletePromise = watchPromise(allPromisesComplete(promises));
     }).bind(this)));
   },

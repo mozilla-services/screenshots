@@ -803,16 +803,6 @@ function documentStaticData() {
   if (getDocument().documentElement) {
     result.htmlAttrs = getAttributes(getDocument().documentElement);
   }
-  result.favicon = getDocument().querySelector("link[rel='shortcut icon'], link[rel='icon']");
-  if (result.favicon) {
-    result.favicon = checkLink(result.favicon.href);
-  } else {
-    // FIXME: ideally test if this exists
-    let origin = getLocation().origin;
-    if (origin && origin != "null") {
-      result.favicon = origin + "/favicon.ico";
-    }
-  }
 
   result.documentSize = {
     width: Math.max(getDocument().documentElement.clientWidth, getDocument().body.clientWidth),
