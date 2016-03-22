@@ -194,6 +194,13 @@ var conf = convict({
     default: "",
     env: "SENTRY_PUBLIC_DSN",
     arg: "sentry-public-dsn"
+  },
+  upgradeSearchBatchSize: {
+    doc: "Number of search records to try to upgrade at one time (in minutes)",
+    format: "int",
+    default: 100,
+    env: "UPGRADE_SEARCH_BATCH_SIZE",
+    arg: "upgrade-search-batch-size"
   }
 });
 

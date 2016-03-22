@@ -1,4 +1,4 @@
-/* globals location */
+/* globals location, controller */
 const reactruntime = require("../../reactruntime");
 const React = require("react");
 
@@ -28,9 +28,7 @@ class Body extends React.Component {
     }
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <form action="/shots" method="GET">
-          <input type="text" name="q" placeholder="search" defaultValue={this.props.defaultSearch} style={{float: "right"}} />
-        </form>
+        <input type="text" ref="search" placeholder="search" defaultValue={this.props.defaultSearch} style={{float: "right", marginRight: "10px"}} onChange={this.onChangeSearch.bind(this)} />
         <h1 style={{color: "#444", paddingLeft: "40px"}}>
           <img src={this.props.staticLink("img/pageshot.svg")} style={{height: "30px", width: "32px", marginRight: "10px"}} />
           PageShot</h1>
@@ -61,9 +59,9 @@ class Body extends React.Component {
 
     return (
       <div className="shot" key={shot.id} onClick={this.onOpen.bind(this, shot.viewUrl)}>
-        <div className="shot-image-container" style={{
+        <a href={shot.viewUrl} className="shot-image-container" style={{
           backgroundImage: `url(${imageUrl})`
-        }}></div>
+        }}></a>
         <div className="title-container">
           <h2><a href={shot.viewUrl}>{shot.title}</a></h2>
           <div className="link-container">
@@ -77,8 +75,34 @@ class Body extends React.Component {
     );
   }
 
-  onOpen(url) {
+  onOpen(url, event) {
+    if (event.ctrlKey || event.metaKey) {
+      // Don't override what might be an open-in-another-tab click
+      return;
+    }
     location.href = url;
+  }
+
+  onChangeSearch() {
+    // FIXME: this time limiting may not be right
+    if (this.lastChangeTime && this.lastChangeTime > Date.now() - 200) {
+      // Last change made too recently, delay this change...
+      if (this.lastChangeTimeout) {
+        // A change is scheduled soon
+        return;
+      }
+      this.lastChangeTimeout = setTimeout(() => {
+        this.lastChangeTimeout = null;
+        this.lastChangeTime = null;
+        this.onChangeSearch();
+      }, 200);
+      return;
+    }
+    this.lastChangeTime = Date.now();
+    let val = this.refs.search.getDOMNode().value;
+    if (val !== this.props.defaultSearch) {
+      controller.onChangeSearch(val);
+    }
   }
 }
 

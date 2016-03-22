@@ -1,4 +1,4 @@
-/* globals Readability, microformats, watchFunction */
+/* globals Readability, watchFunction */
 /* exported FILENAME */
 /** extractor-worker is a content worker that is attached to a page when
     making a shot
@@ -11,7 +11,6 @@ var FILENAME = "extractor-worker.js";
 
 /** Extracts data:
     - Gets the Readability version of the page (`.readable`)
-    - Parses out microformats (`.microdata`)
     - Finds images in roughly the preferred order (`.images`)
     */
 function extractData() {
@@ -31,7 +30,13 @@ function extractData() {
     pathBase: location.href.replace(/\/[^\/]*$/, "/")
   };
   var reader = new Readability(uri, readableDiv);
-  var readable = reader.parse();
+  let readable;
+  try {
+    readable = reader.parse();
+  } catch (e) {
+    console.warn("Exception getting readable version:", e);
+    console.warn("Traceback:", e.stack);
+  }
   if (readable) {
     delete readable.uri;
   }

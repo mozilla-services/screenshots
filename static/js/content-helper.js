@@ -1,6 +1,8 @@
 /*jslint browser: true */
 /* global SITE_ORIGIN */
 
+let lastDisplayClip;
+
 window.addEventListener(
   "load",
   function () {
@@ -26,6 +28,7 @@ window.addEventListener(
     if (type === "displayClip") {
       displayClip(message.clip);
     } else if (type === "removeDisplayClip") {
+      lastDisplayClip = null;
       removeDisplayClip();
     } else {
       console.warn("Content iframe received message with unknown .type:", message);
@@ -36,6 +39,7 @@ window.addEventListener(
 let highlightElement;
 
 function displayClip(clip) {
+  lastDisplayClip = clip;
   let topLeft = null;
   let bottomRight = null;
   let loc = null;
@@ -62,7 +66,7 @@ function displayClip(clip) {
       right: loc.right
     };
     topLeft = findElement(loc.topLeftElement);
-    bottomRight = findElement(loc.bottomLeftElement);
+    bottomRight = findElement(loc.bottomRightElement);
   }
   if (topLeft) {
     let rect = topLeft.getBoundingClientRect();
@@ -72,11 +76,10 @@ function displayClip(clip) {
   }
   if (bottomRight) {
     let rect = bottomRight.getBoundingClientRect();
-    pos.bottom = rect.top + rect.height + loc.bottomRightOffset.y;
-    pos.right = rect.left + rect.width + loc.bottomRightOffset.x;
+    pos.bottom = rect.top + rect.height + loc.bottomRightOffset.y - loc.bottomRightOffset.height;
+    pos.right = rect.left + rect.width + loc.bottomRightOffset.x - loc.bottomRightOffset.width;
   }
   let bodyRect = document.body.getBoundingClientRect();
-  console.info("adjusting", pos, bodyRect);
   pos.top -= bodyRect.top;
   pos.bottom -= bodyRect.top;
   pos.left -= bodyRect.left;
@@ -110,3 +113,31 @@ function removeDisplayClip() {
     highlightElement = null;
   }
 }
+
+// Code snippet from https://developer.mozilla.org/en-US/docs/Web/Events/resize
+;(function() {
+  var throttle = function(type, name, obj) {
+    obj = obj || window;
+    var running = false;
+    var func = function() {
+      if (running) {
+        return;
+      }
+      running = true;
+      requestAnimationFrame(function() {
+        obj.dispatchEvent(new CustomEvent(name));
+        running = false;
+      });
+    };
+    obj.addEventListener(type, func);
+  };
+  /* init - you can init any event */
+  throttle("resize", "optimizedResize");
+})();
+
+// handle event
+window.addEventListener("optimizedResize", function() {
+  if (lastDisplayClip) {
+    displayClip(lastDisplayClip);
+  }
+});
