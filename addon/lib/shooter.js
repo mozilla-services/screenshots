@@ -6,6 +6,7 @@
 
 const self = require("sdk/self");
 const tabs = require("sdk/tabs");
+const { getFavicon } = require("sdk/places/favicon");
 const { captureTab } = require("./screenshot");
 const { request, sendEvent, sendTiming } = require("./req");
 const { callScript } = require("./framescripter");
@@ -52,7 +53,6 @@ function extractWorker(tab, timeLimit) {
     const worker = tab.attach({
       contentScriptFile: [self.data.url("error-utils.js"),
                           self.data.url("vendor/readability/Readability.js"),
-                          self.data.url("vendor/microformat-shiv.js"),
                           self.data.url("extractor-worker.js")]
     });
     watchWorker(worker);
@@ -118,7 +118,9 @@ const ShotContext = Class({
       this.openInNewTab();
       this.destroy();
     }));
-    this.copyRichDataToClipboard();
+    this._collectionCompletePromise.then(() => {
+      this.copyRichDataToClipboard();
+    });
   },
 
   uploadShot: function() {
@@ -133,36 +135,22 @@ const ShotContext = Class({
     });
   },
 
-  copyRichDataToClipboard: function (activeClipName, numberOfTries) {
+  copyRichDataToClipboard: function (activeClipName) {
     // Use "text" instead of "html" so that pasting into a text area or text editor
     // pastes the html instead of the plain text stripped out of the html.
     let clip = this.shot.getClip(activeClipName);
     if (clip === undefined) {
       let names = this.shot.clipNames();
-      if (names.length === 0) {
-        // Copy just the raw url in case for some reason no clips ever become available
-        // But don't send a notification yet, otherwise the user will get two notifications
-        // in a row if the rich shot data is successfully copied to the clipboard later.
-        clipboard.set(this.shot.viewUrl, "text");
-        if (numberOfTries === undefined) {
-          numberOfTries = 1;
-        }
-        if (numberOfTries < 8) {
-          setTimeout(() => {
-            this.copyRichDataToClipboard(activeClipName, ++numberOfTries);
-          }, 500);
-        } else {
-          console.error("Could not copy rich shot data -- no clip was added to the shot within 4 seconds");
-          // If we failed to copy the rich shot data, just tell the user we copied the link
-          notifications.notify({
-            title: "Link Copied",
-            text: "The link to your shot has been copied to the clipboard.",
-            iconURL: self.data.url("../data/copy.png")
-          });
-        }
-        return;
-      }
       clip = this.shot.getClip(names[0]);
+    }
+    if (! clip) {
+      clipboard.set(this.shot.viewUrl, "text");
+      notifications.notify({
+        title: "Link Copied",
+        text: "The link to your shot has been copied to the clipboard.",
+        iconURL: self.data.url("../data/copy.png")
+      });
+      return;
     }
     let url = this.shot.viewUrl;
     let img = clip.image.url;
@@ -257,8 +245,8 @@ const ShotContext = Class({
     sendEvent("addon", `new-tab-after-save`);
   },
 
-  /** Collects/extracts information from the tab: the screenshot, readable and
-      microformat stuff, the HTML, and other misc stuff.  Immediately updates the
+  /** Collects/extracts information from the tab: the screenshot, readable view,
+      the HTML, and other misc stuff.  Immediately updates the
       shot as that information comes in */
   collectInformation: function () {
     watchPromise(callScript(
@@ -293,6 +281,11 @@ const ShotContext = Class({
         {prefInlineCss})).then(watchFunction(function (attrs) {
           this.shot.update(attrs);
         }, this)));
+      promises.push(watchPromise(getFavicon(this.tab).then((url) => {
+        this.shot.update({
+          favicon: url
+        });
+      })));
       this._collectionCompletePromise = watchPromise(allPromisesComplete(promises));
     }).bind(this)));
   },

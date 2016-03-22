@@ -73,7 +73,11 @@ if (config.sentryDSN) {
 }
 
 dbschema.createTables().then(() => {
-  dbschema.createKeygrip();
+  return dbschema.createKeygrip();
+}).then(() => {
+  return Shot.upgradeSearch();
+}).catch((e) => {
+  console.error("Error initializing database:", e, e.stack);
 });
 
 const app = express();
@@ -841,6 +845,7 @@ linker.init().then(() => {
       res.send("ok");
     });
     console.info(`virtual host server listening on http://localhost:${config.port}`);
+    console.info(`  siteName="${siteName}"; contentName="${contentName}"`);
   } else {
     app.listen(config.port);
     console.info(`server listening on http://localhost:${config.port}/`);
