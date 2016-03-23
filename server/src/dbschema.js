@@ -9,9 +9,8 @@ const MAX_DB_LEVEL = 8;
 exports.createTables = function () {
   console.info("Setting up tables on", db.constr);
   return db.getConnection().then(([conn, done]) => {
-    // This is assuming we are running from dist/server/dbschema.js, and need to
-    // find the path of server/db-patches/ (not dist):
-    let dirname = path.join(__dirname, "..", "..", "server", "db-patches");
+    let dirname = path.join(__dirname, "db-patches");
+    console.info("Loading patches from", dirname);
     return new Promise((resolve, reject) => {
       pgpatcher(conn, MAX_DB_LEVEL, {dir: dirname}, function(err) {
         if (err) {
