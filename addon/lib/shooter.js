@@ -109,6 +109,9 @@ const ShotContext = Class({
       // FIXME: determine if the notification box is just automatically hidden in this case
       this.destroy();
     });
+    this._collectionCompletePromise = new Promise((resolve, reject) => {
+      this._collectionCompleteDone = resolve;
+    });
     this.collectInformation();
     this._activateWorker();
   },
@@ -278,7 +281,8 @@ const ShotContext = Class({
         this.tab,
         self.data.url("framescripts/make-static-html.js"),
         "pageshot@documentStaticData",
-        {prefInlineCss})).then(watchFunction(function (attrs) {
+        {prefInlineCss},
+        15000)).then(watchFunction(function (attrs) {
           this.shot.update(attrs);
         }, this)));
       promises.push(watchPromise(getFavicon(this.tab).then((url) => {
@@ -286,7 +290,7 @@ const ShotContext = Class({
           favicon: url
         });
       })));
-      this._collectionCompletePromise = watchPromise(allPromisesComplete(promises));
+      watchPromise(allPromisesComplete(promises).then(this._collectionCompleteDone));
     }).bind(this)));
   },
 

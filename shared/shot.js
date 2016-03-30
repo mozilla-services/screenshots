@@ -208,7 +208,6 @@ class AbstractShot {
     this.htmlAttrs = attrs.htmlAttrs || null;
     this.bodyAttrs = attrs.bodyAttrs || null;
     this.headAttrs = attrs.headAttrs || null;
-    this._history = new this.History(this, attrs.history);
     this._comments = [];
     if (attrs.comments) {
       this._comments = attrs.comments.map(
@@ -568,10 +567,6 @@ ${options.addBody || ""}
     this._favicon = val;
   }
 
-  get history() {
-    return this._history;
-  }
-
   get hashtags() {
     return this._hashtags || [];
   }
@@ -788,14 +783,14 @@ ${options.addBody || ""}
 
 AbstractShot.prototype.REGULAR_ATTRS = (`
 deviceId url docTitle ogTitle userTitle createdDate createdDevice favicon
-history comments hashtags images readable head body htmlAttrs bodyAttrs
+comments hashtags images readable head body htmlAttrs bodyAttrs
 headAttrs siteName openGraph twitterCard documentSize
 fullScreenThumbnail isPublic resources showPage
 `).split(/\s+/g);
 
 // Attributes that will be accepted in the constructor, but ignored/dropped
 AbstractShot.prototype.DEPRECATED_ATTRS = (`
-microdata
+microdata history
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`
@@ -817,41 +812,6 @@ AbstractShot.prototype._TWITTERCARD_PROPERTIES = (`
 card site title description image
 player player:width player:height player:stream player:stream:content_type
 `).split(/\s+/g);
-
-/** Represents the list of history items leading up to the given shot */
-class _History {
-  constructor(shot, json) {
-    this._shot = shot;
-    this._history = [];
-    if (json && json.items) {
-      json.items.forEach((val) => this.add(val));
-    }
-  }
-
-  add(val) {
-    assert(checkObject(val, ["url"], ["opened", "viewingTime", "docTitle", "favicon", "public"]), "Bad attrs in history item:", Object.keys(val));
-    val.public = !! val.public;
-    assert(isUrl(val.url), "Bad history item URL:", val.url);
-    assert(typeof val.docTitle == "string" || ! val.docTitle, "Bad history item title:", val.docTitle);
-    assert(typeof val.opened == "number" || ! val.opened, "Bad history item opened timestamp:", val.opened);
-    assert(typeof val.viewingTime == "number" || ! val.viewingTime, "Bad history item viewingTime:", val.viewingTime);
-    assert(typeof val.docTitle == "string" || ! val.docTitle, "Bad history item docTitle:", val.docTitle);
-    assert((! val.favicon) || isUrl(val.favicon), "Bad history item favicon:", val.favicon);
-    this._shot._dirty("history");
-    this._history.push(val);
-  }
-
-  asJson() {
-    return {
-      items: this._history
-    };
-  }
-  // FIXME: needs a way to toggle public without changing the entire history
-}
-
-// All classes are set on the AbstractShot prototype so that AbstractShot can be
-// subclassed, and subclasses can subclass these contained classes
-AbstractShot.prototype.History = _History;
 
 /** Represents one comment, on a clip or shot */
 class _Comment {
