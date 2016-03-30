@@ -745,10 +745,18 @@ function resolveCssText(rule) {
       return match;
     }
     let parent = rule.parentStyleSheet;
-    if (parent) {
+    if (parent && parent.href) {
       let href = parent.href;
-      let urlObj = newURI(url, "UTF-8", newURI(href, null, null));
-      url = urlObj.spec;
+      if (href.search(/^https?:/i) != -1) {
+        let urlObj;
+        try {
+          urlObj = newURI(url, "UTF-8", newURI(href, null, null));
+        } catch (e) {
+          console.warn(`Error resolving url "${url}" from "${href}": ${e}`);
+          return 'url("")';
+        }
+        url = urlObj.spec;
+      }
     }
     let newUrl = rewriteResource("(css)", null, url);
     return `url("${newUrl}")`;
