@@ -444,9 +444,6 @@ ${options.addBody || ""}
 
   get viewUrl() {
     let url = this.backend + "/" + this.id;
-    if (this.url.startsWith("http://")) {
-      url = url.replace(/^https/i, "http");
-    }
     return url;
   }
 
