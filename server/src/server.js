@@ -72,14 +72,19 @@ if (config.sentryDSN) {
   ravenClient.patchGlobal();
 }
 
-dbschema.createTables().then(() => {
-  return dbschema.createKeygrip();
-}).then(() => {
-  return Shot.upgradeSearch();
-}).catch((e) => {
-  console.error("Error initializing database:", e, e.stack);
-  process.exit(1);
-});
+function initDatabase() {
+  dbschema.createTables().then(() => {
+    return dbschema.createKeygrip();
+  }).then(() => {
+    return Shot.upgradeSearch();
+  }).catch((e) => {
+    console.error("Error initializing database:", e, e.stack);
+    console.warn("Trying again in 60 seconds");
+    setTimeout(initDatabase, 60000);
+  });
+}
+
+initDatabase();
 
 const app = express();
 
