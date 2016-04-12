@@ -16,6 +16,7 @@ app.get("/", function (req, res) {
         </body>
       </html>
     `);
+    return;
   }
   let query = req.query.q || null;
   Shot.getShotsForDevice(req.backend, req.deviceId, query).then((shots) => {
