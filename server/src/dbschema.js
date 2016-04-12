@@ -98,6 +98,7 @@ exports.createKeygrip = function () {
     keys = new Keygrip(textKeys);
   }).catch((err) => {
     console.warn("Could not create signing keys:", err);
+    throw err;
   });
 };
 

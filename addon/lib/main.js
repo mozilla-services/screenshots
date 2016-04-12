@@ -221,7 +221,8 @@ function hideInfoPanel() {
 exports.main = function (options) {
   loadReason = options.loadReason;
   if (options.loadReason === "install") {
-    showTour();
+    // FIXME: commented out for user testing:
+    //showTour();
   }
   helperworker.trackMods(backendOverride || null);
   require("./user").initialize(exports.getBackend(), options.loadReason).catch((error) => {
