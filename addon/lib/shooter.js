@@ -36,7 +36,9 @@ function escapeForHTML(text) {
 
 /** Runs the extract worker on the given tab, and returns a promise that
     returns the extracted data */
-function extractWorker(tab, timeLimit) {
+function extractWorker(tab, options) {
+  let timeLimit = options.timeLimit;
+  let useReadability = options.useReadability;
   let timeStarted = new Date();
   if (timeLimit === undefined) {
     timeLimit = 10000; // 10 second default
@@ -50,11 +52,13 @@ function extractWorker(tab, timeLimit) {
         reject(new Error("Extractor timed out"));
       }, timeLimit);
     }
-    const worker = tab.attach({
-      contentScriptFile: [self.data.url("error-utils.js"),
-                          self.data.url("vendor/readability/Readability.js"),
-                          self.data.url("extractor-worker.js")]
-    });
+    let contentScriptFile = [
+      self.data.url("error-utils.js"),
+      self.data.url("extractor-worker.js")];
+    if (useReadability) {
+      contentScriptFile.unshift(self.data.url("vendor/readability/Readability.js"));
+    }
+    const worker = tab.attach({contentScriptFile});
     watchWorker(worker);
     worker.port.on("data", function (data) {
       let timeFinished = new Date();
@@ -265,8 +269,9 @@ const ShotContext = Class({
         return;
       }
       var prefInlineCss = require("sdk/simple-prefs").prefs.inlineCss;
+      var useReadability = require("sdk/simple-prefs").prefs.useReadability;
       var promises = [];
-      promises.push(watchPromise(extractWorker(this.tab)).then(watchFunction(function (attrs) {
+      promises.push(watchPromise(extractWorker(this.tab, {useReadability})).then(watchFunction(function (attrs) {
         let passwordFields = attrs.passwordFields;
         delete attrs.passwordFields;
         this.checkIfPublic({passwordFields});
@@ -513,7 +518,8 @@ exports.autoShot = function (tab, backend, backendUrl, save) {
 
     // Heavy lifting happens here
     var promises = [];
-    promises.push(watchPromise(extractWorker(tab)).then(watchFunction(function (attrs) {
+    var useReadability = require("sdk/simple-prefs").prefs.useReadability;
+    promises.push(watchPromise(extractWorker(tab, {useReadability})).then(watchFunction(function (attrs) {
       delete attrs.passwordFields;
       shot.update(attrs);
     }, this)));
