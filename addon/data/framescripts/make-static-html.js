@@ -67,6 +67,11 @@ function checkLink(link) {
   return link;
 }
 
+function resolveRelativeUrl(url, baseUrl) {
+  let urlObj = newURI(url, "UTF-8", newURI(baseUrl, null, null));
+  return urlObj.spec;
+}
+
 // FIXME: this is a global that is reset on each run, and then added to by
 // rewriteResource (so we don't have to add another parameter to the functions
 // that traverse the tree).  But that's kind of icky.
@@ -504,9 +509,22 @@ function staticHTML(el, childLimit) {
       } else if (name == 'src' && replSrc) {
         value = replSrc;
       } else if (name == 'srcset') {
-        let parts = attrs[i].value.split(/\s+/);
-        let link = rewriteResource(el, name, parts[0]);
-        value = link + " " + (parts[1] || "");
+        let majorParts = attrs[i].value.split(/,/g);
+        let newParts = [];
+        for (let pair of majorParts) {
+          let pairParts = pair.split(/\s+/);
+          let link = pairParts[0];
+          // FIXME: doesn't respect <base href>
+          let baseUrl = el.ownerDocument.location.href;
+          try {
+            link = resolveRelativeUrl(link, baseUrl);
+          } catch (e) {
+            console.warn(`Error resolving relative link ${link} relative to base URL ${baseUrl}: ${e}`);
+          }
+          link = rewriteResource(el, name, link);
+          newParts.push(link + " " + (pairParts[1] || ""));
+        }
+        value = newParts.join(",");
       } else if (name == "href" || name == "src" || name == "action" || name == "value" || name == "checked" || name == "selected") {
         value = el[name] + "";
         if (name === "href" || name === "src") {
@@ -748,14 +766,12 @@ function resolveCssText(rule) {
     if (parent && parent.href) {
       let href = parent.href;
       if (href.search(/^https?:/i) != -1) {
-        let urlObj;
         try {
-          urlObj = newURI(url, "UTF-8", newURI(href, null, null));
+          url = resolveRelativeUrl(url, href);
         } catch (e) {
           console.warn(`Error resolving url "${url}" from "${href}": ${e}`);
           return 'url("")';
         }
-        url = urlObj.spec;
       }
     }
     let newUrl = rewriteResource("(css)", null, url);
