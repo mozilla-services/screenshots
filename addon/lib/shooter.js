@@ -190,6 +190,9 @@ const ShotContext = Class({
       contentScriptFile: [
         self.data.url("error-utils.js"),
         self.data.url("annotate-position.js"),
+        self.data.url("selector-util.js"),
+        self.data.url("selector-ui.js"),
+        self.data.url("selector-snapping.js"),
         self.data.url("shooter-interactive-worker.js")],
       contentScriptOptions: {
         "inline-selection.css": self.data.url("inline-selection.css")
