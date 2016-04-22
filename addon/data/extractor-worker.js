@@ -15,8 +15,6 @@ var FILENAME = "extractor-worker.js";
     */
 function extractData() {
   let start = Date.now();
-  // FIXME: need to include found images too
-  let startImage = Date.now();
   let readableDiv;
   let readable;
   if (typeof Readable != "undefined") {
@@ -28,7 +26,7 @@ function extractData() {
     {element: document.head, isReadable: false},
     {element: readableDiv, isReadable: true},
     {element: document.body, isReadable: false}]);
-  console.info("Image time:", Date.now() - startImage, "ms");
+  console.info("Image time:", Date.now() - start, "ms");
   var siteName = findSiteName();
   console.info("extractData time:", Date.now() - start, "ms");
   let passwordFields = [];
