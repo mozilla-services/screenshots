@@ -248,6 +248,7 @@
 var IS_FIREFOX=false;
 var IS_MOBILE=false;
 
+/* We add a class to the body element based on whether this browser is Firefox or not.  Then rules in style.css hide or show .if-firefox and .if-not-firefox based on that body class */
 if (navigator.userAgent.indexOf("Firefox") !== -1
     && navigator.userAgent.indexOf("Gecko") !== -1
     && navigator.userAgent.indexOf("rv:") !== -1) {
