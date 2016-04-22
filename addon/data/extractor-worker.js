@@ -15,6 +15,33 @@ var FILENAME = "extractor-worker.js";
     */
 function extractData() {
   let start = Date.now();
+  let readableDiv;
+  let readable;
+  if (typeof Readable != "undefined") {
+    let result = extractReadable();
+    readable = result.readable;
+    readableDiv = result.readableDiv;
+  }
+  var images = findImages([
+    {element: document.head, isReadable: false},
+    {element: readableDiv, isReadable: true},
+    {element: document.body, isReadable: false}]);
+  console.info("Image time:", Date.now() - start, "ms");
+  var siteName = findSiteName();
+  console.info("extractData time:", Date.now() - start, "ms");
+  let passwordFields = [];
+  for (let el of document.querySelectorAll('input[type=password]')) {
+    passwordFields.push(el.name || null);
+  }
+  return {
+    readable: readable,
+    images: images,
+    siteName: siteName,
+    passwordFields: passwordFields
+  };
+}
+
+function extractReadable() {
   // Readability is destructive, so we have to run it on a copy
   var readableDiv = document.createElement("div");
   readableDiv.innerHTML = document.body.innerHTML;
@@ -41,25 +68,7 @@ function extractData() {
     delete readable.uri;
   }
   console.info("Readability time:", Date.now() - startReader, "ms", "success:", !! readable);
-  // FIXME: need to include found images too
-  let startImage = Date.now();
-  var images = findImages([
-    {element: document.head, isReadable: false},
-    {element: readableDiv, isReadable: true},
-    {element: document.body, isReadable: false}]);
-  console.info("Image time:", Date.now() - startImage, "ms");
-  var siteName = findSiteName();
-  console.info("extractData time:", Date.now() - start, "ms");
-  let passwordFields = [];
-  for (let el of document.querySelectorAll('input[type=password]')) {
-    passwordFields.push(el.name || null);
-  }
-  return {
-    readable: readable,
-    images: images,
-    siteName: siteName,
-    passwordFields: passwordFields
-  };
+  return {readable, readableDiv};
 }
 
 // Images smaller than either of these sizes are skipped:
@@ -85,6 +94,9 @@ function findImages(elements) {
   }
   for (var i=0; i<elements.length; i++) {
     var el = elements[i].element;
+    if (! el) {
+      continue;
+    }
     var isReadable = elements[i].isReadable;
     var ogs = el.querySelectorAll("meta[property='og:image'], meta[name='twitter:image']");
     var j;

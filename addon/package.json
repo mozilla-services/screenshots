@@ -52,6 +52,13 @@
       "description": "EXPERIMENTAL: instead of including CSS files, inline only necessary CSS in style tags",
       "type": "bool",
       "value": false
+    },
+    {
+      "name": "useReadability",
+      "title": "Capture readable version",
+      "description": "Captures a readable version of pages in addition to HTML",
+      "type": "bool",
+      "value": false
     }
   ],
   "updateURL": "https://pageshot.dev.mozaws.net/xpi/mozilla-pageshot.update.rdf"

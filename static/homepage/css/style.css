@@ -1525,3 +1525,13 @@ dd {
     margin-top: 0px;
   }
 }
+
+/* Firefox conditional display */
+
+body.is-firefox .if-not-firefox {
+  display: none;
+}
+
+body.is-not-firefox .if-firefox {
+  display: none;
+}

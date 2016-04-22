@@ -1,13 +1,44 @@
-/* globals console, self, watchFunction, annotatePosition */
-
+/* globals console, self, watchFunction, annotatePosition, util, ui, snapping */
 
 /**********************************************************
  * selection
  */
 
+/* States:
 
-/** Worker used to handle the selection on a page after the shot was made
-    Obviously needs some implementin' */
+"crosshairsPreview":
+  Nothing has happened, and the selection preview is still showing
+"crosshairs":
+  Nothing has happened, and the crosshairs will follow the movement of the mouse
+"draggingReady":
+  The user has pressed the mouse button, but hasn't moved enough to create a selection
+"dragging":
+  The user has pressed down a mouse button, and is dragging out an area far enough to show a selection
+"selected":
+  The user has selected an area
+"resizing":
+  The user is resizing the selection
+"cancelled":
+  Everything has been cancelled
+
+A mousedown goes from crosshairs to dragging.
+A mouseup goes from dragging to selected
+A click outside of the selection goes from selected to crosshairs
+A click on one of the draggers goes from selected to resizing
+
+State variables:
+
+state (string, one of the above)
+mousedownPos (object with x/y during draggingReady, shows where the selection started)
+selectedPos (object with x/y/h/w during selected or dragging, gives the entire selection)
+resizeDirection (string: top, topLeft, etc, during resizing)
+resizeStartPos (x/y position where resizing started)
+
+*/
+
+/***********************************************
+ * State and stateHandlers infrastructure
+ */
 
 // This enumerates all the anchors on the selection, and what part of the
 // selection they move:
@@ -22,69 +53,362 @@ var movements = {
   bottomRight: ["right", "bottom"],
 };
 
-// These record the coordinates where the mouse was clicked:
-var mousedownX, mousedownY;
-// These record where the mouse was clicked, before we know if it is a real drag:
-var startX, startY;
-// And these are the last known coordinates that the mouse moved to:
-var cornerX, cornerY;
-// The selection element:
-var boxEl;
-// Any text captured:
-var selectedText;
-// Number of pixels you have to move before we treat it as a selection
-const MIN_MOVE = 40;
+/** Holds all the objects that handle events for each state: */
+let stateHandlers = {};
 
-let lastCaptureState;
-let currentState;
-
-/** Given the mouse coordinates, guess the appropriate condition given snap points */
-function getPos() {
-  let result = {
-    top: guessY(Math.min(mousedownY, cornerY)),
-    left: guessX(Math.min(mousedownX, cornerX)),
-    bottom: guessY(Math.max(mousedownY, cornerY)),
-    right: guessX(Math.max(mousedownX, cornerX))
-  };
-  return result;
+function getState() {
+  return getState.state;
 }
+getState.state = "cancel";
 
-/** Adjusts mousedownX/Y or cornerX/Y given an attribute of left/right/etc
-    (more complicated because you can drag from any corner to any other corner) */
-function setPos(attr, val) {
-  if (attr == "top") {
-    if (mousedownY < cornerY) {
-      mousedownY = val;
-    } else {
-      cornerY = val;
-    }
-  } else if (attr == "bottom") {
-    if (mousedownY > cornerY) {
-      mousedownY = val;
-    } else {
-      cornerY = val;
-    }
-  } else if (attr == "left" ) {
-    if (mousedownX < cornerX) {
-      mousedownX = val;
-    } else {
-      cornerX = val;
-    }
-  } else if (attr == "right") {
-    if (mousedownX > cornerX) {
-      mousedownX = val;
-    } else {
-      cornerX = val;
-    }
-  } else {
-    throw new Error("Unknown attr " + attr);
+function setState(s) {
+  if (! stateHandlers[s]) {
+    throw new Error("Unknown state: " + s);
+  }
+  let cur = getState.state;
+  let handler = stateHandlers[cur];
+  if (handler.end) {
+    handler.end();
+  }
+  getState.state = s;
+  if (stateHandlers[s].start) {
+    stateHandlers[s].start();
   }
 }
 
+/** Various values that the states use: */
+let mousedownPos;
+let selectedPos;
+let resizeDirection;
+let resizeStartPos;
+let resizeStartSelected;
+
+/** Represents a selection box: */
+class Selection {
+  constructor(x1, y1, x2, y2) {
+    this.x1 = x1;
+    this.y1 = y1;
+    this.x2 = x2;
+    this.y2 = y2;
+  }
+
+  /** Given the mouse coordinates, guess the appropriate condition given snap points */
+  rect() {
+    return {
+      top: this.top, left: this.left,
+      bottom: this.bottom, right: this.right
+    };
+  }
+
+  get top() {
+    return Math.min(this.y1, this.y2);
+  }
+  set top(val) {
+    if (this.y1 < this.y2) {
+      this.y1 = val;
+    } else {
+      this.y2 = val;
+    }
+  }
+
+  get bottom() {
+    return Math.max(this.y1, this.y2);
+  }
+  set bottom(val) {
+    if (this.y1 > this.y2) {
+      this.y1 = val;
+    } else {
+      this.y2 = val;
+    }
+  }
+
+  get left() {
+    return Math.min(this.x1, this.x2);
+  }
+  set left(val) {
+    if (this.x1 < this.x2) {
+      this.x1 = val;
+    } else {
+      this.x2 = val;
+    }
+  }
+
+  get right() {
+    return Math.max(this.x1, this.x2);
+  }
+  set right(val) {
+    if (this.x1 > this.x2) {
+      this.x1 = val;
+    } else {
+      this.x2 = val;
+    }
+  }
+
+  clone() {
+    return new Selection(this.x1, this.y1, this.x2, this.y2);
+  }
+}
+
+/** Represents a single x/y point, typically for a mouse click that doesn't have a drag: */
+class Pos {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  elementFromPoint() {
+    document.body.classList.add("pageshot-hide-selection");
+    try {
+      return document.elementFromPoint(
+        this.x - window.pageXOffset,
+        this.y - window.pageYOffset);
+    } finally {
+      document.body.classList.remove("pageshot-hide-selection");
+    }
+  }
+
+  distanceTo(x, y) {
+    return Math.sqrt(Math.pow(this.x - x, 2), Math.pow(this.y - y));
+  }
+}
+
+/***********************************************
+ * all stateHandlers
+ */
+
+stateHandlers.crosshairsPreview = {
+
+  start: function () {
+    ui.CrosshairPreview.display();
+    ui.WholePageOverlay.display();
+  },
+
+  mousemove: function () {
+    setState("crosshairs");
+  },
+
+  end: function () {
+    ui.CrosshairPreview.remove();
+  },
+};
+
+stateHandlers.crosshairs = {
+
+  start: function () {
+    selectedPos = mousedownPos = null;
+    ui.Box.remove();
+    ui.WholePageOverlay.display();
+  },
+
+  mousemove: function (event) {
+    let x = snapping.guessX(event.pageX);
+    let y = snapping.guessY(event.pageY);
+    ui.Crosshair.display(x, y);
+  },
+
+  mousedown: function (event) {
+    mousedownPos = new Pos(event.pageX, event.pageY);
+    setState("draggingReady");
+    event.stopPropagation();
+    event.preventDefault();
+    return false;
+  },
+
+  keyup: function (event) {
+    if (event.ctrlKey || event.shiftKey || event.altKey || event.metaKey) {
+      // Modified
+      return;
+    }
+    if (event.key === "Escape") {
+      deactivate();
+      self.port.emit("deactivate");
+    }
+    if (event.key === "Enter") {
+      self.port.emit("take-shot");
+    }
+  },
+
+  end: function () {
+    ui.Crosshair.remove();
+  }
+};
+
+stateHandlers.draggingReady = {
+  minMove: 40, // px
+  minAutoImageWidth: 40,
+  minAutoImageHeight: 40,
+  maxAutoElementWidth: 800,
+  maxAutoElementHeight: 600,
+
+  start: function () {
+    ui.Box.remove();
+  },
+
+  mousemove: function (event) {
+    if (mousedownPos.distanceTo(event.pageX, event.pageY) > this.minMove) {
+      selectedPos = new Selection(
+        mousedownPos.x,
+        mousedownPos.y,
+        event.pageX,
+        event.pageY);
+      mousedownPos = null;
+      setState("dragging");
+    }
+  },
+
+  mouseup: function (event) {
+    // If we don't get into "dragging" then we attempt an autoselect
+    let el = this.findGoodEl();
+    if (el) {
+      let rect = el.getBoundingClientRect();
+      selectedPos = new Selection(
+        rect.left + window.scrollX,
+        rect.top + window.scrollY,
+        rect.left + window.scrollX + rect.width,
+        rect.top + window.scrollY + rect.height
+      );
+      mousedownPos = null;
+      ui.Box.display(selectedPos);
+      setState("selected");
+      reportSelection();
+    } else {
+      setState("crosshairs");
+    }
+  },
+
+  click: function (event) {
+    this.mouseup(event);
+  },
+
+  findGoodEl: function () {
+    let el = mousedownPos.elementFromPoint();
+    if (! el) {
+      return null;
+    }
+    let isGoodEl = (el) => {
+      if (el.nodeType != document.ELEMENT_NODE) {
+        return false;
+      }
+      if (el.tagName == "IMG") {
+        let rect = el.getBoundingClientRect();
+        return rect.width >= this.minAutoImageWidth && rect.height >= this.minAutoImageHeight;
+      }
+      let display = window.getComputedStyle(el).display;
+      if (['block', 'inline-block', 'table'].indexOf(display) != -1) {
+        return true;
+        // FIXME: not sure if this is useful:
+        //let rect = el.getBoundingClientRect();
+        //return rect.width <= this.maxAutoElementWidth && rect.height <= this.maxAutoElementHeight;
+      }
+      return false;
+    };
+    while (el) {
+      if (isGoodEl(el)) {
+        return el;
+      }
+      el = el.parentNode;
+    }
+    return null;
+  }
+
+};
+
+stateHandlers.dragging = {
+  start: function () {
+    ui.Box.display(selectedPos);
+    ui.WholePageOverlay.remove();
+  },
+
+  mousemove: function (event) {
+    selectedPos.x2 = util.truncateX(event.pageX);
+    selectedPos.y2 = util.truncateY(event.pageY);
+    ui.Box.display(selectedPos);
+  },
+
+  mouseup: function (event) {
+    selectedPos.x2 = util.truncateX(event.pageX);
+    selectedPos.y2 = util.truncateY(event.pageY);
+    ui.Box.display(selectedPos);
+    reportSelection("selection");
+    setState("selected");
+  }
+};
+
+stateHandlers.selected = {
+  start: function () {
+    ui.WholePageOverlay.remove();
+  },
+
+  mousedown: function (event) {
+    let target = event.target;
+    let direction = ui.Box.draggerDirection(target);
+    if (direction) {
+      stateHandlers.resizing.startResize(event, direction);
+      event.preventDefault();
+      return false;
+    }
+    if (! ui.Box.isSelection(target)) {
+      setState("crosshairs");
+    }
+  }
+};
+
+stateHandlers.resizing = {
+  start: function () {
+    ui.WholePageOverlay.remove();
+  },
+
+  startResize: function (event, direction) {
+    resizeDirection = direction;
+    resizeStartPos = new Pos(event.pageX, event.pageY);
+    resizeStartSelected = selectedPos.clone();
+    setState("resizing");
+  },
+
+  mousemove: function (event) {
+    this._resize(event);
+    return false;
+  },
+
+  mouseup: function (event) {
+    this._resize(event);
+    setState("selected");
+    reportSelection();
+  },
+
+  _resize: function (event) {
+    let diffX = event.pageX - resizeStartPos.x;
+    let diffY = event.pageY - resizeStartPos.y;
+    let movement = movements[resizeDirection];
+    if (movement[0]) {
+      selectedPos[movement[0]] =  resizeStartSelected[movement[0]] + diffX;
+    }
+    if (movement[1]) {
+      selectedPos[movement[1]] = resizeStartSelected[movement[1]] + diffY;
+    }
+    ui.Box.display(selectedPos);
+  },
+
+  end: function () {
+    resizeDirection = resizeStartPos = resizeStartSelected = null;
+  }
+};
+
+stateHandlers.cancel = {
+  start: function () {
+    ui.WholePageOverlay.remove();
+    ui.Box.remove();
+  }
+};
+
+/***********************************************
+ * Selection communication
+ */
+
 function reportSelection(captureType) {
-  var pos = getPos();
-  captureEnclosedText(pos);
-  if (typeof mousedownX != "number") {
+  var pos = selectedPos.rect();
+  let selectedText = util.captureEnclosedText(pos);
+  if (! selectedPos) {
     // Apparently no selection
     throw new Error("reportSelection() without any selection");
   }
@@ -111,342 +435,53 @@ self.port.on("getScreenPosition", watchFunction(function () {
 }));
 
 function activate() {
-  currentState = "selection";
-  deleteSelection();
+  ui.Box.remove();
   document.body.classList.remove("pageshot-hide-selection");
   document.body.classList.remove("pageshot-hide-movers");
   addHandlers();
-  addCrosshairs();
-  addSelectionHelp();
-  addSelectionPreview();
+  setState("crosshairsPreview");
 }
 
 function deactivate() {
-  currentState = "cancel";
-  deleteSelection();
+  ui.Box.remove();
   document.body.classList.remove("pageshot-hide-selection");
   document.body.classList.remove("pageshot-hide-movers");
+  ui.remove();
   removeHandlers();
-  removeCrosshairs();
-  removeSelectionPreview();
-  removePreviewOverlay();
+  setState("cancel");
 }
 
-var mouseup;
-var mousemove;
-var mousedown = watchFunction(function (event) {
-  if (event.button !== 0) {
-    // Not a left click
-    return;
-  }
-  if (event.ctrlKey || event.shiftKey || event.altKey || event.metaKey) {
-    // Modified click
-    return;
-  }
-  startX = truncateX(event.pageX);
-  startY = truncateY(event.pageY);
-  document.addEventListener("mousemove", mousemove, false);
-  document.addEventListener("mouseup", mouseup, false);
-  event.stopPropagation();
-  event.preventDefault();
-  removeCrosshairs();
-  return false;
-});
+/***********************************************
+ * Event handlers
+ */
 
-mouseup = watchFunction(function (event) {
-  document.removeEventListener("mousemove", mousemove, false);
-  document.removeEventListener("mouseup", mouseup, false);
-  if (! startX) {
-    // only do this if we moved enough...
-    cornerX = truncateX(event.pageX);
-    cornerY = truncateY(event.pageY);
-    render();
-    reportSelection("selection");
-  } else {
-    startX = startY = null;
-  }
-});
+let registeredDocumentHandlers = {};
 
-mousemove = watchFunction(function (event) {
-  if (startX) {
-    // Have to test if we've moved enough...
-    if (Math.pow(startX - event.pageX, 2) + Math.pow(startY - event.pageY, 2) >
-        MIN_MOVE*MIN_MOVE) {
-      mousedownX = startX;
-      mousedownY = startY;
-      startX = startY = null;
-    } else {
-      return;
-    }
-  }
-  cornerX = truncateX(event.pageX);
-  cornerY = truncateY(event.pageY);
-  render();
-});
-
-function truncateX(x) {
-  let max = Math.max(document.documentElement.clientWidth, document.body.clientWidth, document.documentElement.scrollWidth, document.body.scrollWidth);
-  if (x < 0) {
-    return 0;
-  } else if (x > max) {
-    return max;
-  } else {
-    return x;
-  }
-}
-
-function truncateY(y) {
-  let max = Math.max(document.documentElement.clientHeight, document.body.clientHeight, document.documentElement.scrollHeight, document.body.scrollHeight);
-  if (y < 0) {
-    return 0;
-  } else if (y > max) {
-    return max;
-  } else {
-    return y;
-  }
-}
-
-// The <body> tag itself can have margins and offsets, which need to be used when
-// setting the position of the boxEl.
-function getBodyRect() {
-  if (getBodyRect.cached) {
-    return getBodyRect.cached;
-  }
-  let rect = document.body.getBoundingClientRect();
-  let cached = {
-    top: rect.top + window.scrollY,
-    bottom: rect.bottom + window.scrollY,
-    left: rect.left + window.scrollX,
-    right: rect.right + window.scrollX
-  };
-  // FIXME: I can't decide when this is necessary
-  // *not* necessary on http://patriciogonzalezvivo.com/2015/thebookofshaders/
-  // (actually causes mis-selection there)
-  // *is* necessary on http://atirip.com/2015/03/17/sorry-sad-state-of-matrix-transforms-in-browsers/
-  cached = {top: 0, bottom: 0, left: 0, right: 0};
-  getBodyRect.cached = cached;
-  return cached;
-}
-
-
-var boxTopEl, boxLeftEl, boxRightEl, boxBottomEl;
-
-function render() {
-  var name;
-  var pos = getPos();
-  if (! boxEl) {
-    boxEl = document.createElement("div");
-    boxEl.className = "pageshot-highlight";
-    for (name in movements) {
-      let elTarget = document.createElement("div");
-      let elMover = document.createElement("div");
-      elTarget.className = "pageshot-mover-target pageshot-" + name;
-      elMover.className = "pageshot-mover";
-      elTarget.appendChild(elMover);
-      boxEl.appendChild(elTarget);
-      elTarget.addEventListener(
-        "mousedown", makeMousedown(elTarget, movements[name]), false);
-    }
-    boxTopEl = document.createElement("div");
-    boxTopEl.className = "pageshot-bghighlight";
-    document.body.appendChild(boxTopEl);
-    boxLeftEl = document.createElement("div");
-    boxLeftEl.className = "pageshot-bghighlight";
-    document.body.appendChild(boxLeftEl);
-    boxRightEl = document.createElement("div");
-    boxRightEl.className = "pageshot-bghighlight";
-    document.body.appendChild(boxRightEl);
-    boxBottomEl = document.createElement("div");
-    boxBottomEl.className = "pageshot-bghighlight";
-    document.body.appendChild(boxBottomEl);
-    document.body.appendChild(boxEl);
-  }
-  let bodyRect = getBodyRect();
-  // Note, document.documentElement.scrollHeight is zero on some strange pages (such as the page created when you load an image):
-  var docHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-  var docWidth = document.documentElement.scrollWidth;
-  boxEl.style.top = (pos.top - bodyRect.top) + "px";
-  boxEl.style.left = (pos.left - bodyRect.left) + "px";
-  boxEl.style.height = (pos.bottom - pos.top - bodyRect.top) + "px";
-  boxEl.style.width = (pos.right - pos.left - bodyRect.left) + "px";
-  boxTopEl.style.top = "0px";
-  boxTopEl.style.height = (pos.top - bodyRect.top) + "px";
-  boxTopEl.style.left = "0px";
-  boxTopEl.style.width = docWidth + "px";
-  boxBottomEl.style.top = (pos.bottom - bodyRect.top) + "px";
-  boxBottomEl.style.height = docHeight - (pos.bottom - bodyRect.top) + "px";
-  boxBottomEl.style.left = "0px";
-  boxBottomEl.style.width = docWidth + "px";
-  boxLeftEl.style.top = (pos.top - bodyRect.top) + "px";
-  boxLeftEl.style.height = pos.bottom - pos.top  + "px";
-  boxLeftEl.style.left = "0px";
-  boxLeftEl.style.width = (pos.left - bodyRect.left) + "px";
-  boxRightEl.style.top = (pos.top - bodyRect.top) + "px";
-  boxRightEl.style.height = pos.bottom - pos.top + "px";
-  boxRightEl.style.left = (pos.right - bodyRect.left) + "px";
-  boxRightEl.style.width = docWidth - (pos.right - bodyRect.left) + "px";
-  removePreviewOverlay();
-}
-
-function deleteSelection() {
-  document.removeEventListener("keyup", crosshairsKeyup, false);
-  function removeEl(el) {
-    if (el) {
-      el.parentNode.removeChild(el);
-    }
-  }
-  removeEl(boxEl);
-  boxEl = null;
-  removeEl(boxTopEl);
-  boxTopEl = null;
-  removeEl(boxRightEl);
-  boxRightEl = null;
-  removeEl(boxLeftEl);
-  boxLeftEl = null;
-  removeEl(boxBottomEl);
-  boxBottomEl = null;
-}
-
-/** mousedown event for the move handles */
-function makeMousedown(el, movement) {
-  return watchFunction(function (event) {
-    event.stopPropagation();
-    var mousedownX = truncateX(event.pageX);
-    var mousedownY = truncateY(event.pageY);
-    var start = getPos();
-    function mousemove(moveEvent) {
-      set(moveEvent);
-    }
-    function mouseup(upEvent) {
-      document.removeEventListener("mousemove", mousemove, false);
-      document.removeEventListener("mouseup", mouseup, false);
-      set(upEvent);
-      let captureType = currentState;
-      if (currentState == "cancel") {
-        // Happens because resizing can cause a cancel to happen
-        captureType = lastCaptureState;
+function addHandlers() {
+  ["mouseup", "mousedown", "mousemove", "click", "keyup"].forEach((eventName) => {
+    let fn = watchFunction((function (eventName, event) {
+      if (typeof event.button == "number" && event.button !== 0) {
+        // Not a left click
+        return;
       }
-      reportSelection(captureType);
-    }
-    document.addEventListener("mousemove", mousemove, false);
-    document.addEventListener("mouseup", mouseup, false);
-    function set(setEvent) {
-      var diffX = setEvent.pageX - mousedownX;
-      var diffY = setEvent.pageY - mousedownY;
-      if (movement[0]) {
-        setPos(movement[0], start[movement[0]] + diffX);
+      if (event.ctrlKey || event.shiftKey || event.altKey || event.metaKey) {
+        // Modified click of key
+        return;
       }
-      if (movement[1]) {
-        setPos(movement[1], start[movement[1]] + diffY);
+      let state = getState();
+      let handler = stateHandlers[state];
+      if (handler[eventName]) {
+        return handler[eventName](event);
       }
-      render();
-    }
-    event.stopPropagation();
-    event.preventDefault();
-    return false;
+    }).bind(null, eventName));
+    document.addEventListener(eventName, fn, false);
+    registeredDocumentHandlers[eventName] = fn;
   });
 }
 
-function addHandlers() {
-  document.addEventListener("mousedown", mousedown, false);
-}
-
 function removeHandlers() {
-  document.removeEventListener("mousedown", mousedown, false);
-  document.removeEventListener("mouseup", mouseup, false);
-  document.removeEventListener("mousemove", mousemove, false);
-  // We'll rely on the selection movers being hidden so that the
-  // event listeners go away there
-}
-
-let vertCross;
-let horizCross;
-
-function crosshairsMousemove(event) {
-  removeSelectionPreview();
-  if (! vertCross) {
-    vertCross = document.createElement("div");
-    vertCross.className = "pageshot-vertcross";
-    //vertCross.style.height = document.body.clientHeight + "px";
-    document.body.appendChild(vertCross);
-    horizCross = document.createElement("div");
-    horizCross.className = "pageshot-horizcross";
-    document.body.appendChild(horizCross);
-  }
-  let x = guessX(event.pageX);
-  let y = guessY(event.pageY);
-  vertCross.style.left = (x - window.scrollX) + "px";
-  horizCross.style.top = (y - window.scrollY) + "px";
-}
-
-function crosshairsKeyup(event) {
-  if (event.ctrlKey || event.shiftKey || event.altKey || event.metaKey) {
-    // Modified
-    return;
-  }
-  if (event.key === "Escape") {
-    deactivate();
-    self.port.emit("deactivate");
-  }
-  if (event.key === "Enter") {
-    self.port.emit("take-shot");
-  }
-}
-
-function addCrosshairs() {
-  document.addEventListener("mousemove", crosshairsMousemove, false);
-  document.addEventListener("keyup", crosshairsKeyup)
-}
-
-function addSelectionHelp() {
-  //showHelpMessage("Click and drag anywhere to make a selection");
-}
-
-function addSelectionPreview() {
-  let el = document.createElement("div");
-  el.className = "pageshot-preview-overlay";
-  document.body.appendChild(el);
-  el = document.createElement("div");
-  el.className = "pageshot-crosshair-pulse";
-  let inner = document.createElement("div");
-  inner.className = "pageshot-crosshair-inner";
-  document.body.appendChild(el);
-  document.body.appendChild(inner);
-  el = document.createElement("div");
-  el.className = "pageshot-horizcross pageshot-crosshair-preview";
-  document.body.appendChild(el);
-  el = document.createElement("div");
-  el.className = "pageshot-vertcross pageshot-crosshair-preview";
-  document.body.appendChild(el);
-}
-
-function removeSelectionPreview() {
-  let els = document.querySelectorAll(`
-    .pageshot-crosshair-pulse,
-    .pageshot-crosshair-inner,
-    .pageshot-horizcross.pageshot-crosshair-preview,
-    .pageshot-vertcross.pageshot-crosshair-preview`);
-  for (let el of els) {
-    el.parentNode.removeChild(el);
-  }
-}
-
-function removePreviewOverlay() {
-  let el = document.querySelector(".pageshot-preview-overlay");
-  if (el) {
-    el.parentNode.removeChild(el);
-  }
-}
-
-function removeCrosshairs() {
-  document.removeEventListener("mousemove", crosshairsMousemove, false);
-  if (vertCross) {
-    vertCross.parentNode.removeChild(vertCross);
-    vertCross = null;
-  }
-  if (horizCross) {
-    horizCross.parentNode.removeChild(horizCross);
-    horizCross = null;
+  for (let name of registeredDocumentHandlers) {
+    document.removeEventListener(name, registeredDocumentHandlers[name], false);
   }
 }
 
@@ -464,158 +499,7 @@ function addStylesheet() {
 
 addStylesheet();
 
-var xSnaps = [];
-var ySnaps = [];
-
-// Calculate x/ySnaps:
-(function () {
-  var xFound = {};
-  var yFound = {};
-  var scrollX = window.scrollX;
-  var scrollY = window.scrollY;
-  var allTags = document.getElementsByTagName("*");
-  var allTagsLength = allTags.length;
-
-  for (var i=0; i<allTagsLength; i++) {
-    var tag = allTags[i];
-    var rect = tag.getBoundingClientRect();
-    // FIXME: some objects aren't visible, and should be excluded
-    var top = Math.floor(rect.top + scrollY);
-    var bottom = Math.floor(rect.bottom + scrollY);
-    var left = Math.floor(rect.left + scrollX);
-    var right = Math.floor(rect.right + scrollX);
-    if (! yFound[top]) {
-      ySnaps.push(top);
-      yFound[top] = true;
-    }
-    if (! yFound[bottom]) {
-      ySnaps.push(bottom);
-      yFound[bottom] = true;
-    }
-    if (! xFound[left]) {
-      xSnaps.push(left);
-      xFound[left] = true;
-    }
-    if (! xFound[right]) {
-      xSnaps.push(right);
-      xFound[right] = true;
-    }
-  }
-  // FIXME: should probably make sure all page edges are in the list
-  xSnaps.sort(function (a, b) {
-    if (a > b) {
-      return 1;
-    }
-    return -1;
-  });
-  ySnaps.sort(function (a, b) {
-    if (a > b) {
-      return 1;
-    }
-    return -1;
-  });
-})();
-
-var _lastClosestX = {};
-function guessX(x) {
-  return _guess(x, findClosest(x, xSnaps, xSnaps.length, _lastClosestX));
-}
-
-var _lastClosestY = {};
-function guessY(y) {
-  return _guess(y, findClosest(y, ySnaps, ySnaps.length, _lastClosestY));
-}
-
-var MIN_SNAP = 15;
-
-function _guess(pos, range) {
-  if (pos-range[0] < range[1]-pos &&
-      pos-range[0] < MIN_SNAP) {
-    return range[0];
-  } else if (range[1]-pos < MIN_SNAP) {
-    return range[1];
-  }
-  return pos;
-}
-
-function findClosest(pos, snaps, snapsLength, memo) {
-  if (memo.last && pos >= memo.last[0] && pos <= memo.last[1]) {
-    return memo.last;
-  }
-  if (pos > snaps[snapsLength-1] || pos < snaps[0]) {
-    console.warn("Got out of range position for snapping:", pos, snaps[0], snaps[snapsLength-1]);
-    return pos;
-  }
-  var index = Math.floor(snapsLength/2);
-  var less = 0;
-  var more = snapsLength;
-  while (true) {
-    if (snaps[index] <= pos && snaps[index+1] >= pos) {
-      break;
-    }
-    if (snaps[index] > pos) {
-      more = index;
-    } else {
-      less = index;
-    }
-    index = Math.floor((less + more) / 2);
-  }
-  var result = [snaps[index], snaps[index+1]];
-  //memo.last = result;
-  return result;
-}
-
-// Pixels of wiggle the captured region gets in captureSelectedText:
-var CAPTURE_WIGGLE = 10;
-const ELEMENT_NODE = document.ELEMENT_NODE;
-
-function captureEnclosedText(box) {
-  var scrollX = window.scrollX;
-  var scrollY = window.scrollY;
-  var text = [];
-  function traverse(el) {
-    var elBox = el.getBoundingClientRect();
-    elBox = {
-      top: elBox.top + scrollY,
-      bottom: elBox.bottom + scrollY,
-      left: elBox.left + scrollX,
-      right: elBox.right + scrollX
-    };
-    if (elBox.bottom < box.top ||
-        elBox.top > box.bottom ||
-        elBox.right < box.left ||
-        elBox.left > box.right) {
-      // Totally outside of the box
-      return;
-    }
-    if (elBox.bottom > box.bottom + CAPTURE_WIGGLE ||
-        elBox.top < box.top - CAPTURE_WIGGLE) {
-      // Partially outside the box
-      for (var i=0; i<el.childNodes.length; i++) {
-        var child = el.childNodes[i];
-        if (child.nodeType == ELEMENT_NODE) {
-          traverse(child);
-        }
-      }
-      return;
-    }
-    addText(el);
-  }
-  function addText(el) {
-    // FIXME: should use alt in images, and maybe titles, and maybe
-    // keep some markup, and other stuff
-    text.push(el.textContent);
-  }
-  traverse(document.body);
-  if (text.length) {
-    selectedText = text.join("\n");
-    selectedText = selectedText.replace(/^\s+/, "");
-    selectedText = selectedText.replace(/\s+$/, "");
-    selectedText = selectedText.replace(/[ \t]+\n/g, "\n");
-  } else {
-    selectedText = null;
-  }
-}
+snapping.init();
 
 /**********************************************************
  * window.history catching
