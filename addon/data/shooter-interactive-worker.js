@@ -480,7 +480,7 @@ function addHandlers() {
 }
 
 function removeHandlers() {
-  for (let name of registeredDocumentHandlers) {
+  for (let name in registeredDocumentHandlers) {
     document.removeEventListener(name, registeredDocumentHandlers[name], false);
   }
 }
