@@ -214,20 +214,6 @@ stateHandlers.crosshairs = {
     return false;
   },
 
-  keyup: function (event) {
-    if (event.ctrlKey || event.shiftKey || event.altKey || event.metaKey) {
-      // Modified
-      return;
-    }
-    if (event.key === "Escape") {
-      deactivate();
-      self.port.emit("deactivate");
-    }
-    if (event.key === "Enter") {
-      self.port.emit("take-shot");
-    }
-  },
-
   end: function () {
     ui.Crosshair.remove();
   }
@@ -458,7 +444,7 @@ function deactivate() {
 let registeredDocumentHandlers = {};
 
 function addHandlers() {
-  ["mouseup", "mousedown", "mousemove", "click", "keyup"].forEach((eventName) => {
+  ["mouseup", "mousedown", "mousemove", "click"].forEach((eventName) => {
     let fn = watchFunction((function (eventName, event) {
       if (typeof event.button == "number" && event.button !== 0) {
         // Not a left click
@@ -477,10 +463,26 @@ function addHandlers() {
     document.addEventListener(eventName, fn, false);
     registeredDocumentHandlers[eventName] = fn;
   });
+  document.addEventListener("keyup", keyupHandler, false);
+  registeredDocumentHandlers.keyup = keyupHandler;
+}
+
+function keyupHandler(event) {
+  if (event.ctrlKey || event.shiftKey || event.altKey || event.metaKey) {
+    // Modified
+    return;
+  }
+  if (event.key === "Escape") {
+    deactivate();
+    self.port.emit("deactivate");
+  }
+  if (event.key === "Enter") {
+    self.port.emit("take-shot");
+  }
 }
 
 function removeHandlers() {
-  for (let name of registeredDocumentHandlers) {
+  for (let name in registeredDocumentHandlers) {
     document.removeEventListener(name, registeredDocumentHandlers[name], false);
   }
 }

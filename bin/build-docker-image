@@ -1,10 +1,28 @@
 #!/usr/bin/env bash
 
-if [ $# -eq 0 ] ; then
+set -eu
+
+export NODE_ENV=production
+cd "$(dirname ${BASH_SOURCE[0]})/.."
+
+if [[ ! -e .env.$NODE_ENV ]] ; then
+  echo "You should create .env.$NODE_ENV"
+  exit 5
+fi
+
+if [[ $# = 0 ]] ; then
   echo "Usage: $0 dockerhubusername"
-  echo "  builds the pageshot docker image, tags it as [dockerhubusername]/pageshot:latest, and uploads it to dockerhub."
+  echo "  builds the pageshot docker image"
+  echo "  tags and uploads it as [dockerhubusername]/pageshot:latest"
+  echo "  creates build/eb-app-latest.zip"
   exit 4
 fi
+
+sed "s!USERNAME!$1!g" < Dockerrun.aws.json.template > Dockerrun.aws.json
+zip -r build/eb-app-latest.zip Dockerrun.aws.json .ebextensions/*.config
+rm Dockerrun.aws.json
+
+make server
 
 xpi="build/mozilla-pageshot.xpi"
 if [[ ! -e "$xpi" ]] ; then
@@ -23,3 +41,4 @@ fi
 
 docker build -t $1/pageshot:latest .
 docker push $1/pageshot
+echo "Complete.  Upload build/eb-app-latest.zip to http://amzn.to/1NuC3N9"
