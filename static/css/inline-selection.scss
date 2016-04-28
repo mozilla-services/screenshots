@@ -33,7 +33,6 @@ $overlay-z-index: 900000;
   position: absolute;
   border: 1px solid #000;
   z-index: $overlay-z-index;
-  pointer-events: none;
 }
 
 .pageshot-mover-target {
