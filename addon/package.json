@@ -59,6 +59,14 @@
       "description": "Captures a readable version of pages in addition to HTML",
       "type": "bool",
       "value": false
+    },
+    {
+      "name": "hasUsedMyShots",
+      "title": "Has used My Shots",
+      "description": "Indicate if you've used the My Shots button",
+      "type": "bool",
+      "value": false,
+      "hidden": true
     }
   ],
   "updateURL": "https://pageshot.dev.mozaws.net/xpi/mozilla-pageshot.update.rdf"

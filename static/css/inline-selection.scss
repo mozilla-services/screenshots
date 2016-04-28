@@ -9,6 +9,7 @@ $handle-outside-extent: 0px;
 // And some calculated values based on these that will be used below:
 $handle-mover-offset: $mover-outer - ($handle-outside-extent / 2);
 $mover-size: $mover-outer + $mover-inner;
+$overlay-z-index: 900000;
 
 .pageshot-hide-selection .pageshot-highlight,
 .pageshot-hide-selection .pageshot-mover,
@@ -19,7 +20,8 @@ $mover-size: $mover-outer + $mover-inner;
 .pageshot-hide-selection .pageshot-help-message,
 .pageshot-hide-selection .pageshot-preview-overlay,
 .pageshot-hide-selection .pageshot-crosshair-pulse,
-.pageshot-hide-selection .pageshot-crosshair-inner {
+.pageshot-hide-selection .pageshot-crosshair-inner,
+.pageshot-hide-selection .pageshot-myshots-reminder {
   display: none;
 }
 
@@ -30,7 +32,7 @@ $mover-size: $mover-outer + $mover-inner;
 .pageshot-highlight {
   position: absolute;
   border: 1px solid #000;
-  z-index: 10000;
+  z-index: $overlay-z-index;
   pointer-events: none;
 }
 
@@ -197,7 +199,7 @@ $mover-size: $mover-outer + $mover-inner;
   width: 100%;
   height: 0px;
   border: 1px solid rgba(255, 255, 255, 0.6);
-  z-index: 100000;
+  z-index: $overlay-z-index + 50;
 }
 
 .pageshot-vertcross {
@@ -206,7 +208,7 @@ $mover-size: $mover-outer + $mover-inner;
   height: 100%;
   width: 0px;
   border: 1px solid rgba(255, 255, 255, 0.6);
-  z-index: 100000;
+  z-index: $overlay-z-index + 50;
 }
 
 .pageshot-preview-overlay {
@@ -216,7 +218,7 @@ $mover-size: $mover-outer + $mover-inner;
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 90000
+  z-index: $overlay-z-index;
 }
 
 .pageshot-crosshair-pulse {
@@ -229,7 +231,7 @@ $mover-size: $mover-outer + $mover-inner;
   height: 40px;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 0, 0.5);
-  z-index: 110000;
+  z-index: $overlay-z-index + 1000;
   background-image: radial-gradient(20px at 50% 50%, rgba(255, 255, 0, 0.1), rgba(255, 255, 0, 0.5));
   animation-name: pageshot-pulse;
   animation-duration: 1s;
@@ -247,7 +249,7 @@ $mover-size: $mover-outer + $mover-inner;
   height: 10px;
   border-radius: 5px;
   background-color: #fff;
-  z-index: 110001;
+  z-index: $overlay-z-index + 101;
 }
 
 @keyframes pageshot-pulse {
@@ -262,6 +264,33 @@ $mover-size: $mover-outer + $mover-inner;
 
 .pageshot-vertcross.pageshot-crosshair-preview {
   left: 60%;
+}
+
+.pageshot-myshots-reminder {
+  @extend .pageshot-reset;
+  width: 200px;
+  padding: 5px 10px 10px 10px;
+  background-color: #fff;
+  color: #000;
+  font-size: 11px;
+  border-radius: 2px;
+  border: 1px solid #000;
+  position: fixed;
+  top: 4px;
+  left: 10px;
+  z-index: $overlay-z-index + 20;
+
+  .pageshot-myshots-arrow {
+    position: relative;
+    top: -10px;
+    left: 0px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #fff;
+  }
+
 }
 
 /* .pageshot reset */

@@ -7,6 +7,7 @@
 const self = require("sdk/self");
 const tabs = require("sdk/tabs");
 const { getFavicon } = require("sdk/places/favicon");
+const { prefs } = require('sdk/simple-prefs');
 const { captureTab } = require("./screenshot");
 const { request, sendEvent, sendTiming } = require("./req");
 const { callScript } = require("./framescripter");
@@ -195,7 +196,8 @@ const ShotContext = Class({
         self.data.url("selector-snapping.js"),
         self.data.url("shooter-interactive-worker.js")],
       contentScriptOptions: {
-        "inline-selection.css": self.data.url("inline-selection.css")
+        "inline-selection.css": self.data.url("inline-selection.css"),
+        showMyShotsReminder: ! prefs.hasUsedMyShots
       }
     }));
     this.interactiveWorker.port.on("select", watchFunction(function (pos, shotText, captureType) {
