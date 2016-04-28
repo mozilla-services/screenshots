@@ -31,7 +31,7 @@ class Body extends React.Component {
         <input type="text" ref="search" placeholder="search" defaultValue={this.props.defaultSearch} style={{float: "right", marginRight: "10px"}} onChange={this.onChangeSearch.bind(this)} />
         <h1 style={{color: "#444", paddingLeft: "40px"}}>
           <img src={this.props.staticLink("img/pageshot.svg")} style={{height: "30px", width: "32px", marginRight: "10px"}} />
-          PageShot</h1>
+          PageShot: My Shots</h1>
         <div id="shot-index">
           {children}
         </div>

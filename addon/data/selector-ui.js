@@ -215,6 +215,30 @@ const ui = (function () {
     horizEl: null
   };
 
+  exports.MyShotsReminder = {
+
+    display: function () {
+      if (this.dialogEl) {
+        return;
+      }
+      let div = document.createElement("div");
+      div.className = "pageshot-myshots-reminder";
+      div.innerHTML = `
+      <div class="pageshot-myshots-arrow"></div>
+      Click this button to view all the shots you've taken
+      `;
+      document.body.appendChild(div);
+      this.dialogEl = div;
+    },
+
+    remove: function () {
+      util.removeNode(this.dialogEl);
+      this.dialogEl = null;
+    },
+
+    dialogEl: null
+  };
+
   /** Removes every UI this module creates */
   exports.remove = function () {
     for (let name in exports) {

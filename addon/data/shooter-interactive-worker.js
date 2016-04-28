@@ -181,6 +181,9 @@ stateHandlers.crosshairsPreview = {
   start: function () {
     ui.CrosshairPreview.display();
     ui.WholePageOverlay.display();
+    if (self.options.showMyShotsReminder) {
+      ui.MyShotsReminder.display();
+    }
   },
 
   mousemove: function () {
@@ -189,6 +192,7 @@ stateHandlers.crosshairsPreview = {
 
   end: function () {
     ui.CrosshairPreview.remove();
+    ui.MyShotsReminder.remove();
   },
 };
 

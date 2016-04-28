@@ -64,6 +64,9 @@ function showNotificationBar(shotcontext) {
   myShots.appendChild(postMyShots);
   myShots.className = "myshots";
   myShots.onclick = watchFunction(function () {
+    if (! prefs.hasUsedMyShots) {
+      prefs.hasUsedMyShots = true;
+    }
     hideNotificationBar();
     setTimeout(() => {
       tabs.open(exports.getBackend() + "/shots");
