@@ -1056,4 +1056,6 @@ class _Clip {
 
 AbstractShot.prototype.Clip = _Clip;
 
-exports.AbstractShot = AbstractShot;
+if (typeof exports != "undefined") {
+  exports.AbstractShot = AbstractShot;
+}
