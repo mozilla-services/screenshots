@@ -1,4 +1,5 @@
 /* globals console, self, watchFunction, annotatePosition, util, ui, snapping */
+/* globals window, document, location, chromeShooter */
 
 /**********************************************************
  * selection
@@ -35,6 +36,8 @@ resizeDirection (string: top, topLeft, etc, during resizing)
 resizeStartPos (x/y position where resizing started)
 
 */
+
+var isChrome = false;
 
 /***********************************************
  * State and stateHandlers infrastructure
@@ -181,7 +184,9 @@ stateHandlers.crosshairsPreview = {
   start: function () {
     ui.CrosshairPreview.display();
     ui.WholePageOverlay.display();
-    if (self.options.showMyShotsReminder) {
+    if (isChrome) {
+      ui.MyShotsReminder.display();
+    } else if (self.options.showMyShotsReminder) {
       ui.MyShotsReminder.display();
     }
   },
@@ -407,10 +412,21 @@ function reportSelection(captureType) {
     return;
   }
   annotatePosition(pos);
-  self.port.emit("select", pos, selectedText, captureType);
+  if (isChrome) {
+    chromeShooter.saveSelection(pos, selectedText, captureType);
+  } else {
+    self.port.emit("select", pos, selectedText, captureType);
+  }
 }
 
-self.port.on("getScreenPosition", watchFunction(function () {
+if (! isChrome) {
+  self.port.on("getScreenPosition", watchFunction(function () {
+    let pos = getScreenPosition();
+    self.port.emit("screenPosition", pos);
+  }));
+}
+
+function getScreenPosition() {
   var pos = {
     top: window.scrollY,
     bottom: window.scrollY + window.innerHeight,
@@ -421,8 +437,8 @@ self.port.on("getScreenPosition", watchFunction(function () {
   // should instead annotate based on an inner element, and not worry about
   // left and right
   annotatePosition(pos);
-  self.port.emit("screenPosition", pos);
-}));
+  return pos;
+}
 
 function activate() {
   ui.Box.remove();
@@ -430,6 +446,22 @@ function activate() {
   document.body.classList.remove("pageshot-hide-movers");
   addHandlers();
   setState("crosshairsPreview");
+  if (isChrome) {
+    ui.ChromeInterface.display();
+    ui.ChromeInterface.onMyShots = function () {
+      deactivate();
+      return true;
+    };
+    ui.ChromeInterface.onSave = function () {
+      chromeShooter.takeShot();
+      return false;
+    };
+    ui.ChromeInterface.onCancel = function () {
+      deactivate();
+      chromeShooter.deactivate();
+      return false;
+    };
+  }
 }
 
 function deactivate() {
@@ -478,10 +510,18 @@ function keyupHandler(event) {
   }
   if (event.key === "Escape") {
     deactivate();
-    self.port.emit("deactivate");
+    if (isChrome) {
+      chromeShooter.deactivate();
+    } else {
+      self.port.emit("deactivate");
+    }
   }
   if (event.key === "Enter") {
-    self.port.emit("take-shot");
+    if (isChrome) {
+      chromeShooter.takeShot();
+    } else {
+      self.port.emit("take-shot");
+    }
   }
 }
 
@@ -503,7 +543,9 @@ function addStylesheet() {
   }
 }
 
-addStylesheet();
+if (! isChrome) {
+  addStylesheet();
+}
 
 snapping.init();
 
@@ -516,17 +558,22 @@ function checkUrl() {
   var curUrl = location.href;
   if (origUrl != curUrl) {
     console.info("got url change", origUrl, curUrl);
-    self.port.emit("popstate", curUrl);
+    if (isChrome) {
+      chromeShooter.popstate();
+    } else {
+      self.port.emit("popstate", curUrl);
+    }
     deactivate();
   }
 }
 
 window.addEventListener("popstate", checkUrl, false);
 
-self.port.on("isShowing", checkUrl);
+if (! isChrome) {
+  self.port.on("isShowing", checkUrl);
 
-self.port.on("cancel", deactivate);
+  self.port.on("cancel", deactivate);
 
-self.port.emit("ready");
-
-activate();
+  self.port.emit("ready");
+  activate();
+}

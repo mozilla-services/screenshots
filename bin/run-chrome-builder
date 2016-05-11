@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+set -e
+cd "$(dirname ${BASH_SOURCE[0]})/.."
+PATH="node_modules/.bin:$PATH"
+
+help () {
+  echo "Usage: $(basename $0)"
+  echo "  Builds/rebuilds the chrome extension in build/chrome-extension"
+}
+
+playsound () {
+  if [[ -e /usr/bin/afplay ]] ; then
+    afplay $1 &
+  fi
+}
+
+rebuild () {
+  make chrome-extension
+  playsound bin/elevator-ding.mp3
+}
+
+while [[ -n "$1" ]] ; do
+  case "$1" in
+    help|-h|--help)
+      help
+      exit
+      ;;
+    --rebuild)
+      rebuild
+      exit
+      ;;
+    *)
+      help
+      exit 2
+      ;;
+  esac
+done
+
+make chrome-extension
+
+nodemon \
+  -w addon/data/ -w static/ -w shared/ \
+  -w Makefile -w chrome-extension/ \
+  -e .js,.scss,.css,.png,.svg,.ttf,.html \
+  --on-change-only \
+  --exec bash $0 --rebuild

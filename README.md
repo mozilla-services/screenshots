@@ -18,14 +18,13 @@ Install [node.js](https://nodejs.org/). Version 0.12 is required.
 
 Clone the [repository](https://github.com/mozilla-services/pageshot/).
 
-Inside the local clone, run `npm install` and `npm install -g jpm`
-
 There are two scripts to run the server locally and develop the addon:
 
 - `./bin/run-server` will run the server on localhost:10080 and automatically restart if there are changes
 - `./bin/run-addon` will build the addon, start Firefox with the addon installed (you must have Nightly or Developer Edition)
+- `./bin/run-chrome-builder` will build the Chrome version of the add-on in `build/chrome-extension/`, and watch for changes and rebuild as necessary
 
-By default, PageShot will connect to a postgres database on localhost:5432. To change which database and user it connects to set/export the environmental variables: RDS_USERNAME, RDS_PASSWORD, and RDS_HOSTNAME
+By default, PageShot will connect to a postgres database on localhost:5432. To change which database and user it connects to set/export the environmental variables: `RDS_USERNAME`, `RDS_PASSWORD`, and `RDS_HOSTNAME`
 
 The server will automatically setup the tables in your database, and keep them up to date over time (using [pg-patcher](https://github.com/chilts/pg-patcher/)).
 
@@ -39,7 +38,7 @@ To make the auto-reloading of the addon work, after you first start Firefox usin
 
 There is an IRC channel `#pageshot` on irc.mozilla.org.
 
-We hold daily standups each Monday, Tuesday, and Thursday at 3pm Eastern, 2pm Central, noon Pacific; on Wednesday we meet 30 minutes earlier; on Friday we don't meet.  Meetings typically last 20 minutes, and we just discuss whatever we're working on.  Feel free to stop by and say hi.  Follow [this link](https://v.mozilla.com/flex.html?roomdirect.html&key=HKjEDYoY2zMqhoZ8by7z3UTLKA) to join the meeting (you'll have to install the Vidyo  video conferencing software, sorry).  Please don't join with your video turned off, it's a conversational meeting and we like to know who is part of the conversation.  If someone is out for some reason we may cancel this meeting, check in on IRC if you are unsure.
+We hold daily standups each Monday and Wednesday at 1:30pm Eastern, 12:30pm Central, 10:30 Pacific.  Meetings typically last 20 minutes, and we just discuss whatever we're working on.  Feel free to stop by and say hi.  Follow [this link](https://v.mozilla.com/flex.html?roomdirect.html&key=HKjEDYoY2zMqhoZ8by7z3UTLKA) to join the meeting (you'll have to install the Vidyo  video conferencing software, sorry).  Please don't join with your video turned off, it's a conversational meeting and we like to know who is part of the conversation.  If someone is out for some reason we may cancel this meeting, check in on IRC if you are unsure.
 
 Planning and ideation is happening in the [issue tracker](https://github.com/ianb/pageshot/issues).  We use a pattern roughly like:
 

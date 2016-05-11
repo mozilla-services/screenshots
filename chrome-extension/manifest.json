@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "name": "PageShot",
+  "description": "Take clips and snapshot copies of pages",
+  "version": "0.1",
+  "browser_action": {
+    "default_icon": "img/pageshot-mac-16px.png",
+    "default_title": "Take a shot"
+  },
+  "background": {
+    "scripts": ["uuid.js", "background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://pageshot.dev.mozaws.net/*"],
+      "js": ["site-helper.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "permissions": [
+    "activeTab",
+    "storage",
+    "https://pageshot.dev.mozaws.net/"
+  ]
+}
