@@ -185,7 +185,9 @@ stateHandlers.crosshairsPreview = {
     ui.CrosshairPreview.display();
     ui.WholePageOverlay.display();
     if (isChrome) {
-      ui.MyShotsReminder.display();
+      if (! chromeShooter.hasUsedMyShots) {
+        ui.MyShotsReminder.display();
+      }
     } else if (self.options.showMyShotsReminder) {
       ui.MyShotsReminder.display();
     }
@@ -450,6 +452,7 @@ function activate() {
     ui.ChromeInterface.display();
     ui.ChromeInterface.onMyShots = function () {
       deactivate();
+      chromeShooter.setHasusedMyShots(true);
       return true;
     };
     ui.ChromeInterface.onSave = function () {

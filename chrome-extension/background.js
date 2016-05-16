@@ -161,6 +161,7 @@ function uriEncode(obj) {
 }
 
 chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
+  console.info("onMessage request:", req);
   if (req.type == "requestConfiguration") {
     sendResponse({
       backend,
@@ -169,6 +170,12 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
       deviceInfo: registrationInfo.deviceInfo,
       secret: registrationInfo.secret
     });
+  } else if (req.type == "setHasUsedMyShots") {
+    hasUsedMyShots = req.value;
+    chrome.storage.sync.set({
+      hasUsedMyShots: req.value
+    });
+    sendResponse(null);
   } else if (req.type == "clipImage") {
     screenshotPage(
       req.pos,

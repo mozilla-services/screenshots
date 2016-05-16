@@ -8,9 +8,9 @@ const chromeShooter = (function () {
 
   const RANDOM_STRING_LENGTH = 16;
   let backend;
-  let hasUsedMyShots;
   let registrationInfo;
   let shot;
+  exports.hasUsedMyShots = false;
 
   let completeResolver;
   let collectionComplete = new Promise((resolve, reject) => {
@@ -75,7 +75,6 @@ const chromeShooter = (function () {
   };
 
   exports.takeShot = function () {
-    console.log("doing takeShot");
     collectionComplete.then(() => {
       let req = new XMLHttpRequest();
       req.open("PUT", shot.jsonUrl);
@@ -97,7 +96,6 @@ const chromeShooter = (function () {
         shot.showPage = true;
       }
       let data = shot.asJson();
-      console.log("extracted data:", data);
       req.send(JSON.stringify(data));
     });
   };
@@ -118,9 +116,7 @@ const chromeShooter = (function () {
     );
     exports.init().then(() => {
       completeResolver();
-      console.log("got all init done");
     });
-    console.log("makeshot inner done", shot);
   }
 
   function saveShotFullPage(shot) {
@@ -139,21 +135,24 @@ const chromeShooter = (function () {
     shot.resources = {};
   }
 
-  console.log("sending request");
   chrome.runtime.sendMessage({type: "requestConfiguration"}, (response) => {
-    console.log("got configuration", response);
     backend = response.backend;
-    hasUsedMyShots = response.hasUsedMyShots;
+    exports.hasUsedMyShots = response.hasUsedMyShots;
     registrationInfo = {
       deviceId: response.deviceId,
       deviceInfo: response.deviceInfo,
       secret: response.secret
     };
     makeShot();
-    console.log("makeshot done");
   });
+
+  exports.setHasUsedMyShots = function (value) {
+    chrome.runtime.sendMessage({
+      type: "setHasUsedMyShots",
+      value: true
+    });
+    exports.hasUsedMyShots = value;
+  };
 
   return exports;
 })();
-
-console.log("done loading");
