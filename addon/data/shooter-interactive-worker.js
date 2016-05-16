@@ -218,6 +218,9 @@ stateHandlers.crosshairs = {
   },
 
   mousedown: function (event) {
+    if (ui.ChromeInterface.isHeader(event.target)) {
+      return;
+    }
     mousedownPos = new Pos(event.pageX, event.pageY);
     setState("draggingReady");
     event.stopPropagation();

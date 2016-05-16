@@ -301,6 +301,20 @@ const ui = (function () {
       }
     },
 
+    isHeader: function (el) {
+      if (! this.el) {
+        // There is no header, so couldn't be us
+        return false;
+      }
+      while (el) {
+        if (el.className && el.className.indexOf("pageshot-saver") != -1) {
+          return true;
+        }
+        el = el.parentNode;
+      }
+      return false;
+    },
+
     remove: function () {
       util.removeNode(this.el);
       this.el = null;
