@@ -7,7 +7,7 @@ server=https://pageshot.dev.mozaws.net
 orig_server="$server"
 
 help () {
-  echo "Usage: $(basename $0) [-s|--server SERVER]"
+  echo "Usage: $(basename $0) [-s|--server SERVER] [--local]"
   echo "  Builds/rebuilds the chrome extension in build/chrome-extension"
 }
 
@@ -36,6 +36,10 @@ while [[ -n "$1" ]] ; do
       fi
       server="$2"
       shift; shift
+      ;;
+    --local)
+      server=http://localhost:10080
+      shift
       ;;
     --rebuild)
       rebuild

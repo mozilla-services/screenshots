@@ -8,6 +8,7 @@ for (let permission of manifest.permissions) {
     break;
   }
 }
+backend = backend.replace(/\/*$/, "");
 let registrationInfo;
 let initialized = false;
 const STORAGE_LIMIT = 100;
@@ -107,7 +108,7 @@ function login() {
     req.onload = () => {
       if (req.status == 404) {
         // No such user
-        resolve(login());
+        resolve(register());
       } else if (req.status >= 300) {
         console.warn("Error in response:", req.responseText);
         reject(new Error("Could not log in: " + req.status));
