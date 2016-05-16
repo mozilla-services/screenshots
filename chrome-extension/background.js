@@ -1,4 +1,4 @@
-/* globals chrome, console, XMLHttpRequest, Image, document, setTimeout, makeUuid */
+/* globals chrome, console, XMLHttpRequest, Image, document, setTimeout, makeUuid, navigator */
 let hasUsedMyShots = false;
 let manifest = chrome.runtime.getManifest();
 let backend;
@@ -13,6 +13,11 @@ let registrationInfo;
 let initialized = false;
 const STORAGE_LIMIT = 100;
 const TIME_LIMIT = 1000 * 60 * 60 * 24 * 30; // 30 days
+
+let platformInfo;
+chrome.runtime.getPlatformInfo(function(info) {
+  platformInfo = info;
+});
 
 
 chrome.runtime.onInstalled.addListener(function () {
@@ -87,15 +92,19 @@ function generateRegistrationInfo() {
 }
 
 function deviceInfo() {
-  // FIXME: can use chrome.runtime.getManifest() to get some of this metadata
+  let match = navigator.userAgent.match(/Chrom(?:e|ium)\/([0-9\.]+)/);
+  let chromeVersion = match ? match[1] : null;
+
   return {
-    //addonVersion: self.version,
-    //platform: system.platform,
-    //architecture: system.architecture,
-    //version: system.version,
+    addonVersion: manifest.version,
+    platform: platformInfo.os,
+    architecture: platformInfo.arch,
+    version: chromeVersion,
+    // These don't seem to apply to Chrome:
     //build: system.build,
     //platformVersion: system.platformVersion,
-    //appVendor: system.vendor,
+    userAgent: navigator.userAgent,
+    appVendor: "chrome",
     appName: "chrome"
   };
 }
