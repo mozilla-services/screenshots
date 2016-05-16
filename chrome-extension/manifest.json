@@ -2,9 +2,18 @@
   "manifest_version": 2,
   "name": "PageShot",
   "description": "Take clips and snapshot copies of pages",
-  "version": "0.1",
+  "version": "0.1.0",
+  "description": "PageShot takes clips and screenshots from pages, and can save a permanent copy of a page",
+  "author": "Ian Bicking, Donovan Preston, and Bram Pitoyo",
+  "homepage_url": "https://github.com/mozilla-services/pageshot",
+  "offline_enabled": false,
+  "icons": {
+    "16": "img/pageshot-mac-16px.png",
+    "32": "img/pageshot-mac-32px.png",
+    "64": "img/pageshot-mac-64px.png"
+  },
   "browser_action": {
-    "default_icon": "img/pageshot-mac-16px.png",
+    "default_icon": "img/pageshot-mac-64px.png",
     "default_title": "Take a shot"
   },
   "background": {

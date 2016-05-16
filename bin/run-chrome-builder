@@ -62,6 +62,6 @@ make chrome-extension
 nodemon \
   -w addon/data/ -w static/ -w shared/ \
   -w Makefile -w chrome-extension/ \
-  -e .js,.scss,.css,.png,.svg,.ttf,.html \
+  -e .js,.scss,.css,.png,.svg,.ttf,.html,.json \
   --on-change-only \
   --exec bash $0 --rebuild
