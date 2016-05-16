@@ -1,6 +1,13 @@
 /* globals chrome, console, XMLHttpRequest, Image, document, setTimeout, makeUuid */
 let hasUsedMyShots = false;
-let backend = "https://pageshot.dev.mozaws.net";
+let manifest = chrome.runtime.getManifest();
+let backend;
+for (let permission of manifest.permissions) {
+  if (permission.search(/^https?:\/\//i) != -1) {
+    backend = permission;
+    break;
+  }
+}
 let registrationInfo;
 let initialized = false;
 const STORAGE_LIMIT = 100;
@@ -109,7 +116,7 @@ function login() {
         reject(error);
       } else {
         initialized = true;
-        console.info("logged in");
+        console.info("PageShot logged in");
         resolve();
       }
     };
@@ -153,7 +160,6 @@ function uriEncode(obj) {
 }
 
 chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
-  console.log("got request", req, sender);
   if (req.type == "requestConfiguration") {
     sendResponse({
       backend,
@@ -162,7 +168,6 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
       deviceInfo: registrationInfo.deviceInfo,
       secret: registrationInfo.secret
     });
-    console.log("sent response", {config: {backend, hasUsedMyShots, registrationInfo}});
   } else if (req.type == "clipImage") {
     screenshotPage(
       req.pos,
@@ -243,7 +248,6 @@ function saveShotFullPage(id, shot) {
   // Note: duplicates/similar to shotstore.saveShot
   let name = "page-" + id;
   chrome.storage.local.get(name, (result) => {
-    console.log("saveshotfullpage", id, name, shot, result);
     let data = result[name] || {};
     let newData = {
       body: shot.body || data.body,
@@ -278,16 +282,16 @@ function cleanupShots() {
       }
     }
     for (let key of toDelete) {
-      console.log("delete by date", key);
+      console.info("delete by date", key);
     }
-    console.log("checking items", keyDates.length, STORAGE_LIMIT);
+    console.info("checking items", keyDates.length, STORAGE_LIMIT);
     if (keyDates.length > STORAGE_LIMIT) {
       keyDates.sort(function (a, b) {
         return a.created < b.created ? -1 : 1;
       });
       while (keyDates.length > STORAGE_LIMIT) {
         let {key} = keyDates.shift();
-        console.log("delete by limit", key);
+        console.info("delete by limit", key);
         toDelete.push(key);
       }
     }
@@ -301,7 +305,6 @@ function getSavedShot(id) {
   return new Promise((resolve, reject) => {
     let name = "page-" + id;
     chrome.storage.local.get(name, (result) => {
-      console.log("getSavedShot", id, Object.keys(result));
       resolve(result[name]);
     });
   });
