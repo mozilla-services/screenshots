@@ -125,7 +125,7 @@ class Clip extends React.Component {
     if (clip.image === undefined) {
       node = <div className="text-clip" dangerouslySetInnerHTML={{__html: clip.text.html}} />;
     } else {
-      node = <img ref="clipImage" src={ clip.image.url } />;
+      node = <img height={clip.image.dimensions.y} width={clip.image.dimensions.x} ref="clipImage" src={ clip.image.url } />;
     }
 
     let closeButton = null;
