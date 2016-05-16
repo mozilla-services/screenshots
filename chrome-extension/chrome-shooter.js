@@ -16,6 +16,7 @@ const chromeShooter = (function () {
   let collectionComplete = new Promise((resolve, reject) => {
     completeResolver = resolve;
   });
+  let selection;
 
   exports.init = function () {
     let promises = [];
@@ -33,42 +34,49 @@ const chromeShooter = (function () {
   };
 
   exports.saveSelection = function (pos, selectedText, captureType) {
+    selection = {
+      pos,
+      selectedText,
+      captureType
+    };
+  };
+
+  function screenshotSelection(pos, selectedText, captureType) {
     document.body.classList.add("pageshot-hide-selection");
-    // Note: for some dumb reason Chrome doesn't apply the pageshot-hide-selection
-    // right away, or even with requestAnimationFrame.  With setTimeout(..., 0)
-    // it sometimes is enough, but not always.
-    setTimeout(() => {
-      let message = {
-        type: "clipImage",
-        pos,
-        scrollY: window.scrollY,
-        scrollX: window.scrollX,
-        innerHeight: window.innerHeight,
-        innerWidth: window.innerWidth
-      };
-      chrome.runtime.sendMessage(message, (response) => {
-        document.body.classList.remove("pageshot-hide-selection");
-        if (! response) {
-          console.warn("Image failed to be captured");
-          return;
-        }
-        let data = {
-          createdDate: Date.now(),
-          image: {
-            url: response.imageUrl,
-            captureType: captureType,
-            text: selectedText,
-            location: pos,
-            dimensions: {x: pos.right - pos.left, y: pos.bottom - pos.top}
-          }
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        let message = {
+          type: "clipImage",
+          pos,
+          scrollY: window.scrollY,
+          scrollX: window.scrollX,
+          innerHeight: window.innerHeight,
+          innerWidth: window.innerWidth
         };
-        if (shot.clipNames().length) {
-          shot.getClip(shot.clipNames()[0]).image = data.image;
-        } else {
-          shot.addClip(data);
-        }
-      });
-    }, 100);
+        chrome.runtime.sendMessage(message, (response) => {
+          if (! response) {
+            console.warn("Image failed to be captured");
+            return;
+          }
+          let data = {
+            createdDate: Date.now(),
+            image: {
+              url: response.imageUrl,
+              captureType: captureType,
+              text: selectedText,
+              location: pos,
+              dimensions: {x: pos.right - pos.left, y: pos.bottom - pos.top}
+            }
+          };
+          if (shot.clipNames().length) {
+            shot.getClip(shot.clipNames()[0]).image = data.image;
+          } else {
+            shot.addClip(data);
+          }
+          resolve();
+        });
+      }, 100);
+    });
   };
 
   exports.deactivate = function () {
@@ -76,6 +84,11 @@ const chromeShooter = (function () {
 
   exports.takeShot = function () {
     collectionComplete.then(() => {
+      if (selection) {
+        return screenshotSelection(selection.pos, selection.selectedText, selection.captureType);
+      }
+      return true;
+    }).then(() => {
       let req = new XMLHttpRequest();
       req.open("PUT", shot.jsonUrl);
       req.setRequestHeader("content-type", "application/json");
