@@ -514,7 +514,7 @@ function keyupHandler(event) {
     // Modified
     return;
   }
-  if (event.key === "Escape") {
+  if ((event.key || event.code) === "Escape") {
     deactivate();
     if (isChrome) {
       chromeShooter.deactivate();
@@ -522,7 +522,7 @@ function keyupHandler(event) {
       self.port.emit("deactivate");
     }
   }
-  if (event.key === "Enter") {
+  if ((event.key || event.code) === "Enter") {
     if (isChrome) {
       chromeShooter.takeShot();
     } else {
