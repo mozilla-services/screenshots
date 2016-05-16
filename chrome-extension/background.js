@@ -217,6 +217,16 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
       sendResponse(null);
     });
     return true;
+  } else if (req.type == "notifyAndCopy") {
+    clipboardCopy(req.url);
+    let id = makeUuid();
+    chrome.notifications.create(id, {
+      type: "basic",
+      iconUrl: "img/clipboard-32.png",
+      title: "Link Copied",
+      message: "The link to your shot has been copied to the clipboard"
+    });
+    sendResponse(null);
   } else {
     console.error("Message not understood:", req);
   }
@@ -340,4 +350,13 @@ function removeSavedShot(id) {
       resolve();
     });
   });
+}
+
+function clipboardCopy(text) {
+  let el = document.createElement("textarea");
+  document.body.appendChild(el);
+  el.value = text;
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);
 }

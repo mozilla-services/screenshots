@@ -77,7 +77,7 @@ const chromeShooter = (function () {
         });
       }, 100);
     });
-  };
+  }
 
   exports.deactivate = function () {
   };
@@ -89,6 +89,10 @@ const chromeShooter = (function () {
       }
       return true;
     }).then(() => {
+      chrome.runtime.sendMessage({
+        type: "notifyAndCopy",
+        url: shot.viewUrl
+      });
       let req = new XMLHttpRequest();
       req.open("PUT", shot.jsonUrl);
       req.setRequestHeader("content-type", "application/json");

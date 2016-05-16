@@ -30,6 +30,7 @@
   "permissions": [
     "activeTab",
     "storage",
+    "notifications",
     "https://pageshot.dev.mozaws.net/"
   ]
 }
