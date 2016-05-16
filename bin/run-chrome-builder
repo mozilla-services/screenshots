@@ -3,9 +3,11 @@
 set -e
 cd "$(dirname ${BASH_SOURCE[0]})/.."
 PATH="node_modules/.bin:$PATH"
+server=https://pageshot.dev.mozaws.net
+orig_server="$server"
 
 help () {
-  echo "Usage: $(basename $0)"
+  echo "Usage: $(basename $0) [-s|--server SERVER]"
   echo "  Builds/rebuilds the chrome extension in build/chrome-extension"
 }
 
@@ -26,6 +28,15 @@ while [[ -n "$1" ]] ; do
       help
       exit
       ;;
+    -s|--server)
+      if [[ -z "$2" ]] ; then
+        echo "Usage: --server URL"
+        help
+        exit 1
+      fi
+      server="$2"
+      shift; shift
+      ;;
     --rebuild)
       rebuild
       exit
@@ -37,6 +48,11 @@ while [[ -n "$1" ]] ; do
   esac
 done
 
+mkdir -p build/
+backend_file=build/.backend.txt
+if [[ ! -f $backend_file ]] || [[ "$(cat $backend_file)" != "$server" ]] ; then
+  echo -n "$server" > $backend_file
+fi
 make chrome-extension
 
 nodemon \
