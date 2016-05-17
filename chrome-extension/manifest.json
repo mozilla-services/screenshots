@@ -8,12 +8,18 @@
   "homepage_url": "https://github.com/mozilla-services/pageshot",
   "offline_enabled": false,
   "icons": {
-    "16": "img/pageshot-mac-16px.png",
-    "32": "img/pageshot-mac-32px.png",
-    "64": "img/pageshot-mac-64px.png"
+    "16": "img/pageshot-icon-16.png",
+    "32": "img/pageshot-icon-32.png",
+    "48": "img/pageshot-icon-48.png",
+    "64": "img/pageshot-mac-64px.png",
+    "128": "img/pageshot-icon-128.png",
+    "256": "img/pageshot-icon-256.png"
   },
   "browser_action": {
-    "default_icon": "img/pageshot-mac-64px.png",
+    "default_icon": {
+      "19": "img/pageshot-icon-19.png",
+      "38": "img/pageshot-icon-38.png"
+    },
     "default_title": "Take a shot"
   },
   "background": {
