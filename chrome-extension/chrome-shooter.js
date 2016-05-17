@@ -101,6 +101,7 @@ const chromeShooter = (function () {
           alert("Error saving shot: " + req.status + " " + req.responseText);
           return;
         }
+        exports.sendAnalyticEvent("addon", "new-tab-after-save");
         window.open(shot.viewUrl, "_blank");
         deactivate();
         exports.deactivate();
@@ -169,6 +170,15 @@ const chromeShooter = (function () {
       value: true
     });
     exports.hasUsedMyShots = value;
+  };
+
+  exports.sendAnalyticEvent = function (eventName, action, label) {
+    chrome.runtime.sendMessage({
+      type: "sendAnalyticEvent",
+      eventName,
+      action,
+      label
+    });
   };
 
   return exports;

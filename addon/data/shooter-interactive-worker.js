@@ -270,6 +270,9 @@ stateHandlers.draggingReady = {
       mousedownPos = null;
       ui.Box.display(selectedPos);
       setState("selected");
+      if (isChrome) {
+        chromeShooter.sendAnalyticEvent("addon", "autoselect");
+      }
       reportSelection();
     } else {
       setState("crosshairs");
@@ -330,6 +333,9 @@ stateHandlers.dragging = {
     selectedPos.y2 = util.truncateY(event.pageY);
     ui.Box.display(selectedPos);
     reportSelection("selection");
+    if (isChrome) {
+      chromeShooter.sendAnalyticEvent("addon", "drag-finished");
+    }
     setState("selected");
   }
 };
@@ -348,6 +354,9 @@ stateHandlers.selected = {
       return false;
     }
     if (! ui.Box.isSelection(target)) {
+      if (isChrome) {
+        chromeShooter.sendAnalyticEvent("addon", "reset-selection");
+      }
       setState("crosshairs");
     }
   }
@@ -372,6 +381,9 @@ stateHandlers.resizing = {
 
   mouseup: function (event) {
     this._resize(event);
+    if (isChrome) {
+      chromeShooter.sendAnalyticEvent("addon", "selection-resized");
+    }
     setState("selected");
     reportSelection();
   },
@@ -418,6 +430,7 @@ function reportSelection(captureType) {
   }
   annotatePosition(pos);
   if (isChrome) {
+    chromeShooter.sendAnalyticEvent("addon", "made-selection");
     chromeShooter.saveSelection(pos, selectedText, captureType);
   } else {
     self.port.emit("select", pos, selectedText, captureType);
@@ -454,15 +467,18 @@ function activate() {
   if (isChrome) {
     ui.ChromeInterface.display();
     ui.ChromeInterface.onMyShots = function () {
+      chromeShooter.sendAnalyticEvent("addon", "click-my-shots");
       deactivate();
       chromeShooter.setHasusedMyShots(true);
       return true;
     };
     ui.ChromeInterface.onSave = function () {
+      chromeShooter.sendAnalyticEvent("addon", "click-save");
       chromeShooter.takeShot();
       return false;
     };
     ui.ChromeInterface.onCancel = function () {
+      chromeShooter.sendAnalyticEvent("addon", "click-cancel");
       deactivate();
       chromeShooter.deactivate();
       return false;
@@ -517,6 +533,7 @@ function keyupHandler(event) {
   if ((event.key || event.code) === "Escape") {
     deactivate();
     if (isChrome) {
+      chromeShooter.sendAnalyticEvent("addon", "cancel-escape");
       chromeShooter.deactivate();
     } else {
       self.port.emit("deactivate");
@@ -524,6 +541,7 @@ function keyupHandler(event) {
   }
   if ((event.key || event.code) === "Enter") {
     if (isChrome) {
+      chromeShooter.sendAnalyticEvent("addon", "save-enter");
       chromeShooter.takeShot();
     } else {
       self.port.emit("take-shot");

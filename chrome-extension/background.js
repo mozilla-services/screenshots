@@ -25,6 +25,7 @@ chrome.runtime.onInstalled.addListener(function () {
 });
 
 chrome.browserAction.onClicked.addListener(function(tab) {
+  sendAnalyticEvent("addon", "press-shot-hotkey");
   chrome.tabs.insertCSS({
     file: "css/inline-selection.css"
   });
@@ -123,10 +124,12 @@ function login() {
         reject(new Error("Could not log in: " + req.status));
       } else if (req.status === 0) {
         let error = new Error("Could not log in, server unavailable");
+        sendAnalyticEvent("addon", "login-failed");
         reject(error);
       } else {
         initialized = true;
         console.info("PageShot logged in");
+        sendAnalyticEvent("addon", "login");
         resolve();
       }
     };
@@ -152,6 +155,7 @@ function register() {
         console.info("Registered login");
         initialized = true;
         resolve();
+        sendAnalyticEvent("addon", "registered");
       } else {
         console.warn("Error in response:", req.responseText);
         reject(new Error("Bad response: " + req.status));
@@ -226,6 +230,9 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
       title: "Link Copied",
       message: "The link to your shot has been copied to the clipboard"
     });
+    sendResponse(null);
+  } else if (req.type == "sendAnalyticEvent") {
+    sendAnalyticEvent(req.eventName, req.action, req.label);
     sendResponse(null);
   } else {
     console.error("Message not understood:", req);
@@ -324,6 +331,7 @@ function cleanupShots() {
     }
     if (toDelete.length) {
       chrome.storage.local.remove(toDelete);
+      sendAnalyticEvent("addon", "old-saved-shots-deleted");
     }
   });
 }
@@ -359,4 +367,21 @@ function clipboardCopy(text) {
   el.select();
   document.execCommand("copy");
   document.body.removeChild(el);
+}
+
+function sendAnalyticEvent(eventName, action, label) {
+  let url = backend + "/event";
+  let req = new XMLHttpRequest();
+  req.open("POST", url);
+  req.setRequestHeader("content-type", "application/json");
+  req.onload = () => {
+    if (req.status >= 300) {
+      console.warn("Event gave non-2xx response:", req.status);
+    }
+  };
+  req.send(JSON.stringify({
+    event: eventName,
+    action,
+    label
+  }));
 }
