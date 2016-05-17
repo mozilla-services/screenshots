@@ -25,7 +25,7 @@ chrome.runtime.onInstalled.addListener(function () {
 });
 
 chrome.browserAction.onClicked.addListener(function(tab) {
-  sendAnalyticEvent("addon", "press-shot-hotkey");
+  sendAnalyticEvent("addon", "click-shot-button");
   chrome.tabs.insertCSS({
     file: "css/inline-selection.css"
   });
