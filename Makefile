@@ -4,7 +4,7 @@ BABEL := babel --retain-lines
 JPM := $(shell pwd)/node_modules/.bin/jpm
 .DEFAULT_GOAL := help
 
-.PHONY: all clean server addon xpi homepage npm
+.PHONY: all clean server addon xpi homepage npm chrome-extension chrome-zip
 
 # This forces bin/_write_ga_id to be run before anything else, which
 # writes the configured Google Analytics ID to build/ga-id.txt
@@ -185,6 +185,13 @@ build/addon/lib/httpd.jsm: addon/lib/httpd.jsm
 addon: npm $(data_dest) $(vendor_dest) $(lib_dest) $(sass_addon_dest) $(imgs_addon_dest) $(static_addon_dest) $(shared_addon_dest) build/addon/package.json build/addon/lib/httpd.jsm
 
 chrome-extension: npm $(chrome_js_dest) $(chrome_static_dest) $(sass_chrome_dest) $(imgs_chrome_dest) $(static_chrome_dest) $(shared_chrome_dest) $(chrome_external_modules)
+
+chrome-zip: build/chrome-ext.zip
+
+build/chrome-ext.zip: chrome-extension
+	rm -f build/chrome-ext.zip
+	./bin/_set_package_version --chrome < chrome-extension/manifest.json > build/chrome-extension/manifest.json
+	cd build/chrome-extension && zip -r ../chrome-ext.zip *
 
 xpi: build/mozilla-pageshot.xpi build/mozilla-pageshot.update.rdf
 
