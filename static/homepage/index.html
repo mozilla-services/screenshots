@@ -122,7 +122,10 @@
             <p class="if-firefox">
               <a class="btn btn-primary btn-lg main-get-started installer" href="/xpi/mozilla-pageshot.xpi">Install</a>
             </p>
-            <p class="if-not-firefox">
+            <p class="if-chrome">
+              <a class="btn btn-primary btn-lg main-get-started installer" href="https://chrome.google.com/webstore/detail/pageshot/flhjebpmjblnihhioankmibfdkdiaahi">Install</a>
+            </p>
+            <p class="if-not-firefox-or-chrome">
               <a class="btn btn-primary btn-lg" href="https://www.mozilla.org/en-US/firefox/new/">To use PageShot: Install Firefox!</a><br>
               (come back to this page to install the add-on)
             </p>
@@ -246,16 +249,23 @@
 
     <script>
 var IS_FIREFOX=false;
+var IS_CHROME=false;
 var IS_MOBILE=false;
 
 /* We add a class to the body element based on whether this browser is Firefox or not.  Then rules in style.css hide or show .if-firefox and .if-not-firefox based on that body class */
+IS_CHROME = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 if (navigator.userAgent.indexOf("Firefox") !== -1
     && navigator.userAgent.indexOf("Gecko") !== -1
     && navigator.userAgent.indexOf("rv:") !== -1) {
   IS_FIREFOX = true;
-  document.body.className += " is-firefox";
+}
+
+if (IS_FIREFOX) {
+  document.body.className += " is-firefox is-not-chrome";
+} else if (IS_CHROME) {
+  document.body.className += " is-not-firefox is-chrome";
 } else {
-  document.body.className += " is-not-firefox";
+  document.body.className += " is-not-firefox is-not-chrome";
 }
 
 if (navigator.userAgent.indexOf("Mobile") !== -1) {

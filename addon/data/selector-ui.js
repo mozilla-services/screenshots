@@ -1,5 +1,7 @@
-/* globals util */
+/* globals util, window, document, console */
 /* exported ui */
+
+var isChrome = false;
 
 const ui = (function () {
   let exports = {};
@@ -223,6 +225,9 @@ const ui = (function () {
       }
       let div = document.createElement("div");
       div.className = "pageshot-myshots-reminder";
+      if (isChrome) {
+        div.className += " pageshot-myshots-reminder-chrome";
+      }
       div.innerHTML = `
       <div class="pageshot-myshots-arrow"></div>
       Click this button to view all the shots you've taken
@@ -246,6 +251,77 @@ const ui = (function () {
         exports[name].remove();
       }
     }
+  };
+
+  exports.ChromeInterface = {
+
+    onMyShots: null,
+    onSave: null,
+    onCancel: null,
+
+    display: function () {
+      if (! this.el) {
+        this.el = document.createElement("div");
+        this.el.className = "pageshot-saver";
+        this.el.innerHTML = `
+        <a class="pageshot-myshots" href="https://pageshot.dev.mozaws.net/shots" target="_blank">
+          <span class="pageshot-center">
+            <span class="pageshot-pre-myshots"></span>
+            <span class="pageshot-myshots-text">My Shots</span>
+            <span class="pageshot-post-myshots"></span>
+          </span>
+        </a>
+        <span class="pageshot-save-help">
+          Select part of the page to save, or save full page without making a selection
+        </span>
+        <button class="pageshot-cancel">Cancel</button>
+        <button class="pageshot-save">Save</button>
+        `;
+        document.body.appendChild(this.el);
+        let methods = {
+          ".pageshot-myshots": "onMyShots",
+          ".pageshot-save": "onSave",
+          ".pageshot-cancel": "onCancel"
+        };
+        Object.keys(methods).forEach((selector) => {
+          this.el.querySelector(selector).addEventListener("click", (event) => {
+            let result;
+            if (this[methods[selector]]) {
+              let method = this[methods[selector]];
+              result = method.call(this);
+            }
+            if (result === false) {
+              event.preventDefault();
+              event.stopPropagation();
+              return false;
+            }
+            return undefined;
+          });
+        });
+        document.body.appendChild(this.el);
+      }
+    },
+
+    isHeader: function (el) {
+      if (! this.el) {
+        // There is no header, so couldn't be us
+        return false;
+      }
+      while (el) {
+        if (el.className && el.className.indexOf("pageshot-saver") != -1) {
+          return true;
+        }
+        el = el.parentNode;
+      }
+      return false;
+    },
+
+    remove: function () {
+      util.removeNode(this.el);
+      this.el = null;
+    },
+
+    el: null
   };
 
   return exports;

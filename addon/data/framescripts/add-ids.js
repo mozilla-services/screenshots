@@ -1,52 +1,74 @@
-var idCount = 0;
-/** makeId() creates new ids that we give to elements that don't already have an id */
-function makeId() {
-  idCount++;
-  return 'psid-' + idCount;
-}
+/* globals console, document, content, addMessageListener, sendAsyncMessage */
+/* exported addIds */
 
-function setIds() {
-  var els = content.document.getElementsByTagName("*");
-  var len = els.length;
-  for (var i=0; i<len; i++) {
-    var el = els[i];
-    var curId = el.id;
-    if (curId && curId.indexOf("psid-") === 0) {
-      idCount = parseInt(curId.substr(5), 10);
-    } else if (! curId) {
-      el.id = makeId();
+var isChrome = false;
+
+const addIds = (function () {
+  let exports = {};
+
+  var idCount = 0;
+  /** makeId() creates new ids that we give to elements that don't already have an id */
+
+  function getDocument() {
+    if (isChrome) {
+      return document;
+    } else {
+      return content.document;
     }
   }
-}
 
-let isDisabled = false;
-addMessageListener("pageshot@addIds:call", function (event) {
-  if (isDisabled) {
-    return;
+  function makeId() {
+    idCount++;
+    return 'psid-' + idCount;
   }
-  let result;
-  if (! content.document.body) {
-    // A XUL page
-    result = {isXul: true};
-  } else {
-    try {
-      setIds();
-      result = {isXul: false};
-    } catch (e) {
-      console.error("Error getting static HTML:", e);
-      console.trace();
-      result = {
-        error: {
-          name: e.name,
-          description: e+""
+
+  exports.setIds = function () {
+    var els = getDocument().getElementsByTagName("*");
+    var len = els.length;
+    for (var i=0; i<len; i++) {
+      var el = els[i];
+      var curId = el.id;
+      if (curId && curId.indexOf("psid-") === 0) {
+        idCount = parseInt(curId.substr(5), 10);
+      } else if (! curId) {
+        el.id = makeId();
+      }
+    }
+  };
+
+  if (! isChrome) {
+    let isDisabled = false;
+    addMessageListener("pageshot@addIds:call", function (event) {
+      if (isDisabled) {
+        return;
+      }
+      let result;
+      if (! getDocument().body) {
+        // A XUL page
+        result = {isXul: true};
+      } else {
+        try {
+          exports.setIds();
+          result = {isXul: false};
+        } catch (e) {
+          console.error("Error getting static HTML:", e);
+          console.trace();
+          result = {
+            error: {
+              name: e.name,
+              description: e+""
+            }
+          };
         }
-      };
-    }
-  }
-  result.callId = event.data.callId;
-  sendAsyncMessage("pageshot@addIds:return", result);
-});
+      }
+      result.callId = event.data.callId;
+      sendAsyncMessage("pageshot@addIds:return", result);
+    });
 
-addMessageListener("pageshot@disable", function (event) {
-  isDisabled = true;
-});
+    addMessageListener("pageshot@disable", function (event) {
+      isDisabled = true;
+    });
+  }
+
+return exports;
+})();

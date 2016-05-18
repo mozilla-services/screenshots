@@ -1,4 +1,5 @@
 /* globals console, self, watchFunction, annotatePosition, util, ui, snapping */
+/* globals window, document, location, chromeShooter */
 
 /**********************************************************
  * selection
@@ -35,6 +36,8 @@ resizeDirection (string: top, topLeft, etc, during resizing)
 resizeStartPos (x/y position where resizing started)
 
 */
+
+var isChrome = false;
 
 /***********************************************
  * State and stateHandlers infrastructure
@@ -181,7 +184,11 @@ stateHandlers.crosshairsPreview = {
   start: function () {
     ui.CrosshairPreview.display();
     ui.WholePageOverlay.display();
-    if (self.options.showMyShotsReminder) {
+    if (isChrome) {
+      if (! chromeShooter.hasUsedMyShots) {
+        ui.MyShotsReminder.display();
+      }
+    } else if (self.options.showMyShotsReminder) {
       ui.MyShotsReminder.display();
     }
   },
@@ -211,6 +218,9 @@ stateHandlers.crosshairs = {
   },
 
   mousedown: function (event) {
+    if (ui.ChromeInterface.isHeader(event.target)) {
+      return;
+    }
     mousedownPos = new Pos(event.pageX, event.pageY);
     setState("draggingReady");
     event.stopPropagation();
@@ -260,6 +270,9 @@ stateHandlers.draggingReady = {
       mousedownPos = null;
       ui.Box.display(selectedPos);
       setState("selected");
+      if (isChrome) {
+        chromeShooter.sendAnalyticEvent("addon", "autoselect");
+      }
       reportSelection();
     } else {
       setState("crosshairs");
@@ -320,6 +333,9 @@ stateHandlers.dragging = {
     selectedPos.y2 = util.truncateY(event.pageY);
     ui.Box.display(selectedPos);
     reportSelection("selection");
+    if (isChrome) {
+      chromeShooter.sendAnalyticEvent("addon", "drag-finished");
+    }
     setState("selected");
   }
 };
@@ -338,6 +354,9 @@ stateHandlers.selected = {
       return false;
     }
     if (! ui.Box.isSelection(target)) {
+      if (isChrome) {
+        chromeShooter.sendAnalyticEvent("addon", "reset-selection");
+      }
       setState("crosshairs");
     }
   }
@@ -362,6 +381,9 @@ stateHandlers.resizing = {
 
   mouseup: function (event) {
     this._resize(event);
+    if (isChrome) {
+      chromeShooter.sendAnalyticEvent("addon", "selection-resized");
+    }
     setState("selected");
     reportSelection();
   },
@@ -407,10 +429,22 @@ function reportSelection(captureType) {
     return;
   }
   annotatePosition(pos);
-  self.port.emit("select", pos, selectedText, captureType);
+  if (isChrome) {
+    chromeShooter.sendAnalyticEvent("addon", "made-selection");
+    chromeShooter.saveSelection(pos, selectedText, captureType);
+  } else {
+    self.port.emit("select", pos, selectedText, captureType);
+  }
 }
 
-self.port.on("getScreenPosition", watchFunction(function () {
+if (! isChrome) {
+  self.port.on("getScreenPosition", watchFunction(function () {
+    let pos = getScreenPosition();
+    self.port.emit("screenPosition", pos);
+  }));
+}
+
+function getScreenPosition() {
   var pos = {
     top: window.scrollY,
     bottom: window.scrollY + window.innerHeight,
@@ -421,8 +455,8 @@ self.port.on("getScreenPosition", watchFunction(function () {
   // should instead annotate based on an inner element, and not worry about
   // left and right
   annotatePosition(pos);
-  self.port.emit("screenPosition", pos);
-}));
+  return pos;
+}
 
 function activate() {
   ui.Box.remove();
@@ -430,6 +464,26 @@ function activate() {
   document.body.classList.remove("pageshot-hide-movers");
   addHandlers();
   setState("crosshairsPreview");
+  if (isChrome) {
+    ui.ChromeInterface.display();
+    ui.ChromeInterface.onMyShots = function () {
+      chromeShooter.sendAnalyticEvent("addon", "click-my-shots");
+      deactivate();
+      chromeShooter.setHasusedMyShots(true);
+      return true;
+    };
+    ui.ChromeInterface.onSave = function () {
+      chromeShooter.sendAnalyticEvent("addon", "click-save");
+      chromeShooter.takeShot();
+      return false;
+    };
+    ui.ChromeInterface.onCancel = function () {
+      chromeShooter.sendAnalyticEvent("addon", "click-cancel");
+      deactivate();
+      chromeShooter.deactivate();
+      return false;
+    };
+  }
 }
 
 function deactivate() {
@@ -476,12 +530,22 @@ function keyupHandler(event) {
     // Modified
     return;
   }
-  if (event.key === "Escape") {
+  if ((event.key || event.code) === "Escape") {
     deactivate();
-    self.port.emit("deactivate");
+    if (isChrome) {
+      chromeShooter.sendAnalyticEvent("addon", "cancel-escape");
+      chromeShooter.deactivate();
+    } else {
+      self.port.emit("deactivate");
+    }
   }
-  if (event.key === "Enter") {
-    self.port.emit("take-shot");
+  if ((event.key || event.code) === "Enter") {
+    if (isChrome) {
+      chromeShooter.sendAnalyticEvent("addon", "save-enter");
+      chromeShooter.takeShot();
+    } else {
+      self.port.emit("take-shot");
+    }
   }
 }
 
@@ -503,7 +567,9 @@ function addStylesheet() {
   }
 }
 
-addStylesheet();
+if (! isChrome) {
+  addStylesheet();
+}
 
 snapping.init();
 
@@ -516,17 +582,22 @@ function checkUrl() {
   var curUrl = location.href;
   if (origUrl != curUrl) {
     console.info("got url change", origUrl, curUrl);
-    self.port.emit("popstate", curUrl);
+    if (isChrome) {
+      chromeShooter.popstate();
+    } else {
+      self.port.emit("popstate", curUrl);
+    }
     deactivate();
   }
 }
 
 window.addEventListener("popstate", checkUrl, false);
 
-self.port.on("isShowing", checkUrl);
+if (! isChrome) {
+  self.port.on("isShowing", checkUrl);
 
-self.port.on("cancel", deactivate);
+  self.port.on("cancel", deactivate);
 
-self.port.emit("ready");
-
-activate();
+  self.port.emit("ready");
+  activate();
+}

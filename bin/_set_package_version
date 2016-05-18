@@ -4,7 +4,12 @@ Sets the version parameter in package.json using a date
 """
 
 import sys, re, time
-today = time.strftime("%Y%m%d%H%M", time.gmtime())
+if "--chrome" in sys.argv:
+    # FIXME: try to make a unique less date-oriented version number
+    # (Chrome store is picky, only two extra parts with max number 65000)
+    today = time.strftime("%y%m.%d%H", time.gmtime())
+else:
+    today = time.strftime("%Y%m%d%H%M", time.gmtime())
 content = sys.stdin.read().strip()
 def repl(match):
   return match.group(1) + today
