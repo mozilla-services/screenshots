@@ -1535,3 +1535,15 @@ body.is-firefox .if-not-firefox {
 body.is-not-firefox .if-firefox {
   display: none;
 }
+
+body.is-chrome .if-not-chrome {
+  display: none;
+}
+
+body.is-not-chrome .if-chrome {
+  display: none;
+}
+
+body.is-chrome .if-not-firefox-or-chrome, body.is-firefox .if-not-firefox-or-chrome {
+  display: none;
+}
