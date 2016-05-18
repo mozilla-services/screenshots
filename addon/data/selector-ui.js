@@ -271,8 +271,9 @@ const ui = (function () {
             <span class="pageshot-post-myshots"></span>
           </span>
         </a>
-        <!-- FIXME-chrome: this needs styling to work right: -->
-        <!-- Select part of the page to save, or save full page without making a selection -->
+        <span class="pageshot-save-help">
+          Select part of the page to save, or save full page without making a selection
+        </span>
         <button class="pageshot-cancel">Cancel</button>
         <button class="pageshot-save">Save</button>
         `;
