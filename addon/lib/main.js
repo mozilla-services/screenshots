@@ -92,7 +92,9 @@ function showNotificationBar(shotcontext) {
     },
     buttons: [
       nb.buttonMaker.yes({
-        label: "Save",
+        // FIXME: the label and the identifier for this button are conflated
+        // (here, below in this file, and in pageshot-notification-bar.scss)
+        label: "Save Full Page",
         callback: function(notebox, button) {
           hideNotificationBar();
           setTimeout(function () {
@@ -141,6 +143,32 @@ function hideNotificationBar(browser) {
   }
   return removed;
 }
+
+exports.showSaveFullPage = function () {
+  setSaveButtonText("Save Full Page");
+};
+
+exports.showSave = function () {
+  setSaveButtonText("Save");
+};
+
+function setSaveButtonText(text) {
+  let box = getNotificationBox();
+  let notification = box.getNotificationWithValue("pageshot-notification-bar");
+  let els = notification.getElementsByTagName("*");
+  for (let i=0; i<els.length; i++) {
+    console.log("checking element", els[i].tagName, els[i].outerHTML);
+    if (els[i].tagName == "button" && els[i].className.indexOf("notification-button-default") != -1) {
+      els[i].setAttribute("label", text);
+      console.log("did it!");
+      break;
+    }
+  }
+}
+
+exports.showSave = function () {
+  setSaveButtonText("Save");
+};
 
 exports.hideNotificationBar = hideNotificationBar;
 

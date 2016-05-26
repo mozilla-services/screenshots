@@ -56,7 +56,8 @@
     padding: 0px 10px;
   }
 
-  notification[value="pageshot-notification-bar"] button[label="Save"] {
+  notification[value="pageshot-notification-bar"] button[label="Save"],
+  notification[value="pageshot-notification-bar"] button[label="Save Full Page"] {
     border-radius: 4px;
     background: #2fa8e1;
     color: white;

@@ -279,7 +279,7 @@ const ui = (function () {
           Select part of the page to save, or save full page without making a selection
         </span>
         <button class="pageshot-cancel">Cancel</button>
-        <button class="pageshot-save">Save</button>
+        <button class="pageshot-save">Save Full Page</button>
         `;
         document.body.appendChild(this.el);
         let methods = {
@@ -303,6 +303,18 @@ const ui = (function () {
           });
         });
         document.body.appendChild(this.el);
+      }
+    },
+
+    showSaveFullPage: function () {
+      if (this.el) {
+        this.el.querySelector(".pageshot-save").textContent = "Save Full Page";
+      }
+    },
+
+    showSave: function () {
+      if (this.el) {
+        this.el.querySelector(".pageshot-save").textContent = "Save";
       }
     },
 
