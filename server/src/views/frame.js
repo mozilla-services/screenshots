@@ -266,6 +266,7 @@ class Head extends React.Component {
         {js}
         <link rel="stylesheet" href={ this.props.staticLink("css/styles.css") } />
         <link rel="stylesheet" href={ this.props.staticLink("css/profile.css") } />
+        <link rel="shortcut icon" href={this.props.staticLink("img/pageshot-icon-32.png")} />
         <meta property="og:type" content="website" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {oembed}
