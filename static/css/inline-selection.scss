@@ -269,10 +269,11 @@ $overlay-z-index: 900000;
 .pageshot-myshots-reminder {
   @extend .pageshot-reset;
   width: 200px;
-  padding: 5px 10px 10px 10px;
+  padding: 16px;
   background-color: #fff;
   color: #000;
   font-size: 11px;
+  font-family: sans-serif;
   border-radius: 2px;
   border: 1px solid #000;
   position: fixed;
@@ -283,9 +284,9 @@ $overlay-z-index: 900000;
   left: 10px;
   z-index: $overlay-z-index + 20;
 
-  .pageshot-myshots-arrow {
+  .pageshot-panel-arrowUp {
     position: relative;
-    top: -10px;
+    top: -20px;
     left: 0px;
     width: 0;
     height: 0;

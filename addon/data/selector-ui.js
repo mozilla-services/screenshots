@@ -224,13 +224,17 @@ const ui = (function () {
         return;
       }
       let div = document.createElement("div");
-      div.className = "pageshot-myshots-reminder";
+      div.className = "pageshot-myshots-reminder pageshot-panel";
       if (isChrome) {
         div.className += " pageshot-myshots-reminder-chrome";
       }
       div.innerHTML = `
-      <div class="pageshot-myshots-arrow"></div>
-      Click this button to view all the shots you've taken
+      <div class="pageshot-panel-arrowUp"></div>
+      <div class="pageshot-panel-section pageshot-panel-section-header">
+        <div class="pageshot-text-section-list">
+          Click this button to view all the shots you've taken
+        </div>
+      </div>
       `;
       document.body.appendChild(div);
       this.dialogEl = div;
