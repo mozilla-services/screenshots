@@ -481,7 +481,7 @@ function activate() {
     ui.ChromeInterface.onMyShots = function () {
       chromeShooter.sendAnalyticEvent("addon", "click-my-shots");
       deactivate();
-      chromeShooter.setHasusedMyShots(true);
+      chromeShooter.setHasUsedMyShots(true);
       return true;
     };
     ui.ChromeInterface.onSave = function () {
