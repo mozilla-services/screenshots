@@ -475,6 +475,25 @@ a.sitelink, a.sitelink:visited {
   color: $text-color;
 }
 
+#copy-flag {
+  background: #f25820;
+  color: #fff;
+  text-decoration: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 3px 40px;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1.5rem;
+  width: 100px;
+  position: fixed;
+  top: 80px;
+  right: -60px;
+  transform: rotate(45deg);
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.5);
+}
+
 a.subheading-link {
   font-size: 13px;
   color: #0095dd;

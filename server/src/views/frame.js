@@ -567,6 +567,7 @@ class Frame extends React.Component {
         { shareButtons }
         { zoomButton }
         { clips }
+        { this.props.shot.showPage ? <span id="copy-flag">Copy</span> : null }
         { this.props.shot.showPage ?
           <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } /> : null }
         <div className="pageshot-footer">
