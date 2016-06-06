@@ -12,6 +12,7 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
       <head>
         <meta charSet="UTF-8" />
         <title>{this.props.title}</title>
+        <link rel="shortcut icon" href={this.props.staticLink("img/pageshot-icon-32.png")} />
         {this.props.children}
       </head>
     );

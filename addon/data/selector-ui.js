@@ -224,13 +224,17 @@ const ui = (function () {
         return;
       }
       let div = document.createElement("div");
-      div.className = "pageshot-myshots-reminder";
+      div.className = "pageshot-myshots-reminder pageshot-panel";
       if (isChrome) {
         div.className += " pageshot-myshots-reminder-chrome";
       }
       div.innerHTML = `
-      <div class="pageshot-myshots-arrow"></div>
-      Click this button to view all the shots you've taken
+      <div class="pageshot-panel-arrowUp"></div>
+      <div class="pageshot-panel-section pageshot-panel-section-header">
+        <div class="pageshot-text-section-list">
+          Click this button to view all the shots you've taken
+        </div>
+      </div>
       `;
       document.body.appendChild(div);
       this.dialogEl = div;
@@ -275,7 +279,7 @@ const ui = (function () {
           Select part of the page to save, or save full page without making a selection
         </span>
         <button class="pageshot-cancel">Cancel</button>
-        <button class="pageshot-save">Save</button>
+        <button class="pageshot-save">Save Full Page</button>
         `;
         document.body.appendChild(this.el);
         let methods = {
@@ -299,6 +303,18 @@ const ui = (function () {
           });
         });
         document.body.appendChild(this.el);
+      }
+    },
+
+    showSaveFullPage: function () {
+      if (this.el) {
+        this.el.querySelector(".pageshot-save").textContent = "Save Full Page";
+      }
+    },
+
+    showSave: function () {
+      if (this.el) {
+        this.el.querySelector(".pageshot-save").textContent = "Save";
       }
     },
 

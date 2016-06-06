@@ -241,6 +241,12 @@ const ShotContext = Class({
     this.interactiveWorker.port.on("take-shot", watchFunction(function () {
       this.takeShot();
     }, this));
+    this.interactiveWorker.port.on("showSaveFullPage", watchFunction(function () {
+      require("./main").showSaveFullPage();
+    }));
+    this.interactiveWorker.port.on("showSave", watchFunction(function () {
+      require("./main").showSave();
+    }));
 
     this._pendingScreenPositions = [];
     this.interactiveWorker.port.on("screenPosition", watchFunction(function (pos) {

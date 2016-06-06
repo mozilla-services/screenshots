@@ -266,6 +266,7 @@ class Head extends React.Component {
         {js}
         <link rel="stylesheet" href={ this.props.staticLink("css/styles.css") } />
         <link rel="stylesheet" href={ this.props.staticLink("css/profile.css") } />
+        <link rel="shortcut icon" href={this.props.staticLink("img/pageshot-icon-32.png")} />
         <meta property="og:type" content="website" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {oembed}
@@ -350,7 +351,7 @@ class Frame extends React.Component {
   }
 
   onClickFlag(e) {
-    window.open(`mailto:pageshot-feedback@mozilla.com?subject=Flagging%20shot%20for%20abuse&body=Flagging%20shot%20for%20abuse:%20${encodeURIComponent(this.props.shot.url)}`);
+    window.open(`mailto:pageshot-feedback@mozilla.com?subject=Flagging%20shot%20for%20abuse&body=Flagging%20shot%20for%20abuse:%20${encodeURIComponent(this.props.shot.viewUrl)}`);
   }
 
   render() {
@@ -566,6 +567,7 @@ class Frame extends React.Component {
         { shareButtons }
         { zoomButton }
         { clips }
+        { this.props.shot.showPage ? <span id="copy-flag">Copy</span> : null }
         { this.props.shot.showPage ?
           <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } /> : null }
         <div className="pageshot-footer">

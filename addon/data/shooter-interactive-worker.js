@@ -188,8 +188,10 @@ stateHandlers.crosshairsPreview = {
       if (! chromeShooter.hasUsedMyShots) {
         ui.MyShotsReminder.display();
       }
+      ui.ChromeInterface.showSaveFullPage();
     } else if (self.options.showMyShotsReminder) {
       ui.MyShotsReminder.display();
+      self.port.emit("showSaveFullPage");
     }
   },
 
@@ -209,6 +211,11 @@ stateHandlers.crosshairs = {
     selectedPos = mousedownPos = null;
     ui.Box.remove();
     ui.WholePageOverlay.display();
+    if (isChrome) {
+      ui.ChromeInterface.showSaveFullPage();
+    } else {
+      self.port.emit("showSaveFullPage");
+    }
   },
 
   mousemove: function (event) {
@@ -343,6 +350,11 @@ stateHandlers.dragging = {
 stateHandlers.selected = {
   start: function () {
     ui.WholePageOverlay.remove();
+    if (isChrome) {
+      ui.ChromeInterface.showSave();
+    } else {
+      self.port.emit("showSave");
+    }
   },
 
   mousedown: function (event) {
@@ -469,7 +481,7 @@ function activate() {
     ui.ChromeInterface.onMyShots = function () {
       chromeShooter.sendAnalyticEvent("addon", "click-my-shots");
       deactivate();
-      chromeShooter.setHasusedMyShots(true);
+      chromeShooter.setHasUsedMyShots(true);
       return true;
     };
     ui.ChromeInterface.onSave = function () {

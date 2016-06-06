@@ -1,57 +1,76 @@
 html {
-  background-color: #3a3b3e;
   font-family: sans-serif;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background-image: url("../images/whistler.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 85%;
+}
+
+h1 {
+  color: #4D4D4D;
+}
+
+#instructions {
+  color: #ffffff;
+  font-size: 30px;
   text-align: center;
-}
-
-@keyframes pageshot-pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
-
-#toolbar-buttons-arrow {
   position: absolute;
-  top: 0px;
-  right: 53px;
-  text-align: right;
-  font-size: 48px;
-  color: rgb(255, 255, 0);
-  font-weight: bold;
-  animation-name: pageshot-pulse;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  animation-iteration-count: 10;
+  top: 30%;
+  left: 50%;
+  width: 500px;
+  margin-left: -250px;
 }
 
-ol {
-  text-align: left;
-  list-style-type: none;
-  padding-left: 0px;
+#button-instructions {
+  position: absolute;
+  top: 5px;
+  right: 10px;
 }
 
-li {
-  padding: 7px;
-  clear: left;
-  vertical-align: middle;
+#guy-instructions {
+  position: absolute;
+  top: 58%;
+  left: 25.5%;
 }
 
-li > img {
-  float: left;
-  vertical-align: middle;
+.panel {
+  background-color: #FFCB00;
+  padding: 16px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.5);
+  color: #3A2E00;
+  font-size: 13px;
+  border-radius: 1px;
 }
 
-button {
-  width: 150px;
-  height: 50px;
-  background-color: #29a0ff;
+.panel-arrowUp {
+  position: relative;
+  top: -15px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #FFCB00;
 }
 
-#container {
-  margin-top: 50px;
-  background-color: #efefef;
+.panel-arrowDown {
+  position: relative;
+  bottom: -33px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #FFCB00;
+}
+
+.button-image {
+  background-color: #E1E1E1;
   display: inline-block;
-  width: 300px;
-  border: 1px solid black;
-  border-radius: 4px;
+  padding: 2px 4px;
 }
