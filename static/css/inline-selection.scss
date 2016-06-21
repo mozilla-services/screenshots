@@ -268,33 +268,62 @@ $overlay-z-index: 900000;
 
 .pageshot-myshots-reminder {
   @extend .pageshot-reset;
-  width: 200px;
-  padding: 16px;
-  background-color: #fff;
-  color: #000;
-  font-size: 11px;
-  font-family: sans-serif;
-  border-radius: 2px;
-  border: 1px solid #000;
+  display: flex;
   position: fixed;
-  top: 4px;
+  z-index: $overlay-z-index + 20;
+  top: -17px;
+  left: 10px;
   &.pageshot-myshots-reminder-chrome {
     top: 44px;
   }
-  left: 10px;
-  z-index: $overlay-z-index + 20;
+}
 
-  .pageshot-panel-arrowUp {
-    position: relative;
-    top: -20px;
-    left: 0px;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid #fff;
-  }
+.pageshot-panel * {
+  box-sizing: border-box;
+  text-align: start;
+}
 
+// The specificity of the following selectors is to avoid .pageshot-reset overriding these styles:
+.pageshot-myshots-reminder > .pageshot-panel {
+  background-clip: padding-box;
+  background-color: #fcfcfc;
+  border: 1px solid rgba(24, 26, 27, .2);
+  box-shadow: 0 3px 5px rgba(24, 26, 27, .1), 0 0 7px rgba(24, 26, 27, .1);
+  box-sizing: content-box;
+  color: #222426;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  font: caption;
+  margin: 2em auto .5em;
+  padding: 0;
+  position: relative;
+  -moz-user-select: none;
+}
+
+.pageshot-myshots-reminder > .pageshot-panel > .pageshot-panel-arrowUp {
+  // From http://firefoxux.github.io/StyleGuide/static/77bfee72eee9836269c3062731a60ad7.png
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAOCAYAAAA1+Nx+AAABUklEQVR42p2STU6DQBSAn9ZSBFv8oVEwYdrUqtu2XsAT2Fbv0AU7woZFN5B0xYID9JhupCn1vWQ0L0AZ4+JbzAx83yMD3N65jRhidtKE6v2/iE8ZLYLvqUJKuRSeSdoMWrdUkSZ5i0k7iF6iUxeqBLbbLaxWK0iSpE6uSZnRd8QQX5ggs77jjWhPnmnlyHq9hizLII5jAN/3IQzDOnkHOTe9Sdd2xYjkeZ5/Hg6H/Xzx/oqRsSkmPQr9fA2PRFEEm80GIE3TY3KDBFxeFMUXQZG3+RIjgiLWsUgQBNAkt2x38EDy3W73Ky9HbEc8yohZFwH2p7Sr8vspn7wh8sQiOo8ALdhlmlxemVwduWQRjdwgFwZyQQ9U5WrkxcvI9ApdXenUQS4sPLhG+bgs/2fkhpzkpkCPqrY79FD+rJArI4vlxwsOOqCBKQK4ydmrReoId34DYcLiW8YxuloAAAAASUVORK5CYII=');
+  background-position: 12px top;
+  background-repeat: no-repeat;
+  height: 14px;
+  margin-top: -14px;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
+.pageshot-myshots-reminder > .pageshot-panel > .pageshot-panel-section {
+  display: flex;
+  flex-direction: row;
+}
+
+.pageshot-myshots-reminder > .pageshot-panel > .pageshot-panel-section-header {
+  padding: 16px;
+}
+
+.pageshot-myshots-reminder > .pageshot-panel > .pageshot-panel-section-header > .pageshot-text-section-list {
+  font-size: 13px;
 }
 
 .pageshot-saver {

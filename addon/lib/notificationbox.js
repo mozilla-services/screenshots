@@ -196,7 +196,7 @@ const banner = new Class({
         if (message === "removed") {
           emit(that,'AlertClose',that.notice);
         } else {
-          console.log(message, that)
+          console.log(message, that);
           emit(that, message, that.notice);
         }
         return false;
