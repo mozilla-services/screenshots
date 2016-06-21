@@ -62,7 +62,6 @@ chrome_js_source := $(shell find chrome-extension -name '*.js')
 chrome_js_dest := $(chrome_js_source:%=build/%)
 chrome_static_source := $(shell find chrome-extension -name '*.png' -o -name '*.svg' -o -name '*.html' -o -name '*.json')
 chrome_static_dest := $(chrome_static_source:%=build/%)
-chrome_backend_txt := $(shell cat build/.backend.txt)
 # FIXME: obviously this is a tedious way to describe these:
 chrome_external_modules := build/chrome-extension/selector-util.js build/chrome-extension/selector-snapping.js build/chrome-extension/annotate-position.js build/chrome-extension/error-utils.js build/chrome-extension/selector-ui.js build/chrome-extension/add-ids.js build/chrome-extension/extractor-worker.js build/chrome-extension/shooter-interactive-worker.js build/chrome-extension/make-static-html.js
 
@@ -199,8 +198,8 @@ xpi: build/mozilla-pageshot.xpi build/mozilla-pageshot.update.rdf
 
 build/chrome-extension/manifest.json: chrome-extension/manifest.json build/.backend.txt
 	@mkdir -p $(@D)
-	@echo "Setting backend to $(chrome_backend_txt)"
-	python -c "import sys; content = sys.stdin.read(); print content.replace('https://pageshot.dev.mozaws.net', sys.argv[1])" $(chrome_backend_txt) < $< > $@
+	@echo "Setting backend to $(shell cat ./build/.backend.txt)"
+	python -c "import sys; content = sys.stdin.read(); print content.replace('https://pageshot.dev.mozaws.net', sys.argv[1])" $(shell cat ./build/.backend.txt) < $< > $@
 
 build/chrome-extension/css/%.css: build/server/static/css/%.css
 	@mkdir -p $(@D)
