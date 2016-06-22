@@ -224,15 +224,17 @@ const ui = (function () {
         return;
       }
       let div = document.createElement("div");
-      div.className = "pageshot-myshots-reminder pageshot-panel";
+      div.className = "pageshot-myshots-reminder";
       if (isChrome) {
         div.className += " pageshot-myshots-reminder-chrome";
       }
       div.innerHTML = `
-      <div class="pageshot-panel-arrowUp"></div>
-      <div class="pageshot-panel-section pageshot-panel-section-header">
-        <div class="pageshot-text-section-list">
-          Click this button to view all the shots you've taken
+      <div class="pageshot-panel">
+        <div class="pageshot-panel-arrowUp"></div>
+        <div class="pageshot-panel-section pageshot-panel-section-header">
+          <div class="pageshot-text-section-list">
+            Click this button to view all the shots you've taken
+          </div>
         </div>
       </div>
       `;
