@@ -1,0 +1,3 @@
+node_modules
+static/vendor
+*.min.js
