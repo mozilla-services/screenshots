@@ -1,5 +1,3 @@
-/* jshint node: true */
-
 var main = require("../lib/main");
 
 exports["test main"] = function(assert) {

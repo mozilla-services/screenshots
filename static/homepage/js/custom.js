@@ -1,6 +1,3 @@
-/* jshint browser:true */
-/* globals jQuery */
-
 !function ($) {
     $(function(){
 

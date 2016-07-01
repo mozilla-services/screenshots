@@ -42,7 +42,7 @@
     "wreck": "5.5.1"
   },
   "devDependencies": {
-    "jshint": "2.9.2"
+    "eslint": "3.0.0"
   },
   "homepage": "https://pageshot.dev.mozaws.net",
   "license": "MPL-2.0",
@@ -52,7 +52,7 @@
     "url": "git+https://github.com/mozilla-services/pageshot.git"
   },
   "scripts": {
-    "lint": "jshint .",
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

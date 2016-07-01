@@ -1,5 +1,3 @@
-/* jshint browser:true */
-
 const React = require("react");
 const events = require("../events");
 

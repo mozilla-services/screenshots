@@ -1,4 +1,3 @@
-/*jslint browser: true */
 /* global SITE_ORIGIN */
 
 let lastDisplayClip;
@@ -115,7 +114,7 @@ function removeDisplayClip() {
 }
 
 // Code snippet from https://developer.mozilla.org/en-US/docs/Web/Events/resize
-;(function() {
+(function() {
   var throttle = function(type, name, obj) {
     obj = obj || window;
     var running = false;

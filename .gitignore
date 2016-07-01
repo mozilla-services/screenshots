@@ -13,3 +13,4 @@ cookie-jar.txt
 .jpm-json*
 scratch
 /data
+*.log

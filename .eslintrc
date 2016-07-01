@@ -1,0 +1,19 @@
+env:
+  browser: true
+  es6: true
+  node: true
+
+extends:
+  - eslint:recommended
+
+parserOptions:
+  sourceType: module
+  ecmaFeatures:
+    jsx: true
+
+root: true
+
+rules:
+  comma-dangle: 0
+  no-console: 0
+  no-unused-vars: [2, {vars: all, args: none}]

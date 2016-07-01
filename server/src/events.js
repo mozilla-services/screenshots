@@ -1,5 +1,3 @@
-/* jshint browser:true */
-
 module.exports = {
   signUp() {
     let event = new CustomEvent("request-sign-up");
