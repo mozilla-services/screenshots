@@ -102,7 +102,10 @@ const chromeShooter = (function () {
           return;
         }
         exports.sendAnalyticEvent("addon", "new-tab-after-save");
-        window.open(shot.viewUrl, "_blank");
+        chrome.runtime.sendMessage({
+          type: "openTab",
+          url: shot.viewUrl
+        });
         deactivate();
         exports.deactivate();
       };
