@@ -1,12 +1,11 @@
 {
   "name": "pageshot",
-  "description": "An experiment in creating better shareable versions of content https://pageshot.dev.mozaws.net",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mozilla-services/pageshot"
-  },
+  "description": "An experiment in creating better shareable versions of content.",
   "version": "0.0.1",
-  "main": "addon/lib/main",
+  "author": "Mozilla (https://mozilla.org/)",
+  "bugs": {
+    "url": "https://github.com/mozilla-services/pageshot/issues"
+  },
   "dependencies": {
     "atob": "2.0.0",
     "aws-sdk": "2.2.20",
@@ -41,5 +40,19 @@
     "uuid": "2.0.1",
     "vhost": "3.0.2",
     "wreck": "5.5.1"
+  },
+  "devDependencies": {
+    "jshint": "2.9.2"
+  },
+  "homepage": "https://pageshot.dev.mozaws.net",
+  "license": "MPL-2.0",
+  "main": "addon/lib/main",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mozilla-services/pageshot.git"
+  },
+  "scripts": {
+    "lint": "jshint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
