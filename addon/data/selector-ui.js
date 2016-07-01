@@ -59,6 +59,11 @@ const ui = (function () {
       // Note, document.documentElement.scrollHeight is zero on some strange pages (such as the page created when you load an image):
       let docHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
       let docWidth = document.documentElement.scrollWidth;
+      if ((pos.right - pos.left) < 78 || (pos.bottom - pos.top) < 78) {
+        this.el.classList.add("pageshot-small-selection");
+      } else {
+        this.el.classList.remove("pageshot-small-selection");
+      }
       this.el.style.top = (pos.top - bodyRect.top) + "px";
       this.el.style.left = (pos.left - bodyRect.left) + "px";
       this.el.style.height = (pos.bottom - pos.top - bodyRect.top) + "px";
