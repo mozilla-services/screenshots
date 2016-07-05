@@ -2,3 +2,6 @@ addon/data/raven.js
 addon/data/vendor
 static/vendor
 static/homepage/js
+/scratch
+/Profile
+/build
