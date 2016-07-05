@@ -4,6 +4,8 @@ $mover-outer: 10px;
 $mover-inner: 40px;
 // This is the size of the little blue handles:
 $handle-size: 25px;
+// And the size when the selection is "small":
+$handle-size-small: 10px;
 // This is how far out of the box the handles go:
 $handle-outside-extent: 0px;
 // And some calculated values based on these that will be used below:
@@ -125,6 +127,10 @@ $overlay-z-index: 900000;
   background-color: #348CFF;
   opacity: 0.5;
   z-index: 1001;
+  .pageshot-small-selection & {
+    height: $handle-size-small;
+    width: $handle-size-small;
+  }
 }
 
 .pageshot-topLeft .pageshot-mover {
@@ -136,6 +142,9 @@ $overlay-z-index: 900000;
   top: $handle-mover-offset;
   left: 50%;
   margin-left: - $handle-size / 2;
+  .pageshot-small-selection & {
+    margin-left: - $handle-size-small / 2;
+  }
 }
 
 .pageshot-topRight .pageshot-mover {
@@ -147,6 +156,9 @@ $overlay-z-index: 900000;
   top: 50%;
   margin-top: - $handle-size / 2;
   left: $handle-mover-offset;
+  .pageshot-small-selection & {
+    margin-top: - $handle-size-small / 2;
+  }
 }
 
 .pageshot-right .pageshot-mover {
@@ -164,6 +176,9 @@ $overlay-z-index: 900000;
   left: 50%;
   margin-left: - $handle-size / 2;
   bottom: $handle-mover-offset;
+  .pageshot-small-selection & {
+    margin-left: - $handle-size-small / 2;
+  }
 }
 
 .pageshot-bottomRight .pageshot-mover {
