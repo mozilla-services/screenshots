@@ -32,7 +32,7 @@ class Confirm extends React.Component {
       </div>
     </body>;
   }
-};
+}
 
 let ConfirmFactory = React.createFactory(Confirm);
 
@@ -94,7 +94,7 @@ class Status extends React.Component {
     </body>
   }
 
-};
+}
 
 let StatusFactory = React.createFactory(Status);
 

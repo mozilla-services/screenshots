@@ -1,4 +1,3 @@
-/* jshint browser: true */
 /* globals ga, Raven */
 
 const React = require("react");
@@ -530,7 +529,7 @@ class Frame extends React.Component {
     let toolbarPadding = "160px";
     if (this.props.hasSavedShot) {
       toolbarPadding = "315px";
-    };
+    }
 
     return (
         <div id="container">

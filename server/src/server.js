@@ -199,7 +199,7 @@ app.post("/event", function (req, res) {
     ).send();
     simpleResponse(res, "OK", 200);
   }).catch((e) => {
-    errorResponse(res, "Error creating user UUID:", err);
+    errorResponse(res, "Error creating user UUID:", e);
   });
 });
 
@@ -217,7 +217,7 @@ app.post("/timing", function (req, res) {
     ).send();
     simpleResponse(res, "OK", 200);
   }).catch((e) => {
-    errorResponse(res, "Error creating user UUID:", err);
+    errorResponse(res, "Error creating user UUID:", e);
   });
 });
 

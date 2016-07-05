@@ -1,5 +1,3 @@
-/* jshint browser:true */
-
 const page = require("./page").page;
 const { AbstractShot } = require("../../../shared/shot");
 
