@@ -68,7 +68,7 @@ if (! config.useS3) {
 } else {
   const AWS = require('aws-sdk');
 
-  s3bucket = new AWS.S3({params: {Bucket: 'pageshot-images-bucket'}});
+  s3bucket = new AWS.S3({params: {Bucket: config.s3BucketName}});
 
   get = (uid, contentType) => {
     return new Promise((resolve, reject) => {
