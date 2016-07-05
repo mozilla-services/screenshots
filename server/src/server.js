@@ -48,8 +48,8 @@ const PROXY_HEADER_WHITELIST = {
 if (config.useS3) {
   // Test a PUT to s3 because configuring this requires using the aws web interface
   // If the permissions are not set up correctly, then we want to know that asap
-  var s3bucket = new AWS.S3({params: {Bucket: 'pageshot-images-bucket'}});
-  console.info(new Date(), "creating pageshot-images-bucket");
+  var s3bucket = new AWS.S3({params: {Bucket: config.s3BucketName}});
+  console.info(new Date(), `creating ${config.s3BucketName}`);
 
   // createBucket is a horribly named api; it creates a local object to access
   // an existing bucket
@@ -59,7 +59,7 @@ if (config.useS3) {
       if (err) {
         console.warn("Error uploading data during test: ", err);
       } else {
-        console.info("Successfully uploaded data to pageshot-images-bucket/test");
+        console.info(`Successfully uploaded data to ${config.s3BucketName}/test`);
       }
     });
   });
