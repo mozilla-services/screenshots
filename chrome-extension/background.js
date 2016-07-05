@@ -234,6 +234,9 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
   } else if (req.type == "sendAnalyticEvent") {
     sendAnalyticEvent(req.eventName, req.action, req.label);
     sendResponse(null);
+  } else if (req.type == "openTab") {
+    chrome.tabs.create({url: req.url});
+    sendResponse(null);
   } else {
     console.error("Message not understood:", req);
   }
