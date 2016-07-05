@@ -44,7 +44,7 @@ body {
 
 p {
   color: rgb(51, 51, 51);
-  font-family: 'Open Sans', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 24px;
 }
@@ -52,7 +52,7 @@ p {
 a {
   line-height: 1.38;
   font-size: 14px;
-  font-family: openSansRegular, 'Open Sans', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", openSansRegular, 'Open Sans', sans-serif;
 }
 
 a:hover {
@@ -65,7 +65,7 @@ button {
   font-weight: bold;
   text-align: center;
   color: rgb(22, 22, 22);
-  font-family: openSansLight, 'Open Sans', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", openSansLight, 'Open Sans', sans-serif;
 }
 
 .btn-primary {
@@ -90,7 +90,7 @@ footer a:hover {
 .large {
   color: rgb(72, 72, 72);
   display: block;
-  font-family: 'Open Sans Light', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", 'Open Sans Light', sans-serif;
   font-weight: normal;
   line-height: 68px;
   margin: 20px 0px;
@@ -99,7 +99,7 @@ footer a:hover {
 h1 {
   color: rgb(72, 72, 72);
   display: block;
-  font-family: 'Open Sans Light', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", 'Open Sans Light', sans-serif;
   font-weight: normal;
   letter-spacing: -2px;
   line-height: 48px;
@@ -109,7 +109,7 @@ h1 {
 h2 {
   color: rgb(72, 72, 72);
   display: block;
-  font-family: 'Open Sans Light', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", 'Open Sans Light', sans-serif;
   font-weight: normal;
   letter-spacing: -1px;
   line-height: 32px;
@@ -118,7 +118,7 @@ h2 {
 h3 {
   color: rgb(72, 72, 72);
   display: block;
-  font-family: 'Open Sans Light', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", 'Open Sans Light', sans-serif;
   font-weight: normal;
   letter-spacing: normal;
   line-height: 28px;
@@ -127,7 +127,7 @@ h3 {
 h4 {
   color: rgb(72, 72, 72);
   display: block;
-  font-family: 'Open Sans Light', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", 'Open Sans Light', sans-serif;
   font-weight: normal;
   letter-spacing: normal;
   line-height: 20px;
@@ -136,7 +136,7 @@ h4 {
 h5 {
   color: rgb(72, 72, 72);
   display: block;
-  font-family: 'Open Sans Light', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", 'Open Sans Light', sans-serif;
   font-weight: bold;
   letter-spacing: normal;
 }
@@ -144,7 +144,7 @@ h5 {
 .small, small {
   color: rgb(51, 51, 51);
   display: block;
-  font-family: 'Open Sans', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", 'Open Sans', sans-serif;
   font-size: 12px;
   line-height: 16px;
 }
@@ -176,7 +176,7 @@ h5 {
 .main-header {
   background-color: #3A4349;
   display: block;
-  font-family: sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 .main-header a.main-logo {
@@ -356,7 +356,7 @@ h5 {
 
 #main-section h3 {
   color: rgb(22, 22, 22);
-  font-family: 'Open Sans Light',sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", 'Open Sans Light',sans-serif;
   font-size: 32px;
   font-size-adjust: none;
   font-stretch: normal;
@@ -368,7 +368,7 @@ h5 {
 
 #main-section p {
   color: rgb(22, 22, 22);
-  font-family: 'Open Sans Regular',sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", 'Open Sans Regular',sans-serif;
   font-size: 16px;
   line-height: 27px;
 }
@@ -379,7 +379,7 @@ h5 {
 
 #main-section h4 {
   margin-top: 20px;
-  font-family: openSansBold, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", openSansBold, sans-serif;
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 600;
@@ -1387,7 +1387,7 @@ dd {
 
 #markdownpages ul li {
   font-size: 14px;
-  font-family: 'Open Sans',sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", 'Open Sans',sans-serif;
 }
 
 #markdownpages #sidenav {
