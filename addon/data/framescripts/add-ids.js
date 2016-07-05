@@ -3,7 +3,7 @@
 
 var isChrome = false;
 
-const addIds = (function () {
+const addIds = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
 
   var idCount = 0;

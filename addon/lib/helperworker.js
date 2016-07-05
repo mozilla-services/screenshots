@@ -7,12 +7,10 @@
     */
 
 var self = require("sdk/self");
-var simplePrefs = require('sdk/simple-prefs');
-var { captureTab } = require("./screenshot");
+var simplePrefs = require("sdk/simple-prefs");
 var pageMod = require("sdk/page-mod");
 var clipboard = require("sdk/clipboard");
 var notifications = require("sdk/notifications");
-var { XMLHttpRequest } = require("sdk/net/xhr");
 const shotstore = require("./shotstore");
 const { watchFunction, watchWorker } = require("./errors");
 const user = require("./user");

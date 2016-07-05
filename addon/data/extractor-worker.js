@@ -1,5 +1,7 @@
-/* globals Readability, watchFunction, document, console, location, self */
 /* exported FILENAME, extractorWorker */
+
+/* globals Readability, watchFunction, document, console, location, self */
+
 /** extractor-worker is a content worker that is attached to a page when
     making a shot
 
@@ -7,11 +9,11 @@
     */
 
 // Set for use in error messages:
-var FILENAME = "extractor-worker.js";
+var FILENAME = "extractor-worker.js"; // eslint-disable-line no-unused-vars
 
 var isChrome = false;
 
-const extractorWorker = (function () {
+const extractorWorker = (function () { // eslint-disable-line no-unused-vars
   /** Extracts data:
       - Gets the Readability version of the page (`.readable`)
       - Finds images in roughly the preferred order (`.images`)

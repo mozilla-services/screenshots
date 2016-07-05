@@ -1,7 +1,8 @@
 addon/data/raven.js
 addon/data/vendor
-static/vendor
+addon/lib/notificationbox.js
 static/homepage/js
+static/vendor
 /scratch
 /Profile
 /build

@@ -13,11 +13,11 @@ require("sdk/preferences/service").set("javascript.options.strict", false);
 const self = require("sdk/self");
 const tabs = require("sdk/tabs");
 const shooter = require("./shooter");
-const { prefs } = require('sdk/simple-prefs');
+const { prefs } = require("sdk/simple-prefs");
 const helperworker = require("./helperworker");
-const { ActionButton } = require('sdk/ui/button/action');
+const { ActionButton } = require("sdk/ui/button/action");
 const { watchFunction } = require("./errors");
-const {Cu, Cc, Ci} = require("chrome");
+const { Cu, Cc, Ci } = require("chrome");
 const winutil = require("sdk/window/utils");
 const req = require("./req");
 const { setTimeout } = require("sdk/timers");
@@ -30,7 +30,7 @@ require("./headless").init();
 
 Cu.import("resource:///modules/UITour.jsm");
 
-let loadReason = null;
+let loadReason = null; // eslint-disable-line no-unused-vars
 let initialized = false;
 
 function getNotificationBox(browser) {

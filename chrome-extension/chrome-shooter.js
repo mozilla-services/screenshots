@@ -3,7 +3,7 @@
 /* globals document, setTimeout, location */
 /* exported chromeShooter */
 
-const chromeShooter = (function () {
+const chromeShooter = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
 
   const RANDOM_STRING_LENGTH = 16;

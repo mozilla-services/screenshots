@@ -23,7 +23,7 @@ const { randomString } = require("./randomstring");
 const { setTimeout, clearTimeout } = require("sdk/timers");
 const shotstore = require("./shotstore");
 
-let shouldShowTour = false;
+let shouldShowTour = false; // eslint-disable-line no-unused-vars
 
 exports.showTourOnNextLinkClick = function() {
   shouldShowTour = true;

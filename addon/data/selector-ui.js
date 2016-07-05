@@ -3,7 +3,7 @@
 
 var isChrome = false;
 
-const ui = (function () {
+const ui = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
 
   // The <body> tag itself can have margins and offsets, which need to be used when

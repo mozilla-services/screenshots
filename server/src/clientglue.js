@@ -129,7 +129,7 @@ function refreshHash() {
   if (match) {
     clipId = decodeURIComponent(match[1]);
   }
-  let source = "change-clip";
+  let source = "change-clip"; // eslint-disable-line no-unused-vars
   match = (/source=([^&]+)/).exec(location.hash);
   if (match) {
     source = decodeURIComponent(match[1]);
