@@ -58,6 +58,76 @@ exports.numberOfShots = function (seconds) {
 
 exports.secondsInDay = 60*60*24;
 
+exports.retention = function () {
+  return db.select(
+    `SELECT
+       date_trunc('day', MIN(created)) AS first_created,
+       date_trunc('day', MAX(created)) AS last_created
+     FROM data
+     GROUP BY deviceid`,
+    []
+  ).then(function (rows) {
+    let retentionBuckets = [0, 1, 2, 3, 5, 7, 14, 21, 30, 45, 60, 90, 120, 365, 3650];
+    let retentionByWeek = {};
+    let retentionByMonth = {};
+    let totalRetention = {};
+    function addToBucket(bucket, days) {
+      for (let i=retentionBuckets.length; i>=0; i--) {
+        let bucketDays = retentionBuckets[i];
+        if (days >= bucketDays) {
+          if (! bucket[bucketDays]) {
+            bucket[bucketDays] = 1;
+          } else {
+            bucket[bucketDays]++;
+          }
+          break;
+        }
+      }
+    }
+    for (let row of rows) {
+      let first = row.first_created;
+      let last = row.last_created;
+      let days = Math.floor((last - first) / (exports.secondsInDay * 1000));
+      let week = formatDate(truncateDateToWeek(first));
+      let weekBucket = retentionByWeek[week];
+      if (! weekBucket) {
+        weekBucket = retentionByWeek[week] = {};
+      }
+      let month = formatDate(truncateDateToMonth(first));
+      let monthBucket = retentionByMonth[month];
+      if (! monthBucket) {
+        monthBucket = retentionByMonth[month] = {};
+      }
+      addToBucket(monthBucket, days);
+      addToBucket(weekBucket, days);
+      addToBucket(totalRetention, days);
+    }
+    return {
+      byWeek: retentionByWeek,
+      byMonth: retentionByMonth,
+      total: totalRetention
+    };
+  });
+};
+
+function truncateDateToWeek(date) {
+  let millisecondsInDay = exports.secondsInDay * 1000;
+  let days = date.getDay();
+  let millisecondValue = date.getTime();
+  millisecondValue -= millisecondsInDay * days;
+  return new Date(millisecondValue);
+}
+
+function truncateDateToMonth(date) {
+  let newDate = new Date(date);
+  newDate.setDate(1);
+  return newDate;
+}
+
+function formatDate(date) {
+  return date.toISOString().substr(0, 10);
+}
+
 exports.createModel = function (req) {
   let model = {
     title: "Admin",
@@ -70,6 +140,9 @@ exports.createModel = function (req) {
     return exports.numberOfShots(model.numberOfShotsTime * exports.secondsInDay);
   }).then((buckets) => {
     model.numberOfShotsBuckets = buckets;
+    return exports.retention();
+  }).then((retention) => {
+    model.retention = retention;
     return model;
   });
 };
