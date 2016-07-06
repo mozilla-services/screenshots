@@ -2,8 +2,7 @@ $primary-color: #fcfcfc;
 $toolbar-text-color: #464239;
 $text-color: #f2f2f2;
 $background-color: #282d33;
-$shadow-color: rgba(0, 0, 0, 0.5);
-
+$shadow-color: rgba(#000, 0.5);
 
 html {
   height: 100%;
@@ -22,17 +21,17 @@ body {
 
 #container {
   position: absolute;
-  left: 0px;
-  right: 0px;
-  top: 0px;
-  padding-top: 0px;
-  padding-left: 0px;
-  padding-right: 0px;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
   text-align: center;
 }
 
 #frame {
-  border: none;
+  border: 0;
   margin-top: 65px;
   margin-bottom: 4em;
   box-shadow: 0 -5px 5px $shadow-color;
@@ -40,9 +39,9 @@ body {
 
 #toolbar {
   position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 35px;
   padding: 15px;
   padding-left: 150px;
@@ -54,7 +53,7 @@ body {
   color: $toolbar-text-color;
   text-align: left;
   background-color: $primary-color;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 2px rgba(#000, 0.5);
 }
 
 #private-notice {
@@ -67,7 +66,7 @@ body {
   padding: 7px;
   padding-bottom: 1px;
   background-color: #ebd55a;
-  color: black;
+  color: #000;
   cursor: pointer;
   z-index: 2;
 }
@@ -100,22 +99,22 @@ body {
 
 #navigate-toolbar {
   position: fixed;
-  top: 0px;
-  right: 0px;
+  top: 0;
+  right: 0;
   padding: 14px;
   z-index: 2;
   height: 23px;
   width: 160px;
   text-align: right;
-  text-shadow: 1px 1px 2px black;
+  text-shadow: 1px 1px 2px #000;
   font-size: 12px;
 }
 
 #full-page-button {
   position: fixed;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   height: 2em;
   text-align: center;
   z-index: 1001;
@@ -127,8 +126,8 @@ body {
 
 #full-screen-thumbnail {
   position: fixed;
-  left: 0px;
-  right: 0px;
+  left: 0;
+  right: 0;
   bottom: 2em;
   text-align: center;
   z-index: 1001;
@@ -151,24 +150,25 @@ body {
 }
 
 .full-page-button-arrow {
-  color: #333333;
+  color: #333;
 }
 
 .full-page-button-text {
-  color: #000000;
+  color: #000;
 }
 
 .full-page-button-styles {
-  background-color: #ffffff;
-  background-image: linear-gradient(#ffffff, #f4f4f4);
+  background-color: #fff;
+  background-image: linear-gradient(#fff, #f4f4f4);
   border-radius: 99px;
   color: #0095dd;
   display: inline-block;
   font-size: 12px;
-  padding: .4em 1.5em;
+  padding: 0.4em 1.5em;
   text-decoration: none;
   border: 1px solid #ababab;
 }
+
 .clip-count {
   position: relative;
   bottom: 7px;
@@ -181,7 +181,8 @@ body {
   right: 0.5em;
 }
 
-a, a:visited {
+a,
+a:visited {
   text-decoration: none;
   color: $text-color;
 }
@@ -197,11 +198,11 @@ a:hover {
   border: 1px solid #d4d4d4;
   padding: 4px;
   border-radius: 4px;
+
   &.delete-button {
-    color: #dd0000;
+    color: #d00;
   }
 }
-
 
 #info {
   position: absolute;
@@ -219,7 +220,8 @@ a#collection-link {
   text-decoration: underline;
 }
 
-a.sitelink, a.sitelink:visited {
+a.sitelink,
+a.sitelink:visited {
 }
 
 #comment-container {
@@ -235,7 +237,7 @@ a.sitelink, a.sitelink:visited {
   border-left: 2px solid #E66000; */
   border-radius: 0 0 4px 4px;
   z-index: 100;
-  background-color: #00539F;
+  background-color: #00539f;
   cursor: pointer;
 }
 
@@ -257,12 +259,12 @@ a.sitelink, a.sitelink:visited {
 
 .clip-container {
   position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  padding-top: 0px;
-  background-color: rgba(0, 0, 0, 0.80);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-top: 0;
+  background-color: rgba(#000, 0.8);
 }
 
 .clip-container div {
@@ -271,19 +273,19 @@ a.sitelink, a.sitelink:visited {
 
 .clip-container a img {
   max-width: 85%;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(#000, 0.5);
   box-shadow: 0 6px 20px $shadow-color;
 }
 
 .text-clip {
-  background-color: white;
-  color: black;
+  background-color: #fff;
+  color: #000;
   border: 1px solid #aaa;
   box-shadow: 0 2px 5px $shadow-color;
 }
 
 .text-clip a {
-  color: black;
+  color: #000;
 }
 
 .clip-anchor-link {
@@ -306,8 +308,8 @@ a.sitelink, a.sitelink:visited {
 }
 
 .white-background {
-  background-color: white;
-  color: black;
+  background-color: #fff;
+  color: #000;
   text-align: left;
 }
 
@@ -323,12 +325,12 @@ a.sitelink, a.sitelink:visited {
 
 .my-shots-button {
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 125px;
   height: 66px;
   background: #ebebeb;
-  border: none;
+  border: 0;
   cursor: pointer;
 }
 
@@ -370,7 +372,7 @@ a.sitelink, a.sitelink:visited {
 .share-button {
   margin-left: 15px;
   background: #0996f8;
-  color: white;
+  color: #fff;
   border-radius: 4px;
   border: 1px solid #0675d3;
   height: 32px;
@@ -386,7 +388,7 @@ a.sitelink, a.sitelink:visited {
   border: 1px solid #d4d4d4;
   height: 32px;
   background: transparent;
-  color: black;
+  color: #000;
   cursor: pointer;
   vertical-align: middle;
   padding: 6px 15px;
@@ -396,10 +398,10 @@ a.sitelink, a.sitelink:visited {
 .flag-button {
   margin-left: 15px;
   border-radius: 4px;
-  border: 1px solid rgba(0,0,0,.35);
+  border: 1px solid rgba(#000, 0.35);
   height: 32px;
   background: #fcfcfc;
-  color: black;
+  color: #000;
   cursor: pointer;
   vertical-align: middle;
   padding: 8px 15px;
@@ -411,10 +413,10 @@ a.sitelink, a.sitelink:visited {
   right: 15px;
   z-index: 99;
   border-radius: 4px;
-  border: 1px solid rgba(0,0,0,.35);
+  border: 1px solid rgba(#000, 0.35);
   box-shadow: 0 -2px 5px $shadow-color;
-  color: black;
-  background-color: white;
+  color: #000;
+  background-color: #fff;
   padding: 15px;
   text-align: left;
 }
@@ -445,11 +447,11 @@ a.sitelink, a.sitelink:visited {
 
 .copy-shot-link-button {
   background: #2fa8e1;
-  color: white;
+  color: #fff;
   border-radius: 4px;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-  border: 1px solid rgba(0,0,0,.35);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border: 1px solid rgba(#000, 0.35);
   height: 28px;
   width: 75px;
   cursor: pointer;
@@ -457,8 +459,8 @@ a.sitelink, a.sitelink:visited {
 
 .more-shot-actions {
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 0;
+  right: 0;
   height: 33px;
   padding: 15px;
   color: #959595;
@@ -491,7 +493,7 @@ a.sitelink, a.sitelink:visited {
   top: 80px;
   left: -60px;
   transform: rotate(-45deg);
-  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 6px 20px rgba(#000, 0.5);
 }
 
 a.subheading-link {
@@ -527,20 +529,20 @@ a.subheading-link {
 }
 
 .comment-holder {
-  //line-height: 36px;
+  // line-height: 36px;
   display: inline-block;
   position: relative;
   top: -3.25em;
   width: 400px;
   background-color: $text-color;
   color: $primary-color;
-  border-radius: 4px 4px 4px 4px;
+  border-radius: 4px;
   text-align: left;
 }
 
 .comment-holder div {
   margin: 0;
-  padding: 15px 20px 15px 20px;
+  padding: 15px 20px;
 }
 
 .comment-user {
@@ -561,9 +563,9 @@ a.subheading-link {
 
 #use-pageshot-to-create {
   position: fixed;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   padding: 1em;
   padding-right: 3em;
   background-color: $text-color;
@@ -578,14 +580,14 @@ a.subheading-link {
 
 #banner-close {
   position: absolute;
-  right: 0px;
-  top: 0px;
+  right: 0;
+  top: 0;
   padding: 1em;
   cursor: pointer;
 }
 
 .navigate-clips {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(#fff, 0.05);
 }
 
 /* When the clip navigation buttons are disabled: */
@@ -599,12 +601,12 @@ a.subheading-link {
 .button {
   // FIXME: copied from panel.scss .simplified-edit-button
   display: inline-block;
-  background-color: #5CB85C;
+  background-color: #5cb85c;
   color: #fff;
   font-size: 18px;
   padding: 6px 12px;
   border-radius: 6px;
-  border: 1px solid #4CAE4C;
+  border: 1px solid #4cae4c;
 
   &:hover {
     text-decoration: underline;
@@ -612,6 +614,6 @@ a.subheading-link {
 }
 
 .intro-js-highlight-overlay {
-  background: rgba(0,0,0,0);
+  background: rgba(#000, 0);
   border: 2px solid rgba(0, 137, 219, 1);
 }
