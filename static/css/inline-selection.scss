@@ -205,7 +205,7 @@ $overlay-z-index: 900000;
 
 .pageshot-bghighlight {
   position: absolute;
-  background-color: rgba(50, 50, 50, 0.5);
+  background-color: rgba(#323232, 0.5);
   pointer-events: none;
   z-index: 1000;
 }
@@ -262,9 +262,9 @@ $overlay-z-index: 900000;
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 0, 0.5);
+  border: 1px solid rgba(#ff0, 0.5);
   z-index: $overlay-z-index + 1000;
-  background-image: radial-gradient(20px at 50% 50%, rgba(255, 255, 0, 0.1), rgba(255, 255, 0, 0.5));
+  background-image: radial-gradient(20px at 50% 50%, rgba(#ff0, 0.1), rgba(#ff0, 0.5));
   animation-name: pageshot-pulse;
   animation-duration: 1s;
   animation-fill-mode: both;
@@ -330,8 +330,8 @@ $overlay-z-index: 900000;
 .pageshot-myshots-reminder > .pageshot-panel {
   background-clip: padding-box;
   background-color: #fcfcfc;
-  border: 1px solid rgba(24, 26, 27, 0.2);
-  box-shadow: 0 3px 5px rgba(24, 26, 27, 0.1), 0 0 7px rgba(24, 26, 27, 0.1);
+  border: 1px solid rgba(#181a1b, 0.2);
+  box-shadow: 0 3px 5px rgba(#181a1b, 0.1), 0 0 7px rgba(#181a1b, 0.1);
   box-sizing: content-box;
   color: #222426;
   cursor: default;

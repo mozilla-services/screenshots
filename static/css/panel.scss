@@ -104,8 +104,8 @@ a:hover {
 }
 
 .mode-selected {
-  border: 2px solid rgba(0, 149, 221, 0.5);
-  background-color: rgba(0, 149, 221, 0.1);
+  border: 2px solid rgba(#0095dd, 0.5);
+  background-color: rgba(#0095dd, 0.1);
 }
 
 .clip-selector {
@@ -447,7 +447,7 @@ a.simplified-link:link {
 }
 
 a.simplified-link-border {
-  border: 2px solid rgba(0, 137, 219, 1);
+  border: 2px solid rgba(#0089db, 1);
   border-radius: 2px;
 }
 
