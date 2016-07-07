@@ -29,7 +29,7 @@ exports.isInitialized = function () {
   return initialized;
 };
 
-let cachedBackend, cachedReason;
+let cachedBackend, cachedReason; // eslint-disable-line no-unused-vars
 
 exports.initialize = function (backend, reason) {
   // This lets us retry initialize() with no parameters later if necessary:

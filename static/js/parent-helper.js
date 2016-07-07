@@ -1,9 +1,7 @@
-/*jslint browser: true */
-/*global console,CONTENT_HOSTING_ORIGIN */
+/* global console,CONTENT_HOSTING_ORIGIN */
 
-let loaded = false,
-  height = null,
-  resolveChildReference;
+let loaded = false;
+let height = null;
 
 function sendToChild(message) {
   if (! sendToChild.childReference) {

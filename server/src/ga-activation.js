@@ -4,8 +4,6 @@
    Hashes page names
    */
 
-const React = require("react");
-
 const dntJs = `
 // Copied from https://github.com/mozilla/bedrock/blob/22079855caeb660724319f735de51e3a7472a50f/media/js/base/dnt-helper.js
 function _dntEnabled(dnt, ua) {

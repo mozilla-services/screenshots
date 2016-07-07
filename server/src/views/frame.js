@@ -2,7 +2,7 @@
 
 const React = require("react");
 const { getGitRevision } = require("../linker");
-const { ProfileButton } = require("./profile");
+// const { ProfileButton } = require("./profile");
 const { addReactScripts } = require("../reactutils");
 const { gaActivation } = require("../ga-activation");
 

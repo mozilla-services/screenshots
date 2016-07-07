@@ -10,7 +10,7 @@ for (let permission of manifest.permissions) {
 }
 backend = backend.replace(/\/*$/, "");
 let registrationInfo;
-let initialized = false;
+let initialized = false; // eslint-disable-line no-unused-vars
 const STORAGE_LIMIT = 100;
 const TIME_LIMIT = 1000 * 60 * 60 * 24 * 30; // 30 days
 

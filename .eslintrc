@@ -11,9 +11,15 @@ parserOptions:
   ecmaFeatures:
     jsx: true
 
+plugins:
+  - react
+
 root: true
 
 rules:
+  react/jsx-uses-react: 1
+  react/jsx-uses-vars: 1
+
   comma-dangle: 0
   no-console: 0
   no-unused-vars: [2, {vars: all, args: none}]

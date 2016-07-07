@@ -1,7 +1,7 @@
 /** Takes a pixel position and gives a "full" location using element offsets */
 /* exported annotatePosition */
 
-function annotatePosition(pos) {
+function annotatePosition(pos) { // eslint-disable-line no-unused-vars
   function findElement(x, y, offsetX, offsetY) {
     let element = document.elementFromPoint(x - window.pageXOffset + offsetX, y - window.pageYOffset + offsetY);
     if ((! element) || (! element.id)) {

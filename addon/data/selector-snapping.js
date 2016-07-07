@@ -1,5 +1,5 @@
 /* exported snapping */
-const snapping = (function () {
+const snapping = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
 
   let xSnaps = [];
@@ -88,7 +88,7 @@ const snapping = (function () {
     var index = Math.floor(snapsLength/2);
     var less = 0;
     var more = snapsLength;
-    while (true) {
+    while (true) { // eslint-disable-line no-constant-condition
       if (snaps[index] <= pos && snaps[index+1] >= pos) {
         break;
       }

@@ -12,7 +12,7 @@ function unhandled(error) {
 function getFilename() {
   try {
     return FILENAME;
-  } catch (e) {
+  } catch (e) { // eslint-disable-line no-empty
   }
   return "unknown";
 }

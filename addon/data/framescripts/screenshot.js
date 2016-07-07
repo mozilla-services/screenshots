@@ -3,6 +3,7 @@
     This is written to be handled by `lib/framescripter.js`
     */
 
+/* globals addMessageListener, sendAsyncMessage, content */
 
 // FIXME: this is a hack to take a shot of the iframe in the viewer
 // instead of the container

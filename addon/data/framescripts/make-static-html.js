@@ -15,7 +15,7 @@
 
 var isChrome = false;
 
-const makeStaticHtml = (function () {
+const makeStaticHtml = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
 
   let uuidGenerator;

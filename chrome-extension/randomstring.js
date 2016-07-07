@@ -1,7 +1,7 @@
 /** Similar to addon/lib/randomstring, but uses Math.random */
 /* exported randomString */
 
-function randomString(length, chars) {
+function randomString(length, chars) { // eslint-disable-line no-unused-vars
   let randomStringChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   chars = chars || randomStringChars;
   let result = "";
