@@ -9,9 +9,10 @@ Panels should have a structure like:
 
 */
 
-$shadow-color: rgba(0, 0, 0, 0.5);
+$shadow-color: rgba(#000, 0.5);
 
-html, body {
+html,
+body {
   margin: 0;
   height: 100%;
 }
@@ -64,17 +65,17 @@ a:hover {
 
 .container {
   position: absolute;
-  top: 0px;
-  left: 0px;
-  bottom: 0px;
-  right: 0px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   overflow: hidden;
 }
 
 .alpha-badge {
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   pointer-events: none;
 }
 
@@ -103,12 +104,12 @@ a:hover {
 }
 
 .mode-selected {
-  border: 2px solid rgba(0, 149, 221, 0.5);
-  background-color: rgba(0, 149, 221, 0.1);
+  border: 2px solid rgba(#0095dd, 0.5);
+  background-color: rgba(#0095dd, 0.1);
 }
 
 .clip-selector {
-  padding: 0 5px 0 5px;
+  padding: 0 5px;
   font-size: 16px;
   cursor: pointer;
 }
@@ -124,18 +125,18 @@ a:hover {
 .clips-row {
   position: absolute;
   bottom: 4.5em;
-  left: 0px;
-  right: 0px;
+  left: 0;
+  right: 0;
   text-align: center;
 }
 
 .link-row {
   position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 2em;
-  background-color: #E4E4E4;
+  background-color: #e4e4e4;
   font-size: 15px;
 }
 
@@ -143,7 +144,7 @@ a:hover {
   position: absolute;
   width: 45%;
   top: 8px;
-  right: 0px;
+  right: 0;
 }
 
 .link {
@@ -159,10 +160,10 @@ a:hover {
 .share-row-container {
   position: absolute;
   top: 2em;
-  left: 0px;
-  right: 0px;
+  left: 0;
+  right: 0;
   height: 1.5em;
-  background-color: #E4E4E4;
+  background-color: #e4e4e4;
 }
 
 .share-row {
@@ -183,9 +184,9 @@ a:hover {
 
 .feedback-row {
   position: absolute;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
+  bottom: 0;
+  left: 0;
+  right: 0;
   height: 2em;
   font-size: 12px;
   background-color: #eaeaea;
@@ -212,7 +213,7 @@ a:hover {
   right: 0.5em;
   bottom: 5.5em;
   overflow: auto;
-  display:flex;
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
@@ -261,7 +262,7 @@ img.clip-image {
 }
 
 .button-row {
-  margin: 10px 30px 10px 30px;
+  margin: 10px 30px;
 }
 
 .button-row button {
@@ -288,8 +289,8 @@ img.clip-image {
 /* Recall-related styles: */
 
 ul.recall-list {
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
   margin-top: 0.125em;
 }
 
@@ -324,7 +325,7 @@ ul.recall-list li:hover {
   width: 1em;
   overflow: hidden;
   cursor: pointer;
-  background-image: url(copy.png);
+  background-image: url("copy.png");
   background-size: 1em;
   background-position: right;
   background-repeat: no-repeat;
@@ -338,7 +339,8 @@ ul.recall-list li:hover {
   text-overflow: ellipsis;
 }
 
-.title .empty-favicon, .title .favicon {
+.title .empty-favicon,
+.title .favicon {
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -361,9 +363,9 @@ ul.recall-list li:hover {
 
 .see-more-row {
   position: absolute;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
+  bottom: 0;
+  left: 0;
+  right: 0;
   height: 33px;
   padding: 0.5em;
   border-top: 1px solid #ccc;
@@ -372,7 +374,8 @@ ul.recall-list li:hover {
   font-size: 13px;
 }
 
-.see-more-row a, .see-more-row a:visited {
+.see-more-row a,
+.see-more-row a:visited {
   position: relative;
   top: 10px;
   display: block;
@@ -381,7 +384,7 @@ ul.recall-list li:hover {
 
 .recall-back {
   position: absolute;
-  color: blue;
+  color: #00f;
   cursor: pointer;
   top: 10px;
   left: -7px;
@@ -407,7 +410,6 @@ ul.recall-list li:hover {
   left: 0.5em;
   right: 0.5em;
   height: 1em;
-  font-size: small;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -417,13 +419,13 @@ ul.recall-list li:hover {
 
 .simplified-instructions {
   position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  padding: 0px;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
   background-color: #eaeaea;
   text-align: center;
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid #ccc;
 }
 
 .instructions-text {
@@ -435,7 +437,9 @@ ul.recall-list li:hover {
   margin-bottom: 0.5em;
 }
 
-a.simplified-link, a.simplified-link:visited, a.simplified-link:link {
+a.simplified-link,
+a.simplified-link:visited,
+a.simplified-link:link {
   padding: 0.25em;
   font-size: 24px;
   color: #0095dd;
@@ -443,7 +447,7 @@ a.simplified-link, a.simplified-link:visited, a.simplified-link:link {
 }
 
 a.simplified-link-border {
-  border: 2px solid rgba(0, 137, 219, 1);
+  border: 2px solid rgba(#0089db, 1);
   border-radius: 2px;
 }
 
@@ -462,14 +466,15 @@ a.simplified-link-border {
   left: 0.5em;
   right: 0.5em;
   text-align: center;
+
   button {
     margin: 0 16px;
   }
 }
 
 .simplified-edit-button {
-  background-color: #FBFBFB;
-  border: 1px solid #C1C1C1;
+  background-color: #fbfbfb;
+  border: 1px solid #c1c1c1;
   border-radius: 2px;
   color: #333;
   font-size: 13.75px;
@@ -479,11 +484,11 @@ a.simplified-link-border {
 }
 
 .simplified-edit-button:hover {
-  background-color: #EBEBEB;
+  background-color: #ebebeb;
 }
 
 .simplified-edit-button:active {
-  background-color: #DADADA;
+  background-color: #dadada;
 }
 
 .warning {

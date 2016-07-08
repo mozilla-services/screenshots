@@ -20,7 +20,7 @@ body {
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 0px;
+  padding: 0;
 }
 
 .shot {
@@ -30,7 +30,9 @@ body {
   background-color: #fff;
   cursor: pointer;
 
-  & a, & a:visited, & a:link {
+  & a,
+  & a:visited,
+  & a:link {
     color: #000;
     text-decoration: none;
   }
@@ -48,14 +50,17 @@ body {
 
 .title-container {
   padding: 10px 15px 15px;
+
   & > h2 {
-    margin: 0px 0px 10px;
+    margin: 0 0 10px;
+
     & > a {
       color: #000;
       font-size: 16px;
       text-decoration: none;
     }
   }
+
   & > .link-container {
     & > a {
       height: 20px;
@@ -66,6 +71,7 @@ body {
       color: #0996f8;
       border-radius: 2px;
     }
+
     & > .favicon {
       background-size: cover;
       display: inline-block;

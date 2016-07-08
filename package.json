@@ -43,7 +43,8 @@
   },
   "devDependencies": {
     "eslint": "3.0.0",
-    "eslint-plugin-react": "5.2.2"
+    "eslint-plugin-react": "5.2.2",
+    "sass-lint": "1.8.2"
   },
   "homepage": "https://pageshot.dev.mozaws.net",
   "license": "MPL-2.0",
@@ -54,6 +55,7 @@
   },
   "scripts": {
     "lint": "eslint .",
+    "sass": "sass-lint -v -q",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

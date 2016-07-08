@@ -1,15 +1,20 @@
 // This is how far outside the selection the mover target extends:
 $mover-outer: 10px;
+
 // And this is how far inside the selection it extends:
 $mover-inner: 40px;
+
 // This is the size of the little blue handles:
 $handle-size: 25px;
+
 // And the size when the selection is "small":
 $handle-size-small: 10px;
+
 // This is how far out of the box the handles go:
-$handle-outside-extent: 0px;
+$handle-outside-extent: 0;
+
 // And some calculated values based on these that will be used below:
-$handle-mover-offset: $mover-outer - ($handle-outside-extent / 2);
+$handle-mover-offset: $mover-outer - $handle-outside-extent / 2;
 $mover-size: $mover-outer + $mover-inner;
 $overlay-z-index: 900000;
 
@@ -44,89 +49,98 @@ $overlay-z-index: 900000;
   pointer-events: auto;
 }
 
-.pageshot-highlight, .pageshot-mover-target {
+.pageshot-highlight,
+.pageshot-mover-target {
   background-color: transparent;
   background-image: none;
 }
 
-.pageshot-mover-target, .pageshot-bghighlight {
-  border: none;
+.pageshot-mover-target,
+.pageshot-bghighlight {
+  border: 0;
 }
 
 .pageshot-mover-target.pageshot-topLeft {
   cursor: nwse-resize;
-  top: - $mover-outer;
-  left: - $mover-outer;
+  top: -$mover-outer;
+  left: -$mover-outer;
   width: $mover-size;
   height: $mover-size;
 }
+
 .pageshot-mover-target.pageshot-top {
   cursor: ns-resize;
-  top: - $mover-outer;
+  top: -$mover-outer;
   left: 0;
   width: 100%;
   height: $mover-size;
   // It will be too wide, but this will place it below topLeft/etc:
   z-index: 4;
 }
+
 .pageshot-mover-target.pageshot-topRight {
   cursor: nesw-resize;
-  top: - $mover-outer;
-  right: - $mover-outer;
+  top: -$mover-outer;
+  right: -$mover-outer;
   height: $mover-size;
   width: $mover-size;
 }
+
 .pageshot-mover-target.pageshot-left {
   cursor: ew-resize;
   top: 0;
-  left: - $mover-outer;
+  left: -$mover-outer;
   height: 100%;
   width: $mover-size;
   z-index: 4;
 }
+
 .pageshot-mover-target.pageshot-right {
   cursor: ew-resize;
   top: 0;
-  right: - $mover-outer;
+  right: -$mover-outer;
   height: 100%;
   width: $mover-size;
   z-index: 4;
 }
+
 .pageshot-mover-target.pageshot-bottomLeft {
   cursor: nesw-resize;
-  left: - $mover-outer;
-  bottom: - $mover-outer;
+  left: -$mover-outer;
+  bottom: -$mover-outer;
   width: $mover-size;
   height: $mover-size;
 }
+
 .pageshot-mover-target.pageshot-bottom {
   cursor: ns-resize;
   left: 0;
-  bottom: - $mover-outer;
+  bottom: -$mover-outer;
   width: 100%;
   height: $mover-size;
   z-index: 4;
 }
+
 .pageshot-mover-target.pageshot-bottomRight {
   cursor: nwse-resize;
-  bottom: - $mover-outer;
-  right: - $mover-outer;
+  bottom: -$mover-outer;
+  right: -$mover-outer;
   width: $mover-size;
   height: $mover-size;
 }
 
 .pageshot-mover-target:hover .pageshot-mover {
-  opacity: 1.0;
+  opacity: 1;
 }
-
 
 .pageshot-mover {
   position: absolute;
   height: $handle-size;
   width: $handle-size;
-  background-color: #348CFF;
+  background-color: #348cff;
   opacity: 0.5;
   z-index: 1001;
+
   .pageshot-small-selection & {
     height: $handle-size-small;
     width: $handle-size-small;
@@ -141,9 +155,10 @@ $overlay-z-index: 900000;
 .pageshot-top .pageshot-mover {
   top: $handle-mover-offset;
   left: 50%;
-  margin-left: - $handle-size / 2;
+  margin-left: -$handle-size / 2;
+
   .pageshot-small-selection & {
-    margin-left: - $handle-size-small / 2;
+    margin-left: -$handle-size-small / 2;
   }
 }
 
@@ -154,16 +169,17 @@ $overlay-z-index: 900000;
 
 .pageshot-left .pageshot-mover {
   top: 50%;
-  margin-top: - $handle-size / 2;
+  margin-top: -$handle-size / 2;
   left: $handle-mover-offset;
+
   .pageshot-small-selection & {
-    margin-top: - $handle-size-small / 2;
+    margin-top: -$handle-size-small / 2;
   }
 }
 
 .pageshot-right .pageshot-mover {
   top: 50%;
-  margin-top: - $handle-size / 2;
+  margin-top: -$handle-size / 2;
   right: $handle-mover-offset;
 }
 
@@ -174,10 +190,11 @@ $overlay-z-index: 900000;
 
 .pageshot-bottom .pageshot-mover {
   left: 50%;
-  margin-left: - $handle-size / 2;
+  margin-left: -$handle-size / 2;
   bottom: $handle-mover-offset;
+
   .pageshot-small-selection & {
-    margin-left: - $handle-size-small / 2;
+    margin-left: -$handle-size-small / 2;
   }
 }
 
@@ -188,51 +205,51 @@ $overlay-z-index: 900000;
 
 .pageshot-bghighlight {
   position: absolute;
-  background-color: rgba(50, 50, 50, 0.5);
+  background-color: rgba(#323232, 0.5);
   pointer-events: none;
   z-index: 1000;
 }
 
 .pageshot-textbutton {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 1px solid #666;
-    box-shadow: 5px 5px 10px #999;
-    border-radius: 2px;
-    text-align: center;
-    vertical-align: center;
-    color: #000;
-    background-color: #fff;
-    z-index: 2000;
-    cursor: pointer;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #666;
+  box-shadow: 5px 5px 10px #999;
+  border-radius: 2px;
+  text-align: center;
+  vertical-align: center;
+  color: #000;
+  background-color: #fff;
+  z-index: 2000;
+  cursor: pointer;
 }
 
 .pageshot-horizcross {
   position: fixed;
-  left: 0px;
+  left: 0;
   width: 100%;
-  height: 0px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  height: 0;
+  border: 1px solid rgba(#fff, 0.6);
   z-index: $overlay-z-index + 50;
 }
 
 .pageshot-vertcross {
   position: fixed;
-  top: 0px;
+  top: 0;
   height: 100%;
-  width: 0px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  width: 0;
+  border: 1px solid rgba(#fff, 0.6);
   z-index: $overlay-z-index + 50;
 }
 
 .pageshot-preview-overlay {
   position: fixed;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(#000, 0.5);
   z-index: $overlay-z-index;
 }
 
@@ -245,9 +262,9 @@ $overlay-z-index: 900000;
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 0, 0.5);
+  border: 1px solid rgba(#ff0, 0.5);
   z-index: $overlay-z-index + 1000;
-  background-image: radial-gradient(20px at 50% 50%, rgba(255, 255, 0, 0.1), rgba(255, 255, 0, 0.5));
+  background-image: radial-gradient(20px at 50% 50%, rgba(#ff0, 0.1), rgba(#ff0, 0.5));
   animation-name: pageshot-pulse;
   animation-duration: 1s;
   animation-fill-mode: both;
@@ -268,10 +285,19 @@ $overlay-z-index: 900000;
 }
 
 @keyframes pageshot-pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
+
 
 .pageshot-horizcross.pageshot-crosshair-preview {
   top: 20%;
@@ -283,11 +309,13 @@ $overlay-z-index: 900000;
 
 .pageshot-myshots-reminder {
   @extend .pageshot-reset;
+
   display: flex;
   position: fixed;
   z-index: $overlay-z-index + 20;
   top: -17px;
   left: 10px;
+
   &.pageshot-myshots-reminder-chrome {
     top: 44px;
   }
@@ -302,15 +330,15 @@ $overlay-z-index: 900000;
 .pageshot-myshots-reminder > .pageshot-panel {
   background-clip: padding-box;
   background-color: #fcfcfc;
-  border: 1px solid rgba(24, 26, 27, .2);
-  box-shadow: 0 3px 5px rgba(24, 26, 27, .1), 0 0 7px rgba(24, 26, 27, .1);
+  border: 1px solid rgba(#181a1b, 0.2);
+  box-shadow: 0 3px 5px rgba(#181a1b, 0.1), 0 0 7px rgba(#181a1b, 0.1);
   box-sizing: content-box;
   color: #222426;
   cursor: default;
   display: flex;
   flex-direction: column;
   font: caption;
-  margin: 2em auto .5em;
+  margin: 2em auto 0.5em;
   padding: 0;
   position: relative;
   -moz-user-select: none;
@@ -318,7 +346,7 @@ $overlay-z-index: 900000;
 
 .pageshot-myshots-reminder > .pageshot-panel > .pageshot-panel-arrowUp {
   // From http://firefoxux.github.io/StyleGuide/static/77bfee72eee9836269c3062731a60ad7.png
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAOCAYAAAA1+Nx+AAABUklEQVR42p2STU6DQBSAn9ZSBFv8oVEwYdrUqtu2XsAT2Fbv0AU7woZFN5B0xYID9JhupCn1vWQ0L0AZ4+JbzAx83yMD3N65jRhidtKE6v2/iE8ZLYLvqUJKuRSeSdoMWrdUkSZ5i0k7iF6iUxeqBLbbLaxWK0iSpE6uSZnRd8QQX5ggs77jjWhPnmnlyHq9hizLII5jAN/3IQzDOnkHOTe9Sdd2xYjkeZ5/Hg6H/Xzx/oqRsSkmPQr9fA2PRFEEm80GIE3TY3KDBFxeFMUXQZG3+RIjgiLWsUgQBNAkt2x38EDy3W73Ky9HbEc8yohZFwH2p7Sr8vspn7wh8sQiOo8ALdhlmlxemVwduWQRjdwgFwZyQQ9U5WrkxcvI9ApdXenUQS4sPLhG+bgs/2fkhpzkpkCPqrY79FD+rJArI4vlxwsOOqCBKQK4ydmrReoId34DYcLiW8YxuloAAAAASUVORK5CYII=');
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAOCAYAAAA1+Nx+AAABUklEQVR42p2STU6DQBSAn9ZSBFv8oVEwYdrUqtu2XsAT2Fbv0AU7woZFN5B0xYID9JhupCn1vWQ0L0AZ4+JbzAx83yMD3N65jRhidtKE6v2/iE8ZLYLvqUJKuRSeSdoMWrdUkSZ5i0k7iF6iUxeqBLbbLaxWK0iSpE6uSZnRd8QQX5ggs77jjWhPnmnlyHq9hizLII5jAN/3IQzDOnkHOTe9Sdd2xYjkeZ5/Hg6H/Xzx/oqRsSkmPQr9fA2PRFEEm80GIE3TY3KDBFxeFMUXQZG3+RIjgiLWsUgQBNAkt2x38EDy3W73Ky9HbEc8yohZFwH2p7Sr8vspn7wh8sQiOo8ALdhlmlxemVwduWQRjdwgFwZyQQ9U5WrkxcvI9ApdXenUQS4sPLhG+bgs/2fkhpzkpkCPqrY79FD+rJArI4vlxwsOOqCBKQK4ydmrReoId34DYcLiW8YxuloAAAAASUVORK5CYII=");
   background-position: 12px top;
   background-repeat: no-repeat;
   height: 14px;
@@ -348,14 +376,17 @@ $overlay-z-index: 900000;
   background-color: #fcfcfc;
   color: #333;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   height: 40px;
   width: 100%;
-  box-shadow: 0 -1px 1px rgba(0,0,0,.4) inset;
+  box-shadow: 0 -1px 1px rgba(#000, 0.4) inset;
 
-  a, a:visited, a:link, a:hover {
-    color: black;
+  a,
+  a:visited,
+  a:link,
+  a:hover {
+    color: #000;
     text-decoration: none;
   }
 
@@ -380,6 +411,7 @@ $overlay-z-index: 900000;
     background: #f4f4f4;
     font-size: 12px;
     color: #333;
+
     .pageshot-center {
       display: inline-block;
       margin-top: 8px;
@@ -390,7 +422,7 @@ $overlay-z-index: 900000;
   .pageshot-pre-myshots {
     display: inline-block;
     /* Data version of static/img/my-shots.svg */
-    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KCjwhLS0gVGhpcyBTb3VyY2UgQ29kZSBGb3JtIGlzIHN1YmplY3QgdG8gdGhlIHRlcm1zIG9mIHRoZSBNb3ppbGxhIFB1YmxpYwogICAtIExpY2Vuc2UsIHYuIDIuMC4gSWYgYSBjb3B5IG9mIHRoZSBNUEwgd2FzIG5vdCBkaXN0cmlidXRlZCB3aXRoIHRoaXMKICAgLSBmaWxlLCBZb3UgY2FuIG9idGFpbiBvbmUgYXQgaHR0cDovL21vemlsbGEub3JnL01QTC8yLjAvLiAtLT4KCjxzdmcgdmVyc2lvbj0iMS4xIgogICAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIKICAgICB3aWR0aD0iMTYiCiAgICAgaGVpZ2h0PSIxNiIKICAgICB2aWV3Qm94PSIwIDAgMTYgMTYiCiAgICAgZmlsbD0iIzRkNGQ0ZCI+CgogIDxwYXRoIGQ9Ik0xMiwxMiBMMTYsMTIgTDE2LDE0IEMxNiwxNS4xMDQ1Njk1IDE1LjExMjI3MDQsMTYgMTQsMTYgTDEyLDE2IEwxMiwxMiBMMTIsMTIgWiBNNiwxMy4wMDkzNjg5IEM2LDEyLjQ1MTkwOTggNi40NDMzNTMxOCwxMiA3LjAwOTM2ODksMTIgTDguOTkwNjMxMSwxMiBDOS41NDgwOTAxNSwxMiAxMCwxMi40NDMzNTMyIDEwLDEzLjAwOTM2ODkgTDEwLDE0Ljk5MDYzMTEgQzEwLDE1LjU0ODA5MDIgOS41NTY2NDY4MiwxNiA4Ljk5MDYzMTEsMTYgTDcuMDA5MzY4OSwxNiBDNi40NTE5MDk4NSwxNiA2LDE1LjU1NjY0NjggNiwxNC45OTA2MzExIEw2LDEzLjAwOTM2ODkgTDYsMTMuMDA5MzY4OSBaIE0wLDEyIEw0LDEyIEw0LDE2IEwyLDE2IEMwLjg5NTQzMDUsMTYgMCwxNS4xMTIyNzA0IDAsMTQgTDAsMTIgTDAsMTIgWiBNMTIsNiBMMTYsNiBMMTYsMTAgTDEyLDEwIEwxMiw2IEwxMiw2IFogTTYsNiBMMTAsNiBMMTAsMTAgTDYsMTAgTDYsNiBMNiw2IFogTTAsNiBMNCw2IEw0LDEwIEwwLDEwIEwwLDYgTDAsNiBaIE0xMiwwIEwxNCwwIEMxNS4xMDQ1Njk1LDAgMTYsMC44ODc3Mjk2NDUgMTYsMiBMMTYsNCBMMTIsNCBMMTIsMCBMMTIsMCBaIE02LDAgTDEwLDAgTDEwLDQgTDYsNCBMNiwwIEw2LDAgWiBNMCwyIEMwLDAuODk1NDMwNSAwLjg4NzcyOTY0NSwwIDIsMCBMNCwwIEw0LDQgTDAsNCBMMCwyIEwwLDIgWiIvPgoKPC9zdmc+Cg==);
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KCjwhLS0gVGhpcyBTb3VyY2UgQ29kZSBGb3JtIGlzIHN1YmplY3QgdG8gdGhlIHRlcm1zIG9mIHRoZSBNb3ppbGxhIFB1YmxpYwogICAtIExpY2Vuc2UsIHYuIDIuMC4gSWYgYSBjb3B5IG9mIHRoZSBNUEwgd2FzIG5vdCBkaXN0cmlidXRlZCB3aXRoIHRoaXMKICAgLSBmaWxlLCBZb3UgY2FuIG9idGFpbiBvbmUgYXQgaHR0cDovL21vemlsbGEub3JnL01QTC8yLjAvLiAtLT4KCjxzdmcgdmVyc2lvbj0iMS4xIgogICAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIKICAgICB3aWR0aD0iMTYiCiAgICAgaGVpZ2h0PSIxNiIKICAgICB2aWV3Qm94PSIwIDAgMTYgMTYiCiAgICAgZmlsbD0iIzRkNGQ0ZCI+CgogIDxwYXRoIGQ9Ik0xMiwxMiBMMTYsMTIgTDE2LDE0IEMxNiwxNS4xMDQ1Njk1IDE1LjExMjI3MDQsMTYgMTQsMTYgTDEyLDE2IEwxMiwxMiBMMTIsMTIgWiBNNiwxMy4wMDkzNjg5IEM2LDEyLjQ1MTkwOTggNi40NDMzNTMxOCwxMiA3LjAwOTM2ODksMTIgTDguOTkwNjMxMSwxMiBDOS41NDgwOTAxNSwxMiAxMCwxMi40NDMzNTMyIDEwLDEzLjAwOTM2ODkgTDEwLDE0Ljk5MDYzMTEgQzEwLDE1LjU0ODA5MDIgOS41NTY2NDY4MiwxNiA4Ljk5MDYzMTEsMTYgTDcuMDA5MzY4OSwxNiBDNi40NTE5MDk4NSwxNiA2LDE1LjU1NjY0NjggNiwxNC45OTA2MzExIEw2LDEzLjAwOTM2ODkgTDYsMTMuMDA5MzY4OSBaIE0wLDEyIEw0LDEyIEw0LDE2IEwyLDE2IEMwLjg5NTQzMDUsMTYgMCwxNS4xMTIyNzA0IDAsMTQgTDAsMTIgTDAsMTIgWiBNMTIsNiBMMTYsNiBMMTYsMTAgTDEyLDEwIEwxMiw2IEwxMiw2IFogTTYsNiBMMTAsNiBMMTAsMTAgTDYsMTAgTDYsNiBMNiw2IFogTTAsNiBMNCw2IEw0LDEwIEwwLDEwIEwwLDYgTDAsNiBaIE0xMiwwIEwxNCwwIEMxNS4xMDQ1Njk1LDAgMTYsMC44ODc3Mjk2NDUgMTYsMiBMMTYsNCBMMTIsNCBMMTIsMCBMMTIsMCBaIE02LDAgTDEwLDAgTDEwLDQgTDYsNCBMNiwwIEw2LDAgWiBNMCwyIEMwLDAuODk1NDMwNSAwLjg4NzcyOTY0NSwwIDIsMCBMNCwwIEw0LDQgTDAsNCBMMCwyIEwwLDIgWiIvPgoKPC9zdmc+Cg==");
     background-size: 16px 16px;
     width: 16px;
     height: 16px;
@@ -399,14 +431,14 @@ $overlay-z-index: 900000;
   .pageshot-post-myshots {
     display: inline-block;
     /* Data version of static/img/arrow-right.svg */
-    background-image: url(data:image/svg+xml;base64,PCEtLSBUaGlzIFNvdXJjZSBDb2RlIEZvcm0gaXMgc3ViamVjdCB0byB0aGUgdGVybXMgb2YgdGhlIE1vemlsbGEgUHVibGljCiAgIC0gTGljZW5zZSwgdi4gMi4wLiBJZiBhIGNvcHkgb2YgdGhlIE1QTCB3YXMgbm90IGRpc3RyaWJ1dGVkIHdpdGggdGhpcwogICAtIGZpbGUsIFlvdSBjYW4gb2J0YWluIG9uZSBhdCBodHRwOi8vbW96aWxsYS5vcmcvTVBMLzIuMC8uIC0tPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjhweCIgaGVpZ2h0PSIxNHB4IiB2aWV3Qm94PSIwIDAgOCAxNCI+CiAgPHBhdGggZmlsbD0iI2IxYjFiMSIgZD0ibTcuOTg2NzksMTMuMDEzMjFsLTAuOTkxMTksMC45OTEybC02Ljk5NTYsLTYuOTk1Nmw3LjAwODgxLC03LjAwODgxbDAuOTkxMTksMC45OTExOWwtNi4wMTc2MSw2LjAxNzYybDYuMDA0NCw2LjAwNDR6IiB0cmFuc2Zvcm09InJvdGF0ZSgtMTgwLCA0LCA3KSIvPgo8L3N2Zz4K);
+    background-image: url("data:image/svg+xml;base64,PCEtLSBUaGlzIFNvdXJjZSBDb2RlIEZvcm0gaXMgc3ViamVjdCB0byB0aGUgdGVybXMgb2YgdGhlIE1vemlsbGEgUHVibGljCiAgIC0gTGljZW5zZSwgdi4gMi4wLiBJZiBhIGNvcHkgb2YgdGhlIE1QTCB3YXMgbm90IGRpc3RyaWJ1dGVkIHdpdGggdGhpcwogICAtIGZpbGUsIFlvdSBjYW4gb2J0YWluIG9uZSBhdCBodHRwOi8vbW96aWxsYS5vcmcvTVBMLzIuMC8uIC0tPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjhweCIgaGVpZ2h0PSIxNHB4IiB2aWV3Qm94PSIwIDAgOCAxNCI+CiAgPHBhdGggZmlsbD0iI2IxYjFiMSIgZD0ibTcuOTg2NzksMTMuMDEzMjFsLTAuOTkxMTksMC45OTEybC02Ljk5NTYsLTYuOTk1Nmw3LjAwODgxLC03LjAwODgxbDAuOTkxMTksMC45OTExOWwtNi4wMTc2MSw2LjAxNzYybDYuMDA0NCw2LjAwNDR6IiB0cmFuc2Zvcm09InJvdGF0ZSgtMTgwLCA0LCA3KSIvPgo8L3N2Zz4K");
     background-size: 8px 14px;
     width: 8px;
     height: 14px;
   }
 
   .pageshot-myshots-text {
-    padding: 0px 10px;
+    padding: 0 10px;
   }
 
   button {
@@ -423,8 +455,8 @@ $overlay-z-index: 900000;
   .pageshot-save {
     border-radius: 4px;
     background: #0996f8;
-    color: white;
-    box-shadow: 0px 0px 10px #ff0;
+    color: #fff;
+    box-shadow: 0 0 10px #ff0;
     border: 1px solid #0675d3;
   }
 
@@ -434,131 +466,138 @@ $overlay-z-index: 900000;
     background-color: #fcfcfc;
     border: 1px solid #d4d4d4;
   }
-
 }
 
 /* .pageshot reset */
 /* http://yuilibrary.com/yui/docs/cssreset/ */
 .pageshot-reset {
-
-* {
+  * {
     -webkit-box-sizing: content-box !important;
     -moz-box-sizing: content-box !important;
     box-sizing: content-box !important;
-}
+  }
 
-header {
+  header {
     width: auto;
-}
+  }
 
-/*
-YUI 3.10.3 (build 2fb5187)
-Copyright 2013 Yahoo! Inc. All rights reserved.
-Licensed under the BSD License.
-http://yuilibrary.com/license/
-*/
+  /*
+  YUI 3.10.3 (build 2fb5187)
+  Copyright 2013 Yahoo! Inc. All rights reserved.
+  Licensed under the BSD License.
+  http://yuilibrary.com/license/
+  */
+  div,
+  dl,
+  dt,
+  dd,
+  ul,
+  ol,
+  li,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  pre,
+  code,
+  form,
+  fieldset,
+  legend,
+  input,
+  textarea,
+  p,
+  blockquote,
+  th,
+  td {
+    margin: 0;
+    padding: 0;
+  }
 
-div,
-dl,
-dt,
-dd,
-ul,
-ol,
-li,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-pre,
-code,
-form,
-fieldset,
-legend,
-input,
-textarea,
-p,
-blockquote,
-th,
-td {
-	margin:0;
-	padding:0;
-}
-table {
-	border-collapse:collapse;
-	border-spacing:0;
-}
-fieldset,
-img {
-	border:0;
-}
-/*
-	TODO think about hanlding inheritence differently, maybe letting IE6 fail a bit...
-*/
-address,
-caption,
-cite,
-code,
-dfn,
-em,
-strong,
-th,
-var {
-	font-style:normal;
-	font-weight:normal;
-}
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
 
-ol,
-ul {
-	list-style:none;
-}
+  fieldset,
+  img {
+    border: 0;
+  }
 
-caption,
-th {
-	text-align:left;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-size:100%;
-	font-weight:normal;
-}
-q:before,
-q:after {
-	content:'';
-}
-abbr,
-acronym {
-	border:0;
-	font-variant:normal;
-}
-/* to preserve line-height and selector appearance */
-sup {
-	vertical-align:text-top;
-}
-sub {
-	vertical-align:text-bottom;
-}
-input,
-textarea,
-select {
-	font-family:inherit;
-	font-size:inherit;
-	font-weight:inherit;
-}
-/*to enable resizing for IE*/
-input,
-textarea,
-select {
-	*font-size:100%;
-}
-/*because legend doesn't inherit in IE */
-legend {
-	color:#000;
-}
+  /*
+  	TODO think about hanlding inheritence differently, maybe letting IE6 fail a bit...
+  */
+  address,
+  caption,
+  cite,
+  code,
+  dfn,
+  em,
+  strong,
+  th,
+  var {
+    font-style: normal;
+    font-weight: normal;
+  }
 
+  ol,
+  ul {
+    list-style: none;
+  }
+
+  caption,
+  th {
+    text-align: left;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 100%;
+    font-weight: normal;
+  }
+
+  q::before,
+  q::after {
+    content: "";
+  }
+
+  abbr,
+  acronym {
+    border: 0;
+    font-variant: normal;
+  }
+
+  /* to preserve line-height and selector appearance */
+  sup {
+    vertical-align: text-top;
+  }
+
+  sub {
+    vertical-align: text-bottom;
+  }
+
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  /*to enable resizing for IE*/
+  input,
+  textarea,
+  select {
+    *font-size: 100%;
+  }
+
+  /*because legend doesn't inherit in IE */
+  legend {
+    color: #000;
+  }
 }
