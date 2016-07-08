@@ -42,8 +42,10 @@
     "wreck": "5.5.1"
   },
   "devDependencies": {
-    "eslint": "3.0.0",
+    "addons-linter": "0.14.0",
+    "eslint": "2.13.1",
     "eslint-plugin-react": "5.2.2",
+    "npm-run-all": "2.3.0",
     "sass-lint": "1.8.2"
   },
   "homepage": "https://pageshot.dev.mozaws.net",
@@ -54,8 +56,11 @@
     "url": "git+https://github.com/mozilla-services/pageshot.git"
   },
   "scripts": {
-    "lint": "eslint .",
-    "sass": "sass-lint -v -q",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "npm-run-all lint:*",
+    "lint:addon": "make xpi && addons-linter ./build/*.xpi -o text",
+    "lint:js": "eslint .",
+    "lint:sass": "sass-lint -v -q",
+    "posttest": "npm run lint",
+    "test": "echo \"Error: no test specified\" && exit 0"
   }
 }

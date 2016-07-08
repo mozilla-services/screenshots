@@ -16,8 +16,7 @@ before_install:
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 -extension RANDR"
 
 before_script:
-  - npm install -g jpm
-  - npm install -g mozilla-download
+  - npm install -g jpm mozilla-download
   - npm install
   - make all
   - cd ..
@@ -27,3 +26,5 @@ before_script:
 
 script:
   - pwd && ls && cd $TRAVIS_BUILD_DIR/build/addon && jpm test -v
+  - cd $TRAVIS_BUILD_DIR
+  - npm run lint
