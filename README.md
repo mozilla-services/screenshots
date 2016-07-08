@@ -6,7 +6,7 @@ This is a prototype for a product to create better sharable assets. It uses tech
 
 You can view the site (with a link to install the Add-on) at [pageshot.dev.mozaws.net](https://pageshot.dev.mozaws.net/)
 
-It is implemented as a Firefox Add-on, using the [Add-on SDK](https://developer.mozilla.org/en-US/Add-ons/SDK) and a website using NodeJS.  The addon is in `addon/`, and the website is in `server/`
+It is implemented as a Firefox Add-on, using the [Add-on SDK](https://developer.mozilla.org/en-US/Add-ons/SDK) and a website using Node.js.  The add-on is in `addon/`, and the website is in `server/`
 
 Ian has been blogging about the [design, definition, and development process](http://www.ianbicking.org/tag/product-journal.html).
 
@@ -14,14 +14,14 @@ Ian has been blogging about the [design, definition, and development process](ht
 
 Install [Postgres](http://www.postgresql.org/).
 
-Install [node.js](https://nodejs.org/). Version 0.12 is required.
+Install [Node.js](https://nodejs.org/). Version 0.12 is required.
 
 Clone the [repository](https://github.com/mozilla-services/pageshot/).
 
-There are two scripts to run the server locally and develop the addon:
+There are two scripts to run the server locally and develop the add-on:
 
 - `./bin/run-server` will run the server on localhost:10080 and automatically restart if there are changes
-- `./bin/run-addon` will build the addon, start Firefox with the addon installed (you must have Nightly or Developer Edition)
+- `./bin/run-addon` will build the add-on, start Firefox with the add-on installed (you must have Nightly or Developer Edition)
 - `./bin/run-chrome-builder` will build the Chrome version of the add-on in `build/chrome-extension/`, and watch for changes and rebuild as necessary
 
 By default, PageShot will connect to a postgres database on localhost:5432. To change which database and user it connects to set/export the environmental variables: `RDS_USERNAME`, `RDS_PASSWORD`, and `RDS_HOSTNAME`
@@ -30,9 +30,9 @@ The server will automatically setup the tables in your database, and keep them u
 
 We apologize but we have no story for development on Windows.
 
-#### Addon auto-reloading
+#### Add-on auto-reloading
 
-To make the auto-reloading of the addon work, after you first start Firefox using `run-addon` you must manually install the [autoinstaller](https://addons.mozilla.org/en-US/firefox/addon/autoinstaller/) addon into your development profile.  This will allow the script to push updates into the browser without browser restarts.
+To make the auto-reloading of the add-on work, after you first start Firefox using `run-addon` you must manually install the [autoinstaller](https://addons.mozilla.org/firefox/addon/autoinstaller/) add-on into your development profile.  This will allow the script to push updates into the browser without browser restarts.
 
 ### Participation
 
