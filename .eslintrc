@@ -22,4 +22,4 @@ rules:
 
   comma-dangle: 0
   no-console: 0
-  no-unused-vars: [2, {vars: all, args: none}]
+  no-unused-vars: [1, {vars: all, args: none}]
