@@ -199,7 +199,7 @@ class TimeDiff extends React.Component {
       d = new Date(d);
     }
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    let month = months[d.getMonth() - 1];
+    let month = months[d.getMonth()];
     let hour = d.getHours();
     if (hour === 0) {
       hour = "12am";
