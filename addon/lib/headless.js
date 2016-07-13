@@ -145,7 +145,6 @@ function handleDataRequest(request, response) {
   tabs.open({
     url: url,
     onLoad: function (tab) {
-      console.log("LOAD fired");
       if (failed) {
         tab.close();
         return;
