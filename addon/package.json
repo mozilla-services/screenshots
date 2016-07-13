@@ -20,7 +20,7 @@
     },
     {
       "name": "startHttpServer",
-      "title": "start HTTP server",
+      "title": "start HTTP server (restart required after changing this)",
       "description": "start HTTP",
       "type": "bool",
       "value": false
