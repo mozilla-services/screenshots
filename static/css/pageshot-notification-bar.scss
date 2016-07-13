@@ -4,7 +4,7 @@
 @-moz-document url("chrome://browser/content/browser.xul") {
   notification[value="pageshot-notification-bar"] {
     -moz-appearance: none;
-    height: 40px;
+    height: 67px;
     padding: 0;
     background: #fcfcfc;
     color: #000;
@@ -23,7 +23,7 @@
   }
 
   notification[value="pageshot-notification-bar"] button[label="myshots"] {
-    height: 40px;
+    height: 67px;
     background-image: none;
     text-align: center;
     vertical-align: middle;
