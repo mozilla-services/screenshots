@@ -1,7 +1,6 @@
 {
   "manifest_version": 2,
   "name": "PageShot",
-  "description": "Take clips and snapshot copies of pages",
   "version": "0.1.0",
   "description": "PageShot takes clips and screenshots from pages, and can save a permanent copy of a page",
   "author": "Ian Bicking, Donovan Preston, and Bram Pitoyo",
