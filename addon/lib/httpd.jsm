@@ -3,6 +3,8 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+/* globals Components, HttpError, dump, HTTP_400, HTTP_501, HTTP_500, HTTP_404, HTTP_403, XPCOMUtils */
+/* exported server */
 
 /*
  * An implementation of an HTTP server both as a loadable script and as an XPCOM
@@ -286,7 +288,7 @@ function toDateString(date)
   {
     var hrs = date.getUTCHours();
     var rv  = (hrs < 10) ? "0" + hrs : hrs;
-    
+
     var mins = date.getUTCMinutes();
     rv += ":";
     rv += (mins < 10) ? "0" + mins : mins;
@@ -867,7 +869,7 @@ const HOST_REGEX =
                // toplabel
                "[a-z](?:[a-z0-9-]*[a-z0-9])?" +
              "|" +
-               // IPv4 address 
+               // IPv4 address
                "\\d+\\.\\d+\\.\\d+\\.\\d+" +
              ")$",
              "i");
@@ -1078,7 +1080,7 @@ ServerIdentity.prototype =
       // Not the default primary location, nothing special to do here
       this.remove("http", "127.0.0.1", this._defaultPort);
     }
-    
+
     // This is a *very* tricky bit of reasoning here; make absolutely sure the
     // tests for this code pass before you commit changes to it.
     if (this._primaryScheme == "http" &&
@@ -1183,7 +1185,7 @@ function Connection(input, output, server, port, outgoingPort, number)
   this._processed = false;
 
   /** whether or not 1st line of request has been received */
-  this._requestStarted = false; 
+  this._requestStarted = false;
 }
 Connection.prototype =
 {
@@ -1527,7 +1529,7 @@ RequestReader.prototype =
         this._handleResponse();
         return true;
       }
-      
+
       return false;
     }
     catch (e)
@@ -2231,7 +2233,7 @@ function maybeAddHeaders(file, metadata, response)
         code = status.substring(0, space);
         description = status.substring(space + 1, status.length);
       }
-    
+
       response.setStatusLine(metadata.httpVersion, parseInt(code, 10), description);
 
       line.value = "";
@@ -3164,7 +3166,7 @@ ServerHandler.prototype =
     dumpn("*** error in request: " + errorCode);
 
     this._handleError(errorCode, new Request(connection.port), response);
-  }, 
+  },
 
   /**
    * Handles a request which generates the given error code, using the
@@ -3413,7 +3415,7 @@ ServerHandler.prototype =
 
       if (metadata.queryString)
         body +=  "?" + metadata.queryString;
-        
+
       body += " HTTP/" + metadata.httpVersion + "\r\n";
 
       var headEnum = metadata.headers;
@@ -4966,17 +4968,17 @@ nsHttpHeaders.prototype =
     var value = headerUtils.normalizeFieldValue(fieldValue);
 
     // The following three headers are stored as arrays because their real-world
-    // syntax prevents joining individual headers into a single header using 
+    // syntax prevents joining individual headers into a single header using
     // ",".  See also <http://hg.mozilla.org/mozilla-central/diff/9b2a99adc05e/netwerk/protocol/http/src/nsHttpHeaderArray.cpp#l77>
     if (merge && name in this._headers)
     {
       if (name === "www-authenticate" ||
           name === "proxy-authenticate" ||
-          name === "set-cookie") 
+          name === "set-cookie")
       {
         this._headers[name].push(value);
       }
-      else 
+      else
       {
         this._headers[name][0] += "," + value;
         NS_ASSERT(this._headers[name].length === 1,
@@ -4999,8 +5001,8 @@ nsHttpHeaders.prototype =
    * @returns string
    *   the field value for the given header, possibly with non-semantic changes
    *   (i.e., leading/trailing whitespace stripped, whitespace runs replaced
-   *   with spaces, etc.) at the option of the implementation; multiple 
-   *   instances of the header will be combined with a comma, except for 
+   *   with spaces, etc.) at the option of the implementation; multiple
+   *   instances of the header will be combined with a comma, except for
    *   the three headers noted in the description of getHeaderValues
    */
   getHeader: function(fieldName)
@@ -5262,7 +5264,7 @@ Request.prototype =
   //
   // see nsIPropertyBag.getProperty
   //
-  getProperty: function(name) 
+  getProperty: function(name)
   {
     this._ensurePropertyBag();
     return this._bag.getProperty(name);
@@ -5284,7 +5286,7 @@ Request.prototype =
 
 
   // PRIVATE IMPLEMENTATION
-  
+
   /** Ensures a property bag has been created for ad-hoc behaviors. */
   _ensurePropertyBag: function()
   {

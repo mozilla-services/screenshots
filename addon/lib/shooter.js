@@ -497,12 +497,16 @@ function urlDomainForId(urlString) {
   return domain;
 }
 
-exports.autoShot = function (tab, backend, backendUrl, save) {
-  /* Runs the javascript cleanup utilities on the tab, takes a screenshot,
-   * creates a shot instance, and pushes the data to the backend server without
-   * asking anything via UI
-   */
-
+/** Runs the javascript cleanup utilities on the tab, takes a screenshot,
+    creates a shot instance, and pushes the data to the backend server without
+    asking anything via UI
+ */
+exports.autoShot = function (options) {
+  let { tab, backend, backendUrl, save } = options;
+  let prefs = require("sdk/simple-prefs").prefs;
+  let inlineCss = options.inlineCss === undefined ? prefs.inlineCss : options.inlineCss;
+  let useReadability = options.useReadability === undefined ? prefs.useReadability : options.useReadability;
+  let allowUnknownAttributes = !! options.allowUnknownAttributes;
   return watchPromise(callScript(
     tab,
     self.data.url("framescripts/add-ids.js"),
@@ -515,7 +519,6 @@ exports.autoShot = function (tab, backend, backendUrl, save) {
       console.log('Abandon hope all ye who enter!');
       return;
     }
-    var prefInlineCss = require("sdk/simple-prefs").prefs.inlineCss;
     let deviceInfo = getDeviceInfo();
     if (! deviceInfo) {
       throw new Error("Could not get device authentication information");
@@ -529,7 +532,6 @@ exports.autoShot = function (tab, backend, backendUrl, save) {
 
     // Heavy lifting happens here
     var promises = [];
-    var useReadability = require("sdk/simple-prefs").prefs.useReadability;
     promises.push(watchPromise(extractWorker(tab, {useReadability})).then(watchFunction(function (attrs) {
       delete attrs.passwordFields;
       shot.update(attrs);
@@ -545,7 +547,7 @@ exports.autoShot = function (tab, backend, backendUrl, save) {
       tab,
       self.data.url("framescripts/make-static-html.js"),
       "pageshot@documentStaticData",
-      {prefInlineCss})).then(watchFunction(function (attrs) {
+      {prefInlineCss: inlineCss, allowUnknownAttributes})).then(watchFunction(function (attrs) {
         shot.update(attrs);
       }, this)));
 

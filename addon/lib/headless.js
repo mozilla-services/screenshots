@@ -25,7 +25,16 @@
  * Generally CSS parsing is enabled on this branch, which is EXPERIMENTAL.
  *
  * Syntax, assuming default IP, PORT, and target URL of asdf.com:
- *    curl 'http://localhost:10082/?http://www.asdf.com'
+ *   curl 'http://localhost:10082/?http://www.asdf.com'
+ *
+ * You can also get the JSON without creating a resource, like:
+ *   curl 'http://localhost:10082/data?url=http://yahoo.com'
+ * This endpoint allows the query string arguments:
+ *   url (make sure you URL-encode the URL!)
+ *   inlineCss (=true to force inline CSS instead of loading external CSS)
+ *   useReadability (=true to include the Readability extraction)
+ *   allowUnknownAttributes (=true to not scrub data-*, etc, attributes)
+ *   delayAfterLoad (=milliseconds to pause before capture)
  *
  * Usage without X:
  * To use this without X, start the server as normal. Then, in the bin/
@@ -41,6 +50,10 @@ const { nsHttpServer } = Cu.import(HTTPD_MOD_URL);
 const { randomString } = require("./randomstring");
 const { autoShot, RANDOM_STRING_LENGTH, urlDomainForId } = require("./shooter");
 const { prefs } = require("sdk/simple-prefs");
+const { setTimeout, clearTimeout } = require("sdk/timers");
+const querystringParse = require("sdk/querystring").parse;
+
+const DEFAULT_TIMEOUT = 30000; // 30 seconds
 
 var ip = prefs.httpServerIp;
 var port = prefs.httpServerPort;
@@ -74,7 +87,7 @@ function handleRequest(request, response) {
   tabs.open({
     url: url,
     onLoad: function (tab) {
-      autoShot(tab, backend, backendUrl, true);
+      autoShot({tab, backend, backendUrl, save: true});
       tab.on("close", function (a) {
         console.log(`completed processing ${backendUrl}`);
         response.setStatusLine("1.1", 200, "OK");
@@ -85,24 +98,83 @@ function handleRequest(request, response) {
   });
 }
 
+function toBool(value, defaultValue) {
+  if (value === undefined) {
+    return defaultValue;
+  }
+  if (value === 'false' || value === 'no' || value === '0' || value === 'off') {
+    value = false;
+  }
+  return !! value;
+}
+
 function handleDataRequest(request, response) {
   /* Takes a request from the server, makes the response asynchronous so the
    * client waits for a response, processes the query string from the request
    * as a URL with the function autoShot from shooter.js and finally returns
    * the JSON for the shot (this does NOT save the shot)
    */
+  let prefs = require("sdk/simple-prefs").prefs;
   response.processAsync();
-  var url = request._queryString;
+  let query = querystringParse(request._queryString);
+  let url = query.url;
+  if (! url) {
+    response.setStatusLine("1.1", 400, "Bad Request");
+    response.write("No ?url= parameter");
+    response.finish();
+    return;
+  }
+  let inlineCss = toBool(query.inlineCss, prefs.inlineCss);
+  let useReadability = toBool(query.useReadability, prefs.useReadability);
+  let allowUnknownAttributes = toBool(query.allowUnknownAttributes, false);
+  let delayAfterLoad = query.delayAfterLoad ? parseInt(query.delayAfterLoad, 10) : 0;
+  let timeout = query.timeout ? parseInt(query.timeout, 10) : DEFAULT_TIMEOUT;
   var backendUrl = randomString(RANDOM_STRING_LENGTH) + "/" + urlDomainForId(url);
   console.log('recieved request: URL -> BACK'
                 .replace('URL', url).replace('BACK', backendUrl));
+  let failed = false;
+  let timeoutId;
+  if (timeout) {
+    timeoutId = setTimeout(() => {
+      response.setStatusLine("1.1", 502, "Bad Gateway");
+      response.write("Error: timed out after " + (delayAfterLoad + timeout));
+      response.finish();
+      failed = true;
+    }, delayAfterLoad + timeout);
+  }
   tabs.open({
     url: url,
     onLoad: function (tab) {
-      autoShot(tab, backend, backendUrl, false).then((shot) => {
+      if (failed) {
+        tab.close();
+        return;
+      }
+      clearTimeout(timeoutId);
+      sleep(delayAfterLoad).then(() => {
+        return autoShot({
+          tab,
+          backend,
+          backendUrl,
+          inlineCss,
+          useReadability,
+          allowUnknownAttributes,
+          save: false
+        });
+      }).then((shot) => {
         console.log(`completed processing ${backendUrl}`);
         response.setStatusLine("1.1", 200, "OK");
-        response.write(JSON.stringify(shot.asJson()));
+        let data = JSON.stringify(shot.asJson());
+        data = data.replace(
+          /[\u0080-\uffff]/g,
+          function (s) {
+            let n = s.charCodeAt(0).toString(16);
+            while (n.length < 4) {
+              n = "0" + n;
+            }
+            return "\\u" + n;
+          }
+        );
+        response.write(data);
         response.finish();
       }).catch((e) => {
         response.setStatusLine("1.1", 500, "Error");
@@ -113,14 +185,15 @@ function handleDataRequest(request, response) {
   });
 }
 
-
 function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if (Date().now() - start > milliseconds){
-      break;
-    }
+  if (! milliseconds) {
+    return Promise.resolve();
   }
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, milliseconds);
+  });
 }
 
 function handleReadableRequest(request, response) {
@@ -148,8 +221,10 @@ function handleReadableRequest(request, response) {
           });
           worker.port.on("done", function () { // When the worker emits done, wait a bit then fire autoshot
             console.log('readability should be finished');
-            sleep(prefs.readableSleep); // Sleep is required because if you fire autoShot immediately the DOM comes up empty
-            autoShot(tab, backend, backendUrl, true);
+            // Sleep is required because if you fire autoShot immediately the DOM comes up empty
+            sleep(prefs.readableSleep).then(() => {
+              autoShot({tab, backend, backendUrl, save: true});
+            });
           });
         }
       });

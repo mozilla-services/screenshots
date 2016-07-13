@@ -46,6 +46,7 @@ const makeStaticHtml = (function () { // eslint-disable-line no-unused-vars
   // This is an option that gets set by the caller of this module, but
   // we store it in a global:
   var prefInlineCss = false;
+  var allowUnknownAttributes = false;
 
   function getDocument() {
     if (isChrome) {
@@ -463,6 +464,9 @@ const makeStaticHtml = (function () { // eslint-disable-line no-unused-vars
   const BORING_SKIPS = ["http-equiv", "action", "name", "contenteditable"];
 
   function skipAttribute(attrName, el) {
+    if (allowUnknownAttributes) {
+      return attrName.toLowerCase().startsWith("on");
+    }
     if (isSVGElement(el)) {
       // FIXME: just haven't enumerated svg attributes
       return false;
@@ -1006,6 +1010,7 @@ const makeStaticHtml = (function () { // eslint-disable-line no-unused-vars
       }
       try {
         prefInlineCss = event.data.prefInlineCss;
+        allowUnknownAttributes = event.data.allowUnknownAttributes;
         documentStaticData().then((result) => {
           send(result);
         }).catch((error) => {
