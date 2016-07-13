@@ -114,7 +114,10 @@ class Clip extends React.Component {
     if (document.getElementById("share-buttons-panel")) {
       return;
     }
-    this.onClickClose();
+
+    if (this.props.showCloseButton) {
+      this.onClickClose();
+    }
   }
 
   render() {
