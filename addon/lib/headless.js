@@ -35,6 +35,7 @@
  *   useReadability (=true to include the Readability extraction)
  *   allowUnknownAttributes (=true to not scrub data-*, etc, attributes)
  *   delayAfterLoad (=milliseconds to pause before capture)
+ *   thumbnailWidth (=pixels of the fullscreenThumbnail width, 0 to not take a thumbnail)
  *
  * Usage without X:
  * To use this without X, start the server as normal. Then, in the bin/
@@ -129,6 +130,7 @@ function handleDataRequest(request, response) {
   let allowUnknownAttributes = toBool(query.allowUnknownAttributes, false);
   let delayAfterLoad = query.delayAfterLoad ? parseInt(query.delayAfterLoad, 10) : 0;
   let timeout = query.timeout ? parseInt(query.timeout, 10) : DEFAULT_TIMEOUT;
+  let thumbnailWidth = query.thumbnailWidth ? parseInt(query.thumbnailWidth, 10) : undefined;
   var backendUrl = randomString(RANDOM_STRING_LENGTH) + "/" + urlDomainForId(url);
   console.log('recieved request: URL -> BACK'
                 .replace('URL', url).replace('BACK', backendUrl));
@@ -157,6 +159,7 @@ function handleDataRequest(request, response) {
           backendUrl,
           inlineCss,
           useReadability,
+          thumbnailWidth,
           allowUnknownAttributes,
           save: false
         });
