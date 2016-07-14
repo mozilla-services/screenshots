@@ -507,6 +507,7 @@ exports.autoShot = function (options) {
   let inlineCss = options.inlineCss === undefined ? prefs.inlineCss : options.inlineCss;
   let useReadability = options.useReadability === undefined ? prefs.useReadability : options.useReadability;
   let allowUnknownAttributes = !! options.allowUnknownAttributes;
+  let thumbnailWidth = options.thumbnailWidth !== undefined ? options.thumbnailWidth : 140;
   return watchPromise(callScript(
     tab,
     self.data.url("framescripts/add-ids.js"),
@@ -536,13 +537,16 @@ exports.autoShot = function (options) {
       delete attrs.passwordFields;
       shot.update(attrs);
     }, this)));
-    promises.push(watchPromise(
-      captureTab(tab, {x: 0, y: 0, h: "full", w: "full"}, {h: null, w: 140}).then((screenshot) => {
-        shot.update({
-          fullScreenThumbnail: screenshot
-        });
-      })
-    ));
+    console.log("Capturing with thumbnail width", thumbnailWidth);
+    if (thumbnailWidth) {
+      promises.push(watchPromise(
+        captureTab(tab, {x: 0, y: 0, h: "full", w: "full"}, {h: null, w: thumbnailWidth}).then((screenshot) => {
+          shot.update({
+            fullScreenThumbnail: screenshot
+          });
+        })
+      ));
+    }
     promises.push(watchPromise(callScript(
       tab,
       self.data.url("framescripts/make-static-html.js"),
