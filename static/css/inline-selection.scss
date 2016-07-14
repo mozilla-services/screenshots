@@ -253,6 +253,55 @@ $overlay-z-index: 900000;
   z-index: $overlay-z-index;
 }
 
+.pageshot-select-mode-background {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(#000, 0.7);
+  z-index: 9999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pageshot-select-mode {
+  position: relative;
+  width: 380px;
+  height: 200px;
+  background-color: #fcfcfc;
+  text-align: center;
+  padding-top: 1.5em;
+}
+
+.pageshot-select-mode-square-button {
+  position: absolute;
+  top: 50px;
+  width: 80px;
+  height: 80px;
+  padding-top: 0.25em;
+  box-sizing: border-box;
+  border: 0;
+  border-image-width: 0;
+  cursor: pointer;
+  background-color: #fcfcfc;
+}
+
+.pageshot-select-mode-button {
+  position: absolute;
+  bottom: 0;
+  width: 190px;
+  height: 40px;
+  padding-top: 0.25em;
+  box-sizing: border-box;
+  border: 0;
+  border-image-width: 0;
+  border-top: 1px solid #d4d4d4;
+  background-color: #efefef;
+  cursor: pointer;
+}
+
 .pageshot-crosshair-pulse {
   position: fixed;
   top: 20%;
