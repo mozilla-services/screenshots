@@ -249,6 +249,7 @@ stateHandlers.crosshairs = {
     if (isChrome) {
       ui.ChromeInterface.showSaveFullPage();
     } else {
+      // FIXME do we need to do anything here any more?
       //self.port.emit("showSave");
     }
   },

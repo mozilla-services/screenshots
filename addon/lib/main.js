@@ -69,6 +69,7 @@ function showNotificationBar(shotcontext) {
   messageNode.style.marginLeft = "10px";
   messageNode.style.fontWeight = "normal";
   messageNode.appendChild(thebox.ownerDocument.createTextNode("Select part of the page to save:"));
+  // FIXME Remove the myShots code once we're sure we won't want it any more
   //fragment.appendChild(myShots);
   fragment.appendChild(messageNode);
   nb.banner({
