@@ -164,14 +164,6 @@ const ui = (function () { // eslint-disable-line no-unused-vars
   */
   exports.SelectMode = {
     display: function (callbacks) {
-      if (document.querySelector(".pageshot-preview-overlay") !== null) {
-        return;
-      }
-      let oldNode = document.getElementById("pageshot-select-mode-background");
-      if (oldNode !== null) {
-        oldNode.parentNode.removeChild(oldNode);
-      }
-
       if (this.selectModeBackground === undefined) {
         this.selectModeBackground = document.createElement("div");
         this.selectModeBackground.id = "pageshot-select-mode-background";
