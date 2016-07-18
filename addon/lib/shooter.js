@@ -238,6 +238,12 @@ const ShotContext = Class({
     this.interactiveWorker.port.on("deactivate", watchFunction(function (newUrl) {
       this.destroy();
     }, this));
+    this.interactiveWorker.port.on("openMyShots", watchFunction(function () {
+      this.openMyShots();
+    }, this));
+    this.interactiveWorker.port.on("showTopbar", watchFunction(function () {
+      this.showTopbar(this);
+    }, this));
     this.interactiveWorker.port.on("take-shot", watchFunction(function () {
       this.takeShot();
     }, this));
@@ -315,6 +321,15 @@ const ShotContext = Class({
     // Do nothing
   },
 
+  openMyShots: function () {
+    require("./main").openMyShots();
+    this.interactiveWorker.port.emit("cancel");
+  },
+
+  showTopbar: function (shotContext) {
+    require("./main").showTopbar(shotContext);
+  },
+
   /** Watches for the given event on this context's tab.  The callback will be
       bound to `this` */
   watchTab: function (eventName, callback) {
@@ -377,11 +392,12 @@ const ShotContext = Class({
       } catch (e) {
         // Ignore... it's just a best effort to cancel the state
       }
-      this.interactiveWorker.destroy();
+      setTimeout(() => {
+        this.interactiveWorker.destroy();
+        this.interactiveWorker = null;
+      }, 1000);
     }
-    this.interactiveWorker = null;
   }
-
 });
 
 exports.ShotContext = ShotContext;

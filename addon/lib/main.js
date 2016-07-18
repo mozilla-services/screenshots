@@ -63,21 +63,14 @@ function showNotificationBar(shotcontext) {
   postMyShots.className = "post-myshots";
   myShots.appendChild(postMyShots);
   myShots.className = "myshots";
-  myShots.onclick = watchFunction(function () {
-    if (! prefs.hasUsedMyShots) {
-      prefs.hasUsedMyShots = true;
-    }
-    hideNotificationBar();
-    setTimeout(() => {
-      tabs.open(exports.getBackend() + "/shots");
-    });
-  });
+  myShots.onclick = watchFunction(exports.openMyShots);
   let messageNode = thebox.ownerDocument.createElement("span");
   messageNode.style.border = "none";
   messageNode.style.marginLeft = "10px";
   messageNode.style.fontWeight = "normal";
-  messageNode.appendChild(thebox.ownerDocument.createTextNode("Select part of the page to save, or save full page without making a selection."));
-  fragment.appendChild(myShots);
+  messageNode.appendChild(thebox.ownerDocument.createTextNode("Select part of the page to save:"));
+  // FIXME Remove the myShots code once we're sure we won't want it any more
+  //fragment.appendChild(myShots);
   fragment.appendChild(messageNode);
   nb.banner({
     id: "pageshot-notification-bar",
@@ -94,7 +87,7 @@ function showNotificationBar(shotcontext) {
       nb.buttonMaker.yes({
         // FIXME: the label and the identifier for this button are conflated
         // (here, below in this file, and in pageshot-notification-bar.scss)
-        label: "Save Full Page",
+        label: "Save",
         callback: function(notebox, button) {
           hideNotificationBar();
           setTimeout(function () {
@@ -113,6 +106,8 @@ function showNotificationBar(shotcontext) {
       })
     ]
   });
+
+  setSaveButtonText("Save", true);
 
   if (!initialized) {
     if (! Services) {
@@ -144,21 +139,34 @@ function hideNotificationBar(browser) {
   return removed;
 }
 
+exports.openMyShots = function () {
+  if (! prefs.hasUsedMyShots) {
+    prefs.hasUsedMyShots = true;
+  }
+  hideNotificationBar();
+  setTimeout(() => {
+    tabs.open(exports.getBackend() + "/shots");
+  });
+};
+
 exports.showSaveFullPage = function () {
   setSaveButtonText("Save Full Page");
 };
 
 exports.showSave = function () {
-  setSaveButtonText("Save");
+  setSaveButtonText("Save", false);
 };
 
-function setSaveButtonText(text) {
+function setSaveButtonText(text, disabled) {
   let box = getNotificationBox();
   let notification = box.getNotificationWithValue("pageshot-notification-bar");
   let els = notification.getElementsByTagName("*");
   for (let i=0; i<els.length; i++) {
     console.log("checking element", els[i].tagName, els[i].outerHTML);
     if (els[i].tagName == "button" && els[i].className.indexOf("notification-button-default") != -1) {
+      if (disabled === true || disabled === false) {
+        els[i].setAttribute("disabled", disabled);
+      }
       els[i].setAttribute("label", text);
       console.log("did it!");
       break;
@@ -166,21 +174,22 @@ function setSaveButtonText(text) {
   }
 }
 
-exports.showSave = function () {
-  setSaveButtonText("Save");
-};
-
 exports.hideNotificationBar = hideNotificationBar;
 
-function takeShot(source) {
+function showTopbar(shotContext) {
   let box = getNotificationBox();
   let notification = box.getNotificationWithValue("pageshot-notification-bar");
   if (!notification) {
     hideInfoPanel();
-    let shotContext = shooter.ShotContext(exports.getBackend());
     showNotificationBar(shotContext);
-    req.sendEvent("addon", source);
+    req.sendEvent("addon", "overlay-ui");
   }
+}
+
+exports.showTopbar = showTopbar;
+
+function takeShot(source) {
+  let shotContext = shooter.ShotContext(exports.getBackend());
 }
 
 var hotKey = Hotkey({

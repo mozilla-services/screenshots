@@ -7,8 +7,10 @@
 
 /* States:
 
+"selectMode":
+  Prompt the user to choose between selecting a region to screenshot and saving a full page archive.
 "crosshairsPreview":
-  Nothing has happened, and the selection preview is still showing
+  FIXME DEPRECATE Nothing has happened, and the selection preview is still showing
 "crosshairs":
   Nothing has happened, and the crosshairs will follow the movement of the mouse
 "draggingReady":
@@ -179,6 +181,39 @@ class Pos {
  * all stateHandlers
  */
 
+stateHandlers.selectMode = {
+  start: function () {
+    ui.SelectMode.display({
+      onChooseRegionMode: this.onChooseRegionMode.bind(this),
+      onChooseArchiveMode: this.onChooseArchiveMode.bind(this),
+      onCancel: this.onCancel.bind(this),
+      onOpenMyShots: this.onOpenMyShots.bind(this)
+    });
+  },
+
+  onChooseRegionMode: function () {
+    setState("crosshairs");
+    self.port.emit("showTopbar");
+  },
+
+  onChooseArchiveMode: function () {
+      setState("cancel");
+      self.port.emit("take-shot");
+  },
+
+  onCancel: function () {
+    setState("cancel");
+  },
+
+  onOpenMyShots: function () {
+    self.port.emit("openMyShots");
+  },
+
+  end: function () {
+    ui.SelectMode.remove();
+  }
+}
+
 stateHandlers.crosshairsPreview = {
 
   start: function () {
@@ -191,7 +226,7 @@ stateHandlers.crosshairsPreview = {
       ui.ChromeInterface.showSaveFullPage();
     } else if (self.options.showMyShotsReminder) {
       ui.MyShotsReminder.display();
-      self.port.emit("showSaveFullPage");
+      self.port.emit("showSave");
     }
   },
 
@@ -214,7 +249,8 @@ stateHandlers.crosshairs = {
     if (isChrome) {
       ui.ChromeInterface.showSaveFullPage();
     } else {
-      self.port.emit("showSaveFullPage");
+      // FIXME do we need to do anything here any more?
+      //self.port.emit("showSave");
     }
   },
 
@@ -475,7 +511,7 @@ function activate() {
   document.body.classList.remove("pageshot-hide-selection");
   document.body.classList.remove("pageshot-hide-movers");
   addHandlers();
-  setState("crosshairsPreview");
+  setState("selectMode");
   if (isChrome) {
     ui.ChromeInterface.display();
     ui.ChromeInterface.onMyShots = function () {
