@@ -17,7 +17,10 @@ const snapping = (function () { // eslint-disable-line no-unused-vars
     for (var i=0; i<allTagsLength; i++) {
       var tag = allTags[i];
       var rect = tag.getBoundingClientRect();
-      // FIXME: some objects aren't visible, and should be excluded
+      if (rect.height === 0 && rect.width === 0) {
+        // Probably not a visible element
+        continue;
+      }
       var top = Math.floor(rect.top + scrollY);
       var bottom = Math.floor(rect.bottom + scrollY);
       var left = Math.floor(rect.left + scrollX);
