@@ -24,11 +24,14 @@ before_install:
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 -extension RANDR"
 
 before_script:
+  - pwd
   - ls node_modules || true
   - npm install
   - ls node_modules || true
   - ls node_modules/.bin || true
   - ls ~/node_modules || true
+  - npm config ls -l
+  - find / -name node_modules
   - export JPM_FIREFOX_BINARY=`which firefox`
   - firefox -v
   - echo $JPM_FIREFOX_BINARY
