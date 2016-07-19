@@ -52,8 +52,6 @@ function launchWget(deviceId) {
       console.warn("Error launching wget:", e);
     });
     resolve();
-    // FIXME: I don't think an exception here will reject
-    // Also maybe this is all synchronous
   });
 }
 

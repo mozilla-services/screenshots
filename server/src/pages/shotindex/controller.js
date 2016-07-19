@@ -23,7 +23,6 @@ exports.onChangeSearch = function (query) {
   refreshModel();
 };
 
-// FIXME: this works, but we don't have a way to know when to trigger the refresh
 function refreshModel() {
   let req = new XMLHttpRequest();
   let url = "/shots?data=json";

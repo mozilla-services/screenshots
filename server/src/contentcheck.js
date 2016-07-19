@@ -24,7 +24,6 @@ exports.checkContent = function (htmlString) {
     }
     if (el.attributes) {
       let attrList = [];
-      // FIXME: working around a bug in domino: https://github.com/fgnass/domino/issues/53
       for (let name in el.attributes) {
         if (name == "element") {
           // Internal/private variable

@@ -5,7 +5,6 @@ function annotatePosition(pos) { // eslint-disable-line no-unused-vars
   function findElement(x, y, offsetX, offsetY) {
     let element = document.elementFromPoint(x - window.pageXOffset + offsetX, y - window.pageYOffset + offsetY);
     if ((! element) || (! element.id)) {
-      // FIXME: not sure if this is a reasonable fallback
       element = document.body;
     }
     let id;

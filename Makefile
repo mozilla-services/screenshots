@@ -172,7 +172,6 @@ build/mozilla-pageshot.xpi: addon addon/package.json
 build/mozilla-pageshot.update.rdf: addon/template.update.rdf build/mozilla-pageshot.xpi
 	_sub_rdf_checkout_version < build/addon/package.json > build/mozilla-pageshot.update.rdf
 
-# FIXME: not sure what purpose this has, given _set_package_version
 build/addon/package.json: addon/package.json
 	@mkdir -p $(@D)
 	cp $< $@

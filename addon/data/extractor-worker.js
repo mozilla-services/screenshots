@@ -92,7 +92,6 @@ const extractorWorker = (function () { // eslint-disable-line no-unused-vars
       if (! (imgData && imgData.url)) {
         return;
       }
-      // FIXME: handle relative links
       if (found[imgData.url]) {
         return;
       }
@@ -109,9 +108,9 @@ const extractorWorker = (function () { // eslint-disable-line no-unused-vars
       var j;
       for (j=0; j<ogs.length; j++) {
         var src = ogs[j].getAttribute("content");
-        if (src.startsWith("/")) {
-          src = location.origin + src;
-        }
+        var a = document.createElement("a");
+        a.href = src;
+        src = a.href;
         addImage({
           url: src
         });

@@ -8,7 +8,6 @@ const ui = (function () { // eslint-disable-line no-unused-vars
 
   // The <body> tag itself can have margins and offsets, which need to be used when
   // setting the position of the boxEl.
-  // FIXME: I guess this is disabled because it doesn't work well?
   function getBodyRect() {
     if (getBodyRect.cached) {
       return getBodyRect.cached;
