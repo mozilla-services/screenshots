@@ -167,7 +167,7 @@ build/mozilla-pageshot.xpi: addon addon/package.json
 	# Get rid of any stale xpis:
 	rm -f build/addon/jid1-NeEaf3sAHdKHPA@jetpack-*.xpi
 	cd build/addon && $(JPM) xpi
-	mv build/addon/jid1-NeEaf3sAHdKHPA@jetpack-*.xpi build/mozilla-pageshot.xpi
+	mv build/addon/mozilla-pageshot.xpi build/mozilla-pageshot.xpi
 
 build/mozilla-pageshot.update.rdf: addon/template.update.rdf build/mozilla-pageshot.xpi
 	_sub_rdf_checkout_version < build/addon/package.json > build/mozilla-pageshot.update.rdf
