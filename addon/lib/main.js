@@ -85,8 +85,6 @@ function showNotificationBar(shotcontext) {
     },
     buttons: [
       nb.buttonMaker.yes({
-        // FIXME: the label and the identifier for this button are conflated
-        // (here, below in this file, and in pageshot-notification-bar.scss)
         label: "Save",
         callback: function(notebox, button) {
           hideNotificationBar();
