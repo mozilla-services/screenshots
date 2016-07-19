@@ -102,8 +102,7 @@ exports.watchPromise = function (promise) {
     Also takes an optional context argument, just a convenience instead of
     calling `func.bind(context)` yourself.
 
-    Also watches any promise returned by the function (FIXME: probably it
-    shouldn't do this)
+    Also watches any promise returned by the function
     */
 exports.watchFunction = function (func, context) {
   if (context) {

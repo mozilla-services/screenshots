@@ -86,14 +86,3 @@ let readyTimeout = setInterval(function () {
 document.addEventListener("page-ready", function () {
   clearTimeout(readyTimeout);
 }, false);
-
-// FIXME: not sure if this might mess up an in-content onerror handler, though I suppose
-// we just shouldn't create one?
-window.onerror = function (message, url, line, col, error) {
-  console.error("Error from onerror", url);
-  self.port.emit("alertError", {
-    name: error.name || "ERROR",
-    message: message,
-    help: "Uncaught error: " + error + " at " + url + "@" + line + ":" + col
-  });
-};
