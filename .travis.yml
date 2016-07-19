@@ -19,7 +19,6 @@ before_install:
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 -extension RANDR"
 
 before_script:
-  - npm install -g jpm
   - npm install
   - export JPM_FIREFOX_BINARY=`which firefox`
   - firefox -v
@@ -29,6 +28,6 @@ before_script:
   - cd $TRAVIS_BUILD_DIR/
 
 script:
-  - pwd && ls && cd $TRAVIS_BUILD_DIR/build/addon && jpm test -v
+  - pwd && ls && cd $TRAVIS_BUILD_DIR/build/addon && ./node_modules/.bin/jpm test -v
   - cd $TRAVIS_BUILD_DIR
   - npm run lint
