@@ -6,8 +6,6 @@ const linker = require("./linker");
 const config = require("./config").root();
 const fs = require("fs");
 
-// FIXME: need to sometimes look for anything that has the wrong version
-// and refresh its searchable_text column
 const SEARCHABLE_VERSION = 1;
 
 let ClipRewrites;
@@ -689,9 +687,6 @@ ClipRewrites = class ClipRewrites {
 
 Shot.cleanDeletedShots = function () {
   let retention = config.expiredRetentionTime;
-  // FIXME: active shots with no clips appear to be 404, but all deleted shots have
-  // no clips (because we delete that data).  But we don't do a hard delete of shots
-  // with no clip, meaning they become more visible only after they've expired
   return db.transaction((client) => {
     return db.queryWithClient(
       client,
