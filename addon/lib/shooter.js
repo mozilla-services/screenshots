@@ -123,8 +123,8 @@ const ShotContext = Class({
 
   takeShot: function () {
     watchPromise(this.uploadShot().then(() => {
+      require("./main").hideNotificationBar();
       this.openInNewTab();
-      this.destroy();
     }));
     this._collectionCompletePromise.then(() => {
       this.copyRichDataToClipboard();
@@ -248,9 +248,11 @@ const ShotContext = Class({
       this.takeShot();
     }, this));
     this.interactiveWorker.port.on("showSaveFullPage", watchFunction(function () {
-      require("./main").showSaveFullPage();
+      // FIXME remove if we are sure we don't need this any more
+      //require("./main").showSaveFullPage();
     }));
     this.interactiveWorker.port.on("showSave", watchFunction(function () {
+      // FIXME remove if we are sure we don't need this any more
       require("./main").showSave();
     }));
 
@@ -322,8 +324,9 @@ const ShotContext = Class({
   },
 
   openMyShots: function () {
-    require("./main").openMyShots();
-    this.interactiveWorker.port.emit("cancel");
+    let main = require("./main");
+    main.openMyShots();
+    main.hideNotificationBar();
   },
 
   showTopbar: function (shotContext) {
@@ -387,15 +390,11 @@ const ShotContext = Class({
     }
     this._deregisters = null;
     if (this.interactiveWorker) {
-      try {
-        this.interactiveWorker.port.emit("cancel");
-      } catch (e) {
-        // Ignore... it's just a best effort to cancel the state
-      }
-      setTimeout(() => {
+      this.interactiveWorker.port.on("destroyed", () => {
         this.interactiveWorker.destroy();
         this.interactiveWorker = null;
-      }, 1000);
+      });
+      this.interactiveWorker.port.emit("destroy");
     }
   }
 });
