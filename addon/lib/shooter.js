@@ -252,7 +252,6 @@ const ShotContext = Class({
       //require("./main").showSaveFullPage();
     }));
     this.interactiveWorker.port.on("showSave", watchFunction(function () {
-      // FIXME remove if we are sure we don't need this any more
       require("./main").showSave();
     }));
 
