@@ -165,9 +165,9 @@ build/mozilla-pageshot.xpi: addon addon/package.json
 	# We have to do this each time because we want to set the version using a timestamp:
 	_set_package_version < addon/package.json > build/addon/package.json
 	# Get rid of any stale xpis:
-	rm -f build/addon/jid1-NeEaf3sAHdKHPA@jetpack-*.xpi
+	rm -f build/addon/mozilla-pageshot.xpi
 	cd build/addon && $(JPM) xpi
-	mv build/addon/jid1-NeEaf3sAHdKHPA@jetpack-*.xpi build/mozilla-pageshot.xpi
+	mv build/addon/mozilla-pageshot.xpi build/mozilla-pageshot.xpi
 
 build/mozilla-pageshot.update.rdf: addon/template.update.rdf build/mozilla-pageshot.xpi
 	_sub_rdf_checkout_version < build/addon/package.json > build/mozilla-pageshot.update.rdf

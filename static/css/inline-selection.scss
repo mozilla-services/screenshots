@@ -255,10 +255,10 @@ $overlay-z-index: 900000;
 
 .pageshot-select-mode-background {
   position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: rgba(#000, 0.7);
   z-index: 9999999;
   display: flex;

@@ -3,6 +3,14 @@ language: node_js
 node_js:
   - "0.12"
 
+cache:
+  bundler: true
+  directories:
+  - node_modules
+
+addons:
+  firefox: "47.0"
+
 notifications:
   irc:
     channels:
@@ -16,15 +24,11 @@ before_install:
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 -extension RANDR"
 
 before_script:
-  - npm install -g jpm mozilla-download
-  - npm install
+  - export JPM_FIREFOX_BINARY=`which firefox`
+  - firefox -v
+  - echo $JPM_FIREFOX_BINARY
   - make all
-  - cd ..
-  - mozilla-download --branch mozilla-central --product firefox firefox
-  - export JPM_FIREFOX_BINARY=$TRAVIS_BUILD_DIR/../firefox/firefox
-  - cd $TRAVIS_BUILD_DIR/
 
 script:
-  - pwd && ls && cd $TRAVIS_BUILD_DIR/build/addon && jpm test -v
-  - cd $TRAVIS_BUILD_DIR
-  - npm run lint
+  - cd $TRAVIS_BUILD_DIR && pwd && ls && cd build/addon && $TRAVIS_BUILD_DIR/node_modules/.bin/jpm test -v
+  - cd $TRAVIS_BUILD_DIR && npm run lint
