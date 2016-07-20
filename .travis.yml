@@ -28,10 +28,8 @@ before_script:
   - firefox -v
   - echo $JPM_FIREFOX_BINARY
   - make all
-  - cd ..
-  - cd $TRAVIS_BUILD_DIR/
 
 script:
-  - pwd && ls && cd $TRAVIS_BUILD_DIR/build/addon && $TRAVIS_BUILD_DIR/node_modules/.bin/jpm test -v
   - cd $TRAVIS_BUILD_DIR
+  - pwd && ls && cd $TRAVIS_BUILD_DIR/build/addon && $TRAVIS_BUILD_DIR/node_modules/.bin/jpm test -v
   - npm run lint
