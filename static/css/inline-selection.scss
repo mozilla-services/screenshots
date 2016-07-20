@@ -254,6 +254,7 @@ $overlay-z-index: 900000;
 }
 
 .pageshot-select-mode-background {
+  @extend .pageshot-reset;
   position: fixed;
   top: 0;
   left: 0;
@@ -267,17 +268,20 @@ $overlay-z-index: 900000;
 }
 
 .pageshot-select-mode {
+  @extend .pageshot-reset;
   position: relative;
   width: 380px;
   height: 200px;
   background-color: #fcfcfc;
   text-align: center;
-  padding-top: 1.5em;
+  padding-top: 1.5em !important;
+  padding-bottom: 1.5em !important;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   font-size: 14px;
 }
 
 .pageshot-select-mode-square-button {
+  @extend .pageshot-reset;
   position: absolute;
   top: 50px;
   width: 80px;
@@ -291,6 +295,7 @@ $overlay-z-index: 900000;
 }
 
 .pageshot-select-mode-button {
+  @extend .pageshot-reset;
   position: absolute;
   bottom: 0;
   width: 190px;
