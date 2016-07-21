@@ -170,6 +170,10 @@ Not authenticated.  Gets a saved S3 image.  Typically the `PUT` request will ret
 
 Not authenticated.  Gets the HTML page for a shot.
 
+`GET https://pageshot-usercontent.net/content/{random_id}/{domain}`
+
+Not authenticated.  Gets the HTML for the iframe that's embedded in the shot page.
+
 `GET /shots`
 
 Authenticated.  Gets HTML for shot index.
