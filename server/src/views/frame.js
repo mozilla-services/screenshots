@@ -534,6 +534,14 @@ class Frame extends React.Component {
       toolbarPadding = "315px";
     }
 
+    /*
+    {this.props.hasSavedShot ?
+      <button id="upload-full-page" className="upload-full-page" onClick={ this.onClickUploadFullPage.bind(this) }>
+        Save full page
+      </button>
+      : null}
+    */
+
     return (
         <div id="container">
           { this.renderExtRequired() }
@@ -555,11 +563,6 @@ class Frame extends React.Component {
             { timeDiff } { expiresDiff }
           </div>
           <div className="more-shot-actions">
-            {this.props.hasSavedShot ?
-              <button id="upload-full-page" className="upload-full-page" onClick={ this.onClickUploadFullPage.bind(this) }>
-                Save full page
-              </button>
-              : null}
             <button className="share-button" onClick={ this.onClickShareButton.bind(this) }>
               Share
             </button>

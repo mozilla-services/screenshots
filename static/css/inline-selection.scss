@@ -283,10 +283,8 @@ $overlay-z-index: 900000;
 
 .pageshot-select-mode-square-button {
   @extend .pageshot-reset;
-  position: absolute;
-  top: 50px;
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   padding-top: 0.25em;
   box-sizing: border-box;
   border: 0;
