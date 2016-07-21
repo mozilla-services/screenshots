@@ -169,12 +169,12 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         this.selectModeBackground.className = "pageshot-select-mode-background";
         let selectMode = document.createElement("div");
         selectMode.className = "pageshot-select-mode";
-        selectMode.textContent = "Choose what to save";
+        selectMode.textContent = "PageShot";
         this.selectModeBackground.appendChild(selectMode);
         let modes = document.createElement("div");
+        modes.style.textAlign = "center";
         let chooseRegionMode = document.createElement("button");
         chooseRegionMode.className = "pageshot-select-mode-square-button";
-        chooseRegionMode.style.left = "60px";
         let regionImg = document.createElement("img");
         // I used the website here to make these https://www.base64-image.de/
         // and the images are from https://github.com/mozilla-services/pageshot/issues/1191
@@ -183,7 +183,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         chooseRegionMode.appendChild(document.createTextNode("Screenshot Region"));
         chooseRegionMode.addEventListener("click", callbacks.onChooseRegionMode, false);
         modes.appendChild(chooseRegionMode);
-        let chooseArchiveMode = document.createElement("button");
+        /*let chooseArchiveMode = document.createElement("button");
         chooseArchiveMode.className = "pageshot-select-mode-square-button";
         chooseArchiveMode.style.right = "60px";
         let archiveImg = document.createElement("img");
@@ -191,7 +191,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         chooseArchiveMode.appendChild(archiveImg);
         chooseArchiveMode.appendChild(document.createTextNode("Archive Full Page"));
         chooseArchiveMode.addEventListener("click", callbacks.onChooseArchiveMode, false);
-        modes.appendChild(chooseArchiveMode);
+        modes.appendChild(chooseArchiveMode);*/
         selectMode.appendChild(modes);
         let buttons = document.createElement("div");
         let cancelButton = document.createElement("button");
