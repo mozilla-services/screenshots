@@ -146,6 +146,11 @@ build/addon/lib/shared/%.js: build/shared/%.js
 	@mkdir -p $(@D)
 	cp $< $@
 
+# We handle this one differently for now
+build/addon/data/pageshot-notification-bar.css: static/css/pageshot-notification-bar.css
+	@mkdir -p $(@D)
+	cp $< $@
+
 # We copy over files from the server (server rules will generate those
 # files from .scss files):
 build/addon/data/%.css: build/server/static/css/%.css
@@ -180,7 +185,7 @@ build/addon/lib/httpd.jsm: addon/lib/httpd.jsm
 	@mkdir -p $(@D)
 	cp $< $@
 
-addon: npm $(data_dest) $(vendor_dest) $(lib_dest) $(sass_addon_dest) $(imgs_addon_dest) $(static_addon_dest) $(shared_addon_dest) build/addon/package.json build/addon/lib/httpd.jsm
+addon: npm $(data_dest) $(vendor_dest) $(lib_dest) $(sass_addon_dest) $(imgs_addon_dest) $(static_addon_dest) $(shared_addon_dest) build/addon/package.json build/addon/lib/httpd.jsm build/addon/data/pageshot-notification-bar.css
 
 chrome-extension: npm $(chrome_js_dest) $(chrome_static_dest) $(sass_chrome_dest) $(imgs_chrome_dest) $(static_chrome_dest) $(shared_chrome_dest) $(chrome_external_modules)
 
