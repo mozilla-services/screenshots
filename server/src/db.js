@@ -47,6 +47,9 @@ exports.select = function (sql, args) {
     return exports.queryWithClient(client, sql, args).then(({rows}) => {
       done();
       return rows;
+    }, (error) => {
+      done();
+      throw error;
     });
   });
 };
