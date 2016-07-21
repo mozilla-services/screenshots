@@ -215,7 +215,9 @@ const ui = (function () { // eslint-disable-line no-unused-vars
     },
 
     remove: function () {
-      document.body.removeChild(this.selectModeBackground);
+      if (this.selectModeBackground.parentNode === document.body) {
+        document.body.removeChild(this.selectModeBackground);
+      }
     }
   }
   /** Displays the crosshairs that suggest you can select something */

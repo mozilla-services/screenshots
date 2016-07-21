@@ -226,7 +226,8 @@ stateHandlers.crosshairsPreview = {
       ui.ChromeInterface.showSaveFullPage();
     } else if (self.options.showMyShotsReminder) {
       ui.MyShotsReminder.display();
-      self.port.emit("showSave");
+      // FIXME do we need to do anything here any more?
+      //self.port.emit("showSave");
     }
   },
 
@@ -644,7 +645,14 @@ window.addEventListener("popstate", checkUrl, false);
 if (! isChrome) {
   self.port.on("isShowing", checkUrl);
 
-  self.port.on("cancel", deactivate);
+  self.port.on("destroy", () => {
+    // If we do this in a setTimeout, we get sane error messages.
+    // If we don't, we get inscruitable ones.
+    setTimeout(() => {
+      deactivate();
+      self.port.emit("destroyed");
+    }, 0);
+  })
 
   self.port.emit("ready");
   activate();
