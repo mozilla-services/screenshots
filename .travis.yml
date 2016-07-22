@@ -6,7 +6,10 @@ node_js:
 cache:
   bundler: true
   directories:
-  - node_modules
+    - node_modules
+
+env:
+  - COLUMNS=160
 
 addons:
   firefox: "47.0"
@@ -30,5 +33,5 @@ before_script:
   - make all
 
 script:
-  - cd $TRAVIS_BUILD_DIR && pwd && ls && cd build/addon && $TRAVIS_BUILD_DIR/node_modules/.bin/jpm test -v
+  - cd $TRAVIS_BUILD_DIR && pwd && ls && cd build/addon && npm run jpm:test
   - cd $TRAVIS_BUILD_DIR && npm run lint

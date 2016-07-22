@@ -55,11 +55,12 @@
     "url": "git+https://github.com/mozilla-services/pageshot.git"
   },
   "scripts": {
+    "jpm:test": "jpm test -v",
     "lint": "npm-run-all lint:*",
     "lint:addon": "make xpi && addons-linter ./build/*.xpi -o text",
     "lint:js": "eslint .",
     "lint:sass": "sass-lint -v -q",
     "posttest": "npm run lint",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "echo \"TBD\""
   }
 }
