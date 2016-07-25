@@ -285,7 +285,7 @@ class Frame extends React.Component {
     super(props);
     this.state = {
       hidden: false,
-      sharePanelDisplay: false,
+      sharePanelDisplay: true,
       closePageshotBanner: false,
       closePrivacyNotice: false
     };

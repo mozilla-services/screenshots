@@ -127,7 +127,8 @@ const ShotContext = Class({
       this.openInNewTab();
     }));
     this._collectionCompletePromise.then(() => {
-      this.copyRichDataToClipboard();
+      // FIXME remove when we are sure we don't want this feature
+      //this.copyRichDataToClipboard();
     });
   },
 
