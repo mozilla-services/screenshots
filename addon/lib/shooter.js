@@ -123,8 +123,8 @@ const ShotContext = Class({
 
   takeShot: function () {
     watchPromise(this.uploadShot().then(() => {
-      require("./main").hideNotificationBar();
       this.openInNewTab();
+      this.destroy();
     }));
     this._collectionCompletePromise.then(() => {
       // FIXME remove when we are sure we don't want this feature

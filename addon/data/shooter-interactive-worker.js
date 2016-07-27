@@ -193,7 +193,8 @@ stateHandlers.selectMode = {
 
   onChooseRegionMode: function () {
     setState("crosshairs");
-    self.port.emit("showTopbar");
+    // FIXME remove once the ui is fully settled
+    //self.port.emit("showTopbar");
   },
 
   onChooseArchiveMode: function () {
@@ -375,7 +376,12 @@ stateHandlers.dragging = {
   mouseup: function (event) {
     selectedPos.x2 = util.truncateX(event.pageX);
     selectedPos.y2 = util.truncateY(event.pageY);
-    ui.Box.display(selectedPos);
+    ui.Box.display(selectedPos, {cancel: () => {
+      deactivate();
+      self.port.emit("deactivate");
+    }, save: () => {
+      self.port.emit("take-shot");
+    }});
     reportSelection("selection");
     if (isChrome) {
       chromeShooter.sendAnalyticEvent("addon", "drag-finished");
@@ -390,7 +396,8 @@ stateHandlers.selected = {
     if (isChrome) {
       ui.ChromeInterface.showSave();
     } else {
-      self.port.emit("showSave");
+      // FIXME remove once the ui has stopped changing so much
+      //self.port.emit("showSave");
     }
   },
 
@@ -593,7 +600,9 @@ function keyupHandler(event) {
       chromeShooter.sendAnalyticEvent("addon", "save-enter");
       chromeShooter.takeShot();
     } else {
-      self.port.emit("take-shot");
+      if (getState.state === "selected" || getState.state === "selectMode") {
+        self.port.emit("take-shot");
+      }
     }
   }
 }
