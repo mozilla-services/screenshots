@@ -44,6 +44,33 @@ $overlay-z-index: 900000;
   z-index: $overlay-z-index;
 }
 
+.pageshot-highlight-buttons {
+  position: absolute;
+  bottom: 35px;
+  right: 35px;
+  font-size: 14pt;
+}
+
+.pageshot-highlight-button-cancel {
+  height: 28px;
+  width: 80px;
+  border-radius: 4px;
+  margin: 0;
+  margin-right: 5px;
+  background: #fcfcfc;
+  color: #000;
+}
+
+.pageshot-highlight-button-save {
+  height: 28px;
+  width: 80px;
+  border-radius: 4px;
+  margin: 0;
+  margin-right: 5px;
+  background: #2fa8e1;
+  color: #fff;
+}
+
 .pageshot-mover-target {
   position: absolute;
   z-index: 5;
@@ -252,6 +279,14 @@ $overlay-z-index: 900000;
   width: 100%;
   background-color: rgba(#000, 0.5);
   z-index: $overlay-z-index;
+}
+
+.pageshot-preview-instructions {
+  font-size: 16pt;
+  text-align: center;
+  padding-top: 1.5em;
+  color: #fff;
+  z-index: 999999999;
 }
 
 .pageshot-select-mode-background {

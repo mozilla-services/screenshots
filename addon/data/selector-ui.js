@@ -34,6 +34,11 @@ const ui = (function () { // eslint-disable-line no-unused-vars
     display: function () {
       if (! this.overlayEl) {
         this.overlayEl = document.createElement("div");
+        let instructions = document.createElement("div");
+        instructions.className = "pageshot-preview-instructions";
+        instructions.textContent = "Click an element to select, drag a region to select, or press ESC to cancel.";
+        this.overlayEl.appendChild(instructions);
+
         this.overlayEl.className = "pageshot-preview-overlay";
         document.body.appendChild(this.overlayEl);
       }
@@ -52,8 +57,24 @@ const ui = (function () { // eslint-disable-line no-unused-vars
   /** Creates the selection box */
   exports.Box = {
 
-    display: function (pos) {
+    display: function (pos, callbacks) {
       this._createEl();
+      if (callbacks !== undefined && callbacks.cancel) {
+        // We use onclick here because we don't want addEventListener
+        // to add multiple event handlers to the same button
+        this.cancel.onclick = callbacks.cancel;
+        this.cancel.style.display = "";
+      } else {
+        this.cancel.style.display = "none";
+      }
+      if (callbacks !== undefined && callbacks.save) {
+        // We use onclick here because we don't want addEventListener
+        // to add multiple event handlers to the same button
+        this.save.onclick = callbacks.save;
+        this.save.style.display = "";
+      } else {
+        this.save.style.display = "none";
+      }
       let bodyRect = getBodyRect();
       // Note, document.documentElement.scrollHeight is zero on some strange pages (such as the page created when you load an image):
       let docHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
@@ -100,6 +121,19 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       }
       boxEl = document.createElement("div");
       boxEl.className = "pageshot-highlight";
+      let buttons = document.createElement("div");
+      buttons.className = "pageshot-highlight-buttons";
+      let cancel = document.createElement("button");
+      cancel.className = "pageshot-highlight-button-cancel";
+      cancel.textContent = "Cancel";
+      buttons.appendChild(cancel);
+      let save = document.createElement("button");
+      save.className = "pageshot-highlight-button-save";
+      save.textContent = "Save";
+      buttons.appendChild(save);
+      this.cancel = cancel;
+      this.save = save;
+      boxEl.appendChild(buttons);
       for (let name of movements) {
         let elTarget = document.createElement("div");
         let elMover = document.createElement("div");
