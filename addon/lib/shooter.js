@@ -87,7 +87,7 @@ function extractWorker(tab, options) {
 /** Represents one shot action */
 const ShotContext = Class({
   _idGen: 0,
-  initialize: function (backend) {
+  initialize: function (backend, onDestroyed) {
     this.id = ++ShotContext._idGen;
     this.tab = tabs.activeTab;
     this.tabUrl = this.tab.url;
@@ -95,6 +95,7 @@ const ShotContext = Class({
     if (! deviceInfo) {
       throw new Error("Could not get device authentication information");
     }
+    this.onDestroyed = onDestroyed;
     this.shot = new Shot(
       backend,
       randomString(RANDOM_STRING_LENGTH) + "/" + urlDomainForId(this.tabUrl),
@@ -391,6 +392,10 @@ const ShotContext = Class({
     this._deregisters = null;
     if (this.interactiveWorker) {
       this.interactiveWorker.port.on("destroyed", () => {
+        if (this.onDestroyed !== undefined) {
+          this.onDestroyed();
+          this.onDestroyed = null;
+        }
         this.interactiveWorker.destroy();
         this.interactiveWorker = null;
       });
