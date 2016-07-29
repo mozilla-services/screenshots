@@ -58,6 +58,15 @@ var movements = {
   bottomRight: ["right", "bottom"],
 };
 
+let standardDisplayCallbacks = {
+  cancel: () => {
+    deactivate();
+    self.port.emit("deactivate");
+  }, save: () => {
+    self.port.emit("take-shot");
+  }
+};
+
 /** Holds all the objects that handle events for each state: */
 let stateHandlers = {};
 
@@ -313,7 +322,7 @@ stateHandlers.draggingReady = {
         rect.top + window.scrollY + rect.height
       );
       mousedownPos = null;
-      ui.Box.display(selectedPos);
+      ui.Box.display(selectedPos, standardDisplayCallbacks);
       setState("selected");
       if (isChrome) {
         chromeShooter.sendAnalyticEvent("addon", "autoselect");
@@ -376,12 +385,7 @@ stateHandlers.dragging = {
   mouseup: function (event) {
     selectedPos.x2 = util.truncateX(event.pageX);
     selectedPos.y2 = util.truncateY(event.pageY);
-    ui.Box.display(selectedPos, {cancel: () => {
-      deactivate();
-      self.port.emit("deactivate");
-    }, save: () => {
-      self.port.emit("take-shot");
-    }});
+    ui.Box.display(selectedPos, standardDisplayCallbacks);
     reportSelection("selection");
     if (isChrome) {
       chromeShooter.sendAnalyticEvent("addon", "drag-finished");
@@ -440,6 +444,7 @@ stateHandlers.resizing = {
     if (isChrome) {
       chromeShooter.sendAnalyticEvent("addon", "selection-resized");
     }
+    ui.Box.display(selectedPos, standardDisplayCallbacks);
     setState("selected");
     reportSelection();
   },
