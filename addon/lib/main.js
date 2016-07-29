@@ -32,6 +32,7 @@ Cu.import("resource:///modules/UITour.jsm");
 
 let loadReason = null; // eslint-disable-line no-unused-vars
 let initialized = false;
+let tabsBeingShot = {};
 
 function getNotificationBox(browser) {
   let wm = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator);
@@ -187,7 +188,15 @@ function showTopbar(shotContext) {
 exports.showTopbar = showTopbar;
 
 function takeShot(source) {
-  let shotContext = shooter.ShotContext(exports.getBackend());
+  let thisTabId = tabs.activeTab.id;
+  if (tabsBeingShot[thisTabId] !== true) {
+    tabsBeingShot[thisTabId] = true;
+    let shotContext = shooter.ShotContext(exports.getBackend(), () => {
+      delete tabsBeingShot[thisTabId];
+    });
+  } else {
+    console.warn("Tried to take a shot while a shot was already in progress.");
+  }
 }
 
 var hotKey = Hotkey({
