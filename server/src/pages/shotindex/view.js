@@ -17,6 +17,10 @@ class Head extends React.Component {
 
 
 class Body extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {defaultSearch: props.defaultSearch};
+  }
 
   render() {
     let children = [];
@@ -24,11 +28,18 @@ class Body extends React.Component {
       children.push(this.renderShot(shot));
     }
     if (children.length === 0) {
-      children = "You don't have any shots. Go create some.";
+      if (this.props.defaultSearch) {
+        children = `No shots matching "${this.props.defaultSearch}" found.`
+      } else {
+        children = "You don't have any shots.";
+      }
     }
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <input type="text" ref="search" placeholder="search" defaultValue={this.props.defaultSearch} style={{float: "right", marginRight: "10px"}} onChange={this.onChangeSearch.bind(this)} />
+        <form style={{ position: "absolute", right: "25px" }} onSubmit={ this.onSubmitForm.bind(this) }>
+          <input type="text" ref="search" placeholder="search" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />
+          <button>Search</button>
+        </form>
         <h1 style={{color: "#444", paddingLeft: "40px"}}>
           <img src={this.props.staticLink("img/pageshot.svg")} style={{height: "30px", width: "32px", marginRight: "10px"}} />
           PageShot: My Shots</h1>
@@ -83,26 +94,15 @@ class Body extends React.Component {
     location.href = url;
   }
 
-  onChangeSearch() {
-    // FIXME: this time limiting may not be right
-    if (this.lastChangeTime && this.lastChangeTime > Date.now() - 200) {
-      // Last change made too recently, delay this change...
-      if (this.lastChangeTimeout) {
-        // A change is scheduled soon
-        return;
-      }
-      this.lastChangeTimeout = setTimeout(() => {
-        this.lastChangeTimeout = null;
-        this.lastChangeTime = null;
-        this.onChangeSearch();
-      }, 200);
-      return;
-    }
-    this.lastChangeTime = Date.now();
+  onSubmitForm(e) {
+    e.preventDefault();
     let val = this.refs.search.getDOMNode().value;
-    if (val !== this.props.defaultSearch) {
-      controller.onChangeSearch(val);
-    }
+    controller.onChangeSearch(val);
+  }
+
+  onChangeSearch() {
+    let val = this.refs.search.getDOMNode().value;
+    this.setState({defaultSearch: val});
   }
 }
 
