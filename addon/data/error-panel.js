@@ -19,8 +19,10 @@ self.port.on("showError", function (error) {
     thisError.textContent = error.help || error.message || error.name || errorFallback;
   }
   var titleElement = document.querySelector("h1");
-  titleElement.textContent = error.title || "PageShot Error :(";
-  console.warn(new Date(), "PageShot Error :-(", thisError.textContent);
+  if (error.title) {
+    titleElement.textContent = error.title;
+  }
+  console.warn(new Date(), "PageShot Error:", thisError.textContent);
   if (error.stack) {
     console.error(error.stack);
   }
@@ -63,6 +65,12 @@ function errorExists(el) {
   return false;
 }
 
+document.getElementById("my-shots").addEventListener("click", function () {
+  self.port.emit("my-shots");
+}, false);
+
+// FIXME remove when we're sure we don't want this ui any more.
+/*
 document.getElementById("clear").addEventListener("click", function () {
   errorContainer.innerHTML = "";
   self.port.emit("close");
@@ -71,3 +79,4 @@ document.getElementById("clear").addEventListener("click", function () {
 document.getElementById("ok").addEventListener("click", function () {
   self.port.emit("close");
 }, false);
+*/

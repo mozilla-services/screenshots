@@ -9,23 +9,34 @@
       flex-direction: column;
       height: 100%;
     }
+    .errors {
+      margin: 25px;
+    }
     .error {
-      padding: 5px;
-      width: 100%;
+      padding: 25px;
+      padding-top: 0px;
+      width: 90%;
+      font-size: 10pt;
     }
     .error:not(:last-child) {
       border-bottom: 1px solid #999;
     }
-    .controls {
+    #my-shots {
+      border: 0;
+      border-top: 1px solid black;
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
       width: 100%;
-      display: flex;
-      justify-content: space-between;
-    }
-    .controls button {
-      width: 47%;
+      height: 40px;
+      cursor: pointer;
     }
     h1 {
       font-size: 120%;
+      margin: 25px;
+    }
+    h1 > img {
+      vertical-align: middle;
     }
     </style>
     <script src="raven.js"></script>
@@ -52,14 +63,18 @@ function captureException(e) {
   </head>
   <body>
     <div class="container">
-      <h1>PageShot Error :(</h1>
+      <h1>
+        <img src="error.png" />
+        Error
+      </h1>
       <div id="errors">
       </div>
 
-      <div class="controls">
+      <button id="my-shots">My Shots</button>
+        <!--
+        FIXME remove when we're sure we don't want this ui any more
         <button id="clear">Clear</button>
-        <button id="ok">OK</button>
-      </div>
+        <button id="ok">OK</button>-->
     </div>
   </body>
 </html>

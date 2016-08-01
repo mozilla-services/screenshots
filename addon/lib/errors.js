@@ -7,6 +7,7 @@
     */
 const panels = require("sdk/panel");
 const self = require("sdk/self");
+const tabs = require("sdk/tabs");
 const req = require("./req");
 const main = require("./main");
 const user = require("./user");
@@ -20,6 +21,11 @@ const panel = panels.Panel({
 
 panel.port.on("close", function () {
   panel.hide();
+});
+
+panel.port.on("my-shots", function () {
+  panel.hide();
+  tabs.open(main.getBackend() + "/shots");
 });
 
 /** Should be called when any unexpected error happens */
@@ -57,7 +63,7 @@ exports.makeError = function (error) {
     let obj = {
       name: error.name,
       message: error.message,
-      help: "An unexpected error occurred"
+      help: "PageShot may not be able to work on this page. You could try again, or try a different page."
     };
     if (error.stack) {
       let stackLines = [];
