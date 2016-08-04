@@ -569,13 +569,14 @@ a.subheading-link {
   padding: 1em;
   padding-right: 3em;
   background-color: $text-color;
-  color: $primary-color;
+  color: #000;
   z-index: 2000;
   box-shadow: 0 -2px 5px $shadow-color;
 }
 
 #use-pageshot-to-create a {
-  color: $primary-color;
+  color: #000;
+  text-decoration: underline;
 }
 
 #banner-close {
