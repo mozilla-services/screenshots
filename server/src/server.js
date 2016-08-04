@@ -94,9 +94,7 @@ const CONTENT_NAME = config.contentOrigin.split(":")[0];
 
 app.use((req, res, next) => {
   res.header(
-    "Content-Security-Policy",
-    `default-src 'self' ${CONTENT_NAME}; img-src 'self' ${CONTENT_NAME} data:; script-src 'self' 'unsafe-inline'`
-  );
+    "Content-Security-Policy", `default-src 'self' ${CONTENT_NAME}; img-src 'self' ${CONTENT_NAME} data:; script-src 'self' 'unsafe-inline'`);
   next();
 });
 
