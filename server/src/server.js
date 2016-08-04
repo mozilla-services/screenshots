@@ -90,6 +90,16 @@ const app = express();
 
 app.set('trust proxy', true);
 
+const CONTENT_NAME = config.contentOrigin.split(":")[0];
+
+app.use((req, res, next) => {
+  res.header(
+    "Content-Security-Policy",
+    `default-src 'self' ${CONTENT_NAME}; img-src 'self' ${CONTENT_NAME} data:; script-src 'self' 'unsafe-inline'`
+  );
+  next();
+});
+
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json({limit: '100mb'}));
 
@@ -702,6 +712,11 @@ app.use("/admin", require("./pages/admin/server").app);
 app.use("/shots", require("./pages/shotindex/server").app);
 
 const contentApp = express();
+
+contentApp.use((req, res, next) => {
+  res.header("Content-Security-Policy", "default-src 'self'");
+  next();
+});
 
 contentApp.set('trust proxy', true);
 
