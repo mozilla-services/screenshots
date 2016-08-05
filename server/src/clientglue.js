@@ -2,6 +2,7 @@
 /* globals ga */
 
 let React = require("react"),
+  ReactDOM = require("react-dom"),
   { FrameFactory } = require("./views/frame.js"),
   { setGitRevision, staticLink } = require("./linker"),
   { AbstractShot } = require("../shared/shot"),
@@ -64,7 +65,7 @@ exports.render = function render() {
   attrs.clientglue = exports;
   let frame = FrameFactory(attrs);
 
-  React.render(
+  ReactDOM.render(
     frame,
     document.getElementById("react-body-container"));
 };
