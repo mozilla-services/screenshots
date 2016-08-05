@@ -272,7 +272,7 @@ exports.main = function (options) {
   }
   helperworker.trackMods(backendOverride || null);
   require("./user").initialize(exports.getBackend(), options.loadReason).catch((error) => {
-    console.warn("Failed to log in to server:", error+"");
+    console.warn("Failed to log in to server:", exports.getBackend(), error+"");
   });
 };
 

@@ -295,7 +295,7 @@ class Frame extends React.Component {
 
   componentDidMount() {
     setTimeout(() => {
-      this. setState({closePrivacyNotice: true});
+      this.setState({closePrivacyNotice: true});
     }, 10000);
   }
 
@@ -590,7 +590,7 @@ class Frame extends React.Component {
     }
     return <div id="use-pageshot-to-create">
       <a href={ this.props.backend } onClick={ this.clickedCreate.bind(this) }>To create your own shots, get the Firefox extension {this.props.productName}</a>.
-      <a id="banner-close" onClick={ this.closeGetPageshotBanner }>&times;</a>
+      <a id="banner-close" onClick={ this.closeGetPageshotBanner.bind(this) }>&times;</a>
     </div>;
   }
 

@@ -66,7 +66,7 @@ exports.initialize = function (backend, reason) {
         onComplete: watchFunction(function (response) {
           if (response.status == 404) {
             // Need to save login anyway...
-            console.info("Login failed with 404, trying to register");
+            console.info(`Login to ${loginUrl} failed with 404, trying to register`);
             watchPromise(saveLogin(backend, info)).then(
               () => {
                 resolve();
