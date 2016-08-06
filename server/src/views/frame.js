@@ -287,7 +287,9 @@ class Frame extends React.Component {
     super(props);
     this.state = {
       hidden: false,
-      sharePanelDisplay: true,
+      sharePanelDisplay: (
+        props.isOwner &&
+        Date.now() - props.shot.createdDate < 30000),
       closePageshotBanner: false,
       closePrivacyNotice: false
     };
