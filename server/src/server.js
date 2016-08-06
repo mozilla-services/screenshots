@@ -707,7 +707,13 @@ app.use(function (err, req, res, next) {
   errorResponse(res, "General error:", err);
 });
 
+/*
+    FIXME we need ldap authentication and for this to only be accessible
+    from the vpn before we can turn the metrics interface back on
+
 app.use("/admin", require("./pages/admin/server").app);
+*/
+
 app.use("/shots", require("./pages/shotindex/server").app);
 
 const contentApp = express();
