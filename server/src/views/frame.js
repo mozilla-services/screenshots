@@ -1,6 +1,8 @@
 /* globals ga, Raven */
 
 const React = require("react");
+const ReactDOM = require("react-dom");
+const ReactDOMServer = require("react-dom/server");
 const { getGitRevision } = require("../linker");
 // const { ProfileButton } = require("./profile");
 const { addReactScripts } = require("../reactutils");
@@ -76,7 +78,7 @@ class Clip extends React.Component {
   }
 
   componentDidMount() {
-    let image = React.findDOMNode(this.refs.clipImage);
+    let image = ReactDOM.findDOMNode(this.refs.clipImage);
     let onResize = () => {
       let windowHeight = window.innerHeight;
       let paddingTop = Math.floor((windowHeight - image.height - 35) / 2);
@@ -684,7 +686,7 @@ class ExpireWidget extends React.Component {
 
   clickSaveExpire() {
     // FIXME: save the value that it was changed to?  Yes!  Not sure where to put it.
-    let value = this.refs.expireTime.getDOMNode().value;
+    let value = ReactDOM.findDOMNode(this.refs.expireTime).value;
     if (value === "cancel") {
       this.clickCancelExpire();
       return;
@@ -771,7 +773,7 @@ exports.render = function (req, res) {
     defaultExpiration: req.config.defaultExpiration*1000,
     sentryPublicDSN: req.config.sentryPublicDSN,
   };
-  let headString = React.renderToStaticMarkup(HeadFactory(serverPayload));
+  let headString = ReactDOMServer.renderToStaticMarkup(HeadFactory(serverPayload));
   let frame = FrameFactory(serverPayload);
   let clientPayload = {
     allowExport: req.config.allowExport,
@@ -801,7 +803,7 @@ exports.render = function (req, res) {
       docTitle: req.shot.title
     };
   }
-  let body = React.renderToString(frame);
+  let body = ReactDOMServer.renderToString(frame);
   let json = JSON.stringify(clientPayload);
   let result = addReactScripts(
 `<html>
@@ -833,9 +835,9 @@ exports.renderSimple = function (req, res) {
     simple: true,
     shotDomain: req.url // FIXME: should be a property of the shot
   };
-  let headString = React.renderToStaticMarkup(HeadFactory(serverPayload));
+  let headString = ReactDOMServer.renderToStaticMarkup(HeadFactory(serverPayload));
   let frame = FrameFactory(serverPayload);
-  let body = React.renderToStaticMarkup(frame);
+  let body = ReactDOMServer.renderToStaticMarkup(frame);
   body = `<!DOCTYPE HTML>
   ${headString}
   <body>${body}

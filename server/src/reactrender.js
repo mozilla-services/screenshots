@@ -1,5 +1,6 @@
 const { addReactScripts } = require("./reactutils");
 const React = require("react");
+const ReactDOMServer = require("react-dom/server");
 const { getGitRevision } = require("./linker");
 
 exports.render = function (req, res, page) {
@@ -20,8 +21,8 @@ exports.render = function (req, res, page) {
       res.type("json").send(jsonModel);
       return;
     }
-    let head = React.renderToStaticMarkup(viewModule.HeadFactory(serverModel));
-    let body = React.renderToString(viewModule.BodyFactory(serverModel));
+    let head = ReactDOMServer.renderToStaticMarkup(viewModule.HeadFactory(serverModel));
+    let body = ReactDOMServer.renderToString(viewModule.BodyFactory(serverModel));
     let doc = `
     <html>
       ${head}

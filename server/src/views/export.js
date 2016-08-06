@@ -1,4 +1,5 @@
 const React = require("react");
+const ReactDOMServer = require("react-dom/server");
 const { Shell } = require("./shell");
 const { addReactScripts } = require("../reactutils");
 
@@ -106,7 +107,7 @@ exports.render = function (req, res) {
   let page = ConfirmFactory(Object.assign({}, params, {
     staticLink: req.staticLink
   }));
-  let body = React.renderToString(page);
+  let body = ReactDOMServer.renderToString(page);
   body = addReactScripts(body);
   res.send(body);
 };
@@ -120,7 +121,7 @@ exports.renderStatus = function (req, res) {
   let page = StatusFactory(Object.assign({}, params, {
     staticLink: req.staticLink
   }));
-  let body = React.renderToString(page);
+  let body = ReactDOMServer.renderToString(page);
   body = addReactScripts(body);
   res.send(body);
 };

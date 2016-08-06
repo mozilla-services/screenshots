@@ -1,4 +1,5 @@
 let React = require("react");
+let ReactDOMServer = require("react-dom/server");
 const { Shell } = require("./shell");
 
 class Main extends React.Component {
@@ -51,7 +52,7 @@ exports.render = function (req, res) {
     productName: req.config.productName,
     gaId: req.config.gaId}
   );
-  let body = React.renderToStaticMarkup(page);
+  let body = ReactDOMServer.renderToStaticMarkup(page);
   body = '<!DOCTYPE html>\n' + body;
   res.send(body);
 };

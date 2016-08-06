@@ -1,6 +1,7 @@
 /* globals document, location */
 
 const React = require("react");
+const ReactDOM = require("react");
 const linker = require("./linker");
 
 exports.HeadTemplate = class HeadTemplate extends React.Component {
@@ -66,7 +67,7 @@ exports.Page = class Page {
       });
     }
     let body = this.BodyFactory(model);
-    React.render(
+    ReactDOM.render(
       body,
       document.getElementById("react-body-container"));
   }

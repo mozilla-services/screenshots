@@ -1,6 +1,7 @@
 /* globals window */
 const reactruntime = require("../../reactruntime");
 const React = require("react");
+const ReactDOM = require("react-dom");
 
 class Head extends React.Component {
 
@@ -63,12 +64,12 @@ class Body extends React.Component {
   }
 
   onChangeLastShotTime(event) {
-    let value = parseFloat(this.refs.lastShotTime.getDOMNode().value);
+    let value = parseFloat(ReactDOM.findDOMNode(this.refs.lastShotTime).value);
     window.controller.onChangeLastShotTime(value);
   }
 
   onChangeNumberOfShotsTime(event) {
-    let value = parseFloat(this.refs.numberOfShotsTime.getDOMNode().value);
+    let value = parseFloat(ReactDOM.findDOMNode(this.refs.numberOfShotsTime).value);
     window.controller.onChangeNumberOfShotsTime(value);
   }
 

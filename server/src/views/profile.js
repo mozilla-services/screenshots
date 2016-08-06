@@ -1,4 +1,5 @@
 const React = require("react");
+const ReactDOM = require("react-dom");
 const events = require("../events");
 
 exports.ProfileButton = class ProfileButton extends React.Component {
@@ -28,7 +29,7 @@ exports.ProfileButton = class ProfileButton extends React.Component {
 
   dismiss(e) {
     if (this.state.isExpanded) {
-      let panel = React.findDOMNode(this.refs.panel);
+      let panel = ReactDOM.findDOMNode(this.refs.panel);
       if (!panel.contains(e.target)) {
         this.setState({ isExpanded: false });
       }
@@ -102,7 +103,7 @@ exports.Profile = class Profile extends React.Component {
   }
 
   onKeyPressName(e) {
-    let input = React.findDOMNode(this.refs.nickname);
+    let input = ReactDOM.findDOMNode(this.refs.nickname);
     if (e.which == 13) {
       input.blur();
       events.setProfileState({ nickname: this.state.nickname });

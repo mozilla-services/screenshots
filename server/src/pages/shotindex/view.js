@@ -1,6 +1,7 @@
 /* globals location, controller */
 const reactruntime = require("../../reactruntime");
 const React = require("react");
+const ReactDOM = require("react-dom");
 
 class Head extends React.Component {
 
@@ -96,12 +97,12 @@ class Body extends React.Component {
 
   onSubmitForm(e) {
     e.preventDefault();
-    let val = this.refs.search.getDOMNode().value;
+    let val = ReactDOM.findDOMNode(this.refs.search).value;
     controller.onChangeSearch(val);
   }
 
   onChangeSearch() {
-    let val = this.refs.search.getDOMNode().value;
+    let val = ReactDOM.findDOMNode(this.refs.search).value;
     this.setState({defaultSearch: val});
   }
 }

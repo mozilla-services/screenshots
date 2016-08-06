@@ -1,4 +1,5 @@
 const React = require("react");
+const ReactDOMServer = require("react-dom/server");
 const { getGitRevision } = require("../linker");
 const { Shell } = require("./shell");
 
@@ -30,6 +31,6 @@ exports.render = function (req, res) {
     buildTime: require("../build-time").string
   };
   let message = MessageFactory(serverPayload);
-  let html = React.renderToStaticMarkup(message);
+  let html = ReactDOMServer.renderToStaticMarkup(message);
   res.send(html);
 };
