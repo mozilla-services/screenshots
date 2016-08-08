@@ -27,6 +27,7 @@ const ua = require("universal-analytics");
 const urlParse = require("url").parse;
 const http = require("http");
 const https = require("https");
+const gaActivation = require("./ga-activation");
 const genUuid = require("nodify-uuid");
 const AWS = require("aws-sdk");
 const vhost = require("vhost");
@@ -140,6 +141,11 @@ app.use(function (req, res, next) {
   let base = req.protocol + "://" + req.headers.host;
   linker.imageLinkWithHost = linker.imageLink.bind(null, base);
   next();
+});
+
+app.get("/ga-activation.js", function (req, res) {
+  let script = gaActivation.makeGaActivationString(config.gaId, req.deviceId, false);
+  jsResponse(res, script);
 });
 
 app.get("/trigger-error", function (req, res) {
@@ -843,6 +849,11 @@ function simpleResponse(res, message, status) {
   res.header("Content-Type", "text/plain; charset=utf-8");
   res.status(status);
   res.send(message);
+}
+
+function jsResponse(res, jsstring) {
+  res.header("Content-Type", "application/javascript; charset=utf-8")
+  res.send(jsstring);
 }
 
 function errorResponse(res, message, err) {

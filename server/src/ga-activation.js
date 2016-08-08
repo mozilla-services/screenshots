@@ -107,14 +107,17 @@ const gaJs = `
 })();
 `;
 
-const gaScript = <script src="//www.google-analytics.com/analytics.js" async key="gaScript"></script>;
+exports.gaScript = [
+  <script src="//www.google-analytics.com/analytics.js" async key="gaScript"></script>,
+  <script src="/ga-activation.js" />
+];
 
 const idRegex = /^[a-zA-Z0-9_.,-]+$/;
 
-exports.gaActivation = function (gaId, userId, hashLocation) {
+exports.makeGaActivationString = function (gaId, userId, hashLocation) {
   if (gaId === "") {
     // Don't enable ga if no id was provided
-    return [stubGa()];
+    return stubGaJs;
   }
   userId = userId || "";
   if (typeof userId != "string") {
@@ -128,10 +131,5 @@ exports.gaActivation = function (gaId, userId, hashLocation) {
   }
   let script = gaJs.replace(/__GA_ID__/g, gaId).replace(/__USER_ID__/g, userId);
   script = script.replace(/__HASH_LOCATION__/g, hashLocation ? "true" : "false");
-  let scriptTag = <script dangerouslySetInnerHTML={{__html: script}} key="ga-activation"></script>;
-  return [scriptTag, gaScript];
+  return script;
 };
-
-function stubGa() {
-  return <script dangerouslySetInnerHTML={{__html: stubGaJs}} key="stub-gajs"></script>;
-}

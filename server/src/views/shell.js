@@ -1,5 +1,5 @@
 const React = require("react");
-const { gaActivation } = require("../ga-activation");
+const { gaScript } = require("../ga-activation");
 
 export class Shell extends React.Component {
   render() {
@@ -16,7 +16,7 @@ export class Shell extends React.Component {
       <script src={ this.props.staticLink("js/server-bundle.js") } key="server-bundle-js" />,
     ];
     if (this.props.gaId) {
-      js = js.concat(gaActivation(this.props.gaId, this.props.deviceId, false));
+      js.push(gaScript);
     }
     if (this.props.simple) {
       js = null;

@@ -6,7 +6,7 @@ const ReactDOMServer = require("react-dom/server");
 const { getGitRevision } = require("../linker");
 // const { ProfileButton } = require("./profile");
 const { addReactScripts } = require("../reactutils");
-const { gaActivation } = require("../ga-activation");
+const { gaScript } = require("../ga-activation");
 
 class ShareButtons extends React.Component {
   constructor(props) {
@@ -258,8 +258,7 @@ class Head extends React.Component {
         <script dangerouslySetInnerHTML={{__html: `Raven.config("${this.props.sentryPublicDSN}").install(); window.Raven = Raven;`}}></script>,
       ]);
     }
-
-    js = js.concat(gaActivation(this.props.gaId, this.props.deviceId, true));
+    js.push(gaScript);
     if (this.props.simple) {
       js = [];
     }
