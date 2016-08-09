@@ -27,6 +27,7 @@ const ua = require("universal-analytics");
 const urlParse = require("url").parse;
 const http = require("http");
 const https = require("https");
+const gaActivation = require("./ga-activation");
 const genUuid = require("nodify-uuid");
 const AWS = require("aws-sdk");
 const vhost = require("vhost");
@@ -93,10 +94,17 @@ app.set('trust proxy', true);
 const CONTENT_NAME = config.contentOrigin.split(":")[0];
 
 app.use((req, res, next) => {
-  res.header(
-    "Content-Security-Policy",
-    `default-src 'self'; img-src 'self' ${CONTENT_NAME} data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'`);
-  next();
+  genUuid.generate(genUuid.V_RANDOM, function (err, uuid) {
+    if (!err) {
+      req.cspNonce = uuid;
+      res.header(
+        "Content-Security-Policy",
+        `default-src 'self'; img-src 'self' ${CONTENT_NAME} data:; script-src 'self' www.google-analytics.com 'nonce-${uuid}'; style-src 'self' 'unsafe-inline'`);
+        next();
+    } else {
+      errorResponse(res, "Error creating nonce:", err);
+    }
+  });
 });
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -140,6 +148,11 @@ app.use(function (req, res, next) {
   let base = req.protocol + "://" + req.headers.host;
   linker.imageLinkWithHost = linker.imageLink.bind(null, base);
   next();
+});
+
+app.get("/ga-activation.js", function (req, res) {
+  let script = gaActivation.makeGaActivationString(config.gaId, req.deviceId, false);
+  jsResponse(res, script);
 });
 
 app.get("/trigger-error", function (req, res) {
@@ -245,7 +258,7 @@ app.get("/redirect", function (req, res) {
   </head>
   <body>
     <a href=${redirectUrl}>If you are not automatically redirected, click here.</a>
-    <script>
+    <script nonce="${req.cspNonce}">
 window.location = ${redirectUrl};
     </script>
   </body>
@@ -750,7 +763,7 @@ contentApp.get("/content/:id/:domain", function (req, res) {
       addHead: `
       <meta name="referrer" content="origin" />
       <base href="${shot.url}" target="_blank" />
-      <script>var SITE_ORIGIN = "${req.protocol}://${config.siteOrigin}";</script>
+      <script nonce="${req.cspNonce}">var SITE_ORIGIN = "${req.protocol}://${config.siteOrigin}";</script>
       <script src="${req.staticLinkWithHost("js/content-helper.js")}"></script>
       <link rel="stylesheet" href="${req.staticLinkWithHost("css/content.css")}">
       `,
@@ -843,6 +856,11 @@ function simpleResponse(res, message, status) {
   res.header("Content-Type", "text/plain; charset=utf-8");
   res.status(status);
   res.send(message);
+}
+
+function jsResponse(res, jsstring) {
+  res.header("Content-Type", "application/javascript; charset=utf-8")
+  res.send(jsstring);
 }
 
 function errorResponse(res, message, err) {
