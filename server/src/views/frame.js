@@ -255,7 +255,7 @@ class Head extends React.Component {
     if (this.props.sentryPublicDSN) {
       js = js.concat([
         <script src={ this.props.staticLink("vendor/raven.js") } key="raven-js-js" />,
-        <script dangerouslySetInnerHTML={{__html: `Raven.config("${this.props.sentryPublicDSN}").install(); window.Raven = Raven;`}}></script>,
+        <script nonce={ this.props.cspNonce } dangerouslySetInnerHTML={{__html: `Raven.config("${this.props.sentryPublicDSN}").install(); window.Raven = Raven;`}}></script>,
       ]);
     }
     js.push(gaScript);
@@ -275,7 +275,7 @@ class Head extends React.Component {
         {oembed}
         {ogTitle}
         {ogImage}
-        <script dangerouslySetInnerHTML={{__html: `var CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`}}></script>
+        <script nonce={ this.props.cspNonce } dangerouslySetInnerHTML={{__html: `var CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`}}></script>
         <script src={ this.props.staticLink("js/parent-helper.js") } />
       </head>);
   }
@@ -773,6 +773,7 @@ exports.render = function (req, res) {
     retentionTime: req.config.expiredRetentionTime*1000,
     defaultExpiration: req.config.defaultExpiration*1000,
     sentryPublicDSN: req.config.sentryPublicDSN,
+    cspNonce: req.cspNonce,
   };
   let headString = ReactDOMServer.renderToStaticMarkup(HeadFactory(serverPayload));
   let frame = FrameFactory(serverPayload);
@@ -814,7 +815,7 @@ exports.render = function (req, res) {
   </body></html>`, `
     var serverData = ${json};
     clientglue.setModel(serverData);
-  `);
+  `, req.cspNonce);
   res.send(result);
 };
 
