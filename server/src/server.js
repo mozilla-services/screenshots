@@ -276,7 +276,6 @@ window.location = ${redirectUrl};
 
 app.post("/api/register", function (req, res) {
   let vars = req.body;
-  // FIXME: need to hash secret
   let canUpdate = vars.deviceId === req.deviceId;
   if (! vars.deviceId) {
     console.error("Bad register request:", JSON.stringify(vars, null, "  "));

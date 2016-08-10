@@ -3,7 +3,7 @@ const Keygrip = require('keygrip');
 const pgpatcher = require("pg-patcher");
 const path = require("path");
 
-const MAX_DB_LEVEL = 8;
+const MAX_DB_LEVEL = 9;
 
 /** Create all the tables */
 exports.createTables = function () {
