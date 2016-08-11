@@ -124,7 +124,7 @@ app.use("/homepage", express.static(path.join(__dirname, "static/homepage"), {
 app.use(morgan("combined"));
 
 app.use(function (req, res, next) {
-  let cookies = new Cookies(req, res, dbschema.getKeygrip());
+  let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
   req.deviceId = cookies.get("user", {signed: true});
   if (req.deviceId) {
     req.userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
