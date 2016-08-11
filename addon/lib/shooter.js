@@ -264,6 +264,9 @@ const ShotContext = Class({
       }
       this._pendingScreenPositions = [];
     }, this));
+    this.interactiveWorker.port.on("sendEvent", watchFunction(function (event, action, label) {
+      sendEvent(event, action, label);
+    }, this));
     this._workerActive = true;
   },
 
@@ -276,6 +279,11 @@ const ShotContext = Class({
       the HTML, and other misc stuff.  Immediately updates the
       shot as that information comes in */
   collectInformation: function () {
+    if (this.tab.url.startsWith("about:")) {
+      sendEvent("start-shot-about-page");
+    } else if (this.tab.url.search(/^https:/i) === -1) {
+      sendEvent("start-shot-non-http");
+    }
     watchPromise(callScript(
       this.tab,
       self.data.url("framescripts/add-ids.js"),
@@ -284,6 +292,7 @@ const ShotContext = Class({
     ).then((function (result) {
       if (result.isXul) {
         // Abandon hope all ye who enter!
+        sendEvent("abort-start-shot", "xul-page");
         this.destroy();
         // FIXME: maybe pop up an explanation here?
         return;

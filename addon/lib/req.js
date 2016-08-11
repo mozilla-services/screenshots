@@ -35,7 +35,12 @@ exports.request = function (url, options) {
   });
 };
 
-exports.sendEvent = function (event, action, label) {
+exports.sendEvent = function (event /* optional, default "addon" */, action, label) {
+  if (label === undefined) {
+    label = action;
+    action = event;
+    event = "addon";
+  }
   let main = require("./main");
   exports.request(`${main.getBackend()}/event`, {
     method: "POST",

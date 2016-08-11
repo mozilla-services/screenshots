@@ -86,25 +86,37 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 
 #### Add-on metrics
 
-1. Click shot button `addon/start-shot/toolbar-pageshot-button`
-2. Make a selection `addon/make-selection/selection`
-3. Click Save `addon/save-shot/topbar-save`
-4. Click Cancel `addon/cancel-shot/topbar-cancel`
-5. Click My Shots `addon/goto-myshots/topbar-myshots`
-6. Click shot button while PageShot is active `addon/cancel-shot/toolbar-pageshot-button`
-7. Hit Escape (Cancel) `addon/cancel-shot/keyboard-escape`
-8. Hit Enter (Save) `addon/save-shot/keyboard-enter`
-9. Drag out a selection `addon/drag-selection/selection`
-10. Click to make a selection `addon/make-selection/selection-click`
-11. Click to cancel/clear a selection `addon/cancel-selection/selection-click`
-12. Encounter an error saving the shot `addon/error/save-shot`
-13. Encounter any other kind of error `addon/error/misc`
-14. Install the add-on `addon/install`
-15. Uninstall the add-on `addon/uninstall`
-16. Hit shot button on a page that can't be shot (XUL page) `addon/error/xul-page`
-17. Hit shot button on any about: page `addon/start-shot-about-page`
-18. Hit shot button on any other non-http page `addon/start-shot-non-http`
-19. Save a "private page" shot `addon/start-shot-private-page`
+1. [x] Click shot button `addon/start-shot/toolbar-pageshot-button`
+2. [x] Use keyboard shortcut to start shot `addon/start-shot/keyboard-shortcut`
+3. [x] Click "select region" `addon/start-region-select/mode-click`
+4. [x] Click "select archive" `addon/start-archive/mode-click`
+5. [x] Click "cancel" from first interface `addon/cancel-shot/mode-click`
+2. [x] Make a selection `addon/make-selection/selection-drag`
+3. [x] Make a selection by clicking on an element `addon/make-selection/selection-click`
+4. [x] Click but fail to find an element that can be selected `addon/no-selection/no-element-found`
+3. [x] Cancel a selection by clicking on the background `addon/cancel-selection/selection-background-mousedown`
+4. [x] Start resizing the selection `addon/start-resize-selection/handle`
+5. [x] Finish resizing the selection `addon/resize-selection/mouseup`
+6. [x] Finish resizing, without a change `addon/keep-resize-selection/mouseup`
+3. [x] Click Save `addon/save-shot/topbar-save`
+4. [x] Click Cancel `addon/cancel-shot/topbar-cancel`
+5. [x] Cancel because URL changed `addon/cancel-shot/url-changed`
+5. ~~Click My Shots `addon/goto-myshots/topbar-myshots`~~
+6. [x] Click My Shots from mode selection `addon/goto-myshots/mode-click`
+6. [x] Click shot button while PageShot is active `addon/aborted-start-shot/toolbar-pageshot-button`
+7. [x] Hit Escape (Cancel) `addon/cancel-shot/keyboard-escape`
+8. [x] Hit Enter (Save) `addon/save-shot/keyboard-enter`
+9. ~~Drag out a selection `addon/drag-selection/selection`~~
+10. [x] Click to make a selection `addon/make-selection/selection-click`
+11. [x] Click to cancel/clear a selection `addon/cancel-selection/selection-click`
+12. [ ] Encounter an error saving the shot `addon/error/save-shot`
+13. [ ] Encounter any other kind of error `addon/error/misc`
+14. [x] Install the add-on `addon/install`
+15. [x] Uninstall the add-on `addon/uninstall`
+16. [x] Hit shot button on a page that can't be shot (XUL page) `addon/abort-start-shot/xul-page`
+17. [x] Hit shot button on any about: page `addon/start-shot-about-page`
+18. [x] Hit shot button on any other non-http page `addon/start-shot-non-http`
+19. [ ] Save a "private page" shot `addon/start-shot-private-page`
 
 #### Owner web visit
 

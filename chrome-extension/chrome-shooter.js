@@ -176,6 +176,11 @@ const chromeShooter = (function () { // eslint-disable-line no-unused-vars
   };
 
   exports.sendAnalyticEvent = function (eventName, action, label) {
+    if (label === undefined) {
+      action = eventName;
+      label = action;
+      eventName = "addon";
+    }
     chrome.runtime.sendMessage({
       type: "sendAnalyticEvent",
       eventName,
