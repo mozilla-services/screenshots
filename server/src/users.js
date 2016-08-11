@@ -2,16 +2,46 @@ const config = require("./config").root();
 const db = require("./db");
 const errors = require("../shared/errors");
 const { request } = require("./helpers");
+const crypto = require("crypto");
+
+function hashMatches(hash, secret) {
+  let parts = hash.split(/:/g);
+  if (parts[0] !== "shaHmac") {
+    throw new Error("Unknown type of hash");
+  }
+  if (parts.length != 3) {
+    throw new Error("Bad hash format, should be type:nonce:data");
+  }
+  let expected = createHash(secret, parts[1]);
+  return expected == hash;
+}
+
+function createHash(secret, nonce) {
+  if (! nonce) {
+    nonce = createNonce();
+  }
+  if (nonce.search(/^[0-9a-zA-Z]+$/) == -1) {
+    throw new Error("Bad nonce");
+  }
+  let hmac = crypto.createHmac("sha256", nonce);
+  hmac.update(secret);
+  let digest = hmac.digest("hex");
+  return `shaHmac:${nonce}:${digest}`;
+}
+
+function createNonce() {
+  return crypto.randomBytes(10).toString("hex");
+}
 
 exports.checkLogin = function (deviceId, secret, addonVersion) {
   return db.select(
-    `SELECT secret FROM devices WHERE id = $1`,
+    `SELECT secret_hashed FROM devices WHERE id = $1`,
     [deviceId]
   ).then((rows) => {
     if (! rows.length) {
       return null;
     }
-    if (rows[0].secret == secret) {
+    if (hashMatches(rows[0].secret_hashed, secret)) {
       db.update(
         `UPDATE devices
          SET last_login = NOW(),
@@ -34,6 +64,7 @@ exports.registerLogin = function (deviceId, data, canUpdate) {
   if (! deviceId) {
     throw new Error("No deviceId given");
   }
+  let secretHashed = createHash(data.secret);
   return db.insert(
     `INSERT INTO devices (id, secret, nickname, avatarurl)
      VALUES ($1, $2, $3, $4)`,
@@ -48,9 +79,9 @@ exports.registerLogin = function (deviceId, data, canUpdate) {
       }
       return db.update(
         `UPDATE devices
-         SET secret = $1, nickname = $2, avatarurl = $3
+         SET secret_hashed = $1, nickname = $2, avatarurl = $3
          WHERE id = $4`,
-        [data.secret || null, data.nickname || null, data.avatarurl || null, deviceId]
+        [secretHashed, data.nickname || null, data.avatarurl || null, deviceId]
       ).then((rowCount) => {
         return !! rowCount;
       });
