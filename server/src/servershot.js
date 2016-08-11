@@ -5,6 +5,7 @@ const uuid = require("uuid");
 const linker = require("./linker");
 const config = require("./config").getProperties();
 const fs = require("fs");
+const mozlog = require("mozlog")("servershot");
 
 const SEARCHABLE_VERSION = 1;
 
@@ -74,7 +75,7 @@ if (! config.useS3) {
         var params = {Key: uid};
         s3bucket.getObject(params, function (err, data) {
           if (err) {
-            console.error("Error downloading data: ", err);
+            mozlog.error("error-downloading-data", {err});
             reject(err);
           } else {
             resolve({data: data.Body, contentType: contentType});
@@ -91,7 +92,7 @@ if (! config.useS3) {
         s3bucket.upload(params, function (err, result) {
           if (err) {
             reject(err);
-            console.error("Error uploading data (" + comment + "):", uid, err);
+            mozlog.error("error-uploading-data", {comment, uid, err});
           } else {
             resolve();
           }
@@ -466,13 +467,17 @@ Shot.getShotsForDevice = function (backend, deviceId, searchQuery) {
       let row = rows[i];
       let json = JSON.parse(row.value);
       if (json === null) {
-        console.warn("Unable to parse json for row", row.deviceid, row.id, row.value);
+        mozlog.warn("error-parsing-json", {
+          deviceid: row.deviceid,
+          rowid: row.id,
+          rowvalue: row.value
+        });
       } else {
         let shot;
         try {
           shot = new Shot(row.deviceid, backend, row.id, json);
         } catch (e) {
-          console.warn("Error instantiating shot:", e);
+          mozlog.warn("error-instantiating-shot", {err: e});
           continue;
         }
         result.push(shot);
@@ -742,7 +747,9 @@ Shot.upgradeSearch = function () {
         }
         run();
       }).then(() => {
-        console.info(`Upgraded ${rows.length} records to SEARCHABLE_VERSION ${SEARCHABLE_VERSION}`);
+        mozlog.info("upgraded-rows", {
+          msg: `Upgraded ${rows.length} records to SEARCHABLE_VERSION ${SEARCHABLE_VERSION}`
+        });
         setTimeout(Shot.upgradeSearch.bind(Shot), 10000);
       });
     });

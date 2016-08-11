@@ -2,23 +2,27 @@ const db = require("./db");
 const Keygrip = require('keygrip');
 const pgpatcher = require("pg-patcher");
 const path = require("path");
+const mozlog = require("mozlog")("dbschema");
 
 const MAX_DB_LEVEL = 9;
 
 /** Create all the tables */
 exports.createTables = function () {
-  console.info("Setting up tables on", db.constr);
+  mozlog.info("setting-up-tables-on", {db: db.constr});
   return db.getConnection().then(([conn, done]) => {
     let dirname = path.join(__dirname, "db-patches");
-    console.info("Loading patches from", dirname);
+    mozlog.info("loading-patches-from", {dirname: dirname});
     return new Promise((resolve, reject) => {
       pgpatcher(conn, MAX_DB_LEVEL, {dir: dirname}, function(err) {
         if (err) {
-          console.error(`Error patching database to level ${MAX_DB_LEVEL}!`, err);
+          mozlog.error("error-patching", {
+            msg:`Error patching database to level ${MAX_DB_LEVEL}!`,
+            err
+          });
           done();
           reject(err);
         } else {
-          console.info(`Database is now at level ${MAX_DB_LEVEL}`);
+          mozlog.info("db-level", {msg: `Database is now at level ${MAX_DB_LEVEL}`});
           resolve();
         }
       });
@@ -45,9 +49,12 @@ exports.createTables = function () {
     });
   }).catch((err) => {
     if (err.code === "ECONNREFUSED") {
-      console.warn(`Could not connect to database on ${db.constr}`);
+      mozlog.warn("connection-refused", {msg: `Could not connect to database on ${db.constr}`});
     }
-    console.warn("Got error creating and testing tables:", err);
+    mozlog.warn("error-creating-tables", {
+      msg: "Got error creating and testing tables:",
+      err
+    });
   });
 };
 
@@ -97,7 +104,10 @@ exports.createKeygrip = function () {
     textKeys = fetchedTextKeys;
     keys = new Keygrip(textKeys);
   }).catch((err) => {
-    console.warn("Could not create signing keys:", err);
+    mozlog.warn("error-creating-signing-keys", {
+      msg: "Could not create signing keys:",
+      err
+    });
     throw err;
   });
 };

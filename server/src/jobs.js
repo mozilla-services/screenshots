@@ -1,6 +1,8 @@
 /** Any reoccuring jobs we have to do */
 
 const config = require("./config").getProperties();
+const mozlog = require("mozlog")("jobs");
+
 // Convert to milliseconds:
 let keepTime = config.exportKeepTime * 60 * 1000;
 let checkDeletedInterval = config.checkDeletedInterval * 1000;
@@ -13,11 +15,14 @@ exports.start = function () {
     require("./servershot").Shot.cleanDeletedShots()
       .then((rowCount) => {
         if (rowCount) {
-          console.info("Cleaning expired shots:", rowCount, "shots purged");
+          mozlog.info("cleaning-expired-shots", {rowCount});
         }
       })
       .catch((e) => {
-        console.error("Error cleaning shots: " + e, "(", e, ")");
+        mozlog.error("error-cleaning-shots", {
+          msg: "" + e,
+          err: e
+        });
       });
   }, checkDeletedInterval);
 
