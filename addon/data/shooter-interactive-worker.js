@@ -212,7 +212,8 @@ stateHandlers.selectMode = {
   },
 
   onCancel: function () {
-    setState("cancel");
+    deactivate();
+    self.port.emit("deactivate");
   },
 
   onOpenMyShots: function () {
