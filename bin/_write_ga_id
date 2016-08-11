@@ -2,7 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const config = require("../server/src/config").root();
+const config = require("../server/src/config").getProperties();
 
 var gaId = config.gaId || "NOT_SET";
 var filename = path.join(__dirname, "../build/ga-id.txt");

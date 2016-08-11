@@ -1,4 +1,4 @@
-const config = require("./config").root();
+const config = require("./config").getProperties();
 
 const pg = require("pg");
 const mozlog = require("mozlog")("db");

@@ -3,7 +3,7 @@ const renderOembedString = require("./views/oembed.js").renderString;
 const db = require("./db");
 const uuid = require("uuid");
 const linker = require("./linker");
-const config = require("./config").root();
+const config = require("./config").getProperties();
 const fs = require("fs");
 const mozlog = require("mozlog")("servershot");
 

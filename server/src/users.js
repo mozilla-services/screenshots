@@ -1,4 +1,4 @@
-const config = require("./config").root();
+const config = require("./config").getProperties();
 const db = require("./db");
 const errors = require("../shared/errors");
 const { request } = require("./helpers");

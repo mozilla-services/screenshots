@@ -1,6 +1,6 @@
 /** Any reoccuring jobs we have to do */
 
-const config = require("./config").root();
+const config = require("./config").getProperties();
 const mozlog = require("mozlog")("jobs");
 
 // Convert to milliseconds:
