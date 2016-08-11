@@ -1,6 +1,6 @@
 /** Any reoccuring jobs we have to do */
 
-const config = require("./config").root();
+const config = require("./config").getProperties();
 // Convert to milliseconds:
 let keepTime = config.exportKeepTime * 60 * 1000;
 let checkDeletedInterval = config.checkDeletedInterval * 1000;

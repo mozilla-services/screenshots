@@ -1,4 +1,4 @@
-const config = require("./config").root();
+const config = require("./config").getProperties();
 
 let pg = require("pg");
 
