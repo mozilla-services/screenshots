@@ -49,7 +49,11 @@ function _dntEnabled(dnt, ua) {
 
 const stubGaJs = `
 window.ga = function () {
-  console.info.apply(console, ["stubbed ga("].concat(arguments).concat([")"]));
+  console.info.apply(console, ["stubbed ga("].concat(Array.from(arguments)).concat([")"]));
+};
+
+window.sendEvent = function () {
+  console.info.apply(console, ["stubbed sendEvent("].concat(Array.from(arguments)).concat([")"]));
 };
 `;
 
@@ -105,6 +109,23 @@ const gaJs = `
     ga("send", "pageview", gaLocation || location.href);
   }
 })();
+
+window.sendEvent = function (event, action, label, options) {
+  if (typeof label == "object" && ! options) {
+    options = label;
+    label = undefined;
+  } else if (typeof action == "object" && ! label) {
+    options = action;
+    action = undefined;
+  }
+  if (label === undefined) {
+    action = event;
+    label = action;
+    event = "web";
+  }
+  console.debug("sendEvent(", event, action, label, options, ")");
+  ga("send", "event", event, action, label, options);
+};
 `;
 
 exports.gaScript = [

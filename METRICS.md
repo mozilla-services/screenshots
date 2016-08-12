@@ -122,57 +122,60 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 
 These are events that an add-on user can encounter on a shot they own
 
-1. Visit the page, `web/visit/owner`
-2. Visit the page immediately after it is created (as part of the normal flow), `web/visit/owner-first`
-3. Click Save Full Page `web/save-full-page/navbar-save-full-page`
-4. Click delete `web/start-delete/navbar`
-  5. Confirm delete `web/delete/popup-confirm`
-  6. Cancel delete `web/cancel-delete/popup-confirm`
-7. Click My Shots `web/goto-myshots/navbar`
-8. Switch to full page from clip view, by clicking anywhere on background `web/full-page-view/content`
-9. Switch to full page from clip view, by clicking `>-<` button `web/full-page-view/content-unzoom`
-10. Switch to clip view from full page `web/clip-view/content-zoom`
-11. Try to change expiration time `web/start-expiration-change/navbar`
-  12. Cancel changing expiration time `web/cancel-expiration-change/navbar`
-  13. Change expiration time `web/set-expiration/navbar`
-  14. Change expiration time to specific time `web/set-expiration-to-time/navbar`
-  15. Change expiration time to indefinite `web/set-expiration-to-indefinite/navbar`
-16. View expired shot `web/view-expired`
-17. Recover expired shot `web/recover-expired`
-18. View expired/deleted shot `web/view-deleted-expired`
-19. Visit original page `web/view-original/navbar`
-20. Visit original page from expired view `web/view-original/expired`
-21. Click share `web/start-share`
-  22. Click Facebook `web/share/facebook`
-  23. Click Twitter `web/share/twitter`
-  24. Click Pinterest `web/share/pinterest`
-  25. Click mailto `web/share/mailto`
-  26. Hit copy `web/share/copy`
-  27. Focus link field `web/share/focus-url`
-  28. Cancel/close share `web/cancel-share/content`
-29. Visit PageShot link from footer `web/goto-pageshot/footer`
-30. Visit GitHub link from footer `web/goto-github/footer`
-31. Click on clip `web/goto-clip/content`
+1. [x] Visit the page, `web/visit/owner`
+2. [x] Visit the page immediately after it is created (as part of the normal flow), `web/visit/owner-first`
+3. ~~Click Save Full Page `web/save-full-page/navbar-save-full-page`~~
+4. [x] Click delete `web/start-delete/navbar`
+  5. [x] Confirm delete `web/delete/popup-confirm`
+  6. [x] Cancel delete `web/cancel-delete/popup-confirm`
+7. [x] Click My Shots `web/goto-myshots/navbar`
+8. ~~Switch to full page from clip view, by clicking anywhere on background `web/full-page-view/content`~~
+9. ~~Switch to full page from clip view, by clicking `>-<` button `web/full-page-view/content-unzoom`~~
+10. ~~Switch to clip view from full page `web/clip-view/content-zoom`~~
+11. [x] Try to change expiration time `web/start-expiration-change/navbar`
+  12. [x] Cancel changing expiration time `web/cancel-expiration-change/navbar`
+  13. [x] Change expiration time `web/set-expiration/navbar`
+  14. [x] Change expiration time to specific time `web/set-expiration-to-time/navbar`
+  15. [x] Change expiration time to indefinite `web/set-expiration-to-indefinite/navbar`
+16. [x] View expired shot `web/view-expired/owner`
+17. [x] View expired shot (not the owner) `web/view-expired/non-owner`
+17. [x] Recover expired shot `web/recover-expired`
+18. ~~View expired/deleted shot `web/view-deleted-expired`~~
+19. [x] Visit original page `web/view-original/navbar`
+20. [x] Visit original page from expired view `web/view-original/expired`
+21. [x] Click share `web/start-share`
+  22. [x] Click Facebook `web/share/facebook`
+  23. [x] Click Twitter `web/share/twitter`
+  24. [x] Click Pinterest `web/share/pinterest`
+  25. [x] Click mailto `web/share/mailto`
+  26. [x] Hit copy `web/share/copy`
+  27. [x] Focus link field `web/share/focus-url`
+  28. [x] Cancel/close share `web/cancel-share`
+29. [x] Visit PageShot link from footer `web/goto-pageshot/footer`
+30. [x] Visit GitHub link from footer `web/goto-github/footer`
+31. [x] Visit GitHub revision from footer `web/goto-github-revision/footer`
+32. [x] Click Feedback/mailto button `start-feedback/footer`
+31. [x] Click on clip `web/goto-clip/content`
 
 #### Shot Index (My Shots)
 
-1. Click a tile `web/goto-shot/myshots-tile`
-2. Click on the original link `web/goto-original-url/myshots-tile`
-3. Enter search term `web/search`
-4. Clear search term `web/clear-search`
-5. Receive no search results `web/search-no-results`
+1. [x] Click a tile `web/goto-shot/myshots-tile`
+2. [x] Click on the original link `web/goto-original-url/myshots-tile`
+3. [x] Enter search term `web/search`
+4. [x] Clear search term `web/clear-search`
+5. [x] Receive no search results `web/search-no-results`
 
 #### Non-owner web visit
 
-1. Visit the page, `web/visit/non-owner`
-2. Click flag button `web/start-flag/navbar`
-3. Click Share (same as for owner)
-4. Visit original URL `web/goto-original-url/navbar`
-5. Click PageShot link in header `web/goto-pageshot/navbar`
-6. Click My Shots link in header (if non-owner, but add-on user) `web/goto-myshots/navbar-non-owner`
-7. Switch to full page from clip view (already covered)
-8. Switch to clip view from full page (already covered)
-9. Click on clip (already covered)
+1. [x] Visit the page, `web/visit/non-owner`
+2. [x] Click flag button `web/start-flag/navbar`
+3. [x] Click Share (same as for owner)
+4. [x] Visit original URL `web/goto-original-url/navbar`
+5. [x] Click PageShot link in header `web/goto-pageshot/navbar`
+6. ~~Click My Shots link in header (if non-owner, but add-on user) `web/goto-myshots/navbar-non-owner`~~
+7. ~~Switch to full page from clip view (already covered)~~
+8. ~~Switch to clip view from full page (already covered)~~
+9. [x] Click on clip (already covered)
 
 #### Homepage web visits
 

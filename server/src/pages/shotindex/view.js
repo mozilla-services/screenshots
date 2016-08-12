@@ -1,4 +1,4 @@
-/* globals location, controller */
+/* globals location, controller, sendEvent */
 const reactruntime = require("../../reactruntime");
 const React = require("react");
 const ReactDOM = require("react-dom");
@@ -78,7 +78,7 @@ class Body extends React.Component {
           <h2><a href={shot.viewUrl}>{shot.title}</a></h2>
           <div className="link-container">
             {favicon}
-            <a href={shot.url}>
+            <a href={shot.url} onClick={ this.onClickOrigUrl.bind(this) }>
               {shot.urlDisplay}
             </a>
           </div>
@@ -92,18 +92,29 @@ class Body extends React.Component {
       // Don't override what might be an open-in-another-tab click
       return;
     }
+    sendEvent("goto-shot", "myshots-tile", {useBeacon: true});
     location.href = url;
   }
 
   onSubmitForm(e) {
     e.preventDefault();
     let val = ReactDOM.findDOMNode(this.refs.search).value;
+    if (val) {
+      sendEvent("search");
+    } else {
+      sendEvent("clear-search");
+    }
     controller.onChangeSearch(val);
   }
 
   onChangeSearch() {
     let val = ReactDOM.findDOMNode(this.refs.search).value;
     this.setState({defaultSearch: val});
+  }
+
+  onClickOrigUrl() {
+    sendEvent("goto-original-url", "myshots-tile", {useBeacon: true});
+    // Allow default action
   }
 }
 

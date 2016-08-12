@@ -1,8 +1,7 @@
 /* jslint browser:true */
-/* globals ga */
+/* globals sendEvent */
 
-let React = require("react"),
-  ReactDOM = require("react-dom"),
+let ReactDOM = require("react-dom"),
   { FrameFactory } = require("./views/frame.js"),
   { setGitRevision, staticLink } = require("./linker"),
   { AbstractShot } = require("../shared/shot"),
@@ -50,6 +49,25 @@ exports.setModel = function (data) {
   } catch (e) {
     window.Raven.captureException(e);
     throw e;
+  }
+  // FIXME: copied from frame.js
+  let isExpired = model.expireTime !== null && Date.now() > model.expireTime;
+  if (model.isOwner) {
+    if (isExpired) {
+      sendEvent("view-expired", "owner");
+    } else {
+      sendEvent("visit", "owner");
+      if (Date.now() - model.shot.createdDate < 30000) {
+        // FIXME: hacky way to determine if this is the first visit:
+        sendEvent("visit", "owner-first");
+      }
+    }
+  } else {
+    if (isExpired) {
+      sendEvent("view-expired", "non-owner");
+    } else {
+      sendEvent("visit", "non-owner");
+    }
   }
 };
 
@@ -142,7 +160,6 @@ function refreshHash() {
   model.activeClipId = clipId;
   sendShowElement(clipId);
   exports.render();
-  ga("send", "event", "website", "navigated", {page: location.toString()});
 }
 
 function sendShowElement(clipId) {
