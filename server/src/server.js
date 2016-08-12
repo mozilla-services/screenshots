@@ -76,6 +76,7 @@ const genUuid = require("nodify-uuid");
 const AWS = require("aws-sdk");
 const vhost = require("vhost");
 const raven = require("raven");
+const escapeHtml = require("escape-html");
 
 const PROXY_HEADER_WHITELIST = {
   "content-type": true,
@@ -295,15 +296,16 @@ app.get("/redirect", function (req, res) {
     }
     res.header("Content-type", "text/html");
     res.status(200);
-    let redirectUrl = JSON.stringify(req.query.to);
+    let redirectUrl = req.query.to;
+    let redirectUrlJs = JSON.stringify(redirectUrl).replace(/[<>]/g, "");
     let output = `<html>
   <head>
     <title>Redirect</title>
   </head>
   <body>
-    <a href=${redirectUrl}>If you are not automatically redirected, click here.</a>
+    <a href="${escapeHtml(redirectUrl)}">If you are not automatically redirected, click here.</a>
     <script nonce="${req.cspNonce}">
-window.location = ${redirectUrl};
+window.location = ${redirectUrlJs};
     </script>
   </body>
 </html>`;
