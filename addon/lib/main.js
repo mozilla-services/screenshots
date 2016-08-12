@@ -269,12 +269,13 @@ function hideInfoPanel() {
 // For reasons see https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Listening_for_load_and_unload
 exports.main = function (options) {
   loadReason = options.loadReason;
-  if (options.loadReason === "install") {
-    req.sendEvent("install");
-    showTour();
-  }
   helperworker.trackMods(backendOverride || null);
-  require("./user").initialize(exports.getBackend(), options.loadReason).catch((error) => {
+  require("./user").initialize(exports.getBackend(), options.loadReason).then(() => {
+    if (options.loadReason === "install") {
+      req.sendEvent("install");
+      showTour();
+    }
+  }).catch((error) => {
     console.warn("Failed to log in to server:", exports.getBackend(), error+"");
   });
 };

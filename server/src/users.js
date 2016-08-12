@@ -67,9 +67,9 @@ exports.registerLogin = function (deviceId, data, canUpdate) {
   }
   let secretHashed = createHash(data.secret);
   return db.insert(
-    `INSERT INTO devices (id, secret, nickname, avatarurl)
+    `INSERT INTO devices (id, secret_hashed, nickname, avatarurl)
      VALUES ($1, $2, $3, $4)`,
-    [deviceId, data.secret, data.nickname || null, data.avatarurl || null]
+    [deviceId, createHash(data.secret), data.nickname || null, data.avatarurl || null]
   ).then((inserted) => {
     if (inserted) {
       return true;
@@ -205,6 +205,6 @@ exports.addDeviceActivity = function (deviceId, eventType, eventInfo) {
      VALUES ($1, $2, $3)`,
     [deviceId, eventType, eventInfo]
   ).catch((error) => {
-    console.error("error-inserting-into-device_activity", {err: error});
+    console.error("error-inserting-into-device_activity", {err: error, eventType: eventType});
   });
 };
