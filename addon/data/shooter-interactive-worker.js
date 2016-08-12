@@ -77,6 +77,14 @@ let standardDisplayCallbacks = {
   }
 };
 
+let standardOverlayCallbacks = {
+  onOpenMyShots: () => {
+    deactivate();
+    self.port.emit("deactivate");
+    self.port.emit("openMyShots");
+  }
+}
+
 /** Holds all the objects that handle events for each state: */
 let stateHandlers = {};
 
@@ -243,7 +251,7 @@ stateHandlers.crosshairsPreview = {
 
   start: function () {
     ui.CrosshairPreview.display();
-    ui.WholePageOverlay.display();
+    ui.WholePageOverlay.display(standardOverlayCallbacks);
     if (isChrome) {
       if (! chromeShooter.hasUsedMyShots) {
         ui.MyShotsReminder.display();
@@ -271,7 +279,7 @@ stateHandlers.crosshairs = {
   start: function () {
     selectedPos = mousedownPos = null;
     ui.Box.remove();
-    ui.WholePageOverlay.display();
+    ui.WholePageOverlay.display(standardOverlayCallbacks);
     if (isChrome) {
       ui.ChromeInterface.showSaveFullPage();
     } else {
@@ -287,7 +295,7 @@ stateHandlers.crosshairs = {
   },
 
   mousedown: function (event) {
-    if (ui.ChromeInterface.isHeader(event.target)) {
+    if (ui.isHeader(event.target)) {
       return;
     }
     mousedownPos = new Pos(event.pageX, event.pageY);
@@ -547,7 +555,7 @@ function activate() {
   document.body.classList.remove("pageshot-hide-selection");
   document.body.classList.remove("pageshot-hide-movers");
   addHandlers();
-  setState("selectMode");
+  setState("crosshairs");
   if (isChrome) {
     ui.ChromeInterface.display();
     ui.ChromeInterface.onMyShots = function () {

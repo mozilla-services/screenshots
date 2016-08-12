@@ -28,18 +28,45 @@ const ui = (function () { // eslint-disable-line no-unused-vars
     return cached;
   }
 
+  function isHeader(el) {
+    while (el) {
+      if (el.className &&
+        (el.className.indexOf("pageshot-saver") !== -1 ||
+        el.className.indexOf("pageshot-myshots") !== -1)) {
+        return true;
+      }
+      el = el.parentNode;
+    }
+    return false;
+  }
+  exports.isHeader = isHeader;
+
   /** Represents the shadow overlay that covers the whole page */
   let WholePageOverlay = exports.WholePageOverlay = {
 
-    display: function () {
+    display: function (callbacks) {
       if (! this.overlayEl) {
         this.overlayEl = document.createElement("div");
+        this.overlayEl.className = "pageshot-preview-overlay";
         let instructions = document.createElement("div");
         instructions.className = "pageshot-preview-instructions";
-        instructions.textContent = "Click an element to select, drag a region to select, or press ESC to cancel.";
+        instructions.textContent = "Drag or click on the page to select a region. Press ESC to cancel.";
         this.overlayEl.appendChild(instructions);
+        let button = document.createElement("button");
+        button.className = "pageshot-myshots";
+        button.addEventListener("click", callbacks.onOpenMyShots, false);
+        let myShotsPre = document.createElement("div");
+        myShotsPre.className = "pageshot-pre-myshots";
+        button.appendChild(myShotsPre);
+        let text = document.createElement("span");
+        text.className = "pageshot-myshots-text";
+        text.textContent = "My Shots";
+        button.appendChild(text);
+        let myShotsPost = document.createElement("div");
+        myShotsPost.className = "pageshot-post-myshots";
+        button.appendChild(myShotsPost);
+        this.overlayEl.appendChild(button);
 
-        this.overlayEl.className = "pageshot-preview-overlay";
         document.body.appendChild(this.overlayEl);
       }
     },
@@ -249,7 +276,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
     },
 
     remove: function () {
-      if (this.selectModeBackground.parentNode === document.body) {
+      if (this.selectModeBackground !== undefined && this.selectModeBackground.parentNode === document.body) {
         document.body.removeChild(this.selectModeBackground);
       }
     }
@@ -418,20 +445,6 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       if (this.el) {
         this.el.querySelector(".pageshot-save").textContent = "Save";
       }
-    },
-
-    isHeader: function (el) {
-      if (! this.el) {
-        // There is no header, so couldn't be us
-        return false;
-      }
-      while (el) {
-        if (el.className && el.className.indexOf("pageshot-saver") != -1) {
-          return true;
-        }
-        el = el.parentNode;
-      }
-      return false;
     },
 
     remove: function () {
