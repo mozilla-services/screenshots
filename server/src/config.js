@@ -201,6 +201,22 @@ var conf = convict({
     default: 100,
     env: "UPGRADE_SEARCH_BATCH_SIZE",
     arg: "upgrade-search-batch-size"
+  },
+  log: {
+    lint: {
+      doc: "Whether to lint usage of log messages",
+      format: Boolean,
+      default: false,
+      env: "LOG_LINT",
+      arg: "log-lint"
+    },
+    level: {
+      doc: "Log level to emit",
+      format: String,
+      default: "info",
+      env: "LOG_LEVEL",
+      arg: "log-level"
+    }
   }
 });
 
