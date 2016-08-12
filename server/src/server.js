@@ -1,5 +1,3 @@
-
-
 const mozlog = require("mozlog").config({
   app: "pageshot-server",
   fmt: "pretty",
@@ -12,12 +10,27 @@ const console_mozlog = require("mozlog")("console");
 function logFactory(level) {
   let logger = console_mozlog[level].bind(console_mozlog);
   return function () {
-    let s = "";
-    for (var i = 0; i < arguments.length; i++) { s += arguments[i] + " "; }
-    if (s.length) {
-      s = s.slice(0, -1);
+    let msg = "";
+    let stack = undefined;
+    for (var i = 0; i < arguments.length; i++) {
+      let arg = arguments[i];
+      if (msg) {
+        msg += " ";
+      }
+      if (typeof arg === "string") {
+        msg += arg;
+      } else {
+        if (arg && arg.stack) {
+          if (stack) {
+            stack = stack + "\n\n" + arg.stack;
+          } else {
+            stack = arg.stack;
+          }
+        }
+        msg += JSON.stringify(arg);
+      }
     }
-    logger(level, {msg: s});
+    logger(level, {msg, stack});
   }
 }
 
@@ -329,9 +342,11 @@ app.post("/api/register", function (req, res) {
       simpleResponse(res, "User exists", 401);
     }
   }).catch(function (err) {
-    addDeviceActivity(vars.deviceId, "error-register", {
+    // FIXME: can't add this, because vars.deviceId probably isn't a valid
+    // deviceId, because registration failed
+    /* addDeviceActivity(vars.deviceId, "error-register", {
       error: err+""
-    });
+    }); */
     errorResponse(res, "Error registering:", err);
   });
 });
@@ -369,7 +384,7 @@ app.post("/api/login", function (req, res) {
       cookies.set("user", vars.deviceId, {signed: true});
       let userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
       userAnalytics.pageview("/api/login").send();
-      simpleResponse(res, JSON.stringify({"ok": "User logged in", "sentryPublicDSN": config.sentryPublicDSN}), 200);
+      simpleResponse(res, JSON.stringify({"ok": "User logged in"}), 200);
       addDeviceActivity(vars.deviceId, "login", {
         deviceInfo: vars.deviceInfo
       });
