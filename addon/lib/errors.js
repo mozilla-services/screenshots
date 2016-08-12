@@ -15,7 +15,7 @@ const user = require("./user");
 const panel = panels.Panel({
   contentURL: self.data.url("error-panel.html"),
   contentScriptFile: self.data.url("error-panel.js"),
-  height: 200,
+  height: 250,
   width: 350
 });
 
