@@ -28,6 +28,19 @@ const ui = (function () { // eslint-disable-line no-unused-vars
     return cached;
   }
 
+  function isHeader(el) {
+    while (el) {
+      if (el.className &&
+        (el.className.indexOf("pageshot-saver") !== -1 ||
+        el.className.indexOf("pageshot-myshots") !== -1)) {
+        return true;
+      }
+      el = el.parentNode;
+    }
+    return false;
+  }
+  exports.isHeader = isHeader;
+
   /** Represents the shadow overlay that covers the whole page */
   let WholePageOverlay = exports.WholePageOverlay = {
 
@@ -432,20 +445,6 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       if (this.el) {
         this.el.querySelector(".pageshot-save").textContent = "Save";
       }
-    },
-
-    isHeader: function (el) {
-      if (! this.el) {
-        // There is no header, so couldn't be us
-        return false;
-      }
-      while (el) {
-        if (el.className && el.className.indexOf("pageshot-saver") != -1) {
-          return true;
-        }
-        el = el.parentNode;
-      }
-      return false;
     },
 
     remove: function () {

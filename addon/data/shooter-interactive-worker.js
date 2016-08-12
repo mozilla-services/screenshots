@@ -281,10 +281,7 @@ stateHandlers.crosshairs = {
   },
 
   mousedown: function (event) {
-    if (event.target.className === "pageshot-myshots") {
-      return;
-    }
-    if (ui.ChromeInterface.isHeader(event.target)) {
+    if (ui.isHeader(event.target)) {
       return;
     }
     mousedownPos = new Pos(event.pageX, event.pageY);
