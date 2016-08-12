@@ -21,6 +21,7 @@
     "core-js": "2.4.1",
     "domino": "1.0.25",
     "envc": "2.4.1",
+    "escape-html": "1.0.3",
     "express": "4.14.0",
     "jpm": "1.1.1",
     "keygrip": "1.0.1",
