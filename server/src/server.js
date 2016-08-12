@@ -384,7 +384,7 @@ app.post("/api/login", function (req, res) {
       cookies.set("user", vars.deviceId, {signed: true});
       let userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
       userAnalytics.pageview("/api/login").send();
-      simpleResponse(res, JSON.stringify({"ok": "User logged in"}), 200);
+      simpleResponse(res, JSON.stringify({"ok": "User logged in", "sentryPublicDSN": config.sentryPublicDSN}), 200);
       addDeviceActivity(vars.deviceId, "login", {
         deviceInfo: vars.deviceInfo
       });
