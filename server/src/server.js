@@ -1,7 +1,10 @@
-const mozlog = require("mozlog").config({
+const config = require("./config").getProperties();
+
+require("mozlog").config({
   app: "pageshot-server",
   fmt: "pretty",
-  stream: process.stderr
+  level: config.log.level,
+  debug: config.log.lint
 });
 
 const console_mozlog = require("mozlog")("console");
@@ -62,7 +65,6 @@ const morgan = require("morgan");
 const linker = require("./linker");
 const { randomBytes } = require("./helpers");
 const errors = require("../shared/errors");
-const config = require("./config").getProperties();
 const { checkContent, checkAttributes } = require("./contentcheck");
 const buildTime = require("./build-time").string;
 const ua = require("universal-analytics");

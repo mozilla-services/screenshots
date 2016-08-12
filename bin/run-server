@@ -19,6 +19,8 @@ run () {
   if [[ -n "$restart" ]] ; then
     playsound bin/hole-punch.mp3
   fi
+  export LOG_LINT=true
+  export LOG_LEVEL=verbose
   node -e 'require("babel-polyfill"); require("./build/server/server");'
 }
 
