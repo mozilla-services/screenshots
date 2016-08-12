@@ -39,22 +39,20 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         instructions.className = "pageshot-preview-instructions";
         instructions.textContent = "Drag or click on the page to select a region. Press ESC to cancel.";
         this.overlayEl.appendChild(instructions);
-        if (callbacks && callbacks.onOpenMyShots !== undefined) {
-          let button = document.createElement("button");
-          button.className = "pageshot-myshots";
-          button.addEventListener("click", callbacks.onOpenMyShots, false);
-          let myShotsPre = document.createElement("div");
-          myShotsPre.className = "pageshot-pre-myshots";
-          button.appendChild(myShotsPre);
-          let text = document.createElement("span");
-          text.className = "pageshot-myshots-text";
-          text.textContent = "My Shots";
-          button.appendChild(text);
-          let myShotsPost = document.createElement("div");
-          myShotsPost.className = "pageshot-post-myshots";
-          button.appendChild(myShotsPost);
-          this.overlayEl.appendChild(button);
-        }
+        let button = document.createElement("button");
+        button.className = "pageshot-myshots";
+        button.addEventListener("click", callbacks.onOpenMyShots, false);
+        let myShotsPre = document.createElement("div");
+        myShotsPre.className = "pageshot-pre-myshots";
+        button.appendChild(myShotsPre);
+        let text = document.createElement("span");
+        text.className = "pageshot-myshots-text";
+        text.textContent = "My Shots";
+        button.appendChild(text);
+        let myShotsPost = document.createElement("div");
+        myShotsPost.className = "pageshot-post-myshots";
+        button.appendChild(myShotsPost);
+        this.overlayEl.appendChild(button);
 
         document.body.appendChild(this.overlayEl);
       }
