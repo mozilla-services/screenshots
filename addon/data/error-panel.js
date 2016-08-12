@@ -17,12 +17,16 @@ self.port.on("showError", function (error) {
       errorFallback = error + "";
     }
     thisError.textContent = error.help || error.message || error.name || errorFallback;
+    let thisMessage = document.createElement("div");
+    thisMessage.className = "error-message"
+    thisMessage.textContent = error.message;
+    thisError.appendChild(thisMessage);
   }
   var titleElement = document.querySelector("h1");
   if (error.title) {
     titleElement.textContent = error.title;
   }
-  console.warn(new Date(), "PageShot Error:", thisError.textContent);
+  console.warn(new Date(), "PageShot Error:", thisError.textContent, error.message);
   if (error.stack) {
     console.error(error.stack);
   }

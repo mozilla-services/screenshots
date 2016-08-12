@@ -1,8 +1,9 @@
-const config = require("./config").root();
+const config = require("./config").getProperties();
 const db = require("./db");
 const errors = require("../shared/errors");
 const { request } = require("./helpers");
 const crypto = require("crypto");
+const mozlog = require("mozlog")("users");
 
 function hashMatches(hash, secret) {
   let parts = hash.split(/:/g);
@@ -51,7 +52,7 @@ exports.checkLogin = function (deviceId, secret, addonVersion) {
         `,
         [addonVersion, deviceId]
       ).catch((error) => {
-        console.error("Error updating devices table:", error);
+        mozlog.error("error-updating-devices-table", {err: error});
       });
       return true;
     } else {
@@ -204,6 +205,6 @@ exports.addDeviceActivity = function (deviceId, eventType, eventInfo) {
      VALUES ($1, $2, $3)`,
     [deviceId, eventType, eventInfo]
   ).catch((error) => {
-    console.error("Error inserting into device_activity:", error);
+    console.error("error-inserting-into-device_activity", {err: error});
   });
 };

@@ -1,3 +1,32 @@
+
+
+const mozlog = require("mozlog").config({
+  app: "pageshot-server",
+  fmt: "pretty",
+  stream: process.stderr
+});
+
+const console_mozlog = require("mozlog")("console");
+// We can't prevent any third party libraries from writing to the console,
+// so monkey patch it so they play nice with mozlog.
+function logFactory(level) {
+  let logger = console_mozlog[level].bind(console_mozlog);
+  return function () {
+    let s = "";
+    for (var i = 0; i < arguments.length; i++) { s += arguments[i] + " "; }
+    if (s.length) {
+      s = s.slice(0, -1);
+    }
+    logger(level, {msg: s});
+  }
+}
+
+console.log = logFactory("log");
+console.debug = logFactory("debug");
+console.info = logFactory("info");
+console.warn = logFactory("warn");
+console.error = logFactory("error");
+
 const path = require('path');
 const Cookies = require("cookies");
 
@@ -20,7 +49,7 @@ const morgan = require("morgan");
 const linker = require("./linker");
 const { randomBytes } = require("./helpers");
 const errors = require("../shared/errors");
-const config = require("./config").root();
+const config = require("./config").getProperties();
 const { checkContent, checkAttributes } = require("./contentcheck");
 const buildTime = require("./build-time").string;
 const ua = require("universal-analytics");

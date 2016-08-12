@@ -1,6 +1,7 @@
-const config = require("./config").root();
+const config = require("./config").getProperties();
 
-let pg = require("pg");
+const pg = require("pg");
+const mozlog = require("mozlog")("db");
 
 let user = encodeURIComponent(config.db.user);
 let dbname = encodeURIComponent(config.db.dbname || config.db.user);
@@ -8,7 +9,10 @@ let credentials = config.db.password ? `${user}:${encodeURIComponent(config.db.p
 let constr = `postgres://${credentials}@${config.db.host}/${dbname}`;
 
 pg.on("error", function (error) {
-  console.error("Error in database:", error);
+  mozlog.error("db-error", {
+    msg: "Error in database:",
+    err: error
+  });
 });
 
 function getConnection() {

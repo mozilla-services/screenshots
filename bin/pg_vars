@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const config = require("../server/src/config").root();
+const config = require("../server/src/config").getProperties();
 
 function writevar(name, value) {
   process.stdout.write(name+"='" + value.replace(/'/g, "'\\''") + "'\n");
