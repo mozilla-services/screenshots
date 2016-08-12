@@ -1,4 +1,4 @@
-/* globals ga, Raven */
+/* globals ga, sendEvent */
 
 const React = require("react");
 const ReactDOM = require("react-dom");
@@ -15,7 +15,7 @@ class ShareButtons extends React.Component {
   }
 
   onClickShareButton(whichButton) {
-    // FIXME implement analytics tracking here
+    sendEvent("share", whichButton);
   }
 
   onClickCopyButton(e) {
@@ -26,10 +26,12 @@ class ShareButtons extends React.Component {
     setTimeout(() => {
       this.setState({copyText: "Copy"});
     }, 1000);
+    sendEvent("share", "copy");
   }
 
   onClickInputField(e) {
     e.target.select();
+    sendEvent("share", "focus-url");
   }
 
   onChange(e) {
@@ -147,10 +149,15 @@ class Clip extends React.Component {
     }
     return <div ref="clipContainer" className="clip-container" style={{paddingTop: this.state.paddingTop}} onClick={this.onClickCloseBackground.bind(this)}>
       { closeButton }
-      <a href={ clip.image.url }>
+      <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) }>
         { node }
       </a>
     </div>;
+  }
+
+  onClickClip() {
+    sendEvent("goto-clip", "content", {useBeacon: true});
+    // Allow default action to continue
   }
 }
 
@@ -318,8 +325,10 @@ class Frame extends React.Component {
     let show = ! this.state.sharePanelDisplay;
     this.setState({sharePanelDisplay: show});
     if (show) {
+      sendEvent("start-share");
       document.addEventListener("click", this.unsharePanelHandler, false);
     } else {
+      sendEvent("cancel-share");
       document.removeEventListener("click", this.unsharePanelHandler, false);
     }
   }
@@ -349,13 +358,17 @@ class Frame extends React.Component {
   }
 
   onClickDelete(e) {
-    window.ga('send', 'event', 'website', 'click-delete-shot', {useBeacon: true});
+    sendEvent("start-delete", "navbar", {useBeacon: true});
     if (window.confirm("Are you sure you want to delete the shot permanently?")) {
+      sendEvent("delete", "popup-confirm", {useBeacon: true});
       this.props.clientglue.deleteShot(this.props.shot);
+    } else {
+      sendEvent("cancel-delete", "popup-confirm");
     }
   }
 
   onClickFlag(e) {
+    sendEvent("start-flag", "navbar", {useBeacon: true});
     window.open(`mailto:pageshot-feedback@mozilla.com?subject=Flagging%20shot%20for%20abuse&body=Flagging%20shot%20for%20abuse:%20${encodeURIComponent(this.props.shot.viewUrl)}`);
   }
 
@@ -383,9 +396,9 @@ class Frame extends React.Component {
         <p>
           This shot has expired. You may visit the original page it was originally created from:
         </p>
-        <h2><a href={this.props.shot.urlIfDeleted}>{this.props.shot.title}</a></h2>
+        <h2><a href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>{this.props.shot.title}</a></h2>
         <p>
-          <a href={this.props.shot.urlIfDeleted}>
+          <a href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>
             {this.props.shot.urlIfDeleted}
           </a>
         </p>
@@ -549,14 +562,14 @@ class Frame extends React.Component {
         <div id="container">
           { this.renderExtRequired() }
         <div id="toolbar" style={{ paddingRight: toolbarPadding }}>
-          <a href={ myShotsHref }>
+          <a href={ myShotsHref } onClick={this.onClickMyShots.bind(this)}>
             <button className="my-shots-button" style={{background: `no-repeat 10% center url(${this.props.staticLink("img/my-shots.png")}) #ebebeb`}}>
               <span>{ myShotsText }</span>
             </button>
           </a>
           <span className="shot-title"> { shot.title } </span>
           <div className="shot-subtitle">
-            <span>Saved from </span><a className="subheading-link" href={ shotRedirectUrl }>{ linkTextShort }</a>
+            <span>Saved from </span><a className="subheading-link" href={ shotRedirectUrl } onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a>
             <img height="16" width="16" style={{
               marginRight: "7px",
               marginLeft: "7px",
@@ -579,9 +592,9 @@ class Frame extends React.Component {
         { this.props.shot.showPage ?
           <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } /> : null }
         <div className="pageshot-footer">
-          <a href="https://github.com/mozilla-services/pageshot">{this.props.productName}</a> — <a href={`https://github.com/mozilla-services/pageshot/commit/${getGitRevision()}`}>Updated {this.props.buildTime}</a>
+          <a href="https://github.com/mozilla-services/pageshot" onClick={ this.onClickGitHub.bind(this) }>{this.props.productName}</a> — <a href={`https://github.com/mozilla-services/pageshot/commit/${getGitRevision()}`} onClick={ this.onClickRevision.bind(this) }>Updated {this.props.buildTime}</a>
         </div>
-        <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl }>Send Feedback</a>
+        <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl } onClick={ this.onClickFeedback.bind(this) }>Send Feedback</a>
         { isPublic }
       </div>
     );
@@ -602,11 +615,44 @@ class Frame extends React.Component {
   }
 
   onSaveExpire(value) {
+    sendEvent("web/set-expiration", "navbar");
+    if (value === 0 || value === "0") {
+      sendEvent("set-expiration-to-indefinite", "navbar");
+    } else {
+      sendEvent("set-expiration-to-time", "navbar");
+    }
     this.props.clientglue.changeShotExpiration(this.props.shot, value);
   }
 
   onRestore() {
+    sendEvent("recover-expired");
     this.props.clientglue.changeShotExpiration(this.props.shot, this.props.defaultExpiration);
+  }
+
+  onClickMyShots() {
+    if (this.props.isOwner) {
+      sendEvent("goto-myshots", "navbar", {useBeacon: true});
+    } else {
+      sendEvent("goto-pageshot", "navbar", {useBeacon: true});
+    }
+    // Note: we allow the default action to continue
+  }
+
+  onClickOrigUrl(label) {
+    sendEvent("view-original", label, {useBeacon: true});
+    // Note: we allow the default action to continue
+  }
+
+  onClickGitHub() {
+    sendEvent("goto-github", "footer", {useBeacon: true});
+  }
+
+  onClickRevision() {
+    sendEvent("goto-github-revision", "footer", {useBeacon: true});
+  }
+
+  onClickFeedback() {
+    sendEvent("start-feedback", "footer", {useBeacon: true});
   }
 
 }
@@ -676,11 +722,12 @@ class ExpireWidget extends React.Component {
   }
 
   clickChangeExpire() {
-    window.ga('send', 'event', 'website', 'click-change-expire', {useBeacon: true});
+    sendEvent("start-expiration-change", "navbar");
     this.setState({isChangingExpire: true});
   }
 
   clickCancelExpire() {
+    sendEvent("cancel-expiration-change", "navbar");
     window.ga('send', 'event', 'website', 'click-cancel-expire', {useBeacon: true});
     this.setState({isChangingExpire: false});
   }
@@ -693,7 +740,7 @@ class ExpireWidget extends React.Component {
       return;
     }
     value = parseInt(value, 10);
-    window.ga('send', 'event', 'website', 'click-save-expire', {useBeacon: true, eventValue: value/60000});
+    // Note: sendEvent done in onSaveExpire
     this.props.onSaveExpire(value);
     this.setState({isChangingExpire: false});
   }

@@ -41,6 +41,14 @@ resizeStartPos (x/y position where resizing started)
 
 var isChrome = false;
 
+function sendEvent(event, action, label) {
+  if (isChrome) {
+    chromeShooter.sendAnalyticEvent(event, action, label);
+  } else {
+    self.port.emit("sendEvent", event, action, label);
+  }
+}
+
 /***********************************************
  * State and stateHandlers infrastructure
  */
@@ -60,9 +68,11 @@ var movements = {
 
 let standardDisplayCallbacks = {
   cancel: () => {
+    sendEvent("cancel-shot", "overlay-cancel-button");
     deactivate();
     self.port.emit("deactivate");
   }, save: () => {
+    sendEvent("save-shot", "overlay-save-button");
     self.port.emit("take-shot");
   }
 };
@@ -96,6 +106,7 @@ let selectedPos;
 let resizeDirection;
 let resizeStartPos;
 let resizeStartSelected;
+let resizeHasMoved;
 
 /** Represents a selection box: */
 class Selection {
@@ -201,22 +212,25 @@ stateHandlers.selectMode = {
   },
 
   onChooseRegionMode: function () {
+    sendEvent("start-region-select", "mode-click");
     setState("crosshairs");
     // FIXME remove once the ui is fully settled
     //self.port.emit("showTopbar");
   },
 
   onChooseArchiveMode: function () {
-      setState("cancel");
-      self.port.emit("take-shot");
+    sendEvent("start-archive", "mode-click");
+    setState("cancel");
+    self.port.emit("take-shot");
   },
 
   onCancel: function () {
-    deactivate();
-    self.port.emit("deactivate");
+    sendEvent("cancel-shot", "mode-click");
+    setState("cancel");
   },
 
   onOpenMyShots: function () {
+    sendEvent("goto-myshots", "mode-click");
     self.port.emit("openMyShots");
   },
 
@@ -324,12 +338,14 @@ stateHandlers.draggingReady = {
       );
       mousedownPos = null;
       ui.Box.display(selectedPos, standardDisplayCallbacks);
+      sendEvent("make-selection", "selection-click");
       setState("selected");
       if (isChrome) {
         chromeShooter.sendAnalyticEvent("addon", "autoselect");
       }
       reportSelection();
     } else {
+      sendEvent("no-selection", "no-element-found");
       setState("crosshairs");
     }
   },
@@ -388,9 +404,7 @@ stateHandlers.dragging = {
     selectedPos.y2 = util.truncateY(event.pageY);
     ui.Box.display(selectedPos, standardDisplayCallbacks);
     reportSelection("selection");
-    if (isChrome) {
-      chromeShooter.sendAnalyticEvent("addon", "drag-finished");
-    }
+    sendEvent("make-selection", "selection-drag");
     setState("selected");
   }
 };
@@ -410,14 +424,13 @@ stateHandlers.selected = {
     let target = event.target;
     let direction = ui.Box.draggerDirection(target);
     if (direction) {
+      sendEvent("start-resize-selection", "handle");
       stateHandlers.resizing.startResize(event, direction);
       event.preventDefault();
       return false;
     }
     if (! ui.Box.isSelection(target)) {
-      if (isChrome) {
-        chromeShooter.sendAnalyticEvent("addon", "reset-selection");
-      }
+      sendEvent("cancel-selection", "selection-background-mousedown");
       setState("crosshairs");
     }
   }
@@ -432,6 +445,7 @@ stateHandlers.resizing = {
     resizeDirection = direction;
     resizeStartPos = new Pos(event.pageX, event.pageY);
     resizeStartSelected = selectedPos.clone();
+    resizeHasMoved = false;
     setState("resizing");
   },
 
@@ -446,6 +460,11 @@ stateHandlers.resizing = {
       chromeShooter.sendAnalyticEvent("addon", "selection-resized");
     }
     ui.Box.display(selectedPos, standardDisplayCallbacks);
+    if (resizeHasMoved) {
+      sendEvent("resize-selection", "mouseup");
+    } else {
+      sendEvent("keep-resize-selection", "mouseup");
+    }
     setState("selected");
     reportSelection();
   },
@@ -459,6 +478,9 @@ stateHandlers.resizing = {
     }
     if (movement[1]) {
       selectedPos[movement[1]] = resizeStartSelected[movement[1]] + diffY;
+    }
+    if (diffX || diffY) {
+      resizeHasMoved = true;
     }
     ui.Box.display(selectedPos);
   },
@@ -594,19 +616,19 @@ function keyupHandler(event) {
   }
   if ((event.key || event.code) === "Escape") {
     deactivate();
+    sendEvent("cancel-shot", "keyboard-escape");
     if (isChrome) {
-      chromeShooter.sendAnalyticEvent("addon", "cancel-escape");
       chromeShooter.deactivate();
     } else {
       self.port.emit("deactivate");
     }
   }
   if ((event.key || event.code) === "Enter") {
-    if (isChrome) {
-      chromeShooter.sendAnalyticEvent("addon", "save-enter");
-      chromeShooter.takeShot();
-    } else {
-      if (getState.state === "selected" || getState.state === "selectMode") {
+    if (getState.state === "selected" || getState.state === "selectMode") {
+      sendEvent("save-shot", "keyboard-enter");
+      if (isChrome) {
+        chromeShooter.takeShot();
+      } else {
         self.port.emit("take-shot");
       }
     }
@@ -651,6 +673,7 @@ function checkUrl() {
     } else {
       self.port.emit("popstate", curUrl);
     }
+    sendEvent("cancel-shot", "url-changed");
     deactivate();
   }
 }

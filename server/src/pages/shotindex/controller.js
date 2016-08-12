@@ -1,3 +1,4 @@
+/* globals sendEvent */
 const page = require("./page").page;
 const { AbstractShot } = require("../../../shared/shot");
 
@@ -36,6 +37,9 @@ function refreshModel() {
       return;
     }
     let data = JSON.parse(req.responseText);
+    if (! data.shots.length) {
+      sendEvent("no-search-results");
+    }
     exports.launch(data);
   };
   req.send();

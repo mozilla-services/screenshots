@@ -194,7 +194,9 @@ function takeShot(source) {
     let shotContext = shooter.ShotContext(exports.getBackend(), () => {
       delete tabsBeingShot[thisTabId];
     });
+    req.sendEvent("start-shot", source);
   } else {
+    req.sendEvent("aborted-start-shot", "toolbar-pageshot-button");
     console.warn("Tried to take a shot while a shot was already in progress.");
   }
 }
@@ -202,7 +204,7 @@ function takeShot(source) {
 var hotKey = Hotkey({
   combo: "accel-alt-control-c",
   onPress: function() {
-    takeShot("press-shot-hotkey");
+    takeShot("keyboard-shortcut");
   }
 });
 
@@ -211,7 +213,7 @@ var shootButton = ActionButton({
   label: "Make shot",
   icon: self.data.url("icons/pageshot.svg"),
   onClick: watchFunction(function () {
-    takeShot("click-shot-button");
+    takeShot("toolbar-pageshot-button");
   })
 });
 exports.shootButton = shootButton;
@@ -268,6 +270,7 @@ function hideInfoPanel() {
 exports.main = function (options) {
   loadReason = options.loadReason;
   if (options.loadReason === "install") {
+    req.sendEvent("install");
     showTour();
   }
   helperworker.trackMods(backendOverride || null);
@@ -280,6 +283,7 @@ exports.onUnload = function (reason) {
   if (reason == "shutdown") {
     return;
   }
+  req.sendEvent("uninstall");
   hideNotificationBar();
   console.info("Unloading PageShot framescripts");
   require("./framescripter").unload();
