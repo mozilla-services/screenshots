@@ -77,6 +77,7 @@ const AWS = require("aws-sdk");
 const vhost = require("vhost");
 const raven = require("raven");
 const escapeHtml = require("escape-html");
+const validUrl = require("valid-url");
 
 const PROXY_HEADER_WHITELIST = {
   "content-type": true,
@@ -297,6 +298,11 @@ app.get("/redirect", function (req, res) {
     res.header("Content-type", "text/html");
     res.status(200);
     let redirectUrl = req.query.to;
+    if (! validUrl.isUri(redirectUrl)) {
+      console_mozlog.warn("redirect-bad-url", {msg: "Redirect attempted to invalid URL", url: redirectUrl});
+      simpleResponse(res, "Bad Request", 400);
+      return;
+    }
     let redirectUrlJs = JSON.stringify(redirectUrl).replace(/[<>]/g, "");
     let output = `<html>
   <head>
@@ -316,6 +322,7 @@ window.location = ${redirectUrlJs};
       `original-link-${from}`
     ).send();
   } else {
+    console_mozlog.warn("no-redirect-to", {"msg": "Bad Request, no ?to parameter"});
     simpleResponse(res, "Bad Request", 400);
   }
 });

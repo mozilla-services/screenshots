@@ -40,6 +40,7 @@
     "rimraf": "2.5.3",
     "universal-analytics": "0.3.11",
     "uuid": "2.0.2",
+    "valid-url": "1.0.9",
     "vhost": "3.0.2",
     "wreck": "8.0.0"
   },
