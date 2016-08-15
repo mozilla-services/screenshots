@@ -241,6 +241,8 @@ exports.showInfoPanel = function showInfoPanel(magicCookie, title, description) 
 };
 
 function showTour(newTab) {
+  // FIXME turn off the tour for now until it gets some love.
+  return;
   let helpurl = exports.getBackend() + "/homepage/help.html";
   let win = winutil.getMostRecentBrowserWindow();
   if (newTab) {
