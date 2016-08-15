@@ -217,6 +217,13 @@ var conf = convict({
       env: "LOG_LEVEL",
       arg: "log-level"
     }
+  },
+  showStackTraces: {
+    doc: "Whether to show stack traces in 500 HTTP responses",
+    format: Boolean,
+    default: false,
+    env: "SHOW_STACK_TRACES",
+    arg: "show-stack-traces"
   }
 });
 

@@ -913,13 +913,17 @@ function jsResponse(res, jsstring) {
 function errorResponse(res, message, err) {
   res.header("Content-Type", "text/plain; charset=utf-8");
   res.status(500);
-  if (err) {
-    message += "\n" + err;
-    if (err.stack) {
-      message += "\n\n" + err.stack;
+  if (config.showStackTraces) {
+    if (err) {
+      message += "\n" + err;
+      if (err.stack) {
+        message += "\n\n" + err.stack;
+      }
     }
+    res.send(message);
+  } else {
+    res.send("Server error");
   }
-  res.send(message);
   console.error("Error: " + message, err+"", err);
 }
 
