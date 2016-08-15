@@ -37,7 +37,6 @@ function logFactory(level) {
   }
 }
 
-console.log = logFactory("log");
 console.debug = logFactory("debug");
 console.info = logFactory("info");
 console.warn = logFactory("warn");
@@ -78,6 +77,7 @@ const vhost = require("vhost");
 const raven = require("raven");
 const escapeHtml = require("escape-html");
 const validUrl = require("valid-url");
+const { createProxyUrl } = require("./proxy-url");
 
 const PROXY_HEADER_WHITELIST = {
   "content-type": true,
@@ -137,7 +137,7 @@ const app = express();
 
 app.set('trust proxy', true);
 
-const CONTENT_NAME = config.contentOrigin.split(":")[0];
+const CONTENT_NAME = config.contentOrigin;
 
 app.use((req, res, next) => {
   genUuid.generate(genUuid.V_RANDOM, function (err, uuid) {
@@ -826,13 +826,7 @@ contentApp.get("/content/:id/:domain", function (req, res) {
           console.warn("Missing link for", JSON.stringify(key));
           return key;
         }
-        let url = data.url;
-        let sig = dbschema.getKeygrip().sign(new Buffer(url, 'utf8'));
-        let proxy = `${req.protocol}://${req.headers.host}/proxy?url=${encodeURIComponent(url)}&sig=${encodeURIComponent(sig)}`;
-        if (data.hash) {
-          proxy += "#" + data.hash;
-        }
-        return proxy;
+        return createProxyUrl(req, data.url, data.hash);
       }
     }));
   }).catch(function (e) {
