@@ -34,6 +34,9 @@ let loadReason = null; // eslint-disable-line no-unused-vars
 let initialized = false;
 let tabsBeingShot = {};
 
+// FIXME turn off the tour for now until it gets some love.
+const ENABLE_FTU = false;
+
 function getNotificationBox(browser) {
   let wm = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator);
   let win = wm.getMostRecentWindow("navigator:browser");
@@ -241,23 +244,23 @@ exports.showInfoPanel = function showInfoPanel(magicCookie, title, description) 
 };
 
 function showTour(newTab) {
-  // FIXME turn off the tour for now until it gets some love.
-  return;
-  let helpurl = exports.getBackend() + "/homepage/help.html";
-  let win = winutil.getMostRecentBrowserWindow();
-  if (newTab) {
-    shooter.showTourOnNextLinkClick();
-    tabs.open(helpurl);
-    let newtab = tabs[tabs.length - 1];
-    newtab.on("close", hideInfoPanel);
-    newtab.on("deactivate", hideInfoPanel);
-  } else {
-    win.loadURI(helpurl);
+  if (ENABLE_FTU) {
+    let helpurl = exports.getBackend() + "/homepage/help.html";
+    let win = winutil.getMostRecentBrowserWindow();
+    if (newTab) {
+      shooter.showTourOnNextLinkClick();
+      tabs.open(helpurl);
+      let newtab = tabs[tabs.length - 1];
+      newtab.on("close", hideInfoPanel);
+      newtab.on("deactivate", hideInfoPanel);
+    } else {
+      win.loadURI(helpurl);
+    }
+    exports.showInfoPanel(
+      "toggle-button--jid1-neeaf3sahdkhpajetpack-pageshot-shooter",
+      "Welcome to PageShot",
+      "Click the camera button to clip a part of the page");
   }
-  exports.showInfoPanel(
-    "toggle-button--jid1-neeaf3sahdkhpajetpack-pageshot-shooter",
-    "Welcome to PageShot",
-    "Click the camera button to clip a part of the page");
 }
 
 function hideInfoPanel() {
