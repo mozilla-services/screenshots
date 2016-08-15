@@ -1,7 +1,7 @@
 /* globals document, location */
 
 const React = require("react");
-const ReactDOM = require("react");
+const ReactDOM = require("react-dom");
 const linker = require("./linker");
 
 exports.HeadTemplate = class HeadTemplate extends React.Component {
