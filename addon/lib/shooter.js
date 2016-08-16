@@ -408,7 +408,13 @@ const ShotContext = Class({
         this.interactiveWorker.destroy();
         this.interactiveWorker = null;
       });
-      this.interactiveWorker.port.emit("destroy");
+      try {
+        this.interactiveWorker.port.emit("destroy");
+      } catch (e) {
+        console.warn("Too late to destroy interactiveWorker");
+        this.onDestroyed();
+        this.onDestroyed = null;
+      }
     }
   }
 });
