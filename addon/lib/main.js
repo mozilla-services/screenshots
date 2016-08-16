@@ -191,10 +191,14 @@ function showTopbar(shotContext) {
 exports.showTopbar = showTopbar;
 
 function takeShot(source) {
+  let backend = exports.getBackend();
+  if (tabs.activeTab.url.startsWith(backend)) {
+    throw new Error("You can't take a shot of a Page Shot page.");
+  }
   let thisTabId = tabs.activeTab.id;
   if (tabsBeingShot[thisTabId] !== true) {
     tabsBeingShot[thisTabId] = true;
-    let shotContext = shooter.ShotContext(exports.getBackend(), () => {
+    let shotContext = shooter.ShotContext(backend, () => {
       delete tabsBeingShot[thisTabId];
     });
     req.sendEvent("start-shot", source);
