@@ -306,11 +306,14 @@ const ShotContext = Class({
         this.checkIfPublic({passwordFields});
         this.shot.update(attrs);
       }, this)));
+      // FIXME We may want to parameterize this function so full screen thumbnails can be turned on
+      /*
       promises.push(watchPromise(this.makeFullScreenThumbnail().then((screenshot) => {
         this.shot.update({
           fullScreenThumbnail: screenshot
         });
       })));
+      */
       promises.push(watchPromise(callScript(
         this.tab,
         self.data.url("framescripts/make-static-html.js"),
