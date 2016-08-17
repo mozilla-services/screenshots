@@ -34,6 +34,18 @@ let loadReason = null; // eslint-disable-line no-unused-vars
 let initialized = false;
 let tabsBeingShot = {};
 
+function cleanUpTabsBeingShot(tab) {
+  delete tabsBeingShot[tab.id];
+}
+
+for (let tab of tabs) {
+  tab.on("pageshow", cleanUpTabsBeingShot);
+}
+
+tabs.on("open", function(tab) {
+  tab.on("pageshow", cleanUpTabsBeingShot);
+});
+
 // FIXME turn off the tour for now until it gets some love.
 const ENABLE_FTU = false;
 
