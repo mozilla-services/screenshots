@@ -3,6 +3,7 @@
 const React = require("react");
 const ReactDOM = require("react-dom");
 const linker = require("./linker");
+const { gaScript } = require("./ga-activation");
 
 exports.HeadTemplate = class HeadTemplate extends React.Component {
 
@@ -14,6 +15,7 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
         <meta charSet="UTF-8" />
         <title>{this.props.title}</title>
         <link rel="shortcut icon" href={this.props.staticLink("img/pageshot-icon-32.png")} />
+        { gaScript }
         {this.props.children}
       </head>
     );
