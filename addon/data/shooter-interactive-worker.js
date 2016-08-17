@@ -289,9 +289,13 @@ stateHandlers.crosshairs = {
   },
 
   mousemove: function (event) {
-    let x = snapping.guessX(event.pageX);
-    let y = snapping.guessY(event.pageY);
-    ui.Crosshair.display(x, y);
+    if (ui.isHeader(event.target)) {
+      ui.Crosshair.remove();
+    } else {
+      let x = snapping.guessX(event.pageX);
+      let y = snapping.guessY(event.pageY);
+      ui.Crosshair.display(x, y);
+    }
   },
 
   mousedown: function (event) {
