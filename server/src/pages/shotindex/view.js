@@ -1,5 +1,6 @@
 /* globals location, controller, sendEvent */
 const reactruntime = require("../../reactruntime");
+const { Footer } = require("../../footer-view.js");
 const React = require("react");
 const ReactDOM = require("react-dom");
 
@@ -47,6 +48,9 @@ class Body extends React.Component {
         <div id="shot-index">
           {children}
         </div>
+        <Footer>
+          <a href="/delete-account">Disable account / delete all shots</a>
+        </Footer>
       </reactruntime.BodyTemplate>
     );
   }
