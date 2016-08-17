@@ -39,19 +39,23 @@ $overlay-z-index: 900000;
 }
 
 .pageshot-highlight {
+  @extend .pageshot-reset;
   position: absolute;
   border: 1px solid #000;
   z-index: $overlay-z-index;
 }
 
 .pageshot-highlight-buttons {
+  @extend .pageshot-reset;
   position: absolute;
   bottom: 35px;
   right: 35px;
   font-size: 14pt;
+  text-transform: none;
 }
 
 .pageshot-highlight-button-cancel {
+  @extend .pageshot-reset;
   height: 28px;
   width: 80px;
   border-radius: 4px;
@@ -64,6 +68,7 @@ $overlay-z-index: 900000;
 }
 
 .pageshot-highlight-button-save {
+  @extend .pageshot-reset;
   height: 28px;
   width: 80px;
   border-radius: 4px;
