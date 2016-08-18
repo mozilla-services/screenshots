@@ -623,21 +623,6 @@ app.get("/__version__", function (req, res) {
   res.send(JSON.stringify(response));
 });
 
-app.post("/delete", function (req, res) {
-  if (! req.deviceId) {
-    return simpleResponse(res, "You must have the addon installed delete your account", 403);
-  }
-  // FIXME: this just gets deleted due to ON DELETE CASCADE
-  // Maybe we should keep but anonymize device_activity on account deletion
-  addDeviceActivity(req.deviceId, "delete-account");
-  Shot.deleteEverythingForDevice(req.backend, req.deviceId).then(() => {
-    return simpleResponse(res, "Goodbye.", 200);
-  }).catch((e) => {
-    console.error("An error occurred trying to delete:", e);
-    return simpleResponse(res, "An error occurred.", 500);
-  });
-});
-
 // FIXME: this can't the right way to do this...
 require("./exporter").setup(app);
 
@@ -782,6 +767,8 @@ app.use("/admin", require("./pages/admin/server").app);
 */
 
 app.use("/shots", require("./pages/shotindex/server").app);
+
+app.use("/delete-account", require("./pages/delete-account/server").app);
 
 const contentApp = express();
 

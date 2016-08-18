@@ -59,7 +59,7 @@ exports.unhandled = function (error) {
 /** Turns an exception object (likely Error) into what might be a kind of
     useful error message (as should be passed to unhandled) */
 exports.makeError = function (error) {
-  if (error instanceof Error || (error.name && error.message)) {
+  if (error && (error instanceof Error || (error.name && error.message))) {
     let obj = {
       name: error.name,
       message: error.message,
