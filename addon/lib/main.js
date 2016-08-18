@@ -209,7 +209,7 @@ function takeShot(source) {
     throw new Error("You can't take a shot of a Page Shot page.");
   }
   if (url.startsWith("resource:") || url === "about:blank" || url === "about:newtab") {
-    exports.openMyShots();
+    tabs.activeTab.url = exports.getBackend() + "/shots";
     return;
   }
   let thisTabId = tabs.activeTab.id;
