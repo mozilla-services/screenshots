@@ -83,23 +83,27 @@ const gaJs = `
     }
     gaOptions.cookieDomain = "none";
   }
-  if (__HASH_LOCATION__ && window.crypto) {
-    var bytes = [];
-    for (var i=0; i<location.pathname.length; i++) {
-      bytes.push(location.pathname.charAt(i));
-    }
-    window.crypto.subtle.digest("sha-256", new Uint8Array(bytes)).then(function (result) {
-      result = new Uint8Array(result);
-      var c = [];
-      for (var i=0; i<10; i++) {
-        c.push(result[i].toString(16));
+  if (__HASH_LOCATION__) {
+    if (window.crypto) {
+      var bytes = [];
+      for (var i=0; i<location.pathname.length; i++) {
+        bytes.push(location.pathname.charAt(i));
       }
-      gaLocation = "/a-shot/" + c.join("");
+      window.crypto.subtle.digest("sha-256", new Uint8Array(bytes)).then(function (result) {
+        result = new Uint8Array(result);
+        var c = [];
+        for (var i=0; i<10; i++) {
+          c.push(result[i].toString(16));
+        }
+        gaLocation = "/a-shot/" + c.join("");
+        finish();
+      });
+    } else {
+      gaLocation = "/a-shot/unknown";
       finish();
-    });
+    }
   } else {
-    gaLocation = "/a-shot/unknown";
-    finish();
+    gaLocation = null;
   }
   function finish() {
     ga("create", "__GA_ID__", gaOptions);
@@ -130,7 +134,12 @@ window.sendEvent = function (event, action, label, options) {
 
 exports.gaScript = [
   <script src="//www.google-analytics.com/analytics.js" async key="gaScript"></script>,
-  <script src="/ga-activation.js" />
+  <script src="/ga-activation.js" key="gaActivation" />
+];
+
+exports.gaScriptHashed = [
+  exports.gaScript[0],
+  <script src="/ga-activation-hashed.js" key="gaActivation" />
 ];
 
 const idRegex = /^[a-zA-Z0-9_.,-]+$/;

@@ -201,6 +201,11 @@ app.get("/ga-activation.js", function (req, res) {
   jsResponse(res, script);
 });
 
+app.get("/ga-activation-hashed.js", function (req, res) {
+  let script = gaActivation.makeGaActivationString(config.gaId, req.deviceId, true);
+  jsResponse(res, script);
+});
+
 app.get("/trigger-error", function (req, res) {
   throw new Error("test error");
 });
