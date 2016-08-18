@@ -49,7 +49,7 @@ class Body extends React.Component {
           {children}
         </div>
         <Footer>
-          <a href="/delete-account">Disable account / delete all shots</a>
+          <a href="/delete-account">Delete account / delete all shots</a>
         </Footer>
       </reactruntime.BodyTemplate>
     );

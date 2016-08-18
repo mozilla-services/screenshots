@@ -9,14 +9,7 @@ exports.app = app;
 
 app.get("/", function (req, res) {
   if (! req.deviceId) {
-    res.status(403).send(`
-      <html>
-        <head><title>Forbidden</title></head>
-        <body>
-          You must have the addon installed to see your shot index
-        </body>
-      </html>
-    `);
+    res.status(403).send("You must have the addon installed to delete your account");
     return;
   }
   const page = require("./page").page;
@@ -25,7 +18,7 @@ app.get("/", function (req, res) {
 
 app.post("/delete", function (req, res) {
   if (! req.deviceId) {
-    res.status(403).send("You must have the addon installed delete your account");
+    res.status(403).send("You must have the addon installed to delete your account");
   }
   // FIXME: this just gets deleted due to ON DELETE CASCADE
   // Maybe we should keep but anonymize device_activity on account deletion
