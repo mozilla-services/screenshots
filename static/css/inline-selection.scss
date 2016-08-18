@@ -50,13 +50,17 @@ $overlay-z-index: 900000;
   position: absolute;
   bottom: 35px;
   right: 35px;
-  font-size: 14pt;
-  text-transform: none;
   z-index: 6;
 }
 
 .pageshot-highlight-button-cancel {
   @extend .pageshot-reset;
+  display: inline-block;
+  font-size: 12pt;
+  font-weight: normal;
+  font-family: sans-serif;
+  text-transform: none;
+  text-indent: 0;
   height: 28px;
   width: 80px;
   border-radius: 4px;
@@ -70,6 +74,12 @@ $overlay-z-index: 900000;
 
 .pageshot-highlight-button-save {
   @extend .pageshot-reset;
+  display: inline-block;
+  font-size: 12pt;
+  font-weight: normal;
+  font-family: sans-serif;
+  text-transform: none;
+  text-indent: 0;
   height: 28px;
   width: 80px;
   border-radius: 4px;
@@ -313,7 +323,11 @@ $overlay-z-index: 900000;
   padding-right: 15px;
   vertical-align: middle;
   background-image: none;
+  font-size: 12pt;
   font-weight: normal;
+  font-family: sans-serif;
+  text-transform: none;
+  text-indent: 0;
   border-radius: 4px;
   border: none;
   background: #ddd;
