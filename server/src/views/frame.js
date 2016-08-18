@@ -6,7 +6,7 @@ const ReactDOMServer = require("react-dom/server");
 const { getGitRevision } = require("../linker");
 // const { ProfileButton } = require("./profile");
 const { addReactScripts } = require("../reactutils");
-const { gaScript } = require("../ga-activation");
+const { gaScriptHashed } = require("../ga-activation");
 
 class ShareButtons extends React.Component {
   constructor(props) {
@@ -265,7 +265,7 @@ class Head extends React.Component {
         <script nonce={ this.props.cspNonce } dangerouslySetInnerHTML={{__html: `Raven.config("${this.props.sentryPublicDSN}").install(); window.Raven = Raven;`}}></script>,
       ]);
     }
-    js.push(gaScript);
+    js.push(gaScriptHashed);
     if (this.props.simple) {
       js = [];
     }
