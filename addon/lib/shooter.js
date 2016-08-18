@@ -16,7 +16,7 @@ const { Class } = require('sdk/core/heritage');
 const { watchPromise, watchFunction, watchWorker } = require("./errors");
 const clipboard = require("sdk/clipboard");
 const { AbstractShot } = require("./shared/shot");
-const { getDeviceInfo } = require("./user");
+const { getDeviceIdInfo } = require("./user");
 const { URL } = require("sdk/url");
 const notifications = require("sdk/notifications");
 const { randomString } = require("./randomstring");
@@ -91,8 +91,8 @@ const ShotContext = Class({
     this.id = ++ShotContext._idGen;
     this.tab = tabs.activeTab;
     this.tabUrl = this.tab.url;
-    let deviceInfo = getDeviceInfo();
-    if (! deviceInfo) {
+    let deviceIdInfo = getDeviceIdInfo();
+    if (! deviceIdInfo) {
       throw new Error("Could not get device authentication information");
     }
     this.onDestroyed = onDestroyed;
@@ -101,7 +101,7 @@ const ShotContext = Class({
       randomString(RANDOM_STRING_LENGTH) + "/" + urlDomainForId(this.tabUrl),
       {
         url: this.tabUrl,
-        deviceId: deviceInfo.deviceId
+        deviceId: deviceIdInfo.deviceId
       });
     this._deregisters = [];
     this._workerActive = false;
@@ -558,14 +558,14 @@ exports.autoShot = function (options) {
       console.log('Abandon hope all ye who enter!');
       return;
     }
-    let deviceInfo = getDeviceInfo();
-    if (! deviceInfo) {
+    let deviceIdInfo = getDeviceIdInfo();
+    if (! deviceIdInfo) {
       throw new Error("Could not get device authentication information");
     }
 
     var shot = new Shot(backend, backendUrl, {
       url: tab.url,
-      deviceId: deviceInfo.deviceId,
+      deviceId: deviceIdInfo.deviceId,
       showPage: true
     });
 

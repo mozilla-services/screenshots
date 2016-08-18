@@ -1,5 +1,6 @@
 const { Cu } = require('chrome');
 const ss = require("sdk/simple-storage");
+const { prefs } = require("sdk/simple-prefs");
 const { uuid } = require('sdk/util/uuid');
 const { Request } = require("sdk/request");
 const { watchFunction, watchPromise } = require("./errors");
@@ -11,13 +12,30 @@ const { deviceInfo } = require('./deviceinfo');
 let initialized = false;
 let sentryPublicDSN = "";
 
+function getDeviceIdInfo() {
+  let info = prefs.deviceIdInfo || "null";
+  try {
+    return JSON.parse(info) || {};
+  } catch (e) {
+    console.error("Error: could not parse deviceIdInfo:", info);
+    return {};
+  }
+}
+
+exports.getDeviceIdInfo = getDeviceIdInfo;
+
+function setDeviceIdInfo(info) {
+  prefs.deviceIdInfo = JSON.stringify(info);
+}
+
+
 exports.getSentryPublicDSN = function() {
   return sentryPublicDSN;
 };
 
 exports.deleteEverything = function () {
   let backend = require("./main").getBackend();
-  ss.storage.deviceInfo = null;
+  setDeviceIdInfo(null);
   require("./shotstore").deleteEverything();
   // Once we have deleted everything associated with the old account,
   // we need to re-initialize to give us a new random deviceId, otherwise
@@ -35,31 +53,31 @@ exports.initialize = function (backend, reason) {
   // This lets us retry initialize() with no parameters later if necessary:
   cachedBackend = backend = backend || cachedBackend;
   cachedReason = reason = reason || cachedReason;
+  let deviceIdInfo = getDeviceIdInfo();
   return new Promise((resolve, reject) => {
-    if (! (ss.storage.deviceInfo && ss.storage.deviceInfo.deviceId && ss.storage.deviceInfo.secret)) {
-      let info = {
+    if (! (deviceIdInfo && deviceIdInfo.deviceId && deviceIdInfo.secret)) {
+      let newInfo = {
         deviceId: "anon" + makeUuid() + "",
         secret: makeUuid()+"",
         reason,
         deviceInfo: JSON.stringify(deviceInfo())
       };
-      console.info("Generating new device authentication ID", info.deviceId);
-      watchPromise(saveLogin(backend, info).then(function () {
-        ss.storage.deviceInfo = info;
+      console.info("Generating new device authentication ID", newInfo.deviceId);
+      watchPromise(saveLogin(backend, newInfo).then(function () {
+        setDeviceIdInfo(newInfo);
         console.info("Successfully saved ID");
         resolve();
       })).catch((error) => {
         reject(error);
       });
     } else {
-      let info = ss.storage.deviceInfo;
       let loginUrl = backend + "/api/login";
       Request({
         url: loginUrl,
         contentType: "application/x-www-form-urlencoded",
         content: {
-          deviceId: info.deviceId,
-          secret: info.secret,
+          deviceId: deviceIdInfo.deviceId,
+          secret: deviceIdInfo.secret,
           reason,
           deviceInfo: JSON.stringify(deviceInfo())
         },
@@ -67,7 +85,7 @@ exports.initialize = function (backend, reason) {
           if (response.status == 404) {
             // Need to save login anyway...
             console.info(`Login to ${loginUrl} failed with 404, trying to register`);
-            watchPromise(saveLogin(backend, info)).then(
+            watchPromise(saveLogin(backend, deviceIdInfo)).then(
               () => {
                 resolve();
               },
@@ -123,10 +141,6 @@ function makeUuid() {
   let s = uuid() + "";
   return s.replace(/\{/g, "").replace(/\}/g, "");
 }
-
-exports.getDeviceInfo = function () {
-  return ss.storage.deviceInfo;
-};
 
 // Serializes profile updates to ensure that concurrent writes don't clobber
 // one another (e.g., if a user updates her avatar, then immediately changes
