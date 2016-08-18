@@ -204,8 +204,13 @@ exports.showTopbar = showTopbar;
 
 function takeShot(source) {
   let backend = exports.getBackend();
-  if (tabs.activeTab.url.startsWith(backend)) {
+  let url = tabs.activeTab.url;
+  if (url.startsWith(backend)) {
     throw new Error("You can't take a shot of a Page Shot page.");
+  }
+  if (url.startsWith("resource:") || url === "about:blank" || url === "about:newtab") {
+    tabs.activeTab.url = backend + "/shots";
+    return;
   }
   let thisTabId = tabs.activeTab.id;
   if (tabsBeingShot[thisTabId] !== true) {
