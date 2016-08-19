@@ -177,10 +177,42 @@ class Selection {
     }
   }
 
+  get width() {
+    return Math.abs(this.x1 - this.x2);
+  }
+  get height() {
+    return Math.abs(this.y1 - this.y2);
+  }
+
+  checkBump(side) {
+    if (side === "top") {
+      if (this.height <= this.BUMP_LOWER) {
+        this.bottom = snapping.guessY(util.truncateY(this.top + this.BUMP_EXPAND));
+      }
+    } else if (side === "bottom") {
+      if (this.height <= this.BUMP_LOWER) {
+        this.top = snapping.guessY(util.truncateY(this.bottom - this.BUMP_EXPAND));
+      }
+    } else if (side === "left") {
+      if (this.width <= this.BUMP_LOWER) {
+        this.right = snapping.guessX(util.truncateX(this.left + this.BUMP_EXPAND));
+      }
+    } else if (side === "right") {
+      if (this.width <= this.BUMP_LOWER) {
+        this.left = snapping.guessX(util.truncateX(this.right - this.BUMP_EXPAND));
+      }
+    } else {
+      throw new Error("Unexpected direction: " + side);
+    }
+  }
+
   clone() {
     return new Selection(this.x1, this.y1, this.x2, this.y2);
   }
 }
+
+Selection.prototype.BUMP_LOWER = 3;
+Selection.prototype.BUMP_EXPAND = 65;
 
 /** Represents a single x/y point, typically for a mouse click that doesn't have a drag: */
 class Pos {
@@ -491,9 +523,11 @@ stateHandlers.resizing = {
     let movement = movements[resizeDirection];
     if (movement[0]) {
       selectedPos[movement[0]] =  resizeStartSelected[movement[0]] + diffX;
+      selectedPos.checkBump(movement[0]);
     }
     if (movement[1]) {
       selectedPos[movement[1]] = resizeStartSelected[movement[1]] + diffY;
+      selectedPos.checkBump(movement[1]);
     }
     if (diffX || diffY) {
       resizeHasMoved = true;
