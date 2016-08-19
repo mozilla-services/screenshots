@@ -124,7 +124,7 @@ exports.deleteShot = function (shot) {
       // FIXME: a lame way to do an error message
       window.alert("Error deleting shot: " + req.status + " " + req.statusText);
     } else {
-      location.href = model.backend + "/shot-deleted";
+      location.href = model.backend + "/shots";
     }
   };
   req.send(`id=${encodeURIComponent(shot.id)}`);

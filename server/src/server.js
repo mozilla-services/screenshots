@@ -145,7 +145,7 @@ app.use((req, res, next) => {
       req.cspNonce = uuid;
       res.header(
         "Content-Security-Policy",
-        `default-src 'self'; img-src 'self' www.google-analytics.com ${CONTENT_NAME} data:; script-src 'self' www.google-analytics.com 'nonce-${uuid}'; style-src 'self' 'unsafe-inline' https://code.cdn.mozilla.net; connect-src www.google-analytics.com`);
+        `default-src 'self'; img-src 'self' www.google-analytics.com ${CONTENT_NAME} data:; script-src 'self' www.google-analytics.com 'nonce-${uuid}'; style-src 'self' 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' www.google-analytics.com`);
         next();
     } else {
       errorResponse(res, "Error creating nonce:", err);
@@ -550,10 +550,6 @@ app.post("/api/add-saved-shot-data/:id/:domain", function (req, res) {
     errorResponse(res, "Error serving data:", err);
   });
 
-});
-
-app.get("/shot-deleted", function (req, res) {
-  require("./views/shot-deleted").render(req, res);
 });
 
 app.post("/api/set-expiration", function (req, res) {
