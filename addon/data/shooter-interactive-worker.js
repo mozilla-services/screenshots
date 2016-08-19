@@ -614,7 +614,7 @@ function addHandlers() {
         return handler[eventName](event);
       }
     }).bind(null, eventName));
-    document.addEventListener(eventName, fn, false);
+    document.addEventListener(eventName, fn, true);
     registeredDocumentHandlers[eventName] = fn;
   });
   document.addEventListener("keyup", keyupHandler, false);
