@@ -1,0 +1,42 @@
+@mixin item-shadow {
+  box-shadow: $item-shadow;
+
+  &:hover,
+  &.active {
+    box-shadow: $item-shadow-hover;
+    transition: box-shadow 150ms;
+  }
+}
+
+@mixin flex-container($direction, $justification, $alignment, $wrap: nowrap) {
+  display: flex;
+  @if $alignment != 'stretch' {
+    align-items: $alignment;
+  }
+  @if $direction != 'row' {
+    flex-direction: $direction;
+  }
+  @if $justification != 'flex-start' {
+    justify-content: $justification;
+  }
+  @if $wrap != 'nowrap' {
+    flex-wrap: $wrap;
+  }
+}
+
+$breakpoints: (
+  large: '(min-width: 960px)',
+  medium: '(min-width: 720px)',
+  small: '(max-width: 719px)',
+);
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+      @content;
+    }
+  } @else {
+    @warn 'Unfortunately, no value could be retrieved from `#{$breakpoint}`. '
+    + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}

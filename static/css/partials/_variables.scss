@@ -1,0 +1,125 @@
+// FIXME: need to include these from a single location:
+// (also some body styles, currently shared with styles.scss)
+$body-background-color: #f2f2f2;
+$header-background-color: #fff;
+$border-color: rgba(0, 0, 0, .3);
+$bg-color: #FFF;
+$bg-grey: #FBFBFB;
+$very-light-grey: #EBEBEB;
+$light-grey: #A0A0A0;
+$mid-grey: #56565A;
+$dark-grey: #383E49;
+$link-blue: #00AFF7;
+$star-blue: #2B99FF;
+$navy: #383E49;
+$light-navy: #888B92;
+$sidebar-active-item-border-color: #E14164;
+$black: #000;
+$white: #FFF;
+$header-border-color: #DFE0E1;
+$faintest-black: rgba($black, 0.1);
+$faint-black: rgba($black, 0.2);
+$border-radius: 3px;
+$pink: #E6196F;
+$green: #4EB748;
+
+$wrapper-max-width: 696px;
+$break-point: $wrapper-max-width + 40px;
+
+$base-gutter: 24px;
+$section-margin: 41px;
+
+$section-title-font-size: 12px;
+$section-title-color: $light-grey;
+$section-title-bottom-margin: 13px;
+
+$header-box-shadow: 0 4px 2px -3px rgba($black, 0.05);
+$header-nav-width: 250px;
+$header-border: solid 1px $header-border-color;
+
+$tile-gutter: $base-gutter;
+$tile-width: 96px;
+$tile-height: $tile-width;
+$tile-title-height: 22px;
+$tile-font-size: 13px;
+$tile-border: 1px $white;
+$tile-title-bg-color: rgba($white, 0.6);
+$tile-title-hover-color: $white;
+$tile-title-font-size: 11px;
+
+$link-menu-button-size: 27px;
+$link-menu-button-border: 1px solid rgba($black, 0.2);
+$link-menu-button-boxshadow: 0 2px 0 rgba($black, 0.1);
+
+$feed-font-size: 12px;
+$feed-date-font-color: #BFBFBF;
+$feed-date-lighter-font-color: lighten($feed-date-font-color, 10%);
+$feed-gutter-h: 14px;
+$feed-gutter-v: 11px;
+$feed-circle-size: 8px;
+$feed-circle-offset: 16px;
+$feed-icon-size: 40px;
+$feed-hover-color: rgba($black, 0.06);
+$feed-line-color: rgba($black, 0.05);
+$feed-circle-color: #CECECE;
+
+$spotlight-padding: $base-gutter / 2;
+$spotlight-item-height: 270px;
+$spotlight-item-width: ($wrapper-max-width - $base-gutter * 2) / 3;
+$spotlight-img-height: 130px;
+$spotlight-text-height: 86px;
+$spotlight-font-size: 13px;
+$spotlight-icon-height: 35px;
+$spotlight-icon-width: 35px;
+$spotlight-icon-gutter: $base-gutter / 2;
+$spotlight-description-height: 34px;
+$spotlight-title-max-height: 36px;
+$spotlight-title-margin-bottom: 2px;
+
+$timeline-max-width: 3 * $spotlight-item-width + 20px * 2;
+
+$site-icon-border-radius: 3px;
+
+$search-border-radius: 4px;
+$search-margin-top: 52px;
+$search-margin-bottom: 62px;
+$search-height: 36px;
+$search-input-left-label-width: 35px;
+$search-input-border-color: #BFBFBF;
+$search-blue: #0996F8;
+$search-shadow: rgb(96, 181, 255);
+$search-button-grey: #FBFBFB;
+$search-button-border-color: #D4D4D4;
+$search-button-width: 64px;
+$search-text: #666;
+$search-section-background: #F7F7F7;
+$search-border-color: #EAEAEA;
+
+$placeholder-background: transparent;
+$placeholder-border: 1px solid $faintest-black;
+
+$item-shadow: 0 1px 0 0 $faintest-black;
+$item-shadow-hover: 0 1px 0 0 $faintest-black, 0 0 0 5px $faintest-black;
+
+$loader-size: 16px;
+
+$context-menu-border-color: rgba(0, 0, 0, 0.2);
+$context-menu-shadow: 0 5px 10px rgba(0, 0, 0, 0.3), 0 0 0 1px $context-menu-border-color;
+$context-menu-font-size: 14px;
+$context-menu-border-radius: 5px;
+$context-menu-outer-padding: 5px;
+$context-menu-item-padding: 3px 12px;
+
+$icon-size: 16px;
+
+$image-path: '/img/';
+
+$tooltip-height: 50px;
+$tooltip-background-color: #FFF3CE;
+$tooltip-border-radius: 5px;
+$tooltip-border-properties:  1px solid rgba(0, 0, 0, 0.27);
+$tooltip-box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14);
+$tooltip-padding: 10px 30px;
+$tooltip-anchor-width: 8px;
+$tooltip-anchor-height: 8px;
+$tooltip-anchor-margin: -42px 0 0 -24px;

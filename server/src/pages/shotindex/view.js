@@ -31,27 +31,47 @@ class Body extends React.Component {
     }
     if (children.length === 0) {
       if (this.props.defaultSearch) {
-        children = `No shots matching "${this.props.defaultSearch}" found.`
+        children.push(this.renderNoShots(`No shots matching "${this.props.defaultSearch}" found.`));
       } else {
-        children = "You don't have any shots.";
+        children.push(this.renderNoShots("Go forth and take shots!"));
       }
     }
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <form style={{ position: "absolute", right: "25px" }} onSubmit={ this.onSubmitForm.bind(this) }>
-          <input type="text" ref="search" placeholder="search" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />
-          <button>Search</button>
-        </form>
-        <h1 style={{color: "#444", paddingLeft: "40px"}}>
-          <img src={this.props.staticLink("img/pageshot.svg")} style={{height: "30px", width: "32px", marginRight: "10px"}} />
-          PageShot: My Shots</h1>
-        <div id="shot-index">
-          {children}
+        <div className="column-wrapper full-height">
+          <div id="shot-index-header">
+            <h1><a href="/shots">Page Shot</a></h1>
+            <form onSubmit={ this.onSubmitForm.bind(this) }>
+              <span className="search-label" />
+              <input type="text" ref="search" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />
+              <button title="search"></button>
+            </form>
+          </div>
+          <div id="shot-index">
+            <div className="responsive-wrapper row-wrap">
+              {children}
+            </div>
+          </div>
+          <div id="shot-index-footer">
+            <div className="responsive-wrapper row-wrap">
+              <a href="/terms">Terms of Service</a>
+              <a href="/privacy">Privacy Notice</a>
+            </div>
+          </div>
         </div>
         <Footer>
           <a href="/delete-account">Delete account / delete all shots</a>
         </Footer>
       </reactruntime.BodyTemplate>
+    );
+  }
+
+  renderNoShots(msg) {
+    return (
+      <div className="no-shots">
+        <div className="large-icon" />
+        <div className="no-shots-string">{msg}</div>
+      </div>
     );
   }
 
@@ -74,20 +94,21 @@ class Body extends React.Component {
     }
 
     return (
-      <div className="shot" key={shot.id} onClick={this.onOpen.bind(this, shot.viewUrl)}>
-        <a href={shot.viewUrl} className="shot-image-container" style={{
+      <a href={shot.viewUrl}  className="shot" key={shot.id} onClick={this.onOpen.bind(this, shot.viewUrl)}>
+        <div className="shot-image-container" style={{
           backgroundImage: `url(${imageUrl})`
-        }}></a>
+        }}></div>
         <div className="title-container">
-          <h2><a href={shot.viewUrl}>{shot.title}</a></h2>
-          <div className="link-container">
-            {favicon}
-            <a href={shot.url} onClick={ this.onClickOrigUrl.bind(this) }>
-              {shot.urlDisplay}
-            </a>
+          <h4>{shot.title}</h4>
+        </div>
+        <div className="link-container">
+          {favicon}
+          <div>
+            {shot.urlDisplay}
           </div>
         </div>
-      </div>
+        <div className="inner-border"/>
+      </a>
     );
   }
 
@@ -96,6 +117,7 @@ class Body extends React.Component {
       // Don't override what might be an open-in-another-tab click
       return;
     }
+
     sendEvent("goto-shot", "myshots-tile", {useBeacon: true});
     location.href = url;
   }
@@ -114,11 +136,6 @@ class Body extends React.Component {
   onChangeSearch() {
     let val = ReactDOM.findDOMNode(this.refs.search).value;
     this.setState({defaultSearch: val});
-  }
-
-  onClickOrigUrl() {
-    sendEvent("goto-original-url", "myshots-tile", {useBeacon: true});
-    // Allow default action
   }
 }
 
