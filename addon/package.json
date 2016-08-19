@@ -77,5 +77,8 @@
       "hidden": true
     }
   ],
+  "permissions": {
+    "multiprocess": true
+  },
   "updateURL": "https://pageshot.dev.mozaws.net/xpi/mozilla-pageshot.update.rdf"
 }
