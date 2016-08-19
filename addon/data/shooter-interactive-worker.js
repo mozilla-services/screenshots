@@ -434,6 +434,10 @@ stateHandlers.selected = {
 
   mousedown: function (event) {
     let target = event.target;
+    if (target.tagName == "HTML") {
+      // This happens when you click on the scrollbar
+      return;
+    }
     let direction = ui.Box.draggerDirection(target);
     if (direction) {
       sendEvent("start-resize-selection", "handle");
