@@ -552,10 +552,6 @@ app.post("/api/add-saved-shot-data/:id/:domain", function (req, res) {
 
 });
 
-app.get("/shot-deleted", function (req, res) {
-  require("./views/shot-deleted").render(req, res);
-});
-
 app.post("/api/set-expiration", function (req, res) {
   if (! req.deviceId) {
     simpleResponse(res, "Not logged in", 401);
