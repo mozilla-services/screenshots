@@ -6,7 +6,7 @@
   "author": "Ian Bicking",
   "contributors": ["Donovan Preston", "Bram Pitoyo"],
   "homepage": "https://github.com/mozilla-services/pageshot",
-  "icon": "build/addon/data/icons/pageshot.svg",
+  "icon": "data/icons/pageshot.svg",
   "license": "MPL 2.0",
   "version": "0.1.0",
   "main": "./lib/main",
