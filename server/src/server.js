@@ -617,8 +617,11 @@ app.get("/", function (req, res) {
 app.get("/__version__", function (req, res) {
   let response = {
     source: "https://github.com/mozilla-services/pageshot/",
+    description: "PageShot application server",
     version: buildTime,
-    commit: linker.getGitRevision()
+    commit: linker.getGitRevision(),
+    contentOrigin: config.contentOrigin,
+    commitLog: `https://https://github.com/mozilla-services/pageshot/commits/${linker.getGitRevision()}`
   };
   res.header("Content-Type", "application/json; charset=utf-8");
   res.send(JSON.stringify(response));
