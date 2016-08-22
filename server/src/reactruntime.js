@@ -14,6 +14,7 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
       <head>
         <meta charSet="UTF-8" />
         <title>{this.props.title}</title>
+        <link rel="icon" type="image/png" href={this.props.staticLink("img/pageshot-icon-32.png")} />
         <link rel="shortcut icon" href={this.props.staticLink("img/pageshot-icon-32.png")} />
         { gaScript }
         {this.props.children}
