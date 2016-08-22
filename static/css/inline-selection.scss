@@ -299,19 +299,24 @@ $overlay-z-index: 900000;
   left: 0;
   height: 100%;
   width: 100%;
+  margin: 0;
+  padding: 0;
   background-color: rgba(#000, 0.5);
   z-index: $overlay-z-index;
 }
 
 .pageshot-preview-instructions {
   font-size: 12pt;
+  font-family: sans-serif;
   text-align: center;
   padding-top: 1.5em;
   padding-left: 150px;
   padding-right: 150px;
+  vertical-align: middle;
   color: #fff;
   z-index: 999999999;
 }
+
 .pageshot-myshots {
   @extend .pageshot-reset;
   display: block;
@@ -320,6 +325,8 @@ $overlay-z-index: 900000;
   right: 15px;
   height: 38px;
   width: 130px;
+  padding: 0;
+  margin: 0;
   padding-right: 15px;
   vertical-align: middle;
   background-image: none;
@@ -350,6 +357,7 @@ $overlay-z-index: 900000;
 .pageshot-myshots-text {
   @extend .pageshot-reset;
   padding: 10px 10px;
+  vertical-align: middle;
 }
 
 .pageshot-post-myshots {
