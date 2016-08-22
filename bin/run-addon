@@ -100,13 +100,13 @@ while [[ -n "$1" ]] ; do
 done
 
 if [[ -n "$upload" ]] ; then
-  playsound bin/elevator-ding-reverse.mp3
+  which growlnotify > /dev/null && growlnotify -m "Page Shot Add-on build started." || echo "Page Shot Add-on build started."
   make addon xpi
   echo "Uploading to the browser"
   echo "  (if this fails, install: https://addons.mozilla.org/en-US/firefox/addon/autoinstaller/)"
   # Doesn't return any content, leads to an unnecessary error:
   wget --post-file=build/mozilla-pageshot.xpi http://localhost:8888 || echo "no content"
-  playsound bin/elevator-ding.mp3
+  which growlnotify > /dev/null && growlnotify -m "Page Shot Add-on build finished." || echo "Page Shot Add-on build finished."
   exit
 fi
 

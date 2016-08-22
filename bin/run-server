@@ -13,11 +13,11 @@ fi
 
 run () {
   if [[ -n "$restart" ]] ; then
-    playsound bin/hole-punch-reverse.mp3
+    which growlnotify > /dev/null && growlnotify -m "Page Shot Server build started." || echo "Page Shot Server build started."
   fi
   make server
   if [[ -n "$restart" ]] ; then
-    playsound bin/hole-punch.mp3
+    which growlnotify > /dev/null && growlnotify -m "Page Shot Server build finished." || echo "Page Shot Server build finished."
   fi
   node -e 'require("babel-polyfill"); require("./build/server/server");'
 }

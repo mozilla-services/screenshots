@@ -28,6 +28,8 @@ By default, PageShot will connect to a postgres database on localhost:5432. To c
 
 The server will automatically setup the tables in your database, and keep them up to date over time (using [pg-patcher](https://github.com/chilts/pg-patcher/)).
 
+If you have growl and growlnotify installed on Mac OS X, you will get growl notifications when the build has started and completed for the server and the add-on.
+
 We apologize but we have no story for development on Windows.
 
 #### Add-on auto-reloading
