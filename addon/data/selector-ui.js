@@ -97,7 +97,11 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       if (callbacks !== undefined && callbacks.save) {
         // We use onclick here because we don't want addEventListener
         // to add multiple event handlers to the same button
-        this.save.onclick = callbacks.save;
+        this.save.removeAttribute("disabled");
+        this.save.onclick = (e) => {
+          this.save.setAttribute("disabled", "true");
+          callbacks.save(e);
+        };
         this.save.style.display = "";
       } else {
         this.save.style.display = "none";
