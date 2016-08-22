@@ -57,11 +57,6 @@ help () {
   echo "      Use the given server (default localhost:10080)"
 }
 
-playsound () {
-  if [[ -e /usr/bin/afplay ]] ; then
-    afplay $1 &
-  fi
-}
 
 while [[ -n "$1" ]] ; do
   case "$1" in
@@ -100,13 +95,13 @@ while [[ -n "$1" ]] ; do
 done
 
 if [[ -n "$upload" ]] ; then
-  playsound bin/elevator-ding-reverse.mp3
+  which growlnotify > /dev/null && growlnotify -m "Page Shot Add-on build started." || echo "Page Shot Add-on build started."
   make addon xpi
   echo "Uploading to the browser"
   echo "  (if this fails, install: https://addons.mozilla.org/en-US/firefox/addon/autoinstaller/)"
   # Doesn't return any content, leads to an unnecessary error:
   wget --post-file=build/mozilla-pageshot.xpi http://localhost:8888 || echo "no content"
-  playsound bin/elevator-ding.mp3
+  which growlnotify > /dev/null && growlnotify -m "Page Shot Add-on build finished." || echo "Page Shot Add-on build finished."
   exit
 fi
 

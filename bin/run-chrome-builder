@@ -11,15 +11,10 @@ help () {
   echo "  Builds/rebuilds the chrome extension in build/chrome-extension"
 }
 
-playsound () {
-  if [[ -e /usr/bin/afplay ]] ; then
-    afplay $1 &
-  fi
-}
 
 rebuild () {
   make chrome-extension
-  playsound bin/elevator-ding.mp3
+  which growlnotify > /dev/null && growlnotify -m "Page Shot Chrome build started." || echo "Page Shot Chrome build started."
 }
 
 while [[ -n "$1" ]] ; do
