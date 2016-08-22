@@ -321,6 +321,8 @@ stateHandlers.crosshairs = {
   },
 
   mousemove: function (event) {
+    // FIXME remove this if we are sure we never want crosshairs
+    /*
     if (ui.isHeader(event.target)) {
       ui.Crosshair.remove();
     } else {
@@ -328,6 +330,7 @@ stateHandlers.crosshairs = {
       let y = snapping.guessY(event.pageY);
       ui.Crosshair.display(x, y);
     }
+    */
   },
 
   mousedown: function (event) {
