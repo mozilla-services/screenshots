@@ -29,11 +29,6 @@ help () {
   echo "      Do not look for changes to the server and rebuild/restart"
 }
 
-playsound () {
-  if [[ -e /usr/bin/afplay ]] ; then
-    afplay $1 &
-  fi
-}
 
 no_auto=
 restart=

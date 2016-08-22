@@ -57,11 +57,6 @@ help () {
   echo "      Use the given server (default localhost:10080)"
 }
 
-playsound () {
-  if [[ -e /usr/bin/afplay ]] ; then
-    afplay $1 &
-  fi
-}
 
 while [[ -n "$1" ]] ; do
   case "$1" in
