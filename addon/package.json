@@ -80,5 +80,5 @@
   "permissions": {
     "multiprocess": true
   },
-  "updateURL": "https://pageshot.dev.mozaws.net/xpi/mozilla-pageshot.update.rdf"
+  "updateURL": "https://testpilot.firefox.com/files/pageshot/updates.json"
 }
