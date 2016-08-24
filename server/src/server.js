@@ -490,6 +490,9 @@ app.get("/data/:id/:domain", function (req, res) {
       simpleResponse(res, "No such shot", 404);
     } else {
       let value = data.value;
+      value = JSON.parse(value);
+      delete value.deviceId;
+      value = JSON.stringify(value);
       if ('format' in req.query) {
         value = JSON.stringify(JSON.parse(value), null, '  ');
       }
