@@ -41,6 +41,11 @@ resizeStartPos (x/y position where resizing started)
 
 var isChrome = false;
 
+let annotateForPage = false;
+if (! isChrome && self.options.annotateForPage) {
+  annotateForPage = true;
+}
+
 function sendEvent(event, action, label) {
   if (isChrome) {
     chromeShooter.sendAnalyticEvent(event, action, label);
@@ -565,7 +570,9 @@ function reportSelection(captureType) {
     console.info("Suppressing null selection");
     return;
   }
-  annotatePosition(pos);
+  if (annotateForPage) {
+    annotatePosition(pos);
+  }
   if (isChrome) {
     chromeShooter.sendAnalyticEvent("addon", "made-selection");
     chromeShooter.saveSelection(pos, selectedText, captureType);
@@ -591,7 +598,9 @@ function getScreenPosition() {
   // FIXME: maybe annotating based on the corners is a bad idea,
   // should instead annotate based on an inner element, and not worry about
   // left and right
-  annotatePosition(pos);
+  if (annotateForPage) {
+    annotatePosition(pos);
+  }
   return pos;
 }
 

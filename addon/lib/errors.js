@@ -33,13 +33,14 @@ exports.unhandled = function (error) {
   // TODO: remove this circular dependency
   panel.show({position: require("./main").shootButton});
   let errorObj = error;
-  if (error.help || error.message || error.name) {
+  if (error && (error.help || error.message || error.name)) {
     errorObj = error;
   } else {
     errorObj = JSON.stringify(error);
     if (errorObj == "{}") {
       errorObj = error + "";
     }
+    errorObj = {message: errorObj};
   }
   errorObj.sentryPublicDSN = user.getSentryPublicDSN();
 
@@ -96,9 +97,9 @@ exports.makeError = function (error) {
 exports.watchPromise = function (promise) {
   return promise.catch(function (error) {
     let exc = exports.makeError(error);
-    console.error("Promise rejected with error:", exc);
+    console.error("Promise rejected with error:", exc || error);
     exports.unhandled(exc);
-    return error;
+    throw error;
   });
 };
 
