@@ -557,6 +557,7 @@ exports.autoShot = function (options) {
   let useReadability = options.useReadability === undefined ? prefs.useReadability : options.useReadability;
   let allowUnknownAttributes = !! options.allowUnknownAttributes;
   let thumbnailWidth = options.thumbnailWidth !== undefined ? options.thumbnailWidth : 140;
+  let debugInlineCss = !! options.debugInlineCss;
   return watchPromise(callScript(
     tab,
     self.data.url("framescripts/add-ids.js"),
@@ -599,7 +600,7 @@ exports.autoShot = function (options) {
       tab,
       self.data.url("framescripts/make-static-html.js"),
       "pageshot@documentStaticData",
-      {prefInlineCss: inlineCss, allowUnknownAttributes, annotateForPage: true})).then(watchFunction(function (attrs) {
+      {prefInlineCss: inlineCss, debugInlineCss, allowUnknownAttributes, annotateForPage: true})).then(watchFunction(function (attrs) {
         shot.update(attrs);
       }, this)));
 

@@ -126,6 +126,7 @@ function handleDataRequest(request, response) {
     return;
   }
   let inlineCss = toBool(query.inlineCss, prefs.inlineCss);
+  let debugInlineCss = toBool(query.debugInlineCss, false);
   let useReadability = toBool(query.useReadability, prefs.useReadability);
   let allowUnknownAttributes = toBool(query.allowUnknownAttributes, false);
   let delayAfterLoad = query.delayAfterLoad ? parseInt(query.delayAfterLoad, 10) : 0;
@@ -158,6 +159,7 @@ function handleDataRequest(request, response) {
           backend,
           backendUrl,
           inlineCss,
+          debugInlineCss,
           useReadability,
           thumbnailWidth,
           allowUnknownAttributes,

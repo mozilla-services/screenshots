@@ -1,0 +1,85 @@
+#!/usr/bin/env python
+"""
+This script helps you analyze some page on the internet using PageShot scraping
+
+You have to have PageShot installed and running locally in server mode.
+
+Usage:
+
+    $ analyze-page URL > results.md
+
+This creates a report about the page, including information on all the CSS rules
+that aren't used in the page, and a list of resources (e.g., images) that ARE
+used on a page.
+
+You can do this on a couple pages (ideally all unique pages from your site) and
+see if a rule isn't used anywhere.  You also will have a list of resources, and
+can look for files that aren't on that list.
+"""
+import urllib
+import sys
+import json
+import os
+import re
+import urlparse
+
+if not sys.argv[1:] or '-h' in sys.argv:
+    print("Usage:")
+    print("  analyze-page URL > results.md")
+    print("  To set host:")
+    print("    PAGESHOT_HOST=http://localhost:10082 analyze-page URL")
+    sys.exit()
+
+port = os.environ.get("PAGESHOT_HOST", 10082)
+
+url = sys.argv[1]
+parsed = urlparse.urlparse(url)
+base_url = "%s://%s/" % (parsed.scheme, parsed.netloc)
+
+pageshot = "http://localhost:%s/data/?url=%s&inlineCss=true&debugInlineCss=true" % (port, urllib.quote(url))
+
+response = urllib.urlopen(pageshot).read()
+try:
+    page = json.loads(response)
+except:
+    print("Bad response:")
+    print(response)
+    raise
+
+def display_url(u):
+    if u.startswith(base_url):
+        u = "/" + u[len(base_url):]
+    u = re.sub(r'\?.*', '', u)
+    return u
+
+omitted = re.compile(r'Omitted: (.*?) \(from ([^)]*)\) [*]/')
+styles = {}
+for match in omitted.finditer(page["head"]):
+    rule = match.group(1)
+    href = match.group(2)
+    if href not in styles:
+        styles[href] = []
+    styles[href].append(rule)
+if styles:
+    print("# Unused CSS rules:")
+    for href in sorted(styles):
+        short = display_url(href)
+        if short != href:
+            print("  - [%s](%s)" % (short, href))
+        else:
+            print("  - %s" % href)
+        for rule in styles[href]:
+            print("    - `%s`" % rule)
+    print("")
+else:
+    print("# No unused CSS rules")
+
+print("")
+print("# Used resources:")
+for resource in page["resources"].values():
+    resource_url = resource["url"]
+    short = display_url(resource_url)
+    if short != resource_url:
+        print("  - [%s](%s)" % (short, resource_url))
+    else:
+        print("  - %s" % resource_url)
