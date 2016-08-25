@@ -48,6 +48,7 @@ const makeStaticHtml = (function () { // eslint-disable-line no-unused-vars
   var prefInlineCss = false;
   var allowUnknownAttributes = false;
   var annotateForPage = false;
+  var debugInlineCss = false;
 
   function getDocument() {
     if (isChrome) {
@@ -405,7 +406,7 @@ const makeStaticHtml = (function () { // eslint-disable-line no-unused-vars
     xmlns: "*"
   };
 
-  /** true if this element should be skipped when sending to the mirror */
+  /** true if this element should be skipped/removed from the frozen DOM */
   function skipElement(el) {
     var tag = el.tagName;
     if (skipElementsBadTags[tag]) {
@@ -751,6 +752,11 @@ const makeStaticHtml = (function () { // eslint-disable-line no-unused-vars
       skipRule: function (rule) {
         this.rulesOmitted++;
         this.charsOmitted += rule.cssText.length;
+        if (debugInlineCss) {
+          let parentHref = rule.parentStyleSheet;
+          parentHref = parentHref ? parentHref.href : "unknown";
+          this.rules.push(`/* Omitted: ${rule.cssText} (from ${parentHref}) */`);
+        }
       },
       toString: function () {
         let styles = [];
@@ -1013,6 +1019,7 @@ const makeStaticHtml = (function () { // eslint-disable-line no-unused-vars
         prefInlineCss = event.data.prefInlineCss;
         allowUnknownAttributes = event.data.allowUnknownAttributes;
         annotateForPage = event.data.annotateForPage;
+        debugInlineCss = event.data.debugInlineCss;
         documentStaticData().then((result) => {
           send(result);
         }).catch((error) => {
