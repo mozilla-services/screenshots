@@ -29,6 +29,8 @@ exports.showTourOnNextLinkClick = function() {
   shouldShowTour = true;
 };
 
+let defaultAnnotateForPage = false;
+
 const RANDOM_STRING_LENGTH = 16;
 
 function escapeForHTML(text) {
@@ -79,7 +81,7 @@ function extractWorker(tab, options) {
         return;
       }
       clearTimeout(timeoutId);
-      reject(error);
+      reject(error || "Unknown script error");
     });
   });
 }
@@ -87,7 +89,8 @@ function extractWorker(tab, options) {
 /** Represents one shot action */
 const ShotContext = Class({
   _idGen: 0,
-  initialize: function (backend, onDestroyed) {
+  initialize: function (backend, onDestroyed, annotateForPage) {
+    this.annotateForPage = annotateForPage === undefined ? annotateForPage : defaultAnnotateForPage;
     this.id = ++ShotContext._idGen;
     this.tab = tabs.activeTab;
     this.tabUrl = this.tab.url;
@@ -199,7 +202,8 @@ const ShotContext = Class({
         self.data.url("shooter-interactive-worker.js")],
       contentScriptOptions: {
         "inline-selection.css": self.data.url("inline-selection.css"),
-        showMyShotsReminder: ! prefs.hasUsedMyShots
+        showMyShotsReminder: ! prefs.hasUsedMyShots,
+        annotateForPage: this.annotateForPage
       }
     }));
     this.interactiveWorker.port.on("select", watchFunction(function (pos, shotText, captureType) {
@@ -288,7 +292,7 @@ const ShotContext = Class({
       this.tab,
       self.data.url("framescripts/add-ids.js"),
       "pageshot@addIds",
-      {}
+      {annotateForPage: this.annotateForPage}
     ).then((function (result) {
       if (result.isXul) {
         // Abandon hope all ye who enter!
@@ -318,15 +322,25 @@ const ShotContext = Class({
         this.tab,
         self.data.url("framescripts/make-static-html.js"),
         "pageshot@documentStaticData",
-        {prefInlineCss},
-        15000)).then(watchFunction(function (attrs) {
+        {prefInlineCss, annotateForPage: this.annotateForPage},
+        15000)).then((attrs) => {
           this.shot.update(attrs);
-        }, this)));
-      promises.push(watchPromise(getFavicon(this.tab).then((url) => {
-        this.shot.update({
-          favicon: url
-        });
-      })));
+        })
+      );
+      promises.push(watchPromise(getFavicon(this.tab).then(
+        (url) => {
+          this.shot.update({
+            favicon: url
+          });
+        },
+        (error) => {
+          // if there is no favicon, this is just null, which isn't an error
+          if (! error) {
+            return;
+          }
+          throw error;
+        }
+      )));
       watchPromise(allPromisesComplete(promises).then(this._collectionCompleteDone));
     }).bind(this)));
   },
@@ -494,18 +508,15 @@ Shot.prototype.btoa = require("sdk/base64").encode;
 /** Returns a promise that resolves when all the promises in the array are complete
     (regardless of success or failure of each promise!) */
 function allPromisesComplete(promises) {
-  var deferred = defer();
-  var count = promises.length;
-  function done() {
-    count--;
-    if (! count) {
-      deferred.resolve();
-    }
+  function swallowPromise(promise, index) {
+    return promise.then(
+      () => {},
+      (error) => {
+        console.error("Non-fatal error in promise " + index + ": " + error);
+      }
+    );
   }
-  for (var i=0; i<promises.length; i++) {
-    promises[i].then(done, done);
-  }
-  return deferred.promise;
+  return Promise.all(promises.map(swallowPromise));
 }
 
 /** Returns the domain of a URL, but safely and in ASCII; URLs without domains
@@ -550,8 +561,8 @@ exports.autoShot = function (options) {
     tab,
     self.data.url("framescripts/add-ids.js"),
     "pageshot@addIds",
-    {}
-  ).then((function (result) {
+    {annotateForPage: true}
+  ).then((result) => {
     if (result.isXul) {
       // Abandon hope all ye who enter!
       // FIXME: maybe pop up an explanation here?
@@ -571,11 +582,10 @@ exports.autoShot = function (options) {
 
     // Heavy lifting happens here
     var promises = [];
-    promises.push(watchPromise(extractWorker(tab, {useReadability})).then(watchFunction(function (attrs) {
+    promises.push(watchPromise(extractWorker(tab, {useReadability, annotateForPage: true})).then(watchFunction(function (attrs) {
       delete attrs.passwordFields;
       shot.update(attrs);
     }, this)));
-    console.log("Capturing with thumbnail width", thumbnailWidth);
     if (thumbnailWidth) {
       promises.push(watchPromise(
         captureTab(tab, {x: 0, y: 0, h: "full", w: "full"}, {h: null, w: thumbnailWidth}).then((screenshot) => {
@@ -589,7 +599,7 @@ exports.autoShot = function (options) {
       tab,
       self.data.url("framescripts/make-static-html.js"),
       "pageshot@documentStaticData",
-      {prefInlineCss: inlineCss, allowUnknownAttributes})).then(watchFunction(function (attrs) {
+      {prefInlineCss: inlineCss, allowUnknownAttributes, annotateForPage: true})).then(watchFunction(function (attrs) {
         shot.update(attrs);
       }, this)));
 
@@ -603,7 +613,7 @@ exports.autoShot = function (options) {
         return shot;
       }
     }).bind(this)));
-  })));
+  }));
 };
 exports.urlDomainForId = urlDomainForId;
 exports.RANDOM_STRING_LENGTH = RANDOM_STRING_LENGTH;

@@ -47,6 +47,7 @@ const makeStaticHtml = (function () { // eslint-disable-line no-unused-vars
   // we store it in a global:
   var prefInlineCss = false;
   var allowUnknownAttributes = false;
+  var annotateForPage = false;
 
   function getDocument() {
     if (isChrome) {
@@ -912,13 +913,13 @@ const makeStaticHtml = (function () { // eslint-disable-line no-unused-vars
     console.info("serializing setup took " + (Date.now() - start) + " milliseconds");
 
     let promises = [];
-    if (body) {
+    if (body && annotateForPage) {
       promises.push(asyncStaticChildren(body).then((bodyHtml) => {
         result.body = bodyHtml;
         console.info("static body serializing took " + (Date.now() - start) + " milliseconds");
       }));
     }
-    if (head) {
+    if (head && annotateForPage) {
       promises.push(asyncStaticChildren(head).then((headHtml) => {
         if (prefInlineCss) {
           let style = createStyle(getDocument());
@@ -1011,6 +1012,7 @@ const makeStaticHtml = (function () { // eslint-disable-line no-unused-vars
       try {
         prefInlineCss = event.data.prefInlineCss;
         allowUnknownAttributes = event.data.allowUnknownAttributes;
+        annotateForPage = event.data.annotateForPage;
         documentStaticData().then((result) => {
           send(result);
         }).catch((error) => {

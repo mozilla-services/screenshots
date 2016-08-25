@@ -48,7 +48,9 @@ const addIds = (function () { // eslint-disable-line no-unused-vars
         result = {isXul: true};
       } else {
         try {
-          exports.setIds();
+          if (event.data.annotateForPage) {
+            exports.setIds();
+          }
           result = {isXul: false};
         } catch (e) {
           console.error("Error getting static HTML:", e);

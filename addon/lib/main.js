@@ -302,7 +302,7 @@ exports.main = function (options) {
       showTour();
     }
   }).catch((error) => {
-    console.warn("Failed to log in to server:", exports.getBackend(), error+"");
+    console.warn("Failed to log in to server:", exports.getBackend(), error+"", error.stack);
   });
 };
 
