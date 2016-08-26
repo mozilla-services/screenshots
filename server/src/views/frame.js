@@ -275,7 +275,6 @@ class Head extends React.Component {
         <title>{this.props.shot.title}</title>
         {js}
         <link rel="stylesheet" href={ this.props.staticLink("css/styles.css") } />
-        <link rel="stylesheet" href={ this.props.staticLink("css/profile.css") } />
         <link rel="icon" type="image/png" href={this.props.staticLink("img/pageshot-icon-32.png")} />
         <link rel="shortcut icon" href={this.props.staticLink("img/pageshot-icon-32.png")} />
         <meta property="og:type" content="website" />
@@ -457,27 +456,6 @@ class Frame extends React.Component {
     }
 
     let shotRedirectUrl = `/redirect?to=${encodeURIComponent(shot.url)}`;
-
-    /*
-    <div id="full-screen-thumbnail">
-      <img src={ this.props.shot.fullScreenThumbnail } onClick={ this.clickFullPageButton.bind(this) } />
-    </div>
-    */
-
-    /*
-    <div id="profile-widget">
-      <ProfileButton
-        staticLink={ this.props.staticLink }
-        initialExpanded={ false }
-        avatarurl={ this.props.avatarurl }
-        nickname={ this.props.nickname }
-        email={ this.props.email }
-        deviceId={ this.props.deviceId }
-        simple={ this.props.simple }
-        allowExport={ this.props.allowExport }
-      />
-    </div>
-    */
 
     if (this.state.sharePanelDisplay) {
       shareButtons = <ShareButtons
