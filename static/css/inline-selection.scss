@@ -16,7 +16,7 @@ $handle-outside-extent: 0;
 // And some calculated values based on these that will be used below:
 $handle-mover-offset: $mover-outer - $handle-outside-extent / 2;
 $mover-size: $mover-outer + $mover-inner;
-$overlay-z-index: 900000;
+$overlay-z-index: 9999999999;
 
 .pageshot-hide-selection .pageshot-highlight,
 .pageshot-hide-selection .pageshot-mover,
