@@ -488,7 +488,7 @@ class Shot extends AbstractShot {
       } else {
         let message;
         if (response.status === 0) {
-          message = "The request to " + url + " didn't complete due to the server being unavailable";
+          message = "The request to " + url + " didn't complete due to the server being unavailable.";
         } else {
           message = "The request to " + url + " (" + Math.floor(body.length / 1000) + "Kb) returned a response " + response.status;
         }
