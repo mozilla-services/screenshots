@@ -329,9 +329,12 @@ const ShotContext = Class({
       );
       promises.push(watchPromise(getFavicon(this.tab).then(
         (url) => {
-          this.shot.update({
-            favicon: url
-          });
+          if (url.search(/^https?:\/\//i) !== -1) {
+            // Some pages like about:home have non-http favicons, we ignore them
+            this.shot.update({
+              favicon: url
+            });
+          }
         },
         (error) => {
           // if there is no favicon, this is just null, which isn't an error
