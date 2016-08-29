@@ -67,6 +67,7 @@ class ShareButtons extends React.Component {
         onClick={ this.onClickCopyButton.bind(this) }>
         { this.state.copyText }
       </button>
+      { this.props.isPublic }
     </div>;
   }
 }
@@ -296,17 +297,10 @@ class Frame extends React.Component {
       sharePanelDisplay: (
         props.isOwner &&
         Date.now() - props.shot.createdDate < 30000),
-      closePageshotBanner: false,
-      closePrivacyNotice: false
+      closePageshotBanner: false
     };
     // Need to bind this so we can add/remove the event listener
     this.unsharePanelHandler = this.unsharePanelHandler.bind(this);
-  }
-
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({closePrivacyNotice: true});
-    }, 10000);
   }
 
   closeGetPageshotBanner() {
@@ -331,10 +325,6 @@ class Frame extends React.Component {
       sendEvent("cancel-share");
       document.removeEventListener("click", this.unsharePanelHandler, false);
     }
-  }
-
-  onClickPrivacyNotice(e) {
-    this.setState({closePrivacyNotice: true});
   }
 
   onClickClose() {
@@ -457,13 +447,6 @@ class Frame extends React.Component {
 
     let shotRedirectUrl = `/redirect?to=${encodeURIComponent(shot.url)}`;
 
-    if (this.state.sharePanelDisplay) {
-      shareButtons = <ShareButtons
-                large={ true }
-                clipUrl={ shot.viewUrl }
-                { ...this.props } />;
-    }
-
     let trashOrFlagButton = null;
     if (this.props.isOwner) {
       trashOrFlagButton = <button className="trash-button" onClick={ this.onClickDelete.bind(this) }>
@@ -491,23 +474,26 @@ class Frame extends React.Component {
     }
 
     let isPublic = null;
-    let arrowElement = <div className="arrow-up" />;
     if (this.props.isOwner && !this.state.closePrivacyNotice && Date.now() - shot.createdDate < 30000) {
       if (shot.isPublic) {
-        isPublic = <span
-          id="private-notice"
-          onClick={ this.onClickPrivacyNotice.bind(this) }>
+        isPublic = <div
+          id="private-notice">
           This page is only visible to you until you share the link.
-          { arrowElement }
-        </span>;
+        </div>;
       } else {
-        isPublic = <span
-          id="private-notice"
-          onClick={ this.onClickPrivacyNotice.bind(this) }>
+        isPublic = <div
+          id="private-notice">
           You&#39;ve saved your personal version of this page. This page is only visible to you until you share the link.
-          { arrowElement }
-        </span>;
+        </div>;
       }
+    }
+
+    if (this.state.sharePanelDisplay) {
+      shareButtons = <ShareButtons
+                large={ true }
+                clipUrl={ shot.viewUrl }
+                isPublic={ isPublic }
+                { ...this.props } />;
     }
 
     let zoomButton = null;
@@ -574,7 +560,6 @@ class Frame extends React.Component {
           <a href="https://github.com/mozilla-services/pageshot" onClick={ this.onClickGitHub.bind(this) }>{this.props.productName}</a> — <a href={`https://github.com/mozilla-services/pageshot/commit/${getGitRevision()}`} onClick={ this.onClickRevision.bind(this) }>Updated {this.props.buildTime}</a>
         </div>
         <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl } onClick={ this.onClickFeedback.bind(this) }>Send Feedback</a>
-        { isPublic }
       </div>
     );
   }
