@@ -15,8 +15,8 @@ const user = require("./user");
 const panel = panels.Panel({
   contentURL: self.data.url("error-panel.html"),
   contentScriptFile: self.data.url("error-panel.js"),
-  height: 250,
-  width: 350
+  height: 300,
+  width: 400
 });
 
 panel.port.on("close", function () {
