@@ -108,8 +108,8 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       }
       let bodyRect = getBodyRect();
       // Note, document.documentElement.scrollHeight is zero on some strange pages (such as the page created when you load an image):
-      let docHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-      let docWidth = document.documentElement.scrollWidth;
+      let docHeight = Math.max(document.documentElement.scrollHeight || 0, document.body.scrollHeight);
+      let docWidth = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth);
       if ((pos.right - pos.left) < 78 || (pos.bottom - pos.top) < 78) {
         this.el.classList.add("pageshot-small-selection");
       } else {
