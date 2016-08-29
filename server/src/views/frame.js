@@ -223,7 +223,7 @@ class TimeDiff extends React.Component {
       hour = hour + "am";
     }
     let year = 1900 + d.getYear();
-    return `${month} ${d.getDay()} ${year}, ${hour}`;
+    return `${month} ${d.getDate()} ${year}, ${hour}`;
   }
 }
 
