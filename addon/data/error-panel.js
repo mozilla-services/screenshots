@@ -26,7 +26,7 @@ self.port.on("showError", function (error) {
   if (error.title) {
     titleElement.textContent = error.title;
   }
-  console.warn(new Date(), "PageShot Error:", thisError.textContent, error.message);
+  console.warn(new Date(), "Page Shot Error:", thisError.textContent, error.message);
   if (error.stack) {
     console.error(error.stack);
   }

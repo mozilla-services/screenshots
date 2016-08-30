@@ -234,7 +234,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         this.selectModeBackground.className = "pageshot-select-mode-background";
         let selectMode = document.createElement("div");
         selectMode.className = "pageshot-select-mode";
-        selectMode.textContent = "PageShot";
+        selectMode.textContent = "Page Shot";
         this.selectModeBackground.appendChild(selectMode);
         let modes = document.createElement("div");
         modes.style.textAlign = "center";

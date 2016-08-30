@@ -50,11 +50,11 @@ class Body extends React.Component {
         <h1 style={{marginLeft: "20%"}}>Account deleted</h1>
         <div style={{maxWidth: "50%", marginLeft: "25%"}}>
           <p>
-            Your account has been deleted.  Please uninstall the PageShot add-on.  To uninstall
+            Your account has been deleted.  Please uninstall the Page Shot add-on.  To uninstall
             go to the <b>Tools</b> menu and open <b>Add-ons</b>.
           </p>
           <p>
-            If you do not uninstall PageShot, then all new shots you create will be created
+            If you do not uninstall Page Shot, then all new shots you create will be created
             under a new account.  All shots you previously made have been permanently deleted.
           </p>
         </div>

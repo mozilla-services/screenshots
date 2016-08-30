@@ -128,7 +128,7 @@ function login() {
         reject(error);
       } else {
         initialized = true;
-        console.info("PageShot logged in");
+        console.info("Page Shot logged in");
         sendAnalyticEvent("addon", "login");
         resolve();
       }

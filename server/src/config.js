@@ -9,7 +9,7 @@ envc({booleans: true});
 
 var conf = convict({
   port: {
-    doc: "The PageShot server port",
+    doc: "The Page Shot server port",
     format: "port",
     default: 10080,
     env: "PORT",
@@ -123,13 +123,6 @@ var conf = convict({
       env: "RDS_NAME",
       arg: "db-name"
     }
-  },
-  productName: {
-    doc: "Override the 'PageShot' product name",
-    format: String,
-    default: "PageShot",
-    env: "PRODUCT_NAME",
-    arg: "product-name"
   },
   gaId: {
     doc: "Give the Google Analytics code",

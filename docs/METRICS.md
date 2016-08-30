@@ -1,10 +1,10 @@
-## PageShot Metrics
+## Page Shot Metrics
 
-A summary of the metrics PageShot will record, and what we're looking for in those metrics.
+A summary of the metrics Page Shot will record, and what we're looking for in those metrics.
 
 ### Key Metrics
 
-Key metrics of PageShot are fairly simple:
+Key metrics of Page Shot are fairly simple:
 
 #### Do people continue to create shots?
 
@@ -49,19 +49,19 @@ We can look at the share event in GA, and we can look at non-owner visits (`web/
 
 This is primarily a count of `web/visit/owner`.  The tool always opens the page once, and will fire `web/visit/owner-first` on that first visit.
 
-#### Do people who view a shot, install PageShot?
+#### Do people who view a shot, install Page Shot?
 
 We will be tracking some events under `goto-pageshot` that would lead people from shot pages to a place where they could load the page.  Then we track clicking the install link itself, which GA reporting should be able to connect to the original `goto-pageshot` event.  We can't detect how often that install click leads to an actual install.
 
 #### Summary
 
-Continuing to create shots indicates overall value to the user.  Sharing and revisiting confirm that the value is actually obtained (it's possible to fantasize that you *would* find value in a shot, while never actually realizing that value).  Lastly, evidence that people find PageShot attractive when they see a shot, or that people would refer each other to PageShot, indicates potential for organic growth.
+Continuing to create shots indicates overall value to the user.  Sharing and revisiting confirm that the value is actually obtained (it's possible to fantasize that you *would* find value in a shot, while never actually realizing that value).  Lastly, evidence that people find Page Shot attractive when they see a shot, or that people would refer each other to Page Shot, indicates potential for organic growth.
 
 We do not collect Net Promoter Score.
 
 ### Usage Metrics
 
-This information is intended to help us make PageShot better.
+This information is intended to help us make Page Shot better.
 
 We record an event stream of interaction with the add-on and website.  The events:
 
@@ -103,7 +103,7 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 5. [x] Cancel because URL changed `addon/cancel-shot/url-changed`
 5. ~~Click My Shots `addon/goto-myshots/topbar-myshots`~~
 6. [x] Click My Shots from mode selection `addon/goto-myshots/mode-click`
-6. [x] Click shot button while PageShot is active `addon/aborted-start-shot/toolbar-pageshot-button`
+6. [x] Click shot button while Page Shot is active `addon/aborted-start-shot/toolbar-pageshot-button`
 7. [x] Hit Escape (Cancel) `addon/cancel-shot/keyboard-escape`
 8. [x] Hit Enter (Save) `addon/save-shot/keyboard-enter`
 9. ~~Drag out a selection `addon/drag-selection/selection`~~
@@ -151,7 +151,7 @@ These are events that an add-on user can encounter on a shot they own
   26. [x] Hit copy `web/share/copy`
   27. [x] Focus link field `web/share/focus-url`
   28. [x] Cancel/close share `web/cancel-share`
-29. [x] Visit PageShot link from footer `web/goto-pageshot/footer`
+29. [x] Visit Page Shot link from footer `web/goto-pageshot/footer`
 30. [x] Visit GitHub link from footer `web/goto-github/footer`
 31. [x] Visit GitHub revision from footer `web/goto-github-revision/footer`
 32. [x] Click Feedback/mailto button `start-feedback/footer`
@@ -171,7 +171,7 @@ These are events that an add-on user can encounter on a shot they own
 2. [x] Click flag button `web/start-flag/navbar`
 3. [x] Click Share (same as for owner)
 4. [x] Visit original URL `web/goto-original-url/navbar`
-5. [x] Click PageShot link in header `web/goto-pageshot/navbar`
+5. [x] Click Page Shot link in header `web/goto-pageshot/navbar`
 6. ~~Click My Shots link in header (if non-owner, but add-on user) `web/goto-myshots/navbar-non-owner`~~
 7. ~~Switch to full page from clip view (already covered)~~
 8. ~~Switch to clip view from full page (already covered)~~
@@ -186,7 +186,7 @@ These are events that an add-on user can encounter on a shot they own
 
 #### General Google Analytics information
 
-This is stuff we get from including ga.js on PageShot pages.
+This is stuff we get from including ga.js on Page Shot pages.
 
 1. Browser type
 2. Location
@@ -199,7 +199,7 @@ This is stuff we get from including ga.js on PageShot pages.
 
 ### Database Metrics
 
-We have a pretty rich database in PageShot, and we can do all kinds of queries on the database.  These might include:
+We have a pretty rich database in Page Shot, and we can do all kinds of queries on the database.  These might include:
 
 1. Look at cohorts of individuals, reviewing their shot creation patterns
 2. How many people make a couple shots?  How many make a lot of shots?

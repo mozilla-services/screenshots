@@ -277,7 +277,7 @@ Readability.prototype = {
     var origTitle = "";
 
     try {
-      // FIXME: won't get title in PageShot
+      // FIXME: won't get title in Page Shot
       curTitle = origTitle = doc.title;
 
       // If they had an element with id "title" in their HTML
@@ -982,7 +982,7 @@ Readability.prototype = {
   _getArticleMetadata: function() {
     var metadata = {};
     var values = {};
-    // FIXME: this will fail to get the meta elements in PageShot
+    // FIXME: this will fail to get the meta elements in Page Shot
     var metaElements = this._doc.getElementsByTagName("meta");
 
     // Match "description", or Twitter's "twitter:description" (Cards)
