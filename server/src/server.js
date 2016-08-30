@@ -624,7 +624,7 @@ app.get("/__version__", function (req, res) {
     version: buildTime,
     commit: linker.getGitRevision(),
     contentOrigin: config.contentOrigin,
-    commitLog: `https://https://github.com/mozilla-services/pageshot/commits/${linker.getGitRevision()}`
+    commitLog: `https://github.com/mozilla-services/pageshot/commits/${linker.getGitRevision()}`
   };
   res.header("Content-Type", "application/json; charset=utf-8");
   res.send(JSON.stringify(response));
