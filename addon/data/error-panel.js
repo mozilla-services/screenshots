@@ -36,6 +36,10 @@ self.port.on("showError", function (error) {
   thisError.setAttribute("data-timestamp", Date.now());
   cullErrors();
   if (! errorExists(thisError)) {
+    // Only show one error at a time, for now.
+    while (errorContainer.firstChild) {
+      errorContainer.removeChild(errorContainer.firstChild);
+    }
     errorContainer.insertBefore(thisError, null);
   }
 });
