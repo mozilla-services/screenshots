@@ -137,6 +137,9 @@ const app = express();
 
 app.set('trust proxy', true);
 
+// Disable x-powered-by header
+app.disable("x-powered-by");
+
 const CONTENT_NAME = config.contentOrigin;
 
 app.use((req, res, next) => {
