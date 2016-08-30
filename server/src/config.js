@@ -124,13 +124,6 @@ var conf = convict({
       arg: "db-name"
     }
   },
-  productName: {
-    doc: "Override the 'PageShot' product name",
-    format: String,
-    default: "PageShot",
-    env: "PRODUCT_NAME",
-    arg: "product-name"
-  },
   gaId: {
     doc: "Give the Google Analytics code",
     format: String,
