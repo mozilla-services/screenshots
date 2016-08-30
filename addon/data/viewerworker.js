@@ -1,4 +1,4 @@
-/** This worker is attached to all documents served directly by PageShot
+/** This worker is attached to all documents served directly by Page Shot
     It effectively gives those pages some superpowers
 
     The real work is generally done in `lib/helperworker.js`

@@ -64,7 +64,7 @@ exports.makeError = function (error) {
     let obj = {
       name: error.name,
       message: error.message,
-      help: "PageShot may not be able to work on this page. You could try again, or try a different page."
+      help: "Page Shot may not be able to work on this page. You could try again, or try a different page."
     };
     if (error.stack) {
       let stackLines = [];

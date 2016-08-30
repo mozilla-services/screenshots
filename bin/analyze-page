@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """
-This script helps you analyze some page on the internet using PageShot scraping
+This script helps you analyze some page on the internet using Page Shot scraping
 
-You have to have PageShot installed and running locally in server mode.
+You have to have Page Shot installed and running locally in server mode.
 
 Usage:
 

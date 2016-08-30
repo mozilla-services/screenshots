@@ -1,6 +1,6 @@
 ## Views
 
-This documents the structure-in-progress for handling views in PageShot, and with isomorphic React rendering generally.
+This documents the structure-in-progress for handling views in Page Shot, and with isomorphic React rendering generally.
 
 ### Goals
 

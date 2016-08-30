@@ -116,7 +116,7 @@ exports.Profile = class Profile extends React.Component {
 
   onClickDeleteEverything(e) {
     e.preventDefault();
-    let ok = confirm("Are you sure you want to permanently delete everything you have created using PageShot?");
+    let ok = confirm("Are you sure you want to permanently delete everything you have created using Page Shot?");
     if (ok) {
       events.deleteEverything();
       let req = new XMLHttpRequest();
@@ -128,7 +128,7 @@ exports.Profile = class Profile extends React.Component {
   }
 
   renderSignedIn() {
-    // TODO: Maybe show a list of connected devices with PageShot here?
+    // TODO: Maybe show a list of connected devices with Page Shot here?
     // This could also be the "send to mobile" UI...
     let allowExport = null;
     if (this.props.allowExport) {

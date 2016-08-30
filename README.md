@@ -24,7 +24,7 @@ There are two scripts to run the server locally and develop the add-on:
 - `./bin/run-addon` will build the add-on, start Firefox with the add-on installed (you must have Nightly or Developer Edition)
 - `./bin/run-chrome-builder` will build the Chrome version of the add-on in `build/chrome-extension/`, and watch for changes and rebuild as necessary
 
-By default, PageShot will connect to a postgres database on localhost:5432. To change which database and user it connects to set/export the environmental variables: `RDS_USERNAME`, `RDS_PASSWORD`, and `RDS_HOSTNAME`
+By default, Page Shot will connect to a postgres database on localhost:5432. To change which database and user it connects to set/export the environmental variables: `RDS_USERNAME`, `RDS_PASSWORD`, and `RDS_HOSTNAME`
 
 The server will automatically setup the tables in your database, and keep them up to date over time (using [pg-patcher](https://github.com/chilts/pg-patcher/)).
 
@@ -52,4 +52,4 @@ Planning and ideation is happening in the [issue tracker](https://github.com/ian
 
 Issue tags otherwise aren't very structured. [Research](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+label%3Aresearch) is primarily analysis of other products that do something interesting, or some source material that could provide insight.  Input on these (things like "I like this product because...") is very helpful!
 
-Also Ian [blogs regularly about PageShot](http://www.ianbicking.org/tag/product-journal.html).
+Also Ian [blogs regularly about Page Shot](http://www.ianbicking.org/tag/product-journal.html).

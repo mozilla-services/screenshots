@@ -279,7 +279,7 @@ function showTour(newTab) {
     }
     exports.showInfoPanel(
       "toggle-button--jid1-neeaf3sahdkhpajetpack-pageshot-shooter",
-      "Welcome to PageShot",
+      "Welcome to Page Shot",
       "Click the camera button to clip a part of the page");
   }
 }
@@ -312,7 +312,7 @@ exports.onUnload = function (reason) {
   }
   req.sendEvent("uninstall");
   hideNotificationBar();
-  console.info("Unloading PageShot framescripts");
+  console.info("Unloading Page Shot framescripts");
   require("./framescripter").unload();
   console.info("Informing site of unload reason:", reason);
   let deviceInfo = require("./deviceinfo").deviceInfo();

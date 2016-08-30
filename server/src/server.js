@@ -623,7 +623,7 @@ app.get("/", function (req, res) {
 app.get("/__version__", function (req, res) {
   let response = {
     source: "https://github.com/mozilla-services/pageshot/",
-    description: "PageShot application server",
+    description: "Page Shot application server",
     version: buildTime,
     commit: linker.getGitRevision(),
     contentOrigin: config.contentOrigin,

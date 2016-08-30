@@ -22,7 +22,7 @@ class Confirm extends React.Component {
     }
     return <body>
       <div id="container">
-        <h1>Start PageShot export/backup</h1>
+        <h1>Start Page Shot export/backup</h1>
         { deletedMsg }
         <p>This will create a zip file with all of your shots.</p>
         <div>

@@ -467,7 +467,7 @@ class Frame extends React.Component {
         </span>
         <br />
         <span style={{fontWeight: "bold"}}>
-          PageShot
+          Page Shot
         </span>
       </span>;
       myShotsHref = "/";
