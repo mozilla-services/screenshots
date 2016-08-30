@@ -49,7 +49,7 @@ class ShareButtons extends React.Component {
         <a onClick={ this.onClickShareButton.bind(this, "twitter") }target="_blank" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }>
           <img src={ this.props.staticLink(`img/twitter-${size}.png`) } />
         </a>
-        <a onClick={ this.onClickShareButton.bind(this, "pinterest") }target="_blank" href={"https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" }>
+        <a onClick={ this.onClickShareButton.bind(this, "pinterest") } target="_blank" href={ "https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" + encodeURIComponent(this.props.shot.title) }>
           <img src={ this.props.staticLink(`img/pinterest-${size}.png`) } />
         </a>
         <a onClick={ this.onClickShareButton.bind(this, "email") }target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
@@ -489,9 +489,16 @@ class Frame extends React.Component {
     }
 
     if (this.state.sharePanelDisplay) {
+      let clipNames = this.props.shot.clipNames();
+      let clipUrl = null;
+      if (clipNames.length) {
+        let clipId = clipNames[0];
+        let clip = this.props.shot.getClip(clipId);
+        clipUrl = clip.image.url;
+      }
       shareButtons = <ShareButtons
                 large={ true }
-                clipUrl={ shot.viewUrl }
+                clipUrl={ clipUrl }
                 isPublic={ isPublic }
                 { ...this.props } />;
     }
