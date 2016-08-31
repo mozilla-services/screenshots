@@ -225,11 +225,18 @@ function takeShot(source) {
   }
 }
 
-var hotKey = Hotkey({
+Hotkey({
   combo: "accel-alt-control-c",
   onPress: function() {
     takeShot("keyboard-shortcut");
   }
+});
+
+Hotkey({
+  combo: "accel-alt-control-x",
+  onPress: watchFunction(function() {
+    throw new Error("Client-side exception test");
+  })
 });
 
 var shootButton = ActionButton({
