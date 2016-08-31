@@ -38,8 +38,8 @@ class Body extends React.Component {
     }
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <div className="column-wrapper full-height">
-          <div id="shot-index-header">
+        <div className="column-space full-height default-color-scheme">
+          <div id="shot-index-header" className="header">
             <h1><a href="/shots">Page Shot</a></h1>
             <form onSubmit={ this.onSubmitForm.bind(this) }>
               <span className="search-label" />
@@ -47,31 +47,23 @@ class Body extends React.Component {
               <button title="search"></button>
             </form>
           </div>
-          <div id="shot-index">
+          <div id="shot-index" className="flex-1">
             <div className="responsive-wrapper row-wrap">
               {children}
             </div>
           </div>
-          <div id="shot-index-footer">
-            <div className="responsive-wrapper row-wrap">
-              <a href="/terms">Terms of Service</a>
-              <a href="/privacy">Privacy Notice</a>
-            </div>
-          </div>
+          <Footer/>
         </div>
-        <Footer>
-          <a href="/delete-account">Delete account / delete all shots</a>
-        </Footer>
       </reactruntime.BodyTemplate>
     );
   }
 
   renderNoShots(msg) {
     return (
-      <div className="no-shots">
-        <div className="large-icon" />
-        <div className="no-shots-string">{msg}</div>
-      </div>
+      <div className="large-icon-message-container">
+        <div className="large-icon logo" />
+        <div className="large-icon-message-string">{msg}</div>
+      </div> 
     );
   }
 
@@ -103,7 +95,7 @@ class Body extends React.Component {
         </div>
         <div className="link-container">
           {favicon}
-          <div>
+          <div className="shot-url">
             {shot.urlDisplay}
           </div>
         </div>

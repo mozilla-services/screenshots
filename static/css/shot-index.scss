@@ -1,44 +1,13 @@
+@import "partials/partials";
 
-@import "partials/variables";
-@import "partials/mixins";
-@import "partials/base";
-@import "partials/layout";
 //Shot index page styles
 
-body {
-  background: $body-background-color;
-}
-
 #shot-index-header {
-  @include flex-container(row, space-between, center);
-  background: $header-background-color;
-  border-bottom: solid 1px #dfe0e1;
-  box-shadow: 0 4px 2px -3px rgba(0, 0, 0, 0.05);
-  height: 50px;
-  margin-bottom: $base-gutter * 2;
-  min-width: $base-gutter * 20;
-  padding: 0 20px;
-  width: 100%;
-
-  h1 {
-    font-size: 16px;
-    background: url("../img/pageshot.svg");
-    background-position: left bottom;
-    background-size: 16px auto;
-    background-repeat: no-repeat;
-    padding-left: 24px;
-    font-weight: normal;
-    margin: 0;
-    line-height: 18px;
-
-    a {
-      color: $black;
-    }
-  }
 
   form {
     @include flex-container(row, flex-start, stretch);
     height: 36px;
+    position: relative;
   }
 
   .search-label {
@@ -107,10 +76,6 @@ body {
   }
 }
 
-#shot-index {
-  flex: 1;
-}
-
 .shot {
   @include flex-container(column, stretch, stretch);
   @include item-shadow;
@@ -128,24 +93,6 @@ body {
     h4 {
       color: $link-blue;
     }
-  }
-}
-
-.no-shots {
-  @include flex-container(column, center, stretch);
-  margin: 96px auto 0;
-
-  .large-icon {
-    background: url("../img/pageshot.svg") no-repeat center center;
-    background-size: auto 120px;
-    flex: 0 0 120px;
-    opacity: 0.3;
-  }
-
-  .no-shots-string {
-    margin-top: 24px;
-    text-align: center;
-    font-size: 20px;
   }
 }
 
@@ -175,11 +122,18 @@ body {
     flex: 0 0 16px;
     height: 16px;
     margin-right: 6px;
+    background-size: 16px 16px;
   }
 
-  color: $light-grey;
-  font-size: 12px;
   padding: 0 12px 12px;
+
+  .shot-url {
+    color: $light-grey;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 .inner-border {
@@ -192,15 +146,4 @@ body {
   height: 100%;
   pointer-events: none;
   z-index: 1;
-}
-
-
-#shot-index-footer {
-  padding: $base-gutter;
-
-  a {
-    font-size: 12px;
-    color: $light-grey;
-    margin-right: 12px;
-  }
 }

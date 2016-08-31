@@ -18,12 +18,29 @@
   &.row-wrap {
     @include flex-container(row, flex-start, stretch, wrap);
   }
+
+  &.row-space {
+    @include flex-container(row, space-between, stretch);
+  }
+
+  &.row-center {
+    @include flex-container(row, center, center);
+  }
 }
 
-.column-wrapper {
-  @include flex-container(column, flex-start, center);
+.column-space {
+  @include flex-container(column, space-between, stretch);
 }
+
+.column-center {
+  @include flex-container(column, center, stretch);
+}
+
 
 .full-height {
   min-height: 100vh;
+}
+
+.flex-1 {
+  flex: 1;
 }

@@ -1,5 +1,5 @@
 /* globals sendEvent */
-//const page = require("./page").page;
+// const page = require("./page").page;
 
 let helperReadyResolve;
 let helperReadyPromise = new Promise((resolve, reject) => {
