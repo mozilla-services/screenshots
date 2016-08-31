@@ -1,0 +1,50 @@
+.default-color-scheme {
+  background: $body-background-color;
+}
+
+.inverse-color-scheme {
+  background: $navy;
+  color: $white;
+
+  a {
+    color: $white;
+  }
+
+  .large-icon {
+    filter: invert(100%);
+  }
+}
+
+.button {
+  &.primary {
+    background-color: $link-blue;
+    color: $white;
+
+    &:hover,
+    &:focus {
+      background: darken($link-blue, 7);
+    }
+
+    &:active {
+      background: darken($link-blue, 12);
+    }
+  }
+
+  &.secondary {
+    color: $black
+  }
+
+  &.warning {
+    color: $white;
+    background: $warning-red-default;
+
+    &:hover,
+    &:focus {
+      background: darken($warning-red-default, 7);
+    }
+
+    &:active {
+      background: darken($warning-red-default, 12);
+    }
+  }
+}

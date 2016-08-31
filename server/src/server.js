@@ -780,6 +780,10 @@ app.use("/shots", require("./pages/shotindex/server").app);
 
 app.use("/delete-account", require("./pages/delete-account/server").app);
 
+app.use("/terms", require("./pages/legal/server").app);
+
+app.use("/privacy", require("./pages/legal/server").app);
+
 const contentApp = express();
 
 if (config.useVirtualHosts) {

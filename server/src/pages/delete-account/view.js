@@ -8,7 +8,7 @@ class Head extends React.Component {
     return (
       <reactruntime.HeadTemplate {...this.props}>
         <script src={this.props.staticLink("js/delete-account-bundle.js")}></script>
-        <link rel="stylesheet" href={ this.props.staticLink("css/styles.css") } />
+        <link rel="stylesheet" href={ this.props.staticLink("css/warning-page.css") } />
       </reactruntime.HeadTemplate>
     );
   }
@@ -23,20 +23,17 @@ class Body extends React.Component {
     }
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <h1 style={{marginLeft: "20%"}}>Confirm account deletion</h1>
-        <div style={{maxWidth: "50%", marginLeft: "25%"}}>
-          <p>
-            You can delete your account.  This will permanently and immediately delete all your shots and all links.  This cannot be undone.
-          </p>
-          <p>
-            Are you sure you want to delete your account and all shots?
-          </p>
-          <div>
-            <form action="/delete-account/delete" method="POST" style={{textAlign: "center"}}>
-              <button type="submit" onClick={ this.onClickDelete.bind(this) } className="delete-shot" style={{backgroundColor: "#900", color: "#fff", padding: "3px", border: "1px solid #f00", fontSize: "120%"}}>
-                Delete Account
+        <div className="column-center full-height inverse-color-scheme">
+          <div className="large-icon-message-container">
+            <div className="large-icon logo" />
+            <div className="large-icon-message-string">
+              This will permanently erase all of your Page Shot data.
+            </div>
+            <form action="/delete-account/delete" method="POST" className="responsive-wrapper row-center">
+              <button type="submit" onClick={ this.onClickDelete.bind(this) } className="button warning">
+                Proceed
               </button>
-              <a style={{textDecoration: "underline", marginLeft: "20px"}} href="/shots" onClick={ this.onClickCancel.bind(this) }>cancel</a>
+              <a href="/shots" onClick={ this.onClickCancel.bind(this) } className="cancel-delete">cancel</a>
             </form>
           </div>
         </div>
@@ -47,16 +44,16 @@ class Body extends React.Component {
   renderComplete() {
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <h1 style={{marginLeft: "20%"}}>Account deleted</h1>
-        <div style={{maxWidth: "50%", marginLeft: "25%"}}>
-          <p>
-            Your account has been deleted.  Please uninstall the Page Shot add-on.  To uninstall
-            go to the <b>Tools</b> menu and open <b>Add-ons</b>.
-          </p>
-          <p>
-            If you do not uninstall Page Shot, then all new shots you create will be created
-            under a new account.  All shots you previously made have been permanently deleted.
-          </p>
+        <div className="column-center full-height inverse-color-scheme">
+          <div className="large-icon-message-container">
+            <div className="large-icon check" />
+            <div className="large-icon-message-string">All of your age Shot data has been erased.<br/>
+              You can uninstall the Page Shot add-on via Test Pilot
+            </div>
+            <div className="responsive-wrapper row-center">
+              <a className="button primary" href="https://testpilot.firefox.com/experiments/page-shot">Go to Test Pilot</a>
+            </div>
+          </div>
         </div>
       </reactruntime.BodyTemplate>
     );
