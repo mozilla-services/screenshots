@@ -382,11 +382,22 @@ stateHandlers.draggingReady = {
     let el = this.findGoodEl();
     if (el) {
       let rect = el.getBoundingClientRect();
+      rect = {
+        left: rect.left + window.scrollX,
+        top: rect.top + window.scrollY,
+        right: rect.left + window.scrollX + rect.width,
+        bottom: rect.top + window.scrollY + rect.height
+      };
+      console.log("check down", rect.top, window.scrollY, rect.top < window.scrollY);
+      if (rect.top < window.scrollY) {
+        this.moveRectDown(rect, window.scrollY, el);
+        console.log("rect.top", rect.top);
+      }
+      if (rect.bottom > window.scrollY + window.innerHeight) {
+        this.moveRectUp(rect, window.scrollY + window.innerHeight, el);
+      }
       selectedPos = new Selection(
-        rect.left + window.scrollX,
-        rect.top + window.scrollY,
-        rect.left + window.scrollX + rect.width,
-        rect.top + window.scrollY + rect.height
+        rect.left, rect.top, rect.right, rect.bottom
       );
       mousedownPos = null;
       ui.Box.display(selectedPos, standardDisplayCallbacks);
@@ -399,6 +410,56 @@ stateHandlers.draggingReady = {
     } else {
       sendEvent("no-selection", "no-element-found");
       setState("crosshairs");
+    }
+  },
+
+  moveRectDown: function (rect, top, el) {
+    let closest = null;
+    function traverse(el) {
+      let elRect = el.getBoundingClientRect();
+      let elTop = elRect.top + window.scrollY;
+      if (elTop > top) {
+        if (closest === null || closest > elTop) {
+          closest = elTop;
+        }
+      }
+      if (closest === null || elTop < closest) {
+        for (let i=0; i<el.childNodes.length; i++) {
+          let child = el.childNodes[i];
+          if (child && child.nodeType == document.ELEMENT_NODE) {
+            traverse(child);
+          }
+        }
+      }
+    }
+    traverse(el);
+    if (closest !== null) {
+      rect.top = closest;
+    }
+  },
+
+  moveRectUp: function (rect, bottom, el) {
+    let closest = null;
+    function traverse(el) {
+      let elRect = el.getBoundingClientRect();
+      let elBottom = elRect.top + elRect.height + window.scrollY;
+      if (elBottom < bottom) {
+        if (closest === null || closest < elBottom) {
+          closest = elBottom;
+        }
+      }
+      if (closest === null || elBottom > closest) {
+        for (let i=0; i<el.childNodes.length; i++) {
+          let child = el.childNodes[i];
+          if (child && child.nodeType == document.ELEMENT_NODE) {
+            traverse(child);
+          }
+        }
+      }
+    }
+    traverse(el);
+    if (closest !== null) {
+      rect.bottom = closest;
     }
   },
 
