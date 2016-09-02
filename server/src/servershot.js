@@ -441,7 +441,7 @@ Shot.getShotsForDevice = function (backend, deviceId, searchQuery) {
     if (searchQuery) {
       sql = `
         SELECT data.id, data.value, data.deviceid, ts_rank_cd(data.searchable_text, query) AS rank
-        FROM data, to_tsquery($1) AS query
+        FROM data, plainto_tsquery($1) AS query
         WHERE data.deviceid IN (${idNums.join(", ")})
               AND NOT data.deleted
               AND (expire_time IS NULL OR expire_time > NOW())

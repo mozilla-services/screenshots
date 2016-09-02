@@ -63,7 +63,7 @@ class Body extends React.Component {
       <div className="large-icon-message-container">
         <div className="large-icon logo" />
         <div className="large-icon-message-string">{msg}</div>
-      </div> 
+      </div>
     );
   }
 
@@ -105,8 +105,9 @@ class Body extends React.Component {
   }
 
   onOpen(url, event) {
-    if (event.ctrlKey || event.metaKey) {
+    if (event.ctrlKey || event.metaKey || event.button === 1) {
       // Don't override what might be an open-in-another-tab click
+      sendEvent("goto-shot", "myshots-tile-new-tab", {useBeacon: true});
       return;
     }
 

@@ -255,7 +255,7 @@ $overlay-z-index: 9999999999;
   position: absolute;
   background-color: rgba(#323232, 0.5);
   pointer-events: none;
-  z-index: 1000;
+  z-index: $overlay-z-index;
 }
 
 .pageshot-textbutton {

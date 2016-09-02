@@ -1,7 +1,6 @@
 const express = require("express");
 const reactrender = require("../../reactrender");
 const { Shot } = require("../../servershot");
-const { addDeviceActivity } = require("../../users");
 
 let app = express();
 
@@ -22,7 +21,7 @@ app.post("/delete", function (req, res) {
   }
   // FIXME: this just gets deleted due to ON DELETE CASCADE
   // Maybe we should keep but anonymize device_activity on account deletion
-  //addDeviceActivity(req.deviceId, "delete-account");
+  //require("../../users").addDeviceActivity(req.deviceId, "delete-account");
   Shot.deleteEverythingForDevice(req.backend, req.deviceId).then(() => {
     res.redirect("/delete-account/?complete");
   }).catch((e) => {
