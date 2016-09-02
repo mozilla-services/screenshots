@@ -388,10 +388,8 @@ stateHandlers.draggingReady = {
         right: rect.left + window.scrollX + rect.width,
         bottom: rect.top + window.scrollY + rect.height
       };
-      console.log("check down", rect.top, window.scrollY, rect.top < window.scrollY);
       if (rect.top < window.scrollY) {
         this.moveRectDown(rect, window.scrollY, el);
-        console.log("rect.top", rect.top);
       }
       if (rect.bottom > window.scrollY + window.innerHeight) {
         this.moveRectUp(rect, window.scrollY + window.innerHeight, el);
