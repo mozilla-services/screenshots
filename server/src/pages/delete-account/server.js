@@ -22,11 +22,11 @@ app.post("/delete", function (req, res) {
   }
   // FIXME: this just gets deleted due to ON DELETE CASCADE
   // Maybe we should keep but anonymize device_activity on account deletion
-  addDeviceActivity(req.deviceId, "delete-account");
+  //addDeviceActivity(req.deviceId, "delete-account");
   Shot.deleteEverythingForDevice(req.backend, req.deviceId).then(() => {
     res.redirect("/delete-account/?complete");
   }).catch((e) => {
     console.error("An error occurred trying to delete:", e);
-    res.status(500).text("An error occurred");
+    res.status(500).send("An error occurred");
   });
 });
