@@ -21,14 +21,15 @@ const { Cu, Cc, Ci } = require("chrome");
 const winutil = require("sdk/window/utils");
 const req = require("./req");
 const { setTimeout } = require("sdk/timers");
-var { Hotkey } = require("sdk/hotkeys");
+const { Hotkey } = require("sdk/hotkeys");
+const { AddonManager } = require('resource://gre/modules/AddonManager.jsm');
 
 let Services;
 
 // Give the server a chance to start if the pref is set
 require("./headless").init();
 
-Cu.import("resource:///modules/UITour.jsm");
+//Cu.import("resource:///modules/UITour.jsm");
 
 let loadReason = null; // eslint-disable-line no-unused-vars
 let initialized = false;
@@ -306,6 +307,13 @@ exports.main = function (options) {
   require("./user").initialize(exports.getBackend(), options.loadReason).then(() => {
     if (options.loadReason === "install") {
       req.sendEvent("install");
+      AddonManager.getAddonByID("@testpilot-addon", (addon) => {
+        if (addon === null) {
+          req.sendEvent("test-pilot-not-installed");
+        } else {
+          req.sendEvent("test-pilot-installed");
+        }
+      });
       showTour();
     }
   }).catch((error) => {

@@ -117,6 +117,8 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 17. [x] Hit shot button on any about: page `addon/start-shot-about-page`
 18. [x] Hit shot button on any other non-http page `addon/start-shot-non-http`
 19. [ ] Save a "private page" shot `addon/start-shot-private-page`
+20. [x] Test pilot was present at install time `addon/test-pilot-installed`
+21. [x] Test pilot was not present at install time `addon/test-pilot-not-installed`
 
 #### Owner web visit
 
