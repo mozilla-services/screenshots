@@ -60,7 +60,7 @@ class Body extends React.Component {
 
   renderNoShots(msg) {
     return (
-      <div className="large-icon-message-container">
+      <div className="large-icon-message-container" key="no-shots-found">
         <div className="large-icon logo" />
         <div className="large-icon-message-string">{msg}</div>
       </div>
@@ -129,6 +129,9 @@ class Body extends React.Component {
   onChangeSearch() {
     let val = ReactDOM.findDOMNode(this.refs.search).value;
     this.setState({defaultSearch: val});
+    if (! val) {
+      controller.onChangeSearch(val);
+    }
   }
 }
 

@@ -436,6 +436,10 @@ Shot.getShotsForDevice = function (backend, deviceId, searchQuery) {
       ids.push(rows[i].id);
       idNums.push("$" + (i+(searchQuery ? 2 : 1)));
     }
+    if (! ids.length) {
+      // This happens if the id doesn't exist in the database
+      return [];
+    }
     let sql;
     let args;
     if (searchQuery) {

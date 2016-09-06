@@ -8,14 +8,7 @@ exports.app = app;
 
 app.get("/", function (req, res) {
   if (! req.deviceId) {
-    res.status(403).send(`
-      <html>
-        <head><title>Forbidden</title></head>
-        <body>
-          You must have the addon installed to see your shot index
-        </body>
-      </html>
-    `);
+    res.redirect('/?pageshot-not-installed');
     return;
   }
   let query = req.query.q || null;
@@ -25,5 +18,6 @@ app.get("/", function (req, res) {
     reactrender.render(req, res, page);
   }).catch((err) => {
     res.type("txt").status(500).send("Error rendering page: " + err);
+    console.error("Error rendering page:", err);
   });
 });
