@@ -434,7 +434,7 @@ Shot.getShotsForDevice = function (backend, deviceId, searchQuery) {
     let idNums = [];
     for (let i=0; i<rows.length; i++) {
       ids.push(rows[i].id);
-      idNums.push("$" + (i+(searchQuery ? 2 : 1)));
+      idNums.push("$" + (i+(searchQuery ? 3 : 1)));
     }
     if (! ids.length) {
       // This happens if the id doesn't exist in the database
@@ -449,10 +449,13 @@ Shot.getShotsForDevice = function (backend, deviceId, searchQuery) {
         WHERE data.deviceid IN (${idNums.join(", ")})
               AND NOT data.deleted
               AND (expire_time IS NULL OR expire_time > NOW())
-              AND data.searchable_text @@ query
+              AND (data.searchable_text @@ query
+                   OR url ILIKE $2
+                   OR title ILIKE $2)
         ORDER BY rank DESC
         `;
-      args = [searchQuery].concat(ids);
+      let likeQuery = "%" + searchQuery.replace(/%/g, "%%") + "%";
+      args = [searchQuery, likeQuery].concat(ids);
     } else {
       sql = `
       SELECT data.id, data.value, data.deviceid
