@@ -37,7 +37,7 @@ first_created | last_created
 
 We're not sure how to aggregate this in SQL, but we can always do it in the server.  We might want look at all cohorts or just some cohorts, and account for the current day.
 
-(Work listed in [#1197](https://github.com/mozilla-services/pageshot/issues/1197))
+(Work listed and finished in [#1197](https://github.com/mozilla-services/pageshot/issues/1197))
 
 #### Do people share those shots with other people?  
 
@@ -86,24 +86,24 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 
 #### Add-on metrics
 
-1. [x] Click shot button `addon/start-shot/toolbar-pageshot-button`
-2. [x] Use keyboard shortcut to start shot `addon/start-shot/keyboard-shortcut`
-3. [x] Click "select region" `addon/start-region-select/mode-click`
-4. [x] Click "select archive" `addon/start-archive/mode-click`
-5. [x] Click "cancel" from first interface `addon/cancel-shot/mode-click`
-2. [x] Make a selection `addon/make-selection/selection-drag`
-3. [x] Make a selection by clicking on an element `addon/make-selection/selection-click`
-4. [x] Click but fail to find an element that can be selected `addon/no-selection/no-element-found`
-3. [x] Cancel a selection by clicking on the background `addon/cancel-selection/selection-background-mousedown`
-4. [x] Start resizing the selection `addon/start-resize-selection/handle`
+1. [x] Click shot button `addon/start-shot/toolbar-pageshot-button` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/2P3o1F0O3Y0K23372e1P/Image%202016-09-07%20at%201.57.19%20PM.png?v=c1ae01f4)
+2. [x] Use keyboard shortcut to start shot `addon/start-shot/keyboard-shortcut` (accel-alt-control-c)
+3. ~~Click "select region" `addon/start-region-select/mode-click`~~
+4. ~~Click "select archive" `addon/start-archive/mode-click`~~
+5. ~~Click "cancel" from first interface `addon/cancel-shot/mode-click`~~
+2. [x] Make a selection `addon/make-selection/selection-drag` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1t2I0A2H3U2q2S0x1w1z/Image%202016-09-07%20at%201.58.58%20PM.png?v=8a788938)
+3. [x] Make a selection by clicking on an element `addon/make-selection/selection-click` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3a2C2S06463H1T2E313z/Image%202016-09-07%20at%201.59.52%20PM.png?v=86f2c12f)
+4. [x] Click but fail to find an element that can be selected `addon/no-selection/no-element-found` (error case, not sure when it happens)
+3. [x] Cancel a selection by clicking on the background `addon/cancel-selection/selection-background-mousedown` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/2B3h0J3e1V1M0t0e370d/Image%202016-09-07%20at%202.00.36%20PM.png?v=d95cf082)
+4. [x] Start resizing the selection `addon/start-resize-selection/handle` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0b3W0a2q1B3T2s3B3u1n/Image%202016-09-07%20at%202.01.31%20PM.png?v=a725566b)
 5. [x] Finish resizing the selection `addon/resize-selection/mouseup`
-6. [x] Finish resizing, without a change `addon/keep-resize-selection/mouseup`
-3. [x] Click Save `addon/save-shot/topbar-save`
-4. [x] Click Cancel `addon/cancel-shot/topbar-cancel`
-5. [x] Cancel because URL changed `addon/cancel-shot/url-changed`
-5. ~~Click My Shots `addon/goto-myshots/topbar-myshots`~~
-6. [x] Click My Shots from mode selection `addon/goto-myshots/mode-click`
-6. [x] Click shot button while Page Shot is active `addon/aborted-start-shot/toolbar-pageshot-button`
+6. [x] Finish resizing, without a change `addon/keep-resize-selection/mouseup` (mousedown, don't move, mouseup)
+3. [x] Click Save `addon/save-shot/topbar-save` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1F021R1U1z0y3A1i0C2F/Image%202016-09-07%20at%202.02.43%20PM.png?v=1c42ee47)
+4. [x] Click Cancel `addon/cancel-shot/topbar-cancel` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3u2M2G1N431s1O193L1n/Image%202016-09-07%20at%202.03.24%20PM.png?v=bedc4e14)
+5. [x] Cancel because URL changed `addon/cancel-shot/url-changed` (when something that uses window.history "navigates" spontaneously away)
+5. [x] Click My Shots `addon/goto-myshots/selection-button` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3J1u3F1Z3R0Z0A2e161T/Image%202016-09-07%20at%202.06.19%20PM.png?v=7e2c945f)
+6. ~~Click My Shots from mode selection `addon/goto-myshots/mode-click`~~
+6. [x] Click shot button while Page Shot is active `addon/aborted-start-shot/toolbar-pageshot-button` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0m2n3h1a2o0e271O1j13/Image%202016-09-07%20at%202.07.08%20PM.png?v=9baa7316)
 7. [x] Hit Escape (Cancel) `addon/cancel-shot/keyboard-escape`
 8. [x] Hit Enter (Save) `addon/save-shot/keyboard-enter`
 9. ~~Drag out a selection `addon/drag-selection/selection`~~
