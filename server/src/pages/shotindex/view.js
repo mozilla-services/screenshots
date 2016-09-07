@@ -130,6 +130,7 @@ class Body extends React.Component {
     let val = ReactDOM.findDOMNode(this.refs.search).value;
     this.setState({defaultSearch: val});
     if (! val) {
+      sendEvent("clear-search");
       controller.onChangeSearch(val);
     }
   }
