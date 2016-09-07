@@ -107,73 +107,72 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 7. [x] Hit Escape (Cancel) `addon/cancel-shot/keyboard-escape`
 8. [x] Hit Enter (Save) `addon/save-shot/keyboard-enter`
 9. ~~Drag out a selection `addon/drag-selection/selection`~~
-10. [x] Click to make a selection `addon/make-selection/selection-click`
-11. [x] Click to cancel/clear a selection `addon/cancel-selection/selection-click`
 12. [ ] Encounter an error saving the shot `addon/error/save-shot`
 13. [ ] Encounter any other kind of error `addon/error/misc`
-14. [x] Install the add-on `addon/install`
-15. [x] Uninstall the add-on `addon/uninstall`
-16. [x] Hit shot button on a page that can't be shot (XUL page) `addon/abort-start-shot/xul-page`
-17. [x] Hit shot button on any about: page `addon/start-shot-about-page`
-18. [x] Hit shot button on any other non-http page `addon/start-shot-non-http`
+14. [x] Install the add-on `addon/install` (fired internally, regardless of how it is installed)
+15. [x] Uninstall the add-on `addon/uninstall` (fired internally, regardless of how it is uninstalled)
+16. [x] Hit shot button on a page that can't be shot (XUL page) `addon/abort-start-shot/xul-page` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3F0n0b3w411F2w2n3H1n/Image%202016-09-07%20at%202.49.21%20PM.png?v=bca96af4)
+17. [x] Hit shot button on any about: page `addon/start-shot-about-page` (note: shooting still continues) ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3e2d1j04233B3c3X2B3F/Image%202016-09-07%20at%202.50.55%20PM.png?v=316b9cb3)
+18. [x] Hit shot button on any other non-http page `addon/start-shot-non-http` (note: shooting still continues) ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0T0m2p1Z2L1u093F1Y0Q/Image%202016-09-07%20at%202.51.39%20PM.png?v=82d1fc1b)
 19. [ ] Save a "private page" shot `addon/start-shot-private-page`
-20. [x] Test pilot was present at install time `addon/test-pilot-installed`
+20. [x] Test pilot was present at install time `addon/test-pilot-installed` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/2q2Y1P2G3J3Z2G0K1t3D/Image%202016-09-07%20at%202.52.24%20PM.png?v=ebf9cbfd)
 21. [x] Test pilot was not present at install time `addon/test-pilot-not-installed`
 
 #### Owner web visit
 
 These are events that an add-on user can encounter on a shot they own
 
-1. [x] Visit the page, `web/visit/owner`
+1. [x] Visit the page, `web/visit/owner` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1H0F34072h191V2l3r3t/Image%202016-09-07%20at%202.53.23%20PM.png?v=30c9230a)
 2. [x] Visit the page immediately after it is created (as part of the normal flow), `web/visit/owner-first`
 3. ~~Click Save Full Page `web/save-full-page/navbar-save-full-page`~~
-4. [x] Click delete `web/start-delete/navbar`
-  5. [x] Confirm delete `web/delete/popup-confirm`
+4. [x] Click delete `web/start-delete/navbar` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/2K2S1m1y2K1R2o0h0s46/Image%202016-09-07%20at%202.53.48%20PM.png?v=1a87e714)
+  5. [x] Confirm delete `web/delete/popup-confirm` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0v0y053t3F01362Z0N0E/Image%202016-09-07%20at%202.54.33%20PM.png?v=de0b3b7a)
   6. [x] Cancel delete `web/cancel-delete/popup-confirm`
-7. [x] Click My Shots `web/goto-myshots/navbar`
+7. [x] Click My Shots `web/goto-myshots/navbar` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/2y090u1g3G371p1E0g21/Image%202016-09-07%20at%202.55.26%20PM.png?v=e4f24d87)
 8. ~~Switch to full page from clip view, by clicking anywhere on background `web/full-page-view/content`~~
 9. ~~Switch to full page from clip view, by clicking `>-<` button `web/full-page-view/content-unzoom`~~
 10. ~~Switch to clip view from full page `web/clip-view/content-zoom`~~
-11. [x] Try to change expiration time `web/start-expiration-change/navbar`
-  12. [x] Cancel changing expiration time `web/cancel-expiration-change/navbar`
-  13. [x] Change expiration time `web/set-expiration/navbar`
-  14. [x] Change expiration time to specific time `web/set-expiration-to-time/navbar`
-  15. [x] Change expiration time to indefinite `web/set-expiration-to-indefinite/navbar`
-16. [x] View expired shot `web/view-expired/owner`
-17. [x] View expired shot (not the owner) `web/view-expired/non-owner`
-17. [x] Recover expired shot `web/recover-expired`
+11. [x] Try to change expiration time `web/start-expiration-change/navbar` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/2d2k0W0O131Z3Z003v26/Image%202016-09-07%20at%202.56.26%20PM.png?v=bcfe14ff)
+  12. [x] Cancel changing expiration time `web/cancel-expiration-change/navbar` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/2B260B3L3W1k1W2e0S2X/Image%202016-09-07%20at%202.57.06%20PM.png?v=e886aeb1)
+  13. [x] Change expiration time `web/set-expiration/navbar` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/203h1m0G293S3f0S3i3D/Image%202016-09-07%20at%202.57.48%20PM.png?v=62835651)
+  14. [x] Change expiration time to specific time `web/set-expiration-to-time/navbar` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0h2j47240l3H3f3b2F16/Image%202016-09-07%20at%202.58.43%20PM.png?v=fe40eaf9)
+  15. [x] Change expiration time to indefinite `web/set-expiration-to-indefinite/navbar` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1Z430j0S0b1Y0b1t3c0Z/Image%202016-09-07%20at%202.59.09%20PM.png?v=c5b57d4c)
+16. [x] View expired shot `web/view-expired/owner` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/261Z1B393n3P160L0L0v/Image%202016-09-07%20at%203.13.09%20PM.png?v=989a2564)
+17. [x] View expired shot (not the owner) `web/view-expired/non-owner` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3s0D3U3G3j0X3g181y2w/Image%202016-09-07%20at%203.13.40%20PM.png?v=f71beecb)
+17. [x] Recover expired shot `web/recover-expired` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1Q2z0e0X1d211Z0j2L3x/Image%202016-09-07%20at%203.14.05%20PM.png?v=5cb57722)
 18. ~~View expired/deleted shot `web/view-deleted-expired`~~
-19. [x] Visit original page `web/view-original/navbar`
+19. [x] Visit original page `web/view-original/navbar` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0w0c1E382D1r3x1Q082u/Image%202016-09-07%20at%203.00.00%20PM.png?v=f4042b4e)
 20. [x] Visit original page from expired view `web/view-original/expired`
-21. [x] Click share `web/start-share`
-  22. [x] Click Facebook `web/share/facebook`
-  23. [x] Click Twitter `web/share/twitter`
-  24. [x] Click Pinterest `web/share/pinterest`
-  25. [x] Click mailto `web/share/mailto`
-  26. [x] Hit copy `web/share/copy`
-  27. [x] Focus link field `web/share/focus-url`
-  28. [x] Cancel/close share `web/cancel-share`
-29. [x] Visit Page Shot link from footer `web/goto-pageshot/footer`
-30. [x] Visit GitHub link from footer `web/goto-github/footer`
-31. [x] Visit GitHub revision from footer `web/goto-github-revision/footer`
-32. [x] Click Feedback/mailto button `start-feedback/footer`
-31. [x] Click on clip `web/goto-clip/content`
+21. [x] Click share `web/start-share` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/182s1U2y252j3h1y2e2s/Image%202016-09-07%20at%203.00.49%20PM.png?v=a876319c)
+  22. [x] Click Facebook `web/share/facebook` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3l1w3726101d110r0V00/Image%202016-09-07%20at%203.01.28%20PM.png?v=93fa9c96)
+  23. [x] Click Twitter `web/share/twitter` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1a3V0O173q3R0S2a080z/Image%202016-09-07%20at%203.02.06%20PM.png?v=462e5be2)
+  24. [x] Click Pinterest `web/share/pinterest` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1f1o1r3Z0y3D1k1o221W/Image%202016-09-07%20at%203.02.41%20PM.png?v=3ebeb167)
+  25. [x] Click mailto `web/share/mailto` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0K0V3u1c3h3F1q3M3D3V/Image%202016-09-07%20at%203.03.15%20PM.png?v=bac7c1c3)
+  26. [x] Hit copy `web/share/copy` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1i1G300b0J0J2z190Q26/Image%202016-09-07%20at%203.03.49%20PM.png?v=7e4a82bb)
+  27. [x] Focus link field `web/share/focus-url` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3i2s0T0h2t0W1J3p2j0c/Image%202016-09-07%20at%203.04.24%20PM.png?v=654e288b)
+  28. [x] Cancel/close share `web/cancel-share` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0Q1n3I1J3J3G3y2B0z19/Image%202016-09-07%20at%203.04.57%20PM.png?v=8de54ca8)
+29. [x] Visit Page Shot link from footer `web/goto-pageshot/footer` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3g3p2i19131n1o3p053s/Image%202016-09-07%20at%203.05.56%20PM.png?v=8c92662c)
+30. ~~Visit GitHub link from footer `web/goto-github/footer`~~
+31. ~~Visit GitHub revision from footer `web/goto-github-revision/footer`~~
+32. [x] Click Feedback/mailto button `start-feedback/footer` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3Q1R170u1m0A3r0o3v1K/Image%202016-09-07%20at%203.07.01%20PM.png?v=0117ce5f)
+31. [x] Click on clip `web/goto-clip/content` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1f2t1D2t2F2N2e1S2m3D/Image%202016-09-07%20at%203.07.37%20PM.png?v=f3605b9e)
 
 #### Shot Index (My Shots)
 
-1. [x] Click a tile `web/goto-shot/myshots-tile`
-2. [x] Click on the original link `web/goto-original-url/myshots-tile`
-3. [x] Enter search term `web/search`
-4. [x] Clear search term `web/clear-search`
-5. [x] Receive no search results `web/search-no-results`
+1. [x] Click a tile `web/goto-shot/myshots-tile` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/023y0c2v473F3u1G051Z/Image%202016-09-07%20at%203.08.36%20PM.png?v=a4926505)
+2. [x] Click on the original link `web/goto-original-url/myshots-tile` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/261O223l0W0w2n1j3o3c/Image%202016-09-07%20at%203.09.15%20PM.png?v=add8b838)
+3. [x] Enter search term `web/search` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1f2o092t413O0i363L3v/Image%202016-09-07%20at%203.10.06%20PM.png?v=fbcb53e5)
+4. [x] Clear search term `web/clear-search/submit` and click the arrow ![image](https://d17oy1vhnax1f7.cloudfront.net/items/382R0U3J0Q3K362g3E0q/Image%202016-09-07%20at%203.11.59%20PM.png?v=c006c85a)
+4. [x] Clear search term `web/clear-search/keyboard` by simply backspacing
+5. [x] Receive no search results `web/search-no-results` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/091Z1a253a062B3R1X2c/Image%202016-09-07%20at%203.12.37%20PM.png?v=b556941e)
 
 #### Non-owner web visit
 
-1. [x] Visit the page, `web/visit/non-owner`
-2. [x] Click flag button `web/start-flag/navbar`
+1. [x] Visit the page, `web/visit/non-owner` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/252d0b0F1A3i453h2r32/Image%202016-09-07%20at%203.38.11%20PM.png?v=357dd63c)
+2. [x] Click flag button `web/start-flag/navbar` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3T3a1y0K2l0H2d1p1e0L/Image%202016-09-07%20at%203.38.36%20PM.png?v=ba92ba16)
 3. [x] Click Share (same as for owner)
 4. [x] Visit original URL `web/goto-original-url/navbar`
-5. [x] Click Page Shot link in header `web/goto-pageshot/navbar`
+5. [x] Click Page Shot link in header `web/goto-pageshot/navbar` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0V2A0q2v3k2t3k1X0f2n/Image%202016-09-07%20at%203.39.13%20PM.png?v=cd656a45)
 6. ~~Click My Shots link in header (if non-owner, but add-on user) `web/goto-myshots/navbar-non-owner`~~
 7. ~~Switch to full page from clip view (already covered)~~
 8. ~~Switch to clip view from full page (already covered)~~
@@ -181,10 +180,10 @@ These are events that an add-on user can encounter on a shot they own
 
 #### Homepage web visits
 
-1. Click install from Firefox, `web/start-install/homepage-firefox`
-2. Click install from Chrome, `web/start-install/homepage-chrome`
-3. Visit from a supported browser, `web/homepage-visit/supported`
-4. Visit from an unsupported browser, `web/homepage-visit/unsupported`
+1. ~~Click install from Firefox, `web/start-install/homepage-firefox`~~
+2. ~~Click install from Chrome, `web/start-install/homepage-chrome`~~
+3. ~~Visit from a supported browser, `web/homepage-visit/supported`~~
+4. ~~Visit from an unsupported browser, `web/homepage-visit/unsupported`~~
 
 #### General Google Analytics information
 
