@@ -9,12 +9,6 @@
   "dependencies": {
     "atob": "2.0.3",
     "aws-sdk": "2.4.8",
-    "babel-cli": "6.11.4",
-    "babel-polyfill": "6.9.1",
-    "babel-preset-es2015": "6.9.0",
-    "babel-preset-react": "6.11.1",
-    "body-parser": "1.15.2",
-    "browserify": "13.0.1",
     "btoa": "1.1.2",
     "convict": "1.4.0",
     "cookies": "0.6.1",
@@ -28,7 +22,6 @@
     "mime-types": "2.1.11",
     "morgan": "1.7.0",
     "mozlog": "2.0.6",
-    "node-sass": "3.8",
     "nodemon": "1.9.2",
     "nodify-uuid": "0.0.1",
     "pg": "6.0.3",
@@ -46,10 +39,22 @@
   },
   "devDependencies": {
     "addons-linter": "0.14.1",
+    "babel-cli": "6.11.4",
+    "babel-polyfill": "6.9.1",
+    "babel-preset-es2015": "6.9.0",
+    "babel-preset-react": "6.11.1",
+    "body-parser": "1.15.2",
+    "browserify": "13.0.1",
     "eslint": "3.1.1",
     "eslint-plugin-react": "5.2.2",
+    "fs-promise": "0.5.0",
+    "fx-runner": "1.0.5",
+    "geckodriver": "1.1.2",
+    "mocha": "3.0.2",
+    "node-sass": "3.8",
     "npm-run-all": "2.3.0",
-    "sass-lint": "1.8.2"
+    "sass-lint": "1.8.2",
+    "selenium-webdriver": "3.0.0-beta-2"
   },
   "homepage": "https://pageshot.dev.mozaws.net",
   "license": "MPL-2.0",
@@ -64,6 +69,6 @@
     "lint:js": "eslint .",
     "lint:sass": "sass-lint -v -q",
     "posttest": "npm run lint",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "make xpi && mocha test/"
   }
 }
