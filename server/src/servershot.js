@@ -452,7 +452,7 @@ Shot.getShotsForDevice = function (backend, deviceId, searchQuery) {
               AND (data.searchable_text @@ query
                    OR url ILIKE $2
                    OR title ILIKE $2)
-        ORDER BY rank DESC
+        ORDER BY rank DESC, data.created DESC
         `;
       let likeQuery = "%" + searchQuery.replace(/%/g, "%%") + "%";
       args = [searchQuery, likeQuery].concat(ids);
