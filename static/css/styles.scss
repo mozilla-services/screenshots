@@ -28,6 +28,7 @@ body {
   padding-left: 0;
   padding-right: 0;
   text-align: center;
+  min-height: 100%;
 }
 
 #frame {
@@ -102,7 +103,6 @@ a.sitelink:visited {
   right: 0;
   bottom: 0;
   padding-top: 0;
-  background-color: rgba(#000, 0.8);
 }
 
 .clip-container div {

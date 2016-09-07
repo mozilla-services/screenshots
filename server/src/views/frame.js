@@ -563,9 +563,6 @@ class Frame extends React.Component {
         { this.props.shot.showPage ? <span id="copy-flag">Copy</span> : null }
         { this.props.shot.showPage ?
           <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } /> : null }
-        <div className="pageshot-footer">
-          <a href="https://github.com/mozilla-services/pageshot" onClick={ this.onClickGitHub.bind(this) }>{this.props.productName}</a> — <a href={`https://github.com/mozilla-services/pageshot/commit/${getGitRevision()}`} onClick={ this.onClickRevision.bind(this) }>Updated {this.props.buildTime}</a>
-        </div>
         <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl } onClick={ this.onClickFeedback.bind(this) }>Send Feedback</a>
       </div>
     );
