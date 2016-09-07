@@ -43,7 +43,7 @@ const addIds = (function () { // eslint-disable-line no-unused-vars
         return;
       }
       let result;
-      if (! getDocument().body) {
+      if (! (getDocument().body && getDocument().head)) {
         // A XUL page
         result = {isXul: true};
       } else {

@@ -298,8 +298,7 @@ const ShotContext = Class({
         // Abandon hope all ye who enter!
         sendEvent("abort-start-shot", "xul-page");
         this.destroy();
-        // FIXME: maybe pop up an explanation here?
-        return;
+        throw new Error("Sorry, this special page cannot be captured");
       }
       var prefInlineCss = require("sdk/simple-prefs").prefs.inlineCss;
       var useReadability = require("sdk/simple-prefs").prefs.useReadability;

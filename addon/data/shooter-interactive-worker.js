@@ -84,6 +84,7 @@ let standardDisplayCallbacks = {
 
 let standardOverlayCallbacks = {
   onOpenMyShots: () => {
+    sendEvent("goto-myshots", "selection-button", {useBeacon: true});
     deactivate();
     self.port.emit("deactivate");
     self.port.emit("openMyShots");
