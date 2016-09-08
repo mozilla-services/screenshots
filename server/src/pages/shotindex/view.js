@@ -121,7 +121,7 @@ class Body extends React.Component {
     if (val) {
       sendEvent("search");
     } else {
-      sendEvent("clear-search");
+      sendEvent("clear-search/submit");
     }
     controller.onChangeSearch(val);
   }
@@ -130,7 +130,7 @@ class Body extends React.Component {
     let val = ReactDOM.findDOMNode(this.refs.search).value;
     this.setState({defaultSearch: val});
     if (! val) {
-      sendEvent("clear-search");
+      sendEvent("clear-search/keyboard");
       controller.onChangeSearch(val);
     }
   }
