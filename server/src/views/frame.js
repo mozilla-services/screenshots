@@ -611,14 +611,6 @@ class Frame extends React.Component {
     // Note: we allow the default action to continue
   }
 
-  onClickGitHub() {
-    sendEvent("goto-github", "footer", {useBeacon: true});
-  }
-
-  onClickRevision() {
-    sendEvent("goto-github-revision", "footer", {useBeacon: true});
-  }
-
   onClickFeedback() {
     sendEvent("start-feedback", "footer", {useBeacon: true});
   }
