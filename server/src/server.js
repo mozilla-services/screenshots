@@ -778,7 +778,7 @@ app.use("/admin", require("./pages/admin/server").app);
 
 app.use("/shots", require("./pages/shotindex/server").app);
 
-app.use("/delete-account", require("./pages/delete-account/server").app);
+app.use("/leave-page-shot", require("./pages/leave-page-shot/server").app);
 
 app.use("/terms", require("./pages/legal/server").app);
 

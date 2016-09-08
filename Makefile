@@ -77,7 +77,7 @@ chrome_external_modules := build/chrome-extension/selector-util.js build/chrome-
 clientglue_dependencies = $(shell if [[ -e build/clientglue-dependencies.txt ]] ; then cat build/clientglue-dependencies.txt ; fi)
 admin_dependencies = $(shell if [[ -e build/admin-dependencies.txt ]] ; then cat build/admin-dependencies.txt ; fi)
 shotindex_dependencies = $(shell if [[ -e build/shotindex-dependencies.txt ]] ; then cat build/shotindex-dependencies.txt ; fi)
-deleteaccount_dependencies = $(shell if [[ -e build/deleteaccount-dependencies.txt ]] ; then cat build/deleteaccount-dependencies.txt ; fi)
+leave_dependencies = $(shell if [[ -e build/leave-dependencies.txt ]] ; then cat build/leave-dependencies.txt ; fi)
 
 core_js_location = $(shell node -e 'console.log(require.resolve("core-js/client/core"))')
 
@@ -260,11 +260,11 @@ build/server/static/js/shotindex-bundle.js: $(shotindex_dependencies) $(server_d
 	browserify --list -e ./build/server/pages/shotindex/controller.js | sed "s!$(shell pwd)/!!g" | grep -v build-time > build/shotindex-dependencies.txt
 	browserify -o $@ -e ./build/server/pages/shotindex/controller.js
 
-build/server/static/js/delete-account-bundle.js: $(deleteaccount_dependencies) $(server_dest)
+build/server/static/js/leave-bundle.js: $(leave_dependencies) $(server_dest)
 	@mkdir -p $(@D)
 	# Generate/save dependency list:
-	browserify --list -e ./build/server/pages/delete-account/controller.js | sed "s!$(shell pwd)/!!g" | grep -v build-time > build/deleteaccount-dependencies.txt
-	browserify -o $@ -e ./build/server/pages/delete-account/controller.js
+	browserify --list -e ./build/server/pages/leave-page-shot/controller.js | sed "s!$(shell pwd)/!!g" | grep -v build-time > build/leave-dependencies.txt
+	browserify -o $@ -e ./build/server/pages/leave-page-shot/controller.js
 
 build/server/export-shots.sh: server/src/export-shots.sh
 	@mkdir -p $(@D)
@@ -277,7 +277,7 @@ build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass
 	@mkdir -p $(@D)
 	./bin/_write_build_time > build/server/build-time.js
 
-server: npm build/server/build-time.js build/server/static/js/server-bundle.js build/server/static/js/admin-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/delete-account-bundle.js
+server: npm build/server/build-time.js build/server/static/js/server-bundle.js build/server/static/js/admin-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/leave-bundle.js
 
 ## Homepage related rules:
 
