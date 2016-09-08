@@ -88,7 +88,7 @@ class Status extends React.Component {
       <div id="container">
         <h1>Wait for export to be created...</h1>
         <p>Please stay on this page (which will keep checking for when your export is ready)</p>
-        <script src={ req.staticLinkWithHost("js/auto-refresh.js") } />
+        <script src={ this.props.staticLinkWithHost("js/auto-refresh.js") } />
       </div>
     </body>
   }
@@ -118,6 +118,7 @@ exports.renderStatus = function (req, res) {
   };
   let page = StatusFactory(Object.assign({}, params, {
     staticLink: req.staticLink
+    staticLinkWithHost: req.staticLinkWithHost
   }));
   let body = ReactDOMServer.renderToString(page);
   body = addReactScripts(body);
