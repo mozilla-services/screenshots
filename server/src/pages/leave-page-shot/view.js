@@ -7,7 +7,7 @@ class Head extends React.Component {
   render() {
     return (
       <reactruntime.HeadTemplate {...this.props}>
-        <script src={this.props.staticLink("js/delete-account-bundle.js")}></script>
+        <script src={this.props.staticLink("js/leave-bundle.js")}></script>
         <link rel="stylesheet" href={ this.props.staticLink("css/warning-page.css") } />
       </reactruntime.HeadTemplate>
     );
@@ -29,7 +29,7 @@ class Body extends React.Component {
             <div className="large-icon-message-string">
               This will permanently erase all of your Page Shot data.
             </div>
-            <form action="/delete-account/delete" method="POST" className="responsive-wrapper row-center">
+            <form action="/leave-page-shot/leave" method="POST" className="responsive-wrapper row-center">
               <button type="submit" onClick={ this.onClickDelete.bind(this) } className="button warning">
                 Proceed
               </button>
@@ -60,11 +60,11 @@ class Body extends React.Component {
   }
 
   onClickDelete() {
-    sendEvent("delete-account", "delete-account-button", {useBeacon: true});
+    sendEvent("leave-page-shot", "leave-button", {useBeacon: true});
   }
 
   onClickCancel() {
-    sendEvent("cancel-delete-account", "cancel-link", {useBeacon: true});
+    sendEvent("cancel-leave", "cancel-link", {useBeacon: true});
   }
 
 }

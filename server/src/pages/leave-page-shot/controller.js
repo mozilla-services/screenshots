@@ -15,14 +15,14 @@ document.addEventListener("helper-ready", () => {
 
 exports.launch = function (m) {
   if (m.complete) {
-    sendEvent("delete-account-completed");
+    sendEvent("leave-page-shot-completed");
     helperReadyPromise.then(() => {
       let event = document.createEvent("CustomEvent");
       event.initCustomEvent("delete-everything", true, true, null);
       document.dispatchEvent(event);
     });
   } else {
-    sendEvent("start-delete-account");
+    sendEvent("start-leave-page-shot");
   }
 };
 
