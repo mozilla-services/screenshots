@@ -117,7 +117,7 @@ exports.renderStatus = function (req, res) {
     keepTime: req.keepTime
   };
   let page = StatusFactory(Object.assign({}, params, {
-    staticLink: req.staticLink
+    staticLink: req.staticLink,
     staticLinkWithHost: req.staticLinkWithHost
   }));
   let body = ReactDOMServer.renderToString(page);
