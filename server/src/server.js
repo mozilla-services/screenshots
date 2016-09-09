@@ -142,6 +142,15 @@ app.disable("x-powered-by");
 
 const CONTENT_NAME = config.contentOrigin;
 
+function addHSTS(req, res) {
+  if (req.protocol === "https") {
+    let time = 24*60*60*1000; // 24 hours
+    res.header(
+      "Strict-Transport-Security",
+      `max-age=${time}`);
+  }
+}
+
 app.use((req, res, next) => {
   genUuid.generate(genUuid.V_RANDOM, function (err, uuid) {
     if (!err) {
@@ -150,6 +159,7 @@ app.use((req, res, next) => {
         "Content-Security-Policy",
         `default-src 'self'; img-src 'self' www.google-analytics.com ${CONTENT_NAME} data:; script-src 'self' www.google-analytics.com 'nonce-${uuid}'; style-src 'self' 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' www.google-analytics.com; font-src https://code.cdn.mozilla.net;`);
       res.header("X-Frame-Options", "DENY");
+      addHSTS(req, res);
       next();
     } else {
       errorResponse(res, "Error creating nonce:", err);
@@ -803,6 +813,7 @@ if (config.useVirtualHosts) {
     res.header("Content-Security-Policy", "default-src 'self'");
     let domain = config.siteOrigin.split(":")[0];
     res.header("X-Frame-Options", `ALLOW-FROM ${domain}`);
+    addHSTS(req, res);
     next();
   });
 }
