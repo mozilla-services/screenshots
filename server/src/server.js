@@ -209,6 +209,17 @@ app.get("/ga-activation-hashed.js", function (req, res) {
   jsResponse(res, script);
 });
 
+app.get("/set-content-hosting-origin.js", function (req, res) {
+  let postMessageOrigin = `${req.protocol}://${req.config.contentOrigin}`;
+  let script = `var CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`
+  jsResponse(res, script);
+});
+
+app.get("/configure-raven.js", function (req, res) {
+  let script = `Raven.config("${req.config.sentryPublicDSN}").install(); window.Raven = Raven;`;
+  jsResponse(res, script);
+});
+
 app.get("/trigger-error", function (req, res) {
   throw new Error("test error");
 });
