@@ -216,7 +216,7 @@ function takeShot(source) {
   let thisTabId = tabs.activeTab.id;
   if (tabsBeingShot[thisTabId] !== true) {
     tabsBeingShot[thisTabId] = true;
-    let shotContext = shooter.ShotContext(backend, () => {
+    shooter.ShotContext(backend, () => {
       delete tabsBeingShot[thisTabId];
     });
     req.sendEvent("start-shot", source);

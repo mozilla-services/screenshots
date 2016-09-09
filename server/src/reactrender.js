@@ -1,5 +1,4 @@
 const { addReactScripts } = require("./reactutils");
-const React = require("react");
 const ReactDOMServer = require("react-dom/server");
 const { getGitRevision } = require("./linker");
 
