@@ -161,12 +161,32 @@ class Clip extends React.Component {
 }
 
 class TimeDiff extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {useLocalTime: false};
+  }
+
   render() {
-    if (this.props.simple) {
-      return this.renderSimple();
-    }
     let timeDiff;
-    let seconds = (Date.now() - this.props.date) / 1000;
+    if (this.state.useLocalTime) {
+      timeDiff = this.makeDiffString(this.props.date);
+    } else {
+      timeDiff = this.dateString(this.props.date);
+    }
+    return <span title={this.dateString(this.props.date)}>{timeDiff}</span>;
+  }
+
+  componentDidMount() {
+    if (typeof window !== "undefined" && ! this.state.useLocalTime) {
+      setTimeout(() => {
+        this.setState({useLocalTime: true});
+      });
+    }
+  }
+
+  makeDiffString(d) {
+    let timeDiff;
+    let seconds = (Date.now() - d) / 1000;
     if (seconds > 0) {
       if (seconds < 20) {
         timeDiff = "just now";
@@ -198,31 +218,38 @@ class TimeDiff extends React.Component {
         timeDiff = `in ${Math.floor(seconds / (-60*60*24))} days`;
       }
     }
-    return <span title={this.dateString(this.props.date)}>{timeDiff}</span>;
-  }
-
-  renderSimple() {
-    return <span>{this.dateString(this.props.date)}</span>;
+    return timeDiff;
   }
 
   dateString(d) {
+    let dYear, dMonth, dDay, dHour;
     if (! (d instanceof Date)) {
       d = new Date(d);
     }
-    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    let month = months[d.getMonth()];
-    let hour = d.getHours();
-    if (hour === 0) {
-      hour = "12am";
-    } else if (hour === 12) {
-      hour = "12pm";
-    } else if (hour > 12) {
-      hour = (hour % 12) + "pm";
+    if (this.state.useLocalTime) {
+      dYear = d.getFullYear();
+      dMonth = d.getMonth();
+      dDay = d.getDate();
+      dHour = d.getHours();
     } else {
-      hour = hour + "am";
+      dYear = d.getUTCFullYear();
+      dMonth = d.getUTCMonth();
+      dDay = d.getUTCDate();
+      dHour = d.getUTCHours();
     }
-    let year = 1900 + d.getYear();
-    return `${month} ${d.getDate()} ${year}, ${hour}`;
+    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    let month = months[dMonth];
+    let hour;
+    if (dHour === 0) {
+      hour = "12am";
+    } else if (dHour === 12) {
+      hour = "12pm";
+    } else if (dHour > 12) {
+      hour = (dHour % 12) + "pm";
+    } else {
+      hour = dHour + "am";
+    }
+    return `${month} ${dDay} ${dYear}, ${hour}`;
   }
 }
 
@@ -252,7 +279,6 @@ class Head extends React.Component {
     if (! this.props.simple) {
       oembed = <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />;
     }
-    let postMessageOrigin = `${this.props.contentProtocol}://${this.props.contentOrigin}`;
     let js = [
       <script src={ this.props.staticLink("vendor/core.js") } key="core-js-js" />,
       <script src={ this.props.staticLink("js/server-bundle.js") } key="server-bundle-js" />,
