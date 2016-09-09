@@ -149,6 +149,7 @@ app.use((req, res, next) => {
       res.header(
         "Content-Security-Policy",
         `default-src 'self'; img-src 'self' www.google-analytics.com ${CONTENT_NAME} data:; script-src 'self' www.google-analytics.com 'nonce-${uuid}'; style-src 'self' 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' www.google-analytics.com; font-src https://code.cdn.mozilla.net;`);
+      res.header("X-Frame-Options", "DENY");
       next();
     } else {
       errorResponse(res, "Error creating nonce:", err);
@@ -800,6 +801,8 @@ const contentApp = express();
 if (config.useVirtualHosts) {
   contentApp.use((req, res, next) => {
     res.header("Content-Security-Policy", "default-src 'self'");
+    let domain = config.siteOrigin.split(":")[0];
+    res.header("X-Frame-Options", `ALLOW-FROM ${domain}`);
     next();
   });
 }
