@@ -299,7 +299,8 @@ npm: build/.npm-install.log
 build/.npm-install.log: package.json
 	# Essentially .npm-install.log is just a timestamp showing the last time we ran
 	# the command
-	npm install > build/.npm-install.log
+	echo "Installing at $(date)" > build/.npm-install.log
+	npm install >> build/.npm-install.log
 
 # This causes intermediate files to be kept (e.g., files in static/ which are copied to the addon and server but aren't used/required directly):
 .SECONDARY:

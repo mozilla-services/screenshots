@@ -15,6 +15,8 @@ run () {
   if [[ -n "$restart" ]] ; then
     which growlnotify > /dev/null && growlnotify -m "Page Shot Server build started." || echo "Page Shot Server build started."
   fi
+  # This is to remove empty files that might have resulted from a syntax error:
+  find build/ -size 0 -exec rm {} \;
   make server
   if [[ -n "$restart" ]] ; then
     which growlnotify > /dev/null && growlnotify -m "Page Shot Server build finished." || echo "Page Shot Server build finished."
@@ -23,7 +25,7 @@ run () {
 }
 
 help () {
-  echo "Usage: $(basename $0) [--forever|-f]"
+  echo "Usage: $(basename $0) [--no-auto]"
   echo "  Run the server"
   echo "    --no-auto"
   echo "      Do not look for changes to the server and rebuild/restart"
