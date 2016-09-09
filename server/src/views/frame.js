@@ -129,9 +129,7 @@ class Clip extends React.Component {
     let clip = this.props.clip,
       node = null;
 
-    if (clip.image === undefined) {
-      node = <div className="text-clip" dangerouslySetInnerHTML={{__html: clip.text.html}} />;
-    } else {
+    if (clip.image !== undefined) {
       node = <img height={clip.image.dimensions.y} width={clip.image.dimensions.x} ref="clipImage" src={ clip.image.url } />;
     }
 
@@ -263,7 +261,7 @@ class Head extends React.Component {
     if (this.props.sentryPublicDSN) {
       js = js.concat([
         <script src={ this.props.staticLink("vendor/raven.js") } key="raven-js-js" />,
-        <script nonce={ this.props.cspNonce } dangerouslySetInnerHTML={{__html: `Raven.config("${this.props.sentryPublicDSN}").install(); window.Raven = Raven;`}}></script>,
+        <script src="/configure-raven.js" key="configure-raven" />
       ]);
     }
     js.push(gaScriptHashed);
@@ -283,7 +281,7 @@ class Head extends React.Component {
         {oembed}
         {ogTitle}
         {ogImage}
-        <script nonce={ this.props.cspNonce } dangerouslySetInnerHTML={{__html: `var CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`}}></script>
+        <script src="/set-content-hosting-origin.js" />
         <script src={ this.props.staticLink("js/parent-helper.js") } />
       </head>);
   }
