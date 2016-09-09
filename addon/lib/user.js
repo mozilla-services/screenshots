@@ -94,7 +94,8 @@ exports.initialize = function (backend, reason) {
               });
             return;
           } else if (response.status >= 300) {
-            let error = new Error("Could not log in: " + response.status);
+            let error = new Error("Could not log in: " + response.status + " " + response.statusText);
+            console.error("Error logging in:", response.status, response.statusText, response.text);
             reject(error);
             return;
           } else if (response.status === 0) {
@@ -130,7 +131,8 @@ function saveLogin(backend, info) {
           initialized = true;
           resolve();
         } else {
-          reject(new Error("Bad response: " + response.status));
+          console.error("Error registering:", response.status, response.statusText, response.text);
+          reject(new Error("Bad response: " + response.status + " " + response.statusText));
         }
       }
     }).post();

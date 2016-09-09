@@ -447,7 +447,7 @@ class Frame extends React.Component {
 
     let trashOrFlagButton = null;
     if (this.props.isOwner) {
-      trashOrFlagButton = <button className="trash-button" onClick={ this.onClickDelete.bind(this) }>
+      trashOrFlagButton = <button className="trash-button" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }>
         <img src={ this.props.staticLink("img/garbage-bin.png") } />
       </button>;
     } else {

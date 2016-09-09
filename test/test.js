@@ -3,8 +3,8 @@
 const assert = require("assert");
 const firefox = require("selenium-webdriver/firefox");
 const webdriver = require("selenium-webdriver");
-const FxRunnerUtils = require("fx-runner/lib/utils");
-const Fs = require("fs-promise");
+//const FxRunnerUtils = require("fx-runner/lib/utils");
+//const Fs = require("fs-promise");
 const path = require("path");
 
 const SHOOTER_BUTTON_ID = "action-button--jid1-neeaf3sahdkhpajetpack-pageshot-shooter";

@@ -254,7 +254,6 @@ $overlay-z-index: 9999999999;
 .pageshot-bghighlight {
   position: absolute;
   background-color: rgba(#323232, 0.5);
-  pointer-events: none;
   z-index: $overlay-z-index;
 }
 
