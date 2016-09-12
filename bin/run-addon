@@ -96,8 +96,10 @@ done
 
 if [[ -n "$upload" ]] ; then
   which growlnotify > /dev/null && growlnotify -m "Page Shot Add-on build started." || echo "Page Shot Add-on build started."
-  # This is to remove empty files that might have resulted from a syntax error:
-  find build/ -size 0 -exec rm {} \;
+  if [ -d build ] ; then
+    # This is to remove empty files that might have resulted from a syntax error:
+    find build/ -size 0 -exec rm {} \;
+  fi
   make addon xpi
   echo "Uploading to the browser"
   echo "  (if this fails, install: https://addons.mozilla.org/en-US/firefox/addon/autoinstaller/)"
