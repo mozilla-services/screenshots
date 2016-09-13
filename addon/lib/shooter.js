@@ -9,7 +9,7 @@ const tabs = require("sdk/tabs");
 const { getFavicon } = require("sdk/places/favicon");
 const { prefs } = require('sdk/simple-prefs');
 const { captureTab } = require("./screenshot");
-const { request, sendEvent, sendTiming } = require("./req");
+const { request, sendEvent, sendTiming, retryPromise } = require("./req");
 const { callScript } = require("./framescripter");
 const { defer } = require('sdk/core/promise');
 const { Class } = require('sdk/core/heritage');
@@ -476,7 +476,14 @@ class Shot extends AbstractShot {
 
   create() {
     let attrs = this.asJson();
-    return this._sendJson(attrs, "put");
+    let times = 0;
+    return retryPromise(() => {
+      if (times) {
+        sendEvent("upload", "upload-retry", {eventValue: times});
+      }
+      times++;
+      return this._sendJson(attrs, "put");
+    }, 3, 1000);
   }
 
   _sendJson(attrs, method) {
@@ -485,6 +492,7 @@ class Shot extends AbstractShot {
     }
     let url = this.jsonUrl;
     let body = JSON.stringify(attrs);
+    sendEvent("upload", "started", {eventValue: Math.floor(body.length / 1000)});
     return request(url, {
       content: body,
       contentType: "application/json",
@@ -502,12 +510,15 @@ class Shot extends AbstractShot {
             this.body = update.setBody;
           }
         }
+        sendEvent("upload", "success");
         return true;
       } else {
         let message;
         if (response.status === 0) {
+          sendEvent("upload", "failed-connection");
           message = "The request to " + url + " didn't complete due to the server being unavailable.";
         } else {
+          sendEvent("upload", "failed-status", {eventValue: response.status});
           message = "The request to " + url + " (" + Math.floor(body.length / 1000) + "Kb) returned a response " + response.status;
         }
         let error = new Error(message);
