@@ -85,3 +85,5 @@ function retryPromise(callback, times, retryTime) {
     }
   );
 }
+
+exports.retryPromise = retryPromise;

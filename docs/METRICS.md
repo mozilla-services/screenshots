@@ -118,6 +118,14 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 20. [x] Test pilot was present at install time `addon/test-pilot-installed` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/2q2Y1P2G3J3Z2G0K1t3D/Image%202016-09-07%20at%202.52.24%20PM.png?v=ebf9cbfd)
 21. [x] Test pilot was not present at install time `addon/test-pilot-not-installed`
 
+##### Internal add-on events
+
+1. [x] Start an upload `addon/upload/started` with eventValue of Kb (1000 bytes)
+2. [x] Fail to upload due to connection aborted `addon/upload/failed-connection`
+3. [x] Fail to upload due to bad status from server `addon/upload/failed-status` eventValue: status code (e.g., 400, 404, 500, 503)
+4. [x] Finish upload successfully `addon/upload/success`
+5. [x] After failure, re-attempt the upload `addon/upload/upload-retry` eventValue: times (1-2)
+
 #### Owner web visit
 
 These are events that an add-on user can encounter on a shot they own
