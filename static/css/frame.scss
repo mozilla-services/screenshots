@@ -1,0 +1,151 @@
+@import "partials/partials";
+
+#frame {
+
+  .footer {
+
+    a {
+      float: right;
+    }
+  }
+}
+
+.notification {
+  @include flex-container(row, space-between, center);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 12px;
+  padding: 10px 20px;
+  position: relative;
+  z-index: 1;
+
+  .close {
+    background-image: url("../img/glyph-stop-16.svg");
+    flex: 0 0 16px;
+    height: 16px;
+    opacity: 0.3;
+  }
+}
+
+.frame-header {
+  @include flex-container(row, space-between, stretch);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2);
+  min-height: 72px;
+}
+
+.left {
+  @include flex-container(row, flex-start, stretch);
+  flex: 1;
+}
+
+.right {
+  @include flex-container(row, flex-end, center);
+
+  .button {
+    margin-right: 18px;
+  }
+}
+
+.shot-info {
+  @include flex-container(column, center, flex-start);
+  color: $black;
+
+  > div {
+    white-space: nowrap;
+  }
+}
+
+.back-to-index {
+  @include flex-container(row, flex-start, center);
+  background-image: url("../img/my-shots.svg");
+  background-repeat: no-repeat;
+  padding: 0 10px 0 24px;
+}
+
+.back-to-home {
+  background-image: url("../img/pageshot.svg");
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: 32px auto;
+  height: 34px;
+  padding-left: 42px;
+
+  > span {
+    display: block;
+    text-align: left;
+  }
+
+  .sub {
+    font-size: 12px;
+  }
+}
+
+.shot-title,
+.shot-subtitle {
+  white-space: nowrap;
+}
+
+.shot-title {
+  font-size: 16px;
+  height: 25px;
+  padding: 0 0 6px;
+}
+
+.shot-subtitle {
+  @include flex-container(row, flex-start, center);
+  font-size: 12px;
+  height: 22px;
+  line-height: 16px;
+  opacity: 0.9;
+}
+
+.clock-icon {
+  background-image: url("../img/glyph-history-16.svg");
+  background-position: top center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 16px;
+  opacity: 0.5;
+  width: 26px;
+}
+
+.clip-container {
+  @include flex-container(row, center, center);
+  flex: 1;
+  margin: 20px 0;
+
+  > a img {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2);
+
+  }
+}
+
+.share-panel {
+  border-radius: $border-radius;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  position: absolute;
+  right: 10px;
+  top: 65px;
+  width: 320px;
+
+  img {
+    height: 54px;
+    width: 54px;
+  }
+
+  p {
+    margin-bottom: 5px;
+  }
+
+  .copy-shot-link-input {
+    border-radius: $border-radius;
+    border: 0;
+    box-shadow: 0 0 0 1px $border-color;
+    font-size: 16px;
+    height: 39px;
+    line-height: 40px;
+    margin-right: 5px;
+    padding: 5px;
+    position: relative;
+  }
+}

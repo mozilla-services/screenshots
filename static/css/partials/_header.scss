@@ -23,11 +23,6 @@
     a {
       color: $black;
       transition: color 150ms;
-
-      &:hover, 
-      &:focus {
-        color: $link-blue;
-      }
     }
   }
 }

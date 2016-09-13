@@ -52,13 +52,13 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         instructions.className = "pageshot-preview-instructions";
         instructions.textContent = "Drag or click on the page to select a region. Press ESC to cancel.";
         this.overlayEl.appendChild(instructions);
-        let button = document.createElement("button");
+        let button = document.createElement("div");
         button.className = "pageshot-myshots";
         button.addEventListener("click", callbacks.onOpenMyShots, false);
         let myShotsPre = document.createElement("div");
         myShotsPre.className = "pageshot-pre-myshots";
         button.appendChild(myShotsPre);
-        let text = document.createElement("span");
+        let text = document.createElement("div");
         text.className = "pageshot-myshots-text";
         text.textContent = "My Shots";
         button.appendChild(text);
