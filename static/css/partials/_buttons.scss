@@ -9,6 +9,7 @@
   font-weight: 400;
   height: 40px;
   line-height: 40px;
+  min-width: 40px;
   outline: none;
   padding: 0 10px;
   position: relative;
@@ -22,5 +23,36 @@
     height: 32px;
     line-height: 32px;
     padding: 0 8px;
+  }
+
+  &.tiny {
+    font-size: 12px;
+    height: 22px;
+    line-height: 12px;
+    padding: 2px 6px; 
+  }
+
+  &.block-button {
+    @include flex-container(row, center, center);
+    border: none;
+    border-right: 1px solid rgba(0, 0, 0, .1);
+    box-shadow: none;
+    border-radius: 0;
+    height: 100%;
+    line-height: 100%;
+    padding: 0 20px;
+    margin-right: 20px;
+  }
+
+  .arrow-icon {
+    display: inline-block;
+    position: relative;
+    top: 1px;
+    flex: 0 0 18px;
+    height: 16px;
+    opacity: .6;
+    background-image: url(../img/arrow-page-right-16.svg);
+    background-position: right center;
+    background-repeat: no-repeat;
   }
 }
