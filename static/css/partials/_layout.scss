@@ -28,6 +28,22 @@
   }
 }
 
+.wrapper {
+  width: 100%;
+  
+  &.row-wrap {
+    @include flex-container(row, flex-start, stretch, wrap);
+  }
+
+  &.row-space {
+    @include flex-container(row, space-between, stretch);
+  }
+
+  &.row-center {
+    @include flex-container(row, center, center);
+  }
+}
+
 .column-space {
   @include flex-container(column, space-between, stretch);
 }

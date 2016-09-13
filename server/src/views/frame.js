@@ -39,35 +39,36 @@ class ShareButtons extends React.Component {
   }
 
   render() {
-    let size = this.props.large ? "32" : "16";
-    return <div id="share-buttons-panel" className="share-row">
-      <div>Share to email and social networks:</div>
-      <div id="share-buttons">
+    return <div id="share-buttons-panel" className="share-panel default-color-scheme">
+      <div className="wrapper row-space">
         <a onClick={ this.onClickShareButton.bind(this, "facebook") } target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }>
-          <img src={ this.props.staticLink(`img/facebook-${size}.png`) } />
+          <img src={ this.props.staticLink(`img/share-facebook.svg`) } />
         </a>
         <a onClick={ this.onClickShareButton.bind(this, "twitter") }target="_blank" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }>
-          <img src={ this.props.staticLink(`img/twitter-${size}.png`) } />
+          <img src={ this.props.staticLink(`img/share-twitter.svg`) } />
         </a>
         <a onClick={ this.onClickShareButton.bind(this, "pinterest") } target="_blank" href={ "https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" + encodeURIComponent(this.props.shot.title) }>
-          <img src={ this.props.staticLink(`img/pinterest-${size}.png`) } />
+          <img src={ this.props.staticLink(`img/share-pinterest.svg`) } />
         </a>
         <a onClick={ this.onClickShareButton.bind(this, "email") }target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
-          <img src={ this.props.staticLink(`img/email-${size}.png`) } />
+          <img src={ this.props.staticLink(`img/share-email.svg`) } />
         </a>
       </div>
-      <hr />
-      <div>Get a shareable link to this shot:</div>
-      <input className="copy-shot-link-input"
-        value={ this.props.shot.viewUrl }
-        onClick={ this.onClickInputField.bind(this) }
-        onChange={ this.onChange.bind(this) } />
-      <button
-        className="copy-shot-link-button"
-        onClick={ this.onClickCopyButton.bind(this) }>
-        { this.state.copyText }
-      </button>
-      { this.props.isPublic }
+      <p>Get a shareable link to this shot:</p>
+      <div className="wrapper row-space">
+        <input className="copy-shot-link-input"
+          value={ this.props.shot.viewUrl }
+          onClick={ this.onClickInputField.bind(this) }
+          onChange={ this.onChange.bind(this) } />
+        <button
+          className="button secondary"
+          onClick={ this.onClickCopyButton.bind(this) }>
+          { this.state.copyText }
+        </button>
+      </div>
+      <div className="small">
+        { this.props.isPublic }
+      </div>
     </div>;
   }
 }
@@ -75,9 +76,6 @@ class ShareButtons extends React.Component {
 class Clip extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      paddingTop: 66,
-    };
   }
 
   componentDidMount() {
@@ -146,7 +144,7 @@ class Clip extends React.Component {
         src={ this.props.staticLink("img/zoom-out.svg") }
         onClick={ this.onClickClose.bind(this) }/>;
     }
-    return <div ref="clipContainer" className="clip-container" style={{paddingTop: this.state.paddingTop}} onClick={this.onClickCloseBackground.bind(this)}>
+    return <div ref="clipContainer" className="clip-container" onClick={this.onClickCloseBackground.bind(this)}>
       { closeButton }
       <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) }>
         { node }
@@ -299,7 +297,7 @@ class Head extends React.Component {
         <meta charSet="UTF-8" />
         <title>{this.props.shot.title}</title>
         {js}
-        <link rel="stylesheet" href={ this.props.staticLink("css/styles.css") } />
+        <link rel="stylesheet" href={ this.props.staticLink("css/frame.css") } />
         <link rel="icon" type="image/png" href={this.props.staticLink("img/pageshot-icon-32.png")} />
         <link rel="shortcut icon" href={this.props.staticLink("img/pageshot-icon-32.png")} />
         <meta property="og:type" content="website" />
@@ -454,7 +452,7 @@ class Frame extends React.Component {
 
     let timeDiff = <TimeDiff date={shot.createdDate} simple={this.props.simple} />;
     let expiresDiff = <span>
-      –&nbsp;
+      &nbsp; &bull; &nbsp; 
       <ExpireWidget
         expireTime={this.props.expireTime}
         onSaveExpire={this.onSaveExpire.bind(this)} />
@@ -473,23 +471,22 @@ class Frame extends React.Component {
 
     let trashOrFlagButton = null;
     if (this.props.isOwner) {
-      trashOrFlagButton = <button className="trash-button" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }>
-        <img src={ this.props.staticLink("img/garbage-bin.png") } />
+      trashOrFlagButton = <button className="button secondary" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }>
+        <img src={ this.props.staticLink("img/garbage-bin.svg") } />
       </button>;
     } else {
-      trashOrFlagButton = <button className="flag-button" onClick={ this.onClickFlag.bind(this) }>
+      trashOrFlagButton = <button className="button secondary" onClick={ this.onClickFlag.bind(this) }>
         <img src={ this.props.staticLink("img/flag.svg") } />
       </button>;
     }
 
     let myShotsHref = "/shots";
-    let myShotsText = <span style={{backgroundImage: `url(${this.props.staticLink("img/arrow-right.svg")})`, backgroundRepeat: "no-repeat", backgroundPosition: "100% 50%", backgroundSize: "8px 14px", paddingRight: "18px", paddingLeft: "20px", fontSize: "110%"}}>My Shots</span>;
+    let myShotsText = <span className="back-to-index">My Shots <span className="arrow-icon"/></span>;
     if (!this.props.isOwner) {
-      myShotsText = <span>
-        <span>
+      myShotsText = <span className="back-to-home">
+        <span className="sub">
           Made with
         </span>
-        <br />
         <span style={{fontWeight: "bold"}}>
           Page Shot
         </span>
@@ -527,19 +524,6 @@ class Frame extends React.Component {
                 { ...this.props } />;
     }
 
-    let zoomButton = null;
-    if (clipNames.length && this.props.shot.showPage) {
-      zoomButton = <img
-        style={{
-          position: "fixed",
-          cursor: "pointer",
-          top: "81px",
-          right: "15px",
-          height: "32px",
-          width: "32px"}}
-        src={ this.props.staticLink("img/zoom-in.svg") }
-        onClick={ this.onClickZoom.bind(this) }/>;
-    }
 
     let toolbarPadding = "160px";
     if (this.props.hasSavedShot) {
@@ -555,39 +539,31 @@ class Frame extends React.Component {
     */
 
     return (
-        <div id="container">
+        <div id="frame" className="inverse-color-scheme full-height column-space">
           { this.renderExtRequired() }
-        <div id="toolbar" style={{ paddingRight: toolbarPadding }}>
-          <a href={ myShotsHref } onClick={this.onClickMyShots.bind(this)}>
-            <button className="my-shots-button" style={{background: `no-repeat 10% center url(${this.props.staticLink("img/my-shots.png")}) #ebebeb`}}>
-              <span>{ myShotsText }</span>
-            </button>
-          </a>
-          <span className="shot-title"> { shot.title } </span>
-          <div className="shot-subtitle">
-            <span>Saved from </span><a className="subheading-link" href={ shotRedirectUrl } onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a>
-            <img height="16" width="16" style={{
-              marginRight: "7px",
-              marginLeft: "7px",
-              position: "relative",
-              top: "4px"}}
-              src={ this.props.staticLink("img/clock.svg") } />
-            { timeDiff } { expiresDiff }
+        <div className="frame-header default-color-scheme">
+          <div className="left">
+            <a className="block-button button secondary" href={ myShotsHref } onClick={this.onClickMyShots.bind(this)}>{ myShotsText }</a>
+            <div className="shot-info">
+              <span className="shot-title"> { shot.title } </span>
+              <div className="shot-subtitle">Saved from &nbsp;<a className="subtitle-link" href={ shotRedirectUrl } onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> <span className="clock-icon"/> { timeDiff } { expiresDiff } </div>
+            </div>
           </div>
-          <div className="more-shot-actions">
-            <button className="share-button" onClick={ this.onClickShareButton.bind(this) }>
+          <div className="more-shot-actions right">
+            <button className="button primary" onClick={ this.onClickShareButton.bind(this) }>
               Share
             </button>
             { trashOrFlagButton }
           </div>
         </div>
         { shareButtons }
-        { zoomButton }
         { clips }
         { this.props.shot.showPage ? <span id="copy-flag">Copy</span> : null }
         { this.props.shot.showPage ?
           <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } /> : null }
-        <a className="feedback-footer" href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl } onClick={ this.onClickFeedback.bind(this) }>Send Feedback</a>
+          <div className="footer">
+            <a href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl } onClick={ this.onClickFeedback.bind(this) }>Send Feedback</a>
+          </div>
       </div>
     );
   }
@@ -596,11 +572,12 @@ class Frame extends React.Component {
     if (this.props.isExtInstalled || this.state.closePageshotBanner) {
       return null;
     }
-    return <div id="use-pageshot-to-create">
-      <a href={ this.props.backend } onClick={ this.clickedCreate.bind(this) }>To create your own shots, get the Firefox extension {this.props.productName}</a>.
-      <a id="banner-close" onClick={ this.closeGetPageshotBanner.bind(this) }>&times;</a>
+    return <div className="default-color-scheme notification">
+      <div> Page Shot is an experimental extension for Firefox. <a href={ this.props.backend } onClick={ this.clickedCreate.bind(this) }>Get it here</a></div>
+      <a className="close" onClick={ this.closeGetPageshotBanner.bind(this) }></a>
     </div>;
   }
+
 
   clickedCreate() {
     window.ga('send', 'event', 'website', 'click-install-banner', {useBeacon: true});
@@ -692,14 +669,7 @@ class ExpireWidget extends React.Component {
       </span>;
     }
     return (
-      <button onClick={this.clickChangeExpire.bind(this)} style={{
-        border: "1px solid #d4d4d4",
-        borderRadius: "3px",
-        backgroundColor: "transparent",
-        padding: "3px 10px",
-        fontSize: "11px",
-        color: "#858585"
-      }}>
+      <button className="button tiny secondary" onClick={this.clickChangeExpire.bind(this)}>
         {button}
       </button>
     );
@@ -841,7 +811,7 @@ exports.render = function (req, res) {
   let result = addReactScripts(
 `<html>
   ${headString}
-  <body>
+  <body className="inverse-color-scheme">
     <div id="react-body-container">${body}</div>
   </body></html>`, `
     var serverData = ${json};
@@ -873,7 +843,7 @@ exports.renderSimple = function (req, res) {
   let body = ReactDOMServer.renderToStaticMarkup(frame);
   body = `<!DOCTYPE HTML>
   ${headString}
-  <body>${body}
+  <body className="inverse-color-scheme">${body}
   </body></html>`;
   res.send(body);
 };

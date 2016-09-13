@@ -89,6 +89,10 @@
   z-index: 2;
   color: $black;
 
+  h4 {
+    color: $black;
+  }
+
   &:hover {
     h4 {
       color: $link-blue;
