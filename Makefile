@@ -267,16 +267,11 @@ server: npm build/server/build-time.js build/server/static/js/server-bundle.js b
 
 ## Homepage related rules:
 
-# The only non-static file, we substitute the Google Analytics ID in here:
-build/server/static/homepage/index.html: static/homepage/index.html build/ga-id.txt
-	mkdir -p $(@D)
-	sed "s/GA_ID/$(shell cat build/ga-id.txt)/g" < $< > $@
-
 build/server/static/homepage/%: static/homepage/%
 	@mkdir -p $(@D)
 	cp $< $@
 
-homepage: build/server/static/homepage/index.html $(patsubst static/homepage/%,build/server/static/homepage/%,$(shell find static/homepage -type f ! -name index.html))
+homepage: $(patsubst static/homepage/%,build/server/static/homepage/%,$(shell find static/homepage -type f ! -name index.html))
 
 ## npm rule
 
