@@ -58,14 +58,16 @@ function makeScreenShot(pos, maxSize, backgroundColor) {
       canvas.width = maxSize.w;
       canvas.height = maxSize.h;
     } else {
-      canvas.width = pos.w;
-      canvas.height = pos.h;
+      canvas.width = pos.w * win.devicePixelRatio;
+      canvas.height = pos.h * win.devicePixelRatio;
     }
     let ctx = canvas.getContext('2d');
     if (maxSize) {
       ctx.scale(maxSize.w / pos.w, maxSize.h / pos.h);
+    } else if (win.devicePixelRatio !== 1) {
+      ctx.scale(win.devicePixelRatio, win.devicePixelRatio);
     }
-    backgroundColor = backgroundColor || "#000";
+    backgroundColor = backgroundColor || "#fff";
     ctx.drawWindow(win, pos.x, pos.y, pos.w, pos.h, backgroundColor);
     return canvas.toDataURL();
   } finally {
