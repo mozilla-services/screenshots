@@ -37,7 +37,7 @@ To make the auto-reloading of the add-on work, after you first start Firefox usi
 
 ### Participation
 
-There is an IRC channel `#pageshot` on irc.mozilla.org (you can use [Mibbit](https://www.mibbit.com/?server=irc.mozilla.org&channel=%23pageshot) if you do not otherwise use IRC).
+There is an IRC channel `#pageshot` on irc.mozilla.org (you can use [this link](https://kiwiirc.com/client/irc.mozilla.org/pageshot) for chat access via the web if you do not otherwise use IRC).
 
 Planning and ideation is happening in the [issue tracker](https://github.com/ianb/pageshot/issues).  We use a pattern roughly like:
 
