@@ -3,5 +3,6 @@ const viewModule = require("./view");
 
 exports.page = new Page({
   dir: __dirname,
-  viewModule
+  viewModule,
+  noBrowserJavascript: true
 });

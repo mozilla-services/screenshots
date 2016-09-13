@@ -90,5 +90,5 @@ exports.Page = class Page {
 };
 
 exports.Page.prototype.ATTRS = `
-dir viewModule
+dir viewModule noBrowserJavascript
 `.split(/\s+/g);
