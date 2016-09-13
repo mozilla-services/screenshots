@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+set -e
+
+project_name="$1"
+shift
+cmd="$1"
+shift
+
+depfile() {
+  echo "./build/dependency-cache/${project_name}-dependencies.txt"
+}
+
+getdeps() {
+  file="$(depfile)"
+  if [ -e $file ] ; then
+    cat < $file
+  else
+    echo "$@"
+  fi
+}
+
+build() {
+  mkdir -p "$(dirname "$(depfile)")"
+  browserify --list -e "$@" | sed "s!$(pwd)/!!g" | grep -v build-time > "$(depfile)"
+  browserify -o "build/server/static/js/${project_name}-bundle.js" \
+    -e "$@"
+}
+
+case "$cmd" in
+  -h|--help|help|"")
+    echo "This is a build script for the Makefile"
+    exit 2
+    ;;
+  getdeps)
+    getdeps "$@"
+    ;;
+  build)
+    build "$@"
+    ;;
+  *)
+    echo "Unknown command: $cmd"
+    exit 2
+    ;;
+esac

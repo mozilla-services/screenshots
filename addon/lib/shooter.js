@@ -126,8 +126,24 @@ const ShotContext = Class({
   },
 
   takeShot: function () {
+    let loadingTab;
+    let doneSuperFast = false;
+    tabs.open({
+      url: this.shot.creatingUrl,
+      onOpen: (tab) => {
+        loadingTab = tab;
+        // In the unlikely case that the request finishes before the tab opens:
+        if (doneSuperFast) {
+          loadingTab.url = this.shot.viewUrl;
+        }
+      }
+    });
     watchPromise(this.uploadShot().then(() => {
-      this.openInNewTab();
+      doneSuperFast = true;
+      if (loadingTab) {
+        console.log("about to set to", this.shot.viewUrl);
+        loadingTab.url = this.shot.viewUrl;
+      }
       this.destroy();
     }));
     this._collectionCompletePromise.then(() => {

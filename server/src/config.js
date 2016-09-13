@@ -217,6 +217,22 @@ var conf = convict({
     default: false,
     env: "SHOW_STACK_TRACES",
     arg: "show-stack-traces"
+  },
+  testing: {
+    failSometimes: {
+      doc: "Fail on PUT /data/... requests sometimes (succeed 1 every N times)",
+      format: "int",
+      default: 0,
+      env: "TEST_FAIL_SOMETIMES",
+      arg: "test-fail-sometimes"
+    },
+    slowResponse: {
+      doc: "Add N milliseconds to the response time for PUT /data/...",
+      format: "int",
+      default: 0,
+      env: "TEST_SLOW_RESPONSE",
+      arg: "test-slow-response"
+    }
   }
 });
 
