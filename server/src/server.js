@@ -292,7 +292,7 @@ app.post("/event", function (req, res) {
     let userAnalytics = ua(config.gaId, userUuid.toString());
     let params = Object.assign(
       {},
-      bodyObj.options || {},
+      bodyObj.options,
       {
         ec: bodyObj.event,
         ea: bodyObj.action,
