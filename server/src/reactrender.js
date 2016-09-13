@@ -21,7 +21,12 @@ exports.render = function (req, res, page) {
       return;
     }
     let head = ReactDOMServer.renderToStaticMarkup(viewModule.HeadFactory(serverModel));
-    let body = ReactDOMServer.renderToString(viewModule.BodyFactory(serverModel));
+    let body;
+    if (page.noBrowserJavascript) {
+      body = ReactDOMServer.renderToStaticMarkup(viewModule.BodyFactory(serverModel));
+    } else {
+      body = ReactDOMServer.renderToString(viewModule.BodyFactory(serverModel));
+    }
     let doc = `
     <html>
       ${head}
