@@ -29,8 +29,10 @@ exports.render = function (req, res, page) {
         <div id="react-body-container">${body}</div>
       </body></html>
     `.trim();
-    // FIXME: we should just inline the addReactScripts functionality in this function:
-    doc = addReactScripts(doc, `controller.launch(${JSON.stringify(jsonModel)});`, req.cspNonce);
+    if (! page.noBrowserJavascript) {
+      // FIXME: we should just inline the addReactScripts functionality in this function:
+      doc = addReactScripts(doc, `controller.launch(${JSON.stringify(jsonModel)});`, req.cspNonce);
+    }
     res.send(doc);
   }).catch((err) => {
     res.type("txt").status(500).send("Error: " + err + "\n" + err.stack);
