@@ -290,11 +290,17 @@ app.post("/event", function (req, res) {
   }
   hashUserId(req.deviceId).then((userUuid) => {
     let userAnalytics = ua(config.gaId, userUuid.toString());
-    userAnalytics.event(
-      bodyObj.event,
-      bodyObj.action,
-      bodyObj.label
-    ).send();
+    let params = Object.assign(
+      {},
+      bodyObj.options || {},
+      {
+        ec: bodyObj.event,
+        ea: bodyObj.action,
+        el: bodyObj.label,
+        ev: bodyObj.eventValue
+      }
+    );
+    userAnalytics.event(params).send();
     simpleResponse(res, "OK", 200);
   }).catch((e) => {
     errorResponse(res, "Error creating user UUID:", e);

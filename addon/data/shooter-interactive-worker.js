@@ -54,6 +54,16 @@ function sendEvent(event, action, label) {
   }
 }
 
+function eventOptionsForBox(box) {
+  function round10(n) {
+    return Math.floor(Math.abs(n) / 10) * 10;
+  }
+  return {
+    cd0: round10(box.right - box.left),
+    cd1: round10(box.bottom - box.top)
+  };
+}
+
 /***********************************************
  * State and stateHandlers infrastructure
  */
@@ -400,7 +410,7 @@ stateHandlers.draggingReady = {
       );
       mousedownPos = null;
       ui.Box.display(selectedPos, standardDisplayCallbacks);
-      sendEvent("make-selection", "selection-click");
+      sendEvent("make-selection", "selection-click", eventOptionsForBox(rect));
       setState("selected");
       if (isChrome) {
         chromeShooter.sendAnalyticEvent("addon", "autoselect");
@@ -516,7 +526,14 @@ stateHandlers.dragging = {
     selectedPos.y2 = util.truncateY(event.pageY);
     ui.Box.display(selectedPos, standardDisplayCallbacks);
     reportSelection("selection");
-    sendEvent("make-selection", "selection-drag");
+    sendEvent(
+      "make-selection", "selection-drag",
+      eventOptionsForBox({
+        top: selectedPos.y1,
+        bottom: selectedPos.y2,
+        left: selectedPos.x1,
+        right: selectedPos.x2
+      }));
     setState("selected");
   }
 };
