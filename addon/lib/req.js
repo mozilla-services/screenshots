@@ -35,16 +35,34 @@ exports.request = function (url, options) {
   });
 };
 
-exports.sendEvent = function (event /* optional, default "addon" */, action, label) {
-  if (label === undefined) {
-    label = action;
-    action = event;
-    event = "addon";
+// The only options we allow for sendEvent, see also:
+//   https://github.com/peaksandpies/universal-analytics/blob/master/AcceptableParams.md
+const eventOptions = {
+  eventValue: true,
+  cd0: true, // custom dimension 0
+  cd1: true  // custom dimension 1
+};
+
+exports.sendEvent = function (action, label, options) {
+  let event = "addon";
+  if (typeof label == "object") {
+    if (options) {
+      throw new Error("Got both an object label and options to sendEvent()");
+    }
+    options = label;
+    label = null;
   }
   let main = require("./main");
+  if (options) {
+    for (let key in options) {
+      if (! eventOptions[key]) {
+        throw new Error("Unexpected attribute to sendEvent(options): " + key);
+      }
+    }
+  }
   exports.request(`${main.getBackend()}/event`, {
     method: "POST",
-    content: JSON.stringify({event, action, label}),
+    content: JSON.stringify({event, action, label, options}),
     contentType: "application/json"
   });
 };
