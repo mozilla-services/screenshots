@@ -462,6 +462,12 @@ app.post("/api/unload", function (req, res) {
 });
 
 app.put("/data/:id/:domain", function (req, res) {
+  let slowResponse = config.testing.slowResponse;
+  let failSometimes = config.testing.failSometimes;
+  if (failSometimes && Math.floor(Math.random()*failSometimes)) {
+    res.end();
+    return;
+  }
   let bodyObj = req.body;
   if (typeof bodyObj != "object") {
     throw new Error("Got unexpected req.body type: " + typeof bodyObj);
@@ -495,7 +501,15 @@ app.put("/data/:id/:domain", function (req, res) {
     return;
   }
   let shot = new Shot(req.deviceId, req.backend, shotId, bodyObj);
-  shot.insert().then((inserted) => {
+  let responseDelay = Promise.resolve()
+  if (slowResponse) {
+    responseDelay = new Promise((resolve) => {
+      setTimeout(resolve, config.debug.slowResponse);
+    });
+  }
+  responseDelay.then(() => {
+    return shot.insert();
+  }).then((inserted) => {
     if (! inserted) {
       return shot.update();
     }
@@ -805,6 +819,8 @@ app.use("/leave-page-shot", require("./pages/leave-page-shot/server").app);
 app.use("/terms", require("./pages/legal/server").app);
 
 app.use("/privacy", require("./pages/legal/server").app);
+
+app.use("/creating", require("./pages/creating/server").app);
 
 const contentApp = express();
 

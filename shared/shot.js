@@ -447,6 +447,13 @@ ${options.addBody || ""}
     return url;
   }
 
+  get creatingUrl() {
+    let url = `${this.backend}/creating/${this.id}`;
+    url += `?title=${encodeURIComponent(this.title)}`;
+    url += `&url=${encodeURIComponent(this.url)}`;
+    return url;
+  }
+
   get jsonUrl() {
     return this.backend + "/data/" + this.id;
   }
