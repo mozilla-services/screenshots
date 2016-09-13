@@ -645,18 +645,6 @@ app.get("/images/:imageid", function (req, res) {
   });
 });
 
-app.get("/", function (req, res) {
-  let page = path.join(__dirname, "static/homepage/index.html");
-  require("fs").readFile(page, function (err, data) {
-    if (err) {
-      errorResponse(res, "Error", err);
-      return;
-    }
-    res.header("Content-Type", "text/html");
-    res.send(data);
-  });
-});
-
 app.get("/__version__", function (req, res) {
   let response = {
     source: "https://github.com/mozilla-services/pageshot/",
@@ -822,6 +810,8 @@ app.use("/terms", require("./pages/legal/server").app);
 app.use("/privacy", require("./pages/legal/server").app);
 
 app.use("/creating", require("./pages/creating/server").app);
+
+app.use("/", require("./pages/homepage/server").app);
 
 const contentApp = express();
 
