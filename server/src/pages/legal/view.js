@@ -121,7 +121,7 @@ class Head extends React.Component {
   render() {
     return (
       <reactruntime.HeadTemplate {...this.props}>
-        <link rel="stylesheet" href={this.props.staticLink("css/legal.css")} />
+        <link rel="stylesheet" href={this.props.staticLink("css/simple.css")} />
       </reactruntime.HeadTemplate>
     );
   }
