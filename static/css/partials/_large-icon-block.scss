@@ -12,6 +12,7 @@
     background: no-repeat center center;
     background-size: auto 120px;
     flex: 0 0 120px;
+    min-width: 200px;
     opacity: 0.3;
     position: relative;
 
@@ -21,6 +22,14 @@
 
     &.check {
       background-image: url("../img/check.svg")
+    }
+
+    &.pulse {
+      animation: pulse ease-in-out 1500ms;
+    }
+
+    &.forever {
+      animation-iteration-count: infinite;
     }
   }
 

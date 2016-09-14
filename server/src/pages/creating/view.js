@@ -8,7 +8,7 @@ class Head extends React.Component {
     return (
       <reactruntime.HeadTemplate {...this.props}>
         <script src={this.props.staticLink("js/creating-bundle.js")}></script>
-        <link rel="stylesheet" href={this.props.staticLink("css/styles.css")} />
+        <link rel="stylesheet" href={this.props.staticLink("css/simple.css")} />
       </reactruntime.HeadTemplate>
     );
   }
@@ -19,7 +19,11 @@ class Body extends React.Component {
   render() {
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <h1>Uploading...</h1>
+        <div className="column-center full-height inverse-color-scheme">
+          <div className="large-icon-message-container">
+            <div className="large-icon logo pulse forever" />
+          </div>
+        </div>
       </reactruntime.BodyTemplate>
     );
   }
