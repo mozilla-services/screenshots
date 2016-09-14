@@ -21,3 +21,20 @@
     transform: scale(1);
   }
 }
+
+@keyframes pulse {
+  0% {
+    opacity: .3;
+    transform: scale(1);
+  }
+
+  70% {
+    opacity: .25;
+    transform: scale(1.04);
+  }
+
+  100% {
+    opacity: .3;
+    transform: scale(1);
+  }
+}
