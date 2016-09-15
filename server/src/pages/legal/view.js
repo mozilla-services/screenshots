@@ -150,7 +150,7 @@ class Body extends React.Component {
             <h2>{this.props.title}</h2>
             { content }
           </div>
-          <Footer/>
+          <Footer forUrl="legal" />
         </div>
       </reactruntime.BodyTemplate>
     )

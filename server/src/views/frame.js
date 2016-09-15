@@ -7,6 +7,7 @@ const { getGitRevision } = require("../linker");
 // const { ProfileButton } = require("./profile");
 const { addReactScripts } = require("../reactutils");
 const { gaScriptHashed } = require("../ga-activation");
+const { Footer } = require("../footer-view");
 
 class ShareButtons extends React.Component {
   constructor(props) {
@@ -50,7 +51,7 @@ class ShareButtons extends React.Component {
         <a onClick={ this.onClickShareButton.bind(this, "pinterest") } target="_blank" href={ "https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" + encodeURIComponent(this.props.shot.title) }>
           <img src={ this.props.staticLink(`img/share-pinterest.svg`) } />
         </a>
-        <a onClick={ this.onClickShareButton.bind(this, "email") }target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
+        <a onClick={ this.onClickShareButton.bind(this, "email") } target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
           <img src={ this.props.staticLink(`img/share-email.svg`) } />
         </a>
       </div>
@@ -452,7 +453,7 @@ class Frame extends React.Component {
 
     let timeDiff = <TimeDiff date={shot.createdDate} simple={this.props.simple} />;
     let expiresDiff = <span>
-      &nbsp; &bull; &nbsp; 
+      &nbsp; &bull; &nbsp;
       <ExpireWidget
         expireTime={this.props.expireTime}
         onSaveExpire={this.onSaveExpire.bind(this)} />
@@ -561,9 +562,7 @@ class Frame extends React.Component {
         { this.props.shot.showPage ? <span id="copy-flag">Copy</span> : null }
         { this.props.shot.showPage ?
           <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } /> : null }
-          <div className="footer">
-            <a href={ "mailto:pageshot-feedback@mozilla.com?subject=Pageshot%20Feedback&body=" + shot.viewUrl } onClick={ this.onClickFeedback.bind(this) }>Send Feedback</a>
-          </div>
+        <Footer forUrl={ shot.viewUrl } />
       </div>
     );
   }
