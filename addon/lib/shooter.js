@@ -144,6 +144,9 @@ const ShotContext = Class({
         loadingTab.url = this.shot.viewUrl;
       }
       this.destroy();
+    }).catch((error) => {
+      this.destroy();
+      throw error;
     }));
     this._collectionCompletePromise.then(() => {
       // FIXME remove when we are sure we don't want this feature

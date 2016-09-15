@@ -511,7 +511,7 @@ app.put("/data/:id/:domain", function (req, res) {
   let responseDelay = Promise.resolve()
   if (slowResponse) {
     responseDelay = new Promise((resolve) => {
-      setTimeout(resolve, config.debug.slowResponse);
+      setTimeout(resolve, slowResponse);
     });
   }
   responseDelay.then(() => {
