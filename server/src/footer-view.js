@@ -9,6 +9,7 @@ exports.Footer = class Footer extends React.Component {
           <a href="/terms">Terms</a>
           <a href="/privacy">Privacy Notice</a>
           <a href="https://www.mozilla.org/en-US/about/legal/report-infringement/" target="_blank">Report IP Infrigement</a>
+          <a href={ `mailto:pageshot-feedback@mozilla.com?subject=Page%20Shot%20Feedback&body=Feedback%20regarding:%20${this.props.forUrl}` } target="_blank">Send Feedback</a>
           <a href="/leave-page-shot">Leave Page Shot</a>
           </div>
         </div>
