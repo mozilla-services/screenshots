@@ -343,10 +343,8 @@ class Frame extends React.Component {
     this.setState({sharePanelDisplay: show});
     if (show) {
       sendEvent("start-share");
-      document.addEventListener("click", this.unsharePanelHandler, false);
     } else {
       sendEvent("cancel-share");
-      document.removeEventListener("click", this.unsharePanelHandler, false);
     }
   }
 
@@ -361,7 +359,7 @@ class Frame extends React.Component {
   unsharePanelHandler(e) {
     let el = e.target;
     while (el) {
-      if (el.id === "share-buttons-panel") {
+      if (el.id === "share-buttons-panel" || el.id === "share-button") {
         // A click in the share panel itself
         return;
       }
@@ -527,12 +525,6 @@ class Frame extends React.Component {
                 { ...this.props } />;
     }
 
-
-    let toolbarPadding = "160px";
-    if (this.props.hasSavedShot) {
-      toolbarPadding = "315px";
-    }
-
     /*
     {this.props.hasSavedShot ?
       <button id="upload-full-page" className="upload-full-page" onClick={ this.onClickUploadFullPage.bind(this) }>
@@ -553,7 +545,7 @@ class Frame extends React.Component {
             </div>
           </div>
           <div className="more-shot-actions right">
-            <button className="button primary" onClick={ this.onClickShareButton.bind(this) }>
+            <button className="button primary" id="share-button" onClick={ this.onClickShareButton.bind(this) }>
               Share
             </button>
             <a className="button secondary" href={ clipUrl } download={ `${clipFilename}.png` }>
@@ -618,6 +610,22 @@ class Frame extends React.Component {
 
   onClickFeedback() {
     sendEvent("start-feedback", "footer", {useBeacon: true});
+  }
+
+  componentDidMount() {
+    this.componentDidUpdate();
+  }
+
+  componentDidUpdate() {
+    if (this.state.sharePanelDisplay) {
+      document.addEventListener("click", this.unsharePanelHandler, false);
+    } else {
+      document.removeEventListener("click", this.unsharePanelHandler, false);
+    }
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("click", this.unsharePanelHandler, false);
   }
 
 }
