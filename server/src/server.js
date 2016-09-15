@@ -645,14 +645,6 @@ app.get("/images/:imageid", function (req, res) {
         anonAnalytics.pageview(analyticsUrl).send();
       }
       res.header("Content-Type", obj.contentType);
-      if (req.query.filename) {
-        let extension = "." + obj.contentType.split("/").pop();
-        let filename= req.query.filename;
-        if (! filename.endsWith(extension)) {
-          filename = filename + extension;
-        }
-        res.header("Content-Disposition", `attachment; filename="${filename}"`)
-      }
       res.status(200);
       res.send(obj.data);
     }

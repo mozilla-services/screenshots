@@ -349,15 +349,6 @@ class Frame extends React.Component {
     }
   }
 
-  onClickDownloadButton(e) {
-    let clipNames = this.props.shot.clipNames();
-    let clipId = clipNames[0];
-    let clip = this.props.shot.getClip(clipId);
-    let date = new Date(this.props.shot.createdDate);
-    let filename = encodeURIComponent(`Page-Shot-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}-${this.props.shot.title}`);
-    window.location = `${clip.image.url}?filename=${filename}`;
-  }
-
   onClickClose() {
     this.setState({hidden: true});
   }
@@ -518,14 +509,16 @@ class Frame extends React.Component {
       }
     }
 
+    let clipUrl = null;
+    if (clipNames.length) {
+      let clipId = clipNames[0];
+      let clip = this.props.shot.getClip(clipId);
+      clipUrl = clip.image.url;
+    }
+    let date = new Date(this.props.shot.createdDate);
+    let clipFilename = encodeURIComponent(`Page-Shot-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}-${this.props.shot.title}`);
+
     if (this.state.sharePanelDisplay) {
-      let clipNames = this.props.shot.clipNames();
-      let clipUrl = null;
-      if (clipNames.length) {
-        let clipId = clipNames[0];
-        let clip = this.props.shot.getClip(clipId);
-        clipUrl = clip.image.url;
-      }
       shareButtons = <ShareButtons
                 large={ true }
                 clipUrl={ clipUrl }
@@ -562,9 +555,9 @@ class Frame extends React.Component {
             <button className="button primary" onClick={ this.onClickShareButton.bind(this) }>
               Share
             </button>
-            <button className="button secondary" onClick={ this.onClickDownloadButton.bind(this) }>
+            <a className="button secondary" href={ clipUrl } download={ `${clipFilename}.png` }>
               <img src={ this.props.staticLink("img/download.svg") } />
-            </button>
+            </a>
             { trashOrFlagButton }
           </div>
         </div>
