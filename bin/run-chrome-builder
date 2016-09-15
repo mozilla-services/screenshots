@@ -17,6 +17,9 @@ rebuild () {
   which growlnotify > /dev/null && growlnotify -m "Page Shot Chrome build started." || echo "Page Shot Chrome build started."
 }
 
+echo "NOTE: The Chrome Extension is not currently well-maintained; you will find extensive breakage"
+echo
+
 while [[ -n "$1" ]] ; do
   case "$1" in
     help|-h|--help)
