@@ -6,7 +6,6 @@ const ReactDOMServer = require("react-dom/server");
 const { getGitRevision } = require("../linker");
 // const { ProfileButton } = require("./profile");
 const { addReactScripts } = require("../reactutils");
-const { gaScriptHashed } = require("../ga-activation");
 const { Footer } = require("../footer-view");
 
 class ShareButtons extends React.Component {
@@ -279,6 +278,8 @@ class Head extends React.Component {
       oembed = <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />;
     }
     let js = [
+      <script src="//www.google-analytics.com/analytics.js" async key="gaScript" />,
+      <script src="/ga-activation-hashed.js" key="gaActivation" />,
       <script src={ this.props.staticLink("vendor/core.js") } key="core-js-js" />,
       <script src={ this.props.staticLink("js/server-bundle.js") } key="server-bundle-js" />,
     ];
@@ -289,7 +290,6 @@ class Head extends React.Component {
         <script src="/configure-raven.js" key="configure-raven" />
       ]);
     }
-    js.push(gaScriptHashed);
     if (this.props.simple) {
       js = [];
     }

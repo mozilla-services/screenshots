@@ -132,16 +132,6 @@ window.sendEvent = function (event, action, label, options) {
 };
 `;
 
-exports.gaScript = [
-  <script src="//www.google-analytics.com/analytics.js" async key="gaScript"></script>,
-  <script src="/ga-activation.js" key="gaActivation" />
-];
-
-exports.gaScriptHashed = [
-  exports.gaScript[0],
-  <script src="/ga-activation-hashed.js" key="gaActivation" />
-];
-
 const idRegex = /^[a-zA-Z0-9_.,-]+$/;
 
 exports.makeGaActivationString = function (gaId, userId, hashLocation) {
