@@ -141,7 +141,6 @@ const ShotContext = Class({
     watchPromise(this.uploadShot().then(() => {
       doneSuperFast = true;
       if (loadingTab) {
-        console.log("about to set to", this.shot.viewUrl);
         loadingTab.url = this.shot.viewUrl;
       }
       this.destroy();
@@ -492,7 +491,9 @@ class Shot extends AbstractShot {
     }
     let url = this.jsonUrl;
     let body = JSON.stringify(attrs);
-    sendEvent("upload", "started", {eventValue: Math.floor(body.length / 1000)});
+    let kb = Math.floor(body.length / 1000);
+    sendEvent("upload", "started", {eventValue: kb});
+    console.info(`Uploading JSON blob size ${kb}kb`);
     return request(url, {
       content: body,
       contentType: "application/json",
