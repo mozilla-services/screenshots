@@ -255,24 +255,6 @@ exports.TimeDiff = TimeDiff;
 
 class Head extends React.Component {
   render() {
-    let ogImage = [];
-    if (this.props.shot) {
-      for (let clipId in this.props.shot.clips) {
-        let clip = this.props.shot.clips[clipId];
-        if (clip.image) {
-          let clipUrl = this.props.backend + "/clip/" + this.props.shot.id + "/" + clipId;
-          ogImage.push(<meta key={ "ogimage" + this.props.shot.id } property="og:image" content={clipUrl} />);
-          if (clip.image.dimensions) {
-            ogImage.push(<meta key={ "ogimagewidth" + this.props.shot.id } property="og:image:width" content={clip.image.dimensions.x} />);
-            ogImage.push(<meta key={ "ogimageheight" + this.props.shot.id } property="og:image:height" content={clip.image.dimensions.y} />);
-          }
-        }
-      }
-    }
-    let ogTitle = null;
-    if (this.props.shot && this.props.shot.ogTitle) {
-      ogTitle = <meta propery="og:title" content={this.props.shot.ogTitle} />;
-    }
     let oembed;
     if (! this.props.simple) {
       oembed = <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />;
@@ -301,14 +283,44 @@ class Head extends React.Component {
         <link rel="stylesheet" href={ this.props.staticLink("css/frame.css") } />
         <link rel="icon" type="image/png" href={this.props.staticLink("img/pageshot-icon-32.png")} />
         <link rel="shortcut icon" href={this.props.staticLink("img/pageshot-icon-32.png")} />
-        <meta property="og:type" content="website" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {oembed}
-        {ogTitle}
-        {ogImage}
+        {this.socialMetadata()}
         <script src="/set-content-hosting-origin.js" />
         <script src={ this.props.staticLink("js/parent-helper.js") } />
       </head>);
+  }
+
+  socialMetadata() {
+    if (! this.props.shot) {
+      return null;
+    }
+    let title = this.props.shot.ogTitle || this.props.shot.twitterCard.title || this.props.shot.title;
+    let og = [
+      <meta property="og:type" content="website" key="ogtype" />,
+      <meta property="og:title" content={title} key="ogtitle" />
+    ];
+    let twitter = [
+      <meta property="twitter:card" content="summary_large_image" key="twittercard" />,
+      <meta property="twitter:title" content={title} key="twitterTitle" />
+    ];
+    for (let clipId of this.props.shot.clipNames()) {
+      let clip = this.props.shot.getClip(clipId);
+      if (! clip.image) {
+        continue;
+      }
+      let text = `From ${this.props.shot.urlDisplay}`;
+      og.push(<meta key={ `ogimage${clipId}` } property="og:image" content={clip.image.url} />);
+      og.push(<meta key={ `ogdescription${clipId}` } property="og:description" content={text} />);
+      twitter.push(<meta key={ `twitterimage${clipId}` } property="twitter:image" content={clip.image.url} />);
+      twitter.push(<meta key={ `twitterdesc${clipId}` } property="twitter:description" content={text} />);
+      // FIXME: consider twitter:site @mozillapageshot
+      if (clip.image.dimensions) {
+        og.push(<meta key={ `ogimagewidth${clipId}` } property="og:image:width" content={clip.image.dimensions.x} />);
+        og.push(<meta key={ `ogimageheight${clipId}` } property="og:image:height" content={clip.image.dimensions.y} />);
+      }
+    }
+    return og.concat(twitter);
   }
 }
 
