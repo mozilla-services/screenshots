@@ -248,7 +248,7 @@ leave_dependencies := $(shell ./bin/_bundle_dependencies leave getdeps "$(server
 build/server/static/js/leave-bundle.js: $(leave_dependencies)
 	./bin/_bundle_dependencies leave build ./build/server/pages/leave-page-shot/controller.js
 
-creating_dependencies := $(shell ./bin/_bundle_dependencies loading getdeps "$(server_dest)")
+creating_dependencies := $(shell ./bin/_bundle_dependencies creating getdeps "$(server_dest)")
 build/server/static/js/creating-bundle.js: $(creating_dependencies)
 	./bin/_bundle_dependencies creating build ./build/server/pages/creating/controller.js
 
