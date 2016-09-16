@@ -965,6 +965,9 @@ function errorResponse(res, message, err) {
     res.send("Server error");
   }
   console.error("Error: " + message, err+"", err);
+  if (ravenClient) {
+    ravenClient.captureException(err);
+  }
 }
 
 exports.simpleResponse = simpleResponse;
