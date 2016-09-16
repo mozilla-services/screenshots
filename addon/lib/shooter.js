@@ -286,8 +286,8 @@ const ShotContext = Class({
       }
       this._pendingScreenPositions = [];
     }, this));
-    this.interactiveWorker.port.on("sendEvent", watchFunction(function (event, action, label) {
-      sendEvent(event, action, label);
+    this.interactiveWorker.port.on("sendEvent", watchFunction(function () {
+      sendEvent.apply(null, arguments);
     }, this));
     this._workerActive = true;
   },
