@@ -207,7 +207,12 @@ function takeShot(source) {
   let backend = exports.getBackend();
   let url = tabs.activeTab.url;
   if (url.startsWith(backend)) {
-    throw new Error("You can't take a shot of a Page Shot page.");
+    let error = Error("You can't take a shot of a Page Shot page.");
+    if (url.replace(/\?.*/, "").endsWith("/shots")) {
+      error.popupMessage = "MY_SHOTS";
+    } else {
+      error.popupMessage = "SHOT_PAGE";
+    }
   }
   if (url.startsWith("resource:") || url === "about:blank" || url === "about:newtab") {
     tabs.activeTab.url = backend + "/shots";
@@ -318,6 +323,7 @@ exports.main = function (options) {
     }
   }).catch((error) => {
     console.warn("Failed to log in to server:", exports.getBackend(), error+"", error.stack);
+    require("./errors").unhandled(error);
   });
 };
 

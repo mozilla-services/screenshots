@@ -35,11 +35,17 @@ self.port.on("showError", function (error) {
 
   thisError.setAttribute("data-timestamp", Date.now());
   cullErrors();
-  if (! errorExists(thisError)) {
-    // Only show one error at a time, for now.
-    while (errorContainer.firstChild) {
-      errorContainer.removeChild(errorContainer.firstChild);
-    }
+  // Only show one error at a time, for now.
+  while (errorContainer.firstChild) {
+    errorContainer.removeChild(errorContainer.firstChild);
+  }
+  if (error.popupMessage) {
+    let el = document.getElementById(`error-${error.popupMessage}`);
+    el = el.cloneNode(true);
+    el.id = el.id + "-instantiated";
+    el.className += " error";
+    errorContainer.insertBefore(el, null);
+  } else {
     errorContainer.insertBefore(thisError, null);
   }
 });

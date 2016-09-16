@@ -286,8 +286,8 @@ const ShotContext = Class({
       }
       this._pendingScreenPositions = [];
     }, this));
-    this.interactiveWorker.port.on("sendEvent", watchFunction(function (event, action, label) {
-      sendEvent(event, action, label);
+    this.interactiveWorker.port.on("sendEvent", watchFunction(function () {
+      sendEvent.apply(null, arguments);
     }, this));
     this._workerActive = true;
   },
@@ -316,7 +316,9 @@ const ShotContext = Class({
         // Abandon hope all ye who enter!
         sendEvent("abort-start-shot", "xul-page");
         this.destroy();
-        throw new Error("Sorry, this special page cannot be captured");
+        let error = new Error("Sorry, this special page cannot be captured");
+        error.popupMessage = "UNSHOOTABLE_PAGE";
+        throw error;
       }
       var prefInlineCss = require("sdk/simple-prefs").prefs.inlineCss;
       var useReadability = require("sdk/simple-prefs").prefs.useReadability;
@@ -518,15 +520,19 @@ class Shot extends AbstractShot {
         return true;
       } else {
         let message;
+        let popupMessage;
         if (response.status === 0) {
           sendEvent("upload", "failed-connection");
-          message = "The request to " + url + " didn't complete due to the server being unavailable.";
+          message = `The request to ${url} didn't complete due to the server being unavailable.`;
+          popupMessage = "CONNECTION_ERROR";
         } else {
           sendEvent("upload", "failed-status", {eventValue: response.status});
-          message = "The request to " + url + " (" + Math.floor(body.length / 1000) + "Kb) returned a response " + response.status;
+          message = `The request to ${url} (${Math.floor(body.length / 1000)}Kb) returned a response ${response.status}`;
+          popupMessage = "REQUEST_ERROR";
         }
         let error = new Error(message);
         error.name = "REQUEST_ERROR";
+        error.popupMessage = popupMessage;
         error.response = response;
         throw error;
       }

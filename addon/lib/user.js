@@ -94,12 +94,14 @@ exports.initialize = function (backend, reason) {
               });
             return;
           } else if (response.status >= 300) {
-            let error = new Error("Could not log in: " + response.status + " " + response.statusText);
+            let error = new Error(`Could not log in: ${response.status} ${response.statusText}`);
+            error.popupMessage = "LOGIN_ERROR";
             console.error("Error logging in:", response.status, response.statusText, response.text);
             reject(error);
             return;
           } else if (response.status === 0) {
             let error = new Error("Could not log in, server unavailable");
+            error.popupMessage = "LOGIN_CONNECTION_ERROR";
             reject(error);
             return;
           }

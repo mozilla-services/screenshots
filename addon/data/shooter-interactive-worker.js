@@ -46,11 +46,11 @@ if (! isChrome && self.options.annotateForPage) {
   annotateForPage = true;
 }
 
-function sendEvent(event, action, label) {
+function sendEvent(action, label, options) {
   if (isChrome) {
-    chromeShooter.sendAnalyticEvent(event, action, label);
+    chromeShooter.sendAnalyticEvent("addon", action, label, options);
   } else {
-    self.port.emit("sendEvent", event, action, label);
+    self.port.emit.apply(self.port, ["sendEvent"].concat(Array.from(arguments)));
   }
 }
 
