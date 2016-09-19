@@ -1,0 +1,93 @@
+/*
+Common CSS for all panels
+Panels should have a structure like:
+
+<body>
+  <div class="container">
+  </div>
+</body>
+
+*/
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  /* FIXME: it seems like any font attribute can be set to -moz-use-system-font,
+  and then that attribute will inherit from system settings. Maybe we should
+  be using it for more than font-family */
+  /* FIXME: currently font-family: -moz-use-system-font results in a serif
+  font, presumably I'm doing it wrong?
+  font-family: -moz-use-system-font;
+  */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-size: 110%;
+  box-sizing: border-box;
+  background-color: #faf9fa;
+}
+
+a {
+  text-decoration: none;
+  color: #339;
+}
+
+a:visited {
+  color: #339;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.error {
+  padding: 25px;
+  padding-top: 0;
+  width: 90%;
+  font-size: 10pt;
+}
+
+.error-message {
+  padding-top: 11px;
+  width: 90%;
+  font-size: 8pt;
+}
+
+#my-shots {
+  border: 0;
+  border-top: 1px solid #000;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  cursor: pointer;
+}
+
+#close {
+  border: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 120%;
+}
+
+h1 {
+  font-size: 120%;
+  margin: 25px;
+}
+
+h1 > img {
+  vertical-align: middle;
+}

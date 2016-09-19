@@ -2,48 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="panel.css">
-    <style>
-    .container {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-    .errors {
-      margin: 25px;
-    }
-    .error {
-      padding: 25px;
-      padding-top: 0px;
-      width: 90%;
-      font-size: 10pt;
-    }
-    .error-message {
-      padding-top: 11px;
-      width: 90%;
-      font-size: 8pt;
-    }
-    .error:not(:last-child) {
-      border-bottom: 1px solid #999;
-    }
-    #my-shots {
-      border: 0;
-      border-top: 1px solid black;
-      position: absolute;
-      bottom: 0px;
-      left: 0px;
-      width: 100%;
-      height: 40px;
-      cursor: pointer;
-    }
-    h1 {
-      font-size: 120%;
-      margin: 25px;
-    }
-    h1 > img {
-      vertical-align: middle;
-    }
-    </style>
+    <link rel="stylesheet" href="error-panel.css">
     <script src="raven.js"></script>
     <script>window.Raven = Raven;
 
@@ -61,17 +20,26 @@ function captureException(e) {
   </head>
   <body>
     <div class="container">
+      <button id="close">&#x00D7;</button>
+
       <h1>
         <img src="error.png" />
         Error
       </h1>
-      <div id="errors">
+
+      <!-- This element content is replaced with one of the items below -->
+      <div id="error-container">
       </div>
 
       <button id="my-shots">My Shots</button>
     </div>
 
     <div style="display: none">
+
+      <!-- Note: *if* one of these errors contains:
+             <div class="error-message"></div>
+           Then *if* the error contains a .message detail, it will be put into that element
+      -->
 
       <!-- Signalled when there's a server error when saving a shot -->
       <div id="error-REQUEST_ERROR">
@@ -112,6 +80,12 @@ function captureException(e) {
       <!-- Signalled when trying to capture the My Shots page -->
       <div id="error-MY_SHOTS">
         You are already on the My Shots page!
+      </div>
+
+      <!-- Some other unexpected error: -->
+      <div id="error-generic">
+        Page Shot may not be able to work on this page. You could try again, or try a different page.
+        <div class="error-message"></div>
       </div>
 
     </div>

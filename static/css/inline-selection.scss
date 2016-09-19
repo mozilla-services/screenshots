@@ -213,6 +213,10 @@ $overlay-z-index: 9999999999;
   top: 50%;
   margin-top: -$handle-size / 2;
   right: $handle-mover-offset;
+
+  .pageshot-small-selection & {
+    margin-top: -$handle-size-small / 2;
+  }
 }
 
 .pageshot-bottomLeft .pageshot-mover {

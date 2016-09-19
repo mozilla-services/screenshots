@@ -30,6 +30,9 @@ panel.port.on("my-shots", function () {
 
 /** Should be called when any unexpected error happens */
 exports.unhandled = function (error) {
+  // This .hide() fixes an issue (Firefox 52?) where the panel grows when it is
+  // shown multiple times:
+  panel.hide();
   // TODO: remove this circular dependency
   panel.show({position: require("./main").shootButton});
   let errorObj = error;

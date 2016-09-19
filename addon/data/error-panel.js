@@ -4,93 +4,35 @@
     This displays unexpected errors, and is controlled by `lib/errors.js`
     */
 
-var errorContainer = document.getElementById("errors");
+var errorContainer = document.getElementById("error-container");
 
 self.port.on("showError", function (error) {
-  var thisError = document.createElement("div");
-  thisError.className = "error";
-  if (error.helpHtml) {
-    thisError.innerHTML = error.helpHtml;
-  } else {
-    let errorFallback = JSON.stringify(error);
-    if (errorFallback == "{}") {
-      errorFallback = error + "";
-    }
-    thisError.textContent = error.help || error.message || error.name || errorFallback;
-    let thisMessage = document.createElement("div");
-    thisMessage.className = "error-message"
-    thisMessage.textContent = error.message;
-    thisError.appendChild(thisMessage);
+  let popupMessage = error.popupMessage || "generic";
+  let el = document.getElementById(`error-${popupMessage}`);
+  if (! el) {
+    console.error("No error template found for", popupMessage);
+    el = document.getElementById("error-generic");
   }
-  var titleElement = document.querySelector("h1");
-  if (error.title) {
-    titleElement.textContent = error.title;
+  el = el.cloneNode(true);
+  el.id = el.id + "-instantiated";
+  el.className += " error";
+  let messageEl = el.querySelector(".error-message");
+  if (error.message && messageEl) {
+    messageEl.textContent = error.message;
+    el.appendChild(messageEl);
+  } else if (messageEl && ! error.message) {
+    messageEl.parentNode.removeChild(messageEl);
   }
-  console.warn(new Date(), "Page Shot Error:", thisError.textContent, error.message);
-  if (error.stack) {
-    console.error(error.stack);
-  }
+  errorContainer.innerHTML = "";
+  errorContainer.insertBefore(el, null);
   unsafeWindow.error = cloneInto(error, unsafeWindow);
   unsafeWindow.captureException(unsafeWindow.error);
-
-  thisError.setAttribute("data-timestamp", Date.now());
-  cullErrors();
-  // Only show one error at a time, for now.
-  while (errorContainer.firstChild) {
-    errorContainer.removeChild(errorContainer.firstChild);
-  }
-  if (error.popupMessage) {
-    let el = document.getElementById(`error-${error.popupMessage}`);
-    el = el.cloneNode(true);
-    el.id = el.id + "-instantiated";
-    el.className += " error";
-    errorContainer.insertBefore(el, null);
-  } else {
-    errorContainer.insertBefore(thisError, null);
-  }
 });
-
-var MAX_AGE = 3 * 60 * 1000; // 3 minutes
-
-/** Get rid of any errors that are too old (when a new error comes in) */
-function cullErrors() {
-  var now = Date.now();
-  var children = errorContainer.querySelectorAll(".error");
-  for (var i=children.length-1; i>=0; i--) {
-    var child = children[i];
-    var timestamp = parseInt(child.getAttribute("data-timestamp"), 10);
-    if (! timestamp) {
-      continue;
-    }
-    var age = now - timestamp;
-    if (age > MAX_AGE) {
-      child.parentNode.removeChild(child);
-    }
-  }
-}
-
-function errorExists(el) {
-  var children = errorContainer.querySelectorAll(".error");
-  for (var i=0; i<children.length; i++) {
-    if (children[i].innerHTML == el.innerHTML) {
-      return true;
-    }
-  }
-  return false;
-}
 
 document.getElementById("my-shots").addEventListener("click", function () {
   self.port.emit("my-shots");
 }, false);
 
-// FIXME remove when we're sure we don't want this ui any more.
-/*
-document.getElementById("clear").addEventListener("click", function () {
-  errorContainer.innerHTML = "";
+document.getElementById("close").addEventListener("click", function () {
   self.port.emit("close");
 }, false);
-
-document.getElementById("ok").addEventListener("click", function () {
-  self.port.emit("close");
-}, false);
-*/
