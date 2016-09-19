@@ -1,3 +1,4 @@
+/* globals sendEvent */
 const React = require("react");
 const ReactDOM = require("react-dom");
 const events = require("../events");
@@ -48,7 +49,8 @@ exports.ProfileButton = class ProfileButton extends React.Component {
     e.preventDefault();
     e.stopPropagation();
     this.setState({ isExpanded: !this.state.isExpanded });
-    window.ga("send", "event", "website", "click-profile", {page: location.toString()});
+    // FIXME: not listed in METRICS.md:
+    //sendEvent("click-profile");
   }
 
   render() {
@@ -92,14 +94,16 @@ exports.Profile = class Profile extends React.Component {
     e.preventDefault();
     e.stopPropagation();
     this.props.signUp();
-    window.ga("send", "event", "website", "click-profile-sign-up", {page: location.toString()});
+    // FIXME: not listed in METRICS.md:
+    //sendEvent("click-profile-sign-up");
   }
 
   onClickSignIn(e) {
     e.preventDefault();
     e.stopPropagation();
     this.props.signIn();
-    window.ga("send", "event", "website", "click-profile-sign-in", {page: location.toString()});
+    // FIXME: not listed in METRICS.md:
+    //sendEvent("click-profile-sign-in");
   }
 
   onKeyPressName(e) {
@@ -124,7 +128,8 @@ exports.Profile = class Profile extends React.Component {
       req.send();
       window.location = "/?accountDeleted=true";
     }
-    window.ga("send", "event", "website", "click-profile-delete-everything", {page: location.toString()});
+    // FIXME: not listed in METRICS.md:
+    //sendEvent("click-profile-delete-everything");
   }
 
   renderSignedIn() {

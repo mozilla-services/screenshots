@@ -588,7 +588,7 @@ class Frame extends React.Component {
 
 
   clickedCreate() {
-    window.ga('send', 'event', 'website', 'click-install-banner', {useBeacon: true});
+    sendEvent("click-install-banner", {useBeacon: true});
   }
 
   onSaveExpire(value) {
@@ -706,7 +706,6 @@ class ExpireWidget extends React.Component {
 
   clickCancelExpire() {
     sendEvent("cancel-expiration-change", "navbar");
-    window.ga('send', 'event', 'website', 'click-cancel-expire', {useBeacon: true});
     this.setState({isChangingExpire: false});
   }
 
