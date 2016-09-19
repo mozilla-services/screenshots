@@ -43,7 +43,7 @@ class Body extends React.Component {
             <h1><a href="/shots">Page Shot</a></h1>
             <form onSubmit={ this.onSubmitForm.bind(this) }>
               <span className="search-label" />
-              <input type="text" ref="search" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />
+              <input type="text" id="search" ref="search" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />
               <button title="search"></button>
             </form>
           </div>
