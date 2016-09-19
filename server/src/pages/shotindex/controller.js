@@ -24,6 +24,22 @@ exports.onChangeSearch = function (query) {
   refreshModel();
 };
 
+window.addEventListener("popstate", () => {
+  let match = /[?&]q=([^&]*)/.exec(location.search);
+  if (! match) {
+    model.defaultSearch = "";
+  } else {
+    model.defaultSearch = decodeURIComponent(match[1]);
+  }
+  // FIXME: this isn't the "right" way to research the search box, but given that
+  // it's an uncontrolled field it doesn't seem to be reset in this case otherwise:
+  let el = document.getElementById("search");
+  if (el) {
+    el.value = model.defaultSearch;
+  }
+  refreshModel();
+}, false);
+
 function refreshModel() {
   let req = new XMLHttpRequest();
   let url = "/shots?data=json";

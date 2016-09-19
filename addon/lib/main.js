@@ -23,6 +23,7 @@ const req = require("./req");
 const { setTimeout } = require("sdk/timers");
 const { Hotkey } = require("sdk/hotkeys");
 const { AddonManager } = require('resource://gre/modules/AddonManager.jsm');
+const { addXULStylesheet } = require("./xulcss");
 
 let Services;
 
@@ -133,13 +134,7 @@ function showNotificationBar(shotcontext) {
 
     initialized = true;
     // Load our stylesheets.
-    let styleSheetService = Cc["@mozilla.org/content/style-sheet-service;1"].getService(Ci.nsIStyleSheetService);
-
-    let cssurl = self.data.url("pageshot-notification-bar.css");
-
-    let styleSheetURI = Services.io.newURI(cssurl, null, null);
-    styleSheetService.loadAndRegisterSheet(styleSheetURI,
-                                           styleSheetService.AUTHOR_SHEET);
+    addXULStylesheet(self.data.url("pageshot-notification-bar.css"));
   }
 }
 
@@ -248,7 +243,7 @@ Hotkey({
 var shootButton = ActionButton({
   id: "pageshot-shooter",
   label: "Make shot",
-  icon: self.data.url("icons/pageshot.svg"),
+  icon: './icons/transparent-16.png',
   onClick: watchFunction(function () {
     takeShot("toolbar-pageshot-button");
   })
@@ -309,6 +304,7 @@ function hideInfoPanel() {
 exports.main = function (options) {
   loadReason = options.loadReason;
   helperworker.trackMods(backendOverride || null);
+  addXULStylesheet(self.data.url("toolbar-button.css"));
   require("./user").initialize(exports.getBackend(), options.loadReason).then(() => {
     if (options.loadReason === "install") {
       req.sendEvent("install");
