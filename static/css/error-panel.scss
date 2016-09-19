@@ -49,10 +49,6 @@ a:hover {
   height: 100%;
 }
 
-.errors {
-  margin: 25px;
-}
-
 .error {
   padding: 25px;
   padding-top: 0;
@@ -64,10 +60,6 @@ a:hover {
   padding-top: 11px;
   width: 90%;
   font-size: 8pt;
-}
-
-.error:not(:last-child) {
-  border-bottom: 1px solid #999;
 }
 
 #my-shots {
