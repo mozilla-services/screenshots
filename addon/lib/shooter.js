@@ -438,22 +438,32 @@ const ShotContext = Class({
       }
     }
     this._deregisters = null;
-    if (this.interactiveWorker) {
-      this.interactiveWorker.port.on("destroyed", () => {
-        if (this.onDestroyed !== undefined) {
-          this.onDestroyed();
-          this.onDestroyed = null;
-        }
+    let finished = false;
+    let finish = () => {
+      if (this.onDestroyed !== undefined) {
+        this.onDestroyed();
+        this.onDestroyed = null;
+      }
+      if (this.interactiveWorker) {
         this.interactiveWorker.destroy();
         this.interactiveWorker = null;
-      });
+      }
+      finished = true;
+    };
+
+    if (this.interactiveWorker) {
+      this.interactiveWorker.port.on("destroyed", () => finish);
       try {
         this.interactiveWorker.port.emit("destroy");
       } catch (e) {
         console.warn("Too late to destroy interactiveWorker");
-        this.onDestroyed();
-        this.onDestroyed = null;
+        finish();
       }
+      // In case anything goes wrong, force a finish in
+      // 500ms:
+      setTimeout(finish, 500);
+    } else {
+      finish();
     }
   }
 });
