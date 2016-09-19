@@ -208,6 +208,8 @@ function takeShot(source) {
     } else {
       error.popupMessage = "SHOT_PAGE";
     }
+    require("./errors").unhandled(error);
+    return;
   }
   if (url.startsWith("resource:") || url === "about:blank" || url === "about:newtab") {
     tabs.activeTab.url = backend + "/shots";
@@ -228,9 +230,9 @@ function takeShot(source) {
 
 Hotkey({
   combo: "accel-alt-control-c",
-  onPress: function() {
+  onPress: watchFunction(function() {
     takeShot("keyboard-shortcut");
-  }
+  })
 });
 
 Hotkey({
