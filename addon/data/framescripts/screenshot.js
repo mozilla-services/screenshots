@@ -5,12 +5,7 @@
 
 /* globals addMessageListener, sendAsyncMessage, content */
 
-// FIXME: this is a hack to take a shot of the iframe in the viewer
-// instead of the container
 function getWindow() {
-  if (content.document.getElementById("frame")) {
-    return content.document.getElementById("frame").contentWindow;
-  }
   return content;
 }
 

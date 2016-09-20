@@ -712,8 +712,10 @@ function activate() {
 
 function deactivate() {
   ui.Box.remove();
-  document.body.classList.remove("pageshot-hide-selection");
-  document.body.classList.remove("pageshot-hide-movers");
+  if (document.body) {
+    document.body.classList.remove("pageshot-hide-selection");
+    document.body.classList.remove("pageshot-hide-movers");
+  }
   ui.remove();
   removeHandlers();
   setState("cancel");
@@ -789,7 +791,9 @@ function addStylesheet() {
     link.setAttribute("rel", "stylesheet");
     link.setAttribute("id", "pageshot-stylesheet");
     link.setAttribute("href", linkUrl);
-    document.head.appendChild(link);
+    if (document.head) {
+      document.head.appendChild(link);
+    }
   }
 }
 
