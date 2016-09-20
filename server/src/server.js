@@ -445,7 +445,7 @@ app.post("/api/login", function (req, res) {
       simpleResponse(res, '{"error": "Invalid login"}', 401);
     }
   }).catch(function (err) {
-    errorResponse(res, JSON.stringify({"error": `Error in login: ${err}`}));
+    errorResponse(res, JSON.stringify({"error": `Error in login: ${err}`}), err);
   });
 });
 
@@ -609,11 +609,11 @@ app.post("/api/set-expiration", function (req, res) {
   let shotId = req.body.id;
   let expiration = parseInt(req.body.expiration, 10);
   if (expiration < 0) {
-    errorResponse(res, "Error: negative expiration", 400);
+    simpleResponse(res, "Error: negative expiration", 400);
     return;
   }
   if (isNaN(expiration)) {
-    errorResponse(res, "Error: bad expiration (" + req.body.expiration + ")", 400);
+    simpleResponse(res, "Error: bad expiration (" + req.body.expiration + ")", 400);
     return;
   }
   Shot.setExpiration(req.backend, shotId, req.deviceId, expiration).then((result) => {
