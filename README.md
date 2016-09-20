@@ -1,4 +1,4 @@
-## Pageshot
+## Page Shot
 
 [![Build Status](https://travis-ci.org/mozilla-services/pageshot.svg)](https://travis-ci.org/mozilla-services/pageshot)
 
@@ -39,12 +39,12 @@ To make the auto-reloading of the add-on work, after you first start Firefox usi
 
 There is an IRC channel `#pageshot` on irc.mozilla.org (you can use [this link](https://kiwiirc.com/client/irc.mozilla.org/pageshot) for chat access via the web if you do not otherwise use IRC).
 
-Planning and ideation is happening in the [issue tracker](https://github.com/ianb/pageshot/issues).  We use a pattern roughly like:
+Planning and ideation is happening in the [issue tracker](https://github.com/mozilla-services/pageshot/issues).  We use a pattern roughly like:
 
-* [Issues with no milestone](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+no%3Amilestone) are awaiting triage
+* [Issues with no milestone](https://github.com/mozilla-services/pageshot/issues?q=is%3Aopen+is%3Aissue+no%3Amilestone) are awaiting triage
 * [Issues set to the next milestone](https://github.com/mozilla-services/pageshot/milestone/6) can be worked on any time (this link will rot!)
 * [Issues in Next Tasks](https://github.com/mozilla-services/pageshot/milestone/2) are deferred for now, but will be re-triaged when the current milestone is done
 * [Issues in Blue Sky](https://github.com/mozilla-services/pageshot/milestone/3) are mostly shelved; we'd like to do them but have no plans to move forward.  (If you see something you care about there, comment on it -- otherwise we may not notice it)
-* [Issues with the needs-discussion label](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+label%3A%22needs+discussion%22) are for discussion at the next meeting.  We don't have a plan for open meetings (not that we don't want them, we just don't have a plan), so this is largely for internal use.
+* [Issues with the needs-discussion label](https://github.com/mozilla-services/pageshot/issues?q=is%3Aopen+is%3Aissue+label%3A%22needs+discussion%22) are for discussion at the next meeting.  We don't have a plan for open meetings (not that we don't want them, we just don't have a plan), so this is largely for internal use.
 
-Issue tags otherwise aren't very structured. [Research](https://github.com/ianb/pageshot/issues?q=is%3Aopen+is%3Aissue+label%3Aresearch) is primarily analysis of other products that do something interesting, or some source material that could provide insight.  Input on these (things like "I like this product because...") is very helpful!
+Issue tags otherwise aren't very structured. [Research](https://github.com/mozilla-services/pageshot/issues?q=is%3Aopen+is%3Aissue+label%3Aresearch) is primarily analysis of other products that do something interesting, or some source material that could provide insight.  Input on these (things like "I like this product because...") is very helpful!
