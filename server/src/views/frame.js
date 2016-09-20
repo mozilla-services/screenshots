@@ -301,8 +301,8 @@ class Head extends React.Component {
       <meta property="og:title" content={title} key="ogtitle" />
     ];
     let twitter = [
-      <meta property="twitter:card" content="summary_large_image" key="twittercard" />,
-      <meta property="twitter:title" content={title} key="twitterTitle" />
+      <meta name="twitter:card" content="summary_large_image" key="twittercard" />,
+      <meta name="twitter:title" content={title} key="twitterTitle" />
     ];
     for (let clipId of this.props.shot.clipNames()) {
       let clip = this.props.shot.getClip(clipId);
@@ -312,8 +312,8 @@ class Head extends React.Component {
       let text = `From ${this.props.shot.urlDisplay}`;
       og.push(<meta key={ `ogimage${clipId}` } property="og:image" content={clip.image.url} />);
       og.push(<meta key={ `ogdescription${clipId}` } property="og:description" content={text} />);
-      twitter.push(<meta key={ `twitterimage${clipId}` } property="twitter:image" content={clip.image.url} />);
-      twitter.push(<meta key={ `twitterdesc${clipId}` } property="twitter:description" content={text} />);
+      twitter.push(<meta key={ `twitterimage${clipId}` } name="twitter:image" content={clip.image.url} />);
+      twitter.push(<meta key={ `twitterdesc${clipId}` } name="twitter:description" content={text} />);
       // FIXME: consider twitter:site @mozillapageshot
       if (clip.image.dimensions) {
         og.push(<meta key={ `ogimagewidth${clipId}` } property="og:image:width" content={clip.image.dimensions.x} />);
