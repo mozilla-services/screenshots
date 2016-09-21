@@ -152,11 +152,11 @@ These are events that an add-on user can encounter on a shot they own
 18. ~~View expired/deleted shot `web/view-deleted-expired`~~
 19. [x] Visit original page `web/view-original/navbar` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0w0c1E382D1r3x1Q082u/Image%202016-09-07%20at%203.00.00%20PM.png?v=f4042b4e)
 20. [x] Visit original page from expired view `web/view-original/expired`
-21. [x] Click share `web/start-share` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/182s1U2y252j3h1y2e2s/Image%202016-09-07%20at%203.00.49%20PM.png?v=a876319c)
-  22. [x] Click Facebook `web/share/facebook` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3l1w3726101d110r0V00/Image%202016-09-07%20at%203.01.28%20PM.png?v=93fa9c96)
-  23. [x] Click Twitter `web/share/twitter` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1a3V0O173q3R0S2a080z/Image%202016-09-07%20at%203.02.06%20PM.png?v=462e5be2)
-  24. [x] Click Pinterest `web/share/pinterest` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1f1o1r3Z0y3D1k1o221W/Image%202016-09-07%20at%203.02.41%20PM.png?v=3ebeb167)
-  25. [x] Click mailto `web/share/mailto` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0K0V3u1c3h3F1q3M3D3V/Image%202016-09-07%20at%203.03.15%20PM.png?v=bac7c1c3)
+21. [x] Click share `web/start-share-owner/navbar` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/182s1U2y252j3h1y2e2s/Image%202016-09-07%20at%203.00.49%20PM.png?v=a876319c)
+  22. [x] Click Facebook `web/share-owner/facebook` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3l1w3726101d110r0V00/Image%202016-09-07%20at%203.01.28%20PM.png?v=93fa9c96)
+  23. [x] Click Twitter `web/share-owner/twitter` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1a3V0O173q3R0S2a080z/Image%202016-09-07%20at%203.02.06%20PM.png?v=462e5be2)
+  24. [x] Click Pinterest `web/share-owner/pinterest` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1f1o1r3Z0y3D1k1o221W/Image%202016-09-07%20at%203.02.41%20PM.png?v=3ebeb167)
+  25. [x] Click mailto `web/share-owner/mailto` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0K0V3u1c3h3F1q3M3D3V/Image%202016-09-07%20at%203.03.15%20PM.png?v=bac7c1c3)
   26. [x] Hit copy `web/share/copy` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1i1G300b0J0J2z190Q26/Image%202016-09-07%20at%203.03.49%20PM.png?v=7e4a82bb)
   27. [x] Focus link field `web/share/focus-url` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3i2s0T0h2t0W1J3p2j0c/Image%202016-09-07%20at%203.04.24%20PM.png?v=654e288b)
   28. [x] Cancel/close share `web/cancel-share` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0Q1n3I1J3J3G3y2B0z19/Image%202016-09-07%20at%203.04.57%20PM.png?v=8de54ca8)
@@ -179,7 +179,7 @@ These are events that an add-on user can encounter on a shot they own
 
 1. [x] Visit the page, `web/visit/non-owner` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/252d0b0F1A3i453h2r32/Image%202016-09-07%20at%203.38.11%20PM.png?v=357dd63c)
 2. [x] Click flag button `web/start-flag/navbar` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3T3a1y0K2l0H2d1p1e0L/Image%202016-09-07%20at%203.38.36%20PM.png?v=ba92ba16)
-3. [x] Click Share (same as for owner)
+3. [x] Click Share (same as for owner, but with `share-non-owner` instead of `share-owner`, and `start-share-non-owner`)
 4. [x] Visit original URL `web/goto-original-url/navbar`
 5. [x] Click Page Shot link in header `web/goto-pageshot/navbar` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0V2A0q2v3k2t3k1X0f2n/Image%202016-09-07%20at%203.39.13%20PM.png?v=cd656a45)
 6. ~~Click My Shots link in header (if non-owner, but add-on user) `web/goto-myshots/navbar-non-owner`~~
