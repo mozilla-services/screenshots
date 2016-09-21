@@ -114,20 +114,16 @@ const gaJs = `
   }
 })();
 
-window.sendEvent = function (event, action, label, options) {
-  if (typeof label == "object" && ! options) {
+window.sendEvent = function (action, label, options) {
+  var event = "web";
+  if (typeof label == "object") {
+    if (options) {
+      console.error("Error: got label and options");
+    }
     options = label;
     label = undefined;
-  } else if (typeof action == "object" && ! label) {
-    options = action;
-    action = undefined;
   }
-  if (label === undefined) {
-    action = event;
-    label = action;
-    event = "web";
-  }
-  console.debug("sendEvent(", event, action, label, options, ")");
+  console.debug("sendEvent", event + "/" + action + "/" + label || "none", options);
   ga("send", "event", event, action, label, options);
 };
 `;
