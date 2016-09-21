@@ -233,6 +233,13 @@ var conf = convict({
       env: "TEST_SLOW_RESPONSE",
       arg: "test-slow-response"
     }
+  },
+  statsdPrefix: {
+    doc: "Prefix for statsd messages, also indicates we should use statsd",
+    format: String,
+    default: "",
+    env: "STATSD_PREFIX",
+    arg: "statsd-prefix"
   }
 });
 

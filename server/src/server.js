@@ -78,6 +78,7 @@ const raven = require("raven");
 const escapeHtml = require("escape-html");
 const validUrl = require("valid-url");
 const { createProxyUrl } = require("./proxy-url");
+const statsd = require("./statsd");
 
 const PROXY_HEADER_WHITELIST = {
   "content-type": true,
@@ -663,6 +664,28 @@ app.get("/__version__", function (req, res) {
   res.header("Content-Type", "application/json; charset=utf-8");
   res.send(JSON.stringify(response));
 });
+
+// This is a minimal heartbeat that only indicates the server process is up and responding
+app.get("/__lbheartbeat__", function (req, res) {
+  res.send("OK");
+});
+
+// This tests if the server is really working
+app.get("/__heartbeat__", function (req, res) {
+  dbschema.connectionOK().then((ok) => {
+    if (! ok) {
+      statsd.increment("heartbeat.fail");
+      res.status(500).send("schema fail");
+    } else {
+      statsd.increment("heartbeat.pass");
+      res.send("OK");
+    }
+  }).catch((error) => {
+    statsd.increment("heartbeat.fail");
+    res.status(500).send("database fail");
+  });
+});
+
 
 // FIXME: this can't the right way to do this...
 require("./exporter").setup(app);
