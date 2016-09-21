@@ -7,4 +7,5 @@ ALTER TABLE devices ADD COLUMN secret_hashed TEXT;
 --CREATE EXTENSION IF NOT EXISTS pgcrypto;
 --UPDATE devices
 --   SET secret_hashed = 'shaHmac:migrated:' || encode(hmac(secret, 'migrated', 'sha256'), 'hex');
---ALTER TABLE devices DROP COLUMN secret;
+
+ALTER TABLE devices DROP COLUMN secret;
