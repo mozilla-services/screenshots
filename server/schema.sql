@@ -12,7 +12,9 @@ CREATE TABLE data (
     url text NOT NULL,
     expire_time timestamp without time zone DEFAULT (now() + '14 days'::interval),
     deleted boolean DEFAULT false NOT NULL,
-    title text
+    title text,
+    searchable_text tsvector,
+    searchable_version integer
 );
 CREATE TABLE device_activity (
     deviceid character varying(200),
@@ -22,14 +24,14 @@ CREATE TABLE device_activity (
 );
 CREATE TABLE devices (
     id character varying(200) NOT NULL,
-    secret character varying(200) NOT NULL,
     nickname text,
     avatarurl text,
     accountid character varying(200),
     last_addon_version text,
     last_login timestamp without time zone,
     created timestamp without time zone DEFAULT now(),
-    session_count integer DEFAULT 0
+    session_count integer DEFAULT 0,
+    secret_hashed text
 );
 CREATE TABLE images (
     id character varying(200) NOT NULL,
@@ -63,6 +65,7 @@ ALTER TABLE ONLY property
 ALTER TABLE ONLY states
     ADD CONSTRAINT states_pkey PRIMARY KEY (state);
 CREATE INDEX devices_accountid_idx ON devices USING btree (accountid);
+CREATE INDEX searchable_text_idx ON data USING gin (searchable_text);
 CREATE INDEX states_deviceid_idx ON states USING btree (deviceid);
 ALTER TABLE ONLY data
     ADD CONSTRAINT data_deviceid_fkey FOREIGN KEY (deviceid) REFERENCES devices(id) ON DELETE CASCADE;
@@ -74,4 +77,4 @@ ALTER TABLE ONLY images
     ADD CONSTRAINT images_shotid_fkey FOREIGN KEY (shotid) REFERENCES data(id) ON DELETE CASCADE;
 ALTER TABLE ONLY states
     ADD CONSTRAINT states_deviceid_fkey FOREIGN KEY (deviceid) REFERENCES devices(id) ON DELETE CASCADE;
--- pg-patch version: 7
+-- pg-patch version: 10
