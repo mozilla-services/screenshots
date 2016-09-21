@@ -378,7 +378,7 @@ app.post("/api/register", function (req, res) {
     avatarurl: vars.avatarurl || null
   }, canUpdate).then(function (ok) {
     if (ok) {
-      let cookies = new Cookies(req, res, dbschema.getKeygrip());
+      let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
       cookies.set("user", vars.deviceId, {signed: true});
       simpleResponse(res, "Created", 200);
     } else {
@@ -428,7 +428,7 @@ app.post("/api/login", function (req, res) {
   let vars = req.body;
   checkLogin(vars.deviceId, vars.secret, vars.deviceInfo.addonVersion).then((ok) => {
     if (ok) {
-      let cookies = new Cookies(req, res, dbschema.getKeygrip());
+      let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
       cookies.set("user", vars.deviceId, {signed: true});
       let userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
       userAnalytics.pageview("/api/login").send();
@@ -454,7 +454,7 @@ app.post("/api/unload", function (req, res) {
   let reason = req.body.reason;
   reason = reason.replace(/[^a-zA-Z0-9]/g, "");
   console.info("Device", req.deviceId, "unloaded for reason:", reason);
-  let cookies = new Cookies(req, res, dbschema.getKeygrip());
+  let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
   // This erases the session cookie:
   cookies.set("user");
   cookies.set("user.sig");
