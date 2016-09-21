@@ -1,7 +1,7 @@
 {
   "name": "mozilla-pageshot",
   "title": "Mozilla Page Shot",
-  "id": "jid1-NeEaf3sAHdKHPA@jetpack",
+  "id": "@pageshot-addon",
   "description": "Take and share shots of the sites you are on",
   "author": "Ian Bicking",
   "contributors": ["Donovan Preston", "Bram Pitoyo"],

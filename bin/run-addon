@@ -111,7 +111,7 @@ fi
 
 prefs="{\"xpinstall.signatures.required\": false, \"extensions.sdk.console.logLevel\": \"all\""
 if [[ -n "$server" ]] ; then
-  prefs="${prefs}, \"extensions.jid1-NeEaf3sAHdKHPA@jetpack.backend\": \"$server\""
+  prefs="${prefs}, \"extensions.@pageshot-addon.backend\": \"$server\""
 fi
 prefs="${prefs}}"
 file="$(writefile "$prefs")"
