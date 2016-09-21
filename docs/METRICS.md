@@ -86,6 +86,7 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 
 #### Add-on metrics
 
+1. [x] Start the browser `addon/open-browser/launch`
 1. [x] Click shot button `addon/start-shot/toolbar-pageshot-button` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/2P3o1F0O3Y0K23372e1P/Image%202016-09-07%20at%201.57.19%20PM.png?v=c1ae01f4)
 2. [x] Use keyboard shortcut to start shot `addon/start-shot/keyboard-shortcut` (accel-alt-control-c)
 3. ~~Click "select region" `addon/start-region-select/mode-click`~~

@@ -308,6 +308,7 @@ exports.main = function (options) {
   helperworker.trackMods(backendOverride || null);
   addXULStylesheet(self.data.url("toolbar-button.css"));
   require("./user").initialize(exports.getBackend(), options.loadReason).then(() => {
+    req.sendEvent("open-browser", "launch");
     if (options.loadReason === "install") {
       req.sendEvent("install");
       AddonManager.getAddonByID("@testpilot-addon", (addon) => {
