@@ -13,52 +13,58 @@
   "preferences": [
     {
       "name": "backend",
-      "title": "backend URL",
-      "description": "URL of the backend service to store pages",
+      "title": "Service URL",
+      "description": "URL of the service that stores pages",
       "type": "string",
       "value": "https://pageshot.dev.mozaws.net"
     },
     {
       "name": "startHttpServer",
-      "title": "start HTTP server (restart required after changing this)",
-      "description": "start HTTP",
+      "title": "Start remote-control HTTP server (restart required after changing this)",
+      "description": "This starts a server that can be used to control the browser and take shots",
       "type": "bool",
-      "value": false
+      "value": false,
+      "hidden": true
     },
     {
       "name": "httpServerPort",
       "title": "HTTP server: port to listen on",
       "description": "port for the HTTP server to listen on",
       "type": "integer",
-      "value": 10082
+      "value": 10082,
+      "hidden": true
     },
     {
       "name": "httpServerIp",
       "title": "HTTP server: IP to listen on",
-      "description": "IP for the HTTP server to listen on",
+      "description": "IP/interface for the HTTP server to listen on",
       "type": "string",
-      "value": "localhost"
+      "value": "localhost",
+      "hidden": true
     },
     {
       "name": "readableSleep",
       "title": "HTTP server: sleep variable",
-      "description": "Amount of time (in ms) to sleep when handling a readable request",
+      "description": "When using server, amount of time (in ms) to sleep when handling a readable request",
       "type": "integer",
-      "value": 200
+      "value": 200,
+      "hidden": true
     },
     {
       "name": "inlineCss",
       "title": "inline CSS",
       "description": "EXPERIMENTAL: instead of including CSS files, inline only necessary CSS in style tags",
       "type": "bool",
-      "value": false
+      "value": true,
+      "hidden": true
     },
     {
       "name": "useReadability",
       "title": "Capture readable version",
       "description": "Captures a readable version of pages in addition to HTML",
       "type": "bool",
-      "value": false
+      "value": false,
+      "hidden": true
     },
     {
       "name": "hasUsedMyShots",
