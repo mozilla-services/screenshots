@@ -15,7 +15,9 @@ class ShareButtons extends React.Component {
   }
 
   onClickShareButton(whichButton) {
-    sendEvent("share", whichButton);
+    sendEvent(
+      this.props.isOwner ? "share-owner" : "share-non-owner",
+      whichButton);
   }
 
   onClickCopyButton(e) {
@@ -354,7 +356,9 @@ class Frame extends React.Component {
     let show = ! this.state.sharePanelDisplay;
     this.setState({sharePanelDisplay: show});
     if (show) {
-      sendEvent("start-share");
+      sendEvent(
+        this.props.isOwner ? "start-share-owner" : "start-share-non-owner",
+        "navbar");
     } else {
       sendEvent("cancel-share");
     }
