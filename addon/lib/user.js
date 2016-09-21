@@ -114,6 +114,7 @@ exports.initialize = function (backend, reason) {
             console.error("Error looking for the sentry DSN", e);
           }
           // The only other thing we do is preload the cookies
+          resolve();
         })
       }).post();
     }
