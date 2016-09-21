@@ -126,3 +126,9 @@ function makeKey() {
     });
   });
 }
+
+exports.connectionOK = function () {
+  return db.select(`SELECT value FROM property WHERE key = 'patch'`).then((rows) => {
+    return rows[0].value == MAX_DB_LEVEL;
+  });
+};
