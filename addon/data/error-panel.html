@@ -20,13 +20,6 @@ function captureException(e) {
   </head>
   <body>
     <div class="container">
-      <button id="close">&#x00D7;</button>
-
-      <h1>
-        <img src="error.png" />
-        Error
-      </h1>
-
       <!-- This element content is replaced with one of the items below -->
       <div id="error-container">
       </div>
@@ -43,48 +36,50 @@ function captureException(e) {
 
       <!-- Signalled when there's a server error when saving a shot -->
       <div id="error-REQUEST_ERROR">
-        The Page Shot service is having a problem.  Your shot was not able to be
-        saved.  We apologize for the inconvenience.  It may work if you try again.
+        <h3>Page Shot is out of order.</h3>
+        Your shot was not saved.  
+        We apologize for the inconvenience. Try again soon.
       </div>
 
       <!-- When we can't make a connection to the server: -->
       <div id="error-CONNECTION_ERROR">
-        The Page Shot service cannot be accessed.  There may be a problem with
-        the service or with your network connection.  It may work if you try again.
+        <h3>Cannot connect to the Page Shot server.</h3>
+        There may be a problem with
+        the service or with your network connection.
       </div>
 
       <!-- Signalled when there's an error logging in -->
       <div id="error-LOGIN_ERROR">
-        The Page Shot service is having a problem.  You may have trouble making
-        shots and visiting My Shots.
+        <h3>Page Shot is out of order.</h3>
       </div>
 
       <!-- Signalled we can't connect to the server during login -->
       <div id="error-LOGIN_CONNECTION_ERROR">
-        The Page Shot service could not be contacted.  This may be a problem with
-        the service or your network connection.  You may have trouble making
-        shots and visiting My Shots.
+        <h3>Cannot connect to the Page Shot server.</h3>
+        There may be a problem with
+        the service or your network connection.
       </div>
 
       <!-- Signalled when a page can't be captured -->
       <div id="error-UNSHOOTABLE_PAGE">
-        This page is not a normal web page, and Page Shot cannot capture
+        This is not a normal web page, and Page Shot cannot capture
         screenshots from it.
       </div>
 
       <!-- Signalled when trying to capture a shot page -->
       <div id="error-SHOT_PAGE">
-        You are already on a shot page!
+        You can't take a shot of a Page Shot page!
       </div>
 
       <!-- Signalled when trying to capture the My Shots page -->
       <div id="error-MY_SHOTS">
-        You are already on the My Shots page!
+        You can't take a shot of a Page Shot page!
       </div>
 
       <!-- Some other unexpected error: -->
       <div id="error-generic">
-        Page Shot may not be able to work on this page. You could try again, or try a different page.
+        <h3>Page Shot went haywire.</h3>
+        Try again or take a shot on another page?
         <div class="error-message"></div>
       </div>
 

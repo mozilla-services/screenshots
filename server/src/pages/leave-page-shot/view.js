@@ -47,7 +47,7 @@ class Body extends React.Component {
         <div className="column-center full-height inverse-color-scheme">
           <div className="large-icon-message-container">
             <div className="large-icon check" />
-            <div className="large-icon-message-string">All of your age Shot data has been erased.<br/>
+            <div className="large-icon-message-string">All of your Page Shot data has been erased.<br/>
               You can uninstall the Page Shot add-on via Test Pilot
             </div>
             <div className="responsive-wrapper row-center">
