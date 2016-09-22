@@ -386,7 +386,7 @@ class Frame extends React.Component {
 
   onClickDelete(e) {
     sendEvent("start-delete", "navbar", {useBeacon: true});
-    if (window.confirm("Are you sure you want to delete the shot permanently?")) {
+    if (window.confirm("Are you sure you want to delete this shot permanently?")) {
       sendEvent("delete", "popup-confirm", {useBeacon: true});
       this.props.clientglue.deleteShot(this.props.shot);
     } else {
@@ -514,12 +514,12 @@ class Frame extends React.Component {
       if (shot.isPublic) {
         isPublic = <div
           id="private-notice">
-          This page is only visible to you until you share the link.
+          This shot is only visible to you until you share the link.
         </div>;
       } else {
         isPublic = <div
           id="private-notice">
-          You&#39;ve saved your personal version of this page. This page is only visible to you until you share the link.
+          You&#39;ve saved a personal version of this shot. This shot is only visible to you until you share the link.
         </div>;
       }
     }
