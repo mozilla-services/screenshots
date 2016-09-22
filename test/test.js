@@ -7,7 +7,7 @@ const webdriver = require("selenium-webdriver");
 //const Fs = require("fs-promise");
 const path = require("path");
 
-const SHOOTER_BUTTON_ID = "action-button--pageshot-addon-pageshot-shooter";
+const SHOOTER_BUTTON_ID = "action-button--jid1-neeaf3sahdkhpajetpack-pageshot-shooter";
 
 function addAddonToDriver(driver, location) {
   return driver.executeAsyncScript(`
