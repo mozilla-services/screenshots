@@ -288,7 +288,7 @@ function showTour(newTab) {
       win.loadURI(helpurl);
     }
     exports.showInfoPanel(
-      "toggle-button--jid1-neeaf3sahdkhpajetpack-pageshot-shooter",
+      "toggle-button--pageshot-addon-pageshot-shooter",
       "Welcome to Page Shot",
       "Click the camera button to clip a part of the page");
   }

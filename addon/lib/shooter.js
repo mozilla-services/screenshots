@@ -474,9 +474,7 @@ ShotContext._idGen = 0;
 
 class Shot extends AbstractShot {
   constructor(backend, id, attrs) {
-    // ES6 requires super(), but Firefox doesn't allow it:
     super(backend, id, attrs);
-    //AbstractShot.call(this, backend, id, attrs);
   }
 
   save() {
@@ -533,11 +531,11 @@ class Shot extends AbstractShot {
         let popupMessage;
         if (response.status === 0) {
           sendEvent("upload", "failed-connection");
-          message = `The request to ${url} didn't complete due to the server being unavailable.`;
+          message = `The request to send shot to ${this.backend} didn't complete due to the server being unavailable.`;
           popupMessage = "CONNECTION_ERROR";
         } else {
           sendEvent("upload", "failed-status", {eventValue: response.status});
-          message = `The request to ${url} (${Math.floor(body.length / 1000)}Kb) returned a response ${response.status}`;
+          message = `The request to send shot to ${this.backend} (${Math.floor(body.length / 1000)}Kb) returned a response ${response.status}`;
           popupMessage = "REQUEST_ERROR";
         }
         let error = new Error(message);
