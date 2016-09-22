@@ -32,7 +32,3 @@ self.port.on("showError", function (error) {
 document.getElementById("my-shots").addEventListener("click", function () {
   self.port.emit("my-shots");
 }, false);
-
-document.getElementById("close").addEventListener("click", function () {
-  self.port.emit("close");
-}, false);

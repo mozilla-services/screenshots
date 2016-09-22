@@ -101,8 +101,8 @@
 }
 
 .shot-image-container {
-  background-position: center;
-  background-size: container;
+  background-position: center center;
+  background-size: cover;
   flex: 0 0 130px;
   width: 216px;
 }
