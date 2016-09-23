@@ -25,6 +25,7 @@ panel.port.on("close", function () {
 
 panel.port.on("my-shots", function () {
   panel.hide();
+  req.sendEvent("goto-myshots", "error-panel");
   tabs.open(main.getBackend() + "/shots");
 });
 

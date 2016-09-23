@@ -4,7 +4,7 @@ BABEL := babel --retain-lines
 JPM := $(shell pwd)/node_modules/.bin/jpm
 .DEFAULT_GOAL := help
 
-.PHONY: all clean server addon xpi homepage npm chrome-extension chrome-zip
+.PHONY: all clean server addon xpi homepage npm chrome-extension chrome-zip set_backend
 
 # This forces bin/_write_ga_id to be run before anything else, which
 # writes the configured Google Analytics ID to build/ga-id.txt
@@ -153,9 +153,9 @@ build/addon/data/vendor/%: addon/data/vendor/%
 	@mkdir -p $(@D)
 	cp $< $@
 
-build/mozilla-pageshot.xpi: addon addon/package.json
+build/mozilla-pageshot.xpi: addon addon/package.json build/.backend.txt
 	# We have to do this each time because we want to set the version using a timestamp:
-	_set_package_version < addon/package.json > build/addon/package.json
+	_set_package_version $(shell cat build/.backend.txt) < addon/package.json > build/addon/package.json
 	# Get rid of any stale xpis:
 	rm -f build/addon/mozilla-pageshot.xpi
 	cd build/addon && $(JPM) xpi
@@ -172,7 +172,7 @@ build/addon/lib/httpd.jsm: addon/lib/httpd.jsm
 	@mkdir -p $(@D)
 	cp $< $@
 
-addon: npm $(data_dest) $(vendor_dest) $(lib_dest) $(sass_addon_dest) $(imgs_addon_dest) $(static_addon_dest) $(shared_addon_dest) build/addon/package.json build/addon/lib/httpd.jsm build/addon/data/pageshot-notification-bar.css build/addon/data/toolbar-button.css
+addon: npm set_backend $(data_dest) $(vendor_dest) $(lib_dest) $(sass_addon_dest) $(imgs_addon_dest) $(static_addon_dest) $(shared_addon_dest) build/addon/package.json build/addon/lib/httpd.jsm build/addon/data/pageshot-notification-bar.css build/addon/data/toolbar-button.css
 
 chrome-extension: npm $(chrome_js_dest) $(chrome_static_dest) $(sass_chrome_dest) $(imgs_chrome_dest) $(static_chrome_dest) $(shared_chrome_dest) $(chrome_external_modules)
 
@@ -276,6 +276,13 @@ homepage: $(patsubst static/homepage/%,build/server/static/homepage/%,$(shell fi
 ## npm rule
 
 npm: build/.npm-install.log
+
+build/.backend.txt: set_backend
+
+set_backend:
+	@if [[ -z "$(PAGESHOT_BACKEND)" ]] ; then echo "No backend set" ; fi
+	@if [[ -n "$(PAGESHOT_BACKEND)" ]] ; then echo "Setting backend to ${PAGESHOT_BACKEND}" ; fi
+  ./bin/_set_backend_config https://pageshot.dev.mozaws.net $PAGESHOT_BACKEND
 
 build/.npm-install.log: package.json
 	# Essentially .npm-install.log is just a timestamp showing the last time we ran

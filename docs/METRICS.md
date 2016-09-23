@@ -104,6 +104,7 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 5. [x] Cancel because URL changed `addon/cancel-shot/url-changed` (when something that uses window.history "navigates" spontaneously away)
 5. [x] Click My Shots `addon/goto-myshots/selection-button` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3J1u3F1Z3R0Z0A2e161T/Image%202016-09-07%20at%202.06.19%20PM.png?v=7e2c945f)
 6. ~~Click My Shots from mode selection `addon/goto-myshots/mode-click`~~
+6. [x] Click My Shots button from error panel `addon/goto-myshots/error-panel`
 6. [x] Click shot button while Page Shot is active `addon/aborted-start-shot/toolbar-pageshot-button` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0m2n3h1a2o0e271O1j13/Image%202016-09-07%20at%202.07.08%20PM.png?v=9baa7316)
 7. [x] Hit Escape (Cancel) `addon/cancel-shot/keyboard-escape`
 8. [x] Hit Enter (Save) `addon/save-shot/keyboard-enter`
@@ -165,6 +166,7 @@ These are events that an add-on user can encounter on a shot they own
 31. ~~Visit GitHub revision from footer `web/goto-github-revision/footer`~~
 32. [x] Click Feedback/mailto button `start-feedback/footer` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3Q1R170u1m0A3r0o3v1K/Image%202016-09-07%20at%203.07.01%20PM.png?v=0117ce5f)
 31. [x] Click on clip `web/goto-clip/content` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1f2t1D2t2F2N2e1S2m3D/Image%202016-09-07%20at%203.07.37%20PM.png?v=f3605b9e)
+32. [x] Click the download button `web/download/navbar`
 
 #### Shot Index (My Shots)
 

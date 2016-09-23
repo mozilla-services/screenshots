@@ -490,7 +490,7 @@ class Frame extends React.Component {
         <img src={ this.props.staticLink("img/garbage-bin.svg") } />
       </button>;
     } else {
-      trashOrFlagButton = <button className="button secondary" onClick={ this.onClickFlag.bind(this) }>
+      trashOrFlagButton = <button className="button secondary" title="Report this shot for abuse, spam, or other problems" onClick={ this.onClickFlag.bind(this) }>
         <img src={ this.props.staticLink("img/flag.svg") } />
       </button>;
     }
@@ -564,7 +564,8 @@ class Frame extends React.Component {
             <button className="button primary" id="share-button" onClick={ this.onClickShareButton.bind(this) }>
               Share
             </button>
-            <a className="button secondary" href={ clipUrl } download={ `${clipFilename}.png` }>
+            <a className="button secondary" href={ clipUrl } onClick={ this.onClickDownload.bind(this) }
+              title="Download the shot image" download={ `${clipFilename}.png` }>
               <img src={ this.props.staticLink("img/download.svg") } />
             </a>
             { trashOrFlagButton }
@@ -622,6 +623,10 @@ class Frame extends React.Component {
   onClickOrigUrl(label) {
     sendEvent("view-original", label, {useBeacon: true});
     // Note: we allow the default action to continue
+  }
+
+  onClickDownload() {
+    sendEvent("download", "navbar");
   }
 
   onClickFeedback() {
