@@ -104,6 +104,7 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 5. [x] Cancel because URL changed `addon/cancel-shot/url-changed` (when something that uses window.history "navigates" spontaneously away)
 5. [x] Click My Shots `addon/goto-myshots/selection-button` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3J1u3F1Z3R0Z0A2e161T/Image%202016-09-07%20at%202.06.19%20PM.png?v=7e2c945f)
 6. ~~Click My Shots from mode selection `addon/goto-myshots/mode-click`~~
+6. [x] Click My Shots button from error panel `addon/goto-myshots/error-panel`
 6. [x] Click shot button while Page Shot is active `addon/aborted-start-shot/toolbar-pageshot-button` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0m2n3h1a2o0e271O1j13/Image%202016-09-07%20at%202.07.08%20PM.png?v=9baa7316)
 7. [x] Hit Escape (Cancel) `addon/cancel-shot/keyboard-escape`
 8. [x] Hit Enter (Save) `addon/save-shot/keyboard-enter`
