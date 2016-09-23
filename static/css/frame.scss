@@ -146,3 +146,12 @@
     position: relative;
   }
 }
+
+.link-button {
+  cursor: pointer;
+  color: $black;
+  background: transparent;
+  border: 1px solid #d4d4d4;
+  padding: 4px;
+  border-radius: 4px;
+}
