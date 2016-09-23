@@ -490,7 +490,7 @@ class Frame extends React.Component {
         <img src={ this.props.staticLink("img/garbage-bin.svg") } />
       </button>;
     } else {
-      trashOrFlagButton = <button className="button secondary" onClick={ this.onClickFlag.bind(this) }>
+      trashOrFlagButton = <button className="button secondary" title="Report this shot for abuse, spam, or other problems" onClick={ this.onClickFlag.bind(this) }>
         <img src={ this.props.staticLink("img/flag.svg") } />
       </button>;
     }
