@@ -165,6 +165,7 @@ These are events that an add-on user can encounter on a shot they own
 31. ~~Visit GitHub revision from footer `web/goto-github-revision/footer`~~
 32. [x] Click Feedback/mailto button `start-feedback/footer` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3Q1R170u1m0A3r0o3v1K/Image%202016-09-07%20at%203.07.01%20PM.png?v=0117ce5f)
 31. [x] Click on clip `web/goto-clip/content` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1f2t1D2t2F2N2e1S2m3D/Image%202016-09-07%20at%203.07.37%20PM.png?v=f3605b9e)
+32. [x] Click the download button `web/download/navbar`
 
 #### Shot Index (My Shots)
 
