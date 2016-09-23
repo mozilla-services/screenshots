@@ -128,6 +128,9 @@ function initDatabase() {
   }).catch((e) => {
     console.error("Error initializing database:", e, e.stack);
     console.warn("Trying again in 60 seconds");
+    if (ravenClient) {
+      ravenClient.captureException(e);
+    }
     setTimeout(initDatabase, 60000);
   });
 }
