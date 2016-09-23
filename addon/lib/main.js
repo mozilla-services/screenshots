@@ -20,10 +20,11 @@ const { watchFunction } = require("./errors");
 const { Cu, Cc, Ci } = require("chrome");
 const winutil = require("sdk/window/utils");
 const req = require("./req");
-const { setTimeout } = require("sdk/timers");
+const { setTimeout, clearTimeout } = require("sdk/timers");
 const { Hotkey } = require("sdk/hotkeys");
 const { AddonManager } = require('resource://gre/modules/AddonManager.jsm');
 const { addXULStylesheet } = require("./xulcss");
+const { storage } = require("sdk/simple-storage");
 
 let Services;
 
@@ -320,11 +321,31 @@ exports.main = function (options) {
       });
       showTour();
     }
+    startDailyPing();
   }).catch((error) => {
     console.warn("Failed to log in to server:", exports.getBackend(), error+"", error.stack);
     require("./errors").unhandled(error);
   });
 };
+
+let timeoutId;
+const intervalMilliseconds = 1000*60*60*24; // 1 day
+function startDailyPing() {
+  console.log("daily ping");
+  if (timeoutId) {
+    clearTimeout(timeoutId);
+  }
+  let lastTime = storage.lastPingTime;
+  let now = Date.now();
+  if ((! lastTime) || (now - lastTime + 60000) > intervalMilliseconds) {
+    req.sendEvent("daily-ping");
+    storage.lastPingTime = now;
+    timeoutId = setTimeout(startDailyPing, intervalMilliseconds);
+  } else {
+    let timeToGo = intervalMilliseconds - (now - lastTime);
+    timeoutId = setTimeout(startDailyPing, timeToGo);
+  }
+}
 
 exports.onUnload = function (reason) {
   if (reason == "shutdown") {
