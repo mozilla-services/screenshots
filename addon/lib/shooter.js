@@ -271,13 +271,6 @@ const ShotContext = Class({
     this.interactiveWorker.port.on("take-shot", watchFunction(function () {
       this.takeShot();
     }, this));
-    this.interactiveWorker.port.on("showSaveFullPage", watchFunction(function () {
-      // FIXME remove if we are sure we don't need this any more
-      //require("./main").showSaveFullPage();
-    }));
-    this.interactiveWorker.port.on("showSave", watchFunction(function () {
-      require("./main").showSave();
-    }));
 
     this._pendingScreenPositions = [];
     this.interactiveWorker.port.on("screenPosition", watchFunction(function (pos) {

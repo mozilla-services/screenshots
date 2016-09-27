@@ -308,8 +308,6 @@ stateHandlers.crosshairsPreview = {
       ui.ChromeInterface.showSaveFullPage();
     } else if (self.options.showMyShotsReminder) {
       ui.MyShotsReminder.display();
-      // FIXME do we need to do anything here any more?
-      //self.port.emit("showSave");
     }
   },
 
@@ -331,9 +329,6 @@ stateHandlers.crosshairs = {
     ui.WholePageOverlay.display(standardOverlayCallbacks);
     if (isChrome) {
       ui.ChromeInterface.showSaveFullPage();
-    } else {
-      // FIXME do we need to do anything here any more?
-      //self.port.emit("showSave");
     }
   },
 
@@ -544,9 +539,6 @@ stateHandlers.selected = {
     ui.WholePageOverlay.remove();
     if (isChrome) {
       ui.ChromeInterface.showSave();
-    } else {
-      // FIXME remove once the ui has stopped changing so much
-      //self.port.emit("showSave");
     }
   },
 

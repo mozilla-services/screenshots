@@ -49,106 +49,6 @@ tabs.on("open", function(tab) {
   tab.on("pageshow", cleanUpTabsBeingShot);
 });
 
-// FIXME turn off the tour for now until it gets some love.
-const ENABLE_FTU = false;
-
-function getNotificationBox(browser) {
-  let wm = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator);
-  let win = wm.getMostRecentWindow("navigator:browser");
-  let gBrowser = win.gBrowser;
-
-  browser = browser || gBrowser.selectedBrowser;
-  return gBrowser.getNotificationBox(browser);
-}
-
-function showNotificationBar(shotcontext) {
-  var nb = require("./notificationbox");
-  if (nb.notificationbox().getNotificationWithValue("pageshot-notification-bar") !== null) {
-    return;
-  }
-  let thebox = nb.notificationbox();
-  let fragment = thebox.ownerDocument.createDocumentFragment();
-  let myShots = thebox.ownerDocument.createElement("button");
-  myShots.className = "myshots";
-  myShots.setAttribute("label", "myshots");
-  let preMyShots = thebox.ownerDocument.createElement("span");
-  preMyShots.className = "pre-myshots";
-  myShots.appendChild(preMyShots);
-  let myShotsText = thebox.ownerDocument.createElement("span");
-  myShotsText.className = "myshots-text";
-  myShotsText.textContent = "My Shots";
-  myShots.appendChild(myShotsText);
-  let postMyShots = thebox.ownerDocument.createElement("span");
-  postMyShots.className = "post-myshots";
-  myShots.appendChild(postMyShots);
-  myShots.className = "myshots";
-  myShots.onclick = watchFunction(exports.openMyShots);
-  let messageNode = thebox.ownerDocument.createElement("span");
-  messageNode.style.border = "none";
-  messageNode.style.marginLeft = "10px";
-  messageNode.style.fontWeight = "normal";
-  messageNode.appendChild(thebox.ownerDocument.createTextNode("Select part of the page to save:"));
-  // FIXME Remove the myShots code once we're sure we won't want it any more
-  //fragment.appendChild(myShots);
-  fragment.appendChild(messageNode);
-  nb.banner({
-    id: "pageshot-notification-bar",
-    msg: fragment,
-    callback: function (message) {
-      // Only message should be AlertClose
-      if (message !== "removed") {
-        console.warn("Unexpected message on notificationbox:", message);
-        return;
-      }
-      shotcontext.destroy();
-    },
-    buttons: [
-      nb.buttonMaker.yes({
-        label: "Save",
-        callback: function(notebox, button) {
-          hideNotificationBar();
-          setTimeout(function () {
-            shotcontext.takeShot();
-          }, 0);
-        }
-      }),
-      nb.buttonMaker.no({
-        label: "Cancel",
-        callback: function(notebox, button) {
-          hideNotificationBar();
-          setTimeout(function () {
-            shotcontext.destroy();
-          }, 0);
-        }
-      })
-    ]
-  });
-
-  setSaveButtonText("Save", true);
-
-  if (!initialized) {
-    if (! Services) {
-      let importer = {};
-      Cu.import("resource://gre/modules/Services.jsm", importer);
-      Services = importer.Services;
-    }
-
-    initialized = true;
-    // Load our stylesheets.
-    addXULStylesheet(self.data.url("pageshot-notification-bar.css"));
-  }
-}
-
-function hideNotificationBar(browser) {
-  let box = getNotificationBox(browser);
-  let notification = box.getNotificationWithValue("pageshot-notification-bar");
-  let removed = false;
-  if (notification) {
-    box.removeNotification(notification);
-    removed = true;
-  }
-  return removed;
-}
 
 exports.openMyShots = function () {
   if (! prefs.hasUsedMyShots) {
@@ -160,44 +60,6 @@ exports.openMyShots = function () {
   });
 };
 
-exports.showSaveFullPage = function () {
-  setSaveButtonText("Save Full Page");
-};
-
-exports.showSave = function () {
-  setSaveButtonText("Save", false);
-};
-
-function setSaveButtonText(text, disabled) {
-  let box = getNotificationBox();
-  let notification = box.getNotificationWithValue("pageshot-notification-bar");
-  let els = notification.getElementsByTagName("*");
-  for (let i=0; i<els.length; i++) {
-    console.log("checking element", els[i].tagName, els[i].outerHTML);
-    if (els[i].tagName == "button" && els[i].className.indexOf("notification-button-default") != -1) {
-      if (disabled === true || disabled === false) {
-        els[i].setAttribute("disabled", disabled);
-      }
-      els[i].setAttribute("label", text);
-      console.log("did it!");
-      break;
-    }
-  }
-}
-
-exports.hideNotificationBar = hideNotificationBar;
-
-function showTopbar(shotContext) {
-  let box = getNotificationBox();
-  let notification = box.getNotificationWithValue("pageshot-notification-bar");
-  if (!notification) {
-    hideInfoPanel();
-    showNotificationBar(shotContext);
-    req.sendEvent("addon", "overlay-ui");
-  }
-}
-
-exports.showTopbar = showTopbar;
 
 function takeShot(source) {
   let backend = exports.getBackend();
@@ -262,47 +124,6 @@ exports.getBackend = function () {
   return backendOverride || prefs.backend;
 };
 
-let infoPanelShownForWindow = null;
-
-exports.showInfoPanel = function showInfoPanel(magicCookie, title, description) {
-  /*let win = winutil.getMostRecentBrowserWindow();
-  let target = {
-    node: win.document.getElementById(magicCookie),
-    targetName: magicCookie
-  };
-  UITour.showInfo(win, null, target, title, description);
-  UITour.showHighlight(win, target, "wobble");
-  infoPanelShownForWindow = win;*/
-};
-
-function showTour(newTab) {
-  if (ENABLE_FTU) {
-    let helpurl = exports.getBackend() + "/homepage/help.html";
-    let win = winutil.getMostRecentBrowserWindow();
-    if (newTab) {
-      shooter.showTourOnNextLinkClick();
-      tabs.open(helpurl);
-      let newtab = tabs[tabs.length - 1];
-      newtab.on("close", hideInfoPanel);
-      newtab.on("deactivate", hideInfoPanel);
-    } else {
-      win.loadURI(helpurl);
-    }
-    exports.showInfoPanel(
-      "toggle-button--jid1-neeaf3sahdkhpajetpack-pageshot-shooter",
-      "Welcome to Page Shot",
-      "Click the camera button to clip a part of the page");
-  }
-}
-
-function hideInfoPanel() {
-  if (infoPanelShownForWindow) {
-    UITour.hideInfo(infoPanelShownForWindow);
-    UITour.hideHighlight(infoPanelShownForWindow);
-    infoPanelShownForWindow = null;
-  }
-}
-
 // For reasons see https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Listening_for_load_and_unload
 exports.main = function (options) {
   loadReason = options.loadReason;
@@ -319,7 +140,6 @@ exports.main = function (options) {
           req.sendEvent("test-pilot-installed");
         }
       });
-      showTour();
     }
     startDailyPing();
   }).catch((error) => {
@@ -352,7 +172,6 @@ exports.onUnload = function (reason) {
     return;
   }
   req.sendEvent("uninstall");
-  hideNotificationBar();
   console.info("Unloading Page Shot framescripts");
   require("./framescripter").unload();
   console.info("Informing site of unload reason:", reason);
