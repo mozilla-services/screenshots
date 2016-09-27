@@ -1,6 +1,7 @@
 ## Page Shot
 
 [![Build Status](https://travis-ci.org/mozilla-services/pageshot.svg)](https://travis-ci.org/mozilla-services/pageshot)
+[![Available on Test Pilot](https://img.shields.io/badge/available_on-Test_Pilot-0996F8.svg)](https://testpilot.firefox.com/experiments/page-shot)
 
 This is a prototype for a product to create better ways of sharing and saving content, starting with screenshots, with a planned second phase of full-page archiving.
 
