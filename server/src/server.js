@@ -662,10 +662,11 @@ app.get("/__version__", function (req, res) {
     version: buildTime,
     commit: linker.getGitRevision(),
     contentOrigin: config.contentOrigin,
-    commitLog: `https://github.com/mozilla-services/pageshot/commits/${linker.getGitRevision()}`
+    commitLog: `https://github.com/mozilla-services/pageshot/commits/${linker.getGitRevision()}`,
+    unincludedCommits: `https://github.com/mozilla-services/pageshot/commits/?sha=${linker.getGitRevision()}`
   };
   res.header("Content-Type", "application/json; charset=utf-8");
-  res.send(JSON.stringify(response));
+  res.send(JSON.stringify(response, null, '  '));
 });
 
 // This is a minimal heartbeat that only indicates the server process is up and responding
