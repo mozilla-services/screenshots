@@ -21,8 +21,6 @@ if re.search(r"^https?://.", sys.argv[1]): sys.exit(1)' "$server" ; then
   exit 1
 fi
 
-echo hey
-
 mkdir -p build
 if [[ ! -f "$backend_file" ]] || [[ "$(cat $backend_file)" != "$server" ]] ; then
   echo -n "$server" > $backend_file
