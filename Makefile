@@ -281,7 +281,8 @@ build/.backend.txt: set_backend
 
 set_backend:
 	@if [[ -z "$(PAGESHOT_BACKEND)" ]] ; then echo "No backend set" ; fi
-	@if [[ -n "$(PAGESHOT_BACKEND)" ]] ; then echo "Setting backend to ${PAGESHOT_BACKEND}" ; ./bin/_set_backend_config https://pageshot.dev.mozaws.net ${PAGESHOT_BACKEND} ; fi
+	@if [[ -n "$(PAGESHOT_BACKEND)" ]] ; then echo "Setting backend to ${PAGESHOT_BACKEND}" ; fi
+	./bin/_set_backend_config https://pageshot.dev.mozaws.net ${PAGESHOT_BACKEND}
 
 build/.npm-install.log: package.json
 	# Essentially .npm-install.log is just a timestamp showing the last time we ran
