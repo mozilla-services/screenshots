@@ -104,6 +104,7 @@ const gaJs = `
     }
   } else {
     gaLocation = null;
+    finish();
   }
   function finish() {
     ga("create", "__GA_ID__", gaOptions);
