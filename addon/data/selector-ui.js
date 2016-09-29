@@ -439,18 +439,6 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       }
     },
 
-    showSaveFullPage: function () {
-      if (this.el) {
-        this.el.querySelector(".pageshot-save").textContent = "Save Full Page";
-      }
-    },
-
-    showSave: function () {
-      if (this.el) {
-        this.el.querySelector(".pageshot-save").textContent = "Save";
-      }
-    },
-
     remove: function () {
       util.removeNode(this.el);
       this.el = null;

@@ -265,19 +265,9 @@ const ShotContext = Class({
     this.interactiveWorker.port.on("openMyShots", watchFunction(function () {
       this.openMyShots();
     }, this));
-    this.interactiveWorker.port.on("showTopbar", watchFunction(function () {
-      this.showTopbar(this);
-    }, this));
     this.interactiveWorker.port.on("take-shot", watchFunction(function () {
       this.takeShot();
     }, this));
-    this.interactiveWorker.port.on("showSaveFullPage", watchFunction(function () {
-      // FIXME remove if we are sure we don't need this any more
-      //require("./main").showSaveFullPage();
-    }));
-    this.interactiveWorker.port.on("showSave", watchFunction(function () {
-      require("./main").showSave();
-    }));
 
     this._pendingScreenPositions = [];
     this.interactiveWorker.port.on("screenPosition", watchFunction(function (pos) {
@@ -375,11 +365,6 @@ const ShotContext = Class({
   openMyShots: function () {
     let main = require("./main");
     main.openMyShots();
-    main.hideNotificationBar();
-  },
-
-  showTopbar: function (shotContext) {
-    require("./main").showTopbar(shotContext);
   },
 
   /** Watches for the given event on this context's tab.  The callback will be
@@ -428,9 +413,6 @@ const ShotContext = Class({
 
   /** Renders this object unusable, and unregisters any handlers */
   destroy: function () {
-    if (this.tab === tabs.activeTab) {
-      require("./main").hideNotificationBar();
-    }
     if (this._deregisters) {
       for (let i=0; i<this._deregisters.length; i++) {
         let item = this._deregisters[i];
