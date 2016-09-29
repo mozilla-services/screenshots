@@ -17,9 +17,8 @@
     "envc": "2.4.1",
     "escape-html": "1.0.3",
     "express": "4.14.0",
-    "jpm": "1.1.1",
+    "jpm": "1.1.4",
     "keygrip": "1.0.1",
-    "mime-types": "2.1.11",
     "morgan": "1.7.0",
     "mozlog": "2.0.6",
     "node-statsd": "0.1.1",
@@ -48,12 +47,12 @@
     "browserify": "13.0.1",
     "eslint": "3.6.1",
     "eslint-plugin-react": "6.3.0",
-    "fs-promise": "0.5.0",
     "fx-runner": "1.0.5",
     "geckodriver": "1.1.2",
     "mocha": "3.0.2",
     "node-sass": "3.10.0",
     "npm-run-all": "2.3.0",
+    "nsp": "2.6.1",
     "sass-lint": "1.9.1",
     "selenium-webdriver": "3.0.0-beta-2"
   },
@@ -69,6 +68,7 @@
     "lint:addon": "make xpi && addons-linter ./build/*.xpi -o text",
     "lint:js": "eslint .",
     "lint:sass": "sass-lint -v -q",
+    "postlint": "nsp check -o summary",
     "posttest": "npm run lint",
     "test": "make xpi && mocha test/"
   }
