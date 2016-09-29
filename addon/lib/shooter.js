@@ -365,7 +365,6 @@ const ShotContext = Class({
   openMyShots: function () {
     let main = require("./main");
     main.openMyShots();
-    main.hideNotificationBar();
   },
 
   /** Watches for the given event on this context's tab.  The callback will be
@@ -414,9 +413,6 @@ const ShotContext = Class({
 
   /** Renders this object unusable, and unregisters any handlers */
   destroy: function () {
-    if (this.tab === tabs.activeTab) {
-      require("./main").hideNotificationBar();
-    }
     if (this._deregisters) {
       for (let i=0; i<this._deregisters.length; i++) {
         let item = this._deregisters[i];

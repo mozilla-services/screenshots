@@ -1,4 +1,3 @@
-/* globals UITour */
 /** The main module is loaded on startup
 
 This also contains the UI that is directly in the browser,
@@ -17,8 +16,7 @@ const { prefs } = require("sdk/simple-prefs");
 const helperworker = require("./helperworker");
 const { ActionButton } = require("sdk/ui/button/action");
 const { watchFunction } = require("./errors");
-const { Cu, Cc, Ci } = require("chrome");
-const winutil = require("sdk/window/utils");
+const { Cu } = require("chrome");
 const req = require("./req");
 const { setTimeout, clearTimeout } = require("sdk/timers");
 const { Hotkey } = require("sdk/hotkeys");
@@ -26,15 +24,10 @@ const { AddonManager } = require('resource://gre/modules/AddonManager.jsm');
 const { addXULStylesheet } = require("./xulcss");
 const { storage } = require("sdk/simple-storage");
 
-let Services;
-
 // Give the server a chance to start if the pref is set
 require("./headless").init();
 
-//Cu.import("resource:///modules/UITour.jsm");
-
 let loadReason = null; // eslint-disable-line no-unused-vars
-let initialized = false;
 let tabsBeingShot = {};
 
 function cleanUpTabsBeingShot(tab) {
@@ -54,7 +47,6 @@ exports.openMyShots = function () {
   if (! prefs.hasUsedMyShots) {
     prefs.hasUsedMyShots = true;
   }
-  hideNotificationBar();
   setTimeout(() => {
     tabs.open(exports.getBackend() + "/shots");
   });
