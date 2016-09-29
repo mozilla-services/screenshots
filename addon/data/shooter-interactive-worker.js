@@ -271,8 +271,6 @@ stateHandlers.selectMode = {
   onChooseRegionMode: function () {
     sendEvent("start-region-select", "mode-click");
     setState("crosshairs");
-    // FIXME remove once the ui is fully settled
-    //self.port.emit("showTopbar");
   },
 
   onChooseArchiveMode: function () {

@@ -265,9 +265,6 @@ const ShotContext = Class({
     this.interactiveWorker.port.on("openMyShots", watchFunction(function () {
       this.openMyShots();
     }, this));
-    this.interactiveWorker.port.on("showTopbar", watchFunction(function () {
-      this.showTopbar(this);
-    }, this));
     this.interactiveWorker.port.on("take-shot", watchFunction(function () {
       this.takeShot();
     }, this));
@@ -369,10 +366,6 @@ const ShotContext = Class({
     let main = require("./main");
     main.openMyShots();
     main.hideNotificationBar();
-  },
-
-  showTopbar: function (shotContext) {
-    require("./main").showTopbar(shotContext);
   },
 
   /** Watches for the given event on this context's tab.  The callback will be
