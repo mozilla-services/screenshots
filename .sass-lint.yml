@@ -5,6 +5,7 @@ options:
   merge-default-rules: true
 
 rules:
+  class-name-format: 0
   force-attribute-nesting: 0
   force-element-nesting: 0
   force-pseudo-nesting: 0
@@ -19,6 +20,7 @@ rules:
   no-qualifying-elements: 0
   no-url-protocols: 0
   property-sort-order: 0
+  quotes: [1, {style: double}]
   single-line-per-selector: 2
   space-after-comma: 2
   url-quotes: 2

@@ -1,15 +1,8 @@
 @import "partials/partials";
 
-#frame {
-
-  .footer {
-
-  }
-}
-
 .notification {
   @include flex-container(row, space-between, center);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(#000, 0.1);
   font-size: 12px;
   padding: 10px 20px;
   position: relative;
@@ -25,7 +18,7 @@
 
 .frame-header {
   @include flex-container(row, space-between, stretch);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 0 rgba(#000, 0.3), 0 0 20px rgba(#000, 0.2);
   min-height: 72px;
 }
 
@@ -111,14 +104,14 @@
   margin: 20px 0;
 
   > a img {
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 0 1px rgba(#000, 0.3), 0 0 20px rgba(#000, 0.2);
 
   }
 }
 
 .share-panel {
   border-radius: $border-radius;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 1px rgba(#000, 0.3), 0 0 20px rgba(#000, 0.2);
   padding: 20px;
   position: absolute;
   right: 10px;
