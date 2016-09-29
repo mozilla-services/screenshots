@@ -92,10 +92,6 @@ a:hover {
   }
 }
 
-a.sitelink,
-a.sitelink:visited {
-}
-
 .clip-container {
   top: 0;
   left: 0;
@@ -348,13 +344,12 @@ a.subheading-link {
   padding-right: 15px;
   vertical-align: middle;
   background-image: none;
-  font-size: 12pt;
   font-weight: normal;
   font-family: sans-serif;
   text-transform: none;
   text-indent: 0;
   border-radius: 4px;
-  border: none;
+  border: 0;
   background: #ddd;
   font-size: 12px;
   color: #333;
@@ -372,7 +367,7 @@ a.subheading-link {
 }
 
 .pageshot-myshots-text {
-  padding: 10px 10px;
+  padding: 10px;
   vertical-align: middle;
 }
 

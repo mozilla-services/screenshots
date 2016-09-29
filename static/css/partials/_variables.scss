@@ -2,7 +2,7 @@
 // (also some body styles, currently shared with styles.scss)
 $body-background-color: #f2f2f2;
 $header-background-color: #fff;
-$border-color: rgba(0, 0, 0, .3);
+$border-color: rgba(#000, .3);
 $bg-color: #FFF;
 $bg-grey: #FBFBFB;
 $very-light-grey: #EBEBEB;
@@ -104,8 +104,8 @@ $item-shadow-hover: 0 1px 0 0 $faintest-black, 0 0 0 5px $faintest-black;
 
 $loader-size: 16px;
 
-$context-menu-border-color: rgba(0, 0, 0, 0.2);
-$context-menu-shadow: 0 5px 10px rgba(0, 0, 0, 0.3), 0 0 0 1px $context-menu-border-color;
+$context-menu-border-color: rgba(#000, 0.2);
+$context-menu-shadow: 0 5px 10px rgba(#000, 0.3), 0 0 0 1px $context-menu-border-color;
 $context-menu-font-size: 14px;
 $context-menu-border-radius: 5px;
 $context-menu-outer-padding: 5px;
@@ -118,8 +118,8 @@ $image-path: '/img/';
 $tooltip-height: 50px;
 $tooltip-background-color: #FFF3CE;
 $tooltip-border-radius: 5px;
-$tooltip-border-properties:  1px solid rgba(0, 0, 0, 0.27);
-$tooltip-box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14);
+$tooltip-border-properties:  1px solid rgba(#000, 0.27);
+$tooltip-box-shadow: 0 4px 5px 0 rgba(#000, 0.14);
 $tooltip-padding: 10px 30px;
 $tooltip-anchor-width: 8px;
 $tooltip-anchor-height: 8px;

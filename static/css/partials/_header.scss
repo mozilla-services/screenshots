@@ -2,7 +2,7 @@
   @include flex-container(row, space-between, center);
   background: $header-background-color;
   border-bottom: solid 1px #dfe0e1;
-  box-shadow: 0 4px 2px -3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 2px -3px rgba(#000, 0.05);
   height: 50px;
   margin-bottom: $base-gutter * 2;
   min-width: $base-gutter * 20;
