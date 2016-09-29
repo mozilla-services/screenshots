@@ -143,7 +143,6 @@ exports.main = function (options) {
 let timeoutId;
 const intervalMilliseconds = 1000*60*60*24; // 1 day
 function startDailyPing() {
-  console.log("daily ping");
   if (timeoutId) {
     clearTimeout(timeoutId);
   }
