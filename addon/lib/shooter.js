@@ -424,7 +424,7 @@ const ShotContext = Class({
     let finish = () => {
       if (this.onDestroyed !== undefined) {
         this.onDestroyed();
-        this.onDestroyed = null;
+        this.onDestroyed = undefined;
       }
       if (this.interactiveWorker) {
         this.interactiveWorker.destroy();
