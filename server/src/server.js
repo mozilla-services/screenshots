@@ -120,6 +120,20 @@ if (config.sentryDSN) {
   ravenClient.patchGlobal();
 }
 
+function sendRavenMessage(req, message, options) {
+  if (! ravenClient) {
+    return;
+  }
+  options = options || {};
+  options.extra = options.extra || {};
+  options.extra.path = req.originalUrl;
+  options.extra.method = req.method;
+  options.extra.userAgent = req.headers['user-agent'];
+  options.extra.referrer = req.headers['referer'];
+  options.extra.authenticated = !!req.deviceId;
+  ravenClient.captureMessage(message, options);
+}
+
 function initDatabase() {
   dbschema.createTables().then(() => {
     return dbschema.createKeygrip();
@@ -340,6 +354,7 @@ app.get("/redirect", function (req, res) {
     let redirectUrl = req.query.to;
     if (! validUrl.isUri(redirectUrl)) {
       console_mozlog.warn("redirect-bad-url", {msg: "Redirect attempted to invalid URL", url: redirectUrl});
+      sendRavenMessage(req, "Redirect attempted to invalid URL", {extra: {redirectUrl}});
       simpleResponse(res, "Bad Request", 400);
       return;
     }
@@ -363,6 +378,7 @@ window.location = ${redirectUrlJs};
     ).send();
   } else {
     console_mozlog.warn("no-redirect-to", {"msg": "Bad Request, no ?to parameter"});
+    sendRavenMessage(req, "Bad request, no ?to parameter");
     simpleResponse(res, "Bad Request", 400);
   }
 });
@@ -372,6 +388,7 @@ app.post("/api/register", function (req, res) {
   let canUpdate = vars.deviceId === req.deviceId;
   if (! vars.deviceId) {
     console.error("Bad register request:", JSON.stringify(vars, null, "  "));
+    sendRavenMessage(req, "Attempted to register without deviceId");
     simpleResponse(res, "Bad request, no deviceId", 400);
     return;
   }
@@ -389,6 +406,13 @@ app.post("/api/register", function (req, res) {
         hasSecret: !!vars.secret,
         hasNickname: !!vars.nickname,
         hasAvatarurl: !!vars.avatarurl
+      });
+      sendRavenMessage(req, "Attempted to register existing user", {
+        extra: {
+          hasSecret: !!vars.secret,
+          hasNickname: !!vars.nickname,
+          hasAvatarurl: !!vars.avatarurl
+        }
       });
       simpleResponse(res, "User exists", 401);
     }
@@ -446,6 +470,7 @@ app.post("/api/login", function (req, res) {
         hasSecret: !!vars.secret,
         deviceInfo: vars.deviceInfo
       });
+      sendRavenMessage(req, "Invalid login");
       simpleResponse(res, '{"error": "Invalid login"}', 401);
     }
   }).catch(function (err) {
@@ -487,17 +512,20 @@ app.put("/data/:id/:domain", function (req, res) {
 
   if (! bodyObj.deviceId) {
     console.warn("No deviceId in request body", req.url);
+    sendRavenMessage(req, "Attempt PUT without deviceId in request body");
     simpleResponse(res, "No deviceId in body", 400);
     return;
   }
   if (! req.deviceId) {
     console.warn("Attempted to PUT without logging in", req.url);
+    sendRavenMessage(req, "Attempt PUT without authentication");
     simpleResponse(res, "Not logged in", 401);
     return;
   }
   if (req.deviceId != bodyObj.deviceId) {
     // FIXME: this doesn't make sense for comments or other stuff, see https://github.com/mozilla-services/pageshot/issues/245
     console.warn("Attempted to PUT a page with a different deviceId than the login deviceId");
+    sendRavenMessage(req, "Attempted to save page for another user");
     simpleResponse(res, "Cannot save a page on behalf of another user", 403);
     return;
   }
@@ -508,6 +536,7 @@ app.put("/data/:id/:domain", function (req, res) {
     .concat(checkAttributes(bodyObj.htmlAttrs, "html"));
   if (errors.length) {
     console.warn("Attempted to submit page with invalid HTML:", errors.join("; ").substr(0, 60));
+    sendRavenMessage(req, "Errors in submission", {extra: {errors: errors}});
     simpleResponse(res, "Errors in submission", 400);
     return;
   }
@@ -556,6 +585,7 @@ app.get("/data/:id/:domain", function (req, res) {
 
 app.post("/api/delete-shot", function (req, res) {
   if (! req.deviceId) {
+    sendRavenMessage(req, "Attempt to delete shot without login");
     simpleResponse(res, "Not logged in", 401);
     return;
   }
@@ -563,6 +593,7 @@ app.post("/api/delete-shot", function (req, res) {
     if (result) {
       simpleResponse(res, "ok", 200);
     } else {
+      sendRavenMessage(req, "Attempt to delete shot that does not exist");
       simpleResponse(res, "No such shot", 404);
     }
   }).catch((err) => {
@@ -575,6 +606,7 @@ app.post("/api/add-saved-shot-data/:id/:domain", function (req, res) {
   let bodyObj = req.body;
   Shot.get(req.backend, shotId).then((shot) => {
     if (! shot) {
+      sendRavenMessage(req, "Attempt to add saved shot data when no shot exists");
       simpleResponse(res, "No such shot", 404);
       return;
     }
@@ -585,12 +617,14 @@ app.post("/api/add-saved-shot-data/:id/:domain", function (req, res) {
       .concat(checkAttributes(bodyObj.htmlAttrs, "html"));
     if (errors.length) {
       console.warn("Attempted to submit page with invalid HTML:", errors.join("; ").substr(0, 60));
+      sendRavenMessage(req, "Errors in submission when adding saved shot", {extra: {errors: errors}});
       simpleResponse(res, "Errors in submission", 400);
       return;
     }
     for (let attr in bodyObj) {
       if (! ["body", "head", "headAttrs", "bodyAttrs", "htmlAttrs", "showPage", "readable", "resources"].includes(attr)) {
         console.warn("Unexpected attribute in update:", attr);
+        sendRavenMessage(req, "Unexpected attribute in submission", {extra: {attr}});
         simpleResponse(res, "Unexpected attribute in submission", 400);
         return;
       }
@@ -607,16 +641,19 @@ app.post("/api/add-saved-shot-data/:id/:domain", function (req, res) {
 
 app.post("/api/set-expiration", function (req, res) {
   if (! req.deviceId) {
+    sendRavenMessage(req, "Attempt to set expiration without login");
     simpleResponse(res, "Not logged in", 401);
     return;
   }
   let shotId = req.body.id;
   let expiration = parseInt(req.body.expiration, 10);
   if (expiration < 0) {
+    sendRavenMessage(req, "Attempt negative expiration", {extra: {expiration}});
     simpleResponse(res, "Error: negative expiration", 400);
     return;
   }
   if (isNaN(expiration)) {
+    sendRavenMessage(req, "Set expiration to non-number", {extra: {rawExpiration: req.body.expiration}});
     simpleResponse(res, "Error: bad expiration (" + req.body.expiration + ")", 400);
     return;
   }
@@ -624,6 +661,7 @@ app.post("/api/set-expiration", function (req, res) {
     if (result) {
       simpleResponse(res, "ok", 200);
     } else {
+      sendRavenMessage(req, "Attempt to set expiration on shot that does not exist");
       simpleResponse(res, "No such shot", 404);
     }
   }).catch((err) => {
@@ -905,6 +943,7 @@ contentApp.get("/proxy", function (req, res) {
   let sig = req.query.sig;
   let isValid = dbschema.getKeygrip().verify(new Buffer(url, 'utf8'), sig);
   if (! isValid) {
+    sendRavenMessage(req, "Bad signature on proxy", {extra: {proxyUrl: url, sig: sig}});
     return simpleResponse(res, "Bad signature", 403);
   }
   url = urlParse(url);
