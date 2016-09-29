@@ -764,6 +764,10 @@ app.get("/:id/:domain", function (req, res) {
 
 app.get("/oembed", function (req, res) {
   let url = req.query.url;
+  if (! url) {
+    simpleResponse(req, "No ?url given", 400);
+    return;
+  }
   let format = req.query.format || "json";
   if (format !== "json") {
     return simpleResponse(res, "Only JSON OEmbed is supported", 501);
