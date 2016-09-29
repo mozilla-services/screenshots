@@ -39,7 +39,7 @@ class Body extends React.Component {
           <div className="stars"></div>
           <div className="copter fly-up"></div>
           <h1>Welcome to Page Shot</h1>
-          <a className="button primary" href="https://testpilot.firefox.com/experiments/page-shot">Coming soon to Firefox Test Pilot</a>
+          <a className="button primary" href="https://testpilot.firefox.com/experiments/page-shot">Install Page Shot with Firefox Test Pilot</a>
           { myShots }
         </div>
       </reactruntime.BodyTemplate>
