@@ -14,7 +14,21 @@ function captureException(e) {
     Raven.config(e.sentryPublicDSN).install();
   }
   delete e.sentryPublicDSN;
-  Raven.captureMessage(e.message, {extra: e});
+  let exception = new Error(e.message);
+  exception.stack = e.multilineStack || e.stack || undefined;
+  let rest = {};
+  for (let attr in e) {
+    if (["name", "message", "stack", "multilineStack", "popupMessage", "version", "sentryPublicDSN", "help"].indexOf(attr) == -1) {
+      rest[attr] = e;
+    }
+  }
+  rest.stack = e.multilineStack || e.stack;
+  Raven.captureException(exception, {
+    logger: 'addon',
+    tags: {version: e.version, category: e.popupMessage},
+    message: exception.message,
+    extra: rest
+  });
 }
     </script>
   </head>
@@ -37,7 +51,7 @@ function captureException(e) {
       <!-- Signalled when there's a server error when saving a shot -->
       <div id="error-REQUEST_ERROR">
         <h3>Page Shot is out of order.</h3>
-        Your shot was not saved.  
+        Your shot was not saved.
         We apologize for the inconvenience. Try again soon.
       </div>
 

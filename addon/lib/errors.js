@@ -31,6 +31,9 @@ panel.port.on("my-shots", function () {
 
 /** Should be called when any unexpected error happens */
 exports.unhandled = function (error) {
+  if ((error instanceof Error) || error.name == "Error") {
+    error = exports.makeError(error);
+  }
   // This .hide() fixes an issue (Firefox 52?) where the panel grows when it is
   // shown multiple times:
   panel.hide();
@@ -38,7 +41,17 @@ exports.unhandled = function (error) {
   panel.show({position: require("./main").shootButton});
   let errorObj = error;
   if (error && (error.help || error.message || error.name)) {
-    errorObj = error;
+    errorObj = {
+      message: error.message,
+      name: error.name,
+      stack: error.stack,
+      popupMessage: error.popupMessage
+    };
+    for (let attr in error) {
+      if (["message", "name", "stack", "popupMessage"].indexOf(attr) == -1) {
+        errorObj[attr] = error[attr];
+      }
+    }
   } else {
     errorObj = JSON.stringify(error);
     if (errorObj == "{}") {
@@ -46,13 +59,13 @@ exports.unhandled = function (error) {
     }
     errorObj = {message: errorObj};
   }
-  errorObj.sentryPublicDSN = user.getSentryPublicDSN();
-
-  panel.port.emit("showError", errorObj);
   if (typeof errorObj === "string") {
     errorObj = {name: errorObj};
   }
+  errorObj.sentryPublicDSN = user.getSentryPublicDSN();
   errorObj.version = self.version;
+
+  panel.port.emit("showError", errorObj);
   req.request(`${main.getBackend()}/error`, {
     method: "POST",
     content: JSON.stringify(errorObj),
@@ -81,6 +94,7 @@ exports.makeError = function (error) {
       }
       if (stackLines.length) {
         obj.stack = stackLines.join(" | ");
+        obj.multilineStack = stackLines.join("\n");
       }
     }
     return obj;
