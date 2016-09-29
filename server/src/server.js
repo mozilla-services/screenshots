@@ -680,11 +680,17 @@ app.get("/images/:imageid", function (req, res) {
       hasher.update(req.params.imageid);
       let hashedId = hasher.digest("hex").substr(0, 15);
       let analyticsUrl = `/images/hash${encodeURIComponent(hashedId)}`;
-      if (req.userAnalytics) {
-        req.userAnalytics.pageview(analyticsUrl).send();
-      } else {
-        let anonAnalytics = ua(config.gaId);
-        anonAnalytics.pageview(analyticsUrl).send();
+      let localReferrer = false;
+      if (req.headers["referer"]) {
+        localReferrer = req.headers["referer"].startsWith(req.backend);
+      }
+      if (! localReferrer) {
+        if (req.userAnalytics) {
+          req.userAnalytics.pageview(analyticsUrl).send();
+        } else {
+          let anonAnalytics = ua(config.gaId);
+          anonAnalytics.pageview(analyticsUrl).send();
+        }
       }
       res.header("Content-Type", obj.contentType);
       res.status(200);
