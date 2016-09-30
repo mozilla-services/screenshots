@@ -15,9 +15,9 @@ parser.add_argument('--create', metavar='N', type=int, default=1,
                     help='Create a shot N times')
 parser.add_argument('--read-shot', metavar='N', type=int, default=1,
                     help='Read a shot N times (should create one before)')
-parser.add_argument('--read-my-shots', metavar='N', type=int, default=0,
+parser.add_argument('--read-my-shots', metavar='N', type=int, default=1,
                     help='Read /shots N times')
-parser.add_argument('--search', metavar='N', type=int, default=0,
+parser.add_argument('--search', metavar='N', type=int, default=1,
                     help='Search /shots N times with randomish queries')
 parser.add_argument('--times', metavar='M', type=int, default=1,
                     help='Do everything M times (i.e., do each action N x M times)')
@@ -175,7 +175,6 @@ def run():
                 item[1] -= 1
                 total -= 1
                 break
-    delete_account()
 
 def main():
     try:
