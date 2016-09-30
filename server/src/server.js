@@ -371,11 +371,6 @@ window.location = ${redirectUrlJs};
   </body>
 </html>`;
     res.send(output);
-    let userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
-    userAnalytics.event(
-      "click",
-      `original-link-${from}`
-    ).send();
   } else {
     console_mozlog.warn("no-redirect-to", {"msg": "Bad Request, no ?to parameter"});
     sendRavenMessage(req, "Bad request, no ?to parameter");
@@ -457,8 +452,6 @@ app.post("/api/login", function (req, res) {
     if (ok) {
       let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
       cookies.set("user", vars.deviceId, {signed: true});
-      let userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
-      userAnalytics.pageview("/api/login").send();
       simpleResponse(res, JSON.stringify({"ok": "User logged in", "sentryPublicDSN": config.sentryPublicDSN}), 200);
       addDeviceActivity(vars.deviceId, "login", {
         deviceInfo: vars.deviceInfo
@@ -486,9 +479,6 @@ app.post("/api/unload", function (req, res) {
   // This erases the session cookie:
   cookies.set("user");
   cookies.set("user.sig");
-  if (req.userAnalytics) {
-    req.userAnalytics.pageview("/api/unload").send();
-  }
   addDeviceActivity(req.deviceId, "unload", {
     reason: reason,
     deviceInfo: req.body.deviceInfo
