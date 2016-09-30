@@ -50,7 +50,7 @@
     "fx-runner": "1.0.5",
     "geckodriver": "1.1.2",
     "mocha": "3.0.2",
-    "node-sass": "3.10.0",
+    "node-sass": "3.10.1",
     "npm-run-all": "2.3.0",
     "nsp": "2.6.1",
     "sass-lint": "1.9.1",
