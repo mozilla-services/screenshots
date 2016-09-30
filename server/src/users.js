@@ -192,7 +192,7 @@ exports.addDeviceActivity = function (deviceId, eventType, eventInfo) {
     throw new Error("Missing, empty, or invalid eventType");
   }
   if (typeof deviceId != "string" || ! deviceId) {
-    throw new Error("Missing, empty, or invalid deviceId");
+    throw new Error(`Missing, empty, or invalid deviceId (typeof: ${deviceId === null ? 'null' : typeof deviceId}, length: ${typeof deviceId == "string" ? deviceId.length : 'N/A'})`);
   }
   if (eventInfo && typeof eventInfo != "string") {
     eventInfo = JSON.stringify(eventInfo);
