@@ -297,7 +297,9 @@ class Head extends React.Component {
     if (! this.props.shot) {
       return null;
     }
-    let title = this.props.shot.ogTitle || this.props.shot.twitterCard.title || this.props.shot.title;
+    let title = this.props.shot.ogTitle ||
+      (this.props.shot.twitterCard && this.props.shot.twitterCard.title) ||
+      this.props.shot.title;
     let og = [
       <meta property="og:type" content="website" key="ogtype" />,
       <meta property="og:title" content={title} key="ogtitle" />
