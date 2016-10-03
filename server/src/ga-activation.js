@@ -111,6 +111,9 @@ const gaJs = `
     if (gaLocation) {
       ga("set", "location", gaLocation);
     }
+    if (__HASH_LOCATION__) {
+      ga("set", "title", "");
+    }
     ga("send", "pageview", gaLocation || location.href);
   }
 })();
