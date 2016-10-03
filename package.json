@@ -52,7 +52,7 @@
     "mocha": "3.0.2",
     "node-sass": "3.10.1",
     "npm-run-all": "2.3.0",
-    "nsp": "2.6.1",
+    "nsp": "2.6.2",
     "sass-lint": "1.9.1",
     "selenium-webdriver": "3.0.0-beta-2"
   },
