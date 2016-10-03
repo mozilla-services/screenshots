@@ -6,6 +6,7 @@ exports.render = function (req, res, page) {
   let modelModule = require("./" + page.modelModuleName);
   let viewModule = page.viewModule;
   Promise.resolve(modelModule.createModel(req)).then((model) => {
+    model.backend = req.backend;
     let jsonModel = model.jsonModel || model;
     let serverModel = model.serverModel || model;
     jsonModel = Object.assign({
