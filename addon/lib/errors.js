@@ -97,6 +97,12 @@ exports.makeError = function (error) {
         obj.multilineStack = stackLines.join("\n");
       }
     }
+    if (error.extra) {
+      obj = Object.assign({}, error.extra, obj);
+    }
+    if (error.noSentry) {
+      obj.noSentry = error.noSentry;
+    }
     return obj;
   }
   return error;
