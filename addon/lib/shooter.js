@@ -511,19 +511,22 @@ class Shot extends AbstractShot {
       } else {
         let message;
         let popupMessage;
+        let extra = {backend: this.backend};
         if (response.status === 0) {
           sendEvent("upload", "failed-connection");
-          message = `The request to send shot to ${this.backend} didn't complete due to the server being unavailable.`;
+          message = `The request to send shot didn't complete due to the server being unavailable.`;
           popupMessage = "CONNECTION_ERROR";
         } else {
           sendEvent("upload", "failed-status", {eventValue: response.status});
-          message = `The request to send shot to ${this.backend} (${Math.floor(body.length / 1000)}Kb) returned a response ${response.status}`;
+          message = `The request to send shot returned a response ${response.status}`;
+          extra.requestSizeKb = Math.floor(body.length / 1000);
           popupMessage = "REQUEST_ERROR";
         }
         let error = new Error(message);
         error.name = "REQUEST_ERROR";
         error.popupMessage = popupMessage;
         error.response = response;
+        error.extra = extra;
         throw error;
       }
     });

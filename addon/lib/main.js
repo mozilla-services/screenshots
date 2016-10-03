@@ -63,6 +63,7 @@ function takeShot(source) {
     } else {
       error.popupMessage = "SHOT_PAGE";
     }
+    error.noSentry = true;
     require("./errors").unhandled(error);
     return;
   }

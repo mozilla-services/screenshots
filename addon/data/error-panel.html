@@ -7,6 +7,9 @@
     <script>window.Raven = Raven;
 
 function captureException(e) {
+  if (e.noSentry) {
+    return;
+  }
   if (!e.sentryPublicDSN) {
     return;
   }
@@ -19,7 +22,7 @@ function captureException(e) {
   let rest = {};
   for (let attr in e) {
     if (["name", "message", "stack", "multilineStack", "popupMessage", "version", "sentryPublicDSN", "help"].indexOf(attr) == -1) {
-      rest[attr] = e;
+      rest[attr] = e[attr];
     }
   }
   rest.stack = e.multilineStack || e.stack;

@@ -27,7 +27,7 @@ function isUrl(url) {
   if ((/^data:.*$/i).test(url)) {
     return true;
   }
-  return (/^https?:\/\/[a-z0-9\.\-]+[a-z]\/?/i).test(url);
+  return (/^https?:\/\/[a-z0-9\.\-]+[a-z0-9]\/?/i).test(url);
 }
 
 /** Tests if a value is a set of attribute pairs, like [["name", "value"], ...] */
