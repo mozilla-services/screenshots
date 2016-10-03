@@ -251,6 +251,10 @@ app.get("/set-content-hosting-origin.js", function (req, res) {
 });
 
 app.get("/configure-raven.js", function (req, res) {
+  if (! req.config.sentryPublicDSN) {
+    jsResponse(res, "");
+    return;
+  }
   let options = {
     environment: process.env.NODE_ENV || "dev",
     release: linker.getGitRevision(),
