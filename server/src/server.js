@@ -172,10 +172,16 @@ function addHSTS(req, res) {
 app.use((req, res, next) => {
   genUuid.generate(genUuid.V_RANDOM, function (err, uuid) {
     if (!err) {
+      let dsn = config.sentryPublicDSN;
+      if (dsn) {
+        dsn = dsn.replace(/^https?:\/\/[^@]*@/, "").replace(/\/.*/, "");
+      } else {
+        dsn = "";
+      }
       req.cspNonce = uuid;
       res.header(
         "Content-Security-Policy",
-        `default-src 'self'; img-src 'self' www.google-analytics.com ${CONTENT_NAME} data:; script-src 'self' www.google-analytics.com 'nonce-${uuid}'; style-src 'self' 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' www.google-analytics.com; font-src https://code.cdn.mozilla.net;`);
+        `default-src 'self'; img-src 'self' www.google-analytics.com ${CONTENT_NAME} data:; script-src 'self' www.google-analytics.com 'nonce-${uuid}'; style-src 'self' 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net;`);
       res.header("X-Frame-Options", "DENY");
       addHSTS(req, res);
       next();
@@ -245,7 +251,24 @@ app.get("/set-content-hosting-origin.js", function (req, res) {
 });
 
 app.get("/configure-raven.js", function (req, res) {
-  let script = `Raven.config("${req.config.sentryPublicDSN}").install(); window.Raven = Raven;`;
+  let options = {
+    environment: process.env.NODE_ENV || "dev",
+    release: linker.getGitRevision(),
+    serverName: req.backend
+  };
+  // FIXME: this monkeypatch is because our version of Raven (6.2) doesn't really work
+  // with our version of Sentry (8.3.3)
+  let script = `
+  (function () {
+    var old_captureException = Raven.captureException.bind(Raven);
+    Raven.captureException = function (ex, options) {
+      options = options || {};
+      options.message = options.message || ex.message;
+      return old_captureException(ex, options);
+    };
+  })();
+  Raven.config("${req.config.sentryPublicDSN}", ${JSON.stringify(options)}).install();
+  window.Raven = Raven;`;
   jsResponse(res, script);
 });
 
