@@ -111,7 +111,7 @@ h1 {
   color: $white;
 }
 
-.primary:hover, 
+.primary:hover,
 .primary:focus {
   background: #40a624;
   border: 1px solid #399320;
@@ -121,6 +121,32 @@ h1 {
   background: #399320;
   border: 1px solid #2e761a;
 }
+
+/* Footer links: */
+
+.social-links {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+.social-links .github {
+  background-image: url("/static/img/github-icon.svg");
+}
+
+.social-links .link-icon {
+  margin-left: 15px;
+  flex: 0 0 32px;
+  height: 32px;
+  opacity: 0.9;
+  transition: opacity .15s;
+}
+
+/* End footer links */
 
 @-webkit-keyframes fade-in {
   0% {
@@ -230,4 +256,3 @@ h1 {
     padding: 0 10px;
   }
 }
-

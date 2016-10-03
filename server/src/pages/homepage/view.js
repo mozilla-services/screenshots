@@ -41,6 +41,9 @@ class Body extends React.Component {
           <h1>Welcome to Page Shot</h1>
           <a className="button primary" href="https://testpilot.firefox.com/experiments/page-shot">Install Page Shot with Firefox Test Pilot</a>
           { myShots }
+          <div className="social-links">
+            <a href="https://github.com/mozilla-services/pageshot" target="_blank" className="link-icon github" title="GitHub"></a>
+          </div>
         </div>
       </reactruntime.BodyTemplate>
     );
