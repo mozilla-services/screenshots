@@ -11,6 +11,7 @@ const tabs = require("sdk/tabs");
 const req = require("./req");
 const main = require("./main");
 const user = require("./user");
+const { AddonManager } = require('resource://gre/modules/AddonManager.jsm');
 
 const panel = panels.Panel({
   contentURL: self.data.url("error-panel.html"),
@@ -64,8 +65,13 @@ exports.unhandled = function (error) {
   }
   errorObj.sentryPublicDSN = user.getSentryPublicDSN();
   errorObj.version = self.version;
-
-  panel.port.emit("showError", errorObj);
+  getAddonList().then((addonList) => {
+    errorObj.addonList = addonList;
+    panel.port.emit("showError", errorObj);
+  }).catch((e) => {
+    console.error("Could not getAddonList:", e);
+    panel.port.emit("showError", errorObj);
+  });
   req.request(`${main.getBackend()}/error`, {
     method: "POST",
     content: JSON.stringify(errorObj),
@@ -184,3 +190,20 @@ exports.watchRun = function (func, context) {
     throw e;
   }
 };
+
+function getAddonList() {
+  if (getAddonList.cached) {
+    return Promise.resolve(getAddonList.cached);
+  }
+  return new Promise((resolve, reject) => {
+    AddonManager.getAllAddons((addons) => {
+      addons = addons.filter((a) => a.isActive);
+      addons = addons.map((a) => {
+        return `${a.id} / ${a.name}`;
+      });
+      addons.sort();
+      getAddonList.cached = addons;
+      resolve(addons);
+    });
+  });
+}
