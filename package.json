@@ -17,7 +17,7 @@
     "envc": "2.4.1",
     "escape-html": "1.0.3",
     "express": "4.14.0",
-    "jpm": "1.1.4",
+    "jpm": "1.2.0",
     "keygrip": "1.0.1",
     "morgan": "1.7.0",
     "mozlog": "2.0.6",
