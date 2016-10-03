@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "atob": "2.0.3",
-    "aws-sdk": "2.4.8",
+    "aws-sdk": "2.6.6",
     "btoa": "1.1.2",
     "convict": "1.4.0",
     "cookies": "0.6.1",
