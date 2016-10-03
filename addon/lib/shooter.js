@@ -22,6 +22,7 @@ const notifications = require("sdk/notifications");
 const { randomString } = require("./randomstring");
 const { setTimeout, clearTimeout } = require("sdk/timers");
 const shotstore = require("./shotstore");
+const getCookies = require("./get-cookies");
 
 let shouldShowTour = false; // eslint-disable-line no-unused-vars
 
@@ -511,7 +512,10 @@ class Shot extends AbstractShot {
       } else {
         let message;
         let popupMessage;
-        let extra = {backend: this.backend};
+        let extra = {
+          backend: this.backend,
+          cookies: getCookies.safeCookieSummary(getCookies.hostFromUrl(this.backend))
+        };
         if (response.status === 0) {
           sendEvent("upload", "failed-connection");
           message = `The request to send shot didn't complete due to the server being unavailable.`;
