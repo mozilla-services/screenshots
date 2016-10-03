@@ -13,6 +13,15 @@ class Head extends React.Component {
         <meta name="description" content="Share anything on the web with anyone using Page Shot." />
         <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css" />
         <link href="/homepage/css/style.css" rel="stylesheet" />
+        <meta name="description" content="Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox." />
+        <meta property="og:title" content={ this.props.title } />
+        <meta property="og:url" content={ this.props.backend } />
+        <meta property="og:description" content="Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox." />
+        <meta name="twitter:title" content={ this.props.title } />
+        <meta name="twitter:description" content="Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox." />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:image" content="https://testpilot-prod.s3.amazonaws.com/experiments_experiment/2/d/2d3eaabad489f46bf835790776c0f74a_image_1475081824_0659.jpg" />
+        <meta name="twitter:image" content="https://testpilot-prod.s3.amazonaws.com/experiments_experiment/2/d/2d3eaabad489f46bf835790776c0f74a_image_1475081824_0845.jpg" />
       </reactruntime.HeadTemplate>
     );
   }
