@@ -533,7 +533,10 @@ class Frame extends React.Component {
       clipUrl = clip.image.url;
     }
     let date = new Date(this.props.shot.createdDate);
-    let clipFilename = encodeURIComponent(`Page-Shot-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}-${this.props.shot.title}`);
+    let filenameTitle = this.props.shot.title;
+    filenameTitle = filenameTitle.replace(/[\/!@&*.|\n\r\t]/g, " ");
+    filenameTitle = filenameTitle.replace(/\s+/g, " ");
+    let clipFilename = `Page-Shot-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${filenameTitle}`;
 
     if (this.state.sharePanelDisplay) {
       shareButtons = <ShareButtons
