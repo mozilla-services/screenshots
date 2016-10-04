@@ -45,7 +45,7 @@
     "babel-preset-react": "6.11.1",
     "body-parser": "1.15.2",
     "browserify": "13.0.1",
-    "eslint": "3.7.0",
+    "eslint": "3.7.1",
     "eslint-plugin-react": "6.3.0",
     "fx-runner": "1.0.5",
     "geckodriver": "1.1.2",
