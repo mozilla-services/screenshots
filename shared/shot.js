@@ -27,6 +27,9 @@ function isUrl(url) {
   if ((/^data:.*$/i).test(url)) {
     return true;
   }
+  if ((/^chrome:.*/i).test(url)) {
+    return true;
+  }
   return (/^https?:\/\/[a-z0-9\.\-]+[a-z0-9]\/?/i).test(url);
 }
 
