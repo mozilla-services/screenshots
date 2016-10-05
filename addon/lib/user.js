@@ -8,6 +8,7 @@ const { URL } = require('sdk/url');
 const { FxAccountsOAuthClient } = Cu.import("resource://gre/modules/FxAccountsOAuthClient.jsm", {});
 const { FxAccountsProfileClient } = Cu.import("resource://gre/modules/FxAccountsProfileClient.jsm", {});
 const { deviceInfo } = require('./deviceinfo');
+const { hasCookieForBackend } = require("./get-cookies");
 
 let initialized = false;
 let sentryPublicDSN = "";
@@ -44,7 +45,7 @@ exports.deleteEverything = function () {
 };
 
 exports.isInitialized = function () {
-  return initialized;
+  return initialized && hasCookieForBackend(require("./main").getBackend());
 };
 
 let cachedBackend, cachedReason; // eslint-disable-line no-unused-vars

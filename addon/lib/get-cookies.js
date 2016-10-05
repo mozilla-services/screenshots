@@ -1,6 +1,8 @@
-const { Ci } = require("chrome");
+const { Ci, Cc } = require("chrome");
 const { Services }  = require("resource://gre/modules/Services.jsm");
 const { URL } = require("sdk/url");
+const cookieService = Cc["@mozilla.org/cookieService;1"].getService(Ci.nsICookieService);
+const { newURI } = Cc["@mozilla.org/network/io-service;1"].getService(Ci.nsIIOService);
 
 function getCookieObjects(host) {
   let result = [];
@@ -49,4 +51,10 @@ exports.safeCookieSummary = function (host) {
   } catch (e) {
     return `Could not capture cookies for ${host}: ${e}`;
   }
+};
+
+exports.hasCookieForBackend = function (backend) {
+  let backendUrl = newURI(backend, null, null);
+  let cookieString = cookieService.getCookieStringFromHttp(backendUrl, backendUrl, null);
+  return cookieString.search(/user=/) != -1;
 };
