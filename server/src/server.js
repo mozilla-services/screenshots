@@ -235,14 +235,29 @@ app.use(function (req, res, next) {
 });
 
 app.get("/ga-activation.js", function (req, res) {
-  let script = gaActivation.makeGaActivationString(config.gaId, req.deviceId, false);
-  jsResponse(res, script);
+  sendGaActivation(req, res, false);
 });
 
 app.get("/ga-activation-hashed.js", function (req, res) {
-  let script = gaActivation.makeGaActivationString(config.gaId, req.deviceId, true);
-  jsResponse(res, script);
+  sendGaActivation(req, res, true);
 });
+
+function sendGaActivation(req, res, hashPage) {
+  let promise;
+  if (req.deviceId) {
+    promise = hashUserId(req.deviceId).then((uuid) => {
+      return uuid.toString();
+    });
+  } else {
+    promise = Promise.resolve("");
+  }
+  promise.then((userUuid) => {
+    let script = gaActivation.makeGaActivationString(config.gaId, userUuid, hashPage);
+    jsResponse(res, script);
+  }).catch((e) => {
+    errorResponse(res, "Error creating user UUID:", e);
+  });
+}
 
 app.get("/set-content-hosting-origin.js", function (req, res) {
   let postMessageOrigin = `${req.protocol}://${req.config.contentOrigin}`;
@@ -334,7 +349,7 @@ app.post("/event", function (req, res) {
     throw new Error("Got unexpected req.body type: " + typeof bodyObj);
   }
   hashUserId(req.deviceId).then((userUuid) => {
-    let userAnalytics = ua(config.gaId, userUuid.toString());
+    let userAnalytics = ua(config.gaId, userUuid.toString(), {strictCidFormat: false});
     let params = Object.assign(
       {},
       bodyObj.options,

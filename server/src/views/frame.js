@@ -602,7 +602,7 @@ class Frame extends React.Component {
   }
 
   onSaveExpire(value) {
-    sendEvent("web/set-expiration", "navbar");
+    sendEvent("set-expiration", "navbar");
     if (value === 0 || value === "0") {
       sendEvent("set-expiration-to-indefinite", "navbar");
     } else {
