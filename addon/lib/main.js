@@ -177,9 +177,11 @@ exports.onUnload = function (reason) {
       deviceInfo: JSON.stringify(deviceInfo)
     }
   });
-  // We can't rely on the server removing cookies, because the request may not
-  // complete locally, since the addon is being destroyed
-  removeCookies();
+  if (reason == "disable" || reason == "uninstall") {
+    // We can't rely on the server removing cookies, because the request may not
+    // complete locally, since the addon is being destroyed
+    removeCookies();
+  }
 };
 
 /** Remove the user and user.sig cookies for the backend */
