@@ -350,6 +350,9 @@ app.post("/event", function (req, res) {
   }
   hashUserId(req.deviceId).then((userUuid) => {
     let userAnalytics = ua(config.gaId, userUuid.toString(), {strictCidFormat: false});
+    if (config.debugGoogleAnalytics) {
+      userAnalytics = userAnalytics.debug();
+    }
     let params = Object.assign(
       {},
       bodyObj.options,
