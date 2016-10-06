@@ -291,10 +291,6 @@ app.get("/configure-raven.js", function (req, res) {
   jsResponse(res, script);
 });
 
-app.get("/trigger-error", function (req, res) {
-  throw new Error("test error");
-});
-
 app.post("/error", function (req, res) {
   let bodyObj = req.body;
   if (typeof bodyObj !== "object") {
