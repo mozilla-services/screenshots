@@ -22,7 +22,7 @@
     "morgan": "1.7.0",
     "mozlog": "2.0.6",
     "node-statsd": "0.1.1",
-    "nodemon": "1.9.2",
+    "nodemon": "1.11.0",
     "nodify-uuid": "0.0.1",
     "pg": "6.0.3",
     "pg-patcher": "0.3.0",
