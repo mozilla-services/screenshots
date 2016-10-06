@@ -1,4 +1,4 @@
-/* globals sendEvent */
+const sendEvent = require("../../browser-send-event.js");
 const page = require("./page").page;
 const { AbstractShot } = require("../../../shared/shot");
 

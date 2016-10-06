@@ -1,4 +1,5 @@
-/* globals location, controller, sendEvent */
+/* globals location, controller */
+const sendEvent = require("../../browser-send-event.js");
 const reactruntime = require("../../reactruntime");
 const { Footer } = require("../../footer-view.js");
 const React = require("react");

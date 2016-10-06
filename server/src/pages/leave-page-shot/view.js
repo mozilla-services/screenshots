@@ -1,4 +1,5 @@
-/* globals location, sendEvent */
+/* globals location */
+const sendEvent = require("../../browser-send-event.js");
 const reactruntime = require("../../reactruntime");
 const React = require("react");
 
