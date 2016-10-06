@@ -29,7 +29,7 @@
     "raven": "0.12",
     "raven-js": "3.6",
     "react": "15.3.0",
-    "react-dom": "15.3.0",
+    "react-dom": "15.3.2",
     "rimraf": "2.5.3",
     "universal-analytics": "0.3.11",
     "uuid": "2.0.2",
