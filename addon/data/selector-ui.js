@@ -41,29 +41,31 @@ const ui = (function () { // eslint-disable-line no-unused-vars
   }
   exports.isHeader = isHeader;
 
+  function makeEl(tagName, className) {
+    let el = document.createElement(tagName);
+    if (className) {
+      el.className = className;
+    }
+    return el;
+  }
+
   /** Represents the shadow overlay that covers the whole page */
   let WholePageOverlay = exports.WholePageOverlay = {
 
     display: function (callbacks) {
       if (! this.overlayEl) {
-        this.overlayEl = document.createElement("div");
-        this.overlayEl.className = "pageshot-preview-overlay";
-        let instructions = document.createElement("div");
-        instructions.className = "pageshot-preview-instructions";
+        this.overlayEl = makeEl("div", "pageshot-preview-overlay");
+        let instructions = makeEl("div", "pageshot-preview-instructions");
         instructions.textContent = "Drag or click on the page to select a region. Press ESC to cancel.";
         this.overlayEl.appendChild(instructions);
-        let button = document.createElement("div");
-        button.className = "pageshot-myshots";
+        let button = makeEl("div", "pageshot-myshots");
         button.addEventListener("click", callbacks.onOpenMyShots, false);
-        let myShotsPre = document.createElement("div");
-        myShotsPre.className = "pageshot-pre-myshots";
+        let myShotsPre = makeEl("div", "pageshot-pre-myshots");
         button.appendChild(myShotsPre);
-        let text = document.createElement("div");
-        text.className = "pageshot-myshots-text";
+        let text = makeEl("div", "pageshot-myshots-text");
         text.textContent = "My Shots";
         button.appendChild(text);
-        let myShotsPost = document.createElement("div");
-        myShotsPost.className = "pageshot-post-myshots";
+        let myShotsPost = makeEl("div", "pageshot-post-myshots");
         button.appendChild(myShotsPost);
         this.overlayEl.appendChild(button);
 
@@ -150,40 +152,30 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       if (boxEl) {
         return;
       }
-      boxEl = document.createElement("div");
-      boxEl.className = "pageshot-highlight";
-      let buttons = document.createElement("div");
-      buttons.className = "pageshot-highlight-buttons";
-      let cancel = document.createElement("button");
-      cancel.className = "pageshot-highlight-button-cancel";
+      boxEl = makeEl("div", "pageshot-highlight");
+      let buttons = makeEl("div", "pageshot-highlight-buttons");
+      let cancel = makeEl("button", "pageshot-highlight-button-cancel");
       cancel.textContent = "Cancel";
       buttons.appendChild(cancel);
-      let save = document.createElement("button");
-      save.className = "pageshot-highlight-button-save";
+      let save = makeEl("button", "pageshot-highlight-button-save");
       save.textContent = "Save";
       buttons.appendChild(save);
       this.cancel = cancel;
       this.save = save;
       boxEl.appendChild(buttons);
       for (let name of movements) {
-        let elTarget = document.createElement("div");
-        let elMover = document.createElement("div");
-        elTarget.className = "pageshot-mover-target pageshot-" + name;
-        elMover.className = "pageshot-mover";
+        let elTarget = makeEl("div", "pageshot-mover-target pageshot-" + name);
+        let elMover = makeEl("div", "pageshot-mover");
         elTarget.appendChild(elMover);
         boxEl.appendChild(elTarget);
       }
-      this.bgTop = document.createElement("div");
-      this.bgTop.className = "pageshot-bghighlight";
+      this.bgTop = makeEl("div", "pageshot-bghighlight");
       document.body.appendChild(this.bgTop);
-      this.bgLeft = document.createElement("div");
-      this.bgLeft.className = "pageshot-bghighlight";
+      this.bgLeft = makeEl("div", "pageshot-bghighlight");
       document.body.appendChild(this.bgLeft);
-      this.bgRight = document.createElement("div");
-      this.bgRight.className = "pageshot-bghighlight";
+      this.bgRight = makeEl("div", "pageshot-bghighlight");
       document.body.appendChild(this.bgRight);
-      this.bgBottom = document.createElement("div");
-      this.bgBottom.className = "pageshot-bghighlight";
+      this.bgBottom = makeEl("div", "pageshot-bghighlight");
       document.body.appendChild(this.bgBottom);
       document.body.appendChild(boxEl);
       this.el = boxEl;
@@ -229,18 +221,15 @@ const ui = (function () { // eslint-disable-line no-unused-vars
   exports.SelectMode = {
     display: function (callbacks) {
       if (this.selectModeBackground === undefined) {
-        this.selectModeBackground = document.createElement("div");
+        this.selectModeBackground = makeEl("div", "pageshot-select-mode-background");
         this.selectModeBackground.id = "pageshot-select-mode-background";
-        this.selectModeBackground.className = "pageshot-select-mode-background";
-        let selectMode = document.createElement("div");
-        selectMode.className = "pageshot-select-mode";
+        let selectMode = makeEl("div", "pageshot-select-mode");
         selectMode.textContent = "Page Shot";
         this.selectModeBackground.appendChild(selectMode);
-        let modes = document.createElement("div");
+        let modes = makeEl("div");
         modes.style.textAlign = "center";
-        let chooseRegionMode = document.createElement("button");
-        chooseRegionMode.className = "pageshot-select-mode-square-button";
-        let regionImg = document.createElement("img");
+        let chooseRegionMode = makeEl("button", "pageshot-select-mode-square-button");
+        let regionImg = makeEl("img");
         // I used the website here to make these https://www.base64-image.de/
         // and the images are from https://github.com/mozilla-services/pageshot/issues/1191
         regionImg.src = "data:image/png;base64,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";
@@ -258,14 +247,12 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         chooseArchiveMode.addEventListener("click", callbacks.onChooseArchiveMode, false);
         modes.appendChild(chooseArchiveMode);*/
         selectMode.appendChild(modes);
-        let buttons = document.createElement("div");
-        let cancelButton = document.createElement("button");
-        cancelButton.className = "pageshot-select-mode-button";
+        let buttons = makeEl("div");
+        let cancelButton = makeEl("button", "pageshot-select-mode-button");
         cancelButton.textContent = "Cancel";
         cancelButton.style.left = "0";
         cancelButton.onclick = callbacks.onCancel;
-        let myShotsButton = document.createElement("button");
-        myShotsButton.className = "pageshot-select-mode-button";
+        let myShotsButton = makeEl("button", "pageshot-select-mode-button");
         myShotsButton.textContent = "Open My Shots";
         myShotsButton.style.right = "0";
         myShotsButton.style.backgroundColor = "#248aeb";
@@ -292,17 +279,13 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       if (this.pulseEl) {
         return;
       }
-      this.pulseEl = document.createElement("div");
-      this.pulseEl.className = "pageshot-crosshair-pulse";
+      this.pulseEl = makeEl("div", "pageshot-crosshair-pulse");
       document.body.appendChild(this.pulseEl);
-      this.innerPulseEl = document.createElement("div");
-      this.innerPulseEl.className = "pageshot-crosshair-inner";
+      this.innerPulseEl = makeEl("div", "pageshot-crosshair-inner");
       document.body.appendChild(this.innerPulseEl);
-      this.horizEl = document.createElement("div");
-      this.horizEl.className = "pageshot-horizcross pageshot-crosshair-preview";
+      this.horizEl = makeEl("div", "pageshot-horizcross pageshot-crosshair-preview");
       document.body.appendChild(this.horizEl);
-      this.vertEl = document.createElement("div");
-      this.vertEl.className = "pageshot-vertcross pageshot-crosshair-preview";
+      this.vertEl = makeEl("div", "pageshot-vertcross pageshot-crosshair-preview");
       document.body.appendChild(this.vertEl);
     },
 
@@ -325,13 +308,11 @@ const ui = (function () { // eslint-disable-line no-unused-vars
 
     display: function (x, y) {
       if (! this.vertEl) {
-        this.vertEl = document.createElement("div");
-        this.vertEl.className = "pageshot-vertcross";
+        this.vertEl = makeEl("div", "pageshot-vertcross");
         document.body.appendChild(this.vertEl);
       }
       if (! this.horizEl) {
-        this.horizEl = document.createElement("div");
-        this.horizEl.className = "pageshot-horizcross";
+        this.horizEl = makeEl("div", "pageshot-horizcross");
         document.body.appendChild(this.horizEl);
       }
       this.vertEl.style.left = (x - window.scrollX) + "px";
@@ -354,8 +335,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       if (this.dialogEl) {
         return;
       }
-      let div = document.createElement("div");
-      div.className = "pageshot-myshots-reminder";
+      let div = makeEl("div", "pageshot-myshots-reminder");
       if (isChrome) {
         div.className += " pageshot-myshots-reminder-chrome";
       }
@@ -398,8 +378,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
 
     display: function () {
       if (! this.el) {
-        this.el = document.createElement("div");
-        this.el.className = "pageshot-saver";
+        this.el = makeEl("div", "pageshot-saver");
         this.el.innerHTML = `
         <a class="pageshot-myshots" href="https://pageshot.dev.mozaws.net/shots" target="_blank">
           <span class="pageshot-center">
