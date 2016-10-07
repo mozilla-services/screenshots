@@ -436,7 +436,7 @@ const ShotContext = Class({
     };
 
     if (this.interactiveWorker) {
-      this.interactiveWorker.port.on("destroyed", () => finish);
+      this.interactiveWorker.port.on("destroyed", finish);
       try {
         this.interactiveWorker.port.emit("destroy");
       } catch (e) {
