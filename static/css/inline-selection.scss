@@ -314,6 +314,16 @@ $overlay-z-index: 9999999999;
   top: 15px;
 }
 
+.pageshot-visible {
+  @extend .pageshot-myshots;
+  top: 65px;
+}
+
+.pageshot-full-page {
+  @extend .pageshot-myshots;
+  top: 115px;
+}
+
 .pageshot-pre-myshots {
   /* Data version of static/img/my-shots.svg */
   background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIwLjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxNiAxNiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTYgMTY7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojNEQ0RDREO30KPC9zdHlsZT4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTEyLDEyaDR2MmMwLDEuMS0wLjksMi0yLDJoLTJWMTJMMTIsMTJ6IE0wLDEyaDR2NEgyYy0xLjEsMC0yLTAuOS0yLTJWMTJMMCwxMnogTTEyLDZoNHY0aC00VjZMMTIsNnogTTYsNmg0djQKCUg2VjZMNiw2eiBNMCw2aDR2NEgwVjZMMCw2eiBNMTIsMGgyYzEuMSwwLDIsMC45LDIsMnYyaC00VjBMMTIsMHogTTYsMGg0djRINlYwTDYsMHogTTYsMTJoNHY0SDZWMTJMNiwxMnogTTAsMmMwLTEuMSwwLjktMiwyLTJoMgoJdjRIMFYyTDAsMnoiLz4KPC9zdmc+Cg==");

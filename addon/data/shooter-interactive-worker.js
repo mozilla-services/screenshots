@@ -98,6 +98,21 @@ let standardOverlayCallbacks = {
     deactivate();
     self.port.emit("deactivate");
     self.port.emit("openMyShots");
+  },
+  onClickVisible: () => {
+    sendEvent("capture-visible", "selection-button");
+    selectedPos = new Selection(
+      window.scrollX, window.scrollY,
+      window.scrollX + window.innerWidth, window.scrollY + window.innerHeight);
+    reportSelection("visible");
+  },
+  onClickFullPage: () => {
+    sendEvent("capture-full-page", "selection-button");
+    selectedPos = new Selection(
+      0, 0,
+      Math.max(document.body.clientWidth, document.documentElement.clientWidth),
+      Math.max(document.body.clientHeight, document.documentElement.clientHeight));
+    reportSelection("fullPage");
   }
 }
 
@@ -519,7 +534,7 @@ stateHandlers.dragging = {
     selectedPos.x2 = util.truncateX(event.pageX);
     selectedPos.y2 = util.truncateY(event.pageY);
     ui.Box.display(selectedPos, standardDisplayCallbacks);
-    reportSelection("selection");
+    reportSelection();
     sendEvent(
       "make-selection", "selection-drag",
       eventOptionsForBox({

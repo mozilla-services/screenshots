@@ -31,8 +31,10 @@ const ui = (function () { // eslint-disable-line no-unused-vars
   function isHeader(el) {
     while (el) {
       if (el.className &&
-        (el.className.indexOf("pageshot-saver") !== -1 ||
-        el.className.indexOf("pageshot-myshots") !== -1)) {
+          (el.className.indexOf("pageshot-saver") !== -1 ||
+           el.className.indexOf("pageshot-myshots") !== -1 ||
+           el.className.indexOf("pageshot-visible") !== -1 ||
+           el.className.indexOf("pageshot-full-page") !== -1)) {
         return true;
       }
       el = el.parentNode;
@@ -68,6 +70,14 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         let myShotsPost = makeEl("div", "pageshot-post-myshots");
         button.appendChild(myShotsPost);
         this.overlayEl.appendChild(button);
+        let visibleButton = makeEl("div", "pageshot-overlay-button pageshot-visible");
+        visibleButton.textContent = "Capture visible";
+        visibleButton.addEventListener("click", callbacks.onClickVisible, false);
+        this.overlayEl.appendChild(visibleButton);
+        let fullPageButton = makeEl("div", "pageshot-overlay-button pageshot-full-page");
+        fullPageButton.textContent = "Capture full page";
+        fullPageButton.addEventListener("click", callbacks.onClickFullPage, false);
+        this.overlayEl.appendChild(fullPageButton);
 
         document.body.appendChild(this.overlayEl);
       }
