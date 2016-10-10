@@ -1,4 +1,5 @@
-/* globals location, controller, sendEvent */
+/* globals location, controller */
+const sendEvent = require("../../browser-send-event.js");
 const reactruntime = require("../../reactruntime");
 const { Footer } = require("../../footer-view.js");
 const React = require("react");
@@ -43,7 +44,7 @@ class Body extends React.Component {
             <h1><a href="/shots">Page Shot</a></h1>
             <form onSubmit={ this.onSubmitForm.bind(this) }>
               <span className="search-label" />
-              <input type="search" id="search" ref="search" maxlength="100" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />
+              <input type="search" id="search" ref="search" maxLength="100" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />
               <button title="search"></button>
             </form>
           </div>

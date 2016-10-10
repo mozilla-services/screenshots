@@ -340,6 +340,7 @@ class Frame extends React.Component {
     };
     // Need to bind this so we can add/remove the event listener
     this.unsharePanelHandler = this.unsharePanelHandler.bind(this);
+    this.sharePanelKeypress = this.sharePanelKeypress.bind(this);
   }
 
   closeGetPageshotBanner() {
@@ -384,6 +385,12 @@ class Frame extends React.Component {
       el = el.parentNode;
     }
     this.onClickShareButton();
+  }
+
+  sharePanelKeypress(e) {
+    if ((e.key || e.code) == "Escape") {
+      this.onClickShareButton();
+    }
   }
 
   onClickDelete(e) {
@@ -645,8 +652,10 @@ class Frame extends React.Component {
   componentDidUpdate() {
     if (this.state.sharePanelDisplay) {
       document.addEventListener("click", this.unsharePanelHandler, false);
+      document.addEventListener("keyup", this.sharePanelKeypress, false);
     } else {
       document.removeEventListener("click", this.unsharePanelHandler, false);
+      document.removeEventListener("keyup", this.sharePanelKeypress, false);
     }
   }
 

@@ -291,10 +291,6 @@ app.get("/configure-raven.js", function (req, res) {
   jsResponse(res, script);
 });
 
-app.get("/trigger-error", function (req, res) {
-  throw new Error("test error");
-});
-
 app.post("/error", function (req, res) {
   let bodyObj = req.body;
   if (typeof bodyObj !== "object") {
@@ -350,6 +346,9 @@ app.post("/event", function (req, res) {
   }
   hashUserId(req.deviceId).then((userUuid) => {
     let userAnalytics = ua(config.gaId, userUuid.toString(), {strictCidFormat: false});
+    if (config.debugGoogleAnalytics) {
+      userAnalytics = userAnalytics.debug();
+    }
     let params = Object.assign(
       {},
       bodyObj.options,
@@ -766,6 +765,41 @@ app.get("/__heartbeat__", function (req, res) {
   });
 });
 
+app.get("/contribute.json", function (req, res) {
+  let data = {
+    name: "Page Shot",
+    description: "Page Shot is an add-on for Firefox and a service for screenshots and other ways to capture and share content",
+    repository: {
+      url: "https://github.com/mozilla-services/pageshot/",
+      license: "MPL2",
+      tests: "https://travis-ci.org/mozilla-services/pageshot"
+    },
+    participate: {
+      home: "https://github.com/mozilla-services/pageshot/",
+      irc: "irc://irc.mozilla.org/#pageshot",
+      "irc-contacts": ["ianbicking", "fzzzy"]
+    },
+    bugs: {
+      list: "https://github.com/mozilla-services/pageshot/issues",
+      report: "https://github.com/mozilla-services/pageshot/issues/new",
+      goodfirstbugs: "https://github.com/mozilla-services/pageshot/labels/good%20first%20bug"
+    },
+    urls: {
+      prod: "https://pageshot.net",
+      stage: "https://pageshot.stage.mozaws.net/"
+    },
+    keywords: [
+      "javascript",
+      "node",
+      "express",
+      "react",
+      "postgresql",
+      "firefox"
+    ]
+  };
+  res.header("Content-Type", "application/json; charset=utf-8");
+  res.send(JSON.stringify(data, null, '  '));
+});
 
 // FIXME: this can't the right way to do this...
 require("./exporter").setup(app);

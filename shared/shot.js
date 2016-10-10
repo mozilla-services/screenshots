@@ -30,7 +30,7 @@ function isUrl(url) {
   if ((/^chrome:.*/i).test(url)) {
     return true;
   }
-  return (/^https?:\/\/[a-z0-9\.\-]+[a-z0-9]\/?/i).test(url);
+  return (/^https?:\/\/[a-z0-9\.\-]+[a-z0-9](:[0-9]+)?\/?/i).test(url);
 }
 
 /** Tests if a value is a set of attribute pairs, like [["name", "value"], ...] */
@@ -993,7 +993,7 @@ class _Clip {
     }
     assert(checkObject(image, ["url"], ["dimensions", "text", "location", "captureType"]), "Bad attrs for Clip Image:", Object.keys(image));
     assert(isUrl(image.url), "Bad Clip image URL:", image.url);
-    assert(image.captureType == "madeSelection" || image.captureType == "selection" || image.captureType == "visible" || image.captureType == "auto" || ! image.captureType, "Bad image.captureType:", image.captureType);
+    assert(image.captureType == "madeSelection" || image.captureType == "selection" || image.captureType == "visible" || image.captureType == "auto" || image.captureType == "fullPage" || ! image.captureType, "Bad image.captureType:", image.captureType);
     assert(typeof image.text == "string" || ! image.text, "Bad Clip image text:", image.text);
     if (image.dimensions) {
       assert(typeof image.dimensions.x == "number" && typeof image.dimensions.y == "number", "Bad Clip image dimensions:", image.dimensions);

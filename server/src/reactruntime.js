@@ -15,8 +15,8 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
         <title>{this.props.title}</title>
         <link rel="icon" type="image/png" href={this.props.staticLink("img/pageshot-icon-32.png")} />
         <link rel="shortcut icon" href={this.props.staticLink("img/pageshot-icon-32.png")} />
-        <script src="//www.google-analytics.com/analytics.js" async />
-        <script src="/ga-activation.js" />
+        { this.props.noAnalytics ? null : <script src="//www.google-analytics.com/analytics.js" async /> }
+        { this.props.noAnalytics ? null : <script src="/ga-activation.js" /> }
         {this.props.children}
       </head>
     );

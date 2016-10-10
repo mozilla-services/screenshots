@@ -1,6 +1,6 @@
 /* jslint browser:true */
-/* globals sendEvent */
 
+const sendEvent = require("./browser-send-event.js");
 let ReactDOM = require("react-dom"),
   { FrameFactory } = require("./views/frame.js"),
   { setGitRevision, staticLink } = require("./linker"),

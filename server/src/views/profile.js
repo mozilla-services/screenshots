@@ -1,4 +1,4 @@
-/* globals sendEvent */
+//const sendEvent = require("../browser-send-event.js");
 const React = require("react");
 const ReactDOM = require("react-dom");
 const events = require("../events");

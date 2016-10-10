@@ -254,6 +254,9 @@ const ShotContext = Class({
           this.activeClipName = this.shot.addClip(data);
         }
         this.updateShot();
+        if (captureType == "visible" || captureType == "fullPage") {
+          this.takeShot();
+        }
       }).bind(this)));
     }, this));
     this.interactiveWorker.port.on("popstate", watchFunction(function (newUrl) {
@@ -421,7 +424,6 @@ const ShotContext = Class({
       }
     }
     this._deregisters = null;
-    let finished = false;
     let finish = () => {
       if (this.onDestroyed !== undefined) {
         this.onDestroyed();
@@ -431,11 +433,10 @@ const ShotContext = Class({
         this.interactiveWorker.destroy();
         this.interactiveWorker = null;
       }
-      finished = true;
     };
 
     if (this.interactiveWorker) {
-      this.interactiveWorker.port.on("destroyed", () => finish);
+      this.interactiveWorker.port.on("destroyed", finish);
       try {
         this.interactiveWorker.port.emit("destroy");
       } catch (e) {

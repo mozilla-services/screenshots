@@ -1,6 +1,6 @@
-/* globals sendEvent */
 // const page = require("./page").page;
 
+const sendEvent = require("../../browser-send-event.js");
 let helperReadyResolve;
 let helperReadyPromise = new Promise((resolve, reject) => {
   helperReadyResolve = resolve;
