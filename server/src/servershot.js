@@ -331,7 +331,13 @@ class ServerClip extends AbstractShot.prototype.Clip {
     let url = this.image.url;
     let match = (/^data:([^;]*);base64,/).exec(url);
     if (! match) {
-      throw new Error("Bad clip URL");
+      if (! url) {
+        console.warn("Submitted with empty clip URL");
+        throw new Error("Empty clip URL");
+      } else {
+        console.warn("Submitted with bad clip URL:", url.substr(0, 10)+"...");
+        throw new Error("Bad clip URL");
+      }
     }
     let imageData = url.substr(match[0].length);
     imageData = new Buffer(imageData, 'base64');
