@@ -127,7 +127,7 @@ window.sendEvent = function (action, label, options) {
     options = label;
     label = undefined;
   }
-  console.debug("sendEvent", event + "/" + action + "/" + label || "none", options);
+  console.debug("sendEvent", event + "/" + action + (label ? "/" + label : "") || "none", options || "no-options");
   ga("send", "event", event, action, label, options);
 };
 `;
