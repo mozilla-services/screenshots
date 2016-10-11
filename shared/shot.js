@@ -30,6 +30,9 @@ function isUrl(url) {
   if ((/^chrome:.*/i).test(url)) {
     return true;
   }
+  if ((/^view-source:/i).test(url)) {
+    return isUrl(url.substr("view-source:".length));
+  }
   return (/^https?:\/\/[a-z0-9\.\-]+[a-z0-9](:[0-9]+)?\/?/i).test(url);
 }
 
