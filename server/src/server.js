@@ -359,6 +359,9 @@ app.post("/event", function (req, res) {
         ev: bodyObj.eventValue
       }
     );
+    if (req.headers["user-agent"]) {
+      params.ua = req.headers["user-agent"];
+    }
     userAnalytics.event(params).send();
     simpleResponse(res, "OK", 200);
   }).catch((e) => {

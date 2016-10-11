@@ -8,7 +8,6 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
 
   render() {
     // FIXME: this should probably include some standard CSS or other boilerplate
-    // FIXME: should also include (at least optionally) GA
     return (
       <head>
         <meta charSet="UTF-8" />

@@ -1,5 +1,6 @@
 const { Request } = require("sdk/request");
 const user = require("./user");
+const self = require("sdk/self");
 
 exports.request = function (url, options) {
   options.method = options.method || "get";
@@ -60,6 +61,9 @@ exports.sendEvent = function (action, label, options) {
       }
     }
   }
+  options = options || {};
+  options.applicationName = "firefox";
+  options.applicationVersion = self.version;
   console.info(`sendEvent ${event}/${action}/${label || 'none'} ${options ? JSON.stringify(options) : ""}`);
   exports.request(`${main.getBackend()}/event`, {
     method: "POST",
