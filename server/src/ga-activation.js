@@ -71,11 +71,11 @@ const gaJs = `
     (window.ga.q = window.ga.q || []).push(arguments);
   };
   window.ga.l = 1 * new Date();
-  var userId = "__USER_ID__";
+  var clientId = "__USER_ID__";
   var gaOptions = "auto";
   var gaLocation;
-  if (userId) {
-    gaOptions = {userId: userId};
+  if (clientId) {
+    gaOptions = {clientId: clientId};
   }
   if (location.hostname === "localhost") {
     if (typeof gaOptions === "string") {
