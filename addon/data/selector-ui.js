@@ -71,11 +71,11 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         button.appendChild(myShotsPost);
         this.overlayEl.appendChild(button);
         let visibleButton = makeEl("div", "pageshot-overlay-button pageshot-visible");
-        visibleButton.textContent = "Capture visible";
+        visibleButton.textContent = "Save visible";
         visibleButton.addEventListener("click", callbacks.onClickVisible, false);
         this.overlayEl.appendChild(visibleButton);
         let fullPageButton = makeEl("div", "pageshot-overlay-button pageshot-full-page");
-        fullPageButton.textContent = "Capture full page";
+        fullPageButton.textContent = "Save full page";
         fullPageButton.addEventListener("click", callbacks.onClickFullPage, false);
         this.overlayEl.appendChild(fullPageButton);
 
