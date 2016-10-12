@@ -841,6 +841,13 @@ if (! isChrome) {
     }, 0);
   })
 
+  // Happens if this worker is detached for some reason
+  // (such as moving windows, add-on unloading)
+  self.port.on("detach", () => {
+    deactivate();
+    console.log("detached worker");
+  });
+
   self.port.emit("ready");
   activate();
 }

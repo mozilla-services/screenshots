@@ -129,6 +129,7 @@ const ShotContext = Class({
   takeShot: function () {
     let loadingTab;
     let doneSuperFast = false;
+    this.copyUrlToClipboard();
     tabs.open({
       url: this.shot.creatingUrl,
       onOpen: (tab) => {
@@ -209,6 +210,15 @@ const ShotContext = Class({
     });
   },
 
+  copyUrlToClipboard: function () {
+    clipboard.set(this.shot.viewUrl, "text");
+    notifications.notify({
+      title: "Copied",
+      text: "The link to your shot has been copied to the clipboard.",
+      iconURL: self.data.url("copy.png")
+    });
+  },
+
   /** Activate the worker that handles selection */
   _activateWorker: function () {
     this.interactiveWorker = watchWorker(this.tab.attach({
@@ -225,6 +235,11 @@ const ShotContext = Class({
         annotateForPage: this.annotateForPage
       }
     }));
+    this.interactiveWorker.on("detach", () => {
+      // Happens if the worker is detached for some reason, such as moving windows
+      this.destroy();
+      console.log("the interactive worker was detached");
+    });
     this.interactiveWorker.port.on("select", watchFunction(function (pos, shotText, captureType) {
       // FIXME: there shouldn't be this disconnect between arguments to captureTab
       var info = {
@@ -298,7 +313,8 @@ const ShotContext = Class({
     if (this.tab.url.startsWith("about:")) {
       sendEvent("start-shot-about-page");
     } else if (this.tab.url.search(/^https:/i) === -1) {
-      sendEvent("start-shot-non-http");
+      let scheme = this.tab.url.replace(/:.*/, "");
+      sendEvent("start-shot-non-http", scheme);
     }
     watchPromise(callScript(
       this.tab,

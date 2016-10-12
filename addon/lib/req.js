@@ -64,7 +64,8 @@ exports.sendEvent = function (action, label, options) {
   options = options || {};
   options.applicationName = "firefox";
   options.applicationVersion = self.version;
-  console.info(`sendEvent ${event}/${action}/${label || 'none'} ${options ? JSON.stringify(options) : ""}`);
+  let showOptions = Object.keys(options).length > 2;
+  console.info(`sendEvent ${event}/${action}/${label || 'none'} ${showOptions ? JSON.stringify(options) : ""}`);
   exports.request(`${main.getBackend()}/event`, {
     method: "POST",
     content: JSON.stringify({event, action, label, options}),
