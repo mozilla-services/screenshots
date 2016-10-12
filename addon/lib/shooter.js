@@ -129,6 +129,7 @@ const ShotContext = Class({
   takeShot: function () {
     let loadingTab;
     let doneSuperFast = false;
+    this.copyUrlToClipboard();
     tabs.open({
       url: this.shot.creatingUrl,
       onOpen: (tab) => {
@@ -206,6 +207,15 @@ const ShotContext = Class({
       title: "HTML Copied",
       text: "The link to your shot and an image have been copied to the clipboard.",
       iconURL: self.data.url("../data/copy.png")
+    });
+  },
+
+  copyUrlToClipboard: function () {
+    clipboard.set(this.shot.viewUrl, "text");
+    notifications.notify({
+      title: "Copied",
+      text: "The link to your shot has been copied to the clipboard.",
+      iconURL: self.data.url("copy.png")
     });
   },
 
