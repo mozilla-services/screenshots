@@ -179,6 +179,7 @@ These are events that an add-on user can encounter on a shot they own
 4. [x] Clear search term `web/clear-search/submit` and click the arrow ![image](https://d17oy1vhnax1f7.cloudfront.net/items/382R0U3J0Q3K362g3E0q/Image%202016-09-07%20at%203.11.59%20PM.png?v=c006c85a)
 4. [x] Clear search term `web/clear-search/keyboard` by simply backspacing
 5. [x] Receive no search results `web/search-no-results` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/091Z1a253a062B3R1X2c/Image%202016-09-07%20at%203.12.37%20PM.png?v=b556941e)
+6. [x] Right-click (or get the context menu) anywhere on the page `contextmenu/background`, `contextmenu/shot-tile`, `contextmenu/search`, or `contextmenu/header` depending on where the user clicks.
 
 #### Non-owner web visit
 

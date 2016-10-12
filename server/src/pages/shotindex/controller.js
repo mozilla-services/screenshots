@@ -68,5 +68,29 @@ document.addEventListener("helper-ready", function onHelperReady(e) {
   document.dispatchEvent(event);
 }, false);
 
+document.addEventListener("contextmenu", (event) => {
+  let place = "background";
+  let node = event.target;
+  while (node) {
+    if (node.nodeType != document.ELEMENT_NODE) {
+      node = node.parentNode;
+      continue;
+    }
+    if (node.classList.contains("shot")) {
+      place = "shot-tile";
+      break;
+    }
+    if (node.tagName == "FORM") {
+      place = "search";
+      break;
+    }
+    if (node.classList.contains("header")) {
+      place = "header";
+      break;
+    }
+    node = node.parentNode;
+  }
+  sendEvent("contextmenu", place);
+}, false);
 
 window.controller = exports;
