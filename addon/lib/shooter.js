@@ -308,7 +308,8 @@ const ShotContext = Class({
     if (this.tab.url.startsWith("about:")) {
       sendEvent("start-shot-about-page");
     } else if (this.tab.url.search(/^https:/i) === -1) {
-      sendEvent("start-shot-non-http");
+      let scheme = this.tab.url.replace(/:.*/, "");
+      sendEvent("start-shot-non-http", scheme);
     }
     watchPromise(callScript(
       this.tab,

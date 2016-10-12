@@ -118,7 +118,7 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 15. [x] Uninstall the add-on `addon/uninstall` (fired internally, regardless of how it is uninstalled)
 16. [x] Hit shot button on a page that can't be shot (XUL page) `addon/abort-start-shot/xul-page` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3F0n0b3w411F2w2n3H1n/Image%202016-09-07%20at%202.49.21%20PM.png?v=bca96af4)
 17. [x] Hit shot button on any about: page `addon/start-shot-about-page` (note: shooting still continues) ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3e2d1j04233B3c3X2B3F/Image%202016-09-07%20at%202.50.55%20PM.png?v=316b9cb3)
-18. [x] Hit shot button on any other non-http page `addon/start-shot-non-http` (note: shooting still continues) ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0T0m2p1Z2L1u093F1Y0Q/Image%202016-09-07%20at%202.51.39%20PM.png?v=82d1fc1b)
+18. [x] Hit shot button on any other non-http page `addon/start-shot-non-http/actual-scheme` (note: shooting still continues).  Full event is something like `addon/start-shot-non-http/file` (or `about`, `view-source`, `data`) ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0T0m2p1Z2L1u093F1Y0Q/Image%202016-09-07%20at%202.51.39%20PM.png?v=82d1fc1b)
 19. [ ] Save a "private page" shot `addon/start-shot-private-page`
 20. [x] Test pilot was present at install time `addon/test-pilot-installed` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/2q2Y1P2G3J3Z2G0K1t3D/Image%202016-09-07%20at%202.52.24%20PM.png?v=ebf9cbfd)
 21. [x] Test pilot was not present at install time `addon/test-pilot-not-installed`
