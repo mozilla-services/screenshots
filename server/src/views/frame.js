@@ -1,4 +1,4 @@
-/* globals ga, sendEvent */
+/* globals ga */
 
 const React = require("react");
 const ReactDOM = require("react-dom");
@@ -7,6 +7,7 @@ const { getGitRevision } = require("../linker");
 // const { ProfileButton } = require("./profile");
 const { addReactScripts } = require("../reactutils");
 const { Footer } = require("../footer-view");
+const sendEvent = require("../browser-send-event.js");
 
 class ShareButtons extends React.Component {
   constructor(props) {

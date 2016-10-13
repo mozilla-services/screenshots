@@ -105,6 +105,12 @@ function resetPageMod(backend) {
         });
       }));
 
+      worker.port.on("error-no-sendEvent", watchFunction(function () {
+        let error = new Error("Error: sendEvent missing in web view");
+        error.noPopup = true;
+        throw error;
+      }));
+
       // FIXME: we aren't using this, but it does allow richer clipboard access
       // than the normal DOM API
       worker.port.on("requestClipboard", watchFunction(function (info) {

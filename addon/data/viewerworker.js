@@ -44,6 +44,10 @@ document.addEventListener("request-saved-shot", function (event) {
 document.addEventListener("remove-saved-shot", function (event) {
   self.port.emit("removeSavedShot", event.detail);
 });
+document.addEventListener("error-no-sendEvent", function (event) {
+  self.port.emit("error-no-sendEvent");
+});
+
 self.port.on("profile", function (profile) {
   var event = document.createEvent("CustomEvent");
   event.initCustomEvent("refresh-profile", true, true, JSON.stringify(profile));
