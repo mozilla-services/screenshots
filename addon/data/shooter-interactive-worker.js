@@ -654,7 +654,7 @@ stateHandlers.resizing = {
       let moveX = movement[0];
       moveX = moveX == "*" ? ["left", "right"] : [moveX];
       for (let moveDir of moveX) {
-        selectedPos[moveDir] =  resizeStartSelected[moveDir] + diffX;
+        selectedPos[moveDir] =  util.truncateX(resizeStartSelected[moveDir] + diffX);
         selectedPos.checkBump(moveDir);
       }
     }
@@ -662,7 +662,7 @@ stateHandlers.resizing = {
       let moveY = movement[1];
       moveY = moveY == "*" ? ["top", "bottom"] : [moveY];
       for (let moveDir of moveY) {
-        selectedPos[moveDir] = resizeStartSelected[moveDir] + diffY;
+        selectedPos[moveDir] = util.truncateY(resizeStartSelected[moveDir] + diffY);
         selectedPos.checkBump(moveDir);
       }
     }
