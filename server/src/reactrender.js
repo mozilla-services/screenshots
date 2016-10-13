@@ -11,11 +11,13 @@ exports.render = function (req, res, page) {
     let serverModel = model.serverModel || model;
     jsonModel = Object.assign({
       authenticated: !!req.deviceId,
+      sentryPublicDSN: req.config.sentryPublicDSN,
       backend: req.backend,
       gitRevision: getGitRevision()
     }, jsonModel);
     serverModel = Object.assign({
       authenticated: !!req.deviceId,
+      sentryPublicDSN: req.config.sentryPublicDSN,
       staticLink: req.staticLink,
       staticLinkWithHost: req.staticLinkWithHost
     }, serverModel);
