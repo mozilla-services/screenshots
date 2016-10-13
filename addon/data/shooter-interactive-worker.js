@@ -79,6 +79,7 @@ var movements = {
   bottomLeft: ["left", "bottom"],
   bottom: [null, "bottom"],
   bottomRight: ["right", "bottom"],
+  move: ["*", "*"]
 };
 
 let standardDisplayCallbacks = {
@@ -571,6 +572,11 @@ stateHandlers.selected = {
     if (! ui.Box.isSelection(target)) {
       sendEvent("cancel-selection", "selection-background-mousedown");
       setState("crosshairs");
+    } else {
+      sendEvent("start-move-selection", "selection");
+      stateHandlers.resizing.startResize(event, "move");
+      event.preventDefault();
+      return false;
     }
   }
 };
@@ -600,9 +606,17 @@ stateHandlers.resizing = {
     }
     ui.Box.display(selectedPos, standardDisplayCallbacks);
     if (resizeHasMoved) {
-      sendEvent("resize-selection", "mouseup");
+      if (resizeDirection == "move") {
+        sendEvent("move-selection", "mouseup");
+      } else {
+        sendEvent("resize-selection", "mouseup");
+      }
     } else {
-      sendEvent("keep-resize-selection", "mouseup");
+      if (resizeDirection == "move") {
+        sendEvent("keep-resize-selection", "mouseup");
+      } else {
+        sendEvent("keep-move-selection", "mouseup");
+      }
     }
     setState("selected");
     reportSelection();
@@ -613,12 +627,20 @@ stateHandlers.resizing = {
     let diffY = event.pageY - resizeStartPos.y;
     let movement = movements[resizeDirection];
     if (movement[0]) {
-      selectedPos[movement[0]] =  resizeStartSelected[movement[0]] + diffX;
-      selectedPos.checkBump(movement[0]);
+      let moveX = movement[0];
+      moveX = moveX == "*" ? ["left", "right"] : [moveX];
+      for (let moveDir of moveX) {
+        selectedPos[moveDir] =  resizeStartSelected[moveDir] + diffX;
+        selectedPos.checkBump(moveDir);
+      }
     }
     if (movement[1]) {
-      selectedPos[movement[1]] = resizeStartSelected[movement[1]] + diffY;
-      selectedPos.checkBump(movement[1]);
+      let moveY = movement[1];
+      moveY = moveY == "*" ? ["top", "bottom"] : [moveY];
+      for (let moveDir of moveY) {
+        selectedPos[moveDir] = resizeStartSelected[moveDir] + diffY;
+        selectedPos.checkBump(moveDir);
+      }
     }
     if (diffX || diffY) {
       resizeHasMoved = true;
