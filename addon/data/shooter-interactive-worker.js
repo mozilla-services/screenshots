@@ -74,15 +74,15 @@ function eventOptionsForBox(box) {
 
 // This enumerates all the anchors on the selection, and what part of the
 // selection they move:
-var movements = {
-  topLeft: ["left", "top"],
-  top: [null, "top"],
-  topRight: ["right", "top"],
-  left: ["left", null],
-  right: ["right", null],
-  bottomLeft: ["left", "bottom"],
-  bottom: [null, "bottom"],
-  bottomRight: ["right", "bottom"],
+const movements = {
+  topLeft: ["x1", "y1"],
+  top: [null, "y1"],
+  topRight: ["x2", "y1"],
+  left: ["x1", null],
+  right: ["x2", null],
+  bottomLeft: ["x1", "y2"],
+  bottom: [null, "y2"],
+  bottomRight: ["x2", "y2"],
   move: ["*", "*"]
 };
 
@@ -233,25 +233,17 @@ class Selection {
     return Math.abs(this.y1 - this.y2);
   }
 
-  checkBump(side) {
-    if (side === "top") {
-      if (this.height <= this.BUMP_LOWER) {
-        this.bottom = snapping.guessY(util.truncateY(this.top + this.BUMP_EXPAND));
-      }
-    } else if (side === "bottom") {
-      if (this.height <= this.BUMP_LOWER) {
-        this.top = snapping.guessY(util.truncateY(this.bottom - this.BUMP_EXPAND));
-      }
-    } else if (side === "left") {
-      if (this.width <= this.BUMP_LOWER) {
-        this.right = snapping.guessX(util.truncateX(this.left + this.BUMP_EXPAND));
-      }
-    } else if (side === "right") {
-      if (this.width <= this.BUMP_LOWER) {
-        this.left = snapping.guessX(util.truncateX(this.right - this.BUMP_EXPAND));
-      }
-    } else {
-      throw new Error("Unexpected direction: " + side);
+  /** Sort x1/x2 and y1/y2 so x1<x2, y1<y2 */
+  sortCoords() {
+    if (this.x1 > this.x2) {
+      let tmp = this.x2;
+      this.x2 = this.x1;
+      this.x1 = tmp;
+    }
+    if (this.y1 > this.y2) {
+      let tmp = this.y2;
+      this.y2 = this.y1;
+      this.y1 = tmp;
     }
   }
 
@@ -259,9 +251,6 @@ class Selection {
     return new Selection(this.x1, this.y1, this.x2, this.y2);
   }
 }
-
-Selection.prototype.BUMP_LOWER = 3;
-Selection.prototype.BUMP_EXPAND = 65;
 
 /** Represents a single x/y point, typically for a mouse click that doesn't have a drag: */
 class Pos {
@@ -608,9 +597,11 @@ stateHandlers.selected = {
 stateHandlers.resizing = {
   start: function () {
     ui.WholePageOverlay.remove();
+    selectedPos.sortCoords();
   },
 
   startResize: function (event, direction) {
+    selectedPos.sortCoords();
     resizeDirection = direction;
     resizeStartPos = new Pos(event.pageX, event.pageY);
     resizeStartSelected = selectedPos.clone();
@@ -652,18 +643,16 @@ stateHandlers.resizing = {
     let movement = movements[resizeDirection];
     if (movement[0]) {
       let moveX = movement[0];
-      moveX = moveX == "*" ? ["left", "right"] : [moveX];
+      moveX = moveX == "*" ? ["x1", "x2"] : [moveX];
       for (let moveDir of moveX) {
         selectedPos[moveDir] =  util.truncateX(resizeStartSelected[moveDir] + diffX);
-        selectedPos.checkBump(moveDir);
       }
     }
     if (movement[1]) {
       let moveY = movement[1];
-      moveY = moveY == "*" ? ["top", "bottom"] : [moveY];
+      moveY = moveY == "*" ? ["y1", "y2"] : [moveY];
       for (let moveDir of moveY) {
         selectedPos[moveDir] = util.truncateY(resizeStartSelected[moveDir] + diffY);
-        selectedPos.checkBump(moveDir);
       }
     }
     if (diffX || diffY) {
@@ -674,6 +663,7 @@ stateHandlers.resizing = {
 
   end: function () {
     resizeDirection = resizeStartPos = resizeStartSelected = null;
+    selectedPos.sortCoords();
   }
 };
 
