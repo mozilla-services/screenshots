@@ -42,6 +42,9 @@ mouseupNoAutoselect (true if a mouseup in draggingReady should not trigger autos
 
 var isChrome = false;
 
+const MAX_PAGE_HEIGHT = 5000;
+const MAX_PAGE_WIDTH = 5000;
+
 let annotateForPage = false;
 if (! isChrome && self.options.annotateForPage) {
   annotateForPage = true;
@@ -110,10 +113,21 @@ let standardOverlayCallbacks = {
   },
   onClickFullPage: () => {
     sendEvent("capture-full-page", "selection-button");
+    let width = Math.max(
+      document.body.clientWidth,
+      document.documentElement.clientWidth,
+      document.body.scrollWidth,
+      document.documentElement.scrollWidth);
+    width = Math.min(width, MAX_PAGE_WIDTH);
+    let height = Math.max(
+      document.body.clientHeight,
+      document.documentElement.clientHeight,
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight);
+    height = Math.min(height, MAX_PAGE_HEIGHT);
     selectedPos = new Selection(
       0, 0,
-      Math.max(document.body.clientWidth, document.documentElement.clientWidth),
-      Math.max(document.body.clientHeight, document.documentElement.clientHeight));
+      width, height);
     reportSelection("fullPage");
   }
 }
