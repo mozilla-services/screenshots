@@ -36,6 +36,7 @@ mousedownPos (object with x/y during draggingReady, shows where the selection st
 selectedPos (object with x/y/h/w during selected or dragging, gives the entire selection)
 resizeDirection (string: top, topLeft, etc, during resizing)
 resizeStartPos (x/y position where resizing started)
+mouseupNoAutoselect (true if a mouseup in draggingReady should not trigger autoselect)
 
 */
 
@@ -147,6 +148,7 @@ let resizeDirection;
 let resizeStartPos;
 let resizeStartSelected;
 let resizeHasMoved;
+let mouseupNoAutoselect = false;
 
 /** Represents a selection box: */
 class Selection {
@@ -384,6 +386,7 @@ stateHandlers.draggingReady = {
 
   start: function () {
     ui.Box.remove();
+    ui.WholePageOverlay.display(standardOverlayCallbacks);
   },
 
   mousemove: function (event) {
@@ -400,6 +403,11 @@ stateHandlers.draggingReady = {
 
   mouseup: function (event) {
     // If we don't get into "dragging" then we attempt an autoselect
+    if (mouseupNoAutoselect) {
+      sendEvent("cancel-selection", "selection-background-mousedown");
+      setState("crosshairs");
+      return false;
+    }
     let el = this.findGoodEl();
     if (el) {
       let rect = el.getBoundingClientRect();
@@ -515,6 +523,10 @@ stateHandlers.draggingReady = {
       el = el.parentNode;
     }
     return null;
+  },
+
+  end: function () {
+    mouseupNoAutoselect = false;
   }
 
 };
@@ -566,18 +578,16 @@ stateHandlers.selected = {
     if (direction) {
       sendEvent("start-resize-selection", "handle");
       stateHandlers.resizing.startResize(event, direction);
-      event.preventDefault();
-      return false;
-    }
-    if (! ui.Box.isSelection(target)) {
-      sendEvent("cancel-selection", "selection-background-mousedown");
-      setState("crosshairs");
-    } else {
+    } else if (ui.Box.isSelection(target)) {
       sendEvent("start-move-selection", "selection");
       stateHandlers.resizing.startResize(event, "move");
-      event.preventDefault();
-      return false;
+    } else {
+      mousedownPos = new Pos(event.pageX, event.pageY);
+      mouseupNoAutoselect = true;
+      setState("draggingReady");
     }
+    event.preventDefault();
+    return false;
   }
 };
 
