@@ -378,7 +378,7 @@ class Frame extends React.Component {
   unsharePanelHandler(e) {
     let el = e.target;
     while (el) {
-      if (el.id === "share-buttons-panel" || el.id === "share-button") {
+      if (el.id === "share-buttons-panel" || el.id === "toggle-share") {
         // A click in the share panel itself
         return;
       }
@@ -573,7 +573,7 @@ class Frame extends React.Component {
             </div>
           </div>
           <div className="more-shot-actions right">
-            <button className="button primary" id="share-button" onClick={ this.onClickShareButton.bind(this) }>
+            <button className="button primary" id="toggle-share" onClick={ this.onClickShareButton.bind(this) }>
               Share
             </button>
             <a className="button secondary" href={ clipUrl } onClick={ this.onClickDownload.bind(this) }
