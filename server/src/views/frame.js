@@ -588,7 +588,7 @@ class Frame extends React.Component {
         { this.props.shot.showPage ? <span id="copy-flag">Copy</span> : null }
         { this.props.shot.showPage ?
           <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } /> : null }
-        <Footer forUrl={ shot.viewUrl } />
+        <Footer forUrl={ shot.viewUrl } {...this.props} />
       </div>
     );
   }
@@ -813,6 +813,7 @@ exports.render = function (req, res) {
     isOwner: req.deviceId == req.shot.ownerId,
     gaId: req.config.gaId,
     deviceId: req.deviceId,
+    authenticated: !!req.deviceId,
     buildTime: buildTime,
     simple: false,
     shotDomain: req.url, // FIXME: should be a property of the shot
@@ -837,6 +838,7 @@ exports.render = function (req, res) {
     isOwner: req.deviceId == req.shot.ownerId,
     gaId: req.config.gaId,
     deviceId: req.deviceId,
+    authenticated: !!req.deviceId,
     shotDomain: req.url,
     urlIfDeleted: req.shot.urlIfDeleted,
     expireTime: req.shot.expireTime === null ? null : req.shot.expireTime.getTime(),

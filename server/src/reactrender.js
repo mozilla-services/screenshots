@@ -10,10 +10,12 @@ exports.render = function (req, res, page) {
     let jsonModel = model.jsonModel || model;
     let serverModel = model.serverModel || model;
     jsonModel = Object.assign({
+      authenticated: !!req.deviceId,
       backend: req.backend,
       gitRevision: getGitRevision()
     }, jsonModel);
     serverModel = Object.assign({
+      authenticated: !!req.deviceId,
       staticLink: req.staticLink,
       staticLinkWithHost: req.staticLinkWithHost
     }, serverModel);
