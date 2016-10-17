@@ -53,7 +53,7 @@ class Body extends React.Component {
               {children}
             </div>
           </div>
-          <Footer forUrl="shots" />
+          <Footer forUrl="shots" {...this.props} />
         </div>
       </reactruntime.BodyTemplate>
     );

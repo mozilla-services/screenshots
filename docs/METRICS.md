@@ -100,6 +100,9 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 4. [x] Start resizing the selection `addon/start-resize-selection/handle` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0b3W0a2q1B3T2s3B3u1n/Image%202016-09-07%20at%202.01.31%20PM.png?v=a725566b)
 5. [x] Finish resizing the selection `addon/resize-selection/mouseup`
 6. [x] Finish resizing, without a change `addon/keep-resize-selection/mouseup` (mousedown, don't move, mouseup)
+7. [x] Start moving the selection `addon/start-move-selection/selection`
+8. [x] Finish moving the selection `addon/move-selection/mouseup`
+9. [x] Finish moving, without a change `addon/keep-move-selection/mouseup`
 3. [x] Click Save `addon/save-shot/overlay-save-button` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1F021R1U1z0y3A1i0C2F/Image%202016-09-07%20at%202.02.43%20PM.png?v=1c42ee47)
 4. [x] Click Cancel `addon/cancel-shot/topbar-cancel` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3u2M2G1N431s1O193L1n/Image%202016-09-07%20at%202.03.24%20PM.png?v=bedc4e14)
 5. [x] Cancel because URL changed `addon/cancel-shot/url-changed` (when something that uses window.history "navigates" spontaneously away)

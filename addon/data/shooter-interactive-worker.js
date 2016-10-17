@@ -36,10 +36,14 @@ mousedownPos (object with x/y during draggingReady, shows where the selection st
 selectedPos (object with x/y/h/w during selected or dragging, gives the entire selection)
 resizeDirection (string: top, topLeft, etc, during resizing)
 resizeStartPos (x/y position where resizing started)
+mouseupNoAutoselect (true if a mouseup in draggingReady should not trigger autoselect)
 
 */
 
 var isChrome = false;
+
+const MAX_PAGE_HEIGHT = 5000;
+const MAX_PAGE_WIDTH = 5000;
 
 let annotateForPage = false;
 if (! isChrome && self.options.annotateForPage) {
@@ -70,15 +74,16 @@ function eventOptionsForBox(box) {
 
 // This enumerates all the anchors on the selection, and what part of the
 // selection they move:
-var movements = {
-  topLeft: ["left", "top"],
-  top: [null, "top"],
-  topRight: ["right", "top"],
-  left: ["left", null],
-  right: ["right", null],
-  bottomLeft: ["left", "bottom"],
-  bottom: [null, "bottom"],
-  bottomRight: ["right", "bottom"],
+const movements = {
+  topLeft: ["x1", "y1"],
+  top: [null, "y1"],
+  topRight: ["x2", "y1"],
+  left: ["x1", null],
+  right: ["x2", null],
+  bottomLeft: ["x1", "y2"],
+  bottom: [null, "y2"],
+  bottomRight: ["x2", "y2"],
+  move: ["*", "*"]
 };
 
 let standardDisplayCallbacks = {
@@ -108,10 +113,21 @@ let standardOverlayCallbacks = {
   },
   onClickFullPage: () => {
     sendEvent("capture-full-page", "selection-button");
+    let width = Math.max(
+      document.body.clientWidth,
+      document.documentElement.clientWidth,
+      document.body.scrollWidth,
+      document.documentElement.scrollWidth);
+    width = Math.min(width, MAX_PAGE_WIDTH);
+    let height = Math.max(
+      document.body.clientHeight,
+      document.documentElement.clientHeight,
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight);
+    height = Math.min(height, MAX_PAGE_HEIGHT);
     selectedPos = new Selection(
       0, 0,
-      Math.max(document.body.clientWidth, document.documentElement.clientWidth),
-      Math.max(document.body.clientHeight, document.documentElement.clientHeight));
+      width, height);
     reportSelection("fullPage");
   }
 }
@@ -146,6 +162,7 @@ let resizeDirection;
 let resizeStartPos;
 let resizeStartSelected;
 let resizeHasMoved;
+let mouseupNoAutoselect = false;
 
 /** Represents a selection box: */
 class Selection {
@@ -216,25 +233,17 @@ class Selection {
     return Math.abs(this.y1 - this.y2);
   }
 
-  checkBump(side) {
-    if (side === "top") {
-      if (this.height <= this.BUMP_LOWER) {
-        this.bottom = snapping.guessY(util.truncateY(this.top + this.BUMP_EXPAND));
-      }
-    } else if (side === "bottom") {
-      if (this.height <= this.BUMP_LOWER) {
-        this.top = snapping.guessY(util.truncateY(this.bottom - this.BUMP_EXPAND));
-      }
-    } else if (side === "left") {
-      if (this.width <= this.BUMP_LOWER) {
-        this.right = snapping.guessX(util.truncateX(this.left + this.BUMP_EXPAND));
-      }
-    } else if (side === "right") {
-      if (this.width <= this.BUMP_LOWER) {
-        this.left = snapping.guessX(util.truncateX(this.right - this.BUMP_EXPAND));
-      }
-    } else {
-      throw new Error("Unexpected direction: " + side);
+  /** Sort x1/x2 and y1/y2 so x1<x2, y1<y2 */
+  sortCoords() {
+    if (this.x1 > this.x2) {
+      let tmp = this.x2;
+      this.x2 = this.x1;
+      this.x1 = tmp;
+    }
+    if (this.y1 > this.y2) {
+      let tmp = this.y2;
+      this.y2 = this.y1;
+      this.y1 = tmp;
     }
   }
 
@@ -242,9 +251,6 @@ class Selection {
     return new Selection(this.x1, this.y1, this.x2, this.y2);
   }
 }
-
-Selection.prototype.BUMP_LOWER = 3;
-Selection.prototype.BUMP_EXPAND = 65;
 
 /** Represents a single x/y point, typically for a mouse click that doesn't have a drag: */
 class Pos {
@@ -383,6 +389,7 @@ stateHandlers.draggingReady = {
 
   start: function () {
     ui.Box.remove();
+    ui.WholePageOverlay.display(standardOverlayCallbacks);
   },
 
   mousemove: function (event) {
@@ -399,6 +406,11 @@ stateHandlers.draggingReady = {
 
   mouseup: function (event) {
     // If we don't get into "dragging" then we attempt an autoselect
+    if (mouseupNoAutoselect) {
+      sendEvent("cancel-selection", "selection-background-mousedown");
+      setState("crosshairs");
+      return false;
+    }
     let el = this.findGoodEl();
     if (el) {
       let rect = el.getBoundingClientRect();
@@ -514,6 +526,10 @@ stateHandlers.draggingReady = {
       el = el.parentNode;
     }
     return null;
+  },
+
+  end: function () {
+    mouseupNoAutoselect = false;
   }
 
 };
@@ -565,22 +581,27 @@ stateHandlers.selected = {
     if (direction) {
       sendEvent("start-resize-selection", "handle");
       stateHandlers.resizing.startResize(event, direction);
-      event.preventDefault();
-      return false;
+    } else if (ui.Box.isSelection(target)) {
+      sendEvent("start-move-selection", "selection");
+      stateHandlers.resizing.startResize(event, "move");
+    } else {
+      mousedownPos = new Pos(event.pageX, event.pageY);
+      mouseupNoAutoselect = true;
+      setState("draggingReady");
     }
-    if (! ui.Box.isSelection(target)) {
-      sendEvent("cancel-selection", "selection-background-mousedown");
-      setState("crosshairs");
-    }
+    event.preventDefault();
+    return false;
   }
 };
 
 stateHandlers.resizing = {
   start: function () {
     ui.WholePageOverlay.remove();
+    selectedPos.sortCoords();
   },
 
   startResize: function (event, direction) {
+    selectedPos.sortCoords();
     resizeDirection = direction;
     resizeStartPos = new Pos(event.pageX, event.pageY);
     resizeStartSelected = selectedPos.clone();
@@ -600,9 +621,17 @@ stateHandlers.resizing = {
     }
     ui.Box.display(selectedPos, standardDisplayCallbacks);
     if (resizeHasMoved) {
-      sendEvent("resize-selection", "mouseup");
+      if (resizeDirection == "move") {
+        sendEvent("move-selection", "mouseup");
+      } else {
+        sendEvent("resize-selection", "mouseup");
+      }
     } else {
-      sendEvent("keep-resize-selection", "mouseup");
+      if (resizeDirection == "move") {
+        sendEvent("keep-resize-selection", "mouseup");
+      } else {
+        sendEvent("keep-move-selection", "mouseup");
+      }
     }
     setState("selected");
     reportSelection();
@@ -613,12 +642,18 @@ stateHandlers.resizing = {
     let diffY = event.pageY - resizeStartPos.y;
     let movement = movements[resizeDirection];
     if (movement[0]) {
-      selectedPos[movement[0]] =  resizeStartSelected[movement[0]] + diffX;
-      selectedPos.checkBump(movement[0]);
+      let moveX = movement[0];
+      moveX = moveX == "*" ? ["x1", "x2"] : [moveX];
+      for (let moveDir of moveX) {
+        selectedPos[moveDir] =  util.truncateX(resizeStartSelected[moveDir] + diffX);
+      }
     }
     if (movement[1]) {
-      selectedPos[movement[1]] = resizeStartSelected[movement[1]] + diffY;
-      selectedPos.checkBump(movement[1]);
+      let moveY = movement[1];
+      moveY = moveY == "*" ? ["y1", "y2"] : [moveY];
+      for (let moveDir of moveY) {
+        selectedPos[moveDir] = util.truncateY(resizeStartSelected[moveDir] + diffY);
+      }
     }
     if (diffX || diffY) {
       resizeHasMoved = true;
@@ -628,6 +663,7 @@ stateHandlers.resizing = {
 
   end: function () {
     resizeDirection = resizeStartPos = resizeStartSelected = null;
+    selectedPos.sortCoords();
   }
 };
 

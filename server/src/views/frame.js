@@ -1,4 +1,4 @@
-/* globals ga, sendEvent */
+/* globals ga */
 
 const React = require("react");
 const ReactDOM = require("react-dom");
@@ -7,6 +7,7 @@ const { getGitRevision } = require("../linker");
 // const { ProfileButton } = require("./profile");
 const { addReactScripts } = require("../reactutils");
 const { Footer } = require("../footer-view");
+const sendEvent = require("../browser-send-event.js");
 
 class ShareButtons extends React.Component {
   constructor(props) {
@@ -378,7 +379,7 @@ class Frame extends React.Component {
   unsharePanelHandler(e) {
     let el = e.target;
     while (el) {
-      if (el.id === "share-buttons-panel" || el.id === "share-button") {
+      if (el.id === "share-buttons-panel" || el.id === "toggle-share") {
         // A click in the share panel itself
         return;
       }
@@ -573,7 +574,7 @@ class Frame extends React.Component {
             </div>
           </div>
           <div className="more-shot-actions right">
-            <button className="button primary" id="share-button" onClick={ this.onClickShareButton.bind(this) }>
+            <button className="button primary" id="toggle-share" onClick={ this.onClickShareButton.bind(this) }>
               Share
             </button>
             <a className="button secondary" href={ clipUrl } onClick={ this.onClickDownload.bind(this) }
@@ -588,7 +589,7 @@ class Frame extends React.Component {
         { this.props.shot.showPage ? <span id="copy-flag">Copy</span> : null }
         { this.props.shot.showPage ?
           <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } /> : null }
-        <Footer forUrl={ shot.viewUrl } />
+        <Footer forUrl={ shot.viewUrl } {...this.props} />
       </div>
     );
   }
@@ -813,6 +814,7 @@ exports.render = function (req, res) {
     isOwner: req.deviceId == req.shot.ownerId,
     gaId: req.config.gaId,
     deviceId: req.deviceId,
+    authenticated: !!req.deviceId,
     buildTime: buildTime,
     simple: false,
     shotDomain: req.url, // FIXME: should be a property of the shot
@@ -837,6 +839,7 @@ exports.render = function (req, res) {
     isOwner: req.deviceId == req.shot.ownerId,
     gaId: req.config.gaId,
     deviceId: req.deviceId,
+    authenticated: !!req.deviceId,
     shotDomain: req.url,
     urlIfDeleted: req.shot.urlIfDeleted,
     expireTime: req.shot.expireTime === null ? null : req.shot.expireTime.getTime(),

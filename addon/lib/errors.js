@@ -35,11 +35,13 @@ exports.unhandled = function (error) {
   if ((error instanceof Error) || error.name == "Error") {
     error = exports.makeError(error);
   }
-  // This .hide() fixes an issue (Firefox 52?) where the panel grows when it is
-  // shown multiple times:
-  panel.hide();
-  // TODO: remove this circular dependency
-  panel.show({position: require("./main").shootButton});
+  if (! error.noPopup) {
+    // This .hide() fixes an issue (Firefox 52?) where the panel grows when it is
+    // shown multiple times:
+    panel.hide();
+    // TODO: remove this circular dependency
+    panel.show({position: require("./main").shootButton});
+  }
   let errorObj = error;
   if (error && (error.help || error.message || error.name)) {
     errorObj = {
@@ -67,17 +69,22 @@ exports.unhandled = function (error) {
   errorObj.version = self.version;
   getAddonList().then((addonList) => {
     errorObj.addonList = addonList;
-    panel.port.emit("showError", errorObj);
+    finish();
   }).catch((e) => {
     console.error("Could not getAddonList:", e);
-    panel.port.emit("showError", errorObj);
+    finish();
   });
-  req.request(`${main.getBackend()}/error`, {
-    method: "POST",
-    content: JSON.stringify(errorObj),
-    contentType: "application/json",
-    ignoreLogin: true
-  });
+  function finish() {
+    if (! error.noPopup) {
+      panel.port.emit("showError", errorObj);
+    }
+    req.request(`${main.getBackend()}/error`, {
+      method: "POST",
+      content: JSON.stringify(errorObj),
+      contentType: "application/json",
+      ignoreLogin: true
+    });
+  }
 };
 
 /** Turns an exception object (likely Error) into what might be a kind of
@@ -105,6 +112,9 @@ exports.makeError = function (error) {
     }
     if (error.extra) {
       obj = Object.assign({}, error.extra, obj);
+    }
+    if (error.noPopup) {
+      obj.noPopup = true;
     }
     if (error.noSentry) {
       obj.noSentry = error.noSentry;
