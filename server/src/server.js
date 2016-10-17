@@ -213,7 +213,7 @@ app.use(function (req, res, next) {
   if (req.deviceId) {
     req.userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
   }
-  req.backend = req.protocol + "://" + req.headers.host;
+  req.backend = `${req.protocol}://${req.headers.host}`;
   req.config = config;
   next();
 });
@@ -229,7 +229,7 @@ app.use(function (req, res, next) {
 app.use(function (req, res, next) {
   req.staticLink = linker.staticLink;
   req.staticLinkWithHost = linker.staticLinkWithHost.bind(null, req);
-  let base = req.protocol + "://" + req.headers.host;
+  let base = `${req.protocol}://${req.headers.host}`;
   linker.imageLinkWithHost = linker.imageLink.bind(null, base);
   next();
 });
@@ -294,7 +294,7 @@ app.get("/configure-raven.js", function (req, res) {
 app.post("/error", function (req, res) {
   let bodyObj = req.body;
   if (typeof bodyObj !== "object") {
-    throw new Error("Got unexpected req.body type: " + typeof bodyObj);
+    throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
   }
   let userAnalytics = ua(config.gaId);
   let desc = bodyObj.name;
@@ -310,7 +310,7 @@ app.post("/error", function (req, res) {
     value = value.replace(/\s+/g, " ");
     value = value.replace(/[^a-z0-9_\-=+\{\}\(\).,/\?:\[\]\| ]/gi, "?");
     value = value.substr(0, 100);
-    attrs.push(attr + ": " + value);
+    attrs.push(`${attr}:  ${value}`);
   }
   if (attrs.length) {
     desc += " - " + attrs.join("; ");
@@ -342,7 +342,7 @@ function hashUserId(deviceId) {
 app.post("/event", function (req, res) {
   let bodyObj = req.body;
   if (typeof bodyObj !== "object") {
-    throw new Error("Got unexpected req.body type: " + typeof bodyObj);
+    throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
   }
   hashUserId(req.deviceId).then((userUuid) => {
     let userAnalytics = ua(config.gaId, userUuid.toString(), {strictCidFormat: false});
@@ -372,7 +372,7 @@ app.post("/event", function (req, res) {
 app.post("/timing", function (req, res) {
   let bodyObj = req.body;
   if (typeof bodyObj !== "object") {
-    throw new Error("Got unexpected req.body type: " + typeof bodyObj);
+    throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
   }
   hashUserId(req.deviceId).then((userUuid) => {
     let userAnalytics = ua(config.gaId, userUuid.toString());
@@ -540,9 +540,9 @@ app.put("/data/:id/:domain", function (req, res) {
   }
   let bodyObj = req.body;
   if (typeof bodyObj != "object") {
-    throw new Error("Got unexpected req.body type: " + typeof bodyObj);
+    throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
   }
-  let shotId = req.params.id + "/" + req.params.domain;
+  let shotId = `${req.params.id}/${req.params.domain}`;
 
   if (! bodyObj.deviceId) {
     console.warn("No deviceId in request body", req.url);
@@ -597,7 +597,7 @@ app.put("/data/:id/:domain", function (req, res) {
 });
 
 app.get("/data/:id/:domain", function (req, res) {
-  let shotId = req.params.id + "/" + req.params.domain;
+  let shotId = `${req.params.id}/${req.params.domain}`;
   Shot.getRawValue(shotId).then((data) => {
     if (! data) {
       simpleResponse(res, "No such shot", 404);
@@ -636,7 +636,7 @@ app.post("/api/delete-shot", function (req, res) {
 });
 
 app.post("/api/add-saved-shot-data/:id/:domain", function (req, res) {
-  let shotId = req.params.id + "/" + req.params.domain;
+  let shotId = `${req.params.id}/${req.params.domain}`;
   let bodyObj = req.body;
   Shot.get(req.backend, shotId).then((shot) => {
     if (! shot) {
@@ -688,7 +688,7 @@ app.post("/api/set-expiration", function (req, res) {
   }
   if (isNaN(expiration)) {
     sendRavenMessage(req, "Set expiration to non-number", {extra: {rawExpiration: req.body.expiration}});
-    simpleResponse(res, "Error: bad expiration (" + req.body.expiration + ")", 400);
+    simpleResponse(res, `Error: bad expiration (${req.body.expiration})`, 400);
     return;
   }
   Shot.setExpiration(req.backend, shotId, req.deviceId, expiration).then((result) => {
@@ -808,7 +808,7 @@ app.get("/contribute.json", function (req, res) {
 require("./exporter").setup(app);
 
 app.get("/:id/:domain", function (req, res) {
-  let shotId = req.params.id + "/" + req.params.domain;
+  let shotId = `${req.params.id}/${req.params.domain}`;
   Shot.get(req.backend, shotId).then((shot) => {
     let notFound = false;
     if (! shot) {
@@ -852,7 +852,7 @@ app.get("/oembed", function (req, res) {
   url = url.replace(/^http:\/\//i, "https://");
   let backend = req.backend.replace(/^http:\/\//i, "https://");
   if (! url.startsWith(backend)) {
-    return simpleResponse(res, "Error: URL is not hosted here (" + req.backend + ")", 501);
+    return simpleResponse(res, `Error: URL is not hosted here (${req.backend})`, 501);
   }
   url = url.substr(backend.length);
   let match = /^\/*([^\/]+)\/([^\/]+)/.exec(url);
@@ -984,13 +984,13 @@ contentApp.use("/static", express.static(path.join(__dirname, "static"), {
 contentApp.use(function (req, res, next) {
   req.staticLink = linker.staticLink;
   req.staticLinkWithHost = linker.staticLinkWithHost.bind(null, req);
-  let base = req.protocol + "://" + req.headers.host;
+  let base = `${req.protocol}://${req.headers.host}`;
   linker.imageLinkWithHost = linker.imageLink.bind(null, base);
   next();
 });
 
 contentApp.get("/content/:id/:domain", function (req, res) {
-  let shotId = req.params.id + "/" + req.params.domain;
+  let shotId = `${req.params.id}/${req.params.domain}`;
   Shot.getFullShot(req.backend, shotId).then((shot) => {
     if (! shot) {
       simpleResponse(res, "Not found", 404);
@@ -1109,7 +1109,7 @@ function errorResponse(res, message, err) {
   } else {
     res.send("Server error");
   }
-  console.error("Error: " + message, err+"", err);
+  console.error(`Error: ${message}`, err+"", err);
   if (ravenClient) {
     ravenClient.captureException(err);
   }
