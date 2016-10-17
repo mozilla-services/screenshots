@@ -44,6 +44,10 @@ var isChrome = false;
 
 const MAX_PAGE_HEIGHT = 5000;
 const MAX_PAGE_WIDTH = 5000;
+const MIN_DETECT_HEIGHT = 30;
+const MIN_DETECT_WIDTH = 100;
+const MAX_DETECT_HEIGHT = Math.max(window.innerHeight + 100, 700);
+const MAX_DETECT_WIDTH = Math.max(window.innerWidth + 100, 1000);
 
 let annotateForPage = false;
 if (! isChrome && self.options.annotateForPage) {
@@ -84,6 +88,15 @@ const movements = {
   bottom: [null, "y2"],
   bottomRight: ["x2", "y2"],
   move: ["*", "*"]
+};
+
+const doNotAutoselectTags = {
+  H1: true,
+  H2: true,
+  H3: true,
+  H4: true,
+  H5: true,
+  H6: true
 };
 
 let standardDisplayCallbacks = {
@@ -163,6 +176,7 @@ let resizeStartPos;
 let resizeStartSelected;
 let resizeHasMoved;
 let mouseupNoAutoselect = false;
+let autoDetectRect;
 
 /** Represents a selection box: */
 class Selection {
@@ -252,6 +266,19 @@ class Selection {
   }
 }
 
+Selection.getBoundingClientRect = function (el) {
+  let rect = el.getBoundingClientRect();
+  if (! rect) {
+    return null;
+  }
+  return new Selection(
+    rect.left + window.scrollX,
+    rect.top + window.scrollY,
+    rect.right + window.scrollX,
+    rect.bottom + window.scrollY
+  );
+};
+
 /** Represents a single x/y point, typically for a mouse click that doesn't have a drag: */
 class Pos {
   constructor(x, y) {
@@ -260,13 +287,13 @@ class Pos {
   }
 
   elementFromPoint() {
-    document.body.classList.add("pageshot-hide-selection");
+    document.body.classList.add("pageshot-no-pointer-events");
     try {
       return document.elementFromPoint(
         this.x - window.pageXOffset,
         this.y - window.pageYOffset);
     } finally {
-      document.body.classList.remove("pageshot-hide-selection");
+      document.body.classList.remove("pageshot-no-pointer-events");
     }
   }
 
@@ -362,6 +389,40 @@ stateHandlers.crosshairs = {
       ui.Crosshair.display(x, y);
     }
     */
+    document.body.classList.add("pageshot-no-pointer-event");
+    let el = document.elementFromPoint(
+      event.pageX - window.pageXOffset,
+      event.pageY - window.pageYOffset
+    );
+    document.body.classList.remove("pageshot-no-pointer-event");
+    let lastRect;
+    let rect;
+    let node = el;
+    while (node) {
+      rect = Selection.getBoundingClientRect(node);
+      if (! rect) {
+        rect = lastRect;
+        break;
+      }
+      if (rect.width > MAX_DETECT_WIDTH || rect.height > MAX_DETECT_HEIGHT) {
+        // Then the last rectangle is better
+        rect = lastRect;
+        break;
+      }
+      if (rect.width >= MIN_DETECT_WIDTH && rect.height >= MIN_DETECT_HEIGHT) {
+        if (! doNotAutoselectTags[node.tagName]) {
+          break;
+        }
+      }
+      lastRect = rect;
+      node = node.parentNode;
+    }
+    if (! rect) {
+      ui.HoverBox.hide();
+    } else {
+      ui.HoverBox.display(rect);
+    }
+    autoDetectRect = rect;
   },
 
   mousedown: function (event) {
@@ -377,6 +438,7 @@ stateHandlers.crosshairs = {
 
   end: function () {
     ui.Crosshair.remove();
+    ui.HoverBox.remove();
   }
 };
 
@@ -411,27 +473,12 @@ stateHandlers.draggingReady = {
       setState("crosshairs");
       return false;
     }
-    let el = this.findGoodEl();
-    if (el) {
-      let rect = el.getBoundingClientRect();
-      rect = {
-        left: rect.left + window.scrollX,
-        top: rect.top + window.scrollY,
-        right: rect.left + window.scrollX + rect.width,
-        bottom: rect.top + window.scrollY + rect.height
-      };
-      if (rect.top < window.scrollY) {
-        this.moveRectDown(rect, window.scrollY, el);
-      }
-      if (rect.bottom > window.scrollY + window.innerHeight) {
-        this.moveRectUp(rect, window.scrollY + window.innerHeight, el);
-      }
-      selectedPos = new Selection(
-        rect.left, rect.top, rect.right, rect.bottom
-      );
+    if (autoDetectRect) {
+      selectedPos = autoDetectRect;
+      autoDetectRect = null;
       mousedownPos = null;
       ui.Box.display(selectedPos, standardDisplayCallbacks);
-      sendEvent("make-selection", "selection-click", eventOptionsForBox(rect));
+      sendEvent("make-selection", "selection-click", eventOptionsForBox(selectedPos));
       setState("selected");
       if (isChrome) {
         chromeShooter.sendAnalyticEvent("addon", "autoselect");
@@ -440,56 +487,6 @@ stateHandlers.draggingReady = {
     } else {
       sendEvent("no-selection", "no-element-found");
       setState("crosshairs");
-    }
-  },
-
-  moveRectDown: function (rect, top, el) {
-    let closest = null;
-    function traverse(el) {
-      let elRect = el.getBoundingClientRect();
-      let elTop = elRect.top + window.scrollY;
-      if (elTop > top) {
-        if (closest === null || closest > elTop) {
-          closest = elTop;
-        }
-      }
-      if (closest === null || elTop < closest) {
-        for (let i=0; i<el.childNodes.length; i++) {
-          let child = el.childNodes[i];
-          if (child && child.nodeType == document.ELEMENT_NODE) {
-            traverse(child);
-          }
-        }
-      }
-    }
-    traverse(el);
-    if (closest !== null) {
-      rect.top = closest;
-    }
-  },
-
-  moveRectUp: function (rect, bottom, el) {
-    let closest = null;
-    function traverse(el) {
-      let elRect = el.getBoundingClientRect();
-      let elBottom = elRect.top + elRect.height + window.scrollY;
-      if (elBottom < bottom) {
-        if (closest === null || closest < elBottom) {
-          closest = elBottom;
-        }
-      }
-      if (closest === null || elBottom > closest) {
-        for (let i=0; i<el.childNodes.length; i++) {
-          let child = el.childNodes[i];
-          if (child && child.nodeType == document.ELEMENT_NODE) {
-            traverse(child);
-          }
-        }
-      }
-    }
-    traverse(el);
-    if (closest !== null) {
-      rect.bottom = closest;
     }
   },
 

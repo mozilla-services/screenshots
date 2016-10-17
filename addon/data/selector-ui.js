@@ -371,6 +371,34 @@ const ui = (function () { // eslint-disable-line no-unused-vars
     dialogEl: null
   };
 
+  exports.HoverBox = {
+
+    el: null,
+
+    display: function (rect) {
+      if (! this.el) {
+        this.el = makeEl("div", "pageshot-hover-highlight");
+        document.body.appendChild(this.el);
+      }
+      this.el.style.display = "";
+      this.el.style.top = (rect.top - 1) + "px";
+      this.el.style.left = (rect.left - 1) + "px";
+      this.el.style.width = (rect.right - rect.left + 2) + "px";
+      this.el.style.height = (rect.bottom - rect.top + 2) + "px";
+    },
+
+    hide: function () {
+      if (this.el) {
+        this.el.style.display = "none";
+      }
+    },
+
+    remove: function () {
+      util.removeNode(this.el);
+      this.el = null;
+    }
+  };
+
   /** Removes every UI this module creates */
   exports.remove = function () {
     for (let name in exports) {
