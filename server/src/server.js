@@ -720,12 +720,23 @@ app.get("/images/:imageid", function (req, res) {
         localReferrer = req.headers["referer"].startsWith(req.backend);
       }
       if (! localReferrer) {
-        if (req.userAnalytics) {
-          req.userAnalytics.pageview(analyticsUrl).send();
-        } else {
-          let anonAnalytics = ua(config.gaId);
-          anonAnalytics.pageview(analyticsUrl).send();
+        let analytics = req.userAnalytics;
+        if (! analytics) {
+          analytics = ua(config.gaId);
+          if (config.debugGoogleAnalytics) {
+            analytics = analytics.debug();
+          }
         }
+        analytics.pageview({
+          dp: analyticsUrl,
+          dh: req.backend,
+          documentReferrer: req.headers["referer"],
+          ua: req.headers["user-agent"]
+        }).event({
+          ec: "web",
+          ea: "visit",
+          el: "direct-view"
+        }).send();
       }
       res.header("Content-Type", obj.contentType);
       res.status(200);

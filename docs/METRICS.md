@@ -188,6 +188,7 @@ These are events that an add-on user can encounter on a shot they own
 #### Non-owner web visit
 
 1. [x] Visit the page, `web/visit/non-owner` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/252d0b0F1A3i453h2r32/Image%202016-09-07%20at%203.38.11%20PM.png?v=357dd63c)
+2. [x] Visit an image directly, when the image isn't embedded directly in a Page Shot shot page, `web/visit/direct-view`
 2. [x] Click flag button `web/start-flag/navbar` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3T3a1y0K2l0H2d1p1e0L/Image%202016-09-07%20at%203.38.36%20PM.png?v=ba92ba16)
 3. [x] Click Share (same as for owner, but with `share-non-owner` instead of `share-owner`, and `start-share-non-owner`)
 4. [x] Visit original URL `web/goto-original-url/navbar`
