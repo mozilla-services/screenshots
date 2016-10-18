@@ -317,7 +317,7 @@ const ShotContext = Class({
   collectInformation: function () {
     if (this.tab.url.startsWith("about:")) {
       sendEvent("start-shot-about-page");
-    } else if (this.tab.url.search(/^https:/i) === -1) {
+    } else if (this.tab.url.search(/^https?:/i) === -1) {
       let scheme = this.tab.url.replace(/:.*/, "");
       sendEvent("start-shot-non-http", scheme);
     }
