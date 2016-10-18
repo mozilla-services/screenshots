@@ -40,8 +40,9 @@ exports.request = function (url, options) {
 //   https://github.com/peaksandpies/universal-analytics/blob/master/AcceptableParams.md
 const eventOptions = {
   eventValue: true,
-  cd0: true, // custom dimension 0
-  cd1: true  // custom dimension 1
+  // Note each custom dimension must be configured in Google Analytics before use:
+  cd1: true,  // Image height
+  cd2: true   // Image width
 };
 
 exports.sendEvent = function (action, label, options) {

@@ -93,8 +93,8 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 3. ~~Click "select region" `addon/start-region-select/mode-click`~~
 4. ~~Click "select archive" `addon/start-archive/mode-click`~~
 5. ~~Click "cancel" from first interface `addon/cancel-shot/mode-click`~~
-2. [x] Make a selection `addon/make-selection/selection-drag` with `cd0: {px width}, cd1: {px height}` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1t2I0A2H3U2q2S0x1w1z/Image%202016-09-07%20at%201.58.58%20PM.png?v=8a788938)
-3. [x] Make a selection by clicking on an element `addon/make-selection/selection-click` with `cd0: {px width}, cd1: {px height}` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3a2C2S06463H1T2E313z/Image%202016-09-07%20at%201.59.52%20PM.png?v=86f2c12f)
+2. [x] Make a selection `addon/make-selection/selection-drag` with `cd2: {px width}, cd1: {px height}` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1t2I0A2H3U2q2S0x1w1z/Image%202016-09-07%20at%201.58.58%20PM.png?v=8a788938)
+3. [x] Make a selection by clicking on an element `addon/make-selection/selection-click` with `cd2: {px width}, cd1: {px height}` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3a2C2S06463H1T2E313z/Image%202016-09-07%20at%201.59.52%20PM.png?v=86f2c12f)
 4. [x] Click but fail to find an element that can be selected `addon/no-selection/no-element-found` (error case, not sure when it happens)
 3. [x] Cancel a selection by clicking on the background `addon/cancel-selection/selection-background-mousedown` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/2B3h0J3e1V1M0t0e370d/Image%202016-09-07%20at%202.00.36%20PM.png?v=d95cf082)
 4. [x] Start resizing the selection `addon/start-resize-selection/handle` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0b3W0a2q1B3T2s3B3u1n/Image%202016-09-07%20at%202.01.31%20PM.png?v=a725566b)

@@ -67,8 +67,8 @@ function eventOptionsForBox(box) {
     return Math.floor(Math.abs(n) / 10) * 10;
   }
   return {
-    cd0: round10(box.right - box.left),
-    cd1: round10(box.bottom - box.top)
+    cd1: round10(box.bottom - box.top),
+    cd2: round10(box.right - box.left)
   };
 }
 
