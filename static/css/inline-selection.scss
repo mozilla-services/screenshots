@@ -298,6 +298,8 @@ $overlay-z-index: 9999999999;
 
 .pageshot-preview-overlay {
   position: fixed;
+  display: flex;
+  justify-content: center;
   top: 0;
   left: 0;
   height: 100%;
@@ -311,12 +313,13 @@ $overlay-z-index: 9999999999;
 .pageshot-preview-instructions {
   font-size: 12pt;
   font-family: sans-serif;
-  text-align: center;
-  padding-top: 1.5em;
-  padding-left: 150px;
-  padding-right: 150px;
+  margin: 0.75em;
+  padding: 0.5em;
+  height: 1em;
   vertical-align: middle;
   color: #fff;
+  border-radius: 12px;
+  background-color: rgba(#000, 0.95);
   z-index: 999999999;
 }
 
