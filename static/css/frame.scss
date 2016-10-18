@@ -140,6 +140,26 @@
   }
 }
 
+#toggle-share {
+  display: flex;
+
+  img {
+    height: 24px;
+    width: 24px;
+    background-color: white;
+    border-radius: 4px;
+    margin: 0;
+    margin-right: 10px;
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+  span {
+    vertical-align: middle;
+    display: inline-block;
+  }
+}
+
 .link-button {
   cursor: pointer;
   color: $black;
