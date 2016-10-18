@@ -23,6 +23,7 @@ const { randomString } = require("./randomstring");
 const { setTimeout, clearTimeout } = require("sdk/timers");
 const shotstore = require("./shotstore");
 const getCookies = require("./get-cookies");
+const fixUrl = require("./fix-url");
 
 let shouldShowTour = false; // eslint-disable-line no-unused-vars
 
@@ -94,7 +95,7 @@ const ShotContext = Class({
     this.annotateForPage = annotateForPage === undefined ? annotateForPage : defaultAnnotateForPage;
     this.id = ++ShotContext._idGen;
     this.tab = tabs.activeTab;
-    this.tabUrl = this.tab.url;
+    this.tabUrl = fixUrl(this.tab.url);
     let deviceIdInfo = getDeviceIdInfo();
     if (! deviceIdInfo) {
       throw new Error("Could not get device authentication information");
@@ -112,11 +113,11 @@ const ShotContext = Class({
     this.watchTab("pageshow", function (tab) {
       // We'll call any pageshow as a sign that at least we reloaded, and should
       // stop the pageshot
-      // FIXME: determine if the notification box is just automatically hidden in this case
+      sendEvent("cancel-shot", "tab-load");
       this.destroy();
     });
     this.watchTab("close", function () {
-      // FIXME: determine if the notification box is just automatically hidden in this case
+      sendEvent("cancel-shot", "tab-close");
       this.destroy();
     });
     this._collectionCompletePromise = new Promise((resolve, reject) => {
@@ -237,6 +238,10 @@ const ShotContext = Class({
     }));
     this.interactiveWorker.on("detach", () => {
       // Happens if the worker is detached for some reason, such as moving windows
+      if (! this._destroying) {
+        // Typically caused by a reload
+        sendEvent("cancel-shot", "tab-reload");
+      }
       this.destroy();
       console.log("the interactive worker was detached");
     });
@@ -303,7 +308,7 @@ const ShotContext = Class({
 
   openInNewTab: function() {
     tabs.open(this.shot.viewUrl);
-    sendEvent("addon", `new-tab-after-save`);
+    sendEvent(`new-tab-after-save`);
   },
 
   /** Collects/extracts information from the tab: the screenshot, readable view,
@@ -433,6 +438,7 @@ const ShotContext = Class({
 
   /** Renders this object unusable, and unregisters any handlers */
   destroy: function () {
+    this._destroying = true;
     if (this._deregisters) {
       for (let i=0; i<this._deregisters.length; i++) {
         let item = this._deregisters[i];

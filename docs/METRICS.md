@@ -93,8 +93,8 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 3. ~~Click "select region" `addon/start-region-select/mode-click`~~
 4. ~~Click "select archive" `addon/start-archive/mode-click`~~
 5. ~~Click "cancel" from first interface `addon/cancel-shot/mode-click`~~
-2. [x] Make a selection `addon/make-selection/selection-drag` with `cd0: {px width}, cd1: {px height}` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1t2I0A2H3U2q2S0x1w1z/Image%202016-09-07%20at%201.58.58%20PM.png?v=8a788938)
-3. [x] Make a selection by clicking on an element `addon/make-selection/selection-click` with `cd0: {px width}, cd1: {px height}` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3a2C2S06463H1T2E313z/Image%202016-09-07%20at%201.59.52%20PM.png?v=86f2c12f)
+2. [x] Make a selection `addon/make-selection/selection-drag` with `cd2: {px width}, cd1: {px height}` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1t2I0A2H3U2q2S0x1w1z/Image%202016-09-07%20at%201.58.58%20PM.png?v=8a788938)
+3. [x] Make a selection by clicking on an element `addon/make-selection/selection-click` with `cd2: {px width}, cd1: {px height}` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3a2C2S06463H1T2E313z/Image%202016-09-07%20at%201.59.52%20PM.png?v=86f2c12f)
 4. [x] Click but fail to find an element that can be selected `addon/no-selection/no-element-found` (error case, not sure when it happens)
 3. [x] Cancel a selection by clicking on the background `addon/cancel-selection/selection-background-mousedown` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/2B3h0J3e1V1M0t0e370d/Image%202016-09-07%20at%202.00.36%20PM.png?v=d95cf082)
 4. [x] Start resizing the selection `addon/start-resize-selection/handle` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0b3W0a2q1B3T2s3B3u1n/Image%202016-09-07%20at%202.01.31%20PM.png?v=a725566b)
@@ -106,6 +106,9 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 3. [x] Click Save `addon/save-shot/overlay-save-button` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1F021R1U1z0y3A1i0C2F/Image%202016-09-07%20at%202.02.43%20PM.png?v=1c42ee47)
 4. [x] Click Cancel `addon/cancel-shot/topbar-cancel` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3u2M2G1N431s1O193L1n/Image%202016-09-07%20at%202.03.24%20PM.png?v=bedc4e14)
 5. [x] Cancel because URL changed `addon/cancel-shot/url-changed` (when something that uses window.history "navigates" spontaneously away)
+6. [x] Cancel because the tab is closed `addon/cancel-shot/tab-close`
+7. [x] Cancel because the tab is navigated (such as entering something in the URL bar) `addon/cancel-shot/tab-load`
+8. [x] Cancel because the tab is reloaded `addon/cancel-shot/tab-reload`
 5. [x] Click My Shots `addon/goto-myshots/selection-button` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3J1u3F1Z3R0Z0A2e161T/Image%202016-09-07%20at%202.06.19%20PM.png?v=7e2c945f)
 6. [x] Click on "Save visible" `addon/capture-visible/selection-button`
 7. [x] Click on "Save Full Page" `addon/capture-full-page/selection-button`
@@ -188,6 +191,7 @@ These are events that an add-on user can encounter on a shot they own
 #### Non-owner web visit
 
 1. [x] Visit the page, `web/visit/non-owner` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/252d0b0F1A3i453h2r32/Image%202016-09-07%20at%203.38.11%20PM.png?v=357dd63c)
+2. [x] Visit an image directly, when the image isn't embedded directly in a Page Shot shot page, `web/visit/direct-view`
 2. [x] Click flag button `web/start-flag/navbar` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3T3a1y0K2l0H2d1p1e0L/Image%202016-09-07%20at%203.38.36%20PM.png?v=ba92ba16)
 3. [x] Click Share (same as for owner, but with `share-non-owner` instead of `share-owner`, and `start-share-non-owner`)
 4. [x] Visit original URL `web/goto-original-url/navbar`

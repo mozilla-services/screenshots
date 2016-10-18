@@ -79,6 +79,7 @@ const escapeHtml = require("escape-html");
 const validUrl = require("valid-url");
 const { createProxyUrl } = require("./proxy-url");
 const statsd = require("./statsd");
+const { notFound } = require("./pages/not-found/server");
 
 const PROXY_HEADER_WHITELIST = {
   "content-type": true,
@@ -708,7 +709,7 @@ app.get("/images/:imageid", function (req, res) {
     req.params.imageid
   ).then((obj) => {
     if (obj === null) {
-      simpleResponse(res, "Not Found", 404);
+      notFound(req, res);
     } else {
       let hasher = require("crypto").createHash("sha1");
       hasher.update(req.params.imageid);
@@ -719,12 +720,23 @@ app.get("/images/:imageid", function (req, res) {
         localReferrer = req.headers["referer"].startsWith(req.backend);
       }
       if (! localReferrer) {
-        if (req.userAnalytics) {
-          req.userAnalytics.pageview(analyticsUrl).send();
-        } else {
-          let anonAnalytics = ua(config.gaId);
-          anonAnalytics.pageview(analyticsUrl).send();
+        let analytics = req.userAnalytics;
+        if (! analytics) {
+          analytics = ua(config.gaId);
+          if (config.debugGoogleAnalytics) {
+            analytics = analytics.debug();
+          }
         }
+        analytics.pageview({
+          dp: analyticsUrl,
+          dh: req.backend,
+          documentReferrer: req.headers["referer"],
+          ua: req.headers["user-agent"]
+        }).event({
+          ec: "web",
+          ea: "visit",
+          el: "direct-view"
+        }).send();
       }
       res.header("Content-Type", obj.contentType);
       res.status(200);
@@ -810,14 +822,14 @@ require("./exporter").setup(app);
 app.get("/:id/:domain", function (req, res) {
   let shotId = `${req.params.id}/${req.params.domain}`;
   Shot.get(req.backend, shotId).then((shot) => {
-    let notFound = false;
+    let noSuchShot = false;
     if (! shot) {
-      notFound = true;
+      noSuchShot = true;
     } else if (shot.clipNames().length === 0 && ! shot.deleted) {
       // Deleted shots always appear to have no clips
     }
-    if (notFound) {
-      simpleResponse(res, "Not found", 404);
+    if (noSuchShot) {
+      notFound(req, res);
       return;
     }
     req.shot = shot;
@@ -862,7 +874,8 @@ app.get("/oembed", function (req, res) {
   let shotId = match[1] + "/" + match[2];
   Shot.get(req.backend, shotId).then((shot) => {
     if (! shot) {
-      return simpleResponse(res, "No such shot", 404);
+      notFound(req, res);
+      return;
     }
     let body = shot.oembedJson({maxheight, maxwidth});
     res.header("Content-Type", "application/json");
@@ -993,7 +1006,7 @@ contentApp.get("/content/:id/:domain", function (req, res) {
   let shotId = `${req.params.id}/${req.params.domain}`;
   Shot.getFullShot(req.backend, shotId).then((shot) => {
     if (! shot) {
-      simpleResponse(res, "Not found", 404);
+      notFound(req, res);
       return;
     }
     res.send(shot.staticHtml({
@@ -1142,3 +1155,8 @@ linker.init().then(() => {
 });
 
 require("./jobs").start();
+
+/* General 404 handler: */
+app.use(function(req, res, next) {
+  notFound(req, res);
+});
