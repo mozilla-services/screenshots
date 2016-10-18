@@ -261,6 +261,15 @@ class Selection {
     }
   }
 
+  union(other) {
+    return new Selection(
+      Math.min(this.left, other.left),
+      Math.min(this.top, other.top),
+      Math.max(this.right, other.right),
+      Math.max(this.bottom, other.bottom)
+    );
+  }
+
   clone() {
     return new Selection(this.x1, this.y1, this.x2, this.y2);
   }
@@ -392,7 +401,9 @@ stateHandlers.crosshairs = {
     );
     document.body.classList.remove("pageshot-no-pointer-event");
     let lastRect;
+    let lastNode;
     let rect;
+    let attemptExtend = false;
     let node = el;
     while (node) {
       rect = Selection.getBoundingClientRect(node);
@@ -403,6 +414,7 @@ stateHandlers.crosshairs = {
       if (rect.width > MAX_DETECT_WIDTH || rect.height > MAX_DETECT_HEIGHT) {
         // Then the last rectangle is better
         rect = lastRect;
+        attemptExtend = true;
         break;
       }
       if (rect.width >= MIN_DETECT_WIDTH && rect.height >= MIN_DETECT_HEIGHT) {
@@ -411,7 +423,32 @@ stateHandlers.crosshairs = {
         }
       }
       lastRect = rect;
+      lastNode = node;
       node = node.parentNode;
+    }
+    if (rect && attemptExtend) {
+      let extendNode = lastNode.nextSibling;
+      while (extendNode) {
+        if (extendNode.nodeType === document.ELEMENT_NODE) {
+          break;
+        }
+        extendNode = extendNode.nextSibling;
+        if (! extendNode) {
+          let parent = lastNode.parentNode;
+          for (let i=0; i<parent.childNodes.length; i++) {
+            if (parent.childNodes[i] === lastNode) {
+              extendNode = parent.childNodes[i+1];
+            }
+          }
+        }
+      }
+      if (extendNode) {
+        let extendSelection = Selection.getBoundingClientRect(extendNode);
+        let extendRect = rect.union(extendSelection);
+        if (extendRect.width <= MAX_DETECT_WIDTH && extendRect.height <= MAX_DETECT_HEIGHT) {
+          rect = extendRect;
+        }
+      }
     }
     if (! rect) {
       ui.HoverBox.hide();
