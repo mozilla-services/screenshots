@@ -379,6 +379,12 @@ stateHandlers.crosshairs = {
   },
 
   mousemove: function (event) {
+    if (event.target.className !== "pageshot-preview-overlay") {
+      // User is hovering over a Page Shot button or control
+      autoDetectRect = null;
+      ui.HoverBox.hide();
+      return;
+    }
     document.body.classList.add("pageshot-no-pointer-event");
     let el = document.elementFromPoint(
       event.pageX - window.pageXOffset,
