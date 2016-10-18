@@ -335,6 +335,13 @@ const ShotContext = Class({
         error.popupMessage = "UNSHOOTABLE_PAGE";
         throw error;
       }
+      if (result.isFrame) {
+        sendEvent("abort-start-shot", "frame-page");
+        this.destroy();
+        let error = new Error("Sorry, this page that uses frames cannot be captured");
+        error.popupMessage = "UNSHOOTABLE_PAGE";
+        throw error;
+      }
       var prefInlineCss = require("sdk/simple-prefs").prefs.inlineCss;
       var useReadability = require("sdk/simple-prefs").prefs.useReadability;
       var promises = [];
