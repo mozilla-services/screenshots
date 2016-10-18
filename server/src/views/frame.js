@@ -131,7 +131,7 @@ class Clip extends React.Component {
       node = null;
 
     if (clip.image !== undefined) {
-      node = <img height={clip.image.dimensions.y} width={clip.image.dimensions.x} ref="clipImage" src={ clip.image.url } />;
+      node = <img style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%"}} ref="clipImage" src={ clip.image.url } />;
     }
 
     let closeButton = null;
