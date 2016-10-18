@@ -23,6 +23,7 @@ const { randomString } = require("./randomstring");
 const { setTimeout, clearTimeout } = require("sdk/timers");
 const shotstore = require("./shotstore");
 const getCookies = require("./get-cookies");
+const fixUrl = require("./fix-url");
 
 let shouldShowTour = false; // eslint-disable-line no-unused-vars
 
@@ -94,7 +95,7 @@ const ShotContext = Class({
     this.annotateForPage = annotateForPage === undefined ? annotateForPage : defaultAnnotateForPage;
     this.id = ++ShotContext._idGen;
     this.tab = tabs.activeTab;
-    this.tabUrl = this.tab.url;
+    this.tabUrl = fixUrl(this.tab.url);
     let deviceIdInfo = getDeviceIdInfo();
     if (! deviceIdInfo) {
       throw new Error("Could not get device authentication information");
