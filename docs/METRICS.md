@@ -178,7 +178,8 @@ These are events that an add-on user can encounter on a shot they own
 
 1. [x] Click a tile `web/goto-shot/myshots-tile` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/023y0c2v473F3u1G051Z/Image%202016-09-07%20at%203.08.36%20PM.png?v=a4926505)
 2. [x] Click on the original link `web/goto-original-url/myshots-tile` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/261O223l0W0w2n1j3o3c/Image%202016-09-07%20at%203.09.15%20PM.png?v=add8b838)
-3. [x] Enter search term `web/search` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1f2o092t413O0i363L3v/Image%202016-09-07%20at%203.10.06%20PM.png?v=fbcb53e5)
+3. [x] Enter search term and submit `web/search/submit` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1f2o092t413O0i363L3v/Image%202016-09-07%20at%203.10.06%20PM.png?v=fbcb53e5)
+4. [x] Enter search term (at least 4 characters) and wait 1 second `web/search/timed`
 4. [x] Clear search term `web/clear-search/submit` and click the arrow ![image](https://d17oy1vhnax1f7.cloudfront.net/items/382R0U3J0Q3K362g3E0q/Image%202016-09-07%20at%203.11.59%20PM.png?v=c006c85a)
 4. [x] Clear search term `web/clear-search/keyboard` by simply backspacing
 5. [x] Receive no search results `web/search-no-results` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/091Z1a253a062B3R1X2c/Image%202016-09-07%20at%203.12.37%20PM.png?v=b556941e)

@@ -120,7 +120,7 @@ class Body extends React.Component {
     e.preventDefault();
     let val = ReactDOM.findDOMNode(this.refs.search).value;
     if (val) {
-      sendEvent("search");
+      sendEvent("search", "submit");
     } else {
       sendEvent("clear-search", "submit");
     }
@@ -133,8 +133,28 @@ class Body extends React.Component {
     if (! val) {
       sendEvent("clear-search", "keyboard");
       controller.onChangeSearch(val);
+      return;
+    }
+    if (this._keyupTimeout) {
+      clearTimeout(this._keyupTimeout);
+      this._keyupTimeout = undefined;
+    }
+    if (val.length > 3) {
+      this._keyupTimeout = setTimeout(() => {
+        sendEvent("search", "timed");
+        controller.onChangeSearch(val);
+      }, 1000);
     }
   }
+
+  componentDidUpdate() {
+    if ((this.props.defaultSearch || "") !== (this.state.defaultSearch || "")) {
+      document.body.classList.add("search-results-loading");
+    } else {
+      document.body.classList.remove("search-results-loading");
+    }
+  }
+
 }
 
 exports.HeadFactory = React.createFactory(Head);

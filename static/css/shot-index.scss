@@ -98,6 +98,10 @@
       color: $link-blue;
     }
   }
+
+  .search-results-loading & {
+    opacity: 0.5;
+  }
 }
 
 .shot-image-container {

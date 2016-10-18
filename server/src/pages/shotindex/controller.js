@@ -48,6 +48,7 @@ function refreshModel() {
   }
   req.open("GET", url);
   req.onload = function () {
+    document.body.classList.remove("search-results-loading");
     if (req.status != 200) {
       console.warn("Error refreshing:", req.status, req);
       return;
