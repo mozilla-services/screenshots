@@ -265,7 +265,6 @@ class Head extends React.Component {
     let js = [
       <script src="//www.google-analytics.com/analytics.js" async key="gaScript" />,
       <script src="/ga-activation-hashed.js" key="gaActivation" />,
-      <script src={ this.props.staticLink("vendor/core.js") } key="core-js-js" />,
       <script src={ this.props.staticLink("js/server-bundle.js") } key="server-bundle-js" />,
     ];
 

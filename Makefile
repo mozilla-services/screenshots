@@ -65,8 +65,6 @@ chrome_static_dest := $(chrome_static_source:%=build/%)
 # FIXME: obviously this is a tedious way to describe these:
 chrome_external_modules := build/chrome-extension/selector-util.js build/chrome-extension/selector-snapping.js build/chrome-extension/annotate-position.js build/chrome-extension/error-utils.js build/chrome-extension/selector-ui.js build/chrome-extension/add-ids.js build/chrome-extension/extractor-worker.js build/chrome-extension/shooter-interactive-worker.js build/chrome-extension/make-static-html.js
 
-core_js_location = $(shell node -e 'console.log(require.resolve("core-js/client/core"))')
-
 ## General transforms:
 # These cover standard ways of building files given a source
 
@@ -224,10 +222,6 @@ build/server/static/img/%: build/static/img/%
 	@mkdir -p $(@D)
 	cp $< $@
 
-build/server/static/vendor/core.js: $(core_js_location)
-	@mkdir -p $(@D)
-	cp $< $@
-
 server_dependencies := $(shell ./bin/_bundle_dependencies server getdeps "$(server_dest)")
 build/server/static/js/server-bundle.js: $(server_dependencies)
 	./bin/_bundle_dependencies server build ./build/server/clientglue.js
@@ -263,7 +257,7 @@ build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass
 	@mkdir -p $(@D)
 	./bin/_write_build_time > build/server/build-time.js
 
-server: npm build/server/build-time.js build/server/static/js/server-bundle.js build/server/static/js/homepage-bundle.js build/server/static/js/admin-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/leave-bundle.js build/server/static/js/creating-bundle.js build/server/static/vendor/core.js
+server: npm build/server/build-time.js build/server/static/js/server-bundle.js build/server/static/js/homepage-bundle.js build/server/static/js/admin-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/leave-bundle.js build/server/static/js/creating-bundle.js
 
 ## Homepage related rules:
 
