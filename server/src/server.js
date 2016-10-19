@@ -80,6 +80,7 @@ const validUrl = require("valid-url");
 const { createProxyUrl } = require("./proxy-url");
 const statsd = require("./statsd");
 const { notFound } = require("./pages/not-found/server");
+const { cacheTime, setCache } = require("./caching");
 
 const PROXY_HEADER_WHITELIST = {
   "content-type": true,
@@ -196,7 +197,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json({limit: '100mb'}));
 
 app.use("/static", express.static(path.join(__dirname, "static"), {
-  index: false
+  index: false,
+  maxAge: cacheTime
 }));
 
 let xpidir = path.join(__dirname, "..", "xpi");
@@ -245,6 +247,7 @@ app.get("/ga-activation-hashed.js", function (req, res) {
 
 function sendGaActivation(req, res, hashPage) {
   let promise;
+  setCache(res, {private: true});
   if (req.deviceId) {
     promise = hashUserId(req.deviceId).then((uuid) => {
       return uuid.toString();
@@ -261,12 +264,14 @@ function sendGaActivation(req, res, hashPage) {
 }
 
 app.get("/set-content-hosting-origin.js", function (req, res) {
+  setCache(res);
   let postMessageOrigin = `${req.protocol}://${req.config.contentOrigin}`;
   let script = `var CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`
   jsResponse(res, script);
 });
 
 app.get("/configure-raven.js", function (req, res) {
+  setCache(res);
   if (! req.config.sentryPublicDSN) {
     jsResponse(res, "");
     return;
