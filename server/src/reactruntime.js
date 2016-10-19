@@ -15,9 +15,9 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
         <link rel="icon" type="image/png" href={this.props.staticLink("/static/img/pageshot-icon-32.png")} />
         <link rel="shortcut icon" href={this.props.staticLink("/static/img/pageshot-icon-32.png")} />
         { this.props.noAnalytics ? null : <script src="//www.google-analytics.com/analytics.js" async /> }
-        { this.props.noAnalytics ? null : <script src="/ga-activation.js" /> }
+        { this.props.noAnalytics ? null : <script src={this.props.staticLink("/ga-activation.js")} /> }
         { this.props.sentryPublicDSN ? <script src={ this.props.staticLink("/static/vendor/raven.js") } /> : null }
-        { this.props.sentryPublicDSN ? <script src="/configure-raven.js" /> : null }
+        { this.props.sentryPublicDSN ? <script src={this.props.staticLink("/configure-raven.js")} /> : null }
         {this.props.children}
       </head>
     );

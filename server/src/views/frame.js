@@ -264,14 +264,14 @@ class Head extends React.Component {
     }
     let js = [
       <script src="//www.google-analytics.com/analytics.js" async key="gaScript" />,
-      <script src="/ga-activation-hashed.js" key="gaActivation" />,
+      <script src={this.props.staticLink("/ga-activation-hashed.js")} key="gaActivation" />,
       <script src={ this.props.staticLink("/static/js/server-bundle.js") } key="server-bundle-js" />,
     ];
 
     if (this.props.sentryPublicDSN) {
       js = js.concat([
         <script src={ this.props.staticLink("/static/vendor/raven.js") } key="raven-js-js" />,
-        <script src="/configure-raven.js" key="configure-raven" />
+        <script src={ this.props.staticLink("/configure-raven.js") } key="configure-raven" />
       ]);
     }
     if (this.props.simple) {
@@ -288,7 +288,7 @@ class Head extends React.Component {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {oembed}
         {this.socialMetadata()}
-        <script src="/set-content-hosting-origin.js" />
+        <script src={ this.props.staticLink("/set-content-hosting-origin.js") } />
         <script src={ this.props.staticLink("/static/js/parent-helper.js") } />
       </head>);
   }
