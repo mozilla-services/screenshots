@@ -2,6 +2,7 @@
 
 set -e
 
+PATH="./node_modules/.bin/:$PATH"
 project_name="$1"
 shift
 cmd="$1"
@@ -21,10 +22,16 @@ getdeps() {
 }
 
 build() {
+  dest="build/server/static/js/${project_name}-bundle.js"
   mkdir -p "$(dirname "$(depfile)")"
+  echo -n "Building $(basename $dest): deps... "
   browserify --list -e "$@" | sed "s!$(pwd)/!!g" | grep -v build-time > "$(depfile)"
-  browserify -o "build/server/static/js/${project_name}-bundle.js" \
+  echo -n "bundle... "
+  browserify -o "$dest" \
     -e "$@" -r core-js/client/core
+  echo -n "minimizing... "
+  uglifyjs -o "$dest" "$dest"
+  echo "done."
 }
 
 case "$cmd" in
