@@ -46,6 +46,9 @@ const addIds = (function () { // eslint-disable-line no-unused-vars
       if (! (getDocument().body && getDocument().head)) {
         // A XUL page
         result = {isXul: true};
+      } else if (getDocument().body.tagName == "FRAMESET") {
+        // Frame documents also can't be captured
+        result = {isFrame: true};
       } else {
         try {
           if (event.data.annotateForPage) {

@@ -317,7 +317,7 @@ const ShotContext = Class({
   collectInformation: function () {
     if (this.tab.url.startsWith("about:")) {
       sendEvent("start-shot-about-page");
-    } else if (this.tab.url.search(/^https:/i) === -1) {
+    } else if (this.tab.url.search(/^https?:/i) === -1) {
       let scheme = this.tab.url.replace(/:.*/, "");
       sendEvent("start-shot-non-http", scheme);
     }
@@ -332,6 +332,13 @@ const ShotContext = Class({
         sendEvent("abort-start-shot", "xul-page");
         this.destroy();
         let error = new Error("Sorry, this special page cannot be captured");
+        error.popupMessage = "UNSHOOTABLE_PAGE";
+        throw error;
+      }
+      if (result.isFrame) {
+        sendEvent("abort-start-shot", "frame-page");
+        this.destroy();
+        let error = new Error("Sorry, this page that uses frames cannot be captured");
         error.popupMessage = "UNSHOOTABLE_PAGE";
         throw error;
       }
