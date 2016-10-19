@@ -44,8 +44,13 @@ var isChrome = false;
 
 const MAX_PAGE_HEIGHT = 5000;
 const MAX_PAGE_WIDTH = 5000;
+// An autoselection smaller than these will be ignored entirely:
+const MIN_DETECT_ABSOLUTE_HEIGHT = 10;
+const MIN_DETECT_ABSOLUTE_WIDTH = 30;
+// An autoselection smaller than these will not be preferred:
 const MIN_DETECT_HEIGHT = 30;
 const MIN_DETECT_WIDTH = 100;
+// An autoselection bigger than either of these will be ignored:
 const MAX_DETECT_HEIGHT = Math.max(window.innerHeight + 100, 700);
 const MAX_DETECT_WIDTH = Math.max(window.innerWidth + 100, 1000);
 
@@ -62,13 +67,32 @@ function sendEvent(action, label, options) {
   }
 }
 
+function round10(n) {
+  return Math.floor(n / 10) * 10;
+}
+
 function eventOptionsForBox(box) {
-  function round10(n) {
-    return Math.floor(Math.abs(n) / 10) * 10;
-  }
   return {
-    cd1: round10(box.bottom - box.top),
-    cd2: round10(box.right - box.left)
+    cd1: round10(Math.abs(box.bottom - box.top)),
+    cd2: round10(Math.abs(box.right - box.left))
+  };
+}
+
+function eventOptionsForResize(boxStart, boxEnd) {
+  return {
+    cd1: round10(
+      (boxEnd.bottom - boxEnd.top)
+      - (boxStart.bottom - boxStart.top)),
+    cd2: round10(
+      (boxEnd.right - boxEnd.left)
+      - (boxStart.right - boxStart.left))
+  };
+}
+
+function eventOptionsForMove(posStart, posEnd) {
+  return {
+    cd1: round10(posEnd.y - posStart.y),
+    cd2: round10(posEnd.x - posStart.x)
   };
 }
 
@@ -276,6 +300,10 @@ class Selection {
 }
 
 Selection.getBoundingClientRect = function (el) {
+  if (! el.getBoundingClientRect) {
+    // Typically the <html> element or somesuch
+    return null;
+  }
   let rect = el.getBoundingClientRect();
   if (! rect) {
     return null;
@@ -449,6 +477,9 @@ stateHandlers.crosshairs = {
           rect = extendRect;
         }
       }
+    }
+    if (rect && (rect.width < MIN_DETECT_ABSOLUTE_WIDTH || rect.height < MIN_DETECT_ABSOLUTE_HEIGHT)) {
+      rect = null;
     }
     if (! rect) {
       ui.HoverBox.hide();
@@ -652,9 +683,15 @@ stateHandlers.resizing = {
     ui.Box.display(selectedPos, standardDisplayCallbacks);
     if (resizeHasMoved) {
       if (resizeDirection == "move") {
-        sendEvent("move-selection", "mouseup");
+        let startPos = new Pos(resizeStartSelected.left, resizeStartSelected.top);
+        let endPos = new Pos(selectedPos.left, selectedPos.top);
+        sendEvent(
+          "move-selection", "mouseup",
+          eventOptionsForMove(startPos, endPos));
       } else {
-        sendEvent("resize-selection", "mouseup");
+        sendEvent(
+          "resize-selection", "mouseup",
+          eventOptionsForResize(resizeStartSelected, selectedPos));
       }
     } else {
       if (resizeDirection == "move") {
