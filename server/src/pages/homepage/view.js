@@ -7,8 +7,8 @@ class Head extends React.Component {
   render() {
     return (
       <reactruntime.HeadTemplate {...this.props}>
-        <script src={this.props.staticLink("js/homepage-bundle.js")}></script>
-        <link rel="stylesheet" href={this.props.staticLink("css/styles.css")} />
+        <script src={this.props.staticLink("/static/js/homepage-bundle.js")}></script>
+        <link rel="stylesheet" href={this.props.staticLink("/static/css/styles.css")} />
         <meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
         <meta name="description" content="Share anything on the web with anyone using Page Shot." />
         <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css" />

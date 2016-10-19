@@ -7,8 +7,8 @@ class Head extends React.Component {
   render() {
     return (
       <reactruntime.HeadTemplate {...this.props}>
-        <script src={this.props.staticLink("js/creating-bundle.js")}></script>
-        <link rel="stylesheet" href={this.props.staticLink("css/simple.css")} />
+        <script src={this.props.staticLink("/static/js/creating-bundle.js")}></script>
+        <link rel="stylesheet" href={this.props.staticLink("/static/css/simple.css")} />
       </reactruntime.HeadTemplate>
     );
   }

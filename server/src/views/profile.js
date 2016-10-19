@@ -59,12 +59,12 @@ exports.ProfileButton = class ProfileButton extends React.Component {
     }
     let { avatarurl } = this.props;
     if (! avatarurl) {
-      avatarurl = this.props.staticLink("img/profile-anonymous.svg");
+      avatarurl = this.props.staticLink("/static/img/profile-anonymous.svg");
     }
     if (this.state.isExpanded) {
       return (
         <span className="toolbar-button">
-          <img src={ this.props.staticLink("img/profile-open.png") } onClick={ this.onClickProfile.bind(this) } />
+          <img src={ this.props.staticLink("/static/img/profile-open.png") } onClick={ this.onClickProfile.bind(this) } />
           <exports.Profile
             ref="panel"
             signUp={ this.signUp.bind(this) }
@@ -78,7 +78,7 @@ exports.ProfileButton = class ProfileButton extends React.Component {
     }
     return (
       <span className="toolbar-button">
-        <img src={ this.props.staticLink("img/profile.png") } onClick={ this.onClickProfile.bind(this) } />
+        <img src={ this.props.staticLink("/static/img/profile.png") } onClick={ this.onClickProfile.bind(this) } />
       </span>
     );
   }

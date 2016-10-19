@@ -45,16 +45,16 @@ class ShareButtons extends React.Component {
     return <div id="share-buttons-panel" className="share-panel default-color-scheme">
       <div className="wrapper row-space">
         <a onClick={ this.onClickShareButton.bind(this, "facebook") } target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }>
-          <img src={ this.props.staticLink(`img/share-facebook.svg`) } />
+          <img src={ this.props.staticLink("/static/img/share-facebook.svg") } />
         </a>
         <a onClick={ this.onClickShareButton.bind(this, "twitter") }target="_blank" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }>
-          <img src={ this.props.staticLink(`img/share-twitter.svg`) } />
+          <img src={ this.props.staticLink("/static/img/share-twitter.svg") } />
         </a>
         <a onClick={ this.onClickShareButton.bind(this, "pinterest") } target="_blank" href={ "https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" + encodeURIComponent(this.props.shot.title) }>
-          <img src={ this.props.staticLink(`img/share-pinterest.svg`) } />
+          <img src={ this.props.staticLink("/static/img/share-pinterest.svg") } />
         </a>
         <a onClick={ this.onClickShareButton.bind(this, "email") } target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
-          <img src={ this.props.staticLink(`img/share-email.svg`) } />
+          <img src={ this.props.staticLink("/static/img/share-email.svg") } />
         </a>
       </div>
       <p>Get a shareable link to this shot:</p>
@@ -144,7 +144,7 @@ class Clip extends React.Component {
           right: "15px",
           height: "32px",
           width: "32px"}}
-        src={ this.props.staticLink("img/zoom-out.svg") }
+        src={ this.props.staticLink("/static/img/zoom-out.svg") }
         onClick={ this.onClickClose.bind(this) }/>;
     }
     return <div ref="clipContainer" className="clip-container" onClick={this.onClickCloseBackground.bind(this)}>
@@ -265,12 +265,12 @@ class Head extends React.Component {
     let js = [
       <script src="//www.google-analytics.com/analytics.js" async key="gaScript" />,
       <script src="/ga-activation-hashed.js" key="gaActivation" />,
-      <script src={ this.props.staticLink("js/server-bundle.js") } key="server-bundle-js" />,
+      <script src={ this.props.staticLink("/static/js/server-bundle.js") } key="server-bundle-js" />,
     ];
 
     if (this.props.sentryPublicDSN) {
       js = js.concat([
-        <script src={ this.props.staticLink("vendor/raven.js") } key="raven-js-js" />,
+        <script src={ this.props.staticLink("/static/vendor/raven.js") } key="raven-js-js" />,
         <script src="/configure-raven.js" key="configure-raven" />
       ]);
     }
@@ -282,14 +282,14 @@ class Head extends React.Component {
         <meta charSet="UTF-8" />
         <title>{this.props.shot.title}</title>
         {js}
-        <link rel="stylesheet" href={ this.props.staticLink("css/frame.css") } />
-        <link rel="icon" type="image/png" href={this.props.staticLink("img/pageshot-icon-32.png")} />
-        <link rel="shortcut icon" href={this.props.staticLink("img/pageshot-icon-32.png")} />
+        <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
+        <link rel="icon" type="image/png" href={this.props.staticLink("/static/img/pageshot-icon-32.png")} />
+        <link rel="shortcut icon" href={this.props.staticLink("/static/img/pageshot-icon-32.png")} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {oembed}
         {this.socialMetadata()}
         <script src="/set-content-hosting-origin.js" />
-        <script src={ this.props.staticLink("js/parent-helper.js") } />
+        <script src={ this.props.staticLink("/static/js/parent-helper.js") } />
       </head>);
   }
 
@@ -496,11 +496,11 @@ class Frame extends React.Component {
     let trashOrFlagButton = null;
     if (this.props.isOwner) {
       trashOrFlagButton = <button className="button secondary" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }>
-        <img src={ this.props.staticLink("img/garbage-bin.svg") } />
+        <img src={ this.props.staticLink("/static/img/garbage-bin.svg") } />
       </button>;
     } else {
       trashOrFlagButton = <button className="button secondary" title="Report this shot for abuse, spam, or other problems" onClick={ this.onClickFlag.bind(this) }>
-        <img src={ this.props.staticLink("img/flag.svg") } />
+        <img src={ this.props.staticLink("/static/img/flag.svg") } />
       </button>;
     }
 
@@ -574,12 +574,12 @@ class Frame extends React.Component {
           </div>
           <div className="more-shot-actions right">
             <button className="button primary" id="toggle-share" onClick={ this.onClickShareButton.bind(this) }>
-              <img className="share-icon" src={ this.props.staticLink("img/share.svg")} />
+              <img className="share-icon" src={ this.props.staticLink("/static/img/share.svg")} />
               <span>Share</span>
             </button>
             <a className="button secondary" href={ clipUrl } onClick={ this.onClickDownload.bind(this) }
               title="Download the shot image" download={ `${clipFilename}.png` }>
-              <img src={ this.props.staticLink("img/download.svg") } />
+              <img src={ this.props.staticLink("/static/img/download.svg") } />
             </a>
             { trashOrFlagButton }
           </div>

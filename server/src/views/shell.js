@@ -13,7 +13,7 @@ export class Shell extends React.Component {
       throw new Error("Shell second child must be <body> (not " + this.props.children[1].type + ")");
     }
     let js = [
-      <script src={ this.props.staticLink("js/server-bundle.js") } key="server-bundle-js" />,
+      <script src={ this.props.staticLink("/static/js/server-bundle.js") } key="server-bundle-js" />,
     ];
     if (this.props.gaId) {
       js.push(gaScript);
@@ -27,7 +27,7 @@ export class Shell extends React.Component {
         <meta name="referrer" content="origin" />
         <title>{this.props.title}</title>
         {js}
-        <link rel="stylesheet" href={ this.props.staticLink("css/styles.css") } />
+        <link rel="stylesheet" href={ this.props.staticLink("/static/css/styles.css") } />
         {this.props.children[0].props.children}
       </head>
       <body className={this.props.bodyClass}>
