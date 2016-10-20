@@ -113,8 +113,8 @@ class Head extends React.Component {
   render() {
     return (
       <HeadTemplate {...this.props}>
-        <script src={this.props.staticLink("js/controller.js")}></script>
-        <link href={this.props.staticLink("css/mypage.css")} />
+        <script src={this.props.staticLink("/static/js/controller.js")}></script>
+        <link href={this.props.staticLink("/static/css/mypage.css")} />
       </HeadTemplate>
     );
   }

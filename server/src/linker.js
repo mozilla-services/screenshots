@@ -18,17 +18,14 @@ exports.staticLink = function (resource) {
   if (! resource.startsWith("/")) {
     resource = "/" + resource;
   }
-  if (resource.startsWith("/static")) {
-    throw new Error("staticLink URL should not start with /static: " + resource);
-  }
-  return "/static" + resource + "?rev=" + gitRevision;
+  return `${resource}?rev=${gitRevision}`;
 };
 
 exports.staticLink.simple = function (resource) {
   if (! resource.startsWith("/")) {
     resource = "/" + resource;
   }
-  return "/static" + resource;
+  return resource;
 };
 
 exports.staticLinkWithHost = function (req, resource) {

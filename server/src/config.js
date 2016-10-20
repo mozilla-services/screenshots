@@ -247,6 +247,13 @@ var conf = convict({
     default: "",
     env: "STATSD_PREFIX",
     arg: "statsd-prefix"
+  },
+  setCache: {
+    doc: "Set Cache-Control headers",
+    format: Boolean,
+    default: true,
+    env: "SET_CACHE",
+    arg: "set-cache"
   }
 });
 
