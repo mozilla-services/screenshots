@@ -26,6 +26,10 @@
   &.row-center {
     @include flex-container(row, center, center);
   }
+
+  &.row-space-end {
+    @include flex-container(row, space-between, flex-end);
+  }
 }
 
 .wrapper {
