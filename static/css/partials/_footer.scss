@@ -1,14 +1,46 @@
 .footer {
+
+  @include respond-to('small') {
+    .legal-links {
+      @include flex-container(column, flex-start, stretch);
+    }
+
+    a {
+      margin-bottom: 5px;
+    }
+
+    .mozilla-logo {
+      margin-bottom: 10px;
+    }
+  }
+
+  @include respond-to('medium') {
+    .legal-links {
+      @include flex-container(row, flex-end, flex-end);
+      height: 20px;
+    }
+  }
+
+
+
   padding: $base-gutter;
+
+  .row-space-end {
+    @include respond-to('small') {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
 
   a {
     font-size: 12px;
   }
 
   .legal-links a {
+    line-height: 12px;
     margin-right: 16px;
   }
-
+  
   .inverse-color-scheme & a {
     opacity: .5;
   }
@@ -16,6 +48,23 @@
   .default-color-scheme & a {
     color: $light-grey;
   }
+
+  .mozilla-logo {
+    background-repeat: no-repeat;
+    background-size: 77px 20px;
+    display: block;
+    height: 20px;
+    width: 77px;
+  }
+
+  .inverse-color-scheme & .mozilla-logo {
+    background-image: url("../img/mozilla@2x.png");
+  }
+
+  .default-color-scheme & .mozilla-logo {
+    background-image: url("../img/mozilla-dark@2x.png");
+  }
+
 }
 
 
