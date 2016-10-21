@@ -141,21 +141,18 @@
 }
 
 #toggle-share {
-  display: flex;
+  span {
+    vertical-align: baseline;
+    display: inline-block;
+  }
 
   img {
     height: 24px;
     width: 24px;
-    background-color: #fff;
     border-radius: 4px;
     margin: 0;
-    margin-right: 10px;
-    vertical-align: middle;
-    display: inline-block;
-  }
-
-  span {
-    vertical-align: middle;
+    margin-left: 10px;
+    vertical-align: -5px;
     display: inline-block;
   }
 }
