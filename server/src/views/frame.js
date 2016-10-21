@@ -333,9 +333,7 @@ class Frame extends React.Component {
     super(props);
     this.state = {
       hidden: false,
-      sharePanelDisplay: (
-        props.isOwner &&
-        Date.now() - props.shot.createdDate < 30000),
+      sharePanelDisplay: false,
       closePageshotBanner: false
     };
     // Need to bind this so we can add/remove the event listener
