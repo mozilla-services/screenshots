@@ -572,8 +572,8 @@ class Frame extends React.Component {
           </div>
           <div className="more-shot-actions right">
             <button className="button primary" id="toggle-share" onClick={ this.onClickShareButton.bind(this) }>
-              <img className="share-icon" src={ this.props.staticLink("/static/img/share.svg")} />
               <span>Share</span>
+              <img className="share-icon" src={ this.props.staticLink("/static/img/share.svg")} />
             </button>
             <a className="button secondary" href={ clipUrl } onClick={ this.onClickDownload.bind(this) }
               title="Download the shot image" download={ `${clipFilename}.png` }>
