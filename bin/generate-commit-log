@@ -1,0 +1,76 @@
+#!/usr/bin/env python
+
+import subprocess
+import os
+import argparse
+import email.parser
+import re
+
+parser = argparse.ArgumentParser(description='Generate a changelog')
+parser.add_argument('range', metavar='RANGE', type=str,
+                    help='Commit range to generate')
+parser.add_argument('--write', action="store_true",
+                    help='Write to CHANGELOG.md')
+args = parser.parse_args()
+
+base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+log = subprocess.check_output(
+    ['git', 'log', '--format=email', args.range])
+
+messages = []
+
+header_regex = re.compile(r'^([a-zA-Z\-]+):\s+(.*)')
+fixes_regex = re.compile(r'fix(?:es)?\s+#(\d+)[.,;:]?\s*', re.I)
+issue_regex = re.compile(r'#(\d+)')
+
+for line in log.splitlines():
+    if line.startswith("From "):
+        commit = line.split()[1]
+        messages.append(dict(commit=commit, body=[]))
+        continue
+    if not line.strip():
+        continue
+    match = header_regex.search(line)
+    if not match:
+        messages[-1]["body"].append(line)
+    else:
+        messages[-1][match.group(1).lower()] = match.group(2)
+
+parts = []
+
+for message in messages:
+    sub = message.get("subject", "")
+    if sub.startswith("[PATCH] "):
+        sub = sub[len("[PATCH] "):]
+    if sub.startswith("Merge ") or sub.startswith("chore"):
+        continue
+    short = message["commit"][:7]
+    full = ["* " + sub] + ['  ' + line.strip() for line in message["body"]]
+    full = "\n".join(full)
+    found = []
+    def repl(match):
+        found.append(" Fixes #%s" % match.group(1))
+        return ""
+    full = fixes_regex.sub(repl, full)
+    if found:
+        if not full.endswith("."):
+            full += "."
+        full = full + "".join(found)
+    full = full + " [%s](https://github.com/mozilla-services/pageshot/commit/%s)" % (short, short)
+    full = issue_regex.sub(r'[#\1](https://github.com/mozilla-services/pageshot/issues/\1)', full)
+    parts.append(full)
+
+parts = "\n".join(parts)
+
+if args.write:
+    filename = os.path.join(base, "CHANGELOG.md")
+    with open(filename) as fp:
+        content = fp.read()
+    with open(filename, "w") as fp:
+        fp.write("## Version\n\n")
+        fp.write(parts)
+        fp.write("\n\n")
+        fp.write(content)
+else:
+    print parts
