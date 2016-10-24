@@ -198,7 +198,7 @@ app.use(bodyParser.json({limit: '100mb'}));
 
 app.use("/static", express.static(path.join(__dirname, "static"), {
   index: false,
-  maxAge: cacheTime
+  maxAge: cacheTime ? cacheTime * 1000 : null
 }));
 
 let xpidir = path.join(__dirname, "..", "xpi");
