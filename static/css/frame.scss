@@ -101,7 +101,8 @@
 .clip-container {
   @include flex-container(row, center, center);
   flex: 1;
-  margin: 20px 0;
+  margin: 20px auto;
+  max-width: 90%;
 
   > a img {
     box-shadow: 0 0 0 1px rgba(#000, 0.3), 0 0 20px rgba(#000, 0.2);
@@ -134,26 +135,23 @@
     font-size: 16px;
     height: 39px;
     line-height: 40px;
-    margin-right: 5px;
+    margin-right: 10px;
     padding: 5px;
     position: relative;
+    width: 200px;
+  }
+
+  .copy-toggle {
+    flex: 1 0 70px;
+    padding: 0 10px;
   }
 }
 
 #toggle-share {
-  span {
-    vertical-align: baseline;
-    display: inline-block;
-  }
-
   img {
-    height: 24px;
-    width: 24px;
-    border-radius: 4px;
-    margin: 0;
-    margin-left: 10px;
-    vertical-align: -5px;
-    display: inline-block;
+    height: 20px;
+    margin-right: 6px;
+    width: 20px;
   }
 }
 
