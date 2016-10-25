@@ -8,14 +8,24 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
 
   render() {
     // FIXME: this should probably include some standard CSS or other boilerplate
+    let analyticsScript;
+    let activationScript;
+    if (! this.props.noAnalytics) {
+      analyticsScript = <script src="//www.google-analytics.com/analytics.js" async />;
+      if (this.props.hashAnalytics) {
+        activationScript = <script src={this.props.staticLink("/ga-activation-hashed.js")} />;
+      } else {
+        activationScript = <script src={this.props.staticLink("/ga-activation.js")} />;
+      }
+    }
     return (
       <head>
         <meta charSet="UTF-8" />
         <title>{this.props.title}</title>
         <link rel="icon" type="image/png" href={this.props.staticLink("/static/img/pageshot-icon-32.png")} />
         <link rel="shortcut icon" href={this.props.staticLink("/static/img/pageshot-icon-32.png")} />
-        { this.props.noAnalytics ? null : <script src="//www.google-analytics.com/analytics.js" async /> }
-        { this.props.noAnalytics ? null : <script src={this.props.staticLink("/ga-activation.js")} /> }
+        { analyticsScript }
+        { activationScript }
         { this.props.sentryPublicDSN ? <script src={ this.props.staticLink("/static/vendor/raven.js") } /> : null }
         { this.props.sentryPublicDSN ? <script src={this.props.staticLink("/configure-raven.js")} /> : null }
         {this.props.children}

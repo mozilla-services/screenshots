@@ -6,6 +6,8 @@ const { Footer } = require("../../footer-view");
 const sendEvent = require("../../browser-send-event.js");
 const { ShareButtons } = require("./share-buttons");
 const { TimeDiff } = require("./time-diff");
+const reactruntime = require("../../reactruntime");
+
 
 class Clip extends React.Component {
   constructor(props) {
@@ -95,39 +97,16 @@ class Clip extends React.Component {
 
 class Head extends React.Component {
   render() {
-    let oembed;
-    if (! this.props.simple) {
-      oembed = <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />;
-    }
-    let js = [
-      <script src="//www.google-analytics.com/analytics.js" async key="gaScript" />,
-      <script src={this.props.staticLink("/ga-activation-hashed.js")} key="gaActivation" />,
-      <script src={ this.props.staticLink("/static/js/shot-bundle.js") } key="shot-bundle-js" />,
-    ];
-
-    if (this.props.sentryPublicDSN) {
-      js = js.concat([
-        <script src={ this.props.staticLink("/static/vendor/raven.js") } key="raven-js-js" />,
-        <script src={ this.props.staticLink("/configure-raven.js") } key="configure-raven" />
-      ]);
-    }
-    if (this.props.simple) {
-      js = [];
-    }
     return (
-      <head>
-        <meta charSet="UTF-8" />
-        <title>{this.props.shot.title}</title>
-        {js}
+      <reactruntime.HeadTemplate {...this.props}>
+        <script src={ this.props.staticLink("/static/js/shot-bundle.js") } key="shot-bundle-js" />
         <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
-        <link rel="icon" type="image/png" href={this.props.staticLink("/static/img/pageshot-icon-32.png")} />
-        <link rel="shortcut icon" href={this.props.staticLink("/static/img/pageshot-icon-32.png")} />
+        <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {oembed}
         {this.socialMetadata()}
         <script src={ this.props.staticLink("/set-content-hosting-origin.js") } />
         <script src={ this.props.staticLink("/static/js/parent-helper.js") } />
-      </head>);
+      </reactruntime.HeadTemplate>);
   }
 
   socialMetadata() {
@@ -165,7 +144,7 @@ class Head extends React.Component {
   }
 }
 
-class Frame extends React.Component {
+class Body extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -629,5 +608,5 @@ function intervalDescription(ms) {
   return parts.join(" ");
 }
 
-exports.BodyFactory = React.createFactory(Frame);
+exports.BodyFactory = React.createFactory(Body);
 exports.HeadFactory = React.createFactory(Head);

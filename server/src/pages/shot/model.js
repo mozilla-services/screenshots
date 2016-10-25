@@ -3,6 +3,7 @@ const { getGitRevision } = require("../../linker");
 exports.createModel = function (req) {
   let buildTime = require("../../build-time").string;
   let serverPayload = {
+    title: req.shot.title,
     allowExport: req.config.allowExport,
     staticLink: req.staticLink,
     backend: req.backend,
@@ -24,8 +25,10 @@ exports.createModel = function (req) {
     defaultExpiration: req.config.defaultExpiration*1000,
     sentryPublicDSN: req.config.sentryPublicDSN,
     cspNonce: req.cspNonce,
+    hashAnalytics: true
   };
   let clientPayload = {
+    title: req.shot.title,
     allowExport: req.config.allowExport,
     gitRevision: getGitRevision(),
     backend: req.backend,
@@ -46,7 +49,8 @@ exports.createModel = function (req) {
     buildTime: buildTime,
     simple: false,
     retentionTime: req.config.expiredRetentionTime*1000,
-    defaultExpiration: req.config.defaultExpiration*1000
+    defaultExpiration: req.config.defaultExpiration*1000,
+    hashAnalytics: true
   };
   if (serverPayload.expireTime !== null && Date.now() > serverPayload.expireTime) {
     serverPayload.shot = clientPayload.shot = {
