@@ -7,6 +7,7 @@ if (! config.setCache) {
 }
 
 exports.setCache = function (res, options) {
+  console.log("setcache?", config.setCache, process.env.SET_CACHE);
   if (config.setCache) {
     options = options || {};
     let pub = options.private ? "private" : "public";
