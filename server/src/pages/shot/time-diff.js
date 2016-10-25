@@ -92,3 +92,51 @@ exports.TimeDiff = class TimeDiff extends React.Component {
     return `${month} ${dDay} ${dYear}, ${hour}`;
   }
 };
+
+
+exports.intervalDescription = function (ms) {
+  let parts = [];
+  let second = 1000;
+  let minute = second*60;
+  let hour = minute*60;
+  let day = hour*24;
+  if (ms > day) {
+    let days = Math.floor(ms/day);
+    if (days === 1) {
+      parts.push("1 day");
+    } else {
+      parts.push(`${days} days`);
+    }
+    ms = ms % day;
+  }
+  if (ms > hour) {
+    let hours = Math.floor(ms/hour);
+    if (hours === 1) {
+      parts.push("1 hour");
+    } else {
+      parts.push(`{$hours} hours`);
+    }
+    ms = ms % hour;
+  }
+  if (ms > minute) {
+    let minutes = Math.floor(ms/minute);
+    if (minutes === 1) {
+      parts.push("1 minute");
+    } else {
+      parts.push(`${minutes} minutes`);
+    }
+    ms = ms % minute;
+  }
+  if (ms) {
+    let seconds = Math.floor(ms/second);
+    if (seconds === 1) {
+      parts.push("1 second");
+    } else {
+      parts.push(`${seconds} seconds`);
+    }
+  }
+  if (! parts.length) {
+    parts.push("immediately");
+  }
+  return parts.join(" ");
+};
