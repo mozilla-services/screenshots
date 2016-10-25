@@ -241,7 +241,7 @@ class Body extends React.Component {
       }
       // Note: any attributes used here need to be preserved
       // in the render() function
-      body = <div id="container">
+      body = <reactruntime.BodyTemplate {...this.props}>
         <p>&nbsp;</p>
         <p>
           This shot has expired. You may visit the original page it was originally created from:
@@ -253,7 +253,7 @@ class Body extends React.Component {
           </a>
         </p>
         { restoreWidget }
-      </div>;
+      </reactruntime.BodyTemplate>;
     } else {
       body = this.renderBody();
     }
@@ -376,6 +376,7 @@ class Body extends React.Component {
     */
 
     return (
+      <reactruntime.BodyTemplate {...this.props}>
         <div id="frame" className="inverse-color-scheme full-height column-space">
           { this.renderExtRequired() }
         <div className="frame-header default-color-scheme">
@@ -405,7 +406,7 @@ class Body extends React.Component {
           <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } /> : null }
         <Footer forUrl={ shot.viewUrl } {...this.props} />
       </div>
-    );
+    </reactruntime.BodyTemplate>);
   }
 
   renderExtRequired() {
