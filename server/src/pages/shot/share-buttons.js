@@ -56,7 +56,7 @@ exports.ShareButtons = class ShareButtons extends React.Component {
           onClick={ this.onClickInputField.bind(this) }
           onChange={ this.onChange.bind(this) } />
         <button
-          className="button secondary"
+          className="button secondary copy-toggle"
           onClick={ this.onClickCopyButton.bind(this) }>
           { this.state.copyText }
         </button>
