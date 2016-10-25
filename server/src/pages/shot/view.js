@@ -389,8 +389,8 @@ class Body extends React.Component {
           </div>
           <div className="more-shot-actions right">
             <button className="button primary" id="toggle-share" onClick={ this.onClickShareButton.bind(this) }>
-              <span>Share</span>
               <img className="share-icon" src={ this.props.staticLink("/static/img/share.svg")} />
+              <span>Share</span>
             </button>
             <a className="button secondary" href={ clipUrl } onClick={ this.onClickDownload.bind(this) }
               title="Download the shot image" download={ `${clipFilename}.png` }>
@@ -532,7 +532,7 @@ class ExpireWidget extends React.Component {
       </span>;
     }
     return (
-      <button className="button tiny secondary" onClick={this.clickChangeExpire.bind(this)}>
+      <button className="button tiny secondary inline" onClick={this.clickChangeExpire.bind(this)}>
         {button}
       </button>
     );
