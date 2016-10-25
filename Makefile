@@ -222,9 +222,9 @@ build/server/static/img/%: build/static/img/%
 	@mkdir -p $(@D)
 	cp $< $@
 
-server_dependencies := $(shell ./bin/_bundle_dependencies server getdeps "$(server_dest)")
-build/server/static/js/server-bundle.js: $(server_dependencies)
-	./bin/_bundle_dependencies server build ./build/server/clientglue.js
+shot_dependencies := $(shell ./bin/_bundle_dependencies shot getdeps "$(server_dest)")
+build/server/static/js/shot-bundle.js: $(shot_dependencies)
+	./bin/_bundle_dependencies shot build ./build/server/pages/shot/controller.js
 
 homepage_dependencies := $(shell ./bin/_bundle_dependencies homepage getdeps "$(server_dest)")
 build/server/static/js/homepage-bundle.js: $(homepage_dependencies)
@@ -257,7 +257,7 @@ build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass
 	@mkdir -p $(@D)
 	./bin/_write_build_time > build/server/build-time.js
 
-server: npm build/server/build-time.js build/server/static/js/server-bundle.js build/server/static/js/homepage-bundle.js build/server/static/js/admin-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/leave-bundle.js build/server/static/js/creating-bundle.js
+server: npm build/server/build-time.js build/server/static/js/shot-bundle.js build/server/static/js/homepage-bundle.js build/server/static/js/admin-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/leave-bundle.js build/server/static/js/creating-bundle.js
 
 ## Homepage related rules:
 

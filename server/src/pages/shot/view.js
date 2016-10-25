@@ -2,12 +2,8 @@
 
 const React = require("react");
 const ReactDOM = require("react-dom");
-const ReactDOMServer = require("react-dom/server");
-const { getGitRevision } = require("../linker");
-// const { ProfileButton } = require("./profile");
-const { addReactScripts } = require("../reactutils");
-const { Footer } = require("../footer-view");
-const sendEvent = require("../browser-send-event.js");
+const { Footer } = require("../../footer-view");
+const sendEvent = require("../../browser-send-event.js");
 
 class ShareButtons extends React.Component {
   constructor(props) {
@@ -265,7 +261,7 @@ class Head extends React.Component {
     let js = [
       <script src="//www.google-analytics.com/analytics.js" async key="gaScript" />,
       <script src={this.props.staticLink("/ga-activation-hashed.js")} key="gaActivation" />,
-      <script src={ this.props.staticLink("/static/js/server-bundle.js") } key="server-bundle-js" />,
+      <script src={ this.props.staticLink("/static/js/shot-bundle.js") } key="shot-bundle-js" />,
     ];
 
     if (this.props.sentryPublicDSN) {
@@ -350,7 +346,7 @@ class Frame extends React.Component {
   }
 
   onClickUploadFullPage(e) {
-    this.props.clientglue.requestSavedShot();
+    //this.props.controller.requestSavedShot();
   }
 
   onClickShareButton(e) {
@@ -395,7 +391,7 @@ class Frame extends React.Component {
     sendEvent("start-delete", "navbar", {useBeacon: true});
     if (window.confirm("Are you sure you want to delete this shot permanently?")) {
       sendEvent("delete", "popup-confirm", {useBeacon: true});
-      this.props.clientglue.deleteShot(this.props.shot);
+      this.props.controller.deleteShot(this.props.shot);
     } else {
       sendEvent("cancel-delete", "popup-confirm");
     }
@@ -614,12 +610,12 @@ class Frame extends React.Component {
     } else {
       sendEvent("set-expiration-to-time", "navbar");
     }
-    this.props.clientglue.changeShotExpiration(this.props.shot, value);
+    this.props.controller.changeShotExpiration(this.props.shot, value);
   }
 
   onRestore() {
     sendEvent("recover-expired");
-    this.props.clientglue.changeShotExpiration(this.props.shot, this.props.defaultExpiration);
+    this.props.controller.changeShotExpiration(this.props.shot, this.props.defaultExpiration);
   }
 
   onClickMyShots() {
@@ -792,105 +788,5 @@ function intervalDescription(ms) {
   return parts.join(" ");
 }
 
-let FrameFactory = React.createFactory(Frame);
-let HeadFactory = React.createFactory(Head);
-
-exports.FrameFactory = FrameFactory;
-
-exports.render = function (req, res) {
-  let buildTime = require("../build-time").string;
-  let serverPayload = {
-    allowExport: req.config.allowExport,
-    staticLink: req.staticLink,
-    backend: req.backend,
-    shot: req.shot,
-    contentOrigin: req.config.contentOrigin,
-    contentProtocol: req.protocol,
-    id: req.shot.id,
-    productName: req.config.productName,
-    isExtInstalled: !!req.deviceId,
-    isOwner: req.deviceId == req.shot.ownerId,
-    gaId: req.config.gaId,
-    deviceId: req.deviceId,
-    authenticated: !!req.deviceId,
-    buildTime: buildTime,
-    simple: false,
-    shotDomain: req.url, // FIXME: should be a property of the shot
-    expireTime: req.shot.expireTime === null ? null: req.shot.expireTime.getTime(),
-    retentionTime: req.config.expiredRetentionTime*1000,
-    defaultExpiration: req.config.defaultExpiration*1000,
-    sentryPublicDSN: req.config.sentryPublicDSN,
-    cspNonce: req.cspNonce,
-  };
-  let headString = ReactDOMServer.renderToStaticMarkup(HeadFactory(serverPayload));
-  let frame = FrameFactory(serverPayload);
-  let clientPayload = {
-    allowExport: req.config.allowExport,
-    gitRevision: getGitRevision(),
-    backend: req.backend,
-    shot: req.shot.asJson(),
-    contentOrigin: req.config.contentOrigin,
-    contentProtocol: req.protocol,
-    id: req.shot.id,
-    productName: req.config.productName,
-    isExtInstalled: !!req.deviceId,
-    isOwner: req.deviceId == req.shot.ownerId,
-    gaId: req.config.gaId,
-    deviceId: req.deviceId,
-    authenticated: !!req.deviceId,
-    shotDomain: req.url,
-    urlIfDeleted: req.shot.urlIfDeleted,
-    expireTime: req.shot.expireTime === null ? null : req.shot.expireTime.getTime(),
-    deleted: req.shot.deleted,
-    buildTime: buildTime,
-    simple: false,
-    retentionTime: req.config.expiredRetentionTime*1000,
-    defaultExpiration: req.config.defaultExpiration*1000
-  };
-  if (serverPayload.expireTime !== null && Date.now() > serverPayload.expireTime) {
-    serverPayload.shot = clientPayload.shot = {
-      url: req.shot.url,
-      docTitle: req.shot.title
-    };
-  }
-  let body = ReactDOMServer.renderToString(frame);
-  let json = JSON.stringify(clientPayload);
-  let result = addReactScripts(
-`<html>
-  ${headString}
-  <body className="inverse-color-scheme">
-    <div id="react-body-container">${body}</div>
-  </body></html>`, `
-    var serverData = ${json};
-    clientglue.setModel(serverData);
-  `, req.cspNonce);
-  res.send(result);
-};
-
-exports.renderSimple = function (req, res) {
-  let buildTime = require("../build-time").string;
-  let serverPayload = {
-    allowExport: req.config.allowExport,
-    staticLink: req.staticLink.simple,
-    backend: req.backend,
-    shot: req.shot,
-    contentOrigin: req.config.contentOrigin,
-    contentProtocol: req.protocol,
-    id: req.shot.id,
-    productName: req.config.productName,
-    isExtInstalled: !!req.deviceId,
-    gaId: null,
-    deviceId: req.deviceId,
-    buildTime: buildTime,
-    simple: true,
-    shotDomain: req.url // FIXME: should be a property of the shot
-  };
-  let headString = ReactDOMServer.renderToStaticMarkup(HeadFactory(serverPayload));
-  let frame = FrameFactory(serverPayload);
-  let body = ReactDOMServer.renderToStaticMarkup(frame);
-  body = `<!DOCTYPE HTML>
-  ${headString}
-  <body className="inverse-color-scheme">${body}
-  </body></html>`;
-  res.send(body);
-};
+exports.BodyFactory = React.createFactory(Frame);
+exports.HeadFactory = React.createFactory(Head);

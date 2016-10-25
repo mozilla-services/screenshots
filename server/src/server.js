@@ -641,6 +641,7 @@ app.post("/api/delete-shot", function (req, res) {
   });
 });
 
+/*
 app.post("/api/add-saved-shot-data/:id/:domain", function (req, res) {
   let shotId = `${req.params.id}/${req.params.domain}`;
   let bodyObj = req.body;
@@ -678,6 +679,7 @@ app.post("/api/add-saved-shot-data/:id/:domain", function (req, res) {
   });
 
 });
+*/
 
 app.post("/api/set-expiration", function (req, res) {
   if (! req.deviceId) {
@@ -822,31 +824,8 @@ app.get("/contribute.json", function (req, res) {
 });
 
 // FIXME: this can't the right way to do this...
-require("./exporter").setup(app);
+//require("./exporter").setup(app);
 
-app.get("/:id/:domain", function (req, res) {
-  let shotId = `${req.params.id}/${req.params.domain}`;
-  Shot.get(req.backend, shotId).then((shot) => {
-    let noSuchShot = false;
-    if (! shot) {
-      noSuchShot = true;
-    } else if (shot.clipNames().length === 0 && ! shot.deleted) {
-      // Deleted shots always appear to have no clips
-    }
-    if (noSuchShot) {
-      notFound(req, res);
-      return;
-    }
-    req.shot = shot;
-    if (shouldRenderSimple(req)) {
-      return require("./views/frame").renderSimple(req, res);
-    } else {
-      return require("./views/frame").render(req, res);
-    }
-  }).catch(function (err) {
-    errorResponse(res, "Error rendering page:", err);
-  });
-});
 
 app.get("/oembed", function (req, res) {
   let url = req.query.url;
