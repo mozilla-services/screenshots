@@ -979,6 +979,8 @@ app.use("/privacy", require("./pages/legal/server").app);
 
 app.use("/creating", require("./pages/creating/server").app);
 
+app.use("/", require("./pages/shot/server").app);
+
 app.use("/", require("./pages/homepage/server").app);
 
 const contentApp = express();
