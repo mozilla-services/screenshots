@@ -55,7 +55,7 @@
     "nsp": "2.6.2",
     "sass-lint": "1.9.1",
     "selenium-webdriver": "3.0.0-beta-2",
-    "uglify-js": "2.7.3"
+    "uglify-js": "2.7.4"
   },
   "homepage": "https://pageshot.dev.mozaws.net",
   "license": "MPL-2.0",
