@@ -1,9 +1,0 @@
-#!/usr/bin/env node
-
-require("babel-polyfill");
-
-try {
-  require("../dist-production/server/server.js");
-} catch (e) {
-  require("../dist/server/server.js");
-}

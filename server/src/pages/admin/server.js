@@ -7,7 +7,7 @@ let app = express();
 exports.app = app;
 
 // FIXME: this should be an FxA id, but due to a bug we're using device IDs
-let authorizedAccountIds = ['anon63daec35-fb29-8d49-ac6f-af7763523c0a'];
+let authorizedAccountIds = [];
 
 app.use(function (req, res, next) {
   if (! req.deviceId) {

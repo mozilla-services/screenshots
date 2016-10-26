@@ -1,27 +1,22 @@
 /* jslint browser:true */
 
-const sendEvent = require("./browser-send-event.js");
-let ReactDOM = require("react-dom"),
-  { FrameFactory } = require("./views/frame.js"),
-  { setGitRevision, staticLink } = require("./linker"),
-  { AbstractShot } = require("../shared/shot"),
-  { requestProfile } = require("./events");
+const sendEvent = require("../../browser-send-event.js");
+const page = require("./page").page;
+const { AbstractShot } = require("../../../shared/shot");
 
 // This represents the model we are rendering:
 let model;
 
-// This represents the current user's profile.
-let profile;
-
-exports.setModel = function (data) {
+exports.launch = function (data) {
   let firstSet = ! model;
   model = data;
   model.hasSavedShot = false;
   model.shot = new AbstractShot(data.backend, data.id, data.shot);
-  model.shot.contentUrl = `//${data.contentOrigin}/content/${model.shot.id}`;
-  model.shot.urlIfDeleted = data.urlIfDeleted;
-  model.shot.expireTime = new Date(data.expireTime);
-  model.shot.deleted = data.deleted;
+  model.shot.contentUrl = `//${model.contentOrigin}/content/${model.shot.id}`;
+  model.shot.urlIfDeleted = model.urlIfDeleted;
+  model.shot.expireTime = new Date(model.expireTime);
+  model.shot.deleted = model.deleted;
+  model.controller = exports;
 
   if (firstSet) {
     document.addEventListener("helper-ready", function onHelperReady(e) {
@@ -29,23 +24,23 @@ exports.setModel = function (data) {
       let event = document.createEvent("CustomEvent");
       event.initCustomEvent("page-ready", true, true, null);
       document.dispatchEvent(event);
-      requestProfile();
-      requestHasSavedShot(model.shot.id);
+      //requestHasSavedShot(model.shot.id);
     }, false);
-    document.addEventListener("refresh-profile", refreshProfile, false);
+    /*
     document.addEventListener("has-saved-shot-result", function (event) {
       let result = JSON.parse(event.detail);
       model.hasSavedShot = result;
-      exports.render();
+      render();
     }, false);
     document.addEventListener("saved-shot-data", function (event) {
       let result = JSON.parse(event.detail);
       addSavedShotData(result);
     }, false);
+    */
     refreshHash();
   }
   try {
-    exports.render();
+    render();
   } catch (e) {
     window.Raven.captureException(e);
     throw e;
@@ -71,23 +66,6 @@ exports.setModel = function (data) {
   }
 };
 
-exports.render = function render() {
-  setGitRevision(model.gitRevision);
-  let attrs = { staticLink };
-  for (let attr in model) {
-    attrs[attr] = model[attr];
-  }
-  for (let attr in profile) {
-    attrs[attr] = profile[attr];
-  }
-  attrs.clientglue = exports;
-  let frame = FrameFactory(attrs);
-
-  ReactDOM.render(
-    frame,
-    document.getElementById("react-body-container"));
-};
-
 exports.changeShotExpiration = function (shot, expiration) {
   let wasExpired = model.expireTime !== null && model.expireTime < Date.now();
   let url = model.backend + "/api/set-expiration";
@@ -103,7 +81,7 @@ exports.changeShotExpiration = function (shot, expiration) {
       } else {
         model.shot.expireTime = model.expireTime = new Date(Date.now() + expiration);
       }
-      exports.render();
+      render();
     }
   };
   if (wasExpired) {
@@ -129,11 +107,6 @@ exports.deleteShot = function (shot) {
   };
   req.send(`id=${encodeURIComponent(shot.id)}`);
 };
-
-function refreshProfile(e) {
-  profile = JSON.parse(e.detail);
-  exports.render();
-}
 
 function refreshHash() {
   if (location.hash === "#fullpage") {
@@ -192,6 +165,7 @@ function sendShowElement(clipId) {
   }
 }
 
+/*
 function requestHasSavedShot(id) {
   let event = document.createEvent("CustomEvent");
   event.initCustomEvent("has-saved-shot", true, true, id);
@@ -234,7 +208,10 @@ function addSavedShotData(data) {
   req.setRequestHeader("content-type", "application/json");
   req.send(JSON.stringify(data));
 }
+*/
 
-if (typeof window != "undefined") {
-  window.clientglue = exports;
+function render() {
+  page.render(model);
 }
+
+window.controller = exports;

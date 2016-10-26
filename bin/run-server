@@ -13,18 +13,24 @@ fi
 
 run () {
   if [[ -n "$restart" ]] ; then
-    which growlnotify > /dev/null && growlnotify -m "Page Shot Server build started." || echo "Page Shot Server build started."
+    notify "Page Shot Server build started."
   fi
   if [ -d build ] ; then
     # This is to remove empty files that might have resulted from a syntax error:
     find build/ -size 0 -exec rm {} \;
   fi
-  make server
+  make server || (notify "Page Shot Server build FAILED" ; exit 2)
   if [[ -n "$restart" ]] ; then
-    which growlnotify > /dev/null && growlnotify -m "Page Shot Server build finished." || echo "Page Shot Server build finished."
+    notify "Page Shot Server build finished."
   fi
   node -e 'require("babel-polyfill"); require("./build/server/server");'
 }
+
+notify () {
+  msg="$1"
+  which growlnotify > /dev/null && growlnotify -m "$msg" || echo "$msg"
+}
+
 
 help () {
   echo "Usage: $(basename $0) [--no-auto]"
