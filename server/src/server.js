@@ -823,10 +823,6 @@ app.get("/contribute.json", function (req, res) {
   res.send(JSON.stringify(data, null, '  '));
 });
 
-// FIXME: this can't the right way to do this...
-//require("./exporter").setup(app);
-
-
 app.get("/oembed", function (req, res) {
   let url = req.query.url;
   if (! url) {
@@ -1071,16 +1067,6 @@ contentApp.get("/proxy", function (req, res) {
   });
   subreq.end();
 });
-
-function shouldRenderSimple(req) {
-  if ('simple' in req.query) {
-    return true;
-  }
-  if (req.headers["x-simple"]) {
-    return true;
-  }
-  return false;
-}
 
 function simpleResponse(res, message, status) {
   status = status || 200;
