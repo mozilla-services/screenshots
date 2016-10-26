@@ -1,5 +1,3 @@
-/* globals ga */
-
 const React = require("react");
 const ReactDOM = require("react-dom");
 const { Footer } = require("../../footer-view");
@@ -159,10 +157,6 @@ class Body extends React.Component {
 
   closeGetPageshotBanner() {
     this.setState({closePageshotBanner: true});
-  }
-
-  clickFullPageButton(e) {
-    ga("send", "event", "website", "click-full-page-button", {page: location.toString()});
   }
 
   onClickUploadFullPage(e) {
