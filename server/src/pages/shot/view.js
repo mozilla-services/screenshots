@@ -2,7 +2,7 @@ const React = require("react");
 const ReactDOM = require("react-dom");
 const { Footer } = require("../../footer-view");
 const sendEvent = require("../../browser-send-event.js");
-const { ShareButtons } = require("./share-buttons");
+const { ShareButton } = require("./share-buttons");
 const { TimeDiff, intervalDescription } = require("./time-diff");
 const reactruntime = require("../../reactruntime");
 
@@ -147,12 +147,8 @@ class Body extends React.Component {
     super(props);
     this.state = {
       hidden: false,
-      sharePanelDisplay: false,
       closePageshotBanner: false
     };
-    // Need to bind this so we can add/remove the event listener
-    this.unsharePanelHandler = this.unsharePanelHandler.bind(this);
-    this.sharePanelKeypress = this.sharePanelKeypress.bind(this);
   }
 
   closeGetPageshotBanner() {
@@ -163,42 +159,12 @@ class Body extends React.Component {
     //this.props.controller.requestSavedShot();
   }
 
-  onClickShareButton(e) {
-    let show = ! this.state.sharePanelDisplay;
-    this.setState({sharePanelDisplay: show});
-    if (show) {
-      sendEvent(
-        this.props.isOwner ? "start-share-owner" : "start-share-non-owner",
-        "navbar");
-    } else {
-      sendEvent("cancel-share");
-    }
-  }
-
   onClickClose() {
     this.setState({hidden: true});
   }
 
   onClickZoom() {
     this.setState({hidden: false});
-  }
-
-  unsharePanelHandler(e) {
-    let el = e.target;
-    while (el) {
-      if (el.id === "share-buttons-panel" || el.id === "toggle-share") {
-        // A click in the share panel itself
-        return;
-      }
-      el = el.parentNode;
-    }
-    this.onClickShareButton();
-  }
-
-  sharePanelKeypress(e) {
-    if ((e.key || e.code) == "Escape") {
-      this.onClickShareButton();
-    }
   }
 
   onClickDelete(e) {
@@ -264,7 +230,6 @@ class Body extends React.Component {
     let shotDomain = this.props.shot.url; // FIXME: calculate
 
     let clips = [];
-    let shareButtons = [];
     let clipNames = shot.clipNames();
     if (clipNames.length && ! this.state.hidden) {
       let clipId = clipNames[0];
@@ -326,21 +291,6 @@ class Body extends React.Component {
       myShotsHref = "/";
     }
 
-    let isPublic = null;
-    if (this.props.isOwner && !this.state.closePrivacyNotice && Date.now() - shot.createdDate < 30000) {
-      if (shot.isPublic) {
-        isPublic = <div
-          id="private-notice">
-          This shot is only visible to you until you share the link.
-        </div>;
-      } else {
-        isPublic = <div
-          id="private-notice">
-          You&#39;ve saved a personal version of this shot. This shot is only visible to you until you share the link.
-        </div>;
-      }
-    }
-
     let clipUrl = null;
     if (clipNames.length) {
       let clipId = clipNames[0];
@@ -353,14 +303,6 @@ class Body extends React.Component {
     filenameTitle = filenameTitle.replace(/\s+/g, " ");
     let clipFilename = `Page-Shot-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${filenameTitle}`;
 
-    if (this.state.sharePanelDisplay) {
-      shareButtons = <ShareButtons
-                large={ true }
-                clipUrl={ clipUrl }
-                isPublic={ isPublic }
-                { ...this.props } />;
-    }
-
     /*
     {this.props.hasSavedShot ?
       <button id="upload-full-page" className="upload-full-page" onClick={ this.onClickUploadFullPage.bind(this) }>
@@ -369,10 +311,12 @@ class Body extends React.Component {
       : null}
     */
 
+    let renderExtensionNotification = ! (this.props.isExtInstalled || this.state.closePageshotBanner);
+
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <div id="frame" className="inverse-color-scheme full-height column-space">
-          { this.renderExtRequired() }
+          { renderExtensionNotification ? this.renderExtRequired() : null }
         <div className="frame-header default-color-scheme">
           <div className="left">
             <a className="block-button button secondary" href={ myShotsHref } onClick={this.onClickMyShots.bind(this)}>{ myShotsText }</a>
@@ -382,10 +326,7 @@ class Body extends React.Component {
             </div>
           </div>
           <div className="more-shot-actions right">
-            <button className="button primary" id="toggle-share" onClick={ this.onClickShareButton.bind(this) }>
-              <img className="share-icon" src={ this.props.staticLink("/static/img/share.svg")} />
-              <span>Share</span>
-            </button>
+            <ShareButton clipUrl={clipUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} renderExtensionNotification={renderExtensionNotification} />
             <a className="button secondary" href={ clipUrl } onClick={ this.onClickDownload.bind(this) }
               title="Download the shot image" download={ `${clipFilename}.png` }>
               <img src={ this.props.staticLink("/static/img/download.svg") } />
@@ -393,7 +334,6 @@ class Body extends React.Component {
             { trashOrFlagButton }
           </div>
         </div>
-        { shareButtons }
         { clips }
         { this.props.shot.showPage ? <span id="copy-flag">Copy</span> : null }
         { this.props.shot.showPage ?
@@ -404,9 +344,6 @@ class Body extends React.Component {
   }
 
   renderExtRequired() {
-    if (this.props.isExtInstalled || this.state.closePageshotBanner) {
-      return null;
-    }
     return <div className="default-color-scheme notification">
       <div> Page Shot is an experimental extension for Firefox. <a href={ this.props.backend } onClick={ this.clickedCreate.bind(this) }>Get it here</a></div>
       <a className="close" onClick={ this.closeGetPageshotBanner.bind(this) }></a>
@@ -453,24 +390,6 @@ class Body extends React.Component {
 
   onClickFeedback() {
     sendEvent("start-feedback", "footer", {useBeacon: true});
-  }
-
-  componentDidMount() {
-    this.componentDidUpdate();
-  }
-
-  componentDidUpdate() {
-    if (this.state.sharePanelDisplay) {
-      document.addEventListener("click", this.unsharePanelHandler, false);
-      document.addEventListener("keyup", this.sharePanelKeypress, false);
-    } else {
-      document.removeEventListener("click", this.unsharePanelHandler, false);
-      document.removeEventListener("keyup", this.sharePanelKeypress, false);
-    }
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("click", this.unsharePanelHandler, false);
   }
 
 }

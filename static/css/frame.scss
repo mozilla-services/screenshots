@@ -119,6 +119,12 @@
   top: 65px;
   width: 320px;
 
+  // When the extension notification box is up the panel gets aligned incorrectly;
+  // we add this extra class to fix this situation and bump the panel down:
+  &.share-panel-with-notification {
+    top: 102px;
+  }
+
   img {
     height: 54px;
     width: 54px;
@@ -145,6 +151,7 @@
     flex: 1 0 70px;
     padding: 0 10px;
   }
+
 }
 
 #toggle-share {
