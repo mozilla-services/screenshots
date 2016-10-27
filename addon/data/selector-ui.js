@@ -80,6 +80,9 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         this.overlayEl.appendChild(fullPageButton);
 
         document.body.appendChild(this.overlayEl);
+
+
+          console.log("OVERLAYEL LOAD");
       }
     },
 
