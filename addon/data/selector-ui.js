@@ -55,40 +55,74 @@ const ui = (function () { // eslint-disable-line no-unused-vars
   let WholePageOverlay = exports.WholePageOverlay = {
 
     display: function (callbacks) {
-      if (! this.overlayEl) {
-        this.overlayEl = makeEl("div", "pageshot-preview-overlay");
-        let instructions = makeEl("div", "pageshot-preview-instructions");
-        instructions.textContent = "Drag or click on the page to select a region. Press ESC to cancel.";
-        this.overlayEl.appendChild(instructions);
-        let button = makeEl("div", "pageshot-myshots");
-        button.addEventListener("click", callbacks.onOpenMyShots, false);
-        let myShotsPre = makeEl("div", "pageshot-pre-myshots");
-        button.appendChild(myShotsPre);
-        let text = makeEl("div", "pageshot-myshots-text");
-        text.textContent = "My Shots";
-        button.appendChild(text);
-        let myShotsPost = makeEl("div", "pageshot-post-myshots");
-        button.appendChild(myShotsPost);
-        this.overlayEl.appendChild(button);
-        let visibleButton = makeEl("div", "pageshot-overlay-button pageshot-visible");
-        visibleButton.textContent = "Save visible";
-        visibleButton.addEventListener("click", callbacks.onClickVisible, false);
-        this.overlayEl.appendChild(visibleButton);
-        let fullPageButton = makeEl("div", "pageshot-overlay-button pageshot-full-page");
-        fullPageButton.textContent = "Save full page";
-        fullPageButton.addEventListener("click", callbacks.onClickFullPage, false);
-        this.overlayEl.appendChild(fullPageButton);
 
-        document.body.appendChild(this.overlayEl);
+      if (! this.overlayFrame) {
+        let bodyRect = document.body.getBoundingClientRect();
 
+        this.overlayFrame = document.createElement("iframe");
+        this.overlayFrame.style.pointerEvents = "none";
+        this.overlayFrame.style.zIndex = "99999999999";
+        this.overlayFrame.style.border = "none";
+        this.overlayFrame.style.position = "absolute";
+        this.overlayFrame.style.top = "0";
+        this.overlayFrame.style.left = "0";
+        this.overlayFrame.style.height = "100%";
+        this.overlayFrame.style.width = "100%";
 
-          console.log("OVERLAYEL LOAD");
+        document.body.appendChild(this.overlayFrame);
+
+        this.overlayFrame.onload = () => {
+          var parsedDom = (new DOMParser()).parseFromString(
+            "<html><head><title></title></head><body></body>",
+            "text/html"
+          );
+          let frameDoc = this.overlayFrame.contentDocument;
+
+          frameDoc.replaceChild(
+              frameDoc.adoptNode(parsedDom.documentElement),
+              frameDoc.documentElement
+          );
+
+          let overlayEl = makeEl("div", "pageshot-preview-overlay");
+          let instructions = makeEl("div", "pageshot-preview-instructions");
+          instructions.textContent = "Drag or click on the page to select a region. Press ESC to cancel.";
+          overlayEl.appendChild(instructions);
+          let button = makeEl("div", "pageshot-myshots");
+          button.addEventListener("click", callbacks.onOpenMyShots, false);
+          let myShotsPre = makeEl("div", "pageshot-pre-myshots");
+          button.appendChild(myShotsPre);
+          let text = makeEl("div", "pageshot-myshots-text");
+          text.textContent = "My Shots";
+          button.appendChild(text);
+          let myShotsPost = makeEl("div", "pageshot-post-myshots");
+          button.appendChild(myShotsPost);
+          overlayEl.appendChild(button);
+          let visibleButton = makeEl("div", "pageshot-overlay-button pageshot-visible");
+          visibleButton.textContent = "Save visible";
+          visibleButton.addEventListener("click", callbacks.onClickVisible, false);
+          overlayEl.appendChild(visibleButton);
+          let fullPageButton = makeEl("div", "pageshot-overlay-button pageshot-full-page");
+          fullPageButton.textContent = "Save full page";
+          fullPageButton.addEventListener("click", callbacks.onClickFullPage, false);
+          overlayEl.appendChild(fullPageButton);
+          frameDoc.body.appendChild(overlayEl);
+          let linkUrl = self.options["inline-selection.css"];
+          var link = frameDoc.getElementById("pageshot-stylesheet");
+          if (! link) {
+            link = frameDoc.createElement("link");
+            link.setAttribute("rel", "stylesheet");
+            link.setAttribute("id", "pageshot-stylesheet");
+            link.setAttribute("href", linkUrl);
+            frameDoc.head.appendChild(link);
+          }
+
+        };
       }
     },
 
     remove: function () {
-      util.removeNode(this.overlayEl);
-      this.overlayEl = null;
+      util.removeNode(this.overlayFrame);
+      this.overlayFrame = null;
     },
 
     el: null
