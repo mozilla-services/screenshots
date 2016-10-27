@@ -130,7 +130,7 @@ function formatDate(date) {
 
 exports.createModel = function (req) {
   let model = {
-    title: "Admin",
+    title: "Page Shot Metrics",
     lastShotTimeDays: 7,
     numberOfShotsTime: 30,
   };
