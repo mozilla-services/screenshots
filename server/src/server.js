@@ -324,7 +324,7 @@ app.post("/error", function (req, res) {
   userAnalytics.exception({
     hitType: "exception",
     userAgentOverride: req.headers['user-agent'],
-    applicationName: "addon",
+    applicationName: "firefox",
     applicationVersion: bodyObj.version,
     exceptionDescription: desc
   }).send();
