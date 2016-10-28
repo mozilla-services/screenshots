@@ -17,7 +17,7 @@ class Head extends React.Component {
 
 class Body extends React.Component {
   render() {
-    let created = new Date(this.props.data.shotsCreatedByDay);
+    let created = new Date(this.props.data.shotsCreatedByDay.created);
     created = created.toLocaleString();
     return (
       <reactruntime.BodyTemplate {...this.props}>
