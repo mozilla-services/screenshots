@@ -22,7 +22,11 @@ exports.render = function (req, res, page) {
       staticLinkWithHost: req.staticLinkWithHost
     }, serverModel);
     if (req.query.data == "json") {
-      res.type("json").send(jsonModel);
+      if (req.query.pretty !== undefined) {
+        res.type("json").send(JSON.stringify(jsonModel, null, '  '));
+      } else {
+        res.type("json").send(jsonModel);
+      }
       return;
     }
     let head = ReactDOMServer.renderToStaticMarkup(viewModule.HeadFactory(serverModel));
