@@ -1,148 +1,150 @@
 const db = require("../../db");
 
-exports.lastShotCount = function (seconds) {
-  return db.select(
-    `SELECT COUNT(DISTINCT deviceid) AS shotcount
-     FROM data
-     WHERE created >= NOW() - ($1 || ' SECONDS')::INTERVAL`,
-    [seconds]
-  ).then(function (rows) {
-    return rows[0].shotcount;
-  });
+const queries = {
+  shotsCreatedByDay: {
+    title: "Shots By Day",
+    description: "Number of shots created each day (for the last 30 days)",
+    sql: `
+    SELECT COUNT(data.id)::INTEGER AS number_of_shots, day
+    FROM data,
+        date_trunc('day', data.created) AS day
+    WHERE data.created + INTERVAL '30 days' >= CURRENT_TIMESTAMP
+        AND NOT data.deleted
+        AND data.expire_time < CURRENT_TIMESTAMP
+    GROUP BY day
+    ORDER BY day DESC;
+    `,
+    columns: [
+      {title: "Number of shots", name: "number_of_shots"},
+      {title: "Day", type: "date", name: "day"}
+    ]
+  },
+
+  usersByDay: {
+    title: "Users By Day",
+    description: "Number of users who created at least one shot, by day (last 30 days)",
+    sql: `
+    SELECT COUNT(DISTINCT data.deviceid)::INTEGER AS number_of_users, day
+    FROM data,
+        date_trunc('day', data.created) AS day
+    WHERE data.created + INTERVAL '30 days' >= CURRENT_TIMESTAMP
+        AND NOT data.deleted
+        AND data.expire_time < CURRENT_TIMESTAMP
+    GROUP BY day
+    ORDER BY day DESC;
+    `,
+    columns: [
+      {title: "Number of users", name: "number_of_users"},
+      {title: "Day", type: "date", name: "day"}
+    ]
+  },
+
+  shotsByUserHistogram: {
+    title: "Number of Shots per User",
+    description: "The number of users who have about N total shots",
+    sql: `
+    SELECT COUNT(counters.number_of_shots) AS count, counters.number_of_shots AS number_of_shots
+    FROM
+        (SELECT FLOOR(POWER(2, FLOOR(LOG(2, COUNT(data.id))))) AS number_of_shots
+         FROM data
+         WHERE NOT data.deleted AND data.expire_time < CURRENT_TIMESTAMP
+         GROUP BY data.deviceid) AS counters
+    GROUP BY counters.number_of_shots
+    ORDER BY counters.number_of_shots;
+    `,
+    columns: [
+      {title: "Number of users", name: "count"},
+      {title: "~Number of shots", name: "number_of_shots"}
+    ]
+  },
+
+  retention: {
+    title: "Retention",
+    description: "Length of time users have been creating shots, grouped by week",
+    sql: `
+    SELECT COUNT(age.days)::INTEGER AS user_count, age.days, age.first_created_week
+    FROM
+        (SELECT
+          EXTRACT(EPOCH FROM AGE(span.last_created, span.first_created)) / 3600 AS days,
+          span.first_created_week
+         FROM
+             (SELECT
+                  date_trunc('week', MIN(created)) AS first_created_week,
+                  date_trunc('day', MIN(created)) AS first_created,
+                  date_trunc('day', MAX(created)) AS last_created
+              FROM data
+              GROUP BY deviceid) AS span) AS age
+    GROUP BY age.days, age.first_created_week
+    ORDER BY age.first_created_week DESC, age.days;
+    `,
+    columns: [
+      {title: "Number of users", name: "user_count"},
+      {title: "Days the user has been creating shots", name: "days"},
+      {title: "Week the user started using Page Shot", type: "date", name: "first_created_week"}
+    ]
+  }
+
 };
 
-exports.numberOfShots = function (seconds) {
-  return db.select(
-    `SELECT COUNT(data.id) AS shotcount
-     FROM data
-     WHERE created >= NOW() - ($1 || ' SECONDS')::INTERVAL
-     GROUP BY deviceid`,
-    [seconds]
-  ).then(function (rows) {
-    let buckets = {
-      1: 0,
-      2: 0,
-      5: 0,
-      10: 0,
-      20: 0,
-      50: 0,
-      100: 0,
-      300: 0,
-      1000: 0
-    };
+function executeQuery(query) {
+  let start = Date.now();
+  return db.select(query.sql).then((rows) => {
+    let result = Object.assign({rows: [], created: Date.now()}, query);
     for (let row of rows) {
-      let c = row.shotcount;
-      if (c >= 1000) {
-        buckets[1000]++;
-      } else if (c >= 300) {
-        buckets[300]++;
-      } else if (c >= 100) {
-        buckets[100]++;
-      } else if (c >= 50) {
-        buckets[50]++;
-      } else if (c >= 20) {
-        buckets[20]++;
-      } else if (c >= 10) {
-        buckets[10]++;
-      } else if (c >= 5) {
-        buckets[5]++;
-      } else if (c >= 2) {
-        buckets[2]++;
-      } else if (c >= 1) {
-        buckets[1]++;
-      }
-    }
-    return buckets;
-  });
-};
-
-exports.secondsInDay = 60*60*24;
-
-exports.retention = function () {
-  return db.select(
-    `SELECT
-       date_trunc('day', MIN(created)) AS first_created,
-       date_trunc('day', MAX(created)) AS last_created
-     FROM data
-     GROUP BY deviceid`,
-    []
-  ).then(function (rows) {
-    let retentionBuckets = [0, 1, 2, 3, 5, 7, 14, 21, 30, 45, 60, 90, 120, 365, 3650];
-    let retentionByWeek = {};
-    let retentionByMonth = {};
-    let totalRetention = {};
-    function addToBucket(bucket, days) {
-      for (let i=retentionBuckets.length; i>=0; i--) {
-        let bucketDays = retentionBuckets[i];
-        if (days >= bucketDays) {
-          if (! bucket[bucketDays]) {
-            bucket[bucketDays] = 1;
-          } else {
-            bucket[bucketDays]++;
-          }
-          break;
+      let l = [];
+      for (let meta of query.columns) {
+        let value = row[meta.name];
+        if (value instanceof Date) {
+          value = value.getTime();
         }
+        l.push(value);
       }
+      result.rows.push(l);
     }
-    for (let row of rows) {
-      let first = row.first_created;
-      let last = row.last_created;
-      let days = Math.floor((last - first) / (exports.secondsInDay * 1000));
-      let week = formatDate(truncateDateToWeek(first));
-      let weekBucket = retentionByWeek[week];
-      if (! weekBucket) {
-        weekBucket = retentionByWeek[week] = {};
-      }
-      let month = formatDate(truncateDateToMonth(first));
-      let monthBucket = retentionByMonth[month];
-      if (! monthBucket) {
-        monthBucket = retentionByMonth[month] = {};
-      }
-      addToBucket(monthBucket, days);
-      addToBucket(weekBucket, days);
-      addToBucket(totalRetention, days);
-    }
-    return {
-      byWeek: retentionByWeek,
-      byMonth: retentionByMonth,
-      total: totalRetention
-    };
+    result.timeToExecute = Date.now() - start;
+    return result;
+  });
+}
+
+exports.storeQueries = function () {
+  let allQueries = {};
+  let promises = [];
+  for (let name in queries) {
+    promises.push(executeQuery(queries[name]).then((result) => {
+      console.log("query result", name);
+      console.log("out:", result);
+      allQueries[name] = result;
+    }));
+  }
+  return Promise.all(promises).then(() => {
+    let body = JSON.stringify(allQueries);
+    return db.transaction((client) => {
+      return db.queryWithClient(client, `
+        DELETE FROM metrics_cache
+      `).then(() => {
+        return db.queryWithClient(client, `
+          INSERT INTO metrics_cache (data) VALUES ($1)
+        `, [body]);
+      });
+    });
   });
 };
 
-function truncateDateToWeek(date) {
-  let millisecondsInDay = exports.secondsInDay * 1000;
-  let days = date.getDay();
-  let millisecondValue = date.getTime();
-  millisecondValue -= millisecondsInDay * days;
-  return new Date(millisecondValue);
-}
-
-function truncateDateToMonth(date) {
-  let newDate = new Date(date);
-  newDate.setDate(1);
-  return newDate;
-}
-
-function formatDate(date) {
-  return date.toISOString().substr(0, 10);
+function getQueries() {
+  return db.select(`
+    SELECT data FROM metrics_cache ORDER BY created DESC LIMIT 1
+  `).then((rows) => {
+    return rows[0].data;
+  });
 }
 
 exports.createModel = function (req) {
-  let model = {
-    title: "Page Shot Metrics",
-    lastShotTimeDays: 7,
-    numberOfShotsTime: 30,
-  };
-  let secs = model.lastShotTimeDays * exports.secondsInDay;
-  return exports.lastShotCount(secs).then((lastShotCount) => {
-    model.lastShotCount = lastShotCount;
-    return exports.numberOfShots(model.numberOfShotsTime * exports.secondsInDay);
-  }).then((buckets) => {
-    model.numberOfShotsBuckets = buckets;
-    return exports.retention();
-  }).then((retention) => {
-    model.retention = retention;
-    return model;
+  return getQueries().then((data) => {
+    data = JSON.parse(data);
+    let model = {
+      title: "Page Shot Metrics",
+      data: data
+    };
+    return {serverModel: model, jsonModel: model};
   });
 };

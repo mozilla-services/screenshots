@@ -230,9 +230,9 @@ homepage_dependencies := $(shell ./bin/_bundle_dependencies homepage getdeps "$(
 build/server/static/js/homepage-bundle.js: $(homepage_dependencies)
 	./bin/_bundle_dependencies homepage build ./build/server/pages/homepage/controller.js
 
-admin_dependencies := $(shell ./bin/_bundle_dependencies admin getdeps "$(server_dest)")
-build/server/static/js/admin-bundle.js: $(admin_dependencies)
-	./bin/_bundle_dependencies admin build ./build/server/pages/admin/controller.js
+metrics_dependencies := $(shell ./bin/_bundle_dependencies metrics getdeps "$(server_dest)")
+build/server/static/js/metrics-bundle.js: $(metrics_dependencies)
+	./bin/_bundle_dependencies metrics build ./build/server/pages/metrics/controller.js
 
 shotindex_dependencies := $(shell ./bin/_bundle_dependencies shotindex getdeps "$(server_dest)")
 build/server/static/js/shotindex-bundle.js: $(shotindex_dependencies)
@@ -257,7 +257,7 @@ build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass
 	@mkdir -p $(@D)
 	./bin/_write_build_time > build/server/build-time.js
 
-server: npm build/server/build-time.js build/server/static/js/shot-bundle.js build/server/static/js/homepage-bundle.js build/server/static/js/admin-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/leave-bundle.js build/server/static/js/creating-bundle.js
+server: npm build/server/build-time.js build/server/static/js/shot-bundle.js build/server/static/js/homepage-bundle.js build/server/static/js/metrics-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/leave-bundle.js build/server/static/js/creating-bundle.js
 
 ## Homepage related rules:
 
