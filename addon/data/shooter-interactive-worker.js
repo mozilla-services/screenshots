@@ -53,6 +53,9 @@ const MIN_DETECT_WIDTH = 100;
 // An autoselection bigger than either of these will be ignored:
 const MAX_DETECT_HEIGHT = Math.max(window.innerHeight + 100, 700);
 const MAX_DETECT_WIDTH = Math.max(window.innerWidth + 100, 1000);
+// This is how close (in pixels) you can get to the edge of the window and then
+// it will scroll:
+const SCROLL_BY_EDGE = 20;
 
 let annotateForPage = false;
 if (! isChrome && self.options.annotateForPage) {
@@ -642,6 +645,7 @@ stateHandlers.draggingReady = {
 };
 
 stateHandlers.dragging = {
+
   start: function () {
     ui.Box.display(selectedPos);
     ui.WholePageOverlay.remove();
@@ -650,6 +654,7 @@ stateHandlers.dragging = {
   mousemove: function (event) {
     selectedPos.x2 = util.truncateX(event.pageX);
     selectedPos.y2 = util.truncateY(event.pageY);
+    scrollIfByEdge(event.pageX, event.pageY);
     ui.Box.display(selectedPos);
   },
 
@@ -771,6 +776,7 @@ stateHandlers.resizing = {
     if (diffX || diffY) {
       resizeHasMoved = true;
     }
+    scrollIfByEdge(event.pageX, event.pageY);
     ui.Box.display(selectedPos);
   },
 
@@ -786,6 +792,35 @@ stateHandlers.cancel = {
     ui.Box.remove();
   }
 };
+
+let documentWidth = Math.max(
+  document.body.clientWidth,
+  document.documentElement.clientWidth,
+  document.body.scrollWidth,
+  document.documentElement.scrollWidth);
+let documentHeight = Math.max(
+  document.body.clientHeight,
+  document.documentElement.clientHeight,
+  document.body.scrollHeight,
+  document.documentElement.scrollHeight);
+
+function scrollIfByEdge(pageX, pageY) {
+  let top = window.scrollY;
+  let bottom = top + window.innerHeight;
+  let left = window.scrollX;
+  let right = left + window.innerWidth;
+  console.log("height", pageY, bottom, documentHeight);
+  if (pageY + SCROLL_BY_EDGE >= bottom && bottom < documentHeight) {
+    window.scrollBy(0, SCROLL_BY_EDGE);
+  } else if (pageY - SCROLL_BY_EDGE <= top) {
+    window.scrollBy(0, -SCROLL_BY_EDGE);
+  }
+  if (pageX + SCROLL_BY_EDGE >= right && right < documentWidth) {
+    window.scrollBy(SCROLL_BY_EDGE, 0);
+  } else if (pageX - SCROLL_BY_EDGE <= left) {
+    window.scrollBy(-SCROLL_BY_EDGE, 0);
+  }
+}
 
 /***********************************************
  * Selection communication
