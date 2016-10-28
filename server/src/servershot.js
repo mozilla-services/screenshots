@@ -577,7 +577,7 @@ ClipRewrites = class ClipRewrites {
       let clip = this.shot.getClip(name);
       if (clip.image && clip.isDataUrl()) {
         this.toInsertClipIds.push(clip.id);
-        let imageId = uuid.v4();
+        let imageId = uuid.v4() + ".png";
         this.toInsert[clip.id] = {
           uuid: imageId,
           url: linker.imageLinkWithHost(imageId),
