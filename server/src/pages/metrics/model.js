@@ -111,8 +111,6 @@ exports.storeQueries = function () {
   let promises = [];
   for (let name in queries) {
     promises.push(executeQuery(queries[name]).then((result) => {
-      console.log("query result", name);
-      console.log("out:", result);
       allQueries[name] = result;
     }));
   }
