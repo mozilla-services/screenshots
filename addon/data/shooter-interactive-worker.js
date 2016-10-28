@@ -406,8 +406,11 @@ stateHandlers.crosshairsPreview = {
 
 stateHandlers.crosshairs = {
 
+  cachedEl: null,
+
   start: function () {
     selectedPos = mousedownPos = null;
+    this.cachedEl = null;
     ui.Box.remove();
     ui.WholePageOverlay.display(standardOverlayCallbacks);
     if (isChrome) {
@@ -428,6 +431,15 @@ stateHandlers.crosshairs = {
       event.pageY - window.pageYOffset
     );
     document.body.classList.remove("pageshot-no-pointer-event");
+    if (this.cachedEl && this.cachedEl === el) {
+      // Still hovering over the same element
+      return;
+    }
+    this.cachedEl = el;
+    this.setAutodetectBasedOnElement(el);
+  },
+
+  setAutodetectBasedOnElement: function (el) {
     let lastRect;
     let lastNode;
     let rect;
@@ -454,6 +466,14 @@ stateHandlers.crosshairs = {
       lastNode = node;
       node = node.parentNode;
     }
+    if (rect && node) {
+      let evenBetter = this.evenBetterElement(node, rect);
+      if (evenBetter) {
+        node = lastNode = evenBetter;
+        rect = Selection.getBoundingClientRect(evenBetter);
+        attemptExtend = false;
+      }
+    }
     if (rect && attemptExtend) {
       let extendNode = lastNode.nextSibling;
       while (extendNode) {
@@ -478,6 +498,7 @@ stateHandlers.crosshairs = {
         }
       }
     }
+
     if (rect && (rect.width < MIN_DETECT_ABSOLUTE_WIDTH || rect.height < MIN_DETECT_ABSOLUTE_HEIGHT)) {
       rect = null;
     }
@@ -487,6 +508,31 @@ stateHandlers.crosshairs = {
       ui.HoverBox.display(rect);
     }
     autoDetectRect = rect;
+  },
+
+  /** When we find an element, maybe there's one that's just a little bit better... */
+  evenBetterElement: function (node, origRect) {
+    let el = node.parentNode;
+    let ELEMENT_NODE = document.ELEMENT_NODE;
+    while (el && el.nodeType == ELEMENT_NODE) {
+      if (! el.getAttribute) {
+        return null;
+      }
+      let role = el.getAttribute("role");
+      if (role === "article" || el.className && el.className.search("tweet ") !== -1) {
+        let rect = Selection.getBoundingClientRect(el);
+        if (! rect) {
+          return null;
+        }
+        if (rect.width <= MAX_DETECT_WIDTH && rect.height <= MAX_DETECT_HEIGHT) {
+          return el;
+        } else {
+          return null;
+        }
+      }
+      el = el.parentNode;
+    }
+    return null;
   },
 
   mousedown: function (event) {
