@@ -28,7 +28,10 @@ function annotatePosition(pos) { // eslint-disable-line no-unused-vars
       width: elementRect.width
     };
   }
-  document.body.classList.add("pageshot-hide-selection");
+  let iframe = document.getElementById("pageshot-iframe");
+  if (iframe) {
+    iframe.style.display = "none";
+  }
   try {
     let pos1 = findElement(pos.left, pos.top, 5, 5);
     pos.topLeftElement = pos1.element;
@@ -39,6 +42,8 @@ function annotatePosition(pos) { // eslint-disable-line no-unused-vars
       pos.bottomRightOffset = {x: pos2.x, y: pos2.y, height: pos2.height, width: pos2.width};
     }
   } finally {
-    document.body.classList.remove("pageshot-hide-selection");
+    if (iframe) {
+      iframe.style.display = "";
+    }
   }
 }

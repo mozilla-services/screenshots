@@ -23,42 +23,6 @@ $handle-mover-offset: $mover-outer - $handle-outside-extent / 2;
 $mover-size: $mover-outer + $mover-inner;
 $overlay-z-index: 9999999999;
 
-.pageshot-hide-selection .pageshot-highlight,
-.pageshot-hide-selection .pageshot-mover,
-.pageshot-hide-selection .pageshot-bghighlight,
-.pageshot-hide-selection .pageshot-textbutton,
-.pageshot-hide-selection .pageshot-horizcross,
-.pageshot-hide-selection .pageshot-vertcross,
-.pageshot-hide-selection .pageshot-help-message,
-.pageshot-hide-selection .pageshot-preview-overlay,
-.pageshot-hide-selection .pageshot-crosshair-pulse,
-.pageshot-hide-selection .pageshot-crosshair-inner,
-.pageshot-hide-selection .pageshot-myshots-reminder,
-.pageshot-hide-selection .pageshot-saver,
-.pageshot-hide-selection .pageshot-select-mode-background {
-  display: none;
-}
-
-.pageshot-no-pointer-event .pageshot-highlight,
-.pageshot-no-pointer-event .pageshot-mover,
-.pageshot-no-pointer-event .pageshot-bghighlight,
-.pageshot-no-pointer-event .pageshot-textbutton,
-.pageshot-no-pointer-event .pageshot-horizcross,
-.pageshot-no-pointer-event .pageshot-vertcross,
-.pageshot-no-pointer-event .pageshot-help-message,
-.pageshot-no-pointer-event .pageshot-preview-overlay,
-.pageshot-no-pointer-event .pageshot-crosshair-pulse,
-.pageshot-no-pointer-event .pageshot-crosshair-inner,
-.pageshot-no-pointer-event .pageshot-myshots-reminder,
-.pageshot-no-pointer-event .pageshot-saver,
-.pageshot-no-pointer-event .pageshot-select-mode-background {
-  pointer-events: none;
-}
-
-.pageshot-hide-movers .pageshot-mover {
-  display: none;
-}
-
 .pageshot-highlight {
   @extend .pageshot-reset;
   position: absolute;

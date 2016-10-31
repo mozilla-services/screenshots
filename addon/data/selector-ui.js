@@ -1,8 +1,6 @@
 /* globals util, window, document, console */
 /* exported ui */
 
-var isChrome = false;
-
 const ui = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
 
@@ -44,90 +42,111 @@ const ui = (function () { // eslint-disable-line no-unused-vars
   exports.isHeader = isHeader;
 
   function makeEl(tagName, className) {
-    let el = document.createElement(tagName);
+    let el = iframe.document.createElement(tagName);
     if (className) {
       el.className = className;
     }
     return el;
   }
 
-  /** Represents the shadow overlay that covers the whole page */
-  let WholePageOverlay = exports.WholePageOverlay = {
+  let iframe = exports.iframe = {
+    element: null,
+    document: null,
+    display: function (installHandlerOnDocument) {
+      return new Promise((resolve, reject) => {
+        if (! this.element) {
+          this.element = document.createElement("iframe");
+          this.element.id = "pageshot-iframe";
+          this.element.style.zIndex = "99999999999";
+          this.element.style.border = "none";
+          this.element.style.position = "absolute";
+          this.element.style.top = "0";
+          this.element.style.left = "0";
+          this.element.style.height = "100%";
+          this.element.style.width = "100%";
+          this.element.onload = () => {
+            var parsedDom = (new DOMParser()).parseFromString(
+              "<html><head><title></title></head><body></body>",
+              "text/html"
+            );
+            this.document = this.element.contentDocument;
+            this.document.replaceChild(
+              this.document.adoptNode(parsedDom.documentElement),
+              this.document.documentElement
+            );
+            let linkUrl = self.options["inline-selection.css"];
+            var link = this.document.getElementById("pageshot-stylesheet");
+            if (! link) {
+              link = this.document.createElement("link");
+              link.setAttribute("rel", "stylesheet");
+              link.setAttribute("id", "pageshot-stylesheet");
+              link.setAttribute("href", linkUrl);
+              this.document.head.appendChild(link);
+            }
+            installHandlerOnDocument(this.document);
+            resolve();
+          };
+          document.body.appendChild(this.element);
+        } else {
+          resolve();
+        }
+      });
+    },
 
-    display: function (callbacks, installHandlersOnDocument) {
-
-      if (! this.overlayFrame) {
-        let bodyRect = document.body.getBoundingClientRect();
-
-        this.overlayFrame = document.createElement("iframe");
-        // Comment this to get the handlers to work when installed on the iframe.
-        this.overlayFrame.style.pointerEvents = "none";
-        this.overlayFrame.style.zIndex = "99999999999";
-        this.overlayFrame.style.border = "none";
-        this.overlayFrame.style.position = "absolute";
-        this.overlayFrame.style.top = "0";
-        this.overlayFrame.style.left = "0";
-        this.overlayFrame.style.height = "100%";
-        this.overlayFrame.style.width = "100%";
-
-        document.body.appendChild(this.overlayFrame);
-
-        this.overlayFrame.onload = () => {
-          var parsedDom = (new DOMParser()).parseFromString(
-            "<html><head><title></title></head><body></body>",
-            "text/html"
-          );
-          let frameDoc = this.overlayFrame.contentDocument;
-
-          frameDoc.replaceChild(
-              frameDoc.adoptNode(parsedDom.documentElement),
-              frameDoc.documentElement
-          );
-
-          let overlayEl = makeEl("div", "pageshot-preview-overlay");
-          let instructions = makeEl("div", "pageshot-preview-instructions");
-          instructions.textContent = "Drag or click on the page to select a region. Press ESC to cancel.";
-          overlayEl.appendChild(instructions);
-          let button = makeEl("div", "pageshot-myshots");
-          button.addEventListener("click", callbacks.onOpenMyShots, false);
-          let myShotsPre = makeEl("div", "pageshot-pre-myshots");
-          button.appendChild(myShotsPre);
-          let text = makeEl("div", "pageshot-myshots-text");
-          text.textContent = "My Shots";
-          button.appendChild(text);
-          let myShotsPost = makeEl("div", "pageshot-post-myshots");
-          button.appendChild(myShotsPost);
-          overlayEl.appendChild(button);
-          let visibleButton = makeEl("div", "pageshot-overlay-button pageshot-visible");
-          visibleButton.textContent = "Save visible";
-          visibleButton.addEventListener("click", callbacks.onClickVisible, false);
-          overlayEl.appendChild(visibleButton);
-          let fullPageButton = makeEl("div", "pageshot-overlay-button pageshot-full-page");
-          fullPageButton.textContent = "Save full page";
-          fullPageButton.addEventListener("click", callbacks.onClickFullPage, false);
-          overlayEl.appendChild(fullPageButton);
-          frameDoc.body.appendChild(overlayEl);
-          let linkUrl = self.options["inline-selection.css"];
-          var link = frameDoc.getElementById("pageshot-stylesheet");
-          if (! link) {
-            link = frameDoc.createElement("link");
-            link.setAttribute("rel", "stylesheet");
-            link.setAttribute("id", "pageshot-stylesheet");
-            link.setAttribute("href", linkUrl);
-            frameDoc.head.appendChild(link);
-          }
-          // Change this to frameDoc to install on the child
-          installHandlersOnDocument(document);
-        };
+    getElementFromPoint: function (x, y) {
+      this.element.style.pointerEvents = "none";
+      let el;
+      try {
+        el = document.elementFromPoint(x, y);
+      } finally {
+        this.element.style.pointerEvents = "";
       }
+      return el;
     },
 
     remove: function () {
-      util.removeNode(this.overlayFrame);
-      this.overlayFrame = null;
+      util.removeNode(this.element);
+      this.element = this.document = null;
+    }
+  };
+
+  /** Represents the shadow overlay that covers the whole page */
+  let WholePageOverlay = exports.WholePageOverlay = {
+
+    el: null,
+
+    display: function (callbacks) {
+      this.remove();
+      let overlayEl = this.el = makeEl("div", "pageshot-preview-overlay");
+      let instructions = makeEl("div", "pageshot-preview-instructions");
+      instructions.textContent = "Drag or click on the page to select a region. Press ESC to cancel.";
+      overlayEl.appendChild(instructions);
+      let button = makeEl("div", "pageshot-myshots");
+      button.addEventListener("click", callbacks.onOpenMyShots, false);
+      let myShotsPre = makeEl("div", "pageshot-pre-myshots");
+      button.appendChild(myShotsPre);
+      let text = makeEl("div", "pageshot-myshots-text");
+      text.textContent = "My Shots";
+      button.appendChild(text);
+      let myShotsPost = makeEl("div", "pageshot-post-myshots");
+      button.appendChild(myShotsPost);
+      overlayEl.appendChild(button);
+      let visibleButton = makeEl("div", "pageshot-overlay-button pageshot-visible");
+      visibleButton.textContent = "Save visible";
+      visibleButton.addEventListener("click", callbacks.onClickVisible, false);
+      overlayEl.appendChild(visibleButton);
+      let fullPageButton = makeEl("div", "pageshot-overlay-button pageshot-full-page");
+      fullPageButton.textContent = "Save full page";
+      fullPageButton.addEventListener("click", callbacks.onClickFullPage, false);
+      overlayEl.appendChild(fullPageButton);
+      iframe.document.body.appendChild(overlayEl);
     },
 
-    el: null
+    remove: function () {
+      util.removeNode(this.el);
+      this.el = null;
+    }
+
   };
 
   let movements = ["topLeft", "top", "topRight", "left", "right", "bottomLeft", "bottom", "bottomRight"];
@@ -219,14 +238,14 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         boxEl.appendChild(elTarget);
       }
       this.bgTop = makeEl("div", "pageshot-bghighlight");
-      document.body.appendChild(this.bgTop);
+      iframe.document.body.appendChild(this.bgTop);
       this.bgLeft = makeEl("div", "pageshot-bghighlight");
-      document.body.appendChild(this.bgLeft);
+      iframe.document.body.appendChild(this.bgLeft);
       this.bgRight = makeEl("div", "pageshot-bghighlight");
-      document.body.appendChild(this.bgRight);
+      iframe.document.body.appendChild(this.bgRight);
       this.bgBottom = makeEl("div", "pageshot-bghighlight");
-      document.body.appendChild(this.bgBottom);
-      document.body.appendChild(boxEl);
+      iframe.document.body.appendChild(this.bgBottom);
+      iframe.document.body.appendChild(boxEl);
       this.el = boxEl;
     },
 
@@ -264,38 +283,6 @@ const ui = (function () { // eslint-disable-line no-unused-vars
     boxBottomEl: null
   };
 
-  exports.MyShotsReminder = {
-
-    display: function () {
-      if (this.dialogEl) {
-        return;
-      }
-      let div = makeEl("div", "pageshot-myshots-reminder");
-      if (isChrome) {
-        div.className += " pageshot-myshots-reminder-chrome";
-      }
-      div.innerHTML = `
-      <div class="pageshot-panel">
-        <div class="pageshot-panel-arrowUp"></div>
-        <div class="pageshot-panel-section pageshot-panel-section-header">
-          <div class="pageshot-text-section-list">
-            Click this button to view all the shots you've taken
-          </div>
-        </div>
-      </div>
-      `;
-      document.body.appendChild(div);
-      this.dialogEl = div;
-    },
-
-    remove: function () {
-      util.removeNode(this.dialogEl);
-      this.dialogEl = null;
-    },
-
-    dialogEl: null
-  };
-
   exports.HoverBox = {
 
     el: null,
@@ -303,7 +290,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
     display: function (rect) {
       if (! this.el) {
         this.el = makeEl("div", "pageshot-hover-highlight");
-        document.body.appendChild(this.el);
+        iframe.document.body.appendChild(this.el);
       }
       this.el.style.display = "";
       this.el.style.top = (rect.top - 1) + "px";
@@ -356,7 +343,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         <button class="pageshot-cancel">Cancel</button>
         <button class="pageshot-save">Save Full Page</button>
         `;
-        document.body.appendChild(this.el);
+        iframe.document.body.appendChild(this.el);
         let methods = {
           ".pageshot-myshots": "onMyShots",
           ".pageshot-save": "onSave",
@@ -377,7 +364,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
             return undefined;
           });
         });
-        document.body.appendChild(this.el);
+        iframe.document.body.appendChild(this.el);
       }
     },
 

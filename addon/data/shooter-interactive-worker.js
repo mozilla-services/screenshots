@@ -350,7 +350,9 @@ stateHandlers.crosshairs = {
     selectedPos = mousedownPos = null;
     this.cachedEl = null;
     ui.Box.remove();
-    ui.WholePageOverlay.display(standardOverlayCallbacks, installHandlersOnDocument);
+    ui.WholePageOverlay.display(standardOverlayCallbacks);
+    document.addEventListener("keyup", keyupHandler, false);
+    registeredDocumentHandlers.push({doc: document, handler: keyupHandler});
     if (isChrome) {
       ui.ChromeInterface.showSaveFullPage();
     }
@@ -363,12 +365,10 @@ stateHandlers.crosshairs = {
       ui.HoverBox.hide();
       return;
     }
-    document.body.classList.add("pageshot-no-pointer-event");
-    let el = document.elementFromPoint(
+    let el = ui.iframe.getElementFromPoint(
       event.pageX - window.pageXOffset,
       event.pageY - window.pageYOffset
     );
-    document.body.classList.remove("pageshot-no-pointer-event");
     if (this.cachedEl && this.cachedEl === el) {
       // Still hovering over the same element
       return;
@@ -743,7 +743,6 @@ function scrollIfByEdge(pageX, pageY) {
   let bottom = top + window.innerHeight;
   let left = window.scrollX;
   let right = left + window.innerWidth;
-  console.log("height", pageY, bottom, documentHeight);
   if (pageY + SCROLL_BY_EDGE >= bottom && bottom < documentHeight) {
     window.scrollBy(0, SCROLL_BY_EDGE);
   } else if (pageY - SCROLL_BY_EDGE <= top) {
@@ -807,10 +806,10 @@ function getScreenPosition() {
 
 function activate() {
   ui.Box.remove();
-  document.body.classList.remove("pageshot-hide-selection");
-  document.body.classList.remove("pageshot-hide-movers");
   addHandlers();
-  setState("crosshairs");
+  ui.iframe.display(installHandlersOnDocument).then(() => {
+    setState("crosshairs");
+  });
   if (isChrome) {
     ui.ChromeInterface.display();
     ui.ChromeInterface.onMyShots = function () {
@@ -835,10 +834,6 @@ function activate() {
 
 function deactivate() {
   ui.Box.remove();
-  if (document.body) {
-    document.body.classList.remove("pageshot-hide-selection");
-    document.body.classList.remove("pageshot-hide-movers");
-  }
   ui.remove();
   removeHandlers();
   setState("cancel");
@@ -849,12 +844,11 @@ function deactivate() {
  */
 
 let primedDocumentHandlers = new Map();
-let registeredDocumentHandlers = {};
+let registeredDocumentHandlers = []
 
 function addHandlers() {
   ["mouseup", "mousedown", "mousemove", "click"].forEach((eventName) => {
     let fn = watchFunction((function (eventName, event) {
-      //console.log("HANDLER", eventName);
       if (typeof event.button == "number" && event.button !== 0) {
         // Not a left click
         return;
@@ -870,18 +864,14 @@ function addHandlers() {
       }
     }).bind(null, eventName));
     primedDocumentHandlers.set(eventName, fn);
-//    document.addEventListener(eventName, fn, true);
-//    registeredDocumentHandlers[eventName] = fn;
   });
-    primedDocumentHandlers.set("keyup", keyupHandler);
-//  document.addEventListener("keyup", keyupHandler, false);
-//  registeredDocumentHandlers.keyup = keyupHandler;
+  primedDocumentHandlers.set("keyup", keyupHandler);
 }
 
 function installHandlersOnDocument(docObj) {
   for (let [eventName, handler] of primedDocumentHandlers) {
     docObj.addEventListener(eventName, handler, eventName !== "keyup");
-    registeredDocumentHandlers[eventName] = handler;
+    registeredDocumentHandlers.push({doc: docObj, handler});
   }
 }
 
@@ -912,9 +902,10 @@ function keyupHandler(event) {
 }
 
 function removeHandlers() {
-  for (let name in registeredDocumentHandlers) {
-    document.removeEventListener(name, registeredDocumentHandlers[name], false);
+  for (let {doc, handler} of registeredDocumentHandlers) {
+    doc.removeEventListener(name, handler, false);
   }
+  registeredDocumentHandlers = [];
 }
 
 function addStylesheet() {
@@ -974,7 +965,6 @@ if (! isChrome) {
   // (such as moving windows, add-on unloading)
   self.port.on("detach", () => {
     deactivate();
-    console.log("detached worker");
   });
 
   self.port.emit("ready");
