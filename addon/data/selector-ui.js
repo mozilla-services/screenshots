@@ -54,13 +54,13 @@ const ui = (function () { // eslint-disable-line no-unused-vars
   /** Represents the shadow overlay that covers the whole page */
   let WholePageOverlay = exports.WholePageOverlay = {
 
-    display: function (callbacks) {
+    display: function (callbacks, installHandlersOnDocument) {
 
       if (! this.overlayFrame) {
         let bodyRect = document.body.getBoundingClientRect();
 
         this.overlayFrame = document.createElement("iframe");
-        this.overlayFrame.style.pointerEvents = "none";
+        //this.overlayFrame.style.pointerEvents = "none";
         this.overlayFrame.style.zIndex = "99999999999";
         this.overlayFrame.style.border = "none";
         this.overlayFrame.style.position = "absolute";
@@ -115,7 +115,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
             link.setAttribute("href", linkUrl);
             frameDoc.head.appendChild(link);
           }
-
+          installHandlersOnDocument(frameDoc);
         };
       }
     },

@@ -350,7 +350,7 @@ stateHandlers.crosshairs = {
     selectedPos = mousedownPos = null;
     this.cachedEl = null;
     ui.Box.remove();
-    ui.WholePageOverlay.display(standardOverlayCallbacks);
+    ui.WholePageOverlay.display(standardOverlayCallbacks, installHandlersOnDocument);
     if (isChrome) {
       ui.ChromeInterface.showSaveFullPage();
     }
@@ -498,7 +498,7 @@ stateHandlers.draggingReady = {
 
   start: function () {
     ui.Box.remove();
-    ui.WholePageOverlay.display(standardOverlayCallbacks);
+    ui.WholePageOverlay.display(standardOverlayCallbacks, installHandlersOnDocument);
   },
 
   mousemove: function (event) {
@@ -848,11 +848,13 @@ function deactivate() {
  * Event handlers
  */
 
+let primedDocumentHandlers = new Map();
 let registeredDocumentHandlers = {};
 
 function addHandlers() {
   ["mouseup", "mousedown", "mousemove", "click"].forEach((eventName) => {
     let fn = watchFunction((function (eventName, event) {
+      //console.log("HANDLER", eventName);
       if (typeof event.button == "number" && event.button !== 0) {
         // Not a left click
         return;
@@ -867,11 +869,20 @@ function addHandlers() {
         return handler[eventName](event);
       }
     }).bind(null, eventName));
-    document.addEventListener(eventName, fn, true);
-    registeredDocumentHandlers[eventName] = fn;
+    primedDocumentHandlers.set(eventName, fn);
+//    document.addEventListener(eventName, fn, true);
+//    registeredDocumentHandlers[eventName] = fn;
   });
-  document.addEventListener("keyup", keyupHandler, false);
-  registeredDocumentHandlers.keyup = keyupHandler;
+    primedDocumentHandlers.set("keyup", keyupHandler);
+//  document.addEventListener("keyup", keyupHandler, false);
+//  registeredDocumentHandlers.keyup = keyupHandler;
+}
+
+function installHandlersOnDocument(docObj) {
+  for (let [eventName, handler] of primedDocumentHandlers) {
+    docObj.addEventListener(eventName, handler, eventName !== "keyup");
+    registeredDocumentHandlers[eventName] = handler;
+  }
 }
 
 function keyupHandler(event) {
