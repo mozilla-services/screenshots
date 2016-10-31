@@ -149,7 +149,7 @@ var conf = convict({
   checkDeletedInterval: {
     doc: "Frequency in seconds to check for items that should be purged",
     format: "int",
-    default: 60,
+    default: 60*60, // 1 hour
     env: "CHECK_DELETED_INTERVAL",
     arg: "check-deleted-interval"
   },
