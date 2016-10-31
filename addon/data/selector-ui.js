@@ -60,7 +60,8 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         let bodyRect = document.body.getBoundingClientRect();
 
         this.overlayFrame = document.createElement("iframe");
-        //this.overlayFrame.style.pointerEvents = "none";
+        // Comment this to get the handlers to work when installed on the iframe.
+        this.overlayFrame.style.pointerEvents = "none";
         this.overlayFrame.style.zIndex = "99999999999";
         this.overlayFrame.style.border = "none";
         this.overlayFrame.style.position = "absolute";
@@ -115,7 +116,8 @@ const ui = (function () { // eslint-disable-line no-unused-vars
             link.setAttribute("href", linkUrl);
             frameDoc.head.appendChild(link);
           }
-          installHandlersOnDocument(frameDoc);
+          // Change this to frameDoc to install on the child
+          installHandlersOnDocument(document);
         };
       }
     },
