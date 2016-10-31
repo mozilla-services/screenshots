@@ -297,6 +297,10 @@ app.get("/configure-raven.js", function (req, res) {
   jsResponse(res, script);
 });
 
+app.get("/favicon.ico", function (req, res) {
+  res.redirect(301, "/static/img/pageshot-icon-32.png");
+});
+
 app.post("/error", function (req, res) {
   let bodyObj = req.body;
   if (typeof bodyObj !== "object") {
@@ -324,7 +328,7 @@ app.post("/error", function (req, res) {
   userAnalytics.exception({
     hitType: "exception",
     userAgentOverride: req.headers['user-agent'],
-    applicationName: "addon",
+    applicationName: "firefox",
     applicationVersion: bodyObj.version,
     exceptionDescription: desc
   }).send();
@@ -937,12 +941,7 @@ app.use(function (err, req, res, next) {
   errorResponse(res, "General error:", err);
 });
 
-/*
-    FIXME we need ldap authentication and for this to only be accessible
-    from the vpn before we can turn the metrics interface back on
-
-app.use("/admin", require("./pages/admin/server").app);
-*/
+app.use("/metrics", require("./pages/metrics/server").app);
 
 app.use("/shots", require("./pages/shotindex/server").app);
 

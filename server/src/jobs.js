@@ -2,20 +2,29 @@
 
 const config = require("./config").getProperties();
 const mozlog = require("mozlog")("jobs");
+const ua = require("universal-analytics");
 
 // Convert to milliseconds:
-let keepTime = config.exportKeepTime * 60 * 1000;
+//let keepTime = config.exportKeepTime * 60 * 1000;
 let checkDeletedInterval = config.checkDeletedInterval * 1000;
 
 exports.start = function () {
 
-  setInterval(require("./exporter").cleanExports, keepTime / 10);
+  //setInterval(require("./exporter").cleanExports, keepTime / 10);
 
   setInterval(function () {
     require("./servershot").Shot.cleanDeletedShots()
       .then((rowCount) => {
         if (rowCount) {
           mozlog.info("cleaning-expired-shots", {rowCount});
+        }
+        if (config.gaId) {
+          let analytics = ua(config.gaId);
+          analytics.event({
+            ec: "server",
+            ea: "clean-deleted-shot",
+            ev: rowCount
+          }).send();
         }
       })
       .catch((e) => {

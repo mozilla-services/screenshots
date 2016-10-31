@@ -7,10 +7,6 @@
 
 /* States:
 
-"selectMode":
-  Prompt the user to choose between selecting a region to screenshot and saving a full page archive.
-"crosshairsPreview":
-  FIXME DEPRECATE Nothing has happened, and the selection preview is still showing
 "crosshairs":
   Nothing has happened, and the crosshairs will follow the movement of the mouse
 "draggingReady":
@@ -53,6 +49,9 @@ const MIN_DETECT_WIDTH = 100;
 // An autoselection bigger than either of these will be ignored:
 const MAX_DETECT_HEIGHT = Math.max(window.innerHeight + 100, 700);
 const MAX_DETECT_WIDTH = Math.max(window.innerWidth + 100, 1000);
+// This is how close (in pixels) you can get to the edge of the window and then
+// it will scroll:
+const SCROLL_BY_EDGE = 20;
 
 let annotateForPage = false;
 if (! isChrome && self.options.annotateForPage) {
@@ -343,71 +342,13 @@ class Pos {
  * all stateHandlers
  */
 
-stateHandlers.selectMode = {
-  start: function () {
-    ui.SelectMode.display({
-      onChooseRegionMode: this.onChooseRegionMode.bind(this),
-      onChooseArchiveMode: this.onChooseArchiveMode.bind(this),
-      onCancel: this.onCancel.bind(this),
-      onOpenMyShots: this.onOpenMyShots.bind(this)
-    });
-  },
-
-  onChooseRegionMode: function () {
-    sendEvent("start-region-select", "mode-click");
-    setState("crosshairs");
-  },
-
-  onChooseArchiveMode: function () {
-    sendEvent("start-archive", "mode-click");
-    setState("cancel");
-    self.port.emit("take-shot");
-  },
-
-  onCancel: function () {
-    sendEvent("cancel-shot", "mode-click");
-    setState("cancel");
-  },
-
-  onOpenMyShots: function () {
-    sendEvent("goto-myshots", "mode-click");
-    self.port.emit("openMyShots");
-  },
-
-  end: function () {
-    ui.SelectMode.remove();
-  }
-}
-
-stateHandlers.crosshairsPreview = {
-
-  start: function () {
-    ui.CrosshairPreview.display();
-    ui.WholePageOverlay.display(standardOverlayCallbacks);
-    if (isChrome) {
-      if (! chromeShooter.hasUsedMyShots) {
-        ui.MyShotsReminder.display();
-      }
-      ui.ChromeInterface.showSaveFullPage();
-    } else if (self.options.showMyShotsReminder) {
-      ui.MyShotsReminder.display();
-    }
-  },
-
-  mousemove: function () {
-    setState("crosshairs");
-  },
-
-  end: function () {
-    ui.CrosshairPreview.remove();
-    ui.MyShotsReminder.remove();
-  },
-};
-
 stateHandlers.crosshairs = {
+
+  cachedEl: null,
 
   start: function () {
     selectedPos = mousedownPos = null;
+    this.cachedEl = null;
     ui.Box.remove();
     ui.WholePageOverlay.display(standardOverlayCallbacks);
     if (isChrome) {
@@ -428,6 +369,15 @@ stateHandlers.crosshairs = {
       event.pageY - window.pageYOffset
     );
     document.body.classList.remove("pageshot-no-pointer-event");
+    if (this.cachedEl && this.cachedEl === el) {
+      // Still hovering over the same element
+      return;
+    }
+    this.cachedEl = el;
+    this.setAutodetectBasedOnElement(el);
+  },
+
+  setAutodetectBasedOnElement: function (el) {
     let lastRect;
     let lastNode;
     let rect;
@@ -454,6 +404,14 @@ stateHandlers.crosshairs = {
       lastNode = node;
       node = node.parentNode;
     }
+    if (rect && node) {
+      let evenBetter = this.evenBetterElement(node, rect);
+      if (evenBetter) {
+        node = lastNode = evenBetter;
+        rect = Selection.getBoundingClientRect(evenBetter);
+        attemptExtend = false;
+      }
+    }
     if (rect && attemptExtend) {
       let extendNode = lastNode.nextSibling;
       while (extendNode) {
@@ -478,6 +436,7 @@ stateHandlers.crosshairs = {
         }
       }
     }
+
     if (rect && (rect.width < MIN_DETECT_ABSOLUTE_WIDTH || rect.height < MIN_DETECT_ABSOLUTE_HEIGHT)) {
       rect = null;
     }
@@ -487,6 +446,31 @@ stateHandlers.crosshairs = {
       ui.HoverBox.display(rect);
     }
     autoDetectRect = rect;
+  },
+
+  /** When we find an element, maybe there's one that's just a little bit better... */
+  evenBetterElement: function (node, origRect) {
+    let el = node.parentNode;
+    let ELEMENT_NODE = document.ELEMENT_NODE;
+    while (el && el.nodeType == ELEMENT_NODE) {
+      if (! el.getAttribute) {
+        return null;
+      }
+      let role = el.getAttribute("role");
+      if (role === "article" || el.className && el.className.search("tweet ") !== -1) {
+        let rect = Selection.getBoundingClientRect(el);
+        if (! rect) {
+          return null;
+        }
+        if (rect.width <= MAX_DETECT_WIDTH && rect.height <= MAX_DETECT_HEIGHT) {
+          return el;
+        } else {
+          return null;
+        }
+      }
+      el = el.parentNode;
+    }
+    return null;
   },
 
   mousedown: function (event) {
@@ -501,7 +485,6 @@ stateHandlers.crosshairs = {
   },
 
   end: function () {
-    ui.Crosshair.remove();
     ui.HoverBox.remove();
   }
 };
@@ -596,6 +579,7 @@ stateHandlers.draggingReady = {
 };
 
 stateHandlers.dragging = {
+
   start: function () {
     ui.Box.display(selectedPos);
     ui.WholePageOverlay.remove();
@@ -604,6 +588,7 @@ stateHandlers.dragging = {
   mousemove: function (event) {
     selectedPos.x2 = util.truncateX(event.pageX);
     selectedPos.y2 = util.truncateY(event.pageY);
+    scrollIfByEdge(event.pageX, event.pageY);
     ui.Box.display(selectedPos);
   },
 
@@ -725,6 +710,7 @@ stateHandlers.resizing = {
     if (diffX || diffY) {
       resizeHasMoved = true;
     }
+    scrollIfByEdge(event.pageX, event.pageY);
     ui.Box.display(selectedPos);
   },
 
@@ -740,6 +726,35 @@ stateHandlers.cancel = {
     ui.Box.remove();
   }
 };
+
+let documentWidth = Math.max(
+  document.body.clientWidth,
+  document.documentElement.clientWidth,
+  document.body.scrollWidth,
+  document.documentElement.scrollWidth);
+let documentHeight = Math.max(
+  document.body.clientHeight,
+  document.documentElement.clientHeight,
+  document.body.scrollHeight,
+  document.documentElement.scrollHeight);
+
+function scrollIfByEdge(pageX, pageY) {
+  let top = window.scrollY;
+  let bottom = top + window.innerHeight;
+  let left = window.scrollX;
+  let right = left + window.innerWidth;
+  console.log("height", pageY, bottom, documentHeight);
+  if (pageY + SCROLL_BY_EDGE >= bottom && bottom < documentHeight) {
+    window.scrollBy(0, SCROLL_BY_EDGE);
+  } else if (pageY - SCROLL_BY_EDGE <= top) {
+    window.scrollBy(0, -SCROLL_BY_EDGE);
+  }
+  if (pageX + SCROLL_BY_EDGE >= right && right < documentWidth) {
+    window.scrollBy(SCROLL_BY_EDGE, 0);
+  } else if (pageX - SCROLL_BY_EDGE <= left) {
+    window.scrollBy(-SCROLL_BY_EDGE, 0);
+  }
+}
 
 /***********************************************
  * Selection communication
@@ -874,7 +889,7 @@ function keyupHandler(event) {
     }
   }
   if ((event.key || event.code) === "Enter") {
-    if (getState.state === "selected" || getState.state === "selectMode") {
+    if (getState.state === "selected") {
       sendEvent("save-shot", "keyboard-enter");
       if (isChrome) {
         chromeShooter.takeShot();

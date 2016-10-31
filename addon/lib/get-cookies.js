@@ -56,5 +56,5 @@ exports.safeCookieSummary = function (host) {
 exports.hasCookieForBackend = function (backend) {
   let backendUrl = newURI(backend, null, null);
   let cookieString = cookieService.getCookieStringFromHttp(backendUrl, backendUrl, null);
-  return cookieString.search(/user=/) != -1;
+  return cookieString && cookieString.search(/user=/) != -1;
 };
