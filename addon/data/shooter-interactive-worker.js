@@ -7,10 +7,6 @@
 
 /* States:
 
-"selectMode":
-  Prompt the user to choose between selecting a region to screenshot and saving a full page archive.
-"crosshairsPreview":
-  FIXME DEPRECATE Nothing has happened, and the selection preview is still showing
 "crosshairs":
   Nothing has happened, and the crosshairs will follow the movement of the mouse
 "draggingReady":
@@ -346,67 +342,6 @@ class Pos {
  * all stateHandlers
  */
 
-stateHandlers.selectMode = {
-  start: function () {
-    ui.SelectMode.display({
-      onChooseRegionMode: this.onChooseRegionMode.bind(this),
-      onChooseArchiveMode: this.onChooseArchiveMode.bind(this),
-      onCancel: this.onCancel.bind(this),
-      onOpenMyShots: this.onOpenMyShots.bind(this)
-    });
-  },
-
-  onChooseRegionMode: function () {
-    sendEvent("start-region-select", "mode-click");
-    setState("crosshairs");
-  },
-
-  onChooseArchiveMode: function () {
-    sendEvent("start-archive", "mode-click");
-    setState("cancel");
-    self.port.emit("take-shot");
-  },
-
-  onCancel: function () {
-    sendEvent("cancel-shot", "mode-click");
-    setState("cancel");
-  },
-
-  onOpenMyShots: function () {
-    sendEvent("goto-myshots", "mode-click");
-    self.port.emit("openMyShots");
-  },
-
-  end: function () {
-    ui.SelectMode.remove();
-  }
-}
-
-stateHandlers.crosshairsPreview = {
-
-  start: function () {
-    ui.CrosshairPreview.display();
-    ui.WholePageOverlay.display(standardOverlayCallbacks);
-    if (isChrome) {
-      if (! chromeShooter.hasUsedMyShots) {
-        ui.MyShotsReminder.display();
-      }
-      ui.ChromeInterface.showSaveFullPage();
-    } else if (self.options.showMyShotsReminder) {
-      ui.MyShotsReminder.display();
-    }
-  },
-
-  mousemove: function () {
-    setState("crosshairs");
-  },
-
-  end: function () {
-    ui.CrosshairPreview.remove();
-    ui.MyShotsReminder.remove();
-  },
-};
-
 stateHandlers.crosshairs = {
 
   cachedEl: null,
@@ -550,7 +485,6 @@ stateHandlers.crosshairs = {
   },
 
   end: function () {
-    ui.Crosshair.remove();
     ui.HoverBox.remove();
   }
 };
@@ -955,7 +889,7 @@ function keyupHandler(event) {
     }
   }
   if ((event.key || event.code) === "Enter") {
-    if (getState.state === "selected" || getState.state === "selectMode") {
+    if (getState.state === "selected") {
       sendEvent("save-shot", "keyboard-enter");
       if (isChrome) {
         chromeShooter.takeShot();
