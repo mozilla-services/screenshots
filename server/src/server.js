@@ -435,6 +435,7 @@ window.location = ${redirectUrlJs};
 app.post("/api/register", function (req, res) {
   let vars = req.body;
   let canUpdate = vars.deviceId === req.deviceId;
+  let deviceInfo = JSON.parse(vars.deviceInfo);
   if (! vars.deviceId) {
     console.error("Bad register request:", JSON.stringify(vars, null, "  "));
     sendRavenMessage(req, "Attempted to register without deviceId");
@@ -454,7 +455,8 @@ app.post("/api/register", function (req, res) {
       addDeviceActivity(vars.deviceId, "invalid-register", {
         hasSecret: !!vars.secret,
         hasNickname: !!vars.nickname,
-        hasAvatarurl: !!vars.avatarurl
+        hasAvatarurl: !!vars.avatarurl,
+        deviceInfo: deviceInfo
       });
       sendRavenMessage(req, "Attempted to register existing user", {
         extra: {
@@ -502,20 +504,21 @@ app.post("/api/update", function (req, res, next) {
 
 app.post("/api/login", function (req, res) {
   let vars = req.body;
-  checkLogin(vars.deviceId, vars.secret, vars.deviceInfo.addonVersion).then((ok) => {
+  let deviceInfo = JSON.parse(vars.deviceInfo);
+  checkLogin(vars.deviceId, vars.secret, deviceInfo.addonVersion).then((ok) => {
     if (ok) {
       let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
       cookies.set("user", vars.deviceId, {signed: true});
       simpleResponse(res, JSON.stringify({"ok": "User logged in", "sentryPublicDSN": config.sentryPublicDSN}), 200);
       addDeviceActivity(vars.deviceId, "login", {
-        deviceInfo: vars.deviceInfo
+        deviceInfo: deviceInfo
       });
     } else if (ok === null) {
       simpleResponse(res, '{"error": "No such user"}', 404);
     } else {
       addDeviceActivity(vars.deviceId, "invalid-login", {
         hasSecret: !!vars.secret,
-        deviceInfo: vars.deviceInfo
+        deviceInfo: deviceInfo
       });
       sendRavenMessage(req, "Invalid login");
       simpleResponse(res, '{"error": "Invalid login"}', 401);
@@ -528,6 +531,7 @@ app.post("/api/login", function (req, res) {
 app.post("/api/unload", function (req, res) {
   let reason = req.body.reason;
   reason = reason.replace(/[^a-zA-Z0-9]/g, "");
+  let deviceInfo = JSON.parse(req.body.deviceInfo);
   console.info("Device", req.deviceId, "unloaded for reason:", reason);
   let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
   // This erases the session cookie:
@@ -535,7 +539,7 @@ app.post("/api/unload", function (req, res) {
   cookies.set("user.sig");
   addDeviceActivity(req.deviceId, "unload", {
     reason: reason,
-    deviceInfo: req.body.deviceInfo
+    deviceInfo: deviceInfo
   });
   simpleResponse(res, "Noted", 200);
 });

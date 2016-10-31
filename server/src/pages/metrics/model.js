@@ -82,6 +82,23 @@ const queries = {
       {title: "Days the user has been creating shots", name: "days"},
       {title: "Week the user started using Page Shot", type: "date", name: "first_created_week"}
     ]
+  },
+
+  addonVersion: {
+    title: "Add-on Version",
+    description: "The version of the add-on used during login, in the last 14 days",
+    sql: `
+    SELECT COUNT(DISTINCT devices.id) AS count, devices.last_addon_version, last_login_day
+    FROM devices, date_trunc('day', last_login) AS last_login_day
+    WHERE CURRENT_TIMESTAMP - devices.last_login < INTERVAL '14 days'
+    GROUP BY devices.last_addon_version, last_login_day
+    ORDER BY devices.last_addon_version DESC, last_login_day DESC;
+    `,
+    columns: [
+      {title: "Number of users logging in", name: "count"},
+      {title: "Add-on version", name: "last_addon_version"},
+      {title: "Day", type: "date", name: "last_login_day"}
+    ]
   }
 
 };
