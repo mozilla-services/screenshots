@@ -167,6 +167,13 @@ var conf = convict({
     env: "DEFAULT_EXPIRATION",
     arg: "default-expiration"
   },
+  refreshMetricsTime: {
+    doc: "Interval when the stats in /metrics are recalculated, in seconds",
+    format: "int",
+    default: 60*60, // 1 hour
+    env: "REFRESH_METRICS_TIME",
+    arg: "refresh-metrics-time"
+  },
   allowExport: {
     doc: "Whether to allow exporting shots",
     format: Boolean,
