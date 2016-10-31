@@ -1,6 +1,24 @@
 const db = require("../../db");
 
 const queries = {
+  totals: {
+    title: "Totals",
+    description: "Various totals from the database",
+    sql: `
+    SELECT
+        (SELECT COUNT(devices.id) FROM devices) AS total_devices,
+        (SELECT COUNT(data.id) FROM data WHERE NOT deleted AND expire_time < CURRENT_TIMESTAMP) AS active_shots,
+        (SELECT COUNT(data.id) FROM data WHERE NOT deleted AND expire_time >= CURRENT_TIMESTAMP) AS expired_recoverable_shots,
+        (SELECT COUNT(data.id) FROM data WHERE deleted) AS expired_deleted_shots;
+    `,
+    columns: [
+      {title: "Total devices registered", name: "total_devices"},
+      {title: "Active shots", name: "active_shots"},
+      {title: "Expired (recoverable)", name: "expired_recoverable_shots"},
+      {title: "... (deleted)", name: "expired_deleted_shots"}
+    ]
+  },
+
   shotsCreatedByDay: {
     title: "Shots By Day",
     description: "Number of shots created each day (for the last 30 days)",
