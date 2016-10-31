@@ -202,6 +202,10 @@ These are events that an add-on user can encounter on a shot they own
 8. ~~Switch to clip view from full page (already covered)~~
 9. [x] Click on clip (already covered)
 
+#### Server events
+
+1. [x] When an expired shot is deleted (about 2 weeks after expiration) it sends `server/clean-deleted-shot` with an eventValue of the number of shots cleaned at that moment.  (By default these are checked every minute.)
+
 #### Homepage web visits
 
 1. ~~Click install from Firefox, `web/start-install/homepage-firefox`~~
