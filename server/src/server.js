@@ -649,6 +649,32 @@ app.post("/api/delete-shot", function (req, res) {
   });
 });
 
+app.post("/api/set-title/:id/:domain", function (req, res) {
+  let shotId = `${req.params.id}/${req.params.domain}`;
+  let userTitle = req.body.title;
+  if (userTitle === undefined) {
+    simpleResponse(res, "No title given", 400);
+    return;
+  }
+  if (! req.deviceId) {
+    sendRavenMessage(req, "Attempt to set title on shot without login");
+    simpleResponse(res, "Not logged in", 401);
+    return;
+  }
+  Shot.get(req.backend, shotId).then((shot) => {
+    if (shot.deviceId !== req.deviceId) {
+      simpleResponse(res, "Not the owner", 403);
+      return;
+    }
+    shot.userTitle = userTitle;
+    return shot.update();
+  }).then((updated) => {
+    simpleResponse(res, "Updated", 200);
+  }).catch((err) => {
+    errorResponse(res, "Error updating title", err);
+  });
+});
+
 /*
 app.post("/api/add-saved-shot-data/:id/:domain", function (req, res) {
   let shotId = `${req.params.id}/${req.params.domain}`;

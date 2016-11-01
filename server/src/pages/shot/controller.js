@@ -210,6 +210,23 @@ function addSavedShotData(data) {
 }
 */
 
+exports.setTitle = function (title) {
+  title = title || null;
+  let url = model.backend + "/api/set-title/" + model.shot.id;
+  let req = new XMLHttpRequest();
+  req.onload = function () {
+    if (req.status >= 300) {
+      window.alert("Error saving title: " + req.status + " " + req.statusText);
+      return;
+    }
+    model.shot.userTitle = title;
+    render();
+  };
+  req.open("POST", url);
+  req.setRequestHeader("content-type", "application/json");
+  req.send(JSON.stringify({ title }));
+};
+
 function render() {
   page.render(model);
 }

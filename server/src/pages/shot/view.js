@@ -1,3 +1,4 @@
+/* globals controller */
 const React = require("react");
 const ReactDOM = require("react-dom");
 const { Footer } = require("../../footer-view");
@@ -327,7 +328,7 @@ class Body extends React.Component {
           <div className="left">
             <a className="block-button button secondary" href={ myShotsHref } onClick={this.onClickMyShots.bind(this)}>{ myShotsText }</a>
             <div className="shot-info">
-              <span className="shot-title"> { shot.title } </span>
+              <EditableTitle title={shot.title} isOwner={this.props.isOwner} />
               <div className="shot-subtitle">Saved from &nbsp;<a className="subtitle-link" href={ shotRedirectUrl } onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> <span className="clock-icon"/> { timeDiff } { expiresDiff } </div>
             </div>
           </div>
@@ -479,6 +480,69 @@ class ExpireWidget extends React.Component {
     this.props.onSaveExpire(value);
     this.setState({isChangingExpire: false});
   }
+}
+
+class EditableTitle extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {isEditing: false, isSaving: false};
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // When the save completes, this component just gets updated with the new title
+    if (this.state.isSaving && this.state.isSaving === nextProps.title) {
+      this.state.isSaving = false;
+    }
+  }
+
+  render() {
+    if (this.state.isEditing) {
+      return this.renderEditing();
+    }
+    let className = "shot-title";
+    let handlers = {};
+    if (this.props.isOwner) {
+      className += " editable";
+      handlers.onClick = this.onClick.bind(this);
+    }
+    if (this.state.isSaving) {
+      className += " saving";
+    }
+    return <span className={className} {...handlers}>{this.state.isSaving || this.props.title}</span>;
+  }
+
+  renderEditing() {
+    return <form onSubmit={this.onSubmit.bind(this)}>
+      <input ref={(input) => this.textInput = input}
+        className="shot-title-input"
+        type="text" defaultValue={this.props.title} autoFocus="true"
+        onBlur={this.onBlur.bind(this)} onKeyUp={this.onKeyUp.bind(this)} />
+    </form>;
+  }
+
+  onClick() {
+    this.setState({isEditing: true});
+  }
+
+  onSubmit() {
+    let val = this.textInput.value;
+    controller.setTitle(val);
+    this.setState({isEditing: false, isSaving: val});
+  }
+
+  onBlur() {
+    if (this.textInput.value === this.props.title) {
+      this.setState({isEditing: false});
+    }
+  }
+
+  onKeyUp(event) {
+    if ((event.key || event.code) == "Escape") {
+      this.setState({isEditing: false});
+    }
+  }
+
 }
 
 exports.BodyFactory = React.createFactory(Body);
