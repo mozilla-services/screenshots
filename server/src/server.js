@@ -74,13 +74,14 @@ const gaActivation = require("./ga-activation");
 const genUuid = require("nodify-uuid");
 const AWS = require("aws-sdk");
 const vhost = require("vhost");
-const raven = require("raven");
 const escapeHtml = require("escape-html");
 const validUrl = require("valid-url");
 const { createProxyUrl } = require("./proxy-url");
 const statsd = require("./statsd");
 const { notFound } = require("./pages/not-found/server");
 const { cacheTime, setCache } = require("./caching");
+const { captureRavenException, sendRavenMessage } = require("./ravenclient");
+const { errorResponse, simpleResponse, jsResponse } = require("./responses");
 
 const PROXY_HEADER_WHITELIST = {
   "content-type": true,
@@ -115,26 +116,6 @@ if (config.useS3) {
   });
 }
 
-let ravenClient = null;
-
-if (config.sentryDSN) {
-  ravenClient = new raven.Client(config.sentryDSN);
-  ravenClient.patchGlobal();
-}
-
-function sendRavenMessage(req, message, options) {
-  if (! ravenClient) {
-    return;
-  }
-  options = options || {};
-  options.extra = options.extra || {};
-  options.extra.path = req.originalUrl;
-  options.extra.method = req.method;
-  options.extra.userAgent = req.headers['user-agent'];
-  options.extra.referrer = req.headers['referer'];
-  options.extra.authenticated = !!req.deviceId;
-  ravenClient.captureMessage(message, options);
-}
 
 function initDatabase() {
   dbschema.createTables().then(() => {
@@ -144,9 +125,7 @@ function initDatabase() {
   }).catch((e) => {
     console.error("Error initializing database:", e, e.stack);
     console.warn("Trying again in 60 seconds");
-    if (ravenClient) {
-      ravenClient.captureException(e);
-    }
+    captureRavenException(e);
     setTimeout(initDatabase, 60000);
   });
 }
@@ -958,9 +937,7 @@ app.post('/api/fxa-oauth/token', function (req, res, next) {
 app.use(function (err, req, res, next) {
   console.error("Error:", err);
   console.error(err.stack);
-  if (ravenClient) {
-    ravenClient.captureException(err);
-  }
+  captureRavenException(err);
   if (err.isAppError) {
     let { statusCode, headers, payload } = err.output;
     res.status(statusCode);
@@ -1096,41 +1073,6 @@ contentApp.get("/proxy", function (req, res) {
   });
   subreq.end();
 });
-
-function simpleResponse(res, message, status) {
-  status = status || 200;
-  res.header("Content-Type", "text/plain; charset=utf-8");
-  res.status(status);
-  res.send(message);
-}
-
-function jsResponse(res, jsstring) {
-  res.header("Content-Type", "application/javascript; charset=utf-8")
-  res.send(jsstring);
-}
-
-function errorResponse(res, message, err) {
-  res.header("Content-Type", "text/plain; charset=utf-8");
-  res.status(500);
-  if (config.showStackTraces) {
-    if (err) {
-      message += "\n" + err;
-      if (err.stack) {
-        message += "\n\n" + err.stack;
-      }
-    }
-    res.send(message);
-  } else {
-    res.send("Server error");
-  }
-  console.error(`Error: ${message}`, err+"", err);
-  if (ravenClient) {
-    ravenClient.captureException(err);
-  }
-}
-
-exports.simpleResponse = simpleResponse;
-exports.errorResponse = errorResponse;
 
 linker.init().then(() => {
   if (config.useVirtualHosts) {
