@@ -222,29 +222,29 @@ build/server/static/img/%: build/static/img/%
 	@mkdir -p $(@D)
 	cp $< $@
 
-shot_dependencies := $(shell ./bin/_bundle_dependencies shot getdeps "$(server_dest)")
+shot_dependencies := $(shell ./bin/build-scripts/bundle_dependencies shot getdeps "$(server_dest)")
 build/server/static/js/shot-bundle.js: $(shot_dependencies)
-	./bin/_bundle_dependencies shot build ./build/server/pages/shot/controller.js
+	./bin/build-scripts/bundle_dependencies shot build ./build/server/pages/shot/controller.js
 
-homepage_dependencies := $(shell ./bin/_bundle_dependencies homepage getdeps "$(server_dest)")
+homepage_dependencies := $(shell ./bin/build-scripts/bundle_dependencies homepage getdeps "$(server_dest)")
 build/server/static/js/homepage-bundle.js: $(homepage_dependencies)
-	./bin/_bundle_dependencies homepage build ./build/server/pages/homepage/controller.js
+	./bin/build-scripts/bundle_dependencies homepage build ./build/server/pages/homepage/controller.js
 
-metrics_dependencies := $(shell ./bin/_bundle_dependencies metrics getdeps "$(server_dest)")
+metrics_dependencies := $(shell ./bin/build-scripts/bundle_dependencies metrics getdeps "$(server_dest)")
 build/server/static/js/metrics-bundle.js: $(metrics_dependencies)
-	./bin/_bundle_dependencies metrics build ./build/server/pages/metrics/controller.js
+	./bin/build-scripts/bundle_dependencies metrics build ./build/server/pages/metrics/controller.js
 
-shotindex_dependencies := $(shell ./bin/_bundle_dependencies shotindex getdeps "$(server_dest)")
+shotindex_dependencies := $(shell ./bin/build-scripts/bundle_dependencies shotindex getdeps "$(server_dest)")
 build/server/static/js/shotindex-bundle.js: $(shotindex_dependencies)
-	./bin/_bundle_dependencies shotindex build ./build/server/pages/shotindex/controller.js
+	./bin/build-scripts/bundle_dependencies shotindex build ./build/server/pages/shotindex/controller.js
 
-leave_dependencies := $(shell ./bin/_bundle_dependencies leave getdeps "$(server_dest)")
+leave_dependencies := $(shell ./bin/build-scripts/bundle_dependencies leave getdeps "$(server_dest)")
 build/server/static/js/leave-bundle.js: $(leave_dependencies)
-	./bin/_bundle_dependencies leave build ./build/server/pages/leave-page-shot/controller.js
+	./bin/build-scripts/bundle_dependencies leave build ./build/server/pages/leave-page-shot/controller.js
 
-creating_dependencies := $(shell ./bin/_bundle_dependencies creating getdeps "$(server_dest)")
+creating_dependencies := $(shell ./bin/build-scripts/bundle_dependencies creating getdeps "$(server_dest)")
 build/server/static/js/creating-bundle.js: $(creating_dependencies)
-	./bin/_bundle_dependencies creating build ./build/server/pages/creating/controller.js
+	./bin/build-scripts/bundle_dependencies creating build ./build/server/pages/creating/controller.js
 
 build/server/export-shots.sh: server/src/export-shots.sh
 	@mkdir -p $(@D)
