@@ -160,7 +160,7 @@ build/mozilla-pageshot.xpi: addon addon/package.json build/.backend.txt
 	mv build/addon/mozilla-pageshot.xpi build/mozilla-pageshot.xpi
 
 build/mozilla-pageshot.update.rdf: addon/template.update.rdf build/mozilla-pageshot.xpi
-	_sub_rdf_checkout_version < build/addon/package.json > build/mozilla-pageshot.update.rdf
+	build-scripts/sub_rdf_checkout_version < build/addon/package.json > build/mozilla-pageshot.update.rdf
 
 build/addon/package.json: addon/package.json
 	@mkdir -p $(@D)
