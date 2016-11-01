@@ -153,7 +153,7 @@ build/addon/data/vendor/%: addon/data/vendor/%
 
 build/mozilla-pageshot.xpi: addon addon/package.json build/.backend.txt
 	# We have to do this each time because we want to set the version using a timestamp:
-	_set_package_version $(shell cat build/.backend.txt) < addon/package.json > build/addon/package.json
+	build-scripts/set_package_version $(shell cat build/.backend.txt) < addon/package.json > build/addon/package.json
 	# Get rid of any stale xpis:
 	rm -f build/addon/mozilla-pageshot.xpi
 	cd build/addon && $(JPM) xpi
@@ -178,7 +178,7 @@ chrome-zip: build/chrome-ext.zip
 
 build/chrome-ext.zip: chrome-extension
 	rm -f build/chrome-ext.zip
-	./bin/_set_package_version --chrome < chrome-extension/manifest.json > build/chrome-extension/manifest.json
+	./bin/build-scripts/set_package_version --chrome < chrome-extension/manifest.json > build/chrome-extension/manifest.json
 	cd build/chrome-extension && zip -r ../chrome-ext.zip *
 
 xpi: build/mozilla-pageshot.xpi build/mozilla-pageshot.update.rdf
