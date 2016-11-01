@@ -252,7 +252,9 @@ app.get("/parent-helper.js", function (req, res) {
   jsResponse(res, script);
 });
 
-app.get("/configure-raven.js", function (req, res) {
+const ravenClientJs = readFileSync(require.resolve("raven-js/dist/raven.min"), {encoding: "UTF-8"});
+
+app.get("/install-raven.js", function (req, res) {
   setCache(res);
   if (! req.config.sentryPublicDSN) {
     jsResponse(res, "");
@@ -266,6 +268,8 @@ app.get("/configure-raven.js", function (req, res) {
   // FIXME: this monkeypatch is because our version of Raven (6.2) doesn't really work
   // with our version of Sentry (8.3.3)
   let script = `
+  ${ravenClientJs}
+
   (function () {
     var old_captureException = Raven.captureException.bind(Raven);
     Raven.captureException = function (ex, options) {

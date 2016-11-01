@@ -34,9 +34,6 @@ static_addon_dest := $(static_addon_source:%=build/%)
 static_js_source := $(wildcard static/js/*.js)
 static_js_dest := $(static_js_source:%.js=build/server/%.js)
 
-static_vendor_source := $(shell find -L static/vendor -type f)
-static_vendor_dest := $(static_vendor_source:%=build/server/%)
-
 lib_source := $(wildcard addon/lib/*.js)
 lib_dest := $(lib_source:%.js=build/%.js)
 
@@ -71,10 +68,6 @@ chrome_external_modules := build/chrome-extension/selector-util.js build/chrome-
 # Need to put these two rules before the later general rule, so that we don't
 # run babel on vendor libraries or the homepage libraries:
 build/addon/data/vendor/%.js: addon/data/vendor/%.js
-	@mkdir -p $(@D)
-	cp $< $@
-
-build/server/static/vendor/%: static/vendor/%
 	@mkdir -p $(@D)
 	cp $< $@
 
@@ -253,7 +246,7 @@ build/server/export-shots.sh: server/src/export-shots.sh
 # The intention here is to only write build-time when something else needs
 # to be regenerated, but for some reason this gets rewritten every time
 # anyway:
-build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass_server_dest) $(imgs_server_dest) $(static_js_dest) $(static_vendor_dest) build/server/export-shots.sh $(patsubst server/db-patches/%,build/server/db-patches/%,$(wildcard server/db-patches/*))
+build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass_server_dest) $(imgs_server_dest) $(static_js_dest) build/server/export-shots.sh $(patsubst server/db-patches/%,build/server/db-patches/%,$(wildcard server/db-patches/*))
 	@mkdir -p $(@D)
 	./bin/build-scripts/write_build_time > build/server/build-time.js
 
