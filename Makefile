@@ -6,9 +6,9 @@ JPM := $(shell pwd)/node_modules/.bin/jpm
 
 .PHONY: all clean server addon xpi homepage npm chrome-extension chrome-zip set_backend
 
-# This forces bin/_write_ga_id to be run before anything else, which
+# This forces bin/build-scripts/write_ga_id to be run before anything else, which
 # writes the configured Google Analytics ID to build/ga-id.txt
-_dummy := $(shell ./bin/_write_ga_id)
+_dummy := $(shell ./bin/build-scripts/write_ga_id)
 
 # Here we have source/dest variables for many files and their destinations;
 # we use these each to enumerate categories of source files, and translate
