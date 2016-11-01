@@ -88,7 +88,7 @@ build/server/static/js/%.js: build/static/js/%.js
 
 build/%.js: %.js
 	@mkdir -p $(@D)
-	$(BABEL) $< | bin/_fixup_panel_js > $@
+	$(BABEL) $< | bin/build-scripts/fixup_panel_js > $@
 
 build/server/%.js: server/src/%.js
 	@mkdir -p $(@D)
