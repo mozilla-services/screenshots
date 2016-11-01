@@ -103,8 +103,7 @@ class Head extends React.Component {
         <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {this.socialMetadata()}
-        <script src={ this.props.staticLink("/set-content-hosting-origin.js") } />
-        <script src={ this.props.staticLink("/static/js/parent-helper.js") } />
+        {this.props.shot.showPage ? <script src={ this.props.staticLink("/parent-helper.js") } /> : null}
       </reactruntime.HeadTemplate>);
   }
 

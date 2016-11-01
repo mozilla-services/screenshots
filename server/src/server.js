@@ -43,6 +43,7 @@ console.warn = logFactory("warn");
 console.error = logFactory("error");
 
 const path = require('path');
+const { readFileSync } = require('fs');
 const Cookies = require("cookies");
 
 const { Shot } = require("./servershot");
@@ -242,10 +243,12 @@ function sendGaActivation(req, res, hashPage) {
   });
 }
 
-app.get("/set-content-hosting-origin.js", function (req, res) {
+const parentHelperJs = readFileSync(path.join(__dirname, "/static/js/parent-helper.js"), {encoding: "UTF-8"});
+
+app.get("/parent-helper.js", function (req, res) {
   setCache(res);
   let postMessageOrigin = `${req.protocol}://${req.config.contentOrigin}`;
-  let script = `var CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`
+  let script = `${parentHelperJs}\nvar CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`
   jsResponse(res, script);
 });
 
