@@ -5,10 +5,10 @@ This document details the process we use to deploy Page Shot to our stage and pr
 
 (you can read more below)
 
-- Thursday at 12pm PST the train is cut, all code is in. Style tweaks can be made after this point.
-- Friday at 9am PST we tag and start pushing to stage, then send email out.
+- Thursday at 2pm pacific time the train is cut, all code is in. Style tweaks can be made after this point.
+- Friday at 9am pacific time we tag and start pushing to stage, then send email out to the test pilot mailing list and post to discourse.
 - Monday at regular stand-up we review anything that Softvision found and fix it.
-- Wednesday at ~8am PST we push and Softvision verifies.
+- Tuesday at ~8am pacific time we push and Softvision verifies.
 
 ## Softvision ##
 
@@ -18,22 +18,25 @@ Softvision is our embedded QA team. Their main functions are to write test plans
 
 During the checkin before the end of the [current milestone](https://github.com/mozilla-services/pageshot/milestones), we will inform the team that we will be building a release against `master`.
 
-Note: we auto deploy the master branch to our *development environment*: [http://testpilot.dev.mozaws.net](https://pageshot.dev.mozaws.net)
+Note: we deploy the master branch to our *development environment*: [http://pageshot.dev.mozaws.net](https://pageshot.dev.mozaws.net)
+
+## Generate Release Notes ##
+
+Release notes are automatically extracted from git commits using `./bin/generate-commit-log --write stable..master` and then manually touched up.
 
 ## Tag Release ##
 
 This will happen on Friday after any style tweaks land.
 
 1. https://github.com/mozilla-services/pageshot/releases/new
-2. Tag Version: YYYY-MM-DD (append -N if more than one release is tagged on a given day: 2016-04-08-1)
-3. Release Title: YYYY-MM-DD
+2. Tag Version: x.0.0 where x = last_version + 1, and x.y.0 point releases for any changes that happen before the final deploy.
+3. Release Title: x.y.0
 4. Click `Publish`
 
-Release notes are automatically extracted from git commits.
 
 ## Push to Stage ##
 
-This will happen on Friday at the end of sprint.
+Once the release is tagged, it will get pushed to stage.
 
 1. (FIXME put instructions for checking out the tag here)
 2. `git push mozilla-services HEAD:stable`
@@ -45,7 +48,7 @@ Notifications of successful deployment will appear on IRC.
 
 This will happen on Friday at the end of sprint after we've pushed to stage.
 
-Create a deployment issue to track status and potential blockers. Give it a `needs:qa` label.
+Create a deployment issue to track status and potential blockers. Give it a [needs:qa label](https://github.com/mozilla-services/pageshot/issues?utf8=✓&q=is%3Aissue%20is%3Aopen%20label%3A%22needs%3Aqa%22%20).
 
 Send out an email notification to `testpilot-dev@mozilla.com` to please test the staging environment.
 
@@ -67,7 +70,7 @@ Once we are comfortable that the site has been tested, file a bugzilla bug to de
 
 Notifications of successful deployment will appear on IRC.
 
-We'll target Wednesday 8AM PST for deployment.
+We'll target Wednesday 8AM pacific time for deployment.
 
 ## Verify Production ##
 
@@ -76,16 +79,3 @@ Softvision will verify production for us, and report any bugs on Wednesday.
 Once we have verified production, update the Page Shot GA account with an annotation including sprint information. Example: "1.0.1 release" Oct. 25th.
 
 Close deployment issue, and give it a `qa:verified` label.
-
-## Producing a Static Build ##
-
-From a fresh check-out, producing a static build can be done like so:
-
-```
-git clone https://github.com/mozilla-services/pageshot.git
-cd pageshot
-npm install
-make all
-```
-
-After all the above commands, you should have a build in the `build` directory.
