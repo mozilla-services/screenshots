@@ -352,7 +352,7 @@ stateHandlers.crosshairs = {
     ui.Box.remove();
     ui.WholePageOverlay.display(standardOverlayCallbacks);
     document.addEventListener("keyup", keyupHandler, false);
-    registeredDocumentHandlers.push({doc: document, handler: keyupHandler});
+    registeredDocumentHandlers.push({name: "keyup", doc: document, handler: keyupHandler});
     if (isChrome) {
       ui.ChromeInterface.showSaveFullPage();
     }
@@ -871,7 +871,7 @@ function addHandlers() {
 function installHandlersOnDocument(docObj) {
   for (let [eventName, handler] of primedDocumentHandlers) {
     docObj.addEventListener(eventName, handler, eventName !== "keyup");
-    registeredDocumentHandlers.push({doc: docObj, handler});
+    registeredDocumentHandlers.push({name: eventName, doc: docObj, handler});
   }
 }
 
@@ -902,7 +902,7 @@ function keyupHandler(event) {
 }
 
 function removeHandlers() {
-  for (let {doc, handler} of registeredDocumentHandlers) {
+  for (let {name, doc, handler} of registeredDocumentHandlers) {
     doc.removeEventListener(name, handler, false);
   }
   registeredDocumentHandlers = [];
