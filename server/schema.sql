@@ -40,6 +40,10 @@ CREATE TABLE images (
     contenttype text NOT NULL,
     url text
 );
+CREATE TABLE metrics_cache (
+    created timestamp without time zone DEFAULT now(),
+    data text
+);
 CREATE TABLE property (
     key text NOT NULL,
     value text
@@ -77,4 +81,4 @@ ALTER TABLE ONLY images
     ADD CONSTRAINT images_shotid_fkey FOREIGN KEY (shotid) REFERENCES data(id) ON DELETE CASCADE;
 ALTER TABLE ONLY states
     ADD CONSTRAINT states_deviceid_fkey FOREIGN KEY (deviceid) REFERENCES devices(id) ON DELETE CASCADE;
--- pg-patch version: 10
+-- pg-patch version: 11
