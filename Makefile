@@ -255,7 +255,7 @@ build/server/export-shots.sh: server/src/export-shots.sh
 # anyway:
 build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass_server_dest) $(imgs_server_dest) $(static_js_dest) $(static_vendor_dest) build/server/export-shots.sh $(patsubst server/db-patches/%,build/server/db-patches/%,$(wildcard server/db-patches/*))
 	@mkdir -p $(@D)
-	./bin/_write_build_time > build/server/build-time.js
+	./bin/build-scripts/write_build_time > build/server/build-time.js
 
 server: npm build/server/build-time.js build/server/static/js/shot-bundle.js build/server/static/js/homepage-bundle.js build/server/static/js/metrics-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/leave-bundle.js build/server/static/js/creating-bundle.js
 
