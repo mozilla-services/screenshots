@@ -281,6 +281,7 @@ set_backend:
 build/.npm-install.log: package.json
 	# Essentially .npm-install.log is just a timestamp showing the last time we ran
 	# the command
+	@mkdir -p $(@D)
 	echo "Installing at $(shell date)" > build/.npm-install.log
 	npm install >> build/.npm-install.log
 
