@@ -1,6 +1,24 @@
 const db = require("../../db");
 
 const queries = {
+  totals: {
+    title: "Totals",
+    description: "Various totals from the database",
+    sql: `
+    SELECT
+        (SELECT COUNT(devices.id) FROM devices) AS total_devices,
+        (SELECT COUNT(data.id) FROM data WHERE NOT deleted AND expire_time < CURRENT_TIMESTAMP) AS active_shots,
+        (SELECT COUNT(data.id) FROM data WHERE NOT deleted AND expire_time >= CURRENT_TIMESTAMP) AS expired_recoverable_shots,
+        (SELECT COUNT(data.id) FROM data WHERE deleted) AS expired_deleted_shots;
+    `,
+    columns: [
+      {title: "Total devices registered", name: "total_devices"},
+      {title: "Active shots", name: "active_shots"},
+      {title: "Expired (recoverable)", name: "expired_recoverable_shots"},
+      {title: "... (deleted)", name: "expired_deleted_shots"}
+    ]
+  },
+
   shotsCreatedByDay: {
     title: "Shots By Day",
     description: "Number of shots created each day (for the last 30 days)",
@@ -81,6 +99,23 @@ const queries = {
       {title: "Number of users", name: "user_count"},
       {title: "Days the user has been creating shots", name: "days"},
       {title: "Week the user started using Page Shot", type: "date", name: "first_created_week"}
+    ]
+  },
+
+  addonVersion: {
+    title: "Add-on Version",
+    description: "The version of the add-on used during login, in the last 14 days",
+    sql: `
+    SELECT COUNT(DISTINCT devices.id) AS count, devices.last_addon_version, last_login_day
+    FROM devices, date_trunc('day', last_login) AS last_login_day
+    WHERE CURRENT_TIMESTAMP - devices.last_login < INTERVAL '14 days'
+    GROUP BY devices.last_addon_version, last_login_day
+    ORDER BY devices.last_addon_version DESC, last_login_day DESC;
+    `,
+    columns: [
+      {title: "Number of users logging in", name: "count"},
+      {title: "Add-on version", name: "last_addon_version"},
+      {title: "Day", type: "date", name: "last_login_day"}
     ]
   }
 
