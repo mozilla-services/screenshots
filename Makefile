@@ -146,7 +146,7 @@ build/addon/data/vendor/%: addon/data/vendor/%
 
 build/mozilla-pageshot.xpi: addon addon/package.json build/.backend.txt
 	# We have to do this each time because we want to set the version using a timestamp:
-	build-scripts/set_package_version $(shell cat build/.backend.txt) < addon/package.json > build/addon/package.json
+	./bin/build-scripts/set_package_version $(shell cat build/.backend.txt) < addon/package.json > build/addon/package.json
 	# Get rid of any stale xpis:
 	rm -f build/addon/mozilla-pageshot.xpi
 	cd build/addon && $(JPM) xpi
