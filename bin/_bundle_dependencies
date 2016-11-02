@@ -28,7 +28,7 @@ build() {
   browserify --list -e "$@" | sed "s!$(pwd)/!!g" | grep -v build-time > "$(depfile)"
   echo -n "bundle... "
   browserify -o "$dest" \
-    -e "$@" -r core-js/client/core
+    -e "$@"
   echo -n "minimizing... "
   uglifyjs -o "$dest" "$dest"
   echo "done."
