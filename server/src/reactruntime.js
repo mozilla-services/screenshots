@@ -1,5 +1,7 @@
 /* globals document, location */
 
+require("core-js");
+
 const React = require("react");
 const ReactDOM = require("react-dom");
 const linker = require("./linker");
