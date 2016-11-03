@@ -546,7 +546,21 @@ app.put("/data/:id/:domain", function (req, res) {
 
   if (! bodyObj.deviceId) {
     console.warn("No deviceId in request body", req.url);
-    sendRavenMessage(req, "Attempt PUT without deviceId in request body");
+    let keys = "No keys";
+    try {
+      keys = Object.keys(bodyObj);
+    } catch (e) {
+      // ignore
+    }
+    sendRavenMessage(
+      req, "Attempt PUT without deviceId in request body",
+      {extra:
+        {
+          "typeof bodyObj": typeof bodyObj,
+          keys
+        }
+      }
+    );
     simpleResponse(res, "No deviceId in body", 400);
     return;
   }
