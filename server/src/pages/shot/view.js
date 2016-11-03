@@ -299,6 +299,7 @@ class Body extends React.Component {
     }
     let date = new Date(this.props.shot.createdDate);
     let filenameTitle = this.props.shot.title;
+    console.log("heya", filenameTitle, this.props.shot.openGraph && this.props.shot.openGraph.title, this.props.shot.docTitle);
     filenameTitle = filenameTitle.replace(/[\/!@&*.|\n\r\t]/g, " ");
     filenameTitle = filenameTitle.replace(/\s+/g, " ");
     let clipFilename = `Page-Shot-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${filenameTitle}`;
