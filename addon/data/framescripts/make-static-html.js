@@ -943,6 +943,7 @@ const makeStaticHtml = (function () { // eslint-disable-line no-unused-vars
   function getOpenGraph() {
     let openGraph = {};
     // If you update this, also update _OPENGRAPH_PROPERTIES in shot.js:
+    let forceSingle = `title type url`.split(/\s+/g);
     let openGraphProperties = `
     title type url image audio description determiner locale site_name video
     image:secure_url image:type image:width image:height
@@ -954,6 +955,9 @@ const makeStaticHtml = (function () { // eslint-disable-line no-unused-vars
     `.split(/\s+/g);
     for (let prop of openGraphProperties) {
       let elems = getDocument().querySelectorAll(`meta[property='og:${prop}']`);
+      if (forceSingle.includes(prop) && elems.length > 1) {
+        elems = [elems[0]];
+      }
       let value;
       if (elems.length > 1) {
         value = [];
