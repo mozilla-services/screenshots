@@ -11,7 +11,7 @@ const { deviceInfo } = require('./deviceinfo');
 const { hasCookieForBackend } = require("./get-cookies");
 
 let initialized = false;
-let sentryPublicDSN = "";
+let sentryPublicDSN = "https://d58fc53f92cd47bba7266ad6444514d8@sentry.prod.mozaws.net/74";
 
 function getDeviceIdInfo() {
   let info = prefs.deviceIdInfo || "null";
