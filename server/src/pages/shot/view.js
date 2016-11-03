@@ -96,15 +96,27 @@ class Clip extends React.Component {
 
 class Head extends React.Component {
   render() {
-    return (
-      <reactruntime.HeadTemplate {...this.props}>
-        <script src={ this.props.staticLink("/static/js/shot-bundle.js") } key="shot-bundle-js" />
-        <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
-        <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {this.socialMetadata()}
-        {this.props.shot.showPage ? <script src={ this.props.staticLink("/parent-helper.js") } /> : null}
-      </reactruntime.HeadTemplate>);
+    let expired = this.props.expireTime !== null && Date.now() > this.props.expireTime;
+    if (expired) {
+      return (
+        <reactruntime.HeadTemplate {...this.props}>
+          <script src={ this.props.staticLink("/static/js/shot-bundle.js") } />
+          <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </reactruntime.HeadTemplate>
+      );
+    } else {
+      return (
+        <reactruntime.HeadTemplate {...this.props}>
+          <script src={ this.props.staticLink("/static/js/shot-bundle.js") } />
+          <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />
+          {this.socialMetadata()}
+          {this.props.shot.showPage ? <script src={ this.props.staticLink("/parent-helper.js") } /> : null}
+        </reactruntime.HeadTemplate>
+      );
+    }
   }
 
   socialMetadata() {
@@ -193,26 +205,34 @@ class Body extends React.Component {
       let restoreWidget;
       if (this.props.isOwner) {
         restoreWidget = (
-          <p>
-            Will be permanently deleted <TimeDiff date={deleteTime} />
-            &#8195;<span className="link-button" onClick={this.onRestore.bind(this)}>restore for {intervalDescription(this.props.defaultExpiration)}</span>
-          </p>
+          <div>
+            <p>
+              Will be permanently deleted <TimeDiff date={deleteTime} />
+            </p>
+            <p>
+              <button className="button" onClick={this.onRestore.bind(this)}>restore for {intervalDescription(this.props.defaultExpiration)}</button>
+            </p>
+          </div>
         );
       }
       // Note: any attributes used here need to be preserved
       // in the render() function
       body = <reactruntime.BodyTemplate {...this.props}>
+        <div className="column-center full-height inverse-color-scheme">
         <p>&nbsp;</p>
-        <p>
-          This shot has expired. You may visit the original page it was originally created from:
-        </p>
-        <h2><a href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>{this.props.shot.title}</a></h2>
-        <p>
-          <a href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>
-            {this.props.shot.urlIfDeleted}
-          </a>
-        </p>
-        { restoreWidget }
+        <div className="large-icon-message-container">
+          <p>
+            This shot has expired. You may visit the original page it was originally created from:
+          </p>
+          <h2><a href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>{this.props.shot.title}</a></h2>
+          <p>
+            <a href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>
+              {this.props.shot.urlIfDeleted}
+            </a>
+          </p>
+          { restoreWidget }
+        </div>
+        </div>
       </reactruntime.BodyTemplate>;
     } else {
       body = this.renderBody();
