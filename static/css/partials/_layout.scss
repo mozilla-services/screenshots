@@ -61,6 +61,14 @@
   min-height: 100vh;
 }
 
+.flex {
+  display: flex;
+}
+
 .flex-1 {
   flex: 1;
+}
+
+.spacer {
+  height: 20px;
 }
