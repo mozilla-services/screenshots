@@ -24,6 +24,8 @@ Note: we deploy the master branch to our *development environment*: [http://page
 
 Release notes are automatically extracted from git commits using `./bin/generate-commit-log --write stable..master` and then manually touched up.
 
+Update the version number in both package.json and addon/package.json files.
+
 ## Tag Release ##
 
 This will happen on Friday after any style tweaks land.
