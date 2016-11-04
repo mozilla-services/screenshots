@@ -357,18 +357,25 @@ stateHandlers.crosshairs = {
   },
 
   mousemove: function (event) {
-    if (event.target.className !== "pageshot-preview-overlay") {
+    if (event.target.className !== "pageshot-preview-overlay" && event.target.className.startsWith("pageshot-")) {
       // User is hovering over a Page Shot button or control
       autoDetectRect = null;
       ui.HoverBox.hide();
       return;
     }
-    document.body.classList.add("pageshot-no-pointer-event");
-    let el = document.elementFromPoint(
-      event.pageX - window.pageXOffset,
-      event.pageY - window.pageYOffset
-    );
-    document.body.classList.remove("pageshot-no-pointer-event");
+    let el;
+    if (event.target.className === "pageshot-preview-overlay") {
+      // The hover is on the overlay, so we need to figure out the real element
+      ui.WholePageOverlay.overlayEl.style.pointerEvents = "none";
+      el = document.elementFromPoint(
+        event.pageX - window.pageXOffset,
+        event.pageY - window.pageYOffset
+      );
+      ui.WholePageOverlay.overlayEl.style.pointerEvents = "";
+    } else {
+      // The hover is on the element we care about, so we use that
+      el = event.target;
+    }
     if (this.cachedEl && this.cachedEl === el) {
       // Still hovering over the same element
       return;
@@ -962,7 +969,7 @@ if (! isChrome) {
   // (such as moving windows, add-on unloading)
   self.port.on("detach", () => {
     deactivate();
-    console.log("detached worker");
+    console.info("detached worker");
   });
 
   self.port.emit("ready");
