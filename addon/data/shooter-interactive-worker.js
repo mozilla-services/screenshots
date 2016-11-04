@@ -743,7 +743,6 @@ function scrollIfByEdge(pageX, pageY) {
   let bottom = top + window.innerHeight;
   let left = window.scrollX;
   let right = left + window.innerWidth;
-  console.log("height", pageY, bottom, documentHeight);
   if (pageY + SCROLL_BY_EDGE >= bottom && bottom < documentHeight) {
     window.scrollBy(0, SCROLL_BY_EDGE);
   } else if (pageY - SCROLL_BY_EDGE <= top) {
