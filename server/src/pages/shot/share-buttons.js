@@ -22,8 +22,7 @@ exports.ShareButton = class ShareButton extends React.Component {
     }
     return <div>
       <button className="button primary" id="toggle-share" onClick={ this.onClick.bind(this) }>
-        <img className="share-icon" src={ this.props.staticLink("/static/img/share.svg")} />
-        <span>Share</span>
+        <span className="flex"><img className="share-icon" src={ this.props.staticLink("/static/img/share.svg")} />Share</span>
       </button>
       {panel}
     </div>;

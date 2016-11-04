@@ -134,6 +134,7 @@ class Head extends React.Component {
       <meta name="twitter:card" content="summary_large_image" key="twittercard" />,
       <meta name="twitter:title" content={title} key="twitterTitle" />
     ];
+
     for (let clipId of this.props.shot.clipNames()) {
       let clip = this.props.shot.getClip(clipId);
       if (! clip.image) {
@@ -206,12 +207,13 @@ class Body extends React.Component {
       if (this.props.isOwner) {
         restoreWidget = (
           <div>
-            <p>
-              Will be permanently deleted <TimeDiff date={deleteTime} />
-            </p>
-            <p>
-              <button className="button" onClick={this.onRestore.bind(this)}>restore for {intervalDescription(this.props.defaultExpiration)}</button>
-            </p>
+            <div className="spacer"/>
+            If you do nothing,<br/>
+            this shot will be permanently deleted <TimeDiff date={deleteTime} />.
+            <div className="spacer"/>
+            <div className="responsive-wrapper row-center">
+              <button className="button primary set-width--medium" onClick={this.onRestore.bind(this)}>restore for {intervalDescription(this.props.defaultExpiration)}</button>
+            </div>
           </div>
         );
       }
@@ -219,19 +221,15 @@ class Body extends React.Component {
       // in the render() function
       body = <reactruntime.BodyTemplate {...this.props}>
         <div className="column-center full-height inverse-color-scheme">
-        <p>&nbsp;</p>
-        <div className="large-icon-message-container">
-          <p>
-            This shot has expired. You may visit the original page it was originally created from:
-          </p>
-          <h2><a href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>{this.props.shot.title}</a></h2>
-          <p>
-            <a href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>
-              {this.props.shot.urlIfDeleted}
-            </a>
-          </p>
-          { restoreWidget }
-        </div>
+          <div className="large-icon-message-container">
+            <div className="large-icon logo" />
+            <div className="large-icon-message-string">
+              This shot has expired.<br/>
+              Here is page it was originally created from:<br/>
+              <a className="underline" href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>{this.props.shot.title}</a>
+              { restoreWidget }
+            </div>
+          </div>
         </div>
       </reactruntime.BodyTemplate>;
     } else {
