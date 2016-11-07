@@ -32,9 +32,9 @@ class Body extends React.Component {
     }
     if (children.length === 0) {
       if (this.props.defaultSearch) {
-        children.push(this.renderNoShots(`No shots matching "${this.props.defaultSearch}" found.`));
+        children.push(this.renderNoSearchResults());
       } else {
-        children.push(this.renderNoShots("Go forth and take shots!"));
+        children.push(this.renderNoShots());
       }
     }
     return (
@@ -59,11 +59,22 @@ class Body extends React.Component {
     );
   }
 
-  renderNoShots(msg) {
+  renderNoShots() {
     return (
       <div className="large-icon-message-container" key="no-shots-found">
-        <div className="large-icon logo" />
-        <div className="large-icon-message-string">{msg}</div>
+        <div className="large-icon logo-no-shots" />
+        <div className="large-icon-message-string">Go forth and take shots!</div>
+      </div>
+    );
+  }
+
+  renderNoSearchResults() {
+    return (
+      <div className="large-icon-message-container" key="no-shots-found">
+        <div className="large-icon logo-no-search-results" />
+        <div className="large-icon-message-string">
+          No shots matching "{this.props.defaultSearch}" found.
+        </div>
       </div>
     );
   }
