@@ -45,6 +45,7 @@ sass_source := $(wildcard static/css/*.scss)
 sass_server_dest := $(sass_source:%.scss=build/server/%.css)
 sass_addon_dest := $(sass_source:static/css/%.scss=build/addon/data/%.css)
 sass_chrome_dest := $(sass_source:static/css/%.scss=build/chrome-extension/css/%.css)
+partials_source := $(wildcard static/css/partials/*.scss)
 
 # And static images get placed somewhat eclectically:
 imgs_source := $(wildcard static/img/*)
@@ -87,7 +88,7 @@ build/server/%.js: server/src/%.js
 	@mkdir -p $(@D)
 	$(BABEL) $< > $@
 
-build/%.css: %.scss
+build/%.css: %.scss $(partials_source)
 	@mkdir -p $(@D)
 	node-sass $< $@
 
