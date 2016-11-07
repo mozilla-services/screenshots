@@ -108,6 +108,9 @@ class ShareButtonPanel extends React.Component {
           { this.state.copyText }
         </button>
       </div>
+      <p>
+        This shot is only visible to you until you share the link.
+      </p>
     </div>;
   }
 
