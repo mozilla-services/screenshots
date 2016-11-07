@@ -35,14 +35,14 @@ This will happen on Friday after any style tweaks land.
 3. Release Title: x.y.0
 4. Click `Publish`
 
-
 ## Push to Stage ##
 
 Once the release is tagged, it will get pushed to stage.
 
-1. (FIXME put instructions for checking out the tag here)
-2. `git push mozilla-services HEAD:stable`
-2. `bin/build-docker-image mozilla`
+1. `git push mozilla-services HEAD:stable`
+2. `rm build/mozilla-pageshot.xpi`
+3. `PAGESHOT_BACKEND=https://pageshot.stage.mozaws.net make xpi`
+4. `bin/build-docker-image mozilla`
 
 Notifications of successful deployment will appear on IRC.
 
@@ -52,9 +52,9 @@ This will happen on Friday at the end of sprint after we've pushed to stage.
 
 Create a deployment issue to track status and potential blockers. Give it a [needs:qa label](https://github.com/mozilla-services/pageshot/issues?utf8=✓&q=is%3Aissue%20is%3Aopen%20label%3A%22needs%3Aqa%22%20).
 
-Send out an email notification to `testpilot-dev@mozilla.com` to please test the staging environment.
+Send out an email notification to `testpilot-dev@mozilla.org` to please test the staging environment.
 
-Include Softvision and the issue link in the email notification.
+Include the issue link in the email notification.
 
 ## Report Issues & Status ##
 
