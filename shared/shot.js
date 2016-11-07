@@ -455,7 +455,7 @@ ${options.addBody || ""}
 
   get creatingUrl() {
     let url = `${this.backend}/creating/${this.id}`;
-    url += `?title=${encodeURIComponent(this.title)}`;
+    url += `?title=${encodeURIComponent(this.title || "")}`;
     url += `&url=${encodeURIComponent(this.url)}`;
     return url;
   }
