@@ -504,7 +504,7 @@ class Shot extends AbstractShot {
     let times = 0;
     return retryPromise(() => {
       if (times) {
-        sendEvent("upload", "upload-retry", {eventValue: times});
+        sendEvent("upload-retry", `times-${times}`);
       }
       times++;
       return this._sendJson(attrs, "put");
@@ -547,11 +547,11 @@ class Shot extends AbstractShot {
           cookies: getCookies.safeCookieSummary(getCookies.hostFromUrl(this.backend))
         };
         if (response.status === 0) {
-          sendEvent("upload", "failed-connection");
+          sendEvent("upload-failed", "connection");
           message = `The request to send shot didn't complete due to the server being unavailable.`;
           popupMessage = "CONNECTION_ERROR";
         } else {
-          sendEvent("upload", "failed-status", {eventValue: response.status});
+          sendEvent("upload-failed", `status-${response.status}`);
           message = `The request to send shot returned a response ${response.status}`;
           extra.requestSizeKb = Math.floor(body.length / 1000);
           popupMessage = "REQUEST_ERROR";

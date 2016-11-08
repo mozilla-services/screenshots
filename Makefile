@@ -6,9 +6,9 @@ JPM := $(shell pwd)/node_modules/.bin/jpm
 
 .PHONY: all clean server addon xpi homepage npm chrome-extension chrome-zip set_backend
 
-# This forces bin/_write_ga_id to be run before anything else, which
+# This forces bin/build-scripts/write_ga_id to be run before anything else, which
 # writes the configured Google Analytics ID to build/ga-id.txt
-_dummy := $(shell ./bin/_write_ga_id)
+_dummy := $(shell ./bin/build-scripts/write_ga_id)
 
 # Here we have source/dest variables for many files and their destinations;
 # we use these each to enumerate categories of source files, and translate
@@ -34,9 +34,6 @@ static_addon_dest := $(static_addon_source:%=build/%)
 static_js_source := $(wildcard static/js/*.js)
 static_js_dest := $(static_js_source:%.js=build/server/%.js)
 
-static_vendor_source := $(shell find -L static/vendor -type f)
-static_vendor_dest := $(static_vendor_source:%=build/server/%)
-
 lib_source := $(wildcard addon/lib/*.js)
 lib_dest := $(lib_source:%.js=build/%.js)
 
@@ -48,6 +45,7 @@ sass_source := $(wildcard static/css/*.scss)
 sass_server_dest := $(sass_source:%.scss=build/server/%.css)
 sass_addon_dest := $(sass_source:static/css/%.scss=build/addon/data/%.css)
 sass_chrome_dest := $(sass_source:static/css/%.scss=build/chrome-extension/css/%.css)
+partials_source := $(wildcard static/css/partials/*.scss)
 
 # And static images get placed somewhat eclectically:
 imgs_source := $(wildcard static/img/*)
@@ -74,10 +72,6 @@ build/addon/data/vendor/%.js: addon/data/vendor/%.js
 	@mkdir -p $(@D)
 	cp $< $@
 
-build/server/static/vendor/%: static/vendor/%
-	@mkdir -p $(@D)
-	cp $< $@
-
 build/server/static/homepage/%.js: static/homepage/%.js
 	@mkdir -p $(@D)
 	cp $< $@
@@ -88,13 +82,13 @@ build/server/static/js/%.js: build/static/js/%.js
 
 build/%.js: %.js
 	@mkdir -p $(@D)
-	$(BABEL) $< | bin/_fixup_panel_js > $@
+	$(BABEL) $< | ./bin/build-scripts/fixup_panel_js > $@
 
 build/server/%.js: server/src/%.js
 	@mkdir -p $(@D)
 	$(BABEL) $< > $@
 
-build/%.css: %.scss
+build/%.css: %.scss $(partials_source)
 	@mkdir -p $(@D)
 	node-sass $< $@
 
@@ -153,14 +147,14 @@ build/addon/data/vendor/%: addon/data/vendor/%
 
 build/mozilla-pageshot.xpi: addon addon/package.json build/.backend.txt
 	# We have to do this each time because we want to set the version using a timestamp:
-	_set_package_version $(shell cat build/.backend.txt) < addon/package.json > build/addon/package.json
+	./bin/build-scripts/set_package_version $(shell cat build/.backend.txt) < addon/package.json > build/addon/package.json
 	# Get rid of any stale xpis:
 	rm -f build/addon/mozilla-pageshot.xpi
 	cd build/addon && $(JPM) xpi
 	mv build/addon/mozilla-pageshot.xpi build/mozilla-pageshot.xpi
 
 build/mozilla-pageshot.update.rdf: addon/template.update.rdf build/mozilla-pageshot.xpi
-	_sub_rdf_checkout_version < build/addon/package.json > build/mozilla-pageshot.update.rdf
+	./bin/build-scripts/sub_rdf_checkout_version < build/addon/package.json > build/mozilla-pageshot.update.rdf
 
 build/addon/package.json: addon/package.json
 	@mkdir -p $(@D)
@@ -178,7 +172,7 @@ chrome-zip: build/chrome-ext.zip
 
 build/chrome-ext.zip: chrome-extension
 	rm -f build/chrome-ext.zip
-	./bin/_set_package_version --chrome < chrome-extension/manifest.json > build/chrome-extension/manifest.json
+	./bin/build-scripts/set_package_version --chrome < chrome-extension/manifest.json > build/chrome-extension/manifest.json
 	cd build/chrome-extension && zip -r ../chrome-ext.zip *
 
 xpi: build/mozilla-pageshot.xpi build/mozilla-pageshot.update.rdf
@@ -222,29 +216,29 @@ build/server/static/img/%: build/static/img/%
 	@mkdir -p $(@D)
 	cp $< $@
 
-shot_dependencies := $(shell ./bin/_bundle_dependencies shot getdeps "$(server_dest)")
+shot_dependencies := $(shell ./bin/build-scripts/bundle_dependencies shot getdeps "$(server_dest)")
 build/server/static/js/shot-bundle.js: $(shot_dependencies)
-	./bin/_bundle_dependencies shot build ./build/server/pages/shot/controller.js
+	./bin/build-scripts/bundle_dependencies shot build ./build/server/pages/shot/controller.js
 
-homepage_dependencies := $(shell ./bin/_bundle_dependencies homepage getdeps "$(server_dest)")
+homepage_dependencies := $(shell ./bin/build-scripts/bundle_dependencies homepage getdeps "$(server_dest)")
 build/server/static/js/homepage-bundle.js: $(homepage_dependencies)
-	./bin/_bundle_dependencies homepage build ./build/server/pages/homepage/controller.js
+	./bin/build-scripts/bundle_dependencies homepage build ./build/server/pages/homepage/controller.js
 
-metrics_dependencies := $(shell ./bin/_bundle_dependencies metrics getdeps "$(server_dest)")
+metrics_dependencies := $(shell ./bin/build-scripts/bundle_dependencies metrics getdeps "$(server_dest)")
 build/server/static/js/metrics-bundle.js: $(metrics_dependencies)
-	./bin/_bundle_dependencies metrics build ./build/server/pages/metrics/controller.js
+	./bin/build-scripts/bundle_dependencies metrics build ./build/server/pages/metrics/controller.js
 
-shotindex_dependencies := $(shell ./bin/_bundle_dependencies shotindex getdeps "$(server_dest)")
+shotindex_dependencies := $(shell ./bin/build-scripts/bundle_dependencies shotindex getdeps "$(server_dest)")
 build/server/static/js/shotindex-bundle.js: $(shotindex_dependencies)
-	./bin/_bundle_dependencies shotindex build ./build/server/pages/shotindex/controller.js
+	./bin/build-scripts/bundle_dependencies shotindex build ./build/server/pages/shotindex/controller.js
 
-leave_dependencies := $(shell ./bin/_bundle_dependencies leave getdeps "$(server_dest)")
+leave_dependencies := $(shell ./bin/build-scripts/bundle_dependencies leave getdeps "$(server_dest)")
 build/server/static/js/leave-bundle.js: $(leave_dependencies)
-	./bin/_bundle_dependencies leave build ./build/server/pages/leave-page-shot/controller.js
+	./bin/build-scripts/bundle_dependencies leave build ./build/server/pages/leave-page-shot/controller.js
 
-creating_dependencies := $(shell ./bin/_bundle_dependencies creating getdeps "$(server_dest)")
+creating_dependencies := $(shell ./bin/build-scripts/bundle_dependencies creating getdeps "$(server_dest)")
 build/server/static/js/creating-bundle.js: $(creating_dependencies)
-	./bin/_bundle_dependencies creating build ./build/server/pages/creating/controller.js
+	./bin/build-scripts/bundle_dependencies creating build ./build/server/pages/creating/controller.js
 
 build/server/export-shots.sh: server/src/export-shots.sh
 	@mkdir -p $(@D)
@@ -253,9 +247,9 @@ build/server/export-shots.sh: server/src/export-shots.sh
 # The intention here is to only write build-time when something else needs
 # to be regenerated, but for some reason this gets rewritten every time
 # anyway:
-build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass_server_dest) $(imgs_server_dest) $(static_js_dest) $(static_vendor_dest) build/server/export-shots.sh $(patsubst server/db-patches/%,build/server/db-patches/%,$(wildcard server/db-patches/*))
+build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass_server_dest) $(imgs_server_dest) $(static_js_dest) build/server/export-shots.sh $(patsubst server/db-patches/%,build/server/db-patches/%,$(wildcard server/db-patches/*))
 	@mkdir -p $(@D)
-	./bin/_write_build_time > build/server/build-time.js
+	./bin/build-scripts/write_build_time > build/server/build-time.js
 
 server: npm build/server/build-time.js build/server/static/js/shot-bundle.js build/server/static/js/homepage-bundle.js build/server/static/js/metrics-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/leave-bundle.js build/server/static/js/creating-bundle.js
 
@@ -276,11 +270,12 @@ build/.backend.txt: set_backend
 set_backend:
 	@if [[ -z "$(PAGESHOT_BACKEND)" ]] ; then echo "No backend set" ; fi
 	@if [[ -n "$(PAGESHOT_BACKEND)" ]] ; then echo "Setting backend to ${PAGESHOT_BACKEND}" ; fi
-	./bin/_set_backend_config https://pageshot.dev.mozaws.net ${PAGESHOT_BACKEND}
+	./bin/build-scripts/set_backend_config https://pageshot.dev.mozaws.net ${PAGESHOT_BACKEND}
 
 build/.npm-install.log: package.json
 	# Essentially .npm-install.log is just a timestamp showing the last time we ran
 	# the command
+	@mkdir -p $(@D)
 	echo "Installing at $(shell date)" > build/.npm-install.log
 	npm install >> build/.npm-install.log
 

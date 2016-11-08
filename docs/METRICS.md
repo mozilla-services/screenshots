@@ -133,10 +133,10 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 ##### Internal add-on events
 
 1. [x] Start an upload `addon/upload/started` with eventValue of Kb (1000 bytes)
-2. [x] Fail to upload due to connection aborted `addon/upload/failed-connection`
-3. [x] Fail to upload due to bad status from server `addon/upload/failed-status` eventValue: status code (e.g., 400, 404, 500, 503)
+2. [x] Fail to upload due to connection aborted `addon/upload-failed/connection` (up to version 1.0.1 was `addon/upload/failed-connection`)
+3. [x] Fail to upload due to bad status from server `addon/upload-failed/status-{code}` (up to version 1.0.1 was `addon/upload/failed-status` with eventValue: status code)
 4. [x] Finish upload successfully `addon/upload/success`
-5. [x] After failure, re-attempt the upload `addon/upload/upload-retry` eventValue: times (1-2)
+5. [x] After failure, re-attempt the upload `addon/upload-retry/times-{N}` (up to version 1.0.1 was `addon/upload/upload-retry` with eventValue: times (1-2))
 
 #### Owner web visit
 

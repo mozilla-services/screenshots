@@ -43,6 +43,7 @@ console.warn = logFactory("warn");
 console.error = logFactory("error");
 
 const path = require('path');
+const { readFileSync } = require('fs');
 const Cookies = require("cookies");
 
 const { Shot } = require("./servershot");
@@ -74,13 +75,14 @@ const gaActivation = require("./ga-activation");
 const genUuid = require("nodify-uuid");
 const AWS = require("aws-sdk");
 const vhost = require("vhost");
-const raven = require("raven");
 const escapeHtml = require("escape-html");
 const validUrl = require("valid-url");
 const { createProxyUrl } = require("./proxy-url");
 const statsd = require("./statsd");
 const { notFound } = require("./pages/not-found/server");
 const { cacheTime, setCache } = require("./caching");
+const { captureRavenException, sendRavenMessage } = require("./ravenclient");
+const { errorResponse, simpleResponse, jsResponse } = require("./responses");
 
 const PROXY_HEADER_WHITELIST = {
   "content-type": true,
@@ -115,26 +117,6 @@ if (config.useS3) {
   });
 }
 
-let ravenClient = null;
-
-if (config.sentryDSN) {
-  ravenClient = new raven.Client(config.sentryDSN);
-  ravenClient.patchGlobal();
-}
-
-function sendRavenMessage(req, message, options) {
-  if (! ravenClient) {
-    return;
-  }
-  options = options || {};
-  options.extra = options.extra || {};
-  options.extra.path = req.originalUrl;
-  options.extra.method = req.method;
-  options.extra.userAgent = req.headers['user-agent'];
-  options.extra.referrer = req.headers['referer'];
-  options.extra.authenticated = !!req.deviceId;
-  ravenClient.captureMessage(message, options);
-}
 
 function initDatabase() {
   dbschema.createTables().then(() => {
@@ -144,9 +126,7 @@ function initDatabase() {
   }).catch((e) => {
     console.error("Error initializing database:", e, e.stack);
     console.warn("Trying again in 60 seconds");
-    if (ravenClient) {
-      ravenClient.captureException(e);
-    }
+    captureRavenException(e);
     setTimeout(initDatabase, 60000);
   });
 }
@@ -263,14 +243,18 @@ function sendGaActivation(req, res, hashPage) {
   });
 }
 
-app.get("/set-content-hosting-origin.js", function (req, res) {
+const parentHelperJs = readFileSync(path.join(__dirname, "/static/js/parent-helper.js"), {encoding: "UTF-8"});
+
+app.get("/parent-helper.js", function (req, res) {
   setCache(res);
   let postMessageOrigin = `${req.protocol}://${req.config.contentOrigin}`;
-  let script = `var CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`
+  let script = `${parentHelperJs}\nvar CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`
   jsResponse(res, script);
 });
 
-app.get("/configure-raven.js", function (req, res) {
+const ravenClientJs = readFileSync(require.resolve("raven-js/dist/raven.min"), {encoding: "UTF-8"});
+
+app.get("/install-raven.js", function (req, res) {
   setCache(res);
   if (! req.config.sentryPublicDSN) {
     jsResponse(res, "");
@@ -284,6 +268,8 @@ app.get("/configure-raven.js", function (req, res) {
   // FIXME: this monkeypatch is because our version of Raven (6.2) doesn't really work
   // with our version of Sentry (8.3.3)
   let script = `
+  ${ravenClientJs}
+
   (function () {
     var old_captureException = Raven.captureException.bind(Raven);
     Raven.captureException = function (ex, options) {
@@ -435,6 +421,7 @@ window.location = ${redirectUrlJs};
 app.post("/api/register", function (req, res) {
   let vars = req.body;
   let canUpdate = vars.deviceId === req.deviceId;
+  let deviceInfo = JSON.parse(vars.deviceInfo);
   if (! vars.deviceId) {
     console.error("Bad register request:", JSON.stringify(vars, null, "  "));
     sendRavenMessage(req, "Attempted to register without deviceId");
@@ -454,7 +441,8 @@ app.post("/api/register", function (req, res) {
       addDeviceActivity(vars.deviceId, "invalid-register", {
         hasSecret: !!vars.secret,
         hasNickname: !!vars.nickname,
-        hasAvatarurl: !!vars.avatarurl
+        hasAvatarurl: !!vars.avatarurl,
+        deviceInfo: deviceInfo
       });
       sendRavenMessage(req, "Attempted to register existing user", {
         extra: {
@@ -502,20 +490,21 @@ app.post("/api/update", function (req, res, next) {
 
 app.post("/api/login", function (req, res) {
   let vars = req.body;
-  checkLogin(vars.deviceId, vars.secret, vars.deviceInfo.addonVersion).then((ok) => {
+  let deviceInfo = JSON.parse(vars.deviceInfo);
+  checkLogin(vars.deviceId, vars.secret, deviceInfo.addonVersion).then((ok) => {
     if (ok) {
       let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
       cookies.set("user", vars.deviceId, {signed: true});
       simpleResponse(res, JSON.stringify({"ok": "User logged in", "sentryPublicDSN": config.sentryPublicDSN}), 200);
       addDeviceActivity(vars.deviceId, "login", {
-        deviceInfo: vars.deviceInfo
+        deviceInfo: deviceInfo
       });
     } else if (ok === null) {
       simpleResponse(res, '{"error": "No such user"}', 404);
     } else {
       addDeviceActivity(vars.deviceId, "invalid-login", {
         hasSecret: !!vars.secret,
-        deviceInfo: vars.deviceInfo
+        deviceInfo: deviceInfo
       });
       sendRavenMessage(req, "Invalid login");
       simpleResponse(res, '{"error": "Invalid login"}', 401);
@@ -528,6 +517,7 @@ app.post("/api/login", function (req, res) {
 app.post("/api/unload", function (req, res) {
   let reason = req.body.reason;
   reason = reason.replace(/[^a-zA-Z0-9]/g, "");
+  let deviceInfo = JSON.parse(req.body.deviceInfo);
   console.info("Device", req.deviceId, "unloaded for reason:", reason);
   let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
   // This erases the session cookie:
@@ -535,7 +525,7 @@ app.post("/api/unload", function (req, res) {
   cookies.set("user.sig");
   addDeviceActivity(req.deviceId, "unload", {
     reason: reason,
-    deviceInfo: req.body.deviceInfo
+    deviceInfo: deviceInfo
   });
   simpleResponse(res, "Noted", 200);
 });
@@ -556,7 +546,21 @@ app.put("/data/:id/:domain", function (req, res) {
 
   if (! bodyObj.deviceId) {
     console.warn("No deviceId in request body", req.url);
-    sendRavenMessage(req, "Attempt PUT without deviceId in request body");
+    let keys = "No keys";
+    try {
+      keys = Object.keys(bodyObj);
+    } catch (e) {
+      // ignore
+    }
+    sendRavenMessage(
+      req, "Attempt PUT without deviceId in request body",
+      {extra:
+        {
+          "typeof bodyObj": typeof bodyObj,
+          keys
+        }
+      }
+    );
     simpleResponse(res, "No deviceId in body", 400);
     return;
   }
@@ -642,6 +646,32 @@ app.post("/api/delete-shot", function (req, res) {
     }
   }).catch((err) => {
     errorResponse(res, "Error: could not delete shot", err);
+  });
+});
+
+app.post("/api/set-title/:id/:domain", function (req, res) {
+  let shotId = `${req.params.id}/${req.params.domain}`;
+  let userTitle = req.body.title;
+  if (userTitle === undefined) {
+    simpleResponse(res, "No title given", 400);
+    return;
+  }
+  if (! req.deviceId) {
+    sendRavenMessage(req, "Attempt to set title on shot without login");
+    simpleResponse(res, "Not logged in", 401);
+    return;
+  }
+  Shot.get(req.backend, shotId).then((shot) => {
+    if (shot.deviceId !== req.deviceId) {
+      simpleResponse(res, "Not the owner", 403);
+      return;
+    }
+    shot.userTitle = userTitle;
+    return shot.update();
+  }).then((updated) => {
+    simpleResponse(res, "Updated", 200);
+  }).catch((err) => {
+    errorResponse(res, "Error updating title", err);
   });
 });
 
@@ -928,9 +958,7 @@ app.post('/api/fxa-oauth/token', function (req, res, next) {
 app.use(function (err, req, res, next) {
   console.error("Error:", err);
   console.error(err.stack);
-  if (ravenClient) {
-    ravenClient.captureException(err);
-  }
+  captureRavenException(err);
   if (err.isAppError) {
     let { statusCode, headers, payload } = err.output;
     res.status(statusCode);
@@ -1066,41 +1094,6 @@ contentApp.get("/proxy", function (req, res) {
   });
   subreq.end();
 });
-
-function simpleResponse(res, message, status) {
-  status = status || 200;
-  res.header("Content-Type", "text/plain; charset=utf-8");
-  res.status(status);
-  res.send(message);
-}
-
-function jsResponse(res, jsstring) {
-  res.header("Content-Type", "application/javascript; charset=utf-8")
-  res.send(jsstring);
-}
-
-function errorResponse(res, message, err) {
-  res.header("Content-Type", "text/plain; charset=utf-8");
-  res.status(500);
-  if (config.showStackTraces) {
-    if (err) {
-      message += "\n" + err;
-      if (err.stack) {
-        message += "\n\n" + err.stack;
-      }
-    }
-    res.send(message);
-  } else {
-    res.send("Server error");
-  }
-  console.error(`Error: ${message}`, err+"", err);
-  if (ravenClient) {
-    ravenClient.captureException(err);
-  }
-}
-
-exports.simpleResponse = simpleResponse;
-exports.errorResponse = errorResponse;
 
 linker.init().then(() => {
   if (config.useVirtualHosts) {

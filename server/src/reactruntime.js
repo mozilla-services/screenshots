@@ -1,5 +1,7 @@
 /* globals document, location */
 
+require("core-js");
+
 const React = require("react");
 const ReactDOM = require("react-dom");
 const linker = require("./linker");
@@ -26,8 +28,7 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
         <link rel="shortcut icon" href={this.props.staticLink("/static/img/pageshot-icon-32.png")} />
         { analyticsScript }
         { activationScript }
-        { this.props.sentryPublicDSN ? <script src={ this.props.staticLink("/static/vendor/raven.js") } /> : null }
-        { this.props.sentryPublicDSN ? <script src={this.props.staticLink("/configure-raven.js")} /> : null }
+        { this.props.sentryPublicDSN ? <script src={this.props.staticLink("/install-raven.js")} /> : null }
         {this.props.children}
       </head>
     );

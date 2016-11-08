@@ -1,3 +1,53 @@
+## Version 2
+
+### Visible changes to the product
+
+* **Make the shot title editable**.  To edit the title simply click on it from the shot page (See [#573](https://github.com/mozilla-services/pageshot/issues/573) [cc10632](https://github.com/mozilla-services/pageshot/commit/cc10632))
+* **Site-specific improvements to autoselection**. New heuristics select one Facebook comment or post, and one tweet.  (See [#1797](https://github.com/mozilla-services/pageshot/issues/1797) [#1796](https://github.com/mozilla-services/pageshot/issues/1796) [8fe813f](https://github.com/mozilla-services/pageshot/commit/8fe813f))
+* **Append .png to all image URLs** (See [#1782](https://github.com/mozilla-services/pageshot/issues/1782) [d7ebfbc](https://github.com/mozilla-services/pageshot/commit/d7ebfbc))
+* **Make a public metrics page available**.  It will be in `/metrics` (will be published to https://pageshot.net/metrics).  (See  [#1825](https://github.com/mozilla-services/pageshot/issues/1825) [#1854](https://github.com/mozilla-services/pageshot/issues/1854) [89a8d9c](https://github.com/mozilla-services/pageshot/commit/89a8d9c))
+* **Scroll selection when your mouse is close to the edge of the window**. Fixes [#193](https://github.com/mozilla-services/pageshot/issues/193) [28bcd17](https://github.com/mozilla-services/pageshot/commit/28bcd17)
+
+### Bugs fixed
+
+* Avoid exception on pages that have multiple `og:title` properties; both
+  store only the first, and handle stored pages that may have multiple titles
+  stored. Fixes [#1887](https://github.com/mozilla-services/pageshot/issues/1887) [9375962](https://github.com/mozilla-services/pageshot/commit/9375962)
+* Ensure suggested filenames for downloaded files stay under 255 bytes. Fixes [#1820](https://github.com/mozilla-services/pageshot/issues/1820) [f1dba6b](https://github.com/mozilla-services/pageshot/commit/f1dba6b)
+* Handle null cookies results when checking for an
+  authentication cookie [dda178f](https://github.com/mozilla-services/pageshot/commit/dda178f)
+
+### Minor changes
+
+* change email share graphic. Fixes [#1650](https://github.com/mozilla-services/pageshot/issues/1650) [34f1ca8](https://github.com/mozilla-services/pageshot/commit/34f1ca8)
+* redirect /favicon.ico to
+  /static/img/pageshot-icon-32.png. Fixes [#1840](https://github.com/mozilla-services/pageshot/issues/1840) [34056c0](https://github.com/mozilla-services/pageshot/commit/34056c0)
+
+### Internal refactoring.
+
+* Hardcode the sentry public DSN so we receive error reports before successful login.  It will still be
+  overwritten on login (including erasing it), but until that happens it will
+  fall back to the production DSN. Fixes [#1883](https://github.com/mozilla-services/pageshot/issues/1883) [1f76fcc](https://github.com/mozilla-services/pageshot/commit/1f76fcc)
+* Direct abuse reports to a dedicated email address. Fixes [#1855](https://github.com/mozilla-services/pageshot/issues/1855) [a69d756](https://github.com/mozilla-services/pageshot/commit/a69d756)
+* Don't overload the `upload` GA event action as both success and failure states (see [Metrics](https://github.com/mozilla-services/pageshot/blob/master/docs/METRICS.md) for more info). Fixes [#1759](https://github.com/mozilla-services/pageshot/issues/1759) [375cbff](https://github.com/mozilla-services/pageshot/commit/375cbff)
+* Combine `configure-raven.js` with the `raven.js`
+  client, into `/install-raven.js`. Load raven via require() instead of a direct
+  link.  Remove the now-unneeded `static/vendor/` directory, and Makefile rules
+  related to it. Fixes [#1801](https://github.com/mozilla-services/pageshot/issues/1801) [6841236](https://github.com/mozilla-services/pageshot/commit/6841236)
+* Combine `parent-helper.js` and
+  `set-content-hosting-origin.js`. Make the scripts inclusion dependent on there
+  being a full page/iframe. Fixes [#1802](https://github.com/mozilla-services/pageshot/issues/1802) [6db660d](https://github.com/mozilla-services/pageshot/commit/6db660d)
+* Move `errorResponse()`, `simpleResponse()`, and `jsResponse()`
+  to a new module. Move raven into its own module as well. Fixes [#1839](https://github.com/mozilla-services/pageshot/issues/1839) [6a06eb2](https://github.com/mozilla-services/pageshot/commit/6a06eb2)
+* First pass at some [deployment documentation](https://github.com/mozilla-services/pageshot/blob/master/docs/deployment.md). Fixes [#1871](https://github.com/mozilla-services/pageshot/issues/1871) [e4b00c0](https://github.com/mozilla-services/pageshot/commit/e4b00c0)
+* Increase default period of time to check for
+  deleted shots from 1 minute to 1 hour. Fixes [#1865](https://github.com/mozilla-services/pageshot/issues/1865) [7589d5e](https://github.com/mozilla-services/pageshot/commit/7589d5e)
+* Add GA logging for any shots that are deleted
+  after the expiration time. Fixes [#1692](https://github.com/mozilla-services/pageshot/issues/1692) [dcb380b](https://github.com/mozilla-services/pageshot/commit/dcb380b)
+* Move the share panel and button entirely into its
+  own component fix share panel alignment when extension
+  notification banner is in place. Fixes [#1714](https://github.com/mozilla-services/pageshot/issues/1714) Fixes [#1565](https://github.com/mozilla-services/pageshot/issues/1565) [ab468fd](https://github.com/mozilla-services/pageshot/commit/ab468fd)
+
 ## Version 1
 
 ### Visible changes to the product

@@ -23,6 +23,8 @@ class Body extends React.Component {
       <reactruntime.BodyTemplate {...this.props}>
         <h1>Metrics</h1>
         <p>Generated at: {created}</p>
+        <GenericTable data={this.props.data.totals} />
+
         <GenericTable data={this.props.data.shotsCreatedByDay} />
 
         <GenericTable data={this.props.data.usersByDay} />
@@ -30,6 +32,8 @@ class Body extends React.Component {
         <GenericTable data={this.props.data.shotsByUserHistogram} />
 
         <GenericTable data={this.props.data.retention} />
+
+        <GenericTable data={this.props.data.addonVersion} />
       </reactruntime.BodyTemplate>
     );
   }

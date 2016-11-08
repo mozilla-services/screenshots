@@ -455,7 +455,7 @@ ${options.addBody || ""}
 
   get creatingUrl() {
     let url = `${this.backend}/creating/${this.id}`;
-    url += `?title=${encodeURIComponent(this.title)}`;
+    url += `?title=${encodeURIComponent(this.title || "")}`;
     url += `&url=${encodeURIComponent(this.url)}`;
     return url;
   }
@@ -553,7 +553,11 @@ ${options.addBody || ""}
   get title() {
     // FIXME: we shouldn't support both openGraph.title and ogTitle
     let ogTitle = this.openGraph && this.openGraph.title;
-    return this.userTitle || this.ogTitle || ogTitle || this.docTitle || this.url;
+    let title = this.userTitle || this.ogTitle || ogTitle || this.docTitle || this.url;
+    if (Array.isArray(title)) {
+      title = title[0];
+    }
+    return title;
   }
 
   get createdDate() {

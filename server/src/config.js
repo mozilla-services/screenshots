@@ -149,7 +149,7 @@ var conf = convict({
   checkDeletedInterval: {
     doc: "Frequency in seconds to check for items that should be purged",
     format: "int",
-    default: 60,
+    default: 60*60, // 1 hour
     env: "CHECK_DELETED_INTERVAL",
     arg: "check-deleted-interval"
   },
@@ -166,6 +166,13 @@ var conf = convict({
     default: 60*60*24*14, // 14 days
     env: "DEFAULT_EXPIRATION",
     arg: "default-expiration"
+  },
+  refreshMetricsTime: {
+    doc: "Interval when the stats in /metrics are recalculated, in seconds",
+    format: "int",
+    default: 60*60, // 1 hour
+    env: "REFRESH_METRICS_TIME",
+    arg: "refresh-metrics-time"
   },
   allowExport: {
     doc: "Whether to allow exporting shots",

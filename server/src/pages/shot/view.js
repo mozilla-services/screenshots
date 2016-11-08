@@ -1,3 +1,4 @@
+/* globals controller */
 const React = require("react");
 const ReactDOM = require("react-dom");
 const { Footer } = require("../../footer-view");
@@ -26,13 +27,15 @@ class Clip extends React.Component {
 
     onResize();
 
-    try {
-      window.sendToChild({
-        type: "displayClip",
-        clip: this.props.clip.asJson()
-      });
-    } catch (e) {
-      console.error("Error sending message to child", e);
+    if (window.sendToChild) {
+      try {
+        window.sendToChild({
+          type: "displayClip",
+          clip: this.props.clip.asJson()
+        });
+      } catch (e) {
+        console.error("Error sending message to child", e);
+      }
     }
   }
 
@@ -95,16 +98,27 @@ class Clip extends React.Component {
 
 class Head extends React.Component {
   render() {
-    return (
-      <reactruntime.HeadTemplate {...this.props}>
-        <script src={ this.props.staticLink("/static/js/shot-bundle.js") } key="shot-bundle-js" />
-        <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
-        <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {this.socialMetadata()}
-        <script src={ this.props.staticLink("/set-content-hosting-origin.js") } />
-        <script src={ this.props.staticLink("/static/js/parent-helper.js") } />
-      </reactruntime.HeadTemplate>);
+    let expired = this.props.expireTime !== null && Date.now() > this.props.expireTime;
+    if (expired) {
+      return (
+        <reactruntime.HeadTemplate {...this.props}>
+          <script src={ this.props.staticLink("/static/js/shot-bundle.js") } />
+          <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </reactruntime.HeadTemplate>
+      );
+    } else {
+      return (
+        <reactruntime.HeadTemplate {...this.props}>
+          <script src={ this.props.staticLink("/static/js/shot-bundle.js") } />
+          <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />
+          {this.socialMetadata()}
+          {this.props.shot.showPage ? <script src={ this.props.staticLink("/parent-helper.js") } /> : null}
+        </reactruntime.HeadTemplate>
+      );
+    }
   }
 
   socialMetadata() {
@@ -122,6 +136,7 @@ class Head extends React.Component {
       <meta name="twitter:card" content="summary_large_image" key="twittercard" />,
       <meta name="twitter:title" content={title} key="twitterTitle" />
     ];
+
     for (let clipId of this.props.shot.clipNames()) {
       let clip = this.props.shot.getClip(clipId);
       if (! clip.image) {
@@ -179,7 +194,7 @@ class Body extends React.Component {
 
   onClickFlag(e) {
     sendEvent("start-flag", "navbar", {useBeacon: true});
-    window.open(`mailto:pageshot-feedback@mozilla.com?subject=Flagging%20shot%20for%20abuse&body=Flagging%20shot%20for%20abuse:%20${encodeURIComponent(this.props.shot.viewUrl)}`);
+    window.open(`mailto:pageshot-report@mozilla.com?subject=Flagging%20shot%20for%20abuse&body=Flagging%20shot%20for%20abuse:%20${encodeURIComponent(this.props.shot.viewUrl)}`);
   }
 
   render() {
@@ -193,26 +208,31 @@ class Body extends React.Component {
       let restoreWidget;
       if (this.props.isOwner) {
         restoreWidget = (
-          <p>
-            Will be permanently deleted <TimeDiff date={deleteTime} />
-            &#8195;<span className="link-button" onClick={this.onRestore.bind(this)}>restore for {intervalDescription(this.props.defaultExpiration)}</span>
-          </p>
+          <div>
+            <div className="spacer"/>
+            If you do nothing,<br/>
+            this shot will be permanently deleted <TimeDiff date={deleteTime} />.
+            <div className="spacer"/>
+            <div className="responsive-wrapper row-center">
+              <button className="button primary set-width--medium" onClick={this.onRestore.bind(this)}>restore for {intervalDescription(this.props.defaultExpiration)}</button>
+            </div>
+          </div>
         );
       }
       // Note: any attributes used here need to be preserved
       // in the render() function
       body = <reactruntime.BodyTemplate {...this.props}>
-        <p>&nbsp;</p>
-        <p>
-          This shot has expired. You may visit the original page it was originally created from:
-        </p>
-        <h2><a href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>{this.props.shot.title}</a></h2>
-        <p>
-          <a href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>
-            {this.props.shot.urlIfDeleted}
-          </a>
-        </p>
-        { restoreWidget }
+        <div className="column-center full-height inverse-color-scheme">
+          <div className="large-icon-message-container">
+            <div className="large-icon logo" />
+            <div className="large-icon-message-string">
+              This shot has expired.<br/>
+              Here is page it was originally created from:<br/>
+              <a className="underline" href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>{this.props.shot.title}</a>
+              { restoreWidget }
+            </div>
+          </div>
+        </div>
       </reactruntime.BodyTemplate>;
     } else {
       body = this.renderBody();
@@ -327,7 +347,7 @@ class Body extends React.Component {
           <div className="left">
             <a className="block-button button secondary" href={ myShotsHref } onClick={this.onClickMyShots.bind(this)}>{ myShotsText }</a>
             <div className="shot-info">
-              <span className="shot-title"> { shot.title } </span>
+              <EditableTitle title={shot.title} isOwner={this.props.isOwner} />
               <div className="shot-subtitle">Saved from &nbsp;<a className="subtitle-link" href={ shotRedirectUrl } onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> <span className="clock-icon"/> { timeDiff } { expiresDiff } </div>
             </div>
           </div>
@@ -479,6 +499,69 @@ class ExpireWidget extends React.Component {
     this.props.onSaveExpire(value);
     this.setState({isChangingExpire: false});
   }
+}
+
+class EditableTitle extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {isEditing: false, isSaving: false};
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // When the save completes, this component just gets updated with the new title
+    if (this.state.isSaving && this.state.isSaving === nextProps.title) {
+      this.state.isSaving = false;
+    }
+  }
+
+  render() {
+    if (this.state.isEditing) {
+      return this.renderEditing();
+    }
+    let className = "shot-title";
+    let handlers = {};
+    if (this.props.isOwner) {
+      className += " editable";
+      handlers.onClick = this.onClick.bind(this);
+    }
+    if (this.state.isSaving) {
+      className += " saving";
+    }
+    return <span className={className} {...handlers}>{this.state.isSaving || this.props.title}</span>;
+  }
+
+  renderEditing() {
+    return <form onSubmit={this.onSubmit.bind(this)}>
+      <input ref={(input) => this.textInput = input}
+        className="shot-title-input"
+        type="text" defaultValue={this.props.title} autoFocus="true"
+        onBlur={this.onBlur.bind(this)} onKeyUp={this.onKeyUp.bind(this)} />
+    </form>;
+  }
+
+  onClick() {
+    this.setState({isEditing: true});
+  }
+
+  onSubmit() {
+    let val = this.textInput.value;
+    controller.setTitle(val);
+    this.setState({isEditing: false, isSaving: val});
+  }
+
+  onBlur() {
+    if (this.textInput.value === this.props.title) {
+      this.setState({isEditing: false});
+    }
+  }
+
+  onKeyUp(event) {
+    if ((event.key || event.code) == "Escape") {
+      this.setState({isEditing: false});
+    }
+  }
+
 }
 
 exports.BodyFactory = React.createFactory(Body);

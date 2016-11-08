@@ -17,6 +17,10 @@ body {
 a {
   color: $link-blue;
   text-decoration: none;
+
+  &.underline {
+    text-decoration: underline;
+  }
 }
 
 p,

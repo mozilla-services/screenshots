@@ -219,7 +219,7 @@ exports.setup = function (app) {
     launchWget(req.deviceId).then(() => {
       res.redirect("/export/status?started=" + encodeURIComponent(Date.now()));
     }).catch((e) => {
-      require("./server").errorResponse(res, "Failed to launch export", e);
+      require("./responses").errorResponse(res, "Failed to launch export", e);
     });
   });
 
@@ -242,7 +242,7 @@ exports.setup = function (app) {
       req.keepTime = keepTime;
       require("./views/export").renderStatus(req, res);
     }).catch((e) => {
-      require("./server").errorResponse(res, "Failed to get status", e);
+      require("./responses").errorResponse(res, "Failed to get status", e);
     });
   });
 
@@ -266,7 +266,7 @@ exports.setup = function (app) {
     removeExportPath(dir).then(() => {
       res.redirect("/export?deleted");
     }).catch((e) => {
-      require("./server").errorResponse(res, "Failed to remove directory", e);
+      require("./responses").errorResponse(res, "Failed to remove directory", e);
     });
   });
 

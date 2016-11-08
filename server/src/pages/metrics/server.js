@@ -1,8 +1,7 @@
 const express = require("express");
 const reactrender = require("../../reactrender");
 const { storeQueries } = require("./model");
-
-const REFRESH_QUERY_TIME = 1000 * 60 * 60; // 1 hour
+const config = require("../../config").getProperties();
 
 let app = exports.app = express();
 
@@ -24,6 +23,6 @@ function safeStoreQueries() {
   });
 }
 
-setInterval(safeStoreQueries, REFRESH_QUERY_TIME);
+setInterval(safeStoreQueries, config.refreshMetricsTime*1000);
 // Also run immediately on startup:
 setTimeout(safeStoreQueries, 1000);

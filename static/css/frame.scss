@@ -77,7 +77,24 @@
 .shot-title {
   font-size: 16px;
   height: 25px;
-  padding: 0 0 6px;
+  padding: 0 16px 6px 0;
+  &.saving {
+    opacity: 0.7;
+  }
+  &.editable {
+    cursor: default;
+    &:hover {
+      background-image: url('/static/img/pencil.svg');
+      background-repeat: no-repeat;
+      background-position: right;
+      background-size: 16px 16px;
+    }
+  }
+}
+
+.shot-title-input {
+  font-size: 16px;
+  height: 25px;
 }
 
 .shot-subtitle {
