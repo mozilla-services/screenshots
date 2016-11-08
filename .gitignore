@@ -14,3 +14,4 @@ cookie-jar.txt
 /scratch
 /data
 *.log
+/.env.local

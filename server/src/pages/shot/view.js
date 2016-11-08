@@ -27,13 +27,15 @@ class Clip extends React.Component {
 
     onResize();
 
-    try {
-      window.sendToChild({
-        type: "displayClip",
-        clip: this.props.clip.asJson()
-      });
-    } catch (e) {
-      console.error("Error sending message to child", e);
+    if (window.sendToChild) {
+      try {
+        window.sendToChild({
+          type: "displayClip",
+          clip: this.props.clip.asJson()
+        });
+      } catch (e) {
+        console.error("Error sending message to child", e);
+      }
     }
   }
 
