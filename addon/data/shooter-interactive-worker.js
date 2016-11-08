@@ -368,12 +368,10 @@ stateHandlers.crosshairs = {
     let el;
     if (event.target.className === "pageshot-preview-overlay") {
       // The hover is on the overlay, so we need to figure out the real element
-      ui.WholePageOverlay.overlayEl.style.pointerEvents = "none";
       el = ui.iframe.getElementFromPoint(
         event.pageX - window.pageXOffset,
         event.pageY - window.pageYOffset
       );
-      ui.WholePageOverlay.overlayEl.style.pointerEvents = "";
     } else {
       // The hover is on the element we care about, so we use that
       el = event.target;
