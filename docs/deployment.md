@@ -70,6 +70,13 @@ On the following Monday, during our checkin, Softvision will give us an update o
 
 Once we are comfortable that the site has been tested, file a bugzilla bug to deploy to prod. [Example](https://bugzilla.mozilla.org/show_bug.cgi?id=1312768)
 
+Rebuild the XPI with:
+
+1. `rm build/mozilla-pageshot.xpi`
+2. `PAGESHOT_BACKEND=https://pageshot.net make xpi`
+
+Send the XPI to Wil for deployment on the static site.
+
 Notifications of successful deployment will appear on IRC.
 
 We'll target Wednesday 8AM pacific time for deployment.
