@@ -22,6 +22,13 @@
 * change email share graphic. Fixes [#1650](https://github.com/mozilla-services/pageshot/issues/1650) [34f1ca8](https://github.com/mozilla-services/pageshot/commit/34f1ca8)
 * redirect /favicon.ico to
   /static/img/pageshot-icon-32.png. Fixes [#1840](https://github.com/mozilla-services/pageshot/issues/1840) [34056c0](https://github.com/mozilla-services/pageshot/commit/34056c0)
+* (v2.4) restore the share notification message. Fixes [#1918](https://github.com/mozilla-services/pageshot/issues/1918) [fdda2ec](https://github.com/mozilla-services/pageshot/commit/fdda2ec)
+* (v2.4) revert to 'page' when the title isn't found. Fixes [#1836](https://github.com/mozilla-services/pageshot/issues/1836) [295e5b6](https://github.com/mozilla-services/pageshot/commit/295e5b6)
+* (v2.4) add specific images for no search results and no
+  shots at all. Fixes [#1770](https://github.com/mozilla-services/pageshot/issues/1770) [4e04411](https://github.com/mozilla-services/pageshot/commit/4e04411)
+* (v2.4) Update some metrics queries: - Do not filter out shots that
+  seem expired from the shot total count - Simplify some aliases in queries
+  (not using aliasing in FROM) - Add a total retention table [efab5e1](https://github.com/mozilla-services/pageshot/commit/efab5e1)
 
 ### Internal refactoring.
 
@@ -47,6 +54,8 @@
 * Move the share panel and button entirely into its
   own component fix share panel alignment when extension
   notification banner is in place. Fixes [#1714](https://github.com/mozilla-services/pageshot/issues/1714) Fixes [#1565](https://github.com/mozilla-services/pageshot/issues/1565) [ab468fd](https://github.com/mozilla-services/pageshot/commit/ab468fd)
+* (v2.4) check before trying to call window.sendToChild,
+  which is safely missing on most pages. Fixes [#1910](https://github.com/mozilla-services/pageshot/issues/1910) [5333ae7](https://github.com/mozilla-services/pageshot/commit/5333ae7)
 
 ## Version 1
 
