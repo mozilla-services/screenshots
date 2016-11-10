@@ -284,6 +284,22 @@ $overlay-z-index: 9999999999;
   z-index: $overlay-z-index;
 }
 
+// FIXME: some of the styles in .pageshot-moving-element were copied from
+// .pageshot-preview-overlay and are probably unnecessary
+.pageshot-moving-element {
+  pointer-events: none;
+  position: absolute;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  width: 100%;
+}
+
 .pageshot-preview-instructions {
   @extend .pageshot-reset;
   @include flex-container(row, center, center);

@@ -51,6 +51,13 @@ const ui = (function () { // eslint-disable-line no-unused-vars
 
   let iframe = exports.iframe = {
     element: null,
+    sizeTracking: {
+      timer: null,
+      windowDelayer: null,
+      resizeBound: null,
+      lastHeight: null,
+      lastWidth: null
+    },
     document: null,
     display: function (installHandlerOnDocument) {
       return new Promise((resolve, reject) => {
@@ -62,8 +69,8 @@ const ui = (function () { // eslint-disable-line no-unused-vars
           this.element.style.position = "absolute";
           this.element.style.top = "0";
           this.element.style.left = "0";
-          this.element.style.height = "100%";
-          this.element.style.width = "100%";
+          this.element.style.margin = "0";
+          this.updateElementSize();
           this.element.onload = () => {
             var parsedDom = (new DOMParser()).parseFromString(
               "<html><head><title></title></head><body></body>",
@@ -90,7 +97,65 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         } else {
           resolve();
         }
+        this.initSizeWatch();
       });
+    },
+
+    updateElementSize: function (force) {
+      // Note: if someone sizes down the page, then the iframe will keep the
+      // document from naturally shrinking.  We use force to temporarily hide
+      // the element so that we can tell if the document shrinks
+      if (force) {
+        this.element.style.display = "none";
+      }
+      let height = Math.max(
+        document.documentElement.clientHeight,
+        document.body.clientHeight,
+        window.innerHeight);
+      if (height !== this.sizeTracking.lastHeight) {
+        this.sizeTracking.lastHeight = height;
+        this.element.style.height = height + "px";
+      }
+      let width = Math.max(
+        document.documentElement.clientWidth,
+        document.body.clientWidth,
+        window.innerWidth);
+      if (width !== this.sizeTracking.lastWidth) {
+        this.sizeTracking.lastWidth = width;
+        this.element.style.width = width + "px";
+      }
+      if (force) {
+        this.element.style.display = "";
+      }
+      WholePageOverlay.resetPosition();
+    },
+
+    initSizeWatch: function () {
+      this.stopSizeWatch();
+      this.sizeTracking.timer = setInterval(this.updateElementSize.bind(this), 2000);
+      window.addEventListener("resize", this.onResize, true);
+    },
+
+    stopSizeWatch: function () {
+      if (this.sizeTracking.timer) {
+        clearTimeout(this.sizeTracking.timer);
+        this.sizeTracking.timer = null;
+      }
+      if (this.sizeTracking.windowDelayer) {
+        clearTimeout(this.sizeTracking.windowDelayer);
+        this.sizeTracking.windowDelayer = null;
+      }
+      this.sizeTracking.lastHeight = this.sizeTracking.lastWidth = null;
+      window.removeEventListener("resize", this.onResize, true);
+    },
+
+    onResize: function () {
+      if (this.sizeTracking.windowDelayer) {
+        clearTimeout(this.sizeTracking.windowDelayer);
+      }
+      this.sizeTracking.windowDelayer = setTimeout(() => {
+        this.updateElementSize(true);
+      }, 100);
     },
 
     getElementFromPoint: function (x, y) {
@@ -105,49 +170,82 @@ const ui = (function () { // eslint-disable-line no-unused-vars
     },
 
     remove: function () {
+      this.stopSizeWatch();
       util.removeNode(this.element);
       this.element = this.document = null;
     }
   };
 
+  iframe.onResize = iframe.onResize.bind(iframe);
+
   /** Represents the shadow overlay that covers the whole page */
   let WholePageOverlay = exports.WholePageOverlay = {
 
     el: null,
+    movingEl: null,
+    isScrollTracking: false,
 
     display: function (callbacks) {
       this.remove();
-      let overlayEl = this.el = makeEl("div", "pageshot-preview-overlay");
-      let instructions = makeEl("div", "pageshot-preview-instructions");
-      instructions.textContent = "Drag or click on the page to select a region. Press ESC to cancel.";
-      overlayEl.appendChild(instructions);
-      let button = makeEl("div", "pageshot-myshots");
-      button.addEventListener("click", callbacks.onOpenMyShots, false);
-      let myShotsPre = makeEl("div", "pageshot-pre-myshots");
-      button.appendChild(myShotsPre);
-      let text = makeEl("div", "pageshot-myshots-text");
-      text.textContent = "My Shots";
-      button.appendChild(text);
-      let myShotsPost = makeEl("div", "pageshot-post-myshots");
-      button.appendChild(myShotsPost);
-      overlayEl.appendChild(button);
-      let visibleButton = makeEl("div", "pageshot-overlay-button pageshot-visible");
-      visibleButton.textContent = "Save visible";
-      visibleButton.addEventListener("click", callbacks.onClickVisible, false);
-      overlayEl.appendChild(visibleButton);
-      let fullPageButton = makeEl("div", "pageshot-overlay-button pageshot-full-page");
-      fullPageButton.textContent = "Save full page";
-      fullPageButton.addEventListener("click", callbacks.onClickFullPage, false);
-      overlayEl.appendChild(fullPageButton);
-      iframe.document.body.appendChild(overlayEl);
+      this.el = makeEl("div", "pageshot-preview-overlay");
+      this.el.innerHTML = `
+      <div class="pageshot-moving-element" style="position: absolute; pointer-events: none; display: flex">
+        <div class="pageshot-preview-instructions">
+          Drag or click on the page to select a region. Press ESC to cancel.
+        </div>
+        <div class="pageshot-myshots">
+          <div class="pageshot-pre-myshots"></div>
+          <div class="pageshot-myshots-text">My Shots</div>
+          <div class="pageshot-post-myshots"></div>
+        </div>
+        <div class="pageshot-overlay-button pageshot-visible">
+          Save visible
+        </div>
+        <div class="pageshot-overlay-button pageshot-full-page">
+          Save full page
+        </div>
+      `;
+      this.el.querySelector(".pageshot-myshots").addEventListener("click", callbacks.onOpenMyShots, false);
+      this.el.querySelector(".pageshot-visible").addEventListener("click", callbacks.onClickVisible, false);
+      this.el.querySelector(".pageshot-full-page").addEventListener("click", callbacks.onClickFullPage, false);
+      this.movingEl = this.el.querySelector(".pageshot-moving-element");
+      iframe.document.body.appendChild(this.el);
+      this.resetPosition();
+      window.addEventListener("scroll", this.onScroll, false);
+    },
+
+    resetPosition: function () {
+      if (! this.movingEl) {
+        return;
+      }
+      let scrollX = window.scrollX;
+      let scrollY = window.scrollY;
+      this.movingEl.style.top = scrollY + "px";
+      this.movingEl.style.left = scrollX + "px";
+      this.movingEl.style.width = window.innerWidth + "px";
+      this.movingEl.style.height = window.innerHeight + "px";
+    },
+
+    onScroll: function () {
+      if (! this.isScrollTracking) {
+        window.requestAnimationFrame(() => {
+          this.resetPosition();
+          this.isScrollTracking = false;
+        });
+        this.isScrollTracking = true;
+      }
     },
 
     remove: function () {
       util.removeNode(this.el);
       this.el = null;
+      this.movingEl = null;
+      window.removeEventListener("scroll", this.onScroll, false);
     }
 
   };
+
+  WholePageOverlay.onScroll = WholePageOverlay.onScroll.bind(WholePageOverlay);
 
   let movements = ["topLeft", "top", "topRight", "left", "right", "bottomLeft", "bottom", "bottomRight"];
 

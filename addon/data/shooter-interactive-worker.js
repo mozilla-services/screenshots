@@ -359,7 +359,9 @@ stateHandlers.crosshairs = {
   },
 
   mousemove: function (event) {
-    if (event.target.className !== "pageshot-preview-overlay" && event.target.className.startsWith("pageshot-")) {
+    if (event.target.className &&
+        event.target.className !== "pageshot-preview-overlay" &&
+        event.target.className.startsWith("pageshot-")) {
       // User is hovering over a Page Shot button or control
       autoDetectRect = null;
       ui.HoverBox.hide();
@@ -816,7 +818,7 @@ function activate() {
   addHandlers();
   ui.iframe.display(installHandlersOnDocument).then(() => {
     setState("crosshairs");
-  });
+  }).catch((err) => {console.error("Error:", err+"", err)});
   if (isChrome) {
     ui.ChromeInterface.display();
     ui.ChromeInterface.onMyShots = function () {
