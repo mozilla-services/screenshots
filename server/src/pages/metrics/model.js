@@ -23,12 +23,9 @@ const queries = {
     title: "Shots By Day",
     description: "Number of shots created each day (for the last 30 days)",
     sql: `
-    SELECT COUNT(data.id)::INTEGER AS number_of_shots, day
-    FROM data,
-        date_trunc('day', data.created) AS day
+    SELECT COUNT(data.id)::INTEGER AS number_of_shots, date_trunc('day', data.created) AS day
+    FROM data
     WHERE data.created + INTERVAL '30 days' >= CURRENT_TIMESTAMP
-        AND NOT data.deleted
-        AND data.expire_time < CURRENT_TIMESTAMP
     GROUP BY day
     ORDER BY day DESC;
     `,
@@ -42,12 +39,9 @@ const queries = {
     title: "Users By Day",
     description: "Number of users who created at least one shot, by day (last 30 days)",
     sql: `
-    SELECT COUNT(DISTINCT data.deviceid)::INTEGER AS number_of_users, day
-    FROM data,
-        date_trunc('day', data.created) AS day
+    SELECT COUNT(DISTINCT data.deviceid)::INTEGER AS number_of_users, date_trunc('day', data.created) AS day
+    FROM data
     WHERE data.created + INTERVAL '30 days' >= CURRENT_TIMESTAMP
-        AND NOT data.deleted
-        AND data.expire_time < CURRENT_TIMESTAMP
     GROUP BY day
     ORDER BY day DESC;
     `,
@@ -77,13 +71,13 @@ const queries = {
   },
 
   retention: {
-    title: "Retention",
+    title: "Retention By Week",
     description: "Length of time users have been creating shots, grouped by week",
     sql: `
-    SELECT COUNT(age.days)::INTEGER AS user_count, age.days, age.first_created_week
+    SELECT COUNT(age.days)::INTEGER AS user_count, (age.days + 1) AS days_plus_1, age.first_created_week
     FROM
         (SELECT
-          EXTRACT(EPOCH FROM AGE(span.last_created, span.first_created)) / 3600 AS days,
+          EXTRACT(EPOCH FROM AGE(span.last_created, span.first_created)) / 86400 AS days,
           span.first_created_week
          FROM
              (SELECT
@@ -97,8 +91,31 @@ const queries = {
     `,
     columns: [
       {title: "Number of users", name: "user_count"},
-      {title: "Days the user has been creating shots", name: "days"},
+      {title: "Days the user has been creating shots", name: "days_plus_1"},
       {title: "Week the user started using Page Shot", type: "date", name: "first_created_week"}
+    ]
+  },
+
+  retentionTotal: {
+    title: "Total Retention",
+    description: "Length of time users have been creating shots, grouped by week",
+    sql: `
+    SELECT COUNT(age.days)::INTEGER AS user_count, (age.days + 1) AS days_plus_1
+    FROM
+        (SELECT
+          EXTRACT(EPOCH FROM AGE(span.last_created, span.first_created)) / 86400 AS days
+         FROM
+             (SELECT
+                  date_trunc('day', MIN(created)) AS first_created,
+                  date_trunc('day', MAX(created)) AS last_created
+              FROM data
+              GROUP BY deviceid) AS span) AS age
+    GROUP BY age.days
+    ORDER BY age.days;
+    `,
+    columns: [
+      {title: "Number of users", name: "user_count"},
+      {title: "Days the user has been creating shots", name: "days_plus_1"}
     ]
   },
 
