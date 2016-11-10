@@ -180,6 +180,17 @@ exports.storeQueries = function () {
   });
 };
 
+exports.checkLastStoreQueriesTime = function () {
+  return db.select(
+    `SELECT created FROM metrics_cache`
+  ).then((rows) => {
+    if (! rows.length) {
+      return null;
+    }
+    return rows[0].created;
+  });
+};
+
 function getQueries() {
   return db.select(`
     SELECT data FROM metrics_cache ORDER BY created DESC LIMIT 1

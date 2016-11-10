@@ -1,6 +1,6 @@
 const express = require("express");
 const reactrender = require("../../reactrender");
-const { storeQueries } = require("./model");
+const { checkLastStoreQueriesTime, storeQueries } = require("./model");
 const config = require("../../config").getProperties();
 const { captureRavenException } = require("../../ravenclient");
 
@@ -17,8 +17,12 @@ app.get("/", function (req, res) {
 });
 
 function safeStoreQueries() {
-  storeQueries().then(() => {
-    console.info("Updated metrics");
+  checkLastStoreQueriesTime().then((time) => {
+    if ((! time) || Date.now() - time.getTime() > config.refreshMetricsTime*1000) {
+      return storeQueries().then(() => {
+        console.info("Updated metrics");
+      });
+    }
   }).catch((error) => {
     console.error("Error running metrics queries:", error);
     captureRavenException(error);
@@ -26,7 +30,12 @@ function safeStoreQueries() {
 }
 
 if (config.refreshMetricsTime) {
-  setInterval(safeStoreQueries, config.refreshMetricsTime*1000);
+  // Randomize each worker +-30 seconds interval
+  let interval = config.refreshMetricsTime * 1000 + Math.floor(Math.random()*60000 - 30000);
+  if (interval < 10000) {
+    interval = 60000;
+  }
+  setInterval(safeStoreQueries, interval);
 } else {
   console.info("Not running periodic metrics updating");
 }
