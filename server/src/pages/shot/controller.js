@@ -227,6 +227,30 @@ exports.setTitle = function (title) {
   req.send(JSON.stringify({ title }));
 };
 
+exports.sendRichCopy = function () {
+  let event = document.createEvent("CustomEvent");
+  function quote(s) {
+    s = s+"";
+    return s.replace(/"/g, '&quot;').replace(/</g, '&gt;').replace(/&/g, '&amp;');
+  }
+  let shot = model.shot;
+  let clip = shot.getClip(shot.clipNames()[0]);
+  let src = clip.image.url;
+  let height = clip.image.dimensions.y;
+  let width = clip.image.dimensions.x;
+  let adjust = Math.min(500 / width, 350 / height);
+  if (adjust < 1) {
+    height = height * adjust;
+    width = width * adjust;
+  }
+  let detail = {
+    html: `<img src="${quote(src)}" height="${quote(height)}" width="${quote(width)}" /><br /><a href="${quote(shot.viewUrl)}">${quote(shot.title)}</a> (source: <a href="${quote(shot.url)}">${quote(shot.urlDisplay)}</a>)`,
+    text: `${shot.title}: ${shot.viewUrl} (source: ${shot.url})`
+  };
+  event.initCustomEvent("sendRichCopy", true, true, detail);
+  document.dispatchEvent(event);
+};
+
 function render() {
   page.render(model);
 }

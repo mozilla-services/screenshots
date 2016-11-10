@@ -15,6 +15,7 @@ const shotstore = require("./shotstore");
 const { watchFunction, watchWorker } = require("./errors");
 const user = require("./user");
 const {Cu} = require("chrome");
+const { copyMultiple } = require("./multiclip");
 
 var existing;
 
@@ -109,6 +110,15 @@ function resetPageMod(backend) {
         let error = new Error("Error: sendEvent missing in web view");
         error.noPopup = true;
         throw error;
+      }));
+
+      worker.port.on("sendRichCopy", watchFunction(function (data) {
+        notifications.notify({
+          title: "Rich Text Copied",
+          text: "The image and link to your shot have been copied to the clipboard.",
+          iconURL: self.data.url("../data/copy.png")
+        });
+        copyMultiple({html: data.html, text: data.text});
       }));
 
       // FIXME: we aren't using this, but it does allow richer clipboard access

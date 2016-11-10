@@ -7,7 +7,6 @@ exports.ShareButton = class ShareButton extends React.Component {
     this.state = {
       display: false
     };
-
   }
 
   render() {
@@ -18,6 +17,8 @@ exports.ShareButton = class ShareButton extends React.Component {
         closePanel={this.onPanelClose.bind(this)} shot={this.props.shot}
         staticLink={this.props.staticLink}
         renderExtensionNotification={this.props.renderExtensionNotification}
+        sendRichCopy={this.props.sendRichCopy}
+        isExtInstalled={this.props.isExtInstalled}
       />;
     }
     return <div>
@@ -76,6 +77,13 @@ class ShareButtonPanel extends React.Component {
     sendEvent("share", "focus-url");
   }
 
+  onClickRichCopy(event) {
+    event.preventDefault();
+    this.props.sendRichCopy();
+    sendEvent("share", "rich-copy");
+    return false;
+  }
+
   render() {
     let className = "share-panel default-color-scheme";
     if (this.props.renderExtensionNotification) {
@@ -95,6 +103,10 @@ class ShareButtonPanel extends React.Component {
         <a onClick={ this.onClickShareButton.bind(this, "email") } target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
           <img src={ this.props.staticLink("/static/img/share-email.svg") } />
         </a>
+        {this.props.isExtInstalled ?
+          <a onClick={ this.onClickRichCopy.bind(this) } target="_blank" href="#">
+            <img src={ this.props.staticLink("/static/img/clipboard-32.png") } />
+          </a> : null}
       </div>
       <p>Get a shareable link to this shot:</p>
       <div className="wrapper row-space">
