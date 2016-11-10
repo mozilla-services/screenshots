@@ -30,7 +30,7 @@ if unzip -v $xpi | grep -q META-INF ; then
   echo "Signed xpi found"
 else
   rm -f ./mozilla_pageshot-*-fx.xpi
-  jpm sign --api-key=${AMO_USER} --api-secret=${AMO_SECRET} --xpi=${xpi}
+  ./node_modules/.bin/jpm sign --api-key=${AMO_USER} --api-secret=${AMO_SECRET} --xpi=${xpi}
   mv `ls ./mozilla_pageshot-*-fx.xpi` ${xpi}
 fi
 
