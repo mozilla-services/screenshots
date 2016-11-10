@@ -1,4 +1,4 @@
-/* globals console, self, watchFunction, annotatePosition, util, ui, snapping */
+/* globals console, self, watchFunction, watchPromise, annotatePosition, util, ui, snapping */
 /* globals window, document, location, chromeShooter */
 
 /**********************************************************
@@ -351,7 +351,7 @@ stateHandlers.crosshairs = {
     this.cachedEl = null;
     ui.Box.remove();
     ui.WholePageOverlay.display(standardOverlayCallbacks);
-    document.addEventListener("keyup", keyupHandler, false);
+    document.addEventListener("keyup", watchFunction(keyupHandler), false);
     registeredDocumentHandlers.push({name: "keyup", doc: document, handler: keyupHandler});
     if (isChrome) {
       ui.ChromeInterface.showSaveFullPage();
@@ -507,7 +507,7 @@ stateHandlers.draggingReady = {
 
   start: function () {
     ui.Box.remove();
-    ui.WholePageOverlay.display(standardOverlayCallbacks, installHandlersOnDocument);
+    ui.WholePageOverlay.display(standardOverlayCallbacks);
   },
 
   mousemove: function (event) {
@@ -816,9 +816,9 @@ function getScreenPosition() {
 function activate() {
   ui.Box.remove();
   addHandlers();
-  ui.iframe.display(installHandlersOnDocument).then(() => {
+  watchPromise(ui.iframe.display(installHandlersOnDocument).then(() => {
     setState("crosshairs");
-  }).catch((err) => {console.error("Error:", err+"", err)});
+  }));
   if (isChrome) {
     ui.ChromeInterface.display();
     ui.ChromeInterface.onMyShots = function () {
@@ -879,8 +879,9 @@ function addHandlers() {
 
 function installHandlersOnDocument(docObj) {
   for (let [eventName, handler] of primedDocumentHandlers) {
-    docObj.addEventListener(eventName, handler, eventName !== "keyup");
-    registeredDocumentHandlers.push({name: eventName, doc: docObj, handler});
+    let watchHandler = watchFunction(handler);
+    docObj.addEventListener(eventName, watchHandler, eventName !== "keyup");
+    registeredDocumentHandlers.push({name: eventName, doc: docObj, watchHandler});
   }
 }
 
@@ -956,27 +957,27 @@ function checkUrl() {
   }
 }
 
-window.addEventListener("popstate", checkUrl, false);
+window.addEventListener("popstate", watchFunction(checkUrl), false);
 
 if (! isChrome) {
-  self.port.on("isShowing", checkUrl);
+  self.port.on("isShowing", watchFunction(checkUrl));
 
-  self.port.on("destroy", () => {
+  self.port.on("destroy", watchFunction(() => {
     // If we do this in a setTimeout, we get sane error messages.
     // If we don't, we get inscruitable ones.
-    setTimeout(() => {
+    setTimeout(watchFunction(() => {
       deactivate();
       self.port.emit("destroyed");
-    }, 0);
-  })
+    }), 0);
+  }));
 
   // Happens if this worker is detached for some reason
   // (such as moving windows, add-on unloading)
-  self.port.on("detach", () => {
+  self.port.on("detach", watchFunction(() => {
     deactivate();
     console.info("detached worker");
-  });
+  }));
 
   self.port.emit("ready");
-  activate();
+  watchFunction(activate());
 }

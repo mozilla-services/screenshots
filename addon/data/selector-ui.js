@@ -1,4 +1,4 @@
-/* globals util, window, document, console */
+/* globals util, window, document, console, watchFunction */
 /* exported ui */
 
 const ui = (function () { // eslint-disable-line no-unused-vars
@@ -132,7 +132,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
 
     initSizeWatch: function () {
       this.stopSizeWatch();
-      this.sizeTracking.timer = setInterval(this.updateElementSize.bind(this), 2000);
+      this.sizeTracking.timer = setInterval(watchFunction(this.updateElementSize.bind(this)), 2000);
       window.addEventListener("resize", this.onResize, true);
     },
 
@@ -153,9 +153,9 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       if (this.sizeTracking.windowDelayer) {
         clearTimeout(this.sizeTracking.windowDelayer);
       }
-      this.sizeTracking.windowDelayer = setTimeout(() => {
+      this.sizeTracking.windowDelayer = setTimeout(watchFunction(() => {
         this.updateElementSize(true);
-      }, 100);
+      }), 100);
     },
 
     getElementFromPoint: function (x, y) {
@@ -176,7 +176,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
     }
   };
 
-  iframe.onResize = iframe.onResize.bind(iframe);
+  iframe.onResize = watchFunction(iframe.onResize.bind(iframe));
 
   /** Represents the shadow overlay that covers the whole page */
   let WholePageOverlay = exports.WholePageOverlay = {
@@ -205,9 +205,12 @@ const ui = (function () { // eslint-disable-line no-unused-vars
           Save full page
         </div>
       `;
-      this.el.querySelector(".pageshot-myshots").addEventListener("click", callbacks.onOpenMyShots, false);
-      this.el.querySelector(".pageshot-visible").addEventListener("click", callbacks.onClickVisible, false);
-      this.el.querySelector(".pageshot-full-page").addEventListener("click", callbacks.onClickFullPage, false);
+      this.el.querySelector(".pageshot-myshots").addEventListener(
+        "click", watchFunction(callbacks.onOpenMyShots), false);
+      this.el.querySelector(".pageshot-visible").addEventListener(
+        "click", watchFunction(callbacks.onClickVisible), false);
+      this.el.querySelector(".pageshot-full-page").addEventListener(
+        "click", watchFunction(callbacks.onClickFullPage), false);
       this.movingEl = this.el.querySelector(".pageshot-moving-element");
       iframe.document.body.appendChild(this.el);
       this.resetPosition();
@@ -245,7 +248,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
 
   };
 
-  WholePageOverlay.onScroll = WholePageOverlay.onScroll.bind(WholePageOverlay);
+  WholePageOverlay.onScroll = watchFunction(WholePageOverlay.onScroll.bind(WholePageOverlay));
 
   let movements = ["topLeft", "top", "topRight", "left", "right", "bottomLeft", "bottom", "bottomRight"];
 
@@ -448,7 +451,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
           ".pageshot-cancel": "onCancel"
         };
         Object.keys(methods).forEach((selector) => {
-          this.el.querySelector(selector).addEventListener("click", (event) => {
+          this.el.querySelector(selector).addEventListener("click", watchFunction((event) => {
             let result;
             if (this[methods[selector]]) {
               let method = this[methods[selector]];
@@ -460,7 +463,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
               return false;
             }
             return undefined;
-          });
+          }));
         });
         iframe.document.body.appendChild(this.el);
       }

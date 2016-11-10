@@ -1,5 +1,5 @@
 /* globals FILENAME, exports */
-/* exported unhandled, makeError, watchFunction */
+/* exported unhandled, makeError, watchFunction, watchPromise */
 /** Similar to lib/errors.js, some helpers to catch or handle errors */
 
 /** Call with an error object (with .name, .message, .help, etc) */
@@ -39,16 +39,21 @@ function watchFunction(func) {
     try {
       result = func.apply(this, arguments);
     } catch (e) {
-      console.error("------Error in worker script", getFilename(), ":", String(e));
+      console.error("------Error in worker script:", e+"");
       console.error(e.stack);
-      console.error("Called from:");
-      console.trace();
-      console.error("------------------------------------------------------------");
       unhandled(makeError(e));
       throw e;
     }
     return result;
   };
+}
+
+function watchPromise(promise) {
+  return promise.catch((e) => {
+    console.error("------Error in promise:", e+"");
+    console.error(e.stack);
+    unhandled(makeError(e));
+  });
 }
 
 if (typeof exports !== "undefined") {
