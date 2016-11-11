@@ -125,9 +125,11 @@ function initDatabase() {
     return Shot.upgradeSearch();
   }).catch((e) => {
     console.error("Error initializing database:", e, e.stack);
-    console.warn("Trying again in 60 seconds");
     captureRavenException(e);
-    setTimeout(initDatabase, 60000);
+    // Give Raven/etc a chance to work before exit:
+    setTimeout(() => {
+      process.exit(1);
+    }, 500);
   });
 }
 
@@ -969,7 +971,9 @@ app.use(function (err, req, res, next) {
   errorResponse(res, "General error:", err);
 });
 
-app.use("/metrics", require("./pages/metrics/server").app);
+if (! config.disableMetrics) {
+  app.use("/metrics", require("./pages/metrics/server").app);
+}
 
 app.use("/shots", require("./pages/shotindex/server").app);
 

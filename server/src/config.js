@@ -174,6 +174,13 @@ var conf = convict({
     env: "REFRESH_METRICS_TIME",
     arg: "refresh-metrics-time"
   },
+  disableMetrics: {
+    doc: "If true, do not mount /metrics or start jobs",
+    format: Boolean,
+    default: false,
+    env: "DISABLE_METRICS",
+    arg: "disable-metrics"
+  },
   allowExport: {
     doc: "Whether to allow exporting shots",
     format: Boolean,
