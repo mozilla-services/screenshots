@@ -18,6 +18,7 @@ exports.ShareButton = class ShareButton extends React.Component {
         closePanel={this.onPanelClose.bind(this)} shot={this.props.shot}
         staticLink={this.props.staticLink}
         renderExtensionNotification={this.props.renderExtensionNotification}
+        isOwner={this.props.isOwner}
       />;
     }
     return <div>
