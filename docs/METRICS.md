@@ -169,6 +169,7 @@ These are events that an add-on user can encounter on a shot they own
   24. [x] Click Pinterest `web/share-owner/pinterest` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1f1o1r3Z0y3D1k1o221W/Image%202016-09-07%20at%203.02.41%20PM.png?v=3ebeb167)
   25. [x] Click mailto `web/share-owner/mailto` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0K0V3u1c3h3F1q3M3D3V/Image%202016-09-07%20at%203.03.15%20PM.png?v=bac7c1c3)
   26. [x] Hit copy `web/share/copy` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1i1G300b0J0J2z190Q26/Image%202016-09-07%20at%203.03.49%20PM.png?v=7e4a82bb)
+  27. [x] Copy with "rich copy", `web/share/rich-copy`
   27. [x] Focus link field `web/share/focus-url` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3i2s0T0h2t0W1J3p2j0c/Image%202016-09-07%20at%203.04.24%20PM.png?v=654e288b)
   28. [x] Cancel/close share `web/cancel-share` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0Q1n3I1J3J3G3y2B0z19/Image%202016-09-07%20at%203.04.57%20PM.png?v=8de54ca8)
 29. [x] Visit Page Shot link from footer `web/goto-pageshot/footer` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3g3p2i19131n1o3p053s/Image%202016-09-07%20at%203.05.56%20PM.png?v=8c92662c)

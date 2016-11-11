@@ -47,6 +47,9 @@ document.addEventListener("remove-saved-shot", function (event) {
 document.addEventListener("error-no-sendEvent", function (event) {
   self.port.emit("error-no-sendEvent");
 });
+document.addEventListener("sendRichCopy", function (event) {
+  self.port.emit("sendRichCopy", event.detail);
+});
 
 self.port.on("profile", function (profile) {
   var event = document.createEvent("CustomEvent");
