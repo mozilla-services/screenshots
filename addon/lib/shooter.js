@@ -24,6 +24,7 @@ const { setTimeout, clearTimeout } = require("sdk/timers");
 const shotstore = require("./shotstore");
 const getCookies = require("./get-cookies");
 const fixUrl = require("./fix-url");
+const { copyInstructions } = require("./copy-instructions.js");
 
 let shouldShowTour = false; // eslint-disable-line no-unused-vars
 
@@ -181,7 +182,7 @@ const ShotContext = Class({
       clipboard.set(this.shot.viewUrl, "text");
       notifications.notify({
         title: "Link Copied",
-        text: "The link to your shot has been copied to the clipboard.",
+        text: `The link to your shot has been copied to the clipboard. ${copyInstructions()}`,
         iconURL: self.data.url("../data/copy.png")
       });
       return;
@@ -206,7 +207,7 @@ const ShotContext = Class({
     });
     notifications.notify({
       title: "HTML Copied",
-      text: "The link to your shot and an image have been copied to the clipboard.",
+      text: `The link to your shot and an image have been copied to the clipboard. ${copyInstructions()}`,
       iconURL: self.data.url("../data/copy.png")
     });
   },
@@ -214,8 +215,8 @@ const ShotContext = Class({
   copyUrlToClipboard: function () {
     clipboard.set(this.shot.viewUrl, "text");
     notifications.notify({
-      title: "Copied",
-      text: "The link to your shot has been copied to the clipboard.",
+      title: "Link Copied",
+      text: `The link to your shot has been copied to the clipboard. ${copyInstructions()}`,
       iconURL: self.data.url("copy.png")
     });
   },

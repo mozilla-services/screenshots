@@ -16,6 +16,7 @@ const { watchFunction, watchWorker } = require("./errors");
 const user = require("./user");
 const {Cu} = require("chrome");
 const { copyMultiple } = require("./multiclip");
+const { copyInstructions } = require("./copy-instructions.js");
 
 var existing;
 
@@ -115,7 +116,7 @@ function resetPageMod(backend) {
       worker.port.on("sendRichCopy", watchFunction(function (data) {
         notifications.notify({
           title: "Rich Text Copied",
-          text: "The image and link to your shot have been copied to the clipboard.",
+          text: `The image and link to your shot have been copied. ${copyInstructions()}`,
           iconURL: self.data.url("../data/copy.png")
         });
         copyMultiple({html: data.html, text: data.text});
