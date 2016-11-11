@@ -969,7 +969,9 @@ app.use(function (err, req, res, next) {
   errorResponse(res, "General error:", err);
 });
 
-app.use("/metrics", require("./pages/metrics/server").app);
+if (! config.disableMetrics) {
+  app.use("/metrics", require("./pages/metrics/server").app);
+}
 
 app.use("/shots", require("./pages/shotindex/server").app);
 
