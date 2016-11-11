@@ -57,6 +57,19 @@
 * (v2.4) check before trying to call window.sendToChild,
   which is safely missing on most pages. Fixes [#1910](https://github.com/mozilla-services/pageshot/issues/1910) [5333ae7](https://github.com/mozilla-services/pageshot/commit/5333ae7)
 
+### Version 2.5
+
+A version released to improve some operational issues.
+
+* make server abort with exit code 1 if database
+  initialization isn't successful. Fixes [#1933](https://github.com/mozilla-services/pageshot/issues/1933) [8238ddd](https://github.com/mozilla-services/pageshot/commit/8238ddd)
+* Make the /metrics page disableable with $DISABLE_METRICS [a18437a](https://github.com/mozilla-services/pageshot/commit/a18437a)
+* Don't recreate the metrics if they are fresh enough Make the
+  polling interval on refreshing metrics slightly randomized, so multiple
+  workers don't pile on [8d61f00](https://github.com/mozilla-services/pageshot/commit/8d61f00)
+* send Raven report when metrics updating fails
+  Allow REFRESH_METRICS_TIME to be 0, disabling the refresh. Fixes [#1946](https://github.com/mozilla-services/pageshot/issues/1946) [e4da720](https://github.com/mozilla-services/pageshot/commit/e4da720)
+
 ## Version 1
 
 ### Visible changes to the product
