@@ -56,7 +56,6 @@ const {
   tradeCode,
   getAccountId,
   registerAccount,
-  addDeviceActivity
 } = require("./users");
 const dbschema = require("./dbschema");
 const express = require("express");
@@ -440,12 +439,6 @@ app.post("/api/register", function (req, res) {
       cookies.set("user", vars.deviceId, {signed: true});
       simpleResponse(res, "Created", 200);
     } else {
-      addDeviceActivity(vars.deviceId, "invalid-register", {
-        hasSecret: !!vars.secret,
-        hasNickname: !!vars.nickname,
-        hasAvatarurl: !!vars.avatarurl,
-        deviceInfo: deviceInfo
-      });
       sendRavenMessage(req, "Attempted to register existing user", {
         extra: {
           hasSecret: !!vars.secret,
@@ -456,11 +449,6 @@ app.post("/api/register", function (req, res) {
       simpleResponse(res, "User exists", 401);
     }
   }).catch(function (err) {
-    // FIXME: can't add this, because vars.deviceId probably isn't a valid
-    // deviceId, because registration failed
-    /* addDeviceActivity(vars.deviceId, "error-register", {
-      error: err+""
-    }); */
     errorResponse(res, "Error registering:", err);
   });
 });
@@ -479,10 +467,6 @@ app.post("/api/update", function (req, res, next) {
     if (! ok) {
       throw errors.badSession();
     }
-    addDeviceActivity(req.deviceId, "update-profile", {
-      hasNickname: !!nickname,
-      hasAvatarurl: !!avatarurl
-    });
     res.sendStatus(204);
   }, err => {
     console.warn("Error updating device info", err);
@@ -498,16 +482,9 @@ app.post("/api/login", function (req, res) {
       let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
       cookies.set("user", vars.deviceId, {signed: true});
       simpleResponse(res, JSON.stringify({"ok": "User logged in", "sentryPublicDSN": config.sentryPublicDSN}), 200);
-      addDeviceActivity(vars.deviceId, "login", {
-        deviceInfo: deviceInfo
-      });
     } else if (ok === null) {
       simpleResponse(res, '{"error": "No such user"}', 404);
     } else {
-      addDeviceActivity(vars.deviceId, "invalid-login", {
-        hasSecret: !!vars.secret,
-        deviceInfo: deviceInfo
-      });
       sendRavenMessage(req, "Invalid login");
       simpleResponse(res, '{"error": "Invalid login"}', 401);
     }
@@ -525,10 +502,6 @@ app.post("/api/unload", function (req, res) {
   // This erases the session cookie:
   cookies.set("user");
   cookies.set("user.sig");
-  addDeviceActivity(req.deviceId, "unload", {
-    reason: reason,
-    deviceInfo: deviceInfo
-  });
   simpleResponse(res, "Noted", 200);
 });
 
@@ -949,7 +922,6 @@ app.post('/api/fxa-oauth/token', function (req, res, next) {
     return getAccountId(accessToken).then(({ uid: accountId }) => {
       return registerAccount(req.deviceId, accountId, accessToken);
     }).then(() => {
-      addDeviceActivity(req.deviceId, "fxa-login");
       res.send({
         access_token: accessToken
       });
