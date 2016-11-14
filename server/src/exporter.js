@@ -4,7 +4,6 @@ const fs = require("fs");
 const child_process = require("child_process");
 const rimraf = require("rimraf");
 const ua = require("universal-analytics");
-const { addDeviceActivity } = require("./users");
 
 // Convert to milliseconds:
 let keepTime = config.exportKeepTime * 60 * 1000;
@@ -215,7 +214,6 @@ exports.setup = function (app) {
     }
     let userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
     userAnalytics.event("click", "export");
-    addDeviceActivity(req.deviceId, "export-started");
     launchWget(req.deviceId).then(() => {
       res.redirect("/export/status?started=" + encodeURIComponent(Date.now()));
     }).catch((e) => {
@@ -251,7 +249,6 @@ exports.setup = function (app) {
       res.type("txt").status(403).send("You must have the addon installed to download your shots");
       return;
     }
-    addDeviceActivity(req.deviceId, "export-downloaded");
     let dir = exportPath(req.deviceId);
     let fn = path.join(dir, "pageshot-export.zip");
     res.sendFile(fn);
@@ -261,7 +258,6 @@ exports.setup = function (app) {
     if (! req.deviceId) {
       res.type("txt").status(403).send("You must have the addon installed");
     }
-    addDeviceActivity(req.deviceId, "export-removed");
     let dir = exportPath(req.deviceId);
     removeExportPath(dir).then(() => {
       res.redirect("/export?deleted");
