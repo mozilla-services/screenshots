@@ -73,7 +73,8 @@ exports.sendEvent = function (action, label, options) {
   exports.request(`${main.getBackend()}/event`, {
     method: "POST",
     content: JSON.stringify({event, action, label, options}),
-    contentType: "application/json"
+    contentType: "application/json",
+    ignoreLogin: true
   });
 };
 
