@@ -39,8 +39,8 @@ $overlay-z-index: 9999999999;
 .pageshot-highlight-buttons {
   @include flex-container(row, center, center, wrap);
   position: absolute;
-  bottom: 35px;
-  right: 35px;
+  bottom: -55px;
+  right: 0;
   z-index: 6;
 }
 
@@ -287,7 +287,7 @@ $overlay-z-index: 9999999999;
   font-family: sans-serif;
   font-size: 70%;
   color: #000;
-  text-shadow: 1px 1px 0px #fff;
+  text-shadow: 1px 1px 0 #fff;
 }
 
 // FIXME: some of the styles in .pageshot-moving-element were copied from
