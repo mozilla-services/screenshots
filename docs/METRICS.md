@@ -205,6 +205,7 @@ These are events that an add-on user can encounter on a shot they own
 #### Server events
 
 1. [x] When an expired shot is deleted (about 2 weeks after expiration) it sends `server/clean-deleted-shot` with an eventValue of the number of shots cleaned at that moment.  (By default these are checked every minute.)
+2. [x] When a successful request to `/api/login` happens, we send `server/api-login`
 
 #### Homepage web visits
 

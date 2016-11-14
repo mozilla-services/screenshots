@@ -422,7 +422,6 @@ window.location = ${redirectUrlJs};
 app.post("/api/register", function (req, res) {
   let vars = req.body;
   let canUpdate = vars.deviceId === req.deviceId;
-  let deviceInfo = JSON.parse(vars.deviceInfo);
   if (! vars.deviceId) {
     console.error("Bad register request:", JSON.stringify(vars, null, "  "));
     sendRavenMessage(req, "Attempted to register without deviceId");
@@ -482,6 +481,14 @@ app.post("/api/login", function (req, res) {
       let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
       cookies.set("user", vars.deviceId, {signed: true});
       simpleResponse(res, JSON.stringify({"ok": "User logged in", "sentryPublicDSN": config.sentryPublicDSN}), 200);
+      if (config.gaId) {
+        let userAnalytics = ua(config.gaId, vars.deviceId, {strictCidFormat: false});
+        userAnalytics.event({
+          ec: "server",
+          ea: "api-login",
+          ua: req.headers["user-agent"]
+        }).send();
+      }
     } else if (ok === null) {
       simpleResponse(res, '{"error": "No such user"}', 404);
     } else {
@@ -496,7 +503,6 @@ app.post("/api/login", function (req, res) {
 app.post("/api/unload", function (req, res) {
   let reason = req.body.reason;
   reason = reason.replace(/[^a-zA-Z0-9]/g, "");
-  let deviceInfo = JSON.parse(req.body.deviceInfo);
   console.info("Device", req.deviceId, "unloaded for reason:", reason);
   let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
   // This erases the session cookie:
