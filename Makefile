@@ -104,7 +104,7 @@ build/%.css: %.css
 
 build/%.svg: %.svg
 	@mkdir -p $(@D)
-	cp $< $@
+	./node_modules/.bin/svgo -q -i $< -o $@
 
 build/%.sql: %.sql
 	@mkdir -p $(@D)
