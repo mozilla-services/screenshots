@@ -416,10 +416,14 @@ const ui = (function () { // eslint-disable-line no-unused-vars
   /** Removes every UI this module creates */
   exports.remove = function () {
     for (let name in exports) {
+      if (name == "iframe") {
+        continue;
+      }
       if (typeof exports[name] == "object" && exports[name].remove) {
         exports[name].remove();
       }
     }
+    exports.iframe.remove();
   };
 
   exports.ChromeInterface = {

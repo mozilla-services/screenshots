@@ -843,9 +843,14 @@ function activate() {
 
 function deactivate() {
   ui.Box.remove();
-  ui.remove();
-  removeHandlers();
-  setState("cancel");
+  try {
+    ui.remove();
+    removeHandlers();
+    setState("cancel");
+  } catch (e) {
+    // Sometimes this fires so late that the document isn't available
+    // We don't care about the exception, so we swallow it here
+  }
 }
 
 /***********************************************
