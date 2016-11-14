@@ -29,6 +29,7 @@ $overlay-z-index: 9999999999;
 
 .pageshot-highlight {
   position: absolute;
+  cursor: move;
   border: 1px dashed rgba($link-blue, 0.5);
   border-radius: 2px;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
