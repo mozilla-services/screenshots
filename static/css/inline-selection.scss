@@ -280,6 +280,15 @@ $overlay-z-index: 9999999999;
   z-index: $overlay-z-index;
 }
 
+.pageshot-pixel-dimensions {
+  position: absolute;
+  pointer-events: none;
+  font-family: sans-serif;
+  font-size: 70%;
+  color: #000;
+  text-shadow: 1px 1px 0px #fff;
+}
+
 // FIXME: some of the styles in .pageshot-moving-element were copied from
 // .pageshot-preview-overlay and are probably unnecessary
 .pageshot-moving-element {

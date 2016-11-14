@@ -413,6 +413,30 @@ const ui = (function () { // eslint-disable-line no-unused-vars
     }
   };
 
+  exports.PixelDimensions = {
+    el: null,
+    xEl: null,
+    yEl: null,
+    display: function (xPos, yPos, x, y) {
+      if (! this.el) {
+        this.el = makeEl("div", "pageshot-pixel-dimensions");
+        this.xEl = makeEl("div");
+        this.el.appendChild(this.xEl);
+        this.yEl = makeEl("div");
+        this.el.appendChild(this.yEl);
+        iframe.document.body.appendChild(this.el);
+      }
+      this.xEl.textContent = x;
+      this.yEl.textContent = y;
+      this.el.style.top = (yPos + 12) + "px";
+      this.el.style.left = (xPos + 12) + "px";
+    },
+    remove: function () {
+      util.removeNode(this.el);
+      this.el = this.xEl = this.yEl = null;
+    }
+  };
+
   /** Removes every UI this module creates */
   exports.remove = function () {
     for (let name in exports) {

@@ -359,6 +359,7 @@ stateHandlers.crosshairs = {
   },
 
   mousemove: function (event) {
+    ui.PixelDimensions.display(event.pageX, event.pageY, event.pageX, event.pageY);
     if (event.target.className &&
         event.target.className !== "pageshot-preview-overlay" &&
         event.target.className.startsWith("pageshot-")) {
@@ -495,6 +496,7 @@ stateHandlers.crosshairs = {
 
   end: function () {
     ui.HoverBox.remove();
+    ui.PixelDimensions.remove();
   }
 };
 
@@ -599,6 +601,7 @@ stateHandlers.dragging = {
     selectedPos.y2 = util.truncateY(event.pageY);
     scrollIfByEdge(event.pageX, event.pageY);
     ui.Box.display(selectedPos);
+    ui.PixelDimensions.display(event.pageX, event.pageY, selectedPos.width, selectedPos.height);
   },
 
   mouseup: function (event) {
@@ -615,6 +618,10 @@ stateHandlers.dragging = {
         right: selectedPos.x2
       }));
     setState("selected");
+  },
+
+  end: function () {
+    ui.PixelDimensions.remove();
   }
 };
 
@@ -842,8 +849,8 @@ function activate() {
 }
 
 function deactivate() {
-  ui.Box.remove();
   try {
+    ui.Box.remove();
     ui.remove();
     removeHandlers();
     setState("cancel");
