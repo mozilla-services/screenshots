@@ -70,6 +70,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
           this.element.style.top = "0";
           this.element.style.left = "0";
           this.element.style.margin = "0";
+          this.element.scrolling = "no";
           this.updateElementSize();
           this.element.onload = () => {
             var parsedDom = (new DOMParser()).parseFromString(
