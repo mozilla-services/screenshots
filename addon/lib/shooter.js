@@ -24,6 +24,7 @@ const { setTimeout, clearTimeout } = require("sdk/timers");
 const shotstore = require("./shotstore");
 const getCookies = require("./get-cookies");
 const fixUrl = require("./fix-url");
+const { timeFunction, startTimer } = require("./timing");
 
 let shouldShowTour = false; // eslint-disable-line no-unused-vars
 
@@ -44,7 +45,6 @@ function escapeForHTML(text) {
 function extractWorker(tab, options) {
   let timeLimit = options.timeLimit;
   let useReadability = options.useReadability;
-  let timeStarted = new Date();
   if (timeLimit === undefined) {
     timeLimit = 10000; // 10 second default
   }
@@ -66,8 +66,6 @@ function extractWorker(tab, options) {
     const worker = tab.attach({contentScriptFile});
     watchWorker(worker);
     worker.port.on("data", function (data) {
-      let timeFinished = new Date();
-      sendTiming("addon", "extract-data", timeFinished - timeStarted);
       worker.destroy();
       if (timedOut) {
         console.error("extractWorker resolved after timeout");
@@ -128,6 +126,9 @@ const ShotContext = Class({
   },
 
   takeShot: function () {
+    let finishTimer = startTimer({
+      variable: "take-shot"
+    });
     let loadingTab;
     let doneSuperFast = false;
     this.copyUrlToClipboard();
@@ -146,15 +147,13 @@ const ShotContext = Class({
       if (loadingTab) {
         loadingTab.url = this.shot.viewUrl;
       }
+      finishTimer();
       this.destroy();
     }).catch((error) => {
       this.destroy();
+      finishTimer();
       throw error;
     }));
-    this._collectionCompletePromise.then(() => {
-      // FIXME remove when we are sure we don't want this feature
-      //this.copyRichDataToClipboard();
-    });
   },
 
   uploadShot: function() {
@@ -315,18 +314,28 @@ const ShotContext = Class({
       the HTML, and other misc stuff.  Immediately updates the
       shot as that information comes in */
   collectInformation: function () {
+    let timings = [];
+    let finishCollectInformation = startTimer({
+      timings,
+      variable: "collect-information"
+    });
     if (this.tab.url.startsWith("about:")) {
       sendEvent("start-shot-about-page");
     } else if (this.tab.url.search(/^https?:/i) === -1) {
       let scheme = this.tab.url.replace(/:.*/, "");
       sendEvent("start-shot-non-http", scheme);
     }
-    watchPromise(callScript(
-      this.tab,
-      self.data.url("framescripts/add-ids.js"),
-      "pageshot@addIds",
-      {annotateForPage: this.annotateForPage}
-    ).then((function (result) {
+    watchPromise(timeFunction({
+      func: callScript,
+      args: [
+        this.tab,
+        self.data.url("framescripts/add-ids.js"),
+        "pageshot@addIds",
+        {annotateForPage: this.annotateForPage}
+      ],
+      timings,
+      variable: "add-ids"
+    })).then((result) => {
       if (result.isXul) {
         // Abandon hope all ye who enter!
         sendEvent("abort-start-shot", "xul-page");
@@ -345,12 +354,17 @@ const ShotContext = Class({
       var prefInlineCss = require("sdk/simple-prefs").prefs.inlineCss;
       var useReadability = require("sdk/simple-prefs").prefs.useReadability;
       var promises = [];
-      promises.push(watchPromise(extractWorker(this.tab, {useReadability})).then(watchFunction(function (attrs) {
+      promises.push(watchPromise(timeFunction({
+        func: extractWorker,
+        args: [this.tab, {useReadability}],
+        timings,
+        variable: "extract-data"
+      }).then((attrs) => {
         let passwordFields = attrs.passwordFields;
         delete attrs.passwordFields;
         this.checkIfPublic({passwordFields});
         this.shot.update(attrs);
-      }, this)));
+      })));
       // FIXME We may want to parameterize this function so full screen thumbnails can be turned on
       /*
       promises.push(watchPromise(this.makeFullScreenThumbnail().then((screenshot) => {
@@ -359,15 +373,20 @@ const ShotContext = Class({
         });
       })));
       */
-      promises.push(watchPromise(callScript(
-        this.tab,
-        self.data.url("framescripts/make-static-html.js"),
-        "pageshot@documentStaticData",
-        {prefInlineCss, annotateForPage: this.annotateForPage},
-        15000)).then((attrs) => {
-          this.shot.update(attrs);
-        })
-      );
+      promises.push(watchPromise(timeFunction({
+        func: callScript,
+        args: [
+          this.tab,
+          self.data.url("framescripts/make-static-html.js"),
+          "pageshot@documentStaticData",
+          {prefInlineCss, annotateForPage: this.annotateForPage},
+          15000
+        ],
+        timings,
+        variable: "make-static-html"
+      }).then((attrs) => {
+        this.shot.update(attrs);
+      })));
       promises.push(watchPromise(getFavicon(this.tab).then(
         (url) => {
           if (url.search(/^https?:\/\//i) !== -1) {
@@ -385,8 +404,12 @@ const ShotContext = Class({
           throw error;
         }
       )));
-      watchPromise(allPromisesComplete(promises).then(this._collectionCompleteDone));
-    }).bind(this)));
+      watchPromise(allPromisesComplete(promises).then(() => {
+        this._collectionCompleteDone();
+        finishCollectInformation();
+        sendTiming(timings);
+      }));
+    });
   },
 
   /** Called anytime the shot is updated; currently this has no side-effects so it does nothing */
@@ -446,6 +469,11 @@ const ShotContext = Class({
   /** Renders this object unusable, and unregisters any handlers */
   destroy: function () {
     this._destroying = true;
+    if (! this._destroyingTimer) {
+      this._destroyingTimer = startTimer({
+        variable: "destroy"
+      });
+    }
     if (this._deregisters) {
       for (let i=0; i<this._deregisters.length; i++) {
         let item = this._deregisters[i];
@@ -461,6 +489,9 @@ const ShotContext = Class({
       if (this.interactiveWorker) {
         this.interactiveWorker.destroy();
         this.interactiveWorker = null;
+      }
+      if (! this._destroyingTimer.done) {
+        this._destroyingTimer();
       }
     };
 
@@ -507,7 +538,12 @@ class Shot extends AbstractShot {
         sendEvent("upload-retry", `times-${times}`);
       }
       times++;
-      return this._sendJson(attrs, "put");
+      return timeFunction({
+        func: this._sendJson,
+        _this: this,
+        args: [attrs, "put"],
+        variable: "upload-shot"
+      });
     }, 3, 1000);
   }
 

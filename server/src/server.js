@@ -377,11 +377,16 @@ app.post("/timing", function (req, res) {
   }
   hashUserId(req.deviceId).then((userUuid) => {
     let userAnalytics = ua(config.gaId, userUuid.toString());
-    userAnalytics.timing(
-      bodyObj.event,
-      bodyObj.action,
-      bodyObj.timing
-    ).send();
+    let sender = userAnalytics;
+    for (let item of bodyObj.timings) {
+      sender = sender.timing({
+        userTimingCategory: item.category,
+        userTimingVariableName: item.variable,
+        userTimingTime: item.time,
+        userTimingLabel: item.label
+      });
+    }
+    sender.send();
     simpleResponse(res, "OK", 200);
   }).catch((e) => {
     errorResponse(res, "Error creating user UUID:", e);
