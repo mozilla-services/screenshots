@@ -82,6 +82,7 @@ const { notFound } = require("./pages/not-found/server");
 const { cacheTime, setCache } = require("./caching");
 const { captureRavenException, sendRavenMessage } = require("./ravenclient");
 const { errorResponse, simpleResponse, jsResponse } = require("./responses");
+const selfPackage = require("./package.json");
 
 const PROXY_HEADER_WHITELIST = {
   "content-type": true,
@@ -771,7 +772,8 @@ app.get("/__version__", function (req, res) {
   let response = {
     source: "https://github.com/mozilla-services/pageshot/",
     description: "Page Shot application server",
-    version: buildTime,
+    version: selfPackage.version,
+    buildDate: buildTime,
     commit: linker.getGitRevision(),
     contentOrigin: config.contentOrigin,
     commitLog: `https://github.com/mozilla-services/pageshot/commits/${linker.getGitRevision()}`,
