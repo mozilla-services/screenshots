@@ -4,7 +4,7 @@ const pgpatcher = require("pg-patcher");
 const path = require("path");
 const mozlog = require("mozlog")("dbschema");
 
-const MAX_DB_LEVEL = 11;
+const MAX_DB_LEVEL = 12;
 
 /** Create all the tables */
 exports.createTables = function () {

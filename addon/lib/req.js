@@ -3,23 +3,26 @@ const user = require("./user");
 const self = require("sdk/self");
 
 exports.request = function (url, options) {
+  options = options || {};
   options.method = options.method || "get";
   options.method = options.method.toLowerCase();
   if (typeof options.expectedStatus === "string") {
     options.expectedStatus = [options.expectedStatus];
   }
+  return requestMaybeInit(url, options);
+};
+
+function requestMaybeInit(url, options) {
+  if ((! options.ignoreLogin) && (! user.isInitialized())) {
+    return user.initialize().then(() => {
+      return simpleRequest(url, options);
+    });
+  }
+  return simpleRequest(url, options);
+}
+
+function simpleRequest(url, options) {
   return new Promise((resolve, reject) => {
-    if ((! options.ignoreLogin) && (! user.isInitialized())) {
-      return retryPromise(
-        function () {
-          return user.initialize();
-        },
-        3
-      ).then(function () {
-        return exports.request(url, options).then(resolve, reject);
-      },
-      reject);
-    }
     let requester = Request({
       url: url,
       content: options.content,
@@ -34,7 +37,7 @@ exports.request = function (url, options) {
     });
     requester[options.method]();
   });
-};
+}
 
 // The only options we allow for sendEvent, see also:
 //   https://github.com/peaksandpies/universal-analytics/blob/master/AcceptableParams.md
@@ -70,7 +73,8 @@ exports.sendEvent = function (action, label, options) {
   exports.request(`${main.getBackend()}/event`, {
     method: "POST",
     content: JSON.stringify({event, action, label, options}),
-    contentType: "application/json"
+    contentType: "application/json",
+    ignoreLogin: true
   });
 };
 

@@ -185,26 +185,3 @@ exports.registerAccount = function (deviceId, accountId, accessToken) {
     });
   });
 };
-
-exports.addDeviceActivity = function (deviceId, eventType, eventInfo) {
-  // Note we don't care when the database request completes
-  if (typeof eventType != "string" || ! eventType) {
-    throw new Error("Missing, empty, or invalid eventType");
-  }
-  if (typeof deviceId != "string" || ! deviceId) {
-    throw new Error(`Missing, empty, or invalid deviceId (typeof: ${deviceId === null ? 'null' : typeof deviceId}, length: ${typeof deviceId == "string" ? deviceId.length : 'N/A'})`);
-  }
-  if (eventInfo && typeof eventInfo != "string") {
-    eventInfo = JSON.stringify(eventInfo);
-  }
-  if (! eventInfo) {
-    eventInfo = null;
-  }
-  db.insert(
-    `INSERT INTO device_activity (deviceid, event_type, event_info)
-     VALUES ($1, $2, $3)`,
-    [deviceId, eventType, eventInfo]
-  ).catch((error) => {
-    console.error("error-inserting-into-device_activity", {err: error, eventType: eventType});
-  });
-};

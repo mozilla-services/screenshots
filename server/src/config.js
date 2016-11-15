@@ -168,11 +168,18 @@ var conf = convict({
     arg: "default-expiration"
   },
   refreshMetricsTime: {
-    doc: "Interval when the stats in /metrics are recalculated, in seconds",
+    doc: "Interval when the stats in /metrics are recalculated, in seconds (0 to disable)",
     format: "int",
     default: 60*60, // 1 hour
     env: "REFRESH_METRICS_TIME",
     arg: "refresh-metrics-time"
+  },
+  disableMetrics: {
+    doc: "If true, do not mount /metrics or start jobs",
+    format: Boolean,
+    default: false,
+    env: "DISABLE_METRICS",
+    arg: "disable-metrics"
   },
   allowExport: {
     doc: "Whether to allow exporting shots",

@@ -42,7 +42,7 @@ Once the release is tagged, it will get pushed to stage.
 1. `git push mozilla-services HEAD:stable`
 2. `rm build/mozilla-pageshot.xpi`
 3. `PAGESHOT_BACKEND=https://pageshot.stage.mozaws.net make xpi`
-4. `bin/build-docker-image mozilla`
+4. `bin/build-docker-image mozilla x.y`
 
 Notifications of successful deployment will appear on IRC.
 
