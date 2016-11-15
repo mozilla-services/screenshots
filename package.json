@@ -46,7 +46,7 @@
     "body-parser": "1.15.2",
     "browserify": "13.1.1",
     "eslint": "3.10.1",
-    "eslint-plugin-react": "6.6.0",
+    "eslint-plugin-react": "6.7.1",
     "fx-runner": "1.0.6",
     "geckodriver": "1.2.0",
     "mocha": "3.1.1",
