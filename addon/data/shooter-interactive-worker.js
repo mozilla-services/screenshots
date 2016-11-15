@@ -1,4 +1,4 @@
-/* globals console, self, watchFunction, annotatePosition, util, ui, snapping */
+/* globals console, self, watchFunction, watchPromise, annotatePosition, util, ui, snapping */
 /* globals window, document, location, chromeShooter */
 
 /**********************************************************
@@ -351,13 +351,18 @@ stateHandlers.crosshairs = {
     this.cachedEl = null;
     ui.Box.remove();
     ui.WholePageOverlay.display(standardOverlayCallbacks);
+    document.addEventListener("keyup", watchFunction(keyupHandler), false);
+    registeredDocumentHandlers.push({name: "keyup", doc: document, handler: keyupHandler});
     if (isChrome) {
       ui.ChromeInterface.showSaveFullPage();
     }
   },
 
   mousemove: function (event) {
-    if (event.target.className !== "pageshot-preview-overlay" && event.target.className.startsWith("pageshot-")) {
+    ui.PixelDimensions.display(event.pageX, event.pageY, event.pageX, event.pageY);
+    if (event.target.className &&
+        event.target.className !== "pageshot-preview-overlay" &&
+        event.target.className.startsWith("pageshot-")) {
       // User is hovering over a Page Shot button or control
       autoDetectRect = null;
       ui.HoverBox.hide();
@@ -366,12 +371,10 @@ stateHandlers.crosshairs = {
     let el;
     if (event.target.className === "pageshot-preview-overlay") {
       // The hover is on the overlay, so we need to figure out the real element
-      ui.WholePageOverlay.overlayEl.style.pointerEvents = "none";
-      el = document.elementFromPoint(
+      el = ui.iframe.getElementFromPoint(
         event.pageX - window.pageXOffset,
         event.pageY - window.pageYOffset
       );
-      ui.WholePageOverlay.overlayEl.style.pointerEvents = "";
     } else {
       // The hover is on the element we care about, so we use that
       el = event.target;
@@ -493,6 +496,7 @@ stateHandlers.crosshairs = {
 
   end: function () {
     ui.HoverBox.remove();
+    ui.PixelDimensions.remove();
   }
 };
 
@@ -597,6 +601,7 @@ stateHandlers.dragging = {
     selectedPos.y2 = util.truncateY(event.pageY);
     scrollIfByEdge(event.pageX, event.pageY);
     ui.Box.display(selectedPos);
+    ui.PixelDimensions.display(event.pageX, event.pageY, selectedPos.width, selectedPos.height);
   },
 
   mouseup: function (event) {
@@ -613,6 +618,10 @@ stateHandlers.dragging = {
         right: selectedPos.x2
       }));
     setState("selected");
+  },
+
+  end: function () {
+    ui.PixelDimensions.remove();
   }
 };
 
@@ -813,10 +822,10 @@ function getScreenPosition() {
 
 function activate() {
   ui.Box.remove();
-  document.body.classList.remove("pageshot-hide-selection");
-  document.body.classList.remove("pageshot-hide-movers");
   addHandlers();
-  setState("crosshairs");
+  watchPromise(ui.iframe.display(installHandlersOnDocument).then(() => {
+    setState("crosshairs");
+  }));
   if (isChrome) {
     ui.ChromeInterface.display();
     ui.ChromeInterface.onMyShots = function () {
@@ -840,21 +849,23 @@ function activate() {
 }
 
 function deactivate() {
-  ui.Box.remove();
-  if (document.body) {
-    document.body.classList.remove("pageshot-hide-selection");
-    document.body.classList.remove("pageshot-hide-movers");
+  try {
+    ui.Box.remove();
+    ui.remove();
+    removeHandlers();
+    setState("cancel");
+  } catch (e) {
+    // Sometimes this fires so late that the document isn't available
+    // We don't care about the exception, so we swallow it here
   }
-  ui.remove();
-  removeHandlers();
-  setState("cancel");
 }
 
 /***********************************************
  * Event handlers
  */
 
-let registeredDocumentHandlers = {};
+let primedDocumentHandlers = new Map();
+let registeredDocumentHandlers = []
 
 function addHandlers() {
   ["mouseup", "mousedown", "mousemove", "click"].forEach((eventName) => {
@@ -873,11 +884,17 @@ function addHandlers() {
         return handler[eventName](event);
       }
     }).bind(null, eventName));
-    document.addEventListener(eventName, fn, true);
-    registeredDocumentHandlers[eventName] = fn;
+    primedDocumentHandlers.set(eventName, fn);
   });
-  document.addEventListener("keyup", keyupHandler, false);
-  registeredDocumentHandlers.keyup = keyupHandler;
+  primedDocumentHandlers.set("keyup", keyupHandler);
+}
+
+function installHandlersOnDocument(docObj) {
+  for (let [eventName, handler] of primedDocumentHandlers) {
+    let watchHandler = watchFunction(handler);
+    docObj.addEventListener(eventName, watchHandler, eventName !== "keyup");
+    registeredDocumentHandlers.push({name: eventName, doc: docObj, watchHandler});
+  }
 }
 
 function keyupHandler(event) {
@@ -907,9 +924,10 @@ function keyupHandler(event) {
 }
 
 function removeHandlers() {
-  for (let name in registeredDocumentHandlers) {
-    document.removeEventListener(name, registeredDocumentHandlers[name], false);
+  for (let {name, doc, handler} of registeredDocumentHandlers) {
+    doc.removeEventListener(name, handler, false);
   }
+  registeredDocumentHandlers = [];
 }
 
 function addStylesheet() {
@@ -951,27 +969,27 @@ function checkUrl() {
   }
 }
 
-window.addEventListener("popstate", checkUrl, false);
+window.addEventListener("popstate", watchFunction(checkUrl), false);
 
 if (! isChrome) {
-  self.port.on("isShowing", checkUrl);
+  self.port.on("isShowing", watchFunction(checkUrl));
 
-  self.port.on("destroy", () => {
+  self.port.on("destroy", watchFunction(() => {
     // If we do this in a setTimeout, we get sane error messages.
     // If we don't, we get inscruitable ones.
-    setTimeout(() => {
+    setTimeout(watchFunction(() => {
       deactivate();
       self.port.emit("destroyed");
-    }, 0);
-  })
+    }), 0);
+  }));
 
   // Happens if this worker is detached for some reason
   // (such as moving windows, add-on unloading)
-  self.port.on("detach", () => {
+  self.port.on("detach", watchFunction(() => {
     deactivate();
     console.info("detached worker");
-  });
+  }));
 
   self.port.emit("ready");
-  activate();
+  watchFunction(activate());
 }

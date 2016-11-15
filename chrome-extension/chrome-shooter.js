@@ -42,7 +42,10 @@ const chromeShooter = (function () { // eslint-disable-line no-unused-vars
   };
 
   function screenshotSelection(pos, selectedText, captureType) {
-    document.body.classList.add("pageshot-hide-selection");
+    let iframe = document.getElementById("pageshot-iframe");
+    if (iframe) {
+      iframe.style.display = "none";
+    }
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         let message = {
