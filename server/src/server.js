@@ -326,6 +326,9 @@ app.post("/error", function (req, res) {
 
 function hashUserId(deviceId) {
   return new Promise((resolve, reject) => {
+    if (! dbschema.getTextKeys()) {
+      throw new Error("Server keys not initialized");
+    }
     let userKey = dbschema.getTextKeys()[0] + deviceId;
     genUuid.generate(genUuid.V_SHA1, genUuid.nil, userKey, function (err, userUuid) {
       if (err) {
