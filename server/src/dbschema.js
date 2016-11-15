@@ -128,6 +128,9 @@ function makeKey() {
 }
 
 exports.connectionOK = function () {
+  if (! keys) {
+    return Promise.resolve(false);
+  }
   return db.select(`SELECT value FROM property WHERE key = 'patch'`).then((rows) => {
     return rows[0].value == MAX_DB_LEVEL;
   });

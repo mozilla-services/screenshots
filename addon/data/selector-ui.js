@@ -1,7 +1,5 @@
-/* globals util, window, document, console */
+/* globals util, window, document, console, watchFunction */
 /* exported ui */
-
-var isChrome = false;
 
 const ui = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
@@ -44,52 +42,214 @@ const ui = (function () { // eslint-disable-line no-unused-vars
   exports.isHeader = isHeader;
 
   function makeEl(tagName, className) {
-    let el = document.createElement(tagName);
+    let el = iframe.document.createElement(tagName);
     if (className) {
       el.className = className;
     }
     return el;
   }
 
+  let iframe = exports.iframe = {
+    element: null,
+    sizeTracking: {
+      timer: null,
+      windowDelayer: null,
+      resizeBound: null,
+      lastHeight: null,
+      lastWidth: null
+    },
+    document: null,
+    display: function (installHandlerOnDocument) {
+      return new Promise((resolve, reject) => {
+        if (! this.element) {
+          this.element = document.createElement("iframe");
+          this.element.id = "pageshot-iframe";
+          this.element.style.zIndex = "99999999999";
+          this.element.style.border = "none";
+          this.element.style.position = "absolute";
+          this.element.style.top = "0";
+          this.element.style.left = "0";
+          this.element.style.margin = "0";
+          this.element.scrolling = "no";
+          this.updateElementSize();
+          this.element.onload = () => {
+            var parsedDom = (new DOMParser()).parseFromString(
+              "<html><head><title></title></head><body></body>",
+              "text/html"
+            );
+            this.document = this.element.contentDocument;
+            this.document.replaceChild(
+              this.document.adoptNode(parsedDom.documentElement),
+              this.document.documentElement
+            );
+            let linkUrl = self.options["inline-selection.css"];
+            var link = this.document.getElementById("pageshot-stylesheet");
+            if (! link) {
+              link = this.document.createElement("link");
+              link.setAttribute("rel", "stylesheet");
+              link.setAttribute("id", "pageshot-stylesheet");
+              link.setAttribute("href", linkUrl);
+              this.document.head.appendChild(link);
+            }
+            installHandlerOnDocument(this.document);
+            resolve();
+          };
+          document.body.appendChild(this.element);
+        } else {
+          resolve();
+        }
+        this.initSizeWatch();
+      });
+    },
+
+    updateElementSize: function (force) {
+      // Note: if someone sizes down the page, then the iframe will keep the
+      // document from naturally shrinking.  We use force to temporarily hide
+      // the element so that we can tell if the document shrinks
+      if (force) {
+        this.element.style.display = "none";
+      }
+      let height = Math.max(
+        document.documentElement.clientHeight,
+        document.body.clientHeight,
+        window.innerHeight);
+      if (height !== this.sizeTracking.lastHeight) {
+        this.sizeTracking.lastHeight = height;
+        this.element.style.height = height + "px";
+      }
+      let width = Math.max(
+        document.documentElement.clientWidth,
+        document.body.clientWidth,
+        window.innerWidth);
+      if (width !== this.sizeTracking.lastWidth) {
+        this.sizeTracking.lastWidth = width;
+        this.element.style.width = width + "px";
+      }
+      if (force) {
+        this.element.style.display = "";
+      }
+      WholePageOverlay.resetPosition();
+    },
+
+    initSizeWatch: function () {
+      this.stopSizeWatch();
+      this.sizeTracking.timer = setInterval(watchFunction(this.updateElementSize.bind(this)), 2000);
+      window.addEventListener("resize", this.onResize, true);
+    },
+
+    stopSizeWatch: function () {
+      if (this.sizeTracking.timer) {
+        clearTimeout(this.sizeTracking.timer);
+        this.sizeTracking.timer = null;
+      }
+      if (this.sizeTracking.windowDelayer) {
+        clearTimeout(this.sizeTracking.windowDelayer);
+        this.sizeTracking.windowDelayer = null;
+      }
+      this.sizeTracking.lastHeight = this.sizeTracking.lastWidth = null;
+      window.removeEventListener("resize", this.onResize, true);
+    },
+
+    onResize: function () {
+      if (this.sizeTracking.windowDelayer) {
+        clearTimeout(this.sizeTracking.windowDelayer);
+      }
+      this.sizeTracking.windowDelayer = setTimeout(watchFunction(() => {
+        this.updateElementSize(true);
+      }), 100);
+    },
+
+    getElementFromPoint: function (x, y) {
+      this.element.style.pointerEvents = "none";
+      let el;
+      try {
+        el = document.elementFromPoint(x, y);
+      } finally {
+        this.element.style.pointerEvents = "";
+      }
+      return el;
+    },
+
+    remove: function () {
+      this.stopSizeWatch();
+      util.removeNode(this.element);
+      this.element = this.document = null;
+    }
+  };
+
+  iframe.onResize = watchFunction(iframe.onResize.bind(iframe));
+
   /** Represents the shadow overlay that covers the whole page */
   let WholePageOverlay = exports.WholePageOverlay = {
 
-    display: function (callbacks) {
-      if (! this.overlayEl) {
-        this.overlayEl = makeEl("div", "pageshot-preview-overlay");
-        let instructions = makeEl("div", "pageshot-preview-instructions");
-        instructions.textContent = "Drag or click on the page to select a region. Press ESC to cancel.";
-        this.overlayEl.appendChild(instructions);
-        let button = makeEl("div", "pageshot-myshots");
-        button.addEventListener("click", callbacks.onOpenMyShots, false);
-        let myShotsPre = makeEl("div", "pageshot-pre-myshots");
-        button.appendChild(myShotsPre);
-        let text = makeEl("div", "pageshot-myshots-text");
-        text.textContent = "My Shots";
-        button.appendChild(text);
-        let myShotsPost = makeEl("div", "pageshot-post-myshots");
-        button.appendChild(myShotsPost);
-        this.overlayEl.appendChild(button);
-        let visibleButton = makeEl("div", "pageshot-overlay-button pageshot-visible");
-        visibleButton.textContent = "Save visible";
-        visibleButton.addEventListener("click", callbacks.onClickVisible, false);
-        this.overlayEl.appendChild(visibleButton);
-        let fullPageButton = makeEl("div", "pageshot-overlay-button pageshot-full-page");
-        fullPageButton.textContent = "Save full page";
-        fullPageButton.addEventListener("click", callbacks.onClickFullPage, false);
-        this.overlayEl.appendChild(fullPageButton);
+    el: null,
+    movingEl: null,
+    isScrollTracking: false,
 
-        document.body.appendChild(this.overlayEl);
+    display: function (callbacks) {
+      this.remove();
+      this.el = makeEl("div", "pageshot-preview-overlay");
+      this.el.innerHTML = `
+      <div class="pageshot-moving-element" style="position: absolute; pointer-events: none; display: flex">
+        <div class="pageshot-preview-instructions">
+          Drag or click on the page to select a region. Press ESC to cancel.
+        </div>
+        <div class="pageshot-myshots">
+          <div class="pageshot-pre-myshots"></div>
+          <div class="pageshot-myshots-text">My Shots</div>
+          <div class="pageshot-post-myshots"></div>
+        </div>
+        <div class="pageshot-overlay-button pageshot-visible">
+          Save visible
+        </div>
+        <div class="pageshot-overlay-button pageshot-full-page">
+          Save full page
+        </div>
+      `;
+      this.el.querySelector(".pageshot-myshots").addEventListener(
+        "click", watchFunction(callbacks.onOpenMyShots), false);
+      this.el.querySelector(".pageshot-visible").addEventListener(
+        "click", watchFunction(callbacks.onClickVisible), false);
+      this.el.querySelector(".pageshot-full-page").addEventListener(
+        "click", watchFunction(callbacks.onClickFullPage), false);
+      this.movingEl = this.el.querySelector(".pageshot-moving-element");
+      iframe.document.body.appendChild(this.el);
+      this.resetPosition();
+      window.addEventListener("scroll", this.onScroll, false);
+    },
+
+    resetPosition: function () {
+      if (! this.movingEl) {
+        return;
+      }
+      let scrollX = window.scrollX;
+      let scrollY = window.scrollY;
+      this.movingEl.style.top = scrollY + "px";
+      this.movingEl.style.left = scrollX + "px";
+      this.movingEl.style.width = window.innerWidth + "px";
+      this.movingEl.style.height = window.innerHeight + "px";
+    },
+
+    onScroll: function () {
+      if (! this.isScrollTracking) {
+        window.requestAnimationFrame(() => {
+          this.resetPosition();
+          this.isScrollTracking = false;
+        });
+        this.isScrollTracking = true;
       }
     },
 
     remove: function () {
-      util.removeNode(this.overlayEl);
-      this.overlayEl = null;
-    },
+      util.removeNode(this.el);
+      this.el = null;
+      this.movingEl = null;
+      window.removeEventListener("scroll", this.onScroll, false);
+    }
 
-    el: null
   };
+
+  WholePageOverlay.onScroll = watchFunction(WholePageOverlay.onScroll.bind(WholePageOverlay));
 
   let movements = ["topLeft", "top", "topRight", "left", "right", "bottomLeft", "bottom", "bottomRight"];
 
@@ -180,14 +340,14 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         boxEl.appendChild(elTarget);
       }
       this.bgTop = makeEl("div", "pageshot-bghighlight");
-      document.body.appendChild(this.bgTop);
+      iframe.document.body.appendChild(this.bgTop);
       this.bgLeft = makeEl("div", "pageshot-bghighlight");
-      document.body.appendChild(this.bgLeft);
+      iframe.document.body.appendChild(this.bgLeft);
       this.bgRight = makeEl("div", "pageshot-bghighlight");
-      document.body.appendChild(this.bgRight);
+      iframe.document.body.appendChild(this.bgRight);
       this.bgBottom = makeEl("div", "pageshot-bghighlight");
-      document.body.appendChild(this.bgBottom);
-      document.body.appendChild(boxEl);
+      iframe.document.body.appendChild(this.bgBottom);
+      iframe.document.body.appendChild(boxEl);
       this.el = boxEl;
     },
 
@@ -225,38 +385,6 @@ const ui = (function () { // eslint-disable-line no-unused-vars
     boxBottomEl: null
   };
 
-  exports.MyShotsReminder = {
-
-    display: function () {
-      if (this.dialogEl) {
-        return;
-      }
-      let div = makeEl("div", "pageshot-myshots-reminder");
-      if (isChrome) {
-        div.className += " pageshot-myshots-reminder-chrome";
-      }
-      div.innerHTML = `
-      <div class="pageshot-panel">
-        <div class="pageshot-panel-arrowUp"></div>
-        <div class="pageshot-panel-section pageshot-panel-section-header">
-          <div class="pageshot-text-section-list">
-            Click this button to view all the shots you've taken
-          </div>
-        </div>
-      </div>
-      `;
-      document.body.appendChild(div);
-      this.dialogEl = div;
-    },
-
-    remove: function () {
-      util.removeNode(this.dialogEl);
-      this.dialogEl = null;
-    },
-
-    dialogEl: null
-  };
-
   exports.HoverBox = {
 
     el: null,
@@ -264,7 +392,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
     display: function (rect) {
       if (! this.el) {
         this.el = makeEl("div", "pageshot-hover-highlight");
-        document.body.appendChild(this.el);
+        iframe.document.body.appendChild(this.el);
       }
       this.el.style.display = "";
       this.el.style.top = (rect.top - 1) + "px";
@@ -285,13 +413,41 @@ const ui = (function () { // eslint-disable-line no-unused-vars
     }
   };
 
+  exports.PixelDimensions = {
+    el: null,
+    xEl: null,
+    yEl: null,
+    display: function (xPos, yPos, x, y) {
+      if (! this.el) {
+        this.el = makeEl("div", "pageshot-pixel-dimensions");
+        this.xEl = makeEl("div");
+        this.el.appendChild(this.xEl);
+        this.yEl = makeEl("div");
+        this.el.appendChild(this.yEl);
+        iframe.document.body.appendChild(this.el);
+      }
+      this.xEl.textContent = x;
+      this.yEl.textContent = y;
+      this.el.style.top = (yPos + 12) + "px";
+      this.el.style.left = (xPos + 12) + "px";
+    },
+    remove: function () {
+      util.removeNode(this.el);
+      this.el = this.xEl = this.yEl = null;
+    }
+  };
+
   /** Removes every UI this module creates */
   exports.remove = function () {
     for (let name in exports) {
+      if (name == "iframe") {
+        continue;
+      }
       if (typeof exports[name] == "object" && exports[name].remove) {
         exports[name].remove();
       }
     }
+    exports.iframe.remove();
   };
 
   exports.ChromeInterface = {
@@ -317,14 +473,14 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         <button class="pageshot-cancel">Cancel</button>
         <button class="pageshot-save">Save Full Page</button>
         `;
-        document.body.appendChild(this.el);
+        iframe.document.body.appendChild(this.el);
         let methods = {
           ".pageshot-myshots": "onMyShots",
           ".pageshot-save": "onSave",
           ".pageshot-cancel": "onCancel"
         };
         Object.keys(methods).forEach((selector) => {
-          this.el.querySelector(selector).addEventListener("click", (event) => {
+          this.el.querySelector(selector).addEventListener("click", watchFunction((event) => {
             let result;
             if (this[methods[selector]]) {
               let method = this[methods[selector]];
@@ -336,9 +492,9 @@ const ui = (function () { // eslint-disable-line no-unused-vars
               return false;
             }
             return undefined;
-          });
+          }));
         });
-        document.body.appendChild(this.el);
+        iframe.document.body.appendChild(this.el);
       }
     },
 

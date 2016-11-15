@@ -23,29 +23,13 @@ $handle-mover-offset: $mover-outer - $handle-outside-extent / 2;
 $mover-size: $mover-outer + $mover-inner;
 $overlay-z-index: 9999999999;
 
-.pageshot-hide-selection .pageshot-highlight,
-.pageshot-hide-selection .pageshot-mover,
-.pageshot-hide-selection .pageshot-bghighlight,
-.pageshot-hide-selection .pageshot-textbutton,
-.pageshot-hide-selection .pageshot-horizcross,
-.pageshot-hide-selection .pageshot-vertcross,
-.pageshot-hide-selection .pageshot-help-message,
-.pageshot-hide-selection .pageshot-preview-overlay,
-.pageshot-hide-selection .pageshot-crosshair-pulse,
-.pageshot-hide-selection .pageshot-crosshair-inner,
-.pageshot-hide-selection .pageshot-myshots-reminder,
-.pageshot-hide-selection .pageshot-saver,
-.pageshot-hide-selection .pageshot-select-mode-background {
-  display: none;
-}
-
 .pageshot-hide-movers .pageshot-mover {
   display: none;
 }
 
 .pageshot-highlight {
-  @extend .pageshot-reset;
   position: absolute;
+  cursor: move;
   border: 1px dashed rgba($link-blue, 0.5);
   border-radius: 2px;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
@@ -53,28 +37,25 @@ $overlay-z-index: 9999999999;
 }
 
 .pageshot-highlight-buttons {
-  @extend .pageshot-reset;
   @include flex-container(row, center, center, wrap);
   position: absolute;
-  bottom: 35px;
-  right: 35px;
+  bottom: -55px;
+  right: 0;
   z-index: 6;
 }
 
 .pageshot-highlight-button-cancel {
-  @extend .pageshot-reset;
   @extend .button;
   @extend .secondary;
   margin: 5px;
-  width: 60px;
+  width: 80px;
 }
 
 .pageshot-highlight-button-save {
-  @extend .pageshot-reset;
   @extend .button;
   @extend .primary;
   margin: 5px;
-  width: 60px;
+  width: 80px;
 }
 
 .pageshot-mover-target {
@@ -300,8 +281,32 @@ $overlay-z-index: 9999999999;
   z-index: $overlay-z-index;
 }
 
+.pageshot-pixel-dimensions {
+  position: absolute;
+  pointer-events: none;
+  font-family: sans-serif;
+  font-size: 70%;
+  color: #000;
+  text-shadow: 1px 1px 0 #fff;
+}
+
+// FIXME: some of the styles in .pageshot-moving-element were copied from
+// .pageshot-preview-overlay and are probably unnecessary
+.pageshot-moving-element {
+  pointer-events: none;
+  position: absolute;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  width: 100%;
+}
+
 .pageshot-preview-instructions {
-  @extend .pageshot-reset;
   @include flex-container(row, center, center);
   pointer-events: none;
   animation: pageshot-pulse ease-in-out 200ms;
@@ -319,11 +324,11 @@ $overlay-z-index: 9999999999;
 }
 
 .pageshot-myshots {
-  @extend .pageshot-reset;
   @extend .button;
   @extend .secondary;
   @include flex-container(row, center, center);
   font-family: sans-serif;
+  pointer-events: all;
   position: absolute;
   right: 15px;
   top: 15px;
@@ -332,11 +337,13 @@ $overlay-z-index: 9999999999;
 
 .pageshot-visible {
   @extend .pageshot-myshots;
+  pointer-events: all;
   top: 65px;
 }
 
 .pageshot-full-page {
   @extend .pageshot-myshots;
+  pointer-events: all;
   top: 115px;
 }
 
@@ -371,7 +378,6 @@ $overlay-z-index: 9999999999;
 
 
 .pageshot-select-mode-background {
-  @extend .pageshot-reset;
   position: fixed;
   top: 0;
   left: 0;
@@ -385,7 +391,6 @@ $overlay-z-index: 9999999999;
 }
 
 .pageshot-select-mode {
-  @extend .pageshot-reset;
   position: relative;
   width: 380px;
   height: 200px;
@@ -398,7 +403,6 @@ $overlay-z-index: 9999999999;
 }
 
 .pageshot-select-mode-square-button {
-  @extend .pageshot-reset;
   width: 90px;
   height: 90px;
   padding-top: 0.25em;
@@ -410,7 +414,6 @@ $overlay-z-index: 9999999999;
 }
 
 .pageshot-select-mode-button {
-  @extend .pageshot-reset;
   position: absolute;
   bottom: 0;
   width: 190px;
@@ -479,8 +482,6 @@ $overlay-z-index: 9999999999;
 }
 
 .pageshot-myshots-reminder {
-  @extend .pageshot-reset;
-
   display: flex;
   position: fixed;
   z-index: $overlay-z-index + 20;
@@ -497,7 +498,6 @@ $overlay-z-index: 9999999999;
   text-align: start;
 }
 
-// The specificity of the following selectors is to avoid .pageshot-reset overriding these styles:
 .pageshot-myshots-reminder > .pageshot-panel {
   background-clip: padding-box;
   background-color: #fcfcfc;
@@ -560,7 +560,6 @@ $overlay-z-index: 9999999999;
 }
 
 .pageshot-saver {
-  @extend .pageshot-reset;
   position: fixed;
   z-index: $overlay-z-index + 100;
   background-color: #fcfcfc;
@@ -600,140 +599,5 @@ $overlay-z-index: 9999999999;
     color: #858585;
     background-color: #fcfcfc;
     border: 1px solid #d4d4d4;
-  }
-}
-
-/* .pageshot reset */
-/* http://yuilibrary.com/yui/docs/cssreset/ */
-.pageshot-reset {
-  * {
-    -webkit-box-sizing: content-box !important;
-    -moz-box-sizing: content-box !important;
-    box-sizing: content-box !important;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  }
-
-  header {
-    width: auto;
-  }
-
-  /*
-  YUI 3.10.3 (build 2fb5187)
-  Copyright 2013 Yahoo! Inc. All rights reserved.
-  Licensed under the BSD License.
-  http://yuilibrary.com/license/
-  */
-  div,
-  dl,
-  dt,
-  dd,
-  ul,
-  ol,
-  li,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  pre,
-  code,
-  form,
-  fieldset,
-  legend,
-  input,
-  textarea,
-  p,
-  blockquote,
-  th,
-  td {
-    margin: 0;
-    padding: 0;
-  }
-
-  table {
-    border-collapse: collapse;
-    border-spacing: 0;
-  }
-
-  fieldset,
-  img {
-    border: 0;
-  }
-
-  /*
-  	TODO think about hanlding inheritence differently, maybe letting IE6 fail a bit...
-  */
-  address,
-  caption,
-  cite,
-  code,
-  dfn,
-  em,
-  strong,
-  th,
-  var {
-    font-style: normal;
-    font-weight: normal;
-  }
-
-  ol,
-  ul {
-    list-style: none;
-  }
-
-  caption,
-  th {
-    text-align: left;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: 100%;
-    font-weight: normal;
-  }
-
-  q::before,
-  q::after {
-    content: "";
-  }
-
-  abbr,
-  acronym {
-    border: 0;
-    font-variant: normal;
-  }
-
-  /* to preserve line-height and selector appearance */
-  sup {
-    vertical-align: text-top;
-  }
-
-  sub {
-    vertical-align: text-bottom;
-  }
-
-  input,
-  textarea,
-  select {
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-  }
-
-  /*to enable resizing for IE*/
-  input,
-  textarea,
-  select {
-    *font-size: 100%;
-  }
-
-  /*because legend doesn't inherit in IE */
-  legend {
-    color: #000;
   }
 }

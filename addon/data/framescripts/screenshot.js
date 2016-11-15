@@ -45,7 +45,10 @@ function makeScreenShot(pos, maxSize, backgroundColor) {
   } else {
     maxSize = null;
   }
-  win.document.body.classList.add("pageshot-hide-selection");
+  let iframe = win.document.getElementById("pageshot-iframe");
+  if (iframe) {
+    iframe.style.display = "none";
+  }
   try {
     console.info("shooting area", pos.x, pos.y, "w/h", pos.w, pos.h, maxSize ? "to " + maxSize.w + ", " + maxSize.h : "no max");
     var canvas = win.document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
@@ -66,7 +69,9 @@ function makeScreenShot(pos, maxSize, backgroundColor) {
     ctx.drawWindow(win, pos.x, pos.y, pos.w, pos.h, backgroundColor);
     return canvas.toDataURL();
   } finally {
-    win.document.body.classList.remove("pageshot-hide-selection");
+    if (iframe) {
+      iframe.style.display = "";
+    }
   }
 }
 

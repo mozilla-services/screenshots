@@ -23,6 +23,7 @@ const { Hotkey } = require("sdk/hotkeys");
 const { AddonManager } = require('resource://gre/modules/AddonManager.jsm');
 const { addXULStylesheet } = require("./xulcss");
 const { storage } = require("sdk/simple-storage");
+const contextMenu = require("sdk/context-menu");
 
 // Give the server a chance to start if the pref is set
 require("./headless").init();
@@ -95,6 +96,15 @@ Hotkey({
   combo: "accel-alt-control-x",
   onPress: watchFunction(function() {
     throw new Error("Client-side exception test");
+  })
+});
+
+contextMenu.Item({
+  label: "Create Page Shot",
+  context: contextMenu.PageContext(),
+  contentScript: `self.on("click", self.postMessage)`,
+  onMessage: watchFunction(() => {
+    takeShot("context-menu");
   })
 });
 

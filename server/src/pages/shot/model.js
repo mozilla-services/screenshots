@@ -53,10 +53,14 @@ exports.createModel = function (req) {
     hashAnalytics: true
   };
   if (serverPayload.expireTime !== null && Date.now() > serverPayload.expireTime) {
-    serverPayload.shot = clientPayload.shot = {
+    clientPayload.shot = {
       url: req.shot.url,
       docTitle: req.shot.title
     };
+    serverPayload.shot = Object.assign({
+      urlIfDeleted: req.shot.urlIfDeleted,
+      title: req.shot.title
+    }, clientPayload.shot);
   }
   return Promise.resolve({serverModel: serverPayload, jsonModel: clientPayload});
 };
