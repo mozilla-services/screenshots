@@ -14,7 +14,7 @@ if [[ $# = 0 ]] ; then
   exit 4
 fi
 
-VERSION="${2:-latest}"
+version="$(node -e 'console.log(require("./package.json").version)')"
 
 sed "s!USERNAME!$1!g" < Dockerrun.aws.json.template > Dockerrun.aws.json
 zip -r build/eb-app-latest.zip Dockerrun.aws.json .ebextensions/*.config
@@ -34,9 +34,10 @@ if unzip -v $xpi | grep -q META-INF ; then
 else
   rm -f ./mozilla_pageshot-*-fx.xpi
   ./node_modules/.bin/jpm sign --api-key=${AMO_USER} --api-secret=${AMO_SECRET} --xpi=${xpi}
-  mv `ls ./mozilla_pageshot-*-fx.xpi` ${xpi}
+  mv ./mozilla_pageshot-*-fx.xpi ${xpi}
 fi
 
-docker build -t $1/pageshot:"$VERSION" .
-docker push $1/pageshot:"$VERSION"
+echo "Creating docker image $1/pageshot:$version"
+docker build -t $1/pageshot:"$version" .
+docker push $1/pageshot:"$version"
 echo "Complete.  Upload build/eb-app-latest.zip to http://amzn.to/1NuC3N9"
