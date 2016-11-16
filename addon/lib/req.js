@@ -78,11 +78,27 @@ exports.sendEvent = function (action, label, options) {
   });
 };
 
-exports.sendTiming = function(event, action, timing) {
+exports.sendTiming = function(timings) {
+  if (! Array.isArray(timings)) {
+    timings = [timings];
+  }
+  for (let timing of timings) {
+    if (! timing.category) {
+      timing.category = "addon";
+    }
+    for (let prop in timing) {
+      if (['category', 'variable', 'time', 'label'].indexOf(prop) === -1) {
+        throw new Error(`Unexpected timing property: ${prop}`);
+      }
+    }
+    if (timing.category === undefined || timing.variable === undefined || timing.time === undefined) {
+      throw new Error("Timing missing required property");
+    }
+  }
   let main = require("./main");
   exports.request(`${main.getBackend()}/timing`, {
     method: "POST",
-    content: JSON.stringify({event, action, timing}),
+    content: JSON.stringify({timings}),
     contentType: "application/json"
   });
 };

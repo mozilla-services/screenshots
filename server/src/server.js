@@ -82,6 +82,7 @@ const { notFound } = require("./pages/not-found/server");
 const { cacheTime, setCache } = require("./caching");
 const { captureRavenException, sendRavenMessage } = require("./ravenclient");
 const { errorResponse, simpleResponse, jsResponse } = require("./responses");
+const selfPackage = require("./package.json");
 
 const PROXY_HEADER_WHITELIST = {
   "content-type": true,
@@ -325,6 +326,9 @@ app.post("/error", function (req, res) {
 
 function hashUserId(deviceId) {
   return new Promise((resolve, reject) => {
+    if (! dbschema.getTextKeys()) {
+      throw new Error("Server keys not initialized");
+    }
     let userKey = dbschema.getTextKeys()[0] + deviceId;
     genUuid.generate(genUuid.V_SHA1, genUuid.nil, userKey, function (err, userUuid) {
       if (err) {
@@ -373,11 +377,16 @@ app.post("/timing", function (req, res) {
   }
   hashUserId(req.deviceId).then((userUuid) => {
     let userAnalytics = ua(config.gaId, userUuid.toString());
-    userAnalytics.timing(
-      bodyObj.event,
-      bodyObj.action,
-      bodyObj.timing
-    ).send();
+    let sender = userAnalytics;
+    for (let item of bodyObj.timings) {
+      sender = sender.timing({
+        userTimingCategory: item.category,
+        userTimingVariableName: item.variable,
+        userTimingTime: item.time,
+        userTimingLabel: item.label
+      });
+    }
+    sender.send();
     simpleResponse(res, "OK", 200);
   }).catch((e) => {
     errorResponse(res, "Error creating user UUID:", e);
@@ -771,7 +780,8 @@ app.get("/__version__", function (req, res) {
   let response = {
     source: "https://github.com/mozilla-services/pageshot/",
     description: "Page Shot application server",
-    version: buildTime,
+    version: selfPackage.version,
+    buildDate: buildTime,
     commit: linker.getGitRevision(),
     contentOrigin: config.contentOrigin,
     commitLog: `https://github.com/mozilla-services/pageshot/commits/${linker.getGitRevision()}`,
