@@ -149,6 +149,9 @@ These are events that an add-on user can encounter on a shot they own
 4. [x] Click delete `web/start-delete/navbar` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/2K2S1m1y2K1R2o0h0s46/Image%202016-09-07%20at%202.53.48%20PM.png?v=1a87e714)
   5. [x] Confirm delete `web/delete/popup-confirm` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0v0y053t3F01362Z0N0E/Image%202016-09-07%20at%202.54.33%20PM.png?v=de0b3b7a)
   6. [x] Cancel delete `web/cancel-delete/popup-confirm`
+7. [x] Click delete from shot index, `web/start-delete/my-shots`
+  8. [x] Confirm delete from shot index `web/delete/my-shots-popup-confirm`
+  9. [x] Cancel delete from shot index, `web/cancel-delete/my-shots-popup-confirm`
 7. [x] Click My Shots `web/goto-myshots/navbar` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/2y090u1g3G371p1E0g21/Image%202016-09-07%20at%202.55.26%20PM.png?v=e4f24d87)
 8. ~~Switch to full page from clip view, by clicking anywhere on background `web/full-page-view/content`~~
 9. ~~Switch to full page from clip view, by clicking `>-<` button `web/full-page-view/content-unzoom`~~
