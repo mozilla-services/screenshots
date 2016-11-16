@@ -101,7 +101,9 @@ class Body extends React.Component {
       <a href={shot.viewUrl}  className="shot" key={shot.id} onClick={this.onOpen.bind(this, shot.viewUrl)}>
         <div className="shot-image-container" style={{
           backgroundImage: `url(${imageUrl})`
-        }}></div>
+        }}>
+          <img className="shot-control" src={this.props.staticLink("/static/img/garbage-bin.svg")} onClick={this.onClickDelete.bind(this, shot)} />
+        </div>
         <div className="title-container">
           <h4>{shot.title}</h4>
         </div>
@@ -114,6 +116,20 @@ class Body extends React.Component {
         <div className="inner-border"/>
       </a>
     );
+  }
+
+  onClickDelete(shot, event) {
+    event.stopPropagation();
+    event.preventDefault();
+    console.log("deleting", shot.title, event);
+    sendEvent("start-delete", "my-shots", {useBeacon: true});
+    if (window.confirm(`Delete ${shot.title}?`)) {
+      sendEvent("delete", "my-shots-popup-confirm", {useBeacon: true});
+      controller.deleteShot(shot);
+    } else {
+      sendEvent("cancel-delete", "my-shots-popup-confirm");
+    }
+    return false;
   }
 
   onOpen(url, event) {

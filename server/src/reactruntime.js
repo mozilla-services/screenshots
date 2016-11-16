@@ -82,6 +82,10 @@ exports.Page = class Page {
       });
     }
     let body = this.BodyFactory(model);
+    let curTitle = document.title;
+    if (model.title && model.title != curTitle) {
+      document.title = model.title;
+    }
     ReactDOM.render(
       body,
       document.getElementById("react-body-container"));

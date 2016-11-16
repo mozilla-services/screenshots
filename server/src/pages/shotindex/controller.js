@@ -20,8 +20,29 @@ function render() {
 
 exports.onChangeSearch = function (query) {
   model.defaultSearch = query;
-  window.history.pushState(null, "", "/shots?q=" + encodeURIComponent(query));
+  let url = `/shots?q=${encodeURIComponent(query)}`;
+  if (! query) {
+    url = "/shots";
+  }
+  window.history.pushState(null, "", url);
   refreshModel();
+};
+
+// FIXME: copied from shot/controller.js
+exports.deleteShot = function (shot) {
+  let url = model.backend + "/api/delete-shot";
+  let req = new XMLHttpRequest();
+  req.open("POST", url);
+  req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+  req.onload = function () {
+    if (req.status >= 300) {
+      // FIXME: a lame way to do an error message
+      window.alert("Error deleting shot: " + req.status + " " + req.statusText);
+    } else {
+      refreshModel();
+    }
+  };
+  req.send(`id=${encodeURIComponent(shot.id)}`);
 };
 
 window.addEventListener("popstate", () => {
