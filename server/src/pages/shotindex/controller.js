@@ -28,6 +28,23 @@ exports.onChangeSearch = function (query) {
   refreshModel();
 };
 
+// FIXME: copied from shot/controller.js
+exports.deleteShot = function (shot) {
+  let url = model.backend + "/api/delete-shot";
+  let req = new XMLHttpRequest();
+  req.open("POST", url);
+  req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+  req.onload = function () {
+    if (req.status >= 300) {
+      // FIXME: a lame way to do an error message
+      window.alert("Error deleting shot: " + req.status + " " + req.statusText);
+    } else {
+      refreshModel();
+    }
+  };
+  req.send(`id=${encodeURIComponent(shot.id)}`);
+};
+
 window.addEventListener("popstate", () => {
   let match = /[?&]q=([^&]*)/.exec(location.search);
   if (! match) {
