@@ -20,7 +20,11 @@ function render() {
 
 exports.onChangeSearch = function (query) {
   model.defaultSearch = query;
-  window.history.pushState(null, "", "/shots?q=" + encodeURIComponent(query));
+  let url = `/shots?q=${encodeURIComponent(query)}`;
+  if (! query) {
+    url = "/shots";
+  }
+  window.history.pushState(null, "", url);
   refreshModel();
 };
 
