@@ -247,7 +247,7 @@ build/server/static/js/creating-bundle.js: $(creating_dependencies)
 # The intention here is to only write build-time when something else needs
 # to be regenerated, but for some reason this gets rewritten every time
 # anyway:
-build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass_server_dest) $(imgs_server_dest) $(static_js_dest) build/server/export-shots.sh $(patsubst server/db-patches/%,build/server/db-patches/%,$(wildcard server/db-patches/*))
+build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass_server_dest) $(imgs_server_dest) $(static_js_dest) $(patsubst server/db-patches/%,build/server/db-patches/%,$(wildcard server/db-patches/*))
 	@mkdir -p $(@D)
 	./bin/build-scripts/write_build_time > build/server/build-time.js
 
