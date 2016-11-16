@@ -28,7 +28,7 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
         <link rel="shortcut icon" href={this.props.staticLink("/static/img/pageshot-icon-32.png")} />
         { analyticsScript }
         { activationScript }
-        { this.props.sentryPublicDSN ? <script src={this.props.staticLink("/install-raven.js")} /> : null }
+        { this.props.sentryPublicDSN ? <script src={this.props.staticLink("/install-raven.js")} async /> : null }
         {this.props.children}
       </head>
     );
@@ -108,3 +108,12 @@ exports.Page = class Page {
 exports.Page.prototype.ATTRS = `
 dir viewModule noBrowserJavascript
 `.split(/\s+/g);
+
+if (typeof window !== "undefined") {
+  setTimeout(() => {
+    if (window.initialModel !== undefined && ! window.initialModelLaunched) {
+      window.initialModelLaunched = true;
+      window.controller.launch(window.initialModel);
+    }
+  });
+}
