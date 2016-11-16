@@ -1,9 +1,14 @@
 const { createProxyUrl } = require("../../proxy-url");
 
 exports.createModel = function (req) {
+  let query = req.query.q;
+  let title = "My Shots";
+  if (query) {
+    title = `My Shots: search for ${query}`;
+  }
   let serverModel = {
-    title: "My Shots",
-    defaultSearch: req.query.q || null
+    title,
+    defaultSearch: query || null
   };
   serverModel.shots = req.shots;
   for (let shot of req.shots) {
