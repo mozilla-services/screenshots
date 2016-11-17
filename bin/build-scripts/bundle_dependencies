@@ -29,9 +29,9 @@ build() {
   echo -n "bundle... "
   browserify -o "$dest" \
     -e "$@"
-  if [[ -n "$NO_UGLIFY" ]] ; then
+  if [[ -z "$NO_UGLIFY" ]] ; then
     echo -n "minimizing... "
-    uglifyjs -o "$dest" "$dest"
+    uglifyjs -c -o "$dest" "$dest"
   fi
   echo "done."
 }

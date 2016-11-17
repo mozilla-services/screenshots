@@ -1,9 +1,11 @@
 #!/bin/bash
 
 set -e
-bin="$(dirname $BASH_SOURCE)"
+bin="$(dirname ${BASH_SOURCE[0]})"
 cd $bin/..
-export NODE_ENV=dev
+if [[ -z "$NODE_ENV" ]] ; then
+  export NODE_ENV=dev
+fi
 PATH="node_modules/.bin:$PATH"
 
 if [[ ! -e "node_modules/.bin/nodemon" ]] ; then

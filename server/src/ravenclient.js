@@ -27,3 +27,15 @@ exports.captureRavenException = function () {
     return ravenClient.captureException.apply(ravenClient, arguments);
   }
 };
+
+exports.addRavenRequestHandler = function (app) {
+  if (ravenClient) {
+    app.use(raven.middleware.express.requestHandler(ravenClient));
+  }
+};
+
+exports.addRavenErrorHandler = function (app) {
+  if (ravenClient) {
+    app.use(raven.middleware.express.errorHandler(ravenClient));
+  }
+};
