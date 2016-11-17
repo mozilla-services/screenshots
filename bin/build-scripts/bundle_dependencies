@@ -31,7 +31,7 @@ build() {
     -e "$@"
   if [[ -z "$NO_UGLIFY" ]] ; then
     echo -n "minimizing... "
-    uglifyjs -o "$dest" "$dest"
+    uglifyjs -c -o "$dest" "$dest"
   fi
   echo "done."
 }
