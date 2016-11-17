@@ -80,7 +80,8 @@ const { createProxyUrl } = require("./proxy-url");
 const statsd = require("./statsd");
 const { notFound } = require("./pages/not-found/server");
 const { cacheTime, setCache } = require("./caching");
-const { captureRavenException, sendRavenMessage } = require("./ravenclient");
+const { captureRavenException, sendRavenMessage,
+        addRavenRequestHandler, addRavenErrorHandler } = require("./ravenclient");
 const { errorResponse, simpleResponse, jsResponse } = require("./responses");
 const selfPackage = require("./package.json");
 
@@ -152,6 +153,8 @@ function addHSTS(req, res) {
       `max-age=${time}`);
   }
 }
+
+addRavenRequestHandler(app);
 
 app.use((req, res, next) => {
   genUuid.generate(genUuid.V_RANDOM, function (err, uuid) {
@@ -945,20 +948,6 @@ app.post('/api/fxa-oauth/token', function (req, res, next) {
   }).catch(next);
 });
 
-app.use(function (err, req, res, next) {
-  console.error("Error:", err);
-  console.error(err.stack);
-  captureRavenException(err);
-  if (err.isAppError) {
-    let { statusCode, headers, payload } = err.output;
-    res.status(statusCode);
-    res.header(headers);
-    res.send(payload);
-    return;
-  }
-  errorResponse(res, "General error:", err);
-});
-
 if (! config.disableMetrics) {
   app.use("/metrics", require("./pages/metrics/server").app);
 }
@@ -1111,6 +1100,19 @@ linker.init().then(() => {
 });
 
 require("./jobs").start();
+
+addRavenErrorHandler(app);
+
+app.use(function (err, req, res, next) {
+  if (err.isAppError) {
+    let { statusCode, headers, payload } = err.output;
+    res.status(statusCode);
+    res.header(headers);
+    res.send(payload);
+    return;
+  }
+  errorResponse(res, "General error:", err);
+});
 
 /* General 404 handler: */
 app.use(function(req, res, next) {
