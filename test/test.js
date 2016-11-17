@@ -53,11 +53,12 @@ function promiseDriver() {
   const builder = new webdriver.Builder()
     .forBrowser("firefox")
     .setFirefoxOptions(options);
-  return builder.buildAsync().then((driver) => {
-    driver.setContext(firefox.Context.CHROME);
-    let fileLocation = path.join(process.cwd(), "build", "mozilla-pageshot.xpi");
-    return addAddonToDriver(driver, fileLocation);
-  });
+
+  const driver = builder.build();
+
+  driver.setContext(firefox.Context.CHROME);
+  let fileLocation = path.join(process.cwd(), "build", "mozilla-pageshot.xpi");
+  addAddonToDriver(driver, fileLocation);
 }
 
 function getElementById(driver, id) {
