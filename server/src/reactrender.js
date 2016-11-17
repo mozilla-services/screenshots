@@ -45,7 +45,15 @@ exports.render = function (req, res, page) {
     `.trim();
     if (! page.noBrowserJavascript) {
       // FIXME: we should just inline the addReactScripts functionality in this function:
-      doc = addReactScripts(doc, `controller.launch(${JSON.stringify(jsonModel)});`, req.cspNonce);
+      let script = `\
+window.initialModel = ${JSON.stringify(jsonModel)};
+window.initialModelLaunched = false;
+if (window.controller) {
+  window.controller.launch(window.initialModel);
+  window.initialModelLaunched = true;
+}
+`;
+      doc = addReactScripts(doc, script, req.cspNonce);
     }
     res.send(doc);
   }).catch((err) => {

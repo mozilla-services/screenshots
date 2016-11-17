@@ -10,7 +10,7 @@ class Head extends React.Component {
   render() {
     return (
       <reactruntime.HeadTemplate {...this.props}>
-        <script src={this.props.staticLink("/static/js/shotindex-bundle.js")}></script>
+        <script src={this.props.staticLink("/static/js/shotindex-bundle.js")} async></script>
         <link rel="stylesheet" href={this.props.staticLink("/static/css/shot-index.css")} />
       </reactruntime.HeadTemplate>
     );
