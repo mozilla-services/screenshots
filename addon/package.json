@@ -8,7 +8,7 @@
   "homepage": "https://github.com/mozilla-services/pageshot",
   "icon": "data/icon.png",
   "license": "MPL 2.0",
-  "version": "2.6.0",
+  "version": "3.0a.0",
   "main": "./lib/main",
   "preferences": [
     {
