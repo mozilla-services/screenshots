@@ -45,7 +45,7 @@ AddonManager.installTemporaryAddon(new FileUtils.File(arguments[0]))
   });
 }
 
-function promiseDriver() {
+function getDriver() {
   const profile = new firefox.Profile();
   const options = new firefox.Options();
   options.setProfile(profile);
@@ -59,6 +59,7 @@ function promiseDriver() {
   driver.setContext(firefox.Context.CHROME);
   let fileLocation = path.join(process.cwd(), "build", "mozilla-pageshot.xpi");
   addAddonToDriver(driver, fileLocation);
+  return driver;
 }
 
 function getElementById(driver, id) {
@@ -73,9 +74,7 @@ describe("Test Page Shot", function () {
   let driver;
 
   before(function() {
-    return promiseDriver().then((theDriver) => {
-      driver = theDriver;
-    });
+    driver = getDriver();
   });
 
   after(function() {
