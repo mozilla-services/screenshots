@@ -32,7 +32,7 @@
     "react-dom": "15.4.0",
     "rimraf": "2.5.4",
     "universal-analytics": "0.4.6",
-    "uuid": "2.0.3",
+    "uuid": "3.0.0",
     "valid-url": "1.0.9",
     "vhost": "3.0.2",
     "wreck": "10.0.0"
