@@ -1,7 +1,7 @@
 {
   "AWSEBDockerrunVersion": "1",
   "Image": {
-    "Name": "docker.io/USERNAME/pageshot",
+    "Name": "docker.io/USERNAME/pageshot:VERSION",
     "Update": "true"
   },
   "Ports": [
