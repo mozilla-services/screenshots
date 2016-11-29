@@ -467,7 +467,7 @@ stateHandlers.crosshairs = {
         return null;
       }
       let role = el.getAttribute("role");
-      if (role === "article" || el.className && el.className.search("tweet ") !== -1) {
+      if (role === "article" || (el.className && typeof el.className == "string" && el.className.search("tweet ") !== -1)) {
         let rect = Selection.getBoundingClientRect(el);
         if (! rect) {
           return null;
@@ -928,24 +928,6 @@ function removeHandlers() {
     doc.removeEventListener(name, handler, false);
   }
   registeredDocumentHandlers = [];
-}
-
-function addStylesheet() {
-  let linkUrl = self.options["inline-selection.css"];
-  var link = document.getElementById("pageshot-stylesheet");
-  if (! link) {
-    link = document.createElement("link");
-    link.setAttribute("rel", "stylesheet");
-    link.setAttribute("id", "pageshot-stylesheet");
-    link.setAttribute("href", linkUrl);
-    if (document.head) {
-      document.head.appendChild(link);
-    }
-  }
-}
-
-if (! isChrome) {
-  addStylesheet();
 }
 
 snapping.init();
