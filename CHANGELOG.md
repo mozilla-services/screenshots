@@ -1,3 +1,83 @@
+## Version 3
+
+### In-browser UI changes
+
+* Move Save and Cancel buttons below the selection. Fixes [#1629](https://github.com/mozilla-services/pageshot/issues/1629) [8ba9223](https://github.com/mozilla-services/pageshot/commit/8ba9223)
+* Add pixel dimensions when starting and dragging
+  the selection. Fixes [#1848](https://github.com/mozilla-services/pageshot/issues/1848) [4915115](https://github.com/mozilla-services/pageshot/commit/4915115)
+* Change to `cursor: move` on the selection box. Fixes [#1768](https://github.com/mozilla-services/pageshot/issues/1768) [c5aa6ae](https://github.com/mozilla-services/pageshot/commit/c5aa6ae)
+* Add *Create Page Shot* item in the context menu. Fixes [#1922](https://github.com/mozilla-services/pageshot/issues/1922) [c220524](https://github.com/mozilla-services/pageshot/commit/c220524)
+* Add paste instructions to notification popups. Fixes [#1776](https://github.com/mozilla-services/pageshot/issues/1776) [5659166](https://github.com/mozilla-services/pageshot/commit/5659166)
+* Render the selection interface in an iframe, so that it doesn't conflict or get affected by any styles in the document itself.  Multiple commits:
+  * Iframe sizing,  [23dc2b4](https://github.com/mozilla-services/pageshot/commit/23dc2b4)
+  * Create `ui.iframe` and put elements into it [91ed846](https://github.com/mozilla-services/pageshot/commit/91ed846)
+  * Event handlers [c424544](https://github.com/mozilla-services/pageshot/commit/c424544) and  [6a19400](https://github.com/mozilla-services/pageshot/commit/6a19400)
+  * Initial commit with basics are working [3e0f0f9](https://github.com/mozilla-services/pageshot/commit/3e0f0f9) and [17c1406](https://github.com/mozilla-services/pageshot/commit/17c1406)
+
+### Web UI changes
+
+* Put in a delete option directly on My Shots, fixes [#1346](https://github.com/mozilla-services/pageshot/issues/1346) [9cb179e](https://github.com/mozilla-services/pageshot/commit/9cb179e)
+* Direct feedback to Discourse. Fixes [#1604](https://github.com/mozilla-services/pageshot/issues/1604) [bab16dd](https://github.com/mozilla-services/pageshot/commit/bab16dd)
+* Add a better title to search results. Fixes [#1909](https://github.com/mozilla-services/pageshot/issues/1909) [09d0e6e](https://github.com/mozilla-services/pageshot/commit/09d0e6e)
+* Implement rich copy. Button is shown only when
+  extension is present. Fixes [#1693](https://github.com/mozilla-services/pageshot/issues/1693) [abb0a1f](https://github.com/mozilla-services/pageshot/commit/abb0a1f)
+
+### Server changes
+
+* Use the Raven Express middleware. Fixes [#1583](https://github.com/mozilla-services/pageshot/issues/1583) [9f4a655](https://github.com/mozilla-services/pageshot/commit/9f4a655)
+* Do not overwrite NODE_ENV if it is set [fdac82f](https://github.com/mozilla-services/pageshot/commit/fdac82f)
+* Enable uglify compression, for about 50% size improvement.
+  . Fixes [#1803](https://github.com/mozilla-services/pageshot/issues/1803) [80e84e8](https://github.com/mozilla-services/pageshot/commit/80e84e8)
+* Make bundle scripts and raven activation async. Fixes [#1804](https://github.com/mozilla-services/pageshot/issues/1804) [e4ac283](https://github.com/mozilla-services/pageshot/commit/e4ac283)
+* When erasing the search, change to URL to /shots instead of
+  /shots?q= [9bde83d](https://github.com/mozilla-services/pageshot/commit/9bde83d)
+* Update
+  reactruntime so that changes to the model.title automatically get reflected
+  in document.title. [09d0e6e](https://github.com/mozilla-services/pageshot/commit/09d0e6e)
+* Give a better exception when keygrip keys aren't set, and we
+  try to hash a user ID [cbecc70](https://github.com/mozilla-services/pageshot/commit/cbecc70)
+* Add package.json version to `/__version__`. Fixes [#1928](https://github.com/mozilla-services/pageshot/issues/1928) [3fcf252](https://github.com/mozilla-services/pageshot/commit/3fcf252)
+* Run all svgs through `svgo` during the build process. Fixes [#1389](https://github.com/mozilla-services/pageshot/issues/1389) [3dcfb35](https://github.com/mozilla-services/pageshot/commit/3dcfb35)
+* Make it so that calls to `/api/login` can't loop in case of
+  failures or missing cookies [02d175a](https://github.com/mozilla-services/pageshot/commit/02d175a)
+* Remove the `device_activity` table. Fixes [#1954](https://github.com/mozilla-services/pageshot/issues/1954) [dc1100c](https://github.com/mozilla-services/pageshot/commit/dc1100c)
+* Add keygrip check to `/__heartbeat__`. This is
+  probably redundant, as the middleware will fail if keygrip isn't initialized. Fixes [#1931](https://github.com/mozilla-services/pageshot/issues/1931) [a678028](https://github.com/mozilla-services/pageshot/commit/a678028)
+* Make server abort with exit code 1 if database
+  initialization isn't successful. Fixes [#1933](https://github.com/mozilla-services/pageshot/issues/1933) [8238ddd](https://github.com/mozilla-services/pageshot/commit/8238ddd)
+* Allow `$NO_UGLIFY` to avoid uglifying the source while
+  bundling.  Only works on rebuild. [82e9cc3](https://github.com/mozilla-services/pageshot/commit/82e9cc3)
+* Send Raven report when metrics updating fails
+  Allow REFRESH_METRICS_TIME to be 0, disabling the refresh. Fixes [#1946](https://github.com/mozilla-services/pageshot/issues/1946) [e4da720](https://github.com/mozilla-services/pageshot/commit/e4da720)
+
+### Metrics changes
+
+* Send timing information to GA for more steps. This
+  changes the signature of sendTiming() and is more explicit about that
+  signature. Add functions to help time pieces of the process. Fixes [#936](https://github.com/mozilla-services/pageshot/issues/936) [352398c](https://github.com/mozilla-services/pageshot/commit/352398c)
+* When making a login at `/api/login`, send a GA event. Also
+  remove unused deviceInfo variables [3c8fe96](https://github.com/mozilla-services/pageshot/commit/3c8fe96)
+* Pass isOwner through to share panel, so all events don't
+  appear as non-owner [a6b4dce](https://github.com/mozilla-services/pageshot/commit/a6b4dce)
+* Don't recreate `/metrics` if they are fresh enough Make the
+  polling interval on refreshing metrics slightly randomized, so multiple
+  workers don't pile on [8d61f00](https://github.com/mozilla-services/pageshot/commit/8d61f00)
+
+### Bug fixes
+
+* Do not load our stylesheet into the main page. Fixes [#1596](https://github.com/mozilla-services/pageshot/issues/1596) [7ac0e43](https://github.com/mozilla-services/pageshot/commit/7ac0e43)
+* Suppress some errors that are happening during teardown, when
+  the document is no longer valid [e99a2bc](https://github.com/mozilla-services/pageshot/commit/e99a2bc)
+* Never force login/initialization on sendEvent. Fixes [#1963](https://github.com/mozilla-services/pageshot/issues/1963) [4dea856](https://github.com/mozilla-services/pageshot/commit/4dea856)
+* Fix a client/server render mismatch, where urlIfDeleted and
+  title weren't being put into the server-side shot [109bc3c](https://github.com/mozilla-services/pageshot/commit/109bc3c)
+* Don't allow the shot to be taken more than once. Fixes [#1799](https://github.com/mozilla-services/pageshot/issues/1799) [fafef59](https://github.com/mozilla-services/pageshot/commit/fafef59)
+* Remove messaging from helperworker and viewerworker that are
+  no longer being used Comment out but leave in saved/stored full page
+  messaging [4224448](https://github.com/mozilla-services/pageshot/commit/4224448)
+* Catch all exceptions in interactive-worker with
+  watchFunction/watchPromise. Fixes [#1888](https://github.com/mozilla-services/pageshot/issues/1888) [f693b9f](https://github.com/mozilla-services/pageshot/commit/f693b9f)
+
 ## Version 2
 
 ### Visible changes to the product
