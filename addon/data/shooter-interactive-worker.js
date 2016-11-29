@@ -467,7 +467,7 @@ stateHandlers.crosshairs = {
         return null;
       }
       let role = el.getAttribute("role");
-      if (role === "article" || el.className && el.className.search("tweet ") !== -1) {
+      if (role === "article" || (el.className && typeof el.className == "string" && el.className.search("tweet ") !== -1)) {
         let rect = Selection.getBoundingClientRect(el);
         if (! rect) {
           return null;
