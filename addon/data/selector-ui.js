@@ -235,6 +235,10 @@ const ui = (function () { // eslint-disable-line no-unused-vars
     },
 
     onScroll: function () {
+      this.resetPosition();
+      /* Note, if we used requestAnimationFrame we'd improve the performance
+         some, but this creates very visible lag in the positioning: */
+      /*
       if (! this.isScrollTracking) {
         window.requestAnimationFrame(() => {
           this.resetPosition();
@@ -242,6 +246,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         });
         this.isScrollTracking = true;
       }
+      */
     },
 
     remove: function () {
