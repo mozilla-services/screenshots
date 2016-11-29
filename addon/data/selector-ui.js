@@ -112,6 +112,8 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       let height = Math.max(
         document.documentElement.clientHeight,
         document.body.clientHeight,
+        document.documentElement.scrollHeight,
+        document.body.scrollHeight,
         window.innerHeight);
       if (height !== this.sizeTracking.lastHeight) {
         this.sizeTracking.lastHeight = height;
@@ -120,6 +122,8 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       let width = Math.max(
         document.documentElement.clientWidth,
         document.body.clientWidth,
+        document.documentElement.scrollWidth,
+        document.body.scrollWidth,
         window.innerWidth);
       if (width !== this.sizeTracking.lastWidth) {
         this.sizeTracking.lastWidth = width;
