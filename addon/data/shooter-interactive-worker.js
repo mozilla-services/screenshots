@@ -930,24 +930,6 @@ function removeHandlers() {
   registeredDocumentHandlers = [];
 }
 
-function addStylesheet() {
-  let linkUrl = self.options["inline-selection.css"];
-  var link = document.getElementById("pageshot-stylesheet");
-  if (! link) {
-    link = document.createElement("link");
-    link.setAttribute("rel", "stylesheet");
-    link.setAttribute("id", "pageshot-stylesheet");
-    link.setAttribute("href", linkUrl);
-    if (document.head) {
-      document.head.appendChild(link);
-    }
-  }
-}
-
-if (! isChrome) {
-  addStylesheet();
-}
-
 snapping.init();
 
 /**********************************************************
