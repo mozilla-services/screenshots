@@ -6,8 +6,9 @@ export NODE_ENV=production
 cd "$(dirname ${BASH_SOURCE[0]})/.."
 
 if [[ $# = 0 ]] ; then
-  echo "Usage: $0 dockerhubusername [version]"
+  echo "Usage: $0 dockerhubusername"
   echo "  builds the pageshot docker image"
+  echo "  Determines version from package.json"
   echo "  tags and uploads it as [dockerhubusername]/pageshot:[version]"
   echo "  creates build/eb-app-latest.zip"
   echo "  version defaults to latest"
@@ -16,7 +17,8 @@ fi
 
 version="$(node -e 'console.log(require("./package.json").version)')"
 
-sed "s!USERNAME!$1!g" < Dockerrun.aws.json.template > Dockerrun.aws.json
+sed "s!USERNAME!$1!g" < Dockerrun.aws.json.template > Dockerrun.aws.json.tmp
+sed "s!VERSION!$version!g" < Dockerrun.aws.json.tmp > Dockerrun.aws.json
 zip -r build/eb-app-latest.zip Dockerrun.aws.json .ebextensions/*.config
 rm Dockerrun.aws.json
 
