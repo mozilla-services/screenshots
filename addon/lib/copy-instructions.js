@@ -2,8 +2,8 @@ const system = require("sdk/system");
 
 exports.copyInstructions = function () {
   if (system.platform === "darwin") {
-    return "Click ⌘-V to paste";
+    return "Press ⌘-V to paste";
   } else {
-    return "Click Ctrl-V to paste";
+    return "Press Ctrl-V to paste";
   }
 };

@@ -14,7 +14,14 @@ depfile() {
 
 getdeps() {
   file="$(depfile)"
-  if [ -e $file ] ; then
+  if [[ -e $file ]] ; then
+    # Test that all the files actually exist...
+    for filename in $(cat $file) ; do
+      if [[ ! -e $filename ]] ; then
+        echo "$@"
+        return
+      fi
+    done
     cat < $file
   else
     echo "$@"

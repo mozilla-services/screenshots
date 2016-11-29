@@ -92,21 +92,21 @@ class ShareButtonPanel extends React.Component {
     }
     return <div id="share-buttons-panel" className={className}>
       <div className="wrapper row-space">
-        <a onClick={ this.onClickShareButton.bind(this, "facebook") } target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }>
+        <a title="Share to Facebook wall or message" onClick={ this.onClickShareButton.bind(this, "facebook") } target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }>
           <img src={ this.props.staticLink("/static/img/share-facebook.svg") } />
         </a>
-        <a onClick={ this.onClickShareButton.bind(this, "twitter") }target="_blank" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }>
+        <a title="Share to a tweet" onClick={ this.onClickShareButton.bind(this, "twitter") }target="_blank" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }>
           <img src={ this.props.staticLink("/static/img/share-twitter.svg") } />
         </a>
-        <a onClick={ this.onClickShareButton.bind(this, "pinterest") } target="_blank" href={ "https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" + encodeURIComponent(this.props.shot.title) }>
+        <a title="Share to Pinterest" onClick={ this.onClickShareButton.bind(this, "pinterest") } target="_blank" href={ "https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" + encodeURIComponent(this.props.shot.title) }>
           <img src={ this.props.staticLink("/static/img/share-pinterest.svg") } />
         </a>
-        <a onClick={ this.onClickShareButton.bind(this, "email") } target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
+        <a title="Create email with link" onClick={ this.onClickShareButton.bind(this, "email") } target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
           <img src={ this.props.staticLink("/static/img/share-email.svg") } />
         </a>
         {this.props.isExtInstalled ?
-          <a onClick={ this.onClickRichCopy.bind(this) } target="_blank" href="#">
-            <img src={ this.props.staticLink("/static/img/clipboard-32.png") } />
+          <a title="Copy the image and link to the clipboard" onClick={ this.onClickRichCopy.bind(this) } target="_blank" href="#">
+            <img src={ this.props.staticLink("/static/img/copy.png") } />
           </a> : null}
       </div>
       <p>Get a shareable link to this shot:</p>
