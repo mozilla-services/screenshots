@@ -6,6 +6,7 @@ import uuid
 import os
 import time
 import random
+import json
 
 parser = argparse.ArgumentParser(description='Run some tests on a Page Shot server')
 parser.add_argument('url', metavar='URL', type=str, nargs=1,
@@ -50,11 +51,11 @@ secret = make_uuid()
 def login():
     resp = session.post(
         urljoin(backend, "/api/login"),
-        data=dict(deviceId=deviceId, secret=secret, deviceInfo=deviceInfo) )
+        data=dict(deviceId=deviceId, secret=secret, deviceInfo=json.dumps(deviceInfo)))
     if resp.status_code == 404:
         resp = session.post(
             urljoin(backend, "/api/register"),
-            data=dict(deviceId=deviceId, secret=secret, deviceInfo=deviceInfo))
+            data=dict(deviceId=deviceId, secret=secret, deviceInfo=json.dumps(deviceInfo)))
     resp.raise_for_status()
 
 def delete_account():
