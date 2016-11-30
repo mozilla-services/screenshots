@@ -487,7 +487,17 @@ app.post("/api/update", function (req, res, next) {
 
 app.post("/api/login", function (req, res) {
   let vars = req.body;
-  let deviceInfo = JSON.parse(vars.deviceInfo);
+  let deviceInfo = {};
+  try {
+    deviceInfo = JSON.parse(vars.deviceInfo);
+  } catch (e) {
+    if (e instanceof SyntaxError) {
+      // JSON isn't valid
+      deviceInfo = {};
+    } else {
+      throw e;
+    }
+  }
   checkLogin(vars.deviceId, vars.secret, deviceInfo.addonVersion).then((ok) => {
     if (ok) {
       let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
