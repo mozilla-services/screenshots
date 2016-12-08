@@ -27,7 +27,7 @@
     "pg": "6.1.0",
     "pg-patcher": "0.3.0",
     "raven": "0.12",
-    "raven-js": "3.8.1",
+    "raven-js": "3.9.0",
     "react": "15.4.1",
     "react-dom": "15.4.1",
     "rimraf": "2.5.4",
