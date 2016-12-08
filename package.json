@@ -31,7 +31,7 @@
     "react": "15.4.1",
     "react-dom": "15.4.1",
     "rimraf": "2.5.4",
-    "universal-analytics": "0.4.6",
+    "universal-analytics": "0.4.8",
     "uuid": "2.0.3",
     "valid-url": "1.0.9",
     "vhost": "3.0.2",
