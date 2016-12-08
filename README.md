@@ -43,7 +43,7 @@ There is an IRC channel `#pageshot` on irc.mozilla.org (you can use [this link](
 Planning and ideation is happening in the [issue tracker](https://github.com/mozilla-services/pageshot/issues).  We use a pattern roughly like:
 
 * [Issues with no milestone](https://github.com/mozilla-services/pageshot/issues?q=is%3Aopen+is%3Aissue+no%3Amilestone) are awaiting triage
-* [Issues set to the next milestone](https://github.com/mozilla-services/pageshot/milestone/16) can be worked on any time (this link will rot!)
+* [Issues set to the next milestone](https://github.com/mozilla-services/pageshot/milestone/17) can be worked on any time (this link will rot!)
 * [Issues in Stretch](https://github.com/mozilla-services/pageshot/milestone/9) are immediately actionable but just nice-to-haves, not blockers.
 * [Issues in Next Tasks](https://github.com/mozilla-services/pageshot/milestone/2) are deferred for now, but will be re-triaged when the current milestone is done
 * [Issues in Blue Sky](https://github.com/mozilla-services/pageshot/milestone/3) are mostly shelved; we'd like to do them but have no plans to move forward.  (If you see something you care about there, comment on it -- otherwise we may not notice it)
