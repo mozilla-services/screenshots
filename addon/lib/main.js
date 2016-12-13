@@ -147,6 +147,7 @@ exports.main = function (options) {
     startDailyPing();
   }).catch((error) => {
     console.warn("Failed to log in to server:", exports.getBackend(), error+"", error.stack);
+    error.noPopup = true;
     require("./errors").unhandled(error);
   });
 };
