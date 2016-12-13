@@ -133,6 +133,10 @@ const ShotContext = Class({
     let loadingTab;
     let doneSuperFast = false;
     this.copyUrlToClipboard();
+    if (this._takeShotTabIsOpening) {
+      return;
+    }
+    this._takeShotTabIsOpening = true;
     tabs.open({
       url: this.shot.creatingUrl,
       onOpen: (tab) => {
@@ -243,15 +247,8 @@ const ShotContext = Class({
         sendEvent("cancel-shot", "tab-reload");
       }
       this.destroy();
-      console.log("the interactive worker was detached");
     });
-    let isTakingShot = false;
     this.interactiveWorker.port.on("select", watchFunction(function (pos, shotText, captureType) {
-      if (isTakingShot) {
-        // Double-click on a save button
-        return;
-      }
-      isTakingShot = true;
       // FIXME: there shouldn't be this disconnect between arguments to captureTab
       var info = {
         x: pos.left,
