@@ -29,7 +29,7 @@ function safeStoreQueries() {
   });
 }
 
-if (config.refreshMetricsTime) {
+if (config.refreshMetricsTime && config.controllerSingleton) {
   // Randomize each worker +-30 seconds interval
   let interval = config.refreshMetricsTime * 1000 + Math.floor(Math.random()*60000 - 30000);
   if (interval < 10000) {
@@ -39,5 +39,8 @@ if (config.refreshMetricsTime) {
 } else {
   console.info("Not running periodic metrics updating");
 }
-// Also run immediately on startup:
-setTimeout(safeStoreQueries, 1000);
+
+if (config.controllerSingleton) {
+  // Also run immediately on startup:
+  setTimeout(safeStoreQueries, 1000);
+}
