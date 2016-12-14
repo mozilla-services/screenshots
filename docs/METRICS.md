@@ -106,6 +106,7 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 9. [x] Finish moving, without a change `addon/keep-move-selection/mouseup`
 3. [x] Click Save `addon/save-shot/overlay-save-button` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1F021R1U1z0y3A1i0C2F/Image%202016-09-07%20at%202.02.43%20PM.png?v=1c42ee47)
 4. [x] Click Cancel `addon/cancel-shot/topbar-cancel` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3u2M2G1N431s1O193L1n/Image%202016-09-07%20at%202.03.24%20PM.png?v=bedc4e14)
+5. [x] Click Download `addon/download-shot/overlay-download-button`
 5. [x] Cancel because URL changed `addon/cancel-shot/url-changed` (when something that uses window.history "navigates" spontaneously away)
 6. [x] Cancel because the tab is closed `addon/cancel-shot/tab-close`
 7. [x] Cancel because the tab is navigated (such as entering something in the URL bar) `addon/cancel-shot/tab-load`

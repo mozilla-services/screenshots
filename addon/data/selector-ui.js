@@ -287,6 +287,19 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       } else {
         this.save.style.display = "none";
       }
+      if (callbacks !== undefined && callbacks.download) {
+        this.download.removeAttribute("disabled");
+        this.download.onclick = (e) => {
+          this.download.setAttribute("disabled", true);
+          callbacks.download(e);
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        };
+        this.download.style.display = "";
+      } else {
+        this.download.style.display = "none";
+      }
       let bodyRect = getBodyRect();
       // Note, document.documentElement.scrollHeight is zero on some strange pages (such as the page created when you load an image):
       let docHeight = Math.max(document.documentElement.scrollHeight || 0, document.body.scrollHeight);
@@ -333,12 +346,16 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       }
       boxEl = makeEl("div", "pageshot-highlight");
       let buttons = makeEl("div", "pageshot-highlight-buttons");
+      let download = makeEl("button", "pageshot-highlight-button-download");
+      download.textContent = "Download";
+      buttons.appendChild(download);
       let cancel = makeEl("button", "pageshot-highlight-button-cancel");
       cancel.textContent = "Cancel";
       buttons.appendChild(cancel);
       let save = makeEl("button", "pageshot-highlight-button-save");
       save.textContent = "Save";
       buttons.appendChild(save);
+      this.download = download;
       this.cancel = cancel;
       this.save = save;
       boxEl.appendChild(buttons);
@@ -513,6 +530,14 @@ const ui = (function () { // eslint-disable-line no-unused-vars
     },
 
     el: null
+  };
+
+  exports.triggerDownload = function (dataUrl, filename) {
+    let a = iframe.document.createElement("a");
+    a.href = dataUrl;
+    a.setAttribute("download", filename);
+    iframe.document.body.appendChild(a);
+    a.click();
   };
 
   return exports;

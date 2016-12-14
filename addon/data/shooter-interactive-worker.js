@@ -130,6 +130,9 @@ let standardDisplayCallbacks = {
   }, save: () => {
     sendEvent("save-shot", "overlay-save-button");
     self.port.emit("take-shot");
+  }, download: () => {
+    sendEvent("download-shot", "overlay-download-button");
+    self.port.emit("requestDownload");
   }
 };
 
@@ -963,6 +966,14 @@ if (! isChrome) {
       deactivate();
       self.port.emit("destroyed");
     }), 0);
+  }));
+
+  self.port.on("triggerDownload", watchFunction((dataUrl, filename) => {
+    ui.triggerDownload(dataUrl, filename);
+    setTimeout(() => {
+      deactivate();
+      self.port.emit("deactivate");
+    });
   }));
 
   // Happens if this worker is detached for some reason
