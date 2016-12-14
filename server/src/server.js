@@ -120,6 +120,10 @@ if (config.useS3) {
 
 
 function initDatabase() {
+  if (! config.controllerSingleton) {
+    console.info("Note: this server will not perform database initialization");
+    return Promise.resolve();
+  }
   dbschema.createTables().then(() => {
     return dbschema.createKeygrip();
   }).then(() => {

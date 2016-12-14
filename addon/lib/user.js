@@ -54,6 +54,9 @@ exports.initialize = function (backend, reason) {
   // This lets us retry initialize() with no parameters later if necessary:
   cachedBackend = backend = backend || cachedBackend;
   cachedReason = reason = reason || cachedReason;
+  if (initialized && hasCookieForBackend(backend)) {
+    return Promise.resolve();
+  }
   let deviceIdInfo = getDeviceIdInfo();
   return new Promise((resolve, reject) => {
     if (! (deviceIdInfo && deviceIdInfo.deviceId && deviceIdInfo.secret)) {
