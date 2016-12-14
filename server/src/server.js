@@ -204,6 +204,9 @@ app.use(function (req, res, next) {
   req.deviceId = cookies.get("user", {signed: true});
   if (req.deviceId) {
     req.userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
+    if (config.debugGoogleAnalytics) {
+      req.userAnalytics = req.userAnalytics.debug();
+    }
   }
   req.backend = `${req.protocol}://${req.headers.host}`;
   req.config = config;
