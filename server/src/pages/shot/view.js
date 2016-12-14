@@ -143,9 +143,9 @@ class Head extends React.Component {
         continue;
       }
       let text = `From ${this.props.shot.urlDisplay}`;
-      og.push(<meta key={ `ogimage${clipId}` } property="og:image" content={clip.image.url} />);
+      og.push(<meta key={ `ogimage${clipId}` } property="og:image" content={this.makeEmbeddedImageUrl(clip.image.url, "og")} />);
       og.push(<meta key={ `ogdescription${clipId}` } property="og:description" content={text} />);
-      twitter.push(<meta key={ `twitterimage${clipId}` } name="twitter:image" content={clip.image.url} />);
+      twitter.push(<meta key={ `twitterimage${clipId}` } name="twitter:image" content={this.makeEmbeddedImageUrl(clip.image.url, "twitter")} />);
       twitter.push(<meta key={ `twitterdesc${clipId}` } name="twitter:description" content={text} />);
       // FIXME: consider twitter:site @mozillapageshot
       if (clip.image.dimensions) {
@@ -154,6 +154,19 @@ class Head extends React.Component {
       }
     }
     return og.concat(twitter);
+  }
+
+  makeEmbeddedImageUrl(url, type) {
+    if (! url.startsWith("http")) {
+      return url;
+    }
+    if (url.indexOf("?") == -1) {
+      url += "?";
+    } else {
+      url += "&";
+    }
+    url += "embedded=" + encodeURIComponent(type);
+    return url;
   }
 }
 
