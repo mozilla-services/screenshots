@@ -433,8 +433,8 @@ ${options.addBody || ""}
   }
 
   get filename() {
-    let filenameTitle = this.props.shot.title;
-    let date = new Date(this.props.shot.createdDate);
+    let filenameTitle = this.title;
+    let date = new Date(this.createdDate);
     filenameTitle = filenameTitle.replace(/[\/!@&*.|\n\r\t]/g, " ");
     filenameTitle = filenameTitle.replace(/\s+/g, " ");
     let clipFilename = `Page-Shot-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${filenameTitle}`;
