@@ -60,6 +60,7 @@ class ShareButtonPanel extends React.Component {
     sendEvent(
       this.props.isOwner ? "share-owner" : "share-non-owner",
       whichButton);
+    this.props.closePanel();
   }
 
   onClickCopyButton(e) {
@@ -82,6 +83,7 @@ class ShareButtonPanel extends React.Component {
     event.preventDefault();
     this.props.sendRichCopy();
     sendEvent("share", "rich-copy");
+    this.props.closePanel();
     return false;
   }
 
