@@ -58,6 +58,13 @@ $overlay-z-index: 9999999999;
   width: 80px;
 }
 
+.pageshot-highlight-button-download {
+  @extend .button;
+  @extend .primary;
+  margin: 5px;
+  width: 100px;
+}
+
 .pageshot-mover-target {
   position: absolute;
   z-index: 5;

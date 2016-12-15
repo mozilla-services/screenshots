@@ -106,6 +106,7 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 9. [x] Finish moving, without a change `addon/keep-move-selection/mouseup`
 3. [x] Click Save `addon/save-shot/overlay-save-button` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/1F021R1U1z0y3A1i0C2F/Image%202016-09-07%20at%202.02.43%20PM.png?v=1c42ee47)
 4. [x] Click Cancel `addon/cancel-shot/topbar-cancel` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3u2M2G1N431s1O193L1n/Image%202016-09-07%20at%202.03.24%20PM.png?v=bedc4e14)
+5. [x] Click Download `addon/download-shot/overlay-download-button`
 5. [x] Cancel because URL changed `addon/cancel-shot/url-changed` (when something that uses window.history "navigates" spontaneously away)
 6. [x] Cancel because the tab is closed `addon/cancel-shot/tab-close`
 7. [x] Cancel because the tab is navigated (such as entering something in the URL bar) `addon/cancel-shot/tab-load`
@@ -198,6 +199,7 @@ These are events that an add-on user can encounter on a shot they own
 
 1. [x] Visit the page, `web/visit/non-owner` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/252d0b0F1A3i453h2r32/Image%202016-09-07%20at%203.38.11%20PM.png?v=357dd63c)
 2. [x] Visit an image directly, when the image isn't embedded directly in a Page Shot shot page, `web/visit/direct-view`
+3. [x] View an image directly, when the image is being shown as part of a Facebook/Twitter style preview (the og:image or twitter:image), `web/visit/direct-view-embedded`
 2. [x] Click flag button `web/start-flag/navbar` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3T3a1y0K2l0H2d1p1e0L/Image%202016-09-07%20at%203.38.36%20PM.png?v=ba92ba16)
 3. [x] Click Share (same as for owner, but with `share-non-owner` instead of `share-owner`, and `start-share-non-owner`)
 4. [x] Visit original URL `web/goto-original-url/navbar`
@@ -211,6 +213,12 @@ These are events that an add-on user can encounter on a shot they own
 
 1. [x] When an expired shot is deleted (about 2 weeks after expiration) it sends `server/clean-deleted-shot` with an eventValue of the number of shots cleaned at that moment.  (By default these are checked every minute.)
 2. [x] When a successful request to `/api/login` happens, we send `server/api-login`
+
+#### Page views
+
+1. [x] Views of shot pages show up as `/a-shot/{hash}`
+2. [x] Views of images directly, `/images/{hash}`
+3. [x] Views of images that came from og/twitter metadata, `/images/embedded/{hash}`
 
 #### Homepage web visits
 

@@ -224,6 +224,11 @@ const ShotContext = Class({
     });
   },
 
+  triggerDownload: function () {
+    let clip = this.shot.getClip(this.shot.clipNames()[0]);
+    this.interactiveWorker.port.emit("triggerDownload", clip.image.url, this.shot.filename);
+  },
+
   /** Activate the worker that handles selection */
   _activateWorker: function () {
     this.interactiveWorker = watchWorker(this.tab.attach({
@@ -295,6 +300,9 @@ const ShotContext = Class({
     this.interactiveWorker.port.on("take-shot", watchFunction(function () {
       this.takeShot();
     }, this));
+    this.interactiveWorker.port.on("requestDownload", watchFunction(() => {
+      this.triggerDownload();
+    }));
 
     this._pendingScreenPositions = [];
     this.interactiveWorker.port.on("screenPosition", watchFunction(function (pos) {

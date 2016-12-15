@@ -204,6 +204,9 @@ app.use(function (req, res, next) {
   req.deviceId = cookies.get("user", {signed: true});
   if (req.deviceId) {
     req.userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
+    if (config.debugGoogleAnalytics) {
+      req.userAnalytics = req.userAnalytics.debug();
+    }
   }
   req.backend = `${req.protocol}://${req.headers.host}`;
   req.config = config;
@@ -753,21 +756,22 @@ app.post("/api/set-expiration", function (req, res) {
 });
 
 app.get("/images/:imageid", function (req, res) {
+  let embedded = req.query.embedded;
   Shot.getRawBytesForClip(
     req.params.imageid
   ).then((obj) => {
     if (obj === null) {
       notFound(req, res);
     } else {
-      let hasher = require("crypto").createHash("sha1");
-      hasher.update(req.params.imageid);
-      let hashedId = hasher.digest("hex").substr(0, 15);
-      let analyticsUrl = `/images/hash${encodeURIComponent(hashedId)}`;
       let localReferrer = false;
       if (req.headers["referer"]) {
         localReferrer = req.headers["referer"].startsWith(req.backend);
       }
       if (! localReferrer) {
+        let hasher = require("crypto").createHash("sha1");
+        hasher.update(req.params.imageid);
+        let hashedId = hasher.digest("hex").substr(0, 15);
+        let analyticsUrl = `/images/${embedded ? 'embedded/' : ''}hash${encodeURIComponent(hashedId)}`;
         let analytics = req.userAnalytics;
         if (! analytics) {
           analytics = ua(config.gaId);
@@ -783,7 +787,7 @@ app.get("/images/:imageid", function (req, res) {
         }).event({
           ec: "web",
           ea: "visit",
-          el: "direct-view"
+          el: embedded ? "direct-view-embedded" : "direct-view"
         }).send();
       }
       res.header("Content-Type", obj.contentType);

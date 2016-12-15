@@ -432,6 +432,21 @@ ${options.addBody || ""}
     this._url = val;
   }
 
+  get filename() {
+    let filenameTitle = this.props.shot.title;
+    let date = new Date(this.props.shot.createdDate);
+    filenameTitle = filenameTitle.replace(/[\/!@&*.|\n\r\t]/g, " ");
+    filenameTitle = filenameTitle.replace(/\s+/g, " ");
+    let clipFilename = `Page-Shot-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${filenameTitle}`;
+    const clipFilenameBytesSize = clipFilename.length * 2; // JS STrings are UTF-16
+    if (clipFilenameBytesSize > 251) { // 255 bytes (Usual filesystems max) - 4 for the ".png" file extension string
+      const excedingchars = (clipFilenameBytesSize - 246) / 2; // 251 - 5 for ellipsis "[...]"
+      clipFilename = clipFilename.substring(0, clipFilename.length - excedingchars);
+      clipFilename = clipFilename + '[...]';
+    }
+    return clipFilename;
+  }
+
   get urlDisplay() {
     if (this.url.search(/^https?/i) != -1) {
       let txt = this.url;
