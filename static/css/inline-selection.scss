@@ -47,22 +47,53 @@ $overlay-z-index: 9999999999;
 .pageshot-highlight-button-cancel {
   @extend .button;
   @extend .secondary;
+  background: $very-light-grey url("cancel.svg") center center no-repeat;
+  background-size: 18px 18px;
   margin: 5px;
-  width: 80px;
+  width: 40px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: darken($very-light-grey, 7) url("cancel.svg") center center no-repeat;
+    background-size: 18px 18px;
+  }
 }
 
 .pageshot-highlight-button-save {
   @extend .button;
   @extend .primary;
+  font-size: 18px;
   margin: 5px;
   width: 80px;
 }
 
 .pageshot-highlight-button-download {
   @extend .button;
-  @extend .primary;
+  @extend .secondary;
+  background: $very-light-grey url("download.svg") center center no-repeat;
+  background-size: 18px 18px;
   margin: 5px;
-  width: 100px;
+  width: 40px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: darken($very-light-grey, 7) url("download.svg") center center no-repeat;
+    background-size: 18px 18px;
+  }
+}
+
+.pageshot-highlight-button-cancel,
+.pageshot-highlight-button-download {
+  opacity: 0.9;
+  transition: opacity 250ms;
+  
+  &:hover,
+  &:focus,
+  &:active {
+    opacity: 1;
+  }
 }
 
 .pageshot-mover-target {
@@ -291,10 +322,15 @@ $overlay-z-index: 9999999999;
 .pageshot-pixel-dimensions {
   position: absolute;
   pointer-events: none;
+  font-weight: bold;
   font-family: sans-serif;
   font-size: 70%;
   color: #000;
-  text-shadow: 1px 1px 0 #fff;
+  text-shadow:
+      -1px -1px 0 #fff,
+      1px -1px 0 #fff,
+      -1px 1px 0 #fff,
+      1px 1px 0 #fff; 
 }
 
 // FIXME: some of the styles in .pageshot-moving-element were copied from

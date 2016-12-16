@@ -346,17 +346,18 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       }
       boxEl = makeEl("div", "pageshot-highlight");
       let buttons = makeEl("div", "pageshot-highlight-buttons");
-      let download = makeEl("button", "pageshot-highlight-button-download");
-      download.textContent = "Download";
-      buttons.appendChild(download);
       let cancel = makeEl("button", "pageshot-highlight-button-cancel");
-      cancel.textContent = "Cancel";
+      cancel.title = "Cancel";
       buttons.appendChild(cancel);
+      let download = makeEl("button", "pageshot-highlight-button-download");
+      download.title="Download";
+      buttons.appendChild(download);
       let save = makeEl("button", "pageshot-highlight-button-save");
       save.textContent = "Save";
+      save.title = "Save"
       buttons.appendChild(save);
-      this.download = download;
       this.cancel = cancel;
+      this.download = download;
       this.save = save;
       boxEl.appendChild(buttons);
       for (let name of movements) {

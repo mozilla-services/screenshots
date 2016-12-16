@@ -76,8 +76,8 @@
 
 .shot-title {
   font-size: 16px;
-  height: 25px;
-  padding: 0 16px 6px 0;
+  height: 32px;
+  padding: 6px 22px 6px 0;
   &.saving {
     opacity: 0.7;
   }
@@ -86,15 +86,18 @@
     &:hover {
       background-image: url('/static/img/pencil.svg');
       background-repeat: no-repeat;
-      background-position: right;
+      background-position: center right;
       background-size: 16px 16px;
     }
   }
 }
 
 .shot-title-input {
+  border: 1px solid $border-color; 
+  border-radius: 3px;
   font-size: 16px;
-  height: 25px;
+  height: 32px;
+  padding: 0 10px;
 }
 
 .shot-subtitle {
