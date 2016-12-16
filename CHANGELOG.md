@@ -1,3 +1,20 @@
+## Version 4
+
+* close the share panel after clicking on an item. Fixes [#2034](https://github.com/mozilla-services/pageshot/issues/2034) [61e0664](https://github.com/mozilla-services/pageshot/commit/61e0664)
+* Add a download-only button when you make a
+  selection. [#2024](https://github.com/mozilla-services/pageshot/issues/2024)
+* track og:image images differently than other
+  direct link images. Fixes [#2041](https://github.com/mozilla-services/pageshot/issues/2041) [8dfd52e](https://github.com/mozilla-services/pageshot/commit/8dfd52e)
+* fix regression from updating the selection. A
+  previous 'fix' to double-clicking the Save button actually suppressed
+  subsequent updates of the selection. Fixes [#2046](https://github.com/mozilla-services/pageshot/issues/2046) [d331fdd](https://github.com/mozilla-services/pageshot/commit/d331fdd)
+* add a $CONTROLLER_SINGLETON variable that controls
+  if this server instance should handle database upgrades and periodic tasks. Fixes [#1978](https://github.com/mozilla-services/pageshot/issues/1978) [2d4df88](https://github.com/mozilla-services/pageshot/commit/2d4df88)
+* even if user.initialize() is called many times, do
+  not keep sending requests to the server. Fixes [#1956](https://github.com/mozilla-services/pageshot/issues/1956) [85db7e7](https://github.com/mozilla-services/pageshot/commit/85db7e7)
+* do not show error popup on startup if we can't
+  login to the server. Fixes [#2006](https://github.com/mozilla-services/pageshot/issues/2006) [738eedf](https://github.com/mozilla-services/pageshot/commit/738eedf)
+
 ## Version 3
 
 ### In-browser UI changes
