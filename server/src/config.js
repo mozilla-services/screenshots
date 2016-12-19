@@ -269,12 +269,12 @@ var conf = convict({
     env: "SET_CACHE",
     arg: "set-cache"
   },
-  controllerSingleton: {
-    doc: "If true, then this ONE server should be the one that runs migrations and periodic tasks",
+  disableControllerTasks: {
+    doc: "If true, then do not run migrations and periodic tasks on this server instance",
     format: Boolean,
     default: false,
-    env: "CONTROLLER_SINGLETON",
-    arg: "controller-singleton"
+    env: "DISABLE_CONTROLLER_TASKS",
+    arg: "disable-controller-tasks"
   }
 });
 

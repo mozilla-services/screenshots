@@ -120,7 +120,7 @@ if (config.useS3) {
 
 
 function initDatabase() {
-  if (! config.controllerSingleton) {
+  if (config.disableControllerTasks) {
     console.info("Note: this server will not perform database initialization");
     return Promise.resolve();
   }

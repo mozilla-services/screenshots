@@ -20,7 +20,7 @@ version="$(node -e 'console.log(require("./package.json").version)')"
 sed "s!USERNAME!$1!g" < Dockerrun.aws.json.template > Dockerrun.aws.json.tmp
 sed "s!VERSION!$version!g" < Dockerrun.aws.json.tmp > Dockerrun.aws.json
 zip -r build/eb-app-latest.zip Dockerrun.aws.json .ebextensions/*.config
-rm Dockerrun.aws.json
+rm Dockerrun.aws.json Dockerrun.aws.json.tmp
 
 make server
 

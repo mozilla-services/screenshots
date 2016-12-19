@@ -8,7 +8,7 @@
 * fix regression from updating the selection. A
   previous 'fix' to double-clicking the Save button actually suppressed
   subsequent updates of the selection. Fixes [#2046](https://github.com/mozilla-services/pageshot/issues/2046) [d331fdd](https://github.com/mozilla-services/pageshot/commit/d331fdd)
-* add a $CONTROLLER_SINGLETON variable that controls
+* add a $DISABLE_CONTROLLER_TASKS variable that controls
   if this server instance should handle database upgrades and periodic tasks. Fixes [#1978](https://github.com/mozilla-services/pageshot/issues/1978) [2d4df88](https://github.com/mozilla-services/pageshot/commit/2d4df88)
 * even if user.initialize() is called many times, do
   not keep sending requests to the server. Fixes [#1956](https://github.com/mozilla-services/pageshot/issues/1956) [85db7e7](https://github.com/mozilla-services/pageshot/commit/85db7e7)
