@@ -649,7 +649,7 @@ stateHandlers.selected = {
     } else if (ui.Box.isSelection(target)) {
       sendEvent("start-move-selection", "selection");
       stateHandlers.resizing.startResize(event, "move");
-    } else {
+    } else if (! ui.Box.isControl(target)) {
       mousedownPos = new Pos(event.pageX, event.pageY);
       mouseupNoAutoselect = true;
       setState("draggingReady");
