@@ -547,11 +547,16 @@ const ui = (function () { // eslint-disable-line no-unused-vars
   };
 
   exports.triggerDownload = function (dataUrl, filename) {
-    let a = iframe.document.createElement("a");
+    // We add this to the document and clean up internally so that deactivating the
+    // worker and removing the iframe doesn't affect this download
+    let a = document.createElement("a");
     a.href = dataUrl;
     a.setAttribute("download", filename);
-    iframe.document.body.appendChild(a);
+    document.body.appendChild(a);
     a.click();
+    setTimeout(watchFunction(() => {
+      document.body.removeChild(a);
+    }), 10000);
   };
 
   return exports;
