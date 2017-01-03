@@ -397,7 +397,20 @@ const ui = (function () { // eslint-disable-line no-unused-vars
 
     isSelection: function (target) {
       while (target) {
+        if (target.tagName === "BUTTON") {
+          return false;
+        }
         if (target.nodeType == document.ELEMENT_NODE && target.classList.contains("pageshot-highlight")) {
+          return true;
+        }
+        target = target.parentNode;
+      }
+      return false;
+    },
+
+    isControl: function (target) {
+      while (target) {
+        if (target.nodeType === document.ELEMENT_NODE && target.classList.contains("pageshot-highlight-buttons")) {
           return true;
         }
         target = target.parentNode;
