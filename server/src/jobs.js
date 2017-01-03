@@ -9,7 +9,7 @@ const ua = require("universal-analytics");
 let checkDeletedInterval = config.checkDeletedInterval * 1000;
 
 exports.start = function () {
-  if (! config.controllerSingleton) {
+  if (config.disableControllerTasks) {
     console.info("Note: not performing periodic tasks in this server");
     return;
   }
