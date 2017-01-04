@@ -1,7 +1,7 @@
 {
   "name": "pageshot",
   "description": "An experiment in creating better shareable versions of content.",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "author": "Mozilla (https://mozilla.org/)",
   "bugs": {
     "url": "https://github.com/mozilla-services/pageshot/issues"
