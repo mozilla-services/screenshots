@@ -357,7 +357,7 @@ class Body extends React.Component {
           <div className="more-shot-actions right">
             { trashOrFlagButton }
             <a className="button secondary" href={ clipUrl } onClick={ this.onClickDownload.bind(this) }
-              title="Download the shot image" download={ `${clipFilename}` }>
+              title="Download the shot image" download={ clipFilename }>
               <img src={ this.props.staticLink("/static/img/download.svg") } />
             </a>
             <ShareButton clipUrl={clipUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} renderExtensionNotification={renderExtensionNotification} sendRichCopy={this.sendRichCopy.bind(this)} isExtInstalled={this.props.isExtInstalled} />
