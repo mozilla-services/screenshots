@@ -118,9 +118,21 @@ if (config.useS3) {
   });
 }
 
-
 function initDatabase() {
-  if (config.disableControllerTasks) {
+  let forceDbVersion = config.db.forceDbVersion;
+  if (forceDbVersion) {
+    let hadError = false;
+    dbschema.forceDbVersion(forceDbVersion).then(() => {
+    },
+    (e) => {
+      hadError = true;
+      console.error("Error forcing database version:", forceDbVersion, e);
+    }).then(() => {
+      console.info("Exiting after downgrade");
+      process.exit(hadError ? 2 : 0);
+    });
+    return Promise.resolve();
+  } else if (config.disableControllerTasks) {
     console.info("Note: this server will not perform database initialization");
     return Promise.resolve();
   }
