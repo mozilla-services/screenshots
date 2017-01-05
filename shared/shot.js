@@ -444,7 +444,7 @@ ${options.addBody || ""}
       clipFilename = clipFilename.substring(0, clipFilename.length - excedingchars);
       clipFilename = clipFilename + '[...]';
     }
-    return clipFilename;
+    return clipFilename + '.png';
   }
 
   get urlDisplay() {
