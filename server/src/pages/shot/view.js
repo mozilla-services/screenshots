@@ -83,7 +83,10 @@ class Clip extends React.Component {
     }
     return <div ref="clipContainer" className="clip-container" onClick={this.onClickCloseBackground.bind(this)}>
       { closeButton }
-      <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) }>
+      <menu type="context" id="clip-image-context">
+        <menuitem label="Copy Image Text" onClick={this.copyImageText.bind(this)} ></menuitem>
+      </menu>
+      <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) } contextMenu="clip-image-context">
         { node }
       </a>
     </div>;
@@ -92,6 +95,17 @@ class Clip extends React.Component {
   onClickClip() {
     sendEvent("goto-clip", "content", {useBeacon: true});
     // Allow default action to continue
+  }
+
+  copyImageText() {
+    sendEvent("copy-image-text", "context-menu");
+    let text = this.props.clip.image.text;
+    let el = document.createElement("textarea");
+    el.value = text;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
   }
 }
 
