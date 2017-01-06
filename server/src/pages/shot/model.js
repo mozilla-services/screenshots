@@ -25,7 +25,8 @@ exports.createModel = function (req) {
     defaultExpiration: req.config.defaultExpiration*1000,
     sentryPublicDSN: req.config.sentryPublicDSN,
     cspNonce: req.cspNonce,
-    hashAnalytics: true
+    hashAnalytics: true,
+    userAgent: req.headers['user-agent']
   };
   let clientPayload = {
     title: req.shot.title,
@@ -50,7 +51,8 @@ exports.createModel = function (req) {
     simple: false,
     retentionTime: req.config.expiredRetentionTime*1000,
     defaultExpiration: req.config.defaultExpiration*1000,
-    hashAnalytics: true
+    hashAnalytics: true,
+    userAgent: req.headers['user-agent']
   };
   if (serverPayload.expireTime !== null && Date.now() > serverPayload.expireTime) {
     clientPayload.shot = {

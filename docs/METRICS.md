@@ -209,6 +209,8 @@ These are events that an add-on user can encounter on a shot they own
 7. ~~Switch to full page from clip view (already covered)~~
 8. ~~Switch to clip view from full page (already covered)~~
 9. [x] Click on clip (already covered)
+10. [x] Click on the "Get it here" (install Page Shot) banner: `web/click-install-banner`
+11. [x] Click on the "Get Firefox now" (install Firefox) banner: `web/click-install-firefox`.  Also note the link uses `?utm_source=pageshot.net&utm_medium=referral&utm_campaign=pageshot-acquisition` on the link.
 
 #### Server events
 

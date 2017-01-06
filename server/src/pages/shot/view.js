@@ -354,11 +354,16 @@ class Body extends React.Component {
       : null}
     */
 
-    let renderExtensionNotification = ! (this.props.isExtInstalled || this.state.closePageshotBanner);
+    let renderGetFirefox = this.props.userAgent && (this.props.userAgent + "").search(/firefox\/\d+/i) === -1;
+    let renderExtensionNotification = ! (this.props.isExtInstalled || renderGetFirefox);
+    if (this.state.closePageshotBanner) {
+      renderGetFirefox = renderExtensionNotification = false;
+    }
 
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <div id="frame" className="inverse-color-scheme full-height column-space">
+          { renderGetFirefox ? this.renderFirefoxRequired() : null }
           { renderExtensionNotification ? this.renderExtRequired() : null }
         <div className="frame-header default-color-scheme">
           <div className="left">
@@ -388,14 +393,24 @@ class Body extends React.Component {
 
   renderExtRequired() {
     return <div className="default-color-scheme notification">
-      <div> Page Shot is an experimental extension for Firefox. <a href={ this.props.backend } onClick={ this.clickedCreate.bind(this) }>Get it here</a></div>
+      <div> Page Shot is an experimental extension for Firefox. <a href={ this.props.backend } onClick={ this.clickedInstallExtension.bind(this) }>Get it here</a></div>
       <a className="close" onClick={ this.closeGetPageshotBanner.bind(this) }></a>
     </div>;
   }
 
+  renderFirefoxRequired() {
+    return <div className="default-color-scheme notification">
+      <div> Page Shot is an experimental extension for Firefox. <a href="https://www.mozilla.org/firefox/new/?utm_source=pageshot.net&utm_medium=referral&utm_campaign=pageshot-acquisition" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a></div>
+      <a className="close" onClick={ this.closeGetPageshotBanner.bind(this) }></a>
+    </div>;
+  }
 
-  clickedCreate() {
+  clickedInstallExtension() {
     sendEvent("click-install-banner", {useBeacon: true});
+  }
+
+  clickedInstallFirefox() {
+    sendEvent("click-install-firefox", {useBeacon: true});
   }
 
   onSaveExpire(value) {
