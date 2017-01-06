@@ -45,7 +45,8 @@ const eventOptions = {
   eventValue: true,
   // Note each custom dimension must be configured in Google Analytics before use:
   cd1: true,  // Image height
-  cd2: true   // Image width
+  cd2: true,  // Image width
+  ni: true    // Non-interactive
 };
 
 exports.sendEvent = function (action, label, options) {

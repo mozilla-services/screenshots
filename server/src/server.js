@@ -527,7 +527,8 @@ app.post("/api/login", function (req, res) {
         userAnalytics.event({
           ec: "server",
           ea: "api-login",
-          ua: req.headers["user-agent"]
+          ua: req.headers["user-agent"],
+          ni: true
         }).send();
       }
     } else if (ok === null) {
