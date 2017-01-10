@@ -120,15 +120,18 @@ if (config.useS3) {
 
 
 function initDatabase() {
+  let promise;
   if (config.disableControllerTasks) {
     console.info("Note: this server will not perform database initialization");
-    return Promise.resolve();
+    promise = dbschema.createKeygrip();
+  } else {
+    promise = dbschema.createTables().then(() => {
+      return dbschema.createKeygrip();
+    }).then(() => {
+      return Shot.upgradeSearch();
+    });
   }
-  dbschema.createTables().then(() => {
-    return dbschema.createKeygrip();
-  }).then(() => {
-    return Shot.upgradeSearch();
-  }).catch((e) => {
+  promise.catch((e) => {
     console.error("Error initializing database:", e, e.stack);
     captureRavenException(e);
     // Give Raven/etc a chance to work before exit:
