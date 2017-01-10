@@ -123,7 +123,7 @@ function loadKeys() {
 }
 
 exports.createKeygrip = function () {
-  loadKeys().then((fetchedTextKeys) => {
+  return loadKeys().then((fetchedTextKeys) => {
     textKeys = fetchedTextKeys;
     keys = new Keygrip(textKeys);
   }).catch((err) => {
