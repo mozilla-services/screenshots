@@ -46,6 +46,16 @@ Once the release is tagged, it will get pushed to stage.
 
 Notifications of successful deployment will appear on IRC.
 
+## Deploy Dev ##
+
+To make a dev deploy, run:
+
+```sh
+$ bin/build-docker-image USERNAME
+```
+
+with your Docker username.  At the end it will say `Complete.  Upload build/eb-app-latest.zip to http://amzn.to/1NuC3N9` – go to that URL, login if necessary, and upload the zip file through the Elastic Beanstalk interface.  This will upload the server to https://pageshot.dev.mozaws.net
+
 ## Test Stage ##
 
 This will happen on Friday at the end of sprint after we've pushed to stage.
