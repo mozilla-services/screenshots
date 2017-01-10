@@ -3,8 +3,9 @@ const Keygrip = require('keygrip');
 const pgpatcher = require("pg-patcher");
 const path = require("path");
 const mozlog = require("mozlog")("dbschema");
+const config = require("./config").getProperties();
 
-const MAX_DB_LEVEL = 12;
+const MAX_DB_LEVEL = config.maxDbLevel || 12;
 
 /** Create all the tables */
 exports.createTables = function () {

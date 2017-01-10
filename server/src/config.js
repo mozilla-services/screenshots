@@ -275,6 +275,13 @@ var conf = convict({
     default: false,
     env: "DISABLE_CONTROLLER_TASKS",
     arg: "disable-controller-tasks"
+  },
+  maxDbLevel: {
+    doc: "If provided, use this as the max db level.",
+    format: "int",
+    default: 0,
+    env: "MAX_DB_LEVEL",
+    arg: "max-db-level"
   }
 });
 
