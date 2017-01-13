@@ -133,14 +133,14 @@ exports.main = function (options) {
   helperworker.trackMods(backendOverride || null);
   addXULStylesheet(self.data.url("toolbar-button.css"));
   require("./user").initialize(exports.getBackend(), options.loadReason).then(() => {
-    req.sendEvent("open-browser", loadReason);
+    req.sendEvent("open-browser", loadReason, {ni: true});
     if (options.loadReason === "install") {
       req.sendEvent("install");
       AddonManager.getAddonByID("@testpilot-addon", (addon) => {
         if (addon === null) {
-          req.sendEvent("test-pilot-not-installed");
+          req.sendEvent("test-pilot-not-installed", {ni: true});
         } else {
-          req.sendEvent("test-pilot-installed");
+          req.sendEvent("test-pilot-installed", {ni: true});
         }
       });
     }
@@ -161,7 +161,7 @@ function startDailyPing() {
   let lastTime = storage.lastPingTime;
   let now = Date.now();
   if ((! lastTime) || (now - lastTime + 60000) > intervalMilliseconds) {
-    req.sendEvent("daily-ping");
+    req.sendEvent("daily-ping", {ni: true});
     storage.lastPingTime = now;
     timeoutId = setTimeout(startDailyPing, intervalMilliseconds);
   } else {

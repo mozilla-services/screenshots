@@ -118,8 +118,21 @@ if (config.useS3) {
   });
 }
 
-
 function initDatabase() {
+  let forceDbVersion = config.db.forceDbVersion;
+  if (forceDbVersion) {
+    let hadError = false;
+    dbschema.forceDbVersion(forceDbVersion).then(() => {
+    },
+    (e) => {
+      hadError = true;
+      console.error("Error forcing database version:", forceDbVersion, e);
+    }).then(() => {
+      console.info("Exiting after downgrade");
+      process.exit(hadError ? 2 : 0);
+    });
+    return Promise.resolve();
+  }
   let promise;
   if (config.disableControllerTasks) {
     console.info("Note: this server will not perform database initialization");
@@ -518,7 +531,8 @@ app.post("/api/login", function (req, res) {
         userAnalytics.event({
           ec: "server",
           ea: "api-login",
-          ua: req.headers["user-agent"]
+          ua: req.headers["user-agent"],
+          ni: true
         }).send();
       }
     } else if (ok === null) {

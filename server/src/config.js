@@ -122,6 +122,13 @@ var conf = convict({
       default: "",
       env: "RDS_NAME",
       arg: "db-name"
+    },
+    forceDbVersion: {
+      doc: "Force database version (for use in downgrades)",
+      format: "int",
+      default: 0,
+      env: "FORCE_DB_VERSION",
+      arg: "force-db-version"
     }
   },
   gaId: {

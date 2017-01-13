@@ -6,6 +6,29 @@ const mozlog = require("mozlog")("dbschema");
 
 const MAX_DB_LEVEL = 12;
 
+exports.forceDbVersion = function (version) {
+  mozlog.info("forcing-db-version", {db: db.constr, version});
+  return db.getConnection().then(([conn, done]) => {
+    let dirname = path.join(__dirname, "db-patches");
+    mozlog.info("loading-patches-from", {dirname: dirname});
+    return new Promise((resolve, reject) => {
+      pgpatcher(conn, version, {dir: dirname}, function(err) {
+        if (err) {
+          mozlog.error("error-patching", {
+            msg:`Error patching database to level ${version}!`,
+            err
+          });
+          done();
+          reject(err);
+        } else {
+          mozlog.info("db-level", {msg: `Database is now at level ${version}`});
+          resolve();
+        }
+      });
+    });
+  });
+};
+
 /** Create all the tables */
 exports.createTables = function () {
   mozlog.info("setting-up-tables-on", {db: db.constr});

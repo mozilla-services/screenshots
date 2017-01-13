@@ -178,6 +178,7 @@ These are events that an add-on user can encounter on a shot they own
   27. [x] Focus link field `web/share/focus-url` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3i2s0T0h2t0W1J3p2j0c/Image%202016-09-07%20at%203.04.24%20PM.png?v=654e288b)
   28. [x] Cancel/close share `web/cancel-share` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/0Q1n3I1J3J3G3y2B0z19/Image%202016-09-07%20at%203.04.57%20PM.png?v=8de54ca8)
 29. [x] Visit Page Shot link from footer `web/goto-pageshot/footer` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3g3p2i19131n1o3p053s/Image%202016-09-07%20at%203.05.56%20PM.png?v=8c92662c)
+30. [x] Click "Copy Image Text" on the context menu `web/copy-image-text/context-menu`
 30. ~~Visit GitHub link from footer `web/goto-github/footer`~~
 31. ~~Visit GitHub revision from footer `web/goto-github-revision/footer`~~
 32. [x] Click Feedback/mailto button `start-feedback/footer` ![image](https://d17oy1vhnax1f7.cloudfront.net/items/3Q1R170u1m0A3r0o3v1K/Image%202016-09-07%20at%203.07.01%20PM.png?v=0117ce5f)
@@ -208,6 +209,8 @@ These are events that an add-on user can encounter on a shot they own
 7. ~~Switch to full page from clip view (already covered)~~
 8. ~~Switch to clip view from full page (already covered)~~
 9. [x] Click on clip (already covered)
+10. [x] Click on the "Get it here" (install Page Shot) banner: `web/click-install-banner`
+11. [x] Click on the "Get Firefox now" (install Firefox) banner: `web/click-install-firefox`.  Also note the link uses `?utm_source=pageshot.net&utm_medium=referral&utm_campaign=pageshot-acquisition` on the link.
 
 #### Server events
 

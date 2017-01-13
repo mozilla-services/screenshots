@@ -41,6 +41,11 @@ const ui = (function () { // eslint-disable-line no-unused-vars
   }
   exports.isHeader = isHeader;
 
+  function htmlQuote(s) {
+    s = s + "";
+    return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  }
+
   function makeEl(tagName, className) {
     let el = iframe.document.createElement(tagName);
     if (className) {
@@ -73,8 +78,15 @@ const ui = (function () { // eslint-disable-line no-unused-vars
           this.element.scrolling = "no";
           this.updateElementSize();
           this.element.onload = () => {
-            var parsedDom = (new DOMParser()).parseFromString(
-              "<html><head><title></title></head><body></body>",
+            let linkUrl = self.options["inline-selection.css"];
+            var parsedDom = (new DOMParser()).parseFromString(`
+              <html>
+               <head>
+                <link rel="stylesheet" id="pageshot-stylesheet" href="${htmlQuote(linkUrl)}">
+                <title></title>
+               </head>
+               <body></body>
+              </html>`,
               "text/html"
             );
             this.document = this.element.contentDocument;
@@ -82,15 +94,6 @@ const ui = (function () { // eslint-disable-line no-unused-vars
               this.document.adoptNode(parsedDom.documentElement),
               this.document.documentElement
             );
-            let linkUrl = self.options["inline-selection.css"];
-            var link = this.document.getElementById("pageshot-stylesheet");
-            if (! link) {
-              link = this.document.createElement("link");
-              link.setAttribute("rel", "stylesheet");
-              link.setAttribute("id", "pageshot-stylesheet");
-              link.setAttribute("href", linkUrl);
-              this.document.head.appendChild(link);
-            }
             installHandlerOnDocument(this.document);
             resolve();
           };
