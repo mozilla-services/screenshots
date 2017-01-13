@@ -16,7 +16,7 @@ const { Class } = require('sdk/core/heritage');
 const { watchPromise, watchFunction, watchWorker } = require("./errors");
 const clipboard = require("sdk/clipboard");
 const { AbstractShot } = require("./shared/shot");
-const { getDeviceIdInfo } = require("./user");
+const { getDeviceIdInfo, getAbTests } = require("./user");
 const { URL } = require("sdk/url");
 const notifications = require("sdk/notifications");
 const { randomString } = require("./randomstring");
@@ -107,6 +107,16 @@ const ShotContext = Class({
         url: this.tabUrl,
         deviceId: deviceIdInfo.deviceId
       });
+    let shotAbTests = {};
+    let userAbTests = getAbTests();
+    for (let testName in userAbTests) {
+      if (userAbTests[testName].shotField) {
+        shotAbTests[testName] = userAbTests[testName].value;
+      }
+    }
+    if (Object.keys(shotAbTests).length) {
+      this.shot.abTests = shotAbTests;
+    }
     this._deregisters = [];
     this._workerActive = false;
     this.watchTab("pageshow", function (tab) {

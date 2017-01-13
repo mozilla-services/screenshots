@@ -12,6 +12,7 @@ const { hasCookieForBackend } = require("./get-cookies");
 
 let initialized = false;
 let sentryPublicDSN = "https://d58fc53f92cd47bba7266ad6444514d8@sentry.prod.mozaws.net/74";
+let abTests = {};
 
 function getDeviceIdInfo() {
   let info = prefs.deviceIdInfo || "null";
@@ -33,6 +34,21 @@ function setDeviceIdInfo(info) {
 exports.getSentryPublicDSN = function() {
   return sentryPublicDSN;
 };
+
+function setVariablesFromServer(responseJson) {
+  // FIXME: should send Raven/Sentry messages in case of any error
+  try {
+    sentryPublicDSN = responseJson.sentryPublicDSN;
+    console.info("got sentry DSN response from server");
+  } catch (e) {
+    console.error("Error looking for the sentry DSN", e);
+  }
+  try {
+    abTests = responseJson.abTests;
+  } catch (e) {
+    console.error("Error looking for the A/B tests", e);
+  }
+}
 
 exports.deleteEverything = function () {
   let backend = require("./main").getBackend();
@@ -111,12 +127,7 @@ exports.initialize = function (backend, reason) {
           }
           initialized = true;
           console.info("logged in with cookie:", !!response.headers["Set-Cookie"]);
-          try {
-            sentryPublicDSN = response.json.sentryPublicDSN;
-            console.info("got sentry DSN response from server");
-          } catch (e) {
-            console.error("Error looking for the sentry DSN", e);
-          }
+          setVariablesFromServer(response.json);
           // The only other thing we do is preload the cookies
           resolve();
         })
@@ -136,6 +147,7 @@ function saveLogin(backend, info) {
         if (response.status == 200) {
           console.info("Registered login with cookie:", !!response.headers["Set-Cookie"]);
           initialized = true;
+          setVariablesFromServer(response.json);
           resolve();
         } else {
           console.error("Error registering:", response.status, response.statusText, response.text);
@@ -293,4 +305,8 @@ exports.OAuthHandler = class OAuthHandler {
       return response;
     });
   }
+};
+
+exports.getAbTests = function () {
+  return abTests;
 };

@@ -4,6 +4,7 @@ const errors = require("../shared/errors");
 const { request } = require("./helpers");
 const crypto = require("crypto");
 const mozlog = require("mozlog")("users");
+const abTests = require("./ab-tests");
 
 function hashMatches(hash, secret) {
   let parts = hash.split(/:/g);
@@ -36,25 +37,31 @@ function createNonce() {
 
 exports.checkLogin = function (deviceId, secret, addonVersion) {
   return db.select(
-    `SELECT secret_hashed FROM devices WHERE id = $1`,
+    `SELECT secret_hashed, ab_tests FROM devices WHERE id = $1`,
     [deviceId]
   ).then((rows) => {
     if (! rows.length) {
       return null;
     }
+    let userAbTests = {};
+    if (rows[0].ab_tests) {
+      userAbTests = JSON.parse(rows[0].ab_tests);
+    }
+    userAbTests = abTests.updateAbTests(userAbTests);
     if (hashMatches(rows[0].secret_hashed, secret)) {
       db.update(
         `UPDATE devices
          SET last_login = NOW(),
              session_count = session_count + 1,
-             last_addon_version = $1
-         WHERE id = $2
+             last_addon_version = $1,
+             ab_tests = $2
+         WHERE id = $3
         `,
-        [addonVersion, deviceId]
+        [addonVersion, JSON.stringify(userAbTests), deviceId]
       ).catch((error) => {
         mozlog.error("error-updating-devices-table", {err: error});
       });
-      return true;
+      return userAbTests;
     } else {
       return false;
     }
@@ -71,8 +78,9 @@ exports.registerLogin = function (deviceId, data, canUpdate) {
      VALUES ($1, $2, $3, $4)`,
     [deviceId, createHash(data.secret), data.nickname || null, data.avatarurl || null]
   ).then((inserted) => {
+    let userAbTests = abTests.updateAbTests({});
     if (inserted) {
-      return true;
+      return userAbTests;
     }
     if (canUpdate) {
       if (! data.secret) {
@@ -84,7 +92,11 @@ exports.registerLogin = function (deviceId, data, canUpdate) {
          WHERE id = $4`,
         [secretHashed, data.nickname || null, data.avatarurl || null, deviceId]
       ).then((rowCount) => {
-        return !! rowCount;
+        if (rowCount) {
+          return userAbTests;
+        } else {
+          return false;
+        }
       });
     } else {
       return false;

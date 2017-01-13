@@ -1,37 +1,54 @@
 // Note: these get turned into Test objects:
+let allTests = {};
+
+/* Example of how this could be set (until we have real tests to serve as docs): */
+/*
 let allTests = {
   autoOpenSharePanel: {
     description: "Open the share panel immediately after shot creation",
+    // Any actions the user does will have this GA field set:
     gaField: "cd3",
+    // If the user creates a shot, and then someone else VIEWS that shot, then
+    // this field will be set in the viewers events:
     shotField: "cd4",
-    version: 2,
+    // If you make updates (like add an option) and increment this, then users
+    // who were previously in the control group may get put into a new group:
+    version: 1,
+    // Keep the user in control if they aren't in control in any of these tests:
     exclude: ["highlightButtonOnInstall", "myShotsDisplay"],
+    // These are the actual allowed A/B options (control is never specified):
     options: [
-      {name: "autoopen", probability: 0.9}
+      // The name of the option, and its probabilty (e.g., 10% chance of getting
+      // into this group)
+      {name: "autoopen", probability: 0.1}
     ]
   },
   highlightButtonOnInstall: {
     description: "Highlight the Page Shot button when Page Shot is installed",
     gaField: "cd5",
-    version: 2,
+    version: 1,
     exclude: ["autoOpenSharePanel", "myShotsDisplay"],
     options: [
-      {name: "uitour", probability: 0.9}
+      {name: "uitour", probability: 0.1}
     ]
   },
   myShotsDisplay: {
     description: "Show My Shots button/CTA differently",
     gaField: "cd6",
-    version: 2,
+    version: 1,
     exclude: ["highlightButtonOnInstall", "autoOpenSharePanel"],
     options: [
+      // Note no one will end up in control in this example:
       {name: "intropopup", probability: 0.9},
       {name: "blink", probability: 0.1}
     ]
   }
 };
+*/
 
-let deprecatedTests = ["exampleTest"];
+// Any test names listed here will get removed from the A/B tests.  Tests should
+// be moved here once we are uninterested in any future data from the test:
+let deprecatedTests = [];
 
 class Test {
   constructor(options) {
@@ -161,3 +178,19 @@ function getRandom() {
   }
   return Math.random();
 }
+
+/** Given a test name and test value that were set when a Shot was created (not
+    set on the user), return the GA field that should be set for someone viewing
+    the shot (or null if nothing should be set) */
+exports.shotGaFieldForValue = function (testName, testValue) {
+  if (deprecatedTests.includes(testName)) {
+    // Silently ignore deprecated tests
+    return null;
+  }
+  let test = allTests[testName];
+  if (! test) {
+    console.error("Test name", testName, "is not known");
+    return null;
+  }
+  return test.shotField || null;
+};

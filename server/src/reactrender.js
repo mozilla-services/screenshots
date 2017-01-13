@@ -13,13 +13,15 @@ exports.render = function (req, res, page) {
       authenticated: !!req.deviceId,
       sentryPublicDSN: req.config.sentryPublicDSN,
       backend: req.backend,
-      gitRevision: getGitRevision()
+      gitRevision: getGitRevision(),
+      abTests: req.abTests
     }, jsonModel);
     serverModel = Object.assign({
       authenticated: !!req.deviceId,
       sentryPublicDSN: req.config.sentryPublicDSN,
       staticLink: req.staticLink,
-      staticLinkWithHost: req.staticLinkWithHost
+      staticLinkWithHost: req.staticLinkWithHost,
+      abTests: req.abTests
     }, serverModel);
     if (req.query.data == "json") {
       if (req.query.pretty !== undefined) {
