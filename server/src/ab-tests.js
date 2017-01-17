@@ -1,5 +1,15 @@
 // Note: these get turned into Test objects:
-let allTests = {};
+let allTests = {
+  highlightButtonOnInstall: {
+    description: "Highlight the Page Shot button when Page Shot is installed",
+    gaField: "cd3",
+    version: 1,
+    exclude: [],
+    options: [
+      {name: "badge", probability: 0.1}
+    ]
+  }
+};
 
 /* Example of how this could be set (until we have real tests to serve as docs): */
 /*
