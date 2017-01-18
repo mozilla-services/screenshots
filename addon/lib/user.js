@@ -39,7 +39,6 @@ function setVariablesFromServer(responseJson) {
   // FIXME: should send Raven/Sentry messages in case of any error
   try {
     sentryPublicDSN = responseJson.sentryPublicDSN;
-    console.info("got sentry DSN response from server");
   } catch (e) {
     console.error("Error looking for the sentry DSN", e);
   }
@@ -48,6 +47,12 @@ function setVariablesFromServer(responseJson) {
   } catch (e) {
     console.error("Error looking for the A/B tests", e);
   }
+  let abTestsInfo = [];
+  for (let testName in abTests) {
+    abTestsInfo.push(`${testName}=${abTests[testName].value}`);
+  }
+  console.info(`Got server response: ${sentryPublicDSN ? 'got Sentry DSN' : 'no Sentry DSN'}`);
+  console.info(`Got server A/B tests: ${abTestsInfo.join('; ')}`);
 }
 
 exports.deleteEverything = function () {

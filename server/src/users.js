@@ -35,6 +35,21 @@ function createNonce() {
   return crypto.randomBytes(10).toString("hex");
 }
 
+/** Parses the FORCE_AB_TESTS config */
+function getForceAbTests() {
+  let val = config.forceAbTests || "";
+  if (! val) {
+    return null;
+  }
+  let parts = val.split(/\s/g);
+  let result = {};
+  for (let part of parts) {
+    let equals = part.split("=");
+    result[equals[0]] = equals[1];
+  }
+  return result;
+}
+
 exports.checkLogin = function (deviceId, secret, addonVersion) {
   return db.select(
     `SELECT secret_hashed, ab_tests FROM devices WHERE id = $1`,
@@ -47,7 +62,7 @@ exports.checkLogin = function (deviceId, secret, addonVersion) {
     if (rows[0].ab_tests) {
       userAbTests = JSON.parse(rows[0].ab_tests);
     }
-    userAbTests = abTests.updateAbTests(userAbTests);
+    userAbTests = abTests.updateAbTests(userAbTests, getForceAbTests());
     if (hashMatches(rows[0].secret_hashed, secret)) {
       db.update(
         `UPDATE devices
@@ -78,7 +93,7 @@ exports.registerLogin = function (deviceId, data, canUpdate) {
      VALUES ($1, $2, $3, $4)`,
     [deviceId, createHash(data.secret), data.nickname || null, data.avatarurl || null]
   ).then((inserted) => {
-    let userAbTests = abTests.updateAbTests({});
+    let userAbTests = abTests.updateAbTests({}, getForceAbTests());
     if (inserted) {
       return userAbTests;
     }

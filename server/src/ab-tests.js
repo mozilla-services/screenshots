@@ -77,7 +77,10 @@ class Test {
     Object.assign(this, options);
   }
 
-  updateTest(tests) {
+  updateTest(tests, forceValue) {
+    if (forceValue) {
+      tests[this.name] = this.testWithValue(forceValue);
+    }
     if (tests[this.name] && tests[this.name].version >= this.version) {
       return;
     }
@@ -119,9 +122,11 @@ class Test {
 
 }
 
-exports.updateAbTests = function (tests) {
+/** Update a user's abTests values.
+    The optional forceTests looks like {aTests: "forceValue"} */
+exports.updateAbTests = function (tests, forceTests) {
   for (let testName in allTests) {
-    allTests[testName].updateTest(tests);
+    allTests[testName].updateTest(tests, forceTests && forceTests[testName]);
   }
   for (let testName of deprecatedTests) {
     if (testName in tests) {
