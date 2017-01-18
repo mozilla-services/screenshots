@@ -55,6 +55,7 @@ exports.openMyShots = function () {
 
 
 function takeShot(source) {
+  require("./ab-highlight-button-on-install").buttonClicked();
   let backend = exports.getBackend();
   let url = tabs.activeTab.url;
   if (url.startsWith(backend)) {
@@ -145,6 +146,7 @@ exports.main = function (options) {
       });
     }
     startDailyPing();
+    require("./ab-highlight-button-on-install").mainCalled(loadReason);
   }).catch((error) => {
     console.warn("Failed to log in to server:", exports.getBackend(), error+"", error.stack);
     error.noPopup = true;

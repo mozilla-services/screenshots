@@ -84,6 +84,16 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 * `selection`: anything that happens during the selection phase, that doesn't happen in the topbar
 * `keyboard`: any keyboard shortcut used
 
+#### A/B tests
+
+##### Highlight shot button
+
+As described in [#2081](https://github.com/mozilla-services/pageshot/issues/2081) we are putting a badge on the button of some users.
+
+The dimension `cd3` will be `control` (no badge) or `badge` (10% of population).
+
+If the badge is shown we send the event `addon/ab-highlight-button-shown` – this is marked as a non-interactive event.
+
 #### Add-on metrics
 
 1. [x] Start the browser `addon/open-browser/launch`
