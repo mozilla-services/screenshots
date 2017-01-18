@@ -384,6 +384,9 @@ const ShotContext = Class({
       }).then((attrs) => {
         let passwordFields = attrs.passwordFields;
         delete attrs.passwordFields;
+        if (! this.annotateForPage) {
+          delete attrs.images;
+        }
         this.checkIfPublic({passwordFields});
         this.shot.update(attrs);
       })));
