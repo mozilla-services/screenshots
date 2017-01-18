@@ -19,7 +19,6 @@ const { watchFunction } = require("./errors");
 const { Cu } = require("chrome");
 const req = require("./req");
 const { setTimeout, clearTimeout } = require("sdk/timers");
-const { Hotkey } = require("sdk/hotkeys");
 const { AddonManager } = require('resource://gre/modules/AddonManager.jsm');
 const { addXULStylesheet } = require("./xulcss");
 const { storage } = require("sdk/simple-storage");
@@ -86,19 +85,16 @@ function takeShot(source) {
   }
 }
 
-Hotkey({
+/*
+Disabled because of conflicts with non-English keyboards:
+
+require("sdk/hotkeys").Hotkey({
   combo: "accel-alt-control-c",
   onPress: watchFunction(function() {
     takeShot("keyboard-shortcut");
   })
 });
-
-Hotkey({
-  combo: "accel-alt-control-x",
-  onPress: watchFunction(function() {
-    throw new Error("Client-side exception test");
-  })
-});
+*/
 
 contextMenu.Item({
   label: "Create Page Shot",
