@@ -88,7 +88,7 @@ $overlay-z-index: 9999999999;
 .pageshot-highlight-button-download {
   opacity: 0.9;
   transition: opacity 250ms;
-  
+
   &:hover,
   &:focus,
   &:active {
@@ -330,7 +330,7 @@ $overlay-z-index: 9999999999;
       -1px -1px 0 #fff,
       1px -1px 0 #fff,
       -1px 1px 0 #fff,
-      1px 1px 0 #fff; 
+      1px 1px 0 #fff;
 }
 
 // FIXME: some of the styles in .pageshot-moving-element were copied from
@@ -377,6 +377,15 @@ $overlay-z-index: 9999999999;
   top: 15px;
   width: 135px;
 }
+
+/* styleMyShotsButton test: */
+.styleMyShotsButton-control .pageshot-myshots {
+}
+
+.styleMyShotsButton-bright .pageshot-myshots {
+  font-size: 200%;
+}
+/* end styleMyShotsButton test */
 
 .pageshot-visible {
   @extend .pageshot-myshots;

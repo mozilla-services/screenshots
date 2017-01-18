@@ -252,7 +252,8 @@ const ShotContext = Class({
       contentScriptOptions: {
         "inline-selection.css": self.data.url("inline-selection.css"),
         showMyShotsReminder: ! prefs.hasUsedMyShots,
-        annotateForPage: this.annotateForPage
+        annotateForPage: this.annotateForPage,
+        styleMyShotsButton: getAbTests().styleMyShotsButton
       }
     }));
     this.interactiveWorker.on("detach", () => {

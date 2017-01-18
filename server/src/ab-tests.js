@@ -4,9 +4,18 @@ let allTests = {
     description: "Highlight the Page Shot button when Page Shot is installed",
     gaField: "cd3",
     version: 1,
-    exclude: [],
+    exclude: ["styleMyShotsButton"],
     options: [
       {name: "badge", probability: 0.1}
+    ]
+  },
+  styleMyShotsButton: {
+    description: "Style the My Shots button in some different way",
+    gaField: "cd4",
+    version: 1,
+    exclude: ["highlightButtonOnInstall"],
+    options: [
+      {name: "bright", probability: 0.1}
     ]
   }
 };
