@@ -841,7 +841,8 @@ app.get("/__version__", function (req, res) {
     commit: linker.getGitRevision(),
     contentOrigin: config.contentOrigin,
     commitLog: `https://github.com/mozilla-services/pageshot/commits/${linker.getGitRevision()}`,
-    unincludedCommits: `https://github.com/mozilla-services/pageshot/compare/${linker.getGitRevision()}...master`
+    unincludedCommits: `https://github.com/mozilla-services/pageshot/compare/${linker.getGitRevision()}...master`,
+    dbSchemaVersion: dbschema.MAX_DB_LEVEL
   };
   res.header("Content-Type", "application/json; charset=utf-8");
   res.send(JSON.stringify(response, null, '  '));
