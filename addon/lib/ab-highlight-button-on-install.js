@@ -12,7 +12,6 @@ function shouldShowBadge() {
 }
 
 exports.mainCalled = function (loadReason) {
-  console.log("mainCalled", loadReason, shouldShowBadge());
   let timestamp, hasCreatedShot;
   if (shouldShowBadge()) {
     if (loadReason == "install") {
@@ -38,7 +37,6 @@ exports.buttonClicked = function () {
 };
 
 function refreshBadge(timestamp, hasCreatedShot) {
-  console.log("refreshBadge", timestamp, hasCreatedShot);
   if ((! hasCreatedShot) && (Date.now() - timestamp < SHOW_BADGE_LIMIT)) {
     req.sendEvent("ab-highlight-button-shown", {ni: true});
     let button = require("./main").shootButton;
