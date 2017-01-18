@@ -41,7 +41,9 @@ function refreshBadge(timestamp, hasCreatedShot) {
   console.log("refreshBadge", timestamp, hasCreatedShot);
   if ((! hasCreatedShot) && (Date.now() - timestamp < SHOW_BADGE_LIMIT)) {
     req.sendEvent("ab-highlight-button-shown", {ni: true});
-    require("./main").shootButton.badge = " ! ";
+    let button = require("./main").shootButton;
+    button.badge = "Hi";
+    button.badgeColor = "#00AFF7";
   } else {
     require("./main").shootButton.badge = "";
   }
