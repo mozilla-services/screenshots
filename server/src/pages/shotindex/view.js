@@ -121,7 +121,6 @@ class Body extends React.Component {
   onClickDelete(shot, event) {
     event.stopPropagation();
     event.preventDefault();
-    console.log("deleting", shot.title, event);
     sendEvent("start-delete", "my-shots", {useBeacon: true});
     if (window.confirm(`Delete ${shot.title}?`)) {
       sendEvent("delete", "my-shots-popup-confirm", {useBeacon: true});

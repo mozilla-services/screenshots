@@ -69,6 +69,10 @@ exports.sendEvent = function (action, label, options) {
   options = options || {};
   options.applicationName = "firefox";
   options.applicationVersion = self.version;
+  let abTests = user.getAbTests();
+  for (let testName in abTests) {
+    options[abTests[testName].gaField] = abTests[testName].value;
+  }
   let showOptions = Object.keys(options).length > 2;
   console.info(`sendEvent ${event}/${action}/${label || 'none'} ${showOptions ? JSON.stringify(options) : ""}`);
   exports.request(`${main.getBackend()}/event`, {

@@ -237,6 +237,7 @@ class AbstractShot {
     this.fullScreenThumbnail = attrs.fullScreenThumbnail || null;
     this.isPublic = attrs.isPublic === undefined || attrs.isPublic === null ? null : !! attrs.isPublic;
     this.showPage = attrs.showPage || false;
+    this.abTests = attrs.abTests || null;
     this.resources = attrs.resources || {};
     this._clips = {};
     if (attrs.clips) {
@@ -808,13 +809,30 @@ ${options.addBody || ""}
     this._dirty("resources");
   }
 
+  get abTests() {
+    return this._abTests;
+  }
+  set abTests(val) {
+    if (val === null || val === undefined) {
+      this._abTests = null;
+      this._dirty("abTests");
+      return;
+    }
+    assert(typeof val == "object", "abTests should be an object, not:", typeof val);
+    assert(! Array.isArray(val), "abTests should not be an Array");
+    for (let name in val) {
+      assert(val[name] && typeof val[name] == "string", `abTests.${name} should be a string:`, typeof val[name]);
+    }
+    this._abTests = val;
+  }
+
 }
 
 AbstractShot.prototype.REGULAR_ATTRS = (`
 deviceId url docTitle ogTitle userTitle createdDate createdDevice favicon
 comments hashtags images readable head body htmlAttrs bodyAttrs
 headAttrs siteName openGraph twitterCard documentSize
-fullScreenThumbnail isPublic resources showPage
+fullScreenThumbnail isPublic resources showPage abTests
 `).split(/\s+/g);
 
 // Attributes that will be accepted in the constructor, but ignored/dropped

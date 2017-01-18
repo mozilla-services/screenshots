@@ -4,7 +4,7 @@ const pgpatcher = require("pg-patcher");
 const path = require("path");
 const mozlog = require("mozlog")("dbschema");
 
-const MAX_DB_LEVEL = 12;
+const MAX_DB_LEVEL = 13;
 
 exports.forceDbVersion = function (version) {
   mozlog.info("forcing-db-version", {db: db.constr, version});

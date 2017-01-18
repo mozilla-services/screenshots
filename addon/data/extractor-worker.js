@@ -111,6 +111,9 @@ const extractorWorker = (function () { // eslint-disable-line no-unused-vars
         var a = document.createElement("a");
         a.href = src;
         src = a.href;
+        if (src.search(/^https?/i) === -1) {
+          continue;
+        }
         addImage({
           url: src
         });
@@ -126,6 +129,9 @@ const extractorWorker = (function () { // eslint-disable-line no-unused-vars
       });
       for (j=0; j<imgs.length; j++) {
         var img = imgs[j];
+        if ((! img.src) || (img.src.search(/^https?/i) === -1)) {
+          continue;
+        }
         if (img.width >= MIN_IMAGE_WIDTH && img.height >= MIN_IMAGE_HEIGHT) {
           addImage({
             url: img.src,

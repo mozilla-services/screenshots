@@ -84,6 +84,7 @@ const { captureRavenException, sendRavenMessage,
         addRavenRequestHandler, addRavenErrorHandler } = require("./ravenclient");
 const { errorResponse, simpleResponse, jsResponse } = require("./responses");
 const selfPackage = require("./package.json");
+const { b64EncodeJson, b64DecodeJson } = require("./b64");
 
 const PROXY_HEADER_WHITELIST = {
   "content-type": true,
@@ -224,6 +225,13 @@ app.use(function (req, res, next) {
       req.userAnalytics = req.userAnalytics.debug();
     }
   }
+  let abTests = cookies.get("abtests", {signed: true});
+  if (abTests) {
+    abTests = b64DecodeJson(abTests);
+  } else {
+    abTests = {};
+  }
+  req.abTests = abTests;
   req.backend = `${req.protocol}://${req.headers.host}`;
   req.config = config;
   next();
@@ -264,7 +272,7 @@ function sendGaActivation(req, res, hashPage) {
     promise = Promise.resolve("");
   }
   promise.then((userUuid) => {
-    let script = gaActivation.makeGaActivationString(config.gaId, userUuid, hashPage);
+    let script = gaActivation.makeGaActivationString(config.gaId, userUuid, req.abTests, hashPage);
     jsResponse(res, script);
   }).catch((e) => {
     errorResponse(res, "Error creating user UUID:", e);
@@ -467,11 +475,17 @@ app.post("/api/register", function (req, res) {
     secret: vars.secret,
     nickname: vars.nickname || null,
     avatarurl: vars.avatarurl || null
-  }, canUpdate).then(function (ok) {
-    if (ok) {
+  }, canUpdate).then(function (userAbTests) {
+    if (userAbTests) {
       let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
       cookies.set("user", vars.deviceId, {signed: true});
-      simpleResponse(res, "Created", 200);
+      cookies.set("abtests", b64EncodeJson(userAbTests), {signed: true});
+      let responseJson = {
+        ok: "User created",
+        sentryPublicDSN: config.sentryPublicDSN,
+        abTests: userAbTests
+      };
+      simpleResponse(res, JSON.stringify(responseJson), 200);
     } else {
       sendRavenMessage(req, "Attempted to register existing user", {
         extra: {
@@ -521,11 +535,13 @@ app.post("/api/login", function (req, res) {
       throw e;
     }
   }
-  checkLogin(vars.deviceId, vars.secret, deviceInfo.addonVersion).then((ok) => {
-    if (ok) {
+  checkLogin(vars.deviceId, vars.secret, deviceInfo.addonVersion).then((userAbTests) => {
+    if (userAbTests) {
       let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
       cookies.set("user", vars.deviceId, {signed: true});
-      simpleResponse(res, JSON.stringify({"ok": "User logged in", "sentryPublicDSN": config.sentryPublicDSN}), 200);
+      cookies.set("abtests", b64EncodeJson(userAbTests), {signed: true});
+      let responseJson = {"ok": "User logged in", "sentryPublicDSN": config.sentryPublicDSN, abTests: userAbTests};
+      simpleResponse(res, JSON.stringify(responseJson), 200);
       if (config.gaId) {
         let userAnalytics = ua(config.gaId, vars.deviceId, {strictCidFormat: false});
         userAnalytics.event({
@@ -535,7 +551,7 @@ app.post("/api/login", function (req, res) {
           ni: true
         }).send();
       }
-    } else if (ok === null) {
+    } else if (! userAbTests) {
       simpleResponse(res, '{"error": "No such user"}', 404);
     } else {
       sendRavenMessage(req, "Invalid login");
@@ -554,6 +570,8 @@ app.post("/api/unload", function (req, res) {
   // This erases the session cookie:
   cookies.set("user");
   cookies.set("user.sig");
+  cookies.set("abtests");
+  cookies.set("abtests.sig");
   simpleResponse(res, "Noted", 200);
 });
 
