@@ -88,11 +88,19 @@ Event label: exactly what control invoked the action, such as toolbar-pageshot-b
 
 ##### Highlight shot button
 
-As described in [#2081](https://github.com/mozilla-services/pageshot/issues/2081) we are putting a badge on the button of some users.
+As described in [#2081](https://github.com/mozilla-services/pageshot/issues/2081) we are putting a badge on the button of some users.  The test is named `highlightButtonOnInstall`.
 
 The dimension `cd3` will be `control` (no badge) or `badge` (10% of population).
 
 If the badge is shown we send the event `addon/ab-highlight-button-shown` – this is marked as a non-interactive event.
+
+#### Auto-open share panel
+
+As described in [#2079](https://github.com/mozilla-services/pageshot/issues/2079) we auto-open the share panel for a set of users.  The test is named `autoOpenSharePanel`.
+
+The dimension `cd5` *for the creator* will be `control` (no auto-opening) or `autoopen` (share panel will be auto-opened).  The dimension `cd6` will be `control` (no auto-opening *happened*) or `autoopen` (auto-open happened in the past at shot creation).
+
+The primary change was in `server/src/pages/shot/share-buttons.js`
 
 #### Add-on metrics
 
