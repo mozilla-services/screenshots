@@ -356,7 +356,7 @@ class Body extends React.Component {
 
     let renderGetFirefox = this.props.userAgent && (this.props.userAgent + "").search(/firefox\/\d+/i) === -1;
     let renderExtensionNotification = ! (this.props.isExtInstalled || renderGetFirefox);
-    if (this.state.closePageshotBanner) {
+    if (this.props.isMobile || this.state.closePageshotBanner) {
       renderGetFirefox = renderExtensionNotification = false;
     }
 
