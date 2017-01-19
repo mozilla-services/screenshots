@@ -15,7 +15,7 @@ let allTests = {
     version: 1,
     exclude: ["highlightButtonOnInstall"],
     options: [
-      {name: "bright", probability: 0.1}
+      {name: "bright", probability: 0.0}
     ]
   }
 };
