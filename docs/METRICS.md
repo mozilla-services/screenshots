@@ -94,7 +94,13 @@ The dimension `cd3` will be `control` (no badge) or `badge` (10% of population).
 
 If the badge is shown we send the event `addon/ab-highlight-button-shown` – this is marked as a non-interactive event.
 
-#### Auto-open share panel
+##### Adjust My Shots button display
+
+As described in [#2082](https://github.com/mozilla-services/pageshot/issues/2082) we are changing how the My Shots button is displayed.  The test is named `styleMyShotsButton`.
+
+The dimension `cd4` will be `control` (normal styling) or something else Yet To Be Determined.
+
+##### Auto-open share panel
 
 As described in [#2079](https://github.com/mozilla-services/pageshot/issues/2079) we auto-open the share panel for a set of users.  The test is named `autoOpenSharePanel`.
 
