@@ -137,6 +137,7 @@ const ShotContext = Class({
   },
 
   takeShot: function () {
+    this.shot.createdDate = Date.now();
     let finishTimer = startTimer({
       variable: "take-shot"
     });

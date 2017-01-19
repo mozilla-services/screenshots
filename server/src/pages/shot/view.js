@@ -379,7 +379,7 @@ class Body extends React.Component {
               title="Download the shot image" download={ clipFilename }>
               <img src={ this.props.staticLink("/static/img/download.svg") } />
             </a>
-            <ShareButton clipUrl={clipUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} renderExtensionNotification={renderExtensionNotification} sendRichCopy={this.sendRichCopy.bind(this)} isExtInstalled={this.props.isExtInstalled} />
+            <ShareButton abTests={this.props.abTests} clipUrl={clipUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} renderExtensionNotification={renderExtensionNotification} sendRichCopy={this.sendRichCopy.bind(this)} isExtInstalled={this.props.isExtInstalled} />
           </div>
         </div>
         { clips }

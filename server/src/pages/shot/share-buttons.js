@@ -4,9 +4,11 @@ const sendEvent = require("../../browser-send-event.js");
 exports.ShareButton = class ShareButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      display: false
-    };
+    let display = false;
+    if (props.abTests.autoOpenSharePanel && props.abTests.autoOpenSharePanel.value === "autoopen") {
+      display = props.isOwner && Date.now() - props.shot.createdDate < 30000;
+    }
+    this.state = {display};
   }
 
   render() {
