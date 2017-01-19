@@ -252,7 +252,8 @@ const ShotContext = Class({
       contentScriptOptions: {
         "inline-selection.css": self.data.url("inline-selection.css"),
         showMyShotsReminder: ! prefs.hasUsedMyShots,
-        annotateForPage: this.annotateForPage
+        annotateForPage: this.annotateForPage,
+        styleMyShotsButton: getAbTests().styleMyShotsButton
       }
     }));
     this.interactiveWorker.on("detach", () => {
@@ -384,6 +385,9 @@ const ShotContext = Class({
       }).then((attrs) => {
         let passwordFields = attrs.passwordFields;
         delete attrs.passwordFields;
+        if (! this.annotateForPage) {
+          delete attrs.images;
+        }
         this.checkIfPublic({passwordFields});
         this.shot.update(attrs);
       })));

@@ -4,9 +4,18 @@ let allTests = {
     description: "Highlight the Page Shot button when Page Shot is installed",
     gaField: "cd3",
     version: 1,
-    exclude: [],
+    exclude: ["styleMyShotsButton"],
     options: [
       {name: "badge", probability: 0.1}
+    ]
+  },
+  styleMyShotsButton: {
+    description: "Style the My Shots button in some different way",
+    gaField: "cd4",
+    version: 1,
+    exclude: ["highlightButtonOnInstall"],
+    options: [
+      {name: "bright", probability: 0.0}
     ]
   }
 };
@@ -77,7 +86,10 @@ class Test {
     Object.assign(this, options);
   }
 
-  updateTest(tests) {
+  updateTest(tests, forceValue) {
+    if (forceValue) {
+      tests[this.name] = this.testWithValue(forceValue);
+    }
     if (tests[this.name] && tests[this.name].version >= this.version) {
       return;
     }
@@ -119,9 +131,11 @@ class Test {
 
 }
 
-exports.updateAbTests = function (tests) {
+/** Update a user's abTests values.
+    The optional forceTests looks like {aTests: "forceValue"} */
+exports.updateAbTests = function (tests, forceTests) {
   for (let testName in allTests) {
-    allTests[testName].updateTest(tests);
+    allTests[testName].updateTest(tests, forceTests && forceTests[testName]);
   }
   for (let testName of deprecatedTests) {
     if (testName in tests) {

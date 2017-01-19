@@ -56,6 +56,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
 
   let iframe = exports.iframe = {
     element: null,
+    addClassName: "",
     sizeTracking: {
       timer: null,
       windowDelayer: null,
@@ -95,6 +96,9 @@ const ui = (function () { // eslint-disable-line no-unused-vars
               this.document.documentElement
             );
             installHandlerOnDocument(this.document);
+            if (this.addClassName) {
+              this.document.body.className = this.addClassName;
+            }
             resolve();
           };
           document.body.appendChild(this.element);

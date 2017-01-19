@@ -282,6 +282,13 @@ var conf = convict({
     default: false,
     env: "DISABLE_CONTROLLER_TASKS",
     arg: "disable-controller-tasks"
+  },
+  forceAbTests: {
+    doc: "Force AB tests, looks like 'testName=value testName2=value'",
+    format: String,
+    default: "",
+    env: "FORCE_AB_TESTS",
+    arg: "force-ab-tests"
   }
 });
 
