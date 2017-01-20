@@ -373,9 +373,9 @@ $overlay-z-index: 9999999999;
   font-family: sans-serif;
   pointer-events: all;
   position: absolute;
-  right: 15px;
+  right: 25px;
   top: 15px;
-  width: 135px;
+  width: 116px;
 }
 
 /* styleMyShotsButton test: */
@@ -390,13 +390,13 @@ $overlay-z-index: 9999999999;
 .pageshot-visible {
   @extend .pageshot-myshots;
   pointer-events: all;
-  top: 65px;
+  top: 60px;
 }
 
 .pageshot-full-page {
   @extend .pageshot-myshots;
   pointer-events: all;
-  top: 115px;
+  top: 105px;
 }
 
 .pageshot-pre-myshots {
