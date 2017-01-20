@@ -55,6 +55,8 @@ window.ga = function () {
 window.sendEvent = function () {
   console.info.apply(console, ["stubbed sendEvent("].concat(Array.from(arguments)).concat([")"]));
 };
+
+window.abTests = __ABTESTS__;
 `;
 
 const gaJs = `
@@ -144,7 +146,7 @@ const idRegex = /^[a-zA-Z0-9_.,-]+$/;
 exports.makeGaActivationString = function (gaId, userId, abTests, hashLocation) {
   if (gaId === "") {
     // Don't enable ga if no id was provided
-    return stubGaJs;
+    return stubGaJs.replace(/__ABTESTS__/g, JSON.stringify(abTests));
   }
   userId = userId || "";
   if (typeof userId != "string") {
