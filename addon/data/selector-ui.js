@@ -205,7 +205,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         <div class="pageshot-preview-instructions">
           Drag or click on the page to select a region. Press ESC to cancel.
         </div>
-        <div class="pageshot-myshots">
+        <div class="pageshot-myshots pageshot-myshots-button">
           <div class="pageshot-pre-myshots"></div>
           <div class="pageshot-myshots-text">My Shots</div>
           <div class="pageshot-post-myshots"></div>
