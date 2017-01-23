@@ -1,7 +1,9 @@
 const { getGitRevision } = require("../../linker");
+const MobileDetect = require('mobile-detect');
 
 exports.createModel = function (req) {
   let buildTime = require("../../build-time").string;
+  let isMobile = !! (new MobileDetect(req.headers['user-agent'])).mobile();
   let serverPayload = {
     title: req.shot.title,
     allowExport: req.config.allowExport,
@@ -25,7 +27,9 @@ exports.createModel = function (req) {
     defaultExpiration: req.config.defaultExpiration*1000,
     sentryPublicDSN: req.config.sentryPublicDSN,
     cspNonce: req.cspNonce,
-    hashAnalytics: true
+    hashAnalytics: true,
+    userAgent: req.headers['user-agent'],
+    isMobile
   };
   let clientPayload = {
     title: req.shot.title,
@@ -50,7 +54,9 @@ exports.createModel = function (req) {
     simple: false,
     retentionTime: req.config.expiredRetentionTime*1000,
     defaultExpiration: req.config.defaultExpiration*1000,
-    hashAnalytics: true
+    hashAnalytics: true,
+    userAgent: req.headers['user-agent'],
+    isMobile
   };
   if (serverPayload.expireTime !== null && Date.now() > serverPayload.expireTime) {
     clientPayload.shot = {

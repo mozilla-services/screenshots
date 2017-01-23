@@ -41,6 +41,11 @@ const ui = (function () { // eslint-disable-line no-unused-vars
   }
   exports.isHeader = isHeader;
 
+  function htmlQuote(s) {
+    s = s + "";
+    return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  }
+
   function makeEl(tagName, className) {
     let el = iframe.document.createElement(tagName);
     if (className) {
@@ -51,6 +56,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
 
   let iframe = exports.iframe = {
     element: null,
+    addClassName: "",
     sizeTracking: {
       timer: null,
       windowDelayer: null,
@@ -73,8 +79,15 @@ const ui = (function () { // eslint-disable-line no-unused-vars
           this.element.scrolling = "no";
           this.updateElementSize();
           this.element.onload = () => {
-            var parsedDom = (new DOMParser()).parseFromString(
-              "<html><head><title></title></head><body></body>",
+            let linkUrl = self.options["inline-selection.css"];
+            var parsedDom = (new DOMParser()).parseFromString(`
+              <html>
+               <head>
+                <link rel="stylesheet" id="pageshot-stylesheet" href="${htmlQuote(linkUrl)}">
+                <title></title>
+               </head>
+               <body></body>
+              </html>`,
               "text/html"
             );
             this.document = this.element.contentDocument;
@@ -82,16 +95,10 @@ const ui = (function () { // eslint-disable-line no-unused-vars
               this.document.adoptNode(parsedDom.documentElement),
               this.document.documentElement
             );
-            let linkUrl = self.options["inline-selection.css"];
-            var link = this.document.getElementById("pageshot-stylesheet");
-            if (! link) {
-              link = this.document.createElement("link");
-              link.setAttribute("rel", "stylesheet");
-              link.setAttribute("id", "pageshot-stylesheet");
-              link.setAttribute("href", linkUrl);
-              this.document.head.appendChild(link);
-            }
             installHandlerOnDocument(this.document);
+            if (this.addClassName) {
+              this.document.body.className = this.addClassName;
+            }
             resolve();
           };
           document.body.appendChild(this.element);
@@ -198,7 +205,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         <div class="pageshot-preview-instructions">
           Drag or click on the page to select a region. Press ESC to cancel.
         </div>
-        <div class="pageshot-myshots">
+        <div class="pageshot-myshots pageshot-myshots-button">
           <div class="pageshot-pre-myshots"></div>
           <div class="pageshot-myshots-text">My Shots</div>
           <div class="pageshot-post-myshots"></div>

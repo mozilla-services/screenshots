@@ -65,7 +65,7 @@ class Clip extends React.Component {
       node = null;
 
     if (clip.image !== undefined) {
-      node = <img style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%"}} ref="clipImage" src={ clip.image.url } />;
+      node = <img style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%"}} ref="clipImage" src={ clip.image.url } alt={ clip.image.text } />;
     }
 
     let closeButton = null;
@@ -83,7 +83,10 @@ class Clip extends React.Component {
     }
     return <div ref="clipContainer" className="clip-container" onClick={this.onClickCloseBackground.bind(this)}>
       { closeButton }
-      <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) }>
+      <menu type="context" id="clip-image-context">
+        <menuitem label="Copy Image Text" onClick={this.copyImageText.bind(this)} ></menuitem>
+      </menu>
+      <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) } contextMenu="clip-image-context">
         { node }
       </a>
     </div>;
@@ -92,6 +95,17 @@ class Clip extends React.Component {
   onClickClip() {
     sendEvent("goto-clip", "content", {useBeacon: true});
     // Allow default action to continue
+  }
+
+  copyImageText() {
+    sendEvent("copy-image-text", "context-menu");
+    let text = this.props.clip.image.text;
+    let el = document.createElement("textarea");
+    el.value = text;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
   }
 }
 
@@ -340,11 +354,16 @@ class Body extends React.Component {
       : null}
     */
 
-    let renderExtensionNotification = ! (this.props.isExtInstalled || this.state.closePageshotBanner);
+    let renderGetFirefox = this.props.userAgent && (this.props.userAgent + "").search(/firefox\/\d+/i) === -1;
+    let renderExtensionNotification = ! (this.props.isExtInstalled || renderGetFirefox);
+    if (this.props.isMobile || this.state.closePageshotBanner) {
+      renderGetFirefox = renderExtensionNotification = false;
+    }
 
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <div id="frame" className="inverse-color-scheme full-height column-space">
+          { renderGetFirefox ? this.renderFirefoxRequired() : null }
           { renderExtensionNotification ? this.renderExtRequired() : null }
         <div className="frame-header default-color-scheme">
           <div className="left">
@@ -360,7 +379,7 @@ class Body extends React.Component {
               title="Download the shot image" download={ clipFilename }>
               <img src={ this.props.staticLink("/static/img/download.svg") } />
             </a>
-            <ShareButton clipUrl={clipUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} renderExtensionNotification={renderExtensionNotification} sendRichCopy={this.sendRichCopy.bind(this)} isExtInstalled={this.props.isExtInstalled} />
+            <ShareButton abTests={this.props.abTests} clipUrl={clipUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} renderExtensionNotification={renderExtensionNotification} sendRichCopy={this.sendRichCopy.bind(this)} isExtInstalled={this.props.isExtInstalled} />
           </div>
         </div>
         { clips }
@@ -374,14 +393,24 @@ class Body extends React.Component {
 
   renderExtRequired() {
     return <div className="default-color-scheme notification">
-      <div> Page Shot is an experimental extension for Firefox. <a href={ this.props.backend } onClick={ this.clickedCreate.bind(this) }>Get it here</a></div>
+      <div> Page Shot is an experimental extension for Firefox. <a href={ this.props.backend } onClick={ this.clickedInstallExtension.bind(this) }>Get it here</a></div>
       <a className="close" onClick={ this.closeGetPageshotBanner.bind(this) }></a>
     </div>;
   }
 
+  renderFirefoxRequired() {
+    return <div className="default-color-scheme notification">
+      <div> Page Shot is an experimental extension for Firefox. <a href="https://www.mozilla.org/firefox/new/?utm_source=pageshot.net&utm_medium=referral&utm_campaign=pageshot-acquisition" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a></div>
+      <a className="close" onClick={ this.closeGetPageshotBanner.bind(this) }></a>
+    </div>;
+  }
 
-  clickedCreate() {
+  clickedInstallExtension() {
     sendEvent("click-install-banner", {useBeacon: true});
+  }
+
+  clickedInstallFirefox() {
+    sendEvent("click-install-firefox", {useBeacon: true});
   }
 
   onSaveExpire(value) {

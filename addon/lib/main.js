@@ -19,7 +19,6 @@ const { watchFunction } = require("./errors");
 const { Cu } = require("chrome");
 const req = require("./req");
 const { setTimeout, clearTimeout } = require("sdk/timers");
-const { Hotkey } = require("sdk/hotkeys");
 const { AddonManager } = require('resource://gre/modules/AddonManager.jsm');
 const { addXULStylesheet } = require("./xulcss");
 const { storage } = require("sdk/simple-storage");
@@ -55,6 +54,7 @@ exports.openMyShots = function () {
 
 
 function takeShot(source) {
+  require("./ab-highlight-button-on-install").buttonClicked();
   let backend = exports.getBackend();
   let url = tabs.activeTab.url;
   if (url.startsWith(backend)) {
@@ -85,19 +85,16 @@ function takeShot(source) {
   }
 }
 
-Hotkey({
+/*
+Disabled because of conflicts with non-English keyboards:
+
+require("sdk/hotkeys").Hotkey({
   combo: "accel-alt-control-c",
   onPress: watchFunction(function() {
     takeShot("keyboard-shortcut");
   })
 });
-
-Hotkey({
-  combo: "accel-alt-control-x",
-  onPress: watchFunction(function() {
-    throw new Error("Client-side exception test");
-  })
-});
+*/
 
 contextMenu.Item({
   label: "Create Page Shot",
@@ -133,18 +130,19 @@ exports.main = function (options) {
   helperworker.trackMods(backendOverride || null);
   addXULStylesheet(self.data.url("toolbar-button.css"));
   require("./user").initialize(exports.getBackend(), options.loadReason).then(() => {
-    req.sendEvent("open-browser", loadReason);
+    req.sendEvent("open-browser", loadReason, {ni: true});
     if (options.loadReason === "install") {
       req.sendEvent("install");
       AddonManager.getAddonByID("@testpilot-addon", (addon) => {
         if (addon === null) {
-          req.sendEvent("test-pilot-not-installed");
+          req.sendEvent("test-pilot-not-installed", {ni: true});
         } else {
-          req.sendEvent("test-pilot-installed");
+          req.sendEvent("test-pilot-installed", {ni: true});
         }
       });
     }
     startDailyPing();
+    require("./ab-highlight-button-on-install").mainCalled(loadReason);
   }).catch((error) => {
     console.warn("Failed to log in to server:", exports.getBackend(), error+"", error.stack);
     error.noPopup = true;
@@ -161,7 +159,7 @@ function startDailyPing() {
   let lastTime = storage.lastPingTime;
   let now = Date.now();
   if ((! lastTime) || (now - lastTime + 60000) > intervalMilliseconds) {
-    req.sendEvent("daily-ping");
+    req.sendEvent("daily-ping", {ni: true});
     storage.lastPingTime = now;
     timeoutId = setTimeout(startDailyPing, intervalMilliseconds);
   } else {

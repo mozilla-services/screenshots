@@ -3,6 +3,7 @@
 const sendEvent = require("../../browser-send-event.js");
 const page = require("./page").page;
 const { AbstractShot } = require("../../../shared/shot");
+const { shotGaFieldForValue } = require("../../ab-tests.js");
 
 // This represents the model we are rendering:
 let model;
@@ -17,7 +18,20 @@ exports.launch = function (data) {
   model.shot.expireTime = new Date(model.expireTime);
   model.shot.deleted = model.deleted;
   model.controller = exports;
-
+  if (model.shot.abTests) {
+    for (let testName in model.shot.abTests) {
+      let testValue = model.shot.abTests[testName];
+      if (testValue) {
+        let shotFieldName = shotGaFieldForValue(testName, testValue);
+        if (shotFieldName) {
+          window.abTests[testName + "_shot"] = {
+            gaField: shotFieldName,
+            value: testValue
+          };
+        }
+      }
+    }
+  }
   if (firstSet) {
     document.addEventListener("helper-ready", function onHelperReady(e) {
       document.removeEventListener("helper-ready", onHelperReady, false);

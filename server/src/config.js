@@ -122,6 +122,13 @@ var conf = convict({
       default: "",
       env: "RDS_NAME",
       arg: "db-name"
+    },
+    forceDbVersion: {
+      doc: "Force database version (for use in downgrades)",
+      format: "int",
+      default: 0,
+      env: "FORCE_DB_VERSION",
+      arg: "force-db-version"
     }
   },
   gaId: {
@@ -275,6 +282,13 @@ var conf = convict({
     default: false,
     env: "DISABLE_CONTROLLER_TASKS",
     arg: "disable-controller-tasks"
+  },
+  forceAbTests: {
+    doc: "Force AB tests, looks like 'testName=value testName2=value'",
+    format: String,
+    default: "",
+    env: "FORCE_AB_TESTS",
+    arg: "force-ab-tests"
   }
 });
 

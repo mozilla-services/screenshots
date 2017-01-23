@@ -826,6 +826,9 @@ function getScreenPosition() {
 function activate() {
   ui.Box.remove();
   addHandlers();
+  if (self.options.styleMyShotsButton) {
+    ui.iframe.addClassName = `styleMyShotsButton-${self.options.styleMyShotsButton.value}`;
+  }
   watchPromise(ui.iframe.display(installHandlersOnDocument).then(() => {
     setState("crosshairs");
   }));

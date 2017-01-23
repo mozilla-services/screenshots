@@ -88,7 +88,7 @@ $overlay-z-index: 9999999999;
 .pageshot-highlight-button-download {
   opacity: 0.9;
   transition: opacity 250ms;
-  
+
   &:hover,
   &:focus,
   &:active {
@@ -330,7 +330,7 @@ $overlay-z-index: 9999999999;
       -1px -1px 0 #fff,
       1px -1px 0 #fff,
       -1px 1px 0 #fff,
-      1px 1px 0 #fff; 
+      1px 1px 0 #fff;
 }
 
 // FIXME: some of the styles in .pageshot-moving-element were copied from
@@ -373,21 +373,37 @@ $overlay-z-index: 9999999999;
   font-family: sans-serif;
   pointer-events: all;
   position: absolute;
-  right: 15px;
+  right: 25px;
   top: 15px;
-  width: 135px;
+  width: 116px;
 }
+
+/* styleMyShotsButton test: */
+.styleMyShotsButton-control .pageshot-myshots-button {
+}
+
+.styleMyShotsButton-bright .pageshot-myshots-button {
+  color: #fff;
+  background: $link-blue;
+}
+
+.styleMyShotsButton-bright .pageshot-pre-myshots,
+.styleMyShotsButton-bright .pageshot-post-myshots {
+  filter: brightness(20);
+}
+
+/* end styleMyShotsButton test */
 
 .pageshot-visible {
   @extend .pageshot-myshots;
   pointer-events: all;
-  top: 65px;
+  top: 60px;
 }
 
 .pageshot-full-page {
   @extend .pageshot-myshots;
   pointer-events: all;
-  top: 115px;
+  top: 105px;
 }
 
 .pageshot-pre-myshots {
@@ -410,15 +426,14 @@ $overlay-z-index: 9999999999;
   flex: 0 0 20px;
   height: 16px;
   opacity: 0.6;
-  position: relative;
-  top: 1px;
   width: 20px;
 }
 
 .pageshot-myshots-text {
   flex: 0;
+  position: relative;
+  top: 1px;
 }
-
 
 .pageshot-select-mode-background {
   position: fixed;

@@ -16,7 +16,7 @@ const { Class } = require('sdk/core/heritage');
 const { watchPromise, watchFunction, watchWorker } = require("./errors");
 const clipboard = require("sdk/clipboard");
 const { AbstractShot } = require("./shared/shot");
-const { getDeviceIdInfo } = require("./user");
+const { getDeviceIdInfo, getAbTests } = require("./user");
 const { URL } = require("sdk/url");
 const notifications = require("sdk/notifications");
 const { randomString } = require("./randomstring");
@@ -107,6 +107,16 @@ const ShotContext = Class({
         url: this.tabUrl,
         deviceId: deviceIdInfo.deviceId
       });
+    let shotAbTests = {};
+    let userAbTests = getAbTests();
+    for (let testName in userAbTests) {
+      if (userAbTests[testName].shotField) {
+        shotAbTests[testName] = userAbTests[testName].value;
+      }
+    }
+    if (Object.keys(shotAbTests).length) {
+      this.shot.abTests = shotAbTests;
+    }
     this._deregisters = [];
     this._workerActive = false;
     this.watchTab("pageshow", function (tab) {
@@ -127,6 +137,7 @@ const ShotContext = Class({
   },
 
   takeShot: function () {
+    this.shot.createdDate = Date.now();
     let finishTimer = startTimer({
       variable: "take-shot"
     });
@@ -242,7 +253,8 @@ const ShotContext = Class({
       contentScriptOptions: {
         "inline-selection.css": self.data.url("inline-selection.css"),
         showMyShotsReminder: ! prefs.hasUsedMyShots,
-        annotateForPage: this.annotateForPage
+        annotateForPage: this.annotateForPage,
+        styleMyShotsButton: getAbTests().styleMyShotsButton
       }
     }));
     this.interactiveWorker.on("detach", () => {
@@ -374,6 +386,9 @@ const ShotContext = Class({
       }).then((attrs) => {
         let passwordFields = attrs.passwordFields;
         delete attrs.passwordFields;
+        if (! this.annotateForPage) {
+          delete attrs.images;
+        }
         this.checkIfPublic({passwordFields});
         this.shot.update(attrs);
       })));

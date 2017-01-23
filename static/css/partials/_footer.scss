@@ -5,6 +5,10 @@
       @include flex-container(column, flex-start, stretch);
     }
 
+    .responsive-wrapper {
+      width: 100%;
+    }
+
     a {
       margin-bottom: 5px;
     }

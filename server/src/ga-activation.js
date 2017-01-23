@@ -55,6 +55,8 @@ window.ga = function () {
 window.sendEvent = function () {
   console.info.apply(console, ["stubbed sendEvent("].concat(Array.from(arguments)).concat([")"]));
 };
+
+window.abTests = __ABTESTS__;
 `;
 
 const gaJs = `
@@ -66,6 +68,7 @@ const gaJs = `
     ${stubGaJs}
     return;
   }
+  window.abTests = __ABTESTS__;
   window.GoogleAnalyticsObject = "ga";
   window.ga = window.ga || function () {
     (window.ga.q = window.ga.q || []).push(arguments);
@@ -127,6 +130,12 @@ window.sendEvent = function (action, label, options) {
     options = label;
     label = undefined;
   }
+  options = options || {};
+  if (window.abTests) {
+    for (var testName in window.abTests) {
+      options[window.abTests[testName].gaField] = window.abTests[testName].value;
+    }
+  }
   console.debug("sendEvent", event + "/" + action + (label ? "/" + label : "") || "none", options || "no-options");
   ga("send", "event", event, action, label, options);
 };
@@ -134,10 +143,10 @@ window.sendEvent = function (action, label, options) {
 
 const idRegex = /^[a-zA-Z0-9_.,-]+$/;
 
-exports.makeGaActivationString = function (gaId, userId, hashLocation) {
+exports.makeGaActivationString = function (gaId, userId, abTests, hashLocation) {
   if (gaId === "") {
     // Don't enable ga if no id was provided
-    return stubGaJs;
+    return stubGaJs.replace(/__ABTESTS__/g, JSON.stringify(abTests));
   }
   userId = userId || "";
   if (typeof userId != "string") {
@@ -151,5 +160,6 @@ exports.makeGaActivationString = function (gaId, userId, hashLocation) {
   }
   let script = gaJs.replace(/__GA_ID__/g, gaId).replace(/__USER_ID__/g, userId);
   script = script.replace(/__HASH_LOCATION__/g, hashLocation ? "true" : "false");
+  script = script.replace(/__ABTESTS__/g, JSON.stringify(abTests));
   return script;
 };
