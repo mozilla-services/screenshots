@@ -6,7 +6,7 @@ let allTests = {
     version: 1,
     exclude: ["styleMyShotsButton", "autoOpenSharePanel"],
     options: [
-      {name: "badge", probability: 0.1}
+      {name: "badge", probability: 0.25}
     ]
   },
   styleMyShotsButton: {
@@ -15,7 +15,7 @@ let allTests = {
     version: 1,
     exclude: ["highlightButtonOnInstall", "autoOpenSharePanel"],
     options: [
-      {name: "bright", probability: 0.1}
+      {name: "bright", probability: 0.3}
     ]
   },
   autoOpenSharePanel: {
@@ -25,7 +25,7 @@ let allTests = {
     version: 1,
     exclude: ["styleMyShotsButton", "highlightButtonOnInstall"],
     options: [
-      {name: "autoopen", probability: 0.1}
+      {name: "autoopen", probability: 0.5}
     ]
   }
 };
