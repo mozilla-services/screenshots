@@ -379,12 +379,19 @@ $overlay-z-index: 9999999999;
 }
 
 /* styleMyShotsButton test: */
-.styleMyShotsButton-control .pageshot-myshots {
+.styleMyShotsButton-control .pageshot-myshots-button {
 }
 
-.styleMyShotsButton-bright .pageshot-myshots {
-  font-size: 200%;
+.styleMyShotsButton-bright .pageshot-myshots-button {
+  color: #fff;
+  background: $link-blue;
 }
+
+.styleMyShotsButton-bright .pageshot-pre-myshots,
+.styleMyShotsButton-bright .pageshot-post-myshots {
+  filter: brightness(20);
+}
+
 /* end styleMyShotsButton test */
 
 .pageshot-visible {
@@ -419,15 +426,14 @@ $overlay-z-index: 9999999999;
   flex: 0 0 20px;
   height: 16px;
   opacity: 0.6;
-  position: relative;
-  top: 1px;
   width: 20px;
 }
 
 .pageshot-myshots-text {
   flex: 0;
+  position: relative;
+  top: 1px;
 }
-
 
 .pageshot-select-mode-background {
   position: fixed;

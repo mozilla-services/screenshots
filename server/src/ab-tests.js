@@ -15,7 +15,7 @@ let allTests = {
     version: 1,
     exclude: ["highlightButtonOnInstall", "autoOpenSharePanel"],
     options: [
-      {name: "bright", probability: 0.0}
+      {name: "bright", probability: 0.1}
     ]
   },
   autoOpenSharePanel: {
