@@ -1,3 +1,43 @@
+## Version 5
+
+### A/B tests
+
+* Add bright My Shots button A/B test [#2082](https://github.com/mozilla-services/pageshot/issues/2082) [a168101](https://github.com/mozilla-services/pageshot/commit/a168101), [57f6695](https://github.com/mozilla-services/pageshot/commit/57f6695)
+* Create A/B test for auto-opening the share panel. Fixes [#2079](https://github.com/mozilla-services/pageshot/issues/2079) [0187d31](https://github.com/mozilla-services/pageshot/commit/0187d31)
+* create FORCE_AB_TESTS to force-turn-on an A/B test
+  in development. Fixes [#2108](https://github.com/mozilla-services/pageshot/issues/2108) [32df868](https://github.com/mozilla-services/pageshot/commit/32df868)
+* Start [#2081](https://github.com/mozilla-services/pageshot/issues/2081), implement an A/B test of badging the Page Shot button until it is first clicked [c4c916b](https://github.com/mozilla-services/pageshot/commit/c4c916b), [319c312](https://github.com/mozilla-services/pageshot/commit/319c312)
+* Design and implement an A/B testing system. People are put into tests by the server at login time Tests may stick to the shots created when the test is in place, then viewers will be associated with that test. Tests each map to a GA field (cdX for some value of X). Fixes [#2077](https://github.com/mozilla-services/pageshot/issues/2077) [86c8663](https://github.com/mozilla-services/pageshot/commit/86c8663)
+* Add new database version (13) to save ab_tests in devices
+  table [0a0a095](https://github.com/mozilla-services/pageshot/commit/0a0a095)
+
+### Small fixes
+
+* Remove/comment-out hotkey, which was causing problems for some people with non-US keyboards. Fixes [#2107](https://github.com/mozilla-services/pageshot/issues/2107) [5148017](https://github.com/mozilla-services/pageshot/commit/5148017)
+* Add a right-click context menu on the clip image itself: Copy
+  Image Text [40a6657](https://github.com/mozilla-services/pageshot/commit/40a6657)
+* Move buttons away from edge [4d84295](https://github.com/mozilla-services/pageshot/commit/4d84295)
+* Do not show the call-to-action banner on mobile. Fixes [#2087](https://github.com/mozilla-services/pageshot/issues/2087) [8e7275c](https://github.com/mozilla-services/pageshot/commit/8e7275c)
+* Updates of npm packages. Fixes [#2078](https://github.com/mozilla-services/pageshot/issues/2078) [6d67449](https://github.com/mozilla-services/pageshot/commit/6d67449) and [90bafae](https://github.com/mozilla-services/pageshot/commit/90bafae)
+* Make sure createdDate is updated with the save time, not just
+  the time you hit the button [dacd671](https://github.com/mozilla-services/pageshot/commit/dacd671)
+* remove image finding, using the same flag we use
+  to remove image location annotation. Fixes [#2100](https://github.com/mozilla-services/pageshot/issues/2100) [7eb41ba](https://github.com/mozilla-services/pageshot/commit/7eb41ba)
+* add dbSchemaVersion to /__version__. Fixes [#2088](https://github.com/mozilla-services/pageshot/issues/2088) [575a62a](https://github.com/mozilla-services/pageshot/commit/575a62a)
+* reject blob (or any non-http(s)) images detected
+  in the document. Fixes [#2094](https://github.com/mozilla-services/pageshot/issues/2094) [bab63a5](https://github.com/mozilla-services/pageshot/commit/bab63a5)
+* mark non-interactive Google Analytics events as ni
+  (non-interactive). Fixes [#2076](https://github.com/mozilla-services/pageshot/issues/2076) [439e79b](https://github.com/mozilla-services/pageshot/commit/439e79b)
+* Show a different banner if a non-Firefox user
+  views a shot; link those users to Get Firefox. Link the Firefox page using
+  specific utm codes. Fixes [#2085](https://github.com/mozilla-services/pageshot/issues/2085) [f9501ef](https://github.com/mozilla-services/pageshot/commit/f9501ef)
+* include a FORCE_DB_VERSION config variable to ask
+  the server to downgrade.  Plus instructions on how to rollback. Fixes [#2051](https://github.com/mozilla-services/pageshot/issues/2051) [b85308c](https://github.com/mozilla-services/pageshot/commit/b85308c)
+* Simplify how the stylesheet is included in the selection
+  iframe [64ffddd](https://github.com/mozilla-services/pageshot/commit/64ffddd)
+* put the text into the <img alt> so it'll get
+  copied when you copy the image, and pasted if you paste in a text area. Fixes [#2056](https://github.com/mozilla-services/pageshot/issues/2056) [d017043](https://github.com/mozilla-services/pageshot/commit/d017043)
+
 ## Version 4
 
 ### UI/Visible Changes
