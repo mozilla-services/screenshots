@@ -4,9 +4,6 @@ const { prefs } = require("sdk/simple-prefs");
 const { uuid } = require('sdk/util/uuid');
 const { Request } = require("sdk/request");
 const { watchFunction, watchPromise } = require("./errors");
-const { URL } = require('sdk/url');
-const { FxAccountsOAuthClient } = Cu.import("resource://gre/modules/FxAccountsOAuthClient.jsm", {});
-const { FxAccountsProfileClient } = Cu.import("resource://gre/modules/FxAccountsProfileClient.jsm", {});
 const { deviceInfo } = require('./deviceinfo');
 const { hasCookieForBackend } = require("./get-cookies");
 
@@ -232,84 +229,6 @@ exports.updateProfile = function (backend, info) {
       }).post();
     });
   });
-};
-
-exports.OAuthHandler = class OAuthHandler {
-  constructor(backend) {
-    this.backend = backend;
-    this.withParams = null;
-    this.withProfile = new Promise((resolve, reject) => {
-      this.profileDeferred = { resolve, reject };
-    });
-  }
-
-  getProfileInfo() {
-    return this.withProfile.then(client => {
-      return client.fetchProfile();
-    });
-  }
-
-  getOAuthParams() {
-    if (this.withParams) {
-      return this.withParams;
-    }
-    this.withParams = new Promise((resolve, reject) => {
-      let url = new URL("/api/fxa-oauth/params", this.backend);
-      Request({
-        url,
-        onComplete: response => {
-          let { json } = response;
-          if (response.status >= 200 && response.status < 300) {
-            resolve(json);
-            return;
-          }
-          let err = new Error("Error fetching OAuth params");
-          err.status = response.status;
-          err.json = json;
-          reject(err);
-        }
-      }).get();
-    });
-    return this.withParams;
-  }
-
-  tradeCode(tokenData) {
-    return new Promise((resolve, reject) => {
-      let url = new URL("/api/fxa-oauth/token", this.backend);
-      Request({
-        url,
-        content: tokenData,
-        onComplete: response => {
-          let { json } = response;
-          if (response.status >= 200 && response.status < 300) {
-            resolve(json);
-            return;
-          }
-          let err = new Error("Error trading OAuth code");
-          err.status = response.status;
-          err.json = json;
-          reject(err);
-        }
-      }).post();
-    });
-  }
-
-  logInWithParams(parameters) {
-    return new Promise((resolve, reject) => {
-      let client = new FxAccountsOAuthClient({ parameters });
-      client.onComplete = resolve;
-      client.onError = reject;
-      client.launchWebFlow();
-    }).then(tokenData => {
-      return this.tradeCode(tokenData);
-    }).then(response => {
-      this.profileDeferred.resolve(new FxAccountsProfileClient({
-        serverURL: parameters.profile_uri,
-        token: response.access_token
-      }));
-      return response;
-    });
-  }
 };
 
 exports.getAbTests = function () {
