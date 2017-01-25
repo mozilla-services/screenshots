@@ -42,4 +42,3 @@ fi
 echo "Creating docker image $1/pageshot:$version"
 docker build -t $1/pageshot:"$version" .
 docker push $1/pageshot:"$version"
-echo "Complete.  Upload build/eb-app-latest.zip to http://amzn.to/1NuC3N9"

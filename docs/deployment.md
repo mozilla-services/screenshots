@@ -23,37 +23,39 @@ Note: we deploy the master branch to our *development environment*: [http://page
 
 Release notes are automatically extracted from git commits using `./bin/generate-commit-log --write stable..master` and then manually touched up.
 
-Update the version number in both package.json and addon/package.json files.
+Use `bin/commit-new-version x.y.0` to set versions in package.json, tag the release, and merge to stable.
 
-## Tag Release ##
+## Create GitHub Release ##
 
 This will happen on Friday after any style tweaks land.
 
 1. https://github.com/mozilla-services/pageshot/releases/new
-2. Tag Version: x.0.0 where x = last_version + 1, and x.y.0 point releases for any changes that happen before the final deploy.
 3. Release Title: x.y.0
 4. Click `Publish`
 
-## Push to Stage ##
+## Push to Dev ##
 
-Once the release is tagged, it will get pushed to stage.
-
-1. `git push mozilla-services HEAD:stable`
-2. `rm build/mozilla-pageshot.xpi`
-3. `PAGESHOT_BACKEND=https://pageshot.stage.mozaws.net make xpi`
-4. `bin/build-docker-image mozilla`
-
-Notifications of successful deployment will appear on IRC.
-
-## Deploy Dev ##
-
-To make a dev deploy, run:
+To update https://pageshot.dev.mozaws.net use:
 
 ```sh
-$ bin/build-docker-image USERNAME
+$ ./bin/release-version dev
 ```
 
-with your Docker username.  At the end it will say `Complete.  Upload build/eb-app-latest.zip to http://amzn.to/1NuC3N9` – go to that URL, login if necessary, and upload the zip file through the Elastic Beanstalk interface.  This will upload the server to https://pageshot.dev.mozaws.net
+Note you must set `$DOCKER_USERNAME`.  After it completes, follow the instructions to upload to Amazon.
+
+You can install the dev version of the add-on from https://pageshot.dev.mozaws.net/homepage/install-test-local.html
+
+## Push to Stage ##
+
+To update https://pageshot.stage.mozaws.net use:
+
+```sh
+$ ./bin/release-version stage
+```
+
+After it completes the stage deployment will automatically be triggered.  See the `#pageshot` IRC channel for status updates.
+
+You can install the stage version of the add-on from https://pageshot.stage.mozaws.net/homepage/install-test-local.html
 
 ## Test Stage ##
 

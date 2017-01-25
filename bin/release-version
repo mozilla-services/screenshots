@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+set -e
+
+cd "$(dirname ${BASH_SOURCE[0]})/.."
+
+help () {
+  echo "Usage:"
+  echo "  $(basename $0) CHANNEL"
+  echo "Builds and uploads the docker image for CHANNEL"
+  echo "CHANNEL can be one of dev or stage"
+}
+
+current_branch () {
+  git symbolic-ref --short HEAD
+}
+
+if [[ "$1" = "-h" || "$1" = "--help" ]] ; then
+  help
+  exit
+fi
+
+channel="$1"
+
+if [[ -z "$channel" ]] ; then
+  echo "Error: you must give a CHANNEL (dev or stage)"
+  help
+  exit 1
+fi
+
+case "$channel" in
+  dev)
+    if [[ -z "$DOCKER_USERNAME" ]] ; then
+      echo "Please set \$DOCKER_USERNAME to your dockerhub username"
+      exit 3
+    fi
+    rm build/mozilla-pageshot.xpi
+    PAGESHOT_BACKEND=https://pageshot.dev.mozaws.net make xpi
+    ./bin/build-docker-image $DOCKER_USERNAME
+    echo
+    echo "Next step: upload build/eb-app-latest.zip to http://amzn.to/1NuC3N9"
+    ;;
+  stage)
+    if [[ "$(current_branch)" != "stable" ]] ; then
+      echo "Error: you should be on the stable branch when releasing stage"
+      echo "  git checkout stable ; git pull"
+      exit 4
+    fi
+    rm build/mozilla-pageshot.xpi
+    PAGESHOT_BACKEND=https://pageshot.stage.mozaws.net make xpi
+    ./bin/build-docker-image mozilla
+    echo
+    echo "Stage deployment automatically triggered, see #pageshot IRC for status"
+    ;;
+  *)
+    echo "Unknown channel: $channel"
+    help
+    exit 2
+esac
