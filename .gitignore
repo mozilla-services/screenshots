@@ -1,12 +1,12 @@
-Profile
+/Profile
 .DS_Store
 pageshot.xpi
 pageshot.update.rdf
 *.pyc
 dist
 dist-production
-build
-node_modules
+/build
+/node_modules
 addon.log
 cookie-jar.txt
 .env.production
@@ -15,3 +15,4 @@ cookie-jar.txt
 /data
 *.log
 /.env.local
+/bin/.commit-new-version-copy
