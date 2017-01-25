@@ -5,7 +5,7 @@ const path = require("path");
 const config = require("../../server/src/config").getProperties();
 
 var gaId = config.gaId || "NOT_SET";
-var filename = path.join(__dirname, "../build/ga-id.txt");
+var filename = path.join(__dirname, "../../build/ga-id.txt");
 if (! fs.existsSync(path.dirname(filename))) {
   fs.mkdirSync(path.dirname(filename));
 }
