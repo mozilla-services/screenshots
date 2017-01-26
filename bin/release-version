@@ -57,3 +57,5 @@ case "$channel" in
     help
     exit 2
 esac
+
+which growlnotify > /dev/null && growlnotify -m "Page Shot Deploy/container for ${channel} completed"
