@@ -8,7 +8,7 @@ help () {
   echo "Usage:"
   echo "  $(basename $0) CHANNEL"
   echo "Builds and uploads the docker image for CHANNEL"
-  echo "CHANNEL can be one of dev or stage"
+  echo "CHANNEL can be one of dev or stage or prod"
 }
 
 current_branch () {
@@ -23,7 +23,7 @@ fi
 channel="$1"
 
 if [[ -z "$channel" ]] ; then
-  echo "Error: you must give a CHANNEL (dev or stage)"
+  echo "Error: you must give a CHANNEL (dev or stage or prod)"
   help
   exit 1
 fi
@@ -51,6 +51,19 @@ case "$channel" in
     ./bin/build-docker-image mozilla
     echo
     echo "Stage deployment automatically triggered, see #pageshot IRC for status"
+    ;;
+  prod)
+    if [[ "$(current_branch)" != "stable" ]] ; then
+      echo "Error: you should be on the stable branch when releasing prod"
+      echo "  git checkout stable ; git pull"
+      exit 5
+    fi
+    rm build/mozilla-pageshot.xpi
+    PAGESHOT_BACKEND=https://pageshot.net make xpi
+    ./node_modules/.bin/jpm sign --api-key=${AMO_USER} --api-secret=${AMO_SECRET} --xpi=build/mozilla-pageshot.xpi
+    mv ./mozilla_pageshot-*-fx.xpi build/mozilla-pageshot.xpi
+    echo
+    echo "Prod xpi created, email build/mozilla-pageshot.xpi to wclouser@mozilla.com"
     ;;
   *)
     echo "Unknown channel: $channel"
