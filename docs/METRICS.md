@@ -115,9 +115,6 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 1. [x] Click shot button `addon/start-shot/toolbar-pageshot-button`
 2. [x] Use keyboard shortcut to start shot `addon/start-shot/keyboard-shortcut` (accel-alt-control-c)
 3. [x] Use the right-click context menu to start a shot `addon/start-shot/context-menu`
-3. ~~Click "select region" `addon/start-region-select/mode-click`~~
-4. ~~Click "select archive" `addon/start-archive/mode-click`~~
-5. ~~Click "cancel" from first interface `addon/cancel-shot/mode-click`~~
 2. [x] Make a selection `addon/make-selection/selection-drag` with `cd2: {px width}, cd1: {px height}`
 3. [x] Make a selection by clicking on an element `addon/make-selection/selection-click` with `cd2: {px width}, cd1: {px height}`
 4. [x] Click but fail to find an element that can be selected `addon/no-selection/no-element-found` (error case, not sure when it happens)
@@ -138,12 +135,10 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 5. [x] Click My Shots `addon/goto-myshots/selection-button`
 6. [x] Click on "Save visible" `addon/capture-visible/selection-button`
 7. [x] Click on "Save Full Page" `addon/capture-full-page/selection-button`
-6. ~~Click My Shots from mode selection `addon/goto-myshots/mode-click`~~
 6. [x] Click My Shots button from error panel `addon/goto-myshots/error-panel`
 6. [x] Click shot button while Page Shot is active `addon/aborted-start-shot/toolbar-pageshot-button`
 7. [x] Hit Escape (Cancel) `addon/cancel-shot/keyboard-escape`
 8. [x] Hit Enter (Save) `addon/save-shot/keyboard-enter`
-9. ~~Drag out a selection `addon/drag-selection/selection`~~
 12. [ ] Encounter an error saving the shot `addon/error/save-shot`
 13. [ ] Encounter any other kind of error `addon/error/misc`
 14. [x] Install the add-on `addon/install` (fired internally, regardless of how it is installed)
@@ -170,7 +165,6 @@ These are events that an add-on user can encounter on a shot they own
 
 1. [x] Visit the page, `web/visit/owner`
 2. [x] Visit the page immediately after it is created (as part of the normal flow), `web/visit/owner-first`
-3. ~~Click Save Full Page `web/save-full-page/navbar-save-full-page`~~
 4. [x] Click delete `web/start-delete/navbar`
   5. [x] Confirm delete `web/delete/popup-confirm`
   6. [x] Cancel delete `web/cancel-delete/popup-confirm`
@@ -178,9 +172,6 @@ These are events that an add-on user can encounter on a shot they own
   8. [x] Confirm delete from shot index `web/delete/my-shots-popup-confirm`
   9. [x] Cancel delete from shot index, `web/cancel-delete/my-shots-popup-confirm`
 7. [x] Click My Shots `web/goto-myshots/navbar`
-8. ~~Switch to full page from clip view, by clicking anywhere on background `web/full-page-view/content`~~
-9. ~~Switch to full page from clip view, by clicking `>-<` button `web/full-page-view/content-unzoom`~~
-10. ~~Switch to clip view from full page `web/clip-view/content-zoom`~~
 11. [x] Try to change expiration time `web/start-expiration-change/navbar`
   12. [x] Cancel changing expiration time `web/cancel-expiration-change/navbar`
   13. [x] Change expiration time `web/set-expiration/navbar`
@@ -189,7 +180,6 @@ These are events that an add-on user can encounter on a shot they own
 16. [x] View expired shot `web/view-expired/owner`
 17. [x] View expired shot (not the owner) `web/view-expired/non-owner`
 17. [x] Recover expired shot `web/recover-expired`
-18. ~~View expired/deleted shot `web/view-deleted-expired`~~
 19. [x] Visit original page `web/view-original/navbar`
 20. [x] Visit original page from expired view `web/view-original/expired`
 21. [x] Click share `web/start-share-owner/navbar`
@@ -203,8 +193,6 @@ These are events that an add-on user can encounter on a shot they own
   28. [x] Cancel/close share `web/cancel-share`
 29. [x] Visit Page Shot link from footer `web/goto-pageshot/footer`
 30. [x] Click "Copy Image Text" on the context menu `web/copy-image-text/context-menu`
-30. ~~Visit GitHub link from footer `web/goto-github/footer`~~
-31. ~~Visit GitHub revision from footer `web/goto-github-revision/footer`~~
 32. [x] Click Feedback/mailto button `start-feedback/footer`
 31. [x] Click on clip `web/goto-clip/content`
 32. [x] Click the download button `web/download/navbar`
@@ -229,9 +217,6 @@ These are events that an add-on user can encounter on a shot they own
 3. [x] Click Share (same as for owner, but with `share-non-owner` instead of `share-owner`, and `start-share-non-owner`)
 4. [x] Visit original URL `web/goto-original-url/navbar`
 5. [x] Click Page Shot link in header `web/goto-pageshot/navbar`
-6. ~~Click My Shots link in header (if non-owner, but add-on user) `web/goto-myshots/navbar-non-owner`~~
-7. ~~Switch to full page from clip view (already covered)~~
-8. ~~Switch to clip view from full page (already covered)~~
 9. [x] Click on clip (already covered)
 10. [x] Click on the "Get it here" (install Page Shot) banner: `web/click-install-banner`
 11. [x] Click on the "Get Firefox now" (install Firefox) banner: `web/click-install-firefox`.  Also note the link uses `?utm_source=pageshot.net&utm_medium=referral&utm_campaign=pageshot-acquisition` on the link.
@@ -246,13 +231,6 @@ These are events that an add-on user can encounter on a shot they own
 1. [x] Views of shot pages show up as `/a-shot/{hash}`
 2. [x] Views of images directly, `/images/{hash}`
 3. [x] Views of images that came from og/twitter metadata, `/images/embedded/{hash}`
-
-#### Homepage web visits
-
-1. ~~Click install from Firefox, `web/start-install/homepage-firefox`~~
-2. ~~Click install from Chrome, `web/start-install/homepage-chrome`~~
-3. ~~Visit from a supported browser, `web/homepage-visit/supported`~~
-4. ~~Visit from an unsupported browser, `web/homepage-visit/unsupported`~~
 
 #### General Google Analytics information
 
