@@ -1,5 +1,5 @@
 const { AbstractShot } = require("../shared/shot");
-const renderOembedString = require("./views/oembed.js").renderString;
+const renderOembedString = require("./oembed-view.js").renderString;
 const db = require("./db");
 const uuid = require("uuid");
 const linker = require("./linker");
