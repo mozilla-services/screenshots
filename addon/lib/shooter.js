@@ -359,7 +359,7 @@ const ShotContext = Class({
       ],
       timings,
       variable: "add-ids"
-    })).then((result) => {
+    }).then((result) => {
       if (result.isXul) {
         // Abandon hope all ye who enter!
         sendEvent("abort-start-shot", "xul-page");
@@ -436,7 +436,7 @@ const ShotContext = Class({
         finishCollectInformation();
         sendTiming(timings);
       }));
-    });
+    }));
   },
 
   /** Called anytime the shot is updated; currently this has no side-effects so it does nothing */
