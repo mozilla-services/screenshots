@@ -42,6 +42,10 @@ $overlay-z-index: 9999999999;
   bottom: -55px;
   right: 0;
   z-index: 6;
+
+  .pageshot-bottom-selection & {
+    bottom: 5px;
+  }
 }
 
 .pageshot-highlight-button-cancel {

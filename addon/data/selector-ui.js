@@ -316,6 +316,11 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       } else {
         this.el.classList.remove("pageshot-small-selection");
       }
+      if (docHeight - pos.bottom < 50) {
+        this.el.classList.add("pageshot-bottom-selection");
+      } else {
+        this.el.classList.remove("pageshot-bottom-selection");
+      }
       this.el.style.top = (pos.top - bodyRect.top) + "px";
       this.el.style.left = (pos.left - bodyRect.left) + "px";
       this.el.style.height = (pos.bottom - pos.top - bodyRect.top) + "px";
