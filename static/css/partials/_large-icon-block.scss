@@ -10,8 +10,8 @@
     animation: pop 150ms ease-in;
     animation-delay: 150ms;
     background: no-repeat center center;
-    background-size: auto 120px;
-    flex: 0 0 120px;
+    background-size: auto 270px;
+    flex: 0 0 270px;
     min-width: 200px;
     opacity: 0.3;
     position: relative;
@@ -40,7 +40,8 @@
   .large-icon-message-string {
     margin: 24px;
     text-align: center;
-    font-size: 16px;
+    font-size: 12px;
     line-height: 26px;
+    color: #4d4d4d;
   }
 }
