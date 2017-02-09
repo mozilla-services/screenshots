@@ -1,23 +1,23 @@
 {
   "manifest_version": 2,
   "name": "Page Shot",
-  "version": "0.1.0",
+  "version": "6.0.0",
   "description": "Page Shot takes clips and screenshots from pages, and can save a permanent copy of a page",
   "author": "Ian Bicking, Donovan Preston, and Bram Pitoyo",
   "homepage_url": "https://github.com/mozilla-services/pageshot",
   "offline_enabled": false,
   "icons": {
-    "16": "img/pageshot-icon-16.png",
-    "32": "img/pageshot-icon-32.png",
-    "48": "img/pageshot-icon-48.png",
-    "64": "img/pageshot-mac-64px.png",
-    "128": "img/pageshot-icon-128.png",
-    "256": "img/pageshot-icon-256.png"
+    "16": "icons/pageshot-icon-16.png",
+    "32": "icons/pageshot-icon-32.png",
+    "48": "icons/pageshot-icon-48.png",
+    "64": "icons/pageshot-mac-64px.png",
+    "128": "icons/pageshot-icon-128.png",
+    "256": "icons/pageshot-icon-256.png"
   },
   "browser_action": {
     "default_icon": {
-      "19": "img/pageshot-icon-19.png",
-      "38": "img/pageshot-icon-38.png"
+      "19": "icons/pageshot-icon-19.png",
+      "38": "icons/pageshot-icon-38.png"
     },
     "default_title": "Take a shot"
   },
@@ -27,7 +27,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://pageshot.dev.mozaws.net/*"],
+      "matches": ["https://localhost:10080/*"],
       "js": ["site-helper.js"],
       "run_at": "document_start"
     }
@@ -36,6 +36,6 @@
     "activeTab",
     "storage",
     "notifications",
-    "https://pageshot.dev.mozaws.net/"
+    "https://localhost:10080/"
   ]
 }

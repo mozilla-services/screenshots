@@ -57,7 +57,8 @@
     "sass-lint": "1.10.2",
     "selenium-webdriver": "3.0.1",
     "svgo": "0.7.2",
-    "uglify-js": "2.7.5"
+    "uglify-js": "2.7.5",
+    "web-ext": "1.8.1"
   },
   "homepage": "https://pageshot.dev.mozaws.net",
   "license": "MPL-2.0",
