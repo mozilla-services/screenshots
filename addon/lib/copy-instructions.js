@@ -1,6 +1,6 @@
 const system = require("sdk/system");
 
-exports.copyInstructions = function () {
+exports.copyInstructions = function() {
   if (system.platform === "darwin") {
     return "Press ⌘-V to paste";
   } else {

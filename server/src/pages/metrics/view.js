@@ -3,16 +3,14 @@ const reactruntime = require("../../reactruntime");
 const React = require("react");
 
 class Head extends React.Component {
-
   render() {
     return (
       <reactruntime.HeadTemplate {...this.props}>
-        <script src={this.props.staticLink("/static/js/metrics-bundle.js")} async></script>
+        <script src={this.props.staticLink("/static/js/metrics-bundle.js")} async />
         <link rel="stylesheet" href={this.props.staticLink("/static/css/metrics.css")} />
       </reactruntime.HeadTemplate>
     );
   }
-
 }
 
 class Body extends React.Component {
@@ -39,23 +37,28 @@ class Body extends React.Component {
       </reactruntime.BodyTemplate>
     );
   }
-
 }
 
 class GenericTable extends React.Component {
   render() {
-    return <div className="generic-table-section">
-      <h2>{this.props.data.title}</h2>
-      <p>{this.props.data.description} <span className="execution-time">(database time: {this.props.data.timeToExecute}ms)</span></p>
-      <table className="generic-table">
-        <thead>
-          {this.renderTableHeader()}
-        </thead>
-        <tbody>
-          {this.renderTableRows()}
-        </tbody>
-      </table>
-    </div>;
+    return (
+      <div className="generic-table-section">
+        <h2>{this.props.data.title}</h2>
+        <p>
+          {this.props.data.description}
+          {" "}
+          <span className="execution-time">(database time: {this.props.data.timeToExecute}ms)</span>
+        </p>
+        <table className="generic-table">
+          <thead>
+            {this.renderTableHeader()}
+          </thead>
+          <tbody>
+            {this.renderTableRows()}
+          </tbody>
+        </table>
+      </div>
+    );
   }
 
   renderTableHeader() {
@@ -63,25 +66,26 @@ class GenericTable extends React.Component {
     for (let column of this.props.data.columns) {
       headers.push(<th key={column.title}>{column.title}</th>);
     }
-    return <tr>
-      {headers}
-    </tr>;
+    return (
+      <tr>
+        {headers}
+      </tr>
+    );
   }
 
   renderTableRows() {
     let rows = [];
-    let n=0;
+    let n = 0;
     for (let row of this.props.data.rows) {
       n++;
       let columns = [];
-      for (let i=0; i<row.length; i++) {
+      for (let i = 0; i < row.length; i++) {
         let value = row[i];
         let meta = this.props.data.columns[i];
         if (meta.type) {
           if (meta.type === "date") {
-            value = (new Date(value));
-            value = value.toLocaleString(
-              "en-US", {year: 'numeric', month: 'short', day: 'numeric'});
+            value = new Date(value);
+            value = value.toLocaleString("en-US", { year: "numeric", month: "short", day: "numeric" });
           } else {
             console.warn("Unknown type:", meta.type);
           }
@@ -92,7 +96,6 @@ class GenericTable extends React.Component {
     }
     return rows;
   }
-
 }
 
 exports.HeadFactory = React.createFactory(Head);

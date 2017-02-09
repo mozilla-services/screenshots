@@ -1,18 +1,24 @@
 /* exported util */
 
-const util = (function () { // eslint-disable-line no-unused-vars
+const util = (function() {
+  // eslint-disable-line no-unused-vars
   let exports = {};
 
   /** Removes a node from its document, if it's a node and the node is attached to a parent */
-  exports.removeNode = function (el) {
+  exports.removeNode = function(el) {
     if (el && el.parentNode) {
       el.parentNode.removeChild(el);
     }
   };
 
   /** Truncates the X coordinate to the document size */
-  exports.truncateX = function (x) {
-    let max = Math.max(document.documentElement.clientWidth, document.body.clientWidth, document.documentElement.scrollWidth, document.body.scrollWidth);
+  exports.truncateX = function(x) {
+    let max = Math.max(
+      document.documentElement.clientWidth,
+      document.body.clientWidth,
+      document.documentElement.scrollWidth,
+      document.body.scrollWidth
+    );
     if (x < 0) {
       return 0;
     } else if (x > max) {
@@ -23,8 +29,13 @@ const util = (function () { // eslint-disable-line no-unused-vars
   };
 
   /** Truncates the Y coordinate to the document size */
-  exports.truncateY = function (y) {
-    let max = Math.max(document.documentElement.clientHeight, document.body.clientHeight, document.documentElement.scrollHeight, document.body.scrollHeight);
+  exports.truncateY = function(y) {
+    let max = Math.max(
+      document.documentElement.clientHeight,
+      document.body.clientHeight,
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight
+    );
     if (y < 0) {
       return 0;
     } else if (y > max) {
@@ -38,7 +49,7 @@ const util = (function () { // eslint-disable-line no-unused-vars
   var CAPTURE_WIGGLE = 10;
   const ELEMENT_NODE = document.ELEMENT_NODE;
 
-  exports.captureEnclosedText = function (box) {
+  exports.captureEnclosedText = function(box) {
     var scrollX = window.scrollX;
     var scrollY = window.scrollY;
     var text = [];
@@ -50,17 +61,13 @@ const util = (function () { // eslint-disable-line no-unused-vars
         left: elBox.left + scrollX,
         right: elBox.right + scrollX
       };
-      if (elBox.bottom < box.top ||
-          elBox.top > box.bottom ||
-          elBox.right < box.left ||
-          elBox.left > box.right) {
+      if (elBox.bottom < box.top || elBox.top > box.bottom || elBox.right < box.left || elBox.left > box.right) {
         // Totally outside of the box
         return;
       }
-      if (elBox.bottom > box.bottom + CAPTURE_WIGGLE ||
-          elBox.top < box.top - CAPTURE_WIGGLE) {
+      if (elBox.bottom > box.bottom + CAPTURE_WIGGLE || elBox.top < box.top - CAPTURE_WIGGLE) {
         // Partially outside the box
-        for (var i=0; i<el.childNodes.length; i++) {
+        for (var i = 0; i < el.childNodes.length; i++) {
           var child = el.childNodes[i];
           if (child.nodeType == ELEMENT_NODE) {
             traverse(child);
@@ -76,7 +83,7 @@ const util = (function () { // eslint-disable-line no-unused-vars
         t = el.getAttribute("alt") || el.getAttribute("title");
       } else if (el.tagName == "A") {
         t = el.innerText;
-        if (el.getAttribute("href") && ! el.getAttribute("href").startsWith("#")) {
+        if (el.getAttribute("href") && !el.getAttribute("href").startsWith("#")) {
           t += " (" + el.href + ")";
         }
       } else {
@@ -97,7 +104,6 @@ const util = (function () { // eslint-disable-line no-unused-vars
       return null;
     }
   };
-
 
   return exports;
 })();

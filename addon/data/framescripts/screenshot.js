@@ -17,7 +17,7 @@ function getWindow() {
     Returns a data: URL version of a png of the screenshot */
 function makeScreenShot(pos, maxSize, backgroundColor) {
   let win = getWindow();
-  if (! pos) {
+  if (!pos) {
     pos = {};
     pos.w = win.innerWidth;
     pos.h = win.innerHeight;
@@ -30,17 +30,17 @@ function makeScreenShot(pos, maxSize, backgroundColor) {
   if (pos.w == "full") {
     pos.w = Math.max(win.document.body.clientWidth, win.document.documentElement.clientWidth);
   }
-  if (maxSize && (! maxSize.h)) {
-    maxSize.h = (maxSize.w / pos.w) * pos.h;
-  } else if (maxSize && (! maxSize.w)) {
-    maxSize.w = (maxSize.h / pos.h) * pos.w;
+  if (maxSize && !maxSize.h) {
+    maxSize.h = maxSize.w / pos.w * pos.h;
+  } else if (maxSize && !maxSize.w) {
+    maxSize.w = maxSize.h / pos.h * pos.w;
   } else if (maxSize && (pos.w > maxSize.w || pos.h > maxSize.h)) {
     if (pos.w / pos.h > maxSize.w / maxSize.h) {
       // Wider than tall
-      maxSize.w = (maxSize.h / pos.h) * pos.w;
+      maxSize.w = maxSize.h / pos.h * pos.w;
     } else {
       // Taller than wide
-      maxSize.h = (maxSize.w / pos.w) * pos.h;
+      maxSize.h = maxSize.w / pos.w * pos.h;
     }
   } else {
     maxSize = null;
@@ -50,8 +50,16 @@ function makeScreenShot(pos, maxSize, backgroundColor) {
     iframe.style.display = "none";
   }
   try {
-    console.info("shooting area", pos.x, pos.y, "w/h", pos.w, pos.h, maxSize ? "to " + maxSize.w + ", " + maxSize.h : "no max");
-    var canvas = win.document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
+    console.info(
+      "shooting area",
+      pos.x,
+      pos.y,
+      "w/h",
+      pos.w,
+      pos.h,
+      maxSize ? "to " + maxSize.w + ", " + maxSize.h : "no max"
+    );
+    var canvas = win.document.createElementNS("http://www.w3.org/1999/xhtml", "canvas");
     if (maxSize) {
       canvas.width = maxSize.w;
       canvas.height = maxSize.h;
@@ -59,7 +67,7 @@ function makeScreenShot(pos, maxSize, backgroundColor) {
       canvas.width = pos.w * win.devicePixelRatio;
       canvas.height = pos.h * win.devicePixelRatio;
     }
-    let ctx = canvas.getContext('2d');
+    let ctx = canvas.getContext("2d");
     if (maxSize) {
       ctx.scale(maxSize.w / pos.w, maxSize.h / pos.h);
     } else if (win.devicePixelRatio !== 1) {
@@ -92,7 +100,7 @@ addMessageListener("pageshot@screenshot:call", function handler(event) {
     result = {
       error: {
         name: e.name,
-        description: e+""
+        description: e + ""
       }
     };
   }
@@ -100,6 +108,6 @@ addMessageListener("pageshot@screenshot:call", function handler(event) {
   sendAsyncMessage("pageshot@screenshot:return", result);
 });
 
-addMessageListener("pageshot@disable", function (event) {
+addMessageListener("pageshot@disable", function(event) {
   isDisabled = true;
 });

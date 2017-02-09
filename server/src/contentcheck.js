@@ -12,12 +12,12 @@ const checkAttrsForLinks = {
   content: true
 };
 
-exports.checkContent = function (htmlString) {
+exports.checkContent = function(htmlString) {
   let window = domino.createWindow(htmlString);
   let errors = [];
   let els = window.document.getElementsByTagName("*");
   let elLength = els.length;
-  for (let i=0; i<elLength; i++) {
+  for (let i = 0; i < elLength; i++) {
     let el = els[i];
     if (skipElementsBadTags[el.tagName]) {
       errors.push(`Bad element: ${describeTag(el)}`);
@@ -39,12 +39,12 @@ exports.checkContent = function (htmlString) {
   return errors;
 };
 
-exports.checkAttributes = function (attrList, el) {
-  if (! (attrList && attrList.length)) {
+exports.checkAttributes = function(attrList, el) {
+  if (!(attrList && attrList.length)) {
     return [];
   }
   let errors = [];
-  for (let i=0; i<attrList.length; i++) {
+  for (let i = 0; i < attrList.length; i++) {
     let name = attrList[i][0].toLowerCase();
     let value = attrList[i][1];
     if (name.startsWith("on")) {

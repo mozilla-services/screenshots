@@ -58,20 +58,24 @@ const DEFAULT_TIMEOUT = 30000; // 30 seconds
 
 var ip = prefs.httpServerIp;
 var port = prefs.httpServerPort;
-var backend = prefs.backend;    // set global backend, handleRequest needs it
+var backend = prefs.backend; // set global backend, handleRequest needs it
 
 exports.init = function init() {
   /* Initializes the backend server, which listens for requests made to / and
    * passes them to the handleRequest function below
    */
-  if (!prefs.startHttpServer) { return; }
+  if (!prefs.startHttpServer) {
+    return;
+  }
   console.info(`starting headless server on http://${ip}:${port}`);
   var server = new nsHttpServer();
-  if (ip != "localhost") { server.identity.add("http", ip, port); }
+  if (ip != "localhost") {
+    server.identity.add("http", ip, port);
+  }
   server.start(port);
-  server.registerPathHandler('/', handleRequest);
-  server.registerPathHandler('/readable/', handleReadableRequest);
-  server.registerPathHandler('/data/', handleDataRequest);
+  server.registerPathHandler("/", handleRequest);
+  server.registerPathHandler("/readable/", handleReadableRequest);
+  server.registerPathHandler("/data/", handleDataRequest);
 };
 
 function handleRequest(request, response) {
@@ -83,16 +87,15 @@ function handleRequest(request, response) {
   response.processAsync();
   var url = request._queryString;
   var backendUrl = randomString(RANDOM_STRING_LENGTH) + "/" + urlDomainForId(url);
-  console.log('recieved request: URL -> BACK'
-                .replace('URL', url).replace('BACK', backendUrl));
+  console.log("recieved request: URL -> BACK".replace("URL", url).replace("BACK", backendUrl));
   tabs.open({
     url: url,
-    onLoad: function (tab) {
-      autoShot({tab, backend, backendUrl, save: true});
-      tab.on("close", function (a) {
+    onLoad: function(tab) {
+      autoShot({ tab, backend, backendUrl, save: true });
+      tab.on("close", function(a) {
         console.log(`completed processing ${backendUrl}`);
         response.setStatusLine("1.1", 200, "OK");
-        response.write(backendUrl + '\n');
+        response.write(backendUrl + "\n");
         response.finish();
       });
     }
@@ -103,10 +106,10 @@ function toBool(value, defaultValue) {
   if (value === undefined) {
     return defaultValue;
   }
-  if (value === 'false' || value === 'no' || value === '0' || value === 'off') {
+  if (value === "false" || value === "no" || value === "0" || value === "off") {
     value = false;
   }
-  return !! value;
+  return !!value;
 }
 
 function handleDataRequest(request, response) {
@@ -119,7 +122,7 @@ function handleDataRequest(request, response) {
   response.processAsync();
   let query = querystringParse(request._queryString);
   let url = query.url;
-  if (! url) {
+  if (!url) {
     response.setStatusLine("1.1", 400, "Bad Request");
     response.write("No ?url= parameter");
     response.finish();
@@ -133,111 +136,123 @@ function handleDataRequest(request, response) {
   let timeout = query.timeout ? parseInt(query.timeout, 10) : DEFAULT_TIMEOUT;
   let thumbnailWidth = query.thumbnailWidth ? parseInt(query.thumbnailWidth, 10) : undefined;
   var backendUrl = randomString(RANDOM_STRING_LENGTH) + "/" + urlDomainForId(url);
-  console.log('recieved request: URL -> BACK'
-                .replace('URL', url).replace('BACK', backendUrl));
+  console.log("recieved request: URL -> BACK".replace("URL", url).replace("BACK", backendUrl));
   let failed = false;
   let timeoutId;
   if (timeout) {
-    timeoutId = setTimeout(() => {
-      response.setStatusLine("1.1", 502, "Bad Gateway");
-      response.write("Error: timed out after " + (delayAfterLoad + timeout));
-      response.finish();
-      failed = true;
-    }, delayAfterLoad + timeout);
+    timeoutId = setTimeout(
+      () => {
+        response.setStatusLine("1.1", 502, "Bad Gateway");
+        response.write("Error: timed out after " + (delayAfterLoad + timeout));
+        response.finish();
+        failed = true;
+      },
+      delayAfterLoad + timeout
+    );
   }
   tabs.open({
     url: url,
-    onLoad: function (tab) {
+    onLoad: function(tab) {
       if (failed) {
         tab.close();
         return;
       }
       clearTimeout(timeoutId);
-      sleep(delayAfterLoad).then(() => {
-        return autoShot({
-          tab,
-          backend,
-          backendUrl,
-          inlineCss,
-          debugInlineCss,
-          useReadability,
-          thumbnailWidth,
-          allowUnknownAttributes,
-          save: false
-        });
-      }).then((shot) => {
-        console.log(`completed processing ${backendUrl}`);
-        response.setStatusLine("1.1", 200, "OK");
-        let data = JSON.stringify(shot.asJson());
-        data = data.replace(
-          /[\u0080-\uffff]/g,
-          function (s) {
+      sleep(delayAfterLoad)
+        .then(() => {
+          return autoShot({
+            tab,
+            backend,
+            backendUrl,
+            inlineCss,
+            debugInlineCss,
+            useReadability,
+            thumbnailWidth,
+            allowUnknownAttributes,
+            save: false
+          });
+        })
+        .then(shot => {
+          console.log(`completed processing ${backendUrl}`);
+          response.setStatusLine("1.1", 200, "OK");
+          let data = JSON.stringify(shot.asJson());
+          data = data.replace(/[\u0080-\uffff]/g, function(s) {
             let n = s.charCodeAt(0).toString(16);
             while (n.length < 4) {
               n = "0" + n;
             }
             return "\\u" + n;
-          }
-        );
-        response.write(data);
-        response.finish();
-      }).catch((e) => {
-        response.setStatusLine("1.1", 500, "Error");
-        response.write("Error: " + e);
-        response.finish();
-      });
+          });
+          response.write(data);
+          response.finish();
+        })
+        .catch(e => {
+          response.setStatusLine("1.1", 500, "Error");
+          response.write("Error: " + e);
+          response.finish();
+        });
     }
   });
 }
 
 function sleep(milliseconds) {
-  if (! milliseconds) {
+  if (!milliseconds) {
     return Promise.resolve();
   }
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, milliseconds);
+  return new Promise(resolve => {
+    setTimeout(
+      () => {
+        resolve();
+      },
+      milliseconds
+    );
   });
 }
 
 function handleReadableRequest(request, response) {
-  var fired = false;        // Assign local variable fired, because onload gets tricky
-  response.processAsync();  // Tell response handler this is going to take a while
+  var fired = false; // Assign local variable fired, because onload gets tricky
+  response.processAsync(); // Tell response handler this is going to take a while
   var url = request._queryString; // Grab the passed URL
   var backendUrl = randomString(RANDOM_STRING_LENGTH) + "/" + urlDomainForId(url); // Create backend url, usually happens in shooter.js
   console.log(`recieved request: ${url} -> ${backendUrl}`);
-  tabs.open({                   // Open a tab
+  tabs.open({
+    // Open a tab
     url: url,
-    onOpen: function (tab) {  // When the tab opens, run this on it
-      tab.on("load", function (tab) {
-        if (!fired) {           // If it hasn't fired, click on readable button
+    onOpen: function(tab) {
+      // When the tab opens, run this on it
+      tab.on("load", function(tab) {
+        if (!fired) {
+          // If it hasn't fired, click on readable button
           fired = true;
-          var wm = Cc["@mozilla.org/appshell/window-mediator;1"]
-                             .getService(Ci.nsIWindowMediator);
+          var wm = Cc["@mozilla.org/appshell/window-mediator;1"].getService(Ci.nsIWindowMediator);
           var browserWindow = wm.getMostRecentWindow("navigator:browser");
           browserWindow.document.getElementById("reader-mode-button").click();
-        } else {                // If it has fired, remove the toolbar
+        } else {
+          // If it has fired, remove the toolbar
           var worker = tab.attach({
-            contentScript: `
+            contentScript: (
+              `
               var toolbar = document.getElementById("reader-toolbar");
               toolbar.parentElement.removeChild(toolbar);
               self.port.emit("done");`
+            )
           });
-          worker.port.on("done", function () { // When the worker emits done, wait a bit then fire autoshot
-            console.log('readability should be finished');
+          worker.port.on("done", function() {
+            // When the worker emits done, wait a bit then fire autoshot
+            console.log("readability should be finished");
             // Sleep is required because if you fire autoShot immediately the DOM comes up empty
             sleep(prefs.readableSleep).then(() => {
-              autoShot({tab, backend, backendUrl, save: true});
+              autoShot({ tab, backend, backendUrl, save: true });
             });
           });
         }
       });
 
-      tab.on("close", function () {     // When the tab is closed we know autoshot is done, so return the URL
+      tab.on("close", function() {
+        // When the tab is closed we know autoshot is done, so return the URL
         console.log(`completed processing ${backendUrl}`);
         response.setStatusLine("1.1", 200, "OK");
-        response.write(backendUrl + '\n');
+        response.write(backendUrl + "\n");
         response.finish();
       });
     }

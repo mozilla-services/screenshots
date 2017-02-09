@@ -5,7 +5,7 @@ let app = express();
 
 exports.app = app;
 
-app.get("/:id/:domain", function (req, res) {
+app.get("/:id/:domain", function(req, res) {
   const page = require("./page").page;
   reactrender.render(req, res, page);
 });

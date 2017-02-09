@@ -13,14 +13,15 @@ var FILENAME = "extractor-worker.js"; // eslint-disable-line no-unused-vars
 
 var isChrome = false;
 
-const extractorWorker = (function () { // eslint-disable-line no-unused-vars
+const extractorWorker = (function() {
+  // eslint-disable-line no-unused-vars
   /** Extracts data:
       - Gets the Readability version of the page (`.readable`)
       - Finds images in roughly the preferred order (`.images`)
       */
   let exports = {};
 
-  exports.extractData = function () {
+  exports.extractData = function() {
     let start = Date.now();
     let readableDiv;
     let readable;
@@ -30,14 +31,15 @@ const extractorWorker = (function () { // eslint-disable-line no-unused-vars
       readableDiv = result.readableDiv;
     }
     var images = findImages([
-      {element: document.head, isReadable: false},
-      {element: readableDiv, isReadable: true},
-      {element: document.body, isReadable: false}]);
+      { element: document.head, isReadable: false },
+      { element: readableDiv, isReadable: true },
+      { element: document.body, isReadable: false }
+    ]);
     console.info("Image time:", Date.now() - start, "ms");
     var siteName = findSiteName();
     console.info("extractData time:", Date.now() - start, "ms");
     let passwordFields = [];
-    for (let el of Array.from(document.querySelectorAll('input[type=password]'))) {
+    for (let el of Array.from(document.querySelectorAll("input[type=password]"))) {
       passwordFields.push(el.name || null);
     }
     return {
@@ -76,8 +78,8 @@ const extractorWorker = (function () { // eslint-disable-line no-unused-vars
     if (readable) {
       delete readable.uri;
     }
-    console.info("Readability time:", Date.now() - startReader, "ms", "success:", !! readable);
-    return {readable, readableDiv};
+    console.info("Readability time:", Date.now() - startReader, "ms", "success:", !!readable);
+    return { readable, readableDiv };
   }
 
   // Images smaller than either of these sizes are skipped:
@@ -91,7 +93,7 @@ const extractorWorker = (function () { // eslint-disable-line no-unused-vars
     var images = [];
     var found = {};
     function addImage(imgData) {
-      if (! (imgData && imgData.url)) {
+      if (!(imgData && imgData.url)) {
         return;
       }
       if (found[imgData.url]) {
@@ -100,15 +102,15 @@ const extractorWorker = (function () { // eslint-disable-line no-unused-vars
       images.push(imgData);
       found[imgData.url] = true;
     }
-    for (var i=0; i<elements.length; i++) {
+    for (var i = 0; i < elements.length; i++) {
       var el = elements[i].element;
-      if (! el) {
+      if (!el) {
         continue;
       }
       var isReadable = elements[i].isReadable;
       var ogs = el.querySelectorAll("meta[property='og:image'], meta[name='twitter:image']");
       var j;
-      for (j=0; j<ogs.length; j++) {
+      for (j = 0; j < ogs.length; j++) {
         var src = ogs[j].getAttribute("content");
         var a = document.createElement("a");
         a.href = src;
@@ -123,21 +125,21 @@ const extractorWorker = (function () { // eslint-disable-line no-unused-vars
       var imgs = el.querySelectorAll("img");
       imgs = Array.prototype.slice.call(imgs);
       // Widest images first:
-      imgs.sort(function (a, b) {
+      imgs.sort(function(a, b) {
         if (a.width > b.width) {
           return -1;
         }
         return 1;
       });
-      for (j=0; j<imgs.length; j++) {
+      for (j = 0; j < imgs.length; j++) {
         var img = imgs[j];
-        if ((! img.src) || (img.src.search(/^https?/i) === -1)) {
+        if (!img.src || img.src.search(/^https?/i) === -1) {
           continue;
         }
         if (img.width >= MIN_IMAGE_WIDTH && img.height >= MIN_IMAGE_HEIGHT) {
           addImage({
             url: img.src,
-            dimensions: {x: img.width, y: img.height},
+            dimensions: { x: img.width, y: img.height },
             title: img.getAttribute("title") || null,
             alt: img.getAttribute("alt") || null,
             isReadable: isReadable
@@ -182,13 +184,13 @@ const extractorWorker = (function () { // eslint-disable-line no-unused-vars
       let value;
       if (elems.length > 1) {
         value = [];
-        for (let i=0; i<elems.length; i++) {
+        for (let i = 0; i < elems.length; i++) {
           let v = elems[i].getAttribute("content");
           if (v) {
             value.push(v);
           }
         }
-        if (! value.length) {
+        if (!value.length) {
           value = null;
         }
       } else if (elems.length === 1) {
@@ -220,10 +222,9 @@ const extractorWorker = (function () { // eslint-disable-line no-unused-vars
     return twitterCard;
   }
 
-  if (! isChrome) {
+  if (!isChrome) {
     self.port.emit("data", watchFunction(exports.extractData)());
   }
 
   return exports;
-
 })();

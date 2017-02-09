@@ -4,7 +4,7 @@ let loaded = false;
 let height = null;
 
 function sendToChild(message) {
-  if (! sendToChild.childReference) {
+  if (!sendToChild.childReference) {
     sendToChild.queue.push(message);
     return;
   }
@@ -19,10 +19,15 @@ function doResize() {
 
 window.onmessage = function(m) {
   if (m.origin !== CONTENT_HOSTING_ORIGIN) {
-    console.warn("Parent iframe received message from unexpected origin:", m.origin, "instead of", CONTENT_HOSTING_ORIGIN);
+    console.warn(
+      "Parent iframe received message from unexpected origin:",
+      m.origin,
+      "instead of",
+      CONTENT_HOSTING_ORIGIN
+    );
     return;
   }
-  if (! sendToChild.childReference) {
+  if (!sendToChild.childReference) {
     sendToChild.childReference = m.source;
     while (sendToChild.queue.length) {
       let msg = sendToChild.queue.shift();
@@ -31,7 +36,7 @@ window.onmessage = function(m) {
   }
   let message = m.data;
   let type = message.type;
-  if (! type) {
+  if (!type) {
     console.warn("Parent iframe received message with no type:", message);
     return;
   }
@@ -56,13 +61,17 @@ function scrollPageToMiddle(pos) {
   let toolbarHeight = document.getElementById("toolbar").clientHeight;
   let visibleHeight = window.innerHeight - toolbarHeight;
   let frameTop = frameOffset - toolbarHeight;
-  let scrollY = frameTop + (pos.top + pos.bottom) / 2 - (visibleHeight / 2);
+  let scrollY = frameTop + (pos.top + pos.bottom) / 2 - visibleHeight / 2;
   window.scroll(0, scrollY);
 }
 
-window.addEventListener("load", function () {
-  loaded = true;
-  if (height) {
-    doResize();
-  }
-}, false);
+window.addEventListener(
+  "load",
+  function() {
+    loaded = true;
+    if (height) {
+      doResize();
+    }
+  },
+  false
+);

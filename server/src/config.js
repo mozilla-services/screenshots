@@ -5,7 +5,7 @@ const path = require("path");
 
 // Populate `process.env` with overrides from environment-specific `.env`
 // files as a side effect. See `https://npmjs.org/envc` for more info.
-envc({booleans: true});
+envc({ booleans: true });
 
 var conf = convict({
   port: {
@@ -63,21 +63,21 @@ var conf = convict({
       format: String,
       default: "https://oauth-stable.dev.lcip.org/v1",
       env: "OAUTH_SERVER",
-      arg: "oauth-server",
+      arg: "oauth-server"
     },
     contentServer: {
       doc: "The FxA content server base URL",
       format: String,
       default: "https://stable.dev.lcip.org",
       env: "CONTENT_SERVER",
-      arg: "content-server",
+      arg: "content-server"
     },
     profileServer: {
       doc: "The FxA profile server base URL",
       format: String,
       default: "https://stable.dev.lcip.org/profile/v1",
       env: "PROFILE_SERVER",
-      arg: "profile-server",
+      arg: "profile-server"
     },
     clientId: {
       doc: "The OAuth client ID",
@@ -156,28 +156,36 @@ var conf = convict({
   checkDeletedInterval: {
     doc: "Frequency in seconds to check for items that should be purged",
     format: "int",
-    default: 60*60, // 1 hour
+    default: (
+      60 * 60
+    ), // 1 hour
     env: "CHECK_DELETED_INTERVAL",
     arg: "check-deleted-interval"
   },
   expiredRetentionTime: {
     doc: "Amount of time to keep an expired shot, in seconds",
     format: "int",
-    default: 60*60*24*14, // 14 days
+    default: (
+      60 * 60 * 24 * 14
+    ), // 14 days
     env: "EXPIRED_RETENTION_TIME",
     arg: "expired-retention-time"
   },
   defaultExpiration: {
     doc: "Default expiration time, in seconds",
     format: "int",
-    default: 60*60*24*14, // 14 days
+    default: (
+      60 * 60 * 24 * 14
+    ), // 14 days
     env: "DEFAULT_EXPIRATION",
     arg: "default-expiration"
   },
   refreshMetricsTime: {
     doc: "Interval when the stats in /metrics are recalculated, in seconds (0 to disable)",
     format: "int",
-    default: 60*60, // 1 hour
+    default: (
+      60 * 60
+    ), // 1 hour
     env: "REFRESH_METRICS_TIME",
     arg: "refresh-metrics-time"
   },

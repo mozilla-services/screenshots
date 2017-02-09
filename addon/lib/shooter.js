@@ -7,12 +7,12 @@
 const self = require("sdk/self");
 const tabs = require("sdk/tabs");
 const { getFavicon } = require("sdk/places/favicon");
-const { prefs } = require('sdk/simple-prefs');
+const { prefs } = require("sdk/simple-prefs");
 const { captureTab } = require("./screenshot");
 const { request, sendEvent, sendTiming, retryPromise } = require("./req");
 const { callScript } = require("./framescripter");
-const { defer } = require('sdk/core/promise');
-const { Class } = require('sdk/core/heritage');
+const { defer } = require("sdk/core/promise");
+const { Class } = require("sdk/core/heritage");
 const { watchPromise, watchFunction, watchWorker } = require("./errors");
 const clipboard = require("sdk/clipboard");
 const { AbstractShot } = require("./shared/shot");
@@ -53,20 +53,21 @@ function extractWorker(tab, options) {
     let timeoutId;
     let timedOut = false;
     if (timeLimit) {
-      timeoutId = setTimeout(function () {
-        timedOut = true;
-        reject(new Error("Extractor timed out"));
-      }, timeLimit);
+      timeoutId = setTimeout(
+        function() {
+          timedOut = true;
+          reject(new Error("Extractor timed out"));
+        },
+        timeLimit
+      );
     }
-    let contentScriptFile = [
-      self.data.url("error-utils.js"),
-      self.data.url("extractor-worker.js")];
+    let contentScriptFile = [self.data.url("error-utils.js"), self.data.url("extractor-worker.js")];
     if (useReadability) {
       contentScriptFile.unshift(self.data.url("vendor/readability/Readability.js"));
     }
-    const worker = tab.attach({contentScriptFile});
+    const worker = tab.attach({ contentScriptFile });
     watchWorker(worker);
-    worker.port.on("data", function (data) {
+    worker.port.on("data", function(data) {
       worker.destroy();
       if (timedOut) {
         console.error("extractWorker resolved after timeout");
@@ -75,7 +76,7 @@ function extractWorker(tab, options) {
       clearTimeout(timeoutId);
       resolve(data);
     });
-    worker.port.on("alertError", function (error) {
+    worker.port.on("alertError", function(error) {
       worker.destroy();
       if (timedOut) {
         console.error("extractWorker errored out after timeout", error);
@@ -90,23 +91,20 @@ function extractWorker(tab, options) {
 /** Represents one shot action */
 const ShotContext = Class({
   _idGen: 0,
-  initialize: function (backend, onDestroyed, annotateForPage) {
+  initialize: function(backend, onDestroyed, annotateForPage) {
     this.annotateForPage = annotateForPage === undefined ? annotateForPage : defaultAnnotateForPage;
     this.id = ++ShotContext._idGen;
     this.tab = tabs.activeTab;
     this.tabUrl = fixUrl(this.tab.url);
     let deviceIdInfo = getDeviceIdInfo();
-    if (! deviceIdInfo) {
+    if (!deviceIdInfo) {
       throw new Error("Could not get device authentication information");
     }
     this.onDestroyed = onDestroyed;
-    this.shot = new Shot(
-      backend,
-      randomString(RANDOM_STRING_LENGTH) + "/" + urlDomainForId(this.tabUrl),
-      {
-        url: this.tabUrl,
-        deviceId: deviceIdInfo.deviceId
-      });
+    this.shot = new Shot(backend, randomString(RANDOM_STRING_LENGTH) + "/" + urlDomainForId(this.tabUrl), {
+      url: this.tabUrl,
+      deviceId: deviceIdInfo.deviceId
+    });
     let shotAbTests = {};
     let userAbTests = getAbTests();
     for (let testName in userAbTests) {
@@ -119,13 +117,13 @@ const ShotContext = Class({
     }
     this._deregisters = [];
     this._workerActive = false;
-    this.watchTab("pageshow", function (tab) {
+    this.watchTab("pageshow", function(tab) {
       // We'll call any pageshow as a sign that at least we reloaded, and should
       // stop the pageshot
       sendEvent("cancel-shot", "tab-load");
       this.destroy();
     });
-    this.watchTab("close", function () {
+    this.watchTab("close", function() {
       sendEvent("cancel-shot", "tab-close");
       this.destroy();
     });
@@ -135,8 +133,7 @@ const ShotContext = Class({
     this.collectInformation();
     this._activateWorker();
   },
-
-  takeShot: function () {
+  takeShot: function() {
     this.shot.createdDate = Date.now();
     let finishTimer = startTimer({
       variable: "take-shot"
@@ -150,7 +147,7 @@ const ShotContext = Class({
     this._takeShotTabIsOpening = true;
     tabs.open({
       url: this.shot.creatingUrl,
-      onOpen: (tab) => {
+      onOpen: tab => {
         loadingTab = tab;
         // In the unlikely case that the request finishes before the tab opens:
         if (doneSuperFast) {
@@ -158,20 +155,24 @@ const ShotContext = Class({
         }
       }
     });
-    watchPromise(this.uploadShot().then(() => {
-      doneSuperFast = true;
-      if (loadingTab) {
-        loadingTab.url = this.shot.viewUrl;
-      }
-      finishTimer();
-      this.destroy();
-    }).catch((error) => {
-      this.destroy();
-      finishTimer();
-      throw error;
-    }));
+    watchPromise(
+      this
+        .uploadShot()
+        .then(() => {
+          doneSuperFast = true;
+          if (loadingTab) {
+            loadingTab.url = this.shot.viewUrl;
+          }
+          finishTimer();
+          this.destroy();
+        })
+        .catch(error => {
+          this.destroy();
+          finishTimer();
+          throw error;
+        })
+    );
   },
-
   uploadShot: function() {
     return this._collectionCompletePromise.then(() => {
       if (this.shot.clipNames().length) {
@@ -183,8 +184,7 @@ const ShotContext = Class({
       return this.shot.save();
     });
   },
-
-  copyRichDataToClipboard: function (activeClipName) {
+  copyRichDataToClipboard: function(activeClipName) {
     // Use "text" instead of "html" so that pasting into a text area or text editor
     // pastes the html instead of the plain text stripped out of the html.
     let clip = this.shot.getClip(activeClipName);
@@ -192,7 +192,7 @@ const ShotContext = Class({
       let names = this.shot.clipNames();
       clip = this.shot.getClip(names[0]);
     }
-    if (! clip) {
+    if (!clip) {
       clipboard.set(this.shot.viewUrl, "text");
       notifications.notify({
         title: "Link Copied",
@@ -204,9 +204,8 @@ const ShotContext = Class({
     let url = this.shot.viewUrl;
     let img = clip.image.url;
     let title = this.shot.title;
-    let origin = (new URL(this.shot.url).hostname) || "none";
-    let html = (
-`<div>
+    let origin = new URL(this.shot.url).hostname || "none";
+    let html = `<div>
   <a href="${escapeForHTML(url)}">
     <div>${escapeForHTML(title)}</div>
     <img src="${escapeForHTML(img)}" />
@@ -214,7 +213,7 @@ const ShotContext = Class({
   <div>
     source: <a href="http://${escapeForHTML(origin)}">${escapeForHTML(origin)}</a>
   </div>
-</div>`);
+</div>`;
     require("./multiclip").copyMultiple({
       html,
       text: `${title} -- ${url}`
@@ -225,8 +224,7 @@ const ShotContext = Class({
       iconURL: self.data.url("../data/copy.png")
     });
   },
-
-  copyUrlToClipboard: function () {
+  copyUrlToClipboard: function() {
     clipboard.set(this.shot.viewUrl, "text");
     notifications.notify({
       title: "Link Copied",
@@ -234,110 +232,158 @@ const ShotContext = Class({
       iconURL: self.data.url("copy.png")
     });
   },
-
-  triggerDownload: function () {
+  triggerDownload: function() {
     let clip = this.shot.getClip(this.shot.clipNames()[0]);
     this.interactiveWorker.port.emit("triggerDownload", clip.image.url, this.shot.filename);
   },
-
   /** Activate the worker that handles selection */
-  _activateWorker: function () {
-    this.interactiveWorker = watchWorker(this.tab.attach({
-      contentScriptFile: [
-        self.data.url("error-utils.js"),
-        self.data.url("annotate-position.js"),
-        self.data.url("selector-util.js"),
-        self.data.url("selector-ui.js"),
-        self.data.url("selector-snapping.js"),
-        self.data.url("shooter-interactive-worker.js")],
-      contentScriptOptions: {
-        "inline-selection.css": self.data.url("inline-selection.css"),
-        showMyShotsReminder: ! prefs.hasUsedMyShots,
-        annotateForPage: this.annotateForPage,
-        styleMyShotsButton: getAbTests().styleMyShotsButton
-      }
-    }));
+  _activateWorker: function() {
+    this.interactiveWorker = watchWorker(
+      this.tab.attach({
+        contentScriptFile: [
+          self.data.url("error-utils.js"),
+          self.data.url("annotate-position.js"),
+          self.data.url("selector-util.js"),
+          self.data.url("selector-ui.js"),
+          self.data.url("selector-snapping.js"),
+          self.data.url("shooter-interactive-worker.js")
+        ],
+        contentScriptOptions: {
+          "inline-selection.css": self.data.url("inline-selection.css"),
+          showMyShotsReminder: !prefs.hasUsedMyShots,
+          annotateForPage: this.annotateForPage,
+          styleMyShotsButton: getAbTests().styleMyShotsButton
+        }
+      })
+    );
     this.interactiveWorker.on("detach", () => {
       // Happens if the worker is detached for some reason, such as moving windows
-      if (! this._destroying) {
+      if (!this._destroying) {
         // Typically caused by a reload
         sendEvent("cancel-shot", "tab-reload");
       }
       this.destroy();
     });
-    this.interactiveWorker.port.on("select", watchFunction(function (pos, shotText, captureType) {
-      // FIXME: there shouldn't be this disconnect between arguments to captureTab
-      var info = {
-        x: pos.left,
-        y: pos.top,
-        h: pos.bottom - pos.top,
-        w: pos.right - pos.left
-      };
-      watchPromise(captureTab(this.tab, info).then((function (imgUrl) {
-        let clip = null;
-        if (this.activeClipName) {
-          clip = this.shot.getClip(this.activeClipName);
-        }
-        let data = {
-          createdDate: Date.now(),
-          image: {
-            url: imgUrl,
-            captureType: captureType,
-            text: shotText,
-            location: pos,
-            dimensions: {x: pos.right - pos.left, y: pos.bottom - pos.top}
-          }
-        };
-        if (clip) {
-          clip.image = data.image;
-        } else {
-          this.activeClipName = this.shot.addClip(data);
-        }
-        this.updateShot();
-        if (captureType == "visible" || captureType == "fullPage") {
+    this.interactiveWorker.port.on(
+      "select",
+      watchFunction(
+        function(pos, shotText, captureType) {
+          // FIXME: there shouldn't be this disconnect between arguments to captureTab
+          var info = {
+            x: pos.left,
+            y: pos.top,
+            h: pos.bottom - pos.top,
+            w: pos.right - pos.left
+          };
+          watchPromise(
+            captureTab(this.tab, info).then(
+              (function(imgUrl) {
+                let clip = null;
+                if (this.activeClipName) {
+                  clip = this.shot.getClip(this.activeClipName);
+                }
+                let data = {
+                  createdDate: Date.now(),
+                  image: {
+                    url: imgUrl,
+                    captureType: captureType,
+                    text: shotText,
+                    location: pos,
+                    dimensions: { x: pos.right - pos.left, y: pos.bottom - pos.top }
+                  }
+                };
+                if (clip) {
+                  clip.image = data.image;
+                } else {
+                  this.activeClipName = this.shot.addClip(data);
+                }
+                this.updateShot();
+                if (captureType == "visible" || captureType == "fullPage") {
+                  this.takeShot();
+                }
+              }).bind(this)
+            )
+          );
+        },
+        this
+      )
+    );
+    this.interactiveWorker.port.on(
+      "popstate",
+      watchFunction(
+        function(newUrl) {
+          // Treat window.history popstate as a reload, and stop the shot
+          this.destroy();
+        },
+        this
+      )
+    );
+    this.interactiveWorker.port.on(
+      "deactivate",
+      watchFunction(
+        function(newUrl) {
+          this.destroy();
+        },
+        this
+      )
+    );
+    this.interactiveWorker.port.on(
+      "openMyShots",
+      watchFunction(
+        function() {
+          this.openMyShots();
+        },
+        this
+      )
+    );
+    this.interactiveWorker.port.on(
+      "take-shot",
+      watchFunction(
+        function() {
           this.takeShot();
-        }
-      }).bind(this)));
-    }, this));
-    this.interactiveWorker.port.on("popstate", watchFunction(function (newUrl) {
-      // Treat window.history popstate as a reload, and stop the shot
-      this.destroy();
-    }, this));
-    this.interactiveWorker.port.on("deactivate", watchFunction(function (newUrl) {
-      this.destroy();
-    }, this));
-    this.interactiveWorker.port.on("openMyShots", watchFunction(function () {
-      this.openMyShots();
-    }, this));
-    this.interactiveWorker.port.on("take-shot", watchFunction(function () {
-      this.takeShot();
-    }, this));
-    this.interactiveWorker.port.on("requestDownload", watchFunction(() => {
-      this.triggerDownload();
-    }));
+        },
+        this
+      )
+    );
+    this.interactiveWorker.port.on(
+      "requestDownload",
+      watchFunction(() => {
+        this.triggerDownload();
+      })
+    );
 
     this._pendingScreenPositions = [];
-    this.interactiveWorker.port.on("screenPosition", watchFunction(function (pos) {
-      for (let deferred of this._pendingScreenPositions) {
-        deferred.resolve(pos);
-      }
-      this._pendingScreenPositions = [];
-    }, this));
-    this.interactiveWorker.port.on("sendEvent", watchFunction(function () {
-      sendEvent.apply(null, arguments);
-    }, this));
+    this.interactiveWorker.port.on(
+      "screenPosition",
+      watchFunction(
+        function(pos) {
+          for (let deferred of this._pendingScreenPositions) {
+            deferred.resolve(pos);
+          }
+          this._pendingScreenPositions = [];
+        },
+        this
+      )
+    );
+    this.interactiveWorker.port.on(
+      "sendEvent",
+      watchFunction(
+        function() {
+          sendEvent.apply(null, arguments);
+        },
+        this
+      )
+    );
     this._workerActive = true;
   },
-
   openInNewTab: function() {
     tabs.open(this.shot.viewUrl);
     sendEvent(`new-tab-after-save`);
   },
-
   /** Collects/extracts information from the tab: the screenshot, readable view,
       the HTML, and other misc stuff.  Immediately updates the
       shot as that information comes in */
-  collectInformation: function () {
+  collectInformation: function() {
     let timings = [];
     let finishCollectInformation = startTimer({
       timings,
@@ -349,160 +395,168 @@ const ShotContext = Class({
       let scheme = this.tab.url.replace(/:.*/, "");
       sendEvent("start-shot-non-http", scheme);
     }
-    watchPromise(timeFunction({
-      func: callScript,
-      args: [
-        this.tab,
-        self.data.url("framescripts/add-ids.js"),
-        "pageshot@addIds",
-        {annotateForPage: this.annotateForPage}
-      ],
-      timings,
-      variable: "add-ids"
-    }).then((result) => {
-      if (result.isXul) {
-        // Abandon hope all ye who enter!
-        sendEvent("abort-start-shot", "xul-page");
-        this.destroy();
-        let error = new Error("Sorry, this special page cannot be captured");
-        error.popupMessage = "UNSHOOTABLE_PAGE";
-        throw error;
-      }
-      if (result.isFrame) {
-        sendEvent("abort-start-shot", "frame-page");
-        this.destroy();
-        let error = new Error("Sorry, this page that uses frames cannot be captured");
-        error.popupMessage = "UNSHOOTABLE_PAGE";
-        throw error;
-      }
-      var prefInlineCss = require("sdk/simple-prefs").prefs.inlineCss;
-      var useReadability = require("sdk/simple-prefs").prefs.useReadability;
-      var promises = [];
-      promises.push(watchPromise(timeFunction({
-        func: extractWorker,
-        args: [this.tab, {useReadability}],
+    watchPromise(
+      timeFunction({
+        func: callScript,
+        args: [
+          this.tab,
+          self.data.url("framescripts/add-ids.js"),
+          "pageshot@addIds",
+          { annotateForPage: this.annotateForPage }
+        ],
         timings,
-        variable: "extract-data"
-      }).then((attrs) => {
-        let passwordFields = attrs.passwordFields;
-        delete attrs.passwordFields;
-        if (! this.annotateForPage) {
-          delete attrs.images;
+        variable: "add-ids"
+      }).then(result => {
+        if (result.isXul) {
+          // Abandon hope all ye who enter!
+          sendEvent("abort-start-shot", "xul-page");
+          this.destroy();
+          let error = new Error("Sorry, this special page cannot be captured");
+          error.popupMessage = "UNSHOOTABLE_PAGE";
+          throw error;
         }
-        this.checkIfPublic({passwordFields});
-        this.shot.update(attrs);
-      })));
-      // FIXME We may want to parameterize this function so full screen thumbnails can be turned on
-      /*
+        if (result.isFrame) {
+          sendEvent("abort-start-shot", "frame-page");
+          this.destroy();
+          let error = new Error("Sorry, this page that uses frames cannot be captured");
+          error.popupMessage = "UNSHOOTABLE_PAGE";
+          throw error;
+        }
+        var prefInlineCss = require("sdk/simple-prefs").prefs.inlineCss;
+        var useReadability = require("sdk/simple-prefs").prefs.useReadability;
+        var promises = [];
+        promises.push(
+          watchPromise(
+            timeFunction({
+              func: extractWorker,
+              args: [this.tab, { useReadability }],
+              timings,
+              variable: "extract-data"
+            }).then(attrs => {
+              let passwordFields = attrs.passwordFields;
+              delete attrs.passwordFields;
+              if (!this.annotateForPage) {
+                delete attrs.images;
+              }
+              this.checkIfPublic({ passwordFields });
+              this.shot.update(attrs);
+            })
+          )
+        );
+        // FIXME We may want to parameterize this function so full screen thumbnails can be turned on
+        /*
       promises.push(watchPromise(this.makeFullScreenThumbnail().then((screenshot) => {
         this.shot.update({
           fullScreenThumbnail: screenshot
         });
       })));
       */
-      promises.push(watchPromise(timeFunction({
-        func: callScript,
-        args: [
-          this.tab,
-          self.data.url("framescripts/make-static-html.js"),
-          "pageshot@documentStaticData",
-          {prefInlineCss, annotateForPage: this.annotateForPage},
-          15000
-        ],
-        timings,
-        variable: "make-static-html"
-      }).then((attrs) => {
-        this.shot.update(attrs);
-      })));
-      promises.push(watchPromise(getFavicon(this.tab).then(
-        (url) => {
-          if (url.search(/^https?:\/\//i) !== -1) {
-            // Some pages like about:home have non-http favicons, we ignore them
-            this.shot.update({
-              favicon: url
-            });
-          }
-        },
-        (error) => {
-          // if there is no favicon, this is just null, which isn't an error
-          if (! error) {
-            return;
-          }
-          throw error;
-        }
-      )));
-      watchPromise(allPromisesComplete(promises).then(() => {
-        this._collectionCompleteDone();
-        finishCollectInformation();
-        sendTiming(timings);
-      }));
-    }));
+        promises.push(
+          watchPromise(
+            timeFunction({
+              func: callScript,
+              args: [
+                this.tab,
+                self.data.url("framescripts/make-static-html.js"),
+                "pageshot@documentStaticData",
+                { prefInlineCss, annotateForPage: this.annotateForPage },
+                15000
+              ],
+              timings,
+              variable: "make-static-html"
+            }).then(attrs => {
+              this.shot.update(attrs);
+            })
+          )
+        );
+        promises.push(
+          watchPromise(
+            getFavicon(this.tab).then(
+              url => {
+                if (url.search(/^https?:\/\//i) !== -1) {
+                  // Some pages like about:home have non-http favicons, we ignore them
+                  this.shot.update({
+                    favicon: url
+                  });
+                }
+              },
+              error => {
+                // if there is no favicon, this is just null, which isn't an error
+                if (!error) {
+                  return;
+                }
+                throw error;
+              }
+            )
+          )
+        );
+        watchPromise(
+          allPromisesComplete(promises).then(() => {
+            this._collectionCompleteDone();
+            finishCollectInformation();
+            sendTiming(timings);
+          })
+        );
+      })
+    );
   },
-
   /** Called anytime the shot is updated; currently this has no side-effects so it does nothing */
-  updateShot: function () {
+  updateShot: function() {
     // Do nothing
   },
-
-  openMyShots: function () {
+  openMyShots: function() {
     let main = require("./main");
     main.openMyShots();
   },
-
   /** Watches for the given event on this context's tab.  The callback will be
       bound to `this` */
-  watchTab: function (eventName, callback) {
+  watchTab: function(eventName, callback) {
     callback = watchFunction(callback.bind(this));
     this.tab.on(eventName, callback);
-    this._deregisters.push(['tab', eventName, callback]);
+    this._deregisters.push(["tab", eventName, callback]);
   },
-
-  makeScreenshot: function () {
-    return captureTab(this.tab, null).then((imgUrl) => {
-      return this.getScreenPosition().then(function (pos) {
+  makeScreenshot: function() {
+    return captureTab(this.tab, null).then(imgUrl => {
+      return this.getScreenPosition().then(function(pos) {
         return {
           createdDate: Date.now(),
           image: {
             url: imgUrl,
             captureType: "visible",
             location: pos,
-            dimensions: {x: pos.right - pos.left, y: pos.bottom - pos.top}
+            dimensions: { x: pos.right - pos.left, y: pos.bottom - pos.top }
           }
         };
       });
     });
   },
-
-  makeFullScreenThumbnail: function () {
-    return captureTab(this.tab, {x: 0, y: 0, h: "full", w: "full"}, {h: null, w: 260});
+  makeFullScreenThumbnail: function() {
+    return captureTab(this.tab, { x: 0, y: 0, h: "full", w: "full" }, { h: null, w: 260 });
   },
-
-  getScreenPosition: function () {
+  getScreenPosition: function() {
     let deferred = defer();
     this._pendingScreenPositions.push(deferred);
     this.interactiveWorker.port.emit("getScreenPosition");
     return deferred.promise;
   },
-
-  checkIfPublic: function (info) {
+  checkIfPublic: function(info) {
     watchPromise(
-      require("./is-public").checkIfPublic(this.tabUrl, info)
-      .then((isPublic) => {
+      require("./is-public").checkIfPublic(this.tabUrl, info).then(isPublic => {
         this.shot.isPublic = isPublic;
         this.updateShot();
-      }));
+      })
+    );
   },
-
   /** Renders this object unusable, and unregisters any handlers */
-  destroy: function () {
+  destroy: function() {
     this._destroying = true;
-    if (! this._destroyingTimer) {
+    if (!this._destroyingTimer) {
       this._destroyingTimer = startTimer({
         variable: "destroy"
       });
     }
     if (this._deregisters) {
-      for (let i=0; i<this._deregisters.length; i++) {
+      for (let i = 0; i < this._deregisters.length; i++) {
         let item = this._deregisters[i];
         this[item[0]].removeListener(item[1], item[2]);
       }
@@ -517,7 +571,7 @@ const ShotContext = Class({
         this.interactiveWorker.destroy();
         this.interactiveWorker = null;
       }
-      if (! this._destroyingTimer.done) {
+      if (!this._destroyingTimer.done) {
         this._destroyingTimer();
       }
     };
@@ -560,34 +614,38 @@ class Shot extends AbstractShot {
   create() {
     let attrs = this.asJson();
     let times = 0;
-    return retryPromise(() => {
-      if (times) {
-        sendEvent("upload-retry", `times-${times}`);
-      }
-      times++;
-      return timeFunction({
-        func: this._sendJson,
-        _this: this,
-        args: [attrs, "put"],
-        variable: "upload-shot"
-      });
-    }, 3, 1000);
+    return retryPromise(
+      () => {
+        if (times) {
+          sendEvent("upload-retry", `times-${times}`);
+        }
+        times++;
+        return timeFunction({
+          func: this._sendJson,
+          _this: this,
+          args: [attrs, "put"],
+          variable: "upload-shot"
+        });
+      },
+      3,
+      1000
+    );
   }
 
   _sendJson(attrs, method) {
-    if (! Object.keys(attrs).length) {
+    if (!Object.keys(attrs).length) {
       return Promise.resolve(false);
     }
     let url = this.jsonUrl;
     let body = JSON.stringify(attrs);
     let kb = Math.floor(body.length / 1000);
-    sendEvent("upload", "started", {eventValue: kb});
+    sendEvent("upload", "started", { eventValue: kb });
     console.info(`Uploading JSON blob size ${kb}kb`);
     return request(url, {
       content: body,
       contentType: "application/json",
-      method: method,
-    }).then((response) => {
+      method: method
+    }).then(response => {
       if (response.status >= 200 && response.status < 300) {
         for (let update of response.json.updates) {
           if (update.updateClipUrl && update.updateClipUrl.clipId && update.updateClipUrl.url) {
@@ -628,7 +686,6 @@ class Shot extends AbstractShot {
       }
     });
   }
-
 }
 
 Shot.prototype.atob = require("sdk/base64").decode;
@@ -638,12 +695,9 @@ Shot.prototype.btoa = require("sdk/base64").encode;
     (regardless of success or failure of each promise!) */
 function allPromisesComplete(promises) {
   function swallowPromise(promise, index) {
-    return promise.then(
-      () => {},
-      (error) => {
-        console.error("Non-fatal error in promise " + index + ": " + error);
-      }
-    );
+    return promise.then(() => {}, error => {
+      console.error("Non-fatal error in promise " + index + ": " + error);
+    });
   }
   return Promise.all(promises.map(swallowPromise));
 }
@@ -660,7 +714,7 @@ function urlDomainForId(urlString) {
     }
   } else {
     domain = urlString.split(":")[0];
-    if (! domain) {
+    if (!domain) {
       domain = "unknown";
     }
   }
@@ -668,7 +722,7 @@ function urlDomainForId(urlString) {
     // Probably a unicode domain; we could use punycode but it wouldn't decode
     // well in the URL anyway.  Instead we'll punt.
     domain = domain.replace(/[^a-z0-9.\-]/ig, "");
-    if (! domain) {
+    if (!domain) {
       domain = "site";
     }
   }
@@ -679,71 +733,93 @@ function urlDomainForId(urlString) {
     creates a shot instance, and pushes the data to the backend server without
     asking anything via UI
  */
-exports.autoShot = function (options) {
+exports.autoShot = function(options) {
   let { tab, backend, backendUrl, save } = options;
   let prefs = require("sdk/simple-prefs").prefs;
   let inlineCss = options.inlineCss === undefined ? prefs.inlineCss : options.inlineCss;
   let useReadability = options.useReadability === undefined ? prefs.useReadability : options.useReadability;
-  let allowUnknownAttributes = !! options.allowUnknownAttributes;
+  let allowUnknownAttributes = !!options.allowUnknownAttributes;
   let thumbnailWidth = options.thumbnailWidth !== undefined ? options.thumbnailWidth : 140;
-  let debugInlineCss = !! options.debugInlineCss;
-  return watchPromise(callScript(
-    tab,
-    self.data.url("framescripts/add-ids.js"),
-    "pageshot@addIds",
-    {annotateForPage: true}
-  ).then((result) => {
-    if (result.isXul) {
-      // Abandon hope all ye who enter!
-      // FIXME: maybe pop up an explanation here?
-      console.log('Abandon hope all ye who enter!');
-      return;
-    }
-    let deviceIdInfo = getDeviceIdInfo();
-    if (! deviceIdInfo) {
-      throw new Error("Could not get device authentication information");
-    }
-
-    var shot = new Shot(backend, backendUrl, {
-      url: tab.url,
-      deviceId: deviceIdInfo.deviceId,
-      showPage: true
-    });
-
-    // Heavy lifting happens here
-    var promises = [];
-    promises.push(watchPromise(extractWorker(tab, {useReadability, annotateForPage: true})).then(watchFunction(function (attrs) {
-      delete attrs.passwordFields;
-      shot.update(attrs);
-    }, this)));
-    if (thumbnailWidth) {
-      promises.push(watchPromise(
-        captureTab(tab, {x: 0, y: 0, h: "full", w: "full"}, {h: null, w: thumbnailWidth}).then((screenshot) => {
-          shot.update({
-            fullScreenThumbnail: screenshot
-          });
-        })
-      ));
-    }
-    promises.push(watchPromise(callScript(
-      tab,
-      self.data.url("framescripts/make-static-html.js"),
-      "pageshot@documentStaticData",
-      {prefInlineCss: inlineCss, debugInlineCss, allowUnknownAttributes, annotateForPage: true})).then(watchFunction(function (attrs) {
-        shot.update(attrs);
-      }, this)));
-
-    return watchPromise(allPromisesComplete(promises).then((function () {
-      tab.close();
-      if (save) {
-        return shot.save().then(() => {
-          return shot;
-        });
-      } else {
-        return shot;
+  let debugInlineCss = !!options.debugInlineCss;
+  return watchPromise(
+    callScript(tab, self.data.url("framescripts/add-ids.js"), "pageshot@addIds", {
+      annotateForPage: true
+    }).then(result => {
+      if (result.isXul) {
+        // Abandon hope all ye who enter!
+        // FIXME: maybe pop up an explanation here?
+        console.log("Abandon hope all ye who enter!");
+        return;
       }
-    }).bind(this)));
-  }));
+      let deviceIdInfo = getDeviceIdInfo();
+      if (!deviceIdInfo) {
+        throw new Error("Could not get device authentication information");
+      }
+
+      var shot = new Shot(backend, backendUrl, {
+        url: tab.url,
+        deviceId: deviceIdInfo.deviceId,
+        showPage: true
+      });
+
+      // Heavy lifting happens here
+      var promises = [];
+      promises.push(
+        watchPromise(extractWorker(tab, { useReadability, annotateForPage: true })).then(
+          watchFunction(
+            function(attrs) {
+              delete attrs.passwordFields;
+              shot.update(attrs);
+            },
+            this
+          )
+        )
+      );
+      if (thumbnailWidth) {
+        promises.push(
+          watchPromise(
+            captureTab(tab, { x: 0, y: 0, h: "full", w: "full" }, { h: null, w: thumbnailWidth }).then(screenshot => {
+              shot.update({
+                fullScreenThumbnail: screenshot
+              });
+            })
+          )
+        );
+      }
+      promises.push(
+        watchPromise(
+          callScript(tab, self.data.url("framescripts/make-static-html.js"), "pageshot@documentStaticData", {
+            prefInlineCss: inlineCss,
+            debugInlineCss,
+            allowUnknownAttributes,
+            annotateForPage: true
+          })
+        ).then(
+          watchFunction(
+            function(attrs) {
+              shot.update(attrs);
+            },
+            this
+          )
+        )
+      );
+
+      return watchPromise(
+        allPromisesComplete(promises).then(
+          (function() {
+            tab.close();
+            if (save) {
+              return shot.save().then(() => {
+                return shot;
+              });
+            } else {
+              return shot;
+            }
+          }).bind(this)
+        )
+      );
+    })
+  );
 };
 exports.urlDomainForId = urlDomainForId;
 exports.RANDOM_STRING_LENGTH = RANDOM_STRING_LENGTH;

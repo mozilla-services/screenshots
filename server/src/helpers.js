@@ -1,5 +1,4 @@
-let crypto = require('crypto'),
-  wreck = require('wreck');
+let crypto = require("crypto"), wreck = require("wreck");
 
 exports.request = function request(method, uri, options) {
   return new Promise((resolve, reject) => {

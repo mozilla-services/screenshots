@@ -5,7 +5,7 @@ let app = express();
 
 exports.app = app;
 
-app.get("/", function (req, res) {
+app.get("/", function(req, res) {
   const page = require("./page").page;
   const base = req.baseUrl;
   // just dump query strings or any other weirdness back to the shots page

@@ -3,11 +3,11 @@ const { setTimeout } = require("sdk/timers");
 const STORAGE_LIMIT = 100;
 const TIME_LIMIT = 1000 * 60 * 60 * 24 * 30; // 30 days
 
-exports.hasShot = function (id) {
-  return !! ss.storage["page-" + id];
+exports.hasShot = function(id) {
+  return !!ss.storage["page-" + id];
 };
 
-exports.saveShot = function (shot) {
+exports.saveShot = function(shot) {
   setTimeout(cleanupShots, 0);
   let data = exports.getShot(shot.id) || {};
   let newData = {
@@ -23,7 +23,7 @@ exports.saveShot = function (shot) {
   ss.storage["page-" + shot.id] = newData;
 };
 
-exports.clearSaved = function (shot) {
+exports.clearSaved = function(shot) {
   shot.body = null;
   shot.head = null;
   shot.bodyAttrs = null;
@@ -34,11 +34,11 @@ exports.clearSaved = function (shot) {
   shot.resources = {};
 };
 
-exports.getShot = function (id) {
+exports.getShot = function(id) {
   return ss.storage["page-" + id];
 };
 
-exports.removeSaved = function (id) {
+exports.removeSaved = function(id) {
   delete ss.storage["page-" + id];
 };
 
@@ -47,14 +47,14 @@ function cleanupShots() {
   let now = Date.now();
   let toDelete = [];
   for (let key in ss.storage) {
-    if (! key.startsWith("page-")) {
+    if (!key.startsWith("page-")) {
       continue;
     }
     let created = ss.storage[key].created || 0;
-    if (! created || created + TIME_LIMIT < now) {
+    if (!created || created + TIME_LIMIT < now) {
       toDelete.push(key);
     } else {
-      keyDates.push({key, created});
+      keyDates.push({ key, created });
     }
   }
   for (let key of toDelete) {
@@ -63,18 +63,18 @@ function cleanupShots() {
   }
   console.log("checking items", keyDates.length, STORAGE_LIMIT);
   if (keyDates.length > STORAGE_LIMIT) {
-    keyDates.sort(function (a, b) {
+    keyDates.sort(function(a, b) {
       return a.created < b.created ? -1 : 1;
     });
     while (keyDates.length > STORAGE_LIMIT) {
-      let {key} = keyDates.shift();
+      let { key } = keyDates.shift();
       console.log("delete by limit", key);
       delete ss.storage[key];
     }
   }
 }
 
-exports.deleteEverything = function () {
+exports.deleteEverything = function() {
   for (let key of Object.keys(ss.storage)) {
     if (key.startsWith("page-")) {
       delete ss.storage[key];

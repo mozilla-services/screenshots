@@ -2,7 +2,7 @@ const { Request } = require("sdk/request");
 const user = require("./user");
 const self = require("sdk/self");
 
-exports.request = function (url, options) {
+exports.request = function(url, options) {
   options = options || {};
   options.method = options.method || "get";
   options.method = options.method.toLowerCase();
@@ -13,7 +13,7 @@ exports.request = function (url, options) {
 };
 
 function requestMaybeInit(url, options) {
-  if ((! options.ignoreLogin) && (! user.isInitialized())) {
+  if (!options.ignoreLogin && !user.isInitialized()) {
     return user.initialize().then(() => {
       return simpleRequest(url, options);
     });
@@ -27,7 +27,7 @@ function simpleRequest(url, options) {
       url: url,
       content: options.content,
       contentType: options.contentType,
-      onComplete: function (response) {
+      onComplete: function(response) {
         if (options.expectedStatus && options.expectedStatus.indexOf(response.status) === -1) {
           reject(response);
         } else {
@@ -44,12 +44,12 @@ function simpleRequest(url, options) {
 const eventOptions = {
   eventValue: true,
   // Note each custom dimension must be configured in Google Analytics before use:
-  cd1: true,  // Image height
-  cd2: true,  // Image width
-  ni: true    // Non-interactive
+  cd1: true, // Image height
+  cd2: true, // Image width
+  ni: true // Non-interactive
 };
 
-exports.sendEvent = function (action, label, options) {
+exports.sendEvent = function(action, label, options) {
   let event = "addon";
   if (typeof label == "object") {
     if (options) {
@@ -61,7 +61,7 @@ exports.sendEvent = function (action, label, options) {
   let main = require("./main");
   if (options) {
     for (let key in options) {
-      if (! eventOptions[key]) {
+      if (!eventOptions[key]) {
         throw new Error("Unexpected attribute to sendEvent(options): " + key);
       }
     }
@@ -74,25 +74,25 @@ exports.sendEvent = function (action, label, options) {
     options[abTests[testName].gaField] = abTests[testName].value;
   }
   let showOptions = Object.keys(options).length > 2;
-  console.info(`sendEvent ${event}/${action}/${label || 'none'} ${showOptions ? JSON.stringify(options) : ""}`);
+  console.info(`sendEvent ${event}/${action}/${label || "none"} ${showOptions ? JSON.stringify(options) : ""}`);
   exports.request(`${main.getBackend()}/event`, {
     method: "POST",
-    content: JSON.stringify({event, action, label, options}),
+    content: JSON.stringify({ event, action, label, options }),
     contentType: "application/json",
     ignoreLogin: true
   });
 };
 
 exports.sendTiming = function(timings) {
-  if (! Array.isArray(timings)) {
+  if (!Array.isArray(timings)) {
     timings = [timings];
   }
   for (let timing of timings) {
-    if (! timing.category) {
+    if (!timing.category) {
       timing.category = "addon";
     }
     for (let prop in timing) {
-      if (['category', 'variable', 'time', 'label'].indexOf(prop) === -1) {
+      if (["category", "variable", "time", "label"].indexOf(prop) === -1) {
         throw new Error(`Unexpected timing property: ${prop}`);
       }
     }
@@ -103,16 +103,19 @@ exports.sendTiming = function(timings) {
   let main = require("./main");
   exports.request(`${main.getBackend()}/timing`, {
     method: "POST",
-    content: JSON.stringify({timings}),
+    content: JSON.stringify({ timings }),
     contentType: "application/json"
   });
 };
 
 function timeout(time) {
   return new Promise((resolve, reject) => {
-    require("sdk/timers").setTimeout(function () {
-      resolve();
-    }, time);
+    require("sdk/timers").setTimeout(
+      function() {
+        resolve();
+      },
+      time
+    );
   });
 }
 
@@ -121,15 +124,15 @@ function retryPromise(callback, times, retryTime) {
     retryTime = 1000;
   }
   return callback().then(
-    (result) => {
+    result => {
       return result;
     },
-    (error) => {
+    error => {
       if (times <= 0) {
         throw error;
       } else {
         return timeout(retryTime).then(() => {
-          return retryPromise(callback, times-1);
+          return retryPromise(callback, times - 1);
         });
       }
     }

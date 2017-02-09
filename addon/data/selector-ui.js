@@ -1,7 +1,8 @@
 /* globals util, window, document, console, watchFunction */
 /* exported ui */
 
-const ui = (function () { // eslint-disable-line no-unused-vars
+const ui = (function() {
+  // eslint-disable-line no-unused-vars
   let exports = {};
 
   // The <body> tag itself can have margins and offsets, which need to be used when
@@ -21,18 +22,20 @@ const ui = (function () { // eslint-disable-line no-unused-vars
     // *not* necessary on http://patriciogonzalezvivo.com/2015/thebookofshaders/
     // (actually causes mis-selection there)
     // *is* necessary on http://atirip.com/2015/03/17/sorry-sad-state-of-matrix-transforms-in-browsers/
-    cached = {top: 0, bottom: 0, left: 0, right: 0};
+    cached = { top: 0, bottom: 0, left: 0, right: 0 };
     getBodyRect.cached = cached;
     return cached;
   }
 
   function isHeader(el) {
     while (el) {
-      if (el.className &&
+      if (
+        el.className &&
           (el.className.indexOf("pageshot-saver") !== -1 ||
-           el.className.indexOf("pageshot-myshots") !== -1 ||
-           el.className.indexOf("pageshot-visible") !== -1 ||
-           el.className.indexOf("pageshot-full-page") !== -1)) {
+            el.className.indexOf("pageshot-myshots") !== -1 ||
+            el.className.indexOf("pageshot-visible") !== -1 ||
+            el.className.indexOf("pageshot-full-page") !== -1)
+      ) {
         return true;
       }
       el = el.parentNode;
@@ -43,7 +46,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
 
   function htmlQuote(s) {
     s = s + "";
-    return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+    return s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
   }
 
   function makeEl(tagName, className) {
@@ -65,9 +68,9 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       lastWidth: null
     },
     document: null,
-    display: function (installHandlerOnDocument) {
+    display: function(installHandlerOnDocument) {
       return new Promise((resolve, reject) => {
-        if (! this.element) {
+        if (!this.element) {
           this.element = document.createElement("iframe");
           this.element.id = "pageshot-iframe";
           this.element.style.zIndex = "99999999999";
@@ -80,7 +83,8 @@ const ui = (function () { // eslint-disable-line no-unused-vars
           this.updateElementSize();
           this.element.onload = () => {
             let linkUrl = self.options["inline-selection.css"];
-            var parsedDom = (new DOMParser()).parseFromString(`
+            var parsedDom = new DOMParser().parseFromString(
+              `
               <html>
                <head>
                 <link rel="stylesheet" id="pageshot-stylesheet" href="${htmlQuote(linkUrl)}">
@@ -108,8 +112,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         this.initSizeWatch();
       });
     },
-
-    updateElementSize: function (force) {
+    updateElementSize: function(force) {
       // Note: if someone sizes down the page, then the iframe will keep the
       // document from naturally shrinking.  We use force to temporarily hide
       // the element so that we can tell if the document shrinks
@@ -121,7 +124,8 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         document.body.clientHeight,
         document.documentElement.scrollHeight,
         document.body.scrollHeight,
-        window.innerHeight);
+        window.innerHeight
+      );
       if (height !== this.sizeTracking.lastHeight) {
         this.sizeTracking.lastHeight = height;
         this.element.style.height = height + "px";
@@ -131,7 +135,8 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         document.body.clientWidth,
         document.documentElement.scrollWidth,
         document.body.scrollWidth,
-        window.innerWidth);
+        window.innerWidth
+      );
       if (width !== this.sizeTracking.lastWidth) {
         this.sizeTracking.lastWidth = width;
         this.element.style.width = width + "px";
@@ -141,14 +146,12 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       }
       WholePageOverlay.resetPosition();
     },
-
-    initSizeWatch: function () {
+    initSizeWatch: function() {
       this.stopSizeWatch();
       this.sizeTracking.timer = setInterval(watchFunction(this.updateElementSize.bind(this)), 2000);
       window.addEventListener("resize", this.onResize, true);
     },
-
-    stopSizeWatch: function () {
+    stopSizeWatch: function() {
       if (this.sizeTracking.timer) {
         clearTimeout(this.sizeTracking.timer);
         this.sizeTracking.timer = null;
@@ -160,17 +163,18 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       this.sizeTracking.lastHeight = this.sizeTracking.lastWidth = null;
       window.removeEventListener("resize", this.onResize, true);
     },
-
-    onResize: function () {
+    onResize: function() {
       if (this.sizeTracking.windowDelayer) {
         clearTimeout(this.sizeTracking.windowDelayer);
       }
-      this.sizeTracking.windowDelayer = setTimeout(watchFunction(() => {
-        this.updateElementSize(true);
-      }), 100);
+      this.sizeTracking.windowDelayer = setTimeout(
+        watchFunction(() => {
+          this.updateElementSize(true);
+        }),
+        100
+      );
     },
-
-    getElementFromPoint: function (x, y) {
+    getElementFromPoint: function(x, y) {
       this.element.style.pointerEvents = "none";
       let el;
       try {
@@ -180,8 +184,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       }
       return el;
     },
-
-    remove: function () {
+    remove: function() {
       this.stopSizeWatch();
       util.removeNode(this.element);
       this.element = this.document = null;
@@ -192,12 +195,10 @@ const ui = (function () { // eslint-disable-line no-unused-vars
 
   /** Represents the shadow overlay that covers the whole page */
   let WholePageOverlay = exports.WholePageOverlay = {
-
     el: null,
     movingEl: null,
     isScrollTracking: false,
-
-    display: function (callbacks) {
+    display: function(callbacks) {
       this.remove();
       this.el = makeEl("div", "pageshot-preview-overlay");
       this.el.innerHTML = `
@@ -217,20 +218,22 @@ const ui = (function () { // eslint-disable-line no-unused-vars
           Save full page
         </div>
       `;
-      this.el.querySelector(".pageshot-myshots").addEventListener(
-        "click", watchFunction(callbacks.onOpenMyShots), false);
-      this.el.querySelector(".pageshot-visible").addEventListener(
-        "click", watchFunction(callbacks.onClickVisible), false);
-      this.el.querySelector(".pageshot-full-page").addEventListener(
-        "click", watchFunction(callbacks.onClickFullPage), false);
+      this.el
+        .querySelector(".pageshot-myshots")
+        .addEventListener("click", watchFunction(callbacks.onOpenMyShots), false);
+      this.el
+        .querySelector(".pageshot-visible")
+        .addEventListener("click", watchFunction(callbacks.onClickVisible), false);
+      this.el
+        .querySelector(".pageshot-full-page")
+        .addEventListener("click", watchFunction(callbacks.onClickFullPage), false);
       this.movingEl = this.el.querySelector(".pageshot-moving-element");
       iframe.document.body.appendChild(this.el);
       this.resetPosition();
       window.addEventListener("scroll", this.onScroll, false);
     },
-
-    resetPosition: function () {
-      if (! this.movingEl) {
+    resetPosition: function() {
+      if (!this.movingEl) {
         return;
       }
       let scrollX = window.scrollX;
@@ -240,8 +243,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       this.movingEl.style.width = window.innerWidth + "px";
       this.movingEl.style.height = window.innerHeight + "px";
     },
-
-    onScroll: function () {
+    onScroll: function() {
       this.resetPosition();
       /* Note, if we used requestAnimationFrame we'd improve the performance
          some, but this creates very visible lag in the positioning: */
@@ -255,14 +257,12 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       }
       */
     },
-
-    remove: function () {
+    remove: function() {
       util.removeNode(this.el);
       this.el = null;
       this.movingEl = null;
       window.removeEventListener("scroll", this.onScroll, false);
     }
-
   };
 
   WholePageOverlay.onScroll = watchFunction(WholePageOverlay.onScroll.bind(WholePageOverlay));
@@ -271,8 +271,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
 
   /** Creates the selection box */
   exports.Box = {
-
-    display: function (pos, callbacks) {
+    display: function(pos, callbacks) {
       this._createEl();
       if (callbacks !== undefined && callbacks.cancel) {
         // We use onclick here because we don't want addEventListener
@@ -286,7 +285,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
         // We use onclick here because we don't want addEventListener
         // to add multiple event handlers to the same button
         this.save.removeAttribute("disabled");
-        this.save.onclick = (e) => {
+        this.save.onclick = e => {
           this.save.setAttribute("disabled", "true");
           callbacks.save(e);
         };
@@ -296,7 +295,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       }
       if (callbacks !== undefined && callbacks.download) {
         this.download.removeAttribute("disabled");
-        this.download.onclick = (e) => {
+        this.download.onclick = e => {
           this.download.setAttribute("disabled", true);
           callbacks.download(e);
           e.preventDefault();
@@ -311,7 +310,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       // Note, document.documentElement.scrollHeight is zero on some strange pages (such as the page created when you load an image):
       let docHeight = Math.max(document.documentElement.scrollHeight || 0, document.body.scrollHeight);
       let docWidth = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth);
-      if ((pos.right - pos.left) < 78 || (pos.bottom - pos.top) < 78) {
+      if (pos.right - pos.left < 78 || pos.bottom - pos.top < 78) {
         this.el.classList.add("pageshot-small-selection");
       } else {
         this.el.classList.remove("pageshot-small-selection");
@@ -321,37 +320,35 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       } else {
         this.el.classList.remove("pageshot-bottom-selection");
       }
-      this.el.style.top = (pos.top - bodyRect.top) + "px";
-      this.el.style.left = (pos.left - bodyRect.left) + "px";
-      this.el.style.height = (pos.bottom - pos.top - bodyRect.top) + "px";
-      this.el.style.width = (pos.right - pos.left - bodyRect.left) + "px";
+      this.el.style.top = pos.top - bodyRect.top + "px";
+      this.el.style.left = pos.left - bodyRect.left + "px";
+      this.el.style.height = pos.bottom - pos.top - bodyRect.top + "px";
+      this.el.style.width = pos.right - pos.left - bodyRect.left + "px";
       this.bgTop.style.top = "0px";
-      this.bgTop.style.height = (pos.top - bodyRect.top) + "px";
+      this.bgTop.style.height = pos.top - bodyRect.top + "px";
       this.bgTop.style.left = "0px";
       this.bgTop.style.width = docWidth + "px";
-      this.bgBottom.style.top = (pos.bottom - bodyRect.top) + "px";
+      this.bgBottom.style.top = pos.bottom - bodyRect.top + "px";
       this.bgBottom.style.height = docHeight - (pos.bottom - bodyRect.top) + "px";
       this.bgBottom.style.left = "0px";
       this.bgBottom.style.width = docWidth + "px";
-      this.bgLeft.style.top = (pos.top - bodyRect.top) + "px";
-      this.bgLeft.style.height = pos.bottom - pos.top  + "px";
+      this.bgLeft.style.top = pos.top - bodyRect.top + "px";
+      this.bgLeft.style.height = pos.bottom - pos.top + "px";
       this.bgLeft.style.left = "0px";
-      this.bgLeft.style.width = (pos.left - bodyRect.left) + "px";
-      this.bgRight.style.top = (pos.top - bodyRect.top) + "px";
+      this.bgLeft.style.width = pos.left - bodyRect.left + "px";
+      this.bgRight.style.top = pos.top - bodyRect.top + "px";
       this.bgRight.style.height = pos.bottom - pos.top + "px";
-      this.bgRight.style.left = (pos.right - bodyRect.left) + "px";
+      this.bgRight.style.left = pos.right - bodyRect.left + "px";
       this.bgRight.style.width = docWidth - (pos.right - bodyRect.left) + "px";
       WholePageOverlay.remove();
     },
-
-    remove: function () {
+    remove: function() {
       for (let name of ["el", "bgTop", "bgLeft", "bgRight", "bgBottom"]) {
         util.removeNode(this[name]);
         this[name] = null;
       }
     },
-
-    _createEl: function () {
+    _createEl: function() {
       let boxEl = this.el;
       if (boxEl) {
         return;
@@ -362,11 +359,11 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       cancel.title = "Cancel";
       buttons.appendChild(cancel);
       let download = makeEl("button", "pageshot-highlight-button-download");
-      download.title="Download";
+      download.title = "Download";
       buttons.appendChild(download);
       let save = makeEl("button", "pageshot-highlight-button-save");
       save.textContent = "Save";
-      save.title = "Save"
+      save.title = "Save";
       buttons.appendChild(save);
       this.cancel = cancel;
       this.download = download;
@@ -389,8 +386,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       iframe.document.body.appendChild(boxEl);
       this.el = boxEl;
     },
-
-    draggerDirection: function (target) {
+    draggerDirection: function(target) {
       while (target) {
         if (target.nodeType == document.ELEMENT_NODE) {
           if (target.classList.contains("pageshot-mover-target")) {
@@ -406,8 +402,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       }
       return null;
     },
-
-    isSelection: function (target) {
+    isSelection: function(target) {
       while (target) {
         if (target.tagName === "BUTTON") {
           return false;
@@ -419,8 +414,7 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       }
       return false;
     },
-
-    isControl: function (target) {
+    isControl: function(target) {
       while (target) {
         if (target.nodeType === document.ELEMENT_NODE && target.classList.contains("pageshot-highlight-buttons")) {
           return true;
@@ -429,7 +423,6 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       }
       return false;
     },
-
     el: null,
     boxTopEl: null,
     boxLeftEl: null,
@@ -438,28 +431,24 @@ const ui = (function () { // eslint-disable-line no-unused-vars
   };
 
   exports.HoverBox = {
-
     el: null,
-
-    display: function (rect) {
-      if (! this.el) {
+    display: function(rect) {
+      if (!this.el) {
         this.el = makeEl("div", "pageshot-hover-highlight");
         iframe.document.body.appendChild(this.el);
       }
       this.el.style.display = "";
-      this.el.style.top = (rect.top - 1) + "px";
-      this.el.style.left = (rect.left - 1) + "px";
-      this.el.style.width = (rect.right - rect.left + 2) + "px";
-      this.el.style.height = (rect.bottom - rect.top + 2) + "px";
+      this.el.style.top = rect.top - 1 + "px";
+      this.el.style.left = rect.left - 1 + "px";
+      this.el.style.width = rect.right - rect.left + 2 + "px";
+      this.el.style.height = rect.bottom - rect.top + 2 + "px";
     },
-
-    hide: function () {
+    hide: function() {
       if (this.el) {
         this.el.style.display = "none";
       }
     },
-
-    remove: function () {
+    remove: function() {
       util.removeNode(this.el);
       this.el = null;
     }
@@ -469,8 +458,8 @@ const ui = (function () { // eslint-disable-line no-unused-vars
     el: null,
     xEl: null,
     yEl: null,
-    display: function (xPos, yPos, x, y) {
-      if (! this.el) {
+    display: function(xPos, yPos, x, y) {
+      if (!this.el) {
         this.el = makeEl("div", "pageshot-pixel-dimensions");
         this.xEl = makeEl("div");
         this.el.appendChild(this.xEl);
@@ -480,17 +469,17 @@ const ui = (function () { // eslint-disable-line no-unused-vars
       }
       this.xEl.textContent = x;
       this.yEl.textContent = y;
-      this.el.style.top = (yPos + 12) + "px";
-      this.el.style.left = (xPos + 12) + "px";
+      this.el.style.top = yPos + 12 + "px";
+      this.el.style.left = xPos + 12 + "px";
     },
-    remove: function () {
+    remove: function() {
       util.removeNode(this.el);
       this.el = this.xEl = this.yEl = null;
     }
   };
 
   /** Removes every UI this module creates */
-  exports.remove = function () {
+  exports.remove = function() {
     for (let name in exports) {
       if (name == "iframe") {
         continue;
@@ -503,13 +492,11 @@ const ui = (function () { // eslint-disable-line no-unused-vars
   };
 
   exports.ChromeInterface = {
-
     onMyShots: null,
     onSave: null,
     onCancel: null,
-
-    display: function () {
-      if (! this.el) {
+    display: function() {
+      if (!this.el) {
         this.el = makeEl("div", "pageshot-saver");
         this.el.innerHTML = `
         <a class="pageshot-myshots" href="https://pageshot.dev.mozaws.net/shots" target="_blank">
@@ -531,34 +518,35 @@ const ui = (function () { // eslint-disable-line no-unused-vars
           ".pageshot-save": "onSave",
           ".pageshot-cancel": "onCancel"
         };
-        Object.keys(methods).forEach((selector) => {
-          this.el.querySelector(selector).addEventListener("click", watchFunction((event) => {
-            let result;
-            if (this[methods[selector]]) {
-              let method = this[methods[selector]];
-              result = method.call(this);
-            }
-            if (result === false) {
-              event.preventDefault();
-              event.stopPropagation();
-              return false;
-            }
-            return undefined;
-          }));
+        Object.keys(methods).forEach(selector => {
+          this.el.querySelector(selector).addEventListener(
+            "click",
+            watchFunction(event => {
+              let result;
+              if (this[methods[selector]]) {
+                let method = this[methods[selector]];
+                result = method.call(this);
+              }
+              if (result === false) {
+                event.preventDefault();
+                event.stopPropagation();
+                return false;
+              }
+              return undefined;
+            })
+          );
         });
         iframe.document.body.appendChild(this.el);
       }
     },
-
-    remove: function () {
+    remove: function() {
       util.removeNode(this.el);
       this.el = null;
     },
-
     el: null
   };
 
-  exports.triggerDownload = function (dataUrl, filename) {
+  exports.triggerDownload = function(dataUrl, filename) {
     // We add this to the document and clean up internally so that deactivating the
     // worker and removing the iframe doesn't affect this download
     let a = document.createElement("a");
@@ -566,9 +554,12 @@ const ui = (function () { // eslint-disable-line no-unused-vars
     a.setAttribute("download", filename);
     document.body.appendChild(a);
     a.click();
-    setTimeout(watchFunction(() => {
-      document.body.removeChild(a);
-    }), 10000);
+    setTimeout(
+      watchFunction(() => {
+        document.body.removeChild(a);
+      }),
+      10000
+    );
   };
 
   return exports;

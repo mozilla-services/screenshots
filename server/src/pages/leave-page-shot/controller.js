@@ -6,14 +6,18 @@ let helperReadyPromise = new Promise((resolve, reject) => {
   helperReadyResolve = resolve;
 });
 
-document.addEventListener("helper-ready", () => {
-  helperReadyResolve();
-  let event = document.createEvent("CustomEvent");
-  event.initCustomEvent("page-ready", true, true, null);
-  document.dispatchEvent(event);
-}, false);
+document.addEventListener(
+  "helper-ready",
+  () => {
+    helperReadyResolve();
+    let event = document.createEvent("CustomEvent");
+    event.initCustomEvent("page-ready", true, true, null);
+    document.dispatchEvent(event);
+  },
+  false
+);
 
-exports.launch = function (m) {
+exports.launch = function(m) {
   if (m.complete) {
     sendEvent("leave-page-shot-completed");
     helperReadyPromise.then(() => {

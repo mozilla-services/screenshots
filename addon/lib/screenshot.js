@@ -1,7 +1,7 @@
 /** Makes screenshots, exporting only captureTab */
 const { data } = require("sdk/self");
-const { getActiveTab } = require('sdk/tabs/utils');
-const { getMostRecentBrowserWindow } = require('sdk/window/utils');
+const { getActiveTab } = require("sdk/tabs/utils");
+const { getMostRecentBrowserWindow } = require("sdk/window/utils");
 const { viewFor } = require("sdk/view/core");
 const { callScript } = require("./framescripter");
 
@@ -17,21 +17,20 @@ const { callScript } = require("./framescripter");
     shot to be sized down before returning.
 
     Returns a promise that resolves with a data: URL */
-exports.captureTab = function (tab, pos, maxSize, backgroundColor) {
-  if (! tab) {
+exports.captureTab = function(tab, pos, maxSize, backgroundColor) {
+  if (!tab) {
     tab = getActiveTab(getMostRecentBrowserWindow());
   }
   if (tab && tab.attach) {
     tab = viewFor(tab);
   }
-  var promise = callScript(
-    tab,
-    data.url("framescripts/screenshot.js"),
-    "pageshot@screenshot",
-    {pos: pos, maxSize: maxSize, backgroundColor: backgroundColor}
-  );
+  var promise = callScript(tab, data.url("framescripts/screenshot.js"), "pageshot@screenshot", {
+    pos: pos,
+    maxSize: maxSize,
+    backgroundColor: backgroundColor
+  });
 
-  return promise.then(function (result) {
+  return promise.then(function(result) {
     return result.imageUrl;
   });
 };

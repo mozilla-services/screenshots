@@ -3,16 +3,14 @@ const reactruntime = require("../../reactruntime");
 const React = require("react");
 
 class Head extends React.Component {
-
   render() {
     return (
       <reactruntime.HeadTemplate {...this.props}>
-        <script src={this.props.staticLink("/static/js/creating-bundle.js")} async></script>
+        <script src={this.props.staticLink("/static/js/creating-bundle.js")} async />
         <link rel="stylesheet" href={this.props.staticLink("/static/css/simple.css")} />
       </reactruntime.HeadTemplate>
     );
   }
-
 }
 
 class Body extends React.Component {
@@ -27,7 +25,6 @@ class Body extends React.Component {
       </reactruntime.BodyTemplate>
     );
   }
-
 }
 
 exports.HeadFactory = React.createFactory(Head);

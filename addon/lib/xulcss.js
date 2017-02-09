@@ -5,21 +5,19 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-const chrome = require('chrome');
-const when = require('sdk/system/unload').when;
+const chrome = require("chrome");
+const when = require("sdk/system/unload").when;
 
 function newURI(uriStr, base) {
-  const ios = chrome.Cc['@mozilla.org/network/io-service;1']
-                  .getService(chrome.Ci.nsIIOService);
+  const ios = chrome.Cc["@mozilla.org/network/io-service;1"].getService(chrome.Ci.nsIIOService);
   try {
     const baseURI = base ? ios.newURI(base, null, null) : null;
     return ios.newURI(uriStr, null, baseURI);
   } catch (e) {
     if (e.result === chrome.Cr.NS_ERROR_MALFORMED_URI) {
-      throw new Error('malformed URI: ' + uriStr);
-    } else if (e.result === chrome.Cr.NS_ERROR_FAILURE ||
-               e.result === chrome.Cr.NS_ERROR_ILLEGAL_VALUE) {
-      throw new Error('invalid URI: ' + uriStr);
+      throw new Error("malformed URI: " + uriStr);
+    } else if (e.result === chrome.Cr.NS_ERROR_FAILURE || e.result === chrome.Cr.NS_ERROR_ILLEGAL_VALUE) {
+      throw new Error("invalid URI: " + uriStr);
     }
   }
   return null;
@@ -27,8 +25,7 @@ function newURI(uriStr, base) {
 
 exports.removeXULStylesheet = function(url) {
   const uri = newURI(url);
-  const sss = chrome.Cc['@mozilla.org/content/style-sheet-service;1']
-                  .getService(chrome.Ci.nsIStyleSheetService);
+  const sss = chrome.Cc["@mozilla.org/content/style-sheet-service;1"].getService(chrome.Ci.nsIStyleSheetService);
   if (sss.sheetRegistered(uri, sss.AGENT_SHEET)) {
     sss.unregisterSheet(uri, sss.AGENT_SHEET);
   }
@@ -37,8 +34,7 @@ exports.removeXULStylesheet = function(url) {
 
 exports.addXULStylesheet = function(url) {
   const uri = newURI(url);
-  const sss = chrome.Cc['@mozilla.org/content/style-sheet-service;1']
-                  .getService(chrome.Ci.nsIStyleSheetService);
+  const sss = chrome.Cc["@mozilla.org/content/style-sheet-service;1"].getService(chrome.Ci.nsIStyleSheetService);
   sss.loadAndRegisterSheet(uri, sss.AGENT_SHEET);
   // auto unload just in case
   when(function() {
