@@ -10,7 +10,9 @@ const path = require("path");
 const SHOOTER_BUTTON_ID = "action-button--jid1-neeaf3sahdkhpajetpack-pageshot-shooter";
 
 function addAddonToDriver(driver, location) {
-  return driver.executeAsyncScript(`
+  return driver
+    .executeAsyncScript(
+      `
 const FileUtils = Components.utils.import('resource://gre/modules/FileUtils.jsm').FileUtils;
 const { console } = Components.utils.import("resource://gre/modules/Console.jsm", {});
 const { AddonManager } = Components.utils.import("resource://gre/modules/AddonManager.jsm", {});
@@ -37,12 +39,15 @@ AddonManager.installTemporaryAddon(new FileUtils.File(arguments[0]))
     callback([null, error]);
   });
 
-`, location).then(([result, err]) => {
-    if (!result[0] && result[1]) {
-      throw new Error(`Failed to install add-on: ${result[1]}`);
-    }
-    return driver;
-  });
+`,
+      location
+    )
+    .then(([result, err]) => {
+      if (!result[0] && result[1]) {
+        throw new Error(`Failed to install add-on: ${result[1]}`);
+      }
+      return driver;
+    });
 }
 
 function getDriver() {
@@ -50,9 +55,7 @@ function getDriver() {
   const options = new firefox.Options();
   options.setProfile(profile);
 
-  const builder = new webdriver.Builder()
-    .forBrowser("firefox")
-    .setFirefoxOptions(options);
+  const builder = new webdriver.Builder().forBrowser("firefox").setFirefoxOptions(options);
 
   const driver = builder.build();
 
@@ -64,12 +67,10 @@ function getDriver() {
 
 function getElementById(driver, id) {
   driver.setContext(firefox.Context.CHROME);
-  return driver.wait(
-    webdriver.until.elementLocated(
-      webdriver.By.id(id)), 1000);
+  return driver.wait(webdriver.until.elementLocated(webdriver.By.id(id)), 1000);
 }
 
-describe("Test Page Shot", function () {
+describe("Test Page Shot", function() {
   this.timeout(10000);
   let driver;
 
@@ -83,7 +84,7 @@ describe("Test Page Shot", function () {
 
   it("should find the add-on button", function() {
     return getElementById(driver, SHOOTER_BUTTON_ID)
-      .then((button) => button.getAttribute("label"))
-      .then((label) => assert.equal(label, "Make shot"));
+      .then(button => button.getAttribute("label"))
+      .then(label => assert.equal(label, "Make shot"));
   });
 });

@@ -6,8 +6,8 @@ let app = express();
 
 exports.app = app;
 
-app.get("/", function (req, res) {
-  if (! req.deviceId) {
+app.get("/", function(req, res) {
+  if (!req.deviceId) {
     res.status(403).send("You must have the addon installed to delete your account");
     return;
   }
@@ -15,14 +15,16 @@ app.get("/", function (req, res) {
   reactrender.render(req, res, page);
 });
 
-app.post("/leave", function (req, res) {
-  if (! req.deviceId) {
+app.post("/leave", function(req, res) {
+  if (!req.deviceId) {
     res.status(403).send("You must have the addon installed to leave");
   }
-  Shot.deleteEverythingForDevice(req.backend, req.deviceId).then(() => {
-    res.redirect("/leave-page-shot/?complete");
-  }).catch((e) => {
-    console.error("An error occurred trying to delete:", e);
-    res.status(500).send("An error occurred");
-  });
+  Shot.deleteEverythingForDevice(req.backend, req.deviceId)
+    .then(() => {
+      res.redirect("/leave-page-shot/?complete");
+    })
+    .catch(e => {
+      console.error("An error occurred trying to delete:", e);
+      res.status(500).send("An error occurred");
+    });
 });

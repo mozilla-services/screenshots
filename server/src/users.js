@@ -19,7 +19,7 @@ function hashMatches(hash, secret) {
 }
 
 function createHash(secret, nonce) {
-  if (! nonce) {
+  if (!nonce) {
     nonce = createNonce();
   }
   if (nonce.search(/^[0-9a-zA-Z]+$/) == -1) {
@@ -38,7 +38,7 @@ function createNonce() {
 /** Parses the FORCE_AB_TESTS config */
 function getForceAbTests() {
   let val = config.forceAbTests || "";
-  if (! val) {
+  if (!val) {
     return null;
   }
   let parts = val.split(/\s/g);
@@ -50,12 +50,9 @@ function getForceAbTests() {
   return result;
 }
 
-exports.checkLogin = function (deviceId, secret, addonVersion) {
-  return db.select(
-    `SELECT secret_hashed, ab_tests FROM devices WHERE id = $1`,
-    [deviceId]
-  ).then((rows) => {
-    if (! rows.length) {
+exports.checkLogin = function(deviceId, secret, addonVersion) {
+  return db.select(`SELECT secret_hashed, ab_tests FROM devices WHERE id = $1`, [deviceId]).then(rows => {
+    if (!rows.length) {
       return null;
     }
     let userAbTests = {};
@@ -64,18 +61,20 @@ exports.checkLogin = function (deviceId, secret, addonVersion) {
     }
     userAbTests = abTests.updateAbTests(userAbTests, getForceAbTests());
     if (hashMatches(rows[0].secret_hashed, secret)) {
-      db.update(
-        `UPDATE devices
+      db
+        .update(
+          `UPDATE devices
          SET last_login = NOW(),
              session_count = session_count + 1,
              last_addon_version = $1,
              ab_tests = $2
          WHERE id = $3
         `,
-        [addonVersion, JSON.stringify(userAbTests), deviceId]
-      ).catch((error) => {
-        mozlog.error("error-updating-devices-table", {err: error});
-      });
+          [addonVersion, JSON.stringify(userAbTests), deviceId]
+        )
+        .catch(error => {
+          mozlog.error("error-updating-devices-table", { err: error });
+        });
       return userAbTests;
     } else {
       return false;
@@ -83,70 +82,73 @@ exports.checkLogin = function (deviceId, secret, addonVersion) {
   });
 };
 
-exports.registerLogin = function (deviceId, data, canUpdate) {
-  if (! deviceId) {
+exports.registerLogin = function(deviceId, data, canUpdate) {
+  if (!deviceId) {
     throw new Error("No deviceId given");
   }
   let secretHashed = createHash(data.secret);
-  return db.insert(
-    `INSERT INTO devices (id, secret_hashed, nickname, avatarurl)
+  return db
+    .insert(
+      `INSERT INTO devices (id, secret_hashed, nickname, avatarurl)
      VALUES ($1, $2, $3, $4)`,
-    [deviceId, createHash(data.secret), data.nickname || null, data.avatarurl || null]
-  ).then((inserted) => {
-    let userAbTests = abTests.updateAbTests({}, getForceAbTests());
-    if (inserted) {
-      return userAbTests;
-    }
-    if (canUpdate) {
-      if (! data.secret) {
-        throw new Error("Must have secret if updating");
+      [deviceId, createHash(data.secret), data.nickname || null, data.avatarurl || null]
+    )
+    .then(inserted => {
+      let userAbTests = abTests.updateAbTests({}, getForceAbTests());
+      if (inserted) {
+        return userAbTests;
       }
-      return db.update(
-        `UPDATE devices
+      if (canUpdate) {
+        if (!data.secret) {
+          throw new Error("Must have secret if updating");
+        }
+        return db
+          .update(
+            `UPDATE devices
          SET secret_hashed = $1, nickname = $2, avatarurl = $3
          WHERE id = $4`,
-        [secretHashed, data.nickname || null, data.avatarurl || null, deviceId]
-      ).then((rowCount) => {
-        if (rowCount) {
-          return userAbTests;
-        } else {
-          return false;
-        }
-      });
-    } else {
-      return false;
-    }
-  });
+            [secretHashed, data.nickname || null, data.avatarurl || null, deviceId]
+          )
+          .then(rowCount => {
+            if (rowCount) {
+              return userAbTests;
+            } else {
+              return false;
+            }
+          });
+      } else {
+        return false;
+      }
+    });
 };
 
-exports.updateLogin = function (deviceId, data) {
-  if (! deviceId) {
+exports.updateLogin = function(deviceId, data) {
+  if (!deviceId) {
     throw new Error("No deviceId given");
   }
-  return db.update(
-    `UPDATE devices
+  return db
+    .update(
+      `UPDATE devices
      SET nickname = $1, avatarurl = $2
      WHERE id = $3`,
-    [data.nickname || null, data.avatarurl || null, deviceId]
-  ).then(rowCount => !! rowCount);
+      [data.nickname || null, data.avatarurl || null, deviceId]
+    )
+    .then(rowCount => !!rowCount);
 };
 
-exports.accountIdForDeviceId = function (deviceId) {
-  if (! deviceId) {
+exports.accountIdForDeviceId = function(deviceId) {
+  if (!deviceId) {
     throw new Error("No deviceId given");
   }
-  return db.select(
-    `SELECT accountid FROM devices WHERE id = $1`,
-    [deviceId]
-  ).then((rows) => {
-    if (! rows.length) {
+  return db.select(`SELECT accountid FROM devices WHERE id = $1`, [deviceId]).then(rows => {
+    if (!rows.length) {
       return null;
     }
     return rows[0].accountid;
   });
 };
 
-exports.setState = function (deviceId, state) {
+exports.setState = function(deviceId, state) {
   return db.insert(
     `INSERT INTO states (state, deviceid)
     VALUES ($1, $2)`,
@@ -154,23 +156,22 @@ exports.setState = function (deviceId, state) {
   );
 };
 
-exports.checkState = function (deviceId, state) {
-  return db.del(
-    `DELETE FROM states WHERE state = $1 AND deviceid = $2`,
-    [state, deviceId]
-  ).then(rowCount => !! rowCount);
+exports.checkState = function(deviceId, state) {
+  return db
+    .del(`DELETE FROM states WHERE state = $1 AND deviceid = $2`, [state, deviceId])
+    .then(rowCount => !!rowCount);
 };
 
-exports.tradeCode = function (code) {
+exports.tradeCode = function(code) {
   let oAuthURI = `${config.oAuth.oAuthServer}/token`;
-  return request('POST', oAuthURI, {
+  return request("POST", oAuthURI, {
     payload: JSON.stringify({
       code,
       client_id: config.oAuth.clientId,
       client_secret: config.oAuth.clientSecret
     }),
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     json: true
   }).then(([res, body]) => {
@@ -181,9 +182,9 @@ exports.tradeCode = function (code) {
   });
 };
 
-exports.getAccountId = function (accessToken) {
+exports.getAccountId = function(accessToken) {
   let profileURI = `${config.oAuth.profileServer}/uid`;
-  return request('GET', profileURI, {
+  return request("GET", profileURI, {
     headers: {
       authorization: `Bearer ${accessToken}`
     },
@@ -196,19 +197,17 @@ exports.getAccountId = function (accessToken) {
   });
 };
 
-exports.registerAccount = function (deviceId, accountId, accessToken) {
+exports.registerAccount = function(deviceId, accountId, accessToken) {
   return db.transaction(client => {
-    return db.upsertWithClient(
-      client,
-      `INSERT INTO accounts (id, token) SELECT $1, $2`,
-      `UPDATE accounts SET token = $2 WHERE id = $1`,
-      [accountId, accessToken]
-    ).then(() => {
-      return db.queryWithClient(
+    return db
+      .upsertWithClient(
         client,
-        `UPDATE devices SET accountid = $2 WHERE id = $1`,
-        [deviceId, accountId]
-      );
-    });
+        `INSERT INTO accounts (id, token) SELECT $1, $2`,
+        `UPDATE accounts SET token = $2 WHERE id = $1`,
+        [accountId, accessToken]
+      )
+      .then(() => {
+        return db.queryWithClient(client, `UPDATE devices SET accountid = $2 WHERE id = $1`, [deviceId, accountId]);
+      });
   });
 };

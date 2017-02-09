@@ -3,14 +3,14 @@
 const chrome = require("chrome");
 //const Constructor = chrome.components.Constructor;
 const Constructor = chrome.CC;
-const {Ci, Cu} = chrome;
+const { Ci, Cu } = chrome;
 
 //***************************************************************************
 // Boilerplate from https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XPCOM/Using_the_clipboard
 
 // Import the Services module for future use, if we're not in
 // a browser window where it's already loaded.
-Cu.import('resource://gre/modules/Services.jsm');
+Cu.import("resource://gre/modules/Services.jsm");
 
 // Create a constructor for the built-in supports-string class.
 const nsSupportsString = Constructor("@mozilla.org/supports-string;1", "nsISupportsString");
@@ -28,13 +28,12 @@ const nsTransferable = Constructor("@mozilla.org/widget/transferable;1", "nsITra
 // Create a wrapper to construct an nsITransferable instance and set its source to the given window, when necessary
 function Transferable(source) {
   var res = nsTransferable();
-  if ('init' in res) {
+  if ("init" in res) {
     // When passed a Window object, find a suitable privacy context for it.
     if (source instanceof Ci.nsIDOMWindow) {
       // Note: in Gecko versions >16, you can import the PrivateBrowsingUtils.jsm module
       // and use PrivateBrowsingUtils.privacyContextFromWindow(sourceWindow) instead
-      source = source.QueryInterface(Ci.nsIInterfaceRequestor)
-                     .getInterface(Ci.nsIWebNavigation);
+      source = source.QueryInterface(Ci.nsIInterfaceRequestor).getInterface(Ci.nsIWebNavigation);
     }
     res.init(source);
   }
@@ -44,8 +43,7 @@ function Transferable(source) {
 // End Boilerplate
 //***************************************************************************
 
-
-exports.copyMultiple = function (options) {
+exports.copyMultiple = function(options) {
   // FIXME: we are using null instead of a sourceWindow.  Not sure how to handle
   // sourceWindow with e10s, also not sure if we really have a source window
   let trans = Transferable(null);

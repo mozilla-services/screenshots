@@ -16,7 +16,7 @@ class Head extends React.Component {
 class Body extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {defaultSearch: props.defaultSearch};
+    this.state = { defaultSearch: props.defaultSearch };
   }
 
   render() {
@@ -35,7 +35,7 @@ class Body extends React.Component {
           <Footer forUrl="legal" {...this.props} />
         </div>
       </reactruntime.BodyTemplate>
-    )
+    );
   }
 }
 

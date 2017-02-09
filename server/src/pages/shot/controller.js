@@ -8,8 +8,8 @@ const { shotGaFieldForValue } = require("../../ab-tests.js");
 // This represents the model we are rendering:
 let model;
 
-exports.launch = function (data) {
-  let firstSet = ! model;
+exports.launch = function(data) {
+  let firstSet = !model;
   model = data;
   model.hasSavedShot = false;
   model.shot = new AbstractShot(data.backend, data.id, data.shot);
@@ -33,13 +33,17 @@ exports.launch = function (data) {
     }
   }
   if (firstSet) {
-    document.addEventListener("helper-ready", function onHelperReady(e) {
-      document.removeEventListener("helper-ready", onHelperReady, false);
-      let event = document.createEvent("CustomEvent");
-      event.initCustomEvent("page-ready", true, true, null);
-      document.dispatchEvent(event);
-      //requestHasSavedShot(model.shot.id);
-    }, false);
+    document.addEventListener(
+      "helper-ready",
+      function onHelperReady(e) {
+        document.removeEventListener("helper-ready", onHelperReady, false);
+        let event = document.createEvent("CustomEvent");
+        event.initCustomEvent("page-ready", true, true, null);
+        document.dispatchEvent(event);
+        //requestHasSavedShot(model.shot.id);
+      },
+      false
+    );
     /*
     document.addEventListener("has-saved-shot-result", function (event) {
       let result = JSON.parse(event.detail);
@@ -80,13 +84,13 @@ exports.launch = function (data) {
   }
 };
 
-exports.changeShotExpiration = function (shot, expiration) {
+exports.changeShotExpiration = function(shot, expiration) {
   let wasExpired = model.expireTime !== null && model.expireTime < Date.now();
   let url = model.backend + "/api/set-expiration";
   let req = new XMLHttpRequest();
   req.open("POST", url);
   req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-  req.onload = function () {
+  req.onload = function() {
     if (req.status >= 300) {
       window.alert("Error saving expiration: " + req.status + " " + req.statusText);
     } else {
@@ -99,19 +103,19 @@ exports.changeShotExpiration = function (shot, expiration) {
     }
   };
   if (wasExpired) {
-    req.onload = function () {
+    req.onload = function() {
       location.reload();
     };
   }
   req.send(`id=${encodeURIComponent(shot.id)}&expiration=${encodeURIComponent(expiration)}`);
 };
 
-exports.deleteShot = function (shot) {
+exports.deleteShot = function(shot) {
   let url = model.backend + "/api/delete-shot";
   let req = new XMLHttpRequest();
   req.open("POST", url);
   req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-  req.onload = function () {
+  req.onload = function() {
     if (req.status >= 300) {
       // FIXME: a lame way to do an error message
       window.alert("Error deleting shot: " + req.status + " " + req.statusText);
@@ -126,17 +130,17 @@ function refreshHash() {
   if (location.hash === "#fullpage") {
     let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
     let toolbarHeight = document.getElementById("toolbar").clientHeight;
-    let frameTop = frameOffset - (toolbarHeight * 2);
+    let frameTop = frameOffset - toolbarHeight * 2;
     window.scroll(0, frameTop);
     return;
   }
   let clipId = null;
-  let match = (/clip=([^&]+)/).exec(location.hash);
+  let match = /clip=([^&]+)/.exec(location.hash);
   if (match) {
     clipId = decodeURIComponent(match[1]);
   }
   let source = "change-clip"; // eslint-disable-line no-unused-vars
-  match = (/source=([^&]+)/).exec(location.hash);
+  match = /source=([^&]+)/.exec(location.hash);
   if (match) {
     source = decodeURIComponent(match[1]);
   }
@@ -151,13 +155,13 @@ function refreshHash() {
 
 function sendShowElement(clipId) {
   let frame = document.getElementById("frame");
-  if (! frame) {
+  if (!frame) {
     return;
   }
   let postMessage;
   if (clipId) {
     let clip = model.shot.getClip(clipId);
-    if (! clip) {
+    if (!clip) {
       throw new Error("Could not find clip with id " + clipId);
     }
     postMessage = {
@@ -224,11 +228,11 @@ function addSavedShotData(data) {
 }
 */
 
-exports.setTitle = function (title) {
+exports.setTitle = function(title) {
   title = title || null;
   let url = model.backend + "/api/set-title/" + model.shot.id;
   let req = new XMLHttpRequest();
-  req.onload = function () {
+  req.onload = function() {
     if (req.status >= 300) {
       window.alert("Error saving title: " + req.status + " " + req.statusText);
       return;
@@ -241,11 +245,11 @@ exports.setTitle = function (title) {
   req.send(JSON.stringify({ title }));
 };
 
-exports.sendRichCopy = function () {
+exports.sendRichCopy = function() {
   let event = document.createEvent("CustomEvent");
   function quote(s) {
-    s = s+"";
-    return s.replace(/"/g, '&quot;').replace(/</g, '&gt;').replace(/&/g, '&amp;');
+    s = s + "";
+    return s.replace(/"/g, "&quot;").replace(/</g, "&gt;").replace(/&/g, "&amp;");
   }
   let shot = model.shot;
   let clip = shot.getClip(shot.clipNames()[0]);
@@ -258,7 +262,11 @@ exports.sendRichCopy = function () {
     width = width * adjust;
   }
   let detail = {
-    html: `<img src="${quote(src)}" height="${quote(height)}" width="${quote(width)}" /><br /><a href="${quote(shot.viewUrl)}">${quote(shot.title)}</a> (source: <a href="${quote(shot.url)}">${quote(shot.urlDisplay)}</a>)`,
+    html: (
+      `<img src="${quote(src)}" height="${quote(height)}" width="${quote(width)}" /><br /><a href="${quote(
+        shot.viewUrl
+      )}">${quote(shot.title)}</a> (source: <a href="${quote(shot.url)}">${quote(shot.urlDisplay)}</a>)`
+    ),
     text: `${shot.title}: ${shot.viewUrl} (source: ${shot.url})`
   };
   event.initCustomEvent("sendRichCopy", true, true, detail);

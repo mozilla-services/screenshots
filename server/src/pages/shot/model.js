@@ -1,9 +1,9 @@
 const { getGitRevision } = require("../../linker");
-const MobileDetect = require('mobile-detect');
+const MobileDetect = require("mobile-detect");
 
-exports.createModel = function (req) {
+exports.createModel = function(req) {
   let buildTime = require("../../build-time").string;
-  let isMobile = !! (new MobileDetect(req.headers['user-agent'])).mobile();
+  let isMobile = !!new MobileDetect(req.headers["user-agent"]).mobile();
   let serverPayload = {
     title: req.shot.title,
     allowExport: req.config.allowExport,
@@ -22,13 +22,13 @@ exports.createModel = function (req) {
     buildTime: buildTime,
     simple: false,
     shotDomain: req.url, // FIXME: should be a property of the shot
-    expireTime: req.shot.expireTime === null ? null: req.shot.expireTime.getTime(),
-    retentionTime: req.config.expiredRetentionTime*1000,
-    defaultExpiration: req.config.defaultExpiration*1000,
+    expireTime: req.shot.expireTime === null ? null : req.shot.expireTime.getTime(),
+    retentionTime: req.config.expiredRetentionTime * 1000,
+    defaultExpiration: req.config.defaultExpiration * 1000,
     sentryPublicDSN: req.config.sentryPublicDSN,
     cspNonce: req.cspNonce,
     hashAnalytics: true,
-    userAgent: req.headers['user-agent'],
+    userAgent: req.headers["user-agent"],
     isMobile
   };
   let clientPayload = {
@@ -52,10 +52,10 @@ exports.createModel = function (req) {
     deleted: req.shot.deleted,
     buildTime: buildTime,
     simple: false,
-    retentionTime: req.config.expiredRetentionTime*1000,
-    defaultExpiration: req.config.defaultExpiration*1000,
+    retentionTime: req.config.expiredRetentionTime * 1000,
+    defaultExpiration: req.config.defaultExpiration * 1000,
     hashAnalytics: true,
-    userAgent: req.headers['user-agent'],
+    userAgent: req.headers["user-agent"],
     isMobile
   };
   if (serverPayload.expireTime !== null && Date.now() > serverPayload.expireTime) {
@@ -63,10 +63,13 @@ exports.createModel = function (req) {
       url: req.shot.url,
       docTitle: req.shot.title
     };
-    serverPayload.shot = Object.assign({
-      urlIfDeleted: req.shot.urlIfDeleted,
-      title: req.shot.title
-    }, clientPayload.shot);
+    serverPayload.shot = Object.assign(
+      {
+        urlIfDeleted: req.shot.urlIfDeleted,
+        title: req.shot.title
+      },
+      clientPayload.shot
+    );
   }
-  return Promise.resolve({serverModel: serverPayload, jsonModel: clientPayload});
+  return Promise.resolve({ serverModel: serverPayload, jsonModel: clientPayload });
 };

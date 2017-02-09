@@ -4,7 +4,6 @@
 
 "use strict";
 
-
 /**
  * Notification Module
  *
@@ -72,16 +71,16 @@
  */
 
 const chrome = require("chrome");
-const { emit, on, once, off } = require('sdk/event/core');
-const { EventTarget } = require('sdk/event/target');
+const { emit, on, once, off } = require("sdk/event/core");
+const { EventTarget } = require("sdk/event/target");
 const timers = require("sdk/timers");
 const { validateOptions: valid } = require("sdk/deprecated/api-utils");
 const windowUtils = require("sdk/window/utils");
 const { getMostRecentBrowserWindow } = windowUtils;
-const { uuid } = require('sdk/util/uuid');
-const { Class, mix } = require('sdk/core/heritage');
+const { uuid } = require("sdk/util/uuid");
+const { Class, mix } = require("sdk/core/heritage");
 
-const validNumber = { is: ['number', 'undefined', 'null'] };
+const validNumber = { is: ["number", "undefined", "null"] };
 
 const USE_PER_WINDOW_NOTIFICATIONS = false;
 
@@ -93,7 +92,7 @@ const USE_PER_WINDOW_NOTIFICATIONS = false;
  * @memberOf main
  * @name notificationbox
  */
-const notificationbox = function (win, bottom){
+const notificationbox = function(win, bottom) {
   // https://developer.mozilla.org/en/XUL/notificationbox#Notification_box_events
   // bottom:  http://mxr.mozilla.org/mozilla-central/source/browser/base/content/browser-data-submission-info-bar.js
   // TODO, this is SO MESSED UP.  GRL doesn't get xul vs most
@@ -104,9 +103,8 @@ const notificationbox = function (win, bottom){
     let nb = win.gDataNotificationInfoBar._notificationBox;
     return nb;
   } else {
-    let wm = chrome.Cc["@mozilla.org/appshell/window-mediator;1"]
-                     .getService(chrome.Ci.nsIWindowMediator);
-    win = win || wm.getMostRecentWindow("navigator:browser");  // is this dupe?
+    let wm = chrome.Cc["@mozilla.org/appshell/window-mediator;1"].getService(chrome.Ci.nsIWindowMediator);
+    win = win || wm.getMostRecentWindow("navigator:browser"); // is this dupe?
     let nb = win.document.getElementById("high-priority-global-notificationbox");
     if (USE_PER_WINDOW_NOTIFICATIONS && nb) {
       return nb; // 33+?
@@ -125,7 +123,6 @@ const notificationbox = function (win, bottom){
 
     Note:  in desktop fx, there is no event fired on close.  We fake this.
 */
-
 
 /** construct and append a new banner message
  *
@@ -149,44 +146,44 @@ const notificationbox = function (win, bottom){
  */
 
 const banner = new Class({
-  extends:  EventTarget,
+  extends: EventTarget,
   initialize: function initialize(options) {
-    let defaults =  {
-      onKill:  function (data) {
-        let note = this.nb.getNotificationWithValue(this.id);
-        this.nb.removeNotification( this.notice );
-        emit(this,"AlertKilled", note);
-      },
-      onSoftkill:  function (data) {
+    let defaults = {
+      onKill: function(data) {
         let note = this.nb.getNotificationWithValue(this.id);
         this.nb.removeNotification(this.notice);
-        emit(this,"AlertSoftKilled", note);
+        emit(this, "AlertKilled", note);
       },
+      onSoftkill: function(data) {
+        let note = this.nb.getNotificationWithValue(this.id);
+        this.nb.removeNotification(this.notice);
+        emit(this, "AlertSoftKilled", note);
+      }
     };
 
-    let { msg, id, icon, priority, buttons, callback, nb} = options;
-    if (! buttons) buttons = [];
-    if (! id) id =  "banner_" + uuid();
-    if (! icon) icon = null; //'chrome://browser/skin/Info.png';
+    let { msg, id, icon, priority, buttons, callback, nb } = options;
+    if (!buttons) buttons = [];
+    if (!id) id = "banner_" + uuid();
+    if (!icon) icon = null; //'chrome://browser/skin/Info.png';
     if (nb) {
       this.nb = nb;
     } else {
       this.nb = notificationbox();
     }
-    if ((typeof priority) === "string") {
-        priority = nb[priority] || 1;  // TODO, throw here?
+    if (typeof priority === "string") {
+      priority = nb[priority] || 1; // TODO, throw here?
     } else {
-        if (! priority) priority = 1;
+      if (!priority) priority = 1;
     }
 
-    EventTarget.prototype.initialize.call(this,defaults);
+    EventTarget.prototype.initialize.call(this, defaults);
 
     // our AlertClose
     let that = this;
     if (callback === undefined) {
       callback = function(message) {
         if (message === "removed") {
-          emit(that,'AlertClose',that.notice);
+          emit(that, "AlertClose", that.notice);
         } else {
           console.log(message, that);
           emit(that, message, that.notice);
@@ -194,10 +191,9 @@ const banner = new Class({
         return false;
       };
     }
-    this.notice = this.nb.appendNotification(msg, id, icon,
-        priority, buttons, callback);
+    this.notice = this.nb.appendNotification(msg, id, icon, priority, buttons, callback);
   },
-  type: 'Banner'
+  type: "Banner"
 });
 
 /*
@@ -226,35 +222,31 @@ const banner = new Class({
         banner({msg: "want to", buttons=[buttonMaker['click here?']()]});
 
 */
-const buttonMaker = {
-};
+const buttonMaker = {};
 
 // this is gross... https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/NoSuchMethod
 // but generates buttons with odd labels.  Only on *call* though!
 buttonMaker.__noSuchMethod__ = function(method, args) {
-  let newargs = mix({"label": method},args[0]);
-  return this['yes'](newargs);
+  let newargs = mix({ label: method }, args[0]);
+  return this["yes"](newargs);
 };
 
-
 /*! make some standard buttons */
-['yes','no','more','cancel','always','never','details'].forEach(
-  function(label){
-    let defaults = {
-      label:     label,
-      accessKey: null,
-      popup:     null,
-      callback:  function(aNotificationBar, aButton) {
-        // TODO, a sensible default action?  maybe observer emit?
-      }
-    };
-    let f = function(options) {
-      if (!options) options = {};
-      return mix(defaults,options); // TODO, sorry this is gross!
-    };
-    buttonMaker[label] = f;
+["yes", "no", "more", "cancel", "always", "never", "details"].forEach(function(label) {
+  let defaults = {
+    label: label,
+    accessKey: null,
+    popup: null,
+    callback: function(aNotificationBar, aButton) {
+      // TODO, a sensible default action?  maybe observer emit?
+    }
+  };
+  let f = function(options) {
+    if (!options) options = {};
+    return mix(defaults, options); // TODO, sorry this is gross!
+  };
+  buttonMaker[label] = f;
 });
-
 
 /** all exports */
 exports.notificationbox = notificationbox;

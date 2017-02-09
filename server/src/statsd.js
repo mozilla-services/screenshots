@@ -6,10 +6,10 @@ let prefix = config.statsdPrefix;
 
 if (prefix) {
   StatsD = require("node-statsd");
-  client = new StatsD({prefix});
+  client = new StatsD({ prefix });
 }
 
-exports.increment = function (name) {
+exports.increment = function(name) {
   if (client) {
     client.increment(name);
   }

@@ -13,7 +13,7 @@ const { sendTiming } = require("./req");
       category: GA timing category (default "addon")
       label:    GA timing label
 */
-exports.timeFunction = function (options) {
+exports.timeFunction = function(options) {
   let timings = options.timings;
   let sendImmediately = timings === undefined;
   timings = timings || [];
@@ -35,13 +35,16 @@ exports.timeFunction = function (options) {
     }
   }
   if (result.then) {
-    let timedResult = result.then((val) => {
-      finish();
-      return val;
-    }, (error) => {
-      finish();
-      throw error;
-    });
+    let timedResult = result.then(
+      val => {
+        finish();
+        return val;
+      },
+      error => {
+        finish();
+        throw error;
+      }
+    );
     return timedResult;
   } else {
     finish();
@@ -54,7 +57,7 @@ exports.timeFunction = function (options) {
 
       timing, category, variable, label
 */
-exports.startTimer = function (options) {
+exports.startTimer = function(options) {
   let start = Date.now();
   let timings = options.timings;
   let sendImmediately = timings === undefined;

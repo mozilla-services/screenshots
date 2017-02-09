@@ -54,6 +54,7 @@
     "node-sass": "4.4.0",
     "npm-run-all": "4.0.1",
     "nsp": "2.6.2",
+    "prettier": "0.16.0",
     "sass-lint": "1.10.2",
     "selenium-webdriver": "3.0.1",
     "svgo": "0.7.2",
@@ -67,6 +68,7 @@
     "url": "git+https://github.com/mozilla-services/pageshot.git"
   },
   "scripts": {
+    "format": "prettier --print-width=120 --write 'addon/**/*.js' 'chrome-extension/*.js' 'server/**/*.js' 'shared/*.js' 'static/js/*.js' 'test/*.js'",
     "lint": "npm-run-all lint:*",
     "lint:addon": "make xpi && addons-linter ./build/*.xpi -o text",
     "lint:js": "eslint .",

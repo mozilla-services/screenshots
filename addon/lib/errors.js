@@ -11,7 +11,7 @@ const tabs = require("sdk/tabs");
 const req = require("./req");
 const main = require("./main");
 const user = require("./user");
-const { AddonManager } = require('resource://gre/modules/AddonManager.jsm');
+const { AddonManager } = require("resource://gre/modules/AddonManager.jsm");
 
 const panel = panels.Panel({
   contentURL: self.data.url("error-panel.html"),
@@ -20,27 +20,27 @@ const panel = panels.Panel({
   width: 240
 });
 
-panel.port.on("close", function () {
+panel.port.on("close", function() {
   panel.hide();
 });
 
-panel.port.on("my-shots", function () {
+panel.port.on("my-shots", function() {
   panel.hide();
   req.sendEvent("goto-myshots", "error-panel");
   tabs.open(main.getBackend() + "/shots");
 });
 
 /** Should be called when any unexpected error happens */
-exports.unhandled = function (error) {
-  if ((error instanceof Error) || error.name == "Error") {
+exports.unhandled = function(error) {
+  if (error instanceof Error || error.name == "Error") {
     error = exports.makeError(error);
   }
-  if (! error.noPopup) {
+  if (!error.noPopup) {
     // This .hide() fixes an issue (Firefox 52?) where the panel grows when it is
     // shown multiple times:
     panel.hide();
     // TODO: remove this circular dependency
-    panel.show({position: require("./main").shootButton});
+    panel.show({ position: require("./main").shootButton });
   }
   let errorObj = error;
   if (error && (error.help || error.message || error.name)) {
@@ -60,22 +60,24 @@ exports.unhandled = function (error) {
     if (errorObj == "{}") {
       errorObj = error + "";
     }
-    errorObj = {message: errorObj};
+    errorObj = { message: errorObj };
   }
   if (typeof errorObj === "string") {
-    errorObj = {name: errorObj};
+    errorObj = { name: errorObj };
   }
   errorObj.sentryPublicDSN = user.getSentryPublicDSN();
   errorObj.version = self.version;
-  getAddonList().then((addonList) => {
-    errorObj.addonList = addonList;
-    finish();
-  }).catch((e) => {
-    console.error("Could not getAddonList:", e);
-    finish();
-  });
+  getAddonList()
+    .then(addonList => {
+      errorObj.addonList = addonList;
+      finish();
+    })
+    .catch(e => {
+      console.error("Could not getAddonList:", e);
+      finish();
+    });
   function finish() {
-    if (! error.noPopup) {
+    if (!error.noPopup) {
       panel.port.emit("showError", errorObj);
     }
     req.request(`${main.getBackend()}/error`, {
@@ -89,8 +91,8 @@ exports.unhandled = function (error) {
 
 /** Turns an exception object (likely Error) into what might be a kind of
     useful error message (as should be passed to unhandled) */
-exports.makeError = function (error) {
-  if (error && (error instanceof Error || (error.name && error.message))) {
+exports.makeError = function(error) {
+  if (error && (error instanceof Error || error.name && error.message)) {
     let obj = {
       name: error.name,
       message: error.message,
@@ -100,7 +102,7 @@ exports.makeError = function (error) {
     if (error.stack) {
       let stackLines = [];
       for (let line of error.stack.split(/\n/g)) {
-        let match = (/resource:\/\/[a-zA-Z0-9-]*-at-jetpack\/(.*):(\d+):(\d+)/).exec(line);
+        let match = /resource:\/\/[a-zA-Z0-9-]*-at-jetpack\/(.*):(\d+):(\d+)/.exec(line);
         if (match) {
           stackLines.push(`${match[1]}:${match[2]}`);
         }
@@ -135,8 +137,8 @@ exports.makeError = function (error) {
     This should catch a rejection of the promise, or an exception of
     the .then() handler.
     */
-exports.watchPromise = function (promise) {
-  return promise.catch(function (error) {
+exports.watchPromise = function(promise) {
+  return promise.catch(function(error) {
     let exc = exports.makeError(error);
     console.error("Promise rejected with error:", exc || error);
     exports.unhandled(exc);
@@ -152,16 +154,16 @@ exports.watchPromise = function (promise) {
 
     Also watches any promise returned by the function
     */
-exports.watchFunction = function (func, context) {
+exports.watchFunction = function(func, context) {
   if (context) {
     func = func.bind(context);
   }
-  return function () {
+  return function() {
     let result;
     try {
       result = func.apply(this, arguments);
     } catch (e) {
-      console.warn("Error in", func.name, ":", e+"");
+      console.warn("Error in", func.name, ":", e + "");
       exports.unhandled(exports.makeError(e));
       throw e;
     }
@@ -174,14 +176,14 @@ exports.watchFunction = function (func, context) {
 
 /** Watches a worker.  This just means it listens for the `alertError` message
     on the worker's port. */
-exports.watchWorker = function (worker) {
-  worker.port.on("alertError", function (error) {
+exports.watchWorker = function(worker) {
+  worker.port.on("alertError", function(error) {
     console.error("Error from worker:", worker.url.replace(/.*\//, ""), ":", JSON.stringify(error));
     exports.unhandled(error);
   });
   // Workers also automatically emit an error message:
-  worker.port.on("error", function (exc) {
-    console.error("Uncaught error from worker (" + worker.url.replace(/.*\//, "") + "):", exc+"");
+  worker.port.on("error", function(exc) {
+    console.error("Uncaught error from worker (" + worker.url.replace(/.*\//, "") + "):", exc + "");
     if (exc.stack) {
       console.error("Stack:", exc.stack);
     }
@@ -192,7 +194,7 @@ exports.watchWorker = function (worker) {
 
 /** Immediately runs a function and catches any errors, an alternative
     to try/catch */
-exports.watchRun = function (func, context) {
+exports.watchRun = function(func, context) {
   try {
     func.run(context || this);
   } catch (e) {
@@ -206,9 +208,9 @@ function getAddonList() {
     return Promise.resolve(getAddonList.cached);
   }
   return new Promise((resolve, reject) => {
-    AddonManager.getAllAddons((addons) => {
-      addons = addons.filter((a) => a.isActive);
-      addons = addons.map((a) => {
+    AddonManager.getAllAddons(addons => {
+      addons = addons.filter(a => a.isActive);
+      addons = addons.map(a => {
         return `${a.id} / ${a.name}`;
       });
       addons.sort();

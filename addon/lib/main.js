@@ -19,7 +19,7 @@ const { watchFunction } = require("./errors");
 const { Cu } = require("chrome");
 const req = require("./req");
 const { setTimeout, clearTimeout } = require("sdk/timers");
-const { AddonManager } = require('resource://gre/modules/AddonManager.jsm');
+const { AddonManager } = require("resource://gre/modules/AddonManager.jsm");
 const { addXULStylesheet } = require("./xulcss");
 const { storage } = require("sdk/simple-storage");
 const contextMenu = require("sdk/context-menu");
@@ -42,16 +42,14 @@ tabs.on("open", function(tab) {
   tab.on("pageshow", cleanUpTabsBeingShot);
 });
 
-
-exports.openMyShots = function () {
-  if (! prefs.hasUsedMyShots) {
+exports.openMyShots = function() {
+  if (!prefs.hasUsedMyShots) {
     prefs.hasUsedMyShots = true;
   }
   setTimeout(() => {
     tabs.open(exports.getBackend() + "/shots");
   });
 };
-
 
 function takeShot(source) {
   require("./ab-highlight-button-on-install").buttonClicked();
@@ -108,8 +106,8 @@ contextMenu.Item({
 var shootButton = ActionButton({
   id: "pageshot-shooter",
   label: "Make shot",
-  icon: './icons/transparent-16.png',
-  onClick: watchFunction(function () {
+  icon: "./icons/transparent-16.png",
+  onClick: watchFunction(function() {
     takeShot("toolbar-pageshot-button");
   })
 });
@@ -120,46 +118,49 @@ exports.shootButton = shootButton;
     falls back to the addon pref */
 var backendOverride = null;
 
-exports.getBackend = function () {
+exports.getBackend = function() {
   return backendOverride || prefs.backend;
 };
 
 // For reasons see https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Listening_for_load_and_unload
-exports.main = function (options) {
+exports.main = function(options) {
   loadReason = options.loadReason;
   helperworker.trackMods(backendOverride || null);
   addXULStylesheet(self.data.url("toolbar-button.css"));
-  require("./user").initialize(exports.getBackend(), options.loadReason).then(() => {
-    req.sendEvent("open-browser", loadReason, {ni: true});
-    if (options.loadReason === "install") {
-      req.sendEvent("install");
-      AddonManager.getAddonByID("@testpilot-addon", (addon) => {
-        if (addon === null) {
-          req.sendEvent("test-pilot-not-installed", {ni: true});
-        } else {
-          req.sendEvent("test-pilot-installed", {ni: true});
-        }
-      });
-    }
-    startDailyPing();
-    require("./ab-highlight-button-on-install").mainCalled(loadReason);
-  }).catch((error) => {
-    console.warn("Failed to log in to server:", exports.getBackend(), error+"", error.stack);
-    error.noPopup = true;
-    require("./errors").unhandled(error);
-  });
+  require("./user")
+    .initialize(exports.getBackend(), options.loadReason)
+    .then(() => {
+      req.sendEvent("open-browser", loadReason, { ni: true });
+      if (options.loadReason === "install") {
+        req.sendEvent("install");
+        AddonManager.getAddonByID("@testpilot-addon", addon => {
+          if (addon === null) {
+            req.sendEvent("test-pilot-not-installed", { ni: true });
+          } else {
+            req.sendEvent("test-pilot-installed", { ni: true });
+          }
+        });
+      }
+      startDailyPing();
+      require("./ab-highlight-button-on-install").mainCalled(loadReason);
+    })
+    .catch(error => {
+      console.warn("Failed to log in to server:", exports.getBackend(), error + "", error.stack);
+      error.noPopup = true;
+      require("./errors").unhandled(error);
+    });
 };
 
 let timeoutId;
-const intervalMilliseconds = 1000*60*60*24; // 1 day
+const intervalMilliseconds = 1000 * 60 * 60 * 24; // 1 day
 function startDailyPing() {
   if (timeoutId) {
     clearTimeout(timeoutId);
   }
   let lastTime = storage.lastPingTime;
   let now = Date.now();
-  if ((! lastTime) || (now - lastTime + 60000) > intervalMilliseconds) {
-    req.sendEvent("daily-ping", {ni: true});
+  if (!lastTime || now - lastTime + 60000 > intervalMilliseconds) {
+    req.sendEvent("daily-ping", { ni: true });
     storage.lastPingTime = now;
     timeoutId = setTimeout(startDailyPing, intervalMilliseconds);
   } else {
@@ -168,7 +169,7 @@ function startDailyPing() {
   }
 }
 
-exports.onUnload = function (reason) {
+exports.onUnload = function(reason) {
   if (reason == "shutdown") {
     return;
   }
@@ -196,7 +197,7 @@ exports.onUnload = function (reason) {
 /** Remove the user and user.sig cookies for the backend */
 function removeCookies() {
   let namespace = {};
-  Cu.import('resource://gre/modules/Services.jsm', namespace);
+  Cu.import("resource://gre/modules/Services.jsm", namespace);
   let domain = require("sdk/url").URL(exports.getBackend()).hostname;
   namespace.Services.cookies.add(domain, "/", "user", "", false, false, false, 0);
   namespace.Services.cookies.add(domain, "/", "user.sig", "", false, false, false, 0);

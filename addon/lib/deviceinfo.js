@@ -1,7 +1,7 @@
 const self = require("sdk/self");
 const system = require("sdk/system");
 
-exports.deviceInfo = function () {
+exports.deviceInfo = function() {
   return {
     addonVersion: self.version,
     platform: system.platform,

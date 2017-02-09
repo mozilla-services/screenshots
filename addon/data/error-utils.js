@@ -16,7 +16,7 @@ function unhandled(error) {
 function getFilename() {
   try {
     return FILENAME;
-  } catch (e) { // eslint-disable-line no-empty
+  } catch (e) {// eslint-disable-line no-empty
   }
   return "unknown";
 }
@@ -25,7 +25,7 @@ function getFilename() {
 function makeError(exc, info) {
   var result = {
     name: exc.name || "ERROR",
-    message: exc+"",
+    message: exc + "",
     stack: exc.stack
   };
   if (info) {
@@ -38,12 +38,12 @@ function makeError(exc, info) {
 
 /** Wrap the function, and if it raises any exceptions then call unhandled() */
 function watchFunction(func) {
-  return function () {
+  return function() {
     var result;
     try {
       result = func.apply(this, arguments);
     } catch (e) {
-      console.error("------Error in worker script:", e+"");
+      console.error("------Error in worker script:", e + "");
       console.error(e.stack);
       unhandled(makeError(e));
       throw e;
@@ -53,8 +53,8 @@ function watchFunction(func) {
 }
 
 function watchPromise(promise) {
-  return promise.catch((e) => {
-    console.error("------Error in promise:", e+"");
+  return promise.catch(e => {
+    console.error("------Error in promise:", e + "");
     console.error(e.stack);
     unhandled(makeError(e));
   });

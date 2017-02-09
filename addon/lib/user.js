@@ -1,10 +1,10 @@
-const { Cu } = require('chrome');
+const { Cu } = require("chrome");
 const ss = require("sdk/simple-storage");
 const { prefs } = require("sdk/simple-prefs");
-const { uuid } = require('sdk/util/uuid');
+const { uuid } = require("sdk/util/uuid");
 const { Request } = require("sdk/request");
 const { watchFunction, watchPromise } = require("./errors");
-const { deviceInfo } = require('./deviceinfo');
+const { deviceInfo } = require("./deviceinfo");
 const { hasCookieForBackend } = require("./get-cookies");
 
 let initialized = false;
@@ -27,7 +27,6 @@ function setDeviceIdInfo(info) {
   prefs.deviceIdInfo = JSON.stringify(info);
 }
 
-
 exports.getSentryPublicDSN = function() {
   return sentryPublicDSN;
 };
@@ -48,11 +47,11 @@ function setVariablesFromServer(responseJson) {
   for (let testName in abTests) {
     abTestsInfo.push(`${testName}=${abTests[testName].value}`);
   }
-  console.info(`Got server response: ${sentryPublicDSN ? 'got Sentry DSN' : 'no Sentry DSN'}`);
-  console.info(`Got server A/B tests: ${abTestsInfo.join('; ')}`);
+  console.info(`Got server response: ${sentryPublicDSN ? "got Sentry DSN" : "no Sentry DSN"}`);
+  console.info(`Got server A/B tests: ${abTestsInfo.join("; ")}`);
 }
 
-exports.deleteEverything = function () {
+exports.deleteEverything = function() {
   let backend = require("./main").getBackend();
   setDeviceIdInfo(null);
   require("./shotstore").deleteEverything();
@@ -62,13 +61,13 @@ exports.deleteEverything = function () {
   exports.initialize(backend);
 };
 
-exports.isInitialized = function () {
+exports.isInitialized = function() {
   return initialized && hasCookieForBackend(require("./main").getBackend());
 };
 
 let cachedBackend, cachedReason; // eslint-disable-line no-unused-vars
 
-exports.initialize = function (backend, reason) {
+exports.initialize = function(backend, reason) {
   // This lets us retry initialize() with no parameters later if necessary:
   cachedBackend = backend = backend || cachedBackend;
   cachedReason = reason = reason || cachedReason;
@@ -77,19 +76,21 @@ exports.initialize = function (backend, reason) {
   }
   let deviceIdInfo = getDeviceIdInfo();
   return new Promise((resolve, reject) => {
-    if (! (deviceIdInfo && deviceIdInfo.deviceId && deviceIdInfo.secret)) {
+    if (!(deviceIdInfo && deviceIdInfo.deviceId && deviceIdInfo.secret)) {
       let newInfo = {
         deviceId: "anon" + makeUuid() + "",
-        secret: makeUuid()+"",
+        secret: makeUuid() + "",
         reason,
         deviceInfo: JSON.stringify(deviceInfo())
       };
       console.info("Generating new device authentication ID", newInfo.deviceId);
-      watchPromise(saveLogin(backend, newInfo).then(function () {
-        setDeviceIdInfo(newInfo);
-        console.info("Successfully saved ID");
-        resolve();
-      })).catch((error) => {
+      watchPromise(
+        saveLogin(backend, newInfo).then(function() {
+          setDeviceIdInfo(newInfo);
+          console.info("Successfully saved ID");
+          resolve();
+        })
+      ).catch(error => {
         reject(error);
       });
     } else {
@@ -103,7 +104,7 @@ exports.initialize = function (backend, reason) {
           reason,
           deviceInfo: JSON.stringify(deviceInfo())
         },
-        onComplete: watchFunction(function (response) {
+        onComplete: watchFunction(function(response) {
           if (response.status == 404) {
             // Need to save login anyway...
             console.info(`Login to ${loginUrl} failed with 404, trying to register`);
@@ -111,9 +112,10 @@ exports.initialize = function (backend, reason) {
               () => {
                 resolve();
               },
-              (error) => {
+              error => {
                 reject(error);
-              });
+              }
+            );
             return;
           } else if (response.status >= 300) {
             let error = new Error(`Could not log in: ${response.status} ${response.statusText}`);
@@ -140,12 +142,12 @@ exports.initialize = function (backend, reason) {
 
 function saveLogin(backend, info) {
   let registerUrl = backend + "/api/register";
-  return new Promise(function (resolve, reject) {
+  return new Promise(function(resolve, reject) {
     Request({
       url: registerUrl,
       contentType: "application/x-www-form-urlencoded",
       content: info,
-      onComplete: function (response) {
+      onComplete: function(response) {
         if (response.status == 200) {
           console.info("Registered login with cookie:", !!response.headers["Set-Cookie"]);
           initialized = true;
@@ -177,15 +179,15 @@ function enqueueProfileUpdate(func) {
   return result;
 }
 
-exports.setDefaultProfileInfo = function (attrs) {
+exports.setDefaultProfileInfo = function(attrs) {
   return enqueueProfileUpdate(() => {
-    if (! attrs) {
+    if (!attrs) {
       throw new Error("Missing default profile information");
     }
     let info = ss.storage.profileInfo || {};
     for (let attr of Object.keys(attrs)) {
       // Only update the attribute if the user hasn't already set a value.
-      if (! info[attr]) {
+      if (!info[attr]) {
         info[attr] = attrs[attr];
       }
     }
@@ -200,15 +202,15 @@ function updateLocalProfileInfo(attrs) {
   return info;
 }
 
-exports.getProfileInfo = function () {
+exports.getProfileInfo = function() {
   return enqueueProfileUpdate(() => {
     return ss.storage.profileInfo;
   });
 };
 
-exports.updateProfile = function (backend, info) {
+exports.updateProfile = function(backend, info) {
   return enqueueProfileUpdate(() => {
-    if (! info) {
+    if (!info) {
       throw new Error("Missing updated profile information");
     }
     let updateUrl = backend + "/api/update";
@@ -217,7 +219,7 @@ exports.updateProfile = function (backend, info) {
         url: updateUrl,
         contentType: "application/json",
         content: JSON.stringify(info),
-        onComplete: function (response) {
+        onComplete: function(response) {
           if (response.status >= 200 && response.status < 300) {
             // Update stored profile info.
             let newInfo = updateLocalProfileInfo(info);
@@ -231,6 +233,6 @@ exports.updateProfile = function (backend, info) {
   });
 };
 
-exports.getAbTests = function () {
+exports.getAbTests = function() {
   return abTests;
 };

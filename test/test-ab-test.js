@@ -3,8 +3,7 @@
 const assert = require("assert");
 const abTests = require("../server/src/ab-tests.js");
 
-describe("Test Page Shot", function () {
-
+describe("Test Page Shot", function() {
   before(() => {
     abTests.setAllTestsForTesting({
       simpleTest: {
@@ -53,48 +52,47 @@ describe("Test Page Shot", function () {
     abTests.setRandomSequenceForTesting([0.9, 0.9]);
     let tests = abTests.updateAbTests({});
     assert.deepEqual(tests, {
-      simpleTest: {value: "control", gaField: "cd3", version: 1},
-      breakEverythingTest: {value: "control", gaField: "cd4", shotField: "cd5", version: 2}
+      simpleTest: { value: "control", gaField: "cd3", version: 1 },
+      breakEverythingTest: { value: "control", gaField: "cd4", shotField: "cd5", version: 2 }
     });
   });
 
   it("should not overwrite existing values", () => {
     let tests = abTests.updateAbTests({
-      simpleTest: {value: "control", gaField: "cd3", version: 1},
-      breakEverythingTest: {value: "control", gaField: "cd4", shotField: "cd5", version: 2}
+      simpleTest: { value: "control", gaField: "cd3", version: 1 },
+      breakEverythingTest: { value: "control", gaField: "cd4", shotField: "cd5", version: 2 }
     });
     assert.deepEqual(tests, {
-      simpleTest: {value: "control", gaField: "cd3", version: 1},
-      breakEverythingTest: {value: "control", gaField: "cd4", shotField: "cd5", version: 2}
+      simpleTest: { value: "control", gaField: "cd3", version: 1 },
+      breakEverythingTest: { value: "control", gaField: "cd4", shotField: "cd5", version: 2 }
     });
   });
 
   it("should exclude the second test when the first is selected", () => {
     let tests = abTests.updateAbTests({
-      simpleTest: {value: "bright", gaField: "cd3", version: 1}
+      simpleTest: { value: "bright", gaField: "cd3", version: 1 }
     });
     assert.deepEqual(tests, {
-      simpleTest: {value: "bright", gaField: "cd3", version: 1},
-      breakEverythingTest: {value: "control", gaField: "cd4", shotField: "cd5", version: 2}
+      simpleTest: { value: "bright", gaField: "cd3", version: 1 },
+      breakEverythingTest: { value: "control", gaField: "cd4", shotField: "cd5", version: 2 }
     });
     abTests.setRandomSequenceForTesting([0.35]);
     tests = abTests.updateAbTests({});
     assert.deepEqual(tests, {
-      simpleTest: {value: "dark", gaField: "cd3", version: 1},
-      breakEverythingTest: {value: "control", gaField: "cd4", shotField: "cd5", version: 2}
+      simpleTest: { value: "dark", gaField: "cd3", version: 1 },
+      breakEverythingTest: { value: "control", gaField: "cd4", shotField: "cd5", version: 2 }
     });
   });
 
   it("should try to take someone out of control when version is bumped", () => {
     abTests.setRandomSequenceForTesting([0.15]);
     let tests = abTests.updateAbTests({
-      simpleTest: {value: "control", gaField: "cd3", version: 1},
-      breakEverythingTest: {value: "control", gaField: "cd4", shotField: "cd5", version: 1}
+      simpleTest: { value: "control", gaField: "cd3", version: 1 },
+      breakEverythingTest: { value: "control", gaField: "cd4", shotField: "cd5", version: 1 }
     });
     assert.deepEqual(tests, {
-      simpleTest: {value: "control", gaField: "cd3", version: 1},
-      breakEverythingTest: {value: "strobe", gaField: "cd4", shotField: "cd5", version: 2}
+      simpleTest: { value: "control", gaField: "cd3", version: 1 },
+      breakEverythingTest: { value: "strobe", gaField: "cd4", shotField: "cd5", version: 2 }
     });
   });
-
 });

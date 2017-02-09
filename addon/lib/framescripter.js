@@ -3,8 +3,8 @@
 
     Likely the only function you'll use is `callScript()`
     */
-const { getBrowserForTab } = require('sdk/tabs/utils');
-const { defer } = require('sdk/core/promise');
+const { getBrowserForTab } = require("sdk/tabs/utils");
+const { defer } = require("sdk/core/promise");
 const { viewFor } = require("sdk/view/core");
 const { setTimeout, clearTimeout } = require("sdk/timers");
 
@@ -12,19 +12,18 @@ let DEBUG = false;
 let loadedTimestamp = Date.now();
 
 /** call setDebug(true) to get debug information on the console */
-exports.setDebug = function (val) {
+exports.setDebug = function(val) {
   DEBUG = val;
 };
 
 function logDebug() {
-  if (! DEBUG) {
+  if (!DEBUG) {
     return;
   }
   let args = [];
-  for (var i=0; i<arguments.length; i++) {
-    if (typeof arguments[i] == "object" &&
-      JSON.stringify(arguments[i]).length > 100) {
-        args.push("[Object keys: " + JSON.stringify(Object.keys(arguments[i])) + "]");
+  for (var i = 0; i < arguments.length; i++) {
+    if (typeof arguments[i] == "object" && JSON.stringify(arguments[i]).length > 100) {
+      args.push("[Object keys: " + JSON.stringify(Object.keys(arguments[i])) + "]");
     } else {
       args.push(arguments[i]);
     }
@@ -46,16 +45,16 @@ function getBrowser(tab) {
     Framescripts are long-lived, and live longer than any one page that is
     loaded.  This attaches tracking attributes to the browser to see which
     scripts have been attached. */
-exports.addScript = function (tab, script) {
+exports.addScript = function(tab, script) {
   let browser = getBrowser(tab);
   let scripts = browser.framescripterEnabledScripts;
-  if (! scripts) {
+  if (!scripts) {
     scripts = browser.framescripterEnabledScripts = {};
   }
-  if (! scripts[script]) {
+  if (!scripts[script]) {
     logDebug("Adding script:", script);
     let browserMM = browser.messageManager;
-    if (! browserMM) {
+    if (!browserMM) {
       console.error("Could not get messageManager from " + browser);
       throw new Error("Could not get messageManager");
     }
@@ -66,11 +65,11 @@ exports.addScript = function (tab, script) {
   }
 };
 
-exports.unload = function () {
+exports.unload = function() {
   for (let tab of require("sdk/tabs")) {
     let browser = getBrowser(tab);
     let scripts = browser.framescripterEnabledScripts;
-    if (! scripts) {
+    if (!scripts) {
       continue;
     }
     let browserMM = browser.messageManager;
@@ -100,7 +99,7 @@ const pendingTimeouts = {};
 
     Returns a promise that resolves when the return message is sent.
     */
-exports.callScript = function (tab, script, message, payload, timeout) {
+exports.callScript = function(tab, script, message, payload, timeout) {
   if (timeout === undefined) {
     timeout = 7000;
   }
@@ -108,7 +107,7 @@ exports.callScript = function (tab, script, message, payload, timeout) {
   let browser = getBrowser(tab);
   let messages = browser.framescripterEnabledScripts[script];
   let browserMM = browser.messageManager;
-  if (! messages[message]) {
+  if (!messages[message]) {
     browserMM.addMessageListener(message + ":return", callScriptReturner);
     messages[message] = true;
     logDebug("Adding frame listener for:", message + ":return");
@@ -120,18 +119,21 @@ exports.callScript = function (tab, script, message, payload, timeout) {
   logDebug("Sending [" + message + ":call]/" + id + " with payload:", payload);
   browserMM.sendAsyncMessage(message + ":call", payload);
   if (timeout) {
-    pendingTimeouts[id] = setTimeout(function () {
-      if (pendingDeferreds[id]) {
-        // The promise has not yet completed
-        var deferred = pendingDeferreds[id];
-        delete pendingDeferreds[id];
-        delete pendingTimeouts[id];
-        logDebug("Script timed out:", script, message, "after:", timeout);
-        deferred.reject(new Error("Timeout after " + timeout + "ms in " + message));
-      } else {
-        logDebug("Timeout ran despite deferred being completed, for:", script, message);
-      }
-    }, timeout);
+    pendingTimeouts[id] = setTimeout(
+      function() {
+        if (pendingDeferreds[id]) {
+          // The promise has not yet completed
+          var deferred = pendingDeferreds[id];
+          delete pendingDeferreds[id];
+          delete pendingTimeouts[id];
+          logDebug("Script timed out:", script, message, "after:", timeout);
+          deferred.reject(new Error("Timeout after " + timeout + "ms in " + message));
+        } else {
+          logDebug("Timeout ran despite deferred being completed, for:", script, message);
+        }
+      },
+      timeout
+    );
   }
   return deferred.promise;
 };
@@ -139,7 +141,7 @@ exports.callScript = function (tab, script, message, payload, timeout) {
 // Handler for a specific event type, used to resolve promises:
 function callScriptReturner(event) {
   let deferred = pendingDeferreds[event.data.callId];
-  if (! deferred) {
+  if (!deferred) {
     console.error("Got deferred that has expired:", event.data.callId);
     throw new Error("Expired deferred");
   }

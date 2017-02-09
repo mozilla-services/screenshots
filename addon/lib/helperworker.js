@@ -30,7 +30,7 @@ function resetPageMod(backend) {
   existing = pageMod.PageMod({
     include: include,
     contentScriptFile: [self.data.url("viewerworker.js")],
-    onAttach: function (worker) {
+    onAttach: function(worker) {
       watchWorker(worker);
 
       /*
@@ -49,33 +49,41 @@ function resetPageMod(backend) {
       }));
       */
 
-      worker.port.on("deleteEverything", watchFunction(function () {
-        user.deleteEverything();
-      }));
+      worker.port.on(
+        "deleteEverything",
+        watchFunction(function() {
+          user.deleteEverything();
+        })
+      );
 
-      worker.port.on("error-no-sendEvent", watchFunction(function () {
-        let error = new Error("Error: sendEvent missing in web view");
-        error.noPopup = true;
-        throw error;
-      }));
+      worker.port.on(
+        "error-no-sendEvent",
+        watchFunction(function() {
+          let error = new Error("Error: sendEvent missing in web view");
+          error.noPopup = true;
+          throw error;
+        })
+      );
 
-      worker.port.on("sendRichCopy", watchFunction(function (data) {
-        notifications.notify({
-          title: "Rich Text Copied",
-          text: `The image and link to your shot have been copied. ${copyInstructions()}`,
-          iconURL: self.data.url("../data/copy.png")
-        });
-        copyMultiple({html: data.html, text: data.text});
-      }));
-
+      worker.port.on(
+        "sendRichCopy",
+        watchFunction(function(data) {
+          notifications.notify({
+            title: "Rich Text Copied",
+            text: `The image and link to your shot have been copied. ${copyInstructions()}`,
+            iconURL: self.data.url("../data/copy.png")
+          });
+          copyMultiple({ html: data.html, text: data.text });
+        })
+      );
     }
   });
 }
 
 /** Used to track changes to to the backend pref */
-exports.trackMods = function (backendOverride) {
+exports.trackMods = function(backendOverride) {
   resetPageMod(backendOverride);
-  simplePrefs.on("backend", function () {
+  simplePrefs.on("backend", function() {
     resetPageMod(simplePrefs.prefs.backend);
   });
 };

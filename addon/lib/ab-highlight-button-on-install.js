@@ -11,7 +11,7 @@ function shouldShowBadge() {
   return abTests.highlightButtonOnInstall && abTests.highlightButtonOnInstall.value == "badge";
 }
 
-exports.mainCalled = function (loadReason) {
+exports.mainCalled = function(loadReason) {
   let timestamp, hasCreatedShot;
   if (shouldShowBadge()) {
     if (loadReason == "install") {
@@ -29,7 +29,7 @@ exports.mainCalled = function (loadReason) {
   }
 };
 
-exports.buttonClicked = function () {
+exports.buttonClicked = function() {
   if (shouldShowBadge()) {
     storage[storageKey + "-has-created-shot"] = true;
     refreshBadge(0, true);
@@ -37,8 +37,8 @@ exports.buttonClicked = function () {
 };
 
 function refreshBadge(timestamp, hasCreatedShot) {
-  if ((! hasCreatedShot) && (Date.now() - timestamp < SHOW_BADGE_LIMIT)) {
-    req.sendEvent("ab-highlight-button-shown", {ni: true});
+  if (!hasCreatedShot && Date.now() - timestamp < SHOW_BADGE_LIMIT) {
+    req.sendEvent("ab-highlight-button-shown", { ni: true });
     let button = require("./main").shootButton;
     button.badge = "Hi";
     button.badgeColor = "#00AFF7";

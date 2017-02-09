@@ -6,23 +6,20 @@ const React = require("react");
 const ReactDOM = require("react-dom");
 
 class Head extends React.Component {
-
   render() {
     return (
       <reactruntime.HeadTemplate {...this.props}>
-        <script src={this.props.staticLink("/static/js/shotindex-bundle.js")} async></script>
+        <script src={this.props.staticLink("/static/js/shotindex-bundle.js")} async />
         <link rel="stylesheet" href={this.props.staticLink("/static/css/shot-index.css")} />
       </reactruntime.HeadTemplate>
     );
   }
-
 }
-
 
 class Body extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {defaultSearch: props.defaultSearch};
+    this.state = { defaultSearch: props.defaultSearch };
   }
 
   render() {
@@ -42,10 +39,18 @@ class Body extends React.Component {
         <div className="column-space full-height default-color-scheme">
           <div id="shot-index-header" className="header">
             <h1><a href="/shots">Page Shot</a></h1>
-            <form onSubmit={ this.onSubmitForm.bind(this) }>
+            <form onSubmit={this.onSubmitForm.bind(this)}>
               <span className="search-label" />
-              <input type="search" id="search" ref="search" maxLength="100" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />
-              <button title="search"></button>
+              <input
+                type="search"
+                id="search"
+                ref="search"
+                maxLength="100"
+                placeholder="search my shots"
+                defaultValue={this.state.defaultSearch}
+                onChange={this.onChangeSearch.bind(this)}
+              />
+              <button title="search" />
             </form>
           </div>
           <div id="shot-index" className="flex-1">
@@ -94,15 +99,22 @@ class Body extends React.Component {
     let favicon = null;
     if (shot.favicon) {
       // We use background-image so if the image is broken it just doesn't show:
-      favicon = <div style={{backgroundImage: `url("${shot.favicon}")`}} className="favicon" />;
+      favicon = <div style={{ backgroundImage: `url("${shot.favicon}")` }} className="favicon" />;
     }
 
     return (
-      <a href={shot.viewUrl}  className="shot" key={shot.id} onClick={this.onOpen.bind(this, shot.viewUrl)}>
-        <div className="shot-image-container" style={{
-          backgroundImage: `url(${imageUrl})`
-        }}>
-          <img className="shot-control" src={this.props.staticLink("/static/img/garbage-bin.svg")} onClick={this.onClickDelete.bind(this, shot)} />
+      <a href={shot.viewUrl} className="shot" key={shot.id} onClick={this.onOpen.bind(this, shot.viewUrl)}>
+        <div
+          className="shot-image-container"
+          style={{
+            backgroundImage: `url(${imageUrl})`
+          }}
+        >
+          <img
+            className="shot-control"
+            src={this.props.staticLink("/static/img/garbage-bin.svg")}
+            onClick={this.onClickDelete.bind(this, shot)}
+          />
         </div>
         <div className="title-container">
           <h4>{shot.title}</h4>
@@ -113,7 +125,7 @@ class Body extends React.Component {
             {shot.urlDisplay}
           </div>
         </div>
-        <div className="inner-border"/>
+        <div className="inner-border" />
       </a>
     );
   }
@@ -121,9 +133,9 @@ class Body extends React.Component {
   onClickDelete(shot, event) {
     event.stopPropagation();
     event.preventDefault();
-    sendEvent("start-delete", "my-shots", {useBeacon: true});
+    sendEvent("start-delete", "my-shots", { useBeacon: true });
     if (window.confirm(`Delete ${shot.title}?`)) {
-      sendEvent("delete", "my-shots-popup-confirm", {useBeacon: true});
+      sendEvent("delete", "my-shots-popup-confirm", { useBeacon: true });
       controller.deleteShot(shot);
     } else {
       sendEvent("cancel-delete", "my-shots-popup-confirm");
@@ -134,11 +146,11 @@ class Body extends React.Component {
   onOpen(url, event) {
     if (event.ctrlKey || event.metaKey || event.button === 1) {
       // Don't override what might be an open-in-another-tab click
-      sendEvent("goto-shot", "myshots-tile-new-tab", {useBeacon: true});
+      sendEvent("goto-shot", "myshots-tile-new-tab", { useBeacon: true });
       return;
     }
 
-    sendEvent("goto-shot", "myshots-tile", {useBeacon: true});
+    sendEvent("goto-shot", "myshots-tile", { useBeacon: true });
     location.href = url;
   }
 
@@ -155,8 +167,8 @@ class Body extends React.Component {
 
   onChangeSearch() {
     let val = ReactDOM.findDOMNode(this.refs.search).value;
-    this.setState({defaultSearch: val});
-    if (! val) {
+    this.setState({ defaultSearch: val });
+    if (!val) {
       sendEvent("clear-search", "keyboard");
       controller.onChangeSearch(val);
       return;
@@ -166,10 +178,13 @@ class Body extends React.Component {
       this._keyupTimeout = undefined;
     }
     if (val.length > 3) {
-      this._keyupTimeout = setTimeout(() => {
-        sendEvent("search", "timed");
-        controller.onChangeSearch(val);
-      }, 1000);
+      this._keyupTimeout = setTimeout(
+        () => {
+          sendEvent("search", "timed");
+          controller.onChangeSearch(val);
+        },
+        1000
+      );
     }
   }
 
@@ -180,7 +195,6 @@ class Body extends React.Component {
       document.body.classList.remove("search-results-loading");
     }
   }
-
 }
 
 exports.HeadFactory = React.createFactory(Head);

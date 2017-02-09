@@ -1,4 +1,4 @@
-exports.createModel = function (req) {
+exports.createModel = function(req) {
   return {
     title: "Page Not Found"
   };

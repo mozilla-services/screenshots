@@ -7,12 +7,11 @@ const ReactDOM = require("react-dom");
 const linker = require("./linker");
 
 exports.HeadTemplate = class HeadTemplate extends React.Component {
-
   render() {
     // FIXME: this should probably include some standard CSS or other boilerplate
     let analyticsScript;
     let activationScript;
-    if (! this.props.noAnalytics) {
+    if (!this.props.noAnalytics) {
       analyticsScript = <script src="//www.google-analytics.com/analytics.js" async />;
       if (this.props.hashAnalytics) {
         activationScript = <script src={this.props.staticLink("/ga-activation-hashed.js")} />;
@@ -26,18 +25,16 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
         <title>{this.props.title}</title>
         <link rel="icon" type="image/png" href={this.props.staticLink("/static/img/pageshot-icon-32.png")} />
         <link rel="shortcut icon" href={this.props.staticLink("/static/img/pageshot-icon-32.png")} />
-        { analyticsScript }
-        { activationScript }
-        { this.props.sentryPublicDSN ? <script src={this.props.staticLink("/install-raven.js")} async /> : null }
+        {analyticsScript}
+        {activationScript}
+        {this.props.sentryPublicDSN ? <script src={this.props.staticLink("/install-raven.js")} async /> : null}
         {this.props.children}
       </head>
     );
   }
-
 };
 
 exports.BodyTemplate = class Body extends React.Component {
-
   render() {
     return (
       <div>
@@ -45,13 +42,12 @@ exports.BodyTemplate = class Body extends React.Component {
       </div>
     );
   }
-
 };
 
 exports.Page = class Page {
   constructor(options) {
     for (let name in options) {
-      if (! this.ATTRS.includes(name)) {
+      if (!this.ATTRS.includes(name)) {
         throw new Error("Invalid attribute to Page: " + name);
       }
       let value = options[name];
@@ -61,7 +57,7 @@ exports.Page = class Page {
 
   set dir(val) {
     if (val.startsWith("/")) {
-      if (! val.startsWith(__dirname)) {
+      if (!val.startsWith(__dirname)) {
         throw new Error("Unknown directory for page: " + val + " (not " + __dirname + ")");
       }
       val = val.substr(__dirname.length).replace(/^\/+/, "");
@@ -71,7 +67,7 @@ exports.Page = class Page {
   }
 
   render(model) {
-    if (! model.staticLink) {
+    if (!model.staticLink) {
       linker.setGitRevision(model.gitRevision);
       model.staticLink = linker.staticLink;
       model.staticLinkWithHost = linker.staticLinkWithHost.bind(null, {
@@ -86,9 +82,7 @@ exports.Page = class Page {
     if (model.title && model.title != curTitle) {
       document.title = model.title;
     }
-    ReactDOM.render(
-      body,
-      document.getElementById("react-body-container"));
+    ReactDOM.render(body, document.getElementById("react-body-container"));
   }
 
   get dir() {
@@ -102,7 +96,6 @@ exports.Page = class Page {
   get BodyFactory() {
     return this.viewModule.BodyFactory;
   }
-
 };
 
 exports.Page.prototype.ATTRS = `
@@ -111,7 +104,7 @@ dir viewModule noBrowserJavascript
 
 if (typeof window !== "undefined") {
   setTimeout(() => {
-    if (window.initialModel !== undefined && ! window.initialModelLaunched) {
+    if (window.initialModel !== undefined && !window.initialModelLaunched) {
       window.initialModelLaunched = true;
       window.controller.launch(window.initialModel);
     }

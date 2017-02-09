@@ -4,12 +4,16 @@
     The real work is generally done in `lib/helperworker.js`
     */
 
-document.addEventListener("error", function (event) {
-  console.error("Error via helper from", location.href);
-  self.port.emit("alertError", event.detail);
-}, false);
+document.addEventListener(
+  "error",
+  function(event) {
+    console.error("Error via helper from", location.href);
+    self.port.emit("alertError", event.detail);
+  },
+  false
+);
 
-document.addEventListener("delete-everything", function (event) {
+document.addEventListener("delete-everything", function(event) {
   self.port.emit("deleteEverything");
 });
 /*
@@ -23,10 +27,10 @@ document.addEventListener("remove-saved-shot", function (event) {
   self.port.emit("removeSavedShot", event.detail);
 });
 */
-document.addEventListener("error-no-sendEvent", function (event) {
+document.addEventListener("error-no-sendEvent", function(event) {
   self.port.emit("error-no-sendEvent");
 });
-document.addEventListener("sendRichCopy", function (event) {
+document.addEventListener("sendRichCopy", function(event) {
   self.port.emit("sendRichCopy", event.detail);
 });
 
@@ -44,12 +48,19 @@ self.port.on("savedShotData", function (data) {
 });
 */
 
-let readyTimeout = setInterval(function () {
-  var readyEvent = document.createEvent("CustomEvent");
-  readyEvent.initCustomEvent("helper-ready", true, true, null);
-  document.dispatchEvent(readyEvent);
-}, 200);
+let readyTimeout = setInterval(
+  function() {
+    var readyEvent = document.createEvent("CustomEvent");
+    readyEvent.initCustomEvent("helper-ready", true, true, null);
+    document.dispatchEvent(readyEvent);
+  },
+  200
+);
 
-document.addEventListener("page-ready", function () {
-  clearTimeout(readyTimeout);
-}, false);
+document.addEventListener(
+  "page-ready",
+  function() {
+    clearTimeout(readyTimeout);
+  },
+  false
+);

@@ -17,7 +17,7 @@ function exportPath(deviceId) {
 
 function removeExportPath(dir) {
   return new Promise((resolve, reject) => {
-    rimraf(dir, (error) => {
+    rimraf(dir, error => {
       if (error && error.code != "ENOENT") {
         reject(error);
       } else {
@@ -32,22 +32,19 @@ function launchWget(deviceId) {
     let dir = exportPath(deviceId);
     let script = path.join(__dirname, "export-shots.sh");
     let start = Date.now();
-    let subprocess = child_process.spawn(
-      script,
-      {
-        env: {
-          BASE_DIR: dir,
-          AUTH: require("./dbschema").getTextKeys()[0],
-          DEVICE_ID: deviceId,
-          PORT: config.port,
-          CONTENT_PORT: config.contentPort,
-        }
+    let subprocess = child_process.spawn(script, {
+      env: {
+        BASE_DIR: dir,
+        AUTH: require("./dbschema").getTextKeys()[0],
+        DEVICE_ID: deviceId,
+        PORT: config.port,
+        CONTENT_PORT: config.contentPort
       }
-    );
-    subprocess.on("close", function (code) {
-      console.info("Exported to", dir, "in", (Date.now() - start) + "ms", "exit code:", code);
     });
-    subprocess.on("error", function (e) {
+    subprocess.on("close", function(code) {
+      console.info("Exported to", dir, "in", Date.now() - start + "ms", "exit code:", code);
+    });
+    subprocess.on("error", function(e) {
       console.warn("Error launching wget:", e);
     });
     resolve();
@@ -57,14 +54,14 @@ function launchWget(deviceId) {
 function getWgetStatus(deviceId) {
   return new Promise((resolve, reject) => {
     let dir = exportPath(deviceId);
-    let result = {errors: []};
+    let result = { errors: [] };
     let steps = 3;
     function resolveIfDone() {
       if (steps <= 0) {
         resolve(result);
       }
     }
-    fs.readFile(path.join(dir, "wget-process.pid"), {encoding: "UTF-8"}, (error, data) => {
+    fs.readFile(path.join(dir, "wget-process.pid"), { encoding: "UTF-8" }, (error, data) => {
       if (error && error.code == "ENOENT") {
         // File doesn't exist
         result.running = false;
@@ -76,7 +73,7 @@ function getWgetStatus(deviceId) {
       steps--;
       resolveIfDone();
     });
-    fs.readFile(path.join(dir, "script-exit-code.txt"), {encoding: "UTF-8"}, (error, data) => {
+    fs.readFile(path.join(dir, "script-exit-code.txt"), { encoding: "UTF-8" }, (error, data) => {
       if (error && error.code == "ENOENT") {
         // Do nothing
       } else if (error) {
@@ -112,7 +109,7 @@ function getWgetStatus(deviceId) {
 
 let warnedAboutExportsDirectory = false;
 
-exports.cleanExports = function () {
+exports.cleanExports = function() {
   let start = Date.now();
   fs.readdir(config.exportBase, (error, files) => {
     if (error && error.code == "ENOENT") {
@@ -126,7 +123,7 @@ exports.cleanExports = function () {
       console.warn("EXPORT: Error listing", config.exportBase, ":", error);
       return;
     }
-    let toCheck = files.filter((file) => file.startsWith("export--"));
+    let toCheck = files.filter(file => file.startsWith("export--"));
     let count = toCheck.length;
     let deletedCount = 0;
     let errorCount = 0;
@@ -139,7 +136,16 @@ exports.cleanExports = function () {
         errorCount++;
       }
       if (count <= 0) {
-        console.info("EXPORT: finished cleanup run;", toCheck.length, "checked;", deletedCount, "deleted;", errorCount, "had errors; total time:", (Date.now() - start) + "ms");
+        console.info(
+          "EXPORT: finished cleanup run;",
+          toCheck.length,
+          "checked;",
+          deletedCount,
+          "deleted;",
+          errorCount,
+          "had errors; total time:",
+          Date.now() - start + "ms"
+        );
       }
     }
     for (let dir of toCheck) {
@@ -158,7 +164,7 @@ exports.cleanExports = function () {
               return;
             }
             if (stat.mtime.getTime() + keepTime < Date.now()) {
-              rimraf(fullDir, (error) => {
+              rimraf(fullDir, error => {
                 if (error) {
                   oneDone(false, true);
                   console.warn("EXPORT: failed to remove unfinished export", fullDir, ":", error);
@@ -176,7 +182,7 @@ exports.cleanExports = function () {
           return;
         }
         if (stat.mtime.getTime() + keepTime < Date.now()) {
-          rimraf(fullDir, (error) => {
+          rimraf(fullDir, error => {
             if (error) {
               oneDone(false, true);
               console.warn("EXPORT: failed to remove outdated export", fullDir, ":", error);
@@ -193,59 +199,62 @@ exports.cleanExports = function () {
   });
 };
 
-exports.setup = function (app) {
-
-  app.get("/export", function (req, res) {
-    if (! req.config.allowExport) {
+exports.setup = function(app) {
+  app.get("/export", function(req, res) {
+    if (!req.config.allowExport) {
       res.type("txt").status(403).send("Export is not enabled on this server");
       return;
     }
-    if (! req.deviceId) {
+    if (!req.deviceId) {
       res.type("txt").status(403).send("You must have the addon installed to export your shots");
       return;
     }
     require("./views/export").render(req, res);
   });
 
-  app.post("/export", function (req, res) {
-    if (! req.deviceId) {
+  app.post("/export", function(req, res) {
+    if (!req.deviceId) {
       res.type("txt").status(403).send("You must have the addon installed to export your shots");
       return;
     }
-    let userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
+    let userAnalytics = ua(config.gaId, req.deviceId, { strictCidFormat: false });
     userAnalytics.event("click", "export");
-    launchWget(req.deviceId).then(() => {
-      res.redirect("/export/status?started=" + encodeURIComponent(Date.now()));
-    }).catch((e) => {
-      require("./responses").errorResponse(res, "Failed to launch export", e);
-    });
+    launchWget(req.deviceId)
+      .then(() => {
+        res.redirect("/export/status?started=" + encodeURIComponent(Date.now()));
+      })
+      .catch(e => {
+        require("./responses").errorResponse(res, "Failed to launch export", e);
+      });
   });
 
-  app.get("/export/status", function (req, res) {
-    if (! req.deviceId) {
+  app.get("/export/status", function(req, res) {
+    if (!req.deviceId) {
       res.type("txt").status(403).send("You must have the addon installed to export your shots");
       return;
     }
     let started = parseInt(req.query.started, 10);
-    getWgetStatus(req.deviceId).then((status) => {
-      if ((! status.running) && ((! started) || (started + 10000 < Date.now()))) {
-        res.redirect("/export");
-        return;
-      }
-      if (started && status.zip) {
-        res.redirect("/export/status");
-        return;
-      }
-      req.wgetStatus = status;
-      req.keepTime = keepTime;
-      require("./views/export").renderStatus(req, res);
-    }).catch((e) => {
-      require("./responses").errorResponse(res, "Failed to get status", e);
-    });
+    getWgetStatus(req.deviceId)
+      .then(status => {
+        if (!status.running && (!started || started + 10000 < Date.now())) {
+          res.redirect("/export");
+          return;
+        }
+        if (started && status.zip) {
+          res.redirect("/export/status");
+          return;
+        }
+        req.wgetStatus = status;
+        req.keepTime = keepTime;
+        require("./views/export").renderStatus(req, res);
+      })
+      .catch(e => {
+        require("./responses").errorResponse(res, "Failed to get status", e);
+      });
   });
 
-  app.get("/export/download/pageshot-export.zip", function (req, res) {
-    if (! req.deviceId) {
+  app.get("/export/download/pageshot-export.zip", function(req, res) {
+    if (!req.deviceId) {
       res.type("txt").status(403).send("You must have the addon installed to download your shots");
       return;
     }
@@ -254,16 +263,17 @@ exports.setup = function (app) {
     res.sendFile(fn);
   });
 
-  app.post("/export/remove", function (req, res) {
-    if (! req.deviceId) {
+  app.post("/export/remove", function(req, res) {
+    if (!req.deviceId) {
       res.type("txt").status(403).send("You must have the addon installed");
     }
     let dir = exportPath(req.deviceId);
-    removeExportPath(dir).then(() => {
-      res.redirect("/export?deleted");
-    }).catch((e) => {
-      require("./responses").errorResponse(res, "Failed to remove directory", e);
-    });
+    removeExportPath(dir)
+      .then(() => {
+        res.redirect("/export?deleted");
+      })
+      .catch(e => {
+        require("./responses").errorResponse(res, "Failed to remove directory", e);
+      });
   });
-
 };

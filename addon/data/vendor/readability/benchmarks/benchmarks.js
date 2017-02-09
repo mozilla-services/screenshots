@@ -15,7 +15,7 @@ var referenceTestPages = [
   "tmz-1",
   "wapo-1",
   "wapo-2",
-  "webmd-1",
+  "webmd-1"
 ];
 
 var testPages = getTestPages();
@@ -26,7 +26,7 @@ if (process.env.READABILITY_PERF_REFERENCE === "1") {
   });
 }
 
-suite("JSDOMParser test page perf", function () {
+suite("JSDOMParser test page perf", function() {
   set("iterations", 1);
   set("type", "static");
 
@@ -37,8 +37,7 @@ suite("JSDOMParser test page perf", function () {
   });
 });
 
-
-suite("Readability test page perf", function () {
+suite("Readability test page perf", function() {
   set("iterations", 1);
   set("type", "static");
 
@@ -57,7 +56,7 @@ suite("Readability test page perf", function () {
   });
 });
 
-suite("isProbablyReaderable perf", function () {
+suite("isProbablyReaderable perf", function() {
   set("iterations", 1);
   set("type", "static");
 
