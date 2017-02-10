@@ -73,10 +73,8 @@ const https = require("https");
 const gaActivation = require("./ga-activation");
 const genUuid = require("nodify-uuid");
 const AWS = require("aws-sdk");
-const vhost = require("vhost");
 const escapeHtml = require("escape-html");
 const validUrl = require("valid-url");
-const { createProxyUrl } = require("./proxy-url");
 const statsd = require("./statsd");
 const { notFound } = require("./pages/not-found/server");
 const { cacheTime, setCache } = require("./caching");
@@ -1020,61 +1018,7 @@ app.use("/", require("./pages/shot/server").app);
 
 app.use("/", require("./pages/homepage/server").app);
 
-const contentApp = express();
-
-if (config.useVirtualHosts) {
-  contentApp.use((req, res, next) => {
-    res.header("Content-Security-Policy", "default-src 'self'");
-    let domain = config.siteOrigin.split(":")[0];
-    res.header("X-Frame-Options", `ALLOW-FROM ${domain}`);
-    addHSTS(req, res);
-    next();
-  });
-}
-
-contentApp.set('trust proxy', true);
-
-contentApp.use("/static", express.static(path.join(__dirname, "static"), {
-  index: false
-}));
-
-contentApp.use(function (req, res, next) {
-  req.staticLink = linker.staticLink;
-  req.staticLinkWithHost = linker.staticLinkWithHost.bind(null, req);
-  let base = `${req.protocol}://${req.headers.host}`;
-  linker.imageLinkWithHost = linker.imageLink.bind(null, base);
-  next();
-});
-
-contentApp.get("/content/:id/:domain", function (req, res) {
-  let shotId = `${req.params.id}/${req.params.domain}`;
-  Shot.getFullShot(req.backend, shotId).then((shot) => {
-    if (! shot) {
-      notFound(req, res);
-      return;
-    }
-    res.send(shot.staticHtml({
-      addHead: `
-      <meta name="referrer" content="origin" />
-      <base href="${shot.url}" target="_blank" />
-      <script nonce="${req.cspNonce}">var SITE_ORIGIN = "${req.protocol}://${config.siteOrigin}";</script>
-      <script src="${req.staticLinkWithHost("js/content-helper.js")}"></script>
-      <link rel="stylesheet" href="${req.staticLinkWithHost("css/content.css")}">
-      `,
-      rewriteLinks: (key, data) => {
-        if (! data) {
-          console.warn("Missing link for", JSON.stringify(key));
-          return key;
-        }
-        return createProxyUrl(req, data.url, data.hash);
-      }
-    }));
-  }).catch(function (e) {
-    errorResponse(res, "Failed to load shot", e);
-  });
-});
-
-contentApp.get("/proxy", function (req, res) {
+app.get("/proxy", function (req, res) {
   let url = req.query.url;
   let sig = req.query.sig;
   let isValid = dbschema.getKeygrip().verify(new Buffer(url, 'utf8'), sig);
@@ -1131,24 +1075,8 @@ contentApp.get("/proxy", function (req, res) {
 });
 
 linker.init().then(() => {
-  if (config.useVirtualHosts) {
-    const mainapp = express();
-    const siteName = config.siteOrigin.split(":")[0];
-    const contentName = config.contentOrigin.split(":")[0];
-    mainapp.use(vhost(siteName, app));
-    mainapp.use(vhost(contentName, contentApp));
-    mainapp.listen(config.port);
-    mainapp.get("/", function (req, res) {
-      res.send("ok");
-    });
-    console.info(`virtual host server listening on http://localhost:${config.port}`);
-    console.info(`  siteName="${siteName}"; contentName="${contentName}"`);
-  } else {
-    app.listen(config.port);
-    console.info(`server listening on http://localhost:${config.port}/`);
-    contentApp.listen(config.contentPort);
-    console.info(`content server listening on http://localhost:${config.contentPort}/`);
-  }
+  app.listen(config.port);
+  console.info(`server listening on http://localhost:${config.port}/`);
 }).catch((err) => {
   console.error("Error getting revision:", err, err.stack);
 });
