@@ -165,7 +165,8 @@ app.disable("x-powered-by");
 const CONTENT_NAME = config.contentOrigin;
 
 function addHSTS(req, res) {
-  if (req.protocol === "https") {
+  // Note: HSTS will only produce warning on a localhost self-signed cert
+  if (req.protocol === "https" && ! config.localhostSsl) {
     let time = 24*60*60*1000; // 24 hours
     res.header(
       "Strict-Transport-Security",
@@ -195,6 +196,25 @@ app.use((req, res, next) => {
       errorResponse(res, "Error creating nonce:", err);
     }
   });
+});
+
+function isApiUrl(url) {
+  return url.startsWith("/api") || url === "/event";
+}
+
+app.use((req, res, next) => {
+  if (isApiUrl(req.url)) {
+    // All API requests are CORS-enabled
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Cookie, Content-Type, User-Agent");
+    if (req.method === "OPTIONS") {
+      res.type("text");
+      res.send("");
+      return;
+    }
+  }
+  next();
 });
 
 app.use(bodyParser.urlencoded({extended: false}));
