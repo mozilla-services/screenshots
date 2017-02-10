@@ -32,18 +32,17 @@ chrome.browserAction.onClicked.addListener(function(tab) {
   let scripts = [
     "error-utils.js",
     "uuid.js",
-    "shared/shot.js",
+    "shot.js",
     "randomstring.js",
     "url-domain.js",
     "add-ids.js",
     "make-static-html.js",
     "extractor-worker.js",
-    "annotate-position.js",
     "selector-util.js",
     "selector-ui.js",
     "selector-snapping.js",
     "shooter-interactive-worker.js",
-    "chrome-shooter.js"
+    "shooter.js"
   ];
   let lastPromise = Promise.resolve(null);
   scripts.forEach((script) => {
@@ -58,7 +57,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
   });
 });
 
-chrome.storage.sync.get(["backend", "hasUsedMyShots", "registrationInfo"], (result) => {
+chrome.storage.local.get(["backend", "hasUsedMyShots", "registrationInfo"], (result) => {
   if (result.backend) {
     backend = result.backend;
   }
@@ -70,7 +69,7 @@ chrome.storage.sync.get(["backend", "hasUsedMyShots", "registrationInfo"], (resu
     login();
   } else {
     registrationInfo = generateRegistrationInfo();
-    chrome.storage.sync.set({
+    chrome.storage.local.set({
       registrationInfo: registrationInfo
     }, () => {
       console.info("Device authentication saved");
@@ -185,7 +184,7 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
     });
   } else if (req.type == "setHasUsedMyShots") {
     hasUsedMyShots = req.value;
-    chrome.storage.sync.set({
+    chrome.storage.local.set({
       hasUsedMyShots: req.value
     });
     sendResponse(null);

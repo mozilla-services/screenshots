@@ -1,4 +1,4 @@
-/* globals console, self, watchFunction, watchPromise, annotatePosition, util, ui, snapping */
+/* globals console, watchFunction, watchPromise, annotatePosition, util, ui, snapping */
 /* globals window, document, location, chromeShooter */
 
 /**********************************************************
@@ -36,8 +36,6 @@ mouseupNoAutoselect (true if a mouseup in draggingReady should not trigger autos
 
 */
 
-var isChrome = false;
-
 const MAX_PAGE_HEIGHT = 5000;
 const MAX_PAGE_WIDTH = 5000;
 // An autoselection smaller than these will be ignored entirely:
@@ -54,16 +52,9 @@ const MAX_DETECT_WIDTH = Math.max(window.innerWidth + 100, 1000);
 const SCROLL_BY_EDGE = 20;
 
 let annotateForPage = false;
-if (! isChrome && self.options.annotateForPage) {
-  annotateForPage = true;
-}
 
 function sendEvent(action, label, options) {
-  if (isChrome) {
-    chromeShooter.sendAnalyticEvent("addon", action, label, options);
-  } else {
-    self.port.emit.apply(self.port, ["sendEvent"].concat(Array.from(arguments)));
-  }
+  chromeShooter.sendAnalyticEvent("addon", action, label, options);
 }
 
 function round10(n) {
@@ -126,13 +117,12 @@ let standardDisplayCallbacks = {
   cancel: () => {
     sendEvent("cancel-shot", "overlay-cancel-button");
     deactivate();
-    self.port.emit("deactivate");
   }, save: () => {
     sendEvent("save-shot", "overlay-save-button");
-    self.port.emit("take-shot");
+    takeShot();
   }, download: () => {
     sendEvent("download-shot", "overlay-download-button");
-    self.port.emit("requestDownload");
+    downloadShot();
   }
 };
 
@@ -140,7 +130,6 @@ let standardOverlayCallbacks = {
   onOpenMyShots: () => {
     sendEvent("goto-myshots", "selection-button");
     deactivate();
-    self.port.emit("deactivate");
     self.port.emit("openMyShots");
   },
   onClickVisible: () => {
@@ -356,9 +345,7 @@ stateHandlers.crosshairs = {
     ui.WholePageOverlay.display(standardOverlayCallbacks);
     document.addEventListener("keyup", watchFunction(keyupHandler), false);
     registeredDocumentHandlers.push({name: "keyup", doc: document, handler: keyupHandler});
-    if (isChrome) {
-      ui.ChromeInterface.showSaveFullPage();
-    }
+    ui.ChromeInterface.showSaveFullPage();
   },
 
   mousemove: function (event) {
@@ -541,9 +528,7 @@ stateHandlers.draggingReady = {
       ui.Box.display(selectedPos, standardDisplayCallbacks);
       sendEvent("make-selection", "selection-click", eventOptionsForBox(selectedPos));
       setState("selected");
-      if (isChrome) {
-        chromeShooter.sendAnalyticEvent("addon", "autoselect");
-      }
+      chromeShooter.sendAnalyticEvent("addon", "autoselect");
       reportSelection();
     } else {
       sendEvent("no-selection", "no-element-found");
@@ -631,9 +616,7 @@ stateHandlers.dragging = {
 stateHandlers.selected = {
   start: function () {
     ui.WholePageOverlay.remove();
-    if (isChrome) {
-      ui.ChromeInterface.showSave();
-    }
+    ui.ChromeInterface.showSave();
   },
 
   mousedown: function (event) {
@@ -681,9 +664,7 @@ stateHandlers.resizing = {
 
   mouseup: function (event) {
     this._resize(event);
-    if (isChrome) {
-      chromeShooter.sendAnalyticEvent("addon", "selection-resized");
-    }
+    chromeShooter.sendAnalyticEvent("addon", "selection-resized");
     ui.Box.display(selectedPos, standardDisplayCallbacks);
     if (resizeHasMoved) {
       if (resizeDirection == "move") {
@@ -792,19 +773,8 @@ function reportSelection(captureType) {
   if (annotateForPage) {
     annotatePosition(pos);
   }
-  if (isChrome) {
-    chromeShooter.sendAnalyticEvent("addon", "made-selection");
-    chromeShooter.saveSelection(pos, selectedText, captureType);
-  } else {
-    self.port.emit("select", pos, selectedText, captureType);
-  }
-}
-
-if (! isChrome) {
-  self.port.on("getScreenPosition", watchFunction(function () {
-    let pos = getScreenPosition();
-    self.port.emit("screenPosition", pos);
-  }));
+  chromeShooter.sendAnalyticEvent("addon", "made-selection");
+  chromeShooter.saveSelection(pos, selectedText, captureType);
 }
 
 function getScreenPosition() {
@@ -826,32 +796,31 @@ function getScreenPosition() {
 function activate() {
   ui.Box.remove();
   addHandlers();
-  if (self.options.styleMyShotsButton) {
+  // FIXME: self.options is gone
+  if (self.options && self.options.styleMyShotsButton) {
     ui.iframe.addClassName = `styleMyShotsButton-${self.options.styleMyShotsButton.value}`;
   }
   watchPromise(ui.iframe.display(installHandlersOnDocument).then(() => {
     setState("crosshairs");
   }));
-  if (isChrome) {
-    ui.ChromeInterface.display();
-    ui.ChromeInterface.onMyShots = function () {
-      chromeShooter.sendAnalyticEvent("addon", "click-my-shots");
-      deactivate();
-      chromeShooter.setHasUsedMyShots(true);
-      return true;
-    };
-    ui.ChromeInterface.onSave = function () {
-      chromeShooter.sendAnalyticEvent("addon", "click-save");
-      chromeShooter.takeShot();
-      return false;
-    };
-    ui.ChromeInterface.onCancel = function () {
-      chromeShooter.sendAnalyticEvent("addon", "click-cancel");
-      deactivate();
-      chromeShooter.deactivate();
-      return false;
-    };
-  }
+  ui.ChromeInterface.display();
+  ui.ChromeInterface.onMyShots = function () {
+    chromeShooter.sendAnalyticEvent("addon", "click-my-shots");
+    deactivate();
+    chromeShooter.setHasUsedMyShots(true);
+    return true;
+  };
+  ui.ChromeInterface.onSave = function () {
+    chromeShooter.sendAnalyticEvent("addon", "click-save");
+    chromeShooter.takeShot();
+    return false;
+  };
+  ui.ChromeInterface.onCancel = function () {
+    chromeShooter.sendAnalyticEvent("addon", "click-cancel");
+    deactivate();
+    chromeShooter.deactivate();
+    return false;
+  };
 }
 
 function deactivate() {
@@ -911,20 +880,12 @@ function keyupHandler(event) {
   if ((event.key || event.code) === "Escape") {
     deactivate();
     sendEvent("cancel-shot", "keyboard-escape");
-    if (isChrome) {
-      chromeShooter.deactivate();
-    } else {
-      self.port.emit("deactivate");
-    }
+    chromeShooter.deactivate();
   }
   if ((event.key || event.code) === "Enter") {
     if (getState.state === "selected") {
       sendEvent("save-shot", "keyboard-enter");
-      if (isChrome) {
-        chromeShooter.takeShot();
-      } else {
-        self.port.emit("take-shot");
-      }
+      chromeShooter.takeShot();
     }
   }
 }
@@ -947,45 +908,10 @@ function checkUrl() {
   var curUrl = location.href;
   if (origUrl != curUrl) {
     console.info("got url change", origUrl, curUrl);
-    if (isChrome) {
-      chromeShooter.popstate();
-    } else {
-      self.port.emit("popstate", curUrl);
-    }
+    chromeShooter.popstate();
     sendEvent("cancel-shot", "url-changed");
     deactivate();
   }
 }
 
 window.addEventListener("popstate", watchFunction(checkUrl), false);
-
-if (! isChrome) {
-  self.port.on("isShowing", watchFunction(checkUrl));
-
-  self.port.on("destroy", watchFunction(() => {
-    // If we do this in a setTimeout, we get sane error messages.
-    // If we don't, we get inscruitable ones.
-    setTimeout(watchFunction(() => {
-      deactivate();
-      self.port.emit("destroyed");
-    }), 0);
-  }));
-
-  self.port.on("triggerDownload", watchFunction((dataUrl, filename) => {
-    ui.triggerDownload(dataUrl, filename);
-    setTimeout(() => {
-      deactivate();
-      self.port.emit("deactivate");
-    });
-  }));
-
-  // Happens if this worker is detached for some reason
-  // (such as moving windows, add-on unloading)
-  self.port.on("detach", watchFunction(() => {
-    deactivate();
-    console.info("detached worker");
-  }));
-
-  self.port.emit("ready");
-  watchFunction(activate());
-}

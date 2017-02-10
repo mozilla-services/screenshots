@@ -1,7 +1,5 @@
-/* globals console, document, content, addMessageListener, sendAsyncMessage */
+/* globals console, document */
 /* exported addIds */
-
-var isChrome = false;
 
 const addIds = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
@@ -10,11 +8,7 @@ const addIds = (function () { // eslint-disable-line no-unused-vars
   /** makeId() creates new ids that we give to elements that don't already have an id */
 
   function getDocument() {
-    if (isChrome) {
-      return document;
-    } else {
-      return content.document;
-    }
+    return document;
   }
 
   function makeId() {
@@ -35,45 +29,6 @@ const addIds = (function () { // eslint-disable-line no-unused-vars
       }
     }
   };
-
-  if (! isChrome) {
-    let isDisabled = false;
-    addMessageListener("pageshot@addIds:call", function (event) {
-      if (isDisabled) {
-        return;
-      }
-      let result;
-      if (! (getDocument().body && getDocument().head)) {
-        // A XUL page
-        result = {isXul: true};
-      } else if (getDocument().body.tagName == "FRAMESET") {
-        // Frame documents also can't be captured
-        result = {isFrame: true};
-      } else {
-        try {
-          if (event.data.annotateForPage) {
-            exports.setIds();
-          }
-          result = {isXul: false};
-        } catch (e) {
-          console.error("Error getting static HTML:", e);
-          console.trace();
-          result = {
-            error: {
-              name: e.name,
-              description: e+""
-            }
-          };
-        }
-      }
-      result.callId = event.data.callId;
-      sendAsyncMessage("pageshot@addIds:return", result);
-    });
-
-    addMessageListener("pageshot@disable", function (event) {
-      isDisabled = true;
-    });
-  }
 
 return exports;
 })();

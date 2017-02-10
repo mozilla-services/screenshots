@@ -9,7 +9,7 @@ function unhandled(error) {
   } catch (e) {
     // Something location.href doesn't work
   }
-  self.port.emit("alertError", error);
+  console.error("Error:", error);
 }
 
 /** Try to get the worker script filename */

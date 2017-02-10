@@ -79,7 +79,8 @@ const ui = (function () { // eslint-disable-line no-unused-vars
           this.element.scrolling = "no";
           this.updateElementSize();
           this.element.onload = () => {
-            let linkUrl = self.options["inline-selection.css"];
+            // FIXME: calculate location:
+            let linkUrl = "./inline-selection.css";
             var parsedDom = (new DOMParser()).parseFromString(`
               <html>
                <head>

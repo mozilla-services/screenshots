@@ -1,6 +1,6 @@
 /* exported FILENAME, extractorWorker */
 
-/* globals Readability, watchFunction, document, console, location, self */
+/* globals Readability, document, console, location */
 
 /** extractor-worker is a content worker that is attached to a page when
     making a shot
@@ -10,8 +10,6 @@
 
 // Set for use in error messages:
 var FILENAME = "extractor-worker.js"; // eslint-disable-line no-unused-vars
-
-var isChrome = false;
 
 const extractorWorker = (function () { // eslint-disable-line no-unused-vars
   /** Extracts data:
@@ -218,10 +216,6 @@ const extractorWorker = (function () { // eslint-disable-line no-unused-vars
       }
     }
     return twitterCard;
-  }
-
-  if (! isChrome) {
-    self.port.emit("data", watchFunction(exports.extractData)());
   }
 
   return exports;
