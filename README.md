@@ -19,6 +19,8 @@ Install [Node.js](https://nodejs.org/). Version 6.x is required.
 
 Clone the [repository](https://github.com/mozilla-services/pageshot/).
 
+To run locally you have to **setup HTTPS certificates**.  [These instructions](https://certsimple.com/blog/localhost-ssl-fix) show how to create the certificates on a Mac.  You must put files in `~/.localhost-ssl/key.pem` and `~/.localhost-ssl/cert.pem`.  Note: once you've done this you must *also* open https://localhost:10080 in your development Firefox profile and create an exception for the certificate.
+
 There are two scripts to run the server locally and develop the add-on:
 
 - `./bin/run-server` will run the server on localhost:10080 and automatically restart if there are changes

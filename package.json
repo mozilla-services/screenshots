@@ -35,7 +35,6 @@
     "universal-analytics": "0.4.8",
     "uuid": "3.0.1",
     "valid-url": "1.0.9",
-    "vhost": "3.0.2",
     "wreck": "10.0.0"
   },
   "devDependencies": {

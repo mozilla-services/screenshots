@@ -22,6 +22,13 @@ var conf = convict({
     env: "SITE_ORIGIN",
     arg: "siteOrigin"
   },
+  localhostSsl: {
+    doc: "Turn on SSL on localhost, using ~/.localhost-ssl/*",
+    format: Boolean,
+    default: false,
+    env: "LOCALHOST_SSL",
+    arg: "localhost-ssl"
+  },
   useS3: {
     doc: "If true, store files in s3. If false, store them locally",
     format: Boolean,

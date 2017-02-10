@@ -43,7 +43,7 @@ console.warn = logFactory("warn");
 console.error = logFactory("error");
 
 const path = require('path');
-const { readFileSync } = require('fs');
+const { readFileSync, existsSync } = require('fs');
 const Cookies = require("cookies");
 
 const { Shot } = require("./servershot");
@@ -1074,11 +1074,40 @@ app.get("/proxy", function (req, res) {
   subreq.end();
 });
 
+let httpsCredentials;
+if (config.localhostSsl) {
+  // To generate trusted keys on Mac, see: https://certsimple.com/blog/localhost-ssl-fix
+  let key = `${process.env.HOME}/.localhost-ssl/key.pem`;
+  let cert = `${process.env.HOME}/.localhost-ssl/cert.pem`;
+  if (! (existsSync(key) && existsSync(cert))) {
+    console.log("Error: to use localhost SSL/HTTPS you must create a key.pem and cert.pem file");
+    console.log("  These must be located in:");
+    console.log(`    ${key}`);
+    console.log(`    ${cert}`);
+    console.log("  You can find instructions on creating these files here:");
+    console.log("    https://certsimple.com/blog/localhost-ssl-fix");
+    process.exit(2);
+  }
+  httpsCredentials = {
+    key: readFileSync(key),
+    cert: readFileSync(cert)
+  };
+}
+
 linker.init().then(() => {
-  app.listen(config.port);
-  console.info(`server listening on http://localhost:${config.port}/`);
+  let server;
+  let scheme;
+  if (httpsCredentials) {
+    server = https.createServer(httpsCredentials, app);
+    scheme = "https";
+  } else {
+    server = http.createServer(mainapp);
+    scheme = "http";
+  }
+  server.listen(config.port);
+  console.info(`server listening on ${scheme}://localhost:${config.port}/`);
 }).catch((err) => {
-  console.error("Error getting revision:", err, err.stack);
+  console.error("Error getting git revision:", err, err.stack);
 });
 
 require("./jobs").start();
