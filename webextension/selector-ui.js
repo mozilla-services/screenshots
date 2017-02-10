@@ -346,8 +346,10 @@ const ui = (function () { // eslint-disable-line no-unused-vars
 
     remove: function () {
       for (let name of ["el", "bgTop", "bgLeft", "bgRight", "bgBottom"]) {
-        util.removeNode(this[name]);
-        this[name] = null;
+        if (name in this) {
+          util.removeNode(this[name]);
+          this[name] = null;
+        }
       }
     },
 

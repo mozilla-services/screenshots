@@ -130,6 +130,9 @@ function deepEqual(a, b) {
     if (! Array.isArray(b)) {
       return false;
     }
+    if (a.length != b.length) {
+      return false;
+    }
     for (let i=0; i<a.length; i++) {
       if (! deepEqual(a[i], b[i])) {
         return false;
