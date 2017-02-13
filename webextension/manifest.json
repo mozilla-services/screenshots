@@ -22,8 +22,16 @@
     "default_title": "Take a shot"
   },
   "background": {
-    "scripts": ["uuid.js", "background.js"],
-    "persistent": false
+    "scripts": [
+      "makeUuid.js",
+      "background/loadSelector.js",
+      "background/communication.js",
+      "background/auth.js",
+      "background/analytics.js",
+      "background/deviceInfo.js",
+      "background/main.js"
+    ],
+    "persistent": true
   },
   "content_scripts": [
     {
