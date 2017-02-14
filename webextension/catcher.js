@@ -45,4 +45,6 @@ window.catcher = (function () {
     });
   };
 
+  return exports;
 })();
+null;

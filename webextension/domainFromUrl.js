@@ -27,3 +27,4 @@ window.domainFromUrl = (function () {
   };
 
 })();
+null;

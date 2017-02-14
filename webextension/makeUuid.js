@@ -9,3 +9,4 @@ window.makeUuid = (function () {
     });
   };
 })();
+null;

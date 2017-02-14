@@ -9,3 +9,4 @@ window.callBackground = function (funcName, ...args) {
     }
   });
 };
+null;

@@ -1,5 +1,4 @@
-/* exported snapping */
-const snapping = (function () { // eslint-disable-line no-unused-vars
+window.snapping = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
 
   let xSnaps = [];
@@ -109,3 +108,4 @@ const snapping = (function () { // eslint-disable-line no-unused-vars
 
   return exports;
 })();
+null;

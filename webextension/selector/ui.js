@@ -1,8 +1,10 @@
-/* globals util, window, document, console, watchFunction */
-/* exported ui */
+/* globals window, document, console */
+/* globals util, catcher */
 
-const ui = (function () { // eslint-disable-line no-unused-vars
+window.ui = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
+
+  const { watchFunction } = catcher;
 
   // The <body> tag itself can have margins and offsets, which need to be used when
   // setting the position of the boxEl.
@@ -576,3 +578,4 @@ const ui = (function () { // eslint-disable-line no-unused-vars
 
   return exports;
 })();
+null;

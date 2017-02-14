@@ -1,10 +1,10 @@
-/* globals addIds, makeStaticHtml, extractorWorker, activate, chrome, AbstractShot, deactivate */
+/* globals deactivate, callBackground, documentMetadata */
 /* globals XMLHttpRequest, window, location, alert, console, urlDomainForId, randomString */
 /* globals document, setTimeout, location */
-/* exported chromeShooter */
 
-const chromeShooter = (function () { // eslint-disable-line no-unused-vars
+window.shooter = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
+  const { AbstractShot } = window.shot;
 
   const RANDOM_STRING_LENGTH = 16;
   let backend;
@@ -26,7 +26,7 @@ const chromeShooter = (function () { // eslint-disable-line no-unused-vars
       iframe.style.display = "none";
     }
     return new Promise((resolve, reject) => {
-      return promiseTimeout(100).then(() => {
+      return exports.promiseTimeout(100).then(() => {
         let options = {
           scrollY: window.scrollY,
           scrollX: window.scrollX,
@@ -104,7 +104,7 @@ const chromeShooter = (function () { // eslint-disable-line no-unused-vars
     callBackground("sendEvent", ...args);
   };
 
-  exports.promiseTimeout = function(time) => {
+  exports.promiseTimeout = function (time) {
     return new Promise((resolve) => {
       setTimeout(function () {
         resolve();
@@ -114,3 +114,4 @@ const chromeShooter = (function () { // eslint-disable-line no-unused-vars
 
   return exports;
 })();
+null;

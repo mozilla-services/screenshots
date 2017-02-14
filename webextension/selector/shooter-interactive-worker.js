@@ -1,5 +1,5 @@
-/* globals console, watchFunction, watchPromise, annotatePosition, util, ui, snapping */
-/* globals window, document, location, chromeShooter */
+/* globals console, catcher, annotatePosition, util, ui, snapping */
+/* globals window, document, location, shooter */
 
 /**********************************************************
  * selection
@@ -36,6 +36,8 @@ mouseupNoAutoselect (true if a mouseup in draggingReady should not trigger autos
 
 */
 
+const { watchFunction, watchPromise } = catcher;
+
 const MAX_PAGE_HEIGHT = 5000;
 const MAX_PAGE_WIDTH = 5000;
 // An autoselection smaller than these will be ignored entirely:
@@ -53,9 +55,7 @@ const SCROLL_BY_EDGE = 20;
 
 let annotateForPage = false;
 
-function sendEvent(action, label, options) {
-  chromeShooter.sendAnalyticEvent("addon", action, label, options);
-}
+const { sendEvent } = shooter;
 
 function round10(n) {
   return Math.floor(n / 10) * 10;
@@ -528,7 +528,7 @@ stateHandlers.draggingReady = {
       ui.Box.display(selectedPos, standardDisplayCallbacks);
       sendEvent("make-selection", "selection-click", eventOptionsForBox(selectedPos));
       setState("selected");
-      chromeShooter.sendAnalyticEvent("addon", "autoselect");
+      sendEvent("autoselect");
       reportSelection();
     } else {
       sendEvent("no-selection", "no-element-found");
@@ -664,7 +664,7 @@ stateHandlers.resizing = {
 
   mouseup: function (event) {
     this._resize(event);
-    chromeShooter.sendAnalyticEvent("addon", "selection-resized");
+    sendEvent("selection-resized");
     ui.Box.display(selectedPos, standardDisplayCallbacks);
     if (resizeHasMoved) {
       if (resizeDirection == "move") {
@@ -773,8 +773,8 @@ function reportSelection(captureType) {
   if (annotateForPage) {
     annotatePosition(pos);
   }
-  chromeShooter.sendAnalyticEvent("addon", "made-selection");
-  chromeShooter.saveSelection(pos, selectedText, captureType);
+  sendEvent("made-selection");
+  shooter.saveSelection(pos, selectedText, captureType);
 }
 
 function getScreenPosition() {
@@ -805,20 +805,19 @@ function activate() {
   }));
   ui.ChromeInterface.display();
   ui.ChromeInterface.onMyShots = function () {
-    chromeShooter.sendAnalyticEvent("addon", "click-my-shots");
+    sendEvent("click-my-shots");
     deactivate();
-    chromeShooter.setHasUsedMyShots(true);
     return true;
   };
   ui.ChromeInterface.onSave = function () {
-    chromeShooter.sendAnalyticEvent("addon", "click-save");
-    chromeShooter.takeShot();
+    sendEvent("click-save");
+    shooter.takeShot();
     return false;
   };
   ui.ChromeInterface.onCancel = function () {
-    chromeShooter.sendAnalyticEvent("addon", "click-cancel");
+    sendEvent("click-cancel");
     deactivate();
-    chromeShooter.deactivate();
+    shooter.deactivate();
     return false;
   };
 }
@@ -880,12 +879,12 @@ function keyupHandler(event) {
   if ((event.key || event.code) === "Escape") {
     deactivate();
     sendEvent("cancel-shot", "keyboard-escape");
-    chromeShooter.deactivate();
+    shooter.deactivate();
   }
   if ((event.key || event.code) === "Enter") {
     if (getState.state === "selected") {
       sendEvent("save-shot", "keyboard-enter");
-      chromeShooter.takeShot();
+      shooter.takeShot();
     }
   }
 }
@@ -908,10 +907,12 @@ function checkUrl() {
   var curUrl = location.href;
   if (origUrl != curUrl) {
     console.info("got url change", origUrl, curUrl);
-    chromeShooter.popstate();
+    shooter.popstate();
     sendEvent("cancel-shot", "url-changed");
     deactivate();
   }
 }
 
 window.addEventListener("popstate", watchFunction(checkUrl), false);
+
+null;

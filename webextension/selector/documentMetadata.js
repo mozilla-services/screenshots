@@ -84,3 +84,4 @@ window.documentMetadata = (function () {
   };
 
 })();
+null;

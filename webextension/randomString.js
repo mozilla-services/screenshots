@@ -9,3 +9,4 @@ window.randomString = function randomString(length, chars) {
   }
   return result;
 };
+null;
