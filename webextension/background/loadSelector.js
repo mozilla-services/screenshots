@@ -5,7 +5,7 @@ window.loadSelector = (function () {
     "selector/callBackground.js",
     "catcher.js",
     "makeUuid.js",
-    "shot.js",
+    "build/shot.js",
     "randomString.js",
     "domainFromUrl.js",
     "selector/documentMetadata.js",
@@ -26,7 +26,7 @@ window.loadSelector = (function () {
       });
     });
     return lastPromise.then(() => {
-      console.log("finished loading scripts:", scripts, chrome.runtime.lastError);
+      console.log("finished loading scripts:", scripts.join(" "), "->", chrome.runtime.lastError || "no error");
     });
   };
 

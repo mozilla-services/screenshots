@@ -16,3 +16,4 @@ cookie-jar.txt
 *.log
 /.env.local
 /bin/.commit-new-version-copy
+/webextension/build

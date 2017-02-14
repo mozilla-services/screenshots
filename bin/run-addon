@@ -5,6 +5,7 @@ cd "$(dirname ${BASH_SOURCE[0]})/.."
 base="$(pwd)"
 PATH="node_modules/.bin:$PATH"
 webext="$base/node_modules/.bin/web-ext"
+nodemon_pid=
 
 binary=
 firefoxes="
@@ -19,6 +20,16 @@ for firefox in $firefoxes ; do
     break
   fi
 done
+
+_cleanup () {
+  if [[ -n "$nodemon_pid" ]] ; then
+    # Seems to usually be dead by this point?  Good I guess?
+    echo "trying to kill $nodemon_pid"
+    kill $nodemon_pid >& /dev/null || true
+  fi
+}
+
+trap _cleanup EXIT
 
 help () {
   echo "Usage: $(basename $0) [OPTIONS]"
@@ -66,5 +77,14 @@ if [[ -z "$scratch" ]] ; then
   mkdir -p ./Profile
   profile_option="--firefox-profile ./Profile/"
 fi
+
+make addon
+nodemon \
+  -w shared/shot.js \
+  -w Makefile \
+  --on-change-only \
+  --exec make addon &
+nodemon_pid=$!
+echo "nodemon started in $nodemon_pid"
 
 $webext run --firefox "$binary" $profile_option --source-dir ./webextension/
