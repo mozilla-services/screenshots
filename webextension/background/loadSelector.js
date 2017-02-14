@@ -13,7 +13,7 @@ window.loadSelector = (function () {
     "selector/ui.js",
     "selector/snapping.js",
     "selector/shooter.js",
-    "selector/shooter-interactive-worker.js"
+    "selector/uicontrol.js"
   ];
 
   return function loadSelector() {
