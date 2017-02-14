@@ -13,6 +13,7 @@ firefoxes="
 /Applications/FirefoxDeveloperEdition.app
 /Applications/FirefoxAurora.app
 "
+setup_profile=
 
 for firefox in $firefoxes ; do
   if [[ -e "$firefox" ]] ; then
@@ -24,7 +25,6 @@ done
 _cleanup () {
   if [[ -n "$nodemon_pid" ]] ; then
     # Seems to usually be dead by this point?  Good I guess?
-    echo "trying to kill $nodemon_pid"
     kill $nodemon_pid >& /dev/null || true
   fi
 }
@@ -38,8 +38,10 @@ help () {
   echo "      Do not watch for changes in the addon"
   echo "    -b or --binary BINARY"
   echo "      Use BINARY as the Firefox to run (default $binary)"
-  echo "    --scratch"
-  echo "      Use a scratch profile"
+  echo "    --setup-profile"
+  echo "      Setup ./Profile/ and open it (can be used to make sticky changes to the test profile)"
+  #echo "    --scratch"
+  #echo "      Use a scratch profile"
   #echo "    -s or --server URL"
   #echo "      Use the given server (default localhost:10080)"
 }
@@ -60,6 +62,10 @@ while [[ -n "$1" ]] ; do
       scratch=1
       shift
       ;;
+    --setup-profile)
+      setup_profile=1
+      shift
+      ;;
     #--server|-s)
     #  server="$2"
     #  shift
@@ -71,6 +77,33 @@ while [[ -n "$1" ]] ; do
       ;;
   esac
 done
+
+if [[ ! -d ./Profile ]] ; then
+  echo "NOTE: you must setup a Firefox profile in ./Profile/"
+  echo "This will be done automatically for you after you hit ENTER"
+  echo "https://localhost:10080/ will be opened"
+  echo "  You must add a certificate exception"
+  echo -n "Press ENTER to continue (^C to abort) ... "
+  read
+  setup_profile=1
+fi
+
+if [[ -n "$setup_profile" ]] ; then
+  profile_dir="$(pwd)/Profile"
+  if [[ -d "$profile_dir" ]] ; then
+    echo "Using existing profile in $profile_dir running:"
+    echo " " open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir"
+    open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir"
+  else
+    echo "Creating profile in $profile_dir running:"
+    echo " " open "$binary" -n --args -new-instance -no-remote -CreateProfile "PageShotTestProfile $profile_dir"
+    open "$binary" -n --args -new-instance -no-remote -CreateProfile "PageShotTestProfile $profile_dir"
+    echo "Opening profile running:"
+    echo " " open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir" -url https://locahost:10080
+    open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir" -url https://locahost:10080
+  fi
+  exit
+fi
 
 profile_option=
 if [[ -z "$scratch" ]] ; then
@@ -85,6 +118,5 @@ nodemon \
   --on-change-only \
   --exec make addon &
 nodemon_pid=$!
-echo "nodemon started in $nodemon_pid"
 
 $webext run --firefox "$binary" $profile_option --source-dir ./webextension/
