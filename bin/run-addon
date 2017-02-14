@@ -1,10 +1,9 @@
 #!/bin/bash
 
 set -e
-cd "$(dirname $BASH_SOURCE)/.."
+cd "$(dirname ${BASH_SOURCE[0]})/.."
 base="$(pwd)"
 PATH="node_modules/.bin:$PATH"
-server=https://localhost:10080
 webext="$base/node_modules/.bin/web-ext"
 
 binary=
@@ -41,10 +40,6 @@ while [[ -n "$1" ]] ; do
       help
       exit
       ;;
-    --no-auto)
-      no_auto=1
-      shift
-      ;;
     -b|--binary)
       binary="$2"
       shift
@@ -72,4 +67,4 @@ if [[ -z "$scratch" ]] ; then
   profile_option="--firefox-profile ./Profile/"
 fi
 
-$webext run --firefox "$binary" $profile_option --browser-console --source-dir ./webextension/
+$webext run --firefox "$binary" $profile_option --source-dir ./webextension/
