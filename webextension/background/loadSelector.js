@@ -12,8 +12,8 @@ window.loadSelector = (function () {
     "selector/util.js",
     "selector/ui.js",
     "selector/snapping.js",
-    "selector/shooter-interactive-worker.js",
-    "selector/shooter.js"
+    "selector/shooter.js",
+    "selector/shooter-interactive-worker.js"
   ];
 
   return function loadSelector() {
@@ -22,6 +22,11 @@ window.loadSelector = (function () {
       lastPromise = lastPromise.then(() => {
         return chrome.tabs.executeScript({
           file: script
+        }, () => {
+          if (chrome.runtime.lastError
+              && chrome.runtime.lastError.message != "Script returned non-structured-clonable data") {
+              console.error("Error loading script", script, ":", chrome.runtime.lastError);
+          }
         });
       });
     });
