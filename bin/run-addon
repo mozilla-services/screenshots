@@ -119,4 +119,8 @@ nodemon \
   --exec make addon &
 nodemon_pid=$!
 
+echo "Running Firefox.  You might want to go to:"
+echo "  about:debugging"
+echo "and Debug Page Shot"
+
 $webext run --firefox "$binary" $profile_option --source-dir ./webextension/
