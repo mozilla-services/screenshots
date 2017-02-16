@@ -73,10 +73,9 @@ window.documentMetadata = (function () {
   }
 
   return function documentMetadata() {
-    let start = Date.now();
     let result = {};
-    result.url = getLocation().href;
-    result.docTitle = getDocument().title;
+    result.url = location.href;
+    result.docTitle = document.title;
     result.siteName = findSiteName();
     result.openGraph = getOpenGraph();
     result.twitterCard = getTwitterCard();
