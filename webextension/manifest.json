@@ -24,11 +24,14 @@
   "background": {
     "scripts": [
       "makeUuid.js",
+      "build/shot.js",
+      "background/clipboard.js",
       "background/loadSelector.js",
       "background/communication.js",
       "background/auth.js",
       "background/analytics.js",
       "background/deviceInfo.js",
+      "background/takeshot.js",
       "background/main.js"
     ],
     "persistent": true
@@ -40,10 +43,16 @@
       "run_at": "document_start"
     }
   ],
+  "web_accessible_resources": [
+    "icons/cancel.svg",
+    "icons/download.svg"
+  ],
   "permissions": [
     "activeTab",
     "storage",
     "notifications",
+    "clipboardWrite",
+    "<all_urls>",
     "https://localhost:10080/"
   ]
 }

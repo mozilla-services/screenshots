@@ -119,20 +119,20 @@ window.uicontrol = (function () {
   let standardDisplayCallbacks = {
     cancel: () => {
       sendEvent("cancel-shot", "overlay-cancel-button");
-      deactivate();
+      exports.deactivate();
     }, save: () => {
       sendEvent("save-shot", "overlay-save-button");
-      takeShot();
+      shooter.takeShot("selection", selectedPos);
     }, download: () => {
       sendEvent("download-shot", "overlay-download-button");
-      downloadShot();
+      shooter.downloadShot(selectedPos);
     }
   };
 
   let standardOverlayCallbacks = {
     onOpenMyShots: () => {
       sendEvent("goto-myshots", "selection-button");
-      deactivate();
+      exports.deactivate();
       self.port.emit("openMyShots");
     },
     onClickVisible: () => {
@@ -140,7 +140,7 @@ window.uicontrol = (function () {
       selectedPos = new Selection(
         window.scrollX, window.scrollY,
         window.scrollX + window.innerWidth, window.scrollY + window.innerHeight);
-      reportSelection("visible");
+      shooter.takeShot("visible", selectedPos);
     },
     onClickFullPage: () => {
       sendEvent("capture-full-page", "selection-button");
@@ -159,7 +159,7 @@ window.uicontrol = (function () {
       selectedPos = new Selection(
         0, 0,
         width, height);
-      reportSelection("fullPage");
+      shooter.takeShot("fullPage", selectedPos);
     }
   }
 
@@ -291,6 +291,15 @@ window.uicontrol = (function () {
     clone() {
       return new Selection(this.x1, this.y1, this.x2, this.y2);
     }
+
+    asJson() {
+      return {
+        left: this.left,
+        right: this.right,
+        top: this.top,
+        bottom: this.bottom
+      };
+    }
   }
 
   Selection.getBoundingClientRect = function (el) {
@@ -348,7 +357,6 @@ window.uicontrol = (function () {
       ui.WholePageOverlay.display(standardOverlayCallbacks);
       document.addEventListener("keyup", watchFunction(keyupHandler), false);
       registeredDocumentHandlers.push({name: "keyup", doc: document, handler: keyupHandler});
-      ui.ChromeInterface.showSaveFullPage();
     },
 
     mousemove: function (event) {
@@ -619,7 +627,6 @@ window.uicontrol = (function () {
   stateHandlers.selected = {
     start: function () {
       ui.WholePageOverlay.remove();
-      ui.ChromeInterface.showSave();
     },
 
     mousedown: function (event) {
@@ -780,23 +787,7 @@ window.uicontrol = (function () {
     shooter.saveSelection(pos, selectedText, captureType);
   }
 
-  function getScreenPosition() {
-    var pos = {
-      top: window.scrollY,
-      bottom: window.scrollY + window.innerHeight,
-      left: window.scrollX,
-      right: window.scrollX + window.innerWidth
-    };
-    // FIXME: maybe annotating based on the corners is a bad idea,
-    // should instead annotate based on an inner element, and not worry about
-    // left and right
-    if (annotateForPage) {
-      annotatePosition(pos);
-    }
-    return pos;
-  }
-
-  function activate() {
+  exports.activate = function () {
     ui.Box.remove();
     addHandlers();
     // FIXME: self.options is gone
@@ -806,26 +797,9 @@ window.uicontrol = (function () {
     watchPromise(ui.iframe.display(installHandlersOnDocument).then(() => {
       setState("crosshairs");
     }));
-    ui.ChromeInterface.display();
-    ui.ChromeInterface.onMyShots = function () {
-      sendEvent("click-my-shots");
-      deactivate();
-      return true;
-    };
-    ui.ChromeInterface.onSave = function () {
-      sendEvent("click-save");
-      shooter.takeShot();
-      return false;
-    };
-    ui.ChromeInterface.onCancel = function () {
-      sendEvent("click-cancel");
-      deactivate();
-      shooter.deactivate();
-      return false;
-    };
   }
 
-  function deactivate() {
+  exports.deactivate = function () {
     try {
       ui.Box.remove();
       ui.remove();
@@ -880,7 +854,7 @@ window.uicontrol = (function () {
       return;
     }
     if ((event.key || event.code) === "Escape") {
-      deactivate();
+      exports.deactivate();
       sendEvent("cancel-shot", "keyboard-escape");
       shooter.deactivate();
     }
@@ -912,11 +886,13 @@ window.uicontrol = (function () {
       console.info("got url change", origUrl, curUrl);
       shooter.popstate();
       sendEvent("cancel-shot", "url-changed");
-      deactivate();
+      exports.deactivate();
     }
   }
 
   window.addEventListener("popstate", watchFunction(checkUrl), false);
+
+  exports.activate();
 
   return exports;
 })();

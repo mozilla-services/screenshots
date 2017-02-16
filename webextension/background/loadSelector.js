@@ -8,6 +8,7 @@ window.loadSelector = (function () {
     "build/shot.js",
     "randomString.js",
     "domainFromUrl.js",
+    "build/inlineSelectionCss.js",
     "selector/documentMetadata.js",
     "selector/util.js",
     "selector/ui.js",

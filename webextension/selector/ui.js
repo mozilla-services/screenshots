@@ -1,5 +1,5 @@
-/* globals window, document, console */
-/* globals util, catcher */
+/* globals window, document, console, chrome */
+/* globals util, catcher, inlineSelectionCss */
 
 window.ui = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
@@ -41,6 +41,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
     }
     return false;
   }
+
   exports.isHeader = isHeader;
 
   function htmlQuote(s) {
@@ -48,7 +49,14 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
     return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
   }
 
+  let substitutedCss = inlineSelectionCss.replace(/MOZ_EXTENSION([^\"]+)/g, (match, filename) => {
+    return chrome.extension.getURL(filename);
+  });
+
   function makeEl(tagName, className) {
+    if (! iframe.document) {
+      console.trace();
+    }
     let el = iframe.document.createElement(tagName);
     if (className) {
       el.className = className;
@@ -81,12 +89,10 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
           this.element.scrolling = "no";
           this.updateElementSize();
           this.element.onload = () => {
-            // FIXME: calculate location:
-            let linkUrl = "./inline-selection.css";
-            var parsedDom = (new DOMParser()).parseFromString(`
+            let parsedDom = (new DOMParser()).parseFromString(`
               <html>
                <head>
-                <link rel="stylesheet" id="pageshot-stylesheet" href="${htmlQuote(linkUrl)}">
+                <style>${substitutedCss}</style>
                 <title></title>
                </head>
                <body></body>
@@ -505,62 +511,6 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       }
     }
     exports.iframe.remove();
-  };
-
-  exports.ChromeInterface = {
-
-    onMyShots: null,
-    onSave: null,
-    onCancel: null,
-
-    display: function () {
-      if (! this.el) {
-        this.el = makeEl("div", "pageshot-saver");
-        this.el.innerHTML = `
-        <a class="pageshot-myshots" href="https://pageshot.dev.mozaws.net/shots" target="_blank">
-          <span class="pageshot-center">
-            <span class="pageshot-pre-myshots"></span>
-            <span class="pageshot-myshots-text">My Shots</span>
-            <span class="pageshot-post-myshots"></span>
-          </span>
-        </a>
-        <span class="pageshot-save-help">
-          Select part of the page to save, or save full page without making a selection
-        </span>
-        <button class="pageshot-cancel">Cancel</button>
-        <button class="pageshot-save">Save Full Page</button>
-        `;
-        iframe.document.body.appendChild(this.el);
-        let methods = {
-          ".pageshot-myshots": "onMyShots",
-          ".pageshot-save": "onSave",
-          ".pageshot-cancel": "onCancel"
-        };
-        Object.keys(methods).forEach((selector) => {
-          this.el.querySelector(selector).addEventListener("click", watchFunction((event) => {
-            let result;
-            if (this[methods[selector]]) {
-              let method = this[methods[selector]];
-              result = method.call(this);
-            }
-            if (result === false) {
-              event.preventDefault();
-              event.stopPropagation();
-              return false;
-            }
-            return undefined;
-          }));
-        });
-        iframe.document.body.appendChild(this.el);
-      }
-    },
-
-    remove: function () {
-      util.removeNode(this.el);
-      this.el = null;
-    },
-
-    el: null
   };
 
   exports.triggerDownload = function (dataUrl, filename) {

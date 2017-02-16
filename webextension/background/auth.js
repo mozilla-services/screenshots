@@ -110,5 +110,9 @@ window.auth = (function () {
     };
   });
 
+  exports.getDeviceId = function () {
+    return registrationInfo.deviceId;
+  };
+
   return exports;
 })();
