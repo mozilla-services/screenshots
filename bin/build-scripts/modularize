@@ -20,4 +20,5 @@ echo "window.${module_name} = (function () {let exports={}; $input
 
 return exports;
 })();
+null;
 "
