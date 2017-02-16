@@ -1121,7 +1121,7 @@ linker.init().then(() => {
     server = https.createServer(httpsCredentials, app);
     scheme = "https";
   } else {
-    server = http.createServer(mainapp);
+    server = http.createServer(app);
     scheme = "http";
   }
   server.listen(config.port);
