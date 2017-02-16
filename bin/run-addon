@@ -115,6 +115,8 @@ make addon
 nodemon \
   -w shared/shot.js \
   -w Makefile \
+  -w static/css/inline-selection.scss \
+  -w static/css/partials/ \
   --on-change-only \
   --exec make addon &
 nodemon_pid=$!

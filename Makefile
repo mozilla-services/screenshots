@@ -92,11 +92,15 @@ build/%.html: %.html
 	@mkdir -p $(@D)
 	cp $< $@
 
-addon: npm set_backend webextension/build/shot.js
+addon: npm set_backend webextension/build/shot.js webextension/build/inlineSelectionCss.js
 
 webextension/build/shot.js: shared/shot.js
 	@mkdir -p $(@D)
 	./bin/build-scripts/modularize shot $< > $@
+
+webextension/build/inlineSelectionCss.js: build/server/static/css/inline-selection.css
+	@mkdir -p $(@D)
+	./bin/build-scripts/css_to_js inlineSelectionCss $< > $@
 
 ## Server related rules:
 
