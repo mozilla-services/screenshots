@@ -79,13 +79,16 @@ window.takeshot = (function () {
   }
 
   function uploadShot(shot) {
-    let req = new Request(shot.jsonUrl, {
-      method: "PUT",
-      mode: "cors",
-      headers: {"content-type": "application/json"},
-      body: JSON.stringify(shot.asJson())
-    });
-    return fetch(req).then((resp) => {
+    return auth.authHeaders().then((headers) => {
+      headers["content-type"] = "application/json";
+      let req = new Request(shot.jsonUrl, {
+        method: "PUT",
+        mode: "cors",
+        headers: headers,
+        body: JSON.stringify(shot.asJson())
+      });
+      return fetch(req);
+    }).then((resp) => {
       if (! resp.ok) {
         console.error("Failed response:", resp);
         throw new Error("Error: response failed");

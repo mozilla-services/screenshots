@@ -1,4 +1,4 @@
-/* globals chrome, console, XMLHttpRequest, Image, document, setTimeout, makeUuid, navigator */
+/* globals chrome, console, XMLHttpRequest, Image, document, setTimeout, navigator */
 /* globals loadSelector, analytics, communication */
 window.main = (function () {
   let exports = {};

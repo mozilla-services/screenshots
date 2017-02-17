@@ -235,27 +235,56 @@ app.use("/homepage", express.static(path.join(__dirname, "static/homepage"), {
 app.use(morgan("combined"));
 
 app.use(function (req, res, next) {
-  let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
-  req.deviceId = cookies.get("user", {signed: true});
-  if (req.deviceId) {
+  let authHeader = req.headers['x-pageshot-auth'];
+  let authInfo = {};
+  if (authHeader) {
+    authInfo = decodeAuthHeader(authHeader);
+  } else {
+    let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
+    authInfo.deviceId = cookies.get("user", {signed: true});
+    let abTests = cookies.get("abtests", {signed: true});
+    if (abTests) {
+      abTests = b64DecodeJson(abTests);
+      authInfo.abTests = abTests;
+    }
+  }
+  if (authInfo.deviceId) {
+    req.deviceId = authInfo.deviceId;
     req.userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
     if (config.debugGoogleAnalytics) {
       req.userAnalytics = req.userAnalytics.debug();
     }
   }
-  let abTests = cookies.get("abtests", {signed: true});
-  if (abTests) {
-    abTests = b64DecodeJson(abTests);
-  } else {
-    abTests = {};
-  }
-  req.abTests = abTests;
+  req.abTests = authInfo.abTests || {};
   req.backend = `${req.protocol}://${req.headers.host}`;
   req.config = config;
   next();
 });
 
+function decodeAuthHeader(header) {
+  /** Decode a string header in the format {deviceId}:{deviceIdSig};abtests={b64thing}:{sig} */
+  // Since it's treated as opaque, we'll use a fragile regex
+  let keygrip = dbschema.getKeygrip();
+  let match = /^([^:]+):([^;]+);abTests=([^:]+):(.*)$/.exec(header);
+  if (! match) {
+    // FIXME: log, Sentry error
+    return {};
+  }
+  let deviceId = match[1];
+  let deviceIdSig = match[2];
+  let abTestsEncoded = match[3];
+  let abTestsEncodedSig = match[4];
+  if (! (keygrip.verify(deviceId, deviceIdSig) && keygrip.verify(abTestsEncoded, abTestsEncodedSig))) {
+    // FIXME: log, Sentry error
+    return {};
+  }
+  let abTests = b64DecodeJson(abTestsEncoded);
+  return {deviceId, abTests};
+}
+
 app.use(function (req, res, next) {
+  // FIXME: remove this as part of removing all export-related functions
+  // (was used for the exporter process to act as the user)
   let magicAuth = req.headers['x-magic-auth'];
   if (magicAuth && dbschema.getTextKeys().indexOf(magicAuth) != -1) {
     req.deviceId = req.headers['x-device-id'];
@@ -495,15 +524,8 @@ app.post("/api/register", function (req, res) {
     avatarurl: vars.avatarurl || null
   }, canUpdate).then(function (userAbTests) {
     if (userAbTests) {
-      let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
-      cookies.set("user", vars.deviceId, {signed: true});
-      cookies.set("abtests", b64EncodeJson(userAbTests), {signed: true});
-      let responseJson = {
-        ok: "User created",
-        sentryPublicDSN: config.sentryPublicDSN,
-        abTests: userAbTests
-      };
-      simpleResponse(res, JSON.stringify(responseJson), 200);
+      sendAuthInfo(req, res, vars.deviceId, userAbTests);
+      // FIXME: send GA signal?
     } else {
       sendRavenMessage(req, "Attempted to register existing user", {
         extra: {
@@ -540,6 +562,28 @@ app.post("/api/update", function (req, res, next) {
   }).catch(next);
 });
 
+function sendAuthInfo(req, res, deviceId, userAbTests) {
+  if (deviceId.search(/^[a-zA-Z0-9_-]+$/) == -1) {
+    // FIXME: add logging message with deviceId
+    throw new Error("Bad deviceId");
+  }
+  let encodedAbTests = b64EncodeJson(userAbTests);
+  let keygrip = dbschema.getKeygrip();
+  let cookies = new Cookies(req, res, {keys: keygrip});
+  cookies.set("user", deviceId, {signed: true});
+  cookies.set("abtests", encodedAbTests, {signed: true});
+  let authHeader = `${deviceId}:${keygrip.sign(deviceId)};abTests=${encodedAbTests}:${keygrip.sign(encodedAbTests)}`;
+  let responseJson = {
+    ok: "User created",
+    sentryPublicDSN: config.sentryPublicDSN,
+    abTests: userAbTests,
+    authHeader
+  };
+  // FIXME: I think there's a JSON sendResponse equivalent
+  simpleResponse(res, JSON.stringify(responseJson), 200);
+}
+
+
 app.post("/api/login", function (req, res) {
   let vars = req.body;
   let deviceInfo = {};
@@ -555,11 +599,7 @@ app.post("/api/login", function (req, res) {
   }
   checkLogin(vars.deviceId, vars.secret, deviceInfo.addonVersion).then((userAbTests) => {
     if (userAbTests) {
-      let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
-      cookies.set("user", vars.deviceId, {signed: true});
-      cookies.set("abtests", b64EncodeJson(userAbTests), {signed: true});
-      let responseJson = {"ok": "User logged in", "sentryPublicDSN": config.sentryPublicDSN, abTests: userAbTests};
-      simpleResponse(res, JSON.stringify(responseJson), 200);
+      sendAuthInfo(req, res, vars.deviceId, userAbTests);
       if (config.gaId) {
         let userAnalytics = ua(config.gaId, vars.deviceId, {strictCidFormat: false});
         userAnalytics.event({

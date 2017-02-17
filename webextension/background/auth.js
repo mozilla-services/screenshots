@@ -6,6 +6,8 @@ window.auth = (function () {
 
   let registrationInfo;
   let initialized = false;
+  let authHeader = null;
+  let sentryPublicDSN = null;
 
   chrome.storage.local.get(["backend", "registrationInfo"], (result) => {
     if (result.backend) {
@@ -48,6 +50,7 @@ window.auth = (function () {
         if (req.status == 200) {
           console.info("Registered login");
           initialized = true;
+          saveAuthInfo(JSON.parse(req.responseText));
           resolve();
           analytics.sendEvent("registered");
         } else {
@@ -79,6 +82,7 @@ window.auth = (function () {
           initialized = true;
           console.info("Page Shot logged in");
           analytics.sendEvent("login");
+          saveAuthInfo(JSON.parse(req.responseText));
           resolve();
         }
       };
@@ -91,6 +95,15 @@ window.auth = (function () {
         deviceInfo: JSON.stringify(deviceInfo())
       }));
     });
+  }
+
+  function saveAuthInfo(responseJson) {
+    if (responseJson.sentryPublicDSN) {
+      sentryPublicDSN = responseJson.sentryPublicDSN;
+    }
+    if (responseJson.authHeader) {
+      authHeader = responseJson.authHeader;
+    }
   }
 
   function uriEncode(obj) {
@@ -112,6 +125,21 @@ window.auth = (function () {
 
   exports.getDeviceId = function () {
     return registrationInfo.deviceId;
+  };
+
+  exports.authHeaders = function () {
+    let initPromise = Promise.resolve();
+    if (! initialized) {
+      initPromise = login();
+    }
+    return initPromise.then(() => {
+      if (authHeader) {
+        return {"x-pageshot-auth": authHeader};
+      } else {
+        console.warn("No auth header available");
+        return {};
+      }
+    });
   };
 
   return exports;
