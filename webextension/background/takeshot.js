@@ -8,20 +8,26 @@ window.takeshot = (function () {
     let { captureType, captureText, scroll, selectedPos, shotId, shot } = options;
     shot = new Shot(main.getBackend(), shotId, shot);
     shot.deviceId = auth.getDeviceId();
-    screenshotPage(selectedPos, scroll).then((dataUrl) => {
-      shot.addClip({
-        createdDate: Date.now(),
-        image: {
-          url: dataUrl,
-          captureType,
-          text: captureText,
-          location: selectedPos,
-          dimensions: {
-            x: selectedPos.right - selectedPos.left,
-            y: selectedPos.bottom - selectedPos.top
+    let capturePromise = Promise.resolve();
+    if (! shot.clipNames().length) {
+      // canvas.drawWindow isn't available, so we fall back to captureVisibleTab
+      capturePromise = screenshotPage(selectedPos, scroll).then((dataUrl) => {
+        shot.addClip({
+          createdDate: Date.now(),
+          image: {
+            url: dataUrl,
+            captureType,
+            text: captureText,
+            location: selectedPos,
+            dimensions: {
+              x: selectedPos.right - selectedPos.left,
+              y: selectedPos.bottom - selectedPos.top
+            }
           }
-        }
+        });
       });
+    }
+    capturePromise.then(() => {
       return uploadShot(shot);
     }).then(() => {
       let id = makeUuid();
@@ -33,7 +39,6 @@ window.takeshot = (function () {
         message: "The link to your shot has been copied to the clipboard"
       });
       chrome.tabs.create({url: shot.viewUrl});
-      console.log("Accomplished my goal", JSON.stringify(shot.asJson()).length);
     }).catch((e) => {
       // FIXME: report
       console.error("Error uploading shot:", e);

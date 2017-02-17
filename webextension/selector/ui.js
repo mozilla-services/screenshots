@@ -118,6 +118,14 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       });
     },
 
+    hide: function () {
+      this.element.style.display = "none";
+    },
+
+    unhide: function () {
+      this.element.style.display = "";
+    },
+
     updateElementSize: function (force) {
       // Note: if someone sizes down the page, then the iframe will keep the
       // document from naturally shrinking.  We use force to temporarily hide
