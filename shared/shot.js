@@ -990,7 +990,7 @@ class _Clip {
   }
 
   asJson() {
-    var result = jsonify(this, ["createdDate", "type"], ["sortOrder", "image", "text"]);
+    var result = jsonify(this, ["createdDate"], ["sortOrder", "image", "text"]);
     if (this.comments.length) {
       result.comments = this.comments.map(
         (comment) => comment.asJson());
