@@ -9,7 +9,7 @@ cache:
   - node_modules
 
 addons:
-  firefox: "47.0"
+  firefox: "latest-dev"
 
 notifications:
   irc:
