@@ -6,6 +6,11 @@
   "author": "Ian Bicking, Donovan Preston, and Bram Pitoyo",
   "homepage_url": "https://github.com/mozilla-services/pageshot",
   "offline_enabled": false,
+  "applications": {
+    "gecko": {
+      "id": "pageshot@mozilla.org"
+    }
+  },
   "icons": {
     "16": "icons/pageshot-icon-16.png",
     "32": "icons/pageshot-icon-32.png",
