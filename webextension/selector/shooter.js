@@ -9,21 +9,28 @@ window.shooter = (function () { // eslint-disable-line no-unused-vars
   const RANDOM_STRING_LENGTH = 16;
   let backend;
   let shot;
+  let supportsDrawWindow;
 
   exports.deactivate = function () {
     uicontrol.deactivate();
   };
 
+  (function () {
+    let canvas = document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
+    let ctx = canvas.getContext('2d');
+    supportsDrawWindow = !! ctx.drawWindow;
+  })();
+
   function screenshotPage(selectedPos) {
+    if (! supportsDrawWindow) {
+      return null;
+    }
     let height = selectedPos.bottom - selectedPos.top;
     let width = selectedPos.right - selectedPos.left;
     let canvas = document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
     canvas.width = width * window.devicePixelRatio;
     canvas.height = height * window.devicePixelRatio;
     let ctx = canvas.getContext('2d');
-    if (! ctx.drawWindow) {
-      return null;
-    }
     if (window.devicePixelRatio !== 1) {
       ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     }
