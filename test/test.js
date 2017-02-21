@@ -7,7 +7,7 @@ const webdriver = require("selenium-webdriver");
 //const Fs = require("fs-promise");
 const path = require("path");
 
-const SHOOTER_BUTTON_ID = "action-button--jid1-neeaf3sahdkhpajetpack-pageshot-shooter";
+const SHOOTER_BUTTON_ID = "pageshot_mozilla_org-browser-action";
 
 function addAddonToDriver(driver, location) {
   return driver.executeAsyncScript(`
@@ -34,12 +34,12 @@ class AddonListener {
 AddonManager.addAddonListener(new AddonListener());
 AddonManager.installTemporaryAddon(new FileUtils.File(arguments[0]))
   .catch((error) => {
-    callback([null, error]);
+    callback([null, error || "unknown temporary error"]);
   });
 
 `, location).then(([result, err]) => {
-    if (!result[0] && result[1]) {
-      throw new Error(`Failed to install add-on: ${result[1]}`);
+    if (!result && err) {
+      throw new Error(`Failed to install add-on: ${err}`);
     }
     return driver;
   });
@@ -57,7 +57,7 @@ function getDriver() {
   const driver = builder.build();
 
   driver.setContext(firefox.Context.CHROME);
-  let fileLocation = path.join(process.cwd(), "build", "mozilla-pageshot.xpi");
+  let fileLocation = path.join(process.cwd(), "build", "pageshot.zip");
   addAddonToDriver(driver, fileLocation);
   return driver;
 }
@@ -84,6 +84,6 @@ describe("Test Page Shot", function () {
   it("should find the add-on button", function() {
     return getElementById(driver, SHOOTER_BUTTON_ID)
       .then((button) => button.getAttribute("label"))
-      .then((label) => assert.equal(label, "Make shot"));
+      .then((label) => assert.equal(label, "Take a shot"));
   });
 });
