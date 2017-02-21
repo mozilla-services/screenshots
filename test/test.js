@@ -22,7 +22,7 @@ class AddonListener {
   }
 
   onInstallFailed(install) {
-    callback([null, install.error]);
+    callback([null, install.error.toString()]);
   }
 
   onInstalled(addon) {
@@ -34,7 +34,7 @@ class AddonListener {
 AddonManager.addAddonListener(new AddonListener());
 AddonManager.installTemporaryAddon(new FileUtils.File(arguments[0]))
   .catch((error) => {
-    callback([null, error || "unknown temporary error"]);
+    callback([null, error.toString()]);
   });
 
 `, location).then(([result, err]) => {
