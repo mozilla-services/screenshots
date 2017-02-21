@@ -784,7 +784,6 @@ window.uicontrol = (function () {
       annotatePosition(pos);
     }
     sendEvent("made-selection");
-    shooter.saveSelection(pos, selectedText, captureType);
   }
 
   exports.activate = function () {
