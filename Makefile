@@ -4,8 +4,6 @@ BABEL := babel --retain-lines
 JPM := $(shell pwd)/node_modules/.bin/jpm
 .DEFAULT_GOAL := help
 
-.PHONY: all clean server addon homepage npm set_backend
-
 # This forces bin/build-scripts/write_ga_id to be run before anything else, which
 # writes the configured Google Analytics ID to build/ga-id.txt
 _dummy := $(shell ./bin/build-scripts/write_ga_id)
@@ -92,6 +90,7 @@ build/%.html: %.html
 	@mkdir -p $(@D)
 	cp $< $@
 
+.PHONY: addon
 addon: npm set_backend webextension/build/shot.js webextension/build/inlineSelectionCss.js
 
 webextension/build/shot.js: shared/shot.js
@@ -148,6 +147,7 @@ build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass
 	@mkdir -p $(@D)
 	./bin/build-scripts/write_build_time > build/server/build-time.js
 
+.PHONY: server
 server: npm build/server/build-time.js build/server/package.json build/server/static/js/shot-bundle.js build/server/static/js/homepage-bundle.js build/server/static/js/metrics-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/leave-bundle.js build/server/static/js/creating-bundle.js
 
 ## Homepage related rules:
@@ -156,14 +156,17 @@ build/server/static/homepage/%: static/homepage/%
 	@mkdir -p $(@D)
 	cp $< $@
 
+.PHONY: homepage
 homepage: $(patsubst static/homepage/%,build/server/static/homepage/%,$(shell find static/homepage -type f ! -name index.html))
 
 ## npm rule
 
+.PHONY: npm
 npm: build/.npm-install.log
 
 build/.backend.txt: set_backend
 
+.PHONY: set_backend
 set_backend:
 	@if [[ -z "$(PAGESHOT_BACKEND)" ]] ; then echo "No backend set" ; fi
 	@if [[ -n "$(PAGESHOT_BACKEND)" ]] ; then echo "Setting backend to ${PAGESHOT_BACKEND}" ; fi
@@ -179,20 +182,27 @@ build/.npm-install.log: package.json
 # This causes intermediate files to be kept (e.g., files in static/ which are copied to the addon and server but aren't used/required directly):
 .SECONDARY:
 
+.PHONY: all
 all: addon server
 
+.PHONY: clean
 clean:
 	rm -rf build/ webextension/build/
 
+.PHONY: help
 help:
 	@echo "Makes the addon and server"
 	@echo "Commands:"
 	@echo "  make addon"
-	@echo "    make/update the addon directly into extension/build/"
+	@echo "    make/update the addon directly in webextension/ (built files in webextension/build/)"
 	@echo "  make server"
 	@echo "    make the server in build/server/"
 	@echo "  make all"
 	@echo "    equivalent to make server addon"
+	@echo "  make clean"
+	@echo "    rm -rf build/ webextension/build"
+	@echo "  make zip"
+	@echo "    make a zip of the webextension in build/pageshot.zip"
 	@echo "See also:"
 	@echo "  bin/run-addon"
 	@echo "  bin/run-server"
