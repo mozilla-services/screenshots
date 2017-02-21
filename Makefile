@@ -1,7 +1,6 @@
 PATH := ./node_modules/.bin:./bin/:$(PATH)
 SHELL := /bin/bash
 BABEL := babel --retain-lines
-JPM := $(shell pwd)/node_modules/.bin/jpm
 .DEFAULT_GOAL := help
 
 # This forces bin/build-scripts/write_ga_id to be run before anything else, which
@@ -13,15 +12,8 @@ _dummy := $(shell ./bin/build-scripts/write_ga_id)
 # them into the destination locations.  These destination locations are the
 # requirements for the other rules
 
-vendor_source := $(shell find addon/data/vendor -type f -name '*.js')
-vendor_dest := $(vendor_source:%=build/%)
-
-# Note shared/ gets copied into two locations (server and addon)
 shared_source := $(wildcard shared/*.js)
 shared_server_dest := $(shared_source:%.js=build/%.js)
-
-static_addon_source := $(shell find addon -type f -name '*.png' -o -name '*.svg' -o -name '*.html')
-static_addon_dest := $(static_addon_source:%=build/%)
 
 # static/js only gets copied to the server
 static_js_source := $(wildcard static/js/*.js)
@@ -92,6 +84,14 @@ build/%.html: %.html
 
 .PHONY: addon
 addon: npm set_backend webextension/build/shot.js webextension/build/inlineSelectionCss.js
+
+.PHONY: zip
+zip:
+	# FIXME: should remove web-ext-artifacts/*.zip first
+	./node_modules/.bin/web-ext build --source-dir webextension/
+	mv web-ext-artifacts/page_shot*.zip build/pageshot.zip
+	# We'll try to remove this directory, but it's no big deal if we can't:
+	@rmdir web-ext-artifacts || true
 
 webextension/build/shot.js: shared/shot.js
 	@mkdir -p $(@D)
