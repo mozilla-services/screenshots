@@ -20,6 +20,8 @@ root: true
 rules:
   react/jsx-uses-react: warn
   react/jsx-uses-vars: warn
+  react/no-deprecated: warn # TODO: change to "error"
+  react/no-direct-mutation-state: warn # TODO: change to "error"
   react/no-find-dom-node: warn # TODO: change to "error"
   react/prop-types: off # TODO: change to "error"
 
