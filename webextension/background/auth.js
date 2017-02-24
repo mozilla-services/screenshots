@@ -1,5 +1,5 @@
 /* globals chrome */
-/* globals main, makeUuid, deviceInfo, analytics, communication */
+/* globals main, makeUuid, deviceInfo, analytics */
 
 window.auth = (function () {
   let exports = {};
@@ -110,15 +110,6 @@ window.auth = (function () {
     }
     return s.join("&");
   }
-
-  communication.register("requestConfiguration", () => {
-    return {
-      backend: main.getBackend(),
-      deviceId: registrationInfo.deviceId,
-      deviceInfo: registrationInfo.deviceInfo,
-      secret: registrationInfo.secret
-    };
-  });
 
   exports.getDeviceId = function () {
     return registrationInfo.deviceId;
