@@ -12,7 +12,6 @@ window.auth = (function () {
   chrome.storage.local.get(["registrationInfo"], (result) => {
     if (result.registrationInfo) {
       registrationInfo = result.registrationInfo;
-      login();
     } else {
       registrationInfo = generateRegistrationInfo();
       chrome.storage.local.set({
@@ -21,9 +20,12 @@ window.auth = (function () {
         console.info("Device authentication saved");
       });
       console.info("Generating new device authentication ID", registrationInfo);
-      register();
     }
   });
+
+  exports.getDeviceId = function () {
+    return registrationInfo && registrationInfo.deviceId;
+  };
 
   function generateRegistrationInfo() {
     let info = {

@@ -1,4 +1,4 @@
-/* globals main */
+/* globals main, auth */
 
 window.analytics = (function () {
   let exports = {};
@@ -16,6 +16,7 @@ window.analytics = (function () {
     };
     // FIXME: add cdX and other details from req.js
     req.send(JSON.stringify({
+      deviceId: auth.getDeviceId(),
       event: eventCategory,
       action,
       label

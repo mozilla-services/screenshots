@@ -426,7 +426,10 @@ app.post("/event", function (req, res) {
   if (typeof bodyObj !== "object") {
     throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
   }
-  hashUserId(req.deviceId).then((userUuid) => {
+  // We allow clients to signal events with a deviceId even if they haven't logged in yet,
+  // by putting deviceId into the request body:
+  let deviceId = req.deviceId || bodyObj.deviceId;
+  hashUserId(deviceId).then((userUuid) => {
     let userAnalytics = ua(config.gaId, userUuid.toString(), {strictCidFormat: false});
     if (config.debugGoogleAnalytics) {
       userAnalytics = userAnalytics.debug();
