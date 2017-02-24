@@ -9,10 +9,7 @@ window.auth = (function () {
   let authHeader = null;
   let sentryPublicDSN = null;
 
-  chrome.storage.local.get(["backend", "registrationInfo"], (result) => {
-    if (result.backend) {
-      main.setBackend(result.backend);
-    }
+  chrome.storage.local.get(["registrationInfo"], (result) => {
     if (result.registrationInfo) {
       registrationInfo = result.registrationInfo;
       login();
