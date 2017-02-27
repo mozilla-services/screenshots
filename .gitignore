@@ -10,9 +10,10 @@ dist-production
 addon.log
 cookie-jar.txt
 .env.production
-.jpm-json*
 /scratch
 /data
 *.log
 /.env.local
 /bin/.commit-new-version-copy
+/webextension/build
+/web-ext-artifacts

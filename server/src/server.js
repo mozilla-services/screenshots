@@ -43,7 +43,7 @@ console.warn = logFactory("warn");
 console.error = logFactory("error");
 
 const path = require('path');
-const { readFileSync } = require('fs');
+const { readFileSync, existsSync } = require('fs');
 const Cookies = require("cookies");
 
 const { Shot } = require("./servershot");
@@ -73,10 +73,8 @@ const https = require("https");
 const gaActivation = require("./ga-activation");
 const genUuid = require("nodify-uuid");
 const AWS = require("aws-sdk");
-const vhost = require("vhost");
 const escapeHtml = require("escape-html");
 const validUrl = require("valid-url");
-const { createProxyUrl } = require("./proxy-url");
 const statsd = require("./statsd");
 const { notFound } = require("./pages/not-found/server");
 const { cacheTime, setCache } = require("./caching");
@@ -167,7 +165,8 @@ app.disable("x-powered-by");
 const CONTENT_NAME = config.contentOrigin;
 
 function addHSTS(req, res) {
-  if (req.protocol === "https") {
+  // Note: HSTS will only produce warning on a localhost self-signed cert
+  if (req.protocol === "https" && ! config.localhostSsl) {
     let time = 24*60*60*1000; // 24 hours
     res.header(
       "Strict-Transport-Security",
@@ -199,6 +198,25 @@ app.use((req, res, next) => {
   });
 });
 
+function isApiUrl(url) {
+  return url.startsWith("/api") || url === "/event";
+}
+
+app.use((req, res, next) => {
+  if (isApiUrl(req.url)) {
+    // All API requests are CORS-enabled
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Cookie, Content-Type, User-Agent");
+    if (req.method === "OPTIONS") {
+      res.type("text");
+      res.send("");
+      return;
+    }
+  }
+  next();
+});
+
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json({limit: '100mb'}));
 
@@ -217,27 +235,56 @@ app.use("/homepage", express.static(path.join(__dirname, "static/homepage"), {
 app.use(morgan("combined"));
 
 app.use(function (req, res, next) {
-  let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
-  req.deviceId = cookies.get("user", {signed: true});
-  if (req.deviceId) {
+  let authHeader = req.headers['x-pageshot-auth'];
+  let authInfo = {};
+  if (authHeader) {
+    authInfo = decodeAuthHeader(authHeader);
+  } else {
+    let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
+    authInfo.deviceId = cookies.get("user", {signed: true});
+    let abTests = cookies.get("abtests", {signed: true});
+    if (abTests) {
+      abTests = b64DecodeJson(abTests);
+      authInfo.abTests = abTests;
+    }
+  }
+  if (authInfo.deviceId) {
+    req.deviceId = authInfo.deviceId;
     req.userAnalytics = ua(config.gaId, req.deviceId, {strictCidFormat: false});
     if (config.debugGoogleAnalytics) {
       req.userAnalytics = req.userAnalytics.debug();
     }
   }
-  let abTests = cookies.get("abtests", {signed: true});
-  if (abTests) {
-    abTests = b64DecodeJson(abTests);
-  } else {
-    abTests = {};
-  }
-  req.abTests = abTests;
+  req.abTests = authInfo.abTests || {};
   req.backend = `${req.protocol}://${req.headers.host}`;
   req.config = config;
   next();
 });
 
+function decodeAuthHeader(header) {
+  /** Decode a string header in the format {deviceId}:{deviceIdSig};abtests={b64thing}:{sig} */
+  // Since it's treated as opaque, we'll use a fragile regex
+  let keygrip = dbschema.getKeygrip();
+  let match = /^([^:]+):([^;]+);abTests=([^:]+):(.*)$/.exec(header);
+  if (! match) {
+    // FIXME: log, Sentry error
+    return {};
+  }
+  let deviceId = match[1];
+  let deviceIdSig = match[2];
+  let abTestsEncoded = match[3];
+  let abTestsEncodedSig = match[4];
+  if (! (keygrip.verify(deviceId, deviceIdSig) && keygrip.verify(abTestsEncoded, abTestsEncodedSig))) {
+    // FIXME: log, Sentry error
+    return {};
+  }
+  let abTests = b64DecodeJson(abTestsEncoded);
+  return {deviceId, abTests};
+}
+
 app.use(function (req, res, next) {
+  // FIXME: remove this as part of removing all export-related functions
+  // (was used for the exporter process to act as the user)
   let magicAuth = req.headers['x-magic-auth'];
   if (magicAuth && dbschema.getTextKeys().indexOf(magicAuth) != -1) {
     req.deviceId = req.headers['x-device-id'];
@@ -379,7 +426,10 @@ app.post("/event", function (req, res) {
   if (typeof bodyObj !== "object") {
     throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
   }
-  hashUserId(req.deviceId).then((userUuid) => {
+  // We allow clients to signal events with a deviceId even if they haven't logged in yet,
+  // by putting deviceId into the request body:
+  let deviceId = req.deviceId || bodyObj.deviceId;
+  hashUserId(deviceId).then((userUuid) => {
     let userAnalytics = ua(config.gaId, userUuid.toString(), {strictCidFormat: false});
     if (config.debugGoogleAnalytics) {
       userAnalytics = userAnalytics.debug();
@@ -477,15 +527,8 @@ app.post("/api/register", function (req, res) {
     avatarurl: vars.avatarurl || null
   }, canUpdate).then(function (userAbTests) {
     if (userAbTests) {
-      let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
-      cookies.set("user", vars.deviceId, {signed: true});
-      cookies.set("abtests", b64EncodeJson(userAbTests), {signed: true});
-      let responseJson = {
-        ok: "User created",
-        sentryPublicDSN: config.sentryPublicDSN,
-        abTests: userAbTests
-      };
-      simpleResponse(res, JSON.stringify(responseJson), 200);
+      sendAuthInfo(req, res, vars.deviceId, userAbTests);
+      // FIXME: send GA signal?
     } else {
       sendRavenMessage(req, "Attempted to register existing user", {
         extra: {
@@ -522,6 +565,28 @@ app.post("/api/update", function (req, res, next) {
   }).catch(next);
 });
 
+function sendAuthInfo(req, res, deviceId, userAbTests) {
+  if (deviceId.search(/^[a-zA-Z0-9_-]+$/) == -1) {
+    // FIXME: add logging message with deviceId
+    throw new Error("Bad deviceId");
+  }
+  let encodedAbTests = b64EncodeJson(userAbTests);
+  let keygrip = dbschema.getKeygrip();
+  let cookies = new Cookies(req, res, {keys: keygrip});
+  cookies.set("user", deviceId, {signed: true});
+  cookies.set("abtests", encodedAbTests, {signed: true});
+  let authHeader = `${deviceId}:${keygrip.sign(deviceId)};abTests=${encodedAbTests}:${keygrip.sign(encodedAbTests)}`;
+  let responseJson = {
+    ok: "User created",
+    sentryPublicDSN: config.sentryPublicDSN,
+    abTests: userAbTests,
+    authHeader
+  };
+  // FIXME: I think there's a JSON sendResponse equivalent
+  simpleResponse(res, JSON.stringify(responseJson), 200);
+}
+
+
 app.post("/api/login", function (req, res) {
   let vars = req.body;
   let deviceInfo = {};
@@ -537,11 +602,7 @@ app.post("/api/login", function (req, res) {
   }
   checkLogin(vars.deviceId, vars.secret, deviceInfo.addonVersion).then((userAbTests) => {
     if (userAbTests) {
-      let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
-      cookies.set("user", vars.deviceId, {signed: true});
-      cookies.set("abtests", b64EncodeJson(userAbTests), {signed: true});
-      let responseJson = {"ok": "User logged in", "sentryPublicDSN": config.sentryPublicDSN, abTests: userAbTests};
-      simpleResponse(res, JSON.stringify(responseJson), 200);
+      sendAuthInfo(req, res, vars.deviceId, userAbTests);
       if (config.gaId) {
         let userAnalytics = ua(config.gaId, vars.deviceId, {strictCidFormat: false});
         userAnalytics.event({
@@ -1020,61 +1081,7 @@ app.use("/", require("./pages/shot/server").app);
 
 app.use("/", require("./pages/homepage/server").app);
 
-const contentApp = express();
-
-if (config.useVirtualHosts) {
-  contentApp.use((req, res, next) => {
-    res.header("Content-Security-Policy", "default-src 'self'");
-    let domain = config.siteOrigin.split(":")[0];
-    res.header("X-Frame-Options", `ALLOW-FROM ${domain}`);
-    addHSTS(req, res);
-    next();
-  });
-}
-
-contentApp.set('trust proxy', true);
-
-contentApp.use("/static", express.static(path.join(__dirname, "static"), {
-  index: false
-}));
-
-contentApp.use(function (req, res, next) {
-  req.staticLink = linker.staticLink;
-  req.staticLinkWithHost = linker.staticLinkWithHost.bind(null, req);
-  let base = `${req.protocol}://${req.headers.host}`;
-  linker.imageLinkWithHost = linker.imageLink.bind(null, base);
-  next();
-});
-
-contentApp.get("/content/:id/:domain", function (req, res) {
-  let shotId = `${req.params.id}/${req.params.domain}`;
-  Shot.getFullShot(req.backend, shotId).then((shot) => {
-    if (! shot) {
-      notFound(req, res);
-      return;
-    }
-    res.send(shot.staticHtml({
-      addHead: `
-      <meta name="referrer" content="origin" />
-      <base href="${shot.url}" target="_blank" />
-      <script nonce="${req.cspNonce}">var SITE_ORIGIN = "${req.protocol}://${config.siteOrigin}";</script>
-      <script src="${req.staticLinkWithHost("js/content-helper.js")}"></script>
-      <link rel="stylesheet" href="${req.staticLinkWithHost("css/content.css")}">
-      `,
-      rewriteLinks: (key, data) => {
-        if (! data) {
-          console.warn("Missing link for", JSON.stringify(key));
-          return key;
-        }
-        return createProxyUrl(req, data.url, data.hash);
-      }
-    }));
-  }).catch(function (e) {
-    errorResponse(res, "Failed to load shot", e);
-  });
-});
-
-contentApp.get("/proxy", function (req, res) {
+app.get("/proxy", function (req, res) {
   let url = req.query.url;
   let sig = req.query.sig;
   let isValid = dbschema.getKeygrip().verify(new Buffer(url, 'utf8'), sig);
@@ -1130,27 +1137,40 @@ contentApp.get("/proxy", function (req, res) {
   subreq.end();
 });
 
-linker.init().then(() => {
-  if (config.useVirtualHosts) {
-    const mainapp = express();
-    const siteName = config.siteOrigin.split(":")[0];
-    const contentName = config.contentOrigin.split(":")[0];
-    mainapp.use(vhost(siteName, app));
-    mainapp.use(vhost(contentName, contentApp));
-    mainapp.listen(config.port);
-    mainapp.get("/", function (req, res) {
-      res.send("ok");
-    });
-    console.info(`virtual host server listening on http://localhost:${config.port}`);
-    console.info(`  siteName="${siteName}"; contentName="${contentName}"`);
-  } else {
-    app.listen(config.port);
-    console.info(`server listening on http://localhost:${config.port}/`);
-    contentApp.listen(config.contentPort);
-    console.info(`content server listening on http://localhost:${config.contentPort}/`);
+let httpsCredentials;
+if (config.localhostSsl) {
+  // To generate trusted keys on Mac, see: https://certsimple.com/blog/localhost-ssl-fix
+  let key = `${process.env.HOME}/.localhost-ssl/key.pem`;
+  let cert = `${process.env.HOME}/.localhost-ssl/cert.pem`;
+  if (! (existsSync(key) && existsSync(cert))) {
+    console.log("Error: to use localhost SSL/HTTPS you must create a key.pem and cert.pem file");
+    console.log("  These must be located in:");
+    console.log(`    ${key}`);
+    console.log(`    ${cert}`);
+    console.log("  You can find instructions on creating these files here:");
+    console.log("    https://certsimple.com/blog/localhost-ssl-fix");
+    process.exit(2);
   }
+  httpsCredentials = {
+    key: readFileSync(key),
+    cert: readFileSync(cert)
+  };
+}
+
+linker.init().then(() => {
+  let server;
+  let scheme;
+  if (httpsCredentials) {
+    server = https.createServer(httpsCredentials, app);
+    scheme = "https";
+  } else {
+    server = http.createServer(app);
+    scheme = "http";
+  }
+  server.listen(config.port);
+  console.info(`server listening on ${scheme}://localhost:${config.port}/`);
 }).catch((err) => {
-  console.error("Error getting revision:", err, err.stack);
+  console.error("Error getting git revision:", err, err.stack);
 });
 
 require("./jobs").start();

@@ -26,63 +26,17 @@ class Clip extends React.Component {
     window.addEventListener("resize", onResize, true);
 
     onResize();
-
-    if (window.sendToChild) {
-      try {
-        window.sendToChild({
-          type: "displayClip",
-          clip: this.props.clip.asJson()
-        });
-      } catch (e) {
-        console.error("Error sending message to child", e);
-      }
-    }
-  }
-
-  onClickClose() {
-    this.props.onClickClose();
-  }
-
-  onClickCloseBackground(event) {
-    if (event.target.tagName == "A") {
-      // A click on the clip itself
-      return;
-    }
-    // FIXME: totally hacky way to handle this,
-    // but suppress the click action when the share panel
-    // is open:
-    if (document.getElementById("share-buttons-panel")) {
-      return;
-    }
-
-    if (this.props.showCloseButton) {
-      this.onClickClose();
-    }
+    // FIXME: need to remove event listener on unmount
   }
 
   render() {
-    let clip = this.props.clip,
-      node = null;
-
-    if (clip.image !== undefined) {
-      node = <img style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%"}} ref="clipImage" src={ clip.image.url } alt={ clip.image.text } />;
+    let clip = this.props.clip;
+    if (! clip.image) {
+      console.warn("Somehow there's a shot without an image");
+      return null;
     }
-
-    let closeButton = null;
-    if (this.props.showCloseButton) {
-      closeButton = <img
-        style={{
-          position: "absolute",
-          cursor: "pointer",
-          top: "81px",
-          right: "15px",
-          height: "32px",
-          width: "32px"}}
-        src={ this.props.staticLink("/static/img/zoom-out.svg") }
-        onClick={ this.onClickClose.bind(this) }/>;
-    }
-    return <div ref="clipContainer" className="clip-container" onClick={this.onClickCloseBackground.bind(this)}>
-      { closeButton }
+    let node = <img style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%"}} ref="clipImage" src={ clip.image.url } alt={ clip.image.text } />;
+    return <div ref="clipContainer" className="clip-container">
       <menu type="context" id="clip-image-context">
         <menuitem label="Copy Image Text" onClick={this.copyImageText.bind(this)} ></menuitem>
       </menu>
@@ -122,6 +76,7 @@ class Head extends React.Component {
         </reactruntime.HeadTemplate>
       );
     } else {
+      // FIXME: we need to review if the oembed form actually works and is valuable
       return (
         <reactruntime.HeadTemplate {...this.props}>
           <script src={ this.props.staticLink("/static/js/shot-bundle.js") } async />
@@ -129,7 +84,6 @@ class Head extends React.Component {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />
           {this.socialMetadata()}
-          {this.props.shot.showPage ? <script src={ this.props.staticLink("/parent-helper.js") } /> : null}
         </reactruntime.HeadTemplate>
       );
     }
@@ -197,18 +151,6 @@ class Body extends React.Component {
     this.setState({closePageshotBanner: true});
   }
 
-  onClickUploadFullPage(e) {
-    //this.props.controller.requestSavedShot();
-  }
-
-  onClickClose() {
-    this.setState({hidden: true});
-  }
-
-  onClickZoom() {
-    this.setState({hidden: false});
-  }
-
   onClickDelete(e) {
     sendEvent("start-delete", "navbar", {useBeacon: true});
     if (window.confirm("Are you sure you want to delete this shot permanently?")) {
@@ -225,56 +167,53 @@ class Body extends React.Component {
   }
 
   render() {
-    let body;
     if (this.props.expireTime !== null && Date.now() > this.props.expireTime) {
-      let expireTime = this.props.expireTime;
-      if (typeof expireTime != "number") {
-        expireTime = expireTime.getTime();
-      }
-      let deleteTime = new Date(expireTime + this.props.retentionTime);
-      let restoreWidget;
-      if (this.props.isOwner) {
-        restoreWidget = (
-          <div>
-            <div className="spacer"/>
-            If you do nothing,<br/>
-            this shot will be permanently deleted <TimeDiff date={deleteTime} />.
-            <div className="spacer"/>
-            <div className="responsive-wrapper row-center">
-              <button className="button primary set-width--medium" onClick={this.onRestore.bind(this)}>restore for {intervalDescription(this.props.defaultExpiration)}</button>
-            </div>
-          </div>
-        );
-      }
-      // Note: any attributes used here need to be preserved
-      // in the render() function
-      body = <reactruntime.BodyTemplate {...this.props}>
-        <div className="column-center full-height inverse-color-scheme">
-          <div className="large-icon-message-container">
-            <div className="large-icon logo" />
-            <div className="large-icon-message-string">
-              This shot has expired.<br/>
-              Here is page it was originally created from:<br/>
-              <a className="underline" href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>{this.props.shot.title}</a>
-              { restoreWidget }
-            </div>
+      return this.renderExpired();
+    } else {
+      return this.renderBody();
+    }
+  }
+
+  renderExpired() {
+    let expireTime = this.props.expireTime;
+    if (typeof expireTime != "number") {
+      expireTime = expireTime.getTime();
+    }
+    let deleteTime = new Date(expireTime + this.props.retentionTime);
+    let restoreWidget;
+    if (this.props.isOwner) {
+      restoreWidget = (
+        <div>
+          <div className="spacer"/>
+          If you do nothing,<br/>
+          this shot will be permanently deleted <TimeDiff date={deleteTime} />.
+          <div className="spacer"/>
+          <div className="responsive-wrapper row-center">
+            <button className="button primary set-width--medium" onClick={this.onRestore.bind(this)}>restore for {intervalDescription(this.props.defaultExpiration)}</button>
           </div>
         </div>
-      </reactruntime.BodyTemplate>;
-    } else {
-      body = this.renderBody();
+      );
     }
-    return body;
+    // Note: any attributes used here need to be preserved
+    // in the render() function
+    return <reactruntime.BodyTemplate {...this.props}>
+      <div className="column-center full-height inverse-color-scheme">
+        <div className="large-icon-message-container">
+          <div className="large-icon logo" />
+          <div className="large-icon-message-string">
+            This shot has expired.<br/>
+            Here is page it was originally created from:<br/>
+            <a className="underline" href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>{this.props.shot.title}</a>
+            { restoreWidget }
+          </div>
+        </div>
+      </div>
+    </reactruntime.BodyTemplate>;
   }
 
   renderBody() {
-    if (! this.props.shot) {
-      return <body><div>Not Found</div></body>;
-    }
-
     let shot = this.props.shot;
     let shotId = this.props.shot.id;
-    let shotDomain = this.props.shot.url; // FIXME: calculate
 
     let clips = [];
     let clipNames = shot.clipNames();
@@ -286,34 +225,25 @@ class Body extends React.Component {
         staticLink={this.props.staticLink}
         key={ clipId }
         clip={ clip }
-        shotId={ shotId }
-        shotDomain={ shotDomain }
-        showCloseButton={ this.props.shot.showPage }
-        onClickClose={ this.onClickClose.bind(this) }/>);
+        shotId={ shotId } />);
     }
 
     let linkTextShort = shot.urlDisplay;
 
-    let timeDiff = <TimeDiff date={shot.createdDate} simple={this.props.simple} />;
-    let expiresDiff = <span>
+    let timeDiff = <TimeDiff date={shot.createdDate} />;
+    let expiresDiff = null;
+    if (this.props.isOwner) {
+      expiresDiff = <span>
       &nbsp; &bull; &nbsp;
       <ExpireWidget
         expireTime={this.props.expireTime}
         onSaveExpire={this.onSaveExpire.bind(this)} />
-    </span>;
-
-    if (this.props.simple || ! this.props.isOwner) {
-      expiresDiff = null;
-    }
-
-    let frameHeight = 100;
-    if (this.props.shot.documentSize) {
-      frameHeight = this.props.shot.documentSize.height;
+      </span>;
     }
 
     let shotRedirectUrl = `/redirect?to=${encodeURIComponent(shot.url)}`;
 
-    let trashOrFlagButton = null;
+    let trashOrFlagButton;
     if (this.props.isOwner) {
       trashOrFlagButton = <button className="button secondary" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }>
         <img src={ this.props.staticLink("/static/img/garbage-bin.svg") } />
@@ -346,14 +276,6 @@ class Body extends React.Component {
     }
     let clipFilename = this.props.shot.filename;
 
-    /*
-    {this.props.hasSavedShot ?
-      <button id="upload-full-page" className="upload-full-page" onClick={ this.onClickUploadFullPage.bind(this) }>
-        Save full page
-      </button>
-      : null}
-    */
-
     let renderGetFirefox = this.props.userAgent && (this.props.userAgent + "").search(/firefox\/\d+/i) === -1;
     let renderExtensionNotification = ! (this.props.isExtInstalled || renderGetFirefox);
     if (this.props.isMobile || this.state.closePageshotBanner) {
@@ -383,9 +305,6 @@ class Body extends React.Component {
           </div>
         </div>
         { clips }
-        { this.props.shot.showPage ? <span id="copy-flag">Copy</span> : null }
-        { this.props.shot.showPage ?
-          <iframe width="100%" height={frameHeight} id="frame" src={ shot.contentUrl } style={ {backgroundColor: "#fff"} } /> : null }
         <Footer forUrl={ shot.viewUrl } {...this.props} />
       </div>
     </reactruntime.BodyTemplate>);

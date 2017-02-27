@@ -22,26 +22,12 @@ var conf = convict({
     env: "SITE_ORIGIN",
     arg: "siteOrigin"
   },
-  contentPort: {
-    doc: "The content server port",
-    format: "port",
-    default: 10081,
-    env: "CONTENT_PORT",
-    arg: "contentPort"
-  },
-  contentOrigin: {
-    doc: "The content server public origin (except protocol)",
-    format: String,
-    default: "localhost:10081",
-    env: "CONTENT_ORIGIN",
-    arg: "contentOrigin"
-  },
-  useVirtualHosts: {
-    doc: "If true, use the main site port for the content server, and ignore contentPort. Virtual hosts will be used for SITE_ORIGIN and CONTENT_ORIGIN.",
+  localhostSsl: {
+    doc: "Turn on SSL on localhost, using ~/.localhost-ssl/*",
     format: Boolean,
     default: false,
-    env: "USE_VIRTUAL_HOSTS",
-    arg: "useVirtualHosts"
+    env: "LOCALHOST_SSL",
+    arg: "localhost-ssl"
   },
   useS3: {
     doc: "If true, store files in s3. If false, store them locally",

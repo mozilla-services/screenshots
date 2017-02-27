@@ -51,7 +51,7 @@ $overlay-z-index: 9999999999;
 .pageshot-highlight-button-cancel {
   @extend .button;
   @extend .secondary;
-  background: $very-light-grey url("cancel.svg") center center no-repeat;
+  background: $very-light-grey url("MOZ_EXTENSION/icons/cancel.svg") center center no-repeat;
   background-size: 18px 18px;
   margin: 5px;
   width: 40px;
@@ -59,7 +59,7 @@ $overlay-z-index: 9999999999;
   &:hover,
   &:focus,
   &:active {
-    background: darken($very-light-grey, 7) url("cancel.svg") center center no-repeat;
+    background: darken($very-light-grey, 7) url("MOZ_EXTENSION/icons/cancel.svg") center center no-repeat;
     background-size: 18px 18px;
   }
 }
@@ -75,7 +75,7 @@ $overlay-z-index: 9999999999;
 .pageshot-highlight-button-download {
   @extend .button;
   @extend .secondary;
-  background: $very-light-grey url("download.svg") center center no-repeat;
+  background: $very-light-grey url("MOZ_EXTENSION/icons/download.svg") center center no-repeat;
   background-size: 18px 18px;
   margin: 5px;
   width: 40px;
@@ -83,7 +83,7 @@ $overlay-z-index: 9999999999;
   &:hover,
   &:focus,
   &:active {
-    background: darken($very-light-grey, 7) url("download.svg") center center no-repeat;
+    background: darken($very-light-grey, 7) url("MOZ_EXTENSION/icons/download.svg") center center no-repeat;
     background-size: 18px 18px;
   }
 }

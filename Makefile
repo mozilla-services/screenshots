@@ -1,10 +1,7 @@
 PATH := ./node_modules/.bin:./bin/:$(PATH)
 SHELL := /bin/bash
 BABEL := babel --retain-lines
-JPM := $(shell pwd)/node_modules/.bin/jpm
 .DEFAULT_GOAL := help
-
-.PHONY: all clean server addon xpi homepage npm chrome-extension chrome-zip set_backend
 
 # This forces bin/build-scripts/write_ga_id to be run before anything else, which
 # writes the configured Google Analytics ID to build/ga-id.txt
@@ -15,27 +12,12 @@ _dummy := $(shell ./bin/build-scripts/write_ga_id)
 # them into the destination locations.  These destination locations are the
 # requirements for the other rules
 
-data_source := $(shell find addon/data -path addon/data/vendor -prune -o -name '*.js')
-data_dest := $(data_source:%.js=build/%.js)
-
-vendor_source := $(shell find addon/data/vendor -type f -name '*.js')
-vendor_dest := $(vendor_source:%=build/%)
-
-# Note shared/ gets copied into two locations (server and addon)
 shared_source := $(wildcard shared/*.js)
 shared_server_dest := $(shared_source:%.js=build/%.js)
-shared_addon_dest := $(shared_source:shared/%.js=build/addon/lib/shared/%.js)
-shared_chrome_dest := $(shared_source:shared/%.js=build/chrome-extension/shared/%.js)
-
-static_addon_source := $(shell find addon -type f -name '*.png' -o -name '*.svg' -o -name '*.html')
-static_addon_dest := $(static_addon_source:%=build/%)
 
 # static/js only gets copied to the server
 static_js_source := $(wildcard static/js/*.js)
 static_js_dest := $(static_js_source:%.js=build/server/%.js)
-
-lib_source := $(wildcard addon/lib/*.js)
-lib_dest := $(lib_source:%.js=build/%.js)
 
 server_source := $(shell find server/src -name '*.js')
 server_dest := $(server_source:server/src/%.js=build/server/%.js)
@@ -43,35 +25,17 @@ server_dest := $(server_source:server/src/%.js=build/server/%.js)
 # Also scss gets put into two locations:
 sass_source := $(wildcard static/css/*.scss)
 sass_server_dest := $(sass_source:%.scss=build/server/%.css)
-sass_addon_dest := $(sass_source:static/css/%.scss=build/addon/data/%.css)
-sass_chrome_dest := $(sass_source:static/css/%.scss=build/chrome-extension/css/%.css)
 partials_source := $(wildcard static/css/partials/*.scss)
 
 # And static images get placed somewhat eclectically:
 imgs_source := $(wildcard static/img/*)
 imgs_server_dest := $(imgs_source:%=build/server/%)
-imgs_addon_dest := $(imgs_source:static/img/%=build/addon/data/icons/%)
-imgs_chrome_dest := $(imgs_source:static/img/%=build/chrome-extension/img/%)
-
-addon_js_source := $(shell find addon -name '*.js')
-addon_js_dest := $(addon_js_source:%=build/%)
-
-chrome_js_source := $(shell find chrome-extension -name '*.js')
-chrome_js_dest := $(chrome_js_source:%=build/%)
-chrome_static_source := $(shell find chrome-extension -name '*.png' -o -name '*.svg' -o -name '*.html' -o -name '*.json')
-chrome_static_dest := $(chrome_static_source:%=build/%)
-# FIXME: obviously this is a tedious way to describe these:
-chrome_external_modules := build/chrome-extension/selector-util.js build/chrome-extension/selector-snapping.js build/chrome-extension/annotate-position.js build/chrome-extension/error-utils.js build/chrome-extension/selector-ui.js build/chrome-extension/add-ids.js build/chrome-extension/extractor-worker.js build/chrome-extension/shooter-interactive-worker.js build/chrome-extension/make-static-html.js
 
 ## General transforms:
 # These cover standard ways of building files given a source
 
 # Need to put these two rules before the later general rule, so that we don't
 # run babel on vendor libraries or the homepage libraries:
-build/addon/data/vendor/%.js: addon/data/vendor/%.js
-	@mkdir -p $(@D)
-	cp $< $@
-
 build/server/static/homepage/%.js: static/homepage/%.js
 	@mkdir -p $(@D)
 	cp $< $@
@@ -118,92 +82,24 @@ build/%.html: %.html
 	@mkdir -p $(@D)
 	cp $< $@
 
-## Addon related rules:
+.PHONY: addon
+addon: npm set_backend webextension/build/shot.js webextension/build/inlineSelectionCss.js
 
-# We don't need babel on these specific modules:
-build/addon/lib/shared/%.js: build/shared/%.js
+.PHONY: zip
+zip:
+	# FIXME: should remove web-ext-artifacts/*.zip first
+	./node_modules/.bin/web-ext build --source-dir webextension/
+	mv web-ext-artifacts/page_shot*.zip build/pageshot.zip
+	# We'll try to remove this directory, but it's no big deal if we can't:
+	@rmdir web-ext-artifacts || true
+
+webextension/build/shot.js: shared/shot.js
 	@mkdir -p $(@D)
-	cp $< $@
+	./bin/build-scripts/modularize shot $< > $@
 
-# We handle this one differently for now
-build/addon/data/%.css: addon/data/%.css
+webextension/build/inlineSelectionCss.js: build/server/static/css/inline-selection.css
 	@mkdir -p $(@D)
-	cp $< $@
-
-# We copy over files from the server (server rules will generate those
-# files from .scss files):
-build/addon/data/%.css: build/server/static/css/%.css
-	@mkdir -p $(@D)
-	cp $< $@
-
-build/addon/data/icons/%: static/img/%
-	@mkdir -p $(@D)
-	cp $< $@
-
-# FIXME: unsure if this is relevant, given other rules:
-build/addon/data/vendor/%: addon/data/vendor/%
-	@mkdir -p $(@D)
-	cp $< $@
-
-build/mozilla-pageshot.xpi: addon addon/package.json build/.backend.txt
-	# We have to do this each time because we want to set the version using a timestamp:
-	./bin/build-scripts/set_package_version $(shell cat build/.backend.txt) < addon/package.json > build/addon/package.json
-	# Get rid of any stale xpis:
-	rm -f build/addon/mozilla-pageshot.xpi
-	cd build/addon && $(JPM) xpi
-	mv build/addon/mozilla-pageshot.xpi build/mozilla-pageshot.xpi
-
-build/mozilla-pageshot.update.rdf: addon/template.update.rdf build/mozilla-pageshot.xpi
-	./bin/build-scripts/sub_rdf_checkout_version < build/addon/package.json > build/mozilla-pageshot.update.rdf
-
-build/addon/package.json: addon/package.json
-	@mkdir -p $(@D)
-	cp $< $@
-
-build/addon/lib/httpd.jsm: addon/lib/httpd.jsm
-	@mkdir -p $(@D)
-	cp $< $@
-
-addon: npm set_backend $(data_dest) $(vendor_dest) $(lib_dest) $(sass_addon_dest) $(imgs_addon_dest) $(static_addon_dest) $(shared_addon_dest) build/addon/package.json build/addon/lib/httpd.jsm build/addon/data/pageshot-notification-bar.css build/addon/data/toolbar-button.css
-
-chrome-extension: npm $(chrome_js_dest) $(chrome_static_dest) $(sass_chrome_dest) $(imgs_chrome_dest) $(static_chrome_dest) $(shared_chrome_dest) $(chrome_external_modules)
-
-chrome-zip: build/chrome-ext.zip
-
-build/chrome-ext.zip: chrome-extension
-	rm -f build/chrome-ext.zip
-	./bin/build-scripts/set_package_version --chrome < chrome-extension/manifest.json > build/chrome-extension/manifest.json
-	cd build/chrome-extension && zip -r ../chrome-ext.zip *
-
-xpi: build/mozilla-pageshot.xpi build/mozilla-pageshot.update.rdf
-
-## Chrome extension rules
-
-build/chrome-extension/manifest.json: chrome-extension/manifest.json build/.backend.txt
-	@mkdir -p $(@D)
-	@echo "Setting backend to $(shell cat ./build/.backend.txt)"
-	python -c "import sys; content = sys.stdin.read(); print content.replace('https://pageshot.dev.mozaws.net', sys.argv[1])" $(shell cat ./build/.backend.txt) < $< > $@
-
-build/chrome-extension/css/%.css: build/server/static/css/%.css
-	@mkdir -p $(@D)
-	cp $< $@
-
-build/chrome-extension/img/%: static/img/%
-	@mkdir -p $(@D)
-	cp $< $@
-
-build/chrome-extension/shared/%: build/shared/%
-	@mkdir -p $(@D)
-	cp $< $@
-
-build/chrome-extension/%.js: build/addon/data/%.js
-	@mkdir -p $(@D)
-	sed 's!isChrome = false!isChrome = true!' < $< > $@
-
-build/chrome-extension/%.js: build/addon/data/framescripts/%.js
-	@mkdir -p $(@D)
-	sed 's!isChrome = false!isChrome = true!' < $< > $@
-
+	./bin/build-scripts/css_to_js inlineSelectionCss $< > $@
 
 ## Server related rules:
 
@@ -251,6 +147,7 @@ build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass
 	@mkdir -p $(@D)
 	./bin/build-scripts/write_build_time > build/server/build-time.js
 
+.PHONY: server
 server: npm build/server/build-time.js build/server/package.json build/server/static/js/shot-bundle.js build/server/static/js/homepage-bundle.js build/server/static/js/metrics-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/leave-bundle.js build/server/static/js/creating-bundle.js
 
 ## Homepage related rules:
@@ -259,18 +156,21 @@ build/server/static/homepage/%: static/homepage/%
 	@mkdir -p $(@D)
 	cp $< $@
 
+.PHONY: homepage
 homepage: $(patsubst static/homepage/%,build/server/static/homepage/%,$(shell find static/homepage -type f ! -name index.html))
 
 ## npm rule
 
+.PHONY: npm
 npm: build/.npm-install.log
 
 build/.backend.txt: set_backend
 
+.PHONY: set_backend
 set_backend:
 	@if [[ -z "$(PAGESHOT_BACKEND)" ]] ; then echo "No backend set" ; fi
 	@if [[ -n "$(PAGESHOT_BACKEND)" ]] ; then echo "Setting backend to ${PAGESHOT_BACKEND}" ; fi
-	./bin/build-scripts/set_backend_config https://pageshot.dev.mozaws.net ${PAGESHOT_BACKEND}
+	./bin/build-scripts/set_backend_config https://localhost:10080 ${PAGESHOT_BACKEND}
 
 build/.npm-install.log: package.json
 	# Essentially .npm-install.log is just a timestamp showing the last time we ran
@@ -282,22 +182,27 @@ build/.npm-install.log: package.json
 # This causes intermediate files to be kept (e.g., files in static/ which are copied to the addon and server but aren't used/required directly):
 .SECONDARY:
 
+.PHONY: all
 all: addon server
 
+.PHONY: clean
 clean:
-	rm -rf build/
+	rm -rf build/ webextension/build/
 
+.PHONY: help
 help:
 	@echo "Makes the addon and server"
 	@echo "Commands:"
 	@echo "  make addon"
-	@echo "    make the addon (everything necessary for the xpi)"
-	@echo "  make xpi"
-	@echo "    make build/mozilla-pageshot.xpi"
+	@echo "    make/update the addon directly in webextension/ (built files in webextension/build/)"
 	@echo "  make server"
 	@echo "    make the server in build/server/"
 	@echo "  make all"
 	@echo "    equivalent to make server addon"
+	@echo "  make clean"
+	@echo "    rm -rf build/ webextension/build"
+	@echo "  make zip"
+	@echo "    make a zip of the webextension in build/pageshot.zip"
 	@echo "See also:"
 	@echo "  bin/run-addon"
 	@echo "  bin/run-server"

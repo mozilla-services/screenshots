@@ -1,15 +1,11 @@
 #!/bin/bash
 
 set -e
-cd "$(dirname $BASH_SOURCE)/.."
+cd "$(dirname ${BASH_SOURCE[0]})/.."
 base="$(pwd)"
 PATH="node_modules/.bin:$PATH"
-no_auto=
-upload=
+webext="$base/node_modules/.bin/web-ext"
 nodemon_pid=
-server=http://localhost:10080
-scratch=
-jpm="$base/node_modules/.bin/jpm"
 
 binary=
 firefoxes="
@@ -17,6 +13,7 @@ firefoxes="
 /Applications/FirefoxDeveloperEdition.app
 /Applications/FirefoxAurora.app
 "
+setup_profile=
 
 for firefox in $firefoxes ; do
   if [[ -e "$firefox" ]] ; then
@@ -25,17 +22,7 @@ for firefox in $firefoxes ; do
   fi
 done
 
-_tempfile=""
-writefile () {
-  local _tempfile="$base/.jpm-json-$$.json"
-  echo "$1" > $_tempfile
-  echo "$_tempfile"
-}
-
 _cleanup () {
-  if [[ -n "$_tempfile" ]] ; then
-    rm -f "$_tempfile"
-  fi
   if [[ -n "$nodemon_pid" ]] ; then
     # Seems to usually be dead by this point?  Good I guess?
     kill $nodemon_pid >& /dev/null || true
@@ -51,10 +38,12 @@ help () {
   echo "      Do not watch for changes in the addon"
   echo "    -b or --binary BINARY"
   echo "      Use BINARY as the Firefox to run (default $binary)"
-  echo "    --scratch"
-  echo "      Use a scratch profile"
-  echo "    -s or --server URL"
-  echo "      Use the given server (default localhost:10080)"
+  echo "    --setup-profile"
+  echo "      Setup ./Profile/ and open it (can be used to make sticky changes to the test profile)"
+  #echo "    --scratch"
+  #echo "      Use a scratch profile"
+  #echo "    -s or --server URL"
+  #echo "      Use the given server (default localhost:10080)"
 }
 
 
@@ -64,29 +53,24 @@ while [[ -n "$1" ]] ; do
       help
       exit
       ;;
-    --no-auto)
-      no_auto=1
-      shift
-      ;;
     -b|--binary)
       binary="$2"
       shift
-      shift
-      ;;
-    --upload)
-      # Note: --upload is a hidden option used when nodemon triggers a restart
-      upload=1
       shift
       ;;
     --scratch)
       scratch=1
       shift
       ;;
-    --server|-s)
-      server="$2"
-      shift
+    --setup-profile)
+      setup_profile=1
       shift
       ;;
+    #--server|-s)
+    #  server="$2"
+    #  shift
+    #  shift
+    #  ;;
     *)
       help
       exit 2
@@ -94,54 +78,51 @@ while [[ -n "$1" ]] ; do
   esac
 done
 
-if [[ -n "$upload" ]] ; then
-  which growlnotify > /dev/null && growlnotify -m "Page Shot Add-on build started." || echo "Page Shot Add-on build started."
-  if [ -d build ] ; then
-    # This is to remove empty files that might have resulted from a syntax error:
-    find build/ -size 0 -exec rm {} \;
+if [[ ! -d ./Profile ]] ; then
+  echo "NOTE: you must setup a Firefox profile in ./Profile/"
+  echo "This will be done automatically for you after you hit ENTER"
+  echo "https://localhost:10080/ will be opened"
+  echo "  You must add a certificate exception"
+  echo -n "Press ENTER to continue (^C to abort) ... "
+  read
+  setup_profile=1
+fi
+
+if [[ -n "$setup_profile" ]] ; then
+  profile_dir="$(pwd)/Profile"
+  if [[ -d "$profile_dir" ]] ; then
+    echo "Using existing profile in $profile_dir running:"
+    echo " " open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir"
+    open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir"
+  else
+    echo "Creating profile in $profile_dir running:"
+    echo " " open "$binary" -n --args -new-instance -no-remote -CreateProfile "PageShotTestProfile $profile_dir"
+    open "$binary" -n --args -new-instance -no-remote -CreateProfile "PageShotTestProfile $profile_dir"
+    echo "Opening profile running:"
+    echo " " open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir" -url https://locahost:10080
+    open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir" -url https://locahost:10080
   fi
-  make addon xpi
-  echo "Uploading to the browser"
-  echo "  (if this fails, install: https://addons.mozilla.org/en-US/firefox/addon/autoinstaller/)"
-  # Doesn't return any content, leads to an unnecessary error:
-  wget --post-file=build/mozilla-pageshot.xpi http://localhost:8888 || echo "no content"
-  which growlnotify > /dev/null && growlnotify -m "Page Shot Add-on build finished." || echo "Page Shot Add-on build finished."
   exit
 fi
 
-prefs="{\"xpinstall.signatures.required\": false, \"extensions.sdk.console.logLevel\": \"all\""
-if [[ -n "$server" ]] ; then
-  prefs="${prefs}, \"extensions.jid1-NeEaf3sAHdKHPA@jetpack.backend\": \"$server\""
-fi
-prefs="${prefs}}"
-file="$(writefile "$prefs")"
-_tempfile=$file
-make addon
-
-if [[ -z "$no_auto" ]] ; then
-  nodemon \
-    -w addon/ -w static/ -w shared/ \
-    -w Makefile \
-    --on-change-only \
-    -e .js,.scss,.css,.png,.svg,.ttf,.html \
-    --exec bash $0 -- --upload &
-  nodemon_pid=$!
-
-fi
-
-cd build/addon
 profile_option=
 if [[ -z "$scratch" ]] ; then
-  mkdir -p ../../Profile
-  profile_option="--profile ../../Profile"
+  mkdir -p ./Profile
+  profile_option="--firefox-profile ./Profile/"
 fi
 
-$jpm run --binary $binary $profile_option --no-copy --prefs $file \
-  2>&1 \
-  | grep --line-buffered \
-    -v -e 'WARNING: content window passed to PrivateBrowsingUtils.isWindowPrivate' \
-    -v -e '^JavaScript Warning' \
-    -v -e 'Using ... to indicate source[a-zA-Z]*URL' \
-    -v -e 'JavaScript 1.7.s let blocks' \
-    -v -e 'mutating the ..Prototype.. of an object' \
-    -v -e '^AlarmService'
+make addon
+nodemon \
+  -w shared/shot.js \
+  -w Makefile \
+  -w static/css/inline-selection.scss \
+  -w static/css/partials/ \
+  --on-change-only \
+  --exec make addon &
+nodemon_pid=$!
+
+echo "Running Firefox.  You might want to go to:"
+echo "  about:debugging"
+echo "and Debug Page Shot"
+
+$webext run --firefox "$binary" $profile_option --source-dir ./webextension/

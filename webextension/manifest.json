@@ -1,0 +1,63 @@
+{
+  "manifest_version": 2,
+  "name": "Page Shot",
+  "version": "6.0.0",
+  "description": "Page Shot takes clips and screenshots from pages, and can save a permanent copy of a page",
+  "author": "Ian Bicking, Donovan Preston, and Bram Pitoyo",
+  "homepage_url": "https://github.com/mozilla-services/pageshot",
+  "offline_enabled": false,
+  "applications": {
+    "gecko": {
+      "id": "pageshot@mozilla.org"
+    }
+  },
+  "icons": {
+    "16": "icons/pageshot-icon-16.png",
+    "32": "icons/pageshot-icon-32.png",
+    "48": "icons/pageshot-icon-48.png",
+    "64": "icons/pageshot-mac-64px.png",
+    "128": "icons/pageshot-icon-128.png",
+    "256": "icons/pageshot-icon-256.png"
+  },
+  "browser_action": {
+    "default_icon": {
+      "19": "icons/pageshot-icon-19.png",
+      "38": "icons/pageshot-icon-38.png"
+    },
+    "default_title": "Take a shot"
+  },
+  "background": {
+    "scripts": [
+      "makeUuid.js",
+      "build/shot.js",
+      "background/clipboard.js",
+      "background/loadSelector.js",
+      "background/communication.js",
+      "background/auth.js",
+      "background/analytics.js",
+      "background/deviceInfo.js",
+      "background/takeshot.js",
+      "background/main.js"
+    ],
+    "persistent": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://localhost:10080/*"],
+      "js": ["site-helper.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    "icons/cancel.svg",
+    "icons/download.svg"
+  ],
+  "permissions": [
+    "activeTab",
+    "storage",
+    "notifications",
+    "clipboardWrite",
+    "<all_urls>",
+    "https://localhost:10080/"
+  ]
+}
