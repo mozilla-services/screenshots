@@ -5,8 +5,9 @@ This is all the code for the selector content worker.  This worker has these res
 - Handle clicks in the interface (e.g., My Shots)
 - Manage the selection and resizing process
 - Manage click-to-select
-- Ask the background worker to take screenshots
-- Ask the background worker to upload the shot
+- Take a screenshot (when canvas.drawWindow is supported)
+  - Or when canvas.drawWindow is not present, rely on the background page to take a screenshot
+- Ask the background worker to finish the shot
 
 The files are loaded by a list in `background/main.js`
 
@@ -15,5 +16,5 @@ The files are loaded by a list in `background/main.js`
 - `snapping.js` calculates snapping points in the document
 - `ui.js` handles all the visual components, including iframe setup, and has callbacks when the user interacts with those components.
 - `util.js` has random stuff.
-- `shooter-interactive-worker.js` handles the actual selection and transition between states.  It also handles the actual dragging and selection.
+- `uicontrol.js` handles the actual selection and transition between states.  It also handles the actual dragging and selection.
 - `shooter.js` coordinates all the other parts.
