@@ -1,6 +1,3 @@
-addon/data/raven.js
-addon/data/vendor
-addon/lib/notificationbox.js
 static/homepage/js
 static/vendor
 /scratch

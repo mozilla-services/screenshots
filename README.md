@@ -7,7 +7,7 @@ This is a prototype for a product to create better ways of sharing and saving co
 
 The project will be launched through [Test Pilot](https://testpilot.firefox.com/) at [pageshot.net](https://pageshot.net).
 
-It is made up of both an add-on (using the [Add-on SDK](https://developer.mozilla.org/en-US/Add-ons/SDK)) and a website using Node.js.  The add-on is in `addon/`, and the website is in `server/`
+It is made up of both an add-on (using the [WebExtensions](https://developer.mozilla.org/Add-ons/WebExtensions)) and a website using Node.js.  The add-on is in `webextension/`, and the website is in `server/`
 
 Ian has been blogging about the [design, definition, and development process](http://www.ianbicking.org/tag/product-journal.html).
 
