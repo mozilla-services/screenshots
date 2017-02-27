@@ -60,7 +60,6 @@
   },
   "homepage": "https://pageshot.dev.mozaws.net",
   "license": "MPL-2.0",
-  "main": "addon/lib/main",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mozilla-services/pageshot.git"
