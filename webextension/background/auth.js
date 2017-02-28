@@ -132,5 +132,9 @@ window.auth = (function () {
     });
   };
 
+  exports.getSentryPublicDSN = function () {
+    return sentryPublicDSN;
+  };
+
   return exports;
 })();

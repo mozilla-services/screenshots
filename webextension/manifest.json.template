@@ -29,11 +29,14 @@
   "background": {
     "scripts": [
       "makeUuid.js",
+      "catcher.js",
+      "background/communication.js",
+      "background/auth.js",
+      "background/senderror.js",
+      "build/raven.js",
       "build/shot.js",
       "background/clipboard.js",
       "background/loadSelector.js",
-      "background/communication.js",
-      "background/auth.js",
       "background/analytics.js",
       "background/deviceInfo.js",
       "background/takeshot.js",

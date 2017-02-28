@@ -3,20 +3,34 @@
 window.catcher = (function () {
   let exports = {};
 
-  /** Call with an error object (with .name, .message, .help, etc) */
-  exports.unhandled = function unhandled(error, info) {
-    callBackground("reportError", makeError(error, info));
+  let handler;
+
+  let queue = [];
+
+  exports.unhandled = function (error, info) {
+    let e = makeError(error, info);
+    if (! handler) {
+      queue.push(e);
+    } else {
+      handler(e);
+    }
   };
 
   /** Turn an exception into an error object */
   function makeError(exc, info) {
-    var result = {
-      name: exc.name || "ERROR",
-      message: exc+"",
-      stack: exc.stack
-    };
+    let result;
+    if (exc.fromMakeError) {
+      result = exc;
+    } else {
+      result = {
+        fromMakeError: true,
+        name: exc.name || "ERROR",
+        message: exc+"",
+        stack: exc.stack
+      };
+    }
     if (info) {
-      for (var attr in info) {
+      for (let attr in info) {
         result[attr] = info[attr];
       }
     }
@@ -43,6 +57,16 @@ window.catcher = (function () {
       console.error(e.stack);
       exports.unhandled(makeError(e));
     });
+  };
+
+  exports.registerHandler = function (h) {
+    handler = h;
+    if (queue.length) {
+      for (let error of queue) {
+        handler(error);
+      }
+      queue = [];
+    }
   };
 
   return exports;

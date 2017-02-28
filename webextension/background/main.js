@@ -1,5 +1,5 @@
 /* globals chrome, console, XMLHttpRequest, Image, document, setTimeout, navigator */
-/* globals loadSelector, analytics, communication */
+/* globals loadSelector, analytics, communication, catcher */
 window.main = (function () {
   let exports = {};
 
@@ -35,13 +35,9 @@ window.main = (function () {
   });
 
   communication.register("sendEvent", (...args) => {
-    sendEvent(...args);
+    catcher.watchPromise(sendEvent(...args));
     // We don't wait for it to complete:
     return null;
-  });
-
-  communication.register("reportError", (error) => {
-    console.error("FIXME: should send to Sentry:", error);
   });
 
   return exports;

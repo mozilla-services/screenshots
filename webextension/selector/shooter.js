@@ -1,4 +1,4 @@
-/* globals callBackground, documentMetadata, uicontrol, util, ui */
+/* globals callBackground, documentMetadata, uicontrol, util, ui, catcher */
 /* globals XMLHttpRequest, window, location, alert, console, domainFromUrl, randomString */
 /* globals document, setTimeout, location */
 
@@ -10,6 +10,10 @@ window.shooter = (function () { // eslint-disable-line no-unused-vars
   let backend;
   let shot;
   let supportsDrawWindow;
+
+  catcher.registerHandler((errorObj) => {
+    callBackground("reportError", errorObj);
+  });
 
   exports.deactivate = function () {
     uicontrol.deactivate();
