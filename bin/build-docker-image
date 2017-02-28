@@ -24,19 +24,9 @@ rm Dockerrun.aws.json Dockerrun.aws.json.tmp
 
 make server
 
-xpi="build/mozilla-pageshot.xpi"
+xpi="build/pageshot.xpi"
 if [[ ! -e "$xpi" ]] ; then
-  make xpi
-fi
-# The signing process adds this META-INF directory to the xpi file
-# (which is a zip file).  If it's not present then this is an unsigned
-# addon, which we don't accept!
-if unzip -v $xpi | grep -q META-INF ; then
-  echo "Signed xpi found"
-else
-  rm -f ./mozilla_pageshot-*-fx.xpi
-  ./node_modules/.bin/jpm sign --api-key=${AMO_USER} --api-secret=${AMO_SECRET} --xpi=${xpi}
-  mv ./mozilla_pageshot-*-fx.xpi ${xpi}
+  make signed_xpi
 fi
 
 echo "Creating docker image $1/pageshot:$version"
