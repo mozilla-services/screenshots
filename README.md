@@ -37,7 +37,7 @@ We apologize but we have no story for development on Windows (though the add-on 
 
 ### Participation
 
-There is an IRC channel `#pageshot` on irc.mozilla.org (you can use [this link](https://kiwiirc.com/client/irc.mozilla.org/pageshot) for chat access via the web if you do not otherwise use IRC).
+There is an IRC channel `#pageshot` on irc.mozilla.org (you can use [this link](https://kiwiirc.com/client/irc.mozilla.org/pageshot) for chat access via the web if you do not otherwise use IRC).  There are [IRC logs available](http://logs.glob.uno/?c=pageshot).
 
 Planning and ideation is happening in the [issue tracker](https://github.com/mozilla-services/pageshot/issues).  We have several [milestones](https://github.com/mozilla-services/pageshot/milestones):
 
