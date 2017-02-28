@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Page Shot",
-  "version": "6.0.0",
+  "version": "__VERSION__",
   "description": "Page Shot takes clips and screenshots from pages, and can save a permanent copy of a page",
   "author": "Ian Bicking, Donovan Preston, and Bram Pitoyo",
   "homepage_url": "https://github.com/mozilla-services/pageshot",

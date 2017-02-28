@@ -34,8 +34,10 @@ case "$channel" in
       echo "Please set \$DOCKER_USERNAME to your dockerhub username"
       exit 3
     fi
-    rm build/mozilla-pageshot.xpi
-    PAGESHOT_BACKEND=https://pageshot.dev.mozaws.net make xpi
+    rm -f build/pageshot.zip
+    # Forces update of the add-on version:
+    touch build/.backend.txt
+    PAGESHOT_BACKEND=https://pageshot.dev.mozaws.net make zip
     ./bin/build-docker-image $DOCKER_USERNAME
     echo
     echo "Next step: upload build/eb-app-latest.zip to http://amzn.to/1NuC3N9"
@@ -46,8 +48,10 @@ case "$channel" in
       echo "  git checkout stable ; git pull"
       exit 4
     fi
-    rm build/mozilla-pageshot.xpi
-    PAGESHOT_BACKEND=https://pageshot.stage.mozaws.net make xpi
+    rm -f build/pageshot.zip
+    # Forces update of the add-on version:
+    touch build/.backend.txt
+    PAGESHOT_BACKEND=https://pageshot.stage.mozaws.net make zip
     ./bin/build-docker-image mozilla
     echo
     echo "Stage deployment automatically triggered, see #pageshot IRC for status"
@@ -58,12 +62,10 @@ case "$channel" in
       echo "  git checkout stable ; git pull"
       exit 5
     fi
-    rm build/mozilla-pageshot.xpi
-    PAGESHOT_BACKEND=https://pageshot.net make xpi
-    ./node_modules/.bin/jpm sign --api-key=${AMO_USER} --api-secret=${AMO_SECRET} --xpi=build/mozilla-pageshot.xpi
-    mv ./mozilla_pageshot-*-fx.xpi build/mozilla-pageshot.xpi
+    # FIXME: we shouldn't add a timestamp onto the end of the version here
+    PAGESHOT_MINOR_VERSION=0 PAGESHOT_BACKEND=https://pageshot.net make signed_xpi
     echo
-    echo "Prod xpi created, email build/mozilla-pageshot.xpi to wclouser@mozilla.com"
+    echo "Prod xpi created, email build/pageshot.xpi to wclouser@mozilla.com"
     ;;
   *)
     echo "Unknown channel: $channel"

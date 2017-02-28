@@ -17,3 +17,5 @@ cookie-jar.txt
 /bin/.commit-new-version-copy
 /webextension/build
 /web-ext-artifacts
+/webextension/.web-extension-id
+/webextension/manifest.json
