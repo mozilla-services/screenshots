@@ -1,4 +1,4 @@
-/* globals document, alert, chrome, setInterval, clearTimeout, watchFunction */
+/* globals document, alert, chrome, setInterval, clearTimeout */
 
 function sendEvent(type, detail) {
   let event = document.createEvent("CustomEvent");
