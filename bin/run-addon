@@ -14,6 +14,7 @@ firefoxes="
 /Applications/FirefoxAurora.app
 "
 setup_profile=
+server=
 
 for firefox in $firefoxes ; do
   if [[ -e "$firefox" ]] ; then
@@ -42,8 +43,8 @@ help () {
   echo "      Setup ./Profile/ and open it (can be used to make sticky changes to the test profile)"
   #echo "    --scratch"
   #echo "      Use a scratch profile"
-  #echo "    -s or --server URL"
-  #echo "      Use the given server (default localhost:10080)"
+  echo "    -s or --server URL"
+  echo "      Use the given server (default localhost:10080)"
 }
 
 
@@ -66,11 +67,11 @@ while [[ -n "$1" ]] ; do
       setup_profile=1
       shift
       ;;
-    #--server|-s)
-    #  server="$2"
-    #  shift
-    #  shift
-    #  ;;
+    --server|-s)
+      server="$2"
+      shift
+      shift
+      ;;
     *)
       help
       exit 2
@@ -103,6 +104,10 @@ if [[ -n "$setup_profile" ]] ; then
     open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir" -url https://locahost:10080
   fi
   exit
+fi
+
+if [[ -n "$server" ]] ; then
+  export PAGESHOT_BACKEND="$server"
 fi
 
 profile_option=

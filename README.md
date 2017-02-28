@@ -27,6 +27,8 @@ There are two scripts to run the server locally and develop the add-on:
 - `./bin/run-addon` will build a few parts of the addon (into `webextension/build/`) and start Firefox with the add-on installed.  The add-on will be refreshed automatically as you change files.  We recommend you open `about:debugging` to help debug the extension.
 - `./bin/run-addon --setup-profile` will setup a Firefox profile for your development; this way you can make persistent changes to the profile that you will use just for Page Shot development.
 
+**If you want to develop the add-on but not the server** you can run `./bin/run-addon -s https://pageshot.dev.mozaws.net`
+
 By default, Page Shot will connect to a Postgres database on localhost:5432. To change which database and user it connects to set/export the environmental variables: `RDS_USERNAME`, `RDS_PASSWORD`, and `RDS_HOSTNAME`
 
 The server will automatically setup the tables in your database, and keep them up to date over time (using [pg-patcher](https://github.com/chilts/pg-patcher/)).

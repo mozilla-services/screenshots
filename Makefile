@@ -83,7 +83,7 @@ build/%.html: %.html
 	cp $< $@
 
 .PHONY: addon
-addon: npm set_backend webextension/build/shot.js webextension/build/inlineSelectionCss.js
+addon: npm set_backend webextension/manifest.json webextension/build/shot.js webextension/build/inlineSelectionCss.js
 
 .PHONY: zip
 zip:
@@ -92,6 +92,15 @@ zip:
 	mv web-ext-artifacts/page_shot*.zip build/pageshot.zip
 	# We'll try to remove this directory, but it's no big deal if we can't:
 	@rmdir web-ext-artifacts || true
+
+.PHONY: signed_xpi
+signed_xpi: addon
+	rm -f web-ext-artifacts/*.xpi
+	./node_modules/.bin/web-ext sign --api-key=${AMO_USER} --api-secret=${AMO_SECRET} --source-dir webextension/
+	mv web-ext-artifacts/*.xpi build/pageshot.xpi
+
+webextension/manifest.json: webextension/manifest.json.template build/.backend.txt package.json
+	./bin/build-scripts/update_manifest $< $@
 
 webextension/build/shot.js: shared/shot.js
 	@mkdir -p $(@D)
