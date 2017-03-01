@@ -72,14 +72,13 @@ window.errorpopup = (function () {
       return;
     }
     if (! Raven.isSetup()) {
-      Raven.config(e.sentryPublicDSN).install();
+      Raven.config(dsn).install();
     }
-    delete e.sentryPublicDSN;
     let exception = new Error(e.message);
     exception.stack = e.multilineStack || e.stack || undefined;
     let rest = {};
     for (let attr in e) {
-      if (["name", "message", "stack", "multilineStack", "popupMessage", "version", "sentryPublicDSN", "help"].indexOf(attr) == -1) {
+      if (! ["name", "message", "stack", "multilineStack", "popupMessage", "version", "sentryPublicDSN", "help"].includes(attr)) {
         rest[attr] = e[attr];
       }
     }
