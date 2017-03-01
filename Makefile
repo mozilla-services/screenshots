@@ -202,7 +202,7 @@ all: addon server
 
 .PHONY: clean
 clean:
-	rm -rf build/ webextension/build/
+	rm -rf build/ webextension/build/ webextension/manifest.json
 
 .PHONY: help
 help:
