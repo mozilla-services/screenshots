@@ -88,7 +88,7 @@ build/%.html: %.html
 addon: npm set_backend webextension/manifest.json webextension/build/shot.js webextension/build/inlineSelectionCss.js webextension/build/raven.js
 
 .PHONY: zip
-zip:
+zip: addon
 	# FIXME: should remove web-ext-artifacts/*.zip first
 	./node_modules/.bin/web-ext build --source-dir webextension/
 	mv web-ext-artifacts/page_shot*.zip build/pageshot.zip
