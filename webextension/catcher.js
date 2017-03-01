@@ -1,5 +1,3 @@
-/* globals callBackground */
-
 window.catcher = (function () {
   let exports = {};
 
@@ -8,6 +6,7 @@ window.catcher = (function () {
   let queue = [];
 
   exports.unhandled = function (error, info) {
+    console.error("Unhandled error:", error, info);
     let e = makeError(error, info);
     if (! handler) {
       queue.push(e);
@@ -28,6 +27,9 @@ window.catcher = (function () {
         message: exc+"",
         stack: exc.stack
       };
+      for (let attr in exc) {
+        result[attr] = exc[attr];
+      }
     }
     if (info) {
       for (let attr in info) {

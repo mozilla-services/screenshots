@@ -1,10 +1,10 @@
-/* globals chrome */
+/* globals chrome, catcher */
 window.communication = (function () {
   let exports = {};
 
   let registeredFunctions = {};
 
-  chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
+  chrome.runtime.onMessage.addListener(catcher.watchFunction((req, sender, sendResponse) => {
     if (! (req.funcName in registeredFunctions)) {
       console.error(`Received unknown internal message type ${req.funcName}`);
       sendResponse({type: "error", name: "Unknown message type"});
@@ -34,7 +34,7 @@ window.communication = (function () {
     } else {
       sendResponse({type: "success", value: result});
     }
-  });
+  }));
 
   exports.register = function (name, func) {
     registeredFunctions[name] = func;

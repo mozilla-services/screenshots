@@ -1,4 +1,4 @@
-/* globals communication, shot, main, chrome, makeUuid, clipboard, auth */
+/* globals communication, shot, main, chrome, makeUuid, clipboard, auth, catcher */
 
 window.takeshot = (function () {
   let exports = {};
@@ -27,7 +27,7 @@ window.takeshot = (function () {
         });
       });
     }
-    capturePromise.then(() => {
+    catcher.watchPromise(capturePromise.then(() => {
       return uploadShot(shot);
     }).then(() => {
       let id = makeUuid();
@@ -39,10 +39,7 @@ window.takeshot = (function () {
         message: "The link to your shot has been copied to the clipboard"
       });
       chrome.tabs.create({url: shot.viewUrl});
-    }).catch((e) => {
-      // FIXME: report
-      console.error("Error uploading shot:", e);
-    });
+    }));
   });
 
   function screenshotPage(pos, scroll) {
@@ -61,7 +58,7 @@ window.takeshot = (function () {
         function (dataUrl) {
           let image = new Image();
           image.src = dataUrl;
-          image.onload = () => {
+          image.onload = catcher.watchFunction(() => {
             let xScale = image.width / scroll.innerWidth;
             let yScale = image.height / scroll.innerHeight;
             let canvas = document.createElement("canvas");
@@ -77,7 +74,7 @@ window.takeshot = (function () {
             );
             let result = canvas.toDataURL();
             resolve(result);
-          };
+          });
         }
       );
     });

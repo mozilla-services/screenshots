@@ -1,5 +1,5 @@
 /* globals chrome */
-/* globals main, makeUuid, deviceInfo, analytics */
+/* globals main, makeUuid, deviceInfo, analytics, catcher */
 
 window.auth = (function () {
   let exports = {};
@@ -9,7 +9,13 @@ window.auth = (function () {
   let authHeader = null;
   let sentryPublicDSN = null;
 
-  chrome.storage.local.get(["registrationInfo"], (result) => {
+  chrome.storage.local.get(["registrationInfo"], catcher.watchFunction((result) => {
+    if (chrome.runtime.lastError) {
+      catcher.unhandled(chrome.runtime.lastError);
+      if (! result) {
+        return;
+      }
+    }
     if (result.registrationInfo) {
       registrationInfo = result.registrationInfo;
     } else {
@@ -21,7 +27,7 @@ window.auth = (function () {
       });
       console.info("Generating new device authentication ID", registrationInfo);
     }
-  });
+  }));
 
   exports.getDeviceId = function () {
     return registrationInfo && registrationInfo.deviceId;
@@ -45,7 +51,7 @@ window.auth = (function () {
       let req = new XMLHttpRequest();
       req.open("POST", registerUrl);
       req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-      req.onload = () => {
+      req.onload = catcher.watchFunction(() => {
         if (req.status == 200) {
           console.info("Registered login");
           initialized = true;
@@ -56,7 +62,7 @@ window.auth = (function () {
           console.warn("Error in response:", req.responseText);
           reject(new Error("Bad response: " + req.status));
         }
-      };
+      });
       req.send(uriEncode(registrationInfo));
     });
   }
@@ -66,7 +72,7 @@ window.auth = (function () {
       let loginUrl = main.getBackend() + "/api/login";
       let req = new XMLHttpRequest();
       req.open("POST", loginUrl);
-      req.onload = () => {
+      req.onload = catcher.watchFunction(() => {
         if (req.status == 404) {
           // No such user
           resolve(register());
@@ -84,7 +90,7 @@ window.auth = (function () {
           saveAuthInfo(JSON.parse(req.responseText));
           resolve();
         }
-      };
+      });
       req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
       req.send(uriEncode({
         deviceId: registrationInfo.deviceId,

@@ -28,7 +28,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
     return cached;
   }
 
-  function isHeader(el) {
+  exports.isHeader = function (el) {
     while (el) {
       if (el.className &&
           (el.className.indexOf("pageshot-saver") !== -1 ||
@@ -42,20 +42,13 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
     return false;
   }
 
-  exports.isHeader = isHeader;
-
-  function htmlQuote(s) {
-    s = s + "";
-    return s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
-  }
-
   let substitutedCss = inlineSelectionCss.replace(/MOZ_EXTENSION([^\"]+)/g, (match, filename) => {
     return chrome.extension.getURL(filename);
   });
 
   function makeEl(tagName, className) {
     if (! iframe.document) {
-      console.trace();
+      throw new Error("Attempted makeEl before iframe was initialized");
     }
     let el = iframe.document.createElement(tagName);
     if (className) {
@@ -88,7 +81,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
           this.element.style.margin = "0";
           this.element.scrolling = "no";
           this.updateElementSize();
-          this.element.onload = () => {
+          this.element.onload = watchFunction(() => {
             let parsedDom = (new DOMParser()).parseFromString(`
               <html>
                <head>
@@ -109,7 +102,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
               this.document.body.className = this.addClassName;
             }
             resolve();
-          };
+          });
           document.body.appendChild(this.element);
         } else {
           resolve();
@@ -294,7 +287,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       if (callbacks !== undefined && callbacks.cancel) {
         // We use onclick here because we don't want addEventListener
         // to add multiple event handlers to the same button
-        this.cancel.onclick = callbacks.cancel;
+        this.cancel.onclick = watchFunction(callbacks.cancel);
         this.cancel.style.display = "";
       } else {
         this.cancel.style.display = "none";
@@ -303,23 +296,23 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
         // We use onclick here because we don't want addEventListener
         // to add multiple event handlers to the same button
         this.save.removeAttribute("disabled");
-        this.save.onclick = (e) => {
+        this.save.onclick = watchFunction((e) => {
           this.save.setAttribute("disabled", "true");
           callbacks.save(e);
-        };
+        });
         this.save.style.display = "";
       } else {
         this.save.style.display = "none";
       }
       if (callbacks !== undefined && callbacks.download) {
         this.download.removeAttribute("disabled");
-        this.download.onclick = (e) => {
+        this.download.onclick = watchFunction((e) => {
           this.download.setAttribute("disabled", true);
           callbacks.download(e);
           e.preventDefault();
           e.stopPropagation();
           return false;
-        };
+        });
         this.download.style.display = "";
       } else {
         this.download.style.display = "none";
@@ -381,7 +374,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       cancel.title = "Cancel";
       buttons.appendChild(cancel);
       let download = makeEl("button", "pageshot-highlight-button-download");
-      download.title="Download";
+      download.title = "Download";
       buttons.appendChild(download);
       let save = makeEl("button", "pageshot-highlight-button-save");
       save.textContent = "Save";
@@ -418,6 +411,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
                 return name;
               }
             }
+            catcher.unhandled(new Error("Surprising mover element"), {element: target.outerHTML});
             console.warn("Got pageshot-mover-target that wasn't a specific direction");
           }
         }
