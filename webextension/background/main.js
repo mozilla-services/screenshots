@@ -28,7 +28,7 @@ window.main = (function () {
   });
 
   chrome.browserAction.onClicked.addListener(function(tab) {
-    sendEvent("addon", "click-shot-button");
+    sendEvent("start-shot", "toolbar-pageshot-button");
     loadSelector().catch((e) => {
       console.error("Error loading scripts:", e);
     });
