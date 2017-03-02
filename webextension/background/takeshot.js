@@ -1,8 +1,9 @@
-/* globals communication, shot, main, chrome, makeUuid, clipboard, auth, catcher */
+/* globals communication, shot, main, chrome, makeUuid, clipboard, auth, catcher, analytics */
 
 window.takeshot = (function () {
   let exports = {};
   const Shot = shot.AbstractShot;
+  const { sendEvent } = analytics;
 
   communication.register("takeShot", (options) => {
     let { captureType, captureText, scroll, selectedPos, shotId, shot } = options;
@@ -83,18 +84,26 @@ window.takeshot = (function () {
   function uploadShot(shot) {
     return auth.authHeaders().then((headers) => {
       headers["content-type"] = "application/json";
+      let body = JSON.stringify(shot.asJson());
       let req = new Request(shot.jsonUrl, {
         method: "PUT",
         mode: "cors",
-        headers: headers,
-        body: JSON.stringify(shot.asJson())
+        headers,
+        body
       });
+      sendEvent("upload", "started", {eventValue: Math.floor(body.length / 1000)});
       return fetch(req);
     }).then((resp) => {
       if (! resp.ok) {
-        console.error("Failed response:", resp);
+        sendEvent("upload-failed", `status-${resp.status}`);
         throw new Error("Error: response failed");
+      } else {
+        sendEvent("upload", "success");
       }
+    }, (error) => {
+      // FIXME: I'm not sure what exceptions we can expect
+      sendEvent("upload-failed", "connection");
+      throw error;
     });
   }
 

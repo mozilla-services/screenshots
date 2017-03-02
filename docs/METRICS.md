@@ -110,11 +110,11 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 
 #### Add-on metrics
 
-1. [x] Start the browser `addon/open-browser/launch`
-2. [x] Daily ping (attempt roughly every 24 hours) `addon/daily-ping`
+1. ~~Start the browser `addon/open-browser/launch`~~ (removed for launch)
+2. ~~Daily ping (attempt roughly every 24 hours) `addon/daily-ping`~~ (removed for launch)
 1. [x] Click shot button `addon/start-shot/toolbar-pageshot-button`
-2. [x] Use keyboard shortcut to start shot `addon/start-shot/keyboard-shortcut` (accel-alt-control-c)
-3. [x] Use the right-click context menu to start a shot `addon/start-shot/context-menu`
+2. [ ] Use keyboard shortcut to start shot `addon/start-shot/keyboard-shortcut` (accel-alt-control-c) (FIXME: not yet implemented)
+3. [ ] Use the right-click context menu to start a shot `addon/start-shot/context-menu` (FIXME: not yet implemented)
 2. [x] Make a selection `addon/make-selection/selection-drag` with `cd2: {px width}, cd1: {px height}`
 3. [x] Make a selection by clicking on an element `addon/make-selection/selection-click` with `cd2: {px width}, cd1: {px height}`
 4. [x] Click but fail to find an element that can be selected `addon/no-selection/no-element-found` (error case, not sure when it happens)
@@ -126,30 +126,29 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 8. [x] Finish moving the selection `addon/move-selection/mouseup`
 9. [x] Finish moving, without a change `addon/keep-move-selection/mouseup`
 3. [x] Click Save `addon/save-shot/overlay-save-button`
-4. [x] Click Cancel `addon/cancel-shot/topbar-cancel`
+4. [x] Click Cancel `addon/cancel-shot/overlay-cancel-button`
 5. [x] Click Download `addon/download-shot/overlay-download-button`
 5. [x] Cancel because URL changed `addon/cancel-shot/url-changed` (when something that uses window.history "navigates" spontaneously away)
-6. [x] Cancel because the tab is closed `addon/cancel-shot/tab-close`
-7. [x] Cancel because the tab is navigated (such as entering something in the URL bar) `addon/cancel-shot/tab-load`
-8. [x] Cancel because the tab is reloaded `addon/cancel-shot/tab-reload`
+6. [ ] Cancel because the tab is closed `addon/cancel-shot/tab-close` (FIXME: need to track)
+7. [ ] Cancel because the tab is navigated (such as entering something in the URL bar) `addon/cancel-shot/tab-load` (FIXME: need to track)
+8. [ ] Cancel because the tab is reloaded `addon/cancel-shot/tab-reload` (FIXME: need to track)
 5. [x] Click My Shots `addon/goto-myshots/selection-button`
 6. [x] Click on "Save visible" `addon/capture-visible/selection-button`
 7. [x] Click on "Save Full Page" `addon/capture-full-page/selection-button`
-6. [x] Click My Shots button from error panel `addon/goto-myshots/error-panel`
-6. [x] Click shot button while Page Shot is active `addon/aborted-start-shot/toolbar-pageshot-button`
+6. ~~Click My Shots button from error panel `addon/goto-myshots/error-panel`~~
+6. [ ] Click shot button while Page Shot is active `addon/aborted-start-shot/toolbar-pageshot-button` (FIXME: todo)
 7. [x] Hit Escape (Cancel) `addon/cancel-shot/keyboard-escape`
 8. [x] Hit Enter (Save) `addon/save-shot/keyboard-enter`
-12. [ ] Encounter an error saving the shot `addon/error/save-shot`
-13. [ ] Encounter any other kind of error `addon/error/misc`
-14. [x] Install the add-on `addon/install` (fired internally, regardless of how it is installed)
-15. [x] Uninstall the add-on `addon/uninstall` (fired internally, regardless of how it is uninstalled)
-16. [x] Hit shot button on a page that can't be shot (XUL page) `addon/abort-start-shot/xul-page`
-17. [x] Hit shot button on a page that uses `<frameset>` and can't be shot, `addon/abort-start-shot/frame-page`
-17. [x] Hit shot button on any about: page `addon/start-shot-about-page` (note: shooting still continues)
-18. [x] Hit shot button on any other non-http page `addon/start-shot-non-http/actual-scheme` (note: shooting still continues).  Full event is something like `addon/start-shot-non-http/file` (or `about`, `view-source`, `data`)
-19. [ ] Save a "private page" shot `addon/start-shot-private-page`
-20. [x] Test pilot was present at install time `addon/test-pilot-installed`
-21. [x] Test pilot was not present at install time `addon/test-pilot-not-installed`
+12. ~~Encounter an error saving the shot `addon/error/save-shot`~~
+13. ~~Encounter any other kind of error `addon/error/misc`~~
+14. ~~Install the add-on `addon/install` (fired internally, regardless of how it is installed)~~
+15. ~~Uninstall the add-on `addon/uninstall` (fired internally, regardless of how it is uninstalled)~~
+16. ~~Hit shot button on a page that can't be shot (XUL page) `addon/abort-start-shot/xul-page`~~
+17. [ ] Hit shot button on a page that uses `<frameset>` and can't be shot, `addon/abort-start-shot/frame-page` (FIXME: todo)
+17. [ ] Hit shot button on any about: page `addon/start-shot-about-page` (FIXME: todo)
+18. [ ] Hit shot button on any other non-http page `addon/start-shot-non-http/actual-scheme` (note: shooting still continues).  Full event is something like `addon/start-shot-non-http/file` (or `about`, `view-source`, `data`) (FIXME: todo)
+20. ~~Test pilot was present at install time `addon/test-pilot-installed`~~
+21. ~~Test pilot was not present at install time `addon/test-pilot-not-installed`~~
 
 ##### Internal add-on events
 
@@ -157,7 +156,7 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 2. [x] Fail to upload due to connection aborted `addon/upload-failed/connection` (up to version 1.0.1 was `addon/upload/failed-connection`)
 3. [x] Fail to upload due to bad status from server `addon/upload-failed/status-{code}` (up to version 1.0.1 was `addon/upload/failed-status` with eventValue: status code)
 4. [x] Finish upload successfully `addon/upload/success`
-5. [x] After failure, re-attempt the upload `addon/upload-retry/times-{N}` (up to version 1.0.1 was `addon/upload/upload-retry` with eventValue: times (1-2))
+5. [ ] After failure, re-attempt the upload `addon/upload-retry/times-{N}` (up to version 1.0.1 was `addon/upload/upload-retry` with eventValue: times (1-2)) (FIXME: we have no retry)
 
 #### Owner web visit
 
