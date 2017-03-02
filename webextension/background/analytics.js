@@ -10,7 +10,7 @@ window.analytics = (function () {
       let req = new XMLHttpRequest();
       req.open("POST", url);
       req.setRequestHeader("content-type", "application/json");
-      req.onload = () => {
+      req.onload = catcher.watchFunction(() => {
         if (req.status >= 300) {
           let exc = new Error("Bad response from POST /event");
           exc.status = req.status;
@@ -19,8 +19,8 @@ window.analytics = (function () {
         } else {
           resolve();
         }
-      };
-      // FIXME: add cdX and other details from req.js
+      });
+      // FIXME: add cdX and other details from req.js; see #2257
       req.send(JSON.stringify({
         deviceId: auth.getDeviceId(),
         event: eventCategory,

@@ -6,7 +6,7 @@ window.deviceInfo = (function () {
   let platformInfo = {};
   chrome.runtime.getPlatformInfo(function(info) {
     if (chrome.runtime.lastError) {
-      catcher.unhandled(chrome.runtime.lastError, {context: "getPlatformInfo"});
+      catcher.unhandled(new Error(chrome.runtime.lastError.message), {context: "getPlatformInfo"});
     }
     platformInfo = info;
   });

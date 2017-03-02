@@ -11,7 +11,7 @@ window.auth = (function () {
 
   chrome.storage.local.get(["registrationInfo"], catcher.watchFunction((result) => {
     if (chrome.runtime.lastError) {
-      catcher.unhandled(chrome.runtime.lastError);
+      catcher.unhandled(new Error(chrome.runtime.lastError.message));
       if (! result) {
         return;
       }
@@ -23,7 +23,11 @@ window.auth = (function () {
       chrome.storage.local.set({
         registrationInfo: registrationInfo
       }, () => {
-        console.info("Device authentication saved");
+        if (chrome.runtime.lastError) {
+          catcher.unhandled(new Error(chrome.runtime.lastError.message));
+        } else {
+          console.info("Device authentication saved");
+        }
       });
       console.info("Generating new device authentication ID", registrationInfo);
     }
