@@ -100,8 +100,8 @@ if [[ -n "$setup_profile" ]] ; then
     echo " " open "$binary" -n --args -new-instance -no-remote -CreateProfile "PageShotTestProfile $profile_dir"
     open "$binary" -n --args -new-instance -no-remote -CreateProfile "PageShotTestProfile $profile_dir"
     echo "Opening profile running:"
-    echo " " open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir" -url https://locahost:10080
-    open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir" -url https://locahost:10080
+    echo " " open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir" -url https://localhost:10080
+    open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir" -url https://localhost:10080
   fi
   exit
 fi
