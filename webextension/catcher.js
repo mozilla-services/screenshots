@@ -63,12 +63,10 @@ window.catcher = (function () {
 
   exports.registerHandler = function (h) {
     handler = h;
-    if (queue.length) {
-      for (let error of queue) {
-        handler(error);
-      }
-      queue = [];
+    for (let error of queue) {
+      handler(error);
     }
+    queue = [];
   };
 
   return exports;
