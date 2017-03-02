@@ -2,6 +2,8 @@
 
 window.loadSelector = (function () {
   const scripts = [
+    "background/loadSelector.js",
+    "selector/lifecycle.js",
     "selector/callBackground.js",
     "catcher.js",
     "makeUuid.js",
@@ -17,7 +19,7 @@ window.loadSelector = (function () {
     "selector/uicontrol.js"
   ];
 
-  return function loadSelector() {
+  function loadSelector() {
     let lastPromise = Promise.resolve(null);
     scripts.forEach((script) => {
       lastPromise = lastPromise.then(() => {
@@ -35,6 +37,12 @@ window.loadSelector = (function () {
     return lastPromise.then(() => {
       console.log("finished loading scripts:", scripts.join(" "), "->", chrome.runtime.lastError || "no error");
     });
-  };
+  }
+
+  loadSelector.moduleNames = scripts.map((filename) => {
+    return filename.replace(/^.*\//, "").replace(/\.js$/, "");
+  });
+
+  return loadSelector;
 
 })();

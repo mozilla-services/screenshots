@@ -528,6 +528,8 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
     }), 10000);
   };
 
+  exports.unload = exports.remove;
+
   return exports;
 })();
 null;
