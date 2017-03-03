@@ -29,10 +29,28 @@ window.main = (function () {
 
   chrome.browserAction.onClicked.addListener(function(tab) {
     sendEvent("start-shot", "toolbar-pageshot-button");
-    loadSelector().catch((e) => {
-      console.error("Error loading scripts:", e);
-    });
+    catcher.watchPromise(loadSelector());
   });
+
+  chrome.contextMenus.create({
+    id: "create-pageshot",
+    title: "Create Page Shot",
+    contexts: ["page"]
+  }, () => {
+    if (chrome.runtime.lastError) {
+      catcher.unhandled(new Error(chrome.runtime.lastError.message));
+    }
+  });
+
+  chrome.contextMenus.onClicked.addListener(catcher.watchFunction((info, tab) => {
+    if (! tab) {
+      // Not in a page/tab context, ignore
+      return;
+    }
+    sendEvent("start-shot", "context-menu");
+    catcher.watchPromise(loadSelector());
+  }));
+
 
   communication.register("sendEvent", (...args) => {
     catcher.watchPromise(sendEvent(...args));

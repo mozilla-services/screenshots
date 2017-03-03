@@ -60,6 +60,7 @@
     "storage",
     "notifications",
     "clipboardWrite",
+    "contextMenus",
     "<all_urls>",
     "http://localhost:10080/"
   ]
