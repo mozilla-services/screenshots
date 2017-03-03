@@ -28,6 +28,16 @@ window.takeshot = (function () {
         });
       });
     }
+    let shotAbTests = {};
+    let abTests = auth.getAbTests();
+    for (let testName in abTests) {
+      if (abTests[testName].shotField) {
+        shotAbTests[testName] = abTests[testName].value;
+      }
+    }
+    if (Object.keys(shotAbTests).length) {
+      shot.abTests = shotAbTests;
+    }
     catcher.watchPromise(capturePromise.then(() => {
       return uploadShot(shot);
     }).then(() => {

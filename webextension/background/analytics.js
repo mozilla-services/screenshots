@@ -1,4 +1,4 @@
-/* globals main, auth, catcher */
+/* globals main, auth, catcher, deviceInfo */
 
 window.analytics = (function () {
   let exports = {};
@@ -8,6 +8,8 @@ window.analytics = (function () {
       options = label;
       label = undefined;
     }
+    options = options || {};
+    let di = deviceInfo();
     return new Promise((resolve, reject) => {
       let eventCategory = "addon";
       let url = main.getBackend() + "/event";
@@ -24,7 +26,13 @@ window.analytics = (function () {
           resolve();
         }
       });
-      // FIXME: add cdX and other details from req.js; see #2257
+      options.applicationName = di.appName;
+      options.applicationVersion = di.version;
+      let abTests = auth.getAbTests();
+      for (let testName in abTests) {
+        options[abTests[testName].gaField] = abTests[testName].value;
+      }
+      console.info(`sendEvent ${eventCategory}/${action}/${label || 'none'} ${JSON.stringify(options)}`);
       req.send(JSON.stringify({
         deviceId: auth.getDeviceId(),
         event: eventCategory,

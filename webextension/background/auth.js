@@ -8,13 +8,17 @@ window.auth = (function () {
   let initialized = false;
   let authHeader = null;
   let sentryPublicDSN = null;
+  let abTests = {};
 
-  chrome.storage.local.get(["registrationInfo"], catcher.watchFunction((result) => {
+  chrome.storage.local.get(["registrationInfo", "abTests"], catcher.watchFunction((result) => {
     if (chrome.runtime.lastError) {
       catcher.unhandled(new Error(chrome.runtime.lastError.message));
       if (! result) {
         return;
       }
+    }
+    if (result.abTests) {
+      abTests = result.abTests;
     }
     if (result.registrationInfo) {
       registrationInfo = result.registrationInfo;
@@ -113,6 +117,14 @@ window.auth = (function () {
     if (responseJson.authHeader) {
       authHeader = responseJson.authHeader;
     }
+    if (responseJson.abTests) {
+      abTests = responseJson.abTests;
+      chrome.storage.local.set({abTests}, () => {
+        if (chrome.runtime.lastError) {
+          catcher.unhandled(new Error(chrome.runtime.lastError.message));
+        }
+      });
+    }
   }
 
   function uriEncode(obj) {
@@ -144,6 +156,10 @@ window.auth = (function () {
 
   exports.getSentryPublicDSN = function () {
     return sentryPublicDSN;
+  };
+
+  exports.getAbTests = function () {
+    return abTests;
   };
 
   return exports;
