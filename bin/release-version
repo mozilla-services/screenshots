@@ -2,6 +2,10 @@
 
 set -e
 
+dev_sentry="https://d58fc53f92cd47bba7266ad6444514d8@sentry.prod.mozaws.net/74"
+stage_sentry="https://3d2efd7bad9e4e359014cb4e69b8eaec@sentry.prod.mozaws.net/140"
+prod_sentry="https://97d8afa496f94764ae255e739b147f4b@sentry.prod.mozaws.net/139"
+
 cd "$(dirname ${BASH_SOURCE[0]})/.."
 
 help () {
@@ -37,7 +41,7 @@ case "$channel" in
     rm -f build/pageshot.zip
     # Forces update of the add-on version:
     touch build/.backend.txt
-    PAGESHOT_BACKEND=https://pageshot.dev.mozaws.net make zip
+    PAGESHOT_BACKEND=https://pageshot.dev.mozaws.net PAGESHOT_SENTRY="$dev_sentry" make zip
     ./bin/build-docker-image $DOCKER_USERNAME
     echo
     echo "Next step: upload build/eb-app-latest.zip to http://amzn.to/1NuC3N9"
@@ -51,7 +55,7 @@ case "$channel" in
     rm -f build/pageshot.zip
     # Forces update of the add-on version:
     touch build/.backend.txt
-    PAGESHOT_BACKEND=https://pageshot.stage.mozaws.net make zip
+    PAGESHOT_BACKEND=https://pageshot.stage.mozaws.net PAGESHOT_SENTRY="$stage_sentry" make zip
     ./bin/build-docker-image mozilla
     echo
     echo "Stage deployment automatically triggered, see #pageshot IRC for status"
@@ -63,7 +67,7 @@ case "$channel" in
       exit 5
     fi
     # FIXME: we shouldn't add a timestamp onto the end of the version here
-    PAGESHOT_MINOR_VERSION=0 PAGESHOT_BACKEND=https://pageshot.net make signed_xpi
+    PAGESHOT_MINOR_VERSION=0 PAGESHOT_BACKEND=https://pageshot.net PAGESHOT_SENTRY="$prod_sentry" make signed_xpi
     echo
     echo "Prod xpi created, email build/pageshot.xpi to wclouser@mozilla.com"
     ;;
