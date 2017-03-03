@@ -1,4 +1,4 @@
-/* globals console, catcher, annotatePosition, util, ui, snapping */
+/* globals console, catcher, util, ui, snapping */
 /* globals window, document, location, shooter */
 
 window.uicontrol = (function () {
@@ -55,8 +55,6 @@ window.uicontrol = (function () {
   // This is how close (in pixels) you can get to the edge of the window and then
   // it will scroll:
   const SCROLL_BY_EDGE = 20;
-
-  let annotateForPage = false;
 
   const { sendEvent } = shooter;
 
@@ -540,7 +538,6 @@ window.uicontrol = (function () {
         sendEvent("make-selection", "selection-click", eventOptionsForBox(selectedPos));
         setState("selected");
         sendEvent("autoselect");
-        reportSelection();
       } else {
         sendEvent("no-selection", "no-element-found");
         setState("crosshairs");
@@ -607,7 +604,6 @@ window.uicontrol = (function () {
       selectedPos.x2 = util.truncateX(event.pageX);
       selectedPos.y2 = util.truncateY(event.pageY);
       ui.Box.display(selectedPos, standardDisplayCallbacks);
-      reportSelection();
       sendEvent(
         "make-selection", "selection-drag",
         eventOptionsForBox({
@@ -696,7 +692,6 @@ window.uicontrol = (function () {
         }
       }
       setState("selected");
-      reportSelection();
     },
 
     _resize: function (event) {
@@ -768,23 +763,6 @@ window.uicontrol = (function () {
   /***********************************************
    * Selection communication
    */
-
-  function reportSelection(captureType) {
-    var pos = selectedPos.rect();
-    let selectedText = util.captureEnclosedText(pos);
-    if (! selectedPos) {
-      // Apparently no selection
-      throw new Error("reportSelection() without any selection");
-    }
-    if (pos.top == pos.bottom || pos.right == pos.left) {
-      console.info("Suppressing null selection");
-      return;
-    }
-    if (annotateForPage) {
-      annotatePosition(pos);
-    }
-    sendEvent("made-selection");
-  }
 
   exports.activate = function () {
     ui.Box.remove();

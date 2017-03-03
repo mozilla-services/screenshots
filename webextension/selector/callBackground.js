@@ -8,6 +8,9 @@ window.callBackground = function (funcName, ...args) {
       throw new Error(result.name);
     } else {
       console.error("Unexpected background result:", result);
+      let exc = new Error("Bad response from background page");
+      exc.resultType = result.type || "undefined";
+      throw exc;
     }
   });
 };

@@ -1,4 +1,4 @@
-/* globals callBackground, documentMetadata, uicontrol, util, ui */
+/* globals callBackground, documentMetadata, uicontrol, util, ui, catcher */
 /* globals XMLHttpRequest, window, location, alert, console, domainFromUrl, randomString */
 /* globals document, setTimeout, location */
 
@@ -10,6 +10,10 @@ window.shooter = (function () { // eslint-disable-line no-unused-vars
   let backend;
   let shot;
   let supportsDrawWindow;
+
+  catcher.registerHandler((errorObj) => {
+    callBackground("reportError", errorObj);
+  });
 
   exports.deactivate = function () {
     uicontrol.deactivate();
@@ -62,7 +66,7 @@ window.shooter = (function () { // eslint-disable-line no-unused-vars
         }
       });
     }
-    callBackground("takeShot", {
+    catcher.watchPromise(callBackground("takeShot", {
       captureType,
       captureText,
       scroll: {
@@ -74,40 +78,27 @@ window.shooter = (function () { // eslint-disable-line no-unused-vars
       selectedPos,
       shotId: shot.id,
       shot: shot.asJson()
-    });
+    }));
     exports.deactivate();
   };
 
   /** Happens when the URL changes via window.history */
-  exports.popstate = function () {
+  exports.popstate = catcher.watchFunction(function () {
     exports.deactivate();
-  };
-
-  function makeShot() {
-    shot = new AbstractShot(
-      backend,
-      randomString(RANDOM_STRING_LENGTH) + "/" + domainFromUrl(location),
-      {
-        url: location.href
-      }
-    );
-    shot.update(documentMetadata());
-    return Promise.resolve();
-  }
+  });
 
   exports.sendEvent = function (...args) {
     callBackground("sendEvent", ...args);
   };
 
-  exports.promiseTimeout = function (time) {
-    return new Promise((resolve) => {
-      setTimeout(function () {
-        resolve();
-      }, time);
-    });
-  };
-
-  makeShot();
+  shot = new AbstractShot(
+    backend,
+    randomString(RANDOM_STRING_LENGTH) + "/" + domainFromUrl(location),
+    {
+      url: location.href
+    }
+  );
+  shot.update(documentMetadata());
 
   return exports;
 })();

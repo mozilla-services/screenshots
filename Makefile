@@ -31,6 +31,8 @@ partials_source := $(wildcard static/css/partials/*.scss)
 imgs_source := $(wildcard static/img/*)
 imgs_server_dest := $(imgs_source:%=build/server/%)
 
+raven_source := $(shell node -e 'console.log(require.resolve("raven-js/dist/raven.js"))')
+
 ## General transforms:
 # These cover standard ways of building files given a source
 
@@ -83,10 +85,10 @@ build/%.html: %.html
 	cp $< $@
 
 .PHONY: addon
-addon: npm set_backend webextension/manifest.json webextension/build/shot.js webextension/build/inlineSelectionCss.js
+addon: npm set_backend webextension/manifest.json webextension/build/shot.js webextension/build/inlineSelectionCss.js webextension/build/raven.js
 
 .PHONY: zip
-zip:
+zip: addon
 	# FIXME: should remove web-ext-artifacts/*.zip first
 	./node_modules/.bin/web-ext build --source-dir webextension/
 	mv web-ext-artifacts/page_shot*.zip build/pageshot.zip
@@ -109,6 +111,10 @@ webextension/build/shot.js: shared/shot.js
 webextension/build/inlineSelectionCss.js: build/server/static/css/inline-selection.css
 	@mkdir -p $(@D)
 	./bin/build-scripts/css_to_js inlineSelectionCss $< > $@
+
+webextension/build/raven.js: $(raven_source)
+	@mkdir -p $(@D)
+	cp $< $@
 
 ## Server related rules:
 
@@ -196,7 +202,7 @@ all: addon server
 
 .PHONY: clean
 clean:
-	rm -rf build/ webextension/build/
+	rm -rf build/ webextension/build/ webextension/manifest.json
 
 .PHONY: help
 help:

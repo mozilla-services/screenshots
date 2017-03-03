@@ -1,4 +1,4 @@
-/* globals chrome */
+/* globals chrome, catcher */
 
 window.loadSelector = (function () {
   const scripts = [
@@ -26,6 +26,7 @@ window.loadSelector = (function () {
         }, () => {
           if (chrome.runtime.lastError
               && chrome.runtime.lastError.message != "Script returned non-structured-clonable data") {
+              catcher.unhandled(chrome.runtime.lastError, {script: script});
               console.error("Error loading script", script, ":", chrome.runtime.lastError);
           }
         });
