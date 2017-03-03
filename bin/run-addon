@@ -82,8 +82,7 @@ done
 if [[ ! -d ./Profile ]] ; then
   echo "NOTE: you must setup a Firefox profile in ./Profile/"
   echo "This will be done automatically for you after you hit ENTER"
-  echo "https://localhost:10080/ will be opened"
-  echo "  You must add a certificate exception"
+  echo "http://localhost:10080/ will be opened"
   echo -n "Press ENTER to continue (^C to abort) ... "
   read
   setup_profile=1
@@ -100,8 +99,8 @@ if [[ -n "$setup_profile" ]] ; then
     echo " " open "$binary" -n --args -new-instance -no-remote -CreateProfile "PageShotTestProfile $profile_dir"
     open "$binary" -n --args -new-instance -no-remote -CreateProfile "PageShotTestProfile $profile_dir"
     echo "Opening profile running:"
-    echo " " open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir" -url https://localhost:10080
-    open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir" -url https://localhost:10080
+    echo " " open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir" -url http://localhost:10080
+    open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir" -url http://localhost:10080
   fi
   exit
 fi

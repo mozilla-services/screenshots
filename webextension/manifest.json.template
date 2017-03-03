@@ -46,7 +46,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://localhost:10080/*"],
+      "matches": ["http://localhost:10080/*"],
       "js": ["site-helper.js"],
       "run_at": "document_start"
     }
@@ -61,6 +61,6 @@
     "notifications",
     "clipboardWrite",
     "<all_urls>",
-    "https://localhost:10080/"
+    "http://localhost:10080/"
   ]
 }

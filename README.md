@@ -11,6 +11,8 @@ It is made up of both an add-on (using [WebExtensions](https://developer.mozilla
 
 Ian has been blogging about the [design, definition, and development process](http://www.ianbicking.org/tag/product-journal.html).
 
+You can find more information about Page Shot at the Mozilla Wiki page: https://wiki.mozilla.org/Firefox/Page_Shot
+
 ### Installation and Setup
 
 Install [Postgres](http://www.postgresql.org/).
@@ -19,11 +21,9 @@ Install [Node.js](https://nodejs.org/). Version 6.x is required.
 
 Clone the [repository](https://github.com/mozilla-services/pageshot/).
 
-To run locally you have to **setup HTTPS certificates**.  [These instructions](https://certsimple.com/blog/localhost-ssl-fix) show how to create the certificates on a Mac.  You must put files in `~/.localhost-ssl/key.pem` and `~/.localhost-ssl/cert.pem`.  Note: once you've done this you must *also* open https://localhost:10080 in your development Firefox profile and create an exception for the certificate.  If you have pointers on doing this on Linux or Windows, please [share](https://github.com/mozilla-services/pageshot/issues/new)!
-
 There are two scripts to run the server locally and develop the add-on:
 
-- `./bin/run-server` will run the server on `https://localhost:10080` and automatically restart if there are changes.
+- `./bin/run-server` will run the server on `http://localhost:10080` and automatically restart if there are changes.
 - `./bin/run-addon` will build a few parts of the addon (into `webextension/build/`) and start Firefox with the add-on installed.  The add-on will be refreshed automatically as you change files.  We recommend you open `about:debugging` to help debug the extension.
 - `./bin/run-addon --setup-profile` will setup a Firefox profile for your development; this way you can make persistent changes to the profile that you will use just for Page Shot development.
 

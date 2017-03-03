@@ -44,6 +44,6 @@ while True:
 backend = open("build/.backend.txt").read()
 
 template = template.replace("__VERSION__", version)
-template = template.replace("https://localhost:10080", backend)
+template = template.replace("http://localhost:10080", backend)
 
 open(sys.argv[2], "wb").write(template)
