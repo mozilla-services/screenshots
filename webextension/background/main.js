@@ -40,5 +40,9 @@ window.main = (function () {
     return null;
   });
 
+  communication.register("openMyShots", () => {
+    chrome.tabs.create({url: backend + "/shots"});
+  });
+
   return exports;
 })();
