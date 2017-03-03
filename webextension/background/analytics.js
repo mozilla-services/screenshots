@@ -3,7 +3,11 @@
 window.analytics = (function () {
   let exports = {};
 
-  exports.sendEvent = function (action, label) {
+  exports.sendEvent = function (action, label, options) {
+    if (typeof label == "object" && (! options)) {
+      options = label;
+      label = undefined;
+    }
     return new Promise((resolve, reject) => {
       let eventCategory = "addon";
       let url = main.getBackend() + "/event";
@@ -25,7 +29,8 @@ window.analytics = (function () {
         deviceId: auth.getDeviceId(),
         event: eventCategory,
         action,
-        label
+        label,
+        options
       }));
     });
   };
