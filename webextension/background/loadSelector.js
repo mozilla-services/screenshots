@@ -12,7 +12,6 @@ window.loadSelector = (function () {
     "selector/documentMetadata.js",
     "selector/util.js",
     "selector/ui.js",
-    "selector/snapping.js",
     "selector/shooter.js",
     "selector/uicontrol.js"
   ];
