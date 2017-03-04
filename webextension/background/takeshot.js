@@ -28,11 +28,10 @@ window.takeshot = (function () {
         });
       });
     }
-    catcher.watchPromise(capturePromise.then(() => {
+    return catcher.watchPromise(capturePromise.then(() => {
       return uploadShot(shot);
     }).then(() => {
       let id = makeUuid();
-      clipboard.copy(shot.viewUrl);
       chrome.notifications.create(id, {
         type: "basic",
         iconUrl: "img/clipboard-32.png",
@@ -40,6 +39,7 @@ window.takeshot = (function () {
         message: "The link to your shot has been copied to the clipboard"
       });
       chrome.tabs.create({url: shot.viewUrl});
+      return shot.viewUrl;
     }));
   });
 

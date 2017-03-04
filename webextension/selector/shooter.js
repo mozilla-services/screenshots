@@ -78,6 +78,8 @@ window.shooter = (function () { // eslint-disable-line no-unused-vars
       selectedPos,
       shotId: shot.id,
       shot: shot.asJson()
+    }).then((url) => {
+      window.clipboard.copy(url);
     }));
     exports.deactivate();
   };
