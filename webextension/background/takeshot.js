@@ -3,7 +3,9 @@
 window.takeshot = (function () {
   let exports = {};
   const Shot = shot.AbstractShot;
-  const { sendEvent } = analytics;
+  const { sendEvent } = analytics; 
+  const pasteSymbol = 
+  (window.navigator.platform.match(/Mac/i)) ? "\u2318" : "Ctrl";
 
   communication.register("takeShot", (options) => {
     let { captureType, captureText, scroll, selectedPos, shotId, shot } = options;
@@ -34,9 +36,10 @@ window.takeshot = (function () {
       let id = makeUuid();
       chrome.notifications.create(id, {
         type: "basic",
-        iconUrl: "img/clipboard-32.png",
+        iconUrl: "../icons/clipboard-32.png",
         title: "Link Copied",
-        message: "The link to your shot has been copied to the clipboard"
+        message: "The link to your shot has been copied to the clipboard. Press "
+        + pasteSymbol + "-V to paste."
       });
       chrome.tabs.create({url: shot.viewUrl});
       return shot.viewUrl;
