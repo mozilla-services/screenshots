@@ -1,5 +1,5 @@
 /* globals chrome */
-/* globals main, makeUuid, deviceInfo, analytics, catcher */
+/* globals main, makeUuid, deviceInfo, analytics, catcher, defaultSentryDsn */
 
 window.auth = (function () {
   let exports = {};
@@ -143,7 +143,7 @@ window.auth = (function () {
   };
 
   exports.getSentryPublicDSN = function () {
-    return sentryPublicDSN;
+    return sentryPublicDSN || defaultSentryDsn;
   };
 
   return exports;

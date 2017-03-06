@@ -35,6 +35,7 @@
       "background/senderror.js",
       "build/raven.js",
       "build/shot.js",
+      "build/defaultSentryDsn.js",
       "background/loadSelector.js",
       "background/analytics.js",
       "background/deviceInfo.js",

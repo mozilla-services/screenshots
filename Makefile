@@ -2,6 +2,8 @@ PATH := ./node_modules/.bin:./bin/:$(PATH)
 SHELL := /bin/bash
 BABEL := babel --retain-lines
 .DEFAULT_GOAL := help
+# Sets $(PAGESHOT_BACKEND) to http://localhost:10080 only if it isn't set
+PAGESHOT_BACKEND ?= http://localhost:10080
 
 # This forces bin/build-scripts/write_ga_id to be run before anything else, which
 # writes the configured Google Analytics ID to build/ga-id.txt
@@ -85,7 +87,7 @@ build/%.html: %.html
 	cp $< $@
 
 .PHONY: addon
-addon: npm set_backend webextension/manifest.json webextension/build/shot.js webextension/build/inlineSelectionCss.js webextension/build/raven.js
+addon: npm set_backend set_sentry webextension/manifest.json webextension/build/shot.js webextension/build/inlineSelectionCss.js webextension/build/raven.js webextension/build/defaultSentryDsn.js
 
 .PHONY: zip
 zip: addon
@@ -183,9 +185,17 @@ build/.backend.txt: set_backend
 
 .PHONY: set_backend
 set_backend:
-	@if [[ -z "$(PAGESHOT_BACKEND)" ]] ; then echo "No backend set" ; fi
-	@if [[ -n "$(PAGESHOT_BACKEND)" ]] ; then echo "Setting backend to ${PAGESHOT_BACKEND}" ; fi
-	./bin/build-scripts/set_backend_config http://localhost:10080 ${PAGESHOT_BACKEND}
+	@echo "Setting backend to ${PAGESHOT_BACKEND}"
+	./bin/build-scripts/set_file build/.backend.txt $(PAGESHOT_BACKEND)
+
+webextension/build/defaultSentryDsn.js: set_sentry
+
+.PHONY: set_sentry
+set_sentry:
+	@if [[ -z "$(PAGESHOT_SENTRY)" ]] ; then echo "No default Sentry" ; fi
+	@if [[ -n "$(PAGESHOT_SENTRY)" ]] ; then echo "Setting default Sentry ${PAGESHOT_SENTRY}" ; fi
+	./bin/build-scripts/set_file webextension/build/defaultSentryDsn.js "window.defaultSentryDsn = '${PAGESHOT_SENTRY}';null;"
+
 
 build/.npm-install.log: package.json
 	# Essentially .npm-install.log is just a timestamp showing the last time we ran
