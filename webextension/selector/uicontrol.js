@@ -1,4 +1,4 @@
-/* globals console, catcher, util, ui, snapping */
+/* globals console, catcher, util, ui */
 /* globals window, document, location, shooter, callBackground */
 
 window.uicontrol = (function () {
@@ -849,8 +849,6 @@ window.uicontrol = (function () {
     }
     registeredDocumentHandlers = [];
   }
-
-  snapping.init();
 
   /**********************************************************
    * window.history catching

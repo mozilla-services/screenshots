@@ -13,7 +13,6 @@ The files are loaded by a list in `background/main.js`
 
 - `callBackground.js` exports a function `callBackground(funcName, ...args)` to communicate with the background worker.
 - `documentMetadata.js` gets information out of the document (URL, og: metadata, etc)
-- `snapping.js` calculates snapping points in the document
 - `ui.js` handles all the visual components, including iframe setup, and has callbacks when the user interacts with those components.
 - `util.js` has random stuff.
 - `uicontrol.js` handles the actual selection and transition between states.  It also handles the actual dragging and selection.
