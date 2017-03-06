@@ -4,6 +4,7 @@ window.loadSelector = (function () {
   const scripts = [
     "selector/callBackground.js",
     "catcher.js",
+    "clipboard.js",
     "makeUuid.js",
     "build/shot.js",
     "randomString.js",
