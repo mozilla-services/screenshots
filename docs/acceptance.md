@@ -1,5 +1,12 @@
 # Page Shot UX and Measurements Acceptance Criteria
-This document is intended to be used as comprehensive list of all changes to UI and metrics required for launch. Issues will be filed from this list and triaged into sprints on a an as-needed basis. Items in this list may not correlate with issues on a 1:1 basis.
+This document is intended to be used as comprehensive list of all changes to UI
+and metrics required for launch. Issues will be filed from this list and
+triaged into sprints on a an as-needed basis. Items in this list may not
+correlate with issues on a 1:1 basis.
+
+## General
+- [ ] Build DMCA capabilities [#2288](https://github.com/mozilla-services/pageshot/issues/2288)
+- [ ] Support Localization [#2205](https://github.com/mozilla-services/pageshot/issues/2205)
 
 ## Add-on Activation
 - [ ] It should be able to be progressively revealed/enabled by the shield recipe server
@@ -9,9 +16,9 @@ This document is intended to be used as comprehensive list of all changes to UI 
 - [ ] It should have a new logo and word mark that match Photon
 - [ ] It should have an overall color system that matches Photon
 - [ ] It should have buttons, inputs, controls etc. that match Photon
-- [ ] It should use the new Mozilla logo
+- [ ] It should use the new Mozilla logo [#2211](https://github.com/mozilla-services/pageshot/issues/2211)
 - [ ] All images should be SVG or have retina versions
-- [ ] It should undergo an accessibility review prior to launch
+- [ ] It should undergo an accessibility review prior to launch [#2251](https://github.com/mozilla-services/pageshot/issues/2251)
 - [ ] It should have a new name
 - [ ] It should be at {newname}.firefox.com
 
@@ -24,7 +31,7 @@ This document is intended to be used as comprehensive list of all changes to UI 
   - [ ] It should make use of the CSS grid spec [NB. This is an odd requirement, but we are only supporting Firefox 54+ and unspecified future releases of Chrome. Shipping CSS grid at a large scale will give us a good Hacks post, and won’t be particularly costly given what I’ve seen of the spec]
   - [ ] It should deemphasize search UI
   - [ ] It should ask users to rate it occasionally
-  - [ ] It should link to a feedback form/survey 
+  - [ ] It should link to a feedback form/survey
     - [ ] *TBD: CAN WE STICK WITH SURVEY GIZMO* confirm with *ellee mirwin*
   - [ ] *STRETCH* It should include pagination *NEW FEATURE*
   - [ ] *STRETCH* It should be fully responsive down to 320px
@@ -34,7 +41,7 @@ This document is intended to be used as comprehensive list of all changes to UI 
   - [ ] It should be fully responsive
   - [ ] It should include a loading animation until images trigger onload callbacks *NEW FEATURE*
   - [ ] it should include all current controls with the share panel minimized by default
-  
+
 ## Non-Owner Shot Detail Page UI (SERVER)
   - [ ] It should have three layout options that promote Page Shot for non-owner views *NEW FEATURE*
     - [ ] Top banner
@@ -71,7 +78,7 @@ This document is intended to be used as comprehensive list of all changes to UI 
 ## New Measurements & Dashboards
 
 ## Measures
-- [ ] Reporting of all measures should be derived from the state of the Telemetry flag in the browser.
+- [ ] Reporting of all measures should be derived from the state of the Telemetry flag in the browser. [#2250](https://github.com/mozilla-services/pageshot/issues/2250)
 - [ ] It should have a documented plan for testing and verifying all new measures.
 - [ ] All measures currently in the product should be audited to ensure they’re working as intended.
 - [ ] Onboarding UI should be instrumented to measure interaction rate w/buttons/controls etc.
@@ -79,7 +86,7 @@ This document is intended to be used as comprehensive list of all changes to UI 
 - [ ] Pageshot.net replacement page should be instrumented to measure interaction rate w/buttons/controls etc.
 - [ ] *STRETCH* In order to Validate Event Telemetry, we should — given time — add  Event Telemetry Pings to the following tuples:
   - [ ] badged onboarding (see above) click
-  - [ ] Click Save `addon/save-shot/overlay-save-button` 
+  - [ ] Click Save `addon/save-shot/overlay-save-button`
   - [ ] Click Cancel `addon/cancel-shot/overlay-cancel-button`
   - [ ] Click Download `addon/download-shot/overlay-download-button`
   - [ ] Click My Shots `addon/goto-myshots/selection-button`
@@ -95,6 +102,6 @@ This document is intended to be used as comprehensive list of all changes to UI 
     - [ ] *STRETCH* Confirm exact measures/definitions with *gfritzsche*
   - [ ] It should have a dashboard displaying browser cohort retention (based on standard engagement metric common to all Telemetry)
 - [ ] It should have dashboards reflecting Page Shot Product KPIS (GA + Server Metrics)
-  - [ ] It should have a cohort retention table based on the act of taking a shot (download or upload) 
+  - [ ] It should have a cohort retention table based on the act of taking a shot (download or upload)
   - [ ] It should have a dashboard displaying non-owner views and embedded views
   - [ ] It should have a dashboard displaying download and uploads
