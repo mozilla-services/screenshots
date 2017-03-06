@@ -38,11 +38,10 @@ window.takeshot = (function () {
     if (Object.keys(shotAbTests).length) {
       shot.abTests = shotAbTests;
     }
-    catcher.watchPromise(capturePromise.then(() => {
+    return catcher.watchPromise(capturePromise.then(() => {
       return uploadShot(shot);
     }).then(() => {
       let id = makeUuid();
-      clipboard.copy(shot.viewUrl);
       chrome.notifications.create(id, {
         type: "basic",
         iconUrl: "img/clipboard-32.png",
@@ -50,7 +49,12 @@ window.takeshot = (function () {
         message: "The link to your shot has been copied to the clipboard"
       });
       chrome.tabs.create({url: shot.viewUrl});
+      return shot.viewUrl;
     }));
+  });
+
+  communication.register("screenshotPage", (selectedPos, scroll) => {
+    return screenshotPage(selectedPos, scroll);
   });
 
   function screenshotPage(pos, scroll) {
@@ -67,6 +71,9 @@ window.takeshot = (function () {
         null,
         {format: "png"},
         function (dataUrl) {
+          if (chrome.runtime.lastError) {
+            catcher.unhandled(new Error(chrome.runtime.lastError.message));
+          }
           let image = new Image();
           image.src = dataUrl;
           image.onload = catcher.watchFunction(() => {

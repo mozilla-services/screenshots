@@ -1,5 +1,5 @@
-/* globals console, catcher, util, ui, snapping */
-/* globals window, document, location, shooter */
+/* globals console, catcher, util, ui */
+/* globals window, document, location, shooter, callBackground */
 
 window.uicontrol = (function () {
   let exports = {};
@@ -130,8 +130,8 @@ window.uicontrol = (function () {
   let standardOverlayCallbacks = {
     onOpenMyShots: () => {
       sendEvent("goto-myshots", "selection-button");
+      callBackground("openMyShots");
       exports.deactivate();
-      self.port.emit("openMyShots");
     },
     onClickVisible: () => {
       sendEvent("capture-visible", "selection-button");
@@ -849,8 +849,6 @@ window.uicontrol = (function () {
     }
     registeredDocumentHandlers = [];
   }
-
-  snapping.init();
 
   /**********************************************************
    * window.history catching
