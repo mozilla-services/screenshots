@@ -79,7 +79,8 @@ window.shooter = (function () { // eslint-disable-line no-unused-vars
       shotId: shot.id,
       shot: shot.asJson()
     }).then((url) => {
-      window.clipboard.copy(url);
+      const copied = window.clipboard.copy(url);
+      return callBackground("openShot", { url, copied });
     }));
     exports.deactivate();
   };

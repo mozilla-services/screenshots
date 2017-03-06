@@ -1,8 +1,9 @@
 /* globals chrome, console, XMLHttpRequest, Image, document, setTimeout, navigator */
-/* globals loadSelector, analytics, communication, catcher */
+/* globals loadSelector, analytics, communication, catcher, makeUuid */
 window.main = (function () {
   let exports = {};
 
+  const pasteSymbol = (window.navigator.platform.match(/Mac/i)) ? "\u2318" : "Ctrl";
   const { sendEvent } = analytics;
 
   let manifest = chrome.runtime.getManifest();
@@ -60,6 +61,20 @@ window.main = (function () {
 
   communication.register("openMyShots", () => {
     chrome.tabs.create({url: backend + "/shots"});
+  });
+
+  communication.register("openShot", ({url, copied}) => {
+    if (copied) {
+      const id = makeUuid();
+      chrome.notifications.create(id, {
+        type: "basic",
+        iconUrl: "../icons/clipboard-32.png",
+        title: "Link Copied",
+        message: "The link to your shot has been copied to the clipboard. Press "
+        + pasteSymbol + "-V to paste."
+      });
+    }
+    chrome.tabs.create({url});
   });
 
   return exports;
