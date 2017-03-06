@@ -5,7 +5,7 @@ window.takeshot = (function () {
   const Shot = shot.AbstractShot;
   const { sendEvent } = analytics; 
   const pasteSymbol = 
-  (window.navigator.userAgent.indexOf("Mac")!= -1) ? "\u2318" : "Ctrl";
+  (window.navigator.platform.match(/Mac/i)) ? "\u2318" : "Ctrl";
 
   communication.register("takeShot", (options) => {
     let { captureType, captureText, scroll, selectedPos, shotId, shot } = options;
