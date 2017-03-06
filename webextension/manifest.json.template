@@ -35,7 +35,6 @@
       "background/senderror.js",
       "build/raven.js",
       "build/shot.js",
-      "background/clipboard.js",
       "background/loadSelector.js",
       "background/analytics.js",
       "background/deviceInfo.js",
@@ -60,6 +59,7 @@
     "storage",
     "notifications",
     "clipboardWrite",
+    "contextMenus",
     "<all_urls>",
     "http://localhost:10080/"
   ]
