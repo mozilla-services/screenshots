@@ -43,6 +43,10 @@ window.takeshot = (function () {
     }));
   });
 
+  communication.register("screenshotPage", (selectedPos, scroll) => {
+    return screenshotPage(selectedPos, scroll);
+  });
+
   function screenshotPage(pos, scroll) {
     pos = {
       top: pos.top - scroll.scrollY,
@@ -57,6 +61,9 @@ window.takeshot = (function () {
         null,
         {format: "png"},
         function (dataUrl) {
+          if (chrome.runtime.lastError) {
+            catcher.unhandled(new Error(chrome.runtime.lastError.message));
+          }
           let image = new Image();
           image.src = dataUrl;
           image.onload = catcher.watchFunction(() => {

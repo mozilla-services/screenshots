@@ -84,6 +84,25 @@ window.shooter = (function () { // eslint-disable-line no-unused-vars
     exports.deactivate();
   };
 
+  exports.downloadShot = function (selectedPos) {
+    let dataUrl = screenshotPage(selectedPos);
+    let promise = Promise.resolve(dataUrl);
+    if (! dataUrl) {
+      promise = callBackground(
+        "screenshotPage",
+        selectedPos.asJson(),
+        {
+          scrollX: window.scrollX,
+          scrollY: window.scrollY,
+          innerHeight: window.innerHeight,
+          innerWidth: window.innerWidth
+        });
+    }
+    catcher.watchPromise(promise.then((dataUrl) => {
+      ui.triggerDownload(dataUrl, shot.filename);
+    }));
+  };
+
   /** Happens when the URL changes via window.history */
   exports.popstate = catcher.watchFunction(function () {
     exports.deactivate();
