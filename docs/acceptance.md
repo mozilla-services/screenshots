@@ -4,13 +4,15 @@ and metrics required for launch. Issues will be filed from this list and
 triaged into sprints on a an as-needed basis. Items in this list may not
 correlate with issues on a 1:1 basis.
 
-## General
+# General
 - [ ] Build DMCA capabilities [#2288](https://github.com/mozilla-services/pageshot/issues/2288)
 - [ ] Support Localization [#2205](https://github.com/mozilla-services/pageshot/issues/2205)
 
 ## Add-on Activation
 - [ ] It should be able to be progressively revealed/enabled by the shield recipe server
 - [ ] It should be able to be enabled and disabled by a toggle in about:preferences
+
+# UI/UX
 
 ## General UI Revisions (ADDON + SERVER)
 - [ ] It should have a new logo and word mark that match Photon
@@ -57,7 +59,7 @@ correlate with issues on a 1:1 basis.
 ## Owner Expired Shot page UI
 - [ ] It should match the final spec provided by the UX team
 
-## Non-Owner Specific Shot Detail Page UI
+## Non-Owner Specific Expired Page UI
 - [ ] It should include promotional materials describing the utility of Page Shot and link to the landing page
 
 ## Landing Page UI
@@ -75,7 +77,7 @@ correlate with issues on a 1:1 basis.
 - [ ] It should initially suggest itself by adding a page shot icon to the tool bar and badging it
 - [ ] *STRETCH* If a user has not engaged with the badged toolbar icon in three weeks, we should pop a tab or trigger a doorhanger asking the user if they would like to learn about the new feature
 
-## New Measurements & Dashboards
+# Measurements & Dashboards
 
 ## Measures
 - [ ] Reporting of all measures should be derived from the state of the Telemetry flag in the browser. [#2250](https://github.com/mozilla-services/pageshot/issues/2250)
@@ -98,7 +100,7 @@ correlate with issues on a 1:1 basis.
 - [ ] It should have dashboards reflecting Page Shot in FF KPIs (Telemetry Derived)
   - [ ] It should have a dashboard displaying time spent in browser (c/f topline FF goal)
   - [ ] It should have a dashboard displaying page views in browser (c/f topline FF goal)
-  - [ ]It should have a dashboard displaying browser cohort retention (based on standard engagement metric common to all Telemetry)
+  - [ ] It should have a dashboard displaying browser cohort retention (based on standard engagement metric common to all Telemetry)
     - [ ] *STRETCH* Confirm exact measures/definitions with *gfritzsche*
   - [ ] It should have a dashboard displaying browser cohort retention (based on standard engagement metric common to all Telemetry)
 - [ ] It should have dashboards reflecting Page Shot Product KPIS (GA + Server Metrics)
