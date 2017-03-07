@@ -25,9 +25,9 @@ correlate with issues on a 1:1 basis.
 - [ ] It should be at {newname}.firefox.com
 
 ## Shot iframe (ADDON)
-- [ ] It should match the final spec provided by the UX team
+- [ ] It should match the final spec provided by the UX team (#2306)[https://github.com/mozilla-services/pageshot/issues/2306]
 
-## Shots Index Page UI (SERVER)
+## Shots Index Page UI (SERVER)[#2308](https://github.com/mozilla-services/pageshot/issues/2308)
 - [ ] It should match the final spec provided by UX team
   - [ ] It should include the ability to download, copy link, delete and access to shot page for each shot
   - [ ] It should make use of the CSS grid spec [NB. This is an odd requirement, but we are only supporting Firefox 54+ and unspecified future releases of Chrome. Shipping CSS grid at a large scale will give us a good Hacks post, and won’t be particularly costly given what I’ve seen of the spec]
@@ -62,7 +62,7 @@ correlate with issues on a 1:1 basis.
 ## Non-Owner Specific Expired Page UI
 - [ ] It should include promotional materials describing the utility of Page Shot and link to the landing page
 
-## Landing Page UI
+## Landing Page UI [#2310](https://github.com/mozilla-services/pageshot/issues/2310)
 - [ ] It should match the final spec provided by the UX team
 - [ ] It should describe the value proposition of Page Shot
 - [ ] It should specify that Page Shot is currently only available for Firefox on Desktop for non-FF users
@@ -71,7 +71,7 @@ correlate with issues on a 1:1 basis.
   - [ ] It should accomodate different messaging based on state of phased roll out
 - [ ] *STRETCH:* it should let users of Firefox 54 + trigger the add-on onboarding flow from the site
 
-## Onboarding UI
+## Onboarding UI [#2307](https://github.com/mozilla-services/pageshot/issues/2307)
 - [ ] It should match the final spec provided by the UX team
 - [ ] It should proceed stepwise to explain the basics of the page shot feature
 - [ ] It should initially suggest itself by adding a page shot icon to the tool bar and badging it
