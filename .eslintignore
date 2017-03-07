@@ -3,5 +3,5 @@ static/vendor
 /scratch
 /Profile
 /build
-/webextension/build
+/addon/webextension/build
 /firefox

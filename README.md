@@ -7,7 +7,7 @@ This is a prototype for a product to create better ways of sharing and saving co
 
 The project has been launched through [Test Pilot](https://testpilot.firefox.com/) at [pageshot.net](https://pageshot.net).  We are looking to a general audience release in the future.
 
-It is made up of both an add-on (using [WebExtensions](https://developer.mozilla.org/Add-ons/WebExtensions)) and a website using Node.js.  The add-on is in `webextension/`, and the website is in `server/`
+It is made up of both an add-on (using [WebExtensions](https://developer.mozilla.org/Add-ons/WebExtensions)) and a website using Node.js.  The add-on is in `addon/webextension/`, and the website is in `server/`
 
 Ian has been blogging about the [design, definition, and development process](http://www.ianbicking.org/tag/product-journal.html).
 
@@ -24,7 +24,7 @@ Clone the [repository](https://github.com/mozilla-services/pageshot/).
 There are two scripts to run the server locally and develop the add-on:
 
 - `./bin/run-server` will run the server on `http://localhost:10080` and automatically restart if there are changes.
-- `./bin/run-addon` will build a few parts of the addon (into `webextension/build/`) and start Firefox with the add-on installed.  The add-on will be refreshed automatically as you change files.  We recommend you open `about:debugging` to help debug the extension.
+- `./bin/run-addon` will build a few parts of the addon (into `addon/webextension/build/`) and start Firefox with the add-on installed.  The add-on will be refreshed automatically as you change files.  We recommend you open `about:debugging` to help debug the extension.
 - `./bin/run-addon --setup-profile` will setup a Firefox profile for your development; this way you can make persistent changes to the profile that you will use just for Page Shot development.
 
 **If you want to develop the add-on but not the server** you can run `./bin/run-addon -s https://pageshot.dev.mozaws.net`
