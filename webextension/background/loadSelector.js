@@ -1,7 +1,11 @@
 /* globals chrome, catcher */
 
 window.loadSelector = (function () {
+  // These modules are loaded in order, and some need to be listed before others
+  // due to dependencies:
   const scripts = [
+    "background/loadSelector.js",
+    "selector/lifecycle.js",
     "selector/callBackground.js",
     "catcher.js",
     "clipboard.js",
@@ -17,7 +21,7 @@ window.loadSelector = (function () {
     "selector/uicontrol.js"
   ];
 
-  return function loadSelector() {
+  function loadSelector() {
     let lastPromise = Promise.resolve(null);
     scripts.forEach((script) => {
       lastPromise = lastPromise.then(() => {
@@ -35,6 +39,12 @@ window.loadSelector = (function () {
     return lastPromise.then(() => {
       console.log("finished loading scripts:", scripts.join(" "), "->", chrome.runtime.lastError || "no error");
     });
-  };
+  }
+
+  loadSelector.moduleNames = scripts.map((filename) => {
+    return filename.replace(/^.*\//, "").replace(/\.js$/, "");
+  });
+
+  return loadSelector;
 
 })();
