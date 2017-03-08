@@ -1,6 +1,8 @@
 /* globals chrome, catcher */
 
 window.loadSelector = (function () {
+  // These modules are loaded in order, and some need to be listed before others
+  // due to dependencies:
   const scripts = [
     "background/loadSelector.js",
     "selector/lifecycle.js",

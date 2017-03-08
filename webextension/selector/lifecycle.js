@@ -3,11 +3,10 @@
 window.lifecycle = (function () {
   let exports = {};
   if (window.lifecycle) {
-    window.lifecycle.unload();
+    window.lifecycle.unloadModules();
   }
-  document.dispatchEvent(new Event("pageshot-unload"));
 
-  exports.unload = function () {
+  exports.unloadModules = function () {
     let watchFunction = catcher.watchFunction;
     let moduleNames = loadSelector.moduleNames;
     // Make sure we unload catcher last, and don't call lifecycle.unload():
@@ -17,9 +16,6 @@ window.lifecycle = (function () {
     moduleNames.reverse();
     moduleNames.push("catcher");
     for (let moduleName of moduleNames) {
-      if (moduleName == "catcher" || moduleName == "lifecycle") {
-        continue;
-      }
       let moduleObj = window[moduleName];
       if (moduleObj && moduleObj.unload) {
         try {
@@ -37,14 +33,7 @@ window.lifecycle = (function () {
     if (window.lifecycle === exports) {
       delete window.lifecycle;
     }
-    document.removeEventListener("pageshot-unload", listenForUnload);
   };
-
-  function listenForUnload() {
-    exports.unload();
-  }
-
-  document.addEventListener("pageshot-unload", listenForUnload);
 
   return exports;
 })();
