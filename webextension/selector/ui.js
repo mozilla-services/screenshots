@@ -3,7 +3,7 @@
 
 window.ui = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
-  const MAGIC_OFFSET = 50;
+  const SAVE_BUTTON_HEIGHT = 50;
 
   const { watchFunction } = catcher;
 
@@ -332,9 +332,9 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
         this.el.classList.remove("pageshot-small-selection");
       }
 
-      // if the selection bounding box is w/in 50px of the bottom of
+      // if the selection bounding box is w/in SAVE_BUTTON_HEIGHT px of the bottom of
       // the window, flip controls into the box
-      if (pos.bottom > ((winBottom + pageYOffset) - MAGIC_OFFSET)) {
+      if (pos.bottom > ((winBottom + pageYOffset) - SAVE_BUTTON_HEIGHT)) {
         this.el.classList.add("pageshot-bottom-selection");
       } else {
         this.el.classList.remove("pageshot-bottom-selection");
