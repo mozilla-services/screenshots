@@ -178,7 +178,6 @@ class AbstractShot {
       this._comments = attrs.comments.map(
         (json) => new this.Comment(json));
     }
-    this.hashtags = attrs.hashtags || null;
     this.siteName = attrs.siteName || null;
     this.images = [];
     if (attrs.images) {
@@ -436,18 +435,6 @@ class AbstractShot {
     this._favicon = val;
   }
 
-  get hashtags() {
-    return this._hashtags || [];
-  }
-  set hashtags(val) {
-    assert (val === null || Array.isArray(val), ".hashtags must be an array:", val, typeof val);
-    if (val) {
-      val.forEach(
-        (v) => assert(typeof v == "string", "hashtags array may only contain strings:", v));
-    }
-    this._hashtags = val;
-  }
-
   clipNames() {
     let names = Object.getOwnPropertyNames(this._clips);
     names.sort(function (a, b) {
@@ -587,7 +574,7 @@ class AbstractShot {
 
 AbstractShot.prototype.REGULAR_ATTRS = (`
 deviceId url docTitle userTitle createdDate favicon
-comments hashtags images
+comments images
 siteName openGraph twitterCard documentSize
 fullScreenThumbnail isPublic resources showPage abTests
 `).split(/\s+/g);
@@ -595,7 +582,7 @@ fullScreenThumbnail isPublic resources showPage abTests
 // Attributes that will be accepted in the constructor, but ignored/dropped
 AbstractShot.prototype.DEPRECATED_ATTRS = (`
 microdata history ogTitle createdDevice head body htmlAttrs bodyAttrs headAttrs
-readable
+readable hashtags
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`
