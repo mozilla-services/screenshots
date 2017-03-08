@@ -10,8 +10,8 @@ correlate with issues on a 1:1 basis.
 - [ ] Support Localization [#2205](https://github.com/mozilla-services/pageshot/issues/2205)
 
 ## Add-on Activation
-- [ ] It should be able to be progressively revealed/enabled by the shield recipe server
-- [ ] It should be able to be enabled and disabled by a toggle in about:preferences
+- [ ] It should be able to be progressively revealed/enabled by the shield recipe server [#2332](https://github.com/mozilla-services/pageshot/issues/2332)
+- [ ] It should be able to be enabled and disabled by a toggle in about:preferences [#2333](https://github.com/mozilla-services/pageshot/issues/2333)
 
 # UI/UX
 
