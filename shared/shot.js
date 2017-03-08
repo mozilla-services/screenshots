@@ -185,7 +185,6 @@ class AbstractShot {
     this.documentSize = attrs.documentSize || null;
     this.fullScreenThumbnail = attrs.fullScreenThumbnail || null;
     this.isPublic = attrs.isPublic === undefined || attrs.isPublic === null ? null : !! attrs.isPublic;
-    this.showPage = attrs.showPage || false;
     this.abTests = attrs.abTests || null;
     this.resources = attrs.resources || {};
     this._clips = {};
@@ -509,14 +508,6 @@ class AbstractShot {
     this._isPublic = val;
   }
 
-  get showPage() {
-    return this._showPage;
-  }
-  set showPage(val) {
-    assert(val === true || val === false, "showPage should true or false");
-    this._showPage = val;
-  }
-
   get resources() {
     return this._resources;
   }
@@ -555,13 +546,13 @@ class AbstractShot {
 AbstractShot.prototype.REGULAR_ATTRS = (`
 deviceId url docTitle userTitle createdDate favicon images
 siteName openGraph twitterCard documentSize
-fullScreenThumbnail isPublic resources showPage abTests
+fullScreenThumbnail isPublic resources abTests
 `).split(/\s+/g);
 
 // Attributes that will be accepted in the constructor, but ignored/dropped
 AbstractShot.prototype.DEPRECATED_ATTRS = (`
 microdata history ogTitle createdDevice head body htmlAttrs bodyAttrs headAttrs
-readable hashtags comments
+readable hashtags comments showPage
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`

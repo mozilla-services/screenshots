@@ -179,51 +179,6 @@ function sendShowElement(clipId) {
   }
 }
 
-/*
-function requestHasSavedShot(id) {
-  let event = document.createEvent("CustomEvent");
-  event.initCustomEvent("has-saved-shot", true, true, id);
-  document.dispatchEvent(event);
-}
-
-exports.requestSavedShot = function () {
-  let event = document.createEvent("CustomEvent");
-  event.initCustomEvent("request-saved-shot", true, true, model.shot.id);
-  document.dispatchEvent(event);
-};
-
-function addSavedShotData(data) {
-  if (! data) {
-    model.hasSavedShot = false;
-    exports.render();
-    return;
-  }
-  for (let attr in data) {
-    if (! data[attr]) {
-      delete data[attr];
-    }
-  }
-  data.showPage = true;
-  model.shot.update(data);
-  model.hasSavedShot = false;
-  let url = model.backend + "/api/add-saved-shot-data/" + model.shot.id;
-  let req = new XMLHttpRequest();
-  req.onload = function () {
-    if (req.status >= 300) {
-      window.alert("Error saving expiration: " + req.status + " " + req.statusText);
-      return;
-    }
-    let event = document.createEvent("CustomEvent");
-    event.initCustomEvent("remove-saved-shot", true, true, model.shot.id);
-    document.dispatchEvent(event);
-    exports.render();
-  };
-  req.open("POST", url);
-  req.setRequestHeader("content-type", "application/json");
-  req.send(JSON.stringify(data));
-}
-*/
-
 exports.setTitle = function (title) {
   title = title || null;
   let url = model.backend + "/api/set-title/" + model.shot.id;
