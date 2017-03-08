@@ -64,7 +64,6 @@ const morgan = require("morgan");
 const linker = require("./linker");
 const { randomBytes } = require("./helpers");
 const errors = require("../shared/errors");
-const { checkContent, checkAttributes } = require("./contentcheck");
 const buildTime = require("./build-time").string;
 const ua = require("universal-analytics");
 const urlParse = require("url").parse;
@@ -683,17 +682,6 @@ app.put("/data/:id/:domain", function (req, res) {
     simpleResponse(res, "Cannot save a page on behalf of another user", 403);
     return;
   }
-  let errors = checkContent(bodyObj.head)
-    .concat(checkContent(bodyObj.body))
-    .concat(checkAttributes(bodyObj.headAttrs, "head"))
-    .concat(checkAttributes(bodyObj.bodyAttrs, "body"))
-    .concat(checkAttributes(bodyObj.htmlAttrs, "html"));
-  if (errors.length) {
-    console.warn("Attempted to submit page with invalid HTML:", errors.join("; ").substr(0, 60));
-    sendRavenMessage(req, "Errors in submission", {extra: {errors: errors}});
-    simpleResponse(res, "Errors in submission", 400);
-    return;
-  }
   let shot = new Shot(req.deviceId, req.backend, shotId, bodyObj);
   let responseDelay = Promise.resolve()
   if (slowResponse) {
@@ -780,46 +768,6 @@ app.post("/api/set-title/:id/:domain", function (req, res) {
     errorResponse(res, "Error updating title", err);
   });
 });
-
-/*
-app.post("/api/add-saved-shot-data/:id/:domain", function (req, res) {
-  let shotId = `${req.params.id}/${req.params.domain}`;
-  let bodyObj = req.body;
-  Shot.get(req.backend, shotId).then((shot) => {
-    if (! shot) {
-      sendRavenMessage(req, "Attempt to add saved shot data when no shot exists");
-      simpleResponse(res, "No such shot", 404);
-      return;
-    }
-    let errors = checkContent(bodyObj.head)
-      .concat(checkContent(bodyObj.body))
-      .concat(checkAttributes(bodyObj.headAttrs, "head"))
-      .concat(checkAttributes(bodyObj.bodyAttrs, "body"))
-      .concat(checkAttributes(bodyObj.htmlAttrs, "html"));
-    if (errors.length) {
-      console.warn("Attempted to submit page with invalid HTML:", errors.join("; ").substr(0, 60));
-      sendRavenMessage(req, "Errors in submission when adding saved shot", {extra: {errors: errors}});
-      simpleResponse(res, "Errors in submission", 400);
-      return;
-    }
-    for (let attr in bodyObj) {
-      if (! ["body", "head", "headAttrs", "bodyAttrs", "htmlAttrs", "showPage", "readable", "resources"].includes(attr)) {
-        console.warn("Unexpected attribute in update:", attr);
-        sendRavenMessage(req, "Unexpected attribute in submission", {extra: {attr}});
-        simpleResponse(res, "Unexpected attribute in submission", 400);
-        return;
-      }
-      shot[attr] = bodyObj[attr];
-    }
-    return shot.update().then(() => {
-      simpleResponse(res, "ok", 200);
-    });
-  }).catch((err) => {
-    errorResponse(res, "Error serving data:", err);
-  });
-
-});
-*/
 
 app.post("/api/set-expiration", function (req, res) {
   if (! req.deviceId) {

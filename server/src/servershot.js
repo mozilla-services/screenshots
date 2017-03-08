@@ -164,19 +164,15 @@ class Shot extends AbstractShot {
         clipRewrites.rewriteShotUrls();
         let oks = clipRewrites.commands();
         let json = this.asJson();
-        let head = json.head;
-        let body = json.body;
         let title = this.title;
-        json.head = null;
-        json.body = null;
         oks.push({setHead: null});
         oks.push({setBody: null});
-        let searchable = this._makeSearchableText(9);
+        let searchable = this._makeSearchableText(7);
         return db.queryWithClient(
           client,
-          `INSERT INTO data (id, deviceid, value, head, body, url, title, searchable_version, searchable_text)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, ${searchable.query})`,
-          [this.id, this.ownerId, JSON.stringify(json), head, body, json.url, title, searchable.version].concat(searchable.args)
+          `INSERT INTO data (id, deviceid, value, url, title, searchable_version, searchable_text)
+           VALUES ($1, $2, $3, $4, $5, $6, ${searchable.query})`,
+          [this.id, this.ownerId, JSON.stringify(json), json.url, title, searchable.version].concat(searchable.args)
         ).then((rowCount) => {
           return clipRewrites.commit(client);
         }).then(() => {
@@ -199,34 +195,14 @@ class Shot extends AbstractShot {
     let oks = clipRewrites.commands();
     let json = this.asJson();
     return db.transaction((client) => {
-      let head = json.head;
-      let body = json.body;
-      json.head = null;
-      json.body = null;
-      if (head !== null) {
-        oks.push({setHead: null});
-      }
-      if (body !== null) {
-        oks.push({setBody: null});
-      }
       let promise;
-      if (head === null && body === null) {
-        let searchable = this._makeSearchableText(7);
-        promise = db.queryWithClient(
-          client,
-          `UPDATE data SET value = $1, url = $2, title=$3, searchable_version = $4, searchable_text = ${searchable.query}
-          WHERE id = $5 AND deviceid = $6`,
-          [JSON.stringify(json), this.url, this.title, searchable.version, this.id, this.ownerId].concat(searchable.args)
-        );
-      } else {
-        let searchable = this._makeSearchableText(9);
-        promise = db.queryWithClient(
-          client,
-          `UPDATE data SET value = $1, url=$2, title=$3, head = $4, body = $5, searchable_version = $6, searchable_text = ${searchable.query}
-          WHERE id = $7 AND deviceid = $8`,
-          [JSON.stringify(json), this.url, this.title, head, body, searchable.version, this.id, this.ownerId].concat(searchable.args)
-        );
-      }
+      let searchable = this._makeSearchableText(7);
+      promise = db.queryWithClient(
+        client,
+        `UPDATE data SET value = $1, url = $2, title=$3, searchable_version = $4, searchable_text = ${searchable.query}
+        WHERE id = $5 AND deviceid = $6`,
+        [JSON.stringify(json), this.url, this.title, searchable.version, this.id, this.ownerId].concat(searchable.args)
+      );
       return promise.then((rowCount) => {
         if (! rowCount) {
           throw new Error("No row updated");
@@ -290,14 +266,6 @@ class Shot extends AbstractShot {
         let clip = this.getClip(clipId);
         addWeight(clip.image && clip.image.text, 'A', 'clip text');
       }
-    }
-    let readableBody = this.readable ? this.readable.content.replace(/<[^>]*>/g, " ") : null;
-    let wholeBody = this.body ? this.body.replace(/<[^>]*>/g, " ") : null;
-    if (readableBody) {
-      addWeight(readableBody, 'C', 'readable');
-      addWeight(wholeBody, 'D', 'body');
-    } else {
-      addWeight(wholeBody, 'C', 'body');
     }
     return {
       query: queryParts.join(' || '),
@@ -383,7 +351,7 @@ Shot.getFullShot = function (backend, id) {
     throw new Error("Empty id: " + id);
   }
   return db.select(
-    `SELECT value, deviceid, head, body FROM data
+    `SELECT value, deviceid FROM data
     WHERE data.id = $1`,
     [id]
   ).then((rows) => {
@@ -393,8 +361,6 @@ Shot.getFullShot = function (backend, id) {
     let row = rows[0];
     let json = JSON.parse(row.value);
     let shot = new Shot(row.userid, backend, id, json);
-    shot.head = row.head;
-    shot.body = row.body;
     return shot;
   });
 };
@@ -713,7 +679,7 @@ Shot.cleanDeletedShots = function () {
       client,
       `
         UPDATE data
-        SET value = '{}', head = NULL, body = NULL, deleted = TRUE
+        SET value = '{}', deleted = TRUE
         WHERE expire_time + ($1 || ' SECONDS')::INTERVAL < CURRENT_TIMESTAMP
               AND NOT deleted
       `,

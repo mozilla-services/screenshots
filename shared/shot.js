@@ -36,20 +36,6 @@ function isUrl(url) {
   return (/^https?:\/\/[a-z0-9\.\-]+[a-z0-9](:[0-9]+)?\/?/i).test(url);
 }
 
-/** Tests if a value is a set of attribute pairs, like [["name", "value"], ...] */
-function isAttributePairs(val) {
-  if (! Array.isArray(val)) {
-    return false;
-  }
-  let good = true;
-  val.forEach((pair) => {
-    if (typeof pair[0] != "string" || (! pair[0]) || typeof pair[1] != "string") {
-      good = false;
-    }
-  });
-  return good;
-}
-
 /** Check if the given object has all of the required attributes, and no extra
     attributes exception those in optional */
 function checkObject(obj, required, optional) {
@@ -175,28 +161,6 @@ function makeUuid() {
   return id;
 }
 
-function formatAttributes(attrs) {
-  if (! attrs) {
-    return "";
-  }
-  let result = [];
-  for (let item of attrs) {
-    let name = item[0];
-    let value = item[1];
-    result.push(` ${name}="${escapeAttribute(value)}"`);
-  }
-  return result.join("");
-}
-
-function escapeAttribute(value) {
-  if (! value) {
-    return "";
-  }
-  value = value.replace(/&/g, "&amp;");
-  value = value.replace(/"/g, "&quot;");
-  return value;
-}
-
 class AbstractShot {
 
   constructor(backend, id, attrs) {
@@ -209,11 +173,6 @@ class AbstractShot {
     this.userTitle = attrs.userTitle || null;
     this.createdDate = attrs.createdDate || Date.now();
     this.favicon = attrs.favicon || null;
-    this.body = attrs.body || null;
-    this.head = attrs.head || null;
-    this.htmlAttrs = attrs.htmlAttrs || null;
-    this.bodyAttrs = attrs.bodyAttrs || null;
-    this.headAttrs = attrs.headAttrs || null;
     this._comments = [];
     if (attrs.comments) {
       this._comments = attrs.comments.map(
@@ -225,10 +184,6 @@ class AbstractShot {
     if (attrs.images) {
       this.images = attrs.images.map(
         (json) => new this.Image(json));
-    }
-    this.readable = null;
-    if (attrs.readable) {
-      this.readable = new this.Readable(attrs.readable);
     }
     this.deviceId = attrs.deviceId || null;
     this.openGraph = attrs.openGraph || null;
@@ -325,55 +280,6 @@ class AbstractShot {
       result.clips[name] = this.getClip(name).asJson();
     }
     return result;
-  }
-
-  staticHtml(options) {
-    options = options || "";
-    let head = this.head;
-    let body = this.body;
-    let rewriter = (html) => {
-      if (! html) {
-        return html;
-      }
-      let keys = Object.keys(this.resources);
-      if (! keys.length) {
-        return html;
-      }
-      for (let key of keys) {
-        if (key.search(/^[a-zA-Z0-9.\-]+$/) === -1) {
-          console.warn("Bad resource name:", key);
-          return;
-        }
-      }
-      let re = new RegExp(keys.join("|"), "g");
-      let newHtml = html.replace(re, (match) => {
-        return options.rewriteLinks(match, this.resources[match]);
-      });
-      newHtml = newHtml.replace(/"data:text\/html;base64,([^"]*)"/g, (match, group) => {
-        let html = this.atob(group);
-        html = rewriter(html);
-        let link = this.btoa(html);
-        return `"data:text/html;base64,${link}"`;
-      });
-      return newHtml;
-    };
-    if (options.rewriteLinks && this.resources) {
-      head = rewriter(head);
-      body = rewriter(body);
-    }
-    return `<!DOCTYPE html>
-<html${formatAttributes(this.htmlAttrs)}>
-<head${formatAttributes(this.headAttrs)}>
-<meta charset="UTF-8">
-${options.addHead || ""}
-<base href="${escapeAttribute(this.url)}">
-${head}
-</head>
-<body${formatAttributes(this.bodyAttrs)}>
-${body}
-${options.addBody || ""}
-</body>
-</html>`;
   }
 
   get backend() {
@@ -542,18 +448,6 @@ ${options.addBody || ""}
     this._hashtags = val;
   }
 
-  get readable() {
-    return this._readable;
-  }
-  set readable(val) {
-    assert(typeof val == "object" || ! val, "Bad Shot readable:", val);
-    if (! val) {
-      this._readable = val;
-    } else {
-      this._readable = new this.Readable(val);
-    }
-  }
-
   clipNames() {
     let names = Object.getOwnPropertyNames(this._clips);
     names.sort(function (a, b) {
@@ -601,58 +495,6 @@ ${options.addBody || ""}
   set siteName(val) {
     assert(typeof val == "string" || ! val);
     this._siteName = val;
-  }
-
-  get head() {
-    return this._head;
-  }
-  set head(val) {
-    assert(typeof val == "string" || ! val, "Bad head:", val);
-    this._head = val;
-  }
-
-  get body() {
-    return this._body;
-  }
-  set body(val) {
-    assert(typeof val == "string" || ! val, "Bad body:", val);
-    this._body = val;
-  }
-
-  get bodyAttrs() {
-    return this._bodyAttrs;
-  }
-  set bodyAttrs(val) {
-    if (! val) {
-      this._bodyAttrs = null;
-    } else {
-      assert(isAttributePairs(val), "Bad bodyAttrs:", val);
-      this._bodyAttrs = val;
-    }
-  }
-
-  get htmlAttrs() {
-    return this._htmlAttrs;
-  }
-  set htmlAttrs(val) {
-    if (! val) {
-      this._htmlAttrs = null;
-    } else {
-      assert(isAttributePairs(val), "Bad htmlAttrs:", val);
-      this._htmlAttrs = val;
-    }
-  }
-
-  get headAttrs() {
-    return this._headAttrs;
-  }
-  set headAttrs(val) {
-    if (! val) {
-      this._headAttrs = null;
-    } else {
-      assert(isAttributePairs(val), "Bad headAttrs:", val);
-      this._headAttrs = val;
-    }
   }
 
   get deviceId() {
@@ -745,14 +587,15 @@ ${options.addBody || ""}
 
 AbstractShot.prototype.REGULAR_ATTRS = (`
 deviceId url docTitle userTitle createdDate favicon
-comments hashtags images readable head body htmlAttrs bodyAttrs
-headAttrs siteName openGraph twitterCard documentSize
+comments hashtags images
+siteName openGraph twitterCard documentSize
 fullScreenThumbnail isPublic resources showPage abTests
 `).split(/\s+/g);
 
 // Attributes that will be accepted in the constructor, but ignored/dropped
 AbstractShot.prototype.DEPRECATED_ATTRS = (`
-microdata history ogTitle createdDevice
+microdata history ogTitle createdDevice head body htmlAttrs bodyAttrs headAttrs
+readable
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`
@@ -804,7 +647,7 @@ class _Image {
   // this read-only
   constructor(json) {
     assert(typeof json === "object", "Clip Image given a non-object", json);
-    assert(checkObject(json, ["url"], ["dimensions", "isReadable", "title", "alt"]), "Bad attrs for Image:", Object.keys(json));
+    assert(checkObject(json, ["url"], ["dimensions", "title", "alt"]), "Bad attrs for Image:", Object.keys(json));
     assert(isUrl(json.url), "Bad Image url:", json.url);
     this.url = json.url;
     assert((! json.dimensions) ||
@@ -815,41 +658,14 @@ class _Image {
     this.title = json.title;
     assert(typeof json.alt == "string" || ! json.alt, "Bad Image alt:", json.alt);
     this.alt = json.alt;
-    this.isReadable = !! json.isReadable;
   }
 
   asJson() {
-    return jsonify(this, ["url"], ["dimensions", "isReadable"]);
+    return jsonify(this, ["url"], ["dimensions"]);
   }
 }
 
 AbstractShot.prototype.Image = _Image;
-
-/** Represents the readable representation of the page that the Readability library returns */
-class _Readable {
-  // FIXME: either we have to notify the shot of updates, or make
-  // this read-only
-  constructor(json) {
-    assert(checkObject(json, ["content"], ["title", "byline", "dir", "length", "excerpt", "readableIds"]), "Bad attrs for Readable:", Object.keys(json));
-    assert(typeof json.title == "string" || ! json.title, "Bad Readable title:", json.title);
-    this.title = json.title;
-    assert(typeof json.byline == "string" || ! json.byline, "Bad Readable byline:", json.byline);
-    this.byline = json.byline;
-    this.dir = json.dir;
-    assert(typeof json.content == "string" && json.content, "Bad Readable content:", json.content);
-    this.content = json.content;
-    assert(typeof json.length == "number" || ! json.length, "Bad Readable length:", json.length);
-    this.length = json.length;
-    assert(typeof json.excerpt == "string" || ! json.excerpt, "Bad Readable excerpt:", json.excerpt);
-    this.excerpt = json.excerpt;
-  }
-
-  asJson() {
-    return jsonify(this, ["content"], ["title", "byline", "dir", "length", "excerpt"]);
-  }
-}
-
-AbstractShot.prototype.Readable = _Readable;
 
 /** Represents a clip, either a text or image clip */
 class _Clip {
