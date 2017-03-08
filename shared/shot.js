@@ -200,7 +200,6 @@ function escapeAttribute(value) {
 class AbstractShot {
 
   constructor(backend, id, attrs) {
-    this.clearDirty();
     attrs = attrs || {};
     assert((/^[a-zA-Z0-9]+\/[a-z0-9\.-]+$/).test(id), "Bad ID (should be alphanumeric):", JSON.stringify(id));
     this._backend = backend;
@@ -259,8 +258,6 @@ class AbstractShot {
         assert(attrs.id === this.id);
       }
     }
-    // Reset all the dirty items that were unnecessarily set:
-    this.clearDirty();
   }
 
   /** Update any and all attributes in the json object, with deep updating
@@ -299,20 +296,6 @@ class AbstractShot {
 
   }
 
-  _dirty(name) {
-    this._dirtyItems[name] = true;
-  }
-
-  _dirtyClip(clipId) {
-    this._dirtyClips[clipId] = true;
-  }
-
-  /** Clears the dirty attribute checking (e.g., to use after save) */
-  clearDirty() {
-    this._dirtyItems = {};
-    this._dirtyClips = {};
-  }
-
   /** Returns a JSON version of this shot */
   asJson() {
     let result = {};
@@ -342,30 +325,6 @@ class AbstractShot {
     }
     for (let name of this.clipNames()) {
       result.clips[name] = this.getClip(name).asJson();
-    }
-    return result;
-  }
-
-  /** Returns a JSON version of any dirty attributes of this object */
-  dirtyJson() {
-    var result = {};
-    for (let attr in this._dirtyItems) {
-      let val = this[attr];
-      if (val && val.asJson) {
-        val = val.asJson();
-      }
-      result[attr] = val;
-    }
-    for (let clipId of this._dirtyClips) {
-      if (! result.clips) {
-        result.clips = {};
-      }
-      var clip = this.getClip(clipId);
-      if (clip) {
-        result.clips[clipId] = clip.asJson();
-      } else {
-        result.clips[clipId] = null;
-      }
     }
     return result;
   }
@@ -432,7 +391,6 @@ ${options.addBody || ""}
   }
   set url(val) {
     assert(val && isUrl(val), "Bad URL:", val);
-    this._dirty("url");
     this._url = val;
   }
 
@@ -492,7 +450,6 @@ ${options.addBody || ""}
   }
   set createdDevice(val) {
     assert(val === null || (typeof val == "string" && val), "Bad createdDevice:", val);
-    this._dirty("createdDevice");
     this._createdDevice = val;
   }
 
@@ -501,7 +458,6 @@ ${options.addBody || ""}
   }
   set docTitle(val) {
     assert(val === null || typeof val == "string", "Bad docTitle:", val);
-    this._dirty("docTitle");
     this._title = val;
   }
 
@@ -513,12 +469,10 @@ ${options.addBody || ""}
   addComment(json) {
     let comment = new this.Comment(json);
     this._comments.push(comment);
-    this._dirty("comments");
   }
   updateComment(index, json) {
     let comment = new this._shot.Comment(json);
     this._comments[index] = comment;
-    this._dirty("comments");
   }
   // FIXME: no delete, nor comment editing
 
@@ -528,7 +482,6 @@ ${options.addBody || ""}
   }
   set ogTitle(val) {
     assert(val === null || typeof val == "string", "Bad ogTitle:", val);
-    this._dirty("ogTitle");
     this._ogTitle = val;
   }
 
@@ -537,7 +490,6 @@ ${options.addBody || ""}
   }
   set openGraph(val) {
     assert(val === null || typeof val == "object", "Bad openGraph:", val);
-    this._dirty("openGraph");
     if (val) {
       assert(checkObject(val, [], this._OPENGRAPH_PROPERTIES), "Bad attr to openGraph:", Object.keys(val));
       this._openGraph = val;
@@ -551,7 +503,6 @@ ${options.addBody || ""}
   }
   set twitterCard(val) {
     assert(val === null || typeof val == "object", "Bad twitterCard:", val);
-    this._dirty("twitterCard");
     if (val) {
       assert(checkObject(val, [], this._TWITTERCARD_PROPERTIES), "Bad attr to twitterCard:", Object.keys(val));
       this._twitterCard = val;
@@ -565,7 +516,6 @@ ${options.addBody || ""}
   }
   set userTitle(val) {
     assert(val === null || typeof val == "string", "Bad userTitle:", val);
-    this._dirty("userTitle");
     this._userTitle = val;
   }
 
@@ -584,7 +534,6 @@ ${options.addBody || ""}
   }
   set createdDate(val) {
     assert(val === null || typeof val == "number", "Bad createdDate:", val);
-    this._dirty("createdDate");
     this._createdDate = val;
   }
 
@@ -596,7 +545,6 @@ ${options.addBody || ""}
     if (val) {
       val = resolveUrl(this.url, val);
     }
-    this._dirty("favicon");
     this._favicon = val;
   }
 
@@ -609,7 +557,6 @@ ${options.addBody || ""}
       val.forEach(
         (v) => assert(typeof v == "string", "hashtags array may only contain strings:", v));
     }
-    this._dirty("hashtags");
     this._hashtags = val;
   }
 
@@ -623,7 +570,6 @@ ${options.addBody || ""}
     } else {
       this._readable = new this.Readable(val);
     }
-    this._dirty("readable");
   }
 
   clipNames() {
@@ -643,14 +589,12 @@ ${options.addBody || ""}
   }
   setClip(name, val) {
     let clip = new this.Clip(this, name, val);
-    this._dirtyClip(name);
     this._clips[name] = clip;
   }
   delClip(name) {
     if (! this._clips[name]) {
       throw new Error("No existing clip with id: " + name);
     }
-    this._dirtyClip(name);
     delete this._clips[name];
   }
   biggestClipSortOrder() {
@@ -674,7 +618,6 @@ ${options.addBody || ""}
   }
   set siteName(val) {
     assert(typeof val == "string" || ! val);
-    this._dirty("siteName");
     this._siteName = val;
   }
 
@@ -683,7 +626,6 @@ ${options.addBody || ""}
   }
   set head(val) {
     assert(typeof val == "string" || ! val, "Bad head:", val);
-    this._dirty("head");
     this._head = val;
   }
 
@@ -692,7 +634,6 @@ ${options.addBody || ""}
   }
   set body(val) {
     assert(typeof val == "string" || ! val, "Bad body:", val);
-    this._dirty("body");
     this._body = val;
   }
 
@@ -706,7 +647,6 @@ ${options.addBody || ""}
       assert(isAttributePairs(val), "Bad bodyAttrs:", val);
       this._bodyAttrs = val;
     }
-    this._dirty("bodyAttrs");
   }
 
   get htmlAttrs() {
@@ -719,7 +659,6 @@ ${options.addBody || ""}
       assert(isAttributePairs(val), "Bad htmlAttrs:", val);
       this._htmlAttrs = val;
     }
-    this._dirty("htmlAttrs");
   }
 
   get headAttrs() {
@@ -732,7 +671,6 @@ ${options.addBody || ""}
       assert(isAttributePairs(val), "Bad headAttrs:", val);
       this._headAttrs = val;
     }
-    this._dirty("headAttrs");
   }
 
   get deviceId() {
@@ -742,7 +680,6 @@ ${options.addBody || ""}
     assert(typeof val == "string" || ! val);
     val = val || null;
     this._deviceId = val;
-    this._dirty("deviceId");
   }
 
   get documentSize() {
@@ -758,7 +695,6 @@ ${options.addBody || ""}
     } else {
       this._documentSize = null;
     }
-    this._dirty("documentSize");
   }
 
   get fullScreenThumbnail() {
@@ -772,7 +708,6 @@ ${options.addBody || ""}
     } else {
       this._fullScreenThumbnail = null;
     }
-    this._dirty("fullScreenThumbnail");
   }
 
   get isPublic() {
@@ -781,7 +716,6 @@ ${options.addBody || ""}
   set isPublic(val) {
     assert(val === null || val === false || val === true, "isPublic should be true/false/null, not:", typeof val, val, JSON.stringify(val));
     this._isPublic = val;
-    this._dirty("isPublic");
   }
 
   get showPage() {
@@ -790,7 +724,6 @@ ${options.addBody || ""}
   set showPage(val) {
     assert(val === true || val === false, "showPage should true or false");
     this._showPage = val;
-    this._dirty("showPage");
   }
 
   get resources() {
@@ -799,7 +732,6 @@ ${options.addBody || ""}
   set resources(val) {
     if (val === null || val === undefined) {
       this._resources = null;
-      this._dirty("resources");
       return;
     }
     assert(typeof val == "object", "resources should be an object, not:", typeof val);
@@ -809,7 +741,6 @@ ${options.addBody || ""}
       assert(checkObject(obj, ['url', 'tag'], ['elId', 'attr', 'hash', 'rel']), "Invalid resource " + key + ": " + JSON.stringify(obj));
     }
     this._resources = val;
-    this._dirty("resources");
   }
 
   get abTests() {
@@ -818,7 +749,6 @@ ${options.addBody || ""}
   set abTests(val) {
     if (val === null || val === undefined) {
       this._abTests = null;
-      this._dirty("abTests");
       return;
     }
     assert(typeof val == "object", "abTests should be an object, not:", typeof val);
@@ -943,7 +873,6 @@ AbstractShot.prototype.Readable = _Readable;
 class _Clip {
   constructor(shot, id, json) {
     this._shot = shot;
-    this._initialized = false;
     assert(checkObject(json, ["createdDate"], ["sortOrder", "image", "text", "comments"]), "Bad attrs for Clip:", Object.keys(json));
     assert(typeof id == "string" && id, "Bad Clip id:", id);
     this._id = id;
@@ -969,8 +898,6 @@ class _Clip {
     } else {
       this._comments = [];
     }
-    // From here after we track dirty attributes:
-    this._initialized = true;
   }
 
   toString() {
@@ -981,12 +908,6 @@ class _Clip {
       s += ` text length ${this.text.text.length}]`;
     }
     return s;
-  }
-
-  _dirty(property) {
-    if (this._initialized) {
-      this._shot._dirtyClip(this.id);
-    }
   }
 
   asJson() {
@@ -1008,12 +929,10 @@ class _Clip {
   addComment(json) {
     let comment = new this._shot.Comment(json);
     this._comments.push(comment);
-    this._dirty("comments");
   }
   updateComment(index, json) {
     let comment = new this._shot.Comment(json);
     this._comments[index] = comment;
-    this._dirty("comments");
   }
 
   get createdDate() {
@@ -1021,7 +940,6 @@ class _Clip {
   }
   set createdDate(val) {
     assert(typeof val == "number" || ! val, "Bad Clip createdDate:", val);
-    this._dirty("createdDate");
     this._createdDate = val;
   }
 
@@ -1031,7 +949,6 @@ class _Clip {
   set image(image) {
     if (! image) {
       this._image = undefined;
-      this._dirty("image");
       return;
     }
     assert(checkObject(image, ["url"], ["dimensions", "text", "location", "captureType"]), "Bad attrs for Clip Image:", Object.keys(image));
@@ -1059,7 +976,6 @@ class _Clip {
         "Bad Clip image element location:", image.location);
     }
     assert(! this._text, "Clip with .image cannot have .text", JSON.stringify(this._text));
-    this._dirty("image");
     this._image = image;
   }
 
@@ -1075,7 +991,6 @@ class _Clip {
   set text(text) {
     if (! text) {
       this._text = undefined;
-      this._dirty("text");
       return;
     }
     assert(checkObject(text, ["html"], ["text", "location"]), "Bad attrs in Clip text:", Object.keys(text));
@@ -1092,7 +1007,6 @@ class _Clip {
         "Bad Clip text location:", JSON.stringify(text.location));
     }
     assert(! this._image, "Clip with .text cannot have .image", JSON.stringify(this._image));
-    this._dirty("text");
     this._text = text;
   }
 
@@ -1101,7 +1015,6 @@ class _Clip {
   }
   set sortOrder(val) {
     assert(typeof val == "number" || ! val, "Bad Clip sortOrder:", val);
-    this._dirty("sortOrder");
     this._sortOrder = val;
   }
 
