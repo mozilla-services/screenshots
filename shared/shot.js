@@ -184,7 +184,6 @@ class AbstractShot {
     this.twitterCard = attrs.twitterCard || null;
     this.documentSize = attrs.documentSize || null;
     this.fullScreenThumbnail = attrs.fullScreenThumbnail || null;
-    this.isPublic = attrs.isPublic === undefined || attrs.isPublic === null ? null : !! attrs.isPublic;
     this.abTests = attrs.abTests || null;
     this.resources = attrs.resources || {};
     this._clips = {};
@@ -500,14 +499,6 @@ class AbstractShot {
     }
   }
 
-  get isPublic() {
-    return this._isPublic;
-  }
-  set isPublic(val) {
-    assert(val === null || val === false || val === true, "isPublic should be true/false/null, not:", typeof val, val, JSON.stringify(val));
-    this._isPublic = val;
-  }
-
   get resources() {
     return this._resources;
   }
@@ -546,13 +537,13 @@ class AbstractShot {
 AbstractShot.prototype.REGULAR_ATTRS = (`
 deviceId url docTitle userTitle createdDate favicon images
 siteName openGraph twitterCard documentSize
-fullScreenThumbnail isPublic resources abTests
+fullScreenThumbnail resources abTests
 `).split(/\s+/g);
 
 // Attributes that will be accepted in the constructor, but ignored/dropped
 AbstractShot.prototype.DEPRECATED_ATTRS = (`
 microdata history ogTitle createdDevice head body htmlAttrs bodyAttrs headAttrs
-readable hashtags comments showPage
+readable hashtags comments showPage isPublic
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`

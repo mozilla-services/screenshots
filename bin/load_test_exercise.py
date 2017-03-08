@@ -103,7 +103,6 @@ def make_example_shot():
         createdDate=int(time.time()*1000),
         favicon=None,
         siteName="test site",
-        isPublic=True,
         clips={
             make_uuid(): dict(
                 createdDate=int(time.time()*1000),
