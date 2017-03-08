@@ -578,7 +578,7 @@ AbstractShot.prototype.Image = _Image;
 class _Clip {
   constructor(shot, id, json) {
     this._shot = shot;
-    assert(checkObject(json, ["createdDate"], ["sortOrder", "image", "text"]), "Bad attrs for Clip:", Object.keys(json));
+    assert(checkObject(json, ["createdDate", "image"], ["sortOrder"]), "Bad attrs for Clip:", Object.keys(json));
     assert(typeof id == "string" && id, "Bad Clip id:", id);
     this._id = id;
     this.createdDate = json.createdDate;
@@ -589,28 +589,15 @@ class _Clip {
       let biggestOrder = shot.biggestClipSortOrder();
       this.sortOrder = biggestOrder + 100;
     }
-    assert(! (json.image && json.text), "Clip cannot have both .image and .text", Object.keys(json));
-    if (json.image) {
-      this.image = json.image;
-    } else if (json.text) {
-      this.text = json.text;
-    } else {
-      assert(false, "No .image or .text");
-    }
+    this.image = json.image;
   }
 
   toString() {
-    let s = `[Shot Clip id=${this.id} sortOrder=${this.sortOrder}`;
-    if (this.image) {
-      s += ` image ${this.image.dimensions.x}x${this.image.dimensions.y}]`;
-    } else {
-      s += ` text length ${this.text.text.length}]`;
-    }
-    return s;
+    return `[Shot Clip id=${this.id} sortOrder=${this.sortOrder} image ${this.image.dimensions.x}x${this.image.dimensions.y}]`;
   }
 
   asJson() {
-    return jsonify(this, ["createdDate"], ["sortOrder", "image", "text"]);
+    return jsonify(this, ["createdDate"], ["sortOrder", "image"]);
   }
 
   get id() {
@@ -665,31 +652,6 @@ class _Clip {
     if (this.image) {
       return this.image.url.startsWith("data:");
     }
-  }
-
-  get text() {
-    return this._text;
-  }
-  set text(text) {
-    if (! text) {
-      this._text = undefined;
-      return;
-    }
-    assert(checkObject(text, ["html"], ["text", "location"]), "Bad attrs in Clip text:", Object.keys(text));
-    assert(typeof text.html == "string" && text.html, "Bad Clip text html:", text.html);
-    assert(typeof text.text == "string" || ! text.text, "Bad Clip text text:", text.text);
-    if (text.location) {
-      assert(
-        typeof text.location.contextStart == "string" &&
-        typeof text.location.contextEnd == "string" &&
-        typeof text.location.selectionStart == "string" &&
-        typeof text.location.selectionEnd == "string" &&
-        typeof text.location.startOffset == "number" &&
-        typeof text.location.endOffset == "number",
-        "Bad Clip text location:", JSON.stringify(text.location));
-    }
-    assert(! this._image, "Clip with .text cannot have .image", JSON.stringify(this._image));
-    this._text = text;
   }
 
   get sortOrder() {
