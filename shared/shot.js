@@ -173,11 +173,6 @@ class AbstractShot {
     this.userTitle = attrs.userTitle || null;
     this.createdDate = attrs.createdDate || Date.now();
     this.favicon = attrs.favicon || null;
-    this._comments = [];
-    if (attrs.comments) {
-      this._comments = attrs.comments.map(
-        (json) => new this.Comment(json));
-    }
     this.siteName = attrs.siteName || null;
     this.images = [];
     if (attrs.images) {
@@ -355,21 +350,6 @@ class AbstractShot {
     assert(val === null || typeof val == "string", "Bad docTitle:", val);
     this._title = val;
   }
-
-  get comments() {
-    // Kind of a simulation of a read-only array:
-    // (because writes are ignored)
-    return this._comments.slice();
-  }
-  addComment(json) {
-    let comment = new this.Comment(json);
-    this._comments.push(comment);
-  }
-  updateComment(index, json) {
-    let comment = new this._shot.Comment(json);
-    this._comments[index] = comment;
-  }
-  // FIXME: no delete, nor comment editing
 
   get openGraph() {
     return this._openGraph || null;
@@ -573,8 +553,7 @@ class AbstractShot {
 }
 
 AbstractShot.prototype.REGULAR_ATTRS = (`
-deviceId url docTitle userTitle createdDate favicon
-comments images
+deviceId url docTitle userTitle createdDate favicon images
 siteName openGraph twitterCard documentSize
 fullScreenThumbnail isPublic resources showPage abTests
 `).split(/\s+/g);
@@ -582,7 +561,7 @@ fullScreenThumbnail isPublic resources showPage abTests
 // Attributes that will be accepted in the constructor, but ignored/dropped
 AbstractShot.prototype.DEPRECATED_ATTRS = (`
 microdata history ogTitle createdDevice head body htmlAttrs bodyAttrs headAttrs
-readable hashtags
+readable hashtags comments
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`
@@ -604,29 +583,6 @@ AbstractShot.prototype._TWITTERCARD_PROPERTIES = (`
 card site title description image
 player player:width player:height player:stream player:stream:content_type
 `).split(/\s+/g);
-
-/** Represents one comment, on a clip or shot */
-class _Comment {
-  // FIXME: either we have to notify the shot of updates, or make
-  // this read-only (as a result this is read-only *but not enforced*)
-  constructor(json) {
-    assert(checkObject(json, ["user", "createdDate", "text"], ["hidden", "flagged"]), "Bad attrs for Comment:", Object.keys(json));
-    assert(typeof json.user == "string" && json.user, "Bad Comment user:", json.user);
-    this.user = json.user;
-    assert(typeof json.createdDate == "number", "Bad Comment createdDate:", json.createdDate);
-    this.createdDate = json.createdDate;
-    assert(typeof json.text == "string", "Bad Comment text:", json.text);
-    this.text = json.text;
-    this.hidden = !! json.hidden;
-    this.flagged = !! json.flagged;
-  }
-
-  asJson() {
-    return jsonify(this, ["user", "createdDate", "text"], ["hidden", "flagged"]);
-  }
-}
-
-AbstractShot.prototype.Comment = _Comment;
 
 /** Represents one found image in the document (not a clip) */
 class _Image {
@@ -658,7 +614,7 @@ AbstractShot.prototype.Image = _Image;
 class _Clip {
   constructor(shot, id, json) {
     this._shot = shot;
-    assert(checkObject(json, ["createdDate"], ["sortOrder", "image", "text", "comments"]), "Bad attrs for Clip:", Object.keys(json));
+    assert(checkObject(json, ["createdDate"], ["sortOrder", "image", "text"]), "Bad attrs for Clip:", Object.keys(json));
     assert(typeof id == "string" && id, "Bad Clip id:", id);
     this._id = id;
     this.createdDate = json.createdDate;
@@ -677,12 +633,6 @@ class _Clip {
     } else {
       assert(false, "No .image or .text");
     }
-    if (json.comments) {
-      this._comments = json.comments.map(
-        (commentJson) => new shot.Comment(commentJson));
-    } else {
-      this._comments = [];
-    }
   }
 
   toString() {
@@ -696,28 +646,11 @@ class _Clip {
   }
 
   asJson() {
-    var result = jsonify(this, ["createdDate"], ["sortOrder", "image", "text"]);
-    if (this.comments.length) {
-      result.comments = this.comments.map(
-        (comment) => comment.asJson());
-    }
-    return result;
+    return jsonify(this, ["createdDate"], ["sortOrder", "image", "text"]);
   }
 
   get id() {
     return this._id;
-  }
-
-  get comments() {
-    return this._comments.slice();
-  }
-  addComment(json) {
-    let comment = new this._shot.Comment(json);
-    this._comments.push(comment);
-  }
-  updateComment(index, json) {
-    let comment = new this._shot.Comment(json);
-    this._comments[index] = comment;
   }
 
   get createdDate() {
