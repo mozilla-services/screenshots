@@ -3,6 +3,7 @@
 
 window.ui = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
+  const MAGIC_OFFSET = 50;
 
   const { watchFunction } = catcher;
 
@@ -321,12 +322,19 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       // Note, document.documentElement.scrollHeight is zero on some strange pages (such as the page created when you load an image):
       let docHeight = Math.max(document.documentElement.scrollHeight || 0, document.body.scrollHeight);
       let docWidth = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth);
+
+      let winBottom = window.innerHeight;
+      let pageYOffset = window.pageYOffset;
+
       if ((pos.right - pos.left) < 78 || (pos.bottom - pos.top) < 78) {
         this.el.classList.add("pageshot-small-selection");
       } else {
         this.el.classList.remove("pageshot-small-selection");
       }
-      if (docHeight - pos.bottom < 50) {
+
+      // if the selection bounding box is w/in 50px of the bottom of
+      // the window, flip controls into the box
+      if (pos.bottom > ((winBottom + pageYOffset) - MAGIC_OFFSET)) {
         this.el.classList.add("pageshot-bottom-selection");
       } else {
         this.el.classList.remove("pageshot-bottom-selection");
