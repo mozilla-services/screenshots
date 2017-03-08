@@ -1,15 +1,16 @@
-/* globals communication, shot, main, chrome, auth, catcher, analytics */
+/* globals communication, shot, main, chrome, auth, catcher, analytics, browser */
 
 window.takeshot = (function () {
   let exports = {};
   const Shot = shot.AbstractShot;
-  const { sendEvent } = analytics; 
+  const { sendEvent } = analytics;
 
   communication.register("takeShot", (options) => {
     let { captureType, captureText, scroll, selectedPos, shotId, shot } = options;
     shot = new Shot(main.getBackend(), shotId, shot);
     shot.deviceId = auth.getDeviceId();
     let capturePromise = Promise.resolve();
+    let openedTab;
     if (! shot.clipNames().length) {
       // canvas.drawWindow isn't available, so we fall back to captureVisibleTab
       capturePromise = screenshotPage(selectedPos, scroll).then((dataUrl) => {
@@ -39,7 +40,12 @@ window.takeshot = (function () {
       shot.abTests = shotAbTests;
     }
     return catcher.watchPromise(capturePromise.then(() => {
+      return browser.tabs.create({url: shot.creatingUrl})
+    }).then((tab) => {
+      openedTab = tab;
       return uploadShot(shot);
+    }).then(() => {
+      return browser.tabs.update(openedTab.id, {url: shot.viewUrl});
     }).then(() => {
       return shot.viewUrl;
     }));

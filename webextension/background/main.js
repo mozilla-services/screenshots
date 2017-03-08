@@ -74,7 +74,6 @@ window.main = (function () {
         + pasteSymbol + "-V to paste."
       });
     }
-    chrome.tabs.create({url});
   });
 
   return exports;
