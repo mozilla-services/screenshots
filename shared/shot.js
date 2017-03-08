@@ -185,7 +185,6 @@ class AbstractShot {
     this.documentSize = attrs.documentSize || null;
     this.fullScreenThumbnail = attrs.fullScreenThumbnail || null;
     this.abTests = attrs.abTests || null;
-    this.resources = attrs.resources || {};
     this._clips = {};
     if (attrs.clips) {
       for (let clipId in attrs.clips) {
@@ -499,23 +498,6 @@ class AbstractShot {
     }
   }
 
-  get resources() {
-    return this._resources;
-  }
-  set resources(val) {
-    if (val === null || val === undefined) {
-      this._resources = null;
-      return;
-    }
-    assert(typeof val == "object", "resources should be an object, not:", typeof val);
-    for (let key in val) {
-      assert(key.search(/^[a-zA-Z0-9\.\-]+$/) === 0, "Bad resource name: " + key);
-      let obj = val[key];
-      assert(checkObject(obj, ['url', 'tag'], ['elId', 'attr', 'hash', 'rel']), "Invalid resource " + key + ": " + JSON.stringify(obj));
-    }
-    this._resources = val;
-  }
-
   get abTests() {
     return this._abTests;
   }
@@ -537,13 +519,13 @@ class AbstractShot {
 AbstractShot.prototype.REGULAR_ATTRS = (`
 deviceId url docTitle userTitle createdDate favicon images
 siteName openGraph twitterCard documentSize
-fullScreenThumbnail resources abTests
+fullScreenThumbnail abTests
 `).split(/\s+/g);
 
 // Attributes that will be accepted in the constructor, but ignored/dropped
 AbstractShot.prototype.DEPRECATED_ATTRS = (`
 microdata history ogTitle createdDevice head body htmlAttrs bodyAttrs headAttrs
-readable hashtags comments showPage isPublic
+readable hashtags comments showPage isPublic resources
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`
