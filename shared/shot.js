@@ -206,7 +206,6 @@ class AbstractShot {
     this._id = id;
     this.url = attrs.url;
     this.docTitle = attrs.docTitle || null;
-    this.ogTitle = attrs.ogTitle || null;
     this.userTitle = attrs.userTitle || null;
     this.createdDate = attrs.createdDate || Date.now();
     this.createdDevice = attrs.createdDevice || null;
@@ -476,15 +475,6 @@ ${options.addBody || ""}
   }
   // FIXME: no delete, nor comment editing
 
-  // FIXME: deprecate
-  get ogTitle() {
-    return this._ogTitle;
-  }
-  set ogTitle(val) {
-    assert(val === null || typeof val == "string", "Bad ogTitle:", val);
-    this._ogTitle = val;
-  }
-
   get openGraph() {
     return this._openGraph || null;
   }
@@ -522,7 +512,8 @@ ${options.addBody || ""}
   get title() {
     // FIXME: we shouldn't support both openGraph.title and ogTitle
     let ogTitle = this.openGraph && this.openGraph.title;
-    let title = this.userTitle || this.ogTitle || ogTitle || this.docTitle || this.url;
+    let twitterTitle = this.twitterCard && this.twitterCard.title;
+    let title = this.userTitle || ogTitle || twitterTitle || this.docTitle || this.url;
     if (Array.isArray(title)) {
       title = title[0];
     }
@@ -762,7 +753,7 @@ ${options.addBody || ""}
 }
 
 AbstractShot.prototype.REGULAR_ATTRS = (`
-deviceId url docTitle ogTitle userTitle createdDate createdDevice favicon
+deviceId url docTitle userTitle createdDate createdDevice favicon
 comments hashtags images readable head body htmlAttrs bodyAttrs
 headAttrs siteName openGraph twitterCard documentSize
 fullScreenThumbnail isPublic resources showPage abTests
@@ -770,11 +761,11 @@ fullScreenThumbnail isPublic resources showPage abTests
 
 // Attributes that will be accepted in the constructor, but ignored/dropped
 AbstractShot.prototype.DEPRECATED_ATTRS = (`
-microdata history
+microdata history ogTitle
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`
-deviceId url docTitle ogTitle userTitle createdDate createdDevice favicon
+deviceId url docTitle userTitle createdDate createdDevice favicon
 openGraph twitterCard images fullScreenThumbnail
 `).split(/\s+/g);
 

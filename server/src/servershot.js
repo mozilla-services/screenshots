@@ -365,7 +365,7 @@ Shot.get = function (backend, id) {
     if (! json.url && rawValue.url) {
       json.url = rawValue.url;
     }
-    let jsonTitle = json.userTitle || json.ogTitle || (json.openGraph && json.openGraph.title) || json.docTitle;
+    let jsonTitle = json.userTitle || (json.openGraph && json.openGraph.title) || json.docTitle;
     if (! jsonTitle) {
       json.docTitle = rawValue.title;
     }
