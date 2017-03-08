@@ -179,7 +179,6 @@ class AbstractShot {
       this.images = attrs.images.map(
         (json) => new this.Image(json));
     }
-    this.deviceId = attrs.deviceId || null;
     this.openGraph = attrs.openGraph || null;
     this.twitterCard = attrs.twitterCard || null;
     this.documentSize = attrs.documentSize || null;

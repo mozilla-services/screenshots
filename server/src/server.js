@@ -648,38 +648,10 @@ app.put("/data/:id/:domain", function (req, res) {
     throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
   }
   let shotId = `${req.params.id}/${req.params.domain}`;
-
-  if (! bodyObj.deviceId) {
-    console.warn("No deviceId in request body", req.url);
-    let keys = "No keys";
-    try {
-      keys = Object.keys(bodyObj);
-    } catch (e) {
-      // ignore
-    }
-    sendRavenMessage(
-      req, "Attempt PUT without deviceId in request body",
-      {extra:
-        {
-          "typeof bodyObj": typeof bodyObj,
-          keys
-        }
-      }
-    );
-    simpleResponse(res, "No deviceId in body", 400);
-    return;
-  }
   if (! req.deviceId) {
     console.warn("Attempted to PUT without logging in", req.url);
     sendRavenMessage(req, "Attempt PUT without authentication");
     simpleResponse(res, "Not logged in", 401);
-    return;
-  }
-  if (req.deviceId != bodyObj.deviceId) {
-    // FIXME: this doesn't make sense for comments or other stuff, see https://github.com/mozilla-services/pageshot/issues/245
-    console.warn("Attempted to PUT a page with a different deviceId than the login deviceId");
-    sendRavenMessage(req, "Attempted to save page for another user");
-    simpleResponse(res, "Cannot save a page on behalf of another user", 403);
     return;
   }
   let shot = new Shot(req.deviceId, req.backend, shotId, bodyObj);
@@ -712,7 +684,6 @@ app.get("/data/:id/:domain", function (req, res) {
     } else {
       let value = data.value;
       value = JSON.parse(value);
-      delete value.deviceId;
       value = JSON.stringify(value);
       if ('format' in req.query) {
         value = JSON.stringify(JSON.parse(value), null, '  ');
@@ -755,9 +726,9 @@ app.post("/api/set-title/:id/:domain", function (req, res) {
     simpleResponse(res, "Not logged in", 401);
     return;
   }
-  Shot.get(req.backend, shotId).then((shot) => {
-    if (shot.deviceId !== req.deviceId) {
-      simpleResponse(res, "Not the owner", 403);
+  Shot.get(req.backend, shotId, req.deviceId).then((shot) => {
+    if (! shot) {
+      simpleResponse(res, "No such shot", 404);
       return;
     }
     shot.userTitle = userTitle;
