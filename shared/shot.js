@@ -208,7 +208,6 @@ class AbstractShot {
     this.docTitle = attrs.docTitle || null;
     this.userTitle = attrs.userTitle || null;
     this.createdDate = attrs.createdDate || Date.now();
-    this.createdDevice = attrs.createdDevice || null;
     this.favicon = attrs.favicon || null;
     this.body = attrs.body || null;
     this.head = attrs.head || null;
@@ -442,14 +441,6 @@ ${options.addBody || ""}
 
   get oembedUrl() {
     return this.backend + "/oembed?url=" + encodeURIComponent(this.viewUrl);
-  }
-
-  get createdDevice() {
-    return this._createdDevice;
-  }
-  set createdDevice(val) {
-    assert(val === null || (typeof val == "string" && val), "Bad createdDevice:", val);
-    this._createdDevice = val;
   }
 
   get docTitle() {
@@ -753,7 +744,7 @@ ${options.addBody || ""}
 }
 
 AbstractShot.prototype.REGULAR_ATTRS = (`
-deviceId url docTitle userTitle createdDate createdDevice favicon
+deviceId url docTitle userTitle createdDate favicon
 comments hashtags images readable head body htmlAttrs bodyAttrs
 headAttrs siteName openGraph twitterCard documentSize
 fullScreenThumbnail isPublic resources showPage abTests
@@ -761,11 +752,11 @@ fullScreenThumbnail isPublic resources showPage abTests
 
 // Attributes that will be accepted in the constructor, but ignored/dropped
 AbstractShot.prototype.DEPRECATED_ATTRS = (`
-microdata history ogTitle
+microdata history ogTitle createdDevice
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`
-deviceId url docTitle userTitle createdDate createdDevice favicon
+deviceId url docTitle userTitle createdDate favicon
 openGraph twitterCard images fullScreenThumbnail
 `).split(/\s+/g);
 
