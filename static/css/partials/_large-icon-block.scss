@@ -16,6 +16,11 @@
     opacity: 0.3;
     position: relative;
 
+    &.logo {
+      background-image: url("../img/pageshot.svg");
+      background-size: 200px auto;
+    }
+
     &.logo-no-shots {
       background-image: url("../img/myshots-no-shots.svg");
     }
