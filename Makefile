@@ -87,12 +87,12 @@ build/%.html: %.html
 	cp $< $@
 
 .PHONY: addon
-addon: npm set_backend set_sentry webextension/manifest.json webextension/build/shot.js webextension/build/inlineSelectionCss.js webextension/build/raven.js webextension/build/defaultSentryDsn.js
+addon: npm set_backend set_sentry addon/webextension/manifest.json addon/webextension/build/shot.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/defaultSentryDsn.js
 
 .PHONY: zip
 zip: addon
 	# FIXME: should remove web-ext-artifacts/*.zip first
-	./node_modules/.bin/web-ext build --source-dir webextension/
+	./node_modules/.bin/web-ext build --source-dir addon/webextension/
 	mv web-ext-artifacts/page_shot*.zip build/pageshot.zip
 	# We'll try to remove this directory, but it's no big deal if we can't:
 	@rmdir web-ext-artifacts || true
@@ -100,21 +100,21 @@ zip: addon
 .PHONY: signed_xpi
 signed_xpi: addon
 	rm -f web-ext-artifacts/*.xpi
-	./node_modules/.bin/web-ext sign --api-key=${AMO_USER} --api-secret=${AMO_SECRET} --source-dir webextension/
+	./node_modules/.bin/web-ext sign --api-key=${AMO_USER} --api-secret=${AMO_SECRET} --source-dir addon/webextension/
 	mv web-ext-artifacts/*.xpi build/pageshot.xpi
 
-webextension/manifest.json: webextension/manifest.json.template build/.backend.txt package.json
+addon/webextension/manifest.json: addon/webextension/manifest.json.template build/.backend.txt package.json
 	./bin/build-scripts/update_manifest $< $@
 
-webextension/build/shot.js: shared/shot.js
+addon/webextension/build/shot.js: shared/shot.js
 	@mkdir -p $(@D)
 	./bin/build-scripts/modularize shot $< > $@
 
-webextension/build/inlineSelectionCss.js: build/server/static/css/inline-selection.css
+addon/webextension/build/inlineSelectionCss.js: build/server/static/css/inline-selection.css
 	@mkdir -p $(@D)
 	./bin/build-scripts/css_to_js inlineSelectionCss $< > $@
 
-webextension/build/raven.js: $(raven_source)
+addon/webextension/build/raven.js: $(raven_source)
 	@mkdir -p $(@D)
 	cp $< $@
 
@@ -188,13 +188,13 @@ set_backend:
 	@echo "Setting backend to ${PAGESHOT_BACKEND}"
 	./bin/build-scripts/set_file build/.backend.txt $(PAGESHOT_BACKEND)
 
-webextension/build/defaultSentryDsn.js: set_sentry
+addon/webextension/build/defaultSentryDsn.js: set_sentry
 
 .PHONY: set_sentry
 set_sentry:
 	@if [[ -z "$(PAGESHOT_SENTRY)" ]] ; then echo "No default Sentry" ; fi
 	@if [[ -n "$(PAGESHOT_SENTRY)" ]] ; then echo "Setting default Sentry ${PAGESHOT_SENTRY}" ; fi
-	./bin/build-scripts/set_file webextension/build/defaultSentryDsn.js "window.defaultSentryDsn = '${PAGESHOT_SENTRY}';null;"
+	./bin/build-scripts/set_file addon/webextension/build/defaultSentryDsn.js "window.defaultSentryDsn = '${PAGESHOT_SENTRY}';null;"
 
 
 build/.npm-install.log: package.json
@@ -212,20 +212,20 @@ all: addon server
 
 .PHONY: clean
 clean:
-	rm -rf build/ webextension/build/ webextension/manifest.json
+	rm -rf build/ addon/webextension/build/ addon/webextension/manifest.json
 
 .PHONY: help
 help:
 	@echo "Makes the addon and server"
 	@echo "Commands:"
 	@echo "  make addon"
-	@echo "    make/update the addon directly in webextension/ (built files in webextension/build/)"
+	@echo "    make/update the addon directly in addon/webextension/ (built files in addon/webextension/build/)"
 	@echo "  make server"
 	@echo "    make the server in build/server/"
 	@echo "  make all"
 	@echo "    equivalent to make server addon"
 	@echo "  make clean"
-	@echo "    rm -rf build/ webextension/build"
+	@echo "    rm -rf build/ addon/webextension/build"
 	@echo "  make zip"
 	@echo "    make a zip of the webextension in build/pageshot.zip"
 	@echo "See also:"
