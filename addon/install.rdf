@@ -8,12 +8,11 @@
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!--Firefox-->
         <em:minVersion>51.0a1</em:minVersion>
-        <!-- FIXME: get version from... somewhere -->
-        <em:maxVersion>55.0</em:maxVersion>
+        <em:maxVersion>*</em:maxVersion>
       </Description>
     </em:targetApplication>
     <em:type>2</em:type>
-    <!-- FIXME: get version from package.json -->
+    <!-- FIXME: get version from package.json https://github.com/mozilla-services/pageshot/issues/2314 -->
     <em:version>1.0</em:version>
     <em:bootstrap>true</em:bootstrap>
     <em:hasEmbeddedWebExtension>true</em:hasEmbeddedWebExtension>
