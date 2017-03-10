@@ -1,4 +1,4 @@
-/* globals communication, shot, main, browser, auth, catcher, analytics, browser */
+/* globals communication, shot, main, auth, catcher, analytics, browser */
 
 window.takeshot = (function () {
   let exports = {};
@@ -64,36 +64,32 @@ window.takeshot = (function () {
     };
     pos.width = pos.right - pos.left;
     pos.height = pos.bottom - pos.top;
-    return new Promise((resolve, reject) => {
-      return browser.tabs.captureVisibleTab(
-        null,
-        {format: "png"},
-        function (dataUrl) {
-          if (browser.runtime.lastError) {
-            catcher.unhandled(new Error(browser.runtime.lastError.message));
-          }
-          let image = new Image();
-          image.src = dataUrl;
-          image.onload = catcher.watchFunction(() => {
-            let xScale = image.width / scroll.innerWidth;
-            let yScale = image.height / scroll.innerHeight;
-            let canvas = document.createElement("canvas");
-            canvas.height = pos.height * yScale;
-            canvas.width = pos.width * xScale;
-            let context = canvas.getContext("2d");
-            context.drawImage(
-              image,
-              pos.left * xScale, pos.top * yScale,
-              pos.width * xScale, pos.height * yScale,
-              0, 0,
-              pos.width * xScale, pos.height * yScale
-            );
-            let result = canvas.toDataURL();
-            resolve(result);
-          });
-        }
-      );
-    });
+    return catcher.watchPromise(browser.tabs.captureVisibleTab(
+      null,
+      {format: "png"}
+    ).then((dataUrl) => {
+      let image = new Image();
+      image.src = dataUrl;
+      return new Promise((resolve, reject) => {
+        image.onload = catcher.watchFunction(() => {
+          let xScale = image.width / scroll.innerWidth;
+          let yScale = image.height / scroll.innerHeight;
+          let canvas = document.createElement("canvas");
+          canvas.height = pos.height * yScale;
+          canvas.width = pos.width * xScale;
+          let context = canvas.getContext("2d");
+          context.drawImage(
+            image,
+            pos.left * xScale, pos.top * yScale,
+            pos.width * xScale, pos.height * yScale,
+            0, 0,
+            pos.width * xScale, pos.height * yScale
+          );
+          let result = canvas.toDataURL();
+          resolve(result);
+        });
+      });
+    }));
   }
 
   function uploadShot(shot) {

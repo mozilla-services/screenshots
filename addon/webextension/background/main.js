@@ -40,6 +40,7 @@ window.main = (function () {
     title: "Create Page Shot",
     contexts: ["page"]
   }, () => {
+    // Note: unlike most browser.* functions this one does not return a promise
     if (browser.runtime.lastError) {
       catcher.unhandled(new Error(browser.runtime.lastError.message));
     }

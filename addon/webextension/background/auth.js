@@ -10,13 +10,7 @@ window.auth = (function () {
   let sentryPublicDSN = null;
   let abTests = {};
 
-  browser.storage.local.get(["registrationInfo", "abTests"], catcher.watchFunction((result) => {
-    if (browser.runtime.lastError) {
-      catcher.unhandled(new Error(browser.runtime.lastError.message));
-      if (! result) {
-        return;
-      }
-    }
+  catcher.watchPromise(browser.storage.local.get(["registrationInfo", "abTests"]).then((result) => {
     if (result.abTests) {
       abTests = result.abTests;
     }
@@ -24,16 +18,10 @@ window.auth = (function () {
       registrationInfo = result.registrationInfo;
     } else {
       registrationInfo = generateRegistrationInfo();
-      browser.storage.local.set({
-        registrationInfo: registrationInfo
-      }, () => {
-        if (browser.runtime.lastError) {
-          catcher.unhandled(new Error(browser.runtime.lastError.message));
-        } else {
-          console.info("Device authentication saved");
-        }
-      });
       console.info("Generating new device authentication ID", registrationInfo);
+      return browser.storage.local.set({
+        registrationInfo: registrationInfo
+      });
     }
   }));
 
@@ -116,11 +104,7 @@ window.auth = (function () {
     }
     if (responseJson.abTests) {
       abTests = responseJson.abTests;
-      browser.storage.local.set({abTests}, () => {
-        if (browser.runtime.lastError) {
-          catcher.unhandled(new Error(browser.runtime.lastError.message));
-        }
-      });
+      catcher.watchPromise(browser.storage.local.set({abTests}));
     }
   }
 

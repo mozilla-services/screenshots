@@ -4,12 +4,9 @@ window.deviceInfo = (function () {
   let manifest = browser.runtime.getManifest();
 
   let platformInfo = {};
-  browser.runtime.getPlatformInfo(function(info) {
-    if (browser.runtime.lastError) {
-      catcher.unhandled(new Error(browser.runtime.lastError.message), {context: "getPlatformInfo"});
-    }
+  catcher.watchPromise(browser.runtime.getPlatformInfo().then((info) => {
     platformInfo = info;
-  });
+  }));
 
   return function deviceInfo() {
     let match = navigator.userAgent.match(/Chrom(?:e|ium)\/([0-9\.]+)/);
