@@ -25,15 +25,15 @@ window.main = (function () {
     }
   }
 
-  browser.browserAction.onClicked.addListener(function(tab) {
-    if(tab.url.match(/about:(newtab|blank)/i)) {
+  browser.browserAction.onClicked.addListener(catcher.watchFunction((tab) => {
+    if (tab.url.match(/about:(newtab|blank)/i)) {
       sendEvent("goto-myshots", "about-newtab");
-      browser.tabs.update({url: backend + "/shots"});
+      catcher.watchPromise(browser.tabs.update({url: backend + "/shots"}));
     } else {
       sendEvent("start-shot", "toolbar-pageshot-button");
       catcher.watchPromise(loadSelector());
     }
-  });
+  }));
 
   browser.contextMenus.create({
     id: "create-pageshot",
@@ -63,13 +63,13 @@ window.main = (function () {
   });
 
   communication.register("openMyShots", () => {
-    browser.tabs.create({url: backend + "/shots"});
+    return browser.tabs.create({url: backend + "/shots"});
   });
 
   communication.register("openShot", ({url, copied}) => {
     if (copied) {
       const id = makeUuid();
-      browser.notifications.create(id, {
+      return browser.notifications.create(id, {
         type: "basic",
         iconUrl: "../icons/clipboard-32.png",
         title: "Link Copied",
