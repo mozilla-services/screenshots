@@ -56,7 +56,9 @@ window.util = (function () { // eslint-disable-line no-unused-vars
         return;
       }
       if (elBox.bottom > box.bottom + CAPTURE_WIGGLE ||
-          elBox.top < box.top - CAPTURE_WIGGLE) {
+          elBox.top < box.top - CAPTURE_WIGGLE ||
+          elBox.right > box.right + CAPTURE_WIGGLE ||
+          elBox.left < box.left - CAPTURE_WIGGLE) {
         // Partially outside the box
         for (var i=0; i<el.childNodes.length; i++) {
           var child = el.childNodes[i];
