@@ -29,8 +29,13 @@ window.main = (function () {
   });
 
   chrome.browserAction.onClicked.addListener(function(tab) {
-    sendEvent("start-shot", "toolbar-pageshot-button");
-    catcher.watchPromise(loadSelector());
+    if(tab.url.match(/about:(newtab|blank)/i)) {
+      sendEvent("goto-myshots", "about-newtab");
+      chrome.tabs.update({url: backend + "/shots"});
+    } else {
+      sendEvent("start-shot", "toolbar-pageshot-button");
+      catcher.watchPromise(loadSelector());
+    }
   });
 
   chrome.contextMenus.create({
