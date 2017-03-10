@@ -133,6 +133,7 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 7. [ ] Cancel because the tab is navigated (such as entering something in the URL bar) `addon/cancel-shot/tab-load` (FIXME: need to track)
 8. [ ] Cancel because the tab is reloaded `addon/cancel-shot/tab-reload` (FIXME: need to track)
 5. [x] Click My Shots `addon/goto-myshots/selection-button`
+6. [x] Go to My Shots by hitting the Page Shot button on a about:newtab page `addon/goto-myshots/about-newtab`
 6. [x] Click on "Save visible" `addon/capture-visible/selection-button`
 7. [x] Click on "Save Full Page" `addon/capture-full-page/selection-button`
 6. ~~Click My Shots button from error panel `addon/goto-myshots/error-panel`~~
