@@ -1,12 +1,12 @@
-/* globals chrome, catcher */
+/* globals browser, catcher */
 
 window.deviceInfo = (function () {
-  let manifest = chrome.runtime.getManifest();
+  let manifest = browser.runtime.getManifest();
 
   let platformInfo = {};
-  chrome.runtime.getPlatformInfo(function(info) {
-    if (chrome.runtime.lastError) {
-      catcher.unhandled(new Error(chrome.runtime.lastError.message), {context: "getPlatformInfo"});
+  browser.runtime.getPlatformInfo(function(info) {
+    if (browser.runtime.lastError) {
+      catcher.unhandled(new Error(browser.runtime.lastError.message), {context: "getPlatformInfo"});
     }
     platformInfo = info;
   });

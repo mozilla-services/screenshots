@@ -1,4 +1,4 @@
-/* globals communication, shot, main, chrome, auth, catcher, analytics, browser */
+/* globals communication, shot, main, browser, auth, catcher, analytics, browser */
 
 window.takeshot = (function () {
   let exports = {};
@@ -65,12 +65,12 @@ window.takeshot = (function () {
     pos.width = pos.right - pos.left;
     pos.height = pos.bottom - pos.top;
     return new Promise((resolve, reject) => {
-      return chrome.tabs.captureVisibleTab(
+      return browser.tabs.captureVisibleTab(
         null,
         {format: "png"},
         function (dataUrl) {
-          if (chrome.runtime.lastError) {
-            catcher.unhandled(new Error(chrome.runtime.lastError.message));
+          if (browser.runtime.lastError) {
+            catcher.unhandled(new Error(browser.runtime.lastError.message));
           }
           let image = new Image();
           image.src = dataUrl;

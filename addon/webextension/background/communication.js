@@ -1,10 +1,10 @@
-/* globals chrome, catcher */
+/* globals browser, catcher */
 window.communication = (function () {
   let exports = {};
 
   let registeredFunctions = {};
 
-  chrome.runtime.onMessage.addListener(catcher.watchFunction((req, sender, sendResponse) => {
+  browser.runtime.onMessage.addListener(catcher.watchFunction((req, sender, sendResponse) => {
     if (! (req.funcName in registeredFunctions)) {
       console.error(`Received unknown internal message type ${req.funcName}`);
       sendResponse({type: "error", name: "Unknown message type"});
