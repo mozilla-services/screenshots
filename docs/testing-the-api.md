@@ -76,24 +76,15 @@ Authenticated.  Creates or updates a shot.  Takes a JSON body.  Looks like:
         "y": 383
       },
       "title": null,
-      "alt": "my_shots",
-      "isReadable": false
+      "alt": "my_shots"
     }
   ],
-  "head": "<title>...",
-  "body": "<div>...",
-  "htmlAttrs": [["attrname", "attrvalue"]],
-  "bodyAttrs": [["attrname", "attrvalue"]],
-  "headAttrs": [],
   "siteName": "GitHub",
   "documentSize": {
     "width": 1127,
     "height": 2086
   },
   "fullScreenThumbnail": "data:...",
-  "isPublic": true,
-  "resources": {},
-  "showPage": false,
   "clips": {
     "cplocgk9m1nc": {
       "createdDate": 1468983771992,
@@ -148,15 +139,11 @@ Then you get a response back that converts the `data:...` URLs to other URLs, li
 
 `GET /data/{random_id}/{domain}`
 
-Not authenticated.  Gets the JSON back, but with `head` and `body` removed.
+Not authenticated.  Gets the JSON back.
 
 `POST /api/delete-shot`
 
 Authenticated.  Takes only one parameter, `id` (the `"{random_id}/{domain}"`)
-
-`POST /api/add-saved-shot-data/{random_id}/{domain}`
-
-Authenticated.  Takes a JSON body, with keys `head`, `body`, `headAttrs`, `bodyAttrs`, and `htmlAttrs`
 
 `POST /api/set-expiration`
 

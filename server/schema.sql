@@ -7,8 +7,6 @@ CREATE TABLE data (
     deviceid character varying(200),
     created timestamp without time zone DEFAULT now(),
     value text NOT NULL,
-    head text,
-    body text,
     url text NOT NULL,
     expire_time timestamp without time zone DEFAULT (now() + '14 days'::interval),
     deleted boolean DEFAULT false NOT NULL,
@@ -25,7 +23,8 @@ CREATE TABLE devices (
     last_login timestamp without time zone,
     created timestamp without time zone DEFAULT now(),
     session_count integer DEFAULT 0,
-    secret_hashed text
+    secret_hashed text,
+    ab_tests text
 );
 CREATE TABLE images (
     id character varying(200) NOT NULL,
@@ -73,4 +72,4 @@ ALTER TABLE ONLY images
     ADD CONSTRAINT images_shotid_fkey FOREIGN KEY (shotid) REFERENCES data(id) ON DELETE CASCADE;
 ALTER TABLE ONLY states
     ADD CONSTRAINT states_deviceid_fkey FOREIGN KEY (deviceid) REFERENCES devices(id) ON DELETE CASCADE;
--- pg-patch version: 12
+-- pg-patch version: 14

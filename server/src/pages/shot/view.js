@@ -93,7 +93,7 @@ class Head extends React.Component {
     if (! this.props.shot) {
       return null;
     }
-    let title = this.props.shot.ogTitle ||
+    let title = (this.props.shot.openGraph && this.props.shot.openGraph.title) ||
       (this.props.shot.twitterCard && this.props.shot.twitterCard.title) ||
       this.props.shot.title;
     let og = [
