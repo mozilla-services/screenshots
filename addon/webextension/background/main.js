@@ -30,12 +30,12 @@ window.main = (function () {
 
   chrome.browserAction.onClicked.addListener(function(tab) {
     if(tab.url.match(/about:(newtab|blank)/i)) {
-     chrome.tabs.update({url: backend + "/shots"});
+      sendEvent("goto-myshots", "about-newtab");
+      chrome.tabs.update({url: backend + "/shots"});
+    } else {
+      sendEvent("start-shot", "toolbar-pageshot-button");
+      catcher.watchPromise(loadSelector());
     }
-    else {
-    sendEvent("start-shot", "toolbar-pageshot-button");
-    catcher.watchPromise(loadSelector());
-  }
   });
 
   chrome.contextMenus.create({
