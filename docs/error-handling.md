@@ -1,97 +1,107 @@
 # Error Handling
 
-Specifically in the addon it is challenging to handle error handling in all the many execution environments that exist.  To handle this we need to be careful to catch errors wherever they happen and let them emerge in some sensible way.
+In Page Shot we try to capture all unexpected failures for the purpose of reporting (and hopefully for fixing!)
 
-Errors should take the form of:
+## Catching
 
-```javascript
-{
-  name: "ERROR_NAME",
-  message: "description for programmer",
-  help: "description for the user",
-  helpHtml: "rich description for the user"
+To do this we have to wrap anything that *won't* report the error.  That means:
+
+* Any callbacks or event listeners
+* Any promises that aren't returned and where there's not another explicit `.catch()` handler
+
+Not everything has to be wrapped!  You can assume that any function you write in Page Shot will normally be called by another Page Shot function, and it's the caller's responsibility to catch an exception.  Similarly if you return a Promise, it is the caller's responsibility to catch errors from the Promise.
+
+*At the point* where you pass a Page Shot function to some code that will call the function, but *doesn't* know how to report errors, then you have to wrap that function.  Also, if you know a promise won't be returned and will be thrown away after it completes, you must wrap that promise.
+
+Also, if there are recoverable but unexpected errors you can report an error explicitly.
+
+### The `catcher` module
+
+The [catcher](../addon/webextension/catcher.js) module is loaded in both the content/worker process and in the background page.  Errors from the content process are sent to the background page, but this should be transparent to you.
+
+#### `catcher.watchFunction`
+
+If you have a function that should be watched, use `catcher.watchFunction(func)`:
+
+```js
+document.addEventListener("click", catcher.watchFunction(myCallback));
+```
+
+This wraps the function (but does not call it!) so that any exceptions are reported and then re-thrown.
+
+Note that this will erase implicit `this` bindings, so you may need to do:
+
+```js
+document.addEventListener("click", catcher.watchFunction(this.onClick.bind(this)));
+```
+
+Also note that this changes the identity of a function, so sometimes you have to be even more explicit:
+
+```js
+let watchedMyCallback = catcher.watchFunction(myCallback);
+document.addEventListener("click", watchedMyCallback);
+// later...
+document.removeListener("click", watchedMyCallback);
+```
+
+#### `catcher.watchPromise`
+
+If something is the last caller of a promise, then it should watch any promises.  For example:
+
+```js
+function myCallback() {
+  catcher.watchPromise(startSomething().then(() => {
+    return nextThing();
+  }).then((result) => {
+    if (! result.ok) {
+      throw new Error("Something went wrong!");
+    }
+  }));
 }
 ```
 
-The `name` should be stable, and is what you might check against when you think you may be able to handle some kinds of errors.  The `help` and optional `helpHtml` keys are something that can be shown to the user.  These may be useful to rewrite as errors are caught and re-raised.
+Put `catcher.watchPromise()` around the entire promise chain.  Throw errors in any handler and it will get reported.
 
-These error objects must frequently cross process boundaries, so we can't expect any special object representation, only a raw JSONable object.
+#### `catcher.unhandled`
 
-## Where to send errors
+If you want to report an error but continue on, you should use something like this:
 
-Errors should all propagate to the addon.  (Question: should they?  Alternately some could go to the addon, and others could be handled in content when you are viewing a pageshot page.)
-
-Errors come in in several ways:
-
-### Content
-
-Content that has a helper associated with it should call:
-
-```javascript
-var event = document.createEvent("CustomEvent");
-event.initCustomEvent("error", true, true, errorObject);
-document.dispatchEvent(event);
-```
-
-A page worker should be attached to the page that will catch that event and route it to the addon.
-
-### framescript
-
-A framescript should return a value like:
-
-```javascript
-sendAsyncMessage("pageshot@messageName:return", {
-  error: {
-    name: "ERROR", ...
+```js
+function doStuff(foo) {
+  try {
+    someOtherFunction({context: foo});
+  } catch (e) {
+    if (e.name == "STRANGE_ERROR") {
+      catcher.unhandled(e, {context: foo});
+    }
   }
-});
-```
-
-This should be handled by `lib/framescripter.js`
-
-### worker
-
-An addon worker should do:
-
-```javascript
-self.port.emit("alertError", {name: "ERROR", ...});
-```
-
-### Addons
-
-If code in an addon receives an error and cannot handle it, it should call:
-
-```javascript
-require("./errors").unhandled(errorObject);
-```
-
-Generally you should use `watchPromise()` if you call `promise.then(success)` and don't include any failure handler.  You should call `watchWorker(worker)` on every worker you create.  And you should add `watchFunction()` around any function that is called in an event handler.  These are all examples of cases when your code is either being called by something that won't handle errors (like a Jetpack event invoker), or we need to wire up processes, or we are clearly ignoring a value.
-
-Generally if you return a promise, you don't need this error handling if you simply call `.reject()` properly.  We should be on the lookout for cases when a promise return value is entirely ignored, as that's harder to detect than an incomplete invocation of `.then(success)`
-
-## Helpers
-
-Everything described here can be a bit challenging.  Some helpers exist:
-
-```javascript
-const { watchPromise, watchFunction, watchWorker, watchRun } = require("./errors");
-
-// Adds a .reject() handler to the promise
-watchPromise(deferred.promise);
-
-// Wraps the function (preserving this and arguments), catches any errors, and if
-// a promise is returned it wraps the promise
-{
-  method: watchFunction(function () {
-    return deferred.promise;
-  })
 }
-
-// Watches the worker, listening for `worker.port.on("error")`, returns the worker
-watchWorker(worker);
-
-// Executes the function immediately, catching any errors:
-watchRun(function () {
-  // ...
-}, this);
 ```
+
+If you don't have an exception object, create a new one with `new Error("Error Name")`
+
+The second argument is additional information you can add to the report.
+
+## Formatting a good error
+
+Each error should be an exception.  If you get a natural exception then use that, but if you are creating one:
+
+**Use a fixed error string.**  E.g., `new Error("Response failed")`, not `new Error("Error for " + url + " failed")`.  Sentry groups errors based on the exception string.
+
+**Use an error object**, not a string.  I.e., never do `throw "there was an error"`.  This is always good practice!
+
+**Add extra information**, either to the exception object, or as a second argument when calling `catcher.unhandled(exc, extraInfo)`.
+
+When adding information to an exception object, simply add attributes, such as:
+
+```js
+let exc = new Error("Error in request");
+exc.responseStatusCode = req.status;
+exc.headerNames = Object.keys(headers);
+```
+
+Note that any information will be serialized as JSON.  Specifically `undefined` will be lost in JSON serialization.
+
+If you add `exc.popupMessage = "Something happened"` then that detail will be added.  Be careful about localization here.
+
+Add `exc.noPopup = true` if you don't want the user notified about the error (but the error will still be sent to Sentry).

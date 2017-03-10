@@ -38,6 +38,14 @@ If you have growl and growlnotify installed on Mac OS X, you will get growl noti
 
 We apologize but we have no story for development on Windows (though the add-on runs on Windows).  We welcome feedback.
 
+### Getting to know the code
+
+There is documentation in [addon/](https://github.com/mozilla-services/pageshot/blob/master/addon/), [addon/webextension/](https://github.com/mozilla-services/pageshot/blob/master/addon/webextension/), [addon/webextension/background/](https://github.com/mozilla-services/pageshot/blob/master/addon/webextension/background/), and [addon/webextension/selector/](https://github.com/mozilla-services/pageshot/blob/master/addon/webextension/selector) that talks about the code layout and architecture of the add-on.
+
+[server/view-docs.md](https://github.com/mozilla-services/pageshot/blob/master/server/views-docs.md) talks about how the server React pages are setup, along with the server-side rendering of pages.
+
+There is also documentation in [docs/](https://github.com/mozilla-services/pageshot/blob/master/docs/).
+
 ### Participation
 
 There is an IRC channel `#pageshot` on irc.mozilla.org (you can use [this link](https://kiwiirc.com/client/irc.mozilla.org/pageshot) for chat access via the web if you do not otherwise use IRC).  There are [IRC logs available](http://logs.glob.uno/?c=pageshot).
