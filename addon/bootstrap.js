@@ -7,8 +7,8 @@ function startup(data, reason) {
   });
 }
 
-function install() {
-}
+function shutdown(data, reason) {}
+function install(data, reason) {}
+function uninstall(data, reason) {}
 
-function handleMessage() {
-}
+function handleMessage() {}
