@@ -27,16 +27,16 @@ The basic flow:
 1. Everything starts when the button is clicked.  This fires an event in `background/main.js`
 2. The background page loads the content worker with `background/loadSelector.js`
 3. `selector/shooter.js` handles most communication logic from the selector side
-4. shooter.js collects the information and creates a Shot object.  
+4. `shooter.js` collects the information and creates a Shot object.  
 5. `selector/uicontrol.js` handles the UI logic, button handlers, selection process, etc.
 6. When you hit **Download** and [canvas.drawWindow](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawWindow) is supported, then the `data:` URL is created immediately, an `<a download="filename" href="data:...">` link is created and synthetically clicked.
-7. When you hit **Download** and canvas.drawWindow isn't supported, then we send a message to ask the background page to capture the selection, turn it into a data URL, return the data URL, and then we continue with creating the anchor.
+7. When you hit **Download** and `canvas.drawWindow` isn't supported, then we send a message to ask the background page to capture the selection, turn it into a data URL, return the data URL, and then we continue with creating the anchor.
 8. If you hit **Cancel** then the content-worker self-destructs
 9. If you hit **Save**, **Full Page** or **Visible Page** then the logic is the same – we define a rectangle based on the button, and continue.
 10. The UI is hidden.
-11. If canvas.drawWindow is supported then the content worker adds an image to the shot.
+11. If `canvas.drawWindow` is supported then the content worker adds an image to the shot.
 12. The shot is sent to the background page, along with the selection rectangle.
-13. If the background page sees there's no image (presumably canvas.drawWindow isn't supported), it uses `captureVisibleTab` to add an image.
+13. If the background page sees there's no image (presumably `canvas.drawWindow` isn't supported), it uses `captureVisibleTab` to add an image.
 14. The authentication information is fetched (`background/auth.js`).  If the client authenticated earlier in the session then we return that information.
 15. If the client isn't authenticated then we get the registration/authentication information from `browser.storage`.
 16. If there's no authentication information then we create it (it's a random ID and secret).
