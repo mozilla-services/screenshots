@@ -30,10 +30,14 @@ window.main = (function () {
 
   chrome.browserAction.onClicked.addListener(function(tab) {
     if(tab.url.match(/about:(newtab|blank)/i)) {
-      sendEvent("goto-myshots", "about-newtab");
+      catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
+        sendEvent("goto-myshots", "about-newtab");
+      }));
       chrome.tabs.update({url: backend + "/shots"});
     } else {
-      sendEvent("start-shot", "toolbar-pageshot-button");
+      catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
+        sendEvent("start-shot", "toolbar-pageshot-button");
+      }));
       catcher.watchPromise(loadSelector());
     }
   });
