@@ -2,14 +2,15 @@
   "manifest_version": 2,
   "name": "Page Shot",
   "version": "__VERSION__",
-  "description": "Page Shot takes clips and screenshots from pages, and can save a permanent copy of a page",
-  "author": "Ian Bicking, Donovan Preston, and Bram Pitoyo",
+  "description": "__MSG_addonDescription__",
+  "author": "__MSG_addonAuthorsList__",
   "homepage_url": "https://github.com/mozilla-services/pageshot",
   "applications": {
     "gecko": {
       "id": "pageshot@mozilla.org"
     }
   },
+  "default_locale": "en_US",
   "icons": {
     "16": "icons/pageshot-icon-16.png",
     "32": "icons/pageshot-icon-32.png",
@@ -23,7 +24,7 @@
       "19": "icons/pageshot-icon-19.png",
       "38": "icons/pageshot-icon-38.png"
     },
-    "default_title": "Take a shot"
+    "default_title": "__MSG_toolbarButtonLabel__"
   },
   "background": {
     "scripts": [

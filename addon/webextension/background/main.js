@@ -37,7 +37,7 @@ window.main = (function () {
 
   browser.contextMenus.create({
     id: "create-pageshot",
-    title: "Create Page Shot",
+    title: browser.i18n.getMessage("contextMenuLabel"),
     contexts: ["page"]
   }, () => {
     // Note: unlike most browser.* functions this one does not return a promise
@@ -72,9 +72,8 @@ window.main = (function () {
       return browser.notifications.create(id, {
         type: "basic",
         iconUrl: "../icons/clipboard-32.png",
-        title: "Link Copied",
-        message: "The link to your shot has been copied to the clipboard. Press "
-        + pasteSymbol + "-V to paste."
+        title: browser.i18n.getMessage("notificationLinkCopied"),
+        message: browser.i18n.getMessage("notificationLinkCopiedDetails", pasteSymbol)
       });
     }
   });
