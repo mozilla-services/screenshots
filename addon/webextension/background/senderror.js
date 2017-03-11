@@ -1,4 +1,4 @@
-/* globals chrome, communication, makeUuid, Raven, catcher, auth */
+/* globals browser, communication, makeUuid, Raven, catcher, auth */
 
 window.errorpopup = (function () {
   let exports = {};
@@ -57,7 +57,7 @@ window.errorpopup = (function () {
         message = error.message;
       }
     }
-    chrome.notifications.create(id, {
+    browser.notifications.create(id, {
       type: "basic",
       // FIXME: need iconUrl for an image, see #2239
       title,

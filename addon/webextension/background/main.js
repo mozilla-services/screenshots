@@ -1,4 +1,4 @@
-/* globals chrome, console, XMLHttpRequest, Image, document, setTimeout, navigator */
+/* globals browser, console, XMLHttpRequest, Image, document, setTimeout, navigator */
 /* globals loadSelector, analytics, communication, catcher, makeUuid */
 window.main = (function () {
   let exports = {};
@@ -6,7 +6,7 @@ window.main = (function () {
   const pasteSymbol = (window.navigator.platform.match(/Mac/i)) ? "\u2318" : "Ctrl";
   const { sendEvent } = analytics;
 
-  let manifest = chrome.runtime.getManifest();
+  let manifest = browser.runtime.getManifest();
   let backend;
 
   exports.setBackend = function (newBackend) {
@@ -25,30 +25,28 @@ window.main = (function () {
     }
   }
 
-  chrome.runtime.onInstalled.addListener(function () {
-  });
-
-  chrome.browserAction.onClicked.addListener(function(tab) {
-    if(tab.url.match(/about:(newtab|blank)/i)) {
+  browser.browserAction.onClicked.addListener(catcher.watchFunction((tab) => {
+    if (tab.url.match(/about:(newtab|blank)/i)) {
       sendEvent("goto-myshots", "about-newtab");
-      chrome.tabs.update({url: backend + "/shots"});
+      catcher.watchPromise(browser.tabs.update({url: backend + "/shots"}));
     } else {
       sendEvent("start-shot", "toolbar-pageshot-button");
       catcher.watchPromise(loadSelector());
     }
-  });
+  }));
 
-  chrome.contextMenus.create({
+  browser.contextMenus.create({
     id: "create-pageshot",
     title: "Create Page Shot",
     contexts: ["page"]
   }, () => {
-    if (chrome.runtime.lastError) {
-      catcher.unhandled(new Error(chrome.runtime.lastError.message));
+    // Note: unlike most browser.* functions this one does not return a promise
+    if (browser.runtime.lastError) {
+      catcher.unhandled(new Error(browser.runtime.lastError.message));
     }
   });
 
-  chrome.contextMenus.onClicked.addListener(catcher.watchFunction((info, tab) => {
+  browser.contextMenus.onClicked.addListener(catcher.watchFunction((info, tab) => {
     if (! tab) {
       // Not in a page/tab context, ignore
       return;
@@ -65,13 +63,13 @@ window.main = (function () {
   });
 
   communication.register("openMyShots", () => {
-    chrome.tabs.create({url: backend + "/shots"});
+    return browser.tabs.create({url: backend + "/shots"});
   });
 
   communication.register("openShot", ({url, copied}) => {
     if (copied) {
       const id = makeUuid();
-      chrome.notifications.create(id, {
+      return browser.notifications.create(id, {
         type: "basic",
         iconUrl: "../icons/clipboard-32.png",
         title: "Link Copied",

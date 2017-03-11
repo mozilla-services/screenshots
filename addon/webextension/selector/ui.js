@@ -1,4 +1,4 @@
-/* globals window, document, console, chrome */
+/* globals window, document, console, browser */
 /* globals util, catcher, inlineSelectionCss */
 
 window.ui = (function () { // eslint-disable-line no-unused-vars
@@ -44,7 +44,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
   }
 
   let substitutedCss = inlineSelectionCss.replace(/MOZ_EXTENSION([^\"]+)/g, (match, filename) => {
-    return chrome.extension.getURL(filename);
+    return browser.extension.getURL(filename);
   });
 
   function makeEl(tagName, className) {

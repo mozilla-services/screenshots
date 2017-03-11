@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-set -e
-
-mkdir -p build/
-echo -n "https://pageshot.dev.mozaws.net" > build/.backend.txt
-make chrome-zip
-echo "Created in:"
-echo "  build/chrome-ext.zip"

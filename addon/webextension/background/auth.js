@@ -1,4 +1,4 @@
-/* globals chrome */
+/* globals browser */
 /* globals main, makeUuid, deviceInfo, analytics, catcher, defaultSentryDsn */
 
 window.auth = (function () {
@@ -10,13 +10,7 @@ window.auth = (function () {
   let sentryPublicDSN = null;
   let abTests = {};
 
-  chrome.storage.local.get(["registrationInfo", "abTests"], catcher.watchFunction((result) => {
-    if (chrome.runtime.lastError) {
-      catcher.unhandled(new Error(chrome.runtime.lastError.message));
-      if (! result) {
-        return;
-      }
-    }
+  catcher.watchPromise(browser.storage.local.get(["registrationInfo", "abTests"]).then((result) => {
     if (result.abTests) {
       abTests = result.abTests;
     }
@@ -24,16 +18,10 @@ window.auth = (function () {
       registrationInfo = result.registrationInfo;
     } else {
       registrationInfo = generateRegistrationInfo();
-      chrome.storage.local.set({
-        registrationInfo: registrationInfo
-      }, () => {
-        if (chrome.runtime.lastError) {
-          catcher.unhandled(new Error(chrome.runtime.lastError.message));
-        } else {
-          console.info("Device authentication saved");
-        }
-      });
       console.info("Generating new device authentication ID", registrationInfo);
+      return browser.storage.local.set({
+        registrationInfo: registrationInfo
+      });
     }
   }));
 
@@ -45,9 +33,6 @@ window.auth = (function () {
     let info = {
       deviceId: "anon" + makeUuid() + "",
       secret: makeUuid()+"",
-      // FIXME-chrome: need to figure out the reason the extension was created
-      // (i.e., startup or install)
-      //reason,
       deviceInfo: JSON.stringify(deviceInfo())
     };
     return info;
@@ -119,11 +104,7 @@ window.auth = (function () {
     }
     if (responseJson.abTests) {
       abTests = responseJson.abTests;
-      chrome.storage.local.set({abTests}, () => {
-        if (chrome.runtime.lastError) {
-          catcher.unhandled(new Error(chrome.runtime.lastError.message));
-        }
-      });
+      catcher.watchPromise(browser.storage.local.set({abTests}));
     }
   }
 
