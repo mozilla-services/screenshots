@@ -1,5 +1,5 @@
 /* globals browser, console, XMLHttpRequest, Image, document, setTimeout, navigator */
-/* globals loadSelector, analytics, communication, catcher, makeUuid */
+/* globals loadSelector, analytics, communication, catcher, makeUuid, auth */
 window.main = (function () {
   let exports = {};
 
@@ -81,6 +81,21 @@ window.main = (function () {
       });
     }
   });
+
+  catcher.watchPromise(browser.runtime.sendMessage({funcName: "getOldDeviceInfo"}).then((deviceInfo) => {
+    deviceInfo = deviceInfo.value;
+    if (! deviceInfo) {
+      return;
+    }
+    deviceInfo = JSON.parse(deviceInfo);
+    if (deviceInfo && typeof deviceInfo == "object") {
+      return auth.setDeviceInfoFromOldAddon(deviceInfo).then((updated) => {
+        if (updated) {
+          return browser.runtime.sendMessage({funcName: "removeOldAddon"});
+        }
+      });
+    }
+  }));
 
   return exports;
 })();
