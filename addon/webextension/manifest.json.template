@@ -61,6 +61,7 @@
   ],
   "permissions": [
     "activeTab",
+    "tabs",
     "storage",
     "notifications",
     "clipboardWrite",
