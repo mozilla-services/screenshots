@@ -19,9 +19,7 @@ window.auth = (function () {
     } else {
       registrationInfo = generateRegistrationInfo();
       console.info("Generating new device authentication ID", registrationInfo);
-      return browser.storage.local.set({
-        registrationInfo: registrationInfo
-      });
+      return browser.storage.local.set({registrationInfo});
     }
   }));
 
@@ -33,7 +31,8 @@ window.auth = (function () {
     let info = {
       deviceId: "anon" + makeUuid() + "",
       secret: makeUuid()+"",
-      deviceInfo: JSON.stringify(deviceInfo())
+      deviceInfo: JSON.stringify(deviceInfo()),
+      registered: false
     };
     return info;
   }
@@ -101,6 +100,10 @@ window.auth = (function () {
     }
     if (responseJson.authHeader) {
       authHeader = responseJson.authHeader;
+      if (!registrationInfo.registered) {
+        registrationInfo.registered = true;
+        catcher.watchPromise(browser.storage.local.set({registrationInfo}));
+      }
     }
     if (responseJson.abTests) {
       abTests = responseJson.abTests;
@@ -141,6 +144,10 @@ window.auth = (function () {
 
   exports.getAbTests = function () {
     return abTests;
+  };
+
+  exports.isRegistered = function () {
+    return registrationInfo.registered;
   };
 
   return exports;
