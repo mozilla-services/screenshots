@@ -1,15 +1,12 @@
-/* globals chrome, catcher */
+/* globals browser, catcher */
 
 window.deviceInfo = (function () {
-  let manifest = chrome.runtime.getManifest();
+  let manifest = browser.runtime.getManifest();
 
   let platformInfo = {};
-  chrome.runtime.getPlatformInfo(function(info) {
-    if (chrome.runtime.lastError) {
-      catcher.unhandled(new Error(chrome.runtime.lastError.message), {context: "getPlatformInfo"});
-    }
+  catcher.watchPromise(browser.runtime.getPlatformInfo().then((info) => {
     platformInfo = info;
-  });
+  }));
 
   return function deviceInfo() {
     let match = navigator.userAgent.match(/Chrom(?:e|ium)\/([0-9\.]+)/);

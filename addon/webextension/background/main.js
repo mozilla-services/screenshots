@@ -1,4 +1,4 @@
-/* globals chrome, console, XMLHttpRequest, Image, document, setTimeout, navigator */
+/* globals browser, console, XMLHttpRequest, Image, document, setTimeout, navigator */
 /* globals loadSelector, analytics, communication, catcher, makeUuid */
 window.main = (function () {
   let exports = {};
@@ -6,7 +6,7 @@ window.main = (function () {
   const pasteSymbol = (window.navigator.platform.match(/Mac/i)) ? "\u2318" : "Ctrl";
   const { sendEvent } = analytics;
 
-  let manifest = chrome.runtime.getManifest();
+  let manifest = browser.runtime.getManifest();
   let backend;
 
   exports.setBackend = function (newBackend) {
@@ -30,29 +30,33 @@ window.main = (function () {
 
   chrome.browserAction.onClicked.addListener(function(tab) {
     if(tab.url.match(/about:(newtab|blank)/i)) {
+      chrome.tabs.update({url: backend + "/shots"});
+  browser.browserAction.onClicked.addListener(catcher.watchFunction((tab) => {
+    if (tab.url.match(/about:(newtab|blank)/i)) {
       catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
         sendEvent("goto-myshots", "about-newtab");
       }));
-      chrome.tabs.update({url: backend + "/shots"});
+      catcher.watchPromise(browser.tabs.update({url: backend + "/shots"}));
     } else {
       catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
         sendEvent("start-shot", "toolbar-pageshot-button");
       }));
       catcher.watchPromise(loadSelector());
     }
-  });
+  }));
 
-  chrome.contextMenus.create({
+  browser.contextMenus.create({
     id: "create-pageshot",
-    title: "Create Page Shot",
+    title: browser.i18n.getMessage("contextMenuLabel"),
     contexts: ["page"]
   }, () => {
-    if (chrome.runtime.lastError) {
-      catcher.unhandled(new Error(chrome.runtime.lastError.message));
+    // Note: unlike most browser.* functions this one does not return a promise
+    if (browser.runtime.lastError) {
+      catcher.unhandled(new Error(browser.runtime.lastError.message));
     }
   });
 
-  chrome.contextMenus.onClicked.addListener(catcher.watchFunction((info, tab) => {
+  browser.contextMenus.onClicked.addListener(catcher.watchFunction((info, tab) => {
     if (! tab) {
       // Not in a page/tab context, ignore
       return;
@@ -69,18 +73,17 @@ window.main = (function () {
   });
 
   communication.register("openMyShots", () => {
-    chrome.tabs.create({url: backend + "/shots"});
+    return browser.tabs.create({url: backend + "/shots"});
   });
 
   communication.register("openShot", ({url, copied}) => {
     if (copied) {
       const id = makeUuid();
-      chrome.notifications.create(id, {
+      return browser.notifications.create(id, {
         type: "basic",
         iconUrl: "../icons/clipboard-32.png",
-        title: "Link Copied",
-        message: "The link to your shot has been copied to the clipboard. Press "
-        + pasteSymbol + "-V to paste."
+        title: browser.i18n.getMessage("notificationLinkCopied"),
+        message: browser.i18n.getMessage("notificationLinkCopiedDetails", pasteSymbol)
       });
     }
   });

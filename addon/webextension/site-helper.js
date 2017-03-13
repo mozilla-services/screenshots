@@ -1,4 +1,4 @@
-/* globals document, alert, chrome, setInterval, clearTimeout */
+/* globals document, alert, browser, setInterval, clearTimeout */
 
 function sendEvent(type, detail) {
   let event = document.createEvent("CustomEvent");
@@ -7,7 +7,7 @@ function sendEvent(type, detail) {
 }
 
 document.addEventListener("has-saved-shot", (event) => {
-  chrome.runtime.sendMessage({
+  browser.runtime.sendMessage({
     type: "has-saved-shot",
     id: event.detail
   }, (response) => {
@@ -16,7 +16,7 @@ document.addEventListener("has-saved-shot", (event) => {
 }, false);
 
 document.addEventListener("request-saved-shot", (event) => {
-  chrome.runtime.sendMessage({
+  browser.runtime.sendMessage({
     type: "request-saved-shot",
     id: event.detail
   }, (response) => {
@@ -26,7 +26,7 @@ document.addEventListener("request-saved-shot", (event) => {
 }, false);
 
 document.addEventListener("remove-saved-shot", (event) => {
-  chrome.runtime.sendMessage({
+  browser.runtime.sendMessage({
     type: "remove-saved-shot",
     id: event.detail
   });
