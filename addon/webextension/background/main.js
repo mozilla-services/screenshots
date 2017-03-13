@@ -25,12 +25,22 @@ window.main = (function () {
     }
   }
 
+  chrome.runtime.onInstalled.addListener(function () {
+  });
+
+  chrome.browserAction.onClicked.addListener(function(tab) {
+    if(tab.url.match(/about:(newtab|blank)/i)) {
+      chrome.tabs.update({url: backend + "/shots"});
   browser.browserAction.onClicked.addListener(catcher.watchFunction((tab) => {
     if (tab.url.match(/about:(newtab|blank)/i)) {
-      sendEvent("goto-myshots", "about-newtab");
+      catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
+        sendEvent("goto-myshots", "about-newtab");
+      }));
       catcher.watchPromise(browser.tabs.update({url: backend + "/shots"}));
     } else {
-      sendEvent("start-shot", "toolbar-pageshot-button");
+      catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
+        sendEvent("start-shot", "toolbar-pageshot-button");
+      }));
       catcher.watchPromise(loadSelector());
     }
   }));

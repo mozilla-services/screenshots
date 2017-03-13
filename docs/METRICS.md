@@ -2,6 +2,10 @@
 
 A summary of the metrics Page Shot will record, and what we're looking for in those metrics.
 
+### Opt-out
+
+The add-on tracks the Telemetry opt-out preference (`toolkit.telemetry.enabled`) each time the user presses the Page Shot button.  If this preference is false, or if there is any issue trying to fetch the preference, then no data is sent to the Page Shot server.
+
 ### Key Metrics
 
 Key metrics of Page Shot are fairly simple:

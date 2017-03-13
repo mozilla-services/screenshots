@@ -1,9 +1,21 @@
-/* globals main, auth, catcher, deviceInfo */
+/* globals main, auth, catcher, deviceInfo, browser */
 
 window.analytics = (function () {
   let exports = {};
 
+  let telemetryPrefKnown = false;
+  let telemetryPref;
+
   exports.sendEvent = function (action, label, options) {
+    let eventCategory = "addon";
+    if (! telemetryPrefKnown) {
+      console.warn("sendEvent called before we were able to refresh");
+      return Promise.resolve();
+    }
+    if (! telemetryPref) {
+      console.info(`Cancelled sendEvent ${eventCategory}/${action}/${label || 'none'} ${JSON.stringify(options)}`);
+      return Promise.resolve();
+    }
     if (typeof label == "object" && (! options)) {
       options = label;
       label = undefined;
@@ -11,7 +23,6 @@ window.analytics = (function () {
     options = options || {};
     let di = deviceInfo();
     return new Promise((resolve, reject) => {
-      let eventCategory = "addon";
       let url = main.getBackend() + "/event";
       let req = new XMLHttpRequest();
       req.open("POST", url);
@@ -40,6 +51,18 @@ window.analytics = (function () {
         label,
         options
       }));
+    });
+  };
+
+  exports.refreshTelemetryPref = function () {
+    return browser.runtime.sendMessage({funcName: "getTelemetryPref"}).then((result) => {
+      telemetryPrefKnown = true;
+      telemetryPref = result.value;
+    }, (error) => {
+      // If there's an error reading the pref, we should assume that we shouldn't send data
+      telemetryPrefKnown = true;
+      telemetryPref = false;
+      throw error;
     });
   };
 
