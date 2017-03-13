@@ -28,9 +28,6 @@ window.main = (function () {
   chrome.runtime.onInstalled.addListener(function () {
   });
 
-  chrome.browserAction.onClicked.addListener(function(tab) {
-    if(tab.url.match(/about:(newtab|blank)/i)) {
-      chrome.tabs.update({url: backend + "/shots"});
   browser.browserAction.onClicked.addListener(catcher.watchFunction((tab) => {
     if (tab.url.match(/about:(newtab|blank)/i)) {
       catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
