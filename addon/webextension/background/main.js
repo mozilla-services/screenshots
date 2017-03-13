@@ -25,9 +25,6 @@ window.main = (function () {
     }
   }
 
-  chrome.runtime.onInstalled.addListener(function () {
-  });
-
   browser.browserAction.onClicked.addListener(catcher.watchFunction((tab) => {
     if (tab.url.match(/about:(newtab|blank)/i)) {
       catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
