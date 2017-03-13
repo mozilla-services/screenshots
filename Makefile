@@ -1,6 +1,7 @@
 PATH := ./node_modules/.bin:./bin/:$(PATH)
 SHELL := /bin/bash
 BABEL := babel --retain-lines
+RSYNC := rsync --archive
 .DEFAULT_GOAL := help
 # Sets $(PAGESHOT_BACKEND) to http://localhost:10080 only if it isn't set
 PAGESHOT_BACKEND ?= http://localhost:10080
@@ -88,6 +89,26 @@ build/%.html: %.html
 
 .PHONY: addon
 addon: npm set_backend set_sentry addon/webextension/manifest.json addon/webextension/build/shot.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/defaultSentryDsn.js
+
+EXPORT_MC_LOCATION := $(shell echo $${EXPORT_MC_LOCATION-../gecko})
+GIT_EXPORT_DIR := $(EXPORT_MC_LOCATION)/browser/extensions/pageshot
+DIST_EXPORT_DIR := addon
+
+ifeq ($(shell uname -s),Linux)
+  FIND_COMMAND := find $(GIT_EXPORT_DIR) -regextype posix-extended
+else
+  FIND_COMMAND := find -E $(GIT_EXPORT_DIR)
+endif
+
+.PHONY: export_addon
+export_addon: addon
+	$(FIND_COMMAND) -type f ! -regex \
+		'.*/(moz.build|README.txt|.gitignore|manifest.ini)' -delete
+	$(RSYNC) $(DIST_EXPORT_DIR)/* $(GIT_EXPORT_DIR)
+
+	@echo "*****"
+		@echo "You will need to manually move/add/remove files to create the commit."
+	@echo "*****"
 
 .PHONY: zip
 zip: addon
