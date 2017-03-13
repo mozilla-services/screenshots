@@ -17,7 +17,7 @@ function uninstall(data, reason) {}
 
 function handleMessage(msg, sender, sendReply) {
   if (msg && msg.funcName === "getTelemetryPref") {
-    let enableTelemetry = prefs.getBoolPref("toolkit.telemetry.enabled");
+    let enableTelemetry = prefs.getPrefType('toolkit.telemetry.enabled') && prefs.getBoolPref("toolkit.telemetry.enabled");
     sendReply({type: "success", value: enableTelemetry});
   }
 }
