@@ -107,7 +107,7 @@ signed_xpi: addon
 	mv web-ext-artifacts/*.xpi build/pageshot.xpi
 
 .PHONY: addon_locales
-addon_locales: $(l10n_dest)
+addon_locales:
 	./bin/build-scripts/pontoon-to-webext.js --dest addon/webextension/_locales
 
 addon/webextension/manifest.json: addon/webextension/manifest.json.template build/.backend.txt package.json
@@ -219,7 +219,7 @@ all: addon server
 
 .PHONY: clean
 clean:
-	rm -rf build/ addon/webextension/build/ addon/webextension/manifest.json
+	rm -rf build/ addon/webextension/build/ addon/webextension/manifest.json addon/webextension/_locales/
 
 .PHONY: help
 help:
