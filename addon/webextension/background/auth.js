@@ -150,5 +150,26 @@ window.auth = (function () {
     return registrationInfo.registered;
   };
 
+  exports.setDeviceInfoFromOldAddon = function (newDeviceInfo) {
+    if (! (newDeviceInfo.deviceId && newDeviceInfo.secret)) {
+      throw new Error("Bad deviceInfo");
+    }
+    if (registrationInfo.deviceId === newDeviceInfo.deviceId &&
+      registrationInfo.secret === newDeviceInfo.secret) {
+      // Probably we already imported the information
+      return Promise.resolve(false);
+    }
+    let newInfo = {
+      deviceId: newDeviceInfo.deviceId,
+      secret: newDeviceInfo.secret,
+      deviceInfo: JSON.stringify(deviceInfo()),
+      registered: true
+    };
+    initialized = false;
+    return browser.storage.local.set({registrationInfo: newInfo}).then(() => {
+      return true;
+    });
+  };
+
   return exports;
 })();
