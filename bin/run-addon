@@ -12,7 +12,9 @@ firefoxes="
 /Applications/FirefoxNightly.app
 /Applications/FirefoxDeveloperEdition.app
 /Applications/FirefoxAurora.app
+/usr/bin/firefox
 "
+# TODO add more firefoxes locations? use `which` maybe?
 setup_profile=
 server=
 
@@ -79,6 +81,15 @@ while [[ -n "$1" ]] ; do
   esac
 done
 
+open=
+unamestr=$(uname)
+if [[ "$unamestr" == "Linux" ]]; then
+  open=$binary
+# TODO add case for windows, freebsd
+else
+  open="open $binary"
+fi
+
 if [[ ! -d ./Profile ]] ; then
   echo "NOTE: you must setup a Firefox profile in ./Profile/"
   echo "This will be done automatically for you after you hit ENTER"
@@ -92,15 +103,15 @@ if [[ -n "$setup_profile" ]] ; then
   profile_dir="$(pwd)/Profile"
   if [[ -d "$profile_dir" ]] ; then
     echo "Using existing profile in $profile_dir running:"
-    echo " " open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir"
-    open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir"
+    echo " " $open -n --args -new-instance -no-remote -profile "$profile_dir"
+    $open -n --args -new-instance -no-remote -profile "$profile_dir"
   else
     echo "Creating profile in $profile_dir running:"
-    echo " " open "$binary" -n --args -new-instance -no-remote -CreateProfile "PageShotTestProfile $profile_dir"
-    open "$binary" -n --args -new-instance -no-remote -CreateProfile "PageShotTestProfile $profile_dir"
+    echo " " $open -n --args -new-instance -no-remote -CreateProfile "PageShotTestProfile $profile_dir"
+    $open -n --args -new-instance -no-remote -CreateProfile "PageShotTestProfile $profile_dir"
     echo "Opening profile running:"
-    echo " " open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir" -url http://locahost:10080
-    open "$binary" -n --args -new-instance -no-remote -profile "$profile_dir" -url http://locahost:10080
+    echo " " $open -n --args -new-instance -no-remote -profile "$profile_dir" -url http://locahost:10080
+    $open -n --args -new-instance -no-remote -profile "$profile_dir" -url http://locahost:10080
   fi
   exit
 fi
