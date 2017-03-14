@@ -82,16 +82,18 @@ window.main = (function () {
     }
   });
 
-  catcher.watchPromise(browser.runtime.sendMessage({funcName: "getOldDeviceInfo"}).then((deviceInfo) => {
-    deviceInfo = deviceInfo.value;
-    if (! deviceInfo) {
+  catcher.watchPromise(communication.sendToBootstrap("getOldDeviceInfo").then((deviceInfo) => {
+    if (deviceInfo === communication.NO_BOOTSTRAP || ! deviceInfo) {
       return;
     }
     deviceInfo = JSON.parse(deviceInfo);
     if (deviceInfo && typeof deviceInfo == "object") {
       return auth.setDeviceInfoFromOldAddon(deviceInfo).then((updated) => {
+        if (updated === communication.NO_BOOTSTRAP) {
+          throw new Error("bootstrap.js disappeared unexpectedly");
+        }
         if (updated) {
-          return browser.runtime.sendMessage({funcName: "removeOldAddon"});
+          return communication.sendToBootstrap("removeOldAddon");
         }
       });
     }

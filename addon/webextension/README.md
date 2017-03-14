@@ -46,3 +46,5 @@ The basic flow:
 20. We open a new tab with `/creating?...` immediately, before the save is completed.
 21. Once the shot has been uploaded successfully we take that created tab and navigate to the shot page.
 22. The link is copied to the clipboard and a notification is popped up telling the user their shot was created.
+
+Note that you can also communicate with the `bootstrap.js` part of the addon using `communication.sendToBootstrap()`.  This might return `communication.NO_BOOTSTRAP` when the bootstrap wrapper is not in place.

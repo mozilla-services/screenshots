@@ -1,4 +1,4 @@
-/* globals main, auth, catcher, deviceInfo, browser */
+/* globals main, auth, catcher, deviceInfo, communication */
 
 window.analytics = (function () {
   let exports = {};
@@ -55,9 +55,13 @@ window.analytics = (function () {
   };
 
   exports.refreshTelemetryPref = function () {
-    return browser.runtime.sendMessage({funcName: "getTelemetryPref"}).then((result) => {
+    return communication.sendToBootstrap("getTelemetryPref").then((result) => {
       telemetryPrefKnown = true;
-      telemetryPref = result.value;
+      if (result === communication.NO_BOOTSTRAP) {
+        telemetryPref = true;
+      } else {
+        telemetryPref = result;
+      }
     }, (error) => {
       // If there's an error reading the pref, we should assume that we shouldn't send data
       telemetryPrefKnown = true;
