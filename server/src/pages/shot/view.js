@@ -197,7 +197,7 @@ class Body extends React.Component {
     // Note: any attributes used here need to be preserved
     // in the render() function
     return <reactruntime.BodyTemplate {...this.props}>
-      <div className="column-center full-height default-color-scheme">
+      <div className="column-center full-height inverse-color-scheme">
         <div className="large-icon-message-container">
           <div className="large-icon logo" />
           <div className="large-icon-message-string">

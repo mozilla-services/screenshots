@@ -24,7 +24,7 @@ class Body extends React.Component {
     }
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <div className="column-center full-height default-color-scheme">
+        <div className="column-center full-height inverse-color-scheme">
           <div className="large-icon-message-container">
             <div className="large-icon logo" />
             <div className="large-icon-message-string">
@@ -45,7 +45,7 @@ class Body extends React.Component {
   renderComplete() {
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <div className="column-center full-height default-color-scheme">
+        <div className="column-center full-height inverse-color-scheme">
           <div className="large-icon-message-container">
             <div className="large-icon check" />
             <div className="large-icon-message-string">All of your Page Shot data has been erased.<br/>
