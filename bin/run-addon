@@ -81,13 +81,12 @@ while [[ -n "$1" ]] ; do
   esac
 done
 
-open=
+open="open $binary" # assumes Mac OS, availability of 'open' command
 unamestr=$(uname)
 if [[ "$unamestr" == "Linux" ]]; then
   open=$binary
-# TODO add case for windows, freebsd
-else
-  open="open $binary"
+# elif [[ "$unamestr" == "" ]]; then
+#  # TODO add cases for Windows, FreeBSD, etc.
 fi
 
 if [[ ! -d ./Profile ]] ; then
