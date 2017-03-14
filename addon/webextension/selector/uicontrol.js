@@ -845,7 +845,7 @@ window.uicontrol = (function () {
     if ((event.key || event.code) === "Enter") {
       if (getState.state === "selected") {
         sendEvent("save-shot", "keyboard-enter");
-        shooter.takeShot();
+        shooter.takeShot("selection", selectedPos);
       }
     }
   }
