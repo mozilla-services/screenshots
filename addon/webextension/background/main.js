@@ -1,5 +1,6 @@
 /* globals browser, console, XMLHttpRequest, Image, document, setTimeout, navigator */
-/* globals loadSelector, analytics, communication, catcher, makeUuid, auth */
+/* globals selectorLoader, analytics, communication, catcher, makeUuid, auth */
+
 window.main = (function () {
   let exports = {};
 
@@ -25,6 +26,17 @@ window.main = (function () {
     }
   }
 
+  function setIconActive(active, tabId) {
+    const path = active ? "icons/pageshot-icon-green-38.png" : "icons/pageshot-icon-38.png";
+    browser.browserAction.setIcon({path, tabId});
+  }
+
+  function toggleTab(tab) {
+    return catcher.watchPromise(
+      selectorLoader.toggle()
+        .then(active => setIconActive(active, tab.id)));
+  }
+
   browser.browserAction.onClicked.addListener(catcher.watchFunction((tab) => {
     if (tab.url.match(/about:(newtab|blank)/i)) {
       catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
@@ -35,7 +47,7 @@ window.main = (function () {
       catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
         sendEvent("start-shot", "toolbar-pageshot-button");
       }));
-      catcher.watchPromise(loadSelector());
+      toggleTab(tab);
     }
   }));
 
@@ -56,7 +68,7 @@ window.main = (function () {
       return;
     }
     sendEvent("start-shot", "context-menu");
-    catcher.watchPromise(loadSelector());
+    toggleTab(tab);
   }));
 
 
@@ -80,6 +92,10 @@ window.main = (function () {
         message: browser.i18n.getMessage("notificationLinkCopiedDetails", pasteSymbol)
       });
     }
+  });
+
+  communication.register("closeSelector", sender => {
+    setIconActive(false, sender.tab.id)
   });
 
   catcher.watchPromise(communication.sendToBootstrap("getOldDeviceInfo").then((deviceInfo) => {

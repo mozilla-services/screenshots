@@ -519,6 +519,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       }
     }
     exports.iframe.remove();
+    exports.Box.remove();
   };
 
   exports.triggerDownload = function (dataUrl, filename) {
