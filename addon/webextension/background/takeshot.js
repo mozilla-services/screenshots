@@ -8,7 +8,6 @@ window.takeshot = (function () {
   communication.register("takeShot", (options) => {
     let { captureType, captureText, scroll, selectedPos, shotId, shot } = options;
     shot = new Shot(main.getBackend(), shotId, shot);
-    shot.deviceId = auth.getDeviceId();
     let capturePromise = Promise.resolve();
     let openedTab;
     if (! shot.clipNames().length) {

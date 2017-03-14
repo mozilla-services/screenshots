@@ -460,15 +460,6 @@ class AbstractShot {
     this._siteName = val;
   }
 
-  get deviceId() {
-    return this._deviceId;
-  }
-  set deviceId(val) {
-    assert(typeof val == "string" || ! val);
-    val = val || null;
-    this._deviceId = val;
-  }
-
   get documentSize() {
     return this._documentSize;
   }
@@ -516,7 +507,7 @@ class AbstractShot {
 }
 
 AbstractShot.prototype.REGULAR_ATTRS = (`
-deviceId url docTitle userTitle createdDate favicon images
+url docTitle userTitle createdDate favicon images
 siteName openGraph twitterCard documentSize
 fullScreenThumbnail abTests
 `).split(/\s+/g);
@@ -524,11 +515,11 @@ fullScreenThumbnail abTests
 // Attributes that will be accepted in the constructor, but ignored/dropped
 AbstractShot.prototype.DEPRECATED_ATTRS = (`
 microdata history ogTitle createdDevice head body htmlAttrs bodyAttrs headAttrs
-readable hashtags comments showPage isPublic resources
+readable hashtags comments showPage isPublic resources deviceId
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`
-deviceId url docTitle userTitle createdDate favicon
+url docTitle userTitle createdDate favicon
 openGraph twitterCard images fullScreenThumbnail
 `).split(/\s+/g);
 
@@ -581,8 +572,8 @@ class _Clip {
     assert(typeof id == "string" && id, "Bad Clip id:", id);
     this._id = id;
     this.createdDate = json.createdDate;
-    assert(typeof json.sortOrder == "number" || ! json.sortOrder, "Bad Clip sortOrder:", json.sortOrder);
-    if (json.sortOrder) {
+    assert((! ('sortOrder' in json)) || typeof json.sortOrder == "number" || ! json.sortOrder, "Bad Clip sortOrder:", json.sortOrder);
+    if ('sortOrder' in json) {
       this.sortOrder = json.sortOrder;
     } else {
       let biggestOrder = shot.biggestClipSortOrder();
@@ -643,7 +634,6 @@ class _Clip {
         typeof image.location.bottomRightOffset.y == "number",
         "Bad Clip image element location:", image.location);
     }
-    assert(! this._text, "Clip with .image cannot have .text", JSON.stringify(this._text));
     this._image = image;
   }
 
