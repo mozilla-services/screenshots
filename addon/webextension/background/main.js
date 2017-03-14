@@ -76,7 +76,7 @@ window.main = (function () {
       return browser.notifications.create(id, {
         type: "basic",
         iconUrl: "../icons/clipboard-32.png",
-        title: browser.i18n.getMessage("notificationLinkCopied"),
+        title: browser.i18n.getMessage("notificationLinkCopiedTitle"),
         message: browser.i18n.getMessage("notificationLinkCopiedDetails", pasteSymbol)
       });
     }
