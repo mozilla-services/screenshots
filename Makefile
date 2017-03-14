@@ -36,6 +36,9 @@ imgs_server_dest := $(imgs_source:%=build/server/%)
 
 raven_source := $(shell node -e 'console.log(require.resolve("raven-js/dist/raven.js"))')
 
+l10n_source := $(wildcard locales/*)
+l10n_dest := $(l10n_source:%/webextension.properties=addon/webextension/_locales/%/messages.json)
+
 ## General transforms:
 # These cover standard ways of building files given a source
 
@@ -88,7 +91,7 @@ build/%.html: %.html
 	cp $< $@
 
 .PHONY: addon
-addon: npm set_backend set_sentry addon/webextension/manifest.json addon/webextension/build/shot.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/defaultSentryDsn.js
+addon: npm set_backend set_sentry addon/webextension/manifest.json addon_locales addon/webextension/build/shot.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/defaultSentryDsn.js
 
 EXPORT_MC_LOCATION := $(shell echo $${EXPORT_MC_LOCATION-../gecko})
 GIT_EXPORT_DIR := $(EXPORT_MC_LOCATION)/browser/extensions/pageshot
@@ -123,6 +126,10 @@ signed_xpi: addon
 	rm -f web-ext-artifacts/*.xpi
 	./node_modules/.bin/web-ext sign --api-key=${AMO_USER} --api-secret=${AMO_SECRET} --source-dir addon/webextension/
 	mv web-ext-artifacts/*.xpi build/pageshot.xpi
+
+.PHONY: addon_locales
+addon_locales:
+	./bin/build-scripts/pontoon-to-webext.js --dest addon/webextension/_locales
 
 addon/webextension/manifest.json: addon/webextension/manifest.json.template build/.backend.txt package.json
 	./bin/build-scripts/update_manifest $< $@
@@ -233,7 +240,7 @@ all: addon server
 
 .PHONY: clean
 clean:
-	rm -rf build/ addon/webextension/build/ addon/webextension/manifest.json
+	rm -rf build/ addon/webextension/build/ addon/webextension/manifest.json addon/webextension/_locales/
 
 .PHONY: help
 help:
