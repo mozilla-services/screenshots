@@ -91,7 +91,7 @@ build/%.html: %.html
 	cp $< $@
 
 .PHONY: addon
-addon: npm set_backend set_sentry addon/webextension/manifest.json addon_locales addon/webextension/build/shot.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/defaultSentryDsn.js
+addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/shot.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/defaultSentryDsn.js
 
 EXPORT_MC_LOCATION := $(shell echo $${EXPORT_MC_LOCATION-../gecko})
 GIT_EXPORT_DIR := $(EXPORT_MC_LOCATION)/browser/extensions/pageshot
@@ -130,6 +130,9 @@ signed_xpi: addon
 .PHONY: addon_locales
 addon_locales:
 	./bin/build-scripts/pontoon-to-webext.js --dest addon/webextension/_locales
+
+addon/install.rdf: addon/install.rdf.template
+	./bin/build-scripts/update_manifest $< $@
 
 addon/webextension/manifest.json: addon/webextension/manifest.json.template build/.backend.txt package.json
 	./bin/build-scripts/update_manifest $< $@

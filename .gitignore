@@ -19,4 +19,5 @@ cookie-jar.txt
 /addon/webextension/build
 /addon/webextension/.web-extension-id
 /addon/webextension/manifest.json
+/addon/install.rdf
 /addon/webextension/_locales

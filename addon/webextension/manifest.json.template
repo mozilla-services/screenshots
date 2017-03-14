@@ -24,7 +24,8 @@
       "19": "icons/pageshot-icon-19.png",
       "38": "icons/pageshot-icon-38.png"
     },
-    "default_title": "__MSG_toolbarButtonLabel__"
+    "default_title": "__MSG_toolbarButtonLabel__",
+    "browser_style": false
   },
   "background": {
     "scripts": [
