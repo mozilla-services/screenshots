@@ -1,5 +1,5 @@
 /* globals console, catcher, util, ui */
-/* globals window, document, location, shooter, callBackground */
+/* globals window, document, location, shooter, callBackground, lifecycle */
 
 window.uicontrol = (function () {
   let exports = {};
@@ -782,11 +782,18 @@ window.uicontrol = (function () {
       ui.remove();
       removeHandlers();
       setState("cancel");
+      lifecycle.unload();
     } catch (e) {
       // Sometimes this fires so late that the document isn't available
       // We don't care about the exception, so we swallow it here
     }
-  }
+  };
+
+  exports.unload = function () {
+    // Note that ui.unload() will be called on its own
+    removeHandlers();
+    setState("cancel");
+  };
 
   /***********************************************
    * Event handlers
@@ -838,7 +845,7 @@ window.uicontrol = (function () {
     if ((event.key || event.code) === "Enter") {
       if (getState.state === "selected") {
         sendEvent("save-shot", "keyboard-enter");
-        shooter.takeShot();
+        shooter.takeShot("selection", selectedPos);
       }
     }
   }

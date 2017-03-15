@@ -1,38 +1,38 @@
-/* globals chrome, communication, makeUuid, Raven, catcher, auth */
+/* globals browser, communication, makeUuid, Raven, catcher, auth */
 
 window.errorpopup = (function () {
   let exports = {};
 
   let messages = {
     REQUEST_ERROR: {
-      title: "Page Shot is out of order.",
-      info: "Your shot was not saved.  We apologize for the inconvenience. Try again soon."
+      title: browser.i18n.getMessage("requestErrorTitle"),
+      info: browser.i18n.getMessage("requestErrorDetails")
     },
     CONNECTION_ERROR: {
-      title: "Cannot connect to the Page Shot server.",
-      info: "There may be a problem with the service or with your network connection."
+      title: browser.i18n.getMessage("connectionErrorTitle"),
+      info: browser.i18n.getMessage("connectionErrorDetails")
     },
     LOGIN_ERROR: {
-      title: "Page Shot is out of order.",
-      info: "Your shot was not saved.  There was an error authenticating with the server."
+      title: browser.i18n.getMessage("requestErrorTitle"),
+      info: browser.i18n.getMessage("loginErrorDetails")
     },
     LOGIN_CONNECTION_ERROR: {
-      title: "Cannot connect to the Page Shot server.",
-      info: "There may be a problem with the service or your network connection."
+      title: browser.i18n.getMessage("connectionErrorTitle"),
+      info: browser.i18n.getMessage("loginConnectionErrorDetails")
     },
     UNSHOOTABLE_PAGE: {
-      title: "Page cannot be screenshotted",
-      info: "This is not a normal web page, and Page Shot cannot capture screenshots from it."
+      title: browser.i18n.getMessage("unshootablePageErrorTitle"),
+      info: browser.i18n.getMessage("unshootablePageErrorDetails")
     },
     SHOT_PAGE: {
-      title: "You can't take a shot of a Page Shot page!"
+      title: browser.i18n.getMessage("selfScreenshotErrorTitle")
     },
     MY_SHOTS: {
-      title: "You can't take a shot of a Page Shot page!"
+      title: browser.i18n.getMessage("selfScreenshotErrorTitle")
     },
     generic: {
-      title: "Page Shot went haywire.",
-      info: "Try again or take a shot on another page?",
+      title: browser.i18n.getMessage("genericErrorTitle"),
+      info: browser.i18n.getMessage("genericErrorDetails"),
       showMessage: true
     }
   };
@@ -57,7 +57,7 @@ window.errorpopup = (function () {
         message = error.message;
       }
     }
-    chrome.notifications.create(id, {
+    browser.notifications.create(id, {
       type: "basic",
       // FIXME: need iconUrl for an image, see #2239
       title,

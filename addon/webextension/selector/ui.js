@@ -1,8 +1,9 @@
-/* globals window, document, console, chrome */
+/* globals window, document, console, browser */
 /* globals util, catcher, inlineSelectionCss */
 
 window.ui = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
+  const SAVE_BUTTON_HEIGHT = 50;
 
   const { watchFunction } = catcher;
 
@@ -43,7 +44,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
   }
 
   let substitutedCss = inlineSelectionCss.replace(/MOZ_EXTENSION([^\"]+)/g, (match, filename) => {
-    return chrome.extension.getURL(filename);
+    return browser.extension.getURL(filename);
   });
 
   function makeEl(tagName, className) {
@@ -212,21 +213,19 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       this.el = makeEl("div", "pageshot-preview-overlay");
       this.el.innerHTML = `
       <div class="pageshot-moving-element" style="position: absolute; pointer-events: none; display: flex">
-        <div class="pageshot-preview-instructions">
-          Drag or click on the page to select a region. Press ESC to cancel.
-        </div>
+        <div class="pageshot-preview-instructions"></div>
         <div class="pageshot-myshots pageshot-myshots-button">
           <div class="pageshot-pre-myshots"></div>
-          <div class="pageshot-myshots-text">My Shots</div>
+          <div class="pageshot-myshots-text"></div>
           <div class="pageshot-post-myshots"></div>
         </div>
-        <div class="pageshot-overlay-button pageshot-visible">
-          Save visible
-        </div>
-        <div class="pageshot-overlay-button pageshot-full-page">
-          Save full page
-        </div>
+        <div class="pageshot-overlay-button pageshot-visible"></div>
+        <div class="pageshot-overlay-button pageshot-full-page"></div>
       `;
+      this.el.querySelector(".pageshot-preview-instructions").textContent = browser.i18n.getMessage("screenshotInstructions");
+      this.el.querySelector(".pageshot-myshots-text").textContent = browser.i18n.getMessage("myShotsLink");
+      this.el.querySelector(".pageshot-visible").textContent = browser.i18n.getMessage("saveScreenshotVisibleArea");
+      this.el.querySelector(".pageshot-full-page").textContent = browser.i18n.getMessage("saveScreenshotFullPage");
       this.el.querySelector(".pageshot-myshots").addEventListener(
         "click", watchFunction(callbacks.onOpenMyShots), false);
       this.el.querySelector(".pageshot-visible").addEventListener(
@@ -321,12 +320,19 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       // Note, document.documentElement.scrollHeight is zero on some strange pages (such as the page created when you load an image):
       let docHeight = Math.max(document.documentElement.scrollHeight || 0, document.body.scrollHeight);
       let docWidth = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth);
+
+      let winBottom = window.innerHeight;
+      let pageYOffset = window.pageYOffset;
+
       if ((pos.right - pos.left) < 78 || (pos.bottom - pos.top) < 78) {
         this.el.classList.add("pageshot-small-selection");
       } else {
         this.el.classList.remove("pageshot-small-selection");
       }
-      if (docHeight - pos.bottom < 50) {
+
+      // if the selection bounding box is w/in SAVE_BUTTON_HEIGHT px of the bottom of
+      // the window, flip controls into the box
+      if (pos.bottom > ((winBottom + pageYOffset) - SAVE_BUTTON_HEIGHT)) {
         this.el.classList.add("pageshot-bottom-selection");
       } else {
         this.el.classList.remove("pageshot-bottom-selection");
@@ -371,14 +377,14 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       boxEl = makeEl("div", "pageshot-highlight");
       let buttons = makeEl("div", "pageshot-highlight-buttons");
       let cancel = makeEl("button", "pageshot-highlight-button-cancel");
-      cancel.title = "Cancel";
+      cancel.title = browser.i18n.getMessage("cancelScreenshot");
       buttons.appendChild(cancel);
       let download = makeEl("button", "pageshot-highlight-button-download");
-      download.title = "Download";
+      download.title = browser.i18n.getMessage("downloadScreenshot");
       buttons.appendChild(download);
       let save = makeEl("button", "pageshot-highlight-button-save");
-      save.textContent = "Save";
-      save.title = "Save"
+      save.textContent = browser.i18n.getMessage("saveScreenshotSelectedArea");
+      save.title = browser.i18n.getMessage("saveScreenshotSelectedArea");
       buttons.appendChild(save);
       this.cancel = cancel;
       this.download = download;
@@ -527,6 +533,8 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       document.body.removeChild(a);
     }), 10000);
   };
+
+  exports.unload = exports.remove;
 
   return exports;
 })();

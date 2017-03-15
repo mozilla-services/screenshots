@@ -1,4 +1,4 @@
-/* globals chrome */
+/* globals browser */
 /* globals main, makeUuid, deviceInfo, analytics, catcher, defaultSentryDsn */
 
 window.auth = (function () {
@@ -8,28 +8,18 @@ window.auth = (function () {
   let initialized = false;
   let authHeader = null;
   let sentryPublicDSN = null;
+  let abTests = {};
 
-  chrome.storage.local.get(["registrationInfo"], catcher.watchFunction((result) => {
-    if (chrome.runtime.lastError) {
-      catcher.unhandled(new Error(chrome.runtime.lastError.message));
-      if (! result) {
-        return;
-      }
+  catcher.watchPromise(browser.storage.local.get(["registrationInfo", "abTests"]).then((result) => {
+    if (result.abTests) {
+      abTests = result.abTests;
     }
     if (result.registrationInfo) {
       registrationInfo = result.registrationInfo;
     } else {
       registrationInfo = generateRegistrationInfo();
-      chrome.storage.local.set({
-        registrationInfo: registrationInfo
-      }, () => {
-        if (chrome.runtime.lastError) {
-          catcher.unhandled(new Error(chrome.runtime.lastError.message));
-        } else {
-          console.info("Device authentication saved");
-        }
-      });
       console.info("Generating new device authentication ID", registrationInfo);
+      return browser.storage.local.set({registrationInfo});
     }
   }));
 
@@ -41,10 +31,8 @@ window.auth = (function () {
     let info = {
       deviceId: "anon" + makeUuid() + "",
       secret: makeUuid()+"",
-      // FIXME-chrome: need to figure out the reason the extension was created
-      // (i.e., startup or install)
-      //reason,
-      deviceInfo: JSON.stringify(deviceInfo())
+      deviceInfo: JSON.stringify(deviceInfo()),
+      registered: false
     };
     return info;
   }
@@ -112,6 +100,14 @@ window.auth = (function () {
     }
     if (responseJson.authHeader) {
       authHeader = responseJson.authHeader;
+      if (!registrationInfo.registered) {
+        registrationInfo.registered = true;
+        catcher.watchPromise(browser.storage.local.set({registrationInfo}));
+      }
+    }
+    if (responseJson.abTests) {
+      abTests = responseJson.abTests;
+      catcher.watchPromise(browser.storage.local.set({abTests}));
     }
   }
 
@@ -144,6 +140,35 @@ window.auth = (function () {
 
   exports.getSentryPublicDSN = function () {
     return sentryPublicDSN || defaultSentryDsn;
+  };
+
+  exports.getAbTests = function () {
+    return abTests;
+  };
+
+  exports.isRegistered = function () {
+    return registrationInfo.registered;
+  };
+
+  exports.setDeviceInfoFromOldAddon = function (newDeviceInfo) {
+    if (! (newDeviceInfo.deviceId && newDeviceInfo.secret)) {
+      throw new Error("Bad deviceInfo");
+    }
+    if (registrationInfo.deviceId === newDeviceInfo.deviceId &&
+      registrationInfo.secret === newDeviceInfo.secret) {
+      // Probably we already imported the information
+      return Promise.resolve(false);
+    }
+    let newInfo = {
+      deviceId: newDeviceInfo.deviceId,
+      secret: newDeviceInfo.secret,
+      deviceInfo: JSON.stringify(deviceInfo()),
+      registered: true
+    };
+    initialized = false;
+    return browser.storage.local.set({registrationInfo: newInfo}).then(() => {
+      return true;
+    });
   };
 
   return exports;

@@ -179,51 +179,6 @@ function sendShowElement(clipId) {
   }
 }
 
-/*
-function requestHasSavedShot(id) {
-  let event = document.createEvent("CustomEvent");
-  event.initCustomEvent("has-saved-shot", true, true, id);
-  document.dispatchEvent(event);
-}
-
-exports.requestSavedShot = function () {
-  let event = document.createEvent("CustomEvent");
-  event.initCustomEvent("request-saved-shot", true, true, model.shot.id);
-  document.dispatchEvent(event);
-};
-
-function addSavedShotData(data) {
-  if (! data) {
-    model.hasSavedShot = false;
-    exports.render();
-    return;
-  }
-  for (let attr in data) {
-    if (! data[attr]) {
-      delete data[attr];
-    }
-  }
-  data.showPage = true;
-  model.shot.update(data);
-  model.hasSavedShot = false;
-  let url = model.backend + "/api/add-saved-shot-data/" + model.shot.id;
-  let req = new XMLHttpRequest();
-  req.onload = function () {
-    if (req.status >= 300) {
-      window.alert("Error saving expiration: " + req.status + " " + req.statusText);
-      return;
-    }
-    let event = document.createEvent("CustomEvent");
-    event.initCustomEvent("remove-saved-shot", true, true, model.shot.id);
-    document.dispatchEvent(event);
-    exports.render();
-  };
-  req.open("POST", url);
-  req.setRequestHeader("content-type", "application/json");
-  req.send(JSON.stringify(data));
-}
-*/
-
 exports.setTitle = function (title) {
   title = title || null;
   let url = model.backend + "/api/set-title/" + model.shot.id;
@@ -239,30 +194,6 @@ exports.setTitle = function (title) {
   req.open("POST", url);
   req.setRequestHeader("content-type", "application/json");
   req.send(JSON.stringify({ title }));
-};
-
-exports.sendRichCopy = function () {
-  let event = document.createEvent("CustomEvent");
-  function quote(s) {
-    s = s+"";
-    return s.replace(/"/g, '&quot;').replace(/</g, '&gt;').replace(/&/g, '&amp;');
-  }
-  let shot = model.shot;
-  let clip = shot.getClip(shot.clipNames()[0]);
-  let src = clip.image.url;
-  let height = clip.image.dimensions.y;
-  let width = clip.image.dimensions.x;
-  let adjust = Math.min(500 / width, 350 / height);
-  if (adjust < 1) {
-    height = height * adjust;
-    width = width * adjust;
-  }
-  let detail = {
-    html: `<img src="${quote(src)}" height="${quote(height)}" width="${quote(width)}" /><br /><a href="${quote(shot.viewUrl)}">${quote(shot.title)}</a> (source: <a href="${quote(shot.url)}">${quote(shot.urlDisplay)}</a>)`,
-    text: `${shot.title}: ${shot.viewUrl} (source: ${shot.url})`
-  };
-  event.initCustomEvent("sendRichCopy", true, true, detail);
-  document.dispatchEvent(event);
 };
 
 function render() {

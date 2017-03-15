@@ -1,4 +1,5 @@
 # Page Shot UX and Measurements Acceptance Criteria
+
 This document is intended to be used as comprehensive list of all changes to UI
 and metrics required for launch. Issues will be filed from this list and
 triaged into sprints on a an as-needed basis. Items in this list may not
@@ -9,8 +10,8 @@ correlate with issues on a 1:1 basis.
 - [ ] Support Localization [#2205](https://github.com/mozilla-services/pageshot/issues/2205)
 
 ## Add-on Activation
-- [ ] It should be able to be progressively revealed/enabled by the shield recipe server
-- [ ] It should be able to be enabled and disabled by a toggle in about:preferences
+- [ ] It should be able to be progressively revealed/enabled by the shield recipe server [#2332](https://github.com/mozilla-services/pageshot/issues/2332)
+- [ ] It should be able to be enabled and disabled by a toggle in about:preferences [#2333](https://github.com/mozilla-services/pageshot/issues/2333)
 
 # UI/UX
 
@@ -22,12 +23,12 @@ correlate with issues on a 1:1 basis.
 - [ ] All images should be SVG or have retina versions
 - [ ] It should undergo an accessibility review prior to launch [#2251](https://github.com/mozilla-services/pageshot/issues/2251)
 - [ ] It should have a new name
-- [ ] It should be at {newname}.firefox.com
+- [ ] It should be at screenshots.firefox.com [Bug 1347251](https://bugzilla.mozilla.org/show_bug.cgi?id=1347251)
 
 ## Shot iframe (ADDON)
-- [ ] It should match the final spec provided by the UX team (#2306)[https://github.com/mozilla-services/pageshot/issues/2306]
+- [ ] It should match the final spec provided by the UX team [#2306](https://github.com/mozilla-services/pageshot/issues/2306)
 
-## Shots Index Page UI (SERVER)[#2308](https://github.com/mozilla-services/pageshot/issues/2308)
+## Shots Index Page UI (SERVER) [#2308](https://github.com/mozilla-services/pageshot/issues/2308)
 - [ ] It should match the final spec provided by UX team
   - [ ] It should include the ability to download, copy link, delete and access to shot page for each shot
   - [ ] It should make use of the CSS grid spec [NB. This is an odd requirement, but we are only supporting Firefox 54+ and unspecified future releases of Chrome. Shipping CSS grid at a large scale will give us a good Hacks post, and won’t be particularly costly given what I’ve seen of the spec]
@@ -92,7 +93,7 @@ correlate with issues on a 1:1 basis.
   - [ ] Click Cancel `addon/cancel-shot/overlay-cancel-button`
   - [ ] Click Download `addon/download-shot/overlay-download-button`
   - [ ] Click My Shots `addon/goto-myshots/selection-button`
-  - [ ] Click on "Save visible” `addon/capture-visible/selection-button`
+  - [ ] Click on "Save visible" `addon/capture-visible/selection-button`
   - [ ] Click on "Save Full Page" `addon/capture-full-page/selection-button`
 
 ## Dashboards
