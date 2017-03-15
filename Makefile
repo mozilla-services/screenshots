@@ -129,7 +129,7 @@ signed_xpi: addon
 
 .PHONY: addon_locales
 addon_locales:
-	./bin/build-scripts/pontoon-to-webext.js --dest addon/webextension/_locales
+	./node_modules/.bin/pontoon-to-webext --dest addon/webextension/_locales
 
 addon/install.rdf: addon/install.rdf.template
 	./bin/build-scripts/update_manifest $< $@
