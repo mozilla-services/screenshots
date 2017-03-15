@@ -2,6 +2,7 @@ PATH := ./node_modules/.bin:./bin/:$(PATH)
 SHELL := /bin/bash
 BABEL := babel --retain-lines
 RSYNC := rsync --archive
+VENV := .venv
 .DEFAULT_GOAL := help
 # Sets $(PAGESHOT_BACKEND) to http://localhost:10080 only if it isn't set
 PAGESHOT_BACKEND ?= http://localhost:10080
@@ -54,7 +55,7 @@ build/server/static/js/%.js: build/static/js/%.js
 
 build/%.js: %.js
 	@mkdir -p $(@D)
-	$(BABEL) $< | ./bin/build-scripts/fixup_panel_js > $@
+	$(BABEL) $< | ./bin/build-scripts/fixup_panel_js.py > $@
 
 build/server/%.js: server/src/%.js
 	@mkdir -p $(@D)
@@ -103,6 +104,14 @@ else
   FIND_COMMAND := find -E $(GIT_EXPORT_DIR)
 endif
 
+$(VENV): bin/require.pip
+	virtualenv -p python2.7 $(VENV)
+	. $(VENV)/bin/activate && pip install -r bin/require.pip
+
+.PHONY: flake8
+flake8: $(VENV)
+	$(VENV)/bin/flake8 .
+
 .PHONY: export_addon
 export_addon: addon
 	$(FIND_COMMAND) -type f ! -regex \
@@ -132,10 +141,10 @@ addon_locales:
 	./node_modules/.bin/pontoon-to-webext --dest addon/webextension/_locales
 
 addon/install.rdf: addon/install.rdf.template
-	./bin/build-scripts/update_manifest $< $@
+	./bin/build-scripts/update_manifest.py $< $@
 
 addon/webextension/manifest.json: addon/webextension/manifest.json.template build/.backend.txt package.json
-	./bin/build-scripts/update_manifest $< $@
+	./bin/build-scripts/update_manifest.py $< $@
 
 addon/webextension/build/shot.js: shared/shot.js
 	@mkdir -p $(@D)
@@ -143,7 +152,7 @@ addon/webextension/build/shot.js: shared/shot.js
 
 addon/webextension/build/inlineSelectionCss.js: build/server/static/css/inline-selection.css
 	@mkdir -p $(@D)
-	./bin/build-scripts/css_to_js inlineSelectionCss $< > $@
+	./bin/build-scripts/css_to_js.py inlineSelectionCss $< > $@
 
 addon/webextension/build/raven.js: $(raven_source)
 	@mkdir -p $(@D)
@@ -193,7 +202,7 @@ build/server/static/js/creating-bundle.js: $(creating_dependencies)
 # anyway:
 build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass_server_dest) $(imgs_server_dest) $(static_js_dest) $(patsubst server/db-patches/%,build/server/db-patches/%,$(wildcard server/db-patches/*))
 	@mkdir -p $(@D)
-	./bin/build-scripts/write_build_time > build/server/build-time.js
+	./bin/build-scripts/write_build_time.py > build/server/build-time.js
 
 .PHONY: server
 server: npm build/server/build-time.js build/server/package.json build/server/static/js/shot-bundle.js build/server/static/js/homepage-bundle.js build/server/static/js/metrics-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/leave-bundle.js build/server/static/js/creating-bundle.js
@@ -244,6 +253,7 @@ all: addon server
 .PHONY: clean
 clean:
 	rm -rf build/ addon/webextension/build/ addon/webextension/manifest.json addon/webextension/_locales/
+	rm -rf $(VENV)
 
 .PHONY: help
 help:

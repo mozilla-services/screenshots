@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 import requests
 import argparse
 from urlparse import urljoin
@@ -22,8 +23,8 @@ parser.add_argument('--search', metavar='N', type=int, default=1,
                     help='Search /shots N times with randomish queries')
 parser.add_argument('--times', metavar='M', type=int, default=1,
                     help='Do everything M times (i.e., do each action N x M times)')
-## FIXME: no option for /redirect
-## FIXME: no option for /event
+# FIXME: no option for /redirect
+# FIXME: no option for /event
 
 example_images = {}
 execfile(os.path.join(os.path.dirname(__file__), "load_test_exercise_images.py"), example_images)
@@ -35,18 +36,22 @@ backend = args.url[0]
 
 session = requests.Session()
 
+
 def make_device_info():
     return dict(
         addonVersion='0.1.2014test',
         platform='test',
     )
 
+
 def make_uuid():
     return str(uuid.uuid1()).replace("-", "")
+
 
 deviceInfo = make_device_info()
 deviceId = make_uuid()
 secret = make_uuid()
+
 
 def login():
     resp = session.post(
@@ -58,11 +63,13 @@ def login():
             data=dict(deviceId=deviceId, secret=secret, deviceInfo=json.dumps(deviceInfo)))
     resp.raise_for_status()
 
+
 def delete_account():
     resp = session.post(
         urljoin(backend, "/leave-page-shot/leave"),
         json={})
     resp.raise_for_status()
+
 
 def create_shot():
     shot_id = make_uuid() + "/test.com"
@@ -75,20 +82,24 @@ def create_shot():
     resp.raise_for_status()
     return shot_url
 
+
 def read_shot(url):
-    ## FIXME: should get at least the clip image subresource itself
+    # FIXME: should get at least the clip image subresource itself
     resp = session.get(url)
     resp.raise_for_status()
+
 
 def read_my_shots():
     resp = session.get(urljoin(backend, "/shots"))
     resp.raise_for_status()
+
 
 def search_shots(q=None):
     if q is None:
         q = make_search_query()
     resp = session.get(urljoin(backend, "/shots"), params={"q": q})
     resp.raise_for_status()
+
 
 def make_example_shot():
     image = random.choice(example_images)
@@ -100,12 +111,12 @@ def make_example_shot():
         deviceId=deviceId,
         url="http://test.com/?" + make_uuid(),
         docTitle="Load test page",
-        createdDate=int(time.time()*1000),
+        createdDate=int(time.time() * 1000),
         favicon=None,
         siteName="test site",
         clips={
             make_uuid(): dict(
-                createdDate=int(time.time()*1000),
+                createdDate=int(time.time() * 1000),
                 sortOrder=100,
                 image=dict(
                     url=image["url"],
@@ -114,8 +125,8 @@ def make_example_shot():
                     location=dict(
                         top=100,
                         left=100,
-                        bottom=100+image["height"],
-                        right=100+image["width"],
+                        bottom=100 + image["height"],
+                        right=100 + image["width"],
                     ),
                     dimensions=dict(
                         x=image["width"],
@@ -126,11 +137,15 @@ def make_example_shot():
         },
     )
 
+
 def make_search_query():
     return random.choice(search_strings)
 
+
 text_strings = """
-Example strings like apple orange banana some stuff like whatever and whoever and bucket blanket funky etc keyboard screen house window tree leaf leaves feather feathers
+Example strings like apple orange banana some stuff like whatever and whoever
+and bucket blanket funky etc keyboard screen house window tree leaf leaves
+feather feathers
 """.split()
 
 search_strings = """
@@ -138,6 +153,7 @@ nothing 12345
 """.split() + text_strings
 
 login_happened = False
+
 
 def run():
     global login_happened
@@ -175,15 +191,17 @@ def run():
                 total -= 1
                 break
 
+
 def main():
     try:
         for i in range(args.times):
             run()
-            print "Finished run %i/%i" % (i+1, args.times)
+            print "Finished run %i/%i" % (i + 1, args.times)
     except KeyboardInterrupt:
         print "Early abort"
     print "Deleting account"
     delete_account()
+
 
 if __name__ == "__main__":
     main()

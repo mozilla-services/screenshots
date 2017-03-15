@@ -10,6 +10,7 @@ dist-production
 addon.log
 cookie-jar.txt
 .env.production
+.venv
 /scratch
 /data
 *.log
