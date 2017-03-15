@@ -71,6 +71,7 @@
   "scripts": {
     "lint": "npm-run-all lint:*",
     "lint:addon": "make zip && addons-linter ./build/pageshot.zip -o text",
+    "lint:flake8": "make flake8",
     "lint:js": "eslint .",
     "lint:sass": "sass-lint -v -q",
     "postlint": "nsp check -o summary",

@@ -6,7 +6,6 @@ Sets the backend value
 
 import sys
 import os
-import re
 import time
 import json
 import calendar

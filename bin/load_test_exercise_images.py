@@ -1,3 +1,5 @@
+# flake8: noqa
+
 example_images = [
     dict(
         source="https://upload.wikimedia.org/wikipedia/commons/a/a9/Example.jpg",
