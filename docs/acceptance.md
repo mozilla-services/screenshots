@@ -23,7 +23,7 @@ correlate with issues on a 1:1 basis.
 - [ ] All images should be SVG or have retina versions
 - [ ] It should undergo an accessibility review prior to launch [#2251](https://github.com/mozilla-services/pageshot/issues/2251)
 - [ ] It should have a new name
-- [ ] It should be at {newname}.firefox.com
+- [ ] It should be at screenshots.firefox.com [Bug 1347251](https://bugzilla.mozilla.org/show_bug.cgi?id=1347251)
 
 ## Shot iframe (ADDON)
 - [ ] It should match the final spec provided by the UX team [#2306](https://github.com/mozilla-services/pageshot/issues/2306)
