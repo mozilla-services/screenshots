@@ -12,9 +12,8 @@ firefoxes="
 /Applications/FirefoxNightly.app
 /Applications/FirefoxDeveloperEdition.app
 /Applications/FirefoxAurora.app
-/usr/bin/firefox
+$(which firefox || true)
 "
-# TODO add more firefoxes locations? use `which` maybe?
 setup_profile=
 server=
 
@@ -81,12 +80,10 @@ while [[ -n "$1" ]] ; do
   esac
 done
 
-open="open $binary" # assumes Mac OS, availability of 'open' command
+open=$binary # assumes Linux
 unamestr=$(uname)
-if [[ "$unamestr" == "Linux" ]]; then
-  open=$binary
-# elif [[ "$unamestr" == "" ]]; then
-#  # TODO add cases for Windows, FreeBSD, etc.
+if [[ "$unamestr" = "Darwin" ]]; then
+  open="open $binary"
 fi
 
 if [[ ! -d ./Profile ]] ; then
