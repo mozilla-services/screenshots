@@ -1,4 +1,4 @@
-/* globals browser, catcher */
+/* globals browser */
 
 window.loadSelector = (function () {
   // These modules are loaded in order, and some need to be listed before others
@@ -25,14 +25,12 @@ window.loadSelector = (function () {
     let lastPromise = Promise.resolve(null);
     scripts.forEach((script) => {
       lastPromise = lastPromise.then(() => {
-        return browser.tabs.executeScript({
-          file: script
-        }, () => {
-          if (browser.runtime.lastError
-              && browser.runtime.lastError.message != "Script returned non-structured-clonable data") {
-              catcher.unhandled(browser.runtime.lastError, {script: script});
-              console.error("Error loading script", script, ":", browser.runtime.lastError);
-          }
+        return browser.tabs.executeScript({file: script}).then(() => {
+          return;
+        }, (error) => {
+          console.log("error in script:", script, error);
+          error.scriptName = script;
+          throw error;
         });
       });
     });
@@ -48,3 +46,4 @@ window.loadSelector = (function () {
   return loadSelector;
 
 })();
+null;
