@@ -29,15 +29,24 @@ window.selectorLoader = (function () {
   };
 
   exports.loadModules = function () {
-    return scripts.reduce(
-      (previous, file) =>
-        previous.then(() => browser.tabs.executeScript({file})),
-      Promise.resolve(null))
-      .catch(err => {
-        console.error(`Error loading script: ${err}`);
-        catcher.unhandled(err);
-        exports.unloadModules();
-      });
+    let lastPromise = Promise.resolve(null);
+    scripts.forEach((file) => {
+      lastPromise = lastPromise.then(() => {
+        return browser.tabs.executeScript({file})
+          .catch((error) => {
+            console.error("error in script:", file, error);
+            error.scriptName = file;
+            throw error;
+          })
+      })
+    });
+    return lastPromise.then(() => {
+      console.log("finished loading scripts:", scripts.join(" "), "->", browser.runtime.lastError || "no error");
+    },
+    (error) => {
+      exports.unloadIfLoaded();
+      throw error;
+    });
   };
 
   exports.unloadModules = function () {

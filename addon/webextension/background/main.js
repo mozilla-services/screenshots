@@ -31,10 +31,13 @@ window.main = (function () {
     browser.browserAction.setIcon({path, tabId});
   }
 
-  function toggleTab(tab) {
-    return catcher.watchPromise(
-      selectorLoader.toggle()
-        .then(active => setIconActive(active, tab.id)));
+  function toggleSelector(tab) {
+    return analytics.refreshTelemetryPref()
+      .then(() => selectorLoader.toggle())
+      .then(active => {
+        setIconActive(active, tab.id);
+        return active;
+      });
   }
 
   browser.browserAction.onClicked.addListener(catcher.watchFunction((tab) => {
@@ -44,10 +47,12 @@ window.main = (function () {
       }));
       catcher.watchPromise(browser.tabs.update({url: backend + "/shots"}));
     } else {
-      catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
-        sendEvent("start-shot", "toolbar-pageshot-button");
-      }));
-      toggleTab(tab);
+      catcher.watchPromise(
+        toggleSelector(tab)
+          .then(active => {
+            const event = active ? "start-shot" : "cancel-shot";
+            sendEvent(event, "toolbar-pageshot-button");
+          }));
     }
   }));
 
@@ -67,22 +72,23 @@ window.main = (function () {
       // Not in a page/tab context, ignore
       return;
     }
-    sendEvent("start-shot", "context-menu");
-    toggleTab(tab);
+    catcher.watchPromise(
+      toggleSelector(tab)
+        .then(() => sendEvent("start-shot", "context-menu")));
   }));
 
 
-  communication.register("sendEvent", (...args) => {
+  communication.register("sendEvent", (sender, ...args) => {
     catcher.watchPromise(sendEvent(...args));
     // We don't wait for it to complete:
     return null;
   });
 
-  communication.register("openMyShots", () => {
+  communication.register("openMyShots", (sender) => {
     return browser.tabs.create({url: backend + "/shots"});
   });
 
-  communication.register("openShot", ({url, copied}) => {
+  communication.register("openShot", (sender, {url, copied}) => {
     if (copied) {
       const id = makeUuid();
       return browser.notifications.create(id, {
@@ -94,7 +100,7 @@ window.main = (function () {
     }
   });
 
-  communication.register("closeSelector", sender => {
+  communication.register("closeSelector", (sender) => {
     setIconActive(false, sender.tab.id)
   });
 

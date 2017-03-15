@@ -18,7 +18,7 @@ window.communication = (function () {
     let func = registeredFunctions[req.funcName];
     let result;
     try {
-      req.args.push(sender);
+      req.args.unshift(sender);
       result = func.apply(null, req.args);
     } catch (e) {
       console.error(`Error in ${req.funcName}:`, e);
