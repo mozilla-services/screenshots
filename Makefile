@@ -253,7 +253,11 @@ all: addon server
 .PHONY: clean
 clean:
 	rm -rf build/ addon/webextension/build/ addon/webextension/manifest.json addon/webextension/_locales/
+
+.PHONY: distclean
+distclean: clean
 	rm -rf $(VENV)
+	rm -rf ./node_modules
 
 .PHONY: help
 help:
