@@ -1,5 +1,6 @@
 /* globals browser, console, XMLHttpRequest, Image, document, setTimeout, navigator */
-/* globals loadSelector, analytics, communication, catcher, makeUuid, auth */
+/* globals selectorLoader, analytics, communication, catcher, makeUuid, auth */
+
 window.main = (function () {
   let exports = {};
 
@@ -25,6 +26,20 @@ window.main = (function () {
     }
   }
 
+  function setIconActive(active, tabId) {
+    const path = active ? "icons/pageshot-icon-green-38.png" : "icons/pageshot-icon-38.png";
+    browser.browserAction.setIcon({path, tabId});
+  }
+
+  function toggleSelector(tab) {
+    return analytics.refreshTelemetryPref()
+      .then(() => selectorLoader.toggle())
+      .then(active => {
+        setIconActive(active, tab.id);
+        return active;
+      });
+  }
+
   browser.browserAction.onClicked.addListener(catcher.watchFunction((tab) => {
     if (tab.url.match(/about:(newtab|blank)/i)) {
       catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
@@ -32,10 +47,12 @@ window.main = (function () {
       }));
       catcher.watchPromise(browser.tabs.update({url: backend + "/shots"}));
     } else {
-      catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
-        sendEvent("start-shot", "toolbar-pageshot-button");
-      }));
-      catcher.watchPromise(loadSelector());
+      catcher.watchPromise(
+        toggleSelector(tab)
+          .then(active => {
+            const event = active ? "start-shot" : "cancel-shot";
+            sendEvent(event, "toolbar-pageshot-button");
+          }));
     }
   }));
 
@@ -55,22 +72,23 @@ window.main = (function () {
       // Not in a page/tab context, ignore
       return;
     }
-    sendEvent("start-shot", "context-menu");
-    catcher.watchPromise(loadSelector());
+    catcher.watchPromise(
+      toggleSelector(tab)
+        .then(() => sendEvent("start-shot", "context-menu")));
   }));
 
 
-  communication.register("sendEvent", (...args) => {
+  communication.register("sendEvent", (sender, ...args) => {
     catcher.watchPromise(sendEvent(...args));
     // We don't wait for it to complete:
     return null;
   });
 
-  communication.register("openMyShots", () => {
+  communication.register("openMyShots", (sender) => {
     return browser.tabs.create({url: backend + "/shots"});
   });
 
-  communication.register("openShot", ({url, copied}) => {
+  communication.register("openShot", (sender, {url, copied}) => {
     if (copied) {
       const id = makeUuid();
       return browser.notifications.create(id, {
@@ -80,6 +98,10 @@ window.main = (function () {
         message: browser.i18n.getMessage("notificationLinkCopiedDetails", pasteSymbol)
       });
     }
+  });
+
+  communication.register("closeSelector", (sender) => {
+    setIconActive(false, sender.tab.id)
   });
 
   catcher.watchPromise(communication.sendToBootstrap("getOldDeviceInfo").then((deviceInfo) => {

@@ -116,7 +116,7 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 
 1. ~~Start the browser `addon/open-browser/launch`~~ (removed for launch)
 2. ~~Daily ping (attempt roughly every 24 hours) `addon/daily-ping`~~ (removed for launch)
-1. [x] Click shot button `addon/start-shot/toolbar-pageshot-button`
+1. [x] Toggle shot button on `addon/start-shot/toolbar-pageshot-button`
 2. [ ] Use keyboard shortcut to start shot `addon/start-shot/keyboard-shortcut` (accel-alt-control-c) (FIXME: not yet implemented)
 3. [x] Use the right-click context menu to start a shot `addon/start-shot/context-menu`
 2. [x] Make a selection `addon/make-selection/selection-drag` with `cd2: {px width}, cd1: {px height}`
@@ -154,6 +154,7 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 18. [ ] Hit shot button on any other non-http page `addon/start-shot-non-http/actual-scheme` (note: shooting still continues).  Full event is something like `addon/start-shot-non-http/file` (or `about`, `view-source`, `data`) (FIXME: todo)
 20. ~~Test pilot was present at install time `addon/test-pilot-installed`~~
 21. ~~Test pilot was not present at install time `addon/test-pilot-not-installed`~~
+99. Toggle shot button off `addon/cancel-shot/toolbar-pageshot-button`
 
 ##### Internal add-on events
 

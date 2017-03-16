@@ -8,7 +8,7 @@ This contains all the files for the WebExtension.  Most files are not "built", b
   2. The selector content worker, in `selector/`
   3. The site helper that communicates with the Page Shot website, in `site-helper.js`
 - The background process is loaded according to a list in `manifest.json.template` – if there are load order dependencies, they must be manually managed with that list
-- The selector content worker is loaded with a list in `background/loadSelector.js`.  Again this must be manually maintained.
+- The selector content worker is loaded with a list in `background/selectorLoader.js`.  Again this must be manually maintained.
 - The site helper worker is loaded via a separate list in `manifest.json.template`
 
 Note that shared files are located directly in this directory.  These files should have minimal (ideally no) requirements.  Note that `shot.js` is *also* shared with the server, and is wrapped in a simple module pattern into `webextension/build/shot.js`
@@ -25,7 +25,7 @@ To support communication, `background/communication.js` handles incoming message
 The basic flow:
 
 1. Everything starts when the button is clicked.  This fires an event in `background/main.js`
-2. The background page loads the content worker with `background/loadSelector.js`
+2. The background page loads the content worker with `background/selectorLoader.js`
 3. `selector/shooter.js` handles most communication logic from the selector side
 4. `shooter.js` collects the information and creates a Shot object.  
 5. `selector/uicontrol.js` handles the UI logic, button handlers, selection process, etc.

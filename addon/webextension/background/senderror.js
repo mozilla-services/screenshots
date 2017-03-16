@@ -37,7 +37,7 @@ window.errorpopup = (function () {
     }
   };
 
-  communication.register("reportError", (error) => {
+  communication.register("reportError", (sender, error) => {
     catcher.unhandled(error);
   });
 
