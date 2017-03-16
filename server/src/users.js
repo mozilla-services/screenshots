@@ -1,6 +1,6 @@
 const config = require("./config").getProperties();
 const db = require("./db");
-const errors = require("../shared/errors");
+const errors = require("./errors");
 const { request } = require("./helpers");
 const crypto = require("crypto");
 const mozlog = require("mozlog")("users");
