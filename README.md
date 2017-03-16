@@ -1,5 +1,6 @@
 ## Page Shot
 
+[![CircleCI Build Status](https://circleci.com/gh/mozilla-services/pageshot.svg?style=shield)](https://circleci.com/gh/mozilla-services/pageshot)
 [![Build Status](https://travis-ci.org/mozilla-services/pageshot.svg)](https://travis-ci.org/mozilla-services/pageshot)
 [![Available on Test Pilot](https://img.shields.io/badge/available_on-Test_Pilot-0996F8.svg)](https://testpilot.firefox.com/experiments/page-shot)
 
