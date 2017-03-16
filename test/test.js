@@ -82,6 +82,7 @@ describe("Test Page Shot", function () {
   });
 
   it("should find the add-on button", function() {
+    this.timeout(15000)
     return getElementById(driver, SHOOTER_BUTTON_ID)
       .then((button) => button.getAttribute("label"))
       .then((label) => assert.equal(label, "Take a shot"));
