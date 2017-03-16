@@ -31,7 +31,6 @@ window.auth = (function () {
     let info = {
       deviceId: "anon" + makeUuid() + "",
       secret: makeUuid()+"",
-      deviceInfo: JSON.stringify(deviceInfo()),
       registered: false
     };
     return info;
@@ -55,7 +54,11 @@ window.auth = (function () {
           reject(new Error("Bad response: " + req.status));
         }
       });
-      req.send(uriEncode(registrationInfo));
+      req.send(uriEncode({
+        deviceId: registrationInfo.deviceId,
+        secret: registrationInfo.secret,
+        deviceInfo: JSON.stringify(deviceInfo())
+      }));
     });
   }
 
@@ -87,8 +90,6 @@ window.auth = (function () {
       req.send(uriEncode({
         deviceId: registrationInfo.deviceId,
         secret: registrationInfo.secret,
-        // FIXME: give proper reason
-        reason: "install",
         deviceInfo: JSON.stringify(deviceInfo())
       }));
     });
@@ -162,7 +163,6 @@ window.auth = (function () {
     let newInfo = {
       deviceId: newDeviceInfo.deviceId,
       secret: newDeviceInfo.secret,
-      deviceInfo: JSON.stringify(deviceInfo()),
       registered: true
     };
     initialized = false;

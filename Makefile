@@ -55,7 +55,7 @@ build/server/static/js/%.js: build/static/js/%.js
 
 build/%.js: %.js
 	@mkdir -p $(@D)
-	$(BABEL) $< | ./bin/build-scripts/fixup_panel_js.py > $@
+	$(BABEL) $< > $@
 
 build/server/%.js: server/src/%.js
 	@mkdir -p $(@D)
