@@ -10,6 +10,7 @@ import time
 import json
 import calendar
 import subprocess
+import re
 
 if not sys.argv[1:] or "-h" in sys.argv or "--help" in sys.argv:
     print "Usage: %s MANIFEST_TEMPLATE MANIFEST_JSON" % (os.path.basename(sys.argv[0]))
@@ -43,6 +44,11 @@ while True:
 backend = open("build/.backend.txt").read()
 
 template = template.replace("__VERSION__", version)
+# Some places we use the port:
 template = template.replace("http://localhost:10080", backend)
+# But for content_scripts.matches the port gets left off:
+backend_without_port = re.sub(r':\d+$', '', backend)
+template = template.replace("http://localhost/", backend_without_port + "/")
+
 
 open(sys.argv[2], "wb").write(template)
