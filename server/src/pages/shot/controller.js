@@ -11,6 +11,18 @@ let model;
 exports.launch = function (data) {
   let firstSet = ! model;
   model = data;
+  if (window.wantsauth) {
+    if (window.wantsauth.getAuthData()) {
+      Object.assign(model, window.wantsauth.getAuthData());
+      model.isExtInstalled = true;
+    } else {
+      window.wantsauth.addAuthDataListener((data) => {
+        Object.assign(model, data);
+        model.isExtInstalled = true;
+        render();
+      });
+    }
+  }
   model.hasSavedShot = false;
   model.shot = new AbstractShot(data.backend, data.id, data.shot);
   model.shot.contentUrl = `//${model.contentOrigin}/content/${model.shot.id}`;

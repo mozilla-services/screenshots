@@ -70,6 +70,7 @@ class Head extends React.Component {
     if (expired) {
       return (
         <reactruntime.HeadTemplate {...this.props}>
+          <script src={ this.props.staticLink("/static/js/wantsauth.js") } />
           <script src={ this.props.staticLink("/static/js/shot-bundle.js") } async />
           <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -79,6 +80,7 @@ class Head extends React.Component {
       // FIXME: we need to review if the oembed form actually works and is valuable
       return (
         <reactruntime.HeadTemplate {...this.props}>
+          <script src={ this.props.staticLink("/static/js/wantsauth.js") } />
           <script src={ this.props.staticLink("/static/js/shot-bundle.js") } async />
           <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -256,6 +258,7 @@ class Body extends React.Component {
 
     let myShotsHref = "/shots";
     let myShotsText = <span className="back-to-index">My Shots <span className="arrow-icon"/></span>;
+    // FIXME: this means that on someone else's shot they won't see a My Shots link:
     if (!this.props.isOwner) {
       myShotsText = <span className="back-to-home">
         <span className="sub">

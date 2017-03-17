@@ -1,5 +1,5 @@
 /* globals browser */
-/* globals main, makeUuid, deviceInfo, analytics, catcher, defaultSentryDsn */
+/* globals main, makeUuid, deviceInfo, analytics, catcher, defaultSentryDsn, communication */
 
 window.auth = (function () {
   let exports = {};
@@ -47,7 +47,7 @@ window.auth = (function () {
           console.info("Registered login");
           initialized = true;
           saveAuthInfo(JSON.parse(req.responseText));
-          resolve();
+          resolve(true);
           analytics.sendEvent("registered");
         } else {
           console.warn("Error in response:", req.responseText);
@@ -62,15 +62,19 @@ window.auth = (function () {
     });
   }
 
-  function login() {
+  function login(options) {
+    let { ownershipCheck, noRegister } = options || {};
     return new Promise((resolve, reject) => {
       let loginUrl = main.getBackend() + "/api/login";
       let req = new XMLHttpRequest();
       req.open("POST", loginUrl);
       req.onload = catcher.watchFunction(() => {
         if (req.status == 404) {
-          // No such user
-          resolve(register());
+          if (noRegister) {
+            resolve(false);
+          } else {
+            resolve(register());
+          }
         } else if (req.status >= 300) {
           console.warn("Error in response:", req.responseText);
           reject(new Error("Could not log in: " + req.status));
@@ -80,17 +84,23 @@ window.auth = (function () {
           reject(error);
         } else {
           initialized = true;
+          let jsonResponse = JSON.parse(req.responseText);
           console.info("Page Shot logged in");
           analytics.sendEvent("login");
-          saveAuthInfo(JSON.parse(req.responseText));
-          resolve();
+          saveAuthInfo(jsonResponse);
+          if (ownershipCheck) {
+            resolve({isOwner: jsonResponse.isOwner});
+          } else {
+            resolve(true);
+          }
         }
       });
       req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
       req.send(uriEncode({
         deviceId: registrationInfo.deviceId,
         secret: registrationInfo.secret,
-        deviceInfo: JSON.stringify(deviceInfo())
+        deviceInfo: JSON.stringify(deviceInfo()),
+        ownershipCheck
       }));
     });
   }
@@ -115,7 +125,9 @@ window.auth = (function () {
   function uriEncode(obj) {
     let s = [];
     for (let key in obj) {
-      s.push(`${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`);
+      if (obj[key] !== undefined) {
+        s.push(`${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`);
+      }
     }
     return s.join("&");
   }
@@ -170,6 +182,21 @@ window.auth = (function () {
       return true;
     });
   };
+
+  communication.register("getAuthInfo", (sender, ownershipCheck) => {
+    let info = registrationInfo;
+    let done = Promise.resolve();
+    if (info.registered) {
+      done = login({ownershipCheck}).then((result) => {
+        if (result && result.isOwner) {
+          info.isOwner = true;
+        }
+      });
+    }
+    return done.then(() => {
+      return info;
+    });
+  });
 
   return exports;
 })();
