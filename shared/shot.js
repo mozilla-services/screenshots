@@ -572,7 +572,9 @@ class _Clip {
     assert(typeof id == "string" && id, "Bad Clip id:", id);
     this._id = id;
     this.createdDate = json.createdDate;
-    assert((! ('sortOrder' in json)) || typeof json.sortOrder == "number" || ! json.sortOrder, "Bad Clip sortOrder:", json.sortOrder);
+    if ('sortOrder' in json) {
+      assert(typeof json.sortOrder == "number" || ! json.sortOrder, "Bad Clip sortOrder:", json.sortOrder);
+    }
     if ('sortOrder' in json) {
       this.sortOrder = json.sortOrder;
     } else {
