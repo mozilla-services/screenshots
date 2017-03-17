@@ -86,6 +86,12 @@ window.auth = (function () {
           resolve();
         }
       });
+      req.onerror = catcher.watchFunction(() => {
+        let exc = new Error("Connection failed");
+        exc.url = loginUrl;
+        exc.popupMessage = "CONNECTION_ERROR";
+        reject(exc);
+      });
       req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
       req.send(uriEncode({
         deviceId: registrationInfo.deviceId,
