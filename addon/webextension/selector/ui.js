@@ -218,8 +218,8 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
           <div class="myshots-text"></div>
           <div class="myshots-text-post"></div>
         </div>
-        <div class="pageshot-overlay-button visible"></div>
-        <div class="pageshot-overlay-button full-page"></div>
+        <div class="visible"></div>
+        <div class="full-page"></div>
       </div>
       `;
       this.el.querySelector(".preview-instructions").textContent = browser.i18n.getMessage("screenshotInstructions");
