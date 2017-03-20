@@ -31,11 +31,11 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
 
   exports.isHeader = function (el) {
     while (el) {
-      if (el.className &&
-          (el.className.indexOf("pageshot-saver") !== -1 ||
-           el.className.indexOf("pageshot-myshots") !== -1 ||
-           el.className.indexOf("pageshot-visible") !== -1 ||
-           el.className.indexOf("pageshot-full-page") !== -1)) {
+      if (el.classList &&
+          (el.classList.contains("pageshot-saver") ||
+           el.classList.contains("pageshot-myshots") ||
+           el.classList.contains("pageshot-visible") ||
+           el.classList.contains("pageshot-full-page"))) {
         return true;
       }
       el = el.parentNode;
@@ -221,6 +221,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
         </div>
         <div class="pageshot-overlay-button pageshot-visible"></div>
         <div class="pageshot-overlay-button pageshot-full-page"></div>
+      </div>
       `;
       this.el.querySelector(".pageshot-preview-instructions").textContent = browser.i18n.getMessage("screenshotInstructions");
       this.el.querySelector(".pageshot-myshots-text").textContent = browser.i18n.getMessage("myShotsLink");

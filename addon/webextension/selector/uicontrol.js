@@ -360,16 +360,15 @@ window.uicontrol = (function () {
 
     mousemove: function (event) {
       ui.PixelDimensions.display(event.pageX, event.pageY, event.pageX, event.pageY);
-      if (event.target.className &&
-          event.target.className !== "pageshot-preview-overlay" &&
-          event.target.className.startsWith("pageshot-")) {
+      if (event.target.classList &&
+          (! event.target.classList.contains("pageshot-preview-overlay"))) {
         // User is hovering over a Page Shot button or control
         autoDetectRect = null;
         ui.HoverBox.hide();
         return;
       }
       let el;
-      if (event.target.className === "pageshot-preview-overlay") {
+      if (event.target.classList.contains("pageshot-preview-overlay")) {
         // The hover is on the overlay, so we need to figure out the real element
         el = ui.iframe.getElementFromPoint(
           event.pageX - window.pageXOffset,
