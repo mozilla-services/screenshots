@@ -234,7 +234,7 @@ app.use("/homepage", express.static(path.join(__dirname, "static/homepage"), {
 app.use(morgan("combined"));
 
 app.use(function (req, res, next) {
-  let authHeader = req.headers['x-pageshot-auth'];
+  let authHeader = req.headers['x-screenshots-auth'];
   let authInfo = {};
   if (authHeader) {
     authInfo = decodeAuthHeader(authHeader);

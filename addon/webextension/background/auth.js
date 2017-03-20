@@ -131,7 +131,7 @@ window.auth = (function () {
     }
     return initPromise.then(() => {
       if (authHeader) {
-        return {"x-pageshot-auth": authHeader};
+        return {"x-screenshots-auth": authHeader};
       } else {
         console.warn("No auth header available");
         return {};
