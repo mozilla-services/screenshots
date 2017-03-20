@@ -5,7 +5,6 @@ const mozlog = require("mozlog")("jobs");
 const ua = require("universal-analytics");
 
 // Convert to milliseconds:
-//let keepTime = config.exportKeepTime * 60 * 1000;
 let checkDeletedInterval = config.checkDeletedInterval * 1000;
 
 exports.start = function () {
@@ -13,8 +12,6 @@ exports.start = function () {
     console.info("Note: not performing periodic tasks in this server");
     return;
   }
-
-  //setInterval(require("./exporter").cleanExports, keepTime / 10);
 
   setInterval(function () {
     require("./servershot").Shot.cleanDeletedShots()

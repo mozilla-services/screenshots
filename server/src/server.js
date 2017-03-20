@@ -282,16 +282,6 @@ function decodeAuthHeader(header) {
 }
 
 app.use(function (req, res, next) {
-  // FIXME: remove this as part of removing all export-related functions
-  // (was used for the exporter process to act as the user)
-  let magicAuth = req.headers['x-magic-auth'];
-  if (magicAuth && dbschema.getTextKeys().indexOf(magicAuth) != -1) {
-    req.deviceId = req.headers['x-device-id'];
-  }
-  next();
-});
-
-app.use(function (req, res, next) {
   req.staticLink = linker.staticLink;
   req.staticLinkWithHost = linker.staticLinkWithHost.bind(null, req);
   let base = `${req.protocol}://${req.headers.host}`;
