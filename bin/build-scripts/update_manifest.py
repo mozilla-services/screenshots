@@ -10,6 +10,7 @@ import time
 import json
 import calendar
 import subprocess
+import re
 
 if not sys.argv[1:] or "-h" in sys.argv or "--help" in sys.argv:
     print "Usage: %s MANIFEST_TEMPLATE MANIFEST_JSON" % (os.path.basename(sys.argv[0]))
@@ -24,8 +25,14 @@ output_file = sys.argv[2]
 package_json = json.load(open("package.json"))
 last_version = None
 if os.path.exists(output_file):
-    output_data = json.load(open(output_file))
-    last_version = output_data["version"]
+    if output_file.endswith(".json"):
+        output_data = json.load(open(output_file))
+        last_version = output_data["version"]
+    elif output_file.endswith(".rdf"):
+        rdf_content = open(output_file).read();
+        match = re.search(r'<em:version>(.*?)</em:version>', rdf_content)
+        if match:
+            last_version = match.group(1)
 # This is just a guess at when the version was set, but it'll have to be good enough:
 last_modified_package_json = subprocess.check_output(
     ["git", "log", "-1", "--format=%cd", "--date=short", "package.json"]).strip()
