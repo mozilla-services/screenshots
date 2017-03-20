@@ -374,15 +374,15 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       if (boxEl) {
         return;
       }
-      boxEl = makeEl("div", "pageshot-highlight");
-      let buttons = makeEl("div", "pageshot-highlight-buttons");
-      let cancel = makeEl("button", "pageshot-highlight-button-cancel");
+      boxEl = makeEl("div", "highlight");
+      let buttons = makeEl("div", "highlight-buttons");
+      let cancel = makeEl("button", "highlight-button-cancel");
       cancel.title = browser.i18n.getMessage("cancelScreenshot");
       buttons.appendChild(cancel);
-      let download = makeEl("button", "pageshot-highlight-button-download");
+      let download = makeEl("button", "highlight-button-download");
       download.title = browser.i18n.getMessage("downloadScreenshot");
       buttons.appendChild(download);
-      let save = makeEl("button", "pageshot-highlight-button-save");
+      let save = makeEl("button", "highlight-button-save");
       save.textContent = browser.i18n.getMessage("saveScreenshotSelectedArea");
       save.title = browser.i18n.getMessage("saveScreenshotSelectedArea");
       buttons.appendChild(save);
@@ -396,13 +396,13 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
         elTarget.appendChild(elMover);
         boxEl.appendChild(elTarget);
       }
-      this.bgTop = makeEl("div", "pageshot-bghighlight");
+      this.bgTop = makeEl("div", "bghighlight");
       iframe.document.body.appendChild(this.bgTop);
-      this.bgLeft = makeEl("div", "pageshot-bghighlight");
+      this.bgLeft = makeEl("div", "bghighlight");
       iframe.document.body.appendChild(this.bgLeft);
-      this.bgRight = makeEl("div", "pageshot-bghighlight");
+      this.bgRight = makeEl("div", "bghighlight");
       iframe.document.body.appendChild(this.bgRight);
-      this.bgBottom = makeEl("div", "pageshot-bghighlight");
+      this.bgBottom = makeEl("div", "bghighlight");
       iframe.document.body.appendChild(this.bgBottom);
       iframe.document.body.appendChild(boxEl);
       this.el = boxEl;
@@ -431,7 +431,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
         if (target.tagName === "BUTTON") {
           return false;
         }
-        if (target.nodeType == document.ELEMENT_NODE && target.classList.contains("pageshot-highlight")) {
+        if (target.nodeType == document.ELEMENT_NODE && target.classList.contains("highlight")) {
           return true;
         }
         target = target.parentNode;
@@ -441,7 +441,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
 
     isControl: function (target) {
       while (target) {
-        if (target.nodeType === document.ELEMENT_NODE && target.classList.contains("pageshot-highlight-buttons")) {
+        if (target.nodeType === document.ELEMENT_NODE && target.classList.contains("highlight-buttons")) {
           return true;
         }
         target = target.parentNode;

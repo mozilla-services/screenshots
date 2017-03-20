@@ -27,7 +27,7 @@ $overlay-z-index: 9999999999;
   display: none;
 }
 
-.pageshot-highlight {
+.highlight {
   position: absolute;
   cursor: move;
   border: 1px dashed rgba($link-blue, 0.5);
@@ -36,7 +36,7 @@ $overlay-z-index: 9999999999;
   z-index: $overlay-z-index;
 }
 
-.pageshot-highlight-buttons {
+.highlight-buttons {
   @include flex-container(row, center, center, wrap);
   position: absolute;
   bottom: -55px;
@@ -48,7 +48,7 @@ $overlay-z-index: 9999999999;
   }
 }
 
-.pageshot-highlight-button-cancel {
+.highlight-button-cancel {
   @extend .button;
   @extend .secondary;
   background: $very-light-grey url("MOZ_EXTENSION/icons/cancel.svg") center center no-repeat;
@@ -64,7 +64,7 @@ $overlay-z-index: 9999999999;
   }
 }
 
-.pageshot-highlight-button-save {
+.highlight-button-save {
   @extend .button;
   @extend .primary;
   font-size: 18px;
@@ -72,7 +72,7 @@ $overlay-z-index: 9999999999;
   width: 80px;
 }
 
-.pageshot-highlight-button-download {
+.highlight-button-download {
   @extend .button;
   @extend .secondary;
   background: $very-light-grey url("MOZ_EXTENSION/icons/download.svg") center center no-repeat;
@@ -88,8 +88,8 @@ $overlay-z-index: 9999999999;
   }
 }
 
-.pageshot-highlight-button-cancel,
-.pageshot-highlight-button-download {
+.highlight-button-cancel,
+.highlight-button-download {
   opacity: 0.9;
   transition: opacity 250ms;
 
@@ -106,14 +106,14 @@ $overlay-z-index: 9999999999;
   pointer-events: auto;
 }
 
-.pageshot-highlight,
+.highlight,
 .pageshot-mover-target {
   background-color: transparent;
   background-image: none;
 }
 
 .pageshot-mover-target,
-.pageshot-bghighlight {
+.bghighlight {
   border: 0;
 }
 
@@ -267,7 +267,7 @@ $overlay-z-index: 9999999999;
   bottom: $handle-mover-offset;
 }
 
-.pageshot-bghighlight {
+.bghighlight {
   position: absolute;
   background-color: rgba(#323232, 0.5);
   z-index: $overlay-z-index;
