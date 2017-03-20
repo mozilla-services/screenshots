@@ -8,7 +8,7 @@ envc({booleans: true});
 
 var conf = convict({
   port: {
-    doc: "The Page Shot server port",
+    doc: "The Screenshots server port",
     format: "port",
     default: 10080,
     env: "PORT",

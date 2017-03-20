@@ -1,14 +1,14 @@
-## Page Shot Metrics
+## Firefox Screenshots Metrics
 
-A summary of the metrics Page Shot will record, and what we're looking for in those metrics.
+A summary of the metrics Screenshots will record, and what we're looking for in those metrics.
 
 ### Opt-out
 
-The add-on tracks the Telemetry opt-out preference (`toolkit.telemetry.enabled`) each time the user presses the Page Shot button.  If this preference is false, or if there is any issue trying to fetch the preference, then no data is sent to the Page Shot server.
+The add-on tracks the Telemetry opt-out preference (`toolkit.telemetry.enabled`) each time the user presses the Screenshots button.  If this preference is false, or if there is any issue trying to fetch the preference, then no data is sent to the Screenshots server.
 
 ### Key Metrics
 
-Key metrics of Page Shot are fairly simple:
+Key metrics of Screenshots are fairly simple:
 
 #### Do people continue to create shots?
 
@@ -53,19 +53,19 @@ We can look at the share event in GA, and we can look at non-owner visits (`web/
 
 This is primarily a count of `web/visit/owner`.  The tool always opens the page once, and will fire `web/visit/owner-first` on that first visit.
 
-#### Do people who view a shot, install Page Shot?
+#### Do people who view a shot, install Firefox Screenshots?
 
 We will be tracking some events under `goto-pageshot` that would lead people from shot pages to a place where they could load the page.  Then we track clicking the install link itself, which GA reporting should be able to connect to the original `goto-pageshot` event.  We can't detect how often that install click leads to an actual install.
 
 #### Summary
 
-Continuing to create shots indicates overall value to the user.  Sharing and revisiting confirm that the value is actually obtained (it's possible to fantasize that you *would* find value in a shot, while never actually realizing that value).  Lastly, evidence that people find Page Shot attractive when they see a shot, or that people would refer each other to Page Shot, indicates potential for organic growth.
+Continuing to create shots indicates overall value to the user.  Sharing and revisiting confirm that the value is actually obtained (it's possible to fantasize that you *would* find value in a shot, while never actually realizing that value).  Lastly, evidence that people find Screenshots attractive when they see a shot, or that people would refer each other to Screenshots, indicates potential for organic growth.
 
 We do not collect Net Promoter Score.
 
 ### Usage Metrics
 
-This information is intended to help us make Page Shot better.
+This information is intended to help us make Screenshots better.
 
 We record an event stream of interaction with the add-on and website.  The events:
 
@@ -137,7 +137,7 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 7. [ ] Cancel because the tab is navigated (such as entering something in the URL bar) `addon/cancel-shot/tab-load` (FIXME: need to track)
 8. [ ] Cancel because the tab is reloaded `addon/cancel-shot/tab-reload` (FIXME: need to track)
 5. [x] Click My Shots `addon/goto-myshots/selection-button`
-6. [x] Go to My Shots by hitting the Page Shot button on a about:newtab page `addon/goto-myshots/about-newtab`
+6. [x] Go to My Shots by hitting the Screenshots button on a about:newtab page `addon/goto-myshots/about-newtab`
 6. [x] Click on "Save visible" `addon/capture-visible/selection-button`
 7. [x] Click on "Save Full Page" `addon/capture-full-page/selection-button`
 6. ~~Click My Shots button from error panel `addon/goto-myshots/error-panel`~~
@@ -195,7 +195,7 @@ These are events that an add-on user can encounter on a shot they own
   27. [x] Copy with "rich copy", `web/share/rich-copy`
   27. [x] Focus link field `web/share/focus-url`
   28. [x] Cancel/close share `web/cancel-share`
-29. [x] Visit Page Shot link from footer `web/goto-homepage/footer` (was eventAction `goto-pageshot` before 54 launch)
+29. [x] Visit Screenshots link from footer `web/goto-homepage/footer` (was eventAction `goto-pageshot` before 54 launch)
 30. [x] Click "Copy Image Text" on the context menu `web/copy-image-text/context-menu`
 32. [x] Click Feedback/mailto button `start-feedback/footer`
 31. [x] Click on clip `web/goto-clip/content`
@@ -215,14 +215,14 @@ These are events that an add-on user can encounter on a shot they own
 #### Non-owner web visit
 
 1. [x] Visit the page, `web/visit/non-owner`
-2. [x] Visit an image directly, when the image isn't embedded directly in a Page Shot shot page, `web/visit/direct-view`
+2. [x] Visit an image directly, when the image isn't embedded directly in a Screenshots shot page, `web/visit/direct-view`
 3. [x] View an image directly, when the image is being shown as part of a Facebook/Twitter style preview (the og:image or twitter:image), `web/visit/direct-view-embedded`
 2. [x] Click flag button `web/start-flag/navbar`
 3. [x] Click Share (same as for owner, but with `share-non-owner` instead of `share-owner`, and `start-share-non-owner`)
 4. [x] Visit original URL `web/goto-original-url/navbar`
-5. [x] Click Page Shot link in header `web/goto-homepage/navbar` (was `goto-pageshot` eventAction before 54 launch)
+5. [x] Click Screenshots link in header `web/goto-homepage/navbar` (was `goto-pageshot` eventAction before 54 launch)
 9. [x] Click on clip (already covered)
-10. [x] Click on the "Get it here" (install Page Shot) banner: `web/click-install-banner`
+10. [x] Click on the "Get it here" (install Screenshots) banner: `web/click-install-banner`
 11. [x] Click on the "Get Firefox now" (install Firefox) banner: `web/click-install-firefox`.  Also note the link uses `?utm_source=pageshot.net&utm_medium=referral&utm_campaign=pageshot-acquisition` on the link.
 
 #### Server events
@@ -238,7 +238,7 @@ These are events that an add-on user can encounter on a shot they own
 
 #### General Google Analytics information
 
-This is stuff we get from including ga.js on Page Shot pages.
+This is stuff we get from including ga.js on Screenshots pages.
 
 1. Browser type
 2. Location
@@ -251,7 +251,7 @@ This is stuff we get from including ga.js on Page Shot pages.
 
 ### Database Metrics
 
-We have a pretty rich database in Page Shot, and we can do all kinds of queries on the database.  These might include:
+We have a pretty rich database in Screenshots, and we can do all kinds of queries on the database.  These might include:
 
 1. Look at cohorts of individuals, reviewing their shot creation patterns
 2. How many people make a couple shots?  How many make a lot of shots?

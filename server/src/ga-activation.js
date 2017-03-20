@@ -1,4 +1,4 @@
-/* Code to create the Google Analytics code for a Page Shot page.
+/* Code to create the Google Analytics code for a Firefox Screenshots page.
    Stubs out ga() if no gaId is configured
    Disables analytics if Do-Not-Track is set
    Hashes page names

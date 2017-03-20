@@ -805,7 +805,7 @@ app.get("/images/:imageid", function (req, res) {
 app.get("/__version__", function (req, res) {
   let response = {
     source: "https://github.com/mozilla-services/pageshot/",
-    description: "Page Shot application server",
+    description: "Firefox Screenshots application server",
     version: selfPackage.version,
     buildDate: buildTime,
     commit: linker.getGitRevision(),
@@ -841,8 +841,8 @@ app.get("/__heartbeat__", function (req, res) {
 
 app.get("/contribute.json", function (req, res) {
   let data = {
-    name: "Page Shot",
-    description: "Page Shot is an add-on for Firefox and a service for screenshots and other ways to capture and share content",
+    name: "Firefox Screenshots",
+    description: "Firefox Screenshots is an add-on for Firefox and a service for screenshots",
     repository: {
       url: "https://github.com/mozilla-services/pageshot/",
       license: "MPL2",

@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Page Shot",
+  "name": "Firefox Screenshots",
   "version": "__VERSION__",
   "description": "__MSG_addonDescription__",
   "author": "__MSG_addonAuthorsList__",

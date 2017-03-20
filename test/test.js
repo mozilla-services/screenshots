@@ -69,7 +69,7 @@ function getElementById(driver, id) {
       webdriver.By.id(id)), 1000);
 }
 
-describe("Test Page Shot", function () {
+describe("Test Screenshots", function () {
   this.timeout(10000);
   let driver;
 

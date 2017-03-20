@@ -77,4 +77,4 @@ case "$channel" in
     exit 2
 esac
 
-which growlnotify > /dev/null && growlnotify -m "Page Shot Deploy/container for ${channel} completed"
+which growlnotify > /dev/null && growlnotify -m "Screenshots Deploy/container for ${channel} completed"

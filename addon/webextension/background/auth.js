@@ -80,7 +80,7 @@ window.auth = (function () {
           reject(error);
         } else {
           initialized = true;
-          console.info("Page Shot logged in");
+          console.info("Screenshots logged in");
           analytics.sendEvent("login");
           saveAuthInfo(JSON.parse(req.responseText));
           resolve();

@@ -1,7 +1,7 @@
 // Note: these get turned into Test objects:
 let allTests = {
   highlightButtonOnInstall: {
-    description: "Highlight the Page Shot button when Page Shot is installed",
+    description: "Highlight the toolbar button when extension is installed",
     gaField: "cd3",
     version: 1,
     exclude: ["styleMyShotsButton", "autoOpenSharePanel"],
@@ -53,7 +53,7 @@ let allTests = {
     ]
   },
   highlightButtonOnInstall: {
-    description: "Highlight the Page Shot button when Page Shot is installed",
+    description: "Highlight the toolbar button when extension is installed",
     gaField: "cd5",
     version: 1,
     exclude: ["autoOpenSharePanel", "myShotsDisplay"],

@@ -1,6 +1,6 @@
 # Exporting to Firefox
 
-Page Shot is developed in GitHub, but on each release we export into the Firefox
+Firefox Screenshots is developed in GitHub, but on each release we export into the Firefox
 source tree.
 
 The process of exporting will checkout the default branch, and then create a new

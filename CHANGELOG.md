@@ -6,7 +6,7 @@
 * Create A/B test for auto-opening the share panel. Fixes [#2079](https://github.com/mozilla-services/pageshot/issues/2079) [0187d31](https://github.com/mozilla-services/pageshot/commit/0187d31)
 * create FORCE_AB_TESTS to force-turn-on an A/B test
   in development. Fixes [#2108](https://github.com/mozilla-services/pageshot/issues/2108) [32df868](https://github.com/mozilla-services/pageshot/commit/32df868)
-* Start [#2081](https://github.com/mozilla-services/pageshot/issues/2081), implement an A/B test of badging the Page Shot button until it is first clicked [c4c916b](https://github.com/mozilla-services/pageshot/commit/c4c916b), [319c312](https://github.com/mozilla-services/pageshot/commit/319c312)
+* Start [#2081](https://github.com/mozilla-services/pageshot/issues/2081), implement an A/B test of badging the toolbar button until it is first clicked [c4c916b](https://github.com/mozilla-services/pageshot/commit/c4c916b), [319c312](https://github.com/mozilla-services/pageshot/commit/319c312)
 * Design and implement an A/B testing system. People are put into tests by the server at login time Tests may stick to the shots created when the test is in place, then viewers will be associated with that test. Tests each map to a GA field (cdX for some value of X). Fixes [#2077](https://github.com/mozilla-services/pageshot/issues/2077) [86c8663](https://github.com/mozilla-services/pageshot/commit/86c8663)
 * Add new database version (13) to save ab_tests in devices
   table [0a0a095](https://github.com/mozilla-services/pageshot/commit/0a0a095)
@@ -68,7 +68,7 @@
 * Add pixel dimensions when starting and dragging
   the selection. Fixes [#1848](https://github.com/mozilla-services/pageshot/issues/1848) [4915115](https://github.com/mozilla-services/pageshot/commit/4915115)
 * Change to `cursor: move` on the selection box. Fixes [#1768](https://github.com/mozilla-services/pageshot/issues/1768) [c5aa6ae](https://github.com/mozilla-services/pageshot/commit/c5aa6ae)
-* Add *Create Page Shot* item in the context menu. Fixes [#1922](https://github.com/mozilla-services/pageshot/issues/1922) [c220524](https://github.com/mozilla-services/pageshot/commit/c220524)
+* Add *Create ...* item in the context menu. Fixes [#1922](https://github.com/mozilla-services/pageshot/issues/1922) [c220524](https://github.com/mozilla-services/pageshot/commit/c220524)
 * Add paste instructions to notification popups. Fixes [#1776](https://github.com/mozilla-services/pageshot/issues/1776) [5659166](https://github.com/mozilla-services/pageshot/commit/5659166)
 * Render the selection interface in an iframe, so that it doesn't conflict or get affected by any styles in the document itself.  Multiple commits:
   * Iframe sizing,  [23dc2b4](https://github.com/mozilla-services/pageshot/commit/23dc2b4)
@@ -227,8 +227,8 @@ A version released to improve some operational issues.
   * You can drag the selection
   * You can invert the selection when resizing
   * You can drag out a new selection over the old selection
-* In some error conditions Page Shot would become unresponsive on a tab.
-* Page Shot authentication could be lost (for instance with a cookie destroying add-on).  We now attempt to re-login if we detect the cookies are gone.
+* In some error conditions the tool would become unresponsive on a tab.
+* Server authentication could be lost (for instance with a cookie destroying add-on).  We now attempt to re-login if we detect the cookies are gone.
 
 ### Detailed product/UI changes
 
@@ -266,7 +266,7 @@ A version released to improve some operational issues.
 * dragging in the background when there's already a
   selection will now create a new selection. Fixes [#1138](https://github.com/mozilla-services/pageshot/issues/1138) [45de849](https://github.com/mozilla-services/pageshot/commit/45de849)
 * allow moving the selection around. Fixes [#1628](https://github.com/mozilla-services/pageshot/issues/1628) [5faddf5](https://github.com/mozilla-services/pageshot/commit/5faddf5)
-* Cleanup Shooter and the worker when the worker gets detached for some unknown reason; may avoid some problems where Page Shot hangs after an error [7793134](https://github.com/mozilla-services/pageshot/commit/7793134)
+* Cleanup Shooter and the worker when the worker gets detached for some unknown reason; may avoid some problems where the tool hangs after an error [7793134](https://github.com/mozilla-services/pageshot/commit/7793134)
 * copy link on save, and put up a popup to notify
   the user about the copy action. Fixes [#1734](https://github.com/mozilla-services/pageshot/issues/1734) [accfe28](https://github.com/mozilla-services/pageshot/commit/accfe28)
 * allow view-source URLs. Fixes [#1720](https://github.com/mozilla-services/pageshot/issues/1720) [29efea9](https://github.com/mozilla-services/pageshot/commit/29efea9)
@@ -297,7 +297,7 @@ A version released to improve some operational issues.
 * Get rid of unused controller on legal pages [0565da7](https://github.com/mozilla-services/pageshot/commit/0565da7)
 * Use template literals [d82dc4d](https://github.com/mozilla-services/pageshot/commit/d82dc4d)
 * put Raven activation into reactrender pages. Fixes [#1072](https://github.com/mozilla-services/pageshot/issues/1072) [895ca67](https://github.com/mozilla-services/pageshot/commit/895ca67)
-* remove 'Leave page shot' link from pages when the
+* remove 'Leave ...' link from pages when the
   user is not authenticated. Fixes [#1578](https://github.com/mozilla-services/pageshot/issues/1578) [62e68ed](https://github.com/mozilla-services/pageshot/commit/62e68ed)
 * Update all deps to latest. Fixes [#1703](https://github.com/mozilla-services/pageshot/issues/1703) [6a1b6cd](https://github.com/mozilla-services/pageshot/commit/6a1b6cd)
 * Put something in the logs when someone tries to upload a shot

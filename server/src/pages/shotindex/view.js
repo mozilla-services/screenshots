@@ -41,7 +41,7 @@ class Body extends React.Component {
       <reactruntime.BodyTemplate {...this.props}>
         <div className="column-space full-height default-color-scheme">
           <div id="shot-index-header" className="header">
-            <h1><a href="/shots">Page Shot</a></h1>
+            <h1><a href="/shots">My Shots</a></h1>
             <form onSubmit={ this.onSubmitForm.bind(this) }>
               <span className="search-label" />
               <input type="search" id="search" ref="search" maxLength="100" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />

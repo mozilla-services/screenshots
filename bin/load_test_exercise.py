@@ -9,7 +9,7 @@ import time
 import random
 import json
 
-parser = argparse.ArgumentParser(description='Run some tests on a Page Shot server')
+parser = argparse.ArgumentParser(description='Run some tests on a Screenshots server')
 parser.add_argument('url', metavar='URL', type=str, nargs=1,
                     help='URL of the backend to test')
 

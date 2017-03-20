@@ -262,7 +262,7 @@ class Body extends React.Component {
           Made with
         </span>
         <span style={{fontWeight: "bold"}}>
-          Page Shot
+          Firefox Screenshots
         </span>
       </span>;
       myShotsHref = "/";
@@ -312,14 +312,14 @@ class Body extends React.Component {
 
   renderExtRequired() {
     return <div className="default-color-scheme notification">
-      <div> Page Shot is an experimental extension for Firefox. <a href={ this.props.backend } onClick={ this.clickedInstallExtension.bind(this) }>Get it here</a></div>
+      <div> Firefox Screenshots is an experimental extension for Firefox. <a href={ this.props.backend } onClick={ this.clickedInstallExtension.bind(this) }>Get it here</a></div>
       <a className="close" onClick={ this.closeGetPageshotBanner.bind(this) }></a>
     </div>;
   }
 
   renderFirefoxRequired() {
     return <div className="default-color-scheme notification">
-      <div> Page Shot is an experimental extension for Firefox. <a href="https://www.mozilla.org/firefox/new/?utm_source=pageshot.net&utm_medium=referral&utm_campaign=pageshot-acquisition" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a></div>
+      <div> Firefox Screenshots is an experimental extension for Firefox. <a href="https://www.mozilla.org/firefox/new/?utm_source=pageshot.net&utm_medium=referral&utm_campaign=pageshot-acquisition" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a></div>
       <a className="close" onClick={ this.closeGetPageshotBanner.bind(this) }></a>
     </div>;
   }

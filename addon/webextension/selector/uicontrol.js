@@ -362,7 +362,7 @@ window.uicontrol = (function () {
       ui.PixelDimensions.display(event.pageX, event.pageY, event.pageX, event.pageY);
       if (event.target.classList &&
           (! event.target.classList.contains("preview-overlay"))) {
-        // User is hovering over a Page Shot button or control
+        // User is hovering over a toolbar button or control
         autoDetectRect = null;
         ui.HoverBox.hide();
         return;
