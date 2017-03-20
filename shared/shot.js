@@ -146,19 +146,19 @@ function deepEqual(a, b) {
 }
 
 function makeUuid() {
-   // FIXME: not a proper uuid
-   let id = "";
-   while (id.length < 12) {
-     // 46656 == Math.pow(36, 3)
-     let num;
-     if (! id) {
-       num = Date.now() % 46656;
-     } else {
-       num = Math.floor(Math.random() * 46656);
-     }
-     id += num.toString(36);
-   }
-   return id;
+  // FIXME: not a proper uuid
+  let id = "";
+  while (id.length < 12) {
+    // 46656 == Math.pow(36, 3)
+    let num;
+    if (! id) {
+      num = Date.now() % 46656;
+    } else {
+      num = Math.floor(Math.random() * 46656);
+    }
+    id += num.toString(36);
+  }
+  return id;
 }
 
 class AbstractShot {
