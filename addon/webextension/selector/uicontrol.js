@@ -325,14 +325,10 @@ window.uicontrol = (function () {
     }
 
     elementFromPoint() {
-      document.body.classList.add("pageshot-no-pointer-events");
-      try {
-        return document.elementFromPoint(
-          this.x - window.pageXOffset,
-          this.y - window.pageYOffset);
-      } finally {
-        document.body.classList.remove("pageshot-no-pointer-events");
-      }
+      return ui.iframe.getElementFromPoint(
+        this.x - window.pageXOffset,
+        this.y - window.pageYOffset
+      );
     }
 
     distanceTo(x, y) {

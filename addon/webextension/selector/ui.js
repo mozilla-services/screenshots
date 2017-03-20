@@ -72,7 +72,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       return new Promise((resolve, reject) => {
         if (! this.element) {
           this.element = document.createElement("iframe");
-          this.element.id = "pageshot-iframe";
+          this.element.id = "firefox-screenshots-iframe";
           this.element.style.zIndex = "99999999999";
           this.element.style.border = "none";
           this.element.style.position = "absolute";
