@@ -526,7 +526,7 @@ app.post("/api/register", function (req, res) {
     avatarurl: vars.avatarurl || null
   }, canUpdate).then(function (userAbTests) {
     if (userAbTests) {
-      sendAuthInfo(req, res, vars.deviceId, userAbTests);
+      sendAuthInfo(req, res, {deviceId: vars.deviceId, userAbTests});
       // FIXME: send GA signal?
     } else {
       sendRavenMessage(req, "Attempted to register existing user", {
@@ -564,7 +564,8 @@ app.post("/api/update", function (req, res, next) {
   }).catch(next);
 });
 
-function sendAuthInfo(req, res, deviceId, userAbTests) {
+function sendAuthInfo(req, res, params) {
+  let { deviceId, userAbTests } = params;
   if (deviceId.search(/^[a-zA-Z0-9_-]+$/) == -1) {
     // FIXME: add logging message with deviceId
     throw new Error("Bad deviceId");
@@ -579,7 +580,8 @@ function sendAuthInfo(req, res, deviceId, userAbTests) {
     ok: "User created",
     sentryPublicDSN: config.sentryPublicDSN,
     abTests: userAbTests,
-    authHeader
+    authHeader,
+    isOwner: params.isOwner
   };
   // FIXME: I think there's a JSON sendResponse equivalent
   simpleResponse(res, JSON.stringify(responseJson), 200);
@@ -601,7 +603,22 @@ app.post("/api/login", function (req, res) {
   }
   checkLogin(vars.deviceId, vars.secret, deviceInfo.addonVersion).then((userAbTests) => {
     if (userAbTests) {
-      sendAuthInfo(req, res, vars.deviceId, userAbTests);
+      let sendParams = {
+        deviceId: vars.deviceId,
+        userAbTests
+      };
+      let sendParamsPromise = Promise.resolve(sendParams);
+      if (vars.ownershipCheck) {
+        sendParamsPromise = Shot.checkOwnership(vars.ownershipCheck, vars.deviceId).then((isOwner) => {
+          sendParams.isOwner = isOwner;
+          return sendParams;
+        });
+      }
+      sendParamsPromise.then((params) => {
+        sendAuthInfo(req, res, params);
+      }).catch((error) => {
+        errorResponse(res, "Error checking ownership", error);
+      });
       if (config.gaId) {
         let userAnalytics = ua(config.gaId, vars.deviceId, {strictCidFormat: false});
         userAnalytics.event({
