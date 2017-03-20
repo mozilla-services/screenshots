@@ -86,7 +86,7 @@ correlate with issues on a 1:1 basis.
 - [ ] All measures currently in the product should be audited to ensure they’re working as intended.
 - [ ] Onboarding UI should be instrumented to measure interaction rate w/buttons/controls etc.
 - [ ] Toolbar icon should record a special event if clicked while badged & clicked to onboard
-- [ ] Pageshot.net replacement page should be instrumented to measure interaction rate w/buttons/controls etc.
+- [ ] New screenshots.firefox.com page should be instrumented to measure interaction rate w/buttons/controls etc.
 - [ ] *STRETCH* In order to Validate Event Telemetry, we should — given time — add  Event Telemetry Pings to the following tuples:
   - [ ] badged onboarding (see above) click
   - [ ] Click Save `addon/save-shot/overlay-save-button`

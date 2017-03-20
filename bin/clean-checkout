@@ -10,7 +10,7 @@ interactive=
 
 help () {
   echo "Usage: $(basename $0) [-f|--force|-i|--interactive]"
-  echo "  Clean everything from the pageshot checkout except Profile/"
+  echo "  Clean everything from the screenshots checkout except Profile/"
   echo "  Only simulates unless you use -f or -i"
 }
 

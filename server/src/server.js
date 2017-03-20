@@ -1,7 +1,7 @@
 const config = require("./config").getProperties();
 
 require("mozlog").config({
-  app: "pageshot-server",
+  app: "screenshots-server",
   fmt: "pretty",
   level: config.log.level,
   debug: config.log.lint

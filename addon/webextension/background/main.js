@@ -57,7 +57,7 @@ window.main = (function () {
   }));
 
   browser.contextMenus.create({
-    id: "create-pageshot",
+    id: "create-screenshot",
     title: browser.i18n.getMessage("contextMenuLabel"),
     contexts: ["page"]
   }, () => {

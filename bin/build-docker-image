@@ -7,7 +7,7 @@ cd "$(dirname ${BASH_SOURCE[0]})/.."
 
 if [[ $# = 0 ]] ; then
   echo "Usage: $0 dockerhubusername"
-  echo "  builds the pageshot docker image"
+  echo "  builds the Screenshots docker image"
   echo "  Determines version from package.json"
   echo "  tags and uploads it as [dockerhubusername]/pageshot:[version]"
   echo "  creates build/eb-app-latest.zip"
