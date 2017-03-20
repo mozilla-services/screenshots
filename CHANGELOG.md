@@ -163,7 +163,7 @@
 
 * change email share graphic. Fixes [#1650](https://github.com/mozilla-services/pageshot/issues/1650) [34f1ca8](https://github.com/mozilla-services/pageshot/commit/34f1ca8)
 * redirect /favicon.ico to
-  /static/img/pageshot-icon-32.png. Fixes [#1840](https://github.com/mozilla-services/pageshot/issues/1840) [34056c0](https://github.com/mozilla-services/pageshot/commit/34056c0)
+  /static/img/icon-32.png. Fixes [#1840](https://github.com/mozilla-services/pageshot/issues/1840) [34056c0](https://github.com/mozilla-services/pageshot/commit/34056c0)
 * (v2.4) restore the share notification message. Fixes [#1918](https://github.com/mozilla-services/pageshot/issues/1918) [fdda2ec](https://github.com/mozilla-services/pageshot/commit/fdda2ec)
 * (v2.4) revert to 'page' when the title isn't found. Fixes [#1836](https://github.com/mozilla-services/pageshot/issues/1836) [295e5b6](https://github.com/mozilla-services/pageshot/commit/295e5b6)
 * (v2.4) add specific images for no search results and no

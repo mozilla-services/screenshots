@@ -356,7 +356,7 @@ app.get("/install-raven.js", function (req, res) {
 });
 
 app.get("/favicon.ico", function (req, res) {
-  res.redirect(301, "/static/img/pageshot-icon-32.png");
+  res.redirect(301, "/static/img/icon-32.png");
 });
 
 app.post("/error", function (req, res) {

@@ -12,17 +12,17 @@
   },
   "default_locale": "en_US",
   "icons": {
-    "16": "icons/pageshot-icon-16.png",
-    "32": "icons/pageshot-icon-32.png",
-    "48": "icons/pageshot-icon-48.png",
-    "64": "icons/pageshot-mac-64px.png",
-    "128": "icons/pageshot-icon-128.png",
-    "256": "icons/pageshot-icon-256.png"
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "64": "icons/icon-64.png",
+    "128": "icons/icon-128.png",
+    "256": "icons/icon-256.png"
   },
   "browser_action": {
     "default_icon": {
-      "19": "icons/pageshot-icon-19.png",
-      "38": "icons/pageshot-icon-38.png"
+      "19": "icons/icon-19.png",
+      "38": "icons/icon-38.png"
     },
     "default_title": "__MSG_toolbarButtonLabel__",
     "browser_style": false
