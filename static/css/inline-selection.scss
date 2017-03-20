@@ -543,63 +543,9 @@ $overlay-z-index: 9999999999;
   left: 60%;
 }
 
-.pageshot-myshots-reminder {
-  display: flex;
-  position: fixed;
-  z-index: $overlay-z-index + 20;
-  top: -17px;
-  left: 10px;
-
-  &.pageshot-myshots-reminder-chrome {
-    top: 44px;
-  }
-}
-
 .pageshot-panel * {
   box-sizing: border-box;
   text-align: start;
-}
-
-.pageshot-myshots-reminder > .pageshot-panel {
-  background-clip: padding-box;
-  background-color: #fcfcfc;
-  border: 1px solid rgba(#181a1b, 0.2);
-  box-shadow: 0 3px 5px rgba(#181a1b, 0.1), 0 0 7px rgba(#181a1b, 0.1);
-  box-sizing: content-box;
-  color: #222426;
-  cursor: default;
-  display: flex;
-  flex-direction: column;
-  font: caption;
-  margin: 2em auto 0.5em;
-  padding: 0;
-  position: relative;
-  -moz-user-select: none;
-}
-
-.pageshot-myshots-reminder > .pageshot-panel > .pageshot-panel-arrowUp {
-  // From http://firefoxux.github.io/StyleGuide/static/77bfee72eee9836269c3062731a60ad7.png
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAOCAYAAAA1+Nx+AAABUklEQVR42p2STU6DQBSAn9ZSBFv8oVEwYdrUqtu2XsAT2Fbv0AU7woZFN5B0xYID9JhupCn1vWQ0L0AZ4+JbzAx83yMD3N65jRhidtKE6v2/iE8ZLYLvqUJKuRSeSdoMWrdUkSZ5i0k7iF6iUxeqBLbbLaxWK0iSpE6uSZnRd8QQX5ggs77jjWhPnmnlyHq9hizLII5jAN/3IQzDOnkHOTe9Sdd2xYjkeZ5/Hg6H/Xzx/oqRsSkmPQr9fA2PRFEEm80GIE3TY3KDBFxeFMUXQZG3+RIjgiLWsUgQBNAkt2x38EDy3W73Ky9HbEc8yohZFwH2p7Sr8vspn7wh8sQiOo8ALdhlmlxemVwduWQRjdwgFwZyQQ9U5WrkxcvI9ApdXenUQS4sPLhG+bgs/2fkhpzkpkCPqrY79FD+rJArI4vlxwsOOqCBKQK4ydmrReoId34DYcLiW8YxuloAAAAASUVORK5CYII=");
-  background-position: 12px top;
-  background-repeat: no-repeat;
-  height: 14px;
-  margin-top: -14px;
-  pointer-events: none;
-  position: absolute;
-  width: 100%;
-}
-
-.pageshot-myshots-reminder > .pageshot-panel > .pageshot-panel-section {
-  display: flex;
-  flex-direction: row;
-}
-
-.pageshot-myshots-reminder > .pageshot-panel > .pageshot-panel-section-header {
-  padding: 16px;
-}
-
-.pageshot-myshots-reminder > .pageshot-panel > .pageshot-panel-section-header > .pageshot-text-section-list {
-  font-size: 13px;
 }
 
 @keyframes pageshot-fade-in {
