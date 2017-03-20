@@ -391,8 +391,8 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       this.save = save;
       boxEl.appendChild(buttons);
       for (let name of movements) {
-        let elTarget = makeEl("div", "pageshot-mover-target direction-" + name);
-        let elMover = makeEl("div", "pageshot-mover");
+        let elTarget = makeEl("div", "mover-target direction-" + name);
+        let elMover = makeEl("div", "mover");
         elTarget.appendChild(elMover);
         boxEl.appendChild(elTarget);
       }
@@ -411,14 +411,14 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
     draggerDirection: function (target) {
       while (target) {
         if (target.nodeType == document.ELEMENT_NODE) {
-          if (target.classList.contains("pageshot-mover-target")) {
+          if (target.classList.contains("mover-target")) {
             for (let name of movements) {
               if (target.classList.contains("pageshot-" + name)) {
                 return name;
               }
             }
             catcher.unhandled(new Error("Surprising mover element"), {element: target.outerHTML});
-            console.warn("Got pageshot-mover-target that wasn't a specific direction");
+            console.warn("Got mover-target that wasn't a specific direction");
           }
         }
         target = target.parentNode;
