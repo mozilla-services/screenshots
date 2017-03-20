@@ -5,7 +5,7 @@ window.takeshot = (function () {
   const Shot = shot.AbstractShot;
   const { sendEvent } = analytics;
 
-  communication.register("takeShot", (sender, options) => {
+  communication.register("takeShot", catcher.watchFunction((sender, options) => {
     let { captureType, captureText, scroll, selectedPos, shotId, shot } = options;
     shot = new Shot(main.getBackend(), shotId, shot);
     let capturePromise = Promise.resolve();
@@ -48,7 +48,7 @@ window.takeshot = (function () {
     }).then(() => {
       return shot.viewUrl;
     }));
-  });
+  }));
 
   communication.register("screenshotPage", (sender, selectedPos, scroll) => {
     return screenshotPage(selectedPos, scroll);
@@ -106,7 +106,9 @@ window.takeshot = (function () {
     }).then((resp) => {
       if (! resp.ok) {
         sendEvent("upload-failed", `status-${resp.status}`);
-        throw new Error("Error: response failed");
+        let exc = new Error(`Response failed with status ${resp.status}`);
+        exc.popupMessage = "REQUEST_ERROR";
+        throw exc;
       } else {
         sendEvent("upload", "success");
       }
