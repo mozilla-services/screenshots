@@ -84,7 +84,7 @@ Once we are comfortable that the site has been tested, file a bugzilla bug to de
 Rebuild the XPI with:
 
 ```
-PAGESHOT_BACKEND=https://pageshot.net make signed_xpi
+SCREENSHOTS_BACKEND=https://pageshot.net make signed_xpi
 ```
 
 Send the XPI to Wil for deployment on the static site.

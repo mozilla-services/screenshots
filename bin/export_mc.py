@@ -77,7 +77,7 @@ def exportToMozillaCentral(server, repoDir, mcRepoPath, mcSubDir, mcBranch,
     print "Exporting to m-c"
 
     os.environ["EXPORT_MC_LOCATION"] = mcRepoPath
-    os.environ["PAGESHOT_BACKEND"] = DEFAULTS[server]
+    os.environ["SCREENSHOTS_BACKEND"] = DEFAULTS[server]
 
     repo = RepoHandler(mcRepoPath)
 

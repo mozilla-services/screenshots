@@ -4,8 +4,8 @@ BABEL := babel --retain-lines
 RSYNC := rsync --archive
 VENV := .venv
 .DEFAULT_GOAL := help
-# Sets $(PAGESHOT_BACKEND) to http://localhost:10080 only if it isn't set
-PAGESHOT_BACKEND ?= http://localhost:10080
+# Sets $(SCREENSHOTS_BACKEND) to http://localhost:10080 only if it isn't set
+SCREENSHOTS_BACKEND ?= http://localhost:10080
 
 # This forces bin/build-scripts/write_ga_id to be run before anything else, which
 # writes the configured Google Analytics ID to build/ga-id.txt
@@ -225,16 +225,16 @@ build/.backend.txt: set_backend
 
 .PHONY: set_backend
 set_backend:
-	@echo "Setting backend to ${PAGESHOT_BACKEND}"
-	./bin/build-scripts/set_file build/.backend.txt $(PAGESHOT_BACKEND)
+	@echo "Setting backend to ${SCREENSHOTS_BACKEND}"
+	./bin/build-scripts/set_file build/.backend.txt $(SCREENSHOTS_BACKEND)
 
 addon/webextension/build/defaultSentryDsn.js: set_sentry
 
 .PHONY: set_sentry
 set_sentry:
-	@if [[ -z "$(PAGESHOT_SENTRY)" ]] ; then echo "No default Sentry" ; fi
-	@if [[ -n "$(PAGESHOT_SENTRY)" ]] ; then echo "Setting default Sentry ${PAGESHOT_SENTRY}" ; fi
-	./bin/build-scripts/set_file addon/webextension/build/defaultSentryDsn.js "window.defaultSentryDsn = '${PAGESHOT_SENTRY}';null;"
+	@if [[ -z "$(SCREENSHOTS_SENTRY)" ]] ; then echo "No default Sentry" ; fi
+	@if [[ -n "$(SCREENSHOTS_SENTRY)" ]] ; then echo "Setting default Sentry ${SCREENSHOTS_SENTRY}" ; fi
+	./bin/build-scripts/set_file addon/webextension/build/defaultSentryDsn.js "window.defaultSentryDsn = '${SCREENSHOTS_SENTRY}';null;"
 
 
 build/.npm-install.log: package.json

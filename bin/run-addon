@@ -121,7 +121,7 @@ if [[ -n "$setup_profile" ]] ; then
 fi
 
 if [[ -n "$server" ]] ; then
-  export PAGESHOT_BACKEND="$server"
+  export SCREENSHOTS_BACKEND="$server"
 fi
 
 profile_option=
