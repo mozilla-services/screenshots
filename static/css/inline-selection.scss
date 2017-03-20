@@ -43,7 +43,7 @@ $overlay-z-index: 9999999999;
   right: 0;
   z-index: 6;
 
-  .pageshot-bottom-selection & {
+  .bottom-selection & {
     bottom: 5px;
   }
 }
@@ -201,7 +201,7 @@ $overlay-z-index: 9999999999;
   width: $handle-size;
   z-index: 1001;
 
-  .pageshot-small-selection & {
+  .small-selection & {
     height: $handle-size-small;
     width: $handle-size-small;
   }
@@ -217,7 +217,7 @@ $overlay-z-index: 9999999999;
   left: 50%;
   margin-left: -$handle-size / 2;
 
-  .pageshot-small-selection & {
+  .small-selection & {
     margin-left: -$handle-size-small / 2;
   }
 }
@@ -232,7 +232,7 @@ $overlay-z-index: 9999999999;
   margin-top: -$handle-size / 2;
   left: $handle-mover-offset;
 
-  .pageshot-small-selection & {
+  .small-selection & {
     margin-top: -$handle-size-small / 2;
   }
 }
@@ -242,7 +242,7 @@ $overlay-z-index: 9999999999;
   margin-top: -$handle-size / 2;
   right: $handle-mover-offset;
 
-  .pageshot-small-selection & {
+  .small-selection & {
     margin-top: -$handle-size-small / 2;
   }
 }
@@ -257,7 +257,7 @@ $overlay-z-index: 9999999999;
   margin-left: -$handle-size / 2;
   bottom: $handle-mover-offset;
 
-  .pageshot-small-selection & {
+  .small-selection & {
     margin-left: -$handle-size-small / 2;
   }
 }

@@ -325,17 +325,17 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       let pageYOffset = window.pageYOffset;
 
       if ((pos.right - pos.left) < 78 || (pos.bottom - pos.top) < 78) {
-        this.el.classList.add("pageshot-small-selection");
+        this.el.classList.add("small-selection");
       } else {
-        this.el.classList.remove("pageshot-small-selection");
+        this.el.classList.remove("small-selection");
       }
 
       // if the selection bounding box is w/in SAVE_BUTTON_HEIGHT px of the bottom of
       // the window, flip controls into the box
       if (pos.bottom > ((winBottom + pageYOffset) - SAVE_BUTTON_HEIGHT)) {
-        this.el.classList.add("pageshot-bottom-selection");
+        this.el.classList.add("bottom-selection");
       } else {
-        this.el.classList.remove("pageshot-bottom-selection");
+        this.el.classList.remove("bottom-selection");
       }
       this.el.style.top = (pos.top - bodyRect.top) + "px";
       this.el.style.left = (pos.left - bodyRect.left) + "px";
