@@ -317,7 +317,7 @@ $overlay-z-index: 9999999999;
 .preview-instructions {
   @include flex-container(row, center, center);
   pointer-events: none;
-  animation: pageshot-pulse ease-in-out 200ms;
+  animation: pulse ease-in-out 200ms;
   background-color: rgba(#000, 0.6);
   border-radius: 20px;
   color: #fff;
@@ -400,7 +400,7 @@ $overlay-z-index: 9999999999;
   top: 1px;
 }
 
-@keyframes pageshot-pulse {
+@keyframes pulse {
   0% {
     transform: scale(1);
   }
@@ -414,7 +414,7 @@ $overlay-z-index: 9999999999;
   }
 }
 
-@keyframes pageshot-fade-in {
+@keyframes fade-in {
   0% {
     opacity: 0;
   }
@@ -425,7 +425,7 @@ $overlay-z-index: 9999999999;
 }
 
 .hover-highlight {
-  animation: pageshot-fade-in 500ms forwards;
+  animation: fade-in 500ms forwards;
   opacity: 0;
   position: absolute;
   border: 1px dashed rgba($link-blue, 0.5);
