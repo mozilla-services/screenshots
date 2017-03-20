@@ -413,7 +413,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
         if (target.nodeType == document.ELEMENT_NODE) {
           if (target.classList.contains("mover-target")) {
             for (let name of movements) {
-              if (target.classList.contains("pageshot-" + name)) {
+              if (target.classList.contains("direction-" + name)) {
                 return name;
               }
             }
