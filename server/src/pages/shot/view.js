@@ -351,7 +351,7 @@ class Body extends React.Component {
     if (this.props.isOwner) {
       sendEvent("goto-myshots", "navbar", {useBeacon: true});
     } else {
-      sendEvent("goto-pageshot", "navbar", {useBeacon: true});
+      sendEvent("goto-homepage", "navbar", {useBeacon: true});
     }
     // Note: we allow the default action to continue
   }

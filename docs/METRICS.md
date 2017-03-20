@@ -195,7 +195,7 @@ These are events that an add-on user can encounter on a shot they own
   27. [x] Copy with "rich copy", `web/share/rich-copy`
   27. [x] Focus link field `web/share/focus-url`
   28. [x] Cancel/close share `web/cancel-share`
-29. [x] Visit Page Shot link from footer `web/goto-pageshot/footer`
+29. [x] Visit Page Shot link from footer `web/goto-homepage/footer` (was eventAction `goto-pageshot` before 54 launch)
 30. [x] Click "Copy Image Text" on the context menu `web/copy-image-text/context-menu`
 32. [x] Click Feedback/mailto button `start-feedback/footer`
 31. [x] Click on clip `web/goto-clip/content`
@@ -220,7 +220,7 @@ These are events that an add-on user can encounter on a shot they own
 2. [x] Click flag button `web/start-flag/navbar`
 3. [x] Click Share (same as for owner, but with `share-non-owner` instead of `share-owner`, and `start-share-non-owner`)
 4. [x] Visit original URL `web/goto-original-url/navbar`
-5. [x] Click Page Shot link in header `web/goto-pageshot/navbar`
+5. [x] Click Page Shot link in header `web/goto-homepage/navbar` (was `goto-pageshot` eventAction before 54 launch)
 9. [x] Click on clip (already covered)
 10. [x] Click on the "Get it here" (install Page Shot) banner: `web/click-install-banner`
 11. [x] Click on the "Get Firefox now" (install Firefox) banner: `web/click-install-firefox`.  Also note the link uses `?utm_source=pageshot.net&utm_medium=referral&utm_campaign=pageshot-acquisition` on the link.
