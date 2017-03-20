@@ -262,35 +262,11 @@ a.subheading-link {
   color: #0095dd;
 }
 
-.pageshot-footer {
-  position: absolute;
-  bottom: 1em;
-  left: 1em;
-}
-
 .feedback-footer {
   position: absolute;
   bottom: 1em;
   right: 1em;
   text-align: right;
-}
-
-#use-pageshot-to-create {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 1em;
-  padding-right: 3em;
-  background-color: $text-color;
-  color: #000;
-  z-index: 2000;
-  box-shadow: 0 -2px 5px $shadow-color;
-}
-
-#use-pageshot-to-create a {
-  color: #000;
-  text-decoration: underline;
 }
 
 #banner-close {

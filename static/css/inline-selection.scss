@@ -23,10 +23,6 @@ $handle-mover-offset: $mover-outer - $handle-outside-extent / 2;
 $mover-size: $mover-outer + $mover-inner;
 $overlay-z-index: 9999999999;
 
-.pageshot-hide-movers .mover {
-  display: none;
-}
-
 .highlight {
   position: absolute;
   cursor: move;
@@ -273,41 +269,6 @@ $overlay-z-index: 9999999999;
   z-index: $overlay-z-index;
 }
 
-.pageshot-textbutton {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border: 1px solid #666;
-  box-shadow: 5px 5px 10px #999;
-  border-radius: 2px;
-  text-align: center;
-  vertical-align: center;
-  color: #000;
-  background-color: #fff;
-  z-index: 2000;
-  cursor: pointer;
-}
-
-.pageshot-horizcross {
-  position: fixed;
-  left: 0;
-  width: 100%;
-  height: 0;
-  border: 1px solid rgba(#fff, 0.6);
-  z-index: $overlay-z-index + 50;
-  pointer-events: none;
-}
-
-.pageshot-vertcross {
-  position: fixed;
-  top: 0;
-  height: 100%;
-  width: 0;
-  border: 1px solid rgba(#fff, 0.6);
-  z-index: $overlay-z-index + 50;
-  pointer-events: none;
-}
-
 .preview-overlay {
   align-items: center;
   background-color: rgba(#000, 0.5);
@@ -439,87 +400,6 @@ $overlay-z-index: 9999999999;
   top: 1px;
 }
 
-.pageshot-select-mode-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(#000, 0.7);
-  z-index: 9999999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.pageshot-select-mode {
-  position: relative;
-  width: 380px;
-  height: 200px;
-  background-color: #fcfcfc;
-  text-align: center;
-  padding-top: 1.5em !important;
-  padding-bottom: 1.5em !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  font-size: 14px;
-}
-
-.pageshot-select-mode-square-button {
-  width: 90px;
-  height: 90px;
-  padding-top: 0.25em;
-  box-sizing: border-box;
-  border: 0;
-  border-image-width: 0;
-  cursor: pointer;
-  background-color: #fcfcfc;
-}
-
-.pageshot-select-mode-button {
-  position: absolute;
-  bottom: 0;
-  width: 190px;
-  height: 40px;
-  padding-top: 0.25em;
-  box-sizing: border-box;
-  border: 0;
-  border-image-width: 0;
-  border-top: 1px solid #d4d4d4;
-  background-color: #efefef;
-  cursor: pointer;
-}
-
-.pageshot-crosshair-pulse {
-  position: fixed;
-  top: 20%;
-  left: 60%;
-  margin-left: -20px;
-  margin-top: -20px;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  border: 1px solid rgba(#ff0, 0.5);
-  z-index: $overlay-z-index + 1000;
-  background-image: radial-gradient(20px at 50% 50%, rgba(#ff0, 0.1), rgba(#ff0, 0.5));
-  animation-name: pageshot-pulse;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  animation-iteration-count: 20;
-}
-
-.pageshot-crosshair-inner {
-  position: fixed;
-  top: 20%;
-  left: 60%;
-  margin-left: -4px;
-  margin-top: -4px;
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-  background-color: #fff;
-  z-index: $overlay-z-index + 101;
-}
-
 @keyframes pageshot-pulse {
   0% {
     transform: scale(1);
@@ -532,20 +412,6 @@ $overlay-z-index: 9999999999;
   100% {
     transform: scale(1);
   }
-}
-
-
-.pageshot-horizcross.pageshot-crosshair-preview {
-  top: 20%;
-}
-
-.pageshot-vertcross.pageshot-crosshair-preview {
-  left: 60%;
-}
-
-.pageshot-panel * {
-  box-sizing: border-box;
-  text-align: start;
 }
 
 @keyframes pageshot-fade-in {
