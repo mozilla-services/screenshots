@@ -212,7 +212,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       this.el = makeEl("div", "preview-overlay");
       this.el.innerHTML = `
       <div class="fixed-container" style="position: absolute; pointer-events: none; display: flex">
-        <div class="pageshot-preview-instructions"></div>
+        <div class="preview-instructions"></div>
         <div class="myshots-button">
           <div class="myshots-text-pre"></div>
           <div class="myshots-text"></div>
@@ -222,7 +222,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
         <div class="pageshot-overlay-button full-page"></div>
       </div>
       `;
-      this.el.querySelector(".pageshot-preview-instructions").textContent = browser.i18n.getMessage("screenshotInstructions");
+      this.el.querySelector(".preview-instructions").textContent = browser.i18n.getMessage("screenshotInstructions");
       this.el.querySelector(".myshots-text").textContent = browser.i18n.getMessage("myShotsLink");
       this.el.querySelector(".visible").textContent = browser.i18n.getMessage("saveScreenshotVisibleArea");
       this.el.querySelector(".full-page").textContent = browser.i18n.getMessage("saveScreenshotFullPage");

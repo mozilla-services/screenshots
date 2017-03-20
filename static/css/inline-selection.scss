@@ -353,7 +353,7 @@ $overlay-z-index: 9999999999;
   width: 100%;
 }
 
-.pageshot-preview-instructions {
+.preview-instructions {
   @include flex-container(row, center, center);
   pointer-events: none;
   animation: pageshot-pulse ease-in-out 200ms;
