@@ -462,7 +462,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
 
     display: function (rect) {
       if (! this.el) {
-        this.el = makeEl("div", "pageshot-hover-highlight");
+        this.el = makeEl("div", "hover-highlight");
         iframe.document.body.appendChild(this.el);
       }
       this.el.style.display = "";
@@ -490,7 +490,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
     yEl: null,
     display: function (xPos, yPos, x, y) {
       if (! this.el) {
-        this.el = makeEl("div", "pageshot-pixel-dimensions");
+        this.el = makeEl("div", "pixel-dimensions");
         this.xEl = makeEl("div");
         this.el.appendChild(this.xEl);
         this.yEl = makeEl("div");

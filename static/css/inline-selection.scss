@@ -323,7 +323,7 @@ $overlay-z-index: 9999999999;
   z-index: $overlay-z-index;
 }
 
-.pageshot-pixel-dimensions {
+.pixel-dimensions {
   position: absolute;
   pointer-events: none;
   font-weight: bold;
@@ -558,7 +558,7 @@ $overlay-z-index: 9999999999;
   }
 }
 
-.pageshot-hover-highlight {
+.hover-highlight {
   animation: pageshot-fade-in 500ms forwards;
   opacity: 0;
   position: absolute;
