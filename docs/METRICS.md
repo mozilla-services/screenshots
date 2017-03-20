@@ -77,7 +77,7 @@ Each item in these events requires:
 
 Event category: maps to the "source": `addon` or `web`
 Event action: what the event "does", such as `start-shot` (note that Save actually "takes" the shot, the focus should be on what happens as a result of interacting with the control)
-Event label: exactly what control invoked the action, such as toolbar-pageshot-button.  These are the "locations":
+Event label: exactly what control invoked the action, such as toolbar-button.  These are the "locations":
 
 * `toolbar`: the browser toolbar
 * `topbar`: the top bar on the page during selection
@@ -116,7 +116,7 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 
 1. ~~Start the browser `addon/open-browser/launch`~~ (removed for launch)
 2. ~~Daily ping (attempt roughly every 24 hours) `addon/daily-ping`~~ (removed for launch)
-1. [x] Toggle shot button on `addon/start-shot/toolbar-pageshot-button`
+1. [x] Toggle shot button on `addon/start-shot/toolbar-button` (previous to 54 launch the label was `toolbar-pageshot-button`)
 2. [ ] Use keyboard shortcut to start shot `addon/start-shot/keyboard-shortcut` (accel-alt-control-c) (FIXME: not yet implemented)
 3. [x] Use the right-click context menu to start a shot `addon/start-shot/context-menu`
 2. [x] Make a selection `addon/make-selection/selection-drag` with `cd2: {px width}, cd1: {px height}`
@@ -141,7 +141,6 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 6. [x] Click on "Save visible" `addon/capture-visible/selection-button`
 7. [x] Click on "Save Full Page" `addon/capture-full-page/selection-button`
 6. ~~Click My Shots button from error panel `addon/goto-myshots/error-panel`~~
-6. [ ] Click shot button while Page Shot is active `addon/aborted-start-shot/toolbar-pageshot-button` (FIXME: todo)
 7. [x] Hit Escape (Cancel) `addon/cancel-shot/keyboard-escape`
 8. [x] Hit Enter (Save) `addon/save-shot/keyboard-enter`
 12. ~~Encounter an error saving the shot `addon/error/save-shot`~~
@@ -154,7 +153,7 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 18. [ ] Hit shot button on any other non-http page `addon/start-shot-non-http/actual-scheme` (note: shooting still continues).  Full event is something like `addon/start-shot-non-http/file` (or `about`, `view-source`, `data`) (FIXME: todo)
 20. ~~Test pilot was present at install time `addon/test-pilot-installed`~~
 21. ~~Test pilot was not present at install time `addon/test-pilot-not-installed`~~
-99. Toggle shot button off `addon/cancel-shot/toolbar-pageshot-button`
+99. Toggle shot button off `addon/cancel-shot/toolbar-button`
 
 ##### Internal add-on events
 

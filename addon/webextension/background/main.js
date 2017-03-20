@@ -51,7 +51,7 @@ window.main = (function () {
         toggleSelector(tab)
           .then(active => {
             const event = active ? "start-shot" : "cancel-shot";
-            sendEvent(event, "toolbar-pageshot-button");
+            sendEvent(event, "toolbar-button");
           }));
     }
   }));
