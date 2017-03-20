@@ -398,13 +398,13 @@ $overlay-z-index: 9999999999;
 
 /* end styleMyShotsButton test */
 
-.pageshot-visible {
+.visible {
   @extend .myshots-button;
   pointer-events: all;
   top: 60px;
 }
 
-.pageshot-full-page {
+.full-page {
   @extend .myshots-button;
   pointer-events: all;
   top: 105px;

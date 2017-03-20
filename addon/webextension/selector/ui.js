@@ -33,8 +33,8 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
     while (el) {
       if (el.classList &&
           (el.classList.contains("myshots-button") ||
-           el.classList.contains("pageshot-visible") ||
-           el.classList.contains("pageshot-full-page"))) {
+           el.classList.contains("visible") ||
+           el.classList.contains("full-page"))) {
         return true;
       }
       el = el.parentNode;
@@ -218,19 +218,19 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
           <div class="myshots-text"></div>
           <div class="myshots-text-post"></div>
         </div>
-        <div class="pageshot-overlay-button pageshot-visible"></div>
-        <div class="pageshot-overlay-button pageshot-full-page"></div>
+        <div class="pageshot-overlay-button visible"></div>
+        <div class="pageshot-overlay-button full-page"></div>
       </div>
       `;
       this.el.querySelector(".pageshot-preview-instructions").textContent = browser.i18n.getMessage("screenshotInstructions");
       this.el.querySelector(".myshots-text").textContent = browser.i18n.getMessage("myShotsLink");
-      this.el.querySelector(".pageshot-visible").textContent = browser.i18n.getMessage("saveScreenshotVisibleArea");
-      this.el.querySelector(".pageshot-full-page").textContent = browser.i18n.getMessage("saveScreenshotFullPage");
+      this.el.querySelector(".visible").textContent = browser.i18n.getMessage("saveScreenshotVisibleArea");
+      this.el.querySelector(".full-page").textContent = browser.i18n.getMessage("saveScreenshotFullPage");
       this.el.querySelector(".myshots-button").addEventListener(
         "click", watchFunction(callbacks.onOpenMyShots), false);
-      this.el.querySelector(".pageshot-visible").addEventListener(
+      this.el.querySelector(".visible").addEventListener(
         "click", watchFunction(callbacks.onClickVisible), false);
-      this.el.querySelector(".pageshot-full-page").addEventListener(
+      this.el.querySelector(".full-page").addEventListener(
         "click", watchFunction(callbacks.onClickFullPage), false);
       this.movingEl = this.el.querySelector(".pageshot-moving-element");
       iframe.document.body.appendChild(this.el);
