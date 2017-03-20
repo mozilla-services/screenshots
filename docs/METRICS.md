@@ -223,7 +223,7 @@ These are events that an add-on user can encounter on a shot they own
 5. [x] Click Screenshots link in header `web/goto-homepage/navbar` (was `goto-pageshot` eventAction before 54 launch)
 9. [x] Click on clip (already covered)
 10. [x] Click on the "Get it here" (install Screenshots) banner: `web/click-install-banner`
-11. [x] Click on the "Get Firefox now" (install Firefox) banner: `web/click-install-firefox`.  Also note the link uses `?utm_source=pageshot.net&utm_medium=referral&utm_campaign=pageshot-acquisition` on the link.
+11. [x] Click on the "Get Firefox now" (install Firefox) banner: `web/click-install-firefox`.  Also note the link uses `?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition` on the link.
 
 #### Server events
 
