@@ -143,12 +143,12 @@ class Body extends React.Component {
     super(props);
     this.state = {
       hidden: false,
-      closePageshotBanner: false
+      closeBanner: false
     };
   }
 
-  closeGetPageshotBanner() {
-    this.setState({closePageshotBanner: true});
+  doCloseBanner() {
+    this.setState({closeBanner: true});
   }
 
   onClickDelete(e) {
@@ -278,7 +278,7 @@ class Body extends React.Component {
 
     let renderGetFirefox = this.props.userAgent && (this.props.userAgent + "").search(/firefox\/\d+/i) === -1;
     let renderExtensionNotification = ! (this.props.isExtInstalled || renderGetFirefox);
-    if (this.props.isMobile || this.state.closePageshotBanner) {
+    if (this.props.isMobile || this.state.closeBanner) {
       renderGetFirefox = renderExtensionNotification = false;
     }
 
@@ -313,14 +313,14 @@ class Body extends React.Component {
   renderExtRequired() {
     return <div className="default-color-scheme notification">
       <div> Firefox Screenshots is an experimental extension for Firefox. <a href={ this.props.backend } onClick={ this.clickedInstallExtension.bind(this) }>Get it here</a></div>
-      <a className="close" onClick={ this.closeGetPageshotBanner.bind(this) }></a>
+      <a className="close" onClick={ this.doCloseBanner.bind(this) }></a>
     </div>;
   }
 
   renderFirefoxRequired() {
     return <div className="default-color-scheme notification">
       <div> Firefox Screenshots is an experimental extension for Firefox. <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a></div>
-      <a className="close" onClick={ this.closeGetPageshotBanner.bind(this) }></a>
+      <a className="close" onClick={ this.doCloseBanner.bind(this) }></a>
     </div>;
   }
 
