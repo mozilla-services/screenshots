@@ -32,8 +32,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
   exports.isHeader = function (el) {
     while (el) {
       if (el.classList &&
-          (el.classList.contains("pageshot-saver") ||
-           el.classList.contains("pageshot-myshots") ||
+          (el.classList.contains("pageshot-myshots") ||
            el.classList.contains("pageshot-visible") ||
            el.classList.contains("pageshot-full-page"))) {
         return true;
