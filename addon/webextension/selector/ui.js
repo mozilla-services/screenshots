@@ -32,7 +32,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
   exports.isHeader = function (el) {
     while (el) {
       if (el.classList &&
-          (el.classList.contains("pageshot-myshots") ||
+          (el.classList.contains("myshots-button") ||
            el.classList.contains("pageshot-visible") ||
            el.classList.contains("pageshot-full-page"))) {
         return true;
@@ -213,20 +213,20 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       this.el.innerHTML = `
       <div class="pageshot-moving-element" style="position: absolute; pointer-events: none; display: flex">
         <div class="pageshot-preview-instructions"></div>
-        <div class="pageshot-myshots pageshot-myshots-button">
-          <div class="pageshot-pre-myshots"></div>
-          <div class="pageshot-myshots-text"></div>
-          <div class="pageshot-post-myshots"></div>
+        <div class="myshots-button">
+          <div class="myshots-text-pre"></div>
+          <div class="myshots-text"></div>
+          <div class="myshots-text-post"></div>
         </div>
         <div class="pageshot-overlay-button pageshot-visible"></div>
         <div class="pageshot-overlay-button pageshot-full-page"></div>
       </div>
       `;
       this.el.querySelector(".pageshot-preview-instructions").textContent = browser.i18n.getMessage("screenshotInstructions");
-      this.el.querySelector(".pageshot-myshots-text").textContent = browser.i18n.getMessage("myShotsLink");
+      this.el.querySelector(".myshots-text").textContent = browser.i18n.getMessage("myShotsLink");
       this.el.querySelector(".pageshot-visible").textContent = browser.i18n.getMessage("saveScreenshotVisibleArea");
       this.el.querySelector(".pageshot-full-page").textContent = browser.i18n.getMessage("saveScreenshotFullPage");
-      this.el.querySelector(".pageshot-myshots").addEventListener(
+      this.el.querySelector(".myshots-button").addEventListener(
         "click", watchFunction(callbacks.onOpenMyShots), false);
       this.el.querySelector(".pageshot-visible").addEventListener(
         "click", watchFunction(callbacks.onClickVisible), false);

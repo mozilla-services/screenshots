@@ -36,10 +36,10 @@ class Body extends React.Component {
   render() {
     let myShots;
     if (this.props.showMyShots) {
-      myShots = <button className="pageshot-myshots" onClick={ this.onClickMyShots.bind(this) }>
-        <div className="pageshot-pre-myshots"></div>
-        <span className="pageshot-myshots-text">My Shots</span>
-        <div className="pageshot-post-myshots"></div>
+      myShots = <button className="myshots-button" onClick={ this.onClickMyShots.bind(this) }>
+        <div className="myshots-text-pre"></div>
+        <span className="myshots-text">My Shots</span>
+        <div className="myshots-text-post"></div>
       </button>;
     }
     return (
