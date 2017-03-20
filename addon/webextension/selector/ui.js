@@ -391,7 +391,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       this.save = save;
       boxEl.appendChild(buttons);
       for (let name of movements) {
-        let elTarget = makeEl("div", "pageshot-mover-target pageshot-" + name);
+        let elTarget = makeEl("div", "pageshot-mover-target direction-" + name);
         let elMover = makeEl("div", "pageshot-mover");
         elTarget.appendChild(elMover);
         boxEl.appendChild(elTarget);

@@ -117,7 +117,7 @@ $overlay-z-index: 9999999999;
   border: 0;
 }
 
-.pageshot-mover-target.pageshot-topLeft {
+.pageshot-mover-target.direction-topLeft {
   cursor: nwse-resize;
   top: -$mover-outer;
   left: -$mover-outer;
@@ -125,7 +125,7 @@ $overlay-z-index: 9999999999;
   height: $mover-size;
 }
 
-.pageshot-mover-target.pageshot-top {
+.pageshot-mover-target.direction-top {
   cursor: ns-resize;
   top: -$mover-outer;
   left: 0;
@@ -135,7 +135,7 @@ $overlay-z-index: 9999999999;
   z-index: 4;
 }
 
-.pageshot-mover-target.pageshot-topRight {
+.pageshot-mover-target.direction-topRight {
   cursor: nesw-resize;
   top: -$mover-outer;
   right: -$mover-outer;
@@ -143,7 +143,7 @@ $overlay-z-index: 9999999999;
   width: $mover-size;
 }
 
-.pageshot-mover-target.pageshot-left {
+.pageshot-mover-target.direction-left {
   cursor: ew-resize;
   top: 0;
   left: -$mover-outer;
@@ -152,7 +152,7 @@ $overlay-z-index: 9999999999;
   z-index: 4;
 }
 
-.pageshot-mover-target.pageshot-right {
+.pageshot-mover-target.direction-right {
   cursor: ew-resize;
   top: 0;
   right: -$mover-outer;
@@ -161,7 +161,7 @@ $overlay-z-index: 9999999999;
   z-index: 4;
 }
 
-.pageshot-mover-target.pageshot-bottomLeft {
+.pageshot-mover-target.direction-bottomLeft {
   cursor: nesw-resize;
   left: -$mover-outer;
   bottom: -$mover-outer;
@@ -169,7 +169,7 @@ $overlay-z-index: 9999999999;
   height: $mover-size;
 }
 
-.pageshot-mover-target.pageshot-bottom {
+.pageshot-mover-target.direction-bottom {
   cursor: ns-resize;
   left: 0;
   bottom: -$mover-outer;
@@ -178,7 +178,7 @@ $overlay-z-index: 9999999999;
   z-index: 4;
 }
 
-.pageshot-mover-target.pageshot-bottomRight {
+.pageshot-mover-target.direction-bottomRight {
   cursor: nwse-resize;
   bottom: -$mover-outer;
   right: -$mover-outer;
@@ -207,12 +207,12 @@ $overlay-z-index: 9999999999;
   }
 }
 
-.pageshot-topLeft .pageshot-mover {
+.direction-topLeft .pageshot-mover {
   top: $handle-mover-offset;
   left: $handle-mover-offset;
 }
 
-.pageshot-top .pageshot-mover {
+.direction-top .pageshot-mover {
   top: $handle-mover-offset;
   left: 50%;
   margin-left: -$handle-size / 2;
@@ -222,12 +222,12 @@ $overlay-z-index: 9999999999;
   }
 }
 
-.pageshot-topRight .pageshot-mover {
+.direction-topRight .pageshot-mover {
   top: $handle-mover-offset;
   right: $handle-mover-offset;
 }
 
-.pageshot-left .pageshot-mover {
+.direction-left .pageshot-mover {
   top: 50%;
   margin-top: -$handle-size / 2;
   left: $handle-mover-offset;
@@ -237,7 +237,7 @@ $overlay-z-index: 9999999999;
   }
 }
 
-.pageshot-right .pageshot-mover {
+.direction-right .pageshot-mover {
   top: 50%;
   margin-top: -$handle-size / 2;
   right: $handle-mover-offset;
@@ -247,12 +247,12 @@ $overlay-z-index: 9999999999;
   }
 }
 
-.pageshot-bottomLeft .pageshot-mover {
+.direction-bottomLeft .pageshot-mover {
   bottom: $handle-mover-offset;
   left: $handle-mover-offset;
 }
 
-.pageshot-bottom .pageshot-mover {
+.direction-bottom .pageshot-mover {
   left: 50%;
   margin-left: -$handle-size / 2;
   bottom: $handle-mover-offset;
@@ -262,7 +262,7 @@ $overlay-z-index: 9999999999;
   }
 }
 
-.pageshot-bottomRight .pageshot-mover {
+.direction-bottomRight .pageshot-mover {
   right: $handle-mover-offset;
   bottom: $handle-mover-offset;
 }
