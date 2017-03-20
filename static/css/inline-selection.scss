@@ -308,7 +308,7 @@ $overlay-z-index: 9999999999;
   pointer-events: none;
 }
 
-.pageshot-preview-overlay {
+.preview-overlay {
   align-items: center;
   background-color: rgba(#000, 0.5);
   display: flex;
@@ -337,9 +337,9 @@ $overlay-z-index: 9999999999;
       1px 1px 0 #fff;
 }
 
-// FIXME: some of the styles in .pageshot-moving-element were copied from
-// .pageshot-preview-overlay and are probably unnecessary
-.pageshot-moving-element {
+// FIXME: some of the styles in .fixed-container were copied from
+// .preview-overlay and are probably unnecessary
+.fixed-container {
   pointer-events: none;
   position: absolute;
   align-items: center;

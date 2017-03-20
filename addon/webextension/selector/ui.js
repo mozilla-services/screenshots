@@ -209,9 +209,9 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
 
     display: function (callbacks) {
       this.remove();
-      this.el = makeEl("div", "pageshot-preview-overlay");
+      this.el = makeEl("div", "preview-overlay");
       this.el.innerHTML = `
-      <div class="pageshot-moving-element" style="position: absolute; pointer-events: none; display: flex">
+      <div class="fixed-container" style="position: absolute; pointer-events: none; display: flex">
         <div class="pageshot-preview-instructions"></div>
         <div class="myshots-button">
           <div class="myshots-text-pre"></div>
@@ -232,7 +232,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
         "click", watchFunction(callbacks.onClickVisible), false);
       this.el.querySelector(".full-page").addEventListener(
         "click", watchFunction(callbacks.onClickFullPage), false);
-      this.movingEl = this.el.querySelector(".pageshot-moving-element");
+      this.movingEl = this.el.querySelector(".fixed-container");
       iframe.document.body.appendChild(this.el);
       this.resetPosition();
       window.addEventListener("scroll", this.onScroll, false);
