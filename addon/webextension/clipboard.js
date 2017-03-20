@@ -18,3 +18,4 @@ window.clipboard = (function () {
 
   return exports;
 })();
+null;

@@ -15,10 +15,6 @@ window.shooter = (function () { // eslint-disable-line no-unused-vars
     callBackground("reportError", errorObj);
   });
 
-  exports.deactivate = function () {
-    uicontrol.deactivate();
-  };
-
   (function () {
     let canvas = document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
     let ctx = canvas.getContext('2d');
@@ -81,8 +77,7 @@ window.shooter = (function () { // eslint-disable-line no-unused-vars
     }).then((url) => {
       const copied = window.clipboard.copy(url);
       return callBackground("openShot", { url, copied });
-    }));
-    exports.deactivate();
+    }).then(() => uicontrol.deactivate()));
   };
 
   exports.downloadShot = function (selectedPos) {
@@ -103,11 +98,6 @@ window.shooter = (function () { // eslint-disable-line no-unused-vars
       ui.triggerDownload(dataUrl, shot.filename);
     }));
   };
-
-  /** Happens when the URL changes via window.history */
-  exports.popstate = catcher.watchFunction(function () {
-    exports.deactivate();
-  });
 
   exports.sendEvent = function (...args) {
     callBackground("sendEvent", ...args);

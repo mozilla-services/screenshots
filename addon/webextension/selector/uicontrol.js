@@ -1,5 +1,5 @@
 /* globals console, catcher, util, ui */
-/* globals window, document, location, shooter, callBackground, lifecycle */
+/* globals window, document, location, shooter, callBackground, selectorLoader */
 
 window.uicontrol = (function () {
   let exports = {};
@@ -130,8 +130,8 @@ window.uicontrol = (function () {
   let standardOverlayCallbacks = {
     onOpenMyShots: () => {
       sendEvent("goto-myshots", "selection-button");
-      callBackground("openMyShots");
-      exports.deactivate();
+      callBackground("openMyShots")
+        .then(() => exports.deactivate());
     },
     onClickVisible: () => {
       sendEvent("capture-visible", "selection-button");
@@ -353,8 +353,9 @@ window.uicontrol = (function () {
       this.cachedEl = null;
       ui.Box.remove();
       ui.WholePageOverlay.display(standardOverlayCallbacks);
-      document.addEventListener("keyup", watchFunction(keyupHandler), false);
-      registeredDocumentHandlers.push({name: "keyup", doc: document, handler: keyupHandler});
+      const handler = watchFunction(keyupHandler);
+      document.addEventListener("keyup", handler, false);
+      registeredDocumentHandlers.push({name: "keyup", doc: document, handler});
     },
 
     mousemove: function (event) {
@@ -778,12 +779,11 @@ window.uicontrol = (function () {
 
   exports.deactivate = function () {
     try {
-      ui.Box.remove();
-      ui.remove();
-      removeHandlers();
       setState("cancel");
-      lifecycle.unload();
+      callBackground('closeSelector');
+      selectorLoader.unloadModules();
     } catch (e) {
+      console.error('deactivate', e)
       // Sometimes this fires so late that the document isn't available
       // We don't care about the exception, so we swallow it here
     }
@@ -792,7 +792,6 @@ window.uicontrol = (function () {
   exports.unload = function () {
     // Note that ui.unload() will be called on its own
     removeHandlers();
-    setState("cancel");
   };
 
   /***********************************************
@@ -822,6 +821,7 @@ window.uicontrol = (function () {
       primedDocumentHandlers.set(eventName, fn);
     });
     primedDocumentHandlers.set("keyup", keyupHandler);
+    window.addEventListener('beforeunload', beforeunloadHandler);
   }
 
   function installHandlersOnDocument(docObj) {
@@ -832,15 +832,19 @@ window.uicontrol = (function () {
     }
   }
 
+  function beforeunloadHandler() {
+    sendEvent("cancel-shot", "url-changed");
+    exports.deactivate();
+  }
+
   function keyupHandler(event) {
     if (event.ctrlKey || event.shiftKey || event.altKey || event.metaKey) {
       // Modified
       return;
     }
     if ((event.key || event.code) === "Escape") {
-      exports.deactivate();
       sendEvent("cancel-shot", "keyboard-escape");
-      shooter.deactivate();
+      exports.deactivate();
     }
     if ((event.key || event.code) === "Enter") {
       if (getState.state === "selected") {
@@ -851,28 +855,12 @@ window.uicontrol = (function () {
   }
 
   function removeHandlers() {
+    window.removeEventListener("beforeunload", beforeunloadHandler);
     for (let {name, doc, handler} of registeredDocumentHandlers) {
       doc.removeEventListener(name, handler, false);
     }
     registeredDocumentHandlers = [];
   }
-
-  /**********************************************************
-   * window.history catching
-   */
-
-  var origUrl = location.href;
-  function checkUrl() {
-    var curUrl = location.href;
-    if (origUrl != curUrl) {
-      console.info("got url change", origUrl, curUrl);
-      shooter.popstate();
-      sendEvent("cancel-shot", "url-changed");
-      exports.deactivate();
-    }
-  }
-
-  window.addEventListener("popstate", watchFunction(checkUrl), false);
 
   exports.activate();
 

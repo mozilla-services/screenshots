@@ -5,7 +5,7 @@ window.takeshot = (function () {
   const Shot = shot.AbstractShot;
   const { sendEvent } = analytics;
 
-  communication.register("takeShot", (options) => {
+  communication.register("takeShot", (sender, options) => {
     let { captureType, captureText, scroll, selectedPos, shotId, shot } = options;
     shot = new Shot(main.getBackend(), shotId, shot);
     let capturePromise = Promise.resolve();
@@ -50,7 +50,7 @@ window.takeshot = (function () {
     }));
   });
 
-  communication.register("screenshotPage", (selectedPos, scroll) => {
+  communication.register("screenshotPage", (sender, selectedPos, scroll) => {
     return screenshotPage(selectedPos, scroll);
   });
 
