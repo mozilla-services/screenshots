@@ -126,7 +126,7 @@ export_addon: addon
 zip: addon
 	# FIXME: should remove web-ext-artifacts/*.zip first
 	./node_modules/.bin/web-ext build --source-dir addon/webextension/
-	mv web-ext-artifacts/page_shot*.zip build/pageshot.zip
+	mv web-ext-artifacts/firefox_screenshots*.zip build/pageshot.zip
 	# We'll try to remove this directory, but it's no big deal if we can't:
 	@rmdir web-ext-artifacts || true
 
