@@ -50,6 +50,11 @@ while True:
 backend = open("build/.backend.txt").read()
 
 template = template.replace("__VERSION__", version)
+# Some places we use the port:
 template = template.replace("http://localhost:10080", backend)
+# But for content_scripts.matches the port gets left off:
+backend_without_port = re.sub(r':\d+$', '', backend)
+template = template.replace("http://localhost/", backend_without_port + "/")
+
 
 open(sys.argv[2], "wb").write(template)

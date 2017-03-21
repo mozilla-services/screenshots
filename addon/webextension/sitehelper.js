@@ -1,0 +1,41 @@
+/* globals catcher, callBackground */
+/** This is a content script added to all Page Shot pages, and allows the site to
+    communicate with the add-on */
+
+window.sitehelper = (function () {
+
+  catcher.registerHandler((errorObj) => {
+    callBackground("reportError", errorObj);
+  });
+
+
+  function sendCustomEvent(name, detail) {
+    if (typeof detail == "object") {
+      // Note sending an object can lead to security problems, while a string
+      // is safe to transfer:
+      detail = JSON.stringify(detail);
+    }
+    document.dispatchEvent(new CustomEvent(name, {detail}));
+  }
+
+  document.addEventListener("delete-everything", catcher.watchFunction((event) => {
+    // FIXME: implement
+    alert("Not yet implemented");
+  }, false));
+
+  document.addEventListener("request-login", catcher.watchFunction((event) => {
+    let shotId = event.detail;
+    catcher.watchPromise(callBackground("getAuthInfo", shotId || null).then((info) => {
+      sendCustomEvent("login-successful", {deviceId: info.deviceId, isOwner: info.isOwner});
+    }));
+  }));
+
+  // Depending on the script loading order, the site might get the addon-present event,
+  // but probably won't - instead the site will ask for that event after it has loaded
+  document.addEventListener("request-addon-present", catcher.watchFunction(() => {
+    sendCustomEvent("addon-present");
+  }), false);
+
+  sendCustomEvent("addon-present");
+
+})();

@@ -21,7 +21,7 @@ window.communication = (function () {
       req.args.unshift(sender);
       result = func.apply(null, req.args);
     } catch (e) {
-      console.error(`Error in ${req.funcName}:`, e);
+      console.error(`Error in ${req.funcName}:`, e, e.stack);
       sendResponse({type: "error", name: e+""});
       return;
     }
@@ -29,6 +29,7 @@ window.communication = (function () {
       result.then((concreteResult) => {
         sendResponse({type: "success", value: concreteResult});
       }, (errorResult) => {
+        console.error(`Promise error in ${req.funcName}:`, errorResult, errorResult && errorResult.stack);
         sendResponse({type: "error", name: errorResult+""});
       });
       return true;

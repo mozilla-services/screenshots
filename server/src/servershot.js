@@ -394,6 +394,15 @@ Shot.getRawValue = function (id, deviceId) {
   });
 };
 
+Shot.checkOwnership = function (shotId, deviceId) {
+  return db.select(
+    `SELECT id FROM data WHERE id = $1 AND deviceid = $2`,
+    [shotId, deviceId]
+  ).then((rows) => {
+    return !! rows.length;
+  });
+};
+
 Shot.getShotsForDevice = function (backend, deviceId, searchQuery) {
   if (! deviceId) {
     throw new Error("Empty deviceId: " + deviceId);

@@ -46,8 +46,12 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://localhost:10080/*"],
-      "js": ["site-helper.js"],
+      "matches": ["http://localhost/*"],
+      "js": [
+        "catcher.js",
+        "selector/callBackground.js",
+        "sitehelper.js"
+      ],
       "run_at": "document_start"
     }
   ],

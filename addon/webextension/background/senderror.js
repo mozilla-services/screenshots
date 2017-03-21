@@ -48,7 +48,7 @@ window.errorpopup = (function () {
       popupMessage = "generic";
     }
     let title = messages[popupMessage].title;
-    let message = messages[popupMessage].message || null;
+    let message = messages[popupMessage].message || '';
     let showMessage = messages[popupMessage].showMessage;
     if (error.message && showMessage) {
       if (message) {
