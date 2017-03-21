@@ -18,7 +18,7 @@ window.errorpopup = (function () {
     },
     LOGIN_CONNECTION_ERROR: {
       title: browser.i18n.getMessage("connectionErrorTitle"),
-      info: browser.i18n.getMessage("loginConnectionErrorDetails")
+      info: browser.i18n.getMessage("connectionErrorDetails")
     },
     UNSHOOTABLE_PAGE: {
       title: browser.i18n.getMessage("unshootablePageErrorTitle"),
