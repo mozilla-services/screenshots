@@ -191,7 +191,7 @@ build/server/static/js/shotindex-bundle.js: $(shotindex_dependencies)
 
 leave_dependencies := $(shell ./bin/build-scripts/bundle_dependencies leave getdeps "$(server_dest)")
 build/server/static/js/leave-bundle.js: $(leave_dependencies)
-	./bin/build-scripts/bundle_dependencies leave build ./build/server/pages/leave-page-shot/controller.js
+	./bin/build-scripts/bundle_dependencies leave build ./build/server/pages/leave-screenshots/controller.js
 
 creating_dependencies := $(shell ./bin/build-scripts/bundle_dependencies creating getdeps "$(server_dest)")
 build/server/static/js/creating-bundle.js: $(creating_dependencies)

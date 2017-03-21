@@ -225,6 +225,13 @@ These are events that an add-on user can encounter on a shot they own
 10. [x] Click on the "Get it here" (install Screenshots) banner: `web/click-install-banner`
 11. [x] Click on the "Get Firefox now" (install Firefox) banner: `web/click-install-firefox`.  Also note the link uses `?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition` on the link.
 
+#### Other web events
+
+1. [x] Start the "Leave Screenshots" process: `server/start-leave-service`
+2. [x] Complete leaving: `server/leave-service-completed`
+3. [x] From Leave Screenshots, click Delete: `web/leave-service/leave-button`
+4. [x] From Leave Screenshots, click Cancel: `web/cancel-leave/cancel-link`
+
 #### Server events
 
 1. [x] When an expired shot is deleted (about 2 weeks after expiration) it sends `server/clean-deleted-shot` with an eventValue of the number of shots cleaned at that moment.  (By default these are checked every minute.)

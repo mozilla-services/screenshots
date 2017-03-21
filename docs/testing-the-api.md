@@ -41,7 +41,7 @@ Returns 404 if no user by that id, 401 if the login failed, and returns 200 on s
 
 Like /api/register, it sets the session authentication cookie.
 
-`POST /leave-page-shot/leave`
+`POST /leave-screenshots/leave`
 
 Authenticated.  Deletes entire account.  Uses session token to determine who to delete.
 

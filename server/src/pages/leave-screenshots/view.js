@@ -30,7 +30,7 @@ class Body extends React.Component {
             <div className="large-icon-message-string">
               This will permanently erase all of your Firefox Screenshots data.
             </div>
-            <form action="/leave-page-shot/leave" method="POST" className="responsive-wrapper row-center">
+            <form action="/leave-screenshots/leave" method="POST" className="responsive-wrapper row-center">
               <button type="submit" onClick={ this.onClickDelete.bind(this) } className="button warning">
                 Proceed
               </button>
@@ -61,7 +61,7 @@ class Body extends React.Component {
   }
 
   onClickDelete() {
-    sendEvent("leave-page-shot", "leave-button", {useBeacon: true});
+    sendEvent("leave-service", "leave-button", {useBeacon: true});
   }
 
   onClickCancel() {

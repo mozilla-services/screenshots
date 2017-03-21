@@ -66,7 +66,7 @@ def login():
 
 def delete_account():
     resp = session.post(
-        urljoin(backend, "/leave-page-shot/leave"),
+        urljoin(backend, "/leave-screenshots/leave"),
         json={})
     resp.raise_for_status()
 

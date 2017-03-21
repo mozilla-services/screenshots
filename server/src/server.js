@@ -995,7 +995,7 @@ if (! config.disableMetrics) {
 
 app.use("/shots", require("./pages/shotindex/server").app);
 
-app.use("/leave-page-shot", require("./pages/leave-page-shot/server").app);
+app.use("/leave-screenshots", require("./pages/leave-screenshots/server").app);
 
 app.use("/terms", require("./pages/legal/server").app);
 
