@@ -151,7 +151,7 @@ if __name__ == "__main__":
                         help="A gecko directory reference to mozilla-central, can also "
                              "be specified via EXPORT_MC_LOCATION environment variable")
     parser.add_argument("--mozilla-central-subdir",
-                        default="browser/extensions/pageshot/",
+                        default="browser/extensions/screenshots/",
                         help="Where the extension is located in mozilla-central.")
     parser.add_argument("-b", "--branch",
                         required=True,

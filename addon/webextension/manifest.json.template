@@ -7,7 +7,7 @@
   "homepage_url": "https://github.com/mozilla-services/pageshot",
   "applications": {
     "gecko": {
-      "id": "pageshot@mozilla.org"
+      "id": "screenshots@mozilla.org"
     }
   },
   "default_locale": "en_US",

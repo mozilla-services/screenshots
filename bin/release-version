@@ -38,8 +38,9 @@ case "$channel" in
       echo "Please set \$DOCKER_USERNAME to your dockerhub username"
       exit 3
     fi
-    rm -f build/pageshot.zip
+    rm -f build/screenshots.zip
     # Forces update of the add-on version:
+    mkdir -p build
     touch build/.backend.txt
     SCREENSHOTS_BACKEND=https://pageshot.dev.mozaws.net SCREENSHOTS_SENTRY="$dev_sentry" make zip
     ./bin/build-docker-image $DOCKER_USERNAME
@@ -52,7 +53,7 @@ case "$channel" in
       echo "  git checkout stable ; git pull"
       exit 4
     fi
-    rm -f build/pageshot.zip
+    rm -f build/screenshots.zip
     # Forces update of the add-on version:
     touch build/.backend.txt
     SCREENSHOTS_BACKEND=https://pageshot.stage.mozaws.net SCREENSHOTS_SENTRY="$stage_sentry" make zip
@@ -69,7 +70,7 @@ case "$channel" in
     # FIXME: we shouldn't add a timestamp onto the end of the version here
     SCREENSHOTS_MINOR_VERSION=0 SCREENSHOTS_BACKEND=https://pageshot.net SCREENSHOTS_SENTRY="$prod_sentry" make signed_xpi
     echo
-    echo "Prod xpi created, email build/pageshot.xpi to wclouser@mozilla.com"
+    echo "Prod xpi created, email build/screenshots.xpi to wclouser@mozilla.com"
     ;;
   *)
     echo "Unknown channel: $channel"
