@@ -36,6 +36,42 @@ function isUrl(url) {
   return (/^https?:\/\/[a-z0-9\.\-]+[a-z0-9](:[0-9]+)?\/?/i).test(url);
 }
 
+function assertUrl(url) {
+  if (! url) {
+    throw new Error("Empty value is not URL");
+  }
+  if (! isUrl(url)) {
+    let exc = new Error("Not a URL");
+    exc.scheme = url.split(":")[0];
+    throw exc;
+  }
+}
+
+function assertOrigin(url) {
+  assertUrl(url);
+  if (url.search(/^https?:/i) != -1) {
+    let match = (/^https?:\/\/[^/:]+\/?$/i).exec(url);
+    if (! match) {
+      throw new Error("Bad origin, might include path");
+    }
+  }
+}
+
+function originFromUrl(url) {
+  if (! url) {
+    return null;
+  }
+  if (url.search(/^https?:/i) == -1) {
+    // Non-HTTP URLs don't have an origin
+    return null;
+  }
+  let match = (/^https?:\/\/[^/:]+/i).exec(url);
+  if (match) {
+    return match[0];
+  }
+  return null;
+}
+
 /** Check if the given object has all of the required attributes, and no extra
     attributes exception those in optional */
 function checkObject(obj, required, optional) {
@@ -168,7 +204,12 @@ class AbstractShot {
     assert((/^[a-zA-Z0-9]+\/[a-z0-9\.-]+$/).test(id), "Bad ID (should be alphanumeric):", JSON.stringify(id));
     this._backend = backend;
     this._id = id;
-    this.url = attrs.url;
+    this.origin = attrs.origin || null;
+    this.fullUrl = attrs.fullUrl || null;
+    if ((! attrs.fullUrl) && attrs.url) {
+      console.warn("Received deprecated attribute .url");
+      this.fullUrl = attrs.url;
+    }
     this.docTitle = attrs.docTitle || null;
     this.userTitle = attrs.userTitle || null;
     this.createdDate = attrs.createdDate || Date.now();
@@ -281,11 +322,30 @@ class AbstractShot {
   }
 
   get url() {
-    return this._url;
+    return this.fullUrl || this.origin;
   }
   set url(val) {
-    assert(val && isUrl(val), "Bad URL:", val);
-    this._url = val;
+    throw new Error(".url is read-only");
+  }
+
+  get fullUrl() {
+    return this._fullUrl;
+  }
+  set fullUrl(val) {
+    if (val) {
+      assertUrl(val);
+    }
+    this._url = val || undefined;
+  }
+
+  get origin() {
+    return this._origin;
+  }
+  set origin(val) {
+    if (val) {
+      assertOrigin(val);
+    }
+    this._origin = val || undefined;
   }
 
   get filename() {
@@ -304,6 +364,9 @@ class AbstractShot {
   }
 
   get urlDisplay() {
+    if (! this.url) {
+      return null;
+    }
     if (this.url.search(/^https?/i) != -1) {
       let txt = this.url;
       txt = txt.replace(/^[a-z]+:\/\//i, "");
@@ -507,7 +570,7 @@ class AbstractShot {
 }
 
 AbstractShot.prototype.REGULAR_ATTRS = (`
-url docTitle userTitle createdDate favicon images
+origin fullUrl docTitle userTitle createdDate favicon images
 siteName openGraph twitterCard documentSize
 fullScreenThumbnail abTests
 `).split(/\s+/g);
@@ -515,7 +578,7 @@ fullScreenThumbnail abTests
 // Attributes that will be accepted in the constructor, but ignored/dropped
 AbstractShot.prototype.DEPRECATED_ATTRS = (`
 microdata history ogTitle createdDevice head body htmlAttrs bodyAttrs headAttrs
-readable hashtags comments showPage isPublic resources deviceId
+readable hashtags comments showPage isPublic resources deviceId url
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`
@@ -659,4 +722,5 @@ AbstractShot.prototype.Clip = _Clip;
 
 if (typeof exports != "undefined") {
   exports.AbstractShot = AbstractShot;
+  exports.originFromUrl = originFromUrl;
 }
