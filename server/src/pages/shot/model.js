@@ -6,7 +6,6 @@ exports.createModel = function (req) {
   let isMobile = !! (new MobileDetect(req.headers['user-agent'])).mobile();
   let serverPayload = {
     title: req.shot.title,
-    allowExport: req.config.allowExport,
     staticLink: req.staticLink,
     backend: req.backend,
     shot: req.shot,
@@ -33,7 +32,6 @@ exports.createModel = function (req) {
   };
   let clientPayload = {
     title: req.shot.title,
-    allowExport: req.config.allowExport,
     gitRevision: getGitRevision(),
     backend: req.backend,
     shot: req.shot.asJson(),

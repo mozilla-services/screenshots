@@ -111,8 +111,8 @@ if [[ -n "$setup_profile" ]] ; then
     $open -n --args -new-instance -no-remote -profile "$profile_dir"
   else
     echo "Creating profile in $profile_dir running:"
-    echo " " $open -n --args -new-instance -no-remote -CreateProfile "PageShotTestProfile $profile_dir"
-    $open -n --args -new-instance -no-remote -CreateProfile "PageShotTestProfile $profile_dir"
+    echo " " $open -n --args -new-instance -no-remote -CreateProfile "ScreenshotsTestProfile $profile_dir"
+    $open -n --args -new-instance -no-remote -CreateProfile "ScreenshotsTestProfile $profile_dir"
     echo "Opening profile running:"
     echo " " $open -n --args -new-instance -no-remote -profile "$profile_dir" -url http://localhost:10080
     $open -n --args -new-instance -no-remote -profile "$profile_dir" -url http://localhost:10080
@@ -121,7 +121,7 @@ if [[ -n "$setup_profile" ]] ; then
 fi
 
 if [[ -n "$server" ]] ; then
-  export PAGESHOT_BACKEND="$server"
+  export SCREENSHOTS_BACKEND="$server"
 fi
 
 profile_option=
@@ -149,14 +149,14 @@ run_webext() {
   run_nodemon
   echo "Running Firefox.  You might want to go to:"
   echo "  about:debugging"
-  echo "and Debug Page Shot"
+  echo "and Debug Firefox Screenshots"
 
   $webext run --firefox "$binary" $profile_option --source-dir ./addon/webextension/
 }
 
 run_jpm() {
   echo "Running Firefox.  Reloading with jpm *will not* happen"
-  echo "If the Page Shot icon doesn't show up go to:"
+  echo "If the Screenshots icon doesn't show up go to:"
   echo "  Tools > Add-ons > Extensions and look for an error loading the add-on"
   cd addon
   $jpm run $bootstrap_profile_option -b "$binary" --binary-args -jsconsole

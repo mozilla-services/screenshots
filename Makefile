@@ -4,8 +4,8 @@ BABEL := babel --retain-lines
 RSYNC := rsync --archive
 VENV := .venv
 .DEFAULT_GOAL := help
-# Sets $(PAGESHOT_BACKEND) to http://localhost:10080 only if it isn't set
-PAGESHOT_BACKEND ?= http://localhost:10080
+# Sets $(SCREENSHOTS_BACKEND) to http://localhost:10080 only if it isn't set
+SCREENSHOTS_BACKEND ?= http://localhost:10080
 
 # This forces bin/build-scripts/write_ga_id to be run before anything else, which
 # writes the configured Google Analytics ID to build/ga-id.txt
@@ -126,7 +126,7 @@ export_addon: addon
 zip: addon
 	# FIXME: should remove web-ext-artifacts/*.zip first
 	./node_modules/.bin/web-ext build --source-dir addon/webextension/
-	mv web-ext-artifacts/page_shot*.zip build/pageshot.zip
+	mv web-ext-artifacts/firefox_screenshots*.zip build/pageshot.zip
 	# We'll try to remove this directory, but it's no big deal if we can't:
 	@rmdir web-ext-artifacts || true
 
@@ -191,7 +191,7 @@ build/server/static/js/shotindex-bundle.js: $(shotindex_dependencies)
 
 leave_dependencies := $(shell ./bin/build-scripts/bundle_dependencies leave getdeps "$(server_dest)")
 build/server/static/js/leave-bundle.js: $(leave_dependencies)
-	./bin/build-scripts/bundle_dependencies leave build ./build/server/pages/leave-page-shot/controller.js
+	./bin/build-scripts/bundle_dependencies leave build ./build/server/pages/leave-screenshots/controller.js
 
 creating_dependencies := $(shell ./bin/build-scripts/bundle_dependencies creating getdeps "$(server_dest)")
 build/server/static/js/creating-bundle.js: $(creating_dependencies)
@@ -225,16 +225,16 @@ build/.backend.txt: set_backend
 
 .PHONY: set_backend
 set_backend:
-	@echo "Setting backend to ${PAGESHOT_BACKEND}"
-	./bin/build-scripts/set_file build/.backend.txt $(PAGESHOT_BACKEND)
+	@echo "Setting backend to ${SCREENSHOTS_BACKEND}"
+	./bin/build-scripts/set_file build/.backend.txt $(SCREENSHOTS_BACKEND)
 
 addon/webextension/build/defaultSentryDsn.js: set_sentry
 
 .PHONY: set_sentry
 set_sentry:
-	@if [[ -z "$(PAGESHOT_SENTRY)" ]] ; then echo "No default Sentry" ; fi
-	@if [[ -n "$(PAGESHOT_SENTRY)" ]] ; then echo "Setting default Sentry ${PAGESHOT_SENTRY}" ; fi
-	./bin/build-scripts/set_file addon/webextension/build/defaultSentryDsn.js "window.defaultSentryDsn = '${PAGESHOT_SENTRY}';null;"
+	@if [[ -z "$(SCREENSHOTS_SENTRY)" ]] ; then echo "No default Sentry" ; fi
+	@if [[ -n "$(SCREENSHOTS_SENTRY)" ]] ; then echo "Setting default Sentry ${SCREENSHOTS_SENTRY}" ; fi
+	./bin/build-scripts/set_file addon/webextension/build/defaultSentryDsn.js "window.defaultSentryDsn = '${SCREENSHOTS_SENTRY}';null;"
 
 
 build/.npm-install.log: package.json

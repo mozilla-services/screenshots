@@ -1,5 +1,5 @@
 /* globals catcher, callBackground */
-/** This is a content script added to all Page Shot pages, and allows the site to
+/** This is a content script added to all screenshots.firefox.com pages, and allows the site to
     communicate with the add-on */
 
 window.sitehelper = (function () {

@@ -137,7 +137,7 @@ class Shot extends AbstractShot {
       type: "rich",
       version: "1.0",
       title: this.title,
-      provider_name: "Page Shot",
+      provider_name: "Firefox Screenshots",
       provider_url: this.backend,
       html: body,
       // I don't really understand how these relate to maxheight/maxwidth, or how we should set them:

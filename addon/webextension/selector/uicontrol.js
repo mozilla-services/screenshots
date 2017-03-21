@@ -325,14 +325,10 @@ window.uicontrol = (function () {
     }
 
     elementFromPoint() {
-      document.body.classList.add("pageshot-no-pointer-events");
-      try {
-        return document.elementFromPoint(
-          this.x - window.pageXOffset,
-          this.y - window.pageYOffset);
-      } finally {
-        document.body.classList.remove("pageshot-no-pointer-events");
-      }
+      return ui.iframe.getElementFromPoint(
+        this.x - window.pageXOffset,
+        this.y - window.pageYOffset
+      );
     }
 
     distanceTo(x, y) {
@@ -360,16 +356,15 @@ window.uicontrol = (function () {
 
     mousemove: function (event) {
       ui.PixelDimensions.display(event.pageX, event.pageY, event.pageX, event.pageY);
-      if (event.target.className &&
-          event.target.className !== "pageshot-preview-overlay" &&
-          event.target.className.startsWith("pageshot-")) {
-        // User is hovering over a Page Shot button or control
+      if (event.target.classList &&
+          (! event.target.classList.contains("preview-overlay"))) {
+        // User is hovering over a toolbar button or control
         autoDetectRect = null;
         ui.HoverBox.hide();
         return;
       }
       let el;
-      if (event.target.className === "pageshot-preview-overlay") {
+      if (event.target.classList.contains("preview-overlay")) {
         // The hover is on the overlay, so we need to figure out the real element
         el = ui.iframe.getElementFromPoint(
           event.pageX - window.pageXOffset,

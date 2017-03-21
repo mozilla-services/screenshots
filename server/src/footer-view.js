@@ -15,7 +15,7 @@ exports.Footer = class Footer extends React.Component {
               <a href="https://www.mozilla.org/en-US/about/legal/report-infringement/" target="_blank">Report IP Infringement</a>
               <a href="https://discourse.mozilla-community.org/c/test-pilot/page-shot" target="_blank">Give Feedback</a>
               <a href="https://github.com/mozilla-services/pageshot" target="_blank">GitHub</a>
-              {this.props.authenticated ? <a href="/leave-page-shot">Remove All Data</a> : null}
+              {this.props.authenticated ? <a href="/leave-screenshots">Remove All Data</a> : null}
             </div>
           </div>
         </div>

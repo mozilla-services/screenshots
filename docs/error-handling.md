@@ -1,6 +1,6 @@
 # Error Handling
 
-In Page Shot we try to capture all unexpected failures for the purpose of reporting (and hopefully for fixing!)
+In Screenshots we try to capture all unexpected failures for the purpose of reporting (and hopefully for fixing!)
 
 ## Catching
 
@@ -9,9 +9,9 @@ To do this we have to wrap anything that *won't* report the error.  That means:
 * Any callbacks or event listeners
 * Any promises that aren't returned and where there's not another explicit `.catch()` handler
 
-Not everything has to be wrapped!  You can assume that any function you write in Page Shot will normally be called by another Page Shot function, and it's the caller's responsibility to catch an exception.  Similarly if you return a Promise, it is the caller's responsibility to catch errors from the Promise.
+Not everything has to be wrapped!  You can assume that any function you write in Screenshots will normally be called by another Screenshots function, and it's the caller's responsibility to catch an exception.  Similarly if you return a Promise, it is the caller's responsibility to catch errors from the Promise.
 
-*At the point* where you pass a Page Shot function to some code that will call the function, but *doesn't* know how to report errors, then you have to wrap that function.  Also, if you know a promise won't be returned and will be thrown away after it completes, you must wrap that promise.
+*At the point* where you pass a Screenshots function to some code that will call the function, but *doesn't* know how to report errors (such as adding an event listener), then you have to wrap that function.  Also, if you know a promise won't be returned and will be thrown away after it completes, you must wrap that promise.
 
 Also, if there are recoverable but unexpected errors you can report an error explicitly.
 

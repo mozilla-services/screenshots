@@ -1,6 +1,6 @@
 exports.createModel = function (req) {
   let model = {
-    title: "Page Shot, a screenshot tool for Firefox",
+    title: "Firefox Screenshots",
     showMyShots: !!req.deviceId
   };
   return model;

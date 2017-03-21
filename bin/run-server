@@ -15,15 +15,15 @@ fi
 
 run () {
   if [[ -n "$restart" ]] ; then
-    notify "Page Shot Server build started."
+    notify "Firefox Screenshots server build started."
   fi
   if [ -d build ] ; then
     # This is to remove empty files that might have resulted from a syntax error:
     find build/ -size 0 -exec rm {} \;
   fi
-  make server || (notify "Page Shot Server build FAILED" ; exit 2)
+  make server || (notify "Firefox Screenshots server build FAILED" ; exit 2)
   if [[ -n "$restart" ]] ; then
-    notify "Page Shot Server build finished."
+    notify "Firefox Screenshots server build finished."
   fi
   node -e 'require("babel-polyfill"); require("./build/server/server");'
 }

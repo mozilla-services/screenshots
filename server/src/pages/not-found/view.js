@@ -24,7 +24,7 @@ class Body extends React.Component {
       <reactruntime.BodyTemplate {...this.props}>
         <div className="column-space full-height default-color-scheme">
           <div className="header">
-            <h1><a href="/shots">Page Shot</a></h1>
+            <h1><a href="/shots">My Shots</a></h1>
           </div>
           <div className="responsive-wrapper flex-1">
             <h2>{this.props.title}</h2>

@@ -1,4 +1,4 @@
-## Page Shot
+## Firefox Screenshots
 
 [![CircleCI Build Status](https://circleci.com/gh/mozilla-services/pageshot.svg?style=shield)](https://circleci.com/gh/mozilla-services/pageshot)
 [![Build Status](https://travis-ci.org/mozilla-services/pageshot.svg)](https://travis-ci.org/mozilla-services/pageshot)
@@ -12,7 +12,7 @@ It is made up of both an add-on (using [WebExtensions](https://developer.mozilla
 
 Ian has been blogging about the [design, definition, and development process](http://www.ianbicking.org/tag/product-journal.html).
 
-You can find more information about Page Shot at the Mozilla Wiki page: https://wiki.mozilla.org/Firefox/Page_Shot
+You can find more information about Firefox Screenshots at the Mozilla Wiki page: https://wiki.mozilla.org/Firefox/Screenshots
 
 ### Installation and Setup
 
@@ -27,11 +27,11 @@ There are two scripts to run the server locally and develop the add-on:
 - `./bin/run-server` will run the server on `http://localhost:10080` and automatically restart if there are changes.
 - `./bin/run-addon` will build a few parts of the addon (into `addon/webextension/build/`) and start Firefox with the add-on installed.  The add-on will be refreshed automatically as you change files.  We recommend you open `about:debugging` to help debug the extension.
 - - `./bin/run-addon --bootstrap` will run the add-on using the [bootstrap](https://github.com/mozilla-services/pageshot/blob/master/addon/bootstrap.js) wrapper.  This is how the add-on is run in Firefox, and provides some additional services, like Telemetry and migration.  This does not support reloading, so if you aren't developing things involving the wrapper then you can run without `--bootstrap`.
-- `./bin/run-addon --setup-profile` will setup a Firefox profile for your development; this way you can make persistent changes to the profile that you will use just for Page Shot development. (note: this will only look for the `firefox` commmand or Nightly, Developer Edition, Aurora editions on OSX)
+- `./bin/run-addon --setup-profile` will setup a Firefox profile for your development; this way you can make persistent changes to the profile that you will use just for Screenshots development. (note: this will only look for the `firefox` commmand or Nightly, Developer Edition, Aurora editions on OSX)
 
 **If you want to develop the add-on but not the server** you can run `./bin/run-addon -s https://pageshot.dev.mozaws.net`
 
-By default, Page Shot will connect to a Postgres database on localhost:5432. To change which database and user it connects to set/export the environmental variables: `RDS_USERNAME`, `RDS_PASSWORD`, and `RDS_HOSTNAME`
+By default, Screenshots will connect to a Postgres database on localhost:5432. To change which database and user it connects to set/export the environmental variables: `RDS_USERNAME`, `RDS_PASSWORD`, and `RDS_HOSTNAME`
 
 The server will automatically setup the tables in your database, and keep them up to date over time (using [pg-patcher](https://github.com/chilts/pg-patcher/)).
 
