@@ -1,6 +1,6 @@
 ## Firefox Screenshots Metrics
 
-A summary of the metrics Screenshots will record, and what we're looking for in those metrics.
+A summary of the metrics Firefox Screenshots will record, and what we're looking for in those metrics.
 
 ### Opt-out
 
@@ -8,7 +8,7 @@ The add-on tracks the Telemetry opt-out preference (`toolkit.telemetry.enabled`)
 
 ### Key Metrics
 
-Key metrics of Screenshots are fairly simple:
+Key metrics of Firefox Screenshots are fairly simple:
 
 #### Do people continue to create shots?
 
@@ -59,13 +59,13 @@ We will be tracking some events under `goto-pageshot` that would lead people fro
 
 #### Summary
 
-Continuing to create shots indicates overall value to the user.  Sharing and revisiting confirm that the value is actually obtained (it's possible to fantasize that you *would* find value in a shot, while never actually realizing that value).  Lastly, evidence that people find Screenshots attractive when they see a shot, or that people would refer each other to Screenshots, indicates potential for organic growth.
+Continuing to create shots indicates overall value to the user.  Sharing and revisiting confirm that the value is actually obtained (it's possible to fantasize that you *would* find value in a shot, while never actually realizing that value).  Lastly, evidence that people find Firefox Screenshots attractive when they see a shot, or that people would refer each other to use Firefox Screenshots, indicates potential for organic growth.
 
 We do not collect Net Promoter Score.
 
 ### Usage Metrics
 
-This information is intended to help us make Screenshots better.
+This information is intended to help us make Firefox Screenshots better.
 
 We record an event stream of interaction with the add-on and website.  The events:
 
