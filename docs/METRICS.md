@@ -1,10 +1,14 @@
+
 ## Firefox Screenshots Metrics
+*Last Update: 2017-03-21*
 
-A summary of the metrics Firefox Screenshots will record, and what we're looking for in those metrics.
+This document is a summary of the metrics Firefox Screenshots will record, how we're recording them, and what we're looking for in those metrics.  There are two main areas we'll look at:
 
-### Opt-out
+0. Metrics to tell us if Firefox Screenshots is affecting Firefox.  For instance, do Firefox Screenshots users engage longer with Firefox?
 
-The add-on tracks the Telemetry opt-out preference (`toolkit.telemetry.enabled`) each time the user presses the Screenshots button.  If this preference is false, or if there is any issue trying to fetch the preference, then no data is sent to the Screenshots server.
+0. Help us understand how people use Firefox Screenshots, so that we can improve the experience of the tool itself.  A/B tests fall under this umbrella.
+
+Additionally, it's important to recognize that Firefox Screenshots is an add-on in a browser as well as a server-side service.
 
 ### Key Metrics
 
@@ -12,38 +16,9 @@ Key metrics of Firefox Screenshots are fairly simple:
 
 #### Do people continue to create shots?
 
-A cohort is all the people who took their first shot on a certain day.  Let's say May 1, 2016.
+This will be tracked in a cohort graph.
 
-We analyze the cohort by asking for the subsequent days: has this person made a shot after this date?
-
-Therefore 1 day users are all those people who took shots May 2+, 2 day users took a shot May 3+, etc.  The percentage is the number of users who *could* used the product N+ days, divided by those who could have used the product N days.
-
-To do this we will use this query:
-
-```sql
-SELECT
-  date_trunc('day', MIN(created)) AS first_created,
-  date_trunc('day', MAX(created)) AS last_created
-FROM data
-GROUP BY deviceid
-```
-
-This results in something like:
-
-```
-first_created | last_created
---------------+-------------
-2015-09-14    | 2015-09-14
-2015-10-19    | 2015-10-19
-2015-10-20    | 2015-10-20
-2016-03-16    | 2016-03-16
-```
-
-We're not sure how to aggregate this in SQL, but we can always do it in the server.  We might want look at all cohorts or just some cohorts, and account for the current day.
-
-(Work listed and finished in [#1197](https://github.com/mozilla-services/screenshots/issues/1197))
-
-#### Do people share those shots with other people?  
+#### Do people share those shots with other people?
 
 In this case there is not a "right" answer, but sharing indicates a different kind of use case from personal storage.
 
@@ -57,19 +32,17 @@ This is primarily a count of `web/visit/owner`.  The tool always opens the page 
 
 We will be tracking some events under `goto-pageshot` that would lead people from shot pages to a place where they could load the page.  Then we track clicking the install link itself, which GA reporting should be able to connect to the original `goto-pageshot` event.  We can't detect how often that install click leads to an actual install.
 
-#### Summary
+### Data Collection
 
-Continuing to create shots indicates overall value to the user.  Sharing and revisiting confirm that the value is actually obtained (it's possible to fantasize that you *would* find value in a shot, while never actually realizing that value).  Lastly, evidence that people find Firefox Screenshots attractive when they see a shot, or that people would refer each other to use Firefox Screenshots, indicates potential for organic growth.
+Firefox Screenshots assigns each user a random ID (associated with their profile) when the add-on is installed. This ID is associated with all shots the user makes.  For the purpose of Google Analytics (GA) the ID is hashed. The same hashed ID is used for website visits and events, and for add-on events.
 
-We do not collect Net Promoter Score.
+No metrics data is sent to any servers until a user interacts with Firefox Screenshots.
 
-### Usage Metrics
-
-This information is intended to help us make Firefox Screenshots better.
-
-We record an event stream of interaction with the add-on and website.  The events:
-
-(**Note**: per [#1183](https://github.com/mozilla-services/screenshots/issues/1183) we need to figure out if we are actually collecting these events properly)
+The add-on does not communicate directly with GA, instead it POSTs an event to the Firefox Screenshots server which, in turn, sends the event to GA.  This model allows us to only send the data we need for analysis instead of the more comprehensive data collection that google-analytics.js does.  Besides the event information specified below we also send the User-Agent string, and the add-on provides:
+* Any A/B tests the user is in, or if the user is in the control for a test
+* The application (“firefox”)
+* The add-on version (“6.0.0”)
+* For selections we send the size of the selection, rounded to 10 pixels.  E.g., 500 x 150
 
 ### Metrics schema
 
@@ -114,8 +87,6 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 
 #### Add-on metrics
 
-1. ~~Start the browser `addon/open-browser/launch`~~ (removed for launch)
-2. ~~Daily ping (attempt roughly every 24 hours) `addon/daily-ping`~~ (removed for launch)
 1. [x] Toggle shot button on `addon/start-shot/toolbar-button` (previous to 54 launch the label was `toolbar-pageshot-button`)
 2. [ ] Use keyboard shortcut to start shot `addon/start-shot/keyboard-shortcut` (accel-alt-control-c) (FIXME: not yet implemented)
 3. [x] Use the right-click context menu to start a shot `addon/start-shot/context-menu`
@@ -258,10 +229,18 @@ This is stuff we get from including ga.js on Screenshots pages.
 
 ### Database Metrics
 
-We have a pretty rich database in Screenshots, and we can do all kinds of queries on the database.  These might include:
+We can do queries directly on the database of Firefox Screenshots.  These might include:
 
 1. Look at cohorts of individuals, reviewing their shot creation patterns
 2. How many people make a couple shots?  How many make a lot of shots?
 3. See if people are making shots of mostly private or mostly public pages
 4. Identify the dimensions of shots
-5. Compare shot URLs to a domain whitelist, to determine broad categories of sites that are popular to view
+5. Compare shot URLs to a domain allowlist, to determine broad categories of sites that are popular to view
+
+### Opt-out
+
+The add-on reads the Telemetry opt-out preference (`toolkit.telemetry.enabled`) before sending any metrics data to the servers.  If this preference is false, or if there is any issue trying to fetch the preference, then no data is sent.
+
+The website reads the DNT Header (`navigator.doNotTrack`) and if it is present and set to *1* the website will not send metrics data.
+
+There may be some exceptions to the above for debugging or analysis of malfunctions.
