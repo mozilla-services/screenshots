@@ -12,7 +12,7 @@ It is made up of both an add-on (using [WebExtensions](https://developer.mozilla
 
 Ian has been blogging about the [design, definition, and development process](http://www.ianbicking.org/tag/product-journal.html).
 
-You can find more information about Firefox Screenshots at the Mozilla Wiki page: https://wiki.mozilla.org/Firefox/Page_Shot
+You can find more information about Firefox Screenshots at the Mozilla Wiki page: https://wiki.mozilla.org/Firefox/Screenshots
 
 ### Installation and Setup
 
