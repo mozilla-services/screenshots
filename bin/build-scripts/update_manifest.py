@@ -29,7 +29,7 @@ if os.path.exists(output_file):
         output_data = json.load(open(output_file))
         last_version = output_data["version"]
     elif output_file.endswith(".rdf"):
-        rdf_content = open(output_file).read();
+        rdf_content = open(output_file).read()
         match = re.search(r'<em:version>(.*?)</em:version>', rdf_content)
         if match:
             last_version = match.group(1)
