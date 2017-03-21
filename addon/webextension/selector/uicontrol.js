@@ -309,12 +309,7 @@ window.uicontrol = (function () {
     if (! rect) {
       return null;
     }
-    return new Selection(
-      rect.left + window.scrollX,
-      rect.top + window.scrollY,
-      rect.right + window.scrollX,
-      rect.bottom + window.scrollY
-    );
+    return new Selection(rect.left, rect.top, rect.right, rect.bottom);
   };
 
   /** Represents a single x/y point, typically for a mouse click that doesn't have a drag: */
@@ -347,8 +342,8 @@ window.uicontrol = (function () {
     start: function () {
       selectedPos = mousedownPos = null;
       this.cachedEl = null;
+      ui.iframe.usePreSelection();
       ui.Box.remove();
-      ui.WholePageOverlay.display(standardOverlayCallbacks);
       const handler = watchFunction(keyupHandler);
       document.addEventListener("keyup", handler, false);
       registeredDocumentHandlers.push({name: "keyup", doc: document, handler});
@@ -367,8 +362,8 @@ window.uicontrol = (function () {
       if (event.target.classList.contains("preview-overlay")) {
         // The hover is on the overlay, so we need to figure out the real element
         el = ui.iframe.getElementFromPoint(
-          event.pageX - window.pageXOffset,
-          event.pageY - window.pageYOffset
+          event.pageX + window.scrollX - window.pageXOffset,
+          event.pageY + window.scrollY - window.pageYOffset
         );
       } else {
         // The hover is on the element we care about, so we use that
@@ -503,8 +498,8 @@ window.uicontrol = (function () {
     maxAutoElementHeight: 600,
 
     start: function () {
+      ui.iframe.usePreSelection();
       ui.Box.remove();
-      ui.WholePageOverlay.display(standardOverlayCallbacks);
     },
 
     mousemove: function (event) {
@@ -528,8 +523,13 @@ window.uicontrol = (function () {
       }
       if (autoDetectRect) {
         selectedPos = autoDetectRect;
+        selectedPos.x1 += window.scrollX;
+        selectedPos.y1 += window.scrollY;
+        selectedPos.x2 += window.scrollX;
+        selectedPos.y2 += window.scrollY;
         autoDetectRect = null;
         mousedownPos = null;
+        ui.iframe.useSelection();
         ui.Box.display(selectedPos, standardDisplayCallbacks);
         sendEvent("make-selection", "selection-click", eventOptionsForBox(selectedPos));
         setState("selected");
@@ -584,8 +584,8 @@ window.uicontrol = (function () {
   stateHandlers.dragging = {
 
     start: function () {
+      ui.iframe.useSelection();
       ui.Box.display(selectedPos);
-      ui.WholePageOverlay.remove();
     },
 
     mousemove: function (event) {
@@ -618,7 +618,7 @@ window.uicontrol = (function () {
 
   stateHandlers.selected = {
     start: function () {
-      ui.WholePageOverlay.remove();
+      ui.iframe.useSelection();
     },
 
     mousedown: function (event) {
@@ -636,8 +636,7 @@ window.uicontrol = (function () {
         stateHandlers.resizing.startResize(event, "move");
       } else if (! ui.Box.isControl(target)) {
         mousedownPos = new Pos(event.pageX, event.pageY);
-        mouseupNoAutoselect = true;
-        setState("draggingReady");
+        setState("crosshairs");
       }
       event.preventDefault();
       return false;
@@ -646,7 +645,7 @@ window.uicontrol = (function () {
 
   stateHandlers.resizing = {
     start: function () {
-      ui.WholePageOverlay.remove();
+      ui.iframe.useSelection();
       selectedPos.sortCoords();
     },
 
@@ -723,7 +722,7 @@ window.uicontrol = (function () {
 
   stateHandlers.cancel = {
     start: function () {
-      ui.WholePageOverlay.remove();
+      ui.iframe.hide();
       ui.Box.remove();
     }
   };
@@ -761,13 +760,12 @@ window.uicontrol = (function () {
    */
 
   exports.activate = function () {
-    ui.Box.remove();
     addHandlers();
     // FIXME: self.options is gone
     if (self.options && self.options.styleMyShotsButton) {
       ui.iframe.addClassName = `styleMyShotsButton-${self.options.styleMyShotsButton.value}`;
     }
-    watchPromise(ui.iframe.display(installHandlersOnDocument).then(() => {
+    watchPromise(ui.iframe.display(installHandlersOnDocument, standardOverlayCallbacks).then(() => {
       setState("crosshairs");
     }));
   }

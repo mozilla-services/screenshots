@@ -47,17 +47,26 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
   });
 
   function makeEl(tagName, className) {
-    if (! iframe.document) {
+    if (! iframe.document()) {
       throw new Error("Attempted makeEl before iframe was initialized");
     }
-    let el = iframe.document.createElement(tagName);
+    let el = iframe.document().createElement(tagName);
     if (className) {
       el.className = className;
     }
     return el;
   }
 
-  let iframe = exports.iframe = {
+  function onResize() {
+    if (this.sizeTracking.windowDelayer) {
+      clearTimeout(this.sizeTracking.windowDelayer);
+    }
+    this.sizeTracking.windowDelayer = setTimeout(watchFunction(() => {
+      this.updateElementSize(true);
+    }), 50);
+  }
+
+  let iframeSelection = exports.iframeSelection = {
     element: null,
     addClassName: "",
     sizeTracking: {
@@ -72,7 +81,8 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       return new Promise((resolve, reject) => {
         if (! this.element) {
           this.element = document.createElement("iframe");
-          this.element.id = "firefox-screenshots-iframe";
+          this.element.id = "firefox-screenshots-selection-iframe";
+          this.element.style.display = "none";
           this.element.style.zIndex = "99999999999";
           this.element.style.border = "none";
           this.element.style.position = "absolute";
@@ -107,23 +117,26 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
         } else {
           resolve();
         }
-        this.initSizeWatch();
       });
     },
 
     hide: function () {
       this.element.style.display = "none";
+      this.stopSizeWatch();
     },
 
     unhide: function () {
+      this.updateElementSize();
       this.element.style.display = "";
+      this.initSizeWatch();
     },
 
     updateElementSize: function (force) {
       // Note: if someone sizes down the page, then the iframe will keep the
       // document from naturally shrinking.  We use force to temporarily hide
       // the element so that we can tell if the document shrinks
-      if (force) {
+      const visible = this.element.style.display !== "none";
+      if (force && visible) {
         this.element.style.display = "none";
       }
       let height = Math.max(
@@ -146,10 +159,9 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
         this.sizeTracking.lastWidth = width;
         this.element.style.width = width + "px";
       }
-      if (force) {
+      if (force && visible) {
         this.element.style.display = "";
       }
-      WholePageOverlay.resetPosition();
     },
 
     initSizeWatch: function () {
@@ -171,15 +183,6 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       window.removeEventListener("resize", this.onResize, true);
     },
 
-    onResize: function () {
-      if (this.sizeTracking.windowDelayer) {
-        clearTimeout(this.sizeTracking.windowDelayer);
-      }
-      this.sizeTracking.windowDelayer = setTimeout(watchFunction(() => {
-        this.updateElementSize(true);
-      }), 100);
-    },
-
     getElementFromPoint: function (x, y) {
       this.element.style.pointerEvents = "none";
       let el;
@@ -198,83 +201,193 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
     }
   };
 
-  iframe.onResize = watchFunction(iframe.onResize.bind(iframe));
+  iframeSelection.onResize = watchFunction(onResize.bind(iframeSelection));
 
-  /** Represents the shadow overlay that covers the whole page */
-  let WholePageOverlay = exports.WholePageOverlay = {
-
-    el: null,
-    movingEl: null,
-    isScrollTracking: false,
-
-    display: function (callbacks) {
-      this.remove();
-      this.el = makeEl("div", "preview-overlay");
-      this.el.innerHTML = `
-      <div class="fixed-container" style="position: absolute; pointer-events: none; display: flex">
-        <div class="preview-instructions"></div>
-        <div class="myshots-button">
-          <div class="myshots-text-pre"></div>
-          <div class="myshots-text"></div>
-          <div class="myshots-text-post"></div>
-        </div>
-        <div class="visible"></div>
-        <div class="full-page"></div>
-      </div>
-      `;
-      this.el.querySelector(".preview-instructions").textContent = browser.i18n.getMessage("screenshotInstructions");
-      this.el.querySelector(".myshots-text").textContent = browser.i18n.getMessage("myShotsLink");
-      this.el.querySelector(".visible").textContent = browser.i18n.getMessage("saveScreenshotVisibleArea");
-      this.el.querySelector(".full-page").textContent = browser.i18n.getMessage("saveScreenshotFullPage");
-      this.el.querySelector(".myshots-button").addEventListener(
-        "click", watchFunction(callbacks.onOpenMyShots), false);
-      this.el.querySelector(".visible").addEventListener(
-        "click", watchFunction(callbacks.onClickVisible), false);
-      this.el.querySelector(".full-page").addEventListener(
-        "click", watchFunction(callbacks.onClickFullPage), false);
-      this.movingEl = this.el.querySelector(".fixed-container");
-      iframe.document.body.appendChild(this.el);
-      this.resetPosition();
-      window.addEventListener("scroll", this.onScroll, false);
+  let iframePreSelection = exports.iframePreSelection = {
+    element: null,
+    document: null,
+    sizeTracking: {
+      windowDelayer: null,
+      resizeBound: null,
+      lastHeight: null,
+      lastWidth: null
+    },
+    display: function (installHandlerOnDocument, standardOverlayCallbacks) {
+      return new Promise((resolve, reject) => {
+        if (! this.element) {
+          this.element = document.createElement("iframe");
+          this.element.id = "firefox-screenshots-preselection-iframe";
+          this.element.style.zIndex = "99999999999";
+          this.element.style.border = "none";
+          this.element.style.position = "fixed";
+          this.element.style.top = "0";
+          this.element.style.left = "0";
+          this.element.style.margin = "0";
+          this.element.scrolling = "no";
+          this.updateElementSize();
+          this.element.onload = watchFunction(() => {
+            let parsedDom = (new DOMParser()).parseFromString(`
+              <html>
+               <head>
+                <style>${substitutedCss}</style>
+                <title></title>
+               </head>
+               <body>
+                 <div class="preview-overlay">
+                   <div class="fixed-container">
+                     <div class="preview-instructions"></div>
+                     <div class="myshots-button">
+                       <div class="myshots-text-pre"></div>
+                       <div class="myshots-text"></div>
+                       <div class="myshots-text-post"></div>
+                     </div>
+                     <div class="visible"></div>
+                     <div class="full-page"></div>
+                   </div>
+                 </div>
+               </body>
+              </html>`,
+              "text/html"
+            );
+            this.document = this.element.contentDocument;
+            this.document.replaceChild(
+              this.document.adoptNode(parsedDom.documentElement),
+              this.document.documentElement
+            );
+            installHandlerOnDocument(this.document);
+            if (this.addClassName) {
+              this.document.body.className = this.addClassName;
+            }
+            const overlay = this.document.querySelector(".preview-overlay");
+            overlay.querySelector(".preview-instructions").textContent = browser.i18n.getMessage("screenshotInstructions");
+            overlay.querySelector(".myshots-text").textContent = browser.i18n.getMessage("myShotsLink");
+            overlay.querySelector(".visible").textContent = browser.i18n.getMessage("saveScreenshotVisibleArea");
+            overlay.querySelector(".full-page").textContent = browser.i18n.getMessage("saveScreenshotFullPage");
+            overlay.querySelector(".myshots-button").addEventListener(
+              "click", watchFunction(standardOverlayCallbacks.onOpenMyShots), false);
+            overlay.querySelector(".visible").addEventListener(
+              "click", watchFunction(standardOverlayCallbacks.onClickVisible), false);
+            overlay.querySelector(".full-page").addEventListener(
+              "click", watchFunction(standardOverlayCallbacks.onClickFullPage), false);
+            resolve();
+          });
+          document.body.appendChild(this.element);
+          this.unhide();
+        } else {
+          resolve();
+        }
+      });
     },
 
-    resetPosition: function () {
-      if (! this.movingEl) {
-        return;
+    updateElementSize: function (force) {
+      // Note: if someone sizes down the page, then the iframe will keep the
+      // document from naturally shrinking.  We use force to temporarily hide
+      // the element so that we can tell if the document shrinks
+      const visible = this.element.style.display !== "none";
+      if (force && visible) {
+        this.element.style.display = "none";
       }
-      let scrollX = window.scrollX;
-      let scrollY = window.scrollY;
-      this.movingEl.style.top = scrollY + "px";
-      this.movingEl.style.left = scrollX + "px";
-      this.movingEl.style.width = window.innerWidth + "px";
-      this.movingEl.style.height = window.innerHeight + "px";
+      let height = Math.max(
+        document.documentElement.clientHeight,
+        window.innerHeight);
+      if (height !== this.sizeTracking.lastHeight) {
+        this.sizeTracking.lastHeight = height;
+        this.element.style.height = height + "px";
+      }
+      let width = Math.max(
+        document.documentElement.clientWidth,
+        window.innerWidth);
+      if (width !== this.sizeTracking.lastWidth) {
+        this.sizeTracking.lastWidth = width;
+        this.element.style.width = width + "px";
+      }
+      if (force && visible) {
+        this.element.style.display = "";
+      }
+    },
+
+    hide: function () {
+      window.removeEventListener("scroll", this.onScroll, false);
+      window.removeEventListener("resize", this.onResize, true);
+      this.element.style.display = "none";
+    },
+
+    unhide: function () {
+      this.updateElementSize();
+      window.addEventListener("scroll", this.onScroll, false);
+      window.addEventListener("resize", this.onResize, true);
+      this.element.style.display = "";
     },
 
     onScroll: function () {
-      this.resetPosition();
-      /* Note, if we used requestAnimationFrame we'd improve the performance
-         some, but this creates very visible lag in the positioning: */
-      /*
-      if (! this.isScrollTracking) {
-        window.requestAnimationFrame(() => {
-          this.resetPosition();
-          this.isScrollTracking = false;
-        });
-        this.isScrollTracking = true;
+      exports.HoverBox.hide();
+    },
+
+    getElementFromPoint: function (x, y) {
+      this.element.style.pointerEvents = "none";
+      let el;
+      try {
+        el = document.elementFromPoint(x, y);
+      } finally {
+        this.element.style.pointerEvents = "";
       }
-      */
+      return el;
     },
 
     remove: function () {
-      util.removeNode(this.el);
-      this.el = null;
-      this.movingEl = null;
-      window.removeEventListener("scroll", this.onScroll, false);
+      this.hide();
+      util.removeNode(this.element);
+      this.element = null;
+      this.document = null;
     }
-
   };
 
-  WholePageOverlay.onScroll = watchFunction(WholePageOverlay.onScroll.bind(WholePageOverlay));
+  iframePreSelection.onResize = watchFunction(onResize.bind(iframePreSelection));
+
+  let iframe = exports.iframe = {
+    currentIframe: iframePreSelection,
+    display: function (installHandlerOnDocument, standardOverlayCallbacks) {
+      return iframeSelection.display(installHandlerOnDocument)
+        .then(() => iframePreSelection.display(installHandlerOnDocument, standardOverlayCallbacks))
+    },
+
+    hide: function () {
+      this.currentIframe.hide();
+    },
+
+    unhide: function () {
+      this.currentIframe.unhide();
+    },
+
+    getElementFromPoint: function (x, y) {
+      return this.currentIframe.getElementFromPoint(x, y);
+    },
+
+    remove: function () {
+      iframeSelection.remove();
+      iframePreSelection.remove();
+    },
+
+    document: function () {
+      return this.currentIframe.document;
+    },
+
+    useSelection: function () {
+      if (this.currentIframe === iframePreSelection) {
+        this.hide();
+      }
+      this.currentIframe = iframeSelection;
+      this.unhide();
+    },
+
+    usePreSelection: function () {
+      if (this.currentIframe === iframeSelection) {
+        this.hide();
+      }
+      this.currentIframe = iframePreSelection;
+      this.unhide();
+    }
+  };
 
   let movements = ["topLeft", "top", "topRight", "left", "right", "bottomLeft", "bottom", "bottomRight"];
 
@@ -357,7 +470,6 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       this.bgRight.style.height = pos.bottom - pos.top + "px";
       this.bgRight.style.left = (pos.right - bodyRect.left) + "px";
       this.bgRight.style.width = docWidth - (pos.right - bodyRect.left) + "px";
-      WholePageOverlay.remove();
     },
 
     remove: function () {
@@ -397,14 +509,14 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
         boxEl.appendChild(elTarget);
       }
       this.bgTop = makeEl("div", "bghighlight");
-      iframe.document.body.appendChild(this.bgTop);
+      iframe.document().body.appendChild(this.bgTop);
       this.bgLeft = makeEl("div", "bghighlight");
-      iframe.document.body.appendChild(this.bgLeft);
+      iframe.document().body.appendChild(this.bgLeft);
       this.bgRight = makeEl("div", "bghighlight");
-      iframe.document.body.appendChild(this.bgRight);
+      iframe.document().body.appendChild(this.bgRight);
       this.bgBottom = makeEl("div", "bghighlight");
-      iframe.document.body.appendChild(this.bgBottom);
-      iframe.document.body.appendChild(boxEl);
+      iframe.document().body.appendChild(this.bgBottom);
+      iframe.document().body.appendChild(boxEl);
       this.el = boxEl;
     },
 
@@ -463,7 +575,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
     display: function (rect) {
       if (! this.el) {
         this.el = makeEl("div", "hover-highlight");
-        iframe.document.body.appendChild(this.el);
+        iframe.document().body.appendChild(this.el);
       }
       this.el.style.display = "";
       this.el.style.top = (rect.top - 1) + "px";
@@ -495,7 +607,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
         this.el.appendChild(this.xEl);
         this.yEl = makeEl("div");
         this.el.appendChild(this.yEl);
-        iframe.document.body.appendChild(this.el);
+        iframe.document().body.appendChild(this.el);
       }
       this.xEl.textContent = x;
       this.yEl.textContent = y;
@@ -511,7 +623,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
   /** Removes every UI this module creates */
   exports.remove = function () {
     for (let name in exports) {
-      if (name == "iframe") {
+      if (name.startsWith("iframe")) {
         continue;
       }
       if (typeof exports[name] == "object" && exports[name].remove) {
@@ -519,7 +631,6 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       }
     }
     exports.iframe.remove();
-    exports.Box.remove();
   };
 
   exports.triggerDownload = function (dataUrl, filename) {
