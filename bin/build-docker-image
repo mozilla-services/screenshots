@@ -24,7 +24,7 @@ rm Dockerrun.aws.json Dockerrun.aws.json.tmp
 
 make server
 
-xpi="build/pageshot.xpi"
+xpi="build/screenshots.xpi"
 if [[ ! -e "$xpi" ]] ; then
   make signed_xpi
 fi

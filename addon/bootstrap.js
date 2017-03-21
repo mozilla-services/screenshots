@@ -2,11 +2,11 @@
 
 const OLD_ADDON_PREF_NAME = "extensions.jid1-NeEaf3sAHdKHPA@jetpack.deviceIdInfo";
 const OLD_ADDON_ID = "jid1-NeEaf3sAHdKHPA@jetpack";
-const ADDON_ID = "pageshot@mozilla.org";
+const ADDON_ID = "screenshots@mozilla.org";
 const TELEMETRY_PREF = "toolkit.telemetry.enabled";
-const PREF_BRANCH = "extensions.pageshot.";
-const USER_DISABLE_PREF = "extensions.pageshot.disabled";
-const SYSTEM_DISABLE_PREF = "extensions.pageshot.system-disabled";
+const PREF_BRANCH = "extensions.screenshots.";
+const USER_DISABLE_PREF = "extensions.screenshots.disabled";
+const SYSTEM_DISABLE_PREF = "extensions.screenshots.system-disabled";
 
 const { interfaces: Ci, utils: Cu } = Components;
 Cu.import("resource://gre/modules/AddonManager.jsm");
