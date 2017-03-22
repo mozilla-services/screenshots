@@ -42,7 +42,7 @@ case "$channel" in
     # Forces update of the add-on version:
     mkdir -p build
     touch build/.backend.txt
-    SCREENSHOTS_BACKEND=https://pageshot.dev.mozaws.net SCREENSHOTS_SENTRY="$dev_sentry" make zip
+    SCREENSHOTS_BACKEND=https://pageshot.dev.mozaws.net SCREENSHOTS_SENTRY="$dev_sentry" make signed_xpi
     ./bin/build-docker-image $DOCKER_USERNAME
     echo
     echo "Next step: upload build/eb-app-latest.zip to http://amzn.to/1NuC3N9"
@@ -56,7 +56,7 @@ case "$channel" in
     rm -f build/screenshots.zip
     # Forces update of the add-on version:
     touch build/.backend.txt
-    SCREENSHOTS_BACKEND=https://pageshot.stage.mozaws.net SCREENSHOTS_SENTRY="$stage_sentry" make zip
+    SCREENSHOTS_BACKEND=https://pageshot.stage.mozaws.net SCREENSHOTS_SENTRY="$stage_sentry" make signed_xpi
     ./bin/build-docker-image mozilla
     echo
     echo "Stage deployment automatically triggered, see #screenshots IRC for status"
