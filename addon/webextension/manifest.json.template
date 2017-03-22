@@ -60,6 +60,7 @@
     "icons/download.svg"
   ],
   "permissions": [
+    "tabs",
     "activeTab",
     "storage",
     "notifications",
