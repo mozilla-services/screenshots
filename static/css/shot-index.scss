@@ -1,0 +1,174 @@
+@import "partials/partials";
+
+//Shot index page styles
+
+#shot-index-header {
+
+  form {
+    @include flex-container(row, flex-start, stretch);
+    height: 36px;
+    position: relative;
+  }
+
+  .search-label {
+    background: url("../img/glyph-search-16.svg") no-repeat center center;
+    background-size: 20px;
+    position: relative;
+    top: 0;
+    left: 28px;
+    height: 100%;
+    width: $search-input-left-label-width;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  input {
+    border: 1px solid $search-input-border-color;
+    border-radius: $search-border-radius 0 0 $search-border-radius;
+    box-shadow: 0 0 0 1px transparent;
+    font-size: 16px;
+    flex: 1 1 400px;
+    margin: 0;
+    padding: 6px 12px 8px $search-input-left-label-width;
+    outline: none;
+
+    &:focus {
+      border-color: $search-blue;
+      box-shadow: 0 0 0 1px $search-shadow;
+      transition: box-shadow 150ms;
+      z-index: 1;
+    }
+
+    &:focus + button {
+      background-color: $search-blue;
+      background-image: url("../img/glyph-forward-16-white.svg");
+      border-color: $search-blue;
+      box-shadow: 0 0 0 1px $search-shadow;
+      color: $white;
+      transition: box-shadow 150ms;
+      z-index: 1;
+    }
+  }
+
+  button {
+    background: $search-button-grey url("../img/glyph-forward-16.svg") no-repeat center center;
+    background-size: 16px 16px;
+    border-radius: 0 $border-radius $border-radius 0;
+    border: 1px solid $search-button-border-color;
+    box-shadow: none;
+    flex: 0 0 64px;
+    margin-left: -1px;
+    padding: 0;
+    transition: box-shadow 150ms;
+    width: $search-button-width;
+
+    &:hover {
+      background-color: $search-blue;
+      background-image: url("../img/glyph-forward-16-white.svg");
+      border-color: $search-blue;
+      box-shadow: 0 0 0 1px $search-shadow;
+      color: $white;
+      transition: box-shadow 150ms;
+      z-index: 1;
+    }
+  }
+}
+
+.shot {
+  @include flex-container(column, stretch, stretch);
+  @include item-shadow;
+  background-color: $white;
+  border-radius: $border-radius;
+  cursor: pointer;
+  margin: 0 $base-gutter * 0.5 $base-gutter;
+  overflow: hidden;
+  position: relative;
+  width: 216px;
+  z-index: 2;
+  color: $black;
+
+  h4 {
+    color: $black;
+  }
+
+  &:hover {
+    h4 {
+      color: $link-blue;
+    }
+  }
+
+  .search-results-loading & {
+    opacity: 0.5;
+  }
+}
+
+.shot-image-container {
+  background-position: center center;
+  background-size: cover;
+  flex: 0 0 130px;
+  width: 216px;
+}
+
+.shot-control {
+  float: right;
+  cursor: pointer;
+  height: 22px;
+  width: 22px;
+  display: none;
+  opacity: 0.8;
+  margin: 4px;
+  background-color: #fff;
+  border-radius: 3px;
+  padding: 2px;
+}
+
+.shot:hover .shot-control {
+  display: inline-block;
+}
+
+.title-container {
+  padding: 12px;
+  flex: 1;
+
+  h4 {
+    margin: 0 0 $spotlight-title-margin-bottom;
+    font-size: 14px;
+    line-height: 17px;
+    word-wrap: break-word;
+  }
+}
+
+.link-container {
+  @include flex-container(row, flex-start, center);
+
+  .favicon {
+    flex: 0 0 16px;
+    height: 16px;
+    margin-right: 6px;
+    background-size: 16px 16px;
+  }
+
+  padding: 0 12px 12px;
+
+  .shot-url {
+    color: $light-grey;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.inner-border {
+  border: 1px solid $faintest-black;
+  border-radius: $border-radius;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}

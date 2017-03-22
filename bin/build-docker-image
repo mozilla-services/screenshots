@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+set -eu
+
+export NODE_ENV=production
+cd "$(dirname ${BASH_SOURCE[0]})/.."
+
+if [[ $# = 0 ]] ; then
+  echo "Usage: $0 dockerhubusername"
+  echo "  builds the Screenshots docker image"
+  echo "  Determines version from package.json"
+  echo "  tags and uploads it as [dockerhubusername]/pageshot:[version]"
+  echo "  creates build/eb-app-latest.zip"
+  echo "  version defaults to latest"
+  exit 4
+fi
+
+version="$(node -e 'console.log(require("./package.json").version)')"
+
+sed "s!USERNAME!$1!g" < Dockerrun.aws.json.template > Dockerrun.aws.json.tmp
+sed "s!VERSION!$version!g" < Dockerrun.aws.json.tmp > Dockerrun.aws.json
+zip -r build/eb-app-latest.zip Dockerrun.aws.json .ebextensions/*.config
+rm Dockerrun.aws.json Dockerrun.aws.json.tmp
+
+make server
+
+xpi="build/screenshots.xpi"
+if [[ ! -e "$xpi" ]] ; then
+  make signed_xpi
+fi
+
+echo "Creating docker image $1/pageshot:$version"
+docker build -t $1/pageshot:"$version" .
+docker push $1/pageshot:"$version"

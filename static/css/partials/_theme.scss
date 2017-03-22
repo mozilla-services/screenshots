@@ -1,0 +1,69 @@
+.inverse-color-scheme {
+  background: $navy;
+  color: $white;
+
+  a {
+    color: $link-blue;
+  }
+
+  .large-icon {
+    filter: invert(100%);
+  }
+}
+
+.default-color-scheme {
+  background: $body-background-color;
+  color: $black;
+
+  a {
+    color: $link-blue;
+  }
+}
+
+.button {
+  &.primary {
+    background-color: $link-blue;
+    color: $white;
+
+    &:hover,
+    &:focus {
+      background: darken($link-blue, 7);
+    }
+
+    &:active {
+      background: darken($link-blue, 12);
+    }
+  }
+
+  &.secondary {
+    background: $very-light-grey;
+    color: $black;
+
+    &:hover,
+    &:focus {
+      background: darken($very-light-grey, 7);
+    }
+
+    &:active {
+      background: darken($very-light-grey, 12);
+    }
+  }
+
+  &.warning {
+    color: $white;
+    background: $warning-red-default;
+
+    &:hover,
+    &:focus {
+      background: darken($warning-red-default, 7);
+    }
+
+    &:active {
+      background: darken($warning-red-default, 12);
+    }
+  }
+}
+
+.subtitle-link {
+  color: $link-blue;
+}

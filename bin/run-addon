@@ -1,0 +1,169 @@
+#!/bin/bash
+
+set -e
+cd "$(dirname ${BASH_SOURCE[0]})/.."
+base="$(pwd)"
+PATH="node_modules/.bin:$PATH"
+webext="$base/node_modules/.bin/web-ext"
+jpm="$base/node_modules/.bin/jpm"
+nodemon_pid=
+
+binary=
+firefoxes="
+/Applications/FirefoxNightly.app
+/Applications/FirefoxDeveloperEdition.app
+/Applications/FirefoxAurora.app
+$(which firefox || true)
+"
+setup_profile=
+server=
+bootstrap=
+
+for firefox in $firefoxes ; do
+  if [[ -e "$firefox" ]] ; then
+    binary="$firefox"
+    break
+  fi
+done
+
+_cleanup () {
+  if [[ -n "$nodemon_pid" ]] ; then
+    # Seems to usually be dead by this point?  Good I guess?
+    kill $nodemon_pid >& /dev/null || true
+  fi
+}
+
+trap _cleanup EXIT
+
+help () {
+  echo "Usage: $(basename $0) [OPTIONS]"
+  echo "  Options:"
+  echo "    --no-auto"
+  echo "      Do not watch for changes in the addon"
+  echo "    -b or --binary BINARY"
+  echo "      Use BINARY as the Firefox to run (default $binary)"
+  echo "    --setup-profile"
+  echo "      Setup ./Profile/ and open it (can be used to make sticky changes to the test profile)"
+  #echo "    --scratch"
+  #echo "      Use a scratch profile"
+  echo "    --bootstrap"
+  echo "      Run the bootstrap form of the extension with jpm"
+  echo "    -s or --server URL"
+  echo "      Use the given server (default localhost:10080)"
+}
+
+
+while [[ -n "$1" ]] ; do
+  case "$1" in
+    help|-h|--help)
+      help
+      exit
+      ;;
+    -b|--binary)
+      binary="$2"
+      shift
+      shift
+      ;;
+    --scratch)
+      scratch=1
+      shift
+      ;;
+    --setup-profile)
+      setup_profile=1
+      shift
+      ;;
+    --server|-s)
+      server="$2"
+      shift
+      shift
+      ;;
+    --bootstrap)
+      bootstrap=1
+      shift
+      ;;
+    *)
+      help
+      exit 2
+      ;;
+  esac
+done
+
+open=$binary # assumes Linux
+unamestr=$(uname)
+if [[ "$unamestr" = "Darwin" ]]; then
+  open="open $binary"
+fi
+
+if [[ ! -d ./Profile ]] ; then
+  echo "NOTE: you must setup a Firefox profile in ./Profile/"
+  echo "This will be done automatically for you after you hit ENTER"
+  echo "http://localhost:10080/ will be opened"
+  echo -n "Press ENTER to continue (^C to abort) ... "
+  read
+  setup_profile=1
+fi
+
+if [[ -n "$setup_profile" ]] ; then
+  profile_dir="$(pwd)/Profile"
+  if [[ -d "$profile_dir" ]] ; then
+    echo "Using existing profile in $profile_dir running:"
+    echo " " $open -n --args -new-instance -no-remote -profile "$profile_dir"
+    $open -n --args -new-instance -no-remote -profile "$profile_dir"
+  else
+    echo "Creating profile in $profile_dir running:"
+    echo " " $open -n --args -new-instance -no-remote -CreateProfile "ScreenshotsTestProfile $profile_dir"
+    $open -n --args -new-instance -no-remote -CreateProfile "ScreenshotsTestProfile $profile_dir"
+    echo "Opening profile running:"
+    echo " " $open -n --args -new-instance -no-remote -profile "$profile_dir" -url http://localhost:10080
+    $open -n --args -new-instance -no-remote -profile "$profile_dir" -url http://localhost:10080
+  fi
+  exit
+fi
+
+if [[ -n "$server" ]] ; then
+  export SCREENSHOTS_BACKEND="$server"
+fi
+
+profile_option=
+bootstrap_profile_option=
+if [[ -z "$scratch" ]] ; then
+  mkdir -p ./Profile
+  profile_option="--firefox-profile ./Profile/"
+  bootstrap_profile_option="--profile ../Profile/ --no-copy"
+fi
+
+make addon
+
+run_nodemon() {
+  nodemon \
+    -w shared/shot.js \
+    -w Makefile \
+    -w static/css/inline-selection.scss \
+    -w static/css/partials/ \
+    --on-change-only \
+    --exec make addon &
+  nodemon_pid=$!
+}
+
+run_webext() {
+  run_nodemon
+  echo "Running Firefox.  You might want to go to:"
+  echo "  about:debugging"
+  echo "and Debug Firefox Screenshots"
+
+  $webext run --firefox "$binary" $profile_option --source-dir ./addon/webextension/
+}
+
+run_jpm() {
+  echo "Running Firefox.  Reloading with jpm *will not* happen"
+  echo "If the Screenshots icon doesn't show up go to:"
+  echo "  Tools > Add-ons > Extensions and look for an error loading the add-on"
+  cd addon
+  $jpm run $bootstrap_profile_option -b "$binary" --binary-args -jsconsole
+}
+
+if [[ -z "$bootstrap" ]] ; then
+  run_webext
+else
+  run_jpm
+fi
