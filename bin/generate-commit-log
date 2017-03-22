@@ -57,8 +57,8 @@ for message in messages:
         if not full.endswith("."):
             full += "."
         full = full + "".join(found)
-    full = full + " [%s](https://github.com/mozilla-services/pageshot/commit/%s)" % (short, short)
-    full = issue_regex.sub(r'[#\1](https://github.com/mozilla-services/pageshot/issues/\1)', full)
+    full = full + " [%s](https://github.com/mozilla-services/screenshots/commit/%s)" % (short, short)
+    full = issue_regex.sub(r'[#\1](https://github.com/mozilla-services/screenshots/issues/\1)', full)
     parts.append(full)
 
 parts = "\n".join(parts)

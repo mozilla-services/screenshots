@@ -4,7 +4,7 @@
   "version": "__VERSION__",
   "description": "__MSG_addonDescription__",
   "author": "__MSG_addonAuthorsList__",
-  "homepage_url": "https://github.com/mozilla-services/pageshot",
+  "homepage_url": "https://github.com/mozilla-services/screenshots",
   "applications": {
     "gecko": {
       "id": "screenshots@mozilla.org"

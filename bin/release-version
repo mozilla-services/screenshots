@@ -59,7 +59,7 @@ case "$channel" in
     SCREENSHOTS_BACKEND=https://pageshot.stage.mozaws.net SCREENSHOTS_SENTRY="$stage_sentry" make zip
     ./bin/build-docker-image mozilla
     echo
-    echo "Stage deployment automatically triggered, see #pageshot IRC for status"
+    echo "Stage deployment automatically triggered, see #screenshots IRC for status"
     ;;
   prod)
     if [[ "$(current_branch)" != "stable" ]] ; then

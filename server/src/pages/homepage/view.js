@@ -51,7 +51,7 @@ class Body extends React.Component {
           <a className="button primary" href="https://testpilot.firefox.com/experiments/page-shot">Install Screenshots with Firefox Test Pilot</a>
           { myShots }
           <div className="social-links">
-            <a href="https://github.com/mozilla-services/pageshot" target="_blank" className="link-icon github" title="GitHub"></a>
+            <a href="https://github.com/mozilla-services/screenshots" target="_blank" className="link-icon github" title="GitHub"></a>
           </div>
         </div>
       </reactruntime.BodyTemplate>

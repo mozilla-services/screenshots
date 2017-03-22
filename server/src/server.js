@@ -821,14 +821,14 @@ app.get("/images/:imageid", function (req, res) {
 
 app.get("/__version__", function (req, res) {
   let response = {
-    source: "https://github.com/mozilla-services/pageshot/",
+    source: "https://github.com/mozilla-services/screenshots/",
     description: "Firefox Screenshots application server",
     version: selfPackage.version,
     buildDate: buildTime,
     commit: linker.getGitRevision(),
     contentOrigin: config.contentOrigin,
-    commitLog: `https://github.com/mozilla-services/pageshot/commits/${linker.getGitRevision()}`,
-    unincludedCommits: `https://github.com/mozilla-services/pageshot/compare/${linker.getGitRevision()}...master`,
+    commitLog: `https://github.com/mozilla-services/screenshots/commits/${linker.getGitRevision()}`,
+    unincludedCommits: `https://github.com/mozilla-services/screenshots/compare/${linker.getGitRevision()}...master`,
     dbSchemaVersion: dbschema.MAX_DB_LEVEL
   };
   res.header("Content-Type", "application/json; charset=utf-8");
@@ -861,19 +861,19 @@ app.get("/contribute.json", function (req, res) {
     name: "Firefox Screenshots",
     description: "Firefox Screenshots is an add-on for Firefox and a service for screenshots",
     repository: {
-      url: "https://github.com/mozilla-services/pageshot/",
+      url: "https://github.com/mozilla-services/screenshots/",
       license: "MPL2",
-      tests: "https://travis-ci.org/mozilla-services/pageshot"
+      tests: "https://circleci.com/gh/mozilla-services/screenshots"
     },
     participate: {
-      home: "https://github.com/mozilla-services/pageshot/",
-      irc: "irc://irc.mozilla.org/#pageshot",
+      home: "https://github.com/mozilla-services/screenshots/",
+      irc: "irc://irc.mozilla.org/#screenshots",
       "irc-contacts": ["ianbicking", "fzzzy"]
     },
     bugs: {
-      list: "https://github.com/mozilla-services/pageshot/issues",
-      report: "https://github.com/mozilla-services/pageshot/issues/new",
-      goodfirstbugs: "https://github.com/mozilla-services/pageshot/labels/good%20first%20bug"
+      list: "https://github.com/mozilla-services/screenshots/issues",
+      report: "https://github.com/mozilla-services/screenshots/issues/new",
+      goodfirstbugs: "https://github.com/mozilla-services/screenshots/labels/good%20first%20bug"
     },
     urls: {
       prod: "https://pageshot.net",
