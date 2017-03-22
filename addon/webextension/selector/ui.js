@@ -72,7 +72,6 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
     sizeTracking: {
       timer: null,
       windowDelayer: null,
-      resizeBound: null,
       lastHeight: null,
       lastWidth: null
     },
@@ -207,10 +206,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
     element: null,
     document: null,
     sizeTracking: {
-      windowDelayer: null,
-      resizeBound: null,
-      lastHeight: null,
-      lastWidth: null
+      windowDelayer: null
     },
     display: function (installHandlerOnDocument, standardOverlayCallbacks) {
       return new Promise((resolve, reject) => {
@@ -279,31 +275,9 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       });
     },
 
-    updateElementSize: function (force) {
-      // Note: if someone sizes down the page, then the iframe will keep the
-      // document from naturally shrinking.  We use force to temporarily hide
-      // the element so that we can tell if the document shrinks
-      const visible = this.element.style.display !== "none";
-      if (force && visible) {
-        this.element.style.display = "none";
-      }
-      let height = Math.max(
-        document.documentElement.clientHeight,
-        window.innerHeight);
-      if (height !== this.sizeTracking.lastHeight) {
-        this.sizeTracking.lastHeight = height;
-        this.element.style.height = height + "px";
-      }
-      let width = Math.max(
-        document.documentElement.clientWidth,
-        window.innerWidth);
-      if (width !== this.sizeTracking.lastWidth) {
-        this.sizeTracking.lastWidth = width;
-        this.element.style.width = width + "px";
-      }
-      if (force && visible) {
-        this.element.style.display = "";
-      }
+    updateElementSize: function () {
+      this.element.style.height = window.innerHeight + "px";
+      this.element.style.width = window.innerWidth + "px";
     },
 
     hide: function () {
@@ -348,7 +322,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
     currentIframe: iframePreSelection,
     display: function (installHandlerOnDocument, standardOverlayCallbacks) {
       return iframeSelection.display(installHandlerOnDocument)
-        .then(() => iframePreSelection.display(installHandlerOnDocument, standardOverlayCallbacks))
+        .then(() => iframePreSelection.display(installHandlerOnDocument, standardOverlayCallbacks));
     },
 
     hide: function () {
