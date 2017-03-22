@@ -40,12 +40,12 @@ window.main = (function () {
       });
   }
 
-  function opensMyShots(url) {
+  function shouldOpenMyShots(url) {
     return /^about:(?:newtab|blank)/i.test(url) || /^resource:\/\/activity-streams\//i.test(url);
   }
 
   browser.browserAction.onClicked.addListener(catcher.watchFunction((tab) => {
-    if (opensMyShots(tab.url)) {
+    if (shouldOpenMyShots(tab.url)) {
       catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
         sendEvent("goto-myshots", "about-newtab");
       }));
@@ -82,7 +82,7 @@ window.main = (function () {
   }));
 
   function urlEnabled(url) {
-    if (opensMyShots(url)) {
+    if (shouldOpenMyShots(url)) {
       return true;
     }
     if (url.startsWith(backend) || /^(?:about|data|moz-extension):/i.test(url)) {
@@ -91,7 +91,8 @@ window.main = (function () {
     return true;
   }
 
-  browser.tabs.onUpdated.addListener((id, info, tab) => {
+
+  browser.tabs.onUpdated.addListener(catcher.watchFunction((id, info, tab) => {
     if (info.url && tab.selected) {
       if (urlEnabled(info.url)) {
         browser.browserAction.enable(tab.id);
@@ -100,7 +101,7 @@ window.main = (function () {
         browser.browserAction.disable(tab.id);
       }
     }
-  });
+  }));
 
   communication.register("sendEvent", (sender, ...args) => {
     catcher.watchPromise(sendEvent(...args));
