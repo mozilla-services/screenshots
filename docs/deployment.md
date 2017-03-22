@@ -53,7 +53,7 @@ To update https://pageshot.stage.mozaws.net use:
 $ ./bin/release-version stage
 ```
 
-After it completes the stage deployment will automatically be triggered.  See the `#pageshot` IRC channel for status updates.
+After it completes the stage deployment will automatically be triggered.  See the `#screenshots` IRC channel for status updates.
 
 You can install the stage version of the add-on from https://pageshot.stage.mozaws.net/homepage/install-test-local.html
 

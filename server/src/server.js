@@ -867,7 +867,7 @@ app.get("/contribute.json", function (req, res) {
     },
     participate: {
       home: "https://github.com/mozilla-services/screenshots/",
-      irc: "irc://irc.mozilla.org/#pageshot",
+      irc: "irc://irc.mozilla.org/#screenshots",
       "irc-contacts": ["ianbicking", "fzzzy"]
     },
     bugs: {
