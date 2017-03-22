@@ -74,7 +74,6 @@ window.documentMetadata = (function () {
 
   return function documentMetadata() {
     let result = {};
-    result.url = location.href;
     result.docTitle = document.title;
     result.siteName = findSiteName();
     result.openGraph = getOpenGraph();

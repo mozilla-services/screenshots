@@ -107,7 +107,7 @@ window.shooter = (function () { // eslint-disable-line no-unused-vars
     backend,
     randomString(RANDOM_STRING_LENGTH) + "/" + domainFromUrl(location),
     {
-      url: location.href
+      origin: window.shot.originFromUrl(location.href)
     }
   );
   shot.update(documentMetadata());

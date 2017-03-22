@@ -168,11 +168,12 @@ class Shot extends AbstractShot {
         oks.push({setHead: null});
         oks.push({setBody: null});
         let searchable = this._makeSearchableText(7);
+        let url = json.fullUrl || json.url || json.origin;
         return db.queryWithClient(
           client,
           `INSERT INTO data (id, deviceid, value, url, title, searchable_version, searchable_text)
            VALUES ($1, $2, $3, $4, $5, $6, ${searchable.query})`,
-          [this.id, this.ownerId, JSON.stringify(json), json.url, title, searchable.version].concat(searchable.args)
+          [this.id, this.ownerId, JSON.stringify(json), url, title, searchable.version].concat(searchable.args)
         ).then((rowCount) => {
           return clipRewrites.commit(client);
         }).then(() => {
@@ -245,9 +246,11 @@ class Shot extends AbstractShot {
       }
       queryParts.push(`setweight(to_tsvector(${addText(t)}), '${weight}') /* ${name} */`);
     }
-    let domain = this.url.replace(/^.*:/, "").replace(/\/.*$/, "");
+    if (this.url) {
+      let domain = this.url.replace(/^.*:/, "").replace(/\/.*$/, "");
+      addWeight(domain, 'B', 'domain');
+    }
     addWeight(this.title, 'A', 'title');
-    addWeight(domain, 'B', 'domain');
     if (this.openGraph) {
       let openGraphProps = `
         site_name description

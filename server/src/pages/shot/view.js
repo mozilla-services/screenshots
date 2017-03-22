@@ -295,7 +295,10 @@ class Body extends React.Component {
             <a className="block-button button secondary" href={ myShotsHref } onClick={this.onClickMyShots.bind(this)}>{ myShotsText }</a>
             <div className="shot-info">
               <EditableTitle title={shot.title} isOwner={this.props.isOwner} />
-              <div className="shot-subtitle">Saved from &nbsp;<a className="subtitle-link" href={ shotRedirectUrl } onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> <span className="clock-icon"/> { timeDiff } { expiresDiff } </div>
+              <div className="shot-subtitle">
+                { linkTextShort ? <span>Saved from &nbsp;<a className="subtitle-link" href={ shotRedirectUrl } onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a></span> : null }
+                <span className="clock-icon"/> { timeDiff } { expiresDiff }
+              </div>
             </div>
           </div>
           <div className="more-shot-actions right">
