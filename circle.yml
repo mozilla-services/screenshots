@@ -6,11 +6,11 @@ machine:
     RDS_USERNAME: ubuntu
     LOCALHOST_SSL: false
     DISPLAY: ":99.0"
-    PATH: "/home/ubuntu/pageshot/firefox:$PATH"
+    PATH: "/home/ubuntu/screenshots/firefox:$PATH"
 
 dependencies:
   pre:
-    # we want firefox nightly in order to install an unsigned pageshot addon
+    # we want firefox nightly in order to install an unsigned screenshots addon
     - pip install mozdownload mozinstall
     - mozdownload --version latest --type daily --destination firefox.tar.bz2
     - mozinstall firefox.tar.bz2
