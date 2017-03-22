@@ -4,7 +4,7 @@
   "version": "5.2.0",
   "author": "Mozilla (https://mozilla.org/)",
   "bugs": {
-    "url": "https://github.com/mozilla-services/pageshot/issues"
+    "url": "https://github.com/mozilla-services/screenshots/issues"
   },
   "dependencies": {
     "atob": "2.0.3",
@@ -63,7 +63,7 @@
   "license": "MPL-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mozilla-services/pageshot.git"
+    "url": "git+https://github.com/mozilla-services/screenshots.git"
   },
   "scripts": {
     "lint": "npm-run-all lint:*",

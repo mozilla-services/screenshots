@@ -20,13 +20,13 @@ Install [Postgres](http://www.postgresql.org/).
 
 Install [Node.js](https://nodejs.org/). Version 6.x is required.
 
-Clone the [repository](https://github.com/mozilla-services/pageshot/).
+Clone the [repository](https://github.com/mozilla-services/screenshots/).
 
 There are two scripts to run the server locally and develop the add-on:
 
 - `./bin/run-server` will run the server on `http://localhost:10080` and automatically restart if there are changes.
 - `./bin/run-addon` will build a few parts of the addon (into `addon/webextension/build/`) and start Firefox with the add-on installed.  The add-on will be refreshed automatically as you change files.  We recommend you open `about:debugging` to help debug the extension.
-- - `./bin/run-addon --bootstrap` will run the add-on using the [bootstrap](https://github.com/mozilla-services/pageshot/blob/master/addon/bootstrap.js) wrapper.  This is how the add-on is run in Firefox, and provides some additional services, like Telemetry and migration.  This does not support reloading, so if you aren't developing things involving the wrapper then you can run without `--bootstrap`.
+- - `./bin/run-addon --bootstrap` will run the add-on using the [bootstrap](https://github.com/mozilla-services/screenshots/blob/master/addon/bootstrap.js) wrapper.  This is how the add-on is run in Firefox, and provides some additional services, like Telemetry and migration.  This does not support reloading, so if you aren't developing things involving the wrapper then you can run without `--bootstrap`.
 - `./bin/run-addon --setup-profile` will setup a Firefox profile for your development; this way you can make persistent changes to the profile that you will use just for Screenshots development. (note: this will only look for the `firefox` commmand or Nightly, Developer Edition, Aurora editions on OSX)
 
 **If you want to develop the add-on but not the server** you can run `./bin/run-addon -s https://pageshot.dev.mozaws.net`
@@ -41,23 +41,23 @@ We apologize but we have no story for development on Windows (though the add-on 
 
 ### Getting to know the code
 
-There is documentation in [addon/](https://github.com/mozilla-services/pageshot/blob/master/addon/), [addon/webextension/](https://github.com/mozilla-services/pageshot/blob/master/addon/webextension/), [addon/webextension/background/](https://github.com/mozilla-services/pageshot/blob/master/addon/webextension/background/), and [addon/webextension/selector/](https://github.com/mozilla-services/pageshot/blob/master/addon/webextension/selector) that talks about the code layout and architecture of the add-on.
+There is documentation in [addon/](https://github.com/mozilla-services/screenshots/blob/master/addon/), [addon/webextension/](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/), [addon/webextension/background/](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/background/), and [addon/webextension/selector/](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/selector) that talks about the code layout and architecture of the add-on.
 
-[server/view-docs.md](https://github.com/mozilla-services/pageshot/blob/master/server/views-docs.md) talks about how the server React pages are setup, along with the server-side rendering of pages.
+[server/view-docs.md](https://github.com/mozilla-services/screenshots/blob/master/server/views-docs.md) talks about how the server React pages are setup, along with the server-side rendering of pages.
 
-There is also documentation in [docs/](https://github.com/mozilla-services/pageshot/blob/master/docs/).
+There is also documentation in [docs/](https://github.com/mozilla-services/screenshots/blob/master/docs/).
 
 ### Participation
 
 There is an IRC channel `#pageshot` on irc.mozilla.org (you can use [this link](https://kiwiirc.com/client/irc.mozilla.org/pageshot) for chat access via the web if you do not otherwise use IRC).  There are [IRC logs available](http://logs.glob.uno/?c=pageshot).
 
-Planning and ideation is happening in the [issue tracker](https://github.com/mozilla-services/pageshot/issues).  We have several [milestones](https://github.com/mozilla-services/pageshot/milestones):
+Planning and ideation is happening in the [issue tracker](https://github.com/mozilla-services/screenshots/issues).  We have several [milestones](https://github.com/mozilla-services/screenshots/milestones):
 
-* [Issues with no milestone](https://github.com/mozilla-services/pageshot/issues?q=is%3Aopen+is%3Aissue+no%3Amilestone) are awaiting triage
-* [Issues in Stretch](https://github.com/mozilla-services/pageshot/milestone/9) are immediately actionable but just nice-to-haves, not blockers.
-* [Issues in Next Tasks](https://github.com/mozilla-services/pageshot/milestone/2) are deferred for now, but will be re-triaged when the current milestone is done
-* [Issues in Blue Sky](https://github.com/mozilla-services/pageshot/milestone/3) are mostly shelved; we'd like to do them but have no plans to move forward.  (If you see something you care about there, comment on it -- otherwise we may not notice it)
-* [Issues in 54](https://github.com/mozilla-services/pageshot/milestone/20) are things we want to do to ship to a general Firefox audience.
+* [Issues with no milestone](https://github.com/mozilla-services/screenshots/issues?q=is%3Aopen+is%3Aissue+no%3Amilestone) are awaiting triage
+* [Issues in Stretch](https://github.com/mozilla-services/screenshots/milestone/9) are immediately actionable but just nice-to-haves, not blockers.
+* [Issues in Next Tasks](https://github.com/mozilla-services/screenshots/milestone/2) are deferred for now, but will be re-triaged when the current milestone is done
+* [Issues in Blue Sky](https://github.com/mozilla-services/screenshots/milestone/3) are mostly shelved; we'd like to do them but have no plans to move forward.  (If you see something you care about there, comment on it -- otherwise we may not notice it)
+* [Issues in 54](https://github.com/mozilla-services/screenshots/milestone/20) are things we want to do to ship to a general Firefox audience.
 * Look for "Sprint 54.x" to see planned work for a sprint (2-week phase)
 
-Issue tags otherwise aren't very structured. [Research](https://github.com/mozilla-services/pageshot/issues?q=is%3Aopen+is%3Aissue+label%3Aresearch) is primarily analysis of other products that do something interesting, or some source material that could provide insight.  Input on these (things like "I like this product because...") is very helpful!
+Issue tags otherwise aren't very structured. [Research](https://github.com/mozilla-services/screenshots/issues?q=is%3Aopen+is%3Aissue+label%3Aresearch) is primarily analysis of other products that do something interesting, or some source material that could provide insight.  Input on these (things like "I like this product because...") is very helpful!

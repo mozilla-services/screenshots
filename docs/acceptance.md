@@ -6,12 +6,12 @@ triaged into sprints on a an as-needed basis. Items in this list may not
 correlate with issues on a 1:1 basis.
 
 # General
-- [ ] Build DMCA capabilities [#2288](https://github.com/mozilla-services/pageshot/issues/2288)
-- [ ] Support Localization [#2205](https://github.com/mozilla-services/pageshot/issues/2205)
+- [ ] Build DMCA capabilities [#2288](https://github.com/mozilla-services/screenshots/issues/2288)
+- [ ] Support Localization [#2205](https://github.com/mozilla-services/screenshots/issues/2205)
 
 ## Add-on Activation
-- [ ] It should be able to be progressively revealed/enabled by the shield recipe server [#2332](https://github.com/mozilla-services/pageshot/issues/2332)
-- [ ] It should be able to be enabled and disabled by a toggle in about:preferences [#2333](https://github.com/mozilla-services/pageshot/issues/2333)
+- [ ] It should be able to be progressively revealed/enabled by the shield recipe server [#2332](https://github.com/mozilla-services/screenshots/issues/2332)
+- [ ] It should be able to be enabled and disabled by a toggle in about:preferences [#2333](https://github.com/mozilla-services/screenshots/issues/2333)
 
 # UI/UX
 
@@ -19,16 +19,16 @@ correlate with issues on a 1:1 basis.
 - [ ] It should have a new logo and word mark that match Photon
 - [ ] It should have an overall color system that matches Photon
 - [ ] It should have buttons, inputs, controls etc. that match Photon
-- [ ] It should use the new Mozilla logo [#2211](https://github.com/mozilla-services/pageshot/issues/2211)
+- [ ] It should use the new Mozilla logo [#2211](https://github.com/mozilla-services/screenshots/issues/2211)
 - [ ] All images should be SVG or have retina versions
-- [ ] It should undergo an accessibility review prior to launch [#2251](https://github.com/mozilla-services/pageshot/issues/2251)
+- [ ] It should undergo an accessibility review prior to launch [#2251](https://github.com/mozilla-services/screenshots/issues/2251)
 - [ ] It should have a new name
 - [ ] It should be at screenshots.firefox.com [Bug 1347251](https://bugzilla.mozilla.org/show_bug.cgi?id=1347251)
 
 ## Shot iframe (ADDON)
-- [ ] It should match the final spec provided by the UX team [#2306](https://github.com/mozilla-services/pageshot/issues/2306)
+- [ ] It should match the final spec provided by the UX team [#2306](https://github.com/mozilla-services/screenshots/issues/2306)
 
-## Shots Index Page UI (SERVER) [#2308](https://github.com/mozilla-services/pageshot/issues/2308)
+## Shots Index Page UI (SERVER) [#2308](https://github.com/mozilla-services/screenshots/issues/2308)
 - [ ] It should match the final spec provided by UX team
   - [ ] It should include the ability to download, copy link, delete and access to shot page for each shot
   - [ ] It should make use of the CSS grid spec [NB. This is an odd requirement, but we are only supporting Firefox 54+ and unspecified future releases of Chrome. Shipping CSS grid at a large scale will give us a good Hacks post, and won’t be particularly costly given what I’ve seen of the spec]
@@ -63,7 +63,7 @@ correlate with issues on a 1:1 basis.
 ## Non-Owner Specific Expired Page UI
 - [ ] It should include promotional materials describing the utility of Firefox Screenshots and link to the landing page
 
-## Landing Page UI [#2310](https://github.com/mozilla-services/pageshot/issues/2310)
+## Landing Page UI [#2310](https://github.com/mozilla-services/screenshots/issues/2310)
 - [ ] It should match the final spec provided by the UX team
 - [ ] It should describe the value proposition of Firefox Screenshots
 - [ ] It should specify that Firefox Screenshots is currently only available for Firefox on Desktop for non-FF users
@@ -72,7 +72,7 @@ correlate with issues on a 1:1 basis.
   - [ ] It should accomodate different messaging based on state of phased roll out
 - [ ] *STRETCH:* it should let users of Firefox 54 + trigger the add-on onboarding flow from the site
 
-## Onboarding UI [#2307](https://github.com/mozilla-services/pageshot/issues/2307)
+## Onboarding UI [#2307](https://github.com/mozilla-services/screenshots/issues/2307)
 - [ ] It should match the final spec provided by the UX team
 - [ ] It should proceed stepwise to explain the basics of the Screenshots feature
 - [ ] It should initially suggest itself by adding a Screenshots icon to the tool bar and badging it
@@ -81,7 +81,7 @@ correlate with issues on a 1:1 basis.
 # Measurements & Dashboards
 
 ## Measures
-- [ ] Reporting of all measures should be derived from the state of the Telemetry flag in the browser. [#2250](https://github.com/mozilla-services/pageshot/issues/2250)
+- [ ] Reporting of all measures should be derived from the state of the Telemetry flag in the browser. [#2250](https://github.com/mozilla-services/screenshots/issues/2250)
 - [ ] It should have a documented plan for testing and verifying all new measures.
 - [ ] All measures currently in the product should be audited to ensure they’re working as intended.
 - [ ] Onboarding UI should be instrumented to measure interaction rate w/buttons/controls etc.

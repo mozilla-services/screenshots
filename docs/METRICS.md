@@ -41,7 +41,7 @@ first_created | last_created
 
 We're not sure how to aggregate this in SQL, but we can always do it in the server.  We might want look at all cohorts or just some cohorts, and account for the current day.
 
-(Work listed and finished in [#1197](https://github.com/mozilla-services/pageshot/issues/1197))
+(Work listed and finished in [#1197](https://github.com/mozilla-services/screenshots/issues/1197))
 
 #### Do people share those shots with other people?  
 
@@ -69,7 +69,7 @@ This information is intended to help us make Firefox Screenshots better.
 
 We record an event stream of interaction with the add-on and website.  The events:
 
-(**Note**: per [#1183](https://github.com/mozilla-services/pageshot/issues/1183) we need to figure out if we are actually collecting these events properly)
+(**Note**: per [#1183](https://github.com/mozilla-services/screenshots/issues/1183) we need to figure out if we are actually collecting these events properly)
 
 ### Metrics schema
 
@@ -92,7 +92,7 @@ Event label: exactly what control invoked the action, such as toolbar-button.  T
 
 ##### Highlight shot button
 
-As described in [#2081](https://github.com/mozilla-services/pageshot/issues/2081) we are putting a badge on the button of some users.  The test is named `highlightButtonOnInstall`.
+As described in [#2081](https://github.com/mozilla-services/screenshots/issues/2081) we are putting a badge on the button of some users.  The test is named `highlightButtonOnInstall`.
 
 The dimension `cd3` will be `control` (no badge) or `badge` (10% of population).
 
@@ -100,13 +100,13 @@ If the badge is shown we send the event `addon/ab-highlight-button-shown` – t
 
 ##### Adjust My Shots button display
 
-As described in [#2082](https://github.com/mozilla-services/pageshot/issues/2082) we are changing how the My Shots button is displayed.  The test is named `styleMyShotsButton`.
+As described in [#2082](https://github.com/mozilla-services/screenshots/issues/2082) we are changing how the My Shots button is displayed.  The test is named `styleMyShotsButton`.
 
 The dimension `cd4` will be `control` (normal styling) or something else Yet To Be Determined.
 
 ##### Auto-open share panel
 
-As described in [#2079](https://github.com/mozilla-services/pageshot/issues/2079) we auto-open the share panel for a set of users.  The test is named `autoOpenSharePanel`.
+As described in [#2079](https://github.com/mozilla-services/screenshots/issues/2079) we auto-open the share panel for a set of users.  The test is named `autoOpenSharePanel`.
 
 The dimension `cd5` *for the creator* will be `control` (no auto-opening) or `autoopen` (share panel will be auto-opened).  The dimension `cd6` will be `control` (no auto-opening *happened*) or `autoopen` (auto-open happened in the past at shot creation).
 

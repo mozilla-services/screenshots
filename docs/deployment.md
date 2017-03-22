@@ -15,7 +15,7 @@ Softvision is our embedded QA team. Their main functions are to write test plans
 
 ## Team Notification ##
 
-During the checkin before the end of the [current milestone](https://github.com/mozilla-services/pageshot/milestones), we will inform the team that we will be building a release against `master`.
+During the checkin before the end of the [current milestone](https://github.com/mozilla-services/screenshots/milestones), we will inform the team that we will be building a release against `master`.
 
 Note: we deploy the master branch to our *development environment*: [http://pageshot.dev.mozaws.net](https://pageshot.dev.mozaws.net)
 
@@ -29,7 +29,7 @@ Use `bin/commit-new-version x.y.0` to set versions in package.json, tag the rele
 
 This will happen on Friday after any style tweaks land.
 
-1. https://github.com/mozilla-services/pageshot/releases/new
+1. https://github.com/mozilla-services/screenshots/releases/new
 3. Release Title: x.y.0
 4. Click `Publish`
 
@@ -61,7 +61,7 @@ You can install the stage version of the add-on from https://pageshot.stage.moza
 
 This will happen on Friday at the end of sprint after we've pushed to stage.
 
-Create a deployment issue to track status and potential blockers. Give it a [needs:qa label](https://github.com/mozilla-services/pageshot/issues?utf8=✓&q=is%3Aissue%20is%3Aopen%20label%3A%22needs%3Aqa%22%20).
+Create a deployment issue to track status and potential blockers. Give it a [needs:qa label](https://github.com/mozilla-services/screenshots/issues?utf8=✓&q=is%3Aissue%20is%3Aopen%20label%3A%22needs%3Aqa%22%20).
 
 Send out an email notification to `testpilot-dev@mozilla.org` to please test the staging environment.
 
@@ -117,7 +117,7 @@ The application server can manage upgrades of the database.  It can also handle 
 
 Rollback requires deploying the *newest* version of the application and setting an environmental variable to request it to downgrade.
 
-For instance, if you want to install version 1.0.1, you'd look in [dbschema](https://github.com/mozilla-services/pageshot/blob/1.0.1/server/src/dbschema.js#L7) and see `const MAX_DB_LEVEL = 10;` – but let's say the current database version is 12.  If you look in [server/db-patches](https://github.com/mozilla-services/pageshot/tree/1.0.1/server/db-patches) for version 1.0.1 there's no patch files to make that change.  There *are* [necessary patches in master](https://github.com/mozilla-services/pageshot/tree/master/server/db-patches).
+For instance, if you want to install version 1.0.1, you'd look in [dbschema](https://github.com/mozilla-services/screenshots/blob/1.0.1/server/src/dbschema.js#L7) and see `const MAX_DB_LEVEL = 10;` – but let's say the current database version is 12.  If you look in [server/db-patches](https://github.com/mozilla-services/screenshots/tree/1.0.1/server/db-patches) for version 1.0.1 there's no patch files to make that change.  There *are* [necessary patches in master](https://github.com/mozilla-services/screenshots/tree/master/server/db-patches).
 
 Therefore to deploy an old version *first* you must deploy a recent version and ask it to downgrade the database.  Downgrading can be requested through an environmental variable:
 
