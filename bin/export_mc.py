@@ -77,7 +77,7 @@ def exportToMozillaCentral(server, repoDir, mcRepoPath, mcSubDir, mcBranch,
     print "Exporting to m-c"
 
     os.environ["EXPORT_MC_LOCATION"] = mcRepoPath
-    os.environ["PAGESHOT_BACKEND"] = DEFAULTS[server]
+    os.environ["SCREENSHOTS_BACKEND"] = DEFAULTS[server]
 
     repo = RepoHandler(mcRepoPath)
 
@@ -141,7 +141,7 @@ def main(server, mcRepoPath, mcSubDir, mcBranch, mcBaseCommit, commitMessage,
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Pageshot script for managing export to mozilla-central")
+        description="Screenshots script for managing export to mozilla-central")
     parser.add_argument("-s", "--server",
                         default="prod",
                         help="[local|dev|stage|prod]: Which server the code should use.")
@@ -151,7 +151,7 @@ if __name__ == "__main__":
                         help="A gecko directory reference to mozilla-central, can also "
                              "be specified via EXPORT_MC_LOCATION environment variable")
     parser.add_argument("--mozilla-central-subdir",
-                        default="browser/extensions/pageshot/",
+                        default="browser/extensions/screenshots/",
                         help="Where the extension is located in mozilla-central.")
     parser.add_argument("-b", "--branch",
                         required=True,
@@ -167,7 +167,7 @@ if __name__ == "__main__":
                         help="Specify to build locally after export.")
     parser.add_argument("--run-tests",
                         action="store_true",
-                        help="Whether or not to run PageShot tests after the build.")
+                        help="Whether or not to run Screenshots tests after the build.")
     parser.add_argument("--push-to-try",
                         action="store_true",
                         help="Specify to push the result to the try server.")

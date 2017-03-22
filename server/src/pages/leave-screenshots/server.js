@@ -20,7 +20,7 @@ app.post("/leave", function (req, res) {
     res.status(403).send("You must have the addon installed to leave");
   }
   Shot.deleteEverythingForDevice(req.backend, req.deviceId).then(() => {
-    res.redirect("/leave-page-shot/?complete");
+    res.redirect("/leave-screenshots/?complete");
   }).catch((e) => {
     console.error("An error occurred trying to delete:", e);
     res.status(500).send("An error occurred");

@@ -27,7 +27,7 @@ window.main = (function () {
   }
 
   function setIconActive(active, tabId) {
-    const path = active ? "icons/pageshot-icon-green-38.png" : "icons/pageshot-icon-38.png";
+    const path = active ? "icons/icon-green-38.png" : "icons/icon-38.png";
     browser.browserAction.setIcon({path, tabId});
   }
 
@@ -51,13 +51,13 @@ window.main = (function () {
         toggleSelector(tab)
           .then(active => {
             const event = active ? "start-shot" : "cancel-shot";
-            sendEvent(event, "toolbar-pageshot-button");
+            sendEvent(event, "toolbar-button");
           }));
     }
   }));
 
   browser.contextMenus.create({
-    id: "create-pageshot",
+    id: "create-screenshot",
     title: browser.i18n.getMessage("contextMenuLabel"),
     contexts: ["page"]
   }, () => {

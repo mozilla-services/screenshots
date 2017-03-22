@@ -1,5 +1,5 @@
 {
-  "name": "pageshot",
+  "name": "firefox-screenshots",
   "description": "An experiment in creating better shareable versions of content.",
   "version": "5.2.0",
   "author": "Mozilla (https://mozilla.org/)",
@@ -67,7 +67,7 @@
   },
   "scripts": {
     "lint": "npm-run-all lint:*",
-    "lint:addon": "make zip && addons-linter ./build/pageshot.zip -o text",
+    "lint:addon": "make zip && addons-linter ./build/screenshots.zip -o text",
     "lint:flake8": "make flake8",
     "lint:js": "eslint .",
     "lint:sass": "sass-lint -v -q",

@@ -31,11 +31,10 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
 
   exports.isHeader = function (el) {
     while (el) {
-      if (el.className &&
-          (el.className.indexOf("pageshot-saver") !== -1 ||
-           el.className.indexOf("pageshot-myshots") !== -1 ||
-           el.className.indexOf("pageshot-visible") !== -1 ||
-           el.className.indexOf("pageshot-full-page") !== -1)) {
+      if (el.classList &&
+          (el.classList.contains("myshots-button") ||
+           el.classList.contains("visible") ||
+           el.classList.contains("full-page"))) {
         return true;
       }
       el = el.parentNode;
@@ -73,7 +72,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       return new Promise((resolve, reject) => {
         if (! this.element) {
           this.element = document.createElement("iframe");
-          this.element.id = "pageshot-iframe";
+          this.element.id = "firefox-screenshots-iframe";
           this.element.style.zIndex = "99999999999";
           this.element.style.border = "none";
           this.element.style.position = "absolute";
@@ -210,29 +209,30 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
 
     display: function (callbacks) {
       this.remove();
-      this.el = makeEl("div", "pageshot-preview-overlay");
+      this.el = makeEl("div", "preview-overlay");
       this.el.innerHTML = `
-      <div class="pageshot-moving-element" style="position: absolute; pointer-events: none; display: flex">
-        <div class="pageshot-preview-instructions"></div>
-        <div class="pageshot-myshots pageshot-myshots-button">
-          <div class="pageshot-pre-myshots"></div>
-          <div class="pageshot-myshots-text"></div>
-          <div class="pageshot-post-myshots"></div>
+      <div class="fixed-container" style="position: absolute; pointer-events: none; display: flex">
+        <div class="preview-instructions"></div>
+        <div class="myshots-button">
+          <div class="myshots-text-pre"></div>
+          <div class="myshots-text"></div>
+          <div class="myshots-text-post"></div>
         </div>
-        <div class="pageshot-overlay-button pageshot-visible"></div>
-        <div class="pageshot-overlay-button pageshot-full-page"></div>
+        <div class="visible"></div>
+        <div class="full-page"></div>
+      </div>
       `;
-      this.el.querySelector(".pageshot-preview-instructions").textContent = browser.i18n.getMessage("screenshotInstructions");
-      this.el.querySelector(".pageshot-myshots-text").textContent = browser.i18n.getMessage("myShotsLink");
-      this.el.querySelector(".pageshot-visible").textContent = browser.i18n.getMessage("saveScreenshotVisibleArea");
-      this.el.querySelector(".pageshot-full-page").textContent = browser.i18n.getMessage("saveScreenshotFullPage");
-      this.el.querySelector(".pageshot-myshots").addEventListener(
+      this.el.querySelector(".preview-instructions").textContent = browser.i18n.getMessage("screenshotInstructions");
+      this.el.querySelector(".myshots-text").textContent = browser.i18n.getMessage("myShotsLink");
+      this.el.querySelector(".visible").textContent = browser.i18n.getMessage("saveScreenshotVisibleArea");
+      this.el.querySelector(".full-page").textContent = browser.i18n.getMessage("saveScreenshotFullPage");
+      this.el.querySelector(".myshots-button").addEventListener(
         "click", watchFunction(callbacks.onOpenMyShots), false);
-      this.el.querySelector(".pageshot-visible").addEventListener(
+      this.el.querySelector(".visible").addEventListener(
         "click", watchFunction(callbacks.onClickVisible), false);
-      this.el.querySelector(".pageshot-full-page").addEventListener(
+      this.el.querySelector(".full-page").addEventListener(
         "click", watchFunction(callbacks.onClickFullPage), false);
-      this.movingEl = this.el.querySelector(".pageshot-moving-element");
+      this.movingEl = this.el.querySelector(".fixed-container");
       iframe.document.body.appendChild(this.el);
       this.resetPosition();
       window.addEventListener("scroll", this.onScroll, false);
@@ -325,17 +325,17 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       let pageYOffset = window.pageYOffset;
 
       if ((pos.right - pos.left) < 78 || (pos.bottom - pos.top) < 78) {
-        this.el.classList.add("pageshot-small-selection");
+        this.el.classList.add("small-selection");
       } else {
-        this.el.classList.remove("pageshot-small-selection");
+        this.el.classList.remove("small-selection");
       }
 
       // if the selection bounding box is w/in SAVE_BUTTON_HEIGHT px of the bottom of
       // the window, flip controls into the box
       if (pos.bottom > ((winBottom + pageYOffset) - SAVE_BUTTON_HEIGHT)) {
-        this.el.classList.add("pageshot-bottom-selection");
+        this.el.classList.add("bottom-selection");
       } else {
-        this.el.classList.remove("pageshot-bottom-selection");
+        this.el.classList.remove("bottom-selection");
       }
       this.el.style.top = (pos.top - bodyRect.top) + "px";
       this.el.style.left = (pos.left - bodyRect.left) + "px";
@@ -374,15 +374,15 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       if (boxEl) {
         return;
       }
-      boxEl = makeEl("div", "pageshot-highlight");
-      let buttons = makeEl("div", "pageshot-highlight-buttons");
-      let cancel = makeEl("button", "pageshot-highlight-button-cancel");
+      boxEl = makeEl("div", "highlight");
+      let buttons = makeEl("div", "highlight-buttons");
+      let cancel = makeEl("button", "highlight-button-cancel");
       cancel.title = browser.i18n.getMessage("cancelScreenshot");
       buttons.appendChild(cancel);
-      let download = makeEl("button", "pageshot-highlight-button-download");
+      let download = makeEl("button", "highlight-button-download");
       download.title = browser.i18n.getMessage("downloadScreenshot");
       buttons.appendChild(download);
-      let save = makeEl("button", "pageshot-highlight-button-save");
+      let save = makeEl("button", "highlight-button-save");
       save.textContent = browser.i18n.getMessage("saveScreenshotSelectedArea");
       save.title = browser.i18n.getMessage("saveScreenshotSelectedArea");
       buttons.appendChild(save);
@@ -391,18 +391,18 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       this.save = save;
       boxEl.appendChild(buttons);
       for (let name of movements) {
-        let elTarget = makeEl("div", "pageshot-mover-target pageshot-" + name);
-        let elMover = makeEl("div", "pageshot-mover");
+        let elTarget = makeEl("div", "mover-target direction-" + name);
+        let elMover = makeEl("div", "mover");
         elTarget.appendChild(elMover);
         boxEl.appendChild(elTarget);
       }
-      this.bgTop = makeEl("div", "pageshot-bghighlight");
+      this.bgTop = makeEl("div", "bghighlight");
       iframe.document.body.appendChild(this.bgTop);
-      this.bgLeft = makeEl("div", "pageshot-bghighlight");
+      this.bgLeft = makeEl("div", "bghighlight");
       iframe.document.body.appendChild(this.bgLeft);
-      this.bgRight = makeEl("div", "pageshot-bghighlight");
+      this.bgRight = makeEl("div", "bghighlight");
       iframe.document.body.appendChild(this.bgRight);
-      this.bgBottom = makeEl("div", "pageshot-bghighlight");
+      this.bgBottom = makeEl("div", "bghighlight");
       iframe.document.body.appendChild(this.bgBottom);
       iframe.document.body.appendChild(boxEl);
       this.el = boxEl;
@@ -411,14 +411,14 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
     draggerDirection: function (target) {
       while (target) {
         if (target.nodeType == document.ELEMENT_NODE) {
-          if (target.classList.contains("pageshot-mover-target")) {
+          if (target.classList.contains("mover-target")) {
             for (let name of movements) {
-              if (target.classList.contains("pageshot-" + name)) {
+              if (target.classList.contains("direction-" + name)) {
                 return name;
               }
             }
             catcher.unhandled(new Error("Surprising mover element"), {element: target.outerHTML});
-            console.warn("Got pageshot-mover-target that wasn't a specific direction");
+            console.warn("Got mover-target that wasn't a specific direction");
           }
         }
         target = target.parentNode;
@@ -431,7 +431,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
         if (target.tagName === "BUTTON") {
           return false;
         }
-        if (target.nodeType == document.ELEMENT_NODE && target.classList.contains("pageshot-highlight")) {
+        if (target.nodeType == document.ELEMENT_NODE && target.classList.contains("highlight")) {
           return true;
         }
         target = target.parentNode;
@@ -441,7 +441,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
 
     isControl: function (target) {
       while (target) {
-        if (target.nodeType === document.ELEMENT_NODE && target.classList.contains("pageshot-highlight-buttons")) {
+        if (target.nodeType === document.ELEMENT_NODE && target.classList.contains("highlight-buttons")) {
           return true;
         }
         target = target.parentNode;
@@ -462,7 +462,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
 
     display: function (rect) {
       if (! this.el) {
-        this.el = makeEl("div", "pageshot-hover-highlight");
+        this.el = makeEl("div", "hover-highlight");
         iframe.document.body.appendChild(this.el);
       }
       this.el.style.display = "";
@@ -490,7 +490,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
     yEl: null,
     display: function (xPos, yPos, x, y) {
       if (! this.el) {
-        this.el = makeEl("div", "pageshot-pixel-dimensions");
+        this.el = makeEl("div", "pixel-dimensions");
         this.xEl = makeEl("div");
         this.el.appendChild(this.xEl);
         this.yEl = makeEl("div");

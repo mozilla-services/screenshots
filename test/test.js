@@ -7,7 +7,7 @@ const webdriver = require("selenium-webdriver");
 //const Fs = require("fs-promise");
 const path = require("path");
 
-const SHOOTER_BUTTON_ID = "pageshot_mozilla_org-browser-action";
+const SHOOTER_BUTTON_ID = "screenshots_mozilla_org-browser-action";
 
 function addAddonToDriver(driver, location) {
   return driver.executeAsyncScript(`
@@ -57,7 +57,7 @@ function getDriver() {
   const driver = builder.build();
 
   driver.setContext(firefox.Context.CHROME);
-  let fileLocation = path.join(process.cwd(), "build", "pageshot.zip");
+  let fileLocation = path.join(process.cwd(), "build", "screenshots.zip");
   addAddonToDriver(driver, fileLocation);
   return driver;
 }
@@ -69,7 +69,7 @@ function getElementById(driver, id) {
       webdriver.By.id(id)), 1000);
 }
 
-describe("Test Page Shot", function () {
+describe("Test Screenshots", function () {
   this.timeout(10000);
   let driver;
 

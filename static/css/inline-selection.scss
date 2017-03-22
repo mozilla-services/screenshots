@@ -23,11 +23,7 @@ $handle-mover-offset: $mover-outer - $handle-outside-extent / 2;
 $mover-size: $mover-outer + $mover-inner;
 $overlay-z-index: 9999999999;
 
-.pageshot-hide-movers .pageshot-mover {
-  display: none;
-}
-
-.pageshot-highlight {
+.highlight {
   position: absolute;
   cursor: move;
   border: 1px dashed rgba($link-blue, 0.5);
@@ -36,19 +32,19 @@ $overlay-z-index: 9999999999;
   z-index: $overlay-z-index;
 }
 
-.pageshot-highlight-buttons {
+.highlight-buttons {
   @include flex-container(row, center, center, wrap);
   position: absolute;
   bottom: -55px;
   right: 0;
   z-index: 6;
 
-  .pageshot-bottom-selection & {
+  .bottom-selection & {
     bottom: 5px;
   }
 }
 
-.pageshot-highlight-button-cancel {
+.highlight-button-cancel {
   @extend .button;
   @extend .secondary;
   background: $very-light-grey url("MOZ_EXTENSION/icons/cancel.svg") center center no-repeat;
@@ -64,7 +60,7 @@ $overlay-z-index: 9999999999;
   }
 }
 
-.pageshot-highlight-button-save {
+.highlight-button-save {
   @extend .button;
   @extend .primary;
   font-size: 18px;
@@ -72,7 +68,7 @@ $overlay-z-index: 9999999999;
   width: 80px;
 }
 
-.pageshot-highlight-button-download {
+.highlight-button-download {
   @extend .button;
   @extend .secondary;
   background: $very-light-grey url("MOZ_EXTENSION/icons/download.svg") center center no-repeat;
@@ -88,8 +84,8 @@ $overlay-z-index: 9999999999;
   }
 }
 
-.pageshot-highlight-button-cancel,
-.pageshot-highlight-button-download {
+.highlight-button-cancel,
+.highlight-button-download {
   opacity: 0.9;
   transition: opacity 250ms;
 
@@ -100,24 +96,24 @@ $overlay-z-index: 9999999999;
   }
 }
 
-.pageshot-mover-target {
+.mover-target {
   position: absolute;
   z-index: 5;
   pointer-events: auto;
 }
 
-.pageshot-highlight,
-.pageshot-mover-target {
+.highlight,
+.mover-target {
   background-color: transparent;
   background-image: none;
 }
 
-.pageshot-mover-target,
-.pageshot-bghighlight {
+.mover-target,
+.bghighlight {
   border: 0;
 }
 
-.pageshot-mover-target.pageshot-topLeft {
+.mover-target.direction-topLeft {
   cursor: nwse-resize;
   top: -$mover-outer;
   left: -$mover-outer;
@@ -125,7 +121,7 @@ $overlay-z-index: 9999999999;
   height: $mover-size;
 }
 
-.pageshot-mover-target.pageshot-top {
+.mover-target.direction-top {
   cursor: ns-resize;
   top: -$mover-outer;
   left: 0;
@@ -135,7 +131,7 @@ $overlay-z-index: 9999999999;
   z-index: 4;
 }
 
-.pageshot-mover-target.pageshot-topRight {
+.mover-target.direction-topRight {
   cursor: nesw-resize;
   top: -$mover-outer;
   right: -$mover-outer;
@@ -143,7 +139,7 @@ $overlay-z-index: 9999999999;
   width: $mover-size;
 }
 
-.pageshot-mover-target.pageshot-left {
+.mover-target.direction-left {
   cursor: ew-resize;
   top: 0;
   left: -$mover-outer;
@@ -152,7 +148,7 @@ $overlay-z-index: 9999999999;
   z-index: 4;
 }
 
-.pageshot-mover-target.pageshot-right {
+.mover-target.direction-right {
   cursor: ew-resize;
   top: 0;
   right: -$mover-outer;
@@ -161,7 +157,7 @@ $overlay-z-index: 9999999999;
   z-index: 4;
 }
 
-.pageshot-mover-target.pageshot-bottomLeft {
+.mover-target.direction-bottomLeft {
   cursor: nesw-resize;
   left: -$mover-outer;
   bottom: -$mover-outer;
@@ -169,7 +165,7 @@ $overlay-z-index: 9999999999;
   height: $mover-size;
 }
 
-.pageshot-mover-target.pageshot-bottom {
+.mover-target.direction-bottom {
   cursor: ns-resize;
   left: 0;
   bottom: -$mover-outer;
@@ -178,7 +174,7 @@ $overlay-z-index: 9999999999;
   z-index: 4;
 }
 
-.pageshot-mover-target.pageshot-bottomRight {
+.mover-target.direction-bottomRight {
   cursor: nwse-resize;
   bottom: -$mover-outer;
   right: -$mover-outer;
@@ -186,11 +182,11 @@ $overlay-z-index: 9999999999;
   height: $mover-size;
 }
 
-.pageshot-mover-target:hover .pageshot-mover {
+.mover-target:hover .mover {
   opacity: 1;
 }
 
-.pageshot-mover {
+.mover {
   background-color: $link-blue;
   border-radius: 2px;
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1) inset;
@@ -201,114 +197,79 @@ $overlay-z-index: 9999999999;
   width: $handle-size;
   z-index: 1001;
 
-  .pageshot-small-selection & {
+  .small-selection & {
     height: $handle-size-small;
     width: $handle-size-small;
   }
 }
 
-.pageshot-topLeft .pageshot-mover {
+.direction-topLeft .mover {
   top: $handle-mover-offset;
   left: $handle-mover-offset;
 }
 
-.pageshot-top .pageshot-mover {
+.direction-top .mover {
   top: $handle-mover-offset;
   left: 50%;
   margin-left: -$handle-size / 2;
 
-  .pageshot-small-selection & {
+  .small-selection & {
     margin-left: -$handle-size-small / 2;
   }
 }
 
-.pageshot-topRight .pageshot-mover {
+.direction-topRight .mover {
   top: $handle-mover-offset;
   right: $handle-mover-offset;
 }
 
-.pageshot-left .pageshot-mover {
+.direction-left .mover {
   top: 50%;
   margin-top: -$handle-size / 2;
   left: $handle-mover-offset;
 
-  .pageshot-small-selection & {
+  .small-selection & {
     margin-top: -$handle-size-small / 2;
   }
 }
 
-.pageshot-right .pageshot-mover {
+.direction-right .mover {
   top: 50%;
   margin-top: -$handle-size / 2;
   right: $handle-mover-offset;
 
-  .pageshot-small-selection & {
+  .small-selection & {
     margin-top: -$handle-size-small / 2;
   }
 }
 
-.pageshot-bottomLeft .pageshot-mover {
+.direction-bottomLeft .mover {
   bottom: $handle-mover-offset;
   left: $handle-mover-offset;
 }
 
-.pageshot-bottom .pageshot-mover {
+.direction-bottom .mover {
   left: 50%;
   margin-left: -$handle-size / 2;
   bottom: $handle-mover-offset;
 
-  .pageshot-small-selection & {
+  .small-selection & {
     margin-left: -$handle-size-small / 2;
   }
 }
 
-.pageshot-bottomRight .pageshot-mover {
+.direction-bottomRight .mover {
   right: $handle-mover-offset;
   bottom: $handle-mover-offset;
 }
 
-.pageshot-bghighlight {
+.bghighlight {
   position: absolute;
   background-color: rgba(#323232, 0.5);
   z-index: $overlay-z-index;
 }
 
-.pageshot-textbutton {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border: 1px solid #666;
-  box-shadow: 5px 5px 10px #999;
-  border-radius: 2px;
-  text-align: center;
-  vertical-align: center;
-  color: #000;
-  background-color: #fff;
-  z-index: 2000;
-  cursor: pointer;
-}
-
-.pageshot-horizcross {
-  position: fixed;
-  left: 0;
-  width: 100%;
-  height: 0;
-  border: 1px solid rgba(#fff, 0.6);
-  z-index: $overlay-z-index + 50;
-  pointer-events: none;
-}
-
-.pageshot-vertcross {
-  position: fixed;
-  top: 0;
-  height: 100%;
-  width: 0;
-  border: 1px solid rgba(#fff, 0.6);
-  z-index: $overlay-z-index + 50;
-  pointer-events: none;
-}
-
-.pageshot-preview-overlay {
+.preview-overlay {
   align-items: center;
   background-color: rgba(#000, 0.5);
   display: flex;
@@ -323,7 +284,7 @@ $overlay-z-index: 9999999999;
   z-index: $overlay-z-index;
 }
 
-.pageshot-pixel-dimensions {
+.pixel-dimensions {
   position: absolute;
   pointer-events: none;
   font-weight: bold;
@@ -337,9 +298,9 @@ $overlay-z-index: 9999999999;
       1px 1px 0 #fff;
 }
 
-// FIXME: some of the styles in .pageshot-moving-element were copied from
-// .pageshot-preview-overlay and are probably unnecessary
-.pageshot-moving-element {
+// FIXME: some of the styles in .fixed-container were copied from
+// .preview-overlay and are probably unnecessary
+.fixed-container {
   pointer-events: none;
   position: absolute;
   align-items: center;
@@ -353,10 +314,10 @@ $overlay-z-index: 9999999999;
   width: 100%;
 }
 
-.pageshot-preview-instructions {
+.preview-instructions {
   @include flex-container(row, center, center);
   pointer-events: none;
-  animation: pageshot-pulse ease-in-out 200ms;
+  animation: pulse ease-in-out 200ms;
   background-color: rgba(#000, 0.6);
   border-radius: 20px;
   color: #fff;
@@ -370,7 +331,7 @@ $overlay-z-index: 9999999999;
   z-index: 999999999;
 }
 
-.pageshot-myshots {
+.myshots-button {
   @extend .button;
   @extend .secondary;
   @include flex-container(row, center, center);
@@ -383,34 +344,34 @@ $overlay-z-index: 9999999999;
 }
 
 /* styleMyShotsButton test: */
-.styleMyShotsButton-control .pageshot-myshots-button {
+.styleMyShotsButton-control .myshots-button {
 }
 
-.styleMyShotsButton-bright .pageshot-myshots-button {
+.styleMyShotsButton-bright .myshots-button {
   color: #fff;
   background: $link-blue;
 }
 
-.styleMyShotsButton-bright .pageshot-pre-myshots,
-.styleMyShotsButton-bright .pageshot-post-myshots {
+.styleMyShotsButton-bright .myshots-text-pre,
+.styleMyShotsButton-bright .myshots-text-post {
   filter: brightness(20);
 }
 
 /* end styleMyShotsButton test */
 
-.pageshot-visible {
-  @extend .pageshot-myshots;
+.visible {
+  @extend .myshots-button;
   pointer-events: all;
   top: 60px;
 }
 
-.pageshot-full-page {
-  @extend .pageshot-myshots;
+.full-page {
+  @extend .myshots-button;
   pointer-events: all;
   top: 105px;
 }
 
-.pageshot-pre-myshots {
+.myshots-text-pre {
   /* Data version of static/img/my-shots.svg */
   background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIwLjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxNiAxNiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTYgMTY7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojNEQ0RDREO30KPC9zdHlsZT4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTEyLDEyaDR2MmMwLDEuMS0wLjksMi0yLDJoLTJWMTJMMTIsMTJ6IE0wLDEyaDR2NEgyYy0xLjEsMC0yLTAuOS0yLTJWMTJMMCwxMnogTTEyLDZoNHY0aC00VjZMMTIsNnogTTYsNmg0djQKCUg2VjZMNiw2eiBNMCw2aDR2NEgwVjZMMCw2eiBNMTIsMGgyYzEuMSwwLDIsMC45LDIsMnYyaC00VjBMMTIsMHogTTYsMGg0djRINlYwTDYsMHogTTYsMTJoNHY0SDZWMTJMNiwxMnogTTAsMmMwLTEuMSwwLjktMiwyLTJoMgoJdjRIMFYyTDAsMnoiLz4KPC9zdmc+Cg==");
   background-position: left center;
@@ -421,7 +382,7 @@ $overlay-z-index: 9999999999;
   width: 24px;
 }
 
-.pageshot-post-myshots {
+.myshots-text-post {
   /* Data version of static/img/arrow-right.svg */
   background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIwLjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxNiAxNiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTYgMTY7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojMzMzMzMzO30KPC9zdHlsZT4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTUuNywyLjhMNS43LDIuOGMwLjQtMC40LDEuMS0wLjQsMS41LDBMMTIuNCw4bC01LjEsNS4yYy0wLjQsMC40LTEuMSwwLjQtMS41LDBsMCwwYy0wLjQtMC40LTAuNC0xLjEsMC0xLjUKCUw5LjQsOEw1LjcsNC4yQzUuMywzLjgsNS4zLDMuMiw1LjcsMi44eiIvPgo8L3N2Zz4K");
   background-position: right center;
@@ -433,94 +394,13 @@ $overlay-z-index: 9999999999;
   width: 20px;
 }
 
-.pageshot-myshots-text {
+.myshots-text {
   flex: 0;
   position: relative;
   top: 1px;
 }
 
-.pageshot-select-mode-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(#000, 0.7);
-  z-index: 9999999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.pageshot-select-mode {
-  position: relative;
-  width: 380px;
-  height: 200px;
-  background-color: #fcfcfc;
-  text-align: center;
-  padding-top: 1.5em !important;
-  padding-bottom: 1.5em !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  font-size: 14px;
-}
-
-.pageshot-select-mode-square-button {
-  width: 90px;
-  height: 90px;
-  padding-top: 0.25em;
-  box-sizing: border-box;
-  border: 0;
-  border-image-width: 0;
-  cursor: pointer;
-  background-color: #fcfcfc;
-}
-
-.pageshot-select-mode-button {
-  position: absolute;
-  bottom: 0;
-  width: 190px;
-  height: 40px;
-  padding-top: 0.25em;
-  box-sizing: border-box;
-  border: 0;
-  border-image-width: 0;
-  border-top: 1px solid #d4d4d4;
-  background-color: #efefef;
-  cursor: pointer;
-}
-
-.pageshot-crosshair-pulse {
-  position: fixed;
-  top: 20%;
-  left: 60%;
-  margin-left: -20px;
-  margin-top: -20px;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  border: 1px solid rgba(#ff0, 0.5);
-  z-index: $overlay-z-index + 1000;
-  background-image: radial-gradient(20px at 50% 50%, rgba(#ff0, 0.1), rgba(#ff0, 0.5));
-  animation-name: pageshot-pulse;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  animation-iteration-count: 20;
-}
-
-.pageshot-crosshair-inner {
-  position: fixed;
-  top: 20%;
-  left: 60%;
-  margin-left: -4px;
-  margin-top: -4px;
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-  background-color: #fff;
-  z-index: $overlay-z-index + 101;
-}
-
-@keyframes pageshot-pulse {
+@keyframes pulse {
   0% {
     transform: scale(1);
   }
@@ -534,75 +414,7 @@ $overlay-z-index: 9999999999;
   }
 }
 
-
-.pageshot-horizcross.pageshot-crosshair-preview {
-  top: 20%;
-}
-
-.pageshot-vertcross.pageshot-crosshair-preview {
-  left: 60%;
-}
-
-.pageshot-myshots-reminder {
-  display: flex;
-  position: fixed;
-  z-index: $overlay-z-index + 20;
-  top: -17px;
-  left: 10px;
-
-  &.pageshot-myshots-reminder-chrome {
-    top: 44px;
-  }
-}
-
-.pageshot-panel * {
-  box-sizing: border-box;
-  text-align: start;
-}
-
-.pageshot-myshots-reminder > .pageshot-panel {
-  background-clip: padding-box;
-  background-color: #fcfcfc;
-  border: 1px solid rgba(#181a1b, 0.2);
-  box-shadow: 0 3px 5px rgba(#181a1b, 0.1), 0 0 7px rgba(#181a1b, 0.1);
-  box-sizing: content-box;
-  color: #222426;
-  cursor: default;
-  display: flex;
-  flex-direction: column;
-  font: caption;
-  margin: 2em auto 0.5em;
-  padding: 0;
-  position: relative;
-  -moz-user-select: none;
-}
-
-.pageshot-myshots-reminder > .pageshot-panel > .pageshot-panel-arrowUp {
-  // From http://firefoxux.github.io/StyleGuide/static/77bfee72eee9836269c3062731a60ad7.png
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAOCAYAAAA1+Nx+AAABUklEQVR42p2STU6DQBSAn9ZSBFv8oVEwYdrUqtu2XsAT2Fbv0AU7woZFN5B0xYID9JhupCn1vWQ0L0AZ4+JbzAx83yMD3N65jRhidtKE6v2/iE8ZLYLvqUJKuRSeSdoMWrdUkSZ5i0k7iF6iUxeqBLbbLaxWK0iSpE6uSZnRd8QQX5ggs77jjWhPnmnlyHq9hizLII5jAN/3IQzDOnkHOTe9Sdd2xYjkeZ5/Hg6H/Xzx/oqRsSkmPQr9fA2PRFEEm80GIE3TY3KDBFxeFMUXQZG3+RIjgiLWsUgQBNAkt2x38EDy3W73Ky9HbEc8yohZFwH2p7Sr8vspn7wh8sQiOo8ALdhlmlxemVwduWQRjdwgFwZyQQ9U5WrkxcvI9ApdXenUQS4sPLhG+bgs/2fkhpzkpkCPqrY79FD+rJArI4vlxwsOOqCBKQK4ydmrReoId34DYcLiW8YxuloAAAAASUVORK5CYII=");
-  background-position: 12px top;
-  background-repeat: no-repeat;
-  height: 14px;
-  margin-top: -14px;
-  pointer-events: none;
-  position: absolute;
-  width: 100%;
-}
-
-.pageshot-myshots-reminder > .pageshot-panel > .pageshot-panel-section {
-  display: flex;
-  flex-direction: row;
-}
-
-.pageshot-myshots-reminder > .pageshot-panel > .pageshot-panel-section-header {
-  padding: 16px;
-}
-
-.pageshot-myshots-reminder > .pageshot-panel > .pageshot-panel-section-header > .pageshot-text-section-list {
-  font-size: 13px;
-}
-
-@keyframes pageshot-fade-in {
+@keyframes fade-in {
   0% {
     opacity: 0;
   }
@@ -612,54 +424,11 @@ $overlay-z-index: 9999999999;
   }
 }
 
-.pageshot-hover-highlight {
-  animation: pageshot-fade-in 500ms forwards;
+.hover-highlight {
+  animation: fade-in 500ms forwards;
   opacity: 0;
   position: absolute;
   border: 1px dashed rgba($link-blue, 0.5);
   pointer-events: none;
   z-index: $overlay-z-index+1;
-}
-
-.pageshot-saver {
-  position: fixed;
-  z-index: $overlay-z-index + 100;
-  background-color: #fcfcfc;
-  color: #333;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  top: 0;
-  left: 0;
-  height: 40px;
-  width: 100%;
-  box-shadow: 0 -1px 1px rgba(#000, 0.4) inset;
-
-  a,
-  a:visited,
-  a:link,
-  a:hover {
-    color: #000;
-    text-decoration: none;
-  }
-
-  .pageshot-save-help {
-    display: inline-block;
-    padding-top: 9px;
-    padding-left: 10px;
-    font-size: 13px;
-  }
-
-  .pageshot-save {
-    border-radius: 4px;
-    background: #0996f8;
-    color: #fff;
-    box-shadow: 0 0 10px #ff0;
-    border: 1px solid #0675d3;
-  }
-
-  .pageshot-cancel {
-    border-radius: 4px;
-    color: #858585;
-    background-color: #fcfcfc;
-    border: 1px solid #d4d4d4;
-  }
 }

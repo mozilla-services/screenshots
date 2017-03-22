@@ -38,10 +38,11 @@ case "$channel" in
       echo "Please set \$DOCKER_USERNAME to your dockerhub username"
       exit 3
     fi
-    rm -f build/pageshot.zip
+    rm -f build/screenshots.zip
     # Forces update of the add-on version:
+    mkdir -p build
     touch build/.backend.txt
-    PAGESHOT_BACKEND=https://pageshot.dev.mozaws.net PAGESHOT_SENTRY="$dev_sentry" make zip
+    SCREENSHOTS_BACKEND=https://pageshot.dev.mozaws.net SCREENSHOTS_SENTRY="$dev_sentry" make zip
     ./bin/build-docker-image $DOCKER_USERNAME
     echo
     echo "Next step: upload build/eb-app-latest.zip to http://amzn.to/1NuC3N9"
@@ -52,10 +53,10 @@ case "$channel" in
       echo "  git checkout stable ; git pull"
       exit 4
     fi
-    rm -f build/pageshot.zip
+    rm -f build/screenshots.zip
     # Forces update of the add-on version:
     touch build/.backend.txt
-    PAGESHOT_BACKEND=https://pageshot.stage.mozaws.net PAGESHOT_SENTRY="$stage_sentry" make zip
+    SCREENSHOTS_BACKEND=https://pageshot.stage.mozaws.net SCREENSHOTS_SENTRY="$stage_sentry" make zip
     ./bin/build-docker-image mozilla
     echo
     echo "Stage deployment automatically triggered, see #pageshot IRC for status"
@@ -67,9 +68,9 @@ case "$channel" in
       exit 5
     fi
     # FIXME: we shouldn't add a timestamp onto the end of the version here
-    PAGESHOT_MINOR_VERSION=0 PAGESHOT_BACKEND=https://pageshot.net PAGESHOT_SENTRY="$prod_sentry" make signed_xpi
+    SCREENSHOTS_MINOR_VERSION=0 SCREENSHOTS_BACKEND=https://pageshot.net SCREENSHOTS_SENTRY="$prod_sentry" make signed_xpi
     echo
-    echo "Prod xpi created, email build/pageshot.xpi to wclouser@mozilla.com"
+    echo "Prod xpi created, email build/screenshots.xpi to wclouser@mozilla.com"
     ;;
   *)
     echo "Unknown channel: $channel"
@@ -77,4 +78,4 @@ case "$channel" in
     exit 2
 esac
 
-which growlnotify > /dev/null && growlnotify -m "Page Shot Deploy/container for ${channel} completed"
+which growlnotify > /dev/null && growlnotify -m "Screenshots Deploy/container for ${channel} completed"

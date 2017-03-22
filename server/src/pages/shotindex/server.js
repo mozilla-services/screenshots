@@ -8,7 +8,7 @@ exports.app = app;
 
 app.get("/", function (req, res) {
   if (! req.deviceId) {
-    res.redirect('/?pageshot-not-installed');
+    res.redirect('/?extension-not-installed');
     return;
   }
   let query = req.query.q || null;

@@ -1,7 +1,6 @@
 /Profile
 .DS_Store
-pageshot.xpi
-pageshot.update.rdf
+screenshots.xpi
 *.pyc
 dist
 dist-production

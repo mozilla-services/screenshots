@@ -4,12 +4,8 @@ BABEL := babel --retain-lines
 RSYNC := rsync --archive
 VENV := .venv
 .DEFAULT_GOAL := help
-# Sets $(PAGESHOT_BACKEND) to http://localhost:10080 only if it isn't set
-PAGESHOT_BACKEND ?= http://localhost:10080
-
-# This forces bin/build-scripts/write_ga_id to be run before anything else, which
-# writes the configured Google Analytics ID to build/ga-id.txt
-_dummy := $(shell ./bin/build-scripts/write_ga_id)
+# Sets $(SCREENSHOTS_BACKEND) to http://localhost:10080 only if it isn't set
+SCREENSHOTS_BACKEND ?= http://localhost:10080
 
 # Here we have source/dest variables for many files and their destinations;
 # we use these each to enumerate categories of source files, and translate
@@ -95,7 +91,7 @@ build/%.html: %.html
 addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/shot.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/defaultSentryDsn.js
 
 EXPORT_MC_LOCATION := $(shell echo $${EXPORT_MC_LOCATION-../gecko})
-GIT_EXPORT_DIR := $(EXPORT_MC_LOCATION)/browser/extensions/pageshot
+GIT_EXPORT_DIR := $(EXPORT_MC_LOCATION)/browser/extensions/screenshots
 DIST_EXPORT_DIR := addon
 
 ifeq ($(shell uname -s),Linux)
@@ -126,7 +122,7 @@ export_addon: addon
 zip: addon
 	# FIXME: should remove web-ext-artifacts/*.zip first
 	./node_modules/.bin/web-ext build --source-dir addon/webextension/
-	mv web-ext-artifacts/page_shot*.zip build/pageshot.zip
+	mv web-ext-artifacts/firefox_screenshots*.zip build/screenshots.zip
 	# We'll try to remove this directory, but it's no big deal if we can't:
 	@rmdir web-ext-artifacts || true
 
@@ -134,7 +130,7 @@ zip: addon
 signed_xpi: addon
 	rm -f web-ext-artifacts/*.xpi
 	./node_modules/.bin/web-ext sign --api-key=${AMO_USER} --api-secret=${AMO_SECRET} --source-dir addon/webextension/
-	mv web-ext-artifacts/*.xpi build/pageshot.xpi
+	mv web-ext-artifacts/*.xpi build/screenshots.xpi
 
 .PHONY: addon_locales
 addon_locales:
@@ -191,7 +187,7 @@ build/server/static/js/shotindex-bundle.js: $(shotindex_dependencies)
 
 leave_dependencies := $(shell ./bin/build-scripts/bundle_dependencies leave getdeps "$(server_dest)")
 build/server/static/js/leave-bundle.js: $(leave_dependencies)
-	./bin/build-scripts/bundle_dependencies leave build ./build/server/pages/leave-page-shot/controller.js
+	./bin/build-scripts/bundle_dependencies leave build ./build/server/pages/leave-screenshots/controller.js
 
 creating_dependencies := $(shell ./bin/build-scripts/bundle_dependencies creating getdeps "$(server_dest)")
 build/server/static/js/creating-bundle.js: $(creating_dependencies)
@@ -225,16 +221,16 @@ build/.backend.txt: set_backend
 
 .PHONY: set_backend
 set_backend:
-	@echo "Setting backend to ${PAGESHOT_BACKEND}"
-	./bin/build-scripts/set_file build/.backend.txt $(PAGESHOT_BACKEND)
+	@echo "Setting backend to ${SCREENSHOTS_BACKEND}"
+	./bin/build-scripts/set_file build/.backend.txt $(SCREENSHOTS_BACKEND)
 
 addon/webextension/build/defaultSentryDsn.js: set_sentry
 
 .PHONY: set_sentry
 set_sentry:
-	@if [[ -z "$(PAGESHOT_SENTRY)" ]] ; then echo "No default Sentry" ; fi
-	@if [[ -n "$(PAGESHOT_SENTRY)" ]] ; then echo "Setting default Sentry ${PAGESHOT_SENTRY}" ; fi
-	./bin/build-scripts/set_file addon/webextension/build/defaultSentryDsn.js "window.defaultSentryDsn = '${PAGESHOT_SENTRY}';null;"
+	@if [[ -z "$(SCREENSHOTS_SENTRY)" ]] ; then echo "No default Sentry" ; fi
+	@if [[ -n "$(SCREENSHOTS_SENTRY)" ]] ; then echo "Setting default Sentry ${SCREENSHOTS_SENTRY}" ; fi
+	./bin/build-scripts/set_file addon/webextension/build/defaultSentryDsn.js "window.defaultSentryDsn = '${SCREENSHOTS_SENTRY}';null;"
 
 
 build/.npm-install.log: package.json
@@ -252,7 +248,7 @@ all: addon server
 
 .PHONY: clean
 clean:
-	rm -rf build/ addon/webextension/build/ addon/webextension/manifest.json addon/webextension/_locales/
+	rm -rf build/ addon/webextension/build/ addon/webextension/manifest.json addon/install.rdf addon/webextension/_locales/
 
 .PHONY: distclean
 distclean: clean
@@ -272,7 +268,7 @@ help:
 	@echo "  make clean"
 	@echo "    rm -rf build/ addon/webextension/build"
 	@echo "  make zip"
-	@echo "    make a zip of the webextension in build/pageshot.zip"
+	@echo "    make a zip of the webextension in build/screenshots.zip"
 	@echo "See also:"
 	@echo "  bin/run-addon"
 	@echo "  bin/run-server"

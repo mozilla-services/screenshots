@@ -28,9 +28,9 @@ class Body extends React.Component {
           <div className="large-icon-message-container">
             <div className="large-icon logo" />
             <div className="large-icon-message-string">
-              This will permanently erase all of your Page Shot data.
+              This will permanently erase all of your Firefox Screenshots data.
             </div>
-            <form action="/leave-page-shot/leave" method="POST" className="responsive-wrapper row-center">
+            <form action="/leave-screenshots/leave" method="POST" className="responsive-wrapper row-center">
               <button type="submit" onClick={ this.onClickDelete.bind(this) } className="button warning">
                 Proceed
               </button>
@@ -48,8 +48,8 @@ class Body extends React.Component {
         <div className="column-center full-height inverse-color-scheme">
           <div className="large-icon-message-container">
             <div className="large-icon check" />
-            <div className="large-icon-message-string">All of your Page Shot data has been erased.<br/>
-              You can uninstall the Page Shot add-on via Test Pilot
+            <div className="large-icon-message-string">All of your Firefox Screenshots data has been erased.<br/>
+              You can uninstall the Firefox Screenshots add-on via Test Pilot
             </div>
             <div className="responsive-wrapper row-center">
               <a className="button primary" href="https://testpilot.firefox.com/experiments/page-shot">Go to Test Pilot</a>
@@ -61,7 +61,7 @@ class Body extends React.Component {
   }
 
   onClickDelete() {
-    sendEvent("leave-page-shot", "leave-button", {useBeacon: true});
+    sendEvent("leave-service", "leave-button", {useBeacon: true});
   }
 
   onClickCancel() {

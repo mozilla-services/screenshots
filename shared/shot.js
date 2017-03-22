@@ -293,7 +293,7 @@ class AbstractShot {
     let date = new Date(this.createdDate);
     filenameTitle = filenameTitle.replace(/[\/!@&*.|\n\r\t]/g, " ");
     filenameTitle = filenameTitle.replace(/\s+/g, " ");
-    let clipFilename = `Page-Shot-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${filenameTitle}`;
+    let clipFilename = `Screenshot-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${filenameTitle}`;
     const clipFilenameBytesSize = clipFilename.length * 2; // JS STrings are UTF-16
     if (clipFilenameBytesSize > 251) { // 255 bytes (Usual filesystems max) - 4 for the ".png" file extension string
       const excedingchars = (clipFilenameBytesSize - 246) / 2; // 251 - 5 for ellipsis "[...]"
@@ -572,7 +572,9 @@ class _Clip {
     assert(typeof id == "string" && id, "Bad Clip id:", id);
     this._id = id;
     this.createdDate = json.createdDate;
-    assert((! ('sortOrder' in json)) || typeof json.sortOrder == "number" || ! json.sortOrder, "Bad Clip sortOrder:", json.sortOrder);
+    if ('sortOrder' in json) {
+      assert(typeof json.sortOrder == "number" || ! json.sortOrder, "Bad Clip sortOrder:", json.sortOrder);
+    }
     if ('sortOrder' in json) {
       this.sortOrder = json.sortOrder;
     } else {

@@ -1,7 +1,7 @@
 const config = require("./config").getProperties();
 
 require("mozlog").config({
-  app: "pageshot-server",
+  app: "screenshots-server",
   fmt: "pretty",
   level: config.log.level,
   debug: config.log.lint
@@ -234,7 +234,7 @@ app.use("/homepage", express.static(path.join(__dirname, "static/homepage"), {
 app.use(morgan("combined"));
 
 app.use(function (req, res, next) {
-  let authHeader = req.headers['x-pageshot-auth'];
+  let authHeader = req.headers['x-screenshots-auth'];
   let authInfo = {};
   if (authHeader) {
     authInfo = decodeAuthHeader(authHeader);
@@ -280,16 +280,6 @@ function decodeAuthHeader(header) {
   let abTests = b64DecodeJson(abTestsEncoded);
   return {deviceId, abTests};
 }
-
-app.use(function (req, res, next) {
-  // FIXME: remove this as part of removing all export-related functions
-  // (was used for the exporter process to act as the user)
-  let magicAuth = req.headers['x-magic-auth'];
-  if (magicAuth && dbschema.getTextKeys().indexOf(magicAuth) != -1) {
-    req.deviceId = req.headers['x-device-id'];
-  }
-  next();
-});
 
 app.use(function (req, res, next) {
   req.staticLink = linker.staticLink;
@@ -366,7 +356,7 @@ app.get("/install-raven.js", function (req, res) {
 });
 
 app.get("/favicon.ico", function (req, res) {
-  res.redirect(301, "/static/img/pageshot-icon-32.png");
+  res.redirect(301, "/static/img/icon-32.png");
 });
 
 app.post("/error", function (req, res) {
@@ -832,7 +822,7 @@ app.get("/images/:imageid", function (req, res) {
 app.get("/__version__", function (req, res) {
   let response = {
     source: "https://github.com/mozilla-services/pageshot/",
-    description: "Page Shot application server",
+    description: "Firefox Screenshots application server",
     version: selfPackage.version,
     buildDate: buildTime,
     commit: linker.getGitRevision(),
@@ -868,8 +858,8 @@ app.get("/__heartbeat__", function (req, res) {
 
 app.get("/contribute.json", function (req, res) {
   let data = {
-    name: "Page Shot",
-    description: "Page Shot is an add-on for Firefox and a service for screenshots and other ways to capture and share content",
+    name: "Firefox Screenshots",
+    description: "Firefox Screenshots is an add-on for Firefox and a service for screenshots",
     repository: {
       url: "https://github.com/mozilla-services/pageshot/",
       license: "MPL2",
@@ -1005,7 +995,7 @@ if (! config.disableMetrics) {
 
 app.use("/shots", require("./pages/shotindex/server").app);
 
-app.use("/leave-page-shot", require("./pages/leave-page-shot/server").app);
+app.use("/leave-screenshots", require("./pages/leave-screenshots/server").app);
 
 app.use("/terms", require("./pages/legal/server").app);
 

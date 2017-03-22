@@ -1,4 +1,4 @@
-This document details the process we use to deploy Page Shot to our stage and production environments.
+This document details the process we use to deploy Firefox Screenshots to our stage and production environments.
 
 ## Overview of schedule ##
 
@@ -73,7 +73,7 @@ Any issues should be reported in the deployment bug.
 
 If no issues are found, Softvision will note in the bug.
 
-**Page Shot team is still responsible for final approval for push to production.**
+**The Screenshots team is still responsible for final approval for push to production.**
 
 On the following Monday, during our checkin, Softvision will give us an update on status of stage.
 
@@ -84,7 +84,7 @@ Once we are comfortable that the site has been tested, file a bugzilla bug to de
 Rebuild the XPI with:
 
 ```
-PAGESHOT_BACKEND=https://pageshot.net make signed_xpi
+SCREENSHOTS_BACKEND=https://pageshot.net make signed_xpi
 ```
 
 Send the XPI to Wil for deployment on the static site.
@@ -97,7 +97,7 @@ We'll target Wednesday 8AM pacific time for deployment.
 
 Softvision will verify production for us, and report any bugs on Wednesday.
 
-Once we have verified production, update the Page Shot GA account with an annotation including sprint information. Example: "1.0.1 release" Oct. 25th.
+Once we have verified production, update the Screenshots GA account with an annotation including sprint information. Example: "1.0.1 release" Oct. 25th.
 
 Close deployment issue, and give it a `qa:verified` label.
 

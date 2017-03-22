@@ -92,7 +92,7 @@ const queries = {
     columns: [
       {title: "Number of users", name: "user_count"},
       {title: "Days the user has been creating shots", name: "days_plus_1"},
-      {title: "Week the user started using Page Shot", type: "date", name: "first_created_week"}
+      {title: "Week the user started using Screenshots", type: "date", name: "first_created_week"}
     ]
   },
 
@@ -203,7 +203,7 @@ exports.createModel = function (req) {
   return getQueries().then((data) => {
     data = JSON.parse(data);
     let model = {
-      title: "Page Shot Metrics",
+      title: "Firefox Screenshots Metrics",
       data: data
     };
     return {serverModel: model, jsonModel: model};

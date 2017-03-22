@@ -85,7 +85,7 @@ window.auth = (function () {
         } else {
           initialized = true;
           let jsonResponse = JSON.parse(req.responseText);
-          console.info("Page Shot logged in");
+          console.info("Screenshots logged in");
           analytics.sendEvent("login");
           saveAuthInfo(jsonResponse);
           if (ownershipCheck) {
@@ -94,6 +94,12 @@ window.auth = (function () {
             resolve(true);
           }
         }
+      });
+      req.onerror = catcher.watchFunction(() => {
+        let exc = new Error("Connection failed");
+        exc.url = loginUrl;
+        exc.popupMessage = "CONNECTION_ERROR";
+        reject(exc);
       });
       req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
       req.send(uriEncode({
@@ -143,7 +149,7 @@ window.auth = (function () {
     }
     return initPromise.then(() => {
       if (authHeader) {
-        return {"x-pageshot-auth": authHeader};
+        return {"x-screenshots-auth": authHeader};
       } else {
         console.warn("No auth header available");
         return {};

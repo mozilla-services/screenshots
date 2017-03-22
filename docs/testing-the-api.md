@@ -41,7 +41,7 @@ Returns 404 if no user by that id, 401 if the login failed, and returns 200 on s
 
 Like /api/register, it sets the session authentication cookie.
 
-`POST /leave-page-shot/leave`
+`POST /leave-screenshots/leave`
 
 Authenticated.  Deletes entire account.  Uses session token to determine who to delete.
 
@@ -65,7 +65,7 @@ Authenticated.  Creates or updates a shot.  Takes a JSON body.  Looks like:
 {
   "deviceId": "anonf54641fa-ea19-3648-ba07-10c98d13726e",
   "url": "https://github.com/mozilla-services/pageshot/issues/1237",
-  "docTitle": "PageShot erases everything in my clipboard · Issue #1237 · mozilla-services/pageshot",
+  "docTitle": "Screenshots erases everything in my clipboard · Issue #1237 · mozilla-services/pageshot",
   "createdDate": 1468983767525,
   "favicon": "https://assets-cdn.github.com/favicon.ico",
   "images": [
@@ -92,7 +92,7 @@ Authenticated.  Creates or updates a shot.  Takes a JSON body.  Looks like:
       "image": {
         "url": "data:...",
         "captureType": "selection",
-        "text": "Steps to reproduce:\nInstall PageShot add-on.\nCopy some text into your clipboard.\n\"Shot\" a page and then try and paste your step 2 clipboard contents somewhere.\nActual results:\nYour clipboard contents from step 2 are erased by step 3.\nExpected results:",
+        "text": "Steps to reproduce:\nInstall Screenshots add-on.\nCopy some text into your clipboard.\n\"Shot\" a page and then try and paste your step 2 clipboard contents somewhere.\nActual results:\nYour clipboard contents from step 2 are erased by step 3.\nExpected results:",
         "location": {
           "top": 329,
           "left": 308,
@@ -156,10 +156,6 @@ Not authenticated.  Gets a saved S3 image.  Typically the `PUT` request will ret
 `GET /{random_id}/{domain}`
 
 Not authenticated.  Gets the HTML page for a shot.
-
-`GET https://pageshot-usercontent.net/content/{random_id}/{domain}`
-
-Not authenticated.  Gets the HTML for the iframe that's embedded in the shot page.
 
 `GET /shots`
 

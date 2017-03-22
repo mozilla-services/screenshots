@@ -6,7 +6,7 @@ This contains all the files for the WebExtension.  Most files are not "built", b
 - There are three workers/processes:
   1. The background page, in `background/`
   2. The selector content worker, in `selector/`
-  3. The site helper that communicates with the Page Shot website, in `site-helper.js`
+  3. The site helper that communicates with the Firefox Screenshots website, in `site-helper.js`
 - The background process is loaded according to a list in `manifest.json.template` – if there are load order dependencies, they must be manually managed with that list
 - The selector content worker is loaded with a list in `background/selectorLoader.js`.  Again this must be manually maintained.
 - The site helper worker is loaded via a separate list in `manifest.json.template`
