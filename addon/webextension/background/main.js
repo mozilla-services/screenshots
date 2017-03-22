@@ -40,8 +40,12 @@ window.main = (function () {
       });
   }
 
+  function shouldOpenMyShots(url) {
+    return /^about:(?:newtab|blank)/i.test(url) || /^resource:\/\/activity-streams\//i.test(url);
+  }
+
   browser.browserAction.onClicked.addListener(catcher.watchFunction((tab) => {
-    if (tab.url.match(/about:(newtab|blank)/i)) {
+    if (shouldOpenMyShots(tab.url)) {
       catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
         sendEvent("goto-myshots", "about-newtab");
       }));
@@ -77,6 +81,27 @@ window.main = (function () {
         .then(() => sendEvent("start-shot", "context-menu")));
   }));
 
+  function urlEnabled(url) {
+    if (shouldOpenMyShots(url)) {
+      return true;
+    }
+    if (url.startsWith(backend) || /^(?:about|data|moz-extension):/i.test(url)) {
+      return false;
+    }
+    return true;
+  }
+
+
+  browser.tabs.onUpdated.addListener(catcher.watchFunction((id, info, tab) => {
+    if (info.url && tab.selected) {
+      if (urlEnabled(info.url)) {
+        browser.browserAction.enable(tab.id);
+      }
+      else {
+        browser.browserAction.disable(tab.id);
+      }
+    }
+  }));
 
   communication.register("sendEvent", (sender, ...args) => {
     catcher.watchPromise(sendEvent(...args));
