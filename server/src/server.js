@@ -863,7 +863,7 @@ app.get("/contribute.json", function (req, res) {
     repository: {
       url: "https://github.com/mozilla-services/screenshots/",
       license: "MPL2",
-      tests: "https://travis-ci.org/mozilla-services/pageshot"
+      tests: "https://circleci.com/gh/mozilla-services/screenshots"
     },
     participate: {
       home: "https://github.com/mozilla-services/screenshots/",
