@@ -269,6 +269,8 @@ help:
 	@echo "    rm -rf build/ addon/webextension/build"
 	@echo "  make zip"
 	@echo "    make a zip of the webextension in build/screenshots.zip"
+	@echo "  make signed_xpi"
+	@echo "    make a signed xpi in build/screenshots.xpi"
 	@echo "See also:"
 	@echo "  bin/run-addon"
 	@echo "  bin/run-server"
