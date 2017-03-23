@@ -1,0 +1,30 @@
+{
+  "name": "firefox-screenshots-review",
+  "version": "5.2.0",
+  "author": "Mozilla (https://mozilla.org/)",
+  "bugs": {
+    "url": "https://github.com/mozilla-services/screenshots/issues"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "pontoon-to-webext": "1.0.2"
+  },
+  "homepage": "https://pageshot.dev.mozaws.net",
+  "license": "MPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mozilla-services/screenshots.git"
+  },
+  "scripts": {
+    "lint": "npm-run-all lint:*",
+    "lint:addon": "make zip && addons-linter ./build/screenshots.zip -o text",
+    "lint:flake8": "make flake8",
+    "lint:js": "eslint .",
+    "lint:sass": "sass-lint -v -q",
+    "postlint": "nsp check -o summary",
+    "nsp": "nsp check",
+    "posttest": "npm run lint",
+    "test": "make zip && mocha test/"
+  }
+}
