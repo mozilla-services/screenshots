@@ -8,6 +8,7 @@ exports.createModel = function (req) {
   }
   let serverModel = {
     title,
+    hasDeviceId: req.deviceId || null,
     defaultSearch: query || null
   };
   serverModel.shots = req.shots;
