@@ -97,15 +97,6 @@ window.main = (function () {
         title: browser.i18n.getMessage("notificationLinkCopiedTitle"),
         message: browser.i18n.getMessage("notificationLinkCopiedDetails", pasteSymbol)
       });
-    } else {
-      catcher.watchPromise(browser.tabs.query({active: true, currentWindow: true})
-      .then((tabs) => {
-        for (let tab of tabs) {
-          if(tab.url.match(/\/creating/i)) {
-            catcher.watchPromise(browser.tabs.remove(tab.id));
-          }
-        }
-      }));
     }
   });
 
