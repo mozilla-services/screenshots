@@ -1,0 +1,51 @@
+.large-icon-message-container {
+  @include flex-container(column, center, stretch);
+  animation: fade-in 150ms forwards;
+  flex: 1;
+  min-height: 240px;
+  margin: 0 auto;
+  opacity: 0;
+
+  .large-icon {
+    animation: pop 150ms ease-in;
+    animation-delay: 150ms;
+    background: no-repeat center center;
+    background-size: auto 270px;
+    flex: 0 0 270px;
+    min-width: 200px;
+    opacity: 0.3;
+    position: relative;
+
+    &.logo {
+      background-image: url("../img/scissors-icon.svg");
+      background-size: 200px auto;
+    }
+
+    &.logo-no-shots {
+      background-image: url("../img/myshots-no-shots.svg");
+    }
+
+    &.logo-no-search-results {
+      background-image: url("../img/no-search-results.svg");
+    }
+
+    &.check {
+      background-image: url("../img/check.svg")
+    }
+
+    &.pulse {
+      animation: pulse ease-in-out 1500ms;
+    }
+
+    &.forever {
+      animation-iteration-count: infinite;
+    }
+  }
+
+  .large-icon-message-string {
+    margin: 24px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 26px;
+  }
+}

@@ -1,0 +1,38 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  margin: 0;
+}
+
+a {
+  color: $link-blue;
+  text-decoration: none;
+
+  &.underline {
+    text-decoration: underline;
+  }
+}
+
+p,
+ul,
+ol,
+blockquote {
+  line-height: 1.44em;
+}
+
+.small {
+  font-size: 12px;
+  line-height: 16px;
+  margin: 5px 0;
+  opacity: .7;
+}
