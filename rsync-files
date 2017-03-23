@@ -24,7 +24,7 @@ rsync -rvalp \
   --exclude rsync-files \
   --exclude ABOUT.md \
   --exclude .git \
-  --exclude .gitignore \
+  --exclude .babelrc \
   --exclude /.ebextensions/ \
   --exclude /setup.cfg \
   --exclude package.json \
@@ -34,12 +34,19 @@ rsync -rvalp \
   --exclude ".docker*" \
   --include /bin/ \
   --include /bin/build-scripts/ \
+  --include /bin/build-scripts/css_to_js.py \
+  --include /bin/build-scripts/modularize \
+  --include /bin/build-scripts/set_file \
+  --include /bin/build-scripts/update_manifest.py \
+  --exclude "/bin/build-scripts/*" \
   --exclude "/bin/*" \
   --include /static/ \
   --include /static/js/ \
   --include /static/js/wantsauth.js \
   --exclude "/static/js/*" \
-  --include /static/js/css/ \
+  --include /static/css/ \
   --include /static/css/inline-selection.scss \
+  --include /static/css/partials/ \
+  --exclude "/static/css/*" \
   --exclude "/static/*" \
   $SCREENSHOTS_LOCATION .
