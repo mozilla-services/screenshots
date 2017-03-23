@@ -1,0 +1,434 @@
+@import "partials/variables";
+@import "partials/mixins";
+@import "partials/buttons";
+@import "partials/theme";
+
+// This is how far outside the selection the mover target extends:
+$mover-outer: 10px;
+
+// And this is how far inside the selection it extends:
+$mover-inner: 40px;
+
+// This is the size of the little blue handles:
+$handle-size: 25px;
+
+// And the size when the selection is "small":
+$handle-size-small: 10px;
+
+// This is how far out of the box the handles go:
+$handle-outside-extent: 0;
+
+// And some calculated values based on these that will be used below:
+$handle-mover-offset: $mover-outer - $handle-outside-extent / 2;
+$mover-size: $mover-outer + $mover-inner;
+$overlay-z-index: 9999999999;
+
+.highlight {
+  position: absolute;
+  cursor: move;
+  border: 1px dashed rgba($link-blue, 0.5);
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
+  z-index: $overlay-z-index;
+}
+
+.highlight-buttons {
+  @include flex-container(row, center, center, wrap);
+  position: absolute;
+  bottom: -55px;
+  right: 0;
+  z-index: 6;
+
+  .bottom-selection & {
+    bottom: 5px;
+  }
+}
+
+.highlight-button-cancel {
+  @extend .button;
+  @extend .secondary;
+  background: $very-light-grey url("MOZ_EXTENSION/icons/cancel.svg") center center no-repeat;
+  background-size: 18px 18px;
+  margin: 5px;
+  width: 40px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: darken($very-light-grey, 7) url("MOZ_EXTENSION/icons/cancel.svg") center center no-repeat;
+    background-size: 18px 18px;
+  }
+}
+
+.highlight-button-save {
+  @extend .button;
+  @extend .primary;
+  font-size: 18px;
+  margin: 5px;
+  width: 80px;
+}
+
+.highlight-button-download {
+  @extend .button;
+  @extend .secondary;
+  background: $very-light-grey url("MOZ_EXTENSION/icons/download.svg") center center no-repeat;
+  background-size: 18px 18px;
+  margin: 5px;
+  width: 40px;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: darken($very-light-grey, 7) url("MOZ_EXTENSION/icons/download.svg") center center no-repeat;
+    background-size: 18px 18px;
+  }
+}
+
+.highlight-button-cancel,
+.highlight-button-download {
+  opacity: 0.9;
+  transition: opacity 250ms;
+
+  &:hover,
+  &:focus,
+  &:active {
+    opacity: 1;
+  }
+}
+
+.mover-target {
+  position: absolute;
+  z-index: 5;
+  pointer-events: auto;
+}
+
+.highlight,
+.mover-target {
+  background-color: transparent;
+  background-image: none;
+}
+
+.mover-target,
+.bghighlight {
+  border: 0;
+}
+
+.mover-target.direction-topLeft {
+  cursor: nwse-resize;
+  top: -$mover-outer;
+  left: -$mover-outer;
+  width: $mover-size;
+  height: $mover-size;
+}
+
+.mover-target.direction-top {
+  cursor: ns-resize;
+  top: -$mover-outer;
+  left: 0;
+  width: 100%;
+  height: $mover-size;
+  // It will be too wide, but this will place it below topLeft/etc:
+  z-index: 4;
+}
+
+.mover-target.direction-topRight {
+  cursor: nesw-resize;
+  top: -$mover-outer;
+  right: -$mover-outer;
+  height: $mover-size;
+  width: $mover-size;
+}
+
+.mover-target.direction-left {
+  cursor: ew-resize;
+  top: 0;
+  left: -$mover-outer;
+  height: 100%;
+  width: $mover-size;
+  z-index: 4;
+}
+
+.mover-target.direction-right {
+  cursor: ew-resize;
+  top: 0;
+  right: -$mover-outer;
+  height: 100%;
+  width: $mover-size;
+  z-index: 4;
+}
+
+.mover-target.direction-bottomLeft {
+  cursor: nesw-resize;
+  left: -$mover-outer;
+  bottom: -$mover-outer;
+  width: $mover-size;
+  height: $mover-size;
+}
+
+.mover-target.direction-bottom {
+  cursor: ns-resize;
+  left: 0;
+  bottom: -$mover-outer;
+  width: 100%;
+  height: $mover-size;
+  z-index: 4;
+}
+
+.mover-target.direction-bottomRight {
+  cursor: nwse-resize;
+  bottom: -$mover-outer;
+  right: -$mover-outer;
+  width: $mover-size;
+  height: $mover-size;
+}
+
+.mover-target:hover .mover {
+  opacity: 1;
+}
+
+.mover {
+  background-color: $link-blue;
+  border-radius: 2px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1) inset;
+  height: $handle-size;
+  opacity: 0.5;
+  position: absolute;
+  transition: opacity 150ms, width 150ms, height 150ms;
+  width: $handle-size;
+  z-index: 1001;
+
+  .small-selection & {
+    height: $handle-size-small;
+    width: $handle-size-small;
+  }
+}
+
+.direction-topLeft .mover {
+  top: $handle-mover-offset;
+  left: $handle-mover-offset;
+}
+
+.direction-top .mover {
+  top: $handle-mover-offset;
+  left: 50%;
+  margin-left: -$handle-size / 2;
+
+  .small-selection & {
+    margin-left: -$handle-size-small / 2;
+  }
+}
+
+.direction-topRight .mover {
+  top: $handle-mover-offset;
+  right: $handle-mover-offset;
+}
+
+.direction-left .mover {
+  top: 50%;
+  margin-top: -$handle-size / 2;
+  left: $handle-mover-offset;
+
+  .small-selection & {
+    margin-top: -$handle-size-small / 2;
+  }
+}
+
+.direction-right .mover {
+  top: 50%;
+  margin-top: -$handle-size / 2;
+  right: $handle-mover-offset;
+
+  .small-selection & {
+    margin-top: -$handle-size-small / 2;
+  }
+}
+
+.direction-bottomLeft .mover {
+  bottom: $handle-mover-offset;
+  left: $handle-mover-offset;
+}
+
+.direction-bottom .mover {
+  left: 50%;
+  margin-left: -$handle-size / 2;
+  bottom: $handle-mover-offset;
+
+  .small-selection & {
+    margin-left: -$handle-size-small / 2;
+  }
+}
+
+.direction-bottomRight .mover {
+  right: $handle-mover-offset;
+  bottom: $handle-mover-offset;
+}
+
+.bghighlight {
+  position: absolute;
+  background-color: rgba(#323232, 0.5);
+  z-index: $overlay-z-index;
+}
+
+.preview-overlay {
+  align-items: center;
+  background-color: rgba(#000, 0.5);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: $overlay-z-index;
+}
+
+.pixel-dimensions {
+  position: absolute;
+  pointer-events: none;
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 70%;
+  color: #000;
+  text-shadow:
+      -1px -1px 0 #fff,
+      1px -1px 0 #fff,
+      -1px 1px 0 #fff,
+      1px 1px 0 #fff;
+}
+
+// FIXME: some of the styles in .fixed-container were copied from
+// .preview-overlay and are probably unnecessary
+.fixed-container {
+  pointer-events: none;
+  position: absolute;
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  width: 100%;
+}
+
+.preview-instructions {
+  @include flex-container(row, center, center);
+  pointer-events: none;
+  animation: pulse ease-in-out 200ms;
+  background-color: rgba(#000, 0.6);
+  border-radius: 20px;
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 12pt;
+  font-weight: bold;
+  margin: 0 auto;
+  min-height: 20px;
+  padding: 10px 20px;
+  vertical-align: middle;
+  z-index: 999999999;
+}
+
+.myshots-button {
+  @extend .button;
+  @extend .secondary;
+  @include flex-container(row, center, center);
+  font-family: sans-serif;
+  pointer-events: all;
+  position: absolute;
+  right: 25px;
+  top: 15px;
+  width: 116px;
+}
+
+/* styleMyShotsButton test: */
+.styleMyShotsButton-control .myshots-button {
+}
+
+.styleMyShotsButton-bright .myshots-button {
+  color: #fff;
+  background: $link-blue;
+}
+
+.styleMyShotsButton-bright .myshots-text-pre,
+.styleMyShotsButton-bright .myshots-text-post {
+  filter: brightness(20);
+}
+
+/* end styleMyShotsButton test */
+
+.visible {
+  @extend .myshots-button;
+  pointer-events: all;
+  top: 60px;
+}
+
+.full-page {
+  @extend .myshots-button;
+  pointer-events: all;
+  top: 105px;
+}
+
+.myshots-text-pre {
+  /* Data version of static/img/my-shots.svg */
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIwLjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxNiAxNiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTYgMTY7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojNEQ0RDREO30KPC9zdHlsZT4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTEyLDEyaDR2MmMwLDEuMS0wLjksMi0yLDJoLTJWMTJMMTIsMTJ6IE0wLDEyaDR2NEgyYy0xLjEsMC0yLTAuOS0yLTJWMTJMMCwxMnogTTEyLDZoNHY0aC00VjZMMTIsNnogTTYsNmg0djQKCUg2VjZMNiw2eiBNMCw2aDR2NEgwVjZMMCw2eiBNMTIsMGgyYzEuMSwwLDIsMC45LDIsMnYyaC00VjBMMTIsMHogTTYsMGg0djRINlYwTDYsMHogTTYsMTJoNHY0SDZWMTJMNiwxMnogTTAsMmMwLTEuMSwwLjktMiwyLTJoMgoJdjRIMFYyTDAsMnoiLz4KPC9zdmc+Cg==");
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  flex: 0 0 24px;
+  height: 16px;
+  width: 24px;
+}
+
+.myshots-text-post {
+  /* Data version of static/img/arrow-right.svg */
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIwLjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxNiAxNiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTYgMTY7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojMzMzMzMzO30KPC9zdHlsZT4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTUuNywyLjhMNS43LDIuOGMwLjQtMC40LDEuMS0wLjQsMS41LDBMMTIuNCw4bC01LjEsNS4yYy0wLjQsMC40LTEuMSwwLjQtMS41LDBsMCwwYy0wLjQtMC40LTAuNC0xLjEsMC0xLjUKCUw5LjQsOEw1LjcsNC4yQzUuMywzLjgsNS4zLDMuMiw1LjcsMi44eiIvPgo8L3N2Zz4K");
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  flex: 0 0 20px;
+  height: 16px;
+  opacity: 0.6;
+  width: 20px;
+}
+
+.myshots-text {
+  flex: 0;
+  position: relative;
+  top: 1px;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.06);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.hover-highlight {
+  animation: fade-in 500ms forwards;
+  opacity: 0;
+  position: absolute;
+  border: 1px dashed rgba($link-blue, 0.5);
+  pointer-events: none;
+  z-index: $overlay-z-index+1;
+}

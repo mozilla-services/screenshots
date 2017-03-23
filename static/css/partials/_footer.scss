@@ -1,0 +1,66 @@
+.footer {
+
+  @include respond-to('small') {
+    .legal-links {
+      @include flex-container(column, flex-start, stretch);
+    }
+
+    .responsive-wrapper {
+      width: 100%;
+    }
+
+    a {
+      margin-bottom: 5px;
+    }
+
+    .mozilla-logo {
+      margin-bottom: 10px;
+    }
+  }
+
+  @include respond-to('medium') {
+    .legal-links {
+      @include flex-container(row, flex-end, flex-end);
+      height: 20px;
+    }
+  }
+
+  padding: $base-gutter;
+
+  .row-space-end {
+    @include respond-to('small') {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  a {
+    font-size: 12px;
+  }
+
+  .legal-links a {
+    line-height: 12px;
+    margin-right: 16px;
+  }
+  
+  .inverse-color-scheme & a {
+    opacity: .5;
+  }
+
+  .default-color-scheme & a {
+    color: $light-grey;
+  }
+
+  .mozilla-logo {
+    background-image: url("../img/mozilla.svg");
+    background-repeat: no-repeat;
+    background-size: auto 32px;
+    display: block;
+    height: 32px;
+    width: 120px;
+  }
+
+  .default-color-scheme & .mozilla-logo {
+    filter: invert(50%);
+  }
+}

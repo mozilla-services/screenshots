@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+
+set -e
+
+bin="$(dirname ${BASH_SOURCE[0]})"
+base="$(dirname $bin)"
+
+if [[ -z "$ORIGINAL_SCRIPT" ]] ; then
+  # Because this command uses git, we have to make sure we're only running the
+  # non-version-tracked copy of this script
+  copy_filename="$bin/.$(basename $0)-copy"
+  cp "$0" "$copy_filename"
+  chmod +x "$copy_filename"
+  export ORIGINAL_SCRIPT="$0"
+  exec $copy_filename "$@"
+fi
+
+help () {
+  script="$(basename $ORIGINAL_SCRIPT)"
+  echo "Usage:"
+  echo "  $script VERSION"
+  echo "This will change the package.json versions, tag, and merge to stable"
+  echo "  (Confirmation is required before doing these actions)"
+}
+
+update_version () {
+  filename="$1"
+  new_version="$2"
+  new_content="$(python -c '
+import re, sys
+content = sys.stdin.read()
+def repl(match):
+  #print("Matches:", match.group(0), match.group(1))
+  return match.group(1) + sys.argv[1] + "\""
+print(re.sub("(\"version\":\\s*\")([^\"]+)\"", repl, content).strip())
+' $new_version < $filename)"
+  echo "$new_content" > $filename
+}
+
+current_branch () {
+  git symbolic-ref --short HEAD
+}
+
+if [[ "$1" = "-h" || "$1" = "--help" ]] ; then
+  help
+  exit
+fi
+
+version="$1"
+if [[ -z "$version" ]] ; then
+  echo "Error: you must provide a VERSION"
+  help
+  exit 1
+fi
+
+if python -c 'import re, sys; sys.exit(bool(re.search(r"^\d+\.\d+\.\d+$", sys.argv[1])))' "$version" ; then
+  echo "Invalid version: $version"
+  help
+  exit 2
+fi
+
+if [[ "$(current_branch)" != "master" ]] ; then
+  echo "Error: the current branch must be master (not $(current_branch))"
+  help
+  exit 3
+fi
+
+echo "This will:
+  Update the package.json versions to $version
+  Commit the those file changes
+  Tag master as $version
+  Push the commit and tags to master
+  Merge master into stable"
+echo
+echo "Hit enter to continue (^C to abort)"
+read
+
+git pull
+update_version $base/package.json $version
+update_version $base/addon/package.json $version
+git commit -m "Bump version to $version" $base/package.json $base/addon/package.json
+git tag $version
+git push --tags
+git checkout stable
+git pull
+git merge master
+git push
+
+echo
+echo "Done: the next step is ./bin/release-version"

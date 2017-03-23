@@ -1,0 +1,251 @@
+@import "partials/partials";
+
+.notification {
+  @include flex-container(row, space-between, center);
+  border-bottom: 1px solid rgba(#000, 0.1);
+  font-size: 12px;
+  padding: 10px;
+  position: relative;
+  z-index: 1;
+
+  .close {
+    background-image: url("../img/glyph-stop-16.svg");
+    background-position: right center;
+    background-repeat: no-repeat;
+    flex: 0 0 26px;
+    height: 16px;
+    opacity: 0.3;
+  }
+}
+
+.frame-header {
+  @include respond-to("medium") {
+    @include flex-container(row, space-between, stretch);
+    box-shadow: 0 1px 0 rgba(#000, 0.3), 0 0 20px rgba(#000, 0.2);
+    min-height: 72px;
+  }
+
+  @include respond-to("small") {
+    @include flex-container(column, space-between, stretch);
+    background: none;
+  }
+
+}
+
+.left {
+  @include respond-to("medium") {
+    @include flex-container(row, flex-start, center);
+    margin-right: 10px;
+    overflow: hidden;
+  }
+
+  @include respond-to("small") {
+    @include flex-container(row, flex-start, center);
+    background: $body-background-color;
+    border-bottom: 1px solid rgba(#000, 0.1);
+    width: 100%;
+    height: 60px;
+  }
+
+  flex: 1;
+  position: relative;
+}
+
+.right {
+  @include flex-container(row, flex-end, center);
+
+  @include respond-to("medium") {
+    > div,
+    > .button {
+      margin-right: 18px;
+    }
+  }
+
+  @include respond-to("small") {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 5px;
+
+    > div,
+    > .button {
+      margin-left: 5px;
+    }
+  }
+}
+
+.shot-info {
+  @include flex-container(column, center, flex-start);
+  color: $black;
+  height: 56px;
+  overflow: hidden;
+
+  > div {
+    white-space: nowrap;
+  }
+}
+
+.back-to-index {
+  @include flex-container(row, flex-start, center);
+  background-image: url("../img/my-shots.svg");
+  background-repeat: no-repeat;
+  padding: 0 10px 0 24px;
+}
+
+.back-to-home {
+  background-image: url("../img/scissors-icon.svg");
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: 32px auto;
+  height: 34px;
+  padding-left: 42px;
+
+  > span {
+    display: block;
+    text-align: left;
+  }
+
+  .sub {
+    font-size: 12px;
+  }
+}
+
+.shot-title,
+.shot-subtitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shot-title {
+  font-size: 16px;
+  height: 32px;
+  padding: 6px 22px 6px 0;
+
+  &.saving {
+    opacity: 0.7;
+  }
+
+  &.editable {
+    cursor: default;
+
+    &:hover {
+      background-image: url("/static/img/pencil.svg");
+      background-position: center right;
+      background-repeat: no-repeat;
+      background-size: 16px 16px;
+    }
+  }
+}
+
+.shot-title-input {
+  border: 1px solid $border-color;
+  border-radius: 3px;
+  font-size: 16px;
+  height: 32px;
+  padding: 0 10px;
+}
+
+.shot-subtitle {
+
+  @include respond-to("small") {
+    display: none;
+  }
+
+  @include flex-container(row, flex-start, center);
+  font-size: 12px;
+  height: 22px;
+  line-height: 16px;
+  opacity: 0.9;
+}
+
+.clock-icon {
+  background-image: url("../img/glyph-history-16.svg");
+  background-position: top center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  height: 16px;
+  opacity: 0.5;
+  width: 26px;
+}
+
+.clip-container {
+  @include flex-container(row, center, center);
+  flex: 1;
+  margin: 20px auto;
+  max-width: 90%;
+
+  > a img {
+    box-shadow: 0 0 0 1px rgba(#000, 0.3), 0 0 20px rgba(#000, 0.2);
+
+  }
+}
+
+.share-panel {
+  @include respond-to("small") {
+    width: 300px;
+    padding: 10px;
+    position: absolute;
+    margin: 0 auto;
+  }
+
+  border-radius: $border-radius;
+  box-shadow: 0 0 0 1px rgba(#000, 0.3), 0 0 20px rgba(#000, 0.2);
+  padding: 20px;
+  position: absolute;
+  right: 10px;
+  top: 65px;
+  width: 350px;
+
+  // When the extension notification box is up the panel gets aligned incorrectly;
+  // we add this extra class to fix this situation and bump the panel down:
+  &.share-panel-with-notification {
+    top: 102px;
+  }
+
+  img {
+    height: 54px;
+    width: 54px;
+  }
+
+  p {
+    margin-bottom: 5px;
+  }
+
+  .copy-shot-link-input {
+    border-radius: $border-radius;
+    border: 0;
+    box-shadow: 0 0 0 1px $border-color;
+    font-size: 16px;
+    height: 39px;
+    line-height: 40px;
+    margin-right: 10px;
+    padding: 5px;
+    position: relative;
+    width: 200px;
+  }
+
+  .copy-toggle {
+    flex: 1 0 70px;
+    padding: 0 10px;
+  }
+}
+
+#toggle-share {
+  img {
+    height: 20px;
+    margin-right: 6px;
+    width: 20px;
+  }
+}
+
+.link-button {
+  cursor: pointer;
+  color: $black;
+  background: transparent;
+  border: 1px solid #d4d4d4;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+#clip-image-context {
+  display: none;
+}

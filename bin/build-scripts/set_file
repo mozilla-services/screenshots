@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [[ -z "$1" ]] || [[ "$1" = "-h" ]] ; then
+  echo "Usage: $(basename $0) FILENAME VALUE"
+  echo "  Sets FILENAME to VALUE, does not update FILENAME if it wouldn't change"
+  exit 1
+fi
+
+output_file="$1"
+value="$2"
+
+mkdir -p "$(dirname $output_file)"
+if [[ ! -f "$output_file" ]] || [[ "$(cat $output_file)" != "$value" ]] ; then
+  echo -n "$value" > $output_file
+fi

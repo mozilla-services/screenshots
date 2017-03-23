@@ -1,0 +1,8 @@
+#!/bin/bash
+
+export USE_S3=true
+export USE_VIRTUAL_HOSTS=true
+
+export PATH="/app/node_modules/.bin:$PATH"
+
+cd /app && node -e 'require("babel-polyfill"); require("./build/server/server");'
