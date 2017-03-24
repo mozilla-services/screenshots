@@ -63,7 +63,8 @@ window.main = (function () {
   browser.contextMenus.create({
     id: "create-screenshot",
     title: browser.i18n.getMessage("contextMenuLabel"),
-    contexts: ["page"]
+    contexts: ["page"],
+    documentUrlPatterns: ["<all_urls>"]
   }, () => {
     // Note: unlike most browser.* functions this one does not return a promise
     if (browser.runtime.lastError) {
