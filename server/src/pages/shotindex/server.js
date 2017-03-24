@@ -12,12 +12,15 @@ app.get("/", function (req, res) {
     return;
   }
   let query = req.query.q || null;
-  Shot.getShotsForDevice(req.backend, req.deviceId, query).then((shots) => {
-    _render(shots);
-  }).catch((err) => {
-    res.type("txt").status(500).send("Error rendering page: " + err);
-    console.error("Error rendering page:", err);
-  });
+  let getShots = Promise.resolve([]);
+  if (req.deviceId) {
+    getShots = Shot.getShotsForDevice(req.backend, req.deviceId, query);
+  }
+  getShots.then(_render)
+    .catch((err) => {
+      res.type("txt").status(500).send("Error rendering page: " + err);
+      console.error("Error rendering page:", err);
+    });
 
   function _render(shots) {
     req.shots = shots || [];

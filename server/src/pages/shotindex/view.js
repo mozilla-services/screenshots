@@ -10,7 +10,7 @@ class Head extends React.Component {
   render() {
     return (
       <reactruntime.HeadTemplate {...this.props}>
-        <script src={ this.props.staticLink("/static/js/wantsauth.js") } />
+      { this.props.deviceId ? null : <script src={ this.props.staticLink("/static/js/wantsauth.js") } /> }
         <script src={ this.props.staticLink("/static/js/shotindex-bundle.js") } async></script>
         <link rel="stylesheet" href={ this.props.staticLink("/static/css/shot-index.css") } />
       </reactruntime.HeadTemplate>
@@ -74,7 +74,7 @@ class Body extends React.Component {
   renderNoDeviceId() {
     return (
       <div className="large-icon-message-container" key="no-shots-found">
-        <div className="large-icon logo-no-shots" />
+        <div className="large-icon logo-no-shots pulse forever" />
         <div className="large-icon-message-string">Looking for your shots...</div>
       </div>
     );
