@@ -101,22 +101,6 @@ class Terms extends React.Component {
   }
 }
 
-class Privacy extends React.Component {
-  render() {
-    return <div>
-      <p>
-        We care about your privacy. When Mozilla (that's us) collects information about you, our <a href="https://www.mozilla.org/privacy/" target="blank">Mozilla Privacy Policy</a> describes how we handle that information.
-      </p>
-      <p>
-        Firefox Screenshots is an experimental service for Test Pilot users that allows them to capture, save, and share images of webpages (“Shots”). For Test Pilot users of the Firefox Screenshots add-on and Firefox Screenshots service, the data we collect is described in the Firefox Screenshots Test Pilot experiment page and in the <a href="https://testpilot.firefox.com/privacy" target="_blank">Test Pilot Privacy Notice.</a>
-      </p>
-      <p>
-        For all visits to the Firefox Screenshots website (for example, if someone has shared a Shot with you), the data we collect is described in our <a href="https://www.mozilla.org/privacy/websites/" target="_blank">Websites, Communications & Cookies Privacy Notice</a>.
-      </p>
-    </div>;
-  }
-}
-
 class Head extends React.Component {
   render() {
     return (
@@ -134,12 +118,6 @@ class Body extends React.Component {
   }
 
   render() {
-    let content = null;
-    if (this.props.page === "terms") {
-      content = <Terms />;
-    } else {
-      content = <Privacy />;
-    }
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <div className="column-space full-height default-color-scheme">
@@ -148,7 +126,7 @@ class Body extends React.Component {
           </div>
           <div className="responsive-wrapper flex-1">
             <h2>{this.props.title}</h2>
-            { content }
+            <Terms />
           </div>
           <Footer forUrl="legal" {...this.props} />
         </div>
