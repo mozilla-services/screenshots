@@ -94,8 +94,8 @@ function handleMessage(msg, sender, sendReply) {
   }
 
   if (msg.funcName === "getTelemetryPref") {
-    let enableTelemetry = getBoolPref(TELEMETRY_ENABLED_PREF);
-    sendReply({type: "success", value: enableTelemetry});
+    let telemetryEnabled = getBoolPref(TELEMETRY_ENABLED_PREF);
+    sendReply({type: "success", value: telemetryEnabled});
   } else if (msg.funcName === "getOldDeviceInfo") {
     let oldDeviceInfo = prefs.prefHasUserValue(OLD_ADDON_PREF_NAME) && prefs.getCharPref(OLD_ADDON_PREF_NAME);
     sendReply({type: "success", value: oldDeviceInfo || null});
