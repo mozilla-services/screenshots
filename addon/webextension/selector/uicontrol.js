@@ -826,7 +826,7 @@ window.uicontrol = (function () {
   }
 
   function beforeunloadHandler() {
-    sendEvent("cancel-shot", "url-changed");
+    sendEvent("cancel-shot", "tab-load");
     exports.deactivate();
   }
 
