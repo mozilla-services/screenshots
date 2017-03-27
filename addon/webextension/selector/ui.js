@@ -232,13 +232,15 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
                  <div class="preview-overlay">
                    <div class="fixed-container">
                      <div class="preview-instructions"></div>
-                     <div class="myshots-button">
-                       <div class="myshots-text-pre"></div>
-                       <div class="myshots-text"></div>
-                       <div class="myshots-text-post"></div>
-                     </div>
-                     <div class="visible"></div>
-                     <div class="full-page"></div>
+                     <button class="myshots-button" tabindex="1">
+                       <div class="myshots-button-container">
+                         <div class="myshots-text-pre"></div>
+                         <div class="myshots-text"></div>
+                         <div class="myshots-text-post"></div>
+                       </div>
+                     </button>
+                     <button class="visible" tabindex="2"></button>
+                     <button class="full-page" tabindex="3"></button>
                    </div>
                  </div>
                </body>
@@ -291,6 +293,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       window.addEventListener("scroll", this.onScroll, false);
       window.addEventListener("resize", this.onResize, true);
       this.element.style.display = "";
+      this.element.focus();
     },
 
     onScroll: function () {
