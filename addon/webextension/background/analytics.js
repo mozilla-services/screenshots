@@ -70,5 +70,10 @@ window.analytics = (function () {
     });
   };
 
+  exports.getTelemetryPrefSync = function() {
+    catcher.watchPromise(exports.refreshTelemetryPref());
+    return !!telemetryPref;
+  };
+
   return exports;
 })();
