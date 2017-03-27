@@ -334,13 +334,18 @@ $overlay-z-index: 9999999999;
 .myshots-button {
   @extend .button;
   @extend .secondary;
-  @include flex-container(row, center, center);
+  display: block;
+  padding: 0;
   font-family: sans-serif;
   pointer-events: all;
   position: absolute;
   right: 25px;
   top: 15px;
-  width: 116px;
+  width: 136px;
+}
+
+.myshots-button-container {
+  @include flex-container(row, center, center);
 }
 
 /* styleMyShotsButton test: */
