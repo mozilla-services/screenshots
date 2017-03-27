@@ -8,16 +8,23 @@ exports.app = app;
 
 app.get("/", function (req, res) {
   if (! req.deviceId) {
-    res.redirect('/?extension-not-installed');
+    _render();
     return;
   }
   let query = req.query.q || null;
-  Shot.getShotsForDevice(req.backend, req.deviceId, query).then((shots) => {
-    req.shots = shots;
+  let getShots = Promise.resolve([]);
+  if (req.deviceId) {
+    getShots = Shot.getShotsForDevice(req.backend, req.deviceId, query);
+  }
+  getShots.then(_render)
+    .catch((err) => {
+      res.type("txt").status(500).send("Error rendering page: " + err);
+      console.error("Error rendering page:", err);
+    });
+
+  function _render(shots) {
+    req.shots = shots || [];
     const page = require("./page").page;
     reactrender.render(req, res, page);
-  }).catch((err) => {
-    res.type("txt").status(500).send("Error rendering page: " + err);
-    console.error("Error rendering page:", err);
-  });
+  }
 });

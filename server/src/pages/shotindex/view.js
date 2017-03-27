@@ -10,8 +10,9 @@ class Head extends React.Component {
   render() {
     return (
       <reactruntime.HeadTemplate {...this.props}>
-        <script src={this.props.staticLink("/static/js/shotindex-bundle.js")} async></script>
-        <link rel="stylesheet" href={this.props.staticLink("/static/css/shot-index.css")} />
+      { this.props.deviceId ? null : <script src={ this.props.staticLink("/static/js/wantsauth.js") } /> }
+        <script src={ this.props.staticLink("/static/js/shotindex-bundle.js") } async></script>
+        <link rel="stylesheet" href={ this.props.staticLink("/static/css/shot-index.css") } />
       </reactruntime.HeadTemplate>
     );
   }
@@ -31,7 +32,9 @@ class Body extends React.Component {
       children.push(this.renderShot(shot));
     }
     if (children.length === 0) {
-      if (this.props.defaultSearch) {
+      if (! this.props.hasDeviceId) {
+        children.push(this.renderNoDeviceId());
+      } else if (this.props.defaultSearch) {
         children.push(this.renderNoSearchResults());
       } else {
         children.push(this.renderNoShots());
@@ -64,6 +67,15 @@ class Body extends React.Component {
       <div className="large-icon-message-container" key="no-shots-found">
         <div className="large-icon logo-no-shots" />
         <div className="large-icon-message-string">Go forth and take shots!</div>
+      </div>
+    );
+  }
+
+  renderNoDeviceId() {
+    return (
+      <div className="large-icon-message-container" key="no-shots-found">
+        <div className="large-icon logo-no-shots pulse forever" />
+        <div className="large-icon-message-string">Looking for your shots...</div>
       </div>
     );
   }

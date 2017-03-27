@@ -2,16 +2,34 @@ const sendEvent = require("../../browser-send-event.js");
 const page = require("./page").page;
 const { AbstractShot } = require("../../../shared/shot");
 
+const TEN_SECONDS = 10 * 1000;
+
 let model;
 
 exports.launch = function (m) {
-  m.shots = m.shots.map((shot) => new AbstractShot(m.backend, shot.id, shot.json));
-  let match = /[\?&]q=([^&]+)/.exec(location.href);
-  if (match) {
-    m.defaultSearch = decodeURIComponent(match[1]);
+  if (m.hasDeviceId) {
+    m.shots = m.shots.map((shot) => new AbstractShot(m.backend, shot.id, shot.json));
+    let match = /[\?&]q=([^&]+)/.exec(location.href);
+    if (match) {
+      m.defaultSearch = decodeURIComponent(match[1]);
+    }
+    model = m;
+    render();
+    return;
   }
-  model = m;
-  render();
+  if (window.wantsauth) {
+    if (window.wantsauth.getAuthData()) {
+      location.reload();
+    } else {
+      let authTimeout = setTimeout(() => {
+        location.pathname = "";
+      }, TEN_SECONDS);
+      window.wantsauth.addAuthDataListener((data) => {
+        clearTimeout(authTimeout);
+        location.reload();
+      });
+    }
+  }
 };
 
 function render() {
