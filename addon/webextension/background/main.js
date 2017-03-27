@@ -49,7 +49,9 @@ window.main = (function () {
       catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
         sendEvent("goto-myshots", "about-newtab");
       }));
-      catcher.watchPromise(browser.tabs.update({url: backend + "/shots"}));
+      catcher.watchPromise(
+        auth.authHeaders()
+        .then(() => browser.tabs.update({url: backend + "/shots"})));
     } else {
       catcher.watchPromise(
         toggleSelector(tab)
@@ -111,7 +113,9 @@ window.main = (function () {
   });
 
   communication.register("openMyShots", (sender) => {
-    return browser.tabs.create({url: backend + "/shots"});
+    return catcher.watchPromise(
+      auth.authHeaders()
+      .then(() => browser.tabs.create({url: backend + "/shots"})));
   });
 
   communication.register("openShot", (sender, {url, copied}) => {
