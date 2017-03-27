@@ -104,9 +104,7 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 4. [x] Click Cancel `addon/cancel-shot/overlay-cancel-button`
 5. [x] Click Download `addon/download-shot/overlay-download-button`
 5. [x] Cancel because URL changed `addon/cancel-shot/url-changed` (when something that uses window.history "navigates" spontaneously away)
-6. [ ] Cancel because the tab is closed `addon/cancel-shot/tab-close` (FIXME: need to track)
-7. [ ] Cancel because the tab is navigated (such as entering something in the URL bar) `addon/cancel-shot/tab-load` (FIXME: need to track)
-8. [ ] Cancel because the tab is reloaded `addon/cancel-shot/tab-reload` (FIXME: need to track)
+7. [ ] Cancel because the tab is navigated (such as entering something in the URL bar), **or** the tab was closed, **or** the tab was reloaded `addon/cancel-shot/tab-load` (previously closing would emit `addon/cancel-shot/tab-close` and `addon/cancel-shot/tab-reload` for those cases)
 5. [x] Click My Shots `addon/goto-myshots/selection-button`
 6. [x] Go to My Shots by hitting the Screenshots button on a about:newtab page `addon/goto-myshots/about-newtab`
 6. [x] Click on "Save visible" `addon/capture-visible/selection-button`
@@ -120,11 +118,17 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 15. ~~Uninstall the add-on `addon/uninstall` (fired internally, regardless of how it is uninstalled)~~
 16. ~~Hit shot button on a page that can't be shot (XUL page) `addon/abort-start-shot/xul-page`~~
 17. [ ] Hit shot button on a page that uses `<frameset>` and can't be shot, `addon/abort-start-shot/frame-page` (FIXME: todo)
-17. [ ] Hit shot button on any about: page `addon/start-shot-about-page` (FIXME: todo)
-18. [ ] Hit shot button on any other non-http page `addon/start-shot-non-http/actual-scheme` (note: shooting still continues).  Full event is something like `addon/start-shot-non-http/file` (or `about`, `view-source`, `data`) (FIXME: todo)
-20. ~~Test pilot was present at install time `addon/test-pilot-installed`~~
-21. ~~Test pilot was not present at install time `addon/test-pilot-not-installed`~~
 99. Toggle shot button off `addon/cancel-shot/toolbar-button`
+
+Deprecated:
+
+1. Hit shot on any about: page, `addon/start-shot-about-page` (this has been disallowed)
+1. Hit shot on any non-http page, `addon/start-shot-non-http/actual-scheme` (only file: would be possible, and we no longer track)
+1. Test pilot was present at install time `addon/test-pilot-installed`~~
+1. Test pilot was not present at install time `addon/test-pilot-not-installed`~~
+1. Closing a tab would emit `addon/cancel-shot/tab-close`, now it emits `addon/cancel-shot/tab-load`
+1. Reloading a tab would emit `addon/cancel-shot/tab-reload`, now it emits `addon/cancel-shot/tab-load`
+1. Previously to the 54 launch there was `addon/start-shot/toolbar-pageshot-button` which was renamed to `addon/start-shot/toolbar-button`
 
 ##### Internal add-on events
 
