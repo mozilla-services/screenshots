@@ -477,7 +477,7 @@ window.uicontrol = (function () {
       if (ui.isHeader(event.target)) {
         return;
       }
-      mousedownPos = new Pos(event.pageX, event.pageY);
+      mousedownPos = new Pos(event.pageX + window.scrollX, event.pageY + window.scrollY);
       setState("draggingReady");
       event.stopPropagation();
       event.preventDefault();
@@ -507,8 +507,8 @@ window.uicontrol = (function () {
         selectedPos = new Selection(
           mousedownPos.x,
           mousedownPos.y,
-          event.pageX,
-          event.pageY);
+          event.pageX + window.scrollX,
+          event.pageY + window.scrollY);
         mousedownPos = null;
         setState("dragging");
       }
