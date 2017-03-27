@@ -33,7 +33,7 @@ window.main = (function () {
 
   function toggleSelector(tab) {
     return analytics.refreshTelemetryPref()
-      .then(() => selectorLoader.toggle())
+      .then(() => selectorLoader.toggle(tab.id))
       .then(active => {
         setIconActive(active, tab.id);
         return active;
