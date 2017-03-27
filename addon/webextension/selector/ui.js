@@ -128,6 +128,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       this.updateElementSize();
       this.element.style.display = "";
       this.initSizeWatch();
+      this.element.focus();
     },
 
     updateElementSize: function (force) {
