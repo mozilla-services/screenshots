@@ -43,7 +43,18 @@ window.shooter = (function () { // eslint-disable-line no-unused-vars
     return canvas.toDataURL();
   }
 
+  let isSaving = null;
+
   exports.takeShot = function (captureType, selectedPos) {
+    // isSaving indicates we're aleady in the middle of saving
+    // we use a timeout so in the case of a failure the button will
+    // still start working again
+    if (isSaving) {
+      return;
+    }
+    isSaving = setTimeout(() => {
+      isSaving = null;
+    }, 1000);
     selectedPos = selectedPos.asJson();
     let captureText = util.captureEnclosedText(selectedPos);
     let dataUrl = screenshotPage(selectedPos);
