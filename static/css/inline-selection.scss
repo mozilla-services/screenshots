@@ -71,6 +71,8 @@ $overlay-z-index: 9999999999;
 .highlight-button-download {
   @extend .button;
   @extend .secondary;
+  // Overrides display: flex from .button, which causes hover problems
+  display: block;
   background: $very-light-grey url("MOZ_EXTENSION/icons/download.svg") center center no-repeat;
   background-size: 18px 18px;
   margin: 5px;
