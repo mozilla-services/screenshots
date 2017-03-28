@@ -539,8 +539,8 @@ Shot.deleteEverythingForDevice = function (backend, deviceId) {
     if (! ids.length) {
       ids = [deviceId];
     }
-    let deleteSql = `DELETE FROM devices WHERE
-     id IN (${db.markersForArgs(1, ids.length)})`;
+    let deleteSql = `DELETE FROM data WHERE
+     deviceid IN (${db.markersForArgs(1, ids.length)})`;
     return db.update(
       deleteSql,
       ids
