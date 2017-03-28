@@ -45,6 +45,7 @@ window.selectorLoader = (function () {
     },
     (error) => {
       exports.unloadIfLoaded();
+      catcher.unhandled(error);
       throw error;
     });
   };
