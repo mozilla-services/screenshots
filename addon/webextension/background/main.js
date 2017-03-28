@@ -27,7 +27,7 @@ window.main = (function () {
   }
 
   function setIconActive(active, tabId) {
-    const path = active ? "icons/icon-green-38.png" : "icons/icon-38.png";
+    const path = active ? "icons/icon-highlight-38.png" : "icons/icon-38.png";
     browser.browserAction.setIcon({path, tabId});
   }
 
