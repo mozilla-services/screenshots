@@ -286,7 +286,9 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
     hide: function () {
       window.removeEventListener("scroll", this.onScroll, false);
       window.removeEventListener("resize", this.onResize, true);
-      this.element.style.display = "none";
+      if (this.element) {
+        this.element.style.display = "none";
+      }
     },
 
     unhide: function () {
