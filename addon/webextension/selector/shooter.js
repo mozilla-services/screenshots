@@ -88,6 +88,11 @@ window.shooter = (function () { // eslint-disable-line no-unused-vars
     }).then((url) => {
       const copied = window.clipboard.copy(url);
       return callBackground("openShot", { url, copied });
+    }, (error) => {
+      if (error.name != "BackgroundError") {
+        // BackgroundError errors are reported in the Background page
+        throw error;
+      }
     }).then(() => uicontrol.deactivate()));
   };
 

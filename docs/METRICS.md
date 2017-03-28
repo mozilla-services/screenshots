@@ -1,5 +1,5 @@
-
 ## Firefox Screenshots Metrics
+
 *Last Update: 2017-03-21*
 
 This document is a summary of the metrics Firefox Screenshots will record, how we're recording them, and what we're looking for in those metrics.  There are two main areas we'll look at:
@@ -119,6 +119,10 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 16. ~~Hit shot button on a page that can't be shot (XUL page) `addon/abort-start-shot/xul-page`~~
 17. [ ] Hit shot button on a page that uses `<frameset>` and can't be shot, `addon/abort-start-shot/frame-page` (FIXME: todo)
 99. Toggle shot button off `addon/cancel-shot/toolbar-button`
+99. Bad response when trying to login `addon/login-failed/bad-response-CODE`
+99. Connection error trying to login `addon/login-failed/connection-error`
+99. Bad response when trying to register `addon/register-failed/bad-response-CODE`
+99. Connection error trying to register `addon/register-failed/connection-error`
 
 Deprecated:
 
