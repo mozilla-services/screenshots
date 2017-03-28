@@ -335,7 +335,7 @@ class AbstractShot {
     if (val) {
       assertUrl(val);
     }
-    this._url = val || undefined;
+    this._fullUrl = val || undefined;
   }
 
   get origin() {
