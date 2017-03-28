@@ -563,8 +563,8 @@ function sendAuthInfo(req, res, params) {
   let encodedAbTests = b64EncodeJson(userAbTests);
   let keygrip = dbschema.getKeygrip();
   let cookies = new Cookies(req, res, {keys: keygrip});
-  cookies.set("user", deviceId, {signed: true});
-  cookies.set("abtests", encodedAbTests, {signed: true});
+  cookies.set("user", deviceId, {signed: true, sameSite: 'lax'});
+  cookies.set("abtests", encodedAbTests, {signed: true, sameSite: 'lax'});
   let authHeader = `${deviceId}:${keygrip.sign(deviceId)};abTests=${encodedAbTests}:${keygrip.sign(encodedAbTests)}`;
   let responseJson = {
     ok: "User created",
