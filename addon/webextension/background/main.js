@@ -37,6 +37,10 @@ window.main = (function () {
       .then(active => {
         setIconActive(active, tab.id);
         return active;
+      })
+      .catch((error) => {
+        error.popupMessage = "UNSHOOTABLE_PAGE";
+        throw error;
       });
   }
 
