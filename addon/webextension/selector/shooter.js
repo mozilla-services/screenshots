@@ -107,6 +107,7 @@ window.shooter = (function () { // eslint-disable-line no-unused-vars
     }
     catcher.watchPromise(promise.then((dataUrl) => {
       ui.triggerDownload(dataUrl, shot.filename);
+      uicontrol.deactivate();
     }));
   };
 
