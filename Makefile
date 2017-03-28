@@ -93,6 +93,7 @@ addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install
 EXPORT_MC_LOCATION := $(shell echo $${EXPORT_MC_LOCATION-../gecko})
 GIT_EXPORT_DIR := $(EXPORT_MC_LOCATION)/browser/extensions/screenshots
 DIST_EXPORT_DIR := addon
+TEST_EXPORT_DIR := test/addon
 
 ifeq ($(shell uname -s),Linux)
   FIND_COMMAND := find $(GIT_EXPORT_DIR) -regextype posix-extended
@@ -113,6 +114,8 @@ export_addon: addon
 	$(FIND_COMMAND) -type f ! -regex \
 		'.*/(moz.build|README.txt|.gitignore|manifest.ini)' -delete
 	$(RSYNC) $(DIST_EXPORT_DIR)/* $(GIT_EXPORT_DIR)
+	@mkdir -p $(GIT_EXPORT_DIR)/test/browser
+	$(RSYNC) $(TEST_EXPORT_DIR)/* $(GIT_EXPORT_DIR)/test/browser
 
 	@echo "*****"
 		@echo "You will need to manually move/add/remove files to create the commit."
