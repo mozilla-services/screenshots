@@ -12,7 +12,6 @@ In alphabetical order:
 * Chris Karlof
 * Cory Price                        
 * Cosmin Muntean
-* Daniel Thorn
 * Daniel Thorn                        
 * Danny Coates                        
 * Diana Thayer
