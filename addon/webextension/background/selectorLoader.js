@@ -1,12 +1,16 @@
 /* globals browser, catcher */
 window.selectorLoader = (function () {
   const exports = {};
-  // These modules are loaded in order, and some need to be listed before others
-  // due to dependencies:
-  const scripts = [
+
+  // These modules are loaded in order, first standardScripts, then optionally onboardingScripts, and then selectorScripts
+  // The order is important due to dependencies
+  const standardScripts = [
     "catcher.js",
     "background/selectorLoader.js",
-    "selector/callBackground.js",
+    "selector/callBackground.js"
+  ];
+
+  const selectorScripts = [
     "clipboard.js",
     "makeUuid.js",
     "build/shot.js",
@@ -20,6 +24,13 @@ window.selectorLoader = (function () {
     "selector/uicontrol.js"
   ];
 
+  // These are loaded on request (by the selector worker) to activate the onboarding:
+  const onboardingScripts = [
+    "build/onboardingCss.js",
+    "build/onboardingHtml.js",
+    "onboarding/slides.js"
+  ];
+
   exports.unloadIfLoaded = function (tabId) {
     return browser.tabs.executeScript(tabId, {
       code: "window.selectorLoader && window.selectorLoader.unloadModules()"
@@ -28,7 +39,16 @@ window.selectorLoader = (function () {
     });
   };
 
-  exports.loadModules = function (tabId) {
+  exports.loadModules = function (tabId, hasSeenOnboarding) {
+    console.log("hasSeenOnboarding", hasSeenOnboarding);
+    if (hasSeenOnboarding) {
+      return executeModules(tabId, standardScripts.concat(selectorScripts));
+    } else {
+      return executeModules(tabId, standardScripts.concat(onboardingScripts).concat(selectorScripts));
+    }
+  };
+
+  function executeModules(tabId, scripts) {
     let lastPromise = Promise.resolve(null);
     scripts.forEach((file) => {
       lastPromise = lastPromise.then(() => {
@@ -48,11 +68,12 @@ window.selectorLoader = (function () {
       catcher.unhandled(error);
       throw error;
     });
-  };
+  }
 
   exports.unloadModules = function () {
     const watchFunction = catcher.watchFunction;
-    const moduleNames = scripts.map((filename) =>
+    let allScripts = selectorScripts.concat(onboardingScripts);
+    const moduleNames = allScripts.map((filename) =>
       filename.replace(/^.*\//, "").replace(/\.js$/, ""));
     moduleNames.reverse();
     for (let moduleName of moduleNames) {
@@ -69,11 +90,11 @@ window.selectorLoader = (function () {
     return true;
   };
 
-  exports.toggle = function (tabId) {
+  exports.toggle = function (tabId, hasSeenOnboarding) {
     return exports.unloadIfLoaded(tabId)
       .then(wasLoaded => {
         if (!wasLoaded) {
-          exports.loadModules(tabId);
+          exports.loadModules(tabId, hasSeenOnboarding);
         }
         return !wasLoaded;
       })

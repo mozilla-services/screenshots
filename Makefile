@@ -88,7 +88,7 @@ build/%.html: %.html
 	cp $< $@
 
 .PHONY: addon
-addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/shot.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/defaultSentryDsn.js
+addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/shot.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/defaultSentryDsn.js addon/webextension/build/onboardingCss.js addon/webextension/build/onboardingHtml.js
 
 EXPORT_MC_LOCATION := $(shell echo $${EXPORT_MC_LOCATION-../gecko})
 GIT_EXPORT_DIR := $(EXPORT_MC_LOCATION)/browser/extensions/screenshots
@@ -152,6 +152,14 @@ addon/webextension/build/shot.js: shared/shot.js
 addon/webextension/build/inlineSelectionCss.js: build/server/static/css/inline-selection.css
 	@mkdir -p $(@D)
 	./bin/build-scripts/css_to_js.py inlineSelectionCss $< > $@
+
+addon/webextension/build/onboardingCss.js: build/server/static/css/onboarding.css
+	@mkdir -p $(@D)
+	./bin/build-scripts/css_to_js.py onboardingCss $< > $@
+
+addon/webextension/build/onboardingHtml.js: addon/webextension/onboarding/slides.html
+	@mkdir -p $(@D)
+	./bin/build-scripts/css_to_js.py onboardingHtml $< > $@
 
 addon/webextension/build/raven.js: $(raven_source)
 	@mkdir -p $(@D)

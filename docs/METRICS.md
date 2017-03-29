@@ -134,6 +134,19 @@ Deprecated:
 1. Reloading a tab would emit `addon/cancel-shot/tab-reload`, now it emits `addon/cancel-shot/tab-load`
 1. Previously to the 54 launch there was `addon/start-shot/toolbar-pageshot-button` which was renamed to `addon/start-shot/toolbar-button`
 
+##### Onboarding metrics
+
+The onboarding slides have some events:
+
+1. Click on the next-slide button: `addon/navigate-slide/next`
+1. Click on the prev-slide button: `addon/navigate-slide/prev`
+1. Click on one of the dots to navigate to a specific slide: `addon/navigate-slide/goto`
+1. Cancel the slides by clicking on the background: `addon/cancel-slides/overlay`
+1. Cancel the slides by clicking on skip: `addon/cancel-slides/skip`
+1. Cancel the slides by hitting Escape: `addon/cancel-slides/keyboard-escape`
+1. Finish the slides by clicking on done: `addon/finish-slides/done`
+1. Visit a slide through any kind of navigation: `addon/visited-slide/slide-INDEX` (1-4)
+
 ##### Internal add-on events
 
 1. [x] Start an upload `addon/upload/started` with eventValue of Kb (1000 bytes)
