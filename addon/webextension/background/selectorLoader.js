@@ -45,6 +45,7 @@ window.selectorLoader = (function () {
     },
     (error) => {
       exports.unloadIfLoaded(tabId);
+      catcher.unhandled(error);
       throw error;
     });
   };
