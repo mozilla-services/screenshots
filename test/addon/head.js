@@ -1,3 +1,5 @@
+/* global CustomizableUI, info, Services */
+
 // Currently Screenshots is disabled in tests.  We want these tests to work under
 // either case that Screenshots is disabled or enabled on startup of the browser,
 // and that at the end we're reset to the correct state.
@@ -52,7 +54,7 @@ function promiseScreenshotsDisabled() {
   });
 }
 
-function promiseScreenshotsReset() {
+function promiseScreenshotsReset() { // eslint-disable-line no-unused-vars
   if (enabledOnStartup) {
     info("Reset is enabling Screenshots addon");
     return promiseScreenshotsEnabled();
