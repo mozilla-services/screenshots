@@ -50,7 +50,6 @@ const { Shot } = require("./servershot");
 const {
   checkLogin,
   registerLogin,
-  updateLogin,
   setState,
   checkState,
   tradeCode,
@@ -533,27 +532,6 @@ app.post("/api/register", function (req, res) {
   });
 });
 
-app.post("/api/update", function (req, res, next) {
-  if (! req.deviceId) {
-    next(errors.missingSession());
-    return;
-  }
-  if (! req.body) {
-    res.sendStatus(204);
-    return;
-  }
-  let { nickname, avatarurl } = req.body;
-  updateLogin(req.deviceId, { nickname, avatarurl }).then(ok => {
-    if (! ok) {
-      throw errors.badSession();
-    }
-    res.sendStatus(204);
-  }, err => {
-    console.warn("Error updating device info", err);
-    throw errors.badParams();
-  }).catch(next);
-});
-
 function sendAuthInfo(req, res, params) {
   let { deviceId, userAbTests } = params;
   if (deviceId.search(/^[a-zA-Z0-9_-]+$/) == -1) {
@@ -563,8 +541,8 @@ function sendAuthInfo(req, res, params) {
   let encodedAbTests = b64EncodeJson(userAbTests);
   let keygrip = dbschema.getKeygrip();
   let cookies = new Cookies(req, res, {keys: keygrip});
-  cookies.set("user", deviceId, {signed: true});
-  cookies.set("abtests", encodedAbTests, {signed: true});
+  cookies.set("user", deviceId, {signed: true, sameSite: 'lax'});
+  cookies.set("abtests", encodedAbTests, {signed: true, sameSite: 'lax'});
   let authHeader = `${deviceId}:${keygrip.sign(deviceId)};abTests=${encodedAbTests}:${keygrip.sign(encodedAbTests)}`;
   let responseJson = {
     ok: "User created",
@@ -627,19 +605,6 @@ app.post("/api/login", function (req, res) {
   }).catch(function (err) {
     errorResponse(res, JSON.stringify({"error": `Error in login: ${err}`}), err);
   });
-});
-
-app.post("/api/unload", function (req, res) {
-  let reason = req.body.reason;
-  reason = reason.replace(/[^a-zA-Z0-9]/g, "");
-  console.info("Device", req.deviceId, "unloaded for reason:", reason);
-  let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
-  // This erases the session cookie:
-  cookies.set("user");
-  cookies.set("user.sig");
-  cookies.set("abtests");
-  cookies.set("abtests.sig");
-  simpleResponse(res, "Noted", 200);
 });
 
 app.put("/data/:id/:domain", function (req, res) {

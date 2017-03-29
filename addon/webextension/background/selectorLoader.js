@@ -20,19 +20,19 @@ window.selectorLoader = (function () {
     "selector/uicontrol.js"
   ];
 
-  exports.unloadIfLoaded = function () {
-    return browser.tabs.executeScript({
+  exports.unloadIfLoaded = function (tabId) {
+    return browser.tabs.executeScript(tabId, {
       code: "window.selectorLoader && window.selectorLoader.unloadModules()"
     }).then(result => {
       return result && result.toString() === "true";
     });
   };
 
-  exports.loadModules = function () {
+  exports.loadModules = function (tabId) {
     let lastPromise = Promise.resolve(null);
     scripts.forEach((file) => {
       lastPromise = lastPromise.then(() => {
-        return browser.tabs.executeScript({file})
+        return browser.tabs.executeScript(tabId, {file})
           .catch((error) => {
             console.error("error in script:", file, error);
             error.scriptName = file;
@@ -44,7 +44,7 @@ window.selectorLoader = (function () {
       console.log("finished loading scripts:", scripts.join(" "), "->", browser.runtime.lastError || "no error");
     },
     (error) => {
-      exports.unloadIfLoaded();
+      exports.unloadIfLoaded(tabId);
       catcher.unhandled(error);
       throw error;
     });
@@ -69,11 +69,11 @@ window.selectorLoader = (function () {
     return true;
   };
 
-  exports.toggle = function () {
-    return exports.unloadIfLoaded()
+  exports.toggle = function (tabId) {
+    return exports.unloadIfLoaded(tabId)
       .then(wasLoaded => {
         if (!wasLoaded) {
-          exports.loadModules();
+          exports.loadModules(tabId);
         }
         return !wasLoaded;
       })

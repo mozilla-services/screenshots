@@ -50,9 +50,18 @@ window.auth = (function () {
           resolve(true);
           analytics.sendEvent("registered");
         } else {
+          analytics.sendEvent("register-failed", `bad-response-${req.status}`);
           console.warn("Error in response:", req.responseText);
-          reject(new Error("Bad response: " + req.status));
+          let exc = new Error("Bad response: " + req.status);
+          exc.popupMessage = "LOGIN_ERROR";
+          reject(exc);
         }
+      });
+      req.onerror = catcher.watchFunction(() => {
+        analytics.sendEvent("register-failed", "connection-error");
+        let exc = new Error("Error contacting server");
+        exc.popupMessage = "LOGIN_CONNECTION_ERROR";
+        reject(exc);
       });
       req.send(uriEncode({
         deviceId: registrationInfo.deviceId,
@@ -77,10 +86,14 @@ window.auth = (function () {
           }
         } else if (req.status >= 300) {
           console.warn("Error in response:", req.responseText);
-          reject(new Error("Could not log in: " + req.status));
+          let exc = new Error("Could not log in: " + req.status);
+          exc.popupMessage = "LOGIN_ERROR";
+          analytics.sendEvent("login-failed", `bad-response-${req.status}`);
+          reject(exc);
         } else if (req.status === 0) {
           let error = new Error("Could not log in, server unavailable");
-          analytics.sendEvent("login-failed");
+          error.popupMessage = "LOGIN_CONNECTION_ERROR";
+          analytics.sendEvent("login-failed", "connection-error");
           reject(error);
         } else {
           initialized = true;
@@ -96,6 +109,7 @@ window.auth = (function () {
         }
       });
       req.onerror = catcher.watchFunction(() => {
+        analytics.sendEvent("login-failed", "connection-error");
         let exc = new Error("Connection failed");
         exc.url = loginUrl;
         exc.popupMessage = "CONNECTION_ERROR";

@@ -27,16 +27,20 @@ window.main = (function () {
   }
 
   function setIconActive(active, tabId) {
-    const path = active ? "icons/icon-green-38.png" : "icons/icon-38.png";
+    const path = active ? "icons/icon-highlight-38.png" : "icons/icon-38.png";
     browser.browserAction.setIcon({path, tabId});
   }
 
   function toggleSelector(tab) {
     return analytics.refreshTelemetryPref()
-      .then(() => selectorLoader.toggle())
+      .then(() => selectorLoader.toggle(tab.id))
       .then(active => {
         setIconActive(active, tab.id);
         return active;
+      })
+      .catch((error) => {
+        error.popupMessage = "UNSHOOTABLE_PAGE";
+        throw error;
       });
   }
 

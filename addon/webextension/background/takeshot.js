@@ -47,8 +47,9 @@ window.takeshot = (function () {
       return browser.tabs.update(openedTab.id, {url: shot.viewUrl});
     }).then(() => {
       return shot.viewUrl;
-    }).catch(() => {
-      return browser.tabs.remove(openedTab.id);
+    }).catch((error) => {
+      browser.tabs.remove(openedTab.id);
+      throw error;
     }));
   }));
 

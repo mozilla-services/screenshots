@@ -58,6 +58,7 @@ window.catcher = (function () {
       console.error("------Error in promise:", e+"");
       console.error(e.stack);
       exports.unhandled(makeError(e));
+      throw e;
     });
   };
 

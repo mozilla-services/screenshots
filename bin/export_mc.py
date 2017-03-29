@@ -73,7 +73,7 @@ class RepoHandler():
 
 
 def exportToMozillaCentral(server, repoDir, mcRepoPath, mcSubDir, mcBranch,
-                           mcBaseCommit, commitMessage):
+                           noSwitchBranch, mcBaseCommit, commitMessage):
     print "Exporting to m-c"
 
     os.environ["EXPORT_MC_LOCATION"] = mcRepoPath
@@ -81,9 +81,10 @@ def exportToMozillaCentral(server, repoDir, mcRepoPath, mcSubDir, mcBranch,
 
     repo = RepoHandler(mcRepoPath)
 
-    repo.checkoutDefault(mcBaseCommit)
+    if not noSwitchBranch:
+        repo.checkoutDefault(mcBaseCommit)
 
-    repo.createBranch(mcBranch)
+        repo.createBranch(mcBranch)
 
     print "Exporting this repository to mozilla-central..."
 
@@ -123,12 +124,13 @@ def pushToTry(mcRepoPath, pushTry, onePlatform):
                "Failed to push to try")
 
 
-def main(server, mcRepoPath, mcSubDir, mcBranch, mcBaseCommit, commitMessage,
+def main(server, mcRepoPath, mcSubDir, mcBranch, noSwitchBranch,
+         mcBaseCommit, commitMessage,
          build=False, runTests=False, pushTry=False, onePlatform=False):
     repoDir = os.path.dirname(os.path.realpath(os.path.join(__file__, "..")))
 
     exportToMozillaCentral(server, repoDir, mcRepoPath, mcSubDir, mcBranch,
-                           mcBaseCommit, commitMessage)
+                           noSwitchBranch, mcBaseCommit, commitMessage)
 
     if build:
         buildMozillaCentral(mcRepoPath)
@@ -156,6 +158,9 @@ if __name__ == "__main__":
     parser.add_argument("-b", "--branch",
                         required=True,
                         help="The branch/bookmark name to use for the export.")
+    parser.add_argument("--no-switch-branch",
+                        action="store_true",
+                        help="Don't switch to the default branch, use the existing one.")
     parser.add_argument("--mozilla-central-base-commit",
                         default="central",
                         help="The base commit if using Mercurial, defaults to 'central' (tree label)")
@@ -180,6 +185,7 @@ if __name__ == "__main__":
     main(server=args.server, mcRepoPath=args.mozilla_central_repo,
          mcSubDir=args.mozilla_central_subdir,
          mcBaseCommit=args.mozilla_central_base_commit, mcBranch=args.branch,
+         noSwitchBranch=args.no_switch_branch,
          commitMessage=args.commit_message, build=args.build,
          runTests=args.run_tests, pushTry=args.push_to_try,
          onePlatform=args.single_platform)

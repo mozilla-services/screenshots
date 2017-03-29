@@ -4,10 +4,6 @@ window.clipboard = (function () {
   let exports = {};
 
   exports.copy = function (text) {
-    if(!text) {
-      catcher.unhandled(new Error("Screenshot could not be saved"));
-      return false;
-    }
     let el = document.createElement("textarea");
     document.body.appendChild(el);
     el.value = text;

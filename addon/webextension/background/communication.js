@@ -22,7 +22,8 @@ window.communication = (function () {
       result = func.apply(null, req.args);
     } catch (e) {
       console.error(`Error in ${req.funcName}:`, e, e.stack);
-      sendResponse({type: "error", name: e+""});
+      // FIXME: should consider using makeError from catcher here:
+      sendResponse({type: "error", message: e+""});
       return;
     }
     if (result && result.then) {
@@ -30,7 +31,7 @@ window.communication = (function () {
         sendResponse({type: "success", value: concreteResult});
       }, (errorResult) => {
         console.error(`Promise error in ${req.funcName}:`, errorResult, errorResult && errorResult.stack);
-        sendResponse({type: "error", name: errorResult+""});
+        sendResponse({type: "error", message: errorResult+""});
       });
       return true;
     } else {
