@@ -22,7 +22,8 @@ window.selectorLoader = (function () {
 
   exports.unloadIfLoaded = function (tabId) {
     return browser.tabs.executeScript(tabId, {
-      code: "window.selectorLoader && window.selectorLoader.unloadModules()"
+      code: "window.selectorLoader && window.selectorLoader.unloadModules()",
+      runAt: "document_start"
     }).then(result => {
       return result && result.toString() === "true";
     });
@@ -32,7 +33,10 @@ window.selectorLoader = (function () {
     let lastPromise = Promise.resolve(null);
     scripts.forEach((file) => {
       lastPromise = lastPromise.then(() => {
-        return browser.tabs.executeScript(tabId, {file})
+        return browser.tabs.executeScript(tabId, {
+          file,
+          runAt: "document_end"
+        })
           .catch((error) => {
             console.error("error in script:", file, error);
             error.scriptName = file;
