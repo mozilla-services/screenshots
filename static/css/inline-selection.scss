@@ -65,7 +65,7 @@ $overlay-z-index: 9999999999;
   @extend .primary;
   font-size: 18px;
   margin: 5px;
-  width: 80px;
+  min-width: 80px;
 }
 
 .highlight-button-download {
