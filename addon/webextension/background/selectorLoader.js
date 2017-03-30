@@ -7,7 +7,8 @@ window.selectorLoader = (function () {
   const standardScripts = [
     "catcher.js",
     "background/selectorLoader.js",
-    "selector/callBackground.js"
+    "selector/callBackground.js",
+    "selector/util.js"
   ];
 
   const selectorScripts = [
@@ -18,7 +19,6 @@ window.selectorLoader = (function () {
     "domainFromUrl.js",
     "build/inlineSelectionCss.js",
     "selector/documentMetadata.js",
-    "selector/util.js",
     "selector/ui.js",
     "selector/shooter.js",
     "selector/uicontrol.js"
@@ -72,7 +72,7 @@ window.selectorLoader = (function () {
 
   exports.unloadModules = function () {
     const watchFunction = catcher.watchFunction;
-    let allScripts = selectorScripts.concat(onboardingScripts);
+    let allScripts = standardScripts.concat(onboardingScripts).concat(selectorScripts);
     const moduleNames = allScripts.map((filename) =>
       filename.replace(/^.*\//, "").replace(/\.js$/, ""));
     moduleNames.reverse();
