@@ -233,6 +233,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
                  <div class="preview-overlay">
                    <div class="fixed-container">
                      <div class="preview-instructions"></div>
+                     <div class="myshots-all-buttons-container">
                      <button class="myshots-button" tabindex="1">
                        <div class="myshots-button-container">
                          <div class="myshots-text-pre"></div>
@@ -240,8 +241,9 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
                          <div class="myshots-text-post"></div>
                        </div>
                      </button>
-                     <button class="visible" tabindex="2"></button>
-                     <button class="full-page" tabindex="3"></button>
+                     <button class="myshots-button visible" tabindex="2"></button>
+                     <button class="myshots-button full-page" tabindex="3"></button>
+                     </div>
                    </div>
                  </div>
                </body>

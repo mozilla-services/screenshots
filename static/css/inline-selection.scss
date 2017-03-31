@@ -67,7 +67,7 @@ $overlay-z-index: 9999999999;
   @extend .primary;
   font-size: 18px;
   margin: 5px;
-  width: 80px;
+  min-width: 80px;
 }
 
 .highlight-button-download {
@@ -334,18 +334,21 @@ $overlay-z-index: 9999999999;
   vertical-align: middle;
   z-index: 999999999;
 }
+.myshots-all-buttons-container {
+  position: absolute;
+  right: 25px;
+  top: 15px;
+  min-width: 136px;
+}
 
 .myshots-button {
   @extend .button;
   @extend .secondary;
   display: block;
-  padding: 0;
+  margin-bottom: 5px;
   font-family: sans-serif;
   pointer-events: all;
-  position: absolute;
-  right: 25px;
-  top: 15px;
-  width: 136px;
+  width: 100%;
 }
 
 .myshots-button-container {
@@ -367,18 +370,6 @@ $overlay-z-index: 9999999999;
 }
 
 /* end styleMyShotsButton test */
-
-.visible {
-  @extend .myshots-button;
-  pointer-events: all;
-  top: 60px;
-}
-
-.full-page {
-  @extend .myshots-button;
-  pointer-events: all;
-  top: 105px;
-}
 
 .myshots-text-pre {
   /* Data version of static/img/my-shots.svg */
