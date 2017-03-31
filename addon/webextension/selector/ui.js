@@ -1,5 +1,5 @@
 /* globals window, document, console, browser */
-/* globals util, catcher, inlineSelectionCss */
+/* globals util, catcher, inlineSelectionCss, callBackground */
 
 window.ui = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
