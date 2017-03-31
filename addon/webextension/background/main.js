@@ -142,6 +142,18 @@ window.main = (function () {
     }
   });
 
+  communication.register("downloadShot", (sender, info) => {
+    // 'data:' urls don't work directly, let's use a Blob
+    // see http://stackoverflow.com/questions/40269862/save-data-uri-as-file-using-downloads-download-api
+    const binary = atob(info.url.split(',')[1]); // just the base64 data
+    const data = Uint8Array.from(binary, char => char.charCodeAt(0))
+    const blob = new Blob([data], {type: "image/png"})
+    return browser.downloads.download({
+      url: URL.createObjectURL(blob),
+      filename: info.filename
+    });
+  });
+
   communication.register("closeSelector", (sender) => {
     setIconActive(false, sender.tab.id)
   });

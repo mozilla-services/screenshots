@@ -615,17 +615,8 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
     exports.iframe.remove();
   };
 
-  exports.triggerDownload = function (dataUrl, filename) {
-    // We add this to the document and clean up internally so that deactivating the
-    // worker and removing the iframe doesn't affect this download
-    let a = document.createElement("a");
-    a.href = dataUrl;
-    a.setAttribute("download", filename);
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(watchFunction(() => {
-      document.body.removeChild(a);
-    }), 10000);
+  exports.triggerDownload = function (url, filename) {
+    return catcher.watchPromise(callBackground("downloadShot", {url, filename}));
   };
 
   exports.unload = exports.remove;
