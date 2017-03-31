@@ -1,3 +1,117 @@
+## Version 6.0.0
+
+This release is a port to WebExtensions, including a refactoring of most of the client!
+
+* Use webextension downloads api [9e46c14](https://github.com/mozilla-services/screenshots/commit/9e46c14)
+* Run the selector js on document_end instead of document_idle.  Fixes [#2525](https://github.com/mozilla-services/screenshots/issues/2525) [0cec951](https://github.com/mozilla-services/screenshots/commit/0cec951)
+* Implement onboarding slideshow [7535df8](https://github.com/mozilla-services/screenshots/commit/7535df8) [#2307](https://github.com/mozilla-services/screenshots/issues/2307)
+* Fix Save button Add-on too narrow for localization [1e4a913](https://github.com/mozilla-services/screenshots/commit/1e4a913) [06d1c54](https://github.com/mozilla-services/screenshots/commit/06d1c54)
+* Remove user urls from sentry data [1eb9177](https://github.com/mozilla-services/screenshots/commit/1eb9177)
+* Add an initial skeleton mochitest to check for presence of the screenshot button. Fixes [#2320](https://github.com/mozilla-services/screenshots/issues/2320) [19682b3](https://github.com/mozilla-services/screenshots/commit/19682b3)
+* Update addon with finalized strings [fcbf789](https://github.com/mozilla-services/screenshots/commit/fcbf789)
+* remove /api/unload and /api/update from the server. Fixes [#2328](https://github.com/mozilla-services/screenshots/issues/2328) Fixes [#2329](https://github.com/mozilla-services/screenshots/issues/2329) [3065ed8](https://github.com/mozilla-services/screenshots/commit/3065ed8)
+* Add SameSite to cookies [#2187](https://github.com/mozilla-services/screenshots/issues/2187) [6fd75c3](https://github.com/mozilla-services/screenshots/commit/6fd75c3)
+* delete data instead of device on delete-all [005ed9e](https://github.com/mozilla-services/screenshots/commit/005ed9e)
+* Add CONTRIBUTORS [fcc1591](https://github.com/mozilla-services/screenshots/commit/fcc1591)
+* Focus pre-selection iframe when it is displayed. Add tabindex to the buttons on that page. Change pre-selection buttons to <button> so Enter/Space works. Remove flex from the buttons and put it into an interior element to make styling work [48556df](https://github.com/mozilla-services/screenshots/commit/48556df)
+* Ensure auth when visiting /shots from addon [ddf6a12](https://github.com/mozilla-services/screenshots/commit/ddf6a12)
+* Control Sentry with Telemetry pref. Fixes [#2460](https://github.com/mozilla-services/screenshots/issues/2460) [a265f16](https://github.com/mozilla-services/screenshots/commit/a265f16)
+* Lazily check auth state on My Shots page. Fixes [#2414](https://github.com/mozilla-services/screenshots/issues/2414) [ddf21ee](https://github.com/mozilla-services/screenshots/commit/ddf21ee)
+* Turn off Travis and remove references. Fixes [#2355](https://github.com/mozilla-services/screenshots/issues/2355) [cf33813](https://github.com/mozilla-services/screenshots/commit/cf33813)
+* Split screenshot iframe into preselection and selection
+  iframes. closes [#2162](https://github.com/mozilla-services/screenshots/issues/2162) [d4bc0c6](https://github.com/mozilla-services/screenshots/commit/d4bc0c6)
+* disable the pageshot button on about,data,moz-extension pages [3159dd0](https://github.com/mozilla-services/screenshots/commit/3159dd0)
+* closes /creating tab if upload fails [e812186](https://github.com/mozilla-services/screenshots/commit/e812186)
+* Remove URL collection. Adds and calculates shot.origin Makes some logic that used shot.url conditional. Database migration to make data.url nullable. Fixes [#2376](https://github.com/mozilla-services/screenshots/issues/2376) [a9a076a](https://github.com/mozilla-services/screenshots/commit/a9a076a)
+* Change addon id to screenshots@mozilla.org [0e5c2c2](https://github.com/mozilla-services/screenshots/commit/0e5c2c2)
+* Renamed everything "pageshot" or "Page Shot" to "screenshots"
+* Cleaned many unused images and CSS rules
+* Rename `PAGESHOT_*` environmental variables to `SCREENSHOTS_*`
+* toggle webextension on pref change. Other changes: (1) unset deviceId pref set by old addon. (2) Update Promise rejection / Error handling to match behavior
+  documented in the addons-related Gecko code. Fixes [#2332](https://github.com/mozilla-services/screenshots/issues/2332) Fixes [#2333](https://github.com/mozilla-services/screenshots/issues/2333) Fixes [#2370](https://github.com/mozilla-services/screenshots/issues/2370) [b28d687](https://github.com/mozilla-services/screenshots/commit/b28d687)
+* let sitehelper log you in if the website requests it. Change auth.login() to return the login success. Change auth.login() to have options for asking about ownership information, and suppressing register-on-failed-login. Change server to do an ownership check on a shot on successful login. Add wantsauth script that is used to eagerly talk to the addon and try to initiate login. Change shot/controller to use wantsauth. Fixes [#2220](https://github.com/mozilla-services/screenshots/issues/2220) [c53d27c](https://github.com/mozilla-services/screenshots/commit/c53d27c)
+* use window.crypto.getRandomValues [3983030](https://github.com/mozilla-services/screenshots/commit/3983030)
+* fix: changes some styles to make expired shot page text more
+  visible [66c490e](https://github.com/mozilla-services/screenshots/commit/66c490e)
+* let webextension run without bootstrap.js. Adds
+  communication.sendToBootstrap() to handle communicating with the parent.
+  Specifically catches the error when the parent/bootstrap does not exist.
+  Simplify the loadSelector logic by relying on the promise to reject. Add
+  null; to the bottom of loadSelector so it can be loaded without an error. Fixes [#2372](https://github.com/mozilla-services/screenshots/issues/2372) [d579854](https://github.com/mozilla-services/screenshots/commit/d579854)
+* Remove unguarded access to optional attributes.  Avoids
+  ReferenceError warnings in the console. More deeply remove shot.deviceId,
+  which wasn't entirely cleaned up. [b396797](https://github.com/mozilla-services/screenshots/commit/b396797)
+* Add pontoon strings & build step to transform into
+  webextension strings
+  - Add pontoon-to-webext.js script from bwinton/SnoozeTabs repo and
+  related npm dependencies (to be removed when/if that script is
+  published on npm as a standalone module).
+  - Add extracted strings to a properties file at the location expected by
+  Pontoon. Remove the webextension-formatted strings from git.
+  - Add a pontoon-to-webextension build step to the Makefile.
+  This commit, together with the fix for [#2344](https://github.com/mozilla-services/screenshots/issues/2344), closes [#2294](https://github.com/mozilla-services/screenshots/issues/2294). [f9e24d7](https://github.com/mozilla-services/screenshots/commit/f9e24d7)
+* fix bug in Enter-to-save. Fixes [#2271](https://github.com/mozilla-services/screenshots/issues/2271) [a8024b6](https://github.com/mozilla-services/screenshots/commit/a8024b6)
+* migrate data from old add-on. Fixes [#2260](https://github.com/mozilla-services/screenshots/issues/2260) [64213c0](https://github.com/mozilla-services/screenshots/commit/64213c0)
+* removed rich copy [9083057](https://github.com/mozilla-services/screenshots/commit/9083057)
+* Provides export_addon makefile rule to export
+  pageshot into a mozilla-central based repository.
+  The environment variable EXPORT_MC_LOCATION provides for changing where the add-on is exported to. Fixes [#2318](https://github.com/mozilla-services/screenshots/issues/2318) [bd50aeb](https://github.com/mozilla-services/screenshots/commit/bd50aeb)
+* Extract strings using WebExtension i18n library
+  Fixes part of [#2294](https://github.com/mozilla-services/screenshots/issues/2294). [b3df1c6](https://github.com/mozilla-services/screenshots/commit/b3df1c6)
+* make sendEvent conditional on whether the user has
+  opted-out of Telemetry generally. Fixes [#2250](https://github.com/mozilla-services/screenshots/issues/2250) [b07a29e](https://github.com/mozilla-services/screenshots/commit/b07a29e)
+* include left/right and not just top/bottom in the
+  rule for when to capture an element's text. Fixes [#2174](https://github.com/mozilla-services/screenshots/issues/2174) [20ecd85](https://github.com/mozilla-services/screenshots/commit/20ecd85)
+* replace chrome.* APIs with browser.* equivalents. Fixes [#2184](https://github.com/mozilla-services/screenshots/issues/2184) [b146357](https://github.com/mozilla-services/screenshots/commit/b146357)
+* fix: Redirects new tab to my shots [4bf93ea](https://github.com/mozilla-services/screenshots/commit/4bf93ea)
+* Wrap the webextension in a bootstrap addon. Fixes [#2222](https://github.com/mozilla-services/screenshots/issues/2222) [8beeeb7](https://github.com/mozilla-services/screenshots/commit/8beeeb7)
+* Remove Shot.deviceId remove deviceId from the shot
+  itself, treat it as metadata. Fixes [#2214](https://github.com/mozilla-services/screenshots/issues/2214) [1519b7c](https://github.com/mozilla-services/screenshots/commit/1519b7c)
+* Remove things from Shot:
+  - text clip support (leaving only image clips) [c05d2f2](https://github.com/mozilla-services/screenshots/commit/c05d2f2)
+  - Shot.resources [efe009c](https://github.com/mozilla-services/screenshots/commit/efe009c)
+  - Shot.isPublic [7501f90](https://github.com/mozilla-services/screenshots/commit/7501f90)
+  - Shot.showPage, and commented-out functions for adding page data to an existing shot [8a29323](https://github.com/mozilla-services/screenshots/commit/8a29323)
+  - Remove Shot.comments and clip comments [3b6c6ac](https://github.com/mozilla-services/screenshots/commit/3b6c6ac)
+  - Remove Shot.hashtags attribute [be8fd36](https://github.com/mozilla-services/screenshots/commit/be8fd36)
+  - Remove head/body/`*attrs` from Shot Remove head and body from the database Remove readable attribute from Shot remove commented-out /api/add-saved-shot-data route. Fixes [#2326](https://github.com/mozilla-services/screenshots/issues/2326) [952fbd8](https://github.com/mozilla-services/screenshots/commit/952fbd8)
+  - Remove shot.createdDevice [f648e46](https://github.com/mozilla-services/screenshots/commit/f648e46)
+  - Remove use of shot.ogTitle, in preference for shot.openGraph.title [80512a2](https://github.com/mozilla-services/screenshots/commit/80512a2)
+  - Remove dirty tracking from AbstractShot [9fae30d](https://github.com/mozilla-services/screenshots/commit/9fae30d)
+* removed 'copied' notification if the copy failed [22a4519](https://github.com/mozilla-services/screenshots/commit/22a4519)
+* add context menu. Fixes [#2191](https://github.com/mozilla-services/screenshots/issues/2191) [a65b7c3](https://github.com/mozilla-services/screenshots/commit/a65b7c3)
+* remove the snapping module. Fixes [#2159](https://github.com/mozilla-services/screenshots/issues/2159) [f8c71e2](https://github.com/mozilla-services/screenshots/commit/f8c71e2)
+* set a default sentryPublicDSN directly in the
+  addon Put the actual DSNs into release-version so each version will get built
+  appropriately Refactor set_backend and set_sentry in Makefile to both use
+  set_file. Fixes [#2240](https://github.com/mozilla-services/screenshots/issues/2240) [3371bab](https://github.com/mozilla-services/screenshots/commit/3371bab)
+* added circle.yml [2c06139](https://github.com/mozilla-services/screenshots/commit/2c06139)
+* trim down view.js. Fixes [#2203](https://github.com/mozilla-services/screenshots/issues/2203) [dd6bc99](https://github.com/mozilla-services/screenshots/commit/dd6bc99)
+* don't login until absolutely necessary, and allow
+  submission POST /event with a non-signed non-cookie deviceId. Fixes [#2167](https://github.com/mozilla-services/screenshots/issues/2167) [6adbfea](https://github.com/mozilla-services/screenshots/commit/6adbfea)
+* Put in a supportsDrawWindow so in the future we can suppress
+  features we don't support [088b903](https://github.com/mozilla-services/screenshots/commit/088b903)
+* Use canvas.drawWindow when it is available [b2c3b5a](https://github.com/mozilla-services/screenshots/commit/b2c3b5a)
+* Setup alternate authentication method for the server. In
+  addition to cookies, logins will now also send an authHeader value, which is
+  put into x-pageshot-auth. This contains alternately encoded signed
+  authentication values.  deviceId is easily extractable for future use in
+  balancing (if we so choose) [c0e0ed3](https://github.com/mozilla-services/screenshots/commit/c0e0ed3)
+* Build inline-selection.css into a JS file for the
+  WebExtension [5ddd384](https://github.com/mozilla-services/screenshots/commit/5ddd384)
+* Rename shooter-interactive-worker to uicontrol.  Fixes [#1889](https://github.com/mozilla-services/screenshots/issues/1889) [83832f3](https://github.com/mozilla-services/screenshots/commit/83832f3)
+* Add --setup-profile to help create the ./Profile/ directory
+  for testing [d6397ee](https://github.com/mozilla-services/screenshots/commit/d6397ee)
+* Add CORS headers so the WebExtension can access the API
+  calls.  Suppress HSTS on localhost [f4f51a5](https://github.com/mozilla-services/screenshots/commit/f4f51a5)
+* Make run-addon use web-ext.  Remove autoloading since web-ext handles that on its own [e06b407](https://github.com/mozilla-services/screenshots/commit/e06b407)
+* remove contentApp.  Move /proxy to the main app
+  (still used for favicons). Fixes [#2153](https://github.com/mozilla-services/screenshots/issues/2153) [7e76323](https://github.com/mozilla-services/screenshots/commit/7e76323)
+* put Save and Cancel inside the selection box when
+  the selection is at the bottom of the page. Fixes [#2043](https://github.com/mozilla-services/screenshots/issues/2043) [38becf4](https://github.com/mozilla-services/screenshots/commit/38becf4)
+* clean out server/src/views. Fixes [#1843](https://github.com/mozilla-services/screenshots/issues/1843) [2b2584d](https://github.com/mozilla-services/screenshots/commit/2b2584d)
+* Add growl message when release-version finishes [e07cc8e](https://github.com/mozilla-services/screenshots/commit/e07cc8e)
+
 ## Version 5
 
 ### A/B tests
