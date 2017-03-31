@@ -57,7 +57,8 @@
   ],
   "web_accessible_resources": [
     "icons/cancel.svg",
-    "icons/download.svg"
+    "icons/download.svg",
+    "icons/icon-256.png"
   ],
   "permissions": [
     "activeTab",

@@ -1,4 +1,4 @@
-/* globals console, catcher, util, ui */
+/* globals console, catcher, util, ui, slides */
 /* globals window, document, location, shooter, callBackground, selectorLoader */
 
 window.uicontrol = (function () {
@@ -335,6 +335,26 @@ window.uicontrol = (function () {
    * all stateHandlers
    */
 
+  stateHandlers.onboarding = {
+    start: function () {
+      if (typeof slides == "undefined") {
+        throw new Error("Attempted to set state to onboarding without loading slides");
+      }
+      catcher.watchPromise(slides.display({
+        onEnd: this.slidesOnEnd.bind(this)
+      }));
+    },
+
+    slidesOnEnd: function () {
+      callBackground("hasSeenOnboarding");
+      setState("crosshairs");
+    },
+
+    end: function () {
+      slides.remove();
+    }
+  };
+
   stateHandlers.crosshairs = {
 
     cachedEl: null,
@@ -342,11 +362,13 @@ window.uicontrol = (function () {
     start: function () {
       selectedPos = mousedownPos = null;
       this.cachedEl = null;
-      ui.iframe.usePreSelection();
-      ui.Box.remove();
-      const handler = watchFunction(keyupHandler);
-      document.addEventListener("keyup", handler, false);
-      registeredDocumentHandlers.push({name: "keyup", doc: document, handler});
+      watchPromise(ui.iframe.display(installHandlersOnDocument, standardOverlayCallbacks).then(() => {
+        ui.iframe.usePreSelection();
+        ui.Box.remove();
+        const handler = watchFunction(keyupHandler);
+        document.addEventListener("keyup", handler, false);
+        registeredDocumentHandlers.push({name: "keyup", doc: document, handler});
+      }));
     },
 
     mousemove: function (event) {
@@ -759,15 +781,20 @@ window.uicontrol = (function () {
    * Selection communication
    */
 
+   // If the slides module is loaded then we're supposed to onboard
+  let shouldOnboard = typeof slides !== "undefined";
+
   exports.activate = function () {
     addHandlers();
     // FIXME: self.options is gone
     if (self.options && self.options.styleMyShotsButton) {
       ui.iframe.addClassName = `styleMyShotsButton-${self.options.styleMyShotsButton.value}`;
     }
-    watchPromise(ui.iframe.display(installHandlersOnDocument, standardOverlayCallbacks).then(() => {
+    if (shouldOnboard) {
+      setState("onboarding");
+    } else {
       setState("crosshairs");
-    }));
+    }
   }
 
   exports.deactivate = function () {

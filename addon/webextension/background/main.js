@@ -10,6 +10,14 @@ window.main = (function () {
   let manifest = browser.runtime.getManifest();
   let backend;
 
+  let hasSeenOnboarding;
+
+  browser.storage.local.get(["hasSeenOnboarding"]).then((result) => {
+    hasSeenOnboarding = !! result.hasSeenOnboarding;
+  }).catch((error) => {
+    console.error("Error getting hasSeenOnboarding:", error);
+  });
+
   exports.setBackend = function (newBackend) {
     backend = newBackend;
     backend = backend.replace(/\/*$/, "");
@@ -33,7 +41,7 @@ window.main = (function () {
 
   function toggleSelector(tab) {
     return analytics.refreshTelemetryPref()
-      .then(() => selectorLoader.toggle(tab.id))
+      .then(() => selectorLoader.toggle(tab.id, hasSeenOnboarding))
       .then(active => {
         setIconActive(active, tab.id);
         return active;
@@ -154,6 +162,11 @@ window.main = (function () {
       });
     }
   }));
+
+  communication.register("hasSeenOnboarding", () => {
+    hasSeenOnboarding = true;
+    catcher.watchPromise(browser.storage.set({hasSeenOnboarding}));
+  });
 
   return exports;
 })();
