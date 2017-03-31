@@ -56,7 +56,7 @@ case "$channel" in
     rm -f build/screenshots.zip
     # Forces update of the add-on version:
     touch build/.backend.txt
-    SCREENSHOTS_BACKEND=https://pageshot.stage.mozaws.net SCREENSHOTS_SENTRY="$stage_sentry" make signed_xpi
+    SCREENSHOTS_BACKEND=https://screenshots.stage.mozaws.net SCREENSHOTS_SENTRY="$stage_sentry" make signed_xpi
     ./bin/build-docker-image mozilla
     echo
     echo "Stage deployment automatically triggered, see #screenshots IRC for status"
@@ -68,7 +68,7 @@ case "$channel" in
       exit 5
     fi
     # FIXME: we shouldn't add a timestamp onto the end of the version here
-    SCREENSHOTS_MINOR_VERSION=0 SCREENSHOTS_BACKEND=https://pageshot.net SCREENSHOTS_SENTRY="$prod_sentry" make signed_xpi
+    SCREENSHOTS_MINOR_VERSION=0 SCREENSHOTS_BACKEND=https://screenshots.firefox.com SCREENSHOTS_SENTRY="$prod_sentry" make signed_xpi
     echo
     echo "Prod xpi created, email build/screenshots.xpi to wclouser@mozilla.com"
     ;;
