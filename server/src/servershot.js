@@ -9,6 +9,26 @@ const mozlog = require("mozlog")("servershot");
 
 const SEARCHABLE_VERSION = 1;
 
+const PNG_HEADER_BASE64 = "iVBORw0KGgo=";
+const PNG_HEADER = Buffer.from(PNG_HEADER_BASE64, "base64");
+
+function assertPng(dataUrl) {
+  const urlHeader = "data:image/png;base64,";
+  if (!dataUrl.startsWith(urlHeader)) {
+    throw new Error('invalid data url');
+  }
+  // only decode enough to get the header
+  // we're lucky that 9 bytes is exactly 12 base64 characters
+  const base64Header = dataUrl.substr(urlHeader.length, PNG_HEADER_BASE64.length);
+  if (base64Header.length < PNG_HEADER_BASE64.length) {
+    throw new Error('invalid image');
+  }
+  const header = Buffer.from(base64Header, "base64"); // 9 bytes
+  if (!PNG_HEADER.equals(header.slice(0,8))) {
+    throw new Error('invalid png');
+  }
+}
+
 let ClipRewrites;
 
 let s3bucket;
@@ -88,7 +108,7 @@ if (! config.useS3) {
   put = (uid, body, comment) => {
     return new Promise((resolve, reject) => {
       s3bucket.createBucket(() => {
-        var params = {Key: uid, Body: body};
+        var params = {Key: uid, Body: body, ContentType: "image/png"};
         s3bucket.upload(params, function (err, result) {
           if (err) {
             reject(err);
@@ -295,6 +315,13 @@ Shot.getRawBytesForClip = function (uid) {
 exports.Shot = Shot;
 
 class ServerClip extends AbstractShot.prototype.Clip {
+  constructor(shot, id, json) {
+    super(shot, id, json);
+    if (this.isDataUrl()) {
+      assertPng(json.image.url);
+    }
+  }
+
   imageBinary() {
     if (! (this.image && this.image.url)) {
       throw new Error("Not an image clip");
