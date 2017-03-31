@@ -43,7 +43,7 @@ for message in messages:
     sub = message.get("subject", "")
     if sub.startswith("[PATCH] "):
         sub = sub[len("[PATCH] "):]
-    if sub.startswith("Merge ") or sub.startswith("chore"):
+    if sub.startswith("Merge ") or sub.startswith("chore") or sub.startswith("Pontoon"):
         continue
     short = message["commit"][:7]
     full = ["* " + sub] + ['  ' + line.strip() for line in message["body"]]
