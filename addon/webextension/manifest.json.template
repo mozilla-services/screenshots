@@ -62,6 +62,7 @@
   ],
   "permissions": [
     "activeTab",
+    "downloads",
     "tabs",
     "storage",
     "notifications",
