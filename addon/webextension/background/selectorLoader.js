@@ -40,7 +40,6 @@ window.selectorLoader = (function () {
   };
 
   exports.loadModules = function (tabId, hasSeenOnboarding) {
-    console.log("hasSeenOnboarding", hasSeenOnboarding);
     if (hasSeenOnboarding) {
       return executeModules(tabId, standardScripts.concat(selectorScripts));
     } else {

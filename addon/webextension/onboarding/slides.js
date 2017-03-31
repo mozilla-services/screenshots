@@ -136,7 +136,6 @@ window.slides = (function () {
   }
 
   const onKeyUp = catcher.watchFunction(function (event) {
-    console.log("got keyup event:", event.key, event.code);
     if ((event.key || event.code) === "Escape") {
       shooter.sendEvent("cancel-slides", "keyboard-escape");
       callbacks.onEnd();
