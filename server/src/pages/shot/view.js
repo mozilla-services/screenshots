@@ -50,8 +50,8 @@ class Clip extends React.Component {
       <menu type="context" id="clip-image-context">
         <menuitem label="Copy Image Text" onClick={this.copyImageText.bind(this)} ></menuitem>
       </menu>
+      { this.renderLoader() } 
       <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) } contextMenu="clip-image-context">
-        { this.renderLoader() } 
         { node }
       </a>
     </div>;
@@ -62,9 +62,8 @@ class Clip extends React.Component {
     return null;
   }
   return (
-    <div>
-    Loading...
-    <span className="spinner" />
+    <div className="spinner">
+      <img src = {this.props.staticLink("/static/img/spinner.svg")} />
     </div>
   );
   }
