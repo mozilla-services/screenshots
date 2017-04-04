@@ -36,8 +36,8 @@ var documentMetadata = (function () {
       let value;
       if (elems.length > 1) {
         value = [];
-        for (let i=0; i<elems.length; i++) {
-          let v = elems[i].getAttribute("content");
+        for (let elem of elems) {
+          let v = elem.getAttribute("content");
           if (v) {
             value.push(v);
           }
