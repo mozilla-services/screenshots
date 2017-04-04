@@ -1,6 +1,8 @@
 /* globals window, document, console, browser */
 /* globals util, catcher, inlineSelectionCss, callBackground, assertIsTrusted */
 
+"use strict";
+
 window.ui = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
   const SAVE_BUTTON_HEIGHT = 50;

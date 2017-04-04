@@ -1,5 +1,7 @@
 /* globals communication, shot, main, auth, catcher, analytics, browser */
 
+"use strict";
+
 window.takeshot = (function () {
   let exports = {};
   const Shot = shot.AbstractShot;

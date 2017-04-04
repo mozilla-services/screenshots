@@ -1,3 +1,5 @@
+"use strict";
+
 window.documentMetadata = (function () {
 
   function findSiteName() {

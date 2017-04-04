@@ -1,4 +1,7 @@
 /* globals browser, catcher */
+
+"use strict";
+
 window.selectorLoader = (function () {
   const exports = {};
 

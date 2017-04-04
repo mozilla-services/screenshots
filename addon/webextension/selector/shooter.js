@@ -2,6 +2,8 @@
 /* globals XMLHttpRequest, window, location, alert, console, domainFromUrl, randomString */
 /* globals document, setTimeout, location */
 
+"use strict";
+
 window.shooter = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
   const { AbstractShot } = window.shot;

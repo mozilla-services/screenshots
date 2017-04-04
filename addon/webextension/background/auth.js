@@ -1,6 +1,8 @@
 /* globals browser */
 /* globals main, makeUuid, deviceInfo, analytics, catcher, defaultSentryDsn, communication */
 
+"use strict";
+
 window.auth = (function () {
   let exports = {};
 

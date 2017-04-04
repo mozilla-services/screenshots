@@ -1,5 +1,7 @@
 /* globals catcher, onboardingHtml, onboardingCss, browser, util, shooter, callBackground, assertIsTrusted */
 
+"use strict";
+
 window.slides = (function () {
   let exports = {};
 

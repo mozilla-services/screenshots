@@ -1,5 +1,7 @@
 /* globals catcher */
 
+"use strict";
+
 window.clipboard = (function () {
   let exports = {};
 

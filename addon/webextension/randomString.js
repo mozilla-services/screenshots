@@ -1,5 +1,7 @@
 /* exported randomString */
 
+"use strict";
+
 window.randomString = function randomString(length, chars) {
   let randomStringChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   chars = chars || randomStringChars;

@@ -1,5 +1,7 @@
 /* globals main, auth, catcher, deviceInfo, communication */
 
+"use strict";
+
 window.analytics = (function () {
   let exports = {};
 

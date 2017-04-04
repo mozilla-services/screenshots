@@ -1,3 +1,5 @@
+"use strict";
+
 window.makeUuid = (function () {
 
   // generates a v4 UUID

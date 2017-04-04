@@ -1,3 +1,5 @@
+"use strict";
+
 window.util = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
 

@@ -1,3 +1,5 @@
+"use strict";
+
 window.catcher = (function () {
   let exports = {};
 

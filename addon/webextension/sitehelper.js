@@ -2,6 +2,8 @@
 /** This is a content script added to all screenshots.firefox.com pages, and allows the site to
     communicate with the add-on */
 
+"use strict";
+
 window.sitehelper = (function () {
 
   catcher.registerHandler((errorObj) => {

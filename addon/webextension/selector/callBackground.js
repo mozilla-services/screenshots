@@ -1,5 +1,7 @@
 /* globals browser */
 
+"use strict";
+
 window.callBackground = function (funcName, ...args) {
   return browser.runtime.sendMessage({funcName, args}).then((result) => {
     if (result.type === "success") {

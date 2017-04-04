@@ -1,6 +1,8 @@
 /* globals console, catcher, util, ui, slides */
 /* globals window, document, location, shooter, callBackground, selectorLoader, assertIsTrusted */
 
+"use strict";
+
 window.uicontrol = (function () {
   let exports = {};
 
