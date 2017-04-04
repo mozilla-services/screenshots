@@ -51,13 +51,13 @@ class Clip extends React.Component {
         <menuitem label="Copy Image Text" onClick={this.copyImageText.bind(this)} ></menuitem>
       </menu>
       <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) } contextMenu="clip-image-context">
-        { this.renderSpinner() } 
+        { this.renderLoader() } 
         { node }
       </a>
     </div>;
   }
 
-  renderSpinner() {
+  renderLoader() {
   if (!this.state.loading) {
     return null;
   }
