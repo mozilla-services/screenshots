@@ -2,7 +2,7 @@
 
 "use strict";
 
-window.senderror = (function () {
+var senderror = (function () {
   let exports = {};
 
   // Do not show an error more than every ERROR_TIME_LIMIT milliseconds:

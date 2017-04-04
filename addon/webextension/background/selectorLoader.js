@@ -2,7 +2,7 @@
 
 "use strict";
 
-window.selectorLoader = (function () {
+var selectorLoader = (function () {
   const exports = {};
 
   // These modules are loaded in order, first standardScripts, then optionally onboardingScripts, and then selectorScripts

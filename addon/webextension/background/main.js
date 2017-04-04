@@ -3,7 +3,7 @@
 
 "use strict";
 
-window.main = (function () {
+var main = (function () {
   let exports = {};
 
   const pasteSymbol = (window.navigator.platform.match(/Mac/i)) ? "\u2318" : "Ctrl";

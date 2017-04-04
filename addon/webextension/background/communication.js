@@ -2,7 +2,7 @@
 
 "use strict";
 
-window.communication = (function () {
+var communication = (function () {
   let exports = {};
 
   let registeredFunctions = {};

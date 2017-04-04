@@ -1,6 +1,6 @@
 "use strict";
 
-window.catcher = (function () {
+var catcher = (function () {
   let exports = {};
 
   let handler;

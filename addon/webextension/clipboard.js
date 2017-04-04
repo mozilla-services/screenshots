@@ -2,7 +2,7 @@
 
 "use strict";
 
-window.clipboard = (function () {
+var clipboard = (function () {
   let exports = {};
 
   exports.copy = function (text) {

@@ -4,7 +4,7 @@
 
 "use strict";
 
-window.domainFromUrl = (function () {
+var domainFromUrl = (function () {
 
   return function urlDomainForId(location) { // eslint-disable-line no-unused-vars
     let domain = location.hostname;

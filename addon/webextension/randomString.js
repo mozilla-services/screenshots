@@ -2,7 +2,7 @@
 
 "use strict";
 
-window.randomString = function randomString(length, chars) {
+function randomString(length, chars) {
   let randomStringChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   chars = chars || randomStringChars;
   let result = "";
@@ -10,5 +10,5 @@ window.randomString = function randomString(length, chars) {
     result += chars.charAt(Math.floor(Math.random() * chars.length));
   }
   return result;
-};
+}
 null;
