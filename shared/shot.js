@@ -4,15 +4,12 @@
 
 /** Throws an error if the condition isn't true.  Any extra arguments after the condition
     are used as console.error() arguments. */
-function assert(condition) {
-  if (! condition) {
-    console.error.apply(console, ["Failed assertion:"].concat(Array.prototype.slice.call(arguments, 1)));
-    if (arguments.length > 1) {
-      throw new Error("Failed assertion: " + Array.prototype.slice.call(arguments, 1).join(" "));
-    } else {
-      throw new Error("Failed assertion");
-    }
+function assert(condition, ...args) {
+  if (!!condition) {
+    return;
   }
+  console.error("Failed assertion", ...args);
+  throw new Error("Failed assertion", ...args);
 }
 
 /** True if `url` is a valid URL */
