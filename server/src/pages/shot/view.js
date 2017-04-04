@@ -20,10 +20,7 @@ class Clip extends React.Component {
   componentDidMount() {
     let image = ReactDOM.findDOMNode(this.refs.clipImage);
     if (image.complete) {
-      this.setState({ 
-        loading: false,
-        imageDisplay: "inline"
-      });
+      this.onImageLoaded();
     }
     let onResize = () => {
       let windowHeight = window.innerHeight;
@@ -45,27 +42,34 @@ class Clip extends React.Component {
       console.warn("Somehow there's a shot without an image");
       return null;
     }
-    let node = <img style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%", display: this.state.imageDisplay}} ref="clipImage" src={ clip.image.url } alt={ clip.image.text } />;
+    let node = <img style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%", display: this.state.imageDisplay}} ref="clipImage" src={ clip.image.url } alt={ clip.image.text } onLoad = { this.onImageLoaded.bind(this) } />;
     return <div ref="clipContainer" className="clip-container">
       <menu type="context" id="clip-image-context">
         <menuitem label="Copy Image Text" onClick={this.copyImageText.bind(this)} ></menuitem>
       </menu>
-      { this.renderLoader() } 
+      { this.renderLoader() }
       <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) } contextMenu="clip-image-context">
         { node }
       </a>
     </div>;
   }
 
-  renderLoader() {
-  if (!this.state.loading) {
-    return null;
+  onImageLoaded() {
+    this.setState({
+      loading: false,
+      imageDisplay: "inline"
+    });
   }
-  return (
-    <div className="spinner">
-      <img src = {this.props.staticLink("/static/img/spinner.svg")} />
-    </div>
-  );
+
+  renderLoader() {
+    if (!this.state.loading) {
+      return null;
+    }
+    return (
+      <div className="spinner">
+        <img src = {this.props.staticLink("/static/img/spinner.svg")} />
+      </div>
+    );
   }
 
   onClickClip() {
