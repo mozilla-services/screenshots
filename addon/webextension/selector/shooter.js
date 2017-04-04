@@ -32,11 +32,11 @@ var shooter = (function () { // eslint-disable-line no-unused-vars
     callBackground("reportError", sanitizeError(errorObj));
   });
 
-  (function () {
+  {
     let canvas = document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
     let ctx = canvas.getContext('2d');
     supportsDrawWindow = !! ctx.drawWindow;
-  })();
+  }
 
   function screenshotPage(selectedPos) {
     if (! supportsDrawWindow) {
