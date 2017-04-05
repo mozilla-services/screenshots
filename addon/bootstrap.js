@@ -60,7 +60,7 @@ function shouldDisable() {
 function handleStartup() {
   const webExtension = LegacyExtensionsUtils.getEmbeddedExtensionFor({
     id: ADDON_ID,
-    resourceURI: addonResourceURI.QueryInterface(Ci.nsIFileURL)
+    resourceURI: addonResourceURI
   });
 
   if (!shouldDisable() && !webExtension.started) {
