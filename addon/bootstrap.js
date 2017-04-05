@@ -58,6 +58,11 @@ function shouldDisable() {
 }
 
 function handleStartup() {
+  // If the preference observer fires before startup completes, the URI won't
+  // be available yet, so just bail until startup has run.
+  if (!addonResourceURI) {
+    return;
+  }
   const webExtension = LegacyExtensionsUtils.getEmbeddedExtensionFor({
     id: ADDON_ID,
     resourceURI: addonResourceURI.QueryInterface(Ci.nsIFileURL)
