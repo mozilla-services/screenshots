@@ -9,12 +9,21 @@ const USER_DISABLE_PREF = "extensions.screenshots.disabled";
 const SYSTEM_DISABLE_PREF = "extensions.screenshots.system-disabled";
 
 const { interfaces: Ci, utils: Cu } = Components;
-Cu.import("resource://gre/modules/AddonManager.jsm");
-Cu.import("resource://gre/modules/Console.jsm");
-Cu.import("resource://gre/modules/Services.jsm");
-Cu.import("resource://gre/modules/LegacyExtensionsUtils.jsm");
+Cu.import("resource://gre/modules/XPCOMUtils.jsm");
+XPCOMUtils.defineLazyModuleGetter(this, "AddonManager",
+                                  "resource://gre/modules/AddonManager.jsm");
+XPCOMUtils.defineLazyModuleGetter(this, "Console",
+                                  "resource://gre/modules/Console.jsm");
+XPCOMUtils.defineLazyModuleGetter(this, "Services",
+                                  "resource://gre/modules/Services.jsm");
+XPCOMUtils.defineLazyModuleGetter(this, "LegacyExtensionsUtils",
+                                  "resource://gre/modules/LegacyExtensionsUtils.jsm");
 
 let addonResourceURI;
+let appStartupDone;
+const appStartupPromise = new Promise((resolve,reject) => {
+  appStartupDone = resolve;
+});
 
 const prefs = Services.prefs;
 const prefObserver = {
@@ -30,15 +39,36 @@ const prefObserver = {
     // aSubject is the nsIPrefBranch we're observing (after appropriate QI)
     // aData is the name of the pref that's been changed (relative to aSubject)
     if (aData == USER_DISABLE_PREF || aData == SYSTEM_DISABLE_PREF) {
-      handleStartup();
+      appStartupPromise.then(handleStartup);
     }
   }
 };
 
+const appStartupObserver = {
+  register: function() {
+    Services.obs.addObserver(this, "sessionstore-windows-restored", false);
+  },
+
+  unregister: function() {
+    Services.obs.removeObserver(this, "sessionstore-windows-restored", false);
+  },
+
+  observe: function() {
+    appStartupDone();
+    this.unregister();
+  }
+}
+
+const APP_STARTUP = 1;
 function startup(data, reason) { // eslint-disable-line no-unused-vars
+  if (reason === APP_STARTUP) {
+    appStartupObserver.register();
+  } else {
+    appStartupDone();
+  }
   prefObserver.register();
   addonResourceURI = data.resourceURI;
-  handleStartup();
+  appStartupPromise.then(handleStartup);
 }
 
 function shutdown(data, reason) { // eslint-disable-line no-unused-vars

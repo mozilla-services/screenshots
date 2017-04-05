@@ -177,7 +177,7 @@ window.main = (function () {
 
   communication.register("hasSeenOnboarding", () => {
     hasSeenOnboarding = true;
-    catcher.watchPromise(browser.storage.set({hasSeenOnboarding}));
+    catcher.watchPromise(browser.storage.local.set({hasSeenOnboarding}));
   });
 
   return exports;
