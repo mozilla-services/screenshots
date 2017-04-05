@@ -27,11 +27,11 @@
 
     &:hover,
     &:focus {
-      background: darken($link-blue, 7);
+      background-color: darken($link-blue, 7);
     }
 
     &:active {
-      background: darken($link-blue, 12);
+      background-color: darken($link-blue, 12);
     }
   }
 
@@ -41,11 +41,11 @@
 
     &:hover,
     &:focus {
-      background: darken($very-light-grey, 7);
+      background-color: darken($very-light-grey, 7);
     }
 
     &:active {
-      background: darken($very-light-grey, 12);
+      background-color: darken($very-light-grey, 12);
     }
   }
 

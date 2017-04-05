@@ -97,12 +97,6 @@ window.slides = (function () {
         setSlide(index);
       }), false);
     }
-    doc.querySelector("#slide-overlay").addEventListener("click", watchFunction((event) => {
-      if (event.target.id == "slide-overlay") {
-        shooter.sendEvent("cancel-slides", "overlay");
-        callbacks.onEnd();
-      }
-    }), false);
     doc.querySelector("#skip").addEventListener("click", watchFunction((event) => {
       shooter.sendEvent("cancel-slides", "skip");
       callbacks.onEnd();

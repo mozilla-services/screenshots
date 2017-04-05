@@ -5,11 +5,11 @@ $header-background-color: #fff;
 $border-color: rgba(#000, .3);
 $bg-color: #FFF;
 $bg-grey: #FBFBFB;
-$very-light-grey: #EBEBEB;
+$very-light-grey: #EDEDED;
 $light-grey: #A0A0A0;
 $mid-grey: #56565A;
 $dark-grey: #383E49;
-$link-blue: #00AFF7;
+$link-blue: #0996F8;
 $star-blue: #2B99FF;
 $navy: #383E49;
 $light-navy: #888B92;
@@ -19,7 +19,7 @@ $white: #FFF;
 $header-border-color: #DFE0E1;
 $faintest-black: rgba($black, 0.1);
 $faint-black: rgba($black, 0.2);
-$border-radius: 3px;
+$border-radius: 1px;
 $pink: #E6196F;
 $green: #4EB748;
 $warning-red-default: #d92215;
@@ -29,6 +29,8 @@ $break-point: $wrapper-max-width + 40px;
 
 $base-gutter: 24px;
 $section-margin: 41px;
+
+$bezier: cubic-bezier(.07,.95,0,1);
 
 $section-title-font-size: 12px;
 $section-title-color: $light-grey;
