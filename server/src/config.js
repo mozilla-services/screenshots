@@ -21,6 +21,13 @@ var conf = convict({
     env: "SITE_ORIGIN",
     arg: "siteOrigin"
   },
+  contentOrigin: {
+    doc: "The content server public origin (except protocol)",
+    format: String,
+    default: "localhost:10080",
+    env: "CONTENT_ORIGIN",
+    arg: "contentOrigin"
+  },
   localhostSsl: {
     doc: "Turn on SSL on localhost, using ~/.localhost-ssl/*",
     format: Boolean,
