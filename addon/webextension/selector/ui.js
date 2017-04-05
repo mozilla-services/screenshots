@@ -234,15 +234,10 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
                    <div class="fixed-container">
                      <div class="preview-instructions"></div>
                      <div class="myshots-all-buttons-container">
-                     <button class="myshots-button" tabindex="1">
-                       <div class="myshots-button-container">
-                         <div class="myshots-text-pre"></div>
-                         <div class="myshots-text"></div>
-                         <div class="myshots-text-post"></div>
-                       </div>
-                     </button>
-                     <button class="myshots-button visible" tabindex="2"></button>
-                     <button class="myshots-button full-page" tabindex="3"></button>
+                       <button class="myshots-button myshots-link" tabindex="1"></button>
+                       <div class="spacer"></div>
+                       <button class="myshots-button visible" tabindex="2"></button>
+                       <button class="myshots-button full-page" tabindex="3"></button>
                      </div>
                    </div>
                  </div>
@@ -261,7 +256,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
             }
             const overlay = this.document.querySelector(".preview-overlay");
             overlay.querySelector(".preview-instructions").textContent = browser.i18n.getMessage("screenshotInstructions");
-            overlay.querySelector(".myshots-text").textContent = browser.i18n.getMessage("myShotsLink");
+            overlay.querySelector(".myshots-link").textContent = browser.i18n.getMessage("myShotsLink");
             overlay.querySelector(".visible").textContent = browser.i18n.getMessage("saveScreenshotVisibleArea");
             overlay.querySelector(".full-page").textContent = browser.i18n.getMessage("saveScreenshotFullPage");
             overlay.querySelector(".myshots-button").addEventListener(

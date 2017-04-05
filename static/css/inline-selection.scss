@@ -2,108 +2,33 @@
 @import "partials/mixins";
 @import "partials/buttons";
 @import "partials/theme";
-
+@import "partials/animations";
 // This is how far outside the selection the mover target extends:
-$mover-outer: 10px;
+$mover-outer: 30px;
 
 // And this is how far inside the selection it extends:
-$mover-inner: 40px;
+$mover-inner: 30px;
 
 // This is the size of the little blue handles:
-$handle-size: 25px;
+$handle-size: 16px;
 
 // And the size when the selection is "small":
 $handle-size-small: 10px;
 
-// This is how far out of the box the handles go:
-$handle-outside-extent: 0;
-
 // And some calculated values based on these that will be used below:
-$handle-mover-offset: $mover-outer - $handle-outside-extent / 2;
+$handle-mover-offset: -1px;
 $mover-size: $mover-outer + $mover-inner;
 $overlay-z-index: 9999999999;
 
-.highlight {
-  position: absolute;
-  cursor: move;
-  border: 1px dashed rgba($link-blue, 0.5);
-  border-radius: 2px;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
-  z-index: $overlay-z-index;
-}
+$modal-color: rgba(0, 0, 0, 0.7);
+$very-light-grey: #ededed;
 
-.highlight-buttons {
-  @include flex-container(row, center, center, wrap);
-  position: absolute;
-  bottom: -55px;
-  right: 0;
-  z-index: 6;
-
-  .bottom-selection & {
-    bottom: 5px;
-  }
-}
-
-.highlight-button-cancel {
-  @extend .button;
-  @extend .secondary;
-  // Overrides display: flex from .button, which causes hover problems
-  display: block;
-  background: $very-light-grey url("MOZ_EXTENSION/icons/cancel.svg") center center no-repeat;
-  background-size: 18px 18px;
-  margin: 5px;
-  width: 40px;
-
-  &:hover,
-  &:focus,
-  &:active {
-    background: darken($very-light-grey, 7) url("MOZ_EXTENSION/icons/cancel.svg") center center no-repeat;
-    background-size: 18px 18px;
-  }
-}
-
-.highlight-button-save {
-  @extend .button;
-  @extend .primary;
-  font-size: 18px;
-  margin: 5px;
-  min-width: 80px;
-}
-
-.highlight-button-download {
-  @extend .button;
-  @extend .secondary;
-  // Overrides display: flex from .button, which causes hover problems
-  display: block;
-  background: $very-light-grey url("MOZ_EXTENSION/icons/download.svg") center center no-repeat;
-  background-size: 18px 18px;
-  margin: 5px;
-  width: 40px;
-
-  &:hover,
-  &:focus,
-  &:active {
-    background: darken($very-light-grey, 7) url("MOZ_EXTENSION/icons/download.svg") center center no-repeat;
-    background-size: 18px 18px;
-  }
-}
-
-.highlight-button-cancel,
-.highlight-button-download {
-  opacity: 0.9;
-  transition: opacity 250ms;
-
-  &:hover,
-  &:focus,
-  &:active {
-    opacity: 1;
-  }
-}
 
 .mover-target {
+  @include flex-container(row, center, center);
+  pointer-events: auto;
   position: absolute;
   z-index: 5;
-  pointer-events: auto;
 }
 
 .highlight,
@@ -117,89 +42,97 @@ $overlay-z-index: 9999999999;
   border: 0;
 }
 
+.hover-highlight {
+  animation: fade-in 125ms forwards $bezier;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1px;
+  pointer-events: none;
+  position: absolute;
+  z-index: $overlay-z-index + 1;
+}
+
 .mover-target.direction-topLeft {
   cursor: nwse-resize;
-  top: -$mover-outer;
-  left: -$mover-outer;
-  width: $mover-size;
   height: $mover-size;
+  left: -$mover-outer;
+  top: -$mover-outer;
+  width: $mover-size;
 }
 
 .mover-target.direction-top {
   cursor: ns-resize;
-  top: -$mover-outer;
-  left: 0;
-  width: 100%;
   height: $mover-size;
+  left: 0;
+  top: -$mover-outer;
+  width: 100%;
   // It will be too wide, but this will place it below topLeft/etc:
   z-index: 4;
 }
 
 .mover-target.direction-topRight {
   cursor: nesw-resize;
-  top: -$mover-outer;
-  right: -$mover-outer;
   height: $mover-size;
+  right: -$mover-outer;
+  top: -$mover-outer;
   width: $mover-size;
 }
 
 .mover-target.direction-left {
   cursor: ew-resize;
-  top: 0;
-  left: -$mover-outer;
   height: 100%;
+  left: -$mover-outer;
+  top: 0;
   width: $mover-size;
   z-index: 4;
 }
 
 .mover-target.direction-right {
   cursor: ew-resize;
-  top: 0;
-  right: -$mover-outer;
   height: 100%;
+  right: -$mover-outer;
+  top: 0;
   width: $mover-size;
   z-index: 4;
 }
 
 .mover-target.direction-bottomLeft {
-  cursor: nesw-resize;
-  left: -$mover-outer;
   bottom: -$mover-outer;
-  width: $mover-size;
+  cursor: nesw-resize;
   height: $mover-size;
+  left: -$mover-outer;
+  width: $mover-size;
 }
 
 .mover-target.direction-bottom {
-  cursor: ns-resize;
-  left: 0;
   bottom: -$mover-outer;
-  width: 100%;
+  cursor: ns-resize;
   height: $mover-size;
+  left: 0;
+  width: 100%;
   z-index: 4;
 }
 
 .mover-target.direction-bottomRight {
-  cursor: nwse-resize;
   bottom: -$mover-outer;
+  cursor: nwse-resize;
+  height: $mover-size;
   right: -$mover-outer;
   width: $mover-size;
-  height: $mover-size;
 }
 
 .mover-target:hover .mover {
-  opacity: 1;
+  transform: scale(1.05);
 }
 
 .mover {
-  background-color: $link-blue;
-  border-radius: 2px;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1) inset;
+  background-color: $white;
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
   height: $handle-size;
-  opacity: 0.5;
-  position: absolute;
-  transition: opacity 150ms, width 150ms, height 150ms;
+  opacity: 1;
+  position: relative;
+  transition: transform 125ms $bezier;
   width: $handle-size;
-  z-index: 1001;
 
   .small-selection & {
     height: $handle-size-small;
@@ -207,75 +140,39 @@ $overlay-z-index: 9999999999;
   }
 }
 
-.direction-topLeft .mover {
-  top: $handle-mover-offset;
+.direction-topLeft .mover,
+.direction-left .mover,
+.direction-bottomLeft .mover {
   left: $handle-mover-offset;
 }
 
-.direction-top .mover {
-  top: $handle-mover-offset;
-  left: 50%;
-  margin-left: -$handle-size / 2;
-
-  .small-selection & {
-    margin-left: -$handle-size-small / 2;
-  }
-}
-
+.direction-topLeft .mover,
+.direction-top .mover,
 .direction-topRight .mover {
   top: $handle-mover-offset;
-  right: $handle-mover-offset;
 }
 
-.direction-left .mover {
-  top: 50%;
-  margin-top: -$handle-size / 2;
-  left: $handle-mover-offset;
-
-  .small-selection & {
-    margin-top: -$handle-size-small / 2;
-  }
-}
-
-.direction-right .mover {
-  top: 50%;
-  margin-top: -$handle-size / 2;
-  right: $handle-mover-offset;
-
-  .small-selection & {
-    margin-top: -$handle-size-small / 2;
-  }
-}
-
-.direction-bottomLeft .mover {
-  bottom: $handle-mover-offset;
-  left: $handle-mover-offset;
-}
-
-.direction-bottom .mover {
-  left: 50%;
-  margin-left: -$handle-size / 2;
-  bottom: $handle-mover-offset;
-
-  .small-selection & {
-    margin-left: -$handle-size-small / 2;
-  }
-}
-
+.direction-topRight .mover,
+.direction-right .mover,
 .direction-bottomRight .mover {
   right: $handle-mover-offset;
+}
+
+.direction-bottomRight .mover,
+.direction-bottom .mover,
+.direction-bottomLeft .mover {
   bottom: $handle-mover-offset;
 }
 
 .bghighlight {
+  background-color: $modal-color;
   position: absolute;
-  background-color: rgba(#323232, 0.5);
   z-index: $overlay-z-index;
 }
 
 .preview-overlay {
   align-items: center;
-  background-color: rgba(#000, 0.5);
+  background-color: $modal-color;
   display: flex;
   height: 100%;
   justify-content: center;
@@ -288,6 +185,72 @@ $overlay-z-index: 9999999999;
   z-index: $overlay-z-index;
 }
 
+.highlight {
+  border-radius: 2px;
+  border: 2px dashed rgba(255, 255, 255, 0.8);
+  box-sizing: border-box;
+  cursor: move;
+  position: absolute;
+  z-index: $overlay-z-index;
+}
+
+.highlight-buttons {
+  @include flex-container(row, center, center, wrap);
+  bottom: -55px;
+  position: absolute;
+  right: 5px;
+  z-index: 6;
+
+  .bottom-selection & {
+    bottom: 5px;
+  }
+}
+
+.highlight-button-cancel {
+  @extend .button;
+  @extend .secondary;
+  background-color: $very-light-grey;
+  background-image: url("MOZ_EXTENSION/icons/cancel.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  margin: 5px;
+  width: 40px;
+}
+
+.highlight-button-save {
+  @extend .button;
+  @extend .primary;
+  font-size: 18px;
+  margin: 5px;
+  min-width: 80px;
+}
+
+.highlight-button-download {
+  @extend .button;
+  @extend .secondary;
+  background-color: $very-light-grey;
+  background-image: url("MOZ_EXTENSION/icons/download.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  // Overrides display: flex from .button, which causes hover problems
+  display: block;
+  margin: 5px;
+  width: 40px;
+}
+
+.highlight-button-cancel,
+.highlight-button-download {
+  transition: background-color $bezier 250ms;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: darken($very-light-grey, 7);
+  }
+}
+
 .pixel-dimensions {
   position: absolute;
   pointer-events: none;
@@ -296,17 +259,15 @@ $overlay-z-index: 9999999999;
   font-size: 70%;
   color: #000;
   text-shadow:
-      -1px -1px 0 #fff,
-      1px -1px 0 #fff,
-      -1px 1px 0 #fff,
-      1px 1px 0 #fff;
+  -1px -1px 0 #fff,
+  1px -1px 0 #fff,
+  -1px 1px 0 #fff,
+  1px 1px 0 #fff;
 }
 
 // FIXME: some of the styles in .fixed-container were copied from
 // .preview-overlay and are probably unnecessary
 .fixed-container {
-  pointer-events: none;
-  position: absolute;
   align-items: center;
   display: flex;
   height: 100%;
@@ -314,41 +275,79 @@ $overlay-z-index: 9999999999;
   left: 0;
   margin: 0;
   padding: 0;
+  pointer-events: none;
+  position: absolute;
   top: 0;
   width: 100%;
 }
 
 .preview-instructions {
   @include flex-container(row, center, center);
-  pointer-events: none;
-  animation: pulse ease-in-out 200ms;
-  background-color: rgba(#000, 0.6);
-  border-radius: 20px;
+  animation: pulse 125mm $bezier;
   color: #fff;
-  font-family: sans-serif;
-  font-size: 12pt;
-  font-weight: bold;
-  margin: 0 auto;
-  min-height: 20px;
-  padding: 10px 20px;
-  vertical-align: middle;
-  z-index: 999999999;
-}
-.myshots-all-buttons-container {
-  position: absolute;
-  right: 25px;
-  top: 15px;
-  min-width: 136px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 21px;
+  line-height: 30px;
+  text-align: center;
+  width: 400px;
 }
 
-.myshots-button {
-  @extend .button;
-  @extend .secondary;
-  display: block;
-  margin-bottom: 5px;
-  font-family: sans-serif;
-  pointer-events: all;
-  width: 100%;
+.myshots-all-buttons-container {
+  @include flex-container(row-reverse, flex-start, stretch);
+  background: #f5f5f5;
+  border-radius: $border-radius;
+  box-sizing: border-box;
+  height: 80px;
+  padding: 8px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+
+  .spacer {
+    background-color: #c9c9c9;
+    flex: 0 0 1px;
+    height: 80px;
+    margin: 0 10px;
+    position: relative;
+    top: -8px;
+  }
+
+  button {
+    @include flex-container(column, flex-end, center);
+    background-color: #f5f5f5;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: 46px 46px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    height: 100%;
+    min-width: 90px;
+    padding: 44px 5px 5px;
+    pointer-events: all;
+    transition: border 150ms $bezier, background-color 150ms $bezier;
+
+    &:hover {
+      background-color: #ebebeb;
+      border: 1px solid #c7c7c7;
+    }
+
+    &:active {
+      background-color: #dedede;
+      border: 1px solid #989898;
+    }
+  }
+
+  .myshots-button {
+    background-image: url("MOZ_EXTENSION/icons/menu-myshot.svg");
+  }
+
+  .full-page {
+    background-image: url("MOZ_EXTENSION/icons/menu-fullpage.svg");
+  }
+
+  .visible {
+    background-image: url("MOZ_EXTENSION/icons/menu-visible.svg");
+  }
 }
 
 .myshots-button-container {
@@ -356,8 +355,6 @@ $overlay-z-index: 9999999999;
 }
 
 /* styleMyShotsButton test: */
-.styleMyShotsButton-control .myshots-button {
-}
 
 .styleMyShotsButton-bright .myshots-button {
   color: #fff;
@@ -370,35 +367,6 @@ $overlay-z-index: 9999999999;
 }
 
 /* end styleMyShotsButton test */
-
-.myshots-text-pre {
-  /* Data version of static/img/my-shots.svg */
-  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIwLjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxNiAxNiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTYgMTY7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojNEQ0RDREO30KPC9zdHlsZT4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTEyLDEyaDR2MmMwLDEuMS0wLjksMi0yLDJoLTJWMTJMMTIsMTJ6IE0wLDEyaDR2NEgyYy0xLjEsMC0yLTAuOS0yLTJWMTJMMCwxMnogTTEyLDZoNHY0aC00VjZMMTIsNnogTTYsNmg0djQKCUg2VjZMNiw2eiBNMCw2aDR2NEgwVjZMMCw2eiBNMTIsMGgyYzEuMSwwLDIsMC45LDIsMnYyaC00VjBMMTIsMHogTTYsMGg0djRINlYwTDYsMHogTTYsMTJoNHY0SDZWMTJMNiwxMnogTTAsMmMwLTEuMSwwLjktMiwyLTJoMgoJdjRIMFYyTDAsMnoiLz4KPC9zdmc+Cg==");
-  background-position: left center;
-  background-repeat: no-repeat;
-  background-size: 16px 16px;
-  flex: 0 0 24px;
-  height: 16px;
-  width: 24px;
-}
-
-.myshots-text-post {
-  /* Data version of static/img/arrow-right.svg */
-  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIwLjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxNiAxNiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTYgMTY7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojMzMzMzMzO30KPC9zdHlsZT4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTUuNywyLjhMNS43LDIuOGMwLjQtMC40LDEuMS0wLjQsMS41LDBMMTIuNCw4bC01LjEsNS4yYy0wLjQsMC40LTEuMSwwLjQtMS41LDBsMCwwYy0wLjQtMC40LTAuNC0xLjEsMC0xLjUKCUw5LjQsOEw1LjcsNC4yQzUuMywzLjgsNS4zLDMuMiw1LjcsMi44eiIvPgo8L3N2Zz4K");
-  background-position: right center;
-  background-repeat: no-repeat;
-  background-size: 16px 16px;
-  flex: 0 0 20px;
-  height: 16px;
-  opacity: 0.6;
-  width: 20px;
-}
-
-.myshots-text {
-  flex: 0;
-  position: relative;
-  top: 1px;
-}
 
 @keyframes pulse {
   0% {
@@ -422,13 +390,4 @@ $overlay-z-index: 9999999999;
   100% {
     opacity: 1;
   }
-}
-
-.hover-highlight {
-  animation: fade-in 500ms forwards;
-  opacity: 0;
-  position: absolute;
-  border: 1px dashed rgba($link-blue, 0.5);
-  pointer-events: none;
-  z-index: $overlay-z-index+1;
 }

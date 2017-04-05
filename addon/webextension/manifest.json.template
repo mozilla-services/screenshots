@@ -58,7 +58,15 @@
   "web_accessible_resources": [
     "icons/cancel.svg",
     "icons/download.svg",
-    "icons/icon-256.png"
+    "icons/icon-256.png",
+    "icons/back.svg",
+    "icons/menu-fullpage.svg",
+    "icons/menu-visible.svg",
+    "icons/menu-myshot.svg",
+    "icons/onboarding-1.png",
+    "icons/onboarding-2.png",
+    "icons/onboarding-3.png",
+    "icons/onboarding-4.png"
   ],
   "permissions": [
     "activeTab",
