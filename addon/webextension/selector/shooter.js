@@ -11,8 +11,23 @@ window.shooter = (function () { // eslint-disable-line no-unused-vars
   let shot;
   let supportsDrawWindow;
 
+  function regexpEscape(str) {
+    // http://stackoverflow.com/questions/3115150/how-to-escape-regular-expression-special-characters-using-javascript
+    return str.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+  }
+
+  function sanitizeError(data) {
+    const href = new RegExp(regexpEscape(window.location.href), 'g');
+    const origin = new RegExp(`${regexpEscape(window.location.origin)}[^\s",>]*`, 'g');
+    const json = JSON.stringify(data)
+      .replace(href, 'REDACTED_HREF')
+      .replace(origin, 'REDACTED_URL');
+    const result = JSON.parse(json);
+    return result;
+  }
+
   catcher.registerHandler((errorObj) => {
-    callBackground("reportError", errorObj);
+    callBackground("reportError", sanitizeError(errorObj));
   });
 
   (function () {

@@ -65,11 +65,6 @@ window.errorpopup = (function () {
     });
   };
 
-  function regexpEscape(str) {
-    // http://stackoverflow.com/questions/3115150/how-to-escape-regular-expression-special-characters-using-javascript
-    return str.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-  }
-
   exports.reportError = function (e) {
     if (!analytics.getTelemetryPrefSync()) {
       console.error("Telemetry disabled. Not sending critical error:", e);
@@ -81,17 +76,7 @@ window.errorpopup = (function () {
       return;
     }
     if (! Raven.isSetup()) {
-      Raven.config(dsn, {
-        dataCallback: function sanitizeSentry(data) {
-          const href = new RegExp(regexpEscape(window.location.href), 'g');
-          const origin = new RegExp(`${regexpEscape(window.location.origin)}[^\s",>]*`, 'g');
-          const json = JSON.stringify(data)
-            .replace(href, 'REDACTED_HREF')
-            .replace(origin, 'REDACTED_URL');
-          const result = JSON.parse(json);
-          return result;
-        }
-      }).install();
+      Raven.config(dsn).install();
     }
     let exception = new Error(e.message);
     exception.stack = e.multilineStack || e.stack || undefined;
