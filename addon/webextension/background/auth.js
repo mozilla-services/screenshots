@@ -192,13 +192,13 @@ window.auth = (function () {
       // Probably we already imported the information
       return Promise.resolve(false);
     }
-    let newInfo = {
+    registrationInfo = {
       deviceId: newDeviceInfo.deviceId,
       secret: newDeviceInfo.secret,
       registered: true
     };
     initialized = false;
-    return browser.storage.local.set({registrationInfo: newInfo}).then(() => {
+    return browser.storage.local.set({registrationInfo}).then(() => {
       return true;
     });
   };
