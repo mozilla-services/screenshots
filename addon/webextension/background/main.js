@@ -41,7 +41,7 @@ var main = (function () {
   }
 
   for (let permission of manifest.permissions) {
-    if (permission.search(/^https?:\/\//i) != -1) {
+    if (/^https?:\/\//.test(permission)) {
       exports.setBackend(permission);
       break;
     }
@@ -114,11 +114,6 @@ var main = (function () {
     title: browser.i18n.getMessage("contextMenuLabel"),
     contexts: ["page"],
     documentUrlPatterns: ["<all_urls>"]
-  }, () => {
-    // Note: unlike most browser.* functions this one does not return a promise
-    if (browser.runtime.lastError) {
-      catcher.unhandled(new Error(browser.runtime.lastError.message));
-    }
   });
 
   browser.contextMenus.onClicked.addListener(catcher.watchFunction((info, tab) => {
@@ -170,16 +165,27 @@ var main = (function () {
   }
 
   browser.tabs.onUpdated.addListener(catcher.watchFunction((id, info, tab) => {
-    if (info.url && tab.selected) {
+    if (info.url && tab.active) {
       if (urlEnabled(info.url)) {
         browser.browserAction.enable(tab.id);
-      }
-      else {
-        if (hasSeenOnboarding) {
-          browser.browserAction.disable(tab.id);
-        }
+      } else if (hasSeenOnboarding) {
+        browser.browserAction.disable(tab.id);
       }
     }
+  }));
+
+  browser.tabs.onActivated.addListener(catcher.watchFunction(({tabId, windowId}) => {
+    catcher.watchPromise(browser.tabs.get(tabId).then((tab) => {
+      // onActivated may fire before the url is set
+      if (!tab.url) {
+        return;
+      }
+      if (urlEnabled(tab.url)) {
+        browser.browserAction.enable(tabId);
+      } else {
+        browser.browserAction.disable(tabId);
+      }
+    }));
   }));
 
   communication.register("sendEvent", (sender, ...args) => {
