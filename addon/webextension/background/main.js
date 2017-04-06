@@ -44,7 +44,7 @@ window.main = (function () {
   function setIconActive(active, tabId) {
     let path = active ? "icons/icon-highlight-38.png" : "icons/icon-38.png";
     if ((! hasSeenOnboarding) && ! active) {
-      path = "icons/icon-38-starred.png";
+      path = "icons/icon-starred-38.png";
     }
     browser.browserAction.setIcon({path, tabId});
   }
