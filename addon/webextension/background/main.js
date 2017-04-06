@@ -69,8 +69,10 @@ window.main = (function () {
   browser.browserAction.onClicked.addListener(catcher.watchFunction((tab) => {
     if (shouldOpenMyShots(tab.url)) {
       if (! hasSeenOnboarding) {
-        sendEvent("goto-onboarding", "selection-button");
-        catcher.watchPromise(forceOnboarding());
+        catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
+          sendEvent("goto-onboarding", "selection-button");
+          return forceOnboarding();
+        }));
         return;
       }
       catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
