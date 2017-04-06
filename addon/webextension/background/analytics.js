@@ -42,8 +42,8 @@ var analytics = (function () {
       options.applicationName = di.appName;
       options.applicationVersion = di.addonVersion;
       let abTests = auth.getAbTests();
-      for (let testName in abTests) {
-        options[abTests[testName].gaField] = abTests[testName].value;
+      for (let [gaField, value] of Object.entries(abTests)) {
+        options[gaField] = value;
       }
       console.info(`sendEvent ${eventCategory}/${action}/${label || 'none'} ${JSON.stringify(options)}`);
       req.send(JSON.stringify({
