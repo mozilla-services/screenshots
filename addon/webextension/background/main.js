@@ -14,6 +14,9 @@ window.main = (function () {
 
   browser.storage.local.get(["hasSeenOnboarding"]).then((result) => {
     hasSeenOnboarding = !! result.hasSeenOnboarding;
+    if (! hasSeenOnboarding) {
+      setIconActive(false, null);
+    }
   }).catch((error) => {
     console.error("Error getting hasSeenOnboarding:", error);
   });
@@ -35,7 +38,10 @@ window.main = (function () {
   }
 
   function setIconActive(active, tabId) {
-    const path = active ? "icons/icon-highlight-38.png" : "icons/icon-38.png";
+    let path = active ? "icons/icon-highlight-38.png" : "icons/icon-38.png";
+    if ((! hasSeenOnboarding) && ! active) {
+      path = "icons/icon-38-starred.png";
+    }
     browser.browserAction.setIcon({path, tabId});
   }
 
@@ -178,6 +184,7 @@ window.main = (function () {
   communication.register("hasSeenOnboarding", () => {
     hasSeenOnboarding = true;
     catcher.watchPromise(browser.storage.local.set({hasSeenOnboarding}));
+    setIconActive(false, null);
   });
 
   return exports;
