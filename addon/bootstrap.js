@@ -138,5 +138,6 @@ function handleMessage(msg, sender, sendReply) {
       }
       sendReply({type: "success", value: !!addon});
     });
+    return true;
   }
 }
