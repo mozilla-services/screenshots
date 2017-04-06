@@ -93,15 +93,21 @@ var ui = (function () { // eslint-disable-line no-unused-vars
           this.element.scrolling = "no";
           this.updateElementSize();
           this.element.onload = watchFunction(() => {
-            this.document = this.element.contentDocument;
-            this.document.documentElement.outerHTML = `
+            let parsedDom = (new DOMParser()).parseFromString(`
               <html>
                <head>
                 <style>${substitutedCss}</style>
                 <title></title>
                </head>
                <body></body>
-              </html>`;
+              </html>`,
+              "text/html"
+            );
+            this.document = this.element.contentDocument;
+            this.document.replaceChild(
+              this.document.adoptNode(parsedDom.documentElement),
+              this.document.documentElement
+            );
             installHandlerOnDocument(this.document);
             if (this.addClassName) {
               this.document.body.className = this.addClassName;
@@ -219,8 +225,7 @@ var ui = (function () { // eslint-disable-line no-unused-vars
           this.element.scrolling = "no";
           this.updateElementSize();
           this.element.onload = watchFunction(() => {
-            this.document = this.element.contentDocument;
-            this.document.documentElement.outerHTML = `
+            let parsedDom = (new DOMParser()).parseFromString(`
               <html>
                <head>
                 <style>${substitutedCss}</style>
@@ -239,7 +244,14 @@ var ui = (function () { // eslint-disable-line no-unused-vars
                    </div>
                  </div>
                </body>
-              </html>`;
+              </html>`,
+              "text/html"
+            );
+            this.document = this.element.contentDocument;
+            this.document.replaceChild(
+              this.document.adoptNode(parsedDom.documentElement),
+              this.document.documentElement
+            );
             installHandlerOnDocument(this.document);
             if (this.addClassName) {
               this.document.body.className = this.addClassName;
