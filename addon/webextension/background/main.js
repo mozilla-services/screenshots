@@ -14,6 +14,9 @@ window.main = (function () {
 
   browser.storage.local.get(["hasSeenOnboarding"]).then((result) => {
     hasSeenOnboarding = !! result.hasSeenOnboarding;
+    if (! hasSeenOnboarding) {
+      setIconActive(false, null);
+    }
   }).catch((error) => {
     console.error("Error getting hasSeenOnboarding:", error);
   });
@@ -27,6 +30,10 @@ window.main = (function () {
     return backend;
   };
 
+  function getOnboardingUrl() {
+    return backend + "/#hello";
+  }
+
   for (let permission of manifest.permissions) {
     if (permission.search(/^https?:\/\//i) != -1) {
       exports.setBackend(permission);
@@ -35,7 +42,10 @@ window.main = (function () {
   }
 
   function setIconActive(active, tabId) {
-    const path = active ? "icons/icon-highlight-38.png" : "icons/icon-38.png";
+    let path = active ? "icons/icon-highlight-38.png" : "icons/icon-38.png";
+    if ((! hasSeenOnboarding) && ! active) {
+      path = "icons/icon-starred-38.png";
+    }
     browser.browserAction.setIcon({path, tabId});
   }
 
@@ -58,6 +68,13 @@ window.main = (function () {
 
   browser.browserAction.onClicked.addListener(catcher.watchFunction((tab) => {
     if (shouldOpenMyShots(tab.url)) {
+      if (! hasSeenOnboarding) {
+        catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
+          sendEvent("goto-onboarding", "selection-button");
+          return forceOnboarding();
+        }));
+        return;
+      }
       catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
         sendEvent("goto-myshots", "about-newtab");
       }));
@@ -70,9 +87,21 @@ window.main = (function () {
           .then(active => {
             const event = active ? "start-shot" : "cancel-shot";
             sendEvent(event, "toolbar-button");
+          }, (error) => {
+            if (error.popupMessage == "UNSHOOTABLE_PAGE") {
+              sendEvent("goto-onboarding", "selection-button");
+              return forceOnboarding();
+            }
+            throw error;
           }));
     }
   }));
+
+  function forceOnboarding() {
+    return browser.tabs.create({url: getOnboardingUrl()}).then((tab) => {
+      return toggleSelector(tab);
+    });
+  }
 
   browser.contextMenus.create({
     id: "create-screenshot",
@@ -106,14 +135,15 @@ window.main = (function () {
     return true;
   }
 
-
   browser.tabs.onUpdated.addListener(catcher.watchFunction((id, info, tab) => {
     if (info.url && tab.selected) {
       if (urlEnabled(info.url)) {
         browser.browserAction.enable(tab.id);
       }
       else {
-        browser.browserAction.disable(tab.id);
+        if (hasSeenOnboarding) {
+          browser.browserAction.disable(tab.id);
+        }
       }
     }
   }));
@@ -178,6 +208,7 @@ window.main = (function () {
   communication.register("hasSeenOnboarding", () => {
     hasSeenOnboarding = true;
     catcher.watchPromise(browser.storage.local.set({hasSeenOnboarding}));
+    setIconActive(false, null);
   });
 
   return exports;

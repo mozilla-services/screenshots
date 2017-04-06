@@ -107,6 +107,7 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 7. [ ] Cancel because the tab is navigated (such as entering something in the URL bar), **or** the tab was closed, **or** the tab was reloaded `addon/cancel-shot/tab-load` (previously closing would emit `addon/cancel-shot/tab-close` and `addon/cancel-shot/tab-reload` for those cases)
 5. [x] Click My Shots `addon/goto-myshots/selection-button`
 6. [x] Go to My Shots by hitting the Screenshots button on a about:newtab page `addon/goto-myshots/about-newtab`
+6. [x] Go to `/#hello` to onboard (because the user pressed the Screenshots button on a page that could not be shot) `addon/goto-onboarding/selection-button`
 6. [x] Click on "Save visible" `addon/capture-visible/selection-button`
 7. [x] Click on "Save Full Page" `addon/capture-full-page/selection-button`
 6. ~~Click My Shots button from error panel `addon/goto-myshots/error-panel`~~
