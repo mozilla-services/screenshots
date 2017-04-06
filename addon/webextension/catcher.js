@@ -26,7 +26,7 @@ var catcher = (function () {
       result = {
         fromMakeError: true,
         name: exc.name || "ERROR",
-        message: exc+"",
+        message: String(exc),
         stack: exc.stack
       };
       for (let attr in exc) {
