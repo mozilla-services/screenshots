@@ -68,7 +68,7 @@ var selectorLoader = (function () {
       })
     });
     return lastPromise.then(() => {
-      console.log("finished loading scripts:", scripts.join(" "), "->", browser.runtime.lastError || "no error");
+      console.log("finished loading scripts:", scripts.join(" "));
     },
     (error) => {
       exports.unloadIfLoaded(tabId);
