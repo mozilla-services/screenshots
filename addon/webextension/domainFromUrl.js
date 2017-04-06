@@ -8,12 +8,8 @@ var domainFromUrl = (function () {
 
   return function urlDomainForId(location) { // eslint-disable-line no-unused-vars
     let domain = location.hostname;
-    if (domain) {
-      if (domain.indexOf(":") !== -1) {
-        domain = domain.replace(/:.*/, "");
-      }
-    } else {
-      domain = location.href.split(":")[0];
+    if (!domain) {
+      domain = location.origin.split(":")[0];
       if (! domain) {
         domain = "unknown";
       }

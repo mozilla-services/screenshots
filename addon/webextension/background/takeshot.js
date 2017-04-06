@@ -32,7 +32,7 @@ var takeshot = (function () {
     }
     let shotAbTests = {};
     let abTests = auth.getAbTests();
-    for (let testName in abTests) {
+    for (let testName of Object.keys(abTests)) {
       if (abTests[testName].shotField) {
         shotAbTests[testName] = abTests[testName].value;
       }
