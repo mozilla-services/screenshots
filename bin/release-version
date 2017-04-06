@@ -48,9 +48,11 @@ case "$channel" in
     echo "Next step: upload build/eb-app-latest.zip to http://amzn.to/1NuC3N9"
     ;;
   stage)
-    if [[ "$(current_branch)" != "stable" ]] ; then
+    if [[ "$(current_branch)" != "stable" ]] && [[ -z "$IGNORE_BRANCH" ]] ; then
       echo "Error: you should be on the stable branch when releasing stage"
       echo "  git checkout stable ; git pull"
+      echo "To proceed anyway use:"
+      echo "  IGNORE_BRANCH=1 $(basename $0) stage"
       exit 4
     fi
     rm -f build/screenshots.zip
