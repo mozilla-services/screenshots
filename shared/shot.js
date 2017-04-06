@@ -161,15 +161,15 @@ function deepEqual(a, b) {
   if (Array.isArray(b)) {
     return false;
   }
-  let seen = {};
-  for (let attr in a) {
+  let seen = new Set();
+  for (let attr of Object.keys(a)) {
     if (! deepEqual(a[attr], b[attr])) {
       return false;
     }
-    seen[attr] = true;
+    seen.add(attr);
   }
-  for (let attr in b) {
-    if (! seen[attr]) {
+  for (let attr of Object.keys(b)) {
+    if (! seen.has(attr)) {
       if (! deepEqual(a[attr], b[attr])) {
         return false;
       }
@@ -178,16 +178,17 @@ function deepEqual(a, b) {
   return true;
 }
 
+// TODO: either rename to makeRandomId or just make it a uuidv4
+// via crypto.getRandomValues.
 function makeUuid() {
   // FIXME: not a proper uuid
   let id = "";
   while (id.length < 12) {
-    // 46656 == Math.pow(36, 3)
     let num;
     if (! id) {
-      num = Date.now() % 46656;
+      num = Date.now() % Math.pow(36, 3);
     } else {
-      num = Math.floor(Math.random() * 46656);
+      num = Math.floor(Math.random() * Math.pow(36, 3));
     }
     id += num.toString(36);
   }
