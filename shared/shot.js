@@ -178,10 +178,8 @@ function deepEqual(a, b) {
   return true;
 }
 
-// TODO: either rename to makeRandomId or just make it a uuidv4
-// via crypto.getRandomValues.
-function makeUuid() {
-  // FIXME: not a proper uuid
+function makeRandomId() {
+  // Note: this isn't for secure contexts, only for non-conflicting IDs
   let id = "";
   while (id.length < 12) {
     let num;
@@ -483,7 +481,7 @@ class AbstractShot {
     return this._clips[name];
   }
   addClip(val) {
-    let name = makeUuid();
+    let name = makeRandomId();
     this.setClip(name, val);
     return name;
   }
