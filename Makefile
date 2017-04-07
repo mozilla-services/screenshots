@@ -125,7 +125,7 @@ zip: addon
 	./node_modules/.bin/web-ext build --source-dir addon/webextension/
 	mv web-ext-artifacts/firefox_screenshots*.zip build/screenshots.zip
 	# We'll try to remove this directory, but it's no big deal if we can't:
-	@rmdir web-ext-artifacts || true
+	rmdir web-ext-artifacts || true
 
 .PHONY: signed_xpi
 signed_xpi: addon
