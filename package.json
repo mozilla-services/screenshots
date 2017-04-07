@@ -44,6 +44,7 @@
     "babel-preset-react": "6.23.0",
     "body-parser": "1.17.1",
     "browserify": "14.1.0",
+    "david": "11.0.0",
     "eslint": "3.17.1",
     "eslint-plugin-react": "6.10.0",
     "fx-runner": "1.0.6",
@@ -74,6 +75,8 @@
     "postlint": "nsp check -o summary",
     "nsp": "nsp check",
     "posttest": "npm run lint",
-    "test": "make zip && mocha test/"
+    "test": "make zip && mocha test/",
+    "make_versions_exact": "node bin/build-scripts/make_versions_exact.js",
+    "update_outdated": "david update && npm run make_versions_exact && npm update && npm outdated"
   }
 }
