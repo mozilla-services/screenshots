@@ -30,6 +30,10 @@ window.main = (function () {
     return backend;
   };
 
+  communication.register("getBackend", () => {
+    return backend;
+  });
+
   function getOnboardingUrl() {
     return backend + "/#hello";
   }
