@@ -5,7 +5,7 @@
 /** Throws an error if the condition isn't true.  Any extra arguments after the condition
     are used as console.error() arguments. */
 function assert(condition, ...args) {
-  if (!!condition) {
+  if (condition) {
     return;
   }
   console.error("Failed assertion", ...args);
