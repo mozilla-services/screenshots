@@ -1,4 +1,5 @@
-/* globals catcher, onboardingHtml, onboardingCss, browser, util, shooter */
+/* globals catcher, onboardingHtml, onboardingCss, browser, util, shooter, callBackground */
+
 window.slides = (function () {
   let exports = {};
 
@@ -9,6 +10,7 @@ window.slides = (function () {
   let currentSlide = 1;
   let numberOfSlides;
   let callbacks;
+  let backend;
 
   exports.display = function (addCallbacks) {
     if (iframe) {
@@ -42,9 +44,12 @@ window.slides = (function () {
           doc.documentElement
         );
         doc.addEventListener("keyup", onKeyUp, false);
-        localizeText(doc);
-        activateSlide(doc);
-        resolve();
+        callBackground("getBackend").then((backendResult) => {
+          backend = backendResult;
+          localizeText(doc);
+          activateSlide(doc);
+          resolve();
+        });
       });
       document.body.appendChild(iframe);
       iframe.focus();
@@ -76,6 +81,37 @@ window.slides = (function () {
       let id = el.getAttribute("data-l10n-label-id");
       let text = browser.i18n.getMessage(id);
       el.setAttribute("aria-label", text);
+    }
+    // termsAndPrivacyNotice is a more complicated substitution:
+    let termsContainer = doc.querySelector(".onboarding-legal-notice");
+    termsContainer.innerHTML = "";
+    let termsSentinal = "__TERMS__";
+    let privacySentinal = "__PRIVACY__";
+    let sentinalSplitter = "!!!";
+    let linkTexts = {
+      [termsSentinal]: browser.i18n.getMessage("termsAndPrivacyNoticeTermsLink"),
+      [privacySentinal]: browser.i18n.getMessage("termsAndPrivacyNoticyPrivacyLink")
+    };
+    let linkUrls = {
+      [termsSentinal]: `${backend}/terms`,
+      [privacySentinal]: `${backend}/privacy`
+    };
+    let text = browser.i18n.getMessage(
+      "termsAndPrivacyNotice",
+      [sentinalSplitter + termsSentinal + sentinalSplitter,
+       sentinalSplitter + privacySentinal + sentinalSplitter]);
+    let parts = text.split(sentinalSplitter);
+    for (let part of parts) {
+      let el;
+      if (part === termsSentinal || part === privacySentinal) {
+        el = doc.createElement("a");
+        el.href = linkUrls[part];
+        el.textContent = linkTexts[part];
+        el.target = "_blank";
+      } else {
+        el = doc.createTextNode(part);
+      }
+      termsContainer.appendChild(el);
     }
   }
 
