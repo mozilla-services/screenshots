@@ -31,7 +31,7 @@ var auth = (function () {
 
   function generateRegistrationInfo() {
     let info = {
-      deviceId: `anon ${makeUuid()}`,
+      deviceId: `anon${makeUuid()}`,
       secret: makeUuid(),
       registered: false
     };
