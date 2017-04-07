@@ -116,10 +116,8 @@ export_addon: addon
 	$(RSYNC) $(DIST_EXPORT_DIR)/* $(GIT_EXPORT_DIR)
 	@mkdir -p $(GIT_EXPORT_DIR)/test/browser
 	$(RSYNC) $(TEST_EXPORT_DIR)/* $(GIT_EXPORT_DIR)/test/browser
-
-	@echo "*****"
-		@echo "You will need to manually move/add/remove files to create the commit."
-	@echo "*****"
+	rm -f $(GIT_EXPORT_DIR)/README.md $(GIT_EXPORT_DIR)/install.rdf.template
+	$(VENV)/bin/python bin/update_mozbuild.py
 
 .PHONY: zip
 zip: addon
@@ -127,7 +125,7 @@ zip: addon
 	./node_modules/.bin/web-ext build --source-dir addon/webextension/
 	mv web-ext-artifacts/firefox_screenshots*.zip build/screenshots.zip
 	# We'll try to remove this directory, but it's no big deal if we can't:
-	@rmdir web-ext-artifacts || true
+	rmdir web-ext-artifacts || true
 
 .PHONY: signed_xpi
 signed_xpi: addon
