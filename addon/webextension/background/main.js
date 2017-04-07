@@ -114,6 +114,11 @@ var main = (function () {
     title: browser.i18n.getMessage("contextMenuLabel"),
     contexts: ["page"],
     documentUrlPatterns: ["<all_urls>"]
+  }, () => {
+    // Note: unlike most browser.* functions this one does not return a promise
+    if (browser.runtime.lastError) {
+      catcher.unhandled(new Error(browser.runtime.lastError.message));
+    }
   });
 
   browser.contextMenus.onClicked.addListener(catcher.watchFunction((info, tab) => {
