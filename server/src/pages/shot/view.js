@@ -511,7 +511,7 @@ class EditableTitle extends React.Component {
     if (this.state.isSaving) {
       className += " saving";
     }
-    return <span className={className} {...handlers}>{this.state.isSaving || this.props.title}</span>;
+    return <span className={className} {...handlers}>{this.state.isSaving || this.displayTitle(this.props.title)}</span>;
   }
 
   renderEditing() {
@@ -521,6 +521,15 @@ class EditableTitle extends React.Component {
         type="text" defaultValue={this.props.title} autoFocus="true"
         onBlur={this.onBlur.bind(this)} onKeyUp={this.onKeyUp.bind(this)} />
     </form>;
+  }
+
+  displayTitle(title) {
+    if(title.length > 140) {
+      return (title.substring(0, 140) + "...");
+    }
+    else {
+      return title;
+    }
   }
 
   onClick() {

@@ -117,7 +117,7 @@ class Body extends React.Component {
           <img className="shot-control" src={this.props.staticLink("/static/img/garbage-bin.svg")} onClick={this.onClickDelete.bind(this, shot)} />
         </div>
         <div className="title-container">
-          <h4>{shot.title}</h4>
+          <h4>{this.displayTitle(shot.title)}</h4>
         </div>
         <div className="link-container">
           {favicon}
@@ -128,6 +128,15 @@ class Body extends React.Component {
         <div className="inner-border"/>
       </a>
     );
+  }
+
+  displayTitle(title) {
+    if(title.length > 140) {
+      return (title.substring(0, 140) + "...");
+    }
+    else {
+      return title;
+    }
   }
 
   onClickDelete(shot, event) {
