@@ -45,24 +45,6 @@ exports.launch = function (data) {
     }
   }
   if (firstSet) {
-    document.addEventListener("helper-ready", function onHelperReady(e) {
-      document.removeEventListener("helper-ready", onHelperReady, false);
-      let event = document.createEvent("CustomEvent");
-      event.initCustomEvent("page-ready", true, true, null);
-      document.dispatchEvent(event);
-      //requestHasSavedShot(model.shot.id);
-    }, false);
-    /*
-    document.addEventListener("has-saved-shot-result", function (event) {
-      let result = JSON.parse(event.detail);
-      model.hasSavedShot = result;
-      render();
-    }, false);
-    document.addEventListener("saved-shot-data", function (event) {
-      let result = JSON.parse(event.detail);
-      addSavedShotData(result);
-    }, false);
-    */
     refreshHash();
   }
   try {

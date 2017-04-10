@@ -6,20 +6,18 @@ let helperReadyPromise = new Promise((resolve, reject) => {
   helperReadyResolve = resolve;
 });
 
-document.addEventListener("helper-ready", () => {
+document.addEventListener("addon-present", () => {
   helperReadyResolve();
-  let event = document.createEvent("CustomEvent");
-  event.initCustomEvent("page-ready", true, true, null);
-  document.dispatchEvent(event);
 }, false);
+
+document.dispatchEvent(new CustomEvent("request-addon-present"));
 
 exports.launch = function (m) {
   if (m.complete) {
     sendEvent("leave-service-completed");
     // eslint-disable-next-line promise/catch-or-return
     helperReadyPromise.then(() => {
-      let event = document.createEvent("CustomEvent");
-      event.initCustomEvent("delete-everything", true, true, null);
+      let event = new CustomEvent("delete-everything");
       document.dispatchEvent(event);
     });
   } else {
