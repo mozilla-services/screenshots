@@ -236,6 +236,8 @@ These are events that an add-on user can encounter on a shot they own
 2. [x] Views of images directly, `/images/{hash}`
 3. [x] Views of images that came from og/twitter metadata, `/images/embedded/{hash}`
 
+The hashed page ID (`{hash}`) is a simple SHA1(path), with no additional randomness or salt added.
+
 #### General Google Analytics information
 
 This is stuff we get from including ga.js on Screenshots pages.
