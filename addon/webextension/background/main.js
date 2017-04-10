@@ -1,5 +1,5 @@
 /* globals browser, console, XMLHttpRequest, Image, document, setTimeout, navigator */
-/* globals selectorLoader, analytics, communication, catcher, makeUuid, auth */
+/* globals selectorLoader, analytics, communication, catcher, makeUuid, auth, senderror */
 
 window.main = (function () {
   let exports = {};
@@ -213,6 +213,15 @@ window.main = (function () {
     hasSeenOnboarding = true;
     catcher.watchPromise(browser.storage.local.set({hasSeenOnboarding}));
     setIconActive(false, null);
+  });
+
+  communication.register("abortFrameset", () => {
+    sendEvent("abort-start-shot", "frame-page");
+    // Note, we only show the error but don't report it, as we know that we can't
+    // take shots of these pages:
+    senderror.showError({
+      popupMessage: "UNSHOOTABLE_PAGE"
+    });
   });
 
   return exports;
