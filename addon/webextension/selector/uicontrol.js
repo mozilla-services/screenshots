@@ -1,5 +1,5 @@
 /* globals console, catcher, util, ui, slides */
-/* globals window, document, location, shooter, callBackground, selectorLoader */
+/* globals window, document, location, shooter, callBackground, selectorLoader, assertIsTrusted */
 
 window.uicontrol = (function () {
   let exports = {};
@@ -365,7 +365,7 @@ window.uicontrol = (function () {
       watchPromise(ui.iframe.display(installHandlersOnDocument, standardOverlayCallbacks).then(() => {
         ui.iframe.usePreSelection();
         ui.Box.remove();
-        const handler = watchFunction(keyupHandler);
+        const handler = watchFunction(assertIsTrusted(keyupHandler));
         document.addEventListener("keyup", handler, false);
         registeredDocumentHandlers.push({name: "keyup", doc: document, handler});
       }));
