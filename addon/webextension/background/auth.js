@@ -1,7 +1,9 @@
 /* globals browser */
 /* globals main, makeUuid, deviceInfo, analytics, catcher, defaultSentryDsn, communication */
 
-window.auth = (function () {
+"use strict";
+
+var auth = (function () {
   let exports = {};
 
   let registrationInfo;
@@ -29,8 +31,8 @@ window.auth = (function () {
 
   function generateRegistrationInfo() {
     let info = {
-      deviceId: "anon" + makeUuid() + "",
-      secret: makeUuid()+"",
+      deviceId: `anon${makeUuid()}`,
+      secret: makeUuid(),
       registered: false
     };
     return info;
@@ -39,6 +41,7 @@ window.auth = (function () {
   function register() {
     return new Promise((resolve, reject) => {
       let registerUrl = main.getBackend() + "/api/register";
+      // TODO: replace xhr with Fetch #2261
       let req = new XMLHttpRequest();
       req.open("POST", registerUrl);
       req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
@@ -66,6 +69,7 @@ window.auth = (function () {
     let { ownershipCheck, noRegister } = options || {};
     return new Promise((resolve, reject) => {
       let loginUrl = main.getBackend() + "/api/login";
+      // TODO: replace xhr with Fetch #2261
       let req = new XMLHttpRequest();
       req.open("POST", loginUrl);
       req.onload = catcher.watchFunction(() => {

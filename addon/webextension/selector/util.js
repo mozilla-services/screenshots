@@ -1,4 +1,6 @@
-window.util = (function () { // eslint-disable-line no-unused-vars
+"use strict";
+
+var util = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
 
   /** Removes a node from its document, if it's a node and the node is attached to a parent */

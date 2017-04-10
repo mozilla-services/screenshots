@@ -1,4 +1,6 @@
-window.makeUuid = (function () {
+"use strict";
+
+var makeUuid = (function () {
 
   // From http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
   return function makeUuid() { // eslint-disable-line no-unused-vars
