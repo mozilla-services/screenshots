@@ -3,6 +3,9 @@
 window.errorpopup = (function () {
   let exports = {};
 
+  // Do not show an error more than every ERROR_TIME_LIMIT milliseconds:
+  const ERROR_TIME_LIMIT = 3000;
+
   let messages = {
     REQUEST_ERROR: {
       title: browser.i18n.getMessage("requestErrorTitle"),
@@ -41,7 +44,13 @@ window.errorpopup = (function () {
     catcher.unhandled(error);
   });
 
+  let lastErrorTime;
+
   exports.showError = function (error) {
+    if (lastErrorTime && (Date.now() - lastErrorTime) < ERROR_TIME_LIMIT) {
+      return;
+    }
+    lastErrorTime = Date.now();
     let id = makeUuid();
     let popupMessage = error.popupMessage || "generic";
     if (! messages[popupMessage]) {
