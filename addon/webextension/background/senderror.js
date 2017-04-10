@@ -1,6 +1,6 @@
 /* globals analytics, browser, communication, makeUuid, Raven, catcher, auth */
 
-window.errorpopup = (function () {
+window.senderror = (function () {
   let exports = {};
 
   let messages = {

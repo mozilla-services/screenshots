@@ -788,6 +788,11 @@ window.uicontrol = (function () {
   let shouldOnboard = typeof slides !== "undefined";
 
   exports.activate = function () {
+    if (isFrameset()) {
+      callBackground("abortFrameset");
+      selectorLoader.unloadModules();
+      return;
+    }
     addHandlers();
     // FIXME: self.options is gone
     if (self.options && self.options.styleMyShotsButton) {
@@ -798,6 +803,10 @@ window.uicontrol = (function () {
     } else {
       setState("crosshairs");
     }
+  }
+
+  function isFrameset() {
+    return document.body.tagName == "FRAMESET";
   }
 
   exports.deactivate = function () {

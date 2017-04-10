@@ -1,5 +1,5 @@
 /* globals browser, console, XMLHttpRequest, Image, document, setTimeout, navigator */
-/* globals selectorLoader, analytics, communication, catcher, makeUuid, auth */
+/* globals selectorLoader, analytics, communication, catcher, makeUuid, auth, senderror */
 
 window.main = (function () {
   let exports = {};
@@ -133,10 +133,38 @@ window.main = (function () {
     if (shouldOpenMyShots(url)) {
       return true;
     }
-    if (url.startsWith(backend) || /^(?:about|data|moz-extension):/i.test(url)) {
+    if (isShotOrMyShotPage(url) || /^(?:about|data|moz-extension):/i.test(url) || isBlacklistedUrl(url)) {
       return false;
     }
     return true;
+  }
+
+  function isShotOrMyShotPage(url) {
+    // It's okay to take a shot of any pages except shot pages and My Shots
+    if (! url.startsWith(backend)) {
+      return false;
+    }
+    let path = url.substr(backend.length).replace(/^\/*/, "").replace(/#.*/, "").replace(/\?.*/, "");
+    if (path == "shots") {
+      return true;
+    }
+    if (/^[^/]+\/[^/]+$/.test(url)) {
+      // Blocks {:id}/{:domain}, but not /, /privacy, etc
+      return true;
+    }
+    return false;
+  }
+
+  function isBlacklistedUrl(url) {
+    // These specific domains are not allowed for general WebExtension permission reasons
+    // Discussion: https://bugzilla.mozilla.org/show_bug.cgi?id=1310082
+    // List of domains copied from: https://dxr.mozilla.org/mozilla-central/source/browser/app/permissions#18-19
+    // Note we disable it here to be informative, the security check is done in WebExtension code
+    const badDomains = ["addons.mozilla.org", "testpilot.firefox.com"];
+    let domain = url.replace(/^https?:\/\//i, "");
+    domain = domain.replace(/\/.*/, "").replace(/:.*/, "");
+    domain = domain.toLowerCase();
+    return badDomains.includes(domain);
   }
 
   browser.tabs.onUpdated.addListener(catcher.watchFunction((id, info, tab) => {
@@ -213,6 +241,15 @@ window.main = (function () {
     hasSeenOnboarding = true;
     catcher.watchPromise(browser.storage.local.set({hasSeenOnboarding}));
     setIconActive(false, null);
+  });
+
+  communication.register("abortFrameset", () => {
+    sendEvent("abort-start-shot", "frame-page");
+    // Note, we only show the error but don't report it, as we know that we can't
+    // take shots of these pages:
+    senderror.showError({
+      popupMessage: "UNSHOOTABLE_PAGE"
+    });
   });
 
   return exports;
