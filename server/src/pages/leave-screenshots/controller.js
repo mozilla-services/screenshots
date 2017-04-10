@@ -16,6 +16,7 @@ document.addEventListener("helper-ready", () => {
 exports.launch = function (m) {
   if (m.complete) {
     sendEvent("leave-service-completed");
+    // eslint-disable-next-line promise/catch-or-return
     helperReadyPromise.then(() => {
       let event = document.createEvent("CustomEvent");
       event.initCustomEvent("delete-everything", true, true, null);

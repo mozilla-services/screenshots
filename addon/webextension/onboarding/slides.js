@@ -49,6 +49,8 @@ window.slides = (function () {
           localizeText(doc);
           activateSlide(doc);
           resolve();
+        }).catch((error) => {
+          // Handled in communication.js
         });
       });
       document.body.appendChild(iframe);

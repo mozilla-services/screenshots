@@ -131,7 +131,10 @@ window.uicontrol = (function () {
     onOpenMyShots: () => {
       sendEvent("goto-myshots", "selection-button");
       callBackground("openMyShots")
-        .then(() => exports.deactivate());
+        .then(() => exports.deactivate())
+        .catch(() => {
+          // Handled in communication.js
+        });
     },
     onClickVisible: () => {
       sendEvent("capture-visible", "selection-button");
