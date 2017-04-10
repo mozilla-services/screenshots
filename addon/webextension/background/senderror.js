@@ -96,10 +96,10 @@ window.errorpopup = (function () {
   };
 
   catcher.registerHandler((errorObj) => {
-    exports.showError(errorObj);
     if (! errorObj.noPopup) {
-      exports.reportError(errorObj);
+      exports.showError(errorObj);
     }
+    exports.reportError(errorObj);
   });
 
   return exports;
