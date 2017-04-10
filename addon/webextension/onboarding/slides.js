@@ -1,4 +1,4 @@
-/* globals catcher, onboardingHtml, onboardingCss, browser, util, shooter, callBackground */
+/* globals catcher, onboardingHtml, onboardingCss, browser, util, shooter, callBackground, assertIsTrusted */
 
 window.slides = (function () {
   let exports = {};
@@ -119,30 +119,30 @@ window.slides = (function () {
 
   function activateSlide(doc) {
     numberOfSlides = parseInt(doc.querySelector("[data-number-of-slides]").getAttribute("data-number-of-slides"), 10);
-    doc.querySelector("#next").addEventListener("click", watchFunction(() => {
+    doc.querySelector("#next").addEventListener("click", watchFunction(assertIsTrusted(() => {
       shooter.sendEvent("navigate-slide", "next");
       next();
-    }), false);
-    doc.querySelector("#prev").addEventListener("click", watchFunction(() => {
+    })), false);
+    doc.querySelector("#prev").addEventListener("click", watchFunction(assertIsTrusted(() => {
       shooter.sendEvent("navigate-slide", "prev");
       prev();
-    }), false);
+    })), false);
     for (let el of doc.querySelectorAll(".goto-slide")) {
-      el.addEventListener("click", watchFunction((event) => {
+      el.addEventListener("click", watchFunction(assertIsTrusted((event) => {
         shooter.sendEvent("navigate-slide", "goto");
         let el = event.target;
         let index = parseInt(el.getAttribute("data-number"), 10);
         setSlide(index);
-      }), false);
+      })), false);
     }
-    doc.querySelector("#skip").addEventListener("click", watchFunction((event) => {
+    doc.querySelector("#skip").addEventListener("click", watchFunction(assertIsTrusted((event) => {
       shooter.sendEvent("cancel-slides", "skip");
       callbacks.onEnd();
-    }), false);
-    doc.querySelector("#done").addEventListener("click", watchFunction((event) => {
+    })), false);
+    doc.querySelector("#done").addEventListener("click", watchFunction(assertIsTrusted((event) => {
       shooter.sendEvent("finish-slides", "done");
       callbacks.onEnd();
-    }), false);
+    })), false);
     setSlide(1);
   }
 
@@ -167,12 +167,12 @@ window.slides = (function () {
     iframe.style.width = window.innerWidth + "px";
   }
 
-  const onKeyUp = catcher.watchFunction(function (event) {
+  const onKeyUp = catcher.watchFunction(assertIsTrusted(function (event) {
     if ((event.key || event.code) === "Escape") {
       shooter.sendEvent("cancel-slides", "keyboard-escape");
       callbacks.onEnd();
     }
-  });
+  }));
 
   function setSlide(index) {
     if (index < 1) {

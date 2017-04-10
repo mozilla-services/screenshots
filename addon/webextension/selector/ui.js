@@ -1,5 +1,5 @@
 /* globals window, document, console, browser */
-/* globals util, catcher, inlineSelectionCss, callBackground */
+/* globals util, catcher, inlineSelectionCss, callBackground, assertIsTrusted */
 
 window.ui = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
@@ -260,11 +260,11 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
             overlay.querySelector(".visible").textContent = browser.i18n.getMessage("saveScreenshotVisibleArea");
             overlay.querySelector(".full-page").textContent = browser.i18n.getMessage("saveScreenshotFullPage");
             overlay.querySelector(".myshots-button").addEventListener(
-              "click", watchFunction(standardOverlayCallbacks.onOpenMyShots), false);
+              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onOpenMyShots)), false);
             overlay.querySelector(".visible").addEventListener(
-              "click", watchFunction(standardOverlayCallbacks.onClickVisible), false);
+              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickVisible)), false);
             overlay.querySelector(".full-page").addEventListener(
-              "click", watchFunction(standardOverlayCallbacks.onClickFullPage), false);
+              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickFullPage)), false);
             resolve();
           });
           document.body.appendChild(this.element);
@@ -376,7 +376,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
       if (callbacks !== undefined && callbacks.cancel) {
         // We use onclick here because we don't want addEventListener
         // to add multiple event handlers to the same button
-        this.cancel.onclick = watchFunction(callbacks.cancel);
+        this.cancel.onclick = watchFunction(assertIsTrusted(callbacks.cancel));
         this.cancel.style.display = "";
       } else {
         this.cancel.style.display = "none";
@@ -385,23 +385,23 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
         // We use onclick here because we don't want addEventListener
         // to add multiple event handlers to the same button
         this.save.removeAttribute("disabled");
-        this.save.onclick = watchFunction((e) => {
+        this.save.onclick = watchFunction(assertIsTrusted((e) => {
           this.save.setAttribute("disabled", "true");
           callbacks.save(e);
-        });
+        }));
         this.save.style.display = "";
       } else {
         this.save.style.display = "none";
       }
       if (callbacks !== undefined && callbacks.download) {
         this.download.removeAttribute("disabled");
-        this.download.onclick = watchFunction((e) => {
+        this.download.onclick = watchFunction(assertIsTrusted((e) => {
           this.download.setAttribute("disabled", true);
           callbacks.download(e);
           e.preventDefault();
           e.stopPropagation();
           return false;
-        });
+        }));
         this.download.style.display = "";
       } else {
         this.download.style.display = "none";

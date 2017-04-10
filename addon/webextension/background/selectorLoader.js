@@ -6,6 +6,7 @@ window.selectorLoader = (function () {
   // The order is important due to dependencies
   const standardScripts = [
     "catcher.js",
+    "assertIsTrusted.js",
     "background/selectorLoader.js",
     "selector/callBackground.js",
     "selector/util.js"
