@@ -850,6 +850,9 @@ window.uicontrol = (function () {
       docObj.addEventListener(eventName, watchHandler, eventName !== "keyup");
       registeredDocumentHandlers.push({name: eventName, doc: docObj, watchHandler});
     }
+    let mousedownHandler = primedDocumentHandlers.get("mousedown");
+    document.addEventListener("mousedown", mousedownHandler, true);
+    registeredDocumentHandlers.push({name: "mousedown", doc: document, watchHandler: mousedownHandler, useCapture: true});
   }
 
   function beforeunloadHandler() {
@@ -876,8 +879,8 @@ window.uicontrol = (function () {
 
   function removeHandlers() {
     window.removeEventListener("beforeunload", beforeunloadHandler);
-    for (let {name, doc, handler} of registeredDocumentHandlers) {
-      doc.removeEventListener(name, handler, false);
+    for (let {name, doc, handler, useCapture} of registeredDocumentHandlers) {
+      doc.removeEventListener(name, handler, !!useCapture);
     }
     registeredDocumentHandlers = [];
   }
