@@ -290,6 +290,20 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.param("id", function (req, res, next, id) {
+  if(/^[a-zA-Z0-9]{16}$/.test(id)) {
+    return next();
+  }
+  next(new Error("invalid id"));
+});
+
+app.param("domain", function (req, res, next, domain) {
+  if (/^[^\s\/]{1,100}$/.test(domain)) {
+    return next();
+  }
+  next(new Error("invalid domain"));
+});
+
 app.get("/ga-activation.js", function (req, res) {
   sendGaActivation(req, res, false);
 });
