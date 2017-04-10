@@ -133,10 +133,26 @@ window.main = (function () {
     if (shouldOpenMyShots(url)) {
       return true;
     }
-    if (url.startsWith(backend) || /^(?:about|data|moz-extension):/i.test(url)) {
+    if (isShotOrMyShotPage(url) || /^(?:about|data|moz-extension):/i.test(url)) {
       return false;
     }
     return true;
+  }
+
+  function isShotOrMyShotPage(url) {
+    // It's okay to take a shot of any pages except shot pages and My Shots
+    if (! url.startsWith(backend)) {
+      return false;
+    }
+    let path = url.substr(backend.length).replace(/^\/*/, "").replace(/#.*/, "").replace(/\?.*/, "");
+    if (path == "shots") {
+      return true;
+    }
+    if (/^[^/]+\/[^/]+$/.test(url)) {
+      // Blocks {:id}/{:domain}, but not /, /privacy, etc
+      return true;
+    }
+    return false;
   }
 
   browser.tabs.onUpdated.addListener(catcher.watchFunction((id, info, tab) => {
