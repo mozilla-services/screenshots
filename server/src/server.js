@@ -778,7 +778,7 @@ app.get("/images/:imageid", function (req, res) {
           el: embedded ? "direct-view-embedded" : "direct-view"
         }).send();
       }
-      res.header("Content-Type", obj.contentType);
+      res.header("Content-Type", "image/png");
       res.status(200);
       res.send(obj.data);
     }
