@@ -19,8 +19,7 @@ window.sitehelper = (function () {
   }
 
   document.addEventListener("delete-everything", catcher.watchFunction((event) => {
-    // FIXME: implement
-    alert("Not yet implemented");
+    // FIXME: reset some data in the add-on
   }, false));
 
   document.addEventListener("request-login", catcher.watchFunction((event) => {

@@ -101,13 +101,6 @@ function refreshModel() {
   req.send();
 }
 
-document.addEventListener("helper-ready", function onHelperReady(e) {
-  document.removeEventListener("helper-ready", onHelperReady, false);
-  let event = document.createEvent("CustomEvent");
-  event.initCustomEvent("page-ready", true, true, null);
-  document.dispatchEvent(event);
-}, false);
-
 document.addEventListener("contextmenu", (event) => {
   let place = "background";
   let node = event.target;
