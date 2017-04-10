@@ -133,7 +133,7 @@ window.main = (function () {
     if (shouldOpenMyShots(url)) {
       return true;
     }
-    if (isShotOrMyShotPage(url) || /^(?:about|data|moz-extension):/i.test(url)) {
+    if (isShotOrMyShotPage(url) || /^(?:about|data|moz-extension):/i.test(url) || isBlacklistedUrl(url)) {
       return false;
     }
     return true;
@@ -153,6 +153,18 @@ window.main = (function () {
       return true;
     }
     return false;
+  }
+
+  function isBlacklistedUrl(url) {
+    // These specific domains are not allowed for general WebExtension permission reasons
+    // Discussion: https://bugzilla.mozilla.org/show_bug.cgi?id=1310082
+    // List of domains copied from: https://dxr.mozilla.org/mozilla-central/source/browser/app/permissions#18-19
+    // Note we disable it here to be informative, the security check is done in WebExtension code
+    const badDomains = ["addons.mozilla.org", "testpilot.firefox.com"];
+    let domain = url.replace(/^https?:\/\//i, "");
+    domain = domain.replace(/\/.*/, "").replace(/:.*/, "");
+    domain = domain.toLowerCase();
+    return badDomains.includes(domain);
   }
 
   browser.tabs.onUpdated.addListener(catcher.watchFunction((id, info, tab) => {
