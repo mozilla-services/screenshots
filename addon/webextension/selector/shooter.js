@@ -1,8 +1,10 @@
 /* globals callBackground, documentMetadata, uicontrol, util, ui, catcher */
 /* globals XMLHttpRequest, window, location, alert, console, domainFromUrl, randomString */
-/* globals document, setTimeout, location */
+/* globals clipboard, document, setTimeout, location */
 
-window.shooter = (function () { // eslint-disable-line no-unused-vars
+"use strict";
+
+var shooter = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
   const { AbstractShot } = window.shot;
 
@@ -30,11 +32,11 @@ window.shooter = (function () { // eslint-disable-line no-unused-vars
     callBackground("reportError", sanitizeError(errorObj));
   });
 
-  (function () {
+  {
     let canvas = document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
     let ctx = canvas.getContext('2d');
     supportsDrawWindow = !! ctx.drawWindow;
-  })();
+  }
 
   function screenshotPage(selectedPos) {
     if (! supportsDrawWindow) {
@@ -101,7 +103,7 @@ window.shooter = (function () { // eslint-disable-line no-unused-vars
       shotId: shot.id,
       shot: shot.asJson()
     }).then((url) => {
-      const copied = window.clipboard.copy(url);
+      const copied = clipboard.copy(url);
       return callBackground("openShot", { url, copied });
     }, (error) => {
       if (error.name != "BackgroundError") {

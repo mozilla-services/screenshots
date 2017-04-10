@@ -1,6 +1,8 @@
 /* globals browser, catcher */
 
-window.deviceInfo = (function () {
+"use strict";
+
+var deviceInfo = (function () {
   let manifest = browser.runtime.getManifest();
 
   let platformInfo = {};

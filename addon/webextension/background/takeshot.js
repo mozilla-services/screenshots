@@ -1,6 +1,8 @@
 /* globals communication, shot, main, auth, catcher, analytics, browser */
 
-window.takeshot = (function () {
+"use strict";
+
+var takeshot = (function () {
   let exports = {};
   const Shot = shot.AbstractShot;
   const { sendEvent } = analytics;
@@ -30,7 +32,7 @@ window.takeshot = (function () {
     }
     let shotAbTests = {};
     let abTests = auth.getAbTests();
-    for (let testName in abTests) {
+    for (let testName of Object.keys(abTests)) {
       if (abTests[testName].shotField) {
         shotAbTests[testName] = abTests[testName].value;
       }

@@ -1,4 +1,6 @@
-window.catcher = (function () {
+"use strict";
+
+var catcher = (function () {
   let exports = {};
 
   let handler;
@@ -24,7 +26,7 @@ window.catcher = (function () {
       result = {
         fromMakeError: true,
         name: exc.name || "ERROR",
-        message: exc+"",
+        message: String(exc),
         stack: exc.stack
       };
       for (let attr in exc) {
@@ -32,7 +34,7 @@ window.catcher = (function () {
       }
     }
     if (info) {
-      for (let attr in info) {
+      for (let attr of Object.keys(info)) {
         result[attr] = info[attr];
       }
     }
@@ -42,20 +44,18 @@ window.catcher = (function () {
   /** Wrap the function, and if it raises any exceptions then call unhandled() */
   exports.watchFunction = function watchFunction(func) {
     return function () {
-      var result;
       try {
-        result = func.apply(this, arguments);
+        return func.apply(this, arguments);
       } catch (e) {
         exports.unhandled(e);
         throw e;
       }
-      return result;
     };
   };
 
   exports.watchPromise = function watchPromise(promise) {
     return promise.catch((e) => {
-      console.error("------Error in promise:", e+"");
+      console.error("------Error in promise:", e);
       console.error(e.stack);
       exports.unhandled(makeError(e));
       throw e;
@@ -63,6 +63,10 @@ window.catcher = (function () {
   };
 
   exports.registerHandler = function (h) {
+    if (handler) {
+      console.error("registerHandler called after handler was already registered");
+      return;
+    }
     handler = h;
     for (let error of queue) {
       handler(error);

@@ -1,6 +1,8 @@
 /* globals catcher, onboardingHtml, onboardingCss, browser, util, shooter, callBackground, assertIsTrusted */
 
-window.slides = (function () {
+"use strict";
+
+var slides = (function () {
   let exports = {};
 
   const { watchFunction } = catcher;

@@ -1,4 +1,6 @@
-window.makeUuid = (function () {
+"use strict";
+
+var makeUuid = (function () {
 
   // generates a v4 UUID
   return function makeUuid() { // eslint-disable-line no-unused-vars

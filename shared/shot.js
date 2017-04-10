@@ -4,15 +4,12 @@
 
 /** Throws an error if the condition isn't true.  Any extra arguments after the condition
     are used as console.error() arguments. */
-function assert(condition) {
-  if (! condition) {
-    console.error.apply(console, ["Failed assertion:"].concat(Array.prototype.slice.call(arguments, 1)));
-    if (arguments.length > 1) {
-      throw new Error("Failed assertion: " + Array.prototype.slice.call(arguments, 1).join(" "));
-    } else {
-      throw new Error("Failed assertion");
-    }
+function assert(condition, ...args) {
+  if (condition) {
+    return;
   }
+  console.error("Failed assertion", ...args);
+  throw new Error("Failed assertion", ...args);
 }
 
 /** True if `url` is a valid URL */
@@ -164,15 +161,15 @@ function deepEqual(a, b) {
   if (Array.isArray(b)) {
     return false;
   }
-  let seen = {};
-  for (let attr in a) {
+  let seen = new Set();
+  for (let attr of Object.keys(a)) {
     if (! deepEqual(a[attr], b[attr])) {
       return false;
     }
-    seen[attr] = true;
+    seen.add(attr);
   }
-  for (let attr in b) {
-    if (! seen[attr]) {
+  for (let attr of Object.keys(b)) {
+    if (! seen.has(attr)) {
       if (! deepEqual(a[attr], b[attr])) {
         return false;
       }
@@ -181,16 +178,15 @@ function deepEqual(a, b) {
   return true;
 }
 
-function makeUuid() {
-  // FIXME: not a proper uuid
+function makeRandomId() {
+  // Note: this isn't for secure contexts, only for non-conflicting IDs
   let id = "";
   while (id.length < 12) {
-    // 46656 == Math.pow(36, 3)
     let num;
     if (! id) {
-      num = Date.now() % 46656;
+      num = Date.now() % Math.pow(36, 3);
     } else {
-      num = Math.floor(Math.random() * 46656);
+      num = Math.floor(Math.random() * Math.pow(36, 3));
     }
     id += num.toString(36);
   }
@@ -485,7 +481,7 @@ class AbstractShot {
     return this._clips[name];
   }
   addClip(val) {
-    let name = makeUuid();
+    let name = makeRandomId();
     this.setClip(name, val);
     return name;
   }

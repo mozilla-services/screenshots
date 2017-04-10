@@ -1,6 +1,8 @@
 /* globals catcher */
 
-window.clipboard = (function () {
+"use strict";
+
+var clipboard = (function () {
   let exports = {};
 
   exports.copy = function (text) {

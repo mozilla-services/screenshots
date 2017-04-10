@@ -1,6 +1,8 @@
 /* globals analytics, browser, communication, makeUuid, Raven, catcher, auth */
 
-window.senderror = (function () {
+"use strict";
+
+var senderror = (function () {
   let exports = {};
 
   // Do not show an error more than every ERROR_TIME_LIMIT milliseconds:

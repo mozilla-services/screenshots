@@ -1,5 +1,8 @@
 /* globals browser, catcher */
-window.selectorLoader = (function () {
+
+"use strict";
+
+var selectorLoader = (function () {
   const exports = {};
 
   // These modules are loaded in order, first standardScripts, then optionally onboardingScripts, and then selectorScripts
@@ -65,7 +68,7 @@ window.selectorLoader = (function () {
       })
     });
     return lastPromise.then(() => {
-      console.log("finished loading scripts:", scripts.join(" "), "->", browser.runtime.lastError || "no error");
+      console.log("finished loading scripts:", scripts.join(" "));
     },
     (error) => {
       exports.unloadIfLoaded(tabId);
