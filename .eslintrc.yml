@@ -14,6 +14,7 @@ parserOptions:
 
 plugins:
   - react
+  - promise
 
 root: true
 
@@ -32,3 +33,12 @@ rules:
   no-var: off # TODO: change to "error"
   prefer-const: off # TODO: change to "error"
   quotes: [off, double] # TODO: change to "error"
+
+  promise/always-return: off
+  promise/avoid-new: off
+  promise/catch-or-return: error
+  promise/no-callback-in-promise: off
+  promise/no-native: off
+  promise/no-nesting: off
+  promise/no-promise-in-callback: off
+  promise/param-names: error

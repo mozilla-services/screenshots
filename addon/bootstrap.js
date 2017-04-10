@@ -40,6 +40,7 @@ const prefObserver = {
     // aSubject is the nsIPrefBranch we're observing (after appropriate QI)
     // aData is the name of the pref that's been changed (relative to aSubject)
     if (aData == USER_DISABLE_PREF || aData == SYSTEM_DISABLE_PREF) {
+      // eslint-disable-next-line promise/catch-or-return
       appStartupPromise.then(handleStartup);
     }
   }
@@ -69,6 +70,7 @@ function startup(data, reason) { // eslint-disable-line no-unused-vars
   }
   prefObserver.register();
   addonResourceURI = data.resourceURI;
+  // eslint-disable-next-line promise/catch-or-return
   appStartupPromise.then(handleStartup);
 }
 

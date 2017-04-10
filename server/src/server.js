@@ -119,6 +119,7 @@ function initDatabase() {
   let forceDbVersion = config.db.forceDbVersion;
   if (forceDbVersion) {
     let hadError = false;
+    // eslint-disable-next-line promise/catch-or-return
     dbschema.forceDbVersion(forceDbVersion).then(() => {
     },
     (e) => {
@@ -782,6 +783,8 @@ app.get("/images/:imageid", function (req, res) {
       res.status(200);
       res.send(obj.data);
     }
+  }).catch((e) => {
+    errorResponse(res, "Error getting image from database:", e);
   });
 });
 
@@ -895,6 +898,8 @@ app.get("/oembed", function (req, res) {
     let body = shot.oembedJson({maxheight, maxwidth});
     res.header("Content-Type", "application/json");
     res.send(body);
+  }).catch((e) => {
+    errorResponse(res, "Error fetching shot for OEmbed:", e);
   });
 });
 

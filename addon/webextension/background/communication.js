@@ -29,7 +29,7 @@ window.communication = (function () {
     if (result && result.then) {
       result.then((concreteResult) => {
         sendResponse({type: "success", value: concreteResult});
-      }, (errorResult) => {
+      }).catch((errorResult) => {
         console.error(`Promise error in ${req.funcName}:`, errorResult, errorResult && errorResult.stack);
         sendResponse({type: "error", message: errorResult+""});
       });
