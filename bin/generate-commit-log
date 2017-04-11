@@ -6,6 +6,13 @@ import argparse
 import email.parser
 import re
 
+IGNORE_COMMITS = [
+    "^merge",
+    "^chore",
+    "^pontoon",
+    "UTF.*Pontoon",
+]
+
 parser = argparse.ArgumentParser(description='Generate a changelog')
 parser.add_argument('range', metavar='RANGE', type=str,
                     help='Commit range to generate')
@@ -43,16 +50,26 @@ for message in messages:
     sub = message.get("subject", "")
     if sub.startswith("[PATCH] "):
         sub = sub[len("[PATCH] "):]
-    if sub.startswith("Merge ") or sub.startswith("chore") or sub.startswith("Pontoon"):
+    should_skip = False
+    for pat in IGNORE_COMMITS:
+        if re.search(pat, sub, re.I):
+            should_skip = True
+            break
+    if should_skip:
         continue
     short = message["commit"][:7]
-    full = ["* " + sub] + ['  ' + line.strip() for line in message["body"]]
+    body_lines = []
+    if "body" in message and message["body"]:
+        sub += message["body"][0]
+        body_lines = message["body"][1:]
+    full = ["* " + sub] + ['  ' + line.strip() for line in body_lines]
     full = "\n".join(full)
     found = []
     def repl(match):
         found.append(" Fixes #%s" % match.group(1))
         return ""
     full = fixes_regex.sub(repl, full)
+    full = re.sub(r'[ ,]*$', "", full)
     if found:
         if not full.endswith("."):
             full += "."
