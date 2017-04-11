@@ -540,24 +540,45 @@ Shot.setExpiration = function (backend, shotId, deviceId, expiration) {
 };
 
 Shot.deleteShot = function (backend, shotId, deviceId) {
-  return db.update(
-    `DELETE FROM data
-     WHERE id = $1
-           AND deviceid = $2
-    `,
-    [shotId, deviceId]
-  );
+  return Shot.get(backend, shotId, deviceId)
+    .then((shot) => {
+      const clipRewrites = new ClipRewrites(shot);
+      clipRewrites.clear();
+      return db.transaction((client) => {
+        return clipRewrites.commit(client);
+      });
+    })
+    .then(() => {
+      return db.update(
+        `DELETE FROM data
+         WHERE id = $1
+               AND deviceid = $2
+        `,
+        [shotId, deviceId]
+      );
+    });
 };
 
 Shot.deleteEverythingForDevice = function (backend, deviceId) {
   return db.select(
-    `SELECT DISTINCT devices.id
-     FROM devices, devices AS devices2
-     WHERE devices.id = $1
-           OR (devices.accountid = devices2.accountid
-               AND devices2.id = $1)
-    `,
+    `SELECT images.id
+     FROM images JOIN data
+     ON images.shotid = data.id
+     WHERE data.deviceid = $1`,
     [deviceId]
+  ).then((rows) => {
+      rows.forEach((row) => del(row.id))
+    }
+  ).then(() => {
+    return db.select(
+      `SELECT DISTINCT devices.id
+       FROM devices, devices AS devices2
+       WHERE devices.id = $1
+             OR (devices.accountid = devices2.accountid
+                 AND devices2.id = $1)
+      `,
+      [deviceId]);
+    }
   ).then((rows) => {
     let ids = [];
     for (let i=0; i<rows.length; i++) {
@@ -634,6 +655,13 @@ ClipRewrites = class ClipRewrites {
       clip.setUrlFromBinary(data.binary);
     }
     this.shot.fullScreenThumbnail = this.oldFullScreenThumbnail;
+  }
+
+  clear() {
+    this.unedited = [];
+    this.toInsert = {};
+    this.toInsertClipIds = [];
+    this.toInsertThumbnail = null;
   }
 
   commands() {
