@@ -256,7 +256,8 @@ app.use(function (req, res, next) {
     }
   }
   req.abTests = authInfo.abTests || {};
-  req.backend = `${req.protocol}://${req.headers.host}`;
+  const host = req.headers.host === config.contentOrigin ? config.contentOrigin : config.siteOrigin;
+  req.backend = `${req.protocol}://${host}`;
   req.config = config;
   next();
 });
