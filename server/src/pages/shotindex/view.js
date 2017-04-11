@@ -131,10 +131,9 @@ class Body extends React.Component {
   }
 
   displayTitle(title) {
-    if(title.length > 140) {
+    if (title.length > 140) {
       return (title.substring(0, 140) + "...");
-    }
-    else {
+    } else {
       return title;
     }
   }
