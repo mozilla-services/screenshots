@@ -2,7 +2,7 @@
 
 "use strict";
 
-var slides = (function () {
+window.slides = (function () {
   let exports = {};
 
   const { watchFunction } = catcher;

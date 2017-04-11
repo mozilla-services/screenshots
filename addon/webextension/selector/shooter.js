@@ -4,7 +4,7 @@
 
 "use strict";
 
-var shooter = (function () { // eslint-disable-line no-unused-vars
+window.shooter = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
   const { AbstractShot } = window.shot;
 

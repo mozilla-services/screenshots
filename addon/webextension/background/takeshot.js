@@ -2,7 +2,7 @@
 
 "use strict";
 
-var takeshot = (function () {
+window.takeshot = (function () {
   let exports = {};
   const Shot = shot.AbstractShot;
   const { sendEvent } = analytics;

@@ -4,7 +4,7 @@
 
 "use strict";
 
-var sitehelper = (function () {
+window.sitehelper = (function () {
 
   catcher.registerHandler((errorObj) => {
     callBackground("reportError", errorObj);
