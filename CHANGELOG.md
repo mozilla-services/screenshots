@@ -1,6 +1,44 @@
+## Version 6.1.0
+
+* Change the mochitest to work with the system-disabled pref rather than the user facing pref. ([#2637](https://github.com/mozilla-services/screenshots/issues/2637))
+  This makes the test work better due to the fact the extension will be disabled in-tree via the system-disabled pref. [bf62e73](https://github.com/mozilla-services/screenshots/commit/bf62e73)
+* Webextension review changes ([#2591](https://github.com/mozilla-services/screenshots/issues/2591))
+  * Add strict mode statement to all files. Addresses review comment https://github.com/mozilla-services/screenshots/pull/2471#discussion_r107981601
+  * Do not assign properties to `window`. Addresses review comment https://github.com/mozilla-services/screenshots/pull/2471#discussion_r107979170
+  * Use docElement.outerHTML, not DOMParser, to insert html page into iframe. Addresses comments 2 and 3 inside selector/ui.js
+  * Use for..of instead of for-loop. Addresses selector/documentMetadata.js comment 1
+  https://github.com/mozilla-services/screenshots/pull/2471#discussion_r107981070
+  * Replace IIFE with block scope, yay es6. Addresses selector/shooter.js [comment](https://github.com/mozilla-services/screenshots/pull/2471#discussion_r107981298)
+  * Use spread/rest operators to simplify assert() fn logic. Addresses shared/shot.js [comment](https://github.com/mozilla-services/screenshots/pull/2471#discussion_r109268966)
+  * Nit - replace let..in with let..of
+  * Nit: replace foo+"" with String(foo)
+  * add onActivated listener to ensure the button state is properly toggled when switching between tabs
+  * Rename shot.js makeUuid to more accurate makeRandomId
+  * abstract out sendToBootstrap error checking. Fixes [#2596](https://github.com/mozilla-services/screenshots/issues/2596) Fixes [#2603](https://github.com/mozilla-services/screenshots/issues/2603) [ebe57df](https://github.com/mozilla-services/screenshots/commit/ebe57df)
+* Force content-type image/png for /images. Fixes [#2466](https://github.com/mozilla-services/screenshots/issues/2466) [cec4acc](https://github.com/mozilla-services/screenshots/commit/cec4acc)
+* Add eslint-plugin-promise. Fixes [#2138](https://github.com/mozilla-services/screenshots/issues/2138) [1c8b4dc](https://github.com/mozilla-services/screenshots/commit/1c8b4dc)
+* Disable Screenshots on addons.mozilla.org and testpilot.firefox.com. Fixes [#2435](https://github.com/mozilla-services/screenshots/issues/2435) [48a17bb](https://github.com/mozilla-services/screenshots/commit/48a17bb)
+* Make `https://screenshots.firefox.com/` /privacy, etc. shootable. Fixes [#2623](https://github.com/mozilla-services/screenshots/issues/2623) [bdac9a3](https://github.com/mozilla-services/screenshots/commit/bdac9a3)
+* Signal an error when shooting a FRAMESET page. Fixes [#2489](https://github.com/mozilla-services/screenshots/issues/2489) [ccab9b6](https://github.com/mozilla-services/screenshots/commit/ccab9b6)
+* Check event.isTrusted around all interactive events. Fixes [#2542](https://github.com/mozilla-services/screenshots/issues/2542) [4502739](https://github.com/mozilla-services/screenshots/commit/4502739)
+* catch mousedown aggressively so that pointer-events: none doesn't cause text selection. Fixes [#2049](https://github.com/mozilla-services/screenshots/issues/2049) [0bf09c8](https://github.com/mozilla-services/screenshots/commit/0bf09c8)
+* put 3 second limit on error notifications. Fixes [#2353](https://github.com/mozilla-services/screenshots/issues/2353) [3bfd844](https://github.com/mozilla-services/screenshots/commit/3bfd844)
+* Add npm run update_outdated to automate some of our version updating [9785de6](https://github.com/mozilla-services/screenshots/commit/9785de6)
+* Update toolbar icons. Fixes [#2572](https://github.com/mozilla-services/screenshots/issues/2572) [5124fdb](https://github.com/mozilla-services/screenshots/commit/5124fdb)
+* Put user into onboarding when they click the screenshot button on an unshootable page. Fixes [#2532](https://github.com/mozilla-services/screenshots/issues/2532) [2e5ce26](https://github.com/mozilla-services/screenshots/commit/2e5ce26)
+* Add IGNORE_BRANCH to allow release-version to be run on the 'wrong' branch [ec4fd0b](https://github.com/mozilla-services/screenshots/commit/ec4fd0b)
+* Put in a different icon when the user is not yet onboarded. Fixes [#2569](https://github.com/mozilla-services/screenshots/issues/2569) [f6fb476](https://github.com/mozilla-services/screenshots/commit/f6fb476)
+* Lazy load modules and delay WebExtension start to reduce impact on app startup. Fixes [#2575](https://github.com/mozilla-services/screenshots/issues/2575) [18f2b4d](https://github.com/mozilla-services/screenshots/commit/18f2b4d)
+* Added spinner while image loads [d5913e1](https://github.com/mozilla-services/screenshots/commit/d5913e1) [af248ad](https://github.com/mozilla-services/screenshots/commit/af248ad) [c53297f](https://github.com/mozilla-services/screenshots/commit/c53297f)
+* Assert data: has a png header [3cefe43](https://github.com/mozilla-services/screenshots/commit/3cefe43)
+* More CSP rules. Fixes [#2423](https://github.com/mozilla-services/screenshots/issues/2423) Fixes [#2425](https://github.com/mozilla-services/screenshots/issues/2425) [6ab61da](https://github.com/mozilla-services/screenshots/commit/6ab61da)
+* Added X-Content-Type-Options: nosniff. Fixes [#2219](https://github.com/mozilla-services/screenshots/issues/2219) [8d76ab0](https://github.com/mozilla-services/screenshots/commit/8d76ab0)
+
 ## Version 6.0.0
 
 This release is a port to WebExtensions, including a refactoring of most of the client!
+
+6.0.0 was not released to the public
 
 * Use webextension downloads api [9e46c14](https://github.com/mozilla-services/screenshots/commit/9e46c14)
 * Run the selector js on document_end instead of document_idle.  Fixes [#2525](https://github.com/mozilla-services/screenshots/issues/2525) [0cec951](https://github.com/mozilla-services/screenshots/commit/0cec951)
