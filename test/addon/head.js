@@ -8,8 +8,7 @@ let enabledOnStartup = false;
 // ScreenshotsEnabled/Disabled promises return true if it was already
 // Enabled/Disabled, and false if it need to Enable/Disable.
 function promiseScreenshotsEnabled() {
-  if (Services.prefs.getPrefType("extensions.screenshots.disabled") == Services.prefs.PREF_INVALID ||
-      !Services.prefs.getBoolPref("extensions.screenshots.disabled")) {
+  if (!Services.prefs.getBoolPref("extensions.screenshots.system-disabled", false)) {
     info("Screenshots was already enabled, assuming enabled by default for tests");
     enabledOnStartup = true;
     return Promise.resolve(true);
@@ -26,13 +25,13 @@ function promiseScreenshotsEnabled() {
       }
     }
     CustomizableUI.addListener(listener);
-    Services.prefs.setBoolPref("extensions.screenshots.disabled", false);
+    info("Set Screenshots disabled pref to false.");
+    Services.prefs.setBoolPref("extensions.screenshots.system-disabled", false);
   });
 }
 
 function promiseScreenshotsDisabled() {
-  if (Services.prefs.getPrefType("extensions.screenshots.disabled") != Services.prefs.PREF_INVALID &&
-      Services.prefs.getBoolPref("extensions.screenshots.disabled")) {
+  if (Services.prefs.getBoolPref("extensions.screenshots.system-disabled", false)) {
     info("Screenshots already disabled");
     return Promise.resolve(true);
   }
@@ -47,10 +46,8 @@ function promiseScreenshotsDisabled() {
       }
     }
     CustomizableUI.addListener(listener);
-    info("Set Screenshots disabled pref");
-    // testing/profiles/prefs_general.js uses user_pref to disable pocket, set
-    // back to false.
-    Services.prefs.setBoolPref("extensions.screenshots.disabled", true);
+    info("Set Screenshots disabled pref to true.");
+    Services.prefs.setBoolPref("extensions.screenshots.system-disabled", true);
   });
 }
 
