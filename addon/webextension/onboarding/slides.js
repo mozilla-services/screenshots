@@ -97,8 +97,8 @@ window.slides = (function () {
       [privacySentinal]: browser.i18n.getMessage("termsAndPrivacyNoticyPrivacyLink")
     };
     let linkUrls = {
-      [termsSentinal]: `${backend}/terms`,
-      [privacySentinal]: `${backend}/privacy`
+      [termsSentinal]: "https://www.mozilla.org/about/legal/terms/services/",
+      [privacySentinal]: "https://www.mozilla.org/privacy/firefox-cloud/"
     };
     let text = browser.i18n.getMessage(
       "termsAndPrivacyNotice",
