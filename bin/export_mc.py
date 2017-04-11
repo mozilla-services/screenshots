@@ -7,10 +7,10 @@ import sys
 from git import Repo
 
 DEFAULTS = {
-    "local": "http://localhost:10080/",
-    "dev": "https://pageshot.dev.mozaws.net/",
-    "stage": "https://pageshot.stage.mozaws.net/",
-    "prod": "https://pageshot.net/"
+    "local": "http://localhost:10080",
+    "dev": "https://screenshots.dev.mozaws.net",
+    "stage": "https://screenshots.stage.mozaws.net",
+    "prod": "https://screenshots.firefox.com"
 }
 
 
