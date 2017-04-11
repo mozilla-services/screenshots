@@ -90,17 +90,6 @@ build/%.html: %.html
 .PHONY: addon
 addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/shot.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/defaultSentryDsn.js addon/webextension/build/onboardingCss.js addon/webextension/build/onboardingHtml.js
 
-EXPORT_MC_LOCATION := $(shell echo $${EXPORT_MC_LOCATION-../gecko})
-GIT_EXPORT_DIR := $(EXPORT_MC_LOCATION)/browser/extensions/screenshots
-DIST_EXPORT_DIR := addon
-TEST_EXPORT_DIR := test/addon
-
-ifeq ($(shell uname -s),Linux)
-  FIND_COMMAND := find $(GIT_EXPORT_DIR) -regextype posix-extended
-else
-  FIND_COMMAND := find -E $(GIT_EXPORT_DIR)
-endif
-
 $(VENV): bin/require.pip
 	virtualenv -p python2.7 $(VENV)
 	. $(VENV)/bin/activate && pip install -r bin/require.pip
@@ -108,16 +97,6 @@ $(VENV): bin/require.pip
 .PHONY: flake8
 flake8: $(VENV)
 	$(VENV)/bin/flake8 .
-
-.PHONY: export_addon
-export_addon: addon
-	$(FIND_COMMAND) -type f ! -regex \
-		'.*/(moz.build|README.txt|.gitignore|manifest.ini)' -delete
-	$(RSYNC) $(DIST_EXPORT_DIR)/* $(GIT_EXPORT_DIR)
-	@mkdir -p $(GIT_EXPORT_DIR)/test/browser
-	$(RSYNC) $(TEST_EXPORT_DIR)/* $(GIT_EXPORT_DIR)/test/browser
-	rm -f $(GIT_EXPORT_DIR)/README.md $(GIT_EXPORT_DIR)/install.rdf.template
-	$(VENV)/bin/python bin/update_mozbuild.py
 
 .PHONY: zip
 zip: addon

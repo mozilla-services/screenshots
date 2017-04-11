@@ -4,7 +4,9 @@ import argparse
 import os
 import subprocess
 import sys
+import filecmp
 from git import Repo
+from shutil import copyfile
 
 DEFAULTS = {
     "local": "http://localhost:10080",
@@ -12,6 +14,17 @@ DEFAULTS = {
     "stage": "https://screenshots.stage.mozaws.net",
     "prod": "https://screenshots.firefox.com"
 }
+
+FILES_TO_NOT_REMOVE = [
+    'moz.build',
+    'README.txt'
+]
+
+FILES_TO_SKIP_COPY = [
+    'README.md',
+    'install.rdf.template',
+    'manifest.json.template'
+]
 
 
 def runProcess(cmd, cwd, errorMessage):
@@ -72,12 +85,59 @@ class RepoHandler():
                        "Failed to add files for commit: %s")
 
 
+def exportFilesToMC(repoDir, mcRepoLoc):
+    print "Exporting files"
+
+    # Remove the existing files, except for ones we need to keep.
+    for root, dirs, files in os.walk(mcRepoLoc):
+        for file in files:
+            if file not in FILES_TO_NOT_REMOVE:
+                os.remove(os.path.join(root, file))
+
+    addonDir = os.path.join(repoDir, "addon")
+    testDir = os.path.join(repoDir, "test", "addon")
+    enUSFile = os.path.join(addonDir, "webextension", "_locales", "en_US", "messages.json")
+
+    # Export the main add-on files.
+    for root, dirs, files in os.walk(addonDir):
+        relativePath = os.path.relpath(root, addonDir)
+
+        for file in files:
+            filePath = os.path.join(root, file)
+            if file == "messages.json" and os.path.getsize(filePath) == 2:
+                print "Skipping empty locale file: %s" % filePath
+            elif file == "messages.json" and 'en_US' not in root and filecmp.cmp(enUSFile, filePath):
+                print "Skipping same as en-US locale file: %s" % filePath
+            elif file not in FILES_TO_SKIP_COPY:
+                copyfile(filePath,
+                         os.path.join(mcRepoLoc, relativePath, file))
+
+        for dir in dirs:
+            dirPath = os.path.join(mcRepoLoc, relativePath, dir)
+            if not os.path.exists(dirPath):
+                os.mkdir(dirPath, 0755)
+
+    # Copy the test files.
+    mc_test_loc = os.path.join(mcRepoLoc, "test", "browser")
+    if not os.path.exists(mc_test_loc):
+        os.makedirs(mc_test_loc, 0755)
+
+    for root, dirs, files in os.walk(testDir):
+        for file in files:
+            copyfile(os.path.join(root, file),
+                     os.path.join(mc_test_loc, os.path.relpath(root, testDir), file))
+
+    # Finally, update the moz.build file.
+    runProcess([".venv/bin/python", "bin/update_mozbuild.py"], repoDir,
+               "Failed to run update_mozbuild.py %s")
+
+
 def exportToMozillaCentral(server, repoDir, mcRepoPath, mcSubDir, mcBranch,
                            noSwitchBranch, mcBaseCommit, commitMessage):
     print "Exporting to m-c"
 
-    os.environ["EXPORT_MC_LOCATION"] = mcRepoPath
     os.environ["SCREENSHOTS_BACKEND"] = DEFAULTS[server]
+    os.environ["SCREENSHOTS_MINOR_VERSION"] = "0"
 
     repo = RepoHandler(mcRepoPath)
 
@@ -90,7 +150,9 @@ def exportToMozillaCentral(server, repoDir, mcRepoPath, mcSubDir, mcBranch,
 
     runProcess(['make', 'clean'], repoDir, "Failed to make clean: %s")
 
-    runProcess(['make', 'export_addon'], repoDir, "Failed to make export_mc: %s")
+    runProcess(['make', 'addon'], repoDir, "Failed to make addon: %s")
+
+    exportFilesToMC(repoDir, os.path.join(mcRepoPath, "browser", "extensions", "screenshots"))
 
     repo.createCommit(mcSubDir, commitMessage)
 
@@ -148,15 +210,14 @@ if __name__ == "__main__":
                         default="prod",
                         help="[local|dev|stage|prod]: Which server the code should use.")
     parser.add_argument("--mozilla-central-repo",
-                        default=os.environ["EXPORT_MC_LOCATION"],
-                        metavar="../gecko-dev",
+                        default=(os.getenv("EXPORT_MC_LOCATION") or "../gecko-dev"),
+                        metavar=(os.getenv("EXPORT_MC_LOCATION") or "../gecko-dev"),
                         help="A gecko directory reference to mozilla-central, can also "
                              "be specified via EXPORT_MC_LOCATION environment variable")
     parser.add_argument("--mozilla-central-subdir",
                         default="browser/extensions/screenshots/",
                         help="Where the extension is located in mozilla-central.")
     parser.add_argument("-b", "--branch",
-                        required=True,
                         help="The branch/bookmark name to use for the export.")
     parser.add_argument("--no-switch-branch",
                         action="store_true",
