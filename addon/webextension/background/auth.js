@@ -3,7 +3,7 @@
 
 "use strict";
 
-var auth = (function () {
+window.auth = (function () {
   let exports = {};
 
   let registrationInfo;

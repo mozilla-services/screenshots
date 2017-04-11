@@ -3,7 +3,7 @@
 
 "use strict";
 
-var uicontrol = (function () {
+window.uicontrol = (function () {
   let exports = {};
 
   /**********************************************************

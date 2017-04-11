@@ -3,7 +3,7 @@
 
 "use strict";
 
-var ui = (function () { // eslint-disable-line no-unused-vars
+window.ui = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
   const SAVE_BUTTON_HEIGHT = 50;
 
