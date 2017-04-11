@@ -88,7 +88,7 @@ build/%.html: %.html
 	cp $< $@
 
 .PHONY: addon
-addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/shot.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/defaultSentryDsn.js addon/webextension/build/onboardingCss.js addon/webextension/build/onboardingHtml.js
+addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/shot.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/onboardingCss.js addon/webextension/build/onboardingHtml.js addon/webextension/build/buildSettings.js
 
 $(VENV): bin/require.pip
 	virtualenv -p python2.7 $(VENV)
@@ -212,14 +212,13 @@ set_backend:
 	@echo "Setting backend to ${SCREENSHOTS_BACKEND}"
 	./bin/build-scripts/set_file build/.backend.txt $(SCREENSHOTS_BACKEND)
 
-addon/webextension/build/defaultSentryDsn.js: set_sentry
+addon/webextension/build/buildSettings.js: set_build_settings
 
-.PHONY: set_sentry
+.PHONY: set_build_settings
 set_sentry:
 	@if [[ -z "$(SCREENSHOTS_SENTRY)" ]] ; then echo "No default Sentry" ; fi
 	@if [[ -n "$(SCREENSHOTS_SENTRY)" ]] ; then echo "Setting default Sentry ${SCREENSHOTS_SENTRY}" ; fi
-	./bin/build-scripts/set_file addon/webextension/build/defaultSentryDsn.js "window.defaultSentryDsn = '${SCREENSHOTS_SENTRY}';null;"
-
+	./bin/build-scripts/substitute-env.js addon/webextension/buildSettings.js.template | ./bin/build-scripts/set_file addon/webextension/build/buildSettings.js -
 
 build/.npm-install.log: package.json
 	# Essentially .npm-install.log is just a timestamp showing the last time we ran

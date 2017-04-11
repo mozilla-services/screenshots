@@ -37,7 +37,7 @@
       "background/senderror.js",
       "build/raven.js",
       "build/shot.js",
-      "build/defaultSentryDsn.js",
+      "build/buildSettings.js",
       "background/analytics.js",
       "background/deviceInfo.js",
       "background/takeshot.js",
@@ -49,6 +49,7 @@
       "matches": ["http://localhost/*"],
       "js": [
         "catcher.js",
+        "build/buildSettings.js",
         "selector/callBackground.js",
         "sitehelper.js"
       ],

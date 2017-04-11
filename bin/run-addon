@@ -124,6 +124,8 @@ if [[ -n "$server" ]] ; then
   export SCREENSHOTS_BACKEND="$server"
 fi
 
+export SCREENSHOTS_LOG_LEVEL=debug
+
 profile_option=
 bootstrap_profile_option=
 if [[ -z "$scratch" ]] ; then
@@ -142,6 +144,9 @@ run_nodemon() {
     -w static/css/onboarding.scss \
     -w static/css/partials/ \
     -w addon/webextension/onboarding/slides.html \
+    -w addon/webextension/manifest.json.template \
+    -w addon/webextension/buildSettings.js.template \
+    -w addon/install.rdf.template \
     --on-change-only \
     --exec make addon &
   nodemon_pid=$!

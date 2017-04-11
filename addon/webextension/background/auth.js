@@ -1,5 +1,5 @@
 /* globals browser */
-/* globals main, makeUuid, deviceInfo, analytics, catcher, defaultSentryDsn, communication */
+/* globals main, makeUuid, deviceInfo, analytics, catcher, buildSettings, communication */
 
 "use strict";
 
@@ -166,7 +166,7 @@ this.auth = (function () {
   };
 
   exports.getSentryPublicDSN = function () {
-    return sentryPublicDSN || defaultSentryDsn;
+    return sentryPublicDSN || buildSettings.defaultSentryDsn;
   };
 
   exports.getAbTests = function () {

@@ -12,7 +12,8 @@ this.selectorLoader = (function () {
     "assertIsTrusted.js",
     "background/selectorLoader.js",
     "selector/callBackground.js",
-    "selector/util.js"
+    "selector/util.js",
+    "build/buildSettings.js"
   ];
 
   const selectorScripts = [
