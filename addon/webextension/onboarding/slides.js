@@ -86,7 +86,7 @@ this.slides = (function () {
       let text = browser.i18n.getMessage(id);
       el.setAttribute("aria-label", text);
     }
-    // termsAndPrivacyNotice is a more complicated substitution:
+    // termsAndPrivacyNoticeCloudServices is a more complicated substitution:
     let termsContainer = doc.querySelector(".onboarding-legal-notice");
     termsContainer.innerHTML = "";
     let termsSentinal = "__TERMS__";
@@ -101,7 +101,7 @@ this.slides = (function () {
       [privacySentinal]: "https://www.mozilla.org/privacy/firefox-cloud/"
     };
     let text = browser.i18n.getMessage(
-      "termsAndPrivacyNotice",
+      "termsAndPrivacyNoticeCloudServices",
       [sentinalSplitter + termsSentinal + sentinalSplitter,
        sentinalSplitter + privacySentinal + sentinalSplitter]);
     let parts = text.split(sentinalSplitter);
