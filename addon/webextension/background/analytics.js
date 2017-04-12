@@ -1,4 +1,4 @@
-/* globals main, auth, catcher, deviceInfo, communication */
+/* globals main, auth, catcher, deviceInfo, communication, log */
 
 "use strict";
 
@@ -11,11 +11,11 @@ this.analytics = (function () {
   exports.sendEvent = function (action, label, options) {
     let eventCategory = "addon";
     if (! telemetryPrefKnown) {
-      console.warn("sendEvent called before we were able to refresh");
+      log.warn("sendEvent called before we were able to refresh");
       return Promise.resolve();
     }
     if (! telemetryPref) {
-      console.info(`Cancelled sendEvent ${eventCategory}/${action}/${label || 'none'} ${JSON.stringify(options)}`);
+      log.info(`Cancelled sendEvent ${eventCategory}/${action}/${label || 'none'} ${JSON.stringify(options)}`);
       return Promise.resolve();
     }
     if (typeof label == "object" && (! options)) {
@@ -45,7 +45,7 @@ this.analytics = (function () {
       for (let [gaField, value] of Object.entries(abTests)) {
         options[gaField] = value;
       }
-      console.info(`sendEvent ${eventCategory}/${action}/${label || 'none'} ${JSON.stringify(options)}`);
+      log.info(`sendEvent ${eventCategory}/${action}/${label || 'none'} ${JSON.stringify(options)}`);
       req.send(JSON.stringify({
         deviceId: auth.getDeviceId(),
         event: eventCategory,

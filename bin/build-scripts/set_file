@@ -5,13 +5,27 @@ set -e
 if [[ -z "$1" ]] || [[ "$1" = "-h" ]] ; then
   echo "Usage: $(basename $0) FILENAME VALUE"
   echo "  Sets FILENAME to VALUE, does not update FILENAME if it wouldn't change"
+  echo "  If VALUE is - then read from stdin"
   exit 1
 fi
 
 output_file="$1"
 value="$2"
 
+# Getting a value into a variable like this leaves off any trailing newline,
+# so we re-add it here and for $existing:
+if [[ "$value" = "-" ]] ; then
+  value="$(cat)
+"
+fi
+
+existing=""
+if [[ -f "$output_file" ]] ; then
+  existing="$(cat $output_file)
+"
+fi
+
 mkdir -p "$(dirname $output_file)"
-if [[ ! -f "$output_file" ]] || [[ "$(cat $output_file)" != "$value" ]] ; then
-  echo -n "$value" > $output_file
+if [[ ! -f "$output_file" ]] || [[ "$existing" != "$value" ]] ; then
+  echo "$value" > $output_file
 fi

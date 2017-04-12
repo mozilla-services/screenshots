@@ -1,5 +1,5 @@
-/* globals browser */
-/* globals main, makeUuid, deviceInfo, analytics, catcher, defaultSentryDsn, communication */
+/* globals browser, log */
+/* globals main, makeUuid, deviceInfo, analytics, catcher, buildSettings, communication */
 
 "use strict";
 
@@ -20,7 +20,7 @@ this.auth = (function () {
       registrationInfo = result.registrationInfo;
     } else {
       registrationInfo = generateRegistrationInfo();
-      console.info("Generating new device authentication ID", registrationInfo);
+      log.info("Generating new device authentication ID", registrationInfo);
       return browser.storage.local.set({registrationInfo});
     }
   }));
@@ -47,14 +47,14 @@ this.auth = (function () {
       req.setRequestHeader("content-type", "application/json");
       req.onload = catcher.watchFunction(() => {
         if (req.status == 200) {
-          console.info("Registered login");
+          log.info("Registered login");
           initialized = true;
           saveAuthInfo(JSON.parse(req.responseText));
           resolve(true);
           analytics.sendEvent("registered");
         } else {
           analytics.sendEvent("register-failed", `bad-response-${req.status}`);
-          console.warn("Error in response:", req.responseText);
+          log.warn("Error in response:", req.responseText);
           let exc = new Error("Bad response: " + req.status);
           exc.popupMessage = "LOGIN_ERROR";
           reject(exc);
@@ -89,7 +89,7 @@ this.auth = (function () {
             resolve(register());
           }
         } else if (req.status >= 300) {
-          console.warn("Error in response:", req.responseText);
+          log.warn("Error in response:", req.responseText);
           let exc = new Error("Could not log in: " + req.status);
           exc.popupMessage = "LOGIN_ERROR";
           analytics.sendEvent("login-failed", `bad-response-${req.status}`);
@@ -102,7 +102,7 @@ this.auth = (function () {
         } else {
           initialized = true;
           let jsonResponse = JSON.parse(req.responseText);
-          console.info("Screenshots logged in");
+          log.info("Screenshots logged in");
           analytics.sendEvent("login");
           saveAuthInfo(jsonResponse);
           if (ownershipCheck) {
@@ -159,14 +159,14 @@ this.auth = (function () {
       if (authHeader) {
         return {"x-screenshots-auth": authHeader};
       } else {
-        console.warn("No auth header available");
+        log.warn("No auth header available");
         return {};
       }
     });
   };
 
   exports.getSentryPublicDSN = function () {
-    return sentryPublicDSN || defaultSentryDsn;
+    return sentryPublicDSN || buildSettings.defaultSentryDsn;
   };
 
   exports.getAbTests = function () {

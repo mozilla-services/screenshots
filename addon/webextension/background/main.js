@@ -24,7 +24,7 @@ this.main = (function () {
       });
     }
   }).catch((error) => {
-    console.error("Error getting hasSeenOnboarding:", error);
+    log.error("Error getting hasSeenOnboarding:", error);
   });
 
   exports.setBackend = function (newBackend) {
