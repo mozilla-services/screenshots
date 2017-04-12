@@ -24,7 +24,7 @@
       "19": "icons/icon-19.png",
       "38": "icons/icon-38.png"
     },
-    "default_title": "__MSG_toolbarButtonLabel__",
+    "default_title": "__MSG_contextMenuLabel__",
     "browser_style": false
   },
   "background": {
