@@ -2,7 +2,7 @@
 
 "use strict";
 
-function randomString(length, chars) {
+this.randomString = function randomString(length, chars) {
   let randomStringChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   chars = chars || randomStringChars;
   let result = "";

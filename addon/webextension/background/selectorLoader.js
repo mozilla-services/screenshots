@@ -2,7 +2,7 @@
 
 "use strict";
 
-window.selectorLoader = (function () {
+this.selectorLoader = (function () {
   const exports = {};
 
   // These modules are loaded in order, first standardScripts, then optionally onboardingScripts, and then selectorScripts
@@ -37,10 +37,10 @@ window.selectorLoader = (function () {
 
   exports.unloadIfLoaded = function (tabId) {
     return browser.tabs.executeScript(tabId, {
-      code: "window.selectorLoader && window.selectorLoader.unloadModules()",
+      code: "this.selectorLoader && this.selectorLoader.unloadModules()",
       runAt: "document_start"
     }).then(result => {
-      return result && result.toString() === "true";
+      return result && result[0];
     });
   };
 
@@ -84,7 +84,7 @@ window.selectorLoader = (function () {
       filename.replace(/^.*\//, "").replace(/\.js$/, ""));
     moduleNames.reverse();
     for (let moduleName of moduleNames) {
-      let moduleObj = window[moduleName];
+      let moduleObj = global[moduleName];
       if (moduleObj && moduleObj.unload) {
         try {
           watchFunction(moduleObj.unload)();
@@ -92,7 +92,7 @@ window.selectorLoader = (function () {
           // ignore (watchFunction handles it)
         }
       }
-      delete window[moduleName];
+      delete global[moduleName];
     }
     return true;
   };

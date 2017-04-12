@@ -2,7 +2,7 @@
 
 "use strict";
 
-window.analytics = (function () {
+this.analytics = (function () {
   let exports = {};
 
   let telemetryPrefKnown = false;

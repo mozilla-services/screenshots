@@ -3,7 +3,7 @@
 
 "use strict";
 
-window.uicontrol = (function () {
+this.uicontrol = (function () {
   let exports = {};
 
   /**********************************************************

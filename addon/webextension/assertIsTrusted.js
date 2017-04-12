@@ -2,7 +2,7 @@
       https://developer.mozilla.org/en-US/docs/Web/API/Event/isTrusted
     Should be applied *inside* catcher.watchFunction
 */
-function assertIsTrusted(handlerFunction) {
+this.assertIsTrusted = function assertIsTrusted(handlerFunction) {
   return function (event) {
     if (! event) {
       let exc = new Error("assertIsTrusted did not get an event");
@@ -17,3 +17,4 @@ function assertIsTrusted(handlerFunction) {
     return handlerFunction.call(this, event);
   };
 }
+null;
