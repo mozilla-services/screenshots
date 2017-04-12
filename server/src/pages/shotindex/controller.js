@@ -60,7 +60,7 @@ exports.deleteShot = function (shot) {
       refreshModel();
     }
   };
-  req.send(`id=${encodeURIComponent(shot.id)}`);
+  req.send(`id=${encodeURIComponent(shot.id)}&_csrf=${encodeURIComponent(model.csrfToken)}`);
 };
 
 window.addEventListener("popstate", () => {

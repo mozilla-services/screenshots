@@ -13,6 +13,7 @@
     "convict": "3.0.0",
     "cookies": "0.7.0",
     "core-js": "2.4.1",
+    "csurf": "1.9.0",
     "envc": "2.5.0",
     "escape-html": "1.0.3",
     "eslint-plugin-promise": "3.5.0",
