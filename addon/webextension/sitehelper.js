@@ -4,7 +4,7 @@
 
 "use strict";
 
-window.sitehelper = (function () {
+this.sitehelper = (function () {
 
   catcher.registerHandler((errorObj) => {
     callBackground("reportError", errorObj);
@@ -40,3 +40,4 @@ window.sitehelper = (function () {
   sendCustomEvent("addon-present");
 
 })();
+null;

@@ -2,7 +2,7 @@
 
 "use strict";
 
-function callBackground (funcName, ...args) {
+this.callBackground = function callBackground (funcName, ...args) {
   return browser.runtime.sendMessage({funcName, args}).then((result) => {
     if (result.type === "success") {
       return result.value;

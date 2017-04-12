@@ -1,6 +1,6 @@
 "use strict";
 
-window.documentMetadata = (function () {
+this.documentMetadata = (function () {
 
   function findSiteName() {
     let el = document.querySelector("meta[property='og:site_name']");
