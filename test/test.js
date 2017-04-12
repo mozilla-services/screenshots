@@ -85,6 +85,6 @@ describe("Test Screenshots", function () {
     this.timeout(15000);
     return getElementById(driver, SHOOTER_BUTTON_ID)
       .then((button) => button.getAttribute("label"))
-      .then((label) => assert.equal(label, "Take a shot"));
+      .then((label) => assert.equal(label, "Take a Screenshot"));
   });
 });

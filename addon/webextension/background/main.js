@@ -18,6 +18,10 @@ window.main = (function () {
     hasSeenOnboarding = !! result.hasSeenOnboarding;
     if (! hasSeenOnboarding) {
       setIconActive(false, null);
+      // Note that the branded name 'Firefox Screenshots' is not localized:
+      browser.browserAction.setTitle({
+        title: "Firefox Screenshots"
+      });
     }
   }).catch((error) => {
     console.error("Error getting hasSeenOnboarding:", error);
@@ -254,6 +258,9 @@ window.main = (function () {
     hasSeenOnboarding = true;
     catcher.watchPromise(browser.storage.local.set({hasSeenOnboarding}));
     setIconActive(false, null);
+    browser.browserAction.setTitle({
+      title: browser.i18n.getMessage("contextMenuLabel")
+    });
   });
 
   communication.register("abortFrameset", () => {
