@@ -1,4 +1,4 @@
-/* globals console, catcher, util, ui, slides */
+/* globals log, catcher, util, ui, slides */
 /* globals window, document, location, shooter, callBackground, selectorLoader, assertIsTrusted */
 
 "use strict";

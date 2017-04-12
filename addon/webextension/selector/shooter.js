@@ -1,5 +1,5 @@
 /* globals callBackground, documentMetadata, uicontrol, util, ui, catcher */
-/* globals XMLHttpRequest, window, location, alert, console, domainFromUrl, randomString */
+/* globals XMLHttpRequest, window, location, alert, domainFromUrl, randomString */
 /* globals clipboard, document, setTimeout, location */
 
 "use strict";
