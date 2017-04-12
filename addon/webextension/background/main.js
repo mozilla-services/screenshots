@@ -94,7 +94,7 @@ window.main = (function () {
             const event = active ? "start-shot" : "cancel-shot";
             sendEvent(event, "toolbar-button");
           }, (error) => {
-            if (error.popupMessage == "UNSHOOTABLE_PAGE") {
+            if ((! hasSeenOnboarding) && error.popupMessage == "UNSHOOTABLE_PAGE") {
               sendEvent("goto-onboarding", "selection-button");
               return forceOnboarding();
             }
