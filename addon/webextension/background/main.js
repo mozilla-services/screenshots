@@ -98,7 +98,7 @@ window.main = (function () {
             const event = active ? "start-shot" : "cancel-shot";
             sendEvent(event, "toolbar-button");
           }, (error) => {
-            if (error.popupMessage == "UNSHOOTABLE_PAGE") {
+            if ((! hasSeenOnboarding) && error.popupMessage == "UNSHOOTABLE_PAGE") {
               sendEvent("goto-onboarding", "selection-button");
               return forceOnboarding();
             }
@@ -191,7 +191,7 @@ window.main = (function () {
       }
       if (urlEnabled(tab.url)) {
         browser.browserAction.enable(tabId);
-      } else {
+      } else if (hasSeenOnboarding) {
         browser.browserAction.disable(tabId);
       }
     }));
