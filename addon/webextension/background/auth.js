@@ -44,7 +44,7 @@ this.auth = (function () {
       // TODO: replace xhr with Fetch #2261
       let req = new XMLHttpRequest();
       req.open("POST", registerUrl);
-      req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+      req.setRequestHeader("content-type", "application/json");
       req.onload = catcher.watchFunction(() => {
         if (req.status == 200) {
           console.info("Registered login");
@@ -66,7 +66,7 @@ this.auth = (function () {
         exc.popupMessage = "LOGIN_CONNECTION_ERROR";
         reject(exc);
       });
-      req.send(uriEncode({
+      req.send(JSON.stringify({
         deviceId: registrationInfo.deviceId,
         secret: registrationInfo.secret,
         deviceInfo: JSON.stringify(deviceInfo())
@@ -119,8 +119,8 @@ this.auth = (function () {
         exc.popupMessage = "CONNECTION_ERROR";
         reject(exc);
       });
-      req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-      req.send(uriEncode({
+      req.setRequestHeader("content-type", "application/json");
+      req.send(JSON.stringify({
         deviceId: registrationInfo.deviceId,
         secret: registrationInfo.secret,
         deviceInfo: JSON.stringify(deviceInfo()),
@@ -144,16 +144,6 @@ this.auth = (function () {
       abTests = responseJson.abTests;
       catcher.watchPromise(browser.storage.local.set({abTests}));
     }
-  }
-
-  function uriEncode(obj) {
-    let s = [];
-    for (let key in obj) {
-      if (obj[key] !== undefined) {
-        s.push(`${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`);
-      }
-    }
-    return s.join("&");
   }
 
   exports.getDeviceId = function () {
