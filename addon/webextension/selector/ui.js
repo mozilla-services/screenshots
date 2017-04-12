@@ -493,7 +493,7 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
               }
             }
             catcher.unhandled(new Error("Surprising mover element"), {element: target.outerHTML});
-            console.warn("Got mover-target that wasn't a specific direction");
+            log.warn("Got mover-target that wasn't a specific direction");
           }
         }
         target = target.parentNode;

@@ -158,7 +158,7 @@ this.slides = (function () {
 
   const onResize = catcher.watchFunction(function () {
     if (! iframe) {
-      console.warn("slides onResize called when iframe is not setup");
+      log.warn("slides onResize called when iframe is not setup");
       return;
     }
     updateIframeSize();

@@ -1,3 +1,5 @@
+/* globals log */
+
 "use strict";
 
 var global = this;
@@ -10,7 +12,7 @@ this.catcher = (function () {
   let queue = [];
 
   exports.unhandled = function (error, info) {
-    console.error("Unhandled error:", error, info);
+    log.error("Unhandled error:", error, info);
     let e = makeError(error, info);
     if (! handler) {
       queue.push(e);
@@ -57,8 +59,8 @@ this.catcher = (function () {
 
   exports.watchPromise = function watchPromise(promise) {
     return promise.catch((e) => {
-      console.error("------Error in promise:", e);
-      console.error(e.stack);
+      log.error("------Error in promise:", e);
+      log.error(e.stack);
       exports.unhandled(makeError(e));
       throw e;
     });
@@ -66,7 +68,7 @@ this.catcher = (function () {
 
   exports.registerHandler = function (h) {
     if (handler) {
-      console.error("registerHandler called after handler was already registered");
+      log.error("registerHandler called after handler was already registered");
       return;
     }
     handler = h;

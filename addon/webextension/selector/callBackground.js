@@ -1,4 +1,4 @@
-/* globals browser */
+/* globals browser, log */
 
 "use strict";
 
@@ -11,7 +11,7 @@ this.callBackground = function callBackground (funcName, ...args) {
       exc.name = "BackgroundError";
       throw exc;
     } else {
-      console.error("Unexpected background result:", result);
+      log.error("Unexpected background result:", result);
       let exc = new Error(`Bad response type from background page: ${result.type || undefined}`);
       exc.resultType = result.type || "undefined";
       throw exc;

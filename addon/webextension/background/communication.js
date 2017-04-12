@@ -1,4 +1,4 @@
-/* globals browser, catcher */
+/* globals browser, catcher, log */
 
 "use strict";
 
@@ -9,12 +9,12 @@ this.communication = (function () {
 
   browser.runtime.onMessage.addListener(catcher.watchFunction((req, sender, sendResponse) => {
     if (! (req.funcName in registeredFunctions)) {
-      console.error(`Received unknown internal message type ${req.funcName}`);
+      log.error(`Received unknown internal message type ${req.funcName}`);
       sendResponse({type: "error", name: "Unknown message type"});
       return;
     }
     if (! Array.isArray(req.args)) {
-      console.error("Received message with no .args list");
+      log.error("Received message with no .args list");
       sendResponse({type: "error", name: "No .args"});
       return;
     }
@@ -24,7 +24,7 @@ this.communication = (function () {
       req.args.unshift(sender);
       result = func.apply(null, req.args);
     } catch (e) {
-      console.error(`Error in ${req.funcName}:`, e, e.stack);
+      log.error(`Error in ${req.funcName}:`, e, e.stack);
       // FIXME: should consider using makeError from catcher here:
       sendResponse({type: "error", message: e+""});
       return;
@@ -33,7 +33,7 @@ this.communication = (function () {
       result.then((concreteResult) => {
         sendResponse({type: "success", value: concreteResult});
       }).catch((errorResult) => {
-        console.error(`Promise error in ${req.funcName}:`, errorResult, errorResult && errorResult.stack);
+        log.error(`Promise error in ${req.funcName}:`, errorResult, errorResult && errorResult.stack);
         sendResponse({type: "error", message: errorResult+""});
       });
       return true;

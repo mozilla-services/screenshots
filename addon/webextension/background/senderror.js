@@ -1,4 +1,4 @@
-/* globals analytics, browser, communication, makeUuid, Raven, catcher, auth */
+/* globals analytics, browser, communication, makeUuid, Raven, catcher, auth, log */
 
 "use strict";
 
@@ -78,12 +78,12 @@ this.senderror = (function () {
 
   exports.reportError = function (e) {
     if (!analytics.getTelemetryPrefSync()) {
-      console.error("Telemetry disabled. Not sending critical error:", e);
+      log.error("Telemetry disabled. Not sending critical error:", e);
       return;
     }
     let dsn = auth.getSentryPublicDSN();
     if (! dsn) {
-      console.warn("Error:", e);
+      log.warn("Error:", e);
       return;
     }
     if (! Raven.isSetup()) {

@@ -817,7 +817,7 @@ this.uicontrol = (function () {
       callBackground('closeSelector');
       selectorLoader.unloadModules();
     } catch (e) {
-      console.error('deactivate', e)
+      log.error('Error in deactivate', e)
       // Sometimes this fires so late that the document isn't available
       // We don't care about the exception, so we swallow it here
     }

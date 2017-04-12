@@ -1,4 +1,4 @@
-/* globals browser, catcher */
+/* globals browser, catcher, log */
 
 "use strict";
 
@@ -8,12 +8,13 @@ this.selectorLoader = (function () {
   // These modules are loaded in order, first standardScripts, then optionally onboardingScripts, and then selectorScripts
   // The order is important due to dependencies
   const standardScripts = [
+    "build/buildSettings.js",
+    "log.js",
     "catcher.js",
     "assertIsTrusted.js",
     "background/selectorLoader.js",
     "selector/callBackground.js",
-    "selector/util.js",
-    "build/buildSettings.js"
+    "selector/util.js"
   ];
 
   const selectorScripts = [
@@ -62,14 +63,14 @@ this.selectorLoader = (function () {
           runAt: "document_end"
         })
           .catch((error) => {
-            console.error("error in script:", file, error);
+            log.error("error in script:", file, error);
             error.scriptName = file;
             throw error;
           })
       })
     });
     return lastPromise.then(() => {
-      console.log("finished loading scripts:", scripts.join(" "));
+      log.debug("finished loading scripts:", scripts.join(" "));
     },
     (error) => {
       exports.unloadIfLoaded(tabId);
