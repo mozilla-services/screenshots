@@ -22,6 +22,7 @@ this.slides = (function () {
       callbacks = addCallbacks;
       // FIXME: a lot of this iframe logic is in ui.js; maybe move to util.js
       iframe = document.createElement("iframe");
+      iframe.src = browser.extension.getURL("blank.html");
       iframe.id = "firefox-screenshots-onboarding-iframe";
       iframe.style.zIndex = "99999999999";
       iframe.style.border = "none";

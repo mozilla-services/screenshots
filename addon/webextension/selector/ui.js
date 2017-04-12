@@ -82,6 +82,7 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
       return new Promise((resolve, reject) => {
         if (! this.element) {
           this.element = document.createElement("iframe");
+          this.element.src = browser.extension.getURL("blank.html");
           this.element.id = "firefox-screenshots-selection-iframe";
           this.element.style.display = "none";
           this.element.style.zIndex = "99999999999";
@@ -207,6 +208,7 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
       return new Promise((resolve, reject) => {
         if (! this.element) {
           this.element = document.createElement("iframe");
+          this.element.src = browser.extension.getURL("blank.html");
           this.element.id = "firefox-screenshots-preselection-iframe";
           this.element.style.zIndex = "99999999999";
           this.element.style.border = "none";
