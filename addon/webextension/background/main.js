@@ -187,7 +187,7 @@ window.main = (function () {
       }
       if (urlEnabled(tab.url)) {
         browser.browserAction.enable(tabId);
-      } else {
+      } else if (hasSeenOnboarding) {
         browser.browserAction.disable(tabId);
       }
     }));
