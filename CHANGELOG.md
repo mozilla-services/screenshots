@@ -1,5 +1,8 @@
-## Version 6.1.0
+## Version 6.1.0 & 6.2.0
 
+* (6.2.0) Improve exporting files to mozilla-central, avoid duplicate L10n files ([#2645](https://github.com/mozilla-services/screenshots/issues/2645))
+  The m-c build system protects against duplicate files, so we need to avoid those. Additionally, this patch makes it
+  so that we don't export empty l10n files as we just fallback to en-US. Fixes [#2642](https://github.com/mozilla-services/screenshots/issues/2642) [211dcf6](https://github.com/mozilla-services/screenshots/commit/211dcf6)
 * Change the mochitest to work with the system-disabled pref rather than the user facing pref. ([#2637](https://github.com/mozilla-services/screenshots/issues/2637))
   This makes the test work better due to the fact the extension will be disabled in-tree via the system-disabled pref. [bf62e73](https://github.com/mozilla-services/screenshots/commit/bf62e73)
 * Webextension review changes ([#2591](https://github.com/mozilla-services/screenshots/issues/2591))
