@@ -9,11 +9,13 @@ exports.render = function (req, res, page) {
     model.backend = req.backend;
     let jsonModel = model.jsonModel || model;
     let serverModel = model.serverModel || model;
+    let csrfToken = req.csrfToken && req.csrfToken();
     jsonModel = Object.assign({
       authenticated: !!req.deviceId,
       sentryPublicDSN: req.config.sentryPublicDSN,
       backend: req.backend,
       gitRevision: getGitRevision(),
+      csrfToken,
       abTests: req.abTests
     }, jsonModel);
     serverModel = Object.assign({
@@ -21,6 +23,7 @@ exports.render = function (req, res, page) {
       sentryPublicDSN: req.config.sentryPublicDSN,
       staticLink: req.staticLink,
       staticLinkWithHost: req.staticLinkWithHost,
+      csrfToken,
       abTests: req.abTests
     }, serverModel);
     if (req.query.data == "json") {

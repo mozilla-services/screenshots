@@ -97,7 +97,7 @@ exports.changeShotExpiration = function (shot, expiration) {
       location.reload();
     };
   }
-  req.send(`id=${encodeURIComponent(shot.id)}&expiration=${encodeURIComponent(expiration)}`);
+  req.send(`id=${encodeURIComponent(shot.id)}&expiration=${encodeURIComponent(expiration)}&_csrf=${encodeURIComponent(model.csrfToken)}`);
 };
 
 exports.deleteShot = function (shot) {
@@ -113,7 +113,7 @@ exports.deleteShot = function (shot) {
       location.href = model.backend + "/shots";
     }
   };
-  req.send(`id=${encodeURIComponent(shot.id)}`);
+  req.send(`id=${encodeURIComponent(shot.id)}&_csrf=${encodeURIComponent(model.csrfToken)}`);
 };
 
 function refreshHash() {
@@ -187,7 +187,7 @@ exports.setTitle = function (title) {
   };
   req.open("POST", url);
   req.setRequestHeader("content-type", "application/json");
-  req.send(JSON.stringify({ title }));
+  req.send(JSON.stringify({ title, _csrf: model.csrfToken }));
 };
 
 function render() {
