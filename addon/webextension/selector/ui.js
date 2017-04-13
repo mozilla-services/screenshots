@@ -1,5 +1,5 @@
-/* globals window, document, console, browser */
-/* globals util, catcher, inlineSelectionCss, callBackground, assertIsTrusted */
+/* globals window, document, browser */
+/* globals log, util, catcher, inlineSelectionCss, callBackground, assertIsTrusted */
 
 "use strict";
 

@@ -59,6 +59,7 @@ const {
 const dbschema = require("./dbschema");
 const express = require("express");
 const bodyParser = require('body-parser');
+const csrf = require("csurf");
 const morgan = require("morgan");
 const linker = require("./linker");
 const { randomBytes } = require("./helpers");
@@ -154,6 +155,8 @@ function initDatabase() {
 
 initDatabase();
 
+const csrfProtection = csrf({cookie: true});
+
 const app = express();
 
 app.set('trust proxy', true);
@@ -237,10 +240,10 @@ app.use(morgan("combined"));
 app.use(function (req, res, next) {
   let authHeader = req.headers['x-screenshots-auth'];
   let authInfo = {};
+  let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
   if (authHeader) {
     authInfo = decodeAuthHeader(authHeader);
   } else {
-    let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
     authInfo.deviceId = cookies.get("user", {signed: true});
     let abTests = cookies.get("abtests", {signed: true});
     if (abTests) {
@@ -255,8 +258,11 @@ app.use(function (req, res, next) {
       req.userAnalytics = req.userAnalytics.debug();
     }
   }
+  req.cookies = cookies;
+  req.cookies._csrf = cookies.get("_csrf"); // csurf expects a property
   req.abTests = authInfo.abTests || {};
-  req.backend = `${req.protocol}://${req.headers.host}`;
+  const host = req.headers.host === config.contentOrigin ? config.contentOrigin : config.siteOrigin;
+  req.backend = `${req.protocol}://${host}`;
   req.config = config;
   next();
 });
@@ -684,7 +690,7 @@ app.get("/data/:id/:domain", function (req, res) {
   });
 });
 
-app.post("/api/delete-shot", function (req, res) {
+app.post("/api/delete-shot", csrfProtection, function (req, res) {
   if (! req.deviceId) {
     sendRavenMessage(req, "Attempt to delete shot without login");
     simpleResponse(res, "Not logged in", 401);
@@ -702,7 +708,7 @@ app.post("/api/delete-shot", function (req, res) {
   });
 });
 
-app.post("/api/set-title/:id/:domain", function (req, res) {
+app.post("/api/set-title/:id/:domain", csrfProtection, function (req, res) {
   let shotId = `${req.params.id}/${req.params.domain}`;
   let userTitle = req.body.title;
   if (userTitle === undefined) {
@@ -728,7 +734,7 @@ app.post("/api/set-title/:id/:domain", function (req, res) {
   });
 });
 
-app.post("/api/set-expiration", function (req, res) {
+app.post("/api/set-expiration", csrfProtection, function (req, res) {
   if (! req.deviceId) {
     sendRavenMessage(req, "Attempt to set expiration without login");
     simpleResponse(res, "Not logged in", 401);

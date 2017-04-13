@@ -1,4 +1,5 @@
 const express = require("express");
+const csrf = require("csurf");
 const { Shot } = require("../../servershot");
 const { notFound } = require("../../pages/not-found/server");
 const reactrender = require("../../reactrender");
@@ -7,7 +8,7 @@ let app = express();
 
 exports.app = app;
 
-app.get("/:id/:domain", function (req, res) {
+app.get("/:id/:domain", csrf({cookie: true}), function (req, res) {
   let shotId = `${req.params.id}/${req.params.domain}`;
   Shot.get(req.backend, shotId).then((shot) => {
     let noSuchShot = false;

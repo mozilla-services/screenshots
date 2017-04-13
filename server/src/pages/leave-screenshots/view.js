@@ -31,6 +31,7 @@ class Body extends React.Component {
               This will permanently erase all of your Firefox Screenshots data.
             </div>
             <form action="/leave-screenshots/leave" method="POST" className="responsive-wrapper row-center">
+              <input type="hidden" name="_csrf" value={this.props.csrfToken} />
               <button type="submit" onClick={ this.onClickDelete.bind(this) } className="button warning">
                 Proceed
               </button>
