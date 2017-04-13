@@ -228,6 +228,11 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
                <body>
                  <div class="preview-overlay">
                    <div class="fixed-container">
+                     <div class="face-container">
+                       <div class="eye left"><div class="eyeball"></div></div>
+                       <div class="eye right"><div class="eyeball"></div></div>
+                       <div class="face"></div>
+                     </div>
                      <div class="preview-instructions"></div>
                      <div class="myshots-all-buttons-container">
                        <button class="myshots-button myshots-link" tabindex="1"></button>
