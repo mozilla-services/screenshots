@@ -10,6 +10,7 @@ this.takeshot = (function () {
   communication.register("takeShot", catcher.watchFunction((sender, options) => {
     let { captureType, captureText, scroll, selectedPos, shotId, shot } = options;
     shot = new Shot(main.getBackend(), shotId, shot);
+    shot.favicon = sender.tab.favIconUrl;
     let capturePromise = Promise.resolve();
     let openedTab;
     if (! shot.clipNames().length) {
