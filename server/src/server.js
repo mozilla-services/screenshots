@@ -221,7 +221,7 @@ app.use((req, res, next) => {
 });
 
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json({limit: '100mb'}));
+app.use(bodyParser.json({limit: '25mb'}));
 
 app.use("/static", express.static(path.join(__dirname, "static"), {
   index: false,
