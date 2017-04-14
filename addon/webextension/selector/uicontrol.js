@@ -392,6 +392,13 @@ this.uicontrol = (function () {
           event.pageX + window.scrollX - window.pageXOffset,
           event.pageY + window.scrollY - window.pageYOffset
         );
+        let xpos = Math.floor(10 * (event.pageX - window.innerWidth / 2) / window.innerWidth);
+        let ypos = Math.floor(10 * (event.pageY - window.innerHeight / 2) / window.innerHeight)
+
+        for (var i = 0; i < 2; i++) {
+          let move = `translate(${xpos}px, ${ypos}px)`;
+          event.target.getElementsByClassName('eyeball')[i].style.transform = move;
+        }
       } else {
         // The hover is on the element we care about, so we use that
         el = event.target;
