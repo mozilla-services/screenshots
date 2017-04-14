@@ -281,6 +281,55 @@ $very-light-grey: #ededed;
   width: 100%;
 }
 
+.face-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 64px;
+  height: 64px;
+  transform: translateY(-45px);
+}
+
+.eye {
+  background-color: #fff;
+  width: 10.8px;
+  height: 14.6px;
+  position: absolute;
+  border-radius: 100%;
+  overflow: hidden;
+  left: 16.4px;
+  top: 19.8px;
+}
+
+.eyeball {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: #000;
+  border-radius: 50%;
+  left: 2.4px;
+  top: 4.3px;
+  z-index: 10;
+}
+
+.left {
+  margin-left: 0px;
+}
+
+.right {
+  margin-left: 20px;
+}
+
+.face {
+  width: 62.4px;
+  height: 62.4px;
+  display: block;
+  background-image: url("MOZ_EXTENSION/icons/icon-welcome-face-without-eyes.svg");
+}
+
 .preview-instructions {
   @include flex-container(row, center, center);
   animation: pulse 125mm $bezier;
@@ -290,6 +339,7 @@ $very-light-grey: #ededed;
   line-height: 32px;
   text-align: center;
   width: 400px;
+  margin-top: 45px;
 }
 
 .myshots-all-buttons-container {
