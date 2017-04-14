@@ -29,6 +29,7 @@ test:
     - node -e 'require("babel-polyfill"); require("./build/server/server");':
         background: true
     - ./bin/test-request put '{}'
+    - ./bin/load_test_exercise.py http://localhost:10080
 
   post:
     - bash <(curl -s https://codecov.io/bash)
