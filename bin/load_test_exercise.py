@@ -48,6 +48,10 @@ def make_uuid():
     return str(uuid.uuid1()).replace("-", "")
 
 
+def make_random_id():
+    return make_uuid()[:16]
+
+
 deviceInfo = make_device_info()
 deviceId = make_uuid()
 secret = make_uuid()
@@ -72,7 +76,7 @@ def delete_account():
 
 
 def create_shot():
-    shot_id = make_uuid() + "/test.com"
+    shot_id = make_random_id() + "/test.com"
     shot_url = urljoin(backend, shot_id)
     shot_data = urljoin(backend, "data/" + shot_id)
     resp = session.put(
@@ -199,8 +203,9 @@ def main():
             print "Finished run %i/%i" % (i + 1, args.times)
     except KeyboardInterrupt:
         print "Early abort"
-    print "Deleting account"
-    delete_account()
+    # uncomment after supporting csrf token
+    # print "Deleting account"
+    # delete_account()
 
 
 if __name__ == "__main__":
