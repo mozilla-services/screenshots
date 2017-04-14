@@ -1,8 +1,18 @@
-## Version 6.1.0 & 6.2.0
+## Version 6.3.0 & 6.2.0
 
+* Implement log levels. Set log level to debug in run-addon, otherwise default to warn. Fixes [#2604](https://github.com/mozilla-services/screenshots/issues/2604) [087a853](https://github.com/mozilla-services/screenshots/commit/087a853)
+* Use a moz-extension src for the overlay iframes [da19766](https://github.com/mozilla-services/screenshots/commit/da19766)
+* Implement a buildSettings.js file for generally injecting settings [3716753](https://github.com/mozilla-services/screenshots/commit/3716753)
+* use json instead of x-wblahhh for xhr requests [af20b24](https://github.com/mozilla-services/screenshots/commit/af20b24)
+* changed window assignments to `this` in the content-scripts [ecd301b](https://github.com/mozilla-services/screenshots/commit/ecd301b)
+* delete image files on delete [8271b63](https://github.com/mozilla-services/screenshots/commit/8271b63)
+* sets character limit on shot title [5c26c4f](https://github.com/mozilla-services/screenshots/commit/5c26c4f) [29ace1e](https://github.com/mozilla-services/screenshots/commit/29ace1e)
 * (6.2.0) Improve exporting files to mozilla-central, avoid duplicate L10n files ([#2645](https://github.com/mozilla-services/screenshots/issues/2645))
   The m-c build system protects against duplicate files, so we need to avoid those. Additionally, this patch makes it
   so that we don't export empty l10n files as we just fallback to en-US. Fixes [#2642](https://github.com/mozilla-services/screenshots/issues/2642) [211dcf6](https://github.com/mozilla-services/screenshots/commit/211dcf6)
+
+## Version 6.1.0
+
 * Change the mochitest to work with the system-disabled pref rather than the user facing pref. ([#2637](https://github.com/mozilla-services/screenshots/issues/2637))
   This makes the test work better due to the fact the extension will be disabled in-tree via the system-disabled pref. [bf62e73](https://github.com/mozilla-services/screenshots/commit/bf62e73)
 * Webextension review changes ([#2591](https://github.com/mozilla-services/screenshots/issues/2591))

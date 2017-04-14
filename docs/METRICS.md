@@ -10,6 +10,18 @@ This document is a summary of the metrics Firefox Screenshots will record, how w
 
 Additionally, it's important to recognize that Firefox Screenshots is an add-on in a browser as well as a server-side service.
 
+## deviceId / user ID
+
+Each device that uses Screenshots (browser, profile, computer) generates a random UUID ID.  We call this the deviceId.  In addition a random secret is generated.  The two together are used to register and authenticate with the server.
+
+The deviceId is only registered with the screenshots.firefox.com server when the user first saves a shot.  Starting Screenshots or downloading does not cause registration.
+
+Each event is sent to the server with its deviceId.  The server hashes this ID (combining it with a random server string that is rotated occasionally) before sending it to Google Analytics.  This hashed ID is generally called `cid` (customer ID, a Google Analytics term).
+
+For web page views (viewing and interacting with individual shots or My Shots) we serve up `/ga-activation.js` or `/ga-activation-hashed.js` (the latter for pages with private URLs).  This file is generated *per user* and includes the `cid`, if the user is authenticated with the service.
+
+The deviceId does not change for the life of a browser profile.
+
 ### Key Metrics
 
 Key metrics of Firefox Screenshots are fairly simple:
