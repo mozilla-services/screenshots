@@ -10,3 +10,8 @@ exports.createProxyUrl = function(req, url, hash) {
   }
   return proxy;
 };
+
+exports.createDownloadUrl = function(url, filename) {
+  const sig = dbschema.getKeygrip().sign(new Buffer(filename, 'utf8'));
+  return `${url}?download=${encodeURIComponent(filename)}&sig=${encodeURIComponent(sig)}`;
+};

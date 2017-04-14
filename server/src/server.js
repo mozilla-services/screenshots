@@ -59,6 +59,7 @@ const {
 const dbschema = require("./dbschema");
 const express = require("express");
 const bodyParser = require('body-parser');
+const contentDisposition = require("content-disposition");
 const csrf = require("csurf");
 const morgan = require("morgan");
 const linker = require("./linker");
@@ -771,6 +772,8 @@ app.post("/api/set-expiration", csrfProtection, function(req, res) {
 
 app.get("/images/:imageid", function(req, res) {
   let embedded = req.query.embedded;
+  let download = req.query.download;
+  let sig = req.query.sig;
   Shot.getRawBytesForClip(
     req.params.imageid
   ).then((obj) => {
@@ -805,6 +808,11 @@ app.get("/images/:imageid", function(req, res) {
         }).send();
       }
       res.header("Content-Type", "image/png");
+      if (download) {
+        if (dbschema.getKeygrip().verify(new Buffer(download, 'utf8'), sig)) {
+          res.header("Content-Disposition", contentDisposition(download));
+        }
+      }
       res.status(200);
       res.send(obj.data);
     }
