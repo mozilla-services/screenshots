@@ -50,10 +50,6 @@ class Body extends React.Component {
           <div className="large-icon-message-container">
             <div className="large-icon check" />
             <div className="large-icon-message-string">All of your Firefox Screenshots data has been erased.<br/>
-              You can uninstall the Firefox Screenshots add-on via Test Pilot
-            </div>
-            <div className="responsive-wrapper row-center">
-              <a className="button primary" href="https://testpilot.firefox.com/experiments/page-shot">Go to Test Pilot</a>
             </div>
           </div>
         </div>
