@@ -49,7 +49,7 @@ class Body extends React.Component {
         <div className="column-center full-height inverse-color-scheme">
           <div className="large-icon-message-container">
             <div className="large-icon check" />
-            <div className="large-icon-message-string">All of your Firefox Screenshots data has been erased.<br/>
+            <div className="large-icon-message-string">All of your Firefox Screenshots data has been erased.
             </div>
           </div>
         </div>
