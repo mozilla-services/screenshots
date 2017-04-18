@@ -46,13 +46,9 @@ this.slides = (function() {
           doc.documentElement
         );
         doc.addEventListener("keyup", onKeyUp);
-        callBackground("getBackend").then(() => {
-          localizeText(doc);
-          activateSlide(doc);
-          resolve();
-        }).catch((error) => {
-          // Handled in communication.js
-        });
+        localizeText(doc);
+        activateSlide(doc);
+        resolve();
       });
       document.body.appendChild(iframe);
       iframe.focus();
