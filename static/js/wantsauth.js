@@ -14,7 +14,7 @@
       }
     }
 */
-window.wantsauth = (function () {
+window.wantsauth = (function() {
   let exports = {};
 
   let savedAuthData = null;
@@ -48,11 +48,11 @@ window.wantsauth = (function () {
 
   document.dispatchEvent(new CustomEvent("request-addon-present"));
 
-  exports.getAuthData = function () {
+  exports.getAuthData = function() {
     return savedAuthData;
   };
 
-  exports.addAuthDataListener = function (func) {
+  exports.addAuthDataListener = function(func) {
     authDataCallbacks.push(func);
   };
 

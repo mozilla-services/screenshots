@@ -9,7 +9,7 @@ if (prefix) {
   client = new StatsD({prefix});
 }
 
-exports.increment = function (name) {
+exports.increment = function(name) {
   if (client) {
     client.increment(name);
   }

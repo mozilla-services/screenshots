@@ -12,7 +12,7 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
     // FIXME: this should probably include some standard CSS or other boilerplate
     let analyticsScript;
     let activationScript;
-    if (! this.props.noAnalytics) {
+    if (!this.props.noAnalytics) {
       analyticsScript = <script src="//www.google-analytics.com/analytics.js" async />;
       if (this.props.hashAnalytics) {
         activationScript = <script src={this.props.staticLink("/ga-activation-hashed.js")} />;
@@ -51,7 +51,7 @@ exports.BodyTemplate = class Body extends React.Component {
 exports.Page = class Page {
   constructor(options) {
     for (let name in options) {
-      if (! this.ATTRS.includes(name)) {
+      if (!this.ATTRS.includes(name)) {
         throw new Error("Invalid attribute to Page: " + name);
       }
       let value = options[name];
@@ -61,7 +61,7 @@ exports.Page = class Page {
 
   set dir(val) {
     if (val.startsWith("/")) {
-      if (! val.startsWith(__dirname)) {
+      if (!val.startsWith(__dirname)) {
         throw new Error("Unknown directory for page: " + val + " (not " + __dirname + ")");
       }
       val = val.substr(__dirname.length).replace(/^\/+/, "");
@@ -71,7 +71,7 @@ exports.Page = class Page {
   }
 
   render(model) {
-    if (! model.staticLink) {
+    if (!model.staticLink) {
       linker.setGitRevision(model.gitRevision);
       model.staticLink = linker.staticLink;
       model.staticLinkWithHost = linker.staticLinkWithHost.bind(null, {
@@ -111,7 +111,7 @@ dir viewModule noBrowserJavascript
 
 if (typeof window !== "undefined") {
   setTimeout(() => {
-    if (window.initialModel !== undefined && ! window.initialModelLaunched) {
+    if (window.initialModel !== undefined && !window.initialModelLaunched) {
       window.initialModelLaunched = true;
       window.controller.launch(window.initialModel);
     }

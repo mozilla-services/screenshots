@@ -2,7 +2,7 @@ const { addReactScripts } = require("./reactutils");
 const ReactDOMServer = require("react-dom/server");
 const { getGitRevision } = require("./linker");
 
-exports.render = function (req, res, page) {
+exports.render = function(req, res, page) {
   let modelModule = require("./" + page.modelModuleName);
   let viewModule = page.viewModule;
   Promise.resolve(modelModule.createModel(req)).then((model) => {
@@ -48,7 +48,7 @@ exports.render = function (req, res, page) {
         <div id="react-body-container">${body}</div>
       </body></html>
     `.trim();
-    if (! page.noBrowserJavascript) {
+    if (!page.noBrowserJavascript) {
       // FIXME: we should just inline the addReactScripts functionality in this function:
       let script = `\
 window.initialModel = ${JSON.stringify(jsonModel)};

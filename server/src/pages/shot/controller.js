@@ -8,8 +8,8 @@ const { shotGaFieldForValue } = require("../../ab-tests.js");
 // This represents the model we are rendering:
 let model;
 
-exports.launch = function (data) {
-  let firstSet = ! model;
+exports.launch = function(data) {
+  let firstSet = !model;
   model = data;
   if (window.wantsauth) {
     if (window.wantsauth.getAuthData()) {
@@ -65,22 +65,20 @@ exports.launch = function (data) {
         sendEvent("visit", "owner-first");
       }
     }
-  } else {
-    if (isExpired) {
+  } else if (isExpired) {
       sendEvent("view-expired", "non-owner");
     } else {
       sendEvent("visit", "non-owner");
     }
-  }
 };
 
-exports.changeShotExpiration = function (shot, expiration) {
+exports.changeShotExpiration = function(shot, expiration) {
   let wasExpired = model.expireTime !== null && model.expireTime < Date.now();
   let url = model.backend + "/api/set-expiration";
   let req = new XMLHttpRequest();
   req.open("POST", url);
   req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-  req.onload = function () {
+  req.onload = function() {
     if (req.status >= 300) {
       window.alert("Error saving expiration: " + req.status + " " + req.statusText);
     } else {
@@ -93,19 +91,19 @@ exports.changeShotExpiration = function (shot, expiration) {
     }
   };
   if (wasExpired) {
-    req.onload = function () {
+    req.onload = function() {
       location.reload();
     };
   }
   req.send(`id=${encodeURIComponent(shot.id)}&expiration=${encodeURIComponent(expiration)}&_csrf=${encodeURIComponent(model.csrfToken)}`);
 };
 
-exports.deleteShot = function (shot) {
+exports.deleteShot = function(shot) {
   let url = model.backend + "/api/delete-shot";
   let req = new XMLHttpRequest();
   req.open("POST", url);
   req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-  req.onload = function () {
+  req.onload = function() {
     if (req.status >= 300) {
       // FIXME: a lame way to do an error message
       window.alert("Error deleting shot: " + req.status + " " + req.statusText);
@@ -145,13 +143,13 @@ function refreshHash() {
 
 function sendShowElement(clipId) {
   let frame = document.getElementById("frame");
-  if (! frame) {
+  if (!frame) {
     return;
   }
   let postMessage;
   if (clipId) {
     let clip = model.shot.getClip(clipId);
-    if (! clip) {
+    if (!clip) {
       throw new Error("Could not find clip with id " + clipId);
     }
     postMessage = {
@@ -173,11 +171,11 @@ function sendShowElement(clipId) {
   }
 }
 
-exports.setTitle = function (title) {
+exports.setTitle = function(title) {
   title = title || null;
   let url = model.backend + "/api/set-title/" + model.shot.id;
   let req = new XMLHttpRequest();
-  req.onload = function () {
+  req.onload = function() {
     if (req.status >= 300) {
       window.alert("Error saving title: " + req.status + " " + req.statusText);
       return;

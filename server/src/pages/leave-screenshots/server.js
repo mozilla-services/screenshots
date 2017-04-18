@@ -8,8 +8,8 @@ let app = express();
 
 exports.app = app;
 
-app.get("/", csrfProtection, function (req, res) {
-  if (! req.deviceId) {
+app.get("/", csrfProtection, function(req, res) {
+  if (!req.deviceId) {
     res.status(403).send("You must have the addon installed to delete your account");
     return;
   }
@@ -17,8 +17,8 @@ app.get("/", csrfProtection, function (req, res) {
   reactrender.render(req, res, page);
 });
 
-app.post("/leave", csrfProtection, function (req, res) {
-  if (! req.deviceId) {
+app.post("/leave", csrfProtection, function(req, res) {
+  if (!req.deviceId) {
     res.status(403).send("You must have the addon installed to leave");
   }
   Shot.deleteEverythingForDevice(req.backend, req.deviceId).then(() => {

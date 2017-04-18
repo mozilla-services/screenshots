@@ -2,7 +2,7 @@
 
 "use strict";
 
-this.slides = (function () {
+this.slides = (function() {
   let exports = {};
 
   const { watchFunction } = catcher;
@@ -14,7 +14,7 @@ this.slides = (function () {
   let callbacks;
   let backend;
 
-  exports.display = function (addCallbacks) {
+  exports.display = function(addCallbacks) {
     if (iframe) {
       throw new Error("Attemted to call slides.display() twice");
     }
@@ -62,7 +62,7 @@ this.slides = (function () {
     });
   };
 
-  exports.remove = exports.unload = function () {
+  exports.remove = exports.unload = function() {
     window.removeEventListener("resize", onResize, false);
     if (doc) {
       doc.removeEventListener("keyup", onKeyUp, false);
@@ -157,8 +157,8 @@ this.slides = (function () {
     setSlide(currentSlide - 1);
   }
 
-  const onResize = catcher.watchFunction(function () {
-    if (! iframe) {
+  const onResize = catcher.watchFunction(function() {
+    if (!iframe) {
       log.warn("slides onResize called when iframe is not setup");
       return;
     }
@@ -170,7 +170,7 @@ this.slides = (function () {
     iframe.style.width = window.innerWidth + "px";
   }
 
-  const onKeyUp = catcher.watchFunction(assertIsTrusted(function (event) {
+  const onKeyUp = catcher.watchFunction(assertIsTrusted(function(event) {
     if ((event.key || event.code) === "Escape") {
       shooter.sendEvent("cancel-slides", "keyboard-escape");
       callbacks.onEnd();
@@ -187,7 +187,7 @@ this.slides = (function () {
     shooter.sendEvent("visited-slide", `slide-${index}`);
     currentSlide = index;
     let slideEl = doc.querySelector("#slide-container");
-    for (let i=1; i<=numberOfSlides; i++) {
+    for (let i = 1; i <= numberOfSlides; i++) {
       let className = `active-slide-${i}`;
       if (i == currentSlide) {
         slideEl.classList.add(className);

@@ -19,7 +19,7 @@ function hashMatches(hash, secret) {
 }
 
 function createHash(secret, nonce) {
-  if (! nonce) {
+  if (!nonce) {
     nonce = createNonce();
   }
   if (nonce.search(/^[0-9a-zA-Z]+$/) == -1) {
@@ -38,7 +38,7 @@ function createNonce() {
 /** Parses the FORCE_AB_TESTS config */
 function getForceAbTests() {
   let val = config.forceAbTests || "";
-  if (! val) {
+  if (!val) {
     return null;
   }
   let parts = val.split(/\s/g);
@@ -50,12 +50,12 @@ function getForceAbTests() {
   return result;
 }
 
-exports.checkLogin = function (deviceId, secret, addonVersion) {
+exports.checkLogin = function(deviceId, secret, addonVersion) {
   return db.select(
     `SELECT secret_hashed, ab_tests FROM devices WHERE id = $1`,
     [deviceId]
   ).then((rows) => {
-    if (! rows.length) {
+    if (!rows.length) {
       return null;
     }
     let userAbTests = {};
@@ -77,14 +77,14 @@ exports.checkLogin = function (deviceId, secret, addonVersion) {
         mozlog.error("error-updating-devices-table", {err: error});
       });
       return userAbTests;
-    } else {
-      return false;
     }
+      return false;
+
   });
 };
 
-exports.registerLogin = function (deviceId, data, canUpdate) {
-  if (! deviceId) {
+exports.registerLogin = function(deviceId, data, canUpdate) {
+  if (!deviceId) {
     throw new Error("No deviceId given");
   }
   let secretHashed = createHash(data.secret);
@@ -98,7 +98,7 @@ exports.registerLogin = function (deviceId, data, canUpdate) {
       return userAbTests;
     }
     if (canUpdate) {
-      if (! data.secret) {
+      if (!data.secret) {
         throw new Error("Must have secret if updating");
       }
       return db.update(
@@ -109,18 +109,18 @@ exports.registerLogin = function (deviceId, data, canUpdate) {
       ).then((rowCount) => {
         if (rowCount) {
           return userAbTests;
-        } else {
-          return false;
         }
+          return false;
+
       });
-    } else {
-      return false;
     }
+      return false;
+
   });
 };
 
-exports.updateLogin = function (deviceId, data) {
-  if (! deviceId) {
+exports.updateLogin = function(deviceId, data) {
+  if (!deviceId) {
     throw new Error("No deviceId given");
   }
   return db.update(
@@ -128,25 +128,25 @@ exports.updateLogin = function (deviceId, data) {
      SET nickname = $1, avatarurl = $2
      WHERE id = $3`,
     [data.nickname || null, data.avatarurl || null, deviceId]
-  ).then(rowCount => !! rowCount);
+  ).then(rowCount => !!rowCount);
 };
 
-exports.accountIdForDeviceId = function (deviceId) {
-  if (! deviceId) {
+exports.accountIdForDeviceId = function(deviceId) {
+  if (!deviceId) {
     throw new Error("No deviceId given");
   }
   return db.select(
     `SELECT accountid FROM devices WHERE id = $1`,
     [deviceId]
   ).then((rows) => {
-    if (! rows.length) {
+    if (!rows.length) {
       return null;
     }
     return rows[0].accountid;
   });
 };
 
-exports.setState = function (deviceId, state) {
+exports.setState = function(deviceId, state) {
   return db.insert(
     `INSERT INTO states (state, deviceid)
     VALUES ($1, $2)`,
@@ -154,14 +154,14 @@ exports.setState = function (deviceId, state) {
   );
 };
 
-exports.checkState = function (deviceId, state) {
+exports.checkState = function(deviceId, state) {
   return db.del(
     `DELETE FROM states WHERE state = $1 AND deviceid = $2`,
     [state, deviceId]
-  ).then(rowCount => !! rowCount);
+  ).then(rowCount => !!rowCount);
 };
 
-exports.tradeCode = function (code) {
+exports.tradeCode = function(code) {
   let oAuthURI = `${config.oAuth.oAuthServer}/token`;
   return request('POST', oAuthURI, {
     payload: JSON.stringify({
@@ -181,7 +181,7 @@ exports.tradeCode = function (code) {
   });
 };
 
-exports.getAccountId = function (accessToken) {
+exports.getAccountId = function(accessToken) {
   let profileURI = `${config.oAuth.profileServer}/uid`;
   return request('GET', profileURI, {
     headers: {
@@ -196,7 +196,7 @@ exports.getAccountId = function (accessToken) {
   });
 };
 
-exports.registerAccount = function (deviceId, accountId, accessToken) {
+exports.registerAccount = function(deviceId, accountId, accessToken) {
   return db.transaction(client => {
     return db.upsertWithClient(
       client,

@@ -1,4 +1,4 @@
-exports.addReactScripts = function (body, addScript, cspNonce) {
+exports.addReactScripts = function(body, addScript, cspNonce) {
   if (addScript) {
     let footer = "</body></html>";
     let frontmatter = body.slice(0, body.length - footer.length);
@@ -10,7 +10,7 @@ exports.addReactScripts = function (body, addScript, cspNonce) {
   </script>
   ${footer}`
     );
-  } else {
-    return `<!DOCTYPE html>\n${body}`;
   }
+    return `<!DOCTYPE html>\n${body}`;
+
 };

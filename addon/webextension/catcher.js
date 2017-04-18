@@ -4,17 +4,17 @@
 
 var global = this;
 
-this.catcher = (function () {
+this.catcher = (function() {
   let exports = {};
 
   let handler;
 
   let queue = [];
 
-  exports.unhandled = function (error, info) {
+  exports.unhandled = function(error, info) {
     log.error("Unhandled error:", error, info);
     let e = makeError(error, info);
-    if (! handler) {
+    if (!handler) {
       queue.push(e);
     } else {
       handler(e);
@@ -47,7 +47,7 @@ this.catcher = (function () {
 
   /** Wrap the function, and if it raises any exceptions then call unhandled() */
   exports.watchFunction = function watchFunction(func) {
-    return function () {
+    return function() {
       try {
         return func.apply(this, arguments);
       } catch (e) {
@@ -66,7 +66,7 @@ this.catcher = (function () {
     });
   };
 
-  exports.registerHandler = function (h) {
+  exports.registerHandler = function(h) {
     if (handler) {
       log.error("registerHandler called after handler was already registered");
       return;

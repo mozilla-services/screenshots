@@ -70,11 +70,11 @@ class GenericTable extends React.Component {
 
   renderTableRows() {
     let rows = [];
-    let n=0;
+    let n = 0;
     for (let row of this.props.data.rows) {
       n++;
       let columns = [];
-      for (let i=0; i<row.length; i++) {
+      for (let i = 0; i < row.length; i++) {
         let value = row[i];
         let meta = this.props.data.columns[i];
         if (meta.type) {

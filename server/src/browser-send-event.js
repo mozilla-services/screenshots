@@ -5,12 +5,12 @@ let sentEvent = false;
 if (typeof window != "undefined" && window.sendEvent) {
   module.exports = window.sendEvent;
 } else {
-  module.exports = function () {
+  module.exports = function() {
     if (window.sendEvent) {
       window.sendEvent.apply(null, arguments);
     } else {
       console.log.apply(console, ["missing sendEvent("].concat(Array.from(arguments).concat([")"])));
-      if (! sentEvent) {
+      if (!sentEvent) {
         // Initialization to send events can take a while:
         setTimeout(() => {
           let event = new CustomEvent("error-no-sendEvent");

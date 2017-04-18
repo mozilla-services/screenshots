@@ -1,7 +1,7 @@
 exports.create = function create(status, errno, message, data) {
   let err = message ? new Error(message) : new Error();
   let statusCode = +status;
-  if (! isFinite(statusCode)) {
+  if (!isFinite(statusCode)) {
     throw new Error('Invalid error status code');
   }
   err.isAppError = true;

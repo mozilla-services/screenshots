@@ -4,7 +4,7 @@ let loaded = false;
 let height = null;
 
 function sendToChild(message) {
-  if (! sendToChild.childReference) {
+  if (!sendToChild.childReference) {
     sendToChild.queue.push(message);
     return;
   }
@@ -22,7 +22,7 @@ window.onmessage = function(m) {
     console.warn("Parent iframe received message from unexpected origin:", m.origin, "instead of", CONTENT_HOSTING_ORIGIN);
     return;
   }
-  if (! sendToChild.childReference) {
+  if (!sendToChild.childReference) {
     sendToChild.childReference = m.source;
     while (sendToChild.queue.length) {
       let msg = sendToChild.queue.shift();
@@ -31,7 +31,7 @@ window.onmessage = function(m) {
   }
   let message = m.data;
   let type = message.type;
-  if (! type) {
+  if (!type) {
     console.warn("Parent iframe received message with no type:", message);
     return;
   }
@@ -60,7 +60,7 @@ function scrollPageToMiddle(pos) {
   window.scroll(0, scrollY);
 }
 
-window.addEventListener("load", function () {
+window.addEventListener("load", function() {
   loaded = true;
   if (height) {
     doResize();

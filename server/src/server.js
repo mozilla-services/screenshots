@@ -12,7 +12,7 @@ const console_mozlog = require("mozlog")("console");
 // so monkey patch it so they play nice with mozlog.
 function logFactory(level) {
   let logger = console_mozlog[level].bind(console_mozlog);
-  return function () {
+  return function() {
     let msg = "";
     let stack = undefined;
     for (var i = 0; i < arguments.length; i++) {
@@ -168,8 +168,8 @@ const CONTENT_NAME = config.contentOrigin;
 
 function addHSTS(req, res) {
   // Note: HSTS will only produce warning on a localhost self-signed cert
-  if (req.protocol === "https" && ! config.localhostSsl) {
-    let time = 24*60*60*1000; // 24 hours
+  if (req.protocol === "https" && !config.localhostSsl) {
+    let time = 24 * 60 * 60 * 1000; // 24 hours
     res.header(
       "Strict-Transport-Security",
       `max-age=${time}`);
@@ -179,7 +179,7 @@ function addHSTS(req, res) {
 addRavenRequestHandler(app);
 
 app.use((req, res, next) => {
-  genUuid.generate(genUuid.V_RANDOM, function (err, uuid) {
+  genUuid.generate(genUuid.V_RANDOM, function(err, uuid) {
     if (!err) {
       let dsn = config.sentryPublicDSN;
       if (dsn) {
@@ -237,7 +237,7 @@ app.use("/homepage", express.static(path.join(__dirname, "static/homepage"), {
 
 app.use(morgan("combined"));
 
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   let authHeader = req.headers['x-screenshots-auth'];
   let authInfo = {};
   let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
@@ -272,7 +272,7 @@ function decodeAuthHeader(header) {
   // Since it's treated as opaque, we'll use a fragile regex
   let keygrip = dbschema.getKeygrip();
   let match = /^([^:]+):([^;]+);abTests=([^:]+):(.*)$/.exec(header);
-  if (! match) {
+  if (!match) {
     // FIXME: log, Sentry error
     return {};
   }
@@ -280,7 +280,7 @@ function decodeAuthHeader(header) {
   let deviceIdSig = match[2];
   let abTestsEncoded = match[3];
   let abTestsEncodedSig = match[4];
-  if (! (keygrip.verify(deviceId, deviceIdSig) && keygrip.verify(abTestsEncoded, abTestsEncodedSig))) {
+  if (!(keygrip.verify(deviceId, deviceIdSig) && keygrip.verify(abTestsEncoded, abTestsEncodedSig))) {
     // FIXME: log, Sentry error
     return {};
   }
@@ -288,7 +288,7 @@ function decodeAuthHeader(header) {
   return {deviceId, abTests};
 }
 
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   req.staticLink = linker.staticLink;
   req.staticLinkWithHost = linker.staticLinkWithHost.bind(null, req);
   let base = `${req.protocol}://${req.headers.host}`;
@@ -296,25 +296,25 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.param("id", function (req, res, next, id) {
-  if(/^[a-zA-Z0-9]{16}$/.test(id)) {
+app.param("id", function(req, res, next, id) {
+  if (/^[a-zA-Z0-9]{16}$/.test(id)) {
     return next();
   }
   next(new Error("invalid id"));
 });
 
-app.param("domain", function (req, res, next, domain) {
+app.param("domain", function(req, res, next, domain) {
   if (/^[^\s\/]{1,100}$/.test(domain)) {
     return next();
   }
   next(new Error("invalid domain"));
 });
 
-app.get("/ga-activation.js", function (req, res) {
+app.get("/ga-activation.js", function(req, res) {
   sendGaActivation(req, res, false);
 });
 
-app.get("/ga-activation-hashed.js", function (req, res) {
+app.get("/ga-activation-hashed.js", function(req, res) {
   sendGaActivation(req, res, true);
 });
 
@@ -338,7 +338,7 @@ function sendGaActivation(req, res, hashPage) {
 
 const parentHelperJs = readFileSync(path.join(__dirname, "/static/js/parent-helper.js"), {encoding: "UTF-8"});
 
-app.get("/parent-helper.js", function (req, res) {
+app.get("/parent-helper.js", function(req, res) {
   setCache(res);
   let postMessageOrigin = `${req.protocol}://${req.config.contentOrigin}`;
   let script = `${parentHelperJs}\nvar CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`
@@ -347,9 +347,9 @@ app.get("/parent-helper.js", function (req, res) {
 
 const ravenClientJs = readFileSync(require.resolve("raven-js/dist/raven.min"), {encoding: "UTF-8"});
 
-app.get("/install-raven.js", function (req, res) {
+app.get("/install-raven.js", function(req, res) {
   setCache(res);
-  if (! req.config.sentryPublicDSN) {
+  if (!req.config.sentryPublicDSN) {
     jsResponse(res, "");
     return;
   }
@@ -376,11 +376,11 @@ app.get("/install-raven.js", function (req, res) {
   jsResponse(res, script);
 });
 
-app.get("/favicon.ico", function (req, res) {
+app.get("/favicon.ico", function(req, res) {
   res.redirect(301, "/static/img/icon-32.png");
 });
 
-app.post("/error", function (req, res) {
+app.post("/error", function(req, res) {
   let bodyObj = req.body;
   if (typeof bodyObj !== "object") {
     throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
@@ -417,11 +417,11 @@ app.post("/error", function (req, res) {
 
 function hashUserId(deviceId) {
   return new Promise((resolve, reject) => {
-    if (! dbschema.getTextKeys()) {
+    if (!dbschema.getTextKeys()) {
       throw new Error("Server keys not initialized");
     }
     let userKey = dbschema.getTextKeys()[0] + deviceId;
-    genUuid.generate(genUuid.V_SHA1, genUuid.nil, userKey, function (err, userUuid) {
+    genUuid.generate(genUuid.V_SHA1, genUuid.nil, userKey, function(err, userUuid) {
       if (err) {
         reject(err);
       } else {
@@ -431,7 +431,7 @@ function hashUserId(deviceId) {
   });
 }
 
-app.post("/event", function (req, res) {
+app.post("/event", function(req, res) {
   let bodyObj = req.body;
   if (typeof bodyObj !== "object") {
     throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
@@ -464,7 +464,7 @@ app.post("/event", function (req, res) {
   });
 });
 
-app.post("/timing", function (req, res) {
+app.post("/timing", function(req, res) {
   let bodyObj = req.body;
   if (typeof bodyObj !== "object") {
     throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
@@ -487,7 +487,7 @@ app.post("/timing", function (req, res) {
   });
 });
 
-app.get("/redirect", function (req, res) {
+app.get("/redirect", function(req, res) {
   if (req.query.to) {
     let from = req.query.from;
     if (!from) {
@@ -496,7 +496,7 @@ app.get("/redirect", function (req, res) {
     res.header("Content-type", "text/html");
     res.status(200);
     let redirectUrl = req.query.to;
-    if (! validUrl.isUri(redirectUrl)) {
+    if (!validUrl.isUri(redirectUrl)) {
       console_mozlog.warn("redirect-bad-url", {msg: "Redirect attempted to invalid URL", url: redirectUrl});
       sendRavenMessage(req, "Redirect attempted to invalid URL", {extra: {redirectUrl}});
       simpleResponse(res, "Bad Request", 400);
@@ -522,10 +522,10 @@ window.location = ${redirectUrlJs};
   }
 });
 
-app.post("/api/register", function (req, res) {
+app.post("/api/register", function(req, res) {
   let vars = req.body;
   let canUpdate = vars.deviceId === req.deviceId;
-  if (! vars.deviceId) {
+  if (!vars.deviceId) {
     console.error("Bad register request:", JSON.stringify(vars, null, "  "));
     sendRavenMessage(req, "Attempted to register without deviceId");
     simpleResponse(res, "Bad request, no deviceId", 400);
@@ -535,7 +535,7 @@ app.post("/api/register", function (req, res) {
     secret: vars.secret,
     nickname: vars.nickname || null,
     avatarurl: vars.avatarurl || null
-  }, canUpdate).then(function (userAbTests) {
+  }, canUpdate).then(function(userAbTests) {
     if (userAbTests) {
       sendAuthInfo(req, res, {deviceId: vars.deviceId, userAbTests});
       // FIXME: send GA signal?
@@ -549,7 +549,7 @@ app.post("/api/register", function (req, res) {
       });
       simpleResponse(res, "User exists", 401);
     }
-  }).catch(function (err) {
+  }).catch(function(err) {
     errorResponse(res, "Error registering:", err);
   });
 });
@@ -578,7 +578,7 @@ function sendAuthInfo(req, res, params) {
 }
 
 
-app.post("/api/login", function (req, res) {
+app.post("/api/login", function(req, res) {
   let vars = req.body;
   let deviceInfo = {};
   try {
@@ -618,21 +618,21 @@ app.post("/api/login", function (req, res) {
           ni: true
         }).send();
       }
-    } else if (! userAbTests) {
+    } else if (!userAbTests) {
       simpleResponse(res, '{"error": "No such user"}', 404);
     } else {
       sendRavenMessage(req, "Invalid login");
       simpleResponse(res, '{"error": "Invalid login"}', 401);
     }
-  }).catch(function (err) {
+  }).catch(function(err) {
     errorResponse(res, JSON.stringify({"error": `Error in login: ${err}`}), err);
   });
 });
 
-app.put("/data/:id/:domain", function (req, res) {
+app.put("/data/:id/:domain", function(req, res) {
   let slowResponse = config.testing.slowResponse;
   let failSometimes = config.testing.failSometimes;
-  if (failSometimes && Math.floor(Math.random()*failSometimes)) {
+  if (failSometimes && Math.floor(Math.random() * failSometimes)) {
     console.info("Artificially making request fail");
     res.end();
     return;
@@ -642,7 +642,7 @@ app.put("/data/:id/:domain", function (req, res) {
     throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
   }
   let shotId = `${req.params.id}/${req.params.domain}`;
-  if (! req.deviceId) {
+  if (!req.deviceId) {
     console.warn("Attempted to PUT without logging in", req.url);
     sendRavenMessage(req, "Attempt PUT without authentication");
     simpleResponse(res, "Not logged in", 401);
@@ -658,7 +658,7 @@ app.put("/data/:id/:domain", function (req, res) {
   responseDelay.then(() => {
     return shot.insert();
   }).then((inserted) => {
-    if (! inserted) {
+    if (!inserted) {
       return shot.update();
     }
     return inserted;
@@ -670,10 +670,10 @@ app.put("/data/:id/:domain", function (req, res) {
   });
 });
 
-app.get("/data/:id/:domain", function (req, res) {
+app.get("/data/:id/:domain", function(req, res) {
   let shotId = `${req.params.id}/${req.params.domain}`;
   Shot.getRawValue(shotId).then((data) => {
-    if (! data) {
+    if (!data) {
       simpleResponse(res, "No such shot", 404);
     } else {
       let value = data.value;
@@ -685,13 +685,13 @@ app.get("/data/:id/:domain", function (req, res) {
       res.header("Content-Type", "application/json");
       res.send(value);
     }
-  }).catch(function (err) {
+  }).catch(function(err) {
     errorResponse(res, "Error serving data:", err);
   });
 });
 
-app.post("/api/delete-shot", csrfProtection, function (req, res) {
-  if (! req.deviceId) {
+app.post("/api/delete-shot", csrfProtection, function(req, res) {
+  if (!req.deviceId) {
     sendRavenMessage(req, "Attempt to delete shot without login");
     simpleResponse(res, "Not logged in", 401);
     return;
@@ -708,20 +708,20 @@ app.post("/api/delete-shot", csrfProtection, function (req, res) {
   });
 });
 
-app.post("/api/set-title/:id/:domain", csrfProtection, function (req, res) {
+app.post("/api/set-title/:id/:domain", csrfProtection, function(req, res) {
   let shotId = `${req.params.id}/${req.params.domain}`;
   let userTitle = req.body.title;
   if (userTitle === undefined) {
     simpleResponse(res, "No title given", 400);
     return;
   }
-  if (! req.deviceId) {
+  if (!req.deviceId) {
     sendRavenMessage(req, "Attempt to set title on shot without login");
     simpleResponse(res, "Not logged in", 401);
     return;
   }
   Shot.get(req.backend, shotId, req.deviceId).then((shot) => {
-    if (! shot) {
+    if (!shot) {
       simpleResponse(res, "No such shot", 404);
       return;
     }
@@ -734,8 +734,8 @@ app.post("/api/set-title/:id/:domain", csrfProtection, function (req, res) {
   });
 });
 
-app.post("/api/set-expiration", csrfProtection, function (req, res) {
-  if (! req.deviceId) {
+app.post("/api/set-expiration", csrfProtection, function(req, res) {
+  if (!req.deviceId) {
     sendRavenMessage(req, "Attempt to set expiration without login");
     simpleResponse(res, "Not logged in", 401);
     return;
@@ -764,7 +764,7 @@ app.post("/api/set-expiration", csrfProtection, function (req, res) {
   });
 });
 
-app.get("/images/:imageid", function (req, res) {
+app.get("/images/:imageid", function(req, res) {
   let embedded = req.query.embedded;
   Shot.getRawBytesForClip(
     req.params.imageid
@@ -776,13 +776,13 @@ app.get("/images/:imageid", function (req, res) {
       if (req.headers["referer"]) {
         localReferrer = req.headers["referer"].startsWith(req.backend);
       }
-      if (! localReferrer) {
+      if (!localReferrer) {
         let hasher = require("crypto").createHash("sha1");
         hasher.update(req.params.imageid);
         let hashedId = hasher.digest("hex").substr(0, 15);
         let analyticsUrl = `/images/${embedded ? 'embedded/' : ''}hash${encodeURIComponent(hashedId)}`;
         let analytics = req.userAnalytics;
-        if (! analytics) {
+        if (!analytics) {
           analytics = ua(config.gaId);
           if (config.debugGoogleAnalytics) {
             analytics = analytics.debug();
@@ -808,7 +808,7 @@ app.get("/images/:imageid", function (req, res) {
   });
 });
 
-app.get("/__version__", function (req, res) {
+app.get("/__version__", function(req, res) {
   let response = {
     source: "https://github.com/mozilla-services/screenshots/",
     description: "Firefox Screenshots application server",
@@ -825,14 +825,14 @@ app.get("/__version__", function (req, res) {
 });
 
 // This is a minimal heartbeat that only indicates the server process is up and responding
-app.get("/__lbheartbeat__", function (req, res) {
+app.get("/__lbheartbeat__", function(req, res) {
   res.send("OK");
 });
 
 // This tests if the server is really working
-app.get("/__heartbeat__", function (req, res) {
+app.get("/__heartbeat__", function(req, res) {
   dbschema.connectionOK().then((ok) => {
-    if (! ok) {
+    if (!ok) {
       statsd.increment("heartbeat.fail");
       res.status(500).send("schema fail");
     } else {
@@ -845,7 +845,7 @@ app.get("/__heartbeat__", function (req, res) {
   });
 });
 
-app.get("/contribute.json", function (req, res) {
+app.get("/contribute.json", function(req, res) {
   let data = {
     name: "Firefox Screenshots",
     description: "Firefox Screenshots is an add-on for Firefox and a service for screenshots",
@@ -881,9 +881,9 @@ app.get("/contribute.json", function (req, res) {
   res.send(JSON.stringify(data, null, '  '));
 });
 
-app.get("/oembed", function (req, res) {
+app.get("/oembed", function(req, res) {
   let url = req.query.url;
-  if (! url) {
+  if (!url) {
     simpleResponse(req, "No ?url given", 400);
     return;
   }
@@ -901,17 +901,17 @@ app.get("/oembed", function (req, res) {
   }
   url = url.replace(/^http:\/\//i, "https://");
   let backend = req.backend.replace(/^http:\/\//i, "https://");
-  if (! url.startsWith(backend)) {
+  if (!url.startsWith(backend)) {
     return simpleResponse(res, `Error: URL is not hosted here (${req.backend})`, 501);
   }
   url = url.substr(backend.length);
   let match = /^\/*([^\/]+)\/([^\/]+)/.exec(url);
-  if (! match) {
+  if (!match) {
     return simpleResponse(res, "Error: not a Shot url", 404);
   }
   let shotId = match[1] + "/" + match[2];
   Shot.get(req.backend, shotId).then((shot) => {
-    if (! shot) {
+    if (!shot) {
       notFound(req, res);
       return;
     }
@@ -924,8 +924,8 @@ app.get("/oembed", function (req, res) {
 });
 
 // Get OAuth client params for the client-side authorization flow.
-app.get('/api/fxa-oauth/params', function (req, res, next) {
-  if (! req.deviceId) {
+app.get('/api/fxa-oauth/params', function(req, res, next) {
+  if (!req.deviceId) {
     next(errors.missingSession());
     return;
   }
@@ -954,12 +954,12 @@ app.get('/api/fxa-oauth/params', function (req, res, next) {
 });
 
 // Exchange an OAuth authorization code for an access token.
-app.post('/api/fxa-oauth/token', function (req, res, next) {
-  if (! req.deviceId) {
+app.post('/api/fxa-oauth/token', function(req, res, next) {
+  if (!req.deviceId) {
     next(errors.missingSession());
     return;
   }
-  if (! req.body) {
+  if (!req.body) {
     next(errors.missingParams());
     return;
   }
@@ -980,7 +980,7 @@ app.post('/api/fxa-oauth/token', function (req, res, next) {
   }).catch(next);
 });
 
-if (! config.disableMetrics) {
+if (!config.disableMetrics) {
   app.use("/metrics", require("./pages/metrics/server").app);
 }
 
@@ -994,12 +994,12 @@ app.use("/", require("./pages/shot/server").app);
 
 app.use("/", require("./pages/homepage/server").app);
 
-app.get("/proxy", function (req, res) {
+app.get("/proxy", function(req, res) {
   let url = req.query.url;
   let sig = req.query.sig;
   let isValid = dbschema.getKeygrip().verify(new Buffer(url, 'utf8'), sig);
-  if (! isValid) {
-    sendRavenMessage(req, "Bad signature on proxy", {extra: {proxyUrl: url, sig: sig}});
+  if (!isValid) {
+    sendRavenMessage(req, "Bad signature on proxy", {extra: {proxyUrl: url, sig}});
     return simpleResponse(res, "Bad signature", 403);
   }
   url = urlParse(url);
@@ -1016,13 +1016,13 @@ app.get("/proxy", function (req, res) {
   let host = url.host.split(":")[0];
   let subreq = httpModule.request({
     protocol: url.protocol,
-    host: host,
+    host,
     port: url.port,
     method: "GET",
     path: url.path,
-    headers: headers
+    headers
   });
-  subreq.on("response", function (subres) {
+  subreq.on("response", function(subres) {
     let headers = {};
     for (let h in subres.headers) {
       if (PROXY_HEADER_WHITELIST[h]) {
@@ -1034,17 +1034,17 @@ app.get("/proxy", function (req, res) {
     headers["expires"] = new Date(Date.now() + 2592000000).toUTCString();
     res.writeHead(subres.statusCode, subres.statusMessage, headers);
 
-    subres.on("data", function (chunk) {
+    subres.on("data", function(chunk) {
       res.write(chunk);
     });
-    subres.on("end", function () {
+    subres.on("end", function() {
       res.end();
     });
-    subres.on("error", function (err) {
+    subres.on("error", function(err) {
       errorResponse(res, "Error getting response:", err);
     });
   });
-  subreq.on("error", function (err) {
+  subreq.on("error", function(err) {
     errorResponse(res, "Error fetching:", err);
   });
   subreq.end();
@@ -1055,7 +1055,7 @@ if (config.localhostSsl) {
   // To generate trusted keys on Mac, see: https://certsimple.com/blog/localhost-ssl-fix
   let key = `${process.env.HOME}/.localhost-ssl/key.pem`;
   let cert = `${process.env.HOME}/.localhost-ssl/cert.pem`;
-  if (! (existsSync(key) && existsSync(cert))) {
+  if (!(existsSync(key) && existsSync(cert))) {
     console.log("Error: to use localhost SSL/HTTPS you must create a key.pem and cert.pem file");
     console.log("  These must be located in:");
     console.log(`    ${key}`);
@@ -1090,7 +1090,7 @@ require("./jobs").start();
 
 addRavenErrorHandler(app);
 
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   if (err.isAppError) {
     let { statusCode, headers, payload } = err.output;
     res.status(statusCode);

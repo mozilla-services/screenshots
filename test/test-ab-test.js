@@ -3,7 +3,7 @@
 const assert = require("assert");
 const abTests = require("../server/src/ab-tests.js");
 
-describe("Test Screenshots", function () {
+describe("Test Screenshots", function() {
 
   before(() => {
     abTests.setAllTestsForTesting({

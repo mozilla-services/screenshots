@@ -32,7 +32,7 @@ class Body extends React.Component {
       children.push(this.renderShot(shot));
     }
     if (children.length === 0) {
-      if (! this.props.hasDeviceId) {
+      if (!this.props.hasDeviceId) {
         children.push(this.renderNoDeviceId());
       } else if (this.props.defaultSearch) {
         children.push(this.renderNoSearchResults());
@@ -110,7 +110,7 @@ class Body extends React.Component {
     }
 
     return (
-      <a href={shot.viewUrl}  className="shot" key={shot.id} onClick={this.onOpen.bind(this, shot.viewUrl)}>
+      <a href={shot.viewUrl} className="shot" key={shot.id} onClick={this.onOpen.bind(this, shot.viewUrl)}>
         <div className="shot-image-container" style={{
           backgroundImage: `url(${imageUrl})`
         }}>
@@ -133,9 +133,9 @@ class Body extends React.Component {
   displayTitle(title) {
     if (title.length > 140) {
       return (title.substring(0, 140) + "...");
-    } else {
-      return title;
     }
+      return title;
+
   }
 
   onClickDelete(shot, event) {
@@ -176,7 +176,7 @@ class Body extends React.Component {
   onChangeSearch() {
     let val = ReactDOM.findDOMNode(this.refs.search).value;
     this.setState({defaultSearch: val});
-    if (! val) {
+    if (!val) {
       sendEvent("clear-search", "keyboard");
       controller.onChangeSearch(val);
       return;
