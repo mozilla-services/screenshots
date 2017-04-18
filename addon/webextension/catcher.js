@@ -55,11 +55,16 @@ this.catcher = (function() {
     };
   };
 
-  exports.watchPromise = function watchPromise(promise) {
+  exports.watchPromise = function watchPromise(promise, quiet) {
     return promise.catch((e) => {
-      log.error("------Error in promise:", e);
-      log.error(e.stack);
-      exports.unhandled(makeError(e));
+      if (quiet) {
+        log.debug("------Error in promise:", e);
+        log.debug(e.stack);
+      } else {
+        log.error("------Error in promise:", e);
+        log.error(e.stack);
+        exports.unhandled(makeError(e));
+      }
       throw e;
     });
   };

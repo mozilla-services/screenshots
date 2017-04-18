@@ -181,7 +181,7 @@ this.main = (function() {
         browser.browserAction.disable(tab.id);
       }
     }
-  }));
+  }, true));
 
   browser.tabs.onActivated.addListener(catcher.watchFunction(({tabId, windowId}) => {
     catcher.watchPromise(browser.tabs.get(tabId).then((tab) => {
@@ -194,7 +194,7 @@ this.main = (function() {
       } else if (hasSeenOnboarding) {
         browser.browserAction.disable(tabId);
       }
-    }));
+    }), true);
   }));
 
   communication.register("sendEvent", (sender, ...args) => {
