@@ -71,7 +71,7 @@ this.communication = (function() {
   }
 
 
-  // A singleton/sentinal (with a name):
+  // A singleton/sentinel (with a name):
   exports.NO_BOOTSTRAP = {name: "communication.NO_BOOTSTRAP"};
 
   return exports;
