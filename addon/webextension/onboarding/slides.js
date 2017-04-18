@@ -107,6 +107,7 @@ this.slides = (function() {
         el.href = linkUrls[part];
         el.textContent = linkTexts[part];
         el.target = "_blank";
+        el.id = (part === termsSentinal) ? "terms" : "privacy";
       } else {
         el = doc.createTextNode(part);
       }
@@ -139,6 +140,16 @@ this.slides = (function() {
     doc.querySelector("#done").addEventListener("click", watchFunction(assertIsTrusted((event) => {
       shooter.sendEvent("finish-slides", "done");
       callbacks.onEnd();
+    })));
+    // Note: e10s breaks the terms and privacy anchor tags. Work around this by
+    // manually opening the correct URLs on click until bug 1357589 is fixed.
+    doc.querySelector("#terms").addEventListener("click", watchFunction(assertIsTrusted((event) => {
+      event.preventDefault();
+      callBackground("openTermsPage");
+    })));
+    doc.querySelector("#privacy").addEventListener("click", watchFunction(assertIsTrusted((event) => {
+      event.preventDefault();
+      callBackground("openPrivacyPage");
     })));
     setSlide(1);
   }
