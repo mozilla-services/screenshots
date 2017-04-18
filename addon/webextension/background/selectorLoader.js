@@ -52,8 +52,7 @@ this.selectorLoader = (function() {
     if (hasSeenOnboarding) {
       return executeModules(tabId, standardScripts.concat(selectorScripts));
     }
-      return executeModules(tabId, standardScripts.concat(onboardingScripts).concat(selectorScripts));
-
+    return executeModules(tabId, standardScripts.concat(onboardingScripts).concat(selectorScripts));
   };
 
   function executeModules(tabId, scripts) {

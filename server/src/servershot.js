@@ -307,8 +307,7 @@ Shot.getRawBytesForClip = function(uid) {
     if (!rows.length) {
       return null;
     }
-      return get(uid, rows[0].contenttype);
-
+    return get(uid, rows[0].contenttype);
   });
 };
 
@@ -522,21 +521,20 @@ Shot.setExpiration = function(backend, shotId, deviceId, expiration) {
       [shotId, deviceId]
     );
   }
-    if (typeof expiration != "number") {
-      throw new Error("Bad expiration type");
-    } else if (expiration < 0) {
-      throw new Error("Expiration less than zero");
-    }
-    expiration = Math.floor(expiration / 1000);
-    return db.update(
-      `UPDATE data
-       SET expire_time = NOW() + ($1 || ' SECONDS')::INTERVAL
-       WHERE id = $2
-             AND deviceid = $3
-      `,
-      [expiration, shotId, deviceId]
-    );
-
+  if (typeof expiration != "number") {
+    throw new Error("Bad expiration type");
+  } else if (expiration < 0) {
+    throw new Error("Expiration less than zero");
+  }
+  expiration = Math.floor(expiration / 1000);
+  return db.update(
+    `UPDATE data
+     SET expire_time = NOW() + ($1 || ' SECONDS')::INTERVAL
+     WHERE id = $2
+           AND deviceid = $3
+    `,
+    [expiration, shotId, deviceId]
+  );
 };
 
 Shot.deleteShot = function(backend, shotId, deviceId) {

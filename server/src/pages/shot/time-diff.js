@@ -43,19 +43,19 @@ exports.TimeDiff = class TimeDiff extends React.Component {
         timeDiff = `${Math.floor(seconds / (60 * 60 * 24))} days ago`;
       }
     } else if (seconds > -20) {
-        timeDiff = "very soon";
-      } else if (seconds > -60) {
-        timeDiff = "in 1 minute";
-      } else if (seconds > -60 * 60) {
-        timeDiff = `in ${Math.floor(seconds / -60)} minutes`;
-      } else if (seconds > -60 * 60 * 24) {
-        timeDiff = `in ${Math.floor(seconds / (-60 * 60))} hours`;
-      } else if (seconds > -60 * 60 * 48) {
-        timeDiff = "tomorrow";
-      } else {
-        seconds -= 60 * 60 * 2; // 2 hours fudge time
-        timeDiff = `in ${Math.floor(seconds / (-60 * 60 * 24))} days`;
-      }
+      timeDiff = "very soon";
+    } else if (seconds > -60) {
+      timeDiff = "in 1 minute";
+    } else if (seconds > -60 * 60) {
+      timeDiff = `in ${Math.floor(seconds / -60)} minutes`;
+    } else if (seconds > -60 * 60 * 24) {
+      timeDiff = `in ${Math.floor(seconds / (-60 * 60))} hours`;
+    } else if (seconds > -60 * 60 * 48) {
+      timeDiff = "tomorrow";
+    } else {
+      seconds -= 60 * 60 * 2; // 2 hours fudge time
+      timeDiff = `in ${Math.floor(seconds / (-60 * 60 * 24))} days`;
+    }
     return timeDiff;
   }
 

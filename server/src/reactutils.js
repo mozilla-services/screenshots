@@ -11,6 +11,5 @@ exports.addReactScripts = function(body, addScript, cspNonce) {
   ${footer}`
     );
   }
-    return `<!DOCTYPE html>\n${body}`;
-
+  return `<!DOCTYPE html>\n${body}`;
 };

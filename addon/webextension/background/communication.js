@@ -38,8 +38,7 @@ this.communication = (function() {
       });
       return true;
     }
-      sendResponse({type: "success", value: result});
-
+    sendResponse({type: "success", value: result});
   }));
 
   exports.register = function(name, func) {
@@ -54,8 +53,7 @@ this.communication = (function() {
       if (result.type === "success") {
         return result.value;
       }
-        throw new Error(`Error in ${funcName}: ${result.name || 'unknown'}`);
-
+      throw new Error(`Error in ${funcName}: ${result.name || 'unknown'}`);
     }, (error) => {
       if (isBootstrapMissingError(error)) {
         return exports.NO_BOOTSTRAP;

@@ -159,9 +159,8 @@ this.auth = (function() {
       if (authHeader) {
         return {"x-screenshots-auth": authHeader};
       }
-        log.warn("No auth header available");
-        return {};
-
+      log.warn("No auth header available");
+      return {};
     });
   };
 

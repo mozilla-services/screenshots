@@ -372,10 +372,9 @@ class AbstractShot {
     } else if (this.url.startsWith("data:")) {
       return "data:url";
     }
-      let txt = this.url;
-      txt = txt.replace(/\?.*/, "");
-      return txt;
-
+    let txt = this.url;
+    txt = txt.replace(/\?.*/, "");
+    return txt;
   }
 
   get viewUrl() {

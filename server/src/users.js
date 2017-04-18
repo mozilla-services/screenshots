@@ -78,8 +78,7 @@ exports.checkLogin = function(deviceId, secret, addonVersion) {
       });
       return userAbTests;
     }
-      return false;
-
+    return false;
   });
 };
 
@@ -110,12 +109,10 @@ exports.registerLogin = function(deviceId, data, canUpdate) {
         if (rowCount) {
           return userAbTests;
         }
-          return false;
-
+        return false;
       });
     }
-      return false;
-
+    return false;
   });
 };
 

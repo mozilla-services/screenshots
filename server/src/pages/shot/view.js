@@ -103,18 +103,17 @@ class Head extends React.Component {
         </reactruntime.HeadTemplate>
       );
     }
-      // FIXME: we need to review if the oembed form actually works and is valuable
-      return (
-        <reactruntime.HeadTemplate {...this.props}>
-          <script src={ this.props.staticLink("/static/js/wantsauth.js") } />
-          <script src={ this.props.staticLink("/static/js/shot-bundle.js") } async />
-          <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />
-          {this.socialMetadata()}
-        </reactruntime.HeadTemplate>
-      );
-
+    // FIXME: we need to review if the oembed form actually works and is valuable
+    return (
+      <reactruntime.HeadTemplate {...this.props}>
+        <script src={ this.props.staticLink("/static/js/wantsauth.js") } />
+        <script src={ this.props.staticLink("/static/js/shot-bundle.js") } async />
+        <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />
+        {this.socialMetadata()}
+      </reactruntime.HeadTemplate>
+    );
   }
 
   socialMetadata() {
@@ -198,8 +197,7 @@ class Body extends React.Component {
     if (this.props.expireTime !== null && Date.now() > this.props.expireTime) {
       return this.renderExpired();
     }
-      return this.renderBody();
-
+    return this.renderBody();
   }
 
   renderExpired() {
@@ -414,8 +412,7 @@ class ExpireWidget extends React.Component {
     if (this.state.isChangingExpire) {
       return this.renderChanging();
     }
-      return this.renderNormal();
-
+    return this.renderNormal();
   }
 
   renderChanging() {

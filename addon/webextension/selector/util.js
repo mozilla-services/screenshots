@@ -18,8 +18,7 @@ this.util = (function() { // eslint-disable-line no-unused-vars
     } else if (x > max) {
       return max;
     }
-      return x;
-
+    return x;
   };
 
   /** Truncates the Y coordinate to the document size */
@@ -30,8 +29,7 @@ this.util = (function() { // eslint-disable-line no-unused-vars
     } else if (y > max) {
       return max;
     }
-      return y;
-
+    return y;
   };
 
   // Pixels of wiggle the captured region gets in captureSelectedText:
@@ -96,8 +94,7 @@ this.util = (function() { // eslint-disable-line no-unused-vars
       result = result.replace(/[ \t]+\n/g, "\n");
       return result;
     }
-      return null;
-
+    return null;
   };
 
 

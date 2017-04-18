@@ -499,8 +499,7 @@ this.uicontrol = (function() {
           if (rect.width <= MAX_DETECT_WIDTH && rect.height <= MAX_DETECT_HEIGHT) {
             return el;
           }
-            return null;
-
+          return null;
         }
         el = el.parentNode;
       }
@@ -714,10 +713,10 @@ this.uicontrol = (function() {
             eventOptionsForResize(resizeStartSelected, selectedPos));
         }
       } else if (resizeDirection == "move") {
-          sendEvent("keep-resize-selection", "mouseup");
-        } else {
-          sendEvent("keep-move-selection", "mouseup");
-        }
+        sendEvent("keep-resize-selection", "mouseup");
+      } else {
+        sendEvent("keep-move-selection", "mouseup");
+      }
       setState("selected");
     },
 

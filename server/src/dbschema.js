@@ -106,19 +106,18 @@ function loadKeys() {
       }
       return textKeys;
     }
-      return makeKey().then((key) => {
-        return db.insert(
-          `INSERT INTO signing_keys (created, key)
-           VALUES (NOW(), $1)`,
-          [key]
-        ).then((ok) => {
-          if (!ok) {
-            throw new Error("Could not insert key");
-          }
-          return [key];
-        });
+    return makeKey().then((key) => {
+      return db.insert(
+        `INSERT INTO signing_keys (created, key)
+         VALUES (NOW(), $1)`,
+        [key]
+      ).then((ok) => {
+        if (!ok) {
+          throw new Error("Could not insert key");
+        }
+        return [key];
       });
-
+    });
   });
 }
 

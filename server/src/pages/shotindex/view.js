@@ -134,8 +134,7 @@ class Body extends React.Component {
     if (title.length > 140) {
       return (title.substring(0, 140) + "...");
     }
-      return title;
-
+    return title;
   }
 
   onClickDelete(shot, event) {
