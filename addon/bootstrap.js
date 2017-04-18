@@ -29,11 +29,11 @@ const appStartupPromise = new Promise((resolve, reject) => {
 const prefs = Services.prefs;
 const prefObserver = {
   register() {
-    prefs.addObserver(PREF_BRANCH, this);
+    prefs.addObserver(PREF_BRANCH, this, false); // eslint-disable-line mozilla/no-useless-parameters
   },
 
   unregister() {
-    prefs.removeObserver(PREF_BRANCH, this);
+    prefs.removeObserver(PREF_BRANCH, this, false); // eslint-disable-line mozilla/no-useless-parameters
   },
 
   observe(aSubject, aTopic, aData) {
@@ -48,11 +48,11 @@ const prefObserver = {
 
 const appStartupObserver = {
   register() {
-    Services.obs.addObserver(this, "sessionstore-windows-restored");
+    Services.obs.addObserver(this, "sessionstore-windows-restored", false); // eslint-disable-line mozilla/no-useless-parameters
   },
 
   unregister() {
-    Services.obs.removeObserver(this, "sessionstore-windows-restored");
+    Services.obs.removeObserver(this, "sessionstore-windows-restored", false); // eslint-disable-line mozilla/no-useless-parameters
   },
 
   observe() {
