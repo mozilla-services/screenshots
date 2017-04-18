@@ -2,6 +2,8 @@
 
 "use strict";
 
+var global = this;
+
 this.selectorLoader = (function() {
   const exports = {};
 
