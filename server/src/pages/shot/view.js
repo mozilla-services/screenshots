@@ -38,7 +38,7 @@ class Clip extends React.Component {
 
   render() {
     let clip = this.props.clip;
-    if (! clip.image) {
+    if (!clip.image) {
       console.warn("Somehow there's a shot without an image");
       return null;
     }
@@ -102,23 +102,22 @@ class Head extends React.Component {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </reactruntime.HeadTemplate>
       );
-    } else {
-      // FIXME: we need to review if the oembed form actually works and is valuable
-      return (
-        <reactruntime.HeadTemplate {...this.props}>
-          <script src={ this.props.staticLink("/static/js/wantsauth.js") } />
-          <script src={ this.props.staticLink("/static/js/shot-bundle.js") } async />
-          <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />
-          {this.socialMetadata()}
-        </reactruntime.HeadTemplate>
-      );
     }
+    // FIXME: we need to review if the oembed form actually works and is valuable
+    return (
+      <reactruntime.HeadTemplate {...this.props}>
+        <script src={ this.props.staticLink("/static/js/wantsauth.js") } />
+        <script src={ this.props.staticLink("/static/js/shot-bundle.js") } async />
+        <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />
+        {this.socialMetadata()}
+      </reactruntime.HeadTemplate>
+    );
   }
 
   socialMetadata() {
-    if (! this.props.shot) {
+    if (!this.props.shot) {
       return null;
     }
     let title = (this.props.shot.openGraph && this.props.shot.openGraph.title) ||
@@ -135,7 +134,7 @@ class Head extends React.Component {
 
     for (let clipId of this.props.shot.clipNames()) {
       let clip = this.props.shot.getClip(clipId);
-      if (! clip.image) {
+      if (!clip.image) {
         continue;
       }
       let text = `From ${this.props.shot.urlDisplay}`;
@@ -153,7 +152,7 @@ class Head extends React.Component {
   }
 
   makeEmbeddedImageUrl(url, type) {
-    if (! url.startsWith("http")) {
+    if (!url.startsWith("http")) {
       return url;
     }
     if (url.indexOf("?") == -1) {
@@ -197,9 +196,8 @@ class Body extends React.Component {
   render() {
     if (this.props.expireTime !== null && Date.now() > this.props.expireTime) {
       return this.renderExpired();
-    } else {
-      return this.renderBody();
     }
+    return this.renderBody();
   }
 
   renderExpired() {
@@ -245,7 +243,7 @@ class Body extends React.Component {
 
     let clips = [];
     let clipNames = shot.clipNames();
-    if (clipNames.length && ! this.state.hidden) {
+    if (clipNames.length && !this.state.hidden) {
       let clipId = clipNames[0];
       let clip = shot.getClip(clipId);
 
@@ -306,7 +304,7 @@ class Body extends React.Component {
     let clipFilename = this.props.shot.filename;
 
     let renderGetFirefox = this.props.userAgent && (this.props.userAgent + "").search(/firefox\/\d+/i) === -1;
-    let renderExtensionNotification = ! (this.props.isExtInstalled || renderGetFirefox);
+    let renderExtensionNotification = !(this.props.isExtInstalled || renderGetFirefox);
     if (this.props.isMobile || this.state.closeBanner) {
       renderGetFirefox = renderExtensionNotification = false;
     }
@@ -413,9 +411,8 @@ class ExpireWidget extends React.Component {
   render() {
     if (this.state.isChangingExpire) {
       return this.renderChanging();
-    } else {
-      return this.renderNormal();
     }
+    return this.renderNormal();
   }
 
   renderChanging() {

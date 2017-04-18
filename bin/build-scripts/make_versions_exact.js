@@ -3,7 +3,7 @@ const fs = require("fs");
 let packageJson = JSON.parse(fs.readFileSync("./package.json"));
 
 for (let key of ["dependencies", "devDependencies", "optionalDependencies"]) {
-  if (! (key in packageJson)) {
+  if (!(key in packageJson)) {
     continue;
   }
   let deps = packageJson[key];
@@ -12,4 +12,4 @@ for (let key of ["dependencies", "devDependencies", "optionalDependencies"]) {
   }
 }
 
-fs.writeFileSync("./package.json", JSON.stringify(packageJson, null, "  ")+"\n");
+fs.writeFileSync("./package.json", JSON.stringify(packageJson, null, "  ") + "\n");

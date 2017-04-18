@@ -22,21 +22,21 @@ XPCOMUtils.defineLazyModuleGetter(this, "LegacyExtensionsUtils",
 
 let addonResourceURI;
 let appStartupDone;
-const appStartupPromise = new Promise((resolve,reject) => {
+const appStartupPromise = new Promise((resolve, reject) => {
   appStartupDone = resolve;
 });
 
 const prefs = Services.prefs;
 const prefObserver = {
-  register: function() {
-    prefs.addObserver(PREF_BRANCH, this, false);
+  register() {
+    prefs.addObserver(PREF_BRANCH, this);
   },
 
-  unregister: function() {
+  unregister() {
     prefs.removeObserver(PREF_BRANCH, this);
   },
 
-  observe: function(aSubject, aTopic, aData) {
+  observe(aSubject, aTopic, aData) {
     // aSubject is the nsIPrefBranch we're observing (after appropriate QI)
     // aData is the name of the pref that's been changed (relative to aSubject)
     if (aData == USER_DISABLE_PREF || aData == SYSTEM_DISABLE_PREF) {
@@ -47,15 +47,15 @@ const prefObserver = {
 };
 
 const appStartupObserver = {
-  register: function() {
-    Services.obs.addObserver(this, "sessionstore-windows-restored", false);
+  register() {
+    Services.obs.addObserver(this, "sessionstore-windows-restored");
   },
 
-  unregister: function() {
-    Services.obs.removeObserver(this, "sessionstore-windows-restored", false);
+  unregister() {
+    Services.obs.removeObserver(this, "sessionstore-windows-restored");
   },
 
-  observe: function() {
+  observe() {
     appStartupDone();
     this.unregister();
   }

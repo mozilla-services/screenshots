@@ -143,7 +143,7 @@ window.sendEvent = function (action, label, options) {
 
 const idRegex = /^[a-zA-Z0-9_.,-]+$/;
 
-exports.makeGaActivationString = function (gaId, userId, abTests, hashLocation) {
+exports.makeGaActivationString = function(gaId, userId, abTests, hashLocation) {
   if (gaId === "") {
     // Don't enable ga if no id was provided
     return stubGaJs.replace(/__ABTESTS__/g, JSON.stringify(abTests));

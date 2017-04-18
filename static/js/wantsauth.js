@@ -14,7 +14,7 @@
       }
     }
 */
-window.wantsauth = (function () {
+window.wantsauth = (function() {
   let exports = {};
 
   let savedAuthData = null;
@@ -40,19 +40,19 @@ window.wantsauth = (function () {
     for (let callback of authDataCallbacks) {
       callback(savedAuthData);
     }
-  }, false);
+  });
 
   document.addEventListener("addon-present", () => {
     document.dispatchEvent(new CustomEvent("request-login", {detail: maybeShotId}));
-  }, false);
+  });
 
   document.dispatchEvent(new CustomEvent("request-addon-present"));
 
-  exports.getAuthData = function () {
+  exports.getAuthData = function() {
     return savedAuthData;
   };
 
-  exports.addAuthDataListener = function (func) {
+  exports.addAuthDataListener = function(func) {
     authDataCallbacks.push(func);
   };
 

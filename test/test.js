@@ -3,8 +3,8 @@
 const assert = require("assert");
 const firefox = require("selenium-webdriver/firefox");
 const webdriver = require("selenium-webdriver");
-//const FxRunnerUtils = require("fx-runner/lib/utils");
-//const Fs = require("fs-promise");
+// const FxRunnerUtils = require("fx-runner/lib/utils");
+// const Fs = require("fs-promise");
 const path = require("path");
 
 const SHOOTER_BUTTON_ID = "screenshots_mozilla_org-browser-action";
@@ -69,7 +69,7 @@ function getElementById(driver, id) {
       webdriver.By.id(id)), 1000);
 }
 
-describe("Test Screenshots", function () {
+describe("Test Screenshots", function() {
   this.timeout(10000);
   let driver;
 

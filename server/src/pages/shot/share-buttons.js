@@ -32,7 +32,7 @@ exports.ShareButton = class ShareButton extends React.Component {
   }
 
   onClick() {
-    let show = ! this.state.display;
+    let show = !this.state.display;
     this.setState({display: show});
     if (show) {
       sendEvent(
@@ -105,7 +105,7 @@ class ShareButtonPanel extends React.Component {
         <input className="copy-shot-link-input"
           value={ this.props.shot.viewUrl }
           onClick={ this.onClickInputField.bind(this) }
-          onChange={ function () {} /* react gives a warning otherwise */ } />
+          onChange={ function() {} /* react gives a warning otherwise */ } />
         <button
           className="button secondary copy-toggle"
           onClick={ this.onClickCopyButton.bind(this) }>
@@ -119,17 +119,17 @@ class ShareButtonPanel extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener("click", this.clickMaybeClose, false);
-    document.addEventListener("keyup", this.keyMaybeClose, false);
+    document.addEventListener("click", this.clickMaybeClose);
+    document.addEventListener("keyup", this.keyMaybeClose);
   }
 
   componentWillUnmount() {
-    document.removeEventListener("click", this.clickMaybeClose, false);
-    document.removeEventListener("keyup", this.keyMaybeClose, false);
+    document.removeEventListener("click", this.clickMaybeClose);
+    document.removeEventListener("keyup", this.keyMaybeClose);
   }
 
   clickMaybeClose(event) {
-    if (! this.isPanel(event.target)) {
+    if (!this.isPanel(event.target)) {
       this.props.closePanel();
     }
   }

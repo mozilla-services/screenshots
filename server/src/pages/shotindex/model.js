@@ -1,6 +1,6 @@
 const { createProxyUrl } = require("../../proxy-url");
 
-exports.createModel = function (req) {
+exports.createModel = function(req) {
   let query = req.query.q;
   let title = "My Shots";
   if (query) {

@@ -6,8 +6,8 @@ let app = express();
 
 exports.app = app;
 
-app.get("/", function (req, res) {
-  if (! req.deviceId) {
+app.get("/", function(req, res) {
+  if (!req.deviceId) {
     _render();
     return;
   }

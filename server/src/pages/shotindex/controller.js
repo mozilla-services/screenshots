@@ -6,7 +6,7 @@ const TEN_SECONDS = 10 * 1000;
 
 let model;
 
-exports.launch = function (m) {
+exports.launch = function(m) {
   if (m.hasDeviceId) {
     m.shots = m.shots.map((shot) => new AbstractShot(m.backend, shot.id, shot.json));
     let match = /[\?&]q=([^&]+)/.exec(location.href);
@@ -36,10 +36,10 @@ function render() {
   page.render(model);
 }
 
-exports.onChangeSearch = function (query) {
+exports.onChangeSearch = function(query) {
   model.defaultSearch = query;
   let url = `/shots?q=${encodeURIComponent(query)}`;
-  if (! query) {
+  if (!query) {
     url = "/shots";
   }
   window.history.pushState(null, "", url);
@@ -47,12 +47,12 @@ exports.onChangeSearch = function (query) {
 };
 
 // FIXME: copied from shot/controller.js
-exports.deleteShot = function (shot) {
+exports.deleteShot = function(shot) {
   let url = model.backend + "/api/delete-shot";
   let req = new XMLHttpRequest();
   req.open("POST", url);
   req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-  req.onload = function () {
+  req.onload = function() {
     if (req.status >= 300) {
       // FIXME: a lame way to do an error message
       window.alert("Error deleting shot: " + req.status + " " + req.statusText);
@@ -65,7 +65,7 @@ exports.deleteShot = function (shot) {
 
 window.addEventListener("popstate", () => {
   let match = /[?&]q=([^&]*)/.exec(location.search);
-  if (! match) {
+  if (!match) {
     model.defaultSearch = "";
   } else {
     model.defaultSearch = decodeURIComponent(match[1]);
@@ -77,7 +77,7 @@ window.addEventListener("popstate", () => {
     el.value = model.defaultSearch;
   }
   refreshModel();
-}, false);
+});
 
 function refreshModel() {
   let req = new XMLHttpRequest();
@@ -86,14 +86,14 @@ function refreshModel() {
     url += "&q=" + encodeURIComponent(model.defaultSearch);
   }
   req.open("GET", url);
-  req.onload = function () {
+  req.onload = function() {
     document.body.classList.remove("search-results-loading");
     if (req.status != 200) {
       console.warn("Error refreshing:", req.status, req);
       return;
     }
     let data = JSON.parse(req.responseText);
-    if (! data.shots.length) {
+    if (!data.shots.length) {
       sendEvent("no-search-results");
     }
     exports.launch(data);
@@ -124,6 +124,6 @@ document.addEventListener("contextmenu", (event) => {
     node = node.parentNode;
   }
   sendEvent("contextmenu", place);
-}, false);
+});
 
 window.controller = exports;
