@@ -84,12 +84,12 @@ class Test {
     let requiredFields = ['name', 'gaField', 'description', 'version', 'options'];
     let allowedFields = requiredFields.concat(['shotField', 'exclude']);
     for (let required of requiredFields) {
-      if (! (required in options)) {
+      if (!(required in options)) {
         throw new Error(`Missing constructor field: ${required}`);
       }
     }
     for (let found in options) {
-      if (! allowedFields.includes(found)) {
+      if (!allowedFields.includes(found)) {
         throw new Error(`Unexpected constructor field: ${found}`);
       }
     }
@@ -116,7 +116,7 @@ class Test {
         }
         prob -= option.probability;
       }
-      if (! setAny) {
+      if (!setAny) {
         tests[this.name] = this.testWithValue("control");
       }
     }
@@ -143,7 +143,7 @@ class Test {
 
 /** Update a user's abTests values.
     The optional forceTests looks like {aTests: "forceValue"} */
-exports.updateAbTests = function (tests, forceTests) {
+exports.updateAbTests = function(tests, forceTests) {
   for (let testName in allTests) {
     allTests[testName].updateTest(tests, forceTests && forceTests[testName]);
   }
@@ -157,10 +157,10 @@ exports.updateAbTests = function (tests, forceTests) {
 
 let randomSeq;
 
-exports.setRandomSequenceForTesting = function (seq) {
+exports.setRandomSequenceForTesting = function(seq) {
   seq = seq || undefined;
   if (seq) {
-    if (! Array.isArray(seq)) {
+    if (!Array.isArray(seq)) {
       throw new Error("setRandomSequenceForTesting([]) can only take an Array");
     }
     for (let i of seq) {
@@ -172,7 +172,7 @@ exports.setRandomSequenceForTesting = function (seq) {
   randomSeq = seq;
 };
 
-exports.setAllTestsForTesting = function (x) {
+exports.setAllTestsForTesting = function(x) {
   if (x === undefined) {
     allTests = origAllTests;
     return;
@@ -204,7 +204,7 @@ let origAllTests = allTests;
 
 function getRandom() {
   if (randomSeq) {
-    if (! randomSeq.length) {
+    if (!randomSeq.length) {
       throw new Error("Ran out of testing random numbers");
     }
     let next = randomSeq.shift();
@@ -216,13 +216,13 @@ function getRandom() {
 /** Given a test name and test value that were set when a Shot was created (not
     set on the user), return the GA field that should be set for someone viewing
     the shot (or null if nothing should be set) */
-exports.shotGaFieldForValue = function (testName, testValue) {
+exports.shotGaFieldForValue = function(testName, testValue) {
   if (deprecatedTests.includes(testName)) {
     // Silently ignore deprecated tests
     return null;
   }
   let test = allTests[testName];
-  if (! test) {
+  if (!test) {
     console.error("Test name", testName, "is not known");
     return null;
   }

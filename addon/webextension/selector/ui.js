@@ -3,7 +3,7 @@
 
 "use strict";
 
-this.ui = (function () { // eslint-disable-line no-unused-vars
+this.ui = (function() { // eslint-disable-line no-unused-vars
   let exports = {};
   const SAVE_BUTTON_HEIGHT = 50;
 
@@ -31,7 +31,7 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
     return cached;
   }
 
-  exports.isHeader = function (el) {
+  exports.isHeader = function(el) {
     while (el) {
       if (el.classList &&
           (el.classList.contains("myshots-button") ||
@@ -49,7 +49,7 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
   });
 
   function makeEl(tagName, className) {
-    if (! iframe.document()) {
+    if (!iframe.document()) {
       throw new Error("Attempted makeEl before iframe was initialized");
     }
     let el = iframe.document().createElement(tagName);
@@ -78,9 +78,9 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
       lastWidth: null
     },
     document: null,
-    display: function (installHandlerOnDocument) {
+    display(installHandlerOnDocument) {
       return new Promise((resolve, reject) => {
-        if (! this.element) {
+        if (!this.element) {
           this.element = document.createElement("iframe");
           this.element.src = browser.extension.getURL("blank.html");
           this.element.id = "firefox-screenshots-selection-iframe";
@@ -114,19 +114,19 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
       });
     },
 
-    hide: function () {
+    hide() {
       this.element.style.display = "none";
       this.stopSizeWatch();
     },
 
-    unhide: function () {
+    unhide() {
       this.updateElementSize();
       this.element.style.display = "";
       this.initSizeWatch();
       this.element.focus();
     },
 
-    updateElementSize: function (force) {
+    updateElementSize(force) {
       // Note: if someone sizes down the page, then the iframe will keep the
       // document from naturally shrinking.  We use force to temporarily hide
       // the element so that we can tell if the document shrinks
@@ -159,13 +159,13 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
       }
     },
 
-    initSizeWatch: function () {
+    initSizeWatch() {
       this.stopSizeWatch();
       this.sizeTracking.timer = setInterval(watchFunction(this.updateElementSize.bind(this)), 2000);
       window.addEventListener("resize", this.onResize, true);
     },
 
-    stopSizeWatch: function () {
+    stopSizeWatch() {
       if (this.sizeTracking.timer) {
         clearTimeout(this.sizeTracking.timer);
         this.sizeTracking.timer = null;
@@ -178,7 +178,7 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
       window.removeEventListener("resize", this.onResize, true);
     },
 
-    getElementFromPoint: function (x, y) {
+    getElementFromPoint(x, y) {
       this.element.style.pointerEvents = "none";
       let el;
       try {
@@ -189,7 +189,7 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
       return el;
     },
 
-    remove: function () {
+    remove() {
       this.stopSizeWatch();
       util.removeNode(this.element);
       this.element = this.document = null;
@@ -204,9 +204,9 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
     sizeTracking: {
       windowDelayer: null
     },
-    display: function (installHandlerOnDocument, standardOverlayCallbacks) {
+    display(installHandlerOnDocument, standardOverlayCallbacks) {
       return new Promise((resolve, reject) => {
-        if (! this.element) {
+        if (!this.element) {
           this.element = document.createElement("iframe");
           this.element.src = browser.extension.getURL("blank.html");
           this.element.id = "firefox-screenshots-preselection-iframe";
@@ -220,7 +220,7 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
           this.updateElementSize();
           this.element.onload = watchFunction(() => {
             this.document = this.element.contentDocument;
-            this.document.documentElement.innerHTML= `
+            this.document.documentElement.innerHTML = `
                <head>
                 <style>${substitutedCss}</style>
                 <title></title>
@@ -253,11 +253,11 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
             overlay.querySelector(".visible").textContent = browser.i18n.getMessage("saveScreenshotVisibleArea");
             overlay.querySelector(".full-page").textContent = browser.i18n.getMessage("saveScreenshotFullPage");
             overlay.querySelector(".myshots-button").addEventListener(
-              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onOpenMyShots)), false);
+              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onOpenMyShots)));
             overlay.querySelector(".visible").addEventListener(
-              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickVisible)), false);
+              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickVisible)));
             overlay.querySelector(".full-page").addEventListener(
-              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickFullPage)), false);
+              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickFullPage)));
             resolve();
           });
           document.body.appendChild(this.element);
@@ -268,32 +268,32 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
       });
     },
 
-    updateElementSize: function () {
+    updateElementSize() {
       this.element.style.height = window.innerHeight + "px";
       this.element.style.width = window.innerWidth + "px";
     },
 
-    hide: function () {
-      window.removeEventListener("scroll", this.onScroll, false);
+    hide() {
+      window.removeEventListener("scroll", this.onScroll);
       window.removeEventListener("resize", this.onResize, true);
       if (this.element) {
         this.element.style.display = "none";
       }
     },
 
-    unhide: function () {
+    unhide() {
       this.updateElementSize();
-      window.addEventListener("scroll", this.onScroll, false);
+      window.addEventListener("scroll", this.onScroll);
       window.addEventListener("resize", this.onResize, true);
       this.element.style.display = "";
       this.element.focus();
     },
 
-    onScroll: function () {
+    onScroll() {
       exports.HoverBox.hide();
     },
 
-    getElementFromPoint: function (x, y) {
+    getElementFromPoint(x, y) {
       this.element.style.pointerEvents = "none";
       let el;
       try {
@@ -304,7 +304,7 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
       return el;
     },
 
-    remove: function () {
+    remove() {
       this.hide();
       util.removeNode(this.element);
       this.element = null;
@@ -316,33 +316,33 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
 
   let iframe = exports.iframe = {
     currentIframe: iframePreSelection,
-    display: function (installHandlerOnDocument, standardOverlayCallbacks) {
+    display(installHandlerOnDocument, standardOverlayCallbacks) {
       return iframeSelection.display(installHandlerOnDocument)
         .then(() => iframePreSelection.display(installHandlerOnDocument, standardOverlayCallbacks));
     },
 
-    hide: function () {
+    hide() {
       this.currentIframe.hide();
     },
 
-    unhide: function () {
+    unhide() {
       this.currentIframe.unhide();
     },
 
-    getElementFromPoint: function (x, y) {
+    getElementFromPoint(x, y) {
       return this.currentIframe.getElementFromPoint(x, y);
     },
 
-    remove: function () {
+    remove() {
       iframeSelection.remove();
       iframePreSelection.remove();
     },
 
-    document: function () {
+    document() {
       return this.currentIframe.document;
     },
 
-    useSelection: function () {
+    useSelection() {
       if (this.currentIframe === iframePreSelection) {
         this.hide();
       }
@@ -350,7 +350,7 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
       this.unhide();
     },
 
-    usePreSelection: function () {
+    usePreSelection() {
       if (this.currentIframe === iframeSelection) {
         this.hide();
       }
@@ -364,7 +364,7 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
   /** Creates the selection box */
   exports.Box = {
 
-    display: function (pos, callbacks) {
+    display(pos, callbacks) {
       this._createEl();
       if (callbacks !== undefined && callbacks.cancel) {
         // We use onclick here because we don't want addEventListener
@@ -433,7 +433,7 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
       this.bgBottom.style.left = "0px";
       this.bgBottom.style.width = docWidth + "px";
       this.bgLeft.style.top = (pos.top - bodyRect.top) + "px";
-      this.bgLeft.style.height = pos.bottom - pos.top  + "px";
+      this.bgLeft.style.height = pos.bottom - pos.top + "px";
       this.bgLeft.style.left = "0px";
       this.bgLeft.style.width = (pos.left - bodyRect.left) + "px";
       this.bgRight.style.top = (pos.top - bodyRect.top) + "px";
@@ -442,7 +442,7 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
       this.bgRight.style.width = docWidth - (pos.right - bodyRect.left) + "px";
     },
 
-    remove: function () {
+    remove() {
       for (let name of ["el", "bgTop", "bgLeft", "bgRight", "bgBottom"]) {
         if (name in this) {
           util.removeNode(this[name]);
@@ -451,7 +451,7 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
       }
     },
 
-    _createEl: function () {
+    _createEl() {
       let boxEl = this.el;
       if (boxEl) {
         return;
@@ -490,7 +490,7 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
       this.el = boxEl;
     },
 
-    draggerDirection: function (target) {
+    draggerDirection(target) {
       while (target) {
         if (target.nodeType == document.ELEMENT_NODE) {
           if (target.classList.contains("mover-target")) {
@@ -508,7 +508,7 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
       return null;
     },
 
-    isSelection: function (target) {
+    isSelection(target) {
       while (target) {
         if (target.tagName === "BUTTON") {
           return false;
@@ -521,7 +521,7 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
       return false;
     },
 
-    isControl: function (target) {
+    isControl(target) {
       while (target) {
         if (target.nodeType === document.ELEMENT_NODE && target.classList.contains("highlight-buttons")) {
           return true;
@@ -542,8 +542,8 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
 
     el: null,
 
-    display: function (rect) {
-      if (! this.el) {
+    display(rect) {
+      if (!this.el) {
         this.el = makeEl("div", "hover-highlight");
         iframe.document().body.appendChild(this.el);
       }
@@ -554,13 +554,13 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
       this.el.style.height = (rect.bottom - rect.top + 2) + "px";
     },
 
-    hide: function () {
+    hide() {
       if (this.el) {
         this.el.style.display = "none";
       }
     },
 
-    remove: function () {
+    remove() {
       util.removeNode(this.el);
       this.el = null;
     }
@@ -570,8 +570,8 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
     el: null,
     xEl: null,
     yEl: null,
-    display: function (xPos, yPos, x, y) {
-      if (! this.el) {
+    display(xPos, yPos, x, y) {
+      if (!this.el) {
         this.el = makeEl("div", "pixel-dimensions");
         this.xEl = makeEl("div");
         this.el.appendChild(this.xEl);
@@ -584,14 +584,14 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
       this.el.style.top = (yPos + 12) + "px";
       this.el.style.left = (xPos + 12) + "px";
     },
-    remove: function () {
+    remove() {
       util.removeNode(this.el);
       this.el = this.xEl = this.yEl = null;
     }
   };
 
   /** Removes every UI this module creates */
-  exports.remove = function () {
+  exports.remove = function() {
     for (let name in exports) {
       if (name.startsWith("iframe")) {
         continue;
@@ -603,7 +603,7 @@ this.ui = (function () { // eslint-disable-line no-unused-vars
     exports.iframe.remove();
   };
 
-  exports.triggerDownload = function (url, filename) {
+  exports.triggerDownload = function(url, filename) {
     return catcher.watchPromise(callBackground("downloadShot", {url, filename}));
   };
 

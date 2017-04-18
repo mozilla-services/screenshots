@@ -1,9 +1,9 @@
 const { getGitRevision } = require("../../linker");
 const MobileDetect = require('mobile-detect');
 
-exports.createModel = function (req) {
+exports.createModel = function(req) {
   let buildTime = require("../../build-time").string;
-  let isMobile = !! (new MobileDetect(req.headers['user-agent'])).mobile();
+  let isMobile = !!(new MobileDetect(req.headers['user-agent'])).mobile();
   let serverPayload = {
     title: req.shot.title,
     staticLink: req.staticLink,
@@ -18,12 +18,12 @@ exports.createModel = function (req) {
     gaId: req.config.gaId,
     deviceId: req.deviceId,
     authenticated: !!req.deviceId,
-    buildTime: buildTime,
+    buildTime,
     simple: false,
     shotDomain: req.url, // FIXME: should be a property of the shot
-    expireTime: req.shot.expireTime === null ? null: req.shot.expireTime.getTime(),
-    retentionTime: req.config.expiredRetentionTime*1000,
-    defaultExpiration: req.config.defaultExpiration*1000,
+    expireTime: req.shot.expireTime === null ? null : req.shot.expireTime.getTime(),
+    retentionTime: req.config.expiredRetentionTime * 1000,
+    defaultExpiration: req.config.defaultExpiration * 1000,
     sentryPublicDSN: req.config.sentryPublicDSN,
     cspNonce: req.cspNonce,
     hashAnalytics: true,
@@ -48,10 +48,10 @@ exports.createModel = function (req) {
     urlIfDeleted: req.shot.urlIfDeleted,
     expireTime: req.shot.expireTime === null ? null : req.shot.expireTime.getTime(),
     deleted: req.shot.deleted,
-    buildTime: buildTime,
+    buildTime,
     simple: false,
-    retentionTime: req.config.expiredRetentionTime*1000,
-    defaultExpiration: req.config.defaultExpiration*1000,
+    retentionTime: req.config.expiredRetentionTime * 1000,
+    defaultExpiration: req.config.defaultExpiration * 1000,
     hashAnalytics: true,
     userAgent: req.headers['user-agent'],
     isMobile

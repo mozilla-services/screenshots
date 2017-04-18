@@ -5,6 +5,7 @@ env:
 
 extends:
   - eslint:recommended
+  - plugin:mozilla/recommended
   - plugin:react/recommended
 
 parserOptions:
@@ -26,10 +27,9 @@ rules:
   react/no-find-dom-node: warn # TODO: change to "error"
   react/prop-types: off # TODO: change to "error"
 
-  comma-dangle: off
+  consistent-return: off # TODO: remove, and default to mozilla/recommended of "error"
   eqeqeq: off # TODO: change to "error"
   no-console: off
-  no-unused-vars: [warn, {vars: all, args: none}]
   no-var: off # TODO: change to "error"
   prefer-const: off # TODO: change to "error"
   quotes: [off, double] # TODO: change to "error"

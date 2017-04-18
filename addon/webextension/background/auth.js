@@ -3,7 +3,7 @@
 
 "use strict";
 
-this.auth = (function () {
+this.auth = (function() {
   let exports = {};
 
   let registrationInfo;
@@ -25,7 +25,7 @@ this.auth = (function () {
     }
   }));
 
-  exports.getDeviceId = function () {
+  exports.getDeviceId = function() {
     return registrationInfo && registrationInfo.deviceId;
   };
 
@@ -146,39 +146,38 @@ this.auth = (function () {
     }
   }
 
-  exports.getDeviceId = function () {
+  exports.getDeviceId = function() {
     return registrationInfo.deviceId;
   };
 
-  exports.authHeaders = function () {
+  exports.authHeaders = function() {
     let initPromise = Promise.resolve();
-    if (! initialized) {
+    if (!initialized) {
       initPromise = login();
     }
     return initPromise.then(() => {
       if (authHeader) {
         return {"x-screenshots-auth": authHeader};
-      } else {
-        log.warn("No auth header available");
-        return {};
       }
+      log.warn("No auth header available");
+      return {};
     });
   };
 
-  exports.getSentryPublicDSN = function () {
+  exports.getSentryPublicDSN = function() {
     return sentryPublicDSN || buildSettings.defaultSentryDsn;
   };
 
-  exports.getAbTests = function () {
+  exports.getAbTests = function() {
     return abTests;
   };
 
-  exports.isRegistered = function () {
+  exports.isRegistered = function() {
     return registrationInfo.registered;
   };
 
-  exports.setDeviceInfoFromOldAddon = function (newDeviceInfo) {
-    if (! (newDeviceInfo.deviceId && newDeviceInfo.secret)) {
+  exports.setDeviceInfoFromOldAddon = function(newDeviceInfo) {
+    if (!(newDeviceInfo.deviceId && newDeviceInfo.secret)) {
       throw new Error("Bad deviceInfo");
     }
     if (registrationInfo.deviceId === newDeviceInfo.deviceId &&

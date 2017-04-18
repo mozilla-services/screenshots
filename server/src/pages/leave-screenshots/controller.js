@@ -8,11 +8,11 @@ let helperReadyPromise = new Promise((resolve, reject) => {
 
 document.addEventListener("addon-present", () => {
   helperReadyResolve();
-}, false);
+});
 
 document.dispatchEvent(new CustomEvent("request-addon-present"));
 
-exports.launch = function (m) {
+exports.launch = function(m) {
   if (m.complete) {
     sendEvent("leave-service-completed");
     // eslint-disable-next-line promise/catch-or-return

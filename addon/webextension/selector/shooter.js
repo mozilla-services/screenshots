@@ -4,7 +4,7 @@
 
 "use strict";
 
-this.shooter = (function () { // eslint-disable-line no-unused-vars
+this.shooter = (function() { // eslint-disable-line no-unused-vars
   let exports = {};
   const { AbstractShot } = window.shot;
 
@@ -35,11 +35,11 @@ this.shooter = (function () { // eslint-disable-line no-unused-vars
   {
     let canvas = document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
     let ctx = canvas.getContext('2d');
-    supportsDrawWindow = !! ctx.drawWindow;
+    supportsDrawWindow = !!ctx.drawWindow;
   }
 
   function screenshotPage(selectedPos) {
-    if (! supportsDrawWindow) {
+    if (!supportsDrawWindow) {
       return null;
     }
     let height = selectedPos.bottom - selectedPos.top;
@@ -62,7 +62,7 @@ this.shooter = (function () { // eslint-disable-line no-unused-vars
 
   let isSaving = null;
 
-  exports.takeShot = function (captureType, selectedPos) {
+  exports.takeShot = function(captureType, selectedPos) {
     // isSaving indicates we're aleady in the middle of saving
     // we use a timeout so in the case of a failure the button will
     // still start working again
@@ -113,10 +113,10 @@ this.shooter = (function () { // eslint-disable-line no-unused-vars
     }).then(() => uicontrol.deactivate()));
   };
 
-  exports.downloadShot = function (selectedPos) {
+  exports.downloadShot = function(selectedPos) {
     let dataUrl = screenshotPage(selectedPos);
     let promise = Promise.resolve(dataUrl);
-    if (! dataUrl) {
+    if (!dataUrl) {
       promise = callBackground(
         "screenshotPage",
         selectedPos.asJson(),
@@ -133,7 +133,7 @@ this.shooter = (function () { // eslint-disable-line no-unused-vars
     }));
   };
 
-  exports.sendEvent = function (...args) {
+  exports.sendEvent = function(...args) {
     callBackground("sendEvent", ...args);
   };
 

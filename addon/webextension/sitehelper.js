@@ -4,7 +4,7 @@
 
 "use strict";
 
-this.sitehelper = (function () {
+this.sitehelper = (function() {
 
   catcher.registerHandler((errorObj) => {
     callBackground("reportError", errorObj);
@@ -35,7 +35,7 @@ this.sitehelper = (function () {
   // but probably won't - instead the site will ask for that event after it has loaded
   document.addEventListener("request-addon-present", catcher.watchFunction(() => {
     sendCustomEvent("addon-present");
-  }), false);
+  }));
 
   sendCustomEvent("addon-present");
 

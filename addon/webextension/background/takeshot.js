@@ -2,7 +2,7 @@
 
 "use strict";
 
-this.takeshot = (function () {
+this.takeshot = (function() {
   let exports = {};
   const Shot = shot.AbstractShot;
   const { sendEvent } = analytics;
@@ -13,7 +13,7 @@ this.takeshot = (function () {
     shot.favicon = sender.tab.favIconUrl;
     let capturePromise = Promise.resolve();
     let openedTab;
-    if (! shot.clipNames().length) {
+    if (!shot.clipNames().length) {
       // canvas.drawWindow isn't available, so we fall back to captureVisibleTab
       capturePromise = screenshotPage(selectedPos, scroll).then((dataUrl) => {
         shot.addClip({
@@ -110,7 +110,7 @@ this.takeshot = (function () {
       sendEvent("upload", "started", {eventValue: Math.floor(body.length / 1000)});
       return fetch(req);
     }).then((resp) => {
-      if (! resp.ok) {
+      if (!resp.ok) {
         sendEvent("upload-failed", `status-${resp.status}`);
         let exc = new Error(`Response failed with status ${resp.status}`);
         exc.popupMessage = "REQUEST_ERROR";

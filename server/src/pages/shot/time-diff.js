@@ -17,7 +17,7 @@ exports.TimeDiff = class TimeDiff extends React.Component {
   }
 
   componentDidMount() {
-    if (typeof window !== "undefined" && ! this.state.useLocalTime) {
+    if (typeof window !== "undefined" && !this.state.useLocalTime) {
       setTimeout(() => {
         this.setState({useLocalTime: true});
       });
@@ -32,38 +32,36 @@ exports.TimeDiff = class TimeDiff extends React.Component {
         timeDiff = "just now";
       } else if (seconds > 0 && seconds < 60) {
         timeDiff = "1 minute ago";
-      } else if (seconds < 60*60) {
+      } else if (seconds < 60 * 60) {
         timeDiff = `${Math.floor(seconds / 60)} minutes ago`;
-      } else if (seconds < 60*60*24) {
-        timeDiff = `${Math.floor(seconds / (60*60))} hours ago`;
-      } else if (seconds < 60*60*48) {
+      } else if (seconds < 60 * 60 * 24) {
+        timeDiff = `${Math.floor(seconds / (60 * 60))} hours ago`;
+      } else if (seconds < 60 * 60 * 48) {
         timeDiff = "yesterday";
       } else if (seconds > 0) {
-        seconds += 60*60*2; // 2 hours fudge time
-        timeDiff = `${Math.floor(seconds / (60*60*24))} days ago`;
+        seconds += 60 * 60 * 2; // 2 hours fudge time
+        timeDiff = `${Math.floor(seconds / (60 * 60 * 24))} days ago`;
       }
+    } else if (seconds > -20) {
+      timeDiff = "very soon";
+    } else if (seconds > -60) {
+      timeDiff = "in 1 minute";
+    } else if (seconds > -60 * 60) {
+      timeDiff = `in ${Math.floor(seconds / -60)} minutes`;
+    } else if (seconds > -60 * 60 * 24) {
+      timeDiff = `in ${Math.floor(seconds / (-60 * 60))} hours`;
+    } else if (seconds > -60 * 60 * 48) {
+      timeDiff = "tomorrow";
     } else {
-      if (seconds > -20) {
-        timeDiff = "very soon";
-      } else if (seconds > -60) {
-        timeDiff = "in 1 minute";
-      } else if (seconds > -60*60) {
-        timeDiff = `in ${Math.floor(seconds / -60)} minutes`;
-      } else if (seconds > -60*60*24) {
-        timeDiff = `in ${Math.floor(seconds / (-60*60))} hours`;
-      } else if (seconds > -60*60*48) {
-        timeDiff = "tomorrow";
-      } else {
-        seconds -= 60*60*2; // 2 hours fudge time
-        timeDiff = `in ${Math.floor(seconds / (-60*60*24))} days`;
-      }
+      seconds -= 60 * 60 * 2; // 2 hours fudge time
+      timeDiff = `in ${Math.floor(seconds / (-60 * 60 * 24))} days`;
     }
     return timeDiff;
   }
 
   dateString(d) {
     let dYear, dMonth, dDay, dHour;
-    if (! (d instanceof Date)) {
+    if (!(d instanceof Date)) {
       d = new Date(d);
     }
     if (this.state.useLocalTime) {
@@ -94,14 +92,14 @@ exports.TimeDiff = class TimeDiff extends React.Component {
 };
 
 
-exports.intervalDescription = function (ms) {
+exports.intervalDescription = function(ms) {
   let parts = [];
   let second = 1000;
-  let minute = second*60;
-  let hour = minute*60;
-  let day = hour*24;
+  let minute = second * 60;
+  let hour = minute * 60;
+  let day = hour * 24;
   if (ms > day) {
-    let days = Math.floor(ms/day);
+    let days = Math.floor(ms / day);
     if (days === 1) {
       parts.push("1 day");
     } else {
@@ -110,7 +108,7 @@ exports.intervalDescription = function (ms) {
     ms = ms % day;
   }
   if (ms > hour) {
-    let hours = Math.floor(ms/hour);
+    let hours = Math.floor(ms / hour);
     if (hours === 1) {
       parts.push("1 hour");
     } else {
@@ -119,7 +117,7 @@ exports.intervalDescription = function (ms) {
     ms = ms % hour;
   }
   if (ms > minute) {
-    let minutes = Math.floor(ms/minute);
+    let minutes = Math.floor(ms / minute);
     if (minutes === 1) {
       parts.push("1 minute");
     } else {
@@ -128,14 +126,14 @@ exports.intervalDescription = function (ms) {
     ms = ms % minute;
   }
   if (ms) {
-    let seconds = Math.floor(ms/second);
+    let seconds = Math.floor(ms / second);
     if (seconds === 1) {
       parts.push("1 second");
     } else {
       parts.push(`${seconds} seconds`);
     }
   }
-  if (! parts.length) {
+  if (!parts.length) {
     parts.push("immediately");
   }
   return parts.join(" ");

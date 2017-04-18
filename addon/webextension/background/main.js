@@ -3,7 +3,7 @@
 
 "use strict";
 
-this.main = (function () {
+this.main = (function() {
   let exports = {};
 
   const pasteSymbol = (window.navigator.platform.match(/Mac/i)) ? "\u2318" : "Ctrl";
@@ -15,8 +15,8 @@ this.main = (function () {
   let hasSeenOnboarding;
 
   browser.storage.local.get(["hasSeenOnboarding"]).then((result) => {
-    hasSeenOnboarding = !! result.hasSeenOnboarding;
-    if (! hasSeenOnboarding) {
+    hasSeenOnboarding = !!result.hasSeenOnboarding;
+    if (!hasSeenOnboarding) {
       setIconActive(false, null);
       // Note that the branded name 'Firefox Screenshots' is not localized:
       browser.browserAction.setTitle({
@@ -27,12 +27,12 @@ this.main = (function () {
     log.error("Error getting hasSeenOnboarding:", error);
   });
 
-  exports.setBackend = function (newBackend) {
+  exports.setBackend = function(newBackend) {
     backend = newBackend;
     backend = backend.replace(/\/*$/, "");
   };
 
-  exports.getBackend = function () {
+  exports.getBackend = function() {
     return backend;
   };
 
@@ -53,7 +53,7 @@ this.main = (function () {
 
   function setIconActive(active, tabId) {
     let path = active ? "icons/icon-highlight-38.png" : "icons/icon-38.png";
-    if ((! hasSeenOnboarding) && ! active) {
+    if ((!hasSeenOnboarding) && !active) {
       path = "icons/icon-starred-38.png";
     }
     browser.browserAction.setIcon({path, tabId});
@@ -78,7 +78,7 @@ this.main = (function () {
 
   browser.browserAction.onClicked.addListener(catcher.watchFunction((tab) => {
     if (shouldOpenMyShots(tab.url)) {
-      if (! hasSeenOnboarding) {
+      if (!hasSeenOnboarding) {
         catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
           sendEvent("goto-onboarding", "selection-button");
           return forceOnboarding();
@@ -98,7 +98,7 @@ this.main = (function () {
             const event = active ? "start-shot" : "cancel-shot";
             sendEvent(event, "toolbar-button");
           }, (error) => {
-            if ((! hasSeenOnboarding) && error.popupMessage == "UNSHOOTABLE_PAGE") {
+            if ((!hasSeenOnboarding) && error.popupMessage == "UNSHOOTABLE_PAGE") {
               sendEvent("goto-onboarding", "selection-button");
               return forceOnboarding();
             }
@@ -126,7 +126,7 @@ this.main = (function () {
   });
 
   browser.contextMenus.onClicked.addListener(catcher.watchFunction((info, tab) => {
-    if (! tab) {
+    if (!tab) {
       // Not in a page/tab context, ignore
       return;
     }
@@ -147,7 +147,7 @@ this.main = (function () {
 
   function isShotOrMyShotPage(url) {
     // It's okay to take a shot of any pages except shot pages and My Shots
-    if (! url.startsWith(backend)) {
+    if (!url.startsWith(backend)) {
       return false;
     }
     let path = url.substr(backend.length).replace(/^\/*/, "").replace(/#.*/, "").replace(/\?.*/, "");
@@ -238,7 +238,7 @@ this.main = (function () {
   });
 
   catcher.watchPromise(communication.sendToBootstrap("getOldDeviceInfo").then((deviceInfo) => {
-    if (deviceInfo === communication.NO_BOOTSTRAP || ! deviceInfo) {
+    if (deviceInfo === communication.NO_BOOTSTRAP || !deviceInfo) {
       return;
     }
     deviceInfo = JSON.parse(deviceInfo);

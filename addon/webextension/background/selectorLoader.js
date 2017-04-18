@@ -2,7 +2,9 @@
 
 "use strict";
 
-this.selectorLoader = (function () {
+var global = this;
+
+this.selectorLoader = (function() {
   const exports = {};
 
   // These modules are loaded in order, first standardScripts, then optionally onboardingScripts, and then selectorScripts
@@ -37,7 +39,7 @@ this.selectorLoader = (function () {
     "onboarding/slides.js"
   ];
 
-  exports.unloadIfLoaded = function (tabId) {
+  exports.unloadIfLoaded = function(tabId) {
     return browser.tabs.executeScript(tabId, {
       code: "this.selectorLoader && this.selectorLoader.unloadModules()",
       runAt: "document_start"
@@ -46,12 +48,11 @@ this.selectorLoader = (function () {
     });
   };
 
-  exports.loadModules = function (tabId, hasSeenOnboarding) {
+  exports.loadModules = function(tabId, hasSeenOnboarding) {
     if (hasSeenOnboarding) {
       return executeModules(tabId, standardScripts.concat(selectorScripts));
-    } else {
-      return executeModules(tabId, standardScripts.concat(onboardingScripts).concat(selectorScripts));
     }
+    return executeModules(tabId, standardScripts.concat(onboardingScripts).concat(selectorScripts));
   };
 
   function executeModules(tabId, scripts) {
@@ -79,7 +80,7 @@ this.selectorLoader = (function () {
     });
   }
 
-  exports.unloadModules = function () {
+  exports.unloadModules = function() {
     const watchFunction = catcher.watchFunction;
     let allScripts = standardScripts.concat(onboardingScripts).concat(selectorScripts);
     const moduleNames = allScripts.map((filename) =>
@@ -99,7 +100,7 @@ this.selectorLoader = (function () {
     return true;
   };
 
-  exports.toggle = function (tabId, hasSeenOnboarding) {
+  exports.toggle = function(tabId, hasSeenOnboarding) {
     return exports.unloadIfLoaded(tabId)
       .then(wasLoaded => {
         if (!wasLoaded) {

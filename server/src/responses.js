@@ -1,19 +1,19 @@
 const config = require("./config").getProperties();
 const { captureRavenException } = require("./ravenclient");
 
-exports.simpleResponse = function (res, message, status) {
+exports.simpleResponse = function(res, message, status) {
   status = status || 200;
   res.header("Content-Type", "text/plain; charset=utf-8");
   res.status(status);
   res.send(message);
 };
 
-exports.jsResponse = function (res, jsstring) {
+exports.jsResponse = function(res, jsstring) {
   res.header("Content-Type", "application/javascript; charset=utf-8")
   res.send(jsstring);
 };
 
-exports.errorResponse = function (res, message, err) {
+exports.errorResponse = function(res, message, err) {
   res.header("Content-Type", "text/plain; charset=utf-8");
   res.status(500);
   if (config.showStackTraces) {
@@ -27,6 +27,6 @@ exports.errorResponse = function (res, message, err) {
   } else {
     res.send("Server error");
   }
-  console.error(`Error: ${message}`, err+"", err);
+  console.error(`Error: ${message}`, err + "", err);
   captureRavenException(err);
 };

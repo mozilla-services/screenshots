@@ -158,7 +158,7 @@ function executeQuery(query) {
   });
 }
 
-exports.storeQueries = function () {
+exports.storeQueries = function() {
   let allQueries = {};
   let promises = [];
   for (let name in queries) {
@@ -180,11 +180,11 @@ exports.storeQueries = function () {
   });
 };
 
-exports.checkLastStoreQueriesTime = function () {
+exports.checkLastStoreQueriesTime = function() {
   return db.select(
     `SELECT created FROM metrics_cache`
   ).then((rows) => {
-    if (! rows.length) {
+    if (!rows.length) {
       return null;
     }
     return rows[0].created;
@@ -199,12 +199,12 @@ function getQueries() {
   });
 }
 
-exports.createModel = function (req) {
+exports.createModel = function(req) {
   return getQueries().then((data) => {
     data = JSON.parse(data);
     let model = {
       title: "Firefox Screenshots Metrics",
-      data: data
+      data
     };
     return {serverModel: model, jsonModel: model};
   });
