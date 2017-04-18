@@ -77,7 +77,7 @@ window.addEventListener("popstate", () => {
     el.value = model.defaultSearch;
   }
   refreshModel();
-}, false);
+});
 
 function refreshModel() {
   let req = new XMLHttpRequest();
@@ -124,6 +124,6 @@ document.addEventListener("contextmenu", (event) => {
     node = node.parentNode;
   }
   sendEvent("contextmenu", place);
-}, false);
+});
 
 window.controller = exports;

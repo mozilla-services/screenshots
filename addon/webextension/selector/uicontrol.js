@@ -371,7 +371,7 @@ this.uicontrol = (function() {
         ui.iframe.usePreSelection();
         ui.Box.remove();
         const handler = watchFunction(assertIsTrusted(keyupHandler));
-        document.addEventListener("keyup", handler, false);
+        document.addEventListener("keyup", handler);
         registeredDocumentHandlers.push({name: "keyup", doc: document, handler});
       }));
     },

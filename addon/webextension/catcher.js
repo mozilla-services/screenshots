@@ -2,8 +2,6 @@
 
 "use strict";
 
-var global = this;
-
 this.catcher = (function() {
   let exports = {};
 

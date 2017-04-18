@@ -6,7 +6,7 @@ this.util = (function() { // eslint-disable-line no-unused-vars
   /** Removes a node from its document, if it's a node and the node is attached to a parent */
   exports.removeNode = function(el) {
     if (el && el.parentNode) {
-      el.parentNode.removeChild(el);
+      el.remove();
     }
   };
 

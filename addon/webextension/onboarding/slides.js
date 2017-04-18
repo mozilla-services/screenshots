@@ -12,7 +12,6 @@ this.slides = (function() {
   let currentSlide = 1;
   let numberOfSlides;
   let callbacks;
-  let backend;
 
   exports.display = function(addCallbacks) {
     if (iframe) {
@@ -46,9 +45,8 @@ this.slides = (function() {
           doc.adoptNode(parsedDom.documentElement),
           doc.documentElement
         );
-        doc.addEventListener("keyup", onKeyUp, false);
-        callBackground("getBackend").then((backendResult) => {
-          backend = backendResult;
+        doc.addEventListener("keyup", onKeyUp);
+        callBackground("getBackend").then(() => {
           localizeText(doc);
           activateSlide(doc);
           resolve();
@@ -58,14 +56,14 @@ this.slides = (function() {
       });
       document.body.appendChild(iframe);
       iframe.focus();
-      window.addEventListener("resize", onResize, false);
+      window.addEventListener("resize", onResize);
     });
   };
 
   exports.remove = exports.unload = function() {
-    window.removeEventListener("resize", onResize, false);
+    window.removeEventListener("resize", onResize);
     if (doc) {
-      doc.removeEventListener("keyup", onKeyUp, false);
+      doc.removeEventListener("keyup", onKeyUp);
     }
     util.removeNode(iframe);
     iframe = doc = null;
@@ -125,27 +123,27 @@ this.slides = (function() {
     doc.querySelector("#next").addEventListener("click", watchFunction(assertIsTrusted(() => {
       shooter.sendEvent("navigate-slide", "next");
       next();
-    })), false);
+    })));
     doc.querySelector("#prev").addEventListener("click", watchFunction(assertIsTrusted(() => {
       shooter.sendEvent("navigate-slide", "prev");
       prev();
-    })), false);
+    })));
     for (let el of doc.querySelectorAll(".goto-slide")) {
       el.addEventListener("click", watchFunction(assertIsTrusted((event) => {
         shooter.sendEvent("navigate-slide", "goto");
         let el = event.target;
         let index = parseInt(el.getAttribute("data-number"), 10);
         setSlide(index);
-      })), false);
+      })));
     }
     doc.querySelector("#skip").addEventListener("click", watchFunction(assertIsTrusted((event) => {
       shooter.sendEvent("cancel-slides", "skip");
       callbacks.onEnd();
-    })), false);
+    })));
     doc.querySelector("#done").addEventListener("click", watchFunction(assertIsTrusted((event) => {
       shooter.sendEvent("finish-slides", "done");
       callbacks.onEnd();
-    })), false);
+    })));
     setSlide(1);
   }
 

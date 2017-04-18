@@ -8,7 +8,7 @@ let helperReadyPromise = new Promise((resolve, reject) => {
 
 document.addEventListener("addon-present", () => {
   helperReadyResolve();
-}, false);
+});
 
 document.dispatchEvent(new CustomEvent("request-addon-present"));
 

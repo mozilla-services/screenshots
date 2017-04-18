@@ -253,11 +253,11 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
             overlay.querySelector(".visible").textContent = browser.i18n.getMessage("saveScreenshotVisibleArea");
             overlay.querySelector(".full-page").textContent = browser.i18n.getMessage("saveScreenshotFullPage");
             overlay.querySelector(".myshots-button").addEventListener(
-              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onOpenMyShots)), false);
+              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onOpenMyShots)));
             overlay.querySelector(".visible").addEventListener(
-              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickVisible)), false);
+              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickVisible)));
             overlay.querySelector(".full-page").addEventListener(
-              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickFullPage)), false);
+              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickFullPage)));
             resolve();
           });
           document.body.appendChild(this.element);
@@ -274,7 +274,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     },
 
     hide() {
-      window.removeEventListener("scroll", this.onScroll, false);
+      window.removeEventListener("scroll", this.onScroll);
       window.removeEventListener("resize", this.onResize, true);
       if (this.element) {
         this.element.style.display = "none";
@@ -283,7 +283,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
 
     unhide() {
       this.updateElementSize();
-      window.addEventListener("scroll", this.onScroll, false);
+      window.addEventListener("scroll", this.onScroll);
       window.addEventListener("resize", this.onResize, true);
       this.element.style.display = "";
       this.element.focus();

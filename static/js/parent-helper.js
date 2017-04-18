@@ -65,4 +65,4 @@ window.addEventListener("load", function() {
   if (height) {
     doResize();
   }
-}, false);
+});

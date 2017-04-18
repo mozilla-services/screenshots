@@ -119,13 +119,13 @@ class ShareButtonPanel extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener("click", this.clickMaybeClose, false);
-    document.addEventListener("keyup", this.keyMaybeClose, false);
+    document.addEventListener("click", this.clickMaybeClose);
+    document.addEventListener("keyup", this.keyMaybeClose);
   }
 
   componentWillUnmount() {
-    document.removeEventListener("click", this.clickMaybeClose, false);
-    document.removeEventListener("keyup", this.keyMaybeClose, false);
+    document.removeEventListener("click", this.clickMaybeClose);
+    document.removeEventListener("keyup", this.keyMaybeClose);
   }
 
   clickMaybeClose(event) {

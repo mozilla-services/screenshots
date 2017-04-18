@@ -29,7 +29,7 @@ const appStartupPromise = new Promise((resolve, reject) => {
 const prefs = Services.prefs;
 const prefObserver = {
   register() {
-    prefs.addObserver(PREF_BRANCH, this, false);
+    prefs.addObserver(PREF_BRANCH, this);
   },
 
   unregister() {
@@ -48,11 +48,11 @@ const prefObserver = {
 
 const appStartupObserver = {
   register() {
-    Services.obs.addObserver(this, "sessionstore-windows-restored", false);
+    Services.obs.addObserver(this, "sessionstore-windows-restored");
   },
 
   unregister() {
-    Services.obs.removeObserver(this, "sessionstore-windows-restored", false);
+    Services.obs.removeObserver(this, "sessionstore-windows-restored");
   },
 
   observe() {

@@ -40,11 +40,11 @@ window.wantsauth = (function() {
     for (let callback of authDataCallbacks) {
       callback(savedAuthData);
     }
-  }, false);
+  });
 
   document.addEventListener("addon-present", () => {
     document.dispatchEvent(new CustomEvent("request-login", {detail: maybeShotId}));
-  }, false);
+  });
 
   document.dispatchEvent(new CustomEvent("request-addon-present"));
 
