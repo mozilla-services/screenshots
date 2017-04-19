@@ -10,6 +10,7 @@
     "atob": "2.0.3",
     "aws-sdk": "2.40.0",
     "btoa": "1.1.2",
+    "content-disposition": "0.5.2",
     "convict": "3.0.0",
     "cookies": "0.7.0",
     "core-js": "2.4.1",

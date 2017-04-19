@@ -301,7 +301,6 @@ class Body extends React.Component {
       let clip = this.props.shot.getClip(clipId);
       clipUrl = clip.image.url;
     }
-    let clipFilename = this.props.shot.filename;
 
     let renderGetFirefox = this.props.userAgent && (this.props.userAgent + "").search(/firefox\/\d+/i) === -1;
     let renderExtensionNotification = !(this.props.isExtInstalled || renderGetFirefox);
@@ -327,8 +326,8 @@ class Body extends React.Component {
           </div>
           <div className="more-shot-actions right">
             { trashOrFlagButton }
-            <a className="button secondary" href={ clipUrl } onClick={ this.onClickDownload.bind(this) }
-              title="Download the shot image" download={ clipFilename }>
+            <a className="button secondary" href={ this.props.downloadUrl } onClick={ this.onClickDownload.bind(this) }
+              title="Download the shot image">
               <img src={ this.props.staticLink("/static/img/download.svg") } />
             </a>
             <ShareButton abTests={this.props.abTests} clipUrl={clipUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} renderExtensionNotification={renderExtensionNotification} isExtInstalled={this.props.isExtInstalled} />

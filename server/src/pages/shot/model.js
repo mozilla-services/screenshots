@@ -1,9 +1,15 @@
+const { createDownloadUrl } = require("../../proxy-url");
 const { getGitRevision } = require("../../linker");
 const MobileDetect = require('mobile-detect');
 
 exports.createModel = function(req) {
   let buildTime = require("../../build-time").string;
   let isMobile = !!(new MobileDetect(req.headers['user-agent'])).mobile();
+  let downloadUrl = null;
+  let clip = req.shot.getClip(req.shot.clipNames()[0]);
+  if (clip) {
+    downloadUrl = createDownloadUrl(clip.image.url, req.shot.filename);
+  }
   let serverPayload = {
     title: req.shot.title,
     staticLink: req.staticLink,
@@ -28,6 +34,7 @@ exports.createModel = function(req) {
     cspNonce: req.cspNonce,
     hashAnalytics: true,
     userAgent: req.headers['user-agent'],
+    downloadUrl,
     isMobile
   };
   let clientPayload = {
@@ -54,6 +61,7 @@ exports.createModel = function(req) {
     defaultExpiration: req.config.defaultExpiration * 1000,
     hashAnalytics: true,
     userAgent: req.headers['user-agent'],
+    downloadUrl,
     isMobile
   };
   if (serverPayload.expireTime !== null && Date.now() > serverPayload.expireTime) {
