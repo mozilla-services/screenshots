@@ -272,5 +272,15 @@ this.main = (function() {
     });
   });
 
+  // Note: this signal is only needed until bug 1357589 is fixed.
+  communication.register("openTermsPage", () => {
+    return catcher.watchPromise(browser.tabs.create({url: "https://www.mozilla.org/about/legal/terms/services/"}));
+  });
+
+  // Note: this signal is also only needed until bug 1357589 is fixed.
+  communication.register("openPrivacyPage", () => {
+    return catcher.watchPromise(browser.tabs.create({url: "https://www.mozilla.org/privacy/firefox-cloud/"}));
+  });
+
   return exports;
 })();

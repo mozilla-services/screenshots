@@ -84,29 +84,30 @@ this.slides = (function() {
     // termsAndPrivacyNoticeCloudServices is a more complicated substitution:
     let termsContainer = doc.querySelector(".onboarding-legal-notice");
     termsContainer.innerHTML = "";
-    let termsSentinal = "__TERMS__";
-    let privacySentinal = "__PRIVACY__";
-    let sentinalSplitter = "!!!";
+    let termsSentinel = "__TERMS__";
+    let privacySentinel = "__PRIVACY__";
+    let sentinelSplitter = "!!!";
     let linkTexts = {
-      [termsSentinal]: browser.i18n.getMessage("termsAndPrivacyNoticeTermsLink"),
-      [privacySentinal]: browser.i18n.getMessage("termsAndPrivacyNoticyPrivacyLink")
+      [termsSentinel]: browser.i18n.getMessage("termsAndPrivacyNoticeTermsLink"),
+      [privacySentinel]: browser.i18n.getMessage("termsAndPrivacyNoticyPrivacyLink")
     };
     let linkUrls = {
-      [termsSentinal]: "https://www.mozilla.org/about/legal/terms/services/",
-      [privacySentinal]: "https://www.mozilla.org/privacy/firefox-cloud/"
+      [termsSentinel]: "https://www.mozilla.org/about/legal/terms/services/",
+      [privacySentinel]: "https://www.mozilla.org/privacy/firefox-cloud/"
     };
     let text = browser.i18n.getMessage(
       "termsAndPrivacyNoticeCloudServices",
-      [sentinalSplitter + termsSentinal + sentinalSplitter,
-       sentinalSplitter + privacySentinal + sentinalSplitter]);
-    let parts = text.split(sentinalSplitter);
+      [sentinelSplitter + termsSentinel + sentinelSplitter,
+       sentinelSplitter + privacySentinel + sentinelSplitter]);
+    let parts = text.split(sentinelSplitter);
     for (let part of parts) {
       let el;
-      if (part === termsSentinal || part === privacySentinal) {
+      if (part === termsSentinel || part === privacySentinel) {
         el = doc.createElement("a");
         el.href = linkUrls[part];
         el.textContent = linkTexts[part];
         el.target = "_blank";
+        el.id = (part === termsSentinel) ? "terms" : "privacy";
       } else {
         el = doc.createTextNode(part);
       }
@@ -139,6 +140,16 @@ this.slides = (function() {
     doc.querySelector("#done").addEventListener("click", watchFunction(assertIsTrusted((event) => {
       shooter.sendEvent("finish-slides", "done");
       callbacks.onEnd();
+    })));
+    // Note: e10s breaks the terms and privacy anchor tags. Work around this by
+    // manually opening the correct URLs on click until bug 1357589 is fixed.
+    doc.querySelector("#terms").addEventListener("click", watchFunction(assertIsTrusted((event) => {
+      event.preventDefault();
+      callBackground("openTermsPage");
+    })));
+    doc.querySelector("#privacy").addEventListener("click", watchFunction(assertIsTrusted((event) => {
+      event.preventDefault();
+      callBackground("openPrivacyPage");
     })));
     setSlide(1);
   }
