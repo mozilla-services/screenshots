@@ -173,12 +173,25 @@ this.main = (function() {
     return badDomains.includes(domain);
   }
 
+  function enableButton(tabId) {
+    browser.browserAction.enable(tabId);
+    // We have to manually toggle the icon state, because disabled toolbar
+    // buttons aren't automatically dimmed for WebExtensions on Windows or
+    // Linux (bug 1204609).
+    setIconActive(false, tabId);
+  }
+
+  function disableButton(tabId) {
+    browser.browserAction.disable(tabId);
+    setIconActive(true, tabId);
+  }
+
   browser.tabs.onUpdated.addListener(catcher.watchFunction((id, info, tab) => {
     if (info.url && tab.active) {
       if (urlEnabled(info.url)) {
-        browser.browserAction.enable(tab.id);
+        enableButton(tab.id);
       } else if (hasSeenOnboarding) {
-        browser.browserAction.disable(tab.id);
+        disableButton(tab.id);
       }
     }
   }, true));
@@ -190,9 +203,9 @@ this.main = (function() {
         return;
       }
       if (urlEnabled(tab.url)) {
-        browser.browserAction.enable(tabId);
+        enableButton(tabId);
       } else if (hasSeenOnboarding) {
-        browser.browserAction.disable(tabId);
+        disableButton(tabId);
       }
     }), true);
   }));
