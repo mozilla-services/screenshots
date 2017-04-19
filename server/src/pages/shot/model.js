@@ -34,6 +34,7 @@ exports.createModel = function(req) {
     cspNonce: req.cspNonce,
     hashAnalytics: true,
     userAgent: req.headers['user-agent'],
+    blockType: req.shot.blockType,
     downloadUrl,
     isMobile
   };
@@ -61,6 +62,7 @@ exports.createModel = function(req) {
     defaultExpiration: req.config.defaultExpiration * 1000,
     hashAnalytics: true,
     userAgent: req.headers['user-agent'],
+    blockType: req.shot.blockType,
     downloadUrl,
     isMobile
   };
