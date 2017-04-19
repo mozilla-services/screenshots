@@ -76,6 +76,13 @@ function startup(data, reason) { // eslint-disable-line no-unused-vars
 
 function shutdown(data, reason) { // eslint-disable-line no-unused-vars
   prefObserver.unregister();
+  const webExtension = LegacyExtensionsUtils.getEmbeddedExtensionFor({
+    id: ADDON_ID,
+    resourceURI: addonResourceURI
+  });
+  if (webExtension.started) {
+    stop(webExtension);
+  }
 }
 
 function install(data, reason) {} // eslint-disable-line no-unused-vars
