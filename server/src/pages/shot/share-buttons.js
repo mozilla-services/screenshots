@@ -25,7 +25,7 @@ exports.ShareButton = class ShareButton extends React.Component {
     }
     const active = this.state.display ? "active" : "inactive";
     return <div>
-      <button className={`button secondary share ${active}`} id="toggle-share" onClick={ this.onClick.bind(this) } title="Share" />
+      <button className={`button secondary share ${active}`} id="toggle-share" onClick={ this.onClick.bind(this) } title="Share" /> <!-- todo l10n: shotPageShareButton -->
       {panel}
     </div>;
   }
@@ -51,7 +51,7 @@ exports.ShareButton = class ShareButton extends React.Component {
 class ShareButtonPanel extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {copyText: "Copy"};
+    this.state = {copyText: "Copy"}; // todo l10n: shotPageCopy
     this.clickMaybeClose = this.clickMaybeClose.bind(this);
     this.keyMaybeClose = this.keyMaybeClose.bind(this);
   }
@@ -67,9 +67,9 @@ class ShareButtonPanel extends React.Component {
     let target = e.target;
     target.previousSibling.select();
     document.execCommand("copy");
-    this.setState({copyText: "Copied"});
+    this.setState({copyText: "Copied"}); // todo l10n: shotPageCopied
     setTimeout(() => {
-      this.setState({copyText: "Copy"});
+      this.setState({copyText: "Copy"}); // todo l10n: shotPageCopy
     }, 1000);
     sendEvent("share", "copy");
   }
@@ -86,21 +86,21 @@ class ShareButtonPanel extends React.Component {
     }
     return <div id="share-buttons-panel" className={className}>
       <div className="wrapper row-wrap share-buttons">
-        <a title="Share to Facebook wall or message" onClick={ this.onClickShareButton.bind(this, "facebook") } target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }>
+        <a title="Share to Facebook wall or message" onClick={ this.onClickShareButton.bind(this, "facebook") } target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }><!-- todo l10n: shotPageShareFacebook -->
           <img src={ this.props.staticLink("/static/img/btn-fb.svg") } />
         </a>
-        <a title="Share to a tweet" onClick={ this.onClickShareButton.bind(this, "twitter") }target="_blank" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }>
+        <a title="Share to a tweet" onClick={ this.onClickShareButton.bind(this, "twitter") }target="_blank" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }> <!-- todo l10n: shotPageShareTwitter -->
           <img src={ this.props.staticLink("/static/img/btn-twitter.svg") } />
         </a>
-        <a title="Share to Pinterest" onClick={ this.onClickShareButton.bind(this, "pinterest") } target="_blank" href={ "https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" + encodeURIComponent(this.props.shot.title) }>
+        <a title="Share to Pinterest" onClick={ this.onClickShareButton.bind(this, "pinterest") } target="_blank" href={ "https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" + encodeURIComponent(this.props.shot.title) }><!-- todo l10n: shotPageSharePinterest -->
           <img src={ this.props.staticLink("/static/img/btn-pinterest.svg") } />
         </a>
-        <a title="Create email with link" onClick={ this.onClickShareButton.bind(this, "email") } target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
+        <a title="Create email with link" onClick={ this.onClickShareButton.bind(this, "email") } target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }><!-- todo l10n: shotPageShareEmail -->
           <img src={ this.props.staticLink("/static/img/btn-email.svg") } />
         </a>
       </div>
       <div className="share-url-box">
-      <p>Get a shareable link to this shot:</p>
+      <p>Get a shareable link to this shot:</p><!-- todo l10n: shotPageShareLink -->
       <div className="wrapper row-space">
         <input className="copy-shot-link-input"
           value={ this.props.shot.viewUrl }
@@ -113,7 +113,7 @@ class ShareButtonPanel extends React.Component {
         </button>
       </div>
       <p className="share-visibility-notice">
-        This shot is only visible to you until you share the link.
+        This shot is only visible to you until you share the link. <!-- todo l10n: shotPagePrivacyMessage -->
       </p>
     </div>
     </div>;

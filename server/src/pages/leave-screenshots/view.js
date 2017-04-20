@@ -28,14 +28,14 @@ class Body extends React.Component {
           <div className="large-icon-message-container">
             <div className="large-icon logo" />
             <div className="large-icon-message-string">
-              This will permanently erase all of your Firefox Screenshots data.
+              This will permanently erase all of your Firefox Screenshots data. <!-- todo l10n: leavePageWarning -->
             </div>
             <form action="/leave-screenshots/leave" method="POST" className="responsive-wrapper row-center">
               <input type="hidden" name="_csrf" value={this.props.csrfToken} />
               <button type="submit" onClick={ this.onClickDelete.bind(this) } className="button warning">
-                Proceed
+                Proceed <!-- todo l10n: leavePageButtonProceed -->
               </button>
-              <a href="/shots" onClick={ this.onClickCancel.bind(this) } className="cancel-delete">cancel</a>
+              <a href="/shots" onClick={ this.onClickCancel.bind(this) } className="cancel-delete">cancel</a> <!-- todo l10n: leavePageButtonCancel -->
             </form>
           </div>
         </div>
@@ -49,7 +49,7 @@ class Body extends React.Component {
         <div className="column-center full-height inverse-color-scheme">
           <div className="large-icon-message-container">
             <div className="large-icon check" />
-            <div className="large-icon-message-string">All of your Firefox Screenshots data has been erased.
+            <div className="large-icon-message-string">All of your Firefox Screenshots data has been erased. <!-- todo l10n: leavePageDeleted-->
             </div>
           </div>
         </div>

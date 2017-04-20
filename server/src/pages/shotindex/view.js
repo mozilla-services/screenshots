@@ -45,11 +45,11 @@ class Body extends React.Component {
       <reactruntime.BodyTemplate {...this.props}>
         <div className="column-space full-height default-color-scheme">
           <div id="shot-index-header" className="header">
-            <h1><a href="/shots">Firefox <strong>Screenshots</strong> <sup>Beta</sup></a></h1>
+            <h1><a href="/shots">Firefox <strong>Screenshots</strong> <sup>Beta</sup></a></h1> <!-- todo l10n: homePageTitleBeta -->
             <form onSubmit={ this.onSubmitForm.bind(this) }>
               <span className="search-label" />
-              <input type="search" id="search" ref="search" maxLength="100" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />
-              <button title="search"></button>
+              <input type="search" id="search" ref="search" maxLength="100" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} /> <!-- todo l10n: shotIndexPageSearchPlaceholder (for placeholder attribute) -->
+              <button title="search"></button> <!-- todo l10n: shotIndexPageSearchButton (for title attribute) -->
             </form>
           </div>
           <div id="shot-index" className="flex-1">
@@ -70,7 +70,7 @@ class Body extends React.Component {
     return (
       <div className="large-icon-message-container" key="no-shots-found">
         <div className="large-icon logo-no-shots" />
-        <div className="large-icon-message-string">Go forth and take shots!</div>
+        <div className="large-icon-message-string">Go forth and take shots!</div> <!-- todo l10n: shotIndexPageNoShotsMessage -->
       </div>
     );
   }
@@ -79,7 +79,7 @@ class Body extends React.Component {
     return (
       <div className="large-icon-message-container" key="no-shots-found">
         <div className="large-icon logo-no-shots pulse forever" />
-        <div className="large-icon-message-string">Looking for your shots...</div>
+        <div className="large-icon-message-string">Looking for your shots...</div> <!-- todo l10n: shotIndexPageLookingForShots -->
       </div>
     );
   }
@@ -89,7 +89,7 @@ class Body extends React.Component {
       <div className="large-icon-message-container" key="no-shots-found">
         <div className="large-icon logo-no-search-results" />
         <div className="large-icon-message-string">
-          No shots matching "{this.props.defaultSearch}" found.
+          No shots matching "{this.props.defaultSearch}" found. <!-- todo l10n: shotIndexPageNoSearchResults -->
         </div>
       </div>
     );
@@ -148,7 +148,7 @@ class Body extends React.Component {
 
   displayTitle(title) {
     if (title.length > 140) {
-      return (title.substring(0, 140) + "...");
+      return (title.substring(0, 140) + "..."); // todo l10n - is this the right way to truncate in RTL langs?
     }
     return title;
   }
@@ -157,7 +157,7 @@ class Body extends React.Component {
     event.stopPropagation();
     event.preventDefault();
     sendEvent("start-delete", "my-shots", {useBeacon: true});
-    if (window.confirm(`Delete ${shot.title}?`)) {
+    if (window.confirm(`Delete ${shot.title}?`)) { // todo l10n: shotIndexPageConfirmShotDelete
       sendEvent("delete", "my-shots-popup-confirm", {useBeacon: true});
       controller.deleteShot(shot);
     } else {

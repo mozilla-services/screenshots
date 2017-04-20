@@ -30,7 +30,7 @@ exports.onChangeLastShotTime = function(days) {
       model.lastShotCount = data.count;
       render();
     } else {
-      alert("Failed: " + req.status);
+      alert("Failed: " + req.status); // todo l10: metricsPageAlertFailure
     }
   };
   req.send();
@@ -51,7 +51,7 @@ exports.onChangeNumberOfShotsTime = function(days) {
       model.numberOfShotsBuckets = data.buckets;
       render();
     } else {
-      alert("Failed: " + req.status);
+      alert("Failed: " + req.status); // todo l10n: metricsPageAlertFailure
     }
   };
   req.send();

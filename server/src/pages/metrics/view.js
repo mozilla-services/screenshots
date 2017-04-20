@@ -21,8 +21,8 @@ class Body extends React.Component {
     created = created.toLocaleString();
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <h1>Metrics</h1>
-        <p>Generated at: {created}</p>
+        <h1>Metrics</h1> // todo l10n: metricsPageHeader
+        <p>Generated at: {created}</p> // todo l10n: metricsPageGeneratedDateTime
         <GenericTable data={this.props.data.totals} />
 
         <GenericTable data={this.props.data.shotsCreatedByDay} />
@@ -46,7 +46,7 @@ class GenericTable extends React.Component {
   render() {
     return <div className="generic-table-section">
       <h2>{this.props.data.title}</h2>
-      <p>{this.props.data.description} <span className="execution-time">(database time: {this.props.data.timeToExecute}ms)</span></p>
+      <p>{this.props.data.description} <span className="execution-time">(database time: {this.props.data.timeToExecute}ms)</span></p> // todo l10n: metricsPageDatabaseQueryTime
       <table className="generic-table">
         <thead>
           {this.renderTableHeader()}
@@ -81,7 +81,7 @@ class GenericTable extends React.Component {
           if (meta.type === "date") {
             value = (new Date(value));
             value = value.toLocaleString(
-              "en-US", {year: 'numeric', month: 'short', day: 'numeric'});
+              "en-US", {year: 'numeric', month: 'short', day: 'numeric'}); // todo l10n - we should not hard-code the 'en-US' locale here
           } else {
             console.warn("Unknown type:", meta.type);
           }

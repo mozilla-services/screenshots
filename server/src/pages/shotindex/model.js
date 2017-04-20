@@ -2,9 +2,9 @@ const { createProxyUrl } = require("../../proxy-url");
 
 exports.createModel = function(req) {
   let query = req.query.q;
-  let title = "My Shots";
+  let title = "My Shots"; // todo l10n: gMyShots
   if (query) {
-    title = `My Shots: search for ${query}`;
+    title = `My Shots: search for ${query}`; // todo l10n: shotIndexPageSearchResultsTitle
   }
   let serverModel = {
     title,

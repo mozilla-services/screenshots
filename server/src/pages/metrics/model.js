@@ -2,8 +2,8 @@ const db = require("../../db");
 
 const queries = {
   totals: {
-    title: "Totals",
-    description: "Various totals from the database",
+    title: "Totals", // todo l10n: metricsPageTotalsQueryTitle
+    description: "Various totals from the database", // todo l10n: metricsPageTotalsQueryDescription
     sql: `
     SELECT
         (SELECT COUNT(devices.id) FROM devices) AS total_devices,
@@ -12,16 +12,16 @@ const queries = {
         (SELECT COUNT(data.id) FROM data WHERE deleted) AS expired_deleted_shots;
     `,
     columns: [
-      {title: "Total devices registered", name: "total_devices"},
-      {title: "Active shots", name: "active_shots"},
-      {title: "Expired (recoverable)", name: "expired_recoverable_shots"},
-      {title: "... (deleted)", name: "expired_deleted_shots"}
+      {title: "Total devices registered", name: "total_devices"}, // todo l10n: metricsPageTotalsQueryDevices
+      {title: "Active shots", name: "active_shots"}, // todo l10n: metricsPageTotalsQueryActiveShots
+      {title: "Expired (recoverable)", name: "expired_recoverable_shots"}, // todo l10n: metricsPageTotalsQueryExpiredShots
+      {title: "... (deleted)", name: "expired_deleted_shots"} // todo l10n: metricsPageTotalsQueryExpiredDeletedShots
     ]
   },
 
   shotsCreatedByDay: {
-    title: "Shots By Day",
-    description: "Number of shots created each day (for the last 30 days)",
+    title: "Shots By Day", // todo l10n: metricsPageShotsQueryTitle
+    description: "Number of shots created each day (for the last 30 days)", // todo l10n: metricsPageShotsQueryDescription
     sql: `
     SELECT COUNT(data.id)::INTEGER AS number_of_shots, date_trunc('day', data.created) AS day
     FROM data
@@ -30,14 +30,14 @@ const queries = {
     ORDER BY day DESC;
     `,
     columns: [
-      {title: "Number of shots", name: "number_of_shots"},
-      {title: "Day", type: "date", name: "day"}
+      {title: "Number of shots", name: "number_of_shots"}, // todo l10n: metricsPageShotsQueryCount
+      {title: "Day", type: "date", name: "day"} // todo l10n: metricsPageShotsQueryDay
     ]
   },
 
   usersByDay: {
-    title: "Users By Day",
-    description: "Number of users who created at least one shot, by day (last 30 days)",
+    title: "Users By Day", // todo l10n: metricsPageUsersQueryTitle
+    description: "Number of users who created at least one shot, by day (last 30 days)", // todo l10n: metricsPageUsersQueryDescription
     sql: `
     SELECT COUNT(DISTINCT data.deviceid)::INTEGER AS number_of_users, date_trunc('day', data.created) AS day
     FROM data
@@ -46,14 +46,14 @@ const queries = {
     ORDER BY day DESC;
     `,
     columns: [
-      {title: "Number of users", name: "number_of_users"},
-      {title: "Day", type: "date", name: "day"}
+      {title: "Number of users", name: "number_of_users"}, // todo l10n: metricsPageUsersQueryCount
+      {title: "Day", type: "date", name: "day"} // todo l10n: metricsPageUsersQueryDay
     ]
   },
 
   shotsByUserHistogram: {
-    title: "Number of Shots per User",
-    description: "The number of users who have about N total shots",
+    title: "Number of Shots per User", // todo l10n: metricsPageUserShotsQueryTitle
+    description: "The number of users who have about N total shots", // todo l10n: metricsPageUserShotsQueryDescription
     sql: `
     SELECT COUNT(counters.number_of_shots) AS count, counters.number_of_shots AS number_of_shots
     FROM
@@ -65,14 +65,14 @@ const queries = {
     ORDER BY counters.number_of_shots;
     `,
     columns: [
-      {title: "Number of users", name: "count"},
-      {title: "~Number of shots", name: "number_of_shots"}
+      {title: "Number of users", name: "count"}, // todo l10n: metricsPageUserShotsQueryCount
+      {title: "~Number of shots", name: "number_of_shots"} // todo l10n: metricsPageUserShotsQueryShots
     ]
   },
 
   retention: {
-    title: "Retention By Week",
-    description: "Length of time users have been creating shots, grouped by week",
+    title: "Retention By Week", // todo l10n: metricsPageRetentionQueryTitle
+    description: "Length of time users have been creating shots, grouped by week", // todo l10n: metricsPageRetentionQueryDescription
     sql: `
     SELECT COUNT(age.days)::INTEGER AS user_count, (age.days + 1) AS days_plus_1, age.first_created_week
     FROM
@@ -90,15 +90,15 @@ const queries = {
     ORDER BY age.first_created_week DESC, age.days;
     `,
     columns: [
-      {title: "Number of users", name: "user_count"},
-      {title: "Days the user has been creating shots", name: "days_plus_1"},
-      {title: "Week the user started using Screenshots", type: "date", name: "first_created_week"}
+      {title: "Number of users", name: "user_count"}, // todo l10n: metricsPageRetentionQueryUsers
+      {title: "Days the user has been creating shots", name: "days_plus_1"}, // todo l10n: metricsPageRetentionQueryDays
+      {title: "Week the user started using Screenshots", type: "date", name: "first_created_week"} // todo l10n: metricsPageRetentionQueryFirstWeek
     ]
   },
 
   retentionTotal: {
-    title: "Total Retention",
-    description: "Length of time users have been creating shots, grouped by week",
+    title: "Total Retention", // todo l10n: metricsPageTotalRetentionQueryTitle
+    description: "Length of time users have been creating shots, grouped by week", // todo l10n: metricsPageTotalRetentionQueryDescription
     sql: `
     SELECT COUNT(age.days)::INTEGER AS user_count, (age.days + 1) AS days_plus_1
     FROM
@@ -114,14 +114,14 @@ const queries = {
     ORDER BY age.days;
     `,
     columns: [
-      {title: "Number of users", name: "user_count"},
-      {title: "Days the user has been creating shots", name: "days_plus_1"}
+      {title: "Number of users", name: "user_count"}, // todo l10n: metricsPageTotalRetentionQueryUsers 
+      {title: "Days the user has been creating shots", name: "days_plus_1"} // todo l10n: metricsPageTotalRetentionQueryDays
     ]
   },
 
   addonVersion: {
-    title: "Add-on Version",
-    description: "The version of the add-on used during login, in the last 14 days",
+    title: "Add-on Version", // todo l10n: metricsPageVersionQueryTitle
+    description: "The version of the add-on used during login, in the last 14 days", // todo l10n: metricsPageVersionQueryDescription
     sql: `
     SELECT COUNT(DISTINCT devices.id) AS count, devices.last_addon_version, last_login_day
     FROM devices, date_trunc('day', last_login) AS last_login_day
@@ -130,9 +130,9 @@ const queries = {
     ORDER BY devices.last_addon_version DESC, last_login_day DESC;
     `,
     columns: [
-      {title: "Number of users logging in", name: "count"},
-      {title: "Add-on version", name: "last_addon_version"},
-      {title: "Day", type: "date", name: "last_login_day"}
+      {title: "Number of users logging in", name: "count"}, // todo l10n: metricsPageVersionQueryUsers
+      {title: "Add-on version", name: "last_addon_version"}, // todo l10n: metricsPageVersionQueryVersion
+      {title: "Day", type: "date", name: "last_login_day"} // todo l10n: metricsPageVersionQueryLastSeen 
     ]
   }
 
@@ -203,7 +203,7 @@ exports.createModel = function(req) {
   return getQueries().then((data) => {
     data = JSON.parse(data);
     let model = {
-      title: "Firefox Screenshots Metrics",
+      title: "Firefox Screenshots Metrics", // todo l10n: metricsPageTitle
       data
     };
     return {serverModel: model, jsonModel: model};

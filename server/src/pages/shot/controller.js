@@ -80,7 +80,7 @@ exports.changeShotExpiration = function(shot, expiration) {
   req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
   req.onload = function() {
     if (req.status >= 300) {
-      window.alert("Error saving expiration: " + req.status + " " + req.statusText);
+      window.alert("Error saving expiration: " + req.status + " " + req.statusText); // todo l10n, this can't be constructed in this way. shotPageAlertErrorUpdatingExpirationTime
     } else {
       if (expiration === 0) {
         model.shot.expireTime = model.expireTime = null;
@@ -106,7 +106,7 @@ exports.deleteShot = function(shot) {
   req.onload = function() {
     if (req.status >= 300) {
       // FIXME: a lame way to do an error message
-      window.alert("Error deleting shot: " + req.status + " " + req.statusText);
+      window.alert("Error deleting shot: " + req.status + " " + req.statusText); // todo l10n: shotPageAlertErrorDeletingShot
     } else {
       location.href = model.backend + "/shots";
     }
@@ -177,7 +177,7 @@ exports.setTitle = function(title) {
   let req = new XMLHttpRequest();
   req.onload = function() {
     if (req.status >= 300) {
-      window.alert("Error saving title: " + req.status + " " + req.statusText);
+      window.alert("Error saving title: " + req.status + " " + req.statusText); // todo l10n: shotPageAlertErrorUpdatingTitle
       return;
     }
     model.shot.userTitle = title;

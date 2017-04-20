@@ -24,12 +24,12 @@ class Body extends React.Component {
       <reactruntime.BodyTemplate {...this.props}>
         <div className="column-space full-height default-color-scheme">
           <div className="header">
-            <h1><a href="/shots">My Shots</a></h1>
+            <h1><a href="/shots">My Shots</a></h1> <!-- todo l10n: notFoundPageMyShotsLink -->
           </div>
           <div className="responsive-wrapper flex-1">
             <h2>{this.props.title}</h2>
             <p>
-              The page was not found.
+              The page was not found. <!-- todo l10n: notFoundPageDescription -->
             </p>
           </div>
           <Footer forUrl="legal" {...this.props} />
