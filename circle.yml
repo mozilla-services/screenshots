@@ -23,11 +23,12 @@ compile:
 test:
   override:
     - firefox -v
-    # addon tests
-    - npm test
-    # server tests
+    # Start the server before all tests:
     - node -e 'require("babel-polyfill"); require("./build/server/server");':
         background: true
+    # addon tests
+    - FIREFOX_CHANNEL=NIGHTLY npm test
+    # server tests
     - ./bin/test-request put '{}'
     - ./bin/load_test_exercise.py http://localhost:10080
 
