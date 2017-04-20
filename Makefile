@@ -106,6 +106,12 @@ zip: addon
 	# We'll try to remove this directory, but it's no big deal if we can't:
 	rmdir web-ext-artifacts || true
 
+.PHONY: bootstrap_zip
+bootstrap_zip: addon
+	@rm -f build/screenshots-bootstrap.zip
+	cd addon && zip -rq ../build/screenshots-bootstrap.zip .
+	# build/screenshots-bootstrap.js created
+
 .PHONY: signed_xpi
 signed_xpi: addon
 	rm -f web-ext-artifacts/*.xpi
@@ -114,9 +120,9 @@ signed_xpi: addon
 
 .PHONY: addon_locales
 addon_locales:
-	./node_modules/.bin/pontoon-to-webext --dest addon/webextension/_locales
+	./node_modules/.bin/pontoon-to-webext --dest addon/webextension/_locales > /dev/null
 
-addon/install.rdf: addon/install.rdf.template
+addon/install.rdf: addon/install.rdf.template package.json
 	./bin/build-scripts/update_manifest.py $< $@
 
 addon/webextension/manifest.json: addon/webextension/manifest.json.template build/.backend.txt package.json
