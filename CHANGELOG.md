@@ -1,3 +1,30 @@
+## Version 6.4.0
+
+* Improve Selenium tests For CircleCI:
+  - start server before starting Selenium tests
+  - Make sure the pref for system-disabled is True before installing (to workaround [#2712](https://github.com/mozilla-services/screenshots/issues/2712)), and False before running tests
+  - Make channel configurable via `$FIREFOX_CHANNEL` Allow the tester to keep the window open with `$NO_CLOSE`
+  - Create a test that clicks the Screenshots button, skips onboarding, clicks Save Visible, and confirms a tab opens with a shot URL
+  - Make driver instantiation, which includes installing the add-on, async and blocking on add-on installation.
+  - Fixes [#2695](https://github.com/mozilla-services/screenshots/issues/2695) [54aa574](https://github.com/mozilla-services/screenshots/commit/54aa574)
+* Small Makefile improvements: Add `make bootstrap_zip` to build a zip that includes bootstrap.js;  Silence the messages from pontoon-to-webext; Clarify that `install.rdf` depends on `package.json` [d44f34a](https://github.com/mozilla-services/screenshots/commit/d44f34a)
+* 404 images from expired shots [cb27e40](https://github.com/mozilla-services/screenshots/commit/cb27e40)
+* manually dim toolbar button when disabledOn Windows and Linux, WebExtension toolbar buttons are not automatically dimmed when a button is disabled (bug 1204609). Fixes [#2708](https://github.com/mozilla-services/screenshots/issues/2708) [b1415f6](https://github.com/mozilla-services/screenshots/commit/b1415f6)
+* Shutdown the embedded webExtension when bootstrap is asked to shutdown ([#2712](https://github.com/mozilla-services/screenshots/issues/2712)) [9a23339](https://github.com/mozilla-services/screenshots/commit/9a23339)
+* Use Content-Disposition for downloading images [defb4b2](https://github.com/mozilla-services/screenshots/commit/defb4b2)
+* use JS to open terms and privacy links on clickThis workaround is required because of a bug with e10s handling of https URLs inside moz-extension pages. Fixes [#2699](https://github.com/mozilla-services/screenshots/issues/2699) [88a0ed6](https://github.com/mozilla-services/screenshots/commit/88a0ed6)
+* Stop Errors being shown when browser.tabs.get() fails as a result of tabs going away too quick, e.g. browser mochitests. [11ec080](https://github.com/mozilla-services/screenshots/commit/11ec080)
+* - Apply Mozilla ESLint style, and fix resulting issues. Fixes [#2365](https://github.com/mozilla-services/screenshots/issues/2365) [03ad681](https://github.com/mozilla-services/screenshots/commit/03ad681)  [ac25801](https://github.com/mozilla-services/screenshots/commit/ac25801)  [f493102](https://github.com/mozilla-services/screenshots/commit/f493102)
+* Added robots.txt route / blocking [3e3b716](https://github.com/mozilla-services/screenshots/commit/3e3b716)
+* added load_test_exercise.py to circleci [9d42d8b](https://github.com/mozilla-services/screenshots/commit/9d42d8b)
+* Remove embedded web extension in install manifest. ([#2688](https://github.com/mozilla-services/screenshots/issues/2688)). This causes the embedded web extension to be parsed at startup, and triggers a race condition in existing Firefox code during startup on a clean profile between AddonManager and devtools code. Removing this is not an issue for Screenshots because it delays startup of the embedded web extension until "sessionstore-windows-restored" is observed anyway.  See https://bugzilla.mozilla.org/show_bug.cgi?id=1356394 for more info. [2fa25c6](https://github.com/mozilla-services/screenshots/commit/2fa25c6)
+* Set favicon of shot [46a0028](https://github.com/mozilla-services/screenshots/commit/46a0028)
+* Make temporary landing page [7bd8f12](https://github.com/mozilla-services/screenshots/commit/7bd8f12)
+* Set upload size limit to 25mb [99bb597](https://github.com/mozilla-services/screenshots/commit/99bb597)
+* Add smiley face to selection screen [a631c18](https://github.com/mozilla-services/screenshots/commit/a631c18)
+* Added CSRF protection [f86c9ce](https://github.com/mozilla-services/screenshots/commit/f86c9ce)
+* Restrict req.backend to a config origin [ef9c296](https://github.com/mozilla-services/screenshots/commit/ef9c296)
+
 ## Version 6.3.0 & 6.2.0
 
 * Implement log levels. Set log level to debug in run-addon, otherwise default to warn. Fixes [#2604](https://github.com/mozilla-services/screenshots/issues/2604) [087a853](https://github.com/mozilla-services/screenshots/commit/087a853)
