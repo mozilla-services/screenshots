@@ -72,6 +72,18 @@ this.main = (function() {
       });
   }
 
+  function startSelectionWithOnboarding(tab) {
+    return analytics.refreshTelemetryPref().then(() => {
+      return selectorLoader.testIfLoaded(tab.id);
+    }).then((isLoaded) => {
+      if (!isLoaded) {
+        sendEvent("start-shot", "site-request");
+        setIconActive(true, tab.id);
+        selectorLoader.toggle(tab.id, false);
+      }
+    });
+  }
+
   function shouldOpenMyShots(url) {
     return /^about:(?:newtab|blank)/i.test(url) || /^resource:\/\/activity-streams\//i.test(url);
   }
@@ -293,6 +305,11 @@ this.main = (function() {
   // Note: this signal is also only needed until bug 1357589 is fixed.
   communication.register("openPrivacyPage", () => {
     return catcher.watchPromise(browser.tabs.create({url: "https://www.mozilla.org/privacy/firefox-cloud/"}));
+  });
+
+  // A Screenshots page wants us to start/force onboarding
+  communication.register("requestOnboarding", (sender) => {
+    return startSelectionWithOnboarding(sender.tab);
   });
 
   return exports;

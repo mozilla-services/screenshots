@@ -48,6 +48,15 @@ this.selectorLoader = (function() {
     });
   };
 
+  exports.testIfLoaded = function(tabId) {
+    return browser.tabs.executeScript(tabId, {
+      code: "!!this.selectorLoader",
+      runAt: "document_start"
+    }).then(result => {
+      return result && result[0];
+    });
+  };
+
   exports.loadModules = function(tabId, hasSeenOnboarding) {
     if (hasSeenOnboarding) {
       return executeModules(tabId, standardScripts.concat(selectorScripts));

@@ -102,6 +102,7 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 1. [x] Toggle shot button on `addon/start-shot/toolbar-button` (previous to 54 launch the label was `toolbar-pageshot-button`)
 2. [ ] Use keyboard shortcut to start shot `addon/start-shot/keyboard-shortcut` (accel-alt-control-c) (FIXME: not yet implemented)
 3. [x] Use the right-click context menu to start a shot `addon/start-shot/context-menu`
+3. [x] Start shot with onboarding because the site requested it (typically a visit to `/#hello`) `addon/start-shot/site-request`
 2. [x] Make a selection `addon/make-selection/selection-drag` with `cd2: {px width}, cd1: {px height}`
 3. [x] Make a selection by clicking on an element `addon/make-selection/selection-click` with `cd2: {px width}, cd1: {px height}`
 4. [x] Click but fail to find an element that can be selected `addon/no-selection/no-element-found` (error case, not sure when it happens)
