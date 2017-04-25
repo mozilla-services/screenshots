@@ -420,6 +420,13 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       } else {
         this.el.classList.remove("bottom-selection");
       }
+
+      if (pos.right < 200) {
+        this.el.classList.add("left-selection");
+      } else {
+        this.el.classList.remove("left-selection");
+      }
+
       this.el.style.top = (pos.top - bodyRect.top) + "px";
       this.el.style.left = (pos.left - bodyRect.left) + "px";
       this.el.style.height = (pos.bottom - pos.top - bodyRect.top) + "px";

@@ -4,6 +4,7 @@ const reactruntime = require("../../reactruntime");
 const { Footer } = require("../../footer-view.js");
 const React = require("react");
 const ReactDOM = require("react-dom");
+const Masonry = require("react-masonry-component");
 
 class Head extends React.Component {
 
@@ -44,7 +45,7 @@ class Body extends React.Component {
       <reactruntime.BodyTemplate {...this.props}>
         <div className="column-space full-height default-color-scheme">
           <div id="shot-index-header" className="header">
-            <h1><a href="/shots">My Shots</a></h1>
+            <h1><a href="/shots">Firefox <strong>Screenshots</strong> <sup>Beta</sup></a></h1>
             <form onSubmit={ this.onSubmitForm.bind(this) }>
               <span className="search-label" />
               <input type="search" id="search" ref="search" maxLength="100" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />
@@ -52,14 +53,17 @@ class Body extends React.Component {
             </form>
           </div>
           <div id="shot-index" className="flex-1">
-            <div className="responsive-wrapper row-wrap">
-              {children}
-            </div>
+            <Masonry onLayoutComplete={() => this.handleLayoutComplete()}>{children}</Masonry>
           </div>
           <Footer forUrl="shots" {...this.props} />
         </div>
       </reactruntime.BodyTemplate>
     );
+  }
+
+  handleLayoutComplete() {
+    const myShots = document.querySelector('#shot-index');
+    myShots.style.opacity = 1;
   }
 
   renderNoShots() {
@@ -91,6 +95,18 @@ class Body extends React.Component {
     );
   }
 
+  getClipType(dimensions) {
+    // an image is considered a square if it is within
+    // a squareBuffer pixels of being one
+    const squareBuffer = 50;
+    if (dimensions.x - squareBuffer > dimensions.y) {
+      return "landscape";
+    } else if (dimensions.x < dimensions.y - squareBuffer ) {
+      return "portrait";
+    }
+    return "square";
+  }
+
   renderShot(shot) {
     let imageUrl;
     let clip = shot.clipNames().length ? shot.getClip(shot.clipNames()[0]) : null;
@@ -110,12 +126,12 @@ class Body extends React.Component {
     }
 
     return (
-      <a href={shot.viewUrl} className="shot" key={shot.id} onClick={this.onOpen.bind(this, shot.viewUrl)}>
+      <a href={shot.viewUrl} className={`shot ${this.getClipType(clip._image.dimensions)}`} key={shot.id} onClick={this.onOpen.bind(this, shot.viewUrl)}>
         <div className="shot-image-container" style={{
           backgroundImage: `url(${imageUrl})`
         }}>
-          <img className="shot-control" src={this.props.staticLink("/static/img/garbage-bin.svg")} onClick={this.onClickDelete.bind(this, shot)} />
         </div>
+        <div className="shot-info">
         <div className="title-container">
           <h4>{this.displayTitle(shot.title)}</h4>
         </div>
@@ -125,7 +141,7 @@ class Body extends React.Component {
             {shot.urlDisplay}
           </div>
         </div>
-        <div className="inner-border"/>
+        </div>
       </a>
     );
   }

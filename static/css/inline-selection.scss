@@ -3,6 +3,7 @@
 @import "partials/buttons";
 @import "partials/theme";
 @import "partials/animations";
+
 // This is how far outside the selection the mover target extends:
 $mover-outer: 30px;
 
@@ -204,12 +205,16 @@ $very-light-grey: #ededed;
   .bottom-selection & {
     bottom: 5px;
   }
+
+  .left-selection & {
+    right: auto;
+    left: 5px;
+  }
 }
 
 .highlight-button-cancel {
   @extend .button;
   @extend .secondary;
-  background-color: $very-light-grey;
   background-image: url("MOZ_EXTENSION/icons/cancel.svg");
   background-position: center center;
   background-repeat: no-repeat;
@@ -229,7 +234,6 @@ $very-light-grey: #ededed;
 .highlight-button-download {
   @extend .button;
   @extend .secondary;
-  background-color: $very-light-grey;
   background-image: url("MOZ_EXTENSION/icons/download.svg");
   background-position: center center;
   background-repeat: no-repeat;
@@ -238,17 +242,6 @@ $very-light-grey: #ededed;
   display: block;
   margin: 5px;
   width: 40px;
-}
-
-.highlight-button-cancel,
-.highlight-button-download {
-  transition: background-color $bezier 250ms;
-
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: darken($very-light-grey, 7);
-  }
 }
 
 .pixel-dimensions {

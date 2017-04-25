@@ -212,7 +212,7 @@ class Body extends React.Component {
         <div>
           <div className="spacer"/>
           If you do nothing,<br/>
-          this shot will be permanently deleted <TimeDiff date={deleteTime} />.
+          this shot will be permanently deleted in <TimeDiff date={deleteTime} />.
           <div className="spacer"/>
           <div className="responsive-wrapper row-center">
             <button className="button primary set-width--medium" onClick={this.onRestore.bind(this)}>restore for {intervalDescription(this.props.defaultExpiration)}</button>
@@ -260,7 +260,6 @@ class Body extends React.Component {
     let expiresDiff = null;
     if (this.props.isOwner) {
       expiresDiff = <span>
-      &nbsp; &bull; &nbsp;
       <ExpireWidget
         expireTime={this.props.expireTime}
         onSaveExpire={this.onSaveExpire.bind(this)} />
@@ -271,25 +270,23 @@ class Body extends React.Component {
 
     let trashOrFlagButton;
     if (this.props.isOwner) {
-      trashOrFlagButton = <button className="button secondary" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }>
-        <img src={ this.props.staticLink("/static/img/garbage-bin.svg") } />
+      trashOrFlagButton = <button className="button secondary trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }>
       </button>;
     } else {
-      trashOrFlagButton = <button className="button secondary" title="Report this shot for abuse, spam, or other problems" onClick={ this.onClickFlag.bind(this) }>
-        <img src={ this.props.staticLink("/static/img/flag.svg") } />
+      trashOrFlagButton = <button className="button secondary flag" title="Report this shot for abuse, spam, or other problems" onClick={ this.onClickFlag.bind(this) }>
       </button>;
     }
 
     let myShotsHref = "/shots";
-    let myShotsText = <span className="back-to-index">My Shots <span className="arrow-icon"/></span>;
+    let myShotsText = <span className="back-to-index">My Shots</span>;
     // FIXME: this means that on someone else's shot they won't see a My Shots link:
     if (!this.props.isOwner) {
       myShotsText = <span className="back-to-home">
-        <span className="sub">
-          Made with
+        <span>
+          Firefox
         </span>
         <span style={{fontWeight: "bold"}}>
-          Firefox Screenshots
+          Screenshots
         </span>
       </span>;
       myShotsHref = "/";
@@ -308,29 +305,35 @@ class Body extends React.Component {
       renderGetFirefox = renderExtensionNotification = false;
     }
 
+    let favicon = null;
+    if (shot.favicon) {
+      // We use background-image so if the image is broken it just doesn't show:
+      favicon = <div style={{backgroundImage: `url("${shot.favicon}")`}} className="favicon" />;
+    }
+
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <div id="frame" className="inverse-color-scheme full-height column-space">
           { renderGetFirefox ? this.renderFirefoxRequired() : null }
-          { renderExtensionNotification ? this.renderExtRequired() : null }
         <div className="frame-header default-color-scheme">
-          <div className="left">
-            <a className="block-button button secondary" href={ myShotsHref } onClick={this.onClickMyShots.bind(this)}>{ myShotsText }</a>
+        <a className="block-button button secondary" href={ myShotsHref } onClick={this.onClickMyShots.bind(this)}>{ myShotsText }</a>
+          <div className="shot-main-actions">
             <div className="shot-info">
               <EditableTitle title={shot.title} isOwner={this.props.isOwner} />
-              <div className="shot-subtitle">
-                { linkTextShort ? <span>Saved from &nbsp;<a className="subtitle-link" href={ shotRedirectUrl } onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a></span> : null }
-                <span className="clock-icon"/> { timeDiff } { expiresDiff }
+              <div className="shot-subtitle"> { favicon }
+                { linkTextShort ? <a className="subtitle-link" href={ shotRedirectUrl } onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> : null }
+                <span className="time-diff">{ timeDiff }</span> { expiresDiff }
               </div>
             </div>
           </div>
-          <div className="more-shot-actions right">
+          <div className="shot-alt-actions">
             { trashOrFlagButton }
-            <a className="button secondary" href={ this.props.downloadUrl } onClick={ this.onClickDownload.bind(this) }
-              title="Download the shot image">
-              <img src={ this.props.staticLink("/static/img/download.svg") } />
-            </a>
             <ShareButton abTests={this.props.abTests} clipUrl={clipUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} renderExtensionNotification={renderExtensionNotification} isExtInstalled={this.props.isExtInstalled} />
+            <a className="button primary" href={ this.props.downloadUrl } onClick={ this.onClickDownload.bind(this) }
+              title="Download the shot image">
+              <img src={ this.props.staticLink("/static/img/download-white.svg") } width="20" height="20"/>&nbsp;
+              <span>Download</span>
+            </a>
           </div>
         </div>
         { clips }
@@ -339,16 +342,9 @@ class Body extends React.Component {
     </reactruntime.BodyTemplate>);
   }
 
-  renderExtRequired() {
-    return <div className="default-color-scheme notification">
-      <div> Firefox Screenshots is an experimental extension for Firefox. <a href={ this.props.backend } onClick={ this.clickedInstallExtension.bind(this) }>Get it here</a></div>
-      <a className="close" onClick={ this.doCloseBanner.bind(this) }></a>
-    </div>;
-  }
-
   renderFirefoxRequired() {
-    return <div className="default-color-scheme notification">
-      <div> Firefox Screenshots is an experimental extension for Firefox. <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a></div>
+    return <div className="highlight-color-scheme alt-notification">
+      <div> <strong>Firefox Screenshots</strong> made simple. Take, save and share screenshots without leaving Firefox. <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a></div>
       <a className="close" onClick={ this.doCloseBanner.bind(this) }></a>
     </div>;
   }
@@ -419,9 +415,9 @@ class ExpireWidget extends React.Component {
     let hour = minute * 60;
     let day = hour * 24;
     return (
-      <span>
-        keep for <select ref="expireTime">
-          <option value="cancel">Select time:</option>
+      <span className="keep-for-form">
+        &bull; keep for: <select ref="expireTime">
+          <option value="cancel">Select time</option>
           <option value="0">Indefinitely</option>
           <option value={ 10 * minute }>10 Minutes</option>
           <option value={ hour }>1 Hour</option>
@@ -430,8 +426,8 @@ class ExpireWidget extends React.Component {
           <option value={ 14 * day }>2 Weeks</option>
           <option value={ 31 * day }>1 Month</option>
         </select>
-        &#8195;<span className="link-button" onClick={this.clickSaveExpire.bind(this)}>save</span>
-        &#8195;<span className="link-button" onClick={this.clickCancelExpire.bind(this)}>cancel</span>
+        <span className="button tiny secondary" onClick={this.clickSaveExpire.bind(this)}>save</span>
+        <span className="button tiny secondary" onClick={this.clickCancelExpire.bind(this)}>cancel</span>
       </span>
     );
   }
@@ -441,7 +437,7 @@ class ExpireWidget extends React.Component {
     if (this.props.expireTime === null) {
       button = <span>does not expire</span>;
     } else {
-      let desc = "expires";
+      let desc = "expires in";
       if (this.props.expireTime < Date.now()) {
         desc = "expired";
       }
@@ -511,11 +507,11 @@ class EditableTitle extends React.Component {
   }
 
   renderEditing() {
-    return <form onSubmit={this.onSubmit.bind(this)}>
+    return <form onSubmit={this.onExit.bind(this)}>
       <input ref={(input) => this.textInput = input}
         className="shot-title-input"
         type="text" defaultValue={this.props.title} autoFocus="true"
-        onBlur={this.onBlur.bind(this)} onKeyUp={this.onKeyUp.bind(this)} />
+        onBlur={this.onExit.bind(this)} onKeyUp={this.onKeyUp.bind(this)} />
     </form>;
   }
 
@@ -523,16 +519,10 @@ class EditableTitle extends React.Component {
     this.setState({isEditing: true});
   }
 
-  onSubmit() {
+  onExit() {
     let val = this.textInput.value;
     controller.setTitle(val);
     this.setState({isEditing: false, isSaving: val});
-  }
-
-  onBlur() {
-    if (this.textInput.value === this.props.title) {
-      this.setState({isEditing: false});
-    }
   }
 
   onKeyUp(event) {
