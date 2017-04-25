@@ -508,7 +508,7 @@ this.uicontrol = (function() {
 
     mousedown(event) {
       if (ui.isHeader(event.target)) {
-        return;
+        return undefined;
       }
       mousedownPos = new Pos(event.pageX + window.scrollX, event.pageY + window.scrollY);
       setState("draggingReady");
@@ -571,6 +571,7 @@ this.uicontrol = (function() {
         sendEvent("no-selection", "no-element-found");
         setState("crosshairs");
       }
+      return undefined;
     },
 
     click(event) {
@@ -658,7 +659,7 @@ this.uicontrol = (function() {
       let target = event.target;
       if (target.tagName == "HTML") {
         // This happens when you click on the scrollbar
-        return;
+        return undefined;
       }
       let direction = ui.Box.draggerDirection(target);
       if (direction) {
@@ -844,17 +845,18 @@ this.uicontrol = (function() {
       let fn = watchFunction((function(eventName, event) {
         if (typeof event.button == "number" && event.button !== 0) {
           // Not a left click
-          return;
+          return undefined;
         }
         if (event.ctrlKey || event.shiftKey || event.altKey || event.metaKey) {
           // Modified click of key
-          return;
+          return undefined;
         }
         let state = getState();
         let handler = stateHandlers[state];
         if (handler[eventName]) {
           return handler[eventName](event);
         }
+        return undefined;
       }).bind(null, eventName));
       primedDocumentHandlers.set(eventName, fn);
     });
