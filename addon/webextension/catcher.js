@@ -1,6 +1,6 @@
-/* globals log */
-
 "use strict";
+
+var global = this;
 
 this.catcher = (function() {
   let exports = {};
@@ -8,6 +8,8 @@ this.catcher = (function() {
   let handler;
 
   let queue = [];
+
+  let log = global.log;
 
   exports.unhandled = function(error, info) {
     log.error("Unhandled error:", error, info);
