@@ -1,4 +1,4 @@
-const { createDownloadUrl } = require("../../proxy-url");
+const { createProxyUrl, createDownloadUrl } = require("../../proxy-url");
 const { getGitRevision } = require("../../linker");
 const MobileDetect = require('mobile-detect');
 
@@ -9,6 +9,9 @@ exports.createModel = function(req) {
   let clip = req.shot.getClip(req.shot.clipNames()[0]);
   if (clip) {
     downloadUrl = createDownloadUrl(clip.image.url, req.shot.filename);
+  }
+  if (req.shot.favicon) {
+    req.shot.favicon = createProxyUrl(req, req.shot.favicon);
   }
   let serverPayload = {
     title: req.shot.title,
