@@ -1,13 +1,3 @@
-@mixin item-shadow {
-  box-shadow: $item-shadow;
-
-  &:hover,
-  &.active {
-    box-shadow: $item-shadow-hover;
-    transition: box-shadow 150ms;
-  }
-}
-
 @mixin flex-container($direction, $justification, $alignment, $wrap: nowrap) {
   display: flex;
   @if $alignment != 'stretch' {

@@ -5,7 +5,7 @@
 $slide-width: 700px;
 $slide-height: 520px;
 $next-prev-size: 70px;
-$slide-status-color: $body-background-color;
+$slide-status-color: $light-default;
 
 $medium-dark-blue: #009ec0;
 $super-blue: #00d1e6;
@@ -36,7 +36,7 @@ body {
 
 .slide {
   @include flex-container(column, center, center);
-  background-color: $body-background-color;
+  background-color: $light-default;
   border-radius: 5px;
   height: $slide-height;
   overflow: hidden;
@@ -69,7 +69,6 @@ body {
       font-size: 16px;
       margin-left: 5px;
       padding: 2px;
-      text-transform: uppercase;
     }
   }
 
@@ -189,6 +188,7 @@ body {
 
 #prev {
   @extend %next-prev-button;
+  background-image: url("MOZ_EXTENSION/icons/back.svg");
   left: 50%;
   margin-left: - ($slide-width / 2) - ($next-prev-size / 2);
 }
@@ -206,10 +206,25 @@ body {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 20px 20px;
+
+  &:hover {
+    background-color: #fff;
+    background-size: 22px 22px;
+  }
+
+  &:active {
+    background-color: #fff;
+    background-size: 24px 24px;
+  }
 }
 
 #next {
+  background-image: url("MOZ_EXTENSION/icons/back.svg");
   transform: rotate(180deg);
+
+  .active-slide-1 & {
+    background-image: url("MOZ_EXTENSION/icons/back-highlight.svg");
+  }
 }
 
 #skip {
@@ -227,21 +242,6 @@ body {
   z-index: 10;
 }
 
-#prev,
-#next,
-#done {
-
-  &:hover {
-    background-color: #fff;
-    background-size: 22px 22px;
-  }
-
-  &:active {
-    background-color: #fff;
-    background-size: 24px 24px;
-  }
-}
-
 #skip:hover {
   opacity: 1;
 }
@@ -252,6 +252,7 @@ body {
 }
 
 #done {
+  background-image: url("MOZ_EXTENSION/icons/done.svg");
   display: none;
 }
 

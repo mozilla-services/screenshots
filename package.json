@@ -32,6 +32,7 @@
     "raven-js": "3.14.0",
     "react": "15.4.2",
     "react-dom": "15.4.2",
+    "react-masonry-component": "5.0.5",
     "rimraf": "2.6.1",
     "universal-analytics": "0.4.13",
     "uuid": "3.0.1",
