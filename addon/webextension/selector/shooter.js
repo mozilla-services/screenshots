@@ -69,6 +69,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     // we use a timeout so in the case of a failure the button will
     // still start working again
     const uicontrol = global.uicontrol;
+    let deactivateAfterFinish = true;
     if (isSaving) {
       return;
     }
@@ -109,11 +110,21 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
       const copied = clipboard.copy(url);
       return callBackground("openShot", { url, copied });
     }, (error) => {
+      if ('popupMessage' in error && (error.popupMessage = "REQUEST_ERROR" || error.popupMessage == 'CONNECTION_ERROR')) {
+        // The error has been signaled to the user, but unlike other errors (or
+        // success) we should not abort the selection
+        deactivateAfterFinish = false;
+        return;
+      }
       if (error.name != "BackgroundError") {
         // BackgroundError errors are reported in the Background page
         throw error;
       }
-    }).then(() => uicontrol.deactivate()));
+    }).then(() => {
+      if (deactivateAfterFinish) {
+        uicontrol.deactivate();
+      }
+    }));
   };
 
   exports.downloadShot = function(selectedPos) {
