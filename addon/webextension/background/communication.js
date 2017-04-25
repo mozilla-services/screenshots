@@ -26,7 +26,7 @@ this.communication = (function() {
     } catch (e) {
       log.error(`Error in ${req.funcName}:`, e, e.stack);
       // FIXME: should consider using makeError from catcher here:
-      sendResponse({type: "error", message: e + ""});
+      sendResponse({type: "error", message: e + "", errorCode: e.errorCode, popupMessage: e.popupMessage});
       return;
     }
     if (result && result.then) {
@@ -34,7 +34,7 @@ this.communication = (function() {
         sendResponse({type: "success", value: concreteResult});
       }).catch((errorResult) => {
         log.error(`Promise error in ${req.funcName}:`, errorResult, errorResult && errorResult.stack);
-        sendResponse({type: "error", message: errorResult + ""});
+        sendResponse({type: "error", message: errorResult + "", errorCode: errorResult.errorCode, popupMessage: errorResult.popupMessage});
       });
       return true;
     }
@@ -66,7 +66,7 @@ this.communication = (function() {
     if (!error) {
       return false;
     }
-    return error.errorCode === "NO_RECEIVING_END" ||
+    return ('errorCode' in error && error.errorCode === "NO_RECEIVING_END") ||
       (!error.errorCode && error.message === "Could not establish connection. Receiving end does not exist.");
   }
 
