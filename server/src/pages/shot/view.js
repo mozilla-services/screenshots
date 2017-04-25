@@ -194,10 +194,42 @@ class Body extends React.Component {
   }
 
   render() {
+    if (this.props.blockType !== 'none') {
+      return this.renderBlock();
+    }
     if (this.props.expireTime !== null && Date.now() > this.props.expireTime) {
       return this.renderExpired();
     }
     return this.renderBody();
+  }
+
+  renderBlock() {
+    let message = null;
+    let moreInfo = null;
+    if (this.props.blockType === 'dmca') {
+      if (this.props.isOwner) {
+        message = "This shot is no longer available due to an intellectual property claim.";
+        moreInfo = (
+          <span>
+            Please email <a href="mailto:dmcanotice@mozilla.com">dmcanotice@mozilla.com</a> to request further information. If your Shots are subject to multiple claims, we may revoke your access to Firefox Screenshots.<br/>
+            Please include the URL of this shot in your email: {this.props.backend}/{this.props.id}
+          </span>
+        );
+      }
+    }
+
+    return <reactruntime.BodyTemplate {...this.props}>
+      <div className="column-center full-height inverse-color-scheme">
+        <div className="large-icon-message-container">
+          <div className="large-icon logo" />
+          <div className="large-icon-message-string">
+            { message }
+            <br/>
+            { moreInfo }
+          </div>
+        </div>
+      </div>
+    </reactruntime.BodyTemplate>;
   }
 
   renderExpired() {

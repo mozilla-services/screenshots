@@ -307,6 +307,7 @@ Shot.getRawBytesForClip = function(uid) {
       JOIN data ON images.shotid = data.id
      WHERE images.id = $1
       AND (data.expire_time IS NULL OR data.expire_time > NOW())
+      AND data.block_type = 'none'
       AND NOT data.deleted`, [uid]
   ).then((rows) => {
     if (!rows.length) {
@@ -375,6 +376,7 @@ Shot.get = function(backend, id, deviceId) {
     shot.urlIfDeleted = rawValue.url;
     shot.expireTime = rawValue.expireTime;
     shot.deleted = rawValue.deleted;
+    shot.blockType = rawValue.blockType;
     return shot;
   });
 };
@@ -403,7 +405,7 @@ Shot.getRawValue = function(id, deviceId) {
   if (!id) {
     throw new Error("Empty id: " + id);
   }
-  let query = `SELECT value, deviceid, url, title, expire_time, deleted FROM data WHERE id = $1`;
+  let query = `SELECT value, deviceid, url, title, expire_time, deleted, block_type FROM data WHERE id = $1`;
   let params = [id];
   if (deviceId) {
     query += ` AND deviceid = $2`;
@@ -423,7 +425,8 @@ Shot.getRawValue = function(id, deviceId) {
       url: row.url,
       title: row.title,
       expireTime: row.expire_time,
-      deleted: row.deleted
+      deleted: row.deleted,
+      blockType: row.block_type
     };
   });
 };
