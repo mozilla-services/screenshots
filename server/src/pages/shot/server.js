@@ -11,13 +11,12 @@ exports.app = app;
 app.get("/:id/:domain", csrf({cookie: true}), function(req, res) {
   let shotId = `${req.params.id}/${req.params.domain}`;
   Shot.get(req.backend, shotId).then((shot) => {
-    let noSuchShot = false;
-    if (!shot) {
-      noSuchShot = true;
-    } else if (shot.clipNames().length === 0 && !shot.deleted) {
+    let noSuchShot = !shot;
+    const nonOwnerAndBlocked = shot && shot.blockType !== 'none' && req.deviceId != shot.ownerId;
+    if (shot.clipNames().length === 0 && !shot.deleted) {
       // Deleted shots always appear to have no clips
     }
-    if (noSuchShot) {
+    if (noSuchShot || nonOwnerAndBlocked) {
       notFound(req, res);
       return;
     }
