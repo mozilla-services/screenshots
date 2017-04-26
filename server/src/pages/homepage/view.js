@@ -1,6 +1,7 @@
 /* globals window */
 const reactruntime = require("../../reactruntime");
 const React = require("react");
+const { Localized } = require("fluent-react/compat");
 
 class Head extends React.Component {
 
@@ -35,7 +36,9 @@ class Body extends React.Component {
     let myShots;
     if (this.props.showMyShots) {
       myShots = <button className="myshots-button" onClick={ this.onClickMyShots.bind(this) }>
-        <span className="myshots-text">Go To My Shots</span><!-- todo l10n: homePageButtonMyShots -->
+        <Localized id="homePageButtonMyShots">
+          <span className="myshots-text">Go To My Shots</span>
+        </Localized>
       </button>;
     }
     return (
@@ -43,8 +46,14 @@ class Body extends React.Component {
         <div className="vertical-centered-content-wrapper">
           { myShots }
           <div className="graphic" />
-          <h1><strong>Firefox</strong> Screenshots<sup>Beta</sup></h1><!-- todo l10n: 'firefox screenshots' is untranslated, but 'beta' is homePageTitleBeta -->
-          <p>Coming Soon...</p><!-- todo l10n: homePageTeaser -->
+          <h1><strong>Firefox</strong> Screenshots
+            <Localized id="homePageTitleBeta">
+              <sup>Beta</sup>
+            </Localized>
+          </h1>
+          <Localized id="homePageTeaser">
+            <p>Coming Soon...</p>
+          </Localized>
         </div>
       </reactruntime.BodyTemplate>
     );

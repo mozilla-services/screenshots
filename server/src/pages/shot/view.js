@@ -6,6 +6,7 @@ const sendEvent = require("../../browser-send-event.js");
 const { ShareButton } = require("./share-buttons");
 const { TimeDiff, intervalDescription } = require("./time-diff");
 const reactruntime = require("../../reactruntime");
+const { Localized } = require("fluent-react/compat");
 
 
 class Clip extends React.Component {
@@ -243,11 +244,15 @@ class Body extends React.Component {
       restoreWidget = (
         <div>
           <div className="spacer"/>
-          If you do nothing,<br/> <!-- todo: localizing means we have to get rid of this <br/> element. will the layout still look ok? -->
-          this shot will be permanently deleted in <TimeDiff date={deleteTime} />. <!-- todo l10n: shotPageExpirationMessage -->
+          <Localized id="shotPageExpirationMessage"><!-- todo - will this look ok with the <br/> element removed? how do we handle the timediffs? -->
+            If you do nothing,
+            this shot will be permanently deleted in <TimeDiff date={deleteTime} />.
+          </Localized>
           <div className="spacer"/>
           <div className="responsive-wrapper row-center">
-            <button className="button primary set-width--medium" onClick={this.onRestore.bind(this)}>restore for {intervalDescription(this.props.defaultExpiration)}</button> <!-- todo l10n: shotPageRestoreButton -->
+            <Localized id="shotPageRestoreButton"> <!-- todo l10n: how do we handle the time interval? "restore for N days" -->
+              <button className="button primary set-width--medium" onClick={this.onRestore.bind(this)}>restore for {intervalDescription(this.props.defaultExpiration)}</button> 
+            </Localized>
           </div>
         </div>
       );
@@ -259,8 +264,14 @@ class Body extends React.Component {
         <div className="large-icon-message-container">
           <div className="large-icon logo" />
           <div className="large-icon-message-string">
-            This shot has expired.<br/> <!-- todo l10n: shotPageExpiredMessage and shotPageExpiredMessageDetails -->
-            Here is page it was originally created from:<br/> <!-- todo l10n - this <br> will have to go -->
+            <Localized id="shotPageExpiredMessage">
+              <span>This shot has expired.</span>
+            </Localized>
+            <br/>
+            <Localized id="shotPageExpiredMessageDetails">
+              <span>Here is page it was originally created from:</span>
+            </Localized>
+            <br/>
             <a className="underline" href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>{this.props.shot.title}</a>
             { restoreWidget }
           </div>
@@ -310,7 +321,7 @@ class Body extends React.Component {
     }
 
     let myShotsHref = "/shots";
-    let myShotsText = <span className="back-to-index">My Shots</span>; // todo l10n: gMyShots
+    let myShotsText = <Localized id="gMyShots"><span className="back-to-index">My Shots</span></Localized>;
     // FIXME: this means that on someone else's shot they won't see a My Shots link:
     if (!this.props.isOwner) {
       myShotsText = <span className="back-to-home">
@@ -353,7 +364,7 @@ class Body extends React.Component {
             <div className="shot-info">
               <EditableTitle title={shot.title} isOwner={this.props.isOwner} />
               <div className="shot-subtitle"> { favicon }
-                { linkTextShort ? <a className="subtitle-link" href={ shotRedirectUrl } onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> : null } // todo l10n: shotPageDomainLink
+                { linkTextShort ? <a className="subtitle-link" href={ shotRedirectUrl } onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> : null }
                 <span className="time-diff">{ timeDiff }</span> { expiresDiff } <!-- todo l10n - figure out how to localize timeDiffs -->
               </div>
             </div>
@@ -364,7 +375,9 @@ class Body extends React.Component {
             <a className="button primary" href={ this.props.downloadUrl } onClick={ this.onClickDownload.bind(this) }
               title="Download the shot image"> <!-- todo l10n: shotPageDownloadShot -->
               <img src={ this.props.staticLink("/static/img/download-white.svg") } width="20" height="20"/>&nbsp;
-              <span>Download</span> <!-- todo l10n: shotPageDownload -->
+              <Localized id="shotPageDownload">
+                <span>Download</span>
+              </Localized>
             </a>
           </div>
         </div>
@@ -376,7 +389,15 @@ class Body extends React.Component {
 
   renderFirefoxRequired() {
     return <div className="highlight-color-scheme alt-notification">
-      <div> <strong>Firefox Screenshots</strong> made simple. Take, save and share screenshots without leaving Firefox. <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a></div> <!-- todo l10n: shotPageScreenshotsDescription, shotPageUpsellFirefox -->
+      <div>
+        <Localized id="shotPageScreenshotsDescription">
+          <strong>Firefox Screenshots</strong> made simple. Take, save and share screenshots without leaving Firefox.
+        </Localized>
+        <Localized id="shotPageUpsellFirefox">
+          <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition"
+             onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a>
+        </Localized>
+      </div>
       <a className="close" onClick={ this.doCloseBanner.bind(this) }></a>
     </div>;
   }
@@ -467,7 +488,7 @@ class ExpireWidget extends React.Component {
   renderNormal() {
     let button;
     if (this.props.expireTime === null) {
-      button = <span>does not expire</span>; // todo l10n: shotPageDoesNotExpire
+      button = <Localized id="shotPageDoesNotExpire"><span>does not expire</span></Localized>;
     } else {
       let desc = "expires in"; // todo l10n - this won't work
       if (this.props.expireTime < Date.now()) {

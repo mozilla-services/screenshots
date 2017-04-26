@@ -2,6 +2,7 @@
 const sendEvent = require("../../browser-send-event.js");
 const reactruntime = require("../../reactruntime");
 const React = require("react");
+const { Localized } = require("fluent-react/compat");
 
 class Head extends React.Component {
 
@@ -27,15 +28,21 @@ class Body extends React.Component {
         <div className="column-center full-height inverse-color-scheme">
           <div className="large-icon-message-container">
             <div className="large-icon logo" />
-            <div className="large-icon-message-string">
-              This will permanently erase all of your Firefox Screenshots data. <!-- todo l10n: leavePageWarning -->
-            </div>
+            <Localized id="leavePageWarning">
+              <div className="large-icon-message-string">
+                This will permanently erase all of your Firefox Screenshots data.
+              </div>
+            </Localized>
             <form action="/leave-screenshots/leave" method="POST" className="responsive-wrapper row-center">
               <input type="hidden" name="_csrf" value={this.props.csrfToken} />
               <button type="submit" onClick={ this.onClickDelete.bind(this) } className="button warning">
-                Proceed <!-- todo l10n: leavePageButtonProceed -->
+                <Localized id="leavePageButtonProceed">
+                  Proceed
+                </Localized>
               </button>
-              <a href="/shots" onClick={ this.onClickCancel.bind(this) } className="cancel-delete">cancel</a> <!-- todo l10n: leavePageButtonCancel -->
+              <Localized id="leavePageButtonCancel">
+                <a href="/shots" onClick={ this.onClickCancel.bind(this) } className="cancel-delete">cancel</a>
+              </Localized>
             </form>
           </div>
         </div>
@@ -49,7 +56,9 @@ class Body extends React.Component {
         <div className="column-center full-height inverse-color-scheme">
           <div className="large-icon-message-container">
             <div className="large-icon check" />
-            <div className="large-icon-message-string">All of your Firefox Screenshots data has been erased. <!-- todo l10n: leavePageDeleted-->
+            <Localized id="leavePageDeleted">
+              <div className="large-icon-message-string">All of your Firefox Screenshots data has been erased.
+            </Localized>
             </div>
           </div>
         </div>

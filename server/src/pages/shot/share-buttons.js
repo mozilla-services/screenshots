@@ -1,4 +1,5 @@
 const React = require("react");
+const { Localized } = require("fluent-react/compat");
 const sendEvent = require("../../browser-send-event.js");
 
 exports.ShareButton = class ShareButton extends React.Component {
@@ -100,7 +101,9 @@ class ShareButtonPanel extends React.Component {
         </a>
       </div>
       <div className="share-url-box">
-      <p>Get a shareable link to this shot:</p><!-- todo l10n: shotPageShareLink -->
+      <Localized id="shotPageShareLink">
+        <p>Get a shareable link to this shot:</p>
+      </Localized>
       <div className="wrapper row-space">
         <input className="copy-shot-link-input"
           value={ this.props.shot.viewUrl }
@@ -112,9 +115,11 @@ class ShareButtonPanel extends React.Component {
           { this.state.copyText }
         </button>
       </div>
-      <p className="share-visibility-notice">
-        This shot is only visible to you until you share the link. <!-- todo l10n: shotPagePrivacyMessage -->
-      </p>
+      <Localized id="shotPagePrivacyMessage">
+        <p className="share-visibility-notice">
+          This shot is only visible to you until you share the link.
+        </p>
+      </Localized>
     </div>
     </div>;
   }
