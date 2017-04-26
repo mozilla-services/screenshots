@@ -57,6 +57,9 @@ this.uicontrol = (function() {
   // This is how close (in pixels) you can get to the edge of the window and then
   // it will scroll:
   const SCROLL_BY_EDGE = 20;
+  // This is how wide the inboard scrollbars are, generally 0 except on Mac
+  const SCROLLBAR_WIDTH = (window.navigator.platform.match(/Mac/i)) ? 17 : 0;
+
 
   const { sendEvent } = shooter;
   const log = global.log;
@@ -387,7 +390,7 @@ this.uicontrol = (function() {
         return;
       }
       let el;
-      if (event.target.classList.contains("preview-overlay")) {
+      if (event.target.classList && event.target.classList.contains("preview-overlay")) {
         // The hover is on the overlay, so we need to figure out the real element
         el = ui.iframe.getElementFromPoint(
           event.pageX + window.scrollX - window.pageXOffset,
@@ -511,6 +514,16 @@ this.uicontrol = (function() {
       if (ui.isHeader(event.target)) {
         return undefined;
       }
+      // If the pageX is greater than this, then probably it's an attempt to get
+      // to the scrollbar, or an actual scroll, and not an attempt to start the
+      // selection:
+      let maxX = window.innerWidth - SCROLLBAR_WIDTH;
+      if (event.pageX >= maxX) {
+        event.stopPropagation();
+        event.preventDefault();
+        return false;
+      }
+
       mousedownPos = new Pos(event.pageX + window.scrollX, event.pageY + window.scrollY);
       setState("draggingReady");
       event.stopPropagation();
