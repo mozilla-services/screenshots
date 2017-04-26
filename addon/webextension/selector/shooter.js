@@ -110,7 +110,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
       const copied = clipboard.copy(url);
       return callBackground("openShot", { url, copied });
     }, (error) => {
-      if ('popupMessage' in error && (error.popupMessage = "REQUEST_ERROR" || error.popupMessage == 'CONNECTION_ERROR')) {
+      if ('popupMessage' in error && (error.popupMessage == "REQUEST_ERROR" || error.popupMessage == 'CONNECTION_ERROR')) {
         // The error has been signaled to the user, but unlike other errors (or
         // success) we should not abort the selection
         deactivateAfterFinish = false;
