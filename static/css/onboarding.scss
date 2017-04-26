@@ -4,6 +4,8 @@
 
 $slide-width: 700px;
 $slide-height: 520px;
+$slide-width-small: 450px;
+$slide-height-small: 360px;
 $next-prev-size: 70px;
 $slide-status-color: $light-default;
 
@@ -258,4 +260,37 @@ body {
 
 .active-slide-4 #done {
   display: inline-block;
+}
+
+/* for smaller screen sizes */
+@media screen and (max-width: 768px) {
+  .slide {
+    height: $slide-height-small;
+    width: $slide-width-small;
+
+    .slide-image {
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      flex: 0 0 200px;
+    }
+
+    .slide-content {
+      flex: 0 0 160px;
+    }
+  }
+
+  #skip {
+    margin-left: - ($slide-width-small / 2) + 20;
+    margin-top: ($slide-height-small / 2) - 3;
+  }
+
+  #prev {
+    margin-left: - ($slide-width-small / 2) - ($next-prev-size / 2);
+}
+
+  #next,
+  #done, {
+    margin-left: ($slide-width-small / 2) - ($next-prev-size / 2);
+  }
 }
