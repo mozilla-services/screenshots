@@ -642,6 +642,7 @@ app.put("/data/:id/:domain", function(req, res) {
   let failSometimes = config.testing.failSometimes;
   if (failSometimes && Math.floor(Math.random() * failSometimes)) {
     console.info("Artificially making request fail");
+    res.status(500);
     res.end();
     return;
   }

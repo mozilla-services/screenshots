@@ -9,6 +9,12 @@ this.callBackground = function callBackground(funcName, ...args) {
     } else if (result.type === "error") {
       let exc = new Error(result.message);
       exc.name = "BackgroundError";
+      if ('errorCode' in result) {
+        exc.errorCode = result.errorCode;
+      }
+      if ('popupMessage' in result) {
+        exc.popupMessage = result.popupMessage;
+      }
       throw exc;
     } else {
       log.error("Unexpected background result:", result);

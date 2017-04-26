@@ -5,6 +5,8 @@
 this.senderror = (function() {
   let exports = {};
 
+  let manifest = browser.runtime.getManifest();
+
   // Do not show an error more than every ERROR_TIME_LIMIT milliseconds:
   const ERROR_TIME_LIMIT = 3000;
 
@@ -100,7 +102,7 @@ this.senderror = (function() {
     rest.stack = e.multilineStack || e.stack;
     Raven.captureException(exception, {
       logger: 'addon',
-      tags: {version: e.version, category: e.popupMessage},
+      tags: {version: manifest.version, category: e.popupMessage},
       message: exception.message,
       extra: rest
     });

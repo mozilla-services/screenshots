@@ -101,14 +101,13 @@ this.takeshot = (function() {
     return auth.authHeaders().then((headers) => {
       headers["content-type"] = "application/json";
       let body = JSON.stringify(shot.asJson());
-      let req = new Request(shot.jsonUrl, {
+      sendEvent("upload", "started", {eventValue: Math.floor(body.length / 1000)});
+      return fetch(shot.jsonUrl, {
         method: "PUT",
         mode: "cors",
         headers,
         body
       });
-      sendEvent("upload", "started", {eventValue: Math.floor(body.length / 1000)});
-      return fetch(req);
     }).then((resp) => {
       if (!resp.ok) {
         sendEvent("upload-failed", `status-${resp.status}`);
@@ -121,6 +120,7 @@ this.takeshot = (function() {
     }, (error) => {
       // FIXME: I'm not sure what exceptions we can expect
       sendEvent("upload-failed", "connection");
+      error.popupMessage = "CONNECTION_ERROR";
       throw error;
     });
   }
