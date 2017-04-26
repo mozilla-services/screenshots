@@ -701,6 +701,7 @@ class _Clip {
     if (this.image) {
       return this.image.url.startsWith("data:");
     }
+    return false;
   }
 
   get sortOrder() {

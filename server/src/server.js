@@ -131,7 +131,7 @@ function initDatabase() {
       console.info("Exiting after downgrade");
       process.exit(hadError ? 2 : 0);
     });
-    return Promise.resolve();
+    return;
   }
   let promise;
   if (config.disableControllerTasks) {
@@ -299,14 +299,16 @@ app.use(function(req, res, next) {
 
 app.param("id", function(req, res, next, id) {
   if (/^[a-zA-Z0-9]{16}$/.test(id)) {
-    return next();
+    next();
+    return;
   }
   next(new Error("invalid id"));
 });
 
 app.param("domain", function(req, res, next, domain) {
   if (/^[^\s\/]{1,100}$/.test(domain)) {
-    return next();
+    next();
+    return;
   }
   next(new Error("invalid domain"));
 });
@@ -537,7 +539,7 @@ app.post("/api/register", function(req, res) {
     simpleResponse(res, "Bad request, no deviceId", 400);
     return;
   }
-  return registerLogin(vars.deviceId, {
+  registerLogin(vars.deviceId, {
     secret: vars.secret,
     nickname: vars.nickname || null,
     avatarurl: vars.avatarurl || null
@@ -902,7 +904,8 @@ app.get("/oembed", function(req, res) {
   }
   let format = req.query.format || "json";
   if (format !== "json") {
-    return simpleResponse(res, "Only JSON OEmbed is supported", 501);
+    simpleResponse(res, "Only JSON OEmbed is supported", 501);
+    return;
   }
   let maxwidth = req.query.maxwidth || null;
   if (maxwidth) {
@@ -915,12 +918,14 @@ app.get("/oembed", function(req, res) {
   url = url.replace(/^http:\/\//i, "https://");
   let backend = req.backend.replace(/^http:\/\//i, "https://");
   if (!url.startsWith(backend)) {
-    return simpleResponse(res, `Error: URL is not hosted here (${req.backend})`, 501);
+    simpleResponse(res, `Error: URL is not hosted here (${req.backend})`, 501);
+    return;
   }
   url = url.substr(backend.length);
   let match = /^\/*([^\/]+)\/([^\/]+)/.exec(url);
   if (!match) {
-    return simpleResponse(res, "Error: not a Shot url", 404);
+    simpleResponse(res, "Error: not a Shot url", 404);
+    return;
   }
   let shotId = match[1] + "/" + match[2];
   Shot.get(req.backend, shotId).then((shot) => {
@@ -1013,7 +1018,8 @@ app.get("/proxy", function(req, res) {
   let isValid = dbschema.getKeygrip().verify(new Buffer(url, 'utf8'), sig);
   if (!isValid) {
     sendRavenMessage(req, "Bad signature on proxy", {extra: {proxyUrl: url, sig}});
-    return simpleResponse(res, "Bad signature", 403);
+    simpleResponse(res, "Bad signature", 403);
+    return;
   }
   url = urlParse(url);
   let httpModule = http;

@@ -26,6 +26,7 @@ exports.captureRavenException = function() {
   if (ravenClient) {
     return ravenClient.captureException.apply(ravenClient, arguments);
   }
+  return null;
 };
 
 exports.addRavenRequestHandler = function(app) {
