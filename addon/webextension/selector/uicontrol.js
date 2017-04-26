@@ -59,6 +59,7 @@ this.uicontrol = (function() {
   const SCROLL_BY_EDGE = 20;
 
   const { sendEvent } = shooter;
+  const log = global.log;
 
   function round10(n) {
     return Math.floor(n / 10) * 10;

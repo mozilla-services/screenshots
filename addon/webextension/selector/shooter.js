@@ -1,6 +1,6 @@
-/* globals callBackground, documentMetadata, uicontrol, util, ui, catcher */
+/* globals global, documentMetadata, util, uicontrol, ui, catcher */
 /* globals XMLHttpRequest, window, location, alert, domainFromUrl, randomString */
-/* globals clipboard, document, setTimeout, location */
+/* globals document, setTimeout, location */
 
 "use strict";
 
@@ -12,6 +12,8 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
   let backend;
   let shot;
   let supportsDrawWindow;
+  const callBackground = global.callBackground;
+  const clipboard = global.clipboard;
 
   function regexpEscape(str) {
     // http://stackoverflow.com/questions/3115150/how-to-escape-regular-expression-special-characters-using-javascript
@@ -66,6 +68,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     // isSaving indicates we're aleady in the middle of saving
     // we use a timeout so in the case of a failure the button will
     // still start working again
+    const uicontrol = global.uicontrol;
     if (isSaving) {
       return;
     }
