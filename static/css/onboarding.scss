@@ -277,6 +277,21 @@ body {
 
     .slide-content {
       flex: 0 0 160px;
+
+      h1 {
+        font-size: 24px;
+      }
+
+      p {
+        font-size: 14px;
+        line-height: 21px;
+        width: 85%;
+      }
+
+      .onboarding-legal-notice {
+        font-size: 10px;
+        line-height: 16px;
+      }
     }
   }
 
@@ -287,10 +302,10 @@ body {
 
   #prev {
     margin-left: - ($slide-width-small / 2) - ($next-prev-size / 2);
-}
+  }
 
   #next,
-  #done, {
+  #done {
     margin-left: ($slide-width-small / 2) - ($next-prev-size / 2);
   }
 }
