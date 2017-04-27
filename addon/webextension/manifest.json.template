@@ -21,8 +21,8 @@
   },
   "browser_action": {
     "default_icon": {
-      "19": "icons/icon-19.png",
-      "38": "icons/icon-38.png"
+      "16": "icons/icon-16.svg",
+      "32": "icons/icon-32.svg"
     },
     "default_title": "__MSG_contextMenuLabel__",
     "browser_style": false
