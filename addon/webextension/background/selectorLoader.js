@@ -49,6 +49,9 @@ this.selectorLoader = (function() {
   };
 
   exports.testIfLoaded = function(tabId) {
+    if (loadingTabs.has(tabId)) {
+      return true;
+    }
     return browser.tabs.executeScript(tabId, {
       code: "!!this.selectorLoader",
       runAt: "document_start"
@@ -57,11 +60,23 @@ this.selectorLoader = (function() {
     });
   };
 
+  let loadingTabs = new Set();
+
   exports.loadModules = function(tabId, hasSeenOnboarding) {
+    let promise;
+    loadingTabs.add(tabId);
     if (hasSeenOnboarding) {
-      return executeModules(tabId, standardScripts.concat(selectorScripts));
+      promise = executeModules(tabId, standardScripts.concat(selectorScripts));
+    } else {
+      promise = executeModules(tabId, standardScripts.concat(onboardingScripts).concat(selectorScripts));
     }
-    return executeModules(tabId, standardScripts.concat(onboardingScripts).concat(selectorScripts));
+    return promise.then((result) => {
+      loadingTabs.delete(tabId);
+      return result;
+    }, (error) => {
+      loadingTabs.delete(tabId);
+      throw error;
+    });
   };
 
   function executeModules(tabId, scripts) {
