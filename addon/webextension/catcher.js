@@ -1,14 +1,20 @@
-window.catcher = (function () {
+"use strict";
+
+var global = this;
+
+this.catcher = (function() {
   let exports = {};
 
   let handler;
 
   let queue = [];
 
-  exports.unhandled = function (error, info) {
-    console.error("Unhandled error:", error, info);
+  let log = global.log;
+
+  exports.unhandled = function(error, info) {
+    log.error("Unhandled error:", error, info);
     let e = makeError(error, info);
-    if (! handler) {
+    if (!handler) {
       queue.push(e);
     } else {
       handler(e);
@@ -24,7 +30,7 @@ window.catcher = (function () {
       result = {
         fromMakeError: true,
         name: exc.name || "ERROR",
-        message: exc+"",
+        message: String(exc),
         stack: exc.stack
       };
       for (let attr in exc) {
@@ -32,7 +38,7 @@ window.catcher = (function () {
       }
     }
     if (info) {
-      for (let attr in info) {
+      for (let attr of Object.keys(info)) {
         result[attr] = info[attr];
       }
     }
@@ -41,27 +47,35 @@ window.catcher = (function () {
 
   /** Wrap the function, and if it raises any exceptions then call unhandled() */
   exports.watchFunction = function watchFunction(func) {
-    return function () {
-      var result;
+    return function() {
       try {
-        result = func.apply(this, arguments);
+        return func.apply(this, arguments);
       } catch (e) {
         exports.unhandled(e);
         throw e;
       }
-      return result;
     };
   };
 
-  exports.watchPromise = function watchPromise(promise) {
+  exports.watchPromise = function watchPromise(promise, quiet) {
     return promise.catch((e) => {
-      console.error("------Error in promise:", e+"");
-      console.error(e.stack);
-      exports.unhandled(makeError(e));
+      if (quiet) {
+        log.debug("------Error in promise:", e);
+        log.debug(e.stack);
+      } else {
+        log.error("------Error in promise:", e);
+        log.error(e.stack);
+        exports.unhandled(makeError(e));
+      }
+      throw e;
     });
   };
 
-  exports.registerHandler = function (h) {
+  exports.registerHandler = function(h) {
+    if (handler) {
+      log.error("registerHandler called after handler was already registered");
+      return;
+    }
     handler = h;
     for (let error of queue) {
       handler(error);

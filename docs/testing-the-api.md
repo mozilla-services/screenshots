@@ -31,8 +31,6 @@ Body parameters (form encoded), `deviceId`, `secret`, `nickname` (optional), `av
 
 Returns 401 if user already exists.  Returns 200 on success, and sets session authentication cookie.
 
-(Skipping `POST /api/update`)
-
 `POST /api/login`
 
 Body parameters (form encoded): `deviceId`, `secret`, `deviceInfo` (JSON string)

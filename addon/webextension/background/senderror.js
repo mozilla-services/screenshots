@@ -1,7 +1,14 @@
-/* globals browser, communication, makeUuid, Raven, catcher, auth */
+/* globals analytics, browser, communication, makeUuid, Raven, catcher, auth, log */
 
-window.errorpopup = (function () {
+"use strict";
+
+this.senderror = (function() {
   let exports = {};
+
+  let manifest = browser.runtime.getManifest();
+
+  // Do not show an error more than every ERROR_TIME_LIMIT milliseconds:
+  const ERROR_TIME_LIMIT = 3000;
 
   let messages = {
     REQUEST_ERROR: {
@@ -18,7 +25,7 @@ window.errorpopup = (function () {
     },
     LOGIN_CONNECTION_ERROR: {
       title: browser.i18n.getMessage("connectionErrorTitle"),
-      info: browser.i18n.getMessage("loginConnectionErrorDetails")
+      info: browser.i18n.getMessage("connectionErrorDetails")
     },
     UNSHOOTABLE_PAGE: {
       title: browser.i18n.getMessage("unshootablePageErrorTitle"),
@@ -41,14 +48,20 @@ window.errorpopup = (function () {
     catcher.unhandled(error);
   });
 
-  exports.showError = function (error) {
+  let lastErrorTime;
+
+  exports.showError = function(error) {
+    if (lastErrorTime && (Date.now() - lastErrorTime) < ERROR_TIME_LIMIT) {
+      return;
+    }
+    lastErrorTime = Date.now();
     let id = makeUuid();
     let popupMessage = error.popupMessage || "generic";
-    if (! messages[popupMessage]) {
+    if (!messages[popupMessage]) {
       popupMessage = "generic";
     }
     let title = messages[popupMessage].title;
-    let message = messages[popupMessage].message || '';
+    let message = messages[popupMessage].info || '';
     let showMessage = messages[popupMessage].showMessage;
     if (error.message && showMessage) {
       if (message) {
@@ -65,37 +78,41 @@ window.errorpopup = (function () {
     });
   };
 
-  exports.reportError = function (e) {
-    let dsn = auth.getSentryPublicDSN();
-    if (! dsn) {
-      console.warn("Error:", e);
+  exports.reportError = function(e) {
+    if (!analytics.getTelemetryPrefSync()) {
+      log.error("Telemetry disabled. Not sending critical error:", e);
       return;
     }
-    if (! Raven.isSetup()) {
+    let dsn = auth.getSentryPublicDSN();
+    if (!dsn) {
+      log.warn("Error:", e);
+      return;
+    }
+    if (!Raven.isSetup()) {
       Raven.config(dsn).install();
     }
     let exception = new Error(e.message);
     exception.stack = e.multilineStack || e.stack || undefined;
     let rest = {};
     for (let attr in e) {
-      if (! ["name", "message", "stack", "multilineStack", "popupMessage", "version", "sentryPublicDSN", "help"].includes(attr)) {
+      if (!["name", "message", "stack", "multilineStack", "popupMessage", "version", "sentryPublicDSN", "help"].includes(attr)) {
         rest[attr] = e[attr];
       }
     }
     rest.stack = e.multilineStack || e.stack;
     Raven.captureException(exception, {
       logger: 'addon',
-      tags: {version: e.version, category: e.popupMessage},
+      tags: {version: manifest.version, category: e.popupMessage},
       message: exception.message,
       extra: rest
     });
   };
 
   catcher.registerHandler((errorObj) => {
-    exports.showError(errorObj);
-    if (! errorObj.noPopup) {
-      exports.reportError(errorObj);
+    if (!errorObj.noPopup) {
+      exports.showError(errorObj);
     }
+    exports.reportError(errorObj);
   });
 
   return exports;

@@ -1,7 +1,9 @@
-/* globals browser */
-/* globals main, makeUuid, deviceInfo, analytics, catcher, defaultSentryDsn, communication */
+/* globals browser, log */
+/* globals main, makeUuid, deviceInfo, analytics, catcher, buildSettings, communication */
 
-window.auth = (function () {
+"use strict";
+
+this.auth = (function() {
   let exports = {};
 
   let registrationInfo;
@@ -18,19 +20,19 @@ window.auth = (function () {
       registrationInfo = result.registrationInfo;
     } else {
       registrationInfo = generateRegistrationInfo();
-      console.info("Generating new device authentication ID", registrationInfo);
+      log.info("Generating new device authentication ID", registrationInfo);
       return browser.storage.local.set({registrationInfo});
     }
   }));
 
-  exports.getDeviceId = function () {
+  exports.getDeviceId = function() {
     return registrationInfo && registrationInfo.deviceId;
   };
 
   function generateRegistrationInfo() {
     let info = {
-      deviceId: "anon" + makeUuid() + "",
-      secret: makeUuid()+"",
+      deviceId: `anon${makeUuid()}`,
+      secret: makeUuid(),
       registered: false
     };
     return info;
@@ -39,22 +41,32 @@ window.auth = (function () {
   function register() {
     return new Promise((resolve, reject) => {
       let registerUrl = main.getBackend() + "/api/register";
+      // TODO: replace xhr with Fetch #2261
       let req = new XMLHttpRequest();
       req.open("POST", registerUrl);
-      req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+      req.setRequestHeader("content-type", "application/json");
       req.onload = catcher.watchFunction(() => {
         if (req.status == 200) {
-          console.info("Registered login");
+          log.info("Registered login");
           initialized = true;
           saveAuthInfo(JSON.parse(req.responseText));
           resolve(true);
           analytics.sendEvent("registered");
         } else {
-          console.warn("Error in response:", req.responseText);
-          reject(new Error("Bad response: " + req.status));
+          analytics.sendEvent("register-failed", `bad-response-${req.status}`);
+          log.warn("Error in response:", req.responseText);
+          let exc = new Error("Bad response: " + req.status);
+          exc.popupMessage = "LOGIN_ERROR";
+          reject(exc);
         }
       });
-      req.send(uriEncode({
+      req.onerror = catcher.watchFunction(() => {
+        analytics.sendEvent("register-failed", "connection-error");
+        let exc = new Error("Error contacting server");
+        exc.popupMessage = "LOGIN_CONNECTION_ERROR";
+        reject(exc);
+      });
+      req.send(JSON.stringify({
         deviceId: registrationInfo.deviceId,
         secret: registrationInfo.secret,
         deviceInfo: JSON.stringify(deviceInfo())
@@ -66,6 +78,7 @@ window.auth = (function () {
     let { ownershipCheck, noRegister } = options || {};
     return new Promise((resolve, reject) => {
       let loginUrl = main.getBackend() + "/api/login";
+      // TODO: replace xhr with Fetch #2261
       let req = new XMLHttpRequest();
       req.open("POST", loginUrl);
       req.onload = catcher.watchFunction(() => {
@@ -76,16 +89,20 @@ window.auth = (function () {
             resolve(register());
           }
         } else if (req.status >= 300) {
-          console.warn("Error in response:", req.responseText);
-          reject(new Error("Could not log in: " + req.status));
+          log.warn("Error in response:", req.responseText);
+          let exc = new Error("Could not log in: " + req.status);
+          exc.popupMessage = "LOGIN_ERROR";
+          analytics.sendEvent("login-failed", `bad-response-${req.status}`);
+          reject(exc);
         } else if (req.status === 0) {
           let error = new Error("Could not log in, server unavailable");
-          analytics.sendEvent("login-failed");
+          error.popupMessage = "LOGIN_CONNECTION_ERROR";
+          analytics.sendEvent("login-failed", "connection-error");
           reject(error);
         } else {
           initialized = true;
           let jsonResponse = JSON.parse(req.responseText);
-          console.info("Screenshots logged in");
+          log.info("Screenshots logged in");
           analytics.sendEvent("login");
           saveAuthInfo(jsonResponse);
           if (ownershipCheck) {
@@ -96,13 +113,14 @@ window.auth = (function () {
         }
       });
       req.onerror = catcher.watchFunction(() => {
+        analytics.sendEvent("login-failed", "connection-error");
         let exc = new Error("Connection failed");
         exc.url = loginUrl;
         exc.popupMessage = "CONNECTION_ERROR";
         reject(exc);
       });
-      req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-      req.send(uriEncode({
+      req.setRequestHeader("content-type", "application/json");
+      req.send(JSON.stringify({
         deviceId: registrationInfo.deviceId,
         secret: registrationInfo.secret,
         deviceInfo: JSON.stringify(deviceInfo()),
@@ -128,49 +146,38 @@ window.auth = (function () {
     }
   }
 
-  function uriEncode(obj) {
-    let s = [];
-    for (let key in obj) {
-      if (obj[key] !== undefined) {
-        s.push(`${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`);
-      }
-    }
-    return s.join("&");
-  }
-
-  exports.getDeviceId = function () {
+  exports.getDeviceId = function() {
     return registrationInfo.deviceId;
   };
 
-  exports.authHeaders = function () {
+  exports.authHeaders = function() {
     let initPromise = Promise.resolve();
-    if (! initialized) {
+    if (!initialized) {
       initPromise = login();
     }
     return initPromise.then(() => {
       if (authHeader) {
         return {"x-screenshots-auth": authHeader};
-      } else {
-        console.warn("No auth header available");
-        return {};
       }
+      log.warn("No auth header available");
+      return {};
     });
   };
 
-  exports.getSentryPublicDSN = function () {
-    return sentryPublicDSN || defaultSentryDsn;
+  exports.getSentryPublicDSN = function() {
+    return sentryPublicDSN || buildSettings.defaultSentryDsn;
   };
 
-  exports.getAbTests = function () {
+  exports.getAbTests = function() {
     return abTests;
   };
 
-  exports.isRegistered = function () {
+  exports.isRegistered = function() {
     return registrationInfo.registered;
   };
 
-  exports.setDeviceInfoFromOldAddon = function (newDeviceInfo) {
-    if (! (newDeviceInfo.deviceId && newDeviceInfo.secret)) {
+  exports.setDeviceInfoFromOldAddon = function(newDeviceInfo) {
+    if (!(newDeviceInfo.deviceId && newDeviceInfo.secret)) {
       throw new Error("Bad deviceInfo");
     }
     if (registrationInfo.deviceId === newDeviceInfo.deviceId &&
@@ -178,30 +185,25 @@ window.auth = (function () {
       // Probably we already imported the information
       return Promise.resolve(false);
     }
-    let newInfo = {
+    registrationInfo = {
       deviceId: newDeviceInfo.deviceId,
       secret: newDeviceInfo.secret,
       registered: true
     };
     initialized = false;
-    return browser.storage.local.set({registrationInfo: newInfo}).then(() => {
+    return browser.storage.local.set({registrationInfo}).then(() => {
       return true;
     });
   };
 
   communication.register("getAuthInfo", (sender, ownershipCheck) => {
     let info = registrationInfo;
-    let done = Promise.resolve();
     if (info.registered) {
-      done = login({ownershipCheck}).then((result) => {
-        if (result && result.isOwner) {
-          info.isOwner = true;
-        }
+      return login({ownershipCheck}).then((result) => {
+        return {isOwner: result && result.isOwner, deviceId: registrationInfo.deviceId};
       });
     }
-    return done.then(() => {
-      return info;
-    });
+    return Promise.resolve(info);
   });
 
   return exports;

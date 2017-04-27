@@ -19,6 +19,7 @@ rules:
   no-important: 1
   no-qualifying-elements: 0
   no-url-protocols: 0
+  placeholder-in-extend: 0
   property-sort-order: 0
   quotes: [1, {style: double}]
   single-line-per-selector: 2

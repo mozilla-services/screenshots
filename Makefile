@@ -88,17 +88,7 @@ build/%.html: %.html
 	cp $< $@
 
 .PHONY: addon
-addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/shot.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/defaultSentryDsn.js
-
-EXPORT_MC_LOCATION := $(shell echo $${EXPORT_MC_LOCATION-../gecko})
-GIT_EXPORT_DIR := $(EXPORT_MC_LOCATION)/browser/extensions/screenshots
-DIST_EXPORT_DIR := addon
-
-ifeq ($(shell uname -s),Linux)
-  FIND_COMMAND := find $(GIT_EXPORT_DIR) -regextype posix-extended
-else
-  FIND_COMMAND := find -E $(GIT_EXPORT_DIR)
-endif
+addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/shot.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/onboardingCss.js addon/webextension/build/onboardingHtml.js addon/webextension/build/buildSettings.js
 
 $(VENV): bin/require.pip
 	virtualenv -p python2.7 $(VENV)
@@ -108,23 +98,19 @@ $(VENV): bin/require.pip
 flake8: $(VENV)
 	$(VENV)/bin/flake8 .
 
-.PHONY: export_addon
-export_addon: addon
-	$(FIND_COMMAND) -type f ! -regex \
-		'.*/(moz.build|README.txt|.gitignore|manifest.ini)' -delete
-	$(RSYNC) $(DIST_EXPORT_DIR)/* $(GIT_EXPORT_DIR)
-
-	@echo "*****"
-		@echo "You will need to manually move/add/remove files to create the commit."
-	@echo "*****"
-
 .PHONY: zip
 zip: addon
 	# FIXME: should remove web-ext-artifacts/*.zip first
 	./node_modules/.bin/web-ext build --source-dir addon/webextension/
 	mv web-ext-artifacts/firefox_screenshots*.zip build/screenshots.zip
 	# We'll try to remove this directory, but it's no big deal if we can't:
-	@rmdir web-ext-artifacts || true
+	rmdir web-ext-artifacts || true
+
+.PHONY: bootstrap_zip
+bootstrap_zip: addon
+	@rm -f build/screenshots-bootstrap.zip
+	cd addon && zip -rq ../build/screenshots-bootstrap.zip .
+	# build/screenshots-bootstrap.js created
 
 .PHONY: signed_xpi
 signed_xpi: addon
@@ -134,9 +120,9 @@ signed_xpi: addon
 
 .PHONY: addon_locales
 addon_locales:
-	./node_modules/.bin/pontoon-to-webext --dest addon/webextension/_locales
+	./node_modules/.bin/pontoon-to-webext --dest addon/webextension/_locales > /dev/null
 
-addon/install.rdf: addon/install.rdf.template
+addon/install.rdf: addon/install.rdf.template package.json
 	./bin/build-scripts/update_manifest.py $< $@
 
 addon/webextension/manifest.json: addon/webextension/manifest.json.template build/.backend.txt package.json
@@ -149,6 +135,14 @@ addon/webextension/build/shot.js: shared/shot.js
 addon/webextension/build/inlineSelectionCss.js: build/server/static/css/inline-selection.css
 	@mkdir -p $(@D)
 	./bin/build-scripts/css_to_js.py inlineSelectionCss $< > $@
+
+addon/webextension/build/onboardingCss.js: build/server/static/css/onboarding.css
+	@mkdir -p $(@D)
+	./bin/build-scripts/css_to_js.py onboardingCss $< > $@
+
+addon/webextension/build/onboardingHtml.js: addon/webextension/onboarding/slides.html
+	@mkdir -p $(@D)
+	./bin/build-scripts/css_to_js.py onboardingHtml $< > $@
 
 addon/webextension/build/raven.js: $(raven_source)
 	@mkdir -p $(@D)
@@ -224,14 +218,13 @@ set_backend:
 	@echo "Setting backend to ${SCREENSHOTS_BACKEND}"
 	./bin/build-scripts/set_file build/.backend.txt $(SCREENSHOTS_BACKEND)
 
-addon/webextension/build/defaultSentryDsn.js: set_sentry
+addon/webextension/build/buildSettings.js: set_build_settings
 
-.PHONY: set_sentry
+.PHONY: set_build_settings
 set_sentry:
 	@if [[ -z "$(SCREENSHOTS_SENTRY)" ]] ; then echo "No default Sentry" ; fi
 	@if [[ -n "$(SCREENSHOTS_SENTRY)" ]] ; then echo "Setting default Sentry ${SCREENSHOTS_SENTRY}" ; fi
-	./bin/build-scripts/set_file addon/webextension/build/defaultSentryDsn.js "window.defaultSentryDsn = '${SCREENSHOTS_SENTRY}';null;"
-
+	./bin/build-scripts/substitute-env.js addon/webextension/buildSettings.js.template | ./bin/build-scripts/set_file addon/webextension/build/buildSettings.js -
 
 build/.npm-install.log: package.json
 	# Essentially .npm-install.log is just a timestamp showing the last time we ran
@@ -269,6 +262,8 @@ help:
 	@echo "    rm -rf build/ addon/webextension/build"
 	@echo "  make zip"
 	@echo "    make a zip of the webextension in build/screenshots.zip"
+	@echo "  make signed_xpi"
+	@echo "    make a signed xpi in build/screenshots.xpi"
 	@echo "See also:"
 	@echo "  bin/run-addon"
 	@echo "  bin/run-server"

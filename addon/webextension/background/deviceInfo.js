@@ -1,6 +1,8 @@
 /* globals browser, catcher */
 
-window.deviceInfo = (function () {
+"use strict";
+
+this.deviceInfo = (function() {
   let manifest = browser.runtime.getManifest();
 
   let platformInfo = {};
@@ -21,8 +23,8 @@ window.deviceInfo = (function () {
       architecture: platformInfo.arch,
       version: firefoxVersion || chromeVersion,
       // These don't seem to apply to Chrome:
-      //build: system.build,
-      //platformVersion: system.platformVersion,
+      // build: system.build,
+      // platformVersion: system.platformVersion,
       userAgent: navigator.userAgent,
       appVendor: appName,
       appName

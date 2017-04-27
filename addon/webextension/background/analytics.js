@@ -1,22 +1,24 @@
-/* globals main, auth, catcher, deviceInfo, communication */
+/* globals main, auth, catcher, deviceInfo, communication, log */
 
-window.analytics = (function () {
+"use strict";
+
+this.analytics = (function() {
   let exports = {};
 
   let telemetryPrefKnown = false;
   let telemetryPref;
 
-  exports.sendEvent = function (action, label, options) {
+  exports.sendEvent = function(action, label, options) {
     let eventCategory = "addon";
-    if (! telemetryPrefKnown) {
-      console.warn("sendEvent called before we were able to refresh");
+    if (!telemetryPrefKnown) {
+      log.warn("sendEvent called before we were able to refresh");
       return Promise.resolve();
     }
-    if (! telemetryPref) {
-      console.info(`Cancelled sendEvent ${eventCategory}/${action}/${label || 'none'} ${JSON.stringify(options)}`);
+    if (!telemetryPref) {
+      log.info(`Cancelled sendEvent ${eventCategory}/${action}/${label || 'none'} ${JSON.stringify(options)}`);
       return Promise.resolve();
     }
-    if (typeof label == "object" && (! options)) {
+    if (typeof label == "object" && (!options)) {
       options = label;
       label = undefined;
     }
@@ -38,12 +40,12 @@ window.analytics = (function () {
         }
       });
       options.applicationName = di.appName;
-      options.applicationVersion = di.version;
+      options.applicationVersion = di.addonVersion;
       let abTests = auth.getAbTests();
-      for (let testName in abTests) {
-        options[abTests[testName].gaField] = abTests[testName].value;
+      for (let [gaField, value] of Object.entries(abTests)) {
+        options[gaField] = value;
       }
-      console.info(`sendEvent ${eventCategory}/${action}/${label || 'none'} ${JSON.stringify(options)}`);
+      log.info(`sendEvent ${eventCategory}/${action}/${label || 'none'} ${JSON.stringify(options)}`);
       req.send(JSON.stringify({
         deviceId: auth.getDeviceId(),
         event: eventCategory,
@@ -54,7 +56,7 @@ window.analytics = (function () {
     });
   };
 
-  exports.refreshTelemetryPref = function () {
+  exports.refreshTelemetryPref = function() {
     return communication.sendToBootstrap("getTelemetryPref").then((result) => {
       telemetryPrefKnown = true;
       if (result === communication.NO_BOOTSTRAP) {
@@ -68,6 +70,11 @@ window.analytics = (function () {
       telemetryPref = false;
       throw error;
     });
+  };
+
+  exports.getTelemetryPrefSync = function() {
+    catcher.watchPromise(exports.refreshTelemetryPref());
+    return !!telemetryPref;
   };
 
   return exports;
