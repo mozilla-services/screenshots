@@ -254,7 +254,8 @@ this.main = (function() {
     const blob = new Blob([data], {type: "image/png"})
     return browser.downloads.download({
       url: URL.createObjectURL(blob),
-      filename: info.filename
+      filename: info.filename,
+      saveAs: true
     });
   });
 
