@@ -1,6 +1,8 @@
 /* globals communication, shot, main, auth, catcher, analytics, browser */
 
-window.takeshot = (function () {
+"use strict";
+
+this.takeshot = (function() {
   let exports = {};
   const Shot = shot.AbstractShot;
   const { sendEvent } = analytics;
@@ -8,9 +10,10 @@ window.takeshot = (function () {
   communication.register("takeShot", catcher.watchFunction((sender, options) => {
     let { captureType, captureText, scroll, selectedPos, shotId, shot } = options;
     shot = new Shot(main.getBackend(), shotId, shot);
+    shot.favicon = sender.tab.favIconUrl;
     let capturePromise = Promise.resolve();
     let openedTab;
-    if (! shot.clipNames().length) {
+    if (!shot.clipNames().length) {
       // canvas.drawWindow isn't available, so we fall back to captureVisibleTab
       capturePromise = screenshotPage(selectedPos, scroll).then((dataUrl) => {
         shot.addClip({
@@ -30,7 +33,7 @@ window.takeshot = (function () {
     }
     let shotAbTests = {};
     let abTests = auth.getAbTests();
-    for (let testName in abTests) {
+    for (let testName of Object.keys(abTests)) {
       if (abTests[testName].shotField) {
         shotAbTests[testName] = abTests[testName].value;
       }
@@ -47,6 +50,9 @@ window.takeshot = (function () {
       return browser.tabs.update(openedTab.id, {url: shot.viewUrl});
     }).then(() => {
       return shot.viewUrl;
+    }).catch((error) => {
+      browser.tabs.remove(openedTab.id);
+      throw error;
     }));
   }));
 
@@ -95,16 +101,15 @@ window.takeshot = (function () {
     return auth.authHeaders().then((headers) => {
       headers["content-type"] = "application/json";
       let body = JSON.stringify(shot.asJson());
-      let req = new Request(shot.jsonUrl, {
+      sendEvent("upload", "started", {eventValue: Math.floor(body.length / 1000)});
+      return fetch(shot.jsonUrl, {
         method: "PUT",
         mode: "cors",
         headers,
         body
       });
-      sendEvent("upload", "started", {eventValue: Math.floor(body.length / 1000)});
-      return fetch(req);
     }).then((resp) => {
-      if (! resp.ok) {
+      if (!resp.ok) {
         sendEvent("upload-failed", `status-${resp.status}`);
         let exc = new Error(`Response failed with status ${resp.status}`);
         exc.popupMessage = "REQUEST_ERROR";
@@ -115,6 +120,7 @@ window.takeshot = (function () {
     }, (error) => {
       // FIXME: I'm not sure what exceptions we can expect
       sendEvent("upload-failed", "connection");
+      error.popupMessage = "CONNECTION_ERROR";
       throw error;
     });
   }

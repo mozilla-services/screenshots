@@ -47,7 +47,7 @@ while True:
         now_timestamp += 1
     else:
         break
-backend = open("build/.backend.txt").read()
+backend = open("build/.backend.txt").read().strip()
 
 template = template.replace("__VERSION__", version)
 # Some places we use the port:

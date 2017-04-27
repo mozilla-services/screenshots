@@ -6,14 +6,14 @@ machine:
     RDS_USERNAME: ubuntu
     LOCALHOST_SSL: false
     DISPLAY: ":99.0"
-    PATH: "/home/ubuntu/pageshot/firefox:$PATH"
+    PATH: "/home/ubuntu/screenshots/firefox:$PATH"
 
 dependencies:
   pre:
-    # we want firefox nightly in order to install an unsigned pageshot addon
-    - pip install mozdownload mozinstall
-    - mozdownload --version latest --type daily --destination firefox.tar.bz2
-    - mozinstall firefox.tar.bz2
+    # we want firefox nightly in order to install an unsigned screenshots addon
+    - pip install requests
+    - npm i -g get-firefox
+    - get-firefox --branch nightly --platform linux --extract --target /home/ubuntu/screenshots
     - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 -extension RANDR"
 
 compile:
@@ -23,12 +23,14 @@ compile:
 test:
   override:
     - firefox -v
-    # addon tests
-    - npm test
-    # server tests
+    # Start the server before all tests:
     - node -e 'require("babel-polyfill"); require("./build/server/server");':
         background: true
+    # addon tests
+    - FIREFOX_CHANNEL=NIGHTLY npm test
+    # server tests
     - ./bin/test-request put '{}'
+    - ./bin/load_test_exercise.py http://localhost:10080
 
   post:
     - bash <(curl -s https://codecov.io/bash)

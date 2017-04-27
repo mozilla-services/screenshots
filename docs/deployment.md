@@ -17,7 +17,7 @@ Softvision is our embedded QA team. Their main functions are to write test plans
 
 During the checkin before the end of the [current milestone](https://github.com/mozilla-services/screenshots/milestones), we will inform the team that we will be building a release against `master`.
 
-Note: we deploy the master branch to our *development environment*: [http://pageshot.dev.mozaws.net](https://pageshot.dev.mozaws.net)
+Note: we deploy the master branch to our *development environment*: [http://screenshots.dev.mozaws.net](https://screenshots.dev.mozaws.net)
 
 ## Generate Release Notes ##
 
@@ -35,7 +35,7 @@ This will happen on Friday after any style tweaks land.
 
 ## Push to Dev ##
 
-To update https://pageshot.dev.mozaws.net use:
+To update https://screenshots.dev.mozaws.net use:
 
 ```sh
 $ ./bin/release-version dev
@@ -43,11 +43,11 @@ $ ./bin/release-version dev
 
 Note you must set `$DOCKER_USERNAME`.  After it completes, follow the instructions to upload to Amazon.
 
-You can install the dev version of the add-on from https://pageshot.dev.mozaws.net/homepage/install-test-local.html
+You can install the dev version of the add-on from https://screenshots.dev.mozaws.net/homepage/install-test-local.html
 
 ## Push to Stage ##
 
-To update https://pageshot.stage.mozaws.net use:
+To update https://screenshots.stage.mozaws.net use:
 
 ```sh
 $ ./bin/release-version stage
@@ -55,7 +55,7 @@ $ ./bin/release-version stage
 
 After it completes the stage deployment will automatically be triggered.  See the `#screenshots` IRC channel for status updates.
 
-You can install the stage version of the add-on from https://pageshot.stage.mozaws.net/homepage/install-test-local.html
+You can install the stage version of the add-on from https://screenshots.stage.mozaws.net/homepage/install-test-local.html
 
 ## Test Stage ##
 
@@ -84,7 +84,7 @@ Once we are comfortable that the site has been tested, file a bugzilla bug to de
 Rebuild the XPI with:
 
 ```
-SCREENSHOTS_BACKEND=https://pageshot.net make signed_xpi
+SCREENSHOTS_BACKEND=https://screenshots.firefox.com make signed_xpi
 ```
 
 Send the XPI to Wil for deployment on the static site.
