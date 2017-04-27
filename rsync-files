@@ -49,4 +49,6 @@ rsync -rvalp \
   --include /static/css/partials/ \
   --exclude "/static/css/*" \
   --exclude "/static/*" \
+  --include /locales/en-US/ \
+  --exclude "/locales/*" \
   $SCREENSHOTS_LOCATION .
