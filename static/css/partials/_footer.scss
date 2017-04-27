@@ -1,66 +1,49 @@
 .footer {
-
-  @include respond-to('small') {
-    .legal-links {
-      @include flex-container(column, flex-start, stretch);
-    }
-
-    .responsive-wrapper {
-      width: 100%;
-    }
-
-    a {
-      margin-bottom: 5px;
-    }
-
-    .mozilla-logo {
-      margin-bottom: 10px;
-    }
+  @include respond-to("small") {
+    @include flex-container(column, space-between, flex-start);
   }
 
-  @include respond-to('medium') {
-    .legal-links {
-      @include flex-container(row, flex-end, flex-end);
-      height: 20px;
-    }
-  }
+  @include flex-container(row, space-between, center);
+  padding: $grid-unit * 1.5;
 
-  padding: $base-gutter;
 
-  .row-space-end {
-    @include respond-to('small') {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  }
 
   a {
-    font-size: 12px;
+    font-size: $grid-unit * .75;
+  }
+  
+  .legal-links {
+    @include respond-to("small") {
+      @include flex-container(column, space-between, stretch);
+    }
   }
 
   .legal-links a {
-    line-height: 12px;
-    margin-right: 16px;
+
+    @include respond-to("small") {
+      margin-top: $grid-unit * .25;
+    }
+
+    font-size: 12px;
+    margin-right: $grid-unit * .75;
   }
   
-  .inverse-color-scheme & a {
-    opacity: .5;
-  }
-
-  .default-color-scheme & a {
-    color: $light-grey;
-  }
-
   .mozilla-logo {
     background-image: url("../img/mozilla.svg");
     background-repeat: no-repeat;
-    background-size: auto 32px;
+    background-size: auto $grid-unit * 1.5;
     display: block;
-    height: 32px;
-    width: 120px;
+    height: $grid-unit * 1.5;
+    width: $grid-unit * 6;
   }
 
-  .default-color-scheme & .mozilla-logo {
-    filter: invert(50%);
+  .default-color-scheme & {
+    .mozilla-logo {
+      filter: invert(100%);
+    }
+
+    a {
+      color: $link-medium;
+    }
   }
 }

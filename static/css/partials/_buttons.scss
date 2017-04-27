@@ -2,7 +2,6 @@
   @include flex-container(row, center, center);
   border: 0;
   border-radius: $border-radius;
-  box-shadow: 0 0 0 1px $border-color inset;
   cursor: pointer;
   font-size: 16px;
   font-weight: 400;
@@ -13,7 +12,7 @@
   position: relative;
   text-align: center;
   text-decoration: none;
-  transition: background 150ms;
+  transition: background 150ms $bezier, border 150ms $bezier;
   user-select: none;
   white-space: nowrap;
 
@@ -24,42 +23,54 @@
   }
 
   &.tiny {
-    font-size: 12px;
-    height: 22px;
-    line-height: 12px;
-    padding: 2px 6px; 
+    font-size: 14px;
+    height: 26px;
+    border: 1px solid $light-border;
+
+    &:hover,
+    &:focus {
+      background: $light-hover;
+      border-color: $light-border-active;
+    }
+
+    &:active {
+      background: $light-active;
+      border-color: $light-border-active;
+    }
   }
 
   &.set-width--medium {
     max-width: 200px;
   }
 
-  &.inline {
-    display: inline-block;
+  &.block-button {
+  
+  @include respond-to("small") {
+    justify-content: flex-start;
+    padding: $grid-unit * .5;
+    font-size: 16px;
+    height: 72px;
+    flex: 1 0;
+    margin-right: 10px;
   }
 
-  &.block-button {
     @include flex-container(row, center, center);
+    box-sizing: border-box;
     border: none;
-    border-right: 1px solid rgba(#000, .1);
+    border-right: 1px solid $light-border;
     box-shadow: none;
     border-radius: 0;
-    height: 100%;
+    flex-shrink: 0;
+    font-size: 20px;
+    height: 100px;
     line-height: 100%;
-    padding: 0 20px;
-    margin-right: 20px;
-    flex: 0 0 155px;
-  }
 
-  .arrow-icon {
-    display: inline-block;
-    position: relative;
-    top: 1px;
-    flex: 0 0 18px;
-    height: 16px;
-    opacity: .6;
-    background-image: url(../img/arrow-page-right-16.svg);
-    background-position: right center;
-    background-repeat: no-repeat;
+    &:hover {
+      background: $light-hover;
+    }
+
+    &:active {
+      background: $light-active;
+    }
   }
 }
