@@ -1,3 +1,24 @@
+## Version 6.5.0
+
+* Pixel-snap-icon [7c804b4](https://github.com/mozilla-services/screenshots/commit/7c804b4)
+* Fix testIfLoaded (used in onboarding) so it can see when a load is in progress ([#2762](https://github.com/mozilla-services/screenshots/issues/2762)) [c521008](https://github.com/mozilla-services/screenshots/commit/c521008)
+* Update dependencies [290b047](https://github.com/mozilla-services/screenshots/commit/290b047)
+* Improve the mochitest to wait for the button to appear before starting. Also use the mochitest config from the mozilla plugin to save specifying globals. ([#2759](https://github.com/mozilla-services/screenshots/issues/2759))
+  * Correctly enable the mozilla plugin for ESLint [5c6733e](https://github.com/mozilla-services/screenshots/commit/5c6733e)
+* disable selection when mouseup is in the scroll area ([#2726](https://github.com/mozilla-services/screenshots/issues/2726)). Fixes [#2698](https://github.com/mozilla-services/screenshots/issues/2698) [9392fe3](https://github.com/mozilla-services/screenshots/commit/9392fe3)
+* don't cancel the shot process when the upload fails. Catch the particular request and connection errors that should not result in closing the selection, and do not tear down the selector in that case. Fixes [#2690](https://github.com/mozilla-services/screenshots/issues/2690) [88aae2d](https://github.com/mozilla-services/screenshots/commit/88aae2d)
+* Pass through .popupMessage and .errorCode through to selector when there's a callBackground error [481d149](https://github.com/mozilla-services/screenshots/commit/481d149)
+* Pass addon version through to Sentry [ab35db8](https://github.com/mozilla-services/screenshots/commit/ab35db8)
+* Add .popupMessage to connection failures in `takeshot`. Instantiate `fetch()` with two arguments to work around [Raven bug](https://github.com/getsentry/raven-js/issues/924). Fixes [#2751](https://github.com/mozilla-services/screenshots/issues/2751) [5ae1a43](https://github.com/mozilla-services/screenshots/commit/5ae1a43)
+* Fix TEST_FAIL_SOMETIMES, which now needs an explicit failed status [6db59b2](https://github.com/mozilla-services/screenshots/commit/6db59b2)
+* avoid error popups when selector is torn down during save. Also bind several modules so that catcher works even after `selectorLoader.unloadModules` has been called. Note that an error is still signaled when there is a premature teardown, but only to the console. Fixes [#2652](https://github.com/mozilla-services/screenshots/issues/2652) [002b3d5](https://github.com/mozilla-services/screenshots/commit/002b3d5)
+* Fix: Scales onboarding slides to fit smaller windows [2b97d18](https://github.com/mozilla-services/screenshots/commit/2b97d18)
+* Use proxy url for favicon on shot page [76d0205](https://github.com/mozilla-services/screenshots/commit/76d0205)
+* Added csrf token to /shots route. Fixes [#2730](https://github.com/mozilla-services/screenshots/issues/2730) [2c8eb39](https://github.com/mozilla-services/screenshots/commit/2c8eb39)
+* Major server style update [5f3a7fc](https://github.com/mozilla-services/screenshots/commit/5f3a7fc)
+* Added DMCA notice to shot page [3b694c9](https://github.com/mozilla-services/screenshots/commit/3b694c9) [ae8525e](https://github.com/mozilla-services/screenshots/commit/ae8525e)
+* Force onboarding when you visit `/#hello`. Fixes [#2643](https://github.com/mozilla-services/screenshots/issues/2643) [48b37fe](https://github.com/mozilla-services/screenshots/commit/48b37fe)
+
 ## Version 6.4.0
 
 * Improve Selenium tests For CircleCI:
