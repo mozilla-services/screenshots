@@ -53,7 +53,7 @@
 }
 
 .column-center {
-  @include flex-container(column, center, stretch);
+  @include flex-container(column, center, center);
 }
 
 

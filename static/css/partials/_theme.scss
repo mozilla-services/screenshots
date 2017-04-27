@@ -27,6 +27,20 @@
   }
 }
 
+.alt-color-scheme {
+  background: $alt-dark;
+  color: $light-default;
+
+  h1 {
+    color: $alt-dark-title;
+  }
+
+  a {
+    color: $link-light;
+    text-decoration: underline;
+  }
+}
+
 .button {
   &.primary {
     background-color: $link-blue;
@@ -53,6 +67,11 @@
     &:hover {
       background-color: $light-active
     }
+  }
+
+  &.transparent {
+    background-color: transparent;
+    color: $dark-default;
   }
 
   &.warning {

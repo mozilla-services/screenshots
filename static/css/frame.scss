@@ -14,7 +14,7 @@
 .alt-notification {
   @include flex-container(row, flex-start, center);
   min-height: 55px;
-  padding: 0 20px;
+  padding: 5px 20px;
 }
 
 .shot-main-actions {
@@ -38,9 +38,22 @@
 
   flex: 1;
   position: relative;
+
+  .expire-widget {
+    @include respond-to("small") {
+      display: none;
+    }
+  }
 }
 
 .shot-alt-actions {
+  @include respond-to("small") {
+    padding-right: $grid-unit * 0.5;
+
+    .download-text {
+      display: none;
+    }
+  }
 
   @include flex-container(row, flex-end, center);
   padding-right: $grid-unit * 1.5;
@@ -58,6 +71,14 @@
 }
 
 .back-to-index {
+  @include respond-to("small") {
+    background-position: left -5px center;
+    background-repeat: no-repeat;
+    background-size: 36px auto;
+    height: 32px;
+    padding-left: 28px;
+  }
+
   @include flex-container(row, flex-start, center);
   background-image: url("../img/shots.svg");
   background-position: left center;
@@ -69,6 +90,14 @@
 }
 
 .back-to-home {
+  @include respond-to("small") {
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: 24px auto;
+    height: 32px;
+    padding-left: 30px;
+  }
+
   background-image: url("../img/new-scissors-icon.svg");
   background-position: left bottom;
   background-repeat: no-repeat;
@@ -339,8 +368,8 @@
     background-image: url("../img/share-hover.svg");
   }
 
-  &.active,
-  &:active {
+  &:active,
+  &.active {
     background-image: url("../img/share-active.svg");
   }
 }

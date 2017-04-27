@@ -1,7 +1,0 @@
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
-<svg width="34px" height="34px" viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg">
-  <circle stroke-opacity="0.15" stroke="#000000" fill="#fcfcfc" cx="17" cy="17" r="16"/>
-  <path fill="#4d4d4d" d="M24.0022027,23.011008 L23.011008,24.0022027 L17.0022027,17.9933974 L10.9933974,24.0022027 L10.0022027,23.011008 L16.011008,17.0022027 L16.0022027,16.9933974 L16.011008,16.9845922 L10.0154078,10.988992 L11.0066026,9.9977973 L17.0022027,15.9933974 L22.9978028,9.9977973 L23.9889976,10.988992 L17.9845922,16.9933974 L24.0022027,23.011008 Z"/>
-</svg>

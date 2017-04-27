@@ -4,6 +4,7 @@ const reactruntime = require("../../reactruntime");
 const { Footer } = require("../../footer-view.js");
 const React = require("react");
 const ReactDOM = require("react-dom");
+const { ShareButton } = require("../../share-buttons");
 const Masonry = require("react-masonry-component");
 
 class Head extends React.Component {
@@ -28,19 +29,6 @@ class Body extends React.Component {
   }
 
   render() {
-    let children = [];
-    for (let shot of this.props.shots) {
-      children.push(this.renderShot(shot));
-    }
-    if (children.length === 0) {
-      if (!this.props.hasDeviceId) {
-        children.push(this.renderNoDeviceId());
-      } else if (this.props.defaultSearch) {
-        children.push(this.renderNoSearchResults());
-      } else {
-        children.push(this.renderNoShots());
-      }
-    }
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <div className="column-space full-height default-color-scheme">
@@ -49,11 +37,11 @@ class Body extends React.Component {
             <form onSubmit={ this.onSubmitForm.bind(this) }>
               <span className="search-label" />
               <input type="search" id="search" ref="search" maxLength="100" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />
-              <button title="search"></button>
+              <div className="clear-search" title="clear search" onClick={this.onClearSearch.bind(this)}></div>
             </form>
           </div>
           <div id="shot-index" className="flex-1">
-            <Masonry onLayoutComplete={() => this.handleLayoutComplete()}>{children}</Masonry>
+            { this.renderShots() }
           </div>
           <Footer forUrl="shots" {...this.props} />
         </div>
@@ -61,36 +49,62 @@ class Body extends React.Component {
     );
   }
 
+  renderShots() {
+    let children = [];
+    for (let shot of this.props.shots) {
+      children.push(this.renderShot(shot));
+    }
+
+    if (children.length === 0) {
+      if (!this.props.hasDeviceId) {
+        children.push(this.renderNoDeviceId());
+      } else if (this.props.defaultSearch) {
+        children.push(this.renderNoSearchResults());
+      } else {
+        children.push(this.renderNoShots());
+      }
+    } else {
+      return (
+        <div className="masonry-wrapper">
+          <Masonry onLayoutComplete={() => this.handleLayoutComplete()}>
+            {children}
+          </Masonry>
+        </div>
+      )
+    }
+    return children;
+  }
+
   handleLayoutComplete() {
-    const myShots = document.querySelector('#shot-index');
-    myShots.style.opacity = 1;
+    const masonryWrapper = document.querySelector('.masonry-wrapper');
+    masonryWrapper.style.opacity = 1;
   }
 
   renderNoShots() {
     return (
-      <div className="large-icon-message-container" key="no-shots-found">
-        <div className="large-icon logo-no-shots" />
-        <div className="large-icon-message-string">Go forth and take shots!</div>
+      <div className="no-shots" key="no-shots-found">
+        <img src="/static/img/image-noshots_screenshots.svg" alt="no Shots found" width="432" height="432"/>
+        <p>No saved shots.</p>
+        <p>Go on, create some.</p>
       </div>
     );
   }
 
   renderNoDeviceId() {
     return (
-      <div className="large-icon-message-container" key="no-shots-found">
-        <div className="large-icon logo-no-shots pulse forever" />
-        <div className="large-icon-message-string">Looking for your shots...</div>
+      <div className="no-shots" key="no-shots-found">
+        <img src="/static/img/image-search_screenshots.svg" alt="no Shots found" width="432" height="432"/>
+        <p>Looking for your shots...</p>
       </div>
     );
   }
 
   renderNoSearchResults() {
     return (
-      <div className="large-icon-message-container" key="no-shots-found">
-        <div className="large-icon logo-no-search-results" />
-        <div className="large-icon-message-string">
-          No shots matching "{this.props.defaultSearch}" found.
-        </div>
+      <div className="no-shots" key="no-shots-found">
+        <img src="/static/img/image-search_screenshots.svg" alt="no Shots found" width="432" height="432"/>
+        <p>Hmmm!</p>
+        <p>We can’t find any shots that match your search.</p>
       </div>
     );
   }
@@ -126,23 +140,32 @@ class Body extends React.Component {
     }
 
     return (
-      <a href={shot.viewUrl} className={`shot ${this.getClipType(clip._image.dimensions)}`} key={shot.id} onClick={this.onOpen.bind(this, shot.viewUrl)}>
-        <div className="shot-image-container" style={{
-          backgroundImage: `url(${imageUrl})`
-        }}>
-        </div>
-        <div className="shot-info">
-        <div className="title-container">
-          <h4>{this.displayTitle(shot.title)}</h4>
-        </div>
-        <div className="link-container">
-          {favicon}
-          <div className="shot-url">
-            {shot.urlDisplay}
+      <div className={`shot ${this.getClipType(clip._image.dimensions)}`} key={shot.id}>
+        <a href={shot.viewUrl} onClick={this.onOpen.bind(this, shot.viewUrl)}>
+          <div className="shot-image-container" style={{
+            backgroundImage: `url(${imageUrl})`
+          }}>
           </div>
+          <div className="shot-info">
+          <div className="title-container">
+            <h4>{this.displayTitle(shot.title)}</h4>
+          </div>
+          <div className="link-container">
+            {favicon}
+            <div className="shot-url">
+              {shot.urlDisplay}
+            </div>
+          </div>
+          </div>
+        </a>
+        <div className="alt-actions-container">
+          { /* TODO: get a working download link on the next line */ }
+          <a className="button transparent download" href={ null } onClick={ this.onClickDownload.bind(this) }
+            title="Download the shot image" />
+          <ShareButton abTests={this.props.abTests} clipUrl={shot.urlDisplay} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} />
+          <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this, shot) } />
         </div>
-        </div>
-      </a>
+      </div>
     );
   }
 
@@ -177,6 +200,10 @@ class Body extends React.Component {
     location.href = url;
   }
 
+  onClickDownload() {
+    sendEvent("download", "myshots-tile");
+  }
+
   onSubmitForm(e) {
     e.preventDefault();
     let val = ReactDOM.findDOMNode(this.refs.search).value;
@@ -206,6 +233,15 @@ class Body extends React.Component {
         controller.onChangeSearch(val);
       }, 1000);
     }
+  }
+
+  onClearSearch(e) {
+    const val = '';
+    ReactDOM.findDOMNode(this.refs.search).value = val;
+    this.setState({defaultSearch: val});
+    controller.onChangeSearch(val);
+    sendEvent("clear-search", "button");
+    return null;
   }
 
   componentDidUpdate() {

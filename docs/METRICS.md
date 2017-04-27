@@ -217,6 +217,8 @@ These are events that an add-on user can encounter on a shot they own
 4. [x] Clear search term `web/clear-search/keyboard` by simply backspacing
 5. [x] Receive no search results `web/search-no-results`
 6. [x] Right-click (or get the context menu) anywhere on the page `contextmenu/background`, `contextmenu/shot-tile`, `contextmenu/search`, or `contextmenu/header` depending on where the user clicks.
+7. [x] Click download from tile: `web/download/myshots-tile`
+8. [x] Clear search with button: `web/clear-search/button`
 
 #### Non-owner web visit
 
@@ -237,6 +239,7 @@ These are events that an add-on user can encounter on a shot they own
 2. [x] Complete leaving: `server/leave-service-completed`
 3. [x] From Leave Screenshots, click Delete: `web/leave-service/leave-button`
 4. [x] From Leave Screenshots, click Cancel: `web/cancel-leave/cancel-link`
+4. [x] After leaving, click home button `web/home-after-leave/home-link`
 
 #### Server events
 

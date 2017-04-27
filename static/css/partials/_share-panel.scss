@@ -1,0 +1,94 @@
+.share-panel {
+  @include respond-to("small") {
+    bottom: 0;
+    left: 0;
+    margin: 0 auto;
+    padding: 10px;
+    position: fixed;
+    right: 0;
+    top: auto;
+    width: 100%;
+  }
+
+  border-radius: $border-radius;
+  box-shadow: 0 0 0 1px rgba(#000, 0.3), 0 0 20px rgba(#000, 0.2);
+  position: absolute;
+  right: 10px;
+  top: 90px;
+  width: 350px;
+  z-index: 999;
+
+  .share-buttons {
+    padding: $grid-unit;
+    border-bottom: 1px solid $light-border;
+
+    > a {
+      padding-right: $grid-unit;
+    }
+  }
+
+  .share-url-box {
+    padding: 15px;
+  }
+
+  // When the extension notification box is up the panel gets aligned incorrectly;
+  // we add this extra class to fix this situation and bump the panel down:
+  &.share-panel-with-notification {
+    top: 102px;
+  }
+
+  img {
+    height: 54px;
+    width: 54px;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .share-visibility-notice {
+    color: $link-medium;
+    font-size: 13px;
+    margin-top: 10px;
+  }
+
+  .copy-shot-link-input {
+    border-radius: $border-radius;
+    border: 1px solid $light-border;
+    border-right: 0;
+    font-size: 16px;
+    height: $grid-unit * 2;
+    line-height: 40px;
+    padding: 5px;
+    position: relative;
+    flex: 1;
+    margin: 0;
+
+    &:hover,
+    &:focus {
+      border-color: $light-border-active;
+    }
+
+    &:active {
+      border-color: $light-border-active;
+    }
+  }
+
+  .copy-toggle {
+    flex: 1 0 70px;
+    max-width: 120px;
+    padding: 0 10px;
+    margin: 0;
+    border: 1px solid $light-border;
+
+    &:hover {
+      background: $light-hover;
+      border-color: $light-border-active;
+    }
+
+    &:active {
+      background: $light-active;
+      border-color: $light-border-active;
+    }
+  }
+}
