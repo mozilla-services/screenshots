@@ -52,9 +52,9 @@ this.main = (function() {
   }
 
   function setIconActive(active, tabId) {
-    let path = active ? "icons/icon-highlight-38.png" : "icons/icon-38.png";
+    let path = active ? "icons/icon-highlight-32.svg" : "icons/icon-32.svg";
     if ((!hasSeenOnboarding) && !active) {
-      path = "icons/icon-starred-38.png";
+      path = "icons/icon-starred-32.svg";
     }
     browser.browserAction.setIcon({path, tabId});
   }
