@@ -274,6 +274,18 @@ We can do queries directly on the database of Firefox Screenshots.  These might 
 4. Identify the dimensions of shots
 5. Compare shot URLs to a domain allowlist, to determine broad categories of sites that are popular to view
 
+### Error reporting
+
+In order to detect errors in the field that we haven't encountered in development, we catch and report most unexpected exceptions.  These exceptions are sent to a Mozilla-hosted server that aggregates and reports on these errors.  The development team monitors these errors.
+
+In most cases if an exception report has been sent you will also see a popup notification of an error in Screenshots.  Exceptions use [catcher.unhandled](https://github.com/mozilla-services/screenshots/search?q=catcher.unhandled) or [noPopup](https://github.com/mozilla-services/screenshots/search?q=noPopup), and these are typically unusual cases where a popup would intrude on an otherwise recoverable error.
+
+In addition to the exception message and a stack trace, the error information includes information about your browser (User-Agent), platform, the add-on version, and IP address.  We use [Raven.js](https://docs.sentry.io/clients/javascript/) to collect the error reports.
+
+If an exception occurs in the context of screenshotting a specific page, we specifically filter out any reference to the URL or domain of that page.
+
+Error reporting in the add-on can be opted out of in the same way as other metrics (using the general Telemetry preference, see below).  Error reporting on the website cannot be opted out of.
+
 ### Opt-out
 
 The add-on reads the Telemetry opt-out preference (`toolkit.telemetry.enabled`) before sending any metrics data to the servers.  If this preference is false, or if there is any issue trying to fetch the preference, then no data is sent.
