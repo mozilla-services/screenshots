@@ -162,11 +162,11 @@ this.main = (function() {
     if (!url.startsWith(backend)) {
       return false;
     }
-    let path = url.substr(backend.length).replace(/^\/*/, "").replace(/#.*/, "").replace(/\?.*/, "");
+    let path = url.substr(backend.length).replace(/^\/*/, "").replace(/[?#].*/, "");
     if (path == "shots") {
       return true;
     }
-    if (/^[^/]+\/[^/]+$/.test(url)) {
+    if (/^[^/]+\/[^/]+$/.test(path)) {
       // Blocks {:id}/{:domain}, but not /, /privacy, etc
       return true;
     }
