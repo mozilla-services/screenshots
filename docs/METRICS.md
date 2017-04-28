@@ -290,6 +290,6 @@ Error reporting in the add-on can be opted out of in the same way as other metri
 
 The add-on reads the Telemetry opt-out preference (`toolkit.telemetry.enabled`) before sending any metrics data to the servers.  If this preference is false, or if there is any issue trying to fetch the preference, then no data is sent.
 
-The website reads the DNT Header (`navigator.doNotTrack`) and if it is present and set to *1* the website will not send metrics data.
+The website reads the [Do Not Track Header](https://www.mozilla.org/en-US/firefox/dnt/) (`navigator.doNotTrack`) and if it is present and set to *1* the website will not send metrics data.  We treat error reporting differently, and it is sent regardless of the Do Not Track setting.
 
 There may be some exceptions to the above for debugging or analysis of malfunctions.
