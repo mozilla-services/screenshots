@@ -252,9 +252,23 @@ this.main = (function() {
     const binary = atob(info.url.split(',')[1]); // just the base64 data
     const data = Uint8Array.from(binary, char => char.charCodeAt(0))
     const blob = new Blob([data], {type: "image/png"})
+    let url = URL.createObjectURL(blob);
+    let downloadId;
+    let onChangedCallback = catcher.watchFunction(function(change) {
+      if (!downloadId || downloadId != change.id) {
+        return;
+      }
+      if (change.state && change.state.current != "in_progress") {
+        URL.revokeObjectURL(url);
+        browser.downloads.onChanged.removeListener(onChangedCallback);
+      }
+    });
+    browser.downloads.onChanged.addListener(onChangedCallback)
     return browser.downloads.download({
-      url: URL.createObjectURL(blob),
+      url,
       filename: info.filename
+    }).then((id) => {
+      downloadId = id;
     });
   });
 
