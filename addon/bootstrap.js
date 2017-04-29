@@ -1,9 +1,9 @@
-/* globals AddonManager, Components, Services */
+/* globals AddonManager, Components, LegacyExtensionsUtils, Services */
 
 const OLD_ADDON_PREF_NAME = "extensions.jid1-NeEaf3sAHdKHPA@jetpack.deviceIdInfo";
 const OLD_ADDON_ID = "jid1-NeEaf3sAHdKHPA@jetpack";
 const ADDON_ID = "screenshots@mozilla.org";
-const TELEMETRY_PREF = "toolkit.telemetry.enabled";
+const TELEMETRY_ENABLED_PREF = "toolkit.telemetry.enabled";
 const PREF_BRANCH = "extensions.screenshots.";
 const USER_DISABLE_PREF = "extensions.screenshots.disabled";
 const SYSTEM_DISABLE_PREF = "extensions.screenshots.system-disabled";
@@ -12,7 +12,9 @@ const { interfaces: Ci, utils: Cu } = Components;
 Cu.import("resource://gre/modules/AddonManager.jsm");
 Cu.import("resource://gre/modules/Console.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
-const { EmbeddedExtensionManager } = Cu.import("resource://gre/modules/LegacyExtensionsUtils.jsm");
+Cu.import("resource://gre/modules/LegacyExtensionsUtils.jsm");
+
+let addonResourceURI;
 
 const prefs = Services.prefs;
 const prefObserver = {
@@ -35,6 +37,7 @@ const prefObserver = {
 
 function startup(data, reason) { // eslint-disable-line no-unused-vars
   prefObserver.register();
+  addonResourceURI = data.resourceURI;
   handleStartup();
 }
 
@@ -55,24 +58,16 @@ function shouldDisable() {
 }
 
 function handleStartup() {
-  AddonManager.getAddonByID(ADDON_ID).then((addon) => {
-    if (addon === null) {
-      console.error("Unable to start WebExtension: wrapper addon not found");
-      // TODO: Should we send this error to Sentry? #2420
-      return;
-    }
-
-    const webExtension = EmbeddedExtensionManager.getEmbeddedExtensionFor({
-      id: ADDON_ID,
-      resourceURI: addon.getResourceURI().QueryInterface(Ci.nsIFileURL)
-    });
-
-    if (!shouldDisable() && !webExtension.started) {
-      start(webExtension);
-    } else if (shouldDisable()) {
-      stop(webExtension);
-    }
+  const webExtension = LegacyExtensionsUtils.getEmbeddedExtensionFor({
+    id: ADDON_ID,
+    resourceURI: addonResourceURI.QueryInterface(Ci.nsIFileURL)
   });
+
+  if (!shouldDisable() && !webExtension.started) {
+    start(webExtension);
+  } else if (shouldDisable()) {
+    stop(webExtension);
+  }
 }
 
 function start(webExtension) {
@@ -90,9 +85,7 @@ function start(webExtension) {
 }
 
 function stop(webExtension) {
-  webExtension.shutdown().then(() => {
-    EmbeddedExtensionManager.untrackEmbeddedExtension(webExtension);
-  });
+  webExtension.shutdown();
 }
 
 function handleMessage(msg, sender, sendReply) {
@@ -101,8 +94,8 @@ function handleMessage(msg, sender, sendReply) {
   }
 
   if (msg.funcName === "getTelemetryPref") {
-    let enableTelemetry = getBoolPref(TELEMETRY_PREF);
-    sendReply({type: "success", value: enableTelemetry});
+    let telemetryEnabled = getBoolPref(TELEMETRY_ENABLED_PREF);
+    sendReply({type: "success", value: telemetryEnabled});
   } else if (msg.funcName === "getOldDeviceInfo") {
     let oldDeviceInfo = prefs.prefHasUserValue(OLD_ADDON_PREF_NAME) && prefs.getCharPref(OLD_ADDON_PREF_NAME);
     sendReply({type: "success", value: oldDeviceInfo || null});

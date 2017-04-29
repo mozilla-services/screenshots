@@ -1,6 +1,8 @@
 /* globals browser, communication, makeUuid, Raven, catcher, auth */
 
-window.errorpopup = (function () {
+"use strict";
+
+var senderror = (function () {
   let exports = {};
 
   let messages = {

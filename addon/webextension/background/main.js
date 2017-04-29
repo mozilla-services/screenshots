@@ -1,7 +1,9 @@
 /* globals browser, console, XMLHttpRequest, Image, document, setTimeout, navigator */
 /* globals selectorLoader, analytics, communication, catcher, makeUuid, auth */
 
-window.main = (function () {
+"use strict";
+
+var main = (function () {
   let exports = {};
 
   const pasteSymbol = (window.navigator.platform.match(/Mac/i)) ? "\u2318" : "Ctrl";
@@ -20,7 +22,7 @@ window.main = (function () {
   };
 
   for (let permission of manifest.permissions) {
-    if (permission.search(/^https?:\/\//i) != -1) {
+    if (/^https?:\/\//.test(permission)) {
       exports.setBackend(permission);
       break;
     }
@@ -93,14 +95,27 @@ window.main = (function () {
 
 
   browser.tabs.onUpdated.addListener(catcher.watchFunction((id, info, tab) => {
-    if (info.url && tab.selected) {
+    if (info.url && tab.active) {
       if (urlEnabled(info.url)) {
         browser.browserAction.enable(tab.id);
-      }
-      else {
+      } else if (hasSeenOnboarding) {
         browser.browserAction.disable(tab.id);
       }
     }
+  }));
+
+  browser.tabs.onActivated.addListener(catcher.watchFunction(({tabId, windowId}) => {
+    catcher.watchPromise(browser.tabs.get(tabId).then((tab) => {
+      // onActivated may fire before the url is set
+      if (!tab.url) {
+        return;
+      }
+      if (urlEnabled(tab.url)) {
+        browser.browserAction.enable(tabId);
+      } else {
+        browser.browserAction.disable(tabId);
+      }
+    }));
   }));
 
   communication.register("sendEvent", (sender, ...args) => {

@@ -1,4 +1,6 @@
-window.documentMetadata = (function () {
+"use strict";
+
+var documentMetadata = (function () {
 
   function findSiteName() {
     let el = document.querySelector("meta[property='og:site_name']");
@@ -34,8 +36,8 @@ window.documentMetadata = (function () {
       let value;
       if (elems.length > 1) {
         value = [];
-        for (let i=0; i<elems.length; i++) {
-          let v = elems[i].getAttribute("content");
+        for (let elem of elems) {
+          let v = elem.getAttribute("content");
           if (v) {
             value.push(v);
           }

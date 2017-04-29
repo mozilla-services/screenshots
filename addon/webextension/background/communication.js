@@ -1,5 +1,8 @@
 /* globals browser, catcher */
-window.communication = (function () {
+
+"use strict";
+
+var communication = (function () {
   let exports = {};
 
   let registeredFunctions = {};
@@ -53,12 +56,21 @@ window.communication = (function () {
         throw new Error(`Error in ${funcName}: ${result.name || 'unknown'}`);
       }
     }, (error) => {
-      if (error && error.message === "Could not establish connection. Receiving end does not exist.") {
+      if (isBootstrapMissingError(error)) {
         return exports.NO_BOOTSTRAP;
       }
       throw error;
     });
   };
+
+  function isBootstrapMissingError(error) {
+    if (! error) {
+      return false;
+    }
+    return error.errorCode === "NO_RECEIVING_END" ||
+      (! error.errorCode && error.message === "Could not establish connection. Receiving end does not exist.");
+  }
+
 
   // A singleton/sentinal (with a name):
   exports.NO_BOOTSTRAP = {name: "communication.NO_BOOTSTRAP"};

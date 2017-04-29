@@ -1,7 +1,9 @@
 /* globals window, document, console, browser */
 /* globals util, catcher, inlineSelectionCss */
 
-window.ui = (function () { // eslint-disable-line no-unused-vars
+"use strict";
+
+var ui = (function () { // eslint-disable-line no-unused-vars
   let exports = {};
   const SAVE_BUTTON_HEIGHT = 50;
 
@@ -91,21 +93,13 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
           this.element.scrolling = "no";
           this.updateElementSize();
           this.element.onload = watchFunction(() => {
-            let parsedDom = (new DOMParser()).parseFromString(`
-              <html>
+            this.document = this.element.contentDocument;
+            this.document.documentElement.innerHTML = `
                <head>
                 <style>${substitutedCss}</style>
                 <title></title>
                </head>
-               <body></body>
-              </html>`,
-              "text/html"
-            );
-            this.document = this.element.contentDocument;
-            this.document.replaceChild(
-              this.document.adoptNode(parsedDom.documentElement),
-              this.document.documentElement
-            );
+               <body></body>`;
             installHandlerOnDocument(this.document);
             if (this.addClassName) {
               this.document.body.className = this.addClassName;
@@ -222,8 +216,8 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
           this.element.scrolling = "no";
           this.updateElementSize();
           this.element.onload = watchFunction(() => {
-            let parsedDom = (new DOMParser()).parseFromString(`
-              <html>
+            this.document = this.element.contentDocument;
+            this.document.documentElement.innerHTML= `
                <head>
                 <style>${substitutedCss}</style>
                 <title></title>
@@ -241,15 +235,7 @@ window.ui = (function () { // eslint-disable-line no-unused-vars
                      <div class="full-page"></div>
                    </div>
                  </div>
-               </body>
-              </html>`,
-              "text/html"
-            );
-            this.document = this.element.contentDocument;
-            this.document.replaceChild(
-              this.document.adoptNode(parsedDom.documentElement),
-              this.document.documentElement
-            );
+               </body>`;
             installHandlerOnDocument(this.document);
             if (this.addClassName) {
               this.document.body.className = this.addClassName;
