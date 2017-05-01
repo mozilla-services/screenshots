@@ -302,7 +302,7 @@ class Shot extends AbstractShot {
 
 Shot.getRawBytesForClip = function(uid) {
   return db.select(
-    `SELECT images.url, images.contenttype
+    `SELECT images.url, images.contenttype, data.deviceid
      FROM images
       JOIN data ON images.shotid = data.id
      WHERE images.id = $1
@@ -313,7 +313,11 @@ Shot.getRawBytesForClip = function(uid) {
     if (!rows.length) {
       return null;
     }
-    return get(uid, rows[0].contenttype);
+    return get(uid, rows[0].contenttype)
+      .then(result => {
+        result.ownerId = rows[0].deviceid;
+        return result;
+      });
   });
 };
 

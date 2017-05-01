@@ -208,6 +208,8 @@ These are events that an add-on user can encounter on a shot they own
 32. [x] Click Feedback/mailto button `start-feedback/footer`
 31. [x] Click on clip `web/goto-clip/content`
 32. [x] Click the download button `web/download/navbar`
+33. [x] Visit an image directly, when the image isn't embedded directly in a Screenshots shot page, `web/visit/direct-view-owner`
+34. [x] View an image directly, when the image is being shown as part of a Facebook/Twitter style preview (the og:image or twitter:image), `web/visit/direct-view-embedded-owner`
 
 #### Shot Index (My Shots)
 
@@ -223,8 +225,8 @@ These are events that an add-on user can encounter on a shot they own
 #### Non-owner web visit
 
 1. [x] Visit the page, `web/visit/non-owner`
-2. [x] Visit an image directly, when the image isn't embedded directly in a Screenshots shot page, `web/visit/direct-view`
-3. [x] View an image directly, when the image is being shown as part of a Facebook/Twitter style preview (the og:image or twitter:image), `web/visit/direct-view-embedded`
+2. [x] Visit an image directly, when the image isn't embedded directly in a Screenshots shot page, `web/visit/direct-view-non-owner`
+3. [x] View an image directly, when the image is being shown as part of a Facebook/Twitter style preview (the og:image or twitter:image), `web/visit/direct-view-embedded-non-owner`
 2. [x] Click flag button `web/start-flag/navbar`
 3. [x] Click Share (same as for owner, but with `share-non-owner` instead of `share-owner`, and `start-share-non-owner`)
 4. [x] Visit original URL `web/goto-original-url/navbar`
