@@ -278,7 +278,7 @@ We can do queries directly on the database of Firefox Screenshots.  These might 
 
 ### Opt-out
 
-The add-on reads the Telemetry opt-out preference (`toolkit.telemetry.enabled`) before sending any metrics data to the servers.  If this preference is false, or if there is any issue trying to fetch the preference, then no data is sent.
+The add-on reads the Telemetry opt-out preference (`datareporting.healthreport.uploadEnabled`), labelled "Enable Health Report" in preferences under Privacy and Security.  If this preference is false, or if there is any issue trying to fetch the preference, then no data is sent.
 
 The website reads the DNT Header (`navigator.doNotTrack`) and if it is present and set to *1* the website will not send metrics data.
 
