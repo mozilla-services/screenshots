@@ -180,6 +180,14 @@ this.slides = (function() {
       shooter.sendEvent("cancel-slides", "keyboard-escape");
       callbacks.onEnd();
     }
+    if ((event.key || event.code) === "ArrowRight") {
+      shooter.sendEvent("navigate-slide", "keyboard-arrowright");
+      next();
+    }
+    if ((event.key || event.code) === "ArrowLeft") {
+      shooter.sendEvent("navigate-slide", "keyboard-arrowleft");
+      prev();
+    }
   }));
 
   function setSlide(index) {
