@@ -15,6 +15,13 @@ DEFAULTS = {
     "prod": "https://screenshots.firefox.com"
 }
 
+SENTRY_ENDPOINTS = {
+    "local": "",
+    "dev": "https://d58fc53f92cd47bba7266ad6444514d8@sentry.prod.mozaws.net/74",
+    "stage": "https://3d2efd7bad9e4e359014cb4e69b8eaec@sentry.prod.mozaws.net/140",
+    "prod": "https://97d8afa496f94764ae255e739b147f4b@sentry.prod.mozaws.net/139"
+}
+
 FILES_TO_NOT_REMOVE = [
     'moz.build',
     'README.txt'
@@ -136,6 +143,7 @@ def exportToMozillaCentral(server, repoDir, mcRepoPath, mcSubDir, mcBranch,
                            noSwitchBranch, mcBaseCommit, commitMessage):
     print "Exporting to m-c"
 
+    os.environ["SCREENSHOTS_SENTRY"] = SENTRY_ENDPOINTS[server]
     os.environ["SCREENSHOTS_BACKEND"] = DEFAULTS[server]
     os.environ["SCREENSHOTS_MINOR_VERSION"] = "0"
 
