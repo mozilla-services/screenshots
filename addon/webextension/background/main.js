@@ -220,7 +220,7 @@ this.main = (function() {
         disableButton(tabId);
       }
     }), true);
-  }));
+  }, true));
 
   communication.register("sendEvent", (sender, ...args) => {
     catcher.watchPromise(sendEvent(...args));
