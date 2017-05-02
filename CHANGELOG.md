@@ -1,4 +1,14 @@
+## Version 6.6.0
+
+* Change metrics preference to `datareporting.healthreport.uploadEnabled` ([#2785](https://github.com/mozilla-services/screenshots/issues/2785))
+  This preference is enabled on all channels, while the previous preference (`toolkit.telemetry.enabled`) is not enabled on Release (but is enabled on Beta, etc). Fixes [#2783](https://github.com/mozilla-services/screenshots/issues/2783) [8820967](https://github.com/mozilla-services/screenshots/commit/8820967)
+* Add left/right keyboard shortcuts to onboarding slides [709d5b1](https://github.com/mozilla-services/screenshots/commit/709d5b1)
+* call `URL.revokeObjectURL()` after download completes ([#2777](https://github.com/mozilla-services/screenshots/issues/2777)). Fixes [#2776](https://github.com/mozilla-services/screenshots/issues/2776) [db8e708](https://github.com/mozilla-services/screenshots/commit/db8e708)
+* Fix the detection of shot pages for Screenshots button disabling/activation ([#2780](https://github.com/mozilla-services/screenshots/issues/2780)) [32d45bc](https://github.com/mozilla-services/screenshots/commit/32d45bc)
+
 ## Version 6.5.0
+
+(Note: this version was never released, all its changes are bundled in 6.6.0)
 
 * Pixel-snap-icon [7c804b4](https://github.com/mozilla-services/screenshots/commit/7c804b4)
 * Fix testIfLoaded (used in onboarding) so it can see when a load is in progress ([#2762](https://github.com/mozilla-services/screenshots/issues/2762)) [c521008](https://github.com/mozilla-services/screenshots/commit/c521008)
