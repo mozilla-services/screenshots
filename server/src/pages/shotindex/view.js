@@ -52,7 +52,8 @@ class Body extends React.Component {
   renderShots() {
     let children = [];
     for (let shot of this.props.shots) {
-      children.push(this.renderShot(shot));
+      let downloadUrl = this.props.downloadUrls[shot.id];
+      children.push(this.renderShot(shot, downloadUrl));
     }
 
     if (children.length === 0) {
@@ -121,7 +122,7 @@ class Body extends React.Component {
     return "square";
   }
 
-  renderShot(shot) {
+  renderShot(shot, downloadUrl) {
     let imageUrl;
     let clip = shot.clipNames().length ? shot.getClip(shot.clipNames()[0]) : null;
     if (clip && clip.image && clip.image.url) {
@@ -159,8 +160,7 @@ class Body extends React.Component {
           </div>
         </a>
         <div className="alt-actions-container">
-          { /* TODO: get a working download link on the next line */ }
-          <a className="button transparent download" href={ null } onClick={ this.onClickDownload.bind(this) }
+          <a className="button transparent download" href={ downloadUrl } onClick={ this.onClickDownload.bind(this) }
             title="Download the shot image" />
           <ShareButton abTests={this.props.abTests} clipUrl={shot.urlDisplay} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} />
           <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this, shot) } />
