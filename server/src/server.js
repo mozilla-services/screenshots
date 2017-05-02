@@ -799,6 +799,8 @@ app.get("/images/:imageid", function(req, res) {
             analytics = analytics.debug();
           }
         }
+        const view = embedded ? "direct-view-embedded" : "direct-view";
+        const el = view + (obj.ownerId === req.deviceId ? "-owner" : "-non-owner");
         analytics.pageview({
           dp: analyticsUrl,
           dh: req.backend,
@@ -807,7 +809,7 @@ app.get("/images/:imageid", function(req, res) {
         }).event({
           ec: "web",
           ea: "visit",
-          el: embedded ? "direct-view-embedded" : "direct-view"
+          el
         }).send();
       }
       res.header("Content-Type", "image/png");
