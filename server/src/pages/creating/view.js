@@ -20,8 +20,8 @@ class Body extends React.Component {
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <div className="column-center full-height inverse-color-scheme">
-          <div className="large-icon-message-container">
-            <div className="large-icon logo pulse forever" />
+          <div className="spinner">
+            <img src={this.props.staticLink("/static/img/spinner.svg")} />
           </div>
         </div>
       </reactruntime.BodyTemplate>

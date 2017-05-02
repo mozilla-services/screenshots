@@ -19,13 +19,74 @@
 }
 
 #shot-index-header {
-  @include flex-container(row, center, center);
+  @include respond-to("small") {
+    @include flex-container(column, flex-start, center);
+  }
+
+  @include respond-to("medium") {
+    @include flex-container(row, space-between, center);
+  }
+
+  @include respond-to("large") {
+    @include flex-container(row, center, center);
+  }
+
   margin: 40px auto 15px;
   position: relative;
 
   form {
+    @include respond-to("small") {
+      position: relative;
+
+      input[type="search"] {
+        margin: 20px 0 10px;
+        width: 320px;
+      }
+    }
+
+    @include flex-container(row, flex-start, stretch);
     position: absolute;
     right: 0;
+
+    .clear-search {
+      width: 28px;
+      height: 28px;
+      background: transparent;
+      border: 0;
+      background-image: url("../img/icon-clear.svg");
+      background-size: 12px 12px;
+      background-repeat: no-repeat;
+      background-position: center top 5px;
+      position: absolute;
+      right: 0;
+      opacity: 0;
+      transition: opacity $bezier 150ms;
+    }
+  }
+
+  input[type="search"] {
+    background: transparent;
+    background-image: url("../img/icon-search.svg");
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    border: 0;
+    border-bottom: 1px solid $link-medium;
+    font-size: 16px;
+    padding: 0 28px 8px 24px;
+    transition: border-color $bezier 150ms;
+    width: 210px;
+
+    &:focus {
+      border-bottom-color: $link-blue;
+
+      + .clear-search {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  button[title="search"] {
+    display: none;
   }
 }
 
@@ -55,7 +116,11 @@ h1 {
 }
 
 #shot-index {
+  @include flex-container(column, flex-start, stretch);
   margin: 0 auto;
+}
+
+.masonry-wrapper {
   opacity: 0;
   transition: opacity 500ms $bezier;
 }
@@ -67,8 +132,30 @@ h1 {
   transition: box-shadow 250ms $bezier;
   width: 210px;
 
+  .share-panel {
+    left: 0;
+    top: 72px;
+  }
+
+  .alt-actions-container {
+    @include flex-container(row, space-around, center);
+    padding: 12px;
+    position: absolute;
+    bottom: 0;
+    height: 69px;
+    left: 0;
+    right: 0;
+    background: $white;
+    opacity: 0;
+    transition: opacity $bezier 750ms;
+  }
+
   &:hover {
     box-shadow: 0 0 0 5px $light-border;
+
+    .alt-actions-container {
+      opacity: 1;
+    }
   }
 
   .shot-image-container {
@@ -89,7 +176,7 @@ h1 {
 
   .title-container {
     overflow: hidden;
-    margin: 10px;
+    margin: 0 0 10px;
   }
 
   h4 {
@@ -104,8 +191,6 @@ h1 {
 
   .link-container {
     @include flex-container(row, flex-start, center);
-    padding: 0 10px 10px;
-
 
     .favicon {
       flex: 0 0 16px;
@@ -123,4 +208,65 @@ h1 {
     }
   }
 
+  .shot-info {
+    height: 45px;
+    margin: 12px;
+  }
+
+  .download,
+  .trash,
+  .share {
+    background-size: $grid-unit $grid-unit;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-right: $grid-unit * 0.5;
+    transition: background-image 150ms $bezier;
+  }
+
+  .trash {
+    background-image: url("../img/trash-dark.svg");
+
+    &:hover {
+      background-image: url("../img/trash-hover.svg");
+    }
+
+    &:active {
+      background-image: url("../img/trash-active.svg");
+    }
+  }
+
+  .share {
+    background-image: url("../img/share-dark.svg");
+
+    &:hover {
+      background-image: url("../img/share-hover.svg");
+    }
+
+    &:active,
+    &.active {
+      background-image: url("../img/share-active.svg");
+    }
+  }
+
+  .download {
+    background-image: url("../img/download-dark.svg");
+
+    &:hover {
+      background-image: url("../img/download-hover.svg");
+    }
+
+    &:active {
+      background-image: url("../img/download-active.svg");
+    }
+  }
+}
+
+.no-shots {
+  @include flex-container(column, center, center);
+  flex: 1;
+
+  p {
+    margin: 0;
+    text-align: center;
+  }
 }

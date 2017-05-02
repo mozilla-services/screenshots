@@ -9,7 +9,7 @@ class Head extends React.Component {
     return (
       <reactruntime.HeadTemplate {...this.props}>
         <script src={this.props.staticLink("/static/js/leave-bundle.js")} async></script>
-        <link rel="stylesheet" href={ this.props.staticLink("/static/css/warning-page.css") } />
+        <link rel="stylesheet" href={ this.props.staticLink("/static/css/simple.css") } />
       </reactruntime.HeadTemplate>
     );
   }
@@ -24,18 +24,16 @@ class Body extends React.Component {
     }
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <div className="column-center full-height inverse-color-scheme">
-          <div className="large-icon-message-container">
-            <div className="large-icon logo" />
-            <div className="large-icon-message-string">
-              This will permanently erase all of your Firefox Screenshots data.
-            </div>
-            <form action="/leave-screenshots/leave" method="POST" className="responsive-wrapper row-center">
+        <div className="column-center full-height alt-color-scheme">
+          <img src={ this.props.staticLink("/static/img/image-nope_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
+          <div className="alt-content">
+            <p>This will permanently erase all of your screenshots.</p>
+            <form action="/leave-screenshots/leave" method="POST">
               <input type="hidden" name="_csrf" value={this.props.csrfToken} />
               <button type="submit" onClick={ this.onClickDelete.bind(this) } className="button warning">
                 Proceed
               </button>
-              <a href="/shots" onClick={ this.onClickCancel.bind(this) } className="cancel-delete">cancel</a>
+              <a href="/shots" onClick={ this.onClickCancel.bind(this) } className="cancel-delete">Cancel</a>
             </form>
           </div>
         </div>
@@ -46,11 +44,11 @@ class Body extends React.Component {
   renderComplete() {
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <div className="column-center full-height inverse-color-scheme">
-          <div className="large-icon-message-container">
-            <div className="large-icon check" />
-            <div className="large-icon-message-string">All of your Firefox Screenshots data has been erased.
-            </div>
+        <div className="column-center full-height alt-color-scheme">
+          <img src={ this.props.staticLink("/static/img/image-nope_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
+          <div className="alt-content">
+            <p>All of your screenshots have been erased!</p>
+            <a href="/shots" onClick={ this.onClickHome.bind(this) } className="button primary">Home</a>
           </div>
         </div>
       </reactruntime.BodyTemplate>
@@ -63,6 +61,10 @@ class Body extends React.Component {
 
   onClickCancel() {
     sendEvent("cancel-leave", "cancel-link", {useBeacon: true});
+  }
+
+  onClickHome() {
+    sendEvent("home-after-leave", "home-link", {useBeacon: true});
   }
 
 }

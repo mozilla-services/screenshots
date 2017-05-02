@@ -39,19 +39,14 @@
     }
   }
 
-  &.set-width--medium {
-    max-width: 200px;
-  }
-
   &.block-button {
   
   @include respond-to("small") {
     justify-content: flex-start;
-    padding: $grid-unit * .5;
     font-size: 16px;
     height: 72px;
-    flex: 1 0;
     margin-right: 10px;
+    padding: 0 5px;
   }
 
     @include flex-container(row, center, center);
@@ -64,6 +59,7 @@
     font-size: 20px;
     height: 100px;
     line-height: 100%;
+    overflow: hidden;
 
     &:hover {
       background: $light-hover;

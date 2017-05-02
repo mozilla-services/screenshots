@@ -3,7 +3,7 @@ const React = require("react");
 const ReactDOM = require("react-dom");
 const { Footer } = require("../../footer-view");
 const sendEvent = require("../../browser-send-event.js");
-const { ShareButton } = require("./share-buttons");
+const { ShareButton } = require("../../share-buttons");
 const { TimeDiff, intervalDescription } = require("./time-diff");
 const reactruntime = require("../../reactruntime");
 
@@ -210,23 +210,20 @@ class Body extends React.Component {
       if (this.props.isOwner) {
         message = "This shot is no longer available due to an intellectual property claim.";
         moreInfo = (
-          <span>
+          <p>
             Please email <a href="mailto:dmcanotice@mozilla.com">dmcanotice@mozilla.com</a> to request further information. If your Shots are subject to multiple claims, we may revoke your access to Firefox Screenshots.<br/>
             Please include the URL of this shot in your email: {this.props.backend}/{this.props.id}
-          </span>
+          </p>
         );
       }
     }
 
     return <reactruntime.BodyTemplate {...this.props}>
-      <div className="column-center full-height inverse-color-scheme">
-        <div className="large-icon-message-container">
-          <div className="large-icon logo" />
-          <div className="large-icon-message-string">
-            { message }
-            <br/>
-            { moreInfo }
-          </div>
+      <div className="column-center full-height alt-color-scheme">
+        <img src={ this.props.staticLink("/static/img/image-nope_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
+        <div className="alt-content">
+          <p>{ message }</p>
+          { moreInfo }
         </div>
       </div>
     </reactruntime.BodyTemplate>;
@@ -241,29 +238,23 @@ class Body extends React.Component {
     let restoreWidget;
     if (this.props.isOwner) {
       restoreWidget = (
-        <div>
-          <div className="spacer"/>
-          If you do nothing,<br/>
+        <p>
+          If you do nothing,
           this shot will be permanently deleted in <TimeDiff date={deleteTime} />.
-          <div className="spacer"/>
-          <div className="responsive-wrapper row-center">
-            <button className="button primary set-width--medium" onClick={this.onRestore.bind(this)}>restore for {intervalDescription(this.props.defaultExpiration)}</button>
-          </div>
-        </div>
+          <button className="button primary" onClick={this.onRestore.bind(this)}>restore for {intervalDescription(this.props.defaultExpiration)}</button>
+        </p>
       );
     }
     // Note: any attributes used here need to be preserved
     // in the render() function
     return <reactruntime.BodyTemplate {...this.props}>
-      <div className="column-center full-height inverse-color-scheme">
-        <div className="large-icon-message-container">
-          <div className="large-icon logo" />
-          <div className="large-icon-message-string">
-            This shot has expired.<br/>
-            Here is page it was originally created from:<br/>
-            <a className="underline" href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>{this.props.shot.title}</a>
-            { restoreWidget }
-          </div>
+      <div className="column-center full-height alt-color-scheme">
+        <img src={ this.props.staticLink("/static/img/image-expired_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
+        <div className="alt-content">
+          <h1>This shot has expired.</h1>
+          <p>Here is page it was originally created from:<br/>
+          <a href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>{this.props.shot.title}</a></p>
+          { restoreWidget }
         </div>
       </div>
     </reactruntime.BodyTemplate>;
@@ -291,7 +282,7 @@ class Body extends React.Component {
     let timeDiff = <TimeDiff date={shot.createdDate} />;
     let expiresDiff = null;
     if (this.props.isOwner) {
-      expiresDiff = <span>
+      expiresDiff = <span className="expire-widget">
       <ExpireWidget
         expireTime={this.props.expireTime}
         onSaveExpire={this.onSaveExpire.bind(this)} />
@@ -302,10 +293,10 @@ class Body extends React.Component {
 
     let trashOrFlagButton;
     if (this.props.isOwner) {
-      trashOrFlagButton = <button className="button secondary trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }>
+      trashOrFlagButton = <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }>
       </button>;
     } else {
-      trashOrFlagButton = <button className="button secondary flag" title="Report this shot for abuse, spam, or other problems" onClick={ this.onClickFlag.bind(this) }>
+      trashOrFlagButton = <button className="button transparent flag" title="Report this shot for abuse, spam, or other problems" onClick={ this.onClickFlag.bind(this) }>
       </button>;
     }
 
@@ -364,7 +355,7 @@ class Body extends React.Component {
             <a className="button primary" href={ this.props.downloadUrl } onClick={ this.onClickDownload.bind(this) }
               title="Download the shot image">
               <img src={ this.props.staticLink("/static/img/download-white.svg") } width="20" height="20"/>&nbsp;
-              <span>Download</span>
+              <span className="download-text">Download</span>
             </a>
           </div>
         </div>

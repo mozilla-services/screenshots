@@ -1,5 +1,5 @@
 const React = require("react");
-const sendEvent = require("../../browser-send-event.js");
+const sendEvent = require("./browser-send-event.js");
 
 exports.ShareButton = class ShareButton extends React.Component {
   constructor(props) {
@@ -25,7 +25,7 @@ exports.ShareButton = class ShareButton extends React.Component {
     }
     const active = this.state.display ? "active" : "inactive";
     return <div>
-      <button className={`button secondary share ${active}`} id="toggle-share" onClick={ this.onClick.bind(this) } title="Share" />
+      <button className={`button transparent share ${active}`} id="toggle-share" onClick={ this.onClick.bind(this) } title="Share" />
       {panel}
     </div>;
   }
