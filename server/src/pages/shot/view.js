@@ -220,7 +220,7 @@ class Body extends React.Component {
 
     return <reactruntime.BodyTemplate {...this.props}>
       <div className="column-center full-height alt-color-scheme">
-        <img src="/static/img/image-nope_screenshots.svg" alt="no Shots found" width="432" height="432"/>
+        <img src={ this.props.staticLink("/static/img/image-nope_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
         <div className="alt-content">
           <p>{ message }</p>
           { moreInfo }
@@ -249,7 +249,7 @@ class Body extends React.Component {
     // in the render() function
     return <reactruntime.BodyTemplate {...this.props}>
       <div className="column-center full-height alt-color-scheme">
-        <img src="/static/img/image-expired_screenshots.svg" alt="no Shots found" width="432" height="432"/>
+        <img src={ this.props.staticLink("/static/img/image-expired_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
         <div className="alt-content">
           <h1>This shot has expired.</h1>
           <p>Here is page it was originally created from:<br/>

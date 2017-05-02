@@ -28,7 +28,7 @@ class Body extends React.Component {
           </div>
           <div id="shot-index" className="flex-1">
             <div className="no-shots" key="no-shots-found">
-              <img src="/static/img/image-nope_screenshots.svg" alt="no Shots found" width="432" height="432"/>
+              <img src={ this.props.staticLink("/static/img/image-nope_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
               <p>Oops.</p>
               <p>Page not found.</p>
             </div>

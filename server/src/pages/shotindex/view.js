@@ -84,7 +84,7 @@ class Body extends React.Component {
   renderNoShots() {
     return (
       <div className="no-shots" key="no-shots-found">
-        <img src="/static/img/image-noshots_screenshots.svg" alt="no Shots found" width="432" height="432"/>
+        <img src={ this.props.staticLink("/static/img/image-noshots_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
         <p>No saved shots.</p>
         <p>Go on, create some.</p>
       </div>
@@ -94,7 +94,7 @@ class Body extends React.Component {
   renderNoDeviceId() {
     return (
       <div className="no-shots" key="no-shots-found">
-        <img src="/static/img/image-search_screenshots.svg" alt="no Shots found" width="432" height="432"/>
+        <img src={ this.props.staticLink("/static/img/image-search_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
         <p>Looking for your shots...</p>
       </div>
     );
@@ -103,7 +103,7 @@ class Body extends React.Component {
   renderNoSearchResults() {
     return (
       <div className="no-shots" key="no-shots-found">
-        <img src="/static/img/image-search_screenshots.svg" alt="no Shots found" width="432" height="432"/>
+        <img src={ this.props.staticLink("/static/img/image-search_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
         <p>Hmmm!</p>
         <p>We can’t find any shots that match your search.</p>
       </div>

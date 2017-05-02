@@ -25,7 +25,7 @@ class Body extends React.Component {
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <div className="column-center full-height alt-color-scheme">
-          <img src="/static/img/image-nope_screenshots.svg" alt="no Shots found" width="432" height="432"/>
+          <img src={ this.props.staticLink("/static/img/image-nope_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
           <div className="alt-content">
             <p>This will permanently erase all of your screenshots.</p>
             <form action="/leave-screenshots/leave" method="POST">
@@ -45,7 +45,7 @@ class Body extends React.Component {
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <div className="column-center full-height alt-color-scheme">
-          <img src="/static/img/image-nope_screenshots.svg" alt="no Shots found" width="432" height="432"/>
+          <img src={ this.props.staticLink("/static/img/image-nope_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
           <div className="alt-content">
             <p>All of your screenshots have been erased!</p>
             <a href="/shots" onClick={ this.onClickHome.bind(this) } className="button primary">Home</a>
