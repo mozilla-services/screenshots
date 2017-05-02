@@ -35,7 +35,7 @@ exports.launch = function(data) {
       let testValue = model.shot.abTests[testName];
       if (testValue) {
         let shotFieldName = shotGaFieldForValue(testName, testValue);
-        if (shotFieldName) {
+        if (shotFieldName && window.abTests) {
           window.abTests[testName + "_shot"] = {
             gaField: shotFieldName,
             value: testValue
