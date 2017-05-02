@@ -55,7 +55,7 @@ exports.deleteShot = function(shot) {
   req.onload = function() {
     if (req.status >= 300) {
       // FIXME: a lame way to do an error message
-      window.alert("Error deleting shot: " + req.status + " " + req.statusText);
+      window.alert("Error deleting shot: " + req.status + " " + req.statusText); // todo l10n: shotIndexPageErrorDeletingShot 
     } else {
       refreshModel();
     }

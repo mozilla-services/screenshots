@@ -24,6 +24,12 @@ exports.TimeDiff = class TimeDiff extends React.Component {
     }
   }
 
+  // todo l10n - this function returns a time diff string that gets
+  // concatenated with either "expires ", as in, "expires in 1 day",
+  // or "expired ", as in, "expired 3 hours ago".
+  // find an alternative approach that works with l10n
+  // todo: consider separately publishing a localized timediff library. it
+  // could be very useful to a huge variety of projects
   makeDiffString(d) {
     let timeDiff;
     let seconds = (Date.now() - d) / 1000;
@@ -39,7 +45,7 @@ exports.TimeDiff = class TimeDiff extends React.Component {
       } else if (seconds < 60 * 60 * 48) {
         timeDiff = "yesterday";
       } else if (seconds > 0) {
-        seconds += 60 * 60 * 2; // 2 hours fudge time
+        seconds += 60 * 60 * 2;
         timeDiff = `${Math.floor(seconds / (60 * 60 * 24))} days ago`;
       }
     } else if (seconds > -20) {
@@ -59,6 +65,7 @@ exports.TimeDiff = class TimeDiff extends React.Component {
     return timeDiff;
   }
 
+  // todo l10n - need a better way to generate a date string
   dateString(d) {
     let dYear, dMonth, dDay, dHour;
     if (!(d instanceof Date)) {
@@ -136,5 +143,5 @@ exports.intervalDescription = function(ms) {
   if (!parts.length) {
     parts.push("immediately");
   }
-  return parts.join(" ");
+  return parts.join(" "); // todo l10n - joining words with spaces won't work
 };

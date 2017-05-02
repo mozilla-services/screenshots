@@ -6,6 +6,7 @@ const sendEvent = require("../../browser-send-event.js");
 const { ShareButton } = require("./share-buttons");
 const { TimeDiff, intervalDescription } = require("./time-diff");
 const reactruntime = require("../../reactruntime");
+const { Localized } = require("fluent-react/compat");
 
 
 class Clip extends React.Component {
@@ -45,7 +46,7 @@ class Clip extends React.Component {
     let node = <img style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%", display: this.state.imageDisplay}} ref="clipImage" src={ clip.image.url } alt={ clip.image.text } onLoad = { this.onImageLoaded.bind(this) } />;
     return <div ref="clipContainer" className="clip-container">
       <menu type="context" id="clip-image-context">
-        <menuitem label="Copy Image Text" onClick={this.copyImageText.bind(this)} ></menuitem>
+        <menuitem label="Copy Image Text" onClick={this.copyImageText.bind(this)} ></menuitem> <!-- todo l10n: shotPageCopyImageText -->
       </menu>
       { this.renderLoader() }
       <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) } contextMenu="clip-image-context">
@@ -180,7 +181,7 @@ class Body extends React.Component {
 
   onClickDelete(e) {
     sendEvent("start-delete", "navbar", {useBeacon: true});
-    if (window.confirm("Are you sure you want to delete this shot permanently?")) {
+    if (window.confirm("Are you sure you want to delete this shot permanently?")) { // todo l10n: shotPageConfirmDeletion
       sendEvent("delete", "popup-confirm", {useBeacon: true});
       this.props.controller.deleteShot(this.props.shot);
     } else {
@@ -243,11 +244,15 @@ class Body extends React.Component {
       restoreWidget = (
         <div>
           <div className="spacer"/>
-          If you do nothing,<br/>
-          this shot will be permanently deleted in <TimeDiff date={deleteTime} />.
+          <Localized id="shotPageExpirationMessage"><!-- todo - will this look ok with the <br/> element removed? how do we handle the timediffs? -->
+            If you do nothing,
+            this shot will be permanently deleted in <TimeDiff date={deleteTime} />.
+          </Localized>
           <div className="spacer"/>
           <div className="responsive-wrapper row-center">
-            <button className="button primary set-width--medium" onClick={this.onRestore.bind(this)}>restore for {intervalDescription(this.props.defaultExpiration)}</button>
+            <Localized id="shotPageRestoreButton"> <!-- todo l10n: how do we handle the time interval? "restore for N days" -->
+              <button className="button primary set-width--medium" onClick={this.onRestore.bind(this)}>restore for {intervalDescription(this.props.defaultExpiration)}</button> 
+            </Localized>
           </div>
         </div>
       );
@@ -259,8 +264,14 @@ class Body extends React.Component {
         <div className="large-icon-message-container">
           <div className="large-icon logo" />
           <div className="large-icon-message-string">
-            This shot has expired.<br/>
-            Here is page it was originally created from:<br/>
+            <Localized id="shotPageExpiredMessage">
+              <span>This shot has expired.</span>
+            </Localized>
+            <br/>
+            <Localized id="shotPageExpiredMessageDetails">
+              <span>Here is page it was originally created from:</span>
+            </Localized>
+            <br/>
             <a className="underline" href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>{this.props.shot.title}</a>
             { restoreWidget }
           </div>
@@ -302,15 +313,15 @@ class Body extends React.Component {
 
     let trashOrFlagButton;
     if (this.props.isOwner) {
-      trashOrFlagButton = <button className="button secondary trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }>
+      trashOrFlagButton = <button className="button secondary trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }> // todo l10n: shotPageDeleteButton
       </button>;
     } else {
-      trashOrFlagButton = <button className="button secondary flag" title="Report this shot for abuse, spam, or other problems" onClick={ this.onClickFlag.bind(this) }>
+      trashOrFlagButton = <button className="button secondary flag" title="Report this shot for abuse, spam, or other problems" onClick={ this.onClickFlag.bind(this) }> // todo l10n: shotPageAbuseButton
       </button>;
     }
 
     let myShotsHref = "/shots";
-    let myShotsText = <span className="back-to-index">My Shots</span>;
+    let myShotsText = <Localized id="gMyShots"><span className="back-to-index">My Shots</span></Localized>;
     // FIXME: this means that on someone else's shot they won't see a My Shots link:
     if (!this.props.isOwner) {
       myShotsText = <span className="back-to-home">
@@ -354,7 +365,7 @@ class Body extends React.Component {
               <EditableTitle title={shot.title} isOwner={this.props.isOwner} />
               <div className="shot-subtitle"> { favicon }
                 { linkTextShort ? <a className="subtitle-link" href={ shotRedirectUrl } onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> : null }
-                <span className="time-diff">{ timeDiff }</span> { expiresDiff }
+                <span className="time-diff">{ timeDiff }</span> { expiresDiff } <!-- todo l10n - figure out how to localize timeDiffs -->
               </div>
             </div>
           </div>
@@ -362,9 +373,11 @@ class Body extends React.Component {
             { trashOrFlagButton }
             <ShareButton abTests={this.props.abTests} clipUrl={clipUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} renderExtensionNotification={renderExtensionNotification} isExtInstalled={this.props.isExtInstalled} />
             <a className="button primary" href={ this.props.downloadUrl } onClick={ this.onClickDownload.bind(this) }
-              title="Download the shot image">
+              title="Download the shot image"> <!-- todo l10n: shotPageDownloadShot -->
               <img src={ this.props.staticLink("/static/img/download-white.svg") } width="20" height="20"/>&nbsp;
-              <span>Download</span>
+              <Localized id="shotPageDownload">
+                <span>Download</span>
+              </Localized>
             </a>
           </div>
         </div>
@@ -376,7 +389,15 @@ class Body extends React.Component {
 
   renderFirefoxRequired() {
     return <div className="highlight-color-scheme alt-notification">
-      <div> <strong>Firefox Screenshots</strong> made simple. Take, save and share screenshots without leaving Firefox. <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a></div>
+      <div>
+        <Localized id="shotPageScreenshotsDescription">
+          <strong>Firefox Screenshots</strong> made simple. Take, save and share screenshots without leaving Firefox.
+        </Localized>
+        <Localized id="shotPageUpsellFirefox">
+          <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition"
+             onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a>
+        </Localized>
+      </div>
       <a className="close" onClick={ this.doCloseBanner.bind(this) }></a>
     </div>;
   }
@@ -448,15 +469,15 @@ class ExpireWidget extends React.Component {
     let day = hour * 24;
     return (
       <span className="keep-for-form">
-        &bull; keep for: <select ref="expireTime">
-          <option value="cancel">Select time</option>
-          <option value="0">Indefinitely</option>
-          <option value={ 10 * minute }>10 Minutes</option>
-          <option value={ hour }>1 Hour</option>
-          <option value={ day }>1 Day</option>
-          <option value={ 7 * day }>1 Week</option>
-          <option value={ 14 * day }>2 Weeks</option>
-          <option value={ 31 * day }>1 Month</option>
+        &bull; keep for: <select ref="expireTime"> <!-- todo l10n -->
+          <option value="cancel">Select time</option> <!-- todo l10n -->
+          <option value="0">Indefinitely</option> <!-- todo l10n -->
+          <option value={ 10 * minute }>10 Minutes</option> <!-- todo l10n -->
+          <option value={ hour }>1 Hour</option> <!-- todo l10n -->
+          <option value={ day }>1 Day</option> <!-- todo l10n -->
+          <option value={ 7 * day }>1 Week</option> <!-- todo l10n -->
+          <option value={ 14 * day }>2 Weeks</option> <!-- todo l10n -->
+          <option value={ 31 * day }>1 Month</option> <!-- todo l10n -->
         </select>
         <span className="button tiny secondary" onClick={this.clickSaveExpire.bind(this)}>save</span>
         <span className="button tiny secondary" onClick={this.clickCancelExpire.bind(this)}>cancel</span>
@@ -467,14 +488,14 @@ class ExpireWidget extends React.Component {
   renderNormal() {
     let button;
     if (this.props.expireTime === null) {
-      button = <span>does not expire</span>;
+      button = <Localized id="shotPageDoesNotExpire"><span>does not expire</span></Localized>;
     } else {
-      let desc = "expires in";
+      let desc = "expires in"; // todo l10n - this won't work
       if (this.props.expireTime < Date.now()) {
-        desc = "expired";
+        desc = "expired"; // todo l10n - ditto
       }
       button = <span>
-        {desc} <TimeDiff date={this.props.expireTime} simple={this.props.simple} />
+        {desc} <TimeDiff date={this.props.expireTime} simple={this.props.simple} /> // todo l10n: we need to construct the "expires <timediff>" differently
       </span>;
     }
     return (

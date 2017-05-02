@@ -2,6 +2,7 @@
 const reactruntime = require("../../reactruntime");
 const { Footer } = require("../../footer-view.js");
 const React = require("react");
+const { Localized } = require("fluent-react/compat");
 
 class Head extends React.Component {
   render() {
@@ -24,13 +25,19 @@ class Body extends React.Component {
       <reactruntime.BodyTemplate {...this.props}>
         <div className="column-space full-height default-color-scheme">
           <div className="header">
-            <h1><a href="/shots">My Shots</a></h1>
+            <h1>
+              <Localized id="gMyShots">
+                <a href="/shots">My Shots</a>
+              </Localized>
+            </h1>
           </div>
           <div className="responsive-wrapper flex-1">
             <h2>{this.props.title}</h2>
-            <p>
-              The page was not found.
-            </p>
+            <Localized id="notFoundPageDescription">
+              <p>
+                The page was not found.
+              </p>
+            </Localized>
           </div>
           <Footer forUrl="legal" {...this.props} />
         </div>
