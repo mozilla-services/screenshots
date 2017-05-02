@@ -114,6 +114,11 @@ const gaJs = `
     if (gaLocation) {
       ga("set", "location", gaLocation);
     }
+    if (window.URL && document.referrer) {
+      ga("set", "referrer", (new URL(document.referrer)).origin);
+    } else {
+      ga("set", "referrer", "");
+    }
     if (__HASH_LOCATION__) {
       ga("set", "title", "");
     }
