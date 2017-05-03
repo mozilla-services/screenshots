@@ -58,6 +58,9 @@ if (window.controller) {
   window.initialModelLaunched = true;
 }
 `;
+      if (page.extraBodyJavascript) {
+        script += page.extraBodyJavascript;
+      }
       doc = addReactScripts(doc, script, req.cspNonce);
     }
     res.send(doc);

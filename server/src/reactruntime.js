@@ -106,7 +106,7 @@ exports.Page = class Page {
 };
 
 exports.Page.prototype.ATTRS = `
-dir viewModule noBrowserJavascript
+dir viewModule noBrowserJavascript extraBodyJavascript
 `.split(/\s+/g);
 
 if (typeof window !== "undefined") {
