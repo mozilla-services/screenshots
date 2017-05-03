@@ -147,7 +147,7 @@ this.main = (function() {
         .then(() => sendEvent("start-shot", "context-menu")));
   }));
 
-  function urlEnabled(url) {
+  function urlEnabled(url) { // eslint-disable-line no-unused-vars
     if (shouldOpenMyShots(url)) {
       return true;
     }
@@ -185,7 +185,7 @@ this.main = (function() {
     return badDomains.includes(domain);
   }
 
-  function enableButton(tabId) {
+  function enableButton(tabId) { // eslint-disable-line no-unused-vars
     browser.browserAction.enable(tabId);
     // We have to manually toggle the icon state, because disabled toolbar
     // buttons aren't automatically dimmed for WebExtensions on Windows or
@@ -193,11 +193,12 @@ this.main = (function() {
     setIconActive(false, tabId);
   }
 
-  function disableButton(tabId) {
+  function disableButton(tabId) { // eslint-disable-line no-unused-vars
     browser.browserAction.disable(tabId);
     setIconActive(true, tabId);
   }
 
+  /*
   browser.tabs.onUpdated.addListener(catcher.watchFunction((id, info, tab) => {
     if (info.url && tab.active) {
       if (urlEnabled(info.url)) {
@@ -207,6 +208,7 @@ this.main = (function() {
       }
     }
   }, true));
+  */
 
   communication.register("sendEvent", (sender, ...args) => {
     catcher.watchPromise(sendEvent(...args));
