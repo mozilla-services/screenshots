@@ -5,9 +5,6 @@ exports.ShareButton = class ShareButton extends React.Component {
   constructor(props) {
     super(props);
     let display = false;
-    if (props.abTests.autoOpenSharePanel && props.abTests.autoOpenSharePanel.value === "autoopen") {
-      display = props.isOwner && Date.now() - props.shot.createdDate < 30000;
-    }
     this.state = {display};
   }
 
