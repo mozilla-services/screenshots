@@ -208,20 +208,6 @@ this.main = (function() {
     }
   }, true));
 
-  browser.tabs.onActivated.addListener(catcher.watchFunction(({tabId, windowId}) => {
-    catcher.watchPromise(browser.tabs.get(tabId).then((tab) => {
-      // onActivated may fire before the url is set
-      if (!tab.url) {
-        return;
-      }
-      if (urlEnabled(tab.url)) {
-        enableButton(tabId);
-      } else if (hasSeenOnboarding) {
-        disableButton(tabId);
-      }
-    }), true);
-  }));
-
   communication.register("sendEvent", (sender, ...args) => {
     catcher.watchPromise(sendEvent(...args));
     // We don't wait for it to complete:
