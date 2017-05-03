@@ -1,33 +1,5 @@
 // Note: these get turned into Test objects:
 let allTests = {
-  highlightButtonOnInstall: {
-    description: "Highlight the toolbar button when extension is installed",
-    gaField: "cd3",
-    version: 1,
-    exclude: ["styleMyShotsButton", "autoOpenSharePanel"],
-    options: [
-      {name: "badge", probability: 0.1}
-    ]
-  },
-  styleMyShotsButton: {
-    description: "Style the My Shots button in some different way",
-    gaField: "cd4",
-    version: 1,
-    exclude: ["highlightButtonOnInstall", "autoOpenSharePanel"],
-    options: [
-      {name: "bright", probability: 0.111}
-    ]
-  },
-  autoOpenSharePanel: {
-    description: "Auto-open the share panel to see how it affects sharing",
-    gaField: "cd5",
-    shotField: "cd6",
-    version: 1,
-    exclude: ["styleMyShotsButton", "highlightButtonOnInstall"],
-    options: [
-      {name: "autoopen", probability: 0.125}
-    ]
-  }
 };
 
 /* Example of how this could be set (until we have real tests to serve as docs): */
