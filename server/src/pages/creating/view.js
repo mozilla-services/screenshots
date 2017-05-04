@@ -19,7 +19,7 @@ class Body extends React.Component {
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <div className="column-center full-height inverse-color-scheme">
-          <div clasName="spinner-wrapper">
+          <div className="spinner-wrapper">
             <div className="spinner" />
           </div>
         </div>

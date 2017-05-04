@@ -1,4 +1,5 @@
 const React = require("react");
+const { Localized } = require("fluent-react/compat");
 const sendEvent = require("./browser-send-event.js");
 
 exports.ShareButton = class ShareButton extends React.Component {
@@ -22,7 +23,9 @@ exports.ShareButton = class ShareButton extends React.Component {
     }
     const active = this.state.display ? "active" : "inactive";
     return <div>
-      <button className={`button transparent share ${active}`} id="toggle-share" onClick={ this.onClick.bind(this) } title="Share" />
+      <Localized id="shotPageShareButton">
+        <button className={`button transparent share ${active}`} id="toggle-share" onClick={ this.onClick.bind(this) } title="Share" />
+      </Localized>
       {panel}
     </div>;
   }
@@ -86,21 +89,31 @@ class ShareButtonPanel extends React.Component {
     }
     return <div id="share-buttons-panel" className={className} ref="share" style={{top: this.state.top, left: this.state.left}}>
       <div className="wrapper row-wrap share-buttons">
-        <a title="Share to Facebook wall or message" onClick={ this.onClickShareButton.bind(this, "facebook") } target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }>
-          <img src={ this.props.staticLink("/static/img/btn-fb.svg") } />
-        </a>
-        <a title="Share to a tweet" onClick={ this.onClickShareButton.bind(this, "twitter") }target="_blank" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }>
-          <img src={ this.props.staticLink("/static/img/btn-twitter.svg") } />
-        </a>
-        <a title="Share to Pinterest" onClick={ this.onClickShareButton.bind(this, "pinterest") } target="_blank" href={ "https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" + encodeURIComponent(this.props.shot.title) }>
-          <img src={ this.props.staticLink("/static/img/btn-pinterest.svg") } />
-        </a>
-        <a title="Create email with link" onClick={ this.onClickShareButton.bind(this, "email") } target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
-          <img src={ this.props.staticLink("/static/img/btn-email.svg") } />
-        </a>
+        <Localized id="shotPageShareFacebook">
+          <a title="Share to Facebook wall or message" onClick={ this.onClickShareButton.bind(this, "facebook") } target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }>
+            <img src={ this.props.staticLink("/static/img/btn-fb.svg") } />
+          </a>
+        </Localized>
+        <Localized id="shotPageShareTwitter">
+          <a title="Share to a tweet" onClick={ this.onClickShareButton.bind(this, "twitter") }target="_blank" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }>
+            <img src={ this.props.staticLink("/static/img/btn-twitter.svg") } />
+          </a>
+        </Localized>
+        <Localized id="shotPageSharePinterest">
+          <a title="Share to Pinterest" onClick={ this.onClickShareButton.bind(this, "pinterest") } target="_blank" href={ "https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" + encodeURIComponent(this.props.shot.title) }>
+            <img src={ this.props.staticLink("/static/img/btn-pinterest.svg") } />
+          </a>
+        </Localized>
+        <Localized id="shotPageShareEmail">
+          <a title="Create email with link" onClick={ this.onClickShareButton.bind(this, "email") } target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
+            <img src={ this.props.staticLink("/static/img/btn-email.svg") } />
+          </a>
+        </Localized>
       </div>
       <div className="share-url-box">
-      <p>Get a shareable link to this shot:</p>
+      <Localized id="shotPageShareLink">
+        <p>Get a shareable link to this shot:</p>
+      </Localized>
       <div className="wrapper row-space">
         <input className="copy-shot-link-input"
           value={ this.props.shot.viewUrl }
@@ -112,9 +125,11 @@ class ShareButtonPanel extends React.Component {
           { this.state.copyText }
         </button>
       </div>
-      <p className="share-visibility-notice">
-        This shot is only visible to you until you share the link.
-      </p>
+      <Localized id="shotPagePrivacyMessage">
+        <p className="share-visibility-notice">
+          This shot is only visible to you until you share the link.
+        </p>
+      </Localized>
     </div>
     </div>;
   }

@@ -1,6 +1,7 @@
 const config = require("./config").getProperties();
 require("./logging").installConsoleHandler();
 const mozlog = require("./logging").mozlog("server");
+const accepts = require("accepts");
 const path = require('path');
 const { readFileSync, existsSync } = require('fs');
 const Cookies = require("cookies");
@@ -42,6 +43,7 @@ const { captureRavenException, sendRavenMessage,
 const { errorResponse, simpleResponse, jsResponse } = require("./responses");
 const selfPackage = require("./package.json");
 const { b64EncodeJson, b64DecodeJson } = require("./b64");
+const l10n = require("./l10n");
 
 const PROXY_HEADER_WHITELIST = {
   "content-type": true,
@@ -266,6 +268,24 @@ app.use(function(req, res, next) {
   linker.imageLinkWithHost = linker.imageLink.bind(null, base);
   next();
 });
+
+app.use(function(req, res, next) {
+  const languages = req.headers['Accept-Language'] ?
+    accepts(req.headers['Accept-Language']).languages :
+    ['en-US'];
+  l10n.init(languages).then(() => {
+    req.getText = l10n.getText;
+    req.userLocales = l10n.userLangs;
+    return l10n.getStrings().then(strings => {
+      req.messages = strings;
+      next();
+    });
+  }).catch(err => {
+    mozlog.info("l10n-error", {msg: "Error loading FTL files", description: err});
+    next();
+  });
+});
+
 
 app.param("id", function(req, res, next, id) {
   if (/^[a-zA-Z0-9]{16}$/.test(id)) {

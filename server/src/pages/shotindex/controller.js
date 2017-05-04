@@ -55,7 +55,10 @@ exports.deleteShot = function(shot) {
   req.onload = function() {
     if (req.status >= 300) {
       // FIXME: a lame way to do an error message
-      window.alert("Error deleting shot: " + req.status + " " + req.statusText);
+      let errorMessage = document.getElementById("shotIndexPageErrorDeletingShot").textContent;
+      errorMessage = errorMessage.replace('{status}', req.status);
+      errorMessage = errorMessage.replace('{statusText}', req.statusText);
+      window.alert(errorMessage);
     } else {
       refreshModel();
     }
