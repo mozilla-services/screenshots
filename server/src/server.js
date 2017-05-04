@@ -383,11 +383,6 @@ app.get("/favicon.ico", function(req, res) {
   res.redirect(301, "/static/img/icon-32.png");
 });
 
-app.get("/robots.txt", function(req, res) {
-  res.header("Content-Type", "text/plain");
-  res.send("User-agent: *\nDisallow: /\n");
-});
-
 app.post("/error", function(req, res) {
   let bodyObj = req.body;
   if (typeof bodyObj !== "object") {
