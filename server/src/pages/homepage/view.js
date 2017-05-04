@@ -69,7 +69,6 @@ class Head extends React.Component {
       <reactruntime.HeadTemplate {...this.props}>
         <script src={this.props.staticLink("/static/js/homepage-bundle.js")} async></script>
         <meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-        <meta name="description" content="Share anything on the web with anyone using Firefox Screenshots." />
         <meta name="description" content="Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox." />
         <meta property="og:title" content={ this.props.title } />
         <meta property="og:url" content={ this.props.backend } />
