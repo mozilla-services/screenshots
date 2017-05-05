@@ -1,3 +1,10 @@
+## Version 6.6.2
+
+Another version landing in the non-master latest-firefox-export branch.
+
+* Stop updating the button icon when the tab is updated ([#2824](https://github.com/mozilla-services/screenshots/issues/2824))
+* Also pull in updated icons that have already landed in master ([#2817](https://github.com/mozilla-services/screenshots/issues/2817))
+
 ## Version 6.6.1
 
 * Correctly set Sentry URL when exporting to mozilla-central ([#2782](https://github.com/mozilla-services/screenshots/issues/2782))
