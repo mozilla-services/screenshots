@@ -1,3 +1,15 @@
+## Version 6.6.1
+
+* Correctly set Sentry URL when exporting to mozilla-central ([#2782](https://github.com/mozilla-services/screenshots/issues/2782))
+
+This version includes two changes that addressed Talos performance regressions discussed in [https://bugzil.la/1361792](https://bugzil.la/1361792):
+
+* Do not update toolbar button state inside tab 'activated' event handler ([#2800](https://github.com/mozilla-services/screenshots/issues/2800))
+* Start the WebExtension immediately, instead of waiting for the 'sessionstore-windows-restored' event ([#2813](https://github.com/mozilla-services/screenshots/issues/2813))
+
+Note also that these changes have been added to Firefox directly on top of the 6.6.0 release, not on top of current master; the divergence is tracked
+by the `latest-firefox-export` branch.
+
 ## Version 6.6.0
 
 * Change metrics preference to `datareporting.healthreport.uploadEnabled` ([#2785](https://github.com/mozilla-services/screenshots/issues/2785))
