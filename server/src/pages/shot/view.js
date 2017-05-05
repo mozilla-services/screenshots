@@ -42,7 +42,10 @@ class Clip extends React.Component {
       console.warn("Somehow there's a shot without an image");
       return null;
     }
-    let node = <img style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%", display: this.state.imageDisplay}} ref="clipImage" src={ clip.image.url } alt={ clip.image.text } onLoad = { this.onImageLoaded.bind(this) } />;
+    let node = <img id="clipImage" style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%", display: this.state.imageDisplay}} ref="clipImage" src={ clip.image.url } alt={ clip.image.text } onLoad = { this.onImageLoaded.bind(this) } />;
+    // Note that in server/src/pages/shot/page.js there is also JavaScript defined
+    // that displays the image onload, as a backup to make sure the image always
+    // gets displayed even if the bundle doesn't load
     return <div ref="clipContainer" className="clip-container">
       <menu type="context" id="clip-image-context">
         <menuitem label="Copy Image Text" onClick={this.copyImageText.bind(this)} ></menuitem>
@@ -66,7 +69,7 @@ class Clip extends React.Component {
       return null;
     }
     return (
-      <div className="spinner">
+      <div id="spinner" className="spinner">
         <img src = {this.props.staticLink("/static/img/spinner.svg")} />
       </div>
     );
