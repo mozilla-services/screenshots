@@ -263,6 +263,6 @@ var conf = convict({
   }
 });
 
-conf.validate({ strict: true });
+conf.validate({ allowed: "strict" });
 
 module.exports = conf;

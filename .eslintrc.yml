@@ -30,7 +30,7 @@ rules:
 
   consistent-return: off # TODO: remove, and default to mozilla/recommended of "error"
   eqeqeq: off # TODO: change to "error"
-  no-console: off
+  no-console: [error, {allow: [debug, error, info, trace, warn]}]
   no-var: off # TODO: change to "error"
   prefer-const: off # TODO: change to "error"
   quotes: [off, double] # TODO: change to "error"

@@ -1078,12 +1078,14 @@ if (config.localhostSsl) {
   let key = `${process.env.HOME}/.localhost-ssl/key.pem`;
   let cert = `${process.env.HOME}/.localhost-ssl/cert.pem`;
   if (!(existsSync(key) && existsSync(cert))) {
+    /* eslint-disable no-console */
     console.log("Error: to use localhost SSL/HTTPS you must create a key.pem and cert.pem file");
     console.log("  These must be located in:");
     console.log(`    ${key}`);
     console.log(`    ${cert}`);
     console.log("  You can find instructions on creating these files here:");
     console.log("    https://certsimple.com/blog/localhost-ssl-fix");
+    /* eslint-enable no-console */
     process.exit(2);
   }
   httpsCredentials = {

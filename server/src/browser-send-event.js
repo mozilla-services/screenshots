@@ -9,6 +9,7 @@ if (typeof window != "undefined" && window.sendEvent) {
     if (window.sendEvent) {
       window.sendEvent.apply(null, arguments);
     } else {
+      // eslint-disable-next-line no-console
       console.log.apply(console, ["missing sendEvent("].concat(Array.from(arguments).concat([")"])));
       if (!sentEvent) {
         // Initialization to send events can take a while:
