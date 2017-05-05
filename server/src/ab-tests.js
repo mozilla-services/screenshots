@@ -49,7 +49,7 @@ let allTests = {
 
 // Any test names listed here will get removed from the A/B tests.  Tests should
 // be moved here once we are uninterested in any future data from the test:
-let deprecatedTests = [];
+let deprecatedTests = ['highlightButtonOnInstall', 'styleMyShotsButton', 'autoOpenSharePanel'];
 
 class Test {
   constructor(options) {

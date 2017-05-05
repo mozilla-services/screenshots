@@ -398,20 +398,6 @@ $very-light-grey: #ededed;
   @include flex-container(row, center, center);
 }
 
-/* styleMyShotsButton test: */
-
-.styleMyShotsButton-bright .myshots-button {
-  color: #fff;
-  background: $link-blue;
-}
-
-.styleMyShotsButton-bright .myshots-text-pre,
-.styleMyShotsButton-bright .myshots-text-post {
-  filter: brightness(20);
-}
-
-/* end styleMyShotsButton test */
-
 @keyframes pulse {
   0% {
     transform: scale(1);
