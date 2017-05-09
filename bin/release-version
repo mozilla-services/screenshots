@@ -34,18 +34,17 @@ fi
 
 case "$channel" in
   dev)
-    if [[ -z "$DOCKER_USERNAME" ]] ; then
-      echo "Please set \$DOCKER_USERNAME to your dockerhub username"
-      exit 3
+    if [[ "$(current_branch)" != "master" ]] ; then
+      echo "Note: deploying from branch $(current_branch) (master expected)"
     fi
-    rm -f build/screenshots.zip
+    rm -f build/screenshots.xpi
     # Forces update of the add-on version:
     mkdir -p build
     touch build/.backend.txt
-    SCREENSHOTS_BACKEND=https://pageshot.dev.mozaws.net SCREENSHOTS_SENTRY="$dev_sentry" make signed_xpi
-    ./bin/build-docker-image $DOCKER_USERNAME
+    SCREENSHOTS_BACKEND=https://screenshots.dev.mozaws.net SCREENSHOTS_SENTRY="$dev_sentry" make signed_xpi
+    ./bin/build-docker-image mozilla latest
     echo
-    echo "Next step: upload build/eb-app-latest.zip to http://amzn.to/1NuC3N9"
+    echo "Dev deployment automatically triggered, see #screenshots IRC for status"
     ;;
   stage)
     if [[ "$(current_branch)" != "stable" ]] && [[ -z "$IGNORE_BRANCH" ]] ; then
@@ -55,7 +54,7 @@ case "$channel" in
       echo "  IGNORE_BRANCH=1 $(basename $0) stage"
       exit 4
     fi
-    rm -f build/screenshots.zip
+    rm -f build/screenshots.xpi
     # Forces update of the add-on version:
     touch build/.backend.txt
     SCREENSHOTS_BACKEND=https://screenshots.stage.mozaws.net SCREENSHOTS_SENTRY="$stage_sentry" make signed_xpi
@@ -80,4 +79,4 @@ case "$channel" in
     exit 2
 esac
 
-which growlnotify > /dev/null && growlnotify -m "Screenshots Deploy/container for ${channel} completed"
+which growlnotify > /dev/null && growlnotify -m "Screenshots Deploy/container for ${channel} completed" || true

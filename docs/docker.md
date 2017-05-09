@@ -1,7 +1,9 @@
+**Note:** Most of what is described in these instructions is implemented in the `./bin/release-version` script.
+
 To create the docker image, first run:
 
     make server
-    make xpi
+    make signed_xpi
 
 Then, manually sign the xpi (in the build directory) using the AMO website, download the signed copy, replace the unsigned copy, and use:
 

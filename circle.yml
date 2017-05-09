@@ -1,4 +1,6 @@
 machine:
+  services:
+    - docker
   node:
     version: 6.10.0
   environment:
@@ -34,3 +36,10 @@ test:
 
   post:
     - bash <(curl -s https://codecov.io/bash)
+
+deployment:
+  dev:
+    branch: master
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - ./bin/release-version dev
