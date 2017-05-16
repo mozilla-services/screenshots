@@ -19,14 +19,6 @@
     "128": "icons/icon-128.png",
     "256": "icons/icon-256.png"
   },
-  "browser_action": {
-    "default_icon": {
-      "16": "icons/icon-16.svg",
-      "32": "icons/icon-32.svg"
-    },
-    "default_title": "__MSG_contextMenuLabel__",
-    "browser_style": false
-  },
   "background": {
     "scripts": [
       "build/buildSettings.js",
@@ -82,7 +74,6 @@
     "storage",
     "notifications",
     "clipboardWrite",
-    "contextMenus",
     "<all_urls>",
     "http://localhost:10080/"
   ]
