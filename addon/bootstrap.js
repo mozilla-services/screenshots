@@ -41,20 +41,22 @@ const prefObserver = {
     // aData is the name of the pref that's been changed (relative to aSubject)
     if (aData == USER_DISABLE_PREF || aData == SYSTEM_DISABLE_PREF) {
       // eslint-disable-next-line promise/catch-or-return
-      appStartupPromise.then(handleStartup);
+      appStartupPromise.then(initButton);
     }
   }
 };
 
 function startup(data, reason) { // eslint-disable-line no-unused-vars
+  console.log("bootstrap startup called");
   appStartupDone();
   prefObserver.register();
   addonResourceURI = data.resourceURI;
   // eslint-disable-next-line promise/catch-or-return
-  appStartupPromise.then(handleStartup);
+  appStartupPromise.then(initButton);
 }
 
 function shutdown(data, reason) { // eslint-disable-line no-unused-vars
+  console.log("bootstrap shutdown called");
   prefObserver.unregister();
   const webExtension = LegacyExtensionsUtils.getEmbeddedExtensionFor({
     id: ADDON_ID,
@@ -78,6 +80,7 @@ function shouldDisable() {
 }
 
 function handleStartup() {
+  console.log("inside handleStartup");
   // TODO: check the pref _before_ calling into ExtensionsUtils.
   const webExtension = LegacyExtensionsUtils.getEmbeddedExtensionFor({
     id: ADDON_ID,
@@ -92,6 +95,7 @@ function handleStartup() {
 }
 
 function start(webExtension) {
+  console.log("inside start");
   webExtension.startup().then((api) => {
     api.browser.runtime.onMessage.addListener(handleMessage);
   }).catch((err) => {
@@ -132,6 +136,7 @@ function handleMessage(msg, sender, sendReply) {
   }
 }
 
+// TODO: deal with toggling the prefs on/off
 function initButton() {
   // From MDN - stylesheet-free icon insertion method
   // https://mdn.io/CustomizableUI.jsm#Giving_the_button_an_icon_non-style_sheet_method
@@ -165,10 +170,12 @@ function initButton() {
     label: "Screenshots", // TODO: l10n
     tooltiptext: "Take a screenshot", // TODO: l10n
     onCommand: (aEvent) => {
+      console.log("inside CustomizableUI widget onCommand");
       const xulWindow = aEvent.target.ownerDocument.defaultView;
       const tab = xulWindow.gBrowser.selectedTab; // TODO: map tab to webext tabID?
       tab.linkedBrowser.contentWindow.alert("alert from html window of selected tab. button pressed yay.");
       // TODO: init the webextension and open the overlay
+      handleStartup();
     }
   });
 
