@@ -110,7 +110,10 @@ zip: addon
 bootstrap_zip: addon
 	@rm -f build/screenshots-bootstrap.zip
 	cd addon && zip -rq ../build/screenshots-bootstrap.zip .
-	# build/screenshots-bootstrap.js created
+	# build/screenshots-bootstrap.zip created
+
+unsigned_bootstrap_xpi: bootstrap_zip
+	cp build/screenshots-bootstrap.zip build/screenshots.xpi
 
 .PHONY: signed_xpi
 signed_xpi: addon
@@ -261,7 +264,11 @@ help:
 	@echo "  make clean"
 	@echo "    rm -rf build/ addon/webextension/build"
 	@echo "  make zip"
-	@echo "    make a zip of the webextension in build/screenshots.zip"
+	@echo "    make an unsigned zip of the webextension in build/screenshots.zip"
+	@echo "  make bootstrap_zip"
+	@echo "    make an unsigned zip of addon/ in build/screenshots.zip"
+	@echo "  make unsigned_bootstrap_xpi"
+	@echo "    make an unsigned xpi of addon/ in build/screenshots.xpi"
 	@echo "  make signed_xpi"
 	@echo "    make a signed xpi in build/screenshots.xpi"
 	@echo "See also:"
