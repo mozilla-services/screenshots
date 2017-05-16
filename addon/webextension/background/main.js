@@ -12,8 +12,10 @@ this.main = (function() {
   let manifest = browser.runtime.getManifest();
   let backend;
 
-  let hasSeenOnboarding;
+  // TODO: hard-coding this for the moment...
+  let hasSeenOnboarding = true;
 
+  /*
   browser.storage.local.get(["hasSeenOnboarding"]).then((result) => {
     hasSeenOnboarding = !!result.hasSeenOnboarding;
     if (!hasSeenOnboarding) {
@@ -26,6 +28,7 @@ this.main = (function() {
   }).catch((error) => {
     log.error("Error getting hasSeenOnboarding:", error);
   });
+  */
 
   exports.setBackend = function(newBackend) {
     backend = newBackend;
@@ -52,6 +55,7 @@ this.main = (function() {
   }
 
   function setIconActive(active, tabId) {
+    return console.error("TODO: stop calling setIconActive");
     let path = active ? "icons/icon-highlight-32.svg" : "icons/icon-32.svg";
     if ((!hasSeenOnboarding) && !active) {
       path = "icons/icon-starred-32.svg";
@@ -88,6 +92,7 @@ this.main = (function() {
     return /^about:(?:newtab|blank)/i.test(url) || /^resource:\/\/activity-streams\//i.test(url);
   }
 
+  /*
   browser.browserAction.onClicked.addListener(catcher.watchFunction((tab) => {
     if (shouldOpenMyShots(tab.url)) {
       if (!hasSeenOnboarding) {
@@ -118,6 +123,7 @@ this.main = (function() {
           }));
     }
   }));
+  */
 
   function forceOnboarding() {
     return browser.tabs.create({url: getOnboardingUrl()}).then((tab) => {

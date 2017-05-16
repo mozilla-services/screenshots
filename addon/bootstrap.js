@@ -1,5 +1,5 @@
-/* globals AddonManager, Components, LegacyExtensionsUtils, Services,
-   XPCOMUtils */
+/* globals AddonManager, Components, CustomizableUI, LegacyExtensionsUtils,
+   Services, XPCOMUtils */
 
 const OLD_ADDON_PREF_NAME = "extensions.jid1-NeEaf3sAHdKHPA@jetpack.deviceIdInfo";
 const OLD_ADDON_ID = "jid1-NeEaf3sAHdKHPA@jetpack";
@@ -15,6 +15,10 @@ XPCOMUtils.defineLazyModuleGetter(this, "AddonManager",
                                   "resource://gre/modules/AddonManager.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "Console",
                                   "resource://gre/modules/Console.jsm");
+// TODO: lazy loading CUI seems to fail?
+//XPCOMUtils.defineLazyModuleGetter(this, "CustomizableUI",
+//                                  "resource:///modules/CustomizableUI.jsm");
+Cu.import("resource:///modules/CustomizableUI.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "Services",
                                   "resource://gre/modules/Services.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "LegacyExtensionsUtils",
@@ -49,7 +53,9 @@ const prefObserver = {
 function startup(data, reason) { // eslint-disable-line no-unused-vars
   console.log("bootstrap startup called");
   appStartupDone();
-  prefObserver.register();
+  // TODO: We have to disable the prefObserver so that we can disable the built-in
+  // screenshots addon. Ughhh
+  // prefObserver.register();
   addonResourceURI = data.resourceURI;
   // eslint-disable-next-line promise/catch-or-return
   appStartupPromise.then(initButton);
@@ -149,7 +155,7 @@ function initButton() {
       const instances = CustomizableUI.getWidget("screenshots-button").instances;
       instances.forEach(instance => {
         instance.node.setAttribute("image", "chrome://screenshots-skin/content/icon-16.png");
-      }
+      });
     },
     onWidgetDestroyed: function(aWidgetId) {
       if (aWidgetId !== "screenshots-button") {
@@ -171,7 +177,7 @@ function initButton() {
     tooltiptext: "Take a screenshot", // TODO: l10n
     onCommand: (aEvent) => {
       console.log("inside CustomizableUI widget onCommand");
-      const xulWindow = aEvent.target.ownerDocument.defaultView;
+      const xulWindow = aEvent.target.ownerGlobal;
       const tab = xulWindow.gBrowser.selectedTab; // TODO: map tab to webext tabID?
       tab.linkedBrowser.contentWindow.alert("alert from html window of selected tab. button pressed yay.");
       // TODO: init the webextension and open the overlay
