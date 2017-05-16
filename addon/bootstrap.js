@@ -78,6 +78,7 @@ function shouldDisable() {
 }
 
 function handleStartup() {
+  // TODO: check the pref _before_ calling into ExtensionsUtils.
   const webExtension = LegacyExtensionsUtils.getEmbeddedExtensionFor({
     id: ADDON_ID,
     resourceURI: addonResourceURI
@@ -129,4 +130,48 @@ function handleMessage(msg, sender, sendReply) {
     });
     return true;
   }
+}
+
+function initButton() {
+  // From MDN - stylesheet-free icon insertion method
+  // https://mdn.io/CustomizableUI.jsm#Giving_the_button_an_icon_non-style_sheet_method
+  const widgetListener = {
+    onWidgetAdded: function(aWidgetId, aArea, aPosition) {
+      if (aWidgetId !== "screenshots-button") {
+        return;
+      }
+      console.log("Screenshots widgetListener onWidgetAdded called");
+      const instances = CustomizableUI.getWidget("screenshots-button").instances;
+      instances.forEach(instance => {
+        instance.node.setAttribute("image", "chrome://screenshots-skin/content/icon-16.png");
+      }
+    },
+    onWidgetDestroyed: function(aWidgetId) {
+      if (aWidgetId !== "screenshots-button") {
+        return;
+      }
+      console.log("Screenshots widgetListener onWidgetDestroyed called");
+      CustomizableUI.removeListener(widgetListener);
+    }
+  };
+  CustomizableUI.addListener(widgetListener);
+
+
+  // From MDN - really simple button snippet
+  // https://mdn.io/CustomizableUI.jsm#CreateWidget_-_Button_Type
+  CustomizableUI.createWidget({
+    id: "screenshots-button",
+    defaultArea: CustomizableUI.AREA_NAVBAR,
+    label: "Screenshots", // TODO: l10n
+    tooltiptext: "Take a screenshot", // TODO: l10n
+    onCommand: (aEvent) => {
+      const xulWindow = aEvent.target.ownerDocument.defaultView;
+      const tab = xulWindow.gBrowser.selectedTab; // TODO: map tab to webext tabID?
+      tab.linkedBrowser.contentWindow.alert("alert from html window of selected tab. button pressed yay.");
+      // TODO: init the webextension and open the overlay
+    }
+  });
+
+
+
 }
