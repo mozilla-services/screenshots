@@ -88,7 +88,8 @@ this.main = (function() {
     return /^about:(?:newtab|blank)/i.test(url) || /^resource:\/\/activity-streams\//i.test(url);
   }
 
-  browser.browserAction.onClicked.addListener(catcher.watchFunction((tab) => {
+  // This is called by startBackground.js, directly in response to browser.browserAction.onClicked
+  exports.onClicked = catcher.watchFunction((tab) => {
     if (shouldOpenMyShots(tab.url)) {
       if (!hasSeenOnboarding) {
         catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
@@ -117,7 +118,7 @@ this.main = (function() {
             throw error;
           }));
     }
-  }));
+  });
 
   function forceOnboarding() {
     return browser.tabs.create({url: getOnboardingUrl()}).then((tab) => {
