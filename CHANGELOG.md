@@ -1,3 +1,36 @@
+## Version 7.0.0
+
+Destined for a server deploy, probably only a later version of the add-on will be imported into Firefox.
+
+* Update documentation [ef69b80](https://github.com/mozilla-services/screenshots/commit/ef69b80) [56d919a](https://github.com/mozilla-services/screenshots/commit/56d919a) [709b3ee](https://github.com/mozilla-services/screenshots/commit/709b3ee) [75c4ca4](https://github.com/mozilla-services/screenshots/commit/75c4ca4)
+* Stop updating the tab state on tab 'updated' eventRelocate the urlEnabled check to the button click handler, and show the unshootable page error if the url isn't enabled.
+  * Removing the onUpdated handler and the many redundant setIcon calls will hopefully help fix performance issues currently preventing uplift into
+  Firefox.
+  * Fixes [#2824](https://github.com/mozilla-services/screenshots/issues/2824) [d830d9a](https://github.com/mozilla-services/screenshots/commit/d830d9a)
+* Do not update toolbar button state inside tab 'activated' event handler.  According to kmag, webextension buttons have per-tab state, so setting the button enabled or disabled on update should be enough. Updating the icon on tab activated may be causing performance issues. See https://bugzilla.mozilla.org/show_bug.cgi?id=1361792 for details. Also remove tab.active check, so that non-active tabs can catch button updates (https://bugzilla.mozilla.org/show_bug.cgi?id=1362234#c2) [f63b90e](https://github.com/mozilla-services/screenshots/commit/f63b90e)
+* Start WebExtension immediatelyStop waiting for the 'sessionstore-windows-restored' event before
+  starting the WebExtension.
+  See https://bugzilla.mozilla.org/show_bug.cgi?id=1361792 for details. [81a567a](https://github.com/mozilla-services/screenshots/commit/81a567a)
+* Add dropshadow to icons for dark themes [cbfa406](https://github.com/mozilla-services/screenshots/commit/cbfa406)
+* Add a quiet parameter to watchFunction to match watchPromise ([#2795](https://github.com/mozilla-services/screenshots/issues/2795))
+  Quiet the watchFunction calls in tabs.onUpdated and tabs.onActivated, that should never pop up a message [1add819](https://github.com/mozilla-services/screenshots/commit/1add819)
+* Set Sentry URL when exporting to m-c. Fixes [#2782](https://github.com/mozilla-services/screenshots/issues/2782) [576a9c8](https://github.com/mozilla-services/screenshots/commit/576a9c8)
+
+### Server changes:
+
+* Add landing page UI [166e079](https://github.com/mozilla-services/screenshots/commit/166e079)
+* Remove duplicate meta description in head [f5c5509](https://github.com/mozilla-services/screenshots/commit/f5c5509)
+* Remove robots.txt and replace with meta noindex making Twitter cards work again Invalidates [#2805](https://github.com/mozilla-services/screenshots/issues/2805). Fixes [#2806](https://github.com/mozilla-services/screenshots/issues/2806) Fixes [#2774](https://github.com/mozilla-services/screenshots/issues/2774) [1c6efd6](https://github.com/mozilla-services/screenshots/commit/1c6efd6)
+* Disable all active A/B tests. Fixes [#2796](https://github.com/mozilla-services/screenshots/issues/2796) [ddcb7fc](https://github.com/mozilla-services/screenshots/commit/ddcb7fc) [0726fd0](https://github.com/mozilla-services/screenshots/commit/0726fd0)
+* Make clip image.onload resilient. This duplicates some of the React logic that shows the clip image when it loads, but will run even if the bundle doesn't load or there's other Javascript errors. Fixes [#2792](https://github.com/mozilla-services/screenshots/issues/2792) Fixes [#2651](https://github.com/mozilla-services/screenshots/issues/2651) [60adfea](https://github.com/mozilla-services/screenshots/commit/60adfea)
+* Allow JS to run even when ga-activation.js is suppressed. Fixes [#2790](https://github.com/mozilla-services/screenshots/issues/2790) [bf39dc4](https://github.com/mozilla-services/screenshots/commit/bf39dc4)
+* Send only referrer origin to GA. Fixes [#2717](https://github.com/mozilla-services/screenshots/issues/2717) [4883e11](https://github.com/mozilla-services/screenshots/commit/4883e11)
+* Fix email address. Fixes [#2791](https://github.com/mozilla-services/screenshots/issues/2791) [46915c5](https://github.com/mozilla-services/screenshots/commit/46915c5)
+* Extended direct-view event with ownership. closes [#2143](https://github.com/mozilla-services/screenshots/issues/2143) [0cc662c](https://github.com/mozilla-services/screenshots/commit/0cc662c)
+* Inline style/image on /#hello. Fixes [#2703](https://github.com/mozilla-services/screenshots/issues/2703) [97e75bb](https://github.com/mozilla-services/screenshots/commit/97e75bb)
+* Complete screenshots style refactor [4723a92](https://github.com/mozilla-services/screenshots/commit/4723a92)
+* Clarify how Do Not Track affects does not affect error reporting
+
 ## Version 6.6.2
 
 Another version landing in the non-master latest-firefox-export branch.
