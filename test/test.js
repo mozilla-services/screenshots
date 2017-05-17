@@ -1,4 +1,3 @@
-/* globals describe, it, before, after */
 /* Environmental variables that help control this test:
 
 FIREFOX_CHANNEL = empty (default RELEASE)

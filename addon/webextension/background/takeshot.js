@@ -1,4 +1,4 @@
-/* globals communication, shot, main, auth, catcher, analytics, browser */
+/* globals communication, shot, main, auth, catcher, analytics */
 
 "use strict";
 

@@ -1,5 +1,3 @@
-/* globals describe, it, before, after */
-
 const assert = require("assert");
 const abTests = require("../server/src/ab-tests.js");
 

@@ -1,4 +1,3 @@
-/* globals window */
 const reactruntime = require("../../reactruntime");
 const React = require("react");
 
