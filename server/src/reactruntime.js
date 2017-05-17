@@ -1,5 +1,3 @@
-/* globals document, location */
-
 require("core-js");
 
 const React = require("react");

@@ -1,6 +1,3 @@
-/* browser: true */
-/* globals window, XMLHttpRequest, alert */
-
 const page = require("./page").page;
 
 let model;

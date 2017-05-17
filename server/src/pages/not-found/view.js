@@ -1,4 +1,3 @@
-/* globals location*/
 const reactruntime = require("../../reactruntime");
 const { Footer } = require("../../footer-view.js");
 const React = require("react");

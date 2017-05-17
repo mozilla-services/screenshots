@@ -1,6 +1,3 @@
-/* globals AddonManager, Components, LegacyExtensionsUtils, Services,
-   XPCOMUtils */
-
 const OLD_ADDON_PREF_NAME = "extensions.jid1-NeEaf3sAHdKHPA@jetpack.deviceIdInfo";
 const OLD_ADDON_ID = "jid1-NeEaf3sAHdKHPA@jetpack";
 const ADDON_ID = "screenshots@mozilla.org";

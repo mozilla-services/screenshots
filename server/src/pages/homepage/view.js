@@ -1,4 +1,3 @@
-/* globals window */
 const reactruntime = require("../../reactruntime");
 const React = require("react");
 const style = `
@@ -280,16 +279,16 @@ const style = `
     height: 533px;
   }
 
-  #section-1 .section-content, 
-  #section-2 .section-image, 
-  #section-3 .section-content, 
+  #section-1 .section-content,
+  #section-2 .section-image,
+  #section-3 .section-content,
   #section-4 .section-image {
     order: 1;
   }
 
   #section-1 .section-image,
-  #section-2 .section-content, 
-  #section-3 .section-image, 
+  #section-2 .section-content,
+  #section-3 .section-image,
   #section-4 .section-content {
     order: 2;
   }
@@ -496,7 +495,7 @@ const style = `
     height: 50px;
     }
 
-    .coming-icons span {  
+    .coming-icons span {
     top: 3px;
     margin: 0 16px;
     }
@@ -515,7 +514,7 @@ const style = `
     margin-right: 0 !important;
     margin-bottom: 20px;
     }
-    
+
     .social-links {
       justify-content: center;
     }
