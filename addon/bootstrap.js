@@ -24,6 +24,7 @@ XPCOMUtils.defineLazyModuleGetter(this, "Services",
 XPCOMUtils.defineLazyModuleGetter(this, "LegacyExtensionsUtils",
                                   "resource://gre/modules/LegacyExtensionsUtils.jsm");
 
+let webExtensionStarted;
 let addonResourceURI;
 let appStartupDone;
 const appStartupPromise = new Promise((resolve, reject) => {
@@ -85,6 +86,20 @@ function shouldDisable() {
   return getBoolPref(USER_DISABLE_PREF) || getBoolPref(SYSTEM_DISABLE_PREF);
 }
 
+// the postmessage channel opened once the webextension is started
+let webExtensionPort;
+function onConnect(port) {
+  webExtensionPort = port;
+}
+
+function onClick() {
+  console.log("onClick called");
+  if (!webExtensionPort) { return; } // just do nothing till the port is ready
+  // TODO: figure out how to send the tab ID over
+  webExtensionPort.postMessage({ content: "click" });
+}
+
+
 function handleStartup() {
   console.log("inside handleStartup");
   // TODO: check the pref _before_ calling into ExtensionsUtils.
@@ -103,7 +118,9 @@ function handleStartup() {
 function start(webExtension) {
   console.log("inside start");
   webExtension.startup().then((api) => {
+     webExtensionStarted = true;
     api.browser.runtime.onMessage.addListener(handleMessage);
+    api.browser.runtime.onConnect.addListener(onConnect);
   }).catch((err) => {
     // The startup() promise will be rejected if the webExtension was
     // already started (a harmless error), or if initializing the
@@ -116,7 +133,10 @@ function start(webExtension) {
 }
 
 function stop(webExtension) {
-  webExtension.shutdown();
+  // TODO: does shutdown return a promise? there are no docs
+  webExtension.shutdown().then(() => {
+    webExtensionStarted = false;
+  });
 }
 
 function handleMessage(msg, sender, sendReply) {
@@ -177,11 +197,10 @@ function initButton() {
     tooltiptext: "Take a screenshot", // TODO: l10n
     onCommand: (aEvent) => {
       console.log("inside CustomizableUI widget onCommand");
-      const xulWindow = aEvent.target.ownerGlobal;
-      const tab = xulWindow.gBrowser.selectedTab; // TODO: map tab to webext tabID?
-      tab.linkedBrowser.contentWindow.alert("alert from html window of selected tab. button pressed yay.");
-      // TODO: init the webextension and open the overlay
-      handleStartup();
+      if (!webExtensionStarted) {
+        handleStartup();
+      }
+      onClick(aEvent);
     }
   });
 

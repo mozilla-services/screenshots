@@ -301,5 +301,17 @@ this.main = (function() {
     return startSelectionWithOnboarding(sender.tab);
   });
 
+  // Open a port to let the embedding legacy addon tell us when a button is pressed
+  // TODO: do we need to specify the extensionID in the connect call?
+  // TODO: as soon as the port exists, send a "hello" message over, so the embedding
+  // addon can get a reference to the port.
+  const port = browser.runtime.connect({name: "screenshots-legacy-connection"});
+  port.onMessage.addListener((message) => {
+    if (message.content === "click") {
+      console.log("got a click signal from the legacy addon");
+      // TODO: figure out how to get the tabID of the clicked tab
+    }
+  });
+
   return exports;
 })();
