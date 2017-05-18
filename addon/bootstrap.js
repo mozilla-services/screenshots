@@ -46,7 +46,7 @@ const prefObserver = {
     // aData is the name of the pref that's been changed (relative to aSubject)
     if (aData == USER_DISABLE_PREF || aData == SYSTEM_DISABLE_PREF) {
       // eslint-disable-next-line promise/catch-or-return
-      appStartupPromise.then(initButton);
+      appStartupPromise.then(initUI);
     }
   }
 };
@@ -59,12 +59,19 @@ function startup(data, reason) { // eslint-disable-line no-unused-vars
   // prefObserver.register();
   addonResourceURI = data.resourceURI;
   // eslint-disable-next-line promise/catch-or-return
-  appStartupPromise.then(initButton);
+  appStartupPromise.then(initUI);
+}
+
+function initUI() {
+  initButton();
+  // TODO: check the pref state, then either init or shutdown the context menu
+  contextMenu.init();
 }
 
 function shutdown(data, reason) { // eslint-disable-line no-unused-vars
   console.log("bootstrap shutdown called");
   prefObserver.unregister();
+  contextMenu.shutdown();
   const webExtension = LegacyExtensionsUtils.getEmbeddedExtensionFor({
     id: ADDON_ID,
     resourceURI: addonResourceURI
@@ -207,3 +214,32 @@ function initButton() {
 
 
 }
+
+// borrowed from PocketContextMenu in m-c
+const contextMenu = {
+  init: function() {
+    Services.obs.addObserver(this, "on-build-contextmenu");
+  },
+  shutdown: function() {
+    Services.obs.removeObserver(this, "on-build-contextmenu");
+    for (let win of CustomizableUI.windows) {
+      const item = win.document.getElementById("context-screenshots");
+      if (item) {
+        item.remove();
+      }
+    }
+  },
+  observe: function(aSubject, aTopic, aData) {
+    const document = aSubject.wrappedJSObject.menu.ownerDocument;
+    let item = document.getElementById("context-screenshots");
+    if (!item) {
+      item = document.createElement("menuitem");
+      item.setAttribute("id", "context-screenshots");
+      item.setAttribute("label", "screenshots"); // TODO solve l10n without webextensions :-(
+      item.setAttribute("oncommand", "window.alert('clicked screenshots context menu')");
+      // TODO: add an "accesskey" attribute?
+      const parent = document.getElementById("context-navigation");
+      parent.appendChild(item);
+    }
+  }
+};

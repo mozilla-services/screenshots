@@ -88,9 +88,11 @@ this.main = (function() {
     });
   }
 
+  /* disabled, since onClicked and context menu are disabled
   function shouldOpenMyShots(url) {
     return /^about:(?:newtab|blank)/i.test(url) || /^resource:\/\/activity-streams\//i.test(url);
   }
+  */
 
   /*
   browser.browserAction.onClicked.addListener(catcher.watchFunction((tab) => {
@@ -131,6 +133,7 @@ this.main = (function() {
     });
   }
 
+  /*
   browser.contextMenus.create({
     id: "create-screenshot",
     title: browser.i18n.getMessage("contextMenuLabel"),
@@ -169,6 +172,7 @@ this.main = (function() {
     return true;
   }
 
+  // also disabled, since only called by context menu via urlEnabled
   function isShotOrMyShotPage(url) {
     // It's okay to take a shot of any pages except shot pages and My Shots
     if (!url.startsWith(backend)) {
@@ -185,6 +189,7 @@ this.main = (function() {
     return false;
   }
 
+  // also disabled, since only called by context menu via urlEnabled
   function isBlacklistedUrl(url) {
     // These specific domains are not allowed for general WebExtension permission reasons
     // Discussion: https://bugzilla.mozilla.org/show_bug.cgi?id=1310082
@@ -196,6 +201,7 @@ this.main = (function() {
     domain = domain.toLowerCase();
     return badDomains.includes(domain);
   }
+  */
 
   communication.register("sendEvent", (sender, ...args) => {
     catcher.watchPromise(sendEvent(...args));
