@@ -8,7 +8,7 @@ function assert(condition, ...args) {
     return;
   }
   console.error("Failed assertion", ...args);
-  throw new Error("Failed assertion", ...args);
+  throw new Error(`Failed assertion: ${args.join(" ")}`);
 }
 
 /** True if `url` is a valid URL */
