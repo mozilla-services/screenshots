@@ -42,6 +42,7 @@ console.info = logFactory("info");
 console.warn = logFactory("warn");
 console.error = logFactory("error");
 
+const mozlog = require("mozlog")("server");
 const path = require('path');
 const { readFileSync, existsSync } = require('fs');
 const Cookies = require("cookies");
@@ -101,17 +102,17 @@ if (config.useS3) {
   // Test a PUT to s3 because configuring this requires using the aws web interface
   // If the permissions are not set up correctly, then we want to know that asap
   var s3bucket = new AWS.S3({params: {Bucket: config.s3BucketName}});
-  console.info(new Date(), `creating ${config.s3BucketName}`);
+  mozlog.info("creating-s3-bucket", {msg: `creating ${config.s3BucketName}`, bucketName: config.s3BucketName});
 
   // createBucket is a horribly named api; it creates a local object to access
   // an existing bucket
   s3bucket.createBucket(function() {
     var params = {Key: 'test', Body: 'Hello!'};
-    s3bucket.upload(params, function(err, data) {
-      if (err) {
-        console.warn("Error uploading data during test: ", err);
+    s3bucket.upload(params, function(error, data) {
+      if (error) {
+        mozlog.warn("test-upload-error", {msg: "Error uploading data during test", error, bucketName: config.s3BucketName});
       } else {
-        console.info(`Successfully uploaded data to ${config.s3BucketName}/test`);
+        mozlog.info("test-upload-success", {msg: `Successfully uploaded data to ${config.s3BucketName}/test`, bucketName: config.s3BucketName})
       }
     });
   });
@@ -126,16 +127,16 @@ function initDatabase() {
     },
     (e) => {
       hadError = true;
-      console.error("Error forcing database version:", forceDbVersion, e);
+      mozlog.error("database-version-update-error", {msg: "Error forcing database version:", dbVersion: forceDbVersion, error: e});
     }).then(() => {
-      console.info("Exiting after downgrade");
+      mozlog.info("database-version-update-exit", {msg: "Exiting after downgrade"});
       process.exit(hadError ? 2 : 0);
     });
     return;
   }
   let promise;
   if (config.disableControllerTasks) {
-    console.info("Note: this server will not perform database initialization");
+    mozlog.info("database-version-update-skipped", {msg: "Note: this server will not perform database initialization"});
     promise = dbschema.createKeygrip();
   } else {
     promise = dbschema.createTables().then(() => {
@@ -145,7 +146,7 @@ function initDatabase() {
     });
   }
   promise.catch((e) => {
-    console.error("Error initializing database:", e, e.stack);
+    mozlog.error("database-version-update-error", {msg: "Error initializing database:", error: e, stack: e.stack});
     captureRavenException(e);
     // Give Raven/etc a chance to work before exit:
     setTimeout(() => {
@@ -414,7 +415,7 @@ app.post("/error", function(req, res) {
     applicationVersion: bodyObj.version,
     exceptionDescription: desc
   }).send();
-  console.info("Error received:", desc);
+  mozlog.info("remote-error", {msg: "Error received:", description: desc});
   simpleResponse(res, "OK", 200);
 });
 
@@ -500,7 +501,7 @@ app.get("/redirect", function(req, res) {
     res.status(200);
     let redirectUrl = req.query.to;
     if (!validUrl.isUri(redirectUrl)) {
-      console_mozlog.warn("redirect-bad-url", {msg: "Redirect attempted to invalid URL", url: redirectUrl});
+      mozlog.warn("redirect-bad-url", {msg: "Redirect attempted to invalid URL", url: redirectUrl});
       sendRavenMessage(req, "Redirect attempted to invalid URL", {extra: {redirectUrl}});
       simpleResponse(res, "Bad Request", 400);
       return;
@@ -519,7 +520,7 @@ window.location = ${redirectUrlJs};
 </html>`;
     res.send(output);
   } else {
-    console_mozlog.warn("no-redirect-to", {"msg": "Bad Request, no ?to parameter"});
+    mozlog.warn("no-redirect-to", {"msg": "Bad Request, no ?to parameter"});
     sendRavenMessage(req, "Bad request, no ?to parameter");
     simpleResponse(res, "Bad Request", 400);
   }
@@ -529,7 +530,7 @@ app.post("/api/register", function(req, res) {
   let vars = req.body;
   let canUpdate = vars.deviceId === req.deviceId;
   if (!vars.deviceId) {
-    console.error("Bad register request:", JSON.stringify(vars, null, "  "));
+    mozlog.error("bad-api-register", {msg: "Bad register request", vars: JSON.stringify(vars, null, "  ")});
     sendRavenMessage(req, "Attempted to register without deviceId");
     simpleResponse(res, "Bad request, no deviceId", 400);
     return;
@@ -636,7 +637,7 @@ app.put("/data/:id/:domain", function(req, res) {
   let slowResponse = config.testing.slowResponse;
   let failSometimes = config.testing.failSometimes;
   if (failSometimes && Math.floor(Math.random() * failSometimes)) {
-    console.info("Artificially making request fail");
+    console.log("Artificially making request fail"); // eslint-disable-line no-console
     res.status(500);
     res.end();
     return;
@@ -647,7 +648,7 @@ app.put("/data/:id/:domain", function(req, res) {
   }
   let shotId = `${req.params.id}/${req.params.domain}`;
   if (!req.deviceId) {
-    console.warn("Attempted to PUT without logging in", req.url);
+    mozlog.warn("put-without-auth", {msg: "Attempted to PUT without logging in", url: req.url});
     sendRavenMessage(req, "Attempt PUT without authentication");
     simpleResponse(res, "Not logged in", 401);
     return;
@@ -1100,9 +1101,9 @@ linker.init().then(() => {
     scheme = "http";
   }
   server.listen(config.port);
-  console.info(`server listening on ${scheme}://localhost:${config.port}/`);
+  mozlog.info("server-started", {msg: `server listening on ${scheme}://localhost:${config.port}/`});
 }).catch((err) => {
-  console.error("Error getting git revision:", err, err.stack);
+  mozlog.error("git-revision-error", {msg: "Error getting git revision", error: err, stack: err.stack});
 });
 
 require("./jobs").start();
