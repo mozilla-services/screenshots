@@ -292,7 +292,7 @@ function decodeAuthHeader(header) {
 app.use(function(req, res, next) {
   req.staticLink = linker.staticLink;
   req.staticLinkWithHost = linker.staticLinkWithHost.bind(null, req);
-  let base = `${req.protocol}://${req.headers.host}`;
+  let base = `${req.protocol}://${config.contentOrigin}`;
   linker.imageLinkWithHost = linker.imageLink.bind(null, base);
   next();
 });
