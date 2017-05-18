@@ -212,7 +212,7 @@ class Body extends React.Component {
     let moreInfo = null;
     if (this.props.blockType === 'dmca') {
       if (this.props.isOwner) {
-        message = "This shot is no longer available due to an intellectual property claim.";
+        message = "This shot is no longer available due to a third party intellectual property claim.";
         moreInfo = (
           <p>
             Please email <a href="mailto:dmcanotice@mozilla.com">dmcanotice@mozilla.com</a> to request further information. If your Shots are subject to multiple claims, we may revoke your access to Firefox Screenshots.<br/>
