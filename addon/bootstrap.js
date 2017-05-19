@@ -54,9 +54,7 @@ const prefObserver = {
 function startup(data, reason) { // eslint-disable-line no-unused-vars
   console.log("bootstrap startup called");
   appStartupDone();
-  // TODO: We have to disable the prefObserver so that we can disable the built-in
-  // screenshots addon. Ughhh
-  // prefObserver.register();
+  prefObserver.register();
   addonResourceURI = data.resourceURI;
   // eslint-disable-next-line promise/catch-or-return
   appStartupPromise.then(initUI);
