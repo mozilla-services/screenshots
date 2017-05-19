@@ -179,6 +179,16 @@ function addHSTS(req, res) {
 
 addRavenRequestHandler(app);
 
+if (config.expectProtocol) {
+  if (!/^https?$/.test(config.expectProtocol)) {
+    throw new Error(`Error, bad EXPECT_PROTOCOL: ${config.expectProtocol}`);
+  }
+  app.use((req, res, next) => {
+    req.headers["x-forwarded-proto"] = config.expectProtocol;
+    next();
+  });
+}
+
 app.use((req, res, next) => {
   genUuid.generate(genUuid.V_RANDOM, function(err, uuid) {
     if (!err) {
