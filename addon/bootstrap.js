@@ -1,5 +1,5 @@
 /* globals AddonManager, Components, CustomizableUI, LegacyExtensionsUtils,
-   Services, XPCOMUtils */
+   Services, XPCOMUtils, localizedScreenshotsTooltips */
 
 const OLD_ADDON_PREF_NAME = "extensions.jid1-NeEaf3sAHdKHPA@jetpack.deviceIdInfo";
 const OLD_ADDON_ID = "jid1-NeEaf3sAHdKHPA@jetpack";
@@ -8,6 +8,7 @@ const TELEMETRY_ENABLED_PREF = "datareporting.healthreport.uploadEnabled";
 const PREF_BRANCH = "extensions.screenshots.";
 const USER_DISABLE_PREF = "extensions.screenshots.disabled";
 const SYSTEM_DISABLE_PREF = "extensions.screenshots.system-disabled";
+const LOCALE_PREF = "general.useragent.locale";
 
 const { interfaces: Ci, utils: Cu } = Components;
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
@@ -26,7 +27,7 @@ XPCOMUtils.defineLazyModuleGetter(this, "LegacyExtensionsUtils",
 
 let webExtensionStarted;
 let addonResourceURI;
-let appStartupDone;
+let appStartupDone = null;
 const appStartupPromise = new Promise((resolve, reject) => {
   appStartupDone = resolve;
 });
@@ -51,8 +52,11 @@ const prefObserver = {
   }
 };
 
+let localePref = (prefs.getPrefType(LOCALE_PREF) && prefs.getCharPref(LOCALE_PREF)) || "en-US";
+
 function startup(data, reason) { // eslint-disable-line no-unused-vars
   console.log("bootstrap startup called");
+  Cu.import("chrome://screenshots/content/localizedTooltips.jsm");
   appStartupDone();
   prefObserver.register();
   addonResourceURI = data.resourceURI;
@@ -77,6 +81,7 @@ function shutdown(data, reason) { // eslint-disable-line no-unused-vars
   if (webExtension.started) {
     stop(webExtension);
   }
+  Cu.unload("chrome://screenshots/content/localizedTooltips.jsm");
 }
 
 function install(data, reason) {} // eslint-disable-line no-unused-vars
@@ -198,8 +203,8 @@ function initButton() {
   CustomizableUI.createWidget({
     id: "screenshots-button",
     defaultArea: CustomizableUI.AREA_NAVBAR,
-    label: "Screenshots", // TODO: l10n
-    tooltiptext: "Take a screenshot", // TODO: l10n
+    label: getLocalizedTooltip(),
+    tooltiptext: getLocalizedTooltip(),
     onCommand: (aEvent) => {
       console.log("inside CustomizableUI widget onCommand");
       if (!webExtensionStarted) {
@@ -211,6 +216,17 @@ function initButton() {
 
 
 
+}
+
+function getLocalizedTooltip() {
+  if (localePref in localizedScreenshotsTooltips) {
+    return localizedScreenshotsTooltips[localePref];
+  }
+  let shortLocale = localePref.split("-")[0];
+  if (shortLocale in localizedScreenshotsTooltips) {
+    return localizedScreenshotsTooltips[shortLocale];
+  }
+  return localizedScreenshotsTooltips["en-US"];
 }
 
 // borrowed from PocketContextMenu in m-c
