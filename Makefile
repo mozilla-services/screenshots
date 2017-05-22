@@ -121,6 +121,7 @@ signed_xpi: addon
 .PHONY: addon_locales
 addon_locales:
 	./node_modules/.bin/pontoon-to-webext --dest addon/webextension/_locales > /dev/null
+	./bin/compile-locales-to-module.py
 
 addon/install.rdf: addon/install.rdf.template package.json
 	./bin/build-scripts/update_manifest.py $< $@
