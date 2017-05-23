@@ -293,6 +293,22 @@ If an exception occurs in the context of screenshotting a specific page, we spec
 
 Error reporting in the add-on can be opted out of in the same way as other metrics (using the general Telemetry preference, see below).  Error reporting on the website cannot be opted out of.
 
+#### Error reporting data
+
+The data collected in error reports includes:
+
+* Date of the submission
+* Browser version and User-Agent header
+* Operating system
+* The Screenshots system add-on version
+* IP address
+* The exception message
+* The stack trace
+* Length of time the add-on was activated
+* Exception-specific properties (for example, if there is an error connecting to the server, we add the server response code to the exception)
+
+While the URL of the page you are shooting is not part of this information, we additionally filter out the URL in case of some bug in how we collect this information.
+
 ### Opt-out
 
 The add-on reads the Telemetry opt-out preference (`datareporting.healthreport.uploadEnabled`), labelled "Enable Health Report" in preferences under Privacy and Security.  If this preference is false, or if there is any issue trying to fetch the preference, then no data is sent.
