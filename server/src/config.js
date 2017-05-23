@@ -28,6 +28,13 @@ var conf = convict({
     env: "CONTENT_ORIGIN",
     arg: "contentOrigin"
   },
+  expectProtocol: {
+    doc: "Treat all incoming requests as using this protocol, instead of defaulting to http: or detecting from X-Forwarded-Proto",
+    format: String,
+    default: "",
+    env: "EXPECT_PROTOCOL",
+    arg: "expectProtocol"
+  },
   localhostSsl: {
     doc: "Turn on SSL on localhost, using ~/.localhost-ssl/*",
     format: Boolean,
