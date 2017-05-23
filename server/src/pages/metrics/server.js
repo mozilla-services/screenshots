@@ -3,6 +3,7 @@ const reactrender = require("../../reactrender");
 const { checkLastStoreQueriesTime, storeQueries } = require("./model");
 const config = require("../../config").getProperties();
 const { captureRavenException } = require("../../ravenclient");
+const mozlog = require("mozlog")("metrics");
 
 let app = exports.app = express();
 
@@ -20,11 +21,11 @@ function safeStoreQueries() {
   checkLastStoreQueriesTime().then((time) => {
     if ((!time) || Date.now() - time.getTime() > config.refreshMetricsTime * 1000) {
       return storeQueries().then(() => {
-        console.info("Updated metrics");
+        mozlog.info("updated-metrics", {msg: "Updated metrics"});
       });
     }
   }).catch((error) => {
-    console.error("Error running metrics queries:", error);
+    mozlog.error("metrics-update-error", {msg: "Error running metrics queries", error});
     captureRavenException(error);
   });
 }
@@ -37,7 +38,7 @@ if (config.refreshMetricsTime && !config.disableControllerTasks) {
   }
   setInterval(safeStoreQueries, interval);
 } else {
-  console.info("Not running periodic metrics updating");
+  mozlog.info("no-periodic-metrics", {msg: "Not running periodic metrics updating"});
 }
 
 if (!config.disableControllerTasks) {

@@ -1,5 +1,6 @@
 const config = require("./config").getProperties();
 const { captureRavenException } = require("./ravenclient");
+const mozlog = require("mozlog")("server");
 
 exports.simpleResponse = function(res, message, status) {
   status = status || 200;
@@ -27,6 +28,6 @@ exports.errorResponse = function(res, message, err) {
   } else {
     res.send("Server error");
   }
-  console.error(`Error: ${message}`, err + "", err);
+  mozlog.error("generic-error-response", {msg: message, error: err});
   captureRavenException(err);
 };

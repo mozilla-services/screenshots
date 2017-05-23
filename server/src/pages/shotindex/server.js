@@ -2,6 +2,7 @@ const express = require("express");
 const csrf = require("csurf");
 const reactrender = require("../../reactrender");
 const { Shot } = require("../../servershot");
+const mozlog = require("mozlog")("shotindex");
 
 let app = express();
 
@@ -20,7 +21,7 @@ app.get("/", csrf({cookie: true}), function(req, res) {
   getShots.then(_render)
     .catch((err) => {
       res.type("txt").status(500).send("Error rendering page: " + err);
-      console.error("Error rendering page:", err);
+      mozlog.error("error-rendering", {msg: "Error rendering page", error: err});
     });
 
   function _render(shots) {

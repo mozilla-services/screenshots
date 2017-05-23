@@ -339,10 +339,10 @@ class ServerClip extends AbstractShot.prototype.Clip {
     let match = (/^data:([^;]*);base64,/).exec(url);
     if (!match) {
       if (!url) {
-        console.warn("Submitted with empty clip URL");
+        mozlog.warn("empty-clip-url", {msg: "Submitted with empty clip URL"});
         throw new Error("Empty clip URL");
       } else {
-        console.warn("Submitted with bad clip URL:", url.substr(0, 10) + "...");
+        mozlog.warn("bad-clip-url", {msg: "Submitted with bad clip URL", urlPrefix: url.substr(0, 10) + "..."});
         throw new Error("Bad clip URL");
       }
     }
