@@ -18,6 +18,12 @@
   width: 350px;
   z-index: 999;
 
+  .alt-notification + .frame-header & {
+    @include respond-to("medium") {
+      top: 150px;
+    }
+  }
+
   .share-buttons {
     padding: $grid-unit;
     border-bottom: 1px solid $light-border;
@@ -29,12 +35,6 @@
 
   .share-url-box {
     padding: 15px;
-  }
-
-  // When the extension notification box is up the panel gets aligned incorrectly;
-  // we add this extra class to fix this situation and bump the panel down:
-  &.share-panel-with-notification {
-    top: 102px;
   }
 
   img {
@@ -92,3 +92,4 @@
     }
   }
 }
+
