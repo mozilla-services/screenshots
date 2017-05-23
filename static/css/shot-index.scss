@@ -147,7 +147,6 @@ h1 {
     right: 0;
     background: $white;
     opacity: 0;
-    transition: opacity $bezier 750ms;
   }
 
   &:hover {
