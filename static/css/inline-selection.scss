@@ -263,27 +263,29 @@ $very-light-grey: #ededed;
 .fixed-container {
   align-items: center;
   display: flex;
-  height: 100%;
+  flex-direction: column;
+  height: 100vh;
   justify-content: center;
   left: 0;
   margin: 0;
   padding: 0;
   pointer-events: none;
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
 }
 
 .face-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
+  position: relative;
   width: 64px;
   height: 64px;
-  transform: translateY(-45px);
+}
+
+.face {
+  width: 62.4px;
+  height: 62.4px;
+  display: block;
+  background-image: url("MOZ_EXTENSION/icons/icon-welcome-face-without-eyes.svg");
 }
 
 .eye {
@@ -316,13 +318,6 @@ $very-light-grey: #ededed;
   margin-left: 20px;
 }
 
-.face {
-  width: 62.4px;
-  height: 62.4px;
-  display: block;
-  background-image: url("MOZ_EXTENSION/icons/icon-welcome-face-without-eyes.svg");
-}
-
 .preview-instructions {
   @include flex-container(row, center, center);
   animation: pulse 125mm $bezier;
@@ -331,8 +326,8 @@ $very-light-grey: #ededed;
   font-size: 24px;
   line-height: 32px;
   text-align: center;
+  padding-top: 20px;
   width: 400px;
-  margin-top: 45px;
 }
 
 .myshots-all-buttons-container {
