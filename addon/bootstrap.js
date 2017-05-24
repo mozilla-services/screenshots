@@ -23,6 +23,9 @@ XPCOMUtils.defineLazyModuleGetter(this, "Services",
                                   "resource://gre/modules/Services.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "LegacyExtensionsUtils",
                                   "resource://gre/modules/LegacyExtensionsUtils.jsm");
+XPCOMUtils.defineLazyGetter(this, "gScreenshotsBundle", function() {
+  return Services.strings.createBundle("chrome://screenshots/locale/screenshots.properties");
+});
 
 let webExtensionStarted;
 let addonResourceURI;
@@ -195,11 +198,12 @@ function initButton() {
 
   // From MDN - really simple button snippet
   // https://mdn.io/CustomizableUI.jsm#CreateWidget_-_Button_Type
+  console.error("!!! tooltiptext", gScreenshotsBundle.GetStringFromName("contextMenuLabel"));
   CustomizableUI.createWidget({
     id: "screenshots-button",
     defaultArea: CustomizableUI.AREA_NAVBAR,
-    label: "Screenshots", // TODO: l10n
-    tooltiptext: "Take a screenshot", // TODO: l10n
+    label: gScreenshotsBundle.GetStringFromName("contextMenuLabel"),
+    tooltiptext: gScreenshotsBundle.GetStringFromName("contextMenuLabel"),
     onCommand: (aEvent) => {
       console.log("inside CustomizableUI widget onCommand");
       if (!webExtensionStarted) {
