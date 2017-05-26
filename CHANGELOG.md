@@ -1,3 +1,22 @@
+## Version 8.0.0
+
+* Get rid of extra icons ([#2885](https://github.com/mozilla-services/screenshots/issues/2885)) [aec7dab](https://github.com/mozilla-services/screenshots/commit/aec7dab)
+* Revert "Start WebExtension immediately" (i.e., defer startup of extension) [c849b50](https://github.com/mozilla-services/screenshots/commit/c849b50)
+* Fix onboarding text for long strings ([#2870](https://github.com/mozilla-services/screenshots/issues/2870)) [3d10b62](https://github.com/mozilla-services/screenshots/commit/3d10b62)
+* If the /creating tab is closed open a new tab instead of updating the nonexistent tab ([#2850](https://github.com/mozilla-services/screenshots/issues/2850)). Fixes [#2842](https://github.com/mozilla-services/screenshots/issues/2842) [ccb2397](https://github.com/mozilla-services/screenshots/commit/ccb2397)
+
+### Server
+
+* Change console.* server messages to use mozlog ([#2858](https://github.com/mozilla-services/screenshots/issues/2858)). Fixes [#2177](https://github.com/mozilla-services/screenshots/issues/2177) [98df4ec](https://github.com/mozilla-services/screenshots/commit/98df4ec)
+* make protocol configurable with EXPECT_PROTOCOL=https ([#2864](https://github.com/mozilla-services/screenshots/issues/2864)). Fixes [#2734](https://github.com/mozilla-services/screenshots/issues/2734) [a9761b6](https://github.com/mozilla-services/screenshots/commit/a9761b6)
+* Fix shot index trash flicker ([#2872](https://github.com/mozilla-services/screenshots/issues/2872)) [238cc23](https://github.com/mozilla-services/screenshots/commit/238cc23)
+* Fix share panel offset in chrome ([#2875](https://github.com/mozilla-services/screenshots/issues/2875)) [7da2f78](https://github.com/mozilla-services/screenshots/commit/7da2f78)
+* Host images on config.contentOrigin. Fixes [#2300](https://github.com/mozilla-services/screenshots/issues/2300) [53e3591](https://github.com/mozilla-services/screenshots/commit/53e3591)
+* Show error message in shot.js assert() exception [d9f9fe6](https://github.com/mozilla-services/screenshots/commit/d9f9fe6)
+* Full qualify the homepage og:image/etc images. Fixes [#2810](https://github.com/mozilla-services/screenshots/issues/2810) [7ebe055](https://github.com/mozilla-services/screenshots/commit/7ebe055)
+* Update DMCA owner notice. Fixes [#2836](https://github.com/mozilla-services/screenshots/issues/2836) [be2f725](https://github.com/mozilla-services/screenshots/commit/be2f725)
+* Enable continuous deployment with CircleCI. Fixes [#2521](https://github.com/mozilla-services/screenshots/issues/2521) [0d0f42c](https://github.com/mozilla-services/screenshots/commit/0d0f42c)
+
 ## Version 7.0.0
 
 Destined for a server deploy, probably only a later version of the add-on will be imported into Firefox.
