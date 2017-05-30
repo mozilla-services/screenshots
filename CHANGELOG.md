@@ -1,3 +1,11 @@
+## Version 8.2.0
+
+8.2.0 is a server-only release
+
+* Update links on homepage remove /forum link fix Privacy and Terms links. Fixes [#2909](https://github.com/mozilla-services/screenshots/issues/2909) Fixes [#2871](https://github.com/mozilla-services/screenshots/issues/2871) [931e8f6](https://github.com/mozilla-services/screenshots/commit/931e8f6)
+* Fix GitHub and Twitter links on homepage [70485a1](https://github.com/mozilla-services/screenshots/commit/70485a1)
+* Removing bottom bit of landing page [f9d718c](https://github.com/mozilla-services/screenshots/commit/f9d718c)
+
 ## Version 8.1.0
 
 * Update list of files not exported to Firefox ([#2921](https://github.com/mozilla-services/screenshots/pull/2921))
