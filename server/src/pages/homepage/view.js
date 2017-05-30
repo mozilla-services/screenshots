@@ -610,7 +610,7 @@ class Body extends React.Component {
         <section id="section-2">
           <div className="container">
             <div className="section-content">
-              <h3><span className="bold">Capture</span> A Region</h3>
+              <h3><span className="bold">Capture</span> a Region</h3>
               <p>Click and drag to select the area you want to capture. Or just hover and click — Screenshots will select the area for you. Like what you see? Select Save to access your screenshot online or the down arrow button to download it to your computer.</p>
             </div>
             <div className="section-image"></div>
@@ -632,17 +632,6 @@ class Body extends React.Component {
               <p>When you take a shot, Firefox posts your screenshot to your online Screenshots library and copies the link to your clipboard. We automatically store your screenshot for two weeks, but you can delete shots at any time or change the expiration date to keep them in your library for longer. </p>
             </div>
             <div className="section-image"></div>
-          </div>
-        </section>
-        <section id="coming">
-          <div className="container">
-            <div className="coming-icons">
-              <div className="screenshots-icon"></div><span>+</span><div className="chrome-icon"></div>
-            </div>
-            <div className="coming-content">
-              <h3>Coming soon!</h3>
-              <p>Firefox Screenshots is coming to Chrome! Check back for updates.</p>
-            </div>
           </div>
         </section>
         <footer>
