@@ -610,7 +610,7 @@ class Body extends React.Component {
         <section id="section-2">
           <div className="container">
             <div className="section-content">
-              <h3><span className="bold">Capture</span> A Region</h3>
+              <h3><span className="bold">Capture</span> a Region</h3>
               <p>Click and drag to select the area you want to capture. Or just hover and click — Screenshots will select the area for you. Like what you see? Select Save to access your screenshot online or the down arrow button to download it to your computer.</p>
             </div>
             <div className="section-image"></div>
@@ -634,17 +634,6 @@ class Body extends React.Component {
             <div className="section-image"></div>
           </div>
         </section>
-        <section id="coming">
-          <div className="container">
-            <div className="coming-icons">
-              <div className="screenshots-icon"></div><span>+</span><div className="chrome-icon"></div>
-            </div>
-            <div className="coming-content">
-              <h3>Coming soon!</h3>
-              <p>Firefox Screenshots is coming to Chrome! Check back for updates.</p>
-            </div>
-          </div>
-        </section>
         <footer>
           <div className="container">
             <div className="legal-links">
@@ -656,8 +645,8 @@ class Body extends React.Component {
               <a href="/forum" className="boilerplate">Forum</a>
             </div>
             <div className="social-links">
-              <a href="#" target="_blank" className="link-icon github" title="GitHub"></a>
-              <a href="#" target="_blank" className="link-icon twitter" title="Twitter"></a>
+              <a href="https://github.com/mozilla-services/screenshots" target="_blank" className="link-icon github" title="GitHub"></a>
+              <a href="https://twitter.com/FxScreenshots" target="_blank" className="link-icon twitter" title="Twitter"></a>
             </div>
           </div>
         </footer>
