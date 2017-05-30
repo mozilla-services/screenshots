@@ -15,7 +15,7 @@ if [[ $# = 0 ]] ; then
   exit 4
 fi
 
-if [[ -n "$2" ]] ; then
+if [[ -n "${2:-}" ]] ; then
   version="$2"
 else
   version="$(node -e 'console.log(require("./package.json").version)')"
