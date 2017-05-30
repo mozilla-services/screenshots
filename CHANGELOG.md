@@ -1,3 +1,7 @@
+## Version 8.1.0
+
+* Update list of files not exported to Firefox ([#2921](https://github.com/mozilla-services/screenshots/pull/2921))
+
 ## Version 8.0.0
 
 * Get rid of extra icons ([#2885](https://github.com/mozilla-services/screenshots/issues/2885)) [aec7dab](https://github.com/mozilla-services/screenshots/commit/aec7dab)
