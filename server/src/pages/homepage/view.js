@@ -639,10 +639,9 @@ class Body extends React.Component {
             <div className="legal-links">
               <a href="https://www.mozilla.org" className="mozilla-logo"></a>
               <a href="https://www.mozilla.org/about/legal/" className="boilerplate">Legal</a>
-              <a href="/privacy" className="boilerplate">Privacy</a>
-              <a href="/terms" className="boilerplate">Terms</a>
+              <a href="https://www.mozilla.org/privacy/firefox-cloud/" className="boilerplate">Privacy</a>
+              <a href="https://www.mozilla.org/about/legal/terms/services/" className="boilerplate">Terms</a>
               <a href="https://www.mozilla.org/privacy/websites/#cookies" className="boilerplate">Cookies</a>
-              <a href="/forum" className="boilerplate">Forum</a>
             </div>
             <div className="social-links">
               <a href="https://github.com/mozilla-services/screenshots" target="_blank" className="link-icon github" title="GitHub"></a>
