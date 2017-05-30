@@ -161,6 +161,7 @@
   @include flex-container(row, flex-start, center);
 
   select {
+    -moz-appearance: none;
     appearance: none;
     background-color: $light-default;
     background-image: url("/static/img/icon-dropdown.svg");
