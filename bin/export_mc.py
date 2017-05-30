@@ -30,7 +30,10 @@ FILES_TO_NOT_REMOVE = [
 FILES_TO_SKIP_COPY = [
     'README.md',
     'install.rdf.template',
-    'manifest.json.template'
+    'manifest.json.template',
+    'buildSettings.js.template',
+    '.eslintrc.js',
+    '.web-extension-id',
 ]
 
 
