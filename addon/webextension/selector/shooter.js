@@ -1,5 +1,5 @@
 /* globals global, documentMetadata, util, uicontrol, ui, catcher */
-/* globals domainFromUrl, randomString */
+/* globals buildSettings, domainFromUrl, randomString */
 
 "use strict";
 
@@ -76,7 +76,10 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
       isSaving = null;
     }, 1000);
     selectedPos = selectedPos.asJson();
-    let captureText = util.captureEnclosedText(selectedPos);
+    let captureText = "";
+    if (buildSettings.captureText) {
+      captureText = util.captureEnclosedText(selectedPos);
+    }
     let dataUrl = screenshotPage(selectedPos);
     if (dataUrl) {
       shot.addClip({
