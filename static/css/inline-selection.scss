@@ -341,6 +341,11 @@ $very-light-grey: #ededed;
   right: 5px;
   top: 5px;
 
+  html[dir="rtl"] & {
+    left: 5px;
+    right: inherit;
+  }
+
   .spacer {
     background-color: #c9c9c9;
     flex: 0 0 1px;
