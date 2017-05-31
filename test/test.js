@@ -221,7 +221,7 @@ describe("Test Screenshots", function() {
       getChromeElement(driver, By.id(SHOOTER_BUTTON_ID))
       .then((button) => button.getAttribute("label"))
       .then((label) => {
-        assert.equal(label, "Take a Screenshot");
+        assert.equal(label, "Firefox Screenshots");
       }),
       () => {
         driver.setContext(firefox.Context.CONTENT);
