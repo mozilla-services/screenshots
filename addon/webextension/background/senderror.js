@@ -89,7 +89,7 @@ this.senderror = (function() {
       return;
     }
     if (!Raven.isSetup()) {
-      Raven.config(dsn).install();
+      Raven.config(dsn, {allowSecretKey: true}).install();
     }
     let exception = new Error(e.message);
     exception.stack = e.multilineStack || e.stack || undefined;
