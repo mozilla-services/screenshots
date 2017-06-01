@@ -17,9 +17,9 @@ DEFAULTS = {
 
 SENTRY_ENDPOINTS = {
     "local": "",
-    "dev": "https://d58fc53f92cd47bba7266ad6444514d8@sentry.prod.mozaws.net/74",
-    "stage": "https://3d2efd7bad9e4e359014cb4e69b8eaec@sentry.prod.mozaws.net/140",
-    "prod": "https://97d8afa496f94764ae255e739b147f4b@sentry.prod.mozaws.net/139"
+    "dev": "https://04cf410658e0462b98d7c1142f8e760d:6cffd7aa497d4087bfb9e770bbc47d1d@sentry.prod.mozaws.net/222",
+    "stage": "https://b1119a227a0749bba6b24c97db288ca2:69455050b0a143b3831729fc790de713@sentry.prod.mozaws.net/223",
+    "prod": "https://904ccdd4866247c092ae8fc1a4764a63:940d44bdc71d4daea133c19080ccd38d@sentry.prod.mozaws.net/224"
 }
 
 FILES_TO_NOT_REMOVE = [
