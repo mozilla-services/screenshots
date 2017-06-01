@@ -160,6 +160,10 @@ class Body extends React.Component {
 }
 
 class Card extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {panelOpen: "panel-closed"};
+  }
 
   render() {
     let shot = this.props.shot;
@@ -182,7 +186,7 @@ class Card extends React.Component {
     }
 
     return (
-      <div className={`shot ${this.getClipType(clip._image.dimensions)}`} key={shot.id}>
+      <div className={`shot ${this.getClipType(clip._image.dimensions)} ${this.state.panelOpen}`} key={shot.id}>
         <a href={shot.viewUrl} onClick={this.onOpen.bind(this, shot.viewUrl)}>
           <div className="shot-image-container" style={{
             backgroundImage: `url(${imageUrl})`
@@ -203,7 +207,7 @@ class Card extends React.Component {
         <div className="alt-actions-container">
           <a className="button transparent download" href={ downloadUrl } onClick={ this.onClickDownload.bind(this) }
             title="Download the shot image" />
-          <ShareButton abTests={this.props.abTests} clipUrl={shot.urlDisplay} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} />
+          <ShareButton setPanelState={this.setPanelState.bind(this)} abTests={this.props.abTests} clipUrl={shot.urlDisplay} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} />
           <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this, shot) } />
         </div>
       </div>
@@ -220,6 +224,10 @@ class Card extends React.Component {
       return "portrait";
     }
     return "square";
+  }
+
+  setPanelState(state) {
+    this.setState({panelOpen: state});
   }
 
   onOpen(url, event) {
