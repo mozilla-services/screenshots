@@ -38,7 +38,7 @@ FILES_TO_SKIP_COPY = [
 
 
 def runProcess(cmd, cwd, errorMessage):
-    print "runProcess ", cmd
+    print("runProcess %s" % " ".join(cmd))
     p = subprocess.Popen(cmd, cwd=cwd)
 
     result = p.wait()
@@ -58,7 +58,7 @@ class RepoHandler():
             self.repoPath = mcRepoPath
 
     def checkoutDefault(self, baseCommit):
-        print "Checking out default"
+        print("Checking out default")
         if self.isGit:
             if self.repo.active_branch.name != "default":
                 self.repo.heads.default.checkout()
@@ -67,7 +67,7 @@ class RepoHandler():
                        "Failed to check out default branch: %s")
 
     def createBranch(self, branch):
-        print "Creating new branch %s" % branch
+        print("Creating new branch %s" % branch)
 
         if self.isGit:
             self.repo.create_head(branch)
@@ -78,7 +78,7 @@ class RepoHandler():
                        "Failed to create branch: %s")
 
     def createCommit(self, subDir, commitMessage):
-        print "Creating commit..."
+        print("Creating commit...")
 
         if self.isGit:
             # Can't find a way to do this via gitPython APIs, so do it manually.
@@ -96,7 +96,7 @@ class RepoHandler():
 
 
 def exportFilesToMC(repoDir, mcRepoLoc):
-    print "Exporting files"
+    print("Exporting files")
 
     # Remove the existing files, except for ones we need to keep.
     for root, dirs, files in os.walk(mcRepoLoc):
@@ -115,9 +115,9 @@ def exportFilesToMC(repoDir, mcRepoLoc):
         for file in files:
             filePath = os.path.join(root, file)
             if file == "messages.json" and os.path.getsize(filePath) == 2:
-                print "Skipping empty locale file: %s" % filePath
+                print("Skipping empty locale file: %s" % filePath)
             elif file == "messages.json" and 'en_US' not in root and filecmp.cmp(enUSFile, filePath):
-                print "Skipping same as en-US locale file: %s" % filePath
+                print("Skipping same as en-US locale file: %s" % filePath)
             elif file not in FILES_TO_SKIP_COPY:
                 copyfile(filePath,
                          os.path.join(mcRepoLoc, relativePath, file))
@@ -125,12 +125,12 @@ def exportFilesToMC(repoDir, mcRepoLoc):
         for dir in dirs:
             dirPath = os.path.join(mcRepoLoc, relativePath, dir)
             if not os.path.exists(dirPath):
-                os.mkdir(dirPath, 0755)
+                os.mkdir(dirPath, 0o755)
 
     # Copy the test files.
     mc_test_loc = os.path.join(mcRepoLoc, "test", "browser")
     if not os.path.exists(mc_test_loc):
-        os.makedirs(mc_test_loc, 0755)
+        os.makedirs(mc_test_loc, 0o755)
 
     for root, dirs, files in os.walk(testDir):
         for file in files:
@@ -143,8 +143,8 @@ def exportFilesToMC(repoDir, mcRepoLoc):
 
 
 def exportToMozillaCentral(server, repoDir, mcRepoPath, mcSubDir, mcBranch,
-                           noSwitchBranch, mcBaseCommit, commitMessage):
-    print "Exporting to m-c"
+                           noSwitchBranch, mcBaseCommit, commitMessage, noCommit):
+    print("Exporting to m-c")
 
     os.environ["SCREENSHOTS_SENTRY"] = SENTRY_ENDPOINTS[server]
     os.environ["SCREENSHOTS_BACKEND"] = DEFAULTS[server]
@@ -157,7 +157,7 @@ def exportToMozillaCentral(server, repoDir, mcRepoPath, mcSubDir, mcBranch,
 
         repo.createBranch(mcBranch)
 
-    print "Exporting this repository to mozilla-central..."
+    print("Exporting this repository to mozilla-central...")
 
     runProcess(['make', 'clean'], repoDir, "Failed to make clean: %s")
 
@@ -165,17 +165,18 @@ def exportToMozillaCentral(server, repoDir, mcRepoPath, mcSubDir, mcBranch,
 
     exportFilesToMC(repoDir, os.path.join(mcRepoPath, "browser", "extensions", "screenshots"))
 
-    repo.createCommit(mcSubDir, commitMessage)
+    if not noCommit:
+        repo.createCommit(mcSubDir, commitMessage)
 
 
 def buildMozillaCentral(mcRepoPath):
-    print "Building..."
+    print("Building...")
 
     runProcess(['./mach', 'build'], mcRepoPath, "Failed to build in mc repo: %s")
 
 
 def runTestsInMozillaCentral(mcRepoPath, mcSubDir):
-    print "Testing..."
+    print("Testing...")
 
     runProcess(['./mach', 'test', mcSubDir], mcRepoPath,
                "Tests failed! %s \n"
@@ -183,7 +184,7 @@ def runTestsInMozillaCentral(mcRepoPath, mcSubDir):
 
 
 def pushToTry(mcRepoPath, pushTry, onePlatform):
-    print "Pushing to try"
+    print("Pushing to try")
 
     platforms = "linux,linux64,macosx64,win32,win64"
     if onePlatform:
@@ -199,11 +200,11 @@ def pushToTry(mcRepoPath, pushTry, onePlatform):
 
 def main(server, mcRepoPath, mcSubDir, mcBranch, noSwitchBranch,
          mcBaseCommit, commitMessage,
-         build=False, runTests=False, pushTry=False, onePlatform=False):
+         build=False, runTests=False, pushTry=False, onePlatform=False, noCommit=False):
     repoDir = os.path.dirname(os.path.realpath(os.path.join(__file__, "..")))
 
     exportToMozillaCentral(server, repoDir, mcRepoPath, mcSubDir, mcBranch,
-                           noSwitchBranch, mcBaseCommit, commitMessage)
+                           noSwitchBranch, mcBaseCommit, commitMessage, noCommit)
 
     if build:
         buildMozillaCentral(mcRepoPath)
@@ -237,8 +238,10 @@ if __name__ == "__main__":
                         default="central",
                         help="The base commit if using Mercurial, defaults to 'central' (tree label)")
     parser.add_argument("-m", "--commit-message",
-                        required=True,
                         help="The commit message to use for the export.")
+    parser.add_argument("--no-commit",
+                        action="store_true",
+                        help="Leave the results uncommitted")
     parser.add_argument("--build",
                         action="store_true",
                         help="Specify to build locally after export.")
@@ -253,6 +256,12 @@ if __name__ == "__main__":
                         help="Specify to push to only one platform for the try "
                              "build (linux64). Default is all platforms.")
     args = parser.parse_args()
+    if not args.no_switch_branch and not args.branch:
+        print("You must give --branch BRANCH or --no-switch-branch")
+        sys.exit(1)
+    if not args.no_commit and not args.commit_message:
+        print("You must give -m/--commit-message MESSAGE or --no-commit")
+        sys.exit(1)
 
     main(server=args.server, mcRepoPath=args.mozilla_central_repo,
          mcSubDir=args.mozilla_central_subdir,
@@ -260,4 +269,4 @@ if __name__ == "__main__":
          noSwitchBranch=args.no_switch_branch,
          commitMessage=args.commit_message, build=args.build,
          runTests=args.run_tests, pushTry=args.push_to_try,
-         onePlatform=args.single_platform)
+         onePlatform=args.single_platform, noCommit=args.no_commit)
