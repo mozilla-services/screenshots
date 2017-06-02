@@ -16,7 +16,7 @@
       "16": "icons/icon-16.svg",
       "32": "icons/icon-32.svg"
     },
-    "default_title": "__MSG_contextMenuLabel__",
+    "default_title": "Firefox Screenshots",
     "browser_style": false
   },
   "background": {
