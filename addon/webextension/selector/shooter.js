@@ -73,6 +73,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
       return;
     }
     isSaving = setTimeout(() => {
+      ui.Box.clearSaveDisabled();
       isSaving = null;
     }, 1000);
     selectedPos = selectedPos.asJson();
@@ -82,6 +83,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     }
     let dataUrl = screenshotPage(selectedPos);
     if (dataUrl) {
+      shot.delAllClips();
       shot.addClip({
         createdDate: Date.now(),
         image: {

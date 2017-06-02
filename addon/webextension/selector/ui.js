@@ -541,6 +541,10 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       return false;
     },
 
+    clearSaveDisabled() {
+      this.save.removeAttribute("disabled");
+    },
+
     el: null,
     boxTopEl: null,
     boxLeftEl: null,
