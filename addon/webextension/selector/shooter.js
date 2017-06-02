@@ -67,6 +67,14 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     // isSaving indicates we're aleady in the middle of saving
     // we use a timeout so in the case of a failure the button will
     // still start working again
+    if (Math.floor(selectedPos.left) == Math.floor(selectedPos.right) ||
+        Math.floor(selectedPos.top) == Math.floor(selectedPos.bottom)) {
+        let exc = new Error("Empty selection");
+        exc.popupMessage = "EMPTY_SELECTION";
+        exc.noReport = true;
+        catcher.unhandled(exc);
+        return;
+    }
     const uicontrol = global.uicontrol;
     let deactivateAfterFinish = true;
     if (isSaving) {

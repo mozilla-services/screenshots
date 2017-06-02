@@ -105,3 +105,5 @@ Note that any information will be serialized as JSON.  Specifically `undefined` 
 If you add `exc.popupMessage = "Something happened"` then that detail will be added.  Be careful about localization here.
 
 Add `exc.noPopup = true` if you don't want the user notified about the error (but the error will still be sent to Sentry).
+
+Add `exc.noReport = true` if you don't want the error reported to Sentry.
