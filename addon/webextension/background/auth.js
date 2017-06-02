@@ -199,13 +199,15 @@ this.auth = (function() {
   };
 
   communication.register("getAuthInfo", (sender, ownershipCheck) => {
-    let info = registrationInfo;
-    if (info.registered) {
-      return login({ownershipCheck}).then((result) => {
-        return {isOwner: result && result.isOwner, deviceId: registrationInfo.deviceId};
-      });
-    }
-    return Promise.resolve(info);
+    return registrationInfoFetched.then(() => {
+      let info = registrationInfo;
+      if (info.registered) {
+        return login({ownershipCheck}).then((result) => {
+          return {isOwner: result && result.isOwner, deviceId: registrationInfo.deviceId};
+        });
+      }
+      return info;
+    });
   });
 
   return exports;
