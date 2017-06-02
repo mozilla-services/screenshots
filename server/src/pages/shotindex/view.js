@@ -206,9 +206,9 @@ class Card extends React.Component {
         </a>
         <div className="alt-actions-container">
           <a className="button transparent download" href={ downloadUrl } onClick={ this.onClickDownload.bind(this) }
-            title="Download the shot image" />
+            title="Download the shot image" ref="download" />
           <ShareButton setPanelState={this.setPanelState.bind(this)} abTests={this.props.abTests} clipUrl={shot.urlDisplay} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} />
-          <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this, shot) } />
+          <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this, shot) } ref="trash" />
         </div>
       </div>
     );
@@ -258,10 +258,12 @@ class Card extends React.Component {
     } else {
       sendEvent("cancel-delete", "my-shots-popup-confirm");
     }
+    this.refs.trash.blur();
     return false;
   }
 
   onClickDownload() {
+    this.refs.download.blur();
     sendEvent("download", "myshots-tile");
   }
 }
