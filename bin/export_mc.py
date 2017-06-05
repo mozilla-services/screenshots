@@ -34,6 +34,7 @@ FILES_TO_SKIP_COPY = [
     'buildSettings.js.template',
     '.eslintrc.js',
     '.web-extension-id',
+    '.DS_Store',
 ]
 
 
