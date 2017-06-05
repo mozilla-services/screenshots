@@ -15,16 +15,19 @@ const PNG_HEADER = Buffer.from(PNG_HEADER_BASE64, "base64");
 function assertPng(dataUrl) {
   const urlHeader = "data:image/png;base64,";
   if (!dataUrl.startsWith(urlHeader)) {
+    mozlog.warn("invalid-data-url", {msg: "Invalid data: URL submitted", prefix: dataUrl.substr(0, urlHeader.length + 10)});
     throw new Error('invalid data url');
   }
   // only decode enough to get the header
   // we're lucky that 9 bytes is exactly 12 base64 characters
   const base64Header = dataUrl.substr(urlHeader.length, PNG_HEADER_BASE64.length);
   if (base64Header.length < PNG_HEADER_BASE64.length) {
+    mozlog.warn("invalid-data-image", {msg: "Invalid PNG image submitted", prefix: dataUrl.substr(0, urlHeader.length + PNG_HEADER_BASE64.length)});
     throw new Error('invalid image');
   }
   const header = Buffer.from(base64Header, "base64"); // 9 bytes
   if (!PNG_HEADER.equals(header.slice(0, 8))) {
+    mozlog.warn("invalid-data-image-decoded", {msg: "Invalid PNG image (after base64 decoding)"});
     throw new Error('invalid png');
   }
 }
