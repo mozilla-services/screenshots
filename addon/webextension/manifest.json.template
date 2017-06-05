@@ -22,19 +22,7 @@
   "background": {
     "scripts": [
       "build/buildSettings.js",
-      "log.js",
-      "makeUuid.js",
-      "catcher.js",
-      "background/selectorLoader.js",
-      "background/communication.js",
-      "background/auth.js",
-      "background/senderror.js",
-      "build/raven.js",
-      "build/shot.js",
-      "background/analytics.js",
-      "background/deviceInfo.js",
-      "background/takeshot.js",
-      "background/main.js"
+      "background/startBackground.js"
     ]
   },
   "content_scripts": [
