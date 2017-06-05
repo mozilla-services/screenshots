@@ -1,3 +1,28 @@
+## Version 9.0.0
+
+* Handle a race condition when a shot page is loaded at startup ([#2962](https://github.com/mozilla-services/screenshots/issues/2962)). Fixes [#2958](https://github.com/mozilla-services/screenshots/issues/2958) [7637e1a](https://github.com/mozilla-services/screenshots/commit/7637e1a)
+* Make empty selections report an error. Previously they were creating empty `data:` URLs and causing server rejection. Fixes [#2957](https://github.com/mozilla-services/screenshots/issues/2957) [dbeb56d](https://github.com/mozilla-services/screenshots/commit/dbeb56d)
+* Make re-saving an image work. Change the Save button to not be disabled after the timeout. Remove any previous clip images if Save is invoked twice [3c2323d](https://github.com/mozilla-services/screenshots/commit/3c2323d)
+* fix sending errors to Sentry ([#2952](https://github.com/mozilla-services/screenshots/issues/2952)). This changes the DSNs to the private DSNs in new Sentry projects. Discussion of using a private DSN in [Bug 1369162](https://bugzilla.mozilla.org/show_bug.cgi?id=1369162). WebExtension background pages do not have a referrer or origin on their requests, therefore we need authenticated endpoints. Fixes [#2920](https://github.com/mozilla-services/screenshots/issues/2920) [f94bdfd](https://github.com/mozilla-services/screenshots/commit/f94bdfd)
+* Unload uicontrol event handlers properly ([#2942](https://github.com/mozilla-services/screenshots/issues/2942)). Fixes [#2838](https://github.com/mozilla-services/screenshots/issues/2838) [2d064b7](https://github.com/mozilla-services/screenshots/commit/2d064b7)
+* Do not localize product name in the button label [48974c7](https://github.com/mozilla-services/screenshots/commit/48974c7)
+* Disable DOM text capture. Fixes [#2931](https://github.com/mozilla-services/screenshots/issues/2931) [d30ef08](https://github.com/mozilla-services/screenshots/commit/d30ef08)
+* Defer the migration until local registration info has been fetched ([#2934](https://github.com/mozilla-services/screenshots/issues/2934)). Fixes migration issues and haywire notification on startup. Fixes [#2919](https://github.com/mozilla-services/screenshots/issues/2919) Fixes [#2902](https://github.com/mozilla-services/screenshots/issues/2902) [1aa0b9e](https://github.com/mozilla-services/screenshots/commit/1aa0b9e)
+* better align RTL buttons [ee5f588](https://github.com/mozilla-services/screenshots/commit/ee5f588)
+* Set lang and dir to html tags [d908268](https://github.com/mozilla-services/screenshots/commit/d908268)
+
+### Server changes
+
+* Add more structured error messages to bad submitted image URLs [308913b](https://github.com/mozilla-services/screenshots/commit/308913b)
+* allow for EXTRA_CONTENT_ORIGIN ([#2950](https://github.com/mozilla-services/screenshots/issues/2950))This adds a new configuration, EXTRA_CONTENT_ORIGIN, which is added to the CSP. This is intended just for migrating the pageshot.net content origin. Fixes [#2933](https://github.com/mozilla-services/screenshots/issues/2933) [1b746f9](https://github.com/mozilla-services/screenshots/commit/1b746f9)
+* fix select list [d7a6159](https://github.com/mozilla-services/screenshots/commit/d7a6159)
+
+### Other changes
+
+* Implement some small improvements to export_mc ([#2948](https://github.com/mozilla-services/screenshots/issues/2948)). Add `--no-commit` option, so you can preview the changes without causing a commit. Validate `--branch` or `--no-switch-branch` options. Make it valid Python 3 (and Python 2), even though we aren't using Python 3 [8f97a3c](https://github.com/mozilla-services/screenshots/commit/8f97a3c)
+* Update expected button label text in browser test [61b1d19](https://github.com/mozilla-services/screenshots/commit/61b1d19)
+* Note text capture can be enabled by setting the SCREENSHOTS_CAPTURE_TEXT env var to `'true'`.
+
 ## Version 8.2.0
 
 8.2.0 is a server-only release
