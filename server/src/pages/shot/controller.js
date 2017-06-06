@@ -123,12 +123,12 @@ function refreshHash() {
     return;
   }
   let clipId = null;
-  let match = (/clip=([^&]+)/).exec(location.hash);
+  let match = (/clip=([^&]{1,255})/).exec(location.hash);
   if (match) {
     clipId = decodeURIComponent(match[1]);
   }
   let source = "change-clip"; // eslint-disable-line no-unused-vars
-  match = (/source=([^&]+)/).exec(location.hash);
+  match = (/source=([^&]{1,255})/).exec(location.hash);
   if (match) {
     source = decodeURIComponent(match[1]);
   }

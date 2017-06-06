@@ -14,22 +14,22 @@ function assert(condition, ...args) {
 /** True if `url` is a valid URL */
 function isUrl(url) {
   // FIXME: this is rather naive, obviously
-  if ((/^about:.+$/i).test(url)) {
+  if ((/^about:.{1,8000}$/i).test(url)) {
     return true;
   }
-  if ((/^file:\/.*$/i).test(url)) {
+  if ((/^file:\/.{0,8000}$/i).test(url)) {
     return true;
   }
   if ((/^data:.*$/i).test(url)) {
     return true;
   }
-  if ((/^chrome:.*/i).test(url)) {
+  if ((/^chrome:.{0,8000}/i).test(url)) {
     return true;
   }
   if ((/^view-source:/i).test(url)) {
     return isUrl(url.substr("view-source:".length));
   }
-  return (/^https?:\/\/[a-z0-9\.\-]+[a-z0-9](:[0-9]+)?\/?/i).test(url);
+  return (/^https?:\/\/[a-z0-9\.\-]{1,8000}[a-z0-9](:[0-9]{1,8000})?\/?/i).test(url);
 }
 
 function assertUrl(url) {
@@ -46,7 +46,7 @@ function assertUrl(url) {
 function assertOrigin(url) {
   assertUrl(url);
   if (url.search(/^https?:/i) != -1) {
-    let match = (/^https?:\/\/[^/:]+\/?$/i).exec(url);
+    let match = (/^https?:\/\/[^/:]{1,4000}\/?$/i).exec(url);
     if (!match) {
       throw new Error("Bad origin, might include path");
     }
@@ -61,7 +61,7 @@ function originFromUrl(url) {
     // Non-HTTP URLs don't have an origin
     return null;
   }
-  let match = (/^https?:\/\/[^/:]+/i).exec(url);
+  let match = (/^https?:\/\/[^/:]{1,4000}/i).exec(url);
   if (match) {
     return match[0];
   }
@@ -121,7 +121,7 @@ function resolveUrl(base, url) {
   }
   if (url.indexOf("/") === 0) {
     // Domain-relative URL
-    return (/^https?:\/\/[a-z0-9\.\-]+/i).exec(base)[0] + url;
+    return (/^https?:\/\/[a-z0-9\.\-]{1,4000}/i).exec(base)[0] + url;
   }
   // Otherwise, a full relative URL
   while (url.indexOf("./") === 0) {
@@ -196,7 +196,7 @@ class AbstractShot {
 
   constructor(backend, id, attrs) {
     attrs = attrs || {};
-    assert((/^[a-zA-Z0-9]+\/[a-z0-9\.-]+$/).test(id), "Bad ID (should be alphanumeric):", JSON.stringify(id));
+    assert((/^[a-zA-Z0-9]{1,4000}\/[a-z0-9\.-]{1,4000}$/).test(id), "Bad ID (should be alphanumeric):", JSON.stringify(id));
     this._backend = backend;
     this._id = id;
     this.origin = attrs.origin || null;
@@ -347,7 +347,7 @@ class AbstractShot {
     let filenameTitle = this.title;
     let date = new Date(this.createdDate);
     filenameTitle = filenameTitle.replace(/[\/!@&*.|\n\r\t]/g, " ");
-    filenameTitle = filenameTitle.replace(/\s+/g, " ");
+    filenameTitle = filenameTitle.replace(/\s{1,4000}/g, " ");
     let clipFilename = `Screenshot-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${filenameTitle}`;
     const clipFilenameBytesSize = clipFilename.length * 2; // JS STrings are UTF-16
     if (clipFilenameBytesSize > 251) { // 255 bytes (Usual filesystems max) - 4 for the ".png" file extension string
@@ -364,15 +364,15 @@ class AbstractShot {
     }
     if (this.url.search(/^https?/i) != -1) {
       let txt = this.url;
-      txt = txt.replace(/^[a-z]+:\/\//i, "");
-      txt = txt.replace(/\/.*/, "");
+      txt = txt.replace(/^[a-z]{1,4000}:\/\//i, "");
+      txt = txt.replace(/\/.{0,4000}/, "");
       txt = txt.replace(/^www\./i, "");
       return txt;
     } else if (this.url.startsWith("data:")) {
       return "data:url";
     }
     let txt = this.url;
-    txt = txt.replace(/\?.*/, "");
+    txt = txt.replace(/\?.{0,4000}/, "");
     return txt;
   }
 

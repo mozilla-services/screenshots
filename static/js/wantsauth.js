@@ -23,9 +23,9 @@ window.wantsauth = (function() {
   // Note that this module is only loosely bound to any controller, but there
   // is special logic for view pages where ownership is interesting in addition to
   // authentication.  As a result we have to parse the URL on our own:
-  let maybeShotId = location.href.replace(/^https?:\/\/[^/]+\//i, "");
-  maybeShotId = maybeShotId.replace(/\?.*/, "").replace(/#.*/, "");
-  if (maybeShotId.search(/[a-z0-9]+\/[a-z0-9.]+$/i) === -1) {
+  let maybeShotId = location.href.replace(/^https?:\/\/[^/]{1,4000}\//i, "");
+  maybeShotId = maybeShotId.replace(/\?.*/, "").replace(/#.{0,4000}/, "");
+  if (maybeShotId.search(/[a-z0-9]+\/[a-z0-9.]{1,4000}$/i) === -1) {
     // Not a shot ID, which should look like {stuff}/{stuff}
     maybeShotId = null;
   }

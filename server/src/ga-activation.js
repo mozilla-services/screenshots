@@ -21,7 +21,7 @@ function _dntEnabled(dnt, ua) {
     // List of Windows versions known to not implement DNT according to the standard.
     var anomalousWinVersions = ['Windows NT 6.1', 'Windows NT 6.2', 'Windows NT 6.3'];
 
-    var fxMatch = ua.match(/Firefox\\/(\\d+)/);
+    var fxMatch = ua.match(/Firefox\\/(\\d{1,10})/);
     var ieRegEx = /MSIE|Trident/i;
     var isIE = ieRegEx.test(ua);
     // Matches from Windows up to the first occurance of ; un-greedily
@@ -146,7 +146,7 @@ window.sendEvent = function (action, label, options) {
 };
 `;
 
-const idRegex = /^[a-zA-Z0-9_.,-]+$/;
+const idRegex = /^[a-zA-Z0-9_.,-]{1,1000}$/;
 
 exports.makeGaActivationString = function(gaId, userId, abTests, hashLocation) {
   if (gaId === "") {

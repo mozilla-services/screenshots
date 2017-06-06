@@ -326,7 +326,7 @@ class Body extends React.Component {
       clipUrl = clip.image.url;
     }
 
-    let renderGetFirefox = this.props.userAgent && (this.props.userAgent + "").search(/firefox\/\d+/i) === -1;
+    let renderGetFirefox = this.props.userAgent && (this.props.userAgent + "").search(/firefox\/\d{1,255}/i) === -1;
     let renderExtensionNotification = !(this.props.isExtInstalled || renderGetFirefox);
     if (this.props.isMobile || this.state.closeBanner) {
       renderGetFirefox = renderExtensionNotification = false;
