@@ -1,5 +1,9 @@
 Thanks to all the people who have contributed to Firefox Screenshots!
 
+Over [100
+people](https://pontoon.mozilla.org/projects/firefox-screenshots/contributors/)
+have contributed to localizing Firefox Screenshots.
+
 In alphabetical order:
 
 * Abel 'Akronix' Serrano Juste                        
@@ -10,7 +14,7 @@ In alphabetical order:
 * Brian Smith
 * Cecile Bertin
 * Chris Karlof
-* Cory Price                        
+* Cory Price
 * Cosmin Muntean
 * Daniel Thorn                        
 * Danny Coates                        
@@ -46,6 +50,7 @@ In alphabetical order:
 * Peter deHaan                        
 * Richard Pappalardo
 * Ritu Kothari
+* Rob Helmer
 * Sadika Sumanapala                        
 * Sean Martell
 * Selena Deckelmann
