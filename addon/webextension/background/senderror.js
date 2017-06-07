@@ -96,16 +96,24 @@ this.senderror = (function() {
     }
     let exception = new Error(e.message);
     exception.stack = e.multilineStack || e.stack || undefined;
+
+    // To improve Sentry reporting & grouping, replace the
+    // moz-extension://$uuid base URL with a generic resource:// URL.
+    exception.stack = exception.stack.replace(
+      /moz-extension:\/\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/g,
+      "resource://screenshots-addon"
+    );
     let rest = {};
     for (let attr in e) {
       if (!["name", "message", "stack", "multilineStack", "popupMessage", "version", "sentryPublicDSN", "help"].includes(attr)) {
         rest[attr] = e[attr];
       }
     }
-    rest.stack = e.multilineStack || e.stack;
+    rest.stack = exception.stack;
     Raven.captureException(exception, {
       logger: 'addon',
-      tags: {version: manifest.version, category: e.popupMessage},
+      tags: {category: e.popupMessage},
+      release: manifest.version,
       message: exception.message,
       extra: rest
     });
