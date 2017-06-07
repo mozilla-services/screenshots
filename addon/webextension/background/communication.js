@@ -7,7 +7,7 @@ this.communication = (function() {
 
   let registeredFunctions = {};
 
-  browser.runtime.onMessage.addListener(catcher.watchFunction((req, sender, sendResponse) => {
+  exports.onMessage = catcher.watchFunction((req, sender, sendResponse) => {
     if (!(req.funcName in registeredFunctions)) {
       log.error(`Received unknown internal message type ${req.funcName}`);
       sendResponse({type: "error", name: "Unknown message type"});
@@ -39,7 +39,7 @@ this.communication = (function() {
       return true;
     }
     sendResponse({type: "success", value: result});
-  }));
+  });
 
   exports.register = function(name, func) {
     registeredFunctions[name] = func;
