@@ -52,8 +52,7 @@ class Body extends React.Component {
   renderShots() {
     let children = [];
     for (let shot of this.props.shots) {
-      let downloadUrl = this.props.downloadUrls[shot.id];
-      children.push(this.renderShot(shot, downloadUrl));
+      children.push(<Card shot={shot} downloadUrl={this.props.downloadUrls[shot.id]} abTests={this.props.abTests} clipUrl={shot.urlDisplay} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} />);
     }
 
     if (children.length === 0) {
@@ -110,100 +109,6 @@ class Body extends React.Component {
     );
   }
 
-  getClipType(dimensions) {
-    // an image is considered a square if it is within
-    // a squareBuffer pixels of being one
-    const squareBuffer = 50;
-    if (dimensions.x - squareBuffer > dimensions.y) {
-      return "landscape";
-    } else if (dimensions.x < dimensions.y - squareBuffer ) {
-      return "portrait";
-    }
-    return "square";
-  }
-
-  renderShot(shot, downloadUrl) {
-    let imageUrl;
-    let clip = shot.clipNames().length ? shot.getClip(shot.clipNames()[0]) : null;
-    if (clip && clip.image && clip.image.url) {
-      imageUrl = clip.image.url;
-    } else if (shot.images.length) {
-      imageUrl = shot.images[0].url;
-    } else if (shot.fullScreenThumbnail) {
-      imageUrl = shot.fullScreenThumbnail;
-    } else {
-      imageUrl = this.props.staticLinkWithHost("img/question-mark.svg");
-    }
-    let favicon = null;
-    if (shot.favicon) {
-      // We use background-image so if the image is broken it just doesn't show:
-      favicon = <div style={{backgroundImage: `url("${shot.favicon}")`}} className="favicon" />;
-    }
-
-    return (
-      <div className={`shot ${this.getClipType(clip._image.dimensions)}`} key={shot.id}>
-        <a href={shot.viewUrl} onClick={this.onOpen.bind(this, shot.viewUrl)}>
-          <div className="shot-image-container" style={{
-            backgroundImage: `url(${imageUrl})`
-          }}>
-          </div>
-          <div className="shot-info">
-          <div className="title-container">
-            <h4>{this.displayTitle(shot.title)}</h4>
-          </div>
-          <div className="link-container">
-            {favicon}
-            <div className="shot-url">
-              {shot.urlDisplay}
-            </div>
-          </div>
-          </div>
-        </a>
-        <div className="alt-actions-container">
-          <a className="button transparent download" href={ downloadUrl } onClick={ this.onClickDownload.bind(this) }
-            title="Download the shot image" />
-          <ShareButton abTests={this.props.abTests} clipUrl={shot.urlDisplay} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} />
-          <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this, shot) } />
-        </div>
-      </div>
-    );
-  }
-
-  displayTitle(title) {
-    if (title.length > 140) {
-      return (title.substring(0, 140) + "...");
-    }
-    return title;
-  }
-
-  onClickDelete(shot, event) {
-    event.stopPropagation();
-    event.preventDefault();
-    sendEvent("start-delete", "my-shots", {useBeacon: true});
-    if (window.confirm(`Delete ${shot.title}?`)) {
-      sendEvent("delete", "my-shots-popup-confirm", {useBeacon: true});
-      controller.deleteShot(shot);
-    } else {
-      sendEvent("cancel-delete", "my-shots-popup-confirm");
-    }
-    return false;
-  }
-
-  onOpen(url, event) {
-    if (event.ctrlKey || event.metaKey || event.button === 1) {
-      // Don't override what might be an open-in-another-tab click
-      sendEvent("goto-shot", "myshots-tile-new-tab", {useBeacon: true});
-      return;
-    }
-
-    sendEvent("goto-shot", "myshots-tile", {useBeacon: true});
-    location.href = url;
-  }
-
-  onClickDownload() {
-    sendEvent("download", "myshots-tile");
-  }
-
   onSubmitForm(e) {
     e.preventDefault();
     let val = ReactDOM.findDOMNode(this.refs.search).value;
@@ -252,6 +157,115 @@ class Body extends React.Component {
     }
   }
 
+}
+
+class Card extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {panelOpen: "panel-closed"};
+  }
+
+  render() {
+    let shot = this.props.shot;
+    let downloadUrl = this.props.downloadUrl;
+    let imageUrl;
+    let clip = shot.clipNames().length ? shot.getClip(shot.clipNames()[0]) : null;
+    if (clip && clip.image && clip.image.url) {
+      imageUrl = clip.image.url;
+    } else if (shot.images.length) {
+      imageUrl = shot.images[0].url;
+    } else if (shot.fullScreenThumbnail) {
+      imageUrl = shot.fullScreenThumbnail;
+    } else {
+      imageUrl = this.props.staticLinkWithHost("img/question-mark.svg");
+    }
+    let favicon = null;
+    if (shot.favicon) {
+      // We use background-image so if the image is broken it just doesn't show:
+      favicon = <div style={{backgroundImage: `url("${shot.favicon}")`}} className="favicon" />;
+    }
+
+    return (
+      <div className={`shot ${this.getClipType(clip._image.dimensions)} ${this.state.panelOpen}`} key={shot.id}>
+        <a href={shot.viewUrl} onClick={this.onOpen.bind(this, shot.viewUrl)}>
+          <div className="shot-image-container" style={{
+            backgroundImage: `url(${imageUrl})`
+          }}>
+          </div>
+          <div className="shot-info">
+          <div className="title-container">
+            <h4>{this.displayTitle(shot.title)}</h4>
+          </div>
+          <div className="link-container">
+            {favicon}
+            <div className="shot-url">
+              {shot.urlDisplay}
+            </div>
+          </div>
+          </div>
+        </a>
+        <div className="alt-actions-container">
+          <a className="button transparent download" href={ downloadUrl } onClick={ this.onClickDownload.bind(this) }
+            title="Download the shot image" ref="download" />
+          <ShareButton setPanelState={this.setPanelState.bind(this)} abTests={this.props.abTests} clipUrl={shot.urlDisplay} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} />
+          <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this, shot) } ref="trash" />
+        </div>
+      </div>
+    );
+  }
+
+  getClipType(dimensions) {
+    // an image is considered a square if it is within
+    // a squareBuffer pixels of being one
+    const squareBuffer = 50;
+    if (dimensions.x - squareBuffer > dimensions.y) {
+      return "landscape";
+    } else if (dimensions.x < dimensions.y - squareBuffer ) {
+      return "portrait";
+    }
+    return "square";
+  }
+
+  setPanelState(state) {
+    this.setState({panelOpen: state});
+  }
+
+  onOpen(url, event) {
+    if (event.ctrlKey || event.metaKey || event.button === 1) {
+      // Don't override what might be an open-in-another-tab click
+      sendEvent("goto-shot", "myshots-tile-new-tab", {useBeacon: true});
+      return;
+    }
+
+    sendEvent("goto-shot", "myshots-tile", {useBeacon: true});
+    location.href = url;
+  }
+
+  displayTitle(title) {
+    if (title.length > 140) {
+      return (title.substring(0, 140) + "...");
+    }
+    return title;
+  }
+
+  onClickDelete(shot, event) {
+    event.stopPropagation();
+    event.preventDefault();
+    sendEvent("start-delete", "my-shots", {useBeacon: true});
+    if (window.confirm(`Delete ${shot.title}?`)) {
+      sendEvent("delete", "my-shots-popup-confirm", {useBeacon: true});
+      controller.deleteShot(shot);
+    } else {
+      sendEvent("cancel-delete", "my-shots-popup-confirm");
+    }
+    this.refs.trash.blur();
+    return false;
+  }
+
+  onClickDownload() {
+    this.refs.download.blur();
+    sendEvent("download", "myshots-tile");
+  }
 }
 
 exports.HeadFactory = React.createFactory(Head);

@@ -31,18 +31,21 @@ exports.ShareButton = class ShareButton extends React.Component {
     let show = !this.state.display;
     this.setState({display: show});
     if (show) {
+      this.props.setPanelState("panel-open");
       sendEvent(
         this.props.isOwner ? "start-share-owner" : "start-share-non-owner",
         "navbar");
     } else {
+      this.props.setPanelState("panel-closed");
+      this.refs.share.blur();
       sendEvent("cancel-share");
     }
   }
 
   onPanelClose() {
     this.setState({display: false});
+    this.props.setPanelState("panel-closed");
   }
-
 };
 
 class ShareButtonPanel extends React.Component {
@@ -81,7 +84,7 @@ class ShareButtonPanel extends React.Component {
     if (this.props.renderExtensionNotification) {
       className += " share-panel-with-notification";
     }
-    return <div id="share-buttons-panel" className={className}>
+    return <div id="share-buttons-panel" className={className} ref="share" style={{top: this.state.top, left: this.state.left}}>
       <div className="wrapper row-wrap share-buttons">
         <a title="Share to Facebook wall or message" onClick={ this.onClickShareButton.bind(this, "facebook") } target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }>
           <img src={ this.props.staticLink("/static/img/btn-fb.svg") } />
@@ -116,7 +119,19 @@ class ShareButtonPanel extends React.Component {
     </div>;
   }
 
+  changePanelPosition() {
+    let el = this.refs.share;
+    let rect = el.getBoundingClientRect();
+    if (!(rect.right <= (window.innerWidth || document.documentElement.clientWidth))) {
+      this.setState({left: -140});
+    }
+    if (!(rect.bottom <= (window.innerHeight || document.documentElement.clientHeight))) {
+      this.setState({top: -385});
+    }
+  }
+
   componentDidMount() {
+    this.changePanelPosition();
     document.addEventListener("click", this.clickMaybeClose);
     document.addEventListener("keyup", this.keyMaybeClose);
   }
