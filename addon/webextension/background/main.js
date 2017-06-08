@@ -55,7 +55,14 @@ this.main = (function() {
     if ((!hasSeenOnboarding) && !active) {
       path = "icons/icon-starred-32.svg";
     }
-    browser.browserAction.setIcon({path, tabId});
+    browser.browserAction.setIcon({path, tabId}).catch((error) => {
+      // FIXME: use errorCode
+      if (error.message && /Invalid tab ID/.test(error.message)) {
+        // This is a normal exception that we can ignore
+      } else {
+        catcher.unhandled(error);
+      }
+    });
   }
 
   function toggleSelector(tab) {
@@ -66,6 +73,9 @@ this.main = (function() {
         return active;
       })
       .catch((error) => {
+        if (error.message && /Missing host permission for the tab/.test(error.message)) {
+          error.noReport = true;
+        }
         error.popupMessage = "UNSHOOTABLE_PAGE";
         throw error;
       });
@@ -120,9 +130,7 @@ this.main = (function() {
   });
 
   function forceOnboarding() {
-    return browser.tabs.create({url: getOnboardingUrl()}).then((tab) => {
-      return toggleSelector(tab);
-    });
+    return browser.tabs.create({url: getOnboardingUrl()});
   }
 
   exports.onClickedContextMenu = catcher.watchFunction((info, tab) => {
@@ -230,7 +238,7 @@ this.main = (function() {
   });
 
   communication.register("closeSelector", (sender) => {
-    setIconActive(false, sender.tab.id)
+    setIconActive(false, sender.tab.id);
   });
 
   catcher.watchPromise(communication.sendToBootstrap("getOldDeviceInfo").then((deviceInfo) => {

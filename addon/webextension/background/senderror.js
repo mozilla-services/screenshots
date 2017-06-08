@@ -88,7 +88,7 @@ this.senderror = (function() {
     }
     let dsn = auth.getSentryPublicDSN();
     if (!dsn) {
-      log.warn("Error:", e);
+      log.warn("Screenshots error:", e);
       return;
     }
     if (!Raven.isSetup()) {

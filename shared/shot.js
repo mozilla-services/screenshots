@@ -127,6 +127,11 @@ function resolveUrl(base, url) {
   while (url.indexOf("./") === 0) {
     url = url.substr(2);
   }
+  if (!base) {
+    // It's not an absolute URL, and we don't have a base URL, so we have
+    // to throw away the URL
+    return null;
+  }
   let match = (/.*\//).exec(base)[0];
   if (match.search(/^https?:\/$/i) === 0) {
     // Domain without path
@@ -446,6 +451,9 @@ class AbstractShot {
     if (Array.isArray(title)) {
       title = title[0];
     }
+    if (!title) {
+      title = "Screenshot";
+    }
     return title;
   }
 
@@ -461,7 +469,11 @@ class AbstractShot {
     return this._favicon;
   }
   set favicon(val) {
-    assert(val === null || isUrl(val), "Bad favicon URL:", val);
+    // We allow but ignore bad favicon URLs, as they seem somewhat common
+    val = val || null;
+    if (!isUrl(val)) {
+      val = null;
+    }
     if (val) {
       val = resolveUrl(this.url, val);
     }

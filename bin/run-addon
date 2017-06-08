@@ -158,7 +158,7 @@ run_webext() {
   echo "  about:debugging"
   echo "and Debug Firefox Screenshots"
 
-  $webext run --firefox "$binary" $profile_option --source-dir ./addon/webextension/
+  $webext run --firefox "$binary" $profile_option --browser-console --source-dir ./addon/webextension/
 }
 
 run_jpm() {

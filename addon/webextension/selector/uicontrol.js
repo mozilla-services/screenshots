@@ -511,6 +511,15 @@ this.uicontrol = (function() {
     },
 
     mousedown(event) {
+      // FIXME: this is happening but we don't know why, we'll track it now
+      // but avoid popping up messages:
+      if (typeof ui === "undefined") {
+        let exc = new Error("Undefined ui in mousedown");
+        exc.unloadTime = unloadTime;
+        exc.nowTime = Date.now();
+        exc.noPopup = true;
+        throw exc;
+      }
       if (ui.isHeader(event.target)) {
         return undefined;
       }
@@ -838,8 +847,11 @@ this.uicontrol = (function() {
     }
   };
 
+  let unloadTime = 0;
+
   exports.unload = function() {
     // Note that ui.unload() will be called on its own
+    unloadTime = Date.now();
     removeHandlers();
   };
 
@@ -921,7 +933,7 @@ this.uicontrol = (function() {
     registeredDocumentHandlers = [];
   }
 
-  exports.activate();
+  catcher.watchFunction(exports.activate)();
 
   return exports;
 })();
