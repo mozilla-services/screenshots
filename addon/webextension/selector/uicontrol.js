@@ -921,7 +921,7 @@ this.uicontrol = (function() {
     registeredDocumentHandlers = [];
   }
 
-  exports.activate();
+  catcher.watchFunction(exports.activate)();
 
   return exports;
 })();

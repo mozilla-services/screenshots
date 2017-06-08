@@ -33,11 +33,11 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     callBackground("reportError", sanitizeError(errorObj));
   });
 
-  {
+  catcher.watchFunction(() => {
     let canvas = document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
     let ctx = canvas.getContext('2d');
     supportsDrawWindow = !!ctx.drawWindow;
-  }
+  })();
 
   function screenshotPage(selectedPos) {
     if (!supportsDrawWindow) {
@@ -166,14 +166,16 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     callBackground("sendEvent", ...args);
   };
 
-  shot = new AbstractShot(
-    backend,
-    randomString(RANDOM_STRING_LENGTH) + "/" + domainFromUrl(location),
-    {
-      origin: window.shot.originFromUrl(location.href)
-    }
-  );
-  shot.update(documentMetadata());
+  catcher.watchFunction(() => {
+    shot = new AbstractShot(
+      backend,
+      randomString(RANDOM_STRING_LENGTH) + "/" + domainFromUrl(location),
+      {
+        origin: window.shot.originFromUrl(location.href)
+      }
+    );
+    shot.update(documentMetadata());
+  })();
 
   return exports;
 })();
