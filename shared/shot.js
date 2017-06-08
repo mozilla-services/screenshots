@@ -451,6 +451,9 @@ class AbstractShot {
     if (Array.isArray(title)) {
       title = title[0];
     }
+    if (!title) {
+      title = "Screenshot";
+    }
     return title;
   }
 
