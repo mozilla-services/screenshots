@@ -1,15 +1,15 @@
 /* globals global, documentMetadata, util, uicontrol, ui, catcher */
-/* globals buildSettings, domainFromUrl, randomString */
+/* globals buildSettings, domainFromUrl, randomString, shot */
 
 "use strict";
 
 this.shooter = (function() { // eslint-disable-line no-unused-vars
   let exports = {};
-  const { AbstractShot } = window.shot;
+  const { AbstractShot } = shot;
 
   const RANDOM_STRING_LENGTH = 16;
   let backend;
-  let shot;
+  let shotObject;
   let supportsDrawWindow;
   const callBackground = global.callBackground;
   const clipboard = global.clipboard;
@@ -94,8 +94,8 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     }
     let dataUrl = screenshotPage(selectedPos);
     if (dataUrl) {
-      shot.delAllClips();
-      shot.addClip({
+      shotObject.delAllClips();
+      shotObject.addClip({
         createdDate: Date.now(),
         image: {
           url: dataUrl,
@@ -119,8 +119,8 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
         innerWidth: window.innerWidth
       },
       selectedPos,
-      shotId: shot.id,
-      shot: shot.asJson()
+      shotId: shotObject.id,
+      shot: shotObject.asJson()
     }).then((url) => {
       const copied = clipboard.copy(url);
       return callBackground("openShot", { url, copied });
@@ -157,7 +157,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
         });
     }
     catcher.watchPromise(promise.then((dataUrl) => {
-      ui.triggerDownload(dataUrl, shot.filename);
+      ui.triggerDownload(dataUrl, shotObject.filename);
       uicontrol.deactivate();
     }));
   };
@@ -167,14 +167,14 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
   };
 
   catcher.watchFunction(() => {
-    shot = new AbstractShot(
+    shotObject = new AbstractShot(
       backend,
       randomString(RANDOM_STRING_LENGTH) + "/" + domainFromUrl(location),
       {
-        origin: window.shot.originFromUrl(location.href)
+        origin: shot.originFromUrl(location.href)
       }
     );
-    shot.update(documentMetadata());
+    shotObject.update(documentMetadata());
   })();
 
   return exports;
