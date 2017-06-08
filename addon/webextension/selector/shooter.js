@@ -81,7 +81,10 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
       return;
     }
     isSaving = setTimeout(() => {
-      ui.Box.clearSaveDisabled();
+      if (typeof ui !== "undefined") {
+        // ui might disappear while the timer is running because the save succeeded
+        ui.Box.clearSaveDisabled();
+      }
       isSaving = null;
     }, 1000);
     selectedPos = selectedPos.asJson();
