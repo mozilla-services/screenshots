@@ -73,6 +73,9 @@ this.main = (function() {
         return active;
       })
       .catch((error) => {
+        if (error.message && /Missing host permission for the tab/.test(error.message)) {
+          error.noReport = true;
+        }
         error.popupMessage = "UNSHOOTABLE_PAGE";
         throw error;
       });
