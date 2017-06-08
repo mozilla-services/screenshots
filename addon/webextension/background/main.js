@@ -120,9 +120,7 @@ this.main = (function() {
   });
 
   function forceOnboarding() {
-    return browser.tabs.create({url: getOnboardingUrl()}).then((tab) => {
-      return toggleSelector(tab);
-    });
+    return browser.tabs.create({url: getOnboardingUrl()});
   }
 
   exports.onClickedContextMenu = catcher.watchFunction((info, tab) => {
