@@ -160,7 +160,7 @@ this.main = (function() {
     if (path == "shots") {
       return true;
     }
-    if (/^[^/]+\/[^/]+$/.test(path)) {
+    if (/^[^/]{1,4000}\/[^/]{1,4000}$/.test(path)) {
       // Blocks {:id}/{:domain}, but not /, /privacy, etc
       return true;
     }

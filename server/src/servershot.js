@@ -270,7 +270,7 @@ class Shot extends AbstractShot {
       queryParts.push(`setweight(to_tsvector(${addText(t)}), '${weight}') /* ${name} */`);
     }
     if (this.url) {
-      let domain = this.url.replace(/^.*:/, "").replace(/\/.*$/, "");
+      let domain = this.url.replace(/^.{0,4000}:/, "").replace(/\/.{0,4000}$/, "");
       addWeight(domain, 'B', 'domain');
     }
     addWeight(this.title, 'A', 'title');

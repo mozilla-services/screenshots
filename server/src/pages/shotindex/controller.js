@@ -9,7 +9,7 @@ let model;
 exports.launch = function(m) {
   if (m.hasDeviceId) {
     m.shots = m.shots.map((shot) => new AbstractShot(m.backend, shot.id, shot.json));
-    let match = /[\?&]q=([^&]+)/.exec(location.href);
+    let match = /[\?&]q=([^&]{1,4000})/.exec(location.href);
     if (match) {
       m.defaultSearch = decodeURIComponent(match[1]);
     }
@@ -64,7 +64,7 @@ exports.deleteShot = function(shot) {
 };
 
 window.addEventListener("popstate", () => {
-  let match = /[?&]q=([^&]*)/.exec(location.search);
+  let match = /[?&]q=([^&]{0,4000})/.exec(location.search);
   if (!match) {
     model.defaultSearch = "";
   } else {

@@ -284,7 +284,7 @@ function decodeAuthHeader(header) {
   /** Decode a string header in the format {deviceId}:{deviceIdSig};abtests={b64thing}:{sig} */
   // Since it's treated as opaque, we'll use a fragile regex
   let keygrip = dbschema.getKeygrip();
-  let match = /^([^:]+):([^;]+);abTests=([^:]+):(.*)$/.exec(header);
+  let match = /^([^:]{1,255}):([^;]{1,255});abTests=([^:]{1,1500}):(.{0,255})$/.exec(header);
   if (!match) {
     // FIXME: log, Sentry error
     return {};
@@ -571,7 +571,7 @@ app.post("/api/register", function(req, res) {
 
 function sendAuthInfo(req, res, params) {
   let { deviceId, userAbTests } = params;
-  if (deviceId.search(/^[a-zA-Z0-9_-]+$/) == -1) {
+  if (deviceId.search(/^[a-zA-Z0-9_-]{1,255}$/) == -1) {
     // FIXME: add logging message with deviceId
     throw new Error("Bad deviceId");
   }
@@ -932,7 +932,7 @@ app.get("/oembed", function(req, res) {
     return;
   }
   url = url.substr(backend.length);
-  let match = /^\/*([^\/]+)\/([^\/]+)/.exec(url);
+  let match = /^\/{0,255}([^\/]{1,255})\/([^\/]{1,255})/.exec(url);
   if (!match) {
     simpleResponse(res, "Error: not a Shot url", 404);
     return;
