@@ -55,7 +55,14 @@ this.main = (function() {
     if ((!hasSeenOnboarding) && !active) {
       path = "icons/icon-starred-32.svg";
     }
-    browser.browserAction.setIcon({path, tabId});
+    browser.browserAction.setIcon({path, tabId}).catch((error) => {
+      // FIXME: use errorCode
+      if (error.message && /Invalid tab ID/.test(error.message)) {
+        // This is a normal exception that we can ignore
+      } else {
+        catcher.unhandled(error);
+      }
+    });
   }
 
   function toggleSelector(tab) {
@@ -228,7 +235,7 @@ this.main = (function() {
   });
 
   communication.register("closeSelector", (sender) => {
-    setIconActive(false, sender.tab.id)
+    setIconActive(false, sender.tab.id);
   });
 
   catcher.watchPromise(communication.sendToBootstrap("getOldDeviceInfo").then((deviceInfo) => {
