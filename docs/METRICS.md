@@ -301,7 +301,6 @@ The data collected in error reports includes:
 * Browser version and User-Agent header
 * Operating system
 * The Screenshots system add-on version
-* IP address
 * The exception message
 * The stack trace
 * Length of time the add-on was activated
