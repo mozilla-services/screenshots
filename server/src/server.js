@@ -166,7 +166,7 @@ app.set('trust proxy', true);
 // Disable x-powered-by header
 app.disable("x-powered-by");
 
-const CONTENT_NAME = config.contentOrigin;
+const CONTENT_NAME = config.contentOrigin || '';
 
 function addHSTS(req, res) {
   // Note: HSTS will only produce warning on a localhost self-signed cert
