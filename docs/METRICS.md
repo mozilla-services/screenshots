@@ -132,6 +132,7 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 15. ~~Uninstall the add-on `addon/uninstall` (fired internally, regardless of how it is uninstalled)~~
 16. ~~Hit shot button on a page that can't be shot (XUL page) `addon/abort-start-shot/xul-page`~~
 17. [x] Hit shot button on a page that uses `<frameset>` and can't be shot, `addon/abort-start-shot/frame-page`
+18. [x] Hit shot button on a page (like an SVG image) that doesn't have a `document.body` and can't be shot, `addon/abort-start-shot/document-is-TAGNAME` where TAGNAME is the tag of `document.documentElement` (e.g., `document-is-svg`)
 99. Toggle shot button off `addon/cancel-shot/toolbar-button`
 99. Bad response when trying to login `addon/login-failed/bad-response-CODE`
 99. Connection error trying to login `addon/login-failed/connection-error`
