@@ -274,6 +274,13 @@ var conf = convict({
     default: "",
     env: "FORCE_AB_TESTS",
     arg: "force-ab-tests"
+  },
+  disableSearch: {
+    doc: "If true, then hide the search bar",
+    format: Boolean,
+    default: true,
+    env: "DISABLE_SEARCH",
+    arg: "disable-search"
   }
 });
 

@@ -13,6 +13,7 @@ exports.createModel = function(req) {
   };
   serverModel.shots = req.shots;
   serverModel.downloadUrls = {};
+  serverModel.disableSearch = req.config.disableSearch;
   for (let shot of req.shots) {
     if (shot.favicon) {
       shot.favicon = createProxyUrl(req, shot.favicon);

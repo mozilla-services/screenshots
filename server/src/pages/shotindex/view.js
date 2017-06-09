@@ -34,11 +34,7 @@ class Body extends React.Component {
         <div className="column-space full-height default-color-scheme">
           <div id="shot-index-header" className="header">
             <h1><a href="/shots">Firefox <strong>Screenshots</strong> <sup>Beta</sup></a></h1>
-            <form onSubmit={ this.onSubmitForm.bind(this) }>
-              <span className="search-label" />
-              <input type="search" id="search" ref="search" maxLength="100" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />
-              <div className="clear-search" title="clear search" onClick={this.onClearSearch.bind(this)}></div>
-            </form>
+            {this.props.disableSearch ? null : this.renderSearchForm()}
           </div>
           <div id="shot-index" className="flex-1">
             { this.renderShots() }
@@ -106,6 +102,16 @@ class Body extends React.Component {
         <p>Hmmm!</p>
         <p>We can’t find any shots that match your search.</p>
       </div>
+    );
+  }
+
+  renderSearchForm() {
+    return (
+      <form onSubmit={ this.onSubmitForm.bind(this) }>
+        <span className="search-label" />
+        <input type="search" id="search" ref="search" maxLength="100" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />
+        <div className="clear-search" title="clear search" onClick={this.onClearSearch.bind(this)}></div>
+      </form>
     );
   }
 
