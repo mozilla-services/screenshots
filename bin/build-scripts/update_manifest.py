@@ -13,11 +13,11 @@ import subprocess
 import re
 
 if not sys.argv[1:] or "-h" in sys.argv or "--help" in sys.argv:
-    print "Usage: %s MANIFEST_TEMPLATE MANIFEST_JSON" % (os.path.basename(sys.argv[0]))
-    print "  Writes MANIFEST_JSON based on MANIFEST_TEMPLATE"
-    print "  Uses build/.backend.txt to figure out the backend configuration"
-    print "  Uses package.json to determine the version (and adds a timestamp)"
-    print "  If $SCREENSHOTS_MINOR_VERSION is set, use that instead of a timestamp for that version"
+    print("Usage: %s MANIFEST_TEMPLATE MANIFEST_JSON" % (os.path.basename(sys.argv[0])))
+    print("  Writes MANIFEST_JSON based on MANIFEST_TEMPLATE")
+    print("  Uses build/.backend.txt to figure out the backend configuration")
+    print("  Uses package.json to determine the version (and adds a timestamp)")
+    print("  If $SCREENSHOTS_MINOR_VERSION is set, use that instead of a timestamp for that version")
     sys.exit()
 
 template = open(sys.argv[1]).read()
