@@ -55,6 +55,9 @@ while True:
             continue
     break
 backend = open("build/.backend.txt").read().strip()
+if not re.search(r'^https?://[^/]+/?$', backend):
+    print("Error: bad backend (must be fully qualified URL): %r" % backend)
+    sys.exit(1)
 
 template = template.replace("__VERSION__", version)
 # Some places we use the port:
