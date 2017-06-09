@@ -28,13 +28,6 @@ var conf = convict({
     env: "CONTENT_ORIGIN",
     arg: "contentOrigin"
   },
-  extraContentOrigin: {
-    doc: "If you have a second origin available for migration purposes",
-    format: String,
-    default: "",
-    env: "EXTRA_CONTENT_ORIGIN",
-    arg: "extraContentOrigin"
-  },
   expectProtocol: {
     doc: "Treat all incoming requests as using this protocol, instead of defaulting to http: or detecting from X-Forwarded-Proto",
     format: String,
