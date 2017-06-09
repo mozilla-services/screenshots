@@ -157,7 +157,7 @@ The onboarding slides have some events:
 1. Navigate to the next slide by hitting ArrowRight: `addon/navigate-slide/keyboard-arrowright`
 1. Navigate to the previous slide by hitting ArrowLeft: `addon/navigate-slide/keyboard-arrowleft`
 1. Click on one of the dots to navigate to a specific slide: `addon/navigate-slide/goto`
-1. Cancel the slides by clicking on the background: `addon/cancel-slides/overlay`
+1. Cancel the slides by clicking on the background: `addon/cancel-slides/background-click`
 1. Cancel the slides by clicking on skip: `addon/cancel-slides/skip`
 1. Cancel the slides by hitting Escape: `addon/cancel-slides/keyboard-escape`
 1. Finish the slides by clicking on done: `addon/finish-slides/done`
