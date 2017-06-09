@@ -1,6 +1,6 @@
 /* Environmental variables that help control this test:
 
-FIREFOX_CHANNEL = empty (default RELEASE)
+FIREFOX_CHANNEL = empty (default NIGHTLY)
                   NIGHTLY
                   AURORA (often Developer Edition)
                   BETA
@@ -74,7 +74,7 @@ callback();
 
 function getDriver() {
   const profile = new firefox.Profile();
-  let channel = process.env.FIREFOX_CHANNEL || "RELEASE";
+  let channel = process.env.FIREFOX_CHANNEL || "NIGHTLY";
   if (!(channel in firefox.Channel)) {
     throw new Error(`Unknown channel: "${channel}"`);
   }
