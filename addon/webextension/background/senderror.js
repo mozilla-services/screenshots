@@ -105,7 +105,7 @@ this.senderror = (function() {
     );
     let rest = {};
     for (let attr in e) {
-      if (!["name", "message", "stack", "multilineStack", "popupMessage", "version", "sentryPublicDSN", "help"].includes(attr)) {
+      if (!["name", "message", "stack", "multilineStack", "popupMessage", "version", "sentryPublicDSN", "help", "fromMakeError"].includes(attr)) {
         rest[attr] = e[attr];
       }
     }
