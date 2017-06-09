@@ -47,9 +47,7 @@ class Clip extends React.Component {
     // that displays the image onload, as a backup to make sure the image always
     // gets displayed even if the bundle doesn't load
     return <div ref="clipContainer" className="clip-container">
-      <menu type="context" id="clip-image-context">
-        <menuitem label="Copy Image Text" onClick={this.copyImageText.bind(this)} ></menuitem>
-      </menu>
+      { this.copyTextContextMenu() }
       { this.renderLoader() }
       <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) } contextMenu="clip-image-context">
         { node }
@@ -78,6 +76,17 @@ class Clip extends React.Component {
   onClickClip() {
     sendEvent("goto-clip", "content", {useBeacon: true});
     // Allow default action to continue
+  }
+
+  copyTextContextMenu() {
+    if (this.props.clip.image.text) {
+      return (
+        <menu type="context" id="clip-image-context">
+          <menuitem label="Copy Image Text" onClick={this.copyImageText.bind(this)} ></menuitem>
+        </menu>
+      );
+    }
+    return null;
   }
 
   copyImageText() {
