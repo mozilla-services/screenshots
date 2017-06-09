@@ -26,8 +26,12 @@ package_json = json.load(open("package.json"))
 last_version = None
 if os.path.exists(output_file):
     if output_file.endswith(".json"):
-        output_data = json.load(open(output_file))
-        last_version = output_data["version"]
+        try:
+            output_data = json.load(open(output_file))
+        except ValueError:
+            print("Ignoring current manifest in %s" % output_file)
+        else:
+            last_version = output_data["version"]
     elif output_file.endswith(".rdf"):
         rdf_content = open(output_file).read()
         match = re.search(r'<em:version>(.*?)</em:version>', rdf_content)
@@ -43,10 +47,13 @@ if os.environ.get("SCREENSHOTS_MINOR_VERSION"):
 package_json_version = package_json["version"].split(".")
 while True:
     version = "%s.%s.%s" % (package_json_version[0], package_json_version[1], now_timestamp)
-    if last_version == version:
-        now_timestamp += 1
-    else:
-        break
+    if last_version:
+        last_parts = last_version.split(".")
+        version_parts = version.split(".")
+        if last_parts[0] == version_parts[0] and last_parts[1] == version_parts[1] and int(last_parts[2]) >= int(version_parts[2]):
+            now_timestamp += 1
+            continue
+    break
 backend = open("build/.backend.txt").read().strip()
 
 template = template.replace("__VERSION__", version)
