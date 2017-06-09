@@ -272,6 +272,11 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     },
 
     updateElementSize() {
+      if (!this.element) {
+        // This can happen if the selector is unloaded during the resize adjustment
+        // time-delay
+        return;
+      }
       this.element.style.height = window.innerHeight + "px";
       this.element.style.width = window.innerWidth + "px";
     },

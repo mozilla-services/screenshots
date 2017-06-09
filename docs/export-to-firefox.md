@@ -7,7 +7,7 @@ Start the system addon release process by copying the following checklist into a
 
 - [ ] Bump the minor version number in package.json, following our [version numbering conventions](https://github.com/mozilla-services/screenshots/issues/2647)
 - [ ] Update changelog: `./bin/generate-commit-log --write stable..master`
-- [ ] Create tag: `git tag MAJOR.MINOR.0`
+- [ ] Create tag: `git tag MAJOR.MINOR.0` – the version should be higher than the version currently in `package.json` (e.g., if the in-development version is 10.0.0, then tag 10.1.0)
 - [ ] Push tag: `git push --tags`
 - [ ] Merge master to stable: `git checkout stable && git merge master && git push`
 - [ ] Create a Bugzilla release bug, copying [bug 1368146](https://bugzil.la/1368146)

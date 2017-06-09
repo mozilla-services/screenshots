@@ -783,14 +783,14 @@ this.uicontrol = (function() {
   };
 
   let documentWidth = Math.max(
-    document.body.clientWidth,
+    document.body && document.body.clientWidth,
     document.documentElement.clientWidth,
-    document.body.scrollWidth,
+    document.body && document.body.scrollWidth,
     document.documentElement.scrollWidth);
   let documentHeight = Math.max(
-    document.body.clientHeight,
+    document.body && document.body.clientHeight,
     document.documentElement.clientHeight,
-    document.body.scrollHeight,
+    document.body && document.body.scrollHeight,
     document.documentElement.scrollHeight);
 
   function scrollIfByEdge(pageX, pageY) {
@@ -818,6 +818,11 @@ this.uicontrol = (function() {
   let shouldOnboard = typeof slides !== "undefined";
 
   exports.activate = function() {
+    if (!document.body) {
+      callBackground("abortNoDocumentBody", document.documentElement.tagName);
+      selectorLoader.unloadModules();
+      return;
+    }
     if (isFrameset()) {
       callBackground("abortFrameset");
       selectorLoader.unloadModules();

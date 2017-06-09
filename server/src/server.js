@@ -166,7 +166,7 @@ app.set('trust proxy', true);
 // Disable x-powered-by header
 app.disable("x-powered-by");
 
-const CONTENT_NAME = config.contentOrigin;
+const CONTENT_NAME = config.contentOrigin || '';
 
 function addHSTS(req, res) {
   // Note: HSTS will only produce warning on a localhost self-signed cert
@@ -199,11 +199,10 @@ app.use((req, res, next) => {
       } else {
         dsn = "";
       }
-      let extraContentOrigin = config.extraContentOrigin || "";
       req.cspNonce = uuid;
       res.header(
         "Content-Security-Policy",
-        `default-src 'self'; img-src 'self' www.google-analytics.com ${CONTENT_NAME}${extraContentOrigin && ' ' + extraContentOrigin} data:; script-src 'self' www.google-analytics.com 'nonce-${uuid}'; style-src 'self' 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
+        `default-src 'self'; img-src 'self' www.google-analytics.com ${CONTENT_NAME} data:; script-src 'self' www.google-analytics.com 'nonce-${uuid}'; style-src 'self' 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
       res.header("X-Frame-Options", "DENY");
       res.header("X-Content-Type-Options", "nosniff");
       addHSTS(req, res);

@@ -276,6 +276,16 @@ this.main = (function() {
     });
   });
 
+  communication.register("abortNoDocumentBody", (sender, tagName) => {
+    tagName = String(tagName || "").replace(/[^a-z0-9]/ig, "");
+    sendEvent("abort-start-shot", `document-is-${tagName}`);
+    // Note, we only show the error but don't report it, as we know that we can't
+    // take shots of these pages:
+    senderror.showError({
+      popupMessage: "UNSHOOTABLE_PAGE"
+    });
+  });
+
   // Note: this signal is only needed until bug 1357589 is fixed.
   communication.register("openTermsPage", () => {
     return catcher.watchPromise(browser.tabs.create({url: "https://www.mozilla.org/about/legal/terms/services/"}));
