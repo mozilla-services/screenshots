@@ -63,6 +63,7 @@ this.communication = (function() {
   };
 
   function isBootstrapMissingError(error) {
+    // Note: some of this logic is copied into startBackground.js's getOldDeviceInfo call
     if (!error) {
       return false;
     }
