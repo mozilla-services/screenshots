@@ -50,7 +50,9 @@ while True:
     if last_version:
         last_parts = last_version.split(".")
         version_parts = version.split(".")
-        if last_parts[0] == version_parts[0] and last_parts[1] == version_parts[1] and int(last_parts[2]) >= int(version_parts[2]):
+        if (last_parts[0] == version_parts[0] and
+           last_parts[1] == version_parts[1] and
+           int(last_parts[2]) >= int(version_parts[2])):
             now_timestamp += 1
             continue
     break
