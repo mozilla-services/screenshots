@@ -24,6 +24,9 @@ this.startBackground = (function() {
     "background/main.js"
   ];
 
+  // Maximum milliseconds to wait before checking for migration possibility
+  const CHECK_MIGRATION_DELAY = 2000;
+
   browser.browserAction.onClicked.addListener((tab) => {
     loadIfNecessary().then(() => {
       main.onClicked(tab);
@@ -31,7 +34,6 @@ this.startBackground = (function() {
       console.error("Error loading Screenshots:", error);
     });
   });
-
 
   browser.contextMenus.create({
     id: "create-screenshot",
@@ -68,6 +70,30 @@ this.startBackground = (function() {
     });
     return true;
   });
+
+  // We delay this check (by CHECK_MIGRATION_DELAY) just to avoid piling too
+  // many things onto browser/add-on startup
+  requestIdleCallback(() => {
+    browser.runtime.sendMessage({funcName: "getOldDeviceInfo"}).then((result) => {
+      if (result && result.type == "success" && result.value) {
+        // There is a possible migration to run, so we'll load the entire background
+        // page and continue the process
+        return loadIfNecessary();
+      }
+      if (!result) {
+        throw new Error("Got no result from getOldDeviceInfo");
+      }
+      if (result.type == "error") {
+        throw new Error(`Error from getOldDeviceInfo: ${result.name}`);
+      }
+    }).catch((error) => {
+      if (error && error.message == "Could not establish connection. Receiving end does not exist") {
+        // Just a missing bootstrap.js, ignore
+      } else {
+        console.error("Screenshots error checking for Page Shot migration:", error);
+      }
+    });
+  }, {timeout: CHECK_MIGRATION_DELAY});
 
   let loadedPromise;
 
