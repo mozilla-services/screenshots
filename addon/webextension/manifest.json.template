@@ -34,8 +34,7 @@
         "catcher.js",
         "selector/callBackground.js",
         "sitehelper.js"
-      ],
-      "run_at": "document_start"
+      ]
     }
   ],
   "web_accessible_resources": [
