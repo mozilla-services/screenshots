@@ -1,3 +1,57 @@
+## Version 10.1.0
+
+Note 10.0.0 was a development-only version
+
+### Add-on changes
+
+* Start background page if migration is needed. Fixes [#3007](https://github.com/mozilla-services/screenshots/issues/3007) [77bd749](https://github.com/mozilla-services/screenshots/commit/77bd749)
+* Minor en-US string tweaks [b038b31](https://github.com/mozilla-services/screenshots/commit/b038b31)
+* Close onboarding modal on clicking outside the slides [614877a](https://github.com/mozilla-services/screenshots/commit/614877a)
+* Wait 5 seconds after startup before showing any error notifications. This change eliminates the highly-visible class of bugs where an error notification is thrown at startup. [9db01b7](https://github.com/mozilla-services/screenshots/commit/9db01b7)
+* Let background page load fully before loading content scripts. Fixes [#2955](https://github.com/mozilla-services/screenshots/issues/2955) [43977db](https://github.com/mozilla-services/screenshots/commit/43977db)
+* Remove fromMakeError from Sentry reports
+* Sentry IP collection is turned off
+* Resolve small UI nits in add-on ([#2995](https://github.com/mozilla-services/screenshots/issues/2995))* flips last two onboarding slides. Fixes [#2988](https://github.com/mozilla-services/screenshots/issues/2988) Fixes [#2986](https://github.com/mozilla-services/screenshots/issues/2986) [36579e4](https://github.com/mozilla-services/screenshots/commit/36579e4)
+* Sentry/investigative fixes ([#3003](https://github.com/mozilla-services/screenshots/issues/3003))* Avoid ui is undefined error in Browser Console when save succeeds and worker is torn down
+  * avoid bad favicon URLs; avoid problem with resolveUrl and no base URL
+  * Use `this.module` instead of `window.module` for `shot.js`.
+  * Add watchFunction to top-level calls in modules, so stacks are saved
+  * Suppress ui is not defined error. This isn't a real fix, but it keeps the popup from happening, while still reporting to Sentry (or reporting sometimes)
+  * Avoid `filenameTitle is undefined`. Generally default to Screenshot for the title, for cases (like file urls) where even self.url is blank
+  * Clarify in the logs when an error comes from Screenshots
+  * Don't force selection when forcing onboarding, as site will trigger onboarding itself
+  * avoid Invalid tab ID when an active tab is closed
+  The code always tries to make the icon not-active, but one case when it tries is when the tab has been closed
+  * suppress Missing host permission for the tab
+  This is the expected error for about pages and other non-permitted pages. Fixes [#2968](https://github.com/mozilla-services/screenshots/issues/2968) Fixes [#2979](https://github.com/mozilla-services/screenshots/issues/2979) Fixes [#2983](https://github.com/mozilla-services/screenshots/issues/2983) Fixes [#2998](https://github.com/mozilla-services/screenshots/issues/2998) Fixes [#2990](https://github.com/mozilla-services/screenshots/issues/2990) Fixes [#2978](https://github.com/mozilla-services/screenshots/issues/2978) [2cec496](https://github.com/mozilla-services/screenshots/commit/2cec496)
+* Lazily load code into the background page. This takes a minimal approach, loading scripts using the script tag on the first button click. Also creates and intercepts the contextMenu action, and any incoming communication. Reads onboarding flag and changes icon as necessary. Fixes [#2843](https://github.com/mozilla-services/screenshots/issues/2843) [8f98579](https://github.com/mozilla-services/screenshots/commit/8f98579)
+* Update icon [aff4283](https://github.com/mozilla-services/screenshots/commit/aff4283)
+* Moves button (Download/Save/etc) position if not in viewport [0d025fc](https://github.com/mozilla-services/screenshots/commit/0d025fc)
+* don't give an error when document.body is missing. This notices and reports the specific element that is in the page, that isn't an HTML document
+
+### Server changes
+
+* Various fixes:
+  * make sure contentOrigin isn't undefined in CSP header
+  * avoid including README and .template files in zip
+  * Fix 2767, make `update_manifest.py` resilient to a bad `manifest.json`. Also fix the logic that keeps the version always going up
+  * validate backend argument for manifest
+  * Fixes [#2963](https://github.com/mozilla-services/screenshots/issues/2963) [#2426](https://github.com/mozilla-services/screenshots/issues/2426) [#2679](https://github.com/mozilla-services/screenshots/issues/2679) [#2856](https://github.com/mozilla-services/screenshots/issues/2856) [#2941](https://github.com/mozilla-services/screenshots/issues/2941) [#2985](https://github.com/mozilla-services/screenshots/issues/2985) [#2967](https://github.com/mozilla-services/screenshots/issues/2967) [#2994](https://github.com/mozilla-services/screenshots/issues/2994) [#2647](https://github.com/mozilla-services/screenshots/issues/2647) [ede3337](https://github.com/mozilla-services/screenshots/commit/ede3337)
+* Update npm packages. Fixes [#2991](https://github.com/mozilla-services/screenshots/issues/2991) [c17f30b](https://github.com/mozilla-services/screenshots/commit/c17f30b)
+* Hide search [1441aa6](https://github.com/mozilla-services/screenshots/commit/1441aa6)
+* Hides 'copy image text' option if text capture is disabled [4102029](https://github.com/mozilla-services/screenshots/commit/4102029)
+
+### Development process changes
+
+* Change the default npm run test behavior to run Nightly instead of Release ([#3008](https://github.com/mozilla-services/screenshots/issues/3008)) [13b4414](https://github.com/mozilla-services/screenshots/commit/13b4414)
+* Normalize exception stack URLs to improve Sentry grouping. Each copy of Screenshots has a unique `moz-extension://` UUID URL. Replace that base URL with `resource://screenshots-addon` for better Sentry grouping. Use 'resource', not 'moz-extension', because raven-js can't parse stack traces with 'moz-extension' URLs (raven-js bug [#974](https://github.com/mozilla-services/screenshots/issues/974)). Fixes [#2975](https://github.com/mozilla-services/screenshots/issues/2975) [90c31d6](https://github.com/mozilla-services/screenshots/commit/90c31d6)
+* Set limits in regexes [e34a871](https://github.com/mozilla-services/screenshots/commit/e34a871)
+* Removes focus from buttons on action complete [0bd7945](https://github.com/mozilla-services/screenshots/commit/0bd7945)
+* Share panels reposition and remain open [db25663](https://github.com/mozilla-services/screenshots/commit/db25663)
+* Card component refactor creates a different component class for each shot; fixes circleci errors; card component code refactor [2bb3bc8](https://github.com/mozilla-services/screenshots/commit/2bb3bc8)
+* Fix select list [3b839e7](https://github.com/mozilla-services/screenshots/commit/3b839e7)
+* Add `web-ext --browser-console` so it always starts with the console open
+
 ## Version 9.0.0
 
 * Handle a race condition when a shot page is loaded at startup ([#2962](https://github.com/mozilla-services/screenshots/issues/2962)). Fixes [#2958](https://github.com/mozilla-services/screenshots/issues/2958) [7637e1a](https://github.com/mozilla-services/screenshots/commit/7637e1a)
