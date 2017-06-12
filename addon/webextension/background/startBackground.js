@@ -24,7 +24,7 @@ this.startBackground = (function() {
     "background/main.js"
   ];
 
-  // Milliseconds to wait before checking for migration possibility
+  // Maximum milliseconds to wait before checking for migration possibility
   const CHECK_MIGRATION_DELAY = 2000;
 
   browser.browserAction.onClicked.addListener((tab) => {
@@ -73,7 +73,7 @@ this.startBackground = (function() {
 
   // We delay this check (by CHECK_MIGRATION_DELAY) just to avoid piling too
   // many things onto browser/add-on startup
-  setTimeout(() => {
+  requestIdleCallback(() => {
     browser.runtime.sendMessage({funcName: "getOldDeviceInfo"}).then((result) => {
       if (result && result.type == "success" && result.value) {
         // There is a possible migration to run, so we'll load the entire background
@@ -93,7 +93,7 @@ this.startBackground = (function() {
         console.error("Screenshots error checking for Page Shot migration:", error);
       }
     });
-  }, CHECK_MIGRATION_DELAY);
+  }, {timeout: CHECK_MIGRATION_DELAY});
 
   let loadedPromise;
 
