@@ -10,10 +10,11 @@ Start the system addon release process by copying the following checklist into a
 - [ ] Create tag: `git tag MAJOR.MINOR.0` – the version should be higher than the version currently in `package.json` (e.g., if the in-development version is 10.0.0, then tag 10.1.0)
 - [ ] Push tag: `git push --tags`
 - [ ] Merge master to stable: `git checkout stable && git merge master && git push`
-- [ ] Create a Bugzilla release bug, copying [bug 1368146](https://bugzil.la/1368146)
+- [ ] Create a Bugzilla release bug, [cloning bug 1368146](https://bugzilla.mozilla.org/enter_bug.cgi?format=__default__&product=Cloud%20Services&cloned_bug_id=1368146)
   - Ensure the bug is filed under the Cloud Services product, Screenshots component
 - [ ] Export Screenshots to a local copy of Gecko (see 'Using export_mc.py' section below)
   - Ensure your commit message follows the [Firefox bug conventions](https://mdn.io/Committing_Rules_and_Responsibilities), for example: "Bug 1362550 - Export Screenshots 6.6.0 to Firefox; r?kmag"
+- [ ] Review diff one last time, `git diff HEAD~..HEAD`
 - [ ] Push the changes to the Try server
   - Suggested incantation: `./mach try -b o -p linux64,macosx64,win32,win64 -u all -t all --rebuild-talos 5`
 - [ ] Add the Try link to the release bug
