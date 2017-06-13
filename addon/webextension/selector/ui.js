@@ -564,6 +564,11 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     },
 
     clearSaveDisabled() {
+      if (!this.save) {
+        // Happens if we try to remove the disabled status after the worker
+        // has been shut down
+        return;
+      }
       this.save.removeAttribute("disabled");
     },
 
