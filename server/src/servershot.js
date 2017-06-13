@@ -5,7 +5,7 @@ const uuid = require("uuid");
 const linker = require("./linker");
 const config = require("./config").getProperties();
 const fs = require("fs");
-const mozlog = require("mozlog")("servershot");
+const mozlog = require("./logging").mozlog("servershot");
 
 const SEARCHABLE_VERSION = 1;
 

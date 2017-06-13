@@ -1,7 +1,7 @@
 const config = require("./config").getProperties();
 
 const pg = require("pg");
-const mozlog = require("mozlog")("db");
+const mozlog = require("./logging").mozlog("db");
 
 let user = encodeURIComponent(config.db.user);
 let dbname = encodeURIComponent(config.db.dbname || config.db.user);

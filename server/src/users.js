@@ -3,7 +3,7 @@ const db = require("./db");
 const errors = require("./errors");
 const { request } = require("./helpers");
 const crypto = require("crypto");
-const mozlog = require("mozlog")("users");
+const mozlog = require("./logging").mozlog("users");
 const abTests = require("./ab-tests");
 
 function hashMatches(hash, secret) {
