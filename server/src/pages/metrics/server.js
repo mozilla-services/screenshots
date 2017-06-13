@@ -3,7 +3,7 @@ const reactrender = require("../../reactrender");
 const { checkLastStoreQueriesTime, storeQueries } = require("./model");
 const config = require("../../config").getProperties();
 const { captureRavenException } = require("../../ravenclient");
-const mozlog = require("mozlog")("metrics");
+const mozlog = require("../../logging").mozlog("metrics");
 
 let app = exports.app = express();
 

@@ -1,48 +1,6 @@
 const config = require("./config").getProperties();
-
-require("mozlog").config({
-  app: "screenshots-server",
-  fmt: "pretty",
-  level: config.log.level,
-  debug: config.log.lint
-});
-
-const console_mozlog = require("mozlog")("console");
-// We can't prevent any third party libraries from writing to the console,
-// so monkey patch it so they play nice with mozlog.
-function logFactory(level) {
-  let logger = console_mozlog[level].bind(console_mozlog);
-  return function() {
-    let msg = "";
-    let stack = undefined;
-    for (var i = 0; i < arguments.length; i++) {
-      let arg = arguments[i];
-      if (msg) {
-        msg += " ";
-      }
-      if (typeof arg === "string") {
-        msg += arg;
-      } else {
-        if (arg && arg.stack) {
-          if (stack) {
-            stack = stack + "\n\n" + arg.stack;
-          } else {
-            stack = arg.stack;
-          }
-        }
-        msg += JSON.stringify(arg);
-      }
-    }
-    logger(level, {msg, stack});
-  }
-}
-
-console.debug = logFactory("debug");
-console.info = logFactory("info");
-console.warn = logFactory("warn");
-console.error = logFactory("error");
-
-const mozlog = require("mozlog")("server");
+require("./logging").installConsoleHandler();
+const mozlog = require("./logging").mozlog("server");
 const path = require('path');
 const { readFileSync, existsSync } = require('fs');
 const Cookies = require("cookies");

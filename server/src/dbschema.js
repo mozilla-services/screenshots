@@ -2,7 +2,7 @@ const db = require("./db");
 const Keygrip = require('keygrip');
 const pgpatcher = require("pg-patcher");
 const path = require("path");
-const mozlog = require("mozlog")("dbschema");
+const mozlog = require("./logging").mozlog("dbschema");
 
 const MAX_DB_LEVEL = exports.MAX_DB_LEVEL = 16;
 

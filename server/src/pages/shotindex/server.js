@@ -2,7 +2,7 @@ const express = require("express");
 const csrf = require("csurf");
 const reactrender = require("../../reactrender");
 const { Shot } = require("../../servershot");
-const mozlog = require("mozlog")("shotindex");
+const mozlog = require("../../logging").mozlog("shotindex");
 
 let app = express();
 
