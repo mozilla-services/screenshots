@@ -1,11 +1,12 @@
 const config = require("./config").getProperties();
 const raven = require("raven");
 
+
 let ravenClient = null;
 
 if (config.sentryDSN) {
   ravenClient = new raven.Client(config.sentryDSN);
-  ravenClient.patchGlobal();
+  ravenClient.install();
 }
 
 exports.sendRavenMessage = function(req, message, options) {
@@ -31,12 +32,12 @@ exports.captureRavenException = function() {
 
 exports.addRavenRequestHandler = function(app) {
   if (ravenClient) {
-    app.use(raven.middleware.express.requestHandler(ravenClient));
+    app.use(raven.requestHandler());
   }
 };
 
 exports.addRavenErrorHandler = function(app) {
   if (ravenClient) {
-    app.use(raven.middleware.express.errorHandler(ravenClient));
+    app.use(raven.errorHandler());
   }
 };
