@@ -559,6 +559,23 @@ class Body extends React.Component {
     window.location = "/shots";
   }
 
+  renderGetFirefox() {
+    if (this.props.isFirefox) {
+      return null;
+    }
+    return (
+      <a href="https://www.mozilla.org/firefox" className="button primary download-firefox">
+        <div className="button-icon">
+          <div className="button-icon-badge"></div>
+        </div>
+        <div className="button-copy">
+          <div data-l10n-id="landingDownloadFirefoxTitle" className="button-title">Firefox</div>
+          <div data-l10n-id="landingDownloadFirefoxSubTitle" className="button-description">Free Download</div>
+        </div>
+      </a>
+    );
+  }
+
   render() {
     let myShots;
     if (this.props.showMyShots) {
@@ -585,15 +602,7 @@ class Body extends React.Component {
               <div className="banner-content">
                 <h1>Firefox Screenshots</h1>
                 <p>Screenshots made simple. Take, save, and share screenshots without leaving Firefox.</p>
-                <a href="https://www.mozilla.org/firefox" className="button primary download-firefox">
-                  <div className="button-icon">
-                    <div className="button-icon-badge"></div>
-                  </div>
-                  <div className="button-copy">
-                    <div data-l10n-id="landingDownloadFirefoxTitle" className="button-title">Firefox</div>
-                    <div data-l10n-id="landingDownloadFirefoxSubTitle" className="button-description">Free Download</div>
-                  </div>
-                </a>
+                { this.renderGetFirefox() }
               </div>
             </div>
           </div>
