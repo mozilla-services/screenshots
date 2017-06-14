@@ -274,6 +274,13 @@ var conf = convict({
     default: true,
     env: "DISABLE_SEARCH",
     arg: "disable-search"
+  },
+  cdn: {
+    doc: "CDN URL prefix, e.g. 'https://somecdn.com/mysite'; links will be rewritten as https://somecdn.com/mysite/static/style.css",
+    format: String,
+    default: "",
+    env: "CDN",
+    arg: "cdn"
   }
 });
 

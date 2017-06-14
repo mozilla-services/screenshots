@@ -5,6 +5,7 @@ const { getGitRevision } = require("./linker");
 exports.render = function(req, res, page) {
   let modelModule = require("./" + page.modelModuleName);
   let viewModule = page.viewModule;
+  let cdn = req.config.cdn.replace(/\/*$/, "");
   Promise.resolve(modelModule.createModel(req)).then((model) => {
     model.backend = req.backend;
     let jsonModel = model.jsonModel || model;
@@ -15,6 +16,7 @@ exports.render = function(req, res, page) {
       sentryPublicDSN: req.config.sentryPublicDSN,
       backend: req.backend,
       gitRevision: getGitRevision(),
+      cdn,
       csrfToken,
       abTests: req.abTests
     }, jsonModel);
@@ -22,7 +24,6 @@ exports.render = function(req, res, page) {
       authenticated: !!req.deviceId,
       sentryPublicDSN: req.config.sentryPublicDSN,
       staticLink: req.staticLink,
-      staticLinkWithHost: req.staticLinkWithHost,
       csrfToken,
       abTests: req.abTests
     }, serverModel);

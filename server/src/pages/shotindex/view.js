@@ -183,7 +183,7 @@ class Card extends React.Component {
     } else if (shot.fullScreenThumbnail) {
       imageUrl = shot.fullScreenThumbnail;
     } else {
-      imageUrl = this.props.staticLinkWithHost("img/question-mark.svg");
+      imageUrl = this.props.staticLink("img/question-mark.svg");
     }
     let favicon = null;
     if (shot.favicon) {
