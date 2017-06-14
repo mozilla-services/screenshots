@@ -1,3 +1,8 @@
+## Version 10.2.0
+
+* Manually clear the startupCache, to fix upgrade issues, fixes [#3027](https://github.com/mozilla-services/screenshots/issues/3027)
+* Change English privacy and terms notice
+
 ## Version 10.1.0
 
 Note 10.0.0 was a development-only version
