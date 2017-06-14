@@ -68,6 +68,7 @@ const style = `
   .nav-links a {
     color: #4a4a4a;
     text-decoration: none;
+    cursor: pointer;
   }
 
   .nav-links a:first-child {
