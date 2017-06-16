@@ -123,6 +123,11 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 6. [x] Go to `/#hello` to onboard (because the user pressed the Screenshots button on a page that could not be shot) `addon/goto-onboarding/selection-button`
 6. [x] Click on "Save visible" `addon/capture-visible/selection-button`
 7. [x] Click on "Save Full Page" `addon/capture-full-page/selection-button`
+6. [x] Click Cancel after previewing full-page/visible `addon/cancel-shot/cancel-preview-button`
+7. [x] Click Save after previewing full-page shot `addon/save-full-page/save-preview-button`
+8. [x] Click Save after previewing visible shot `addon/save-visible/save-preview-button`
+9. [x] Click Download after previewing full-page shot `addon/download-full-page/download-preview-button`
+9. [x] Click Download after previewing visible shot `addon/download-visible/download-preview-button`
 6. ~~Click My Shots button from error panel `addon/goto-myshots/error-panel`~~
 7. [x] Hit Escape (Cancel) `addon/cancel-shot/keyboard-escape`
 8. [x] Hit Enter (Save) `addon/save-shot/keyboard-enter`

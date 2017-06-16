@@ -67,6 +67,15 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     }), 50);
   }
 
+  function localizeText(doc) {
+    let els = doc.querySelectorAll("[data-l10n-id]");
+    for (let el of els) {
+      let id = el.getAttribute("data-l10n-id");
+      let text = browser.i18n.getMessage(id);
+      el.textContent = text;
+    }
+  }
+
   let iframeSelection = exports.iframeSelection = {
     element: null,
     addClassName: "",
@@ -202,9 +211,6 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
   let iframePreSelection = exports.iframePreSelection = {
     element: null,
     document: null,
-    sizeTracking: {
-      windowDelayer: null
-    },
     display(installHandlerOnDocument, standardOverlayCallbacks) {
       return new Promise((resolve, reject) => {
         if (!this.element) {
@@ -216,9 +222,10 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element.style.position = "fixed";
           this.element.style.top = "0";
           this.element.style.left = "0";
+          this.element.style.width = "100%";
+          this.element.style.height = "100%";
           this.element.style.margin = "0";
           this.element.scrolling = "no";
-          this.updateElementSize();
           this.element.onload = watchFunction(() => {
             this.document = this.element.contentDocument;
             this.document.documentElement.innerHTML = `
@@ -234,12 +241,12 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
                        <div class="eye right"><div class="eyeball"></div></div>
                        <div class="face"></div>
                      </div>
-                     <div class="preview-instructions"></div>
+                     <div class="preview-instructions" data-l10n-id="screenshotInstructions"></div>
                      <div class="myshots-all-buttons-container">
-                       <button class="myshots-button myshots-link" tabindex="1"></button>
+                       <button class="myshots-button myshots-link" tabindex="1" data-l10n-id="myShotsLink"></button>
                        <div class="spacer"></div>
-                       <button class="myshots-button visible" tabindex="2"></button>
-                       <button class="myshots-button full-page" tabindex="3"></button>
+                       <button class="myshots-button visible" tabindex="2" data-l10n-id="saveScreenshotVisibleArea"></button>
+                       <button class="myshots-button full-page" tabindex="3" data-l10n-id="saveScreenshotFullPage"></button>
                      </div>
                    </div>
                  </div>
@@ -251,10 +258,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
             this.document.documentElement.dir = browser.i18n.getMessage("@@bidi_dir");
             this.document.documentElement.lang = browser.i18n.getMessage("@@ui_locale");
             const overlay = this.document.querySelector(".preview-overlay");
-            overlay.querySelector(".preview-instructions").textContent = browser.i18n.getMessage("screenshotInstructions");
-            overlay.querySelector(".myshots-link").textContent = browser.i18n.getMessage("myShotsLink");
-            overlay.querySelector(".visible").textContent = browser.i18n.getMessage("saveScreenshotVisibleArea");
-            overlay.querySelector(".full-page").textContent = browser.i18n.getMessage("saveScreenshotFullPage");
+            localizeText(this.document);
             overlay.querySelector(".myshots-button").addEventListener(
               "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onOpenMyShots)));
             overlay.querySelector(".visible").addEventListener(
@@ -271,28 +275,15 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       });
     },
 
-    updateElementSize() {
-      if (!this.element) {
-        // This can happen if the selector is unloaded during the resize adjustment
-        // time-delay
-        return;
-      }
-      this.element.style.height = window.innerHeight + "px";
-      this.element.style.width = window.innerWidth + "px";
-    },
-
     hide() {
       window.removeEventListener("scroll", this.onScroll);
-      window.removeEventListener("resize", this.onResize, true);
       if (this.element) {
         this.element.style.display = "none";
       }
     },
 
     unhide() {
-      this.updateElementSize();
       window.addEventListener("scroll", this.onScroll);
-      window.addEventListener("resize", this.onResize, true);
       this.element.style.display = "";
       this.element.focus();
     },
@@ -320,13 +311,88 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     }
   };
 
-  iframePreSelection.onResize = watchFunction(onResize.bind(iframePreSelection));
+  let iframePreview = exports.iframePreview = {
+    element: null,
+    document: null,
+    display(installHandlerOnDocument, standardOverlayCallbacks) {
+      return new Promise((resolve, reject) => {
+        if (!this.element) {
+          this.element = document.createElement("iframe");
+          this.element.src = browser.extension.getURL("blank.html");
+          this.element.id = "firefox-screenshots-preview-iframe";
+          this.element.style.zIndex = "99999999999";
+          this.element.style.border = "none";
+          this.element.style.position = "fixed";
+          this.element.style.top = "0";
+          this.element.style.height = "100%";
+          this.element.style.width = "100%";
+          this.element.style.left = "0";
+          this.element.style.margin = "0";
+          this.element.scrolling = "no";
+          this.element.onload = watchFunction(() => {
+            this.document = this.element.contentDocument;
+            this.document.documentElement.innerHTML = `
+              <head>
+                <style>${substitutedCss}</style>
+                <title></title>
+              </head>
+              <body>
+                <div class="preview-overlay">
+                  <div class="preview-image">
+                    <div class="preview-buttons">
+                      <button class="highlight-button-cancel"></button>
+                      <button class="highlight-button-download"></button>
+                      <button class="preview-button-save" data-l10n-id="saveScreenshotSelectedArea"></button>
+                    </div>
+                  </div>
+                </div>
+              </body>`;
+            installHandlerOnDocument(this.document);
+            this.document.documentElement.dir = browser.i18n.getMessage("@@bidi_dir");
+            this.document.documentElement.lang = browser.i18n.getMessage("@@ui_locale");
+            localizeText(this.document);
+            const overlay = this.document.querySelector(".preview-overlay");
+            overlay.querySelector(".highlight-button-download").addEventListener(
+              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onDownloadPreview)));
+            overlay.querySelector(".preview-button-save").addEventListener(
+              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onSavePreview)));
+            overlay.querySelector(".highlight-button-cancel").addEventListener(
+              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.cancel)));
+            resolve();
+          });
+          document.body.appendChild(this.element);
+          this.hide();
+        } else {
+          resolve();
+        }
+      });
+    },
+
+    hide() {
+      if (this.element) {
+        this.element.style.display = "none";
+      }
+    },
+
+    unhide() {
+      this.element.style.display = "";
+      this.element.focus();
+    },
+
+    remove() {
+      this.hide();
+      util.removeNode(this.element);
+      this.element = null;
+      this.document = null;
+    }
+  };
 
   let iframe = exports.iframe = {
     currentIframe: iframePreSelection,
     display(installHandlerOnDocument, standardOverlayCallbacks) {
       return iframeSelection.display(installHandlerOnDocument)
-        .then(() => iframePreSelection.display(installHandlerOnDocument, standardOverlayCallbacks));
+        .then(() => iframePreSelection.display(installHandlerOnDocument, standardOverlayCallbacks))
+        .then(() => iframePreview.display(installHandlerOnDocument, standardOverlayCallbacks));
     },
 
     hide() {
@@ -344,6 +410,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     remove() {
       iframeSelection.remove();
       iframePreSelection.remove();
+      iframePreview.remove();
     },
 
     document() {
@@ -351,7 +418,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     },
 
     useSelection() {
-      if (this.currentIframe === iframePreSelection) {
+      if (this.currentIframe === iframePreSelection || this.currentIframe === iframePreview) {
         this.hide();
       }
       this.currentIframe = iframeSelection;
@@ -359,10 +426,18 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     },
 
     usePreSelection() {
-      if (this.currentIframe === iframeSelection) {
+      if (this.currentIframe === iframeSelection || this.currentIframe === iframePreview) {
         this.hide();
       }
       this.currentIframe = iframePreSelection;
+      this.unhide();
+    },
+
+    usePreview() {
+      if (this.currentIframe === iframeSelection || this.currentIframe === iframePreSelection) {
+        this.hide();
+      }
+      this.currentIframe = iframePreview;
       this.unhide();
     }
   };
@@ -628,6 +703,14 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     remove() {
       util.removeNode(this.el);
       this.el = this.xEl = this.yEl = null;
+    }
+  };
+
+  exports.Preview = {
+    display(dataUrl) {
+      let img = makeEl("IMG");
+      img.src = dataUrl;
+      iframe.document().querySelector(".preview-image").appendChild(img);
     }
   };
 

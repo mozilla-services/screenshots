@@ -50,3 +50,19 @@
   transform: translate3d(0, 0, 0);
  }
 }
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+
+  97% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

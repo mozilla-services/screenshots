@@ -39,7 +39,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     supportsDrawWindow = !!ctx.drawWindow;
   })();
 
-  function screenshotPage(selectedPos) {
+  let screenshotPage = exports.screenshotPage = function(selectedPos) {
     if (!supportsDrawWindow) {
       return null;
     }
@@ -59,7 +59,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
       ui.iframe.unhide();
     }
     return canvas.toDataURL();
-  }
+  };
 
   let isSaving = null;
 
