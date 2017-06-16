@@ -16,8 +16,6 @@ XPCOMUtils.defineLazyModuleGetter(this, "Services",
                                   "resource://gre/modules/Services.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "LegacyExtensionsUtils",
                                   "resource://gre/modules/LegacyExtensionsUtils.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "ExtensionParent",
-                                  "resource://gre/modules/ExtensionParent.jsm");
 
 let addonResourceURI;
 let appStartupDone;
@@ -61,30 +59,7 @@ const appStartupObserver = {
 }
 
 const APP_STARTUP = 1;
-const APP_SHUTDOWN = 2;
-const ADDON_ENABLE = 3;
-const ADDON_DISABLE = 4;
-const ADDON_INSTALL = 5;
-const ADDON_UNINSTALL = 6;
-const ADDON_UPGRADE = 7;
-const ADDON_DOWNGRADE = 8;
-const cacheBustReasons = [ADDON_INSTALL, ADDON_UNINSTALL, ADDON_UPGRADE, ADDON_DOWNGRADE];
-
-let startupReason;
-let shutdownReason;
-
-// Clear the startup cache manually until bug 1372750 is fixed.
-function maybeClearAddonCache() {
-  let result = Promise.resolve();
-  if ((startupReason && cacheBustReasons.includes(startupReason)) ||
-     (shutdownReason && cacheBustReasons.includes(shutdownReason))) {
-    result = ExtensionParent.StartupCache.clearAddonData(ADDON_ID);
-  }
-  return result;
-}
-
 function startup(data, reason) { // eslint-disable-line no-unused-vars
-  startupReason = reason;
   if (reason === APP_STARTUP) {
     appStartupObserver.register();
   } else {
@@ -97,17 +72,14 @@ function startup(data, reason) { // eslint-disable-line no-unused-vars
 }
 
 function shutdown(data, reason) { // eslint-disable-line no-unused-vars
-  shutdownReason = reason;
   prefObserver.unregister();
   const webExtension = LegacyExtensionsUtils.getEmbeddedExtensionFor({
     id: ADDON_ID,
     resourceURI: addonResourceURI
   });
-  maybeClearAddonCache().then(() => {
-    if (webExtension.started) {
-      stop(webExtension);
-    }
-  });
+  if (webExtension.started) {
+    stop(webExtension);
+  }
 }
 
 function install(data, reason) {} // eslint-disable-line no-unused-vars
@@ -128,13 +100,11 @@ function handleStartup() {
     resourceURI: addonResourceURI
   });
 
-  maybeClearAddonCache().then(() => {
-    if (!shouldDisable() && !webExtension.started) {
-      start(webExtension);
-    } else if (shouldDisable()) {
-      stop(webExtension);
-    }
-  });
+  if (!shouldDisable() && !webExtension.started) {
+    start(webExtension);
+  } else if (shouldDisable()) {
+    stop(webExtension);
+  }
 }
 
 function start(webExtension) {
