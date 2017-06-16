@@ -1,3 +1,9 @@
+## Version 10.3.0
+
+* Revert the startupCache changes from 10.2.0
+* Add `reason` to startup/shutdown in anticipation of [Bug 1372750](https://bugzilla.mozilla.org/show_bug.cgi?id=1372750) landing
+* Release will be accompanied with a bump to the ExtensionStartupCache SCHEMA_VERSION
+
 ## Version 10.2.0
 
 * Manually clear the startupCache, to fix upgrade issues, fixes [#3027](https://github.com/mozilla-services/screenshots/issues/3027)
