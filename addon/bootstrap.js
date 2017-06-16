@@ -60,13 +60,24 @@ const appStartupObserver = {
   }
 }
 
-const cacheBustReasons = [ADDON_INSTALL, ADDON_UPGRADE, ADDON_DOWNGRADE];
+const APP_STARTUP = 1;
+const APP_SHUTDOWN = 2;
+const ADDON_ENABLE = 3;
+const ADDON_DISABLE = 4;
+const ADDON_INSTALL = 5;
+const ADDON_UNINSTALL = 6;
+const ADDON_UPGRADE = 7;
+const ADDON_DOWNGRADE = 8;
+const cacheBustReasons = [ADDON_INSTALL, ADDON_UNINSTALL, ADDON_UPGRADE, ADDON_DOWNGRADE];
+
 let startupReason;
+let shutdownReason;
 
 // Clear the startup cache manually until bug 1372750 is fixed.
 function maybeClearAddonCache() {
   let result = Promise.resolve();
-  if (startupReason && cacheBustReasons.includes(startupReason)) {
+  if ((startupReason && cacheBustReasons.includes(startupReason)) ||
+     (shutdownReason && cacheBustReasons.includes(shutdownReason))) {
     result = ExtensionParent.StartupCache.clearAddonData(ADDON_ID);
   }
   return result;
@@ -86,14 +97,17 @@ function startup(data, reason) { // eslint-disable-line no-unused-vars
 }
 
 function shutdown(data, reason) { // eslint-disable-line no-unused-vars
+  shutdownReason = reason;
   prefObserver.unregister();
   const webExtension = LegacyExtensionsUtils.getEmbeddedExtensionFor({
     id: ADDON_ID,
     resourceURI: addonResourceURI
   });
-  if (webExtension.started) {
-    stop(webExtension);
-  }
+  maybeClearAddonCache().then(() => {
+    if (webExtension.started) {
+      stop(webExtension);
+    }
+  });
 }
 
 function install(data, reason) {} // eslint-disable-line no-unused-vars
