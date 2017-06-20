@@ -76,6 +76,19 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     }
   }
 
+  function initializeIframe() {
+    let el = document.createElement("iframe");
+    el.src = browser.extension.getURL("blank.html");
+    el.style.zIndex = "99999999999";
+    el.style.border = "none";
+    el.style.top = "0";
+    el.style.left = "0";
+    el.style.margin = "0";
+    el.scrolling = "no";
+    el.style.clip = "auto";
+    return el;
+  }
+
   let iframeSelection = exports.iframeSelection = {
     element: null,
     addClassName: "",
@@ -89,17 +102,10 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     display(installHandlerOnDocument) {
       return new Promise((resolve, reject) => {
         if (!this.element) {
-          this.element = document.createElement("iframe");
-          this.element.src = browser.extension.getURL("blank.html");
+          this.element = initializeIframe();
           this.element.id = "firefox-screenshots-selection-iframe";
           this.element.style.display = "none";
-          this.element.style.zIndex = "99999999999";
-          this.element.style.border = "none";
-          this.element.style.position = "absolute";
-          this.element.style.top = "0";
-          this.element.style.left = "0";
-          this.element.style.margin = "0";
-          this.element.scrolling = "no";
+          this.element.style.setProperty('position', 'absolute', 'important');
           this.updateElementSize();
           this.element.onload = watchFunction(() => {
             this.document = this.element.contentDocument;
@@ -214,18 +220,11 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     display(installHandlerOnDocument, standardOverlayCallbacks) {
       return new Promise((resolve, reject) => {
         if (!this.element) {
-          this.element = document.createElement("iframe");
-          this.element.src = browser.extension.getURL("blank.html");
+          this.element = initializeIframe();
           this.element.id = "firefox-screenshots-preselection-iframe";
-          this.element.style.zIndex = "99999999999";
-          this.element.style.border = "none";
-          this.element.style.position = "fixed";
-          this.element.style.top = "0";
-          this.element.style.left = "0";
+          this.element.style.setProperty('position', 'fixed', 'important');
           this.element.style.width = "100%";
           this.element.style.height = "100%";
-          this.element.style.margin = "0";
-          this.element.scrolling = "no";
           this.element.onload = watchFunction(() => {
             this.document = this.element.contentDocument;
             this.document.documentElement.innerHTML = `
@@ -317,18 +316,12 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     display(installHandlerOnDocument, standardOverlayCallbacks) {
       return new Promise((resolve, reject) => {
         if (!this.element) {
-          this.element = document.createElement("iframe");
-          this.element.src = browser.extension.getURL("blank.html");
+          this.element = initializeIframe();
           this.element.id = "firefox-screenshots-preview-iframe";
-          this.element.style.zIndex = "99999999999";
-          this.element.style.border = "none";
-          this.element.style.position = "fixed";
-          this.element.style.top = "0";
+          this.element.style.display = "none";
+          this.element.style.setProperty('position', 'fixed', 'important');
           this.element.style.height = "100%";
           this.element.style.width = "100%";
-          this.element.style.left = "0";
-          this.element.style.margin = "0";
-          this.element.scrolling = "no";
           this.element.onload = watchFunction(() => {
             this.document = this.element.contentDocument;
             this.document.documentElement.innerHTML = `
@@ -361,7 +354,6 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
             resolve();
           });
           document.body.appendChild(this.element);
-          this.hide();
         } else {
           resolve();
         }
