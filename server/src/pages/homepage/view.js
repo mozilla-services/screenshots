@@ -545,8 +545,8 @@ class Head extends React.Component {
         <meta name="twitter:title" content={ this.props.title } />
         <meta name="twitter:description" content="Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox." />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta property="og:image" content={ this.props.staticLinkWithHost("/static/img/onboarding-1.png") } />
-        <meta name="twitter:image" content={ this.props.staticLinkWithHost("/static/img/onboarding-1.png") } />
+        <meta property="og:image" content={ this.props.staticLink("/static/img/onboarding-1.png") } />
+        <meta name="twitter:image" content={ this.props.staticLink("/static/img/onboarding-1.png") } />
         <style>{style}</style>
       </reactruntime.HeadTemplate>
     );
