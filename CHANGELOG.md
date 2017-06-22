@@ -1,3 +1,29 @@
+## Version 11.0.0
+
+This is a server-only release.
+
+* Host static assets in CDN [52e255a](https://github.com/mozilla-services/screenshots/commit/52e255a)
+* Add `npm shrinkwrap`; ([#3051](https://github.com/mozilla-services/screenshots/issues/3051)). Fixes [#2430](https://github.com/mozilla-services/screenshots/issues/2430) [fe28769](https://github.com/mozilla-services/screenshots/commit/fe28769)
+* Invoke and use Raven correctly ([#3044](https://github.com/mozilla-services/screenshots/issues/3044)). Fixes [#3040](https://github.com/mozilla-services/screenshots/issues/3040) [839995d](https://github.com/mozilla-services/screenshots/commit/839995d)
+* Change cursor style [59a4cbf](https://github.com/mozilla-services/screenshots/commit/59a4cbf)
+* Update deprecations ([#3031](https://github.com/mozilla-services/screenshots/issues/3031))
+  * update Raven usage; Removes deprecated calls to .patchGlobal and Raven.middleware
+  * update mozlog usage
+  * Adds logging module and removes use of mozlog.config. Fixes [#2743](https://github.com/mozilla-services/screenshots/issues/2743) Fixes [#2741](https://github.com/mozilla-services/screenshots/issues/2741) [3e49677](https://github.com/mozilla-services/screenshots/commit/3e49677)
+* Hides download Firefox button on homepage [7eccc34](https://github.com/mozilla-services/screenshots/commit/7eccc34)
+* Update favicon [84e9e19](https://github.com/mozilla-services/screenshots/commit/84e9e19)
+
+
+### Add-on changes
+
+Note these are part of the version/tag, but have not been uploaded to the Firefox tree.
+
+* Add reason to webExtension.startup and shutdown Will be useful when https://bugzilla.mozilla.org/show_bug.cgi?id=1372750 and
+  https://bugzilla.mozilla.org/show_bug.cgi?id=1373749 are fixed [d97d4a7](https://github.com/mozilla-services/screenshots/commit/d97d4a7)
+* Protect against an empty IPC response ([#3037](https://github.com/mozilla-services/screenshots/issues/3037))This happened in some weird corner case while debugging [14df39d](https://github.com/mozilla-services/screenshots/commit/14df39d)
+* Guard access of this.save when un-disabling the save button ([#3030](https://github.com/mozilla-services/screenshots/issues/3030)). This can happen after the worker has been torn down, and this.save isn't defined [cf6e72a](https://github.com/mozilla-services/screenshots/commit/cf6e72a)
+
+
 ## Version 10.3.0
 
 * Revert the startupCache changes from 10.2.0
