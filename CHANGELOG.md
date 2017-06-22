@@ -11,6 +11,8 @@ This is a server-only release.
   * update mozlog usage
   * Adds logging module and removes use of mozlog.config. Fixes [#2743](https://github.com/mozilla-services/screenshots/issues/2743) Fixes [#2741](https://github.com/mozilla-services/screenshots/issues/2741) [3e49677](https://github.com/mozilla-services/screenshots/commit/3e49677)
 * Hides download Firefox button on homepage [7eccc34](https://github.com/mozilla-services/screenshots/commit/7eccc34)
+* Update favicon [84e9e19](https://github.com/mozilla-services/screenshots/commit/84e9e19)
+
 
 ### Add-on changes
 
