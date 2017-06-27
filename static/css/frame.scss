@@ -227,7 +227,7 @@
 
 .clip-container {
   @include flex-container(row, center, center);
-  flex: 1;
+  flex: 0 auto;
   margin: 20px auto;
   max-width: 90%;
 }
