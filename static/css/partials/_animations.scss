@@ -1,3 +1,25 @@
+.spinner {
+  animation: wobble 1.2s steps(60) infinite;
+  background: url("../images/loading.svg") no-repeat;
+  height: 60px;
+  opacity: .5;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  width: 217px;
+}
+
+.spinner-wrapper {
+  animation: fade-in 1s forwards;
+  animation-delay: 250ms;
+  opacity: 0;
+}
+
+@keyframes wobble {
+  100% {
+    background-position: -13020px 0;
+  }
+}
+
 @keyframes fade-in {
   0% {
     opacity: 0;

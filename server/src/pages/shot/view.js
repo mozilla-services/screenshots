@@ -63,9 +63,6 @@ class Clip extends React.Component {
   }
 
   renderLoader() {
-    if (!this.state.loading) {
-      return null;
-    }
     return (
       <div id="spinner" className="spinner">
         <img src = {this.props.staticLink("/static/img/spinner.svg")} />
