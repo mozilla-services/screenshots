@@ -14,6 +14,9 @@ const {
   tradeCode,
   getAccountId,
   registerAccount,
+  fetchProfileData,
+  saveProfileData,
+  disconnectDevice
 } = require("./users");
 const dbschema = require("./dbschema");
 const express = require("express");
@@ -682,6 +685,21 @@ app.post("/api/delete-shot", csrfProtection, function(req, res) {
   });
 });
 
+app.post("/api/disconnect-device", csrfProtection, function(req, res) {
+  if (!req.deviceId) {
+    sendRavenMessage(req, "Attempt to disconnect without login");
+    simpleResponse(res, "Not logged in", 401);
+    return;
+  }
+  disconnectDevice(req.deviceId).then((result) => {
+    if (result) {
+      res.redirect('/settings');
+    }
+  }).catch((err) => {
+    errorResponse(res, "Error: could not disconnect", err);
+  });
+});
+
 app.post("/api/set-title/:id/:domain", csrfProtection, function(req, res) {
   let shotId = `${req.params.id}/${req.params.domain}`;
   let userTitle = req.body.title;
@@ -910,7 +928,8 @@ app.get("/oembed", function(req, res) {
 });
 
 // Get OAuth client params for the client-side authorization flow.
-app.get('/api/fxa-oauth/params', function(req, res, next) {
+
+app.get('/api/fxa-oauth/login', function(req, res, next) {
   if (!req.deviceId) {
     next(errors.missingSession());
     return;
@@ -924,32 +943,22 @@ app.get('/api/fxa-oauth/params', function(req, res, next) {
       return state;
     });
   }).then(state => {
-    res.send({
-      // FxA profile server URL.
-      profile_uri: config.oAuth.profileServer,
-      // FxA OAuth server URL.
-      oauth_uri: config.oAuth.oAuthServer,
-      redirect_uri: 'urn:ietf:wg:oauth:2.0:fx:webchannel',
-      client_id: config.oAuth.clientId,
-      // FxA content server URL.
-      content_uri: config.oAuth.contentServer,
-      state,
-      scope: 'profile'
-    });
+    let redirectUri = `${req.backend}/api/fxa-oauth/confirm-login`;
+    let profile = "profile profile:displayName profile:email profile:avatar profile:uid";
+    res.redirect(`${config.fxa.oAuthServer}/authorization?client_id=${encodeURIComponent(config.fxa.clientId)}&redirect_uri=${encodeURIComponent(redirectUri)}&state=${encodeURIComponent(state)}&scope=${encodeURIComponent(profile)}`);
   }).catch(next);
 });
 
-// Exchange an OAuth authorization code for an access token.
-app.post('/api/fxa-oauth/token', function(req, res, next) {
+app.get('/api/fxa-oauth/confirm-login', function(req, res, next) {
   if (!req.deviceId) {
     next(errors.missingSession());
     return;
   }
-  if (!req.body) {
+  if (!req.query) {
     next(errors.missingParams());
     return;
   }
-  let { code, state } = req.body;
+  let { code, state } = req.query;
   checkState(req.deviceId, state).then(isValid => {
     if (!isValid) {
       throw errors.badState();
@@ -957,11 +966,13 @@ app.post('/api/fxa-oauth/token', function(req, res, next) {
     return tradeCode(code);
   }).then(({ access_token: accessToken }) => {
     return getAccountId(accessToken).then(({ uid: accountId }) => {
-      return registerAccount(req.deviceId, accountId, accessToken);
-    }).then(() => {
-      res.send({
-        access_token: accessToken
-      });
+      return registerAccount(req.deviceId, accountId, accessToken).then(() => {
+        return fetchProfileData(accessToken).then(({ avatar, displayName, email }) => {
+          return saveProfileData(accountId, avatar, displayName, email);
+        }).then(() => {
+          res.redirect('/settings');
+        });
+      }).catch(next);
     }).catch(next);
   }).catch(next);
 });
@@ -975,6 +986,8 @@ app.use("/shots", require("./pages/shotindex/server").app);
 app.use("/leave-screenshots", require("./pages/leave-screenshots/server").app);
 
 app.use("/creating", require("./pages/creating/server").app);
+
+app.use("/settings", require("./pages/settings/server").app);
 
 app.use("/", require("./pages/shot/server").app);
 

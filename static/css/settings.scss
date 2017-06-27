@@ -1,0 +1,47 @@
+@import "partials/partials";
+
+.close-preferences {
+  background-image: url("../img/close-16.svg");
+  background-size: $grid-unit $grid-unit;
+  background-repeat: no-repeat;
+  background-position: center center;
+  @include flex-container(row, flex-start, stretch);
+  position: absolute;
+  right: 0;
+  margin: 40px 80px auto;
+}
+
+.preferences {
+  margin: 80px;
+
+  .info-container {
+	margin-left: 10px;
+  }
+
+  hr {
+	opacity: 0.5;
+  }
+
+  .account-info {
+	  @include flex-container(row, left, center);
+  }
+
+  p {
+	padding-bottom: 0;
+  }
+
+  .account-buttons {
+    font-size: 12px;
+    color: black;
+    text-decoration: none;
+    border: 1px solid grey;
+    border-radius: 2px;
+    padding: 7px;
+    margin-right: 8px;
+  }
+
+  .manage-accounts {
+    color: white;
+    background-color: #3399ff;
+  }
+}
