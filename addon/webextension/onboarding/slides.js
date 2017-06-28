@@ -98,7 +98,7 @@ this.slides = (function() {
       [privacySentinel]: "https://www.mozilla.org/privacy/firefox-cloud/"
     };
     let text = browser.i18n.getMessage(
-      "termsAndPrivacyNoticeCloudServices",
+      "termsAndPrivacyNotice2",
       [sentinelSplitter + termsSentinel + sentinelSplitter,
        sentinelSplitter + privacySentinel + sentinelSplitter]);
     let parts = text.split(sentinelSplitter);
