@@ -54,9 +54,9 @@ Planning and ideation is happening in the [issue tracker](https://github.com/moz
 
 * [Issues with no milestone](https://github.com/mozilla-services/screenshots/issues?q=is%3Aopen+is%3Aissue+no%3Amilestone) are awaiting triage
 * [Issues in Stretch](https://github.com/mozilla-services/screenshots/milestone/9) are immediately actionable but just nice-to-haves, not blockers.
-* [Issues in Next Tasks](https://github.com/mozilla-services/screenshots/milestone/2) are deferred for now, but will be re-triaged when the current milestone is done
-* [Issues in Blue Sky](https://github.com/mozilla-services/screenshots/milestone/3) are mostly shelved; we'd like to do them but have no plans to move forward.  (If you see something you care about there, comment on it -- otherwise we may not notice it)
-* [Issues in 54](https://github.com/mozilla-services/screenshots/milestone/20) are things we want to do to ship to a general Firefox audience.
-* Look for "Sprint 54.x" to see planned work for a sprint (2-week phase)
+* [Issues in Blue Sky](https://github.com/mozilla-services/screenshots/milestone/3) are things we would like to do, but have no immediate plans to work on them.  (If you see something you care about there, comment on it -- otherwise we may not notice it)
+* [Look in Milestones](https://github.com/mozilla-services/screenshots/milestones) for other shorter-lived milestones.
 
 Issue tags otherwise aren't very structured. [Research](https://github.com/mozilla-services/screenshots/issues?q=is%3Aopen+is%3Aissue+label%3Aresearch) is primarily analysis of other products that do something interesting, or some source material that could provide insight.  Input on these (things like "I like this product because...") is very helpful!
+
+We do some research on other projects, [collecting the results in this Google Drive folder](https://drive.google.com/drive/folders/0B8i2m8Kt5pnBaHlMNWtYdV8xNTg?usp=sharing).
