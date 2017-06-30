@@ -462,6 +462,11 @@ app.post("/timing", function(req, res) {
 
 app.get("/redirect", function(req, res) {
   if (req.query.to) {
+    if (!validUrl.isWebUri(req.query.to)) {
+      mozlog.warn("redirect-to-bad-url", {msg: "?to is not a proper URL", url: req.query.to});
+      res.status(400).send("Bad ?to parameter");
+      return;
+    }
     let from = req.query.from;
     if (!from) {
       from = "shot-detail";
