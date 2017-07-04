@@ -94,7 +94,7 @@ this.main = (function() {
   }
 
   function shouldOpenMyShots(url) {
-    return /^about:(?:newtab|blank)/i.test(url) || /^resource:\/\/activity-streams\//i.test(url);
+    return /^about:(?:newtab|blank|home)/i.test(url) || /^resource:\/\/activity-streams\//i.test(url);
   }
 
   // This is called by startBackground.js, directly in response to browser.browserAction.onClicked
