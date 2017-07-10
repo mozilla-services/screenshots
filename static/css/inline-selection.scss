@@ -229,6 +229,7 @@ $very-light-grey: #ededed;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 18px 18px;
+  border: 1px solid $light-active;
   margin: 5px;
   width: 40px;
 }
@@ -236,9 +237,14 @@ $very-light-grey: #ededed;
 .highlight-button-save {
   @extend .button;
   @extend .primary;
+  background-image: url("MOZ_EXTENSION/icons/cloud.svg");
+  background-position: 8px center;
+  background-repeat: no-repeat;
+  background-size: 20px 18px;
   font-size: 18px;
   margin: 5px;
   min-width: 80px;
+  padding-left: 34px;
 }
 
 .highlight-button-download {
@@ -248,6 +254,7 @@ $very-light-grey: #ededed;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 18px 18px;
+  border: 1px solid $light-active;
   // Overrides display: flex from .button, which causes hover problems
   display: block;
   margin: 5px;
