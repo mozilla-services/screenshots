@@ -258,6 +258,7 @@ These are events that an add-on user can encounter on a shot they own
 
 1. [x] When an expired shot is deleted (about 2 weeks after expiration) it sends `server/clean-deleted-shot` with an eventValue of the number of shots cleaned at that moment.  (By default these are checked every minute.)
 2. [x] When a successful request to `/api/login` happens, we send `server/api-login`
+3. [x] When the user successfully logs in to their firefox account, we send `server/fxa-login`
 
 #### Page views
 

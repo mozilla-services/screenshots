@@ -216,3 +216,17 @@ exports.registerAccount = function(deviceId, accountId, accessToken) {
     });
   });
 };
+
+exports.retrieveAccount = function(deviceId) {
+  return db.select(
+    `SELECT accountid FROM devices WHERE id = $1`,
+    [deviceId]
+  ).then((rows) => {
+    if (!rows.length) {
+      return null;
+    }
+    if (rows[0].accountid) {
+      return rows[0].accountid;
+    }
+  });
+}

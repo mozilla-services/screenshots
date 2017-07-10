@@ -16,7 +16,8 @@ const {
   registerAccount,
   fetchProfileData,
   saveProfileData,
-  disconnectDevice
+  disconnectDevice,
+  retrieveAccount
 } = require("./users");
 const dbschema = require("./dbschema");
 const express = require("express");
@@ -218,6 +219,7 @@ app.use(function(req, res, next) {
     authInfo = decodeAuthHeader(authHeader);
   } else {
     authInfo.deviceId = cookies.get("user", {signed: true});
+    authInfo.accountId = cookies.get("accountid", {signed: true});
     let abTests = cookies.get("abtests", {signed: true});
     if (abTests) {
       abTests = b64DecodeJson(abTests);
@@ -230,6 +232,9 @@ app.use(function(req, res, next) {
     if (config.debugGoogleAnalytics) {
       req.userAnalytics = req.userAnalytics.debug();
     }
+  }
+  if (authInfo.accountId) {
+    req.accountId = authInfo.accountId;
   }
   req.cookies = cookies;
   req.cookies._csrf = cookies.get("_csrf"); // csurf expects a property
@@ -531,7 +536,7 @@ app.post("/api/register", function(req, res) {
 });
 
 function sendAuthInfo(req, res, params) {
-  let { deviceId, userAbTests } = params;
+  let { deviceId, accountId, userAbTests } = params;
   if (deviceId.search(/^[a-zA-Z0-9_-]{1,255}$/) == -1) {
     // FIXME: add logging message with deviceId
     throw new Error("Bad deviceId");
@@ -540,6 +545,9 @@ function sendAuthInfo(req, res, params) {
   let keygrip = dbschema.getKeygrip();
   let cookies = new Cookies(req, res, {keys: keygrip});
   cookies.set("user", deviceId, {signed: true, sameSite: 'lax'});
+  if (accountId) {
+    cookies.set("accountid", accountId, {signed: true, sameSite: 'lax'});
+  }
   cookies.set("abtests", encodedAbTests, {signed: true, sameSite: 'lax'});
   let authHeader = `${deviceId}:${keygrip.sign(deviceId)};abTests=${encodedAbTests}:${keygrip.sign(encodedAbTests)}`;
   let responseJson = {
@@ -574,16 +582,22 @@ app.post("/api/login", function(req, res) {
         userAbTests
       };
       let sendParamsPromise = Promise.resolve(sendParams);
-      if (vars.ownershipCheck) {
-        sendParamsPromise = Shot.checkOwnership(vars.ownershipCheck, vars.deviceId).then((isOwner) => {
-          sendParams.isOwner = isOwner;
-          return sendParams;
+      retrieveAccount(vars.deviceId).then((accountId) => {
+        return sendParams.accountId = accountId;
+      }).then((accountId) => {
+        if (vars.ownershipCheck) {
+          sendParamsPromise = Shot.checkOwnership(vars.ownershipCheck, vars.deviceId, accountId).then((isOwner) => {
+            sendParams.isOwner = isOwner;
+            return sendParams;
+          });
+        }
+        sendParamsPromise.then((params) => {
+          sendAuthInfo(req, res, params);
+        }).catch((error) => {
+          errorResponse(res, "Error checking ownership", error);
         });
-      }
-      sendParamsPromise.then((params) => {
-        sendAuthInfo(req, res, params);
       }).catch((error) => {
-        errorResponse(res, "Error checking ownership", error);
+        errorResponse(res, "Error retrieving account", error);
       });
       if (config.gaId) {
         let userAnalytics = ua(config.gaId, vars.deviceId, {strictCidFormat: false});
@@ -673,7 +687,7 @@ app.post("/api/delete-shot", csrfProtection, function(req, res) {
     simpleResponse(res, "Not logged in", 401);
     return;
   }
-  Shot.deleteShot(req.backend, req.body.id, req.deviceId).then((result) => {
+  Shot.deleteShot(req.backend, req.body.id, req.deviceId, req.accountId).then((result) => {
     if (result) {
       simpleResponse(res, "ok", 200);
     } else {
@@ -692,7 +706,10 @@ app.post("/api/disconnect-device", csrfProtection, function(req, res) {
     return;
   }
   disconnectDevice(req.deviceId).then((result) => {
+    let keygrip = dbschema.getKeygrip();
+    let cookies = new Cookies(req, res, {keys: keygrip});
     if (result) {
+      cookies.set("accountid");
       res.redirect('/settings');
     }
   }).catch((err) => {
@@ -712,7 +729,7 @@ app.post("/api/set-title/:id/:domain", csrfProtection, function(req, res) {
     simpleResponse(res, "Not logged in", 401);
     return;
   }
-  Shot.get(req.backend, shotId, req.deviceId).then((shot) => {
+  Shot.get(req.backend, shotId).then((shot) => {
     if (!shot) {
       simpleResponse(res, "No such shot", 404);
       return;
@@ -744,7 +761,7 @@ app.post("/api/set-expiration", csrfProtection, function(req, res) {
     simpleResponse(res, `Error: bad expiration (${req.body.expiration})`, 400);
     return;
   }
-  Shot.setExpiration(req.backend, shotId, req.deviceId, expiration).then((result) => {
+  Shot.setExpiration(req.backend, shotId, req.deviceId, expiration, req.accountId).then((result) => {
     if (result) {
       simpleResponse(res, "ok", 200);
     } else {
@@ -970,6 +987,14 @@ app.get('/api/fxa-oauth/confirm-login', function(req, res, next) {
         return fetchProfileData(accessToken).then(({ avatar, displayName, email }) => {
           return saveProfileData(accountId, avatar, displayName, email);
         }).then(() => {
+          if (config.gaId) {
+            let analytics = ua(config.gaId);
+            analytics.event({
+              ec: "server",
+              ea: "fxa-login",
+              ua: req.headers["user-agent"],
+            }).send();
+          }
           res.redirect('/settings');
         });
       }).catch(next);

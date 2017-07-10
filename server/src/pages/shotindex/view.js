@@ -108,7 +108,7 @@ class Body extends React.Component {
 
   renderSettingsPage() {
     return (
-      <a className="button preferences" href="/settings"></a>
+      <a className="button preferences" href="/settings" aria-label="Settings" title="Open user settings"></a>
     );
   }
 

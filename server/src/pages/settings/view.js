@@ -1,3 +1,4 @@
+/* globals controller */
 const reactruntime = require("../../reactruntime");
 const sendEvent = require("../../browser-send-event.js");
 const React = require("react");
@@ -37,8 +38,8 @@ class Body extends React.Component {
         <div className="account-info">
           <img src={this.props.accountInfo.avatar || defaultAvatar } height="100" width="100" />
             <div className="info-container">
-              <p>{this.props.accountInfo.nickname || this.props.accountInfo.email}</p>
-              <a className="account-buttons manage-accounts" href="">Manage Accounts</a>
+              <p className="username">{this.props.accountInfo.nickname || this.props.accountInfo.email}</p>
+              { this.props.accountInfo.nickname ? <p className="email">{this.props.accountInfo.email}</p> : null }
               <a className="account-buttons disconnect" href="" onClick={ this.onClickDisconnect.bind(this) }>Disconnect</a>
             </div>
         </div>
@@ -55,25 +56,25 @@ class Body extends React.Component {
       );
     }
     return <div className="preferences">
-      <h1 className="header">Firefox Screenshots Settings:</h1>
+      <p className="header">Firefox Screenshots Settings</p>
       <hr />
-      <h3>Syncs & Accounts</h3>
+      <p className="sub-header">Sync & Accounts</p>
       { info }
     </div>;
   }
 
   onClickDisconnect() {
-    sendEvent("start-disconnect", "settings");
+    sendEvent("start-disconnect", "settings", { useBeacon: true });
     if (window.confirm("Are you sure you want to disconnect this device from your Firefox account?")) {
-      sendEvent("confirm-disconnect", "settings-popup-confirm");
+      sendEvent("confirm-disconnect", "settings-popup-confirm", { useBeacon: true });
       controller.disconnectDevice();
     } else {
-      sendEvent("cancel-disconnect", "settings-popup-confirm");
+      sendEvent("cancel-disconnect", "settings-popup-confirm", { useBeacon: true });
     }
   }
 
   onClickConnect() {
-    sendEvent("start-connect", "settings");
+    sendEvent("start-connect", "settings", { useBeacon: true });
   }
 }
 
