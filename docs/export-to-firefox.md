@@ -11,6 +11,7 @@ Start the system addon release process by copying the following checklist into a
 - [ ] Push tag: `git push --tags`
 - [ ] Merge master to stable: `git checkout stable && git merge master && git push`
 - [ ] Create a Bugzilla release bug, [cloning bug 1368146](https://bugzilla.mozilla.org/enter_bug.cgi?format=__default__&product=Cloud%20Services&cloned_bug_id=1368146)
+  - Use "Show Advanced Fields" and review CC list and dependencies
   - Ensure the bug is filed under the Cloud Services product, Screenshots component
   - Assign yourself to the bug
 - [ ] Export Screenshots to a local copy of Gecko (see 'Using export_mc.py' section below)
