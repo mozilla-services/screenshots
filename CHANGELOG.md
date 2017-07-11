@@ -1,3 +1,11 @@
+## Version 10.4.0
+
+* Add context fill icons [7cb237f](https://github.com/mozilla-services/screenshots/commit/7cb237f)
+* Sanitize download filename more fully. This adds `:` (important on Windows),
+  `\`, `<`, and `>` to the blacklist. 
+  Followup in [#3083](https://github.com/mozilla-services/screenshots/issues/3083). Fixes [#2981](https://github.com/mozilla-services/screenshots/issues/2981) [af32978](https://github.com/mozilla-services/screenshots/commit/af32978)
+* Add cloud icon to Save [4ae42cc](https://github.com/mozilla-services/screenshots/commit/4ae42cc)
+
 ## Version 10.3.0
 
 * Revert the startupCache changes from 10.2.0
