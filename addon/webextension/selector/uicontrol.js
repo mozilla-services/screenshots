@@ -363,7 +363,7 @@ this.uicontrol = (function() {
    */
 
   let dataUrl;
-  
+
   stateHandlers.previewing = {
     start() {
       dataUrl = shooter.screenshotPage(selectedPos);

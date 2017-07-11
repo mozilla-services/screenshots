@@ -19,6 +19,7 @@ const path = require("path");
 const SHOOTER_BUTTON_ID = "screenshots_mozilla_org-browser-action";
 const SLIDE_IFRAME_ID = "firefox-screenshots-onboarding-iframe";
 const PRESELECTION_IFRAME_ID = "firefox-screenshots-preselection-iframe";
+const PREVIEW_IFRAME_ID = "firefox-screenshots-preview-iframe";
 const backend = "http://localhost:10080";
 
 function addAddonToDriver(driver, location) {
@@ -240,10 +241,24 @@ describe("Test Screenshots", function() {
       return focusIframe(driver, PRESELECTION_IFRAME_ID);
     }).then(() => {
       return driver.wait(
-        until.elementLocated(By.css(".visible")));
+        until.elementLocated(By.css(".visible"))
+      );
     }).then((visibleButton) => {
+      visibleButton.click();
+      return driver.switchTo().defaultContent();
+    }).then(() => {
+      return driver.wait(
+        until.elementLocated(By.id(PREVIEW_IFRAME_ID))
+      );
+    }).then(() => {
+      return focusIframe(driver, PREVIEW_IFRAME_ID);
+    }).then(() => {
+      return driver.wait(
+        until.elementLocated(By.css(".preview-button-save"))
+      );
+    }).then((saveButton) => {
       return expectCreatedShot(driver, () => {
-        visibleButton.click();
+        saveButton.click();
       });
     }).then((shotUrl) => {
       assert(shotUrl.startsWith(backend), `Got url ${shotUrl} that doesn't start with ${backend}`);
