@@ -99,6 +99,12 @@ this.main = (function() {
 
   // This is called by startBackground.js, directly in response to browser.browserAction.onClicked
   exports.onClicked = catcher.watchFunction((tab) => {
+    if (tab.incognito) {
+      senderror.showError({
+        popupMessage: "PRIVATE_WINDOW"
+      });
+      return;
+    }
     if (shouldOpenMyShots(tab.url)) {
       if (!hasSeenOnboarding) {
         catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
@@ -136,6 +142,12 @@ this.main = (function() {
   exports.onClickedContextMenu = catcher.watchFunction((info, tab) => {
     if (!tab) {
       // Not in a page/tab context, ignore
+      return;
+    }
+    if (tab.incognito) {
+      senderror.showError({
+        popupMessage: "PRIVATE_WINDOW"
+      });
       return;
     }
     if (!urlEnabled(tab.url)) {
