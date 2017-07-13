@@ -1,8 +1,15 @@
+## Version 10.5.0
+
+* Disable Screenshots in private windows. Fixes [#3120](https://github.com/mozilla-services/screenshots/issues/3120) [450dad1](https://github.com/mozilla-services/screenshots/commit/450dad1)
+* Do not regress the already-landed fix to [Bug 1373614](https://bugzilla.mozilla.org/show_bug.cgi?id=1373614) (stop the embedded WebExtension unconditionally) [cf3788d](https://github.com/mozilla-services/screenshots/commit/cf3788d)
+
 ## Version 10.4.0
+
+Note: this release didn't make it into Firefox. Details in [Bug 1380120](https://bugzilla.mozilla.org/show_bug.cgi?id=1380120)
 
 * Add context fill icons [7cb237f](https://github.com/mozilla-services/screenshots/commit/7cb237f)
 * Sanitize download filename more fully. This adds `:` (important on Windows),
-  `\`, `<`, and `>` to the blacklist. 
+  `\`, `<`, and `>` to the blacklist.
   Followup in [#3083](https://github.com/mozilla-services/screenshots/issues/3083). Fixes [#2981](https://github.com/mozilla-services/screenshots/issues/2981) [af32978](https://github.com/mozilla-services/screenshots/commit/af32978)
 * Add cloud icon to Save [4ae42cc](https://github.com/mozilla-services/screenshots/commit/4ae42cc)
 
