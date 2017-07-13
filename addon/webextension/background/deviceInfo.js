@@ -1,4 +1,4 @@
-/* globals catcher */
+/* globals catcher, communication */
 
 "use strict";
 
@@ -8,6 +8,8 @@ this.deviceInfo = (function() {
   let platformInfo = {};
   catcher.watchPromise(browser.runtime.getPlatformInfo().then((info) => {
     platformInfo = info;
+  }).then(() => { communication.sendToBootstrap("getReleaseChannel").then(channel => {
+    platformInfo.channel = channel;
   }));
 
   return function deviceInfo() {
@@ -20,6 +22,7 @@ this.deviceInfo = (function() {
     return {
       addonVersion: manifest.version,
       platform: platformInfo.os,
+      channel: platformInfo.channel,
       architecture: platformInfo.arch,
       version: firefoxVersion || chromeVersion,
       // These don't seem to apply to Chrome:
