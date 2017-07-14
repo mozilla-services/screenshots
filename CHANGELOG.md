@@ -1,3 +1,8 @@
+## Version 10.6.0
+
+* Iframe tests: validate iframe URLs, remove unneeded iframe onload handlers ([#3134](https://github.com/mozilla-services/screenshots/issues/3134))
+* Put temporary clipboard TEXTAREA in an iframe, with iframe URL validation [5b4609f](https://github.com/mozilla-services/screenshots/commit/5b4609f)
+
 ## Version 10.5.0
 
 * Disable Screenshots in private windows. Fixes [#3120](https://github.com/mozilla-services/screenshots/issues/3120) [450dad1](https://github.com/mozilla-services/screenshots/commit/450dad1)
