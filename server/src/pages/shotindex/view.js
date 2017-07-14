@@ -176,6 +176,10 @@ class Card extends React.Component {
     let downloadUrl = this.props.downloadUrl;
     let imageUrl;
     let clip = shot.clipNames().length ? shot.getClip(shot.clipNames()[0]) : null;
+    if (!clip) {
+      // Some corrupted shot, we'll have to ignore it
+      return null;
+    }
     if (clip && clip.image && clip.image.url) {
       imageUrl = clip.image.url;
     } else if (shot.images.length) {
