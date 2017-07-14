@@ -1,4 +1,4 @@
-/* globals log, util, catcher, inlineSelectionCss, callBackground, assertIsTrusted */
+/* globals log, util, catcher, inlineSelectionCss, callBackground, assertIsTrusted, assertIsBlankDocumentUrl */
 
 "use strict";
 
@@ -93,7 +93,9 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element.scrolling = "no";
           this.updateElementSize();
           this.element.onload = watchFunction(() => {
+            this.element.onload = null;
             this.document = this.element.contentDocument;
+            assertIsBlankDocumentUrl(this.document.URL);
             this.document.documentElement.innerHTML = `
                <head>
                 <style>${substitutedCss}</style>
@@ -163,7 +165,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     initSizeWatch() {
       this.stopSizeWatch();
       this.sizeTracking.timer = setInterval(watchFunction(this.updateElementSize.bind(this)), 2000);
-      window.addEventListener("resize", this.onResize, true);
+      window.addEventListener("resize", watchFunction(assertIsTrusted(this.onResize)), true);
     },
 
     stopSizeWatch() {
@@ -176,7 +178,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
         this.sizeTracking.windowDelayer = null;
       }
       this.sizeTracking.lastHeight = this.sizeTracking.lastWidth = null;
-      window.removeEventListener("resize", this.onResize, true);
+      window.removeEventListener("resize", watchFunction(assertIsTrusted(this.onResize)), true);
     },
 
     getElementFromPoint(x, y) {
@@ -197,7 +199,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     }
   };
 
-  iframeSelection.onResize = watchFunction(onResize.bind(iframeSelection));
+  iframeSelection.onResize = watchFunction(assertIsTrusted(onResize.bind(iframeSelection)));
 
   let iframePreSelection = exports.iframePreSelection = {
     element: null,
@@ -220,7 +222,9 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element.scrolling = "no";
           this.updateElementSize();
           this.element.onload = watchFunction(() => {
+            this.element.onload = null;
             this.document = this.element.contentDocument;
+            assertIsBlankDocumentUrl(this.document.URL)
             this.document.documentElement.innerHTML = `
                <head>
                 <style>${substitutedCss}</style>
@@ -282,7 +286,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     },
 
     hide() {
-      window.removeEventListener("scroll", this.onScroll);
+      window.removeEventListener("scroll", watchFunction(assertIsTrusted(this.onScroll)));
       window.removeEventListener("resize", this.onResize, true);
       if (this.element) {
         this.element.style.display = "none";
@@ -291,7 +295,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
 
     unhide() {
       this.updateElementSize();
-      window.addEventListener("scroll", this.onScroll);
+      window.addEventListener("scroll", watchFunction(assertIsTrusted(this.onScroll)));
       window.addEventListener("resize", this.onResize, true);
       this.element.style.display = "";
       this.element.focus();

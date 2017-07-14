@@ -1,4 +1,4 @@
-/* globals log, catcher, onboardingHtml, onboardingCss, util, shooter, callBackground, assertIsTrusted */
+/* globals log, catcher, onboardingHtml, onboardingCss, util, shooter, callBackground, assertIsTrusted, assertIsBlankDocumentUrl */
 
 "use strict";
 
@@ -36,11 +36,13 @@ this.slides = (function() {
         return browser.extension.getURL(filename);
       });
       iframe.onload = catcher.watchFunction(() => {
+        iframe.onload = null;
+        doc = iframe.contentDocument;
+        assertIsBlankDocumentUrl(doc.URL);
         let parsedDom = (new DOMParser()).parseFromString(
           html,
           "text/html"
         );
-        doc = iframe.contentDocument;
         doc.replaceChild(
           doc.adoptNode(parsedDom.documentElement),
           doc.documentElement
