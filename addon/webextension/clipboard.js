@@ -1,4 +1,4 @@
-/* globals catcher, assertIsBlankDocumentUrl */
+/* globals catcher, assertIsBlankDocument */
 
 "use strict";
 
@@ -14,11 +14,10 @@ this.clipboard = (function() {
       element.style.opacity = "0";
       element.style.width = "1px";
       element.style.height = "1px";
-      element.onload = catcher.watchFunction(() => {
+      element.addEventListener("load", catcher.watchFunction(() => {
         try {
-          element.onload = null;
           let doc = element.contentDocument;
-          assertIsBlankDocumentUrl(doc.URL);
+          assertIsBlankDocument(doc);
           let el = doc.createElement("textarea");
           doc.body.appendChild(el);
           el.value = text;
@@ -27,12 +26,12 @@ this.clipboard = (function() {
           if (!copied) {
             catcher.unhandled(new Error("Clipboard copy failed"));
           }
-          doc.body.removeChild(el);
+          el.remove();
           resolve(copied);
         } finally {
-          document.body.removeChild(element);
+          element.remove();
         }
-      });
+      }), {once: true});
       document.body.appendChild(element);
     });
   };

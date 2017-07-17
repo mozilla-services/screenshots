@@ -1,4 +1,4 @@
-/* globals log, catcher, onboardingHtml, onboardingCss, util, shooter, callBackground, assertIsTrusted, assertIsBlankDocumentUrl */
+/* globals log, catcher, onboardingHtml, onboardingCss, util, shooter, callBackground, assertIsTrusted, assertIsBlankDocument */
 
 "use strict";
 
@@ -35,10 +35,9 @@ this.slides = (function() {
       html = html.replace(/MOZ_EXTENSION([^\"]+)/g, (match, filename) => {
         return browser.extension.getURL(filename);
       });
-      iframe.onload = catcher.watchFunction(() => {
-        iframe.onload = null;
+      iframe.addEventListener("load", catcher.watchFunction(() => {
         doc = iframe.contentDocument;
-        assertIsBlankDocumentUrl(doc.URL);
+        assertIsBlankDocument(doc);
         let parsedDom = (new DOMParser()).parseFromString(
           html,
           "text/html"
@@ -53,7 +52,7 @@ this.slides = (function() {
         localizeText(doc);
         activateSlide(doc);
         resolve();
-      });
+      }), {once: true});
       document.body.appendChild(iframe);
       iframe.focus();
       window.addEventListener("resize", onResize);

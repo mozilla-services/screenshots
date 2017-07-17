@@ -1,4 +1,4 @@
-/* globals log, util, catcher, inlineSelectionCss, callBackground, assertIsTrusted, assertIsBlankDocumentUrl */
+/* globals log, util, catcher, inlineSelectionCss, callBackground, assertIsTrusted, assertIsBlankDocument */
 
 "use strict";
 
@@ -92,10 +92,9 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element.style.margin = "0";
           this.element.scrolling = "no";
           this.updateElementSize();
-          this.element.onload = watchFunction(() => {
-            this.element.onload = null;
+          this.element.addEventListener("load", watchFunction(() => {
             this.document = this.element.contentDocument;
-            assertIsBlankDocumentUrl(this.document.URL);
+            assertIsBlankDocument(this.document);
             this.document.documentElement.innerHTML = `
                <head>
                 <style>${substitutedCss}</style>
@@ -109,7 +108,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
             this.document.documentElement.dir = browser.i18n.getMessage("@@bidi_dir");
             this.document.documentElement.lang = browser.i18n.getMessage("@@ui_locale");
             resolve();
-          });
+          }), {once: true});
           document.body.appendChild(this.element);
         } else {
           resolve();
@@ -221,10 +220,9 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element.style.margin = "0";
           this.element.scrolling = "no";
           this.updateElementSize();
-          this.element.onload = watchFunction(() => {
-            this.element.onload = null;
+          this.element.addEventListener("load", watchFunction(() => {
             this.document = this.element.contentDocument;
-            assertIsBlankDocumentUrl(this.document.URL)
+            assertIsBlankDocument(this.document)
             this.document.documentElement.innerHTML = `
                <head>
                 <style>${substitutedCss}</style>
@@ -266,7 +264,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
             overlay.querySelector(".full-page").addEventListener(
               "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickFullPage)));
             resolve();
-          });
+          }), {once: true});
           document.body.appendChild(this.element);
           this.unhide();
         } else {
