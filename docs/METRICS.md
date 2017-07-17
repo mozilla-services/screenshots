@@ -316,7 +316,7 @@ While the URL of the page you are shooting is not part of this information, we a
 
 ### Opt-out
 
-The add-on reads the Telemetry opt-out preference (`datareporting.healthreport.uploadEnabled`), labelled "Enable Health Report" in preferences under Privacy and Security.  If this preference is false, or if there is any issue trying to fetch the preference, then no data is sent.
+The add-on reads the opt-out preference (`datareporting.healthreport.uploadEnabled`), labelled "Enable Health Report" in preferences under Privacy and Security.  If this preference is false, or if there is any issue trying to fetch the preference, then no data is sent.
 
 The website reads the [Do Not Track Header](https://www.mozilla.org/en-US/firefox/dnt/) (`navigator.doNotTrack`) and if it is present and set to *1* the website will not send metrics data.  We treat error reporting differently, and it is sent regardless of the Do Not Track setting.
 
