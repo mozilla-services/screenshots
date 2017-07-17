@@ -288,7 +288,7 @@ $very-light-grey: #ededed;
   margin: auto 2em;
   text-align: center;
   animation-delay: 50ms;
-  animation: bounce-in 300ms forwards ease;
+  animation: bounce-in 300ms forwards ease-in-out;
 }
 
 .preview-image img {
