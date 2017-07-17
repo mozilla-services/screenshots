@@ -1,3 +1,8 @@
+## Version 10.7.0
+
+* Fix icon path, so that starred icon is shown to new users ([#3136](https://github.com/mozilla-services/screenshots/issues/3136))
+* Address 10.6 review comments ([bugzilla bug 1381132](https://bugzil.la/1381132#c3))
+
 ## Version 10.6.0
 
 * Iframe tests: validate iframe URLs, remove unneeded iframe onload handlers ([#3134](https://github.com/mozilla-services/screenshots/issues/3134))
