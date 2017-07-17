@@ -24,7 +24,7 @@
   }
 
   @include respond-to("medium") {
-    @include flex-container(row, space-between, center);
+    @include flex-container(row, center, center);
   }
 
   @include respond-to("large") {

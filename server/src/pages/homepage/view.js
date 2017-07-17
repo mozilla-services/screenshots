@@ -38,6 +38,10 @@ const style = `
     box-shadow: rgba(0,0,0,0.09) 0px 3px 6px;
   }
 
+  .myshots-text {
+    cursor: pointer;
+  }
+
   .header-logo {
     display: -ms-flexbox;
       display: flex;

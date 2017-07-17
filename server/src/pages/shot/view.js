@@ -513,13 +513,13 @@ class EditableTitle extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {isEditing: false, isSaving: false};
+    this.state = {isEditing: false, isSaving: false, minWidth: 200};
   }
 
   componentWillReceiveProps(nextProps) {
     // When the save completes, this component just gets updated with the new title
     if (this.state.isSaving && this.state.isSaving === nextProps.title) {
-      this.state.isSaving = false;
+      this.setState({isSaving: false});
     }
   }
 
@@ -536,19 +536,23 @@ class EditableTitle extends React.Component {
     if (this.state.isSaving) {
       className += " saving";
     }
-    return <span className={className} {...handlers}>{this.state.isSaving || this.props.title}</span>;
+    return <span ref="title" className={className} {...handlers}>{this.state.isSaving || this.props.title}</span>;
   }
 
   renderEditing() {
     return <form onSubmit={this.onExit.bind(this)}>
       <input ref={(input) => this.textInput = input}
         className="shot-title-input"
+        style={{minWidth: this.state.minWidth}}
         type="text" defaultValue={this.props.title} autoFocus="true"
         onBlur={this.onExit.bind(this)} onKeyUp={this.onKeyUp.bind(this)} />
     </form>;
   }
 
   onClick() {
+    if (!this.state.isEditing) {
+      this.setState({minWidth: this.refs.title.offsetWidth });
+    }
     this.setState({isEditing: true});
   }
 
