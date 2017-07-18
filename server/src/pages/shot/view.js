@@ -7,7 +7,6 @@ const { ShareButton } = require("../../share-buttons");
 const { TimeDiff, intervalDescription } = require("./time-diff");
 const reactruntime = require("../../reactruntime");
 
-
 class Clip extends React.Component {
   constructor(props) {
     super(props);
@@ -299,8 +298,6 @@ class Body extends React.Component {
       </span>;
     }
 
-    let shotRedirectUrl = `/redirect?to=${encodeURIComponent(shot.url)}`;
-
     let trashOrFlagButton;
     if (this.props.isOwner) {
       trashOrFlagButton = <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }>
@@ -354,7 +351,7 @@ class Body extends React.Component {
             <div className="shot-info">
               <EditableTitle title={shot.title} isOwner={this.props.isOwner} />
               <div className="shot-subtitle"> { favicon }
-                { linkTextShort ? <a className="subtitle-link" href={ shotRedirectUrl } onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> : null }
+                { linkTextShort ? <a className="subtitle-link" rel="noopener noreferrer" href={ shot.url } target="_blank" onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> : null }
                 <span className="time-diff">{ timeDiff }</span> { expiresDiff }
               </div>
             </div>

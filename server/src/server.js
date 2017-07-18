@@ -32,8 +32,6 @@ const https = require("https");
 const gaActivation = require("./ga-activation");
 const genUuid = require("nodify-uuid");
 const AWS = require("aws-sdk");
-const escapeHtml = require("escape-html");
-const validUrl = require("valid-url");
 const statsd = require("./statsd");
 const { notFound } = require("./pages/not-found/server");
 const { cacheTime, setCache } = require("./caching");
@@ -458,46 +456,6 @@ app.post("/timing", function(req, res) {
   }).catch((e) => {
     errorResponse(res, "Error creating user UUID:", e);
   });
-});
-
-app.get("/redirect", function(req, res) {
-  if (req.query.to) {
-    if (!validUrl.isWebUri(req.query.to)) {
-      mozlog.warn("redirect-to-bad-url", {msg: "?to is not a proper URL", url: req.query.to});
-      res.status(400).send("Bad ?to parameter");
-      return;
-    }
-    let from = req.query.from;
-    if (!from) {
-      from = "shot-detail";
-    }
-    res.header("Content-type", "text/html");
-    res.status(200);
-    let redirectUrl = req.query.to;
-    if (!validUrl.isUri(redirectUrl)) {
-      mozlog.warn("redirect-bad-url", {msg: "Redirect attempted to invalid URL", url: redirectUrl});
-      sendRavenMessage(req, "Redirect attempted to invalid URL", {extra: {redirectUrl}});
-      simpleResponse(res, "Bad Request", 400);
-      return;
-    }
-    let redirectUrlJs = JSON.stringify(redirectUrl).replace(/[<>]/g, "");
-    let output = `<html>
-  <head>
-    <title>Redirect</title>
-  </head>
-  <body>
-    <a href="${escapeHtml(redirectUrl)}">If you are not automatically redirected, click here.</a>
-    <script nonce="${req.cspNonce}">
-window.location = ${redirectUrlJs};
-    </script>
-  </body>
-</html>`;
-    res.send(output);
-  } else {
-    mozlog.warn("no-redirect-to", {"msg": "Bad Request, no ?to parameter"});
-    sendRavenMessage(req, "Bad request, no ?to parameter");
-    simpleResponse(res, "Bad Request", 400);
-  }
 });
 
 app.post("/api/register", function(req, res) {
