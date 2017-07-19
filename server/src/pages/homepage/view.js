@@ -630,7 +630,7 @@ class Body extends React.Component {
         <section id="section-1">
           <div className="container">
             <div className="section-content">
-              <Localized id="homePageGetStarted">
+              <Localized id="homePageGetStartedTitle">
                 <h3>Get Started</h3>
               </Localized>
               <Localized id="homePageGetStartedDescription">
@@ -692,7 +692,7 @@ class Body extends React.Component {
               <Localized id="homePageTermsLink">
                 <a href="https://www.mozilla.org/about/legal/terms/services/" className="boilerplate">Terms</a>
               </Localized>
-              <Localized id="homePagePrivacyLink">
+              <Localized id="homePageCookiesLink">
                 <a href="https://www.mozilla.org/privacy/websites/#cookies" className="boilerplate">Cookies</a>
               </Localized>
             </div>

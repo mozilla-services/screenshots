@@ -24,24 +24,29 @@ homePageDownloadFirefoxSubTitle = Free Download
 homePageGetStarted = Get Started
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = How Firefox Screenshots Works
-homePageGetStarted = Get Started
+homePageGetStartedTitle = Get Started
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Find the new Screenshots icon on your toolbar. Select it, and the Screenshots menu will appear on top of your browser window.
 homePageCaptureRegion = Capture a Region
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Click and drag to select the area you want to capture. Or just hover and click — Screenshots will select the area for you. Like what you see? Select Save to access your screenshot online or the down arrow button to download it to your computer.
 homePageCapturePage = Capture a Page
 homePageCapturePageDescription = Use the buttons in the upper right to capture full pages. The Save Visible button will capture the area you can view without scrolling, and the Save Full Page will capture everything on the page.
 homePageSaveShare = Save and Share
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = When you take a shot, Firefox posts your screenshot to your online Screenshots library and copies the link to your clipboard. We automatically store your screenshot for two weeks, but you can delete shots at any time or change the expiration date to keep them in your library for longer.
 homePageLegalLink = Legal
 homePagePrivacyLink = Privacy
 homePageTermsLink = Terms
-homePagePrivacyLink = Cookies
+homePageCookiesLink = Cookies
 
 // Leave Screenshots page
 
 leavePageConfirmDelete = Confirm account deletion
+// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = You must have Firefox Screenshots installed to delete your account
 leavePageErrorGeneric = An error occurred
+// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = This will permanently erase all of your Firefox Screenshots data.
 leavePageButtonProceed = Proceed
 leavePageButtonCancel = Cancel
@@ -91,8 +96,7 @@ shotPageAbuseButton
 shotPageDownloadShot
   .title = Download
 shotPageDownload = Download
-// Note: do not translate 'Firefox Screenshots' when translating this string
-shotPageScreenshotsDescription = Screenshots made simple. Take, save, and share  screenshots without leaving Firefox.
+shotPageScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
 shotPageUpsellFirefox = Get Firefox now
 shotPageDoesNotExpire = Does not expire
 shotPageDMCAMessage = This shot is no longer available due to a third party intellectual property claim.
@@ -175,16 +179,17 @@ shotIndexPageConfirmShotDelete = Delete this shot?
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Firefox Screenshots Metrics
 metricsPageTotalsQueryTitle = Totals
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = An overview of Screenshots
 metricsPageTotalsQueryDevices = Total devices registered
 metricsPageTotalsQueryActiveShots = Active shots
 metricsPageTotalsQueryExpiredShots = Expired (but recoverable)
 metricsPageTotalsQueryExpiredDeletedShots = Expired (and deleted)
-metricsPageShotsQueryTitle = Shots By Day
+metricsPageShotsQueryTitle = Shots by Day
 metricsPageShotsQueryDescription = Number of shots created each day (for the last 30 days)
 metricsPageShotsQueryCount = Number of shots
 metricsPageShotsQueryDay = Day
-metricsPageUsersQueryTitle = Users By Day
+metricsPageUsersQueryTitle = Users by Day
 metricsPageUsersQueryDescription = Number of users who created at least one shot, by day (last 30 days)
 metricsPageUsersQueryCount = Number of users
 metricsPageUsersQueryDay = Day
@@ -192,7 +197,7 @@ metricsPageUserShotsQueryTitle = Number of Shots per User
 metricsPageUserShotsQueryDescription = The number of users who have about N total shots
 metricsPageUserShotsQueryCount = Number of users
 metricsPageUserShotsQueryShots = Approximate number of active (unexpired) shots
-metricsPageRetentionQueryTitle = Retention By Week
+metricsPageRetentionQueryTitle = Retention by Week
 metricsPageRetentionQueryDescription = Number of days from a userʼs first shot to most recent shot, grouped by starting week
 metricsPageRetentionQueryUsers = Number of users
 metricsPageRetentionQueryDays = Days from the userʼs first to most recent shot
