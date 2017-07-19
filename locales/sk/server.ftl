@@ -9,7 +9,8 @@ gScreenshotsDescription = Jednoduchá tvorba snímok obrazovky. Vytvorte, uložt
 // creatingPageTitleDefault.
 creatingPageTitle = Vytváram snímku { $title }
 creatingPageTitleDefault = stránky
-// Home pagehomePageButtonMyShots = Prejsť na moje snímky
+// Home pagehomePageDescription
+    .content = Intuitívne snímky obrazovky priamo v prehliadači. Zachyťte, uložte a zdieľajte snímky obrazovky priamo pri prehliadaní pomocou Firefoxu.
 homePageTeaser = Už čoskoro...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Prevziať zadarmo
@@ -22,13 +23,17 @@ homePageLegalLink = Právne informácie
 homePagePrivacyLink = Súkromie
 homePageTermsLink = Podmienky používania
 homePageCookiesLink = Cookies
-// Leave Screenshots pageleavePageButtonProceed = Pokračovať
+// Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Na vymazanie svojho účtu musíte mať nainštalovanú službu Firefox Screenshots
+leavePageErrorGeneric = Vyskytla sa chyba
 leavePageButtonCancel = Zrušiť
 leavePageDeleted = Všetky vaše snímky boli odstránené!
-// Not Found pagenotFoundPageIntro = Hups.
+// Not Found pagenotFoundPageTitle = Stránka nebola nájdená
 notFoundPageDescription = Stránka nebola nájdená.
-// Shot pageshotPageAlertErrorDeletingShot = Pri odstraňovaní snímky sa vyskytla chyba
+// Shot pageshotPageAlertErrorUpdatingTitle = Pri ukladaní názvu sa vyskytla chyba
 shotPageConfirmDelete = Naozaj chcete natrvalo odstrániť túto snímku?
+shotPageShareButton
+    .title = Zdieľať
 shotPageCopy = Kopírovať
 shotPageCopied = Skopírované
 shotPageShareFacebook
@@ -54,8 +59,15 @@ shotPageScreenshotsDescription = Jednoduchá tvorba snímok obrazovky. Vytvorte,
 shotPageUpsellFirefox = Získajte Firefox teraz
 shotPageSaveExpiration = uložiť
 shotPageCancelExpiration = zrušiť
-// Shotindex page// Metrics page
-// Note: all metrics strings are optional for translationmetricsPageVersionQueryVersion = Verzia doplnku
+// Shotindex pageshotIndexPageSearchButton
+    .title = Hľadať
+shotIndexPageNoShotsMessage = Žiadne uložené snímky
+// Metrics page
+// Note: all metrics strings are optional for translationmetricsPageShotsQueryDay = Deň
+metricsPageUsersQueryCount = Počet používateľov
+metricsPageUsersQueryDay = Deň
+metricsPageTotalRetentionQueryUsers = Počet používateľov
+metricsPageVersionQueryTitle = Verzia doplnku
 metricsPageVersionQueryLastSeen = Deň
 metricsPageHeader = Metriky
 // Note: {$created} is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
