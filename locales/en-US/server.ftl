@@ -98,7 +98,6 @@ shotPageDownloadShot
 shotPageDownload = Download
 shotPageScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
 shotPageUpsellFirefox = Get Firefox now
-shotPageDoesNotExpire = Does not expire
 shotPageDMCAMessage = This shot is no longer available due to a third party intellectual property claim.
 // Note: {$dmca} is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Please email {$dmca} to request further information.
@@ -124,31 +123,37 @@ shotPageExpiresIn = expires {$timediff}
 // Note: {$timediff} is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = expired {$timediff}
 timeDiffJustNow = just now
-timeDiffMinutesAgo = { $number ->
-  [one] 1 minute ago
-  *[other] {$number} minutes ago
-}
-timeDiffHoursAgo = { $number ->
-  [one] 1 hour ago
-  *[other] {$number} hours ago
-}
-timeDiffDaysAgo = { $number ->
-  [one] yesterday
-  *[other] {$number} days ago
-}
+timeDiffMinutesAgo =
+    { $number ->
+        [one] 1 minute ago
+        *[other] {$number} minutes ago
+    }
+timeDiffHoursAgo = 
+    { $number ->
+        [one] 1 hour ago
+        *[other] {$number} hours ago
+    }
+timeDiffDaysAgo =
+    { $number ->
+        [one] yesterday
+        *[other] {$number} days ago
+    }
 timeDiffFutureSeconds = in a few seconds
-timeDiffFutureMinutes = { $number ->
-  [one] in 1 minute
-  *[other] in {$number} minutes
-}
-timeDiffFutureHours = { $number ->
-  [one] in 1 hour
-  *[other] in {$number} hours
-}
-timeDiffFutureDays = { $number ->
-  [one] tomorrow
-  *[other] in {$number} days
-}
+timeDiffFutureMinutes =
+    { $number ->
+        [one] in 1 minute
+        *[other] in {$number} minutes
+    }
+timeDiffFutureHours =
+    { $number ->
+        [one] in 1 hour
+        *[other] in {$number} hours
+    }
+timeDiffFutureDays =
+    { $number ->
+        [one] tomorrow
+        *[other] in {$number} days
+    }
 
 // Shotindex page
 
