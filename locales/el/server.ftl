@@ -9,8 +9,7 @@ gScreenshotsDescription = Η λήψη στιγμιοτύπων έγινε εύκ
 // creatingPageTitleDefault.
 creatingPageTitle = Δημιουργία { $title }
 creatingPageTitleDefault = σελίδα
-// Home pagehomePageDescription
-    .content = Εύκολη λήψη στιγμιοτύπων, ενσωματωμένη στο πρόγραμμα περιήγησης. Λήψη, αποθήκευση και κοινή χρήση στιγμιοτύπων κατά την περιήγηση στο διαδίκτυο με το Firefox.
+// Home pagehomePageButtonMyShots = Μετάβαση στα στιγμιότυπά μου
 homePageTeaser = Έρχεται σύντομα...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Δωρεάν λήψη
@@ -26,17 +25,24 @@ homePageCaptureRegionDescription = Κάντε κλικ και σύρετε γι�
 homePageCapturePage = Καταγραφή σελίδας
 homePageCapturePageDescription = Χρησιμοποιήστε τα κουμπιά επάνω δεξιά για να καταγράψετε πλήρεις σελίδες σε στιγμιότυπα. Το κουμπί "Αποθήκευση ορατού" θα καταγράψει την περιοχή που μπορείτε να δείτε χωρίς κύλιση, ενώ το "Αποθήκευση πλήρους σελίδας" θα καταγράψει τα πάντα στη σελίδα.
 homePageSaveShare = Αποθήκευση και κοινή χρήση
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Όταν καταγράψετε ένα στιγμιότυπο, το Firefox προσθέτει το στιγμιότυπό σας στη διαδικτυακή βιβλιοθήκη του Screenshots σας και αντιγράφει το σύνδεσμο στο πρόχειρό σας. Αποθηκεύουμε αυτόματα το στιγμιότυπό σας για δύο εβδομάδες, αλλά μπορείτε να διαγράψετε τα στιγμιότυπά σας ανά πάσα στιγμή ή να αλλάξετε την ημερομηνία λήξης για να τα κρατήσετε στη βιβλιοθήκη σας για περισσότερο καιρό.
 homePageLegalLink = Νομικά
 homePagePrivacyLink = Απόρρητο
 homePageTermsLink = Όροι
 homePageCookiesLink = Cookies
-// Leave Screenshots pageleavePageErrorGeneric = Προέκυψε σφάλμα
+// Leave Screenshots pageleavePageConfirmDelete = Επιβεβαίωση διαγραφής λογαριασμού
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Πρέπει να έχετε εγκαταστήσει το Firefox Screenshots, ώστε να διαγράψετε το λογαριασμό σας
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Αυτό θα διαγράψει οριστικά όλα τα δεδομένα του Firefox Screenshots σας.
 leavePageButtonProceed = Συνέχεια
 leavePageButtonCancel = Ακύρωση
 leavePageDeleted = Όλα τα στιγμιότυπά σας έχουν διαγραφεί!
-// Not Found pagenotFoundPageIntro = Ωχ.
+// Not Found pagenotFoundPageTitle = Η σελίδα δεν βρέθηκε
 notFoundPageDescription = Η σελίδα δεν βρέθηκε.
-// Shot pageshotPageAlertErrorUpdatingTitle = Σφάλμα αποθήκευσης τίτλου
+// Shot pageshotPageAlertErrorUpdatingExpirationTime = Σφάλμα αποθήκευσης ημερομηνίας λήξης
+shotPageAlertErrorDeletingShot = Σφάλμα διαγραφής στιγμιότυπου
 shotPageConfirmDelete = Θέλετε σίγουρα να διαγράψετε οριστικά το στιγμιότυπο;
 shotPageShareButton
     .title = Κοινή χρήση
@@ -50,16 +56,36 @@ shotPageSharePinterest
     .title = Κοινοποίηση στο Pinterest
 shotPageShareEmail
     .title = Κοινοποίηση συνδέσμου μέσω email
+shotPageShareLink = Λάβετε ένα σύνδεσμο για κοινή χρήση στιγμιότυπου:
+shotPagePrivacyMessage = Οποιοσδήποτε μπορεί να δει αυτό το στιγμιότυπο αν έχει το σύνδεσμο.
 shotPageCopyImageText
     .label = Αντιγραφή κειμένου εικόνας
+shotPageConfirmDeletion = Θέλετε σίγουρα να διαγράψετε οριστικά αυτό το στιγμιότυπο;
+// Note: {$timediff} is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Αν δεν κάνετε τίποτα, αυτό το στιγμιότυπο θα διαγραφεί οριστικά { $timediff }.
 // Note: {$date} is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, {$date} could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = ανάκτηση μέχρι { $date }
 shotPageExpiredMessage = Αυτό το στιγμιότυπο έχει λήξει.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Ορίστε η σελίδα, από την οποία δημιουργήθηκε αρχικά:
 shotPageDeleteButton
     .title = Διαγραφή στιγμιότυπου
+shotPageAbuseButton
+    .title = Αναφορά στιγμιότυπου για κατάχρηση, spam ή άλλα προβλήματα
 shotPageDownloadShot
     .title = Λήψη
+shotPageDownload = Λήψη
+shotPageScreenshotsDescription = Η λήψη στιγμιοτύπων έγινε εύκολη. Λήψη, αποθήκευση και κοινή χρήση στιγμιοτύπων χωρίς να φύγετε από το Firefox.
+shotPageUpsellFirefox = Λήψη του Firefox τώρα
+shotPageDMCAMessage = Αυτό το στιγμιότυπο δεν είναι πλέον διαθέσιμο λόγω ισχυρισμού πνευματικής ιδιοκτησίας ενός τρίτου.
+// Note: {$dmca} is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Παρακαλώ στείλτε email στο { $dmca } για να ζητήσετε περαιτέρω πληροφορίες.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Αν τα στιγμιότυπά σας υπόκεινται σε πολλαπλούς ισχυρισμούς, ενδέχεται να αποκλείσουμε την πρόσβασή σας στο Firefox Screenshots.
+// Note: {$url} is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Παρακαλώ συμπεριλάβετε το URL αυτού του στιγμιότυπου στο email σας: { $url }
+shotPageKeepFor = Πόσο θα διατηρηθεί αυτό το στιγμιότυπο;
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Επιλέξτε χρόνο
 shotPageKeepIndefinitely = Επ' αόριστον
@@ -137,15 +163,25 @@ metricsPageShotsQueryDescription = Αριθμός στιγμιοτύπων πο�
 metricsPageShotsQueryCount = Αριθμός στιγμιοτύπων
 metricsPageShotsQueryDay = Ημέρα
 metricsPageUsersQueryTitle = Χρήστες ανά ημέρα
+metricsPageUsersQueryDescription = Αριθμός χρηστών που δημιούργησαν τουλάχιστον ένα στιγμιότυπο, ανά ημέρα (τις τελευταίες 30 ημέρες)
 metricsPageUsersQueryCount = Αριθμός χρηστών
 metricsPageUsersQueryDay = Ημέρα
 metricsPageUserShotsQueryTitle = Αριθμός στιγμιοτύπων ανά χρήστη
+metricsPageUserShotsQueryDescription = Ο αριθμός των χρηστών που έχουν συνολικά N στιγμιότυπα
 metricsPageUserShotsQueryCount = Αριθμός χρηστών
+metricsPageUserShotsQueryShots = Κατά προσέγγιση αριθμός ενεργών (μη ληγμένων) στιγμιοτύπων
 metricsPageRetentionQueryTitle = Διατήρηση ανά εβδομάδα
+metricsPageRetentionQueryDescription = Αριθμός ημερών από το πρώτο μέχρι το πιο πρόσφατο στιγμιότυπο του χρήστη, ομαδοποιημένες από την αρχική εβδομάδα
 metricsPageRetentionQueryUsers = Αριθμός χρηστών
+metricsPageRetentionQueryDays = Ημέρες από από το πρώτο μέχρι το πιο πρόσφατο στιγμιότυπο του χρήστη
+metricsPageRetentionQueryFirstWeek = Η εβδομάδα που ο χρήστης δημιούργησε το πρώτο στιγμιότυπο
 metricsPageTotalRetentionQueryTitle = Συνολική διατήρηση
+metricsPageTotalRetentionQueryDescription = Χρονικό διάστημα που οι χρήστες δημιουργούν στιγμιότυπα, ανά εβδομάδα
 metricsPageTotalRetentionQueryUsers = Αριθμός χρηστών
+metricsPageTotalRetentionQueryDays = Ημέρες που ο χρήστες δημιουργεί στιγμιότυπα
 metricsPageVersionQueryTitle = Έκδοση προσθέτου
+metricsPageVersionQueryDescription = Η έκδοση του προσθέτου που χρησιμοποιήθηκε κατά τη σύνδεση, τις τελευταίες 14 ημέρες
+metricsPageVersionQueryUsers = Αριθμός συνδεδεμένων χρηστών
 metricsPageVersionQueryVersion = Έκδοση προσθέτου
 metricsPageVersionQueryLastSeen = Ημέρα
 metricsPageHeader = Δείκτες
