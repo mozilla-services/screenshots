@@ -9,8 +9,7 @@ gScreenshotsDescription = Capturas de pantalla simples. Tomar, guardar y compart
 // creatingPageTitleDefault.
 creatingPageTitle = Creando { $title }
 creatingPageTitleDefault = página
-// Home pagehomePageButtonMyShots = Ir a mis capturas
-homePageTeaser = Próximamente…
+// Home pagehomePageTeaser = Próximamente…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Descarga gratuita
 homePageGetStarted = Primeros pasos
@@ -22,15 +21,12 @@ homePageLegalLink = Legales
 homePagePrivacyLink = Privacidad
 homePageTermsLink = Términos
 homePageCookiesLink = Cookies
-// Leave Screenshots pageleavePageConfirmDelete = Confirmar borrado de cuenta
-leavePageErrorGeneric = Ocurrió un error
+// Leave Screenshots pageleavePageErrorGeneric = Ocurrió un error
 leavePageButtonProceed = Continuar
 leavePageButtonCancel = Cancelar
-// Not Found pagenotFoundPageTitle = Página no encontrada
-notFoundPageIntro = Epa.
+// Not Found pagenotFoundPageIntro = Epa.
 notFoundPageDescription = Página no encontrada.
-// Shot pageshotPageAlertErrorUpdatingExpirationTime = Error guardando expiración
-shotPageAlertErrorDeletingShot = Error borrando captura
+// Shot pageshotPageAlertErrorDeletingShot = Error borrando captura
 shotPageAlertErrorUpdatingTitle = Error guardando título
 shotPageConfirmDelete = ¿Está seguro de querer borrar esta captura permanentemente?
 shotPageShareButton
@@ -51,5 +47,33 @@ shotPageCopyImageText
     .label = Copiar texto de imagen
 shotPageConfirmDeletion = ¿Está seguro de querer borrar esta captura permanentemente?
 shotPageExpiredMessage = Esta captura ha expirado.
+shotPageDeleteButton
+    .title = Borrar esta captura
+shotPageDownloadShot
+    .title = Descargar
+shotPageDownload = Descargar
+shotPageKeepIndefinitely = Indefinidamente
+shotPageKeepTenMinutes = 10 minutos
+shotPageKeepOneHour = 1 hora
+shotPageKeepOneDay = 1 día
+shotPageKeepOneWeek = 1 semana
+shotPageKeepTwoWeeks = 2 semanas
+shotPageKeepOneMonth = 1 mes
+shotPageSaveExpiration = guardar
+shotPageCancelExpiration = cancelar
+shotPageDoesNotExpire = no expira
+// Note: {$timediff} is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = expira { $timediff }
+// Note: {$timediff} is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = expirada { $timediff }
+timeDiffJustNow = ahora mismo
+timeDiffMinutesAgo = { $num ->
+        [one] hace un minuto
+       *[other] hace { $number } minutos
+    }
+timeDiffHoursAgo = { $num ->
+        [one] hace una hora
+       *[other] hace { $number } horas
+    }
 // Shotindex page// Metrics page
 // Note: all metrics strings are optional for translation
