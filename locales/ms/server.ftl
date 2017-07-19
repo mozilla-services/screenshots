@@ -8,8 +8,7 @@ gScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skri
 // captured in the screenshot. The default, for pages without titles, is
 // creatingPageTitleDefault.
 creatingPageTitle = Mencipta { $title }
-// Home pagehomePageButtonMyShots = Pergi Ke Syot Saya
-// Note: do not translate 'Firefox Screenshots' when translating this string
+// Home page// Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Bagaimana Firefox Screenshots Berfungsi
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Cari ikon baru Screenshots pada bar alatan anda. Pilih, dan menu Screenshots akan muncul pada bahagian atas tetingkap pelayar anda.
@@ -22,8 +21,7 @@ leavePageErrorAddonRequired = Anda mesti ada Firefox Screenshots yang dipasang u
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ini akan menghapuskan semua data Firefox Screenshots anda secara kekal.
 leavePageDeleted = Semua skrinsyot anda telah dipadam!
-// Not Found page// Shot pageshotPageAlertErrorUpdatingExpirationTime = Ralat semasa menetapkan tarikh luput
-shotPageAlertErrorDeletingShot = Ralat semasa memadam syot
+// Not Found page// Shot pageshotPageAlertErrorDeletingShot = Ralat semasa memadam syot
 shotPageAlertErrorUpdatingTitle = Ralat menyimpan tajuk
 shotPageConfirmDelete = Anda pasti mahu padam syot ini secara kekal?
 shotPageShareButton
@@ -63,5 +61,53 @@ shotPageUpsellFirefox = Dapatkan Firefox sekarang
 shotPageDMCAMessage = Syot ini tidak lagi tersedia kerana tuntutan harta intelek pihak ketiga.
 // Note: {$dmca} is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Sila e-mel { $dmca } untuk mendapatkan maklumat lanjut.
-// Shotindex page// Metrics page
-// Note: all metrics strings are optional for translation
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = JIka Syot anda tertakluk kepada pelbagai tuntutan, kami boleh menarik balik akses anda ke Firefox Screenshots.
+// Note: {$url} is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Sila sertakan URL syot ini dalam e-mel anda: { $url }
+shotPageKeepFor = Berapa lama syot ini perlu disimpan?
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Pilih masa
+shotPageKeepIndefinitely = Infiniti
+shotPageKeepTenMinutes = 10 minit
+shotPageKeepOneHour = 1 Jam
+shotPageKeepOneDay = I Hari
+shotPageKeepOneWeek = 1 Minggu
+shotPageKeepTwoWeeks = 2 Minggu
+shotPageKeepOneMonth = 1 Bulan
+shotPageSaveExpiration = simpan
+shotPageCancelExpiration = batal
+shotPageDoesNotExpire = tiada tamat tempoh
+// Note: {$timediff} is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = tamat tempoh { $timediff }
+// Note: {$timediff} is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = tamat tempoh { $timediff }
+// Shotindex page// {$status} is a placeholder for an HTTP status code, like '500'.
+// {$statusText} is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Ralat memadam syot: { $status } { $statusText }
+// {$searchTerm} is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Syot Saya: cari { $searchTerm }
+// {$error} is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Ralat mentafsir halaman: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Carian syot saya
+shotIndexPageSearchButton
+    .title = Cari
+shotIndexPageNoShotsMessage = Tiada syot disimpan.
+shotIndexPageNoShotsInvitation = Ayuh, ambil gambar.
+shotIndexPageLookingForShots = Mencari syot anda...
+shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Kami tidak menemui syot yang sepadan dengan carian anda.
+shotIndexPageClearSearchButton
+    .title = Padam carian
+shotIndexPageConfirmShotDelete = Padam syot ini?
+// Metrics page
+// Note: all metrics strings are optional for translation// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Matriks Firefox Screenshots
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Tinjauan Screenshots
+metricsPageTotalsQueryActiveShots = Syot aktif
+metricsPageTotalsQueryExpiredShots = Tamat tempot (tapi boleh dikembalikan)
+metricsPageTotalsQueryExpiredDeletedShots = Tamat tempoh (dan dipadam)
+metricsPageShotsQueryTitle = Syot mengikut Hari
