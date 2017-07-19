@@ -17,6 +17,8 @@ XPCOMUtils.defineLazyModuleGetter(this, "Services",
                                   "resource://gre/modules/Services.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "LegacyExtensionsUtils",
                                   "resource://gre/modules/LegacyExtensionsUtils.jsm");
+XPCOMUtils.defineLazyModuleGetter(this, "CustomizableUI",
+                                  "resource:///modules/CustomizableUI.jsm");
 
 let addonResourceURI;
 let appStartupDone;
@@ -59,7 +61,59 @@ const appStartupObserver = {
   }
 }
 
+const LibraryButton = {
+  ITEM_ID: "appMenu-library-screenshots",
+
+  init(webExtension) {
+    this._initialized = true;
+    let permissionPages = [...webExtension.extension.permissions].filter(p => (/^https?:\/\//i).test(p));
+    this.PAGE_TO_OPEN = permissionPages.length ? permissionPages[0].replace(/\*$/, "") : "https://screenshots.firefox.com/";
+    this.PAGE_TO_OPEN += "shots";
+    this.ICON_URL = webExtension.extension.getURL("icons/icon-16-v2.svg");
+    this.ICON_URL_2X = webExtension.extension.getURL("icons/icon-32-v2.svg");
+    this.LABEL = webExtension.extension.localizeMessage("libraryLabel");
+    CustomizableUI.addListener(this);
+    for (let win of CustomizableUI.windows) {
+      this.onWindowOpened(win);
+    }
+  },
+
+  uninit() {
+    if (!this._initialized) {
+      return;
+    }
+    for (let win of CustomizableUI.windows) {
+      let item = document.getElementById(this.ITEM_ID);
+      if (item) {
+        item.remove();
+      }
+    }
+    CustomizableUI.removeListener(this);
+  },
+
+  onWindowOpened(win) {
+    let libraryViewInsertionPoint = win.document.getElementById("appMenu-library-remotetabs-button");
+    // If the library view doesn't exist (on non-photon builds, for instance),
+    // this will be null, and we bail out early.
+    if (!libraryViewInsertionPoint) {
+      return;
+    }
+    let parent = libraryViewInsertionPoint.parentNode;
+    let {nextSibling} = libraryViewInsertionPoint;
+    let item = win.document.createElement("toolbarbutton");
+    item.className = "subviewbutton subviewbutton-iconic";
+    item.addEventListener("command", () => win.openUILinkIn(this.PAGE_TO_OPEN, "tab"));
+    item.id = this.ITEM_ID;
+    let iconURL = win.devicePixelRatio >= 1.1 ? this.ICON_URL_2X : this.ICON_URL;
+    item.setAttribute("image", iconURL);
+    item.setAttribute("label", this.LABEL);
+
+    parent.insertBefore(item, nextSibling);
+  },
+};
+
 const APP_STARTUP = 1;
+const APP_SHUTDOWN = 2;
 let startupReason;
 
 function startup(data, reason) { // eslint-disable-line no-unused-vars
@@ -112,6 +166,7 @@ function handleStartup() {
 function start(webExtension) {
   webExtension.startup(startupReason).then((api) => {
     api.browser.runtime.onMessage.addListener(handleMessage);
+    LibraryButton.init(webExtension);
   }).catch((err) => {
     // The startup() promise will be rejected if the webExtension was
     // already started (a harmless error), or if initializing the
@@ -125,6 +180,10 @@ function start(webExtension) {
 
 function stop(webExtension, reason) {
   webExtension.shutdown(reason);
+
+  if (reason != APP_SHUTDOWN) {
+    LibraryButton.uninit();
+  }
 }
 
 function handleMessage(msg, sender, sendReply) {
