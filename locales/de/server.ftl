@@ -9,9 +9,7 @@ gScreenshotsDescription = Bildschirmfotos ganz einfach. Machen, speichern und te
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } wird erstellt
 creatingPageTitleDefault = Seite
-// Home pagehomePageDescription
-    .content = Intuitive Bildschirmfotos direkt aus dem Browser. Während des Surfens mit Firefox können Sie Screenshots machen, speichern und teilen.
-homePageButtonMyShots = Meine Bildschirmfotos anzeigen
+// Home pagehomePageButtonMyShots = Meine Bildschirmfotos anzeigen
 homePageTeaser = Bald verfügbar…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Kostenloser Download
@@ -33,8 +31,7 @@ homePageLegalLink = Rechtliches
 homePagePrivacyLink = Datenschutz
 homePageTermsLink = Nutzungsbedingungen
 homePageCookiesLink = Cookies
-// Leave Screenshots pageleavePageConfirmDelete = Kontenlöschung bestätigen
-// Note: do not translate 'Firefox Screenshots' when translating this string
+// Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Firefox Screenshots muss installiert sein, um Ihr Konto zu löschen
 leavePageErrorGeneric = Ein Fehler ist aufgetreten
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -42,11 +39,9 @@ leavePageWarning = Dies löscht dauerhaft all Ihre Daten von Firefox Screenshots
 leavePageButtonProceed = Fortfahren
 leavePageButtonCancel = Abbrechen
 leavePageDeleted = All Ihre Bildschirmfotos wurden gelöscht!
-// Not Found pagenotFoundPageTitle = Seite nicht gefunden
-notFoundPageIntro = Hoppla.
+// Not Found pagenotFoundPageIntro = Hoppla.
 notFoundPageDescription = Seite nicht gefunden.
-// Shot pageshotPageAlertErrorUpdatingExpirationTime = Fehler beim Speichern des Ablaufdatums.
-shotPageAlertErrorDeletingShot = Fehler beim Löschen des Bildschirmfotos
+// Shot pageshotPageAlertErrorDeletingShot = Fehler beim Löschen des Bildschirmfotos
 shotPageAlertErrorUpdatingTitle = Fehler beim Speichern des Titels
 shotPageConfirmDelete = Soll dieses Bildschirmfoto wirklich dauerhaft gelöscht werden?
 shotPageShareButton
@@ -157,3 +152,40 @@ shotIndexPageConfirmShotDelete = Dieses Bildschirmfoto löschen?
 // Note: all metrics strings are optional for translation// Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Metriken zu Firefox Screenshots
 metricsPageTotalsQueryTitle = Gesamt
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Eine Übersicht zu Screenshots
+metricsPageTotalsQueryDevices = Insgesamt registrierte Geräte
+metricsPageTotalsQueryActiveShots = Aktive Bildschirmfotos
+metricsPageTotalsQueryExpiredShots = Abgelaufen (aber wiederherstellbar)
+metricsPageTotalsQueryExpiredDeletedShots = Abgelaufen (und gelöscht)
+metricsPageShotsQueryTitle = Bildschirmfotos nach Tag
+metricsPageShotsQueryDescription = Zahl der pro Tag erstellten Bildschirmfotos (für die letzten 30 Tage)
+metricsPageShotsQueryCount = Anzahl der Bildschirmfotos
+metricsPageShotsQueryDay = Tag
+metricsPageUsersQueryTitle = Nutzer nach Tag
+metricsPageUsersQueryDescription = Zahl der Nutzer, die mindestens ein Bildschirmfoto erstellt hat, nach Tag (letzte 30 Tage)
+metricsPageUsersQueryCount = Anzahl der Benutzer
+metricsPageUsersQueryDay = Tag
+metricsPageUserShotsQueryTitle = Zahl von Bildschirmfotos pro Nutzer
+metricsPageUserShotsQueryDescription = Die Anzahl der Benutzer, die insgesamt etwa N Bildschirmfotos hat
+metricsPageUserShotsQueryCount = Anzahl der Benutzer
+metricsPageUserShotsQueryShots = Ungefähre Anzahl aktiver (nicht abgelaufener) Bildschirmfotos
+metricsPageRetentionQueryTitle = Weiternutzung nach Woche
+metricsPageRetentionQueryDescription = Anzahl der Tage vom ersten bis zum neuesten Bildschirmfotos einer Benutzers, nach Anfangswoche gruppiert
+metricsPageRetentionQueryUsers = Anzahl der Benutzer
+metricsPageRetentionQueryDays = Tage vom ersten bis zum neuesten Bildschirmfoto eines Benutzers
+metricsPageRetentionQueryFirstWeek = Woche, in der der Benutzer erstmals ein Bildschirmfoto erstellt hat
+metricsPageTotalRetentionQueryTitle = Weiternutzung insgesamt
+metricsPageTotalRetentionQueryDescription = Länge der Zeit, die Nutzer Bildschirmfotos erstellen, nach Woche gruppiert
+metricsPageTotalRetentionQueryUsers = Anzahl der Benutzer
+metricsPageTotalRetentionQueryDays = Tage, die der Benutzer Bildschirmfotos erstellt
+metricsPageVersionQueryTitle = Add-on-Version
+metricsPageVersionQueryDescription = Die Version des Add-ons während der Anmeldung in den letzten 14 Tagen
+metricsPageVersionQueryUsers = Anzahl der angemeldeten Benutzer
+metricsPageVersionQueryVersion = Add-on-Version
+metricsPageVersionQueryLastSeen = Tag
+metricsPageHeader = Metriken
+// Note: {$created} is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Erstellt am: { $created }
+// Note {$time} is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (Zeitstempel der Datenbank: { $time }ms)
