@@ -18,14 +18,18 @@ exports.render = function(req, res, page) {
       gitRevision: getGitRevision(),
       cdn,
       csrfToken,
-      abTests: req.abTests
+      abTests: req.abTests,
+      userLocales: req.userLocales,
+      messages: req.messages
     }, jsonModel);
     serverModel = Object.assign({
       authenticated: !!req.deviceId,
       sentryPublicDSN: req.config.sentryPublicDSN,
       staticLink: req.staticLink,
       csrfToken,
-      abTests: req.abTests
+      abTests: req.abTests,
+      userLocales: req.userLocales,
+      messages: req.messages
     }, serverModel);
     if (req.query.data == "json") {
       if (req.query.pretty !== undefined) {
