@@ -21,8 +21,7 @@ leavePageErrorAddonRequired = Anda mesti ada Firefox Screenshots yang dipasang u
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ini akan menghapuskan semua data Firefox Screenshots anda secara kekal.
 leavePageDeleted = Semua skrinsyot anda telah dipadam!
-// Not Found page// Shot pageshotPageAlertErrorDeletingShot = Ralat semasa memadam syot
-shotPageAlertErrorUpdatingTitle = Ralat menyimpan tajuk
+// Not Found page// Shot pageshotPageAlertErrorUpdatingTitle = Ralat menyimpan tajuk
 shotPageConfirmDelete = Anda pasti mahu padam syot ini secara kekal?
 shotPageShareButton
     .title = Kongsi
@@ -111,3 +110,16 @@ metricsPageTotalsQueryActiveShots = Syot aktif
 metricsPageTotalsQueryExpiredShots = Tamat tempot (tapi boleh dikembalikan)
 metricsPageTotalsQueryExpiredDeletedShots = Tamat tempoh (dan dipadam)
 metricsPageShotsQueryTitle = Syot mengikut Hari
+metricsPageShotsQueryDescription = Bilangan syot diambil setiap hari (sepanjang 30 hari lepas)
+metricsPageShotsQueryCount = Bilangan syot diambil
+metricsPageShotsQueryDay = Hari
+metricsPageUsersQueryDescription = Bilangan pengguna yang mengambil paling kurang satu syot, mengikut hari (30 hari lepas)
+metricsPageUserShotsQueryTitle = Bilangan Syot setiap Pengguna
+metricsPageUserShotsQueryDescription = Bilangan pengguna yang ada sejumlah N syot
+metricsPageUserShotsQueryCount = Bilangan pengguna
+metricsPageUserShotsQueryShots = Anggaran bilangan syot aktif (tiada tamat tempoh)
+metricsPageRetentionQueryDescription = Bilangan hari bermula syot pertama pengguna hingga ke syot terkini, dihimpun mengikut permulaan minggu
+metricsPageRetentionQueryDays = Bilangan hari sejak syot pengguna yang pertama hingga ke syot terkini
+metricsPageRetentionQueryFirstWeek = Minggu pengguna kali pertama ambil syot
+metricsPageTotalRetentionQueryDescription = Tempoh pengguna mencipta syot, dihimpun mengikut minggu
+metricsPageTotalRetentionQueryDays = Hari pengguna mencipta syot
