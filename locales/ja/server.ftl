@@ -9,7 +9,8 @@ gScreenshotsDescription = スクリーンショットを簡単に。Firefox を�
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } を作成しています
 creatingPageTitleDefault = ページ
-// Home pagehomePageButtonMyShots = 自分のショットへ
+// Home pagehomePageDescription
+    .content = ブラウザーに組み込まれた直感的なスクリーンショット機能。Firefox を使ってウェブをブラウズしながら、スクリーンショットをキャプチャ、保存、共有できます。
 homePageTeaser = 近日公開...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = 無料ダウンロード
@@ -31,22 +32,22 @@ homePageLegalLink = 法的通知
 homePagePrivacyLink = プライバシー
 homePageTermsLink = 利用規約
 homePageCookiesLink = Cookie
-// Leave Screenshots pageleavePageConfirmDelete = アカウントの削除を確認
-// Note: do not translate 'Firefox Screenshots' when translating this string
+// Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = アカウントを削除するには Firefox Screenshots がインストールされている必要があります
 leavePageErrorGeneric = 問題が発生しました
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = これによりあなたの Firefox Screenshots データはすべて永久に消去されます。
+leavePageButtonProceed = 続ける
 leavePageButtonCancel = キャンセル
 leavePageDeleted = あなたのスクリーンショットはすべて消去されました！
-// Not Found pagenotFoundPageTitle = ページが見つかりませんでした
-notFoundPageIntro = おっと。
-// Shot pageshotPageAlertErrorUpdatingExpirationTime = 期限の保存中に問題が発生しました
-shotPageAlertErrorDeletingShot = ショットの削除中に問題が発生しました
+// Not Found pagenotFoundPageIntro = おっと。
+notFoundPageDescription = ページが見つかりませんでした。
+// Shot pageshotPageAlertErrorDeletingShot = ショットの削除中に問題が発生しました
 shotPageAlertErrorUpdatingTitle = タイトルの保存中に問題が発生しました
 shotPageConfirmDelete = 本当にこのショットを永久に削除しますか？
 shotPageShareButton
     .title = 共有
+shotPageCopy = コピー
 shotPageCopied = コピー完了
 shotPageShareFacebook
     .title = Facebook で共有
@@ -79,6 +80,13 @@ shotPageDownload = ダウンロード
 shotPageScreenshotsDescription = スクリーンショットを簡単に。Firefox を離れることなくスクリーンショットを撮影、保存、共有。
 shotPageUpsellFirefox = 今すぐ Firefox をダウンロード
 shotPageDMCAMessage = このショットは第三者による知的所有権侵害報告により使用できなくなりました。
+// Note: {$dmca} is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = より詳しい情報は { $dmca } までお問い合わせください。
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = あなたのショットに対して問題報告が複数寄せられた場合、あなたの Firefox Screenshots へのアクセスは無効化される可能性があります。
+// Note: {$url} is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = このショットの URL をメールに記載してください: { $url }
+shotPageKeepFor = このショットの保存期間
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = 時間を選択
 shotPageKeepIndefinitely = 無期限
@@ -96,16 +104,37 @@ shotPageExpiresIn = { $timediff } に期限切れ
 // Note: {$timediff} is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } に期限切れ
 timeDiffJustNow = たった今
-timeDiffMinutesAgo = { $num ->
-       *[other] { $number } 分前
+timeDiffMinutesAgo = { $number } 分前
+timeDiffHoursAgo = { $number } 時間前
+timeDiffDaysAgo = { $number } 日前
+timeDiffFutureSeconds = 数秒以内
+timeDiffFutureMinutes = { $num ->
+       *[other] { $number } 分以内
     }
-timeDiffHoursAgo = { $num ->
-       *[other] { $number } 時間前
+timeDiffFutureHours = { $num ->
+       *[other] { $number } 時間以内
     }
-timeDiffDaysAgo = { $num ->
-       *[other] { $number } 日前
+timeDiffFutureDays = { $num ->
+       *[other] { $number } 日以内
     }
-// Shotindex pageshotIndexPageNoShotsMessage = 保存済みのショットはありません。
+// Shotindex page// {$status} is a placeholder for an HTTP status code, like '500'.
+// {$statusText} is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = ショットの削除中に問題が発生しました: { $status } { $statusText }
+// {$searchTerm} is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = 自分のショット: { $searchTerm } を検索
+// {$error} is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = ページのレンダリング中に問題が発生しました: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = 自分のショットを検索
+shotIndexPageSearchButton
+    .title = 検索
+shotIndexPageNoShotsInvitation = さぁ、いくつかショットを撮ってみましょう。
+shotIndexPageLookingForShots = あなたのショットを検索しています...
+shotIndexPageNoSearchResultsIntro = うーん
+shotIndexPageNoSearchResults = 検索語に一致するショットが見つかりませんでした。
+shotIndexPageClearSearchButton
+    .title = 検索語を消去
 shotIndexPageConfirmShotDelete = このショットを削除しますか？
 // Metrics page
 // Note: all metrics strings are optional for translation// Note: 'Firefox Screenshots' should not be translated
@@ -118,14 +147,28 @@ metricsPageTotalsQueryActiveShots = アクティブなショット
 metricsPageTotalsQueryExpiredShots = 期限切れ (ただし復元可能)
 metricsPageTotalsQueryExpiredDeletedShots = 期限切れ (削除済み)
 metricsPageShotsQueryTitle = 日別ショット数
+metricsPageShotsQueryDescription = 毎日作成されたショットの数 (過去 30 日間)
 metricsPageShotsQueryCount = ショット数
+metricsPageShotsQueryDay = 日
 metricsPageUsersQueryTitle = 日別ユーザー数
+metricsPageUsersQueryDescription = 少なくとも 1 つショットを作成したユーザーの日別数 (過去 30 日間)
 metricsPageUsersQueryCount = ユーザー数
 metricsPageUsersQueryDay = 日
+metricsPageUserShotsQueryTitle = ユーザーごとのショット数
+metricsPageUserShotsQueryDescription = 合計で約 N ショット所有しているユーザーの数
 metricsPageUserShotsQueryCount = ユーザー数
+metricsPageUserShotsQueryShots = アクティブな (期限切れ前の) ショットのおおよその数
+metricsPageRetentionQueryTitle = 週別滞留率
+metricsPageRetentionQueryDescription = ユーザーの最初のショットから最近のショットまでの日数 (最初の週での分類)
 metricsPageRetentionQueryUsers = ユーザー数
+metricsPageRetentionQueryDays = ユーザーの最初から最近のショットまでの日数
+metricsPageRetentionQueryFirstWeek = ユーザーが最初にショットを作成した週
+metricsPageTotalRetentionQueryTitle = 合計滞留率
+metricsPageTotalRetentionQueryDescription = ユーザーがショットを作成している期間の長さ (週別の分類)
 metricsPageTotalRetentionQueryUsers = ユーザー数
+metricsPageTotalRetentionQueryDays = ユーザーがショットを作成している日数
 metricsPageVersionQueryTitle = アドオンのバージョン
+metricsPageVersionQueryDescription = ログイン中に使用されたアドオンのバージョン (過去 14 日間)
 metricsPageVersionQueryVersion = アドオンのバージョン
 metricsPageVersionQueryLastSeen = 日
 metricsPageHeader = 統計データ
