@@ -9,7 +9,8 @@ gScreenshotsDescription = スクリーンショットを簡単に。Firefox を�
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } を作成しています
 creatingPageTitleDefault = ページ
-// Home pagehomePageButtonMyShots = 自分のショットへ
+// Home pagehomePageDescription
+    .content = ブラウザーに組み込まれた直感的なスクリーンショットツール。Firefox を使ってウェブをブラウズしながら、スクリーンショットをキャプチャ、保存、共有できます。
 homePageTeaser = 近日公開...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = 無料ダウンロード
@@ -31,8 +32,7 @@ homePageLegalLink = 法的通知
 homePagePrivacyLink = プライバシー
 homePageTermsLink = 利用規約
 homePageCookiesLink = Cookie
-// Leave Screenshots pageleavePageConfirmDelete = アカウントの削除を確認
-// Note: do not translate 'Firefox Screenshots' when translating this string
+// Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = アカウントを削除するには Firefox Screenshots がインストールされている必要があります
 leavePageErrorGeneric = 問題が発生しました
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -40,9 +40,9 @@ leavePageWarning = これによりあなたの Firefox Screenshots データは�
 leavePageButtonProceed = 続ける
 leavePageButtonCancel = キャンセル
 leavePageDeleted = あなたのスクリーンショットはすべて消去されました！
-// Not Found pagenotFoundPageTitle = ページが見つかりませんでした
+// Not Found pagenotFoundPageIntro = おっと。
 notFoundPageDescription = ページが見つかりませんでした。
-// Shot pageshotPageAlertErrorUpdatingExpirationTime = 期限の保存中に問題が発生しました
+// Shot pageshotPageAlertErrorDeletingShot = ショットの削除中に問題が発生しました
 shotPageAlertErrorUpdatingTitle = タイトルの保存中に問題が発生しました
 shotPageConfirmDelete = 本当にこのショットを永久に削除しますか？
 shotPageShareButton
