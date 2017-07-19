@@ -10,7 +10,7 @@ gScreenshotsDescription = スクリーンショットを簡単に。Firefox を�
 creatingPageTitle = { $title } を作成しています
 creatingPageTitleDefault = ページ
 // Home pagehomePageDescription
-    .content = ブラウザに組み込まれた直感的なスクリーンショット機能。Firefox を使ってウェブをブラウズしながら、スクリーンショットをキャプチャー、保存、共有できます。
+    .content = ブラウザーに組み込まれた直感的なスクリーンショット機能。Firefox を使ってウェブをブラウズしながら、スクリーンショットをキャプチャ、保存、共有できます。
 homePageButtonMyShots = 自分のショットへ
 homePageTeaser = 近日公開...
 homePageDownloadFirefoxTitle = Firefox
@@ -19,21 +19,21 @@ homePageGetStarted = はじめよう
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots の仕組み
 homePageGetStartedTitle = はじめよう
-homePageCaptureRegion = 選択範囲を保存
-homePageCapturePage = ページ全体を保存
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = ツールバー上にある新しいスクリーンショットアイコンを見つけてください。それを選択すれば、ブラウザーウィンドウの上にスクリーンショットメニューが表示されます。
+homePageCaptureRegion = 選択範囲をキャプチャ
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = クリック＆ドラッグで、キャプチャしたい範囲を選択します。あるいは単純にマウスを当ててクリックすれば、Screenshots が自動的に範囲を選択してくれます。範囲を確定したら、保存ボタンをクリックすればオンラインでスクリーンショットを参照できます。また下向きの矢印ボタンでコンピューターに保存することもできます。
+homePageCapturePage = ページをキャプチャ
 homePageSaveShare = 保存して共有
 homePageLegalLink = 法的通知
 homePagePrivacyLink = プライバシー
 homePageTermsLink = 利用規約
 homePageCookiesLink = Cookie
-// Leave Screenshots pageleavePageConfirmDelete = アカウントの削除を確認
-leavePageButtonProceed = 続ける
+// Leave Screenshots pageleavePageButtonProceed = 続ける
 leavePageButtonCancel = キャンセル
-// Not Found pagenotFoundPageTitle = ページが見つかりませんでした
-notFoundPageDescription = ページが見つかりませんでした。
-// Shot pageshotPageShareButton
-    .title = 共有
-shotPageCopy = コピー
+// Not Found pagenotFoundPageDescription = ページが見つかりませんでした。
+// Shot pageshotPageCopy = コピー
 shotPageCopied = コピー完了
 shotPageShareFacebook
     .title = Facebook で共有
@@ -43,6 +43,15 @@ shotPageSharePinterest
     .title = Pinterest で共有
 shotPageShareEmail
     .title = メールでリンクを共有
+shotPageShareLink = このショットの共有リンクを取得:
+shotPageCopyImageText
+    .label = 画像のテキストをコピー
+shotPageConfirmDeletion = 本当にこのショットを完全に削除しますか？
+shotPageDeleteButton
+    .title = このショットを削除
+shotPageDownloadShot
+    .title = ダウンロード
+shotPageDownload = ダウンロード
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = 時間を選択
 shotPageKeepIndefinitely = 無期限
@@ -54,6 +63,11 @@ shotPageKeepTwoWeeks = 2 週間
 shotPageKeepOneMonth = 1 か月
 shotPageSaveExpiration = 保存
 shotPageCancelExpiration = キャンセル
+shotPageDoesNotExpire = 無期限
+// Note: {$timediff} is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = { $timediff } に期限切れ
+// Note: {$timediff} is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = { $timediff } に期限切れ
 timeDiffJustNow = たった今
 timeDiffMinutesAgo = { $num ->
        *[other] { $number } 分前
@@ -64,5 +78,29 @@ timeDiffHoursAgo = { $num ->
 timeDiffDaysAgo = { $num ->
        *[other] { $number } 日前
     }
-// Shotindex page// Metrics page
-// Note: all metrics strings are optional for translation
+// Shotindex pageshotIndexPageSearchButton
+    .title = 検索
+shotIndexPageNoShotsMessage = 保存済みのショットはありません。
+shotIndexPageConfirmShotDelete = このショットを削除しますか？
+// Metrics page
+// Note: all metrics strings are optional for translation// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Firefox Screenshots 統計データ
+metricsPageTotalsQueryTitle = 合計
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Screenshots の概要
+metricsPageTotalsQueryDevices = 登録済み合計端末数
+metricsPageTotalsQueryActiveShots = アクティブなショット
+metricsPageTotalsQueryExpiredShots = 期限切れ (ただし復元可能)
+metricsPageTotalsQueryExpiredDeletedShots = 期限切れ (削除済み)
+metricsPageShotsQueryTitle = 日別ショット数
+metricsPageShotsQueryCount = ショット数
+metricsPageUsersQueryTitle = 日別ユーザー数
+metricsPageUsersQueryCount = ユーザー数
+metricsPageUsersQueryDay = 日
+metricsPageUserShotsQueryCount = ユーザー数
+metricsPageRetentionQueryUsers = ユーザー数
+metricsPageTotalRetentionQueryUsers = ユーザー数
+metricsPageVersionQueryTitle = アドオンのバージョン
+metricsPageVersionQueryVersion = アドオンのバージョン
+metricsPageVersionQueryLastSeen = 日
+metricsPageHeader = 統計データ
