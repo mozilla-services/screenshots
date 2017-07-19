@@ -9,7 +9,7 @@ gScreenshotsDescription = Capturas de pantalla simples. Tomar, guardar y compart
 // creatingPageTitleDefault.
 creatingPageTitle = Creando { $title }
 creatingPageTitleDefault = página
-// Home pagehomePageTeaser = Próximamente…
+// Home pagehomePageButtonMyShots = Ir a mis capturas
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Descarga gratuita
 homePageGetStarted = Primeros pasos
@@ -21,12 +21,12 @@ homePageLegalLink = Legales
 homePagePrivacyLink = Privacidad
 homePageTermsLink = Términos
 homePageCookiesLink = Cookies
-// Leave Screenshots pageleavePageErrorGeneric = Ocurrió un error
+// Leave Screenshots pageleavePageConfirmDelete = Confirmar borrado de cuenta
 leavePageButtonProceed = Continuar
 leavePageButtonCancel = Cancelar
-// Not Found pagenotFoundPageIntro = Epa.
+// Not Found pagenotFoundPageTitle = Página no encontrada
 notFoundPageDescription = Página no encontrada.
-// Shot pageshotPageAlertErrorDeletingShot = Error borrando captura
+// Shot pageshotPageAlertErrorUpdatingExpirationTime = Error guardando expiración
 shotPageAlertErrorUpdatingTitle = Error guardando título
 shotPageConfirmDelete = ¿Está seguro de querer borrar esta captura permanentemente?
 shotPageShareButton
@@ -75,5 +75,52 @@ timeDiffHoursAgo = { $num ->
         [one] hace una hora
        *[other] hace { $number } horas
     }
-// Shotindex page// Metrics page
-// Note: all metrics strings are optional for translation
+timeDiffDaysAgo = { $num ->
+        [one] ayer
+       *[other] hace { $number } días
+    }
+timeDiffFutureSeconds = en unos pocos segundos
+timeDiffFutureMinutes = { $num ->
+        [one] en 1 minuto
+       *[other] en { $number } minutos
+    }
+timeDiffFutureHours = { $num ->
+        [one] en 1 hora
+       *[other] en { $number } horas
+    }
+timeDiffFutureDays = { $num ->
+        [one] mañana
+       *[other] en { $number } días
+    }
+// Shotindex page// {$status} is a placeholder for an HTTP status code, like '500'.
+// {$statusText} is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Error borrando captura: { $status } { $statusText }
+// {$searchTerm} is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Mis capturas: búsqueda de { $searchTerm }
+shotIndexPageSearchPlaceholder
+    .placeholder = Buscar mis capturas
+shotIndexPageSearchButton
+    .title = Buscar
+shotIndexPageNoShotsMessage = No hay capturas guardadas.
+shotIndexPageNoShotsInvitation = Vamos, create alguna.
+shotIndexPageLookingForShots = Buscando tus capturas…
+shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = No podemos encontrar capturas que coincidan con la búsqueda.
+shotIndexPageClearSearchButton
+    .title = Borrar búsqueda
+shotIndexPageConfirmShotDelete = ¿Borrar esta captura?
+// Metrics page
+// Note: all metrics strings are optional for translationmetricsPageTotalsQueryTitle = Totales
+metricsPageTotalsQueryActiveShots = Capturas activas
+metricsPageTotalsQueryExpiredShots = Expirada (pero recuperable)
+metricsPageTotalsQueryExpiredDeletedShots = Expirada (y borrada)
+metricsPageShotsQueryTitle = Capturas por día
+metricsPageShotsQueryDescription = Número de capturas creadas cada día (los últimos 30 días)
+metricsPageShotsQueryCount = Número de capturas
+metricsPageShotsQueryDay = Día
+metricsPageUsersQueryTitle = Usuarios por día
+metricsPageUsersQueryDescription = Número de usuarios que crearon al menos una captura, por día (últimos 30 días)
+metricsPageUsersQueryCount = Número de usuarios
+metricsPageUsersQueryDay = Día
+metricsPageUserShotsQueryTitle = Número de capturas por usuario
+metricsPageUserShotsQueryCount = Número de usuarios
