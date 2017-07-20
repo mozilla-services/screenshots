@@ -45,9 +45,14 @@ homePageCookiesLink = Cookies
 [[ Leave Screenshots page ]]
 
 leavePageConfirmDelete = Confirmar borrado de cuenta
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Hay que tener instalado Firefox Screenshots para borrar la cuenta
 leavePageErrorGeneric = Ocurrió un error
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Esto borrará de forma permanente todos tus datos de Firefox Screenshots.
 leavePageButtonProceed = Continuar
 leavePageButtonCancel = Cancelar
+leavePageDeleted = ¡Todas tus capturas fueron borradas!
 
 
 [[ Not Found page ]]
@@ -80,6 +85,9 @@ shotPagePrivacyMessage = Cualquiera con el enlace puede ver esta captura.
 shotPageCopyImageText
     .label = Copiar texto de imagen
 shotPageConfirmDeletion = ¿Está seguro de querer borrar esta captura permanentemente?
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = restaurar hasta { $date }
 shotPageExpiredMessage = Esta captura ha expirado.
 // Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Esta es la página de la que fue originalmente creada:
@@ -89,6 +97,8 @@ shotPageDownloadShot
     .title = Descargar
 shotPageDownload = Descargar
 shotPageUpsellFirefox = Obtener Firefox ahora
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Enviá un correo electrónico a { $dmca } para pedir más información.
 shotPageKeepFor = ¿Cuánto tiempo debería mantenerse esta captura?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Seleccionar tiempo
@@ -174,4 +184,9 @@ metricsPageUsersQueryCount = Número de usuarios
 metricsPageUsersQueryDay = Día
 metricsPageUserShotsQueryTitle = Número de capturas por usuario
 metricsPageUserShotsQueryCount = Número de usuarios
+metricsPageVersionQueryTitle = Versión del complemento
 metricsPageVersionQueryVersion = Versión del complemento
+metricsPageVersionQueryLastSeen = Día
+metricsPageHeader = Métricas
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Generada el: { $created }
