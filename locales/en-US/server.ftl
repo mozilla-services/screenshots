@@ -8,23 +8,23 @@
 gMyShots = My Shots
 gHomeLink = Home
 gNoShots
-  .alt = No shots found
+    .alt = No shots found
 gScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
 
 
 [[ Creating page ]]
 
-// Note: {$title} is a placeholder for the title of the web page
+// Note: { $title } is a placeholder for the title of the web page
 // captured in the screenshot. The default, for pages without titles, is
 // creatingPageTitleDefault.
-creatingPageTitle = Creating {$title}
+creatingPageTitle = Creating { $title }
 creatingPageTitleDefault = page
 
 
 [[ Home page ]]
 
 homePageDescription
-  .content = Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox.
+    .content = Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox.
 homePageButtonMyShots = Go To My Shots
 homePageTeaser = Coming Soon…
 homePageDownloadFirefoxTitle = Firefox
@@ -76,46 +76,46 @@ shotPageAlertErrorDeletingShot = Error deleting shot
 shotPageAlertErrorUpdatingTitle = Error saving title
 shotPageConfirmDelete = Are you sure you want to delete this shot permanently?
 shotPageShareButton
-  .title = Share
+    .title = Share
 shotPageCopy = Copy
 shotPageCopied = Copied
 shotPageShareFacebook
-  .title = Share on Facebook
+    .title = Share on Facebook
 shotPageShareTwitter
-  .title = Share on Twitter
+    .title = Share on Twitter
 shotPageSharePinterest
-  .title = Share on Pinterest
+    .title = Share on Pinterest
 shotPageShareEmail
-  .title = Share link via email
+    .title = Share link via email
 shotPageShareLink = Get a shareable link to this shot:
 shotPagePrivacyMessage = Anyone with the link can view this shot.
 shotPageCopyImageText
-  .label = Copy image text
+    .label = Copy image text
 shotPageConfirmDeletion = Are you sure you want to delete this shot permanently?
-// Note: {$timediff} is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = If you do nothing, this shot will be permanently deleted {$timediff}.
-// Note: {$date} is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, {$date} could be "7/12/2017, 1:52:50 PM".
-shotPageRestoreButton = restore until {$date}
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = If you do nothing, this shot will be permanently deleted { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = restore until { $date }
 shotPageExpiredMessage = This shot has expired.
 // Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Here is the page it was originally created from:
 shotPageDeleteButton
-  .title = Delete this shot
+    .title = Delete this shot
 shotPageAbuseButton
-  .title = Report this shot for abuse, spam, or other problems
+    .title = Report this shot for abuse, spam, or other problems
 shotPageDownloadShot
-  .title = Download
+    .title = Download
 shotPageDownload = Download
 shotPageScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
 shotPageUpsellFirefox = Get Firefox now
 shotPageDMCAMessage = This shot is no longer available due to a third party intellectual property claim.
-// Note: {$dmca} is a placeholder for a link to send email (a 'mailto' link)
-shotPageDMCAContact = Please email {$dmca} to request further information.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Please email { $dmca } to request further information.
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = If your Shots are subject to multiple claims, we may revoke your access to Firefox Screenshots.
-// Note: {$url} is a placeholder for a shot page URL
-shotPageDMCAIncludeLink = Please include the URL of this shot in your email: {$url}
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Please include the URL of this shot in your email: { $url }
 shotPageKeepFor = How long should this shot be retained?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Select time
@@ -129,65 +129,65 @@ shotPageKeepOneMonth = 1 Month
 shotPageSaveExpiration = save
 shotPageCancelExpiration = cancel
 shotPageDoesNotExpire = does not expire
-// Note: {$timediff} is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = expires {$timediff}
-// Note: {$timediff} is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = expired {$timediff}
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = expires { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = expired { $timediff }
 timeDiffJustNow = just now
 timeDiffMinutesAgo =
     { $number ->
         [one] 1 minute ago
-        *[other] {$number} minutes ago
+        *[other] { $number } minutes ago
     }
 timeDiffHoursAgo = 
     { $number ->
         [one] 1 hour ago
-        *[other] {$number} hours ago
+        *[other] { $number } hours ago
     }
 timeDiffDaysAgo =
     { $number ->
         [one] yesterday
-        *[other] {$number} days ago
+        *[other] { $number } days ago
     }
 timeDiffFutureSeconds = in a few seconds
 timeDiffFutureMinutes =
     { $number ->
         [one] in 1 minute
-        *[other] in {$number} minutes
+        *[other] in { $number } minutes
     }
 timeDiffFutureHours =
     { $number ->
         [one] in 1 hour
-        *[other] in {$number} hours
+        *[other] in { $number } hours
     }
 timeDiffFutureDays =
     { $number ->
         [one] tomorrow
-        *[other] in {$number} days
+        *[other] in { $number } days
     }
 
 
 [[ Shotindex page ]]
 
-// {$status} is a placeholder for an HTTP status code, like '500'.
-// {$statusText} is a text description of the status code, like 'Internal server error'.
-shotIndexPageErrorDeletingShot = Error deleting shot: {$status} {$statusText}
-// {$searchTerm} is a placeholder for text the user typed into the search box
-shotIndexPageSearchResultsTitle = My Shots: search for {$searchTerm}
-// {$error} is a placeholder for a non-translated error message that could be shared
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Error deleting shot: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = My Shots: search for { $searchTerm }
+// { $error } is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
-shotIndexPageErrorRendering = Error rendering page: {$error}
+shotIndexPageErrorRendering = Error rendering page: { $error }
 shotIndexPageSearchPlaceholder
-  .placeholder = Search my shots
+    .placeholder = Search my shots
 shotIndexPageSearchButton
-  .title = Search
+    .title = Search
 shotIndexPageNoShotsMessage = No saved shots.
 shotIndexPageNoShotsInvitation = Go on, create some.
 shotIndexPageLookingForShots = Looking for your shots…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = We canʼt find any shots that match your search.
 shotIndexPageClearSearchButton
-  .title = Clear search
+    .title = Clear search
 shotIndexPageConfirmShotDelete = Delete this shot?
 
 
@@ -230,8 +230,8 @@ metricsPageVersionQueryUsers = Number of users logging in
 metricsPageVersionQueryVersion = Add-on version
 metricsPageVersionQueryLastSeen = Day
 metricsPageHeader = Metrics
-// Note: {$created} is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
-metricsPageGeneratedDateTime = Generated at: {$created}
-// Note {$time} is a placeholder for a number of milliseconds, like '100'
-metricsPageDatabaseQueryTime = (database time: {$time}ms)
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Generated at: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (database time: { $time }ms)
 
