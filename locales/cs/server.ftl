@@ -1,15 +1,30 @@
+// Localization for Server-side strings of Firefox Screenshots
+// 
+// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+
+
+
 // Global phrases shared across pages, prefixed with 'g'
+[[ global ]]
+
 gMyShots = Mé snímky
 gHomeLink = Domů
 gNoShots
     .alt = Žádné snímky nenalezeny
 gScreenshotsDescription = Jednoduchá tvorba snímků webových stránek. Vytvářejte, ukládejte i sdílejte přímo z Firefoxu.
-// Creating page// Note: {$title} is a placeholder for the title of the web page
+
+
+[[ Creating page ]]
+
+// Note: { $title } is a placeholder for the title of the web page
 // captured in the screenshot. The default, for pages without titles, is
 // creatingPageTitleDefault.
 creatingPageTitle = Vytváření snímku { $title }
 creatingPageTitleDefault = stránky
-// Home pagehomePageButtonMyShots = Přejít na mé snímky
+
+
+[[ Home page ]]
+
 homePageDownloadFirefoxTitle = Firefox
 homePageGetStarted = Začít
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -22,7 +37,10 @@ homePageLegalLink = Právní informace
 homePagePrivacyLink = Soukromí
 homePageTermsLink = Podmínky
 homePageCookiesLink = Cookies
-// Leave Screenshots pageleavePageConfirmDelete = Potvrzení smazání účtu
+
+
+[[ Leave Screenshots page ]]
+
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Pro smazání vašeho účtu musíte mít nainstalován doplněk Firefox Screenshots.
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -30,9 +48,15 @@ leavePageWarning = Toto navždy smaže ze služby Firefox Screenshots všechna v
 leavePageButtonProceed = Pokračovat
 leavePageButtonCancel = Zrušit
 leavePageDeleted = Všechny vaše snímky byly smazány!
-// Not Found pagenotFoundPageTitle = Stránka nebyla nalezena
+
+
+[[ Not Found page ]]
+
 notFoundPageDescription = Stránka nebyla nalezena.
-// Shot pageshotPageConfirmDelete = Opravdu chcete tento snímek navždy smazat?
+
+
+[[ Shot page ]]
+
 shotPageCopy = Kopírovat
 shotPageCopied = Zkopírováno
 shotPageShareFacebook
@@ -100,13 +124,19 @@ timeDiffFutureDays = { $num ->
         [few] za { $number } dny
        *[other] za { $number } dní
     }
-// Shotindex pageshotIndexPageSearchPlaceholder
-    .placeholder = Prohledat mé snímky
+
+
+[[ Shotindex page ]]
+
 shotIndexPageNoShotsMessage = Žádné uložené snímky.
 shotIndexPageLookingForShots = Hledáme vaše snímky…
 shotIndexPageConfirmShotDelete = Smazat tento snímek?
-// Metrics page
-// Note: all metrics strings are optional for translation// Note: 'Firefox Screenshots' should not be translated
+
+
+// all metrics strings are optional for translation
+[[ Metrics page ]]
+
+// Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Metriky Firefox Screenshots
 metricsPageTotalsQueryTitle = Celkem
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -132,7 +162,7 @@ metricsPageVersionQueryUsers = Počet přihlášení uživatelů
 metricsPageVersionQueryVersion = Verze doplňku
 metricsPageVersionQueryLastSeen = Den
 metricsPageHeader = Metriky
-// Note: {$created} is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Vygenerováno: { $created }
-// Note {$time} is a placeholder for a number of milliseconds, like '100'
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (čas databáze: { $time } ms)
