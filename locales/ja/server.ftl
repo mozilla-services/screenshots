@@ -9,8 +9,7 @@ gScreenshotsDescription = スクリーンショットを簡単に。Firefox を�
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } を作成しています
 creatingPageTitleDefault = ページ
-// Home pagehomePageDescription
-    .content = ブラウザーに組み込まれた直感的なスクリーンショットツール。Firefox を使ってウェブをブラウズしながら、スクリーンショットをキャプチャ、保存、共有できます。
+// Home pagehomePageButtonMyShots = 自分のショットへ
 homePageTeaser = 近日公開...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = 無料ダウンロード
@@ -32,7 +31,8 @@ homePageLegalLink = 法的通知
 homePagePrivacyLink = プライバシー
 homePageTermsLink = 利用規約
 homePageCookiesLink = Cookie
-// Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
+// Leave Screenshots pageleavePageConfirmDelete = アカウントの削除を確認
+// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = アカウントを削除するには Firefox Screenshots がインストールされている必要があります
 leavePageErrorGeneric = 問題が発生しました
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -40,9 +40,9 @@ leavePageWarning = これによりあなたの Firefox Screenshots データは�
 leavePageButtonProceed = 続ける
 leavePageButtonCancel = キャンセル
 leavePageDeleted = あなたのスクリーンショットはすべて消去されました！
-// Not Found pagenotFoundPageIntro = おっと。
+// Not Found pagenotFoundPageTitle = ページが見つかりませんでした
 notFoundPageDescription = ページが見つかりませんでした。
-// Shot pageshotPageAlertErrorDeletingShot = ショットの削除中に問題が発生しました
+// Shot pageshotPageAlertErrorUpdatingExpirationTime = 期限の保存中に問題が発生しました
 shotPageAlertErrorUpdatingTitle = タイトルの保存中に問題が発生しました
 shotPageConfirmDelete = 本当にこのショットを永久に削除しますか？
 shotPageShareButton
@@ -108,15 +108,9 @@ timeDiffMinutesAgo = { $number } 分前
 timeDiffHoursAgo = { $number } 時間前
 timeDiffDaysAgo = { $number } 日前
 timeDiffFutureSeconds = 数秒以内
-timeDiffFutureMinutes = { $num ->
-       *[other] { $number } 分以内
-    }
-timeDiffFutureHours = { $num ->
-       *[other] { $number } 時間以内
-    }
-timeDiffFutureDays = { $num ->
-       *[other] { $number } 日以内
-    }
+timeDiffFutureMinutes = { $number } 分以内
+timeDiffFutureHours = { $number } 時間以内
+timeDiffFutureDays = { $number } 日以内
 // Shotindex page// {$status} is a placeholder for an HTTP status code, like '500'.
 // {$statusText} is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = ショットの削除中に問題が発生しました: { $status } { $statusText }
