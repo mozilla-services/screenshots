@@ -35,6 +35,8 @@ homePageGetStarted = 開始使用
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots 的原理是什麼？
 homePageGetStartedTitle = 開始使用
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = 尋找並點擊工具列中新出現的 Screenshots 圖示，Screenshots 選單就會出現在瀏覽器視窗頂部。
 homePageCaptureRegion = 拍攝一個區域
 homePageCapturePage = 拍攝整張網頁
 homePageSaveShare = 儲存並分享
@@ -86,6 +88,9 @@ shotPageShareLink = 取得擷圖的分享用鏈結:
 shotPagePrivacyMessage = 任何有鏈結的人都能看到這張擷圖。
 shotPageCopyImageText
     .label = 複製圖片文字
+shotPageConfirmDeletion = 您確定要永久刪除這張擷圖嗎？
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = 若不做任何事，將在{ $timediff }刪除此擷圖。
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = 還原直到 { $date }
@@ -95,7 +100,12 @@ shotPageDeleteButton
 shotPageDownloadShot
     .title = 下載
 shotPageDownload = 下載
+shotPageScreenshotsDescription = 拍攝擷圖變得簡單。不用離開 Firefox 就能拍攝、儲存、分享畫面擷圖。
 shotPageUpsellFirefox = 立即下載 Firefox
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = 請寄信到 { $dmca } 要求更多資訊。
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = 若我們收到多次關於您的照片的版權要求，我們可能會封鎖您的 Firefox Screenshots 使用權。
 shotPageKeepFor = 這張擷圖應該保存多久？
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = 選擇時間
@@ -139,6 +149,9 @@ shotIndexPageSearchButton
     .title = 搜尋
 shotIndexPageNoShotsMessage = 沒有已存的擷圖。
 shotIndexPageNoShotsInvitation = 去吧！拍幾張照。
+shotIndexPageLookingForShots = 正在尋找您的擷圖…
+shotIndexPageNoSearchResultsIntro = 呃…
+shotIndexPageNoSearchResults = 我們找不到符合您的搜尋條件的擷圖。
 shotIndexPageClearSearchButton
     .title = 清除搜尋
 shotIndexPageConfirmShotDelete = 要刪除這張擷圖嗎？
