@@ -9,11 +9,12 @@ gScreenshotsDescription = Realizzare screenshot non è mai stato così facile. C
 // creatingPageTitleDefault.
 creatingPageTitle = Creazione { $title }
 creatingPageTitleDefault = pagina
-// Home pagehomePageButtonMyShots = Vai alle mie immagini
+// Home pagehomePageDescription
+    .content = Un modo intuitivo di realizzare screenshot direttamente nel browser. Cattura, salva e condividi immagini durante la navigazione con Firefox.
 homePageTeaser = Presto disponibile...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Download gratuito
-homePageGetStarted = Inizia
+homePageGetStarted = Per iniziare
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Come funziona Firefox Screenshots
 homePageGetStartedTitle = Per iniziare
@@ -40,9 +41,9 @@ leavePageWarning = Questa operazione eliminerà tutti i dati associati a Firefox
 leavePageButtonProceed = Continua
 leavePageButtonCancel = Annulla
 leavePageDeleted = Tutte le tue immagini sono state eliminate.
-// Not Found pagenotFoundPageTitle = Pagina non trovata
+// Not Found pagenotFoundPageIntro = Oops.
 notFoundPageDescription = Pagina non trovata.
-// Shot pageshotPageAlertErrorUpdatingExpirationTime = Errore durante il salvataggio della scadenza
+// Shot pageshotPageAlertErrorDeletingShot = Errore durante l’eliminazione dell’immagine
 shotPageAlertErrorUpdatingTitle = Errore durante il salvataggio del titolo
 shotPageConfirmDelete = Eliminare questa immagine in modo definitivo?
 shotPageShareButton
@@ -142,7 +143,7 @@ shotIndexPageSearchPlaceholder
 shotIndexPageSearchButton
     .title = Cerca
 shotIndexPageNoShotsMessage = Nessuna immagine salvata.
-shotIndexPageNoShotsInvitation = 
+shotIndexPageNoShotsInvitation = Cosa aspetti? Creane qualcuna.
 shotIndexPageLookingForShots = Ricerca immagini…
 shotIndexPageNoSearchResultsIntro = Uhm
 shotIndexPageNoSearchResults = Non abbiamo trovato alcuna immagine che corrisponda al testo inserito.
