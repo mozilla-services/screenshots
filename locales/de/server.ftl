@@ -27,6 +27,7 @@ creatingPageTitleDefault = Seite
 
 homePageDescription
     .content = Intuitive Bildschirmfotos direkt aus dem Browser. Während des Surfens mit Firefox können Sie Screenshots machen, speichern und teilen.
+homePageButtonMyShots = Meine Bildschirmfotos anzeigen
 homePageTeaser = Bald verfügbar…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Kostenloser Download
@@ -66,12 +67,14 @@ leavePageDeleted = All Ihre Bildschirmfotos wurden gelöscht!
 [[ Not Found page ]]
 
 notFoundPageTitle = Seite nicht gefunden
+notFoundPageIntro = Hoppla.
 notFoundPageDescription = Seite nicht gefunden.
 
 
 [[ Shot page ]]
 
 shotPageAlertErrorUpdatingExpirationTime = Fehler beim Speichern des Ablaufdatums
+shotPageAlertErrorDeletingShot = Fehler beim Löschen des Bildschirmfotos
 shotPageAlertErrorUpdatingTitle = Fehler beim Speichern des Titels
 shotPageConfirmDelete = Soll dieses Bildschirmfoto wirklich dauerhaft gelöscht werden?
 shotPageShareButton
