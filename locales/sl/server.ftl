@@ -1,9 +1,32 @@
+// Localization for Server-side strings of Firefox Screenshots
+// 
+// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+
+
+
 // Global phrases shared across pages, prefixed with 'g'
+[[ global ]]
+
 gMyShots = Moji posnetki
 gHomeLink = Domov
 gNoShots
     .alt = Ni najdenih posnetkov
-// Creating page// Home pagehomePageDownloadFirefoxTitle = Firefox
+
+
+[[ Creating page ]]
+
+// Note: { $title } is a placeholder for the title of the web page
+// captured in the screenshot. The default, for pages without titles, is
+// creatingPageTitleDefault.
+creatingPageTitle = Ustvarjam { $title }
+creatingPageTitleDefault = stran
+
+
+[[ Home page ]]
+
+homePageDescription
+    .content = Intuitivni posnetki zaslona kar v brskalniku. Med brskanjem po spletu lahko s Firefoxom ustvarite, shranite in delite posnetke zaslona.
+homePageButtonMyShots = Pojdi na moje posnetke
 homePageDownloadFirefoxSubTitle = Brezplačen prenos
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kako deluje Firefox Screenshots
@@ -12,13 +35,28 @@ homePageLegalLink = Pravno obvestilo
 homePagePrivacyLink = Zasebnost
 homePageTermsLink = Pogoji
 homePageCookiesLink = Piškotki
-// Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
+
+
+[[ Leave Screenshots page ]]
+
+leavePageConfirmDelete = Potrdite brisanje računa
+// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Za izbris računa morate imeti nameščen Firefox Screenshots
 leavePageErrorGeneric = Prišlo je do napake
 leavePageButtonCancel = Prekliči
 leavePageDeleted = Vsi vaši posnetki so bili izbrisani!
-// Not Found pagenotFoundPageDescription = Strani ni mogoče najti.
-// Shot pageshotPageAlertErrorUpdatingTitle = Napaka pri shranjevanju naslova
+
+
+[[ Not Found page ]]
+
+notFoundPageTitle = Strani ni mogoče najti
+notFoundPageIntro = Ups.
+
+
+[[ Shot page ]]
+
+shotPageAlertErrorDeletingShot = Napaka pri brisanju posnetka
+shotPageConfirmDelete = Ali ste prepričani, da želite trajno izbrisati ta posnetek?
 shotPageShareButton
     .title = Deli
 shotPageCopy = Kopiraj
@@ -37,6 +75,7 @@ shotPageConfirmDeletion = Ali ste prepričani, da želite trajno izbrisati ta po
 shotPageExpiredMessage = Ta posnetek je potekel
 shotPageDeleteButton
     .title = Izbriši ta posnetek
+shotPageKeepIndefinitely = Za nedoločen čas
 shotPageKeepTenMinutes = 10 minut
 shotPageKeepOneHour = 1 uro
 shotPageKeepOneDay = 1 dan
@@ -46,11 +85,27 @@ shotPageKeepOneMonth = 1 mesec
 shotPageSaveExpiration = shrani
 shotPageCancelExpiration = prekliči
 shotPageDoesNotExpire = ne poteče
-// Note: {$timediff} is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = poteče { $timediff }
 timeDiffJustNow = zdaj
-// Shotindex page// Metrics page
-// Note: all metrics strings are optional for translation// Note: 'Firefox Screenshots' should not be translated
+timeDiffFutureDays = { $num ->
+        [one] jutri
+        [two] čez { $number } dni
+        [few] čez { $number } dni
+       *[other] čez { $number } dni
+    }
+
+
+[[ Shotindex page ]]
+
+shotIndexPageNoShotsMessage = Ni shranjenih posnetkov.
+shotIndexPageConfirmShotDelete = Izbrišem ta posnetek?
+
+
+// all metrics strings are optional for translation
+[[ Metrics page ]]
+
+// Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Metrika Firefox Screenshots
 metricsPageTotalsQueryActiveShots = Aktivni posnetki
 metricsPageShotsQueryCount = Število posnetkov
@@ -64,3 +119,5 @@ metricsPageVersionQueryTitle = Različica dodatka
 metricsPageVersionQueryVersion = Različica dodatka
 metricsPageVersionQueryLastSeen = Dan
 metricsPageHeader = Metrika
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Ustvarjeno: { $created }
