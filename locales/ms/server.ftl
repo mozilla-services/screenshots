@@ -1,15 +1,32 @@
+// Localization for Server-side strings of Firefox Screenshots
+// 
+// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+
+
+
 // Global phrases shared across pages, prefixed with 'g'
+[[ global ]]
+
 gMyShots = Syot Saya
 gHomeLink = Halaman utama
 gNoShots
     .alt = Tiada syot ditemukan
 gScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skrinsyot tanpa keluar daripada Firefox.
-// Creating page// Note: {$title} is a placeholder for the title of the web page
+
+
+[[ Creating page ]]
+
+// Note: { $title } is a placeholder for the title of the web page
 // captured in the screenshot. The default, for pages without titles, is
 // creatingPageTitleDefault.
 creatingPageTitle = Mencipta { $title }
 creatingPageTitleDefault = halaman
-// Home pagehomePageButtonMyShots = Ke Syot Saya
+
+
+[[ Home page ]]
+
+homePageDescription
+    .content = Skrinsyot intuitif dihasilkan terus ke dalam pelayar. Ambil, simpan dan kongsi skrinsyot sambil anda melayari Web menggunakan Firefox.
 homePageTeaser = Akan Datang...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Muat turun Percuma
@@ -31,7 +48,12 @@ homePageLegalLink = Perundangan
 homePagePrivacyLink = Privasi
 homePageTermsLink = Terma
 homePageCookiesLink = Kuki
-// Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
+
+
+[[ Leave Screenshots page ]]
+
+leavePageConfirmDelete = Sahkan pemadaman akaun
+// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Anda mesti ada Firefox Screenshots yang dipasang untuk memadam akaun anda
 leavePageErrorGeneric = Ada ralat
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -39,9 +61,17 @@ leavePageWarning = Ini akan menghapuskan semua data Firefox Screenshots anda sec
 leavePageButtonProceed = Teruskan
 leavePageButtonCancel = Batal
 leavePageDeleted = Semua skrinsyot anda telah dipadam!
-// Not Found pagenotFoundPageIntro = Ooops.
+
+
+[[ Not Found page ]]
+
+notFoundPageTitle = Halaman Tidak Ditemukam
 notFoundPageDescription = Halaman tidak ditemui
-// Shot pageshotPageAlertErrorDeletingShot = Ralat membuang syot
+
+
+[[ Shot page ]]
+
+shotPageAlertErrorUpdatingExpirationTime = Ralat menyimpan tempoh tamat
 shotPageAlertErrorUpdatingTitle = Ralat menyimpan tajuk
 shotPageConfirmDelete = Anda pasti mahu padam syot ini secara kekal?
 shotPageShareButton
@@ -61,10 +91,10 @@ shotPagePrivacyMessage = Sesiapa yang ada pautan ini boleh melihat syot ini.
 shotPageCopyImageText
     .label = Salin teks imej
 shotPageConfirmDeletion = Anda pasti mahu padam syot ini secara kekal?
-// Note: {$timediff} is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Jika tiada tindakan, syot ini akan dipadam secara kekal { $timediff }.
-// Note: {$date} is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, {$date} could be "7/12/2017, 1:52:50 PM".
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = simpan semula hingga { $date }
 shotPageExpiredMessage = Syot ini sudah tamat tempoh.
 // Note: This phrase is followed by an empty line, then the URL of the source page
@@ -79,11 +109,11 @@ shotPageDownload = Muat turun
 shotPageScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skrinsyot tanpa keluar daripada Firefox.
 shotPageUpsellFirefox = Dapatkan Firefox sekarang
 shotPageDMCAMessage = Syot ini tidak lagi tersedia kerana tuntutan harta intelek pihak ketiga.
-// Note: {$dmca} is a placeholder for a link to send email (a 'mailto' link)
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Sila e-mel { $dmca } untuk mendapatkan maklumat lanjut.
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = JIka Syot anda tertakluk kepada pelbagai tuntutan, kami boleh menarik balik akses anda ke Firefox Screenshots.
-// Note: {$url} is a placeholder for a shot page URL
+// Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Sila sertakan URL syot ini dalam e-mel anda: { $url }
 shotPageKeepFor = Berapa lama syot ini perlu disimpan?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
@@ -98,9 +128,9 @@ shotPageKeepOneMonth = 1 Bulan
 shotPageSaveExpiration = simpan
 shotPageCancelExpiration = batal
 shotPageDoesNotExpire = tiada tamat tempoh
-// Note: {$timediff} is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = tamat tempoh { $timediff }
-// Note: {$timediff} is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = tamat tempoh { $timediff }
 timeDiffJustNow = sebentar tadi
 timeDiffMinutesAgo = { $num ->
@@ -122,12 +152,16 @@ timeDiffFutureHours = { $num ->
 timeDiffFutureDays = { $num ->
        *[other] esok
     }
-// Shotindex page// {$status} is a placeholder for an HTTP status code, like '500'.
-// {$statusText} is a text description of the status code, like 'Internal server error'.
+
+
+[[ Shotindex page ]]
+
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Ralat memadam syot: { $status } { $statusText }
-// {$searchTerm} is a placeholder for text the user typed into the search box
+// { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Syot Saya: cari { $searchTerm }
-// {$error} is a placeholder for a non-translated error message that could be shared
+// { $error } is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
 shotIndexPageErrorRendering = Ralat mentafsir halaman: { $error }
 shotIndexPageSearchPlaceholder
@@ -142,8 +176,12 @@ shotIndexPageNoSearchResults = Kami tidak menemui syot yang sepadan dengan caria
 shotIndexPageClearSearchButton
     .title = Padam carian
 shotIndexPageConfirmShotDelete = Padam syot ini?
-// Metrics page
-// Note: all metrics strings are optional for translation// Note: 'Firefox Screenshots' should not be translated
+
+
+// all metrics strings are optional for translation
+[[ Metrics page ]]
+
+// Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Matriks Firefox Screenshots
 metricsPageTotalsQueryTitle = Jumlah
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -179,7 +217,7 @@ metricsPageVersionQueryUsers = Bilangan pengguna menglog masuk
 metricsPageVersionQueryVersion = Versi add-on
 metricsPageVersionQueryLastSeen = Hari
 metricsPageHeader = Matriks
-// Note: {$created} is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Dijana pada: { $created }
-// Note {$time} is a placeholder for a number of milliseconds, like '100'
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (database time: { $time }ms)
