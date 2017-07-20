@@ -279,6 +279,7 @@ $very-light-grey: #ededed;
   @include flex-container(row, center, center);
   position: absolute;
   right: 0;
+  top: -2px;
 }
 
 .preview-image  {
@@ -298,19 +299,20 @@ $very-light-grey: #ededed;
   max-width: 100%;
   max-height: 90%;
   margin: 50px auto;
-  border: 1px solid #fff;
+  border: 1px solid rgba(255, 255, 255, 0.8);
 }
 
 .preview-button-save {
   @extend .button;
   @extend .primary;
-  background-image: url("MOZ_EXTENSION/icons/menu-myshot-white.svg");
+  background-image: url("MOZ_EXTENSION/icons/cloud.svg");
+  background-position: 8px center;
   background-repeat: no-repeat;
-  background-position: left center;
-  padding-left: 40px;
+  background-size: 20px 18px;
   font-size: 18px;
   margin: 5px;
-  min-width: 100px;
+  min-width: 80px;
+  padding-left: 34px;
 }
 
 // FIXME: some of the styles in .fixed-container were copied from
