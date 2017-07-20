@@ -15,12 +15,17 @@ IGNORE_COMMITS = [
 
 parser = argparse.ArgumentParser(description='Generate a changelog')
 parser.add_argument('range', metavar='RANGE', type=str,
-                    help='Commit range to generate')
+                    help='Commit range to generate, or use "recent"')
 parser.add_argument('--write', action="store_true",
                     help='Write to CHANGELOG.md')
 args = parser.parse_args()
 
 base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+if args.range == "recent":
+    last_commit_hash = subprocess.check_output(
+        ["git", "log", "-n", "1", "--pretty=format:%H", "--", "CHANGELOG.md"], cwd=base)
+    args.range = last_commit_hash + "..master"
 
 log = subprocess.check_output(
     ['git', 'log', '--format=email', args.range])

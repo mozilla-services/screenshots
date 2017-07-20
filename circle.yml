@@ -44,7 +44,7 @@ deployment:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - ./bin/release-version dev
   stage:
-    branch: stable
+    branch: server-prod
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - ./bin/release-version stage
