@@ -9,8 +9,7 @@ gScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skri
 // creatingPageTitleDefault.
 creatingPageTitle = Mencipta { $title }
 creatingPageTitleDefault = halaman
-// Home pagehomePageTeaser = Akan Datang...
-homePageDownloadFirefoxTitle = Firefox
+// Home pagehomePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Muat turun Percuma
 homePageGetStarted = Mulakan
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -20,15 +19,19 @@ homePageGetStartedTitle = Mulakan
 homePageGetStartedDescription = Cari ikon baru Screenshots pada bar alatan anda. Pilih, dan menu Screenshots akan muncul pada bahagian atas tetingkap pelayar anda.
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klik dan seret untuk memilih kawasan yang mahu ambil gambar. Atau hanya hela dan klik -  Screenshots akan pilihkan kawasan untuk anda. Suka dengan gambar itu? Pilih Simpan untuk mengakses skrinsyot dalam talian atau butang anak panah ke bawah untuk memuatturun ke komputer anda.
+homePageSaveShare = Simpan dan Kongsi
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Apabila anda ambil syot, Firefox menghantar skrinsyot ke pustaka Screenshots dalam talian anda dan menyalin pautan ke klipbod anda. Secara automatik, kami simpan skrinsyot anda selama dua minggu, tetapi anda boleh padam atau tukar tarikh luputnya untuk terus disimpan lebih lama dalam pustaka anda. 
+homePageLegalLink = Perundangan
+homePagePrivacyLink = Privasi
+homePageTermsLink = Terma
+homePageCookiesLink = Kuki
 // Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Anda mesti ada Firefox Screenshots yang dipasang untuk memadam akaun anda
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ini akan menghapuskan semua data Firefox Screenshots anda secara kekal.
 leavePageDeleted = Semua skrinsyot anda telah dipadam!
-// Not Found page// Shot pageshotPageConfirmDelete = Anda pasti mahu padam syot ini secara kekal?
-shotPageShareButton
+// Not Found page// Shot pageshotPageShareButton
     .title = Kongsi
 shotPageCopy = Salin
 shotPageCopied = Disalin
