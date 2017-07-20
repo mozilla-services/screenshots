@@ -9,8 +9,7 @@ gScreenshotsDescription = 拍攝畫面擷圖變得簡單。不用離開 Firefox 
 // creatingPageTitleDefault.
 creatingPageTitle = 正在建立 { $title }
 creatingPageTitleDefault = 頁面
-// Home pagehomePageTeaser = 即將上線…
-homePageDownloadFirefoxTitle = Firefox
+// Home pagehomePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = 免費下載
 homePageGetStarted = 開始使用
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -31,10 +30,8 @@ leavePageWarning = 將會永久清除您所有的 Firefox Screenshots 資料。
 leavePageButtonProceed = 確定繼續
 leavePageButtonCancel = 取消
 leavePageDeleted = 已清除您所有擷取過的圖片！
-// Not Found pagenotFoundPageIntro = 糟糕。
-notFoundPageDescription = 找不到頁面。
-// Shot pageshotPageAlertErrorDeletingShot = 刪除擷圖時發生錯誤
-shotPageAlertErrorUpdatingTitle = 儲存標題時發生錯誤
+// Not Found pagenotFoundPageDescription = 找不到頁面。
+// Shot pageshotPageAlertErrorUpdatingTitle = 儲存標題時發生錯誤
 shotPageConfirmDelete = 您確定要刪除這張圖片嗎？
 shotPageShareButton
     .title = 分享
@@ -95,6 +92,8 @@ shotIndexPageSearchResultsTitle = 我的擷圖: 搜尋 { $searchTerm }
 // {$error} is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
 shotIndexPageErrorRendering = 產生頁面時發生錯誤: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = 搜尋我的擷圖
 shotIndexPageSearchButton
     .title = 搜尋
 shotIndexPageNoShotsMessage = 沒有已存的擷圖。
