@@ -68,12 +68,14 @@ leavePageDeleted = Tutte le tue immagini sono state eliminate.
 
 notFoundPageTitle = Pagina non trovata
 notFoundPageIntro = Oops.
+notFoundPageDescription = Pagina non trovata.
 
 
 [[ Shot page ]]
 
 shotPageAlertErrorUpdatingExpirationTime = Errore durante il salvataggio della scadenza
 shotPageAlertErrorDeletingShot = Errore durante l’eliminazione dell’immagine
+shotPageAlertErrorUpdatingTitle = Errore durante il salvataggio del titolo
 shotPageConfirmDelete = Eliminare questa immagine in modo definitivo?
 shotPageShareButton
     .title = Condividi
