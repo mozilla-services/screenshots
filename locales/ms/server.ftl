@@ -9,8 +9,7 @@ gScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skri
 // creatingPageTitleDefault.
 creatingPageTitle = Mencipta { $title }
 creatingPageTitleDefault = halaman
-// Home pagehomePageDescription
-    .content = Skrinsyot intuitif disiapkan terus ke dalam pelayar. Ambil, simpan dan kongsi skrinsyot sambil anda melayar Web menggunakan Firefox.
+// Home pagehomePageButtonMyShots = Pergi Ke Syot Saya
 homePageTeaser = Akan Datang...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Muat turun Percuma
@@ -32,8 +31,7 @@ homePageLegalLink = Perundangan
 homePagePrivacyLink = Privasi
 homePageTermsLink = Terma
 homePageCookiesLink = Kuki
-// Leave Screenshots pageleavePageConfirmDelete = Sahkan menghapus akaun
-// Note: do not translate 'Firefox Screenshots' when translating this string
+// Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Anda mesti ada Firefox Screenshots yang dipasang untuk memadam akaun anda
 leavePageErrorGeneric = Ada ralat
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -41,9 +39,9 @@ leavePageWarning = Ini akan menghapuskan semua data Firefox Screenshots anda sec
 leavePageButtonProceed = Teruskan
 leavePageButtonCancel = Batal
 leavePageDeleted = Semua skrinsyot anda telah dipadam!
-// Not Found pagenotFoundPageTitle = Halaman Tidak Ditemui
+// Not Found pagenotFoundPageIntro = Oops.
 notFoundPageDescription = Halaman tidak ditemui
-// Shot pageshotPageAlertErrorUpdatingExpirationTime = Ralat menetapkan tarikh tamat
+// Shot pageshotPageAlertErrorDeletingShot = Ralat memadam syot
 shotPageAlertErrorUpdatingTitle = Ralat menyimpan tajuk
 shotPageConfirmDelete = Anda pasti mahu padam syot ini secara kekal?
 shotPageShareButton
