@@ -1,15 +1,32 @@
+// Localization for Server-side strings of Firefox Screenshots
+// 
+// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+
+
+
 // Global phrases shared across pages, prefixed with 'g'
+[[ global ]]
+
 gMyShots = Meine Bildschirmfotos
 gHomeLink = Startseite
 gNoShots
     .alt = Keine Bildschirmfotos gefunden
 gScreenshotsDescription = Bildschirmfotos ganz einfach. Machen, speichern und teilen Sie Bildschirmfotos, ohne Firefox zu verlassen.
-// Creating page// Note: {$title} is a placeholder for the title of the web page
+
+
+[[ Creating page ]]
+
+// Note: { $title } is a placeholder for the title of the web page
 // captured in the screenshot. The default, for pages without titles, is
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } wird erstellt
 creatingPageTitleDefault = Seite
-// Home pagehomePageButtonMyShots = Meine Bildschirmfotos anzeigen
+
+
+[[ Home page ]]
+
+homePageDescription
+    .content = Intuitive Bildschirmfotos direkt aus dem Browser. Während des Surfens mit Firefox können Sie Screenshots machen, speichern und teilen.
 homePageTeaser = Bald verfügbar…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Kostenloser Download
@@ -31,7 +48,12 @@ homePageLegalLink = Rechtliches
 homePagePrivacyLink = Datenschutz
 homePageTermsLink = Nutzungsbedingungen
 homePageCookiesLink = Cookies
-// Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
+
+
+[[ Leave Screenshots page ]]
+
+leavePageConfirmDelete = Kontenlöschung bestätigen
+// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Firefox Screenshots muss installiert sein, um Ihr Konto zu löschen
 leavePageErrorGeneric = Ein Fehler ist aufgetreten
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -39,9 +61,17 @@ leavePageWarning = Dies löscht dauerhaft all Ihre Daten von Firefox Screenshots
 leavePageButtonProceed = Fortfahren
 leavePageButtonCancel = Abbrechen
 leavePageDeleted = All Ihre Bildschirmfotos wurden gelöscht!
-// Not Found pagenotFoundPageIntro = Hoppla.
+
+
+[[ Not Found page ]]
+
+notFoundPageTitle = Seite nicht gefunden
 notFoundPageDescription = Seite nicht gefunden.
-// Shot pageshotPageAlertErrorDeletingShot = Fehler beim Löschen des Bildschirmfotos
+
+
+[[ Shot page ]]
+
+shotPageAlertErrorUpdatingExpirationTime = Fehler beim Speichern des Ablaufdatums
 shotPageAlertErrorUpdatingTitle = Fehler beim Speichern des Titels
 shotPageConfirmDelete = Soll dieses Bildschirmfoto wirklich dauerhaft gelöscht werden?
 shotPageShareButton
@@ -61,10 +91,10 @@ shotPagePrivacyMessage = Jeder mit dem Link kann das Bildschirmfoto ansehen.
 shotPageCopyImageText
     .label = Grafiktext kopieren
 shotPageConfirmDeletion = Soll dieses Bildschirmfoto wirklich dauerhaft gelöscht werden?
-// Note: {$timediff} is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Wenn Sie nichts tun, wird dieses Bildschirmfoto automatisch { $timediff } gelöscht.
-// Note: {$date} is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, {$date} could be "7/12/2017, 1:52:50 PM".
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = Wiederherstellen bis { $date }
 shotPageExpiredMessage = Dieses Bildschirmfoto ist abgelaufen.
 // Note: This phrase is followed by an empty line, then the URL of the source page
@@ -79,11 +109,11 @@ shotPageDownload = Herunterladen
 shotPageScreenshotsDescription = Bildschirmfotos ganz einfach. Machen, speichern und teilen Sie Bildschirmfotos, ohne Firefox zu verlassen.
 shotPageUpsellFirefox = Holen Sie sich gleich Firefox
 shotPageDMCAMessage = Dieses Bildschirmfoto ist aufgrund von Urheberrechtsansprüchen von Dritten nicht mehr verfügbar.
-// Note: {$dmca} is a placeholder for a link to send email (a 'mailto' link)
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Weitere Informationen erhalten Sie per E-Mail an { $dmca }.
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Wenn Ihre Bildschirmfotos mehrere Ansprüche auslösen, ziehen wir Ihren Zugang zu Firefox Screenshots unter Umständen zurück.
-// Note: {$url} is a placeholder for a shot page URL
+// Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Bitte geben Sie in Ihrer E-Mail die URL dieses Bildschirmfotos an: { $url }
 shotPageKeepFor = Wie lange soll dieses Bildschirmfoto aufbewahrt werden?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
@@ -98,9 +128,9 @@ shotPageKeepOneMonth = Ein Monat
 shotPageSaveExpiration = speichern
 shotPageCancelExpiration = Abbrechen
 shotPageDoesNotExpire = Läuft nicht ab
-// Note: {$timediff} is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = Läuft ab { $timediff }
-// Note: {$timediff} is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = Lief ab { $timediff }
 timeDiffJustNow = gerade eben
 timeDiffMinutesAgo = { $num ->
@@ -128,12 +158,16 @@ timeDiffFutureDays = { $num ->
         [one] morgen
        *[other] in { $number } Tagen
     }
-// Shotindex page// {$status} is a placeholder for an HTTP status code, like '500'.
-// {$statusText} is a text description of the status code, like 'Internal server error'.
+
+
+[[ Shotindex page ]]
+
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Fehler beim Löschen des Bildschirmfotos: { $status } { $statusText }
-// {$searchTerm} is a placeholder for text the user typed into the search box
+// { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Meine Bildschirmfotos: Suchen nach { $searchTerm }
-// {$error} is a placeholder for a non-translated error message that could be shared
+// { $error } is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
 shotIndexPageErrorRendering = Fehler beim Darstellen der Seite: { $error }
 shotIndexPageSearchPlaceholder
@@ -148,8 +182,12 @@ shotIndexPageNoSearchResults = Wir finden keine zu Ihrer Suche passenden Bildsch
 shotIndexPageClearSearchButton
     .title = Suche löschen
 shotIndexPageConfirmShotDelete = Dieses Bildschirmfoto löschen?
-// Metrics page
-// Note: all metrics strings are optional for translation// Note: 'Firefox Screenshots' should not be translated
+
+
+// all metrics strings are optional for translation
+[[ Metrics page ]]
+
+// Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Metriken zu Firefox Screenshots
 metricsPageTotalsQueryTitle = Gesamt
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -185,7 +223,7 @@ metricsPageVersionQueryUsers = Anzahl der angemeldeten Benutzer
 metricsPageVersionQueryVersion = Add-on-Version
 metricsPageVersionQueryLastSeen = Tag
 metricsPageHeader = Metriken
-// Note: {$created} is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Erstellt am: { $created }
-// Note {$time} is a placeholder for a number of milliseconds, like '100'
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (Zeitstempel der Datenbank: { $time }ms)
