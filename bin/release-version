@@ -57,7 +57,7 @@ case "$channel" in
     rm -f build/screenshots.xpi
     # Forces update of the add-on version:
     touch build/.backend.txt
-    SCREENSHOTS_BACKEND=https://screenshots.stage.mozaws.net SCREENSHOTS_SENTRY="$stage_sentry" make signed_xpi
+    SCREENSHOTS_BACKEND=https://screenshots.stage.mozaws.net SCREENSHOTS_SENTRY="$stage_sentry" make unsigned_bootstrap_xpi
     ./bin/build-docker-image mozilla
     echo
     echo "Stage deployment automatically triggered, see #screenshots IRC for status"
