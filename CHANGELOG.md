@@ -1,6 +1,6 @@
 ## Version 11.0.0
 
-This is a server-only release.
+This is a server-only release.  Add-on changes are still deferred to a later Firefox release.
 
 * Host static assets in CDN [52e255a](https://github.com/mozilla-services/screenshots/commit/52e255a)
 * Add `npm shrinkwrap`; ([#3051](https://github.com/mozilla-services/screenshots/issues/3051)). Fixes [#2430](https://github.com/mozilla-services/screenshots/issues/2430) [fe28769](https://github.com/mozilla-services/screenshots/commit/fe28769)
@@ -12,6 +12,18 @@ This is a server-only release.
   * Adds logging module and removes use of mozlog.config. Fixes [#2743](https://github.com/mozilla-services/screenshots/issues/2743) Fixes [#2741](https://github.com/mozilla-services/screenshots/issues/2741) [3e49677](https://github.com/mozilla-services/screenshots/commit/3e49677)
 * Hides download Firefox button on homepage [7eccc34](https://github.com/mozilla-services/screenshots/commit/7eccc34)
 * Update favicon [84e9e19](https://github.com/mozilla-services/screenshots/commit/84e9e19)
+* L20n syntax subset ([#3154](https://github.com/mozilla-services/screenshots/issues/3154))* Make sections proper section, convert section comments to sections.
+  * Normalize whitespace, 4-spaces indent, and single-space in placables
+  * fixup! Make sections proper section, convert section comments to sections.
+  * Normalize plural expressions to match fluent serializer [9b0bcbd](https://github.com/mozilla-services/screenshots/commit/9b0bcbd)
+* Fix some ui nits ([#3140](https://github.com/mozilla-services/screenshots/issues/3140)) [c28887f](https://github.com/mozilla-services/screenshots/commit/c28887f)
+* Removes redirect endpoint ([#3144](https://github.com/mozilla-services/screenshots/issues/3144)) [428013a](https://github.com/mozilla-services/screenshots/commit/428013a)
+* localize server ([#3068](https://github.com/mozilla-services/screenshots/issues/3068)), refs [#2205](https://github.com/mozilla-services/screenshots/issues/2205). Fixes [#1486](https://github.com/mozilla-services/screenshots/issues/1486) [954a54d](https://github.com/mozilla-services/screenshots/commit/954a54d)
+* Do not let a shot without clips break My Shots ([#3133](https://github.com/mozilla-services/screenshots/issues/3133)). Fixes [#3131](https://github.com/mozilla-services/screenshots/issues/3131) [75095a3](https://github.com/mozilla-services/screenshots/commit/75095a3)
+* Validate URLs before redirect ([#3074](https://github.com/mozilla-services/screenshots/issues/3074)). Fixes [#3073](https://github.com/mozilla-services/screenshots/issues/3073) [ecfaa64](https://github.com/mozilla-services/screenshots/commit/ecfaa64)
+* Changed the homepage from pageshot.net to https://screenshots.firefox.com. Fixes [#3041](https://github.com/mozilla-services/screenshots/issues/3041) [a98b6cf](https://github.com/mozilla-services/screenshots/commit/a98b6cf)
+* update to photon loader [8b6157b](https://github.com/mozilla-services/screenshots/commit/8b6157b)
+* Tweak flex syntax so shot pages work on IE 11. Fixes [#2516](https://github.com/mozilla-services/screenshots/issues/2516) [33d2ae5](https://github.com/mozilla-services/screenshots/commit/33d2ae5)
 
 
 ### Add-on changes
@@ -22,6 +34,10 @@ Note these are part of the version/tag, but have not been uploaded to the Firefo
   https://bugzilla.mozilla.org/show_bug.cgi?id=1373749 are fixed [d97d4a7](https://github.com/mozilla-services/screenshots/commit/d97d4a7)
 * Protect against an empty IPC response ([#3037](https://github.com/mozilla-services/screenshots/issues/3037))This happened in some weird corner case while debugging [14df39d](https://github.com/mozilla-services/screenshots/commit/14df39d)
 * Guard access of this.save when un-disabling the save button ([#3030](https://github.com/mozilla-services/screenshots/issues/3030)). This can happen after the worker has been torn down, and this.save isn't defined [cf6e72a](https://github.com/mozilla-services/screenshots/commit/cf6e72a)
+* Set dimensions for icon and add to startup ([#3136](https://github.com/mozilla-services/screenshots/issues/3136)) [9959ede](https://github.com/mozilla-services/screenshots/commit/9959ede)
+* Disable Screenshots in private windows. Fixes [#3120](https://github.com/mozilla-services/screenshots/issues/3120) [aefc639](https://github.com/mozilla-services/screenshots/commit/aefc639)
+* about:home is not treated like about:newtab ([#3088](https://github.com/mozilla-services/screenshots/issues/3088)). Fixes [#3029](https://github.com/mozilla-services/screenshots/issues/3029) [4633694](https://github.com/mozilla-services/screenshots/commit/4633694)
+* preview shot before saving full page/visibleremove addToMyShots [c87db61](https://github.com/mozilla-services/screenshots/commit/c87db61)
 
 
 ## Version 10.3.0
