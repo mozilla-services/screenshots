@@ -9,15 +9,21 @@ gScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skri
 // creatingPageTitleDefault.
 creatingPageTitle = Mencipta { $title }
 creatingPageTitleDefault = halaman
-// Home pagehomePageDownloadFirefoxSubTitle = Muat turun Percuma
+// Home pagehomePageDescription
+    .content = Skrinsyot intuitif terus ke dalam pelayar. Ambil, simpan dan kongsi skrinsyot sambil anda melayar Web menggunakan Firefox.
+homePageButtonMyShots = Pergi Ke Syot Saya
+homePageTeaser = Akan Datang...
+homePageDownloadFirefoxTitle = Firefox
 homePageGetStarted = Mulakan
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Bagaimana Firefox Screenshots Berfungsi
 homePageGetStartedTitle = Mulakan
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Cari ikon baru Screenshots pada bar alatan anda. Pilih, dan menu Screenshots akan muncul pada bahagian atas tetingkap pelayar anda.
+homePageCaptureRegion = Ambil gambar Lingkungan
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klik dan seret untuk memilih kawasan yang mahu ambil gambar. Atau hanya hela dan klik -  Screenshots akan pilihkan kawasan untuk anda. Suka dengan gambar itu? Pilih Simpan untuk mengakses skrinsyot dalam talian atau butang anak panah ke bawah untuk memuatturun ke komputer anda.
+homePageCapturePage = Ambil gambar Halaman
 homePageCapturePageDescription = Gunakan butang yang muncul pada bahagian atas kanan untuk mengambil gambar penuh halaman. Butang Simpan Tampak akan mengambil gambar kawasan yang anda nampak tanpa skrol, dan Simpan Halaman Penuh akan mengambil gambar keseluruhan halaman.
 homePageSaveShare = Simpan dan Kongsi
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -26,12 +32,24 @@ homePageLegalLink = Perundangan
 homePagePrivacyLink = Privasi
 homePageTermsLink = Terma
 homePageCookiesLink = Kuki
-// Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
+// Leave Screenshots pageleavePageConfirmDelete = Sahkan memadam akaun
+// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Anda mesti ada Firefox Screenshots yang dipasang untuk memadam akaun anda
+leavePageErrorGeneric = Ada ralat
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ini akan menghapuskan semua data Firefox Screenshots anda secara kekal.
+leavePageButtonProceed = Teruskan
+leavePageButtonCancel = Batal
 leavePageDeleted = Semua skrinsyot anda telah dipadam!
-// Not Found page// Shot pageshotPageCopy = Salin
+// Not Found pagenotFoundPageTitle = Halaman Tidak Ditemui
+notFoundPageIntro = Oops.
+notFoundPageDescription = Halaman tidak ditemui
+// Shot pageshotPageAlertErrorUpdatingExpirationTime = Ralat menetapkan tarikh luput
+shotPageAlertErrorDeletingShot = Ralat memadam syot
+shotPageAlertErrorUpdatingTitle = Ralat menyimpan tajuk
+shotPageConfirmDelete = Anda pasti mahu padam syot ini secara kekal?
+shotPageShareButton
+    .title = Kongsi
 shotPageCopied = Disalin
 shotPageShareFacebook
     .title = Kongsi di Facebook
@@ -87,6 +105,26 @@ shotPageDoesNotExpire = tiada tamat tempoh
 shotPageExpiresIn = tamat tempoh { $timediff }
 // Note: {$timediff} is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = tamat tempoh { $timediff }
+timeDiffJustNow = sebentar tadi
+timeDiffMinutesAgo = { $num ->
+       *[other] 1 minit lepas
+    }
+timeDiffHoursAgo = { $num ->
+       *[other] 1 jam lepas
+    }
+timeDiffDaysAgo = { $num ->
+       *[other] semalam
+    }
+timeDiffFutureSeconds = dalam beberapa saat
+timeDiffFutureMinutes = { $num ->
+       *[other] dalam 1 minit
+    }
+timeDiffFutureHours = { $num ->
+       *[other] dalam 1 jam
+    }
+timeDiffFutureDays = { $num ->
+       *[other] esok
+    }
 // Shotindex page// {$status} is a placeholder for an HTTP status code, like '500'.
 // {$statusText} is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Ralat memadam syot: { $status } { $statusText }
@@ -110,8 +148,10 @@ shotIndexPageConfirmShotDelete = Padam syot ini?
 // Metrics page
 // Note: all metrics strings are optional for translation// Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Matriks Firefox Screenshots
+metricsPageTotalsQueryTitle = Jumlah
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Tinjauan Screenshots
+metricsPageTotalsQueryDevices = Bilangan peranti didaftar
 metricsPageTotalsQueryActiveShots = Syot aktif
 metricsPageTotalsQueryExpiredShots = Tamat tempot (tapi boleh dikembalikan)
 metricsPageTotalsQueryExpiredDeletedShots = Tamat tempoh (dan dipadam)
@@ -119,13 +159,30 @@ metricsPageShotsQueryTitle = Syot mengikut Hari
 metricsPageShotsQueryDescription = Bilangan syot diambil setiap hari (sepanjang 30 hari lepas)
 metricsPageShotsQueryCount = Bilangan syot diambil
 metricsPageShotsQueryDay = Hari
+metricsPageUsersQueryTitle = Pengguna mengikut hari
 metricsPageUsersQueryDescription = Bilangan pengguna yang mengambil paling kurang satu syot, mengikut hari (30 hari lepas)
+metricsPageUsersQueryCount = Bilangan pengguna
+metricsPageUsersQueryDay = Hari
 metricsPageUserShotsQueryTitle = Bilangan Syot setiap Pengguna
 metricsPageUserShotsQueryDescription = Bilangan pengguna yang ada sejumlah N syot
 metricsPageUserShotsQueryCount = Bilangan pengguna
 metricsPageUserShotsQueryShots = Anggaran bilangan syot aktif (tiada tamat tempoh)
+metricsPageRetentionQueryTitle = Dikekal mengikut Minggu
 metricsPageRetentionQueryDescription = Bilangan hari bermula syot pertama pengguna hingga ke syot terkini, dihimpun mengikut permulaan minggu
+metricsPageRetentionQueryUsers = Bilangan pengguna
 metricsPageRetentionQueryDays = Bilangan hari sejak syot pengguna yang pertama hingga ke syot terkini
 metricsPageRetentionQueryFirstWeek = Minggu pengguna kali pertama ambil syot
+metricsPageTotalRetentionQueryTitle = Jumlah Dikekalkan
 metricsPageTotalRetentionQueryDescription = Tempoh pengguna mencipta syot, dihimpun mengikut minggu
+metricsPageTotalRetentionQueryUsers = Bilangan pengguna
 metricsPageTotalRetentionQueryDays = Hari pengguna mencipta syot
+metricsPageVersionQueryTitle = Versi Add-on
+metricsPageVersionQueryDescription = Versi add-on yang digunakan semasa log masuk, dalam tempoh 14 hari lepas
+metricsPageVersionQueryUsers = Bilangan pengguna menglog masuk
+metricsPageVersionQueryVersion = Versi add-on
+metricsPageVersionQueryLastSeen = Hari
+metricsPageHeader = Matriks
+// Note: {$created} is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Dijana pada: { $created }
+// Note {$time} is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (database time: { $time }ms)
