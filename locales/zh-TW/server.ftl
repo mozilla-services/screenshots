@@ -25,7 +25,11 @@ creatingPageTitleDefault = 頁面
 
 [[ Home page ]]
 
+homePageDescription
+    .content = 使用 Firefox 上網時，直接在瀏覽器內拍攝網頁擷圖、儲存、並分享。
 homePageButtonMyShots = 前往我的擷圖
+homePageTeaser = 即將上線…
+homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = 免費下載
 homePageGetStarted = 開始使用
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -42,6 +46,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = 確認刪除帳號
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = 您必須安裝 Firefox Screenshots 才能刪除帳號
 leavePageErrorGeneric = 發生錯誤
@@ -54,10 +59,16 @@ leavePageDeleted = 已清除您所有擷取過的圖片！
 
 [[ Not Found page ]]
 
+notFoundPageTitle = 找不到頁面
+notFoundPageIntro = 糟糕。
+notFoundPageDescription = 找不到頁面。
 
 
 [[ Shot page ]]
 
+shotPageAlertErrorUpdatingExpirationTime = 儲存到期時間時發生錯誤
+shotPageAlertErrorDeletingShot = 刪除擷圖時發生錯誤
+shotPageAlertErrorUpdatingTitle = 儲存標題時發生錯誤
 shotPageConfirmDelete = 您確定要刪除這張圖片嗎？
 shotPageShareButton
     .title = 分享
