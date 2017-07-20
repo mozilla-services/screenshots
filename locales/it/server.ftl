@@ -9,7 +9,8 @@ gScreenshotsDescription = Realizzare screenshot non è mai stato così facile. C
 // creatingPageTitleDefault.
 creatingPageTitle = Creazione { $title }
 creatingPageTitleDefault = pagina
-// Home pagehomePageButtonMyShots = Vai alle mie immagini
+// Home pagehomePageDescription
+    .content = Un modo intuitivo di realizzare screenshot direttamente nel browser. Cattura, salva e condividi immagini durante la navigazione con Firefox.
 homePageTeaser = Presto disponibile...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Download gratuito
@@ -31,22 +32,19 @@ homePageLegalLink = Note legali
 homePagePrivacyLink = Privacy
 homePageTermsLink = Condizioni di utilizzo
 homePageCookiesLink = Cookie
-// Leave Screenshots pageleavePageConfirmDelete = Conferma eliminazione account
-// Note: do not translate 'Firefox Screenshots' when translating this string
+// Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = È necessario avere installato Firefox Screenshots per eliminare l’account
 leavePageErrorGeneric = Si è verificato un errore
 // Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageWarning = Questa operazione cancellerà tutti i dati associati a Firefox Screenshots.
+leavePageWarning = Questa operazione eliminerà tutti i dati associati a Firefox Screenshots.
 leavePageButtonProceed = Continua
 leavePageButtonCancel = Annulla
-leavePageDeleted = Tutti i tuoi screenshot sono stati eliminati.
-// Not Found pagenotFoundPageTitle = Pagina non trovata
-notFoundPageIntro = Oops.
+leavePageDeleted = Tutte le tue immagini sono state eliminate.
+// Not Found pagenotFoundPageIntro = Oops.
 notFoundPageDescription = Pagina non trovata.
-// Shot pageshotPageAlertErrorUpdatingExpirationTime = Errore durante il salvataggio della scadenza
-shotPageAlertErrorDeletingShot = Errore durante l’eliminazione dell’immagine
+// Shot pageshotPageAlertErrorDeletingShot = Errore durante l’eliminazione dell’immagine
 shotPageAlertErrorUpdatingTitle = Errore durante il salvataggio del titolo
-shotPageConfirmDelete = Eliminare questo screenshot in modo definitivo?
+shotPageConfirmDelete = Eliminare questa immagine in modo definitivo?
 shotPageShareButton
     .title = Condividi
 shotPageCopy = Copia
@@ -59,11 +57,11 @@ shotPageSharePinterest
     .title = Condividi su Pinterest
 shotPageShareEmail
     .title = Condividi link via email
-shotPageShareLink = Ottieni un link per condividere questa immagine
+shotPageShareLink = Ottieni un link per condividere questa immagine:
 shotPagePrivacyMessage = Chiunque in possesso di questo link potrà visualizzare l’immagine.
 shotPageCopyImageText
-    .label = Copia testo dell’immagine
-shotPageConfirmDeletion = Eliminare questa immagine in modo permanente?
+    .label = Copia testo nell’immagine
+shotPageConfirmDeletion = Eliminare questa immagine in modo definitivo?
 // Note: {$timediff} is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Se non viene modificato nulla, questa immagine verrà eliminata { $timediff }.
 // Note: {$date} is a placeholder for a localized future date as returned by Date.toLocaleString.
