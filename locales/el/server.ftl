@@ -27,6 +27,7 @@ creatingPageTitleDefault = σελίδα
 
 homePageDescription
     .content = Εύκολη λήψη στιγμιοτύπων, ενσωματωμένη στο πρόγραμμα περιήγησης. Λήψη, αποθήκευση και κοινή χρήση στιγμιοτύπων κατά την περιήγηση στο διαδίκτυο με το Firefox.
+homePageButtonMyShots = Μετάβαση στα στιγμιότυπά μου
 homePageTeaser = Έρχεται σύντομα...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Δωρεάν λήψη
@@ -52,6 +53,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = Επιβεβαίωση διαγραφής λογαριασμού
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Πρέπει να έχετε εγκαταστήσει το Firefox Screenshots, ώστε να διαγράψετε το λογαριασμό σας
 leavePageErrorGeneric = Προέκυψε σφάλμα
@@ -64,12 +66,14 @@ leavePageDeleted = Όλα τα στιγμιότυπά σας έχουν διαγ
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Η σελίδα δεν βρέθηκε
 notFoundPageIntro = Ωχ.
 notFoundPageDescription = Η σελίδα δεν βρέθηκε.
 
 
 [[ Shot page ]]
 
+shotPageAlertErrorUpdatingExpirationTime = Σφάλμα αποθήκευσης ημερομηνίας λήξης
 shotPageAlertErrorDeletingShot = Σφάλμα διαγραφής στιγμιότυπου
 shotPageAlertErrorUpdatingTitle = Σφάλμα αποθήκευσης τίτλου
 shotPageConfirmDelete = Θέλετε σίγουρα να διαγράψετε οριστικά το στιγμιότυπο;
