@@ -163,18 +163,27 @@ shotIndexPageConfirmShotDelete = 要刪除這張擷圖嗎？
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Firefox Screenshots 統計
 metricsPageTotalsQueryTitle = 總數
+metricsPageTotalsQueryDevices = 已註冊裝置數
 metricsPageTotalsQueryExpiredShots = 已過期（但可恢復）
 metricsPageTotalsQueryExpiredDeletedShots = 已過期（且已刪除）
+metricsPageShotsQueryTitle = 逐日擷圖數
+metricsPageShotsQueryDescription = 最近 30 天內，每天新建立的擷圖數量
 metricsPageShotsQueryCount = 擷圖數量
+metricsPageShotsQueryDay = 日期
+metricsPageUsersQueryTitle = 逐日使用者數
+metricsPageUsersQueryDescription = 最近 30 天內，每天至少有建立一張擷圖的使用者數量
 metricsPageUsersQueryCount = 使用者數
+metricsPageUsersQueryDay = 日期
 metricsPageUserShotsQueryTitle = 單一使用者拍攝的擷圖數
 metricsPageUserShotsQueryCount = 使用者數
+metricsPageRetentionQueryTitle = 週停留量
 metricsPageRetentionQueryUsers = 使用者數
 metricsPageTotalRetentionQueryTitle = 總停留
 metricsPageTotalRetentionQueryUsers = 使用者數
 metricsPageVersionQueryTitle = 附加元件版本
 metricsPageVersionQueryUsers = 登入的使用者數
 metricsPageVersionQueryVersion = 附加元件版本
+metricsPageVersionQueryLastSeen = 日期
 metricsPageHeader = 統計
 // Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = 產生於: { $created }
