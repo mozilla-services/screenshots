@@ -27,6 +27,7 @@ creatingPageTitleDefault = halaman
 
 homePageDescription
     .content = Skrinsyot intuitif dihasilkan terus ke dalam pelayar. Ambil, simpan dan kongsi skrinsyot sambil anda melayari Web menggunakan Firefox.
+homePageButtonMyShots = Ke Syot Saya
 homePageTeaser = Akan Datang...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Muat turun Percuma
@@ -66,12 +67,14 @@ leavePageDeleted = Semua skrinsyot anda telah dipadam!
 [[ Not Found page ]]
 
 notFoundPageTitle = Halaman Tidak Ditemukam
+notFoundPageIntro = Ooops.
 notFoundPageDescription = Halaman tidak ditemui
 
 
 [[ Shot page ]]
 
 shotPageAlertErrorUpdatingExpirationTime = Ralat menyimpan tempoh tamat
+shotPageAlertErrorDeletingShot = Ralat membuang syot
 shotPageAlertErrorUpdatingTitle = Ralat menyimpan tajuk
 shotPageConfirmDelete = Anda pasti mahu padam syot ini secara kekal?
 shotPageShareButton
