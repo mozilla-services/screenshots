@@ -9,7 +9,8 @@ gScreenshotsDescription = Ekrankopioj, simple faritaj. Kopii, konservi kaj divid
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } kreata
 creatingPageTitleDefault = paĝo
-// Home pagehomePageButtonMyShots = Iri al 'Miaj ekrankopioj'
+// Home pagehomePageDescription
+    .content = Ekrankopioj intuiciaj, rekte en la retumilo. Faru, konservu kaj dividu ekrankopiojn dum vi retumas per Firefox.
 homePageTeaser = Baldaŭ aperonta…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Senpaga elŝuto
@@ -31,7 +32,8 @@ homePageLegalLink = Leĝaĵoj
 homePagePrivacyLink = Privateco
 homePageTermsLink = Kondiĉoj
 homePageCookiesLink = Kuketoj
-// Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
+// Leave Screenshots pageleavePageConfirmDelete = Konfirmi forigon de konto
+// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Por povi forigi vian konton vi devas havi Ekrankopioj de Firefox instalita
 leavePageErrorGeneric = Eraro okazis
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -39,9 +41,9 @@ leavePageWarning = Tio ĉi definitive forigos ĉiujn viajn datumojn de Ekrankopi
 leavePageButtonProceed = Fari
 leavePageButtonCancel = Nuligi
 leavePageDeleted = Ĉiuj viaj ekrankopioj estis forigitaj!
-// Not Found pagenotFoundPageIntro = Fuŝ'.
+// Not Found pagenotFoundPageTitle = Paĝo ne trovita
 notFoundPageDescription = Paĝo ne trovita
-// Shot pageshotPageAlertErrorDeletingShot = Eraro dum forigo de ekrankopio
+// Shot pageshotPageAlertErrorUpdatingExpirationTime = Eraro dum konservo de senvalidiĝo
 shotPageAlertErrorUpdatingTitle = Eraro dum konservo de titolo
 shotPageConfirmDelete = Ĉu vi certe volas definitive forigi tiun ĉi ekrankopion?
 shotPageShareButton
@@ -76,9 +78,7 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Elŝuti
 shotPageDownload = Elŝuti
-shotPageScreenshotsDescription =
-    Ekrankopioj, simple faritaj. Kopii, konservi kaj dividi ekrankopiojn sen forlasi Firefox.
-
+shotPageScreenshotsDescription = Ekrankopioj, simple faritaj. Kopii, konservi kaj dividi ekrankopiojn sen forlasi Firefox.
 shotPageUpsellFirefox = Ricevi Firefox nun
 shotPageDMCAMessage = Tiu ĉi ekrankopio ne plu estas havebla pro plendo pri intelekta kopirajto.
 // Note: {$dmca} is a placeholder for a link to send email (a 'mailto' link)
@@ -109,9 +109,37 @@ timeDiffMinutesAgo = { $num ->
         [one] antaŭ minuto
        *[other] antaŭ { $number } minutoj
     }
-timeDiffHoursAgo = timeDiffHoursAgo = { $num ->
-        [one] antaŭ minuto
-       *[other] antaŭ { $number } minutoj
+timeDiffDaysAgo = { $num ->
+        [one] hieraŭ
+       *[other] antaŭ { $number } tagoj
     }
-// Shotindex page// Metrics page
+timeDiffFutureSeconds = post kelkaj sekundoj
+timeDiffFutureMinutes = { $num ->
+        [one] post minuto
+       *[other] post { $number } minutoj
+    }
+timeDiffFutureHours = { $num ->
+        [one] post horo
+       *[other] post { $number } horoj
+    }
+timeDiffFutureDays = { $num ->
+        [one] morgaŭ
+       *[other] post { $number } tagoj
+    }
+// Shotindex page// {$status} is a placeholder for an HTTP status code, like '500'.
+// {$statusText} is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Eraro dum forigo de ekrankopio: { $status } { $statusText }
+// {$searchTerm} is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Miaj ekrankopioj: serĉi { $searchTerm }
+// {$error} is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Eraro dum montro de ekrano: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Serĉi miajn ekrankopiojn
+shotIndexPageSearchButton
+    .title = Serĉi
+shotIndexPageNoShotsMessage = Neniu konservita ekrankopio.
+shotIndexPageNoShotsInvitation = Ek, kreu kelkajn.
+shotIndexPageNoSearchResultsIntro = Hmm
+// Metrics page
 // Note: all metrics strings are optional for translation
