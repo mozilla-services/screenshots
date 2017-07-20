@@ -27,6 +27,7 @@ creatingPageTitleDefault = ページ
 
 homePageDescription
     .content = ブラウザーに組み込まれた直感的なスクリーンショットツール。Firefox を使ってウェブをブラウズしながら、スクリーンショットをキャプチャ、保存、共有できます。
+homePageButtonMyShots = 自分のショットへ
 homePageTeaser = 近日公開...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = 無料ダウンロード
@@ -52,6 +53,7 @@ homePageCookiesLink = Cookie
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = アカウントの削除を確認
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = アカウントを削除するには Firefox Screenshots がインストールされている必要があります
 leavePageErrorGeneric = 問題が発生しました
@@ -64,12 +66,14 @@ leavePageDeleted = あなたのスクリーンショットはすべて消去さ�
 
 [[ Not Found page ]]
 
+notFoundPageTitle = ページが見つかりませんでした
 notFoundPageIntro = おっと。
 notFoundPageDescription = ページが見つかりませんでした。
 
 
 [[ Shot page ]]
 
+shotPageAlertErrorUpdatingExpirationTime = 期限の保存中に問題が発生しました
 shotPageAlertErrorDeletingShot = ショットの削除中に問題が発生しました
 shotPageAlertErrorUpdatingTitle = タイトルの保存中に問題が発生しました
 shotPageConfirmDelete = 本当にこのショットを永久に削除しますか？
