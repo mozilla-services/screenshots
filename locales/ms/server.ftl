@@ -9,8 +9,7 @@ gScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skri
 // creatingPageTitleDefault.
 creatingPageTitle = Mencipta { $title }
 creatingPageTitleDefault = halaman
-// Home pagehomePageDownloadFirefoxTitle = Firefox
-homePageDownloadFirefoxSubTitle = Muat turun Percuma
+// Home pagehomePageDownloadFirefoxSubTitle = Muat turun Percuma
 homePageGetStarted = Mulakan
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Bagaimana Firefox Screenshots Berfungsi
@@ -19,6 +18,7 @@ homePageGetStartedTitle = Mulakan
 homePageGetStartedDescription = Cari ikon baru Screenshots pada bar alatan anda. Pilih, dan menu Screenshots akan muncul pada bahagian atas tetingkap pelayar anda.
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klik dan seret untuk memilih kawasan yang mahu ambil gambar. Atau hanya hela dan klik -  Screenshots akan pilihkan kawasan untuk anda. Suka dengan gambar itu? Pilih Simpan untuk mengakses skrinsyot dalam talian atau butang anak panah ke bawah untuk memuatturun ke komputer anda.
+homePageCapturePageDescription = Gunakan butang yang muncul pada bahagian atas kanan untuk mengambil gambar penuh halaman. Butang Simpan Tampak akan mengambil gambar kawasan yang anda nampak tanpa skrol, dan Simpan Halaman Penuh akan mengambil gambar keseluruhan halaman.
 homePageSaveShare = Simpan dan Kongsi
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Apabila anda ambil syot, Firefox menghantar skrinsyot ke pustaka Screenshots dalam talian anda dan menyalin pautan ke klipbod anda. Secara automatik, kami simpan skrinsyot anda selama dua minggu, tetapi anda boleh padam atau tukar tarikh luputnya untuk terus disimpan lebih lama dalam pustaka anda. 
@@ -31,9 +31,7 @@ leavePageErrorAddonRequired = Anda mesti ada Firefox Screenshots yang dipasang u
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ini akan menghapuskan semua data Firefox Screenshots anda secara kekal.
 leavePageDeleted = Semua skrinsyot anda telah dipadam!
-// Not Found page// Shot pageshotPageShareButton
-    .title = Kongsi
-shotPageCopy = Salin
+// Not Found page// Shot pageshotPageCopy = Salin
 shotPageCopied = Disalin
 shotPageShareFacebook
     .title = Kongsi di Facebook
