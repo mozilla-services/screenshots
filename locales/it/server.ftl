@@ -3,15 +3,16 @@ gMyShots = Le mie immagini
 gHomeLink = Pagina iniziale
 gNoShots
     .alt = Nessuna immagine trovata
-gScreenshotsDescription = Salva screenshot non è mai stato così facile. Cattura, salva e condividi screenshot senza uscire da Firefox.
+gScreenshotsDescription = Realizzare screenshot non è mai stato così facile. Cattura, salva e condividi le tue immagini senza uscire da Firefox.
 // Creating page// Note: {$title} is a placeholder for the title of the web page
 // captured in the screenshot. The default, for pages without titles, is
 // creatingPageTitleDefault.
 creatingPageTitle = Creazione { $title }
 creatingPageTitleDefault = pagina
 // Home pagehomePageDescription
-    .content = Screenhost intuitivi direttamente nel browser. Cattura, salva e condividi immagini durante la navigazione con Firefox.
+    .content = Un modo intuitivo di realizzare screenshot direttamente nel browser. Cattura, salva e condividi immagini durante la navigazione con Firefox.
 homePageButtonMyShots = Vai alle mie immagini
+homePageTeaser = Presto disponibile...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Download gratuito
 homePageGetStarted = Inizia
@@ -19,10 +20,10 @@ homePageGetStarted = Inizia
 homePageHowScreenshotsWorks = Come funziona Firefox Screenshots
 homePageGetStartedTitle = Per iniziare
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Trova la nuova icona Screenshots nella barra degli strumenti. Selezionala e il menu di Firefox Screenshots apparirà in cima alla finestra del browser.
+homePageGetStartedDescription = Trova la nuova icona Screenshots nella barra degli strumenti. Selezionala e il menu di Firefox Screenshots apparirà in alto nella finestra del browser.
 homePageCaptureRegion = Cattura un’area
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Fai clic e trascina per selezionare l’area che ti interessa. Oppure posizionati con il mouse e fai clic – Screenshots selezionerà l’area per te. È tutto a posto? Scegli Salva per memorizzare l’immagine online oppure la freccia verso il basso per scaricarla sul computer.
+homePageCaptureRegionDescription = Fai clic e trascina per selezionare l’area che ti interessa. Oppure posizionati con il mouse e fai clic – Screenshots cercherà di selezionare l’area per te. È tutto pronto? Scegli Salva per memorizzare l’immagine online oppure il pulsante con la freccia verso il basso per scaricarla sul computer.
 homePageCapturePage = Cattura una pagina
 homePageCapturePageDescription = Utilizza i pulsanti in alto a destra per catturare la pagina. Il pulsante “Salva l’area visibile” cattura l’area visibile senza scorrere la pagina, mentre “Salva l’intera schermata” cattura il contenuto completo della pagina.
 homePageSaveShare = Salva e condividi
@@ -32,8 +33,7 @@ homePageLegalLink = Note legali
 homePagePrivacyLink = Privacy
 homePageTermsLink = Condizioni di utilizzo
 homePageCookiesLink = Cookie
-// Leave Screenshots pageleavePageConfirmDelete = Conferma eliminazione account
-// Note: do not translate 'Firefox Screenshots' when translating this string
+// Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = È necessario avere installato Firefox Screenshots per eliminare l’account
 leavePageErrorGeneric = Si è verificato un errore
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -41,10 +41,8 @@ leavePageWarning = Questa operazione cancellerà tutti i dati associati a Firefo
 leavePageButtonProceed = Continua
 leavePageButtonCancel = Annulla
 leavePageDeleted = Tutti i tuoi screenshot sono stati eliminati.
-// Not Found pagenotFoundPageTitle = Pagina non trovata
-notFoundPageDescription = Pagina non trovata.
-// Shot pageshotPageAlertErrorUpdatingExpirationTime = Errore durante il salvataggio della scadenza
-shotPageAlertErrorUpdatingTitle = Errore durante il salvataggio del titolo
+// Not Found pagenotFoundPageDescription = Pagina non trovata.
+// Shot pageshotPageAlertErrorUpdatingTitle = Errore durante il salvataggio del titolo
 shotPageConfirmDelete = Eliminare questo screenshot in modo definitivo?
 shotPageShareButton
     .title = Condividi
@@ -78,7 +76,7 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Scarica
 shotPageDownload = Scarica
-shotPageScreenshotsDescription = Salva screenshot non è mai stato così facile. Cattura, salva e condividi screenshot senza uscire da Firefox.
+shotPageScreenshotsDescription = Salvare screenshot non è mai stato così facile. Cattura, salva e condividi le tue immagini senza uscire da Firefox.
 shotPageUpsellFirefox = Installa Firefox adesso
 shotPageDMCAMessage = Questa immagine non è più disponibile a causa di una segnalazione di violazione della proprietà intellettuale da parte di soggetti terzi.
 // Note: {$dmca} is a placeholder for a link to send email (a 'mailto' link)
