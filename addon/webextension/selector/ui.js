@@ -164,7 +164,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     initSizeWatch() {
       this.stopSizeWatch();
       this.sizeTracking.timer = setInterval(watchFunction(this.updateElementSize.bind(this)), 2000);
-      window.addEventListener("resize", watchFunction(assertIsTrusted(this.onResize)), true);
+      window.addEventListener("resize", this.onResize, true);
     },
 
     stopSizeWatch() {
@@ -177,7 +177,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
         this.sizeTracking.windowDelayer = null;
       }
       this.sizeTracking.lastHeight = this.sizeTracking.lastWidth = null;
-      window.removeEventListener("resize", watchFunction(assertIsTrusted(this.onResize)), true);
+      window.removeEventListener("resize", this.onResize, true);
     },
 
     getElementFromPoint(x, y) {
