@@ -1,15 +1,32 @@
+// Localization for Server-side strings of Firefox Screenshots
+// 
+// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+
+
+
 // Global phrases shared across pages, prefixed with 'g'
+[[ global ]]
+
 gMyShots = 自分のショット
 gHomeLink = ホーム
 gNoShots
     .alt = ショットが見つかりませんでした
 gScreenshotsDescription = スクリーンショットを簡単に。Firefox を離れることなくスクリーンショットを撮影、保存、共有。
-// Creating page// Note: {$title} is a placeholder for the title of the web page
+
+
+[[ Creating page ]]
+
+// Note: { $title } is a placeholder for the title of the web page
 // captured in the screenshot. The default, for pages without titles, is
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } を作成しています
 creatingPageTitleDefault = ページ
-// Home pagehomePageButtonMyShots = 自分のショットへ
+
+
+[[ Home page ]]
+
+homePageDescription
+    .content = ブラウザーに組み込まれた直感的なスクリーンショットツール。Firefox を使ってウェブをブラウズしながら、スクリーンショットをキャプチャ、保存、共有できます。
 homePageTeaser = 近日公開...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = 無料ダウンロード
@@ -31,7 +48,10 @@ homePageLegalLink = 法的通知
 homePagePrivacyLink = プライバシー
 homePageTermsLink = 利用規約
 homePageCookiesLink = Cookie
-// Leave Screenshots pageleavePageConfirmDelete = アカウントの削除を確認
+
+
+[[ Leave Screenshots page ]]
+
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = アカウントを削除するには Firefox Screenshots がインストールされている必要があります
 leavePageErrorGeneric = 問題が発生しました
@@ -40,9 +60,17 @@ leavePageWarning = これによりあなたの Firefox Screenshots データは�
 leavePageButtonProceed = 続ける
 leavePageButtonCancel = キャンセル
 leavePageDeleted = あなたのスクリーンショットはすべて消去されました！
-// Not Found pagenotFoundPageTitle = ページが見つかりませんでした
+
+
+[[ Not Found page ]]
+
+notFoundPageIntro = おっと。
 notFoundPageDescription = ページが見つかりませんでした。
-// Shot pageshotPageAlertErrorUpdatingExpirationTime = 期限の保存中に問題が発生しました
+
+
+[[ Shot page ]]
+
+shotPageAlertErrorDeletingShot = ショットの削除中に問題が発生しました
 shotPageAlertErrorUpdatingTitle = タイトルの保存中に問題が発生しました
 shotPageConfirmDelete = 本当にこのショットを永久に削除しますか？
 shotPageShareButton
@@ -62,10 +90,10 @@ shotPagePrivacyMessage = リンクを手に入れた人は誰でもこのショ�
 shotPageCopyImageText
     .label = 画像のテキストをコピー
 shotPageConfirmDeletion = 本当にこのショットを永久に削除しますか？
-// Note: {$timediff} is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = 何もしない場合、このショットは { $timediff } に永久に削除されます。
-// Note: {$date} is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, {$date} could be "7/12/2017, 1:52:50 PM".
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = { $date } まで復元
 shotPageExpiredMessage = このショットは期限切れとなりました。
 // Note: This phrase is followed by an empty line, then the URL of the source page
@@ -80,11 +108,11 @@ shotPageDownload = ダウンロード
 shotPageScreenshotsDescription = スクリーンショットを簡単に。Firefox を離れることなくスクリーンショットを撮影、保存、共有。
 shotPageUpsellFirefox = 今すぐ Firefox をダウンロード
 shotPageDMCAMessage = このショットは第三者による知的所有権侵害報告により使用できなくなりました。
-// Note: {$dmca} is a placeholder for a link to send email (a 'mailto' link)
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = より詳しい情報は { $dmca } までお問い合わせください。
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = あなたのショットに対して問題報告が複数寄せられた場合、あなたの Firefox Screenshots へのアクセスは無効化される可能性があります。
-// Note: {$url} is a placeholder for a shot page URL
+// Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = このショットの URL をメールに記載してください: { $url }
 shotPageKeepFor = このショットの保存期間
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
@@ -99,9 +127,9 @@ shotPageKeepOneMonth = 1 か月
 shotPageSaveExpiration = 保存
 shotPageCancelExpiration = キャンセル
 shotPageDoesNotExpire = 無期限
-// Note: {$timediff} is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = { $timediff } に期限切れ
-// Note: {$timediff} is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } に期限切れ
 timeDiffJustNow = たった今
 timeDiffMinutesAgo = { $number } 分前
@@ -111,12 +139,16 @@ timeDiffFutureSeconds = 数秒以内
 timeDiffFutureMinutes = { $number } 分以内
 timeDiffFutureHours = { $number } 時間以内
 timeDiffFutureDays = { $number } 日以内
-// Shotindex page// {$status} is a placeholder for an HTTP status code, like '500'.
-// {$statusText} is a text description of the status code, like 'Internal server error'.
+
+
+[[ Shotindex page ]]
+
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = ショットの削除中に問題が発生しました: { $status } { $statusText }
-// {$searchTerm} is a placeholder for text the user typed into the search box
+// { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = 自分のショット: { $searchTerm } を検索
-// {$error} is a placeholder for a non-translated error message that could be shared
+// { $error } is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
 shotIndexPageErrorRendering = ページのレンダリング中に問題が発生しました: { $error }
 shotIndexPageSearchPlaceholder
@@ -131,8 +163,12 @@ shotIndexPageNoSearchResults = 検索語に一致するショットが見つか�
 shotIndexPageClearSearchButton
     .title = 検索語を消去
 shotIndexPageConfirmShotDelete = このショットを削除しますか？
-// Metrics page
-// Note: all metrics strings are optional for translation// Note: 'Firefox Screenshots' should not be translated
+
+
+// all metrics strings are optional for translation
+[[ Metrics page ]]
+
+// Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Firefox Screenshots 統計データ
 metricsPageTotalsQueryTitle = 合計
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -168,7 +204,7 @@ metricsPageVersionQueryUsers = ログイン済みユーザー数
 metricsPageVersionQueryVersion = アドオンのバージョン
 metricsPageVersionQueryLastSeen = 日
 metricsPageHeader = 統計データ
-// Note: {$created} is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = 作成日時: { $created }
-// Note {$time} is a placeholder for a number of milliseconds, like '100'
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (データベース時間: { $time } ミリ秒)
