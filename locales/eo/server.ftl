@@ -25,13 +25,15 @@ creatingPageTitleDefault = paĝo
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Ekrankopioj intuiciaj, rekte en la retumilo. Faru, konservu kaj dividu ekrankopiojn dum vi retumas per Firefox.
 homePageButtonMyShots = Iri al 'Miaj ekrankopioj'
 homePageTeaser = Baldaŭ aperonta…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Senpaga elŝuto
 homePageGetStarted = Unuaj paŝoj
 // Note: do not translate 'Firefox Screenshots' when translating this string
-homePageHowScreenshotsWorks = Kiel funkcias la ekrankopioj de Firefox
+homePageHowScreenshotsWorks = Kiel funkcias Firefox Screenshots
 homePageGetStartedTitle = Unua paŝoj
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Trovu la novan emblemon de ekrankopioj en via ilaro. Elektu ĝin, kaj la ekrankopia menuo aperos ĉe la supra parto de via retumila fenestro.
@@ -51,11 +53,12 @@ homePageCookiesLink = Kuketoj
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = Konfirmi forigon de konto
 // Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Por povi forigi vian konton vi devas havi Ekrankopioj de Firefox instalita
+leavePageErrorAddonRequired = Por povi forigi vian konton vi devas havi Firefox Screenshots instalita
 leavePageErrorGeneric = Eraro okazis
 // Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageWarning = Tio ĉi definitive forigos ĉiujn viajn datumojn de Ekrankopioj de Firefox.
+leavePageWarning = Tio ĉi definitive forigos ĉiujn viajn datumojn de Firefox Screenshots.
 leavePageButtonProceed = Fari
 leavePageButtonCancel = Nuligi
 leavePageDeleted = Ĉiuj viaj ekrankopioj estis forigitaj!
@@ -63,11 +66,15 @@ leavePageDeleted = Ĉiuj viaj ekrankopioj estis forigitaj!
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Paĝo ne trovita
+notFoundPageIntro = Fuŝ'.
 notFoundPageDescription = Paĝo ne trovita
 
 
 [[ Shot page ]]
 
+shotPageAlertErrorUpdatingExpirationTime = Eraro dum konservo de senvalidiĝo
+shotPageAlertErrorDeletingShot = Eraro dum forigo de ekrankopio
 shotPageAlertErrorUpdatingTitle = Eraro dum konservo de titolo
 shotPageConfirmDelete = Ĉu vi certe volas definitive forigi tiun ĉi ekrankopion?
 shotPageShareButton
@@ -172,6 +179,7 @@ shotIndexPageSearchButton
     .title = Serĉi
 shotIndexPageNoShotsMessage = Neniu konservita ekrankopio.
 shotIndexPageNoShotsInvitation = Ek, kreu kelkajn.
+shotIndexPageLookingForShots = Ekrankopioj serĉataj…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Ni ne povis trovi iun ajn ekrankopion kiu kongruu kun via serĉo.
 shotIndexPageClearSearchButton
@@ -195,8 +203,30 @@ metricsPageShotsQueryTitle = Ekrankopioj ĉiutage
 metricsPageShotsQueryDescription = Nombro de ekrankopioj ĉiutage (por la lastaj 30 tagoj)
 metricsPageShotsQueryCount = Nombro de ekrankopioj
 metricsPageShotsQueryDay = Tago
-metricsPageUsersQueryTitle = Pertagaj uzantoj
+metricsPageUsersQueryTitle = Uzantoj ĉiutage
 metricsPageUsersQueryDescription = Nombro de uzantoj kiuj kreis minimume unu ekrankopion, ĉiutage (lastaj 30 tagoj)
 metricsPageUsersQueryCount = Nombro de uzantoj
 metricsPageUsersQueryDay = Tago
-metricsPageUserShotsQueryTitle = Pertagaj uzanton
+metricsPageUserShotsQueryTitle = Nombro de ekrankopioj por uzanto
+metricsPageUserShotsQueryDescription = La nombro de uzantoj kiuj havas pli malpli N ekrankopiojn entute
+metricsPageUserShotsQueryCount = Nombro de uzantoj
+metricsPageUserShotsQueryShots = Proksimuma nombro de aktivaj (ne senvalidiĝintaj) ekrankopioj
+metricsPageRetentionQueryTitle = Pluuzado ĉiusemajne
+metricsPageRetentionQueryDescription = Nombro de tagoj inter la unua kaj lasta ekrankopio de uzanto, grupigitaj laŭ la unua semajno
+metricsPageRetentionQueryUsers = Nombro de uzantoj
+metricsPageRetentionQueryDays = Tagoj inter la unua kaj lasta ekrankopio de la uzanto
+metricsPageRetentionQueryFirstWeek = Semajno, kiam la uzanto kreis la unuan ekrankopion
+metricsPageTotalRetentionQueryTitle = Pluuzado entute
+metricsPageTotalRetentionQueryDescription = Tempo, dum kiu uzantoj kreis ekrankopiojn, grupigita laŭ semajno
+metricsPageTotalRetentionQueryUsers = Nombro de uzantoj
+metricsPageTotalRetentionQueryDays = Tagoj, dum kiuj la uzanto kreis ekrankopiojn
+metricsPageVersionQueryTitle = Versio de aldonaĵo
+metricsPageVersionQueryDescription = La versio de la aldonaĵo uzita por komenci seancon, dum la lastaj 14 tagoj
+metricsPageVersionQueryUsers = Nombro de uzantoj kun seancoj komencitaj
+metricsPageVersionQueryVersion = Versio de aldonaĵo
+metricsPageVersionQueryLastSeen = Tago
+metricsPageHeader = Statistikoj
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Kreitaj je: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (datumbaza tempo: { $time }ms)
