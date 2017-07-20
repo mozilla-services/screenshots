@@ -3,8 +3,7 @@ gMyShots = Moji posnetki
 gHomeLink = Domov
 gNoShots
     .alt = Ni najdenih posnetkov
-// Creating pagecreatingPageTitleDefault = stran
-// Home pagehomePageButtonMyShots = Pojdi na moje posnetke
+// Creating page// Home pagehomePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Brezplačen prenos
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kako deluje Firefox Screenshots
@@ -18,10 +17,8 @@ leavePageErrorAddonRequired = Za izbris računa morate imeti nameščen Firefox 
 leavePageErrorGeneric = Prišlo je do napake
 leavePageButtonCancel = Prekliči
 leavePageDeleted = Vsi vaši posnetki so bili izbrisani!
-// Not Found pagenotFoundPageTitle = Strani ni mogoče najti
-notFoundPageDescription = Strani ni mogoče najti.
-// Shot pageshotPageAlertErrorDeletingShot = Napaka pri brisanju posnetka
-shotPageAlertErrorUpdatingTitle = Napaka pri shranjevanju naslova
+// Not Found pagenotFoundPageDescription = Strani ni mogoče najti.
+// Shot pageshotPageAlertErrorUpdatingTitle = Napaka pri shranjevanju naslova
 shotPageShareButton
     .title = Deli
 shotPageCopy = Kopiraj
@@ -52,8 +49,7 @@ shotPageDoesNotExpire = ne poteče
 // Note: {$timediff} is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = poteče { $timediff }
 timeDiffJustNow = zdaj
-// Shotindex pageshotIndexPageNoShotsMessage = Ni shranjenih posnetkov.
-// Metrics page
+// Shotindex page// Metrics page
 // Note: all metrics strings are optional for translation// Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Metrika Firefox Screenshots
 metricsPageTotalsQueryActiveShots = Aktivni posnetki
