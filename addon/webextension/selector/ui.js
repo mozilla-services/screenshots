@@ -198,7 +198,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     }
   };
 
-  iframeSelection.onResize = watchFunction(assertIsTrusted(onResize.bind(iframeSelection)));
+  iframeSelection.onResize = watchFunction(assertIsTrusted(onResize.bind(iframeSelection)), true);
 
   let iframePreSelection = exports.iframePreSelection = {
     element: null,
@@ -322,7 +322,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     }
   };
 
-  iframePreSelection.onResize = watchFunction(onResize.bind(iframePreSelection));
+  iframePreSelection.onResize = watchFunction(onResize.bind(iframePreSelection), true);
 
   let iframe = exports.iframe = {
     currentIframe: iframePreSelection,
