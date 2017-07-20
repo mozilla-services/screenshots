@@ -9,8 +9,7 @@ gScreenshotsDescription = Realizzare screenshot non è mai stato così facile. C
 // creatingPageTitleDefault.
 creatingPageTitle = Creazione { $title }
 creatingPageTitleDefault = pagina
-// Home pagehomePageDescription
-    .content = Un modo intuitivo di realizzare screenshot direttamente nel browser. Cattura, salva e condividi immagini durante la navigazione con Firefox.
+// Home pagehomePageButtonMyShots = Vai alle mie immagini
 homePageTeaser = Presto disponibile...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Download gratuito
@@ -32,7 +31,8 @@ homePageLegalLink = Note legali
 homePagePrivacyLink = Privacy
 homePageTermsLink = Condizioni di utilizzo
 homePageCookiesLink = Cookie
-// Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
+// Leave Screenshots pageleavePageConfirmDelete = Conferma eliminazione account
+// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = È necessario avere installato Firefox Screenshots per eliminare l’account
 leavePageErrorGeneric = Si è verificato un errore
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -40,9 +40,9 @@ leavePageWarning = Questa operazione eliminerà tutti i dati associati a Firefox
 leavePageButtonProceed = Continua
 leavePageButtonCancel = Annulla
 leavePageDeleted = Tutte le tue immagini sono state eliminate.
-// Not Found pagenotFoundPageIntro = Oops.
+// Not Found pagenotFoundPageTitle = Pagina non trovata
 notFoundPageDescription = Pagina non trovata.
-// Shot pageshotPageAlertErrorDeletingShot = Errore durante l’eliminazione dell’immagine
+// Shot pageshotPageAlertErrorUpdatingExpirationTime = Errore durante il salvataggio della scadenza
 shotPageAlertErrorUpdatingTitle = Errore durante il salvataggio del titolo
 shotPageConfirmDelete = Eliminare questa immagine in modo definitivo?
 shotPageShareButton
@@ -77,16 +77,16 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Scarica
 shotPageDownload = Scarica
-shotPageScreenshotsDescription = Salvare screenshot non è mai stato così facile. Cattura, salva e condividi le tue immagini senza uscire da Firefox.
+shotPageScreenshotsDescription = Realizzare screenshot non è mai stato così facile. Cattura, salva e condividi le tue immagini senza uscire da Firefox.
 shotPageUpsellFirefox = Installa Firefox adesso
 shotPageDMCAMessage = Questa immagine non è più disponibile a causa di una segnalazione di violazione della proprietà intellettuale da parte di soggetti terzi.
 // Note: {$dmca} is a placeholder for a link to send email (a 'mailto' link)
-shotPageDMCAContact = Invia una email a { $dmca } per richiedere ulteriori informazioni.
+shotPageDMCAContact = Invia un’email a { $dmca } per richiedere ulteriori informazioni.
 // Note: do not translate 'Firefox Screenshots' when translating this string
-shotPageDMCAWarning = In caso di più segnalazioni di violazione, potremmo revocare il tuo accesso a Firefox Screenshots.
+shotPageDMCAWarning = In caso di ripetute segnalazioni di violazione, potremmo revocare il tuo accesso a Firefox Screenshots.
 // Note: {$url} is a placeholder for a shot page URL
-shotPageDMCAIncludeLink = Include l'indirizzo (URL) di questa immagine nell’email: { $url }
-shotPageKeepFor = Per quanto tempo è necessario conservare questa immagine?
+shotPageDMCAIncludeLink = Includi l'indirizzo di questa immagine nell’email: { $url }
+shotPageKeepFor = Per quanto tempo vuoi conservare questa immagine?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Seleziona durata
 shotPageKeepIndefinitely = Per sempre
@@ -133,10 +133,10 @@ timeDiffFutureDays = { $num ->
 // {$statusText} is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Errore durante l’eliminazione dell’immagine: { $status } { $statusText }
 // {$searchTerm} is a placeholder for text the user typed into the search box
-shotIndexPageSearchResultsTitle = Le mie immagine: cerca { $searchTerm }
+shotIndexPageSearchResultsTitle = Le mie immagini: cerca { $searchTerm }
 // {$error} is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
-shotIndexPageErrorRendering = Errore durante il rendering della pagina: { $error }
+shotIndexPageErrorRendering = Errore durante la generazione della pagina: { $error }
 shotIndexPageSearchPlaceholder
     .placeholder = Cerca nelle mie immagini
 shotIndexPageSearchButton
@@ -179,7 +179,7 @@ metricsPageRetentionQueryFirstWeek = Settimana in cui l’utente ha creato la pr
 metricsPageTotalRetentionQueryTitle = Fidelizzazione complessiva
 metricsPageTotalRetentionQueryDescription = Per quanto tempo gli utenti hanno creato immagini, raggruppato per settimana
 metricsPageTotalRetentionQueryUsers = Numero di utenti
-metricsPageTotalRetentionQueryDays = Numeri di giorni per cui l’utente ha creato immagini
+metricsPageTotalRetentionQueryDays = Per quanti giorni l’utente ha creato immagini
 metricsPageVersionQueryTitle = Versione componente aggiuntivo
 metricsPageVersionQueryDescription = La versione del componente aggiuntivo utilizzata per accedere (ultimi 14 giorni)
 metricsPageVersionQueryUsers = Numero di utenti che effettuano l’accesso
