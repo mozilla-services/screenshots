@@ -1,11 +1,18 @@
+// Localization for Server-side strings of Firefox Screenshots
+//
+// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+
+
 // Global phrases shared across pages, prefixed with 'g'
+[[ global ]]
 gMyShots = My Shots
 gHomeLink = Home
 gNoShots
   .alt = No shots found
 gScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
 
-// Creating page
+
+[[ Creating page ]]
 
 // Note: {$title} is a placeholder for the title of the web page
 // captured in the screenshot. The default, for pages without titles, is
@@ -13,7 +20,8 @@ gScreenshotsDescription = Screenshots made simple. Take, save, and share screens
 creatingPageTitle = Creating {$title}
 creatingPageTitleDefault = page
 
-// Home page
+
+[[ Home page ]]
 
 homePageDescription
   .content = Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox.
@@ -40,7 +48,8 @@ homePagePrivacyLink = Privacy
 homePageTermsLink = Terms
 homePageCookiesLink = Cookies
 
-// Leave Screenshots page
+
+[[ Leave Screenshots page ]]
 
 leavePageConfirmDelete = Confirm account deletion
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -52,13 +61,15 @@ leavePageButtonProceed = Proceed
 leavePageButtonCancel = Cancel
 leavePageDeleted = All of your screenshots have been erased!
 
-// Not Found page
+
+[[ Not Found page ]]
 
 notFoundPageTitle = Page Not Found
 notFoundPageIntro = Oops.
 notFoundPageDescription = Page not found.
 
-// Shot page
+
+[[ Shot page ]]
 
 shotPageAlertErrorUpdatingExpirationTime = Error saving expiration
 shotPageAlertErrorDeletingShot = Error deleting shot
@@ -155,7 +166,8 @@ timeDiffFutureDays =
         *[other] in {$number} days
     }
 
-// Shotindex page
+
+[[ Shotindex page ]]
 
 // {$status} is a placeholder for an HTTP status code, like '500'.
 // {$statusText} is a text description of the status code, like 'Internal server error'.
@@ -178,8 +190,9 @@ shotIndexPageClearSearchButton
   .title = Clear search
 shotIndexPageConfirmShotDelete = Delete this shot?
 
-// Metrics page
-// Note: all metrics strings are optional for translation
+
+// all metrics strings are optional for translation
+[[ Metrics page ]]
 
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Firefox Screenshots Metrics
