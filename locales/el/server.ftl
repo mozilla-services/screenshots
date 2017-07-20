@@ -1,15 +1,32 @@
+// Localization for Server-side strings of Firefox Screenshots
+// 
+// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+
+
+
 // Global phrases shared across pages, prefixed with 'g'
+[[ global ]]
+
 gMyShots = Τα στιγμιότυπά μου
 gHomeLink = Αρχική
 gNoShots
     .alt = Δεν βρέθηκαν στιγμιότυπα
 gScreenshotsDescription = Η λήψη στιγμιοτύπων έγινε εύκολη. Λήψη, αποθήκευση και κοινή χρήση στιγμιοτύπων χωρίς να φύγετε από το Firefox.
-// Creating page// Note: {$title} is a placeholder for the title of the web page
+
+
+[[ Creating page ]]
+
+// Note: { $title } is a placeholder for the title of the web page
 // captured in the screenshot. The default, for pages without titles, is
 // creatingPageTitleDefault.
 creatingPageTitle = Δημιουργία { $title }
 creatingPageTitleDefault = σελίδα
-// Home pagehomePageButtonMyShots = Μετάβαση στα στιγμιότυπά μου
+
+
+[[ Home page ]]
+
+homePageDescription
+    .content = Εύκολη λήψη στιγμιοτύπων, ενσωματωμένη στο πρόγραμμα περιήγησης. Λήψη, αποθήκευση και κοινή χρήση στιγμιοτύπων κατά την περιήγηση στο διαδίκτυο με το Firefox.
 homePageTeaser = Έρχεται σύντομα...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Δωρεάν λήψη
@@ -31,7 +48,10 @@ homePageLegalLink = Νομικά
 homePagePrivacyLink = Απόρρητο
 homePageTermsLink = Όροι
 homePageCookiesLink = Cookies
-// Leave Screenshots pageleavePageConfirmDelete = Επιβεβαίωση διαγραφής λογαριασμού
+
+
+[[ Leave Screenshots page ]]
+
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Πρέπει να έχετε εγκαταστήσει το Firefox Screenshots, ώστε να διαγράψετε το λογαριασμό σας
 leavePageErrorGeneric = Προέκυψε σφάλμα
@@ -40,9 +60,17 @@ leavePageWarning = Αυτό θα διαγράψει οριστικά όλα τα
 leavePageButtonProceed = Συνέχεια
 leavePageButtonCancel = Ακύρωση
 leavePageDeleted = Όλα τα στιγμιότυπά σας έχουν διαγραφεί!
-// Not Found pagenotFoundPageTitle = Η σελίδα δεν βρέθηκε
+
+
+[[ Not Found page ]]
+
+notFoundPageIntro = Ωχ.
 notFoundPageDescription = Η σελίδα δεν βρέθηκε.
-// Shot pageshotPageAlertErrorUpdatingExpirationTime = Σφάλμα αποθήκευσης ημερομηνίας λήξης
+
+
+[[ Shot page ]]
+
+shotPageAlertErrorDeletingShot = Σφάλμα διαγραφής στιγμιότυπου
 shotPageAlertErrorUpdatingTitle = Σφάλμα αποθήκευσης τίτλου
 shotPageConfirmDelete = Θέλετε σίγουρα να διαγράψετε οριστικά το στιγμιότυπο;
 shotPageShareButton
@@ -62,10 +90,10 @@ shotPagePrivacyMessage = Οποιοσδήποτε μπορεί να δει αυ�
 shotPageCopyImageText
     .label = Αντιγραφή κειμένου εικόνας
 shotPageConfirmDeletion = Θέλετε σίγουρα να διαγράψετε οριστικά αυτό το στιγμιότυπο;
-// Note: {$timediff} is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Αν δεν κάνετε τίποτα, αυτό το στιγμιότυπο θα διαγραφεί οριστικά { $timediff }.
-// Note: {$date} is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, {$date} could be "7/12/2017, 1:52:50 PM".
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = ανάκτηση μέχρι { $date }
 shotPageExpiredMessage = Αυτό το στιγμιότυπο έχει λήξει.
 // Note: This phrase is followed by an empty line, then the URL of the source page
@@ -80,11 +108,11 @@ shotPageDownload = Λήψη
 shotPageScreenshotsDescription = Η λήψη στιγμιοτύπων έγινε εύκολη. Λήψη, αποθήκευση και κοινή χρήση στιγμιοτύπων χωρίς να φύγετε από το Firefox.
 shotPageUpsellFirefox = Λήψη του Firefox τώρα
 shotPageDMCAMessage = Αυτό το στιγμιότυπο δεν είναι πλέον διαθέσιμο λόγω ισχυρισμού πνευματικής ιδιοκτησίας ενός τρίτου.
-// Note: {$dmca} is a placeholder for a link to send email (a 'mailto' link)
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Παρακαλώ στείλτε email στο { $dmca } για να ζητήσετε περαιτέρω πληροφορίες.
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Αν τα στιγμιότυπά σας υπόκεινται σε πολλαπλούς ισχυρισμούς, ενδέχεται να αποκλείσουμε την πρόσβασή σας στο Firefox Screenshots.
-// Note: {$url} is a placeholder for a shot page URL
+// Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Παρακαλώ συμπεριλάβετε το URL αυτού του στιγμιότυπου στο email σας: { $url }
 shotPageKeepFor = Πόσο θα διατηρηθεί αυτό το στιγμιότυπο;
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
@@ -99,9 +127,9 @@ shotPageKeepOneMonth = 1 μήνας
 shotPageSaveExpiration = αποθήκευση
 shotPageCancelExpiration = ακύρωση
 shotPageDoesNotExpire = δεν λήγει
-// Note: {$timediff} is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = λήγει { $timediff }
-// Note: {$timediff} is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = έληξε { $timediff }
 timeDiffJustNow = μόλις τώρα
 timeDiffMinutesAgo = { $num ->
@@ -129,12 +157,16 @@ timeDiffFutureDays = { $num ->
         [one] αύριο
        *[other] σε { $number } ημέρες
     }
-// Shotindex page// {$status} is a placeholder for an HTTP status code, like '500'.
-// {$statusText} is a text description of the status code, like 'Internal server error'.
+
+
+[[ Shotindex page ]]
+
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Σφάλμα διαγραφής στιγμιότυπου: { $status } { $statusText }
-// {$searchTerm} is a placeholder for text the user typed into the search box
+// { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Τα στιγμιότυπά μου: αναζήτηση για { $searchTerm }
-// {$error} is a placeholder for a non-translated error message that could be shared
+// { $error } is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
 shotIndexPageErrorRendering = Σφάλμα εμφάνισης σελίδας: { $error }
 shotIndexPageSearchPlaceholder
@@ -149,8 +181,12 @@ shotIndexPageNoSearchResults = Δεν μπορούμε να βρούμε καν�
 shotIndexPageClearSearchButton
     .title = Εκκαθάριση αναζήτησης
 shotIndexPageConfirmShotDelete = Διαγραφή στιγμιότυπου;
-// Metrics page
-// Note: all metrics strings are optional for translation// Note: 'Firefox Screenshots' should not be translated
+
+
+// all metrics strings are optional for translation
+[[ Metrics page ]]
+
+// Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Δείκτες Firefox Screenshots
 metricsPageTotalsQueryTitle = Συνολικά
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -186,7 +222,7 @@ metricsPageVersionQueryUsers = Αριθμός συνδεδεμένων χρησ�
 metricsPageVersionQueryVersion = Έκδοση προσθέτου
 metricsPageVersionQueryLastSeen = Ημέρα
 metricsPageHeader = Δείκτες
-// Note: {$created} is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Δημιουργήθηκε στις: { $created }
-// Note {$time} is a placeholder for a number of milliseconds, like '100'
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (χρόνος βάσης δεδομένων: { $time }ms)
