@@ -34,5 +34,5 @@ if [[ ! -e "$xpi" ]] ; then
 fi
 
 echo "Creating docker image $1/screenshots:$version"
-docker build -t $1/screenshots:"$version" .
+docker build --pull -t $1/screenshots:"$version" .
 docker push $1/screenshots:"$version"
