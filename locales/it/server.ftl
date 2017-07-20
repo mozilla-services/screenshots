@@ -9,9 +9,7 @@ gScreenshotsDescription = Realizzare screenshot non è mai stato così facile. C
 // creatingPageTitleDefault.
 creatingPageTitle = Creazione { $title }
 creatingPageTitleDefault = pagina
-// Home pagehomePageDescription
-    .content = Un modo intuitivo di realizzare screenshot direttamente nel browser. Cattura, salva e condividi immagini durante la navigazione con Firefox.
-homePageButtonMyShots = Vai alle mie immagini
+// Home pagehomePageButtonMyShots = Vai alle mie immagini
 homePageTeaser = Presto disponibile...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Download gratuito
@@ -25,15 +23,16 @@ homePageCaptureRegion = Cattura un’area
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Fai clic e trascina per selezionare l’area che ti interessa. Oppure posizionati con il mouse e fai clic – Screenshots cercherà di selezionare l’area per te. È tutto pronto? Scegli Salva per memorizzare l’immagine online oppure il pulsante con la freccia verso il basso per scaricarla sul computer.
 homePageCapturePage = Cattura una pagina
-homePageCapturePageDescription = Utilizza i pulsanti in alto a destra per catturare la pagina. Il pulsante “Salva l’area visibile” cattura l’area visibile senza scorrere la pagina, mentre “Salva l’intera schermata” cattura il contenuto completo della pagina.
+homePageCapturePageDescription = Utilizza i pulsanti in alto a destra per catturare la pagina. Il pulsante “Salva l’area visibile” cattura l’area attualmente visibile senza scorrere la pagina, mentre “Salva l’intera schermata” cattura il contenuto completo della pagina.
 homePageSaveShare = Salva e condividi
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Quando salvi un’immagine, Firefox aggiunge il tuo screenshot alla libreria online e copia il link negli appunti. L’immagine viene conservata automaticamente per due settimane, ma puoi eliminare le immagini in qualunque momento, o modificarne la data di scadenza per mantenerle più a lungo nella libreria.
+homePageSaveShareDescription = Quando salvi uno screenshot, Firefox aggiunge la tua immagine alla libreria online e copia il link negli appunti. L’immagine viene conservata automaticamente per due settimane, ma puoi eliminarla in qualunque momento, o modificarne la data di scadenza per mantenerla più a lungo nella libreria.
 homePageLegalLink = Note legali
 homePagePrivacyLink = Privacy
 homePageTermsLink = Condizioni di utilizzo
 homePageCookiesLink = Cookie
-// Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
+// Leave Screenshots pageleavePageConfirmDelete = Conferma eliminazione account
+// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = È necessario avere installato Firefox Screenshots per eliminare l’account
 leavePageErrorGeneric = Si è verificato un errore
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -41,8 +40,12 @@ leavePageWarning = Questa operazione cancellerà tutti i dati associati a Firefo
 leavePageButtonProceed = Continua
 leavePageButtonCancel = Annulla
 leavePageDeleted = Tutti i tuoi screenshot sono stati eliminati.
-// Not Found pagenotFoundPageDescription = Pagina non trovata.
-// Shot pageshotPageAlertErrorUpdatingTitle = Errore durante il salvataggio del titolo
+// Not Found pagenotFoundPageTitle = Pagina non trovata
+notFoundPageIntro = Oops.
+notFoundPageDescription = Pagina non trovata.
+// Shot pageshotPageAlertErrorUpdatingExpirationTime = Errore durante il salvataggio della scadenza
+shotPageAlertErrorDeletingShot = Errore durante l’eliminazione dell’immagine
+shotPageAlertErrorUpdatingTitle = Errore durante il salvataggio del titolo
 shotPageConfirmDelete = Eliminare questo screenshot in modo definitivo?
 shotPageShareButton
     .title = Condividi
@@ -56,7 +59,7 @@ shotPageSharePinterest
     .title = Condividi su Pinterest
 shotPageShareEmail
     .title = Condividi link via email
-shotPageShareLink = Ottieni un link da condividere per questa immagine:
+shotPageShareLink = Ottieni un link per condividere questa immagine
 shotPagePrivacyMessage = Chiunque in possesso di questo link potrà visualizzare l’immagine.
 shotPageCopyImageText
     .label = Copia testo dell’immagine
