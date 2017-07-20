@@ -13,12 +13,12 @@ XPCOMUtils.defineLazyModuleGetter(this, "AddonManager",
                                   "resource://gre/modules/AddonManager.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "Console",
                                   "resource://gre/modules/Console.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "Services",
-                                  "resource://gre/modules/Services.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "LegacyExtensionsUtils",
-                                  "resource://gre/modules/LegacyExtensionsUtils.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "CustomizableUI",
                                   "resource:///modules/CustomizableUI.jsm");
+XPCOMUtils.defineLazyModuleGetter(this, "LegacyExtensionsUtils",
+                                  "resource://gre/modules/LegacyExtensionsUtils.jsm");
+XPCOMUtils.defineLazyModuleGetter(this, "Services",
+                                  "resource://gre/modules/Services.jsm");
 
 let addonResourceURI;
 let appStartupDone;
@@ -83,7 +83,7 @@ const LibraryButton = {
       return;
     }
     for (let win of CustomizableUI.windows) {
-      let item = document.getElementById(this.ITEM_ID);
+      let item = win.document.getElementById(this.ITEM_ID);
       if (item) {
         item.remove();
       }
