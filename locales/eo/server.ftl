@@ -9,9 +9,7 @@ gScreenshotsDescription = Ekrankopioj, simple faritaj. Kopii, konservi kaj divid
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } kreata
 creatingPageTitleDefault = paĝo
-// Home pagehomePageDescription
-    .content = Ekrankopioj intuiciaj, rekte en la retumilo. Faru, konservu kaj dividu ekrankopiojn dum vi retumas per Firefox.
-homePageButtonMyShots = Iri al 'Miaj ekrankopioj'
+// Home pagehomePageButtonMyShots = Iri al 'Miaj ekrankopioj'
 homePageTeaser = Baldaŭ aperonta…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Senpaga elŝuto
@@ -33,8 +31,7 @@ homePageLegalLink = Leĝaĵoj
 homePagePrivacyLink = Privateco
 homePageTermsLink = Kondiĉoj
 homePageCookiesLink = Kuketoj
-// Leave Screenshots pageleavePageConfirmDelete = Konfirmi forigon de konto
-// Note: do not translate 'Firefox Screenshots' when translating this string
+// Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Por povi forigi vian konton vi devas havi Ekrankopioj de Firefox instalita
 leavePageErrorGeneric = Eraro okazis
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -42,11 +39,9 @@ leavePageWarning = Tio ĉi definitive forigos ĉiujn viajn datumojn de Ekrankopi
 leavePageButtonProceed = Fari
 leavePageButtonCancel = Nuligi
 leavePageDeleted = Ĉiuj viaj ekrankopioj estis forigitaj!
-// Not Found pagenotFoundPageTitle = Paĝo ne trovita
-notFoundPageIntro = Fuŝ'.
+// Not Found pagenotFoundPageIntro = Fuŝ'.
 notFoundPageDescription = Paĝo ne trovita
-// Shot pageshotPageAlertErrorUpdatingExpirationTime = Eraro dum konservo de senvalidiĝo
-shotPageAlertErrorDeletingShot = Eraro dum forigo de ekrankopio
+// Shot pageshotPageAlertErrorDeletingShot = Eraro dum forigo de ekrankopio
 shotPageAlertErrorUpdatingTitle = Eraro dum konservo de titolo
 shotPageConfirmDelete = Ĉu vi certe volas definitive forigi tiun ĉi ekrankopion?
 shotPageShareButton
@@ -80,5 +75,43 @@ shotPageAbuseButton
     .title = Raporti tiun ĉi ekrankopion pro misuzo, trudemon aŭ aliaj problemoj
 shotPageDownloadShot
     .title = Elŝuti
+shotPageDownload = Elŝuti
+shotPageScreenshotsDescription =
+    Ekrankopioj, simple faritaj. Kopii, konservi kaj dividi ekrankopiojn sen forlasi Firefox.
+
+shotPageUpsellFirefox = Ricevi Firefox nun
+shotPageDMCAMessage = Tiu ĉi ekrankopio ne plu estas havebla pro plendo pri intelekta kopirajto.
+// Note: {$dmca} is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Bonvolu skribi retpoŝte al { $dmca } por peti pli da informo.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Se viaj ekrankopioj ricevas plurajn plendojn, ni povus nuligi vian aliron al Ekrankopioj de Firefox. 
+// Note: {$url} is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Bonvolu aldoni la retadreson de tiu ĉi ekrankopio en via retpoŝto: { $url }
+shotPageKeepFor = Kiel longe tiu ĉi ekrankopio devus esti gardita?
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Elekti horon
+shotPageKeepIndefinitely = Ĉiame
+shotPageKeepTenMinutes = 10 minutojn
+shotPageKeepOneHour = horon
+shotPageKeepOneDay = tagon
+shotPageKeepOneWeek = semajnon
+shotPageKeepTwoWeeks = 2 semajnojn
+shotPageKeepOneMonth = monaton
+shotPageSaveExpiration = konservi
+shotPageCancelExpiration = nuligi
+shotPageDoesNotExpire = ĉiam valida
+// Note: {$timediff} is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = sevalidiĝas post { $timediff }
+// Note: {$timediff} is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = senvalidiĝis antaŭ { $timediff }
+timeDiffJustNow = ĵus
+timeDiffMinutesAgo = { $num ->
+        [one] antaŭ minuto
+       *[other] antaŭ { $number } minutoj
+    }
+timeDiffHoursAgo = timeDiffHoursAgo = { $num ->
+        [one] antaŭ minuto
+       *[other] antaŭ { $number } minutoj
+    }
 // Shotindex page// Metrics page
 // Note: all metrics strings are optional for translation
