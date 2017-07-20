@@ -132,6 +132,9 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       // Note: if someone sizes down the page, then the iframe will keep the
       // document from naturally shrinking.  We use force to temporarily hide
       // the element so that we can tell if the document shrinks
+      if (!this.element) {
+        return;
+      }
       const visible = this.element.style.display !== "none";
       if (force && visible) {
         this.element.style.display = "none";
