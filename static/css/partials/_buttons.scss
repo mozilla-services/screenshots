@@ -40,7 +40,7 @@
   }
 
   &.block-button {
-  
+
   @include respond-to("small") {
     justify-content: flex-start;
     font-size: 16px;

@@ -1,0 +1,73 @@
+@import "partials/partials";
+
+.close-preferences {
+  background-image: url("../img/close-16.svg");
+  background-size: $grid-unit $grid-unit;
+  background-repeat: no-repeat;
+  background-position: center center;
+  @include flex-container(row, flex-start, stretch);
+  position: absolute;
+  right: 0;
+  margin: 40px 80px auto;
+}
+
+.header {
+  color: #383e49;
+  font-size: 28px;
+  font-family: SFUIDisplay-Regular, sans-serif;
+}
+
+.sub-header {
+  color: #222;
+  font-size: 16.8px;
+  font-family: SFUIText-Bold, sans-serif;
+  font-weight: bold;
+  letter-spacing: -0.31px;
+}
+
+.preferences {
+  margin: 80px;
+
+  .info-container {
+    margin-left: 10px;
+  }
+
+  hr {
+    opacity: 0.5;
+  }
+
+  .account-info {
+    @include flex-container(row, left, center);
+  }
+
+  .username {
+    font-family: SFUIDisplay-Semibold, sans-serif;
+    font-weight: 500;
+    font-size: 19.2px;
+    color: #383e49;
+    margin: 0 0 -20px 0;
+  }
+
+  .email {
+    font-family: SFUIDisplay-Regular, sans-serif;
+    font-size: 14.6px;
+    color: #383e49;
+  }
+
+  .account-buttons {
+    box-sizing: border-box;
+    font-size: 12px;
+    color: #000;
+    text-decoration: none;
+    border: 1.2px solid #808080;
+    border-radius: 2px;
+    padding: 7px;
+    margin-right: 8px;
+  }
+
+  .connect {
+    color: #fff;
+    background-color: #0093fc;
+    border: 1.2px solid #0675d2;
+  }
+}

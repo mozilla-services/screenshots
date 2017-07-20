@@ -32,9 +32,10 @@ class Body extends React.Component {
   render() {
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <div className="column-space full-height default-color-scheme">
+        <div className="column-space full-height">
           <div id="shot-index-header" className="header">
             <h1><a href="/shots">Firefox <strong>Screenshots</strong> <sup>Beta</sup></a></h1>
+            {this.props.enableUserSettings ? this.renderSettingsPage() : null}
             {this.props.disableSearch ? null : this.renderSearchForm()}
           </div>
           <div id="shot-index" className="flex-1">
@@ -133,6 +134,12 @@ class Body extends React.Component {
           <p>We can’t find any shots that match your search.</p>
         </Localized>
       </div>
+    );
+  }
+
+  renderSettingsPage() {
+    return (
+      <a className="button preferences" href="/settings" aria-label="Settings" title="Open user settings"></a>
     );
   }
 

@@ -230,6 +230,14 @@ These are events that an add-on user can encounter on a shot they own
 7. [x] Click download from tile: `web/download/myshots-tile`
 8. [x] Clear search with button: `web/clear-search/button`
 
+#### Settings (My Shots)
+
+1. [x] Click connect button `web/start-connect/settings`
+2. [x] Click disconnect button `web/start-disconnect/settings`
+3. [x] Confirm disconnect on settings page `web/confirm-disconnect/settings-popup-confirm`
+4. [x] Cancel disconnect on settings page `web/cancel-disconnect/settings-popup-confirm`
+
+
 #### Non-owner web visit
 
 1. [x] Visit the page, `web/visit/non-owner`
@@ -255,6 +263,7 @@ These are events that an add-on user can encounter on a shot they own
 
 1. [x] When an expired shot is deleted (about 2 weeks after expiration) it sends `server/clean-deleted-shot` with an eventValue of the number of shots cleaned at that moment.  (By default these are checked every minute.)
 2. [x] When a successful request to `/api/login` happens, we send `server/api-login`
+3. [x] When the user successfully logs in to their firefox account, we send `server/fxa-login`
 
 #### Page views
 
