@@ -27,6 +27,7 @@ creatingPageTitleDefault = sida
 
 homePageDescription
     .content = Intuitiva skärmbilder direkt i webbläsaren. Fånga, spara och dela skärmbilder när du surfar på webben med Firefox.
+homePageButtonMyShots = Gå till mina skärmbilder
 homePageTeaser = Kommer snart…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Gratis nedladdning
@@ -55,6 +56,7 @@ homePageCookiesLink = Kakor
 leavePageConfirmDelete = Bekräfta kontoborttagning
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Du måste ha Firefox Screenshots installerat om du vill radera ditt konto
+leavePageErrorGeneric = Ett fel uppstod
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Detta kommer permanent radera all din data för Firefox Screenshots.
 leavePageButtonProceed = Fortsätt
@@ -64,6 +66,7 @@ leavePageDeleted = Alla dina skärmbilder har raderats!
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Sidan hittades inte
 notFoundPageIntro = Hoppsan.
 notFoundPageDescription = Sidan hittades inte.
 
@@ -76,6 +79,7 @@ shotPageAlertErrorUpdatingTitle = Fel vid sparande av titel
 shotPageConfirmDelete = Är du säker på att du vill radera denna bild permanent?
 shotPageShareButton
     .title = Dela
+shotPageCopy = Kopiera
 shotPageCopied = Kopierad
 shotPageShareFacebook
     .title = Dela på Facebook
