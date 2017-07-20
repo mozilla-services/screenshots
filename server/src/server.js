@@ -276,9 +276,7 @@ app.use(function(req, res, next) {
 });
 
 app.use(function(req, res, next) {
-  const languages = req.headers['Accept-Language'] ?
-    accepts(req.headers['Accept-Language']).languages :
-    ['en-US'];
+  const languages = accepts(req).languages() || ['en-US'];
   l10n.init(languages).then(() => {
     req.getText = l10n.getText;
     req.userLocales = l10n.userLangs;
