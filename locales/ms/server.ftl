@@ -8,8 +8,14 @@ gScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skri
 // captured in the screenshot. The default, for pages without titles, is
 // creatingPageTitleDefault.
 creatingPageTitle = Mencipta { $title }
-// Home page// Note: do not translate 'Firefox Screenshots' when translating this string
+creatingPageTitleDefault = halaman
+// Home pagehomePageTeaser = Akan Datang...
+homePageDownloadFirefoxTitle = Firefox
+homePageDownloadFirefoxSubTitle = Muat turun Percuma
+homePageGetStarted = Mulakan
+// Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Bagaimana Firefox Screenshots Berfungsi
+homePageGetStartedTitle = Mulakan
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Cari ikon baru Screenshots pada bar alatan anda. Pilih, dan menu Screenshots akan muncul pada bahagian atas tetingkap pelayar anda.
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -21,8 +27,7 @@ leavePageErrorAddonRequired = Anda mesti ada Firefox Screenshots yang dipasang u
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ini akan menghapuskan semua data Firefox Screenshots anda secara kekal.
 leavePageDeleted = Semua skrinsyot anda telah dipadam!
-// Not Found page// Shot pageshotPageAlertErrorUpdatingTitle = Ralat menyimpan tajuk
-shotPageConfirmDelete = Anda pasti mahu padam syot ini secara kekal?
+// Not Found page// Shot pageshotPageConfirmDelete = Anda pasti mahu padam syot ini secara kekal?
 shotPageShareButton
     .title = Kongsi
 shotPageCopy = Salin
