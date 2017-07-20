@@ -9,7 +9,7 @@ function checkElements(expectPresent, l) {
 add_task(async function() {
   await promiseScreenshotsEnabled();
 
-  registerCleanupFunction(async function () {
+  registerCleanupFunction(async function() {
     await promiseScreenshotsReset();
   });
 
