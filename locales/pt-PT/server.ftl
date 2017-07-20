@@ -25,6 +25,8 @@ creatingPageTitleDefault = página
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Capturas de ecrã intuitivas embutidas no navegador. Capture, guarde e partilhe capturas de ecrã enquanto navega a Web utilizando o Firefox.
 homePageButtonMyShots = Ir para as minhas capturas
 homePageTeaser = Brevemente...
 homePageDownloadFirefoxTitle = Firefox
@@ -65,12 +67,14 @@ leavePageDeleted = Todas as suas capturas de ecrã foram apagadas!
 [[ Not Found page ]]
 
 notFoundPageTitle = Página não encontrada
+notFoundPageIntro = Oops.
 notFoundPageDescription = Página não encontrada.
 
 
 [[ Shot page ]]
 
 shotPageAlertErrorUpdatingExpirationTime = Erro ao guardar a expiração
+shotPageAlertErrorDeletingShot = Erro ao apagar a captura
 shotPageAlertErrorUpdatingTitle = Erro ao guardar o título
 shotPageConfirmDelete = Tem a certeza de que deseja apagar esta captura permanentemente?
 shotPageShareButton
