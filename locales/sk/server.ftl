@@ -1,16 +1,30 @@
+// Localization for Server-side strings of Firefox Screenshots
+// 
+// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+
+
+
 // Global phrases shared across pages, prefixed with 'g'
+[[ global ]]
+
 gMyShots = Moje snímky
 gHomeLink = Domov
 gNoShots
     .alt = Neboli nájdené žiadne snímky
 gScreenshotsDescription = Jednoduchá tvorba snímok obrazovky. Vytvorte, uložte a zdieľajte snímky obrazovky bez toho, aby ste museli opustiť Firefox.
-// Creating page// Note: {$title} is a placeholder for the title of the web page
+
+
+[[ Creating page ]]
+
+// Note: { $title } is a placeholder for the title of the web page
 // captured in the screenshot. The default, for pages without titles, is
 // creatingPageTitleDefault.
 creatingPageTitle = Vytváram snímku { $title }
 creatingPageTitleDefault = stránky
-// Home pagehomePageDescription
-    .content = Intuitívne snímky obrazovky priamo v prehliadači. Zachyťte, uložte a zdieľajte snímky obrazovky priamo pri prehliadaní pomocou Firefoxu.
+
+
+[[ Home page ]]
+
 homePageTeaser = Už čoskoro...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Prevziať zadarmo
@@ -23,14 +37,24 @@ homePageLegalLink = Právne informácie
 homePagePrivacyLink = Súkromie
 homePageTermsLink = Podmienky používania
 homePageCookiesLink = Cookies
-// Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
+
+
+[[ Leave Screenshots page ]]
+
+// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Na vymazanie svojho účtu musíte mať nainštalovanú službu Firefox Screenshots
 leavePageErrorGeneric = Vyskytla sa chyba
 leavePageButtonCancel = Zrušiť
 leavePageDeleted = Všetky vaše snímky boli odstránené!
-// Not Found pagenotFoundPageTitle = Stránka nebola nájdená
+
+
+[[ Not Found page ]]
+
 notFoundPageDescription = Stránka nebola nájdená.
-// Shot pageshotPageAlertErrorUpdatingTitle = Pri ukladaní názvu sa vyskytla chyba
+
+
+[[ Shot page ]]
+
 shotPageConfirmDelete = Naozaj chcete natrvalo odstrániť túto snímku?
 shotPageShareButton
     .title = Zdieľať
@@ -59,18 +83,23 @@ shotPageScreenshotsDescription = Jednoduchá tvorba snímok obrazovky. Vytvorte,
 shotPageUpsellFirefox = Získajte Firefox teraz
 shotPageSaveExpiration = uložiť
 shotPageCancelExpiration = zrušiť
-// Shotindex pageshotIndexPageSearchButton
-    .title = Hľadať
+
+
+[[ Shotindex page ]]
+
 shotIndexPageNoShotsMessage = Žiadne uložené snímky
-// Metrics page
-// Note: all metrics strings are optional for translationmetricsPageShotsQueryDay = Deň
+
+
+// all metrics strings are optional for translation
+[[ Metrics page ]]
+
 metricsPageUsersQueryCount = Počet používateľov
 metricsPageUsersQueryDay = Deň
 metricsPageTotalRetentionQueryUsers = Počet používateľov
 metricsPageVersionQueryTitle = Verzia doplnku
 metricsPageVersionQueryLastSeen = Deň
 metricsPageHeader = Metriky
-// Note: {$created} is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Vygenerované: { $created }
-// Note {$time} is a placeholder for a number of milliseconds, like '100'
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (čas databázy: { $time } ms)
