@@ -1,16 +1,31 @@
+// Localization for Server-side strings of Firefox Screenshots
+// 
+// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+
+
+
 // Global phrases shared across pages, prefixed with 'g'
+[[ global ]]
+
 gMyShots = Miaj ekrankopioj
 gHomeLink = Eka paĝo
 gNoShots
     .alt = Neniu ekrankopio trovita
 gScreenshotsDescription = Ekrankopioj, simple faritaj. Kopii, konservi kaj dividi ekrankopiojn sen forlasi Firefox.
-// Creating page// Note: {$title} is a placeholder for the title of the web page
+
+
+[[ Creating page ]]
+
+// Note: { $title } is a placeholder for the title of the web page
 // captured in the screenshot. The default, for pages without titles, is
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } kreata
 creatingPageTitleDefault = paĝo
-// Home pagehomePageDescription
-    .content = Ekrankopioj intuiciaj, rekte en la retumilo. Faru, konservu kaj dividu ekrankopiojn dum vi retumas per Firefox.
+
+
+[[ Home page ]]
+
+homePageButtonMyShots = Iri al 'Miaj ekrankopioj'
 homePageTeaser = Baldaŭ aperonta…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Senpaga elŝuto
@@ -32,7 +47,10 @@ homePageLegalLink = Leĝaĵoj
 homePagePrivacyLink = Privateco
 homePageTermsLink = Kondiĉoj
 homePageCookiesLink = Kuketoj
-// Leave Screenshots pageleavePageConfirmDelete = Konfirmi forigon de konto
+
+
+[[ Leave Screenshots page ]]
+
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Por povi forigi vian konton vi devas havi Ekrankopioj de Firefox instalita
 leavePageErrorGeneric = Eraro okazis
@@ -41,9 +59,15 @@ leavePageWarning = Tio ĉi definitive forigos ĉiujn viajn datumojn de Ekrankopi
 leavePageButtonProceed = Fari
 leavePageButtonCancel = Nuligi
 leavePageDeleted = Ĉiuj viaj ekrankopioj estis forigitaj!
-// Not Found pagenotFoundPageTitle = Paĝo ne trovita
+
+
+[[ Not Found page ]]
+
 notFoundPageDescription = Paĝo ne trovita
-// Shot pageshotPageAlertErrorUpdatingExpirationTime = Eraro dum konservo de senvalidiĝo
+
+
+[[ Shot page ]]
+
 shotPageAlertErrorUpdatingTitle = Eraro dum konservo de titolo
 shotPageConfirmDelete = Ĉu vi certe volas definitive forigi tiun ĉi ekrankopion?
 shotPageShareButton
@@ -63,10 +87,10 @@ shotPagePrivacyMessage = Ricevinte tiun ligilon, iu ajn povos vidi tiun ĉi ekra
 shotPageCopyImageText
     .label = Kopii tekston de bildo
 shotPageConfirmDeletion = Ĉu vi certe volas definitive forigi tiun ĉi ekrankopion?
-// Note: {$timediff} is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Se vi faras nenion, tiu ĉi ekrankopio estos definitive forigita { $timediff }.
-// Note: {$date} is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, {$date} could be "7/12/2017, 1:52:50 PM".
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = restarigi ĝis { $date }
 shotPageExpiredMessage = Tiu ĉi ekrankopio senvalidiĝis.
 // Note: This phrase is followed by an empty line, then the URL of the source page
@@ -81,11 +105,11 @@ shotPageDownload = Elŝuti
 shotPageScreenshotsDescription = Ekrankopioj, simple faritaj. Kopii, konservi kaj dividi ekrankopiojn sen forlasi Firefox.
 shotPageUpsellFirefox = Ricevi Firefox nun
 shotPageDMCAMessage = Tiu ĉi ekrankopio ne plu estas havebla pro plendo pri intelekta kopirajto.
-// Note: {$dmca} is a placeholder for a link to send email (a 'mailto' link)
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Bonvolu skribi retpoŝte al { $dmca } por peti pli da informo.
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Se viaj ekrankopioj ricevas plurajn plendojn, ni povus nuligi vian aliron al Ekrankopioj de Firefox. 
-// Note: {$url} is a placeholder for a shot page URL
+// Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Bonvolu aldoni la retadreson de tiu ĉi ekrankopio en via retpoŝto: { $url }
 shotPageKeepFor = Kiel longe tiu ĉi ekrankopio devus esti gardita?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
@@ -100,14 +124,18 @@ shotPageKeepOneMonth = monaton
 shotPageSaveExpiration = konservi
 shotPageCancelExpiration = nuligi
 shotPageDoesNotExpire = ĉiam valida
-// Note: {$timediff} is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = sevalidiĝas post { $timediff }
-// Note: {$timediff} is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = senvalidiĝis antaŭ { $timediff }
 timeDiffJustNow = ĵus
 timeDiffMinutesAgo = { $num ->
         [one] antaŭ minuto
        *[other] antaŭ { $number } minutoj
+    }
+timeDiffHoursAgo = { $num ->
+        [one] antaŭ horo
+       *[other] antaŭ { $number } horoj
     }
 timeDiffDaysAgo = { $num ->
         [one] hieraŭ
@@ -126,12 +154,16 @@ timeDiffFutureDays = { $num ->
         [one] morgaŭ
        *[other] post { $number } tagoj
     }
-// Shotindex page// {$status} is a placeholder for an HTTP status code, like '500'.
-// {$statusText} is a text description of the status code, like 'Internal server error'.
+
+
+[[ Shotindex page ]]
+
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Eraro dum forigo de ekrankopio: { $status } { $statusText }
-// {$searchTerm} is a placeholder for text the user typed into the search box
+// { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Miaj ekrankopioj: serĉi { $searchTerm }
-// {$error} is a placeholder for a non-translated error message that could be shared
+// { $error } is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
 shotIndexPageErrorRendering = Eraro dum montro de ekrano: { $error }
 shotIndexPageSearchPlaceholder
@@ -141,5 +173,25 @@ shotIndexPageSearchButton
 shotIndexPageNoShotsMessage = Neniu konservita ekrankopio.
 shotIndexPageNoShotsInvitation = Ek, kreu kelkajn.
 shotIndexPageNoSearchResultsIntro = Hmm
-// Metrics page
-// Note: all metrics strings are optional for translation
+shotIndexPageNoSearchResults = Ni ne povis trovi iun ajn ekrankopion kiu kongruu kun via serĉo.
+shotIndexPageClearSearchButton
+    .title = Viŝi serĉon
+shotIndexPageConfirmShotDelete = Ĉu forigi tiun ĉi ekrankopion?
+
+
+// all metrics strings are optional for translation
+[[ Metrics page ]]
+
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Statistikoj de Firefox Screenshots
+metricsPageTotalsQueryTitle = Sumoj
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Superrigardo pri Screenshots
+metricsPageTotalsQueryDevices = Kvanto de registritaj aparatoj
+metricsPageTotalsQueryActiveShots = Aktivaj ekrankopioj
+metricsPageTotalsQueryExpiredShots = Senvalidiĝintaj (sed rehaveblaj)
+metricsPageTotalsQueryExpiredDeletedShots = Senvalidiĝintaj (kaj forigitaj)
+metricsPageShotsQueryTitle = Ekrankopioj laŭ tagoj
+metricsPageShotsQueryDescription = Nombro de ekrankopioj ĉiutage (por la lastaj 30 tagoj)
+metricsPageShotsQueryCount = Nombro de ekrankopioj
+metricsPageShotsQueryDay = Tago
