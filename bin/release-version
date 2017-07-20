@@ -47,9 +47,9 @@ case "$channel" in
     echo "Dev deployment automatically triggered, see #screenshots IRC for status"
     ;;
   stage)
-    if [[ "$(current_branch)" != "stable" ]] && [[ -z "$IGNORE_BRANCH" ]] ; then
-      echo "Error: you should be on the stable branch when releasing stage"
-      echo "  git checkout stable ; git pull"
+    if [[ "$(current_branch)" != "server-prod" ]] && [[ -z "$IGNORE_BRANCH" ]] ; then
+      echo "Error: you should be on the server-prod branch when releasing stage"
+      echo "  git checkout server-prod ; git pull"
       echo "To proceed anyway use:"
       echo "  IGNORE_BRANCH=1 $(basename $0) stage"
       exit 4
