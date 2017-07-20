@@ -9,8 +9,7 @@ gScreenshotsDescription = Η λήψη στιγμιοτύπων έγινε εύκ
 // creatingPageTitleDefault.
 creatingPageTitle = Δημιουργία { $title }
 creatingPageTitleDefault = σελίδα
-// Home pagehomePageDescription
-    .content = Εύκολη λήψη στιγμιοτύπων, ενσωματωμένη στο πρόγραμμα περιήγησης. Λήψη, αποθήκευση και κοινή χρήση στιγμιοτύπων κατά την περιήγηση στο διαδίκτυο με το Firefox.
+// Home pagehomePageButtonMyShots = Μετάβαση στα στιγμιότυπά μου
 homePageTeaser = Έρχεται σύντομα...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Δωρεάν λήψη
@@ -32,7 +31,8 @@ homePageLegalLink = Νομικά
 homePagePrivacyLink = Απόρρητο
 homePageTermsLink = Όροι
 homePageCookiesLink = Cookies
-// Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
+// Leave Screenshots pageleavePageConfirmDelete = Επιβεβαίωση διαγραφής λογαριασμού
+// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Πρέπει να έχετε εγκαταστήσει το Firefox Screenshots, ώστε να διαγράψετε το λογαριασμό σας
 leavePageErrorGeneric = Προέκυψε σφάλμα
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -40,9 +40,9 @@ leavePageWarning = Αυτό θα διαγράψει οριστικά όλα τα
 leavePageButtonProceed = Συνέχεια
 leavePageButtonCancel = Ακύρωση
 leavePageDeleted = Όλα τα στιγμιότυπά σας έχουν διαγραφεί!
-// Not Found pagenotFoundPageIntro = Ωχ.
+// Not Found pagenotFoundPageTitle = Η σελίδα δεν βρέθηκε
 notFoundPageDescription = Η σελίδα δεν βρέθηκε.
-// Shot pageshotPageAlertErrorDeletingShot = Σφάλμα διαγραφής στιγμιότυπου
+// Shot pageshotPageAlertErrorUpdatingExpirationTime = Σφάλμα αποθήκευσης ημερομηνίας λήξης
 shotPageAlertErrorUpdatingTitle = Σφάλμα αποθήκευσης τίτλου
 shotPageConfirmDelete = Θέλετε σίγουρα να διαγράψετε οριστικά το στιγμιότυπο;
 shotPageShareButton
