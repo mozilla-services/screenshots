@@ -25,6 +25,7 @@ creatingPageTitleDefault = página
 
 [[ Home page ]]
 
+homePageButtonMyShots = Ir a mis capturas
 homePageTeaser = Próximamente…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Descarga gratuita
@@ -43,6 +44,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = Confirmar borrado de cuenta
 leavePageErrorGeneric = Ocurrió un error
 leavePageButtonProceed = Continuar
 leavePageButtonCancel = Cancelar
@@ -50,12 +52,14 @@ leavePageButtonCancel = Cancelar
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Página no encontrada
 notFoundPageIntro = Epa.
 notFoundPageDescription = Página no encontrada.
 
 
 [[ Shot page ]]
 
+shotPageAlertErrorUpdatingExpirationTime = Error guardando expiración
 shotPageAlertErrorDeletingShot = Error borrando captura
 shotPageAlertErrorUpdatingTitle = Error guardando título
 shotPageConfirmDelete = ¿Está seguro de querer borrar esta captura permanentemente?
@@ -85,6 +89,9 @@ shotPageDownloadShot
     .title = Descargar
 shotPageDownload = Descargar
 shotPageUpsellFirefox = Obtener Firefox ahora
+shotPageKeepFor = ¿Cuánto tiempo debería mantenerse esta captura?
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Seleccionar tiempo
 shotPageKeepIndefinitely = Indefinidamente
 shotPageKeepTenMinutes = 10 minutos
 shotPageKeepOneHour = 1 hora
@@ -151,6 +158,9 @@ shotIndexPageConfirmShotDelete = ¿Borrar esta captura?
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Métricas de Firefox Screenshots
+metricsPageTotalsQueryTitle = Totales
 metricsPageTotalsQueryActiveShots = Capturas activas
 metricsPageTotalsQueryExpiredShots = Expirada (pero recuperable)
 metricsPageTotalsQueryExpiredDeletedShots = Expirada (y borrada)
@@ -164,3 +174,4 @@ metricsPageUsersQueryCount = Número de usuarios
 metricsPageUsersQueryDay = Día
 metricsPageUserShotsQueryTitle = Número de capturas por usuario
 metricsPageUserShotsQueryCount = Número de usuarios
+metricsPageVersionQueryVersion = Versión del complemento
