@@ -8,8 +8,7 @@ gNoShots
 // creatingPageTitleDefault.
 creatingPageTitle = Vytváření snímku { $title }
 creatingPageTitleDefault = stránky
-// Home pagehomePageButtonMyShots = Přejít na mé snímky
-homePageTeaser = Již brzy…
+// Home pagehomePageTeaser = Již brzy…
 homePageDownloadFirefoxTitle = Firefox
 homePageGetStarted = Začít
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -22,16 +21,13 @@ homePageLegalLink = Právní informace
 homePagePrivacyLink = Soukromí
 homePageTermsLink = Podmínky
 homePageCookiesLink = Cookies
-// Leave Screenshots pageleavePageConfirmDelete = Potvrzení smazání účtu
-leavePageErrorGeneric = Nastala chyba
+// Leave Screenshots pageleavePageErrorGeneric = Nastala chyba
 leavePageButtonProceed = Pokračovat
 leavePageButtonCancel = Zrušit
 leavePageDeleted = Všechny vaše snímky byly smazány!
-// Not Found pagenotFoundPageTitle = Stránka nebyla nalezena
-notFoundPageIntro = Jejda.
+// Not Found pagenotFoundPageIntro = Jejda.
 notFoundPageDescription = Stránka nebyla nalezena.
-// Shot pageshotPageConfirmDelete = Opravdu chcete tento snímek navždy smazat?
-shotPageShareButton
+// Shot pageshotPageShareButton
     .title = Sdílet
 shotPageCopy = Kopírovat
 shotPageCopied = Zkopírováno
@@ -96,16 +92,13 @@ timeDiffFutureDays = { $num ->
         [few] za { $number } dny
        *[other] za { $number } dní
     }
-// Shotindex pageshotIndexPageSearchPlaceholder
-    .placeholder = Prohledat mé snímky
-shotIndexPageSearchButton
+// Shotindex pageshotIndexPageSearchButton
     .title = Hledat
 shotIndexPageNoShotsMessage = Žádné uložené snímky.
 shotIndexPageLookingForShots = Hledáme vaše snímky…
 shotIndexPageConfirmShotDelete = Smazat tento snímek?
 // Metrics page
-// Note: all metrics strings are optional for translationmetricsPageTotalsQueryDevices = Celkový počet registrovaných zařízení
-metricsPageTotalsQueryActiveShots = Aktivní snímky
-metricsPageShotsQueryTitle = Snímky podle dní
+// Note: all metrics strings are optional for translationmetricsPageTotalsQueryActiveShots = Aktivní snímky
+metricsPageShotsQueryTitle = Snímky podle dnů
 metricsPageShotsQueryDescription = Počet snímků vytvořených každý den (za období 30 dnů)
 metricsPageShotsQueryCount = Počet snímků
