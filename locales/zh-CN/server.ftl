@@ -9,8 +9,7 @@ gScreenshotsDescription = 使截图更简单。截取、保存以及分享截图
 // creatingPageTitleDefault.
 creatingPageTitle = 创建 { $title }
 creatingPageTitleDefault = 页面
-// Home pagehomePageDescription
-    .content = 直接在浏览器内截图。浏览网页时截图、保存与分享，只需 Firefox。
+// Home pagehomePageButtonMyShots = 转至我的截图
 homePageTeaser = 即将推出…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = 免费下载
@@ -32,7 +31,8 @@ homePageLegalLink = 法律
 homePagePrivacyLink = 隐私
 homePageTermsLink = 条款
 homePageCookiesLink = Cookie
-// Leave Screenshots page// Note: do not translate 'Firefox Screenshots' when translating this string
+// Leave Screenshots pageleavePageConfirmDelete = 确认删除账户
+// Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = 您必须已安装 Firefox Screenshots 才能删除账户
 leavePageErrorGeneric = 发生错误
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -40,9 +40,9 @@ leavePageWarning = 这将永久删除您的 Firefox Screenshots 数据。
 leavePageButtonProceed = 确认
 leavePageButtonCancel = 取消
 leavePageDeleted = 您的截图已全部删除！
-// Not Found pagenotFoundPageIntro = 出错了。
+// Not Found pagenotFoundPageTitle = 找不到网页
 notFoundPageDescription = 找不到网页。
-// Shot pageshotPageAlertErrorDeletingShot = 删除截图时出错
+// Shot pageshotPageAlertErrorUpdatingExpirationTime = 保存到期时间时出错
 shotPageAlertErrorUpdatingTitle = 保存标题时出错
 shotPageConfirmDelete = 您确定要永久删除此截图？
 shotPageShareButton
@@ -121,6 +121,8 @@ shotIndexPageSearchResultsTitle = 我的截图：搜索 { $searchTerm }
 // {$error} is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
 shotIndexPageErrorRendering = 呈现页面时出错：{ $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = 搜索我的截图
 shotIndexPageSearchButton
     .title = 搜索
 shotIndexPageNoShotsMessage = 没有保存截图。
