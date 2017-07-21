@@ -27,6 +27,7 @@ creatingPageTitleDefault = stran
 homePageDescription
     .content = Intuitivni posnetki zaslona kar v brskalniku. Med brskanjem po spletu lahko s Firefoxom ustvarite, shranite in delite posnetke zaslona.
 homePageButtonMyShots = Pojdi na moje posnetke
+homePageTeaser = Kmalu na voljo ...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Brezplačen prenos
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -81,6 +82,8 @@ shotPageExpiredMessage = Ta posnetek je potekel
 shotPageDeleteButton
     .title = Izbriši ta posnetek
 shotPageUpsellFirefox = Prenesite Firefox zdaj
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Izberite čas
 shotPageKeepIndefinitely = Za nedoločen čas
 shotPageKeepTenMinutes = 10 minut
 shotPageKeepOneHour = 1 uro
@@ -93,7 +96,39 @@ shotPageCancelExpiration = prekliči
 shotPageDoesNotExpire = ne poteče
 // Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = poteče { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = poteklo { $timediff }
 timeDiffJustNow = zdaj
+timeDiffMinutesAgo = { $num ->
+        [one] pred 1 minuto
+        [two] pred { $number } minutama
+        [few] pred { $number } minutami
+       *[other] pred { $number } minutami
+    }
+timeDiffHoursAgo = { $num ->
+        [one] pred 1 uro
+        [two] pred { $number } urama
+        [few] pred { $number } urami
+       *[other] pred { $number } urami
+    }
+timeDiffDaysAgo = { $num ->
+        [one] včeraj
+        [two] pred { $number } dnevoma
+        [few] pred { $number } dnevi
+       *[other] pred { $number } dnevi
+    }
+timeDiffFutureMinutes = { $num ->
+        [one] čez 1 minuto
+        [two] čez { $number } minuti
+        [few] čez { $number } minute
+       *[other] čez { $number } minute
+    }
+timeDiffFutureHours = { $num ->
+        [one] čez 1 uro
+        [two] čez { $number } uri
+        [few] čez { $number } ure
+       *[other] čez { $number } ure
+    }
 timeDiffFutureDays = { $num ->
         [one] jutri
         [two] čez { $number } dni
@@ -104,7 +139,17 @@ timeDiffFutureDays = { $num ->
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Napaka pri brisanju posnetka: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Moji posnetki: išči { $searchTerm }
+shotIndexPageSearchButton
+    .title = Išči
 shotIndexPageNoShotsMessage = Ni shranjenih posnetkov.
+shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageClearSearchButton
+    .title = Počisti iskanje
 shotIndexPageConfirmShotDelete = Izbrišem ta posnetek?
 
 
