@@ -34,7 +34,7 @@ homePageDownloadFirefoxSubTitle = Stáhnout zdarma
 homePageGetStarted = Začít
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Jak služba Firefox Screenshots funguje
-homePageGetStartedTitle = Začít
+homePageGetStartedTitle = Jak začít
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Novou ikonu služby Screenshots najdete na vaší liště. Po kliknutí se zobrazí nabídka v horní části okna vašeho prohlížeče.
 homePageCaptureRegion = Vytvořte snímek oblasti
