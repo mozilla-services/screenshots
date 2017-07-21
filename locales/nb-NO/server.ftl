@@ -15,11 +15,16 @@ gNoShots
 
 [[ Creating page ]]
 
+// Note: { $title } is a placeholder for the title of the web page
+// captured in the screenshot. The default, for pages without titles, is
+// creatingPageTitleDefault.
+creatingPageTitle = Lager { $title }
 creatingPageTitleDefault = side
 
 
 [[ Home page ]]
 
+homePageButtonMyShots = Gå til mine skjermbilder
 homePageTeaser = Kommer snart…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Gratis nedlasting
@@ -42,6 +47,7 @@ leavePageErrorAddonRequired = Du må ha Firefox Screenshots installert for å sl
 leavePageErrorGeneric = Det oppstod en feil
 leavePageButtonProceed = Fortsett
 leavePageButtonCancel = Avbryt
+leavePageDeleted = Alle skjermbildene dine er slettet!
 
 
 [[ Not Found page ]]
@@ -53,6 +59,8 @@ notFoundPageDescription = Fant ikke siden.
 
 [[ Shot page ]]
 
+shotPageAlertErrorUpdatingTitle = Feil ved lagring av tittel
+shotPageConfirmDelete = Er du sikker på at du vil slette dette skjermbildet permanent?
 shotPageShareButton
     .title = del
 shotPageCopy = Kopier
@@ -65,6 +73,7 @@ shotPageSharePinterest
     .title = Del på Pinterest
 shotPageShareEmail
     .title = Del lenke via e-post
+shotPageShareLink = Få en delbar lenke til dette skjermbildet:
 shotPageCopyImageText
     .label = Kopier bildetekst
 shotPageDeleteButton
