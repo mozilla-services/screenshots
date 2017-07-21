@@ -25,8 +25,11 @@ creatingPageTitleDefault = page
 
 [[ Home page ]]
 
+homePageButtonMyShots = Afficher mes captures
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Téléchargement gratuit
+// Note: do not translate 'Firefox Screenshots' when translating this string
+homePageHowScreenshotsWorks = Principes de fonctionnement de Firefox Screenshots
 homePageLegalLink = Mentions légales
 homePagePrivacyLink = Confidentialité
 homePageTermsLink = Conditions d’utilisation
@@ -35,11 +38,18 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = Confirmer la suppression du compte
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Firefox Screenshots doit être installé pour pouvoir procéder à la suppression du compte.
+leavePageErrorGeneric = Une erreur s’est produite
+leavePageButtonCancel = Annuler
 
 
 [[ Not Found page ]]
 
 notFoundPageTitle = Page introuvable
+notFoundPageIntro = Oups.
+notFoundPageDescription = Page introuvable.
 
 
 [[ Shot page ]]
@@ -47,6 +57,7 @@ notFoundPageTitle = Page introuvable
 shotPageShareButton
     .title = Partager
 shotPageCopy = Copier
+shotPageCopied = Copié
 shotPageShareFacebook
     .title = Partager sur Facebook
 shotPageShareTwitter
@@ -69,14 +80,55 @@ shotPageKeepOneMonth = 1 mois
 shotPageSaveExpiration = enregistrer
 shotPageCancelExpiration = annuler
 shotPageDoesNotExpire = n’expire jamais
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = expire { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = a expiré { $timediff }
+timeDiffJustNow = à l’instant
+timeDiffMinutesAgo = { $num ->
+        [one] il y a 1 minute
+       *[other] il y a { $number } minutes
+    }
+timeDiffHoursAgo = { $num ->
+        [one] il y a 1 heure
+       *[other] il y a { $number } heures
+    }
+timeDiffDaysAgo = { $num ->
+        [one] hier
+       *[other] il y a { $number } jours
+    }
+timeDiffFutureSeconds = dans quelques secondes
 timeDiffFutureMinutes = { $num ->
         [one] dans 1 minute
        *[other] dans { $number } minutes
+    }
+timeDiffFutureHours = { $num ->
+        [one] dans 1 heure
+       *[other] dans { $number } heures
+    }
+timeDiffFutureDays = { $num ->
+        [one] demain
+       *[other] dans { $number } jours
     }
 
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Erreur lors de la suppression de la capture : { $status } { $statusText }
+shotIndexPageSearchPlaceholder
+    .placeholder = Rechercher mes captures
+shotIndexPageSearchButton
+    .title = Rechercher
+shotIndexPageNoShotsMessage = Aucune capture enregistrée.
+shotIndexPageNoShotsInvitation = Comment ça fonctionne ? Allez-y, faites une capture.
+shotIndexPageLookingForShots = Nous recherchons vos captures…
+shotIndexPageNoSearchResultsIntro = Hum…
+shotIndexPageNoSearchResults = Nous n’avons trouvé aucune capture correspondant à votre recherche.
+shotIndexPageClearSearchButton
+    .title = Effacer la recherche
+shotIndexPageConfirmShotDelete = Supprimer cette capture ?
 
 
 // all metrics strings are optional for translation
