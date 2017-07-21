@@ -163,6 +163,16 @@ timeDiffFutureDays = { $num ->
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Zmylk při hašenju fota wobrazowki: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Moje fota wobrazowki: Za { $searchTerm } pytać
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Zmylk při zwobraznjenju strony: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Moje fota wobrazowki přepytać
 shotIndexPageSearchButton
     .title = Pytać
 shotIndexPageNoShotsMessage = Žane składowane fota wobrazowki.
