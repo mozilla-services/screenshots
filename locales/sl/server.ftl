@@ -11,6 +11,7 @@ gMyShots = Moji posnetki
 gHomeLink = Domov
 gNoShots
     .alt = Ni najdenih posnetkov
+gScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in delite zaslonske posnetke, ne da bi zapustili Firefox.
 
 
 [[ Creating page ]]
@@ -84,6 +85,9 @@ shotPageRestoreButton = obnovi do { $date }
 shotPageExpiredMessage = Ta posnetek je potekel
 shotPageDeleteButton
     .title = Izbriši ta posnetek
+shotPageScreenshotsDescription =
+    Poenostavljeni posnetki zaslona. Zajemite, shranite in delite zaslonske posnetke, ne da bi zapustili Firefox.
+
 shotPageUpsellFirefox = Prenesite Firefox zdaj
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Izberite čas
