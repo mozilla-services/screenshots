@@ -610,7 +610,7 @@ class Body extends React.Component {
               </div>
               <div className="nav-links">
                 <Localized id="homePageGetStarted">
-                  <a href="#">Get Started</a>
+                  <a href="#how-screenshots-works">Get Started</a>
                 </Localized>
                 { myShots }
               </div>
@@ -629,7 +629,7 @@ class Body extends React.Component {
           </div>
         </header>
         <Localized id="homePageHowScreenshotsWorks">
-          <h2>How Screenshots Works</h2>
+          <h2 id="how-screenshots-works">How Screenshots Works</h2>
         </Localized>
         <section id="section-1">
           <div className="container">
