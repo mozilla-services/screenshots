@@ -136,6 +136,7 @@ shotPageExpiresIn = { $timediff } に期限切れ
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } に期限切れ
 timeDiffJustNow = たった今
+timeDiffMinutesAgo = { $number } 分前
 timeDiffHoursAgo = { $number } 時間前
 timeDiffDaysAgo = { $number } 日前
 timeDiffFutureSeconds = 数秒以内
