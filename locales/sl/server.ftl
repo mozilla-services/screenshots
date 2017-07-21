@@ -106,37 +106,37 @@ shotPageExpiresIn = poteče { $timediff }
 shotPageExpired = poteklo { $timediff }
 timeDiffJustNow = zdaj
 timeDiffMinutesAgo = { $num ->
-        [one] pred 1 minuto
+        [one] pred { $number } minuto
         [two] pred { $number } minutama
         [few] pred { $number } minutami
        *[other] pred { $number } minutami
     }
 timeDiffHoursAgo = { $num ->
-        [one] pred 1 uro
+        [one] pred { $number } uro
         [two] pred { $number } urama
         [few] pred { $number } urami
        *[other] pred { $number } urami
     }
 timeDiffDaysAgo = { $num ->
-        [one] včeraj
+        [one] pred { $number } dnevom
         [two] pred { $number } dnevoma
         [few] pred { $number } dnevi
        *[other] pred { $number } dnevi
     }
 timeDiffFutureMinutes = { $num ->
-        [one] čez 1 minuto
+        [one] čez { $number } minuto
         [two] čez { $number } minuti
         [few] čez { $number } minute
        *[other] čez { $number } minute
     }
 timeDiffFutureHours = { $num ->
-        [one] čez 1 uro
+        [one] čez { $number } uro
         [two] čez { $number } uri
         [few] čez { $number } ure
        *[other] čez { $number } ure
     }
 timeDiffFutureDays = { $num ->
-        [one] jutri
+        [one] čez { $number } dan
         [two] čez { $number } dni
         [few] čez { $number } dni
        *[other] čez { $number } dni
