@@ -25,7 +25,6 @@ This is a server-only release.  Add-on changes are still deferred to a later Fir
 * update to photon loader [8b6157b](https://github.com/mozilla-services/screenshots/commit/8b6157b)
 * Tweak flex syntax so shot pages work on IE 11. Fixes [#2516](https://github.com/mozilla-services/screenshots/issues/2516) [33d2ae5](https://github.com/mozilla-services/screenshots/commit/33d2ae5)
 
-
 ### Add-on changes
 
 Note these are part of the version/tag, but have not been uploaded to the Firefox tree.
@@ -39,6 +38,37 @@ Note these are part of the version/tag, but have not been uploaded to the Firefo
 * about:home is not treated like about:newtab ([#3088](https://github.com/mozilla-services/screenshots/issues/3088)). Fixes [#3029](https://github.com/mozilla-services/screenshots/issues/3029) [4633694](https://github.com/mozilla-services/screenshots/commit/4633694)
 * preview shot before saving full page/visibleremove addToMyShots [c87db61](https://github.com/mozilla-services/screenshots/commit/c87db61)
 
+## Version 10.8.0
+
+Note: the 10.x.0 series is exported to Firefox 55.
+
+* Update privacy notice URL ([#3136](https://github.com/mozilla-services/screenshots/issues/3135))
+* Suppress resize errors and correctly unload resize listener ([#3153](https://github.com/mozilla-services/screenshots/issues/3135))
+
+## Version 10.7.0
+
+* Fix icon path, so that starred icon is shown to new users ([#3136](https://github.com/mozilla-services/screenshots/issues/3136))
+* Address 10.6 review comments ([bugzilla bug 1381132](https://bugzil.la/1381132#c3))
+
+## Version 10.6.0
+
+* Iframe tests: validate iframe URLs, remove unneeded iframe onload handlers ([#3134](https://github.com/mozilla-services/screenshots/issues/3134))
+* Put temporary clipboard TEXTAREA in an iframe, with iframe URL validation [5b4609f](https://github.com/mozilla-services/screenshots/commit/5b4609f)
+
+## Version 10.5.0
+
+* Disable Screenshots in private windows. Fixes [#3120](https://github.com/mozilla-services/screenshots/issues/3120) [450dad1](https://github.com/mozilla-services/screenshots/commit/450dad1)
+* Do not regress the already-landed fix to [Bug 1373614](https://bugzilla.mozilla.org/show_bug.cgi?id=1373614) (stop the embedded WebExtension unconditionally) [cf3788d](https://github.com/mozilla-services/screenshots/commit/cf3788d)
+
+## Version 10.4.0
+
+Note: this release didn't make it into Firefox. Details in [Bug 1380120](https://bugzilla.mozilla.org/show_bug.cgi?id=1380120)
+
+* Add context fill icons [7cb237f](https://github.com/mozilla-services/screenshots/commit/7cb237f)
+* Sanitize download filename more fully. This adds `:` (important on Windows),
+  `\`, `<`, and `>` to the blacklist.
+  Followup in [#3083](https://github.com/mozilla-services/screenshots/issues/3083). Fixes [#2981](https://github.com/mozilla-services/screenshots/issues/2981) [af32978](https://github.com/mozilla-services/screenshots/commit/af32978)
+* Add cloud icon to Save [4ae42cc](https://github.com/mozilla-services/screenshots/commit/4ae42cc)
 
 ## Version 10.3.0
 
