@@ -32,6 +32,7 @@ const errors = require("./errors");
 const buildTime = require("./build-time").string;
 const ua = require("universal-analytics");
 const urlParse = require("url").parse;
+const urlResolve = require("url").resolve;
 const http = require("http");
 const https = require("https");
 const gaActivation = require("./ga-activation");
@@ -1000,15 +1001,15 @@ app.use("/", require("./pages/shot/server").app);
 app.use("/", require("./pages/homepage/server").app);
 
 app.get("/proxy", function(req, res) {
-  let url = req.query.url;
+  let stringUrl = req.query.url;
   let sig = req.query.sig;
-  let isValid = dbschema.getKeygrip().verify(new Buffer(url, 'utf8'), sig);
+  let isValid = dbschema.getKeygrip().verify(new Buffer(stringUrl, 'utf8'), sig);
   if (!isValid) {
     sendRavenMessage(req, "Bad signature on proxy", {extra: {proxyUrl: url, sig}});
     simpleResponse(res, "Bad signature", 403);
     return;
   }
-  url = urlParse(url);
+  let url = urlParse(stringUrl);
   let httpModule = http;
   if (url.protocol == "https:") {
     httpModule = https;
@@ -1034,6 +1035,10 @@ app.get("/proxy", function(req, res) {
       if (PROXY_HEADER_WHITELIST[h]) {
         headers[h] = subres.headers[h];
       }
+    }
+    if (subres.headers.location) {
+      let location = urlResolve(stringUrl, subres.headers.location);
+      headers.location = require("./proxy-url").createProxyUrl(req, location);
     }
     // Cache for 30 days
     headers["cache-control"] = "public, max-age=2592000";
