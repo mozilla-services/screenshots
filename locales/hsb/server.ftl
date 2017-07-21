@@ -147,10 +147,26 @@ timeDiffFutureMinutes = { $num ->
         [few] za { $number } mjeńšiny
        *[other] za { $number } mjeńšin
     }
+timeDiffFutureHours = { $num ->
+        [one] za 1 hodźinu
+        [two] za { $number } hodźinje
+        [few] za { $number } hodźiny
+       *[other] za { $number } hodźin
+    }
+timeDiffFutureDays = { $num ->
+        [one] jutře
+        [two] za { $number } dnjej
+        [few] za { $number } dny
+       *[other] za { $number } dnjow
+    }
 
 
 [[ Shotindex page ]]
 
+shotIndexPageSearchButton
+    .title = Pytać
+shotIndexPageNoShotsMessage = Žane składowane fota wobrazowki.
+shotIndexPageNoSearchResultsIntro = Hmm
 
 
 // all metrics strings are optional for translation
