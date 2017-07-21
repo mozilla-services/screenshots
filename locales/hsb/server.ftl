@@ -218,3 +218,4 @@ metricsPageUsersQueryCount = Ličba wužiwarjow
 metricsPageUsersQueryDay = Dźeń
 metricsPageUserShotsQueryTitle = Ličba fotow wobrazowki na wužiwarja
 metricsPageUserShotsQueryDescription = Ličba wužiwarjow, kotriž maja w cyłku wokoło N fotow wobrazowki
+metricsPageUserShotsQueryCount = Ličba wužiwarjow
