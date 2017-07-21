@@ -7,10 +7,18 @@
 // Global phrases shared across pages, prefixed with 'g'
 [[ global ]]
 
+gMyShots = Mes captures
+gHomeLink = Accueil
+gScreenshotsDescription = Des captures en un clin d'œil. Capturez l'écran, enregistrez et partagez sans quitter Firefox.
 
 
 [[ Creating page ]]
 
+// Note: { $title } is a placeholder for the title of the web page
+// captured in the screenshot. The default, for pages without titles, is
+// creatingPageTitleDefault.
+creatingPageTitle = Capture de { $title }
+creatingPageTitleDefault = page
 
 
 [[ Home page ]]
