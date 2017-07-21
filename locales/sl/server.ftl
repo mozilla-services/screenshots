@@ -57,6 +57,7 @@ leavePageDeleted = Vsi vaši posnetki so bili izbrisani!
 
 notFoundPageTitle = Strani ni mogoče najti
 notFoundPageIntro = Ups.
+notFoundPageDescription = Strani ni mogoče najti.
 
 
 [[ Shot page ]]
