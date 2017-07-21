@@ -91,9 +91,9 @@ shotPageSaveExpiration = lagre
 shotPageCancelExpiration = avbryt
 shotPageDoesNotExpire = går ikkje ut
 // Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = går ut om { $timediff }
+shotPageExpiresIn = går ut { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = gått ut for { $timediff }
+shotPageExpired = gått ut { $timediff }
 timeDiffJustNow = akkurat no
 timeDiffMinutesAgo = { $num ->
         [one] 1 minutt sidan
