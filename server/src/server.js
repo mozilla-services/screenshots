@@ -659,8 +659,13 @@ app.put("/data/:id/:domain", function(req, res) {
 });
 
 app.get("/data/:id/:domain", function(req, res) {
+  if (!req.deviceId) {
+    res.status(404).send("Not found");
+    return;
+  }
   let shotId = `${req.params.id}/${req.params.domain}`;
-  Shot.getRawValue(shotId).then((data) => {
+  // FIXME: maybe we should allow for accountId here too:
+  Shot.getRawValue(shotId, req.deviceId).then((data) => {
     if (!data) {
       simpleResponse(res, "No such shot", 404);
     } else {
