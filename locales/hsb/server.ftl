@@ -37,11 +37,14 @@ homePageHowScreenshotsWorks = Kak Firefox Screenshots funguje
 homePageGetStartedTitle = Prěnje kroki
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Symbol noweho Screenshots na swojej symbolowej lajsće namakaće.  Wubjerće jón a meni Screenshots so horjeka we woknje wašeho wobhladowaka zjewi.
-homePageCaptureRegion = Wobłuk natočić
+homePageCaptureRegion = Wobłuk fotografować
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klikńće a ćehńće, zo byšće wobłuk wubrał, kotryž chceće natočić. Abo stajće prosće kursor nad tym a klikńće  - Screenshots budźe wobłuk za was wuběrać. Spodoba so wam, štož widźiće? Wubjerće „Składować“ za přistup na swoje foto wobrazowki online abo tłóčatko ze šipkom dele, zo byšće jo na swój ličak sćahnył.
-homePageCapturePage = Stronu natočić
+homePageCapturePage = Stronu fotografować
+homePageCapturePageDescription = Wužiwajće tłóčatka horjeka naprawo, zo byšće cyłe strony fotografował. Tłóčatko "Wobłuk fotografować" tón wobłuk zapřijima, kotryž móžeće bjez kulenje strony widźeć a tłóčatko "Stronu fotografować" składuje cyłu stronu.
 homePageSaveShare = Składować a dźělić
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Hdyž foto wobrazowki wutworjeće, budźe Firefox waše foto wobrazowki na wašu biblioteku fotow wobrazowki online słać a kopěruje wotkaz na waš mjezyskład. Waše foto wobrazowki za dwě njedźeli składujemy, ale móžeće fota wobrazowki kóždy čas zhašeć abo datum spadnjenja změnić, zo byšće je dlěje w swojej bibliotece chował.
 homePageLegalLink = Prawniske
 homePagePrivacyLink = Priwatnosć
 homePageTermsLink = Wuměnjenja
@@ -134,13 +137,13 @@ shotPageExpiresIn = spadnje { $timediff }
 shotPageExpired = spadnjeny { $timediff }
 timeDiffJustNow = runje
 timeDiffMinutesAgo = { $num ->
-        [one] před { $number } mjeńšinu
+        [one] před 1 mjeńšinu
         [two] před { $number } mjeńšinomaj
         [few] před { $number } mjeńšinami
        *[other] před { $number } mjeńšinami
     }
 timeDiffHoursAgo = { $num ->
-        [one] před { $number } hodźinu
+        [one] před 1 hodźinu
         [two] před { $number } hodźinomaj
         [few] před { $number } hodźinami
        *[other] před { $number } hodźinami
@@ -153,7 +156,7 @@ timeDiffDaysAgo = { $num ->
     }
 timeDiffFutureSeconds = za mało sekundow
 timeDiffFutureMinutes = { $num ->
-        [one] za { $number } mjeńšinu
+        [one] za 1 mjeńšinu
         [two] za { $number } mjeńšinje
         [few] za { $number } mjeńšiny
        *[other] za { $number } mjeńšin
