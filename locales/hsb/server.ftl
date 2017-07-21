@@ -121,6 +121,32 @@ shotPageDoesNotExpire = njespadnje
 shotPageExpiresIn = spadnje { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = spadnjeny { $timediff }
+timeDiffJustNow = runje
+timeDiffMinutesAgo = { $num ->
+        [one] před 1 mjeńšinu
+        [two] před { $number } mjeńšinomaj
+        [few] před { $number } mjeńšinami
+       *[other] před { $number } mjeńšinami
+    }
+timeDiffHoursAgo = { $num ->
+        [one] před 1 hodźinu
+        [two] před { $number } hodźinomaj
+        [few] před { $number } hodźinami
+       *[other] před { $number } hodźinami
+    }
+timeDiffDaysAgo = { $num ->
+        [one] wčera
+        [two] před { $number } dnjomaj
+        [few] před { $number } dnjemi
+       *[other] před { $number } dnjemi
+    }
+timeDiffFutureSeconds = za mało sekundow
+timeDiffFutureMinutes = { $num ->
+        [one] za 1 mjeńšinu
+        [two] za { $number } mjeńšinje
+        [few] za { $number } mjeńšiny
+       *[other] za { $number } mjeńšin
+    }
 
 
 [[ Shotindex page ]]
