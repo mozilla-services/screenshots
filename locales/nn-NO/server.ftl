@@ -70,6 +70,8 @@ shotPageShareTwitter
     .title = Del på Twitter
 shotPageSharePinterest
     .title = Del på Pinterest
+shotPageShareEmail
+    .title = Del lenke via e-post
 shotPageCopyImageText
     .label = Kopier bildetekst
 shotPageDeleteButton
