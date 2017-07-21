@@ -44,18 +44,49 @@ homePageCapturePage = Bok fotografěrowaś
 homePageCapturePageDescription = Wužywajśo tłocašk górjejce napšawo, aby cełe boki fotografěrował. Tłocašk "Wobcerk fotografěrowaś" ten wobcerk składujo, kótaryž móžośo bźez kulanje boka wiźeś a tłocašk "Bok fotografěrowaś" składujo ceły bok.
 homePageSaveShare = Składowaś a źěliś
 homePageLegalLink = Pšawniske
+homePagePrivacyLink = Priwatnosć
+homePageTermsLink = Wuměnjenja
+homePageCookiesLink = Cookieje
 
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = Lašowanje konta wobkšuśiś
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Firefox Screenshots musy instalěrowany byś, aby se wašo konto wulašowało
+leavePageErrorGeneric = Zmólka jo nastała
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = To wše waše daty Firefox Screenshots na pśecej wulašujo.
+leavePageButtonProceed = Pókšacowaś
+leavePageButtonCancel = Pśetergnuś
+leavePageDeleted = Wše waše fota wobrazowki su se wulašowali!
 
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Bok njejpo se namakał
+notFoundPageIntro = Hopla.
+notFoundPageDescription = Bok njejo se namakał.
 
 
 [[ Shot page ]]
 
+shotPageAlertErrorUpdatingExpirationTime = Zmólka pśi składowanju wótběgoweho datuma
+shotPageAlertErrorDeletingShot = Zmólka pśi lašowanju fota wobrazowki
+shotPageAlertErrorUpdatingTitle = Zmólka pśi składowanju titela
+shotPageConfirmDelete = Cośo napšawdu toś to foto wobrazowki na pśecej wulašowaś?
+shotPageShareButton
+    .title = Źěliś
+shotPageCopy = Kopěrowaś
+shotPageCopied = Kopěrowany
+shotPageShareFacebook
+    .title = Na Facebooku źěliś
+shotPageShareTwitter
+    .title = Na Twitter źěliś
+shotPageSharePinterest
+    .title = Na Pinterest źěliś
+shotPageShareEmail
+    .title = Wótkaz pśez mejlku źěliś
 shotPageDownloadShot
     .title = Ześěgnuś
 shotPageDownload = Ześěgnuś
