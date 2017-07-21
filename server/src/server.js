@@ -60,6 +60,8 @@ const PROXY_HEADER_WHITELIST = {
   "via": true
 };
 
+const COOKIE_EXPIRE_TIME = 30 * 24 * 60 * 60 * 1000; // 30 days
+
 if (config.useS3) {
   // Test a PUT to s3 because configuring this requires using the aws web interface
   // If the permissions are not set up correctly, then we want to know that asap
@@ -525,11 +527,11 @@ function sendAuthInfo(req, res, params) {
   let encodedAbTests = b64EncodeJson(userAbTests);
   let keygrip = dbschema.getKeygrip();
   let cookies = new Cookies(req, res, {keys: keygrip});
-  cookies.set("user", deviceId, {signed: true, sameSite: 'lax'});
+  cookies.set("user", deviceId, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
   if (accountId) {
-    cookies.set("accountid", accountId, {signed: true, sameSite: 'lax'});
+    cookies.set("accountid", accountId, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
   }
-  cookies.set("abtests", encodedAbTests, {signed: true, sameSite: 'lax'});
+  cookies.set("abtests", encodedAbTests, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
   let authHeader = `${deviceId}:${keygrip.sign(deviceId)};abTests=${encodedAbTests}:${keygrip.sign(encodedAbTests)}`;
   let responseJson = {
     ok: "User created",
