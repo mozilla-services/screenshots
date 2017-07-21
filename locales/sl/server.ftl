@@ -31,8 +31,10 @@ homePageButtonMyShots = Pojdi na moje posnetke
 homePageTeaser = Kmalu na voljo ...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Brezplačen prenos
+homePageGetStarted = Začnite
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kako deluje Firefox Screenshots
+homePageGetStartedTitle = Začnite
 homePageCaptureRegion = Zajemi območje
 homePageCapturePage = Zajemi stran
 homePageSaveShare = Shrani in deli
