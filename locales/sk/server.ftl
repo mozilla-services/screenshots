@@ -47,6 +47,8 @@ homePageCookiesLink = Cookies
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Na vymazanie svojho účtu musíte mať nainštalovanú službu Firefox Screenshots
 leavePageErrorGeneric = Vyskytla sa chyba
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Toto natrvalo vymaže zo služby Firefox Screenshots všetky vaše údaje.
 leavePageButtonProceed = Pokračovať
 leavePageButtonCancel = Zrušiť
 leavePageDeleted = Všetky vaše snímky boli odstránené!
@@ -89,8 +91,50 @@ shotPageDownloadShot
 shotPageDownload = Prevziať
 shotPageScreenshotsDescription = Jednoduchá tvorba snímok obrazovky. Vytvorte, uložte a zdieľajte snímky obrazovky bez toho, aby ste museli opustiť Firefox.
 shotPageUpsellFirefox = Získajte Firefox teraz
+shotPageKeepFor = Na ako dlho má byť táto snímka uložená?
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Vyberte čas
+shotPageKeepIndefinitely = na neurčito
+shotPageKeepTenMinutes = 10 minút
+shotPageKeepOneHour = 1 hodinu
+shotPageKeepOneDay = 1 deň
+shotPageKeepOneWeek = 1 týždeň
+shotPageKeepTwoWeeks = 2 týždne
+shotPageKeepOneMonth = 1 mesiac
 shotPageSaveExpiration = uložiť
 shotPageCancelExpiration = zrušiť
+timeDiffJustNow = práve teraz
+timeDiffMinutesAgo = { $num ->
+        [one] pred 1 minútou
+        [few] pred { $number } minútami
+       *[other] pred { $number } minútami
+    }
+timeDiffHoursAgo = { $num ->
+        [one] pred hodinou
+        [few] pred { $number } hodinami
+       *[other] pred { $number } hodinami
+    }
+timeDiffDaysAgo = { $num ->
+        [one] včera
+        [few] pred { $number } dňami
+       *[other] pred { $number } dňami
+    }
+timeDiffFutureSeconds = za pár sekúnd
+timeDiffFutureMinutes = { $num ->
+        [one] za minútu
+        [few] za { $number } minúty
+       *[other] za { $number } minút
+    }
+timeDiffFutureHours = { $num ->
+        [one] za hodinu
+        [few] za { $number } hodiny
+       *[other] za { $number } hodín
+    }
+timeDiffFutureDays = { $num ->
+        [one] zajtra
+        [few] za { $number } dni
+       *[other] za { $number } dní
+    }
 
 
 [[ Shotindex page ]]
@@ -98,6 +142,7 @@ shotPageCancelExpiration = zrušiť
 shotIndexPageSearchButton
     .title = Hľadať
 shotIndexPageNoShotsMessage = Žiadne uložené snímky
+shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageConfirmShotDelete = Odstrániť túto snímku?
 
 
