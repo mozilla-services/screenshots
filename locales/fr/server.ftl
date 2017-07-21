@@ -7,9 +7,9 @@
 // Global phrases shared across pages, prefixed with 'g'
 [[ global ]]
 
-gMyShots = Mes captures
+gMyShots = Mes captures d’écran
 gHomeLink = Accueil
-gScreenshotsDescription = Des captures en un clin d'œil. Capturez l'écran, enregistrez et partagez sans quitter Firefox.
+gScreenshotsDescription = Des captures en un clin d’œil. Capturez l’écran, enregistrez et partagez sans quitter Firefox.
 
 
 [[ Creating page ]]
