@@ -201,3 +201,11 @@ shotIndexPageConfirmShotDelete = Tute foto wobrazowki zhašeć?
 
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Metriki Firefox Screenshots
+metricsPageTotalsQueryTitle = Dohromady
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Přehlad Screenshots
+metricsPageTotalsQueryDevices = Zregistrowane graty w cyłku
+metricsPageTotalsQueryActiveShots = Aktiwne fota wobrazowki
+metricsPageTotalsQueryExpiredShots = Wotběžało (da so wšak wobnowić)
+metricsPageTotalsQueryExpiredDeletedShots = Wotběžało (zhašane)
+metricsPageShotsQueryTitle = Fota wobrazowki na dźeń
