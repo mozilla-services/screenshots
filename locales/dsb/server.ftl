@@ -37,6 +37,9 @@ creatingPageTitleDefault = bok
 
 [[ Shot page ]]
 
+shotPageDownloadShot
+    .title = Ześěgnuś
+shotPageDownload = Ześěgnuś
 
 
 [[ Shotindex page ]]
