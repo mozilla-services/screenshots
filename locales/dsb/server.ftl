@@ -109,10 +109,58 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Ześěgnuś
 shotPageDownload = Ześěgnuś
-shotPageScreenshotsDescription =
-    Fota wobrazowki jadnorje nagótowane. Gótujśo, składujśo a źělśo fota wobrazowki, mimo až Firefox spušćaśo.
-
+shotPageScreenshotsDescription = Fota wobrazowki jadnorje nagótowane. Gótujśo, składujśo a źělśo fota wobrazowki, mimo až Firefox spušćaśo.
 shotPageUpsellFirefox = Wobstarajśo se Firefox něnto
+shotPageDMCAMessage = Toś to foto wobrazowki wěcej njejo k dispoziciji dla pšawow awtorstwa tśeśich.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Dalšne informacije pśez e-mail na { $dmca } dostanjośo.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Jolic waše fota wobrazowki někotarym pšawam pódlaže, móžomy wašomu pśistupoju na Firefox Screenshots zajźowaś.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Pšosym pódajśo URL toś togo fota wobrazowki w swójej mejlce: { $url }
+shotPageKeepFor = Kak dłujko ma sr toś to foto wobrazowki chowaś?
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Cas wubraś
+shotPageKeepIndefinitely = Njepóstajony
+shotPageKeepTenMinutes = 10 minutow
+shotPageKeepOneHour = 1 góźina
+shotPageKeepOneDay = 1 źeń
+shotPageKeepOneWeek = 1 tyźeń
+shotPageKeepTwoWeeks = 2 tyźenja
+shotPageKeepOneMonth = 1 mjasec
+shotPageSaveExpiration = składowaś
+shotPageCancelExpiration = pśetergnuś
+shotPageDoesNotExpire = njespadnjo
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = spadnjo { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = spadnjony { $timediff }
+timeDiffJustNow = rowno
+timeDiffMinutesAgo = { $num ->
+        [one] pśed 1 minutu
+        [two] pśed { $number } minutoma
+        [few] pśed { $number } minutami
+       *[other] pśed { $number } minutami
+    }
+timeDiffHoursAgo = { $num ->
+        [one] pśed 1 góźinu
+        [two] pśed { $number } góźinoma
+        [few] pśed { $number } góźinami
+       *[other] pśed { $number } góźinami
+    }
+timeDiffDaysAgo = { $num ->
+        [one] cora
+        [two] pśed { $number } dnjoma
+        [few] pśed { $number } dnjami
+       *[other] pśed { $number } dnjami
+    }
+timeDiffFutureSeconds = za mało sekundow
+timeDiffFutureMinutes = { $num ->
+        [one] za 1 minutu
+        [two] za { $number } minuśe
+        [few] za { $number } minuty
+       *[other] za { $number } minutow
+    }
 
 
 [[ Shotindex page ]]
