@@ -27,6 +27,7 @@ creatingPageTitleDefault = stran
 homePageDescription
     .content = Intuitivni posnetki zaslona kar v brskalniku. Med brskanjem po spletu lahko s Firefoxom ustvarite, shranite in delite posnetke zaslona.
 homePageButtonMyShots = Pojdi na moje posnetke
+homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Brezplačen prenos
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kako deluje Firefox Screenshots
