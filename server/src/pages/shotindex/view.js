@@ -261,7 +261,7 @@ class Card extends React.Component {
             <a className="button transparent download" href={ downloadUrl } onClick={ this.onClickDownload.bind(this) }
               title="Download the shot image" ref="download" />
           </Localized>
-          <ShareButton setPanelState={this.setPanelState.bind(this)} abTests={this.props.abTests} clipUrl={shot.urlDisplay} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} />
+          <ShareButton setPanelState={this.setPanelState.bind(this)} abTests={this.props.abTests} clipUrl={imageUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} />
           <Localized id="shotPageDeleteButton">
             <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this, shot) } ref="trash" />
           </Localized>
