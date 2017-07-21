@@ -251,15 +251,27 @@ function decodeAuthHeader(header) {
   let keygrip = dbschema.getKeygrip();
   let match = /^([^:]{1,255}):([^;]{1,255});abTests=([^:]{1,1500}):(.{0,255})$/.exec(header);
   if (!match) {
-    // FIXME: log, Sentry error
+    let exc = new Error("Invalid auth header");
+    exc.headerValue = header;
+    captureRavenException(exc);
     return {};
   }
   let deviceId = match[1];
   let deviceIdSig = match[2];
   let abTestsEncoded = match[3];
   let abTestsEncodedSig = match[4];
-  if (!(keygrip.verify(deviceId, deviceIdSig) && keygrip.verify(abTestsEncoded, abTestsEncodedSig))) {
-    // FIXME: log, Sentry error
+  if (!keygrip.verify(deviceId, deviceIdSig)) {
+    let exc = new Error("deviceId signature incorrect");
+    exc.deviceIdLength = typeof deviceId == "string" ? deviceId.length : String(deviceId);
+    exc.deviceIdSigLength = typeof deviceIdSig == "string" ? deviceIdSig.length : String(deviceIdSig);
+    captureRavenException(exc);
+    return {};
+  }
+  if (!keygrip.verify(abTestsEncoded, abTestsEncodedSig)) {
+    let exc = new Error("abTests signature incorrect");
+    exc.abTestsEncodedLength = typeof abTestsEncoded == "string" ? abTestsEncoded.length : String(abTestsEncoded);
+    exc.abTestsEncodedSigLength = typeof abTestsEncodedSig == "string" ? abTestsEncodedSig.length : String(abTestsEncodedSig);
+    captureRavenException(exc);
     return {};
   }
   let abTests = b64DecodeJson(abTestsEncoded);
@@ -519,7 +531,9 @@ app.post("/api/register", function(req, res) {
 function sendAuthInfo(req, res, params) {
   let { deviceId, accountId, userAbTests } = params;
   if (deviceId.search(/^[a-zA-Z0-9_-]{1,255}$/) == -1) {
-    // FIXME: add logging message with deviceId
+    let exc = new Error("Bad deviceId in login");
+    exc.deviceId = deviceId;
+    captureRavenException(exc);
     throw new Error("Bad deviceId");
   }
   let encodedAbTests = b64EncodeJson(userAbTests);
