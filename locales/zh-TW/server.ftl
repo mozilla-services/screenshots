@@ -38,7 +38,10 @@ homePageGetStartedTitle = 開始使用
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = 尋找並點擊工具列中新出現的 Screenshots 圖示，Screenshots 選單就會出現在瀏覽器視窗頂部。
 homePageCaptureRegion = 拍攝一個區域
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = 點擊並拖曳出您想要擷取的範圍，或也可將滑鼠指到想拍照的地方點擊，Screenshots 就會自動為您選擇要拍攝的範圍。覺得拍得不錯的話，即可點擊「儲存」將拍攝到的擷圖上傳到雲端平台，或是直接點擊「下載」按鈕，儲存到電腦上。
 homePageCapturePage = 拍攝整張網頁
+homePageCapturePageDescription = 可使用右上角的按鈕來拍攝整章網頁。點擊「儲存可見區域」按鈕即可不用捲動，直接拍攝您當下看到的範圍，或是點擊「儲存完整頁面」就會把整張網頁拍下來。
 homePageSaveShare = 儲存並分享
 homePageLegalLink = 法律資訊
 homePagePrivacyLink = 隱私權
