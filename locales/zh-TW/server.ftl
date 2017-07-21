@@ -41,8 +41,10 @@ homePageCaptureRegion = 拍攝一個區域
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = 點擊並拖曳出您想要擷取的範圍，或也可將滑鼠指到想拍照的地方點擊，Screenshots 就會自動為您選擇要拍攝的範圍。覺得拍得不錯的話，即可點擊「儲存」將拍攝到的擷圖上傳到雲端平台，或是直接點擊「下載」按鈕，儲存到電腦上。
 homePageCapturePage = 拍攝整張網頁
-homePageCapturePageDescription = 可使用右上角的按鈕來拍攝整章網頁。點擊「儲存可見區域」按鈕即可不用捲動，直接拍攝您當下看到的範圍，或是點擊「儲存完整頁面」就會把整張網頁拍下來。
+homePageCapturePageDescription = 可使用右上角的按鈕來拍攝整張網頁。點擊「儲存可見範圍」按鈕即可不用捲動，直接拍攝您當下看到的範圍，或是點擊「儲存完整頁面」就會把整張網頁拍下來。
 homePageSaveShare = 儲存並分享
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = 拍攝擷圖時，Firefox 會將您的擷圖上傳到 Screenshots 雲端圖庫中，並將鏈結複製到您的剪貼簿。我們會自動儲存的拍攝的擷圖兩星期，但您也可以隨時修改到期日，或直接刪除圖片。
 homePageLegalLink = 法律資訊
 homePagePrivacyLink = 隱私權
 homePageTermsLink = 使用條款
@@ -100,15 +102,20 @@ shotPageRestoreButton = 還原直到 { $date }
 shotPageExpiredMessage = 此擷圖已過期。
 shotPageDeleteButton
     .title = 刪除此擷圖
+shotPageAbuseButton
+    .title = 回報這張圖片是濫用、垃圾信，或有其他問題
 shotPageDownloadShot
     .title = 下載
 shotPageDownload = 下載
 shotPageScreenshotsDescription = 拍攝擷圖變得簡單。不用離開 Firefox 就能拍攝、儲存、分享畫面擷圖。
 shotPageUpsellFirefox = 立即下載 Firefox
+shotPageDMCAMessage = 因為第三方提出智慧財產權通知，此擷圖已被下架。
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = 請寄信到 { $dmca } 要求更多資訊。
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = 若我們收到多次關於您的照片的版權要求，我們可能會封鎖您的 Firefox Screenshots 使用權。
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = 請在郵件中包含此擷圖的網址: { $url }
 shotPageKeepFor = 這張擷圖應該保存多久？
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = 選擇時間
@@ -166,7 +173,10 @@ shotIndexPageConfirmShotDelete = 要刪除這張擷圖嗎？
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Firefox Screenshots 統計
 metricsPageTotalsQueryTitle = 總數
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Screenshots 概觀
 metricsPageTotalsQueryDevices = 已註冊裝置數
+metricsPageTotalsQueryActiveShots = 未過期擷圖數
 metricsPageTotalsQueryExpiredShots = 已過期（但可恢復）
 metricsPageTotalsQueryExpiredDeletedShots = 已過期（且已刪除）
 metricsPageShotsQueryTitle = 逐日擷圖數
@@ -179,10 +189,16 @@ metricsPageUsersQueryCount = 使用者數
 metricsPageUsersQueryDay = 日期
 metricsPageUserShotsQueryTitle = 單一使用者拍攝的擷圖數
 metricsPageUserShotsQueryCount = 使用者數
+metricsPageUserShotsQueryShots = 未過期擷圖的大約數量
 metricsPageRetentionQueryTitle = 週停留量
+metricsPageRetentionQueryDescription = 使用者第一次拍攝擷圖，到最新擷圖的天數，依照開始當週分組
 metricsPageRetentionQueryUsers = 使用者數
+metricsPageRetentionQueryDays = 使用者第一次拍攝擷圖，到最新擷圖的天數
+metricsPageRetentionQueryFirstWeek = 使用者首次拍攝擷圖的當週
 metricsPageTotalRetentionQueryTitle = 總停留
+metricsPageTotalRetentionQueryDescription = 使用者已建立擷圖的時間長度，依照週數分組
 metricsPageTotalRetentionQueryUsers = 使用者數
+metricsPageTotalRetentionQueryDays = 使用者已建立擷圖的天數
 metricsPageVersionQueryTitle = 附加元件版本
 metricsPageVersionQueryUsers = 登入的使用者數
 metricsPageVersionQueryVersion = 附加元件版本
