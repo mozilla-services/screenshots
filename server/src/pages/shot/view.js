@@ -465,7 +465,11 @@ class Body extends React.Component {
   }
 
   onClickOrigUrl(label) {
-    sendEvent("view-original", label, {useBeacon: true});
+    if (this.props.isOwner) {
+      sendEvent("view-original", `${label}-owner`, {useBeacon: true});
+    } else {
+      sendEvent("view-original", `${label}-non-owner`, {useBeacon: true});
+    }
     // Note: we allow the default action to continue
   }
 

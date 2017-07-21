@@ -196,10 +196,9 @@ These are events that an add-on user can encounter on a shot they own
   14. [x] Change expiration time to specific time `web/set-expiration-to-time/navbar`
   15. [x] Change expiration time to indefinite `web/set-expiration-to-indefinite/navbar`
 16. [x] View expired shot `web/view-expired/owner`
-17. [x] View expired shot (not the owner) `web/view-expired/non-owner`
 17. [x] Recover expired shot `web/recover-expired`
-19. [x] Visit original page `web/view-original/navbar`
-20. [x] Visit original page from expired view `web/view-original/expired`
+19. [x] Visit original page `web/view-original/navbar-owner`
+20. [x] Visit original page from expired view `web/view-original/expired-owner`
 21. [x] Click share `web/start-share-owner/navbar`
   22. [x] Click Facebook `web/share-owner/facebook`
   23. [x] Click Twitter `web/share-owner/twitter`
@@ -245,8 +244,9 @@ These are events that an add-on user can encounter on a shot they own
 3. [x] View an image directly, when the image is being shown as part of a Facebook/Twitter style preview (the og:image or twitter:image), `web/visit/direct-view-embedded-non-owner`
 2. [x] Click flag button `web/start-flag/navbar`
 3. [x] Click Share (same as for owner, but with `share-non-owner` instead of `share-owner`, and `start-share-non-owner`)
-4. [x] Visit original URL `web/goto-original-url/navbar`
+4. [x] Visit original URL `web/view-original/navbar-non-owner`
 5. [x] Click Screenshots link in header `web/goto-homepage/navbar` (was `goto-pageshot` eventAction before 54 launch)
+17. [x] View expired shot `web/view-expired/non-owner`
 9. [x] Click on clip (already covered)
 10. [x] Click on the "Get it here" (install Screenshots) banner: `web/click-install-banner`
 11. [x] Click on the "Get Firefox now" (install Firefox) banner: `web/click-install-firefox`.  Also note the link uses `?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition` on the link.
