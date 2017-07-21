@@ -32,6 +32,8 @@ homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Brezplačen prenos
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kako deluje Firefox Screenshots
+homePageCaptureRegion = Zajemi območje
+homePageCapturePage = Zajemi stran
 homePageSaveShare = Shrani in deli
 homePageLegalLink = Pravno obvestilo
 homePagePrivacyLink = Zasebnost
@@ -45,6 +47,7 @@ leavePageConfirmDelete = Potrdite brisanje računa
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Za izbris računa morate imeti nameščen Firefox Screenshots
 leavePageErrorGeneric = Prišlo je do napake
+leavePageButtonProceed = Nadaljuj
 leavePageButtonCancel = Prekliči
 leavePageDeleted = Vsi vaši posnetki so bili izbrisani!
 
