@@ -24,6 +24,7 @@ creatingPageTitleDefault = side
 
 [[ Home page ]]
 
+homePageButtonMyShots = Gå til skjermbilda mine
 homePageTeaser = Kjem snart…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Gratis nedlasting
