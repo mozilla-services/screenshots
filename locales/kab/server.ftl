@@ -11,6 +11,7 @@ gMyShots = Tuṭṭfiwin-iw
 gHomeLink = Asebter agejdan
 gNoShots
     .alt = Ulac tuṭṭfiwin
+gScreenshotsDescription = Tuṭṭfiwin ɣef afus. Ṭṭef agdil, sekles sakin bḍu war ma teffɣeḍ si Firefox.
 
 
 [[ Creating page ]]
@@ -45,8 +46,11 @@ homePageCookiesLink = Inagan n tuqqna
 
 leavePageConfirmDelete = Sentem tukksa n umiḍan
 leavePageErrorGeneric = Teḍra-d tuccḍa
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Ayagi ad yekkes ilebda akk isefka n tuṭṭufiwin n ugdil n Firefox.
 leavePageButtonProceed = Kemmel
 leavePageButtonCancel = Sefsex
+leavePageDeleted = Akk tuṭṭfiwin-ik n ugdil ad ttwakksent!
 
 
 [[ Not Found page ]]
@@ -74,17 +78,24 @@ shotPageSharePinterest
 shotPageShareEmail
     .title = Bḍu aseγwen s imayl
 shotPageShareLink = Awi aseγwen ittwabḍan γer tuṭṭfa-agi:
+shotPagePrivacyMessage = Yal yiwen ɣur-s a.seɣwen ad yizmir ad iwali tuṭṭfa-agi.
 shotPageCopyImageText
     .label = Nγel aḍris n tewlaft
 shotPageConfirmDeletion = Tebɣiḍ ad tekseḍ tuṭṭfa-agi i lebda?
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = Rred armi { $date }
+shotPageExpiredMessage = Tuṭṭfa-agi tfat.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Hatan usebter ansa i d-tettwarna:
 shotPageDeleteButton
     .title = Kkes tuṭfa-agi
+shotPageAbuseButton
+    .title = Azen tuṭṭfa-agi d asexseṛ, d aspam, neɣ uguren-nniḍen
 shotPageDownloadShot
     .title = Sider
 shotPageDownload = Sider
+shotPageScreenshotsDescription = 
 shotPageUpsellFirefox = Awi-d Firefox tura
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Fren akud
