@@ -98,14 +98,20 @@ shotPageCancelExpiration = zrušiť
 shotIndexPageSearchButton
     .title = Hľadať
 shotIndexPageNoShotsMessage = Žiadne uložené snímky
+shotIndexPageConfirmShotDelete = Odstrániť túto snímku?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Metriky Firefox Screenshots
+metricsPageTotalsQueryTitle = Celkom
 metricsPageShotsQueryDay = Deň
 metricsPageUsersQueryCount = Počet používateľov
 metricsPageUsersQueryDay = Deň
+metricsPageUserShotsQueryCount = Počet používateľov
+metricsPageRetentionQueryUsers = Počet používateľov
 metricsPageTotalRetentionQueryUsers = Počet používateľov
 metricsPageVersionQueryTitle = Verzia doplnku
 metricsPageVersionQueryVersion = Verzia doplnku
