@@ -123,13 +123,13 @@ shotPageExpiresIn = spadnje { $timediff }
 shotPageExpired = spadnjeny { $timediff }
 timeDiffJustNow = runje
 timeDiffMinutesAgo = { $num ->
-        [one] před 1 mjeńšinu
+        [one] před { $number } mjeńšinu
         [two] před { $number } mjeńšinomaj
         [few] před { $number } mjeńšinami
        *[other] před { $number } mjeńšinami
     }
 timeDiffHoursAgo = { $num ->
-        [one] před 1 hodźinu
+        [one] před { $number } hodźinu
         [two] před { $number } hodźinomaj
         [few] před { $number } hodźinami
        *[other] před { $number } hodźinami
@@ -142,7 +142,7 @@ timeDiffDaysAgo = { $num ->
     }
 timeDiffFutureSeconds = za mało sekundow
 timeDiffFutureMinutes = { $num ->
-        [one] za 1 mjeńšinu
+        [one] za { $number } mjeńšinu
         [two] za { $number } mjeńšinje
         [few] za { $number } mjeńšiny
        *[other] za { $number } mjeńšin
