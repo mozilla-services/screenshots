@@ -86,6 +86,8 @@ shotPageSharePinterest
     .title = Na Pinterest dźělić
 shotPageShareEmail
     .title = Přez e-mejl dźělić
+shotPageShareLink = Wutworće wotkaz, zo byšće tute foto wobrazowki dźělił:
+shotPagePrivacyMessage = Kóždy z tutym wotkazom móže sej tute foto wobrazowki wobhladać.
 shotPageCopyImageText
     .label = Wobrazowy tekst kopěrować
 shotPageConfirmDeletion = Chceće tute foto wobrazowki woprawdźe na přeco zhašeć?
@@ -105,6 +107,15 @@ shotPageDownloadShot
     .title = Sćahnyć
 shotPageDownload = Sćahnyć
 shotPageScreenshotsDescription = Fota wobrazowki jednorje činjene. Čińće, składujće a dźělće fota wobrazowki bjez toho, zo byšće Firefox wopušćił.
+shotPageUpsellFirefox = Wobstarajće sej nětko Firefox
+shotPageDMCAMessage = Tute foto wobrazowki dla prawow awtorstwa třećich hižo k dispoziciji njeje.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Dalše informacije přez e-mejl na { $dmca } dóstanjeće.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Jeli waše fota wobrazowki wjacorym narokam podlěža, móžemy wašemu přistupej na Firefox Screenshots zadźěwać
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Prošu podajće URL tutoho fota wobrazowki w swojej e-mejlce: { $url }
+shotPageKeepFor = Kak dołho ma so tute foto wobrazwoki chować?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Čas wubrać
 shotPageKeepIndefinitely = Njepostajeny
@@ -176,9 +187,17 @@ shotIndexPageSearchPlaceholder
 shotIndexPageSearchButton
     .title = Pytać
 shotIndexPageNoShotsMessage = Žane składowane fota wobrazowki.
+shotIndexPageNoShotsInvitation = Pójće, wutworće někajke.
+shotIndexPageLookingForShots = Pyta so za wašimi fotami wobrazowki...
 shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Njemóžemy fota wobrazowki namakać, kotrež wašemu pytanju wotpowěduja.
+shotIndexPageClearSearchButton
+    .title = Pytanje zhašeć
+shotIndexPageConfirmShotDelete = Tute foto wobrazowki zhašeć?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Metriki Firefox Screenshots
