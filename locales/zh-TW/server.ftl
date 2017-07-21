@@ -100,6 +100,8 @@ shotPageExpirationMessage = 若不做任何事，將在{ $timediff }刪除此擷
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = 還原直到 { $date }
 shotPageExpiredMessage = 此擷圖已過期。
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = 以下是該擷圖的原始產生頁面:
 shotPageDeleteButton
     .title = 刪除此擷圖
 shotPageAbuseButton
@@ -188,6 +190,7 @@ metricsPageUsersQueryDescription = 最近 30 天內，每天至少有建立一�
 metricsPageUsersQueryCount = 使用者數
 metricsPageUsersQueryDay = 日期
 metricsPageUserShotsQueryTitle = 單一使用者拍攝的擷圖數
+metricsPageUserShotsQueryDescription = 目前有多少使用者，以及各使用者上傳的擷圖總數
 metricsPageUserShotsQueryCount = 使用者數
 metricsPageUserShotsQueryShots = 未過期擷圖的大約數量
 metricsPageRetentionQueryTitle = 週停留量
@@ -200,6 +203,7 @@ metricsPageTotalRetentionQueryDescription = 使用者已建立擷圖的時間長
 metricsPageTotalRetentionQueryUsers = 使用者數
 metricsPageTotalRetentionQueryDays = 使用者已建立擷圖的天數
 metricsPageVersionQueryTitle = 附加元件版本
+metricsPageVersionQueryDescription = 過去 14 天當中附加元件登入時的版本
 metricsPageVersionQueryUsers = 登入的使用者數
 metricsPageVersionQueryVersion = 附加元件版本
 metricsPageVersionQueryLastSeen = 日期
