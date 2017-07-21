@@ -105,6 +105,22 @@ shotPageDownloadShot
     .title = Sćahnyć
 shotPageDownload = Sćahnyć
 shotPageScreenshotsDescription = Fota wobrazowki jednorje činjene. Čińće, składujće a dźělće fota wobrazowki bjez toho, zo byšće Firefox wopušćił.
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Čas wubrać
+shotPageKeepIndefinitely = Njepostajeny
+shotPageKeepTenMinutes = 10 mjeńšin
+shotPageKeepOneHour = 1 hodźina
+shotPageKeepOneDay = 1 dźeń
+shotPageKeepOneWeek = 1 tydźeń
+shotPageKeepTwoWeeks = 2 njedźeli
+shotPageKeepOneMonth = 1 měsac
+shotPageSaveExpiration = składować
+shotPageCancelExpiration = přetorhnyć
+shotPageDoesNotExpire = njespadnje
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = spadnje { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = spadnjeny { $timediff }
 
 
 [[ Shotindex page ]]
