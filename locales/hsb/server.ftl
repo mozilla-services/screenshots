@@ -115,10 +115,10 @@ shotPageDMCAMessage = Tute foto wobrazowki dla prawow awtorstwa třećich hižo 
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Dalše informacije přez e-mejl na { $dmca } dóstanjeće.
 // Note: do not translate 'Firefox Screenshots' when translating this string
-shotPageDMCAWarning = Jeli waše fota wobrazowki wjacorym narokam podlěža, móžemy wašemu přistupej na Firefox Screenshots zadźěwać
+shotPageDMCAWarning = Jeli waše fota wobrazowki wjacorym narokam podleža, móžemy wašemu přistupej na Firefox Screenshots zadźěwać.
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Prošu podajće URL tutoho fota wobrazowki w swojej e-mejlce: { $url }
-shotPageKeepFor = Kak dołho ma so tute foto wobrazwoki chować?
+shotPageKeepFor = Kak dołho ma so tute foto wobrazowki chować?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Čas wubrać
 shotPageKeepIndefinitely = Njepostajeny
