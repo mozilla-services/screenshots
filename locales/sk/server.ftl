@@ -25,6 +25,9 @@ creatingPageTitleDefault = stránky
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Intuitívne snímky obrazovky priamo v prehliadači. Zachyťte, uložte a zdieľajte snímky obrazovky priamo pri prehliadaní pomocou Firefoxu.
+homePageButtonMyShots = Prejsť na moje snímky
 homePageTeaser = Už čoskoro...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Prevziať zadarmo
@@ -44,17 +47,22 @@ homePageCookiesLink = Cookies
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Na vymazanie svojho účtu musíte mať nainštalovanú službu Firefox Screenshots
 leavePageErrorGeneric = Vyskytla sa chyba
+leavePageButtonProceed = Pokračovať
 leavePageButtonCancel = Zrušiť
 leavePageDeleted = Všetky vaše snímky boli odstránené!
 
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Stránka nebola nájdená
+notFoundPageIntro = Hups.
 notFoundPageDescription = Stránka nebola nájdená.
 
 
 [[ Shot page ]]
 
+shotPageAlertErrorDeletingShot = Pri odstraňovaní snímky sa vyskytla chyba
+shotPageAlertErrorUpdatingTitle = Pri ukladaní názvu sa vyskytla chyba
 shotPageConfirmDelete = Naozaj chcete natrvalo odstrániť túto snímku?
 shotPageShareButton
     .title = Zdieľať
@@ -87,16 +95,20 @@ shotPageCancelExpiration = zrušiť
 
 [[ Shotindex page ]]
 
+shotIndexPageSearchButton
+    .title = Hľadať
 shotIndexPageNoShotsMessage = Žiadne uložené snímky
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageShotsQueryDay = Deň
 metricsPageUsersQueryCount = Počet používateľov
 metricsPageUsersQueryDay = Deň
 metricsPageTotalRetentionQueryUsers = Počet používateľov
 metricsPageVersionQueryTitle = Verzia doplnku
+metricsPageVersionQueryVersion = Verzia doplnku
 metricsPageVersionQueryLastSeen = Deň
 metricsPageHeader = Metriky
 // Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
