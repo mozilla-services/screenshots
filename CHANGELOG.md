@@ -1,3 +1,8 @@
+## Version 10.8.0
+
+* Update privacy notice URL ([#3136](https://github.com/mozilla-services/screenshots/issues/3135))
+* Suppress resize errors and correctly unload resize listener ([#3153](https://github.com/mozilla-services/screenshots/issues/3135))
+
 ## Version 10.7.0
 
 * Fix icon path, so that starred icon is shown to new users ([#3136](https://github.com/mozilla-services/screenshots/issues/3136))
