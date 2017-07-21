@@ -222,3 +222,23 @@ metricsPageUsersQueryDay = Źeń
 metricsPageUserShotsQueryTitle = Licba fotow wobrazowki na wužywarja
 metricsPageUserShotsQueryDescription = Licba wužywarjow, kótarež maju dogromady wokoło N fotow wobrazowki
 metricsPageUserShotsQueryCount = Licba wužywarjow
+metricsPageUserShotsQueryShots = Pśibližna licba aktiwnych (njespadnjonych) fotow wobrazowki
+metricsPageRetentionQueryTitle = Dalejwužiwanje pó tyźenju
+metricsPageRetentionQueryDescription = Licba dnjow wót prědnego fota wobrazowki wužywarja až do nejnowšego, zrědowane pó zachopnem tyźenju
+metricsPageRetentionQueryUsers = Licba wužywarjow
+metricsPageRetentionQueryDays = Dny wót prědnego až do nejnowšego fota wobrazowki wužywarja
+metricsPageRetentionQueryFirstWeek = Tyźeń, gaž wužywaŕ jo prědne foto wobrazowki napórał
+metricsPageTotalRetentionQueryTitle = Dalejwužywanje dogromady
+metricsPageTotalRetentionQueryDescription = Cas, w kótaremž su wužywarje fota wobrazowki napórali, zrědowane pó tyźenju
+metricsPageTotalRetentionQueryUsers = Licba wužywarjow
+metricsPageTotalRetentionQueryDays = Dny, gaž jo wužywaŕ fota wobrazowki napórał
+metricsPageVersionQueryTitle = Wersija dodanka
+metricsPageVersionQueryDescription = Wersija dodanka, kótaraž jo se za zachadne 14 dnjow za pśizjawjenje wužywała
+metricsPageVersionQueryUsers = Licba pśizjawjonych wužywarjow
+metricsPageVersionQueryVersion = Wersija dodanka
+metricsPageVersionQueryLastSeen = Źeń
+metricsPageHeader = Metriki
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Napórane: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (cas datoweje banki: { $time }ms)
