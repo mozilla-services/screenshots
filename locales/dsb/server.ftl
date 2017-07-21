@@ -161,12 +161,64 @@ timeDiffFutureMinutes = { $num ->
         [few] za { $number } minuty
        *[other] za { $number } minutow
     }
+timeDiffFutureHours = { $num ->
+        [one] za 1 góźinu
+        [two] za { $number } góźinje
+        [few] za { $number } góźiny
+       *[other] za { $number } góźin
+    }
+timeDiffFutureDays = { $num ->
+        [one] witśe
+        [two] za { $number } dnja
+        [few] za { $number } dny
+       *[other] za { $number } dnjow
+    }
 
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Zmólka pśi lašowanju fota wobrazowki: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Móje fota wobrazowki: Za { $searchTerm } pytaś
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Zmólka pśi pśedstajanju boka: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Móje fota wobrazowki pśepytaś
+shotIndexPageSearchButton
+    .title = Pytaś
+shotIndexPageNoShotsMessage = Žedne skłaźone fota wobrazowki.
+shotIndexPageNoShotsInvitation = Pójśo, napórajśo někake.
+shotIndexPageLookingForShots = Pyta se za wašymi fotami wobrazowki...
+shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Njamóžomy fota wobrazowki namakaś, kótarež wašomu pytanjeju wótpowěduju.
+shotIndexPageClearSearchButton
+    .title = Pytanje lašowaś
+shotIndexPageConfirmShotDelete = Toś to foto wobrazowki lašowaś?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Metriki Firefox Screenshots
+metricsPageTotalsQueryTitle = Dogromady
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Pśeglěd Screenshots
+metricsPageTotalsQueryDevices = Zregistrěrowane rědy dogromady
+metricsPageTotalsQueryActiveShots = Aktiwne fota wobrazowki
+metricsPageTotalsQueryExpiredShots = Wótběgnuło (dajo se pak wótnowiś)
+metricsPageTotalsQueryExpiredDeletedShots = 
+metricsPageShotsQueryTitle = Fota wobrazowki na źeń
+metricsPageShotsQueryDescription = Licba fotow wobrazowki napóranych kuždy źeń (za zachadne 30 dnjow)
+metricsPageShotsQueryCount = Licba fotow wobrazowki
+metricsPageShotsQueryDay = Źeń
+metricsPageUsersQueryTitle = Wužywarje pó dnju
+metricsPageUsersQueryDescription = Licba wužywarjow, kótarež su nanejmjenjej jadno foto wobrazowki napórali (zachadne 30 dnjow)
+metricsPageUsersQueryCount = Licba wužywarjow
+metricsPageUsersQueryDay = Źeń
+metricsPageUserShotsQueryTitle = Licba fotow wobrazowki na wužywarja
+metricsPageUserShotsQueryDescription = Licba wužywarjow, kótarež maju dogromady wokoło N fotow wobrazowki
+metricsPageUserShotsQueryCount = Licba wužywarjow
