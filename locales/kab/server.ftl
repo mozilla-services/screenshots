@@ -102,6 +102,7 @@ shotPageExpiresIn = ad yemmet { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = immut  { $timediff }
 timeDiffJustNow = tura yakan
+timeDiffMinutesAgo = { $number } n tesdatin aya
 timeDiffHoursAgo = { $num ->
         [one] 1 usrag aya
        *[other] { $number } isragen aya
@@ -155,9 +156,22 @@ shotIndexPageConfirmShotDelete = Kkes tuṭfa-agi?
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Tasnakta n tuṭṭfiwin n ugdil n Firefox
 metricsPageTotalsQueryTitle = Asemday
+metricsPageTotalsQueryDevices = Amḍan n isuga yettwakelsen
 metricsPageTotalsQueryActiveShots = Tuṭṭfiwin iremden
+metricsPageShotsQueryTitle = Tuṭṭfiwin s wass
+metricsPageShotsQueryDescription = Amḍan n tuṭṭfiwin yettwarnan yal ass (30 n wussan ineggura)
+metricsPageShotsQueryCount = Amḍan n tuṭṭfiwin
+metricsPageShotsQueryDay = Ass
+metricsPageUsersQueryTitle = Iseqdacen s wass
+metricsPageUsersQueryDescription = Amḍan n iseqdacen yernan ɣersum yiwet n tuṭṭfa. s wass (30 n wussan ineggura)
+metricsPageUsersQueryCount = Amḍan n iseqdacen
+metricsPageUsersQueryDay = Ass
+metricsPageUserShotsQueryTitle = Amḍan n tuṭṭfiwin s useqdac
+metricsPageUserShotsQueryCount = Amḍan n iseqdacen
 metricsPageRetentionQueryUsers = Amḍan n iseqdacen
+metricsPageRetentionQueryFirstWeek = Amalas anida aseqdac yerna tuṭṭfa tamenzut
 metricsPageTotalRetentionQueryUsers = Amḍan n iseqdacen
+metricsPageTotalRetentionQueryDays = Ussan anida aseqdac irennu tuṭṭfiwin
 metricsPageVersionQueryTitle = Lqem n uzegrir
 metricsPageVersionQueryUsers = Amḍan n iseqdacen yeqqnen
 metricsPageVersionQueryVersion = Lqem n uzegrir
