@@ -124,7 +124,10 @@ timeDiffFutureDays = { $num ->
 shotIndexPageSearchButton
     .title = Søk
 shotIndexPageNoShotsMessage = Ingen lagra bilde.
+shotIndexPageNoShotsInvitation = Kom igjen, lag nokre.
+shotIndexPageLookingForShots = Leitar etter bilda dine…
 shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Vi kan ikkje finne bilde som passar med søket ditt.
 shotIndexPageClearSearchButton
     .title = Tøm søk
 shotIndexPageConfirmShotDelete = Slette dette bildet?
@@ -133,9 +136,24 @@ shotIndexPageConfirmShotDelete = Slette dette bildet?
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Statistikk for Firefox-skjermbilde
+metricsPageTotalsQueryTitle = Totalt
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Ei oversikt over skjermbilde
+metricsPageTotalsQueryDevices = Totalt tal på registrerte einingar
+metricsPageTotalsQueryActiveShots = Aktive bilde
+metricsPageTotalsQueryExpiredShots = Gått ut (men kan tilbakestillast)
+metricsPageTotalsQueryExpiredDeletedShots = Gått ut (og sletta)
+metricsPageShotsQueryTitle = Bilde pr. dag
 metricsPageShotsQueryCount = Tal på bilde
 metricsPageShotsQueryDay = Dag
 metricsPageUsersQueryTitle = Brukarar pr. dag
+metricsPageUsersQueryCount = Tal på brukarar
 metricsPageUsersQueryDay = Dag
+metricsPageUserShotsQueryTitle = Tal på bilde pr. brukar
+metricsPageUserShotsQueryCount = Tal på brukarar
+metricsPageRetentionQueryUsers = Tal på brukarar
+metricsPageTotalRetentionQueryUsers = Tal på brukarar
 metricsPageVersionQueryLastSeen = Dag
 metricsPageHeader = Statistikk
