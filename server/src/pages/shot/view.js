@@ -182,7 +182,8 @@ class Body extends React.Component {
     super(props);
     this.state = {
       hidden: false,
-      closeBanner: false
+      closeBanner: false,
+      isChangingExpire: false
     };
   }
 
@@ -333,6 +334,7 @@ class Body extends React.Component {
       expiresDiff = <span className="expire-widget">
       <ExpireWidget
         expireTime={this.props.expireTime}
+        onChanging={this.onChangingExpire.bind(this)}
         onSaveExpire={this.onSaveExpire.bind(this)} />
       </span>;
     }
@@ -393,9 +395,11 @@ class Body extends React.Component {
           <div className="shot-main-actions">
             <div className="shot-info">
               <EditableTitle title={shot.title} isOwner={this.props.isOwner} />
-              <div className="shot-subtitle"> { favicon }
-                { linkTextShort ? <a className="subtitle-link" rel="noopener noreferrer" href={ shot.url } target="_blank" onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> : null }
-                <span className="time-diff">{ timeDiff }</span> { expiresDiff }
+              <div className="shot-subtitle">
+                { this.state.isChangingExpire ? null : favicon }
+                { linkTextShort && !this.state.isChangingExpire ? <a className="subtitle-link" rel="noopener noreferrer" href={ shot.url } target="_blank" onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> : null }
+                { this.state.isChangingExpire ? null : <span className="time-diff">{ timeDiff }</span> }
+                { expiresDiff }
               </div>
             </div>
           </div>
@@ -448,6 +452,10 @@ class Body extends React.Component {
       sendEvent("set-expiration-to-time", "navbar");
     }
     this.props.controller.changeShotExpiration(this.props.shot, value);
+  }
+
+  onChangingExpire(value) {
+    this.setState({isChangingExpire: value});
   }
 
   onRestore() {
@@ -539,11 +547,13 @@ class ExpireWidget extends React.Component {
   clickChangeExpire() {
     sendEvent("start-expiration-change", "navbar");
     this.setState({isChangingExpire: true});
+    this.props.onChanging(true);
   }
 
   clickCancelExpire() {
     sendEvent("cancel-expiration-change", "navbar");
     this.setState({isChangingExpire: false});
+    this.props.onChanging(false);
   }
 
   clickSaveExpire() {
