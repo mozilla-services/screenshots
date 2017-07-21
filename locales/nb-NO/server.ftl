@@ -24,6 +24,8 @@ creatingPageTitleDefault = side
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Intuitive skjermbilder bakt rett inn i nettleseren. Ta, lagre og del skjermbilder mens du surfer på nettet ved hjelp av Firefox.
 homePageButtonMyShots = Gå til mine skjermbilder
 homePageTeaser = Kommer snart…
 homePageDownloadFirefoxTitle = Firefox
@@ -36,6 +38,7 @@ homePageCaptureRegion = Ta skjermbilde av et område
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klikk og dra for å velge området du vil ta skjermbilde av. Eller bare holde musen over og klikk — Screenshots vil velge området for deg. Liker du hva du ser? Velg Lagre for å få tilgang til skjermdumpet ditt på nettet eller pil ned-knappen for å laste den ned til datamaskinen.
 homePageCapturePage = Ta skjermbilde av en side
+homePageCapturePageDescription = Bruk knappene øverst til høyre for å ta skjermbilde av hele sider. Knappen «Lagre synlig område» tar skjermbilde av området du kan se uten å rulle, og «Lagre hele siden» vil ta skjermbilde av alt på siden.
 homePageSaveShare = Lagre og del
 homePageLegalLink = Juridisk
 homePagePrivacyLink = Personvern
@@ -82,6 +85,7 @@ shotPagePrivacyMessage = Alle som har denne lenken kan se dette skjermbildet.
 shotPageCopyImageText
     .label = Kopier bildetekst
 shotPageConfirmDeletion = Er du sikker på at du vil slette dette skjermbildet permanent?
+shotPageExpiredMessage = Dette skjermbildet har utløpt.
 shotPageDeleteButton
     .title = Slett dette skjermbildet
 shotPageDownloadShot
