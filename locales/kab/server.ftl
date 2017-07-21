@@ -97,6 +97,8 @@ shotPageKeepOneMonth = Aggur
 shotPageSaveExpiration = Sekles
 shotPageCancelExpiration = Sefsex
 shotPageDoesNotExpire = ur yemmut ara
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = ad yemmet { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = immut  { $timediff }
 timeDiffJustNow = tura yakan
@@ -125,6 +127,14 @@ timeDiffFutureDays = { $num ->
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Tuccḍa di tukksa n tuṭṭfat: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Tuṭṭfiwin-iw: anadi n { $searchTerm }
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Tuccḍa di tririt n usebter: { $error }
 shotIndexPageSearchPlaceholder
     .placeholder = Nadi tuṭfiwin inu
 shotIndexPageSearchButton
@@ -142,3 +152,18 @@ shotIndexPageConfirmShotDelete = Kkes tuṭfa-agi?
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Tasnakta n tuṭṭfiwin n ugdil n Firefox
+metricsPageTotalsQueryTitle = Asemday
+metricsPageTotalsQueryActiveShots = Tuṭṭfiwin iremden
+metricsPageRetentionQueryUsers = Amḍan n iseqdacen
+metricsPageTotalRetentionQueryUsers = Amḍan n iseqdacen
+metricsPageVersionQueryTitle = Lqem n uzegrir
+metricsPageVersionQueryUsers = Amḍan n iseqdacen yeqqnen
+metricsPageVersionQueryVersion = Lqem n uzegrir
+metricsPageVersionQueryLastSeen = Ass
+metricsPageHeader = Tasnakta
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Yettwasirew di: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (akud n taffa n isefka: { $time }ms)
