@@ -88,7 +88,7 @@ shotPageShareTwitter
 shotPageSharePinterest
     .title = Na Pinterest dźělić
 shotPageShareEmail
-    .title = Přez e-mejl dźělić
+    .title = Wotkaz přez e-mejl dźělić
 shotPageShareLink = Wutworće wotkaz, zo byšće tute foto wobrazowki dźělił:
 shotPagePrivacyMessage = Kóždy z tutym wotkazom móže sej tute foto wobrazowki wobhladać.
 shotPageCopyImageText
