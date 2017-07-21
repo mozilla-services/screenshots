@@ -57,6 +57,7 @@ notFoundPageIntro = Ups.
 [[ Shot page ]]
 
 shotPageAlertErrorDeletingShot = Napaka pri brisanju posnetka
+shotPageAlertErrorUpdatingTitle = Napaka pri shranjevanju naslova
 shotPageConfirmDelete = Ali ste prepričani, da želite trajno izbrisati ta posnetek?
 shotPageShareButton
     .title = Deli
@@ -73,9 +74,13 @@ shotPageShareEmail
 shotPageCopyImageText
     .label = Kopiraj besedilo slike
 shotPageConfirmDeletion = Ali ste prepričani, da želite trajno izbrisati ta posnetek?
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = obnovi do { $date }
 shotPageExpiredMessage = Ta posnetek je potekel
 shotPageDeleteButton
     .title = Izbriši ta posnetek
+shotPageUpsellFirefox = Prenesite Firefox zdaj
 shotPageKeepIndefinitely = Za nedoločen čas
 shotPageKeepTenMinutes = 10 minut
 shotPageKeepOneHour = 1 uro
