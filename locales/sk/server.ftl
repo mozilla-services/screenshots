@@ -170,7 +170,11 @@ shotIndexPageConfirmShotDelete = Odstrániť túto snímku?
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Metriky Firefox Screenshots
 metricsPageTotalsQueryTitle = Celkom
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Prehľad služby Screenshots
 metricsPageTotalsQueryDevices = Celkový počet zaregistrovaných zariadení
+metricsPageTotalsQueryActiveShots = Aktívne snímky
+metricsPageShotsQueryCount = Počet snímok
 metricsPageShotsQueryDay = Deň
 metricsPageUsersQueryCount = Počet používateľov
 metricsPageUsersQueryDay = Deň
