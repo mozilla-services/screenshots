@@ -71,6 +71,11 @@ shotPageCopyImageText
 shotPageDownloadShot
     .title = Télécharger
 shotPageDownload = Télécharger
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Veuillez contacter { $dmca } pour demander plus d’informations.
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Sélectionner une durée
+shotPageKeepIndefinitely = Indéfiniment
 shotPageKeepTenMinutes = 10 minutes
 shotPageKeepOneHour = 1 heure
 shotPageKeepOneDay = 1 jour
@@ -117,6 +122,11 @@ timeDiffFutureDays = { $num ->
 // { $status } is a placeholder for an HTTP status code, like '500'.
 // { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Erreur lors de la suppression de la capture : { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Mes captures : rechercher { $searchTerm }
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Erreur lors du rendu de la page : { $error }
 shotIndexPageSearchPlaceholder
     .placeholder = Rechercher mes captures
 shotIndexPageSearchButton
