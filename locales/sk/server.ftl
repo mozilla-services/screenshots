@@ -48,6 +48,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = Potvrdenie odstránenia účtu
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Na vymazanie svojho účtu musíte mať nainštalovanú službu Firefox Screenshots
 leavePageErrorGeneric = Vyskytla sa chyba
