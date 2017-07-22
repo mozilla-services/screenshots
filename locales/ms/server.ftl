@@ -27,7 +27,7 @@ creatingPageTitleDefault = halaman
 
 homePageDescription
     .content = Skrinsyot intuitif dihasilkan terus ke dalam pelayar. Ambil, simpan dan kongsi skrinsyot sambil anda melayari Web menggunakan Firefox.
-homePageButtonMyShots = Ke Syot Saya
+homePageButtonMyShots = Pergi Ke Syot Saya
 homePageTeaser = Akan Datang...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Muat turun Percuma
@@ -74,7 +74,7 @@ notFoundPageDescription = Halaman tidak ditemui
 [[ Shot page ]]
 
 shotPageAlertErrorUpdatingExpirationTime = Ralat menyimpan tempoh tamat
-shotPageAlertErrorDeletingShot = Ralat membuang syot
+shotPageAlertErrorDeletingShot = Ralat menghapuskan syot
 shotPageAlertErrorUpdatingTitle = Ralat menyimpan tajuk
 shotPageConfirmDelete = Anda pasti mahu padam syot ini secara kekal?
 shotPageShareButton
@@ -161,7 +161,7 @@ timeDiffFutureDays = { $num ->
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
 // { $statusText } is a text description of the status code, like 'Internal server error'.
-shotIndexPageErrorDeletingShot = Ralat memadam syot: { $status } { $statusText }
+shotIndexPageErrorDeletingShot = Ralat menghapuskan syot: { $status } { $statusText }
 // { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Syot Saya: cari { $searchTerm }
 // { $error } is a placeholder for a non-translated error message that could be shared
