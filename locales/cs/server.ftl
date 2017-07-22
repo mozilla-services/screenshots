@@ -38,8 +38,13 @@ homePageGetStartedTitle = Jak začít
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Novou ikonu služby Screenshots najdete na vaší liště. Po kliknutí se zobrazí nabídka v horní části okna vašeho prohlížeče.
 homePageCaptureRegion = Vytvořte snímek oblasti
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Stiskem tlačítka myši a tahem vyberete oblast stránky. A nebo jen najeďte myší — doplněk Screenshots pro vás oblast vybere sám. Líbí se vám to? Klikněte na tlačítko Uložit pro nahrání snímku na internet, nebo na šipku pro jeho stažené do počítače.
 homePageCapturePage = Vytvořte snímek celé stránky
+homePageCapturePageDescription = Použijte tlačítka v pravém horním rohu pro zachycení celé stránky. Tlačítko Uložit viditelnou oblast vybere část stránky, která se vejde na obrazovku a právě ji vidíte, kdežto Uložit celou stránku zachytí i to, co se na obrazovku nevešlo.
 homePageSaveShare = Uložte a sdílejte
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Po vytvoření snímku jej Firefox nahraje do naší online služby Screenshots a zkopíruje odkaz do vaší schránky. Vaše snímky automaticky ukládáme na dobu dvou týdnů, ale můžete je kdykoliv smazat nebo změnit jejich platnost pro dřívější nebo naopak pozdější smazání.
 homePageLegalLink = Právní informace
 homePagePrivacyLink = Soukromí
 homePageTermsLink = Podmínky
