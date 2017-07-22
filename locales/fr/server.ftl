@@ -33,6 +33,13 @@ homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Téléchargement gratuit
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Principes de fonctionnement de Firefox Screenshots
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Repérez la nouvelle icône Screenshots dans votre barre d’outils. Cliquez dessus et le menu Screenshots apparaîtra en haut de votre fenêtre de navigation.
+homePageCaptureRegion = Capturez une zone de la page
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Sélectionnez une zone de la page par cliquer-glisser ou bien survolez un élément et Screenshots sélectionnera la zone pour vous. Lorsque cela vous convient, cliquez sur « Enregistrer » pour accéder à votre capture d’écran en ligne ou sur le bouton représentant une flèche vers le bas pour la télécharger sur votre ordinateur.
+homePageCapturePage = Capturez une page
+homePageSaveShare = Enregistrez et partagez
 homePageLegalLink = Mentions légales
 homePagePrivacyLink = Confidentialité
 homePageTermsLink = Conditions d’utilisation
@@ -97,14 +104,15 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Télécharger
 shotPageDownload = Télécharger
-shotPageScreenshotsDescription =
-    Des captures en un clin d’œil. Capturez l’écran, enregistrez et partagez sans quitter Firefox.
-
+shotPageScreenshotsDescription = Des captures en un clin d’œil. Capturez l’écran, enregistrez et partagez sans quitter Firefox.
 shotPageUpsellFirefox = Installez Firefox
+shotPageDMCAMessage = Cette capture n’est plus disponible, car un tiers a signalé une atteinte aux droits de la propriété intellectuelle.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Veuillez contacter { $dmca } pour demander plus d’informations.
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Si vos captures font l’objet de multiples réclamations, nous pouvons révoquer votre accès à Firefox Screenshots.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Veuillez inclure l’URL vers cette capture dans votre message : { $url }
 shotPageKeepFor = Combien de temps cette capture doit-elle être conservée ?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Sélectionner une durée
