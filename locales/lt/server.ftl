@@ -130,12 +130,90 @@ shotPageKeepTwoWeeks = 2 savaites
 shotPageKeepOneMonth = 1 mėnesį
 shotPageSaveExpiration = įrašyti
 shotPageCancelExpiration = atsisakyti
+shotPageDoesNotExpire = nesibaigia
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = baigs galioti { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = baigė galioti { $timediff }
+timeDiffJustNow = ką tik
+timeDiffMinutesAgo = { $num ->
+        [one] prieš 1 minutę
+        [few] prieš { $number } minutes
+       *[other] prieš { $number } minučių
+    }
+timeDiffHoursAgo = { $num ->
+        [one] prieš 1 valandą
+        [few] prieš { $number } valandas
+       *[other] prieš { $number } valandų
+    }
+timeDiffDaysAgo = { $num ->
+        [one] vakar
+        [few] prieš { $number } dienas
+       *[other] prieš { $number } dienų
+    }
+timeDiffFutureSeconds = po keleto sekundžių
+timeDiffFutureMinutes = { $num ->
+        [one] po 1 minutės
+        [few] po { $number } minučių
+       *[other] po { $number } minučių
+    }
+timeDiffFutureHours = { $num ->
+        [one] po 1 valandos
+        [few] po { $number } valandų
+       *[other] po { $number } valandų
+    }
+timeDiffFutureDays = { $num ->
+        [one] rytoj
+        [few] po { $number } dienų
+       *[other] po { $number } dienų
+    }
 
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Klaida trinant kadrą: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Mano kardai: ieškoti { $searchTerm }
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Klaida atvaizduojant tinklalapį: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Ieškoti mano kadrų
+shotIndexPageSearchButton
+    .title = Ieškoti
+shotIndexPageNoShotsMessage = Nėra įrašytų kadrų.
+shotIndexPageNoShotsInvitation = Nagi, sukurkite keletą.
+shotIndexPageLookingForShots = Ieškome jūsų kadrų…
+shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Negalime rasti jokių kadrų, atitinkančių jūsų paiešką.
+shotIndexPageClearSearchButton
+    .title = Išvalyti paiešką
+shotIndexPageConfirmShotDelete = Ištrinti šį kadrą?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = „FIrefox“ ekrano nuotraukų statistika
+metricsPageTotalsQueryTitle = Viso
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Ekrano nuotraukų apžvalga
+metricsPageTotalsQueryDevices = Viso registruotų įrenginių
+metricsPageTotalsQueryActiveShots = Aktyvių kadrų
+metricsPageTotalsQueryExpiredShots = Baigusių galioti (bet atkuriamų)
+metricsPageTotalsQueryExpiredDeletedShots = Baigusių galioti (iš ištrintų)
+metricsPageShotsQueryTitle = Kadrai dienomis
+metricsPageShotsQueryDescription = Kadrai, padaryti per dieną (per paskutines 30 dienų)
+metricsPageShotsQueryCount = Kadrų skaičius
+metricsPageShotsQueryDay = Diena
+metricsPageUsersQueryTitle = Naudotojai dienomis
+metricsPageUsersQueryDescription = Naudotojai, padarę bent vieną kadrą, dienomis (per paskutines 30 dienų)
+metricsPageUsersQueryCount = Naudotojų skaičius
+metricsPageUsersQueryDay = Diena
+metricsPageUserShotsQueryTitle = Kadrai vienam naudotojui
+metricsPageUserShotsQueryDescription = Naudotojų skaičius, kurie viso turi apie N kadrų
+metricsPageUserShotsQueryCount = Naudotojų skaičius
+metricsPageUserShotsQueryShots = Apytikslis skaičius aktyvių (nebaigusių galioti) kadrų
