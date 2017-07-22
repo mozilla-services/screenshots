@@ -94,7 +94,7 @@ shotPageSaveExpiration = сохранить
 shotPageCancelExpiration = отменить
 shotPageDoesNotExpire = неограниченный срок
 // Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = срок хранения - { $timediff }
+shotPageExpiresIn = срок хранения истечёт { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = срок хранения истёк { $timediff }
 timeDiffJustNow = прямо сейчас
@@ -108,12 +108,68 @@ timeDiffHoursAgo = { $num ->
         [few] { $number } часа назад
        *[other] { $number } часов назад
     }
+timeDiffDaysAgo = { $num ->
+        [one] { $number } день назад
+        [few] { $number } дня назад
+       *[other] { $number } дней назад
+    }
+timeDiffFutureSeconds = через несколько секунд
+timeDiffFutureMinutes = { $num ->
+        [one] через { $number } минуту
+        [few] через { $number } минуты
+       *[other] через { $number } минут
+    }
+timeDiffFutureHours = { $num ->
+        [one] через { $number } час
+        [few] через { $number } часа
+       *[other] через { $number } часов
+    }
+timeDiffFutureDays = { $num ->
+        [one] через { $number } день
+        [few] через { $number } дня
+       *[other] через { $number } дней
+    }
 
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Ошибка при удалении снимка: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Мои снимки: поиск { $searchTerm }
+shotIndexPageSearchPlaceholder
+    .placeholder = Поиск моих снимков
+shotIndexPageSearchButton
+    .title = Поиск
+shotIndexPageNoSearchResultsIntro = Хмм
+shotIndexPageConfirmShotDelete = Удалить этот снимок?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageTotalsQueryTitle = Всего
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Обзор cкриншотов
+metricsPageTotalsQueryDevices = Всего зарегистрированных устройств
+metricsPageTotalsQueryActiveShots = Активные снимки
+metricsPageShotsQueryCount = Число снимков
+metricsPageShotsQueryDay = День
+metricsPageUsersQueryTitle = Пользователей в день
+metricsPageUsersQueryCount = Число пользователей
+metricsPageUsersQueryDay = День
+metricsPageUserShotsQueryCount = Число пользователей
+metricsPageUserShotsQueryShots = Приблизительное число активных (неистёкших) снимков
+metricsPageRetentionQueryTitle = Сохранение за неделю
+metricsPageRetentionQueryUsers = Число пользователей
+metricsPageTotalRetentionQueryUsers = Число пользователей
+metricsPageVersionQueryTitle = Версия дополнения
+metricsPageVersionQueryDescription = Версия дополнения, использованного во время входа, в течение последних 14 дней
+metricsPageVersionQueryVersion = Версия дополнения
+metricsPageVersionQueryLastSeen = День
+metricsPageHeader = Метрики
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Сгенерировано: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (время базы данных: { $time }мс)
