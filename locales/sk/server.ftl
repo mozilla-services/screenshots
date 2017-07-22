@@ -35,7 +35,11 @@ homePageGetStarted = Začíname
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Ako služba Firefox Screenshots funguje
 homePageGetStartedTitle = Začíname
-homePageSaveShare = Uložiť a zdielať
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Novú ikonu služby Screenshots nájdete na vašom paneli nástrojov. Po kliknutí na ňu sa v hornej časti okna vášho prehliadača zobrazí ponuka.
+homePageCaptureRegion = Vytvorte snímku oblasti
+homePageCapturePage = Vytvorte snímku celej stránky
+homePageSaveShare = Uložte a zdieľajte
 homePageLegalLink = Právne informácie
 homePagePrivacyLink = Súkromie
 homePageTermsLink = Podmienky používania
