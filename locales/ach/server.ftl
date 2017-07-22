@@ -55,7 +55,11 @@ shotPageKeepTwoWeeks = Cabit 2
 shotPageKeepOneMonth = Dwe 1
 shotPageSaveExpiration = gwoki
 shotPageCancelExpiration = kwer
-shotPageDoesNotExpire = Pe bale
+shotPageDoesNotExpire = pe bale
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = kare ne okato { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = kare ne okato { $timediff }
 timeDiffJustNow = Pud kombedi
 timeDiffMinutesAgo = { $num ->
         [one] tekika 1 mukato angec
@@ -88,9 +92,16 @@ timeDiffFutureDays = { $num ->
 
 shotIndexPageSearchButton
     .title = Yeny
+shotIndexPageNoSearchResultsIntro = Hmm
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
 metricsPageTotalsQueryExpiredShots = Kare ne okato (ento pud romo nonge)
+metricsPageTotalsQueryExpiredDeletedShots = Kare ne okato (ki bene kikwanyo woko)
+metricsPageShotsQueryDay = Diceng
+metricsPageUsersQueryTitle = Lutic kudiceng
+metricsPageUsersQueryCount = Wel Lutic
+metricsPageUsersQueryDay = Diceng
+metricsPageUserShotsQueryCount = Wel lutic
