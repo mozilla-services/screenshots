@@ -25,7 +25,10 @@ creatingPageTitleDefault = page
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Des captures d’écran directement dans votre navigateur. Cadrez, enregistrez et partagez vos captures d’écran en naviguant sur le Web avec Firefox.
 homePageButtonMyShots = Afficher mes captures
+homePageTeaser = Bientôt disponible…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Téléchargement gratuit
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -42,7 +45,11 @@ leavePageConfirmDelete = Confirmer la suppression du compte
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Firefox Screenshots doit être installé pour pouvoir procéder à la suppression du compte.
 leavePageErrorGeneric = Une erreur s’est produite
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Cette action supprimera définitivement l’ensemble de vos données Firefox Screenshots.
+leavePageButtonProceed = Poursuivre
 leavePageButtonCancel = Annuler
+leavePageDeleted = Toutes vos captures ont été supprimées.
 
 
 [[ Not Found page ]]
@@ -54,6 +61,10 @@ notFoundPageDescription = Page introuvable.
 
 [[ Shot page ]]
 
+shotPageAlertErrorUpdatingExpirationTime = Erreur lors de l’enregistrement de l’expiration
+shotPageAlertErrorDeletingShot = Erreur lors de la suppression de la capture
+shotPageAlertErrorUpdatingTitle = Erreur lors de l’enregistrement du titre
+shotPageConfirmDelete = Voulez-vous vraiment supprimer cette capture de façon définitive ?
 shotPageShareButton
     .title = Partager
 shotPageCopy = Copier
@@ -66,11 +77,30 @@ shotPageSharePinterest
     .title = Partager sur Pinterest
 shotPageShareEmail
     .title = Partager le lien par courriel
+shotPageShareLink = Obtenir un lien pour partager cette capture :
+shotPagePrivacyMessage = Toute personne disposant du lien peut voir cette capture.
 shotPageCopyImageText
     .label = Copier le texte de l’image
+shotPageConfirmDeletion = Voulez-vous vraiment supprimer définitivement cette capture ?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Si vous ne faites rien, cette capture sera supprimée de façon définitive { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = restaurer jusqu’au { $date }
+shotPageExpiredMessage = Cette capture a expiré.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Voici la page depuis laquelle elle a été créée :
+shotPageDeleteButton
+    .title = Supprimer cette capture
+shotPageAbuseButton
+    .title = Signaler cette capture pour cause d’abus, de spam ou d’autres problèmes
 shotPageDownloadShot
     .title = Télécharger
 shotPageDownload = Télécharger
+shotPageScreenshotsDescription =
+    Des captures en un clin d’œil. Capturez l’écran, enregistrez et partagez sans quitter Firefox.
+
+shotPageUpsellFirefox = Installez Firefox
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Veuillez contacter { $dmca } pour demander plus d’informations.
 // Note: do not translate 'Firefox Screenshots' when translating this string
