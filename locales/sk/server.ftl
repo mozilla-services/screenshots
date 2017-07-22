@@ -83,10 +83,13 @@ shotPageSharePinterest
     .title = Zdieľať na Pintereste
 shotPageShareEmail
     .title = Zdieľať odkaze e-mailom
+shotPageShareLink = Odkaz na zdieľanie tejto snímky:
 shotPagePrivacyMessage = Na túto snímku sa bude môcť pozrieť každý, kto bude mať tento odkaz.
 shotPageCopyImageText
     .label = Kopírovať text z obrázka
 shotPageConfirmDeletion = Naozaj chcete natrvalo odstrániť túto snímku?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Ak nič neurobíte, táto snímka bude navždy odstránená { $timediff }.
 // Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Stránka, z ktorej bola snímka vytvorená:
 shotPageDeleteButton
@@ -96,6 +99,9 @@ shotPageDownloadShot
 shotPageDownload = Prevziať
 shotPageScreenshotsDescription = Jednoduchá tvorba snímok obrazovky. Vytvorte, uložte a zdieľajte snímky obrazovky bez toho, aby ste museli opustiť Firefox.
 shotPageUpsellFirefox = Získajte Firefox teraz
+shotPageDMCAMessage = Táto snímka naďalej nie je dostupná z dôvodu uplatnenia si nároku na duševné vlastníctvo treťou stranou.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Ďalšie informácie si môžete vyžiadať e-mailom na adrese { $dmca }.
 shotPageKeepFor = Na ako dlho má byť táto snímka uložená?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Vyberte čas
@@ -144,9 +150,16 @@ timeDiffFutureDays = { $num ->
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Pri odstraňovaní snímky nastala chyba: { $status } { $statusText }
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Pri zobrazovaní stránky nastala chyba: { $error }
 shotIndexPageSearchButton
     .title = Hľadať
 shotIndexPageNoShotsMessage = Žiadne uložené snímky
+shotIndexPageLookingForShots = Vyhľadávanie vašich snímkov...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageConfirmShotDelete = Odstrániť túto snímku?
 
@@ -157,6 +170,7 @@ shotIndexPageConfirmShotDelete = Odstrániť túto snímku?
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Metriky Firefox Screenshots
 metricsPageTotalsQueryTitle = Celkom
+metricsPageTotalsQueryDevices = Celkový počet zaregistrovaných zariadení
 metricsPageShotsQueryDay = Deň
 metricsPageUsersQueryCount = Počet používateľov
 metricsPageUsersQueryDay = Deň
