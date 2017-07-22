@@ -217,3 +217,22 @@ metricsPageUserShotsQueryTitle = Kadrai vienam naudotojui
 metricsPageUserShotsQueryDescription = Naudotojų skaičius, kurie viso turi apie N kadrų
 metricsPageUserShotsQueryCount = Naudotojų skaičius
 metricsPageUserShotsQueryShots = Apytikslis skaičius aktyvių (nebaigusių galioti) kadrų
+metricsPageRetentionQueryTitle = Išlaikymas savaitėmis
+metricsPageRetentionQueryDescription = Dienų skaičius tarp naudotojo pirmo ir paskiausio kadro, sugrupuota pagal pradinę savaitę
+metricsPageRetentionQueryUsers = Naudotojų skaičius
+metricsPageRetentionQueryDays = Dienos nuo naudotojo pirmo iki paskiausio kadro
+metricsPageRetentionQueryFirstWeek = Savaitė, kurią naudotojas padarė pirmą kadrą
+metricsPageTotalRetentionQueryTitle = Viso išlaikymas
+metricsPageTotalRetentionQueryDescription = Laiko trukmė, kai naudotojai darė kadrus, sugrupuota pagal savaitę
+metricsPageTotalRetentionQueryUsers = Naudotojų skaičius
+metricsPageTotalRetentionQueryDays = Dienos, kai naudotojas darė kadrus
+metricsPageVersionQueryTitle = Priedo versija
+metricsPageVersionQueryDescription = Priedo versija prisijungimo metu, per paskutines 14 dienų
+metricsPageVersionQueryUsers = Prisijungusių naudotojų skaičius
+metricsPageVersionQueryVersion = Priedo versija
+metricsPageVersionQueryLastSeen = Diena
+metricsPageHeader = Statistika
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Sugeneruota: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (duomenų bazės užtrukimas: { $time } ms)
