@@ -73,6 +73,9 @@ shotPageDownloadShot
 shotPageDownload = Télécharger
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Veuillez contacter { $dmca } pour demander plus d’informations.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Si vos captures font l’objet de multiples réclamations, nous pouvons révoquer votre accès à Firefox Screenshots.
+shotPageKeepFor = Combien de temps cette capture doit-elle être conservée ?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Sélectionner une durée
 shotPageKeepIndefinitely = Indéfiniment
