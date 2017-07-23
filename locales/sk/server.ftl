@@ -104,6 +104,8 @@ shotPageExpiredMessage = Platnosť tejto snímky vypršala.
 shotPageExpiredMessageDetails = Stránka, z ktorej bola snímka vytvorená:
 shotPageDeleteButton
     .title = Odstrániť túto snímku
+shotPageAbuseButton
+    .title = Nahlásiť túto snímku z dôvodu porušenia práv, spamu alebo pre iný problém
 shotPageDownloadShot
     .title = Prevziať
 shotPageDownload = Prevziať
@@ -201,6 +203,7 @@ metricsPageTotalsQueryTitle = Celkom
 metricsPageTotalsQueryDescription = Prehľad služby Screenshots
 metricsPageTotalsQueryDevices = Celkový počet zaregistrovaných zariadení
 metricsPageTotalsQueryActiveShots = Aktívne snímky
+metricsPageTotalsQueryExpiredShots = Platnosť vypršala (obnoviteľné)
 metricsPageTotalsQueryExpiredDeletedShots = Platnosť vypršala (odstránené)
 metricsPageShotsQueryTitle = Snímky podľa dní
 metricsPageShotsQueryDescription = Počet snímok vytvorených každý deň (za posledných 30 dní)
