@@ -107,6 +107,8 @@ shotPageUpsellFirefox = Získajte Firefox teraz
 shotPageDMCAMessage = Táto snímka naďalej nie je dostupná z dôvodu uplatnenia si nároku na duševné vlastníctvo treťou stranou.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Ďalšie informácie si môžete vyžiadať e-mailom na adrese { $dmca }.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Ak sú vaše snímky predmetom mnohých nárokov, môže dôjsť k zablokovaniu vášho prístupu k službe Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Do e-mailu zahrňte, prosím, URL adresu tejto snímky: { $url }
 shotPageKeepFor = Na ako dlho má byť táto snímka uložená?
@@ -121,6 +123,11 @@ shotPageKeepTwoWeeks = 2 týždne
 shotPageKeepOneMonth = 1 mesiac
 shotPageSaveExpiration = uložiť
 shotPageCancelExpiration = zrušiť
+shotPageDoesNotExpire = bez obmedzenej platnosti
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = platnosť vyprší { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = platnosť vypršala { $timediff }
 timeDiffJustNow = práve teraz
 timeDiffMinutesAgo = { $num ->
         [one] pred 1 minútou
@@ -160,14 +167,22 @@ timeDiffFutureDays = { $num ->
 // { $status } is a placeholder for an HTTP status code, like '500'.
 // { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Pri odstraňovaní snímky nastala chyba: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Moje snímky: vyhľadávanie { $searchTerm }
 // { $error } is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
 shotIndexPageErrorRendering = Pri zobrazovaní stránky nastala chyba: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Hľadať medzi snímkami
 shotIndexPageSearchButton
     .title = Hľadať
 shotIndexPageNoShotsMessage = Žiadne uložené snímky
+shotIndexPageNoShotsInvitation = Nebojte sa ich pár vytvoriť.
 shotIndexPageLookingForShots = Vyhľadávanie vašich snímkov...
 shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Nenašli sme žiadnu snímku, ktorá by bola zhodná s vaším výrazom vyhľadávania.
+shotIndexPageClearSearchButton
+    .title = Vyčistiť vyhľadávacie pole
 shotIndexPageConfirmShotDelete = Odstrániť túto snímku?
 
 
@@ -181,8 +196,11 @@ metricsPageTotalsQueryTitle = Celkom
 metricsPageTotalsQueryDescription = Prehľad služby Screenshots
 metricsPageTotalsQueryDevices = Celkový počet zaregistrovaných zariadení
 metricsPageTotalsQueryActiveShots = Aktívne snímky
+metricsPageShotsQueryTitle = Snímky podľa dní
 metricsPageShotsQueryCount = Počet snímok
 metricsPageShotsQueryDay = Deň
+metricsPageUsersQueryTitle = Počet používateľov podľa dní
+metricsPageUsersQueryDescription = Počet používateľov, ktorí vytvorili aspoň jednu snímku, podľa dní (za posledných 30 dní)
 metricsPageUsersQueryCount = Počet používateľov
 metricsPageUsersQueryDay = Deň
 metricsPageUserShotsQueryCount = Počet používateľov
