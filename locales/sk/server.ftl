@@ -68,6 +68,7 @@ notFoundPageDescription = Stránka nebola nájdená.
 
 [[ Shot page ]]
 
+shotPageAlertErrorUpdatingExpirationTime = Pri ukladaní doby platnosti snímky nastala chyba
 shotPageAlertErrorDeletingShot = Pri odstraňovaní snímky sa vyskytla chyba
 shotPageAlertErrorUpdatingTitle = Pri ukladaní názvu sa vyskytla chyba
 shotPageConfirmDelete = Naozaj chcete natrvalo odstrániť túto snímku?
@@ -90,6 +91,10 @@ shotPageCopyImageText
 shotPageConfirmDeletion = Naozaj chcete natrvalo odstrániť túto snímku?
 // Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Ak nič neurobíte, táto snímka bude navždy odstránená { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = obnoviť do { $date }
+shotPageExpiredMessage = Platnosť tejto snímky vypršala.
 // Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Stránka, z ktorej bola snímka vytvorená:
 shotPageDeleteButton
