@@ -107,6 +107,8 @@ shotPageUpsellFirefox = Získajte Firefox teraz
 shotPageDMCAMessage = Táto snímka naďalej nie je dostupná z dôvodu uplatnenia si nároku na duševné vlastníctvo treťou stranou.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Ďalšie informácie si môžete vyžiadať e-mailom na adrese { $dmca }.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Do e-mailu zahrňte, prosím, URL adresu tejto snímky: { $url }
 shotPageKeepFor = Na ako dlho má byť táto snímka uložená?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Vyberte čas
@@ -187,6 +189,7 @@ metricsPageUserShotsQueryCount = Počet používateľov
 metricsPageRetentionQueryUsers = Počet používateľov
 metricsPageTotalRetentionQueryUsers = Počet používateľov
 metricsPageVersionQueryTitle = Verzia doplnku
+metricsPageVersionQueryDescription = Verzia doplnku používaná pri prihlásení v posledných 14 dňoch
 metricsPageVersionQueryVersion = Verzia doplnku
 metricsPageVersionQueryLastSeen = Deň
 metricsPageHeader = Metriky
