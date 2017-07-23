@@ -39,6 +39,7 @@ homePageGetStartedTitle = Začíname
 homePageGetStartedDescription = Novú ikonu služby Screenshots nájdete na vašom paneli nástrojov. Po kliknutí na ňu sa v hornej časti okna vášho prehliadača zobrazí ponuka.
 homePageCaptureRegion = Vytvorte snímku oblasti
 homePageCapturePage = Vytvorte snímku celej stránky
+homePageCapturePageDescription = Pre zachytenie celej stránky použite tlačidlo v pravom hornom rohu. Tlačidlom Uložiť viditeľnú časť vyberiete a uložíte časť stránky, ktorú práve vidíte a tlačidlom Uložiť celú stránku zachytíte všetko, čo na stránke je.
 homePageSaveShare = Uložte a zdieľajte
 homePageLegalLink = Právne informácie
 homePagePrivacyLink = Súkromie
