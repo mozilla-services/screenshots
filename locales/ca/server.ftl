@@ -59,12 +59,61 @@ shotPageCopied = S'ha copiat
 shotPageUpsellFirefox = Baixeu el Firefox ara
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Seleccioneu el temps
+shotPageKeepIndefinitely = Indefinidament
+shotPageKeepTenMinutes = 10 minuts
+shotPageKeepOneHour = 1 hora
+shotPageKeepOneDay = 1 dia
+shotPageKeepOneWeek = 1 setmana
+shotPageKeepTwoWeeks = 2 setmanes
+shotPageKeepOneMonth = 1 mes
+shotPageSaveExpiration = desa
+shotPageCancelExpiration = cancel·la
+shotPageDoesNotExpire = no caduca
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = caduca { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = ha caducat { $timediff }
+timeDiffJustNow = ara mateix
+timeDiffMinutesAgo = { $num ->
+        [one] fa 1 minut
+       *[other] fa { $number } minuts
+    }
+timeDiffHoursAgo = { $num ->
+        [one] fa 1 hora
+       *[other] fa { $number } hores
+    }
+timeDiffDaysAgo = { $num ->
+        [one] ahir
+       *[other] fa { $number } dies
+    }
+timeDiffFutureSeconds = d'aquí pocs segons
+timeDiffFutureMinutes = { $num ->
+        [one] d'aquí 1 minut
+       *[other] d'aquí { $number } minuts
+    }
+timeDiffFutureHours = { $num ->
+        [one] d'aquí 1 hora
+       *[other] d'aquí { $number } hores
+    }
+timeDiffFutureDays = { $num ->
+        [one] demà
+       *[other] d'aquí { $number } dies
+    }
 
 
 [[ Shotindex page ]]
 
+shotIndexPageSearchButton
+    .title = Cerca
+shotIndexPageLookingForShots = S'estan cercant les vostres captures…
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageShotsQueryTitle = Captures per dia
+metricsPageShotsQueryCount = Nombre de captures
+metricsPageShotsQueryDay = Dia
+metricsPageTotalRetentionQueryUsers = Nombre d'usuaris
+metricsPageVersionQueryTitle = Versió del complement
+metricsPageVersionQueryLastSeen = Dia
