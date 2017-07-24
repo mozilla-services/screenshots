@@ -114,6 +114,10 @@ shotPageUpsellFirefox = Szerezze be most a Firefoxot
 shotPageDMCAMessage = A kép egy harmadik fél szerzői jogi követelése miatt már nem érhető el.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = További információ kéréséhez küldjön egy e-mailt ide: { $dmca }
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Ha képeit több követelés is érinti, akkor megvonhatjuk a Firefox Screenshots hozzáférését.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Adja meg a kép URL-t az e-mailjében: { $url }
 shotPageKeepFor = Meddig legyen ez a képernyőkép megtartva?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Időpont választása
@@ -177,6 +181,7 @@ shotIndexPageNoShotsMessage = Nincsenek mentett képek.
 shotIndexPageNoShotsInvitation = Hajrá, készítsen néhányat.
 shotIndexPageLookingForShots = Képek keresése…
 shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Nem található a keresésnek megfelelő kép.
 shotIndexPageClearSearchButton
     .title = Keresés törlése
 shotIndexPageConfirmShotDelete = Törli ezt a képet?
@@ -199,10 +204,13 @@ metricsPageShotsQueryDescription = Az egyes napokon készült képek száma (az 
 metricsPageShotsQueryCount = Képek száma
 metricsPageShotsQueryDay = Nap
 metricsPageUsersQueryTitle = Felhasználók napok szerint
+metricsPageUsersQueryDescription = A felhasználók száma, akik legalább egy képet csináltak, napok szerint (elmúlt 30 nap)
 metricsPageUsersQueryCount = Felhasználók száma
 metricsPageUsersQueryDay = Nap
 metricsPageUserShotsQueryTitle = Képek száma felhasználónként
+metricsPageUserShotsQueryDescription = A felhasználók száma, akiknek összesen N képük van
 metricsPageUserShotsQueryCount = Felhasználók száma
+metricsPageUserShotsQueryShots = Az aktív (nem lejárt) képek közelítő száma
 metricsPageRetentionQueryUsers = Felhasználók száma
 metricsPageTotalRetentionQueryUsers = Felhasználók száma
 metricsPageVersionQueryTitle = Kiegészítő verziója
