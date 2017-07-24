@@ -38,6 +38,11 @@ homePageGetStartedTitle = Oan de slach
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Sykje it nije Screenshots-piktogram op jo arkbalke. Selektearje it, en it Screenshots-menu ferskynt boppe yn jo browserfinster.
 homePageCaptureRegion = In gebied fêstlizze
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Klik en sleep om it gebied dat jo fêstlizze wolle te ferslepen. Of wiis oan en klik – Screenshots selektearret it gebied foar jo. Tefreden mei wat jo sjogge? Selektearje Bewarje om jo skermôfbylding online te benaderjen, of it pylkje nei ûnder om dizze nei jo kompjûter te bewarjen.
+homePageCapturePage = In side fêstlizze
+homePageCapturePageDescription = Brûk de knoppen yn de rjochterboppehoek om folsleine siden fêst te lizzen. De knop Sichtber gebied bewarje leit it gebied fêst dat jo sûnder skowen sjen kinne, en Folsleine side bewarje leit alles op de side fêst.
+homePageSaveShare = Bewarje en diele
 homePageLegalLink = Juridysk
 homePagePrivacyLink = Privacy
 homePageTermsLink = Betingsten
@@ -202,3 +207,21 @@ metricsPageUserShotsQueryDescription = It oantal brûkers dy't ûngefear N ôfby
 metricsPageUserShotsQueryCount = Oantal brûkers
 metricsPageUserShotsQueryShots = Skat oantal aktive (net-ferrûne) ôfbyldingen
 metricsPageRetentionQueryTitle = Retinsje op wike
+metricsPageRetentionQueryDescription = Oantal dagen fan earste ôfbylding fan in brûker ta meast resinte ôfbylding, groepearre op begjinwike
+metricsPageRetentionQueryUsers = Oantal brûkers
+metricsPageRetentionQueryDays = Dagen fan earste ôfbylding fan in brûker ôf ta meast resinte ôfbylding
+metricsPageRetentionQueryFirstWeek = Wike wêryn de brûker foar it earst in ôfbylding makke hat
+metricsPageTotalRetentionQueryTitle = Totale retinsje
+metricsPageTotalRetentionQueryDescription = Lingte fan tiid dat brûkers ôfbyldingen makke hawwe, groepearre op wike
+metricsPageTotalRetentionQueryUsers = Oantal brûkers
+metricsPageTotalRetentionQueryDays = Dagen dat de brûker ôfbylding makke hat
+metricsPageVersionQueryTitle = Add-onferzje
+metricsPageVersionQueryDescription = De ferzje fan de wylst oanmelding brûkte add-on, yn de ôfrûne 14 dagen
+metricsPageVersionQueryUsers = Oantal oanmelde brûkers
+metricsPageVersionQueryVersion = Add-onferzje
+metricsPageVersionQueryLastSeen = Dei
+metricsPageHeader = Metryske gegevens
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Generearre: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (databasetiid: { $time }ms)
