@@ -143,12 +143,10 @@ timeDiffFutureMinutes = { $num ->
         [one] oer 1 minút
        *[other] oer { $number } minuten
     }
-timeDiffFutureHours =
-    timeDiffFutureHours = { $number ->
+timeDiffFutureHours = timeDiffFutureHours = { $number ->
         [one] oer 1 oer
        *[other] oer { $number } oeren
     }
-
 timeDiffFutureDays = { $num ->
         [one] moarn
        *[other] oer { $number } dagen
