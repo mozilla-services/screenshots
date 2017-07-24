@@ -79,6 +79,10 @@ shotPageSharePinterest
     .title = Diele op Pinterest
 shotPageShareEmail
     .title = Keppeling diele fia e-mail
+shotPageShareLink = In dielbere keppeling nei dizze ôfbylding krije:
+shotPagePrivacyMessage = Elkenien mei de keppeling kin dizze ôfbylding besjen.
+shotPageCopyImageText
+    .label = Ofbyldingstekst kopiearje
 
 
 [[ Shotindex page ]]
