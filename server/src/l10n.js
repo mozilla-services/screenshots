@@ -6,98 +6,84 @@ const negotiateLanguages = require("fluent-langneg/compat");
 const { MessageContext } = require("fluent/compat");
 const mozlog = require("./logging").mozlog("l10n");
 
-let userLangs;
-exports.userLangs = userLangs;
-const contexts = [];
 let inited = false;
 
-exports.init = function(userLocales = []) {
+const rawStrings = {};
+
+exports.init = function() {
   if (inited) {
     return Promise.resolve();
   }
   inited = true;
-  exports.userLangs = userLocales;
-  return _getLocales(userLocales).then(locales => {
-    // module-global assignment
-    exports.userLangs = locales;
+  const localesGlob = path.join(__dirname, "..", "..", "locales") + path.normalize("/*/server.ftl");
 
-    const mcPromises = [];
-    exports.userLangs.forEach(lang => {
-      const mc = new MessageContext(lang);
-      mcPromises.push(new Promise((resolve, reject) => {
-        const filename = path.join(__dirname, '..', '..', 'locales', lang, 'server.ftl');
-        fs.readFile(filename, 'utf-8', (err, data) => {
-          if (err) { return reject(err); }
-          mc.addMessages(data);
-          contexts[lang] = mc;
-          resolve(mc);
-        });
-      }));
-    });
-    return Promise.all(mcPromises);
-  }).catch(err => {
-    mozlog.error('l10n-init-failed', {err});
-  });
-};
-
-exports.getText = function(l10nID, args) {
-  if (!inited) { exports.init(); }
-  // Find the first MessageContext with the l10n ID, in order of user preference.
-  for (let lang of exports.userLangs) {
-    if (contexts[lang].hasMessage(l10nID)) {
-      let msg = contexts[lang].getMessage(l10nID);
-      return contexts[lang].format(msg, args);
-    }
-  }
-  return null;
-};
-
-exports.getStrings = function(userLocales) {
-  return _getLocales(userLocales).then(locales => {
-    const ftlPromises = [];
-    locales.forEach(locale => {
-      ftlPromises.push(new Promise((resolve, reject) => {
-        const filename = path.join(__dirname, '..', '..', 'locales', locale, 'server.ftl');
-        fs.readFile(filename, 'utf-8', (err, data) => {
-          if (err) {
-            return reject(err);
-          }
-          resolve({locale, data});
-        });
-      }));
-    });
-    return Promise.all(ftlPromises);
-  }).then(ftls => {
-    let strings = {};
-    ftls.forEach(ftl => {
-      strings[ftl.locale] = ftl.data;
-    });
-    return strings;
-  });
-};
-
-function _getLocales(requestedLocales) {
-  return _getAvailableLocales().then(availableLocales => {
-    const locales = negotiateLanguages(
-      exports.userLangs,
-      availableLocales,
-      { defaultLocale: 'en-US' }
-    );
-    return locales;
-  });
-}
-
-// Returns a Promise that resolves to a list of languages for which
-// there exists a 'server.ftl' file inside the top-level 'locales' dir.
-function _getAvailableLocales() {
-  const localesGlob = path.join(__dirname, '..', '..', 'locales') + path.normalize('/*/server.ftl');
   return globby(localesGlob).then(paths => {
-    // paths contains strings of the form '/path/to/screenshots/locales/en-US/server.ftl'.
-    // To get the locale, get the next-to-last piece of the path.
-    return paths.map(path => {
-      const locale = path.split('/').slice(-2, -1);
-      return locale;
-    });
+    if (!paths.length) {
+      let err = `No locales found at path glob ${localesGlob}`;
+      mozlog.error("l10n-locale-globbing-error", {err});
+      return Promise.reject(err);
+    }
+    return Promise.all(paths.map(path => {
+      return new Promise((resolve, reject) => {
+        // path is of the form "/path/to/screenshots/locales/en-US/server.ftl".
+        // To get the locale, get the next-to-last piece of the path.
+        let locale = path.split("/").slice(-2, -1);
+        if (!locale) {
+          let err = `Unable to parse locale from ftl path ${path}`;
+          mozlog.error("l10n-locale-parsing-error", {err});
+          reject(err);
+          return;
+        }
+        fs.readFile(path, "utf-8", (err, data) => {
+          if (err) {
+            mozlog.error("l10n-ftl-loading-error", {err});
+            reject(err);
+            return;
+          }
+          rawStrings[locale] = data;
+          resolve();
+        });
+      });
+    }));
   });
-}
+};
 
+exports.getText = function(locales) {
+  let contexts = {};
+  let availableLocales = exports.getUserLocales(locales);
+
+  availableLocales.forEach((locale) => {
+    let mc = new MessageContext(locale);
+    mc.addMessages(rawStrings[locale]);
+    contexts[locale] = (mc);
+  });
+
+  return function(l10nID, args) {
+    for (let locale of availableLocales) {
+      if (contexts[locale].hasMessage(l10nID)) {
+        let msg = contexts[locale].getMessage(l10nID);
+        return contexts[locale].format(msg, args);
+      }
+    }
+    return "";
+  }
+};
+
+exports.getUserLocales = function(requestedLocales) {
+  return negotiateLanguages(
+    requestedLocales,
+    Object.keys(rawStrings),
+    { defaultLocale: "en-US" }
+  );
+};
+
+exports.getStrings = function(locales) {
+  let availableLocales = exports.getUserLocales(locales);
+  let strings = {};
+  availableLocales.forEach((locale) => {
+    if (locale in rawStrings) {
+      strings[locale] = rawStrings[locale];
+    }
+  });
+  return strings;
+};
