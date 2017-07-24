@@ -35,7 +35,16 @@ homePageGetStarted = Kezdő lépések
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Hogyan működik a Firefox képernyőképek
 homePageGetStartedTitle = Kezdő lépések
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Keresse az új Screenshots ikont az eszköztáron. Válassza ki, és a Screenshots menü megjelenik a böngészőablak fölött.
+homePageCaptureRegion = Terület befogása
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Kattintson és húzza a befogandó terület kiválasztásához. Vagy csak vigye fölé és kattintson – a Screenshots kijelöli a területet Ön helyett. Tetszik amit lát? Válassza a Mentést, hogy online is elérje a képernyőképeit, vagy a lefelé mutató nyilat a számítógépre letöltéshez.
+homePageCapturePage = Lap befogása
+homePageCapturePageDescription = Használja a jobb felső sarokban lévő gombokat a teljes lapok befogásához. A Láthatóak mentése gomb a görgetés nélkül látható területet fogja be, a Teljes lap mentése pedig mindent, ami a lapon található.
 homePageSaveShare = Mentés és megosztás
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Ha készít egy képet, akkro a Firefox az online Screenshots könyvtárába küldi, a hivatkozást pedig a vágólapra másolja. Automatikusan két hétig tároljuk a képernyőképeket, de bármikor törölheti a képeket, vagy megváltoztathatja a lejárati időt, hogy tovább tartsa őket meg a könyvtárában.
 homePageLegalLink = Jogi információk
 homePagePrivacyLink = Adatvédelem
 homePageTermsLink = Feltételek
@@ -45,6 +54,8 @@ homePageCookiesLink = Sütik
 [[ Leave Screenshots page ]]
 
 leavePageConfirmDelete = Fiók törlésének jóváhagyása
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = A fiókja törléséhez telepítve kell lennie a Firefox Screentshotsnak
 leavePageErrorGeneric = Hiba történt
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ez véglegesen törli a Firefox képernyőképek összes adatát.
@@ -89,13 +100,20 @@ shotPageExpirationMessage = Ha nem tesz semmit, a kép törlésre kerül { $time
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = visszaállítás eddig: { $date }
 shotPageExpiredMessage = Ez a képernyőkép lejárt.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Itt van az oldal, amelyről eredetileg készült:
 shotPageDeleteButton
     .title = A képernyőkép törlése
+shotPageAbuseButton
+    .title = Kép jelentése visszaélés, spam vagy más problémák miatt
 shotPageDownloadShot
     .title = Letöltés
 shotPageDownload = Letöltés
 shotPageScreenshotsDescription = Képernyőképek egyszerűen. Készítsen, mentsen és ossza meg a képernyőképeit a Firefox elhagyása nélkül.
 shotPageUpsellFirefox = Szerezze be most a Firefoxot
+shotPageDMCAMessage = A kép egy harmadik fél szerzői jogi követelése miatt már nem érhető el.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = További információ kéréséhez küldjön egy e-mailt ide: { $dmca }
 shotPageKeepFor = Meddig legyen ez a képernyőkép megtartva?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Időpont választása
