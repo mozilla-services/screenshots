@@ -16,6 +16,7 @@ creatingPageTitleDefault = página
 
 [[ Home page ]]
 
+homePageTeaser = Em breve…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Download grátis
 homePageSaveShare = Salvar e compartilhar
@@ -26,6 +27,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = Confirmar exclusão da conta
 leavePageErrorGeneric = Ocorreu um erro
 leavePageButtonProceed = Prosseguir
 leavePageButtonCancel = Cancelar
@@ -33,11 +35,14 @@ leavePageButtonCancel = Cancelar
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Página não encontrada
 notFoundPageDescription = Página não encontrada.
 
 
 [[ Shot page ]]
 
+shotPageShareButton
+    .title = Compartilhar
 shotPageCopy = Copiar
 shotPageCopied = Copiado
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
@@ -55,6 +60,8 @@ shotPageCancelExpiration = cancelar
 
 [[ Shotindex page ]]
 
+shotIndexPageSearchButton
+    .title = Pesquisar
 
 
 // all metrics strings are optional for translation
