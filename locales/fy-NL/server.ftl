@@ -74,6 +74,9 @@ notFoundPageDescription = Side net fûn.
 [[ Shot page ]]
 
 shotPageAlertErrorUpdatingExpirationTime = Flater by bewarjen fan ferrindatum
+shotPageAlertErrorDeletingShot = Flater by bewarjen fan ôfbylding
+shotPageAlertErrorUpdatingTitle = Flater by bewarjen fan titel
+shotPageConfirmDelete = Binne jo wis dat jo dizze ôfbylding definityf fuortsmite wolle?
 shotPageShareButton
     .title = Diele
 shotPageCopy = Kopiearje
