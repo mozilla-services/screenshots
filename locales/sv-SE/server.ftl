@@ -36,7 +36,7 @@ homePageGetStarted = Kom igång
 homePageHowScreenshotsWorks = Så här fungerar Firefox Screenshots
 homePageGetStartedTitle = Kom igång
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Hitta den nya skärmbilsikonen i verktygsfältet. Markera den och menyn för Screenshots kommer att visas ovanpå ditt webbläsarfönster.
+homePageGetStartedDescription = Hitta ikonen för nya Screenshots i verktygsfältet. Markera den och menyn för Screenshots kommer att visas ovanpå ditt webbläsarfönster.
 homePageCaptureRegion = Fånga ett område
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klicka och dra för att välja det område du vill fånga. Eller bara hovra och klicka — Screenshots kommer att välja området åt dig. Gilla du vad du ser? Välj Spara för att få tillgång till skärmbilden på webben eller nedåt-tangenten för att ladda ner den till din dator.
