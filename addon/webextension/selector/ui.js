@@ -1,4 +1,4 @@
-/* globals log, util, catcher, inlineSelectionCss, callBackground, assertIsTrusted */
+/* globals log, util, catcher, inlineSelectionCss, callBackground, assertIsTrusted, assertIsBlankDocument */
 
 "use strict";
 
@@ -107,8 +107,9 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element.style.display = "none";
           this.element.style.setProperty('position', 'absolute', 'important');
           this.updateElementSize();
-          this.element.onload = watchFunction(() => {
+          this.element.addEventListener("load", watchFunction(() => {
             this.document = this.element.contentDocument;
+            assertIsBlankDocument(this.document);
             this.document.documentElement.innerHTML = `
                <head>
                 <style>${substitutedCss}</style>
@@ -122,7 +123,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
             this.document.documentElement.dir = browser.i18n.getMessage("@@bidi_dir");
             this.document.documentElement.lang = browser.i18n.getMessage("@@ui_locale");
             resolve();
-          });
+          }), {once: true});
           document.body.appendChild(this.element);
         } else {
           resolve();
@@ -212,7 +213,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     }
   };
 
-  iframeSelection.onResize = watchFunction(onResize.bind(iframeSelection));
+  iframeSelection.onResize = watchFunction(assertIsTrusted(onResize.bind(iframeSelection)), true);
 
   let iframePreSelection = exports.iframePreSelection = {
     element: null,
@@ -225,8 +226,9 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element.style.setProperty('position', 'fixed', 'important');
           this.element.style.width = "100%";
           this.element.style.height = "100%";
-          this.element.onload = watchFunction(() => {
+          this.element.addEventListener("load", watchFunction(() => {
             this.document = this.element.contentDocument;
+            assertIsBlankDocument(this.document)
             this.document.documentElement.innerHTML = `
                <head>
                 <style>${substitutedCss}</style>
@@ -265,7 +267,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
             overlay.querySelector(".full-page").addEventListener(
               "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickFullPage)));
             resolve();
-          });
+          }), {once: true});
           document.body.appendChild(this.element);
           this.unhide();
         } else {
@@ -275,14 +277,16 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     },
 
     hide() {
-      window.removeEventListener("scroll", this.onScroll);
+      window.removeEventListener("scroll", watchFunction(assertIsTrusted(this.onScroll)));
+      window.removeEventListener("resize", this.onResize, true);
       if (this.element) {
         this.element.style.display = "none";
       }
     },
 
     unhide() {
-      window.addEventListener("scroll", this.onScroll);
+      window.addEventListener("scroll", watchFunction(assertIsTrusted(this.onScroll)));
+      window.addEventListener("resize", this.onResize, true);
       this.element.style.display = "";
       this.element.focus();
     },
@@ -378,6 +382,8 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       this.document = null;
     }
   };
+
+  iframePreSelection.onResize = watchFunction(onResize.bind(iframePreSelection), true);
 
   let iframe = exports.iframe = {
     currentIframe: iframePreSelection,
