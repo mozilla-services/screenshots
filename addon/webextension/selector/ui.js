@@ -245,9 +245,6 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
                      <div class="preview-instructions" data-l10n-id="screenshotInstructions"></div>
                      <div class="myshots-all-buttons-container">
                        <button class="myshots-button myshots-link" tabindex="1" data-l10n-id="myShotsLink"></button>
-                       <div class="spacer"></div>
-                       <button class="myshots-button visible" tabindex="2" data-l10n-id="saveScreenshotVisibleArea"></button>
-                       <button class="myshots-button full-page" tabindex="3" data-l10n-id="saveScreenshotFullPage"></button>
                      </div>
                    </div>
                  </div>
@@ -262,10 +259,6 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
             localizeText(this.document);
             overlay.querySelector(".myshots-button").addEventListener(
               "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onOpenMyShots)));
-            overlay.querySelector(".visible").addEventListener(
-              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickVisible)));
-            overlay.querySelector(".full-page").addEventListener(
-              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickFullPage)));
             resolve();
           }), {once: true});
           document.body.appendChild(this.element);
