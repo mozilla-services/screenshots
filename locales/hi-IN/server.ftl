@@ -69,6 +69,34 @@ shotPageSelectTime = समय चुने
 shotPageKeepTenMinutes = 10 मिनट
 shotPageKeepOneHour = 1 घंटा
 shotPageKeepOneDay = 1 दिन
+shotPageKeepOneWeek = 1 सप्ताह
+shotPageKeepTwoWeeks = 2 सप्ताह
+shotPageKeepOneMonth = 1 महीना
+shotPageSaveExpiration = सहेजें
+shotPageCancelExpiration = रद्द करें
+shotPageDoesNotExpire = समाप्त नहीं होता है
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = { $timediff } समय सीमा समाप्त
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = { $timediff } समाप्त
+timeDiffJustNow = बस अभी
+timeDiffMinutesAgo = { $num ->
+        [one] 1 मिनट पहले 
+       *[other] { $number } मिनट पहले
+    }
+timeDiffHoursAgo = { $num ->
+        [one] 1 घंटे पहले 
+       *[other] { $number } घंटे पहले
+    }
+timeDiffFutureSeconds = कुछ ही समय में
+timeDiffFutureMinutes = { $num ->
+        [one] 1 मिनट में
+       *[other] { $number } मिनट में
+    }
+timeDiffFutureHours = { $num ->
+        [one] 1 घंटे में
+       *[other] { $number } घंटे में
+    }
 
 
 [[ Shotindex page ]]
@@ -80,3 +108,10 @@ shotIndexPageSearchButton
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Firefox स्क्रीनशॉट मेट्रिक्स
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = स्क्रीनशॉट का अवलोकन
+metricsPageShotsQueryDay = दिन
+metricsPageUsersQueryCount = उपयोगकर्ता
+metricsPageUsersQueryDay = दिन
