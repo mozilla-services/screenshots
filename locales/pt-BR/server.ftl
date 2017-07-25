@@ -67,6 +67,7 @@ shotIndexPageSearchButton
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageTotalsQueryTitle = Totais
 metricsPageShotsQueryDay = Dia
 metricsPageUsersQueryTitle = Usuários por dia
 metricsPageUsersQueryCount = Número de usuários
