@@ -6,18 +6,16 @@ const negotiateLanguages = require("fluent-langneg/compat");
 const { MessageContext } = require("fluent/compat");
 const mozlog = require("./logging").mozlog("l10n");
 
-let inited = false;
-
 const rawStrings = {};
 
+let initPromise;
 exports.init = function() {
-  if (inited) {
-    return Promise.resolve();
+  if (initPromise) {
+    return initPromise;
   }
-  inited = true;
   const localesGlob = path.join(__dirname, "..", "..", "locales") + path.normalize("/*/server.ftl");
 
-  return globby(localesGlob).then(paths => {
+  initPromise = globby(localesGlob).then(paths => {
     if (!paths.length) {
       let err = `No locales found at path glob ${localesGlob}`;
       mozlog.error("l10n-locale-globbing-error", {err});
@@ -46,6 +44,7 @@ exports.init = function() {
       });
     }));
   });
+  return initPromise;
 };
 
 exports.getText = function(locales) {
