@@ -64,6 +64,11 @@ shotPageSharePinterest
     .title = Pinterest पर साझा करें
 shotPageShareEmail
     .title = ईमेल द्वारा कड़ी साझा करें
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = समय चुने
+shotPageKeepTenMinutes = 10 मिनट
+shotPageKeepOneHour = 1 घंटा
+shotPageKeepOneDay = 1 दिन
 
 
 [[ Shotindex page ]]
