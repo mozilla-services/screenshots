@@ -157,6 +157,9 @@ timeDiffFutureDays = { $num ->
 shotIndexPageErrorDeletingShot = Error al eliminar la captura: { $status } { $statusText }
 // { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Mis capturas: buscar { $searchTerm }
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Error al renderizar la página: { $error }
 shotIndexPageSearchPlaceholder
     .placeholder = Buscar en mis capturas
 shotIndexPageSearchButton
@@ -174,3 +177,26 @@ shotIndexPageConfirmShotDelete = ¿Eliminar esta captura?
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Vista global de Screenshots
+metricsPageTotalsQueryDevices = Dispositivos registrados en total
+metricsPageTotalsQueryActiveShots = Capturas activas
+metricsPageTotalsQueryExpiredShots = Expirada (pero recuperable)
+metricsPageTotalsQueryExpiredDeletedShots = Expirada (y eliminada)
+metricsPageShotsQueryTitle = Capturas por día
+metricsPageShotsQueryDescription = Número de capturas creadas cada día (últimos 30 días)
+metricsPageShotsQueryCount = Número de capturas
+metricsPageShotsQueryDay = Día
+metricsPageUsersQueryTitle = Usuarios por día
+metricsPageUsersQueryDescription = Número de usuarios que crearon al menos una pestaña, por día (últimos 30 días)
+metricsPageUsersQueryCount = Número de usuarios
+metricsPageUsersQueryDay = Día
+metricsPageUserShotsQueryTitle = Número de capturas por usuario
+metricsPageUserShotsQueryCount = Número de usuarios
+metricsPageUserShotsQueryShots = Número aproximado de capturas activas (no expiradas)
+metricsPageRetentionQueryUsers = Número de usuarios
+metricsPageTotalRetentionQueryUsers = Número de usuarios
+metricsPageTotalRetentionQueryDays = Días en los que el usuario ha creado capturas
+metricsPageVersionQueryTitle = Versión del complemento
+metricsPageVersionQueryVersion = Versión del complemento
+metricsPageVersionQueryLastSeen = Día
