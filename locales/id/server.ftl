@@ -35,21 +35,38 @@ homePageGetStarted = Memulai
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Bagaimana Firefox Screenshots Bekerja
 homePageGetStartedTitle = Memulai
+homePageSaveShare = Simpan dan Bagikan
 homePagePrivacyLink = Privasi
+homePageTermsLink = Ketentuan
 homePageCookiesLink = Kuki
 
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = Konfirmasi penghapusan akun
+leavePageErrorGeneric = Terjadi kesalahan
 leavePageButtonCancel = Batal
 
 
 [[ Not Found page ]]
 
+notFoundPageIntro = Ups.
 
 
 [[ Shot page ]]
 
+shotPageAlertErrorUpdatingTitle = Galat saat menyimpan judul
+shotPageCopy = Salin
+shotPageShareFacebook
+    .title = Bagikan di Facebook
+shotPageShareTwitter
+    .title = Bagikan di Twitter
+shotPageSharePinterest
+    .title = Bagikan di Pinterest
+shotPageShareEmail
+    .title = Bagikan tautan via surel
+shotPageCopyImageText
+    .label = Salin teks gambar
 shotPageDownloadShot
     .title = Unduh
 shotPageDownload = Unduh
@@ -64,14 +81,29 @@ shotPageSaveExpiration = simpan
 shotPageCancelExpiration = batal
 shotPageDoesNotExpire = tidak kedaluwarsa
 timeDiffJustNow = baru saja
+timeDiffFutureMinutes = dalam 1 menit
+timeDiffFutureHours = dalam 1 jam
+timeDiffFutureDays = besok
 
 
 [[ Shotindex page ]]
 
 shotIndexPageSearchButton
     .title = Cari
+shotIndexPageNoSearchResultsIntro = Hmm
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageTotalsQueryTitle = Total
+metricsPageShotsQueryDay = Hari
+metricsPageUsersQueryCount = Jumlah pengguna
+metricsPageUsersQueryDay = Hari
+metricsPageUserShotsQueryCount = Jumlah pengguna
+metricsPageRetentionQueryUsers = Jumlah pengguna
+metricsPageTotalRetentionQueryUsers = Jumlah pengguna
+metricsPageVersionQueryTitle = Versi Pengaya
+metricsPageVersionQueryVersion = Versi pengaya
+metricsPageVersionQueryLastSeen = Hari
+metricsPageHeader = Metrik
