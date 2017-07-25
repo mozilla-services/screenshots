@@ -7,18 +7,34 @@
 // Global phrases shared across pages, prefixed with 'g'
 [[ global ]]
 
+gMyShots = Tangkapan Saya
+gHomeLink = Beranda
+gNoShots
+    .alt = Tidak ada tangkapan ditemukan
+gScreenshotsDescription = Screenshots membuatnya sederhana. Ambil, simpan, dan bagikan tangkapan layar tanpa meninggalkan Firefox.
 
 
 [[ Creating page ]]
 
+// Note: { $title } is a placeholder for the title of the web page
+// captured in the screenshot. The default, for pages without titles, is
+// creatingPageTitleDefault.
+creatingPageTitle = Membuat { $title }
 creatingPageTitleDefault = laman
 
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Tangkapan layar intuitif dirancang langsung ke browser. Tangkap, simpan dan bagikan tangkapan layar saat Anda menjelajahi Web menggunakan Firefox.
+homePageButtonMyShots = Buka Tangkapan Saya
 homePageTeaser = Segera Hadir...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Unduh Gratis
+homePageGetStarted = Memulai
+// Note: do not translate 'Firefox Screenshots' when translating this string
+homePageHowScreenshotsWorks = Bagaimana Firefox Screenshots Bekerja
+homePageGetStartedTitle = Memulai
 homePagePrivacyLink = Privasi
 homePageCookiesLink = Kuki
 
