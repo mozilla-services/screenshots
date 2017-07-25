@@ -109,7 +109,7 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Last ned
 shotPageDownload = Last ned
-shotPageScreenshotsDescription = Skjermbilder gjort enklet. Ta, lagre og del skjermbilder uten å forlate Firefox.
+shotPageScreenshotsDescription = Skjermbilder gjort enkelt. Ta, lagre og del skjermbilder uten å forlate Firefox.
 shotPageUpsellFirefox = Last ned Firefox nå
 shotPageDMCAMessage = Dette bildet er ikke lenger tilgjengelig på grunn av en tredjeparts immaterielle krav.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
