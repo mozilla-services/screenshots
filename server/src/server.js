@@ -291,20 +291,17 @@ app.use(function(req, res, next) {
 });
 
 app.use(function(req, res, next) {
-  const languages = accepts(req).languages() || ['en-US'];
-  l10n.init(languages).then(() => {
-    req.getText = l10n.getText;
-    req.userLocales = l10n.userLangs;
-    return l10n.getStrings().then(strings => {
-      req.messages = strings;
-      next();
-    });
-  }).catch(err => {
-    mozlog.info("l10n-error", {msg: "Error loading FTL files", description: err});
+  l10n.init().then(() => {
+    const languages = accepts(req).languages();
+    req.getText = l10n.getText(languages);
+    req.userLocales = l10n.getUserLocales(languages);
+    req.messages = l10n.getStrings(languages);
     next();
+  }).catch(err => {
+    mozlog.error("l10n-error", {msg: "Error initializing l10n", description: err});
+    process.exit(2);
   });
 });
-
 
 app.param("id", function(req, res, next, id) {
   if (/^[a-zA-Z0-9]{16}$/.test(id)) {
