@@ -11,6 +11,7 @@ gMyShots = Mine skjermbilde
 gHomeLink = Heim
 gNoShots
     .alt = Fann ingen skjermbilde
+gScreenshotsDescription = Skjermbilete gjort enkelt. Ta, lagre og del skjermbilde utan å forlate Firefox.
 
 
 [[ Creating page ]]
@@ -61,6 +62,10 @@ notFoundPageDescription = Fann ikkje sida.
 
 [[ Shot page ]]
 
+shotPageAlertErrorUpdatingExpirationTime = Feil ved lagring av utløpsdato
+shotPageAlertErrorDeletingShot = Feil ved sletting av skjermbilde
+shotPageAlertErrorUpdatingTitle = Feil ved lagring av tittel
+shotPageConfirmDelete = Er du sikker på at du vil slette dette skjermbildet permanent?
 shotPageShareButton
     .title = Del
 shotPageCopy = Kopier
@@ -73,14 +78,26 @@ shotPageSharePinterest
     .title = Del på Pinterest
 shotPageShareEmail
     .title = Del lenke via e-post
+shotPageShareLink = Få ei delbar lenkje til dette skjermbildet:
+shotPagePrivacyMessage = Alle som har denne lenka kan sjå dette skjermbildet.
 shotPageCopyImageText
     .label = Kopier bildetekst
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = bygg oppatt til og med { $date }
+shotPageExpiredMessage = Dette bildet har gått ut.
 shotPageDeleteButton
     .title = Slett dette skjermbildet
+shotPageAbuseButton
+    .title = Rapporter dette bildet for brot, spam eller andre problem
 shotPageDownloadShot
     .title = Last ned
 shotPageDownload = Last ned
+shotPageScreenshotsDescription = Skjermbilde gjort enkelt. Ta, lagre og del skjermbilde utan å forlate Firefox.
 shotPageUpsellFirefox = Last ned Firefox no
+shotPageDMCAMessage = Dette bildet er ikkje lenger tilgjengeleg på grunn av ein tredjepart sitt immaterielle krav.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Send ein e-post til { $dmca } for å be om ytterlegare informasjon.
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Vel tid
 shotPageKeepIndefinitely = Uendeleg
@@ -127,6 +144,11 @@ timeDiffFutureDays = { $num ->
 
 [[ Shotindex page ]]
 
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Feil med rendering av sida: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Søk i bilde
 shotIndexPageSearchButton
     .title = Søk
 shotIndexPageNoShotsMessage = Ingen lagra bilde.
@@ -152,6 +174,7 @@ metricsPageTotalsQueryActiveShots = Aktive bilde
 metricsPageTotalsQueryExpiredShots = Gått ut (men kan tilbakestillast)
 metricsPageTotalsQueryExpiredDeletedShots = Gått ut (og sletta)
 metricsPageShotsQueryTitle = Bilde pr. dag
+metricsPageShotsQueryDescription = Tal på bilde laga kvar dag (dei siste 30 dagane)
 metricsPageShotsQueryCount = Tal på bilde
 metricsPageShotsQueryDay = Dag
 metricsPageUsersQueryTitle = Brukarar pr. dag
@@ -161,5 +184,11 @@ metricsPageUserShotsQueryTitle = Tal på bilde pr. brukar
 metricsPageUserShotsQueryCount = Tal på brukarar
 metricsPageRetentionQueryUsers = Tal på brukarar
 metricsPageTotalRetentionQueryUsers = Tal på brukarar
+metricsPageVersionQueryTitle = Utvidingsversjon
+metricsPageVersionQueryVersion = Utvidingsversjon
 metricsPageVersionQueryLastSeen = Dag
 metricsPageHeader = Statistikk
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Generert: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (databasetid: { $time } ms)
