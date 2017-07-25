@@ -82,6 +82,9 @@ shotPageShareLink = Få ei delbar lenkje til dette skjermbildet:
 shotPagePrivacyMessage = Alle som har denne lenka kan sjå dette skjermbildet.
 shotPageCopyImageText
     .label = Kopier bildetekst
+shotPageConfirmDeletion = Er du sikker på at du vil slette dette skjermbildet permanent?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Viss du ikkje gjer noko, vil dette bildet slettast permanent { $timediff }.
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = bygg oppatt til og med { $date }
@@ -98,6 +101,7 @@ shotPageUpsellFirefox = Last ned Firefox no
 shotPageDMCAMessage = Dette bildet er ikkje lenger tilgjengeleg på grunn av ein tredjepart sitt immaterielle krav.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Send ein e-post til { $dmca } for å be om ytterlegare informasjon.
+shotPageKeepFor = Kor lenge skal dette skjermbildet haldast på?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Vel tid
 shotPageKeepIndefinitely = Uendeleg
@@ -144,6 +148,11 @@ timeDiffFutureDays = { $num ->
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Feil ved sletting av bilde: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Skjermbilda mine: søk etter { $searchTerm }
 // { $error } is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
 shotIndexPageErrorRendering = Feil med rendering av sida: { $error }
@@ -182,9 +191,12 @@ metricsPageUsersQueryCount = Tal på brukarar
 metricsPageUsersQueryDay = Dag
 metricsPageUserShotsQueryTitle = Tal på bilde pr. brukar
 metricsPageUserShotsQueryCount = Tal på brukarar
+metricsPageRetentionQueryTitle = Tilbakekalla etter veke
 metricsPageRetentionQueryUsers = Tal på brukarar
+metricsPageTotalRetentionQueryTitle = Totalt tilbakekalla
 metricsPageTotalRetentionQueryUsers = Tal på brukarar
 metricsPageVersionQueryTitle = Utvidingsversjon
+metricsPageVersionQueryUsers = Tal på brukarar som loggar inn
 metricsPageVersionQueryVersion = Utvidingsversjon
 metricsPageVersionQueryLastSeen = Dag
 metricsPageHeader = Statistikk
