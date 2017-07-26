@@ -14,6 +14,16 @@ gNoShots
 gScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skrinsyot tanpa keluar daripada Firefox.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = 
+footerLinkPrivacy = Notis Privasi
+footerLinkDMCA = Lapor Pencerobohan IP
+footerLinkDiscourse = Beri maklum balas
+footerLinkRemoveAllData = Buang Semua Data
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
