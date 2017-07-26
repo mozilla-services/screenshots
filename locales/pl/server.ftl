@@ -16,6 +16,12 @@ gScreenshotsDescription = Zrzuty ekranów dla wszystkich. Twórz, zapisuj i udo
 
 [[ Footer ]]
 
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Prywatność
+footerLinkDMCA = Zgłoś naruszenie własności intelektualnej
+footerLinkDiscourse = Wyślij opinię
+footerLinkRemoveAllData = Usuń wszystkie dane
 
 
 [[ Creating page ]]
