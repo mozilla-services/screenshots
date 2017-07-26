@@ -94,6 +94,30 @@ shotPageSharePinterest
 shotPageShareEmail
     .title = Compartir enlace vía correo electrónico
 shotPageShareLink = Obtener enlace para compartir esta captura:
+shotPagePrivacyMessage = Cualquier con el enlace puede ver esta captura
+shotPageCopyImageText
+    .label = Copiar texto de la imagen
+shotPageConfirmDeletion = ¿Estás seguro que deseas eliminar esta captura de forma permanente?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Si no haces nada, la captura se eliminará de forma permanente en { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = restaurar hasta { $date }
+shotPageExpiredMessage = Esta captura ha expirado.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Esta es la página dónde fue originalmente creada:
+shotPageDeleteButton
+    .title = Eliminar esta captura
+shotPageAbuseButton
+    .title = Reportar esta captura por abuso, spam o cualquier otro problema
+shotPageDownloadShot
+    .title = Descargar
+shotPageDownload = Descargar
+shotPageScreenshotsDescription = Capturas de pantalla hechas simples. Toma, guarda y comparte capturas de pantalla sin dejar Firefox.
+shotPageUpsellFirefox = Obtener Firefox ahora
+shotPageDMCAMessage = Esta captura ya no está disponible debido a un reclamo de derechos de autor.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Envía un correo a { $dmca } para solicitar más información.
 
 
 [[ Shotindex page ]]
