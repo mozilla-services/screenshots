@@ -54,7 +54,7 @@ exports.ShareButton = class ShareButton extends React.Component {
 class ShareButtonPanel extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {copyText: "Copy"};
+    this.state = {copy: "copy"};
     this.clickMaybeClose = this.clickMaybeClose.bind(this);
     this.keyMaybeClose = this.keyMaybeClose.bind(this);
   }
@@ -70,9 +70,9 @@ class ShareButtonPanel extends React.Component {
     let target = e.target;
     target.previousSibling.select();
     document.execCommand("copy");
-    this.setState({copyText: "Copied"});
+    this.setState({copy: "copied"});
     setTimeout(() => {
-      this.setState({copyText: "Copy"});
+      this.setState({copy: "copy"});
     }, 1000);
     sendEvent("share", "copy");
   }
@@ -119,11 +119,11 @@ class ShareButtonPanel extends React.Component {
           value={ this.props.shot.viewUrl }
           onClick={ this.onClickInputField.bind(this) }
           onChange={ function() {} /* react gives a warning otherwise */ } />
-        <button
-          className="button secondary copy-toggle"
-          onClick={ this.onClickCopyButton.bind(this) }>
-          { this.state.copyText }
-        </button>
+        <Localized id={ this.state.copy === "copy" ? "shotPageCopy" : "shotPageCopied" }>
+          <button
+            className="button secondary copy-toggle"
+            onClick={ this.onClickCopyButton.bind(this) }></button>
+        </Localized>
       </div>
       <Localized id="shotPagePrivacyMessage">
         <p className="share-visibility-notice">
