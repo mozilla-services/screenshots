@@ -14,6 +14,16 @@ gNoShots
 gScreenshotsDescription = Capturas de pantalla simples. Tomar, guardar y compartir capturas de pantalla sin dejar Firefox.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Nota de privacidad
+footerLinkDMCA = Informe de infacción de IP
+footerLinkDiscourse = Enviar opinión
+footerLinkRemoveAllData = Eliminar todos los datos
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
