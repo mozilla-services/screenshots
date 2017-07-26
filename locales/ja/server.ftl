@@ -14,6 +14,16 @@ gNoShots
 gScreenshotsDescription = スクリーンショットをもっと手軽に。Firefox を離れることなくスクリーンショットを撮影、保存、共有。
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = プライバシー通知
+footerLinkDMCA = IP 侵害を報告
+footerLinkDiscourse = フィードバックを送る
+footerLinkRemoveAllData = すべてのデータを削除
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
