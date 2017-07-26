@@ -50,6 +50,8 @@ leavePageConfirmDelete = Potrdite brisanje računa
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Za izbris računa morate imeti nameščen Firefox Screenshots
 leavePageErrorGeneric = Prišlo je do napake
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = To bo trajno izbrisalo vse podatke Firefox Screenshots.
 leavePageButtonProceed = Nadaljuj
 leavePageButtonCancel = Prekliči
 leavePageDeleted = Vsi vaši posnetki so bili izbrisani!
@@ -79,15 +81,26 @@ shotPageSharePinterest
     .title = Deli na Pinterestu
 shotPageShareEmail
     .title = Deli povezavo preko e-pošte
+shotPageShareLink = Pridobite povezavo do posnetka za deljenje:
+shotPagePrivacyMessage = Kdorkoli s povezavo si lahko ogleda ta posnetek.
 shotPageCopyImageText
     .label = Kopiraj besedilo slike
 shotPageConfirmDeletion = Ali ste prepričani, da želite trajno izbrisati ta posnetek?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Če ne storite ničesar, bo ta posnetek trajno izbrisan { $timediff }.
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = obnovi do { $date }
-shotPageExpiredMessage = Ta posnetek je potekel
+shotPageExpiredMessage = Ta posnetek je pretekel
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = To je stran, na kateri je bil narejen posnetek:
 shotPageDeleteButton
     .title = Izbriši ta posnetek
+shotPageAbuseButton
+    .title = Prijavi ta posnetek zaradi zlorabe, neželene vsebine ali drugih težav
+shotPageDownloadShot
+    .title = Prenesi
+shotPageDownload = Prenesi
 shotPageScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in delite zaslonske posnetke, ne da bi zapustili Firefox.
 shotPageUpsellFirefox = Prenesite Firefox zdaj
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
@@ -125,6 +138,7 @@ timeDiffDaysAgo = { $num ->
         [few] pred { $number } dnevi
        *[other] pred { $number } dnevi
     }
+timeDiffFutureSeconds = čez nekaj sekund
 timeDiffFutureMinutes = { $num ->
         [one] čez { $number } minuto
         [two] čez { $number } minuti
@@ -135,7 +149,7 @@ timeDiffFutureHours = { $num ->
         [one] čez { $number } uro
         [two] čez { $number } uri
         [few] čez { $number } ure
-       *[other] čez { $number } ure
+       *[other] čez { $number } ur
     }
 timeDiffFutureDays = { $num ->
         [one] čez { $number } dan
@@ -167,10 +181,15 @@ shotIndexPageConfirmShotDelete = Izbrišem ta posnetek?
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Metrika Firefox Screenshots
 metricsPageTotalsQueryActiveShots = Aktivni posnetki
+metricsPageTotalsQueryExpiredShots = Pretečen (a obnovljiv)
+metricsPageTotalsQueryExpiredDeletedShots = Pretečen (in izbrisan)
+metricsPageShotsQueryTitle = Posnetki po dnevih
+metricsPageShotsQueryDescription = Število posnetkov, ustvarjenih vsak dan (za zadnjih 30 dni)
 metricsPageShotsQueryCount = Število posnetkov
 metricsPageShotsQueryDay = Dan
 metricsPageUsersQueryCount = Število uporabnikov
 metricsPageUsersQueryDay = Dan
+metricsPageUserShotsQueryTitle = Število posnetkov na uporabnika
 metricsPageUserShotsQueryCount = Število uporabnikov
 metricsPageRetentionQueryUsers = Število uporabnikov
 metricsPageTotalRetentionQueryUsers = Število uporabnikov
