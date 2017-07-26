@@ -97,8 +97,10 @@ shotPageDownloadShot
 shotPageDownload = Sider
 shotPageScreenshotsDescription = 
 shotPageUpsellFirefox = Awi-d Firefox tura
+shotPageKeepFor = Ceḥal n wakud tuṭṭfa-agi ad tettwasekles?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Fren akud
+shotPageKeepIndefinitely = war tilas
 shotPageKeepTenMinutes = 10 n tesdatin
 shotPageKeepOneHour = 1 n usrag
 shotPageKeepOneDay = 1 n wass
