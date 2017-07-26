@@ -14,12 +14,16 @@ gNoShots
 gScreenshotsDescription = Zrzuty ekranów dla wszystkich. Twórz, zapisuj i udostępniaj zrzuty ekranu prosto z Firefoksa.
 
 
+[[ Footer ]]
+
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
 // captured in the screenshot. The default, for pages without titles, is
 // creatingPageTitleDefault.
-creatingPageTitle = Tworzenie { $title }
+creatingPageTitle = Tworzenie „{ $title }”
 creatingPageTitleDefault = strona
 
 
@@ -61,7 +65,7 @@ leavePageErrorGeneric = Wystąpił błąd
 leavePageWarning = Twoje dane w Firefox Screenshots zostaną trwale usunięte.
 leavePageButtonProceed = Kontynuuj
 leavePageButtonCancel = Anuluj
-leavePageDeleted = Wszystkie zrzuty ekranu zostały usunięte!
+leavePageDeleted = Wszystkie zrzuty ekranu zostały usunięte.
 
 
 [[ Not Found page ]]
@@ -141,12 +145,98 @@ timeDiffMinutesAgo = { $num ->
         [few] { $number } minuty temu
        *[other] { $number } minut temu
     }
+timeDiffHoursAgo = { $num ->
+        [one] godzinę temu
+        [few] { $number } godziny temu
+       *[other] { $number } godzin temu
+    }
+timeDiffDaysAgo = { $num ->
+        [one] wczoraj
+        [few] { $number } dni temu
+       *[other] { $number } dni temu
+    }
+timeDiffFutureSeconds = za kilka sekund
+timeDiffFutureMinutes = { $num ->
+        [one] za minutę
+        [few] za { $number } minuty
+       *[other] za { $number } minut
+    }
+timeDiffFutureHours = { $num ->
+        [one] za godzinę
+        [few] za { $number } godziny
+       *[other] za { $number } godzin
+    }
+timeDiffFutureDays = { $num ->
+        [one] jutro
+        [few] za { $number } dni
+       *[other] za { $number } dni
+    }
 
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Błąd podczas usuwania zrzutu: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Moje zrzuty: wyszukaj „{ $searchTerm }”
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Błąd podczas wyświetlania strony: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Przeszukaj moje zrzuty
+shotIndexPageSearchButton
+    .title = Szukaj
+shotIndexPageNoShotsMessage = Brak zrzutów.
+shotIndexPageNoShotsInvitation = Może jakiś utworzymy?
+shotIndexPageLookingForShots = Wyszukiwanie zrzutów…
+shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Nie możemy znaleźć zrzutów pasujących do wyszukiwania.
+shotIndexPageClearSearchButton
+    .title = Wyczyść wyszukiwanie
+shotIndexPageConfirmShotDelete = Usunąć ten zrzut?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Statystyki Firefox Screenshots
+metricsPageTotalsQueryTitle = Razem
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Przegląd Screenshots
+metricsPageTotalsQueryDevices = Liczba zarejestrowanych urządzeń
+metricsPageTotalsQueryActiveShots = Aktywne zrzuty
+metricsPageTotalsQueryExpiredShots = Przeterminowane (do odzysku)
+metricsPageTotalsQueryExpiredDeletedShots = Przeterminowane (usunięte)
+metricsPageShotsQueryTitle = Zrzuty dziennie
+metricsPageShotsQueryDescription = Liczba zrzutów tworzonych codziennie (przez ostatnich 30 dni)
+metricsPageShotsQueryCount = Liczba zrzutów
+metricsPageShotsQueryDay = Dzień
+metricsPageUsersQueryTitle = Liczba użytkowników dziennie
+metricsPageUsersQueryDescription = Liczba użytkowników tworzących przynajmniej jeden zrzut, dziennie (ostatnich 30 dni)
+metricsPageUsersQueryCount = Liczba użytkowników
+metricsPageUsersQueryDay = Dzień
+metricsPageUserShotsQueryTitle = Liczba zrzutów na użytkownika
+metricsPageUserShotsQueryDescription = Liczba użytkowników, którzy utworzyli około N zrzutów
+metricsPageUserShotsQueryCount = Liczba użytkowników
+metricsPageUserShotsQueryShots = Przybliżona liczba aktywnych (nieprzeterminowanych) zrzutów
+metricsPageRetentionQueryTitle = Tygodniowa retencja
+metricsPageRetentionQueryDescription = Liczba dni od pierwszego do najnowszego zrzutu użytkownika, według pierwszego tygodnia
+metricsPageRetentionQueryUsers = Liczba użytkowników
+metricsPageRetentionQueryDays = Dni od pierwszego do najnowszego zrzutu użytkownika
+metricsPageRetentionQueryFirstWeek = Tydzień, w którym użytkownik utworzył pierwszy zrzut
+metricsPageTotalRetentionQueryTitle = Całkowita retencja
+metricsPageTotalRetentionQueryDescription = Czas tworzenia zrzutów przez użytkowników, według tygodnia
+metricsPageTotalRetentionQueryUsers = Liczba użytkowników
+metricsPageTotalRetentionQueryDays = Liczba dni, podczas których użytkownik tworzył zrzuty
+metricsPageVersionQueryTitle = Wersja dodatku
+metricsPageVersionQueryDescription = Wersja dodatku użyta podczas zalogowania, podczas ostatnich 14 dni
+metricsPageVersionQueryUsers = Liczba zalogowanych użytkowników
+metricsPageVersionQueryVersion = Wersja dodatku
+metricsPageVersionQueryLastSeen = Dzień
+metricsPageHeader = Statystyki
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Utworzono: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (czas bazy danych: { $time } ms)
