@@ -14,6 +14,10 @@ gNoShots
 gScreenshotsDescription = Realizzare screenshot non è mai stato così facile. Cattura, salva e condividi le tue immagini senza uscire da Firefox.
 
 
+[[ Footer ]]
+
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
@@ -41,10 +45,10 @@ homePageCaptureRegion = Cattura un’area dello schermo
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Fai clic e trascina per selezionare l’area che ti interessa. Oppure posizionati con il mouse e fai clic: Screenshots cercherà di selezionare l’area per te. È tutto pronto? Scegli Salva per memorizzare l’immagine online oppure il pulsante con la freccia verso il basso per scaricarla sul computer.
 homePageCapturePage = Cattura una pagina
-homePageCapturePageDescription = Utilizza i pulsanti in alto a destra per catturare la pagina. Il pulsante “Salva l’area visibile” cattura l’area visualizzata sullo schermo senza scorrere la pagina, mentre “Salva l’intera schermata” ne cattura l’intero contenuto.
+homePageCapturePageDescription = Utilizza i pulsanti in alto a destra per catturare la pagina. Il pulsante “Salva l’area visibile” cattura l’area visualizzata sullo schermo senza scorrere la pagina, mentre “Salva l’intera schermata” ne cattura il contenuto completo.
 homePageSaveShare = Salva e condividi
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Quando salvi uno screenshot, Firefox aggiunge la tua immagine alla libreria online e copia il link negli appunti. L’immagine viene conservata automaticamente per due settimane, ma puoi eliminarla in qualunque momento, o modificarne la data di scadenza per mantenerla più a lungo nella libreria.
+homePageSaveShareDescription = Quando salvi uno screenshot in Firefox, la tua immagine viene aggiunta alla libreria online e il link viene copiato negli appunti. L’immagine viene conservata automaticamente per due settimane, ma puoi eliminarla in qualunque momento, o modificarne la data di scadenza per mantenerla più a lungo nella libreria.
 homePageLegalLink = Note legali
 homePagePrivacyLink = Privacy
 homePageTermsLink = Condizioni di utilizzo
@@ -73,7 +77,7 @@ notFoundPageDescription = Pagina non trovata.
 
 [[ Shot page ]]
 
-shotPageAlertErrorUpdatingExpirationTime = Errore durante il salvataggio della scadenza
+shotPageAlertErrorUpdatingExpirationTime = Errore durante la modifica della scadenza dell’immagine
 shotPageAlertErrorDeletingShot = Errore durante l’eliminazione dell’immagine
 shotPageAlertErrorUpdatingTitle = Errore durante il salvataggio del titolo
 shotPageConfirmDelete = Eliminare questa immagine in modo definitivo?
@@ -95,7 +99,7 @@ shotPageCopyImageText
     .label = Copia testo nell’immagine
 shotPageConfirmDeletion = Eliminare questa immagine in modo definitivo?
 // Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Se non viene modificato nulla, questa immagine verrà eliminata { $timediff }.
+shotPageExpirationMessage = Senza ulteriori azioni, questa immagine verrà eliminata { $timediff }.
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = ripristina fino a { $date }
