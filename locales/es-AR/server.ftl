@@ -103,6 +103,8 @@ shotPageExpiredMessage = Esta captura ha expirado.
 shotPageExpiredMessageDetails = Esta es la página de la que fue originalmente creada:
 shotPageDeleteButton
     .title = Borrar esta captura
+shotPageAbuseButton
+    .title = Informar esta captura por abuso, spam o algún otro problema
 shotPageDownloadShot
     .title = Descargar
 shotPageDownload = Descargar
@@ -181,6 +183,7 @@ shotIndexPageConfirmShotDelete = ¿Borrar esta captura?
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Métricas de Firefox Screenshots
 metricsPageTotalsQueryTitle = Totales
+metricsPageTotalsQueryDevices = Dispositivos registrados totales
 metricsPageTotalsQueryActiveShots = Capturas activas
 metricsPageTotalsQueryExpiredShots = Expirada (pero recuperable)
 metricsPageTotalsQueryExpiredDeletedShots = Expirada (y borrada)
@@ -196,7 +199,12 @@ metricsPageUserShotsQueryTitle = Número de capturas por usuario
 metricsPageUserShotsQueryCount = Número de usuarios
 metricsPageRetentionQueryTitle = Retención por semana
 metricsPageRetentionQueryUsers = Número de usuarios
+metricsPageRetentionQueryFirstWeek = Semana en la que el usuario creo la primera captura
+metricsPageTotalRetentionQueryTitle = Retención total
+metricsPageTotalRetentionQueryUsers = Número de usuarios
+metricsPageTotalRetentionQueryDays = Días que el usuario ha estado creando capturas
 metricsPageVersionQueryTitle = Versión del complemento
+metricsPageVersionQueryDescription = La versión del complemento usado durante el ingreso, en los últimos 14 días
 metricsPageVersionQueryVersion = Versión del complemento
 metricsPageVersionQueryLastSeen = Día
 metricsPageHeader = Métricas
