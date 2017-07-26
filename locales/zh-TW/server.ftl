@@ -36,15 +36,15 @@ homePageGetStarted = 開始使用
 homePageHowScreenshotsWorks = Firefox Screenshots 的原理是什麼？
 homePageGetStartedTitle = 開始使用
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = 尋找並點擊工具列中新出現的 Screenshots 圖示，Screenshots 選單就會出現在瀏覽器視窗頂部。
-homePageCaptureRegion = 拍攝一個區域
+homePageGetStartedDescription = 找到並點擊工具列中新出現的 Screenshots 圖示，Screenshots 選單就會出現在瀏覽器視窗頂部。
+homePageCaptureRegion = 選擇拍攝區域
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = 點擊並拖曳出您想要擷取的範圍，或也可將滑鼠指到想拍照的地方點擊，Screenshots 就會自動為您選擇要拍攝的範圍。覺得拍得不錯的話，即可點擊「儲存」將拍攝到的擷圖上傳到雲端平台，或是直接點擊「下載」按鈕，儲存到電腦上。
 homePageCapturePage = 拍攝整張網頁
-homePageCapturePageDescription = 可使用右上角的按鈕來拍攝整張網頁。點擊「儲存可見範圍」按鈕即可不必捲動，直接拍攝您當下看到的範圍，或是點擊「儲存完整頁面」就會把整張網頁拍下來。
+homePageCapturePageDescription = 可使用右上角的按鈕來拍攝整張網頁。點擊「儲存可見範圍」按鈕即可不必捲動，直接拍攝您當下看到的範圍，或是點擊「儲存完整頁面」拍攝整張網頁。
 homePageSaveShare = 儲存並分享
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = 拍攝擷圖時，Firefox 會將您的擷圖上傳到 Screenshots 雲端圖庫中，並將鏈結複製到您的剪貼簿。我們會自動儲存的拍攝的擷圖兩星期，但您也可以隨時修改到期日，或直接刪除圖片。
+homePageSaveShareDescription = 拍攝完成後，Firefox 會將您的擷圖上傳到 Screenshots 雲端圖庫，並將鏈結複製到您的剪貼簿。我們會自動儲存的拍攝的擷圖兩星期，但您也可以隨時修改到期日，或直接刪除圖片。
 homePageLegalLink = 法律資訊
 homePagePrivacyLink = 隱私權
 homePageTermsLink = 使用條款
