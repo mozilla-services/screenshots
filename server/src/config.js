@@ -56,6 +56,13 @@ var conf = convict({
     env: "S3_BUCKET_NAME",
     arg: "s3BucketName"
   },
+  doNotCreateS3Bucket: {
+    doc: "If true, then do not attempt to create the S3 bucket on startup",
+    format: Boolean,
+    default: false,
+    env: "DO_NOT_CREATE_S3_BUCKET",
+    arg: "doNotCreateS3Bucket"
+  },
   fxa: {
     oAuthServer: {
       doc: "The FxA OAuth server base URL",

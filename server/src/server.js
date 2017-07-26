@@ -67,20 +67,23 @@ if (config.useS3) {
   // Test a PUT to s3 because configuring this requires using the aws web interface
   // If the permissions are not set up correctly, then we want to know that asap
   var s3bucket = new AWS.S3({params: {Bucket: config.s3BucketName}});
-  mozlog.info("creating-s3-bucket", {msg: `creating ${config.s3BucketName}`, bucketName: config.s3BucketName});
 
-  // createBucket is a horribly named api; it creates a local object to access
-  // an existing bucket
-  s3bucket.createBucket(function() {
-    var params = {Key: 'test', Body: 'Hello!'};
-    s3bucket.upload(params, function(error, data) {
-      if (error) {
-        mozlog.warn("test-upload-error", {msg: "Error uploading data during test", error, bucketName: config.s3BucketName});
-      } else {
-        mozlog.info("test-upload-success", {msg: `Successfully uploaded data to ${config.s3BucketName}/test`, bucketName: config.s3BucketName})
-      }
+  if (!config.doNotCreateS3Bucket) {
+    mozlog.info("creating-s3-bucket", {msg: `creating ${config.s3BucketName}`, bucketName: config.s3BucketName});
+
+    // createBucket is a horribly named api; it creates a local object to access
+    // an existing bucket
+    s3bucket.createBucket(function() {
+      var params = {Key: 'test', Body: 'Hello!'};
+      s3bucket.upload(params, function(error, data) {
+        if (error) {
+          mozlog.warn("test-upload-error", {msg: "Error uploading data during test", error, bucketName: config.s3BucketName});
+        } else {
+          mozlog.info("test-upload-success", {msg: `Successfully uploaded data to ${config.s3BucketName}/test`, bucketName: config.s3BucketName})
+        }
+      });
     });
-  });
+  }
 }
 
 function initDatabase() {
