@@ -39,7 +39,7 @@ homePageGetStartedTitle = Per iniziare
 homePageGetStartedDescription = Trova la nuova icona Screenshots nella barra degli strumenti. Selezionala e il menu di Firefox Screenshots apparirà in alto nella finestra del browser.
 homePageCaptureRegion = Cattura un’area
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Fai clic e trascina per selezionare l’area che ti interessa. Oppure posizionati con il mouse e fai clic – Screenshots cercherà di selezionare l’area per te. È tutto pronto? Scegli Salva per memorizzare l’immagine online oppure il pulsante con la freccia verso il basso per scaricarla sul computer.
+homePageCaptureRegionDescription = Fai clic e trascina per selezionare l’area che ti interessa. Oppure posizionati con il mouse e fai clic: Screenshots cercherà di selezionare l’area per te. È tutto pronto? Scegli Salva per memorizzare l’immagine online oppure il pulsante con la freccia verso il basso per scaricarla sul computer.
 homePageCapturePage = Cattura una pagina
 homePageCapturePageDescription = Utilizza i pulsanti in alto a destra per catturare la pagina. Il pulsante “Salva l’area visibile” cattura l’area attualmente visibile senza scorrere la pagina, mentre “Salva l’intera schermata” cattura il contenuto completo della pagina.
 homePageSaveShare = Salva e condividi
@@ -128,11 +128,11 @@ shotPageKeepOneDay = 1 giorno
 shotPageKeepOneWeek = 1 settimana
 shotPageKeepTwoWeeks = 2 settimane
 shotPageKeepOneMonth = 1 mese
-shotPageSaveExpiration = salva
-shotPageCancelExpiration = annulla
+shotPageSaveExpiration = Salva
+shotPageCancelExpiration = Annulla
 shotPageDoesNotExpire = non ha scadenza
 // Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = scade { $timediff }
+shotPageExpiresIn = Scade { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = è scaduto { $timediff }
 timeDiffJustNow = adesso
