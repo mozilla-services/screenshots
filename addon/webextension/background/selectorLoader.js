@@ -64,6 +64,11 @@ this.selectorLoader = (function() {
   let loadingTabs = new Set();
 
   exports.loadModules = function(tabId, hasSeenOnboarding) {
+    // Sometimes loadModules is called when the tab is already loading.
+    // Adding a check here seems to help avoid catastrophe.
+    if (loadingTabs.has(tabId)) {
+      return Promise.resolve(null);
+    }
     let promise;
     loadingTabs.add(tabId);
     if (hasSeenOnboarding) {
