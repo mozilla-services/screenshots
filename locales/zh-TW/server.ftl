@@ -11,7 +11,7 @@ gMyShots = 我的擷圖
 gHomeLink = 首頁
 gNoShots
     .alt = 沒有找到擷取圖
-gScreenshotsDescription = 拍攝畫面擷圖變得簡單。不用離開 Firefox 就能拍照、存檔、分享擷圖。
+gScreenshotsDescription = 拍攝畫面擷圖變得簡單。不必離開 Firefox 就能拍照、存檔、分享擷圖。
 
 
 [[ Creating page ]]
@@ -41,7 +41,7 @@ homePageCaptureRegion = 拍攝一個區域
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = 點擊並拖曳出您想要擷取的範圍，或也可將滑鼠指到想拍照的地方點擊，Screenshots 就會自動為您選擇要拍攝的範圍。覺得拍得不錯的話，即可點擊「儲存」將拍攝到的擷圖上傳到雲端平台，或是直接點擊「下載」按鈕，儲存到電腦上。
 homePageCapturePage = 拍攝整張網頁
-homePageCapturePageDescription = 可使用右上角的按鈕來拍攝整張網頁。點擊「儲存可見範圍」按鈕即可不用捲動，直接拍攝您當下看到的範圍，或是點擊「儲存完整頁面」就會把整張網頁拍下來。
+homePageCapturePageDescription = 可使用右上角的按鈕來拍攝整張網頁。點擊「儲存可見範圍」按鈕即可不必捲動，直接拍攝您當下看到的範圍，或是點擊「儲存完整頁面」就會把整張網頁拍下來。
 homePageSaveShare = 儲存並分享
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = 拍攝擷圖時，Firefox 會將您的擷圖上傳到 Screenshots 雲端圖庫中，並將鏈結複製到您的剪貼簿。我們會自動儲存的拍攝的擷圖兩星期，但您也可以隨時修改到期日，或直接刪除圖片。
@@ -109,7 +109,7 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = 下載
 shotPageDownload = 下載
-shotPageScreenshotsDescription = 拍攝擷圖變得簡單。不用離開 Firefox 就能拍攝、儲存、分享畫面擷圖。
+shotPageScreenshotsDescription = 拍攝擷圖變得簡單。不必離開 Firefox 就能拍攝、儲存、分享畫面擷圖。
 shotPageUpsellFirefox = 立即下載 Firefox
 shotPageDMCAMessage = 因為第三方提出智慧財產權通知，此擷圖已被下架。
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
