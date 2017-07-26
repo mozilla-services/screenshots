@@ -13,6 +13,14 @@ gNoShots
     .alt = No shots found
 gScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Privacy Notice
+footerLinkDMCA = Report IP Infringement
+footerLinkDiscourse = Give Feedback
+footerLinkRemoveAllData = Remove All Data
 
 [[ Creating page ]]
 
