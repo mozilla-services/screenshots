@@ -190,3 +190,11 @@ shotIndexPageConfirmShotDelete = Supprimer cette capture ?
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageTotalsQueryTitle = Totaux
+metricsPageShotsQueryDay = Jour
+metricsPageUsersQueryTitle = Utilisateurs par jour
+metricsPageUsersQueryCount = Nombre d’utilisateurs
+metricsPageUsersQueryDay = Jour
+metricsPageUserShotsQueryCount = Nombre d’utilisateurs
+metricsPageTotalRetentionQueryUsers = Nombre d’utilisateurs
+metricsPageVersionQueryLastSeen = Jour
