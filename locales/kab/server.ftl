@@ -45,6 +45,8 @@ homePageCookiesLink = Inagan n tuqqna
 [[ Leave Screenshots page ]]
 
 leavePageConfirmDelete = Sentem tukksa n umiḍan
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Yessefk ad yili ɣur-k Firefox Screenshots iyebded akken ad tekkseḍ amiḍan-ik
 leavePageErrorGeneric = Teḍra-d tuccḍa
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ayagi ad yekkes ilebda akk isefka n tuṭṭufiwin n ugdil n Firefox.
@@ -62,6 +64,7 @@ notFoundPageDescription = Ulac asebter.
 
 [[ Shot page ]]
 
+shotPageAlertErrorUpdatingExpirationTime = Tuccḍa deg usekles tagara
 shotPageAlertErrorDeletingShot = Tuccḍa di tukksa n ṭṭufa
 shotPageAlertErrorUpdatingTitle = Tuccḍa deg usekles n uzwel
 shotPageConfirmDelete = Tebɣiḍ ad tekseḍ ṭṭufa-agi i lebda?
@@ -97,6 +100,8 @@ shotPageDownloadShot
 shotPageDownload = Sider
 shotPageScreenshotsDescription = 
 shotPageUpsellFirefox = Awi-d Firefox tura
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Azen-d { $dmca } akken ad tsutreḍ ugar n telɣut.
 shotPageKeepFor = Ceḥal n wakud tuṭṭfa-agi ad tettwasekles?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Fren akud
