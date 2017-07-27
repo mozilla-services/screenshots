@@ -7,15 +7,35 @@
 // Global phrases shared across pages, prefixed with 'g'
 [[ global ]]
 
+gMyShots = Minhas capturas
+gHomeLink = Início
+gNoShots
+    .alt = Capturas não encontradas
+gScreenshotsDescription = Capturas de tela de forma simples. Capture, salve e compartilhe telas sem sair do Firefox.
+
+
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Política de Privacidade
+footerLinkRemoveAllData = Remover todos os dados
 
 
 [[ Creating page ]]
 
+// Note: { $title } is a placeholder for the title of the web page
+// captured in the screenshot. The default, for pages without titles, is
+// creatingPageTitleDefault.
+creatingPageTitle = Criando { $title }
 creatingPageTitleDefault = página
 
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Capturas de tela intuitivas diretamente no navegador. Capture, salve e compartilhe telas enquanto navega na Web utilizando Firefox.
+homePageButtonMyShots = Ir para minhas capturas
 homePageTeaser = Em breve…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Download grátis
