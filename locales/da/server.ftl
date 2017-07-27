@@ -141,7 +141,9 @@ shotPageSaveExpiration = gem
 shotPageCancelExpiration = annuller
 shotPageDoesNotExpire = udløber ikke
 // Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = udløber om { $timediff }
+shotPageExpiresIn = udløber { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = udløb { $timediff }
 timeDiffJustNow = netop nu
 timeDiffMinutesAgo = { $num ->
         [one] 1 minut siden
@@ -199,6 +201,7 @@ shotIndexPageConfirmShotDelete = Slet dette skærmbillede?
 
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Statistik for Firefox Screenshots
+metricsPageTotalsQueryTitle = Totalt
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Et overblik over Screenshots
 metricsPageTotalsQueryDevices = Antal registrerede enheder
