@@ -19,6 +19,7 @@ gScreenshotsDescription = Capturas de tela de forma simples. Capture, salve e co
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkPrivacy = Política de Privacidade
+footerLinkDiscourse = Enviar opinião
 footerLinkRemoveAllData = Remover todos os dados
 
 
@@ -39,7 +40,7 @@ homePageButtonMyShots = Ir para minhas capturas
 homePageTeaser = Em breve…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Download grátis
-homePageGetStarted = Começar
+homePageGetStarted = Iniciar
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Como o Firefox Screenshots funciona
 homePageGetStartedTitle = Iniciar
@@ -76,6 +77,7 @@ notFoundPageDescription = Página não encontrada.
 
 [[ Shot page ]]
 
+shotPageAlertErrorUpdatingExpirationTime = Erro ao salvar tempo limite
 shotPageAlertErrorDeletingShot = Erro ao deletar captura
 shotPageAlertErrorUpdatingTitle = Erro ao salvar título
 shotPageConfirmDelete = Tem certeza que deseja excluir essa captura permanentemente?
@@ -91,16 +93,31 @@ shotPageSharePinterest
     .title = Compartilhar no Pinterest
 shotPageShareEmail
     .title = Compartilhar link via e-mail
+shotPageShareLink = Obter um link para compartilhar essa captura:
 shotPagePrivacyMessage = Qualquer um com o link pode ver essa captura.
 shotPageCopyImageText
     .label = Copiar texto da imagem
 shotPageConfirmDeletion = Tem certeza que deseja excluir essa captura permanentemente?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Se você não fizer nada, esta captura será excluída { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = restaurar até { $date }
 shotPageExpiredMessage = Essa captura expirou.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Essa página foi criada originalmente de:
 shotPageDeleteButton
     .title = Excluir esta captura
+shotPageAbuseButton
+    .title = Reportar essa captura por abuso, spam ou outros problemas
 shotPageDownloadShot
     .title = Download
 shotPageDownload = Download
+shotPageScreenshotsDescription = Capturas de tela de forma simples. Capture, salve e compartilhe telas sem sair do Firefox.
+shotPageUpsellFirefox = Baixe o Firefox agora
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Por favor inclua a URL dessa captura no seu e-mail: { $url }
+shotPageKeepFor = Quanto tempo essa captura deve ficar armazenada?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Selecionar tempo
 shotPageKeepIndefinitely = Indefinidamente
@@ -118,6 +135,18 @@ shotPageExpiresIn = expira { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = expirou { $timediff }
 timeDiffJustNow = agora
+timeDiffMinutesAgo = { $num ->
+        [one] 1 minuto atrás
+       *[other] { $number } minutos atrás
+    }
+timeDiffHoursAgo = { $num ->
+        [one] 1 hora atrás
+       *[other] { $number } horas atrás
+    }
+timeDiffDaysAgo = { $num ->
+        [one] ontem
+       *[other] { $number } dias atrás
+    }
 timeDiffFutureSeconds = em poucos minutos
 timeDiffFutureMinutes = { $num ->
         [one] em 1 minuto
@@ -151,6 +180,7 @@ shotIndexPageNoShotsMessage = Capturas não salvas.
 shotIndexPageNoShotsInvitation = Vai lá, crie algum.
 shotIndexPageLookingForShots = Procurando por suas capturas...
 shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Não encontramos capturas que correspondam com sua busca.
 shotIndexPageClearSearchButton
     .title = Limpar pesquisa
 shotIndexPageConfirmShotDelete = Excluir esta captura?
@@ -173,8 +203,11 @@ metricsPageShotsQueryDescription = Número de capturas criados por dia (nos últ
 metricsPageShotsQueryCount = Número de capturas
 metricsPageShotsQueryDay = Dia
 metricsPageUsersQueryTitle = Usuários por dia
+metricsPageUsersQueryDescription = Número de usuário que criaram pelo menos uma captura, por dia (últimos 30 dias)
 metricsPageUsersQueryCount = Número de usuários
 metricsPageUsersQueryDay = Dia
+metricsPageUserShotsQueryTitle = Número de capturas por usuário
+metricsPageUserShotsQueryDescription = Número de usuário que tem cerca de N capturas no total
 metricsPageUserShotsQueryCount = Número de usuários
 metricsPageRetentionQueryUsers = Número de usuários
 metricsPageTotalRetentionQueryTitle = Retenção total
