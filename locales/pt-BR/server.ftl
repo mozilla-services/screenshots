@@ -43,7 +43,12 @@ homePageGetStarted = Começar
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Como o Firefox Screenshots funciona
 homePageGetStartedTitle = Iniciar
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Encontre o novo ícone do Screenshots na sua barra de ferramenta. Selecione e o menu do Screenshots irá aparecer no topo de janela do seu navegador.
+homePageCaptureRegion = Capturar uma região
+homePageCapturePage = Capturar uma página
 homePageSaveShare = Salvar e compartilhar
+homePageLegalLink = Legal
 homePagePrivacyLink = Privacidade
 homePageTermsLink = Termos
 homePageCookiesLink = Cookies
@@ -52,23 +57,44 @@ homePageCookiesLink = Cookies
 [[ Leave Screenshots page ]]
 
 leavePageConfirmDelete = Confirmar exclusão da conta
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Você deve ter o Firefox Screenshots instalado para remover sua conta
 leavePageErrorGeneric = Ocorreu um erro
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Isso irá apagar permanentemente todos os seus dados do Firefox Screenshots.
 leavePageButtonProceed = Prosseguir
 leavePageButtonCancel = Cancelar
+leavePageDeleted = Todas as suas capturas serão apagadas!
 
 
 [[ Not Found page ]]
 
 notFoundPageTitle = Página não encontrada
+notFoundPageIntro = Oops.
 notFoundPageDescription = Página não encontrada.
 
 
 [[ Shot page ]]
 
+shotPageAlertErrorDeletingShot = Erro ao deletar captura
+shotPageAlertErrorUpdatingTitle = Erro ao salvar título
+shotPageConfirmDelete = Tem certeza que deseja excluir essa captura permanentemente?
 shotPageShareButton
     .title = Compartilhar
 shotPageCopy = Copiar
 shotPageCopied = Copiado
+shotPageShareFacebook
+    .title = Compartilhar no Facebook
+shotPageShareTwitter
+    .title = Compartilhar no Twitter
+shotPageSharePinterest
+    .title = Compartilhar no Pinterest
+shotPageShareEmail
+    .title = Compartilhar link via e-mail
+shotPagePrivacyMessage = Qualquer um com o link pode ver essa captura.
+shotPageCopyImageText
+    .label = Copiar texto da imagem
+shotPageConfirmDeletion = Tem certeza que deseja excluir essa captura permanentemente?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Selecionar tempo
 shotPageKeepIndefinitely = Indefinidamente
