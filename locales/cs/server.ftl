@@ -14,6 +14,16 @@ gNoShots
 gScreenshotsDescription = Jednoduchá tvorba snímků webových stránek. Vytvářejte, ukládejte i sdílejte přímo z Firefoxu.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Zásady ochrany soukromí
+footerLinkDMCA = Nahlásit zneužití IP adresy
+footerLinkDiscourse = Váš názor
+footerLinkRemoveAllData = Odstranit všechna data
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
