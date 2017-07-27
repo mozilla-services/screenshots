@@ -111,7 +111,7 @@ shotPageExpirationMessage = Senza ulteriori azioni, questa immagine verrà elimi
 shotPageRestoreButton = ripristina fino a { $date }
 shotPageExpiredMessage = Questa immagine è scaduta.
 // Note: This phrase is followed by an empty line, then the URL of the source page
-shotPageExpiredMessageDetails = Questa è la pagina originale da cui è stata creata:
+shotPageExpiredMessageDetails = Pagina originale da cui l’immagine è stata creata:
 shotPageDeleteButton
     .title = Elimina questa immagine
 shotPageAbuseButton
@@ -140,7 +140,7 @@ shotPageKeepTwoWeeks = 2 settimane
 shotPageKeepOneMonth = 1 mese
 shotPageSaveExpiration = Salva
 shotPageCancelExpiration = Annulla
-shotPageDoesNotExpire = non ha scadenza
+shotPageDoesNotExpire = nessuna scadenza
 // Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = Scade { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
