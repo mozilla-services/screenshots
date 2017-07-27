@@ -14,6 +14,16 @@ gNoShots
 gScreenshotsDescription = Fota wobrazowki jednorje činjene. Čińće, składujće a dźělće fota wobrazowki bjez toho, zo byšće Firefox wopušćił.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Zdźělenka priwatnosće
+footerLinkDMCA = Zranjenje duchowneho swójstwa zdźělić
+footerLinkDiscourse = Waše měnjenje prajić
+footerLinkRemoveAllData = Wšě daty wotstronić
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
