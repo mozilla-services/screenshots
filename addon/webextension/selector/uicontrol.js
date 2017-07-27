@@ -180,7 +180,7 @@ this.uicontrol = (function() {
     },
     onSavePreview: () => {
       sendEvent(`save-${captureType.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}`, "save-preview-button");
-      shooter.takeShot(captureType, selectedPos);
+      shooter.takeShot(captureType, selectedPos, dataUrl);
     },
     onDownloadPreview: () => {
       sendEvent(`download-${captureType.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}`, "download-preview-button");
