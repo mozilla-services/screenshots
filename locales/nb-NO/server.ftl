@@ -14,6 +14,16 @@ gNoShots
 gScreenshotsDescription = Skjermbilder gjort enkelt. Ta, lagre og del skjermbilder uten å forlate Firefox.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Personvernbestemmelser
+footerLinkDMCA = Rapporter åndsverkovertredelse 
+footerLinkDiscourse = Gi tilbakemelding
+footerLinkRemoveAllData = Slett alle data
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
