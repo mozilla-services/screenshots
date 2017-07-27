@@ -14,6 +14,13 @@ gNoShots
 gScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in delite zaslonske posnetke, ne da bi zapustili Firefox.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Obvestilo o zasebnosti
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
