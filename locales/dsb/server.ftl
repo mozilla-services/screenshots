@@ -14,6 +14,16 @@ gNoShots
 gScreenshotsDescription = Fota wobrazowki jadnorje nagótowane. Gótujśo, składujśo a źělśo fota wobrazowki, mimo až Firefox spušćaśo.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Wuzjawjenje priwatnosći
+footerLinkDMCA = Pśekśiwjenje duchnego swójstwa k wěsći daś
+footerLinkDiscourse = Wašo měnjenje groniś
+footerLinkRemoveAllData = Wše daty wótwónoźeś
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
