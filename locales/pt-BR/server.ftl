@@ -95,6 +95,12 @@ shotPagePrivacyMessage = Qualquer um com o link pode ver essa captura.
 shotPageCopyImageText
     .label = Copiar texto da imagem
 shotPageConfirmDeletion = Tem certeza que deseja excluir essa captura permanentemente?
+shotPageExpiredMessage = Essa captura expirou.
+shotPageDeleteButton
+    .title = Excluir esta captura
+shotPageDownloadShot
+    .title = Download
+shotPageDownload = Download
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Selecionar tempo
 shotPageKeepIndefinitely = Indefinidamente
@@ -106,24 +112,74 @@ shotPageKeepTwoWeeks = 2 semanas
 shotPageKeepOneMonth = 1 mês
 shotPageSaveExpiration = salvar
 shotPageCancelExpiration = cancelar
+shotPageDoesNotExpire = não expira
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = expira { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = expirou { $timediff }
+timeDiffJustNow = agora
+timeDiffFutureSeconds = em poucos minutos
+timeDiffFutureMinutes = { $num ->
+        [one] em 1 minuto
+       *[other] em { $number } minutos
+    }
+timeDiffFutureHours = { $num ->
+        [one] em 1 hora
+       *[other] em { $number } horas
+    }
+timeDiffFutureDays = { $num ->
+        [one] amanhã
+       *[other] em { $number } dias
+    }
 
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Erro ao excluir captura: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Minhas capturas: procurar por { $searchTerm }
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Erro ao renderizar página: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Procurar minhas capturas
 shotIndexPageSearchButton
     .title = Pesquisar
+shotIndexPageNoShotsMessage = Capturas não salvas.
+shotIndexPageNoShotsInvitation = Vai lá, crie algum.
+shotIndexPageLookingForShots = Procurando por suas capturas...
+shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageClearSearchButton
+    .title = Limpar pesquisa
+shotIndexPageConfirmShotDelete = Excluir esta captura?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Métricas do Firefox Screenshots
 metricsPageTotalsQueryTitle = Totais
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Visão geral do Screenshots
+metricsPageTotalsQueryDevices = Total de dispositivos registrados
+metricsPageTotalsQueryActiveShots = Capturas ativas
+metricsPageTotalsQueryExpiredShots = Expirou (mas é recuperável)
+metricsPageTotalsQueryExpiredDeletedShots = Expirou (e deletou)
+metricsPageShotsQueryTitle = Capturas por Dia
+metricsPageShotsQueryDescription = Número de capturas criados por dia (nos últimos 30 dias)
+metricsPageShotsQueryCount = Número de capturas
 metricsPageShotsQueryDay = Dia
 metricsPageUsersQueryTitle = Usuários por dia
 metricsPageUsersQueryCount = Número de usuários
 metricsPageUsersQueryDay = Dia
 metricsPageUserShotsQueryCount = Número de usuários
 metricsPageRetentionQueryUsers = Número de usuários
+metricsPageTotalRetentionQueryTitle = Retenção total
 metricsPageTotalRetentionQueryUsers = Número de usuários
+metricsPageTotalRetentionQueryDays = Dias que o usuário tem criado capturas
+metricsPageVersionQueryTitle = Versão da extensão
 metricsPageVersionQueryLastSeen = 
 metricsPageHeader = Métricas
