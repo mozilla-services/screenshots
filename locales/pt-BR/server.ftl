@@ -39,6 +39,10 @@ homePageButtonMyShots = Ir para minhas capturas
 homePageTeaser = Em breve…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Download grátis
+homePageGetStarted = Começar
+// Note: do not translate 'Firefox Screenshots' when translating this string
+homePageHowScreenshotsWorks = Como o Firefox Screenshots funciona
+homePageGetStartedTitle = Iniciar
 homePageSaveShare = Salvar e compartilhar
 homePagePrivacyLink = Privacidade
 homePageTermsLink = Termos
