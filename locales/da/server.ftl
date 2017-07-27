@@ -19,6 +19,7 @@ gScreenshotsDescription = Skærmbilleder helt enkelt. Tag, gem og del skærmbill
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkPrivacy = Privatlivspolitik
+footerLinkDMCA = Indberet overtrædelse af ophavsrettigheder
 footerLinkDiscourse = Giv feedback
 footerLinkRemoveAllData = Fjern alle data
 
@@ -47,8 +48,14 @@ homePageGetStartedTitle = Kom i gang
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Find det nye Screenshots-ikon på din værktøjslinje. Vælg det, og Screenshots-menuen vises øverst i browservinduet.
 homePageCaptureRegion = Gem et område
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Klik og træk for at vælge det område, du vil tage et skærmbillede af. Eller hold musen over et element på siden og klik. Vælg "Gem" for at kunne tilgå dit skærmbillede på nettet eller knappen med pil nedad for at hente billedet ned på din computer.
 homePageCapturePage = Gem en side
+homePageCapturePageDescription = Bruger knapperne i højre øverste hjørne for at tage skærmbilleder af hele sider. Knappen "Gem synligt område" vil tage et skærmbillede af det område, du kan se uden at scrolle - mens "Gem hele siden" vil gemme et skærmbillede af alt på siden.
 homePageSaveShare = Gem og del
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Når du tager et skærmbillede, sender Firefox det til dit online Screenshots-bibliotek og gemmer linket til din udklipsholder. Vi gemmer automatisk dit skærmbillede i to uger, men du kan slette skærmbilleder når som helst eller ændre udløbsdatoen for at beholde billederne i dit bibliotek i længere tid.
+homePageLegalLink = Juridisk information
 homePagePrivacyLink = Privatliv
 homePageTermsLink = Betingelser
 homePageCookiesLink = Cookies
@@ -116,6 +123,8 @@ shotPageScreenshotsDescription = Skærmbilleder helt enkelt. Tag, gem og del sk�
 shotPageUpsellFirefox = Hent Firefox nu
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Send en mail til { $dmca } for at få yderligere oplysninger.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Hvis dine skærmbilleder er genstand for mange fordringer, kan vi tilbagekalde din adgang til Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Inkluder dette billedes URL i din mail: { $url }
 shotPageKeepFor = Hvor længe skal dette skærmbillede beholdes?
