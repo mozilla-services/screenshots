@@ -14,6 +14,16 @@ gNoShots
 gScreenshotsDescription = Képernyőképek egyszerűen. Készítsen, mentsen és ossza meg a képernyőképeit a Firefox elhagyása nélkül.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Adatvédelmi nyilatkozat
+footerLinkDMCA = Szellemi tulajdont érintő jogsértés jelentése
+footerLinkDiscourse = Adjon visszajelzést
+footerLinkRemoveAllData = Minden adat törlése
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
