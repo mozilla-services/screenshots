@@ -19,6 +19,7 @@ gScreenshotsDescription = Capturas de tela de forma simples. Capture, salve e co
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkPrivacy = Política de Privacidade
+footerLinkDMCA = Reportar infrações de IP
 footerLinkDiscourse = Enviar opinião
 footerLinkRemoveAllData = Remover todos os dados
 
@@ -50,7 +51,10 @@ homePageCaptureRegion = Capturar uma região
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar. Ou simplesmente clique -- o Screenshots irá selecionar a área automaticamente pra você. Gostou do que viu? Clique em Salvar para acessar sua captura on-line ou no botão com a seta para baixo para baixar para seu computador.
 homePageCapturePage = Capturar uma página
+homePageCapturePageDescription = Utilize os botões no canto superior direito para capturar telas inteiras. O botão Salvar Visível irá capturar a área que você vê sem rolar a página, e Salvar Página Inteira irá capturar toda a página.
 homePageSaveShare = Salvar e compartilhar
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Quando você captura, Firefox armazena seus capturas de tela na sua biblioteca on-line do Screenshots e copia o link para sua área de transferência. Nós armazenamos suas capturas automaticamente por duas semanas, mas você pode excluir capturas a qualquer momento ou mudar a data de validade para mantê-las em sua biblioteca por mais tempo.
 homePageLegalLink = Legal
 homePagePrivacyLink = Privacidade
 homePageTermsLink = Termos
@@ -117,6 +121,11 @@ shotPageDownloadShot
 shotPageDownload = Download
 shotPageScreenshotsDescription = Capturas de tela de forma simples. Capture, salve e compartilhe telas sem sair do Firefox.
 shotPageUpsellFirefox = Baixe o Firefox agora
+shotPageDMCAMessage = Essas capturas não estão mais disponíveis devido reclamação de propriedade intelectual de terceiros.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Por favor, envie um e-mail para { $dmca } para obter mais informações.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Se suas capturas estiverem associadas a múltiplas reclamações, poderemos revogar seu acesso ao Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Por favor inclua a URL dessa captura no seu e-mail: { $url }
 shotPageKeepFor = Quanto tempo essa captura deve ficar armazenada?
@@ -211,8 +220,14 @@ metricsPageUsersQueryDay = Dia
 metricsPageUserShotsQueryTitle = Número de capturas por usuário
 metricsPageUserShotsQueryDescription = Número de usuário que tem cerca de N capturas no total
 metricsPageUserShotsQueryCount = Número de usuários
+metricsPageUserShotsQueryShots = Número aproximado de capturas ativas (não expiradas)
+metricsPageRetentionQueryTitle = Retenção por semana
+metricsPageRetentionQueryDescription = Número de dias da primeiro captura de um usuário até a mais recente, agrupadas por semana
 metricsPageRetentionQueryUsers = Número de usuários
+metricsPageRetentionQueryDays = Dias da primeira captura do usuário até a mais recente
+metricsPageRetentionQueryFirstWeek = Semana da criação da primeira captura do usuário
 metricsPageTotalRetentionQueryTitle = Retenção total
+metricsPageTotalRetentionQueryDescription = Período de tempo que usuários criaram capturas, agrupadas por semana
 metricsPageTotalRetentionQueryUsers = Número de usuários
 metricsPageTotalRetentionQueryDays = Dias que o usuário tem criado capturas
 metricsPageVersionQueryTitle = Versão da extensão
