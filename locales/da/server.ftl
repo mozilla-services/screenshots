@@ -198,3 +198,25 @@ metricsPageShotsQueryDescription = Antal skærmbilleder taget hver dag (de senes
 metricsPageShotsQueryCount = Antal skærmbilleder
 metricsPageShotsQueryDay = Dag
 metricsPageUsersQueryTitle = Brugere per dag
+metricsPageUsersQueryDescription = Antal brugere, der har taget mindst ét skærmbillede om dagen (de seneste 30 dage)
+metricsPageUsersQueryCount = Antal brugere
+metricsPageUsersQueryDay = Dag
+metricsPageUserShotsQueryTitle = Antal skærmbilleder per bruger
+metricsPageUserShotsQueryDescription = Antal brugere, der har omkring N skærmbilleder i alt
+metricsPageUserShotsQueryCount = Antal brugere
+metricsPageUserShotsQueryShots = Anslået antal aktive (ikke udløbne) skærmbilleder
+metricsPageRetentionQueryUsers = Antal brugere
+metricsPageRetentionQueryDays = Dage fra brugerens første til brugerens seneste skærmbillede
+metricsPageRetentionQueryFirstWeek = Uge, hvor brugeren først tog et skærmbillede
+metricsPageTotalRetentionQueryUsers = Antal brugere
+metricsPageTotalRetentionQueryDays = Dage, brugeren har taget skærmbilleder
+metricsPageVersionQueryTitle = Tilføjelses-version
+metricsPageVersionQueryDescription = Den tilføjelses-version, der blev brugt under login i de seneste 14 dage
+metricsPageVersionQueryUsers = Antal brugere, der logger ind
+metricsPageVersionQueryVersion = Tilføjelses-version
+metricsPageVersionQueryLastSeen = Dag
+metricsPageHeader = Statistik
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Genereret den: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (databasetid: { $time }ms)
