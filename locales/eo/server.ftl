@@ -14,6 +14,16 @@ gNoShots
 gScreenshotsDescription = Ekrankopioj, simple faritaj. Kopii, konservi kaj dividi ekrankopiojn sen forlasi Firefox.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Rimarko pri privateco
+footerLinkDMCA = Raporti malobservon de IP
+footerLinkDiscourse = Sendi komentojn
+footerLinkRemoveAllData = Forigi ĉiujn datumojn
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
