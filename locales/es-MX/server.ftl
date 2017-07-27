@@ -224,3 +224,19 @@ metricsPageUserShotsQueryShots = Número aproximado de capturas activas (no expi
 metricsPageRetentionQueryTitle = Retención por semana
 metricsPageRetentionQueryDescription = Número de días entre la primera y última captura de un usuario
 metricsPageRetentionQueryUsers = Número de usuarios
+metricsPageRetentionQueryDays = Días transcurridos entre la primera y la última captura del usuario
+metricsPageRetentionQueryFirstWeek = Semana en la que el usuario creó la primera captura
+metricsPageTotalRetentionQueryTitle = Retención total
+metricsPageTotalRetentionQueryDescription = Periodo de tiempo en que los usuarios han estado creando capturas, agrupado por semana
+metricsPageTotalRetentionQueryUsers = Número de usuarios
+metricsPageTotalRetentionQueryDays = Días desde que el usuario ha estado creando capturas
+metricsPageVersionQueryTitle = Versión del complemento
+metricsPageVersionQueryDescription = La versión del complemento usado durante el inicio de sesión, en los últimos 14 días
+metricsPageVersionQueryUsers = Número de usuarios iniciando sesión
+metricsPageVersionQueryVersion = Versión del complemento
+metricsPageVersionQueryLastSeen = Día
+metricsPageHeader = Métricas
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Generada el: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (tiempo en la base de datos: { $time }ms)
