@@ -121,6 +121,7 @@ shotPageDownloadShot
 shotPageDownload = Hent
 shotPageScreenshotsDescription = Skærmbilleder helt enkelt. Tag, gem og del skærmbilleder uden af forlade Firefox.
 shotPageUpsellFirefox = Hent Firefox nu
+shotPageDMCAMessage = Dette skærmbillede er ikke længere tilgængeligt, fordi tredjepart har gjort krav på den intellektuelle ejendomsret.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Send en mail til { $dmca } for at få yderligere oplysninger.
 // Note: do not translate 'Firefox Screenshots' when translating this string
