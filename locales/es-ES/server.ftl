@@ -13,6 +13,12 @@ gNoShots
     .alt = No se han encontrado capturas
 
 
+[[ Footer ]]
+
+footerLinkDiscourse = Enviar comentario
+footerLinkRemoveAllData = Eliminar todos los datos
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
@@ -97,6 +103,8 @@ shotPageExpirationMessage = Si no haces nada, la captura se eliminará de forma 
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = restaurar hasta { $date }
 shotPageExpiredMessage = Esta captura ha expirado.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Esta es la página de la que se originó en un principio:
 shotPageDeleteButton
     .title = Eliminar esta captura
 shotPageAbuseButton
@@ -194,9 +202,18 @@ metricsPageUsersQueryDay = Día
 metricsPageUserShotsQueryTitle = Número de capturas por usuario
 metricsPageUserShotsQueryCount = Número de usuarios
 metricsPageUserShotsQueryShots = Número aproximado de capturas activas (no expiradas)
+metricsPageRetentionQueryDescription = Número de días entre la primera y última captura de un usuario
 metricsPageRetentionQueryUsers = Número de usuarios
+metricsPageRetentionQueryDays = Días transcurridos entre la primera y la última captura del usuario
+metricsPageRetentionQueryFirstWeek = Semana en la que el usuario creó la primera captura
 metricsPageTotalRetentionQueryUsers = Número de usuarios
 metricsPageTotalRetentionQueryDays = Días en los que el usuario ha creado capturas
 metricsPageVersionQueryTitle = Versión del complemento
+metricsPageVersionQueryDescription = La versión del complemento utilizada al iniciar sesión, en los últimos 14 días
+metricsPageVersionQueryUsers = Número de usuarios que inician sesión
 metricsPageVersionQueryVersion = Versión del complemento
 metricsPageVersionQueryLastSeen = Día
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Generada el: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (database time: { $time }ms)
