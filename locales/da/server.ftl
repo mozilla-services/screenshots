@@ -34,6 +34,8 @@ creatingPageTitleDefault = side
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Intuitive skærmbilleder direkte i din browser. Tag, gem og del skærmbilleder, mens du bruger nettet med Firefox.
 homePageButtonMyShots = Gå til Mine skærmbilleder
 homePageTeaser = Kommer snart…
 homePageDownloadFirefoxTitle = Firefox
@@ -174,6 +176,7 @@ shotIndexPageSearchPlaceholder
 shotIndexPageSearchButton
     .title = Søg
 shotIndexPageNoShotsMessage = Ingen gemte skærmbilleder.
+shotIndexPageNoShotsInvitation = Fortsæt, tag nogle.
 shotIndexPageLookingForShots = Leder efter dine skærmbilleder...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Vi kan ikke finde nogle skærmbilleder, der matcher din søgning.
@@ -205,9 +208,11 @@ metricsPageUserShotsQueryTitle = Antal skærmbilleder per bruger
 metricsPageUserShotsQueryDescription = Antal brugere, der har omkring N skærmbilleder i alt
 metricsPageUserShotsQueryCount = Antal brugere
 metricsPageUserShotsQueryShots = Anslået antal aktive (ikke udløbne) skærmbilleder
+metricsPageRetentionQueryDescription = Antal dage fra en brugers første skærmbillede til det seneste skærmbillede, grupperet efter start-uge
 metricsPageRetentionQueryUsers = Antal brugere
 metricsPageRetentionQueryDays = Dage fra brugerens første til brugerens seneste skærmbillede
 metricsPageRetentionQueryFirstWeek = Uge, hvor brugeren først tog et skærmbillede
+metricsPageTotalRetentionQueryDescription = Hvor længe brugere har taget skærmbilleder, grupperet efter uge
 metricsPageTotalRetentionQueryUsers = Antal brugere
 metricsPageTotalRetentionQueryDays = Dage, brugeren har taget skærmbilleder
 metricsPageVersionQueryTitle = Tilføjelses-version
