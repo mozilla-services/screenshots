@@ -181,5 +181,12 @@ metricsPageTotalRetentionQueryTitle = Retenção total
 metricsPageTotalRetentionQueryUsers = Número de usuários
 metricsPageTotalRetentionQueryDays = Dias que o usuário tem criado capturas
 metricsPageVersionQueryTitle = Versão da extensão
+metricsPageVersionQueryDescription = A versão da extensão usado durante o login, nos últimos 14 dias
+metricsPageVersionQueryUsers = Número de usuários autenticados
+metricsPageVersionQueryVersion = Versão da Extensão
 metricsPageVersionQueryLastSeen = 
 metricsPageHeader = Métricas
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Gerado em: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (hora do banco: { $time }ms)
