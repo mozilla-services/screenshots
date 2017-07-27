@@ -200,6 +200,8 @@ shotIndexPageConfirmShotDelete = Supprimer cette capture ?
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Statistiques de Firefox Screenshots
 metricsPageTotalsQueryTitle = Totaux
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Vue d’ensemble de Screenshots
@@ -218,3 +220,6 @@ metricsPageVersionQueryTitle = Version du module
 metricsPageVersionQueryUsers = Nombre d’utilisateurs connectés
 metricsPageVersionQueryVersion = Version du module
 metricsPageVersionQueryLastSeen = Jour
+metricsPageHeader = Statistiques
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Généré le : { $created }
