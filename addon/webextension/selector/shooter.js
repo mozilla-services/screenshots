@@ -63,7 +63,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
 
   let isSaving = null;
 
-  exports.takeShot = function(captureType, selectedPos) {
+  exports.takeShot = function(captureType, selectedPos, url) {
     // isSaving indicates we're aleady in the middle of saving
     // we use a timeout so in the case of a failure the button will
     // still start working again
@@ -92,7 +92,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     if (buildSettings.captureText) {
       captureText = util.captureEnclosedText(selectedPos);
     }
-    let dataUrl = screenshotPage(selectedPos);
+    let dataUrl = url || screenshotPage(selectedPos);
     if (dataUrl) {
       shotObject.delAllClips();
       shotObject.addClip({
