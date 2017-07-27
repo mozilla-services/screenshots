@@ -16,6 +16,12 @@ gScreenshotsDescription = Capturas de pantalla simples. Tomar, guardar y compart
 
 [[ Footer ]]
 
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Aviso de privacidad
+footerLinkDMCA = Reportar infracción de IP
+footerLinkDiscourse = Enviar comentario
+footerLinkRemoveAllData = Eliminar todos los datos
 
 
 [[ Creating page ]]
@@ -118,12 +124,103 @@ shotPageUpsellFirefox = Obtener Firefox ahora
 shotPageDMCAMessage = Esta captura ya no está disponible debido a un reclamo de derechos de autor.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Envía un correo a { $dmca } para solicitar más información.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Si tus capturas fueran objeto de múltiples reclamos, podemos revocarte el acceso a Firefox Screenshots.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Por favor, incluye la URL de esta captura en tu correo electrónico: { $url }
+shotPageKeepFor = ¿Qué tanto esta captura debe ser mantenida?
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Selecciona tiempo
+shotPageKeepIndefinitely = Indefinidamente
+shotPageKeepTenMinutes = 10 minutos
+shotPageKeepOneHour = 1 hora
+shotPageKeepOneDay = 1 día
+shotPageKeepOneWeek = 1 semana
+shotPageKeepTwoWeeks = 2 semanas
+shotPageKeepOneMonth = 1 mes
+shotPageSaveExpiration = guardar
+shotPageCancelExpiration = cancelar
+shotPageDoesNotExpire = no expira
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = expira en { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = expiró hace { $timediff }
+timeDiffJustNow = justo ahora
+timeDiffMinutesAgo = { $num ->
+        [one] hace 1 minuto
+       *[other] hace { $number } minutos
+    }
+timeDiffHoursAgo = { $num ->
+        [one] hace 1 hora
+       *[other] hace { $number } horas
+    }
+timeDiffDaysAgo = { $num ->
+        [one] ayer
+       *[other] hace { $number } días
+    }
+timeDiffFutureSeconds = en unos segundos
+timeDiffFutureMinutes = { $num ->
+        [one] en 1 minuto
+       *[other] en { $number } minutos
+    }
+timeDiffFutureHours = { $num ->
+        [one] en 1 hora
+       *[other] en { $number } horas
+    }
+timeDiffFutureDays = { $num ->
+        [one] mañana
+       *[other] en { $number } días
+    }
 
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Error eliminando captura: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Mis capturas: buscar por { $searchTerm }
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Error al renderizar la página: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Buscar mis capturas
+shotIndexPageSearchButton
+    .title = Buscar
+shotIndexPageNoShotsMessage = No hay capturas guardadas.
+shotIndexPageNoShotsInvitation = Adelante, crea una.
+shotIndexPageLookingForShots = Buscando tus capturas...
+shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = No pudimos encontrar ninguna captura que coincida con tu búsqueda.
+shotIndexPageClearSearchButton
+    .title = Limpiar búsqueda
+shotIndexPageConfirmShotDelete = ¿Eliminar esta captura?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Métricas de Firefox Screenshots
+metricsPageTotalsQueryTitle = Totales
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Vista global de Screenshots
+metricsPageTotalsQueryDevices = Total de dispositivos registrados
+metricsPageTotalsQueryActiveShots = Capturas activas
+metricsPageTotalsQueryExpiredShots = Expirada (pero recuperable)
+metricsPageTotalsQueryExpiredDeletedShots = Expirada (y eliminada)
+metricsPageShotsQueryTitle = Capturas por día
+metricsPageShotsQueryDescription = Número de capturas creadas cada día (por los últimos 30 días)
+metricsPageShotsQueryCount = Número de capturas
+metricsPageShotsQueryDay = Día
+metricsPageUsersQueryTitle = Usuarios por día
+metricsPageUsersQueryDescription = Número de usuarios quienes crearon al menos una captura por día (en los últimos 30 días)
+metricsPageUsersQueryCount = Número de usuarios
+metricsPageUsersQueryDay = Día
+metricsPageUserShotsQueryTitle = Número de capturas por usuario
+metricsPageUserShotsQueryDescription = El número de usuarios quienes tienen cerca de N cantidad de capturas
+metricsPageUserShotsQueryCount = Número de usuarios
+metricsPageUserShotsQueryShots = Número aproximado de capturas activas (no expiradas)
+metricsPageRetentionQueryTitle = Retención por semana
+metricsPageRetentionQueryDescription = Número de días entre la primera y última captura de un usuario
+metricsPageRetentionQueryUsers = Número de usuarios
