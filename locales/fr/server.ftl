@@ -14,6 +14,14 @@ gNoShots
 gScreenshotsDescription = Des captures en un clin d’œil. Capturez l’écran, enregistrez et partagez sans quitter Firefox.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Politique de confidentialité
+footerLinkRemoveAllData = Supprimer toutes les données
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
@@ -197,4 +205,7 @@ metricsPageUsersQueryCount = Nombre d’utilisateurs
 metricsPageUsersQueryDay = Jour
 metricsPageUserShotsQueryCount = Nombre d’utilisateurs
 metricsPageTotalRetentionQueryUsers = Nombre d’utilisateurs
+metricsPageVersionQueryTitle = Version du module
+metricsPageVersionQueryUsers = Nombre d’utilisateurs connectés
+metricsPageVersionQueryVersion = Version du module
 metricsPageVersionQueryLastSeen = Jour
