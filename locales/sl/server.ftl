@@ -19,6 +19,8 @@ gScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkPrivacy = Obvestilo o zasebnosti
+footerLinkDiscourse = Sporočite nam svoje mnenje
+footerLinkRemoveAllData = Odstrani vse podatke
 
 
 [[ Creating page ]]
