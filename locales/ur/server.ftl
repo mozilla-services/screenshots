@@ -26,6 +26,8 @@ creatingPageTitleDefault = صفحہ
 homePageDownloadFirefoxTitle = Firefox
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots کیسے کام کرتا ہے
+homePageSaveShare = محفوظ کریں اور شیئر کریں
+homePagePrivacyLink = رازداری
 
 
 [[ Leave Screenshots page ]]
@@ -35,6 +37,8 @@ leavePageButtonCancel = منسوخ کریں
 
 [[ Not Found page ]]
 
+notFoundPageTitle = صفہہ نہیں ملا
+notFoundPageIntro = اف
 
 
 [[ Shot page ]]
@@ -52,6 +56,7 @@ shotPageUpsellFirefox = Firefox ابھی حاصل کریں
 shotPageSelectTime = وقت کا انتخاب کریں
 shotPageSaveExpiration = محفوظ کریں
 shotPageCancelExpiration = منسوخ کریں
+timeDiffJustNow = ابھی
 timeDiffDaysAgo = { $num ->
         [one] گزشتہ روز
        *[other] { $number }  د ن پہلے
