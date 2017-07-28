@@ -44,6 +44,7 @@ homePageCookiesLink = Кукі
 
 [[ Leave Screenshots page ]]
 
+leavePageErrorGeneric = Здарылася памылка
 leavePageButtonProceed = Працягнуць
 leavePageButtonCancel = Адмяніць
 
@@ -57,6 +58,8 @@ notFoundPageDescription = Старонка не знойдзена.
 
 [[ Shot page ]]
 
+shotPageAlertErrorUpdatingTitle = Памылка захавання назвы
+shotPageConfirmDelete = Вы сапраўды хочаце назаўсёды выдаліць гэты здымак?
 shotPageShareButton
     .title = Падзяліцца
 shotPageCopy = Капіяваць
@@ -69,6 +72,8 @@ shotPageSharePinterest
     .title = Падзяліцца ў Pinterest
 shotPageShareEmail
     .title = Падзяліцца спасылкай па э-пошце
+shotPageConfirmDeletion = Вы сапраўды хочаце назаўсёды выдаліць гэты здымак?
+shotPageExpiredMessage = Гэты здымак пратэрмінаваны.
 shotPageDeleteButton
     .title = Выдаліць гэты здымак
 shotPageDownloadShot
@@ -81,12 +86,35 @@ shotPageKeepIndefinitely = Бясконца
 shotPageKeepTenMinutes = 10 хвілін
 shotPageKeepOneHour = 1гадзіну
 shotPageKeepOneDay = 1 дзень
+shotPageKeepOneWeek = 1 тыдзень
+shotPageKeepTwoWeeks = 2 тыдні
+shotPageKeepOneMonth = 1 месяц
+shotPageSaveExpiration = захаваць
+shotPageCancelExpiration = адмяніць
+shotPageDoesNotExpire = неабмежаваны тэрмін
 
 
 [[ Shotindex page ]]
 
+shotIndexPageSearchButton
+    .title = Пошук
+shotIndexPageNoShotsMessage = Няма захаваных здымкаў.
+shotIndexPageLookingForShots = Пошук вашых здымкаў…
+shotIndexPageNoSearchResultsIntro = Хмм
+shotIndexPageClearSearchButton
+    .title = Ачысціць пошук
+shotIndexPageConfirmShotDelete = Выдаліць гэты здымак?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Метрыкі Firefox Screenshots
+metricsPageTotalsQueryTitle = Вынікі
+metricsPageShotsQueryDay = Дзень
+metricsPageUsersQueryDay = Дзень
+metricsPageVersionQueryTitle = Версія дадатка
+metricsPageVersionQueryVersion = Версія дадатка
+metricsPageVersionQueryLastSeen = Дзень
+metricsPageHeader = Метрыкі
