@@ -96,6 +96,8 @@ shotPageDoesNotExpire = неабмежаваны тэрмін
 
 [[ Shotindex page ]]
 
+shotIndexPageSearchPlaceholder
+    .placeholder = Пошук маіх здымкаў
 shotIndexPageSearchButton
     .title = Пошук
 shotIndexPageNoShotsMessage = Няма захаваных здымкаў.
@@ -112,8 +114,14 @@ shotIndexPageConfirmShotDelete = Выдаліць гэты здымак?
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Метрыкі Firefox Screenshots
 metricsPageTotalsQueryTitle = Вынікі
+metricsPageTotalsQueryActiveShots = Актыўныя здымкі
+metricsPageShotsQueryCount = Колькасць здымкаў
 metricsPageShotsQueryDay = Дзень
+metricsPageUsersQueryCount = Колькасць карыстальнікаў
 metricsPageUsersQueryDay = Дзень
+metricsPageUserShotsQueryCount = Колькасць карыстальнікаў
+metricsPageRetentionQueryUsers = Колькасць карыстальнікаў
+metricsPageTotalRetentionQueryUsers = Колькасць карыстальнікаў
 metricsPageVersionQueryTitle = Версія дадатка
 metricsPageVersionQueryVersion = Версія дадатка
 metricsPageVersionQueryLastSeen = Дзень
