@@ -14,6 +14,16 @@ gNoShots
 gScreenshotsDescription = 拍攝畫面擷圖變得簡單。不必離開 Firefox 就能拍照、存檔、分享擷圖。
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = 隱私權公告
+footerLinkDMCA = 回報智財權侵害案件
+footerLinkDiscourse = 提供意見回饋
+footerLinkRemoveAllData = 移除所有資料
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
