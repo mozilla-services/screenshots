@@ -10,6 +10,14 @@
 gMyShots = ภาพของฉัน
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = ประกาศความเป็นส่วนตัว
+footerLinkRemoveAllData = เอาข้อมูลทั้งหมดออก
+
+
 [[ Creating page ]]
 
 creatingPageTitleDefault = หน้า
@@ -17,6 +25,8 @@ creatingPageTitleDefault = หน้า
 
 [[ Home page ]]
 
+homePageButtonMyShots = ไปยังภาพของฉัน
+homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ดาวน์โหลดฟรี
 homePageCookiesLink = คุกกี้
 
@@ -31,6 +41,7 @@ homePageCookiesLink = คุกกี้
 
 [[ Shot page ]]
 
+shotPageCopy = คัดลอก
 
 
 [[ Shotindex page ]]
