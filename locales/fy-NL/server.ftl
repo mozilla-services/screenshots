@@ -14,6 +14,16 @@ gNoShots
 gScreenshotsDescription = Skermôfbyldingen wurde maklik. Meitsje, bewarje en diel skermôfbyldingen sûnder Firefox te ferlitten.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Privacyferklearring
+footerLinkDMCA = IP-misbrûk rapportearje
+footerLinkDiscourse = Kommentaar jaan
+footerLinkRemoveAllData = Alle gegevens fuortsmite
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
