@@ -24,6 +24,10 @@ footerLinkRemoveAllData = Выдаліць усе дадзеныя
 
 [[ Creating page ]]
 
+// Note: { $title } is a placeholder for the title of the web page
+// captured in the screenshot. The default, for pages without titles, is
+// creatingPageTitleDefault.
+creatingPageTitle = Стварэнне { $title }
 creatingPageTitleDefault = старонка
 
 
@@ -34,7 +38,11 @@ homePageTeaser = Хутка...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Сцягнуць бясплатна
 homePageGetStarted = Пачаць
+// Note: do not translate 'Firefox Screenshots' when translating this string
+homePageHowScreenshotsWorks = Як працуе Firefox Screenshots
 homePageGetStartedTitle = Пачаць
+homePageCaptureRegion = Захоп вобласці
+homePageCapturePage = Захоп старонкі
 homePageSaveShare = Захаваць і падзяліцца
 homePageLegalLink = Юрыдычная інфармацыя
 homePagePrivacyLink = Прыватнасць
@@ -44,6 +52,7 @@ homePageCookiesLink = Кукі
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = Пацвердзіце выдаленне ўліковага запісу
 leavePageErrorGeneric = Здарылася памылка
 leavePageButtonProceed = Працягнуць
 leavePageButtonCancel = Адмяніць
@@ -58,6 +67,8 @@ notFoundPageDescription = Старонка не знойдзена.
 
 [[ Shot page ]]
 
+shotPageAlertErrorUpdatingExpirationTime = Памылка пры захаванні часу заканчэння
+shotPageAlertErrorDeletingShot = Памылка пры выдаленні здымка
 shotPageAlertErrorUpdatingTitle = Памылка захавання назвы
 shotPageConfirmDelete = Вы сапраўды хочаце назаўсёды выдаліць гэты здымак?
 shotPageShareButton
