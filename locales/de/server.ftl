@@ -14,6 +14,16 @@ gNoShots
 gScreenshotsDescription = Bildschirmfotos ganz einfach. Machen, speichern und teilen Sie Bildschirmfotos, ohne Firefox zu verlassen.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Datenschutzhinweis
+footerLinkDMCA = Verletzung geistigen Eigentums melden
+footerLinkDiscourse = Feedback geben
+footerLinkRemoveAllData = Alle Daten entfernen
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page

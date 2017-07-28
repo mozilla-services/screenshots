@@ -227,13 +227,16 @@ class Shot extends AbstractShot {
         WHERE id = $5 AND deviceid = $6`,
         [JSON.stringify(json), this.url, this.title, searchable.version, this.id, this.ownerId].concat(searchable.args)
       );
-      return promise.then((rowCount) => {
-        if (!rowCount) {
-          throw new Error("No row updated");
+      return promise.then((result) => {
+        if (!result.rowCount) {
+          clipRewrites.revertShotUrls();
+          return false;
         }
-        return clipRewrites.commit(client);
-      }).then(() => {
-        return oks;
+        return clipRewrites.commit(client).then(() => {
+          return true;
+        });
+      }).then((updated) => {
+        return updated ? oks : null;
       });
     });
   }
@@ -381,6 +384,7 @@ Shot.get = function(backend, id, deviceId) {
     }
     let shot = new Shot(rawValue.userid, backend, id, json);
     shot.urlIfDeleted = rawValue.url;
+    shot.accountId = rawValue.accountId;
     shot.expireTime = rawValue.expireTime;
     shot.deleted = rawValue.deleted;
     shot.blockType = rawValue.blockType;
@@ -412,7 +416,8 @@ Shot.getRawValue = function(id, deviceId) {
   if (!id) {
     throw new Error("Empty id: " + id);
   }
-  let query = `SELECT value, deviceid, url, title, expire_time, deleted, block_type FROM data WHERE id = $1`;
+  let query = `SELECT value, deviceid, url, title, expire_time, deleted, block_type, devices.accountid
+  FROM data, devices WHERE data.deviceid = devices.id AND data.id = $1`;
   let params = [id];
   if (deviceId) {
     query += ` AND deviceid = $2`;
@@ -433,18 +438,23 @@ Shot.getRawValue = function(id, deviceId) {
       title: row.title,
       expireTime: row.expire_time,
       deleted: row.deleted,
-      blockType: row.block_type
+      blockType: row.block_type,
+      accountId: row.accountid
     };
   });
 };
 
-Shot.checkOwnership = function(shotId, deviceId) {
+Shot.checkOwnership = function(shotId, deviceId, accountId) {
   return db.select(
-    `SELECT id FROM data WHERE id = $1 AND deviceid = $2`,
-    [shotId, deviceId]
+    `SELECT data.id
+     FROM data, devices
+     WHERE data.id = $1 AND (devices.id = $2 OR devices.accountid = $3)
+         AND data.deviceid = devices.id
+     `,
+      [shotId, deviceId, accountId]
   ).then((rows) => {
-    return !!rows.length;
-  });
+      return !!rows.length;
+  })
 };
 
 Shot.getShotsForDevice = function(backend, deviceId, searchQuery) {
@@ -525,35 +535,55 @@ Shot.getShotsForDevice = function(backend, deviceId, searchQuery) {
   });
 };
 
-Shot.setExpiration = function(backend, shotId, deviceId, expiration) {
-  if (expiration === 0) {
+Shot.setExpiration = function(backend, shotId, deviceId, expiration, accountId) {
+  return db.select(
+    `SELECT devices.id
+     FROM data, devices
+     WHERE data.id = $1 AND (devices.id = $2 OR devices.accountid = $3)
+         AND data.deviceid = devices.id
+    `,
+    [shotId, deviceId, accountId]
+  ).then((rows) => {
+    let id = rows[0].id;
+    if (expiration === 0) {
+      return db.update(
+        `UPDATE data
+         SET expire_time = NULL
+         WHERE id = $1
+               AND deviceid = $2
+        `,
+        [shotId, id]
+      );
+    }
+    if (typeof expiration != "number") {
+      throw new Error("Bad expiration type");
+    } else if (expiration < 0) {
+      throw new Error("Expiration less than zero");
+    }
+    expiration = Math.floor(expiration / 1000);
     return db.update(
       `UPDATE data
-       SET expire_time = NULL
-       WHERE id = $1
-             AND deviceid = $2
+       SET expire_time = NOW() + ($1 || ' SECONDS')::INTERVAL
+       WHERE id = $2
+             AND deviceid = $3
       `,
-      [shotId, deviceId]
+      [expiration, shotId, id]
     );
-  }
-  if (typeof expiration != "number") {
-    throw new Error("Bad expiration type");
-  } else if (expiration < 0) {
-    throw new Error("Expiration less than zero");
-  }
-  expiration = Math.floor(expiration / 1000);
-  return db.update(
-    `UPDATE data
-     SET expire_time = NOW() + ($1 || ' SECONDS')::INTERVAL
-     WHERE id = $2
-           AND deviceid = $3
-    `,
-    [expiration, shotId, deviceId]
-  );
+  })
 };
 
-Shot.deleteShot = function(backend, shotId, deviceId) {
-  return Shot.get(backend, shotId, deviceId)
+Shot.deleteShot = function(backend, shotId, deviceId, accountId) {
+  let id;
+  return db.select(
+    `SELECT devices.id
+     FROM data, devices
+     WHERE data.id = $1 AND (devices.id = $2 OR devices.accountid = $3)
+        AND data.deviceid = devices.id
+      `,
+      [shotId, deviceId, accountId]
+  ).then((rows) => {
+    id = rows[0].id;
+    return Shot.get(backend, shotId, id)
     .then((shot) => {
       const clipRewrites = new ClipRewrites(shot);
       clipRewrites.clear();
@@ -567,9 +597,10 @@ Shot.deleteShot = function(backend, shotId, deviceId) {
          WHERE id = $1
                AND deviceid = $2
         `,
-        [shotId, deviceId]
+        [shotId, id]
       );
     });
+  })
 };
 
 Shot.deleteEverythingForDevice = function(backend, deviceId) {

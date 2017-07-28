@@ -14,6 +14,16 @@ gNoShots
 gScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skrinsyot tanpa keluar daripada Firefox.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = 
+footerLinkPrivacy = Notis Privasi
+footerLinkDMCA = Lapor Pencerobohan IP
+footerLinkDiscourse = Beri maklum balas
+footerLinkRemoveAllData = Buang Semua Data
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
@@ -27,7 +37,7 @@ creatingPageTitleDefault = halaman
 
 homePageDescription
     .content = Skrinsyot intuitif dihasilkan terus ke dalam pelayar. Ambil, simpan dan kongsi skrinsyot sambil anda melayari Web menggunakan Firefox.
-homePageButtonMyShots = Ke Syot Saya
+homePageButtonMyShots = Pergi Ke Syot Saya
 homePageTeaser = Akan Datang...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Muat turun Percuma
@@ -44,7 +54,7 @@ homePageCapturePage = Ambil gambar Halaman
 homePageCapturePageDescription = Gunakan butang yang muncul pada bahagian atas kanan untuk mengambil gambar penuh halaman. Butang Simpan Tampak akan mengambil gambar kawasan yang anda nampak tanpa skrol, dan Simpan Halaman Penuh akan mengambil gambar keseluruhan halaman.
 homePageSaveShare = Simpan dan Kongsi
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Apabila anda ambil syot, Firefox menghantar skrinsyot ke pustaka Screenshots dalam talian anda dan menyalin pautan ke klipbod anda. Secara automatik, kami simpan skrinsyot anda selama dua minggu, tetapi anda boleh padam atau tukar tarikh luputnya untuk terus disimpan lebih lama dalam pustaka anda. 
+homePageSaveShareDescription = Apabila anda ambil syot, Firefox menghantar skrinsyot ke pustaka Screenshots dalam talian anda dan menyalin pautan ke klipbod anda. Secara automatik, kami simpan skrinsyot anda selama dua minggu, tetapi anda boleh hapus atau tukar tarikh luputnya untuk terus disimpan lebih lama dalam pustaka anda. 
 homePageLegalLink = Perundangan
 homePagePrivacyLink = Privasi
 homePageTermsLink = Terma
@@ -53,15 +63,15 @@ homePageCookiesLink = Kuki
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Sahkan pemadaman akaun
+leavePageConfirmDelete = Sahkan penghapusan akaun
 // Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Anda mesti ada Firefox Screenshots yang dipasang untuk memadam akaun anda
+leavePageErrorAddonRequired = Anda mesti ada Firefox Screenshots yang dipasang untuk menghapuskan akaun anda
 leavePageErrorGeneric = Ada ralat
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ini akan menghapuskan semua data Firefox Screenshots anda secara kekal.
 leavePageButtonProceed = Teruskan
 leavePageButtonCancel = Batal
-leavePageDeleted = Semua skrinsyot anda telah dipadam!
+leavePageDeleted = Semua skrinsyot anda telah dihapuskan!
 
 
 [[ Not Found page ]]
@@ -74,9 +84,9 @@ notFoundPageDescription = Halaman tidak ditemui
 [[ Shot page ]]
 
 shotPageAlertErrorUpdatingExpirationTime = Ralat menyimpan tempoh tamat
-shotPageAlertErrorDeletingShot = Ralat membuang syot
+shotPageAlertErrorDeletingShot = Ralat menghapuskan syot
 shotPageAlertErrorUpdatingTitle = Ralat menyimpan tajuk
-shotPageConfirmDelete = Anda pasti mahu padam syot ini secara kekal?
+shotPageConfirmDelete = Anda pasti mahu menghapuskan syot ini secara kekal?
 shotPageShareButton
     .title = Kongsi
 shotPageCopy = Salin
@@ -93,9 +103,9 @@ shotPageShareLink = Dapatkan pautan untuk kongsi syot ini:
 shotPagePrivacyMessage = Sesiapa yang ada pautan ini boleh melihat syot ini.
 shotPageCopyImageText
     .label = Salin teks imej
-shotPageConfirmDeletion = Anda pasti mahu padam syot ini secara kekal?
+shotPageConfirmDeletion = Anda pasti mahu menghapuskan syot ini secara kekal?
 // Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Jika tiada tindakan, syot ini akan dipadam secara kekal { $timediff }.
+shotPageExpirationMessage = Jika tiada tindakan, syot ini akan dihapuskan secara kekal { $timediff }.
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = simpan semula hingga { $date }
@@ -103,7 +113,7 @@ shotPageExpiredMessage = Syot ini sudah tamat tempoh.
 // Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Ini halaman asal yang diambil:
 shotPageDeleteButton
-    .title = Padam syot ini
+    .title = Hapus syot ini
 shotPageAbuseButton
     .title = Laporkan syot ini kerana penyalahgunaan, spam atau masalah lain
 shotPageDownloadShot
@@ -161,7 +171,7 @@ timeDiffFutureDays = { $num ->
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
 // { $statusText } is a text description of the status code, like 'Internal server error'.
-shotIndexPageErrorDeletingShot = Ralat memadam syot: { $status } { $statusText }
+shotIndexPageErrorDeletingShot = Ralat menghapuskan syot: { $status } { $statusText }
 // { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Syot Saya: cari { $searchTerm }
 // { $error } is a placeholder for a non-translated error message that could be shared
@@ -178,7 +188,7 @@ shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Kami tidak menemui syot yang sepadan dengan carian anda.
 shotIndexPageClearSearchButton
     .title = Padam carian
-shotIndexPageConfirmShotDelete = Padam syot ini?
+shotIndexPageConfirmShotDelete = Hapus syot ini?
 
 
 // all metrics strings are optional for translation
@@ -192,7 +202,7 @@ metricsPageTotalsQueryDescription = Tinjauan Screenshots
 metricsPageTotalsQueryDevices = Bilangan peranti didaftar
 metricsPageTotalsQueryActiveShots = Syot aktif
 metricsPageTotalsQueryExpiredShots = Tamat tempot (tapi boleh dikembalikan)
-metricsPageTotalsQueryExpiredDeletedShots = Tamat tempoh (dan dipadam)
+metricsPageTotalsQueryExpiredDeletedShots = Luput (dan dihapuskan)
 metricsPageShotsQueryTitle = Syot mengikut Hari
 metricsPageShotsQueryDescription = Bilangan syot diambil setiap hari (sepanjang 30 hari lepas)
 metricsPageShotsQueryCount = Bilangan syot diambil

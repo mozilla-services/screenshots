@@ -14,6 +14,16 @@ gNoShots
 gScreenshotsDescription = Schermafbeeldingen worden makkelijk. Maak, bewaar en deel schermafbeeldingen zonder Firefox te verlaten.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Privacyverklaring
+footerLinkDMCA = IE-inbreuk melden
+footerLinkDiscourse = Feedback geven
+footerLinkRemoveAllData = Alle gegevens verwijderen
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page

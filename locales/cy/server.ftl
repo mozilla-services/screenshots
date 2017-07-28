@@ -85,6 +85,7 @@ shotPageShareFacebook
     .title = Rhannu ar Facebook
 shotPageShareTwitter
     .title = Rhannu ar Twitter
+shotPageSharePinterest = Rhannu ar Pininterest
 shotPageShareEmail
     .title = Rhannu dolen drwy e-bost
 shotPageShareLink = Estyn dolen i'w rannu ar gyfer y llun:
@@ -153,6 +154,12 @@ timeDiffDaysAgo = { $num ->
        *[other] { $number } diwrnod yn ôl
     }
 timeDiffFutureSeconds = ymhen ychydig eiliadau
+timeDiffFutureMinutes = { $num ->
+        [one] ymhen munud
+        [two] ymhen { $number } funud
+        [few] ymhen { $number } munud
+       *[other] ymhen { $number } munud
+    }
 timeDiffFutureHours = { $num ->
         [one] ymhen awr
         [two] ymhen { $number } awr

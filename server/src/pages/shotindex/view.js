@@ -32,9 +32,10 @@ class Body extends React.Component {
   render() {
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <div className="column-space full-height default-color-scheme">
+        <div className="column-space full-height">
           <div id="shot-index-header" className="header">
             <h1><a href="/shots">Firefox <strong>Screenshots</strong> <sup>Beta</sup></a></h1>
+            {this.props.enableUserSettings ? this.renderSettingsPage() : null}
             {this.props.disableSearch ? null : this.renderSearchForm()}
           </div>
           <div id="shot-index" className="flex-1">
@@ -133,6 +134,12 @@ class Body extends React.Component {
           <p>We can’t find any shots that match your search.</p>
         </Localized>
       </div>
+    );
+  }
+
+  renderSettingsPage() {
+    return (
+      <a className="button preferences" href="/settings" aria-label="Settings" title="Open user settings"></a>
     );
   }
 
@@ -254,7 +261,7 @@ class Card extends React.Component {
             <a className="button transparent download" href={ downloadUrl } onClick={ this.onClickDownload.bind(this) }
               title="Download the shot image" ref="download" />
           </Localized>
-          <ShareButton setPanelState={this.setPanelState.bind(this)} abTests={this.props.abTests} clipUrl={shot.urlDisplay} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} />
+          <ShareButton setPanelState={this.setPanelState.bind(this)} abTests={this.props.abTests} clipUrl={imageUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} />
           <Localized id="shotPageDeleteButton">
             <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this, shot) } ref="trash" />
           </Localized>

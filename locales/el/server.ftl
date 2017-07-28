@@ -14,6 +14,16 @@ gNoShots
 gScreenshotsDescription = Η λήψη στιγμιοτύπων έγινε εύκολη. Λήψη, αποθήκευση και κοινή χρήση στιγμιοτύπων χωρίς να φύγετε από το Firefox.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Πολιτική Απορρήτου
+footerLinkDMCA = Αναφορά IP παραβίασης πνευματικής ιδιοκτησίας
+footerLinkDiscourse = Γράψτε το σχόλιο σας
+footerLinkRemoveAllData = Διαγραφή όλων των δεδομένων
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page

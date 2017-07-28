@@ -15,6 +15,10 @@ const {
   tradeCode,
   getAccountId,
   registerAccount,
+  fetchProfileData,
+  saveProfileData,
+  disconnectDevice,
+  retrieveAccount
 } = require("./users");
 const dbschema = require("./dbschema");
 const express = require("express");
@@ -28,6 +32,7 @@ const errors = require("./errors");
 const buildTime = require("./build-time").string;
 const ua = require("universal-analytics");
 const urlParse = require("url").parse;
+const urlResolve = require("url").resolve;
 const http = require("http");
 const https = require("https");
 const gaActivation = require("./ga-activation");
@@ -55,6 +60,8 @@ const PROXY_HEADER_WHITELIST = {
   "retry-after": true,
   "via": true
 };
+
+const COOKIE_EXPIRE_TIME = 30 * 24 * 60 * 60 * 1000; // 30 days
 
 if (config.useS3) {
   // Test a PUT to s3 because configuring this requires using the aws web interface
@@ -215,6 +222,7 @@ app.use(function(req, res, next) {
     authInfo = decodeAuthHeader(authHeader);
   } else {
     authInfo.deviceId = cookies.get("user", {signed: true});
+    authInfo.accountId = cookies.get("accountid", {signed: true});
     let abTests = cookies.get("abtests", {signed: true});
     if (abTests) {
       abTests = b64DecodeJson(abTests);
@@ -227,6 +235,9 @@ app.use(function(req, res, next) {
     if (config.debugGoogleAnalytics) {
       req.userAnalytics = req.userAnalytics.debug();
     }
+  }
+  if (authInfo.accountId) {
+    req.accountId = authInfo.accountId;
   }
   req.cookies = cookies;
   req.cookies._csrf = cookies.get("_csrf"); // csurf expects a property
@@ -243,15 +254,27 @@ function decodeAuthHeader(header) {
   let keygrip = dbschema.getKeygrip();
   let match = /^([^:]{1,255}):([^;]{1,255});abTests=([^:]{1,1500}):(.{0,255})$/.exec(header);
   if (!match) {
-    // FIXME: log, Sentry error
+    let exc = new Error("Invalid auth header");
+    exc.headerValue = header;
+    captureRavenException(exc);
     return {};
   }
   let deviceId = match[1];
   let deviceIdSig = match[2];
   let abTestsEncoded = match[3];
   let abTestsEncodedSig = match[4];
-  if (!(keygrip.verify(deviceId, deviceIdSig) && keygrip.verify(abTestsEncoded, abTestsEncodedSig))) {
-    // FIXME: log, Sentry error
+  if (!keygrip.verify(deviceId, deviceIdSig)) {
+    let exc = new Error("deviceId signature incorrect");
+    exc.deviceIdLength = typeof deviceId == "string" ? deviceId.length : String(deviceId);
+    exc.deviceIdSigLength = typeof deviceIdSig == "string" ? deviceIdSig.length : String(deviceIdSig);
+    captureRavenException(exc);
+    return {};
+  }
+  if (!keygrip.verify(abTestsEncoded, abTestsEncodedSig)) {
+    let exc = new Error("abTests signature incorrect");
+    exc.abTestsEncodedLength = typeof abTestsEncoded == "string" ? abTestsEncoded.length : String(abTestsEncoded);
+    exc.abTestsEncodedSigLength = typeof abTestsEncodedSig == "string" ? abTestsEncodedSig.length : String(abTestsEncodedSig);
+    captureRavenException(exc);
     return {};
   }
   let abTests = b64DecodeJson(abTestsEncoded);
@@ -268,22 +291,17 @@ app.use(function(req, res, next) {
 });
 
 app.use(function(req, res, next) {
-  const languages = req.headers['Accept-Language'] ?
-    accepts(req.headers['Accept-Language']).languages :
-    ['en-US'];
-  l10n.init(languages).then(() => {
-    req.getText = l10n.getText;
-    req.userLocales = l10n.userLangs;
-    return l10n.getStrings().then(strings => {
-      req.messages = strings;
-      next();
-    });
-  }).catch(err => {
-    mozlog.info("l10n-error", {msg: "Error loading FTL files", description: err});
+  l10n.init().then(() => {
+    const languages = accepts(req).languages();
+    req.getText = l10n.getText(languages);
+    req.userLocales = l10n.getUserLocales(languages);
+    req.messages = l10n.getStrings(languages);
     next();
+  }).catch(err => {
+    mozlog.error("l10n-error", {msg: "Error initializing l10n", description: err});
+    process.exit(2);
   });
 });
-
 
 app.param("id", function(req, res, next, id) {
   if (/^[a-zA-Z0-9]{16}$/.test(id)) {
@@ -511,16 +529,21 @@ app.post("/api/register", function(req, res) {
 });
 
 function sendAuthInfo(req, res, params) {
-  let { deviceId, userAbTests } = params;
+  let { deviceId, accountId, userAbTests } = params;
   if (deviceId.search(/^[a-zA-Z0-9_-]{1,255}$/) == -1) {
-    // FIXME: add logging message with deviceId
+    let exc = new Error("Bad deviceId in login");
+    exc.deviceId = deviceId;
+    captureRavenException(exc);
     throw new Error("Bad deviceId");
   }
   let encodedAbTests = b64EncodeJson(userAbTests);
   let keygrip = dbschema.getKeygrip();
   let cookies = new Cookies(req, res, {keys: keygrip});
-  cookies.set("user", deviceId, {signed: true, sameSite: 'lax'});
-  cookies.set("abtests", encodedAbTests, {signed: true, sameSite: 'lax'});
+  cookies.set("user", deviceId, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
+  if (accountId) {
+    cookies.set("accountid", accountId, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
+  }
+  cookies.set("abtests", encodedAbTests, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
   let authHeader = `${deviceId}:${keygrip.sign(deviceId)};abTests=${encodedAbTests}:${keygrip.sign(encodedAbTests)}`;
   let responseJson = {
     ok: "User created",
@@ -554,16 +577,22 @@ app.post("/api/login", function(req, res) {
         userAbTests
       };
       let sendParamsPromise = Promise.resolve(sendParams);
-      if (vars.ownershipCheck) {
-        sendParamsPromise = Shot.checkOwnership(vars.ownershipCheck, vars.deviceId).then((isOwner) => {
-          sendParams.isOwner = isOwner;
-          return sendParams;
+      retrieveAccount(vars.deviceId).then((accountId) => {
+        return sendParams.accountId = accountId;
+      }).then((accountId) => {
+        if (vars.ownershipCheck) {
+          sendParamsPromise = Shot.checkOwnership(vars.ownershipCheck, vars.deviceId, accountId).then((isOwner) => {
+            sendParams.isOwner = isOwner;
+            return sendParams;
+          });
+        }
+        sendParamsPromise.then((params) => {
+          sendAuthInfo(req, res, params);
+        }).catch((error) => {
+          errorResponse(res, "Error checking ownership", error);
         });
-      }
-      sendParamsPromise.then((params) => {
-        sendAuthInfo(req, res, params);
       }).catch((error) => {
-        errorResponse(res, "Error checking ownership", error);
+        errorResponse(res, "Error retrieving account", error);
       });
       if (config.gaId) {
         let userAnalytics = ua(config.gaId, vars.deviceId, {strictCidFormat: false});
@@ -620,6 +649,11 @@ app.put("/data/:id/:domain", function(req, res) {
     }
     return inserted;
   }).then((commands) => {
+    if (!commands) {
+      mozlog.warn("invalid-put-update", {msg: "Attempt to PUT to existing shot by non-owner", ip: req.ip});
+      simpleResponse(res, 'No shot updated', 403);
+      return;
+    }
     commands = commands || [];
     simpleResponse(res, JSON.stringify({updates: commands.filter((x) => !!x)}), 200);
   }).catch((err) => {
@@ -628,8 +662,13 @@ app.put("/data/:id/:domain", function(req, res) {
 });
 
 app.get("/data/:id/:domain", function(req, res) {
+  if (!req.deviceId) {
+    res.status(404).send("Not found");
+    return;
+  }
   let shotId = `${req.params.id}/${req.params.domain}`;
-  Shot.getRawValue(shotId).then((data) => {
+  // FIXME: maybe we should allow for accountId here too:
+  Shot.getRawValue(shotId, req.deviceId).then((data) => {
     if (!data) {
       simpleResponse(res, "No such shot", 404);
     } else {
@@ -653,7 +692,7 @@ app.post("/api/delete-shot", csrfProtection, function(req, res) {
     simpleResponse(res, "Not logged in", 401);
     return;
   }
-  Shot.deleteShot(req.backend, req.body.id, req.deviceId).then((result) => {
+  Shot.deleteShot(req.backend, req.body.id, req.deviceId, req.accountId).then((result) => {
     if (result) {
       simpleResponse(res, "ok", 200);
     } else {
@@ -662,6 +701,24 @@ app.post("/api/delete-shot", csrfProtection, function(req, res) {
     }
   }).catch((err) => {
     errorResponse(res, "Error: could not delete shot", err);
+  });
+});
+
+app.post("/api/disconnect-device", csrfProtection, function(req, res) {
+  if (!req.deviceId) {
+    sendRavenMessage(req, "Attempt to disconnect without login");
+    simpleResponse(res, "Not logged in", 401);
+    return;
+  }
+  disconnectDevice(req.deviceId).then((result) => {
+    let keygrip = dbschema.getKeygrip();
+    let cookies = new Cookies(req, res, {keys: keygrip});
+    if (result) {
+      cookies.set("accountid");
+      res.redirect('/settings');
+    }
+  }).catch((err) => {
+    errorResponse(res, "Error: could not disconnect", err);
   });
 });
 
@@ -677,7 +734,7 @@ app.post("/api/set-title/:id/:domain", csrfProtection, function(req, res) {
     simpleResponse(res, "Not logged in", 401);
     return;
   }
-  Shot.get(req.backend, shotId, req.deviceId).then((shot) => {
+  Shot.get(req.backend, shotId).then((shot) => {
     if (!shot) {
       simpleResponse(res, "No such shot", 404);
       return;
@@ -709,7 +766,7 @@ app.post("/api/set-expiration", csrfProtection, function(req, res) {
     simpleResponse(res, `Error: bad expiration (${req.body.expiration})`, 400);
     return;
   }
-  Shot.setExpiration(req.backend, shotId, req.deviceId, expiration).then((result) => {
+  Shot.setExpiration(req.backend, shotId, req.deviceId, expiration, req.accountId).then((result) => {
     if (result) {
       simpleResponse(res, "ok", 200);
     } else {
@@ -893,7 +950,8 @@ app.get("/oembed", function(req, res) {
 });
 
 // Get OAuth client params for the client-side authorization flow.
-app.get('/api/fxa-oauth/params', function(req, res, next) {
+
+app.get('/api/fxa-oauth/login', function(req, res, next) {
   if (!req.deviceId) {
     next(errors.missingSession());
     return;
@@ -907,32 +965,22 @@ app.get('/api/fxa-oauth/params', function(req, res, next) {
       return state;
     });
   }).then(state => {
-    res.send({
-      // FxA profile server URL.
-      profile_uri: config.oAuth.profileServer,
-      // FxA OAuth server URL.
-      oauth_uri: config.oAuth.oAuthServer,
-      redirect_uri: 'urn:ietf:wg:oauth:2.0:fx:webchannel',
-      client_id: config.oAuth.clientId,
-      // FxA content server URL.
-      content_uri: config.oAuth.contentServer,
-      state,
-      scope: 'profile'
-    });
+    let redirectUri = `${req.backend}/api/fxa-oauth/confirm-login`;
+    let profile = "profile profile:displayName profile:email profile:avatar profile:uid";
+    res.redirect(`${config.fxa.oAuthServer}/authorization?client_id=${encodeURIComponent(config.fxa.clientId)}&redirect_uri=${encodeURIComponent(redirectUri)}&state=${encodeURIComponent(state)}&scope=${encodeURIComponent(profile)}`);
   }).catch(next);
 });
 
-// Exchange an OAuth authorization code for an access token.
-app.post('/api/fxa-oauth/token', function(req, res, next) {
+app.get('/api/fxa-oauth/confirm-login', function(req, res, next) {
   if (!req.deviceId) {
     next(errors.missingSession());
     return;
   }
-  if (!req.body) {
+  if (!req.query) {
     next(errors.missingParams());
     return;
   }
-  let { code, state } = req.body;
+  let { code, state } = req.query;
   checkState(req.deviceId, state).then(isValid => {
     if (!isValid) {
       throw errors.badState();
@@ -940,11 +988,21 @@ app.post('/api/fxa-oauth/token', function(req, res, next) {
     return tradeCode(code);
   }).then(({ access_token: accessToken }) => {
     return getAccountId(accessToken).then(({ uid: accountId }) => {
-      return registerAccount(req.deviceId, accountId, accessToken);
-    }).then(() => {
-      res.send({
-        access_token: accessToken
-      });
+      return registerAccount(req.deviceId, accountId, accessToken).then(() => {
+        return fetchProfileData(accessToken).then(({ avatar, displayName, email }) => {
+          return saveProfileData(accountId, avatar, displayName, email);
+        }).then(() => {
+          if (config.gaId) {
+            let analytics = ua(config.gaId);
+            analytics.event({
+              ec: "server",
+              ea: "fxa-login",
+              ua: req.headers["user-agent"],
+            }).send();
+          }
+          res.redirect('/settings');
+        });
+      }).catch(next);
     }).catch(next);
   }).catch(next);
 });
@@ -959,20 +1017,22 @@ app.use("/leave-screenshots", require("./pages/leave-screenshots/server").app);
 
 app.use("/creating", require("./pages/creating/server").app);
 
+app.use("/settings", require("./pages/settings/server").app);
+
 app.use("/", require("./pages/shot/server").app);
 
 app.use("/", require("./pages/homepage/server").app);
 
 app.get("/proxy", function(req, res) {
-  let url = req.query.url;
+  let stringUrl = req.query.url;
   let sig = req.query.sig;
-  let isValid = dbschema.getKeygrip().verify(new Buffer(url, 'utf8'), sig);
+  let isValid = dbschema.getKeygrip().verify(new Buffer(stringUrl, 'utf8'), sig);
   if (!isValid) {
     sendRavenMessage(req, "Bad signature on proxy", {extra: {proxyUrl: url, sig}});
     simpleResponse(res, "Bad signature", 403);
     return;
   }
-  url = urlParse(url);
+  let url = urlParse(stringUrl);
   let httpModule = http;
   if (url.protocol == "https:") {
     httpModule = https;
@@ -998,6 +1058,10 @@ app.get("/proxy", function(req, res) {
       if (PROXY_HEADER_WHITELIST[h]) {
         headers[h] = subres.headers[h];
       }
+    }
+    if (subres.headers.location) {
+      let location = urlResolve(stringUrl, subres.headers.location);
+      headers.location = require("./proxy-url").createProxyUrl(req, location);
     }
     // Cache for 30 days
     headers["cache-control"] = "public, max-age=2592000";

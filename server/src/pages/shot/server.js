@@ -3,6 +3,7 @@ const csrf = require("csurf");
 const { Shot } = require("../../servershot");
 const { notFound } = require("../../pages/not-found/server");
 const reactrender = require("../../reactrender");
+const mozlog = require("../../logging").mozlog("shot");
 
 let app = express();
 
@@ -14,6 +15,7 @@ app.get("/:id/:domain", csrf({cookie: true}), function(req, res) {
     let noSuchShot = !shot;
     const nonOwnerAndBlocked = shot && shot.blockType !== 'none' && req.deviceId != shot.ownerId;
     if (noSuchShot || nonOwnerAndBlocked) {
+      mozlog.info("shot-404", {shotId, ip: req.ip});
       notFound(req, res);
       return;
     }

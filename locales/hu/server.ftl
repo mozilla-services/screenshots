@@ -14,6 +14,16 @@ gNoShots
 gScreenshotsDescription = Képernyőképek egyszerűen. Készítsen, mentsen és ossza meg a képernyőképeit a Firefox elhagyása nélkül.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Adatvédelmi nyilatkozat
+footerLinkDMCA = Szellemi tulajdont érintő jogsértés jelentése
+footerLinkDiscourse = Adjon visszajelzést
+footerLinkRemoveAllData = Minden adat törlése
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
@@ -35,7 +45,16 @@ homePageGetStarted = Kezdő lépések
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Hogyan működik a Firefox képernyőképek
 homePageGetStartedTitle = Kezdő lépések
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Keresse az új Screenshots ikont az eszköztáron. Válassza ki, és a Screenshots menü megjelenik a böngészőablak fölött.
+homePageCaptureRegion = Terület befogása
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Kattintson és húzza a befogandó terület kiválasztásához. Vagy csak vigye fölé és kattintson – a Screenshots kijelöli a területet Ön helyett. Tetszik amit lát? Válassza a Mentést, hogy online is elérje a képernyőképeit, vagy a lefelé mutató nyilat a számítógépre letöltéshez.
+homePageCapturePage = Lap befogása
+homePageCapturePageDescription = Használja a jobb felső sarokban lévő gombokat a teljes lapok befogásához. A Láthatóak mentése gomb a görgetés nélkül látható területet fogja be, a Teljes lap mentése pedig mindent, ami a lapon található.
 homePageSaveShare = Mentés és megosztás
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Ha készít egy képet, akkro a Firefox az online Screenshots könyvtárába küldi, a hivatkozást pedig a vágólapra másolja. Automatikusan két hétig tároljuk a képernyőképeket, de bármikor törölheti a képeket, vagy megváltoztathatja a lejárati időt, hogy tovább tartsa őket meg a könyvtárában.
 homePageLegalLink = Jogi információk
 homePagePrivacyLink = Adatvédelem
 homePageTermsLink = Feltételek
@@ -45,6 +64,8 @@ homePageCookiesLink = Sütik
 [[ Leave Screenshots page ]]
 
 leavePageConfirmDelete = Fiók törlésének jóváhagyása
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = A fiókja törléséhez telepítve kell lennie a Firefox Screentshotsnak
 leavePageErrorGeneric = Hiba történt
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ez véglegesen törli a Firefox képernyőképek összes adatát.
@@ -89,13 +110,24 @@ shotPageExpirationMessage = Ha nem tesz semmit, a kép törlésre kerül { $time
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = visszaállítás eddig: { $date }
 shotPageExpiredMessage = Ez a képernyőkép lejárt.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Itt van az oldal, amelyről eredetileg készült:
 shotPageDeleteButton
     .title = A képernyőkép törlése
+shotPageAbuseButton
+    .title = Kép jelentése visszaélés, spam vagy más problémák miatt
 shotPageDownloadShot
     .title = Letöltés
 shotPageDownload = Letöltés
 shotPageScreenshotsDescription = Képernyőképek egyszerűen. Készítsen, mentsen és ossza meg a képernyőképeit a Firefox elhagyása nélkül.
 shotPageUpsellFirefox = Szerezze be most a Firefoxot
+shotPageDMCAMessage = A kép egy harmadik fél szerzői jogi követelése miatt már nem érhető el.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = További információ kéréséhez küldjön egy e-mailt ide: { $dmca }
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Ha képeit több követelés is érinti, akkor megvonhatjuk a Firefox Screenshots hozzáférését.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Adja meg a kép URL-t az e-mailjében: { $url }
 shotPageKeepFor = Meddig legyen ez a képernyőkép megtartva?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Időpont választása
@@ -159,6 +191,7 @@ shotIndexPageNoShotsMessage = Nincsenek mentett képek.
 shotIndexPageNoShotsInvitation = Hajrá, készítsen néhányat.
 shotIndexPageLookingForShots = Képek keresése…
 shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Nem található a keresésnek megfelelő kép.
 shotIndexPageClearSearchButton
     .title = Keresés törlése
 shotIndexPageConfirmShotDelete = Törli ezt a képet?
@@ -180,13 +213,23 @@ metricsPageShotsQueryTitle = Képek napok szerint
 metricsPageShotsQueryDescription = Az egyes napokon készült képek száma (az elmúlt 30 napban)
 metricsPageShotsQueryCount = Képek száma
 metricsPageShotsQueryDay = Nap
-metricsPageUsersQueryTitle = Felhasználók napok szerint
+metricsPageUsersQueryTitle = Felhasználók napi bontásban
+metricsPageUsersQueryDescription = A felhasználók száma, akik legalább egy képet csináltak, napok szerint (elmúlt 30 nap)
 metricsPageUsersQueryCount = Felhasználók száma
 metricsPageUsersQueryDay = Nap
 metricsPageUserShotsQueryTitle = Képek száma felhasználónként
+metricsPageUserShotsQueryDescription = A felhasználók száma, akiknek összesen N képük van
 metricsPageUserShotsQueryCount = Felhasználók száma
+metricsPageUserShotsQueryShots = Az aktív (nem lejárt) képek közelítő száma
+metricsPageRetentionQueryTitle = Megtartás hetenkénti bontásban
+metricsPageRetentionQueryDescription = A napok száma a felhasználó első képétől a legfrissebb képig, kezdőhetek szerint
 metricsPageRetentionQueryUsers = Felhasználók száma
+metricsPageRetentionQueryDays = A napok száma a felhasználó első képétől a legfrissebbig
+metricsPageRetentionQueryFirstWeek = A hét, amikor a felhasználó elkészítette az első képet
+metricsPageTotalRetentionQueryTitle = Teljes megtartás
+metricsPageTotalRetentionQueryDescription = A felhasználók mennyi ideje készítenek képeket, hetenkénti bontásban
 metricsPageTotalRetentionQueryUsers = Felhasználók száma
+metricsPageTotalRetentionQueryDays = A napok, amikor a felhasználók képeket készítettek
 metricsPageVersionQueryTitle = Kiegészítő verziója
 metricsPageVersionQueryDescription = A bejelentkezéskor használt kiegészítő verziója, az elmúlt 14 napban
 metricsPageVersionQueryUsers = Bejelentkező felhasználók száma

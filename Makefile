@@ -190,6 +190,11 @@ creating_dependencies := $(shell ./bin/build-scripts/bundle_dependencies creatin
 build/server/static/js/creating-bundle.js: $(creating_dependencies)
 	./bin/build-scripts/bundle_dependencies creating build ./build/server/pages/creating/controller.js
 
+settings_dependencies := $(shell ./bin/build-scripts/bundle_dependencies settings getdeps "$(server_dest)")
+build/server/static/js/settings-bundle.js: $(settings_dependencies)
+	./bin/build-scripts/bundle_dependencies settings build ./build/server/pages/settings/controller.js
+
+
 # The intention here is to only write build-time when something else needs
 # to be regenerated, but for some reason this gets rewritten every time
 # anyway:
@@ -198,7 +203,7 @@ build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass
 	./bin/build-scripts/write_build_time.py > build/server/build-time.js
 
 .PHONY: server
-server: npm build/server/build-time.js build/server/package.json build/server/static/js/shot-bundle.js build/server/static/js/homepage-bundle.js build/server/static/js/metrics-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/leave-bundle.js build/server/static/js/creating-bundle.js
+server: npm build/server/build-time.js build/server/package.json build/server/static/js/shot-bundle.js build/server/static/js/homepage-bundle.js build/server/static/js/metrics-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/leave-bundle.js build/server/static/js/creating-bundle.js build/server/static/js/settings-bundle.js
 
 ## Homepage related rules:
 

@@ -11,7 +11,17 @@ gMyShots = 自分のショット
 gHomeLink = ホーム
 gNoShots
     .alt = ショットが見つかりませんでした
-gScreenshotsDescription = スクリーンショットを簡単に。Firefox を離れることなくスクリーンショットを撮影、保存、共有。
+gScreenshotsDescription = スクリーンショットをもっと手軽に。Firefox を離れることなくスクリーンショットを撮影、保存、共有。
+
+
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = プライバシー通知
+footerLinkDMCA = IP 侵害を報告
+footerLinkDiscourse = フィードバックを送る
+footerLinkRemoveAllData = すべてのデータを削除
 
 
 [[ Creating page ]]
@@ -36,15 +46,15 @@ homePageGetStarted = はじめよう
 homePageHowScreenshotsWorks = Firefox Screenshots の仕組み
 homePageGetStartedTitle = はじめよう
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = ツールバー上にある新しい Screenshots アイコンを見つけてください。それを選択すれば、ブラウザーウィンドウの上にスクリーンショットメニューが表示されます。
+homePageGetStartedDescription = ツールバー上にある新しい Screenshots アイコンを見つけてください。それを選択すれば、ブラウザーウィンドウの上に Screenshots メニューが表示されます。
 homePageCaptureRegion = 選択範囲をキャプチャ
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = クリック＆ドラッグで、キャプチャしたい範囲を選択します。あるいは単純にマウスを当ててクリックすれば、Screenshots が自動的に範囲を選択してくれます。範囲を確定したら、保存ボタンをクリックすればオンラインでスクリーンショットを参照できます。また下向きの矢印ボタンでコンピューターに保存することもできます。
+homePageCaptureRegionDescription = クリック＆ドラッグでキャプチャしたい範囲を選択します。あるいは単純にマウスを当ててクリックすれば、Screenshots が自動的に範囲を選択してくれます。範囲を確定したら、保存ボタンをクリックすればオンラインでスクリーンショットを参照できます。また下向きの矢印ボタンでコンピューターに保存することもできます。
 homePageCapturePage = ページをキャプチャ
-homePageCapturePageDescription = ページ全体をキャプチャするには右上のボタンを使ってください。[表示範囲を保存] ボタンはスクロールせずに見てている範囲のみをキャプチャ、[ページ全体を保存] ボタンはページ上のすべての要素をキャプチャできます。
+homePageCapturePageDescription = ページ全体をキャプチャするには右上のボタンを使ってください。[表示範囲を保存] ボタンはスクロールせずに見えている範囲のみをキャプチャ、[ページ全体を保存] ボタンはページ上のすべての要素をキャプチャできます。
 homePageSaveShare = 保存して共有
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = ショットを撮ると、Firefox はスクリーンショットをオンラインの Screenshots ライブラリへ投稿して、そのリンクをクリップボードへコピーします。スクリーンショットは自動的に 2 週間保存されますが、その間にいつでもショットを削除したり、もっと長くライブラリに残せるよう期限を変更したりできます。
+homePageSaveShareDescription = ショットを撮ると、Firefox はスクリーンショットをオンラインの Screenshots ライブラリへ投稿して、そのリンクをクリップボードへコピーします。スクリーンショットは自動的に 2 週間保存されますが、その間にいつでも削除したり、もっと長くライブラリに残せるよう期限を変更したりできます。
 homePageLegalLink = 法的通知
 homePagePrivacyLink = プライバシー
 homePageTermsLink = 利用規約
@@ -109,9 +119,9 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = ダウンロード
 shotPageDownload = ダウンロード
-shotPageScreenshotsDescription = スクリーンショットを簡単に。Firefox を離れることなくスクリーンショットを撮影、保存、共有。
+shotPageScreenshotsDescription = スクリーンショットをもっと手軽に。Firefox を離れることなくスクリーンショットを撮影、保存、共有。
 shotPageUpsellFirefox = 今すぐ Firefox をダウンロード
-shotPageDMCAMessage = このショットは第三者による知的所有権侵害報告により使用できなくなりました。
+shotPageDMCAMessage = このショットは第三者からの知的所有権侵害の申し立てにより使用できなくなりました。
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = より詳しい情報は { $dmca } までお問い合わせください。
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -180,9 +190,9 @@ metricsPageTotalsQueryDescription = Screenshots の概要
 metricsPageTotalsQueryDevices = 登録済み合計端末数
 metricsPageTotalsQueryActiveShots = アクティブなショット
 metricsPageTotalsQueryExpiredShots = 期限切れ (ただし復元可能)
-metricsPageTotalsQueryExpiredDeletedShots = 期限切れ (削除済み)
+metricsPageTotalsQueryExpiredDeletedShots = 期限切れ (既に削除済み)
 metricsPageShotsQueryTitle = 日別ショット数
-metricsPageShotsQueryDescription = 毎日作成されたショットの数 (過去 30 日間)
+metricsPageShotsQueryDescription = 作成されたショットの日別数 (過去 30 日間)
 metricsPageShotsQueryCount = ショット数
 metricsPageShotsQueryDay = 日
 metricsPageUsersQueryTitle = 日別ユーザー数

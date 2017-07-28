@@ -14,6 +14,16 @@ gNoShots
 gScreenshotsDescription = Realizzare screenshot non è mai stato così facile. Cattura, salva e condividi le tue immagini senza uscire da Firefox.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Informativa sulla privacy
+footerLinkDMCA = Segnala violazioni IP
+footerLinkDiscourse = Invia commenti
+footerLinkRemoveAllData = Rimozione dei dati
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
@@ -28,7 +38,7 @@ creatingPageTitleDefault = pagina
 homePageDescription
     .content = Un modo intuitivo di realizzare screenshot direttamente nel browser. Cattura, salva e condividi immagini durante la navigazione con Firefox.
 homePageButtonMyShots = Vai alle mie immagini
-homePageTeaser = Presto disponibile...
+homePageTeaser = Prossimamente…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Download gratuito
 homePageGetStarted = Per iniziare
@@ -36,15 +46,15 @@ homePageGetStarted = Per iniziare
 homePageHowScreenshotsWorks = Come funziona Firefox Screenshots
 homePageGetStartedTitle = Per iniziare
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Trova la nuova icona Screenshots nella barra degli strumenti. Selezionala e il menu di Firefox Screenshots apparirà in alto nella finestra del browser.
-homePageCaptureRegion = Cattura un’area
+homePageGetStartedDescription = Individua la nuova icona Screenshots nella barra degli strumenti. Selezionala e nella parte superiore della finestra del browser apparirà il menu di Firefox Screenshots.
+homePageCaptureRegion = Cattura un’area dello schermo
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Fai clic e trascina per selezionare l’area che ti interessa. Oppure posizionati con il mouse e fai clic – Screenshots cercherà di selezionare l’area per te. È tutto pronto? Scegli Salva per memorizzare l’immagine online oppure il pulsante con la freccia verso il basso per scaricarla sul computer.
+homePageCaptureRegionDescription = Fai clic e trascina per selezionare l’area che ti interessa. Oppure posizionati con il mouse e fai clic: Screenshots cercherà di selezionare l’area per te. È tutto pronto? Scegli Salva per memorizzare l’immagine online oppure il pulsante con la freccia verso il basso per scaricarla sul computer.
 homePageCapturePage = Cattura una pagina
-homePageCapturePageDescription = Utilizza i pulsanti in alto a destra per catturare la pagina. Il pulsante “Salva l’area visibile” cattura l’area attualmente visibile senza scorrere la pagina, mentre “Salva l’intera schermata” cattura il contenuto completo della pagina.
+homePageCapturePageDescription = Utilizza i pulsanti in alto a destra per catturare la pagina. Il pulsante “Salva l’area visibile” cattura l’area visualizzata sullo schermo senza scorrere la pagina, mentre “Salva l’intera schermata” ne cattura il contenuto completo.
 homePageSaveShare = Salva e condividi
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Quando salvi uno screenshot, Firefox aggiunge la tua immagine alla libreria online e copia il link negli appunti. L’immagine viene conservata automaticamente per due settimane, ma puoi eliminarla in qualunque momento, o modificarne la data di scadenza per mantenerla più a lungo nella libreria.
+homePageSaveShareDescription = Quando salvi uno screenshot in Firefox, la tua immagine viene aggiunta alla libreria online e il link viene copiato negli appunti. L’immagine viene conservata automaticamente per due settimane, ma puoi eliminarla in qualunque momento, o modificarne la data di scadenza per mantenerla più a lungo nella libreria.
 homePageLegalLink = Note legali
 homePagePrivacyLink = Privacy
 homePageTermsLink = Condizioni di utilizzo
@@ -73,7 +83,7 @@ notFoundPageDescription = Pagina non trovata.
 
 [[ Shot page ]]
 
-shotPageAlertErrorUpdatingExpirationTime = Errore durante il salvataggio della scadenza
+shotPageAlertErrorUpdatingExpirationTime = Errore durante la modifica della scadenza dell’immagine
 shotPageAlertErrorDeletingShot = Errore durante l’eliminazione dell’immagine
 shotPageAlertErrorUpdatingTitle = Errore durante il salvataggio del titolo
 shotPageConfirmDelete = Eliminare questa immagine in modo definitivo?
@@ -95,13 +105,13 @@ shotPageCopyImageText
     .label = Copia testo nell’immagine
 shotPageConfirmDeletion = Eliminare questa immagine in modo definitivo?
 // Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Se non viene modificato nulla, questa immagine verrà eliminata { $timediff }.
+shotPageExpirationMessage = Senza ulteriori azioni, questa immagine verrà eliminata { $timediff }.
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = ripristina fino a { $date }
 shotPageExpiredMessage = Questa immagine è scaduta.
 // Note: This phrase is followed by an empty line, then the URL of the source page
-shotPageExpiredMessageDetails = Questa è la pagina originale da cui è stata creata:
+shotPageExpiredMessageDetails = Pagina originale da cui l’immagine è stata creata:
 shotPageDeleteButton
     .title = Elimina questa immagine
 shotPageAbuseButton
@@ -128,11 +138,11 @@ shotPageKeepOneDay = 1 giorno
 shotPageKeepOneWeek = 1 settimana
 shotPageKeepTwoWeeks = 2 settimane
 shotPageKeepOneMonth = 1 mese
-shotPageSaveExpiration = salva
-shotPageCancelExpiration = annulla
-shotPageDoesNotExpire = non ha scadenza
+shotPageSaveExpiration = Salva
+shotPageCancelExpiration = Annulla
+shotPageDoesNotExpire = nessuna scadenza
 // Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = scade { $timediff }
+shotPageExpiresIn = Scade { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = è scaduto { $timediff }
 timeDiffJustNow = adesso
