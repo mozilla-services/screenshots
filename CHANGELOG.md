@@ -1,3 +1,22 @@
+## Version 12.0.0
+
+This is a server-only release
+
+### Server
+
+* Fix detection of a bad UPDATE in response to PUT ([#3233](https://github.com/mozilla-services/screenshots/issues/3233)). Because of a bad test for the UPDATE's success, file updates were committed inappropriate. Fixes [Bug 1384817](https://bugzilla.mozilla.org/show_bug.cgi?id=1384817) [6343bec](https://github.com/mozilla-services/screenshots/commit/6343bec)
+* Localize footer and copy button label. Fixes [#3214](https://github.com/mozilla-services/screenshots/issues/3214) [24bd0a1](https://github.com/mozilla-services/screenshots/commit/24bd0a1)
+* When initing l10n, cache contents of FTL files, not user locale ([#3170](https://github.com/mozilla-services/screenshots/issues/3170)) ([#3199](https://github.com/mozilla-services/screenshots/issues/3199))
+  * Also, bail if locales aren't found or can't be loaded.
+  * address review feedback [26daf9f](https://github.com/mozilla-services/screenshots/commit/26daf9f)
+* Add event for non-owner click on original url [30c113e](https://github.com/mozilla-services/screenshots/commit/30c113e)
+* Handle redirects in calls to /proxy ([#3195](https://github.com/mozilla-services/screenshots/issues/3195))Probably. Fixes [#2648](https://github.com/mozilla-services/screenshots/issues/2648) [61d686f](https://github.com/mozilla-services/screenshots/commit/61d686f)
+
+### Add-on
+
+* Remove duplicate drawWindow call for shot preview [2a5dd27](https://github.com/mozilla-services/screenshots/commit/2a5dd27)
+* Update shot preview save icon [735b3f9](https://github.com/mozilla-services/screenshots/commit/735b3f9)
+
 ## Version 11.0.0
 
 This is a server-only release.  Add-on changes are still deferred to a later Firefox release.
