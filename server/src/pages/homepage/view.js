@@ -701,8 +701,8 @@ class Body extends React.Component {
               </Localized>
             </div>
             <div className="social-links">
-              <a href="https://github.com/mozilla-services/screenshots" target="_blank" className="link-icon github" title="GitHub"></a>
-              <a href="https://twitter.com/FxScreenshots" target="_blank" className="link-icon twitter" title="Twitter"></a>
+              <a href="https://github.com/mozilla-services/screenshots" target="_blank" rel="noopener noreferrer" className="link-icon github" title="GitHub"></a>
+              <a href="https://twitter.com/FxScreenshots" target="_blank" rel="noopener noreferrer" className="link-icon twitter" title="Twitter"></a>
             </div>
           </div>
         </footer>

@@ -32,7 +32,7 @@ this.slides = (function() {
       iframe.scrolling = "no";
       updateIframeSize();
       let html = onboardingHtml.replace('<style></style>', `<style>${onboardingCss}</style>`);
-      html = html.replace(/MOZ_EXTENSION([^\"]+)/g, (match, filename) => {
+      html = html.replace(/MOZ_EXTENSION([^"]+)/g, (match, filename) => {
         return browser.extension.getURL(filename);
       });
       iframe.addEventListener("load", catcher.watchFunction(() => {

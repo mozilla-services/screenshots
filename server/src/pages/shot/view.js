@@ -1,6 +1,5 @@
 /* globals controller */
 const React = require("react");
-const ReactDOM = require("react-dom");
 const { Localized } = require("fluent-react/compat");
 const { Footer } = require("../../footer-view");
 const sendEvent = require("../../browser-send-event.js");
@@ -18,7 +17,7 @@ class Clip extends React.Component {
   }
 
   componentDidMount() {
-    let image = ReactDOM.findDOMNode(this.refs.clipImage);
+    let image = this.clipImage;
     if (image.complete) {
       this.onImageLoaded();
     }
@@ -42,11 +41,11 @@ class Clip extends React.Component {
       console.warn("Somehow there's a shot without an image");
       return null;
     }
-    let node = <img id="clipImage" style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%", display: this.state.imageDisplay}} ref="clipImage" src={ clip.image.url } alt={ clip.image.text } onLoad = { this.onImageLoaded.bind(this) } />;
+    let node = <img id="clipImage" style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%", display: this.state.imageDisplay}} ref={clipImage => this.clipImage = clipImage} src={ clip.image.url } alt={ clip.image.text } onLoad = { this.onImageLoaded.bind(this) } />;
     // Note that in server/src/pages/shot/page.js there is also JavaScript defined
     // that displays the image onload, as a backup to make sure the image always
     // gets displayed even if the bundle doesn't load
-    return <div ref="clipContainer" className="clip-container">
+    return <div ref={clipContainer => this.clipContainer = clipContainer} className="clip-container">
       { this.copyTextContextMenu() }
       { this.renderLoader() }
       <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) } contextMenu="clip-image-context">
@@ -320,10 +319,10 @@ class Body extends React.Component {
     }
 
     let errorMessages = [
-      <Localized id="shotPageAlertErrorUpdatingExpirationTime"><div id="shotPageAlertErrorUpdatingExpirationTime" hidden></div></Localized>,
-      <Localized id="shotPageAlertErrorDeletingShot"><div id="shotPageAlertErrorDeletingShot" hidden></div></Localized>,
-      <Localized id="shotPageAlertErrorUpdatingTitle"><div id="shotPageAlertErrorUpdatingTitle" hidden></div></Localized>,
-      <Localized id="shotPageConfirmDelete"><div id="shotPageConfirmDelete" hidden></div></Localized>
+      <Localized id="shotPageAlertErrorUpdatingExpirationTime" key="error-1"><div id="shotPageAlertErrorUpdatingExpirationTime" hidden></div></Localized>,
+      <Localized id="shotPageAlertErrorDeletingShot" key="error-2"><div id="shotPageAlertErrorDeletingShot" hidden></div></Localized>,
+      <Localized id="shotPageAlertErrorUpdatingTitle" key="error-3"><div id="shotPageAlertErrorUpdatingTitle" hidden></div></Localized>,
+      <Localized id="shotPageConfirmDelete" key="error-4"><div id="shotPageConfirmDelete" hidden></div></Localized>
     ];
 
     let linkTextShort = shot.urlDisplay;
@@ -512,7 +511,7 @@ class ExpireWidget extends React.Component {
     return (
       <span className="keep-for-form">
         <Localized id="shotPageKeepFor"><span>How long should this shot be retained?</span></Localized>
-        <select ref="expireTime">
+        <select ref={expireTime => this.expireTime = expireTime}>
           <Localized id="shotPageSelectTime"><option value="cancel">Select time</option></Localized>
           <Localized id="shotPageKeepIndefinitely"><option value="0">Indefinitely</option></Localized>
           <Localized id="shotPageKeepTenMinutes"><option value={ 10 * minute }>10 Minutes</option></Localized>
@@ -562,7 +561,7 @@ class ExpireWidget extends React.Component {
 
   clickSaveExpire() {
     // FIXME: save the value that it was changed to?  Yes!  Not sure where to put it.
-    let value = ReactDOM.findDOMNode(this.refs.expireTime).value;
+    let value = this.expireTime.value;
     if (value === "cancel") {
       this.clickCancelExpire();
       return;
@@ -601,7 +600,7 @@ class EditableTitle extends React.Component {
     if (this.state.isSaving) {
       className += " saving";
     }
-    return <span ref="title" className={className} {...handlers}>{this.state.isSaving || this.props.title}</span>;
+    return <span ref={titleElement => this.titleElement = titleElement} className={className} {...handlers}>{this.state.isSaving || this.props.title}</span>;
   }
 
   renderEditing() {
@@ -616,7 +615,7 @@ class EditableTitle extends React.Component {
 
   onClick() {
     if (!this.state.isEditing) {
-      this.setState({minWidth: this.refs.title.offsetWidth });
+      this.setState({minWidth: this.titleElement.offsetWidth });
     }
     this.setState({isEditing: true});
   }

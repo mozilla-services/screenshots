@@ -312,7 +312,7 @@ app.param("id", function(req, res, next, id) {
 });
 
 app.param("domain", function(req, res, next, domain) {
-  if (/^[^\s\/]{1,100}$/.test(domain)) {
+  if (/^[^\s/]{1,100}$/.test(domain)) {
     next();
     return;
   }
@@ -406,7 +406,7 @@ app.post("/error", function(req, res) {
     value = value.replace(/\n/g, " / ");
     value = value.replace(/[\t\r]/g, " ");
     value = value.replace(/\s+/g, " ");
-    value = value.replace(/[^a-z0-9_\-=+\{\}\(\).,/\?:\[\]\| ]/gi, "?");
+    value = value.replace(/[^a-z0-9_\-=+{}().,/?:[\]| ]/gi, "?");
     value = value.substr(0, 100);
     attrs.push(`${attr}:  ${value}`);
   }
@@ -930,7 +930,7 @@ app.get("/oembed", function(req, res) {
     return;
   }
   url = url.substr(backend.length);
-  let match = /^\/{0,255}([^\/]{1,255})\/([^\/]{1,255})/.exec(url);
+  let match = /^\/{0,255}([^/]{1,255})\/([^/]{1,255})/.exec(url);
   if (!match) {
     simpleResponse(res, "Error: not a Shot url", 404);
     return;

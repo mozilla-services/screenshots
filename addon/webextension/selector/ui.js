@@ -43,7 +43,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     return false;
   }
 
-  let substitutedCss = inlineSelectionCss.replace(/MOZ_EXTENSION([^\"]+)/g, (match, filename) => {
+  let substitutedCss = inlineSelectionCss.replace(/MOZ_EXTENSION([^"]+)/g, (match, filename) => {
     return browser.extension.getURL(filename);
   });
 
@@ -110,6 +110,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element.addEventListener("load", watchFunction(() => {
             this.document = this.element.contentDocument;
             assertIsBlankDocument(this.document);
+            // eslint-disable-next-line no-unsanitized/property
             this.document.documentElement.innerHTML = `
                <head>
                 <style>${substitutedCss}</style>
@@ -229,6 +230,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element.addEventListener("load", watchFunction(() => {
             this.document = this.element.contentDocument;
             assertIsBlankDocument(this.document)
+            // eslint-disable-next-line no-unsanitized/property
             this.document.documentElement.innerHTML = `
                <head>
                 <style>${substitutedCss}</style>
@@ -328,6 +330,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element.style.width = "100%";
           this.element.onload = watchFunction(() => {
             this.document = this.element.contentDocument;
+            // eslint-disable-next-line no-unsanitized/property
             this.document.documentElement.innerHTML = `
               <head>
                 <style>${substitutedCss}</style>

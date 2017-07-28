@@ -262,11 +262,11 @@ h1 {
 }
 
 .preferences {
+  @include flex-container(row, flex-start, stretch);
   background-size: $grid-unit $grid-unit;
   background-repeat: no-repeat;
   background-position: center center;
   background-image: url("../img/preferences-16.svg");
-  @include flex-container(row, flex-start, stretch);
   position: absolute;
   right: 0;
 }

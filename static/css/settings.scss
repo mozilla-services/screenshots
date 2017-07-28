@@ -1,11 +1,11 @@
 @import "partials/partials";
 
 .close-preferences {
+  @include flex-container(row, flex-start, stretch);
   background-image: url("../img/close-16.svg");
   background-size: $grid-unit $grid-unit;
   background-repeat: no-repeat;
   background-position: center center;
-  @include flex-container(row, flex-start, stretch);
   position: absolute;
   right: 0;
   margin: 40px 80px auto;
@@ -45,7 +45,7 @@
     font-weight: 500;
     font-size: 19.2px;
     color: #383e49;
-    margin: 0 0 -20px 0;
+    margin: 0 0 -20px;
   }
 
   .email {

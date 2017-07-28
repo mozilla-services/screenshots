@@ -3,7 +3,6 @@ const sendEvent = require("../../browser-send-event.js");
 const reactruntime = require("../../reactruntime");
 const { Footer } = require("../../footer-view.js");
 const React = require("react");
-const ReactDOM = require("react-dom");
 const { ShareButton } = require("../../share-buttons");
 const Masonry = require("react-masonry-component");
 const { Localized } = require("fluent-react/compat");
@@ -148,7 +147,7 @@ class Body extends React.Component {
       <form onSubmit={ this.onSubmitForm.bind(this) }>
         <span className="search-label" />
         <Localized id="shotIndexPageSearchPlaceholder">
-          <input type="search" id="search" ref="search" maxLength="100" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />
+          <input type="search" id="search" ref={searchInput => this.searchInput = searchInput} maxLength="100" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />
         </Localized>
         <Localized id="shotIndexPageClearSearchButton">
           <div className="clear-search" title="clear search" onClick={this.onClearSearch.bind(this)}></div>
@@ -159,7 +158,7 @@ class Body extends React.Component {
 
   onSubmitForm(e) {
     e.preventDefault();
-    let val = ReactDOM.findDOMNode(this.refs.search).value;
+    let val = this.searchInput.value;
     if (val) {
       sendEvent("search", "submit");
     } else {
@@ -169,7 +168,7 @@ class Body extends React.Component {
   }
 
   onChangeSearch() {
-    let val = ReactDOM.findDOMNode(this.refs.search).value;
+    let val = this.searchInput.value;
     this.setState({defaultSearch: val});
     if (!val) {
       sendEvent("clear-search", "keyboard");
@@ -190,7 +189,7 @@ class Body extends React.Component {
 
   onClearSearch(e) {
     const val = '';
-    ReactDOM.findDOMNode(this.refs.search).value = val;
+    this.searchInput.value = val;
     this.setState({defaultSearch: val});
     controller.onChangeSearch(val);
     sendEvent("clear-search", "button");
@@ -259,11 +258,11 @@ class Card extends React.Component {
         <div className="alt-actions-container">
           <Localized id="shotPageDownloadShot">
             <a className="button transparent download" href={ downloadUrl } onClick={ this.onClickDownload.bind(this) }
-              title="Download the shot image" ref="download" />
+              title="Download the shot image" ref={downloadButton => this.downloadButton = downloadButton} />
           </Localized>
           <ShareButton setPanelState={this.setPanelState.bind(this)} abTests={this.props.abTests} clipUrl={imageUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} />
           <Localized id="shotPageDeleteButton">
-            <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this, shot) } ref="trash" />
+            <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this, shot) } ref={trashButton => this.trashButton = trashButton} />
           </Localized>
         </div>
       </div>
@@ -316,12 +315,12 @@ class Card extends React.Component {
     } else {
       sendEvent("cancel-delete", "my-shots-popup-confirm");
     }
-    this.refs.trash.blur();
+    this.trashButton.blur();
     return false;
   }
 
   onClickDownload() {
-    this.refs.download.blur();
+    this.downloadButton.blur();
     sendEvent("download", "myshots-tile");
   }
 }

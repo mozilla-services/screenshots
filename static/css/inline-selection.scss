@@ -51,10 +51,10 @@ $very-light-grey: #ededed;
   position: absolute;
   z-index: $overlay-z-index + 1;
 
-  &:before {
+  &::before {
     border: 2px dashed rgba(255, 255, 255, 0.4);
     bottom: 0;
-    content: '';
+    content: "";
     left: 0;
     position: absolute;
     right: 0;
@@ -283,7 +283,7 @@ $very-light-grey: #ededed;
 }
 
 .preview-image  {
-  position:relative;
+  position: relative;
   height: 80%;
   max-width: 100%;
   margin: auto 2em;

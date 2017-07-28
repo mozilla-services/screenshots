@@ -21,7 +21,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
 
   function sanitizeError(data) {
     const href = new RegExp(regexpEscape(window.location.href), 'g');
-    const origin = new RegExp(`${regexpEscape(window.location.origin)}[^\s",>]*`, 'g');
+    const origin = new RegExp(`${regexpEscape(window.location.origin)}[^ \t\n\r",>]*`, 'g');
     const json = JSON.stringify(data)
       .replace(href, 'REDACTED_HREF')
       .replace(origin, 'REDACTED_URL');
