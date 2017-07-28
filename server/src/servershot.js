@@ -227,13 +227,16 @@ class Shot extends AbstractShot {
         WHERE id = $5 AND deviceid = $6`,
         [JSON.stringify(json), this.url, this.title, searchable.version, this.id, this.ownerId].concat(searchable.args)
       );
-      return promise.then((rowCount) => {
-        if (!rowCount) {
-          throw new Error("No row updated");
+      return promise.then((result) => {
+        if (!result.rowCount) {
+          clipRewrites.revertShotUrls();
+          return false;
         }
-        return clipRewrites.commit(client);
-      }).then(() => {
-        return oks;
+        return clipRewrites.commit(client).then(() => {
+          return true;
+        });
+      }).then((updated) => {
+        return updated ? oks : null;
       });
     });
   }

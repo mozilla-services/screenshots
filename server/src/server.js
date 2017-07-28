@@ -649,6 +649,11 @@ app.put("/data/:id/:domain", function(req, res) {
     }
     return inserted;
   }).then((commands) => {
+    if (!commands) {
+      mozlog.warn("invalid-put-update", {msg: "Attempt to PUT to existing shot by non-owner", ip: req.ip});
+      simpleResponse(res, 'No shot updated', 403);
+      return;
+    }
     commands = commands || [];
     simpleResponse(res, JSON.stringify({updates: commands.filter((x) => !!x)}), 200);
   }).catch((err) => {

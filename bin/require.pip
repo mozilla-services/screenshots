@@ -1,2 +1,3 @@
 flake8==3.3.0
 GitPython==2.1.3
+requests
