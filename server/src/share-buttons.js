@@ -40,7 +40,7 @@ exports.ShareButton = class ShareButton extends React.Component {
         "navbar");
     } else {
       this.props.setPanelState("panel-closed");
-      this.refs.share.blur();
+      this.shareDiv.blur();
       sendEvent("cancel-share");
     }
   }
@@ -87,25 +87,25 @@ class ShareButtonPanel extends React.Component {
     if (this.props.renderExtensionNotification) {
       className += " share-panel-with-notification";
     }
-    return <div id="share-buttons-panel" className={className} ref="share" style={{top: this.state.top, left: this.state.left}}>
+    return <div id="share-buttons-panel" className={className} ref={shareDiv => this.shareDiv = shareDiv} style={{top: this.state.top, left: this.state.left}}>
       <div className="wrapper row-wrap share-buttons">
         <Localized id="shotPageShareFacebook">
-          <a title="Share to Facebook wall or message" onClick={ this.onClickShareButton.bind(this, "facebook") } target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }>
+          <a title="Share to Facebook wall or message" onClick={ this.onClickShareButton.bind(this, "facebook") } target="_blank" rel="noopener noreferrer" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }>
             <img src={ this.props.staticLink("/static/img/btn-fb.svg") } />
           </a>
         </Localized>
         <Localized id="shotPageShareTwitter">
-          <a title="Share to a tweet" onClick={ this.onClickShareButton.bind(this, "twitter") }target="_blank" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }>
+          <a title="Share to a tweet" onClick={ this.onClickShareButton.bind(this, "twitter") } target="_blank" rel="noopener noreferrer" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }>
             <img src={ this.props.staticLink("/static/img/btn-twitter.svg") } />
           </a>
         </Localized>
         <Localized id="shotPageSharePinterest">
-          <a title="Share to Pinterest" onClick={ this.onClickShareButton.bind(this, "pinterest") } target="_blank" href={ "https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" + encodeURIComponent(this.props.shot.title) }>
+          <a title="Share to Pinterest" onClick={ this.onClickShareButton.bind(this, "pinterest") } target="_blank" rel="noopener noreferrer" href={ "https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" + encodeURIComponent(this.props.shot.title) }>
             <img src={ this.props.staticLink("/static/img/btn-pinterest.svg") } />
           </a>
         </Localized>
         <Localized id="shotPageShareEmail">
-          <a title="Create email with link" onClick={ this.onClickShareButton.bind(this, "email") } target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
+          <a title="Create email with link" onClick={ this.onClickShareButton.bind(this, "email") } target="_blank" rel="noopener noreferrer" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
             <img src={ this.props.staticLink("/static/img/btn-email.svg") } />
           </a>
         </Localized>
@@ -135,7 +135,7 @@ class ShareButtonPanel extends React.Component {
   }
 
   changePanelPosition() {
-    let el = this.refs.share;
+    let el = this.shareDiv;
     let rect = el.getBoundingClientRect();
     if (!(rect.right <= (window.innerWidth || document.documentElement.clientWidth))) {
       this.setState({left: -140});
