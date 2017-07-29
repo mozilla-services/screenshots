@@ -16,7 +16,7 @@ const webdriver = require("selenium-webdriver");
 const { By, until } = webdriver;
 const path = require("path");
 
-const SHOOTER_BUTTON_ID = "screenshots_mozilla_org-browser-action";
+const SHOOTER_BUTTON_ID = "pageAction-panel-screenshots";
 const SLIDE_IFRAME_ID = "firefox-screenshots-onboarding-iframe";
 const PRESELECTION_IFRAME_ID = "firefox-screenshots-preselection-iframe";
 const PREVIEW_IFRAME_ID = "firefox-screenshots-preview-iframe";
