@@ -83,6 +83,8 @@ shotPageSharePinterest
     .title = Падзяліцца ў Pinterest
 shotPageShareEmail
     .title = Падзяліцца спасылкай па э-пошце
+shotPageCopyImageText
+    .label = Капіяваць тэкст выявы
 shotPageConfirmDeletion = Вы сапраўды хочаце назаўсёды выдаліць гэты здымак?
 shotPageExpiredMessage = Гэты здымак пратэрмінаваны.
 shotPageDeleteButton
@@ -103,10 +105,19 @@ shotPageKeepOneMonth = 1 месяц
 shotPageSaveExpiration = захаваць
 shotPageCancelExpiration = адмяніць
 shotPageDoesNotExpire = неабмежаваны тэрмін
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = тэрмін захоўвання мінае { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = тэрмін захоўвання скончыўся { $timediff }
+timeDiffJustNow = толькі што
+timeDiffFutureSeconds = праз некалькі секунд
 
 
 [[ Shotindex page ]]
 
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Памылка рэндэрынгу старонкі: { $error }
 shotIndexPageSearchPlaceholder
     .placeholder = Пошук маіх здымкаў
 shotIndexPageSearchButton
@@ -125,6 +136,8 @@ shotIndexPageConfirmShotDelete = Выдаліць гэты здымак?
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Метрыкі Firefox Screenshots
 metricsPageTotalsQueryTitle = Вынікі
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Агляд Screenshots
 metricsPageTotalsQueryActiveShots = Актыўныя здымкі
 metricsPageShotsQueryCount = Колькасць здымкаў
 metricsPageShotsQueryDay = Дзень
