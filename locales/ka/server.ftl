@@ -51,18 +51,55 @@ homePageCaptureRegion = არეალის გადაღება
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = დააწკაპეთ და გადაადგილეთ კურსორი გადასაღები არის მოსანიშნად. ან უბრალოდ გადაატარეთ და დააწკაპეთ - Screenshots თავად მონიშნავს გადასაღებ არეს. მოგეწონათ? დააჭირეთ 'შენახვას" თქვენს სურათებთან წვდომის მისაღებად ინტერნეტის საშუალებით, ან ჩამოტვირთვის ღილაკს კომპიუტერში შესანახად.
 homePageCapturePage = გვერდისთვის სურათის გადაღება
+homePageCapturePageDescription = მთლიანი გვერდისთვის სურათის გადასაღებად ისარგებლეთ ზედა მარჯვენა კუთხეში განთავსებული ღილაკებით. ხილული ნაწილის შენახვის ღილაკი მხოლოდ იმ ნაწილს გადაიღებს, რასაც ეკრანზე ხედავთ, ხოლო მთლიანი გვერდის შენახვის ღილაკი გადაიღებს სრულ გვერდს.
+homePageSaveShare = შენახვა და გაზიარება
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = სურათის გადაღებისას, Firefox განათავსებს მას თქვენს ინტერნეტ ბიბლიოთეკაში, ხოლო ბმულს დააკოპირებს. სურათები ავტომატურად ინახება ორი კვირით, თუმცა მათი წაშლა ან შენახვის ხანგრძლივობის გაზრდა, ნებისმიერ დროსაა შესაძლებელი.
+homePageLegalLink = იურიდიული ინფორმაცია
+homePagePrivacyLink = პირადულობა
+homePageTermsLink = პირობები
+homePageCookiesLink = ფუნთუშები
 
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = ანგარიშის წაშლის დადასტურება
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = ანგარიშის წასაშლელად აუცილებელია გეყენოთ Firefox Screenshots
+leavePageErrorGeneric = მოხდა შეცდომა
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = ამის შედეგად, Firefox Screenshots-ის მონაცემები სამუდამოდ წაიშლება.
+leavePageButtonProceed = გაგრძელება
+leavePageButtonCancel = გაუქმება
+leavePageDeleted = თქვენი ყველა სურათი წაიშლება!
 
 
 [[ Not Found page ]]
 
+notFoundPageTitle = გვერდი ვერ მოიძებნა
+notFoundPageIntro = ვაი.
+notFoundPageDescription = გვერდი ვერ მოიძებნა.
 
 
 [[ Shot page ]]
 
+shotPageAlertErrorUpdatingExpirationTime = შეცდომა შენახვის ვადის განსაზღვრისას
+shotPageAlertErrorDeletingShot = შედცომა სურათის წაშლისას
+shotPageAlertErrorUpdatingTitle = შეცდომა სახელის დარქმევისას
+shotPageConfirmDelete = ნამდვილად გსურთ ამ სურათის სამუდამოდ წაშლა?
+shotPageShareButton
+    .title = გაზიარება
+shotPageCopy = დაკოპირება
+shotPageCopied = დაკოპირებულია
+shotPageShareFacebook
+    .title = გაზიარება Facebook-ით
+shotPageShareTwitter
+    .title = გაზიარება Twitter-ით
+shotPageSharePinterest
+    .title = გაზიარება Pinterest-ით
+shotPageShareEmail
+    .title = ბმულის გაზიარება ელ-ფოსტით
+shotPageShareLink = გასაზიარებელი ბმულის მიღება
 
 
 [[ Shotindex page ]]
