@@ -14,8 +14,8 @@ add_task(async function() {
   });
 
   await BrowserTestUtils.waitForCondition(
-    () => document.getElementById("screenshots_mozilla_org-browser-action"),
+    () => document.getElementById("pageAction-panel-screenshots"),
     "Screenshots button should be present", 100, 100);
 
-  checkElements(true, ["screenshots_mozilla_org-browser-action"]);
+  checkElements(true, ["pageAction-panel-screenshots"]);
 });
