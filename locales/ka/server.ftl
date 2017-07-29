@@ -106,6 +106,55 @@ shotPageCopyImageText
 shotPageConfirmDeletion = ნამდვილად გსურთ ამ სურათის სამუდამოდ წაშლა?
 // Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = თუ არაფერს მოიმოქმედებთ, ეს სურათი სამუდამოდ წაიშლება { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = აღდგენა { $date }-მდე
+shotPageExpiredMessage = სურათი ვადაგასულია.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = გვერდის შემქმნელი:
+shotPageDeleteButton
+    .title = სურათის წაშლა
+shotPageAbuseButton
+    .title = მოხსენება შეურაცხმყოფელი, სარეკლამო სურათების ან სხვა ხარვეზების შესახებ
+shotPageDownloadShot
+    .title = ჩამოტვირთვა
+shotPageDownload = ჩამოტვირთვა
+shotPageScreenshotsDescription =
+    ეკრანისთვის სურათის გადაღება უმარტივესია. გადაუღეთ, შეინახეთ და გააზიარეთ სურათები Firefox-ის დატოვების გარეშე.
+
+shotPageUpsellFirefox = გადმოწერეთ Firefox ახლავე
+shotPageDMCAMessage = სურათი წაიშალა მესამე მხარის მოთხოვნით, საავტორო უფლების დარღვევის საფუძველზე.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = გთხოვთ, მოგვწეროთ მისამართზე { $dmca } დამატებითი ინფორმაციისთვის.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = თუ თქვენი სურათები მიიღებს დიდი რაოდენობით საჩივრებს, Firefox Screenshots-თან წვდომა შესაძლოა გაგიუქმდეთ.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = გთხოვთ, შეტყობინებაში მიუთითოთ სურათის ბმული: { $url }
+shotPageKeepFor = რამდენი ხნის განმავლობაში გსურთ სურათის დატოვება?
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = დროის მითითება
+shotPageKeepIndefinitely = განუსაზღვრელი დროით
+shotPageKeepTenMinutes = 10 წუთით
+shotPageKeepOneHour = 1 საათით
+shotPageKeepOneDay = 1 დღით
+shotPageKeepOneWeek = 1 კვირით
+shotPageKeepTwoWeeks = 2 კვირით
+shotPageKeepOneMonth = 1 თვით
+shotPageSaveExpiration = შენახვა
+shotPageCancelExpiration = გაუქმება
+shotPageDoesNotExpire = უვადოა
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = ვადის გასვლის დრო { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = ვადა გაუვიდა { $timediff }
+timeDiffJustNow = ახლახანს
+timeDiffMinutesAgo = 1 წუთის წინ
+timeDiffHoursAgo = { $num ->
+       *[other] { $number } საათის წინ
+    }
+timeDiffDaysAgo = { $num ->
+       *[other] გუშინ
+    }
 
 
 [[ Shotindex page ]]
