@@ -14,6 +14,16 @@ gNoShots
 gScreenshotsDescription = ეკრანისთვის სურათის გადაღება უმარტივესია. გადაუღეთ, შეინახეთ და გააზიარეთ სურათები Firefox-ის დატოვების გარეშე.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = განცხადება პირადი მონაცემები დაცვის შესახებ
+footerLinkDMCA = მოხსენება IP დარღვევაზე
+footerLinkDiscourse = გამოხმაურება
+footerLinkRemoveAllData = ყველა მონაცემის წაშლა
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
@@ -38,6 +48,9 @@ homePageGetStartedTitle = დაიწყეთ
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = მონახეთ Screenshots-ის ახალი ხატულა ხელსაწყოთა ზოლზე. დააჭირეთ და Screenshots-ის მენიუ გამოჩნდება ფანჯრის თავზე.
 homePageCaptureRegion = არეალის გადაღება
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = დააწკაპეთ და გადაადგილეთ კურსორი გადასაღები არის მოსანიშნად. ან უბრალოდ გადაატარეთ და დააწკაპეთ - Screenshots თავად მონიშნავს გადასაღებ არეს. მოგეწონათ? დააჭირეთ 'შენახვას" თქვენს სურათებთან წვდომის მისაღებად ინტერნეტის საშუალებით, ან ჩამოტვირთვის ღილაკს კომპიუტერში შესანახად.
+homePageCapturePage = გვერდისთვის სურათის გადაღება
 
 
 [[ Leave Screenshots page ]]
