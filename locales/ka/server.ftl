@@ -100,6 +100,12 @@ shotPageSharePinterest
 shotPageShareEmail
     .title = ბმულის გაზიარება ელ-ფოსტით
 shotPageShareLink = გასაზიარებელი ბმულის მიღება
+shotPagePrivacyMessage = ამ ბმულის საშუალებით, ნებისმიერს შეეძლება სურათის ნახვა.
+shotPageCopyImageText
+    .label = სურათის ტექსტის დაკოპირება
+shotPageConfirmDeletion = ნამდვილად გსურთ ამ სურათის სამუდამოდ წაშლა?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = თუ არაფერს მოიმოქმედებთ, ეს სურათი სამუდამოდ წაიშლება { $timediff }.
 
 
 [[ Shotindex page ]]
