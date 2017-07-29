@@ -19,6 +19,9 @@ gScreenshotsDescription = Ekrano nuotraukos paprastai. Darykite, saugokite ir da
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkPrivacy = Privatumo nuostatai
+footerLinkDMCA = Pranešti apie intelektinės nuosavybės pažeidimą
+footerLinkDiscourse = Pateikti atsiliepimą
+footerLinkRemoveAllData = Pašalinti visus duomenis
 
 
 [[ Creating page ]]
