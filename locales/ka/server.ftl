@@ -119,9 +119,7 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = ჩამოტვირთვა
 shotPageDownload = ჩამოტვირთვა
-shotPageScreenshotsDescription =
-    ეკრანისთვის სურათის გადაღება უმარტივესია. გადაუღეთ, შეინახეთ და გააზიარეთ სურათები Firefox-ის დატოვების გარეშე.
-
+shotPageScreenshotsDescription = ეკრანისთვის სურათის გადაღება უმარტივესია. გადაუღეთ, შეინახეთ და გააზიარეთ სურათები Firefox-ის დატოვების გარეშე.
 shotPageUpsellFirefox = გადმოწერეთ Firefox ახლავე
 shotPageDMCAMessage = სურათი წაიშალა მესამე მხარის მოთხოვნით, საავტორო უფლების დარღვევის საფუძველზე.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -150,17 +148,77 @@ shotPageExpired = ვადა გაუვიდა { $timediff }
 timeDiffJustNow = ახლახანს
 timeDiffMinutesAgo = 1 წუთის წინ
 timeDiffHoursAgo = { $num ->
-       *[other] { $number } საათის წინ
+       *[other] 1 საათის წინ
     }
 timeDiffDaysAgo = { $num ->
        *[other] გუშინ
+    }
+timeDiffFutureSeconds = რამდენიმე წუთში
+timeDiffFutureMinutes = { $num ->
+       *[other] 1 წუთში
+    }
+timeDiffFutureHours = { $num ->
+       *[other] 1 საათში
+    }
+timeDiffFutureDays = { $num ->
+       *[other] ხვალ
     }
 
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = შეცდომა სურათის წაშლისას: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = ჩემი გადაღებულები: { $searchTerm }-ის მონახვა
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = შეცდომა გვერდის დამუშავებისას: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = ჩემი გადაღებულების მონახვა
+shotIndexPageSearchButton
+    .title = ძიება
+shotIndexPageNoShotsMessage = გადაღებული სურათები არ არის
+shotIndexPageNoShotsInvitation = მიდით, შექმენით რამდენიმე.
+shotIndexPageLookingForShots = სურათების მოძიება...
+shotIndexPageNoSearchResultsIntro = ჰმ
+shotIndexPageNoSearchResults = მითითებული ფრაზით, სურათები ვერ მოიძებნა.
+shotIndexPageClearSearchButton
+    .title = ძიების გასუფთავება
+shotIndexPageConfirmShotDelete = გსურთ სურათის წაშლა?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Firefox Screenshots ზომები
+metricsPageTotalsQueryTitle = სულ
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = სურათების გადახედვა
+metricsPageTotalsQueryDevices = სულ დარეგისტრებული მოწყობილობები
+metricsPageTotalsQueryActiveShots = არსებული სურათები
+metricsPageTotalsQueryExpiredShots = ვადაგასული (აღდგენის შესაძლებლობით)
+metricsPageTotalsQueryExpiredDeletedShots = ვადაგასული (და წაშლილი)
+metricsPageShotsQueryTitle = სურათები დღეების მიხედვით
+metricsPageShotsQueryDescription = დღიურად შექმნილი სურათების რაოდენობა (ბოლო 30 დღეში)
+metricsPageShotsQueryCount = სურათების რაოდენობა
+metricsPageShotsQueryDay = დღე
+metricsPageUsersQueryTitle = მომხმარებლები დღეში
+metricsPageUsersQueryDescription = მომხმარებლების რაოდენობა, რომლებიც დღეში სულ მცირე ერთ სურათს მაინც იღებენ (ბოლო 30 დღეში)
+metricsPageUsersQueryCount = მომხმარებლების რაოდენობა
+metricsPageUsersQueryDay = დღე
+metricsPageUserShotsQueryTitle = სურათების რაოდენობა მომხმარებლის მიხედვით
+metricsPageUserShotsQueryDescription = მომხმარებელთა რაოდენობა, რომელთაც N სურათი აქვთ
+metricsPageUserShotsQueryCount = მომხმარებელთა რაოდენობა
+metricsPageUserShotsQueryShots = მიახლოებითი რაოდენობა არსებული (ვადის მქონე) სურათების
+metricsPageRetentionQueryTitle = ერთი კვირით დატოვებულები
+metricsPageRetentionQueryDescription = დღეების რაოდენობა მომხმარებლის პირველ და ბოლო გადაღებებს შორის, დაყოფილი კვირის დასაწყისით
+metricsPageRetentionQueryUsers = მომხმარებელთა რაოდენობა
+metricsPageRetentionQueryDays = დღეების რაოდენობა მომხმარებლის პირველ და ბოლო გადაღებებს შორის
+metricsPageRetentionQueryFirstWeek = ერთი კვირა, მომხმარებლის პირველი გადაღებიდან
+metricsPageTotalRetentionQueryTitle = სულ დატოვებულები
+metricsPageTotalRetentionQueryDescription = დროის ხანგრძლივობა, როცა მომხმარებლები იღებენ სურათებს, დაყოფილი კვირის მიხედვით
+metricsPageTotalRetentionQueryUsers = მომხმარებელთა რაოდენობა
+metricsPageTotalRetentionQueryDays = დღეების რაოდენობა, როცა მომხმარებლები იღებენ სურათებს
