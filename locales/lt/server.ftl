@@ -14,6 +14,13 @@ gNoShots
 gScreenshotsDescription = Ekrano nuotraukos paprastai. Darykite, saugokite ir dalinkitės ekrano nuotraukomis nepalikdami „Firefox“.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Privatumo nuostatai
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
