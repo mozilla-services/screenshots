@@ -18,7 +18,7 @@ this.main = (function() {
     if (!hasSeenOnboarding) {
       setIconActive(false, null);
       // Note that the branded name 'Firefox Screenshots' is not localized:
-      browser.browserAction.setTitle({
+      startBackground.photonPageActionPort.postMessage({
         title: "Firefox Screenshots"
       });
     }
@@ -55,13 +55,8 @@ this.main = (function() {
     if ((!hasSeenOnboarding) && !active) {
       path = "icons/icon-starred-32-v2.svg";
     }
-    browser.browserAction.setIcon({path, tabId}).catch((error) => {
-      // FIXME: use errorCode
-      if (error.message && /Invalid tab ID/.test(error.message)) {
-        // This is a normal exception that we can ignore
-      } else {
-        catcher.unhandled(error);
-      }
+    startBackground.photonPageActionPort.postMessage({
+      iconPath: path
     });
   }
 
@@ -97,7 +92,7 @@ this.main = (function() {
     return /^about:(?:newtab|blank|home)/i.test(url) || /^resource:\/\/activity-streams\//i.test(url);
   }
 
-  // This is called by startBackground.js, directly in response to browser.browserAction.onClicked
+  // This is called by startBackground.js in response to clicks on the Photon page action
   exports.onClicked = catcher.watchFunction((tab) => {
     if (tab.incognito) {
       senderror.showError({
@@ -274,7 +269,7 @@ this.main = (function() {
     hasSeenOnboarding = true;
     catcher.watchPromise(browser.storage.local.set({hasSeenOnboarding}));
     setIconActive(false, null);
-    browser.browserAction.setTitle({
+    startBackground.photonPageActionPort.postMessage({
       title: browser.i18n.getMessage("contextMenuLabel")
     });
   });

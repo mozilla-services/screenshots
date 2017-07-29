@@ -17,6 +17,8 @@ XPCOMUtils.defineLazyModuleGetter(this, "CustomizableUI",
                                   "resource:///modules/CustomizableUI.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "LegacyExtensionsUtils",
                                   "resource://gre/modules/LegacyExtensionsUtils.jsm");
+ XPCOMUtils.defineLazyModuleGetter(this, "PageActions",
+                                   "resource:///modules/PageActions.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "Services",
                                   "resource://gre/modules/Services.jsm");
 
@@ -167,6 +169,7 @@ function start(webExtension) {
   webExtension.startup(startupReason).then((api) => {
     api.browser.runtime.onMessage.addListener(handleMessage);
     LibraryButton.init(webExtension);
+    initPhotonPageAction(api);
   }).catch((err) => {
     // The startup() promise will be rejected if the webExtension was
     // already started (a harmless error), or if initializing the
@@ -183,6 +186,10 @@ function stop(webExtension, reason) {
 
   if (reason != APP_SHUTDOWN) {
     LibraryButton.uninit();
+    if (photonPageAction) {
+      photonPageAction.remove();
+      photonPageAction = null;
+    }
   }
 }
 
@@ -207,4 +214,70 @@ function handleMessage(msg, sender, sendReply) {
     });
     return true;
   }
+}
+
+let photonPageAction;
+
+// Sets up the Photon page action.  Ideally, in the future, WebExtension page
+// actions and Photon page actions would be one in the same, but they aren't
+// right now.
+function initPhotonPageAction(api) {
+  let id = "screenshots";
+  photonPageAction = PageActions.actionForID(id);
+  if (photonPageAction) {
+    // The page action has already been set up (which shouldn't happen, but
+    // check anyway).
+    return;
+  }
+
+  let {Management: {global: {tabTracker}}} = Cu.import("resource://gre/modules/Extension.jsm", {});
+
+  let port = null;
+  let title = "Take a Screenshot";
+  let baseIconPath = addonResourceURI.spec + "webextension/";
+  let iconURL = baseIconPath + "icons/icon-32-v2.svg";
+
+  // Get a port to the WebExtension side.
+  api.browser.runtime.onConnect.addListener((listenerPort) => {
+    if (listenerPort.name == "photonPageActionPort") {
+      port = listenerPort;
+
+      // The WebExtension side of the port sends over the action's localized
+      // title and possibly updated iconURL.
+      port.onMessage.addListener((message) => {
+        if (message.title) {
+          if (photonPageAction) {
+            photonPageAction.title = message.title;
+          } else {
+            title = message.title;
+          }
+        }
+        if (message.iconPath) {
+          iconURL = baseIconPath + message.iconPath;
+          if (photonPageAction) {
+            photonPageAction.iconURL = iconURL;
+          }
+        }
+      });
+    }
+  });
+
+  // Add the page action.
+  photonPageAction = PageActions.addAction(new PageActions.Action({
+    id,
+    title,
+    iconURL,
+    _insertBeforeActionID: null,
+    onCommand(event, buttonNode) {
+      if (port) {
+        let browserWin = buttonNode.ownerDocument.defaultView;
+        port.postMessage({
+          tab: {
+            url: browserWin.gBrowser.selectedBrowser.currentURI.spec,
+            id: tabTracker.getId(browserWin.gBrowser.selectedTab),
+          },
+        });
+      }
+    },
+  }));
 }

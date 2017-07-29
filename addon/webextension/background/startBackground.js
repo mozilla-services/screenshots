@@ -1,6 +1,6 @@
 /* globals browser, main, communication */
 /* This file handles:
-     browser.browserAction.onClicked
+     clicks on the Photon page action
      browser.contextMenus.onClicked
      browser.runtime.onMessage
    and loads the rest of the background page in response to those events, forwarding
@@ -8,6 +8,8 @@
 */
 
 this.startBackground = (function() {
+  let exports = {};
+
   const backgroundScripts = [
     "log.js",
     "makeUuid.js",
@@ -27,14 +29,6 @@ this.startBackground = (function() {
   // Maximum milliseconds to wait before checking for migration possibility
   const CHECK_MIGRATION_DELAY = 2000;
 
-  browser.browserAction.onClicked.addListener((tab) => {
-    loadIfNecessary().then(() => {
-      main.onClicked(tab);
-    }).catch((error) => {
-      console.error("Error loading Screenshots:", error);
-    });
-  });
-
   browser.contextMenus.create({
     id: "create-screenshot",
     title: browser.i18n.getMessage("contextMenuLabel"),
@@ -52,11 +46,16 @@ this.startBackground = (function() {
 
   // Note this duplicates functionality in main.js, but we need to change
   // the onboarding icon before main.js loads up
+  let iconPath = null;
   browser.storage.local.get(["hasSeenOnboarding"]).then((result) => {
     let hasSeenOnboarding = !!result.hasSeenOnboarding;
     if (!hasSeenOnboarding) {
-      let path = "icons/icon-starred-32-v2.svg";
-      browser.browserAction.setIcon({path});
+      iconPath = "icons/icon-starred-32-v2.svg";
+      if (photonPageActionPort) {
+        photonPageActionPort.postMessage({
+          iconPath
+        });
+      }
     }
   }).catch((error) => {
     console.error("Error loading Screenshots onboarding flag:", error);
@@ -69,6 +68,25 @@ this.startBackground = (function() {
       console.error("Error loading Screenshots:", error);
     });
     return true;
+  });
+
+  // Set up this side of the Photon page action port.  The other side is in
+  // bootstrap.js.  Ideally, in the future, WebExtension page actions and Photon
+  // page actions would be one in the same, but they aren't right now.
+  let photonPageActionPort = browser.runtime.connect({ name: "photonPageActionPort" });
+  exports.photonPageActionPort = photonPageActionPort;
+  // Send over the localized title and possibly updated iconURL of the action.
+  photonPageActionPort.postMessage({
+    title: browser.i18n.getMessage("contextMenuLabel"),
+    iconPath
+  });
+  // Listen for clicks on the action.
+  photonPageActionPort.onMessage.addListener((message) => {
+    loadIfNecessary().then(() => {
+      main.onClicked(message.tab);
+    }).catch((error) => {
+      console.error("Error loading Screenshots:", error);
+    });
   });
 
   // We delay this check (by CHECK_MIGRATION_DELAY) just to avoid piling too
@@ -122,4 +140,5 @@ this.startBackground = (function() {
     return loadedPromise;
   }
 
+  return exports;
 })();
