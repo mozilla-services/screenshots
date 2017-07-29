@@ -1,15 +1,39 @@
+// Localization for Server-side strings of Firefox Screenshots
+// 
+// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+
+
+
 // Global phrases shared across pages, prefixed with 'g'
+[[ global ]]
+
 gMyShots = 我的截图
 gHomeLink = 首页
 gNoShots
     .alt = 没有找到截图
 gScreenshotsDescription = 使截图更简单。截取、保存以及分享截图，一切都在 Firefox。
-// Creating page// Note: {$title} is a placeholder for the title of the web page
+
+
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = 隐私声明
+footerLinkDMCA = 举报侵犯知识产权
+footerLinkDiscourse = 提供反馈
+
+
+[[ Creating page ]]
+
+// Note: { $title } is a placeholder for the title of the web page
 // captured in the screenshot. The default, for pages without titles, is
 // creatingPageTitleDefault.
 creatingPageTitle = 创建 { $title }
 creatingPageTitleDefault = 页面
-// Home pagehomePageButtonMyShots = 转至我的截图
+
+
+[[ Home page ]]
+
 homePageTeaser = 即将推出…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = 免费下载
@@ -31,7 +55,10 @@ homePageLegalLink = 法律
 homePagePrivacyLink = 隐私
 homePageTermsLink = 条款
 homePageCookiesLink = Cookie
-// Leave Screenshots pageleavePageConfirmDelete = 确认删除账户
+
+
+[[ Leave Screenshots page ]]
+
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = 您必须已安装 Firefox Screenshots 才能删除账户
 leavePageErrorGeneric = 发生错误
@@ -40,9 +67,15 @@ leavePageWarning = 这将永久删除您的 Firefox Screenshots 数据。
 leavePageButtonProceed = 确认
 leavePageButtonCancel = 取消
 leavePageDeleted = 您的截图已全部删除！
-// Not Found pagenotFoundPageTitle = 找不到网页
+
+
+[[ Not Found page ]]
+
 notFoundPageDescription = 找不到网页。
-// Shot pageshotPageAlertErrorUpdatingExpirationTime = 保存到期时间时出错
+
+
+[[ Shot page ]]
+
 shotPageAlertErrorUpdatingTitle = 保存标题时出错
 shotPageConfirmDelete = 您确定要永久删除此截图？
 shotPageShareButton
@@ -62,10 +95,10 @@ shotPagePrivacyMessage = 任何持有此链接的人可以查看此截图。
 shotPageCopyImageText
     .label = 复制图像文本
 shotPageConfirmDeletion = 您确定要永久删除此截图？
-// Note: {$timediff} is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = 如果您不做操作，此截图将在 { $timediff } 后被永久删除。
-// Note: {$date} is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, {$date} could be "7/12/2017, 1:52:50 PM".
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = 在 { $date } 前可恢复
 shotPageExpiredMessage = 此截图已过期。
 shotPageDeleteButton
@@ -78,11 +111,11 @@ shotPageDownload = 下载
 shotPageScreenshotsDescription = 使截图更简单。截取、保存以及分享截图，一切都在 Firefox。
 shotPageUpsellFirefox = 立即获取 Firefox
 shotPageDMCAMessage = 由于第三方宣告知识产权，此截图不再可用。
-// Note: {$dmca} is a placeholder for a link to send email (a 'mailto' link)
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = 请发送电子邮件至 { $dmca } 来请求进一步信息。
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = 如果您的截图被第三方宣告涉及知识产权，我们可能限制您访问 Firefox Screenshots。
-// Note: {$url} is a placeholder for a shot page URL
+// Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = 请在您的电子邮件中包含此截图的网址：{ $url }
 shotPageKeepFor = 此截图保留多久？
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
@@ -97,9 +130,9 @@ shotPageKeepOneMonth = 1 个月
 shotPageSaveExpiration = 保存
 shotPageCancelExpiration = 取消
 shotPageDoesNotExpire = 不会到期
-// Note: {$timediff} is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = { $timediff } 后过期
-// Note: {$timediff} is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } 前已过期
 timeDiffJustNow = 刚刚
 timeDiffMinutesAgo = { $num ->
@@ -113,12 +146,16 @@ timeDiffFutureSeconds = 几秒
 timeDiffFutureMinutes = { $number } 分钟
 timeDiffFutureHours = { $number } 小时
 timeDiffFutureDays = { $number } 天
-// Shotindex page// {$status} is a placeholder for an HTTP status code, like '500'.
-// {$statusText} is a text description of the status code, like 'Internal server error'.
+
+
+[[ Shotindex page ]]
+
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = 删除截图时出错：{ $status } { $statusText }
-// {$searchTerm} is a placeholder for text the user typed into the search box
+// { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = 我的截图：搜索 { $searchTerm }
-// {$error} is a placeholder for a non-translated error message that could be shared
+// { $error } is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
 shotIndexPageErrorRendering = 呈现页面时出错：{ $error }
 shotIndexPageSearchPlaceholder
@@ -133,8 +170,12 @@ shotIndexPageNoSearchResults = 我们没找到匹配您的搜索条件的截图�
 shotIndexPageClearSearchButton
     .title = 清空搜索
 shotIndexPageConfirmShotDelete = 删除此截图？
-// Metrics page
-// Note: all metrics strings are optional for translation// Note: 'Firefox Screenshots' should not be translated
+
+
+// all metrics strings are optional for translation
+[[ Metrics page ]]
+
+// Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Firefox Screenshots 统计
 metricsPageTotalsQueryTitle = 总计
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -161,7 +202,7 @@ metricsPageVersionQueryUsers = 用户登录数
 metricsPageVersionQueryVersion = 附加组件版本
 metricsPageVersionQueryLastSeen = 日
 metricsPageHeader = 统计
-// Note: {$created} is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = 生成时间：{ $created }
-// Note {$time} is a placeholder for a number of milliseconds, like '100'
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = （数据库用时：{ $time } 毫秒）
