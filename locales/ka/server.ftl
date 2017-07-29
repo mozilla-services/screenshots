@@ -222,3 +222,13 @@ metricsPageTotalRetentionQueryTitle = სულ დატოვებულე�
 metricsPageTotalRetentionQueryDescription = დროის ხანგრძლივობა, როცა მომხმარებლები იღებენ სურათებს, დაყოფილი კვირის მიხედვით
 metricsPageTotalRetentionQueryUsers = მომხმარებელთა რაოდენობა
 metricsPageTotalRetentionQueryDays = დღეების რაოდენობა, როცა მომხმარებლები იღებენ სურათებს
+metricsPageVersionQueryTitle = დამატების ვერსია
+metricsPageVersionQueryDescription = დამატების ეს ვერსია გამოიყენებოდა შესვლისას, ბოლო 14 დღის განვამლობაში
+metricsPageVersionQueryUsers = ანგარიშზე შესული მომხმარებელთა რაოდენობა
+metricsPageVersionQueryVersion = დამატების ვერსია
+metricsPageVersionQueryLastSeen = დღე
+metricsPageHeader = გაზომვები
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = შექმნის დრო: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (მონაცემთა ბაზის დრო: { $time }ms)
