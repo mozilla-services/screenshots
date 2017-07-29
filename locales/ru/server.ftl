@@ -11,6 +11,17 @@ gMyShots = Мои снимки
 gHomeLink = Дом
 gNoShots
     .alt = снимков не найдено
+gScreenshotsDescription = Скриншоты стали простыми. Делайте, сохраняйте и делитесь скриншотами, не покидая Firefox.
+
+
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Уведомление о приватности
+footerLinkDMCA = Сообщить о нарушении авторских прав
+footerLinkDiscourse = Оставить отзыв
+footerLinkRemoveAllData = Удалить все данные
 
 
 [[ Creating page ]]
