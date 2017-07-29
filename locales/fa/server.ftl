@@ -7,7 +7,14 @@
 // Global phrases shared across pages, prefixed with 'g'
 [[ global ]]
 
+gMyShots = تصاویر من
 gHomeLink = خانه
+gNoShots
+    .alt = هیچ تصویری پیدا نشد
+
+
+[[ Footer ]]
+
 
 
 [[ Creating page ]]
