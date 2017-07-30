@@ -19,6 +19,7 @@ gScreenshotsDescription = Tuṭṭfiwin ɣef afus. Ṭṭef agdil, sekles sakin 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkPrivacy = Tasertit n tbaḍnit
+footerLinkDMCA = Mmel-d ataɛdi ɣef ayla agzayan IP
 footerLinkDiscourse = Mudd-d tikti-ik
 footerLinkRemoveAllData = Kkes akk isefka
 
@@ -34,6 +35,8 @@ creatingPageTitleDefault = Asebter
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Tuṭṭfiwin n ugdil srid seg iminig-ik. Seggem, sekles sakin bḍi tuṭṭfiwin-ik n ugdil s tunigin di Web s Firefox.
 homePageButtonMyShots = Ddu γer tuṭṭfiwin inu
 homePageTeaser = Ad yilli ticki...
 homePageDownloadFirefoxTitle = Firefox
@@ -42,6 +45,8 @@ homePageGetStarted = Bdu
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Amek iteddu Firefox Screenshots
 homePageGetStartedTitle = Bdu
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Af-d tignit tamaynut n Screenshots deg ufeggag n ifecka. Sit s ufella sakin umuɣ Screenshots ad d-iban s nnig n usfaylu-ik n tunigin.
 homePageCaptureRegion = Ṭṭef tamnaḍt
 homePageCapturePage = Ṭṭef asebter
 homePageSaveShare = Sekles u bḍu
@@ -94,6 +99,8 @@ shotPagePrivacyMessage = Yal yiwen ɣur-s a.seɣwen ad yizmir ad iwali tuṭṭf
 shotPageCopyImageText
     .label = Nγel aḍris n tewlaft
 shotPageConfirmDeletion = Tebɣiḍ ad tekseḍ tuṭṭfa-agi i lebda?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Ma yella ur teggiḍ kra, tuṭṭfa-agi ad tettwakkes ilebda { $timediff }.
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = Rred armi { $date }
@@ -198,9 +205,13 @@ metricsPageUsersQueryDescription = Amḍan n iseqdacen yernan ɣersum yiwet n tu
 metricsPageUsersQueryCount = Amḍan n iseqdacen
 metricsPageUsersQueryDay = Ass
 metricsPageUserShotsQueryTitle = Amḍan n tuṭṭfiwin s useqdac
+metricsPageUserShotsQueryDescription = Amḍan n iseqdacen isɛan azal n N n tuṭṭfiwin
 metricsPageUserShotsQueryCount = Amḍan n iseqdacen
+metricsPageRetentionQueryTitle = Aḥraz n umalas
 metricsPageRetentionQueryUsers = Amḍan n iseqdacen
+metricsPageRetentionQueryDays = Ussan gar tuṭṭa tamenzut n useqdac akked tuṭṭfa taneggarut
 metricsPageRetentionQueryFirstWeek = Amalas anida aseqdac yerna tuṭṭfa tamenzut
+metricsPageTotalRetentionQueryTitle = Amḍan n uḥraz
 metricsPageTotalRetentionQueryUsers = Amḍan n iseqdacen
 metricsPageTotalRetentionQueryDays = Ussan anida aseqdac irennu tuṭṭfiwin
 metricsPageVersionQueryTitle = Lqem n uzegrir
