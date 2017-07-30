@@ -14,6 +14,15 @@ gNoShots
 gScreenshotsDescription = Tuṭṭfiwin ɣef afus. Ṭṭef agdil, sekles sakin bḍu war ma teffɣeḍ si Firefox.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Tasertit n tbaḍnit
+footerLinkDiscourse = Mudd-d tikti-ik
+footerLinkRemoveAllData = Kkes akk isefka
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
@@ -174,6 +183,8 @@ shotIndexPageConfirmShotDelete = Kkes tuṭfa-agi?
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Tasnakta n tuṭṭfiwin n ugdil n Firefox
 metricsPageTotalsQueryTitle = Asemday
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Tazwart ar Screenshots
 metricsPageTotalsQueryDevices = Amḍan n isuga yettwakelsen
 metricsPageTotalsQueryActiveShots = Tuṭṭfiwin iremden
 metricsPageTotalsQueryExpiredShots = Immut (maca tzemreḍ ad t-id-rreḍ)
