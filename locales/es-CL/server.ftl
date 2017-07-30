@@ -8,6 +8,13 @@
 [[ global ]]
 
 gMyShots = Mis capturas
+gHomeLink = Inicio
+gNoShots
+    .alt = No se econtraron capturas
+
+
+[[ Footer ]]
+
 
 
 [[ Creating page ]]
