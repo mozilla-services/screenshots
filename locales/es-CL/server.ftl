@@ -70,6 +70,15 @@ leavePageButtonCancel = Cancelar
 
 [[ Shot page ]]
 
+shotPageScreenshotsDescription =
+    Capturas de pantallas sin complicaciones. Toma, guarda y comparte capturas sin salir de Firefox.
+
+shotPageUpsellFirefox = Obtén Firefox ahora
+shotPageDMCAMessage = Esta captura ya no eá disponible debido a un reclamo de propiedad intelectual de un tercero.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Por favor, envía un correo a { $dmca } para solicitar más información.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Si tus capturas recibiesen muchos reclamos, podríamos revocar tu acceso a Firefox Screenshots.
 
 
 [[ Shotindex page ]]
