@@ -19,6 +19,7 @@ gScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkPrivacy = Obvestilo o zasebnosti
+footerLinkDMCA = Prijavi kršitev intelektualne lastnine
 footerLinkDiscourse = Sporočite nam svoje mnenje
 footerLinkRemoveAllData = Odstrani vse podatke
 
@@ -44,6 +45,8 @@ homePageGetStarted = Začnite
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kako deluje Firefox Screenshots
 homePageGetStartedTitle = Začnite
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Poiščite ikono Screenshots v svoji orodni vrstici. Izberite jo in na vrhu okna vašega brskalnika se bo pojavil meni Screenshots.
 homePageCaptureRegion = Zajemi območje
 homePageCapturePage = Zajemi stran
 homePageSaveShare = Shrani in deli
@@ -75,6 +78,7 @@ notFoundPageDescription = Strani ni mogoče najti.
 
 [[ Shot page ]]
 
+shotPageAlertErrorUpdatingExpirationTime = Napaka pri shranjevanju časa poteka
 shotPageAlertErrorDeletingShot = Napaka pri brisanju posnetka
 shotPageAlertErrorUpdatingTitle = Napaka pri shranjevanju naslova
 shotPageConfirmDelete = Ali ste prepričani, da želite trajno izbrisati ta posnetek?
@@ -175,10 +179,14 @@ timeDiffFutureDays = { $num ->
 shotIndexPageErrorDeletingShot = Napaka pri brisanju posnetka: { $status } { $statusText }
 // { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Moji posnetki: išči { $searchTerm }
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Napaka pri izrisovanju strani: { $error }
 shotIndexPageSearchButton
     .title = Išči
 shotIndexPageNoShotsMessage = Ni shranjenih posnetkov.
 shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Ne najdemo posnetkov, ki ustrezajo vašemu iskanju.
 shotIndexPageClearSearchButton
     .title = Počisti iskanje
 shotIndexPageConfirmShotDelete = Izbrišem ta posnetek?
@@ -200,6 +208,7 @@ metricsPageUsersQueryCount = Število uporabnikov
 metricsPageUsersQueryDay = Dan
 metricsPageUserShotsQueryTitle = Število posnetkov na uporabnika
 metricsPageUserShotsQueryCount = Število uporabnikov
+metricsPageUserShotsQueryShots = Približno število aktivnih (nepretečenih) posnetkov
 metricsPageRetentionQueryUsers = Število uporabnikov
 metricsPageTotalRetentionQueryUsers = Število uporabnikov
 metricsPageVersionQueryTitle = Različica dodatka
