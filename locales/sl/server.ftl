@@ -116,6 +116,8 @@ shotPageDownloadShot
 shotPageDownload = Prenesi
 shotPageScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in delite zaslonske posnetke, ne da bi zapustili Firefox.
 shotPageUpsellFirefox = Prenesite Firefox zdaj
+shotPageDMCAMessage = Ta posnetek ni več na voljo zaradi zahtev intelektualne lastnine tretje osebe.
+shotPageKeepFor = Kako dolgo želite ohraniti ta posnetek?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Izberite čas
 shotPageKeepIndefinitely = Za nedoločen čas
@@ -204,9 +206,12 @@ metricsPageShotsQueryTitle = Posnetki po dnevih
 metricsPageShotsQueryDescription = Število posnetkov, ustvarjenih vsak dan (za zadnjih 30 dni)
 metricsPageShotsQueryCount = Število posnetkov
 metricsPageShotsQueryDay = Dan
+metricsPageUsersQueryTitle = Uporabnikov na dan
+metricsPageUsersQueryDescription = Število uporabnikov, ki so ustvarili vsaj en posnetek, po dnevih (zadnjih 30 dni)
 metricsPageUsersQueryCount = Število uporabnikov
 metricsPageUsersQueryDay = Dan
 metricsPageUserShotsQueryTitle = Število posnetkov na uporabnika
+metricsPageUserShotsQueryDescription = Število uporabnikov, ki imajo približno N skupnih posnetkov
 metricsPageUserShotsQueryCount = Število uporabnikov
 metricsPageUserShotsQueryShots = Približno število aktivnih (nepretečenih) posnetkov
 metricsPageRetentionQueryUsers = Število uporabnikov
