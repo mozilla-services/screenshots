@@ -20,7 +20,7 @@ footerLinkMozilla = Mozilla
 footerLinkPrivacy = Privacy Notice
 footerLinkDMCA = Report IP Infringement
 footerLinkDiscourse = Give Feedback
-leavePageConfirmDelete = Remove All Data
+footerLinkRemoveAllData = Remove All Data
 
 [[ Creating page ]]
 
@@ -61,7 +61,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
-leavePageRemoveAllData = Remove All Data
+leavePageConfirmDelete = Remove All Data
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = You must have Firefox Screenshots installed to delete your account
 leavePageErrorGeneric = An error occurred
