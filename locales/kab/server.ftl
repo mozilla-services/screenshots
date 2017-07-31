@@ -118,6 +118,8 @@ shotPageScreenshotsDescription =
 shotPageUpsellFirefox = Awi-d Firefox tura
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Azen-d { $dmca } akken ad tsutreḍ ugar n telɣut.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Ttxilek sedu URL n tuṭfa-agi deg imayl inek: { $url }
 shotPageKeepFor = Ceḥal n wakud tuṭṭfa-agi ad tettwasekles?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Fren akud
