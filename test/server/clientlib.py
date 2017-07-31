@@ -32,9 +32,12 @@ class ScreenshotsClient(object):
         resp.raise_for_status()
 
     def delete_account(self):
+        page = self.session.get(self.backend + "/leave-screenshots/").text
+        csrf_match = re.search(r'<input.*name="_csrf".*value="([^"]*)"', page)
+        csrf = csrf_match.group(1)
         resp = self.session.post(
             urljoin(self.backend, "/leave-screenshots/leave"),
-            json={})
+            json={"_csrf": csrf})
         resp.raise_for_status()
 
     def create_shot(self, shot_id=None, **example_args):

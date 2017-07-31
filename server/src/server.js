@@ -308,7 +308,13 @@ app.param("id", function(req, res, next, id) {
     next();
     return;
   }
-  next(new Error("invalid id"));
+  let exc = new Error("invalid id")
+  exc.isAppError = true;
+  exc.output = {
+    statusCode: 400,
+    payload: "Invalid id"
+  };
+  next(exc);
 });
 
 app.param("domain", function(req, res, next, domain) {
@@ -1127,11 +1133,12 @@ require("./jobs").start();
 addRavenErrorHandler(app);
 
 app.use(function(err, req, res, next) {
-  console.log("here's the error", err, Object.keys(err));
   if (err.isAppError) {
     let { statusCode, headers, payload } = err.output;
     res.status(statusCode);
-    res.header(headers);
+    if (headers) {
+      res.header(headers);
+    }
     res.send(payload);
     return;
   }
