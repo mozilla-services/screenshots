@@ -20,7 +20,7 @@ footerLinkMozilla = Mozilla
 footerLinkPrivacy = Privacy Notice
 footerLinkDMCA = Report IP Infringement
 footerLinkDiscourse = Give Feedback
-footerLinkRemoveAllData = Remove All Data
+leavePageConfirmDelete = Remove All Data
 
 [[ Creating page ]]
 
