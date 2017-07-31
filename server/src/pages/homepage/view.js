@@ -412,7 +412,7 @@ const style = `
   }
 
   .mozilla-logo {
-      background-image: url(../static/img/landing-Moz-logo.svg);
+      background-image: url(../static/img/mozilla.svg);
       background-repeat: no-repeat;
       background-size: auto 31px;
       height: 31px;
