@@ -72,12 +72,15 @@ class ScreenshotsClient(object):
         resp.raise_for_status()
 
 
-def make_example_shot(deviceId, **overrides):
+def make_example_shot(deviceId, pad_image_to_length=None, **overrides):
     image = random.choice(example_images)
     text = []
     for i in range(10):
         text.append(random.choice(text_strings))
     text = " ".join(text)
+    image_url = image["url"]
+    if pad_image_to_length:
+        image_url = image_url + "A" * (pad_image_to_length - len(image_url))
     return dict(
         deviceId=deviceId,
         url="http://test.com/?" + make_uuid(),
@@ -90,7 +93,7 @@ def make_example_shot(deviceId, **overrides):
                 createdDate=int(time.time() * 1000),
                 sortOrder=100,
                 image=dict(
-                    url=image["url"],
+                    url=image_url,
                     captureType="selection",
                     text=text,
                     location=dict(

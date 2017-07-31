@@ -1127,11 +1127,23 @@ require("./jobs").start();
 addRavenErrorHandler(app);
 
 app.use(function(err, req, res, next) {
+  console.log("here's the error", err, Object.keys(err));
   if (err.isAppError) {
     let { statusCode, headers, payload } = err.output;
     res.status(statusCode);
     res.header(headers);
     res.send(payload);
+    return;
+  }
+  if (err.type === "entity.too.large") {
+    mozlog.info("entity-too-large", {
+      length: err.length,
+      limit: err.limit,
+      expected: err.expected
+    });
+    res.status(err.statusCode);
+    res.type("text");
+    res.send(res.message);
     return;
   }
   errorResponse(res, "General error:", err);
