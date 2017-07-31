@@ -37,7 +37,6 @@ const http = require("http");
 const https = require("https");
 const gaActivation = require("./ga-activation");
 const genUuid = require("nodify-uuid");
-const AWS = require("aws-sdk");
 const statsd = require("./statsd");
 const { notFound } = require("./pages/not-found/server");
 const { cacheTime, setCache } = require("./caching");
@@ -62,26 +61,6 @@ const PROXY_HEADER_WHITELIST = {
 };
 
 const COOKIE_EXPIRE_TIME = 30 * 24 * 60 * 60 * 1000; // 30 days
-
-if (config.useS3) {
-  // Test a PUT to s3 because configuring this requires using the aws web interface
-  // If the permissions are not set up correctly, then we want to know that asap
-  var s3bucket = new AWS.S3({params: {Bucket: config.s3BucketName}});
-  mozlog.info("creating-s3-bucket", {msg: `creating ${config.s3BucketName}`, bucketName: config.s3BucketName});
-
-  // createBucket is a horribly named api; it creates a local object to access
-  // an existing bucket
-  s3bucket.createBucket(function() {
-    var params = {Key: 'test', Body: 'Hello!'};
-    s3bucket.upload(params, function(error, data) {
-      if (error) {
-        mozlog.warn("test-upload-error", {msg: "Error uploading data during test", error, bucketName: config.s3BucketName});
-      } else {
-        mozlog.info("test-upload-success", {msg: `Successfully uploaded data to ${config.s3BucketName}/test`, bucketName: config.s3BucketName})
-      }
-    });
-  });
-}
 
 function initDatabase() {
   let forceDbVersion = config.db.forceDbVersion;
