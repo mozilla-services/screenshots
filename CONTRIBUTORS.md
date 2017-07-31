@@ -55,4 +55,6 @@ In alphabetical order:
 * Sean Martell
 * Selena Deckelmann
 * Sharon Bautista
-* Wil Clouser                       
+* [Tarek Bouali (tarspace)](https://tarspace.net)
+* Wil Clouser
+* Wladimir Palant         
