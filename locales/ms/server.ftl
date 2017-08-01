@@ -108,7 +108,7 @@ shotPageConfirmDeletion = Anda pasti mahu menghapuskan syot ini secara kekal?
 shotPageExpirationMessage = Jika tiada tindakan, syot ini akan dihapuskan secara kekal { $timediff }.
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
-shotPageRestoreButton = simpan semula hingga { $date }
+shotPageRestoreButton = pulih hingga { $date }
 shotPageExpiredMessage = Syot ini sudah tamat tempoh.
 // Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Ini halaman asal yang diambil:
