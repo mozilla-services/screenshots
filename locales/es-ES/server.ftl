@@ -11,10 +11,15 @@ gMyShots = Mis capturas
 gHomeLink = Inicio
 gNoShots
     .alt = No se han encontrado capturas
+gScreenshotsDescription = Hemos simplificado las capturas de pantalla. Haz, guarda y comparte capturas de pantalla sin salir de Firefox.
 
 
 [[ Footer ]]
 
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Aviso de privacidad
+footerLinkDMCA = Denunciar violación de IP
 footerLinkDiscourse = Enviar comentario
 footerLinkRemoveAllData = Eliminar todos los datos
 
@@ -30,6 +35,8 @@ creatingPageTitleDefault = página
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Capturas de pantalla intuitivas hechas en el propio navegador. Captura, guarda y comparte capturas de pantalla mientras navegas por la Web con Firefox.
 homePageButtonMyShots = Ir a mis capturas
 homePageTeaser = Próximamente...
 homePageDownloadFirefoxTitle = Firefox
@@ -112,11 +119,16 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Descargar
 shotPageDownload = Descargar
+shotPageScreenshotsDescription = Hemos simplificado las capturas de pantalla. Haz, guarda y comparte capturas de pantalla sin salir de Firefox.
 shotPageUpsellFirefox = Obtén Firefox ahora
+shotPageDMCAMessage = Esta captura ya no está disponible por una reclamación de propiedad intelectual de terceros.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Envía un correo a { $dmca } para solicitar más información.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Si tus capturas están sujetas a múltiples reclamaciones, nos guardamos el derecho de anular tu acceso a Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Incluye la URL de esta captura en tu correo: { $url }
+shotPageKeepFor = ¿Durante cuánto tiempo se debería retener esta captura?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Seleccionar tiempo
 shotPageKeepIndefinitely = Indefinidamente
@@ -185,6 +197,9 @@ shotIndexPageConfirmShotDelete = ¿Eliminar esta captura?
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Métricas de Firefox Screenshots
+metricsPageTotalsQueryTitle = Totales
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Vista global de Screenshots
 metricsPageTotalsQueryDevices = Dispositivos registrados en total
@@ -200,12 +215,16 @@ metricsPageUsersQueryDescription = Número de usuarios que crearon al menos una 
 metricsPageUsersQueryCount = Número de usuarios
 metricsPageUsersQueryDay = Día
 metricsPageUserShotsQueryTitle = Número de capturas por usuario
+metricsPageUserShotsQueryDescription = El número de usuarios que tienen un total de N capturas
 metricsPageUserShotsQueryCount = Número de usuarios
 metricsPageUserShotsQueryShots = Número aproximado de capturas activas (no expiradas)
+metricsPageRetentionQueryTitle = Retención por semana
 metricsPageRetentionQueryDescription = Número de días entre la primera y última captura de un usuario
 metricsPageRetentionQueryUsers = Número de usuarios
 metricsPageRetentionQueryDays = Días transcurridos entre la primera y la última captura del usuario
 metricsPageRetentionQueryFirstWeek = Semana en la que el usuario creó la primera captura
+metricsPageTotalRetentionQueryTitle = Retención total
+metricsPageTotalRetentionQueryDescription = Periodo de tiempo que los usuarios han estado creando capturas, agrupados por semana
 metricsPageTotalRetentionQueryUsers = Número de usuarios
 metricsPageTotalRetentionQueryDays = Días en los que el usuario ha creado capturas
 metricsPageVersionQueryTitle = Versión del complemento
@@ -213,6 +232,7 @@ metricsPageVersionQueryDescription = La versión del complemento utilizada al in
 metricsPageVersionQueryUsers = Número de usuarios que inician sesión
 metricsPageVersionQueryVersion = Versión del complemento
 metricsPageVersionQueryLastSeen = Día
+metricsPageHeader = Métricas
 // Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Generada el: { $created }
 // Note { $time } is a placeholder for a number of milliseconds, like '100'
