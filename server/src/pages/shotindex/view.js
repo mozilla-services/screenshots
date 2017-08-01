@@ -209,7 +209,7 @@ class Body extends React.Component {
 class Card extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {panelOpen: "panel-closed"};
+    this.state = {panelOpen: "panel-closed", deleted: false};
   }
 
   render() {
@@ -237,7 +237,7 @@ class Card extends React.Component {
     }
 
     return (
-      <div className={`shot ${this.getClipType(clip._image.dimensions)} ${this.state.panelOpen}`} key={shot.id}>
+      <div className={`shot ${this.getClipType(clip._image.dimensions)} ${this.state.panelOpen} ${this.isDeleted()}`} key={shot.id}>
         <a href={shot.viewUrl} onClick={this.onOpen.bind(this, shot.viewUrl)}>
           <div className="shot-image-container" style={{
             backgroundImage: `url(${imageUrl})`
@@ -285,6 +285,10 @@ class Card extends React.Component {
     this.setState({panelOpen: state});
   }
 
+  isDeleted() {
+    return this.state.deleted ? "deleted" : "";
+  }
+
   onOpen(url, event) {
     if (event.ctrlKey || event.metaKey || event.button === 1) {
       // Don't override what might be an open-in-another-tab click
@@ -311,6 +315,7 @@ class Card extends React.Component {
     let confirmMessage = document.getElementById("shotIndexPageConfirmShotDelete").textContent;
     if (window.confirm(confirmMessage)) {
       sendEvent("delete", "my-shots-popup-confirm", {useBeacon: true});
+      this.setState({deleted: true});
       controller.deleteShot(shot);
     } else {
       sendEvent("cancel-delete", "my-shots-popup-confirm");
