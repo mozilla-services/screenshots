@@ -49,7 +49,10 @@ homePageGetStartedTitle = Začnite
 homePageGetStartedDescription = Poiščite ikono Screenshots v svoji orodni vrstici. Izberite jo in na vrhu okna vašega brskalnika se bo pojavil meni Screenshots.
 homePageCaptureRegion = Zajemite območje
 homePageCapturePage = Zajemite stran
+homePageCapturePageDescription = Za zajem celotnih strani uporabite gumbe zgoraj desno. Gumb Shrani vidno bo zajel območje, ki je vidno brez drsenja, gumb Shrani celotno stran pa celotno vsebino strani.
 homePageSaveShare = Shranite in delite
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Ko zajamete posnetek, ga Firefox objavi v spletni knjižnici Screenshots in kopira povezavo v odložišče. Vaše posnetke samodejno shranjujemo dva tedna, lahko pa jih kadarkoli izbrišete sami ali spremenite datum poteka, če jih želite ohraniti v knjižnici dlje časa.
 homePageLegalLink = Pravno obvestilo
 homePagePrivacyLink = Zasebnost
 homePageTermsLink = Pogoji
@@ -117,6 +120,8 @@ shotPageDownload = Prenesi
 shotPageScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in delite zaslonske posnetke, ne da bi zapustili Firefox.
 shotPageUpsellFirefox = Prenesite Firefox zdaj
 shotPageDMCAMessage = Ta posnetek ni več na voljo zaradi zahtev intelektualne lastnine tretje osebe.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Vključite URL tega posnetka v e-pošto: { $url }
 shotPageKeepFor = Kako dolgo želite ohraniti ta posnetek?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Izberite čas
@@ -187,6 +192,8 @@ shotIndexPageErrorRendering = Napaka pri izrisovanju strani: { $error }
 shotIndexPageSearchButton
     .title = Išči
 shotIndexPageNoShotsMessage = Ni shranjenih posnetkov.
+shotIndexPageNoShotsInvitation = Kar pogumno, zajemite jih nekaj.
+shotIndexPageLookingForShots = Iskanje vaših posnetkov …
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Ne najdemo posnetkov, ki ustrezajo vašemu iskanju.
 shotIndexPageClearSearchButton
@@ -199,6 +206,7 @@ shotIndexPageConfirmShotDelete = Izbrišem ta posnetek?
 
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Metrika Firefox Screenshots
+metricsPageTotalsQueryDevices = Skupno število registriranih naprav
 metricsPageTotalsQueryActiveShots = Aktivni posnetki
 metricsPageTotalsQueryExpiredShots = Pretečen (a obnovljiv)
 metricsPageTotalsQueryExpiredDeletedShots = Pretečen (in izbrisan)
@@ -215,8 +223,11 @@ metricsPageUserShotsQueryDescription = Število uporabnikov, ki imajo približno
 metricsPageUserShotsQueryCount = Število uporabnikov
 metricsPageUserShotsQueryShots = Približno število aktivnih (nepretečenih) posnetkov
 metricsPageRetentionQueryUsers = Število uporabnikov
+metricsPageRetentionQueryFirstWeek = Teden, ko je uporabnik ustvaril prvi posnetek
 metricsPageTotalRetentionQueryUsers = Število uporabnikov
 metricsPageVersionQueryTitle = Različica dodatka
+metricsPageVersionQueryDescription = Različica dodatka, uporabljena med prijavo v zadnjih 14 dneh
+metricsPageVersionQueryUsers = Število prijavljenih uporabnikov
 metricsPageVersionQueryVersion = Različica dodatka
 metricsPageVersionQueryLastSeen = Dan
 metricsPageHeader = Metrika
