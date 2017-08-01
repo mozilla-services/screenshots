@@ -153,7 +153,7 @@ class Head extends React.Component {
       og.push(<meta key={ `ogdescription${clipId}` } property="og:description" content={text} />);
       twitter.push(<meta key={ `twitterimage${clipId}` } name="twitter:image" content={this.makeEmbeddedImageUrl(clip.image.url, "twitter")} />);
       twitter.push(<meta key={ `twitterdesc${clipId}` } name="twitter:description" content={text} />);
-      // FIXME: consider twitter:site @mozillapageshot
+      // FIXME: consider twitter:site @sometwitteraccount
       if (clip.image.dimensions) {
         og.push(<meta key={ `ogimagewidth${clipId}` } property="og:image:width" content={clip.image.dimensions.x} />);
         og.push(<meta key={ `ogimageheight${clipId}` } property="og:image:height" content={clip.image.dimensions.y} />);

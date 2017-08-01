@@ -865,8 +865,9 @@ app.get("/contribute.json", function(req, res) {
       goodfirstbugs: "https://github.com/mozilla-services/screenshots/labels/good%20first%20bug"
     },
     urls: {
-      prod: "https://pageshot.net",
-      stage: "https://pageshot.stage.mozaws.net/"
+      prod: "https://screenshots.firefox.com",
+      stage: "https://screenshots.stage.mozaws.net",
+      dev: "https://screenshots.dev.mozaws.net"
     },
     keywords: [
       "javascript",

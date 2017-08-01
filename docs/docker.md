@@ -9,7 +9,7 @@ Then, manually sign the xpi (in the build directory) using the AMO website, down
 
     bin/build-docker-image [dockerhubusername]
 
-build-docker-image will build the image, tag it as [dockerhubusername]/pageshot:latest, and push it to dockerhub.
+build-docker-image will build the image, tag it as [dockerhubusername]/screenshots:latest, and push it to dockerhub.
 
 When you run docker, you should use --net=host and pass the following parameters in the environment:
 
@@ -26,13 +26,9 @@ When you run docker, you should use --net=host and pass the following parameters
 
 Example command line:
 
-    docker run --net=host -e 'RDS_USERNAME=postgres' -e 'RDS_PASSWORD=********' \ 
-      -e 'RDS_HOSTNAME=pageshot-dev.czvvrkdqhklf.us-east-1.rds.amazonaws.com' \ 
-      -e 'SITE_ORIGIN=pageshotfzzzy.dev.mozaws.net' \
-      -e 'CONTENT_ORIGIN=pageshotcontentfzzzy.dev.mozaws.net' \
-      -e 'USE_S3=true' -e 'S3_BUCKET_NAME=pageshot-images-bucket' -e 'GA_ID=********' \ 
-      -e 'SENTRY_DSN=********' -e 'SENTRY_PUBLIC_DSN=********' fzzzy/pageshot
-
-Publishing on Elastic Beanstalk:
-
-When you run `build-docker-image`, it will create a file called `build/eb-app-latest.zip`. This is the file you give to Elastic Beanstalk when using "Upload and Deploy". When you create the Elastic Beanstalk instance, you will need to configure it to use a Postgres RDS instance. That's all you need to know to deploy on Beanstalk!
+    docker run --net=host -e 'RDS_USERNAME=screenshots' -e 'RDS_PASSWORD=********' \
+      -e 'RDS_HOSTNAME=screenshots-dev.czvvrkdqhklf.us-east-1.rds.amazonaws.com' \
+      -e 'SITE_ORIGIN=screenshots.dev.mozaws.net' \
+      -e 'CONTENT_ORIGIN=screenshotsusercontent.dev.mozaws.net' \
+      -e 'USE_S3=true' -e 'S3_BUCKET_NAME=pageshot-images-bucket' -e 'GA_ID=********' \
+      -e 'SENTRY_DSN=********' -e 'SENTRY_PUBLIC_DSN=********' mozilla/screenshots
