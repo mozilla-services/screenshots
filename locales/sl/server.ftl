@@ -47,9 +47,9 @@ homePageHowScreenshotsWorks = Kako deluje Firefox Screenshots
 homePageGetStartedTitle = Začnite
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Poiščite ikono Screenshots v svoji orodni vrstici. Izberite jo in na vrhu okna vašega brskalnika se bo pojavil meni Screenshots.
-homePageCaptureRegion = Zajemi območje
-homePageCapturePage = Zajemi stran
-homePageSaveShare = Shrani in deli
+homePageCaptureRegion = Zajemite območje
+homePageCapturePage = Zajemite stran
+homePageSaveShare = Shranite in delite
 homePageLegalLink = Pravno obvestilo
 homePagePrivacyLink = Zasebnost
 homePageTermsLink = Pogoji
