@@ -473,29 +473,6 @@ app.post("/event", function(req, res) {
   });
 });
 
-app.post("/timing", function(req, res) {
-  let bodyObj = req.body;
-  if (typeof bodyObj !== "object") {
-    throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
-  }
-  hashUserId(req.deviceId).then((userUuid) => {
-    let userAnalytics = ua(config.gaId, userUuid.toString());
-    let sender = userAnalytics;
-    for (let item of bodyObj.timings) {
-      sender = sender.timing({
-        userTimingCategory: item.category,
-        userTimingVariableName: item.variable,
-        userTimingTime: item.time,
-        userTimingLabel: item.label
-      });
-    }
-    sender.send();
-    simpleResponse(res, "OK", 200);
-  }).catch((e) => {
-    errorResponse(res, "Error creating user UUID:", e);
-  });
-});
-
 app.post("/api/register", function(req, res) {
   let vars = req.body;
   let canUpdate = vars.deviceId === req.deviceId;
