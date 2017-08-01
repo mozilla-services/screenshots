@@ -13,8 +13,9 @@ exports.createModel = function(req) {
   if (req.shot.favicon) {
     req.shot.favicon = createProxyUrl(req, req.shot.favicon);
   }
+  let title = req.getText("shotPageTitle", {originalTitle: req.shot.title});
   let serverPayload = {
-    title: req.shot.title,
+    title,
     staticLink: req.staticLink,
     backend: req.backend,
     shot: req.shot,

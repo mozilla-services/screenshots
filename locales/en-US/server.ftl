@@ -1,5 +1,5 @@
 // Localization for Server-side strings of Firefox Screenshots
-// 
+//
 // Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
@@ -81,6 +81,8 @@ notFoundPageDescription = Page not found.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Screenshot: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Error saving expiration
 shotPageAlertErrorDeletingShot = Error deleting shot
 shotPageAlertErrorUpdatingTitle = Error saving title
@@ -238,4 +240,3 @@ metricsPageHeader = Metrics
 metricsPageGeneratedDateTime = Generated at: { $created }
 // Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (database time: { $time }ms)
-
