@@ -1,3 +1,7 @@
+## Version 10.10.0
+
+* Synchronize startup code more carefully ([#3257](https://github.com/mozilla-services/screenshots/issues/3257))
+
 ## Version 10.9.0
 
 * Remove Save Full Page and Save Visible [#3208](https://github.com/mozilla-services/screenshots/pull/3208). Avoids [#3182](https://github.com/mozilla-services/screenshots/issues/3182)
