@@ -206,8 +206,10 @@ metricsPageTotalsQueryTitle = Totaux
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Vue d’ensemble de Screenshots
 metricsPageTotalsQueryDevices = Total des appareils enregistrés
+metricsPageTotalsQueryActiveShots = Captures actives
 metricsPageTotalsQueryExpiredShots = Expiré (mais récupérable)
 metricsPageTotalsQueryExpiredDeletedShots = Expiré (et supprimé)
+metricsPageShotsQueryTitle = Captures par jour
 metricsPageShotsQueryDay = Jour
 metricsPageUsersQueryTitle = Utilisateurs par jour
 metricsPageUsersQueryCount = Nombre d’utilisateurs
