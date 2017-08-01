@@ -32,6 +32,7 @@ footerLinkDMCA = IP নিয়মলঙ্ঘন রিপোর্ট করু�
 
 [[ Shot page ]]
 
+shotPageAlertErrorUpdatingExpirationTime = সমাপ্তি সংরক্ষণে ত্রুটি
 
 
 [[ Shotindex page ]]
