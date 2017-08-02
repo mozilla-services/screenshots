@@ -83,6 +83,8 @@ notFoundPageDescription = Bok njejo se namakał.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Foto wobrazowki: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Zmólka pśi składowanju wótběgoweho datuma
 shotPageAlertErrorDeletingShot = Zmólka pśi lašowanju fota wobrazowki
 shotPageAlertErrorUpdatingTitle = Zmólka pśi składowanju titela
