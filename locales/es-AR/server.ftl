@@ -48,6 +48,8 @@ homePageGetStartedTitle = Primeros pasos
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Buscá el nuevo ícono de Screenshots en la barra de herramientas. Seleccionalo y el menú de Screenshots aparecerá encima de la ventana del navegador.
 homePageCaptureRegion = Capturar una región
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Hacé clic y arrastrá para seleccionar el área que querés capturar. O simplemente pasá por encima y hace clic — Screenshots seleccionará el área para vos. ¿Te gusta lo que ves? Seleccioná Guardar para acceder a tu captura en línea o el botón con la flecha hacia abajo para guardarla en tu computadora.
 homePageCapturePage = Capturar una página
 homePageSaveShare = Guardar y compartir
 homePageLegalLink = Legales
