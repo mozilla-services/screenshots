@@ -48,7 +48,10 @@ homePageGetStartedTitle = Bdu
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Af-d tignit tamaynut n Screenshots deg ufeggag n ifecka. Sit s ufella sakin umuɣ Screenshots ad d-iban s nnig n usfaylu-ik n tunigin.
 homePageCaptureRegion = Ṭṭef tamnaḍt
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Senned u zuγer akken ad tferneḍ tamnaḍt i tebγiḍ ad teṭfeḍ. Neγ mbiwwel γer temnaḍt u sakin Screenshots ad ifren tamnaḍt-agi. sakin senned γef sekles akken ad tawiḍ tiwlafin srid neγ γef tqefalt aneccab d akkesar akken ad d-saliḍ γer uselkim inek.
 homePageCapturePage = Ṭṭef asebter
+homePageCapturePageDescription = Seqdec taqefalt d afella $yef uyfus akken ad teṭfeḍ akk asebter.Taqefal " sekles tamnaḍt" ad k-teǧǧ ad teṭfeḍ i tzemrepd ad skeneḍ war adrurem, sakin sekles akk asebter.
 homePageSaveShare = Sekles u bḍu
 homePageLegalLink = Usḍif
 homePagePrivacyLink = Tabaḍnit
@@ -209,11 +212,14 @@ metricsPageUsersQueryDay = Ass
 metricsPageUserShotsQueryTitle = Amḍan n tuṭṭfiwin s useqdac
 metricsPageUserShotsQueryDescription = Amḍan n iseqdacen isɛan azal n N n tuṭṭfiwin
 metricsPageUserShotsQueryCount = Amḍan n iseqdacen
+metricsPageUserShotsQueryShots = Amḍan n tiwlafin turmidin ( ur immuten ara)
 metricsPageRetentionQueryTitle = Aḥraz n umalas
+metricsPageRetentionQueryDescription = Amḍan n wussan seg wasmi aseqdac iṭṭef tuṭṭfa tamezwarut ar tuṭṭfa taneggarut, myizwaren s ddurt n tazwara
 metricsPageRetentionQueryUsers = Amḍan n iseqdacen
 metricsPageRetentionQueryDays = Ussan gar tuṭṭa tamenzut n useqdac akked tuṭṭfa taneggarut
 metricsPageRetentionQueryFirstWeek = Amalas anida aseqdac yerna tuṭṭfa tamenzut
 metricsPageTotalRetentionQueryTitle = Amḍan n uḥraz
+metricsPageTotalRetentionQueryDescription = Teγzi n wakud n useqdac i d-yernan tuṭṭfa, ttmiyizwaren s ddurt
 metricsPageTotalRetentionQueryUsers = Amḍan n iseqdacen
 metricsPageTotalRetentionQueryDays = Ussan anida aseqdac irennu tuṭṭfiwin
 metricsPageVersionQueryTitle = Lqem n uzegrir
