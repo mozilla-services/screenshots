@@ -117,6 +117,7 @@ shotPageDownloadShot
     .title = Descargar
 shotPageDownload = Descargar
 shotPageUpsellFirefox = Obtener Firefox ahora
+shotPageDMCAMessage = La captura no está más disponible por una queja de terceros por propiedad intelectual.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Enviá un correo electrónico a { $dmca } para pedir más información.
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -209,9 +210,12 @@ metricsPageUserShotsQueryTitle = Número de capturas por usuario
 metricsPageUserShotsQueryCount = Número de usuarios
 metricsPageUserShotsQueryShots = Número aproximado de capturas activas (no expiradas)
 metricsPageRetentionQueryTitle = Retención por semana
+metricsPageRetentionQueryDescription = Número de días desde la primera captura del usuario hasta la más reciente, agrupadas por semana de inicio.
 metricsPageRetentionQueryUsers = Número de usuarios
+metricsPageRetentionQueryDays = Días desde la primera captura del usuario hasta la más reciente
 metricsPageRetentionQueryFirstWeek = Semana en la que el usuario creo la primera captura
 metricsPageTotalRetentionQueryTitle = Retención total
+metricsPageTotalRetentionQueryDescription = Cantidad de tiempo que los usuarios han estado creando capturas, agrupado por semana.
 metricsPageTotalRetentionQueryUsers = Número de usuarios
 metricsPageTotalRetentionQueryDays = Días que el usuario ha estado creando capturas
 metricsPageVersionQueryTitle = Versión del complemento
