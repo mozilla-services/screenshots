@@ -486,7 +486,6 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       let bodyRect = getBodyRect();
       // Note, document.documentElement.scrollHeight is zero on some strange pages (such as the page created when you load an image):
       let docHeight = Math.max(document.documentElement.scrollHeight || 0, document.body.scrollHeight);
-      let docWidth = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth);
 
       let winBottom = window.innerHeight;
       let pageYOffset = window.pageYOffset;
@@ -517,11 +516,11 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       this.bgTop.style.top = "0px";
       this.bgTop.style.height = (pos.top - bodyRect.top) + "px";
       this.bgTop.style.left = "0px";
-      this.bgTop.style.width = docWidth + "px";
+      this.bgTop.style.width = "100%";
       this.bgBottom.style.top = (pos.bottom - bodyRect.top) + "px";
       this.bgBottom.style.height = docHeight - (pos.bottom - bodyRect.top) + "px";
       this.bgBottom.style.left = "0px";
-      this.bgBottom.style.width = docWidth + "px";
+      this.bgBottom.style.width = "100%";
       this.bgLeft.style.top = (pos.top - bodyRect.top) + "px";
       this.bgLeft.style.height = pos.bottom - pos.top + "px";
       this.bgLeft.style.left = "0px";
@@ -529,7 +528,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       this.bgRight.style.top = (pos.top - bodyRect.top) + "px";
       this.bgRight.style.height = pos.bottom - pos.top + "px";
       this.bgRight.style.left = (pos.right - bodyRect.left) + "px";
-      this.bgRight.style.width = docWidth - (pos.right - bodyRect.left) + "px";
+      this.bgRight.style.width = "100%";
 
       if (!(this.isElementInViewport(this.buttons))) {
         this.cancel.style.position = this.download.style.position = this.save.style.position = "fixed";
