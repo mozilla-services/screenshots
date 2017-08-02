@@ -83,6 +83,8 @@ notFoundPageDescription = Η σελίδα δεν βρέθηκε.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Στιγμιότυπο: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Σφάλμα αποθήκευσης ημερομηνίας λήξης
 shotPageAlertErrorDeletingShot = Σφάλμα διαγραφής στιγμιότυπου
 shotPageAlertErrorUpdatingTitle = Σφάλμα αποθήκευσης τίτλου
