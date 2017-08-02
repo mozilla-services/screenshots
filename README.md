@@ -60,3 +60,7 @@ Planning and ideation is happening in the [issue tracker](https://github.com/moz
 Issue tags otherwise aren't very structured. [Research](https://github.com/mozilla-services/screenshots/issues?q=is%3Aopen+is%3Aissue+label%3Aresearch) is primarily analysis of other products that do something interesting, or some source material that could provide insight.  Input on these (things like "I like this product because...") is very helpful!
 
 We do some research on other projects, [collecting the results in this Google Drive folder](https://drive.google.com/drive/folders/0B8i2m8Kt5pnBaHlMNWtYdV8xNTg?usp=sharing).
+
+### Localization
+
+Firefox Screenshots localization is managed via [Pontoon](https://pontoon.mozilla.org/projects/firefox-screenshots/), not direct pull requests to the repository. If you want to fix a typo, add a new language, or simply know more about localization, please get in touch with the [existing localization team](https://pontoon.mozilla.org/teams/) for your language, or Mozilla’s [l10n-drivers](https://wiki.mozilla.org/L10n:Mozilla_Team#Mozilla_Corporation) for guidance.
