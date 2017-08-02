@@ -7,7 +7,11 @@
 // Global phrases shared across pages, prefixed with 'g'
 [[ global ]]
 
+gMyShots = Görüntülerim
 gHomeLink = Ana Sayfa
+gNoShots
+    .alt = Görüntü bulunamadı
+gScreenshotsDescription = Ekran görürüntüsü almayı basitleştirdik. Firefox’tan çıkmadan ekran görüntüleri alabilir, kaydedebilir ve paylaşabilirsiniz.
 
 
 [[ Footer ]]
@@ -15,6 +19,8 @@ gHomeLink = Ana Sayfa
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkPrivacy = Gizlilik Bildirimi
+footerLinkDMCA = Telif hakkı ihlali bildir
+footerLinkDiscourse = Görüş bildir
 footerLinkRemoveAllData = Tüm verileri sil
 
 
@@ -29,11 +35,22 @@ creatingPageTitleDefault = sayfa
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Tarayıcıyla bütünleşik ekran görüntüsü aracı. Firefox’la internette gezinirken ekran görüntüleri alabilir, kaydedebilir ve paylaşabilirsiniz.
+homePageButtonMyShots = Görüntülerime git
 homePageTeaser = Çok Yakında...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Ücretsiz indir
+homePageGetStarted = Başlayın
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots nasıl çalışıyor?
+homePageGetStartedTitle = Başlayın
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Araç çubuğunuzdaki yeni Screenshots simgesini bulun. Ona tıkladığınızda tarayıcı pencerenizin üzerinde Screenshots menüsü açılacak.
+homePageCaptureRegion = Bir bölgeyi yakalama
+homePageCapturePage = Tüm sayfayı yakalama
+homePageSaveShare = Kaydetme ve paylaşma
+homePageLegalLink = Yasal Notlar
 homePagePrivacyLink = Gizlilik
 homePageTermsLink = Koşullar
 homePageCookiesLink = Çerezler
@@ -42,14 +59,20 @@ homePageCookiesLink = Çerezler
 [[ Leave Screenshots page ]]
 
 leavePageConfirmDelete = Hesabı silmeyi onaylayın
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Hesabınızı silebilmek için Firefox Screenshots yüklü olmalıdır
 leavePageErrorGeneric = Bir hata oluştu
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Bu işlem, tüm Firefox Screenshots verilerinizi kalıcı olarak silecektir.
 leavePageButtonProceed = Devam et
 leavePageButtonCancel = iptal
+leavePageDeleted = Tüm ekran görüntüleriniz silindi!
 
 
 [[ Not Found page ]]
 
 notFoundPageTitle = Sayfa bulunamadı
+notFoundPageIntro = Hay aksi!
 notFoundPageDescription = Sayfa bulunamadı.
 
 
@@ -80,19 +103,27 @@ shotPageKeepTwoWeeks = 2 Hafta
 shotPageKeepOneMonth = 1 ay
 shotPageSaveExpiration = kaydet
 timeDiffMinutesAgo = 1 dakika önce
+timeDiffHoursAgo = 1 saat önce
+timeDiffDaysAgo = dün
 timeDiffFutureDays = yarın
 
 
 [[ Shotindex page ]]
 
 shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageClearSearchButton
+    .title = Aramayı temizle
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Firefox Screenshots Ölçümleri
 metricsPageTotalsQueryTitle = Toplam
 metricsPageShotsQueryDay = Gün
 metricsPageUsersQueryDay = Gün
 metricsPageVersionQueryTitle = Eklenti sürümü
 metricsPageVersionQueryVersion = Eklenti sürümü
+metricsPageVersionQueryLastSeen = Gün
+metricsPageHeader = Ölçümler
