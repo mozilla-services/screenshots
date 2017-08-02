@@ -366,7 +366,7 @@ this.uicontrol = (function() {
 
   stateHandlers.previewing = {
     start() {
-      dataUrl = shooter.screenshotPage(selectedPos);
+      dataUrl = shooter.screenshotPage(selectedPos, captureType);
       ui.iframe.usePreview();
       ui.Preview.display(dataUrl);
     }
