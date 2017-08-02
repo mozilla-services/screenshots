@@ -287,7 +287,13 @@ app.param("id", function(req, res, next, id) {
     next();
     return;
   }
-  next(new Error("invalid id"));
+  let exc = new Error("invalid id")
+  exc.isAppError = true;
+  exc.output = {
+    statusCode: 400,
+    payload: "Invalid id"
+  };
+  next(exc);
 });
 
 app.param("domain", function(req, res, next, domain) {
@@ -1087,8 +1093,21 @@ app.use(function(err, req, res, next) {
   if (err.isAppError) {
     let { statusCode, headers, payload } = err.output;
     res.status(statusCode);
-    res.header(headers);
+    if (headers) {
+      res.header(headers);
+    }
     res.send(payload);
+    return;
+  }
+  if (err.type === "entity.too.large") {
+    mozlog.info("entity-too-large", {
+      length: err.length,
+      limit: err.limit,
+      expected: err.expected
+    });
+    res.status(err.statusCode);
+    res.type("text");
+    res.send(res.message);
     return;
   }
   errorResponse(res, "General error:", err);
