@@ -80,6 +80,8 @@ notFoundPageDescription = Página no encontrada.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Captura: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Error guardando expiración
 shotPageAlertErrorDeletingShot = Error borrando captura
 shotPageAlertErrorUpdatingTitle = Error guardando título
@@ -117,6 +119,8 @@ shotPageDownload = Descargar
 shotPageUpsellFirefox = Obtener Firefox ahora
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Enviá un correo electrónico a { $dmca } para pedir más información.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Si tus capturas reciben múltiples reclamos, podemos revocar tu acceso a Firefox Screenshots.
 shotPageKeepFor = ¿Cuánto tiempo debería mantenerse esta captura?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Seleccionar tiempo
@@ -203,6 +207,7 @@ metricsPageUsersQueryCount = Número de usuarios
 metricsPageUsersQueryDay = Día
 metricsPageUserShotsQueryTitle = Número de capturas por usuario
 metricsPageUserShotsQueryCount = Número de usuarios
+metricsPageUserShotsQueryShots = Número aproximado de capturas activas (no expiradas)
 metricsPageRetentionQueryTitle = Retención por semana
 metricsPageRetentionQueryUsers = Número de usuarios
 metricsPageRetentionQueryFirstWeek = Semana en la que el usuario creo la primera captura
@@ -211,6 +216,7 @@ metricsPageTotalRetentionQueryUsers = Número de usuarios
 metricsPageTotalRetentionQueryDays = Días que el usuario ha estado creando capturas
 metricsPageVersionQueryTitle = Versión del complemento
 metricsPageVersionQueryDescription = La versión del complemento usado durante el ingreso, en los últimos 14 días
+metricsPageVersionQueryUsers = Número de usuarios ingresados
 metricsPageVersionQueryVersion = Versión del complemento
 metricsPageVersionQueryLastSeen = Día
 metricsPageHeader = Métricas
