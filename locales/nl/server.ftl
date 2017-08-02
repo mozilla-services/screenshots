@@ -83,6 +83,8 @@ notFoundPageDescription = Pagina niet gevonden.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Schermafbeelding: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Fout bij opslaan van vervaldatum
 shotPageAlertErrorDeletingShot = Fout bij opslaan van afbeelding
 shotPageAlertErrorUpdatingTitle = Fout bij opslaan van titel
