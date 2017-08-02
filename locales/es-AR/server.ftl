@@ -35,6 +35,8 @@ creatingPageTitleDefault = página
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Capturas de pantalla intuitivas metidas en el navegador. Capturá, guardá y compartí capturas mientras navegás la web usando Firefox.
 homePageButtonMyShots = Ir a mis capturas
 homePageTeaser = Próximamente…
 homePageDownloadFirefoxTitle = Firefox
@@ -43,6 +45,8 @@ homePageGetStarted = Primeros pasos
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Como funciona Firefox Screenshots
 homePageGetStartedTitle = Primeros pasos
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Buscá el nuevo ícono de Screenshots en la barra de herramientas. Seleccionalo y el menú de Screenshots aparecerá encima de la ventana del navegador.
 homePageCaptureRegion = Capturar una región
 homePageCapturePage = Capturar una página
 homePageSaveShare = Guardar y compartir
