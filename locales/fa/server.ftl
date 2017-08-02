@@ -15,6 +15,12 @@ gNoShots
 
 [[ Footer ]]
 
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = موزیلا
+footerLinkPrivacy = نکات حفظ حریم‌شخصی
+footerLinkDMCA = گزارش تخلف IP
+footerLinkDiscourse = ارسال بازخورد
+footerLinkRemoveAllData = حذف همه‌ی داده‌ها
 
 
 [[ Creating page ]]
@@ -28,6 +34,7 @@ creatingPageTitleDefault = صفحه
 
 [[ Home page ]]
 
+homePageButtonMyShots = برو به عکس‌های من
 homePageTeaser = به زودی…
 homePageDownloadFirefoxTitle = فایرفاکس
 homePageDownloadFirefoxSubTitle = دریافت رایگان
@@ -56,6 +63,8 @@ notFoundPageDescription = صفحه پیدا نشد.
 
 [[ Shot page ]]
 
+shotPageShareButton
+    .title = هم‌رسانی
 shotPageCopy = رونوشت
 shotPageCopied = رونوشت شد
 shotPageShareFacebook
@@ -66,6 +75,7 @@ shotPageSharePinterest
     .title = هم‌رسانی در پینترست
 shotPageShareEmail
     .title = هم‌رسانی پیوند از طریق ایمیل
+shotPagePrivacyMessage = هر کسی با این پیوند می‌تواند این عکس را ببیند.
 shotPageDownloadShot
     .title = دریافت
 shotPageDownload = دریافت
