@@ -83,6 +83,8 @@ notFoundPageDescription = Strona njeje so namakała.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Foto wobrazowki: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Zmylk při spadnjenju
 shotPageAlertErrorDeletingShot = Zmylk při hašenju fota wobrazowki
 shotPageAlertErrorUpdatingTitle = Zmylk při składowanju titula
