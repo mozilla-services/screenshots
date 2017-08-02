@@ -83,6 +83,8 @@ notFoundPageDescription = Paĝo ne trovita
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Ekrankopio: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Eraro dum konservo de senvalidiĝo
 shotPageAlertErrorDeletingShot = Eraro dum forigo de ekrankopio
 shotPageAlertErrorUpdatingTitle = Eraro dum konservo de titolo
