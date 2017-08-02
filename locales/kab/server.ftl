@@ -217,6 +217,7 @@ metricsPageTotalRetentionQueryTitle = Amḍan n uḥraz
 metricsPageTotalRetentionQueryUsers = Amḍan n iseqdacen
 metricsPageTotalRetentionQueryDays = Ussan anida aseqdac irennu tuṭṭfiwin
 metricsPageVersionQueryTitle = Lqem n uzegrir
+metricsPageVersionQueryDescription = Lqem n uzegrir ittwaqedcen deg unekcum, di 14 ussan inegurra
 metricsPageVersionQueryUsers = Amḍan n iseqdacen yeqqnen
 metricsPageVersionQueryVersion = Lqem n uzegrir
 metricsPageVersionQueryLastSeen = Ass
