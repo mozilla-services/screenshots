@@ -14,6 +14,10 @@ gNoShots
 gScreenshotsDescription = Screenshots membuatnya sederhana. Ambil, simpan, dan bagikan tangkapan layar tanpa meninggalkan Firefox.
 
 
+[[ Footer ]]
+
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
@@ -55,6 +59,8 @@ notFoundPageIntro = Ups.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Tangkapan Layar: { $originalTitle }
 shotPageAlertErrorUpdatingTitle = Galat saat menyimpan judul
 shotPageCopy = Salin
 shotPageShareFacebook
