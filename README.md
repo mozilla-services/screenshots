@@ -1,15 +1,16 @@
 ## Firefox Screenshots
 
 [![CircleCI Build Status](https://circleci.com/gh/mozilla-services/screenshots.svg?style=shield)](https://circleci.com/gh/mozilla-services/screenshots)
-[![Available on Test Pilot](https://img.shields.io/badge/available_on-Test_Pilot-0996F8.svg)](https://testpilot.firefox.com/experiments/page-shot)
 
-This is a prototype for a product to create better ways of sharing and saving content, starting with screenshots.  (This project used to include general page freezing; this functionality has been forked off into [pagearchive](https://github.com/ianb/pagearchive).)
+This is a screenshot tool for Firefox. It will be shipped in Firefox 55 and later versions, as part of the default Firefox distribution.
 
-The project has been launched through [Test Pilot](https://testpilot.firefox.com/) at [pageshot.net](https://pageshot.net).  We are looking to a general audience release in the future.
+The project was initially launched through [Test Pilot](https://testpilot.firefox.com/) as [Page Shot](https://testpilot.firefox.com/experiments/page-shot).
 
 It is made up of both an add-on (using [WebExtensions](https://developer.mozilla.org/Add-ons/WebExtensions)) and a website using Node.js.  The add-on is in `addon/webextension/`, and the website is in `server/`
 
 Ian has been blogging about the [design, definition, and development process](http://www.ianbicking.org/tag/product-journal.html).
+
+(This project used to include general page freezing; this functionality has been forked off into [pagearchive](https://github.com/ianb/pagearchive).)
 
 You can find more information about Firefox Screenshots at the Mozilla Wiki page: https://wiki.mozilla.org/Firefox/Screenshots
 

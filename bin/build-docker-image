@@ -10,7 +10,6 @@ if [[ $# = 0 ]] ; then
   echo "  builds the Screenshots docker image"
   echo "  Determines version from package.json"
   echo "  tags and uploads it as [dockerhubusername]/screenshots:[version]"
-  echo "  creates build/eb-app-latest.zip"
   echo "  version is read from package.json if not provided"
   exit 4
 fi
@@ -20,11 +19,6 @@ if [[ -n "${2:-}" ]] ; then
 else
   version="$(node -e 'console.log(require("./package.json").version)')"
 fi
-
-sed "s!USERNAME!$1!g" < Dockerrun.aws.json.template > Dockerrun.aws.json.tmp
-sed "s!VERSION!$version!g" < Dockerrun.aws.json.tmp > Dockerrun.aws.json
-zip -r build/eb-app-latest.zip Dockerrun.aws.json .ebextensions/*.config
-rm Dockerrun.aws.json Dockerrun.aws.json.tmp
 
 make server
 

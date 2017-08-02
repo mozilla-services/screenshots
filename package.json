@@ -71,7 +71,7 @@
     "uglify-js": "3.0.26",
     "web-ext": "1.10.1"
   },
-  "homepage": "https://pageshot.dev.mozaws.net",
+  "homepage": "https://screenshots.firefox.com",
   "license": "MPL-2.0",
   "repository": {
     "type": "git",
