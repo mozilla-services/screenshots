@@ -83,6 +83,8 @@ notFoundPageDescription = ページが見つかりませんでした。
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = スクリーンショット: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = 期限の保存中に問題が発生しました
 shotPageAlertErrorDeletingShot = ショットの削除中に問題が発生しました
 shotPageAlertErrorUpdatingTitle = タイトルの保存中に問題が発生しました
