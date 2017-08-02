@@ -39,17 +39,22 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     supportsDrawWindow = !!ctx.drawWindow;
   })();
 
-  let screenshotPage = exports.screenshotPage = function(selectedPos) {
+  let screenshotPage = exports.screenshotPage = function(selectedPos, captureType) {
     if (!supportsDrawWindow) {
       return null;
     }
     let height = selectedPos.bottom - selectedPos.top;
     let width = selectedPos.right - selectedPos.left;
     let canvas = document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
-    canvas.width = width * window.devicePixelRatio;
-    canvas.height = height * window.devicePixelRatio;
     let ctx = canvas.getContext('2d');
-    if (window.devicePixelRatio !== 1) {
+    if (captureType == 'fullPage') {
+      canvas.width = width;
+      canvas.height = height;
+    } else {
+      canvas.width = width * window.devicePixelRatio;
+      canvas.height = height * window.devicePixelRatio;
+    }
+    if (window.devicePixelRatio !== 1 && captureType != 'fullPage') {
       ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     }
     ui.iframe.hide();
@@ -92,7 +97,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     if (buildSettings.captureText) {
       captureText = util.captureEnclosedText(selectedPos);
     }
-    let dataUrl = url || screenshotPage(selectedPos);
+    let dataUrl = url || screenshotPage(selectedPos, captureType);
     if (dataUrl) {
       shotObject.delAllClips();
       shotObject.addClip({
