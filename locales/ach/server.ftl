@@ -143,3 +143,4 @@ metricsPageUsersQueryTitle = Lutic kudiceng
 metricsPageUsersQueryCount = Wel Lutic
 metricsPageUsersQueryDay = Diceng
 metricsPageUserShotsQueryCount = Wel lutic
+metricsPageVersionQueryLastSeen = Nino
