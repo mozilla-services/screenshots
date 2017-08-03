@@ -11,6 +11,14 @@ gMyShots = Les meves captures
 gHomeLink = Inici
 gNoShots
     .alt = No s'ha trobat cap captura
+gScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures, deseu-les i compartiu-les sense sortir del Firefox.
+
+
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Avís de privadesa
 
 
 [[ Creating page ]]
