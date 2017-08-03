@@ -25,7 +25,7 @@ run () {
   if [[ -n "$restart" ]] ; then
     notify "Firefox Screenshots server build finished."
   fi
-  node -e 'require("babel-polyfill"); require("./build/server/server");'
+  exec node -e 'require("babel-polyfill"); require("./build/server/server");'
 }
 
 notify () {
