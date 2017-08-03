@@ -21,6 +21,7 @@ footerLinkMozilla = Mozilla
 footerLinkPrivacy = 隐私声明
 footerLinkDMCA = 举报侵犯知识产权
 footerLinkDiscourse = 提供反馈
+footerLinkRemoveAllData = 清除所有数据
 
 
 [[ Creating page ]]
@@ -34,6 +35,9 @@ creatingPageTitleDefault = 页面
 
 [[ Home page ]]
 
+homePageDescription
+    .content = 直接在浏览器内截图。浏览网页时截图、保存与分享，只需 Firefox。
+homePageButtonMyShots = 转至我的截图
 homePageTeaser = 即将推出…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = 免费下载
@@ -59,6 +63,7 @@ homePageCookiesLink = Cookie
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = 确认删除账户
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = 您必须已安装 Firefox Screenshots 才能删除账户
 leavePageErrorGeneric = 发生错误
@@ -71,11 +76,17 @@ leavePageDeleted = 您的截图已全部删除！
 
 [[ Not Found page ]]
 
+notFoundPageTitle = 找不到网页
+notFoundPageIntro = 出错了。
 notFoundPageDescription = 找不到网页。
 
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = 截图: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = 保存到期时间时出错
+shotPageAlertErrorDeletingShot = 删除截图时出错
 shotPageAlertErrorUpdatingTitle = 保存标题时出错
 shotPageConfirmDelete = 您确定要永久删除此截图？
 shotPageShareButton
