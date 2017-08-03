@@ -81,6 +81,8 @@ notFoundPageDescription = Ulac asebter.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Screenshot: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Tuccḍa deg usekles tagara
 shotPageAlertErrorDeletingShot = Tuccḍa di tukksa n ṭṭufa
 shotPageAlertErrorUpdatingTitle = Tuccḍa deg usekles n uzwel
@@ -119,8 +121,11 @@ shotPageDownloadShot
 shotPageDownload = Sider
 shotPageScreenshotsDescription = 
 shotPageUpsellFirefox = Awi-d Firefox tura
+shotPageDMCAMessage = Tuṭṭfa-agi ur tezgi tella imi yella ucetki ɣef wayla agzayan i d-yekkan seg wis kraḍ.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Azen-d { $dmca } akken ad tsutreḍ ugar n telɣut.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Ma yella tuṭṭfiwin cetkan-d aṭas fell-asent, yezmer ak-nekkes anekcum ar Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Ttxilek sedu URL n tuṭfa-agi deg imayl inek: { $url }
 shotPageKeepFor = Ceḥal n wakud tuṭṭfa-agi ad tettwasekles?
