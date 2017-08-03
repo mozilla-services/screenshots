@@ -101,7 +101,23 @@ shotPageSharePinterest
     .title = Comparteix al Pinterest
 shotPageShareEmail
     .title = Comparteix l'enllaç per correu electrònic
+shotPageCopyImageText
+    .label = Copia el text de la imatge
+shotPageConfirmDeletion = Segur que voleu suprimir aquesta captura permanentment?
+shotPageExpiredMessage = Aquesta captura ha caducat.
+shotPageDeleteButton
+    .title = Suprimeix aquesta captura
+shotPageDownloadShot
+    .title = Baixa
+shotPageDownload = Baixa
+shotPageScreenshotsDescription =
+    Captures de pantalla sense complicacions. Feu captures, deseu-les i compartiu-les sense sortir del Firefox.
+
 shotPageUpsellFirefox = Baixeu el Firefox ara
+shotPageDMCAMessage = Aquesta captura ja no està disponible a causa d'una reclamació de propietat intel·lectual d'un tercer.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Incloeu l'URL d'aquesta captura en el missatge de correu electrònic: { $url }
+shotPageKeepFor = ¿Durant quant temps voleu conservar aquesta captura?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Seleccioneu el temps
 shotPageKeepIndefinitely = Indefinidament
@@ -189,6 +205,12 @@ metricsPageShotsQueryDay = Dia
 metricsPageUsersQueryTitle = Usuaris per dia
 metricsPageUsersQueryDescription = Nombre d'usuaris que han creat com a mínim una captura, per dia (darrers 30 dies)
 metricsPageUsersQueryCount = Nombre d'usuaris
+metricsPageUsersQueryDay = Dia
 metricsPageTotalRetentionQueryUsers = Nombre d'usuaris
 metricsPageVersionQueryTitle = Versió del complement
 metricsPageVersionQueryLastSeen = Dia
+metricsPageHeader = Mètriques
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Data de generació: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (temps de base de dades: { $time } ms)
