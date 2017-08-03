@@ -101,18 +101,33 @@ shotPageSharePinterest
     .title = Comparteix al Pinterest
 shotPageShareEmail
     .title = Comparteix l'enllaç per correu electrònic
+shotPageShareLink = Obteniu un enllaç a aquesta captura:
+shotPagePrivacyMessage = Qualsevol persona amb l'enllaç pot veure aquesta captura.
 shotPageCopyImageText
     .label = Copia el text de la imatge
 shotPageConfirmDeletion = Segur que voleu suprimir aquesta captura permanentment?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Si no feu res, aquesta captura se suprimirà permanentment { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = restaura fins al { $date }
 shotPageExpiredMessage = Aquesta captura ha caducat.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Aquesta és la pàgina des d'on es va fer originalment la captura:
 shotPageDeleteButton
     .title = Suprimeix aquesta captura
+shotPageAbuseButton
+    .title = Denuncieu aquesta captura per abús, brossa o altres problemes
 shotPageDownloadShot
     .title = Baixa
 shotPageDownload = Baixa
 shotPageScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures, deseu-les i compartiu-les sense sortir del Firefox.
 shotPageUpsellFirefox = Baixeu el Firefox ara
 shotPageDMCAMessage = Aquesta captura ja no està disponible a causa d'una reclamació de propietat intel·lectual d'un tercer.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Envieu un correu electrònic a { $dmca } per sol·licitar més informació.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Si rebem diverses reclamacions per les vostres captures, se us podria denegar l'accés al Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Incloeu l'URL d'aquesta captura en el missatge de correu electrònic: { $url }
 shotPageKeepFor = ¿Durant quant temps voleu conservar aquesta captura?
@@ -204,9 +219,19 @@ metricsPageUsersQueryTitle = Usuaris per dia
 metricsPageUsersQueryDescription = Nombre d'usuaris que han creat com a mínim una captura, per dia (darrers 30 dies)
 metricsPageUsersQueryCount = Nombre d'usuaris
 metricsPageUsersQueryDay = Dia
+metricsPageUserShotsQueryTitle = Nombre de captures per usuari
+metricsPageUserShotsQueryDescription = El nombre d'usuaris que tenen aproximadament N captures en total
+metricsPageUserShotsQueryCount = Nombre d'usuaris
+metricsPageUserShotsQueryShots = Nombre aproximat de captures actives (no caducades)
 metricsPageRetentionQueryTitle = Retenció per setmana
+metricsPageRetentionQueryDescription = Nombre de dies des de la primera captura d'un usuari fins a la captura més recent, agrupats per setmana d'inici
+metricsPageRetentionQueryUsers = Nombre d'usuaris
+metricsPageRetentionQueryDays = Dies transcorreguts entre la primera i la darrera captura de l'usuari
+metricsPageRetentionQueryFirstWeek = Setmana en què l'usuari va crear la primera captura
+metricsPageTotalRetentionQueryTitle = Retenció total
 metricsPageTotalRetentionQueryUsers = Nombre d'usuaris
 metricsPageVersionQueryTitle = Versió del complement
+metricsPageVersionQueryVersion = Versió del complement
 metricsPageVersionQueryLastSeen = Dia
 metricsPageHeader = Mètriques
 // Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
