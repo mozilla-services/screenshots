@@ -83,6 +83,8 @@ notFoundPageDescription = Fant ikke siden.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Skjermbilde: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Feil ved lagring av utløpsdato
 shotPageAlertErrorDeletingShot = Feil ved sletting av skjermbilde
 shotPageAlertErrorUpdatingTitle = Feil ved lagring av tittel
