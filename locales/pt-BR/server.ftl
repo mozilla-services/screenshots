@@ -83,6 +83,8 @@ notFoundPageDescription = Página não encontrada.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Captura de tela: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Erro ao salvar tempo limite
 shotPageAlertErrorDeletingShot = Erro ao deletar captura
 shotPageAlertErrorUpdatingTitle = Erro ao salvar título
