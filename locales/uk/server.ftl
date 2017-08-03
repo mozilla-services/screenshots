@@ -55,10 +55,20 @@ homePageCapturePageDescription = Використовуйте кнопки сп�
 homePageSaveShare = Зберегти й поділитися
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Коли ви робите знімок, Firefox публікує їх у вашій мережевій бібліотеці й копіює посилання до буфера обміну. Ми автоматично зберігаємо ваші знімки екрану протягом двох тижнів, але ви можете видалити їх в будь-який час, або змінити час зберігання на довший.
+homePageLegalLink = Юридична інформація
+homePagePrivacyLink = Приватність
+homePageTermsLink = Умови
+homePageCookiesLink = Куки
 
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = Підтвердити видалення облікового запису
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = У вас має бути встановлений Firefox Screenshots, щоб видалити ваш обліковий запис
+leavePageErrorGeneric = Сталася помилка
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Ця дія назавжди видалить усі ваші дані Firefox Screenshots.
 
 
 [[ Not Found page ]]
