@@ -83,6 +83,8 @@ notFoundPageDescription = Side net fûn.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Skermôfbylding: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Flater by bewarjen fan ferrindatum
 shotPageAlertErrorDeletingShot = Flater by bewarjen fan ôfbylding
 shotPageAlertErrorUpdatingTitle = Flater by bewarjen fan titel
