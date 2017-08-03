@@ -48,13 +48,18 @@ shotPageDownloadShot
     .title = Tải về
 shotPageDownload = Tải xuống
 shotPageUpsellFirefox = Tải ngay Firefox
+shotPageSaveExpiration = lưu
 shotPageCancelExpiration = huỷ bỏ
 
 
 [[ Shotindex page ]]
 
+shotIndexPageSearchButton
+    .title = Tìm kiếm
+shotIndexPageNoSearchResultsIntro = Hmm
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageVersionQueryLastSeen = Ngày
