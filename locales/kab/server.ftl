@@ -11,7 +11,7 @@ gMyShots = Tuṭṭfiwin-iw
 gHomeLink = Asebter agejdan
 gNoShots
     .alt = Ulac tuṭṭfiwin
-gScreenshotsDescription = Tuṭṭfiwin ɣef afus. Ṭṭef agdil, sekles sakin bḍu war ma teffɣeḍ si Firefox.
+gScreenshotsDescription = Tuṭṭfiwin γef afus. Ṭṭef agdil, sekles sakin bḍu war ma teffγeḍ si Firefox.
 
 
 [[ Footer ]]
