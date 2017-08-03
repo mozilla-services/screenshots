@@ -51,7 +51,10 @@ homePageCaptureRegion = Capturar una región
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Hacé clic y arrastrá para seleccionar el área que querés capturar. O simplemente pasá por encima y hace clic — Screenshots seleccionará el área para vos. ¿Te gusta lo que ves? Seleccioná Guardar para acceder a tu captura en línea o el botón con la flecha hacia abajo para guardarla en tu computadora.
 homePageCapturePage = Capturar una página
+homePageCapturePageDescription = Usá los botones en la parte superior derecha para capturar la página completa. El botón Guardar Visibe capturará el área que se puede ver sin desplazarse y Guardar Página Completa capturará todo en la página.
 homePageSaveShare = Guardar y compartir
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Al hacer una captura, Firefox la publica en tu biblioteca en línea de Screenshots y copia el enlace en tu portapapeles. Guardamos automáticamente tus capturas por dos semanas, pero las podés borrar en cualquier momento o cambiar la fecha de expiración para mantenerles en la biblioteca por más tiempo.
 homePageLegalLink = Legales
 homePagePrivacyLink = Privacidad
 homePageTermsLink = Términos
@@ -103,6 +106,8 @@ shotPagePrivacyMessage = Cualquiera con el enlace puede ver esta captura.
 shotPageCopyImageText
     .label = Copiar texto de imagen
 shotPageConfirmDeletion = ¿Está seguro de querer borrar esta captura permanentemente?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Si no hacés nada, esta captura será permanentemente eliminada { $timediff }.
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = restaurar hasta { $date }
@@ -116,12 +121,15 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Descargar
 shotPageDownload = Descargar
+shotPageScreenshotsDescription = Capturas de pantalla simples. Tomar, guardar y compartir capturas de pantalla sin dejar Firefox.
 shotPageUpsellFirefox = Obtener Firefox ahora
 shotPageDMCAMessage = La captura no está más disponible por una queja de terceros por propiedad intelectual.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Enviá un correo electrónico a { $dmca } para pedir más información.
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Si tus capturas reciben múltiples reclamos, podemos revocar tu acceso a Firefox Screenshots.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Incluí la  URL de esta captura en tu correo electrónico: { $url }
 shotPageKeepFor = ¿Cuánto tiempo debería mantenerse esta captura?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Seleccionar tiempo
@@ -174,6 +182,9 @@ timeDiffFutureDays = { $num ->
 shotIndexPageErrorDeletingShot = Error borrando captura: { $status } { $statusText }
 // { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Mis capturas: búsqueda de { $searchTerm }
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Error dibujando la página: { $error }
 shotIndexPageSearchPlaceholder
     .placeholder = Buscar mis capturas
 shotIndexPageSearchButton
@@ -194,6 +205,8 @@ shotIndexPageConfirmShotDelete = ¿Borrar esta captura?
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Métricas de Firefox Screenshots
 metricsPageTotalsQueryTitle = Totales
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Una visión general de Screenshots
 metricsPageTotalsQueryDevices = Dispositivos registrados totales
 metricsPageTotalsQueryActiveShots = Capturas activas
 metricsPageTotalsQueryExpiredShots = Expirada (pero recuperable)
@@ -207,6 +220,7 @@ metricsPageUsersQueryDescription = Número de usuarios que crearon al menos una 
 metricsPageUsersQueryCount = Número de usuarios
 metricsPageUsersQueryDay = Día
 metricsPageUserShotsQueryTitle = Número de capturas por usuario
+metricsPageUserShotsQueryDescription = El número de usuarios que tienen cerca de N capturas totales
 metricsPageUserShotsQueryCount = Número de usuarios
 metricsPageUserShotsQueryShots = Número aproximado de capturas activas (no expiradas)
 metricsPageRetentionQueryTitle = Retención por semana
@@ -226,3 +240,5 @@ metricsPageVersionQueryLastSeen = Día
 metricsPageHeader = Métricas
 // Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Generada el: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (tiempo de la base de datos: { $time }ms)
