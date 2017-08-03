@@ -110,9 +110,7 @@ shotPageDeleteButton
 shotPageDownloadShot
     .title = Baixa
 shotPageDownload = Baixa
-shotPageScreenshotsDescription =
-    Captures de pantalla sense complicacions. Feu captures, deseu-les i compartiu-les sense sortir del Firefox.
-
+shotPageScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures, deseu-les i compartiu-les sense sortir del Firefox.
 shotPageUpsellFirefox = Baixeu el Firefox ara
 shotPageDMCAMessage = Aquesta captura ja no està disponible a causa d'una reclamació de propietat intel·lectual d'un tercer.
 // Note: { $url } is a placeholder for a shot page URL
@@ -206,6 +204,7 @@ metricsPageUsersQueryTitle = Usuaris per dia
 metricsPageUsersQueryDescription = Nombre d'usuaris que han creat com a mínim una captura, per dia (darrers 30 dies)
 metricsPageUsersQueryCount = Nombre d'usuaris
 metricsPageUsersQueryDay = Dia
+metricsPageRetentionQueryTitle = Retenció per setmana
 metricsPageTotalRetentionQueryUsers = Nombre d'usuaris
 metricsPageVersionQueryTitle = Versió del complement
 metricsPageVersionQueryLastSeen = Dia
