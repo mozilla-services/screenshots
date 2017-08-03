@@ -282,21 +282,19 @@ const style = `
   #section-4 .section-image {
     background-image: url(../static/img/landing-screenshots_image_04.svg);
     background-repeat: no-repeat;
-    background-position: 0% center;
+    background-position: 100% center;
     height: 533px;
   }
 
   #section-1 .section-content,
   #section-2 .section-image,
-  #section-3 .section-content,
-  #section-4 .section-image {
+  #section-4 .section-content {
     order: 1;
   }
 
   #section-1 .section-image,
   #section-2 .section-content,
-  #section-3 .section-image,
-  #section-4 .section-content {
+  #section-4 .section-image {
     order: 2;
   }
 
@@ -565,19 +563,6 @@ class Body extends React.Component {
               </Localized>
               <Localized id="homePageCaptureRegionDescription">
                 <p>Click and drag to select the area you want to capture. Or just hover and click — Screenshots will select the area for you. Like what you see? Select Save to access your screenshot online or the down arrow button to download it to your computer.</p>
-              </Localized>
-            </div>
-            <div className="section-image"></div>
-          </div>
-        </section>
-        <section id="section-3">
-          <div className="container">
-            <div className="section-content">
-              <Localized id="homePageCapturePage">
-                <h3>Capture a Page</h3>
-              </Localized>
-              <Localized id="homePageCapturePageDescription">
-                <p>Use the buttons in the upper right to capture full pages. The Save Visible button will capture the area you can view without scrolling, and the Save Full Page will capture everything on the page.</p>
               </Localized>
             </div>
             <div className="section-image"></div>
