@@ -76,6 +76,10 @@ shotPageShareTwitter
     .title = Twitter પર વહેચો
 shotPageSharePinterest
     .title = Pinterest પર વહેચો
+shotPageDownloadShot
+    .title = ડાઉનલોડ કરો
+shotPageDownload = ડાઉનલોડ કરો
+shotPageUpsellFirefox = હમણાં Firefox મેળવો
 
 
 [[ Shotindex page ]]
