@@ -85,12 +85,52 @@ notFoundPageDescription = Сторінку не знайдено.
 
 // This is the HTML title tag of the page
 shotPageTitle = Знімок екрану: { $originalTitle }
+shotPageAlertErrorDeletingShot = Помилка під час видалення знімку
+shotPageAlertErrorUpdatingTitle = Помилка збереження назви
+shotPageShareButton
+    .title = Поділітися
+shotPageCopy = Копіювати
+shotPageCopied = Скопійовано
+shotPageDownloadShot
+    .title = Завантажити
+shotPageDownload = Завантажити
+shotPageUpsellFirefox = Отримати Firefox
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Виберіть час
+shotPageKeepTenMinutes = 10 хвилин
+shotPageKeepOneHour = 1 година
+shotPageKeepOneDay = 1 день
+shotPageKeepOneWeek = 1 тиждень
+shotPageKeepTwoWeeks = 2 тижні
+shotPageKeepOneMonth = 1 місяць
+shotPageSaveExpiration = зберегти
+shotPageCancelExpiration = скасувати
+timeDiffJustNow = щойно
+timeDiffFutureSeconds = за кілька секунд
 
 
 [[ Shotindex page ]]
 
+shotIndexPageSearchButton
+    .title = Пошук
+shotIndexPageNoShotsMessage = Немає збережених знімків.
+shotIndexPageNoSearchResultsIntro = Хмм
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageTotalsQueryTitle = Разом
+metricsPageShotsQueryDay = День
+metricsPageUsersQueryTitle = Користувачів за день
+metricsPageUsersQueryCount = Кількість користувачів
+metricsPageUsersQueryDay = День
+metricsPageUserShotsQueryCount = Кількість користувачів
+metricsPageRetentionQueryUsers = Кількість користувачів
+metricsPageTotalRetentionQueryUsers = Кількість користувачів
+metricsPageVersionQueryLastSeen = День
+metricsPageHeader = Метрика
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Згенеровано: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (час бази даних: { $time }мс)
