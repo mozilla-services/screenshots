@@ -387,8 +387,8 @@ class Body extends React.Component {
 
     return (
       <reactruntime.BodyTemplate {...this.props}>
+        { renderGetFirefox ? this.renderFirefoxRequired() : null }
         <div id="frame" className="inverse-color-scheme full-height column-space">
-          { renderGetFirefox ? this.renderFirefoxRequired() : null }
         <div className="frame-header default-color-scheme">
         <a className="block-button button secondary" href={ myShotsHref } onClick={this.onClickMyShots.bind(this)}>{ myShotsText }</a>
           <div className="shot-main-actions">
