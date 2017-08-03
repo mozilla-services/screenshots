@@ -10,20 +10,36 @@
 gHomeLink = Gang
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkDiscourse = Mi Adwogi
+
+
 [[ Creating page ]]
 
+creatingPageTitleDefault = potbuk
 
 
 [[ Home page ]]
 
 homePageTeaser = Cok Bino
 homePageDownloadFirefoxTitle = Firefox
+homePageGetStarted = Caki
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kit ma Firefox Screenshots Tiyo Kede
+homePageGetStartedTitle = Caki
+homePageSaveShare = Gwokki ki Nywaki
+homePagePrivacyLink = Mung
+homePageTermsLink = Cik
 
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = Mok kwanyo akaunt
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Myero ibed ki Firefox Screenshots ma kiketo me kwanyo akaunt mamegi
 leavePageErrorGeneric = Bal otime
 leavePageButtonProceed = Mede
 leavePageButtonCancel = Kwer
@@ -31,19 +47,36 @@ leavePageButtonCancel = Kwer
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Potbuk pe ononge
+notFoundPageIntro = Oops.
+notFoundPageDescription = Potbuk pe ononge.
 
 
 [[ Shot page ]]
 
 shotPageShareButton
     .title = Poki
+shotPageCopy = Loki
+shotPageCopied = Kiloko
 shotPageShareFacebook
     .title = Poki i Facebook
 shotPageShareTwitter
     .title = Poki i Twitter
 shotPageSharePinterest
     .title = poki i pinterest
+shotPageShareEmail
+    .title = Nywak kakube i email
+shotPageCopyImageText
+    .label = Lok coc me cal
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = dwoki naka wa { $date }
+shotPageDownloadShot
+    .title = Gam
+shotPageDownload = Gam
 shotPageUpsellFirefox = Nong Firefox Kombedi
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Tim ber i cwal email bot { $dmca } me penyo pi ngec mapol.
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Yer cawa
 shotPageKeepIndefinitely = Matwal
@@ -92,12 +125,17 @@ timeDiffFutureDays = { $num ->
 
 shotIndexPageSearchButton
     .title = Yeny
+shotIndexPageNoShotsInvitation = Mede, cwe mogo.
 shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageClearSearchButton
+    .title = Jwa yeny
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageTotalsQueryTitle = Wel
+metricsPageTotalsQueryDevices = Wel nyonyo ma kicoyo
 metricsPageTotalsQueryExpiredShots = Kare ne okato (ento pud romo nonge)
 metricsPageTotalsQueryExpiredDeletedShots = Kare ne okato (ki bene kikwanyo woko)
 metricsPageShotsQueryDay = Diceng
