@@ -54,7 +54,7 @@ homePageCapturePage = Captureu una pàgina
 homePageCapturePageDescription = Utilitzeu els botons de la part superior dreta per capturar pàgines senceres. El botó «Captura la part visible» capturarà l'àrea que es visualitza sense desplaçar-se, i el botó «Captura tota la pàgina» capturarà tot el contingut de la pàgina.
 homePageSaveShare = Deseu i compartiu
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Quan feu una captura de pantalla, el Firefox la l'envia a la vostra biblioteca de captures i copia l'enllaç al porta-retalls. Per defecte, la captura de pantalla s'emmagatzema durant dues setmanes, però també podeu suprimir-la en qualsevol moment o canviar-ne la data de caducitat per tal de conservar-les més temps a la vostra biblioteca.
+homePageSaveShareDescription = Quan feu una captura de pantalla, el Firefox l'envia a la vostra biblioteca de captures i copia l'enllaç al porta-retalls. Per defecte, la captura de pantalla s'emmagatzema durant dues setmanes, però també podeu suprimir-la en qualsevol moment o canviar-ne la data de caducitat per tal de conservar-les més temps a la vostra biblioteca.
 homePageLegalLink = Avís legal
 homePagePrivacyLink = Privadesa
 homePageTermsLink = Condicions d'ús
@@ -130,7 +130,7 @@ shotPageDMCAContact = Envieu un correu electrònic a { $dmca } per sol·licitar 
 shotPageDMCAWarning = Si rebem diverses reclamacions per les vostres captures, se us podria denegar l'accés al Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Incloeu l'URL d'aquesta captura en el missatge de correu electrònic: { $url }
-shotPageKeepFor = ¿Durant quant temps voleu conservar aquesta captura?
+shotPageKeepFor = Quant temps voleu conservar aquesta captura?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Seleccioneu el temps
 shotPageKeepIndefinitely = Indefinidament
@@ -229,8 +229,12 @@ metricsPageRetentionQueryUsers = Nombre d'usuaris
 metricsPageRetentionQueryDays = Dies transcorreguts entre la primera i la darrera captura de l'usuari
 metricsPageRetentionQueryFirstWeek = Setmana en què l'usuari va crear la primera captura
 metricsPageTotalRetentionQueryTitle = Retenció total
+metricsPageTotalRetentionQueryDescription = Període de temps durant el qual els usuaris han estat fent captures, agrupat per setmana
 metricsPageTotalRetentionQueryUsers = Nombre d'usuaris
+metricsPageTotalRetentionQueryDays = Dies que l'usuari ha estat fent captures
 metricsPageVersionQueryTitle = Versió del complement
+metricsPageVersionQueryDescription = La versió del complement que s'ha utilitzat en iniciar la sessió, en els darrers 14 dies
+metricsPageVersionQueryUsers = Nombre d'usuaris que inicien la sessió
 metricsPageVersionQueryVersion = Versió del complement
 metricsPageVersionQueryLastSeen = Dia
 metricsPageHeader = Mètriques
