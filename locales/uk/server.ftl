@@ -69,14 +69,22 @@ leavePageErrorAddonRequired = У вас має бути встановлений
 leavePageErrorGeneric = Сталася помилка
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ця дія назавжди видалить усі ваші дані Firefox Screenshots.
+leavePageButtonProceed = Продовжити
+leavePageButtonCancel = Скасувати
+leavePageDeleted = Усі ваші знімки були стерті!
 
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Сторінку не знайдено
+notFoundPageIntro = Отакої.
+notFoundPageDescription = Сторінку не знайдено.
 
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Знімок екрану: { $originalTitle }
 
 
 [[ Shotindex page ]]
