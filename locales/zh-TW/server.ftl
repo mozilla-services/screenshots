@@ -83,6 +83,8 @@ notFoundPageDescription = 找不到頁面。
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = 畫面擷圖: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = 儲存到期時間時發生錯誤
 shotPageAlertErrorDeletingShot = 刪除擷圖時發生錯誤
 shotPageAlertErrorUpdatingTitle = 儲存標題時發生錯誤
