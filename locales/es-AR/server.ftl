@@ -19,7 +19,7 @@ gScreenshotsDescription = Capturas de pantalla simples. Tomar, guardar y compart
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkPrivacy = Nota de privacidad
-footerLinkDMCA = Informe de infracción de IP
+footerLinkDMCA = Informar de infracción de PI
 footerLinkDiscourse = Enviar opinión
 footerLinkRemoveAllData = Eliminar todos los datos
 
