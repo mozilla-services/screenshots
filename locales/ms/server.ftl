@@ -17,7 +17,7 @@ gScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skri
 [[ Footer ]]
 
 // Note: link text for a link to mozilla.org
-footerLinkMozilla = 
+footerLinkMozilla = Mozilla
 footerLinkPrivacy = Notis Privasi
 footerLinkDMCA = Lapor Pencerobohan IP
 footerLinkDiscourse = Beri maklum balas
