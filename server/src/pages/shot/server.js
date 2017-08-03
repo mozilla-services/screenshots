@@ -14,7 +14,7 @@ app.get("/:id/:domain", csrf({cookie: true}), function(req, res) {
   Shot.get(req.backend, shotId).then((shot) => {
     let noSuchShot = !shot;
     const nonOwnerAndBlocked = shot && shot.blockType !== 'none' && req.deviceId != shot.ownerId;
-    if (noSuchShot || nonOwnerAndBlocked) {
+    if (noSuchShot || nonOwnerAndBlocked || shot.deleted) {
       mozlog.info("shot-404", {shotId, ip: req.ip});
       notFound(req, res);
       return;
