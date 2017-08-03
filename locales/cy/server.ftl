@@ -14,6 +14,16 @@ gNoShots
 gScreenshotsDescription = Lluniau sgrin wedi ei wneud yn syml. Cipio, cadw a rhannu lluniau sgrin heb adael Firefox.
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Hysbysiad Preifatrwydd
+footerLinkDMCA = Adrodd ar Torri'r IP
+footerLinkDiscourse = Rhoi Adborth
+footerLinkRemoveAllData = Tynnu'r Holl Ddata
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
@@ -73,6 +83,8 @@ notFoundPageDescription = Heb ganfod y dudalen
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Llun Sgrin: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Gwall cofio'r cyfnod dod i ben
 shotPageAlertErrorDeletingShot = Gwall dileu'r llun
 shotPageAlertErrorUpdatingTitle = Gwall cadw teitl
