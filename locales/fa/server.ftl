@@ -80,8 +80,10 @@ shotPageDownloadShot
     .title = دریافت
 shotPageDownload = دریافت
 shotPageUpsellFirefox = هم اکنون فایرفاکس را دریافت کنید
+shotPageKeepFor = چه مدت این عکس باید حفظ شود؟
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = انتخاب زمان
+shotPageKeepIndefinitely = نامحدود
 shotPageKeepTenMinutes = ‏‏۱۰ دقیقه
 shotPageKeepOneHour = ۱ ساعت
 shotPageKeepOneDay = ‏‏۱ روز
@@ -90,11 +92,24 @@ shotPageKeepTwoWeeks = ‏‏۲ هفته
 shotPageKeepOneMonth = ‏‏۱ ماه
 shotPageSaveExpiration = ذخیره
 shotPageCancelExpiration = لغو
+shotPageDoesNotExpire = منقضی نمی‌شود
 timeDiffJustNow = هم‌اکنون
+timeDiffMinutesAgo = { $num ->
+       *[other] ۱ دقیقه پیش
+    }
+timeDiffHoursAgo = { $num ->
+       *[other] ۱ ساعت پیش
+    }
 timeDiffDaysAgo = { $num ->
        *[other] دیروز
     }
 timeDiffFutureSeconds = چند ثانیه پیش
+timeDiffFutureMinutes = { $num ->
+       *[other] در یک دقیقه
+    }
+timeDiffFutureHours = { $num ->
+       *[other] در یک ساعت
+    }
 timeDiffFutureDays = { $num ->
        *[other] فردا
     }
@@ -102,8 +117,21 @@ timeDiffFutureDays = { $num ->
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = خطا هنگام پاک کردن عکس: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = عکس‌های من : جستجو کن برای { $searchTerm }
 shotIndexPageSearchButton
     .title = جستجو
+shotIndexPageNoShotsMessage = عکس ذخیره شده‌ای وجود ندارد.
+shotIndexPageNoShotsInvitation = ادامه بده، چندتا بساز.
+shotIndexPageLookingForShots = در حال گشتن برای عکس‌های شما…
+shotIndexPageNoSearchResultsIntro = همم
+shotIndexPageNoSearchResults = نمی‌توانیم هیچ عکسی مطابق با آنچه جستحو کردید بیابیم.
+shotIndexPageClearSearchButton
+    .title = پاک کردن جستجو
+shotIndexPageConfirmShotDelete = حذف این عکس؟
 
 
 // all metrics strings are optional for translation
