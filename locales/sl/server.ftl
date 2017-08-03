@@ -120,6 +120,8 @@ shotPageDownload = Prenesi
 shotPageScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in delite zaslonske posnetke, ne da bi zapustili Firefox.
 shotPageUpsellFirefox = Prenesite Firefox zdaj
 shotPageDMCAMessage = Ta posnetek ni več na voljo zaradi zahtev intelektualne lastnine tretje osebe.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Za več informacij pošljite e-pošto na { $dmca }
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Vključite URL tega posnetka v e-pošto: { $url }
 shotPageKeepFor = Kako dolgo želite ohraniti ta posnetek?
