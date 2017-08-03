@@ -83,6 +83,8 @@ notFoundPageDescription = Stránka nebyla nalezena.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Snímek: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Při ukládání platnosti snímku nastala chyba
 shotPageAlertErrorDeletingShot = Při mazání snímku nastala chyba
 shotPageAlertErrorUpdatingTitle = Při ukládání názvu nastala chyba
