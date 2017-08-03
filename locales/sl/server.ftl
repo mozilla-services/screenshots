@@ -81,6 +81,8 @@ notFoundPageDescription = Strani ni mogoče najti.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Posnetek zaslona: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Napaka pri shranjevanju časa poteka
 shotPageAlertErrorDeletingShot = Napaka pri brisanju posnetka
 shotPageAlertErrorUpdatingTitle = Napaka pri shranjevanju naslova
