@@ -20,6 +20,7 @@ class ScreenshotsClient(object):
         self.deviceId = make_uuid()
         self.secret = make_uuid()
         self.session = requests.Session()
+        self.session.headers.update({'Accept-Language': 'en-US'})
 
     def login(self):
         resp = self.session.post(
@@ -51,7 +52,6 @@ class ScreenshotsClient(object):
             json=shot_json,
         )
         resp.raise_for_status()
-        print("status", resp.status_code)
         return shot_url
 
     def read_shot(self, url):
@@ -63,8 +63,41 @@ class ScreenshotsClient(object):
         clip_url = clip_content = None
         if clip_match:
             clip_url = clip_match.group(1)
-            clip_content = self.session.get(clip_url).content
-        return {"page": page, "clip_url": clip_url, "clip_content": clip_content}
+            if clip_url:
+                clip_content = self.session.get(clip_url).content
+        csrf_match = re.search(r'"csrfToken":"([^"]*)"', page)
+        csrf = None
+        if csrf_match:
+            csrf = csrf_match.group(1)
+        title_match = re.search(r'<title>([^<]*)</title>', page)
+        title = None
+        if title_match:
+            title = title_match.group(1)
+        return {"page": page, "clip_url": clip_url, "clip_content": clip_content, "csrf": csrf, "title": title}
+
+    def set_expiration(self, url, seconds):
+        shot_id = self._get_id_from_url(url)
+        csrf = self.read_shot(url)["csrf"]
+        assert csrf, "No CSRF found"
+        resp = self.session.post(
+            self.backend + '/api/set-expiration',
+            {"id": shot_id, "expiration": str(seconds), "_csrf": csrf})
+        resp.raise_for_status()
+
+    def delete_shot(self, url):
+        shot_id = self._get_id_from_url(url)
+        csrf = self.read_shot(url)["csrf"]
+        assert csrf, "No CSRF found"
+        resp = self.session.post(
+            self.backend + "/api/delete-shot",
+            {"id": shot_id, "_csrf": csrf})
+        resp.raise_for_status()
+
+    def _get_id_from_url(self, url):
+        assert url.startswith(self.backend)
+        id = url[len(self.backend):]
+        id = id.strip('/')
+        return id
 
     def read_my_shots(self):
         resp = self.session.get(urljoin(self.backend, "/shots"))
