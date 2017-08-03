@@ -83,6 +83,8 @@ notFoundPageDescription = Halaman tidak ditemui
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Skrinsyot: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Ralat menyimpan tempoh tamat
 shotPageAlertErrorDeletingShot = Ralat menghapuskan syot
 shotPageAlertErrorUpdatingTitle = Ralat menyimpan tajuk
