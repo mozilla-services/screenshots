@@ -203,7 +203,7 @@ metricsPageTotalsQueryTitle = Jumlah
 metricsPageTotalsQueryDescription = Tinjauan Screenshots
 metricsPageTotalsQueryDevices = Bilangan peranti didaftar
 metricsPageTotalsQueryActiveShots = Syot aktif
-metricsPageTotalsQueryExpiredShots = Tamat tempot (tapi boleh dikembalikan)
+metricsPageTotalsQueryExpiredShots = Luput (tapi boleh dikembalikan)
 metricsPageTotalsQueryExpiredDeletedShots = Luput (dan dihapuskan)
 metricsPageShotsQueryTitle = Syot mengikut Hari
 metricsPageShotsQueryDescription = Bilangan syot diambil setiap hari (sepanjang 30 hari lepas)
@@ -217,7 +217,7 @@ metricsPageUserShotsQueryTitle = Bilangan Syot setiap Pengguna
 metricsPageUserShotsQueryDescription = Bilangan pengguna yang ada sejumlah N syot
 metricsPageUserShotsQueryCount = Bilangan pengguna
 metricsPageUserShotsQueryShots = Anggaran bilangan syot aktif (tiada tamat tempoh)
-metricsPageRetentionQueryTitle = Dikekal mengikut Minggu
+metricsPageRetentionQueryTitle = Dikekalkan mengikut Minggu
 metricsPageRetentionQueryDescription = Bilangan hari bermula syot pertama pengguna hingga ke syot terkini, dihimpun mengikut permulaan minggu
 metricsPageRetentionQueryUsers = Bilangan pengguna
 metricsPageRetentionQueryDays = Bilangan hari sejak syot pengguna yang pertama hingga ke syot terkini
@@ -235,4 +235,4 @@ metricsPageHeader = Matriks
 // Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Dijana pada: { $created }
 // Note { $time } is a placeholder for a number of milliseconds, like '100'
-metricsPageDatabaseQueryTime = (database time: { $time }ms)
+metricsPageDatabaseQueryTime = (masa pangkalan data: { $time }ms)
