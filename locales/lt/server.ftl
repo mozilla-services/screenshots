@@ -83,6 +83,8 @@ notFoundPageDescription = Tinklalapis nerastas.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Ekrano nuotrauka: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Klaida įrašant galiojimą
 shotPageAlertErrorDeletingShot = Klaida trinant kadrą
 shotPageAlertErrorUpdatingTitle = Klaida įrašant pavadinimą
