@@ -1,6 +1,7 @@
 const reactruntime = require("../../reactruntime");
 const React = require("react");
 const { Localized } = require("fluent-react/compat");
+const { Footer } = require("../../footer-view.js");
 const style = `
   html, body {
     padding: 0;
@@ -359,67 +360,6 @@ const style = `
     background-image: url(../static/img/landing-icon-screenshots.svg);
   }
 
-  /* Footer */
-
-  footer {
-    min-height: 100px;
-    background-color: #fafafa;
-    display: flex;
-    align-items: center;
-  }
-
-  .legal-links {
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-align: end;
-      align-items: flex-end;
-  }
-
-  .legal-links .boilerplate {
-    margin-right: 30px;
-    position: relative;
-    top: -7px;
-    color: #4a4a4a;
-    text-decoration: none;
-  }
-
-  .social-links {
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-align: end;
-      align-items: flex-end;
-      -ms-flex-pack: end;
-      justify-content: flex-end;
-      -ms-flex: 1;
-      flex: 1;
-  }
-
-  .social-links .link-icon {
-      background-repeat: repeat;
-      cursor: pointer;
-      -ms-flex: 0 0 37px;
-      flex: 0 0 37px;
-      height: 37px;
-      margin-left: 15px;
-  }
-
-  .social-links .github {
-    background-image: url(../static/img/landing-icon-github.svg);
-  }
-
-  .social-links .twitter {
-    background-image: url(../static/img/landing-icon-twitter.svg);
-  }
-
-  .mozilla-logo {
-      background-image: url(../static/img/mozilla.svg);
-      background-repeat: no-repeat;
-      background-size: auto 31px;
-      height: 31px;
-      width: 107px;
-      margin-right: 93px;
-  }
-
   /* Responsive */
 
   @media (max-width: 768px) {
@@ -505,34 +445,6 @@ const style = `
     top: 3px;
     margin: 0 16px;
     }
-
-    .legal-links {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .mozilla-logo {
-      margin-right: 0 !important;
-    margin-bottom: 30px;
-    }
-
-    .legal-links .boilerplate {
-    margin-right: 0 !important;
-    margin-bottom: 20px;
-    }
-
-    .social-links {
-      justify-content: center;
-    }
-
-    .social-links .link-icon {
-      margin-top: 20px;
-      margin-left: 0px;
-    }
-
-    .social-links .link-icon:first-child {
-      margin-right: 33px;
-    }
   }
 `
 
@@ -558,6 +470,7 @@ class Head extends React.Component {
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:image" content={ this.props.staticLink("/static/img/onboarding-1.png") } />
         <meta name="twitter:image" content={ this.props.staticLink("/static/img/onboarding-1.png") } />
+        <link rel="stylesheet" href={ this.props.staticLink("/static/css/simple.css") } />
         <style>{style}</style>
       </reactruntime.HeadTemplate>
     );
@@ -683,29 +596,7 @@ class Body extends React.Component {
             <div className="section-image"></div>
           </div>
         </section>
-        <footer>
-          <div className="container">
-            <div className="legal-links">
-              <a href="https://www.mozilla.org" className="mozilla-logo"></a>
-              <Localized id="homePageLegalLink">
-                <a href="https://www.mozilla.org/about/legal/" className="boilerplate">Legal</a>
-              </Localized>
-              <Localized id="homePagePrivacyLink">
-                <a href="https://www.mozilla.org/privacy/firefox-cloud/" className="boilerplate">Privacy</a>
-              </Localized>
-              <Localized id="homePageTermsLink">
-                <a href="https://www.mozilla.org/about/legal/terms/services/" className="boilerplate">Terms</a>
-              </Localized>
-              <Localized id="homePageCookiesLink">
-                <a href="https://www.mozilla.org/privacy/websites/#cookies" className="boilerplate">Cookies</a>
-              </Localized>
-            </div>
-            <div className="social-links">
-              <a href="https://github.com/mozilla-services/screenshots" target="_blank" rel="noopener noreferrer" className="link-icon github" title="GitHub"></a>
-              <a href="https://twitter.com/FxScreenshots" target="_blank" rel="noopener noreferrer" className="link-icon twitter" title="Twitter"></a>
-            </div>
-          </div>
-        </footer>
+        <Footer {...this.props} />
       </reactruntime.BodyTemplate>
     );
   }
