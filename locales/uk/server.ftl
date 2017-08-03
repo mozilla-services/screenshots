@@ -45,6 +45,16 @@ homePageGetStarted = Початок роботи
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Як працює Firefox Screenshots
 homePageGetStartedTitle = Початок роботи
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Знайдіть нову піктограму знімків екрану в панелі інструментів. Натисніть на неї і з'явиться меню.
+homePageCaptureRegion = Захопити область
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Натисніть і потягніть, щоб вибрати область для знімку. Або просто наведіть і клацніть мишею — буде обрано область. Якщо знімок вам подобається, натисніть Зберегти, щоб отримати доступ до своїх знімків в мережі, або стрілку вниз для завантаження на комп'ютер.
+homePageCapturePage = Захопити сторінку
+homePageCapturePageDescription = Використовуйте кнопки справа вгорі для захоплення цілих сторінок. Кнопка Зберегти видиму область захопить область, яку видно без прокручування, а кнопка Зберегти всю сторінку захопить сторінку повністю.
+homePageSaveShare = Зберегти й поділитися
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Коли ви робите знімок, Firefox публікує їх у вашій мережевій бібліотеці й копіює посилання до буфера обміну. Ми автоматично зберігаємо ваші знімки екрану протягом двох тижнів, але ви можете видалити їх в будь-який час, або змінити час зберігання на довший.
 
 
 [[ Leave Screenshots page ]]
