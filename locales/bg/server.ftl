@@ -17,6 +17,7 @@ gNoShots
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkPrivacy = Политика на поверителност
 footerLinkDMCA = Доклад за нарушение на авторско право
 footerLinkDiscourse = Обратна връзка
 footerLinkRemoveAllData = Премахване на всички данни
@@ -24,6 +25,10 @@ footerLinkRemoveAllData = Премахване на всички данни
 
 [[ Creating page ]]
 
+// Note: { $title } is a placeholder for the title of the web page
+// captured in the screenshot. The default, for pages without titles, is
+// creatingPageTitleDefault.
+creatingPageTitle = Създаване на { $title }
 creatingPageTitleDefault = страница
 
 
@@ -32,6 +37,10 @@ creatingPageTitleDefault = страница
 homePageButtonMyShots = Моите снимки
 homePageTeaser = Очаквайте скоро…
 homePageDownloadFirefoxTitle = Firefox
+homePageDownloadFirefoxSubTitle = Свободно изтегляне
+homePageGetStarted = Първи стъпки
+// Note: do not translate 'Firefox Screenshots' when translating this string
+homePageHowScreenshotsWorks = Как работи Firefox Screenshots
 homePageGetStartedTitle = Първи стъпки
 
 
@@ -69,12 +78,10 @@ timeDiffHoursAgo = { $num ->
         [one] преди 1 час
        *[other] преди { $number } часа
     }
-timeDiffDaysAgo =
-    timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo = timeDiffDaysAgo = { $number ->
         [one] вчера
        *[other] преди { $number } дена
     }
-
 timeDiffFutureSeconds = след секунди
 timeDiffFutureMinutes = { $num ->
         [one] след минута
