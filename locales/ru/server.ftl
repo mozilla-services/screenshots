@@ -83,6 +83,8 @@ notFoundPageDescription = Страница не найдена.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Скриншот: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Ошибка при сохранении времени истечения
 shotPageAlertErrorDeletingShot = Ошибка при удалении снимка
 shotPageAlertErrorUpdatingTitle = Ошибка при сохранении заголовка
