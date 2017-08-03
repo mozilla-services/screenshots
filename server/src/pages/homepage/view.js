@@ -6,7 +6,7 @@ const style = `
   html, body {
     padding: 0;
     margin: 0;
-    font-family: SF UI Text, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
     font-size: 12pt;
   }
 
@@ -129,7 +129,6 @@ const style = `
       border-radius: 3px;
       cursor: pointer;
       display: inline-block;
-      font-family: Fira Sans,sans-serif;
       font-weight: 400;
       height: 40px;
       line-height: 40px;
@@ -236,7 +235,7 @@ const style = `
 
   .section-content h3 {
     font-size: 2.5em;
-    font-weight: 100;
+    font-weight: 400;
     margin: 0;
   }
 

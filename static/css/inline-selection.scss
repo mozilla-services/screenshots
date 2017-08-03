@@ -265,7 +265,7 @@ $very-light-grey: #ededed;
   position: absolute;
   pointer-events: none;
   font-weight: bold;
-  font-family: sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
   font-size: 70%;
   color: #000;
   text-shadow:
@@ -379,7 +379,7 @@ $very-light-grey: #ededed;
   @include flex-container(row, center, center);
   animation: pulse 125mm $bezier;
   color: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
   font-size: 24px;
   line-height: 32px;
   text-align: center;
