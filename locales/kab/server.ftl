@@ -53,6 +53,8 @@ homePageCaptureRegionDescription = Senned u zuγer akken ad tferneḍ tamnaḍt 
 homePageCapturePage = Ṭṭef asebter
 homePageCapturePageDescription = Seqdec taqefalt d afella $yef uyfus akken ad teṭfeḍ akk asebter.Taqefal " sekles tamnaḍt" ad k-teǧǧ ad teṭfeḍ i tzemrepd ad skeneḍ war adrurem, sakin sekles akk asebter.
 homePageSaveShare = Sekles u bḍu
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Ticki teggiḍ tuṭṭfa, Firefox ad tt-yazen ɣer temkarḍit-nneɣ srid sakin ad yenɣel aseɣwen ɣef afus. Ad neḥrez s wudem awurmantuṭṭfa di sin n imalasen, acukan tzemreḍ ad tekkseḍ akk tuṭṭfiwin melmi tebɣiḍ neɣ ad tbeddleḍ azemz n tagara akken ad tt-ḥerzeḍ ugar n wakud di temkarḍit.
 homePageLegalLink = Usḍif
 homePagePrivacyLink = Tabaḍnit
 homePageTermsLink = Tiwtilin
