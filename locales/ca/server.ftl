@@ -53,6 +53,9 @@ homePageCaptureRegionDescription = Feu clic i arrossegueu per seleccionar l'àre
 homePageCapturePage = Captureu una pàgina
 homePageCapturePageDescription = Utilitzeu els botons de la part superior dreta per capturar pàgines senceres. El botó «Captura la part visible» capturarà l'àrea que es visualitza sense desplaçar-se, i el botó «Captura tota la pàgina» capturarà tot el contingut de la pàgina.
 homePageSaveShare = Deseu i compartiu
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Quan feu una captura de pantalla, el Firefox la l'envia a la vostra biblioteca de captures i copia l'enllaç al porta-retalls. Per defecte, la captura de pantalla s'emmagatzema durant dues setmanes, però també podeu suprimir-la en qualsevol moment o canviar-ne la data de caducitat per tal de conservar-les més temps a la vostra biblioteca.
+homePageLegalLink = Avís legal
 homePagePrivacyLink = Privadesa
 homePageTermsLink = Condicions d'ús
 homePageCookiesLink = Galetes
@@ -60,7 +63,12 @@ homePageCookiesLink = Galetes
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = Confirmeu la supressió del compte
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Heu de tenir el Firefox Screenshots instal·lat per suprimir el vostre compte
 leavePageErrorGeneric = S'ha produït un error
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Aquesta operació esborrarà totes les vostres dades del Firefox Screenshots.
 leavePageButtonProceed = Continua
 leavePageButtonCancel = Cancel·la
 leavePageDeleted = S'han esborrat totes les captures de pantalla vostres.
@@ -75,8 +83,24 @@ notFoundPageDescription = No s'ha trobat la pàgina.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Captura de pantalla: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = S'ha produït un error en desar la caducitat
+shotPageAlertErrorDeletingShot = S'ha produït un error en suprimir la captura
+shotPageAlertErrorUpdatingTitle = S'ha produït un error en desar el títol
+shotPageConfirmDelete = Segur que voleu suprimir aquesta captura permanentment?
+shotPageShareButton
+    .title = Comparteix
 shotPageCopy = Copia
 shotPageCopied = S'ha copiat
+shotPageShareFacebook
+    .title = Comparteix al Facebook
+shotPageShareTwitter
+    .title = Comparteix al Twitter
+shotPageSharePinterest
+    .title = Comparteix al Pinterest
+shotPageShareEmail
+    .title = Comparteix l'enllaç per correu electrònic
 shotPageUpsellFirefox = Baixeu el Firefox ara
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Seleccioneu el temps
@@ -124,17 +148,47 @@ timeDiffFutureDays = { $num ->
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = S'ha produït un error en suprimir la captura: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Les meves captures: s'està cercant { $searchTerm }
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = S'ha produït un error en generar la pàgina: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Cerca en les meves captures
 shotIndexPageSearchButton
     .title = Cerca
+shotIndexPageNoShotsMessage = No hi ha cap captura desada.
+shotIndexPageNoShotsInvitation = Endavant, feu-ne algunes.
 shotIndexPageLookingForShots = S'estan cercant les vostres captures…
+shotIndexPageNoSearchResultsIntro = Mmm
+shotIndexPageNoSearchResults = No s'ha trobat cap captura que coincideixi amb la cerca.
+shotIndexPageClearSearchButton
+    .title = Esborra la cerca
+shotIndexPageConfirmShotDelete = Voleu suprimir aquesta captura?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Mètriques del Firefox Screenshots
+metricsPageTotalsQueryTitle = Totals
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Resum del Firefox Screenshots
+metricsPageTotalsQueryDevices = Dispositius registrats totals
+metricsPageTotalsQueryActiveShots = Captures actives
+metricsPageTotalsQueryExpiredShots = Caducades (però recuperables)
+metricsPageTotalsQueryExpiredDeletedShots = Caducades (i suprimides)
 metricsPageShotsQueryTitle = Captures per dia
+metricsPageShotsQueryDescription = Nombre de captures creades cada dia (en els darrers 30 dies)
 metricsPageShotsQueryCount = Nombre de captures
 metricsPageShotsQueryDay = Dia
+metricsPageUsersQueryTitle = Usuaris per dia
+metricsPageUsersQueryDescription = Nombre d'usuaris que han creat com a mínim una captura, per dia (darrers 30 dies)
+metricsPageUsersQueryCount = Nombre d'usuaris
 metricsPageTotalRetentionQueryUsers = Nombre d'usuaris
 metricsPageVersionQueryTitle = Versió del complement
 metricsPageVersionQueryLastSeen = Dia
