@@ -99,6 +99,10 @@ shotPageKeepOneMonth = 1 kuukausi
 shotPageSaveExpiration = tallenna
 shotPageCancelExpiration = peruuta
 shotPageDoesNotExpire = ei vanhene
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = vanhenee { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = vanheni { $timediff }
 timeDiffJustNow = juuri nyt
 timeDiffMinutesAgo = { $num ->
         [one] 1 minuutti sitten
@@ -129,7 +133,22 @@ timeDiffFutureDays = { $num ->
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Kaappauksen poisto epäonnistui: { $status } { $statusText }
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Sivun näyttäminen epäonnistui: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Hae kaappauksista
+shotIndexPageSearchButton
+    .title = Hae
+shotIndexPageNoShotsMessage = Ei tallennettuja kaappauksia.
+shotIndexPageLookingForShots = Etsitään kaappauksia…
 shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Haulla ei löytynyt yhtään kaappausta.
+shotIndexPageClearSearchButton
+    .title = Tyhjennä haku
 shotIndexPageConfirmShotDelete = Poistetaanko tämä kaappaus?
 
 
