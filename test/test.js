@@ -16,7 +16,7 @@ const webdriver = require("selenium-webdriver");
 const { By, until } = webdriver;
 const path = require("path");
 
-const SHOOTER_BUTTON_ID = "screenshots_mozilla_org-browser-action";
+const SHOOTER_BUTTON_ID = "pageAction-panel-screenshots";
 const SLIDE_IFRAME_ID = "firefox-screenshots-onboarding-iframe";
 const PRESELECTION_IFRAME_ID = "firefox-screenshots-preselection-iframe";
 const PREVIEW_IFRAME_ID = "firefox-screenshots-preview-iframe";
@@ -222,7 +222,7 @@ describe("Test Screenshots", function() {
       getChromeElement(driver, By.id(SHOOTER_BUTTON_ID))
       .then((button) => button.getAttribute("label"))
       .then((label) => {
-        assert.equal(label, "Firefox Screenshots");
+        assert.equal(label, "Take a Screenshot");
       }),
       () => {
         driver.setContext(firefox.Context.CONTENT);

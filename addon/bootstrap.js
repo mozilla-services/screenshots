@@ -11,12 +11,16 @@ const { interfaces: Ci, utils: Cu } = Components;
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "AddonManager",
                                   "resource://gre/modules/AddonManager.jsm");
+XPCOMUtils.defineLazyModuleGetter(this, "AppConstants",
+                                  "resource://gre/modules/AppConstants.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "Console",
                                   "resource://gre/modules/Console.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "CustomizableUI",
                                   "resource:///modules/CustomizableUI.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "LegacyExtensionsUtils",
                                   "resource://gre/modules/LegacyExtensionsUtils.jsm");
+XPCOMUtils.defineLazyModuleGetter(this, "PageActions",
+                                  "resource:///modules/PageActions.jsm");
 XPCOMUtils.defineLazyModuleGetter(this, "Services",
                                   "resource://gre/modules/Services.jsm");
 
@@ -167,6 +171,7 @@ function start(webExtension) {
   webExtension.startup(startupReason).then((api) => {
     api.browser.runtime.onMessage.addListener(handleMessage);
     LibraryButton.init(webExtension);
+    initPhotonPageAction(api);
   }).catch((err) => {
     // The startup() promise will be rejected if the webExtension was
     // already started (a harmless error), or if initializing the
@@ -183,6 +188,10 @@ function stop(webExtension, reason) {
 
   if (reason != APP_SHUTDOWN) {
     LibraryButton.uninit();
+    if (photonPageAction) {
+      photonPageAction.remove();
+      photonPageAction = null;
+    }
   }
 }
 
@@ -207,4 +216,85 @@ function handleMessage(msg, sender, sendReply) {
     });
     return true;
   }
+}
+
+let photonPageAction;
+
+// If the current Firefox version supports Photon (57 and later), this sets up
+// a Photon page action and removes the UI for the WebExtension browser action.
+// Does nothing otherwise.  Ideally, in the future, WebExtension page actions
+// and Photon page actions would be one in the same, but they aren't right now.
+function initPhotonPageAction(api) {
+  if (!AppConstants.MOZ_PHOTON_THEME) {
+    // Photon not supported.  Use the WebExtension's browser action.
+    return;
+  }
+
+  let id = "screenshots";
+  let port = null;
+  let baseIconPath = addonResourceURI.spec + "webextension/";
+
+  let {Management: {global: {tabTracker}}} = Cu.import("resource://gre/modules/Extension.jsm", {});
+
+  // Make the page action.
+  photonPageAction = PageActions.actionForID(id) || PageActions.addAction(new PageActions.Action({
+    id,
+    title: "Take a Screenshot",
+    iconURL: baseIconPath + "icons/icon-32-v2.svg",
+    _insertBeforeActionID: null,
+    onCommand(event, buttonNode) {
+      if (port) {
+        let browserWin = buttonNode.ownerGlobal;
+        port.postMessage({
+          type: "click",
+          tab: {
+            url: browserWin.gBrowser.selectedBrowser.currentURI.spec,
+            id: tabTracker.getId(browserWin.gBrowser.selectedTab),
+          },
+        });
+      }
+    },
+  }));
+
+  // Remove the navbar button of the WebExtension's browser action.
+  let cuiWidgetID = "screenshots_mozilla_org-browser-action";
+  CustomizableUI.addListener({
+    onWidgetAfterCreation(wid, aArea) {
+      if (wid == cuiWidgetID) {
+        CustomizableUI.destroyWidget(cuiWidgetID);
+        CustomizableUI.removeListener(this);
+      }
+    },
+  });
+
+  // Establish a port to the WebExtension side.
+  api.browser.runtime.onConnect.addListener((listenerPort) => {
+    if (listenerPort.name != "photonPageActionPort") {
+      return;
+    }
+    port = listenerPort;
+    port.onMessage.addListener((message) => {
+      switch (message.type) {
+      case "setProperties":
+        if (message.title) {
+          photonPageAction.title = message.title;
+        }
+        if (message.iconPath) {
+          photonPageAction.iconURL = baseIconPath + message.iconPath;
+        }
+        break;
+      default:
+        console.error("Unrecognized message:", message);
+        break;
+      }
+    });
+
+    // It's necessary to tell the WebExtension not to use its browser action,
+    // due to the CUI widget's removal.  Otherwise Firefox's WebExtension
+    // machinery throws exceptions.
+    port.postMessage({
+      type: "setUsePhotonPageAction",
+      value: true
+    });
+  });
 }
