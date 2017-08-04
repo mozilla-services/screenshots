@@ -13,13 +13,21 @@ gNoShots
     .alt = షాట్లు కనుగొనబడలేదు
 
 
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = గోప్యతా విధానం
+footerLinkDiscourse = అభిప్రాయం తెలియజేయండి
+
+
 [[ Creating page ]]
 
 // Note: { $title } is a placeholder for the title of the web page
 // captured in the screenshot. The default, for pages without titles, is
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } సృష్టిస్తోంది
-creatingPageTitleDefault = పుట
+creatingPageTitleDefault = పేజీ
 
 
 [[ Home page ]]
@@ -27,7 +35,7 @@ creatingPageTitleDefault = పుట
 homePageButtonMyShots = నా షాట్లకు వెళ్ళండి
 homePageTeaser = త్వరలో వస్తుంది...
 homePageDownloadFirefoxTitle = Firefox
-homePageDownloadFirefoxSubTitle = ఉచిత దింపుకోలు
+homePageDownloadFirefoxSubTitle = ఉచిత దిగుమతులు
 homePageGetStarted = మొదలుపెట్టండి
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox స్క్రీన్షాట్లు ఎలాపని చేస్తాయి
@@ -48,7 +56,7 @@ leavePageErrorGeneric = ఒక దోషం ఏర్పడింది.
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = ఇది మీ Firefox స్క్రీన్షాట్ల డేటాను శాశ్వతంగా తుడిచి వేస్తుంది.
 leavePageButtonProceed = కొనసాగండి
-leavePageButtonCancel = రద్దు చెయ్యి
+leavePageButtonCancel = రద్దుచేయి
 leavePageDeleted = మీ అన్ని తెరపట్లు తొలగించబడ్డాయి!
 
 
