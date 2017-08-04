@@ -177,6 +177,22 @@ timeDiffFutureDays = { $num ->
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Xsach toq nuyüj ri wachib'äl: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Taq nuwachib'al: Tikanöx { $searchTerm }
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Ruxaq richin kitz'etik taq sachoj: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Kekanöx taq nuwachib'al
+shotIndexPageSearchButton
+    .title = Tikanöx
+shotIndexPageNoShotsMessage = Majun wachib'äl eyakon.
+shotIndexPageNoShotsInvitation = Tatz'aqa' chi re, ke'anuk'u' jujun.
+shotIndexPageLookingForShots = Tajin yekanöx ri  taq awachib'al...
+shotIndexPageNoSearchResultsIntro = Aaa
 
 
 // all metrics strings are optional for translation
