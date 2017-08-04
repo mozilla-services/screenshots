@@ -38,6 +38,13 @@ creatingPageTitleDefault = ruxaq
 homePageDescription
     .content = Na'onel chapoj wachib'äl chaqon pa ri okik'amaya'l. Nachap, nayak chuqa' nakomonij ri chapoj ruwäch toq tajin atokinäq pa Ajk'amaya'l tajin nawokisaj Firefox.
 homePageButtonMyShots = Jät pa ri taq nuwachib'al
+homePageTeaser = Ninaqajan yan pe...
+homePageDownloadFirefoxTitle = Firefox
+homePageDownloadFirefoxSubTitle = Sipan Ruqasaxik
+homePageGetStarted = Titikirisäx
+// Note: do not translate 'Firefox Screenshots' when translating this string
+homePageHowScreenshotsWorks = Achike rub'eyal nisamäj Firefox Chapoj Wachib'äl
+homePageGetStartedTitle = Titikirisäx
 
 
 [[ Leave Screenshots page ]]
