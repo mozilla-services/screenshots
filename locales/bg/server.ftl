@@ -11,6 +11,7 @@ gMyShots = Моите снимки
 gHomeLink = Начална страница
 gNoShots
     .alt = Няма снимки на екрана
+gScreenshotsDescription = Лесни снимки на екрана. Правите, запазвате и споделяте снимки на екрана без да напускате Firefox.
 
 
 [[ Footer ]]
