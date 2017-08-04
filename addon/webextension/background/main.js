@@ -1,4 +1,4 @@
-/* globals selectorLoader, analytics, communication, catcher, log, makeUuid, auth, senderror */
+/* globals selectorLoader, analytics, communication, catcher, log, makeUuid, auth, senderror, startBackground */
 
 "use strict";
 

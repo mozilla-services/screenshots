@@ -244,7 +244,7 @@ function initPhotonPageAction(api) {
     _insertBeforeActionID: null,
     onCommand(event, buttonNode) {
       if (port) {
-        let browserWin = buttonNode.ownerDocument.defaultView;
+        let browserWin = buttonNode.ownerGlobal;
         port.postMessage({
           type: "click",
           tab: {
