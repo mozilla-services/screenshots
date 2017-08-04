@@ -1,3 +1,61 @@
+## Version 13.0.0 release
+
+This is a server-only release
+
+### Server changes
+
+* Make a schema change to prepare for [#3275](https://github.com/mozilla-services/screenshots/issues/3275) ([#3276](https://github.com/mozilla-services/screenshots/issues/3276)) [2e6a659](https://github.com/mozilla-services/screenshots/commit/2e6a659)
+* Insert a space between sentences in Get Firefox CTA ([#3272](https://github.com/mozilla-services/screenshots/issues/3272)). Fixes [#3271](https://github.com/mozilla-services/screenshots/issues/3271) [2be64bb](https://github.com/mozilla-services/screenshots/commit/2be64bb)
+* fix S3 image management Do not show a shot page when the shot has been deleted Delete images and image files before marking the shot as deleted Add a series of server tests for how S3 is managed. Fixes [#3009](https://github.com/mozilla-services/screenshots/issues/3009) [d2ecaba](https://github.com/mozilla-services/screenshots/commit/d2ecaba)
+* Expand the server testing library. Parse more things from the shot page Add set_expiration and delete_shot methods [54f456f](https://github.com/mozilla-services/screenshots/commit/54f456f)
+* Give a proper error response when CSRF is wrong [229e7c8](https://github.com/mozilla-services/screenshots/commit/229e7c8)
+* Make the spinner the clip image's background. Allows the spinner to be shown before the image starts to load, with no JS required. [a6abc3e](https://github.com/mozilla-services/screenshots/commit/a6abc3e)
+* Load the image directly; makes images viewable without JS.
+  * Works around lack of CSP nonce support in IE and Edge < 40 (). Fixes [#2935](https://github.com/mozilla-services/screenshots/issues/2935) Fixes [#2866](https://github.com/mozilla-services/screenshots/issues/2866) [48f52ed](https://github.com/mozilla-services/screenshots/commit/48f52ed)
+* Make homepage footer more consistent [faecb5a](https://github.com/mozilla-services/screenshots/commit/faecb5a)
+* Remove extra space under firefox promo bar [bbe32a2](https://github.com/mozilla-services/screenshots/commit/bbe32a2)
+* Give proper response code for request entity too large ([#3248](https://github.com/mozilla-services/screenshots/issues/3248))
+* give 400 Bad Request when id is invalid. Fixes [#3204](https://github.com/mozilla-services/screenshots/issues/3204) Fixes [#3204](https://github.com/mozilla-services/screenshots/issues/3204) Fixes [#3204](https://github.com/mozilla-services/screenshots/issues/3204) [4d53220](https://github.com/mozilla-services/screenshots/commit/4d53220)
+* Don't create S3 bucket on server startup ([#3250](https://github.com/mozilla-services/screenshots/issues/3250)). Fixes [#3111](https://github.com/mozilla-services/screenshots/issues/3111) [e9b1458](https://github.com/mozilla-services/screenshots/commit/e9b1458)
+* use 'Screenshot: title' for the <title> of shot pages. Fixes [#2410](https://github.com/mozilla-services/screenshots/issues/2410) [ed2b2c2](https://github.com/mozilla-services/screenshots/commit/ed2b2c2)
+* Animate deleting shots on my shots ([#3141](https://github.com/mozilla-services/screenshots/issues/3141)) [3fb655b](https://github.com/mozilla-services/screenshots/commit/3fb655b)
+* Remove server /timing route [#2428](https://github.com/mozilla-services/screenshots/issues/2428) [37f43e6](https://github.com/mozilla-services/screenshots/commit/37f43e6)
+* Add l10n.toml file for screenshots, with revised list of languages. [5213f22](https://github.com/mozilla-services/screenshots/commit/5213f22)
+* Clean up empty localization files.Pontoon used to commit localization files with just comments, even if there wasn't a single translated string. That's now fixed on the pontoon side, but the files are still here. As soon as localizers work on screenshots, the files will be created from scratch. [3664122](https://github.com/mozilla-services/screenshots/commit/3664122)
+* [#3223](https://github.com/mozilla-services/screenshots/issues/3223) Fixes homepage Mozilla footer logo is 404 [#3223](https://github.com/mozilla-services/screenshots/issues/3223) [64d2308](https://github.com/mozilla-services/screenshots/commit/64d2308)
+* Start [#3207](https://github.com/mozilla-services/screenshots/issues/3207), add a size column to the images table ([#3236](https://github.com/mozilla-services/screenshots/issues/3236))This does not make use of the column, but puts it in place for future use. Also update schema.sql given a backlog of changes [07ba77c](https://github.com/mozilla-services/screenshots/commit/07ba77c)
+* Update npm packages ([#3235](https://github.com/mozilla-services/screenshots/issues/3235)). Removed npm-shrinkwrap, as it causes all kinds of install nuisances
+* Fix lots of lint issues, exposed by updated lint packages. Fixes [#3221](https://github.com/mozilla-services/screenshots/issues/3221) Fixes [#3221](https://github.com/mozilla-services/screenshots/issues/3221) [b2258d1](https://github.com/mozilla-services/screenshots/commit/b2258d1)
+* Use docker build --pull, to always fetch latest image [cce97ba](https://github.com/mozilla-services/screenshots/commit/cce97ba)
+
+### Add-on changes
+
+* Replace the WebExtension browser action with a Photon page action. ([#3239](https://github.com/mozilla-services/screenshots/issues/3239))
+  * Replace the WebExtension browser action with a Photon page action.
+  This removes the browser action and adds a Photon page action,
+  pursuant to https://bugzilla.mozilla.org/show_bug.cgi?id=1366041.
+  Right now Photon page actions are unrelated to WebExtension page
+  actions unfortunately, which means that this patch has to do most
+  of its work in bootstrap.js.  The WebExtension part passes
+  messages to bootstrap.js to handle clicks and update the action's
+  title and icon as necessary.
+  * Test fix: Replace the WebExtension browser action with a Photon page action.
+  Fix the test for the previous commit.
+  * Update SHOOTER_BUTTON_ID in test.js.
+  * Use the Photon page action when supported, the WebExtension browser action when not.
+  Extend the Photon-related port used between bootstrap.js and the
+  WebExtension so that bootstrap.js can tell the WebExtension
+  whether it's OK to use the Photon page action.  The WebExtension
+  should not attempt to use the browser action when Photon is
+  enabled because bootstrap.js will have removed the browser
+  action's navbar button.
+  Modify the test so that it checks the Photon page action when
+  Photon is enabled and the browser action when it's not.
+  * Fix the expected button label in test.js for the Photon page action.
+  * Maybe fix PageActions eslint errors. [4396250](https://github.com/mozilla-services/screenshots/commit/4396250)
+* remove high DPI shot capture for full page [fde181d](https://github.com/mozilla-services/screenshots/commit/fde181d)
+* Sets background highlight width to 100% [aee88eb](https://github.com/mozilla-services/screenshots/commit/aee88eb)
+
 ## Version 12.0.0
 
 This is a server-only release

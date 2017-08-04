@@ -1,7 +1,7 @@
 {
   "name": "firefox-screenshots",
   "description": "An experiment in creating better shareable versions of content.",
-  "version": "12.0.0",
+  "version": "13.0.0",
   "author": "Mozilla (https://mozilla.org/)",
   "bugs": {
     "url": "https://github.com/mozilla-services/screenshots/issues"
