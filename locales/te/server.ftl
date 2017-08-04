@@ -109,7 +109,7 @@ shotPageDownloadShot
 shotPageDownload = దిగుమతి
 shotPageScreenshotsDescription = తెరపట్లు సులభతరమైనాయి. Firefoxను వదలకుండా తెరపట్లను తీసుకోండి,  భద్రపరచండి మరియు పంచుకోండి.
 shotPageUpsellFirefox = ఇప్పుడు Firefoxను పొందండి
-shotPageKeepFor = ఎంతకాలం ఈ షాట్ నిలబెట్టుకోవాలి?
+shotPageKeepFor = ఎంతకాలం ఈ తెరపట్టును నిలబెట్టుకోవాలి?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = సమయాన్ని ఎంచుకోండి
 shotPageKeepIndefinitely = నిరంతరంగా
@@ -160,15 +160,16 @@ timeDiffFutureDays = { $num ->
 // { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = షాట్ను తొలగించడంలో లోపం: { $status } { $statusText }
 shotIndexPageSearchPlaceholder
-    .placeholder = నా షాట్లు శోధించండి
+    .placeholder = నా తెరపట్లను వెతకండి
 shotIndexPageSearchButton
     .title = వెతకండి
-shotIndexPageNoShotsMessage = భద్రపరచిన షాట్లు లేవు.
+shotIndexPageNoShotsMessage = భద్రపరచిన తెరపట్లు లేవు.
 shotIndexPageNoShotsInvitation = కొనసాగి, కొన్నింటిని సృష్టించండి.
+shotIndexPageLookingForShots = తెరపట్ల కొరకు చూస్తున్నాం…
 shotIndexPageNoSearchResultsIntro = హ్మ్మ్
 shotIndexPageClearSearchButton
     .title = స్పష్టమైన శోధన
-shotIndexPageConfirmShotDelete = ఈ షాట్ను తొలగించాలా?
+shotIndexPageConfirmShotDelete = ఈ తెరపట్టును తొలగించాలా?
 
 
 // all metrics strings are optional for translation
@@ -178,20 +179,20 @@ metricsPageTotalsQueryTitle = మొత్తాలు
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = తెరపట్ల యొక్క అవలోకనం
 metricsPageTotalsQueryDevices = నమోదు చేయబడిన మొత్తం పరికరాలు
-metricsPageTotalsQueryActiveShots = సక్రియ షాట్లు
+metricsPageTotalsQueryActiveShots = సక్రియ తెరపట్లు
 metricsPageTotalsQueryExpiredShots = గడువు ముగిసింది (కానీ పునరుద్ధరించవచ్చు)
 metricsPageTotalsQueryExpiredDeletedShots = గడువు ముగిసింది (మరియు తొలగించబడింది)
-metricsPageShotsQueryCount = షాట్ల సంఖ్య
+metricsPageShotsQueryCount = తెరపట్ల సంఖ్య
 metricsPageShotsQueryDay = రోజు
-metricsPageUsersQueryTitle = రొజు వారి వినియోగదారులు
-metricsPageUsersQueryCount = వాడుకరులు సంఖ్య
+metricsPageUsersQueryTitle = రొజు వారి వాడుకరులు
+metricsPageUsersQueryCount = వాడుకరుల సంఖ్య
 metricsPageUsersQueryDay = రోజు
 metricsPageUserShotsQueryCount = వాడుకరులు సంఖ్య
 metricsPageRetentionQueryTitle = వారానికి నిలుపుదల
-metricsPageRetentionQueryUsers = వాడుకరులు సంఖ్య
-metricsPageRetentionQueryFirstWeek = వినియోగదారుడు మొదట షాట్ను సృష్టించిన వారము
+metricsPageRetentionQueryUsers = వాడుకరుల సంఖ్య
+metricsPageRetentionQueryFirstWeek = వాడుకరి మొదటి తెరపట్టును సృష్టించిన వారము
 metricsPageTotalRetentionQueryTitle = పుర్తి నిలుపుదల
-metricsPageTotalRetentionQueryUsers = వాడుకరులు సంఖ్య
+metricsPageTotalRetentionQueryUsers = వాడుకరుల సంఖ్య
 metricsPageTotalRetentionQueryDays = వినియోగదారుడు షాట్లు సృష్టించే రోజులు
 metricsPageVersionQueryTitle = పొడిగింత వెర్షన్
 metricsPageVersionQueryUsers = లాగిన్ చేసిన వాడుకరుల సంఖ్య
