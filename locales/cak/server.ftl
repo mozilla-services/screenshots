@@ -193,8 +193,25 @@ shotIndexPageNoShotsMessage = Majun wachib'äl eyakon.
 shotIndexPageNoShotsInvitation = Tatz'aqa' chi re, ke'anuk'u' jujun.
 shotIndexPageLookingForShots = Tajin yekanöx ri  taq awachib'al...
 shotIndexPageNoSearchResultsIntro = Aaa
+shotIndexPageNoSearchResults = Man yeqïl ta taq wachib'äl, achi'el ri nakanoj.
+shotIndexPageClearSearchButton
+    .title = Tijosq'ïx kanoxïk
+shotIndexPageConfirmShotDelete = ¿La niyuj re wachib'äl re'?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Firefox Chapoj Wachib'äl Tz'etnuk'ulem
+metricsPageTotalsQueryTitle = Ronojel
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Ronojel kitz'etoj taq Chapoj Wachib'äl
+metricsPageTotalsQueryDevices = Ronojel ri taq okisaxel etz'ib'an
+metricsPageTotalsQueryActiveShots = Tzijïl taq wachib'äl
+metricsPageTotalsQueryExpiredShots = Xk'is (po kolel)
+metricsPageTotalsQueryExpiredDeletedShots = Xk'is (chuqa' xyuj)
+metricsPageShotsQueryTitle = Taq wachib'äl chi Q'ij
+metricsPageShotsQueryDescription = Kajlab'al taq wachib'äl xenuk' q'ij q'ij (ri 30 ruk'isib'äl taq q'ij)
+metricsPageShotsQueryCount = Kajilab'al taq wachib'äl
+metricsPageShotsQueryDay = Q'ij
