@@ -11,10 +11,17 @@ gMyShots = Taq Chapoj
 gHomeLink = Tikirib'äl
 gNoShots
     .alt = Majun chapoj xilitäj
+gScreenshotsDescription = Relik b'anon chi re ri Chapoj ruwäch. Man k'atzinel ta yatel el pa Firefox richin nachap, nayak, chuqa' nakomonij ri chapoj ruwäch .
 
 
 [[ Footer ]]
 
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkPrivacy = Rutzijol Ichinanem
+footerLinkDMCA = Rutzijol IP K'ayewal
+footerLinkDiscourse = Titaq Na'oj
+footerLinkRemoveAllData = Ke'elesäx Konojel ri taq Tzij
 
 
 [[ Creating page ]]
