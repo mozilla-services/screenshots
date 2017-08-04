@@ -123,6 +123,15 @@ timeDiffMinutesAgo = { $num ->
         [one] 1 મિનિટ પહેલા
        *[other] { $number } મિનિટ પહેલા
     }
+timeDiffHoursAgo = { $num ->
+        [one] 1 કલાક પહેલા
+       *[other] { $number } કલાક પહેલા
+    }
+timeDiffDaysAgo = { $num ->
+        [one] ગઇકાલે
+       *[other] { $number } દિવસ પહેલા
+    }
+timeDiffFutureSeconds = થોડીવારમાં
 
 
 [[ Shotindex page ]]
@@ -132,3 +141,5 @@ timeDiffMinutesAgo = { $num ->
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageVersionQueryLastSeen = દિવસ
+metricsPageHeader = માપદંડ
