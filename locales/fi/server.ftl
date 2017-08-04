@@ -8,6 +8,7 @@
 [[ global ]]
 
 gMyShots = Omat kaappaukset
+gHomeLink = Etusivu
 gNoShots
     .alt = Kaappauksia ei löytynyt
 
