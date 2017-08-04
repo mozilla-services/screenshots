@@ -67,19 +67,62 @@ notFoundPageDescription = પૃષ્ઠ મળ્યું નથી.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = સ્ક્રીનશૉટ: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = સમાપ્તિ બચત કરવામાં ભૂલ
+shotPageAlertErrorDeletingShot = શોટ કાઢવામાં ભૂલ
+shotPageAlertErrorUpdatingTitle = શીર્ષક સાચવવામાં ભૂલ
+shotPageConfirmDelete = શું તમે ખરેખર આ શોટને કાયમ માટે કાઢી નાખવા માંગો છો?
 shotPageShareButton
     .title = વહેચો
 shotPageCopy = નકલ કરો
+shotPageCopied = નકલ કરેલું
 shotPageShareFacebook
     .title = Facebook પર વહેચો
 shotPageShareTwitter
     .title = Twitter પર વહેચો
 shotPageSharePinterest
     .title = Pinterest પર વહેચો
+shotPageShareEmail
+    .title = ઇમેઇલ દ્વારા લિંક વહેંચો
+shotPageShareLink = આ શૉટ પર વહેંચવા કરવા યોગ્ય લિંક મેળવો:
+shotPagePrivacyMessage = લિંક ધરાવનાર કોઈપણ આ શોટને જોઈ શકે છે.
+shotPageCopyImageText
+    .label = છબી ટેક્સ્ટ નકલ કરો
+shotPageConfirmDeletion = શું તમે ખરેખર આ શોટને કાયમ માટે કાઢી નાખવા માંગો છો?
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = જ્યાં સુધી પુનઃસ્થાપિત કરો { $date }
+shotPageExpiredMessage = આ શોટની સમયસીમા સમાપ્ત થઈ ગઈ છે.
+shotPageDeleteButton
+    .title = આ શોટ કાઢી નાખો
+shotPageAbuseButton
+    .title = દુરુપયોગ, સ્પામ અથવા અન્ય સમસ્યાઓ માટે આ શોટની જાણ કરો
 shotPageDownloadShot
     .title = ડાઉનલોડ કરો
 shotPageDownload = ડાઉનલોડ કરો
 shotPageUpsellFirefox = હમણાં Firefox મેળવો
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = સમય પસંદ કરો
+shotPageKeepIndefinitely = અનિશ્ચિતપણે
+shotPageKeepTenMinutes = 10 મિનીટ
+shotPageKeepOneHour = 1 કલાક
+shotPageKeepOneDay = 1 દિવસ
+shotPageKeepOneWeek = 1 અઠવાડિયું
+shotPageKeepTwoWeeks = 2 અઠવાડિયા
+shotPageKeepOneMonth = 1 મહિનો
+shotPageSaveExpiration = સંગ્રહો
+shotPageCancelExpiration = રદ કરો
+shotPageDoesNotExpire = સમાપ્ત થતું નથી
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = સમાપ્ત થાય છે { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = સમાપ્ત થઈ { $timediff }
+timeDiffJustNow = હમણાજ
+timeDiffMinutesAgo = { $num ->
+        [one] 1 મિનિટ પહેલા
+       *[other] { $number } મિનિટ પહેલા
+    }
 
 
 [[ Shotindex page ]]
