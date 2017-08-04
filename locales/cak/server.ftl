@@ -57,10 +57,19 @@ homePageSaveShare = Tiyak chuqa' Tikomonïx
 homePageSaveShareDescription = Toq nawelesaj jun wachib'äl, ri Firefox nuya' rutzijol ri chapoj awachib'al pa ruwujib'al Chapoj Awachib'al pa k'amab'ey chuqa' nuyäk ri ximonel pan amolwuj. Ka'i' wuqq'ij qayon yeqayäk ri chapoj taq awachib'al, chuqa' xab'achike ramaj yatikïr nayüj el ri wachib'äl o najäl ruq'ijul richin k'ïy ramaj yek'oje' pan awujib'al.
 homePageLegalLink = Taqanel
 homePagePrivacyLink = Ichinanem
+homePageTermsLink = Taq Ojqanem
+homePageCookiesLink = Taq Kaxlanwey
 
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = Tijikib'äx ruyujik rub'i' taqoya'l
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = K'o chi e'ayakon ri Chapoj Ruwachib'al Firefox richin nayüj el rub'i' ataqoya'l 
+leavePageErrorGeneric = Xk'ulwachitäj jun sachoj
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Re re' xkeruyüj el konojel taq rutzij Firefox Chapoj Awachib'al.
+leavePageButtonProceed = Tib'anatäj
 
 
 [[ Not Found page ]]
