@@ -68,6 +68,7 @@ shotPageAlertErrorUpdatingTitle = Nimen tallennus epäonnistui
 shotPageConfirmDelete = Haluatko varmasti poistaa tämän kaappauksen pysyvästi?
 shotPageShareButton
     .title = Jaa
+shotPageCopy = Kopioi
 shotPageCopied = Kopioitu
 shotPageShareFacebook
     .title = Jaa Facebookissa
@@ -79,16 +80,57 @@ shotPageShareEmail
     .title = Jaa linkki sähköpostitse
 shotPageCopyImageText
     .label = Kopioi kuvateksti
+shotPageExpiredMessage = Tämä kaappaus on vanhentunut.
 shotPageDeleteButton
     .title = Poista tämä kaappaus
+shotPageDownloadShot
+    .title = Lataa
+shotPageDownload = Lataa
 shotPageUpsellFirefox = Lataa Firefox nyt
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Valitse aika
+shotPageKeepIndefinitely = toistaiseksi
+shotPageKeepTenMinutes = 10 minuuttia
+shotPageKeepOneHour = 1 tunti
+shotPageKeepOneDay = 1 päivä
+shotPageKeepOneWeek = 1 viikko
+shotPageKeepTwoWeeks = 2 viikkoa
+shotPageKeepOneMonth = 1 kuukausi
+shotPageSaveExpiration = tallenna
+shotPageCancelExpiration = peruuta
+shotPageDoesNotExpire = ei vanhene
+timeDiffJustNow = juuri nyt
+timeDiffMinutesAgo = { $num ->
+        [one] 1 minuutti sitten
+       *[other] { $number } minuuttia sitten
+    }
+timeDiffHoursAgo = { $num ->
+        [one] 1 tunti sitten
+       *[other] { $number } tuntia sitten
+    }
+timeDiffDaysAgo = { $num ->
+        [one] eilen
+       *[other] { $number } päivää sitten
+    }
+timeDiffFutureSeconds = muutaman sekunnin kuluttua
+timeDiffFutureMinutes = { $num ->
+        [one] 1 minuutin kuluttua
+       *[other] { $number } minuutin kuluttua
+    }
+timeDiffFutureHours = { $num ->
+        [one] 1 tunnin kuluttua
+       *[other] { $number } tunnin kuluttua
+    }
+timeDiffFutureDays = { $num ->
+        [one] huomenna
+       *[other] { $number } päivän kuluttua
+    }
 
 
 [[ Shotindex page ]]
 
 shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageConfirmShotDelete = Poistetaanko tämä kaappaus?
 
 
 // all metrics strings are optional for translation
