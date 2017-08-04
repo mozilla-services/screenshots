@@ -35,6 +35,8 @@ creatingPageTitleDefault = страница
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Вградена възможност за снимане на екрана. Правете, запазвайте и споделяйте снимки на екрана докато разглеждате Мрежата с Firefox.
 homePageButtonMyShots = Моите снимки
 homePageTeaser = Очаквайте скоро…
 homePageDownloadFirefoxTitle = Firefox
@@ -51,6 +53,7 @@ homePageGetStartedTitle = Първи стъпки
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Страницата не е намерена
 notFoundPageDescription = Страницата не е намерена.
 
 
