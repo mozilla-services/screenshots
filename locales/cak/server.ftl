@@ -121,10 +121,11 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Tiqasäx
 shotPageDownload = Tiqasäx
-shotPageScreenshotsDescription =
-    Relik b'anon chi re ri chapoj wachib'äl. Man k'atzinel ta yatel el pa Firefox richin nachap, nayak, chuqa' nakomonij ri chapoj wachib'äl.
-
+shotPageScreenshotsDescription = Relik b'anon chi re ri chapoj wachib'äl. Man k'atzinel ta yatel el pa Firefox richin nachap, nayak, chuqa' nakomonij ri chapoj wachib'äl.
 shotPageUpsellFirefox = Tak'ulu' Firefox wakami
+shotPageDMCAMessage = Man wachel ta chik re wachib'äl re' ruma juley winaqi' nikich'ojij  jun na'owinäq ichinem.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Tataqa' { $dmca } richin nak'utuj juley rutzijol.
 
 
 [[ Shotindex page ]]
