@@ -175,5 +175,7 @@ metricsPageVersionQueryTitle = অ্যাড-অনের সংস্কর�
 metricsPageVersionQueryVersion = অ্যাড-অনের সংস্করণ
 metricsPageVersionQueryLastSeen = দিন
 metricsPageHeader = মেট্রিক্স
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = তৈরীর সময়: { $created }
 // Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (ডেটাবেসের সময়: { $time }ms)
