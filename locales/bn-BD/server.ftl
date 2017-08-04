@@ -35,6 +35,8 @@ creatingPageTitleDefault = পৃষ্ঠা
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Firefox ব্যবহার করে ওয়েব ব্রাউজিং করার সময়ে স্ক্রিনশট ক্যাপচার, সংরক্ষণ ও শেয়ার করুন। ব্রাউজারের মধ্যেই স্বতঃস্ফুর্ত স্ক্রিনশট প্রস্তুত হয়ে যাবে।
 homePageButtonMyShots = আমার শটে যাও
 homePageTeaser = শীঘ্রই আসছে...
 homePageDownloadFirefoxTitle = Firefox
