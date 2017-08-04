@@ -10,17 +10,11 @@ const reactruntime = require("../../reactruntime");
 class Clip extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loading: true,
-      imageDisplay: "none"
-    };
   }
 
   componentDidMount() {
+    // TODO: how can we resize nicely if JS is disabled? maybe CSS?
     let image = this.clipImage;
-    if (image.complete) {
-      this.onImageLoaded();
-    }
     let onResize = () => {
       let windowHeight = window.innerHeight;
       let paddingTop = Math.floor((windowHeight - image.height - 35) / 2);
@@ -41,32 +35,14 @@ class Clip extends React.Component {
       console.warn("Somehow there's a shot without an image");
       return null;
     }
-    let node = <img id="clipImage" style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%", display: this.state.imageDisplay}} ref={clipImage => this.clipImage = clipImage} src={ clip.image.url } alt={ clip.image.text } onLoad = { this.onImageLoaded.bind(this) } />;
-    // Note that in server/src/pages/shot/page.js there is also JavaScript defined
-    // that displays the image onload, as a backup to make sure the image always
-    // gets displayed even if the bundle doesn't load
+    let backgroundStyle = "transparent url('" + this.props.staticLink("/static/img/spinner.svg") + "') center no-repeat";
+    let node = <img id="clipImage" style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%", background: backgroundStyle }} ref={clipImage => this.clipImage = clipImage} src={ clip.image.url } alt={ clip.image.text } />;
     return <div ref={clipContainer => this.clipContainer = clipContainer} className="clip-container">
       { this.copyTextContextMenu() }
-      { this.renderLoader() }
       <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) } contextMenu="clip-image-context">
         { node }
       </a>
     </div>;
-  }
-
-  onImageLoaded() {
-    this.setState({
-      loading: false,
-      imageDisplay: "inline"
-    });
-  }
-
-  renderLoader() {
-    return (
-      <div id="spinner" className="spinner">
-        <img src = {this.props.staticLink("/static/img/spinner.svg")} />
-      </div>
-    );
   }
 
   onClickClip() {
