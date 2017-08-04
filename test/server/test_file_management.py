@@ -88,6 +88,30 @@ def test_s3_final_expire():
     assert read_file(page["clip_url"]) is None
 
 
+def test_s3_failed_delete():
+    restart_server(EXPIRED_RETENTION_TIME=1, CHECK_DELETED_INTERVAL="0.1")
+    session = make_session()
+    shot_url = session.create_shot()
+    page = session.read_shot(shot_url)
+    assert read_file(page["clip_url"]) is not None
+    # By deleting the file, we will cause the expiring delete to fail:
+    delete_file(page["clip_url"])
+    get_url(SERVER_URL + "/now-we-have-deleted-the-image")
+    assert read_file(page["clip_url"]) is None
+    session.set_expiration(shot_url, 1)
+    time.sleep(10)
+    get_url(page["clip_url"], expect=404)
+    get_url(shot_url, expect=404)
+    assert read_file(page["clip_url"]) is None
+    # Now we put the file back so that the next delete can succeed:
+    write_file(page["clip_url"], page["clip_content"])
+    get_url(SERVER_URL + "/now-we-have-put-the-image-back")
+    time.sleep(10)
+    get_url(page["clip_url"], expect=404)
+    get_url(shot_url, expect=404)
+    assert read_file(page["clip_url"]) is None
+
+
 # TODO: implement configurable periodic failure of the fake S3, and make sure
 # things are resilient
 
@@ -185,19 +209,41 @@ def get_url(url, expect=None):
     return result.read()
 
 
-def read_file(clip_url):
+def filename_for_clip_url(clip_url):
     name = clip_url.split("/")[-1]
-    filename = os.path.join(data_path, name)
+    return os.path.join(data_path, name)
+
+
+def read_file(clip_url):
+    filename = filename_for_clip_url(clip_url)
     if not os.path.exists(filename):
         return None
     with open(filename, "rb") as fp:
         return fp.read()
 
 
+def delete_file(clip_url):
+    filename = filename_for_clip_url(clip_url)
+    os.unlink(filename)
+
+
+def write_file(clip_url, content):
+    filename = filename_for_clip_url(clip_url)
+    with open(filename, "wb") as fp:
+        fp.write(content)
+
+
 if __name__ == "__main__":
     import sys
     make_server()
-    funcs = [test_s3_upload, test_s3_expire, test_s3_delete, test_s3_delete_after_expire, test_s3_final_expire]
+    funcs = [
+        test_s3_upload,
+        test_s3_expire,
+        test_s3_delete,
+        test_s3_delete_after_expire,
+        test_s3_final_expire,
+        test_s3_failed_delete,
+    ]
     args = sys.argv[1:]
     if args:
         funcs = [
