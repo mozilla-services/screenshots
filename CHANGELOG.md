@@ -57,9 +57,14 @@ Note these are part of the version/tag, but have not been uploaded to the Firefo
 * about:home is not treated like about:newtab ([#3088](https://github.com/mozilla-services/screenshots/issues/3088)). Fixes [#3029](https://github.com/mozilla-services/screenshots/issues/3029) [4633694](https://github.com/mozilla-services/screenshots/commit/4633694)
 * preview shot before saving full page/visibleremove addToMyShots [c87db61](https://github.com/mozilla-services/screenshots/commit/c87db61)
 
-## Version 10.8.0
+## Version 10.9.0
 
 Note: the 10.x.0 series is exported to Firefox 55.
+
+* Remove Save Full Page and Save Visible [#3208](https://github.com/mozilla-services/screenshots/pull/3208). Avoids [#3182](https://github.com/mozilla-services/screenshots/issues/3182)
+  * **Note:** this has been reverted in later versions
+
+## Version 10.8.0
 
 * Update privacy notice URL ([#3136](https://github.com/mozilla-services/screenshots/issues/3135))
 * Suppress resize errors and correctly unload resize listener ([#3153](https://github.com/mozilla-services/screenshots/issues/3135))
