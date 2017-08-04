@@ -264,6 +264,10 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
             localizeText(this.document);
             overlay.querySelector(".myshots-button").addEventListener(
               "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onOpenMyShots)));
+            overlay.querySelector(".visible").addEventListener(
+              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickVisible)));
+            overlay.querySelector(".full-page").addEventListener(
+              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickFullPage)));
             resolve();
           }), {once: true});
           document.body.appendChild(this.element);
