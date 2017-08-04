@@ -16,6 +16,8 @@ gScreenshotsDescription = Screenshots membuatnya sederhana. Ambil, simpan, dan b
 
 [[ Footer ]]
 
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
 
 
 [[ Creating page ]]
