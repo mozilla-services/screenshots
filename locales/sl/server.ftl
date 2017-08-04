@@ -210,6 +210,8 @@ shotIndexPageConfirmShotDelete = Izbrišem ta posnetek?
 
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Metrika Firefox Screenshots
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Pregled posnetkov zaslona
 metricsPageTotalsQueryDevices = Skupno število registriranih naprav
 metricsPageTotalsQueryActiveShots = Aktivni posnetki
 metricsPageTotalsQueryExpiredShots = Pretečen (a obnovljiv)
@@ -229,6 +231,7 @@ metricsPageUserShotsQueryShots = Približno število aktivnih (nepretečenih) po
 metricsPageRetentionQueryUsers = Število uporabnikov
 metricsPageRetentionQueryFirstWeek = Teden, ko je uporabnik ustvaril prvi posnetek
 metricsPageTotalRetentionQueryUsers = Število uporabnikov
+metricsPageTotalRetentionQueryDays = Dnevi, ko je uporabnik ustvarjal posnetke
 metricsPageVersionQueryTitle = Različica dodatka
 metricsPageVersionQueryDescription = Različica dodatka, uporabljena med prijavo v zadnjih 14 dneh
 metricsPageVersionQueryUsers = Število prijavljenih uporabnikov
