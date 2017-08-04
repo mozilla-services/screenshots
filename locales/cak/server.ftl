@@ -47,6 +47,7 @@ homePageHowScreenshotsWorks = Achike rub'eyal nisamäj Firefox Chapoj Wachib'äl
 homePageGetStartedTitle = Titikirisäx
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Tawila' ri k'ak'a' ruwachaj Chapoj Wachib'äl pan asamajib'al. Tacha', chi ri rucha'osamaj Chapoj Wachib'äl niwachin pe ajsik pa rutzuwäch okik'amaya'l.
+homePageCaptureRegion = Tachapa' jun Ruwa
 
 
 [[ Leave Screenshots page ]]
