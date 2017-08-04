@@ -7,10 +7,10 @@
 // Global phrases shared across pages, prefixed with 'g'
 [[ global ]]
 
-gMyShots = Taq Nuchapoj
+gMyShots = Taq Nuwachib'al
 gHomeLink = Tikirib'äl
 gNoShots
-    .alt = Majun chapoj xilitäj
+    .alt = Majun wachib'äl xilitäj
 gScreenshotsDescription = Relik b'anon chi re ri chapoj wachib'äl. Man k'atzinel ta yatel el pa Firefox richin nachap, nayak, chuqa' nakomonij ri chapoj wachib'äl.
 
 
@@ -86,7 +86,21 @@ notFoundPageDescription = Man xilitäj ta ruxaq
 // This is the HTML title tag of the page
 shotPageTitle = Chapoj Wachib'äl: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Xsach toq nuyäk ruq'ijul
-shotPageAlertErrorDeletingShot = Xsach toq nuyüj chapoj
+shotPageAlertErrorDeletingShot = Xsach toq nuyüj wachib'äl
+shotPageAlertErrorUpdatingTitle = Xsach toq nuyäk b'i'aj
+shotPageConfirmDelete = 
+shotPageShareButton
+    .title = Tikomonïx
+shotPageCopy = Tiwachib'ëx
+shotPageCopied = Xwachib'ëx
+shotPageShareFacebook
+    .title = Tikomonïx pa Facebook
+shotPageShareTwitter
+    .title = Tikomonïx pa Twitter
+shotPageSharePinterest
+    .title = Tikomonïx pa Pinterest
+shotPageShareEmail
+    .title = Tikomonïx ximonel pa taqoya'l
 
 
 [[ Shotindex page ]]
