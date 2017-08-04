@@ -112,6 +112,19 @@ shotPageExpirationMessage = We majun nab'än, xtiyujtäj el re chapoj re' { $tim
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = tichojmirisäx k'a { $date }
 shotPageExpiredMessage = Xk'is ruq'ijul re wachib'äl re'.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Pa re ruxaq re' Xtikirisäx pe runuk'ik:
+shotPageDeleteButton
+    .title = Tiyuj re wachib'äl re'
+shotPageAbuseButton
+    .title = Tasujuj re wachib'äl re' ruma tz'ilanem, seq'tzijol, o jun chik k'ayewal
+shotPageDownloadShot
+    .title = Tiqasäx
+shotPageDownload = Tiqasäx
+shotPageScreenshotsDescription =
+    Relik b'anon chi re ri chapoj wachib'äl. Man k'atzinel ta yatel el pa Firefox richin nachap, nayak, chuqa' nakomonij ri chapoj wachib'äl.
+
+shotPageUpsellFirefox = Tak'ulu' Firefox wakami
 
 
 [[ Shotindex page ]]
