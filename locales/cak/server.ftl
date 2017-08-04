@@ -236,3 +236,9 @@ metricsPageVersionQueryTitle = Ruwäch Tz'aqat
 metricsPageVersionQueryDescription = Ri ruwäch tz'aqat okisan pa molojri'ïl, pa ri 14 ruk'isib'äl taq q'ij
 metricsPageVersionQueryUsers = Janipe' winaqi' e'okinäq
 metricsPageVersionQueryVersion = Ruwäch tz'aqat
+metricsPageVersionQueryLastSeen = Q'ij
+metricsPageHeader = Taq Tz'etnuk'ulem
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Tz'ukun pa: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (cholxe'eltzij q'ijul: { $time }ms)
