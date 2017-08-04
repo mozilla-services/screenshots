@@ -427,6 +427,7 @@ class Body extends React.Component {
         <Localized id="gScreenshotsDescription">
           <span>Screenshots made simple. Take, save and share screenshots without leaving Firefox.</span>
         </Localized>
+        &nbsp;
         <Localized id="shotPageUpsellFirefox">
           <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a>
         </Localized>
