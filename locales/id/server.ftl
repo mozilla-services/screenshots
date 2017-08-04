@@ -170,7 +170,9 @@ shotIndexPageSearchButton
     .title = Cari
 shotIndexPageNoShotsMessage = Tidak ada tangkapan tersimpan.
 shotIndexPageNoShotsInvitation = Lanjutkan, buat tangkapan.
+shotIndexPageLookingForShots = Memuat tangkapan Anda...
 shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Kami tidak menemukan tangkapan yang cocok dengan pencarian Anda.
 shotIndexPageClearSearchButton
     .title = Bersihkan pencarian
 shotIndexPageConfirmShotDelete = Hapus tangkapan ini?
@@ -179,15 +181,43 @@ shotIndexPageConfirmShotDelete = Hapus tangkapan ini?
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Metrik Firefox Screenshots
 metricsPageTotalsQueryTitle = Total
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Ikhtisar Screenshots
+metricsPageTotalsQueryDevices = Jumlah peranti yang terdaftar
+metricsPageTotalsQueryActiveShots = Tangkapan aktif
 metricsPageTotalsQueryExpiredShots = Kedaluwarsa (tapi dapat dipulihkan)
+metricsPageTotalsQueryExpiredDeletedShots = Kedaluwarsa (dan dihapus)
+metricsPageShotsQueryTitle = Tangkapan per Hari
+metricsPageShotsQueryDescription = Jumlah tangkapan yang dibuat setiap hari (dalam 30 hari terakhir)
+metricsPageShotsQueryCount = Jumlah tangkapan
 metricsPageShotsQueryDay = Hari
+metricsPageUsersQueryTitle = Pengguna dalam Sehari
+metricsPageUsersQueryDescription = Jumlah pengguna yang membuat setidaknya satu tangkapan, dalam sehari (30 hari terakhir)
 metricsPageUsersQueryCount = Jumlah pengguna
 metricsPageUsersQueryDay = Hari
+metricsPageUserShotsQueryTitle = Jumlah Tangkapan per Pengguna
+metricsPageUserShotsQueryDescription = Jumlah pengguna yang membuat total sekitar N tangakapan
 metricsPageUserShotsQueryCount = Jumlah pengguna
+metricsPageUserShotsQueryShots = Perkiraan jumlah tangkapan aktif (tidak kedaluwarsa)
+metricsPageRetentionQueryTitle = Retensi Mingguan
+metricsPageRetentionQueryDescription = Jumlah hari dari tangkapan pertama sampai tangkapan terbaru, dikelompokkan berdasar minggu awal
 metricsPageRetentionQueryUsers = Jumlah pengguna
+metricsPageRetentionQueryDays = Jumlah hari dari tangkapan pertama sampai yang terbaru
+metricsPageRetentionQueryFirstWeek = Jumlah minggu pengguna membuat tangkapan pertama
+metricsPageTotalRetentionQueryTitle = Total Retensi
+metricsPageTotalRetentionQueryDescription = Lama pengguna membuat tangkapan, dikelompokkan berdasar minggu
 metricsPageTotalRetentionQueryUsers = Jumlah pengguna
+metricsPageTotalRetentionQueryDays = Jumlah hari pengguna membuat tangkapan
 metricsPageVersionQueryTitle = Versi Pengaya
+metricsPageVersionQueryDescription = Versi pengaya yang digunakan saat masuk, dalam 14 hari terakhir
+metricsPageVersionQueryUsers = Jumlah pengguna yang masuk
 metricsPageVersionQueryVersion = Versi pengaya
 metricsPageVersionQueryLastSeen = Hari
 metricsPageHeader = Metrik
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Dibuat pada: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (waktu basis data: { $time }ms)
