@@ -51,6 +51,8 @@ homePageCaptureRegion = Tachapa' jun Ruwa
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Tapitz'a' chuqa' taqirirej richin nacha' ri k'ojlib'äl nawajo' nachäp. O xa xe taya' ri retal ch'oy pa ruwi' — ja ri Chapoj Wachib'äl xticha'o ri k'ojlib'äl chawäch. ¿La jeb'ël ri natz'ët? Tacha' Tiyak richin yatok pa chapoj awachib'al pa k'amab'ey o ri xulan ch'ab' richin nayäk qa pan akematz'ib'.
 homePageCapturePage = Tichap ruwachib'al jun Ruxaq
+homePageCapturePageDescription = Ke'okisäx ri ajsik ajkiq'a' taq pitz'b'äl richin ye'achäp chijun ruxaq. Ri Tiyak Wachel pitz'b'äl xtuchäp ri k'ojlem; man k'atzinel ta yatel richin natz'ët, chuqa' ri Tiyak Tz'aqät Ruxaq ronojel xtuchäq pa ri ruxaq.
+homePageSaveShare = Tiyak chuqa' Tikomonïx
 
 
 [[ Leave Screenshots page ]]
