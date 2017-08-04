@@ -85,12 +85,24 @@ notFoundPageDescription = Сторінку не знайдено.
 
 // This is the HTML title tag of the page
 shotPageTitle = Знімок екрану: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = Помилка при збереженні терміну зберігання
 shotPageAlertErrorDeletingShot = Помилка під час видалення знімку
 shotPageAlertErrorUpdatingTitle = Помилка збереження назви
+shotPageConfirmDelete = Ви впевнені, що хочете назавжди видалити цей знімок?
 shotPageShareButton
     .title = Поділітися
 shotPageCopy = Копіювати
 shotPageCopied = Скопійовано
+shotPageShareFacebook
+    .title = Поділитися на Facebook
+shotPageShareTwitter
+    .title = Поділитися у Twitter
+shotPageSharePinterest
+    .title = Поділитися на Pinterest
+shotPageShareEmail
+    .title = Поділитися через електронну пошту
+shotPageShareLink = Отримати публічне посилання на цей знімок:
+shotPagePrivacyMessage = Будь-хто, хто має це посилання, може переглядати цей знімок.
 shotPageCopyImageText
     .label = Копіювати текст зображення
 shotPageConfirmDeletion = Ви впевнені, що хочете назавжди видалити цей знімок?
@@ -100,12 +112,25 @@ shotPageExpirationMessage = Якщо ви нічого не будете роб�
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = подовжено до { $date }
 shotPageExpiredMessage = Термін зберігання знімку скінчився.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Сторінка, з якої створений цей знімок:
 shotPageDeleteButton
     .title = Видалити цей знімок
+shotPageAbuseButton
+    .title = Цей знімок ображає, є спамом. чи має інші проблеми
 shotPageDownloadShot
     .title = Завантажити
 shotPageDownload = Завантажити
+shotPageScreenshotsDescription = Знімки екрану стали простими. Робіть, зберігайте і поширюйте знімки екрану, не залишаючи Firefox.
 shotPageUpsellFirefox = Отримати Firefox
+shotPageDMCAMessage = Цей знімок більше недоступний через порушення авторських прав третьої сторони.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Будь ласка, напишіть на { $dmca }, щоб запитати додаткову інформацію.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Якщо на ваші знімки поскаржилися кілька разів, ми можемо заблокувати вам доступ до Firefox Screenshots.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Будь ласка, додайте до вашого листа посилання на цей знімок: { $url }
+shotPageKeepFor = Як довго цей знімок буде зберігатися?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Виберіть час
 shotPageKeepIndefinitely = Нескінченно
@@ -199,11 +224,22 @@ metricsPageUsersQueryDescription = Кількість користувачів, 
 metricsPageUsersQueryCount = Кількість користувачів
 metricsPageUsersQueryDay = День
 metricsPageUserShotsQueryTitle = Кількість знімків на користувача
+metricsPageUserShotsQueryDescription = Кількість користувачів, які зробили загалом близько N знімків
 metricsPageUserShotsQueryCount = Кількість користувачів
+metricsPageUserShotsQueryShots = Приблизна кількість активних (не вичерпаних) знімків
+metricsPageRetentionQueryTitle = Збережень за тиждень
+metricsPageRetentionQueryDescription = Кількість днів від першого знімка користувача до останнього, згруповано за початком тижня
 metricsPageRetentionQueryUsers = Кількість користувачів
+metricsPageRetentionQueryDays = Днів від першого до останнього знімка користувача
+metricsPageRetentionQueryFirstWeek = Тиждень, на якому користувач створив перший знімок
 metricsPageTotalRetentionQueryTitle = Загальна кількість
+metricsPageTotalRetentionQueryDescription = Час, який користувачі витрачають на створення знімків, згрупований по тижнях
 metricsPageTotalRetentionQueryUsers = Кількість користувачів
+metricsPageTotalRetentionQueryDays = Дні, в які користувач створював знімки екрану
 metricsPageVersionQueryTitle = Версія додатку
+metricsPageVersionQueryDescription = Версія додатку, що використовується під час входу, за останні 14 днів
+metricsPageVersionQueryUsers = Кількість користувачів, що входять
+metricsPageVersionQueryVersion = Версія додатку
 metricsPageVersionQueryLastSeen = День
 metricsPageHeader = Метрика
 // Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
