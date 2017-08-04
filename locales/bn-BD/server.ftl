@@ -70,6 +70,8 @@ notFoundPageDescription = পাতাটি পাওয়া যায়নি।
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = স্ক্রিনশট: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = সমাপ্তি সংরক্ষণে ত্রুটি
 shotPageAlertErrorDeletingShot = শটটি মুছতে ভুল
 shotPageAlertErrorUpdatingTitle = টাইটেল সংরক্ষণে ত্রুটি
@@ -86,17 +88,90 @@ shotPageSharePinterest
 shotPageShareEmail
     .title = ইমেইলে লিংক শেয়ার করুন
 shotPageShareLink = শটটির জন্য শেয়ারযোগ্য লিঙ্ক নিন:
+shotPagePrivacyMessage = এই লিংকে যেকেউ শটটি দেখতে পারবে।
 shotPageCopyImageText
     .label = ছবির টেক্সট কপি করুন
 shotPageExpiredMessage = শটটি মেয়াদোত্তীর্ণ
+shotPageDeleteButton
+    .title = শটটি মুছে ফেলুন
+shotPageDownloadShot
+    .title = ডাউনলোড
+shotPageDownload = ডাউনলোড
+shotPageUpsellFirefox = এখন Firefox নিন
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = সময় নির্বাচন করুন
+shotPageKeepIndefinitely = অনির্দিষ্টভাবে
+shotPageKeepTenMinutes = ১০ মিনিট
+shotPageKeepOneHour = ১ ঘন্টা
+shotPageKeepOneDay = ১ দিন
+shotPageKeepOneWeek = ১ সপ্তাহ
+shotPageKeepTwoWeeks = ২ সপ্তাহ
+shotPageKeepOneMonth = ১ মাস
+shotPageSaveExpiration = সংরক্ষণ
+shotPageCancelExpiration = বাতিল
+shotPageDoesNotExpire = বাতিল হয়ে যাবে না
+timeDiffJustNow = এখনই
+timeDiffMinutesAgo = { $num ->
+        [one] ১ মিনিট আগে 
+       *[other] { $number } মিনিট আগে
+    }
+timeDiffHoursAgo = { $num ->
+        [one] ১ ঘন্টা আগে
+       *[other] { $number } ঘন্টা আগে
+    }
+timeDiffDaysAgo = { $num ->
+        [one] গতকাল 
+       *[other] { $number } দিন আগে
+    }
+timeDiffFutureSeconds = কিছুক্ষণের মধ্যেই
+timeDiffFutureMinutes = { $num ->
+        [one] ১ মিনিটের মধ্যে
+       *[other] { $number } মিনিটের মধ্যে
+    }
+timeDiffFutureHours = { $num ->
+        [one] ১ ঘন্টার মধ্যে
+       *[other] { $number } ঘন্টার মধ্যে
+    }
+timeDiffFutureDays = { $num ->
+        [one] আগামীকাল
+       *[other] { $number } দিনের মধ্যে
+    }
 
 
 [[ Shotindex page ]]
 
+shotIndexPageSearchPlaceholder
+    .placeholder = আমার শটগুলো খুঁজুন
+shotIndexPageSearchButton
+    .title = খুঁজুন
+shotIndexPageNoShotsMessage = কোন সংরক্ষিত শট নেই।
+shotIndexPageNoShotsInvitation = নিন, কিছু তৈরি করুন।
+shotIndexPageLookingForShots = আপনার শট খোঁজ করছি...
+shotIndexPageNoSearchResultsIntro = হমম
+shotIndexPageNoSearchResults = আমরা আপনার খোঁজার সাথে সম্পর্কিত কোন শট পাই নাই।
+shotIndexPageClearSearchButton
+    .title = সার্চ পরিষ্কার করুন
+shotIndexPageConfirmShotDelete = এই শটটি মুছবেন?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Firefox Screenshots ম্যাট্রিক্স
+metricsPageTotalsQueryTitle = সর্বমোট
+metricsPageTotalsQueryActiveShots = সক্রিয় শটসমূহ
+metricsPageShotsQueryTitle = দিনের ভিত্তিতে সংক্ষিপ্ত
+metricsPageShotsQueryCount = শট সংখ্যা
+metricsPageShotsQueryDay = দিন
+metricsPageUsersQueryCount = ব্যবহারকারীর সংখ্যা
+metricsPageUsersQueryDay = দিন
+metricsPageUserShotsQueryCount = ব্যবহারকারীর সংখ্যা
+metricsPageRetentionQueryUsers = ব্যবহারকারীর সংখ্যা
+metricsPageTotalRetentionQueryUsers = ব্যবহারকারীর সংখ্যা
+metricsPageVersionQueryTitle = অ্যাড-অনের সংস্করণ
+metricsPageVersionQueryVersion = অ্যাড-অনের সংস্করণ
+metricsPageVersionQueryLastSeen = দিন
+metricsPageHeader = মেট্রিক্স
 // Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (ডেটাবেসের সময়: { $time }ms)
