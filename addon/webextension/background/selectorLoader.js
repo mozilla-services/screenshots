@@ -64,6 +64,11 @@ this.selectorLoader = (function() {
   let loadingTabs = new Set();
 
   exports.loadModules = function(tabId, hasSeenOnboarding) {
+    // Sometimes loadModules is called when the tab is already loading.
+    // Adding a check here seems to help avoid catastrophe.
+    if (loadingTabs.has(tabId)) {
+      return Promise.resolve(null);
+    }
     let promise;
     loadingTabs.add(tabId);
     if (hasSeenOnboarding) {
@@ -80,21 +85,43 @@ this.selectorLoader = (function() {
     });
   };
 
-  function executeModules(tabId, scripts) {
-    let lastPromise = Promise.resolve(null);
-    scripts.forEach((file) => {
-      lastPromise = lastPromise.then(() => {
-        return browser.tabs.executeScript(tabId, {
-          file,
-          runAt: "document_end"
-        }).catch((error) => {
-          log.error("error in script:", file, error);
-          error.scriptName = file;
-          throw error;
-        });
+  function readFile(path) {
+    return fetch(path, { mode: 'same-origin' }).then((response) => {
+      return response.blob();
+    }).then(blob => {
+      let reader = new FileReader();
+      return new Promise((resolve, reject) => {
+        reader.readAsText(blob);
+        reader.onload = (evt) => {
+          let contents = evt.target.result;
+          resolve(contents);
+        };
+        reader.onerror = (evt) => {
+          reject(evt.target.error);
+        };
       });
     });
-    return lastPromise.then(() => {
+  }
+
+  function executeModules(tabId, scripts) {
+    let filePromises = [];
+    scripts.forEach((file) => {
+      let fileURL = browser.extension.getURL(file);
+      let fileContents = readFile(fileURL);
+      filePromises.push(fileContents);
+    });
+    return Promise.all(filePromises).then(fileContents => {
+      let allScripts = fileContents.reduce((concatted, script) => { return concatted + ' ; ' + script });
+      return Promise.resolve(allScripts);
+    }).then(scripts => {
+      return browser.tabs.executeScript(tabId, {
+        code: scripts,
+        runAt: "document_start"
+      }).catch((error) => {
+        log.error("error in script:", error);
+        throw error;
+      });
+    }).then(() => {
       log.debug("finished loading scripts:", scripts.join(" "));
     },
     (error) => {
