@@ -126,6 +126,53 @@ shotPageUpsellFirefox = Tak'ulu' Firefox wakami
 shotPageDMCAMessage = Man wachel ta chik re wachib'äl re' ruma juley winaqi' nikich'ojij  jun na'owinäq ichinem.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Tataqa' { $dmca } richin nak'utuj juley rutzijol.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = We jutaqil yech'ojin chi kij ri taq Awachib'al, yojtikïr niqaq'ät awokem pa Firefox Chapoj Wachib'äl.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Tatz'aqatisaj ri URL richin re wachib'äl re' pan ataqoya'l: { $url }
+shotPageKeepFor = ¿Janipe q'ij nik'oje' re wachib'äl re'?
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Ticha' q'ijul
+shotPageKeepIndefinitely = Mek'isel
+shotPageKeepTenMinutes = 10 Ch'utiramaj
+shotPageKeepOneHour = 1 Ramaj
+shotPageKeepOneDay = 1 Q'ij
+shotPageKeepOneWeek = 1 Wuqq'ij
+shotPageKeepTwoWeeks = 2 Wuqq'ij
+shotPageKeepOneMonth = 1 Ik'
+shotPageSaveExpiration = tiyak
+shotPageCancelExpiration = tiq'at
+shotPageDoesNotExpire = man k'ixel ta
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = k'isel { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = xk'is { $timediff }
+timeDiffJustNow = wakami
+timeDiffMinutesAgo = { $num ->
+        [one] k'o kan 1 ch'utiramaj
+       *[other] { $number } kan ch'utiramaj
+    }
+timeDiffHoursAgo = { $num ->
+        [one] k'o kan 1 ramaj
+       *[other] { $number } kan ramaj
+    }
+timeDiffDaysAgo = { $num ->
+        [one] iwir
+       *[other] { $number } kan taq q'ij
+    }
+timeDiffFutureSeconds = pa jujun nich'ramaj
+timeDiffFutureMinutes = { $num ->
+        [one] pa 1 ch'utiramaj
+       *[other] pa { $number } taq ramaj 
+    }
+timeDiffFutureHours = { $num ->
+        [one] pa 1 ramaj
+       *[other] pa { $number } taq ramaj
+    }
+timeDiffFutureDays = { $num ->
+        [one] chwa'q
+       *[other] pa { $number } taq q'ij
+    }
 
 
 [[ Shotindex page ]]
