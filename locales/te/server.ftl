@@ -7,10 +7,10 @@
 // Global phrases shared across pages, prefixed with 'g'
 [[ global ]]
 
-gMyShots = నా షాట్లు
+gMyShots = నా తెరపట్లు
 gHomeLink = ముంగిలి
 gNoShots
-    .alt = షాట్లు కనుగొనబడలేదు
+    .alt = తెరపట్లు కనుగొనబడలేదు
 
 
 [[ Footer ]]
@@ -32,13 +32,13 @@ creatingPageTitleDefault = పేజీ
 
 [[ Home page ]]
 
-homePageButtonMyShots = నా షాట్లకు వెళ్ళండి
+homePageButtonMyShots = నా తెరపట్లకు వెళ్ళండి
 homePageTeaser = త్వరలో వస్తుంది...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ఉచిత దిగుమతులు
 homePageGetStarted = మొదలుపెట్టండి
 // Note: do not translate 'Firefox Screenshots' when translating this string
-homePageHowScreenshotsWorks = Firefox స్క్రీన్షాట్లు ఎలాపని చేస్తాయి
+homePageHowScreenshotsWorks = Firefox Screenshots ఎలాపని చేస్తాయి
 homePageGetStartedTitle = మొదలుపెట్టండి
 homePageCaptureRegion = ఒక ప్రాంతాన్ని క్యాప్చర్ చేయండి
 homePageCapturePage = ఒక పేజీని క్యాప్చర్ చేయండి
@@ -69,10 +69,12 @@ notFoundPageDescription = పేజీ కనుగొనబడలేదు
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = తెరపట్టు: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = గడువు పొదుపు చేయడంలో లోపం
-shotPageAlertErrorDeletingShot = షాట్ను తొలగించడంలో లోపం
+shotPageAlertErrorDeletingShot = తెరపట్లు తొలగించడంలో లోపం
 shotPageAlertErrorUpdatingTitle = శీర్షిక బద్రపరచడంలో లోపం
-shotPageConfirmDelete = మీరు ఖచ్చితంగా ఈ షాట్ను శాశ్వతంగా తొలగించాలనుకుంటున్నారా?
+shotPageConfirmDelete = మీరు ఖచ్చితంగా ఈ తెరపట్టును శాశ్వతంగా తొలగించాలనుకుంటున్నారా?
 shotPageShareButton
     .title = పంచుకోండి
 shotPageCopy = నకలుతీయి
@@ -85,27 +87,27 @@ shotPageSharePinterest
     .title = Pinterestలో పంచుకోండి
 shotPageShareEmail
     .title = ఇమెయిల్ ద్వారా లింక్ను పంచుకోండి
-shotPageShareLink = ఈ షాట్కు పంచుకోగలిగిన లింక్ను పొందండి:
-shotPagePrivacyMessage = లింక్ ఉన్న ఎవరైనా ఈ షాట్ను వీక్షించగలరు.
+shotPageShareLink = ఈ తెరపట్టు పంచుకునేందుకు లంకెను పొందండి:
+shotPagePrivacyMessage = లంకె ఉన్న ఎవరైనా ఈ తెరపట్టును వీక్షించగలరు.
 shotPageCopyImageText
     .label = చిత్రం వచనాన్ని నకలు చేయండి
-shotPageConfirmDeletion = మీరు ఖచ్చితంగా ఈ షాట్ను శాశ్వతంగా తొలగించాలనుకుంటున్నారా?
+shotPageConfirmDeletion = మీరు ఖచ్చితంగా ఈ తెరపట్టును శాశ్వతంగా తొలగించాలనుకుంటున్నారా?
 // Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = మీరు ఏమీ చేయకపోతే, ఈ షాట్ శాశ్వతంగా తొలగించబడుతుంది { $timediff }.
+shotPageExpirationMessage = మీరు ఏమీ చేయకపోతే, ఈ తెరపట్టు శాశ్వతంగా తొలగించబడుతుంది { $timediff }.
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = { $date } వరకు పునరుద్ధరించండి
-shotPageExpiredMessage = ఈ షాట్ గడువు ముగిసింది.
+shotPageExpiredMessage = ఈ తెరపట్టు గడువు ముగిసింది.
 // Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = ఇది మొదట సృష్టించబడిన పేజీ:
 shotPageDeleteButton
-    .title = ఈ షాట్ను తొలగించండి
+    .title = ఈ తెరపట్టును తొలగించండి
 shotPageAbuseButton
-    .title = దుర్వినియోగం, స్పామ్ లేదా ఇతర సమస్యలకు ఈ షాట్ను నివేదించండి
+    .title = దుర్వినియోగం, స్పామ్ లేదా ఇతర సమస్యలకు ఈ తెరపట్టును నివేదించండి
 shotPageDownloadShot
-    .title = దింపుకోండి
-shotPageDownload = దింపుకోండి
-shotPageScreenshotsDescription = స్క్రీన్ షాట్లు సులభతరమైనాయి. Firefoxను వదలకుండా స్క్రీన్షాట్లను తీసుకోండి,  భద్రపరచండి మరియు పంచుకోండి.
+    .title = దిగుమతి
+shotPageDownload = దిగుమతి
+shotPageScreenshotsDescription = తెరపట్లు సులభతరమైనాయి. Firefoxను వదలకుండా తెరపట్లను తీసుకోండి,  భద్రపరచండి మరియు పంచుకోండి.
 shotPageUpsellFirefox = ఇప్పుడు Firefoxను పొందండి
 shotPageKeepFor = ఎంతకాలం ఈ షాట్ నిలబెట్టుకోవాలి?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
@@ -174,7 +176,7 @@ shotIndexPageConfirmShotDelete = ఈ షాట్ను తొలగించా
 
 metricsPageTotalsQueryTitle = మొత్తాలు
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-metricsPageTotalsQueryDescription = స్క్రీన్షాట్స్ యొక్క అవలోకనం
+metricsPageTotalsQueryDescription = తెరపట్ల యొక్క అవలోకనం
 metricsPageTotalsQueryDevices = నమోదు చేయబడిన మొత్తం పరికరాలు
 metricsPageTotalsQueryActiveShots = సక్రియ షాట్లు
 metricsPageTotalsQueryExpiredShots = గడువు ముగిసింది (కానీ పునరుద్ధరించవచ్చు)
