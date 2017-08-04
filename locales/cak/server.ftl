@@ -7,11 +7,11 @@
 // Global phrases shared across pages, prefixed with 'g'
 [[ global ]]
 
-gMyShots = Taq Chapoj
+gMyShots = Taq Wachib'äl
 gHomeLink = Tikirib'äl
 gNoShots
-    .alt = Majun chapoj xilitäj
-gScreenshotsDescription = Relik b'anon chi re ri Chapoj ruwäch. Man k'atzinel ta yatel el pa Firefox richin nachap, nayak, chuqa' nakomonij ri chapoj ruwäch .
+    .alt = Majun wachib'äl xilitäj
+gScreenshotsDescription = Relik b'anon chi re ri chapoj wachib'äl. Man k'atzinel ta yatel el pa Firefox richin nachap, nayak, chuqa' nakomonij ri chapoj wachib'äl.
 
 
 [[ Footer ]]
@@ -26,10 +26,18 @@ footerLinkRemoveAllData = Ke'elesäx Konojel ri taq Tzij
 
 [[ Creating page ]]
 
+// Note: { $title } is a placeholder for the title of the web page
+// captured in the screenshot. The default, for pages without titles, is
+// creatingPageTitleDefault.
+creatingPageTitle = Tajin nitz'uk { $title }
+creatingPageTitleDefault = ruxaq
 
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Na'onel chapoj wachib'äl chaqon pa ri okik'amaya'l. Nachap, nayak chuqa' nakomonij ri chapoj ruwäch toq tajin atokinäq pa Ajk'amaya'l tajin nawokisaj Firefox.
+homePageButtonMyShots = Jät pa ri taq nuwachib'al
 
 
 [[ Leave Screenshots page ]]
