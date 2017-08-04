@@ -792,16 +792,22 @@ ClipRewrites = class ClipRewrites {
 Shot.cleanDeletedShots = function() {
   let retention = config.expiredRetentionTime;
   return db.transaction((client) => {
-    return db.queryWithClient(
-      client,
-      `
-        UPDATE data
-        SET value = '{}', deleted = TRUE
-        WHERE expire_time + ($1 || ' SECONDS')::INTERVAL < CURRENT_TIMESTAMP
-              AND NOT deleted
-      `,
-      [retention]
-    ).then((result) => {
+    return Promise.resolve().then(() => {
+      return db.queryWithClient(
+        client,
+        `
+          SELECT images.id AS id
+          FROM images, data
+          WHERE images.shotid = data.id
+                AND data.expire_time + ($1 || ' SECONDS')::INTERVAL < CURRENT_TIMESTAMP
+                AND NOT data.deleted
+        `,
+        [retention]
+      );
+    }).then((result) => {
+      for (let row of result.rows) {
+        del(row.id);
+      }
       return db.queryWithClient(
         client,
         `
@@ -812,9 +818,20 @@ Shot.cleanDeletedShots = function() {
                 AND NOT data.deleted
         `,
         [retention]
-      ).then(() => {
-        return result.rowCount;
-      });
+      );
+    }).then((result) => {
+      return db.queryWithClient(
+        client,
+        `
+          UPDATE data
+          SET value = '{}', deleted = TRUE
+          WHERE expire_time + ($1 || ' SECONDS')::INTERVAL < CURRENT_TIMESTAMP
+                AND NOT deleted
+        `,
+        [retention]
+      );
+    }).then((result) => {
+      return result.rowCount;
     });
   });
 };

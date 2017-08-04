@@ -18,3 +18,5 @@ To release the server:
   - IRC will get updates
 
 Note if someone needs to re-deploy the last stage deployment (e.g., some dependent resource has been updated), then going to the [CircleCI server-prod builds](https://circleci.com/gh/mozilla-services/screenshots/tree/server-prod), finding the latest build, and "rebuilding" it should trigger a redeployment of stage.
+
+To view production deploys, see [this query](http://logs.glob.uno/?a=search&c=mozilla%23screenshots&q=deployed+to+prod&se=)
