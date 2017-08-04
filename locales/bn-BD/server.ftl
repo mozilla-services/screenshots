@@ -40,19 +40,55 @@ homePageTeaser = শীঘ্রই আসছে...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = বিনামূল্যে ডাউনলোড
 homePageGetStarted = শুরু হয়েছে
+// Note: do not translate 'Firefox Screenshots' when translating this string
+homePageHowScreenshotsWorks = Firefox Screenshots কিভাবে কাজ করে
+homePageGetStartedTitle = শুরু হয়েছে
+homePageCaptureRegion = একটি অংশ ক্যাপচার করুন
+homePageCapturePage = একটি পেজ ক্যাপচার করুন
+homePageSaveShare = সংরক্ষণ এবং শেয়ার করুন
+homePageLegalLink = আইনগত
+homePagePrivacyLink = গোপনীয়তা
+homePageTermsLink = শর্তাবলী
+homePageCookiesLink = কুকি
 
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = অ্যাকাউন্ট বাতিলকরণ নিশ্চিত করুন
+leavePageErrorGeneric = একটি ত্রুটি দেখা দিয়েছে।
+leavePageButtonProceed = অগ্রসর হন
+leavePageButtonCancel = বাতিল
+leavePageDeleted = আপনার সকল স্ক্রীনশট মুছে দেওয়া হয়েছে!
 
 
 [[ Not Found page ]]
 
+notFoundPageTitle = পাতাটি পাওয়া যায়নি
+notFoundPageIntro = ওহো!
+notFoundPageDescription = পাতাটি পাওয়া যায়নি।
 
 
 [[ Shot page ]]
 
 shotPageAlertErrorUpdatingExpirationTime = সমাপ্তি সংরক্ষণে ত্রুটি
+shotPageAlertErrorDeletingShot = শটটি মুছতে ভুল
+shotPageAlertErrorUpdatingTitle = টাইটেল সংরক্ষণে ত্রুটি
+shotPageConfirmDelete = আপনি কি নিশ্চিত যে আপনি এই শটটি মুছে ফেলতে চান?
+shotPageShareButton
+    .title = শেয়ার
+shotPageCopy = অনুলিপি
+shotPageShareFacebook
+    .title = Facebook শেয়ার করুন
+shotPageShareTwitter
+    .title = Twitter এ শেয়ার করুন
+shotPageSharePinterest
+    .title = Pinterest এ শেয়ার করুন
+shotPageShareEmail
+    .title = ইমেইলে লিংক শেয়ার করুন
+shotPageShareLink = শটটির জন্য শেয়ারযোগ্য লিঙ্ক নিন:
+shotPageCopyImageText
+    .label = ছবির টেক্সট কপি করুন
+shotPageExpiredMessage = শটটি মেয়াদোত্তীর্ণ
 
 
 [[ Shotindex page ]]
@@ -62,3 +98,5 @@ shotPageAlertErrorUpdatingExpirationTime = সমাপ্তি সংরক্
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (ডেটাবেসের সময়: { $time }ms)
