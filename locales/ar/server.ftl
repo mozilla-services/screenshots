@@ -9,7 +9,17 @@
 
 gMyShots = لقطاتي
 gHomeLink = البداية
+gNoShots
+    .alt = لم يُعثر على لقطات
 gScreenshotsDescription = لقطات الشاشة صارت أسهل. خذ لقطات الشاشة و احفظها و شاركها دون مغادرة فَيرفُكس.
+
+
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = موزيلا
+footerLinkPrivacy = تنويه الخصوصية
+footerLinkRemoveAllData = أزِل كل البيانات
 
 
 [[ Creating page ]]
