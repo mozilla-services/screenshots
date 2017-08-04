@@ -137,3 +137,6 @@ shotIndexPageConfirmShotDelete = حذف این عکس؟
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageTotalsQueryExpiredShots = منقضی شده (اما قابل بازیابی)
+metricsPageTotalsQueryExpiredDeletedShots = منقضی شده (و حذف شده)
+metricsPageShotsQueryTitle = عکس‌های روز
