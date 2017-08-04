@@ -57,6 +57,10 @@ Note these are part of the version/tag, but have not been uploaded to the Firefo
 * about:home is not treated like about:newtab ([#3088](https://github.com/mozilla-services/screenshots/issues/3088)). Fixes [#3029](https://github.com/mozilla-services/screenshots/issues/3029) [4633694](https://github.com/mozilla-services/screenshots/commit/4633694)
 * preview shot before saving full page/visibleremove addToMyShots [c87db61](https://github.com/mozilla-services/screenshots/commit/c87db61)
 
+## Version 10.10.0
+
+* Synchronize startup code more carefully ([#3257](https://github.com/mozilla-services/screenshots/issues/3257))
+
 ## Version 10.9.0
 
 Note: the 10.x.0 series is exported to Firefox 55.
