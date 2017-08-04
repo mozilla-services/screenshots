@@ -26,7 +26,7 @@ XPCOMUtils.defineLazyModuleGetter(this, "Services",
 
 let addonResourceURI;
 let appStartupDone;
-const appStartupPromise = new Promise((resolve, reject) => {
+let appStartupPromise = new Promise((resolve, reject) => {
   appStartupDone = resolve;
 });
 
@@ -45,7 +45,7 @@ const prefObserver = {
     // aData is the name of the pref that's been changed (relative to aSubject)
     if (aData == USER_DISABLE_PREF || aData == SYSTEM_DISABLE_PREF) {
       // eslint-disable-next-line promise/catch-or-return
-      appStartupPromise.then(handleStartup);
+      appStartupPromise = appStartupPromise.then(handleStartup);
     }
   }
 };
@@ -130,7 +130,7 @@ function startup(data, reason) { // eslint-disable-line no-unused-vars
   prefObserver.register();
   addonResourceURI = data.resourceURI;
   // eslint-disable-next-line promise/catch-or-return
-  appStartupPromise.then(handleStartup);
+  appStartupPromise = appStartupPromise.then(handleStartup);
 }
 
 function shutdown(data, reason) { // eslint-disable-line no-unused-vars
@@ -139,7 +139,8 @@ function shutdown(data, reason) { // eslint-disable-line no-unused-vars
     id: ADDON_ID,
     resourceURI: addonResourceURI
   });
-  stop(webExtension, reason);
+  // Because the prefObserver is unregistered above, this _should_ terminate the promise chain.
+  appStartupPromise = appStartupPromise.then(() => { stop(webExtension, reason); });
 }
 
 function install(data, reason) {} // eslint-disable-line no-unused-vars
@@ -161,14 +162,14 @@ function handleStartup() {
   });
 
   if (!shouldDisable() && !webExtension.started) {
-    start(webExtension);
+    return start(webExtension);
   } else if (shouldDisable()) {
-    stop(webExtension, ADDON_DISABLE);
+    return stop(webExtension, ADDON_DISABLE);
   }
 }
 
 function start(webExtension) {
-  webExtension.startup(startupReason).then((api) => {
+  return webExtension.startup(startupReason).then((api) => {
     api.browser.runtime.onMessage.addListener(handleMessage);
     LibraryButton.init(webExtension);
     initPhotonPageAction(api);
@@ -184,8 +185,6 @@ function start(webExtension) {
 }
 
 function stop(webExtension, reason) {
-  webExtension.shutdown(reason);
-
   if (reason != APP_SHUTDOWN) {
     LibraryButton.uninit();
     if (photonPageAction) {
@@ -193,6 +192,7 @@ function stop(webExtension, reason) {
       photonPageAction = null;
     }
   }
+  return Promise.resolve(webExtension.shutdown(reason));
 }
 
 function handleMessage(msg, sender, sendReply) {
