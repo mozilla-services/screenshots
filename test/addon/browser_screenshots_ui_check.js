@@ -13,9 +13,12 @@ add_task(async function() {
     await promiseScreenshotsReset();
   });
 
+  let id = AppConstants.MOZ_PHOTON_THEME ? "pageAction-panel-screenshots"
+                                         : "screenshots_mozilla_org-browser-action";
+
   await BrowserTestUtils.waitForCondition(
-    () => document.getElementById("pageAction-panel-screenshots"),
+    () => document.getElementById(id),
     "Screenshots button should be present", 100, 100);
 
-  checkElements(true, ["pageAction-panel-screenshots"]);
+  checkElements(true, [id]);
 });
