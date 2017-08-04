@@ -65,7 +65,7 @@ homePageCookiesLink = Куки
 
 leavePageConfirmDelete = Підтвердити видалення облікового запису
 // Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = У вас має бути встановлений Firefox Screenshots, щоб видалити ваш обліковий запис
+leavePageErrorAddonRequired = Щоб видалити обліковий запис, у вас повинен бути встановлений Firefox Screenshots
 leavePageErrorGeneric = Сталася помилка
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ця дія назавжди видалить усі ваші дані Firefox Screenshots.
@@ -86,8 +86,8 @@ notFoundPageDescription = Сторінку не знайдено.
 // This is the HTML title tag of the page
 shotPageTitle = Знімок екрану: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Помилка при збереженні терміну зберігання
-shotPageAlertErrorDeletingShot = Помилка під час видалення знімку
-shotPageAlertErrorUpdatingTitle = Помилка збереження назви
+shotPageAlertErrorDeletingShot = Помилка при видаленні знімку
+shotPageAlertErrorUpdatingTitle = Помилка при збереженні назви
 shotPageConfirmDelete = Ви впевнені, що хочете назавжди видалити цей знімок?
 shotPageShareButton
     .title = Поділітися
@@ -117,7 +117,7 @@ shotPageExpiredMessageDetails = Сторінка, з якої створений
 shotPageDeleteButton
     .title = Видалити цей знімок
 shotPageAbuseButton
-    .title = Цей знімок ображає, є спамом. чи має інші проблеми
+    .title = Цей знімок образливий, є спамом. чи має інші проблеми
 shotPageDownloadShot
     .title = Завантажити
 shotPageDownload = Завантажити
@@ -130,7 +130,7 @@ shotPageDMCAContact = Будь ласка, напишіть на { $dmca }, що
 shotPageDMCAWarning = Якщо на ваші знімки поскаржилися кілька разів, ми можемо заблокувати вам доступ до Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Будь ласка, додайте до вашого листа посилання на цей знімок: { $url }
-shotPageKeepFor = Як довго цей знімок буде зберігатися?
+shotPageKeepFor = Як довго буде зберігатися цей знімок?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Виберіть час
 shotPageKeepIndefinitely = Нескінченно
@@ -196,7 +196,7 @@ shotIndexPageSearchPlaceholder
 shotIndexPageSearchButton
     .title = Пошук
 shotIndexPageNoShotsMessage = Немає збережених знімків.
-shotIndexPageNoShotsInvitation = Нужбо, створіть кілька.
+shotIndexPageNoShotsInvitation = Ну ж бо, створіть кілька.
 shotIndexPageLookingForShots = Шукаємо ваші знімки...
 shotIndexPageNoSearchResultsIntro = Хмм
 shotIndexPageNoSearchResults = Ми не можемо знайти знімки за вашим запитом.
@@ -243,7 +243,7 @@ metricsPageVersionQueryDescription = Версія додатку, що вико�
 metricsPageVersionQueryUsers = Кількість користувачів, що входять
 metricsPageVersionQueryVersion = Версія додатку
 metricsPageVersionQueryLastSeen = День
-metricsPageHeader = Метрика
+metricsPageHeader = Метрики
 // Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Згенеровано: { $created }
 // Note { $time } is a placeholder for a number of milliseconds, like '100'
