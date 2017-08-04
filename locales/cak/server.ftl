@@ -7,10 +7,10 @@
 // Global phrases shared across pages, prefixed with 'g'
 [[ global ]]
 
-gMyShots = Taq Wachib'äl
+gMyShots = Taq Nuchapoj
 gHomeLink = Tikirib'äl
 gNoShots
-    .alt = Majun wachib'äl xilitäj
+    .alt = Majun chapoj xilitäj
 gScreenshotsDescription = Relik b'anon chi re ri chapoj wachib'äl. Man k'atzinel ta yatel el pa Firefox richin nachap, nayak, chuqa' nakomonij ri chapoj wachib'äl.
 
 
@@ -70,14 +70,23 @@ leavePageErrorGeneric = Xk'ulwachitäj jun sachoj
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Re re' xkeruyüj el konojel taq rutzij Firefox Chapoj Awachib'al.
 leavePageButtonProceed = Tib'anatäj
+leavePageButtonCancel = Tiq'at
+leavePageDeleted = ¡Xeyuj konojel ri taq chapoj awachib'al!
 
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Man Xilitäj ta ri Ruxaq
+notFoundPageIntro = Uy.
+notFoundPageDescription = Man xilitäj ta ruxaq
 
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Chapoj Wachib'äl: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = Xsach toq nuyäk ruq'ijul
+shotPageAlertErrorDeletingShot = Xsach toq nuyüj chapoj
 
 
 [[ Shotindex page ]]
