@@ -83,6 +83,8 @@ notFoundPageDescription = Az oldal nem található.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Képernyőkép: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Hiba a lejárat mentésekor
 shotPageAlertErrorDeletingShot = Hiba a kép törlésekor
 shotPageAlertErrorUpdatingTitle = Hiba a cím mentésekor
