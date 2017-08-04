@@ -36,7 +36,7 @@ class Clip extends React.Component {
       return null;
     }
     let backgroundStyle = "transparent url('" + this.props.staticLink("/static/img/spinner.svg") + "') center no-repeat";
-    let node = <img id="clipImage" style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%", display: this.state.imageDisplay, background: backgroundStyle }} ref={clipImage => this.clipImage = clipImage} src={ clip.image.url } alt={ clip.image.text } />;
+    let node = <img id="clipImage" style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%", background: backgroundStyle }} ref={clipImage => this.clipImage = clipImage} src={ clip.image.url } alt={ clip.image.text } />;
     return <div ref={clipContainer => this.clipContainer = clipContainer} className="clip-container">
       { this.copyTextContextMenu() }
       <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) } contextMenu="clip-image-context">
