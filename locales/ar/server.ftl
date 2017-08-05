@@ -45,15 +45,21 @@ homePageGetStarted = ابدأ
 homePageHowScreenshotsWorks = كيف تعمل لقطات فَيرفُكس
 homePageGetStartedTitle = ابدأ
 homePageCapturePage = التقط صفحة
+homePageSaveShare = احفظ وشارِك
+homePagePrivacyLink = الخصوصية
+homePageTermsLink = الشروط
 homePageCookiesLink = الكعكات
 
 
 [[ Leave Screenshots page ]]
 
 leavePageConfirmDelete = أكّد حذف الحساب
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = يجب أن تكون «لقطات فَيَرفُكس» مثبّتة لتحذف حسابك
 leavePageErrorGeneric = حدث خطأ ما
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = سيمحي هذا كل بيانات «لقطات فَيَرفُكس» إلى الأبد.
+leavePageButtonProceed = تابِع
 leavePageButtonCancel = ألغِ
 leavePageDeleted = مُسحت كل اللقطات لديك.
 
@@ -73,6 +79,10 @@ shotPageConfirmDelete = أمتأكد من حذف هذه اللقطة إلى ال
 shotPageShareButton
     .title = شارِك
 shotPageCopy = انسخ
+shotPageShareFacebook
+    .title = شارِك على فيسبوك
+shotPageShareTwitter
+    .title = شارِك على تويتر
 shotPageShareEmail
     .title = شارك الرابط عبر البريد الإلكتروني
 shotPageCopyImageText
@@ -95,6 +105,7 @@ shotIndexPageSearchPlaceholder
 shotIndexPageSearchButton
     .title = ابحث
 shotIndexPageNoShotsMessage = لا لقطات محفوظة.
+shotIndexPageLookingForShots = يبحث عن لقطاتك…
 shotIndexPageNoSearchResults = تعذّر العثور على أي لقطة تطابق معايير البحث.
 shotIndexPageClearSearchButton
     .title = امسح البحث
