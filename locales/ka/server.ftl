@@ -83,6 +83,8 @@ notFoundPageDescription = გვერდი ვერ მოიძებნა.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = სურათი: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = შეცდომა შენახვის ვადის განსაზღვრისას
 shotPageAlertErrorDeletingShot = შედცომა სურათის წაშლისას
 shotPageAlertErrorUpdatingTitle = შეცდომა სახელის დარქმევისას
