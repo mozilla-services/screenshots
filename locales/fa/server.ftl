@@ -93,6 +93,10 @@ shotPageKeepOneMonth = ‏‏۱ ماه
 shotPageSaveExpiration = ذخیره
 shotPageCancelExpiration = لغو
 shotPageDoesNotExpire = منقضی نمی‌شود
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = { $timediff } منقضی می‌شود
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = منقضی شده { $timediff }
 timeDiffJustNow = هم‌اکنون
 timeDiffMinutesAgo = { $num ->
        *[other] ۱ دقیقه پیش
@@ -122,6 +126,8 @@ timeDiffFutureDays = { $num ->
 shotIndexPageErrorDeletingShot = خطا هنگام پاک کردن عکس: { $status } { $statusText }
 // { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = عکس‌های من : جستجو کن برای { $searchTerm }
+shotIndexPageSearchPlaceholder
+    .placeholder = جستجو در عکس‌های من
 shotIndexPageSearchButton
     .title = جستجو
 shotIndexPageNoShotsMessage = عکس ذخیره شده‌ای وجود ندارد.
@@ -137,6 +143,41 @@ shotIndexPageConfirmShotDelete = حذف این عکس؟
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = معیار‌های Firefox Screenshots
+metricsPageTotalsQueryTitle = مجموع
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = یک نگاه کلی به Screenshots
+metricsPageTotalsQueryDevices = مجموع دستگاه‌های ثبت شده
+metricsPageTotalsQueryActiveShots = عکس‌های فعال
 metricsPageTotalsQueryExpiredShots = منقضی شده (اما قابل بازیابی)
 metricsPageTotalsQueryExpiredDeletedShots = منقضی شده (و حذف شده)
 metricsPageShotsQueryTitle = عکس‌های روز
+metricsPageShotsQueryDescription = تعداد عکس‌هایی که در هر روز ایجاد شده (در ۳۰ روز گذشته)
+metricsPageShotsQueryCount = تعداد عکس‌ها
+metricsPageShotsQueryDay = روز
+metricsPageUsersQueryTitle = کاربران هر روز
+metricsPageUsersQueryDescription = تعداد کاربرانی که حداقل یک عکس ایجاد کرده‌اند، روزانه (در ۳۰ روز گذشته)
+metricsPageUsersQueryCount = تعداد کاربران
+metricsPageUsersQueryDay = روز
+metricsPageUserShotsQueryTitle = تعداد عکس‌ها برای هر کاربر
+metricsPageUserShotsQueryDescription = تعداد کاربرانی که در مجموع حدود N عکس دارند
+metricsPageUserShotsQueryCount = تعداد کاربران
+metricsPageUserShotsQueryShots = تعداد تقریبی عکس‌های فعال (منقضی نشده)
+metricsPageRetentionQueryDescription = تعداد روز‌ها از نخستین عکس کاربر تا آخرین عکس، گروه بندی‌شده بر اساس هفته آغازین
+metricsPageRetentionQueryUsers = تعداد کاربران
+metricsPageRetentionQueryDays = فاصله روزهای بین نخستین تا آخرین عکس کاربر
+metricsPageRetentionQueryFirstWeek = هفته‌ای که کاربر اول عکس خود را ایجاد کرده است
+metricsPageTotalRetentionQueryDescription = مدت زمانی که کاربر در حال ایجاد عکس بوده است، گروه‌بندی شده بر اساس هفته
+metricsPageTotalRetentionQueryUsers = تعداد کاربران
+metricsPageTotalRetentionQueryDays = روز‌هایی که کاربر عکس ایجاد کرده است
+metricsPageVersionQueryTitle = نسخه افزونه
+metricsPageVersionQueryDescription = نسخه افزونه مورد استفاده در هنگام ورود، در 1۴ روز گذشته
+metricsPageVersionQueryUsers = تعداد کاربران در حال ورود
+metricsPageVersionQueryVersion = نسخه افزونه
+metricsPageVersionQueryLastSeen = روز
+metricsPageHeader = معیارها
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = تولید شده در: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (زمان پایگاه‌داده: { $time }ms)
