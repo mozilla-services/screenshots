@@ -105,6 +105,7 @@ shotIndexPageSearchPlaceholder
 shotIndexPageSearchButton
     .title = ابحث
 shotIndexPageNoShotsMessage = لا لقطات محفوظة.
+shotIndexPageNoShotsInvitation = حرّك نفسك والتقط شيئا.
 shotIndexPageLookingForShots = يبحث عن لقطاتك…
 shotIndexPageNoSearchResults = تعذّر العثور على أي لقطة تطابق معايير البحث.
 shotIndexPageClearSearchButton
@@ -115,4 +116,15 @@ shotIndexPageConfirmShotDelete = أنحذف هذه اللقطة؟
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageShotsQueryDescription = عدد اللقطات المُنشأة يوميا (خلال الثلاثين يوما الماضية)
+metricsPageShotsQueryCount = عدد اللقطات
+metricsPageShotsQueryDay = اليوم
+metricsPageUsersQueryCount = عدد المستخدمين
+metricsPageUsersQueryDay = اليوم
+metricsPageUserShotsQueryTitle = عدد اللقطات لكل مستخدم
+metricsPageUserShotsQueryCount = عدد المستخدمين
+metricsPageRetentionQueryUsers = عدد المستخدمين
+metricsPageRetentionQueryFirstWeek = الأسبوع الذي أنشأ فيه المستخدم أول لقطة
+metricsPageTotalRetentionQueryUsers = عدد المستخدمين
+metricsPageVersionQueryTitle = إصدارة الإضافة
 metricsPageVersionQueryVersion = إصدارة الإضافة
