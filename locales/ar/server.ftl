@@ -19,6 +19,7 @@ gScreenshotsDescription = لقطات الشاشة صارت أسهل. خذ لقط
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = موزيلا
 footerLinkPrivacy = تنويه الخصوصية
+footerLinkDiscourse = أخبرنا بانطباعك
 footerLinkRemoveAllData = أزِل كل البيانات
 
 
@@ -33,6 +34,8 @@ creatingPageTitleDefault = صفحة
 
 [[ Home page ]]
 
+homePageDescription
+    .content = لقطات مباشِرة داخل المتصفح نفسه. خُذ لقطات الشاشة واحفظها وشاركها وأنت تتصفح الوِب مستخدما فَيرفُكس.
 homePageButtonMyShots = اذهب إلى لقطاتي
 homePageTeaser = قريبًا…
 homePageDownloadFirefoxTitle = فَيرفُكس
@@ -41,24 +44,64 @@ homePageGetStarted = ابدأ
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = كيف تعمل لقطات فَيرفُكس
 homePageGetStartedTitle = ابدأ
+homePageCapturePage = التقط صفحة
+homePageCookiesLink = الكعكات
 
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = أكّد حذف الحساب
+leavePageErrorGeneric = حدث خطأ ما
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = سيمحي هذا كل بيانات «لقطات فَيَرفُكس» إلى الأبد.
+leavePageButtonCancel = ألغِ
+leavePageDeleted = مُسحت كل اللقطات لديك.
 
 
 [[ Not Found page ]]
 
+notFoundPageTitle = لم يُعثر على الصفحة
+notFoundPageIntro = آخ.
+notFoundPageDescription = لم يُعثر على الصفحة.
 
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = اللقطة: { $originalTitle }
+shotPageConfirmDelete = أمتأكد من حذف هذه اللقطة إلى الأبد؟
+shotPageShareButton
+    .title = شارِك
+shotPageCopy = انسخ
+shotPageShareEmail
+    .title = شارك الرابط عبر البريد الإلكتروني
+shotPageCopyImageText
+    .label = انسخ نص الصورة
+shotPageConfirmDeletion = أمتأكد من حذف هذه اللقطة إلى الأبد؟
+shotPageDeleteButton
+    .title = احذف هذه اللقطة
+shotPageDownloadShot
+    .title = نزّل
+shotPageDownload = نزّل
 
 
 [[ Shotindex page ]]
 
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = خطأ في تصيير الصفحة: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = ابحث في لقطاتي
+shotIndexPageSearchButton
+    .title = ابحث
+shotIndexPageNoShotsMessage = لا لقطات محفوظة.
+shotIndexPageNoSearchResults = تعذّر العثور على أي لقطة تطابق معايير البحث.
+shotIndexPageClearSearchButton
+    .title = امسح البحث
+shotIndexPageConfirmShotDelete = أنحذف هذه اللقطة؟
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageVersionQueryVersion = إصدارة الإضافة
