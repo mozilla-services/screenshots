@@ -124,6 +124,8 @@ shotPageUpsellFirefox = Prenesite Firefox zdaj
 shotPageDMCAMessage = Ta posnetek ni več na voljo zaradi zahtev intelektualne lastnine tretje osebe.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Za več informacij pošljite e-pošto na { $dmca }
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Če bodo vaši posnetki predmet več pritožb, vam bomo morda onemogočili dostop do storitve Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Vključite URL tega posnetka v e-pošto: { $url }
 shotPageKeepFor = Kako dolgo želite ohraniti ta posnetek?
@@ -193,6 +195,8 @@ shotIndexPageSearchResultsTitle = Moji posnetki: išči { $searchTerm }
 // { $error } is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
 shotIndexPageErrorRendering = Napaka pri izrisovanju strani: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Iskanje mojih posnetkov
 shotIndexPageSearchButton
     .title = Išči
 shotIndexPageNoShotsMessage = Ni shranjenih posnetkov.
@@ -210,6 +214,7 @@ shotIndexPageConfirmShotDelete = Izbrišem ta posnetek?
 
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Metrika Firefox Screenshots
+metricsPageTotalsQueryTitle = Skupaj
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Pregled posnetkov zaslona
 metricsPageTotalsQueryDevices = Skupno število registriranih naprav
@@ -228,7 +233,9 @@ metricsPageUserShotsQueryTitle = Število posnetkov na uporabnika
 metricsPageUserShotsQueryDescription = Število uporabnikov, ki imajo približno N skupnih posnetkov
 metricsPageUserShotsQueryCount = Število uporabnikov
 metricsPageUserShotsQueryShots = Približno število aktivnih (nepretečenih) posnetkov
+metricsPageRetentionQueryDescription = Št. dni od uporabnikovega prvega posnetka do najnovejšega, združeno po začetnem tednu
 metricsPageRetentionQueryUsers = Število uporabnikov
+metricsPageRetentionQueryDays = Dni od uporabnikovega prvega posnetka do najnovejšega
 metricsPageRetentionQueryFirstWeek = Teden, ko je uporabnik ustvaril prvi posnetek
 metricsPageTotalRetentionQueryUsers = Število uporabnikov
 metricsPageTotalRetentionQueryDays = Dnevi, ko je uporabnik ustvarjal posnetke
@@ -240,3 +247,5 @@ metricsPageVersionQueryLastSeen = Dan
 metricsPageHeader = Metrika
 // Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Ustvarjeno: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (čas pod. zbirke: { $time } ms)
