@@ -45,6 +45,7 @@ homePageGetStarted = Başla
 homePageHowScreenshotsWorks = Firefox Ekran Görüntüləri necə işləyir
 homePageGetStartedTitle = Başla
 homePageCaptureRegion = Bölgəni çək
+homePageCapturePage = Səhifəni çək
 homePageSaveShare = Saxla və Paylaş
 homePageLegalLink = Hüquqi
 homePagePrivacyLink = Məxfilik
@@ -55,14 +56,41 @@ homePageCookiesLink = Çərəzlər
 [[ Leave Screenshots page ]]
 
 leavePageConfirmDelete = Hesab silməni təsdiqlə
+leavePageErrorGeneric = Xəta baş verdi
+leavePageButtonProceed = Davam et
+leavePageButtonCancel = Ləğv et
+leavePageDeleted = Bütün ekran görüntüləriniz silindi!
 
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Səhifə tapılmadı
+notFoundPageIntro = Uups.
+notFoundPageDescription = Səhifə tapılmadı.
 
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Ekran görüntüsü: { $originalTitle }
+shotPageShareButton
+    .title = Paylaş
+shotPageCopy = Köçür
+shotPageCopied = Köçürüldü
+shotPageShareFacebook
+    .title = Facebook-da paylaş
+shotPageShareTwitter
+    .title = Twitter-də paylaş
+shotPageSharePinterest
+    .title = Pinterest-də paylaş
+shotPageShareEmail
+    .title = Keçidi e-poçt ilə paylaş
+shotPageDownloadShot
+    .title = Endir
+shotPageDownload = Endir
+shotPageSaveExpiration = saxla
+shotPageCancelExpiration = ləğv et
+timeDiffJustNow = indicə
 
 
 [[ Shotindex page ]]
@@ -72,3 +100,7 @@ leavePageConfirmDelete = Hesab silməni təsdiqlə
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageShotsQueryDay = Gün
+metricsPageUsersQueryDay = Gün
+metricsPageVersionQueryVersion = Əlavə versiyası
+metricsPageVersionQueryLastSeen = Gün
