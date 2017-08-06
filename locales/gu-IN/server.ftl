@@ -132,14 +132,47 @@ timeDiffDaysAgo = { $num ->
        *[other] { $number } દિવસ પહેલા
     }
 timeDiffFutureSeconds = થોડીવારમાં
+timeDiffFutureMinutes = { $num ->
+        [one] 1 મિનિટમાં
+       *[other] { $number } મિનિટમાં
+    }
+timeDiffFutureHours = { $num ->
+        [one] 1 કલાકમાં
+       *[other] { $number } કલાકમાં
+    }
+timeDiffFutureDays = { $num ->
+        [one] કાલે
+       *[other] { $number } દિવસમાં
+    }
 
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = શોટ કાઢી નાખવામાં ભૂલ: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = મારા શોટ્સ: માટે શોધો { $searchTerm }
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = પૃષ્ઠ પ્રસ્તુતિમાં ભૂલ: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = મારા શોટ શોધો
+shotIndexPageSearchButton
+    .title = શોધો
+shotIndexPageNoShotsMessage = કોઈ સાચવેલા શોટ નથી
+shotIndexPageNoShotsInvitation = જાઓ, કેટલાક બનાવો
+shotIndexPageLookingForShots = તમારા શૉટ્સ શોધી રહ્યાં છે…
+shotIndexPageNoSearchResultsIntro = હમમ
+shotIndexPageNoSearchResults = અમે તમારી શોધ સાથે મેળ ખાતા કોઈપણ શોટ શોધી શકતા નથી.
+shotIndexPageClearSearchButton
+    .title = શોધ સાફ કરો
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageShotsQueryDay = દિવસ
+metricsPageUsersQueryDay = દિવસ
 metricsPageVersionQueryLastSeen = દિવસ
 metricsPageHeader = માપદંડ
