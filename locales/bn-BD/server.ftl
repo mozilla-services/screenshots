@@ -7,7 +7,7 @@
 // Global phrases shared across pages, prefixed with 'g'
 [[ global ]]
 
-gMyShots = আমার শট
+gMyShots = আমার শটসমূহ
 gHomeLink = হোম
 gNoShots
     .alt = কোন শট পাওয়া যায়নি
@@ -121,9 +121,7 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = ডাউনলোড
 shotPageDownload = ডাউনলোড
-shotPageScreenshotsDescription =
-    স্ক্রিনশট নেওয়া অনেক সহজ করে দেওয়া হয়েছে। ফায়ারফক্স থেকে বের না হয়েই স্ক্রিনশট নিন, সংরক্ষণ করুন এবং অন্যদের সাথে শেয়ারও করুন।
-
+shotPageScreenshotsDescription = স্ক্রিনশট নেওয়া অনেক সহজ করে দেওয়া হয়েছে। ফায়ারফক্স থেকে বের না হয়েই স্ক্রিনশট নিন, সংরক্ষণ করুন এবং অন্যদের সাথে শেয়ারও করুন।
 shotPageUpsellFirefox = এখন Firefox নিন
 shotPageDMCAMessage = এক তৃতীয় পক্ষের মেধাসত্ত্ব দাবীর প্রেক্ষিতে শটটি আর পাওয়া যাবে না।
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
