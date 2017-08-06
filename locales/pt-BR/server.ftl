@@ -86,7 +86,7 @@ notFoundPageDescription = Página não encontrada.
 // This is the HTML title tag of the page
 shotPageTitle = Captura de tela: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Erro ao salvar tempo limite
-shotPageAlertErrorDeletingShot = Erro ao deletar captura
+shotPageAlertErrorDeletingShot = Erro ao excluir captura
 shotPageAlertErrorUpdatingTitle = Erro ao salvar título
 shotPageConfirmDelete = Tem certeza que deseja excluir essa captura permanentemente?
 shotPageShareButton
@@ -102,12 +102,12 @@ shotPageSharePinterest
 shotPageShareEmail
     .title = Compartilhar link via e-mail
 shotPageShareLink = Obter um link para compartilhar essa captura:
-shotPagePrivacyMessage = Qualquer um com o link pode ver essa captura.
+shotPagePrivacyMessage = Qualquer pessoa com o link pode ver essa captura.
 shotPageCopyImageText
     .label = Copiar texto da imagem
 shotPageConfirmDeletion = Tem certeza que deseja excluir essa captura permanentemente?
 // Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Se você não fizer nada, esta captura será excluída { $timediff }.
+shotPageExpirationMessage = Se você não fizer nada, esta captura será excluída em { $timediff }.
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = restaurar até { $date }
@@ -119,34 +119,34 @@ shotPageDeleteButton
 shotPageAbuseButton
     .title = Reportar essa captura por abuso, spam ou outros problemas
 shotPageDownloadShot
-    .title = Download
-shotPageDownload = Download
+    .title = Baixar
+shotPageDownload = Baixar
 shotPageScreenshotsDescription = Capturas de tela de forma simples. Capture, salve e compartilhe telas sem sair do Firefox.
 shotPageUpsellFirefox = Baixe o Firefox agora
-shotPageDMCAMessage = Essas capturas não estão mais disponíveis devido reclamação de propriedade intelectual de terceiros.
+shotPageDMCAMessage = Essa captura não está mais disponível devido reclamação de Direito Autoral de terceiros.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Por favor, envie um e-mail para { $dmca } para obter mais informações.
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Se suas capturas estiverem associadas a múltiplas reclamações, poderemos revogar seu acesso ao Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
-shotPageDMCAIncludeLink = Por favor inclua a URL dessa captura no seu e-mail: { $url }
+shotPageDMCAIncludeLink = Por favor, inclua a URL dessa captura no seu e-mail: { $url }
 shotPageKeepFor = Quanto tempo essa captura deve ficar armazenada?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Selecionar tempo
 shotPageKeepIndefinitely = Indefinidamente
 shotPageKeepTenMinutes = 10 minutos
-shotPageKeepOneHour = 1 Hora
+shotPageKeepOneHour = 1 hora
 shotPageKeepOneDay = 1 dia
-shotPageKeepOneWeek = 1 Semana
+shotPageKeepOneWeek = 1 semana
 shotPageKeepTwoWeeks = 2 semanas
 shotPageKeepOneMonth = 1 mês
 shotPageSaveExpiration = salvar
 shotPageCancelExpiration = cancelar
 shotPageDoesNotExpire = não expira
 // Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = expira { $timediff }
+shotPageExpiresIn = expira em { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = expirou { $timediff }
+shotPageExpired = expirou há { $timediff }
 timeDiffJustNow = agora
 timeDiffMinutesAgo = { $num ->
         [one] 1 minuto atrás
