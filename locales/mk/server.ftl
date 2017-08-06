@@ -51,7 +51,10 @@ homePageCaptureRegion = Фатете слика од регион
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Кликнете и влечете за да означите зона за снимање. Или пак, застанете со покажувачот и кликнете — Screenshots ќе ја избере зоната за Вас. Ви се допаѓа тоа што го гледате? Изберете Сними за да ја зачувате сликата на Интернет или пак, копчето со стрелка надолу за да ја преземете сликата на Вашиот компјутер.
 homePageCapturePage = Фатете слика од страница
+homePageCapturePageDescription = Користете ги копчињата горе-десно за да фатите слики од цели страници. Копчето Сними видлив дел ќе го фати делот што е видлив без лизгање, а Сними цела страница ќе ја фати целата страница.
 homePageSaveShare = Сними и сподели
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Кога ќе фатите слика од екран, Firefox ја снима на Интернет, во Вашата библиотека Screenshots и ја копира адресата до сликата во меморија. Автоматски ги чуваме Вашите слики во времетраење од две недели, но Вие можете да ги избришете во било кој момент или пак да го промените рокот на чување за да ги задржите подолго во Вашата библиотека.
 homePageLegalLink = Правна напомена
 homePagePrivacyLink = Приватност
 homePageTermsLink = Услови
