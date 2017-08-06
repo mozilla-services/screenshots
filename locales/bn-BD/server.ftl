@@ -53,6 +53,8 @@ homePageCaptureRegionDescription = ক্লিক এবং ড্রাগ ক
 homePageCapturePage = একটি পেজ ক্যাপচার করুন
 homePageCapturePageDescription = পেজসমূহ সম্পূর্ণ ক্যাপচার করতে চাইলে উপরের ডান দিকের বোতাম ব্যবহার করুন। আপনি স্ক্রলিং না করে একটি ওয়েব পেজের যতটুকু অংশ দেখতে পান, তা ক্যাপচার করে দৃশ্যমান সংরক্ষণ বোতামটি, আর সম্পূর্ণ পেজ সংরক্ষণ ওই ওয়েবে পেজের সবকিছু ক্যাপচার করে।
 homePageSaveShare = সংরক্ষণ এবং শেয়ার করুন
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = আপনি যখন কোন শট নেন, Firefox তখন আপনার স্ক্রিনশটটি আপনার অনলাইন স্ক্রিনশট লাইব্রেরীতে পোস্ট করে দেয়ও আর লিংকটা আপনার ক্লিপবোর্ডে কপি করে দেয়। আমরা স্বয়ংক্রিয় ভাবে আপনার স্ক্রিনশট দুই সপ্তাহের জন্যে সংরক্ষণ করি, আপনি চাইলে যেকোন সময় আপনার সটটি মুছে ফেলতে পারেন অথবা মেয়াদোত্তীর্ণের তারিখ বদল করে লম্বা সময়ের জন্যে রেখে দিতে পারেন।
 homePageLegalLink = আইনগত
 homePagePrivacyLink = গোপনীয়তা
 homePageTermsLink = শর্তাবলী
@@ -62,7 +64,11 @@ homePageCookiesLink = কুকি
 [[ Leave Screenshots page ]]
 
 leavePageConfirmDelete = অ্যাকাউন্ট বাতিলকরণ নিশ্চিত করুন
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = আপনার একাউন্টটি অপসারণ করতে হলে Firefox Screenshots ইনস্টল করা থাকতে হবে।
 leavePageErrorGeneric = একটি ত্রুটি দেখা দিয়েছে।
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = এতে করে আপনার Firefox Screenshots এর সকল ডাটা স্থায়ীরূপে মুছে যাবে।
 leavePageButtonProceed = অগ্রসর হন
 leavePageButtonCancel = বাতিল
 leavePageDeleted = আপনার সকল স্ক্রীনশট মুছে দেওয়া হয়েছে!
@@ -98,6 +104,12 @@ shotPageShareLink = শটটির জন্য শেয়ারযোগ্য 
 shotPagePrivacyMessage = এই লিংকে যেকেউ শটটি দেখতে পারবে।
 shotPageCopyImageText
     .label = ছবির টেক্সট কপি করুন
+shotPageConfirmDeletion = আপনি কি নিশ্চিত এই শটটি স্থায়ীরূপে মুছে ফেলতে চান?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = আপনি যদি কিছু না করেন, তাহলে এই শটটি স্থায়ীরূপে মুছে ফেলা হবে { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = { $date } তারিখ পর্যন্ত পুনঃস্থাপন করবে
 shotPageExpiredMessage = শটটি মেয়াদোত্তীর্ণ
 shotPageDeleteButton
     .title = শটটি মুছে ফেলুন
