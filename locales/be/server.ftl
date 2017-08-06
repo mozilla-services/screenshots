@@ -116,9 +116,7 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Сцягнуць
 shotPageDownload = Сцягнуць
-shotPageScreenshotsDescription =
-    Рабіць скрыншоты стала прасцей. Рабіце, захоўвайце і дзяліцеся скрыншотамі, не пакідаючы Firefox.
-
+shotPageScreenshotsDescription = Рабіць скрыншоты стала прасцей. Рабіце, захоўвайце і дзяліцеся скрыншотамі, не пакідаючы Firefox.
 shotPageUpsellFirefox = Атрымаць Firefox зараз
 shotPageDMCAMessage = Гэты здымак больш недаступны з-за парушэння аўтарскіх правоў трэцяга боку.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -145,7 +143,27 @@ shotPageExpiresIn = тэрмін захоўвання мінае { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = тэрмін захоўвання скончыўся { $timediff }
 timeDiffJustNow = толькі што
+timeDiffMinutesAgo = { $num ->
+        [one] хвіліну таму
+        [few] { $number } хвіліны таму
+       *[other] { $number } хвілін таму
+    }
+timeDiffHoursAgo = { $num ->
+        [one] гадзіну таму
+        [few] { $number } гадзіны таму
+       *[other] { $number } гадзін таму
+    }
+timeDiffDaysAgo = { $num ->
+        [one] учора
+        [few] { $number } дні таму
+       *[other] { $number } дзён таму
+    }
 timeDiffFutureSeconds = праз некалькі секунд
+timeDiffFutureMinutes = { $num ->
+        [one] за хвіліну
+        [few] за { $number } хвіліны
+       *[other] за { $number } хвілін
+    }
 
 
 [[ Shotindex page ]]
