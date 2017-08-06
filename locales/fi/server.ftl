@@ -108,7 +108,12 @@ shotPageCopyImageText
 shotPageConfirmDeletion = Haluatko varmasti poistaa tämän kaappauksen pysyvästi?
 // Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Jos et tee mitään, kaappaus poistetaan pysyvästi { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = palauta { $date } saakka
 shotPageExpiredMessage = Tämä kaappaus on vanhentunut.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Tässä on sivu, josta kaappaus alun perin luotiin:
 shotPageDeleteButton
     .title = Poista tämä kaappaus
 shotPageAbuseButton
@@ -118,8 +123,11 @@ shotPageDownloadShot
 shotPageDownload = Lataa
 shotPageScreenshotsDescription = Kuvakaappaukset helposti. Ota, tallenna ja jaa kuvakaappauksia poistumatta Firefoxista.
 shotPageUpsellFirefox = Lataa Firefox nyt
+shotPageDMCAMessage = Tämä kaappaus ei ole enää saatavissa, koska kolmas osapuoli teki immateriaalioikeusvaatimuksen.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Pyydä lisätietoja lähettämällä sähköpostia osoitteeseen { $dmca }.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Jos kaappauksiisi kohdistuu useita vaatimuksia, voimme perua käyttöoikeutesi Firefox Screenshots -palveluun.
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Liitä sähköpostiisi tämän kaappauksen verkko-osoite: { $url }
 shotPageKeepFor = Kuinka kauan tämä kaappaus tulisi säilyttää?
