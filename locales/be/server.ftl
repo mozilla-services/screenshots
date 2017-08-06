@@ -35,6 +35,8 @@ creatingPageTitleDefault = старонка
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Інтуітыўныя скрыншоты наўпрост у браўзеры. Захоплівайце, захоўвайце і дзяліцеся скрыншотамі пры праглядзе вэб-старонак з дапамогай Firefox.
 homePageButtonMyShots = Перайсці да маіх здымкаў
 homePageTeaser = Хутка...
 homePageDownloadFirefoxTitle = Firefox
@@ -43,6 +45,8 @@ homePageGetStarted = Пачаць
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Як працуе Firefox Screenshots
 homePageGetStartedTitle = Пачаць
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Знайдзіце новы значок Screenshots на паліцы прылад. Націсніце на яго і з'явіцца меню.
 homePageCaptureRegion = Захоп вобласці
 homePageCapturePage = Захоп старонкі
 homePageSaveShare = Захаваць і падзяліцца
@@ -55,9 +59,12 @@ homePageCookiesLink = Кукі
 [[ Leave Screenshots page ]]
 
 leavePageConfirmDelete = Пацвердзіце выдаленне ўліковага запісу
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Каб выдаліць уліковы запіс, у вас павінен быць усталяваны Firefox Screenshots
 leavePageErrorGeneric = Здарылася памылка
 leavePageButtonProceed = Працягнуць
 leavePageButtonCancel = Адмяніць
+leavePageDeleted = Усе вашыя здымкі былі сцёртыя!
 
 
 [[ Not Found page ]]
@@ -69,6 +76,8 @@ notFoundPageDescription = Старонка не знойдзена.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Скрыншот: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Памылка пры захаванні часу заканчэння
 shotPageAlertErrorDeletingShot = Памылка пры выдаленні здымка
 shotPageAlertErrorUpdatingTitle = Памылка захавання назвы
@@ -85,6 +94,8 @@ shotPageSharePinterest
     .title = Падзяліцца ў Pinterest
 shotPageShareEmail
     .title = Падзяліцца спасылкай па э-пошце
+shotPageShareLink = Атрымаць публічную спасылку на гэты здымак:
+shotPagePrivacyMessage = Любы, хто мае гэту спасылку, можа праглядаць гэты здымак.
 shotPageCopyImageText
     .label = Капіяваць тэкст выявы
 shotPageConfirmDeletion = Вы сапраўды хочаце назаўсёды выдаліць гэты здымак?
@@ -95,6 +106,7 @@ shotPageDownloadShot
     .title = Сцягнуць
 shotPageDownload = Сцягнуць
 shotPageUpsellFirefox = Атрымаць Firefox зараз
+shotPageKeepFor = Як доўга будзе захоўвацца гэты здымак?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Выберыце час
 shotPageKeepIndefinitely = Бясконца
@@ -117,6 +129,11 @@ timeDiffFutureSeconds = праз некалькі секунд
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Памылка выдалення здымку: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Мае здымкі: пошук { $searchTerm }
 // { $error } is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
 shotIndexPageErrorRendering = Памылка рэндэрынгу старонкі: { $error }
@@ -128,6 +145,7 @@ shotIndexPageNoShotsMessage = Няма захаваных здымкаў.
 shotIndexPageNoShotsInvitation = Давайце, стварыце некалькі.
 shotIndexPageLookingForShots = Пошук вашых здымкаў…
 shotIndexPageNoSearchResultsIntro = Хмм
+shotIndexPageNoSearchResults = Мы не можам знайсці здымкі па вашаму запыту.
 shotIndexPageClearSearchButton
     .title = Ачысціць пошук
 shotIndexPageConfirmShotDelete = Выдаліць гэты здымак?
@@ -141,16 +159,21 @@ metricsPageTitle = Метрыкі Firefox Screenshots
 metricsPageTotalsQueryTitle = Вынікі
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Агляд Screenshots
+metricsPageTotalsQueryDevices = Усяго зарэгістраваных прылад
 metricsPageTotalsQueryActiveShots = Актыўныя здымкі
 metricsPageTotalsQueryExpiredDeletedShots = Тэрмін захоўвання мінуў (здымак выдалены)
 metricsPageShotsQueryTitle = Здымкаў у дзень
+metricsPageShotsQueryDescription = Колькасць здымкаў, створаных за кожны дзень (за апошнія 30 дзён)
 metricsPageShotsQueryCount = Колькасць здымкаў
 metricsPageShotsQueryDay = Дзень
 metricsPageUsersQueryTitle = Карыстальнікаў у дзень
+metricsPageUsersQueryDescription = Колькасць карыстальнікаў, якія стварылі хаця б адзін здымак за дзень (30 дзён)
 metricsPageUsersQueryCount = Колькасць карыстальнікаў
 metricsPageUsersQueryDay = Дзень
 metricsPageUserShotsQueryTitle = Колькасць здымкаў на карыстальніка
+metricsPageUserShotsQueryDescription = Колькасць карыстальнікаў, якія зрабілі ўсяго каля N здымкаў
 metricsPageUserShotsQueryCount = Колькасць карыстальнікаў
+metricsPageUserShotsQueryShots = Прыкладная колькасць актыўных здымкаў (тэрмін захоўвання якіх не мінуў)
 metricsPageRetentionQueryTitle = Захаванняў за тыдзень
 metricsPageRetentionQueryUsers = Колькасць карыстальнікаў
 metricsPageTotalRetentionQueryTitle = Агульная колькасць
