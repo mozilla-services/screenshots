@@ -142,7 +142,7 @@ shotPageKeepTwoWeeks = 2 n dduṛtat
 shotPageKeepOneMonth = Aggur
 shotPageSaveExpiration = Sekles
 shotPageCancelExpiration = Sefsex
-shotPageDoesNotExpire = ur yemmut ara
+shotPageDoesNotExpire = ur yettmettat ara
 // Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = ad yemmet { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
