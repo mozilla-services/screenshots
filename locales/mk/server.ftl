@@ -35,6 +35,8 @@ creatingPageTitleDefault = страница
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Интуитивни слики од екран вградени во прелистувачот. Фаќајте, снимајте и споделувајте слики од екран додека го прелистувате Интернет со Firefox.
 homePageButtonMyShots = Појди до Мои слики
 homePageTeaser = Наскоро...
 homePageDownloadFirefoxTitle = Firefox
@@ -46,6 +48,8 @@ homePageGetStartedTitle = Вовед
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Пронајдете ја новата иконка на Screenshots во Вашиот алатник. Изберете ја и менито на Screenshots ќе се појави над прозорецот на Вашиот прелистувач.
 homePageCaptureRegion = Фатете слика од регион
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Кликнете и влечете за да означите зона за снимање. Или пак, застанете со покажувачот и кликнете — Screenshots ќе ја избере зоната за Вас. Ви се допаѓа тоа што го гледате? Изберете Сними за да ја зачувате сликата на Интернет или пак, копчето со стрелка надолу за да ја преземете сликата на Вашиот компјутер.
 homePageCapturePage = Фатете слика од страница
 homePageSaveShare = Сними и сподели
 homePageLegalLink = Правна напомена
@@ -213,13 +217,18 @@ metricsPageUsersQueryDescription = Број на корисници што на�
 metricsPageUsersQueryCount = Број на корисници
 metricsPageUsersQueryDay = Ден
 metricsPageUserShotsQueryTitle = Број на слики по корисник
+metricsPageUserShotsQueryDescription = Бројот на корисници што имаат вкупно околу N слики од екран
 metricsPageUserShotsQueryCount = Број на корисници
 metricsPageUserShotsQueryShots = Просечен број на активни слики од екран (без поминат рок)
-metricsPageRetentionQueryTitle = Задржување по недела
+metricsPageRetentionQueryTitle = Задржување по седмица
+metricsPageRetentionQueryDescription = Број на денови од првата до најновата слика од екран на корисникот, групирани според почетна седмица
 metricsPageRetentionQueryUsers = Број на корисници
 metricsPageRetentionQueryDays = Број на денови откога е направена првата, па сѐ до последната слика од екран
-metricsPageRetentionQueryFirstWeek = Недела во која корисникот за првпат направил слика од екран
+metricsPageRetentionQueryFirstWeek = Седмица во која корисникот за првпат направил слика од екран
 metricsPageTotalRetentionQueryTitle = Вкупно задржување
+metricsPageTotalRetentionQueryDescription = Времетраење во кое корисниците создавале слики од екран, групирани по седмица
+metricsPageTotalRetentionQueryUsers = Број на корисници
+metricsPageTotalRetentionQueryDays = Денови кога корисникот создавал слики од екран
 metricsPageVersionQueryTitle = Верзија на додатокот
 metricsPageVersionQueryDescription = Верзијата на додатокот што се користи за најавување во последните 14 дена
 metricsPageVersionQueryUsers = Број на корисници што се најавуваат
