@@ -50,19 +50,31 @@ homePageCookiesLink = کوکی‌ها
 [[ Leave Screenshots page ]]
 
 leavePageConfirmDelete = تایید حذف حساب کاربری
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = برای حذف حساب کاربری خود باید Firefox Screenshots نصب کرده باشید
 leavePageErrorGeneric = خطایی رخ داده است.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = این تمام اطلاعات Firefox Screenshots شما را به صورت دائمی حذف خواهد کرد.
 leavePageButtonProceed = ادامه
 leavePageButtonCancel = لغو
+leavePageDeleted = تمام عکس‌های صفحه شما حذف شدند!
 
 
 [[ Not Found page ]]
 
 notFoundPageTitle = صفحه پیدا نشد
+notFoundPageIntro = اوه
 notFoundPageDescription = صفحه پیدا نشد.
 
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = عکس صفحه: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = خطا در ذخیره‌ی تاریخ انقضا
+shotPageAlertErrorDeletingShot = خطا در حذف تصویر
+shotPageAlertErrorUpdatingTitle = خطا در ذخیره عنوان
+shotPageConfirmDelete = آیا مطمئن هستید که می‌خواهید این عکس را به صورت دائمی حذف کنید؟
 shotPageShareButton
     .title = هم‌رسانی
 shotPageCopy = رونوشت
@@ -75,11 +87,35 @@ shotPageSharePinterest
     .title = هم‌رسانی در پینترست
 shotPageShareEmail
     .title = هم‌رسانی پیوند از طریق ایمیل
+shotPageShareLink = یک پیوند قابل هم‌رسانی برای این عکس دریافت کنید:
 shotPagePrivacyMessage = هر کسی با این پیوند می‌تواند این عکس را ببیند.
+shotPageCopyImageText
+    .label = رونوشت از متنِ عکس
+shotPageConfirmDeletion = آیا مطمئن هستید که می‌خواهید این عکس را به صورت دائمی حذف کنید؟
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = اگر کاری انجام ندهید، این عکس { $timediff } به صورت دائمی حذف خواهد شد.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = بازگرداندن تا { $date }
+shotPageExpiredMessage = این عکس منقضی شده است.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = این صفحه‌ای است که از روی آن ساخته شده بود:
+shotPageDeleteButton
+    .title = حذف این عکس
+shotPageAbuseButton
+    .title = این عکس را برای سوء استفاده، هرزه‌نگاری یا مسائل دیگر گزارش کنید
 shotPageDownloadShot
     .title = دریافت
 shotPageDownload = دریافت
+shotPageScreenshotsDescription = Screenshots ساده ساخته شده است. بدون خروج از فایرفاکس عکس بگیرید، ذخیره و هم‌رسان کنید.
 shotPageUpsellFirefox = هم اکنون فایرفاکس را دریافت کنید
+shotPageDMCAMessage = این عکس به دلیل درخواست مالکیت معنوی یک شخص ثالث، دیگر در دسترس نیست.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = لطفا برای درخواست اطلاعات بیشتر به { $dmca } ایمیل بزنید.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = اگر عکس شما موضوع ادعاهای متعدد شود، ممکن است دسترسی شما به Firefox Screenshots را باطل کنیم.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = لطفا نشانی این عکس را در ایمیل خود قید کنید: { $url }
 shotPageKeepFor = چه مدت این عکس باید حفظ شود؟
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = انتخاب زمان
