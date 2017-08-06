@@ -173,8 +173,29 @@ shotIndexPageClearSearchButton
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageTotalsQueryTitle = કુલ
+metricsPageTotalsQueryDevices = રજીસ્ટર થયેલ કુલ ઉપકરણો
+metricsPageTotalsQueryActiveShots = સક્રિય શોટ્સ
+metricsPageTotalsQueryExpiredShots = સમાપ્ત (પરંતુ પુનઃપ્રાપ્ત)
+metricsPageTotalsQueryExpiredDeletedShots = સમાપ્ત (અને કાઢી નાખેલ)
+metricsPageShotsQueryTitle = દિવસ દ્વારા શોટ્સ
+metricsPageShotsQueryDescription = દરરોજ બનાવેલા શોટની સંખ્યા (છેલ્લા 30 દિવસ માટે)
+metricsPageShotsQueryCount = શોટની સંખ્યા
 metricsPageShotsQueryDay = દિવસ
+metricsPageUsersQueryTitle = દિવસ દ્વારા વપરાશકર્તાઓ
+metricsPageUsersQueryCount = વપરાશકર્તાઓની સંખ્યા
 metricsPageUsersQueryDay = દિવસ
+metricsPageUserShotsQueryCount = વપરાશકર્તાઓની સંખ્યા
 metricsPageRetentionQueryUsers = વપરાશકર્તાઓની સંખ્યા
+metricsPageTotalRetentionQueryTitle = કુલ અવરોધ
+metricsPageTotalRetentionQueryUsers = વપરાશકર્તાઓની સંખ્યા
+metricsPageTotalRetentionQueryDays = તે દિવસો વપરાશકર્તાએ શોટ બનાવ્યાં છે
+metricsPageVersionQueryTitle = એડ-ઑન સંસ્કરણ
+metricsPageVersionQueryUsers = લૉગિન વપરાશકર્તાઓની સંખ્યા
+metricsPageVersionQueryVersion = એડ-ઑન સંસ્કરણ
 metricsPageVersionQueryLastSeen = દિવસ
 metricsPageHeader = માપદંડ
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = આના પર ઉત્પન્ન કર્યું: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (ડેટાબેઝ સમય: { $time }ms)
