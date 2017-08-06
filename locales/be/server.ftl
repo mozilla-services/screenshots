@@ -48,8 +48,13 @@ homePageGetStartedTitle = Пачаць
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Знайдзіце новы значок Screenshots на паліцы прылад. Націсніце на яго і з'явіцца меню.
 homePageCaptureRegion = Захоп вобласці
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Пстрыкніце і перацягніце, каб выбраць вобласць, якую вы хочаце захапіць. Ці проста навядзіце мышшу і пстрыкніце - Screenshots абярэ вобласць самі. Падабаецца, што вы бачыце? Выберыце «Захаваць», каб атрымаць магчымасць апублікаваць ваш скрыншот анлайн або пстрыкніце па кнопцы са стрэлкай ўніз, каб загрузіць здымак на ваш камп'ютар.
 homePageCapturePage = Захоп старонкі
+homePageCapturePageDescription = З дапамогай кнопак у верхнім правым куце вы можаце захапіць старонку цалкам. Кнопка «Захаваць бачнае» захопіць бачнае змесціва старонкі, якое даступна без пракручвання, а «Захаваць ўсю старонку» захопіць ўсю старонку цалкам.
 homePageSaveShare = Захаваць і падзяліцца
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Калі вы робіце здымак, Firefox публікуе ваш скрыншот у вашу анлайн бібліятэку Screenshots і капіюе ссылку ў ваш буфер абмену. Мы аўтаматычна захоўваем вашы скрыншоты два тыдні, але вы можаце выдаліць здымкі ў любы час або змяніць дату заканчэння захоўвання, каб захоўваць іх у вашай бібліятэцы даўжэй.
 homePageLegalLink = Юрыдычная інфармацыя
 homePagePrivacyLink = Прыватнасць
 homePageTermsLink = Умовамі выкарыстання
@@ -164,6 +169,16 @@ timeDiffFutureMinutes = { $num ->
         [few] за { $number } хвіліны
        *[other] за { $number } хвілін
     }
+timeDiffFutureHours = { $num ->
+        [one] за гадзіну
+        [few] за { $number } гадзіны
+       *[other] за { $number } гадзін
+    }
+timeDiffFutureDays = { $num ->
+        [one] заўтра
+        [few] за { $number } дні
+       *[other] за { $number } дзён
+    }
 
 
 [[ Shotindex page ]]
@@ -200,6 +215,7 @@ metricsPageTotalsQueryTitle = Вынікі
 metricsPageTotalsQueryDescription = Агляд Screenshots
 metricsPageTotalsQueryDevices = Усяго зарэгістраваных прылад
 metricsPageTotalsQueryActiveShots = Актыўныя здымкі
+metricsPageTotalsQueryExpiredShots = Тэрмін захоўвання мінуў (але можна аднавіць)
 metricsPageTotalsQueryExpiredDeletedShots = Тэрмін захоўвання мінуў (здымак выдалены)
 metricsPageShotsQueryTitle = Здымкаў у дзень
 metricsPageShotsQueryDescription = Колькасць здымкаў, створаных за кожны дзень (за апошнія 30 дзён)
@@ -228,3 +244,7 @@ metricsPageVersionQueryUsers = Колькасць карыстальнікаў, 
 metricsPageVersionQueryVersion = Версія дадатка
 metricsPageVersionQueryLastSeen = Дзень
 metricsPageHeader = Метрыкі
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Створана: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (час базы дадзеных: { $time }ms)
