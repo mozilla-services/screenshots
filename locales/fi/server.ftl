@@ -28,11 +28,14 @@ footerLinkRemoveAllData = Poista kaikki tiedot
 
 [[ Home page ]]
 
+homePageButtonMyShots = Siirry omiin kaappauksiini
 homePageTeaser = Tulossa pian…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Lataa ilmaiseksi
+homePageGetStarted = Aloitetaan
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Miten Firefox Screenshots toimii
+homePageGetStartedTitle = Aloitetaan
 homePageLegalLink = Lakiteksti
 homePagePrivacyLink = Tietosuoja
 homePageTermsLink = Käyttöehdot
