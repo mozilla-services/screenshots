@@ -11,6 +11,7 @@ gMyShots = મારા શોટ્સ
 gHomeLink = મુખ પૃષ્ઠ
 gNoShots
     .alt = કોઈ શૉટ્સ મળ્યાં નથી
+gScreenshotsDescription = સ્ક્રીનશોટ સરળ બનાવી. Firefox છોડ્યાં વગર સ્ક્રીનશોટ લો, સાચવો અને વહેંચો.
 
 
 [[ Footer ]]
@@ -174,5 +175,6 @@ shotIndexPageClearSearchButton
 
 metricsPageShotsQueryDay = દિવસ
 metricsPageUsersQueryDay = દિવસ
+metricsPageRetentionQueryUsers = વપરાશકર્તાઓની સંખ્યા
 metricsPageVersionQueryLastSeen = દિવસ
 metricsPageHeader = માપદંડ
