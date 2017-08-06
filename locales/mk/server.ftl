@@ -117,6 +117,12 @@ shotPageDownload = Преземи
 shotPageScreenshotsDescription = Слики од екран поедноставени. Фаќајте, снимајте и споделувајте слики од екран без да го напуштите Firefox.
 shotPageUpsellFirefox = Земете Firefox сега
 shotPageDMCAMessage = Оваа слика од екран не е повеќе достапна заради жалба за нарушена интелектуална сопственост
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = За повеќе информации, Ве молиме испратете порака на { $dmca }.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Ако Вашите слики се предмет на злоупотреба на повеќе страни, можно е да Ви го оневозможиме пристапот до Firefox Screenshots.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Ве молиме вклучете ја следната адреса на сликата во Вашата е-порака: { $url }
 shotPageKeepFor = Колку долго треба да се чува оваа слика?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Изберете време
@@ -181,6 +187,8 @@ shotIndexPageNoShotsInvitation = Повелете, направете некој
 shotIndexPageLookingForShots = Ги барам Вашите слики од екран...
 shotIndexPageNoSearchResultsIntro = Хм
 shotIndexPageNoSearchResults = Не можеме да пронајдеме слики што одговараат на Вашето пребарување.
+shotIndexPageClearSearchButton
+    .title = Исчисти пребарување
 shotIndexPageConfirmShotDelete = Да ја избришам оваа слика?
 
 
@@ -205,6 +213,16 @@ metricsPageUsersQueryDescription = Број на корисници што на�
 metricsPageUsersQueryCount = Број на корисници
 metricsPageUsersQueryDay = Ден
 metricsPageUserShotsQueryTitle = Број на слики по корисник
+metricsPageUserShotsQueryCount = Број на корисници
+metricsPageUserShotsQueryShots = Просечен број на активни слики од екран (без поминат рок)
+metricsPageRetentionQueryTitle = Задржување по недела
+metricsPageRetentionQueryUsers = Број на корисници
+metricsPageRetentionQueryDays = Број на денови откога е направена првата, па сѐ до последната слика од екран
+metricsPageRetentionQueryFirstWeek = Недела во која корисникот за првпат направил слика од екран
+metricsPageTotalRetentionQueryTitle = Вкупно задржување
+metricsPageVersionQueryTitle = Верзија на додатокот
+metricsPageVersionQueryDescription = Верзијата на додатокот што се користи за најавување во последните 14 дена
+metricsPageVersionQueryUsers = Број на корисници што се најавуваат
 metricsPageVersionQueryVersion = Верзија на додатокот
 metricsPageVersionQueryLastSeen = Ден
 metricsPageHeader = Метрика
