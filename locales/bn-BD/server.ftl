@@ -92,6 +92,7 @@ shotPageConfirmDelete = আপনি কি নিশ্চিত যে আপ�
 shotPageShareButton
     .title = শেয়ার
 shotPageCopy = অনুলিপি
+shotPageCopied = কপি করা হয়েছে
 shotPageShareFacebook
     .title = Facebook শেয়ার করুন
 shotPageShareTwitter
@@ -127,6 +128,9 @@ shotPageDMCAMessage = এক তৃতীয় পক্ষের মেধাস�
 shotPageDMCAContact = আরও তথ্যের জন্যে { $dmca } কে মেইল করে অনুরোধ করুন।
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = আপনার স্ক্রিনশটের উপর আপনি ব্যতীত বহুপক্ষীয় দাবি থাকলে, Firefox Screenshots থেকে আপনার প্রবেশাধিকার রদ করা হবে।
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = অনুগ্রহ করে এই সটটির URL আপনার ইমেইলে সংযুক্ত করুন: { $url }
+shotPageKeepFor = এই সটটি কতদিন পর্যন্ত রাখতে চান?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = সময় নির্বাচন করুন
 shotPageKeepIndefinitely = অনির্দিষ্টভাবে
@@ -139,6 +143,10 @@ shotPageKeepOneMonth = ১ মাস
 shotPageSaveExpiration = সংরক্ষণ
 shotPageCancelExpiration = বাতিল
 shotPageDoesNotExpire = বাতিল হয়ে যাবে না
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = { $timediff } দিনে মেয়াদোত্তীর্ণ হয়ে যাবে
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = { $timediff } মেয়াদোত্তীর্ণ
 timeDiffJustNow = এখনই
 timeDiffMinutesAgo = { $num ->
         [one] ১ মিনিট আগে 
@@ -169,6 +177,14 @@ timeDiffFutureDays = { $num ->
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = { $status } { $statusText } ত্রুটির কারণে মোছা যাচ্ছে না
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = আমার সটসমূহ: { $searchTerm } এর জন্যে অনুসন্ধান করো
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = { $error } পেজটি উপস্থাপনে ত্রুটি
 shotIndexPageSearchPlaceholder
     .placeholder = আমার শটগুলো খুঁজুন
 shotIndexPageSearchButton
@@ -189,6 +205,9 @@ shotIndexPageConfirmShotDelete = এই শটটি মুছবেন?
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Firefox Screenshots ম্যাট্রিক্স
 metricsPageTotalsQueryTitle = সর্বমোট
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Screenshots এর সংক্ষিপ্ত বিবরণ
+metricsPageTotalsQueryDevices = সর্বমোট রেজিস্ট্রিকৃত ডিভাইস
 metricsPageTotalsQueryActiveShots = সক্রিয় শটসমূহ
 metricsPageShotsQueryTitle = দিনের ভিত্তিতে সংক্ষিপ্ত
 metricsPageShotsQueryCount = শট সংখ্যা
@@ -199,6 +218,7 @@ metricsPageUserShotsQueryCount = ব্যবহারকারীর সংখ�
 metricsPageRetentionQueryUsers = ব্যবহারকারীর সংখ্যা
 metricsPageTotalRetentionQueryUsers = ব্যবহারকারীর সংখ্যা
 metricsPageVersionQueryTitle = অ্যাড-অনের সংস্করণ
+metricsPageVersionQueryUsers = লগিন করা ব্যবহারকারীর সংখ্যা
 metricsPageVersionQueryVersion = অ্যাড-অনের সংস্করণ
 metricsPageVersionQueryLastSeen = দিন
 metricsPageHeader = মেট্রিক্স
