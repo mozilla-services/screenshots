@@ -62,6 +62,8 @@ leavePageConfirmDelete = Пацвердзіце выдаленне ўліков�
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Каб выдаліць уліковы запіс, у вас павінен быць усталяваны Firefox Screenshots
 leavePageErrorGeneric = Здарылася памылка
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Гэта дзеянне назаўжды выдаліць усе вашы дадзеныя Firefox Screenshots.
 leavePageButtonProceed = Працягнуць
 leavePageButtonCancel = Адмяніць
 leavePageDeleted = Усе вашыя здымкі былі сцёртыя!
@@ -99,13 +101,32 @@ shotPagePrivacyMessage = Любы, хто мае гэту спасылку, мо
 shotPageCopyImageText
     .label = Капіяваць тэкст выявы
 shotPageConfirmDeletion = Вы сапраўды хочаце назаўсёды выдаліць гэты здымак?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Калі вы нічога не будзеце рабіць, здымак будзе выдалены назаўсёды { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = працягнуты да { $date }
 shotPageExpiredMessage = Гэты здымак пратэрмінаваны.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Старонка, з якой створаны гэты здымак:
 shotPageDeleteButton
     .title = Выдаліць гэты здымак
+shotPageAbuseButton
+    .title = Гэты здымак з'яўляецца абразлівым, спамам або мае іншыя праблемы
 shotPageDownloadShot
     .title = Сцягнуць
 shotPageDownload = Сцягнуць
+shotPageScreenshotsDescription =
+    Рабіць скрыншоты стала прасцей. Рабіце, захоўвайце і дзяліцеся скрыншотамі, не пакідаючы Firefox.
+
 shotPageUpsellFirefox = Атрымаць Firefox зараз
+shotPageDMCAMessage = Гэты здымак больш недаступны з-за парушэння аўтарскіх правоў трэцяга боку.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Калі ласка, напішыце на { $dmca }, каб запытаць дадатковую інфармацыю.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Калі на вашы здымкі паскардзіліся некалькі разоў, мы можам заблакаваць вам доступ да Firefox Screenshots.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Калі ласка, дадайце да вашага ліста спасылку на гэты здымак: { $url }
 shotPageKeepFor = Як доўга будзе захоўвацца гэты здымак?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Выберыце час
