@@ -45,8 +45,13 @@ homePageGetStarted = শুরু হয়েছে
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots কিভাবে কাজ করে
 homePageGetStartedTitle = শুরু হয়েছে
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = আপনার টুলবারে নতুন স্ক্রিনশট আইকনটি দেখুন। সেটি ক্লিক বা নির্বাচন করলে স্ক্রিনশট মেনু আপনার ব্রাউজার উইন্ডোর উপরে চলে আসবে।
 homePageCaptureRegion = একটি অংশ ক্যাপচার করুন
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = ক্লিক এবং ড্রাগ করে এলাকা নির্বাচন করুন, যতটুকু আপনি ক্যাপচার করতে চান। অথবা হোভার করে ক্লিক করুন -- Screenshots আপনার হয়ে ওই এলাকাটা নির্বাচন করবে। আপনি সেটা সঠিক মনে করছেন? তাহলে সংরক্ষণ করে অনলাইনে রাখুন ব্যবহারের জন্যৈ অথবা নিম্নমুখি তীর চিহ্নে নির্বাচন করে আপনার কম্পিউটারে ডাউনলোড করে রাখুন।
 homePageCapturePage = একটি পেজ ক্যাপচার করুন
+homePageCapturePageDescription = পেজসমূহ সম্পূর্ণ ক্যাপচার করতে চাইলে উপরের ডান দিকের বোতাম ব্যবহার করুন। আপনি স্ক্রলিং না করে একটি ওয়েব পেজের যতটুকু অংশ দেখতে পান, তা ক্যাপচার করে দৃশ্যমান সংরক্ষণ বোতামটি, আর সম্পূর্ণ পেজ সংরক্ষণ ওই ওয়েবে পেজের সবকিছু ক্যাপচার করে।
 homePageSaveShare = সংরক্ষণ এবং শেয়ার করুন
 homePageLegalLink = আইনগত
 homePagePrivacyLink = গোপনীয়তা
