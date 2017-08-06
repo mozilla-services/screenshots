@@ -43,6 +43,10 @@ homePageGetStarted = Вовед
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Како работи Firefox Screenshots
 homePageGetStartedTitle = Вовед
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Пронајдете ја новата иконка на Screenshots во Вашиот алатник. Изберете ја и менито на Screenshots ќе се појави над прозорецот на Вашиот прелистувач.
+homePageCaptureRegion = Фатете слика од регион
+homePageCapturePage = Фатете слика од страница
 homePageSaveShare = Сними и сподели
 homePageLegalLink = Правна напомена
 homePagePrivacyLink = Приватност
@@ -53,6 +57,11 @@ homePageCookiesLink = Колачиња
 [[ Leave Screenshots page ]]
 
 leavePageConfirmDelete = Потврдете го бришењето на сметката
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Морате да го имате инсталирано Firefox Screenshots за да ја избришете Вашата сметка
+leavePageErrorGeneric = Се случи грешка
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Со ова ќе ги избришете сите податоци на Firefox Screenshots трајно.
 leavePageButtonProceed = Продолжи
 leavePageButtonCancel = Откажи
 leavePageDeleted = Сите Ваши слики од екран беа избришани!
@@ -69,6 +78,9 @@ notFoundPageDescription = Страницата не постои.
 
 // This is the HTML title tag of the page
 shotPageTitle = Слика од екран: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = Грешка при зачувуањето на рокот на траење
+shotPageAlertErrorDeletingShot = Грешка при бришењето на сликата
+shotPageAlertErrorUpdatingTitle = Грешка при снимањето на насловот
 shotPageConfirmDelete = Сигурно сакате да ја избришете оваа слика од екран трајно?
 shotPageShareButton
     .title = Сподели
@@ -82,12 +94,16 @@ shotPageSharePinterest
     .title = Сподели на Pinterest
 shotPageShareEmail
     .title = Сподели врска преку е-пошта
+shotPageShareLink = Земете врска за споделување на оваа слика:
 shotPagePrivacyMessage = Сите што ја имаат адресата до сликата, можат да ја видат
 shotPageCopyImageText
     .label = Копирај го текстот на сликата
 shotPageConfirmDeletion = Сигурно сакате да ја избришете оваа слика од екран трајно?
 // Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Ако не направите ништо, оваа слика ќе биде трајно избришана { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = можно враќање до { $date }
 shotPageExpiredMessage = Рокот на траење на оваа слика е истечен.
 // Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Еве ја страницата од којашто е оригинално избработена:
@@ -100,6 +116,7 @@ shotPageDownloadShot
 shotPageDownload = Преземи
 shotPageScreenshotsDescription = Слики од екран поедноставени. Фаќајте, снимајте и споделувајте слики од екран без да го напуштите Firefox.
 shotPageUpsellFirefox = Земете Firefox сега
+shotPageDMCAMessage = Оваа слика од екран не е повеќе достапна заради жалба за нарушена интелектуална сопственост
 shotPageKeepFor = Колку долго треба да се чува оваа слика?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Изберете време
@@ -164,8 +181,34 @@ shotIndexPageNoShotsInvitation = Повелете, направете некој
 shotIndexPageLookingForShots = Ги барам Вашите слики од екран...
 shotIndexPageNoSearchResultsIntro = Хм
 shotIndexPageNoSearchResults = Не можеме да пронајдеме слики што одговараат на Вашето пребарување.
+shotIndexPageConfirmShotDelete = Да ја избришам оваа слика?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Метрика на Firefox Screenshots
+metricsPageTotalsQueryTitle = Вкупно
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Преглед на Screenshots
+metricsPageTotalsQueryDevices = Вкупно регистрирани уреди
+metricsPageTotalsQueryActiveShots = Активни слики од екран
+metricsPageTotalsQueryExpiredShots = Со поминат рок (и можност за враќање)
+metricsPageTotalsQueryExpiredDeletedShots = Со поминат рок (и трајно избришани)
+metricsPageShotsQueryTitle = Слики по ден
+metricsPageShotsQueryDescription = Број на слики од екран направени секој ден (во последните 30 дена)
+metricsPageShotsQueryCount = Број на слики
+metricsPageShotsQueryDay = Ден
+metricsPageUsersQueryTitle = Корисници по ден
+metricsPageUsersQueryDescription = Број на корисници што направиле барем една слика од екран дневно (во последните 30 дена)
+metricsPageUsersQueryCount = Број на корисници
+metricsPageUsersQueryDay = Ден
+metricsPageUserShotsQueryTitle = Број на слики по корисник
+metricsPageVersionQueryVersion = Верзија на додатокот
+metricsPageVersionQueryLastSeen = Ден
+metricsPageHeader = Метрика
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Создадена на: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (database time: { $time }ms)
