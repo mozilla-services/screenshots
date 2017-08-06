@@ -51,7 +51,10 @@ homePageCaptureRegion = Kaappaa alue
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Valitse kaapattava alue napsauttamalla ja vetämällä. Tai pidä hiirtä sen päällä ja napsauta – Screenshots valitsee alueen puolestasi. PIdätkö näkemästäsi? Valitse Tallenna, niin voit katsella kuvakaappaustasi verkossa, tai alas osoittava nuoli, niin voit ladata sen tietokoneellesi.
 homePageCapturePage = Kaappaa sivu
+homePageCapturePageDescription = Kaappaa kokonaisia sivuja käyttämällä yläoikean kulman painikkeita. Tallenna näkyvä alue -painike kaappaa alueen, jonka voit nähdä vierittämättä sivua, ja Tallenna koko sivu -painike tallentaa kaiken sivulla olevan.
 homePageSaveShare = Tallenna ja jaa
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Kun otat kaappauksen, Firefox lähettää kuvakaappauksen verkkoon Screenshots-kirjastoon ja kopioi linkin leikepöydälle. Säilytämme kuvakaappausta automaattisesti kaksi viikkoa, mutta voit poistaa kaappauksen milloin vain tai muuttaa vanhenemisaikaa säilyttääksesi sen kirjastossa pidempään.
 homePageLegalLink = Lakiteksti
 homePagePrivacyLink = Tietosuoja
 homePageTermsLink = Käyttöehdot
@@ -98,15 +101,28 @@ shotPageSharePinterest
     .title = Jaa Pinterestissä
 shotPageShareEmail
     .title = Jaa linkki sähköpostitse
+shotPageShareLink = Saa jaettava linkki tähän kaappaukseen:
+shotPagePrivacyMessage = Kaikki linkin haltijat voivat katsoa tätä kaappausta.
 shotPageCopyImageText
     .label = Kopioi kuvateksti
+shotPageConfirmDeletion = Haluatko varmasti poistaa tämän kaappauksen pysyvästi?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Jos et tee mitään, kaappaus poistetaan pysyvästi { $timediff }.
 shotPageExpiredMessage = Tämä kaappaus on vanhentunut.
 shotPageDeleteButton
     .title = Poista tämä kaappaus
+shotPageAbuseButton
+    .title = Ilmoita tästä kaappauksesta väärinkäytön, roskapostin tai muun ongelman vuoksi
 shotPageDownloadShot
     .title = Lataa
 shotPageDownload = Lataa
+shotPageScreenshotsDescription = Kuvakaappaukset helposti. Ota, tallenna ja jaa kuvakaappauksia poistumatta Firefoxista.
 shotPageUpsellFirefox = Lataa Firefox nyt
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Pyydä lisätietoja lähettämällä sähköpostia osoitteeseen { $dmca }.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Liitä sähköpostiisi tämän kaappauksen verkko-osoite: { $url }
+shotPageKeepFor = Kuinka kauan tämä kaappaus tulisi säilyttää?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Valitse aika
 shotPageKeepIndefinitely = toistaiseksi
@@ -156,6 +172,8 @@ timeDiffFutureDays = { $num ->
 // { $status } is a placeholder for an HTTP status code, like '500'.
 // { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Kaappauksen poisto epäonnistui: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Omat kaappaukset: haku sanoilla { $searchTerm }
 // { $error } is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
 shotIndexPageErrorRendering = Sivun näyttäminen epäonnistui: { $error }
