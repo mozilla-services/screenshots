@@ -48,6 +48,8 @@ homePageGetStartedTitle = Začnite
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Poiščite ikono Screenshots v svoji orodni vrstici. Izberite jo in na vrhu okna vašega brskalnika se bo pojavil meni Screenshots.
 homePageCaptureRegion = Zajemite območje
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Kliknite in povlecite, da izberete območje, ki ga želite zajeti, ali pa samo kliknite in Screenshots bo izbral območje za vas. Vam je všeč, kar vidite? Izberite Shrani za dostop do vašega posnetka na spletu ali puščico navzdol za prenos na računalnik.
 homePageCapturePage = Zajemite stran
 homePageCapturePageDescription = Za zajem celotnih strani uporabite gumbe zgoraj desno. Gumb Shrani vidno bo zajel območje, ki je vidno brez drsenja, gumb Shrani celotno stran pa celotno vsebino strani.
 homePageSaveShare = Shranite in delite
@@ -237,6 +239,8 @@ metricsPageRetentionQueryDescription = Št. dni od uporabnikovega prvega posnetk
 metricsPageRetentionQueryUsers = Število uporabnikov
 metricsPageRetentionQueryDays = Dni od uporabnikovega prvega posnetka do najnovejšega
 metricsPageRetentionQueryFirstWeek = Teden, ko je uporabnik ustvaril prvi posnetek
+metricsPageTotalRetentionQueryTitle = Skupaj ohranitev
+metricsPageTotalRetentionQueryDescription = Čas, v katerem so uporabniki ustvarjali posnetke, združen po tednih
 metricsPageTotalRetentionQueryUsers = Število uporabnikov
 metricsPageTotalRetentionQueryDays = Dnevi, ko je uporabnik ustvarjal posnetke
 metricsPageVersionQueryTitle = Različica dodatka
