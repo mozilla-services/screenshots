@@ -120,13 +120,13 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = ডাউনলোড
 shotPageDownload = ডাউনলোড
-shotPageScreenshotsDescription =
-    স্ক্রিনশট নেওয়া অনেক সহজ করে দেওয়া হয়েছে। ফায়ারফক্স থেকে বের না হয়েই স্ক্রিনশট নিন, সংরক্ষণ করুন এবং অন্যদের সাথে শেয়ারও করুন।
-
+shotPageScreenshotsDescription = স্ক্রিনশট নেওয়া অনেক সহজ করে দেওয়া হয়েছে। ফায়ারফক্স থেকে বের না হয়েই স্ক্রিনশট নিন, সংরক্ষণ করুন এবং অন্যদের সাথে শেয়ারও করুন।
 shotPageUpsellFirefox = এখন Firefox নিন
 shotPageDMCAMessage = এক তৃতীয় পক্ষের মেধাসত্ত্ব দাবীর প্রেক্ষিতে শটটি আর পাওয়া যাবে না।
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = আরও তথ্যের জন্যে { $dmca } কে মেইল করে অনুরোধ করুন।
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = আপনার স্ক্রিনশটের উপর আপনি ব্যতীত বহুপক্ষীয় দাবি থাকলে, Firefox Screenshots থেকে আপনার প্রবেশাধিকার রদ করা হবে।
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = সময় নির্বাচন করুন
 shotPageKeepIndefinitely = অনির্দিষ্টভাবে
