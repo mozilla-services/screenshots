@@ -111,8 +111,12 @@ shotPageExpirationMessage = আপনি যদি কিছু না করে
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = { $date } তারিখ পর্যন্ত পুনঃস্থাপন করবে
 shotPageExpiredMessage = শটটি মেয়াদোত্তীর্ণ
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = এই সেই পেজ যা প্রথমে তৈরী করা হয়েছিলো:
 shotPageDeleteButton
     .title = শটটি মুছে ফেলুন
+shotPageAbuseButton
+    .title = এই শটটি কোনপ্রকার অপব্যবহার, স্প্যাম, অথবা অন্য কোন সমস্যার জন্যে রিপোর্ট করুন
 shotPageDownloadShot
     .title = ডাউনলোড
 shotPageDownload = ডাউনলোড
