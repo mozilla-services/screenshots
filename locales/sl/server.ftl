@@ -235,6 +235,7 @@ metricsPageUserShotsQueryTitle = Število posnetkov na uporabnika
 metricsPageUserShotsQueryDescription = Število uporabnikov, ki imajo približno N skupnih posnetkov
 metricsPageUserShotsQueryCount = Število uporabnikov
 metricsPageUserShotsQueryShots = Približno število aktivnih (nepretečenih) posnetkov
+metricsPageRetentionQueryTitle = Ohranitve po tednih
 metricsPageRetentionQueryDescription = Št. dni od uporabnikovega prvega posnetka do najnovejšega, združeno po začetnem tednu
 metricsPageRetentionQueryUsers = Število uporabnikov
 metricsPageRetentionQueryDays = Dni od uporabnikovega prvega posnetka do najnovejšega
