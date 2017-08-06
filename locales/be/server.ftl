@@ -11,6 +11,7 @@ gMyShots = Мае здымкі
 gHomeLink = Хатняя
 gNoShots
     .alt = здымкі не знойдзены
+gScreenshotsDescription = Рабіць скрыншоты стала прасцей. Рабіце, захоўвайце і дзяліцеся скрыншотамі, не пакідаючы Firefox.
 
 
 [[ Footer ]]
@@ -18,6 +19,7 @@ gNoShots
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkPrivacy = Паведамленне аб прыватнасці
+footerLinkDMCA = Паведаміць аб парушэнні аўтарскіх правоў
 footerLinkDiscourse = Даць водгук
 footerLinkRemoveAllData = Выдаліць усе дадзеныя
 
@@ -123,6 +125,7 @@ shotIndexPageSearchPlaceholder
 shotIndexPageSearchButton
     .title = Пошук
 shotIndexPageNoShotsMessage = Няма захаваных здымкаў.
+shotIndexPageNoShotsInvitation = Давайце, стварыце некалькі.
 shotIndexPageLookingForShots = Пошук вашых здымкаў…
 shotIndexPageNoSearchResultsIntro = Хмм
 shotIndexPageClearSearchButton
@@ -139,14 +142,21 @@ metricsPageTotalsQueryTitle = Вынікі
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Агляд Screenshots
 metricsPageTotalsQueryActiveShots = Актыўныя здымкі
+metricsPageTotalsQueryExpiredDeletedShots = Тэрмін захоўвання мінуў (здымак выдалены)
+metricsPageShotsQueryTitle = Здымкаў у дзень
 metricsPageShotsQueryCount = Колькасць здымкаў
 metricsPageShotsQueryDay = Дзень
+metricsPageUsersQueryTitle = Карыстальнікаў у дзень
 metricsPageUsersQueryCount = Колькасць карыстальнікаў
 metricsPageUsersQueryDay = Дзень
+metricsPageUserShotsQueryTitle = Колькасць здымкаў на карыстальніка
 metricsPageUserShotsQueryCount = Колькасць карыстальнікаў
+metricsPageRetentionQueryTitle = Захаванняў за тыдзень
 metricsPageRetentionQueryUsers = Колькасць карыстальнікаў
+metricsPageTotalRetentionQueryTitle = Агульная колькасць
 metricsPageTotalRetentionQueryUsers = Колькасць карыстальнікаў
 metricsPageVersionQueryTitle = Версія дадатка
+metricsPageVersionQueryUsers = Колькасць карыстальнікаў, якія ўваходзяць
 metricsPageVersionQueryVersion = Версія дадатка
 metricsPageVersionQueryLastSeen = Дзень
 metricsPageHeader = Метрыкі
