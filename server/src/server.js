@@ -696,7 +696,7 @@ app.post("/api/set-title/:id/:domain", csrfProtection, function(req, res) {
     simpleResponse(res, "Not logged in", 401);
     return;
   }
-  Shot.get(req.backend, shotId).then((shot) => {
+  Shot.get(req.backend, shotId, req.deviceId, req.accountId).then((shot) => {
     if (!shot) {
       simpleResponse(res, "No such shot", 404);
       return;
@@ -719,7 +719,7 @@ app.post("/api/save-edit", csrfProtection, function(req, res) {
   }
   let id = vars.shotId;
   let url = vars.url;
-  Shot.get(req.backend, id).then((shot) => {
+  Shot.get(req.backend, id, req.deviceId, req.accountId).then((shot) => {
     if (!shot) {
       simpleResponse(res, "No such shot", 404);
       return;

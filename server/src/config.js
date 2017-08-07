@@ -285,7 +285,7 @@ var conf = convict({
   enableAnnotations: {
     doc: "If true, then disable shot annotations",
     format: Boolean,
-    default: true,
+    default: false,
     env: "ENBALE_ANNOTATIONS",
     arg: "enable-annotations"
   }
