@@ -48,6 +48,13 @@ homePageGetStartedTitle = Empezar
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Busca el nuevo ícono de Screenshots en tu barra de herramientas. Apriétalo y el menú de Screenshots aparecerá sobre la ventana del navegador.
 homePageCaptureRegion = Captura una región
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Haz clic y arrastra para seleccionar el área que quieres capturar. O solo colocate sobre una parte y haz clic — Screenshots seleccionará el área por ti. ¿Te gusta lo que ves? Selecciona Guardar para acceder a tu captura de pantalla en línea o el botón con forma de flecha apuntando hacia abajo para descargarla a tu computador.
+homePageCapturePage = Captura una página
+homePageCapturePageDescription = Usa los botones en la parte superior derecha para capturar páginas completas. El botón para guardar lo visible capturará el área que puedes ver sin desplazarte por la página, y el de guardar la página completa capturará incluso lo que se encuentre más arriba o abajo de la pantalla.
+homePageSaveShare = Guardar y compartir
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Cuando tomas una captura, Firefox la publica a tu biblioteca de capturas de pantalla en línea y copia el enlace a tu portapapeles. Automáticamente almacenamos tu captura de pantalla por dos semanas, pero puedes eliminar las capturas en cualquier momento o cambiar la fecha de expiración para mantenerlas en tu biblioteca más tiempo.
 homePageLegalLink = Legal
 homePagePrivacyLink = Privacidad
 homePageTermsLink = Términos
@@ -64,14 +71,27 @@ leavePageErrorGeneric = Ocurrió un error
 leavePageWarning = Esto eliminará permanentemente todos tus datos de Firefox Screenshots
 leavePageButtonProceed = Proceder
 leavePageButtonCancel = Cancelar
+leavePageDeleted = ¡Todas tus capturas fueron eliminadas!
 
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Página no encontrada
+notFoundPageIntro = Chuta.
+notFoundPageDescription = Página no encontrada.
 
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Captura: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = Error al guardar fecha de expiración
+shotPageAlertErrorDeletingShot = Error al eliminar captura
+shotPageAlertErrorUpdatingTitle = Error al guardar el título
+shotPageConfirmDelete = ¿Estás seguro de que quieres eliminar esta captura permanentemente?
+shotPageShareButton
+    .title = Compartir
+shotPageCopy = Copiar
 shotPageScreenshotsDescription = Capturas de pantallas sin complicaciones. Toma, guarda y comparte capturas sin salir de Firefox.
 shotPageUpsellFirefox = Obtén Firefox ahora
 shotPageDMCAMessage = Esta captura ya no eá disponible debido a un reclamo de propiedad intelectual de un tercero.
