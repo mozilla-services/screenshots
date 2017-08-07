@@ -11,6 +11,7 @@ gMyShots = تصاویر من
 gHomeLink = خانه
 gNoShots
     .alt = هیچ تصویری پیدا نشد
+gScreenshotsDescription = عکس گرفتن از صفحه آسان شده است. بگیرید، ذخیره‌ کنید و عکس گرفته شده از صفحه را بدون ترک فایرفاکس همرسانی کنید.
 
 
 [[ Footer ]]
@@ -34,6 +35,8 @@ creatingPageTitleDefault = صفحه
 
 [[ Home page ]]
 
+homePageDescription
+    .content = عکس های بصری گرفته شده مستقیما در مرورگر شما آماده می‌شود. گرفتن،‌ذخیره و همرسانی تصاویر صفحه در حالی که با فایرفاکس مرور می‌کنید
 homePageButtonMyShots = برو به عکس‌های من
 homePageTeaser = به زودی…
 homePageDownloadFirefoxTitle = فایرفاکس
