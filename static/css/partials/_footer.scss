@@ -37,13 +37,19 @@
     width: $grid-unit * 6;
   }
 
+  .inverse-color-scheme & {
+    .mozilla-logo {
+      background-image: url("../img/mozilla-white.svg");
+    }
+  }
+
   .default-color-scheme & {
     .mozilla-logo {
-      filter: invert(100%);
+      background-image: url("../img/mozilla.svg");
     }
 
     a {
-      color: $link-medium;
+      color: $dark-default;
     }
   }
 }

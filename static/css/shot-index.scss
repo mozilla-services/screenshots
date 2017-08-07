@@ -2,6 +2,10 @@
 
 //Shot index page styles
 
+#shot-index-page {
+  background: $light-default;
+}
+
 #shot-index-header,
 #shot-index {
 
@@ -270,10 +274,10 @@ h1 {
 
 .preferences {
   @include flex-container(row, flex-start, stretch);
-  background-size: $grid-unit $grid-unit;
-  background-repeat: no-repeat;
-  background-position: center center;
   background-image: url("../img/preferences-16.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: $grid-unit $grid-unit;
   position: absolute;
   right: 0;
 }
