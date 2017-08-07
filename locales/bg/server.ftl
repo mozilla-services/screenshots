@@ -108,16 +108,28 @@ shotPageCopyImageText
 shotPageConfirmDeletion = Сигурни ли сте, че желаете изображението да бъде необратимо премахнато?
 // Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Ако не правите нищо тази снимка ще бъде необратимо премахната { $timediff }
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = 
+shotPageExpiredMessage = Тази снимка е с изтекла давност.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Това е страницата, от която е направена:
 shotPageDeleteButton
     .title = Премахване на снимката
+shotPageAbuseButton
+    .title = Докладвайте снимката за злоупотреба или други проблеми
 shotPageDownloadShot
     .title = Изтегляне
 shotPageDownload = Изтегляне
-shotPageScreenshotsDescription =
-    Лесни снимки на екрана. Правите, запазвате и споделяте снимки на екрана без да напускате Firefox.
-
+shotPageScreenshotsDescription = Лесни снимки на екрана. Правите, запазвате и споделяте снимки на екрана без да напускате Firefox.
+shotPageUpsellFirefox = Вземете Firefox сега
+shotPageDMCAMessage = Това изображение вече не е налично, защото е докладвано като обект на авторско право.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Моля, за повече информация пишете до { $dmca }.
 // Note: do not translate 'Firefox Screenshots' when translating this string
-shotPageDMCAWarning = Ако много хора докладват вашите изображения, може да ви откажем достъп до Firefox Screenshots.
+shotPageDMCAWarning = Ако много хора докладват вашите изображения, може да откажем достъп до Firefox Screenshots.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Моля, включете препратка към тази снимка във вашето писмо: { $url }
 shotPageKeepFor = Колко дълго снимката да бъде пазена?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = продължителност
@@ -190,10 +202,3 @@ shotIndexPageConfirmShotDelete = Сигурни ли сте, че желаете
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
-// Note: 'Firefox Screenshots' should not be translated
-metricsPageTitle = Статистики за Firefox Screenshots
-metricsPageTotalsQueryTitle = Общо
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-metricsPageTotalsQueryDescription = Firefox Screenshots накратко
-metricsPageRetentionQueryUsers = Брой потребители
-metricsPageTotalRetentionQueryUsers = Брой потребители
