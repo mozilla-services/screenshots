@@ -54,9 +54,14 @@ homePageCookiesLink = કુકીઓ
 [[ Leave Screenshots page ]]
 
 leavePageConfirmDelete = એકાઉન્ટ કાઢી નાખવાની પુષ્ટિ કરો
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = તમારા એકાઉન્ટને કાઢી નાખવા માટે તમારી પાસે Firefox સ્ક્રીનશોટ ઇન્સ્ટોલ છે
 leavePageErrorGeneric = એક ભૂલ આવી
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = આ તમારા બધા Firefox સ્ક્રિનશોટ્સ ડેટાને કાયમી ધોરણે કાઢી નાખશે.
 leavePageButtonProceed = આગળ વધો
 leavePageButtonCancel = રદ કરો
+leavePageDeleted = તમારા બધા સ્ક્રીનશૉટ્સ દૂર થઈ ગયા છે!
 
 
 [[ Not Found page ]]
@@ -103,6 +108,9 @@ shotPageDownloadShot
     .title = ડાઉનલોડ કરો
 shotPageDownload = ડાઉનલોડ કરો
 shotPageUpsellFirefox = હમણાં Firefox મેળવો
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = કૃપા કરીને તમારા ઇમેઇલમાં આ શોટનાં URL શામેલ કરો: { $url }
+shotPageKeepFor = આ શૉટને કેટલા સમય સુધી જાળવી રાખવો જોઈએ?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = સમય પસંદ કરો
 shotPageKeepIndefinitely = અનિશ્ચિતપણે
@@ -168,12 +176,17 @@ shotIndexPageNoSearchResultsIntro = હમમ
 shotIndexPageNoSearchResults = અમે તમારી શોધ સાથે મેળ ખાતા કોઈપણ શોટ શોધી શકતા નથી.
 shotIndexPageClearSearchButton
     .title = શોધ સાફ કરો
+shotIndexPageConfirmShotDelete = આ શોટ કાઢી નાખીએ?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Firefox Screenshots માપદંડ
 metricsPageTotalsQueryTitle = કુલ
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = સ્ક્રીનશોટનું ઝાંખી
 metricsPageTotalsQueryDevices = રજીસ્ટર થયેલ કુલ ઉપકરણો
 metricsPageTotalsQueryActiveShots = સક્રિય શોટ્સ
 metricsPageTotalsQueryExpiredShots = સમાપ્ત (પરંતુ પુનઃપ્રાપ્ત)
@@ -183,14 +196,24 @@ metricsPageShotsQueryDescription = દરરોજ બનાવેલા શો�
 metricsPageShotsQueryCount = શોટની સંખ્યા
 metricsPageShotsQueryDay = દિવસ
 metricsPageUsersQueryTitle = દિવસ દ્વારા વપરાશકર્તાઓ
+metricsPageUsersQueryDescription = ઓછામાં ઓછા એક શોટ બનાવતા વપરાશકર્તાઓની સંખ્યા, દિવસે (છેલ્લા 30 દિવસ)
 metricsPageUsersQueryCount = વપરાશકર્તાઓની સંખ્યા
 metricsPageUsersQueryDay = દિવસ
+metricsPageUserShotsQueryTitle = વપરાશકર્તા દીઠ શોટની સંખ્યા
+metricsPageUserShotsQueryDescription = કુલ N શોટ વિશેના વપરાશકર્તાઓની સંખ્યા
 metricsPageUserShotsQueryCount = વપરાશકર્તાઓની સંખ્યા
+metricsPageUserShotsQueryShots = સક્રિય સંખ્યા (અસમાપ્ત) શોટ્સ
+metricsPageRetentionQueryTitle = જાળવી રાખો સપ્તાહ દ્વારા
+metricsPageRetentionQueryDescription = વપરાશકર્તાના પ્રથમ શૉટથી સૌથી વધુ શૉટ સુધીના દિવસોની સંખ્યા, અઠવાડિયાના પ્રારંભથી જૂથ થયેલ
 metricsPageRetentionQueryUsers = વપરાશકર્તાઓની સંખ્યા
+metricsPageRetentionQueryDays = વપરાશકર્તાના સૌથી તાજેતરના શૉટથી દિવસો
+metricsPageRetentionQueryFirstWeek = અઠવાડિયે વપરાશકર્તાએ પ્રથમ શોટ બનાવ્યો
 metricsPageTotalRetentionQueryTitle = કુલ અવરોધ
+metricsPageTotalRetentionQueryDescription = સમય વપરાશકર્તાઓની લંબાઈ શોટ બનાવી રહ્યાં છે, જે અઠવાડિયામાં જૂથ થયેલ છે
 metricsPageTotalRetentionQueryUsers = વપરાશકર્તાઓની સંખ્યા
 metricsPageTotalRetentionQueryDays = તે દિવસો વપરાશકર્તાએ શોટ બનાવ્યાં છે
 metricsPageVersionQueryTitle = એડ-ઑન સંસ્કરણ
+metricsPageVersionQueryDescription = ઍડ-ઑનનું આવૃત્તિ લોગિન દરમિયાન વપરાયેલ, છેલ્લા 14 દિવસોમાં
 metricsPageVersionQueryUsers = લૉગિન વપરાશકર્તાઓની સંખ્યા
 metricsPageVersionQueryVersion = એડ-ઑન સંસ્કરણ
 metricsPageVersionQueryLastSeen = દિવસ
