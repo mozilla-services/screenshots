@@ -18,6 +18,7 @@ gScreenshotsDescription = Skjermbilete gjort enkelt. Ta, lagre og del skjermbild
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = 
+footerLinkTerms = Vilkår
 footerLinkPrivacy = Personvernmerknad
 footerLinkDMCA = Rapporter brot på åndsverklova
 footerLinkDiscourse = Gje tilbakemelding
