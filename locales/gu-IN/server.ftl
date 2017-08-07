@@ -44,6 +44,8 @@ homePageGetStarted = શરૂ કરો
 homePageHowScreenshotsWorks = Firefox Screenshots કેવી રીતે કામ કરે છે
 homePageGetStartedTitle = શરૂ કરો
 homePageCaptureRegion = પ્રદેશને પકડો
+homePageCapturePage = પૃષ્ઠને પકડો
+homePageCapturePageDescription = સંપૂર્ણ પૃષ્ઠોને પકડવા માટે ઉપલા જમણા બટન્સનો ઉપયોગ કરો. સાચવો દૃશ્યમાન બટન તે વિસ્તારને પકડવા કરશે જે તમે સ્ક્રોલિંગ વગર જોઈ શકો છો, અને પૂર્ણ પેજમાં સાચવો પૃષ્ઠ પર બધું પકડશે.
 homePageSaveShare = સાચવો અને વહેચો
 homePageLegalLink = કાયદાકીય
 homePagePrivacyLink = ખાનગીપણું
@@ -96,10 +98,14 @@ shotPagePrivacyMessage = લિંક ધરાવનાર કોઈપણ આ 
 shotPageCopyImageText
     .label = છબી ટેક્સ્ટ નકલ કરો
 shotPageConfirmDeletion = શું તમે ખરેખર આ શોટને કાયમ માટે કાઢી નાખવા માંગો છો?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = જો તમે કશું કરશો નહીં, આ શોટ કાયમી રૂપે કાઢી નાખવામાં આવશે { $timediff }.
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = જ્યાં સુધી પુનઃસ્થાપિત કરો { $date }
 shotPageExpiredMessage = આ શોટની સમયસીમા સમાપ્ત થઈ ગઈ છે.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = અહીં તે પૃષ્ઠ છે જે મૂળથી બનાવવામાં આવ્યું હતું:
 shotPageDeleteButton
     .title = આ શોટ કાઢી નાખો
 shotPageAbuseButton
@@ -107,7 +113,15 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = ડાઉનલોડ કરો
 shotPageDownload = ડાઉનલોડ કરો
+shotPageScreenshotsDescription =
+    સ્ક્રીનશોટને સરળ બનાવી. Firefox છોડ્યાં વગર સ્ક્રીનશોટ લો, સાચવો અને વહેંચો.
+
 shotPageUpsellFirefox = હમણાં Firefox મેળવો
+shotPageDMCAMessage = તૃતીય પક્ષ બૌદ્ધિક સંપદા દાવાને કારણે આ શોટ હવે ઉપલબ્ધ નથી.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = વધુ માહિતી માટે વિનંતી કરવા માટે { $dmca } ઇમેઇલ કરો.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = જો તમારા શોટ્સ બહુવિધ દાવાઓને આધીન છે, તો અમે Firefox સ્ક્રિનશોટ પર તમારી ઍક્સેસ રદ કરી શકીએ છીએ.
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = કૃપા કરીને તમારા ઇમેઇલમાં આ શોટનાં URL શામેલ કરો: { $url }
 shotPageKeepFor = આ શૉટને કેટલા સમય સુધી જાળવી રાખવો જોઈએ?
@@ -183,7 +197,7 @@ shotIndexPageConfirmShotDelete = આ શોટ કાઢી નાખીએ?
 [[ Metrics page ]]
 
 // Note: 'Firefox Screenshots' should not be translated
-metricsPageTitle = Firefox Screenshots માપદંડ
+metricsPageTitle = Firefox સ્ક્રીનશૉટ્સ માપદંડ
 metricsPageTotalsQueryTitle = કુલ
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = સ્ક્રીનશોટનું ઝાંખી
