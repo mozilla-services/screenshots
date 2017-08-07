@@ -189,7 +189,7 @@ shotIndexPageSearchPlaceholder
     .placeholder = Procurar minhas capturas
 shotIndexPageSearchButton
     .title = Pesquisar
-shotIndexPageNoShotsMessage = Capturas não salvas.
+shotIndexPageNoShotsMessage = Não há capturas salvas.
 shotIndexPageNoShotsInvitation = Vai lá, crie algum.
 shotIndexPageLookingForShots = Procurando por suas capturas...
 shotIndexPageNoSearchResultsIntro = Hmm
@@ -211,7 +211,7 @@ metricsPageTotalsQueryDevices = Total de dispositivos registrados
 metricsPageTotalsQueryActiveShots = Capturas ativas
 metricsPageTotalsQueryExpiredShots = Expirou (mas é recuperável)
 metricsPageTotalsQueryExpiredDeletedShots = Expirou (e deletou)
-metricsPageShotsQueryTitle = Capturas por Dia
+metricsPageShotsQueryTitle = Capturas por dia
 metricsPageShotsQueryDescription = Número de capturas criados por dia (nos últimos 30 dias)
 metricsPageShotsQueryCount = Número de capturas
 metricsPageShotsQueryDay = Dia
