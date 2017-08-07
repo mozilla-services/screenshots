@@ -18,6 +18,7 @@ gScreenshotsDescription = Jednoduchá tvorba snímok obrazovky. Vytvorte, uložt
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Podmienky
 footerLinkPrivacy = Zásady ochrany súkromia
 footerLinkDMCA = Nahlásiť zneužitie IP adresy
 footerLinkDiscourse = Poskytnúť spätnú väzbu
