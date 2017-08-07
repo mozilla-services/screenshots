@@ -7,7 +7,7 @@ exports.Footer = class Footer extends React.Component {
       <div className="footer">
         <a href="https://www.mozilla.org" target="_blank" rel="noopener noreferrer" className="mozilla-logo" title="Mozilla"/>
         <div className="legal-links">
-          <Localized id="footerLinkMozilla">
+          <Localized id="footerLinkTerms">
             <a href="https://www.mozilla.org/about/legal/terms/services/" target="_blank" rel="noopener noreferrer">Terms</a>
           </Localized>
           <Localized id="footerLinkPrivacy">
