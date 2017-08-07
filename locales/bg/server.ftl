@@ -62,11 +62,15 @@ leavePageConfirmDelete = Потвърдете изтриване на сметк
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Трябва да имате инсталиран Firefox Screenshots, за да изтриете вашата сметка
 leavePageErrorGeneric = Възникна грешка
+leavePageButtonProceed = Продължаване
+leavePageButtonCancel = Отказ
+leavePageDeleted = Всички ваши снимки бяха премахнати!
 
 
 [[ Not Found page ]]
 
 notFoundPageTitle = Страницата не е намерена
+notFoundPageIntro = Олеле.
 notFoundPageDescription = Страницата не е намерена.
 
 
@@ -74,6 +78,16 @@ notFoundPageDescription = Страницата не е намерена.
 
 // This is the HTML title tag of the page
 shotPageTitle = Снимка на екрана: { $originalTitle }
+shotPageShareButton
+    .title = Споделяне
+shotPageCopy = Копиране
+shotPageCopied = Копирано
+shotPageShareFacebook
+    .title = Споделяне във Facebook
+shotPageShareTwitter
+    .title = Споделяне в Twitter
+shotPageSharePinterest
+    .title = Споделяне в Pinterest
 shotPageKeepFor = Колко дълго снимката да бъде пазена?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = продължителност
