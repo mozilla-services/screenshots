@@ -18,6 +18,7 @@ gScreenshotsDescription = Bildschirmfotos ganz einfach. Machen, speichern und te
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Nutzungsbedingungen
 footerLinkPrivacy = Datenschutzhinweis
 footerLinkDMCA = Verletzung geistigen Eigentums melden
 footerLinkDiscourse = Feedback geben
