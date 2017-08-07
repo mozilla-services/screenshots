@@ -36,7 +36,7 @@ creatingPageTitleDefault = صفحه
 [[ Home page ]]
 
 homePageDescription
-    .content = عکس های بصری گرفته شده مستقیما در مرورگر شما آماده می‌شود. گرفتن،‌ذخیره و همرسانی تصاویر صفحه در حالی که با فایرفاکس مرور می‌کنید
+    .content = عکس‌های بصری گرفته شده مستقیما در مرورگر شما آماده می‌شود. گرفتن،‌ ذخیره و هم‌رسانی تصاویر صفحه در حالی که با فایرفاکس وب را مرور می‌کنید.
 homePageButtonMyShots = برو به عکس‌های من
 homePageTeaser = به زودی…
 homePageDownloadFirefoxTitle = فایرفاکس
@@ -46,10 +46,10 @@ homePageGetStarted = شروع کنید
 homePageHowScreenshotsWorks = Firefox Screenshots چگونه کار می‌کند
 homePageGetStartedTitle = شروع کنید
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = یک شمایل جدید برای گرفتن عکس از صفحه در نوار ابزار خود پیدا  کنید. انتخابش کنید سپس فهرست عکس‌های گرفته شده از صفحه در بالای پنجره مرورگر شما نمایان خواهد شد.
+homePageGetStartedDescription = شمایل جدید Screenshots را در نوار ابزار خود پیدا کنید. انتخابش کنید، سپس منوی Screenshots در بالای پنجره مرورگر شما نمایان خواهد شد.
 homePageCaptureRegion = گرفتن عکس از یک ناحیه
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = ناحیه که می‌خواهید ثبت کنید را انتخاب کنید و بکشید. یا فقط به سمت شناور بروید و کلیک کنید — Screenshots برای شما محدوده مورد نظر را انتخاب‌ می‌کند. دقیقا همانند چیزی که می بینید؟ بر روی ذخیره کلیک کنید تا عکس‌های گرفته شده  به صورت آنلاین ذخیره شود یا برای ذخیره بر روی کامپیوتر بر روی دکمه پایین جهت دریافت کلیک کنید.
+homePageCaptureRegionDescription = ناحیه که می‌خواهید ثبت کنید را انتخاب کنید و بکشید. یا فقط به روی آن بروید و کلیک کنید — Screenshots برای شما محدوده مورد نظر را انتخاب‌ می‌کند. دقیقا همانند چیزی که می بینید؟ بر روی ذخیره کلیک کنید تا عکس‌های گرفته شده  به صورت آنلاین ذخیره شود یا برای ذخیره بر روی کامپیوتر بر روی دکمه فلش به سمت پایین کلیک کنید.
 homePageCapturePage = گرفتن عکس از صفحه
 homePageCapturePageDescription = از دکمه ظاهر شده در راست برای گرفتن تمام صفحه تصویر استفاده کنید. دکمه ذخیره آشکار این امکان را به شما می‌دهد بدون اسکرول کردن به پایین، قسمت های پایین را ثبت کنید و ذخیره به صورت تمام صفحه هر‌آنچه در صفحه دارید را ذخیره می‌کند.
 homePageSaveShare = ذخیره و اشتراک‌گذاری
@@ -217,7 +217,7 @@ metricsPageUserShotsQueryTitle = تعداد عکس‌ها برای هر کارب
 metricsPageUserShotsQueryDescription = تعداد کاربرانی که در مجموع حدود N عکس دارند
 metricsPageUserShotsQueryCount = تعداد کاربران
 metricsPageUserShotsQueryShots = تعداد تقریبی عکس‌های فعال (منقضی نشده)
-metricsPageRetentionQueryTitle = نگه‌داری تا یک هفته
+metricsPageRetentionQueryTitle = نگه‌داری بر اساس هفته
 metricsPageRetentionQueryDescription = تعداد روز‌ها از نخستین عکس کاربر تا آخرین عکس، گروه بندی‌شده بر اساس هفته آغازین
 metricsPageRetentionQueryUsers = تعداد کاربران
 metricsPageRetentionQueryDays = فاصله روزهای بین نخستین تا آخرین عکس کاربر
