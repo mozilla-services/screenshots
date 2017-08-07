@@ -45,10 +45,23 @@ homePageGetStarted = Първи стъпки
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Как работи Firefox Screenshots
 homePageGetStartedTitle = Първи стъпки
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Пиктограмата на добавката се намира на лентата с инструменти. Като я изберете тя ще отвори менюто най-горе във вашия четец.
+homePageCaptureRegion = Улавяне на част от екрана
+homePageCapturePage = Улавяне на страница
+homePageSaveShare = Запазване и споделяне
+homePageLegalLink = Правни въпроси
+homePagePrivacyLink = Поверителност
+homePageTermsLink = Условия
+homePageCookiesLink = Бисквитки
 
 
 [[ Leave Screenshots page ]]
 
+leavePageConfirmDelete = Потвърдете изтриване на сметка
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Трябва да имате инсталиран Firefox Screenshots, за да изтриете вашата сметка
+leavePageErrorGeneric = Възникна грешка
 
 
 [[ Not Found page ]]
