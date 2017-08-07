@@ -17,6 +17,7 @@ gScreenshotsDescription = Screenshots made simple. Take, save, and share screens
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Terms
 footerLinkPrivacy = Privacy Notice
 footerLinkDMCA = Report IP Infringement
 footerLinkDiscourse = Give Feedback
