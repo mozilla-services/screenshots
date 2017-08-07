@@ -35,6 +35,8 @@ creatingPageTitleDefault = página
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Capturas de pantalla intuitivas integradas en el navegador. Captura, guarda y comparte las capturas mientras navegas por la Web usando Firefox.
 homePageButtonMyShots = Ir a mis capturas
 homePageTeaser = Próximamente…
 homePageDownloadFirefoxTitle = Firefox
@@ -70,9 +72,7 @@ leavePageButtonCancel = Cancelar
 
 [[ Shot page ]]
 
-shotPageScreenshotsDescription =
-    Capturas de pantallas sin complicaciones. Toma, guarda y comparte capturas sin salir de Firefox.
-
+shotPageScreenshotsDescription = Capturas de pantallas sin complicaciones. Toma, guarda y comparte capturas sin salir de Firefox.
 shotPageUpsellFirefox = Obtén Firefox ahora
 shotPageDMCAMessage = Esta captura ya no eá disponible debido a un reclamo de propiedad intelectual de un tercero.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
