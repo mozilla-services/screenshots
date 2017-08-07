@@ -18,6 +18,7 @@ gScreenshotsDescription = ეკრანისთვის სურათი�
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = პირობები
 footerLinkPrivacy = განცხადება პირადი მონაცემები დაცვის შესახებ
 footerLinkDMCA = მოხსენება IP დარღვევაზე
 footerLinkDiscourse = გამოხმაურება
