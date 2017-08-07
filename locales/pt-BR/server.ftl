@@ -51,7 +51,7 @@ homePageCaptureRegion = Capturar uma região
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar. Ou simplesmente clique — o Screenshots irá selecionar a área automaticamente pra você. Gostou do que viu? Clique em Salvar para acessar sua captura on-line ou no botão com a seta para baixo para baixar para seu computador.
 homePageCapturePage = Capturar uma página
-homePageCapturePageDescription = Utilize os botões no canto superior direito para capturar telas inteiras. O botão Salvar Visível irá capturar a área que você vê sem rolar a página, e Salvar Página Inteira irá capturar toda a página.
+homePageCapturePageDescription = Utilize os botões no canto superior direito para capturar telas inteiras. O botão Salvar Área Visível irá capturar a área que você vê sem rolar a página, e Salvar Página Inteira irá capturar toda a página.
 homePageSaveShare = Salvar e compartilhar
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Quando você captura uma tela, Firefox armazena suas capturas na sua biblioteca on-line do Screenshots e copia o link para sua área de transferência. Nós armazenamos suas capturas automaticamente por duas semanas, mas você pode excluir capturas a qualquer momento ou mudar a data de validade para mantê-las em sua biblioteca por mais tempo.
@@ -236,7 +236,7 @@ metricsPageVersionQueryTitle = Versão da extensão
 metricsPageVersionQueryDescription = A versão da extensão usado durante o login, nos últimos 14 dias
 metricsPageVersionQueryUsers = Número de usuários autenticados
 metricsPageVersionQueryVersion = Versão da Extensão
-metricsPageVersionQueryLastSeen = 
+metricsPageVersionQueryLastSeen = Dia
 metricsPageHeader = Métricas
 // Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Gerado em: { $created }
