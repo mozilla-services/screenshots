@@ -46,10 +46,10 @@ homePageGetStarted = Първи стъпки
 homePageHowScreenshotsWorks = Как работи Firefox Screenshots
 homePageGetStartedTitle = Първи стъпки
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Пиктограмата на добавката се намира на лентата с инструменти. Като я изберете тя ще отвори менюто най-горе във вашия четец.
+homePageGetStartedDescription = Новата пиктограма на Screenshots се намира на лентата с инструменти. Като я изберете от нея се отваря менюто най-горе във вашия четец.
 homePageCaptureRegion = Улавяне на част от екрана
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Натиснете и влачете, за да изберете областта която желаете да уловите. Или просто поставете курсора отгоре и натиснете – Screenshots ще избере площта вместо вас. Харесва ли ви? Изберете „Запазване“, за да имате снимката онлайн или бутона със стрелка надолу, за да я изтеглите на вашия компютър.
+homePageCaptureRegionDescription = Натиснете и влачете, за да изберете областта която желаете да уловите. Или просто поставете курсора отгоре и натиснете – Screenshots сама ще избере площта вместо вас. Харесва ли ви? Изберете „Запазване“, за да имате снимката онлайн или бутона със стрелка надолу, за да я изтеглите на вашия компютър.
 homePageCapturePage = Улавяне на страница
 homePageCapturePageDescription = Използвайте бутоните в горния десен ъгъл, за да снимате цели страници. Бутонът „Запазване на видимата област“ ще улови областта, която виждате без прелистване, а „Запазване на цялата страница“ – всичко на страницата.
 homePageSaveShare = Запазване и споделяне
@@ -68,7 +68,7 @@ leavePageConfirmDelete = Потвърдете изтриване на сметк
 leavePageErrorAddonRequired = Трябва да имате инсталиран Firefox Screenshots, за да изтриете вашата сметка
 leavePageErrorGeneric = Възникна грешка
 // Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageWarning = Така вашата информация във Firefox Screenshots ще бъде необратимо премахната.
+leavePageWarning = Така вашата информация в Firefox Screenshots ще бъде необратимо премахната.
 leavePageButtonProceed = Продължаване
 leavePageButtonCancel = Отказ
 leavePageDeleted = Всички ваши снимки бяха премахнати!
@@ -99,6 +99,25 @@ shotPageShareTwitter
     .title = Споделяне в Twitter
 shotPageSharePinterest
     .title = Споделяне в Pinterest
+shotPageShareEmail
+    .title = Споделяне препратката по ел. поща
+shotPageShareLink = Препратка за споделяне към снимката:
+shotPagePrivacyMessage = Всеки, който има препратката може да вижда снимката.
+shotPageCopyImageText
+    .label = Копиране на текста от снимката
+shotPageConfirmDeletion = Сигурни ли сте, че желаете изображението да бъде необратимо премахнато?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Ако не правите нищо тази снимка ще бъде необратимо премахната { $timediff }
+shotPageDeleteButton
+    .title = Премахване на снимката
+shotPageDownloadShot
+    .title = Изтегляне
+shotPageDownload = Изтегляне
+shotPageScreenshotsDescription =
+    Лесни снимки на екрана. Правите, запазвате и споделяте снимки на екрана без да напускате Firefox.
+
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Ако много хора докладват вашите изображения, може да ви откажем достъп до Firefox Screenshots.
 shotPageKeepFor = Колко дълго снимката да бъде пазена?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = продължителност
@@ -111,6 +130,11 @@ shotPageKeepTwoWeeks = 2 седмици
 shotPageKeepOneMonth = 1 месец
 shotPageSaveExpiration = запазване
 shotPageCancelExpiration = отказване
+shotPageDoesNotExpire = не изтича
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = изтича { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = изтекло { $timediff }
 timeDiffJustNow = току-що
 timeDiffMinutesAgo = { $num ->
         [one] преди 1 минута
@@ -153,8 +177,23 @@ shotIndexPageSearchPlaceholder
     .placeholder = Търсене в моите снимки
 shotIndexPageSearchButton
     .title = Търсене
+shotIndexPageNoShotsMessage = Нямате запазени снимки.
+shotIndexPageNoShotsInvitation = Хайде, направете няколко.
+shotIndexPageLookingForShots = Търсене на вашите снимки…
+shotIndexPageNoSearchResultsIntro = Хмм
+shotIndexPageNoSearchResults = Не намираме снимки, които отговарят на търсенето ви.
+shotIndexPageClearSearchButton
+    .title = Изчистване на търсенето
+shotIndexPageConfirmShotDelete = Сигурни ли сте, че желаете това изображение да бъде премахнато?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Статистики за Firefox Screenshots
+metricsPageTotalsQueryTitle = Общо
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Firefox Screenshots накратко
+metricsPageRetentionQueryUsers = Брой потребители
+metricsPageTotalRetentionQueryUsers = Брой потребители
