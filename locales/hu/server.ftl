@@ -18,6 +18,7 @@ gScreenshotsDescription = Képernyőképek egyszerűen. Készítsen, mentsen és
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Feltételek
 footerLinkPrivacy = Adatvédelmi nyilatkozat
 footerLinkDMCA = Szellemi tulajdont érintő jogsértés jelentése
 footerLinkDiscourse = Adjon visszajelzést
