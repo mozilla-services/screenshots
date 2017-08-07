@@ -1,5 +1,6 @@
 const reactruntime = require("../../reactruntime");
 const React = require("react");
+const { Localized } = require("fluent-react/compat");
 
 class Head extends React.Component {
 
@@ -19,9 +20,12 @@ class Body extends React.Component {
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <div className="column-center full-height inverse-color-scheme">
-          <div className="spinner-wrapper">
-            <div className="spinner" />
+          <div className="loader">
+            <div className="loader-inner" />
           </div>
+          <Localized id="creatingPageWaitMessage">
+            <p>Saving your shot…</p>
+          </Localized>
         </div>
       </reactruntime.BodyTemplate>
     );

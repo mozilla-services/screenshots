@@ -29,6 +29,7 @@ footerLinkRemoveAllData = Remove All Data
 // creatingPageTitleDefault.
 creatingPageTitle = Creating { $title }
 creatingPageTitleDefault = page
+creatingPageWaitMessage = Saving your shot…
 
 
 [[ Home page ]]
