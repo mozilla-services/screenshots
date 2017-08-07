@@ -1,3 +1,10 @@
+## Version 13.1.0
+
+Note: server only, 13.0.0 didn't make it past stage.
+
+* Change footer text from Mozilla to Terms. Fixes [#3284](https://github.com/mozilla-services/screenshots/issues/3284) [336563d](https://github.com/mozilla-services/screenshots/commit/336563d)
+* Fix bad delete display Because of a lack of a key attribute, the deleted state was being assigned to cards on position and not shot id. Fixes [#3267](https://github.com/mozilla-services/screenshots/issues/3267) [6777a3a](https://github.com/mozilla-services/screenshots/commit/6777a3a)
+
 ## Version 13.0.0 release
 
 This is a server-only release
