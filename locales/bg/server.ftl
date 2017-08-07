@@ -48,8 +48,13 @@ homePageGetStartedTitle = Първи стъпки
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Пиктограмата на добавката се намира на лентата с инструменти. Като я изберете тя ще отвори менюто най-горе във вашия четец.
 homePageCaptureRegion = Улавяне на част от екрана
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Натиснете и влачете, за да изберете областта която желаете да уловите. Или просто поставете курсора отгоре и натиснете – Screenshots ще избере площта вместо вас. Харесва ли ви? Изберете „Запазване“, за да имате снимката онлайн или бутона със стрелка надолу, за да я изтеглите на вашия компютър.
 homePageCapturePage = Улавяне на страница
+homePageCapturePageDescription = Използвайте бутоните в горния десен ъгъл, за да снимате цели страници. Бутонът „Запазване на видимата област“ ще улови областта, която виждате без прелистване, а „Запазване на цялата страница“ – всичко на страницата.
 homePageSaveShare = Запазване и споделяне
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Когато направите снимка Firefox я публикува във вашата онлайн библиотека на Screenshots и копира препратката в буферната памет. Изображенията се пазят 2 седмици, но може да ги премахнете по всяко време или да промените кога да бъдат изтрити, за да ги задържите в библиотеката си за по дълго време.
 homePageLegalLink = Правни въпроси
 homePagePrivacyLink = Поверителност
 homePageTermsLink = Условия
@@ -62,6 +67,8 @@ leavePageConfirmDelete = Потвърдете изтриване на сметк
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Трябва да имате инсталиран Firefox Screenshots, за да изтриете вашата сметка
 leavePageErrorGeneric = Възникна грешка
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Така вашата информация във Firefox Screenshots ще бъде необратимо премахната.
 leavePageButtonProceed = Продължаване
 leavePageButtonCancel = Отказ
 leavePageDeleted = Всички ваши снимки бяха премахнати!
@@ -78,6 +85,10 @@ notFoundPageDescription = Страницата не е намерена.
 
 // This is the HTML title tag of the page
 shotPageTitle = Снимка на екрана: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = Грешка при запазване на срока на изтичане
+shotPageAlertErrorDeletingShot = Грешка при изтриване на изображението
+shotPageAlertErrorUpdatingTitle = Грешка при запазване на заглавието
+shotPageConfirmDelete = Сигурни ли сте, че желаете изображението да бъде необратимо премахнато?
 shotPageShareButton
     .title = Споделяне
 shotPageCopy = Копиране
