@@ -48,6 +48,9 @@ class Body extends React.Component {
   }
 
   renderShots() {
+    if (this.props.shots === null) {
+      return this.renderShotsLoading();
+    }
     let children = [];
     for (let shot of this.props.shots) {
       children.push(<Card shot={shot} downloadUrl={this.props.downloadUrls[shot.id]} abTests={this.props.abTests} clipUrl={shot.urlDisplay} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} key={shot.id} />);
@@ -71,6 +74,14 @@ class Body extends React.Component {
       )
     }
     return children;
+  }
+
+  renderShotsLoading() {
+    return <div className="column-center full-height">
+      <div className="loader">
+        <div className="loader-inner" />
+      </div>
+    </div>;
   }
 
   renderErrorMessages() {
