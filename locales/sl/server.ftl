@@ -32,6 +32,7 @@ footerLinkRemoveAllData = Odstrani vse podatke
 // creatingPageTitleDefault.
 creatingPageTitle = Ustvarjam { $title }
 creatingPageTitleDefault = stran
+creatingPageWaitMessage = Shranjevanje posnetka …
 
 
 [[ Home page ]]
