@@ -18,6 +18,7 @@ gScreenshotsDescription = Kuvakaappaukset helposti. Ota, tallenna ja jaa kuvakaa
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Käyttöehdot
 footerLinkPrivacy = Tietosuojakäytäntö
 footerLinkDMCA = Ilmoita immateriaalioikeuksien loukkauksesta
 footerLinkDiscourse = Anna plautetta
