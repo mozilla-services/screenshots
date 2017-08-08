@@ -120,6 +120,8 @@ shotPageDMCAMessage = तृतीय पक्ष बौद्धिक सं�
 shotPageDMCAContact = अधिक माहिती साठी कृपया { $dmca } ला इमेल करा.
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = आपले शॉट्सवर जर अनेक दावे असतील, तर आम्ही आपला Firefox Screenshots वापर थांबवु शकतो.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = कृपया आपल्या इमेल मध्ये या शॉटची URLसामील करा: { $url }
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = वेळ निवडा
 shotPageKeepIndefinitely = अनिश्चित काळासाठी
