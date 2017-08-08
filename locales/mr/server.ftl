@@ -112,10 +112,62 @@ shotPageDownloadShot
     .title = डाउनलोड
 shotPageDownload = डाउनलोड
 shotPageUpsellFirefox = आत्ता Firefox मिळवा
+shotPageDMCAMessage = तृतीय पक्ष बौद्धिक संपत्ती दाव्यामुळे हा शॉट उपलब्ध नाही.
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = वेळ निवडा
+shotPageKeepIndefinitely = अनिश्चित काळासाठी
+shotPageKeepTenMinutes = 10 मिनिटे
+shotPageKeepOneHour = 1 तास
+shotPageKeepOneDay = 1 दिवस
+shotPageKeepOneWeek = 1 आठवडा
+shotPageKeepTwoWeeks = 2 आठवडे
+shotPageKeepOneMonth = 1 महिना
+shotPageSaveExpiration = जतन करा
+shotPageCancelExpiration = रद्द करा
+shotPageDoesNotExpire = कालबाह्य होत नाही
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = कालबाह्य { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = कालबाह्य झाले { $timediff }
+timeDiffJustNow = आत्ताच
+timeDiffMinutesAgo = { $num ->
+        [one] 1 मिनिटापूर्वी
+       *[other] { $number } मिनिटांपूर्वी
+    }
+timeDiffHoursAgo = { $num ->
+        [one] 1 तासापूर्वी
+       *[other] { $number } तासांपूर्वी
+    }
+timeDiffDaysAgo = { $num ->
+        [one] काल
+       *[other] { $number } दिवसांपूर्वी
+    }
+timeDiffFutureSeconds = काही सेकंदात
+timeDiffFutureMinutes = { $num ->
+        [one] 1 मिनिटात
+       *[other] { $number }मिनिटे मध्ये
+    }
+timeDiffFutureHours = { $num ->
+        [one] 1 तासात
+       *[other] { $number } तासांमध्ये
+    }
+timeDiffFutureDays = { $num ->
+        [one] उद्या
+       *[other] { $number } दिवसात
+    }
 
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = शॉट हटविताना त्रुटी: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = माझे शॉट्स: { $searchTerm } साठी शोधा
+shotIndexPageSearchPlaceholder
+    .placeholder = माझे शॉट्स शोधा
+shotIndexPageSearchButton
+    .title = शोधा
 
 
 // all metrics strings are optional for translation
