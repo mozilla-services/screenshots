@@ -18,6 +18,7 @@ gScreenshotsDescription = Ta enkelt skärmbilder. Fånga, spara och dela skärmb
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Villkor
 footerLinkPrivacy = Sekretesspolicy
 footerLinkDMCA = Rapportera IP-överträdelse
 footerLinkDiscourse = Ge återkoppling
