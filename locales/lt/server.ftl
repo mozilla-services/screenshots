@@ -48,10 +48,10 @@ homePageHowScreenshotsWorks = Kaip veikia „Firefox“ ekrano nuotraukos
 homePageGetStartedTitle = Pradėkite
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Raskite naująją „Firefox“ ekrano nuotraukų piktogramą savo įrankinėje. Pasirinkite ją ir ekrano nuotraukų meniu pasirodys virš jūsų naršyklės lango.
-homePageCaptureRegion = Fotografuoti sritį
+homePageCaptureRegion = Fotografuokite sritį
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Spustelėkite ir tempkite norėdami pažymėti norimą nufotografuoti sritį. Arba tiesiog užveskite pelę ir spustelėkite – bus pažymėta toji sritis. Patinka, ką matote? Pasirinkite „Įrašyti“, norėdami pasiekti savo nuotrauką internete, arba rodyklę žemyn, norėdami atsisiųsti ją į savo kompiuterį.
-homePageCapturePage = Fotografuoti tinklalapį
+homePageCapturePage = Fotografuokite tinklalapį
 homePageCapturePageDescription = Naudokitės mygtukais viršuje dešinėje, norėdami nufotografuoti visą tinklalapį. Mygtukas „Įrašyti matomą“ nufotografuos sritį, kurią matote neslinkdami pelės, o „Įrašyti visą tinklalapį“ nufotografuos viską, kas jame yra.
 homePageSaveShare = Įrašykite ir dalinkitės
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
