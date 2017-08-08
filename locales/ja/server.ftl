@@ -18,6 +18,7 @@ gScreenshotsDescription = スクリーンショットをもっと手軽に。Fir
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = 利用規約
 footerLinkPrivacy = プライバシー通知
 footerLinkDMCA = IP 侵害を報告
 footerLinkDiscourse = フィードバックを送る
