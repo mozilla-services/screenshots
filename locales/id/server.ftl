@@ -149,6 +149,9 @@ shotPageExpiresIn = kedaluwarsa { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = kedaluwarsa { $timediff }
 timeDiffJustNow = baru saja
+timeDiffMinutesAgo = { $number } menit yang lalu
+timeDiffHoursAgo = { $number } jam yang lalu
+timeDiffDaysAgo = { $number } hari yang lalu
 timeDiffFutureSeconds = dalam beberapa detik
 timeDiffFutureMinutes = dalam 1 menit
 timeDiffFutureHours = dalam 1 jam
