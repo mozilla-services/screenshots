@@ -18,6 +18,7 @@ gScreenshotsDescription = Schermafbeeldingen worden makkelijk. Maak, bewaar en d
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Voorwaarden
 footerLinkPrivacy = Privacyverklaring
 footerLinkDMCA = IE-inbreuk melden
 footerLinkDiscourse = Feedback geven
