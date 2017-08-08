@@ -18,6 +18,7 @@ gScreenshotsDescription = Screenshots membuatnya sederhana. Ambil, simpan, dan b
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Ketentuan
 footerLinkPrivacy = Pemberitauan Privasi
 footerLinkDMCA = Laporkan Pelanggaran IP
 footerLinkDiscourse = Kirim Saran
