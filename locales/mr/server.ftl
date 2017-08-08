@@ -104,6 +104,8 @@ shotPageExpirationMessage = आपण काहीही न केल्या�
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = { $date } पर्यंत पुनर्संचयित करा
 shotPageExpiredMessage = हा शॉट कालबाह्य झाला आहे.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = या पृष्ठावरुन हे तयार करण्यात आले होते:
 shotPageDeleteButton
     .title = हा शॉट हटवा
 shotPageAbuseButton
