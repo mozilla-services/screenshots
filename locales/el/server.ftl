@@ -18,6 +18,7 @@ gScreenshotsDescription = Η λήψη στιγμιοτύπων έγινε εύκ
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Όροι χρήσης
 footerLinkPrivacy = Πολιτική Απορρήτου
 footerLinkDMCA = Αναφορά IP παραβίασης πνευματικής ιδιοκτησίας
 footerLinkDiscourse = Γράψτε το σχόλιο σας
