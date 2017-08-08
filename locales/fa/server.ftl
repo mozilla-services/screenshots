@@ -18,6 +18,7 @@ gScreenshotsDescription = عکس گرفتن از صفحه آسان شده است
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = موزیلا
+footerLinkTerms = شرایط استفاده
 footerLinkPrivacy = نکات حفظ حریم‌شخصی
 footerLinkDMCA = گزارش تخلف IP
 footerLinkDiscourse = ارسال بازخورد
