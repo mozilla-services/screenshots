@@ -18,6 +18,7 @@ gScreenshotsDescription = Fota wobrazowki jadnorje nagótowane. Gótujśo, skła
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Wuměnjenja
 footerLinkPrivacy = Wuzjawjenje priwatnosći
 footerLinkDMCA = Pśekśiwjenje duchnego swójstwa k wěsći daś
 footerLinkDiscourse = Wašo měnjenje groniś
