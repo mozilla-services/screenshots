@@ -32,6 +32,7 @@ footerLinkRemoveAllData = ყველა მონაცემის წაშ�
 // creatingPageTitleDefault.
 creatingPageTitle = იქმნება { $title }
 creatingPageTitleDefault = გვერდი
+creatingPageWaitMessage = სურათი ინახება...
 
 
 [[ Home page ]]
