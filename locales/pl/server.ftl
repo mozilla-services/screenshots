@@ -18,6 +18,7 @@ gScreenshotsDescription = Zrzuty ekranów dla wszystkich. Twórz, zapisuj i udo
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Warunki korzystania z usługi
 footerLinkPrivacy = Prywatność
 footerLinkDMCA = Zgłoś naruszenie własności intelektualnej
 footerLinkDiscourse = Wyślij opinię
@@ -57,7 +58,7 @@ homePageSaveShare = Zapisz i udostępnij
 homePageSaveShareDescription = Kiedy utworzysz zrzut, Firefox zapisze go w Twojej internetowej kolekcji Screenshots i skopiuje odnośnik do schowka. Automatycznie przechowujemy zrzuty przez dwa tygodnie, ale możesz je usunąć w dowolnej chwili lub zmienić ich datę przeterminowania, aby zachować je na dłużej.
 homePageLegalLink = Podstawa prawna
 homePagePrivacyLink = Prywatność
-homePageTermsLink = Warunki
+homePageTermsLink = Warunki korzystania z usługi
 homePageCookiesLink = Ciasteczka
 
 
