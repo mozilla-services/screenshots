@@ -18,6 +18,7 @@ gScreenshotsDescription = Рабіць скрыншоты стала прасц�
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Умовамі выкарыстання
 footerLinkPrivacy = Паведамленне аб прыватнасці
 footerLinkDMCA = Паведаміць аб парушэнні аўтарскіх правоў
 footerLinkDiscourse = Даць водгук
