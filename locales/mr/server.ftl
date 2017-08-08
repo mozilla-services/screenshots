@@ -180,7 +180,21 @@ shotIndexPageConfirmShotDelete = हा शॉट हटवायचा?
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Firefox Screenshots मेट्रिक्स
 metricsPageTotalsQueryTitle = एकूण
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Screenshots चा आढावा
+metricsPageTotalsQueryDevices = नोंदवलेले एकुण साधने 
+metricsPageTotalsQueryActiveShots = चालु शॉट्स
+metricsPageTotalsQueryExpiredShots = कालबाह्य (पण पुनर्प्राप्त करण्याजोगे)
+metricsPageTotalsQueryExpiredDeletedShots = कालबाह्य (आणि नष्ट झालेले)
+metricsPageShotsQueryTitle = दिवसानुसार शॉट्स
+metricsPageShotsQueryDescription = प्रत्येक दिवसाला तयार केलेले शॉट्स (मागील 30 दिवसांसाठी)
+metricsPageShotsQueryCount = शॉट्सची संख्या
+metricsPageShotsQueryDay = दिवस
+metricsPageUsersQueryTitle = दिवसा नुसार वापरकर्ते
+metricsPageUsersQueryDescription = वापरकर्त्यांची संख्या ज्यांनी किमान एक शॉट तरी तयार केला, दिवसानुसार (मागील 30 दिवसांसाठी)
 metricsPageUsersQueryCount = वापरकर्त्यांची संख्या
 metricsPageUsersQueryDay = दिवस
 metricsPageRetentionQueryUsers = वापरकर्त्यांची संख्या
