@@ -113,8 +113,11 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = डाउनलोड
 shotPageDownload = डाउनलोड
+shotPageScreenshotsDescription = Screenshots झाले सोपे. Firefox ला न सोडता स्क्रीनशॉट्स घ्या, जतन करा आणि सामयिक करा.
 shotPageUpsellFirefox = आत्ता Firefox मिळवा
 shotPageDMCAMessage = तृतीय पक्ष बौद्धिक संपत्ती दाव्यामुळे हा शॉट उपलब्ध नाही.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = अधिक माहिती साठी कृपया { $dmca } ला इमेल करा.
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = वेळ निवडा
 shotPageKeepIndefinitely = अनिश्चित काळासाठी
