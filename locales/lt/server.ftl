@@ -18,6 +18,7 @@ gScreenshotsDescription = Ekrano nuotraukos paprastai. Darykite, saugokite ir da
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Sąlygos
 footerLinkPrivacy = Privatumo nuostatai
 footerLinkDMCA = Pranešti apie intelektinės nuosavybės pažeidimą
 footerLinkDiscourse = Pateikti atsiliepimą
