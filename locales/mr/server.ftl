@@ -81,6 +81,37 @@ shotPageAlertErrorUpdatingExpirationTime = कालबाह्यता जत
 shotPageAlertErrorDeletingShot = शॉट हटविताना त्रुटी
 shotPageAlertErrorUpdatingTitle = शीर्षक जतन करताना त्रुटी
 shotPageConfirmDelete = आपल्याला खात्री आहे आपण हा शॉट कायमचा हटवू इच्छिता?
+shotPageShareButton
+    .title = सामायिक करा
+shotPageCopy = प्रत बनवा
+shotPageCopied = प्रतिकृत केली
+shotPageShareFacebook
+    .title = Facebook वर सामायिक करा
+shotPageShareTwitter
+    .title = Twitter वर सामायिक करा
+shotPageSharePinterest
+    .title = Pinterest वर सामयिक करा
+shotPageShareEmail
+    .title = ईमेलद्वारे दुवा सामयिक करा
+shotPageShareLink = या शॉटवर सामयिक करण्यासाठी दुवा मिळवा:
+shotPagePrivacyMessage = दुवा असलेला कोणीही हा शॉट पाहू शकतो.
+shotPageCopyImageText
+    .label = प्रतिमा मजकूराची प्रत बनवा
+shotPageConfirmDeletion = आपण निश्चितपणे हा शॉट कायमचा हटवू इच्छिता?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = आपण काहीही न केल्यास, हा शॉट कायमचा हटविला जाईल { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = { $date } पर्यंत पुनर्संचयित करा
+shotPageExpiredMessage = हा शॉट कालबाह्य झाला आहे.
+shotPageDeleteButton
+    .title = हा शॉट हटवा
+shotPageAbuseButton
+    .title = दुरुपयोग, स्पॅम किंवा इतर समस्यांसाठी हा शॉट नोंदवा
+shotPageDownloadShot
+    .title = डाउनलोड
+shotPageDownload = डाउनलोड
+shotPageUpsellFirefox = आत्ता Firefox मिळवा
 
 
 [[ Shotindex page ]]
