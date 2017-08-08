@@ -18,6 +18,7 @@ gScreenshotsDescription = Tuṭṭfiwin γef afus. Ṭṭef agdil, sekles sakin 
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Tiwtilin
 footerLinkPrivacy = Tasertit n tbaḍnit
 footerLinkDMCA = Mmel-d ataɛdi ɣef ayla agzayan IP
 footerLinkDiscourse = Mudd-d tikti-ik
