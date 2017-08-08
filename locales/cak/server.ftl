@@ -18,6 +18,7 @@ gScreenshotsDescription = Relik b'anon chi re ri chapoj wachib'äl. Man k'atzine
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Taq ojqanem
 footerLinkPrivacy = Rutzijol Ichinanem
 footerLinkDMCA = Rutzijol IP K'ayewal
 footerLinkDiscourse = Titaq Na'oj
