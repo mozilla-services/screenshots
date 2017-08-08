@@ -168,8 +168,27 @@ shotIndexPageSearchPlaceholder
     .placeholder = माझे शॉट्स शोधा
 shotIndexPageSearchButton
     .title = शोधा
+shotIndexPageNoShotsMessage = कोणतेही जतन केलेले शॉट्स नाहीत
+shotIndexPageNoShotsInvitation = चला, काही तरी तयार करा.
+shotIndexPageLookingForShots = आपले शॉट्स शोधत आहे...
+shotIndexPageNoSearchResultsIntro = हम्म
+shotIndexPageClearSearchButton
+    .title = शोध नष्ट करा
+shotIndexPageConfirmShotDelete = हा शॉट हटवायचा?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageTotalsQueryTitle = एकूण
+metricsPageUsersQueryCount = वापरकर्त्यांची संख्या
+metricsPageUsersQueryDay = दिवस
+metricsPageRetentionQueryUsers = वापरकर्त्यांची संख्या
+metricsPageTotalRetentionQueryUsers = वापरकर्त्यांची संख्या
+metricsPageVersionQueryVersion = ॲड-ऑन आवृत्ती
+metricsPageVersionQueryLastSeen = दिवस
+metricsPageHeader = मेट्रिक्स
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = येथे तयार झाले: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (database time: { $time }ms)
