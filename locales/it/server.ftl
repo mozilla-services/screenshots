@@ -18,6 +18,7 @@ gScreenshotsDescription = Realizzare screenshot non è mai stato così facile. C
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Condizioni di utilizzo
 footerLinkPrivacy = Informativa sulla privacy
 footerLinkDMCA = Segnala violazioni IP
 footerLinkDiscourse = Invia commenti
