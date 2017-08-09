@@ -32,6 +32,7 @@ footerLinkRemoveAllData = Ta bort alla data
 // creatingPageTitleDefault.
 creatingPageTitle = Skapar { $title }
 creatingPageTitleDefault = sida
+creatingPageWaitMessage = Sparar din skärmbild...
 
 
 [[ Home page ]]
