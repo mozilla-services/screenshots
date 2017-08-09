@@ -32,6 +32,7 @@ footerLinkRemoveAllData = Minden adat törlése
 // creatingPageTitleDefault.
 creatingPageTitle = Létrehozás: { $title }
 creatingPageTitleDefault = oldal
+creatingPageWaitMessage = Képernyőkép mentése…
 
 
 [[ Home page ]]
