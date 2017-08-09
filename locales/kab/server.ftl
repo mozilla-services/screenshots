@@ -32,6 +32,7 @@ footerLinkRemoveAllData = Kkes akk isefka
 // creatingPageTitleDefault.
 creatingPageTitle = Ti rna { $title }
 creatingPageTitleDefault = Asebter
+creatingPageWaitMessage = Aklas n tuṭṭfa n ugdil…
 
 
 [[ Home page ]]
