@@ -32,6 +32,7 @@ footerLinkRemoveAllData = Poista kaikki tiedot
 // creatingPageTitleDefault.
 creatingPageTitle = Luodaan: { $title }
 creatingPageTitleDefault = sivu
+creatingPageWaitMessage = Tallennetaan kaappausta…
 
 
 [[ Home page ]]
