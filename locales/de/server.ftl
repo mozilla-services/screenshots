@@ -32,6 +32,7 @@ footerLinkRemoveAllData = Alle Daten entfernen
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } wird erstellt
 creatingPageTitleDefault = Seite
+creatingPageWaitMessage = Ihre Bildschirmfoto wird gespeichert…
 
 
 [[ Home page ]]
