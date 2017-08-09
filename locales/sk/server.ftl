@@ -32,6 +32,7 @@ footerLinkRemoveAllData = Odstrániť všetky údaje
 // creatingPageTitleDefault.
 creatingPageTitle = Vytváram snímku { $title }
 creatingPageTitleDefault = stránky
+creatingPageWaitMessage = Ukladanie vašej snímky…
 
 
 [[ Home page ]]
