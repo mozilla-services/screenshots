@@ -7,7 +7,7 @@ Start the system addon release process by copying the following checklist into a
 
 - [ ] Bump the minor version number in package.json, following our [version numbering conventions](https://github.com/mozilla-services/screenshots/issues/2647)
 - [ ] If exporting from a branch besides master, review differences in locales between the export: <br> `git diff --shortstat HEAD..master locales/` (`--shortstat` gives a summary, `--numstat` is more detailed, remove to see full diff)
-- [ ] Update changelog: `./bin/generate-commit-log --write stable..master`
+- [ ] Update changelog: `./bin/generate-commit-log --write recent`
 - [ ] Create tag: `git tag MAJOR.MINOR.0` – the version should be higher than the version currently in `package.json` (e.g., if the in-development version is 10.0.0, then tag 10.1.0)
 - [ ] Push tag: `git push --tags`
 - [ ] Merge master to `firefox-export` branch: `git checkout firefox-export && git merge master && git push`
