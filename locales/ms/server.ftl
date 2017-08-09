@@ -32,6 +32,7 @@ footerLinkRemoveAllData = Buang Semua Data
 // creatingPageTitleDefault.
 creatingPageTitle = Mencipta { $title }
 creatingPageTitleDefault = halaman
+creatingPageWaitMessage = Menyimpan syot anda...
 
 
 [[ Home page ]]
