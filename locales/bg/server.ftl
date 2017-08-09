@@ -155,9 +155,9 @@ timeDiffHoursAgo = { $num ->
         [one] преди час
        *[other] преди { $number } часа
     }
-timeDiffDaysAgo = timeDiffDaysAgo = { $number ->
-        [one] yesterday
-       *[other] преди { $number } дни
+timeDiffDaysAgo = { $num ->
+        [one] вчера
+       *[other] преди { $number } дена
     }
 timeDiffFutureSeconds = след секунди
 timeDiffFutureMinutes = { $num ->
