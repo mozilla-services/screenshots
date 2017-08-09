@@ -32,6 +32,7 @@ footerLinkRemoveAllData = Fjern alle data
 // creatingPageTitleDefault.
 creatingPageTitle = Laver { $title } 
 creatingPageTitleDefault = side
+creatingPageWaitMessage = Gemmer dit skærmbillede...
 
 
 [[ Home page ]]
