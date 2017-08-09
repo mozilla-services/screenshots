@@ -32,6 +32,7 @@ footerLinkRemoveAllData = すべてのデータを削除
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } を作成しています
 creatingPageTitleDefault = ページ
+creatingPageWaitMessage = ショットを保存しています...
 
 
 [[ Home page ]]
