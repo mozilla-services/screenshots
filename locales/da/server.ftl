@@ -65,7 +65,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Bekræft sletning af konto
+leavePageRemoveAllData = Fjern alle data
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Du skal have Firefox Screenshots installeret for at slette din konto
 leavePageErrorGeneric = Der opstod en fejl
