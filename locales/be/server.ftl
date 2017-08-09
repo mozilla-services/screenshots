@@ -8,7 +8,7 @@
 [[ global ]]
 
 gMyShots = Мае здымкі
-gHomeLink = Хатняя
+gHomeLink = Хатняя старонка
 gNoShots
     .alt = здымкі не знойдзены
 gScreenshotsDescription = Рабіць скрыншоты стала прасцей. Рабіце, захоўвайце і дзяліцеся скрыншотамі, не пакідаючы Firefox.
