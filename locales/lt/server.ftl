@@ -32,6 +32,7 @@ footerLinkRemoveAllData = Pašalinti visus duomenis
 // creatingPageTitleDefault.
 creatingPageTitle = Kuriamas { $title }
 creatingPageTitleDefault = tinklalapis
+creatingPageWaitMessage = Jūsų kadras įrašomas…
 
 
 [[ Home page ]]
@@ -64,7 +65,7 @@ homePageCookiesLink = Slapukai
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Patvirtinkite paskyros pašalinimą
+leavePageRemoveAllData = Pašalinti visus duomenis
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Privalote turėti įdiegtas „Firefox“ ekrano nuotraukas norėdami pašalinti savo paskyrą
 leavePageErrorGeneric = Įvyko klaida
