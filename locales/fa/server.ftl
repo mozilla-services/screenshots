@@ -32,6 +32,7 @@ footerLinkRemoveAllData = حذف همه‌ی داده‌ها
 // creatingPageTitleDefault.
 creatingPageTitle = ایجاد { $title }
 creatingPageTitleDefault = صفحه
+creatingPageWaitMessage = در حال ذخیره کردن عکس شما…
 
 
 [[ Home page ]]
