@@ -77,7 +77,7 @@ class Body extends React.Component {
   }
 
   renderShotsLoading() {
-    return <div className="column-center full-height">
+    return <div className="column-center flex-1">
       <div className="loader">
         <div className="loader-inner" />
       </div>
