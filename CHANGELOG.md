@@ -1,3 +1,7 @@
+## Version 10.11.0
+
+* Import locales from master ([#3293](https://github.com/mozilla-services/screenshots/pull/3293))
+
 ## Version 10.10.0
 
 * Synchronize startup code more carefully ([#3257](https://github.com/mozilla-services/screenshots/issues/3257))
