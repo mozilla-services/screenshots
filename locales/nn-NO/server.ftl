@@ -65,7 +65,7 @@ homePageCookiesLink = Infokapslar
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Stadfest sletting av konto
+leavePageRemoveAllData = Fjern alle data
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Du må ha Firefox Screenshots installert for å slette kontoen din
 leavePageErrorGeneric = Det oppstod ein feil
