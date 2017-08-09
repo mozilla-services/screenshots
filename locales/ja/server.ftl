@@ -65,7 +65,7 @@ homePageCookiesLink = Cookie
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = アカウントの削除を確認
+leavePageRemoveAllData = すべてのデータを削除
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = アカウントを削除するには Firefox Screenshots がインストールされている必要があります
 leavePageErrorGeneric = 問題が発生しました
