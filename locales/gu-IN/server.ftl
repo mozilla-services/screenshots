@@ -32,6 +32,7 @@ footerLinkRemoveAllData = તમામ ડેટાને દૂર કરો
 // creatingPageTitleDefault.
 creatingPageTitle = બનાવી રહ્યા છે { $title }
 creatingPageTitleDefault = પાનું
+creatingPageWaitMessage = શોટ સચવાય છે...
 
 
 [[ Home page ]]
