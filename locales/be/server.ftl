@@ -32,6 +32,7 @@ footerLinkRemoveAllData = Выдаліць усе дадзеныя
 // creatingPageTitleDefault.
 creatingPageTitle = Стварэнне { $title }
 creatingPageTitleDefault = старонка
+creatingPageWaitMessage = Захаванне здымка…
 
 
 [[ Home page ]]
