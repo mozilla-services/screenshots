@@ -65,7 +65,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Confirmar exclusão da conta
+leavePageRemoveAllData = Remover todos os dados
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Você deve ter o Firefox Screenshots instalado para remover sua conta
 leavePageErrorGeneric = Ocorreu um erro
