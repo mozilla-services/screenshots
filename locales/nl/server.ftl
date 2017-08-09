@@ -32,6 +32,7 @@ footerLinkRemoveAllData = Alle gegevens verwijderen
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } wordt gemaakt
 creatingPageTitleDefault = pagina
+creatingPageWaitMessage = Uw afbeelding opslaan…
 
 
 [[ Home page ]]
