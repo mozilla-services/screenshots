@@ -32,6 +32,7 @@ footerLinkRemoveAllData = Slett alle data
 // creatingPageTitleDefault.
 creatingPageTitle = Lagar { $title }
 creatingPageTitleDefault = side
+creatingPageWaitMessage = Lagrar bildet ditt…
 
 
 [[ Home page ]]
