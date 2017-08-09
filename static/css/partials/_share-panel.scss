@@ -18,7 +18,7 @@
   width: 350px;
   z-index: 999;
 
-  .alt-notification + .frame-header & {
+  .alt-notification + #frame & {
     @include respond-to("medium") {
       top: 150px;
     }
