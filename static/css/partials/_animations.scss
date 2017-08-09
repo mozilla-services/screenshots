@@ -5,6 +5,10 @@
   overflow: hidden;
   position: relative;
   width: 200px;
+
+  #shot-index & {
+    background-color: $light-active;
+  }
 }
 
 .loader-inner {
