@@ -132,7 +132,7 @@ shotPageDMCAContact = Send ein e-post til { $dmca } for å be om ytterlegare inf
 shotPageDMCAWarning = Viss bilda dine er emne for fleire krav, kan vi trekkje tilbake tilgangen din til Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Ta med nettadressa til dette bildet i e-posten din: { $url }
-shotPageKeepFor = Kor lenge skal dette skjermbildet haldast på?
+shotPageKeepFor = Kor lenge skal dette skjermbildet behaldast?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Vel tid
 shotPageKeepIndefinitely = Uendeleg
