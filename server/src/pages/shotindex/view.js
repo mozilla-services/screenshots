@@ -31,7 +31,7 @@ class Body extends React.Component {
   render() {
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <div className="column-space full-height">
+        <div className="column-space full-height default-color-scheme" id="shot-index-page">
           <div id="shot-index-header" className="header">
             <h1><a href="/shots">Firefox <strong>Screenshots</strong> <sup>Beta</sup></a></h1>
             {this.props.enableUserSettings ? this.renderSettingsPage() : null}
