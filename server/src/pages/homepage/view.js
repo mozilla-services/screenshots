@@ -6,7 +6,7 @@ const style = `
   html, body {
     padding: 0;
     margin: 0;
-    font-family: SF UI Text, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
     font-size: 12pt;
   }
 
@@ -129,7 +129,6 @@ const style = `
       border-radius: 3px;
       cursor: pointer;
       display: inline-block;
-      font-family: Fira Sans,sans-serif;
       font-weight: 400;
       height: 40px;
       line-height: 40px;
@@ -236,7 +235,7 @@ const style = `
 
   .section-content h3 {
     font-size: 2.5em;
-    font-weight: 100;
+    font-weight: 400;
     margin: 0;
   }
 
@@ -282,21 +281,19 @@ const style = `
   #section-4 .section-image {
     background-image: url(../static/img/landing-screenshots_image_04.svg);
     background-repeat: no-repeat;
-    background-position: 0% center;
+    background-position: 100% center;
     height: 533px;
   }
 
   #section-1 .section-content,
   #section-2 .section-image,
-  #section-3 .section-content,
-  #section-4 .section-image {
+  #section-4 .section-content {
     order: 1;
   }
 
   #section-1 .section-image,
   #section-2 .section-content,
-  #section-3 .section-image,
-  #section-4 .section-content {
+  #section-4 .section-image {
     order: 2;
   }
 
@@ -515,88 +512,77 @@ class Body extends React.Component {
     }
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <header>
-          <nav>
+        <div className="default-color-scheme">
+          <header>
+            <nav>
+              <div className="container">
+                <div className="header-logo">
+                  <a href="#" className="screenshots-logo"></a>
+                </div>
+                <div className="nav-links">
+                  <Localized id="homePageGetStarted">
+                    <a href="#how-screenshots-works">Get Started</a>
+                  </Localized>
+                  { myShots }
+                </div>
+              </div>
+            </nav>
+            <div className="banner">
+              <div className="container">
+                <div className="banner-content">
+                  <h1>Firefox Screenshots</h1>
+                  <Localized id="gScreenshotsDescription">
+                    <p>Screenshots made simple. Take, save, and share screenshots without leaving Firefox.</p>
+                  </Localized>
+                  { this.renderGetFirefox() }
+                </div>
+              </div>
+            </div>
+          </header>
+          <Localized id="homePageHowScreenshotsWorks">
+            <h2 id="how-screenshots-works">How Screenshots Works</h2>
+          </Localized>
+          <section id="section-1">
             <div className="container">
-              <div className="header-logo">
-                <a href="#" className="screenshots-logo"></a>
-              </div>
-              <div className="nav-links">
-                <Localized id="homePageGetStarted">
-                  <a href="#how-screenshots-works">Get Started</a>
+              <div className="section-content">
+                <Localized id="homePageGetStartedTitle">
+                  <h3>Get Started</h3>
                 </Localized>
-                { myShots }
+                <Localized id="homePageGetStartedDescription">
+                  <p>Find the new Screenshots icon on your toolbar. Select it, and the Screenshots menu will appear on top of your browser window.</p>
+                </Localized>
               </div>
+              <div className="section-image"></div>
             </div>
-          </nav>
-          <div className="banner">
+          </section>
+          <section id="section-2">
             <div className="container">
-              <div className="banner-content">
-                <h1>Firefox Screenshots</h1>
-                <Localized id="gScreenshotsDescription">
-                  <p>Screenshots made simple. Take, save, and share screenshots without leaving Firefox.</p>
+              <div className="section-content">
+                <Localized id="homePageCaptureRegion">
+                  <h3>Capture a Region</h3>
                 </Localized>
-                { this.renderGetFirefox() }
+                <Localized id="homePageCaptureRegionDescription">
+                  <p>Click and drag to select the area you want to capture. Or just hover and click — Screenshots will select the area for you. Like what you see? Select Save to access your screenshot online or the down arrow button to download it to your computer.</p>
+                </Localized>
               </div>
+              <div className="section-image"></div>
             </div>
-          </div>
-        </header>
-        <Localized id="homePageHowScreenshotsWorks">
-          <h2 id="how-screenshots-works">How Screenshots Works</h2>
-        </Localized>
-        <section id="section-1">
-          <div className="container">
-            <div className="section-content">
-              <Localized id="homePageGetStartedTitle">
-                <h3>Get Started</h3>
-              </Localized>
-              <Localized id="homePageGetStartedDescription">
-                <p>Find the new Screenshots icon on your toolbar. Select it, and the Screenshots menu will appear on top of your browser window.</p>
-              </Localized>
+          </section>
+          <section id="section-4">
+            <div className="container">
+              <div className="section-content">
+                <Localized id="homePageSaveShare">
+                  <h3>Save and Share</h3>
+                </Localized>
+                <Localized id="homePageSaveShareDescription">
+                  <p>When you take a shot, Firefox posts your screenshot to your online Screenshots library and copies the link to your clipboard. We automatically store your screenshot for two weeks, but you can delete shots at any time or change the expiration date to keep them in your library for longer. </p>
+                </Localized>
+              </div>
+              <div className="section-image"></div>
             </div>
-            <div className="section-image"></div>
-          </div>
-        </section>
-        <section id="section-2">
-          <div className="container">
-            <div className="section-content">
-              <Localized id="homePageCaptureRegion">
-                <h3>Capture a Region</h3>
-              </Localized>
-              <Localized id="homePageCaptureRegionDescription">
-                <p>Click and drag to select the area you want to capture. Or just hover and click — Screenshots will select the area for you. Like what you see? Select Save to access your screenshot online or the down arrow button to download it to your computer.</p>
-              </Localized>
-            </div>
-            <div className="section-image"></div>
-          </div>
-        </section>
-        <section id="section-3">
-          <div className="container">
-            <div className="section-content">
-              <Localized id="homePageCapturePage">
-                <h3>Capture a Page</h3>
-              </Localized>
-              <Localized id="homePageCapturePageDescription">
-                <p>Use the buttons in the upper right to capture full pages. The Save Visible button will capture the area you can view without scrolling, and the Save Full Page will capture everything on the page.</p>
-              </Localized>
-            </div>
-            <div className="section-image"></div>
-          </div>
-        </section>
-        <section id="section-4">
-          <div className="container">
-            <div className="section-content">
-              <Localized id="homePageSaveShare">
-                <h3>Save and Share</h3>
-              </Localized>
-              <Localized id="homePageSaveShareDescription">
-                <p>When you take a shot, Firefox posts your screenshot to your online Screenshots library and copies the link to your clipboard. We automatically store your screenshot for two weeks, but you can delete shots at any time or change the expiration date to keep them in your library for longer. </p>
-              </Localized>
-            </div>
-            <div className="section-image"></div>
-          </div>
-        </section>
-        <Footer {...this.props} />
+          </section>
+          <Footer {...this.props} />
+        </div>
       </reactruntime.BodyTemplate>
     );
   }
