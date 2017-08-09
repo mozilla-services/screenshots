@@ -18,6 +18,7 @@ gScreenshotsDescription = Лесни снимки на екрана. Прави�
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Условия
 footerLinkPrivacy = Политика на поверителност
 footerLinkDMCA = Доклад за нарушение на авторско право
 footerLinkDiscourse = Обратна връзка
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Премахване на всички данни
 // creatingPageTitleDefault.
 creatingPageTitle = Създаване на { $title }
 creatingPageTitleDefault = страница
+creatingPageWaitMessage = Запазване на снимката…
 
 
 [[ Home page ]]
@@ -189,7 +191,7 @@ shotIndexPageSearchPlaceholder
     .placeholder = Търсене в моите снимки
 shotIndexPageSearchButton
     .title = Търсене
-shotIndexPageNoShotsMessage = Нямате запазени снимки.
+shotIndexPageNoShotsMessage = Няма запазени снимки.
 shotIndexPageNoShotsInvitation = Хайде, направете няколко.
 shotIndexPageLookingForShots = Търсене на вашите снимки…
 shotIndexPageNoSearchResultsIntro = Хмм
