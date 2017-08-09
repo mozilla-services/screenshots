@@ -110,9 +110,6 @@ shotPageCopyImageText
 shotPageConfirmDeletion = Сигурни ли сте, че желаете изображението да бъде необратимо премахнато?
 // Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Ако не правите нищо тази снимка ще бъде необратимо премахната { $timediff }
-// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
-shotPageRestoreButton = 
 shotPageExpiredMessage = Тази снимка е с изтекла давност.
 // Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Това е страницата, от която е направена:
@@ -158,10 +155,12 @@ timeDiffHoursAgo = { $num ->
         [one] преди 1 час
        *[other] преди { $number } часа
     }
-timeDiffDaysAgo = timeDiffDaysAgo = { $number ->
-        [one] вчера
-       *[other] преди { $number } дена
+timeDiffDaysAgo =
+    timeDiffDaysAgo = { $number ->
+        [one] yesterday
+       *[other] преди { $number } дни
     }
+
 timeDiffFutureSeconds = след секунди
 timeDiffFutureMinutes = { $num ->
         [one] след минута
@@ -173,7 +172,7 @@ timeDiffFutureHours = { $num ->
     }
 timeDiffFutureDays = { $num ->
         [one] утре
-       *[other] след ${ number } дни
+       *[other] след { $number } дни
     }
 
 
