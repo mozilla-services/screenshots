@@ -18,6 +18,7 @@ gScreenshotsDescription = Знімки стали простішими. Робі
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Умови
 footerLinkPrivacy = Повідомлення про приватність
 footerLinkDMCA = Повідомити про порушення прав
 footerLinkDiscourse = Залишити відгук
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Видалити всі дані
 // creatingPageTitleDefault.
 creatingPageTitle = Створення { $title }
 creatingPageTitleDefault = сторінка
+creatingPageWaitMessage = Зберігаємо ваш знімок…
 
 
 [[ Home page ]]
