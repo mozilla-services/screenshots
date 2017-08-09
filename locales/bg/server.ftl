@@ -148,19 +148,17 @@ shotPageExpiresIn = изтича { $timediff }
 shotPageExpired = изтекло { $timediff }
 timeDiffJustNow = току-що
 timeDiffMinutesAgo = { $num ->
-        [one] преди 1 минута
+        [one] преди минута
        *[other] преди { $number } минути
     }
 timeDiffHoursAgo = { $num ->
-        [one] преди 1 час
+        [one] преди час
        *[other] преди { $number } часа
     }
-timeDiffDaysAgo =
-    timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo = timeDiffDaysAgo = { $number ->
         [one] yesterday
        *[other] преди { $number } дни
     }
-
 timeDiffFutureSeconds = след секунди
 timeDiffFutureMinutes = { $num ->
         [one] след минута
