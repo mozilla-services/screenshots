@@ -65,7 +65,7 @@ homePageCookiesLink = કુકીઓ
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = એકાઉન્ટ કાઢી નાખવાની પુષ્ટિ કરો
+leavePageRemoveAllData = તમામ ડેટાને દૂર કરો
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = તમારા એકાઉન્ટને કાઢી નાખવા માટે તમારી પાસે Firefox સ્ક્રીનશોટ ઇન્સ્ટોલ છે
 leavePageErrorGeneric = એક ભૂલ આવી
