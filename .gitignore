@@ -21,3 +21,4 @@ cookie-jar.txt
 /addon/webextension/manifest.json
 /addon/install.rdf
 /addon/webextension/_locales
+/*.xpi
