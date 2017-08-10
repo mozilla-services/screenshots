@@ -36,7 +36,7 @@ creatingPageTitleDefault = పేజీ
 homePageButtonMyShots = నా తెరపట్లకు వెళ్ళండి
 homePageTeaser = త్వరలో వస్తుంది...
 homePageDownloadFirefoxTitle = Firefox
-homePageDownloadFirefoxSubTitle = ఉచిత దిగుమతులు
+homePageDownloadFirefoxSubTitle = ఉచిత దింపుకోలు
 homePageGetStarted = మొదలుపెట్టండి
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots ఎలాపని చేస్తాయి
@@ -54,7 +54,6 @@ homePageCookiesLink = కుకీలు
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = ఖాతా తొలగింపును నిర్ధారించండి
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = మీ ఖాతాను తొలగించడానికి Firefox Screenshots స్థాపించి ఉండాలి
 leavePageErrorGeneric = ఒక దోషం ఏర్పడింది.
@@ -110,13 +109,11 @@ shotPageDeleteButton
 shotPageAbuseButton
     .title = దుర్వినియోగం, స్పామ్ లేదా ఇతర సమస్యలకు ఈ తెరపట్టును నివేదించండి
 shotPageDownloadShot
-    .title = దిగుమతి
-shotPageDownload = దిగుమతి
+    .title = దింపుకోండి
+shotPageDownload = దింపుకోండి
 shotPageScreenshotsDescription = తెరపట్లు సులభతరమైనాయి. Firefoxను వదలకుండా తెరపట్లను తీసుకోండి,  భద్రపరచండి మరియు పంచుకోండి.
 shotPageUpsellFirefox = ఇప్పుడు Firefoxను పొందండి
-shotPageDMCAMessage =
-    మూడవ పార్టీ మేధో సంపత్తి హక్కు కారణంగా ఈ తెరపట్టు అందుబాటులో లేదు.
-
+shotPageDMCAMessage = మూడవ పార్టీ మేధో సంపత్తి హక్కు కారణంగా ఈ తెరపట్టు అందుబాటులో లేదు.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = దయచేసి మరింత సమాచారం అభ్యర్థించడానికి { $dmca }కి ఇమెయిల్ చేయండి.
 // Note: { $url } is a placeholder for a shot page URL
