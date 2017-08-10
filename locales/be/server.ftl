@@ -65,7 +65,7 @@ homePageCookiesLink = Кукі
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Пацвердзіце выдаленне ўліковага запісу
+leavePageRemoveAllData = Выдаліць усе дадзеныя
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Каб выдаліць уліковы запіс, у вас павінен быць усталяваны Firefox Screenshots
 leavePageErrorGeneric = Здарылася памылка
