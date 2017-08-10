@@ -1,3 +1,20 @@
+## Version 14.0.0
+
+Note: this is a server-only release
+
+* Add ZAP Baseline scan to test section of circleci [cc88694](https://github.com/mozilla-services/screenshots/commit/cc88694)
+* Clean up homepage [bd59043](https://github.com/mozilla-services/screenshots/commit/bd59043)
+* Correctly position share panel on non-Firefox browsers. Fixes [#2873](https://github.com/mozilla-services/screenshots/issues/2873) [28e6e6c](https://github.com/mozilla-services/screenshots/commit/28e6e6c)
+* "Remove Page Shot data" page is wrongly titled as "Confirm account deletion"  ([#3237](https://github.com/mozilla-services/screenshots/issues/3237)). Fixes [#2140](https://github.com/mozilla-services/screenshots/issues/2140) [4c311fd](https://github.com/mozilla-services/screenshots/commit/4c311fd)
+* Minor color polish [5c228fd](https://github.com/mozilla-services/screenshots/commit/5c228fd)
+* Make load_test_exercise script easier to use to fill the database. Plus some instructions/shortcuts
+* Fix #[#3286](https://github.com/mozilla-services/screenshots/issues/3286), send My Shots without actual shot list.  The shot list is immediately loaded in a separate request [a642ddc](https://github.com/mozilla-services/screenshots/commit/a642ddc)
+* Replace svg loader with pure css ([#3285](https://github.com/mozilla-services/screenshots/issues/3285)) [c8a0e39](https://github.com/mozilla-services/screenshots/commit/c8a0e39)
+* Header/footer link color change [fd505b5](https://github.com/mozilla-services/screenshots/commit/fd505b5)
+* Use standard Firefox product font-family throughout. Based on [Photon design style](http://design.firefox.com/photon/visual/typography.html#typefaces). Except we are not using Fira Sans anywhere, relying instead on system fonts. Fixes [#3266](https://github.com/mozilla-services/screenshots/issues/3266) [7720f65](https://github.com/mozilla-services/screenshots/commit/7720f65)
+* Update buttons in onboarding SVGs to look closer to the real buttons [feef990](https://github.com/mozilla-services/screenshots/commit/feef990)
+* Remove the full page and save visible buttons from onboarding [1887c38](https://github.com/mozilla-services/screenshots/commit/1887c38)
+
 ## Version 13.1.0
 
 Note: server only, 13.0.0 didn't make it past stage.
