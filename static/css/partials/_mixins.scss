@@ -1,23 +1,23 @@
 @mixin flex-container($direction, $justification, $alignment, $wrap: nowrap) {
   display: flex;
-  @if $alignment != 'stretch' {
+  @if $alignment != "stretch" {
     align-items: $alignment;
   }
-  @if $direction != 'row' {
+  @if $direction != "row" {
     flex-direction: $direction;
   }
-  @if $justification != 'flex-start' {
+  @if $justification != "flex-start" {
     justify-content: $justification;
   }
-  @if $wrap != 'nowrap' {
+  @if $wrap != "nowrap" {
     flex-wrap: $wrap;
   }
 }
 
 $breakpoints: (
-  large: '(min-width: 960px)',
-  medium: '(min-width: 720px)',
-  small: '(max-width: 719px)',
+  large: "(min-width: 960px)",
+  medium: "(min-width: 720px)",
+  small: "(max-width: 719px)",
 );
 
 @mixin respond-to($breakpoint) {
@@ -26,7 +26,7 @@ $breakpoints: (
       @content;
     }
   } @else {
-    @warn 'Unfortunately, no value could be retrieved from `#{$breakpoint}`. '
-    + 'Please make sure it is defined in `$breakpoints` map.';
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+    + "Please make sure it is defined in `$breakpoints` map.";
   }
 }

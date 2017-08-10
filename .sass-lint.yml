@@ -1,5 +1,5 @@
 files:
-  include: ./static/css/*.scss
+  include: ./static/**/*.scss
 
 options:
   merge-default-rules: true
@@ -26,3 +26,4 @@ rules:
   space-after-comma: 2
   url-quotes: 2
   zero-unit: 2
+  no-warn: 0

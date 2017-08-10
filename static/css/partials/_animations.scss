@@ -24,6 +24,7 @@
   0% {
     transform: translateX(-40px);
   }
+
   100% {
     transform: translate(190px);
   }
@@ -55,31 +56,31 @@
 
 @keyframes pulse {
   0% {
-    opacity: .3;
+    opacity: 0.3;
     transform: scale(1);
   }
 
   70% {
-    opacity: .25;
+    opacity: 0.25;
     transform: scale(1.04);
   }
 
   100% {
-    opacity: .3;
+    opacity: 0.3;
     transform: scale(1);
   }
 }
 
 @keyframes slide-left {
- 0% {
-  opacity: 0;
-  transform: translate3d(160px, 0, 0);
- }
+  0% {
+    opacity: 0;
+    transform: translate3d(160px, 0, 0);
+  }
 
- 100% {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
- }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes bounce-in {

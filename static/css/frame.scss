@@ -160,7 +160,7 @@
   @include flex-container(row, flex-start, center);
 
   select {
-    -moz-appearance: none;
+    -moz-appearance: none; //sass-lint:disable-line no-vendor-prefixes
     appearance: none;
     background-color: $light-default;
     background-image: url("/static/img/icon-dropdown.svg");
