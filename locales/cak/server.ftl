@@ -32,6 +32,7 @@ footerLinkRemoveAllData = Ke'elesäx Konojel ri taq Tzij
 // creatingPageTitleDefault.
 creatingPageTitle = Tajin nitz'uk { $title }
 creatingPageTitleDefault = ruxaq
+creatingPageWaitMessage = Tajin niyak ri awachib'al...
 
 
 [[ Home page ]]
@@ -64,7 +65,7 @@ homePageCookiesLink = Taq Kaxlanwey
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Tijikib'äx ruyujik rub'i' taqoya'l
+leavePageRemoveAllData = Ke'elesäx el Konojel ri Taq Tzij
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = K'o chi e'ayakon ri Chapoj Ruwachib'al Firefox richin nayüj el rub'i' ataqoya'l 
 leavePageErrorGeneric = Xk'ulwachitäj jun sachoj
