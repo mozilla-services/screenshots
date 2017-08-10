@@ -65,7 +65,7 @@ homePageCookiesLink = Бисквитки
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Потвърдете изтриване на сметка
+leavePageRemoveAllData = Премахване на всички данни
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Трябва да имате инсталиран Firefox Screenshots, за да изтриете вашата сметка
 leavePageErrorGeneric = Възникна грешка
@@ -110,6 +110,9 @@ shotPageCopyImageText
 shotPageConfirmDeletion = Сигурни ли сте, че желаете изображението да бъде необратимо премахнато?
 // Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Ако не правите нищо тази снимка ще бъде необратимо премахната { $timediff }
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = възстановяване до { $date }
 shotPageExpiredMessage = Тази снимка е с изтекла давност.
 // Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Това е страницата, от която е направена:
