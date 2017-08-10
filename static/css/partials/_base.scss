@@ -3,9 +3,8 @@ html {
 }
 
 *,
-*:before,
-
-*:after {
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
@@ -34,5 +33,5 @@ blockquote {
   font-size: 12px;
   line-height: 16px;
   margin: 5px 0;
-  opacity: .7;
+  opacity: 0.7;
 }

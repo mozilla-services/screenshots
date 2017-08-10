@@ -1,14 +1,14 @@
 .responsive-wrapper {
 
-  @include respond-to('small') {
+  @include respond-to("small") {
     width: 480px;
   }
 
-  @include respond-to('medium') {
+  @include respond-to("medium") {
     width: 720px;
   }
 
-  @include respond-to('large') {
+  @include respond-to("large") {
     width: 960px;
   }
 
@@ -34,7 +34,7 @@
 
 .wrapper {
   width: 100%;
-  
+
   &.row-wrap {
     @include flex-container(row, flex-start, stretch, wrap);
   }
