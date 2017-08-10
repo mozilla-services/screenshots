@@ -65,7 +65,7 @@ homePageCookiesLink = Evästeet
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Vahvista tilin poisto
+leavePageRemoveAllData = Poista kaikki tiedot
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Tilin poistamiseksi Firefox Screenshots pitää olla asennettuna
 leavePageErrorGeneric = Tapahtui virhe
