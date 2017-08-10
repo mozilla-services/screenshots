@@ -65,7 +65,7 @@ homePageCookiesLink = Inagan n tuqqna
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Sentem tukksa n umiḍan
+leavePageRemoveAllData = Kkes akk isefka
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Yessefk ad yili ɣur-k Firefox Screenshots iyebded akken ad tekkseḍ amiḍan-ik
 leavePageErrorGeneric = Teḍra-d tuccḍa
