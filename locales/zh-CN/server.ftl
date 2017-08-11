@@ -18,6 +18,7 @@ gScreenshotsDescription = 使截图更简单。截取、保存以及分享截图
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = 条款
 footerLinkPrivacy = 隐私声明
 footerLinkDMCA = 举报侵犯知识产权
 footerLinkDiscourse = 提供反馈
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = 清除所有数据
 // creatingPageTitleDefault.
 creatingPageTitle = 创建 { $title }
 creatingPageTitleDefault = 页面
+creatingPageWaitMessage = 正在保存您的截图…
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = Cookie
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = 确认删除账户
+leavePageRemoveAllData = 移除全部数据
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = 您必须已安装 Firefox Screenshots 才能删除账户
 leavePageErrorGeneric = 发生错误
