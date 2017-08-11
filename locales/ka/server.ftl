@@ -65,7 +65,7 @@ homePageCookiesLink = ფუნთუშები
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = ანგარიშის წაშლის დადასტურება
+leavePageRemoveAllData = ყველა მონაცემის წაშლა
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = ანგარიშის წასაშლელად აუცილებელია გეყენოთ Firefox Screenshots
 leavePageErrorGeneric = მოხდა შეცდომა
