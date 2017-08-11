@@ -164,6 +164,7 @@ h1 {
 
   .shot-image-container {
     background-size: cover;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05) inset;
   }
 
   &.square .shot-image-container {
@@ -180,8 +181,8 @@ h1 {
 
   &.deleted {
     opacity: 0;
-    transform: scale(0);
-    transition: transform 250ms $bezier, opacity 250ms $bezier;
+    transform: scale(.5);
+    transition: transform 500ms $bezier, opacity 500ms $bezier;
 
   }
 
@@ -203,11 +204,13 @@ h1 {
   .link-container {
     @include flex-container(row, flex-start, center);
 
+    // TODO: investigate favicons not appearing on dev, stage and prod
     .favicon {
+      background-size: 16px 16px;
+      display: none;
       flex: 0 0 16px;
       height: 16px;
       margin-right: 6px;
-      background-size: 16px 16px;
     }
 
     .shot-url {
@@ -222,53 +225,6 @@ h1 {
   .shot-info {
     height: 45px;
     margin: 12px;
-  }
-
-  .download,
-  .trash,
-  .share {
-    background-size: $grid-unit $grid-unit;
-    background-repeat: no-repeat;
-    background-position: center center;
-    margin-right: $grid-unit * 0.5;
-    transition: background-image 150ms $bezier;
-  }
-
-  .trash {
-    background-image: url("../img/trash-dark.svg");
-
-    &:hover {
-      background-image: url("../img/trash-hover.svg");
-    }
-
-    &:active {
-      background-image: url("../img/trash-active.svg");
-    }
-  }
-
-  .share {
-    background-image: url("../img/share-dark.svg");
-
-    &:hover {
-      background-image: url("../img/share-hover.svg");
-    }
-
-    &:active,
-    &.active {
-      background-image: url("../img/share-active.svg");
-    }
-  }
-
-  .download {
-    background-image: url("../img/download-dark.svg");
-
-    &:hover {
-      background-image: url("../img/download-hover.svg");
-    }
-
-    &:active {
-      background-image: url("../img/download-active.svg");
-    }
   }
 }
 

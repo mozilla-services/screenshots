@@ -202,8 +202,10 @@
   }
 }
 
+// TODO: investigate favicons not appearing on dev, stage and prod
 .favicon {
   background-size: 16px 16px;
+  display: none;
   height: 16px;
   margin-right: 6px;
   width: 16px;
@@ -243,51 +245,4 @@
 
 #clip-image-context {
   display: none;
-}
-
-.trash,
-.flag,
-.share {
-  background-size: $grid-unit $grid-unit;
-  background-repeat: no-repeat;
-  background-position: center center;
-  margin-right: $grid-unit * 0.5;
-  transition: background-image 150ms $bezier;
-}
-
-.trash {
-  background-image: url("../img/trash-dark.svg");
-
-  &:hover {
-    background-image: url("../img/trash-hover.svg");
-  }
-
-  &:active {
-    background-image: url("../img/trash-active.svg");
-  }
-}
-
-.share {
-  background-image: url("../img/share-dark.svg");
-
-  &:hover {
-    background-image: url("../img/share-hover.svg");
-  }
-
-  &:active,
-  &.active {
-    background-image: url("../img/share-active.svg");
-  }
-}
-
-.flag {
-  background-image: url("../img/flag-dark.svg");
-
-  &:hover {
-    background-image: url("../img/flag-hover.svg");
-  }
-
-  &:active {
-    background-image: url("../img/flag-active.svg");
-  }
 }
