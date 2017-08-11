@@ -33,6 +33,7 @@ const callback = arguments[arguments.length - 1];
 const { prefs } = Services;
 
 prefs.setBoolPref("extensions.screenshots.system-disabled", true);
+prefs.setBoolPref("extensions.legacy.enabled", true);
 
 class AddonListener {
   onInstallEnded(install, addon) {
