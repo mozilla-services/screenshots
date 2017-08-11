@@ -69,4 +69,63 @@
       background: $light-active;
     }
   }
+
+  &.download,
+  &.trash,
+  &.share,
+  &.flag {
+    background-image: url("../img/icon-sprite.svg");
+    background-size: $grid-unit * 24 $grid-unit * 2;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    margin-right: $grid-unit * 0.5;
+    transition: background-color 150ms $bezier;
+  }
+
+  &.download {
+    &:hover {
+      background-position: -2 * $grid-unit 0;
+    }
+
+    &:active {
+      background-position: -4 * $grid-unit 0;
+    }
+  }
+
+  &.share {
+    background-position: -6 * $grid-unit 0;
+
+    &:hover {
+      background-position: -8 * $grid-unit 0;
+    }
+
+    &:active,
+    &.active {
+      background-position: -10 * $grid-unit 0;
+    }
+  }
+
+  &.trash {
+    background-position: -12 * $grid-unit 0;
+
+    &:hover {
+      background-position: -14 * $grid-unit 0;
+    }
+
+    &:active {
+      background-position: -16 * $grid-unit 0;
+    }
+  }
+
+  &.flag {
+    background-position: -18 * $grid-unit 0;
+
+    &:hover {
+      background-position: -20 * $grid-unit 0;
+    }
+
+    &:active {
+      background-position: -22 * $grid-unit 0;
+    }
+  }
 }
