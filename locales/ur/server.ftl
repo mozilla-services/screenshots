@@ -54,6 +54,9 @@ shotPageDownloadShot
 shotPageUpsellFirefox = Firefox ابھی حاصل کریں
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = وقت کا انتخاب کریں
+shotPageKeepOneHour = ۱ گھنٹہ
+shotPageKeepOneDay = ۱ دن
+shotPageKeepOneMonth = ۱ ماہ
 shotPageSaveExpiration = محفوظ کریں
 shotPageCancelExpiration = منسوخ کریں
 timeDiffJustNow = ابھی
