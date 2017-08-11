@@ -39,7 +39,8 @@ CREATE TABLE images (
     clipid character varying(200) NOT NULL,
     contenttype text NOT NULL,
     url text,
-    size integer
+    size integer,
+    failed_delete boolean DEFAULT false NOT NULL
 );
 CREATE TABLE metrics_cache (
     created timestamp without time zone DEFAULT now(),
@@ -69,6 +70,7 @@ ALTER TABLE ONLY property
     ADD CONSTRAINT property_pkey PRIMARY KEY (key);
 ALTER TABLE ONLY states
     ADD CONSTRAINT states_pkey PRIMARY KEY (state);
+CREATE INDEX data_deviceid_idx ON data USING btree (deviceid);
 CREATE INDEX devices_accountid_idx ON devices USING btree (accountid);
 CREATE INDEX searchable_text_idx ON data USING gin (searchable_text);
 CREATE INDEX states_deviceid_idx ON states USING btree (deviceid);
@@ -80,4 +82,4 @@ ALTER TABLE ONLY images
     ADD CONSTRAINT images_shotid_fkey FOREIGN KEY (shotid) REFERENCES data(id) ON DELETE CASCADE;
 ALTER TABLE ONLY states
     ADD CONSTRAINT states_deviceid_fkey FOREIGN KEY (deviceid) REFERENCES devices(id) ON DELETE CASCADE;
--- pg-patch version: 18
+-- pg-patch version: 20
