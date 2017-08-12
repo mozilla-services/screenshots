@@ -183,6 +183,7 @@ shotIndexPageSearchPlaceholder
 shotIndexPageSearchButton
     .title = Buscar
 shotIndexPageNoShotsMessage = No hay capturas guardadas.
+shotIndexPageNoShotsInvitation = Vamos, crea alguna.
 shotIndexPageLookingForShots = Buscando por tus capturas...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = No pudimos encontrar capturas que coincidan con tu búsqueda.
