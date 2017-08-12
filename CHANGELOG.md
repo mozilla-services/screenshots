@@ -1,3 +1,7 @@
+## Version 10.12.0
+
+* Immediately exit when Firefox is exiting ([#3323](https://github.com/mozilla-services/screenshots/pull/3323))
+
 ## Version 10.11.0
 
 * Import locales from master ([#3293](https://github.com/mozilla-services/screenshots/pull/3293))
