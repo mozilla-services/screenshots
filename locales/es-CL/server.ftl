@@ -32,6 +32,7 @@ footerLinkRemoveAllData = Remover todos los datos
 // creatingPageTitleDefault.
 creatingPageTitle = Creando { $title }
 creatingPageTitleDefault = página
+creatingPageWaitMessage = Guardando tu captura…
 
 
 [[ Home page ]]
@@ -64,7 +65,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Confirmar eliminación de la cuenta
+leavePageRemoveAllData = Eliminar todos los datos
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Debes tener Firefox Screenshots instalado para eliminar tu cuenta
 leavePageErrorGeneric = Ocurrió un error
@@ -93,6 +94,9 @@ shotPageConfirmDelete = ¿Estás seguro de que quieres eliminar esta captura per
 shotPageShareButton
     .title = Compartir
 shotPageCopy = Copiar
+shotPageDownloadShot
+    .title = Descargar
+shotPageDownload = Descargar
 shotPageScreenshotsDescription = Capturas de pantallas sin complicaciones. Toma, guarda y comparte capturas sin salir de Firefox.
 shotPageUpsellFirefox = Obtén Firefox ahora
 shotPageDMCAMessage = Esta captura ya no eá disponible debido a un reclamo de propiedad intelectual de un tercero.
@@ -100,6 +104,8 @@ shotPageDMCAMessage = Esta captura ya no eá disponible debido a un reclamo de p
 shotPageDMCAContact = Por favor, envía un correo a { $dmca } para solicitar más información.
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Si tus capturas recibiesen muchos reclamos, podríamos revocar tu acceso a Firefox Screenshots.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Por favor, incluye la URL de esta captura en tu correo: { $url }
 
 
 [[ Shotindex page ]]
