@@ -18,6 +18,7 @@ gScreenshotsDescription = Слики од екран поедноставени.
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Услови
 footerLinkPrivacy = Известување за приватност
 footerLinkDMCA = Пријавете злоупотреба на интелектуална сопственост
 footerLinkDiscourse = Оставете мислење
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Избришете ги сите податоци
 // creatingPageTitleDefault.
 creatingPageTitle = Создавам { $title }
 creatingPageTitleDefault = страница
+creatingPageWaitMessage = Вашата слика се снима...
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = Колачиња
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Потврдете го бришењето на сметката
+leavePageRemoveAllData = Отстрани ги сите податоци
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Морате да го имате инсталирано Firefox Screenshots за да ја избришете Вашата сметка
 leavePageErrorGeneric = Се случи грешка
