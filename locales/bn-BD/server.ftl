@@ -18,6 +18,7 @@ gScreenshotsDescription = স্ক্রিনশট নেওয়া এখন 
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = শর্তাবলী
 footerLinkPrivacy = গোপনীয়তা নোটিশ
 footerLinkDMCA = IP নিয়মলঙ্ঘন রিপোর্ট করুন
 footerLinkDiscourse = প্রতিক্রিয়া জানান
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = সকল ডাটা অপসারণ করুন
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } তৈরি করছে
 creatingPageTitleDefault = পৃষ্ঠা
+creatingPageWaitMessage = আপনার শট সংরক্ষিত হচ্ছে...
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = কুকি
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = অ্যাকাউন্ট বাতিলকরণ নিশ্চিত করুন
+leavePageRemoveAllData = সকল ডাটা অপসারণ করুন
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = আপনার একাউন্টটি অপসারণ করতে হলে Firefox Screenshots ইনস্টল করা থাকতে হবে।
 leavePageErrorGeneric = একটি ত্রুটি দেখা দিয়েছে।
