@@ -166,6 +166,14 @@ timeDiffFutureMinutes = { $num ->
         [one] en 1 minuto
        *[other] en { $number } minutos
     }
+timeDiffFutureHours = { $num ->
+        [one] en 1 hora
+       *[other] en { $number } horas
+    }
+timeDiffFutureDays = { $num ->
+        [one] mañana
+       *[other] en { $number } días
+    }
 
 
 [[ Shotindex page ]]
