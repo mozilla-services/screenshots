@@ -106,15 +106,45 @@ shotPageDMCAContact = Por favor, envía un correo a { $dmca } para solicitar má
 shotPageDMCAWarning = Si tus capturas recibiesen muchos reclamos, podríamos revocar tu acceso a Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Por favor, incluye la URL de esta captura en tu correo: { $url }
+shotPageKeepFor = ¿Cuánto tiempo debiera ser guardada esta captura?
+timeDiffMinutesAgo = { $num ->
+        [one] hace 1 minuto
+       *[other] hace { $number } minutos
+    }
+timeDiffHoursAgo = { $num ->
+        [one] hace 1 hora
+       *[other] hace { $number } horas
+    }
+timeDiffDaysAgo = { $num ->
+       *[one] ayer
+    }
+timeDiffFutureMinutes = { $num ->
+        [one] en 1 minuto
+       *[other] en { $number } minutos
+    }
 
 
 [[ Shotindex page ]]
 
+shotIndexPageSearchPlaceholder
+    .placeholder = Buscar mis capturas
+shotIndexPageNoSearchResults = No pudimos encontrar capturas que coincidan con tu búsqueda.
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Métricas de Firefox Screenshots
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Una vista general de Screenshots
+metricsPageTotalsQueryDevices = Total de dispositivos registrados
+metricsPageTotalsQueryExpiredShots = Expirada (pero recuperable)
+metricsPageTotalsQueryExpiredDeletedShots = Expirada (y eliminada)
+metricsPageShotsQueryDescription = Número de capturas creadas cada día (para los últimos 30 días)
+metricsPageShotsQueryCount = Número de capturas
+metricsPageUsersQueryTitle = Usuarios por día
+metricsPageUsersQueryDescription = Número de usuarios que crearon al menos una captura, por día (últimos 30 días)
 metricsPageVersionQueryLastSeen = Día
 metricsPageHeader = Métricas
 // Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
