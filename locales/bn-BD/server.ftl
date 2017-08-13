@@ -40,10 +40,10 @@ creatingPageWaitMessage = আপনার শট সংরক্ষিত হচ
 homePageDescription
     .content = Firefox ব্যবহার করে ওয়েব ব্রাউজিং করার সময়ে স্ক্রিনশট ক্যাপচার, সংরক্ষণ ও শেয়ার করুন। ব্রাউজারের মধ্যেই স্বতঃস্ফুর্ত স্ক্রিনশট প্রস্তুত হয়ে যাবে।
 homePageButtonMyShots = আমার শটে যাও
-homePageTeaser = শীঘ্রই আসছে...
+homePageTeaser = শীঘ্রই আসিতেছে...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = বিনামূল্যে ডাউনলোড
-homePageGetStarted = শুরু করুন
+homePageGetStarted = চলুন শুরু করি!
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots কিভাবে কাজ করে
 homePageGetStartedTitle = শুরু হয়েছে
