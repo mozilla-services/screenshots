@@ -10,7 +10,7 @@
 gMyShots = Mis capturas
 gHomeLink = Inicio
 gNoShots
-    .alt = No se econtraron capturas
+    .alt = No se encontraron capturas
 gScreenshotsDescription = Capturas de pantalla simples. Tomar, guardar y compartir capturas de pantalla sin dejar Firefox.
 
 
