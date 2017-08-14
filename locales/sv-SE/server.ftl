@@ -86,7 +86,7 @@ notFoundPageDescription = Sidan hittades inte.
 [[ Shot page ]]
 
 // This is the HTML title tag of the page
-shotPageTitle = Skärmbilder: { $originalTitle }
+shotPageTitle = Skärmbild: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Fel vid sparande av förfallodatum
 shotPageAlertErrorDeletingShot = Fel vid borttagning av bild
 shotPageAlertErrorUpdatingTitle = Fel vid sparande av titel
