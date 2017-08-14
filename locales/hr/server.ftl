@@ -110,6 +110,9 @@ shotPageCopyImageText
 shotPageConfirmDeletion = Jeste li sigurni da želite trajno obrisati ovu slike?
 // Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Ukoliko ništa ne učinite ova slika će biti trajno obrisana { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = vrati do { $date }
 shotPageExpiredMessage = Ova snimka je istekla.
 // Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Ovdje je stranica na kojoj je originalno uslikana:
@@ -120,10 +123,15 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Preuzimanje
 shotPageDownload = Preuzimanje
-shotPageScreenshotsDescription =
-    Snimite zaslon jednostavno. Snimite, spremite i dijelite snimke zaslona bez da napustite Firefox.
-
+shotPageScreenshotsDescription = Snimite zaslon jednostavno. Snimite, spremite i dijelite snimke zaslona bez da napustite Firefox.
 shotPageUpsellFirefox = Preuzmite Firefox sada
+shotPageDMCAMessage = Ova snimka više nije dostupna zbog zahtjeva za intelektualnim vlasništvom treće strane.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Pošaljite e-poštu na { $dmca } kako biste zatražili više informacija.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Ukoliko se pojavi više zahtjeva za kršenje intelektualnog vlasništva za vaše snimke, možemo vam ukinuti pristup usluzi Firefox Screenshots.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Uključite URL na ovu snimku u vašoj poruci e-pošte: { $url }
 shotPageKeepFor = Koliko dugo želite čuvati ovu snimku?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Odaberite vrijeme
@@ -177,8 +185,58 @@ timeDiffFutureDays = { $num ->
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Greška pri brisanju snimke: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Moje snimke: traži { $searchTerm }
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Greška pri crtanju stranice: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Pretraži moje snimke
+shotIndexPageSearchButton
+    .title = Traži
+shotIndexPageNoShotsMessage = Nema spremljenih snimki.
+shotIndexPageNoShotsInvitation = Samo naprijed, napravite nekoliko.
+shotIndexPageLookingForShots = Traženje vaših snimki…
+shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Ne možemo pronaći niti jednu snimku koja odgovara vašem upitu.
+shotIndexPageClearSearchButton
+    .title = Očisti pretraživanje
+shotIndexPageConfirmShotDelete = Obriši ovu snimku?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Firefox Screenshot metrika
+metricsPageTotalsQueryTitle = Ukupno
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Pregled snimki zaslona
+metricsPageTotalsQueryDevices = Ukupno registrirano uređaja
+metricsPageTotalsQueryActiveShots = Aktivnih snimki
+metricsPageTotalsQueryExpiredShots = Isteklo (ali se može vratiti)
+metricsPageTotalsQueryExpiredDeletedShots = Isteklo (i obrisano)
+metricsPageShotsQueryTitle = Snimki po danu
+metricsPageShotsQueryDescription = Broj snimki napravljen svaki dan (za zadnjih 30 dana)
+metricsPageShotsQueryCount = Broj snimki
+metricsPageShotsQueryDay = Dan
+metricsPageUsersQueryTitle = Korisnika po danu
+metricsPageUsersQueryDescription = Broj korisnika koji je napravio barem jednu snimku, po danu (zadnjih 30 dana)
+metricsPageUsersQueryCount = Broj korisnika
+metricsPageUsersQueryDay = Dan
+metricsPageUserShotsQueryTitle = Broj snimki po korisniku
+metricsPageUserShotsQueryDescription = Broj korisnika koji imaju oko N ukupno snimki
+metricsPageUserShotsQueryCount = Broj korisnika
+metricsPageUserShotsQueryShots = Približan broj aktivnih (koje nisu istekle) snimki
+metricsPageRetentionQueryTitle = Zadržavanje po tjednu
+metricsPageRetentionQueryDescription = Broj dana od korisnikove prve snimke do najnovije snimke, grupirano po početnom tjednu
+metricsPageRetentionQueryUsers = Broj korisnika
+metricsPageRetentionQueryDays = Dana od korisnikove prve do zadnje snimke
+metricsPageRetentionQueryFirstWeek = Tjedan u kojem je korisnik napravio prvu snimku
+metricsPageTotalRetentionQueryTitle = Ukupno zadržavanje
+metricsPageTotalRetentionQueryDescription = Duljina vremena u kojem korisnici stvaraju snimke, grupirano po tjednu
+metricsPageTotalRetentionQueryUsers = Broj korisnika
+metricsPageTotalRetentionQueryDays = Dani u kojima korisnici rade snimke
