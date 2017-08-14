@@ -32,7 +32,7 @@
     "node-statsd": "0.1.1",
     "nodemon": "1.11.0",
     "nodify-uuid": "0.0.1",
-    "pg": "6.2.3",
+    "pg": "6.2.5",
     "pg-patcher": "0.4.0",
     "raven": "2.1.1",
     "raven-js": "3.17.0",
