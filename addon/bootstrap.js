@@ -230,7 +230,9 @@ let photonPageAction;
 // Does nothing otherwise.  Ideally, in the future, WebExtension page actions
 // and Photon page actions would be one in the same, but they aren't right now.
 function initPhotonPageAction(api) {
-  if (!AppConstants.MOZ_PHOTON_THEME) {
+  // The MOZ_PHOTON_THEME ifdef got removed, but we need to support 55 and 56 as well,
+  // so check if the property exists *and* is false before bailing.
+  if (typeof AppConstants.MOZ_PHOTON_THEME != "undefined" && !AppConstants.MOZ_PHOTON_THEME) {
     // Photon not supported.  Use the WebExtension's browser action.
     return;
   }
