@@ -55,18 +55,54 @@ homePageCaptureRegionDescription = Kliknite i vucite kako biste odabrali područ
 homePageCapturePage = Snimi stranicu
 homePageCapturePageDescription = Koristite gumb gore desno kako biste snimili cijelu stranicu. Gumb Spremi vidljivo će snimiti područje koje možete vidjeti bez pomicanja stranice, a Spremi cijelu stranicu će snimiti sve na stranici.
 homePageSaveShare = Spremi i dijeli
+homePageLegalLink = Pravne informacije
+homePagePrivacyLink = Privatnost
+homePageTermsLink = Uvjeti
+homePageCookiesLink = Kolačići
 
 
 [[ Leave Screenshots page ]]
 
+leavePageRemoveAllData = Ukloni sve podatke
+leavePageErrorGeneric = Došlo je do greške
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Trajno ćete obrisati sve Firefox Screenshot podatke.
+leavePageButtonProceed = Nastavi
+leavePageButtonCancel = Otkaži
+leavePageDeleted = Sve vaše slike su izbrisane!
 
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Stranica nije pronađena
+notFoundPageIntro = Ups.
+notFoundPageDescription = Stranica nije pronađena.
 
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Snimka: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = Greška pri spremanju vremena isticanja
+shotPageAlertErrorDeletingShot = Greška pri brisanju slike
+shotPageAlertErrorUpdatingTitle = Greška pri spremanju naslova
+shotPageConfirmDelete = Jeste li sigurni da želite trajno obrisati ovu sliku?
+shotPageShareButton
+    .title = Dijeli
+shotPageCopy = Kopiraj
+shotPageCopied = Kopirano
+shotPageShareFacebook
+    .title = Dijeli na Facebooku
+shotPageShareTwitter
+    .title = Dijeli na Twitteru
+shotPageSharePinterest
+    .title = Dijeli na Pinterestu
+shotPageShareEmail
+    .title = Dijeli poveznicu putem e-pošte
+shotPageShareLink = Dohvati poveznicu za dijeljenje za ovu sliku:
+shotPagePrivacyMessage = Svi koji posjete ovu poveznicu će moći vidjeti sliku.
+shotPageCopyImageText
+    .label = Kopiraj tekst slike
 
 
 [[ Shotindex page ]]
