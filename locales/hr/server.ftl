@@ -240,3 +240,13 @@ metricsPageTotalRetentionQueryTitle = Ukupno zadržavanje
 metricsPageTotalRetentionQueryDescription = Duljina vremena u kojem korisnici stvaraju snimke, grupirano po tjednu
 metricsPageTotalRetentionQueryUsers = Broj korisnika
 metricsPageTotalRetentionQueryDays = Dani u kojima korisnici rade snimke
+metricsPageVersionQueryTitle = Inačica dodatka
+metricsPageVersionQueryDescription = Inačica dodatka korištena prilikom prijave u zadnjih 14 dana
+metricsPageVersionQueryUsers = Broj korisnika koji su se prijavili
+metricsPageVersionQueryVersion = Inačica dodatka
+metricsPageVersionQueryLastSeen = Dan
+metricsPageHeader = Metrika
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Stvoreno: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (vrijeme baze podataka: { $time }ms)
