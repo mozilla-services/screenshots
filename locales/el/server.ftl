@@ -32,6 +32,7 @@ footerLinkRemoveAllData = Διαγραφή όλων των δεδομένων
 // creatingPageTitleDefault.
 creatingPageTitle = Δημιουργία { $title }
 creatingPageTitleDefault = σελίδα
+creatingPageWaitMessage = Αποθήκευση στιγμιότυπου…
 
 
 [[ Home page ]]
@@ -64,7 +65,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Επιβεβαίωση διαγραφής λογαριασμού
+leavePageRemoveAllData = Πλήρης εκκαθάριση δεδομένων
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Πρέπει να έχετε εγκαταστήσει το Firefox Screenshots, ώστε να διαγράψετε το λογαριασμό σας
 leavePageErrorGeneric = Προέκυψε σφάλμα

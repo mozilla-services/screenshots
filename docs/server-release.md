@@ -11,6 +11,7 @@ To release the server:
 - [ ] Merge to `server-prod`:
   - `git checkout server-prod && git merge master && git push`
   - This will trigger a deploy to stage. A deploy will take about 30 minutes.
+  - View the CI build of [server-prod](https://circleci.com/gh/mozilla-services/screenshots/tree/server-prod)
   - IRC will get updates (no update until deploy happens)
   - https://screenshots.stage.mozaws.net/__version__ will show the status
 - [ ] Ping relud on IRC to deploy to prod

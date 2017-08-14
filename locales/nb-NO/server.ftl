@@ -32,6 +32,7 @@ footerLinkRemoveAllData = Slett alle data
 // creatingPageTitleDefault.
 creatingPageTitle = Lager { $title }
 creatingPageTitleDefault = side
+creatingPageWaitMessage = Lagrer ditt skjermbilde...
 
 
 [[ Home page ]]
@@ -64,7 +65,7 @@ homePageCookiesLink = Infokapsler
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Bekreft sletting av konto
+leavePageRemoveAllData = Fjern alle data
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Du må ha Firefox Screenshots installert for å slette kontoen din
 leavePageErrorGeneric = Det oppstod en feil

@@ -56,7 +56,7 @@ exports.render = function(req, res, page) {
     if (!page.noBrowserJavascript) {
       // FIXME: we should just inline the addReactScripts functionality in this function:
       let script = `\
-window.initialModel = ${JSON.stringify(jsonModel)};
+window.initialModel = ${JSON.stringify(jsonModel).replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029')};
 window.initialModelLaunched = false;
 if (window.controller) {
   window.controller.launch(window.initialModel);

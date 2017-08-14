@@ -65,7 +65,7 @@ homePageCookiesLink = Piškotki
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Potrdite brisanje računa
+leavePageRemoveAllData = Odstrani vse podatke
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Za izbris računa morate imeti nameščen Firefox Screenshots
 leavePageErrorGeneric = Prišlo je do napake

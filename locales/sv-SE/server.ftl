@@ -65,7 +65,7 @@ homePageCookiesLink = Kakor
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Bekräfta kontoborttagning
+leavePageRemoveAllData = Ta bort all data
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Du måste ha Firefox Screenshots installerat om du vill radera ditt konto
 leavePageErrorGeneric = Ett fel uppstod
