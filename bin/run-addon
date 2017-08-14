@@ -165,8 +165,10 @@ run_jpm() {
   echo "Running Firefox.  Reloading with jpm *will not* happen"
   echo "If the Screenshots icon doesn't show up go to:"
   echo "  Tools > Add-ons > Extensions and look for an error loading the add-on"
+  settings_file="./build/.jpm-settings.json"
+  echo '{"extensions.legacy.enabled": true, "xpinstall.signatures.required": false}' > "$settings_file"
   cd addon
-  $jpm run $bootstrap_profile_option -b "$binary" --binary-args -jsconsole
+  $jpm run $bootstrap_profile_option -b "$binary" --prefs "../$settings_file" --binary-args -jsconsole
 }
 
 if [[ -z "$bootstrap" ]] ; then
