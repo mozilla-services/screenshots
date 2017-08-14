@@ -1,3 +1,20 @@
+## Version 15.0.0
+
+Note: this is a server-only release
+
+* Upgrade minor pg version [57b4bd0](https://github.com/mozilla-services/screenshots/commit/57b4bd0)
+* Properly escape JSON separators [1c53af5](https://github.com/mozilla-services/screenshots/commit/1c53af5)
+* Add an index on data.deviceid to speed up My Shots ([#3328](https://github.com/mozilla-services/screenshots/issues/3328))Also updates schema.sql with version 19 (because I forgot ./bin/dumpschema --record for that version) [219392c](https://github.com/mozilla-services/screenshots/commit/219392c)
+* Correct and spritify icon buttons [4f08f2f](https://github.com/mozilla-services/screenshots/commit/4f08f2f)
+
+### Add-on changes
+
+* Deal with lack of MOZ_PHOTON_THEME on 57+ [3e9eba3](https://github.com/mozilla-services/screenshots/commit/3e9eba3)
+* Make run-addon work with new legacy pref. Fixes [#3333](https://github.com/mozilla-services/screenshots/issues/3333) [b9a776b](https://github.com/mozilla-services/screenshots/commit/b9a776b)
+* Immediately exit when Firefox is exiting. Fixes [#3323](https://github.com/mozilla-services/screenshots/issues/3323) [916c353](https://github.com/mozilla-services/screenshots/commit/916c353)
+* Fix tests, enable legacy extensions via pref during tests ([#3324](https://github.com/mozilla-services/screenshots/issues/3324)) [c60fd37](https://github.com/mozilla-services/screenshots/commit/c60fd37)
+* Make tests resilient to a browserAction or pageAction ([#3317](https://github.com/mozilla-services/screenshots/issues/3317)) Fixes [#3306](https://github.com/mozilla-services/screenshots/issues/3306) [3c15014](https://github.com/mozilla-services/screenshots/commit/3c15014)
+
 ## Version 14.0.0
 
 Note: this is a server-only release
