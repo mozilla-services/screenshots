@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [[ "$1" = "-h" ]] || [[ "$1" = "--help" ]] ; then
+  echo "Usage:"
+  echo "  $(basename $0)"
+  echo "Creates an XPI in the base directory, suitable for production"
+  echo "XPI will be named screenshots-VERSION.xpi"
+  echo "The XPI will *not* be signed."
+  exit
+fi
+
+version="$(git describe --tags)"
+output="screenshots-${version}.xpi"
+echo "Building version $version ..."
+
+export SCREENSHOTS_SENTRY="https://904ccdd4866247c092ae8fc1a4764a63:940d44bdc71d4daea133c19080ccd38d@sentry.prod.mozaws.net/224"
+export SCREENSHOTS_BACKEND="https://screenshots.firefox.com"
+export SCREENSHOTS_MINOR_VERSION="0"
+
+make clean
+make addon
+make unsigned_bootstrap_xpi
+mv build/screenshots.xpi $output
+echo
+echo
+echo "File placed into:"
+echo "  $output"
+echo "To get the XPI signed, follow this link to clone an appropriate bug:"
+echo "  https://bugzilla.mozilla.org/enter_bug.cgi?format=__default__&product=Cloud%20Services&cloned_bug_id=1388879"
