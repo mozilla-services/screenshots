@@ -713,7 +713,7 @@ app.post("/api/set-title/:id/:domain", csrfProtection, function(req, res) {
 app.post("/api/save-edit", csrfProtection, function(req, res) {
   let vars = req.body;
   if (!req.deviceId) {
-    sendRavenMessage(req, "Attempt to set expiration without login");
+    sendRavenMessage(req, "Attempt to edit shot without login");
     simpleResponse(res, "Not logged in", 401);
     return;
   }
@@ -721,6 +721,7 @@ app.post("/api/save-edit", csrfProtection, function(req, res) {
   let url = vars.url;
   Shot.get(req.backend, id, req.deviceId, req.accountId).then((shot) => {
     if (!shot) {
+      sendRavenMessage(req, "Attempt to edit shot that does not exist");
       simpleResponse(res, "No such shot", 404);
       return;
     }

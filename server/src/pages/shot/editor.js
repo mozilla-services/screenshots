@@ -1,44 +1,32 @@
 const React = require("react");
 const sendEvent = require("../../browser-send-event.js");
 
-let pos;
-
 exports.Editor = class Editor extends React.Component {
   constructor(props) {
     super(props);
     this.draw = this.draw.bind(this);
     this.setPosition = this.setPosition.bind(this);
     this.state = {
-      tool: 'none',
+      tool: 'pen',
       color: '#000000',
       size: '5'
     };
   }
 
   render() {
-    let penState;
-    let highlighterState;
+    let penState = this.state.tool == "pen" ? 'active' : 'inactive';
+    let highlighterState = this.state.tool == "highlighter" ? 'active' : 'inactive';
     let canvasHeight = this.props.clip.image.dimensions.y;
     let canvasWidth = this.props.clip.image.dimensions.x;
-    if (this.state.tool == 'highlighter') {
-      highlighterState = 'active';
-      penState = 'inactive';
-    } else if (this.state.tool == 'pen') {
-      highlighterState = 'inactive';
-      penState = 'active';
-    } else {
-      penState = 'inactive';
-      highlighterState = 'inactive';
-    }
     return <div>
       <div className="editor-header default-color-scheme">
         <div className="shot-main-actions">
-          <a className={`button pen-button ${penState}`} id="pen" onClick={this.onClickPen.bind(this)} title="pen"></a>
-          <a className={`button highlight-button ${highlighterState}`} id="highlight" onClick={this.onClickHighlight.bind(this)} title="highlighter"></a>
+          <button className={`button transparent pen-button ${penState}`} id="pen" onClick={this.onClickPen.bind(this)} title="pen"></button>
+          <button className={`button transparent highlight-button ${highlighterState}`} id="highlight" onClick={this.onClickHighlight.bind(this)} title="highlighter"></button>
         </div>
         <div className="shot-alt-actions">
-          <a className="button primary save" id="save" onClick={ this.onClickSave.bind(this) }>Save</a>
-          <a className="button secondary cancel" id="cancel" onClick={this.onClickCancel.bind(this)}>Cancel</a>
+          <button className="button primary save" id="save" onClick={ this.onClickSave.bind(this) }>Save</button>
+          <button className="button secondary cancel" id="cancel" onClick={this.onClickCancel.bind(this)}>Cancel</button>
         </div>
       </div>
       <div className="main-container">
@@ -101,18 +89,16 @@ exports.Editor = class Editor extends React.Component {
     let height = this.props.clip.image.dimensions.y;
     this.imageContext.scale(2, 2);
     this.imageContext.drawImage(img, 0, 0, width, height);
+    this.edit();
   }
 
   edit() {
-    pos = { x: 0, y: 0 };
+    this.pos = { x: 0, y: 0 };
     if (this.state.tool == 'highlighter') {
       this.highlightContext.lineWidth = 20;
       this.highlightContext.strokeStyle = '#ff0';
-      this.drawContext = this.highlightContext;
     } else if (this.state.tool == 'pen') {
       this.context.strokeStyle = this.state.color;
-      this.context.globalCompositeOperation = 'source-over';
-      this.drawContext = this.context;
     }
     this.context.lineWidth = this.state.size;
     if (this.state.tool == 'none') {
@@ -128,22 +114,23 @@ exports.Editor = class Editor extends React.Component {
 
   setPosition(e) {
     var rect = this.editor.getBoundingClientRect();
-    pos.x = e.clientX - rect.left,
-    pos.y = e.clientY - rect.top
+    this.pos.x = e.clientX - rect.left,
+    this.pos.y = e.clientY - rect.top
   }
 
   draw(e) {
     if (e.buttons !== 1) {
       return null;
     }
+    this.drawContext = this.state.tool == 'highlighter' ? this.highlightContext : this.context;
     this.drawContext.beginPath();
 
     this.drawContext.lineCap = 'square';
-    this.drawContext.moveTo(pos.x, pos.y);
+    this.drawContext.moveTo(this.pos.x, this.pos.y);
     let rect = this.editor.getBoundingClientRect();
-    pos.x = e.clientX - rect.left,
-    pos.y = e.clientY - rect.top
-    this.drawContext.lineTo(pos.x, pos.y);
+    this.pos.x = e.clientX - rect.left,
+    this.pos.y = e.clientY - rect.top
+    this.drawContext.lineTo(this.pos.x, this.pos.y);
 
     this.drawContext.stroke();
   }

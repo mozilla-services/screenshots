@@ -125,14 +125,13 @@ exports.saveEdit = function(shot, shotUrl) {
   });
   var req = new Request(url, {
     method: 'POST',
-    mode: 'cors',
     credentials: 'include',
     headers: new Headers({
       'content-type': 'application/json'
     }),
     body
   });
-  fetch(req).then((resp) => {
+  return fetch(req).then((resp) => {
     if (!resp.ok) {
       var errorMessage = "Error saving edited shot";
       window.alert(errorMessage);
@@ -140,7 +139,7 @@ exports.saveEdit = function(shot, shotUrl) {
       location.reload();
     }
   }).catch((error) => {
-    error.popupMessage = "CONNECTION_ERROR";
+    window.alert("Connection error");
     throw error;
   });
 }
