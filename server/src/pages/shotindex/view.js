@@ -67,7 +67,7 @@ class Body extends React.Component {
     } else {
       return (
         <div className="masonry-wrapper">
-          <Masonry onLayoutComplete={() => this.handleLayoutComplete()}>
+          <Masonry>
             {children}
           </Masonry>
         </div>
@@ -95,11 +95,6 @@ class Body extends React.Component {
         </Localized>
       </div>
     );
-  }
-
-  handleLayoutComplete() {
-    const masonryWrapper = document.querySelector('.masonry-wrapper');
-    masonryWrapper.style.opacity = 1;
   }
 
   renderNoShots() {
