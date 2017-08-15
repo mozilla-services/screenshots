@@ -2,6 +2,13 @@
 
 This is a Firefox export release. Note all changes included since the last (version 10) release:
 
+* Fix tests failing when run against photon-y Firefox without MOZ_PHOTON_THEME defined [beec56b](https://github.com/mozilla-services/screenshots/commit/beec56b)
+
+### Server changes in 16.0.0
+
+* empty docTitle value in JSON data [f9871b7](https://github.com/mozilla-services/screenshots/commit/f9871b7)
+* remove fade in from masonry [0d953ee](https://github.com/mozilla-services/screenshots/commit/0d953ee)
+
 ### From 15.0.0
 
 * Deal with lack of MOZ_PHOTON_THEME on 57+ [3e9eba3](https://github.com/mozilla-services/screenshots/commit/3e9eba3)
