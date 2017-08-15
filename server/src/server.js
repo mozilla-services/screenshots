@@ -100,7 +100,7 @@ function initDatabase() {
 
 initDatabase();
 
-const csrfProtection = csrf({cookie: true});
+const csrfProtection = csrf({cookie: {httpOnly: true, secure: true, sameSite: 'lax', key: '__Host-csrf'}});
 
 const app = express();
 
@@ -218,7 +218,17 @@ app.use(function(req, res, next) {
     req.accountId = authInfo.accountId;
   }
   req.cookies = cookies;
-  req.cookies._csrf = cookies.get("_csrf"); // csurf expects a property
+  // The cookies library doesn't detect duplicates; check manually
+  let rawCookies = req.get("cookie") || "";
+  let pairs = rawCookies.split(";");
+  let csrfTokens = pairs.filter(item => { return item.match(/__Host-csrf=/); });
+  if (csrfTokens.length > 1) {
+    let exc = new Error("Duplicate CSRF cookies");
+    exc.headerValue = rawCookies;
+    captureRavenException(exc);
+    simpleResponse(res, "Bad request", 400);
+  }
+  req.cookies._csrf = cookies.get("__Host-csrf"); // csurf expects a property
   req.abTests = authInfo.abTests || {};
   const host = req.headers.host === config.contentOrigin ? config.contentOrigin : config.siteOrigin;
   req.backend = `${req.protocol}://${host}`;
