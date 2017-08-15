@@ -13,8 +13,9 @@ add_task(async function() {
     await promiseScreenshotsReset();
   });
 
-  let id = AppConstants.MOZ_PHOTON_THEME ? "pageAction-panel-screenshots"
-                                         : "screenshots_mozilla_org-browser-action";
+  let onPhoton = (typeof AppConstants.MOZ_PHOTON_THEME == "undefined") ||
+                 AppConstants.MOZ_PHOTON_THEME;
+  let id = onPhoton ? "pageAction-panel-screenshots" : "screenshots_mozilla_org-browser-action";
 
   await BrowserTestUtils.waitForCondition(
     () => document.getElementById(id),
