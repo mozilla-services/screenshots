@@ -378,10 +378,7 @@ Shot.get = function(backend, id, deviceId) {
     if (!json.url && rawValue.url) {
       json.url = rawValue.url;
     }
-    let jsonTitle = json.userTitle || (json.openGraph && json.openGraph.title) || json.docTitle;
-    if (!jsonTitle) {
-      json.docTitle = rawValue.title;
-    }
+    json.docTitle = "";
     let shot = new Shot(rawValue.userid, backend, id, json);
     shot.urlIfDeleted = rawValue.url;
     shot.accountId = rawValue.accountId;
