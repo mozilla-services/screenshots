@@ -42,18 +42,35 @@ homePageGetStarted = Entamar
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Cómo funciona Firefox Screenhoots
 homePageGetStartedTitle = Entamar
+homePageLegalLink = Llegal
+homePagePrivacyLink = Privacidá
+homePageTermsLink = Términos
+homePageCookiesLink = Cookies
 
 
 [[ Leave Screenshots page ]]
 
+leavePageErrorGeneric = Asocedió un fallu
+leavePageButtonProceed = Siguir
+leavePageButtonCancel = Encaboxar
 
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Nun s'alcontró la páxina
+notFoundPageIntro = Ups.
+notFoundPageDescription = Nun s'alcontró la páxina.
 
 
 [[ Shot page ]]
 
+shotPageShareButton
+    .title = Compartir
+shotPageCopy = Copiar
+shotPageCopied = Copióse
+shotPageDownloadShot
+    .title = Baxar
+shotPageDownload = Baxar
 shotPageKeepTenMinutes = 10 minutos
 shotPageKeepOneHour = 1 hora
 shotPageKeepOneDay = 1 día
@@ -64,6 +81,14 @@ shotPageSaveExpiration = guardar
 shotPageCancelExpiration = encaboxar
 shotPageDoesNotExpire = nun caduca
 timeDiffJustNow = xusto agora
+timeDiffDaysAgo = { $num ->
+        [one] ayeri
+       *[other] hai { $number } díes
+    }
+timeDiffFutureMinutes = { $num ->
+        [one] en 1 minutu
+       *[other] en { $number } minutos
+    }
 timeDiffFutureDays = { $num ->
         [one] mañana
        *[other] en { $number } díes
@@ -75,8 +100,16 @@ timeDiffFutureDays = { $num ->
 // { $status } is a placeholder for an HTTP status code, like '500'.
 // { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Fallu desaniciando la captura: { $status } { $statusText }
+shotIndexPageNoSearchResultsIntro = Umm
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageShotsQueryDay = Día
+metricsPageUsersQueryDay = Día
+metricsPageUserShotsQueryCount = Númberu d'usuarios
+metricsPageRetentionQueryUsers = Númberu d'usuarios
+metricsPageTotalRetentionQueryUsers = Númberu d'usuarios
+metricsPageVersionQueryLastSeen = Día
+metricsPageHeader = Métriques
