@@ -760,10 +760,10 @@ ClipRewrites = class ClipRewrites {
 
           return db.queryWithClient(
             client,
-            `INSERT INTO images (id, shotid, clipid, url, contenttype)
-             VALUES ($1, $2, $3, $4, $5)
+            `INSERT INTO images (id, shotid, clipid, url, contenttype, size)
+             VALUES ($1, $2, $3, $4, $5, $6)
             `,
-            [data.uuid, this.shot.id, clipId, data.url, data.binary.contentType]);
+            [data.uuid, this.shot.id, clipId, data.url, data.binary.contentType, data.binary.data.length]);
         })
       );
     }).then(() => {
@@ -775,14 +775,14 @@ ClipRewrites = class ClipRewrites {
 
       return db.queryWithClient(
         client,
-        `INSERT INTO images (id, shotid, clipid, url, contenttype)
-        VALUES ($1, $2, $3, $4, $5)
+        `INSERT INTO images (id, shotid, clipid, url, contenttype, size)
+        VALUES ($1, $2, $3, $4, $5, $6)
         `,
         // Since we don't have a clipid for the thumbnail and the column is NOT NULL,
         // Use the thumbnail uuid as the clipid. This allows figuring out which
         // images are thumbnails, too.
         [this.toInsertThumbnail.uuid, this.shot.id, this.toInsertThumbnail.uuid,
-        this.toInsertThumbnail.url, this.toInsertThumbnail.contentType]);
+        this.toInsertThumbnail.url, this.toInsertThumbnail.contentType, this.toInsertThumbnail.binary.data.length]);
     }).then(() => {
       this.committed = true;
     });

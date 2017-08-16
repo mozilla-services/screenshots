@@ -39,7 +39,6 @@ def test_update():
     shot_page = user.read_shot(shot_url)
     assert "A_TEST_SITE_1" in shot_page["page"]
     shot_id = urlparse.urlsplit(shot_url).path.strip("/")
-    requests.get("http://localhost:10080/second-request-happening")
     user.create_shot(shot_id=shot_id, docTitle="A_TEST_SITE_2", image_index=1)
     later_shot_page = user.read_shot(shot_url)
     assert "A_TEST_SITE_2" in later_shot_page["page"]
