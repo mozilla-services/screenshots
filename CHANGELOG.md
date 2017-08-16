@@ -167,6 +167,14 @@ This is a server-only release.  Add-on changes are still deferred to a later Fir
 * update to photon loader [8b6157b](https://github.com/mozilla-services/screenshots/commit/8b6157b)
 * Tweak flex syntax so shot pages work on IE 11. Fixes [#2516](https://github.com/mozilla-services/screenshots/issues/2516) [33d2ae5](https://github.com/mozilla-services/screenshots/commit/33d2ae5)
 
+## Version 10.12.0
+
+* Immediately exit when Firefox is exiting ([#3323](https://github.com/mozilla-services/screenshots/pull/3323))
+
+## Version 10.11.0
+
+* Import locales from master ([#3293](https://github.com/mozilla-services/screenshots/pull/3293))
+
 ## Version 10.10.0
 
 * Synchronize startup code more carefully ([#3257](https://github.com/mozilla-services/screenshots/issues/3257))
