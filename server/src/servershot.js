@@ -375,10 +375,11 @@ Shot.get = function(backend, id, deviceId, accountId) {
       return null;
     }
     let json = JSON.parse(rawValue.value);
+    let jsonTitle = json.userTitle || (json.openGraph && json.openGraph.title) || json.docTitle;
+    json.docTitle = jsonTitle || rawValue.title;
     if (!json.url && rawValue.url) {
       json.url = rawValue.url;
     }
-    json.docTitle = "";
     let shot = new Shot(rawValue.userid, backend, id, json);
     shot.urlIfDeleted = rawValue.url;
     shot.accountId = rawValue.accountId;
