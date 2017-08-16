@@ -23,9 +23,13 @@ creatingPageTitleDefault = صفحہ
 
 [[ Home page ]]
 
+homePageTeaser = جلد آرہا ہے…
 homePageDownloadFirefoxTitle = Firefox
+homePageDownloadFirefoxSubTitle = مفت ڈائونلوڈ کریں
+homePageGetStarted = شروع کریں
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots کیسے کام کرتا ہے
+homePageGetStartedTitle = شروع کریں
 homePageSaveShare = محفوظ کریں اور شیئر کریں
 homePagePrivacyLink = رازداری
 
@@ -39,6 +43,7 @@ leavePageButtonCancel = منسوخ کریں
 
 notFoundPageTitle = صفہہ نہیں ملا
 notFoundPageIntro = اف
+notFoundPageDescription = صفہہ نہیں ملا۔
 
 
 [[ Shot page ]]
@@ -51,11 +56,14 @@ shotPageCopyImageText
     .label = نقش کا متن نقل کریں
 shotPageDownloadShot
     .title = ڈائونلوڈ
+shotPageDownload = ڈاؤن لوڈ
 shotPageUpsellFirefox = Firefox ابھی حاصل کریں
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = وقت کا انتخاب کریں
 shotPageKeepOneHour = ۱ گھنٹہ
 shotPageKeepOneDay = ۱ دن
+shotPageKeepOneWeek = ۱ ہفتہ
+shotPageKeepTwoWeeks = ۲ ہفتے
 shotPageKeepOneMonth = ۱ ماہ
 shotPageSaveExpiration = محفوظ کریں
 shotPageCancelExpiration = منسوخ کریں
