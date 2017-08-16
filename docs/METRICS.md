@@ -176,7 +176,7 @@ The onboarding slides have some events:
 3. [x] Fail to upload due to bad status from server `addon/upload-failed/status-{code}` (up to version 1.0.1 was `addon/upload/failed-status` with eventValue: status code)
 4. [x] Finish upload successfully `addon/upload/success`
 5. [ ] After failure, re-attempt the upload `addon/upload-retry/times-{N}` (up to version 1.0.1 was `addon/upload/upload-retry` with eventValue: times (1-2)) (FIXME: we have no retry)
-
+sendEvent("click-install-firefox-home", {useBeacon: true});
 #### Owner web visit
 
 These are events that an add-on user can encounter on a shot they own
@@ -249,7 +249,13 @@ These are events that an add-on user can encounter on a shot they own
 17. [x] View expired shot `web/view-expired/non-owner`
 9. [x] Click on clip (already covered)
 10. [x] Click on the "Get it here" (install Screenshots) banner: `web/click-install-banner`
-11. [x] Click on the "Get Firefox now" (install Firefox) banner: `web/click-install-firefox`.  Also note the link uses `?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition` on the link.
+11. [x] Click on the "Get Firefox now" (install Firefox) banner: `web/click-install-firefox-shot`.  Also note the link uses `?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition&utm-content=from-shot` on the link.
+
+#### Home Page Events
+
+1. [x] Click `My Shots` From Home `web/goto-myshots/homepage`
+2. [x] Click `Get Started from` From Home `web/get-started/homepage`
+3. [x] Click on the "Firefox Free Download" (install Firefox) button from home: `web/click-install-firefox-home`.  Also note the link uses `?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition&utm-content=from-home` on the link.
 
 #### Other web events
 
@@ -258,6 +264,9 @@ These are events that an add-on user can encounter on a shot they own
 3. [x] From Leave Screenshots, click Delete: `web/leave-service/leave-button`
 4. [x] From Leave Screenshots, click Cancel: `web/cancel-leave/cancel-link`
 4. [x] After leaving, click home button `web/home-after-leave/home-link`
+
+
+
 
 #### Server events
 

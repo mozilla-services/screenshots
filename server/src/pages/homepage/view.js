@@ -1,7 +1,8 @@
-const reactruntime = require("../../reactruntime");
 const React = require("react");
-const { Localized } = require("fluent-react/compat");
+const reactruntime = require("../../reactruntime");
+const sendEvent = require("../../browser-send-event.js");
 const { Footer } = require("../../footer-view.js");
+const { Localized } = require("fluent-react/compat");
 
 class Head extends React.Component {
 
@@ -34,7 +35,16 @@ class Head extends React.Component {
 
 class Body extends React.Component {
   onClickMyShots() {
+    sendEvent("goto-myshots", "homepage", {useBeacon: true});
     window.location = "/shots";
+  }
+
+  onClickGetStarted() {
+    sendEvent("get-started", "homepage", {useBeacon: true});
+  }
+
+  onClickInstallFirefox() {
+    sendEvent("click-install-firefox-home", {useBeacon: true});
   }
 
   renderGetFirefox() {
@@ -42,7 +52,7 @@ class Body extends React.Component {
       return null;
     }
     return (
-      <a href="https://www.mozilla.org/firefox" className="button primary download-firefox">
+      <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition&utm-content=from-home" className="button primary download-firefox" onClick={ this.onClickInstallFirefox.bind(this) }>
         <div className="button-icon">
           <div className="button-icon-badge"></div>
         </div>
@@ -78,7 +88,7 @@ class Body extends React.Component {
                 </div>
                 <div className="nav-links">
                   <Localized id="homePageGetStarted">
-                    <a href="#how-screenshots-works">Get Started</a>
+                    <a href="#how-screenshots-works" onClick={ this.onClickGetStarted.bind(this) }>Get Started</a>
                   </Localized>
                   { myShots }
                 </div>
