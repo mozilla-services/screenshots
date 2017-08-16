@@ -856,6 +856,10 @@ Shot.upgradeSearch = function() {
             return resolve();
           }
           Shot.get("upgrade_search_only", rows[index].id).then((shot) => {
+            // This shouldn't really happen, but apparently can...
+            if (!shot) {
+              return;
+            }
             return shot.upgradeSearch();
           }).then(() => {
             index++;

@@ -2,6 +2,7 @@ const config = require("./config").getProperties();
 
 const pg = require("pg");
 const mozlog = require("./logging").mozlog("db");
+const logQueryLimit = config.db.logQueryLimit;
 
 let user = encodeURIComponent(config.db.user);
 let dbname = encodeURIComponent(config.db.dbname || config.db.user);
@@ -28,10 +29,12 @@ function getConnection() {
 }
 
 exports.queryWithClient = function(client, ...params) {
+  let timer = initTiming();
   return new Promise((resolve, reject) => {
     // Babel only supports spreads as the final element of a list; i.e.,
     // `[...params, value]` is invalid.
     params.push(function afterQuery(err, result) {
+      timer();
       if (err) {
         reject(err);
       } else {
@@ -47,9 +50,11 @@ exports.getConnection = getConnection;
 exports.constr = constr;
 
 exports.select = function(sql, args) {
+  let timer = initTiming();
   return getConnection().then(function([client, done]) {
     return exports.queryWithClient(client, sql, args).then(({rows}) => {
       done();
+      timer();
       return rows;
     }, (error) => {
       done();
@@ -59,9 +64,11 @@ exports.select = function(sql, args) {
 };
 
 exports.insert = function(sql, args) {
+  let timer = initTiming();
   return getConnection().then(function([client, done]) {
     return exports.queryWithClient(client, sql, args).then(() => {
       done();
+      timer();
       return true;
     }).catch(err => {
       done();
@@ -75,7 +82,9 @@ exports.insert = function(sql, args) {
 };
 
 exports.update = function(sql, args) {
+  let timer = initTiming();
   return exports.exec(sql, args).then((result) => {
+    timer();
     return result.rowCount;
   });
 };
@@ -115,9 +124,11 @@ exports.transaction = function(func) {
 exports.del = exports.update;
 
 exports.exec = function(sql, args) {
+  let timer = initTiming();
   return getConnection().then(function([client, done]) {
     return exports.queryWithClient(client, sql, args).then(result => {
       done();
+      timer();
       return result;
     }, err => {
       done();
@@ -133,3 +144,49 @@ exports.markersForArgs = function(starting, numberOfArgs) {
   }
   return result.join(", ");
 };
+
+function doNothing() {
+}
+
+function initTiming() {
+  if (!logQueryLimit) {
+    return doNothing;
+  }
+  let caller = getCallerPosition(2);
+  if (caller == "skip") {
+    // This happens when getCallerPosition detects we shouldn't time this function call
+    return doNothing;
+  }
+  let start = Date.now();
+  return function() {
+    let time = Date.now() - start;
+    if (time >= logQueryLimit) {
+      mozlog.info("db-timing", {caller, time});
+    }
+  };
+}
+
+const skipCaller = /\/server\/db.js:/;
+const abortTiming = /\/server\/db.js:/;
+
+function getCallerPosition(stacklevel) {
+  // Obviously the caller knows its position, so we really
+  // want the caller of the caller of this function
+  let exc = new Error();
+  let lines = exc.stack.split("\n");
+  let index = stacklevel + 2;
+  while (lines[index] && skipCaller.test(lines[index])) {
+    if (abortTiming.test(lines[index])) {
+      // This is a case where this function is being called by another function
+      // inside this module; when that happens we know this call is already
+      // being logged, and don't need to log it
+      return "skip";
+    }
+    index++;
+  }
+  let caller = lines[index];
+  if (!caller) {
+    return "unknown";
+  }
+  return caller.replace(/^ */, "")
+}
