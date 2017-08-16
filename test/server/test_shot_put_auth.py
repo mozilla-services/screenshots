@@ -1,5 +1,3 @@
-#!../../.venv/bin/python
-
 import urlparse
 from clientlib import ScreenshotsClient
 import random
