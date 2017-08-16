@@ -43,6 +43,10 @@ function assertUrl(url) {
   }
 }
 
+function isSecureWebUri(url) {
+  return (/^https?:\/\/[a-z0-9.-]{1,8000}[a-z0-9](:[0-9]{1,8000})?\/?/i).test(url);
+}
+
 function assertOrigin(url) {
   assertUrl(url);
   if (url.search(/^https?:/i) != -1) {
@@ -209,6 +213,12 @@ class AbstractShot {
     if ((!attrs.fullUrl) && attrs.url) {
       console.warn("Received deprecated attribute .url");
       this.fullUrl = attrs.url;
+    }
+    if (this.origin && !isSecureWebUri(this.origin)) {
+      this.origin = "";
+    }
+    if (this.fullUrl && !isSecureWebUri(this.fullUrl)) {
+      this.fullUrl = "";
     }
     this.docTitle = attrs.docTitle || null;
     this.userTitle = attrs.userTitle || null;
