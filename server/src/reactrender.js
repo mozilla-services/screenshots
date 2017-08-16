@@ -46,17 +46,20 @@ exports.render = function(req, res, page) {
     } else {
       body = ReactDOMServer.renderToString(viewModule.BodyFactory(serverModel));
     }
+    let jsonString = JSON.stringify(jsonModel).replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029').replace(/<script/ig, "\\x3cscript").replace(/<\/script/ig, "\\x3c/script");
     let doc = `
     <html>
       ${head}
       <body>
         <div id="react-body-container">${body}</div>
+        <script id="json-data" type="data">${jsonString}</script>
       </body></html>
     `.trim();
     if (!page.noBrowserJavascript) {
       // FIXME: we should just inline the addReactScripts functionality in this function:
       let script = `\
-window.initialModel = ${JSON.stringify(jsonModel).replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029')};
+      let jsonData = document.getElementById('json-data').textContent;
+window.initialModel = JSON.parse(jsonData);
 window.initialModelLaunched = false;
 if (window.controller) {
   window.controller.launch(window.initialModel);
