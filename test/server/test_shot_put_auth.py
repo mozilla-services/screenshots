@@ -31,6 +31,7 @@ def test_put_auth():
     assert shot_page["clip_url"] == second_shot_page["clip_url"]
     assert shot_page["clip_content"] == second_shot_page["clip_content"]
 
+
 def test_update():
     user = ScreenshotsClient()
     user.login()
@@ -45,6 +46,7 @@ def test_update():
     assert later_shot_page["clip_content"]
     assert later_shot_page["clip_content"] != shot_page["clip_content"]
     assert later_shot_page["clip_url"] != shot_page["clip_url"]
+
 
 if __name__ == "__main__":
     test_put_auth()
