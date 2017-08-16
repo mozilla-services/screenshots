@@ -369,8 +369,8 @@ class ServerClip extends AbstractShot.prototype.Clip {
 
 Shot.prototype.Clip = ServerClip;
 
-Shot.get = function(backend, id, deviceId) {
-  return Shot.getRawValue(id, deviceId).then((rawValue) => {
+Shot.get = function(backend, id, deviceId, accountId) {
+  return Shot.getRawValue(id, deviceId, accountId).then((rawValue) => {
     if (!rawValue) {
       return null;
     }
@@ -409,14 +409,17 @@ Shot.getFullShot = function(backend, id) {
   });
 };
 
-Shot.getRawValue = function(id, deviceId) {
+Shot.getRawValue = function(id, deviceId, accountId) {
   if (!id) {
     throw new Error("Empty id: " + id);
   }
   let query = `SELECT value, deviceid, url, title, expire_time, deleted, block_type, devices.accountid
   FROM data, devices WHERE data.deviceid = devices.id AND data.id = $1`;
   let params = [id];
-  if (deviceId) {
+  if (accountId) {
+    query += ` AND devices.accountid = $2`
+    params.push(accountId);
+  } else if (deviceId) {
     query += ` AND deviceid = $2`;
     params.push(deviceId);
   }
