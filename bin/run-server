@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 bin="$(dirname ${BASH_SOURCE[0]})"
