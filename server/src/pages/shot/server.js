@@ -3,6 +3,7 @@ const csrf = require("csurf");
 const { Shot } = require("../../servershot");
 const { notFound } = require("../../pages/not-found/server");
 const reactrender = require("../../reactrender");
+const mozlog = require("../../logging").mozlog("shot");
 
 let app = express();
 
@@ -13,7 +14,8 @@ app.get("/:id/:domain", csrf({cookie: true}), function(req, res) {
   Shot.get(req.backend, shotId).then((shot) => {
     let noSuchShot = !shot;
     const nonOwnerAndBlocked = shot && shot.blockType !== 'none' && req.deviceId != shot.ownerId;
-    if (noSuchShot || nonOwnerAndBlocked) {
+    if (noSuchShot || nonOwnerAndBlocked || shot.deleted) {
+      mozlog.info("shot-404", {shotId, ip: req.ip});
       notFound(req, res);
       return;
     }
@@ -21,6 +23,6 @@ app.get("/:id/:domain", csrf({cookie: true}), function(req, res) {
     const page = require("./page").page;
     reactrender.render(req, res, page);
   }).catch(function(err) {
-    require("../../responses").errorResponse(res, "Error rendering page:", err);
+    require("../../responses").errorResponse(res, req.getText("shotIndexPageErrorRendering", {error: err}));
   });
 });

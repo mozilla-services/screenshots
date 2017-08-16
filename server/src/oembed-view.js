@@ -1,4 +1,5 @@
 const React = require("react");
+const ReactDOMServer = require("react-dom/server");
 
 class OEmbed extends React.Component {
   render() {
@@ -14,5 +15,5 @@ let OEmbedFactory = React.createFactory(OEmbed);
 
 exports.renderString = function(args) {
   let oembed = OEmbedFactory(args);
-  return React.renderToStaticMarkup(oembed);
+  return ReactDOMServer.renderToStaticMarkup(oembed);
 };

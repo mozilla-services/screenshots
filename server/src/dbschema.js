@@ -2,9 +2,11 @@ const db = require("./db");
 const Keygrip = require('keygrip');
 const pgpatcher = require("pg-patcher");
 const path = require("path");
-const mozlog = require("mozlog")("dbschema");
+const mozlog = require("./logging").mozlog("dbschema");
 
-const MAX_DB_LEVEL = exports.MAX_DB_LEVEL = 16;
+// When updating the database, please also run ./bin/dumpschema --record
+// This updates schema.sql with the latest full database schema
+const MAX_DB_LEVEL = exports.MAX_DB_LEVEL = 20;
 
 exports.forceDbVersion = function(version) {
   mozlog.info("forcing-db-version", {db: db.constr, version});

@@ -3,6 +3,19 @@ require("core-js");
 const React = require("react");
 const ReactDOM = require("react-dom");
 const linker = require("./linker");
+require("fluent-intl-polyfill/compat");
+const { MessageContext } = require("fluent/compat");
+const { LocalizationProvider } = require("fluent-react/compat");
+
+function generateMessages(messages, locales) {
+  const contexts = [];
+  for (const locale of locales) {
+    const cx = new MessageContext(locale);
+    cx.addMessages(messages[locale]);
+    contexts.push(cx);
+  }
+  return contexts;
+}
 
 exports.HeadTemplate = class HeadTemplate extends React.Component {
 
@@ -18,17 +31,22 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
         activationScript = <script src={this.props.staticLink("/ga-activation.js")} />;
       }
     }
+
     return (
+    <LocalizationProvider messages={generateMessages(this.props.messages, this.props.userLocales)}>
       <head>
         <meta charSet="UTF-8" />
         <title>{this.props.title}</title>
-        <link rel="icon" type="image/png" href={this.props.staticLink("/static/img/icon-32.png")} />
-        <link rel="shortcut icon" href={this.props.staticLink("/static/img/icon-32.png")} />
+        <link rel="shortcut icon" href={this.props.staticLink("/static/img/favicon-32.png")} />
+        <link rel="icon" type="image/png" href={this.props.staticLink("/static/img/favicon-16.png")} sizes="16x16"/>
+        <link rel="icon" type="image/png" href={this.props.staticLink("/static/img/favicon-32.png")} sizes="32x32"/>
+        <link rel="icon" type="image/png" href={this.props.staticLink("/static/img/favicon-96.png")} sizes="96x96"/>
         { analyticsScript }
         { activationScript }
         { this.props.sentryPublicDSN ? <script src={this.props.staticLink("/install-raven.js")} async /> : null }
         {this.props.children}
       </head>
+    </LocalizationProvider>
     );
   }
 
@@ -38,9 +56,11 @@ exports.BodyTemplate = class Body extends React.Component {
 
   render() {
     return (
+    <LocalizationProvider messages={generateMessages(this.props.messages, this.props.userLocales)}>
       <div>
         {this.props.children}
       </div>
+    </LocalizationProvider>
     );
   }
 
@@ -71,12 +91,8 @@ exports.Page = class Page {
   render(model) {
     if (!model.staticLink) {
       linker.setGitRevision(model.gitRevision);
-      model.staticLink = linker.staticLink;
-      model.staticLinkWithHost = linker.staticLinkWithHost.bind(null, {
-        protocol: location.protocol.replace(/:$/, ""),
-        headers: {
-          host: location.host
-        }
+      model.staticLink = linker.staticLink.bind(null, {
+        cdn: model.cdn
       });
     }
     let body = this.BodyFactory(model);

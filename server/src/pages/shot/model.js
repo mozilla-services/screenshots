@@ -13,8 +13,9 @@ exports.createModel = function(req) {
   if (req.shot.favicon) {
     req.shot.favicon = createProxyUrl(req, req.shot.favicon);
   }
+  let title = req.getText("shotPageTitle", {originalTitle: req.shot.title});
   let serverPayload = {
-    title: req.shot.title,
+    title,
     staticLink: req.staticLink,
     backend: req.backend,
     shot: req.shot,
@@ -23,7 +24,7 @@ exports.createModel = function(req) {
     id: req.shot.id,
     productName: req.config.productName,
     isExtInstalled: !!req.deviceId,
-    isOwner: req.deviceId == req.shot.ownerId,
+    isOwner: req.deviceId == req.shot.ownerId || (req.accountId && req.accountId == req.shot.accountId),
     gaId: req.config.gaId,
     deviceId: req.deviceId,
     authenticated: !!req.deviceId,
@@ -51,7 +52,7 @@ exports.createModel = function(req) {
     id: req.shot.id,
     productName: req.config.productName,
     isExtInstalled: !!req.deviceId,
-    isOwner: req.deviceId == req.shot.ownerId,
+    isOwner: req.deviceId == req.shot.ownerId || (req.accountId && req.accountId == req.shot.accountId),
     gaId: req.config.gaId,
     deviceId: req.deviceId,
     authenticated: !!req.deviceId,

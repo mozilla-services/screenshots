@@ -6,15 +6,24 @@ const TEN_SECONDS = 10 * 1000;
 
 let model;
 
+let firstRun = true;
+
 exports.launch = function(m) {
   if (m.hasDeviceId) {
-    m.shots = m.shots.map((shot) => new AbstractShot(m.backend, shot.id, shot.json));
-    let match = /[\?&]q=([^&]{1,4000})/.exec(location.href);
+    if (m.shots) {
+      m.shots = m.shots.map((shot) => new AbstractShot(m.backend, shot.id, shot.json));
+    }
+    let match = /[?&]q=([^&]{1,4000})/.exec(location.href);
     if (match) {
       m.defaultSearch = decodeURIComponent(match[1]);
     }
     model = m;
     render();
+    if (firstRun && m.shots === null) {
+      // The actual shot data hasn't been loaded yet, so we'll immediately request it:
+      refreshModel();
+    }
+    firstRun = false;
     return;
   }
   if (window.wantsauth) {
@@ -55,7 +64,10 @@ exports.deleteShot = function(shot) {
   req.onload = function() {
     if (req.status >= 300) {
       // FIXME: a lame way to do an error message
-      window.alert("Error deleting shot: " + req.status + " " + req.statusText);
+      let errorMessage = document.getElementById("shotIndexPageErrorDeletingShot").textContent;
+      errorMessage = errorMessage.replace('{status}', req.status);
+      errorMessage = errorMessage.replace('{statusText}', req.statusText);
+      window.alert(errorMessage);
     } else {
       refreshModel();
     }
@@ -81,7 +93,7 @@ window.addEventListener("popstate", () => {
 
 function refreshModel() {
   let req = new XMLHttpRequest();
-  let url = "/shots?data=json";
+  let url = "/shots?withdata=true&data=json";
   if (model.defaultSearch) {
     url += "&q=" + encodeURIComponent(model.defaultSearch);
   }
@@ -93,7 +105,7 @@ function refreshModel() {
       return;
     }
     let data = JSON.parse(req.responseText);
-    if (!data.shots.length) {
+    if (data.shots && !data.shots.length) {
       sendEvent("no-search-results");
     }
     exports.launch(data);

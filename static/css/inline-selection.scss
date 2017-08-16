@@ -51,10 +51,10 @@ $very-light-grey: #ededed;
   position: absolute;
   z-index: $overlay-z-index + 1;
 
-  &:before {
+  &::before {
     border: 2px dashed rgba(255, 255, 255, 0.4);
     bottom: 0;
-    content: '';
+    content: "";
     left: 0;
     position: absolute;
     right: 0;
@@ -265,7 +265,7 @@ $very-light-grey: #ededed;
   position: absolute;
   pointer-events: none;
   font-weight: bold;
-  font-family: sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
   font-size: 70%;
   color: #000;
   text-shadow:
@@ -273,6 +273,46 @@ $very-light-grey: #ededed;
   1px -1px 0 #fff,
   -1px 1px 0 #fff,
   1px 1px 0 #fff;
+}
+
+.preview-buttons {
+  @include flex-container(row, center, center);
+  position: absolute;
+  right: 0;
+  top: -2px;
+}
+
+.preview-image  {
+  position: relative;
+  height: 80%;
+  max-width: 100%;
+  margin: auto 2em;
+  text-align: center;
+  animation-delay: 50ms;
+  animation: bounce-in 300ms forwards ease-in-out;
+}
+
+.preview-image img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 90%;
+  margin: 50px auto;
+  border: 1px solid rgba(255, 255, 255, 0.8);;
+}
+
+.preview-button-save {
+  @extend .button;
+  @extend .primary;
+  background-image: url("MOZ_EXTENSION/icons/cloud.svg");
+  background-position: 8px center;
+  background-repeat: no-repeat;
+  background-size: 20px 18px;
+  font-size: 18px;
+  margin: 5px;
+  min-width: 80px;
+  padding-left: 34px;
 }
 
 // FIXME: some of the styles in .fixed-container were copied from
@@ -339,7 +379,7 @@ $very-light-grey: #ededed;
   @include flex-container(row, center, center);
   animation: pulse 125mm $bezier;
   color: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
   font-size: 24px;
   line-height: 32px;
   text-align: center;

@@ -1,4 +1,5 @@
 const React = require("react");
+const { Localized } = require("fluent-react/compat");
 const sendEvent = require("./browser-send-event.js");
 
 exports.ShareButton = class ShareButton extends React.Component {
@@ -22,7 +23,9 @@ exports.ShareButton = class ShareButton extends React.Component {
     }
     const active = this.state.display ? "active" : "inactive";
     return <div>
-      <button className={`button transparent share ${active}`} id="toggle-share" onClick={ this.onClick.bind(this) } title="Share" />
+      <Localized id="shotPageShareButton">
+        <button className={`button transparent share ${active}`} id="toggle-share" onClick={ this.onClick.bind(this) } title="Share" />
+      </Localized>
       {panel}
     </div>;
   }
@@ -37,7 +40,7 @@ exports.ShareButton = class ShareButton extends React.Component {
         "navbar");
     } else {
       this.props.setPanelState("panel-closed");
-      this.refs.share.blur();
+      this.shareDiv.blur();
       sendEvent("cancel-share");
     }
   }
@@ -51,7 +54,7 @@ exports.ShareButton = class ShareButton extends React.Component {
 class ShareButtonPanel extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {copyText: "Copy"};
+    this.state = {copy: "copy"};
     this.clickMaybeClose = this.clickMaybeClose.bind(this);
     this.keyMaybeClose = this.keyMaybeClose.bind(this);
   }
@@ -67,9 +70,9 @@ class ShareButtonPanel extends React.Component {
     let target = e.target;
     target.previousSibling.select();
     document.execCommand("copy");
-    this.setState({copyText: "Copied"});
+    this.setState({copy: "copied"});
     setTimeout(() => {
-      this.setState({copyText: "Copy"});
+      this.setState({copy: "copy"});
     }, 1000);
     sendEvent("share", "copy");
   }
@@ -84,43 +87,55 @@ class ShareButtonPanel extends React.Component {
     if (this.props.renderExtensionNotification) {
       className += " share-panel-with-notification";
     }
-    return <div id="share-buttons-panel" className={className} ref="share" style={{top: this.state.top, left: this.state.left}}>
+    return <div id="share-buttons-panel" className={className} ref={shareDiv => this.shareDiv = shareDiv} style={{top: this.state.top, left: this.state.left}}>
       <div className="wrapper row-wrap share-buttons">
-        <a title="Share to Facebook wall or message" onClick={ this.onClickShareButton.bind(this, "facebook") } target="_blank" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }>
-          <img src={ this.props.staticLink("/static/img/btn-fb.svg") } />
-        </a>
-        <a title="Share to a tweet" onClick={ this.onClickShareButton.bind(this, "twitter") }target="_blank" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }>
-          <img src={ this.props.staticLink("/static/img/btn-twitter.svg") } />
-        </a>
-        <a title="Share to Pinterest" onClick={ this.onClickShareButton.bind(this, "pinterest") } target="_blank" href={ "https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" + encodeURIComponent(this.props.shot.title) }>
-          <img src={ this.props.staticLink("/static/img/btn-pinterest.svg") } />
-        </a>
-        <a title="Create email with link" onClick={ this.onClickShareButton.bind(this, "email") } target="_blank" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
-          <img src={ this.props.staticLink("/static/img/btn-email.svg") } />
-        </a>
+        <Localized id="shotPageShareFacebook">
+          <a title="Share to Facebook wall or message" onClick={ this.onClickShareButton.bind(this, "facebook") } target="_blank" rel="noopener noreferrer" href={ "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(this.props.shot.viewUrl) }>
+            <img src={ this.props.staticLink("/static/img/btn-fb.svg") } />
+          </a>
+        </Localized>
+        <Localized id="shotPageShareTwitter">
+          <a title="Share to a tweet" onClick={ this.onClickShareButton.bind(this, "twitter") } target="_blank" rel="noopener noreferrer" href={"https://twitter.com/home?status=" + encodeURIComponent(this.props.shot.viewUrl) }>
+            <img src={ this.props.staticLink("/static/img/btn-twitter.svg") } />
+          </a>
+        </Localized>
+        <Localized id="shotPageSharePinterest">
+          <a title="Share to Pinterest" onClick={ this.onClickShareButton.bind(this, "pinterest") } target="_blank" rel="noopener noreferrer" href={ "https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(this.props.shot.viewUrl) + "&media=" + encodeURIComponent(this.props.clipUrl) + "&description=" + encodeURIComponent(this.props.shot.title) }>
+            <img src={ this.props.staticLink("/static/img/btn-pinterest.svg") } />
+          </a>
+        </Localized>
+        <Localized id="shotPageShareEmail">
+          <a title="Create email with link" onClick={ this.onClickShareButton.bind(this, "email") } target="_blank" rel="noopener noreferrer" href={ `mailto:?subject=Fwd:%20${encodeURIComponent(this.props.shot.title)}&body=${encodeURIComponent(this.props.shot.title)}%0A%0A${encodeURIComponent(this.props.shot.viewUrl)}%0A%0ASource:%20${encodeURIComponent(this.props.shot.url)}%0A` }>
+            <img src={ this.props.staticLink("/static/img/btn-email.svg") } />
+          </a>
+        </Localized>
       </div>
       <div className="share-url-box">
-      <p>Get a shareable link to this shot:</p>
+      <Localized id="shotPageShareLink">
+        <p>Get a shareable link to this shot:</p>
+      </Localized>
       <div className="wrapper row-space">
         <input className="copy-shot-link-input"
           value={ this.props.shot.viewUrl }
           onClick={ this.onClickInputField.bind(this) }
           onChange={ function() {} /* react gives a warning otherwise */ } />
-        <button
-          className="button secondary copy-toggle"
-          onClick={ this.onClickCopyButton.bind(this) }>
-          { this.state.copyText }
-        </button>
+        <Localized id={ this.state.copy === "copy" ? "shotPageCopy" : "shotPageCopied" }>
+          <button
+            className="button secondary copy-toggle"
+            onClick={ this.onClickCopyButton.bind(this) }></button>
+        </Localized>
       </div>
-      <p className="share-visibility-notice">
-        This shot is only visible to you until you share the link.
-      </p>
+      <Localized id="shotPagePrivacyMessage">
+        <p className="share-visibility-notice">
+          This shot is only visible to you until you share the link.
+        </p>
+      </Localized>
     </div>
     </div>;
   }
 
   changePanelPosition() {
-    let el = this.refs.share;
+    let el = this.shareDiv;
     let rect = el.getBoundingClientRect();
     if (!(rect.right <= (window.innerWidth || document.documentElement.clientWidth))) {
       this.setState({left: -140});

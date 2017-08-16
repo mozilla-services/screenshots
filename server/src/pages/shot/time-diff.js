@@ -1,4 +1,5 @@
 const React = require("react");
+const { Localized } = require("fluent-react/compat");
 
 exports.TimeDiff = class TimeDiff extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ exports.TimeDiff = class TimeDiff extends React.Component {
     } else {
       timeDiff = this.dateString(this.props.date);
     }
-    return <span title={this.dateString(this.props.date)}>{timeDiff}</span>;
+    return <Localized id={timeDiff.l10nID} $number={timeDiff.diff}><span title={this.dateString(this.props.date)}></span></Localized>
   }
 
   componentDidMount() {
@@ -26,115 +27,42 @@ exports.TimeDiff = class TimeDiff extends React.Component {
 
   makeDiffString(d) {
     let timeDiff;
+    let l10nID;
     let seconds = (Date.now() - d) / 1000;
     if (seconds > 0) {
       if (seconds < 20) {
-        timeDiff = "just now";
-      } else if (seconds > 0 && seconds < 60) {
-        timeDiff = "1 minute ago";
-      } else if (seconds < 60 * 60) {
-        timeDiff = `${Math.floor(seconds / 60)} minutes ago`;
-      } else if (seconds < 60 * 60 * 24) {
-        timeDiff = `${Math.floor(seconds / (60 * 60))} hours ago`;
-      } else if (seconds < 60 * 60 * 48) {
-        timeDiff = "yesterday";
-      } else if (seconds > 0) {
+        l10nID = "timeDiffJustNow";
+      } else if (seconds > 60 && seconds < 60 * 60) {
+        l10nID = 'timeDiffMinutesAgo';
+        timeDiff = Math.floor(seconds / 60);
+      } else if (seconds > 60 * 60 && seconds < 60 * 60 * 24) {
+        l10nID = "timeDiffHoursAgo";
+        timeDiff = Math.floor(seconds / (60 * 60));
+      } else if (seconds > 60 * 60 * 24) {
+        l10nID = "timeDiffDaysAgo";
         seconds += 60 * 60 * 2; // 2 hours fudge time
-        timeDiff = `${Math.floor(seconds / (60 * 60 * 24))} days ago`;
+        timeDiff = Math.floor(seconds / (60 * 60 * 24));
       }
     } else if (seconds > -20) {
-      timeDiff = "a few seconds";
-    } else if (seconds > -60) {
-      timeDiff = "1 minute";
+      l10nID = "timeDiffFutureSeconds";
     } else if (seconds > -60 * 60) {
-      timeDiff = `${Math.floor(seconds / -60)} minutes`;
+      l10nID = "timeDiffFutureMinutes";
+      timeDiff = Math.floor(seconds / -60);
     } else if (seconds > -60 * 60 * 24) {
-      timeDiff = `${Math.floor(seconds / (-60 * 60))} hours`;
-    } else if (seconds > -60 * 60 * 48) {
-      timeDiff = "tomorrow";
+      l10nID = "timeDiffFutureHours";
+      timeDiff = Math.floor(seconds / (-60 * 60));
     } else {
       seconds -= 60 * 60 * 2; // 2 hours fudge time
-      timeDiff = `${Math.floor(seconds / (-60 * 60 * 24))} days`;
+      l10nID = "timeDiffFutureDays";
+      timeDiff = Math.floor(seconds / (-60 * 60 * 24));
     }
-    return timeDiff;
+    return {diff: timeDiff, l10nID};
   }
 
   dateString(d) {
-    let dYear, dMonth, dDay, dHour;
     if (!(d instanceof Date)) {
       d = new Date(d);
     }
-    if (this.state.useLocalTime) {
-      dYear = d.getFullYear();
-      dMonth = d.getMonth();
-      dDay = d.getDate();
-      dHour = d.getHours();
-    } else {
-      dYear = d.getUTCFullYear();
-      dMonth = d.getUTCMonth();
-      dDay = d.getUTCDate();
-      dHour = d.getUTCHours();
-    }
-    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    let month = months[dMonth];
-    let hour;
-    if (dHour === 0) {
-      hour = "12am";
-    } else if (dHour === 12) {
-      hour = "12pm";
-    } else if (dHour > 12) {
-      hour = (dHour % 12) + "pm";
-    } else {
-      hour = dHour + "am";
-    }
-    return `${month} ${dDay} ${dYear}, ${hour}`;
+    return d.toLocaleString();
   }
-};
-
-
-exports.intervalDescription = function(ms) {
-  let parts = [];
-  let second = 1000;
-  let minute = second * 60;
-  let hour = minute * 60;
-  let day = hour * 24;
-  if (ms > day) {
-    let days = Math.floor(ms / day);
-    if (days === 1) {
-      parts.push("1 day");
-    } else {
-      parts.push(`${days} days`);
-    }
-    ms = ms % day;
-  }
-  if (ms > hour) {
-    let hours = Math.floor(ms / hour);
-    if (hours === 1) {
-      parts.push("1 hour");
-    } else {
-      parts.push(`{$hours} hours`);
-    }
-    ms = ms % hour;
-  }
-  if (ms > minute) {
-    let minutes = Math.floor(ms / minute);
-    if (minutes === 1) {
-      parts.push("1 minute");
-    } else {
-      parts.push(`${minutes} minutes`);
-    }
-    ms = ms % minute;
-  }
-  if (ms) {
-    let seconds = Math.floor(ms / second);
-    if (seconds === 1) {
-      parts.push("1 second");
-    } else {
-      parts.push(`${seconds} seconds`);
-    }
-  }
-  if (!parts.length) {
-    parts.push("immediately");
-  }
-  return parts.join(" ");
 };

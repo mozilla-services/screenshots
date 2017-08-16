@@ -1,27 +1,20 @@
 /* globals controller */
 const React = require("react");
-const ReactDOM = require("react-dom");
+const { Localized } = require("fluent-react/compat");
 const { Footer } = require("../../footer-view");
 const sendEvent = require("../../browser-send-event.js");
 const { ShareButton } = require("../../share-buttons");
-const { TimeDiff, intervalDescription } = require("./time-diff");
+const { TimeDiff } = require("./time-diff");
 const reactruntime = require("../../reactruntime");
-
 
 class Clip extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      loading: true,
-      imageDisplay: "none"
-    };
   }
 
   componentDidMount() {
-    let image = ReactDOM.findDOMNode(this.refs.clipImage);
-    if (image.complete) {
-      this.onImageLoaded();
-    }
+    // TODO: how can we resize nicely if JS is disabled? maybe CSS?
+    let image = this.clipImage;
     let onResize = () => {
       let windowHeight = window.innerHeight;
       let paddingTop = Math.floor((windowHeight - image.height - 35) / 2);
@@ -42,35 +35,13 @@ class Clip extends React.Component {
       console.warn("Somehow there's a shot without an image");
       return null;
     }
-    let node = <img id="clipImage" style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%", display: this.state.imageDisplay}} ref="clipImage" src={ clip.image.url } alt={ clip.image.text } onLoad = { this.onImageLoaded.bind(this) } />;
-    // Note that in server/src/pages/shot/page.js there is also JavaScript defined
-    // that displays the image onload, as a backup to make sure the image always
-    // gets displayed even if the bundle doesn't load
-    return <div ref="clipContainer" className="clip-container">
+    let node = <img id="clipImage" style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%" }} ref={clipImage => this.clipImage = clipImage} src={ clip.image.url } alt={ clip.image.text } />;
+    return <div ref={clipContainer => this.clipContainer = clipContainer} className="clip-container">
       { this.copyTextContextMenu() }
-      { this.renderLoader() }
       <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) } contextMenu="clip-image-context">
         { node }
       </a>
     </div>;
-  }
-
-  onImageLoaded() {
-    this.setState({
-      loading: false,
-      imageDisplay: "inline"
-    });
-  }
-
-  renderLoader() {
-    if (!this.state.loading) {
-      return null;
-    }
-    return (
-      <div id="spinner" className="spinner">
-        <img src = {this.props.staticLink("/static/img/spinner.svg")} />
-      </div>
-    );
   }
 
   onClickClip() {
@@ -82,7 +53,9 @@ class Clip extends React.Component {
     if (this.props.clip.image.text) {
       return (
         <menu type="context" id="clip-image-context">
-          <menuitem label="Copy Image Text" onClick={this.copyImageText.bind(this)} ></menuitem>
+          <Localized id="shotPageCopyImageText">
+            <menuitem label="Copy Image Text" onClick={this.copyImageText.bind(this)} ></menuitem>
+          </Localized>
         </menu>
       );
     }
@@ -116,7 +89,7 @@ class Head extends React.Component {
         </reactruntime.HeadTemplate>
       );
     }
-    // FIXME: we need to review if the oembed form actually works and is valuable
+    // FIXME: we need to review if the oembed form actually works and is valuable (#585)
     return (
       <reactruntime.HeadTemplate {...this.props}>
         <script src={ this.props.staticLink("/static/js/wantsauth.js") } />
@@ -155,7 +128,7 @@ class Head extends React.Component {
       og.push(<meta key={ `ogdescription${clipId}` } property="og:description" content={text} />);
       twitter.push(<meta key={ `twitterimage${clipId}` } name="twitter:image" content={this.makeEmbeddedImageUrl(clip.image.url, "twitter")} />);
       twitter.push(<meta key={ `twitterdesc${clipId}` } name="twitter:description" content={text} />);
-      // FIXME: consider twitter:site @mozillapageshot
+      // FIXME: consider twitter:site @sometwitteraccount
       if (clip.image.dimensions) {
         og.push(<meta key={ `ogimagewidth${clipId}` } property="og:image:width" content={clip.image.dimensions.x} />);
         og.push(<meta key={ `ogimageheight${clipId}` } property="og:image:height" content={clip.image.dimensions.y} />);
@@ -183,7 +156,8 @@ class Body extends React.Component {
     super(props);
     this.state = {
       hidden: false,
-      closeBanner: false
+      closeBanner: false,
+      isChangingExpire: false
     };
   }
 
@@ -193,7 +167,8 @@ class Body extends React.Component {
 
   onClickDelete(e) {
     sendEvent("start-delete", "navbar", {useBeacon: true});
-    if (window.confirm("Are you sure you want to delete this shot permanently?")) {
+    const confirmMessage = document.getElementById("shotPageConfirmDelete").textContent;
+    if (window.confirm(confirmMessage)) {
       sendEvent("delete", "popup-confirm", {useBeacon: true});
       this.props.controller.deleteShot(this.props.shot);
     } else {
@@ -219,13 +194,27 @@ class Body extends React.Component {
   renderBlock() {
     let message = null;
     let moreInfo = null;
+    const dmca = <a href="mailto:dmcanotice@mozilla.com">dmcanotice@mozilla.com</a>;
+    const url = `${this.props.backend}/${this.props.id}`;
     if (this.props.blockType === 'dmca') {
       if (this.props.isOwner) {
-        message = "This shot is no longer available due to a third party intellectual property claim.";
+        message = (
+          <Localized id="shotPageDMCAMessage">
+            <span>This shot is no longer available due to a third party intellectual property claim.</span>
+          </Localized>
+        );
         moreInfo = (
           <p>
-            Please email <a href="mailto:dmcanotice@mozilla.com">dmcanotice@mozilla.com</a> to request further information. If your Shots are subject to multiple claims, we may revoke your access to Firefox Screenshots.<br/>
-            Please include the URL of this shot in your email: {this.props.backend}/{this.props.id}
+            <Localized id="shotPageDMCAContact" $dmca={dmca}>
+              <span>Please email {dmca} to request further information.</span>
+            </Localized>
+            <Localized id="shotPageDMCAWarning">
+              <span>If your Shots are subject to multiple claims, we may revoke your access to Firefox Screenshots.</span>
+            </Localized>
+            <br/>
+            <Localized id="shotPageDMCAIncludeLink" $url={url}>
+              <span>Please include the URL of this shot in your email: {url}</span>
+            </Localized>
           </p>
         );
       }
@@ -233,7 +222,9 @@ class Body extends React.Component {
 
     return <reactruntime.BodyTemplate {...this.props}>
       <div className="column-center full-height alt-color-scheme">
-        <img src={ this.props.staticLink("/static/img/image-nope_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
+        <Localized id="gNoShots">
+          <img src={ this.props.staticLink("/static/img/image-nope_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
+        </Localized>
         <div className="alt-content">
           <p>{ message }</p>
           { moreInfo }
@@ -249,12 +240,17 @@ class Body extends React.Component {
     }
     let deleteTime = new Date(expireTime + this.props.retentionTime);
     let restoreWidget;
+    const expirationTimeDiff = <TimeDiff date={deleteTime} />;
+    const restoreDate = new Date(Date.now() + this.props.defaultExpiration).toLocaleString();
     if (this.props.isOwner) {
       restoreWidget = (
         <p>
-          If you do nothing,
-          this shot will be permanently deleted in <TimeDiff date={deleteTime} />.
-          <button className="button primary" onClick={this.onRestore.bind(this)}>restore for {intervalDescription(this.props.defaultExpiration)}</button>
+          <Localized id="shotPageExpirationMessage" $timediff={expirationTimeDiff}>
+            <span></span>
+          </Localized>
+          <Localized id="shotPageRestoreButton" $date={restoreDate}>
+            <button className="button primary" onClick={this.onRestore.bind(this)}></button>
+          </Localized>
         </p>
       );
     }
@@ -264,9 +260,16 @@ class Body extends React.Component {
       <div className="column-center full-height alt-color-scheme">
         <img src={ this.props.staticLink("/static/img/image-expired_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
         <div className="alt-content">
-          <h1>This shot has expired.</h1>
-          <p>Here is page it was originally created from:<br/>
-          <a href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>{this.props.shot.title}</a></p>
+          <Localized id="shotPageExpiredMessage">
+            <h1>This shot has expired.</h1>
+          </Localized>
+          <p>
+            <Localized id="shotPageExpiredMessageDetails">
+              <span>Here is the page it was originally created from:</span>
+            </Localized>
+            <br/>
+            <a href={this.props.shot.urlIfDeleted} onClick={ this.onClickOrigUrl.bind(this, "expired") }>{this.props.shot.title}</a>
+          </p>
           { restoreWidget }
         </div>
       </div>
@@ -290,6 +293,13 @@ class Body extends React.Component {
         shotId={ shotId } />);
     }
 
+    let errorMessages = [
+      <Localized id="shotPageAlertErrorUpdatingExpirationTime" key="error-1"><div id="shotPageAlertErrorUpdatingExpirationTime" hidden></div></Localized>,
+      <Localized id="shotPageAlertErrorDeletingShot" key="error-2"><div id="shotPageAlertErrorDeletingShot" hidden></div></Localized>,
+      <Localized id="shotPageAlertErrorUpdatingTitle" key="error-3"><div id="shotPageAlertErrorUpdatingTitle" hidden></div></Localized>,
+      <Localized id="shotPageConfirmDelete" key="error-4"><div id="shotPageConfirmDelete" hidden></div></Localized>
+    ];
+
     let linkTextShort = shot.urlDisplay;
 
     let timeDiff = <TimeDiff date={shot.createdDate} />;
@@ -298,23 +308,24 @@ class Body extends React.Component {
       expiresDiff = <span className="expire-widget">
       <ExpireWidget
         expireTime={this.props.expireTime}
+        onChanging={this.onChangingExpire.bind(this)}
         onSaveExpire={this.onSaveExpire.bind(this)} />
       </span>;
     }
 
-    let shotRedirectUrl = `/redirect?to=${encodeURIComponent(shot.url)}`;
-
     let trashOrFlagButton;
     if (this.props.isOwner) {
-      trashOrFlagButton = <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }>
-      </button>;
+      trashOrFlagButton = <Localized id="shotPageDeleteButton">
+        <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }></button>
+      </Localized>;
     } else {
-      trashOrFlagButton = <button className="button transparent flag" title="Report this shot for abuse, spam, or other problems" onClick={ this.onClickFlag.bind(this) }>
-      </button>;
+      trashOrFlagButton = <Localized id="shotPageAbuseButton">
+        <button className="button transparent flag" title="Report this shot for abuse, spam, or other problems" onClick={ this.onClickFlag.bind(this) }></button>
+      </Localized>;
     }
 
     let myShotsHref = "/shots";
-    let myShotsText = <span className="back-to-index">My Shots</span>;
+    let myShotsText = <Localized id="gMyShots"><span className="back-to-index">My Shots</span></Localized>;
     // FIXME: this means that on someone else's shot they won't see a My Shots link:
     if (!this.props.isOwner) {
       myShotsText = <span className="back-to-home">
@@ -347,32 +358,39 @@ class Body extends React.Component {
       favicon = <div style={{backgroundImage: `url("${shot.favicon}")`}} className="favicon" />;
     }
 
+    const shotPageDownload = <Localized id="shotPageDownload"><span className="download-text">Download</span></Localized>;
+
     return (
       <reactruntime.BodyTemplate {...this.props}>
+        { renderGetFirefox ? this.renderFirefoxRequired() : null }
         <div id="frame" className="inverse-color-scheme full-height column-space">
-          { renderGetFirefox ? this.renderFirefoxRequired() : null }
         <div className="frame-header default-color-scheme">
         <a className="block-button button secondary" href={ myShotsHref } onClick={this.onClickMyShots.bind(this)}>{ myShotsText }</a>
           <div className="shot-main-actions">
             <div className="shot-info">
               <EditableTitle title={shot.title} isOwner={this.props.isOwner} />
-              <div className="shot-subtitle"> { favicon }
-                { linkTextShort ? <a className="subtitle-link" href={ shotRedirectUrl } onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> : null }
-                <span className="time-diff">{ timeDiff }</span> { expiresDiff }
+              <div className="shot-subtitle">
+                { this.state.isChangingExpire ? null : favicon }
+                { linkTextShort && !this.state.isChangingExpire ? <a className="subtitle-link" rel="noopener noreferrer" href={ shot.url } target="_blank" onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> : null }
+                { this.state.isChangingExpire ? null : <span className="time-diff">{ timeDiff }</span> }
+                { expiresDiff }
               </div>
             </div>
           </div>
           <div className="shot-alt-actions">
             { trashOrFlagButton }
             <ShareButton abTests={this.props.abTests} clipUrl={clipUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} renderExtensionNotification={renderExtensionNotification} isExtInstalled={this.props.isExtInstalled} />
-            <a className="button primary" href={ this.props.downloadUrl } onClick={ this.onClickDownload.bind(this) }
-              title="Download the shot image">
-              <img src={ this.props.staticLink("/static/img/download-white.svg") } width="20" height="20"/>&nbsp;
-              <span className="download-text">Download</span>
-            </a>
+            <Localized id="shotPageDownloadShot">
+              <a className="button primary" href={ this.props.downloadUrl } onClick={ this.onClickDownload.bind(this) }
+                title="Download the shot image">
+                <img src={ this.props.staticLink("/static/img/download-white.svg") } width="20" height="20"/>&nbsp;
+                {shotPageDownload}
+              </a>
+            </Localized>
           </div>
         </div>
         { clips }
+        { errorMessages }
         <Footer forUrl={ shot.viewUrl } {...this.props} />
       </div>
     </reactruntime.BodyTemplate>);
@@ -380,7 +398,15 @@ class Body extends React.Component {
 
   renderFirefoxRequired() {
     return <div className="highlight-color-scheme alt-notification">
-      <div> <strong>Firefox Screenshots</strong> made simple. Take, save and share screenshots without leaving Firefox. <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a></div>
+      <div>
+        <Localized id="gScreenshotsDescription">
+          <span>Screenshots made simple. Take, save and share screenshots without leaving Firefox.</span>
+        </Localized>
+        &nbsp;
+        <Localized id="shotPageUpsellFirefox">
+          <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a>
+        </Localized>
+      </div>
       <a className="close" onClick={ this.doCloseBanner.bind(this) }></a>
     </div>;
   }
@@ -403,6 +429,10 @@ class Body extends React.Component {
     this.props.controller.changeShotExpiration(this.props.shot, value);
   }
 
+  onChangingExpire(value) {
+    this.setState({isChangingExpire: value});
+  }
+
   onRestore() {
     sendEvent("recover-expired");
     this.props.controller.changeShotExpiration(this.props.shot, this.props.defaultExpiration);
@@ -418,7 +448,11 @@ class Body extends React.Component {
   }
 
   onClickOrigUrl(label) {
-    sendEvent("view-original", label, {useBeacon: true});
+    if (this.props.isOwner) {
+      sendEvent("view-original", `${label}-owner`, {useBeacon: true});
+    } else {
+      sendEvent("view-original", `${label}-non-owner`, {useBeacon: true});
+    }
     // Note: we allow the default action to continue
   }
 
@@ -452,18 +486,19 @@ class ExpireWidget extends React.Component {
     let day = hour * 24;
     return (
       <span className="keep-for-form">
-        &bull; keep for: <select ref="expireTime">
-          <option value="cancel">Select time</option>
-          <option value="0">Indefinitely</option>
-          <option value={ 10 * minute }>10 Minutes</option>
-          <option value={ hour }>1 Hour</option>
-          <option value={ day }>1 Day</option>
-          <option value={ 7 * day }>1 Week</option>
-          <option value={ 14 * day }>2 Weeks</option>
-          <option value={ 31 * day }>1 Month</option>
+        <Localized id="shotPageKeepFor"><span>How long should this shot be retained?</span></Localized>
+        <select ref={expireTime => this.expireTime = expireTime}>
+          <Localized id="shotPageSelectTime"><option value="cancel">Select time</option></Localized>
+          <Localized id="shotPageKeepIndefinitely"><option value="0">Indefinitely</option></Localized>
+          <Localized id="shotPageKeepTenMinutes"><option value={ 10 * minute }>10 Minutes</option></Localized>
+          <Localized id="shotPageKeepOneHour"><option value={ hour }>1 Hour</option></Localized>
+          <Localized id="shotPageKeepOneDay"><option value={ day }>1 Day</option></Localized>
+          <Localized id="shotPageKeepOneWeek"><option value={ 7 * day }>1 Week</option></Localized>
+          <Localized id="shotPageKeepTwoWeeks"><option value={ 14 * day }>2 Weeks</option></Localized>
+          <Localized id="shotPageKeepOneMonth"><option value={ 31 * day }>1 Month</option></Localized>
         </select>
-        <span className="button tiny secondary" onClick={this.clickSaveExpire.bind(this)}>save</span>
-        <span className="button tiny secondary" onClick={this.clickCancelExpire.bind(this)}>cancel</span>
+        <Localized id="shotPageSaveExpiration"><span className="button tiny secondary" onClick={this.clickSaveExpire.bind(this)}>save</span></Localized>
+        <Localized id="shotPageCancelExpiration"><span className="button tiny secondary" onClick={this.clickCancelExpire.bind(this)}>cancel</span></Localized>
       </span>
     );
   }
@@ -471,15 +506,15 @@ class ExpireWidget extends React.Component {
   renderNormal() {
     let button;
     if (this.props.expireTime === null) {
-      button = <span>does not expire</span>;
+      button = <Localized id="shotPageDoesNotExpire"><span>does not expire</span></Localized>;
     } else {
-      let desc = "expires in";
-      if (this.props.expireTime < Date.now()) {
-        desc = "expired";
+      const expired = this.props.expireTime < Date.now();
+      const timediff = <TimeDiff date={this.props.expireTime} simple={this.props.simple} />;
+      if (expired) {
+        button = <Localized id="shotPageExpired" $timediff={timediff}><span>expired {timediff}</span></Localized>
+      } else {
+        button = <Localized id="shotPageExpiresIn" $timediff={timediff}><span>expires {timediff}</span></Localized>
       }
-      button = <span>
-        {desc} <TimeDiff date={this.props.expireTime} simple={this.props.simple} />
-      </span>;
     }
     return (
       <button className="button tiny secondary inline" onClick={this.clickChangeExpire.bind(this)}>
@@ -491,16 +526,18 @@ class ExpireWidget extends React.Component {
   clickChangeExpire() {
     sendEvent("start-expiration-change", "navbar");
     this.setState({isChangingExpire: true});
+    this.props.onChanging(true);
   }
 
   clickCancelExpire() {
     sendEvent("cancel-expiration-change", "navbar");
     this.setState({isChangingExpire: false});
+    this.props.onChanging(false);
   }
 
   clickSaveExpire() {
     // FIXME: save the value that it was changed to?  Yes!  Not sure where to put it.
-    let value = ReactDOM.findDOMNode(this.refs.expireTime).value;
+    let value = this.expireTime.value;
     if (value === "cancel") {
       this.clickCancelExpire();
       return;
@@ -516,13 +553,13 @@ class EditableTitle extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {isEditing: false, isSaving: false};
+    this.state = {isEditing: false, isSaving: false, minWidth: 200};
   }
 
   componentWillReceiveProps(nextProps) {
     // When the save completes, this component just gets updated with the new title
     if (this.state.isSaving && this.state.isSaving === nextProps.title) {
-      this.state.isSaving = false;
+      this.setState({isSaving: false});
     }
   }
 
@@ -539,19 +576,23 @@ class EditableTitle extends React.Component {
     if (this.state.isSaving) {
       className += " saving";
     }
-    return <span className={className} {...handlers}>{this.state.isSaving || this.props.title}</span>;
+    return <span ref={titleElement => this.titleElement = titleElement} className={className} {...handlers}>{this.state.isSaving || this.props.title}</span>;
   }
 
   renderEditing() {
     return <form onSubmit={this.onExit.bind(this)}>
       <input ref={(input) => this.textInput = input}
         className="shot-title-input"
+        style={{minWidth: this.state.minWidth}}
         type="text" defaultValue={this.props.title} autoFocus="true"
         onBlur={this.onExit.bind(this)} onKeyUp={this.onKeyUp.bind(this)} />
     </form>;
   }
 
   onClick() {
+    if (!this.state.isEditing) {
+      this.setState({minWidth: this.titleElement.offsetWidth });
+    }
     this.setState({isEditing: true});
   }
 

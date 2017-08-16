@@ -62,7 +62,6 @@
 .shot-info {
   @include flex-container(column, center, flex-start);
   color: $black;
-  overflow: hidden;
   padding: 0 0 0 $grid-unit;
 
   > div {
@@ -117,7 +116,7 @@
 
 .shot-title,
 .shot-subtitle {
-  overflow: hidden;
+  overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -161,7 +160,7 @@
   @include flex-container(row, flex-start, center);
 
   select {
-    -moz-appearance: none;
+    -moz-appearance: none; //sass-lint:disable-line no-vendor-prefixes
     appearance: none;
     background-color: $light-default;
     background-image: url("/static/img/icon-dropdown.svg");
@@ -203,8 +202,10 @@
   }
 }
 
+// TODO: investigate favicons not appearing on dev, stage and prod
 .favicon {
   background-size: 16px 16px;
+  display: none;
   height: 16px;
   margin-right: 6px;
   width: 16px;
@@ -213,11 +214,12 @@
 .shot-title-input {
   border-radius: $border-radius;
   border: 1px solid $active-blue;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 300;
-  height: 32px;
-  margin-bottom: 4px;
-  padding: 2px 10px;
+  height: 36px;
+  margin: -4px 0 4px -6px;
+  padding: 0 5px;
+  overflow: auto;
 }
 
 .shot-subtitle {
@@ -227,7 +229,7 @@
 
 .clip-container {
   @include flex-container(row, center, center);
-  flex: 1;
+  flex: 0 auto;
   margin: 20px auto;
   max-width: 90%;
 }
@@ -243,51 +245,4 @@
 
 #clip-image-context {
   display: none;
-}
-
-.trash,
-.flag,
-.share {
-  background-size: $grid-unit $grid-unit;
-  background-repeat: no-repeat;
-  background-position: center center;
-  margin-right: $grid-unit * 0.5;
-  transition: background-image 150ms $bezier;
-}
-
-.trash {
-  background-image: url("../img/trash-dark.svg");
-
-  &:hover {
-    background-image: url("../img/trash-hover.svg");
-  }
-
-  &:active {
-    background-image: url("../img/trash-active.svg");
-  }
-}
-
-.share {
-  background-image: url("../img/share-dark.svg");
-
-  &:hover {
-    background-image: url("../img/share-hover.svg");
-  }
-
-  &:active,
-  &.active {
-    background-image: url("../img/share-active.svg");
-  }
-}
-
-.flag {
-  background-image: url("../img/flag-dark.svg");
-
-  &:hover {
-    background-image: url("../img/flag-hover.svg");
-  }
-
-  &:active {
-    background-image: url("../img/flag-active.svg");
-  }
 }

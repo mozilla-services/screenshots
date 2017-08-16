@@ -1,48 +1,7 @@
 const config = require("./config").getProperties();
-
-require("mozlog").config({
-  app: "screenshots-server",
-  fmt: "pretty",
-  level: config.log.level,
-  debug: config.log.lint
-});
-
-const console_mozlog = require("mozlog")("console");
-// We can't prevent any third party libraries from writing to the console,
-// so monkey patch it so they play nice with mozlog.
-function logFactory(level) {
-  let logger = console_mozlog[level].bind(console_mozlog);
-  return function() {
-    let msg = "";
-    let stack = undefined;
-    for (var i = 0; i < arguments.length; i++) {
-      let arg = arguments[i];
-      if (msg) {
-        msg += " ";
-      }
-      if (typeof arg === "string") {
-        msg += arg;
-      } else {
-        if (arg && arg.stack) {
-          if (stack) {
-            stack = stack + "\n\n" + arg.stack;
-          } else {
-            stack = arg.stack;
-          }
-        }
-        msg += JSON.stringify(arg);
-      }
-    }
-    logger(level, {msg, stack});
-  }
-}
-
-console.debug = logFactory("debug");
-console.info = logFactory("info");
-console.warn = logFactory("warn");
-console.error = logFactory("error");
-
-const mozlog = require("mozlog")("server");
+require("./logging").installConsoleHandler();
+const mozlog = require("./logging").mozlog("server");
+const accepts = require("accepts");
 const path = require('path');
 const { readFileSync, existsSync } = require('fs');
 const Cookies = require("cookies");
@@ -56,6 +15,10 @@ const {
   tradeCode,
   getAccountId,
   registerAccount,
+  fetchProfileData,
+  saveProfileData,
+  disconnectDevice,
+  retrieveAccount
 } = require("./users");
 const dbschema = require("./dbschema");
 const express = require("express");
@@ -69,13 +32,11 @@ const errors = require("./errors");
 const buildTime = require("./build-time").string;
 const ua = require("universal-analytics");
 const urlParse = require("url").parse;
+const urlResolve = require("url").resolve;
 const http = require("http");
 const https = require("https");
 const gaActivation = require("./ga-activation");
 const genUuid = require("nodify-uuid");
-const AWS = require("aws-sdk");
-const escapeHtml = require("escape-html");
-const validUrl = require("valid-url");
 const statsd = require("./statsd");
 const { notFound } = require("./pages/not-found/server");
 const { cacheTime, setCache } = require("./caching");
@@ -84,6 +45,7 @@ const { captureRavenException, sendRavenMessage,
 const { errorResponse, simpleResponse, jsResponse } = require("./responses");
 const selfPackage = require("./package.json");
 const { b64EncodeJson, b64DecodeJson } = require("./b64");
+const l10n = require("./l10n");
 
 const PROXY_HEADER_WHITELIST = {
   "content-type": true,
@@ -98,25 +60,7 @@ const PROXY_HEADER_WHITELIST = {
   "via": true
 };
 
-if (config.useS3) {
-  // Test a PUT to s3 because configuring this requires using the aws web interface
-  // If the permissions are not set up correctly, then we want to know that asap
-  var s3bucket = new AWS.S3({params: {Bucket: config.s3BucketName}});
-  mozlog.info("creating-s3-bucket", {msg: `creating ${config.s3BucketName}`, bucketName: config.s3BucketName});
-
-  // createBucket is a horribly named api; it creates a local object to access
-  // an existing bucket
-  s3bucket.createBucket(function() {
-    var params = {Key: 'test', Body: 'Hello!'};
-    s3bucket.upload(params, function(error, data) {
-      if (error) {
-        mozlog.warn("test-upload-error", {msg: "Error uploading data during test", error, bucketName: config.s3BucketName});
-      } else {
-        mozlog.info("test-upload-success", {msg: `Successfully uploaded data to ${config.s3BucketName}/test`, bucketName: config.s3BucketName})
-      }
-    });
-  });
-}
+const COOKIE_EXPIRE_TIME = 30 * 24 * 60 * 60 * 1000; // 30 days
 
 function initDatabase() {
   let forceDbVersion = config.db.forceDbVersion;
@@ -257,6 +201,7 @@ app.use(function(req, res, next) {
     authInfo = decodeAuthHeader(authHeader);
   } else {
     authInfo.deviceId = cookies.get("user", {signed: true});
+    authInfo.accountId = cookies.get("accountid", {signed: true});
     let abTests = cookies.get("abtests", {signed: true});
     if (abTests) {
       abTests = b64DecodeJson(abTests);
@@ -269,6 +214,9 @@ app.use(function(req, res, next) {
     if (config.debugGoogleAnalytics) {
       req.userAnalytics = req.userAnalytics.debug();
     }
+  }
+  if (authInfo.accountId) {
+    req.accountId = authInfo.accountId;
   }
   req.cookies = cookies;
   req.cookies._csrf = cookies.get("_csrf"); // csurf expects a property
@@ -285,15 +233,27 @@ function decodeAuthHeader(header) {
   let keygrip = dbschema.getKeygrip();
   let match = /^([^:]{1,255}):([^;]{1,255});abTests=([^:]{1,1500}):(.{0,255})$/.exec(header);
   if (!match) {
-    // FIXME: log, Sentry error
+    let exc = new Error("Invalid auth header");
+    exc.headerValue = header;
+    captureRavenException(exc);
     return {};
   }
   let deviceId = match[1];
   let deviceIdSig = match[2];
   let abTestsEncoded = match[3];
   let abTestsEncodedSig = match[4];
-  if (!(keygrip.verify(deviceId, deviceIdSig) && keygrip.verify(abTestsEncoded, abTestsEncodedSig))) {
-    // FIXME: log, Sentry error
+  if (!keygrip.verify(deviceId, deviceIdSig)) {
+    let exc = new Error("deviceId signature incorrect");
+    exc.deviceIdLength = typeof deviceId == "string" ? deviceId.length : String(deviceId);
+    exc.deviceIdSigLength = typeof deviceIdSig == "string" ? deviceIdSig.length : String(deviceIdSig);
+    captureRavenException(exc);
+    return {};
+  }
+  if (!keygrip.verify(abTestsEncoded, abTestsEncodedSig)) {
+    let exc = new Error("abTests signature incorrect");
+    exc.abTestsEncodedLength = typeof abTestsEncoded == "string" ? abTestsEncoded.length : String(abTestsEncoded);
+    exc.abTestsEncodedSigLength = typeof abTestsEncodedSig == "string" ? abTestsEncodedSig.length : String(abTestsEncodedSig);
+    captureRavenException(exc);
     return {};
   }
   let abTests = b64DecodeJson(abTestsEncoded);
@@ -301,11 +261,25 @@ function decodeAuthHeader(header) {
 }
 
 app.use(function(req, res, next) {
-  req.staticLink = linker.staticLink;
-  req.staticLinkWithHost = linker.staticLinkWithHost.bind(null, req);
+  req.staticLink = linker.staticLink.bind(null, {
+    cdn: req.config.cdn
+  });
   let base = `${req.protocol}://${config.contentOrigin}`;
   linker.imageLinkWithHost = linker.imageLink.bind(null, base);
   next();
+});
+
+app.use(function(req, res, next) {
+  l10n.init().then(() => {
+    const languages = accepts(req).languages();
+    req.getText = l10n.getText(languages);
+    req.userLocales = l10n.getUserLocales(languages);
+    req.messages = l10n.getStrings(languages);
+    next();
+  }).catch(err => {
+    mozlog.error("l10n-error", {msg: "Error initializing l10n", description: err});
+    process.exit(2);
+  });
 });
 
 app.param("id", function(req, res, next, id) {
@@ -313,11 +287,17 @@ app.param("id", function(req, res, next, id) {
     next();
     return;
   }
-  next(new Error("invalid id"));
+  let exc = new Error("invalid id")
+  exc.isAppError = true;
+  exc.output = {
+    statusCode: 400,
+    payload: "Invalid id"
+  };
+  next(exc);
 });
 
 app.param("domain", function(req, res, next, domain) {
-  if (/^[^\s\/]{1,100}$/.test(domain)) {
+  if (/^[^\s/]{1,100}$/.test(domain)) {
     next();
     return;
   }
@@ -411,7 +391,7 @@ app.post("/error", function(req, res) {
     value = value.replace(/\n/g, " / ");
     value = value.replace(/[\t\r]/g, " ");
     value = value.replace(/\s+/g, " ");
-    value = value.replace(/[^a-z0-9_\-=+\{\}\(\).,/\?:\[\]\| ]/gi, "?");
+    value = value.replace(/[^a-z0-9_\-=+{}().,/?:[\]| ]/gi, "?");
     value = value.substr(0, 100);
     attrs.push(`${attr}:  ${value}`);
   }
@@ -478,64 +458,6 @@ app.post("/event", function(req, res) {
   });
 });
 
-app.post("/timing", function(req, res) {
-  let bodyObj = req.body;
-  if (typeof bodyObj !== "object") {
-    throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
-  }
-  hashUserId(req.deviceId).then((userUuid) => {
-    let userAnalytics = ua(config.gaId, userUuid.toString());
-    let sender = userAnalytics;
-    for (let item of bodyObj.timings) {
-      sender = sender.timing({
-        userTimingCategory: item.category,
-        userTimingVariableName: item.variable,
-        userTimingTime: item.time,
-        userTimingLabel: item.label
-      });
-    }
-    sender.send();
-    simpleResponse(res, "OK", 200);
-  }).catch((e) => {
-    errorResponse(res, "Error creating user UUID:", e);
-  });
-});
-
-app.get("/redirect", function(req, res) {
-  if (req.query.to) {
-    let from = req.query.from;
-    if (!from) {
-      from = "shot-detail";
-    }
-    res.header("Content-type", "text/html");
-    res.status(200);
-    let redirectUrl = req.query.to;
-    if (!validUrl.isUri(redirectUrl)) {
-      mozlog.warn("redirect-bad-url", {msg: "Redirect attempted to invalid URL", url: redirectUrl});
-      sendRavenMessage(req, "Redirect attempted to invalid URL", {extra: {redirectUrl}});
-      simpleResponse(res, "Bad Request", 400);
-      return;
-    }
-    let redirectUrlJs = JSON.stringify(redirectUrl).replace(/[<>]/g, "");
-    let output = `<html>
-  <head>
-    <title>Redirect</title>
-  </head>
-  <body>
-    <a href="${escapeHtml(redirectUrl)}">If you are not automatically redirected, click here.</a>
-    <script nonce="${req.cspNonce}">
-window.location = ${redirectUrlJs};
-    </script>
-  </body>
-</html>`;
-    res.send(output);
-  } else {
-    mozlog.warn("no-redirect-to", {"msg": "Bad Request, no ?to parameter"});
-    sendRavenMessage(req, "Bad request, no ?to parameter");
-    simpleResponse(res, "Bad Request", 400);
-  }
-});
-
 app.post("/api/register", function(req, res) {
   let vars = req.body;
   let canUpdate = vars.deviceId === req.deviceId;
@@ -569,16 +491,21 @@ app.post("/api/register", function(req, res) {
 });
 
 function sendAuthInfo(req, res, params) {
-  let { deviceId, userAbTests } = params;
+  let { deviceId, accountId, userAbTests } = params;
   if (deviceId.search(/^[a-zA-Z0-9_-]{1,255}$/) == -1) {
-    // FIXME: add logging message with deviceId
+    let exc = new Error("Bad deviceId in login");
+    exc.deviceId = deviceId;
+    captureRavenException(exc);
     throw new Error("Bad deviceId");
   }
   let encodedAbTests = b64EncodeJson(userAbTests);
   let keygrip = dbschema.getKeygrip();
   let cookies = new Cookies(req, res, {keys: keygrip});
-  cookies.set("user", deviceId, {signed: true, sameSite: 'lax'});
-  cookies.set("abtests", encodedAbTests, {signed: true, sameSite: 'lax'});
+  cookies.set("user", deviceId, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
+  if (accountId) {
+    cookies.set("accountid", accountId, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
+  }
+  cookies.set("abtests", encodedAbTests, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
   let authHeader = `${deviceId}:${keygrip.sign(deviceId)};abTests=${encodedAbTests}:${keygrip.sign(encodedAbTests)}`;
   let responseJson = {
     ok: "User created",
@@ -612,16 +539,22 @@ app.post("/api/login", function(req, res) {
         userAbTests
       };
       let sendParamsPromise = Promise.resolve(sendParams);
-      if (vars.ownershipCheck) {
-        sendParamsPromise = Shot.checkOwnership(vars.ownershipCheck, vars.deviceId).then((isOwner) => {
-          sendParams.isOwner = isOwner;
-          return sendParams;
+      retrieveAccount(vars.deviceId).then((accountId) => {
+        return sendParams.accountId = accountId;
+      }).then((accountId) => {
+        if (vars.ownershipCheck) {
+          sendParamsPromise = Shot.checkOwnership(vars.ownershipCheck, vars.deviceId, accountId).then((isOwner) => {
+            sendParams.isOwner = isOwner;
+            return sendParams;
+          });
+        }
+        sendParamsPromise.then((params) => {
+          sendAuthInfo(req, res, params);
+        }).catch((error) => {
+          errorResponse(res, "Error checking ownership", error);
         });
-      }
-      sendParamsPromise.then((params) => {
-        sendAuthInfo(req, res, params);
       }).catch((error) => {
-        errorResponse(res, "Error checking ownership", error);
+        errorResponse(res, "Error retrieving account", error);
       });
       if (config.gaId) {
         let userAnalytics = ua(config.gaId, vars.deviceId, {strictCidFormat: false});
@@ -678,6 +611,11 @@ app.put("/data/:id/:domain", function(req, res) {
     }
     return inserted;
   }).then((commands) => {
+    if (!commands) {
+      mozlog.warn("invalid-put-update", {msg: "Attempt to PUT to existing shot by non-owner", ip: req.ip});
+      simpleResponse(res, 'No shot updated', 403);
+      return;
+    }
     commands = commands || [];
     simpleResponse(res, JSON.stringify({updates: commands.filter((x) => !!x)}), 200);
   }).catch((err) => {
@@ -686,8 +624,13 @@ app.put("/data/:id/:domain", function(req, res) {
 });
 
 app.get("/data/:id/:domain", function(req, res) {
+  if (!req.deviceId) {
+    res.status(404).send("Not found");
+    return;
+  }
   let shotId = `${req.params.id}/${req.params.domain}`;
-  Shot.getRawValue(shotId).then((data) => {
+  // FIXME: maybe we should allow for accountId here too:
+  Shot.getRawValue(shotId, req.deviceId).then((data) => {
     if (!data) {
       simpleResponse(res, "No such shot", 404);
     } else {
@@ -711,7 +654,7 @@ app.post("/api/delete-shot", csrfProtection, function(req, res) {
     simpleResponse(res, "Not logged in", 401);
     return;
   }
-  Shot.deleteShot(req.backend, req.body.id, req.deviceId).then((result) => {
+  Shot.deleteShot(req.backend, req.body.id, req.deviceId, req.accountId).then((result) => {
     if (result) {
       simpleResponse(res, "ok", 200);
     } else {
@@ -720,6 +663,24 @@ app.post("/api/delete-shot", csrfProtection, function(req, res) {
     }
   }).catch((err) => {
     errorResponse(res, "Error: could not delete shot", err);
+  });
+});
+
+app.post("/api/disconnect-device", csrfProtection, function(req, res) {
+  if (!req.deviceId) {
+    sendRavenMessage(req, "Attempt to disconnect without login");
+    simpleResponse(res, "Not logged in", 401);
+    return;
+  }
+  disconnectDevice(req.deviceId).then((result) => {
+    let keygrip = dbschema.getKeygrip();
+    let cookies = new Cookies(req, res, {keys: keygrip});
+    if (result) {
+      cookies.set("accountid");
+      res.redirect('/settings');
+    }
+  }).catch((err) => {
+    errorResponse(res, "Error: could not disconnect", err);
   });
 });
 
@@ -735,7 +696,7 @@ app.post("/api/set-title/:id/:domain", csrfProtection, function(req, res) {
     simpleResponse(res, "Not logged in", 401);
     return;
   }
-  Shot.get(req.backend, shotId, req.deviceId).then((shot) => {
+  Shot.get(req.backend, shotId).then((shot) => {
     if (!shot) {
       simpleResponse(res, "No such shot", 404);
       return;
@@ -767,7 +728,7 @@ app.post("/api/set-expiration", csrfProtection, function(req, res) {
     simpleResponse(res, `Error: bad expiration (${req.body.expiration})`, 400);
     return;
   }
-  Shot.setExpiration(req.backend, shotId, req.deviceId, expiration).then((result) => {
+  Shot.setExpiration(req.backend, shotId, req.deviceId, expiration, req.accountId).then((result) => {
     if (result) {
       simpleResponse(res, "ok", 200);
     } else {
@@ -889,8 +850,9 @@ app.get("/contribute.json", function(req, res) {
       goodfirstbugs: "https://github.com/mozilla-services/screenshots/labels/good%20first%20bug"
     },
     urls: {
-      prod: "https://pageshot.net",
-      stage: "https://pageshot.stage.mozaws.net/"
+      prod: "https://screenshots.firefox.com",
+      stage: "https://screenshots.stage.mozaws.net",
+      dev: "https://screenshots.dev.mozaws.net"
     },
     keywords: [
       "javascript",
@@ -931,7 +893,7 @@ app.get("/oembed", function(req, res) {
     return;
   }
   url = url.substr(backend.length);
-  let match = /^\/{0,255}([^\/]{1,255})\/([^\/]{1,255})/.exec(url);
+  let match = /^\/{0,255}([^/]{1,255})\/([^/]{1,255})/.exec(url);
   if (!match) {
     simpleResponse(res, "Error: not a Shot url", 404);
     return;
@@ -951,7 +913,8 @@ app.get("/oembed", function(req, res) {
 });
 
 // Get OAuth client params for the client-side authorization flow.
-app.get('/api/fxa-oauth/params', function(req, res, next) {
+
+app.get('/api/fxa-oauth/login', function(req, res, next) {
   if (!req.deviceId) {
     next(errors.missingSession());
     return;
@@ -965,32 +928,22 @@ app.get('/api/fxa-oauth/params', function(req, res, next) {
       return state;
     });
   }).then(state => {
-    res.send({
-      // FxA profile server URL.
-      profile_uri: config.oAuth.profileServer,
-      // FxA OAuth server URL.
-      oauth_uri: config.oAuth.oAuthServer,
-      redirect_uri: 'urn:ietf:wg:oauth:2.0:fx:webchannel',
-      client_id: config.oAuth.clientId,
-      // FxA content server URL.
-      content_uri: config.oAuth.contentServer,
-      state,
-      scope: 'profile'
-    });
+    let redirectUri = `${req.backend}/api/fxa-oauth/confirm-login`;
+    let profile = "profile profile:displayName profile:email profile:avatar profile:uid";
+    res.redirect(`${config.fxa.oAuthServer}/authorization?client_id=${encodeURIComponent(config.fxa.clientId)}&redirect_uri=${encodeURIComponent(redirectUri)}&state=${encodeURIComponent(state)}&scope=${encodeURIComponent(profile)}`);
   }).catch(next);
 });
 
-// Exchange an OAuth authorization code for an access token.
-app.post('/api/fxa-oauth/token', function(req, res, next) {
+app.get('/api/fxa-oauth/confirm-login', function(req, res, next) {
   if (!req.deviceId) {
     next(errors.missingSession());
     return;
   }
-  if (!req.body) {
+  if (!req.query) {
     next(errors.missingParams());
     return;
   }
-  let { code, state } = req.body;
+  let { code, state } = req.query;
   checkState(req.deviceId, state).then(isValid => {
     if (!isValid) {
       throw errors.badState();
@@ -998,11 +951,21 @@ app.post('/api/fxa-oauth/token', function(req, res, next) {
     return tradeCode(code);
   }).then(({ access_token: accessToken }) => {
     return getAccountId(accessToken).then(({ uid: accountId }) => {
-      return registerAccount(req.deviceId, accountId, accessToken);
-    }).then(() => {
-      res.send({
-        access_token: accessToken
-      });
+      return registerAccount(req.deviceId, accountId, accessToken).then(() => {
+        return fetchProfileData(accessToken).then(({ avatar, displayName, email }) => {
+          return saveProfileData(accountId, avatar, displayName, email);
+        }).then(() => {
+          if (config.gaId) {
+            let analytics = ua(config.gaId);
+            analytics.event({
+              ec: "server",
+              ea: "fxa-login",
+              ua: req.headers["user-agent"],
+            }).send();
+          }
+          res.redirect('/settings');
+        });
+      }).catch(next);
     }).catch(next);
   }).catch(next);
 });
@@ -1017,20 +980,22 @@ app.use("/leave-screenshots", require("./pages/leave-screenshots/server").app);
 
 app.use("/creating", require("./pages/creating/server").app);
 
+app.use("/settings", require("./pages/settings/server").app);
+
 app.use("/", require("./pages/shot/server").app);
 
 app.use("/", require("./pages/homepage/server").app);
 
 app.get("/proxy", function(req, res) {
-  let url = req.query.url;
+  let stringUrl = req.query.url;
   let sig = req.query.sig;
-  let isValid = dbschema.getKeygrip().verify(new Buffer(url, 'utf8'), sig);
+  let isValid = dbschema.getKeygrip().verify(new Buffer(stringUrl, 'utf8'), sig);
   if (!isValid) {
     sendRavenMessage(req, "Bad signature on proxy", {extra: {proxyUrl: url, sig}});
     simpleResponse(res, "Bad signature", 403);
     return;
   }
-  url = urlParse(url);
+  let url = urlParse(stringUrl);
   let httpModule = http;
   if (url.protocol == "https:") {
     httpModule = https;
@@ -1056,6 +1021,10 @@ app.get("/proxy", function(req, res) {
       if (PROXY_HEADER_WHITELIST[h]) {
         headers[h] = subres.headers[h];
       }
+    }
+    if (subres.headers.location) {
+      let location = urlResolve(stringUrl, subres.headers.location);
+      headers.location = require("./proxy-url").createProxyUrl(req, location);
     }
     // Cache for 30 days
     headers["cache-control"] = "public, max-age=2592000";
@@ -1124,8 +1093,28 @@ app.use(function(err, req, res, next) {
   if (err.isAppError) {
     let { statusCode, headers, payload } = err.output;
     res.status(statusCode);
-    res.header(headers);
+    if (headers) {
+      res.header(headers);
+    }
     res.send(payload);
+    return;
+  }
+  if (err.type === "entity.too.large") {
+    mozlog.info("entity-too-large", {
+      length: err.length,
+      limit: err.limit,
+      expected: err.expected
+    });
+    res.status(err.statusCode);
+    res.type("text");
+    res.send(res.message);
+    return;
+  }
+  if (err.code === "EBADCSRFTOKEN") {
+    mozlog.info("bad-csrf", {id: req.ip, url: req.url});
+    res.status(403);
+    res.type("text");
+    res.send("Bad CSRF Token")
     return;
   }
   errorResponse(res, "General error:", err);

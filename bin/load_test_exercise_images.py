@@ -19,4 +19,10 @@ example_images = [
         width=400,
         height=267,
     ),
+    dict(
+        source="http://www.1x1px.me/",
+        url="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEX/TQBcNTh/AAAAAXRSTlPM0jRW/QAAAApJREFUeJxjYgAAAAYAAzY3fKgAAAAASUVORK5CYII=",
+        width=1,
+        height=1,
+    ),
 ]

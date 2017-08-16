@@ -1,5 +1,6 @@
 const reactruntime = require("../../reactruntime");
 const React = require("react");
+const { Localized } = require("fluent-react/compat");
 
 class Head extends React.Component {
 
@@ -20,8 +21,12 @@ class Body extends React.Component {
     created = created.toLocaleString();
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <h1>Metrics</h1>
-        <p>Generated at: {created}</p>
+        <Localized id="metricsPageHeader">
+          <h1>Metrics</h1>
+        </Localized>
+        <Localized id="metricsPageGeneratedDateTime" $created={created}>
+          <p>Generated at: {created}</p>
+        </Localized>
         <GenericTable data={this.props.data.totals} />
 
         <GenericTable data={this.props.data.shotsCreatedByDay} />
@@ -43,9 +48,14 @@ class Body extends React.Component {
 
 class GenericTable extends React.Component {
   render() {
+    let time = this.props.data.timeToExecute;
     return <div className="generic-table-section">
       <h2>{this.props.data.title}</h2>
-      <p>{this.props.data.description} <span className="execution-time">(database time: {this.props.data.timeToExecute}ms)</span></p>
+      <p>{this.props.data.description}
+        <Localized id="metricsPageDatabaseQueryTime" $time={time}>
+          <span className="execution-time">(database time: {time}ms)</span>
+        </Localized>
+      </p>
       <table className="generic-table">
         <thead>
           {this.renderTableHeader()}

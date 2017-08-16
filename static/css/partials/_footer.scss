@@ -9,10 +9,11 @@
 
 
   a {
-    font-size: $grid-unit * .75;
+    font-size: $grid-unit * 0.75;
   }
-  
+
   .legal-links {
+
     @include respond-to("small") {
       @include flex-container(column, space-between, stretch);
     }
@@ -21,13 +22,13 @@
   .legal-links a {
 
     @include respond-to("small") {
-      margin-top: $grid-unit * .25;
+      margin-top: $grid-unit * 0.25;
     }
 
     font-size: 12px;
-    margin-right: $grid-unit * .75;
+    margin-right: $grid-unit * 0.75;
   }
-  
+
   .mozilla-logo {
     background-image: url("../img/mozilla.svg");
     background-repeat: no-repeat;
@@ -37,13 +38,15 @@
     width: $grid-unit * 6;
   }
 
+  .inverse-color-scheme & {
+    .mozilla-logo {
+      background-image: url("../img/mozilla-white.svg");
+    }
+  }
+
   .default-color-scheme & {
     .mozilla-logo {
-      filter: invert(100%);
-    }
-
-    a {
-      color: $link-medium;
+      background-image: url("../img/mozilla.svg");
     }
   }
 }

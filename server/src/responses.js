@@ -1,6 +1,6 @@
 const config = require("./config").getProperties();
 const { captureRavenException } = require("./ravenclient");
-const mozlog = require("mozlog")("server");
+const mozlog = require("./logging").mozlog("server");
 
 exports.simpleResponse = function(res, message, status) {
   status = status || 200;

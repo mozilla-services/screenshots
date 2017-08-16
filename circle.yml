@@ -33,6 +33,10 @@ test:
     # server tests
     - ./bin/test-request put '{}'
     - ./bin/load_test_exercise.py http://localhost:10080
+    # run zap baseline against the server
+    - docker pull owasp/zap2docker-weekly
+    # || true to temporarily disable this from making the tests fail:
+    - docker run -t owasp/zap2docker-weekly zap-baseline.py -t http://localhost:10080 || true
 
   post:
     - bash <(curl -s https://codecov.io/bash)
@@ -43,3 +47,8 @@ deployment:
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - ./bin/release-version dev
+  stage:
+    branch: server-prod
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - ./bin/release-version stage

@@ -1,15 +1,16 @@
 ## Firefox Screenshots
 
 [![CircleCI Build Status](https://circleci.com/gh/mozilla-services/screenshots.svg?style=shield)](https://circleci.com/gh/mozilla-services/screenshots)
-[![Available on Test Pilot](https://img.shields.io/badge/available_on-Test_Pilot-0996F8.svg)](https://testpilot.firefox.com/experiments/page-shot)
 
-This is a prototype for a product to create better ways of sharing and saving content, starting with screenshots.  (This project used to include general page freezing; this functionality has been forked off into [pagearchive](https://github.com/ianb/pagearchive).)
+This is a screenshot tool for Firefox. It will be shipped in Firefox 55 and later versions, as part of the default Firefox distribution.
 
-The project has been launched through [Test Pilot](https://testpilot.firefox.com/) at [pageshot.net](https://pageshot.net).  We are looking to a general audience release in the future.
+The project was initially launched through [Test Pilot](https://testpilot.firefox.com/) as [Page Shot](https://testpilot.firefox.com/experiments/page-shot).
 
 It is made up of both an add-on (using [WebExtensions](https://developer.mozilla.org/Add-ons/WebExtensions)) and a website using Node.js.  The add-on is in `addon/webextension/`, and the website is in `server/`
 
 Ian has been blogging about the [design, definition, and development process](http://www.ianbicking.org/tag/product-journal.html).
+
+(This project used to include general page freezing; this functionality has been forked off into [pagearchive](https://github.com/ianb/pagearchive).)
 
 You can find more information about Firefox Screenshots at the Mozilla Wiki page: https://wiki.mozilla.org/Firefox/Screenshots
 
@@ -28,7 +29,7 @@ There are two scripts to run the server locally and develop the add-on:
 - - `./bin/run-addon --bootstrap` will run the add-on using the [bootstrap](https://github.com/mozilla-services/screenshots/blob/master/addon/bootstrap.js) wrapper.  This is how the add-on is run in Firefox, and provides some additional services, like Telemetry and migration.  This does not support reloading, so if you aren't developing things involving the wrapper then you can run without `--bootstrap`.
 - `./bin/run-addon --setup-profile` will setup a Firefox profile for your development; this way you can make persistent changes to the profile that you will use just for Screenshots development. (note: this will only look for the `firefox` commmand or Nightly, Developer Edition, Aurora editions on OSX)
 
-**If you want to develop the add-on but not the server** you can run `./bin/run-addon -s https://pageshot.dev.mozaws.net`
+**If you want to develop the add-on but not the server** you can run `./bin/run-addon -s https://screenshots.dev.mozaws.net`
 
 By default, Screenshots will connect to a Postgres database on localhost:5432. To change which database and user it connects to set/export the environmental variables: `RDS_USERNAME`, `RDS_PASSWORD`, and `RDS_HOSTNAME`
 
@@ -54,9 +55,13 @@ Planning and ideation is happening in the [issue tracker](https://github.com/moz
 
 * [Issues with no milestone](https://github.com/mozilla-services/screenshots/issues?q=is%3Aopen+is%3Aissue+no%3Amilestone) are awaiting triage
 * [Issues in Stretch](https://github.com/mozilla-services/screenshots/milestone/9) are immediately actionable but just nice-to-haves, not blockers.
-* [Issues in Next Tasks](https://github.com/mozilla-services/screenshots/milestone/2) are deferred for now, but will be re-triaged when the current milestone is done
-* [Issues in Blue Sky](https://github.com/mozilla-services/screenshots/milestone/3) are mostly shelved; we'd like to do them but have no plans to move forward.  (If you see something you care about there, comment on it -- otherwise we may not notice it)
-* [Issues in 54](https://github.com/mozilla-services/screenshots/milestone/20) are things we want to do to ship to a general Firefox audience.
-* Look for "Sprint 54.x" to see planned work for a sprint (2-week phase)
+* [Issues in Blue Sky](https://github.com/mozilla-services/screenshots/milestone/3) are things we would like to do, but have no immediate plans to work on them.  (If you see something you care about there, comment on it -- otherwise we may not notice it)
+* [Look in Milestones](https://github.com/mozilla-services/screenshots/milestones) for other shorter-lived milestones.
 
 Issue tags otherwise aren't very structured. [Research](https://github.com/mozilla-services/screenshots/issues?q=is%3Aopen+is%3Aissue+label%3Aresearch) is primarily analysis of other products that do something interesting, or some source material that could provide insight.  Input on these (things like "I like this product because...") is very helpful!
+
+We do some research on other projects, [collecting the results in this Google Drive folder](https://drive.google.com/drive/folders/0B8i2m8Kt5pnBaHlMNWtYdV8xNTg?usp=sharing).
+
+### Localization
+
+Firefox Screenshots localization is managed via [Pontoon](https://pontoon.mozilla.org/projects/firefox-screenshots/), not direct pull requests to the repository. If you want to fix a typo, add a new language, or simply know more about localization, please get in touch with the [existing localization team](https://pontoon.mozilla.org/teams/) for your language, or Mozilla’s [l10n-drivers](https://wiki.mozilla.org/L10n:Mozilla_Team#Mozilla_Corporation) for guidance.

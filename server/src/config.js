@@ -56,20 +56,13 @@ var conf = convict({
     env: "S3_BUCKET_NAME",
     arg: "s3BucketName"
   },
-  oAuth: {
+  fxa: {
     oAuthServer: {
       doc: "The FxA OAuth server base URL",
       format: String,
       default: "https://oauth-stable.dev.lcip.org/v1",
-      env: "OAUTH_SERVER",
+      env: "FXA_OAUTH_SERVER",
       arg: "oauth-server",
-    },
-    contentServer: {
-      doc: "The FxA content server base URL",
-      format: String,
-      default: "https://stable.dev.lcip.org",
-      env: "CONTENT_SERVER",
-      arg: "content-server",
     },
     profileServer: {
       doc: "The FxA profile server base URL",
@@ -82,15 +75,15 @@ var conf = convict({
       doc: "The OAuth client ID",
       format: String,
       default: "",
-      env: "CLIENT_ID",
-      arg: "client-id"
+      env: "FXA_CLIENT_ID",
+      arg: "fxa-client-id"
     },
     clientSecret: {
       doc: "The OAuth client secret",
       format: String,
       default: "",
-      env: "CLIENT_SECRET",
-      arg: "client-secret"
+      env: "FXA_CLIENT_SECRET",
+      arg: "fxa-client-secret"
     }
   },
   db: {
@@ -140,7 +133,7 @@ var conf = convict({
   // This is mostly configurable for debugging purposes:
   checkDeletedInterval: {
     doc: "Frequency in seconds to check for items that should be purged",
-    format: "int",
+    format: Number,
     default: 60 * 60, // 1 hour
     env: "CHECK_DELETED_INTERVAL",
     arg: "check-deleted-interval"
@@ -274,6 +267,20 @@ var conf = convict({
     default: true,
     env: "DISABLE_SEARCH",
     arg: "disable-search"
+  },
+  cdn: {
+    doc: "CDN URL prefix, e.g. 'https://somecdn.com/mysite'; links will be rewritten as https://somecdn.com/mysite/static/style.css",
+    format: String,
+    default: "",
+    env: "CDN",
+    arg: "cdn"
+  },
+  enableUserSettings: {
+    doc: "If true, the user can see the settings page and connect their device to their firefox account",
+    format: Boolean,
+    default: false,
+    env: "USER_SETTINGS",
+    arg: "user-settings"
   }
 });
 

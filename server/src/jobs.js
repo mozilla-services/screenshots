@@ -1,7 +1,7 @@
 /** Any reoccuring jobs we have to do */
 
 const config = require("./config").getProperties();
-const mozlog = require("mozlog")("jobs");
+const mozlog = require("./logging").mozlog("jobs");
 const ua = require("universal-analytics");
 
 // Convert to milliseconds:

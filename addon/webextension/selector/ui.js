@@ -43,7 +43,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     return false;
   }
 
-  let substitutedCss = inlineSelectionCss.replace(/MOZ_EXTENSION([^\"]+)/g, (match, filename) => {
+  let substitutedCss = inlineSelectionCss.replace(/MOZ_EXTENSION([^"]+)/g, (match, filename) => {
     return browser.extension.getURL(filename);
   });
 
@@ -67,6 +67,28 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     }), 50);
   }
 
+  function localizeText(doc) {
+    let els = doc.querySelectorAll("[data-l10n-id]");
+    for (let el of els) {
+      let id = el.getAttribute("data-l10n-id");
+      let text = browser.i18n.getMessage(id);
+      el.textContent = text;
+    }
+  }
+
+  function initializeIframe() {
+    let el = document.createElement("iframe");
+    el.src = browser.extension.getURL("blank.html");
+    el.style.zIndex = "99999999999";
+    el.style.border = "none";
+    el.style.top = "0";
+    el.style.left = "0";
+    el.style.margin = "0";
+    el.scrolling = "no";
+    el.style.clip = "auto";
+    return el;
+  }
+
   let iframeSelection = exports.iframeSelection = {
     element: null,
     addClassName: "",
@@ -80,17 +102,10 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     display(installHandlerOnDocument) {
       return new Promise((resolve, reject) => {
         if (!this.element) {
-          this.element = document.createElement("iframe");
-          this.element.src = browser.extension.getURL("blank.html");
+          this.element = initializeIframe();
           this.element.id = "firefox-screenshots-selection-iframe";
           this.element.style.display = "none";
-          this.element.style.zIndex = "99999999999";
-          this.element.style.border = "none";
-          this.element.style.position = "absolute";
-          this.element.style.top = "0";
-          this.element.style.left = "0";
-          this.element.style.margin = "0";
-          this.element.scrolling = "no";
+          this.element.style.setProperty('position', 'absolute', 'important');
           this.updateElementSize();
           this.element.addEventListener("load", watchFunction(() => {
             this.document = this.element.contentDocument;
@@ -203,14 +218,10 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
   let iframePreSelection = exports.iframePreSelection = {
     element: null,
     document: null,
-    sizeTracking: {
-      windowDelayer: null
-    },
     display(installHandlerOnDocument, standardOverlayCallbacks) {
       return new Promise((resolve, reject) => {
         if (!this.element) {
-          this.element = document.createElement("iframe");
-          this.element.src = browser.extension.getURL("blank.html");
+          this.element = initializeIframe();
           this.element.id = "firefox-screenshots-preselection-iframe";
           this.element.style.zIndex = "99999999999";
           this.element.style.border = "none";
@@ -236,7 +247,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
                        <div class="eye right"><div class="eyeball"></div></div>
                        <div class="face"></div>
                      </div>
-                     <div class="preview-instructions"></div>
+                     <div class="preview-instructions" data-l10n-id="screenshotInstructions"></div>
                      <div class="myshots-all-buttons-container">
                        <button class="myshots-button myshots-link" tabindex="1"></button>
                      </div>
@@ -262,16 +273,6 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           resolve();
         }
       });
-    },
-
-    updateElementSize() {
-      if (!this.element) {
-        // This can happen if the selector is unloaded during the resize adjustment
-        // time-delay
-        return;
-      }
-      this.element.style.height = window.innerHeight + "px";
-      this.element.style.width = window.innerWidth + "px";
     },
 
     hide() {
@@ -319,7 +320,8 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     currentIframe: iframePreSelection,
     display(installHandlerOnDocument, standardOverlayCallbacks) {
       return iframeSelection.display(installHandlerOnDocument)
-        .then(() => iframePreSelection.display(installHandlerOnDocument, standardOverlayCallbacks));
+        .then(() => iframePreSelection.display(installHandlerOnDocument, standardOverlayCallbacks))
+        .then(() => iframePreview.display(installHandlerOnDocument, standardOverlayCallbacks));
     },
 
     hide() {
@@ -337,6 +339,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     remove() {
       iframeSelection.remove();
       iframePreSelection.remove();
+      iframePreview.remove();
     },
 
     document() {
@@ -344,7 +347,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     },
 
     useSelection() {
-      if (this.currentIframe === iframePreSelection) {
+      if (this.currentIframe === iframePreSelection || this.currentIframe === iframePreview) {
         this.hide();
       }
       this.currentIframe = iframeSelection;
@@ -352,10 +355,18 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     },
 
     usePreSelection() {
-      if (this.currentIframe === iframeSelection) {
+      if (this.currentIframe === iframeSelection || this.currentIframe === iframePreview) {
         this.hide();
       }
       this.currentIframe = iframePreSelection;
+      this.unhide();
+    },
+
+    usePreview() {
+      if (this.currentIframe === iframeSelection || this.currentIframe === iframePreSelection) {
+        this.hide();
+      }
+      this.currentIframe = iframePreview;
       this.unhide();
     }
   };
@@ -403,7 +414,6 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       let bodyRect = getBodyRect();
       // Note, document.documentElement.scrollHeight is zero on some strange pages (such as the page created when you load an image):
       let docHeight = Math.max(document.documentElement.scrollHeight || 0, document.body.scrollHeight);
-      let docWidth = Math.max(document.documentElement.scrollWidth, document.body.scrollWidth);
 
       let winBottom = window.innerHeight;
       let pageYOffset = window.pageYOffset;
@@ -434,11 +444,11 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       this.bgTop.style.top = "0px";
       this.bgTop.style.height = (pos.top - bodyRect.top) + "px";
       this.bgTop.style.left = "0px";
-      this.bgTop.style.width = docWidth + "px";
+      this.bgTop.style.width = "100%";
       this.bgBottom.style.top = (pos.bottom - bodyRect.top) + "px";
       this.bgBottom.style.height = docHeight - (pos.bottom - bodyRect.top) + "px";
       this.bgBottom.style.left = "0px";
-      this.bgBottom.style.width = docWidth + "px";
+      this.bgBottom.style.width = "100%";
       this.bgLeft.style.top = (pos.top - bodyRect.top) + "px";
       this.bgLeft.style.height = pos.bottom - pos.top + "px";
       this.bgLeft.style.left = "0px";
@@ -446,7 +456,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       this.bgRight.style.top = (pos.top - bodyRect.top) + "px";
       this.bgRight.style.height = pos.bottom - pos.top + "px";
       this.bgRight.style.left = (pos.right - bodyRect.left) + "px";
-      this.bgRight.style.width = docWidth - (pos.right - bodyRect.left) + "px";
+      this.bgRight.style.width = "100%";
 
       if (!(this.isElementInViewport(this.buttons))) {
         this.cancel.style.position = this.download.style.position = this.save.style.position = "fixed";
@@ -557,6 +567,11 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     },
 
     clearSaveDisabled() {
+      if (!this.save) {
+        // Happens if we try to remove the disabled status after the worker
+        // has been shut down
+        return;
+      }
       this.save.removeAttribute("disabled");
     },
 
@@ -616,6 +631,14 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     remove() {
       util.removeNode(this.el);
       this.el = this.xEl = this.yEl = null;
+    }
+  };
+
+  exports.Preview = {
+    display(dataUrl) {
+      let img = makeEl("IMG");
+      img.src = dataUrl;
+      iframe.document().querySelector(".preview-image").appendChild(img);
     }
   };
 

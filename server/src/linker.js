@@ -14,11 +14,11 @@ exports.getGitRevision = function() {
   return gitRevision;
 };
 
-exports.staticLink = function(resource) {
+exports.staticLink = function(req, resource) {
   if (!resource.startsWith("/")) {
     resource = "/" + resource;
   }
-  return `${resource}?rev=${gitRevision}`;
+  return `${req.cdn}${resource}?rev=${gitRevision}`;
 };
 
 exports.staticLink.simple = function(resource) {
@@ -26,10 +26,6 @@ exports.staticLink.simple = function(resource) {
     resource = "/" + resource;
   }
   return resource;
-};
-
-exports.staticLinkWithHost = function(req, resource) {
-  return req.protocol + "://" + req.headers.host + exports.staticLink(resource);
 };
 
 exports.imageLink = function(urlBase, resource) {

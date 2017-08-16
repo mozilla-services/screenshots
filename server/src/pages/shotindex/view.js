@@ -3,9 +3,9 @@ const sendEvent = require("../../browser-send-event.js");
 const reactruntime = require("../../reactruntime");
 const { Footer } = require("../../footer-view.js");
 const React = require("react");
-const ReactDOM = require("react-dom");
 const { ShareButton } = require("../../share-buttons");
 const Masonry = require("react-masonry-component");
+const { Localized } = require("fluent-react/compat");
 
 class Head extends React.Component {
 
@@ -31,14 +31,16 @@ class Body extends React.Component {
   render() {
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <div className="column-space full-height default-color-scheme">
+        <div className="column-space full-height default-color-scheme" id="shot-index-page">
           <div id="shot-index-header" className="header">
             <h1><a href="/shots">Firefox <strong>Screenshots</strong> <sup>Beta</sup></a></h1>
+            {this.props.enableUserSettings ? this.renderSettingsPage() : null}
             {this.props.disableSearch ? null : this.renderSearchForm()}
           </div>
           <div id="shot-index" className="flex-1">
             { this.renderShots() }
           </div>
+          { this.renderErrorMessages() }
           <Footer forUrl="shots" {...this.props} />
         </div>
       </reactruntime.BodyTemplate>
@@ -46,9 +48,12 @@ class Body extends React.Component {
   }
 
   renderShots() {
+    if (this.props.shots === null) {
+      return this.renderShotsLoading();
+    }
     let children = [];
     for (let shot of this.props.shots) {
-      children.push(<Card shot={shot} downloadUrl={this.props.downloadUrls[shot.id]} abTests={this.props.abTests} clipUrl={shot.urlDisplay} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} />);
+      children.push(<Card shot={shot} downloadUrl={this.props.downloadUrls[shot.id]} abTests={this.props.abTests} clipUrl={shot.urlDisplay} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} key={shot.id} />);
     }
 
     if (children.length === 0) {
@@ -62,7 +67,7 @@ class Body extends React.Component {
     } else {
       return (
         <div className="masonry-wrapper">
-          <Masonry onLayoutComplete={() => this.handleLayoutComplete()}>
+          <Masonry>
             {children}
           </Masonry>
         </div>
@@ -71,17 +76,39 @@ class Body extends React.Component {
     return children;
   }
 
-  handleLayoutComplete() {
-    const masonryWrapper = document.querySelector('.masonry-wrapper');
-    masonryWrapper.style.opacity = 1;
+  renderShotsLoading() {
+    return <div className="column-center flex-1">
+      <div className="loader">
+        <div className="loader-inner" />
+      </div>
+    </div>;
+  }
+
+  renderErrorMessages() {
+    return (
+      <div>
+        <Localized id="shotIndexPageErrorDeletingShot">
+          <div id="shotIndexPageErrorDeletingShot" hidden></div>
+        </Localized>
+        <Localized id="shotIndexPageConfirmShotDelete">
+          <div id="shotIndexPageConfirmShotDelete" hidden></div>
+        </Localized>
+      </div>
+    );
   }
 
   renderNoShots() {
     return (
       <div className="no-shots" key="no-shots-found">
-        <img src={ this.props.staticLink("/static/img/image-noshots_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
-        <p>No saved shots.</p>
-        <p>Go on, create some.</p>
+        <Localized id="gNoShots">
+          <img src={ this.props.staticLink("/static/img/image-noshots_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
+        </Localized>
+        <Localized id="shotIndexPageNoShotsMessage">
+          <p>No saved shots.</p>
+        </Localized>
+        <Localized id="shotIndexPageNoShotsInvitation">
+          <p>Go on, create some.</p>
+        </Localized>
       </div>
     );
   }
@@ -89,8 +116,12 @@ class Body extends React.Component {
   renderNoDeviceId() {
     return (
       <div className="no-shots" key="no-shots-found">
-        <img src={ this.props.staticLink("/static/img/image-search_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
-        <p>Looking for your shots...</p>
+        <Localized id="gNoShots">
+          <img src={ this.props.staticLink("/static/img/image-search_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
+        </Localized>
+        <Localized id="shotIndexPageLookingForShots">
+          <p>Looking for your shots...</p>
+        </Localized>
       </div>
     );
   }
@@ -98,10 +129,22 @@ class Body extends React.Component {
   renderNoSearchResults() {
     return (
       <div className="no-shots" key="no-shots-found">
-        <img src={ this.props.staticLink("/static/img/image-search_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
-        <p>Hmmm!</p>
-        <p>We can’t find any shots that match your search.</p>
+        <Localized id="gNoShots">
+          <img src={ this.props.staticLink("/static/img/image-search_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
+        </Localized>
+        <Localized id="shotIndexPageNoSearchResultsIntro">
+          <p>Hmmm!</p>
+        </Localized>
+        <Localized id="shotIndexPageNoSearchResults">
+          <p>We can’t find any shots that match your search.</p>
+        </Localized>
       </div>
+    );
+  }
+
+  renderSettingsPage() {
+    return (
+      <a className="button preferences" href="/settings" aria-label="Settings" title="Open user settings"></a>
     );
   }
 
@@ -109,15 +152,19 @@ class Body extends React.Component {
     return (
       <form onSubmit={ this.onSubmitForm.bind(this) }>
         <span className="search-label" />
-        <input type="search" id="search" ref="search" maxLength="100" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />
-        <div className="clear-search" title="clear search" onClick={this.onClearSearch.bind(this)}></div>
+        <Localized id="shotIndexPageSearchPlaceholder">
+          <input type="search" id="search" ref={searchInput => this.searchInput = searchInput} maxLength="100" placeholder="search my shots" defaultValue={this.state.defaultSearch} onChange={this.onChangeSearch.bind(this)} />
+        </Localized>
+        <Localized id="shotIndexPageClearSearchButton">
+          <div className="clear-search" title="clear search" onClick={this.onClearSearch.bind(this)}></div>
+        </Localized>
       </form>
     );
   }
 
   onSubmitForm(e) {
     e.preventDefault();
-    let val = ReactDOM.findDOMNode(this.refs.search).value;
+    let val = this.searchInput.value;
     if (val) {
       sendEvent("search", "submit");
     } else {
@@ -127,7 +174,7 @@ class Body extends React.Component {
   }
 
   onChangeSearch() {
-    let val = ReactDOM.findDOMNode(this.refs.search).value;
+    let val = this.searchInput.value;
     this.setState({defaultSearch: val});
     if (!val) {
       sendEvent("clear-search", "keyboard");
@@ -148,7 +195,7 @@ class Body extends React.Component {
 
   onClearSearch(e) {
     const val = '';
-    ReactDOM.findDOMNode(this.refs.search).value = val;
+    this.searchInput.value = val;
     this.setState({defaultSearch: val});
     controller.onChangeSearch(val);
     sendEvent("clear-search", "button");
@@ -168,7 +215,7 @@ class Body extends React.Component {
 class Card extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {panelOpen: "panel-closed"};
+    this.state = {panelOpen: "panel-closed", deleted: false};
   }
 
   render() {
@@ -176,6 +223,10 @@ class Card extends React.Component {
     let downloadUrl = this.props.downloadUrl;
     let imageUrl;
     let clip = shot.clipNames().length ? shot.getClip(shot.clipNames()[0]) : null;
+    if (!clip) {
+      // Some corrupted shot, we'll have to ignore it
+      return null;
+    }
     if (clip && clip.image && clip.image.url) {
       imageUrl = clip.image.url;
     } else if (shot.images.length) {
@@ -183,7 +234,7 @@ class Card extends React.Component {
     } else if (shot.fullScreenThumbnail) {
       imageUrl = shot.fullScreenThumbnail;
     } else {
-      imageUrl = this.props.staticLinkWithHost("img/question-mark.svg");
+      imageUrl = this.props.staticLink("img/question-mark.svg");
     }
     let favicon = null;
     if (shot.favicon) {
@@ -192,7 +243,7 @@ class Card extends React.Component {
     }
 
     return (
-      <div className={`shot ${this.getClipType(clip._image.dimensions)} ${this.state.panelOpen}`} key={shot.id}>
+      <div className={`shot ${this.getClipType(clip._image.dimensions)} ${this.state.panelOpen} ${this.isDeleted()}`} key={shot.id}>
         <a href={shot.viewUrl} onClick={this.onOpen.bind(this, shot.viewUrl)}>
           <div className="shot-image-container" style={{
             backgroundImage: `url(${imageUrl})`
@@ -211,10 +262,14 @@ class Card extends React.Component {
           </div>
         </a>
         <div className="alt-actions-container">
-          <a className="button transparent download" href={ downloadUrl } onClick={ this.onClickDownload.bind(this) }
-            title="Download the shot image" ref="download" />
-          <ShareButton setPanelState={this.setPanelState.bind(this)} abTests={this.props.abTests} clipUrl={shot.urlDisplay} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} />
-          <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this, shot) } ref="trash" />
+          <Localized id="shotPageDownloadShot">
+            <a className="button transparent download" href={ downloadUrl } onClick={ this.onClickDownload.bind(this) }
+              title="Download the shot image" ref={downloadButton => this.downloadButton = downloadButton} />
+          </Localized>
+          <ShareButton setPanelState={this.setPanelState.bind(this)} abTests={this.props.abTests} clipUrl={imageUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} />
+          <Localized id="shotPageDeleteButton">
+            <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this, shot) } ref={trashButton => this.trashButton = trashButton} />
+          </Localized>
         </div>
       </div>
     );
@@ -236,6 +291,10 @@ class Card extends React.Component {
     this.setState({panelOpen: state});
   }
 
+  isDeleted() {
+    return this.state.deleted ? "deleted" : "";
+  }
+
   onOpen(url, event) {
     if (event.ctrlKey || event.metaKey || event.button === 1) {
       // Don't override what might be an open-in-another-tab click
@@ -248,6 +307,7 @@ class Card extends React.Component {
   }
 
   displayTitle(title) {
+    // FIXME: this won't work for rtl languages. use CSS ellipsis instead? (#3116)
     if (title.length > 140) {
       return (title.substring(0, 140) + "...");
     }
@@ -258,18 +318,20 @@ class Card extends React.Component {
     event.stopPropagation();
     event.preventDefault();
     sendEvent("start-delete", "my-shots", {useBeacon: true});
-    if (window.confirm(`Delete ${shot.title}?`)) {
+    let confirmMessage = document.getElementById("shotIndexPageConfirmShotDelete").textContent;
+    if (window.confirm(confirmMessage)) {
       sendEvent("delete", "my-shots-popup-confirm", {useBeacon: true});
+      this.setState({deleted: true});
       controller.deleteShot(shot);
     } else {
       sendEvent("cancel-delete", "my-shots-popup-confirm");
     }
-    this.refs.trash.blur();
+    this.trashButton.blur();
     return false;
   }
 
   onClickDownload() {
-    this.refs.download.blur();
+    this.downloadButton.blur();
     sendEvent("download", "myshots-tile");
   }
 }

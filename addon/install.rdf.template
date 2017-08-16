@@ -14,7 +14,7 @@
     <em:type>2</em:type>
     <em:version>__VERSION__</em:version>
     <em:bootstrap>true</em:bootstrap>
-    <em:homepageURL>https://pageshot.net/</em:homepageURL>
+    <em:homepageURL>https://screenshots.firefox.com/</em:homepageURL>
     <em:multiprocessCompatible>true</em:multiprocessCompatible>
   </Description>
 </RDF>

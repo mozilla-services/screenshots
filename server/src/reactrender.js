@@ -5,6 +5,7 @@ const { getGitRevision } = require("./linker");
 exports.render = function(req, res, page) {
   let modelModule = require("./" + page.modelModuleName);
   let viewModule = page.viewModule;
+  let cdn = req.config.cdn.replace(/\/*$/, "");
   Promise.resolve(modelModule.createModel(req)).then((model) => {
     model.backend = req.backend;
     let jsonModel = model.jsonModel || model;
@@ -15,16 +16,20 @@ exports.render = function(req, res, page) {
       sentryPublicDSN: req.config.sentryPublicDSN,
       backend: req.backend,
       gitRevision: getGitRevision(),
+      cdn,
       csrfToken,
-      abTests: req.abTests
+      abTests: req.abTests,
+      userLocales: req.userLocales,
+      messages: req.messages
     }, jsonModel);
     serverModel = Object.assign({
       authenticated: !!req.deviceId,
       sentryPublicDSN: req.config.sentryPublicDSN,
       staticLink: req.staticLink,
-      staticLinkWithHost: req.staticLinkWithHost,
       csrfToken,
-      abTests: req.abTests
+      abTests: req.abTests,
+      userLocales: req.userLocales,
+      messages: req.messages
     }, serverModel);
     if (req.query.data == "json") {
       if (req.query.pretty !== undefined) {
@@ -51,7 +56,7 @@ exports.render = function(req, res, page) {
     if (!page.noBrowserJavascript) {
       // FIXME: we should just inline the addReactScripts functionality in this function:
       let script = `\
-window.initialModel = ${JSON.stringify(jsonModel)};
+window.initialModel = ${JSON.stringify(jsonModel).replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029')};
 window.initialModelLaunched = false;
 if (window.controller) {
   window.controller.launch(window.initialModel);

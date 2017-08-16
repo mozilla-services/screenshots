@@ -16,9 +16,13 @@ const webdriver = require("selenium-webdriver");
 const { By, until } = webdriver;
 const path = require("path");
 
-const SHOOTER_BUTTON_ID = "screenshots_mozilla_org-browser-action";
+const SHOOTER_BUTTON_ID = "pageAction-panel-screenshots";
+// Applies to the old-style toolbar button:
+const TOOLBAR_SHOOTER_BUTTON_ID = "screenshots_mozilla_org-browser-action";
+const shooterSelector = By.css(`#${SHOOTER_BUTTON_ID}, #${TOOLBAR_SHOOTER_BUTTON_ID}`);
 const SLIDE_IFRAME_ID = "firefox-screenshots-onboarding-iframe";
 const PRESELECTION_IFRAME_ID = "firefox-screenshots-preselection-iframe";
+const PREVIEW_IFRAME_ID = "firefox-screenshots-preview-iframe";
 const backend = "http://localhost:10080";
 
 function addAddonToDriver(driver, location) {
@@ -32,6 +36,7 @@ const callback = arguments[arguments.length - 1];
 const { prefs } = Services;
 
 prefs.setBoolPref("extensions.screenshots.system-disabled", true);
+prefs.setBoolPref("extensions.legacy.enabled", true);
 
 class AddonListener {
   onInstallEnded(install, addon) {
@@ -117,7 +122,7 @@ function promiseFinally(promise, finallyCallback) {
     successfully. */
 function startScreenshots(driver) {
   return promiseFinally(
-    getChromeElement(driver, By.id(SHOOTER_BUTTON_ID)).then((button) => {
+    getChromeElement(driver, shooterSelector).then((button) => {
       return button.click();
     }),
     () => {
@@ -218,10 +223,14 @@ describe("Test Screenshots", function() {
   it("should find the add-on button", function() {
     this.timeout(15000);
     return promiseFinally(
-      getChromeElement(driver, By.id(SHOOTER_BUTTON_ID))
+      getChromeElement(driver, shooterSelector)
       .then((button) => button.getAttribute("label"))
       .then((label) => {
-        assert.equal(label, "Firefox Screenshots");
+        if (label == "Take a Screenshot") {
+          assert.equal(label, "Take a Screenshot");
+        } else {
+          assert.equal(label, "Firefox Screenshots");
+        }
       }),
       () => {
         driver.setContext(firefox.Context.CONTENT);
@@ -240,10 +249,24 @@ describe("Test Screenshots", function() {
       return focusIframe(driver, PRESELECTION_IFRAME_ID);
     }).then(() => {
       return driver.wait(
-        until.elementLocated(By.css(".visible")));
+        until.elementLocated(By.css(".visible"))
+      );
     }).then((visibleButton) => {
+      visibleButton.click();
+      return driver.switchTo().defaultContent();
+    }).then(() => {
+      return driver.wait(
+        until.elementLocated(By.id(PREVIEW_IFRAME_ID))
+      );
+    }).then(() => {
+      return focusIframe(driver, PREVIEW_IFRAME_ID);
+    }).then(() => {
+      return driver.wait(
+        until.elementLocated(By.css(".preview-button-save"))
+      );
+    }).then((saveButton) => {
       return expectCreatedShot(driver, () => {
-        visibleButton.click();
+        saveButton.click();
       });
     }).then((shotUrl) => {
       assert(shotUrl.startsWith(backend), `Got url ${shotUrl} that doesn't start with ${backend}`);

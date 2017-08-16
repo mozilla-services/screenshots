@@ -47,9 +47,9 @@ case "$channel" in
     echo "Dev deployment automatically triggered, see #screenshots IRC for status"
     ;;
   stage)
-    if [[ "$(current_branch)" != "stable" ]] && [[ -z "$IGNORE_BRANCH" ]] ; then
-      echo "Error: you should be on the stable branch when releasing stage"
-      echo "  git checkout stable ; git pull"
+    if [[ "$(current_branch)" != "server-prod" ]] && [[ -z "$IGNORE_BRANCH" ]] ; then
+      echo "Error: you should be on the server-prod branch when releasing stage"
+      echo "  git checkout server-prod ; git pull"
       echo "To proceed anyway use:"
       echo "  IGNORE_BRANCH=1 $(basename $0) stage"
       exit 4
@@ -57,7 +57,7 @@ case "$channel" in
     rm -f build/screenshots.xpi
     # Forces update of the add-on version:
     touch build/.backend.txt
-    SCREENSHOTS_BACKEND=https://screenshots.stage.mozaws.net SCREENSHOTS_SENTRY="$stage_sentry" make signed_xpi
+    SCREENSHOTS_BACKEND=https://screenshots.stage.mozaws.net SCREENSHOTS_SENTRY="$stage_sentry" make unsigned_bootstrap_xpi
     ./bin/build-docker-image mozilla
     echo
     echo "Stage deployment automatically triggered, see #screenshots IRC for status"

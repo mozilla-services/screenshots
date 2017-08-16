@@ -1,5 +1,6 @@
 const reactruntime = require("../../reactruntime");
 const { Footer } = require("../../footer-view.js");
+const { Localized } = require("fluent-react/compat");
 const React = require("react");
 
 class Head extends React.Component {
@@ -27,9 +28,15 @@ class Body extends React.Component {
           </div>
           <div id="shot-index" className="flex-1">
             <div className="no-shots" key="no-shots-found">
-              <img src={ this.props.staticLink("/static/img/image-nope_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
-              <p>Oops.</p>
-              <p>Page not found.</p>
+              <Localized id="gNoShots">
+                <img src={ this.props.staticLink("/static/img/image-nope_screenshots.svg") } alt="no Shots found" width="432" height="432"/>
+              </Localized>
+              <Localized id="notFoundPageIntro">
+                <p>Oops.</p>
+              </Localized>
+              <Localized id="notFoundPageDescription">
+                <p>Page not found.</p>
+              </Localized>
             </div>
           </div>
           <Footer forUrl="shots" {...this.props} />

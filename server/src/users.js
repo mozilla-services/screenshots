@@ -3,7 +3,7 @@ const db = require("./db");
 const errors = require("./errors");
 const { request } = require("./helpers");
 const crypto = require("crypto");
-const mozlog = require("mozlog")("users");
+const mozlog = require("./logging").mozlog("users");
 const abTests = require("./ab-tests");
 
 function hashMatches(hash, secret) {
@@ -88,9 +88,9 @@ exports.registerLogin = function(deviceId, data, canUpdate) {
   }
   let secretHashed = createHash(data.secret);
   return db.insert(
-    `INSERT INTO devices (id, secret_hashed, nickname, avatarurl)
-     VALUES ($1, $2, $3, $4)`,
-    [deviceId, createHash(data.secret), data.nickname || null, data.avatarurl || null]
+    `INSERT INTO devices (id, secret_hashed)
+     VALUES ($1, $2)`,
+    [deviceId, createHash(data.secret) || null]
   ).then((inserted) => {
     let userAbTests = abTests.updateAbTests({}, getForceAbTests());
     if (inserted) {
@@ -102,9 +102,9 @@ exports.registerLogin = function(deviceId, data, canUpdate) {
       }
       return db.update(
         `UPDATE devices
-         SET secret_hashed = $1, nickname = $2, avatarurl = $3
+         SET secret_hashed = $1
          WHERE id = $4`,
-        [secretHashed, data.nickname || null, data.avatarurl || null, deviceId]
+        [secretHashed || null, deviceId]
       ).then((rowCount) => {
         if (rowCount) {
           return userAbTests;
@@ -113,33 +113,6 @@ exports.registerLogin = function(deviceId, data, canUpdate) {
       });
     }
     return false;
-  });
-};
-
-exports.updateLogin = function(deviceId, data) {
-  if (!deviceId) {
-    throw new Error("No deviceId given");
-  }
-  return db.update(
-    `UPDATE devices
-     SET nickname = $1, avatarurl = $2
-     WHERE id = $3`,
-    [data.nickname || null, data.avatarurl || null, deviceId]
-  ).then(rowCount => !!rowCount);
-};
-
-exports.accountIdForDeviceId = function(deviceId) {
-  if (!deviceId) {
-    throw new Error("No deviceId given");
-  }
-  return db.select(
-    `SELECT accountid FROM devices WHERE id = $1`,
-    [deviceId]
-  ).then((rows) => {
-    if (!rows.length) {
-      return null;
-    }
-    return rows[0].accountid;
   });
 };
 
@@ -159,12 +132,12 @@ exports.checkState = function(deviceId, state) {
 };
 
 exports.tradeCode = function(code) {
-  let oAuthURI = `${config.oAuth.oAuthServer}/token`;
+  let oAuthURI = `${config.fxa.oAuthServer}/token`;
   return request('POST', oAuthURI, {
     payload: JSON.stringify({
       code,
-      client_id: config.oAuth.clientId,
-      client_secret: config.oAuth.clientSecret
+      client_id: config.fxa.clientId,
+      client_secret: config.fxa.clientSecret
     }),
     headers: {
       'content-type': 'application/json'
@@ -174,12 +147,46 @@ exports.tradeCode = function(code) {
     if (res.statusCode >= 200 && res.statusCode < 300) {
       return body;
     }
+    mozlog.warn('fxa-tradecode-failed', {status: res.statusCode});
     throw errors.badToken();
   });
 };
 
+exports.disconnectDevice = function(deviceId) {
+  return db.update(
+    `UPDATE devices
+     SET accountId = null
+     WHERE id = $1`,
+    [deviceId]
+  )
+};
+
+exports.fetchProfileData = function(accessToken) {
+  let userInfoEndpoint = `${config.fxa.profileServer}/profile`;
+  return request('GET', userInfoEndpoint, {
+    headers: {
+      authorization: `Bearer ${accessToken}`
+    },
+    json: true
+  }).then(([res, body]) => {
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      return body;
+    }
+    throw errors.badProfile();
+  });
+};
+
+exports.saveProfileData = function(accountId, avatarUrl, nickname, email) {
+  return db.update(
+    `UPDATE accounts
+     SET nickname = $1, avatarurl = $2, email = $3
+     WHERE id = $4`,
+    [nickname || null, avatarUrl || null, email, accountId]
+  );
+}
+
 exports.getAccountId = function(accessToken) {
-  let profileURI = `${config.oAuth.profileServer}/uid`;
+  let profileURI = `${config.fxa.profileServer}/uid`;
   return request('GET', profileURI, {
     headers: {
       authorization: `Bearer ${accessToken}`
@@ -209,3 +216,17 @@ exports.registerAccount = function(deviceId, accountId, accessToken) {
     });
   });
 };
+
+exports.retrieveAccount = function(deviceId) {
+  return db.select(
+    `SELECT accountid FROM devices WHERE id = $1`,
+    [deviceId]
+  ).then((rows) => {
+    if (!rows.length) {
+      return null;
+    }
+    if (rows[0].accountid) {
+      return rows[0].accountid;
+    }
+  });
+}

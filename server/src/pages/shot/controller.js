@@ -80,7 +80,8 @@ exports.changeShotExpiration = function(shot, expiration) {
   req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
   req.onload = function() {
     if (req.status >= 300) {
-      window.alert("Error saving expiration: " + req.status + " " + req.statusText);
+      let errorMessage = document.getElementById("shotPageAlertErrorUpdatingExpirationTime").textContent;
+      window.alert(errorMessage);
     } else {
       if (expiration === 0) {
         model.shot.expireTime = model.expireTime = null;
@@ -106,7 +107,8 @@ exports.deleteShot = function(shot) {
   req.onload = function() {
     if (req.status >= 300) {
       // FIXME: a lame way to do an error message
-      window.alert("Error deleting shot: " + req.status + " " + req.statusText);
+      let errorMessage = document.getElementById("shotPageAlertErrorDeletingShot").textContent;
+      window.alert(errorMessage);
     } else {
       location.href = model.backend + "/shots";
     }
@@ -177,7 +179,8 @@ exports.setTitle = function(title) {
   let req = new XMLHttpRequest();
   req.onload = function() {
     if (req.status >= 300) {
-      window.alert("Error saving title: " + req.status + " " + req.statusText);
+      let errorMessage = document.getElementById("shotPageAlertErrorUpdatingTitle").textContent;
+      window.alert(errorMessage);
       return;
     }
     model.shot.userTitle = title;

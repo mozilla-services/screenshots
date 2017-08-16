@@ -1,15 +1,16 @@
 const config = require("./config").getProperties();
-const raven = require("raven");
+const Raven = require("raven");
 
-let ravenClient = null;
+
+let useRaven = false;
 
 if (config.sentryDSN) {
-  ravenClient = new raven.Client(config.sentryDSN);
-  ravenClient.patchGlobal();
+  Raven.config(config.sentryDSN).install();
+  useRaven = true;
 }
 
 exports.sendRavenMessage = function(req, message, options) {
-  if (!ravenClient) {
+  if (!useRaven) {
     return;
   }
   options = options || {};
@@ -19,24 +20,24 @@ exports.sendRavenMessage = function(req, message, options) {
   options.extra.userAgent = req.headers['user-agent'];
   options.extra.referrer = req.headers['referer'];
   options.extra.authenticated = !!req.deviceId;
-  ravenClient.captureMessage(message, options);
+  Raven.captureMessage(message, options);
 };
 
 exports.captureRavenException = function() {
-  if (ravenClient) {
-    return ravenClient.captureException.apply(ravenClient, arguments);
+  if (useRaven) {
+    return Raven.captureException.apply(Raven, arguments);
   }
   return null;
 };
 
 exports.addRavenRequestHandler = function(app) {
-  if (ravenClient) {
-    app.use(raven.middleware.express.requestHandler(ravenClient));
+  if (useRaven) {
+    app.use(Raven.requestHandler());
   }
 };
 
 exports.addRavenErrorHandler = function(app) {
-  if (ravenClient) {
-    app.use(raven.middleware.express.errorHandler(ravenClient));
+  if (useRaven) {
+    app.use(Raven.errorHandler());
   }
 };
