@@ -197,7 +197,7 @@ class Shot extends AbstractShot {
           `INSERT INTO data (id, deviceid, value, url, title, searchable_version, searchable_text)
            VALUES ($1, $2, $3, $4, $5, $6, ${searchable.query})`,
           [this.id, this.ownerId, JSON.stringify(json), url, title, searchable.version].concat(searchable.args)
-        ).then((rowCount) => {
+        ).then((result) => {
           return clipRewrites.commit(client);
         }).then(() => {
           return oks;
