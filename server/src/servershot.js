@@ -418,7 +418,7 @@ Shot.getRawValue = function(id, deviceId, accountId) {
   FROM data, devices WHERE data.deviceid = devices.id AND data.id = $1`;
   let params = [id];
   if (accountId) {
-    query += ` AND devices.accountid = $2`
+    query += ` AND devices.accountid = $2`;
     params.push(accountId);
   } else if (deviceId) {
     query += ` AND deviceid = $2`;

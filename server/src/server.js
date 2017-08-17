@@ -698,6 +698,31 @@ app.post("/api/set-title/:id/:domain", csrfProtection, function(req, res) {
   });
 });
 
+app.post("/api/save-edit", csrfProtection, function(req, res) {
+  let vars = req.body;
+  if (!req.deviceId) {
+    sendRavenMessage(req, "Attempt to edit shot without login");
+    simpleResponse(res, "Not logged in", 401);
+    return;
+  }
+  let id = vars.shotId;
+  let url = vars.url;
+  Shot.get(req.backend, id, req.deviceId, req.accountId).then((shot) => {
+    if (!shot) {
+      sendRavenMessage(req, "Attempt to edit shot that does not exist");
+      simpleResponse(res, "No such shot", 404);
+      return;
+    }
+    let name = shot.clipNames()[0];
+    shot.getClip(name).image.url = url;
+    return shot.update();
+  }).then((updated) => {
+    simpleResponse(res, "Updated", 200);
+  }).catch((err) => {
+    errorResponse(res, "Error updating image", err);
+  })
+});
+
 app.post("/api/set-expiration", csrfProtection, function(req, res) {
   if (!req.deviceId) {
     sendRavenMessage(req, "Attempt to set expiration without login");

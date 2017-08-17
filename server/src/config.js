@@ -288,6 +288,13 @@ var conf = convict({
     default: false,
     env: "USER_SETTINGS",
     arg: "user-settings"
+  },
+  enableAnnotations: {
+    doc: "If true, then disable shot annotations",
+    format: Boolean,
+    default: false,
+    env: "ENBALE_ANNOTATIONS",
+    arg: "enable-annotations"
   }
 });
 
