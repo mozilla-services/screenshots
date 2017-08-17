@@ -108,8 +108,11 @@ class ScreenshotsClient(object):
         resp.raise_for_status()
 
 
-def make_example_shot(deviceId, pad_image_to_length=None, **overrides):
-    image = random.choice(example_images)
+def make_example_shot(deviceId, pad_image_to_length=None, image_index=None, **overrides):
+    if image_index is None:
+        image = random.choice(example_images)
+    else:
+        image = example_images[image_index]
     text = []
     for i in range(10):
         text.append(random.choice(text_strings))

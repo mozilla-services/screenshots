@@ -1,5 +1,3 @@
-#!../../.venv/bin/python
-
 from clientlib import ScreenshotsClient
 import random
 from requests import HTTPError
