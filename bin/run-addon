@@ -17,7 +17,7 @@ $(which firefox || true)
 "
 setup_profile=
 server=
-bootstrap=
+webextension=
 
 for firefox in $firefoxes ; do
   if [[ -e "$firefox" ]] ; then
@@ -44,10 +44,11 @@ help () {
   echo "      Use BINARY as the Firefox to run (default $binary)"
   echo "    --setup-profile"
   echo "      Setup ./Profile/ and open it (can be used to make sticky changes to the test profile)"
-  #echo "    --scratch"
-  #echo "      Use a scratch profile"
-  echo "    --bootstrap"
-  echo "      Run the bootstrap form of the extension with jpm"
+  echo "    --scratch"
+  echo "      Use a scratch profile"
+  echo "    --webextension"
+  echo "      Only runs the embedded WebExtension, leaving out bootstrap.js"
+  echo "      Note: this may be pretty broken"
   echo "    -s or --server URL"
   echo "      Use the given server (default localhost:10080)"
 }
@@ -77,8 +78,8 @@ while [[ -n "$1" ]] ; do
       shift
       shift
       ;;
-    --bootstrap)
-      bootstrap=1
+    --webextension)
+      webextension=1
       shift
       ;;
     *)
@@ -127,11 +128,11 @@ fi
 export SCREENSHOTS_LOG_LEVEL=debug
 
 profile_option=
-bootstrap_profile_option=
+jpm_profile_option=
 if [[ -z "$scratch" ]] ; then
   mkdir -p ./Profile
   profile_option="--firefox-profile ./Profile/"
-  bootstrap_profile_option="--profile ../Profile/ --no-copy"
+  jpm_profile_option="--profile ../Profile/ --no-copy"
 fi
 
 make addon
@@ -168,11 +169,11 @@ run_jpm() {
   settings_file="./build/.jpm-settings.json"
   echo '{"extensions.legacy.enabled": true, "xpinstall.signatures.required": false}' > "$settings_file"
   cd addon
-  $jpm run $bootstrap_profile_option -b "$binary" --prefs "../$settings_file" --binary-args -jsconsole
+  $jpm run $jpm_profile_option -b "$binary" --prefs "../$settings_file" --binary-args -jsconsole
 }
 
-if [[ -z "$bootstrap" ]] ; then
-  run_webext
-else
+if [[ -z "$webextension" ]] ; then
   run_jpm
+else
+  run_webext
 fi
