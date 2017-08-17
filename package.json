@@ -87,6 +87,7 @@
     "nsp": "nsp check",
     "posttest": "npm run lint",
     "test": "make bootstrap_zip && mocha test/",
+    "test:server": "mocha --recursive test/server/unit/",
     "test:selenium": "make bootstrap_zip && mocha test/test.js",
     "make_versions_exact": "node bin/build-scripts/make_versions_exact.js",
     "update_outdated": "david update && npm run make_versions_exact && npm update && npm outdated",
