@@ -1,4 +1,3 @@
-#!../../.venv/bin/python
 import os
 import urllib
 import clientlib
