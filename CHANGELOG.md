@@ -1,3 +1,68 @@
+## Version 16.0.0
+
+This is a Firefox export release. Note all changes included since the last (version 10) release:
+
+* Fix tests failing when run against photon-y Firefox without MOZ_PHOTON_THEME defined [beec56b](https://github.com/mozilla-services/screenshots/commit/beec56b)
+
+### Server changes in 16.0.0
+
+* empty docTitle value in JSON data [f9871b7](https://github.com/mozilla-services/screenshots/commit/f9871b7)
+* remove fade in from masonry [0d953ee](https://github.com/mozilla-services/screenshots/commit/0d953ee)
+
+### From 15.0.0
+
+* Deal with lack of MOZ_PHOTON_THEME on 57+ [3e9eba3](https://github.com/mozilla-services/screenshots/commit/3e9eba3)
+* Make run-addon work with new legacy pref. Fixes [#3333](https://github.com/mozilla-services/screenshots/issues/3333) [b9a776b](https://github.com/mozilla-services/screenshots/commit/b9a776b)
+* Immediately exit when Firefox is exiting. Fixes [#3323](https://github.com/mozilla-services/screenshots/issues/3323) [916c353](https://github.com/mozilla-services/screenshots/commit/916c353)
+* Fix tests, enable legacy extensions via pref during tests ([#3324](https://github.com/mozilla-services/screenshots/issues/3324)) [c60fd37](https://github.com/mozilla-services/screenshots/commit/c60fd37)
+* Make tests resilient to a browserAction or pageAction ([#3317](https://github.com/mozilla-services/screenshots/issues/3317)) Fixes [#3306](https://github.com/mozilla-services/screenshots/issues/3306) [3c15014](https://github.com/mozilla-services/screenshots/commit/3c15014)
+
+### From 13.0.0
+
+* Replace the WebExtension browser action with a Photon page action. ([#3239](https://github.com/mozilla-services/screenshots/issues/3239))
+  * Replace the WebExtension browser action with a Photon page action.
+  This removes the browser action and adds a Photon page action,
+  pursuant to https://bugzilla.mozilla.org/show_bug.cgi?id=1366041.
+  Right now Photon page actions are unrelated to WebExtension page
+  actions unfortunately, which means that this patch has to do most
+  of its work in bootstrap.js.  The WebExtension part passes
+  messages to bootstrap.js to handle clicks and update the action's
+  title and icon as necessary.
+  * Test fix: Replace the WebExtension browser action with a Photon page action.
+  Fix the test for the previous commit.
+  * Update SHOOTER_BUTTON_ID in test.js.
+  * Use the Photon page action when supported, the WebExtension browser action when not.
+  Extend the Photon-related port used between bootstrap.js and the
+  WebExtension so that bootstrap.js can tell the WebExtension
+  whether it's OK to use the Photon page action.  The WebExtension
+  should not attempt to use the browser action when Photon is
+  enabled because bootstrap.js will have removed the browser
+  action's navbar button.
+  Modify the test so that it checks the Photon page action when
+  Photon is enabled and the browser action when it's not.
+  * Fix the expected button label in test.js for the Photon page action.
+  * Maybe fix PageActions eslint errors. [4396250](https://github.com/mozilla-services/screenshots/commit/4396250)
+* remove high DPI shot capture for full page [fde181d](https://github.com/mozilla-services/screenshots/commit/fde181d)
+* Sets background highlight width to 100% [aee88eb](https://github.com/mozilla-services/screenshots/commit/aee88eb)
+
+### From 12.0.0
+
+* Remove duplicate drawWindow call for shot preview [2a5dd27](https://github.com/mozilla-services/screenshots/commit/2a5dd27)
+* Update shot preview save icon [735b3f9](https://github.com/mozilla-services/screenshots/commit/735b3f9)
+
+### From 11.0.0
+
+Note these are part of the version/tag, but have not been uploaded to the Firefox tree.
+
+* Add reason to webExtension.startup and shutdown Will be useful when https://bugzilla.mozilla.org/show_bug.cgi?id=1372750 and
+  https://bugzilla.mozilla.org/show_bug.cgi?id=1373749 are fixed [d97d4a7](https://github.com/mozilla-services/screenshots/commit/d97d4a7)
+* Protect against an empty IPC response ([#3037](https://github.com/mozilla-services/screenshots/issues/3037))This happened in some weird corner case while debugging [14df39d](https://github.com/mozilla-services/screenshots/commit/14df39d)
+* Guard access of this.save when un-disabling the save button ([#3030](https://github.com/mozilla-services/screenshots/issues/3030)). This can happen after the worker has been torn down, and this.save isn't defined [cf6e72a](https://github.com/mozilla-services/screenshots/commit/cf6e72a)
+* Set dimensions for icon and add to startup ([#3136](https://github.com/mozilla-services/screenshots/issues/3136)) [9959ede](https://github.com/mozilla-services/screenshots/commit/9959ede)
+* Disable Screenshots in private windows. Fixes [#3120](https://github.com/mozilla-services/screenshots/issues/3120) [aefc639](https://github.com/mozilla-services/screenshots/commit/aefc639)
+* about:home is not treated like about:newtab ([#3088](https://github.com/mozilla-services/screenshots/issues/3088)). Fixes [#3029](https://github.com/mozilla-services/screenshots/issues/3029) [4633694](https://github.com/mozilla-services/screenshots/commit/4633694)
+* preview shot before saving full page/visibleremove addToMyShots [c87db61](https://github.com/mozilla-services/screenshots/commit/c87db61)
+
 ## Version 15.0.0
 
 Note: this is a server-only release
@@ -6,14 +71,6 @@ Note: this is a server-only release
 * Properly escape JSON separators [1c53af5](https://github.com/mozilla-services/screenshots/commit/1c53af5)
 * Add an index on data.deviceid to speed up My Shots ([#3328](https://github.com/mozilla-services/screenshots/issues/3328))Also updates schema.sql with version 19 (because I forgot ./bin/dumpschema --record for that version) [219392c](https://github.com/mozilla-services/screenshots/commit/219392c)
 * Correct and spritify icon buttons [4f08f2f](https://github.com/mozilla-services/screenshots/commit/4f08f2f)
-
-### Add-on changes
-
-* Deal with lack of MOZ_PHOTON_THEME on 57+ [3e9eba3](https://github.com/mozilla-services/screenshots/commit/3e9eba3)
-* Make run-addon work with new legacy pref. Fixes [#3333](https://github.com/mozilla-services/screenshots/issues/3333) [b9a776b](https://github.com/mozilla-services/screenshots/commit/b9a776b)
-* Immediately exit when Firefox is exiting. Fixes [#3323](https://github.com/mozilla-services/screenshots/issues/3323) [916c353](https://github.com/mozilla-services/screenshots/commit/916c353)
-* Fix tests, enable legacy extensions via pref during tests ([#3324](https://github.com/mozilla-services/screenshots/issues/3324)) [c60fd37](https://github.com/mozilla-services/screenshots/commit/c60fd37)
-* Make tests resilient to a browserAction or pageAction ([#3317](https://github.com/mozilla-services/screenshots/issues/3317)) Fixes [#3306](https://github.com/mozilla-services/screenshots/issues/3306) [3c15014](https://github.com/mozilla-services/screenshots/commit/3c15014)
 
 ## Version 14.0.0
 
@@ -69,34 +126,6 @@ This is a server-only release
 * Fix lots of lint issues, exposed by updated lint packages. Fixes [#3221](https://github.com/mozilla-services/screenshots/issues/3221) Fixes [#3221](https://github.com/mozilla-services/screenshots/issues/3221) [b2258d1](https://github.com/mozilla-services/screenshots/commit/b2258d1)
 * Use docker build --pull, to always fetch latest image [cce97ba](https://github.com/mozilla-services/screenshots/commit/cce97ba)
 
-### Add-on changes
-
-* Replace the WebExtension browser action with a Photon page action. ([#3239](https://github.com/mozilla-services/screenshots/issues/3239))
-  * Replace the WebExtension browser action with a Photon page action.
-  This removes the browser action and adds a Photon page action,
-  pursuant to https://bugzilla.mozilla.org/show_bug.cgi?id=1366041.
-  Right now Photon page actions are unrelated to WebExtension page
-  actions unfortunately, which means that this patch has to do most
-  of its work in bootstrap.js.  The WebExtension part passes
-  messages to bootstrap.js to handle clicks and update the action's
-  title and icon as necessary.
-  * Test fix: Replace the WebExtension browser action with a Photon page action.
-  Fix the test for the previous commit.
-  * Update SHOOTER_BUTTON_ID in test.js.
-  * Use the Photon page action when supported, the WebExtension browser action when not.
-  Extend the Photon-related port used between bootstrap.js and the
-  WebExtension so that bootstrap.js can tell the WebExtension
-  whether it's OK to use the Photon page action.  The WebExtension
-  should not attempt to use the browser action when Photon is
-  enabled because bootstrap.js will have removed the browser
-  action's navbar button.
-  Modify the test so that it checks the Photon page action when
-  Photon is enabled and the browser action when it's not.
-  * Fix the expected button label in test.js for the Photon page action.
-  * Maybe fix PageActions eslint errors. [4396250](https://github.com/mozilla-services/screenshots/commit/4396250)
-* remove high DPI shot capture for full page [fde181d](https://github.com/mozilla-services/screenshots/commit/fde181d)
-* Sets background highlight width to 100% [aee88eb](https://github.com/mozilla-services/screenshots/commit/aee88eb)
-
 ## Version 12.0.0
 
 This is a server-only release
@@ -110,11 +139,6 @@ This is a server-only release
   * address review feedback [26daf9f](https://github.com/mozilla-services/screenshots/commit/26daf9f)
 * Add event for non-owner click on original url [30c113e](https://github.com/mozilla-services/screenshots/commit/30c113e)
 * Handle redirects in calls to /proxy ([#3195](https://github.com/mozilla-services/screenshots/issues/3195))Probably. Fixes [#2648](https://github.com/mozilla-services/screenshots/issues/2648) [61d686f](https://github.com/mozilla-services/screenshots/commit/61d686f)
-
-### Add-on
-
-* Remove duplicate drawWindow call for shot preview [2a5dd27](https://github.com/mozilla-services/screenshots/commit/2a5dd27)
-* Update shot preview save icon [735b3f9](https://github.com/mozilla-services/screenshots/commit/735b3f9)
 
 ## Version 11.0.0
 
@@ -143,18 +167,13 @@ This is a server-only release.  Add-on changes are still deferred to a later Fir
 * update to photon loader [8b6157b](https://github.com/mozilla-services/screenshots/commit/8b6157b)
 * Tweak flex syntax so shot pages work on IE 11. Fixes [#2516](https://github.com/mozilla-services/screenshots/issues/2516) [33d2ae5](https://github.com/mozilla-services/screenshots/commit/33d2ae5)
 
-### Add-on changes
+## Version 10.12.0
 
-Note these are part of the version/tag, but have not been uploaded to the Firefox tree.
+* Immediately exit when Firefox is exiting ([#3323](https://github.com/mozilla-services/screenshots/pull/3323))
 
-* Add reason to webExtension.startup and shutdown Will be useful when https://bugzilla.mozilla.org/show_bug.cgi?id=1372750 and
-  https://bugzilla.mozilla.org/show_bug.cgi?id=1373749 are fixed [d97d4a7](https://github.com/mozilla-services/screenshots/commit/d97d4a7)
-* Protect against an empty IPC response ([#3037](https://github.com/mozilla-services/screenshots/issues/3037))This happened in some weird corner case while debugging [14df39d](https://github.com/mozilla-services/screenshots/commit/14df39d)
-* Guard access of this.save when un-disabling the save button ([#3030](https://github.com/mozilla-services/screenshots/issues/3030)). This can happen after the worker has been torn down, and this.save isn't defined [cf6e72a](https://github.com/mozilla-services/screenshots/commit/cf6e72a)
-* Set dimensions for icon and add to startup ([#3136](https://github.com/mozilla-services/screenshots/issues/3136)) [9959ede](https://github.com/mozilla-services/screenshots/commit/9959ede)
-* Disable Screenshots in private windows. Fixes [#3120](https://github.com/mozilla-services/screenshots/issues/3120) [aefc639](https://github.com/mozilla-services/screenshots/commit/aefc639)
-* about:home is not treated like about:newtab ([#3088](https://github.com/mozilla-services/screenshots/issues/3088)). Fixes [#3029](https://github.com/mozilla-services/screenshots/issues/3029) [4633694](https://github.com/mozilla-services/screenshots/commit/4633694)
-* preview shot before saving full page/visibleremove addToMyShots [c87db61](https://github.com/mozilla-services/screenshots/commit/c87db61)
+## Version 10.11.0
+
+* Import locales from master ([#3293](https://github.com/mozilla-services/screenshots/pull/3293))
 
 ## Version 10.10.0
 

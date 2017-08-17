@@ -22,3 +22,5 @@ cookie-jar.txt
 /addon/install.rdf
 /addon/webextension/_locales
 /*.xpi
+# Created by py.test:
+/test/server/.cache

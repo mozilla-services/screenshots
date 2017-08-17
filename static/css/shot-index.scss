@@ -124,11 +124,6 @@ h1 {
   margin: 0 auto;
 }
 
-.masonry-wrapper {
-  opacity: 0;
-  transition: opacity 500ms $bezier;
-}
-
 .shot {
   background: $white;
   box-shadow: 0 0  0 1px rgba(0, 0, 0, 0.05);

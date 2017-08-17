@@ -121,6 +121,13 @@ var conf = convict({
       default: 0,
       env: "FORCE_DB_VERSION",
       arg: "force-db-version"
+    },
+    logQueryLimit: {
+      doc: "Log queries that take more than time amount of time (in milliseconds)",
+      format: "int",
+      default: 50,
+      env: "LOG_QUERY_LIMIT",
+      arg: "log-query-limit"
     }
   },
   gaId: {

@@ -1,7 +1,6 @@
 const config = require("./config").getProperties();
 require("./logging").installConsoleHandler();
 const mozlog = require("./logging").mozlog("server");
-const accepts = require("accepts");
 const path = require('path');
 const { readFileSync, existsSync } = require('fs');
 const Cookies = require("cookies");
@@ -45,7 +44,7 @@ const { captureRavenException, sendRavenMessage,
 const { errorResponse, simpleResponse, jsResponse } = require("./responses");
 const selfPackage = require("./package.json");
 const { b64EncodeJson, b64DecodeJson } = require("./b64");
-const l10n = require("./l10n");
+const { l10n } = require("./middleware/l10n");
 
 const PROXY_HEADER_WHITELIST = {
   "content-type": true,
@@ -269,18 +268,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(function(req, res, next) {
-  l10n.init().then(() => {
-    const languages = accepts(req).languages();
-    req.getText = l10n.getText(languages);
-    req.userLocales = l10n.getUserLocales(languages);
-    req.messages = l10n.getStrings(languages);
-    next();
-  }).catch(err => {
-    mozlog.error("l10n-error", {msg: "Error initializing l10n", description: err});
-    process.exit(2);
-  });
-});
+app.use(l10n);
 
 app.param("id", function(req, res, next, id) {
   if (/^[a-zA-Z0-9]{16}$/.test(id)) {
