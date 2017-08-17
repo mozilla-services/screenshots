@@ -6,6 +6,7 @@ const linker = require("./linker");
 const config = require("./config").getProperties();
 const fs = require("fs");
 const mozlog = require("./logging").mozlog("servershot");
+const validUrl = require("valid-url");
 
 const SEARCHABLE_VERSION = 1;
 
@@ -666,7 +667,10 @@ ClipRewrites = class ClipRewrites {
     }
     this.toInsertThumbnail = null;
     this.oldFullScreenThumbnail = this.shot.fullScreenThumbnail;
-
+    if (!validUrl.isWebUri(this.shot.url)) {
+      this.shot.fullUrl = "";
+      this.shot.origin = "";
+    }
     let url = this.shot.fullScreenThumbnail;
     let match = (/^data:([^;]*);base64,/).exec(url);
     if (match) {
