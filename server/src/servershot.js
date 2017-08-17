@@ -459,18 +459,17 @@ Shot.checkOwnership = function(shotId, deviceId, accountId) {
   })
 };
 
-Shot.getShotsForDevice = function(backend, deviceId, searchQuery) {
+Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery) {
   if (!deviceId) {
     throw new Error("Empty deviceId: " + deviceId);
   }
+  // accountId is null if not set, treated as NULL in the SQL query
   return db.select(
     `SELECT DISTINCT devices.id
-     FROM devices, devices AS devices2
-     WHERE devices.id = $1
-           OR (devices.accountid = devices2.accountid
-               AND devices2.id = $1)
+     FROM devices
+     WHERE devices.id = $1 OR devices.accountid = $2
     `,
-    [deviceId]
+    [deviceId, accountId]
   ).then((rows) => {
     searchQuery = searchQuery || null;
     let ids = [];
