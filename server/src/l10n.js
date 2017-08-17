@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const globby = require("globby");
 require("fluent-intl-polyfill/compat");
-const negotiateLanguages = require("fluent-langneg/compat");
+const { negotiateLanguages } = require("fluent-langneg/compat");
 const { MessageContext } = require("fluent/compat");
 const mozlog = require("./logging").mozlog("l10n");
 
