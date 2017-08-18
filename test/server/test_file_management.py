@@ -16,6 +16,10 @@ project_base = os.path.abspath(os.path.join(__file__, "../../.."))
 data_path = os.path.join(project_base, "data")
 
 
+def teardown_function(func):
+    show_server_output()
+
+
 def make_session():
     session = clientlib.ScreenshotsClient(SERVER_URL)
     session.login()
@@ -59,7 +63,7 @@ def test_s3_delete():
 
 
 def test_s3_delete_after_expire():
-    restart_server(DEFAULT_EXPIRATION=1)
+    restart_server()
     session = make_session()
     shot_url = session.create_shot()
     page = session.read_shot(shot_url)
@@ -118,16 +122,6 @@ server = None
 server_out = None
 server_options = None
 
-
-def make_server():
-    with Capture() as out:
-        print("Running make server:")
-        run('make server', cwd=project_base, stdout=out).wait()
-        for line in out:
-            print('  %s' % line.rstrip())
-        print('make server completed')
-
-
 def restart_server(**extra_env):
     global server, server_out, server_options
     for key in extra_env:
@@ -144,6 +138,7 @@ def restart_server(**extra_env):
     env['GA_ID'] = ''
     env['DEBUG_GOOGLE_ANALYTICS'] = ''
     env['NODE_ENV'] = 'production'
+    env['LOG_QUERY_LIMIT'] = '0'
     server_out = Capture()
     env_print = ['%s=%s' % (name, value) for name, value in sorted(extra_env.items())]
     if env_print:
@@ -232,29 +227,11 @@ def write_file(clip_url, content):
         fp.write(content)
 
 
-if __name__ == "__main__":
-    import sys
-    make_server()
-    funcs = [
-        test_s3_upload,
-        test_s3_expire,
-        test_s3_delete,
-        test_s3_delete_after_expire,
-        test_s3_final_expire,
-        test_s3_failed_delete,
-    ]
-    args = sys.argv[1:]
-    if args:
-        funcs = [
-            func for func in funcs
-            if args[0] in func.func_name]
-        print("Selecting %s tests" % len(funcs))
-    for func in funcs:
-        print("Testing {}".format(func.func_name))
+def show_server_output_on_failure(func):
+    def replacement(*args, **kw):
         try:
-            func()
+            return func(*args, **kw)
         except:
             show_server_output()
             raise
-        print("Finished test {}".format(func.func_name))
-        print("")
+    return replacement
