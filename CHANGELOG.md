@@ -1,3 +1,21 @@
+## Version 17.0.0
+
+Note: this is a server-only release.
+
+* Simplify retrieval of My Shots data, hopefully speeding things up ([#3374](https://github.com/mozilla-services/screenshots/issues/3374)) [f11b478](https://github.com/mozilla-services/screenshots/commit/f11b478)
+* Separate page script from data [e7a014e](https://github.com/mozilla-services/screenshots/commit/e7a014e)
+* Update fluent-langneg to 0.1.0 ([#3370](https://github.com/mozilla-services/screenshots/issues/3370)) [0678b6a](https://github.com/mozilla-services/screenshots/commit/0678b6a)
+* Use English as default if Accept-Language header is missing or `*` ([#3367](https://github.com/mozilla-services/screenshots/issues/3367)). Fixes [#3231](https://github.com/mozilla-services/screenshots/issues/3231) [d8425c6](https://github.com/mozilla-services/screenshots/commit/d8425c6)
+* More server tests: ([#3363](https://github.com/mozilla-services/screenshots/issues/3363))
+* Make bootstrap.js/jpm the default in run-addon ([#3362](https://github.com/mozilla-services/screenshots/issues/3362)). Fixes [#3345](https://github.com/mozilla-services/screenshots/issues/3345) [e9ffc05](https://github.com/mozilla-services/screenshots/commit/e9ffc05)
+* Add timing to all database queries. Timing is logged when it goes over a configurable limit. Locations are logged based on caller filename/position. Fixes [#3318](https://github.com/mozilla-services/screenshots/issues/3318) [c5b8f24](https://github.com/mozilla-services/screenshots/commit/c5b8f24)
+* Put image sizes in images table. Fixes [#3207](https://github.com/mozilla-services/screenshots/issues/3207) [f762797](https://github.com/mozilla-services/screenshots/commit/f762797)
+* Add authorization check on set-title [d411e4e](https://github.com/mozilla-services/screenshots/commit/d411e4e)
+* Make shebangs consistent. Fixes [#2394](https://github.com/mozilla-services/screenshots/issues/2394) [6c8c1d3](https://github.com/mozilla-services/screenshots/commit/6c8c1d3)
+* Validate origin url [7cdb4d5](https://github.com/mozilla-services/screenshots/commit/7cdb4d5)
+* Add utm and events to homepage [734ee1e](https://github.com/mozilla-services/screenshots/commit/734ee1e)
+* Add experimental / dev-only annotation tools: pen and highlighter [83d207a](https://github.com/mozilla-services/screenshots/commit/83d207a)
+
 ## Version 16.0.0
 
 This is a Firefox export release. Note all changes included since the last (version 10) release:
