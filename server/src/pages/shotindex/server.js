@@ -1,6 +1,5 @@
 const express = require("express");
-const csrf = require("csurf");
-const csrfProtection = csrf({cookie: {httpOnly: true, secure: true, sameSite: 'lax', key: '__Host-csrf'}});
+const { csrfProtection } = require("../../middleware/csrf");
 const reactrender = require("../../reactrender");
 const { Shot } = require("../../servershot");
 const mozlog = require("../../logging").mozlog("shotindex");
