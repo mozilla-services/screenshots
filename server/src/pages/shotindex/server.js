@@ -16,7 +16,7 @@ app.get("/", csrf({cookie: true}), function(req, res) {
   let query = req.query.q || null;
   let getShots = Promise.resolve(null);
   if (req.deviceId && req.query.withdata) {
-    getShots = Shot.getShotsForDevice(req.backend, req.deviceId, query);
+    getShots = Shot.getShotsForDevice(req.backend, req.deviceId, req.accountId, query);
   }
   getShots.then(_render)
     .catch((err) => {
