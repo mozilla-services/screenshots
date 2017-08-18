@@ -18,6 +18,7 @@ gScreenshotsDescription = Skærmbilleder helt enkelt. Tag, gem og del skærmbill
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Betingelser
 footerLinkPrivacy = Privatlivspolitik
 footerLinkDMCA = Indberet overtrædelse af ophavsrettigheder
 footerLinkDiscourse = Giv feedback
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Fjern alle data
 // creatingPageTitleDefault.
 creatingPageTitle = Laver { $title } 
 creatingPageTitleDefault = side
+creatingPageWaitMessage = Gemmer dit skærmbillede...
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Bekræft sletning af konto
+leavePageRemoveAllData = Fjern alle data
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Du skal have Firefox Screenshots installeret for at slette din konto
 leavePageErrorGeneric = Der opstod en fejl

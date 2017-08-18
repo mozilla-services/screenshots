@@ -41,19 +41,19 @@
 
   &.block-button {
 
-  @include respond-to("small") {
-    justify-content: flex-start;
-    font-size: 16px;
-    height: 72px;
-    margin-right: 10px;
-    padding: 0 5px;
-  }
+    @include respond-to("small") {
+      justify-content: flex-start;
+      font-size: 16px;
+      height: 72px;
+      margin-right: 10px;
+      padding: 0 5px;
+    }
 
     @include flex-container(row, center, center);
     box-sizing: border-box;
-    border: none;
+    border: 0;
     border-right: 1px solid $light-border;
-    box-shadow: none;
+    box-shadow: 0;
     border-radius: 0;
     flex-shrink: 0;
     font-size: 20px;
@@ -67,6 +67,65 @@
 
     &:active {
       background: $light-active;
+    }
+  }
+
+  &.download,
+  &.trash,
+  &.share,
+  &.flag {
+    background-image: url("../img/icon-sprite.svg");
+    background-size: $grid-unit * 24 $grid-unit * 2;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    margin-right: $grid-unit * 0.5;
+    transition: background-color 150ms $bezier;
+  }
+
+  &.download {
+    &:hover {
+      background-position: -2 * $grid-unit 0;
+    }
+
+    &:active {
+      background-position: -4 * $grid-unit 0;
+    }
+  }
+
+  &.share {
+    background-position: -6 * $grid-unit 0;
+
+    &:hover {
+      background-position: -8 * $grid-unit 0;
+    }
+
+    &:active,
+    &.active {
+      background-position: -10 * $grid-unit 0;
+    }
+  }
+
+  &.trash {
+    background-position: -12 * $grid-unit 0;
+
+    &:hover {
+      background-position: -14 * $grid-unit 0;
+    }
+
+    &:active {
+      background-position: -16 * $grid-unit 0;
+    }
+  }
+
+  &.flag {
+    background-position: -18 * $grid-unit 0;
+
+    &:hover {
+      background-position: -20 * $grid-unit 0;
+    }
+
+    &:active {
+      background-position: -22 * $grid-unit 0;
     }
   }
 }

@@ -43,7 +43,7 @@ last_modified_package_json = subprocess.check_output(
 last_modified_package_json = calendar.timegm(time.strptime(last_modified_package_json, "%Y-%m-%d"))
 now_timestamp = int((time.time() - last_modified_package_json) / 60)
 if os.environ.get("SCREENSHOTS_MINOR_VERSION"):
-    now_timestamp = os.environ["SCREENSHOTS_MINOR_VERSION"]
+    now_timestamp = int(os.environ["SCREENSHOTS_MINOR_VERSION"])
 package_json_version = package_json["version"].split(".")
 while True:
     version = "%s.%s.%s" % (package_json_version[0], package_json_version[1], now_timestamp)

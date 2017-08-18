@@ -18,6 +18,7 @@ gScreenshotsDescription = 拍攝畫面擷圖變得簡單。不必離開 Firefox 
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = 使用條款
 footerLinkPrivacy = 隱私權公告
 footerLinkDMCA = 回報智財權侵害案件
 footerLinkDiscourse = 提供意見回饋
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = 移除所有資料
 // creatingPageTitleDefault.
 creatingPageTitle = 正在建立 { $title }
 creatingPageTitleDefault = 頁面
+creatingPageWaitMessage = 正在儲存擷圖…
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = 確認刪除帳號
+leavePageRemoveAllData = 移除所有資料
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = 您必須安裝 Firefox Screenshots 才能刪除帳號
 leavePageErrorGeneric = 發生錯誤

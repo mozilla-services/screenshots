@@ -15,6 +15,8 @@ parser.add_argument('url', metavar='URL', type=str, nargs=1,
 
 parser.add_argument('--create', metavar='N', type=int, default=1,
                     help='Create a shot N times')
+parser.add_argument('--little-image', action='store_true',
+                    help='Only create shots with the little image')
 parser.add_argument('--read-shot', metavar='N', type=int, default=1,
                     help='Read a shot N times (should create one before)')
 parser.add_argument('--read-my-shots', metavar='N', type=int, default=1,
@@ -23,6 +25,10 @@ parser.add_argument('--search', metavar='N', type=int, default=1,
                     help='Search /shots N times with randomish queries')
 parser.add_argument('--times', metavar='M', type=int, default=1,
                     help='Do everything M times (i.e., do each action N x M times)')
+parser.add_argument('--new-account', action='store_true',
+                    help='Create a new account on each run')
+parser.add_argument('--quiet', '-q', action='count',
+                    help='Be a little more quiet')
 # FIXME: no option for /redirect
 # FIXME: no option for /event
 
@@ -33,8 +39,6 @@ example_images = example_images["example_images"]
 args = parser.parse_args()
 
 backend = args.url[0]
-
-session = requests.Session()
 
 
 def make_device_info():
@@ -52,9 +56,15 @@ def make_random_id():
     return make_uuid()[:16]
 
 
-deviceInfo = make_device_info()
-deviceId = make_uuid()
-secret = make_uuid()
+def reset_device_info():
+    global deviceInfo, deviceId, secret, session
+    deviceInfo = make_device_info()
+    deviceId = make_uuid()
+    secret = make_uuid()
+    session = requests.Session()
+
+
+reset_device_info()
 
 
 def login():
@@ -106,7 +116,10 @@ def search_shots(q=None):
 
 
 def make_example_shot():
-    image = random.choice(example_images)
+    if args.little_image:
+        image = example_images[-1]
+    else:
+        image = random.choice(example_images)
     text = []
     for i in range(10):
         text.append(random.choice(text_strings))
@@ -180,9 +193,10 @@ def run():
         for item in counts:
             num -= item[1]
             if num <= 0:
-                print "Running %13s of %5i (from %5i)" % (item[0].__name__, item[1], total)
+                if not args.quiet:
+                    print("Running %13s of %5i (from %5i)" % (item[0].__name__, item[1], total))
                 if item[0] == read_shot and not shot_urls:
-                    print "  Skipping because there are no shots"
+                    print("  Skipping because there are no shots")
                     continue
                 if item[0] == read_shot:
                     result = item[0](random.choice(shot_urls))
@@ -190,7 +204,8 @@ def run():
                     result = item[0]()
                 if item[0] == create_shot:
                     shot_urls.append(result)
-                    print "  Created %i shot: %s" % (len(shot_urls), result)
+                    if not args.quiet:
+                        print("  Created %i shot: %s" % (len(shot_urls), result))
                 item[1] -= 1
                 total -= 1
                 break
@@ -200,9 +215,12 @@ def main():
     try:
         for i in range(args.times):
             run()
-            print "Finished run %i/%i" % (i + 1, args.times)
+            print("Finished run %i/%i" % (i + 1, args.times))
+            if args.new_account:
+                reset_device_info()
+                login()
     except KeyboardInterrupt:
-        print "Early abort"
+        print("Early abort")
     # uncomment after supporting csrf token
     # print "Deleting account"
     # delete_account()

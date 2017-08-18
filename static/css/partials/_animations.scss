@@ -1,22 +1,32 @@
-.spinner {
-  animation: wobble 1.2s steps(60) infinite;
-  background: url("../images/loading.svg") no-repeat;
-  height: 60px;
-  opacity: .5;
+.loader {
+  background: #2e2d30;
+  border-radius: 2px;
+  height: 4px;
   overflow: hidden;
-  transform: translate3d(0, 0, 0);
-  width: 217px;
+  position: relative;
+  width: 200px;
+
+  #shot-index & {
+    background-color: $light-active;
+  }
 }
 
-.spinner-wrapper {
-  animation: fade-in 1s forwards;
-  animation-delay: 250ms;
-  opacity: 0;
+.loader-inner {
+  animation: bounce infinite alternate 1250ms cubic-bezier(0.7, 0, 0.3, 1);
+  background: #04d1e6;
+  border-radius: 2px;
+  height: 4px;
+  transform: translateX(-40px);
+  width: 50px;
 }
 
-@keyframes wobble {
+@keyframes bounce {
+  0% {
+    transform: translateX(-40px);
+  }
+
   100% {
-    background-position: -13020px 0;
+    transform: translate(190px);
   }
 }
 
@@ -46,31 +56,31 @@
 
 @keyframes pulse {
   0% {
-    opacity: .3;
+    opacity: 0.3;
     transform: scale(1);
   }
 
   70% {
-    opacity: .25;
+    opacity: 0.25;
     transform: scale(1.04);
   }
 
   100% {
-    opacity: .3;
+    opacity: 0.3;
     transform: scale(1);
   }
 }
 
 @keyframes slide-left {
- 0% {
-  opacity: 0;
-  transform: translate3d(160px, 0, 0);
- }
+  0% {
+    opacity: 0;
+    transform: translate3d(160px, 0, 0);
+  }
 
- 100% {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
- }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes bounce-in {

@@ -18,6 +18,7 @@ gScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Pogoji
 footerLinkPrivacy = Obvestilo o zasebnosti
 footerLinkDMCA = Prijavi kršitev intelektualne lastnine
 footerLinkDiscourse = Sporočite nam svoje mnenje
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Odstrani vse podatke
 // creatingPageTitleDefault.
 creatingPageTitle = Ustvarjam { $title }
 creatingPageTitleDefault = stran
+creatingPageWaitMessage = Shranjevanje posnetka …
 
 
 [[ Home page ]]
@@ -48,6 +50,8 @@ homePageGetStartedTitle = Začnite
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Poiščite ikono Screenshots v svoji orodni vrstici. Izberite jo in na vrhu okna vašega brskalnika se bo pojavil meni Screenshots.
 homePageCaptureRegion = Zajemite območje
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Kliknite in povlecite, da izberete območje, ki ga želite zajeti, ali pa samo kliknite in Screenshots bo izbral območje za vas. Vam je všeč, kar vidite? Izberite Shrani za dostop do vašega posnetka na spletu ali puščico navzdol za prenos na računalnik.
 homePageCapturePage = Zajemite stran
 homePageCapturePageDescription = Za zajem celotnih strani uporabite gumbe zgoraj desno. Gumb Shrani vidno bo zajel območje, ki je vidno brez drsenja, gumb Shrani celotno stran pa celotno vsebino strani.
 homePageSaveShare = Shranite in delite
@@ -61,7 +65,7 @@ homePageCookiesLink = Piškotki
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Potrdite brisanje računa
+leavePageRemoveAllData = Odstrani vse podatke
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Za izbris računa morate imeti nameščen Firefox Screenshots
 leavePageErrorGeneric = Prišlo je do napake
@@ -124,6 +128,8 @@ shotPageUpsellFirefox = Prenesite Firefox zdaj
 shotPageDMCAMessage = Ta posnetek ni več na voljo zaradi zahtev intelektualne lastnine tretje osebe.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Za več informacij pošljite e-pošto na { $dmca }
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Če bodo vaši posnetki predmet več pritožb, vam bomo morda onemogočili dostop do storitve Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Vključite URL tega posnetka v e-pošto: { $url }
 shotPageKeepFor = Kako dolgo želite ohraniti ta posnetek?
@@ -193,6 +199,8 @@ shotIndexPageSearchResultsTitle = Moji posnetki: išči { $searchTerm }
 // { $error } is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
 shotIndexPageErrorRendering = Napaka pri izrisovanju strani: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Iskanje mojih posnetkov
 shotIndexPageSearchButton
     .title = Išči
 shotIndexPageNoShotsMessage = Ni shranjenih posnetkov.
@@ -210,6 +218,9 @@ shotIndexPageConfirmShotDelete = Izbrišem ta posnetek?
 
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Metrika Firefox Screenshots
+metricsPageTotalsQueryTitle = Skupaj
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Pregled posnetkov zaslona
 metricsPageTotalsQueryDevices = Skupno število registriranih naprav
 metricsPageTotalsQueryActiveShots = Aktivni posnetki
 metricsPageTotalsQueryExpiredShots = Pretečen (a obnovljiv)
@@ -226,9 +237,15 @@ metricsPageUserShotsQueryTitle = Število posnetkov na uporabnika
 metricsPageUserShotsQueryDescription = Število uporabnikov, ki imajo približno N skupnih posnetkov
 metricsPageUserShotsQueryCount = Število uporabnikov
 metricsPageUserShotsQueryShots = Približno število aktivnih (nepretečenih) posnetkov
+metricsPageRetentionQueryTitle = Ohranitve po tednih
+metricsPageRetentionQueryDescription = Št. dni od uporabnikovega prvega posnetka do najnovejšega, združeno po začetnem tednu
 metricsPageRetentionQueryUsers = Število uporabnikov
+metricsPageRetentionQueryDays = Dni od uporabnikovega prvega posnetka do najnovejšega
 metricsPageRetentionQueryFirstWeek = Teden, ko je uporabnik ustvaril prvi posnetek
+metricsPageTotalRetentionQueryTitle = Skupaj ohranitev
+metricsPageTotalRetentionQueryDescription = Čas, v katerem so uporabniki ustvarjali posnetke, združen po tednih
 metricsPageTotalRetentionQueryUsers = Število uporabnikov
+metricsPageTotalRetentionQueryDays = Dnevi, ko je uporabnik ustvarjal posnetke
 metricsPageVersionQueryTitle = Različica dodatka
 metricsPageVersionQueryDescription = Različica dodatka, uporabljena med prijavo v zadnjih 14 dneh
 metricsPageVersionQueryUsers = Število prijavljenih uporabnikov
@@ -237,3 +254,5 @@ metricsPageVersionQueryLastSeen = Dan
 metricsPageHeader = Metrika
 // Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Ustvarjeno: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (čas pod. zbirke: { $time } ms)

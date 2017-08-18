@@ -18,6 +18,7 @@ gScreenshotsDescription = Skjermbilder gjort enkelt. Ta, lagre og del skjermbild
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Vilkår
 footerLinkPrivacy = Personvernbestemmelser
 footerLinkDMCA = Rapporter åndsverkovertredelse 
 footerLinkDiscourse = Gi tilbakemelding
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Slett alle data
 // creatingPageTitleDefault.
 creatingPageTitle = Lager { $title }
 creatingPageTitleDefault = side
+creatingPageWaitMessage = Lagrer ditt skjermbilde...
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = Infokapsler
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Bekreft sletting av konto
+leavePageRemoveAllData = Fjern alle data
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Du må ha Firefox Screenshots installert for å slette kontoen din
 leavePageErrorGeneric = Det oppstod en feil

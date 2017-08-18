@@ -15,7 +15,8 @@ exports.createModel = function(req) {
   serverModel.downloadUrls = {};
   serverModel.disableSearch = req.config.disableSearch;
   serverModel.enableUserSettings = req.config.enableUserSettings;
-  for (let shot of req.shots) {
+  let shots = req.shots;
+  for (let shot of shots || []) {
     if (shot.favicon) {
       shot.favicon = createProxyUrl(req, shot.favicon);
     }
@@ -27,11 +28,14 @@ exports.createModel = function(req) {
       image.url = createProxyUrl(req, image.url);
     }
   }
+  if (shots !== null) {
+    shots = shots.map((shot) => ({id: shot.id, json: shot.asRecallJson()}));
+  }
   let jsonModel = Object.assign(
     {},
     serverModel,
     {
-      shots: req.shots.map((shot) => ({id: shot.id, json: shot.asRecallJson()})),
+      shots,
       downloadUrls: serverModel.downloadUrls
     }
   );

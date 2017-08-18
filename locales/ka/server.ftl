@@ -18,6 +18,7 @@ gScreenshotsDescription = ეკრანისთვის სურათი�
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = პირობები
 footerLinkPrivacy = განცხადება პირადი მონაცემები დაცვის შესახებ
 footerLinkDMCA = მოხსენება IP დარღვევაზე
 footerLinkDiscourse = გამოხმაურება
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = ყველა მონაცემის წაშ�
 // creatingPageTitleDefault.
 creatingPageTitle = იქმნება { $title }
 creatingPageTitleDefault = გვერდი
+creatingPageWaitMessage = სურათი ინახება...
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = ფუნთუშები
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = ანგარიშის წაშლის დადასტურება
+leavePageRemoveAllData = ყველა მონაცემის წაშლა
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = ანგარიშის წასაშლელად აუცილებელია გეყენოთ Firefox Screenshots
 leavePageErrorGeneric = მოხდა შეცდომა
@@ -83,6 +85,8 @@ notFoundPageDescription = გვერდი ვერ მოიძებნა.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = სურათი: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = შეცდომა შენახვის ვადის განსაზღვრისას
 shotPageAlertErrorDeletingShot = შედცომა სურათის წაშლისას
 shotPageAlertErrorUpdatingTitle = შეცდომა სახელის დარქმევისას

@@ -18,6 +18,7 @@ gScreenshotsDescription = Skjermbilete gjort enkelt. Ta, lagre og del skjermbild
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = 
+footerLinkTerms = Vilkår
 footerLinkPrivacy = Personvernmerknad
 footerLinkDMCA = Rapporter brot på åndsverklova
 footerLinkDiscourse = Gje tilbakemelding
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Slett alle data
 // creatingPageTitleDefault.
 creatingPageTitle = Lagar { $title }
 creatingPageTitleDefault = side
+creatingPageWaitMessage = Lagrar bildet ditt…
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = Infokapslar
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Stadfest sletting av konto
+leavePageRemoveAllData = Fjern alle data
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Du må ha Firefox Screenshots installert for å slette kontoen din
 leavePageErrorGeneric = Det oppstod ein feil
@@ -130,7 +132,7 @@ shotPageDMCAContact = Send ein e-post til { $dmca } for å be om ytterlegare inf
 shotPageDMCAWarning = Viss bilda dine er emne for fleire krav, kan vi trekkje tilbake tilgangen din til Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Ta med nettadressa til dette bildet i e-posten din: { $url }
-shotPageKeepFor = Kor lenge skal dette skjermbildet haldast på?
+shotPageKeepFor = Kor lenge skal dette skjermbildet behaldast?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Vel tid
 shotPageKeepIndefinitely = Uendeleg

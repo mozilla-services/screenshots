@@ -18,6 +18,7 @@ gScreenshotsDescription = スクリーンショットをもっと手軽に。Fir
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = 利用規約
 footerLinkPrivacy = プライバシー通知
 footerLinkDMCA = IP 侵害を報告
 footerLinkDiscourse = フィードバックを送る
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = すべてのデータを削除
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } を作成しています
 creatingPageTitleDefault = ページ
+creatingPageWaitMessage = ショットを保存しています...
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = Cookie
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = アカウントの削除を確認
+leavePageRemoveAllData = すべてのデータを削除
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = アカウントを削除するには Firefox Screenshots がインストールされている必要があります
 leavePageErrorGeneric = 問題が発生しました

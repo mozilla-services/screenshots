@@ -17,6 +17,7 @@ gScreenshotsDescription = Screenshots made simple. Take, save, and share screens
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Terms
 footerLinkPrivacy = Privacy Notice
 footerLinkDMCA = Report IP Infringement
 footerLinkDiscourse = Give Feedback
@@ -29,6 +30,7 @@ footerLinkRemoveAllData = Remove All Data
 // creatingPageTitleDefault.
 creatingPageTitle = Creating { $title }
 creatingPageTitleDefault = page
+creatingPageWaitMessage = Saving your shot…
 
 
 [[ Home page ]]
@@ -61,7 +63,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Confirm account deletion
+leavePageRemoveAllData = Remove All Data
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = You must have Firefox Screenshots installed to delete your account
 leavePageErrorGeneric = An error occurred

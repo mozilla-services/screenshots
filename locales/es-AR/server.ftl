@@ -10,7 +10,7 @@
 gMyShots = Mis capturas
 gHomeLink = Inicio
 gNoShots
-    .alt = No se econtraron capturas
+    .alt = No se encontraron capturas
 gScreenshotsDescription = Capturas de pantalla simples. Tomar, guardar y compartir capturas de pantalla sin dejar Firefox.
 
 
@@ -18,6 +18,7 @@ gScreenshotsDescription = Capturas de pantalla simples. Tomar, guardar y compart
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Términos
 footerLinkPrivacy = Nota de privacidad
 footerLinkDMCA = Informar infracción de PI
 footerLinkDiscourse = Enviar opinión
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Eliminar todos los datos
 // creatingPageTitleDefault.
 creatingPageTitle = Creando { $title }
 creatingPageTitleDefault = página
+creatingPageWaitMessage = Guardando captura…
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Confirmar borrado de cuenta
+leavePageRemoveAllData = Eliminar todos los datos
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Hay que tener instalado Firefox Screenshots para borrar la cuenta
 leavePageErrorGeneric = Ocurrió un error

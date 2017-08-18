@@ -18,6 +18,7 @@ gScreenshotsDescription = Скриншоты стали простыми. Дел
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Условия использования
 footerLinkPrivacy = Уведомление о приватности
 footerLinkDMCA = Сообщить о нарушении авторских прав
 footerLinkDiscourse = Оставить отзыв
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Удалить все данные
 // creatingPageTitleDefault.
 creatingPageTitle = Создание { $title }
 creatingPageTitleDefault = страница
+creatingPageWaitMessage = Сохранение вашего снимка…
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = Куки
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Подтвердить удаление аккаунта
+leavePageRemoveAllData = Удалить все данные
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Чтобы удалить ваш аккаунт, у вас должны быть установлен Firefox Screenshots
 leavePageErrorGeneric = Произошла ошибка

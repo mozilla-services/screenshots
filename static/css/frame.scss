@@ -160,7 +160,7 @@
   @include flex-container(row, flex-start, center);
 
   select {
-    -moz-appearance: none;
+    -moz-appearance: none; //sass-lint:disable-line no-vendor-prefixes
     appearance: none;
     background-color: $light-default;
     background-image: url("/static/img/icon-dropdown.svg");
@@ -202,8 +202,10 @@
   }
 }
 
+// TODO: investigate favicons not appearing on dev, stage and prod
 .favicon {
   background-size: 16px 16px;
+  display: none;
   height: 16px;
   margin-right: 6px;
   width: 16px;
@@ -247,7 +249,10 @@
 
 .trash,
 .flag,
-.share {
+.share,
+.edit,
+.pen-button,
+.highlight-button {
   background-size: $grid-unit $grid-unit;
   background-repeat: no-repeat;
   background-position: center center;
@@ -264,6 +269,40 @@
 
   &:active {
     background-image: url("../img/trash-active.svg");
+  }
+}
+
+.edit {
+  background-image: url("../img/annotation-edit-dark.svg");
+
+  &:hover {
+    background-image: url("../img/annotation-edit-hover.svg");
+  }
+}
+
+.highlight-button {
+  background-image: url("../img/annotation-highlight-dark.svg");
+
+  &:hover {
+    background-image: url("../img/annotation-highlight-hover.svg");
+  }
+
+  &:active,
+  &.active {
+    background-image: url("../img/annotation-highlight-active.svg");
+  }
+}
+
+.pen-button {
+  background-image: url("../img/annotation-pen-dark.svg");
+
+  &:hover {
+    background-image: url("../img/annotation-pen-hover.svg");
+  }
+
+  &:active,
+  &.active {
+    background-image: url("../img/annotation-pen-active.svg");
   }
 }
 
@@ -290,4 +329,81 @@
   &:active {
     background-image: url("../img/flag-active.svg");
   }
+}
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  height: 100%;
+}
+
+.editor-header {
+  @include respond-to("medium") {
+    @include flex-container(row, space-between, stretch);
+    height: $grid-unit * 5;
+  }
+
+  @include respond-to("small") {
+    @include flex-container(row, space-between, stretch, wrap);
+  }
+  z-index: 9999;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: $grid-unit * 5;
+
+  .button {
+    margin-left: $grid-unit * 0.5;
+  }
+
+  .cancel,
+  .save {
+    min-width: 100px;
+  }
+
+  .cancel {
+    background-color: #ebebeb;
+    border: 1px solid #9b9b9b;
+  }
+}
+
+.main-container {
+  z-index: 9990;
+  position: absolute;
+  top: $grid-unit * 5;
+  left: 0;
+  background-color: #000;
+  height: calc(100% - 100px);
+  width: 100%;
+  background-color: #fff;
+  text-align: center;
+}
+
+.canvas-container .editor {
+  z-index: 2;
+}
+
+.highlighter {
+  mix-blend-mode: multiply;
+  z-index: 1;
+}
+
+.image-holder {
+  z-index: 0;
+}
+
+.centered {
+  position: absolute;
+  top: $grid-unit * 4;
+  left: 0;
+  right: 0;
+  margin: auto;
+  overflow: hidden;
+  margin-bottom: 20px;
 }

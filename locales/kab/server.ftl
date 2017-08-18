@@ -18,6 +18,7 @@ gScreenshotsDescription = Tuṭṭfiwin γef afus. Ṭṭef agdil, sekles sakin 
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Tiwtilin
 footerLinkPrivacy = Tasertit n tbaḍnit
 footerLinkDMCA = Mmel-d ataɛdi ɣef ayla agzayan IP
 footerLinkDiscourse = Mudd-d tikti-ik
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Kkes akk isefka
 // creatingPageTitleDefault.
 creatingPageTitle = Ti rna { $title }
 creatingPageTitleDefault = Asebter
+creatingPageWaitMessage = Aklas n tuṭṭfa n ugdil…
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = Inagan n tuqqna
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Sentem tukksa n umiḍan
+leavePageRemoveAllData = Kkes akk isefka
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Yessefk ad yili ɣur-k Firefox Screenshots iyebded akken ad tekkseḍ amiḍan-ik
 leavePageErrorGeneric = Teḍra-d tuccḍa
@@ -142,7 +144,7 @@ shotPageKeepTwoWeeks = 2 n dduṛtat
 shotPageKeepOneMonth = Aggur
 shotPageSaveExpiration = Sekles
 shotPageCancelExpiration = Sefsex
-shotPageDoesNotExpire = ur yemmut ara
+shotPageDoesNotExpire = ur yettmettat ara
 // Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = ad yemmet { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"

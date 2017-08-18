@@ -116,6 +116,34 @@ exports.deleteShot = function(shot) {
   req.send(`id=${encodeURIComponent(shot.id)}&_csrf=${encodeURIComponent(model.csrfToken)}`);
 };
 
+exports.saveEdit = function(shot, shotUrl) {
+  var url = model.backend + "/api/save-edit";
+  var body = JSON.stringify({
+    shotId: shot.id,
+    _csrf: model.csrfToken,
+    url: shotUrl
+  });
+  var req = new Request(url, {
+    method: 'POST',
+    credentials: 'include',
+    headers: new Headers({
+      'content-type': 'application/json'
+    }),
+    body
+  });
+  return fetch(req).then((resp) => {
+    if (!resp.ok) {
+      var errorMessage = "Error saving edited shot";
+      window.alert(errorMessage);
+    } else {
+      location.reload();
+    }
+  }).catch((error) => {
+    window.alert("Connection error");
+    throw error;
+  });
+}
+
 function refreshHash() {
   if (location.hash === "#fullpage") {
     let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;

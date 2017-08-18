@@ -6,11 +6,11 @@ source tree.
 Start the system addon release process by copying the following checklist into a new github bug, then work through the list:
 
 - [ ] Bump the minor version number in package.json, following our [version numbering conventions](https://github.com/mozilla-services/screenshots/issues/2647)
-- [ ] Update changelog: `./bin/generate-commit-log --write stable..master`
+- [ ] If exporting from a branch besides master, review differences in locales between the export: <br> `git diff --shortstat HEAD..master locales/` (`--shortstat` gives a summary, `--numstat` is more detailed, remove to see full diff)
+- [ ] Update changelog: `./bin/generate-commit-log --write recent`
 - [ ] Create tag: `git tag MAJOR.MINOR.0` – the version should be higher than the version currently in `package.json` (e.g., if the in-development version is 10.0.0, then tag 10.1.0)
 - [ ] Push tag: `git push --tags`
-- [ ] Merge master to stable: `git checkout stable && git merge master && git push`
-  - NOTE: we haven't been following this "merge to stable" approach for the patches intended for 55 beta uplift
+- [ ] Merge master to `firefox-export` branch: `git checkout firefox-export && git merge master && git push`
 - [ ] Create a Bugzilla release bug, [cloning bug 1368146](https://bugzilla.mozilla.org/enter_bug.cgi?format=__default__&product=Cloud%20Services&cloned_bug_id=1368146)
   - Use "Show Advanced Fields" and review CC list and dependencies
   - Ensure the bug is filed under the Cloud Services product, Screenshots component

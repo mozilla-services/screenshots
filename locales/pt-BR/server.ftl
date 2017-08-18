@@ -18,6 +18,7 @@ gScreenshotsDescription = Capturas de tela de forma simples. Capture, salve e co
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Termos
 footerLinkPrivacy = Política de Privacidade
 footerLinkDMCA = Reportar infrações de IP
 footerLinkDiscourse = Enviar opinião
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Remover todos os dados
 // creatingPageTitleDefault.
 creatingPageTitle = Criando { $title }
 creatingPageTitleDefault = página
+creatingPageWaitMessage = Salvando captura…
 
 
 [[ Home page ]]
@@ -46,16 +48,16 @@ homePageGetStarted = Iniciar
 homePageHowScreenshotsWorks = Como o Firefox Screenshots funciona
 homePageGetStartedTitle = Iniciar
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Encontre o novo ícone do Screenshots na sua barra de ferramenta. Selecione e o menu do Screenshots irá aparecer no topo de janela do seu navegador.
+homePageGetStartedDescription = Encontre o novo ícone do Screenshots na barra de ferramenta. Selecione, e o menu do Screenshots irá aparecer no topo de janela do seu navegador.
 homePageCaptureRegion = Capturar uma região
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar. Ou simplesmente clique -- o Screenshots irá selecionar a área automaticamente pra você. Gostou do que viu? Clique em Salvar para acessar sua captura on-line ou no botão com a seta para baixo para baixar para seu computador.
+homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar. Ou simplesmente clique — o Screenshots irá selecionar a área automaticamente pra você. Gostou do que viu? Clique em Salvar para acessar sua captura on-line ou no botão com a seta para baixo para baixar para seu computador.
 homePageCapturePage = Capturar uma página
-homePageCapturePageDescription = Utilize os botões no canto superior direito para capturar telas inteiras. O botão Salvar Visível irá capturar a área que você vê sem rolar a página, e Salvar Página Inteira irá capturar toda a página.
+homePageCapturePageDescription = Utilize os botões no canto superior direito para capturar telas inteiras. O botão Salvar Área Visível irá capturar a área que você vê sem rolar a página, e Salvar Página Inteira irá capturar toda a página.
 homePageSaveShare = Salvar e compartilhar
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Quando você captura, Firefox armazena seus capturas de tela na sua biblioteca on-line do Screenshots e copia o link para sua área de transferência. Nós armazenamos suas capturas automaticamente por duas semanas, mas você pode excluir capturas a qualquer momento ou mudar a data de validade para mantê-las em sua biblioteca por mais tempo.
-homePageLegalLink = Legal
+homePageSaveShareDescription = Quando você captura uma tela, Firefox armazena suas capturas na sua biblioteca on-line do Screenshots e copia o link para sua área de transferência. Nós armazenamos suas capturas automaticamente por duas semanas, mas você pode excluir capturas a qualquer momento ou mudar a data de validade para mantê-las em sua biblioteca por mais tempo.
+homePageLegalLink = Jurídico
 homePagePrivacyLink = Privacidade
 homePageTermsLink = Termos
 homePageCookiesLink = Cookies
@@ -63,7 +65,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Confirmar exclusão da conta
+leavePageRemoveAllData = Remover todos os dados
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Você deve ter o Firefox Screenshots instalado para remover sua conta
 leavePageErrorGeneric = Ocorreu um erro
@@ -86,7 +88,7 @@ notFoundPageDescription = Página não encontrada.
 // This is the HTML title tag of the page
 shotPageTitle = Captura de tela: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Erro ao salvar tempo limite
-shotPageAlertErrorDeletingShot = Erro ao deletar captura
+shotPageAlertErrorDeletingShot = Erro ao excluir captura
 shotPageAlertErrorUpdatingTitle = Erro ao salvar título
 shotPageConfirmDelete = Tem certeza que deseja excluir essa captura permanentemente?
 shotPageShareButton
@@ -102,12 +104,12 @@ shotPageSharePinterest
 shotPageShareEmail
     .title = Compartilhar link via e-mail
 shotPageShareLink = Obter um link para compartilhar essa captura:
-shotPagePrivacyMessage = Qualquer um com o link pode ver essa captura.
+shotPagePrivacyMessage = Qualquer pessoa com o link pode ver essa captura.
 shotPageCopyImageText
     .label = Copiar texto da imagem
 shotPageConfirmDeletion = Tem certeza que deseja excluir essa captura permanentemente?
 // Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Se você não fizer nada, esta captura será excluída { $timediff }.
+shotPageExpirationMessage = Se você não fizer nada, esta captura será excluída em { $timediff }.
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = restaurar até { $date }
@@ -119,34 +121,34 @@ shotPageDeleteButton
 shotPageAbuseButton
     .title = Reportar essa captura por abuso, spam ou outros problemas
 shotPageDownloadShot
-    .title = Download
-shotPageDownload = Download
+    .title = Baixar
+shotPageDownload = Baixar
 shotPageScreenshotsDescription = Capturas de tela de forma simples. Capture, salve e compartilhe telas sem sair do Firefox.
 shotPageUpsellFirefox = Baixe o Firefox agora
-shotPageDMCAMessage = Essas capturas não estão mais disponíveis devido reclamação de propriedade intelectual de terceiros.
+shotPageDMCAMessage = Essa captura não está mais disponível devido reclamação de Direito Autoral de terceiros.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Por favor, envie um e-mail para { $dmca } para obter mais informações.
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Se suas capturas estiverem associadas a múltiplas reclamações, poderemos revogar seu acesso ao Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
-shotPageDMCAIncludeLink = Por favor inclua a URL dessa captura no seu e-mail: { $url }
+shotPageDMCAIncludeLink = Por favor, inclua a URL dessa captura no seu e-mail: { $url }
 shotPageKeepFor = Quanto tempo essa captura deve ficar armazenada?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Selecionar tempo
 shotPageKeepIndefinitely = Indefinidamente
 shotPageKeepTenMinutes = 10 minutos
-shotPageKeepOneHour = 1 Hora
+shotPageKeepOneHour = 1 hora
 shotPageKeepOneDay = 1 dia
-shotPageKeepOneWeek = 1 Semana
+shotPageKeepOneWeek = 1 semana
 shotPageKeepTwoWeeks = 2 semanas
 shotPageKeepOneMonth = 1 mês
 shotPageSaveExpiration = salvar
 shotPageCancelExpiration = cancelar
 shotPageDoesNotExpire = não expira
 // Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = expira { $timediff }
+shotPageExpiresIn = expira em { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = expirou { $timediff }
+shotPageExpired = expirou há { $timediff }
 timeDiffJustNow = agora
 timeDiffMinutesAgo = { $num ->
         [one] 1 minuto atrás
@@ -189,7 +191,7 @@ shotIndexPageSearchPlaceholder
     .placeholder = Procurar minhas capturas
 shotIndexPageSearchButton
     .title = Pesquisar
-shotIndexPageNoShotsMessage = Capturas não salvas.
+shotIndexPageNoShotsMessage = Não há capturas salvas.
 shotIndexPageNoShotsInvitation = Vai lá, crie algum.
 shotIndexPageLookingForShots = Procurando por suas capturas...
 shotIndexPageNoSearchResultsIntro = Hmm
@@ -211,7 +213,7 @@ metricsPageTotalsQueryDevices = Total de dispositivos registrados
 metricsPageTotalsQueryActiveShots = Capturas ativas
 metricsPageTotalsQueryExpiredShots = Expirou (mas é recuperável)
 metricsPageTotalsQueryExpiredDeletedShots = Expirou (e deletou)
-metricsPageShotsQueryTitle = Capturas por Dia
+metricsPageShotsQueryTitle = Capturas por dia
 metricsPageShotsQueryDescription = Número de capturas criados por dia (nos últimos 30 dias)
 metricsPageShotsQueryCount = Número de capturas
 metricsPageShotsQueryDay = Dia
@@ -236,7 +238,7 @@ metricsPageVersionQueryTitle = Versão da extensão
 metricsPageVersionQueryDescription = A versão da extensão usado durante o login, nos últimos 14 dias
 metricsPageVersionQueryUsers = Número de usuários autenticados
 metricsPageVersionQueryVersion = Versão da Extensão
-metricsPageVersionQueryLastSeen = 
+metricsPageVersionQueryLastSeen = Dia
 metricsPageHeader = Métricas
 // Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Gerado em: { $created }

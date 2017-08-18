@@ -18,6 +18,7 @@ gScreenshotsDescription = Ta enkelt skärmbilder. Fånga, spara och dela skärmb
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Villkor
 footerLinkPrivacy = Sekretesspolicy
 footerLinkDMCA = Rapportera IP-överträdelse
 footerLinkDiscourse = Ge återkoppling
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Ta bort alla data
 // creatingPageTitleDefault.
 creatingPageTitle = Skapar { $title }
 creatingPageTitleDefault = sida
+creatingPageWaitMessage = Sparar din skärmbild...
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = Kakor
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Bekräfta kontoborttagning
+leavePageRemoveAllData = Ta bort all data
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Du måste ha Firefox Screenshots installerat om du vill radera ditt konto
 leavePageErrorGeneric = Ett fel uppstod
@@ -83,6 +85,8 @@ notFoundPageDescription = Sidan hittades inte.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Skärmbild: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Fel vid sparande av förfallodatum
 shotPageAlertErrorDeletingShot = Fel vid borttagning av bild
 shotPageAlertErrorUpdatingTitle = Fel vid sparande av titel

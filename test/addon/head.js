@@ -15,7 +15,7 @@ function promiseScreenshotsEnabled() {
   }
   info("Screenshots is not enabled");
   return new Promise((resolve, reject) => {
-    if (!AppConstants.MOZ_PHOTON_THEME) {
+    if (AppConstants.hasOwnProperty("MOZ_PHOTON_THEME") && !AppConstants.MOZ_PHOTON_THEME) {
       let listener = {
         onWidgetAfterCreation(widgetid) {
           if (widgetid == "screenshots_mozilla_org-browser-action") {
@@ -47,7 +47,7 @@ function promiseScreenshotsDisabled() {
     return Promise.resolve(true);
   }
   return new Promise((resolve, reject) => {
-    if (!AppConstants.MOZ_PHOTON_THEME) {
+    if (AppConstants.hasOwnProperty("MOZ_PHOTON_THEME") && !AppConstants.MOZ_PHOTON_THEME) {
       let listener = {
         onWidgetDestroyed(widgetid) {
           if (widgetid == "screenshots_mozilla_org-browser-action") {

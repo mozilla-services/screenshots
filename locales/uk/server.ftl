@@ -18,6 +18,7 @@ gScreenshotsDescription = Знімки стали простішими. Робі
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Умови
 footerLinkPrivacy = Повідомлення про приватність
 footerLinkDMCA = Повідомити про порушення прав
 footerLinkDiscourse = Залишити відгук
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Видалити всі дані
 // creatingPageTitleDefault.
 creatingPageTitle = Створення { $title }
 creatingPageTitleDefault = сторінка
+creatingPageWaitMessage = Зберігаємо ваш знімок…
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = Куки
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Підтвердити видалення облікового запису
+leavePageRemoveAllData = Видалити усі дані
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Щоб видалити обліковий запис, у вас повинен бути встановлений Firefox Screenshots
 leavePageErrorGeneric = Сталася помилка

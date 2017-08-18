@@ -18,6 +18,7 @@ gScreenshotsDescription = Ekrano nuotraukos paprastai. Darykite, saugokite ir da
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Sąlygos
 footerLinkPrivacy = Privatumo nuostatai
 footerLinkDMCA = Pranešti apie intelektinės nuosavybės pažeidimą
 footerLinkDiscourse = Pateikti atsiliepimą
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Pašalinti visus duomenis
 // creatingPageTitleDefault.
 creatingPageTitle = Kuriamas { $title }
 creatingPageTitleDefault = tinklalapis
+creatingPageWaitMessage = Jūsų kadras įrašomas…
 
 
 [[ Home page ]]
@@ -47,10 +49,10 @@ homePageHowScreenshotsWorks = Kaip veikia „Firefox“ ekrano nuotraukos
 homePageGetStartedTitle = Pradėkite
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Raskite naująją „Firefox“ ekrano nuotraukų piktogramą savo įrankinėje. Pasirinkite ją ir ekrano nuotraukų meniu pasirodys virš jūsų naršyklės lango.
-homePageCaptureRegion = Fotografuoti sritį
+homePageCaptureRegion = Fotografuokite sritį
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Spustelėkite ir tempkite norėdami pažymėti norimą nufotografuoti sritį. Arba tiesiog užveskite pelę ir spustelėkite – bus pažymėta toji sritis. Patinka, ką matote? Pasirinkite „Įrašyti“, norėdami pasiekti savo nuotrauką internete, arba rodyklę žemyn, norėdami atsisiųsti ją į savo kompiuterį.
-homePageCapturePage = Fotografuoti tinklalapį
+homePageCapturePage = Fotografuokite tinklalapį
 homePageCapturePageDescription = Naudokitės mygtukais viršuje dešinėje, norėdami nufotografuoti visą tinklalapį. Mygtukas „Įrašyti matomą“ nufotografuos sritį, kurią matote neslinkdami pelės, o „Įrašyti visą tinklalapį“ nufotografuos viską, kas jame yra.
 homePageSaveShare = Įrašykite ir dalinkitės
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -63,7 +65,7 @@ homePageCookiesLink = Slapukai
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Patvirtinkite paskyros pašalinimą
+leavePageRemoveAllData = Pašalinti visus duomenis
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Privalote turėti įdiegtas „Firefox“ ekrano nuotraukas norėdami pašalinti savo paskyrą
 leavePageErrorGeneric = Įvyko klaida

@@ -1,3 +1,131 @@
+## Version 16.0.0
+
+This is a Firefox export release. Note all changes included since the last (version 10) release:
+
+* Fix tests failing when run against photon-y Firefox without MOZ_PHOTON_THEME defined [beec56b](https://github.com/mozilla-services/screenshots/commit/beec56b)
+
+### Server changes in 16.0.0
+
+* empty docTitle value in JSON data [f9871b7](https://github.com/mozilla-services/screenshots/commit/f9871b7)
+* remove fade in from masonry [0d953ee](https://github.com/mozilla-services/screenshots/commit/0d953ee)
+
+### From 15.0.0
+
+* Deal with lack of MOZ_PHOTON_THEME on 57+ [3e9eba3](https://github.com/mozilla-services/screenshots/commit/3e9eba3)
+* Make run-addon work with new legacy pref. Fixes [#3333](https://github.com/mozilla-services/screenshots/issues/3333) [b9a776b](https://github.com/mozilla-services/screenshots/commit/b9a776b)
+* Immediately exit when Firefox is exiting. Fixes [#3323](https://github.com/mozilla-services/screenshots/issues/3323) [916c353](https://github.com/mozilla-services/screenshots/commit/916c353)
+* Fix tests, enable legacy extensions via pref during tests ([#3324](https://github.com/mozilla-services/screenshots/issues/3324)) [c60fd37](https://github.com/mozilla-services/screenshots/commit/c60fd37)
+* Make tests resilient to a browserAction or pageAction ([#3317](https://github.com/mozilla-services/screenshots/issues/3317)) Fixes [#3306](https://github.com/mozilla-services/screenshots/issues/3306) [3c15014](https://github.com/mozilla-services/screenshots/commit/3c15014)
+
+### From 13.0.0
+
+* Replace the WebExtension browser action with a Photon page action. ([#3239](https://github.com/mozilla-services/screenshots/issues/3239))
+  * Replace the WebExtension browser action with a Photon page action.
+  This removes the browser action and adds a Photon page action,
+  pursuant to https://bugzilla.mozilla.org/show_bug.cgi?id=1366041.
+  Right now Photon page actions are unrelated to WebExtension page
+  actions unfortunately, which means that this patch has to do most
+  of its work in bootstrap.js.  The WebExtension part passes
+  messages to bootstrap.js to handle clicks and update the action's
+  title and icon as necessary.
+  * Test fix: Replace the WebExtension browser action with a Photon page action.
+  Fix the test for the previous commit.
+  * Update SHOOTER_BUTTON_ID in test.js.
+  * Use the Photon page action when supported, the WebExtension browser action when not.
+  Extend the Photon-related port used between bootstrap.js and the
+  WebExtension so that bootstrap.js can tell the WebExtension
+  whether it's OK to use the Photon page action.  The WebExtension
+  should not attempt to use the browser action when Photon is
+  enabled because bootstrap.js will have removed the browser
+  action's navbar button.
+  Modify the test so that it checks the Photon page action when
+  Photon is enabled and the browser action when it's not.
+  * Fix the expected button label in test.js for the Photon page action.
+  * Maybe fix PageActions eslint errors. [4396250](https://github.com/mozilla-services/screenshots/commit/4396250)
+* remove high DPI shot capture for full page [fde181d](https://github.com/mozilla-services/screenshots/commit/fde181d)
+* Sets background highlight width to 100% [aee88eb](https://github.com/mozilla-services/screenshots/commit/aee88eb)
+
+### From 12.0.0
+
+* Remove duplicate drawWindow call for shot preview [2a5dd27](https://github.com/mozilla-services/screenshots/commit/2a5dd27)
+* Update shot preview save icon [735b3f9](https://github.com/mozilla-services/screenshots/commit/735b3f9)
+
+### From 11.0.0
+
+Note these are part of the version/tag, but have not been uploaded to the Firefox tree.
+
+* Add reason to webExtension.startup and shutdown Will be useful when https://bugzilla.mozilla.org/show_bug.cgi?id=1372750 and
+  https://bugzilla.mozilla.org/show_bug.cgi?id=1373749 are fixed [d97d4a7](https://github.com/mozilla-services/screenshots/commit/d97d4a7)
+* Protect against an empty IPC response ([#3037](https://github.com/mozilla-services/screenshots/issues/3037))This happened in some weird corner case while debugging [14df39d](https://github.com/mozilla-services/screenshots/commit/14df39d)
+* Guard access of this.save when un-disabling the save button ([#3030](https://github.com/mozilla-services/screenshots/issues/3030)). This can happen after the worker has been torn down, and this.save isn't defined [cf6e72a](https://github.com/mozilla-services/screenshots/commit/cf6e72a)
+* Set dimensions for icon and add to startup ([#3136](https://github.com/mozilla-services/screenshots/issues/3136)) [9959ede](https://github.com/mozilla-services/screenshots/commit/9959ede)
+* Disable Screenshots in private windows. Fixes [#3120](https://github.com/mozilla-services/screenshots/issues/3120) [aefc639](https://github.com/mozilla-services/screenshots/commit/aefc639)
+* about:home is not treated like about:newtab ([#3088](https://github.com/mozilla-services/screenshots/issues/3088)). Fixes [#3029](https://github.com/mozilla-services/screenshots/issues/3029) [4633694](https://github.com/mozilla-services/screenshots/commit/4633694)
+* preview shot before saving full page/visibleremove addToMyShots [c87db61](https://github.com/mozilla-services/screenshots/commit/c87db61)
+
+## Version 15.0.0
+
+Note: this is a server-only release
+
+* Upgrade minor pg version [57b4bd0](https://github.com/mozilla-services/screenshots/commit/57b4bd0)
+* Properly escape JSON separators [1c53af5](https://github.com/mozilla-services/screenshots/commit/1c53af5)
+* Add an index on data.deviceid to speed up My Shots ([#3328](https://github.com/mozilla-services/screenshots/issues/3328))Also updates schema.sql with version 19 (because I forgot ./bin/dumpschema --record for that version) [219392c](https://github.com/mozilla-services/screenshots/commit/219392c)
+* Correct and spritify icon buttons [4f08f2f](https://github.com/mozilla-services/screenshots/commit/4f08f2f)
+
+## Version 14.0.0
+
+Note: this is a server-only release
+
+* Add ZAP Baseline scan to test section of circleci [cc88694](https://github.com/mozilla-services/screenshots/commit/cc88694)
+* Clean up homepage [bd59043](https://github.com/mozilla-services/screenshots/commit/bd59043)
+* Correctly position share panel on non-Firefox browsers. Fixes [#2873](https://github.com/mozilla-services/screenshots/issues/2873) [28e6e6c](https://github.com/mozilla-services/screenshots/commit/28e6e6c)
+* "Remove Page Shot data" page is wrongly titled as "Confirm account deletion"  ([#3237](https://github.com/mozilla-services/screenshots/issues/3237)). Fixes [#2140](https://github.com/mozilla-services/screenshots/issues/2140) [4c311fd](https://github.com/mozilla-services/screenshots/commit/4c311fd)
+* Minor color polish [5c228fd](https://github.com/mozilla-services/screenshots/commit/5c228fd)
+* Make load_test_exercise script easier to use to fill the database. Plus some instructions/shortcuts
+* Fix #[#3286](https://github.com/mozilla-services/screenshots/issues/3286), send My Shots without actual shot list.  The shot list is immediately loaded in a separate request [a642ddc](https://github.com/mozilla-services/screenshots/commit/a642ddc)
+* Replace svg loader with pure css ([#3285](https://github.com/mozilla-services/screenshots/issues/3285)) [c8a0e39](https://github.com/mozilla-services/screenshots/commit/c8a0e39)
+* Header/footer link color change [fd505b5](https://github.com/mozilla-services/screenshots/commit/fd505b5)
+* Use standard Firefox product font-family throughout. Based on [Photon design style](http://design.firefox.com/photon/visual/typography.html#typefaces). Except we are not using Fira Sans anywhere, relying instead on system fonts. Fixes [#3266](https://github.com/mozilla-services/screenshots/issues/3266) [7720f65](https://github.com/mozilla-services/screenshots/commit/7720f65)
+* Update buttons in onboarding SVGs to look closer to the real buttons [feef990](https://github.com/mozilla-services/screenshots/commit/feef990)
+* Remove the full page and save visible buttons from onboarding [1887c38](https://github.com/mozilla-services/screenshots/commit/1887c38)
+
+## Version 13.1.0
+
+Note: server only, 13.0.0 didn't make it past stage.
+
+* Change footer text from Mozilla to Terms. Fixes [#3284](https://github.com/mozilla-services/screenshots/issues/3284) [336563d](https://github.com/mozilla-services/screenshots/commit/336563d)
+* Fix bad delete display Because of a lack of a key attribute, the deleted state was being assigned to cards on position and not shot id. Fixes [#3267](https://github.com/mozilla-services/screenshots/issues/3267) [6777a3a](https://github.com/mozilla-services/screenshots/commit/6777a3a)
+
+## Version 13.0.0 release
+
+This is a server-only release
+
+### Server changes
+
+* Make a schema change to prepare for [#3275](https://github.com/mozilla-services/screenshots/issues/3275) ([#3276](https://github.com/mozilla-services/screenshots/issues/3276)) [2e6a659](https://github.com/mozilla-services/screenshots/commit/2e6a659)
+* Insert a space between sentences in Get Firefox CTA ([#3272](https://github.com/mozilla-services/screenshots/issues/3272)). Fixes [#3271](https://github.com/mozilla-services/screenshots/issues/3271) [2be64bb](https://github.com/mozilla-services/screenshots/commit/2be64bb)
+* fix S3 image management Do not show a shot page when the shot has been deleted Delete images and image files before marking the shot as deleted Add a series of server tests for how S3 is managed. Fixes [#3009](https://github.com/mozilla-services/screenshots/issues/3009) [d2ecaba](https://github.com/mozilla-services/screenshots/commit/d2ecaba)
+* Expand the server testing library. Parse more things from the shot page Add set_expiration and delete_shot methods [54f456f](https://github.com/mozilla-services/screenshots/commit/54f456f)
+* Give a proper error response when CSRF is wrong [229e7c8](https://github.com/mozilla-services/screenshots/commit/229e7c8)
+* Make the spinner the clip image's background. Allows the spinner to be shown before the image starts to load, with no JS required. [a6abc3e](https://github.com/mozilla-services/screenshots/commit/a6abc3e)
+* Load the image directly; makes images viewable without JS.
+  * Works around lack of CSP nonce support in IE and Edge < 40 (). Fixes [#2935](https://github.com/mozilla-services/screenshots/issues/2935) Fixes [#2866](https://github.com/mozilla-services/screenshots/issues/2866) [48f52ed](https://github.com/mozilla-services/screenshots/commit/48f52ed)
+* Make homepage footer more consistent [faecb5a](https://github.com/mozilla-services/screenshots/commit/faecb5a)
+* Remove extra space under firefox promo bar [bbe32a2](https://github.com/mozilla-services/screenshots/commit/bbe32a2)
+* Give proper response code for request entity too large ([#3248](https://github.com/mozilla-services/screenshots/issues/3248))
+* give 400 Bad Request when id is invalid. Fixes [#3204](https://github.com/mozilla-services/screenshots/issues/3204) Fixes [#3204](https://github.com/mozilla-services/screenshots/issues/3204) Fixes [#3204](https://github.com/mozilla-services/screenshots/issues/3204) [4d53220](https://github.com/mozilla-services/screenshots/commit/4d53220)
+* Don't create S3 bucket on server startup ([#3250](https://github.com/mozilla-services/screenshots/issues/3250)). Fixes [#3111](https://github.com/mozilla-services/screenshots/issues/3111) [e9b1458](https://github.com/mozilla-services/screenshots/commit/e9b1458)
+* use 'Screenshot: title' for the <title> of shot pages. Fixes [#2410](https://github.com/mozilla-services/screenshots/issues/2410) [ed2b2c2](https://github.com/mozilla-services/screenshots/commit/ed2b2c2)
+* Animate deleting shots on my shots ([#3141](https://github.com/mozilla-services/screenshots/issues/3141)) [3fb655b](https://github.com/mozilla-services/screenshots/commit/3fb655b)
+* Remove server /timing route [#2428](https://github.com/mozilla-services/screenshots/issues/2428) [37f43e6](https://github.com/mozilla-services/screenshots/commit/37f43e6)
+* Add l10n.toml file for screenshots, with revised list of languages. [5213f22](https://github.com/mozilla-services/screenshots/commit/5213f22)
+* Clean up empty localization files.Pontoon used to commit localization files with just comments, even if there wasn't a single translated string. That's now fixed on the pontoon side, but the files are still here. As soon as localizers work on screenshots, the files will be created from scratch. [3664122](https://github.com/mozilla-services/screenshots/commit/3664122)
+* [#3223](https://github.com/mozilla-services/screenshots/issues/3223) Fixes homepage Mozilla footer logo is 404 [#3223](https://github.com/mozilla-services/screenshots/issues/3223) [64d2308](https://github.com/mozilla-services/screenshots/commit/64d2308)
+* Start [#3207](https://github.com/mozilla-services/screenshots/issues/3207), add a size column to the images table ([#3236](https://github.com/mozilla-services/screenshots/issues/3236))This does not make use of the column, but puts it in place for future use. Also update schema.sql given a backlog of changes [07ba77c](https://github.com/mozilla-services/screenshots/commit/07ba77c)
+* Update npm packages ([#3235](https://github.com/mozilla-services/screenshots/issues/3235)). Removed npm-shrinkwrap, as it causes all kinds of install nuisances
+* Fix lots of lint issues, exposed by updated lint packages. Fixes [#3221](https://github.com/mozilla-services/screenshots/issues/3221) Fixes [#3221](https://github.com/mozilla-services/screenshots/issues/3221) [b2258d1](https://github.com/mozilla-services/screenshots/commit/b2258d1)
+* Use docker build --pull, to always fetch latest image [cce97ba](https://github.com/mozilla-services/screenshots/commit/cce97ba)
+
 ## Version 12.0.0
 
 This is a server-only release
@@ -11,11 +139,6 @@ This is a server-only release
   * address review feedback [26daf9f](https://github.com/mozilla-services/screenshots/commit/26daf9f)
 * Add event for non-owner click on original url [30c113e](https://github.com/mozilla-services/screenshots/commit/30c113e)
 * Handle redirects in calls to /proxy ([#3195](https://github.com/mozilla-services/screenshots/issues/3195))Probably. Fixes [#2648](https://github.com/mozilla-services/screenshots/issues/2648) [61d686f](https://github.com/mozilla-services/screenshots/commit/61d686f)
-
-### Add-on
-
-* Remove duplicate drawWindow call for shot preview [2a5dd27](https://github.com/mozilla-services/screenshots/commit/2a5dd27)
-* Update shot preview save icon [735b3f9](https://github.com/mozilla-services/screenshots/commit/735b3f9)
 
 ## Version 11.0.0
 
@@ -44,22 +167,26 @@ This is a server-only release.  Add-on changes are still deferred to a later Fir
 * update to photon loader [8b6157b](https://github.com/mozilla-services/screenshots/commit/8b6157b)
 * Tweak flex syntax so shot pages work on IE 11. Fixes [#2516](https://github.com/mozilla-services/screenshots/issues/2516) [33d2ae5](https://github.com/mozilla-services/screenshots/commit/33d2ae5)
 
-### Add-on changes
+## Version 10.12.0
 
-Note these are part of the version/tag, but have not been uploaded to the Firefox tree.
+* Immediately exit when Firefox is exiting ([#3323](https://github.com/mozilla-services/screenshots/pull/3323))
 
-* Add reason to webExtension.startup and shutdown Will be useful when https://bugzilla.mozilla.org/show_bug.cgi?id=1372750 and
-  https://bugzilla.mozilla.org/show_bug.cgi?id=1373749 are fixed [d97d4a7](https://github.com/mozilla-services/screenshots/commit/d97d4a7)
-* Protect against an empty IPC response ([#3037](https://github.com/mozilla-services/screenshots/issues/3037))This happened in some weird corner case while debugging [14df39d](https://github.com/mozilla-services/screenshots/commit/14df39d)
-* Guard access of this.save when un-disabling the save button ([#3030](https://github.com/mozilla-services/screenshots/issues/3030)). This can happen after the worker has been torn down, and this.save isn't defined [cf6e72a](https://github.com/mozilla-services/screenshots/commit/cf6e72a)
-* Set dimensions for icon and add to startup ([#3136](https://github.com/mozilla-services/screenshots/issues/3136)) [9959ede](https://github.com/mozilla-services/screenshots/commit/9959ede)
-* Disable Screenshots in private windows. Fixes [#3120](https://github.com/mozilla-services/screenshots/issues/3120) [aefc639](https://github.com/mozilla-services/screenshots/commit/aefc639)
-* about:home is not treated like about:newtab ([#3088](https://github.com/mozilla-services/screenshots/issues/3088)). Fixes [#3029](https://github.com/mozilla-services/screenshots/issues/3029) [4633694](https://github.com/mozilla-services/screenshots/commit/4633694)
-* preview shot before saving full page/visibleremove addToMyShots [c87db61](https://github.com/mozilla-services/screenshots/commit/c87db61)
+## Version 10.11.0
 
-## Version 10.8.0
+* Import locales from master ([#3293](https://github.com/mozilla-services/screenshots/pull/3293))
+
+## Version 10.10.0
+
+* Synchronize startup code more carefully ([#3257](https://github.com/mozilla-services/screenshots/issues/3257))
+
+## Version 10.9.0
 
 Note: the 10.x.0 series is exported to Firefox 55.
+
+* Remove Save Full Page and Save Visible [#3208](https://github.com/mozilla-services/screenshots/pull/3208). Avoids [#3182](https://github.com/mozilla-services/screenshots/issues/3182)
+  * **Note:** this has been reverted in later versions
+
+## Version 10.8.0
 
 * Update privacy notice URL ([#3136](https://github.com/mozilla-services/screenshots/issues/3135))
 * Suppress resize errors and correctly unload resize listener ([#3153](https://github.com/mozilla-services/screenshots/issues/3135))

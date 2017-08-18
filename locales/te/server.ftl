@@ -19,6 +19,7 @@ gNoShots
 footerLinkMozilla = Mozilla
 footerLinkPrivacy = గోప్యతా విధానం
 footerLinkDiscourse = అభిప్రాయం తెలియజేయండి
+footerLinkRemoveAllData = మొత్తం డేటాను తీసివేయండి
 
 
 [[ Creating page ]]
@@ -35,7 +36,7 @@ creatingPageTitleDefault = పేజీ
 homePageButtonMyShots = నా తెరపట్లకు వెళ్ళండి
 homePageTeaser = త్వరలో వస్తుంది...
 homePageDownloadFirefoxTitle = Firefox
-homePageDownloadFirefoxSubTitle = ఉచిత దిగుమతులు
+homePageDownloadFirefoxSubTitle = ఉచిత దింపుకోలు
 homePageGetStarted = మొదలుపెట్టండి
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots ఎలాపని చేస్తాయి
@@ -43,6 +44,8 @@ homePageGetStartedTitle = మొదలుపెట్టండి
 homePageCaptureRegion = ఒక ప్రాంతాన్ని క్యాప్చర్ చేయండి
 homePageCapturePage = ఒక పేజీని క్యాప్చర్ చేయండి
 homePageSaveShare = భద్రపరుచు మరియు పంచుకో
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = మీరు ఒక తెరపట్టుని తీసినప్పుడు,Firefox మీ ఆన్లైన్ తెరపట్ల లైబ్రరీకి మీ తెరపట్లను పోస్ట్ చేస్తుంది మరియు మీ క్లిప్బోర్డ్కు లంకెను నాకలు చేస్తుంది. మేము రెండు వారాలపాటు మీ తెరపట్లను స్వయంచాలకంగా నిల్వ చేస్తాము, కానీ మీరు ఎప్పుడైనా తెరపట్టుని తొలగించవచ్చు లేదా మీ లైబ్రరీలో ఎక్కువ కలం ఉంచడానికి గడువు తేదీని మార్చవచ్చు.
 homePageLegalLink = చట్టపరమైన
 homePagePrivacyLink = గోప్యం
 homePageTermsLink = నియమాలు
@@ -51,7 +54,8 @@ homePageCookiesLink = కుకీలు
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = ఖాతా తొలగింపును నిర్ధారించండి
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = మీ ఖాతాను తొలగించడానికి Firefox Screenshots స్థాపించి ఉండాలి
 leavePageErrorGeneric = ఒక దోషం ఏర్పడింది.
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = ఇది మీ Firefox స్క్రీన్షాట్ల డేటాను శాశ్వతంగా తుడిచి వేస్తుంది.
@@ -105,10 +109,15 @@ shotPageDeleteButton
 shotPageAbuseButton
     .title = దుర్వినియోగం, స్పామ్ లేదా ఇతర సమస్యలకు ఈ తెరపట్టును నివేదించండి
 shotPageDownloadShot
-    .title = దిగుమతి
-shotPageDownload = దిగుమతి
+    .title = దింపుకోండి
+shotPageDownload = దింపుకోండి
 shotPageScreenshotsDescription = తెరపట్లు సులభతరమైనాయి. Firefoxను వదలకుండా తెరపట్లను తీసుకోండి,  భద్రపరచండి మరియు పంచుకోండి.
 shotPageUpsellFirefox = ఇప్పుడు Firefoxను పొందండి
+shotPageDMCAMessage = మూడవ పార్టీ మేధో సంపత్తి హక్కు కారణంగా ఈ తెరపట్టు అందుబాటులో లేదు.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = దయచేసి మరింత సమాచారం అభ్యర్థించడానికి { $dmca }కి ఇమెయిల్ చేయండి.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = దయచేసి ఈ తెరపట్టు యొక్క URLను మీ ఇమెయిల్లో చేర్చండి: { $url }
 shotPageKeepFor = ఎంతకాలం ఈ తెరపట్టును నిలబెట్టుకోవాలి?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = సమయాన్ని ఎంచుకోండి
@@ -159,6 +168,8 @@ timeDiffFutureDays = { $num ->
 // { $status } is a placeholder for an HTTP status code, like '500'.
 // { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = షాట్ను తొలగించడంలో లోపం: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = నా తెరపట్ల: { $searchTerm } కోసం శోధన 
 shotIndexPageSearchPlaceholder
     .placeholder = నా తెరపట్లను వెతకండి
 shotIndexPageSearchButton
@@ -167,6 +178,7 @@ shotIndexPageNoShotsMessage = భద్రపరచిన తెరపట్ల�
 shotIndexPageNoShotsInvitation = కొనసాగి, కొన్నింటిని సృష్టించండి.
 shotIndexPageLookingForShots = తెరపట్ల కొరకు చూస్తున్నాం…
 shotIndexPageNoSearchResultsIntro = హ్మ్మ్
+shotIndexPageNoSearchResults = మీ శోధనకు సరిపోలే ఏ తెరపట్టును కనుగొనలేకపోయాము.
 shotIndexPageClearSearchButton
     .title = స్పష్టమైన శోధన
 shotIndexPageConfirmShotDelete = ఈ తెరపట్టును తొలగించాలా?
@@ -175,6 +187,8 @@ shotIndexPageConfirmShotDelete = ఈ తెరపట్టును తొలగ
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Firefox Screenshots మెట్రిక్స్
 metricsPageTotalsQueryTitle = మొత్తాలు
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = తెరపట్ల యొక్క అవలోకనం
@@ -182,6 +196,8 @@ metricsPageTotalsQueryDevices = నమోదు చేయబడిన మొత�
 metricsPageTotalsQueryActiveShots = సక్రియ తెరపట్లు
 metricsPageTotalsQueryExpiredShots = గడువు ముగిసింది (కానీ పునరుద్ధరించవచ్చు)
 metricsPageTotalsQueryExpiredDeletedShots = గడువు ముగిసింది (మరియు తొలగించబడింది)
+metricsPageShotsQueryTitle = రోజువారి తెరపట్లు
+metricsPageShotsQueryDescription = ప్రతి రోజు సృష్టించిన తెరపట్ల సంఖ్య (గత 30 రోజులుగా)
 metricsPageShotsQueryCount = తెరపట్ల సంఖ్య
 metricsPageShotsQueryDay = రోజు
 metricsPageUsersQueryTitle = రొజు వారి వాడుకరులు

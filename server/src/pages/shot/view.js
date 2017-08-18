@@ -6,6 +6,7 @@ const sendEvent = require("../../browser-send-event.js");
 const { ShareButton } = require("../../share-buttons");
 const { TimeDiff } = require("./time-diff");
 const reactruntime = require("../../reactruntime");
+const { Editor } = require("./editor");
 
 class Clip extends React.Component {
   constructor(props) {
@@ -35,8 +36,7 @@ class Clip extends React.Component {
       console.warn("Somehow there's a shot without an image");
       return null;
     }
-    let backgroundStyle = "transparent url('" + this.props.staticLink("/static/img/spinner.svg") + "') center no-repeat";
-    let node = <img id="clipImage" style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%", background: backgroundStyle }} ref={clipImage => this.clipImage = clipImage} src={ clip.image.url } alt={ clip.image.text } />;
+    let node = <img id="clipImage" style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%" }} ref={clipImage => this.clipImage = clipImage} src={ clip.image.url } alt={ clip.image.text } />;
     return <div ref={clipContainer => this.clipContainer = clipContainer} className="clip-container">
       { this.copyTextContextMenu() }
       <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) } contextMenu="clip-image-context">
@@ -158,7 +158,8 @@ class Body extends React.Component {
     this.state = {
       hidden: false,
       closeBanner: false,
-      isChangingExpire: false
+      isChangingExpire: false,
+      imageEditing: false
     };
   }
 
@@ -189,7 +190,19 @@ class Body extends React.Component {
     if (this.props.expireTime !== null && Date.now() > this.props.expireTime) {
       return this.renderExpired();
     }
+    if (this.state.imageEditing) {
+     return this.renderEditor();
+    }
     return this.renderBody();
+  }
+
+  renderEditor() {
+    let shot = this.props.shot;
+    let clipNames = shot.clipNames();
+    let clip = shot.getClip(clipNames[0]);
+    return <reactruntime.BodyTemplate {...this.props}>
+        <Editor clip={clip} onCancelEdit={this.onCancelEdit.bind(this)} onClickSave={this.onClickSave.bind(this)}></Editor>
+    </reactruntime.BodyTemplate>;
   }
 
   renderBlock() {
@@ -315,14 +328,17 @@ class Body extends React.Component {
     }
 
     let trashOrFlagButton;
+    let editButton;
     if (this.props.isOwner) {
       trashOrFlagButton = <Localized id="shotPageDeleteButton">
         <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }></button>
       </Localized>;
+      editButton = <button className="button transparent edit" title="Edit this image" onClick={ this.onClickEdit.bind(this) }></button>
     } else {
       trashOrFlagButton = <Localized id="shotPageAbuseButton">
         <button className="button transparent flag" title="Report this shot for abuse, spam, or other problems" onClick={ this.onClickFlag.bind(this) }></button>
       </Localized>;
+      editButton = null;
     }
 
     let myShotsHref = "/shots";
@@ -340,10 +356,11 @@ class Body extends React.Component {
       myShotsHref = "/";
     }
 
+    let clip;
     let clipUrl = null;
     if (clipNames.length) {
       let clipId = clipNames[0];
-      let clip = this.props.shot.getClip(clipId);
+      clip = this.props.shot.getClip(clipId);
       clipUrl = clip.image.url;
     }
 
@@ -379,6 +396,7 @@ class Body extends React.Component {
             </div>
           </div>
           <div className="shot-alt-actions">
+            { this.props.enableAnnotations ? editButton : null }
             { trashOrFlagButton }
             <ShareButton abTests={this.props.abTests} clipUrl={clipUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} renderExtensionNotification={renderExtensionNotification} isExtInstalled={this.props.isExtInstalled} />
             <Localized id="shotPageDownloadShot">
@@ -405,11 +423,26 @@ class Body extends React.Component {
         </Localized>
         &nbsp;
         <Localized id="shotPageUpsellFirefox">
-          <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a>
+          <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition&utm-content=from-shot" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a>
         </Localized>
       </div>
       <a className="close" onClick={ this.doCloseBanner.bind(this) }></a>
     </div>;
+  }
+
+  onClickEdit() {
+    if (!this.state.imageEditing) {
+      this.setState({imageEditing: true});
+      sendEvent("start-annotations", "navbar");
+    }
+  }
+
+  onClickSave(dataUrl) {
+    this.props.controller.saveEdit(this.props.shot, dataUrl);
+  }
+
+  onCancelEdit(imageEditing) {
+    this.setState({imageEditing});
   }
 
   clickedInstallExtension() {
@@ -417,7 +450,7 @@ class Body extends React.Component {
   }
 
   clickedInstallFirefox() {
-    sendEvent("click-install-firefox", {useBeacon: true});
+    sendEvent("click-install-firefox-shot", {useBeacon: true});
   }
 
   onSaveExpire(value) {

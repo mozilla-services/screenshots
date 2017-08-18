@@ -18,6 +18,7 @@ gScreenshotsDescription = Bildschirmfotos ganz einfach. Machen, speichern und te
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Nutzungsbedingungen
 footerLinkPrivacy = Datenschutzhinweis
 footerLinkDMCA = Verletzung geistigen Eigentums melden
 footerLinkDiscourse = Feedback geben
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Alle Daten entfernen
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } wird erstellt
 creatingPageTitleDefault = Seite
+creatingPageWaitMessage = Ihre Bildschirmfoto wird gespeichert…
 
 
 [[ Home page ]]
@@ -49,9 +51,9 @@ homePageGetStartedTitle = Erste Schritte
 homePageGetStartedDescription = Das neue Screenshots finden Sie in Ihrer Symbolleiste. Wählen Sie es aus und das Screenshots-Menü erscheint oben in Ihrem Browser-Fenster.
 homePageCaptureRegion = Einen Bereich aufnehmen
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Klicken und ziehen Sie zur Auswahl des aufzunehmenden Bereichs. Oder bewegen Sie nur die Maus darüber und klicken Sie – Screenshots wählt den Bereich für Sie aus. Gefällt es Ihnen? Wählen Sie „Speichern“, um Ihr Bildschirmfoto online zu speichern oder die Schaltfläche mit dem Abwärtspfeil, um ihn auf Ihren Computer herunterzuladen.
+homePageCaptureRegionDescription = Klicken und ziehen Sie zur Auswahl des aufzunehmenden Bereichs. Oder bewegen Sie nur die Maus darüber und klicken Sie – Screenshots wählt den Bereich für Sie aus. Gefällt es Ihnen? Wählen Sie „Speichern“, um Ihr Bildschirmfoto online zu speichern oder die Schaltfläche mit dem Downloadpfeil, um es auf Ihren Computer herunterzuladen.
 homePageCapturePage = Eine Seite aufnehmen
-homePageCapturePageDescription = Verwenden Sie die Schaltflächen rechts oben zur Aufnahme ganzer Seiten. Die Schaltfläche „Sichtbaren Bereich aufnehmen“ erfasst den Bereich, der ohne Bildlauf sichtbar ist und mit „Ganze Seite aufnehmen“ speichert die gesamte Seite.
+homePageCapturePageDescription = Verwenden Sie die Schaltflächen rechts oben zur Aufnahme ganzer Seiten. Die Schaltfläche „Sichtbaren Bereich aufnehmen“ erfasst den Bereich, der ohne Bildlauf sichtbar ist und „Ganze Seite aufnehmen“ speichert die gesamte Seite.
 homePageSaveShare = Speichern und Weitergeben
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Wenn Sie ein Bildschirmfoto machen, speichert Firefox Ihren Screenshot in Ihrer Online-Bibliothek für Bildschirmfotos und kopiert den Link in Ihre Zwischenablage. Wir speichern Ihr Bildschirmfoto automatisch zwei Wochen lang, Sie können es aber jederzeit löschen oder das Ablaufdatum ändern, um es länger in der Bibliothek zu behalten.
@@ -63,7 +65,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Kontenlöschung bestätigen
+leavePageRemoveAllData = Alle Daten entfernen
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Firefox Screenshots muss installiert sein, um Ihr Konto zu löschen
 leavePageErrorGeneric = Ein Fehler ist aufgetreten
@@ -224,12 +226,12 @@ metricsPageUserShotsQueryDescription = Die Anzahl der Benutzer, die insgesamt et
 metricsPageUserShotsQueryCount = Anzahl der Benutzer
 metricsPageUserShotsQueryShots = Ungefähre Anzahl aktiver (nicht abgelaufener) Bildschirmfotos
 metricsPageRetentionQueryTitle = Weiternutzung nach Woche
-metricsPageRetentionQueryDescription = Anzahl der Tage vom ersten bis zum neuesten Bildschirmfotos einer Benutzers, nach Anfangswoche gruppiert
+metricsPageRetentionQueryDescription = Anzahl der Tage vom ersten bis zum neuesten Bildschirmfoto einer Benutzers, nach Anfangswoche gruppiert
 metricsPageRetentionQueryUsers = Anzahl der Benutzer
 metricsPageRetentionQueryDays = Tage vom ersten bis zum neuesten Bildschirmfoto eines Benutzers
 metricsPageRetentionQueryFirstWeek = Woche, in der der Benutzer erstmals ein Bildschirmfoto erstellt hat
 metricsPageTotalRetentionQueryTitle = Weiternutzung insgesamt
-metricsPageTotalRetentionQueryDescription = Länge der Zeit, die Nutzer Bildschirmfotos erstellen, nach Woche gruppiert
+metricsPageTotalRetentionQueryDescription = Länge der Zeit, in der Nutzer Bildschirmfotos erstellen, nach Woche gruppiert
 metricsPageTotalRetentionQueryUsers = Anzahl der Benutzer
 metricsPageTotalRetentionQueryDays = Tage, die der Benutzer Bildschirmfotos erstellt
 metricsPageVersionQueryTitle = Add-on-Version

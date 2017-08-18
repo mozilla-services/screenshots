@@ -18,6 +18,7 @@ gScreenshotsDescription = Fota wobrazowki jednorje činjene. Čińće, składuj�
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Wuměnjenja
 footerLinkPrivacy = Zdźělenka priwatnosće
 footerLinkDMCA = Zranjenje duchowneho swójstwa zdźělić
 footerLinkDiscourse = Waše měnjenje prajić
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Wšě daty wotstronić
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } so wutworja
 creatingPageTitleDefault = strona
+creatingPageWaitMessage = Waše foto wobrazowki so składuje…
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = Placki
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Zhašanje konta wobkrućić
+leavePageRemoveAllData = Wšě daty wotstronić
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Firefox Screenshots dyrbi instalowany być, zo by so waše konto zhašało
 leavePageErrorGeneric = Zmylk je wustupił

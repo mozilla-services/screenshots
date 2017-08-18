@@ -18,6 +18,7 @@ gScreenshotsDescription = Schermafbeeldingen worden makkelijk. Maak, bewaar en d
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Voorwaarden
 footerLinkPrivacy = Privacyverklaring
 footerLinkDMCA = IE-inbreuk melden
 footerLinkDiscourse = Feedback geven
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Alle gegevens verwijderen
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } wordt gemaakt
 creatingPageTitleDefault = pagina
+creatingPageWaitMessage = Uw afbeelding opslaan…
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Accountverwijdering bevestigen
+leavePageRemoveAllData = Alle gegevens verwijderen
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = U moet Firefox Screenshots hebben geïnstalleerd om uw account te verwijderen
 leavePageErrorGeneric = Er is een fout opgetreden

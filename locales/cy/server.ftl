@@ -18,6 +18,7 @@ gScreenshotsDescription = Lluniau sgrin wedi ei wneud yn syml. Cipio, cadw a rha
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Amodau
 footerLinkPrivacy = Hysbysiad Preifatrwydd
 footerLinkDMCA = Adrodd ar Torri'r IP
 footerLinkDiscourse = Rhoi Adborth
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Tynnu'r Holl Ddata
 // creatingPageTitleDefault.
 creatingPageTitle = Creu { $title }
 creatingPageTitleDefault = tudalen
+creatingPageWaitMessage = Cadw eich llun…
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = Cwcis
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Cadarnhau dileu'r cyfrif
+leavePageRemoveAllData = Tynnu'r Holl Ddata
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Rhaid bod Firefox Screenshots wedi ei osod cyn dileu eich cyfrif
 leavePageErrorGeneric = Digwyddodd gwall

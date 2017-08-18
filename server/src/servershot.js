@@ -6,6 +6,7 @@ const linker = require("./linker");
 const config = require("./config").getProperties();
 const fs = require("fs");
 const mozlog = require("./logging").mozlog("servershot");
+const validUrl = require("valid-url");
 
 const SEARCHABLE_VERSION = 1;
 
@@ -197,7 +198,7 @@ class Shot extends AbstractShot {
           `INSERT INTO data (id, deviceid, value, url, title, searchable_version, searchable_text)
            VALUES ($1, $2, $3, $4, $5, $6, ${searchable.query})`,
           [this.id, this.ownerId, JSON.stringify(json), url, title, searchable.version].concat(searchable.args)
-        ).then((rowCount) => {
+        ).then((result) => {
           return clipRewrites.commit(client);
         }).then(() => {
           return oks;
@@ -369,18 +370,16 @@ class ServerClip extends AbstractShot.prototype.Clip {
 
 Shot.prototype.Clip = ServerClip;
 
-Shot.get = function(backend, id, deviceId) {
-  return Shot.getRawValue(id, deviceId).then((rawValue) => {
+Shot.get = function(backend, id, deviceId, accountId) {
+  return Shot.getRawValue(id, deviceId, accountId).then((rawValue) => {
     if (!rawValue) {
       return null;
     }
     let json = JSON.parse(rawValue.value);
+    let jsonTitle = json.userTitle || (json.openGraph && json.openGraph.title) || json.docTitle;
+    json.docTitle = jsonTitle || rawValue.title;
     if (!json.url && rawValue.url) {
       json.url = rawValue.url;
-    }
-    let jsonTitle = json.userTitle || (json.openGraph && json.openGraph.title) || json.docTitle;
-    if (!jsonTitle) {
-      json.docTitle = rawValue.title;
     }
     let shot = new Shot(rawValue.userid, backend, id, json);
     shot.urlIfDeleted = rawValue.url;
@@ -412,14 +411,17 @@ Shot.getFullShot = function(backend, id) {
   });
 };
 
-Shot.getRawValue = function(id, deviceId) {
+Shot.getRawValue = function(id, deviceId, accountId) {
   if (!id) {
     throw new Error("Empty id: " + id);
   }
   let query = `SELECT value, deviceid, url, title, expire_time, deleted, block_type, devices.accountid
   FROM data, devices WHERE data.deviceid = devices.id AND data.id = $1`;
   let params = [id];
-  if (deviceId) {
+  if (accountId) {
+    query += ` AND devices.accountid = $2`;
+    params.push(accountId);
+  } else if (deviceId) {
     query += ` AND deviceid = $2`;
     params.push(deviceId);
   }
@@ -457,18 +459,17 @@ Shot.checkOwnership = function(shotId, deviceId, accountId) {
   })
 };
 
-Shot.getShotsForDevice = function(backend, deviceId, searchQuery) {
+Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery) {
   if (!deviceId) {
     throw new Error("Empty deviceId: " + deviceId);
   }
+  // accountId is null if not set, treated as NULL in the SQL query
   return db.select(
     `SELECT DISTINCT devices.id
-     FROM devices, devices AS devices2
-     WHERE devices.id = $1
-           OR (devices.accountid = devices2.accountid
-               AND devices2.id = $1)
+     FROM devices
+     WHERE devices.id = $1 OR devices.accountid = $2
     `,
-    [deviceId]
+    [deviceId, accountId]
   ).then((rows) => {
     searchQuery = searchQuery || null;
     let ids = [];
@@ -665,7 +666,10 @@ ClipRewrites = class ClipRewrites {
     }
     this.toInsertThumbnail = null;
     this.oldFullScreenThumbnail = this.shot.fullScreenThumbnail;
-
+    if (!validUrl.isWebUri(this.shot.url)) {
+      this.shot.fullUrl = "";
+      this.shot.origin = "";
+    }
     let url = this.shot.fullScreenThumbnail;
     let match = (/^data:([^;]*);base64,/).exec(url);
     if (match) {
@@ -759,10 +763,10 @@ ClipRewrites = class ClipRewrites {
 
           return db.queryWithClient(
             client,
-            `INSERT INTO images (id, shotid, clipid, url, contenttype)
-             VALUES ($1, $2, $3, $4, $5)
+            `INSERT INTO images (id, shotid, clipid, url, contenttype, size)
+             VALUES ($1, $2, $3, $4, $5, $6)
             `,
-            [data.uuid, this.shot.id, clipId, data.url, data.binary.contentType]);
+            [data.uuid, this.shot.id, clipId, data.url, data.binary.contentType, data.binary.data.length]);
         })
       );
     }).then(() => {
@@ -774,14 +778,14 @@ ClipRewrites = class ClipRewrites {
 
       return db.queryWithClient(
         client,
-        `INSERT INTO images (id, shotid, clipid, url, contenttype)
-        VALUES ($1, $2, $3, $4, $5)
+        `INSERT INTO images (id, shotid, clipid, url, contenttype, size)
+        VALUES ($1, $2, $3, $4, $5, $6)
         `,
         // Since we don't have a clipid for the thumbnail and the column is NOT NULL,
         // Use the thumbnail uuid as the clipid. This allows figuring out which
         // images are thumbnails, too.
         [this.toInsertThumbnail.uuid, this.shot.id, this.toInsertThumbnail.uuid,
-        this.toInsertThumbnail.url, this.toInsertThumbnail.contentType]);
+        this.toInsertThumbnail.url, this.toInsertThumbnail.contentType, this.toInsertThumbnail.binary.data.length]);
     }).then(() => {
       this.committed = true;
     });
@@ -900,6 +904,10 @@ Shot.upgradeSearch = function() {
             return resolve();
           }
           Shot.get("upgrade_search_only", rows[index].id).then((shot) => {
+            // This shouldn't really happen, but apparently can...
+            if (!shot) {
+              return;
+            }
             return shot.upgradeSearch();
           }).then(() => {
             index++;

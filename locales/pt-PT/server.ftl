@@ -18,6 +18,7 @@ gScreenshotsDescription = Capturas de ecrã feitas simplesmente. Tire, guarde, e
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Termos
 footerLinkPrivacy = Aviso de privacidade
 footerLinkDMCA = Reportar violação de PI
 footerLinkDiscourse = Dar feedback
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Remover todos os dados
 // creatingPageTitleDefault.
 creatingPageTitle = A criar { $title }
 creatingPageTitleDefault = página
+creatingPageWaitMessage = A guardar a sua captura...
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Confirmar eliminação de conta
+leavePageRemoveAllData = Remover todos os dados
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Precisa de ter o Firefox Screenshots instalado para apagar a sua conta
 leavePageErrorGeneric = Ocorreu um erro

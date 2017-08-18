@@ -18,6 +18,7 @@ gScreenshotsDescription = Jednoduchá tvorba snímků webových stránek. Vytvá
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Podmínky
 footerLinkPrivacy = Zásady ochrany soukromí
 footerLinkDMCA = Nahlásit zneužití IP adresy
 footerLinkDiscourse = Váš názor
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Odstranit všechna data
 // creatingPageTitleDefault.
 creatingPageTitle = Vytváření snímku { $title }
 creatingPageTitleDefault = stránky
+creatingPageWaitMessage = Ukládání vašeho snímku…
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Potvrzení smazání účtu
+leavePageRemoveAllData = Odstranit všechna data
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Pro smazání vašeho účtu musíte mít nainstalován doplněk Firefox Screenshots.
 leavePageErrorGeneric = Nastala chyba

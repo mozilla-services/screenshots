@@ -18,6 +18,7 @@ gScreenshotsDescription = Zrzuty ekranów dla wszystkich. Twórz, zapisuj i udo
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Warunki korzystania z usługi
 footerLinkPrivacy = Prywatność
 footerLinkDMCA = Zgłoś naruszenie własności intelektualnej
 footerLinkDiscourse = Wyślij opinię
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Usuń wszystkie dane
 // creatingPageTitleDefault.
 creatingPageTitle = Tworzenie „{ $title }”
 creatingPageTitleDefault = strona
+creatingPageWaitMessage = Zapisywanie zrzutu…
 
 
 [[ Home page ]]
@@ -57,13 +59,13 @@ homePageSaveShare = Zapisz i udostępnij
 homePageSaveShareDescription = Kiedy utworzysz zrzut, Firefox zapisze go w Twojej internetowej kolekcji Screenshots i skopiuje odnośnik do schowka. Automatycznie przechowujemy zrzuty przez dwa tygodnie, ale możesz je usunąć w dowolnej chwili lub zmienić ich datę przeterminowania, aby zachować je na dłużej.
 homePageLegalLink = Podstawa prawna
 homePagePrivacyLink = Prywatność
-homePageTermsLink = Warunki
+homePageTermsLink = Warunki korzystania z usługi
 homePageCookiesLink = Ciasteczka
 
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Potwierdź usunięcie konta
+leavePageRemoveAllData = Usuń wszystkie dane
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Aby usunąć konto, Firefox Screenshots musi być zainstalowane
 leavePageErrorGeneric = Wystąpił błąd
