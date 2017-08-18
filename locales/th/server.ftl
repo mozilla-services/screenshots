@@ -14,6 +14,7 @@ gMyShots = ภาพของฉัน
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = ข้อกำหนด
 footerLinkPrivacy = ประกาศความเป็นส่วนตัว
 footerLinkRemoveAllData = เอาข้อมูลทั้งหมดออก
 
@@ -28,11 +29,16 @@ creatingPageTitleDefault = หน้า
 homePageButtonMyShots = ไปยังภาพของฉัน
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ดาวน์โหลดฟรี
+homePageGetStartedTitle = เริ่มต้น
+homePagePrivacyLink = ความเป็นส่วนตัว
+homePageTermsLink = ข้อกำหนด
 homePageCookiesLink = คุกกี้
 
 
 [[ Leave Screenshots page ]]
 
+leavePageErrorGeneric = มีข้อผิดพลาดเกิดขึ้น
+leavePageButtonCancel = ยกเลิก
 
 
 [[ Not Found page ]]
