@@ -23,7 +23,7 @@ const dbschema = require("./dbschema");
 const express = require("express");
 const bodyParser = require('body-parser');
 const contentDisposition = require("content-disposition");
-const csrf = require("csurf");
+const { csrf, csrfProtection, csrfErrorHandler } = require("./middleware/csrf");
 const morgan = require("morgan");
 const linker = require("./linker");
 const { randomBytes } = require("./helpers");
@@ -99,8 +99,6 @@ function initDatabase() {
 }
 
 initDatabase();
-
-const csrfProtection = csrf({cookie: {httpOnly: true, secure: true, sameSite: 'lax', key: '__Host-csrf'}});
 
 const app = express();
 
@@ -218,23 +216,16 @@ app.use(function(req, res, next) {
     req.accountId = authInfo.accountId;
   }
   req.cookies = cookies;
-  // The cookies library doesn't detect duplicates; check manually
-  let rawCookies = req.get("cookie") || "";
-  let pairs = rawCookies.split(";");
-  let csrfTokens = pairs.filter(item => { return item.match(/__Host-csrf=/); });
-  if (csrfTokens.length > 1) {
-    let exc = new Error("Duplicate CSRF cookies");
-    exc.headerValue = rawCookies;
-    captureRavenException(exc);
-    simpleResponse(res, "Bad request", 400);
-  }
-  req.cookies._csrf = cookies.get("__Host-csrf"); // csurf expects a property
   req.abTests = authInfo.abTests || {};
   const host = req.headers.host === config.contentOrigin ? config.contentOrigin : config.siteOrigin;
   req.backend = `${req.protocol}://${host}`;
   req.config = config;
   next();
 });
+
+// NOTE - the csrf middleware should come after the middleware that
+// assigns req.cookies.
+app.use(csrf);
 
 function decodeAuthHeader(header) {
   /** Decode a string header in the format {deviceId}:{deviceIdSig};abtests={b64thing}:{sig} */
@@ -1112,6 +1103,8 @@ require("./jobs").start();
 
 addRavenErrorHandler(app);
 
+app.use(csrfErrorHandler);
+
 app.use(function(err, req, res, next) {
   if (err.isAppError) {
     let { statusCode, headers, payload } = err.output;
@@ -1131,13 +1124,6 @@ app.use(function(err, req, res, next) {
     res.status(err.statusCode);
     res.type("text");
     res.send(res.message);
-    return;
-  }
-  if (err.code === "EBADCSRFTOKEN") {
-    mozlog.info("bad-csrf", {id: req.ip, url: req.url});
-    res.status(403);
-    res.type("text");
-    res.send("Bad CSRF Token")
     return;
   }
   errorResponse(res, "General error:", err);
