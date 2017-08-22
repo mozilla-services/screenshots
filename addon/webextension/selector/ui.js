@@ -728,10 +728,13 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
   };
 
   exports.triggerDownload = function(url, filename) {
+    throw new Error("bad download");
     return catcher.watchPromise(callBackground("downloadShot", {url, filename}));
   };
 
   exports.unload = exports.remove;
+
+  console.log("My problem is:", (new Error()).stack);
 
   return exports;
 })();

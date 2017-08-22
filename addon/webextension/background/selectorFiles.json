@@ -1,0 +1,29 @@
+{
+  "standardScripts": [
+    "build/buildSettings.js",
+    "log.js",
+    "catcher.js",
+    "assertIsTrusted.js",
+    "assertIsBlankDocument.js",
+    "background/selectorLoader.js",
+    "selector/callBackground.js",
+    "selector/util.js"
+  ],
+  "selectorScripts": [
+    "clipboard.js",
+    "makeUuid.js",
+    "build/shot.js",
+    "randomString.js",
+    "domainFromUrl.js",
+    "build/inlineSelectionCss.js",
+    "selector/documentMetadata.js",
+    "selector/ui.js",
+    "selector/shooter.js",
+    "selector/uicontrol.js"
+  ],
+  "onboardingScripts": [
+    "build/onboardingCss.js",
+    "build/onboardingHtml.js",
+    "onboarding/slides.js"
+  ]
+}

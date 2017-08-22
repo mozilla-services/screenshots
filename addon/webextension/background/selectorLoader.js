@@ -67,9 +67,11 @@ this.selectorLoader = (function() {
     let promise;
     loadingTabs.add(tabId);
     if (hasSeenOnboarding) {
-      promise = executeModules(tabId, standardScripts.concat(selectorScripts));
+      promise = executeModules(tabId, ["build/selector.js"]);
+      // promise = executeModules(tabId, standardScripts.concat(selectorScripts));
     } else {
-      promise = executeModules(tabId, standardScripts.concat(onboardingScripts).concat(selectorScripts));
+      promise = executeModules(tabId, ["build/selectorWithOnboarding.js"]);
+      // promise = executeModules(tabId, standardScripts.concat(onboardingScripts).concat(selectorScripts));
     }
     return promise.then((result) => {
       loadingTabs.delete(tabId);

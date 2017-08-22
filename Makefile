@@ -36,6 +36,8 @@ raven_source := $(shell node -e 'console.log(require.resolve("raven-js/dist/rave
 l10n_source := $(wildcard locales/*)
 l10n_dest := $(l10n_source:%/webextension.properties=addon/webextension/_locales/%/messages.json)
 
+selector_source := $(shell ./bin/build-scripts/concat-selector-files.js --deps)
+
 ## General transforms:
 # These cover standard ways of building files given a source
 
@@ -88,7 +90,11 @@ build/%.html: %.html
 	cp $< $@
 
 .PHONY: addon
-addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/shot.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/onboardingCss.js addon/webextension/build/onboardingHtml.js addon/webextension/build/buildSettings.js
+addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/shot.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/onboardingCss.js addon/webextension/build/onboardingHtml.js addon/webextension/build/buildSettings.js addon/webextension/build/selector.js
+
+addon/webextension/build/selector.js: $(selector_source)
+	# Note this also regenerates addon/webextension/build/selectorWithOnboarding.js
+	./bin/build-scripts/concat-selector-files.js
 
 $(VENV): bin/require.pip
 	virtualenv -p python2.7 $(VENV)
