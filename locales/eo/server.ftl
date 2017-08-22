@@ -18,6 +18,7 @@ gScreenshotsDescription = Ekrankopioj, simple faritaj. Kopii, konservi kaj divid
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Kondiĉoj
 footerLinkPrivacy = Rimarko pri privateco
 footerLinkDMCA = Raporti malobservon de IP
 footerLinkDiscourse = Sendi komentojn
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Forigi ĉiujn datumojn
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } kreata
 creatingPageTitleDefault = paĝo
+creatingPageWaitMessage = Ekrankopio konservata…
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = Kuketoj
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Konfirmi forigon de konto
+leavePageRemoveAllData = Forigi ĉiujn datumojn
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Por povi forigi vian konton vi devas havi Firefox Screenshots instalita
 leavePageErrorGeneric = Eraro okazis
