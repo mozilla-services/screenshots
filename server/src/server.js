@@ -1124,7 +1124,7 @@ app.use(function(err, req, res, next) {
     return;
   }
   if (err.code === "EBADCSRFTOKEN") {
-    mozlog.info("bad-csrf", {id: req.ip, url: req.url});
+    mozlog.info("bad-csrf", {ip: req.ip, url: req.url});
     res.status(403);
     res.type("text");
     res.send("Bad CSRF Token")
