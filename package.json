@@ -60,6 +60,7 @@
     "eslint-plugin-react": "7.1.0",
     "fx-runner": "1.0.7",
     "geckodriver": "1.8.0",
+    "istanbul-middleware": "^0.2.2",
     "mocha": "3.4.2",
     "node-sass": "4.5.3",
     "npm-run-all": "4.0.2",
