@@ -18,6 +18,7 @@ gScreenshotsDescription = 스크린샷이 쉬워졌습니다. Firefox 안에서 
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = 이용약관
 footerLinkPrivacy = 개인 정보 보호 안내
 footerLinkDMCA = IP 침해 신고
 footerLinkDiscourse = 사용자 의견
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = 모든 데이타 삭제
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } 만들기
 creatingPageTitleDefault = 페이지
+creatingPageWaitMessage = 스크린 샷 저장중…
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = 쿠키
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = 계정 삭제 확인
+leavePageRemoveAllData = 모든 데이터 삭제
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = 계정을 삭제하기 위해서는 Firefox Screenshots이 설치되어 있어야 함
 leavePageErrorGeneric = 오류 발생
@@ -77,10 +79,24 @@ leavePageDeleted = 모든 스크린샷이 삭제되었습니다!
 [[ Not Found page ]]
 
 notFoundPageTitle = 페이지를 찾을 수 없음
+notFoundPageIntro = 이런!
+notFoundPageDescription = 페이지를 찿을수 없습니다.
 
 
 [[ Shot page ]]
 
+shotPageShareButton
+    .title = 공유
+shotPageCopy = 복사
+shotPageCopied = 복사됨
+shotPageShareFacebook
+    .title = 페이스북에 공유
+shotPageShareTwitter
+    .title = 트위터에 공유
+shotPageSharePinterest
+    .title = 핀터레스트에 공유
+shotPageShareEmail
+    .title = 이메일로 공유
 
 
 [[ Shotindex page ]]
