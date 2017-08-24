@@ -94,7 +94,7 @@ shotIndexPageConfirmShotDelete = ลบภาพนี้?
 [[ Metrics page ]]
 
 metricsPageTotalsQueryDevices = อุปกรณ์ลงทะเบียนทั้งหมด
-metricsPageTotalsQueryExpiredShots = หมดอายุ (แต่สามารถกูคืนได้)
+metricsPageTotalsQueryExpiredShots = หมดอายุ (แต่สามารถกู้คืนได้)
 metricsPageTotalsQueryExpiredDeletedShots = หมดอายุ (และถูกลบแล้ว)
 metricsPageUsersQueryTitle = ผู้ใช้ตามวัน
 metricsPageUsersQueryCount = จำนวนผู้ใช้
