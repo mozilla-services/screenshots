@@ -295,6 +295,13 @@ var conf = convict({
     default: false,
     env: "ENBALE_ANNOTATIONS",
     arg: "enable-annotations"
+  },
+  enableCoverage: {
+    doc: "If true, then enable istanbul coverage middleware.",
+    format: Boolean,
+    default: false,
+    env: "ENABLE_COVERAGE",
+    arg: "enable-coverage"
   }
 });
 
