@@ -18,6 +18,7 @@ gScreenshotsDescription = Ekran görürüntüsü almayı basitleştirdik. Firefo
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Koşullar
 footerLinkPrivacy = Gizlilik Bildirimi
 footerLinkDMCA = Telif hakkı ihlali bildir
 footerLinkDiscourse = Görüş bildir
@@ -63,7 +64,7 @@ homePageCookiesLink = Çerezler
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Hesabı silmeyi onaylayın
+leavePageRemoveAllData = Tüm verileri sil
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Hesabınızı silebilmek için Firefox Screenshots yüklü olmalıdır
 leavePageErrorGeneric = Bir hata oluştu
@@ -193,6 +194,7 @@ metricsPageTotalsQueryExpiredShots = Süresi dolmuş (ama kurtarılabilir)
 metricsPageTotalsQueryExpiredDeletedShots = Süresi dolmuş (ve silinmiş)
 metricsPageShotsQueryCount = Görüntü sayısı
 metricsPageShotsQueryDay = Gün
+metricsPageUsersQueryCount = Kullanıcı sayısı
 metricsPageUsersQueryDay = Gün
 metricsPageUserShotsQueryCount = Kullanıcı sayısı
 metricsPageRetentionQueryUsers = Kullanıcı sayısı
@@ -201,3 +203,7 @@ metricsPageVersionQueryTitle = Eklenti sürümü
 metricsPageVersionQueryVersion = Eklenti sürümü
 metricsPageVersionQueryLastSeen = Gün
 metricsPageHeader = Ölçümler
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Oluşturma: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (veritabanı süresi: { $time } ms)
