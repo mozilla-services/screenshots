@@ -22,6 +22,7 @@ footerLinkRemoveAllData = เอาข้อมูลทั้งหมดออ
 [[ Creating page ]]
 
 creatingPageTitleDefault = หน้า
+creatingPageWaitMessage = กำลังบันทึกภาพของคุณ…
 
 
 [[ Home page ]]
@@ -37,6 +38,7 @@ homePageCookiesLink = คุกกี้
 
 [[ Leave Screenshots page ]]
 
+leavePageRemoveAllData = เอาข้อมูลทั้งหมดออก
 leavePageErrorGeneric = มีข้อผิดพลาดเกิดขึ้น
 leavePageButtonCancel = ยกเลิก
 
@@ -44,6 +46,7 @@ leavePageButtonCancel = ยกเลิก
 [[ Not Found page ]]
 
 notFoundPageTitle = ไม่พบหน้า
+notFoundPageDescription = ไม่พบหน้า
 
 
 [[ Shot page ]]
@@ -88,5 +91,5 @@ metricsPageTotalsQueryExpiredShots = หมดอายุ (แต่สาม�
 metricsPageTotalsQueryExpiredDeletedShots = หมดอายุ (และถูกลบแล้ว)
 metricsPageUsersQueryTitle = ผู้ใช้ตามวัน
 metricsPageUsersQueryCount = จำนวนผู้ใช้
-metricsPageUsersQueryDay = งีย
+metricsPageUsersQueryDay = วัน
 metricsPageUserShotsQueryCount = จำนวนผู้ใช้
