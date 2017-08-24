@@ -51,7 +51,7 @@ This must export `app` (an Express application that will be mounted).
 
 #### 4. The view (`view.js`):
 
-This is shared between the server and the browser.  It is a module that exports React components for the head and body.  It has even handlers; these handlers should parse any input (e.g., extract the value of a form field), but to *do* anything they simply call `controller.onSomething(value)`.
+This is shared between the server and the browser.  It is a module that exports React components for the head and body.  It has event handlers; these handlers should parse any input (e.g., extract the value of a form field), but to *do* anything they simply call `controller.onSomething(value)`.
 
 This must export `HeadFactory` and `BodyFactory` (see `reactruntime.HeadTemplate` for how these should work).
 

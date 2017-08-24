@@ -5,6 +5,13 @@ const path = require('path');
 const { readFileSync, existsSync } = require('fs');
 const Cookies = require("cookies");
 
+let istanbulMiddleware = null;
+if (config.enableCoverage && process.env.NODE_ENV === "dev") {
+    istanbulMiddleware = require('istanbul-middleware');
+    mozlog.info('coverage-hook-enabled', {msg: 'Hook loader for coverage - ensure this is not production!'});
+    istanbulMiddleware.hookLoader(__dirname); // cover all files except under node_modules
+}
+
 const { Shot } = require("./servershot");
 const {
   checkLogin,
@@ -108,6 +115,11 @@ app.set('trust proxy', true);
 
 // Disable x-powered-by header
 app.disable("x-powered-by");
+
+if (config.enableCoverage && istanbulMiddleware) {
+    // enable coverage endpoints under /coverage
+    app.use('/coverage', istanbulMiddleware.createHandler());
+}
 
 const CONTENT_NAME = config.contentOrigin || '';
 

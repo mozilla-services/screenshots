@@ -231,6 +231,14 @@ h1 {
   background-image: url("../img/preferences-16.svg");
   position: absolute;
   right: 0;
+  top: 0;
+
+  &:hover {
+    background-color: $light-hover;
+  }
+  &:active {
+    background-color: $light-active;
+  }
 }
 
 .no-shots {
