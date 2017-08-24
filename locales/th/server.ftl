@@ -31,6 +31,8 @@ homePageButtonMyShots = ไปยังภาพของฉัน
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ดาวน์โหลดฟรี
 homePageGetStartedTitle = เริ่มต้น
+homePageSaveShare = บันทึกและแบ่งปัน
+homePageLegalLink = ข้อกฎหมาย
 homePagePrivacyLink = ความเป็นส่วนตัว
 homePageTermsLink = ข้อกำหนด
 homePageCookiesLink = คุกกี้
@@ -39,26 +41,30 @@ homePageCookiesLink = คุกกี้
 [[ Leave Screenshots page ]]
 
 leavePageRemoveAllData = เอาข้อมูลทั้งหมดออก
-leavePageErrorGeneric = มีข้อผิดพลาดเกิดขึ้น
+leavePageErrorGeneric = เกิดข้อผิดพลาด
+leavePageButtonProceed = ดำเนินการต่อ
 leavePageButtonCancel = ยกเลิก
 
 
 [[ Not Found page ]]
 
 notFoundPageTitle = ไม่พบหน้า
+notFoundPageIntro = อุปส์
 notFoundPageDescription = ไม่พบหน้า
 
 
 [[ Shot page ]]
 
-shotPageAlertErrorUpdatingTitle = ข้อผิดพลาดในการบันทึกหัวข้อ
+shotPageAlertErrorUpdatingTitle = เกิดข้อผิดพลาดในการบันทึกชื่อเรื่อง
+shotPageShareButton
+    .title = แบ่งปัน
 shotPageCopy = คัดลอก
 shotPageShareEmail
     .title = แบ่งปันลิงก์ทางอีเมล
 shotPageDownloadShot
     .title = ดาวน์โหลด
 shotPageDownload = ดาวน์โหลด
-shotPageUpsellFirefox = รับ Firefox เดี๋ยวนี้
+shotPageUpsellFirefox = รับ Firefox ตอนนี้
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = โปรดอีเมลมายัง { $dmca } เพื่อขอข้อมูลเพิ่มเติม
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
@@ -81,6 +87,7 @@ shotIndexPageSearchButton
 shotIndexPageNoSearchResultsIntro = หืมม
 shotIndexPageClearSearchButton
     .title = ล้างการค้นหา
+shotIndexPageConfirmShotDelete = ลบภาพนี้?
 
 
 // all metrics strings are optional for translation
