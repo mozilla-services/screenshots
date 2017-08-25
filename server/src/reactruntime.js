@@ -34,7 +34,7 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
 
     let localeScripts = [];
     for (let locale of this.props.userLocales) {
-      localeScripts.push(<script id={`l10n-${locale}`} src={this.props.staticLink(`/static/locales/${locale}.js`)} />);
+      localeScripts.push(<script key={`l10n-${locale}`} src={this.props.staticLink(`/static/locales/${locale}.js`)} />);
     }
 
     return (
