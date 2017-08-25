@@ -13,12 +13,15 @@ for (let ftl of ftlPaths) {
   let locale = ftl.split('/')[1];
   let destFilePath = `${destDir}/${locale}.js`;
   let ftlFileContent = fs.readFileSync(ftl, 'utf8');
-  // No UMD; for browser only.
   let jsFileContent = `
     (context => {
       let messages=${JSON.stringify(ftlFileContent)};
-      context.l10nMessages = context.l10nMessages || {};
-      context.l10nMessages['${locale}'] = messages;
+      if (typeof exports === 'object' && context === exports) {
+        exports.messages = messages;
+      } else {
+        context.l10nMessages = context.l10nMessages || {};
+        context.l10nMessages['${locale}'] = messages;
+      }
     })(this);
   `;
   fs.writeFileSync(destFilePath, jsFileContent, 'utf8');
