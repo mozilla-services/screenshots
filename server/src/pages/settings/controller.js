@@ -19,7 +19,7 @@ exports.disconnectDevice = function() {
       // FIXME: a lame way to do an error message
       window.alert("Error disconnecting: " + req.status + " " + req.statusText);
     } else {
-      location.href = model.backend + "/settings";
+      location.reload();
     }
   };
   req.send(`_csrf=${encodeURIComponent(model.csrfToken)}`);

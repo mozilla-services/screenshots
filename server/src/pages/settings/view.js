@@ -43,7 +43,7 @@ class Body extends React.Component {
           <div className="info-container">
             <p className="username title">{this.props.accountInfo.nickname || this.props.accountInfo.email}</p>
             { this.props.accountInfo.nickname ? <p className="email info">{this.props.accountInfo.email}</p> : null }
-            <a className="account-buttons disconnect" href="" onClick={ this.onClickDisconnect.bind(this) }>Disconnect</a>
+            <button className="account-buttons disconnect" onClick={ this.onClickDisconnect.bind(this) }>Disconnect</button>
           </div>
         </div>
       );
