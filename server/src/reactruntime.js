@@ -32,6 +32,11 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
       }
     }
 
+    let localeScripts = [];
+    for (let locale of this.props.userLocales) {
+      localeScripts.push(<script id={`l10n-${locale}`} src={this.props.staticLink(`/static/locales/${locale}.js`)} />);
+    }
+
     return (
     <LocalizationProvider messages={generateMessages(this.props.messages, this.props.userLocales)}>
       <head>
@@ -43,6 +48,7 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
         <link rel="icon" type="image/png" href={this.props.staticLink("/static/img/favicon-96.png")} sizes="96x96"/>
         { analyticsScript }
         { activationScript }
+        { localeScripts }
         { this.props.sentryPublicDSN ? <script src={this.props.staticLink("/install-raven.js")} async /> : null }
         {this.props.children}
       </head>
