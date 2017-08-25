@@ -1,3 +1,7 @@
+## Version 16.1.0
+
+* Fix [review feedback](https://bugzilla.mozilla.org/show_bug.cgi?id=1390985#c5) for screenshots 16.0.0 [06b7141](https://github.com/mozilla-services/screenshots/commit/06b7141)
+
 ## Version 16.0.0
 
 This is a Firefox export release. Note all changes included since the last (version 10) release:
