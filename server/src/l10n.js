@@ -32,15 +32,8 @@ exports.init = function() {
           reject(err);
           return;
         }
-        fs.readFile(path, "utf-8", (err, data) => {
-          if (err) {
-            mozlog.error("l10n-ftl-loading-error", {err});
-            reject(err);
-            return;
-          }
-          rawStrings[locale] = data;
-          resolve();
-        });
+        rawStrings[locale] = require(`./static/locales/${locale}`).messages;
+        resolve();
       });
     }));
   });
