@@ -8,12 +8,19 @@
 [[ global ]]
 
 gMyShots = Minu pildid
+gHomeLink = Avaleht
+gNoShots
+    .alt = Pilte ei leitud
 
 
 [[ Footer ]]
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Kasutustingimused
+footerLinkPrivacy = Privaatsuspoliitika
+footerLinkDiscourse = Tagasiside andmine
+footerLinkRemoveAllData = Kõigi andmete eemaldamine
 
 
 [[ Creating page ]]
@@ -23,16 +30,25 @@ creatingPageWaitMessage = Pildi salvestamine…
 
 [[ Home page ]]
 
+homePageButtonMyShots = Minu piltide juurde
+homePageTeaser = Varsti tulekul…
 homePageDownloadFirefoxTitle = Firefox
+homePageDownloadFirefoxSubTitle = Tasuta allalaadimine
 homePageGetStarted = Alustamine
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kuidas Firefox Screenshots töötab
 homePageGetStartedTitle = Alustamine
+homePagePrivacyLink = Privaatsus
+homePageCookiesLink = Küpsised
 
 
 [[ Leave Screenshots page ]]
 
+leavePageRemoveAllData = Kõigi andmete eemaldamine
 leavePageErrorGeneric = Tekkis viga
+leavePageButtonProceed = Edasi
+leavePageButtonCancel = Tühista
+leavePageDeleted = Kõik su ekraanipildid kustutati!
 
 
 [[ Not Found page ]]
@@ -50,11 +66,28 @@ shotPageAlertErrorUpdatingExpirationTime = Aegumise salvestamisel tekkis viga
 shotPageAlertErrorDeletingShot = Pildi kustutamisel tekkis viga
 shotPageAlertErrorUpdatingTitle = Pildi pealkirja salvestamisel tekkis viga
 shotPageConfirmDelete = Kas oled kindel, et soovid pildi jäädavalt kustutada?
+shotPageShareButton
+    .title = Jaga
 shotPageCopy = Kopeeri
 shotPageCopied = Kopeeritud
+shotPageShareFacebook
+    .title = Jaga Facebookis
+shotPageShareTwitter
+    .title = Jaga Twiteris
+shotPageSharePinterest
+    .title = Jaga Pinterestis
+shotPageShareEmail
+    .title = Jaga lingiga e-posti teel
+shotPageShareLink = Hangi jagamiseks selle pildi link:
+shotPagePrivacyMessage = Kes tahes saab linki teades seda pilti vaadata.
+shotPageCopyImageText
+    .label = Kopeeri pildi tekst
 shotPageConfirmDeletion = Kas oled kindel, et soovid selle pildi jäädavalt kustutada?
 // Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Kui sa midagi ei tee, siis kustutatakse see pilt jäädavalt { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = taasta kuni { $date }
 shotPageExpiredMessage = See pilt on aegunud.
 shotPageDeleteButton
     .title = Kustuta see pilti
@@ -80,11 +113,11 @@ shotPageExpiresIn = aegub { $timediff }
 shotPageExpired = aegunud { $timediff }
 timeDiffJustNow = just praegu
 timeDiffMinutesAgo = { $num ->
-        [one] 1 minut tagasi
+        [one] minut tagasi
        *[other] { $number } minutit tagasi
     }
 timeDiffHoursAgo = { $num ->
-        [one] 1 tund tagasi
+        [one] tund tagasi
        *[other] { $number } tundi tagasi
     }
 timeDiffDaysAgo = { $num ->
@@ -96,7 +129,10 @@ timeDiffFutureMinutes = { $num ->
         [one] minuti jooksul
        *[other] { $number } minuti jooksul
     }
-timeDiffFutureHours = 
+timeDiffFutureHours = { $num ->
+        [one] tunni jooksul
+       *[other] { $number } tunni jooksul
+    }
 timeDiffFutureDays = { $num ->
         [one] homme
        *[other] { $number } päeva jooksul
@@ -115,6 +151,7 @@ shotIndexPageSearchButton
 shotIndexPageNoShotsMessage = Salvestatud pildid puuduvad.
 shotIndexPageNoShotsInvitation = Ära pelga, tee mõned.
 shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageConfirmShotDelete = Kas tõesti kustutada see pilt?
 
 
 // all metrics strings are optional for translation
