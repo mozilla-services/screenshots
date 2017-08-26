@@ -60,18 +60,55 @@ leavePageDeleted = Сіздің барлық скриншоттарыңыз өш
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Бет табылмады
+notFoundPageIntro = Қате.
+notFoundPageDescription = Бет табылмады.
 
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Скриншот: { $originalTitle }
 shotPageShareButton
     .title = Бөлісу
 shotPageCopy = Көшіріп алу
 shotPageCopied = Көшірілген
+shotPageShareFacebook
+    .title = Facebook-те бөлісу
+shotPageShareTwitter
+    .title = Twitter-де төлісу
+shotPageSharePinterest
+    .title = Pinterest-те бөлісу
+shotPageDownloadShot
+    .title = Жүктеп алу
+shotPageDownload = Жүктеп алу
+shotPageUpsellFirefox = Firefox-ты қазір алу
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Уақытты таңдау
+shotPageKeepIndefinitely = Шексіз
+shotPageKeepTenMinutes = 10 минут
+shotPageKeepOneHour = 1 сағат
+shotPageKeepOneDay = 1 күн
+shotPageKeepOneWeek = 1 апта
+shotPageKeepTwoWeeks = 2 апта
+shotPageKeepOneMonth = 1 ай
+shotPageSaveExpiration = сақтау
+shotPageCancelExpiration = бас тарту
+timeDiffMinutesAgo = { $num ->
+       *[other] 1 минут бұрын
+    }
+timeDiffHoursAgo = { $num ->
+       *[other] 1 сағат бұрын
+    }
+timeDiffDaysAgo = { $num ->
+       *[other] кеше
+    }
 
 
 [[ Shotindex page ]]
 
+shotIndexPageSearchButton
+    .title = Іздеу
 
 
 // all metrics strings are optional for translation
