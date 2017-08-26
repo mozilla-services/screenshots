@@ -7,6 +7,7 @@ const { MessageContext } = require("fluent/compat");
 const mozlog = require("./logging").mozlog("l10n");
 
 const rawStrings = {};
+const messagesContexts = {};
 
 let initPromise;
 exports.init = function() {
@@ -45,9 +46,7 @@ exports.getText = function(locales) {
   let availableLocales = exports.getUserLocales(locales);
 
   availableLocales.forEach((locale) => {
-    let mc = new MessageContext(locale);
-    mc.addMessages(rawStrings[locale]);
-    contexts[locale] = (mc);
+    contexts[locale] = getMessageContext(locale);
   });
 
   return function(l10nID, args) {
@@ -78,4 +77,14 @@ exports.getStrings = function(locales) {
     }
   });
   return strings;
+};
+
+function getMessageContext(locale) {
+  if (!messagesContexts[locale]) {
+    let mc = new MessageContext(locale);
+    mc.addMessages(rawStrings[locale]);
+    messagesContexts[locale] = mc;
+  }
+
+  return messagesContexts[locale];
 };
