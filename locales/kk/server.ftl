@@ -15,18 +15,47 @@ gNoShots
 
 [[ Footer ]]
 
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkTerms = Қолдану шарттары
+footerLinkPrivacy = Жекелік ескертуі
+footerLinkDiscourse = Кері байланыс
+footerLinkRemoveAllData = Барлық деректерді өшіру
 
 
 [[ Creating page ]]
 
+// Note: { $title } is a placeholder for the title of the web page
+// captured in the screenshot. The default, for pages without titles, is
+// creatingPageTitleDefault.
+creatingPageTitle = Жасалуда { $title }
+creatingPageTitleDefault = бет
 
 
 [[ Home page ]]
 
+homePageDownloadFirefoxTitle = Firefox
+homePageDownloadFirefoxSubTitle = Тегін жүктеп алу
+homePageGetStarted = Бастау
+// Note: do not translate 'Firefox Screenshots' when translating this string
+homePageHowScreenshotsWorks = Firefox скриншоттары қалай жұмыс жасайды
+homePageGetStartedTitle = Бастау
+homePageCaptureRegion = Аймақты түсіру
+homePageCapturePage = Парақты түсіру
+homePageSaveShare = Сақтау және бөлісу
+homePageLegalLink = Құқықтық ақпарат
+homePagePrivacyLink = Жекелік
+homePageTermsLink = Қолдану шарттары
+homePageCookiesLink = Cookies
 
 
 [[ Leave Screenshots page ]]
 
+leavePageRemoveAllData = Барлық деректерді өшіру
+leavePageErrorGeneric = Қате орын алды
+leavePageButtonProceed = Жалғастыру
+leavePageButtonCancel = Бас тарту
+leavePageDeleted = Сіздің барлық скриншоттарыңыз өшірілді!
 
 
 [[ Not Found page ]]
