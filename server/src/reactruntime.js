@@ -6,6 +6,7 @@ const linker = require("./linker");
 require("fluent-intl-polyfill/compat");
 const { MessageContext } = require("fluent/compat");
 const { LocalizationProvider } = require("fluent-react/compat");
+const { getLocaleMessages } = require("./locale-messages");
 
 function generateMessages(messages, locales) {
   const contexts = [];
@@ -95,20 +96,32 @@ exports.Page = class Page {
   }
 
   render(model) {
+    let renderBody = () => {
+      let body = this.BodyFactory(model);
+      let curTitle = document.title;
+      if (model.title && model.title != curTitle) {
+        document.title = model.title;
+      }
+      ReactDOM.render(
+        body,
+        document.getElementById("react-body-container"));
+    }
+
     if (!model.staticLink) {
       linker.setGitRevision(model.gitRevision);
       model.staticLink = linker.staticLink.bind(null, {
         cdn: model.cdn
       });
     }
-    let body = this.BodyFactory(model);
-    let curTitle = document.title;
-    if (model.title && model.title != curTitle) {
-      document.title = model.title;
+
+    if (model.userLocales && model.userLocales.length && !model.messages) {
+      return getLocaleMessages(model.userLocales).then(localeMessages => {
+        model.messages = Object.assign({}, ...localeMessages);
+        renderBody();
+      });
     }
-    ReactDOM.render(
-      body,
-      document.getElementById("react-body-container"));
+
+    renderBody();
   }
 
   get dir() {
