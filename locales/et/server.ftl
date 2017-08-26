@@ -11,6 +11,7 @@ gMyShots = Minu pildid
 gHomeLink = Avaleht
 gNoShots
     .alt = Pilte ei leitud
+gScreenshotsDescription = Ekraanipildid lihtsalt. Tee, salvesta ja jaga ekraanipilte Firefoxist lahkumata.
 
 
 [[ Footer ]]
@@ -26,6 +27,10 @@ footerLinkRemoveAllData = Kõigi andmete eemaldamine
 
 [[ Creating page ]]
 
+// Note: { $title } is a placeholder for the title of the web page
+// captured in the screenshot. The default, for pages without titles, is
+// creatingPageTitleDefault.
+creatingPageTitle = Loomisel: { $title }
 creatingPageTitleDefault = leht
 creatingPageWaitMessage = Pildi salvestamine…
 
@@ -40,6 +45,15 @@ homePageGetStarted = Alustamine
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kuidas Firefox Screenshots töötab
 homePageGetStartedTitle = Alustamine
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Leia tööriistaribalt uus Screenshots ikoon. Vali see ning veebilehitseja aknas avaneb Screenshots menüü.
+homePageCaptureRegion = Piirkonna valimine
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Klõpsa ja lohista alal, mida salvestada soovid. Või lihtsalt hoia kursorit selle kohal ja klõpsa — Screenshots valib ala sinu eest. Oled nähtavaga rahul? Vali Salvesta ekraanipildile võrgus ligipääsuks või vajuta nupule noolega alla, kui soovid selle enda arvutisse alla laadida.
+homePageCapturePage = Lehe salvestamine
+homePageSaveShare = Salvestamine ja jagamine
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Kui teed pildi, siis postitab Firefox selle võrgus asuvasse ekraanipiltide kogusse ning kopeerib lõikepuhvrisse lingi. Salvestame ekraanipildi automaatselt kaheks nädalaks, kuid saad neid igal ajal kustutada või aegumistähtaega muuta ning neid kogus kauem hoida.
 homePagePrivacyLink = Privaatsus
 homePageTermsLink = Kasutustingimused
 homePageCookiesLink = Küpsised
