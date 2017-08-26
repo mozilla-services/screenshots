@@ -19,12 +19,14 @@ gNoShots
 footerLinkMozilla = Mozilla
 footerLinkTerms = Kasutustingimused
 footerLinkPrivacy = Privaatsuspoliitika
+footerLinkDMCA = Intellektuaalomandi rikkumisest teatamine
 footerLinkDiscourse = Tagasiside andmine
 footerLinkRemoveAllData = Kõigi andmete eemaldamine
 
 
 [[ Creating page ]]
 
+creatingPageTitleDefault = leht
 creatingPageWaitMessage = Pildi salvestamine…
 
 
@@ -39,6 +41,7 @@ homePageGetStarted = Alustamine
 homePageHowScreenshotsWorks = Kuidas Firefox Screenshots töötab
 homePageGetStartedTitle = Alustamine
 homePagePrivacyLink = Privaatsus
+homePageTermsLink = Kasutustingimused
 homePageCookiesLink = Küpsised
 
 
