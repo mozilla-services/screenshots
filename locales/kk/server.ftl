@@ -30,6 +30,7 @@ footerLinkRemoveAllData = Барлық деректерді өшіру
 // creatingPageTitleDefault.
 creatingPageTitle = Жасалуда { $title }
 creatingPageTitleDefault = бет
+creatingPageWaitMessage = Снапшотты сақтау…
 
 
 [[ Home page ]]
@@ -114,3 +115,10 @@ shotIndexPageSearchButton
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageVersionQueryVersion = Қосымша нұсқасы
+metricsPageVersionQueryLastSeen = Күн
+metricsPageHeader = Метрикалар
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Жиналған: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (дерекқор уақыты: { $time } мс)
