@@ -105,7 +105,28 @@ exports.Page = class Page {
       ReactDOM.render(
         body,
         document.getElementById("react-body-container"));
-    }
+    };
+
+    let tryGetL10nMessages = (locales) => {
+      let successHandler = localeMessages => {
+        model.messages = Object.assign({}, ...localeMessages);
+        renderBody();
+      };
+      let failureHandler = failedLocale => {
+        if (locales.length === 1) {
+          // everything failed at this point. what can we do here?
+          renderBody();
+          return;
+        }
+        let remainingLocales = locales.slice();
+        let failedLocaleIndex = locales.indexOf(failedLocale);
+        remainingLocales.splice(failedLocaleIndex, 1);
+        tryGetL10nMessages(remainingLocales);
+      }
+      getLocaleMessages(locales)
+        .then(successHandler)
+        .catch(failureHandler);
+    };
 
     if (!model.staticLink) {
       linker.setGitRevision(model.gitRevision);
@@ -115,10 +136,7 @@ exports.Page = class Page {
     }
 
     if (model.userLocales && model.userLocales.length && !model.messages) {
-      return getLocaleMessages(model.userLocales).then(localeMessages => {
-        model.messages = Object.assign({}, ...localeMessages);
-        renderBody();
-      });
+      return tryGetL10nMessages(model.userLocales);
     }
 
     renderBody();

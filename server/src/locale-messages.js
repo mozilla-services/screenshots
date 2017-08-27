@@ -8,7 +8,7 @@
 exports.getLocaleMessages = function(locales) {
   return Promise.all(locales.map(locale => {
     return new Promise((resolve, reject) => {
-      let wait = 5000;
+      let wait = 5000; // maybe make configurable?
       let checkForMessages = () => {
         if (window && window.l10nMessages && window.l10nMessages[locale]) {
           let messages = {};
