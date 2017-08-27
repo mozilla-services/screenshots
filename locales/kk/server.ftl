@@ -110,9 +110,7 @@ shotPageDeleteButton
 shotPageDownloadShot
     .title = Жүктеп алу
 shotPageDownload = Жүктеп алу
-shotPageScreenshotsDescription =
-    Скриншоттар қарапайым түрде. Тура Firefox ішінен скриншоттарды түсіру, сақтау және олармен бөлісу.
-
+shotPageScreenshotsDescription = Скриншоттар қарапайым түрде. Тура Firefox ішінен скриншоттарды түсіру, сақтау және олармен бөлісу.
 shotPageUpsellFirefox = Firefox-ты қазір алу
 shotPageKeepFor = Бұл скриншот қанша уақыт бойы сақталуы тиіс?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
@@ -187,6 +185,8 @@ metricsPageTotalsQueryTitle = Барлығы
 metricsPageTotalsQueryDescription = Скриншоттарды шолу
 metricsPageTotalsQueryDevices = Барлығы тіркелген құрылғылар
 metricsPageTotalsQueryActiveShots = Белсенді скриншоттар
+metricsPageTotalsQueryExpiredShots = Мерзімі аяқталған (бірақ, қалпына келтіруге болатын)
+metricsPageTotalsQueryExpiredDeletedShots = Мерзімі аяқталған (және өшірілген)
 metricsPageVersionQueryVersion = Қосымша нұсқасы
 metricsPageVersionQueryLastSeen = Күн
 metricsPageHeader = Метрикалар
