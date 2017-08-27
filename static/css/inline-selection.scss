@@ -238,13 +238,13 @@ $very-light-grey: #ededed;
   @extend .button;
   @extend .primary;
   background-image: url("MOZ_EXTENSION/icons/cloud.svg");
-  background-position: 8px center;
+  background-position: 55px center;
   background-repeat: no-repeat;
   background-size: 20px 18px;
   font-size: 18px;
   margin: 5px;
   min-width: 80px;
-  padding-left: 34px;
+  padding-right: 34px;
 }
 
 .highlight-button-download {
