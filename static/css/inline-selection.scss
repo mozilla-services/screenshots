@@ -209,7 +209,7 @@ $very-light-grey: #ededed;
   @include flex-container(row, center, center);
   bottom: -55px;
   position: absolute;
-  right: 5px;
+  left: 5px;
   z-index: 6;
 
   .bottom-selection & {
