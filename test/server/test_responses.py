@@ -130,4 +130,8 @@ if __name__ == "__main__":
     test_landing_page()
     test_creating_page()
     test_404_page()
+    test_contribute_json()
+    test_dunder_version()
+    test_heartbeat()
+    test_lbheartbeat()
     test_my_shots_page()
