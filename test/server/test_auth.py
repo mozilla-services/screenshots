@@ -77,10 +77,11 @@ def test_register_with_same_deviceid_twice_fails():
                       deviceInfo=json.dumps(unauthed_user.deviceInfo)))
 
     print resp.text
-    assert resp.status_code == 500 # TODO: fix me should return 4XX status
+    assert resp.status_code == 401  # user exists
 
     unauthed_user.delete_account()
 
+    # registering as second user should fail
     second_unauthed_user = ScreenshotsClient()
 
     resp = second_unauthed_user.session.post(
@@ -90,7 +91,7 @@ def test_register_with_same_deviceid_twice_fails():
                       deviceInfo=json.dumps(second_unauthed_user.deviceInfo)))
 
     print resp.text
-    assert resp.status_code == 401 # user exists
+    assert resp.status_code == 401  # user exists
 
 
 def test_login_missing_deviceid():
@@ -100,7 +101,7 @@ def test_login_missing_deviceid():
             data=dict(secret=user.secret, deviceInfo=json.dumps(user.deviceInfo)))
 
         print(resp.text, resp.status_code)
-        assert resp.status_code == 404 # no such user
+        assert resp.status_code == 404  # no such user
 
 
 def test_login_without_secret():
