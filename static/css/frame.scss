@@ -258,14 +258,6 @@
   transition: background-image 150ms $bezier;
 }
 
-.edit {
-  background-image: url("../img/annotation-edit-dark.svg");
-
-  &:hover {
-    background-image: url("../img/annotation-edit-hover.svg");
-  }
-}
-
 .highlight-button {
   background-image: url("../img/annotation-highlight.svg");
 
