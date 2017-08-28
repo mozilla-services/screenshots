@@ -8,7 +8,7 @@ this.takeshot = (function() {
   const { sendEvent } = analytics;
 
   communication.register("takeShot", catcher.watchFunction((sender, options) => {
-    let { captureType, captureText, scroll, selectedPos, shotId, shot } = options;
+    let { captureType, captureText, scroll, selectedPos, shotId, shot, imageBlob } = options;
     shot = new Shot(main.getBackend(), shotId, shot);
     shot.favicon = sender.tab.favIconUrl;
     let capturePromise = Promise.resolve();
@@ -19,7 +19,7 @@ this.takeshot = (function() {
         shot.addClip({
           createdDate: Date.now(),
           image: {
-            url: dataUrl,
+            url: "data:",
             captureType,
             text: captureText,
             location: selectedPos,
@@ -30,6 +30,10 @@ this.takeshot = (function() {
           }
         });
       });
+    }
+    if (!imageBlob) {
+      imageBlob = base64ToBinary(shot.getClip(shot.clipNames()[0]).image.url);
+      shot.getClip(shot.clipNames()[0]).image.url = "";
     }
     let shotAbTests = {};
     let abTests = auth.getAbTests();
@@ -45,7 +49,7 @@ this.takeshot = (function() {
       return browser.tabs.create({url: shot.creatingUrl})
     }).then((tab) => {
       openedTab = tab;
-      return uploadShot(shot);
+      return uploadShot(shot, imageBlob);
     }).then(() => {
       return browser.tabs.update(openedTab.id, {url: shot.viewUrl}).then(
         null,
@@ -108,10 +112,19 @@ this.takeshot = (function() {
     }));
   }
 
-  function uploadShot(shot) {
+  function base64ToBinary(url) {
+    const binary = atob(url.split(',')[1]);
+    const data = Uint8Array.from(binary, char => char.charCodeAt(0));
+    const blob = new Blob([data], {type: "image/png"});
+    return blob;
+  }
+
+  function uploadShot(shot, blob) {
     return auth.authHeaders().then((headers) => {
-      headers["content-type"] = "application/json";
-      let body = JSON.stringify(shot.asJson());
+      let formData = new FormData();
+      formData.append("shot", JSON.stringify(shot.asJson()));
+      formData.append("blob", blob);
+      let body = formData;
       sendEvent("upload", "started", {eventValue: Math.floor(body.length / 1000)});
       return fetch(shot.jsonUrl, {
         method: "PUT",
