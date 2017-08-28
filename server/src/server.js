@@ -52,6 +52,9 @@ const { errorResponse, simpleResponse, jsResponse } = require("./responses");
 const selfPackage = require("./package.json");
 const { b64EncodeJson, b64DecodeJson } = require("./b64");
 const { l10n } = require("./middleware/l10n");
+const multer = require("multer");
+const storage = multer.memoryStorage();
+const upload = multer({storage});
 
 const PROXY_HEADER_WHITELIST = {
   "content-type": true,
@@ -576,7 +579,7 @@ app.post("/api/login", function(req, res) {
   });
 });
 
-app.put("/data/:id/:domain", function(req, res) {
+app.put("/data/:id/:domain", upload.single('blob'), function(req, res) {
   let slowResponse = config.testing.slowResponse;
   let failSometimes = config.testing.failSometimes;
   if (failSometimes && Math.floor(Math.random() * failSometimes)) {
@@ -585,7 +588,16 @@ app.put("/data/:id/:domain", function(req, res) {
     res.end();
     return;
   }
-  let bodyObj = req.body;
+  let bodyObj = [];
+  if (req.body.shot && req.file) {
+    bodyObj = JSON.parse(req.body.shot);
+    let clipId = Object.getOwnPropertyNames(bodyObj.clips)[0];
+    let b64 = req.file.buffer.toString("base64");
+    b64 = "data:image/png;base64," + b64;
+    bodyObj.clips[clipId].image.url = b64;
+  } else if (req.body) {
+    bodyObj = req.body;
+  }
   if (typeof bodyObj != "object") {
     throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
   }
@@ -677,7 +689,8 @@ app.post("/api/disconnect-device", csrfProtection, function(req, res) {
     let cookies = new Cookies(req, res, {keys: keygrip});
     if (result) {
       cookies.set("accountid");
-      res.redirect('/settings');
+      cookies.set("accountid.sig");
+      simpleResponse(res, "ok", 200);
     }
   }).catch((err) => {
     errorResponse(res, "Error: could not disconnect", err);

@@ -232,6 +232,7 @@
   flex: 0 auto;
   margin: 20px auto;
   max-width: 90%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
 .link-button {
@@ -247,6 +248,7 @@
   display: none;
 }
 
+.edit,
 .pen-button,
 .highlight-button {
   background-size: $grid-unit $grid-unit;
@@ -254,6 +256,14 @@
   background-position: center center;
   margin-right: $grid-unit * 0.5;
   transition: background-image 150ms $bezier;
+}
+
+.edit {
+  background-image: url("../img/annotation-edit-dark.svg");
+
+  &:hover {
+    background-image: url("../img/annotation-edit-hover.svg");
+  }
 }
 
 .highlight-button {
