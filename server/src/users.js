@@ -51,6 +51,9 @@ function getForceAbTests() {
 }
 
 exports.checkLogin = function(deviceId, secret, addonVersion) {
+  if (!secret) {
+    throw new Error("No secret given");
+  }
   return db.select(
     `SELECT secret_hashed, ab_tests FROM devices WHERE id = $1`,
     [deviceId]

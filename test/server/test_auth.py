@@ -110,7 +110,7 @@ def test_login_without_secret():
             data=dict(deviceId=user.deviceId, deviceInfo=json.dumps(user.deviceInfo)))
 
         print(resp.text, resp.status_code)
-        assert resp.status_code == 500 # TODO: fixme
+        assert resp.status_code == 400
 
 
 def test_login_wrong_secret():

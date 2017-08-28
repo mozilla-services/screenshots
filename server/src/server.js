@@ -538,6 +538,12 @@ app.post("/api/login", function(req, res) {
       throw e;
     }
   }
+  if (!vars.secret) {
+    mozlog.error("bad-api-login", {msg: "Bad login request", vars: JSON.stringify(vars, null, "  ")});
+    sendRavenMessage(req, "Attempted to login without secret");
+    simpleResponse(res, "Bad request", 400);
+    return;
+  }
   checkLogin(vars.deviceId, vars.secret, deviceInfo.addonVersion).then((userAbTests) => {
     if (userAbTests) {
       let sendParams = {
