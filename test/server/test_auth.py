@@ -159,4 +159,14 @@ def test_login():
 
 
 if __name__ == "__main__":
-    pass
+    test_register_without_deviceid_fails()
+    test_register_without_secret_fails()
+    test_register_without_deviceinfo_ok()
+    test_register_ok()
+    test_register_with_same_deviceid_twice_fails()
+    test_login_missing_deviceid()
+    test_login_without_secret()
+    test_login_wrong_secret()
+    test_login_invalid_json_deviceinfo()
+    test_login_ownership_check()
+    test_login()
