@@ -467,6 +467,12 @@ app.post("/api/register", function(req, res) {
     simpleResponse(res, "Bad request, no deviceId", 400);
     return;
   }
+  if (!vars.secret) {
+    mozlog.error("bad-api-register", {msg: "Bad register request", vars: JSON.stringify(vars, null, "  ")});
+    sendRavenMessage(req, "Attempted to register without secret");
+    simpleResponse(res, "Bad request, no secret", 400);
+    return;
+  }
   registerLogin(vars.deviceId, {
     secret: vars.secret,
     nickname: vars.nickname || null,

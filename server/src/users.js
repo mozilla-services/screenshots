@@ -86,6 +86,9 @@ exports.registerLogin = function(deviceId, data, canUpdate) {
   if (!deviceId) {
     throw new Error("No deviceId given");
   }
+  if (!(data && data.secret)) {
+    throw new Error("No data or data.secret given");
+  }
   let secretHashed = createHash(data.secret);
   return db.insert(
     `INSERT INTO devices (id, secret_hashed)

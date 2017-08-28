@@ -30,7 +30,7 @@ def test_register_without_secret_fails():
                       deviceInfo=json.dumps(unauthed_user.deviceInfo)))
 
     print resp.text
-    assert resp.status_code == 500 # TODO: fixme
+    assert resp.status_code == 400
 
 
 def test_register_without_deviceinfo_ok():
