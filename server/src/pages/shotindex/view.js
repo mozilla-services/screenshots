@@ -52,8 +52,10 @@ class Body extends React.Component {
       return this.renderShotsLoading();
     }
     let children = [];
-    for (let shot of this.props.shots) {
-      children.push(<Card shot={shot} downloadUrl={this.props.downloadUrls[shot.id]} abTests={this.props.abTests} clipUrl={shot.urlDisplay} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} key={shot.id} />);
+    if (this.props.shots && this.props.shots.length) {
+      for (let shot of this.props.shots) {
+        children.push(<Card shot={shot} downloadUrl={this.props.downloadUrls[shot.id]} abTests={this.props.abTests} clipUrl={shot.urlDisplay} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} key={shot.id} />);
+      }
     }
 
     if (children.length === 0) {

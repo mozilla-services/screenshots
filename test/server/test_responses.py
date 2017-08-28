@@ -115,10 +115,10 @@ def test_my_shots_page():
 
         shot_page = user.read_my_shots()
 
+    # e.g. direct navigation to /shots in private window
     unauthed_user = ScreenshotsClient()
     response = unauthed_user.get_uri("/shots")
-    if response.status_code != 500:  # TODO: fix direct navigation to /shots in private window
-        response.raise_for_status()
+    response.raise_for_status()
 
 
 if __name__ == "__main__":
