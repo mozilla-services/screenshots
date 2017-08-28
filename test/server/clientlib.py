@@ -108,6 +108,14 @@ class ScreenshotsClient(object):
         resp = self.session.get(urljoin(self.backend, "/shots"), params={"q": q})
         resp.raise_for_status()
 
+    def get_settings(self):
+        resp = self.session.get(urljoin(self.backend, "/settings/"))
+        resp.raise_for_status()
+        return resp
+
+    def get_uri(self, uri):
+        return self.session.get(urljoin(self.backend, uri))
+
 
 def make_example_shot(deviceId, pad_image_to_length=None, image_index=None, **overrides):
     if image_index is None:
