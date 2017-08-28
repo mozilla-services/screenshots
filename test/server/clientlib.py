@@ -1,5 +1,6 @@
 import os
 import re
+import contextlib
 import requests
 from urlparse import urljoin
 import json
@@ -171,3 +172,14 @@ def make_uuid():
 
 def make_random_id():
     return make_uuid()[:16]
+
+
+@contextlib.contextmanager
+def screenshots_session(backend=None):
+    if backend:
+        user = ScreenshotsClient(backend=backend)
+    else:
+        user = ScreenshotsClient()
+    user.login()
+    yield user
+    user.delete_account()

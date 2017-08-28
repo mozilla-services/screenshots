@@ -51,6 +51,9 @@ function getForceAbTests() {
 }
 
 exports.checkLogin = function(deviceId, secret, addonVersion) {
+  if (!secret) {
+    throw new Error("No secret given");
+  }
   return db.select(
     `SELECT secret_hashed, ab_tests FROM devices WHERE id = $1`,
     [deviceId]
@@ -86,11 +89,14 @@ exports.registerLogin = function(deviceId, data, canUpdate) {
   if (!deviceId) {
     throw new Error("No deviceId given");
   }
+  if (!(data && data.secret)) {
+    throw new Error("No data or data.secret given");
+  }
   let secretHashed = createHash(data.secret);
   return db.insert(
     `INSERT INTO devices (id, secret_hashed)
      VALUES ($1, $2)`,
-    [deviceId, createHash(data.secret) || null]
+    [deviceId, secretHashed || null]
   ).then((inserted) => {
     let userAbTests = abTests.updateAbTests({}, getForceAbTests());
     if (inserted) {
@@ -112,6 +118,9 @@ exports.registerLogin = function(deviceId, data, canUpdate) {
         return false;
       });
     }
+    return false;
+  }).catch((err) => {
+    mozlog.error("register-error", {err});
     return false;
   });
 };
