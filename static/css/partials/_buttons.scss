@@ -71,61 +71,70 @@
   }
 
   &.download,
+  &.edit,
   &.trash,
   &.share,
   &.flag {
-    background-image: url("../img/icon-sprite.svg");
-    background-size: $grid-unit * 24 $grid-unit * 2;
     background-repeat: no-repeat;
-    background-position: 0 0;
+    background-size: 50%;
+    background-position: center;
     margin-right: $grid-unit * 0.5;
     transition: background-color 150ms $bezier;
   }
 
   &.download {
+    background-image: url("../img/icon-download.svg");
     &:hover {
-      background-position: -2 * $grid-unit 0;
+      background-color: $light-hover;
     }
 
     &:active {
-      background-position: -4 * $grid-unit 0;
+      background-color: $light-active;
     }
   }
 
   &.share {
-    background-position: -6 * $grid-unit 0;
-
+    background-image: url("../img/icon-share.svg");
     &:hover {
-      background-position: -8 * $grid-unit 0;
+      background-color: $light-hover;
     }
 
-    &:active,
-    &.active {
-      background-position: -10 * $grid-unit 0;
+    &.active,
+    &:active {
+      background-color: $light-active;
     }
   }
 
   &.trash {
-    background-position: -12 * $grid-unit 0;
-
+    background-image: url("../img/icon-trash.svg");
     &:hover {
-      background-position: -14 * $grid-unit 0;
+      background-color: $light-hover;
     }
 
     &:active {
-      background-position: -16 * $grid-unit 0;
+      background-color: $light-active;
+    }
+  }
+
+  &.edit {
+    background-image: url("../img/icon-edit.svg");
+    &:hover {
+      background-color: $light-hover;
+    }
+
+    &:active {
+      background-color: $light-active;
     }
   }
 
   &.flag {
-    background-position: -18 * $grid-unit 0;
-
+    background-image: url("../img/icon-flag.svg");
     &:hover {
-      background-position: -20 * $grid-unit 0;
+      background-color: $light-hover;
     }
 
     &:active {
-      background-position: -22 * $grid-unit 0;
+      background-color: $light-active;
     }
   }
 }

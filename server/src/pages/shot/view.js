@@ -396,8 +396,8 @@ class Body extends React.Component {
             </div>
           </div>
           <div className="shot-alt-actions">
-            { this.props.enableAnnotations ? editButton : null }
             { trashOrFlagButton }
+            { this.props.enableAnnotations ? editButton : null }
             <ShareButton abTests={this.props.abTests} clipUrl={clipUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} renderExtensionNotification={renderExtensionNotification} isExtInstalled={this.props.isExtInstalled} />
             <Localized id="shotPageDownloadShot">
               <a className="button primary" href={ this.props.downloadUrl } onClick={ this.onClickDownload.bind(this) }

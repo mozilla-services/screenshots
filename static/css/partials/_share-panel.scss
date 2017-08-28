@@ -53,7 +53,6 @@
   }
 
   .copy-shot-link-input {
-    border-radius: $border-radius;
     border: 1px solid $light-border;
     border-right: 0;
     font-size: 16px;
@@ -79,6 +78,7 @@
     max-width: 120px;
     padding: 0 10px;
     margin: 0;
+    border-radius: 0;
     border: 1px solid $light-border;
 
     &:hover {
