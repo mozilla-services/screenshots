@@ -20,11 +20,13 @@ exports.Editor = class Editor extends React.Component {
     let canvasWidth = this.props.clip.image.dimensions.x;
     return <div>
       <div className="editor-header default-color-scheme">
-        <div className="shot-main-actions">
-          <button className={`button transparent pen-button ${penState}`} id="pen" onClick={this.onClickPen.bind(this)} title="pen"></button>
-          <button className={`button transparent highlight-button ${highlighterState}`} id="highlight" onClick={this.onClickHighlight.bind(this)} title="highlighter"></button>
+        <div className="shot-main-actions annotation-actions">
+          <div className="annotation-tools">
+            <button className={`button transparent pen-button ${penState}`} id="pen" onClick={this.onClickPen.bind(this)} title="pen"></button>
+            <button className={`button transparent highlight-button ${highlighterState}`} id="highlight" onClick={this.onClickHighlight.bind(this)} title="highlighter"></button>
+          </div>
         </div>
-        <div className="shot-alt-actions">
+        <div className="shot-alt-actions annotation-alt-actions">
           <button className="button primary save" id="save" onClick={ this.onClickSave.bind(this) }>Save</button>
           <button className="button secondary cancel" id="cancel" onClick={this.onClickCancel.bind(this)}>Cancel</button>
         </div>
@@ -33,7 +35,7 @@ exports.Editor = class Editor extends React.Component {
         <div className="canvas-container" id="canvas-container" ref={(canvasContainer) => this.canvasContainer = canvasContainer}>
           <canvas className="image-holder centered" id="image-holder" ref={(image) => { this.imageCanvas = image }} height={ 2 * canvasHeight } width={ 2 * canvasWidth } style={{height: canvasHeight, width: canvasWidth}}></canvas>
           <canvas className="highlighter centered" id="highlighter" ref={(highlighter) => { this.highlighter = highlighter }} height={canvasHeight} width={canvasWidth}></canvas>
-          <canvas className="editor centered" id="editor" ref={(editor) => { this.editor = editor }} height={canvasHeight} width={canvasWidth}></canvas>
+          <canvas className={"editor centered " + this.state.tool} id="editor" ref={(editor) => { this.editor = editor }} height={canvasHeight} width={canvasWidth}></canvas>
         </div>
       </div>
     </div>
@@ -61,9 +63,6 @@ exports.Editor = class Editor extends React.Component {
     if (this.state.tool != 'highlighter') {
       this.setState({tool: 'highlighter'});
       sendEvent("highlighter-select", "annotation-toolbar");
-    } else {
-      this.setState({tool: 'none'});
-      sendEvent("highlighter-deselect", "annotation-toolbar");
     }
   }
 
@@ -71,9 +70,6 @@ exports.Editor = class Editor extends React.Component {
     if (this.state.tool != 'pen') {
       this.setState({tool: 'pen'});
       sendEvent("pen-select", "annotation-toolbar");
-    } else {
-      this.setState({tool: 'none'});
-      sendEvent("pen-deselect", "annotation-toolbar");
     }
   }
 
@@ -125,7 +121,7 @@ exports.Editor = class Editor extends React.Component {
     this.drawContext = this.state.tool == 'highlighter' ? this.highlightContext : this.context;
     this.drawContext.beginPath();
 
-    this.drawContext.lineCap = 'square';
+    this.drawContext.lineCap = this.state.tool == 'highlighter' ? 'square' : 'round';
     this.drawContext.moveTo(this.pos.x, this.pos.y);
     let rect = this.editor.getBoundingClientRect();
     this.pos.x = e.clientX - rect.left,
