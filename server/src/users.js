@@ -120,7 +120,7 @@ exports.registerLogin = function(deviceId, data, canUpdate) {
     }
     return false;
   }).catch((err) => {
-    mozlog.error("register-error", {err: err});
+    mozlog.error("register-error", {err});
     return false;
   });
 };
