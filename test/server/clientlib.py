@@ -1,5 +1,6 @@
 import os
 import re
+import contextlib
 import requests
 from urlparse import urljoin
 import json
@@ -107,6 +108,14 @@ class ScreenshotsClient(object):
         resp = self.session.get(urljoin(self.backend, "/shots"), params={"q": q})
         resp.raise_for_status()
 
+    def get_settings(self):
+        resp = self.session.get(urljoin(self.backend, "/settings/"))
+        resp.raise_for_status()
+        return resp
+
+    def get_uri(self, uri):
+        return self.session.get(urljoin(self.backend, uri))
+
 
 def make_example_shot(deviceId, pad_image_to_length=None, image_index=None, **overrides):
     if image_index is None:
@@ -171,3 +180,14 @@ def make_uuid():
 
 def make_random_id():
     return make_uuid()[:16]
+
+
+@contextlib.contextmanager
+def screenshots_session(backend=None):
+    if backend:
+        user = ScreenshotsClient(backend=backend)
+    else:
+        user = ScreenshotsClient()
+    user.login()
+    yield user
+    user.delete_account()
