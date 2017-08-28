@@ -37,8 +37,6 @@ const { randomBytes } = require("./helpers");
 const errors = require("./errors");
 const buildTime = require("./build-time").string;
 const ua = require("universal-analytics");
-const urlParse = require("url").parse;
-const urlResolve = require("url").resolve;
 const http = require("http");
 const https = require("https");
 const gaActivation = require("./ga-activation");
@@ -52,19 +50,6 @@ const { errorResponse, simpleResponse, jsResponse } = require("./responses");
 const selfPackage = require("./package.json");
 const { b64EncodeJson, b64DecodeJson } = require("./b64");
 const { l10n } = require("./middleware/l10n");
-
-const PROXY_HEADER_WHITELIST = {
-  "content-type": true,
-  "content-encoding": true,
-  "content-length": true,
-  "last-modified": true,
-  "etag": true,
-  "date": true,
-  "accept-ranges": true,
-  "content-range": true,
-  "retry-after": true,
-  "via": true
-};
 
 const COOKIE_EXPIRE_TIME = 30 * 24 * 60 * 60 * 1000; // 30 days
 
@@ -1010,67 +995,6 @@ app.use("/settings", require("./pages/settings/server").app);
 app.use("/", require("./pages/shot/server").app);
 
 app.use("/", require("./pages/homepage/server").app);
-
-app.get("/proxy", function(req, res) {
-  let stringUrl = req.query.url;
-  let sig = req.query.sig;
-  let isValid = dbschema.getKeygrip().verify(new Buffer(stringUrl, 'utf8'), sig);
-  if (!isValid) {
-    sendRavenMessage(req, "Bad signature on proxy", {extra: {proxyUrl: url, sig}});
-    simpleResponse(res, "Bad signature", 403);
-    return;
-  }
-  let url = urlParse(stringUrl);
-  let httpModule = http;
-  if (url.protocol == "https:") {
-    httpModule = https;
-  }
-  let headers = {};
-  for (let passthrough of ["user-agent", "if-modified-since", "if-none-match"]) {
-    if (req.headers[passthrough]) {
-      headers[passthrough] = req.headers[passthrough];
-    }
-  }
-  let host = url.host.split(":")[0];
-  let subreq = httpModule.request({
-    protocol: url.protocol,
-    host,
-    port: url.port,
-    method: "GET",
-    path: url.path,
-    headers
-  });
-  subreq.on("response", function(subres) {
-    let headers = {};
-    for (let h in subres.headers) {
-      if (PROXY_HEADER_WHITELIST[h]) {
-        headers[h] = subres.headers[h];
-      }
-    }
-    if (subres.headers.location) {
-      let location = urlResolve(stringUrl, subres.headers.location);
-      headers.location = require("./proxy-url").createProxyUrl(req, location);
-    }
-    // Cache for 30 days
-    headers["cache-control"] = "public, max-age=2592000";
-    headers["expires"] = new Date(Date.now() + 2592000000).toUTCString();
-    res.writeHead(subres.statusCode, subres.statusMessage, headers);
-
-    subres.on("data", function(chunk) {
-      res.write(chunk);
-    });
-    subres.on("end", function() {
-      res.end();
-    });
-    subres.on("error", function(err) {
-      errorResponse(res, "Error getting response:", err);
-    });
-  });
-  subreq.on("error", function(err) {
-    errorResponse(res, "Error fetching:", err);
-  });
-  subreq.end();
-});
 
 let httpsCredentials;
 if (config.localhostSsl) {
