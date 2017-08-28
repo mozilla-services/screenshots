@@ -29,6 +29,7 @@
     "mobile-detect": "1.3.6",
     "morgan": "1.8.2",
     "mozlog": "2.1.1",
+    "multer": "1.3.0",
     "node-statsd": "0.1.1",
     "nodemon": "1.11.0",
     "nodify-uuid": "0.0.1",
