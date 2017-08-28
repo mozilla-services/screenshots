@@ -110,10 +110,7 @@ def test_lbheartbeat():
 
 def test_my_shots_page():
     with screenshots_session() as user:
-        shot_url = user.create_shot(docTitle="A_TEST_SITE_1", image_index=0)
-        shot_id = urlparse.urlsplit(shot_url).path.strip("/")
-
-        shot_page = user.read_my_shots()
+        user.read_my_shots()
 
     # e.g. direct navigation to /shots in private window
     unauthed_user = ScreenshotsClient()
