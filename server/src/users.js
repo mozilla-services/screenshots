@@ -96,7 +96,7 @@ exports.registerLogin = function(deviceId, data, canUpdate) {
   return db.insert(
     `INSERT INTO devices (id, secret_hashed)
      VALUES ($1, $2)`,
-    [deviceId, createHash(data.secret) || null]
+    [deviceId, secretHashed || null]
   ).then((inserted) => {
     let userAbTests = abTests.updateAbTests({}, getForceAbTests());
     if (inserted) {
