@@ -18,6 +18,7 @@ gScreenshotsDescription = Skermôfbyldingen wurde maklik. Meitsje, bewarje en di
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Betingsten
 footerLinkPrivacy = Privacyferklearring
 footerLinkDMCA = IP-misbrûk rapportearje
 footerLinkDiscourse = Kommentaar jaan
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Alle gegevens fuortsmite
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } wurdt makke
 creatingPageTitleDefault = side
+creatingPageWaitMessage = Jo ôfbylding bewarje…
 
 
 [[ Home page ]]
@@ -63,7 +65,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Fuortsmiten fan account befêstigje
+leavePageRemoveAllData = Alle gegevens fuortsmite
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Jo moatte Firefox Screenshots ynstallearre hawwe om jo account fuort te smiten
 leavePageErrorGeneric = Der is in flater bard
