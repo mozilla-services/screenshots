@@ -82,6 +82,7 @@ exports.changeShotExpiration = function(shot, expiration) {
     if (req.status >= 300) {
       let errorMessage = document.getElementById("shotPageAlertErrorUpdatingExpirationTime").textContent;
       window.alert(errorMessage);
+      window.Raven.captureException(new Error(`Error calling /api/set-expiration: ${req.status} ${req.statusText}`));
     } else {
       if (expiration === 0) {
         model.shot.expireTime = model.expireTime = null;
@@ -109,6 +110,7 @@ exports.deleteShot = function(shot) {
       // FIXME: a lame way to do an error message
       let errorMessage = document.getElementById("shotPageAlertErrorDeletingShot").textContent;
       window.alert(errorMessage);
+      window.Raven.captureException(new Error(`Error calling /api/delete-shot: ${req.status} ${req.statusText}`));
     } else {
       location.href = model.backend + "/shots";
     }
@@ -135,11 +137,14 @@ exports.saveEdit = function(shot, shotUrl) {
     if (!resp.ok) {
       var errorMessage = "Error saving edited shot";
       window.alert(errorMessage);
+      window.Raven.captureException(new Error(`Error calling /api/save-edit: ${req.status} ${req.statusText}`));
     } else {
       location.reload();
     }
   }).catch((error) => {
-    window.alert("Connection error");
+    var errorMessage = "Connection error";
+    window.alert(errorMessage);
+    window.Raven.captureException(error);
     throw error;
   });
 }
@@ -209,6 +214,7 @@ exports.setTitle = function(title) {
     if (req.status >= 300) {
       let errorMessage = document.getElementById("shotPageAlertErrorUpdatingTitle").textContent;
       window.alert(errorMessage);
+      window.Raven.captureException(new Error(`Error calling /api/set-title: ${req.status} ${req.statusText}`));
       return;
     }
     model.shot.userTitle = title;
