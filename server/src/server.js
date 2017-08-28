@@ -689,7 +689,8 @@ app.post("/api/disconnect-device", csrfProtection, function(req, res) {
     let cookies = new Cookies(req, res, {keys: keygrip});
     if (result) {
       cookies.set("accountid");
-      res.redirect('/settings');
+      cookies.set("accountid.sig");
+      simpleResponse(res, "ok", 200);
     }
   }).catch((err) => {
     errorResponse(res, "Error: could not disconnect", err);
