@@ -1,4 +1,3 @@
-const fs = require("fs");
 const path = require("path");
 const globby = require("globby");
 require("fluent-intl-polyfill/compat");
@@ -87,4 +86,4 @@ function getMessageContext(locale) {
   }
 
   return messagesContexts[locale];
-};
+}
