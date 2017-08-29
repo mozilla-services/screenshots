@@ -1,8 +1,6 @@
 from clientlib import ScreenshotsClient, screenshots_session
 from urlparse import urljoin, urlsplit
 import random
-import requests
-import json
 import re
 
 
