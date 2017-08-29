@@ -85,6 +85,26 @@ class ScreenshotsClient(object):
             {"id": shot_id, "expiration": str(seconds), "_csrf": csrf})
         resp.raise_for_status()
 
+    def set_title(self, url, new_title):
+        shot_id = self._get_id_from_url(url)
+        csrf = self.read_shot(url)["csrf"]
+        assert csrf, "No CSRF found"
+        resp = self.session.post(
+            urljoin(urljoin(self.backend, '/api/set-title/'), shot_id),
+            {"id": shot_id, "title": new_title, "_csrf": csrf})
+        resp.raise_for_status()
+
+    def edit_shot(self, url, edits):
+        shot_id = self._get_id_from_url(url)
+        csrf = self.read_shot(url)["csrf"]
+        assert csrf, "No CSRF found"
+        body = {"shotId": shot_id, "_csrf": csrf}
+        body.update(edits)
+        resp = self.session.post(
+            urljoin(self.backend, '/api/save-edit'),
+            body)
+        resp.raise_for_status()
+
     def delete_shot(self, url):
         shot_id = self._get_id_from_url(url)
         csrf = self.read_shot(url)["csrf"]
@@ -103,6 +123,7 @@ class ScreenshotsClient(object):
     def read_my_shots(self):
         resp = self.session.get(urljoin(self.backend, "/shots"))
         resp.raise_for_status()
+        return resp
 
     def search_shots(self, q):
         resp = self.session.get(urljoin(self.backend, "/shots"), params={"q": q})
