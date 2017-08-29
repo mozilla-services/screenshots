@@ -34,7 +34,9 @@ build() {
   echo -n "Building $(basename $dest): deps... "
   browserify --list -e "$@" | sed "s!$(pwd)/!!g" | grep -v build-time > "$(depfile)"
   echo -n "bundle... "
-  browserify -o "$dest" \
+  NODE_ENV=production browserify -o "$dest" \
+    -g [ envify --NODE_ENV production ] \
+    -g uglifyify \
     -e "$@"
   if [[ -z "$NO_UGLIFY" ]] ; then
     echo -n "minimizing... "

@@ -55,6 +55,7 @@
     "body-parser": "1.17.2",
     "browserify": "14.4.0",
     "david": "11.0.0",
+    "envify": "4.1.0",
     "eslint": "4.3.0",
     "eslint-plugin-mozilla": "0.4.2",
     "eslint-plugin-promise": "3.5.0",
@@ -70,6 +71,7 @@
     "sass-lint": "1.10.2",
     "selenium-webdriver": "3.5.0",
     "svgo": "0.7.2",
+    "uglifyify": "4.0.3",
     "uglify-js": "3.0.26",
     "web-ext": "1.10.1"
   },
