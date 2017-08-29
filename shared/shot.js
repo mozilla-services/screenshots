@@ -32,6 +32,10 @@ function isUrl(url) {
   return (/^https?:\/\/[a-z0-9.-]{1,8000}[a-z0-9](:[0-9]{1,8000})?\/?/i).test(url);
 }
 
+function isValidClipImageUrl(url) {
+    return isUrl(url) && !(url.indexOf(')') > -1);
+}
+
 function assertUrl(url) {
   if (!url) {
     throw new Error("Empty value is not URL");
@@ -743,4 +747,5 @@ AbstractShot.prototype.Clip = _Clip;
 if (typeof exports != "undefined") {
   exports.AbstractShot = AbstractShot;
   exports.originFromUrl = originFromUrl;
+  exports.isValidClipImageUrl = isValidClipImageUrl;
 }

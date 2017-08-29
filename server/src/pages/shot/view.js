@@ -7,6 +7,7 @@ const { ShareButton } = require("../../share-buttons");
 const { TimeDiff } = require("./time-diff");
 const reactruntime = require("../../reactruntime");
 const { Editor } = require("./editor");
+const { isValidClipImageUrl } = require("../../../../shared/shot");
 
 class Clip extends React.Component {
   constructor(props) {
@@ -34,6 +35,9 @@ class Clip extends React.Component {
     let clip = this.props.clip;
     if (!clip.image) {
       console.warn("Somehow there's a shot without an image");
+      return null;
+    }
+    if (!isValidClipImageUrl(clip.image.url)) {
       return null;
     }
     let node = <img id="clipImage" style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%" }} ref={clipImage => this.clipImage = clipImage} src={ clip.image.url } alt={ clip.image.text } />;
@@ -139,6 +143,9 @@ class Head extends React.Component {
   }
 
   makeEmbeddedImageUrl(url, type) {
+    if (!isValidClipImageUrl(url)) {
+      return "";
+    }
     if (!url.startsWith("http")) {
       return url;
     }
@@ -362,6 +369,9 @@ class Body extends React.Component {
       let clipId = clipNames[0];
       clip = this.props.shot.getClip(clipId);
       clipUrl = clip.image.url;
+      if (!isValidClipImageUrl(clipUrl)) {
+        clipUrl = "";
+      }
     }
 
     let renderGetFirefox = this.props.userAgent && (this.props.userAgent + "").search(/firefox\/\d{1,255}/i) === -1;
