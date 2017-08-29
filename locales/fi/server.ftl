@@ -21,7 +21,7 @@ footerLinkMozilla = Mozilla
 footerLinkTerms = Käyttöehdot
 footerLinkPrivacy = Tietosuojakäytäntö
 footerLinkDMCA = Ilmoita immateriaalioikeuksien loukkauksesta
-footerLinkDiscourse = Anna plautetta
+footerLinkDiscourse = Anna palautetta
 footerLinkRemoveAllData = Poista kaikki tiedot
 
 
