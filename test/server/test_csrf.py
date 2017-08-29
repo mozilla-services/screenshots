@@ -111,5 +111,26 @@ def test_get_my_shots_sets_csrf_cookie():
         assert user.session.cookies.get('_csrf')
 
 
+def test_leave_screenshots_with_duplicate_csrf_cookies_fails():
+    user = ScreenshotsClient()
+    user.login()
+
+    leave_resp = user.session.get(user.backend + "/leave-screenshots/")
+    assert leave_resp.status_code == 200
+    assert leave_resp.cookies.get('_csrf')
+
+    page = leave_resp.text
+    csrf_match = re.search(r'<input.*name="_csrf".*value="([^"]*)"', page)
+    csrf = csrf_match.group(1)
+    resp = user.session.post(
+        urljoin(user.backend, "/leave-screenshots/leave"),
+        cookies={'_csrf': leave_resp.cookies.get('_csrf'),   # noqa: F601
+                 '_csrf': leave_resp.cookies.get('_csrf')},  # noqa: F601
+        json={"_csrf": csrf})
+    assert resp.status_code == 400
+
+    user.delete_account()
+
+
 if __name__ == "__main__":
     pass
