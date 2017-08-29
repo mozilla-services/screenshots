@@ -209,7 +209,12 @@ $very-light-grey: #ededed;
   @include flex-container(row, center, center);
   bottom: -55px;
   position: absolute;
-  right: 5px;
+  html[dir="rtl"] & {
+    left: 5px;
+  }
+  html[dir="ltr"] & {
+    right: 5px;
+  }
   z-index: 6;
 
   .bottom-selection & {
@@ -238,13 +243,23 @@ $very-light-grey: #ededed;
   @extend .button;
   @extend .primary;
   background-image: url("MOZ_EXTENSION/icons/cloud.svg");
-  background-position: 8px center;
+  html[dir="ltr"] & {
+    background-position: 8px center;
+  } 
+  html[dir="rtl"] & {
+    background-position: 65px center;
+  }  
   background-repeat: no-repeat;
   background-size: 20px 18px;
   font-size: 18px;
   margin: 5px;
   min-width: 80px;
-  padding-left: 34px;
+  html[dir="ltr"] & {
+    padding-left: 34px;
+  }
+  html[dir="rtl"] & {
+    padding-right: 40px;
+  }
 }
 
 .highlight-button-download {
