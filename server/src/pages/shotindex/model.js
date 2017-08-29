@@ -15,8 +15,8 @@ exports.createModel = function(req) {
   serverModel.downloadUrls = {};
   serverModel.disableSearch = req.config.disableSearch;
   serverModel.enableUserSettings = req.config.enableUserSettings;
-  let shots = req.shots;
-  for (let shot of shots || []) {
+  let shots = req.shots || [];
+  for (let shot of shots) {
     if (shot.favicon) {
       shot.favicon = createProxyUrl(req, shot.favicon);
     }
@@ -24,13 +24,11 @@ exports.createModel = function(req) {
     if (clip) {
       serverModel.downloadUrls[shot.id] = createDownloadUrl(clip.image.url, shot.filename);
     }
-    for (let image of (shot.images || [])) {
+    for (let image of shot.images) {
       image.url = createProxyUrl(req, image.url);
     }
   }
-  if (shots && shots.length) {
-    shots = shots.map((shot) => ({id: shot.id, json: shot.asRecallJson()}));
-  }
+  shots = shots.map((shot) => ({id: shot.id, json: shot.asRecallJson()}));
   let jsonModel = Object.assign(
     {},
     serverModel,
