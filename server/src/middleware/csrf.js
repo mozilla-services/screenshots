@@ -19,7 +19,7 @@ exports.csrf = function(req, res, next) {
     let exc = new Error("Duplicate CSRF cookies");
     exc.headerValue = rawCookies;
     captureRavenException(exc);
-    simpleResponse(res, "Bad request", 400);
+    return simpleResponse(res, "Bad request", 400);
   }
   req.cookies._csrf = req.cookies.get("_csrf"); // csurf expects a property
   next();
