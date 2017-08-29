@@ -30,7 +30,7 @@ const dbschema = require("./dbschema");
 const express = require("express");
 const bodyParser = require('body-parser');
 const contentDisposition = require("content-disposition");
-const { csrf, csrfProtection, csrfErrorHandler } = require("./middleware/csrf");
+const { csrf, csrfProtection, csrfErrorResponse } = require("./middleware/csrf");
 const morgan = require("morgan");
 const linker = require("./linker");
 const { randomBytes } = require("./helpers");
@@ -1064,8 +1064,6 @@ require("./jobs").start();
 
 addRavenErrorHandler(app);
 
-app.use(csrfErrorHandler);
-
 app.use(function(err, req, res, next) {
   if (err.isAppError) {
     let { statusCode, headers, payload } = err.output;
@@ -1085,6 +1083,10 @@ app.use(function(err, req, res, next) {
     res.status(err.statusCode);
     res.type("text");
     res.send(res.message);
+    return;
+  }
+  if (err.code === "EBADCSRFTOKEN") {
+    csrfErrorResponse(err, req, res);
     return;
   }
   errorResponse(res, "General error:", err);

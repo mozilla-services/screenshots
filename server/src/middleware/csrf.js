@@ -1,3 +1,4 @@
+const assert = require("assert");
 const csrf = require("csurf");
 const mozlog = require("../logging").mozlog("csrf-middleware");
 const { captureRavenException } = require("../ravenclient");
@@ -24,12 +25,10 @@ exports.csrf = function(req, res, next) {
   next();
 };
 
-exports.csrfErrorHandler = function(err, req, res, next) {
-  if (err.code !== "EBADCSRFTOKEN") {
-    next();
-  }
+exports.csrfErrorResponse = function(err, req, res) {
+  assert(err.code === "EBADCSRFTOKEN", "Returning csrf response for non-csrf error code.");
   mozlog.info("bad-csrf", {id: req.ip, url: req.url});
   res.status(403);
   res.type("text");
-  res.send("Bad CSRF Token")
+  res.send("Bad CSRF Token");
 };
