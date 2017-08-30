@@ -2,7 +2,7 @@ const sendEvent = require("../../browser-send-event.js");
 const page = require("./page").page;
 const { AbstractShot } = require("../../../shared/shot");
 
-const TEN_SECONDS = 10 * 1000;
+const FIVE_SECONDS = 5 * 1000;
 
 let model;
 
@@ -27,17 +27,20 @@ exports.launch = function(m) {
     return;
   }
   if (window.wantsauth) {
-    if (window.wantsauth.getAuthData()) {
-      location.reload();
-    } else {
-      let authTimeout = setTimeout(() => {
-        location.pathname = "";
-      }, TEN_SECONDS);
-      window.wantsauth.addAuthDataListener((data) => {
-        clearTimeout(authTimeout);
-        location.reload();
-      });
+    if (window.wantsauth.getAuthData() && location.search.indexOf("reloaded") === -1) {
+      location.search = "reloaded";
+      return;
     }
+    let authTimeout = setTimeout(() => {
+      location = location.origin;
+    }, FIVE_SECONDS);
+    window.wantsauth.addAuthDataListener((data) => {
+      if (location.search.indexOf("reloaded") > -1) {
+        return;
+      }
+      clearTimeout(authTimeout);
+      location.search = "reloaded";
+    });
   }
 };
 
