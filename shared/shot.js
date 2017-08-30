@@ -699,7 +699,7 @@ class _Clip {
       return;
     }
     assert(checkObject(image, ["url"], ["dimensions", "text", "location", "captureType"]), "Bad attrs for Clip Image:", Object.keys(image));
-    assert(isUrl(image.url), "Bad Clip image URL:", image.url);
+    assert(isValidClipImageUrl(image.url), "Bad Clip image URL:", image.url);
     assert(image.captureType == "madeSelection" || image.captureType == "selection" || image.captureType == "visible" || image.captureType == "auto" || image.captureType == "fullPage" || !image.captureType, "Bad image.captureType:", image.captureType);
     assert(typeof image.text == "string" || !image.text, "Bad Clip image text:", image.text);
     if (image.dimensions) {

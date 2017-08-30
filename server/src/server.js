@@ -53,6 +53,7 @@ const { l10n } = require("./middleware/l10n");
 const multer = require("multer");
 const storage = multer.memoryStorage();
 const upload = multer({storage});
+const { isValidClipImageUrl } = require("../../shared/shot");
 
 const COOKIE_EXPIRE_TIME = 30 * 24 * 60 * 60 * 1000; // 30 days
 
@@ -730,6 +731,11 @@ app.post("/api/save-edit", csrfProtection, function(req, res) {
   }
   let id = vars.shotId;
   let url = vars.url;
+  if (!isValidClipImageUrl(url)) {
+    sendRavenMessage(req, "Attempt to edit shot to set invalid clip url.");
+    simpleResponse(res, "Invalid shot url.", 400);
+    return;
+  }
   Shot.get(req.backend, id, req.deviceId, req.accountId).then((shot) => {
     if (!shot) {
       sendRavenMessage(req, "Attempt to edit shot that does not exist");
