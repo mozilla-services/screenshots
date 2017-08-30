@@ -192,14 +192,24 @@ body {
   @extend %next-prev-button;
   background-image: url("MOZ_EXTENSION/icons/back.svg");
   left: 50%;
-  margin-left: - ($slide-width / 2) - ($next-prev-size / 2);
+  html[dir="ltr"] & {
+     margin-left: - ($slide-width / 2) - ($next-prev-size / 2);
+  }
+  html[dir="rtl"] & {
+     margin-left: ($slide-width / 2) - ($next-prev-size / 2);
+  }   
 }
 
 #next,
 #done {
   @extend %next-prev-button;
   left: 50%;
-  margin-left: ($slide-width / 2) - ($next-prev-size / 2);
+  html[dir="ltr"] & {
+     margin-left: ($slide-width / 2) - ($next-prev-size / 2);
+  }  
+  html[dir="rtl"] & {
+     margin-left: - ($slide-width / 2) - ($next-prev-size / 2);
+  }    
 }
 
 #prev,
