@@ -26,7 +26,7 @@ test:
   override:
     - firefox -v
     # Start the server before all tests:
-    - ENABLE_COVERAGE=1 NODE_ENV=dev node -e 'require("babel-polyfill"); require("./build/server/server");':
+    - node -e 'require("babel-polyfill"); require("./build/server/server");':
         background: true
     # addon tests
     - FIREFOX_CHANNEL=NIGHTLY npm test
@@ -34,9 +34,6 @@ test:
     - ./bin/test-request put '{}'
     - ./bin/load_test_exercise.py http://localhost:10080
     - npm run test:server -- --ignore=test_file_management.py
-    # server code coverage in server-coverage should create: lcov-report/ lcov.info coverage.json
-    - mkdir server-coverage
-    - cd server-coverage && wget http://localhost:10080/coverage/download && unzip download && rm download
     # run zap baseline against the server
     - docker pull owasp/zap2docker-weekly
     # || true to temporarily disable this from making the tests fail:
@@ -44,7 +41,6 @@ test:
 
   post:
     - bash <(curl -s https://codecov.io/bash)
-    - mv server-coverage $CIRCLE_ARTIFACTS/
 
 deployment:
   dev:
