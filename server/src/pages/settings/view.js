@@ -39,7 +39,7 @@ class Body extends React.Component {
     if (this.props.accountInfo) {
       info = (
         <div className="account-info">
-          <img src={this.props.accountInfo.avatar || defaultAvatar } height="100" width="100" />
+          <img src={this.props.accountInfo.avatarUrl || defaultAvatar } height="100" width="100" />
           <div className="info-container">
             <p className="username title">{this.props.accountInfo.nickname || this.props.accountInfo.email}</p>
             { this.props.accountInfo.nickname ? <p className="email info">{this.props.accountInfo.email}</p> : null }

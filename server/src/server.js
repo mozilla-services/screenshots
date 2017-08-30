@@ -110,6 +110,7 @@ if (config.enableCoverage && istanbulMiddleware) {
 }
 
 const CONTENT_NAME = config.contentOrigin || '';
+const FXA_SERVER = config.fxa.profileServer && require("url").parse(config.fxa.profileServer).host;
 
 function addHSTS(req, res) {
   // Note: HSTS will only produce warning on a localhost self-signed cert
@@ -145,7 +146,7 @@ app.use((req, res, next) => {
       req.cspNonce = uuid;
       res.header(
         "Content-Security-Policy",
-        `default-src 'self'; img-src 'self' www.google-analytics.com ${CONTENT_NAME} data:; script-src 'self' www.google-analytics.com 'nonce-${uuid}'; style-src 'self' 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
+        `default-src 'self'; img-src 'self' ${FXA_SERVER} www.google-analytics.com ${CONTENT_NAME} data:; script-src 'self' www.google-analytics.com 'nonce-${uuid}'; style-src 'self' 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
       res.header("X-Frame-Options", "DENY");
       res.header("X-Content-Type-Options", "nosniff");
       addHSTS(req, res);
