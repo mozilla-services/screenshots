@@ -14,13 +14,13 @@ for (let ftl of ftlPaths) {
   let destFilePath = `${destDir}/${locale}.js`;
   let ftlFileContent = fs.readFileSync(ftl, 'utf8');
   let jsFileContent = `
-    (context => {
-      let messages=${JSON.stringify(ftlFileContent)};
+    (function(context) {
+      var messages=${JSON.stringify(ftlFileContent)};
       if (typeof exports === 'object' && context === exports) {
         exports.messages = messages;
       } else {
         context.l10nMessages = context.l10nMessages || {};
-        context.l10nMessages['${locale}'] = messages;
+        context.l10nMessages[${JSON.stringify(locale)}] = messages;
       }
     })(this);
   `;
