@@ -18,6 +18,7 @@ gScreenshotsDescription = La via simpla per far maletgs dal visur: Far, memorisa
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Cundiziuns d'utilisaziun
 footerLinkPrivacy = Infurmaziuns davart la protecziun da datas
 footerLinkDMCA = Rapportar ina violaziun da proprietad intellectuala
 footerLinkDiscourse = Dar in resun
@@ -31,6 +32,7 @@ footerLinkRemoveAllData = Allontanar tut las datas
 // creatingPageTitleDefault.
 creatingPageTitle = Crear { $title }
 creatingPageTitleDefault = pagina
+creatingPageWaitMessage = Memorisar tia foto…
 
 
 [[ Home page ]]
