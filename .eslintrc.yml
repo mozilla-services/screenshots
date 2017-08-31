@@ -5,7 +5,7 @@ env:
 
 extends:
   - eslint:recommended
-  - plugin:mozilla/recommended
+  #- plugin:mozilla/recommended
   - plugin:react/recommended
 
 parserOptions:
@@ -14,7 +14,7 @@ parserOptions:
     jsx: true
 
 plugins:
-  - mozilla
+  #- mozilla
   - react
   - promise
 
@@ -34,6 +34,7 @@ rules:
   no-var: off # TODO: change to "error"
   prefer-const: off # TODO: change to "error"
   quotes: [off, double] # TODO: change to "error"
+  no-unused-vars: off # TODO: change to "error"
 
   promise/always-return: off
   promise/avoid-new: off
