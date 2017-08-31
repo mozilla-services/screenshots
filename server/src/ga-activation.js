@@ -122,7 +122,7 @@ const gaJs = `
     if (__HASH_LOCATION__) {
       ga("set", "title", "");
     }
-    ga("send", "pageview", gaLocation || location.href);
+    ga("send", "pageview", gaLocation || location.pathname);
   }
 })();
 
