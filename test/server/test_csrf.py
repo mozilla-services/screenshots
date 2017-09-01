@@ -1,5 +1,6 @@
-from clientlib import screenshots_session
+from clientlib import ScreenshotsClient, screenshots_session
 from urlparse import urljoin, urlsplit
+import json
 import random
 import re
 
@@ -10,7 +11,7 @@ random.seed(0)
 
 def assert_httponly_csrf_cookie(response, cookie_name='_csrf'):
     "Test helper"
-    assert response.cookies.get(cookie_name)  # cookie exits
+    assert response.cookies.get(cookie_name)  # cookie exists
     csrf_cookie = [c for c in response.cookies if c.name == cookie_name][0]
     assert csrf_cookie.has_nonstandard_attr('HttpOnly')  # is HttpOnly
 
@@ -19,7 +20,7 @@ def test_leave_screenshots_with_valid_csrftoken_ok():
     with screenshots_session() as user:
         leave_resp = user.session.get(user.backend + "/leave-screenshots/")
         assert leave_resp.status_code == 200
-        assert_httponly_csrf_cookie(leave_resp)
+        assert_httponly_csrf_cookie(user.session)
 
         page = leave_resp.text
         csrf_match = re.search(r'<input.*name="_csrf".*value="([^"]*)"', page)
@@ -34,7 +35,7 @@ def test_leave_screenshots_with_invalid_csrftoken_fails():
     with screenshots_session() as user:
         leave_resp = user.session.get(user.backend + "/leave-screenshots/")
         assert leave_resp.status_code == 200
-        assert_httponly_csrf_cookie(leave_resp)
+        assert_httponly_csrf_cookie(user.session)
 
         resp = user.session.post(
             urljoin(user.backend, "/leave-screenshots/leave"),
@@ -48,7 +49,7 @@ def test_leave_screenshots_without_csrftoken_fails():
     with screenshots_session() as user:
         leave_resp = user.session.get(user.backend + "/leave-screenshots/")
         assert leave_resp.status_code == 200
-        assert_httponly_csrf_cookie(leave_resp)
+        assert_httponly_csrf_cookie(user.session)
 
         resp = user.session.post(
             urljoin(user.backend, "/leave-screenshots/leave"))
@@ -61,7 +62,7 @@ def test_leave_screenshots_with_get_fails():
     with screenshots_session() as user:
         leave_resp = user.session.get(user.backend + "/leave-screenshots/")
         assert leave_resp.status_code == 200
-        assert_httponly_csrf_cookie(leave_resp)
+        assert_httponly_csrf_cookie(user.session)
 
         page = leave_resp.text
         csrf_match = re.search(r'<input.*name="_csrf".*value="([^"]*)"', page)
@@ -76,17 +77,16 @@ def test_leave_screenshots_with_get_fails():
 def test_leave_screenshots_with_duplicate_csrf_cookies_fails():
     with screenshots_session() as user:
         leave_resp = user.session.get(user.backend + "/leave-screenshots/")
-        print(leave_resp.cookies.get('_csrf'))
         assert leave_resp.status_code == 200
-        assert_httponly_csrf_cookie(leave_resp)
+        assert_httponly_csrf_cookie(user.session)
 
         page = leave_resp.text
         csrf_match = re.search(r'<input.*name="_csrf".*value="([^"]*)"', page)
         csrf = csrf_match.group(1)
         resp = user.session.post(
             urljoin(user.backend, "/leave-screenshots/leave"),
-            cookies={'_csrf': leave_resp.cookies.get('_csrf'),   # noqa: F601
-                         '_csrf': leave_resp.cookies.get('_csrf')},  # noqa: F601
+            cookies={'_csrf': user.session.cookies.get('_csrf'),   # noqa: F601
+                     '_csrf': user.session.cookies.get('_csrf')},  # noqa: F601
             json={"_csrf": csrf})
         assert resp.status_code == 400
 
@@ -113,13 +113,13 @@ def test_get_shot_sets_csrf_cookie():
 
         resp = user.session.get(shot_url)
         resp.raise_for_status()
-        assert_httponly_csrf_cookie(resp)
+        assert_httponly_csrf_cookie(user.session)
 
 
 def test_get_my_shots_sets_csrf_cookie():
     with screenshots_session() as user:
-        resp = user.read_my_shots()  # raises on error
-        assert_httponly_csrf_cookie(resp)
+        user.read_my_shots()  # raises on error
+        assert_httponly_csrf_cookie(user.session)
 
 
 def test_delete_shot_with_valid_csrftoken_ok():
@@ -293,6 +293,33 @@ def test_disconnect_device_without_csrftoken_fails():
         assert resp.status_code == 403  # Bad CSRF Token
 
 
+def test_login_with_invalid_headers():
+    # might belong in test_auth.py instead
+    unauthed_user = ScreenshotsClient()
+    resp = unauthed_user.session.post(
+        urljoin(unauthed_user.backend, "/api/login"),
+        headers=dict(origin="https://localhost:8080"),
+        data=dict(secret=unauthed_user.secret,
+                  deviceInfo=json.dumps(unauthed_user.deviceInfo)))
+
+    print resp.text
+    assert resp.status_code == 403  # Invalid CSRF Headers
+
+
+def test_register_with_invalid_headers():
+    # might belong in test_auth.py instead
+    unauthed_user = ScreenshotsClient()
+    resp = unauthed_user.session.post(
+        urljoin(unauthed_user.backend, "/api/register"),
+        headers=dict(referer="https://localhost:8080/1Zv4srJfp50f5LaJ/localhost"),
+        data=dict(deviceId=unauthed_user.deviceId,
+                  secret=unauthed_user.secret,
+                  deviceInfo=json.dumps(unauthed_user.deviceInfo)))
+
+    print resp.text
+    assert resp.status_code == 403  # Invalid CSRF Headers
+
+
 if __name__ == "__main__":
     test_leave_screenshots_with_valid_csrftoken_ok()
     test_leave_screenshots_with_invalid_csrftoken_fails()
@@ -317,3 +344,5 @@ if __name__ == "__main__":
     test_disconnect_device_with_valid_csrftoken_ok()
     test_disconnect_device_with_invalid_csrftoken_fails()
     test_disconnect_device_without_csrftoken_fails()
+    test_login_with_invalid_headers()
+    test_register_with_invalid_headers()

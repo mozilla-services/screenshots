@@ -8,7 +8,67 @@ const config = require("../config").getProperties();
 
 const useSecureCsrfCookie = (config.expectProtocol && /^https$/.test(config.expectProtocol));
 
-exports.csrfProtection = csrf({cookie: {httpOnly: true, secure: useSecureCsrfCookie}});
+const csrfMiddleware = csrf({
+  cookie: {httpOnly: true, secure: useSecureCsrfCookie}
+});
+
+const csrfExemptMiddleware = csrf({
+  ignoreMethods: ["PATCH", "POST", "PUT"],
+  cookie: {httpOnly: true, secure: useSecureCsrfCookie}
+});
+
+
+function isAuthPath(path) {
+  return path === "/api/register" || path === "/api/login";
+}
+
+function isCsrfExemptPath(path) {
+  return isAuthPath(path)
+    || path.startsWith("/data")
+    || path === "/event"
+    || path === "/error";
+}
+
+function csrfHeadersValid(req) {
+  const origin = req.headers.origin;
+  const referer = req.headers.referer;
+
+  if (isAuthPath(req.path)) {
+    // web ext background scripts don't send headers
+    return origin === undefined && referer === undefined;
+  }
+
+  return true;
+}
+
+function csrfInvalidHeaderResponse(req, res) {
+  mozlog.warn("bad-csrf-headers", {ip: req.ip, url: req.url, origin: req.headers.origin, referer: req.headers.referer});
+  res.status(403);
+  res.type("text");
+  res.send("Invalid CSRF Headers");
+}
+
+const ignoreMethods = {
+  "GET": true,
+  "HEAD": true,
+  "OPTIONS": true
+};
+
+exports.csrfProtection = function(req, res, next) {
+  // check origin and referer headers
+  if (!(ignoreMethods[req.method.toUpperCase()] || csrfHeadersValid(req))) {
+    csrfInvalidHeaderResponse(req, res);
+    return;
+  }
+
+  if (isCsrfExemptPath(req.path)) {
+    // just set csrf cookie and attach req.csrfToken
+    csrfExemptMiddleware(req, res, next);
+    return;
+  }
+  // also validate csrf token for unignored http methods
+  csrfMiddleware(req, res, next);
+};
 
 exports.csrf = function(req, res, next) {
   // The cookies library doesn't detect duplicates; check manually

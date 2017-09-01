@@ -449,7 +449,7 @@ app.post("/event", function(req, res) {
   });
 });
 
-app.post("/api/register", function(req, res) {
+app.post("/api/register", csrfProtection, function(req, res) {
   let vars = req.body;
   let canUpdate = vars.deviceId === req.deviceId;
   if (!vars.deviceId) {
@@ -516,7 +516,7 @@ function sendAuthInfo(req, res, params) {
 }
 
 
-app.post("/api/login", function(req, res) {
+app.post("/api/login", csrfProtection, function(req, res) {
   let vars = req.body;
   let deviceInfo = {};
   try {
