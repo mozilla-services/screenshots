@@ -19,6 +19,9 @@ for (let ftl of ftlPaths) {
       if (typeof exports === 'object' && context === exports) {
         exports.messages = messages;
       } else {
+        if (window && window.notifyL10nLoaded) {
+          window.notifyL10nLoaded(${JSON.stringify(locale)}, messages);
+        }
         context.l10nMessages = context.l10nMessages || {};
         context.l10nMessages[${JSON.stringify(locale)}] = messages;
       }
