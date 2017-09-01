@@ -20,6 +20,7 @@ gScreenshotsDescription = Des captures en un clin d’œil. Capturez l’écran,
 footerLinkMozilla = Mozilla
 footerLinkTerms = Conditions
 footerLinkPrivacy = Politique de confidentialité
+footerLinkFaqs = Questions fréquentes
 footerLinkDMCA = Signaler une violation de la p.i.
 footerLinkDiscourse = Donner son avis
 footerLinkRemoveAllData = Supprimer toutes les données
