@@ -30,7 +30,7 @@ const dbschema = require("./dbschema");
 const express = require("express");
 const bodyParser = require('body-parser');
 const contentDisposition = require("content-disposition");
-const csrf = require("csurf");
+const { csrf, csrfProtection, csrfErrorResponse } = require("./middleware/csrf");
 const morgan = require("morgan");
 const linker = require("./linker");
 const { randomBytes } = require("./helpers");
@@ -95,8 +95,6 @@ function initDatabase() {
 }
 
 initDatabase();
-
-const csrfProtection = csrf({cookie: true});
 
 const app = express();
 
@@ -220,13 +218,16 @@ app.use(function(req, res, next) {
     req.accountId = authInfo.accountId;
   }
   req.cookies = cookies;
-  req.cookies._csrf = cookies.get("_csrf"); // csurf expects a property
   req.abTests = authInfo.abTests || {};
   const host = req.headers.host === config.contentOrigin ? config.contentOrigin : config.siteOrigin;
   req.backend = `${req.protocol}://${host}`;
   req.config = config;
   next();
 });
+
+// NOTE - the csrf middleware should come after the middleware that
+// assigns req.cookies.
+app.use(csrf);
 
 function decodeAuthHeader(header) {
   /** Decode a string header in the format {deviceId}:{deviceIdSig};abtests={b64thing}:{sig} */
@@ -1092,10 +1093,7 @@ app.use(function(err, req, res, next) {
     return;
   }
   if (err.code === "EBADCSRFTOKEN") {
-    mozlog.info("bad-csrf", {ip: req.ip, url: req.url});
-    res.status(403);
-    res.type("text");
-    res.send("Bad CSRF Token")
+    csrfErrorResponse(err, req, res);
     return;
   }
   errorResponse(res, "General error:", err);

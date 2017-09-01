@@ -1,10 +1,9 @@
 const express = require("express");
-const csrf = require('csurf');
 const reactrender = require("../../reactrender");
 const { Shot } = require("../../servershot");
 const mozlog = require("../../logging").mozlog("leave-screenshots");
+const { csrfProtection } = require("../../middleware/csrf");
 
-const csrfProtection = csrf({cookie: true});
 let app = express();
 
 exports.app = app;
