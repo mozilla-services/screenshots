@@ -1,3 +1,57 @@
+## Version 18.0.0
+
+Note this is a server-only release
+
+* Validate csrf headers [8671702](https://github.com/mozilla-services/screenshots/commit/8671702)
+* Move homepage CSS above JS to avoid flash of unstyled content. Fixes [#3407](https://github.com/mozilla-services/screenshots/issues/3407) [c25b919](https://github.com/mozilla-services/screenshots/commit/c25b919)
+* Avoid infinite refresh loop on shots page. Fixes [#2939](https://github.com/mozilla-services/screenshots/issues/2939) [546cf23](https://github.com/mozilla-services/screenshots/commit/546cf23)
+* Add FAQ link [0fcc3c4](https://github.com/mozilla-services/screenshots/commit/0fcc3c4)
+* Validate clip image urls [0882793](https://github.com/mozilla-services/screenshots/commit/0882793)
+* Don't render invalid clip image urls [1f2ebd6](https://github.com/mozilla-services/screenshots/commit/1f2ebd6)
+* Update Node packages [5a5a2b2](https://github.com/mozilla-services/screenshots/commit/5a5a2b2)
+* Build production versions of bundles ([#3432](https://github.com/mozilla-services/screenshots/issues/3432)). This always builds bundles as a production build. envify and uglifyify should also help improve overall bundle sizes. Fixes [#2254](https://github.com/mozilla-services/screenshots/issues/2254) [2450dc7](https://github.com/mozilla-services/screenshots/commit/2450dc7)
+* Remove full domain from analytics ([#3431](https://github.com/mozilla-services/screenshots/issues/3431)). Fixes [#3393](https://github.com/mozilla-services/screenshots/issues/3393) [900f438](https://github.com/mozilla-services/screenshots/commit/900f438)
+* Make /settings page responsive ([#3435](https://github.com/mozilla-services/screenshots/issues/3435)) [5cc3d0e](https://github.com/mozilla-services/screenshots/commit/5cc3d0e)
+* Display Firefox Accounts avatar [6942dba](https://github.com/mozilla-services/screenshots/commit/6942dba)
+* Fix error setting headers after headers sent exception [8281a5c](https://github.com/mozilla-services/screenshots/commit/8281a5c)
+* Test duplicate csrf secret cookies [60163ee](https://github.com/mozilla-services/screenshots/commit/60163ee)
+* Add csrf tests [7c49e63](https://github.com/mozilla-services/screenshots/commit/7c49e63) [12a8e56](https://github.com/mozilla-services/screenshots/commit/12a8e56)
+* Fix test failures due to error middleware ordering [9cd2464](https://github.com/mozilla-services/screenshots/commit/9cd2464)
+* Update csrf cookie config; remove samesite and host prefix, set secure attr when expecting https protocol [61d944d](https://github.com/mozilla-services/screenshots/commit/61d944d)
+* Centralize CSRF middleware and config in a module [ca1b61e](https://github.com/mozilla-services/screenshots/commit/ca1b61e)
+* Update `csurf` incantation everywhere [5531c0b](https://github.com/mozilla-services/screenshots/commit/5531c0b)
+* Tweak header management middleware. Fixes [#3299](https://github.com/mozilla-services/screenshots/issues/3299) [07b06d0](https://github.com/mozilla-services/screenshots/commit/07b06d0)
+* Ensure that `shots` is an array before calling `shots.map()` ([#3401](https://github.com/mozilla-services/screenshots/issues/3401)) [75df157](https://github.com/mozilla-services/screenshots/commit/75df157)
+* Apply the hover fix from [#3403](https://github.com/mozilla-services/screenshots/issues/3403) to the edit/annotation button [be7278a](https://github.com/mozilla-services/screenshots/commit/be7278a)
+* Update test_responses main [e9ce61c](https://github.com/mozilla-services/screenshots/commit/e9ce61c)
+* Fix 500 for unauthed get of shots page without shots, e.g. from a private window [08af2d2](https://github.com/mozilla-services/screenshots/commit/08af2d2)
+* Test response codes from more pages [53ac521](https://github.com/mozilla-services/screenshots/commit/53ac521)
+* Remove the `/proxy` endpoint [8ba3834](https://github.com/mozilla-services/screenshots/commit/8ba3834)
+* Hash secret once when registering [a33fcd1](https://github.com/mozilla-services/screenshots/commit/a33fcd1)
+* Fix 500 error for same user registering twice [3f1e762](https://github.com/mozilla-services/screenshots/commit/3f1e762)
+* Fix 500 error logging in without secret [0163070](https://github.com/mozilla-services/screenshots/commit/0163070)
+* Fix 500 error when registering without secret [e3aefec](https://github.com/mozilla-services/screenshots/commit/e3aefec)
+* Add login and register auth tests [3f96f34](https://github.com/mozilla-services/screenshots/commit/3f96f34)
+* Send image to server in binary [9c558ce](https://github.com/mozilla-services/screenshots/commit/9c558ce)
+* Send exceptions to raven when `alert()` is called on the website [0189252](https://github.com/mozilla-services/screenshots/commit/0189252)
+* Update annotation UI & Photon buttons [be1225c](https://github.com/mozilla-services/screenshots/commit/be1225c)
+* Fix FxA disconnect button [4332ac0](https://github.com/mozilla-services/screenshots/commit/4332ac0)
+* fix disappearing buttons [50e8b97](https://github.com/mozilla-services/screenshots/commit/50e8b97)
+* Change istanbul requirement to exact version [098e82d](https://github.com/mozilla-services/screenshots/commit/098e82d)
+* Correct a tiny typo. [d9b427d](https://github.com/mozilla-services/screenshots/commit/d9b427d)
+* Update FxA UI [0745970](https://github.com/mozilla-services/screenshots/commit/0745970)
+* Add option for tracking server side code coverage [5a2fcb4](https://github.com/mozilla-services/screenshots/commit/5a2fcb4). Fixes [#3243](https://github.com/mozilla-services/screenshots/issues/3243) [7c8d18f](https://github.com/mozilla-services/screenshots/commit/7c8d18f)
+* Fix FxA email display [e2fea61](https://github.com/mozilla-services/screenshots/commit/e2fea61)
+
+### Add-on changes
+
+Note: not yet shipped.
+
+* Fix icon appearance for Photon page action.  See [Bug 1395284](https://bugzilla.mozilla.org/show_bug.cgi?id=1395284). Right now, the icon is too dark, so it doesn't match the appearance of the other Photon page actions. The problem is that the URI passed as the action's iconURL is a `file://` URI.  The Photon theme uses context-fill and context-fill-opacity in SVG in order to style SVG icons correctly, and SVG context painting is not supported for file `bootstrap.js` should pass a `moz-extension://` URI instead, which context painting does support, and which is what the WebExtension browser action toolbar button uses. Additionally, the icon SVG used by the Photon page action needs to be updated with fill-opacity="context-fill-opacity". [b246cb9](https://github.com/mozilla-services/screenshots/commit/b246cb9)
+* Add logging of unexpected clipboard state ([#3430](https://github.com/mozilla-services/screenshots/issues/3430))This logs cases when the passed-in text is empty, or the textarea select doesn't appear to work. Logs are sent to Sentry. Fixes [#3406](https://github.com/mozilla-services/screenshots/issues/3406) [10b7c0f](https://github.com/mozilla-services/screenshots/commit/10b7c0f)
+* Fixed next and prev buttons for rtl [5a08464](https://github.com/mozilla-services/screenshots/commit/5a08464)
+* Moved Save/Cancel buttons from right to left for rtl languages ([#3412](https://github.com/mozilla-services/screenshots/issues/3412)) [#3241](https://github.com/mozilla-services/screenshots/issues/3241) [115d6ed](https://github.com/mozilla-services/screenshots/commit/115d6ed)
+
 ## Version 17.0.0
 
 Note: this is a server-only release.
@@ -21,6 +75,7 @@ Note: this is a server-only release.
 This is a Firefox export release. Note all changes included since the last (version 10) release:
 
 * Fix tests failing when run against photon-y Firefox without MOZ_PHOTON_THEME defined [beec56b](https://github.com/mozilla-services/screenshots/commit/beec56b)
+* Fix review feedback for screenshots 16.0.0 [38c5cc7](https://github.com/mozilla-services/screenshots/commit/38c5cc7)
 
 ### Server changes in 16.0.0
 
