@@ -20,6 +20,7 @@ gScreenshotsDescription = Zrzuty ekranów dla wszystkich. Twórz, zapisuj i udo
 footerLinkMozilla = Mozilla
 footerLinkTerms = Warunki korzystania z usługi
 footerLinkPrivacy = Prywatność
+footerLinkFaqs = Najczęściej zadawane pytania
 footerLinkDMCA = Zgłoś naruszenie własności intelektualnej
 footerLinkDiscourse = Wyślij opinię
 footerLinkRemoveAllData = Usuń wszystkie dane
