@@ -20,6 +20,7 @@ gScreenshotsDescription = Relik b'anon chi re ri chapoj wachib'äl. Man k'atzine
 footerLinkMozilla = Mozilla
 footerLinkTerms = Taq ojqanem
 footerLinkPrivacy = Rutzijol Ichinanem
+footerLinkFaqs = Junelïk taq k'utunïk
 footerLinkDMCA = Rutzijol IP K'ayewal
 footerLinkDiscourse = Titaq Na'oj
 footerLinkRemoveAllData = Ke'elesäx Konojel ri taq Tzij
