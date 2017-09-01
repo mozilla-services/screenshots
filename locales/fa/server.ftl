@@ -20,6 +20,7 @@ gScreenshotsDescription = عکس گرفتن از صفحه آسان شده است
 footerLinkMozilla = موزیلا
 footerLinkTerms = شرایط استفاده
 footerLinkPrivacy = نکات حفظ حریم‌شخصی
+footerLinkFaqs = سوالات متداول
 footerLinkDMCA = گزارش تخلف IP
 footerLinkDiscourse = ارسال بازخورد
 footerLinkRemoveAllData = حذف همه‌ی داده‌ها
