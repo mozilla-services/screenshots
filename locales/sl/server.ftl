@@ -20,6 +20,7 @@ gScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in
 footerLinkMozilla = Mozilla
 footerLinkTerms = Pogoji
 footerLinkPrivacy = Obvestilo o zasebnosti
+footerLinkFaqs = Pogosta vprašanja
 footerLinkDMCA = Prijavi kršitev intelektualne lastnine
 footerLinkDiscourse = Sporočite nam svoje mnenje
 footerLinkRemoveAllData = Odstrani vse podatke
