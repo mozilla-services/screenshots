@@ -50,6 +50,7 @@ Note: in a coincidence of timing, 18.0.0 will be a server release, and an add-on
 * Add logging of unexpected clipboard state ([#3430](https://github.com/mozilla-services/screenshots/issues/3430))This logs cases when the passed-in text is empty, or the textarea select doesn't appear to work. Logs are sent to Sentry. Fixes [#3406](https://github.com/mozilla-services/screenshots/issues/3406) [10b7c0f](https://github.com/mozilla-services/screenshots/commit/10b7c0f)
 * Fixed next and prev buttons for rtl [5a08464](https://github.com/mozilla-services/screenshots/commit/5a08464)
 * Moved Save/Cancel buttons from right to left for rtl languages ([#3412](https://github.com/mozilla-services/screenshots/issues/3412)) [#3241](https://github.com/mozilla-services/screenshots/issues/3241) [115d6ed](https://github.com/mozilla-services/screenshots/commit/115d6ed)
+* Send image to server in binary [9c558ce](https://github.com/mozilla-services/screenshots/commit/9c558ce)
 
 ## Version 17.0.0
 
