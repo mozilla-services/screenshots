@@ -9,6 +9,7 @@ class Head extends React.Component {
   render() {
     return (
       <reactruntime.HeadTemplate {...this.props}>
+        <link rel="stylesheet" href={ this.props.staticLink("/static/css/home.css") } />
         <script src={this.props.staticLink("/static/js/homepage-bundle.js")} async></script>
         <meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
         <Localized id="homePageDescription">
@@ -26,7 +27,6 @@ class Head extends React.Component {
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:image" content={ this.props.staticLink("/static/img/onboarding-1.png") } />
         <meta name="twitter:image" content={ this.props.staticLink("/static/img/onboarding-1.png") } />
-        <link rel="stylesheet" href={ this.props.staticLink("/static/css/home.css") } />
       </reactruntime.HeadTemplate>
     );
   }
