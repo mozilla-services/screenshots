@@ -7,7 +7,7 @@ const { ShareButton } = require("../../share-buttons");
 const { TimeDiff } = require("./time-diff");
 const reactruntime = require("../../reactruntime");
 const { Editor } = require("./editor");
-const { isValidClipImageUrl } = require("../../../../shared/shot");
+const { isValidClipImageUrl } = require("../../../shared/shot");
 
 class Clip extends React.Component {
   constructor(props) {
