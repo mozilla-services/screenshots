@@ -20,6 +20,7 @@ gScreenshotsDescription = Jednoduchá tvorba snímků webových stránek. Vytvá
 footerLinkMozilla = Mozilla
 footerLinkTerms = Podmínky
 footerLinkPrivacy = Zásady ochrany soukromí
+footerLinkFaqs = Časté dotazy
 footerLinkDMCA = Nahlásit zneužití IP adresy
 footerLinkDiscourse = Váš názor
 footerLinkRemoveAllData = Odstranit všechna data
