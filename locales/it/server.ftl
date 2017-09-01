@@ -20,6 +20,7 @@ gScreenshotsDescription = Realizzare screenshot non è mai stato così facile. C
 footerLinkMozilla = Mozilla
 footerLinkTerms = Condizioni di utilizzo
 footerLinkPrivacy = Informativa sulla privacy
+footerLinkFaqs = FAQ
 footerLinkDMCA = Segnala violazioni IP
 footerLinkDiscourse = Invia commenti
 footerLinkRemoveAllData = Rimozione dei dati
