@@ -20,6 +20,7 @@ gScreenshotsDescription = 使截图更简单。截取、保存以及分享截图
 footerLinkMozilla = Mozilla
 footerLinkTerms = 条款
 footerLinkPrivacy = 隐私声明
+footerLinkFaqs = 常见问题
 footerLinkDMCA = 举报侵犯知识产权
 footerLinkDiscourse = 提供反馈
 footerLinkRemoveAllData = 清除所有数据
