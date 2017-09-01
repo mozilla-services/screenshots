@@ -20,6 +20,7 @@ gScreenshotsDescription = ეკრანისთვის სურათი�
 footerLinkMozilla = Mozilla
 footerLinkTerms = პირობები
 footerLinkPrivacy = განცხადება პირადი მონაცემების დაცვის შესახებ
+footerLinkFaqs = ხ.დ.კ.
 footerLinkDMCA = მოხსენება IP დარღვევაზე
 footerLinkDiscourse = გამოხმაურება
 footerLinkRemoveAllData = ყველა მონაცემის წაშლა
