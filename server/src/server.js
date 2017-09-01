@@ -53,7 +53,7 @@ const { l10n } = require("./middleware/l10n");
 const multer = require("multer");
 const storage = multer.memoryStorage();
 const upload = multer({storage});
-const { isValidClipImageUrl } = require("../../shared/shot");
+const { isValidClipImageUrl } = require("../shared/shot");
 
 const COOKIE_EXPIRE_TIME = 30 * 24 * 60 * 60 * 1000; // 30 days
 
