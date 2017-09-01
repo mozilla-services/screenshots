@@ -1,7 +1,5 @@
 ## Version 18.0.0
 
-Note this is a server-only release
-
 * Validate csrf headers [8671702](https://github.com/mozilla-services/screenshots/commit/8671702)
 * Move homepage CSS above JS to avoid flash of unstyled content. Fixes [#3407](https://github.com/mozilla-services/screenshots/issues/3407) [c25b919](https://github.com/mozilla-services/screenshots/commit/c25b919)
 * Avoid infinite refresh loop on shots page. Fixes [#2939](https://github.com/mozilla-services/screenshots/issues/2939) [546cf23](https://github.com/mozilla-services/screenshots/commit/546cf23)
@@ -45,8 +43,9 @@ Note this is a server-only release
 
 ### Add-on changes
 
-Note: not yet shipped.
+Note: in a coincidence of timing, 18.0.0 will be a server release, and an add-on/Firefox export release. See [Bug 1396060](https://bugzilla.mozilla.org/show_bug.cgi?id=1396060)
 
+* Run all add-on svg files through svgo [40b9fe0](https://github.com/mozilla-services/screenshots/commit/40b9fe0)
 * Fix icon appearance for Photon page action.  See [Bug 1395284](https://bugzilla.mozilla.org/show_bug.cgi?id=1395284). Right now, the icon is too dark, so it doesn't match the appearance of the other Photon page actions. The problem is that the URI passed as the action's iconURL is a `file://` URI.  The Photon theme uses context-fill and context-fill-opacity in SVG in order to style SVG icons correctly, and SVG context painting is not supported for file `bootstrap.js` should pass a `moz-extension://` URI instead, which context painting does support, and which is what the WebExtension browser action toolbar button uses. Additionally, the icon SVG used by the Photon page action needs to be updated with fill-opacity="context-fill-opacity". [b246cb9](https://github.com/mozilla-services/screenshots/commit/b246cb9)
 * Add logging of unexpected clipboard state ([#3430](https://github.com/mozilla-services/screenshots/issues/3430))This logs cases when the passed-in text is empty, or the textarea select doesn't appear to work. Logs are sent to Sentry. Fixes [#3406](https://github.com/mozilla-services/screenshots/issues/3406) [10b7c0f](https://github.com/mozilla-services/screenshots/commit/10b7c0f)
 * Fixed next and prev buttons for rtl [5a08464](https://github.com/mozilla-services/screenshots/commit/5a08464)
