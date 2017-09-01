@@ -20,6 +20,7 @@ gScreenshotsDescription = Fota wobrazowki jednorje činjene. Čińće, składuj�
 footerLinkMozilla = Mozilla
 footerLinkTerms = Wuměnjenja
 footerLinkPrivacy = Zdźělenka priwatnosće
+footerLinkFaqs = Huste prašenja
 footerLinkDMCA = Zranjenje duchowneho swójstwa zdźělić
 footerLinkDiscourse = Waše měnjenje prajić
 footerLinkRemoveAllData = Wšě daty wotstronić
