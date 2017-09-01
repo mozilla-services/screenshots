@@ -27,7 +27,7 @@ exports.csrf = function(req, res, next) {
 
 exports.csrfErrorResponse = function(err, req, res) {
   assert(err.code === "EBADCSRFTOKEN", "Returning csrf response for non-csrf error code.");
-  mozlog.info("bad-csrf", {id: req.ip, url: req.url});
+  mozlog.info("bad-csrf", {ip: req.ip, url: req.url});
   res.status(403);
   res.type("text");
   res.send("Bad CSRF Token");
