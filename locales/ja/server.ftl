@@ -20,6 +20,7 @@ gScreenshotsDescription = スクリーンショットをもっと手軽に。Fir
 footerLinkMozilla = Mozilla
 footerLinkTerms = 利用規約
 footerLinkPrivacy = プライバシー通知
+footerLinkFaqs = よくある質問
 footerLinkDMCA = IP 侵害を報告
 footerLinkDiscourse = フィードバックを送る
 footerLinkRemoveAllData = すべてのデータを削除
