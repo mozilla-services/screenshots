@@ -19,6 +19,7 @@ gScreenshotsDescription = Screenshots made simple. Take, save, and share screens
 footerLinkMozilla = Mozilla
 footerLinkTerms = Terms
 footerLinkPrivacy = Privacy Notice
+footerLinkFaqs = FAQs
 footerLinkDMCA = Report IP Infringement
 footerLinkDiscourse = Give Feedback
 footerLinkRemoveAllData = Remove All Data
