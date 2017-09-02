@@ -20,6 +20,7 @@ gScreenshotsDescription = Skjermbilete gjort enkelt. Ta, lagre og del skjermbild
 footerLinkMozilla = 
 footerLinkTerms = Vilkår
 footerLinkPrivacy = Personvernmerknad
+footerLinkFaqs = FAQ
 footerLinkDMCA = Rapporter brot på åndsverklova
 footerLinkDiscourse = Gje tilbakemelding
 footerLinkRemoveAllData = Slett alle data
