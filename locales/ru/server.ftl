@@ -20,6 +20,7 @@ gScreenshotsDescription = Скриншоты стали простыми. Дел
 footerLinkMozilla = Mozilla
 footerLinkTerms = Условия использования
 footerLinkPrivacy = Уведомление о приватности
+footerLinkFaqs = ЧаВО
 footerLinkDMCA = Сообщить о нарушении авторских прав
 footerLinkDiscourse = Оставить отзыв
 footerLinkRemoveAllData = Удалить все данные
