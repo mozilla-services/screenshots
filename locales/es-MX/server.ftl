@@ -20,6 +20,7 @@ gScreenshotsDescription = Capturas de pantalla simples. Tomar, guardar y compart
 footerLinkMozilla = Mozilla
 footerLinkTerms = Términos
 footerLinkPrivacy = Aviso de privacidad
+footerLinkFaqs = Preguntas frecuentes
 footerLinkDMCA = Reportar infracción de IP
 footerLinkDiscourse = Enviar comentario
 footerLinkRemoveAllData = Eliminar todos los datos
