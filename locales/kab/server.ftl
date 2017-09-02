@@ -20,6 +20,7 @@ gScreenshotsDescription = Tuṭṭfiwin γef afus. Ṭṭef agdil, sekles sakin 
 footerLinkMozilla = Mozilla
 footerLinkTerms = Tiwtilin
 footerLinkPrivacy = Tasertit n tbaḍnit
+footerLinkFaqs = Isteqsiyen FAQ
 footerLinkDMCA = Mmel-d ataɛdi ɣef ayla agzayan IP
 footerLinkDiscourse = Mudd-d tikti-ik
 footerLinkRemoveAllData = Kkes akk isefka
