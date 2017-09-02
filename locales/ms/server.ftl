@@ -20,6 +20,7 @@ gScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skri
 footerLinkMozilla = Mozilla
 footerLinkTerms = Terma
 footerLinkPrivacy = Notis Privasi
+footerLinkFaqs = Soalan Lazim
 footerLinkDMCA = Lapor Pencerobohan IP
 footerLinkDiscourse = Beri maklum balas
 footerLinkRemoveAllData = Buang Semua Data
