@@ -20,6 +20,7 @@ gScreenshotsDescription = Kuvakaappaukset helposti. Ota, tallenna ja jaa kuvakaa
 footerLinkMozilla = Mozilla
 footerLinkTerms = Käyttöehdot
 footerLinkPrivacy = Tietosuojakäytäntö
+footerLinkFaqs = UKK
 footerLinkDMCA = Ilmoita immateriaalioikeuksien loukkauksesta
 footerLinkDiscourse = Anna palautetta
 footerLinkRemoveAllData = Poista kaikki tiedot
