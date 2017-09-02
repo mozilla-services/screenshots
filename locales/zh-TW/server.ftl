@@ -20,6 +20,7 @@ gScreenshotsDescription = 拍攝畫面擷圖變得簡單。不必離開 Firefox 
 footerLinkMozilla = Mozilla
 footerLinkTerms = 使用條款
 footerLinkPrivacy = 隱私權公告
+footerLinkFaqs = 常見問題
 footerLinkDMCA = 回報智財權侵害案件
 footerLinkDiscourse = 提供意見回饋
 footerLinkRemoveAllData = 移除所有資料
