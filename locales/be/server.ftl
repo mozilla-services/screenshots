@@ -20,6 +20,7 @@ gScreenshotsDescription = Рабіць скрыншоты стала прасц�
 footerLinkMozilla = Mozilla
 footerLinkTerms = Умовамі выкарыстання
 footerLinkPrivacy = Паведамленне аб прыватнасці
+footerLinkFaqs = Пытанні і адказы
 footerLinkDMCA = Паведаміць аб парушэнні аўтарскіх правоў
 footerLinkDiscourse = Даць водгук
 footerLinkRemoveAllData = Выдаліць усе дадзеныя
