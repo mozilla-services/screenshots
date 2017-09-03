@@ -20,6 +20,7 @@ gScreenshotsDescription = Fota wobrazowki jadnorje nagótowane. Gótujśo, skła
 footerLinkMozilla = Mozilla
 footerLinkTerms = Wuměnjenja
 footerLinkPrivacy = Wuzjawjenje priwatnosći
+footerLinkFaqs = Ceste pšašanja
 footerLinkDMCA = Pśekśiwjenje duchnego swójstwa k wěsći daś
 footerLinkDiscourse = Wašo měnjenje groniś
 footerLinkRemoveAllData = Wše daty wótwónoźeś
