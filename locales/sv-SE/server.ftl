@@ -20,6 +20,7 @@ gScreenshotsDescription = Ta enkelt skärmbilder. Fånga, spara och dela skärmb
 footerLinkMozilla = Mozilla
 footerLinkTerms = Villkor
 footerLinkPrivacy = Sekretesspolicy
+footerLinkFaqs = Vanliga frågor
 footerLinkDMCA = Rapportera IP-överträdelse
 footerLinkDiscourse = Ge återkoppling
 footerLinkRemoveAllData = Ta bort alla data
