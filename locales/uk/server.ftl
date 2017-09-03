@@ -20,6 +20,7 @@ gScreenshotsDescription = Знімки стали простішими. Робі
 footerLinkMozilla = Mozilla
 footerLinkTerms = Умови
 footerLinkPrivacy = Повідомлення про приватність
+footerLinkFaqs = ЧаП
 footerLinkDMCA = Повідомити про порушення прав
 footerLinkDiscourse = Залишити відгук
 footerLinkRemoveAllData = Видалити всі дані
