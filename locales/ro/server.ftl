@@ -19,6 +19,7 @@ footerLinkMozilla = Mozilla
 footerLinkTerms = Termeni
 footerLinkPrivacy = Politica de confidențialitate
 footerLinkFaqs = Întrebări frecvente
+footerLinkDMCA = Raportează o încălcare a DPI
 footerLinkDiscourse = Oferă feedback
 
 
@@ -76,9 +77,15 @@ shotPageShareButton
     .title = Partajează
 shotPageCopy = Copiază
 shotPageCopied = Copiat
+shotPageAbuseButton
+    .title = Raportează această captură pentru abuz, spam sau alte probleme
 shotPageDownloadShot
     .title = Descarcă
 shotPageDownload = Descarcă
+shotPageKeepFor = Cât timp ar trebui să fie păstrată această captură?
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Selectează durata
+shotPageKeepIndefinitely = Pe termen nedefinit
 shotPageKeepTenMinutes = 10 minute
 shotPageKeepOneHour = 1 oră
 shotPageKeepOneDay = 1 zi
@@ -86,28 +93,38 @@ shotPageKeepOneWeek = 1 săptămână
 shotPageKeepTwoWeeks = 2 săptămâni
 shotPageKeepOneMonth = 1 lună
 shotPageSaveExpiration = salvează
+shotPageDoesNotExpire = nu expiră
 // Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = expiră { $timediff }
+timeDiffMinutesAgo = { $num ->
+        [one] în urmă cu 1 minut
+        [few] în urmă cu { $number } minute
+       *[other] în urmă cu { $number } de minute
+    }
 timeDiffFutureSeconds = în câteva secunde
 timeDiffFutureMinutes = { $num ->
         [one] într-un minut
-        [few] în 2 minute
-       *[other] în 20 de minute
+        [few] în { $number } minute
+       *[other] în { $number } de minute
     }
 timeDiffFutureHours = { $num ->
         [one] într-o oră
-        [few] în 2 ore
-       *[other] în 20 de ore
+        [few] în { $number } ore
+       *[other] în { $number } de ore
     }
 timeDiffFutureDays = { $num ->
         [one] mâine
-        [few] în 2 zile
-       *[other] în 20 de zile
+        [few] în { $number } zile
+       *[other] în { $number } de zile
     }
 
 
 [[ Shotindex page ]]
 
+shotIndexPageSearchPlaceholder
+    .placeholder = Caută capturile mele
+shotIndexPageSearchButton
+    .title = Caută
 shotIndexPageNoShotsMessage = Nicio captură salvată.
 shotIndexPageNoShotsInvitation = Haide, realizează câteva.
 shotIndexPageNoSearchResultsIntro = Hmm
