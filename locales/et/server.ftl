@@ -20,6 +20,7 @@ gScreenshotsDescription = Ekraanipildid lihtsalt. Tee, salvesta ja jaga ekraanip
 footerLinkMozilla = Mozilla
 footerLinkTerms = Kasutustingimused
 footerLinkPrivacy = Privaatsuspoliitika
+footerLinkFaqs = KKK
 footerLinkDMCA = Intellektuaalomandi rikkumisest teatamine
 footerLinkDiscourse = Tagasiside andmine
 footerLinkRemoveAllData = Kõigi andmete eemaldamine
