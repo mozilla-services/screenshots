@@ -20,6 +20,7 @@ gScreenshotsDescription = Ekrankopioj, simple faritaj. Kopii, konservi kaj divid
 footerLinkMozilla = Mozilla
 footerLinkTerms = Kondiĉoj
 footerLinkPrivacy = Rimarko pri privateco
+footerLinkFaqs = Oftaj demandoj
 footerLinkDMCA = Raporti malobservon de IP
 footerLinkDiscourse = Sendi komentojn
 footerLinkRemoveAllData = Forigi ĉiujn datumojn
