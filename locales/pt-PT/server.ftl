@@ -11,7 +11,7 @@ gMyShots = Minhas capturas
 gHomeLink = Início
 gNoShots
     .alt = Sem capturas encontradas
-gScreenshotsDescription = Capturas de ecrã feitas simplesmente. Tire, guarde, e partilhe capturas de ecrã sem sair do Firefox.
+gScreenshotsDescription = As capturas de ecrã tornadas simples. Tire, guarde e partilhe capturas de ecrã sem sair do Firefox.
 
 
 [[ Footer ]]
@@ -52,12 +52,12 @@ homePageGetStartedTitle = Começar
 homePageGetStartedDescription = Encontre o novo ícone do Screenshots na sua barra de ferramentas. Selecione-o, e o menu do Screenshots irá aparecer no topo da janela do seu navegador.
 homePageCaptureRegion = Capturar uma região
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar. Ou apenas paire e clique — O Screenshots irá selecionar a área por si. Gosta do que está a ver? Selecione Guardar para aceder à sua captura de ecrã online ou o botão de seta para baixo para descarregá-la para o seu computador.
+homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar ou paire e clique — O Screenshots irá selecionar a área por si. Gosta do que está a ver? Selecione Guardar para aceder à sua captura de ecrã na Internet ou no botão de seta para baixo para a descarregar para o seu computador.
 homePageCapturePage = Capturar uma página
 homePageCapturePageDescription = Utilize os botões no canto superior direito para capturar páginas inteiras. O botão Guardar visível irá capturar a área que pode ver sem deslocar, e Guardar página inteira irá capturar tudo na página.
 homePageSaveShare = Guardar e partilhar
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Ao tirar uma captura, o Firefox posta a sua captura de ecrã na sua biblioteca online do Screenshots e copia a ligação para a sua área de transferência. Nós armazenamos automaticamente a sua captura de ecrã por duas semanas, mas pode apagar as suas capturas a qualquer altura ou alterar a data de expiração para as manter na sua biblioteca por mais tempo.
+homePageSaveShareDescription = Ao tirar uma captura, o Firefox coloca a sua captura de ecrã na sua biblioteca do Screenshots na Internet e copia a ligação para a sua área de transferência. Nós armazenamos a sua captura de ecrã automaticamente por duas semanas, mas pode eliminar as suas capturas a qualquer altura ou alterar a data de expiração para as manter na sua biblioteca por mais tempo.
 homePageLegalLink = Legal
 homePagePrivacyLink = Privacidade
 homePageTermsLink = Termos
@@ -124,7 +124,7 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Descarregar
 shotPageDownload = Descarregar
-shotPageScreenshotsDescription = Capturas de ecrã feitas simplesmente. Tire, guarde, e partilhe capturas de ecrã sem sair do Firefox.
+shotPageScreenshotsDescription = As capturas de ecrã tornadas simples. Tire, guarde e partilhe capturas de ecrã sem sair do Firefox.
 shotPageUpsellFirefox = Obter o Firefox agora
 shotPageDMCAMessage = Esta captura já não está disponível devido a uma reivindicação de propriedade intelectual de terceiros.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
