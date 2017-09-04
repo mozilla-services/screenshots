@@ -20,6 +20,7 @@ gScreenshotsDescription = Schermafbeeldingen worden makkelijk. Maak, bewaar en d
 footerLinkMozilla = Mozilla
 footerLinkTerms = Voorwaarden
 footerLinkPrivacy = Privacyverklaring
+footerLinkFaqs = FAQ’s
 footerLinkDMCA = IE-inbreuk melden
 footerLinkDiscourse = Feedback geven
 footerLinkRemoveAllData = Alle gegevens verwijderen
