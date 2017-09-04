@@ -20,6 +20,7 @@ gScreenshotsDescription = Skermôfbyldingen wurde maklik. Meitsje, bewarje en di
 footerLinkMozilla = Mozilla
 footerLinkTerms = Betingsten
 footerLinkPrivacy = Privacyferklearring
+footerLinkFaqs = FAQ's
 footerLinkDMCA = IP-misbrûk rapportearje
 footerLinkDiscourse = Kommentaar jaan
 footerLinkRemoveAllData = Alle gegevens fuortsmite
