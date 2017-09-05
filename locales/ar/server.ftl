@@ -53,7 +53,6 @@ homePageCookiesLink = الكعكات
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = أكّد حذف الحساب
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = يجب أن تكون «لقطات فَيَرفُكس» مثبّتة لتحذف حسابك
 leavePageErrorGeneric = حدث خطأ ما
@@ -93,6 +92,8 @@ shotPageDeleteButton
 shotPageDownloadShot
     .title = نزّل
 shotPageDownload = نزّل
+shotPageSaveExpiration = احفظ
+shotPageCancelExpiration = ألغِ
 
 
 [[ Shotindex page ]]
