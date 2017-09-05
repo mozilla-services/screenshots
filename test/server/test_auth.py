@@ -20,6 +20,17 @@ def test_register_without_deviceid_fails():
     assert resp.status_code == 400, "register without device id worked"
 
 
+def test_register_with_invalid_deviceid_fails():
+    unauthed_user = ScreenshotsClient()
+    resp = unauthed_user.session.post(
+        urljoin(unauthed_user.backend, "/api/register"),
+        data=dict(deviceId='exists_but_is_invalid',
+                  secret=unauthed_user.secret,
+                  deviceInfo=json.dumps(unauthed_user.deviceInfo)))
+
+    assert resp.status_code == 400, "register with invalid device id worked"
+
+
 def test_register_without_secret_fails():
     unauthed_user = ScreenshotsClient()
     resp = unauthed_user.session.post(

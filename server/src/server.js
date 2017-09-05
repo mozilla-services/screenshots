@@ -24,7 +24,8 @@ const {
   fetchProfileData,
   saveProfileData,
   disconnectDevice,
-  retrieveAccount
+  retrieveAccount,
+  isValidDeviceId
 } = require("./users");
 const dbschema = require("./dbschema");
 const express = require("express");
@@ -456,6 +457,12 @@ app.post("/api/register", csrfProtection, function(req, res) {
     mozlog.error("bad-api-register", {msg: "Bad register request", vars: JSON.stringify(vars, null, "  ")});
     sendRavenMessage(req, "Attempted to register without deviceId");
     simpleResponse(res, "Bad request, no deviceId", 400);
+    return;
+  }
+  if (!isValidDeviceId(vars.deviceId)) {
+    mozlog.error("bad-api-register", {msg: "Bad register request", vars: JSON.stringify(vars, null, "  ")});
+    sendRavenMessage(req, "Attempted to register with invalid deviceId");
+    simpleResponse(res, "Bad request, invalid deviceId", 400);
     return;
   }
   if (!vars.secret) {

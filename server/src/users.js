@@ -50,6 +50,11 @@ function getForceAbTests() {
   return result;
 }
 
+function isValidDeviceId(deviceId) {
+  return /^(anon)?[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(deviceId);
+}
+exports.isValidDeviceId = isValidDeviceId;
+
 exports.checkLogin = function(deviceId, secret, addonVersion) {
   if (!secret) {
     throw new Error("No secret given");
@@ -88,6 +93,9 @@ exports.checkLogin = function(deviceId, secret, addonVersion) {
 exports.registerLogin = function(deviceId, data, canUpdate) {
   if (!deviceId) {
     throw new Error("No deviceId given");
+  }
+  if (!isValidDeviceId(deviceId)) {
+    throw new Error("Invalid deviceId given");
   }
   if (!(data && data.secret)) {
     throw new Error("No data or data.secret given");
