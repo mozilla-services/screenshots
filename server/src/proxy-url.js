@@ -1,6 +1,6 @@
 const dbschema = require("./dbschema");
 const config = require("./config").getProperties();
-const { isValidClipImageUrl } = require("../../shared/shot");
+const { isValidClipImageUrl } = require("../shared/shot");
 
 exports.createProxyUrl = function(req, url, hash) {
   let base = `${req.protocol}://${config.contentOrigin}`;
