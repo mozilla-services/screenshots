@@ -20,6 +20,7 @@ gScreenshotsDescription = Lluniau sgrin wedi ei wneud yn syml. Cipio, cadw a rha
 footerLinkMozilla = Mozilla
 footerLinkTerms = Amodau
 footerLinkPrivacy = Hysbysiad Preifatrwydd
+footerLinkFaqs = Cwestiynau Cyffredin
 footerLinkDMCA = Adrodd ar Torri'r IP
 footerLinkDiscourse = Rhoi Adborth
 footerLinkRemoveAllData = Tynnu'r Holl Ddata
