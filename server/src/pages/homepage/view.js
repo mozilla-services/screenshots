@@ -10,6 +10,7 @@ class Head extends React.Component {
     return (
       <reactruntime.HeadTemplate {...this.props}>
         <link rel="stylesheet" href={ this.props.staticLink("/static/css/home.css") } />
+        <script src={this.props.staticLink("/static/js/UITour-lib.js")} async></script>
         <script src={this.props.staticLink("/static/js/homepage-bundle.js")} async></script>
         <meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
         <Localized id="homePageDescription">
