@@ -11,7 +11,7 @@ gMyShots = Görüntülerim
 gHomeLink = Ana Sayfa
 gNoShots
     .alt = Görüntü bulunamadı
-gScreenshotsDescription = Ekran görürüntüsü almayı basitleştirdik. Firefox’tan çıkmadan ekran görüntüleri alabilir, kaydedebilir ve paylaşabilirsiniz.
+gScreenshotsDescription = Ekran görüntüsü almayı basitleştirdik. Firefox’tan çıkmadan ekran görüntüleri alabilir, kaydedebilir ve paylaşabilirsiniz.
 
 
 [[ Footer ]]
@@ -20,6 +20,7 @@ gScreenshotsDescription = Ekran görürüntüsü almayı basitleştirdik. Firefo
 footerLinkMozilla = Mozilla
 footerLinkTerms = Koşullar
 footerLinkPrivacy = Gizlilik Bildirimi
+footerLinkFaqs = SSS
 footerLinkDMCA = Telif hakkı ihlali bildir
 footerLinkDiscourse = Görüş bildir
 footerLinkRemoveAllData = Tüm verileri sil
@@ -32,6 +33,7 @@ footerLinkRemoveAllData = Tüm verileri sil
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } oluşturuluyor
 creatingPageTitleDefault = sayfa
+creatingPageWaitMessage = Görüntünüz kaydediliyor…
 
 
 [[ Home page ]]
@@ -122,7 +124,7 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = İndir
 shotPageDownload = İndir
-shotPageScreenshotsDescription = Ekran görürüntüsü almayı basitleştirdik. Firefox’tan çıkmadan ekran görüntüleri alabilir, kaydedebilir ve paylaşabilirsiniz.
+shotPageScreenshotsDescription = Ekran görüntüsü almayı basitleştirdik. Firefox’tan çıkmadan ekran görüntüleri alabilir, kaydedebilir ve paylaşabilirsiniz.
 shotPageUpsellFirefox = Firefox’u hemen indir
 shotPageDMCAMessage = Üçüncü bir şahsın telif hakkı iddiası nedeniyle bu görüntü artık kullanılamaz.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -188,6 +190,8 @@ shotIndexPageConfirmShotDelete = Bu görüntü silinsin mi?
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Firefox Screenshots Ölçümleri
 metricsPageTotalsQueryTitle = Toplam
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Screenshots’a bir bakış
 metricsPageTotalsQueryDevices = Toplam kayıtlı cihaz sayısı
 metricsPageTotalsQueryActiveShots = Aktif görüntü
 metricsPageTotalsQueryExpiredShots = Süresi dolmuş (ama kurtarılabilir)
@@ -200,6 +204,7 @@ metricsPageUserShotsQueryCount = Kullanıcı sayısı
 metricsPageRetentionQueryUsers = Kullanıcı sayısı
 metricsPageTotalRetentionQueryUsers = Kullanıcı sayısı
 metricsPageVersionQueryTitle = Eklenti sürümü
+metricsPageVersionQueryDescription = Son 14 günde giriş sırasında kullanılan eklenti sürümü
 metricsPageVersionQueryVersion = Eklenti sürümü
 metricsPageVersionQueryLastSeen = Gün
 metricsPageHeader = Ölçümler
