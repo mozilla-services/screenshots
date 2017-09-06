@@ -22,6 +22,7 @@ footerLinkPrivacy = Politica de confidențialitate
 footerLinkFaqs = Întrebări frecvente
 footerLinkDMCA = Raportează o încălcare a PI
 footerLinkDiscourse = Oferă feedback
+footerLinkRemoveAllData = Elimină toate datele
 
 
 [[ Creating page ]]
@@ -32,14 +33,25 @@ creatingPageWaitMessage = Se salvează captura…
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Capturi de ecran intuitive integrate direct în browser. Capturează, salvează și partajează capturi de ecran pe măsură ce navighezi pe web folosind Firefox.
+homePageButtonMyShots = Mergi la Capturile mele
 homePageTeaser = În curând…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Descărcare gratuită
+homePageGetStarted = Începe
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Cum funcționează Firefox Screenshots
+homePageGetStartedTitle = Începe
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Găsește noua pictogramă Screenshots de pe bara de unelte. Selecteaz-o și meniul Screenshots va apărea în partea de sus a ferestrei browserului.
 homePageCaptureRegion = Capturează o regiune
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Clic și trage pentru a selecta zona pe care dorești să o capturezi. Sau pur și simplu poziționează cursorul peste zonă și dă clic — Screenshots va selecta zona pentru tine. Îți place ceea ce vezi? Selectează Salvează pentru a-ți accesa online captura de ecran sau butonul săgeată în jos pentru a o descărca pe calculator.
 homePageCapturePage = Capturează o pagină
 homePageSaveShare = Salvează și partajează
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Când realizezi o captură, Firefox postează captura de ecran în colecția ta online Screenshots și copiază linkul în clipboard. Stocăm automat captura de ecran timp de două săptămâni, însă poți să ștergi capturile oricând sau să modifici data expirării pentru a le păstra în colecție pentru o durată mai lungă.
 homePageLegalLink = Mențiuni legale
 homePagePrivacyLink = Confidențialitate
 homePageTermsLink = Termeni
@@ -88,12 +100,15 @@ shotPageShareLink = Obține un link partajabil către această captură:
 shotPagePrivacyMessage = Oricine are linkul poate vedea această captură.
 shotPageCopyImageText
     .label = Copiază textul imaginii
+shotPageDeleteButton
+    .title = Șterge această captură
 shotPageAbuseButton
     .title = Raportează această captură pentru abuz, spam sau alte probleme
 shotPageDownloadShot
     .title = Descarcă
 shotPageDownload = Descarcă
 shotPageScreenshotsDescription = Capturile de ecran simplificate. Realizează, salvează și partajează capturile de ecran fără să părăsești Firefox.
+shotPageUpsellFirefox = Obține Firefox acum
 shotPageKeepFor = Cât timp ar trebui să fie păstrată această captură?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Selectează durata
@@ -105,6 +120,7 @@ shotPageKeepOneWeek = 1 săptămână
 shotPageKeepTwoWeeks = 2 săptămâni
 shotPageKeepOneMonth = 1 lună
 shotPageSaveExpiration = salvează
+shotPageCancelExpiration = renunță
 shotPageDoesNotExpire = nu expiră
 // Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = expiră { $timediff }
