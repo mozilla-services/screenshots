@@ -77,6 +77,16 @@ shotPageShareButton
     .title = Partajează
 shotPageCopy = Copiază
 shotPageCopied = Copiat
+shotPageShareFacebook
+    .title = Partajează pe Facebook
+shotPageShareTwitter
+    .title = Partajează pe Twitter
+shotPageSharePinterest
+    .title = Partajează pe Pinterest
+shotPageShareLink = Obține un link partajabil către această captură:
+shotPagePrivacyMessage = Oricine are linkul poate vedea această captură.
+shotPageCopyImageText
+    .label = Copiază textul imaginii
 shotPageAbuseButton
     .title = Raportează această captură pentru abuz, spam sau alte probleme
 shotPageDownloadShot
