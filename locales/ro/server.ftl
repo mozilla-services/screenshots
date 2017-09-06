@@ -10,6 +10,7 @@
 gMyShots = Capturile mele
 gNoShots
     .alt = Nicio captură găsită
+gScreenshotsDescription = Capturile de ecran simplificate. Realizează, salvează și partajează capturile de ecran fără să părăsești Firefox.
 
 
 [[ Footer ]]
@@ -19,7 +20,7 @@ footerLinkMozilla = Mozilla
 footerLinkTerms = Termeni
 footerLinkPrivacy = Politica de confidențialitate
 footerLinkFaqs = Întrebări frecvente
-footerLinkDMCA = Raportează o încălcare a DPI
+footerLinkDMCA = Raportează o încălcare a PI
 footerLinkDiscourse = Oferă feedback
 
 
@@ -92,6 +93,7 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Descarcă
 shotPageDownload = Descarcă
+shotPageScreenshotsDescription = Capturile de ecran simplificate. Realizează, salvează și partajează capturile de ecran fără să părăsești Firefox.
 shotPageKeepFor = Cât timp ar trebui să fie păstrată această captură?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Selectează durata
@@ -106,10 +108,23 @@ shotPageSaveExpiration = salvează
 shotPageDoesNotExpire = nu expiră
 // Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = expiră { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = a expirat { $timediff }
+timeDiffJustNow = chiar acum
 timeDiffMinutesAgo = { $num ->
         [one] în urmă cu 1 minut
         [few] în urmă cu { $number } minute
        *[other] în urmă cu { $number } de minute
+    }
+timeDiffHoursAgo = { $num ->
+        [one] în urmă cu 1 oră
+        [few] în urmă cu { $number } ore
+       *[other] în urmă cu { $number } de ore
+    }
+timeDiffDaysAgo = { $num ->
+        [one] ieri
+        [few] în urmă cu { $number } zile
+       *[other] în urmă cu { $number } de zile
     }
 timeDiffFutureSeconds = în câteva secunde
 timeDiffFutureMinutes = { $num ->
