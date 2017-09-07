@@ -63,7 +63,7 @@
                                             <rect id="divider" fill="#C9C9C9" x="135.366502" y="0" width="1" height="61.984875"></rect>
                                             <g id="hover" transform="translate(8.154609, 6.524724)"></g>
                                             <g id="Page-shot-/-Menu-button" transform="translate(144.336572, 6.524724)" fill="#3E3D40">
-                                                <text id="My-Shot" font-family="SFUIText-Regular, SF UI Text" font-size="10" font-weight="normal" line-spacing="12">
+                                                <text id="My-Shot" font-family="-apple-system, BlinkMacSystemFont, 'segoe ui', 'helvetica neue', helvetica, ubuntu, roboto, noto, arial, sans-serif" font-size="10" font-weight="normal" line-spacing="12">
                                                     <tspan x="5.51025391" y="43.9166667">My Shots</tspan>
                                                 </text>
                                                 <g id="Page-shot-/-Menu-/-My-shot" transform="translate(8.897059, 0.000000)" fill-rule="evenodd">
@@ -71,7 +71,7 @@
                                                 </g>
                                             </g>
                                             <g id="Page-shot-/-Menu-button" transform="translate(71.760556, 6.524724)">
-                                                <text id="My-Shot" font-family="SFUIText-Regular, SF UI Text" font-size="10" font-weight="normal" line-spacing="12" fill="#3E3D40">
+                                                <text id="My-Shot" font-family="-apple-system, BlinkMacSystemFont, 'segoe ui', 'helvetica neue', helvetica, ubuntu, roboto, noto, arial, sans-serif" font-size="10" font-weight="normal" line-spacing="12" fill="#3E3D40">
                                                     <tspan x="11.8652344" y="43.9166667">Visible</tspan>
                                                 </text>
                                                 <g id="Page-shot-/-Menu-/-Visible" transform="translate(8.897059, 0.000000)" stroke-width="1" fill-rule="evenodd">
@@ -86,7 +86,7 @@
                                                 </g>
                                             </g>
                                             <g id="Page-shot-/-Menu-button" transform="translate(8.154609, 6.524724)">
-                                                <text id="My-Shot" font-family="SFUIText-Regular, SF UI Text" font-size="10" font-weight="normal" line-spacing="12" fill="#3E3D40">
+                                                <text id="My-Shot" font-family="-apple-system, BlinkMacSystemFont, 'segoe ui', 'helvetica neue', helvetica, ubuntu, roboto, noto, arial, sans-serif" font-size="10" font-weight="normal" line-spacing="12" fill="#3E3D40">
                                                     <tspan x="6.04736328" y="43.9166667">Full Page</tspan>
                                                 </text>
                                                 <g id="Page-shot-/-Menu-/-Full-page" transform="translate(8.897059, 0.000000)" stroke-width="1" fill-rule="evenodd">
