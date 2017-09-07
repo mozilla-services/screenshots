@@ -20,6 +20,7 @@ gScreenshotsDescription = Screenshots membuatnya sederhana. Ambil, simpan, dan b
 footerLinkMozilla = Mozilla
 footerLinkTerms = Ketentuan
 footerLinkPrivacy = Pemberitauan Privasi
+footerLinkFaqs = Pertanyaan Umum
 footerLinkDMCA = Laporkan Pelanggaran IP
 footerLinkDiscourse = Kirim Saran
 footerLinkRemoveAllData = Hapus Semua Data
@@ -32,6 +33,7 @@ footerLinkRemoveAllData = Hapus Semua Data
 // creatingPageTitleDefault.
 creatingPageTitle = Membuat { $title }
 creatingPageTitleDefault = laman
+creatingPageWaitMessage = Menyimpan gambar Anda...
 
 
 [[ Home page ]]
@@ -64,7 +66,7 @@ homePageCookiesLink = Kuki
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Konfirmasi penghapusan akun
+leavePageRemoveAllData = Hapus Semua Data
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Firefox Screenshots harus terpasang untuk menghapus akun Anda
 leavePageErrorGeneric = Terjadi kesalahan
