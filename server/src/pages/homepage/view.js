@@ -137,6 +137,19 @@ class Body extends React.Component {
               <div className="section-image"></div>
             </div>
           </section>
+          <section id="section-3">
+            <div className="container">
+              <div className="section-content">
+                <Localized id="homePageCapturePage">
+                  <h3>Capture a Page</h3>
+                </Localized>
+                <Localized id="homePageCapturePageDescription">
+                  <p>Use the buttons in the upper right to capture full pages. The Save Visible button will capture the area you can view without scrolling, and the Save Full Page will capture everything on the page.</p>
+                </Localized>
+              </div>
+              <div className="section-image"></div>
+            </div>
+          </section>
           <section id="section-4">
             <div className="container">
               <div className="section-content">
