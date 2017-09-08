@@ -52,7 +52,7 @@ homePageGetStartedTitle = Oan de slach
 homePageGetStartedDescription = Sykje it nije Screenshots-piktogram op jo arkbalke. Selektearje it, en it Screenshots-menu ferskynt boppe yn jo browserfinster.
 homePageCaptureRegion = In gebiet fêstlizze
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Klik en sleep om it gebiet dat jo fêstlizze wolle te ferslepen. Of wiis oan en klik – Screenshots selektearret it gebied foar jo. Tefreden mei wat jo sjogge? Selektearje Bewarje om jo skermôfbylding online te benaderjen, of it pylkje nei ûnder om dizze nei jo kompjûter te bewarjen.
+homePageCaptureRegionDescription = Klik en sleep om it gebiet dat jo fêstlizze wolle te ferslepen. Of wiis oan en klik – Screenshots selektearret it gebiet foar jo. Tefreden mei wat jo sjogge? Selektearje Bewarje om jo skermôfbylding online te benaderjen, of it pylkje nei ûnder om dizze nei jo kompjûter te bewarjen.
 homePageCapturePage = In side fêstlizze
 homePageCapturePageDescription = Brûk de knoppen yn de rjochter boppehoek om folsleine siden fêst te lizzen. De knop Sichtber gebiet bewarje leit it gebied fêst dat jo sûnder skowen sjen kinne, en Folsleine side bewarje leit alles op de side fêst.
 homePageSaveShare = Bewarje en diele
