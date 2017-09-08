@@ -20,6 +20,7 @@ gScreenshotsDescription = Hemos simplificado las capturas de pantalla. Haz, guar
 footerLinkMozilla = Mozilla
 footerLinkTerms = Términos
 footerLinkPrivacy = Aviso de privacidad
+footerLinkFaqs = FAQ
 footerLinkDMCA = Denunciar violación de IP
 footerLinkDiscourse = Enviar comentario
 footerLinkRemoveAllData = Eliminar todos los datos
