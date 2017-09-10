@@ -20,6 +20,7 @@ gScreenshotsDescription = Скриншоттар қарапайым түрде. 
 footerLinkMozilla = Mozilla
 footerLinkTerms = Қолдану шарттары
 footerLinkPrivacy = Жекелік ескертуі
+footerLinkFaqs = ЖҚС-тер
 footerLinkDMCA = Авторлық құқықтардың бұзылуы жөнінде хабарлау
 footerLinkDiscourse = Кері байланыс
 footerLinkRemoveAllData = Барлық деректерді өшіру
@@ -37,6 +38,8 @@ creatingPageWaitMessage = Снапшотты сақтау…
 
 [[ Home page ]]
 
+homePageDescription
+    .content = Тура браузердің ішінде қолжетерлік интуитивті скриншоттар. Интернетті Firefox көмегімен шолу кезінде скриншоттарды түсіріңіз, сақтаңыз және олармен бөлісіңіз.
 homePageButtonMyShots = Менің скриншоттарыма өту
 homePageTeaser = Жақында…
 homePageDownloadFirefoxTitle = Firefox
@@ -48,7 +51,10 @@ homePageGetStartedTitle = Бастау
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Саймандар панеліңізден жаңа скриншоттар таңбашасын табыңыз. Оны таңдаңыз, және скриншоттар мәзірі браузер терезеңіздің үстінен шығады.
 homePageCaptureRegion = Аймақты түсіру
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Түсіргіңіз келетін аймақты таңдау үшін шертіп, тартып апарыңыз. Немесе тек үстіне апарып, шертіңіз — Скриншоттар сайманы аймақты сіз үшін таңдайды. Көргенді ұнаттыңыз ба? Скриншотыңызды желіде сақтау үшін Сақтау, ал, оны компьютеріңізге жүктеп алу үшін, төменге қарап тұрған бағдарша батырмасын басыңыз.
 homePageCapturePage = Парақты түсіру
+homePageCapturePageDescription = Толық парақтарды түсіру үшін, жоғары оң жақтағы батырмаларды қолданыңыз. Көрінетінді сақтау батырмасы айналдырусыз көрініп тұрған аймақты түсіреді, ал, Толық парақты түсіру парақтағы барлық нәрсені скриншотқа түсіреді.
 homePageSaveShare = Сақтау және бөлісу
 homePageLegalLink = Құқықтық ақпарат
 homePagePrivacyLink = Жекелік
@@ -59,7 +65,11 @@ homePageCookiesLink = Cookies
 [[ Leave Screenshots page ]]
 
 leavePageRemoveAllData = Барлық деректерді өшіру
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Тіркелгіңізді өшіру үшін, сізде Firefox скриншоттары орнатылған болуы тиіс
 leavePageErrorGeneric = Қате орын алды
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Бұл әрекет сіздің Firefox скриншоттары деректердің барлығын толығымен өшіреді.
 leavePageButtonProceed = Жалғастыру
 leavePageButtonCancel = Бас тарту
 leavePageDeleted = Сіздің барлық скриншоттарыңыз өшірілді!
