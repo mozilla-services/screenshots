@@ -117,11 +117,16 @@ shotPageExpiredMessage = Бұл скриншоттың мерзімі аяқта
 shotPageExpiredMessageDetails = Бұл скриншот жасалған парақ:
 shotPageDeleteButton
     .title = Бұл скриншотты өшіру
+shotPageAbuseButton
+    .title = Бұл скриншот туралы бұзу, спам немесе басқа да мәселелер жөнінде хабарлау
 shotPageDownloadShot
     .title = Жүктеп алу
 shotPageDownload = Жүктеп алу
 shotPageScreenshotsDescription = Скриншоттар қарапайым түрде. Тура Firefox ішінен скриншоттарды түсіру, сақтау және олармен бөлісу.
 shotPageUpsellFirefox = Firefox-ты қазір алу
+shotPageDMCAMessage = Бұл скриншот үшінші жақтың зияткерлік меншігі арызы салдарынан енді қолжетерсіз.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Көбірек білу үшін, { $dmca } адресіне жазыңыз.
 shotPageKeepFor = Бұл скриншот қанша уақыт бойы сақталуы тиіс?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Уақытты таңдау
