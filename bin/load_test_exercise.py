@@ -49,11 +49,11 @@ def make_device_info():
 
 
 def make_uuid():
-    return str(uuid.uuid1()).replace("-", "")
+    return str(uuid.uuid1())
 
 
 def make_random_id():
-    return make_uuid()[:16]
+    return make_uuid().replace("-", "")[:16]
 
 
 def reset_device_info():
