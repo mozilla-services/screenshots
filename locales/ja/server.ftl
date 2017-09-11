@@ -50,6 +50,8 @@ homePageHowScreenshotsWorks = Firefox Screenshots の仕組み
 homePageGetStartedTitle = はじめよう
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = ツールバー上にある新しい Screenshots アイコンを見つけてください。それを選択すれば、ブラウザーウィンドウの上に Screenshots メニューが表示されます。
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = アドレスバー内のページアクションメニューから Screenshots アイコンを選択すれば、ブラウザーウィンドウ上に Screenshots メニューが表示されます。
 homePageCaptureRegion = 選択範囲をキャプチャ
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = クリック＆ドラッグでキャプチャしたい範囲を選択します。あるいは単純にマウスを当ててクリックすれば、Screenshots が自動的に範囲を選択してくれます。範囲を確定したら、保存ボタンをクリックすればオンラインでスクリーンショットを参照できます。また下向きの矢印ボタンでコンピューターに保存することもできます。
