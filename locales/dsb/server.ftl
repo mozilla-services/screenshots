@@ -50,6 +50,8 @@ homePageHowScreenshotsWorks = Kak Firefox Screenshots funkcioněrujo
 homePageGetStartedTitle = Prědne kšace
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Symbol nowego Screenshots na swójej symbolowej rědce namakajośo.  Wubjeŕśo jen a meni Screenshots se górjejce we woknje wašogo wobglědowaka zjawijo.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Wubjeŕśo symbol Screenshots z menija akcijow boka w adresowem pólu, a meni Screenshots pokažo se górjejce we woknje wobglědowaka.
 homePageCaptureRegion = Wobcerk fotografěrowaś
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klikniśo a śěgniśo, aby wobcerk wubrał, kótaryž cośo fotografěrowaś. Abo stajśo jadnorje kursor nad tym a klikniśo  - Screenshots buźo wobcerk za was wuběraś. Spódoba se wam, což wiźiśo? Wubjeŕśo „Składowaś“ za pśistup na swójo foto wobrazowki online abo tłocašk ze šypku dołoj, aby jo na swójo licadło ześěgnuł.
