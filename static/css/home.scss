@@ -292,6 +292,10 @@ section .container {
   height: 476px;
 }
 
+#section-1 .section-image.page-action {
+  background-image:   url("../img/landing-screenshots_image_01_57.svg");
+}
+
 #section-2 .section-image {
   background-image:   url("../img/landing-screenshots_image_02.svg");
   background-position: 0% center;
@@ -313,18 +317,14 @@ section .container {
   height: 533px;
 }
 
-#section-1 .section-content,
-#section-2 .section-image,
-#section-4 .section-content {
+/* These align-* layout styles are used for the onboarding tour sections */
+.align-left {
   order: 1;
 }
 
-#section-1 .section-image,
-#section-2 .section-content,
-#section-4 .section-image {
+.align-right {
   order: 2;
 }
-
 
 /* Coming Soon Section */
 

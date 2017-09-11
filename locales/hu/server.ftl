@@ -20,6 +20,7 @@ gScreenshotsDescription = Képernyőképek egyszerűen. Készítsen, mentsen és
 footerLinkMozilla = Mozilla
 footerLinkTerms = Feltételek
 footerLinkPrivacy = Adatvédelmi nyilatkozat
+footerLinkFaqs = GYIK
 footerLinkDMCA = Szellemi tulajdont érintő jogsértés jelentése
 footerLinkDiscourse = Adjon visszajelzést
 footerLinkRemoveAllData = Minden adat törlése

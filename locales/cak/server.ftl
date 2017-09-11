@@ -50,6 +50,8 @@ homePageHowScreenshotsWorks = Achike rub'eyal nisamäj Firefox Chapoj Wachib'äl
 homePageGetStartedTitle = Titikirisäx
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Tawila' ri k'ak'a' ruwachaj Chapoj Wachib'äl pan asamajib'al. Tacha', chi ri rucha'osamaj Chapoj Wachib'äl niwachin pe ajsik pa rutzuwäch okik'amaya'l.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Ticha' ruwachaj Chapoj Wachib'äl pa ri ruxaq ruk'utsamaj b'anoj pa rukajtz'ik ochochib'äl, ri ruk'utsamaj Chapoj Wachib'äl xtib'ewachin pe ajsik rutzuwäch okik'amaya'l.
 homePageCaptureRegion = Tachapa' jun Ruwa
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Tapitz'a' chuqa' taqirirej richin nacha' ri k'ojlib'äl nawajo' nachäp. O xa xe taya' ri retal ch'oy pa ruwi' — ja ri Chapoj Wachib'äl xticha'o ri k'ojlib'äl chawäch. ¿La jeb'ël ri natz'ët? Tacha' Tiyak richin yatok pa chapoj awachib'al pa k'amab'ey o ri xulan ch'ab' richin nayäk qa pan akematz'ib'.

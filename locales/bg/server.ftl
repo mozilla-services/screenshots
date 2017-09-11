@@ -11,7 +11,7 @@ gMyShots = Моите снимки
 gHomeLink = Начална страница
 gNoShots
     .alt = Няма снимки на екрана
-gScreenshotsDescription = Лесни снимки на екрана. Правите, запазвате и споделяте снимки на екрана без да напускате Firefox.
+gScreenshotsDescription = Лесни снимки на екрана. Създавате, запазвате и споделяте снимки на екрана без да напускате Firefox.
 
 
 [[ Footer ]]
@@ -123,7 +123,7 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Изтегляне
 shotPageDownload = Изтегляне
-shotPageScreenshotsDescription = Лесни снимки на екрана. Правите, запазвате и споделяте снимки на екрана без да напускате Firefox.
+shotPageScreenshotsDescription = Лесни снимки на екрана. Създавате, запазвате и споделяте снимки на екрана без да напускате Firefox.
 shotPageUpsellFirefox = Вземете Firefox сега
 shotPageDMCAMessage = Това изображение вече не е налично, защото е докладвано като обект на авторско право.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)

@@ -1,5 +1,6 @@
 const React = require("react");
 const reactruntime = require("../../reactruntime");
+const classnames = require("classnames");
 const sendEvent = require("../../browser-send-event.js");
 const { Footer } = require("../../footer-view.js");
 const { Localized } = require("fluent-react/compat");
@@ -78,6 +79,7 @@ class Body extends React.Component {
         </Localized>
       </a>
     }
+    const is57 = this.props.isFirefox && this.props.firefoxVersion >= 57;
     return (
       <reactruntime.BodyTemplate {...this.props}>
         <div className="default-color-scheme">
@@ -114,20 +116,27 @@ class Body extends React.Component {
           </Localized>
           <section id="section-1">
             <div className="container">
-              <div className="section-content">
+              <div className="section-content align-left">
                 <Localized id="homePageGetStartedTitle">
                   <h3>Get Started</h3>
                 </Localized>
-                <Localized id="homePageGetStartedDescription">
-                  <p>Find the new Screenshots icon on your toolbar. Select it, and the Screenshots menu will appear on top of your browser window.</p>
-                </Localized>
+                { is57 ? (
+                    <Localized id="homePageGetStartedDescriptionPageAction">
+                      <p>Select the Screenshots icon from the page actions menu in the address bar, and the Screenshots menu will appear on top of your browser window.</p>
+                    </Localized>
+                  ) : (
+                    <Localized id="homePageGetStartedDescription">
+                      <p>Find the new Screenshots icon on your toolbar. Select it, and the Screenshots menu will appear on top of your browser window.</p>
+                    </Localized>
+                  )
+                }
               </div>
-              <div className="section-image"></div>
+              <div className={classnames("section-image", "align-right", {"page-action": is57})}></div>
             </div>
           </section>
           <section id="section-2">
             <div className="container">
-              <div className="section-content">
+              <div className="section-content align-right">
                 <Localized id="homePageCaptureRegion">
                   <h3>Capture a Region</h3>
                 </Localized>
@@ -135,12 +144,27 @@ class Body extends React.Component {
                   <p>Click and drag to select the area you want to capture. Or just hover and click — Screenshots will select the area for you. Like what you see? Select Save to access your screenshot online or the down arrow button to download it to your computer.</p>
                 </Localized>
               </div>
-              <div className="section-image"></div>
+              <div className="section-image align-left"></div>
             </div>
           </section>
+          { is57 &&
+              <section id="section-3">
+                <div className="container">
+                  <div className="section-content align-left">
+                    <Localized id="homePageCapturePage">
+                      <h3>Capture a Page</h3>
+                    </Localized>
+                    <Localized id="homePageCapturePageDescription">
+                      <p>Use the buttons in the upper right to capture full pages. The Save Visible button will capture the area you can view without scrolling, and the Save Full Page will capture everything on the page.</p>
+                    </Localized>
+                  </div>
+                  <div className="section-image align-right"></div>
+                </div>
+              </section>
+          }
           <section id="section-4">
             <div className="container">
-              <div className="section-content">
+              <div className={classnames("section-content", {"align-right": is57}, {"align-left": !is57})}>
                 <Localized id="homePageSaveShare">
                   <h3>Save and Share</h3>
                 </Localized>
@@ -148,7 +172,7 @@ class Body extends React.Component {
                   <p>When you take a shot, Firefox posts your screenshot to your online Screenshots library and copies the link to your clipboard. We automatically store your screenshot for two weeks, but you can delete shots at any time or change the expiration date to keep them in your library for longer. </p>
                 </Localized>
               </div>
-              <div className="section-image"></div>
+              <div className={classnames("section-image", {"align-left": is57}, {"align-right": !is57})}></div>
             </div>
           </section>
           <Footer {...this.props} />

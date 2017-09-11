@@ -118,7 +118,7 @@ shotPageExpiredMessage = Syot ini sudah tamat tempoh.
 // Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Ini halaman asal yang diambil:
 shotPageDeleteButton
-    .title = Hapus syot ini
+    .title = Buang syot ini
 shotPageAbuseButton
     .title = Laporkan syot ini kerana penyalahgunaan, spam atau masalah lain
 shotPageDownloadShot
@@ -193,7 +193,7 @@ shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Kami tidak menemui syot yang sepadan dengan carian anda.
 shotIndexPageClearSearchButton
     .title = Padam carian
-shotIndexPageConfirmShotDelete = Hapus syot ini?
+shotIndexPageConfirmShotDelete = Buang syot ini?
 
 
 // all metrics strings are optional for translation
@@ -207,7 +207,7 @@ metricsPageTotalsQueryDescription = Tinjauan Screenshots
 metricsPageTotalsQueryDevices = Bilangan peranti didaftar
 metricsPageTotalsQueryActiveShots = Syot aktif
 metricsPageTotalsQueryExpiredShots = Luput (tapi boleh dikembalikan)
-metricsPageTotalsQueryExpiredDeletedShots = Luput (dan dihapuskan)
+metricsPageTotalsQueryExpiredDeletedShots = Luput (dan telah dibuang)
 metricsPageShotsQueryTitle = Syot mengikut Hari
 metricsPageShotsQueryDescription = Bilangan syot diambil setiap hari (sepanjang 30 hari lepas)
 metricsPageShotsQueryCount = Bilangan syot diambil

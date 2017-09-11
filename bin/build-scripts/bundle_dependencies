@@ -33,6 +33,13 @@ build() {
   mkdir -p "$(dirname "$(depfile)")"
   echo -n "Building $(basename $dest): deps... "
   browserify --list -e "$@" | sed "s!$(pwd)/!!g" | grep -v build-time > "$(depfile)"
+  if egrep -qv "^(build|node_modules)/" "$(depfile)" ; then
+    echo
+    echo "error: $@ or its deps import files outside build/ or node_modules/:"
+    egrep -v "^(build|node_modules)/" "$(depfile)"
+    echo "failed."
+    exit 2
+  fi
   echo -n "bundle... "
   NODE_ENV=production browserify -o "$dest" \
     -g [ envify --NODE_ENV production ] \
