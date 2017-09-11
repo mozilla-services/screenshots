@@ -9,6 +9,9 @@ let app = express();
 exports.app = app;
 
 app.get("/", csrfProtection, function(req, res) {
+  if (req.query && req.query.complete !== undefined) {
+    res.clearCookie("_csrf");
+  }
   if (!req.deviceId) {
     res.status(403).send(req.getText("leavePageErrorAddonRequired"));
     return;
