@@ -20,6 +20,7 @@ gScreenshotsDescription = স্ক্রিনশট নেওয়া এখন 
 footerLinkMozilla = Mozilla
 footerLinkTerms = শর্তাবলী
 footerLinkPrivacy = গোপনীয়তা নোটিশ
+footerLinkFaqs = সাধারণত জিজ্ঞাসিত প্রশ্নাবলী
 footerLinkDMCA = IP নিয়মলঙ্ঘন রিপোর্ট করুন
 footerLinkDiscourse = প্রতিক্রিয়া জানান
 footerLinkRemoveAllData = সকল ডাটা অপসারণ করুন
