@@ -50,6 +50,8 @@ homePageHowScreenshotsWorks = Cómo funciona Firefox Screenshots
 homePageGetStartedTitle = Comenzar
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Busca el icono de Screenshots en tu barra de herramientas. Selecciónalo y te aparecerá el menú en la parte superior de la ventana del navegador.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Selecciona el icono de Screenshots en el menú de acciones con la página. y te aparecerá el menú en la parte superior de la ventana del navegador.
 homePageCaptureRegion = Captura un área
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Haz clic y arrastra para seleccionar el área que quieras capturar. O pasa el ratón por encima y haz clic - Screenshots lo hará por ti. ¿Te gusta? Selecciona Guardar para acceder a tus capturas en línea o pulsa la tecla de la flecha hacia abajo para descargarlo en tu equipo.
