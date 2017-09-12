@@ -17,6 +17,7 @@ gNoShots
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = నిబంధనలు
 footerLinkPrivacy = గోప్యతా విధానం
 footerLinkDiscourse = అభిప్రాయం తెలియజేయండి
 footerLinkRemoveAllData = మొత్తం డేటాను తీసివేయండి
