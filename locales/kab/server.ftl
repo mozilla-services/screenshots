@@ -50,6 +50,8 @@ homePageHowScreenshotsWorks = Amek iteddu Firefox Screenshots
 homePageGetStartedTitle = Bdu
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Af-d tignit tamaynut n Screenshots deg ufeggag n ifecka. Sit s ufella sakin umuɣ Screenshots ad d-iban s nnig n usfaylu-ik n tunigin.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Fren tignit n Screenshots  seg umuγ n tigawin n usebter deg ufeggag n tansiwin, sakin amuγ Screenshots  ad id-ttwasken d asawen deg usfaylu n iminig inek.
 homePageCaptureRegion = Ṭṭef tamnaḍt
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Senned u zuγer akken ad tferneḍ tamnaḍt i tebγiḍ ad teṭfeḍ. Neγ mbiwwel γer temnaḍt u sakin Screenshots ad ifren tamnaḍt-agi. sakin senned γef sekles akken ad tawiḍ tiwlafin srid neγ γef tqefalt aneccab d akkesar akken ad d-saliḍ γer uselkim inek.
