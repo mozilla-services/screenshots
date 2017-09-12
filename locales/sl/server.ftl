@@ -51,7 +51,7 @@ homePageGetStartedTitle = Začnite
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Poiščite ikono Screenshots v svoji orodni vrstici. Izberite jo in na vrhu okna vašega brskalnika se bo pojavil meni Screenshots.
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescriptionPageAction = V naslovni vrstici v meniju dejanj za stran izberite ikono Screenshots in meni orodja se bo prikazal na vrhu okna brskalnika.
+homePageGetStartedDescriptionPageAction = V naslovni vrstici v meniju dejanj strani izberite ikono Screenshots in meni orodja se bo prikazal na vrhu okna brskalnika.
 homePageCaptureRegion = Zajemite območje
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Kliknite in povlecite, da izberete območje, ki ga želite zajeti, ali pa samo kliknite in Screenshots bo izbral območje za vas. Vam je všeč, kar vidite? Izberite Shrani za dostop do vašega posnetka na spletu ali puščico navzdol za prenos na računalnik.
