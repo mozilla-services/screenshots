@@ -20,6 +20,7 @@ gScreenshotsDescription = Лесни снимки на екрана. Създа�
 footerLinkMozilla = Mozilla
 footerLinkTerms = Условия
 footerLinkPrivacy = Политика на поверителност
+footerLinkFaqs = Въпроси и отговори
 footerLinkDMCA = Доклад за нарушение на авторско право
 footerLinkDiscourse = Обратна връзка
 footerLinkRemoveAllData = Премахване на всички данни
