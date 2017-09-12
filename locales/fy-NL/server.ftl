@@ -50,6 +50,8 @@ homePageHowScreenshotsWorks = Hoe Firefox Screenshots wurket
 homePageGetStartedTitle = Oan de slach
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Sykje it nije Screenshots-piktogram op jo arkbalke. Selektearje it, en it Screenshots-menu ferskynt boppe yn jo browserfinster.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Selektearje it Screenshots-piktogram fan it menu Pagina-aksjes yn de adresbalke út, en it Screenshots-menu ferskynt boppe yn jo browserfinster.
 homePageCaptureRegion = In gebiet fêstlizze
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klik en sleep om it gebiet dat jo fêstlizze wolle te ferslepen. Of wiis oan en klik – Screenshots selektearret it gebiet foar jo. Tefreden mei wat jo sjogge? Selektearje Bewarje om jo skermôfbylding online te benaderjen, of it pylkje nei ûnder om dizze nei jo kompjûter te bewarjen.
