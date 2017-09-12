@@ -1,6 +1,7 @@
 window.buildSettings = {
   defaultSentryDsn: process.env.SCREENSHOTS_SENTRY,
   logLevel: process.env.SCREENSHOTS_LOG_LEVEL || "warn",
-  captureText: (process.env.SCREENSHOTS_CAPTURE_TEXT === "true")
+  captureText: (process.env.SCREENSHOTS_CAPTURE_TEXT === "true"),
+  uploadBinary: (process.env.SCREENSHOTS_UPLOAD_BINARY === "true")
 };
 null;

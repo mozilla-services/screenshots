@@ -1,4 +1,4 @@
-/* globals communication, shot, main, auth, catcher, analytics */
+/* globals communication, shot, main, auth, catcher, analytics, buildSettings */
 
 "use strict";
 
@@ -31,9 +31,15 @@ this.takeshot = (function() {
         });
       });
     }
-    if (!imageBlob) {
+    let convertBlobPromise = Promise.resolve();
+    if (buildSettings.uploadBinary && !imageBlob) {
       imageBlob = base64ToBinary(shot.getClip(shot.clipNames()[0]).image.url);
       shot.getClip(shot.clipNames()[0]).image.url = "";
+    } else if (!buildSettings.uploadBinary && imageBlob) {
+      convertBlobPromise = blobToDataUrl(imageBlob).then((dataUrl) => {
+        shot.getClip(shot.clipNames()[0]).image.url = dataUrl;
+      });
+      imageBlob = null;
     }
     let shotAbTests = {};
     let abTests = auth.getAbTests();
@@ -46,6 +52,8 @@ this.takeshot = (function() {
       shot.abTests = shotAbTests;
     }
     return catcher.watchPromise(capturePromise.then(() => {
+      return convertBlobPromise;
+    }).then(() => {
       return browser.tabs.create({url: shot.creatingUrl})
     }).then((tab) => {
       openedTab = tab;
@@ -119,6 +127,10 @@ this.takeshot = (function() {
     return blob;
   }
 
+  function binaryToDataUrl(blob) {
+
+  }
+
   /** Combines two buffers or Uint8Array's */
   function concatBuffers(buffer1, buffer2) {
     var tmp = new Uint8Array(buffer1.byteLength + buffer2.byteLength);
@@ -135,6 +147,16 @@ this.takeshot = (function() {
         resolve(reader.result);
       });
       reader.readAsArrayBuffer(blob);
+    });
+  }
+
+  function blobToDataUrl(blob) {
+    return new Promise((resolve, reject) => {
+      let reader = new FileReader();
+      reader.addEventListener("loadend", function() {
+        resolve(reader.result);
+      });
+      reader.readAsDataURL(blob);
     });
   }
 
@@ -176,10 +198,17 @@ this.takeshot = (function() {
     let headers;
     return auth.authHeaders().then((_headers) => {
       headers = _headers;
-      return createMultipart(
-        {shot: JSON.stringify(shot.asJson())},
-        "blob", "screenshot.png", blob
-      );
+      if (blob) {
+        return createMultipart(
+          {shot: JSON.stringify(shot.asJson())},
+          "blob", "screenshot.png", blob
+        );
+      } else {
+        return {
+          "content-type": "application/json",
+          body: JSON.stringify(shot.asJson())
+        };
+      }
     }).then((submission) => {
       headers["content-type"] = submission["content-type"];
       sendEvent("upload", "started", {eventValue: Math.floor(submission.body.length / 1000)});
