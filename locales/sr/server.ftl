@@ -50,6 +50,8 @@ homePageHowScreenshotsWorks = Како Firefox Screenshots ради
 homePageGetStartedTitle = Почните са коришћењем
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Нађите нову иконицу Screenshots-а међу вашим алатима. Изаберите је и мени снимака екрана ће се појавити у врху прозора вашег прегледача.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Изаберите иконицу снимака екрана из менија странице у адресној траци и мени снимака екрана ће се појавити на врху прозора вашег прегледача.
 homePageCaptureRegion = Ухватите део странице
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Кликните и повуците да бисте изабрали део странице који желите да сачувате. Или само померите миш на жељени део и кликните, Screenshots ће изабрати део за вас. Свиђа вам се то што видите? Изаберите „Сачувај“ да бисте приступили свом снимку екрана на мрежи или притисните стрелицу надоле да бисте га сачували на свој рачунар.
