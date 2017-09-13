@@ -1,3 +1,42 @@
+## Version 19.0.0
+
+Note: this is a Firefox export (not a server release)
+
+### Add-on changes
+
+* Remove Photon-related conditionals in tests [0b31d58](https://github.com/mozilla-services/screenshots/commit/0b31d58)
+* remove browserAction. This changes the add-on to require the Photon page action, with no fallback to a browserAction
+  - Removes test for Photon (assumes it is present)
+  - Removes bootstrap.js code that deletes the browserAction button
+  - Removes webextension code references to browserAction
+  - Removes Photon conditionals (i.e., assume it's always Photon)
+  - Make 57a1 the minimum version for the webextension/install.rdf. Fixes [#3468](https://github.com/mozilla-services/screenshots/issues/3468) [d4c56ae](https://github.com/mozilla-services/screenshots/commit/d4c56ae)
+* Add setting to control binary or base64 uploadThis adds `$SCREENSHOTS_UPLOAD_BINARY=true` to turn the feature on. Fixes [#3481](https://github.com/mozilla-services/screenshots/issues/3481) [92b0d53](https://github.com/mozilla-services/screenshots/commit/92b0d53)
+* Convert to semantic locale strings for the slides. The numeric locale ids have made reordering complicated [3d590fb](https://github.com/mozilla-services/screenshots/commit/3d590fb)
+* Avoid form uploads from being truncated. `FormData` was not creating correct request bodies for large images. This changes the code to manually construct the form upload. Fixes [#3472](https://github.com/mozilla-services/screenshots/issues/3472) [671b003](https://github.com/mozilla-services/screenshots/commit/671b003)
+* Put a guard around the exception stack rewriting [dbc4750](https://github.com/mozilla-services/screenshots/commit/dbc4750)
+* Revert "Remove the full page and save visible buttons from onboarding". This reverts commit 1887c38903ce91199f389a345095d6a0546004ac. [33bb5ff](https://github.com/mozilla-services/screenshots/commit/33bb5ff)
+* Add a new slide to the tour. This slide includes the pageAction interface instead of the old toolbar button. Fixes [#3442](https://github.com/mozilla-services/screenshots/issues/3442) [9f072c0](https://github.com/mozilla-services/screenshots/commit/9f072c0) [2550449](https://github.com/mozilla-services/screenshots/commit/2550449)
+* Change slide image to match Photon-style in browser image. Fixes [#3443](https://github.com/mozilla-services/screenshots/issues/3443) [dbad266](https://github.com/mozilla-services/screenshots/commit/dbad266)
+
+### Server changes
+
+Note: 19.0.0 isn't a server release
+
+* Toggle different onboarding tour for FF 57+- For 57+, include the full screen / save visible step in the tour, for
+  four steps overall. Also change the Get Started text and image to
+  refer to a page action, not a toolbar button.
+  - For 56- and non-FF browsers, show the three step tour and refer to the
+  toolbar button.
+  - Add some trivial model unit tests, to get that ball rolling. Fixes [#3444](https://github.com/mozilla-services/screenshots/issues/3444) [d07db41](https://github.com/mozilla-services/screenshots/commit/d07db41)
+* Add Mozilla.UITour call to homepage, for [#3411](https://github.com/mozilla-services/screenshots/issues/3411) ([#3449](https://github.com/mozilla-services/screenshots/issues/3449))* Add Mozilla.UITour call to homepage, for [#3411](https://github.com/mozilla-services/screenshots/issues/3411)
+  * Add the UITour-lib JS file to the homepage [8262303](https://github.com/mozilla-services/screenshots/commit/8262303)
+* Clear csrf cookie on successful leave [0e7bc51](https://github.com/mozilla-services/screenshots/commit/0e7bc51)
+* Validate deviceId in /api/register [24eef08](https://github.com/mozilla-services/screenshots/commit/24eef08)
+* Fix wrong path reference in proxy-url.js [a4f07c3](https://github.com/mozilla-services/screenshots/commit/a4f07c3)
+* Fix wrong path reference in server.js [07c9855](https://github.com/mozilla-services/screenshots/commit/07c9855)
+* Fail server build for imports out of build/ and node_modules/https://github.com/mozilla-services/screenshots/pull/3440#issuecomment-326625163 [3586749](https://github.com/mozilla-services/screenshots/commit/3586749)
+
 ## Version 18.0.0
 
 * Validate csrf headers [8671702](https://github.com/mozilla-services/screenshots/commit/8671702)
