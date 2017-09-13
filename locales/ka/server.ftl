@@ -50,6 +50,8 @@ homePageHowScreenshotsWorks = როგორ მუშაობს Firefox Scre
 homePageGetStartedTitle = დაიწყეთ
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = მონახეთ Screenshots-ის ახალი ხატულა ხელსაწყოთა ზოლზე. დააჭირეთ და Screenshots-ის მენიუ გამოჩნდება ფანჯრის თავზე.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = აირჩიეთ Screenshots-ის ხატულა მისამართების ველში არსებულ, მოქმედებების მენიუში და Screenshots-ის მენიუ გამოჩნდება ბრაუზერის ფანჯრის თავზე.
 homePageCaptureRegion = სივრცისთვის სურათის გადაღება
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = დააწკაპეთ და გადაადგილეთ კურსორი გადასაღები სივრცის მოსანიშნად. ან უბრალოდ ზემოდან გადაატარეთ და დააწკაპეთ - Screenshots თავად მონიშნავს საჭირო სივრცეს. გაკმაყოფილებთ შედეგი? დააჭირეთ 'შენახვას", თქვენს სურათებთან ინტერნეტით წვდომის მისაღებად, ან დააჭირეთ ჩამოტვირთვის ღილაკს, კომპიუტერში შესანახად.
