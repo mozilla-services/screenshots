@@ -50,8 +50,7 @@ this.startBackground = (function() {
   browser.storage.local.get(["hasSeenOnboarding"]).then((result) => {
     let hasSeenOnboarding = !!result.hasSeenOnboarding;
     if (!hasSeenOnboarding) {
-      let path = "icons/icon-starred-32-v2.svg";
-      iconPath = path;
+      iconPath = "icons/icon-starred-32-v2.svg";
       if (photonPageActionPort) {
         photonPageActionPort.postMessage({
           type: "setProperties",
