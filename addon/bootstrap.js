@@ -236,13 +236,6 @@ let photonPageAction;
 // Does nothing otherwise.  Ideally, in the future, WebExtension page actions
 // and Photon page actions would be one in the same, but they aren't right now.
 function initPhotonPageAction(api, webExtension) {
-  // The MOZ_PHOTON_THEME ifdef got removed, but we need to support 55 and 56 as well,
-  // so check if the property exists *and* is false before bailing.
-  if (typeof AppConstants.MOZ_PHOTON_THEME != "undefined" && !AppConstants.MOZ_PHOTON_THEME) {
-    // Photon not supported.  Use the WebExtension's browser action.
-    return;
-  }
-
   let id = "screenshots";
   let port = null;
 
@@ -266,17 +259,6 @@ function initPhotonPageAction(api, webExtension) {
     },
   }));
 
-  // Remove the navbar button of the WebExtension's browser action.
-  let cuiWidgetID = "screenshots_mozilla_org-browser-action";
-  CustomizableUI.addListener({
-    onWidgetAfterCreation(wid, aArea) {
-      if (wid == cuiWidgetID) {
-        CustomizableUI.destroyWidget(cuiWidgetID);
-        CustomizableUI.removeListener(this);
-      }
-    },
-  });
-
   // Establish a port to the WebExtension side.
   api.browser.runtime.onConnect.addListener((listenerPort) => {
     if (listenerPort.name != "photonPageActionPort") {
@@ -297,14 +279,6 @@ function initPhotonPageAction(api, webExtension) {
         console.error("Unrecognized message:", message);
         break;
       }
-    });
-
-    // It's necessary to tell the WebExtension not to use its browser action,
-    // due to the CUI widget's removal.  Otherwise Firefox's WebExtension
-    // machinery throws exceptions.
-    port.postMessage({
-      type: "setUsePhotonPageAction",
-      value: true
     });
   });
 }

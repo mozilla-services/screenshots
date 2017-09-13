@@ -7,18 +7,11 @@
   "homepage_url": "https://github.com/mozilla-services/screenshots",
   "applications": {
     "gecko": {
-      "id": "screenshots@mozilla.org"
+      "id": "screenshots@mozilla.org",
+      "strict_min_version": "57.0a1"
     }
   },
   "default_locale": "en_US",
-  "browser_action": {
-    "default_icon": {
-      "16": "icons/icon-16-v2.svg",
-      "32": "icons/icon-32-v2.svg"
-    },
-    "default_title": "Firefox Screenshots",
-    "browser_style": false
-  },
   "background": {
     "scripts": [
       "build/buildSettings.js",
