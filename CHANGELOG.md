@@ -11,7 +11,7 @@ Note: this is a Firefox export (not a server release)
   - Removes webextension code references to browserAction
   - Removes Photon conditionals (i.e., assume it's always Photon)
   - Make 57a1 the minimum version for the webextension/install.rdf. Fixes [#3468](https://github.com/mozilla-services/screenshots/issues/3468) [d4c56ae](https://github.com/mozilla-services/screenshots/commit/d4c56ae)
-* Add setting to control binary or base64 uploadThis adds `$SCREENSHOTS_UPLOAD_BINARY=true` to turn the feature on. Fixes [#3481](https://github.com/mozilla-services/screenshots/issues/3481) [92b0d53](https://github.com/mozilla-services/screenshots/commit/92b0d53)
+* Add setting to control binary or base64 upload. This adds `$SCREENSHOTS_UPLOAD_BINARY=true` to turn the feature on. Fixes [#3481](https://github.com/mozilla-services/screenshots/issues/3481) [92b0d53](https://github.com/mozilla-services/screenshots/commit/92b0d53)
 * Convert to semantic locale strings for the slides. The numeric locale ids have made reordering complicated [3d590fb](https://github.com/mozilla-services/screenshots/commit/3d590fb)
 * Avoid form uploads from being truncated. `FormData` was not creating correct request bodies for large images. This changes the code to manually construct the form upload. Fixes [#3472](https://github.com/mozilla-services/screenshots/issues/3472) [671b003](https://github.com/mozilla-services/screenshots/commit/671b003)
 * Put a guard around the exception stack rewriting [dbc4750](https://github.com/mozilla-services/screenshots/commit/dbc4750)
