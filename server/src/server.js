@@ -229,6 +229,7 @@ app.use(function(req, res, next) {
 // NOTE - the csrf middleware should come after the middleware that
 // assigns req.cookies.
 app.use(csrf);
+app.use(csrfProtection);
 
 function decodeAuthHeader(header) {
   /** Decode a string header in the format {deviceId}:{deviceIdSig};abtests={b64thing}:{sig} */
@@ -450,7 +451,7 @@ app.post("/event", function(req, res) {
   });
 });
 
-app.post("/api/register", csrfProtection, function(req, res) {
+app.post("/api/register", function(req, res) {
   let vars = req.body;
   let canUpdate = vars.deviceId === req.deviceId;
   if (!vars.deviceId) {
@@ -523,7 +524,7 @@ function sendAuthInfo(req, res, params) {
 }
 
 
-app.post("/api/login", csrfProtection, function(req, res) {
+app.post("/api/login", function(req, res) {
   let vars = req.body;
   let deviceInfo = {};
   try {
@@ -667,7 +668,7 @@ app.get("/data/:id/:domain", function(req, res) {
   });
 });
 
-app.post("/api/delete-shot", csrfProtection, function(req, res) {
+app.post("/api/delete-shot", function(req, res) {
   if (!req.deviceId) {
     sendRavenMessage(req, "Attempt to delete shot without login");
     simpleResponse(res, "Not logged in", 401);
@@ -685,7 +686,7 @@ app.post("/api/delete-shot", csrfProtection, function(req, res) {
   });
 });
 
-app.post("/api/disconnect-device", csrfProtection, function(req, res) {
+app.post("/api/disconnect-device", function(req, res) {
   if (!req.deviceId) {
     sendRavenMessage(req, "Attempt to disconnect without login");
     simpleResponse(res, "Not logged in", 401);
@@ -704,7 +705,7 @@ app.post("/api/disconnect-device", csrfProtection, function(req, res) {
   });
 });
 
-app.post("/api/set-title/:id/:domain", csrfProtection, function(req, res) {
+app.post("/api/set-title/:id/:domain", function(req, res) {
   let shotId = `${req.params.id}/${req.params.domain}`;
   let userTitle = req.body.title;
   if (userTitle === undefined) {
@@ -730,7 +731,7 @@ app.post("/api/set-title/:id/:domain", csrfProtection, function(req, res) {
   });
 });
 
-app.post("/api/save-edit", csrfProtection, function(req, res) {
+app.post("/api/save-edit", function(req, res) {
   let vars = req.body;
   if (!req.deviceId) {
     sendRavenMessage(req, "Attempt to edit shot without login");
@@ -760,7 +761,7 @@ app.post("/api/save-edit", csrfProtection, function(req, res) {
   })
 });
 
-app.post("/api/set-expiration", csrfProtection, function(req, res) {
+app.post("/api/set-expiration", function(req, res) {
   if (!req.deviceId) {
     sendRavenMessage(req, "Attempt to set expiration without login");
     simpleResponse(res, "Not logged in", 401);
