@@ -31,7 +31,7 @@ const dbschema = require("./dbschema");
 const express = require("express");
 const bodyParser = require('body-parser');
 const contentDisposition = require("content-disposition");
-const { csrf, csrfProtection, csrfErrorResponse } = require("./middleware/csrf");
+const { csrfProtection, csrfErrorResponse } = require("./middleware/csrf");
 const morgan = require("morgan");
 const linker = require("./linker");
 const { randomBytes } = require("./helpers");
@@ -228,7 +228,6 @@ app.use(function(req, res, next) {
 
 // NOTE - the csrf middleware should come after the middleware that
 // assigns req.cookies.
-app.use(csrf);
 app.use(csrfProtection);
 
 function decodeAuthHeader(header) {
