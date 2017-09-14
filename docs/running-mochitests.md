@@ -8,7 +8,7 @@ mozilla-central and running them there.
 
 Here's how to run them:
 
-* Follow the [Export to Firefox](https://github.com/mozilla-services/screenshots/blob/master/docs/export_to_firefox.md)
+* Follow the [Export to Firefox](https://github.com/mozilla-services/screenshots/blob/master/docs/export-to-firefox.md)
 document.
 * Build Firefox, then run the tests:
 
