@@ -1,3 +1,10 @@
+## Version 10.0.0
+
+Note: this is a server release
+
+* Update favicon. Fixes [#3492](https://github.com/mozilla-services/screenshots/issues/3492) [7544e9f](https://github.com/mozilla-services/screenshots/commit/7544e9f)
+* Send unauth'd /shots to /#tourThis lets a user who accesses Screenshots from the Library, but has never authenticated or used Screenshots, get redirected to an onboarding tour. Fixes [#3493](https://github.com/mozilla-services/screenshots/issues/3493) [af473c3](https://github.com/mozilla-services/screenshots/commit/af473c3)
+
 ## Version 19.0.0
 
 Note: this is a Firefox export (not a server release)
