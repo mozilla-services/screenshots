@@ -33,7 +33,7 @@ exports.launch = function(m) {
     }
     let authTimeout = setTimeout(() => {
       // eslint-disable-next-line no-global-assign
-      location = location.origin;
+      location = location.origin + "/#tour";
     }, FIVE_SECONDS);
     window.wantsauth.addAuthDataListener((data) => {
       if (location.search.indexOf("reloaded") > -1) {
