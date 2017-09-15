@@ -50,6 +50,8 @@ homePageHowScreenshotsWorks = Як працуе Firefox Screenshots
 homePageGetStartedTitle = Пачаць
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Знайдзіце новы значок Screenshots на паліцы прылад. Націсніце на яго і з'явіцца меню.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Выберыце значок Screenshots з меню Дзеянні старонкі ў адрасным радку і меню Screenshots з'явіцца ў верхняй частцы акна браўзера.
 homePageCaptureRegion = Захоп вобласці
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Пстрыкніце і перацягніце, каб выбраць вобласць, якую вы хочаце захапіць. Ці проста навядзіце мышшу і пстрыкніце - Screenshots абярэ вобласць самі. Падабаецца, што вы бачыце? Выберыце «Захаваць», каб атрымаць магчымасць апублікаваць ваш скрыншот анлайн або пстрыкніце па кнопцы са стрэлкай ўніз, каб загрузіць здымак на ваш камп'ютар.
