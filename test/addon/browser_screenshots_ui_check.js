@@ -21,5 +21,5 @@ add_task(async function() {
     () => document.getElementById(BUTTON_ID),
     "Screenshots button should be present", 100, 100);
 
-  checkElements(true, [id]);
+  checkElements(true, [BUTTON_ID]);
 });
