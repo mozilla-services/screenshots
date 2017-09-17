@@ -49,7 +49,7 @@ homePageGetStarted = 開始使用
 homePageHowScreenshotsWorks = Firefox Screenshots 的原理是什麼？
 homePageGetStartedTitle = 開始使用
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = 找到並點擊工具列中新出現的 Screenshots 圖示，Screenshots 選單就會出現在瀏覽器視窗頂部。
+homePageGetStartedDescription = 點擊工具列中的 Screenshots 圖示，Screenshots 選單就會出現在瀏覽器視窗頂部。
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = 選擇網址列中，頁面操作選單的 Screenshots 圖示，Screenshots 選單就會顯示在瀏覽器視窗的最上層。
 homePageCaptureRegion = 選擇拍攝區域
