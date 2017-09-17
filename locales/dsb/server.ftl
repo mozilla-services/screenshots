@@ -11,7 +11,7 @@ gMyShots = Móje fota wobrazowki
 gHomeLink = Startowy bok
 gNoShots
     .alt = Žedne fota wobrazowki namakane
-gScreenshotsDescription = Fota wobrazowki jadnorje nagótowane. Gótujśo, składujśo a źělśo fota wobrazowki, mimo až Firefox spušćaśo.
+gScreenshotsDescription = Fota wobrazowki lažko nagótowane. Gótujśo, składujśo a źělśo fota wobrazowki, mimo až Firefox spušćaśo.
 
 
 [[ Footer ]]
@@ -126,7 +126,7 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Ześěgnuś
 shotPageDownload = Ześěgnuś
-shotPageScreenshotsDescription = Fota wobrazowki jadnorje nagótowane. Gótujśo, składujśo a źělśo fota wobrazowki, mimo až Firefox spušćaśo.
+shotPageScreenshotsDescription = Fota wobrazowki lažko nagótowane. Gótujśo, składujśo a źělśo fota wobrazowki, mimo až Firefox spušćaśo.
 shotPageUpsellFirefox = Wobstarajśo se Firefox něnto
 shotPageDMCAMessage = Toś to foto wobrazowki wěcej njejo k dispoziciji dla pšawow awtorstwa tśeśich.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
