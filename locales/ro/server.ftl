@@ -51,7 +51,7 @@ homePageCaptureRegionDescription = Clic și trage pentru a selecta zona pe care 
 homePageCapturePage = Capturează o pagină
 homePageSaveShare = Salvează și partajează
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Când realizezi o captură, Firefox postează captura de ecran în colecția ta online Screenshots și copiază linkul în clipboard. Stocăm automat captura de ecran timp de două săptămâni, însă poți să ștergi capturile oricând sau să modifici data expirării pentru a le păstra în colecție pentru o durată mai lungă.
+homePageSaveShareDescription = Când realizezi o captură, Firefox postează captura de ecran în colecția ta online Screenshots și copiază linkul în clipboard. Stocăm automat captura de ecran timp de două săptămâni, însă poți să ștergi capturile oricând sau să modifici data expirării ca să le păstrezi în colecție pentru o durată mai lungă.
 homePageLegalLink = Mențiuni legale
 homePagePrivacyLink = Confidențialitate
 homePageTermsLink = Termeni
