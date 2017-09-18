@@ -12,24 +12,41 @@ const SEARCHABLE_VERSION = 1;
 
 const PNG_HEADER_BASE64 = "iVBORw0KGgo=";
 const PNG_HEADER = Buffer.from(PNG_HEADER_BASE64, "base64");
+const JPEG_HEADER_BASE64 = "/9g=";
+const JPEG_HEADER = Buffer.from(JPEG_HEADER_BASE64, "base64").slice(0, 2);
 
-function assertPng(dataUrl) {
-  const urlHeader = "data:image/png;base64,";
-  if (!dataUrl.startsWith(urlHeader)) {
-    mozlog.warn("invalid-data-url", {msg: "Invalid data: URL submitted", prefix: dataUrl.substr(0, urlHeader.length + 10)});
+function assertPngOrJpeg(dataUrl) {
+  const pngHeader = "data:image/png;base64,";
+  const jpegHeader = "data:image/jpeg;base64,";
+  if (!(dataUrl.startsWith(pngHeader) || dataUrl.startsWith(jpegHeader))) {
+    mozlog.warn("invalid-data-url", {msg: "Invalid data: URL submitted", prefix: dataUrl.substr(0, jpegHeader.length + 10)});
     throw new Error('invalid data url');
   }
   // only decode enough to get the header
   // we're lucky that 9 bytes is exactly 12 base64 characters
-  const base64Header = dataUrl.substr(urlHeader.length, PNG_HEADER_BASE64.length);
-  if (base64Header.length < PNG_HEADER_BASE64.length) {
-    mozlog.warn("invalid-data-image", {msg: "Invalid PNG image submitted", prefix: dataUrl.substr(0, urlHeader.length + PNG_HEADER_BASE64.length)});
-    throw new Error('invalid image');
-  }
-  const header = Buffer.from(base64Header, "base64"); // 9 bytes
-  if (!PNG_HEADER.equals(header.slice(0, 8))) {
-    mozlog.warn("invalid-data-image-decoded", {msg: "Invalid PNG image (after base64 decoding)"});
-    throw new Error('invalid png');
+  if (dataUrl.startsWith(pngHeader)) {
+    const base64Header = dataUrl.substr(pngHeader.length, PNG_HEADER_BASE64.length);
+    if (base64Header.length < PNG_HEADER_BASE64.length) {
+      mozlog.warn("invalid-data-image", {msg: "Invalid PNG image submitted", prefix: dataUrl.substr(0, pngHeader.length + PNG_HEADER_BASE64.length)});
+      throw new Error('invalid image');
+    }
+    const header = Buffer.from(base64Header, "base64"); // 9 bytes
+    if (!PNG_HEADER.equals(header.slice(0, PNG_HEADER.length))) {
+      mozlog.warn("invalid-data-image-decoded", {msg: "Invalid PNG image (after base64 decoding)"});
+      throw new Error('invalid png');
+    }
+  } else {
+    const base64Header = dataUrl.substr(jpegHeader.length, JPEG_HEADER_BASE64.length);
+    if (base64Header.length < JPEG_HEADER_BASE64.length) {
+      mozlog.warn("invalid-data-image", {msg: "Invalid JPEG image submitted", prefix: dataUrl.substr(0, jpegHeader.length + JPEG_HEADER_BASE64.length)});
+      throw new Error('invalid image');
+    }
+    const header = Buffer.from(base64Header, "base64"); // 9 bytes
+    if (!JPEG_HEADER.equals(header.slice(0, JPEG_HEADER.length))) {
+      console.log("!=", JPEG_HEADER, JPEG_HEADER.length, header.slice(0, 8));
+      mozlog.warn("invalid-data-image-decoded", {msg: "Invalid JPEG image (after base64 decoding)"});
+      throw new Error('invalid jpeg');
+    }
   }
 }
 
@@ -334,7 +351,7 @@ class ServerClip extends AbstractShot.prototype.Clip {
   constructor(shot, id, json) {
     super(shot, id, json);
     if (this.isDataUrl()) {
-      assertPng(json.image.url);
+      assertPngOrJpeg(json.image.url);
     }
   }
 
