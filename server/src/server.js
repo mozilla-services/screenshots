@@ -801,8 +801,8 @@ app.get("/images/:imageid", function(req, res) {
       notFound(req, res);
     } else {
       let localReferrer = false;
-      if (req.headers["referer"]) {
-        localReferrer = req.headers["referer"].startsWith(req.backend);
+      if (req.headers.referer) {
+        localReferrer = req.headers.referer.startsWith(req.backend);
       }
       if (!localReferrer) {
         let hasher = require("crypto").createHash("sha1");
@@ -821,7 +821,7 @@ app.get("/images/:imageid", function(req, res) {
         analytics.pageview({
           dp: analyticsUrl,
           dh: req.backend,
-          documentReferrer: req.headers["referer"],
+          documentReferrer: req.headers.referer,
           ua: req.headers["user-agent"]
         }).event({
           ec: "web",

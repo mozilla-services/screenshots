@@ -2,7 +2,7 @@ machine:
   services:
     - docker
   node:
-    version: 6.10.0
+    version: 8.2.0
   environment:
     RDS_NAME: circle_test
     RDS_USERNAME: ubuntu
