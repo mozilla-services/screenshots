@@ -65,7 +65,9 @@ class ScreenshotsClient(object):
         if clip_match:
             clip_url = clip_match.group(1)
             if clip_url:
-                clip_content = self.session.get(clip_url).content
+                resp = self.session.get(clip_url)
+                clip_content = resp.content
+                clip_content_type = resp.headers['content-type']
         csrf_match = re.search(r'"csrfToken":"([^"]*)"', page)
         csrf = None
         if csrf_match:
@@ -74,7 +76,14 @@ class ScreenshotsClient(object):
         title = None
         if title_match:
             title = title_match.group(1)
-        return {"page": page, "clip_url": clip_url, "clip_content": clip_content, "csrf": csrf, "title": title}
+        return {
+            "page": page,
+            "clip_url": clip_url,
+            "clip_content": clip_content,
+            "clip_content_type": clip_content_type,
+            "csrf": csrf,
+            "title": title,
+        }
 
     def set_expiration(self, url, seconds):
         shot_id = self._get_id_from_url(url)
@@ -138,11 +147,14 @@ class ScreenshotsClient(object):
         return self.session.get(urljoin(self.backend, uri))
 
 
-def make_example_shot(deviceId, pad_image_to_length=None, image_index=None, **overrides):
+def make_example_shot(deviceId, pad_image_to_length=None, image_index=None, image_content_type=None, **overrides):
+    pick_from_images = example_images
+    if image_content_type:
+        pick_from_images = [i for i in pick_from_images if ("data:" + image_content_type) in i["url"]]
     if image_index is None:
-        image = random.choice(example_images)
+        image = random.choice(pick_from_images)
     else:
-        image = example_images[image_index]
+        image = pick_from_images[image_index]
     text = []
     for i in range(10):
         text.append(random.choice(text_strings))

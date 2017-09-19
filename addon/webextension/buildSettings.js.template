@@ -2,6 +2,7 @@ window.buildSettings = {
   defaultSentryDsn: process.env.SCREENSHOTS_SENTRY,
   logLevel: process.env.SCREENSHOTS_LOG_LEVEL || "warn",
   captureText: (process.env.SCREENSHOTS_CAPTURE_TEXT === "true"),
-  uploadBinary: (process.env.SCREENSHOTS_UPLOAD_BINARY === "true")
+  uploadBinary: (process.env.SCREENSHOTS_UPLOAD_BINARY === "true"),
+  pngToJpegCutoff: parseInt(process.env.SCREENSHOTS_PNG_TO_JPEG_CUTOFF || 2500000, 10)
 };
 null;
