@@ -50,6 +50,8 @@ homePageHowScreenshotsWorks = Bagaimana Firefox Screenshots Bekerja
 homePageGetStartedTitle = Memulai
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Temukan ikon Screenshots baru di bilah alat Anda. Pilih, kemudian menu Screenshots akan muncul di bagian atas jendela peramban Anda.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Pilih ikon Screenshot dari menu tindakan laman di bilah alamat, dan menu Screenshots akan muncul di atas jendela peramban Anda.
 homePageCaptureRegion = Tangkap Bagian
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klik dan seret untuk memilih area yang ingin Anda tangkap. Atau arahkan dan klik  — Screenshots akan memilih area untuk Anda. Sudah merasa pas? Pilih Simpan untuk mengakses tangkapan layar secara daring atau tombol panah ke bawah untuk mengunduhnya ke komputer Anda.
