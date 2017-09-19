@@ -600,7 +600,13 @@ app.put("/data/:id/:domain", upload.single('blob'), function(req, res) {
     bodyObj = JSON.parse(req.body.shot);
     let clipId = Object.getOwnPropertyNames(bodyObj.clips)[0];
     let b64 = req.file.buffer.toString("base64");
-    b64 = "data:image/png;base64," + b64;
+    let contentType = req.file.mimetype;
+    if (contentType != "image/png" && contentType != "image/jpeg") {
+      // Force PNG as a fallback
+      mozlog.warn("invalid-upload-content-type", {contentType});
+      contentType = "image/png";
+    }
+    b64 = `data:${contentType};base64,${b64}`;
     bodyObj.clips[clipId].image.url = b64;
   } else if (req.body) {
     bodyObj = req.body;
@@ -829,7 +835,11 @@ app.get("/images/:imageid", function(req, res) {
           el
         }).send();
       }
-      res.header("Content-Type", "image/png");
+      let contentType = obj.contentType;
+      if (contentType != "image/png" && contentType != "image/jpeg") {
+        contentType = "image/png";
+      }
+      res.header("Content-Type", contentType);
       if (download) {
         if (dbschema.getKeygrip().verify(new Buffer(download, 'utf8'), sig)) {
           res.header("Content-Disposition", contentDisposition(download));

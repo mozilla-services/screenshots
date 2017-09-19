@@ -59,6 +59,13 @@ def test_edit_to_set_invalid_clip_image_url_fails():
         user.delete_shot(shot_url)
 
 
+def test_jpeg_upload():
+    with screenshots_session() as user:
+        shot_url = user.create_shot(docTitle="TEST_JPEG", image_content_type="image/jpeg", image_index=0)
+        shot_page = user.read_shot(shot_url)
+        assert shot_page["clip_content_type"] == "image/jpeg"
+
+
 if __name__ == "__main__":
     test_invalid_clip_image_url_not_saved()
     test_edit_to_set_invalid_clip_image_url_fails()
