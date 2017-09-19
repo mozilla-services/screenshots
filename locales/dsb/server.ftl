@@ -227,6 +227,7 @@ metricsPageTotalsQueryDescription = Pśeglěd Screenshots
 metricsPageTotalsQueryDevices = Zregistrěrowane rědy dogromady
 metricsPageTotalsQueryActiveShots = Aktiwne fota wobrazowki
 metricsPageTotalsQueryExpiredShots = Wótběgnuło (dajo se pak wótnowiś)
+metricsPageTotalsQueryExpiredDeletedShots = Wótběgnuło (a wulašowane)
 metricsPageShotsQueryTitle = Fota wobrazowki na źeń
 metricsPageShotsQueryDescription = Licba fotow wobrazowki napóranych kuždy źeń (za zachadne 30 dnjow)
 metricsPageShotsQueryCount = Licba fotow wobrazowki
