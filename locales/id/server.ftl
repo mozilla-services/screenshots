@@ -19,7 +19,7 @@ gScreenshotsDescription = Screenshots membuatnya sederhana. Ambil, simpan, dan b
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Ketentuan
-footerLinkPrivacy = Pemberitauan Privasi
+footerLinkPrivacy = Kebijakan Privasi
 footerLinkFaqs = Pertanyaan Umum
 footerLinkDMCA = Laporkan Pelanggaran IP
 footerLinkDiscourse = Kirim Saran
@@ -53,7 +53,7 @@ homePageGetStartedDescription = Temukan ikon Screenshots baru di bilah alat Anda
 homePageCaptureRegion = Tangkap Bagian
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klik dan seret untuk memilih area yang ingin Anda tangkap. Atau arahkan dan klik  — Screenshots akan memilih area untuk Anda. Sudah merasa pas? Pilih Simpan untuk mengakses tangkapan layar secara daring atau tombol panah ke bawah untuk mengunduhnya ke komputer Anda.
-homePageCapturePage = Rekam Laman
+homePageCapturePage = Tangkap Laman
 homePageCapturePageDescription = Gunakan tombol di kanan atas untuk merekam seluruh laman. Tombol Simpan yang Terlihat akan menangkap area yang Anda lihat tanpa menggulir, dan Simpan Laman Sepenuhnya akan menangkap semua yang ada di laman.
 homePageSaveShare = Simpan dan Bagikan
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -69,7 +69,7 @@ homePageCookiesLink = Kuki
 leavePageRemoveAllData = Hapus Semua Data
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Firefox Screenshots harus terpasang untuk menghapus akun Anda
-leavePageErrorGeneric = Terjadi kesalahan
+leavePageErrorGeneric = Terjadi galat
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ini akan menghapus semua data Firefox Screenshots Anda secara permanen.
 leavePageButtonProceed = Memproses
