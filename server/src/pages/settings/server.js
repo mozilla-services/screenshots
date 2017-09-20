@@ -1,12 +1,11 @@
 const express = require("express");
-const { csrfProtection } = require("../../middleware/csrf");
 const reactrender = require("../../reactrender");
 
 let app = express();
 
 exports.app = app;
 
-app.get("/", csrfProtection, function(req, res) {
+app.get("/", function(req, res) {
   if (!req.deviceId) {
     res.status(403).send("You must have Screenshots installed");
     return;

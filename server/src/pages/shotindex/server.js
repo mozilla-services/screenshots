@@ -1,5 +1,4 @@
 const express = require("express");
-const { csrfProtection } = require("../../middleware/csrf");
 const reactrender = require("../../reactrender");
 const { Shot } = require("../../servershot");
 const mozlog = require("../../logging").mozlog("shotindex");
@@ -8,7 +7,7 @@ let app = express();
 
 exports.app = app;
 
-app.get("/", csrfProtection, function(req, res) {
+app.get("/", function(req, res) {
   if (!req.deviceId) {
     _render();
     return;
