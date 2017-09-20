@@ -61,7 +61,7 @@ class ScreenshotsClient(object):
         resp.raise_for_status()
         page = resp.text
         clip_match = re.search(r'<img id="clipImage"[^>]*src="([^"]+)"', page)
-        clip_url = clip_content = None
+        clip_url = clip_content = clip_content_type = None
         if clip_match:
             clip_url = clip_match.group(1)
             if clip_url:
