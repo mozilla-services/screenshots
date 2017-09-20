@@ -43,7 +43,6 @@ function assertPngOrJpeg(dataUrl) {
     }
     const header = Buffer.from(base64Header, "base64"); // 9 bytes
     if (!JPEG_HEADER.equals(header.slice(0, JPEG_HEADER.length))) {
-      console.log("!=", JPEG_HEADER, JPEG_HEADER.length, header.slice(0, 8));
       mozlog.warn("invalid-data-image-decoded", {msg: "Invalid JPEG image (after base64 decoding)"});
       throw new Error('invalid jpeg');
     }
