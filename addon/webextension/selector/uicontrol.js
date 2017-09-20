@@ -45,8 +45,9 @@ this.uicontrol = (function() {
 
   const { watchFunction, watchPromise } = catcher;
 
-  const MAX_PAGE_HEIGHT = 5000;
-  const MAX_PAGE_WIDTH = 5000;
+  // In Firefox, a single canvas image cannot exceed 32767 px in either direction:
+  const MAX_PAGE_HEIGHT = 32767;
+  const MAX_PAGE_WIDTH = 32767;
   // An autoselection smaller than these will be ignored entirely:
   const MIN_DETECT_ABSOLUTE_HEIGHT = 10;
   const MIN_DETECT_ABSOLUTE_WIDTH = 30;
