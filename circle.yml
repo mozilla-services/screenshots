@@ -33,7 +33,7 @@ test:
     # server tests
     - ./bin/test-request put '{}'
     - ./bin/load_test_exercise.py http://localhost:10080
-    - npm run test:server -- --ignore=test_file_management.py
+    - npm run test:server
     # run zap baseline against the server
     - docker pull owasp/zap2docker-weekly
     # || true to temporarily disable this from making the tests fail:
