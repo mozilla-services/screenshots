@@ -181,7 +181,7 @@ this.uicontrol = (function() {
     },
     onSavePreview: () => {
       sendEvent(`save-${captureType.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}`, "save-preview-button");
-      shooter.takeShot(captureType, selectedPos, dataUrl);
+      shooter.takeShot(captureType, selectedPos, blob);
     },
     onDownloadPreview: () => {
       sendEvent(`download-${captureType.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}`, "download-preview-button");
@@ -363,13 +363,15 @@ this.uicontrol = (function() {
    * all stateHandlers
    */
 
-  let dataUrl;
+  let blob;
 
   stateHandlers.previewing = {
     start() {
-      dataUrl = shooter.screenshotPage(selectedPos, captureType);
-      ui.iframe.usePreview();
-      ui.Preview.display(dataUrl);
+      catcher.watchPromise(shooter.screenshotPage(selectedPos, captureType).then((captureBlob) => {
+        blob = captureBlob;
+        ui.iframe.usePreview();
+        ui.Preview.display(blob);
+      }));
     }
   };
 

@@ -223,7 +223,7 @@ this.main = (function() {
   communication.register("downloadShot", (sender, info) => {
     // 'data:' urls don't work directly, let's use a Blob
     // see http://stackoverflow.com/questions/40269862/save-data-uri-as-file-using-downloads-download-api
-    const blob = blobConverters.dataUrlToBlob(info.url);
+    const blob = info.blob;
     let url = URL.createObjectURL(blob);
     let downloadId;
     let onChangedCallback = catcher.watchFunction(function(change) {

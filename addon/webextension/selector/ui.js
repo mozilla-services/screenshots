@@ -707,10 +707,19 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
   };
 
   exports.Preview = {
-    display(dataUrl) {
+    display(dataUrlOrBlob) {
       let img = makeEl("IMG");
-      img.src = dataUrl;
+      let win = iframe.document().defaultView;
+      console.log("displaying", typeof dataUrlOrBlob, dataUrlOrBlob + "");
+      if (typeof dataUrlOrBlob == "string") {
+        img.src = dataUrlOrBlob;
+      } else {
+        let srcUrl = win.URL.createObjectURL(dataUrlOrBlob);
+        console.log("window window", win.URL + "", srcUrl);
+        img.src = srcUrl;
+      }
       iframe.document().querySelector(".preview-image").appendChild(img);
+      console.log("created", img.outerHTML);
     }
   };
 
@@ -727,8 +736,8 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     exports.iframe.remove();
   };
 
-  exports.triggerDownload = function(url, filename) {
-    return catcher.watchPromise(callBackground("downloadShot", {url, filename}));
+  exports.triggerDownload = function(blob, filename) {
+    return catcher.watchPromise(callBackground("downloadShot", {blob, filename}));
   };
 
   exports.unload = exports.remove;

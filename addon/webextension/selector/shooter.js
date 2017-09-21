@@ -64,20 +64,29 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
       ui.iframe.unhide();
     }
     let limit = buildSettings.pngToJpegCutoff;
-    let dataUrl = canvas.toDataURL();
-    if (limit && dataUrl.length > limit) {
-      let jpegDataUrl = canvas.toDataURL("image/jpeg");
-      if (jpegDataUrl.length < dataUrl.length) {
-        // Only use the JPEG if it is actually smaller
-        dataUrl = jpegDataUrl;
+    return canvasToBlob(canvas, "image/png").then((pngBlob) => {
+      if (limit && pngBlob.size > limit) {
+        return canvasToBlob(canvas, "image/jpeg").then((jpegBlob) => {
+          if (jpegBlob.size < pngBlob.size) {
+            return jpegBlob;
+          }
+          return pngBlob;
+        });
       }
-    }
-    return dataUrl;
+      return pngBlob;
+    });
   };
+
+  /** Promise-based version of the method: */
+  function canvasToBlob(canvas, mimeType) {
+    return new Promise((resolve) => {
+      canvas.toBlob(resolve, mimeType);
+    });
+  }
 
   let isSaving = null;
 
-  exports.takeShot = function(captureType, selectedPos, url) {
+  exports.takeShot = function(captureType, selectedPos, previewBlob) {
     // isSaving indicates we're aleady in the middle of saving
     // we use a timeout so in the case of a failure the button will
     // still start working again
@@ -107,11 +116,16 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     if (buildSettings.captureText) {
       captureText = util.captureEnclosedText(selectedPos);
     }
-    let dataUrl = url || screenshotPage(selectedPos, captureType);
-    let type = blobConverters.getTypeFromDataUrl(dataUrl);
-    type = type ? type.split("/")[1] : null;
-    if (dataUrl) {
-      imageBlob = blobConverters.dataUrlToBlob(dataUrl);
+    let blobPromise;
+    if (previewBlob) {
+      blobPromise = Promise.resolve(previewBlob);
+    } else {
+      blobPromise = screenshotPage(selectedPos, captureType);
+    }
+    catcher.watchPromise(blobPromise.then((blob) => {
+      imageBlob = blob;
+      let type = blob.type;
+      type = type ? type.split("/")[1] : null;
       shotObject.delAllClips();
       shotObject.addClip({
         createdDate: Date.now(),
@@ -127,20 +141,21 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
           }
         }
       });
-    }
-    catcher.watchPromise(callBackground("takeShot", {
-      captureType,
-      captureText,
-      scroll: {
-        scrollX: window.scrollX,
-        scrollY: window.scrollY,
-        innerHeight: window.innerHeight,
-        innerWidth: window.innerWidth
-      },
-      selectedPos,
-      shotId: shotObject.id,
-      shot: shotObject.asJson(),
-      imageBlob
+    }).then(() => {
+      return callBackground("takeShot", {
+        captureType,
+        captureText,
+        scroll: {
+          scrollX: window.scrollX,
+          scrollY: window.scrollY,
+          innerHeight: window.innerHeight,
+          innerWidth: window.innerWidth
+        },
+        selectedPos,
+        shotId: shotObject.id,
+        shot: shotObject.asJson(),
+        imageBlob
+      });
     }).then((url) => {
       return clipboard.copy(url).then((copied) => {
         return callBackground("openShot", { url, copied });
@@ -164,21 +179,24 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
   };
 
   exports.downloadShot = function(selectedPos) {
-    let dataUrl = screenshotPage(selectedPos);
-    let promise = Promise.resolve(dataUrl);
-    if (!dataUrl) {
-      promise = callBackground(
-        "screenshotPage",
-        selectedPos.asJson(),
-        {
-          scrollX: window.scrollX,
-          scrollY: window.scrollY,
-          innerHeight: window.innerHeight,
-          innerWidth: window.innerWidth
+    catcher.watchPromise(screenshotPage(selectedPos).then((blob) => {
+      if (!blob) {
+        return callBackground(
+          "screenshotPage",
+          selectedPos.asJson(),
+          {
+            scrollX: window.scrollX,
+            scrollY: window.scrollY,
+            innerHeight: window.innerHeight,
+            innerWidth: window.innerWidth
+          }
+        ).then((dataUrl) => {
+          return blobConverters.dataUrlToBlob(dataUrl);
         });
-    }
-    catcher.watchPromise(promise.then((dataUrl) => {
-      ui.triggerDownload(dataUrl, shotObject.filename);
+      }
+      return blob;
+    }).then((blob) => {
+      ui.triggerDownload(blob, shotObject.filename);
       uicontrol.deactivate();
     }));
   };
