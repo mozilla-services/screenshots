@@ -18,7 +18,7 @@ exports.sendRavenMessage = function(req, message, options) {
   options.extra.path = req.originalUrl;
   options.extra.method = req.method;
   options.extra.userAgent = req.headers['user-agent'];
-  options.extra.referrer = req.headers['referer'];
+  options.extra.referrer = req.headers.referer;
   options.extra.authenticated = !!req.deviceId;
   Raven.captureMessage(message, options);
 };

@@ -89,18 +89,34 @@ nav {
   align-items: center;
   background-color: #04d1e6;
   display: flex;
+  flex-direction: row-reverse;
   justify-content: flex-start;
   min-height: 587px;
   position: relative;
 }
 
-.banner .container {
-  z-index: 1;
+
+.banner-container {
+  @include flex-container(row, center, center);
+  max-width: 1160px;
+  min-width: 960px;
+  margin: 0 auto;
+  position: relative;
 }
 
-.banner-image {
-  background-image:   url("../img/landing-screenshots_banner.svg");
-  background-position: 75% center;
+.banner-image-front {
+  background-image: url("../img/banner-front.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 400px auto;
+  flex: 0 0 420px;
+  height: 440px;
+  z-index: 999;
+}
+
+.banner-image-back {
+  background-image: url("../img/banner-back.svg");
+  background-position: center 25%;
   background-repeat: no-repeat;
   position: absolute;
   top: 0;
@@ -111,8 +127,8 @@ nav {
 }
 
 .banner-content {
-  width: 50%;
-  min-width: 380px;
+  min-width: 430px;
+  padding: 10px;
 }
 
 .banner-content h1 {
@@ -125,10 +141,10 @@ nav {
 .banner-content p {
   color: #fff;
   font-size: 1.3em;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.61;
   margin: 0;
-  padding-right: 80px;
+  padding-right: 30px;
 }
 
 h2 {
@@ -388,12 +404,25 @@ section .container {
     min-height: 500px;
   }
 
-  .banner-image {
-    top: 0;
+  .banner-container {
+    max-width: 750px;
+    min-width: 750px;
+  }
+
+  .banner-content {
+    min-width: 320px;
+    width: 350px;
+  }
+
+  .banner-image-front {
+    background-size: 360px auto;
+    flex: 0 0 400px;
+    height: 420px;
+  }
+
+  .banner-image-back {
     background-size: 90% auto;
-    left: 0;
-    bottom: 0;
-    right: -10%;
+    background-position: 300px center;
   }
 
   section {
@@ -427,7 +456,8 @@ section .container {
     height: 320px;
   }
 
-  .banner-image {
+  .banner-image-back,
+  .banner-image-front {
     display: none;
   }
 
@@ -435,11 +465,15 @@ section .container {
     height: 60px;
   }
 
+  .banner-container {
+    min-width: 0;
+  }
+
   .banner-content {
-    max-width: 500px;
-    text-align: center;
-    width: 100%;
     margin-top: 80px;
+    max-width: 500px;
+    min-width: 0;
+    text-align: center;
   }
 
   .banner-content p {

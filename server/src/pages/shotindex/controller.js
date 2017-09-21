@@ -32,7 +32,7 @@ exports.launch = function(m) {
       return;
     }
     let authTimeout = setTimeout(() => {
-      // eslint-disable-next-line no-global-assign
+      // eslint-disable-next-line no-global-assign, no-native-reassign
       location = location.origin + "/#tour";
     }, FIVE_SECONDS);
     window.wantsauth.addAuthDataListener((data) => {
