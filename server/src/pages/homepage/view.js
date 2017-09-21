@@ -99,7 +99,8 @@ class Body extends React.Component {
             </nav>
             <div className="banner-spacer" />
             <div className="banner">
-              <div className="container">
+              <div className="banner-image-back" />
+              <div className="banner-container">
                 <div className="banner-content">
                   <h1>Firefox Screenshots</h1>
                   <Localized id="gScreenshotsDescription">
@@ -107,8 +108,8 @@ class Body extends React.Component {
                   </Localized>
                   { this.renderGetFirefox() }
                 </div>
+                <div className="banner-image-front" />
               </div>
-              <div className="banner-image" />
             </div>
           </header>
           <Localized id="homePageHowScreenshotsWorks">
