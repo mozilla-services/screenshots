@@ -44,12 +44,23 @@ this.main = (function() {
     return backend + "/#hello";
   }
 
-  for (let permission of manifest.permissions) {
-    if (/^https?:\/\//.test(permission)) {
-      exports.setBackend(permission);
-      break;
-    }
+
+  // Check if the user has set the self-hosting permission first.
+  function initBackend() {
+    catcher.watchPromise(communication.sendToBootstrap("getBackendPref").then((userBackend) => {
+      if (userBackend && /^https?:\/\//.test(userBackend)) {
+        exports.setBackend(userBackend);
+      } else {
+        for (let permission of manifest.permissions) {
+          if (/^https?:\/\//.test(permission)) {
+            exports.setBackend(permission);
+            break;
+          }
+        }
+      }
+    }));
   }
+  initBackend();
 
   function setIconActive(active, tabId) {
     let path = active ? "icons/icon-highlight-32-v2.svg" : "icons/icon-32-v2.svg";
