@@ -178,6 +178,17 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
         });
     }
     catcher.watchPromise(promise.then((dataUrl) => {
+      let type = blobConverters.getTypeFromDataUrl(dataUrl);
+      type = type ? type.split("/")[1] : null;
+      shotObject.delAllClips();
+      shotObject.addClip({
+        createdDate: Date.now(),
+        image: {
+          url: dataUrl,
+          type,
+          location: selectedPos
+        }
+      });
       ui.triggerDownload(dataUrl, shotObject.filename);
       uicontrol.deactivate();
     }));
