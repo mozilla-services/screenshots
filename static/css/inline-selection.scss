@@ -21,7 +21,7 @@ $handle-mover-offset: -1px;
 $mover-size: $mover-outer + $mover-inner;
 $overlay-z-index: 9999999999;
 
-$modal-color: rgba(0, 0, 0, 0.7);
+$modal-color: rgb(0, 0, 0);
 $very-light-grey: #ededed;
 
 
@@ -45,7 +45,8 @@ $very-light-grey: #ededed;
 
 .hover-highlight {
   animation: fade-in 125ms forwards $bezier;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgb(255, 255, 255);
+  opacity: 0.2;
   border-radius: 1px;
   pointer-events: none;
   position: absolute;
@@ -177,6 +178,7 @@ $very-light-grey: #ededed;
 
 .bghighlight {
   background-color: $modal-color;
+  opacity: 0.7;
   position: absolute;
   z-index: $overlay-z-index;
 }
@@ -184,6 +186,7 @@ $very-light-grey: #ededed;
 .preview-overlay {
   align-items: center;
   background-color: $modal-color;
+  opacity: 0.7;
   display: flex;
   height: 100%;
   justify-content: center;
@@ -194,6 +197,10 @@ $very-light-grey: #ededed;
   top: 0;
   width: 100%;
   z-index: $overlay-z-index;
+
+  body#preview-frame & {
+    opacity: 1;
+  }
 }
 
 .highlight {
@@ -400,6 +407,7 @@ $very-light-grey: #ededed;
   text-align: center;
   padding-top: 20px;
   width: 400px;
+  opacity: 1.0;
 }
 
 .myshots-all-buttons-container {
