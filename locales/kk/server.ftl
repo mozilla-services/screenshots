@@ -202,6 +202,7 @@ metricsPageTotalsQueryDevices = Барлығы тіркелген құрылғы
 metricsPageTotalsQueryActiveShots = Белсенді скриншоттар
 metricsPageTotalsQueryExpiredShots = Мерзімі аяқталған (бірақ, қалпына келтіруге болатын)
 metricsPageTotalsQueryExpiredDeletedShots = Мерзімі аяқталған (және өшірілген)
+metricsPageShotsQueryTitle = Күндер бойынша скриншоттар
 metricsPageShotsQueryDay = Күн
 metricsPageUsersQueryCount = Пайданушылар саны
 metricsPageUsersQueryDay = Күн
