@@ -1,3 +1,33 @@
+## Version 21.0.0
+
+This is a server-only release.
+
+### Server changes
+
+* Fix twitter card image [2988649](https://github.com/mozilla-services/screenshots/commit/2988649)
+* Update Opengraph / Twitter cards [dc10d75](https://github.com/mozilla-services/screenshots/commit/dc10d75)
+* Use correct latest commit in `__version__` endpoint [2b7a703](https://github.com/mozilla-services/screenshots/commit/2b7a703)
+* Ignore the tough-cookie (https://nodesecurity.io/advisories/525) warning for now ([#3533](https://github.com/mozilla-services/screenshots/issues/3533)). Followup to undo this in [#3532](https://github.com/mozilla-services/screenshots/issues/3532) [c21f3d3](https://github.com/mozilla-services/screenshots/commit/c21f3d3)
+* separate banner image [b5a939e](https://github.com/mozilla-services/screenshots/commit/b5a939e)
+* Csrf refactor ([#3516](https://github.com/mozilla-services/screenshots/issues/3516))* server: default to using csrf protection middleware
+  * server: combine csrf and csrfProtection middleware [6aafff2](https://github.com/mozilla-services/screenshots/commit/6aafff2)
+* Re-enable eslint-plugin-mozilla now that it is fixed. Fixes [#3450](https://github.com/mozilla-services/screenshots/issues/3450) [73d4077](https://github.com/mozilla-services/screenshots/commit/73d4077)
+
+### Add-on changes
+
+Note: not released
+
+* Remove `"` and `?` from filenames ([#3524](https://github.com/mozilla-services/screenshots/issues/3524))* remove " and ? from filenames
+* Upload jpeg ([#3513](https://github.com/mozilla-services/screenshots/issues/3513))* Start [#220](https://github.com/mozilla-services/screenshots/issues/220), allow JPEG uploads, and respect content-type for JPEG or PNG
+  - use JPEG for large shots
+  - Allows JPEGs on the server, both to pass content checks, and to make use of stored content-types (instead of assuming image/png).
+  - Puts an clip.image.type into shot objects
+  - Uses .jpg for filenames when appropriate
+  - Adds a new buildSetting for controlling the cutoff when we use JPEG
+  - If a PNG image is too large, tries to make a JPEG and substitutes if the JPEG is actually smaller
+  - Refactor some data:-URL and blob conversion functions into their own module. Fixes [#220](https://github.com/mozilla-services/screenshots/issues/220) [82139ed](https://github.com/mozilla-services/screenshots/commit/82139ed)
+* Fix an undefined variable (bad rename) in the Mochitest [25aeaa1](https://github.com/mozilla-services/screenshots/commit/25aeaa1)
+
 ## Version 20.0.0
 
 Note: this is a server release
