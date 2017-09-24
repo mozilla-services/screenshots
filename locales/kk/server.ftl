@@ -50,6 +50,8 @@ homePageHowScreenshotsWorks = Firefox скриншоттары қалай жұм
 homePageGetStartedTitle = Бастау
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Саймандар панеліңізден жаңа скриншоттар таңбашасын табыңыз. Оны таңдаңыз, және скриншоттар мәзірі браузер терезеңіздің үстінен шығады.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Адрестік жолақтың бет әрекеттері мәзірінен Скриншоттар таңбашасын таңдаңыз, одан кейін Скриншоттар терезесі браузер терезесінің жоғарғы жағынан шығады.
 homePageCaptureRegion = Аймақты түсіру
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Түсіргіңіз келетін аймақты таңдау үшін шертіп, тартып апарыңыз. Немесе тек үстіне апарып, шертіңіз — Скриншоттар сайманы аймақты сіз үшін таңдайды. Көргенді ұнаттыңыз ба? Скриншотыңызды желіде сақтау үшін Сақтау, ал, оны компьютеріңізге жүктеп алу үшін, төменге қарап тұрған бағдарша батырмасын басыңыз.
