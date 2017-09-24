@@ -127,6 +127,8 @@ shotPageUpsellFirefox = Firefox-ты қазір алу
 shotPageDMCAMessage = Бұл скриншот үшінші жақтың зияткерлік меншігі арызы салдарынан енді қолжетерсіз.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Көбірек білу үшін, { $dmca } адресіне жазыңыз.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Эл. пошта хатына бұл скриншоттың URL адресін қосыңыз: { $url }
 shotPageKeepFor = Бұл скриншот қанша уақыт бойы сақталуы тиіс?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Уақытты таңдау
@@ -203,16 +205,22 @@ metricsPageTotalsQueryActiveShots = Белсенді скриншоттар
 metricsPageTotalsQueryExpiredShots = Мерзімі аяқталған (бірақ, қалпына келтіруге болатын)
 metricsPageTotalsQueryExpiredDeletedShots = Мерзімі аяқталған (және өшірілген)
 metricsPageShotsQueryTitle = Күндер бойынша скриншоттар
+metricsPageShotsQueryDescription = Әр күнде жасалған скриншоттар саны (соңғы 30 күн үшін)
 metricsPageShotsQueryCount = Скриншоттар саны
 metricsPageShotsQueryDay = Күн
 metricsPageUsersQueryTitle = Күн бойынша пайдаланушылар
+metricsPageUsersQueryDescription = Кем дегенде бір скриншотты жасаған пайдаланушылар саны, күн бойынша (соңғы 30 күнде)
 metricsPageUsersQueryCount = Пайданушылар саны
 metricsPageUsersQueryDay = Күн
+metricsPageUserShotsQueryTitle = Пайдаланушы бойынша скриншоттар саны
 metricsPageUserShotsQueryCount = Пайдаланушылар саны
+metricsPageUserShotsQueryShots = Белсенді (мерзімі бітпеген) скриншоттардың болжалды саны
+metricsPageRetentionQueryTitle = Апта бойынша сақталу
 metricsPageRetentionQueryUsers = Пайдаланушылар саны
 metricsPageRetentionQueryFirstWeek = Пайдаланушы алғашқы скриншотты жасаған апта
 metricsPageTotalRetentionQueryTitle = Жалпы саны
 metricsPageTotalRetentionQueryUsers = Пайданушылар саны
+metricsPageTotalRetentionQueryDays = Пайдаланушы скриншоттарды жасаған күндер
 metricsPageVersionQueryTitle = Қосымша нұсқасы
 metricsPageVersionQueryUsers = Жүйеге кірген пайдаланушылар саны
 metricsPageVersionQueryVersion = Қосымша нұсқасы
