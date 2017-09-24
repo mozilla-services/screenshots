@@ -134,7 +134,7 @@ shotPageDMCAContact = За повеќе информации, Ве молиме 
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Ако вашите слики се предмет на злоупотреба на повеќе страни, можно е да ви го оневозможиме пристапот до Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
-shotPageDMCAIncludeLink = Ве молиме вклучете ја следната адреса на сликата во Вашата е-порака: { $url }
+shotPageDMCAIncludeLink = Ве молиме вклучете ја следната адреса на сликата во вашата е-порака: { $url }
 shotPageKeepFor = Колку долго треба да се чува оваа слика?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Изберете време
@@ -196,9 +196,9 @@ shotIndexPageSearchButton
     .title = Барај
 shotIndexPageNoShotsMessage = Нема снимени слики од екран.
 shotIndexPageNoShotsInvitation = Повелете, направете некоја.
-shotIndexPageLookingForShots = Ги барам Вашите слики од екран...
+shotIndexPageLookingForShots = Ги барам вашите слики од екран...
 shotIndexPageNoSearchResultsIntro = Хм
-shotIndexPageNoSearchResults = Не можеме да пронајдеме слики што одговараат на Вашето пребарување.
+shotIndexPageNoSearchResults = Не можеме да пронајдеме слики што одговараат на вашето пребарување.
 shotIndexPageClearSearchButton
     .title = Исчисти пребарување
 shotIndexPageConfirmShotDelete = Да ја избришам оваа слика?
