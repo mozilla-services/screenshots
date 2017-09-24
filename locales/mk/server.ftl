@@ -20,6 +20,7 @@ gScreenshotsDescription = Слики од екран поедноставени.
 footerLinkMozilla = Mozilla
 footerLinkTerms = Услови
 footerLinkPrivacy = Известување за приватност
+footerLinkFaqs = ЧПП
 footerLinkDMCA = Пријавете злоупотреба на интелектуална сопственост
 footerLinkDiscourse = Оставете мислење
 footerLinkRemoveAllData = Избришете ги сите податоци
