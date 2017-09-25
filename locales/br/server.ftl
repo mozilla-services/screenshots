@@ -69,14 +69,65 @@ homePageCookiesLink = Toupinoù
 [[ Leave Screenshots page ]]
 
 leavePageRemoveAllData = Dilemel an holl roadennoù
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Ret eo deoc'h kaout Firefox Screenshots staliet evit dilemel ho kont.
+leavePageErrorGeneric = Degouezhet ez eus bet ur fazi
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Kement se a zilamo holl roadennoù Firefox Screenshots.
+leavePageButtonProceed = Kenderc'hel
+leavePageButtonCancel = Nullañ
+leavePageDeleted = Dilamet eo bet holl ho tapadennoù-skramm!
 
 
 [[ Not Found page ]]
 
+notFoundPageTitle = N'eo ket bet kavet ar bajenn
+notFoundPageIntro = Chaous.
+notFoundPageDescription = N'eo ket bet kavet ar bajenn.
 
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Tapadenn-skramm: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = Fazi en ur enrollañ an diamzeriñ
+shotPageAlertErrorDeletingShot = Fazi en ur zilemel an dapadenn
+shotPageAlertErrorUpdatingTitle = Fazi en ur enrollañ an titl
+shotPageConfirmDelete = Sur oc'h e fell deoc'h dilemel an dapadenn-mañ?
+shotPageShareButton
+    .title = Rannañ
+shotPageCopy = Eilañ
+shotPageCopied = Eilet
+shotPageShareFacebook
+    .title = Rannañ war Facebook
+shotPageShareTwitter
+    .title = Rannañ war dTwitter
+shotPageSharePinterest
+    .title = Rannañ war bPinterest
+shotPageShareEmail
+    .title = Rannañ an ere dre bostel
+shotPageShareLink = Kaout un ere rannus evit an dapadenn-mañ:
+shotPagePrivacyMessage = An holl re gant an ere a c'hell gwelet an dapadenn-mañ.
+shotPageCopyImageText
+    .label = Eilañ testenn ar skeudenn
+shotPageConfirmDeletion = Sur oc'h e fell deoc'h dilemel an dapadenn-mañ?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Ma ne rit netra e vo dilamet an dapadenn-mañ a-benn { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = atoriñ betek { $date }
+shotPageExpiredMessage = Diamzeret eo an dapadenn.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Sed amañ ar bajenn orin:
+shotPageDeleteButton
+    .title = Dilemel an dapadenn-mañ
+shotPageAbuseButton
+    .title = Danevelliñ an dapadenn-mañ evit ur gammarver, lastez pe kudennoù all
+shotPageDownloadShot
+    .title = Pellgargañ
+shotPageDownload = Pellgargañ
+shotPageScreenshotsDescription = Tapadennoù-skramm en un doare aes. Skeudennit, enrollit ha rannit tapadennoù-skramm hep kuitaat Firefox.
+shotPageUpsellFirefox = Kaout Firefox bremañ
 
 
 [[ Shotindex page ]]
