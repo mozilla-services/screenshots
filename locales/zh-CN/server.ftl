@@ -39,7 +39,7 @@ creatingPageWaitMessage = 正在保存您的截图…
 [[ Home page ]]
 
 homePageDescription
-    .content = 直接在浏览器内截图。浏览网页时截图、保存与分享，只需 Firefox。
+    .content = 直接在浏览器内截图。使用 Firefox 浏览网页时可以截取、保存和分享网页截图。
 homePageButtonMyShots = 转至我的截图
 homePageTeaser = 即将推出…
 homePageDownloadFirefoxTitle = Firefox
@@ -210,6 +210,7 @@ metricsPageUsersQueryCount = 用户数
 metricsPageUsersQueryDay = 日
 metricsPageUserShotsQueryTitle = 每用户截图数
 metricsPageUserShotsQueryCount = 用户数
+metricsPageRetentionQueryDescription = 用户第一张截图到最近一张截图的天数，按周分组
 metricsPageRetentionQueryUsers = 用户数
 metricsPageTotalRetentionQueryUsers = 用户数
 metricsPageVersionQueryTitle = 附加组件版本
