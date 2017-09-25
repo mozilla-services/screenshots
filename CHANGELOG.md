@@ -2,6 +2,7 @@
 
 This is an add-on only release. The key feature is creating and uploading JPEGs for large images.
 
+* Fix test regression [e9d089a](https://github.com/mozilla-services/screenshots/commit/e9d089a)
 * Bug fix for [#3513](https://github.com/mozilla-services/screenshots/issues/3513), create proper extension for downloads ([#3543](https://github.com/mozilla-services/screenshots/issues/3543))
   The clip object is used to inform the download filename, so we need to add a clip before generating the filename [145a456](https://github.com/mozilla-services/screenshots/commit/145a456)
 * Remove bad console.log statement [200f93d](https://github.com/mozilla-services/screenshots/commit/200f93d)
