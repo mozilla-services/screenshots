@@ -49,10 +49,10 @@ homePageGetStarted = 操作入门
 homePageHowScreenshotsWorks = 如何使用 Firefox Screenshots
 homePageGetStartedTitle = 开始使用
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = 在工具栏上找到新增的屏幕截图（Screenshots）图标，点击它，截图菜单将出现在浏览器窗口的顶部。
+homePageGetStartedDescription = 在工具栏上找到新增的“屏幕截图”图标，点击它，截图菜单将出现在浏览器窗口的顶部。
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescriptionPageAction = 点击地址栏中的“页面动作”菜单，选择“截图”按钮，截图菜单会显示在您的浏览器窗口上方。
-homePageCaptureRegion = 截取页面
+homePageGetStartedDescriptionPageAction = 点击地址栏中的“页面动作”菜单，选择“截图”按钮，截图菜单会显示在您的浏览器窗口的顶部。
+homePageCaptureRegion = 截取选定区域
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = 单击并拖动以选择要截图的区域。或者悬停并单击，让屏幕截图为您选中区域。一切所见即所得，您可以将截图在线保存或点击“向下箭头”按钮下载到您的计算机。
 homePageCapturePage = 截取区域
@@ -117,6 +117,8 @@ shotPageExpirationMessage = 如果您不做操作，此截图将在 { $timediff 
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = 在 { $date } 前可恢复
 shotPageExpiredMessage = 此截图已过期。
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = 这是最初创建的页面：
 shotPageDeleteButton
     .title = 删除此截图
 shotPageAbuseButton
@@ -209,10 +211,18 @@ metricsPageUsersQueryDescription = 至少创建一张截图的用户数，最近
 metricsPageUsersQueryCount = 用户数
 metricsPageUsersQueryDay = 日
 metricsPageUserShotsQueryTitle = 每用户截图数
+metricsPageUserShotsQueryDescription = 有总共 N 个截图的用户数量
 metricsPageUserShotsQueryCount = 用户数
+metricsPageUserShotsQueryShots = 大致的活跃（未过期）截图数
+metricsPageRetentionQueryTitle = 按周保留
 metricsPageRetentionQueryDescription = 用户第一张截图到最近一张截图的天数，按周分组
 metricsPageRetentionQueryUsers = 用户数
+metricsPageRetentionQueryDays = 用户从第一张到最近一张截图的天数
+metricsPageRetentionQueryFirstWeek = 用户第一次创建截图的周数
+metricsPageTotalRetentionQueryTitle = 所有保留
+metricsPageTotalRetentionQueryDescription = 用户已创建截图的时间长度，按周分组
 metricsPageTotalRetentionQueryUsers = 用户数
+metricsPageTotalRetentionQueryDays = 用户创建截图的天数
 metricsPageVersionQueryTitle = 附加组件版本
 metricsPageVersionQueryDescription = 过去 14 天内进行登录的附加组件版本
 metricsPageVersionQueryUsers = 用户登录数
