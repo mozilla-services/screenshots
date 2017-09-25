@@ -54,9 +54,9 @@ homePageGetStartedDescription = 在工具栏上找到新增的“屏幕截图”
 homePageGetStartedDescriptionPageAction = 点击地址栏中的“页面动作”菜单，选择“截图”按钮，截图菜单会显示在您的浏览器窗口的顶部。
 homePageCaptureRegion = 截取选定区域
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = 单击并拖动以选择要截图的区域。或者悬停并单击，让屏幕截图为您选中区域。一切所见即所得，您可以将截图在线保存或点击“向下箭头”按钮下载到您的计算机。
-homePageCapturePage = 截取区域
-homePageCapturePageDescription = 使用右上角的按钮来截图整个页面。保存可见将截取当前显示的区域（不滚动），保存完整页面则截取整个页面的可见内容。
+homePageCaptureRegionDescription = 单击并拖动以选择要截图的区域。或者悬停并单击，让屏幕截图为您选中区域。您可以选择“保存”进入您的在线截图库或点击“向下箭头”按钮下载截图到您的计算机。
+homePageCapturePage = 截取整个网页
+homePageCapturePageDescription = 使用右上角的按钮来截图整个页面。保存可视区域将截取当前可见区域的内容，保存完整页面将截取整个网页的内容。
 homePageSaveShare = 保存并分享
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = 在您截图时，Firefox 会将截图保存到您的在线截图库，并将链接复制到剪贴板。我们会为您自动存储两周内的截图，您也可以随时删除截图或更改到期时间以长期保留截图。
@@ -89,7 +89,7 @@ notFoundPageDescription = 找不到网页。
 [[ Shot page ]]
 
 // This is the HTML title tag of the page
-shotPageTitle = 截图: { $originalTitle }
+shotPageTitle = 截图：{ $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = 保存到期时间时出错
 shotPageAlertErrorDeletingShot = 删除截图时出错
 shotPageAlertErrorUpdatingTitle = 保存标题时出错
