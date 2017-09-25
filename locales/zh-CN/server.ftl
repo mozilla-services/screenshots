@@ -50,6 +50,8 @@ homePageHowScreenshotsWorks = 如何使用 Firefox Screenshots
 homePageGetStartedTitle = 开始使用
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = 在工具栏上找到新增的屏幕截图（Screenshots）图标，点击它，截图菜单将出现在浏览器窗口的顶部。
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = 点击地址栏中的“页面动作”菜单，选择“截图”按钮，截图菜单会显示在您的浏览器窗口上方。
 homePageCaptureRegion = 截取页面
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = 单击并拖动以选择要截图的区域。或者悬停并单击，让屏幕截图为您选中区域。一切所见即所得，您可以将截图在线保存或点击“向下箭头”按钮下载到您的计算机。
