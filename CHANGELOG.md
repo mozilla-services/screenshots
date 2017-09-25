@@ -1,3 +1,19 @@
+## Version 19.1.0
+
+This is an add-on only release. The key feature is creating and uploading JPEGs for large images.
+
+* Bug fix for [#3513](https://github.com/mozilla-services/screenshots/issues/3513), create proper extension for downloads ([#3543](https://github.com/mozilla-services/screenshots/issues/3543))
+  The clip object is used to inform the download filename, so we need to add a clip before generating the filename [145a456](https://github.com/mozilla-services/screenshots/commit/145a456)
+* Remove bad console.log statement [200f93d](https://github.com/mozilla-services/screenshots/commit/200f93d)
+* Upload jpeg ([#3513](https://github.com/mozilla-services/screenshots/issues/3513))* Start [#220](https://github.com/mozilla-services/screenshots/issues/220), allow JPEG uploads, and respect content-type for JPEG or PNG
+  * use JPEG for large shots
+  - Allows JPEGs on the server, both to pass content checks, and to make use of stored content-types (instead of assuming image/png).
+  - Puts an clip.image.type into shot objects
+  - Uses .jpg for filenames when appropriate
+  - Adds a new buildSetting for controlling the cutoff when we use JPEG
+  - If a PNG image is too large, tries to make a JPEG and substitutes if the JPEG is actually smaller
+  - Refactor some data:-URL and blob converstion functions into their own module. Fixes [#220](https://github.com/mozilla-services/screenshots/issues/220) [78e0717](https://github.com/mozilla-services/screenshots/commit/78e0717)
+
 ## Version 19.0.0
 
 Note: this is a Firefox export (not a server release)
