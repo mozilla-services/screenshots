@@ -245,10 +245,10 @@ $very-light-grey: #ededed;
   background-image: url("MOZ_EXTENSION/icons/cloud.svg");
   html[dir="ltr"] & {
     background-position: 8px center;
-  } 
+  }
   html[dir="rtl"] & {
     background-position: 65px center;
-  }  
+  }
   background-repeat: no-repeat;
   background-size: 20px 18px;
   font-size: 18px;
@@ -400,6 +400,19 @@ $very-light-grey: #ededed;
   text-align: center;
   padding-top: 20px;
   width: 400px;
+}
+
+#imageCroppedWarning {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  bottom: 0;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: 12px;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  z-index: 2;
 }
 
 .myshots-all-buttons-container {
