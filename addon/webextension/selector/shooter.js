@@ -109,7 +109,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     }
     let dataUrl = url || screenshotPage(selectedPos, captureType);
     let type = blobConverters.getTypeFromDataUrl(dataUrl);
-    type = type ? type.split("/")[1] : null;
+    type = type ? type.split("/", 2)[1] : null;
     if (dataUrl) {
       imageBlob = blobConverters.dataUrlToBlob(dataUrl);
       shotObject.delAllClips();
@@ -179,7 +179,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     }
     catcher.watchPromise(promise.then((dataUrl) => {
       let type = blobConverters.getTypeFromDataUrl(dataUrl);
-      type = type ? type.split("/")[1] : null;
+      type = type ? type.split("/", 2)[1] : null;
       shotObject.delAllClips();
       shotObject.addClip({
         createdDate: Date.now(),
