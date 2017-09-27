@@ -35,7 +35,6 @@ const { Services } = Components.utils.import("resource://gre/modules/Services.js
 const callback = arguments[arguments.length - 1];
 const { prefs } = Services;
 
-prefs.setBoolPref("extensions.screenshots.system-disabled", true);
 prefs.setBoolPref("extensions.legacy.enabled", true);
 
 class AddonListener {
@@ -67,7 +66,6 @@ AddonManager.installTemporaryAddon(new FileUtils.File(arguments[0]))
     return driver.executeAsyncScript(`
 const { Services } = Components.utils.import("resource://gre/modules/Services.jsm");
 const { prefs } = Services;
-prefs.setBoolPref("extensions.screenshots.system-disabled", false);
 const callback = arguments[arguments.length - 1];
 callback();
 `);
