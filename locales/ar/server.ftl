@@ -18,6 +18,7 @@ gScreenshotsDescription = لقطات الشاشة صارت أسهل. خذ لقط
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = موزيلا
+footerLinkTerms = الشروط
 footerLinkPrivacy = تنويه الخصوصية
 footerLinkDiscourse = أخبرنا بانطباعك
 footerLinkRemoveAllData = أزِل كل البيانات
