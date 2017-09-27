@@ -45,6 +45,8 @@ homePageGetStarted = ابدأ
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = كيف تعمل لقطات فَيرفُكس
 homePageGetStartedTitle = ابدأ
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = ابحث عن أيقونة اللقطات في شريط الأدوات. انقرها وستظهر قائمة اللقطات على نافذة المتصفّح.
 homePageCapturePage = التقط صفحة
 homePageSaveShare = احفظ وشارِك
 homePagePrivacyLink = الخصوصية
@@ -75,19 +77,24 @@ notFoundPageDescription = لم يُعثر على الصفحة.
 
 // This is the HTML title tag of the page
 shotPageTitle = اللقطة: { $originalTitle }
+shotPageAlertErrorDeletingShot = خطأ في حذف اللقطة
+shotPageAlertErrorUpdatingTitle = خطأ في حفظ العنوان
 shotPageConfirmDelete = أمتأكد من حذف هذه اللقطة إلى الأبد؟
 shotPageShareButton
     .title = شارِك
 shotPageCopy = انسخ
+shotPageCopied = نُسخت
 shotPageShareFacebook
     .title = شارِك على فيسبوك
 shotPageShareTwitter
     .title = شارِك على تويتر
 shotPageShareEmail
     .title = شارك الرابط عبر البريد الإلكتروني
+shotPagePrivacyMessage = أي شخص لديه الرابط يمكنه رؤية اللقطة.
 shotPageCopyImageText
     .label = انسخ نص الصورة
 shotPageConfirmDeletion = أمتأكد من حذف هذه اللقطة إلى الأبد؟
+shotPageExpiredMessage = انتهت صلاحية هذه اللقطة.
 shotPageDeleteButton
     .title = احذف هذه اللقطة
 shotPageDownloadShot
