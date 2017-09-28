@@ -51,7 +51,7 @@ homePageGetStartedTitle = Başlayın
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Araç çubuğunuzdaki yeni Screenshots simgesini bulun. Ona tıkladığınızda tarayıcı pencerenizin üzerinde Screenshots menüsü açılacak.
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescriptionPageAction = Adres çubuğundaki sayfa eylemleri menüsünden Ekran Görüntüsü simgesini seçerek Ekran Görüntüsü menüsünün tarayıcı penceresinin en üstünden görünmesini sağlayın.
+homePageGetStartedDescriptionPageAction = Adres çubuğundaki sayfa eylemleri menüsünden “Ekran görüntüsü al”a tıklayın. Tarayıcı pencerenizin üzerinde Screenshots menüsü belirecek.
 homePageCaptureRegion = Bir bölgeyi yakalama
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Tıklayıp sürükleyerek yakalamak istediğiniz bölgeyi seçin. İstediğiniz bölgenin üstüne fareyle gidip bir kez tıklarsanız Screenshots bölgeyi sizin için seçer. Seçimden memnunsanız “Kaydet” düğmesine tıklayarak ekrna görüntüsünü internete yükleyebilir veya ok düğmesine tıklayarak bilgisayarınıza indirebilirsiniz.
