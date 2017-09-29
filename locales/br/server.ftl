@@ -154,12 +154,75 @@ shotPageExpiresIn = diamzer a-benn { $timediff }
 shotPageExpired = diamzeret abaoe { $timediff }
 timeDiffJustNow = diouzhtu
 timeDiffMinutesAgo = 
+timeDiffHoursAgo = { $num ->
+        [one] 1 vunutenn 'zo
+       *[other] { $number } a vunutennoù 'zo
+    }
+timeDiffDaysAgo = { $num ->
+        [one] dec'h
+       *[other] { $number } a zevezhioù 'zo
+    }
+timeDiffFutureSeconds = a-benn un nebeud eilennoù
+timeDiffFutureMinutes = { $num ->
+        [one] a-benn 1 vunutenn
+       *[other] a-benn { $number } a vunutennoù
+    }
+timeDiffFutureHours = { $num ->
+        [one] a-benn 1 eur
+       *[other] a-benn { $number } a eurioù
+    }
+timeDiffFutureDays = { $num ->
+        [one] warc'hoazh
+       *[other] a-benn { $number } a zevezhioù
+    }
 
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Fazi en ur zilemel an dapadenn: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Ma zapadennoù: klask war-lec'h { $searchTerm }
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Fazi en ur skrammañ ar bajenn: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Klask ma zapadennoù
+shotIndexPageSearchButton
+    .title = Klask
+shotIndexPageNoShotsMessage = Tapadenn ebet enrollet
+shotIndexPageNoShotsInvitation = Kit 'ta da skeudenniñ un dra bennak
+shotIndexPageLookingForShots = O klask ho tapadennoù...
+shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = N'haller ket kavout tapadennoù a glot gant hoc'h enklask.
+shotIndexPageClearSearchButton
+    .title = Skarzhañ ar c'hlask
+shotIndexPageConfirmShotDelete = Dilemel an dapadenn-mañ?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Stadegoù Firefox Screenshots
+metricsPageTotalsQueryTitle = Sammadoù
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Ur sell hollek eus Screenshots
+metricsPageTotalsQueryDevices = Sammad an trevnadoù enrollet
+metricsPageTotalsQueryActiveShots = Tapadennoù gweredekaet
+metricsPageTotalsQueryExpiredShots = Diamzeret (a c'hall bezañ assavet)
+metricsPageTotalsQueryExpiredDeletedShots = Diamzeret (ha dilamet)
+metricsPageShotsQueryTitle = Tapadenn dre zevezh
+metricsPageShotsQueryDescription = Niver a dapadenn krouet bemdez (e-pad an 30 devezh diwezhañ)
+metricsPageShotsQueryCount = Niver a dapadenn
+metricsPageShotsQueryDay = Devezh
+metricsPageUsersQueryTitle = Arveriad dre zevezh
+metricsPageUsersQueryDescription = Niver a arveriad krouet ur dapadenn ganto d'an nebeutañ, dre zevezh (an 30 devezh diwezhañ)
+metricsPageUsersQueryCount = Niver a arveriaded
+metricsPageUsersQueryDay = Devezh
+metricsPageUserShotsQueryTitle = Niver a dapadenn dre arveriad
+metricsPageUserShotsQueryDescription = An niver a arveriaded gant N tapadenn ganto en holl
+metricsPageUserShotsQueryCount = Niver a arveriaded
+metricsPageUserShotsQueryShots = Niver brasjedet a dapadennoù gweredekaet
+metricsPageRetentionQueryTitle = Miradurioù dre sizhun
