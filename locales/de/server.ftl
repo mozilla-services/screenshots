@@ -56,10 +56,10 @@ homePageCaptureRegion = Einen Bereich aufnehmen
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Lege Deine Auswahl fest, indem Du die Maus über den aufzunehmenden Bereich ziehst. Oder nur mit der Maus drübergehen und Screenshots wählt den Bereich für Dich aus. Damit zufrieden? Dann bitte klicken und auf „Speichern“ gehen, um Dein Bildschirmfoto online zu speichern. Oder direkt auf den Downloadpfeil, um den Screenshot auf Deinem Rechner herunterzuladen.
 homePageCapturePage = Eine ganze Seite aufnehmen
-homePageCapturePageDescription = Verwenden Sie die Schaltflächen rechts oben zur Aufnahme ganzer Seiten. Die Schaltfläche „Sichtbaren Bereich aufnehmen“ erfasst den Bereich, der ohne Bildlauf sichtbar ist und „Ganze Seite aufnehmen“ speichert die gesamte Seite.
+homePageCapturePageDescription = Für die Aufnahme ganzer Seiten bitte oben auf die Schaltfläche "Gesamte Seite speichern" klicken. Während die Schaltfläche „Sichtbaren Bereich aufnehmen“ den Bereich erfasst, der ohne Scrollen sichtbar ist.
 homePageSaveShare = Speichern und Weitergeben
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Wenn Sie ein Bildschirmfoto machen, speichert Firefox Ihren Screenshot in Ihrer Online-Bibliothek für Bildschirmfotos und kopiert den Link in Ihre Zwischenablage. Wir speichern Ihr Bildschirmfoto automatisch zwei Wochen lang, Sie können es aber jederzeit löschen oder das Ablaufdatum ändern, um es länger in der Bibliothek zu behalten.
+homePageSaveShareDescription = Wenn Du ein Bildschirmfoto machst, speichert Firefox den Screenshot in Deiner Online-Bibliothek für Bildschirmfotos und kopiert Dir den Link in die Zwischenablage. Deine Bildschirmfotos werden automatisch zwei Wochen in der Bibliothek gespeichert.  Dort kannst Du sie jederzeit löschen oder das Ablaufdatum ändern, um sie länger in der Bibliothek zu behalten.
 homePageLegalLink = Rechtliches
 homePagePrivacyLink = Datenschutz
 homePageTermsLink = Nutzungsbedingungen
@@ -70,13 +70,13 @@ homePageCookiesLink = Cookies
 
 leavePageRemoveAllData = Alle Daten entfernen
 // Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = Firefox Screenshots muss installiert sein, um Ihr Konto zu löschen
+leavePageErrorAddonRequired = Firefox Screenshots muss installiert sein, um Dein Konto zu löschen
 leavePageErrorGeneric = Ein Fehler ist aufgetreten
 // Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageWarning = Dies löscht dauerhaft all Ihre Daten von Firefox Screenshots.
+leavePageWarning = Dies löscht dauerhaft all Deine Daten von Firefox Screenshots.
 leavePageButtonProceed = Fortfahren
 leavePageButtonCancel = Abbrechen
-leavePageDeleted = All Ihre Bildschirmfotos wurden gelöscht!
+leavePageDeleted = Alle Bildschirmfotos wurden gelöscht!
 
 
 [[ Not Found page ]]
@@ -112,7 +112,7 @@ shotPageCopyImageText
     .label = Grafiktext kopieren
 shotPageConfirmDeletion = Soll dieses Bildschirmfoto wirklich dauerhaft gelöscht werden?
 // Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Wenn Sie nichts tun, wird dieses Bildschirmfoto automatisch { $timediff } gelöscht.
+shotPageExpirationMessage = Wenn Du nichts tust, wird dieses Bildschirmfoto automatisch { $timediff } gelöscht.
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = Wiederherstellen bis { $date }
@@ -126,11 +126,11 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Herunterladen
 shotPageDownload = Herunterladen
-shotPageScreenshotsDescription = Bildschirmfotos ganz einfach. Machen, speichern und teilen Sie Bildschirmfotos, ohne Firefox zu verlassen.
-shotPageUpsellFirefox = Holen Sie sich gleich Firefox
+shotPageScreenshotsDescription = Bildschirmfotos einfach machen, speichern und teilen – ohne Firefox zu verlassen.
+shotPageUpsellFirefox = Hole Dir jetzt Firefox
 shotPageDMCAMessage = Dieses Bildschirmfoto ist aufgrund von Urheberrechtsansprüchen von Dritten nicht mehr verfügbar.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
-shotPageDMCAContact = Weitere Informationen erhalten Sie per E-Mail an { $dmca }.
+shotPageDMCAContact = Weitere Informationen erhälst Du per E-Mail an { $dmca }.
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Wenn Ihre Bildschirmfotos mehrere Ansprüche auslösen, ziehen wir Ihren Zugang zu Firefox Screenshots unter Umständen zurück.
 // Note: { $url } is a placeholder for a shot page URL
@@ -198,7 +198,7 @@ shotIndexPageNoShotsMessage = Keine gespeicherten Bildschirmfotos.
 shotIndexPageNoShotsInvitation = Los, erstellen Sie welche.
 shotIndexPageLookingForShots = Suchen nach Ihren Bildschirmfotos…
 shotIndexPageNoSearchResultsIntro = Hmm
-shotIndexPageNoSearchResults = Wir finden keine zu Ihrer Suche passenden Bildschirmfotos.
+shotIndexPageNoSearchResults = Wir finden keine zu Deiner Suche passenden Bildschirmfotos.
 shotIndexPageClearSearchButton
     .title = Suche löschen
 shotIndexPageConfirmShotDelete = Dieses Bildschirmfoto löschen?
