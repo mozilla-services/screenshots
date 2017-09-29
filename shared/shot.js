@@ -365,7 +365,8 @@ class AbstractShot {
   get filename() {
     let filenameTitle = this.title;
     let date = new Date(this.createdDate);
-    filenameTitle = filenameTitle.replace(/[:\\<>/!@&?"*.|\n\r\t]/g, " ");
+    // eslint-disable-next-line no-control-regex
+    filenameTitle = filenameTitle.replace(/[:\\<>/!@&?"*.|\x00-\x1F]/g, " ");
     filenameTitle = filenameTitle.replace(/\s{1,4000}/g, " ");
     let clipFilename = `Screenshot-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${filenameTitle}`;
     const clipFilenameBytesSize = clipFilename.length * 2; // JS STrings are UTF-16
