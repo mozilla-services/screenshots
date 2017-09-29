@@ -11,7 +11,7 @@ gMyShots = Meine Bildschirmfotos
 gHomeLink = Startseite
 gNoShots
     .alt = Keine Bildschirmfotos gefunden
-gScreenshotsDescription = Bildschirmfotos ganz einfach. Machen, speichern und teilen Sie Bildschirmfotos, ohne Firefox zu verlassen.
+gScreenshotsDescription = Bildschirmfotos einfach machen, speichern und teilen – ohne Firefox zu verlassen.
 
 
 [[ Footer ]]
@@ -47,11 +47,11 @@ homePageDownloadFirefoxSubTitle = Kostenloser Download
 homePageGetStarted = Erste Schritte
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Wie Firefox Screenshots funktioniert
-homePageGetStartedTitle = Erste Schritte
+homePageGetStartedTitle = Menü aufrufen
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Das neue Screenshots finden Sie in Ihrer Symbolleiste. Wählen Sie es aus und das Screenshots-Menü erscheint oben in Ihrem Browser-Fenster.
+homePageGetStartedDescription = Das neue Screenshots-Symbol findest Du in der Symbolleiste. Wenn Du diese öffnest, erscheint das Screenshots-Menü oben in Deinem Browser-Fenster.
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescriptionPageAction = Wählen Sie das Screenshots-Symbol aus dem Menü „Aktionen für Seite“ in der Adressleiste, dann erscheint oben in Ihrem Browser-Fenster das Screenshots-Menü.
+homePageGetStartedDescriptionPageAction = Wähle das Screenshots-Symbol aus dem Menü „Aktionen für Seite“ in der Adressleiste aus. Dann erscheint oben in Deinem Browser-Fenster das Screenshots-Menü.
 homePageCaptureRegion = Einen Bereich aufnehmen
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klicken und ziehen Sie zur Auswahl des aufzunehmenden Bereichs. Oder bewegen Sie nur die Maus darüber und klicken Sie – Screenshots wählt den Bereich für Sie aus. Gefällt es Ihnen? Wählen Sie „Speichern“, um Ihr Bildschirmfoto online zu speichern oder die Schaltfläche mit dem Downloadpfeil, um es auf Ihren Computer herunterzuladen.
