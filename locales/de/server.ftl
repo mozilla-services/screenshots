@@ -132,9 +132,9 @@ shotPageDMCAMessage = Dieses Bildschirmfoto ist aufgrund von Urheberrechtsanspr�
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Weitere Informationen erhälst Du per E-Mail an { $dmca }.
 // Note: do not translate 'Firefox Screenshots' when translating this string
-shotPageDMCAWarning = Wenn Ihre Bildschirmfotos mehrere Ansprüche auslösen, ziehen wir Ihren Zugang zu Firefox Screenshots unter Umständen zurück.
+shotPageDMCAWarning = Werden bei Deinen Bildschirmfotos Ansprüche geltend gemacht, wird Dir der Zugang zu Firefox Screenshots möglicherweise entzogen.
 // Note: { $url } is a placeholder for a shot page URL
-shotPageDMCAIncludeLink = Bitte geben Sie in Ihrer E-Mail die URL dieses Bildschirmfotos an: { $url }
+shotPageDMCAIncludeLink = Bitte gib in Deiner E-Mail die URL dieses Bildschirmfotos an: { $url }
 shotPageKeepFor = Wie lange soll dieses Bildschirmfoto aufbewahrt werden?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Zeit auswählen
