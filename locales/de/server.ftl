@@ -54,8 +54,8 @@ homePageGetStartedDescription = Das neue Screenshots-Symbol findest Du in der Sy
 homePageGetStartedDescriptionPageAction = Wähle das Screenshots-Symbol aus dem Menü „Aktionen für Seite“ in der Adressleiste aus. Dann erscheint oben in Deinem Browser-Fenster das Screenshots-Menü.
 homePageCaptureRegion = Einen Bereich aufnehmen
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Klicken und ziehen Sie zur Auswahl des aufzunehmenden Bereichs. Oder bewegen Sie nur die Maus darüber und klicken Sie – Screenshots wählt den Bereich für Sie aus. Gefällt es Ihnen? Wählen Sie „Speichern“, um Ihr Bildschirmfoto online zu speichern oder die Schaltfläche mit dem Downloadpfeil, um es auf Ihren Computer herunterzuladen.
-homePageCapturePage = Eine Seite aufnehmen
+homePageCaptureRegionDescription = Lege Deine Auswahl fest, indem Du die Maus über den aufzunehmenden Bereich ziehst. Oder nur mit der Maus drübergehen und Screenshots wählt den Bereich für Dich aus. Damit zufrieden? Dann bitte klicken und auf „Speichern“ gehen, um Dein Bildschirmfoto online zu speichern. Oder direkt auf den Downloadpfeil, um den Screenshot auf Deinem Rechner herunterzuladen.
+homePageCapturePage = Eine ganze Seite aufnehmen
 homePageCapturePageDescription = Verwenden Sie die Schaltflächen rechts oben zur Aufnahme ganzer Seiten. Die Schaltfläche „Sichtbaren Bereich aufnehmen“ erfasst den Bereich, der ohne Bildlauf sichtbar ist und „Ganze Seite aufnehmen“ speichert die gesamte Seite.
 homePageSaveShare = Speichern und Weitergeben
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
