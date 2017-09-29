@@ -336,7 +336,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
                 <style>${substitutedCss}</style>
                 <title></title>
               </head>
-              <body id="preview-frame">
+              <body>
                 <div class="preview-overlay">
                   <div class="preview-image">
                     <div class="preview-buttons">
