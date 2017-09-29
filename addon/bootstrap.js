@@ -6,6 +6,7 @@ const TELEMETRY_ENABLED_PREF = "datareporting.healthreport.uploadEnabled";
 const PREF_BRANCH = "extensions.screenshots.";
 const USER_DISABLE_PREF = "extensions.screenshots.disabled";
 const SYSTEM_DISABLE_PREF = "extensions.screenshots.system-disabled";
+const USER_SERVER_PREF = "extensions.screenshots.server";
 
 const { interfaces: Ci, utils: Cu } = Components;
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
@@ -224,6 +225,9 @@ function handleMessage(msg, sender, sendReply) {
       sendReply({type: "success", value: !!addon});
     });
     return true;
+  } else if (msg.funcName === "getBackendPref") {
+    let userBackend = prefs.prefHasUserValue(USER_SERVER_PREF) && prefs.getCharPref(USER_SERVER_PREF);
+    sendReply({type: "success", value: userBackend || null });
   }
 }
 
