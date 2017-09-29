@@ -1,3 +1,28 @@
+## Version 22.0.0
+
+This is primarily a server release. Some changes in the add-on have been ported to the 19.x.0 line.
+
+### Server changes
+
+* Update packages for nsp/regex checks [e761c7a](https://github.com/mozilla-services/screenshots/commit/e761c7a)
+* Update express dependency ([#3553](https://github.com/mozilla-services/screenshots/issues/3553)) [719bf05](https://github.com/mozilla-services/screenshots/commit/719bf05)
+* Add new clip type: fullPageTruncated. For [#2129](https://github.com/mozilla-services/screenshots/issues/2129) [aa97577](https://github.com/mozilla-services/screenshots/commit/aa97577)
+* Bug fix for [#3513](https://github.com/mozilla-services/screenshots/issues/3513), create proper extension for downloads ([#3543](https://github.com/mozilla-services/screenshots/issues/3543)). The clip object is used to inform the download filename, so we need to add a clip before generating the filename [966bc6c](https://github.com/mozilla-services/screenshots/commit/966bc6c)
+
+### Add-on changes
+
+Note: this is a server-only release, but many of these changes have been put into the 19.x.0 series.
+
+* Remove code that checks for system-disabled pref ([#3554](https://github.com/mozilla-services/screenshots/issues/3554))
+  Leave the branch/leaf checking code in place, both to minimize the size
+  of the patch, and to make it easy to observe a self-hosting pref I'd
+  like to add soon. Fixes [#3549](https://github.com/mozilla-services/screenshots/issues/3549) [1a6a619](https://github.com/mozilla-services/screenshots/commit/1a6a619)
+* Notify user when full page is cut offAdds a new captureType, fullPageTruncated. Fixes [#2129](https://github.com/mozilla-services/screenshots/issues/2129) [aa97577](https://github.com/mozilla-services/screenshots/commit/aa97577)
+* Put limits on uses of string.splitThis only covers cases in the JPEG commits, to keep the resulting diff minimal [e9763fc](https://github.com/mozilla-services/screenshots/commit/e9763fc)
+* Bug fix for [#3513](https://github.com/mozilla-services/screenshots/issues/3513), create proper extension for downloads ([#3543](https://github.com/mozilla-services/screenshots/issues/3543)). The clip object is used to inform the download filename, so we need to add a clip before generating the filename [966bc6c](https://github.com/mozilla-services/screenshots/commit/966bc6c)
+* Stop Screenshots in Private Browsing ([#3544](https://github.com/mozilla-services/screenshots/issues/3544))bootstrap.js sends the tab ID with the Photon page action, but it doesn't have the complete set of information that the WebExtension tab object has. Fixes [#3491](https://github.com/mozilla-services/screenshots/issues/3491) [5b13917](https://github.com/mozilla-services/screenshots/commit/5b13917)
+* Make selector view usable on high contrast themes. Fixes [#3174](https://github.com/mozilla-services/screenshots/issues/3174) [c46d7dd](https://github.com/mozilla-services/screenshots/commit/c46d7dd)
+
 ## Version 21.0.0
 
 This is a server-only release.
