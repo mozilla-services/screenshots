@@ -128,6 +128,32 @@ shotPageDownloadShot
 shotPageDownload = Pellgargañ
 shotPageScreenshotsDescription = Tapadennoù-skramm en un doare aes. Skeudennit, enrollit ha rannit tapadennoù-skramm hep kuitaat Firefox.
 shotPageUpsellFirefox = Kaout Firefox bremañ
+shotPageDMCAMessage = An dapadenn-mañ n'eo ket hegerz ket abalamour m'eo bet danevellet gant un trede evit abegoù perc'henniezh kefredel.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Skrivit ur postel da: { $dmca } evit goulenn titouroù ouzhpenn.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Ma zo meur a glemm war ho tapadennoù e c'hallomp dizorniañ ho kwir da haeziñ Firefox Screenshots.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Enkorfit URL an tapadenn-mañ en ho postel: { $url }
+shotPageKeepFor = E-pad pegen amzer eo ret derc'hel an tapadenn enlinenn?
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Diuzañ an amzer
+shotPageKeepIndefinitely = Peurbadus
+shotPageKeepTenMinutes = 10 munut
+shotPageKeepOneHour = 1 eur
+shotPageKeepOneDay = 1 devezh
+shotPageKeepOneWeek = 1 sizhun
+shotPageKeepTwoWeeks = 2 sizhun
+shotPageKeepOneMonth = 1 miz
+shotPageSaveExpiration = enrollañ
+shotPageCancelExpiration = nullañ
+shotPageDoesNotExpire = na ziamzer ket
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = diamzer a-benn { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = diamzeret abaoe { $timediff }
+timeDiffJustNow = diouzhtu
+timeDiffMinutesAgo = 
 
 
 [[ Shotindex page ]]
