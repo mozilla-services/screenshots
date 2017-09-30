@@ -20,6 +20,7 @@ gScreenshotsDescription = لقطات الشاشة صارت أسهل. خذ لقط
 footerLinkMozilla = موزيلا
 footerLinkTerms = الشروط
 footerLinkPrivacy = تنويه الخصوصية
+footerLinkFaqs = الأسئلة الشائعة
 footerLinkDiscourse = أخبرنا بانطباعك
 footerLinkRemoveAllData = أزِل كل البيانات
 
@@ -49,6 +50,9 @@ homePageGetStartedTitle = ابدأ
 homePageGetStartedDescription = ابحث عن أيقونة اللقطات في شريط الأدوات. انقرها وستظهر قائمة اللقطات على نافذة المتصفّح.
 homePageCapturePage = التقط صفحة
 homePageSaveShare = احفظ وشارِك
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = يضع فَيرفُكس لقطاتك التي تأخذها في مكتبة اللقطات على الشبكة وينسخ الرابط إلى الحافظة. نخزّن لقطاتك تلقائيا لمدة أسبوعين، ولكنك تستطيع حذفها في أي وقت أو تغيير وقت انتهائها لتبقيها في المكتبة لديك لفترة أطول.
+homePageLegalLink = قانونيّات
 homePagePrivacyLink = الخصوصية
 homePageTermsLink = الشروط
 homePageCookiesLink = الكعكات
@@ -56,6 +60,7 @@ homePageCookiesLink = الكعكات
 
 [[ Leave Screenshots page ]]
 
+leavePageRemoveAllData = أزِل كل البيانات
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = يجب أن تكون «لقطات فَيَرفُكس» مثبّتة لتحذف حسابك
 leavePageErrorGeneric = حدث خطأ ما
