@@ -44,6 +44,7 @@ homePageCookiesLink = Angija
 
 [[ Leave Screenshots page ]]
 
+leavePageRemoveAllData = Kwany Data weng
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Myero ibed ki Firefox Screenshots ma kiketo me kwanyo akaunt mamegi
 leavePageErrorGeneric = Bal otime
