@@ -55,6 +55,7 @@ const multer = require("multer");
 const storage = multer.memoryStorage();
 const upload = multer({storage});
 const { isValidClipImageUrl } = require("../shared/shot");
+const urlParse = require("url").parse;
 
 const COOKIE_EXPIRE_TIME = 30 * 24 * 60 * 60 * 1000; // 30 days
 
@@ -499,7 +500,7 @@ function sendAuthInfo(req, res, params) {
   if (deviceId.search(/^[a-zA-Z0-9_-]{1,255}$/) == -1) {
     let exc = new Error("Bad deviceId in login");
     exc.deviceId = deviceId;
-    captureRavenException(exc);
+    captureRavenException(exc, req);
     throw new Error("Bad deviceId");
   }
   let encodedAbTests = b64EncodeJson(userAbTests);
@@ -824,10 +825,19 @@ app.get("/images/:imageid", function(req, res) {
         }
         const view = embedded ? "direct-view-embedded" : "direct-view";
         const el = view + (obj.ownerId === req.deviceId ? "-owner" : "-non-owner");
+        let documentReferrer = null;
+        if (req.headers.referer) {
+          try {
+            let parsed = urlParse(req.headers.referer);
+            documentReferrer = `${parsed.protocol}//${parsed.host}`;
+          } catch (e) {
+            // We ignore any errors parsing this header
+          }
+        }
         analytics.pageview({
           dp: analyticsUrl,
           dh: req.backend,
-          documentReferrer: req.headers.referer,
+          documentReferrer,
           ua: req.headers["user-agent"]
         }).event({
           ec: "web",
