@@ -35,6 +35,7 @@ creatingPageTitleDefault = පිටුව
 homePageTeaser = පැමිණීමට නියමිත...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = නොමිලේ ලබා ගන්න
+homePageGetStarted = අරඹන්න
 homePageGetStartedTitle = අරඹන්න
 homePageLegalLink = නීතිමය
 homePagePrivacyLink = පුද්ගලිකත්වය
@@ -60,6 +61,8 @@ notFoundPageDescription = පිටුව හමු නොවිණි.
 shotPageCopy = පිටපත් කරන්න
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = වේලාව තෝරන්න
+shotPageSaveExpiration = සුරකින්න
+shotPageCancelExpiration = අවලංගු කරන්න
 
 
 [[ Shotindex page ]]
