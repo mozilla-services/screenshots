@@ -29,5 +29,5 @@ exports.errorResponse = function(res, message, err) {
     res.send("Server error");
   }
   mozlog.error("generic-error-response", {msg: message, error: err});
-  captureRavenException(err);
+  captureRavenException(err, res.req);
 };

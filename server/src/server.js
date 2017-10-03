@@ -500,7 +500,7 @@ function sendAuthInfo(req, res, params) {
   if (deviceId.search(/^[a-zA-Z0-9_-]{1,255}$/) == -1) {
     let exc = new Error("Bad deviceId in login");
     exc.deviceId = deviceId;
-    captureRavenException(exc);
+    captureRavenException(exc, req);
     throw new Error("Bad deviceId");
   }
   let encodedAbTests = b64EncodeJson(userAbTests);
