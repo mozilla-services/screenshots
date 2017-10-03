@@ -91,7 +91,7 @@
     "postlint": "nsp check -o summary",
     "nsp": "nsp check",
     "posttest": "npm run lint",
-    "test": "make bootstrap_zip && mocha test/",
+    "test": "make bootstrap_zip && mocha test/ test/server/unit/*",
     "test:selenium": "make bootstrap_zip && mocha test/test.js",
     "test:server": "make .venv && cd test/server && ../../.venv/bin/pytest",
     "make_versions_exact": "node bin/build-scripts/make_versions_exact.js",
