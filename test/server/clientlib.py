@@ -32,6 +32,7 @@ class ScreenshotsClient(object):
                 urljoin(self.backend, "/api/register"),
                 data=dict(deviceId=self.deviceId, secret=self.secret, deviceInfo=json.dumps(self.deviceInfo)))
         resp.raise_for_status()
+        return resp
 
     def delete_account(self):
         page = self.session.get(self.backend + "/leave-screenshots/").text
