@@ -135,6 +135,38 @@ shotPageExpiresIn = تنتهي { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = انتهت { $timediff }
 timeDiffJustNow = للتو
+timeDiffMinutesAgo = { $num ->
+        [zero] منذ أقل من دقيقة
+        [one] منذ دقيقة
+        [two] منذ دقيقتين
+        [few] منذ { $number } دقائق
+        [many] منذ { $number } دقيقة
+       *[other] منذ { $number } دقيقة
+    }
+timeDiffDaysAgo = { $num ->
+        [one] بالأمس
+        [two] قبل أمس
+        [few] منذ { $number } أيام
+        [many] منذ { $number } يومًا
+       *[other] منذ { $number } يوم
+    }
+timeDiffFutureSeconds = بعد بضع ثوان
+timeDiffFutureMinutes = { $num ->
+        [zero] بعد بضع ثوان
+        [one] بعد دقيقة
+        [two] بعد دقيقتين
+        [few] بعد { $number } دقائق
+        [many] بعد { $number } دقيقة
+       *[other] بعد { $number } دقيقة
+    }
+timeDiffFutureHours = { $num ->
+        [zero] خلال أقل من ساعة
+        [one] خلال ساعة
+        [two] خلال ساعتين
+        [few] خلال { $number } ساعات
+        [many] خلال { $number } ساعة
+       *[other] خلال { $number } ساعة
+    }
 
 
 [[ Shotindex page ]]
