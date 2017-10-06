@@ -58,18 +58,116 @@ homePageCaptureRegionDescription = Kliknite i vucite kako biste odabrali područ
 homePageCapturePage = Snimi stranicu
 homePageCapturePageDescription = Koristite dugme gore desno kako biste snimili cijelu stranicu. Dugme Sačuvaj vidljivo će snimiti područje koje možete vidjeti bez pomicanja stranice, a Sačuvaj cijelu stranicu će snimiti sve na stranici.
 homePageSaveShare = Sačuvaj i dijeli
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Kada napravite snimku, Firefox je šalje u vašu biblioteku snimki i kopira link u vaš međuspremnik. Automatski čuvamo vašu snimku dvije sedmice, ali je možete izbrisati bilo kada ili izmijeniti vrijeme čuvanja kako biste čuvali snimke duže u svojoj biblioteci.
+homePageLegalLink = Pravne informacije
+homePagePrivacyLink = Privatnost
+homePageTermsLink = Uslovi
+homePageCookiesLink = Kolačići
 
 
 [[ Leave Screenshots page ]]
 
+leavePageRemoveAllData = Uklonite sve podatke
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Morate imati Firefox Screenshot instaliran kako biste izbrisali svoj račun
+leavePageErrorGeneric = Došlo je do greške
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Trajno ćete izbrisati sve Firefox Screenshot podatke.
+leavePageButtonProceed = Nastavi
+leavePageButtonCancel = Otkaži
+leavePageDeleted = Sve vaše slike su izbrisane!
 
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Stranica nije pronađena
+notFoundPageIntro = Ups.
+notFoundPageDescription = Stranica nije pronađena.
 
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Snimka: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = Greška pri spremanju vremena isticanja
+shotPageAlertErrorDeletingShot = Greška pri brisanju slike
+shotPageAlertErrorUpdatingTitle = Greška pri spremanju naslova
+shotPageConfirmDelete = Jeste li sigurni da želite trajno izbrisati ovu sliku?
+shotPageShareButton
+    .title = Dijeli
+shotPageCopy = Kopiraj
+shotPageCopied = Kopirano
+shotPageShareFacebook
+    .title = Podijeli na Facebooku
+shotPageShareTwitter
+    .title = Podijeli na Twitteru
+shotPageSharePinterest
+    .title = Podijeli na Pintrestu
+shotPageShareEmail
+    .title = Podijeli link putem e-pošte
+shotPageShareLink = Dohvati link za dijeljenje za ovu sliku:
+shotPagePrivacyMessage = Svi koji posjete ovaj link će moći vidjeti sliku.
+shotPageCopyImageText
+    .label = Kopiraj tekst slike
+shotPageConfirmDeletion = Jeste li sigurni da želite trajno izbrisati ovu sliku?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Ukoliko ništa ne učinite ova slika će biti trajno izbrisana { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = vrati do { $date }
+shotPageExpiredMessage = Ovaj snimak je istekao.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Ovdje je stranica na kojoj je originalno uslikan:
+shotPageDeleteButton
+    .title = Izbriši ovaj snimak
+shotPageAbuseButton
+    .title = Prijavi ovaj snimak za zloupotrebu, spam i druge probleme
+shotPageDownloadShot
+    .title = Preuzimanje
+shotPageDownload = Preuzimanje
+shotPageScreenshotsDescription = Snimite zaslon jednostavno. Snimite, sačuvajte i dijelite snimke zaslona bez da napustite Firefox.
+shotPageUpsellFirefox = Preuzmite Firefox sada
+shotPageDMCAMessage = Ovaj snimak više nije dostupan zbog zahtjeva za intelektualnim vlasništvom treće strane.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Pošaljite e-poštu na { $dmca } kako biste zatražili više informacija.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Ukoliko se pojavi više zahtjeva za kršenje intelektualnog vlasništva za vaše snimke, možemo vam ukinuti pristup usluzi Firefox Screenshots.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Uključite URL na ovaj snimak u vašoj poruci e-pošte: { $url }
+shotPageKeepFor = Koliko dugo želite čuvati ovaj snimak?
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Odaberite vrijeme
+shotPageKeepIndefinitely = Neograničeno
+shotPageKeepTenMinutes = 10 minuta
+shotPageKeepOneHour = 1 sat
+shotPageKeepOneDay = 1 dan
+shotPageKeepOneWeek = 1 sedmicu
+shotPageKeepTwoWeeks = 2 sedmice
+shotPageKeepOneMonth = 1 mjesec
+shotPageSaveExpiration = sačuvaj
+shotPageCancelExpiration = otkaži
+shotPageDoesNotExpire = ne ističe
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = ističe { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = isteklo { $timediff }
+timeDiffJustNow = upravo sada
+timeDiffMinutesAgo = { $num ->
+        [one] prije { $number } minutu
+        [few] prije { $number } minute
+       *[other] prije { $number } minuta
+    }
+timeDiffHoursAgo = { $num ->
+        [one] prije { $number } sat
+        [few] prije { $number } sata
+       *[other] prije { $number } sati
+    }
+timeDiffDaysAgo = { $num ->
+        [one] prije { $number } dan
+       *[few] prije { $number } dana
+    }
+timeDiffFutureSeconds = za nekolio sekundi
 
 
 [[ Shotindex page ]]
