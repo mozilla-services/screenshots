@@ -160,12 +160,19 @@ timeDiffFutureMinutes = { $num ->
        *[other] بعد { $number } دقيقة
     }
 timeDiffFutureHours = { $num ->
-        [zero] خلال أقل من ساعة
-        [one] خلال ساعة
-        [two] خلال ساعتين
-        [few] خلال { $number } ساعات
-        [many] خلال { $number } ساعة
-       *[other] خلال { $number } ساعة
+        [zero] بعد أقل من ساعة
+        [one] بعد ساعة
+        [two] بعد ساعتين
+        [few] بعد { $number } ساعات
+        [many] بعد { $number } ساعة
+       *[other] بعد { $number } ساعة
+    }
+timeDiffFutureDays = { $num ->
+        [one] غدا
+        [two] بعد غد
+        [few] بعد { $number } أيام
+        [many] بعد { $number } يومًا
+       *[other] بعد { $number } يوم
     }
 
 
