@@ -21,6 +21,7 @@ footerLinkMozilla = موزيلا
 footerLinkTerms = الشروط
 footerLinkPrivacy = تنويه الخصوصية
 footerLinkFaqs = الأسئلة الشائعة
+footerLinkDMCA = أبلغ عن انتهاك للملكية الفكرية
 footerLinkDiscourse = أخبرنا بانطباعك
 footerLinkRemoveAllData = أزِل كل البيانات
 
@@ -32,6 +33,7 @@ footerLinkRemoveAllData = أزِل كل البيانات
 // creatingPageTitleDefault.
 creatingPageTitle = يُنشئ { $title }
 creatingPageTitleDefault = صفحة
+creatingPageWaitMessage = يحفظ لقطتك…
 
 
 [[ Home page ]]
@@ -48,6 +50,7 @@ homePageHowScreenshotsWorks = كيف تعمل لقطات فَيرفُكس
 homePageGetStartedTitle = ابدأ
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = ابحث عن أيقونة اللقطات في شريط الأدوات. انقرها وستظهر قائمة اللقطات على نافذة المتصفّح.
+homePageCaptureRegion = التقط منطقة
 homePageCapturePage = التقط صفحة
 homePageCapturePageDescription = استخدم الأزرار أعلى اليسار لالتقاط صفحات كاملة. زر ”التقط الجزء المرئي“ سيلتقط المنطقة التي تراها دون تمرير الصفحة، وزر ”احفظ الصفحة كاملة“ سيلتقط كل شيء في الصفحة.
 homePageSaveShare = احفظ وشارِك
@@ -94,21 +97,44 @@ shotPageShareFacebook
     .title = شارِك على فيسبوك
 shotPageShareTwitter
     .title = شارِك على تويتر
+shotPageSharePinterest
+    .title = شارك على بنترست  
 shotPageShareEmail
     .title = شارك الرابط عبر البريد الإلكتروني
+shotPageShareLink = احصل على رابط لهذا اللقطة يمكن مشاركته:
 shotPagePrivacyMessage = أي شخص لديه الرابط يمكنه رؤية اللقطة.
 shotPageCopyImageText
     .label = انسخ نص الصورة
 shotPageConfirmDeletion = أمتأكد من حذف هذه اللقطة إلى الأبد؟
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = أبقها حتى { $date }
 shotPageExpiredMessage = انتهت صلاحية هذه اللقطة.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = ها هي الصفحة التي أخذت اللقطة منها:
 shotPageDeleteButton
     .title = احذف هذه اللقطة
 shotPageDownloadShot
     .title = نزّل
 shotPageDownload = نزّل
 shotPageUpsellFirefox = نزّل فَيَرفُكس الآن
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = اختر وقتًا
+shotPageKeepIndefinitely = إلى الأبد
+shotPageKeepTenMinutes = ١٠ دقائق
+shotPageKeepOneHour = ساعة واحدة
+shotPageKeepOneDay = يوم واحد
+shotPageKeepOneWeek = أسبوع واحد
+shotPageKeepTwoWeeks = أسبوعان
+shotPageKeepOneMonth = شهر واحد
 shotPageSaveExpiration = احفظ
 shotPageCancelExpiration = ألغِ
+shotPageDoesNotExpire = لا تنتهي صلاحيتها
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = تنتهي { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = انتهت { $timediff }
+timeDiffJustNow = للتو
 
 
 [[ Shotindex page ]]
@@ -132,6 +158,7 @@ shotIndexPageConfirmShotDelete = أنحذف هذه اللقطة؟
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageTotalsQueryTitle = الإجماليات
 metricsPageShotsQueryDescription = عدد اللقطات المُنشأة يوميا (خلال الثلاثين يوما الماضية)
 metricsPageShotsQueryCount = عدد اللقطات
 metricsPageShotsQueryDay = اليوم
@@ -144,3 +171,4 @@ metricsPageRetentionQueryFirstWeek = الأسبوع الذي أنشأ فيه ا�
 metricsPageTotalRetentionQueryUsers = عدد المستخدمين
 metricsPageVersionQueryTitle = إصدارة الإضافة
 metricsPageVersionQueryVersion = إصدارة الإضافة
+metricsPageVersionQueryLastSeen = اليوم
