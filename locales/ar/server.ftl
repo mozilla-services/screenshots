@@ -49,6 +49,7 @@ homePageGetStartedTitle = ابدأ
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = ابحث عن أيقونة اللقطات في شريط الأدوات. انقرها وستظهر قائمة اللقطات على نافذة المتصفّح.
 homePageCapturePage = التقط صفحة
+homePageCapturePageDescription = استخدم الأزرار أعلى اليسار لالتقاط صفحات كاملة. زر ”التقط الجزء المرئي“ سيلتقط المنطقة التي تراها دون تمرير الصفحة، وزر ”احفظ الصفحة كاملة“ سيلتقط كل شيء في الصفحة.
 homePageSaveShare = احفظ وشارِك
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = يضع فَيرفُكس لقطاتك التي تأخذها في مكتبة اللقطات على الشبكة وينسخ الرابط إلى الحافظة. نخزّن لقطاتك تلقائيا لمدة أسبوعين، ولكنك تستطيع حذفها في أي وقت أو تغيير وقت انتهائها لتبقيها في المكتبة لديك لفترة أطول.
@@ -105,6 +106,7 @@ shotPageDeleteButton
 shotPageDownloadShot
     .title = نزّل
 shotPageDownload = نزّل
+shotPageUpsellFirefox = نزّل فَيَرفُكس الآن
 shotPageSaveExpiration = احفظ
 shotPageCancelExpiration = ألغِ
 
