@@ -11,7 +11,7 @@ Start the system addon release process by copying the following checklist into a
 - [ ] Create tag: `git tag MAJOR.MINOR.0` – the version should be higher than the version currently in `package.json` (e.g., if the in-development version is 10.0.0, then tag 10.1.0)
 - [ ] Push tag: `git push --tags`
 - [ ] Merge master to `firefox-export` branch: `git checkout firefox-export && git merge master && git push`
-- [ ] Create a Bugzilla release bug, [cloning bug 1368146](https://bugzilla.mozilla.org/enter_bug.cgi?format=__default__&product=Cloud%20Services&cloned_bug_id=1368146)
+- [ ] Create a Bugzilla release bug, [cloning bug 1403661](https://bugzilla.mozilla.org/enter_bug.cgi?format=__default__&product=Firefox&cloned_bug_id=1403661)
   - Use "Show Advanced Fields" and review CC list and dependencies
   - Ensure the bug is filed under the Cloud Services product, Screenshots component
   - Assign yourself to the bug
