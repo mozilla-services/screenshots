@@ -53,6 +53,8 @@ homePageGetStartedDescription = ابحث عن أيقونة اللقطات في �
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = انقر أيقونة اللقطات من قائمة إجراءات الصفحة في شريط العنوان وستظهر قائمة اللقطات أعلى نافذة المتصفح.
 homePageCaptureRegion = التقط منطقة
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = انقر واسحب لتحديد المنطقة التي تريد التقاطها. أو حتى مجرد التحويم و النقر؛ ستحدد لقطات الشاشة المنطقة نيابة عنك. أيعجبك ما ترى؟ اختر احفظ للوصول لقطتك للشاشة على الإنترنت، أو زِر السهم لأسفل لتنزيلها إلى حاسوبك.
 homePageCapturePage = التقط صفحة
 homePageCapturePageDescription = استخدم الأزرار أعلى اليسار لالتقاط صفحات كاملة. زر ”التقط الجزء المرئي“ سيلتقط المنطقة التي تراها دون تمرير الصفحة، وزر ”احفظ الصفحة كاملة“ سيلتقط كل شيء في الصفحة.
 homePageSaveShare = احفظ وشارِك
@@ -88,6 +90,7 @@ notFoundPageDescription = لم يُعثر على الصفحة.
 
 // This is the HTML title tag of the page
 shotPageTitle = اللقطة: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = حدث خطأ أثناء حفظ انتهاء الصلاحية
 shotPageAlertErrorDeletingShot = خطأ في حذف اللقطة
 shotPageAlertErrorUpdatingTitle = خطأ في حفظ العنوان
 shotPageConfirmDelete = أمتأكد من حذف هذه اللقطة إلى الأبد؟
@@ -144,6 +147,14 @@ timeDiffMinutesAgo = { $num ->
         [few] منذ { $number } دقائق
         [many] منذ { $number } دقيقة
        *[other] منذ { $number } دقيقة
+    }
+timeDiffHoursAgo = { $num ->
+        [zero] منذ أقل من ساعة
+        [one] منذ ساعة
+        [two] منذ ساعتين
+        [few] منذ { $number } ساعات
+        [many] منذ { $number } ساعة
+       *[other] منذ { $number } ساعة
     }
 timeDiffDaysAgo = { $num ->
         [one] بالأمس
