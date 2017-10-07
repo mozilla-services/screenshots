@@ -145,6 +145,14 @@ timeDiffMinutesAgo = { $num ->
         [many] منذ { $number } دقيقة
        *[other] منذ { $number } دقيقة
     }
+timeDiffHoursAgo = { $num ->
+        [zero] منذ أقل من دقيقة
+        [one] منذ دقيقة
+        [two] منذ دقيقتين
+        [few] منذ { $number } دقائق
+        [many] منذ { $number } دقيقة
+       *[other] منذ { $number } دقيقة
+    }
 timeDiffDaysAgo = { $num ->
         [one] بالأمس
         [two] قبل أمس
