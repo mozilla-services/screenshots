@@ -50,6 +50,8 @@ homePageHowScreenshotsWorks = كيف تعمل لقطات فَيرفُكس
 homePageGetStartedTitle = ابدأ
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = ابحث عن أيقونة اللقطات في شريط الأدوات. انقرها وستظهر قائمة اللقطات على نافذة المتصفّح.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = انقر أيقونة اللقطات من قائمة إجراءات الصفحة في شريط العنوان وستظهر قائمة اللقطات أعلى نافذة المتصفح.
 homePageCaptureRegion = التقط منطقة
 homePageCapturePage = التقط صفحة
 homePageCapturePageDescription = استخدم الأزرار أعلى اليسار لالتقاط صفحات كاملة. زر ”التقط الجزء المرئي“ سيلتقط المنطقة التي تراها دون تمرير الصفحة، وزر ”احفظ الصفحة كاملة“ سيلتقط كل شيء في الصفحة.
