@@ -90,10 +90,10 @@ notFoundPageDescription = لم يُعثر على الصفحة.
 
 // This is the HTML title tag of the page
 shotPageTitle = اللقطة: { $originalTitle }
-shotPageAlertErrorUpdatingExpirationTime = حدث خطأ أثناء حفظ انتهاء الصلاحية
-shotPageAlertErrorDeletingShot = خطأ في حذف اللقطة
-shotPageAlertErrorUpdatingTitle = خطأ في حفظ العنوان
-shotPageConfirmDelete = أمتأكد من حذف هذه اللقطة إلى الأبد؟
+shotPageAlertErrorUpdatingExpirationTime = خطأ أثناء حفظ انتهاء الصلاحية
+shotPageAlertErrorDeletingShot = خطأ أثناء حذف اللقطة
+shotPageAlertErrorUpdatingTitle = خطأ أثناء حفظ العنوان
+shotPageConfirmDelete = أمتأكد أنك تريد حذف هذه اللقطة إلى الأبد؟
 shotPageShareButton
     .title = شارِك
 shotPageCopy = انسخ
@@ -103,26 +103,41 @@ shotPageShareFacebook
 shotPageShareTwitter
     .title = شارِك على تويتر
 shotPageSharePinterest
-    .title = شارك على بنترست  
+    .title = شارك على بنترست
 shotPageShareEmail
     .title = شارك الرابط عبر البريد الإلكتروني
 shotPageShareLink = احصل على رابط لهذا اللقطة يمكن مشاركته:
 shotPagePrivacyMessage = أي شخص لديه الرابط يمكنه رؤية اللقطة.
 shotPageCopyImageText
     .label = انسخ نص الصورة
-shotPageConfirmDeletion = أمتأكد من حذف هذه اللقطة إلى الأبد؟
+shotPageConfirmDeletion = أمتأكد أنك تريد حذف هذه اللقطة إلى الأبد؟
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = إذا لم تفعل أي شيء، ستُحذف هذه اللقطة دون رجعة { $timediff }.
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
-shotPageRestoreButton = أبقها حتى { $date }
+shotPageRestoreButton = استعدها حتى { $date }
 shotPageExpiredMessage = انتهت صلاحية هذه اللقطة.
 // Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = ها هي الصفحة التي أخذت اللقطة منها:
 shotPageDeleteButton
     .title = احذف هذه اللقطة
+shotPageAbuseButton
+    .title = أبلغ عن هذه اللقطة لإسائة الاستخدام أو السخام أو أي مشاكل أخرى
 shotPageDownloadShot
     .title = نزّل
 shotPageDownload = نزّل
+shotPageScreenshotsDescription =
+    لقطات الشاشة صارت أسهل. خذ لقطات الشاشة و احفظها و شاركها دون مغادرة فَيرفُكس.
+
 shotPageUpsellFirefox = نزّل فَيَرفُكس الآن
+shotPageDMCAMessage = لم تعد هذه اللقطة متاحة نظرًا لادعاء الملكية الفكرية لطرف آخر.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = رجاء أرسل بريدا إلكترونيا إلى { $dmca } لطلب المزيد من المعلومات.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = إذا خضعت لقطاتك لادعاءات متعددة، فقد نلغي وصولك إلى لقطات فَيرفُكس.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = رجاء إدراج مسار هذه اللقطة في بريدك: { $url }
+shotPageKeepFor = إلى متى يتعين إبقاء هذه اللقطة؟
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = اختر وقتًا
 shotPageKeepIndefinitely = إلى الأبد
@@ -191,9 +206,14 @@ timeDiffFutureDays = { $num ->
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = خطأ أثناء حذف اللقطة: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = لقطاتي: ابحث عن { $searchTerm }
 // { $error } is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
-shotIndexPageErrorRendering = خطأ في تصيير الصفحة: { $error }
+shotIndexPageErrorRendering = خطأ أثناء تصيير الصفحة: { $error }
 shotIndexPageSearchPlaceholder
     .placeholder = ابحث في لقطاتي
 shotIndexPageSearchButton
