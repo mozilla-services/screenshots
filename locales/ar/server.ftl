@@ -126,9 +126,7 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = نزّل
 shotPageDownload = نزّل
-shotPageScreenshotsDescription =
-    لقطات الشاشة صارت أسهل. خذ لقطات الشاشة و احفظها و شاركها دون مغادرة فَيرفُكس.
-
+shotPageScreenshotsDescription = لقطات الشاشة صارت أسهل. خذ لقطات الشاشة و احفظها و شاركها دون مغادرة فَيرفُكس.
 shotPageUpsellFirefox = نزّل فَيَرفُكس الآن
 shotPageDMCAMessage = لم تعد هذه اللقطة متاحة نظرًا لادعاء الملكية الفكرية لطرف آخر.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -221,6 +219,7 @@ shotIndexPageSearchButton
 shotIndexPageNoShotsMessage = لا لقطات محفوظة.
 shotIndexPageNoShotsInvitation = حرّك نفسك والتقط شيئا.
 shotIndexPageLookingForShots = يبحث عن لقطاتك…
+shotIndexPageNoSearchResultsIntro = إم
 shotIndexPageNoSearchResults = تعذّر العثور على أي لقطة تطابق معايير البحث.
 shotIndexPageClearSearchButton
     .title = امسح البحث
@@ -230,17 +229,46 @@ shotIndexPageConfirmShotDelete = أنحذف هذه اللقطة؟
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
-metricsPageTotalsQueryTitle = الإجماليات
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = إحصائيات «لقطات فَيرفُكس»
+metricsPageTotalsQueryTitle = المجموع
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = نظرة عامة على «اللقطات»
+metricsPageTotalsQueryDevices = مجموع الأجهزة المسجلة
+metricsPageTotalsQueryActiveShots = اللقطات النشطة
+metricsPageTotalsQueryExpiredShots = منتهية الصلاحية (و لكن يمكن استعادتها)
+metricsPageTotalsQueryExpiredDeletedShots = منتهية الصلاحية (و محذوفة)
+metricsPageShotsQueryTitle = اللقطات في اليوم
 metricsPageShotsQueryDescription = عدد اللقطات المُنشأة يوميا (خلال الثلاثين يوما الماضية)
 metricsPageShotsQueryCount = عدد اللقطات
 metricsPageShotsQueryDay = اليوم
+metricsPageUsersQueryTitle = المستخدمين في اليوم
+metricsPageUsersQueryDescription = عدد المستخدمين الذين أنشئوا لقطة واحدة على الأقل في اليوم (آخر ٣٠ يوم)
 metricsPageUsersQueryCount = عدد المستخدمين
 metricsPageUsersQueryDay = اليوم
 metricsPageUserShotsQueryTitle = عدد اللقطات لكل مستخدم
+metricsPageUserShotsQueryDescription = عدد المستخدمين اللذين لديهم ما مجموعه ن من اللقطات
 metricsPageUserShotsQueryCount = عدد المستخدمين
+metricsPageUserShotsQueryShots = العدد التقريبي للقطات النشطة (غير المنتهية)
+metricsPageRetentionQueryTitle = الاحتفاظ بالأسبوع
+metricsPageRetentionQueryDescription = عدد الأيام من لقطة المستخدم الأولى إلى اللقطة الأخيرة، مجمعة حسب أسبوع البداية
 metricsPageRetentionQueryUsers = عدد المستخدمين
+metricsPageRetentionQueryDays = عدد الأيام من لقطة المستخدم الأولى إلى اللقطة الأخيرة
 metricsPageRetentionQueryFirstWeek = الأسبوع الذي أنشأ فيه المستخدم أول لقطة
+metricsPageTotalRetentionQueryTitle = الاحتفاظ الكلي
+metricsPageTotalRetentionQueryDescription = طول الوقت الذي ينشئ فيه المستخدمين لقطات، مجمعة حسب الأسبوع
 metricsPageTotalRetentionQueryUsers = عدد المستخدمين
+metricsPageTotalRetentionQueryDays = الأيام التي ينشئ فيها المستخدمين اللقطات
 metricsPageVersionQueryTitle = إصدارة الإضافة
+metricsPageVersionQueryDescription = إصدارة لإضافة المستخدمة أثناء الولوج، في آخر ١٤ يوم
+metricsPageVersionQueryUsers = عدد المستخدمين الوالجين
 metricsPageVersionQueryVersion = إصدارة الإضافة
 metricsPageVersionQueryLastSeen = اليوم
+metricsPageHeader = الإحصائيات
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime =
+    أنشئت في: { $created }
+    
+
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (وقت قاعدة البيانات: { $created } مللي ثانية)
