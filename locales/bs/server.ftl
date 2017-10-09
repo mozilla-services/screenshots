@@ -153,27 +153,49 @@ shotPageExpiresIn = ističe { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = isteklo { $timediff }
 timeDiffJustNow = upravo sada
-timeDiffMinutesAgo = { $num ->
-        [one] prije { $number } minutu
-        [few] prije { $number } minute
-       *[other] prije { $number } minuta
-    }
-timeDiffHoursAgo = { $num ->
-        [one] prije { $number } sat
-        [few] prije { $number } sata
-       *[other] prije { $number } sati
-    }
-timeDiffDaysAgo = { $num ->
-        [one] prije { $number } dan
-       *[few] prije { $number } dana
-    }
 timeDiffFutureSeconds = za nekolio sekundi
 
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Greška pri brisanju snimka: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Moji snimci: traži { $searchTerm }
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Greška pri crtanju stranice: { $error }
+shotIndexPageNoShotsMessage = Nema sačuvanih snimki.
+shotIndexPageNoShotsInvitation = Samo naprijed, napravite nekoliko.
+shotIndexPageLookingForShots = Traženje vaših snimki…
+shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Ne možemo pronaći ni jedan snimak koji odgovara vašem upitu.
+shotIndexPageConfirmShotDelete = Izbrisati ovaj snimak?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Firefox Screenshot metrika
+metricsPageTotalsQueryTitle = Ukupno
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Pregled snimki zaslona
+metricsPageTotalsQueryDevices = Ukupno registrovanih uređaja
+metricsPageTotalsQueryActiveShots = Aktivnih snimaka
+metricsPageTotalsQueryExpiredShots = Isteklo (ali se može vratiti)
+metricsPageTotalsQueryExpiredDeletedShots = Isteklo (i izbrisano)
+metricsPageShotsQueryTitle = Snimaka po danu
+metricsPageShotsQueryDescription = Broj napravljenih snimaka svaki dan (za zadnjih 30 dana)
+metricsPageShotsQueryCount = Broj snimaka
+metricsPageShotsQueryDay = Dan
+metricsPageUsersQueryTitle = Korisnika po danu
+metricsPageUsersQueryDescription = Broj korisnika koji je napravio barem jedan snimak, po danu (zadnjih 30 dana)
+metricsPageUsersQueryCount = Broj korisnika
+metricsPageUsersQueryDay = Dan
+metricsPageUserShotsQueryTitle = Broj snimaka po korisniku
+metricsPageUserShotsQueryDescription = Broj korisnika koji imaju određeni broj snimaka
+metricsPageUserShotsQueryCount = Broj korisnika
+metricsPageUserShotsQueryShots = Približan broj aktivnih (koje nisu istekle) snimaka
+metricsPageRetentionQueryTitle = Zadržavanje po sedmici
