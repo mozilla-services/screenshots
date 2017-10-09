@@ -4,9 +4,6 @@ const l10n = require('../../../server/src/l10n.js');
 /* globals describe, it */
 
 describe('l10n', () => {
-  before((done) => {
-    l10n.init().then((result) => { done() }).catch(done);
-  });
   describe('getUserLocales', () => {
     it('should fall back to en-US if requested language has no localization', () => {
       let locales = l10n.getUserLocales(['yo-LO']);
