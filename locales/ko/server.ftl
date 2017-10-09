@@ -20,6 +20,7 @@ gScreenshotsDescription = 스크린샷이 쉬워졌습니다. Firefox 안에서 
 footerLinkMozilla = Mozilla
 footerLinkTerms = 이용약관
 footerLinkPrivacy = 개인 정보 보호 안내
+footerLinkFaqs = 자주 묻는 질문들
 footerLinkDMCA = IP 침해 신고
 footerLinkDiscourse = 사용자 의견
 footerLinkRemoveAllData = 모든 데이타 삭제

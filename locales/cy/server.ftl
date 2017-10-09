@@ -20,6 +20,7 @@ gScreenshotsDescription = Lluniau sgrin wedi ei wneud yn syml. Cipio, cadw a rha
 footerLinkMozilla = Mozilla
 footerLinkTerms = Amodau
 footerLinkPrivacy = Hysbysiad Preifatrwydd
+footerLinkFaqs = Cwestiynau Cyffredin
 footerLinkDMCA = Adrodd ar Torri'r IP
 footerLinkDiscourse = Rhoi Adborth
 footerLinkRemoveAllData = Tynnu'r Holl Ddata
@@ -49,6 +50,8 @@ homePageHowScreenshotsWorks = Sut mae Firefox Screenshots yn gweithio
 homePageGetStartedTitle = Cychwyn Arni
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Chwiliwch am eicon newydd Screenshots ar eich bar offer. Cliciwch arno a bydd dewislen Screenshots yn ymddangos ar frig ffenestr eich porwr.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Dewiswch eicon Screenshots o'r ddewislen gweithredoedd tudalen tyn y bar cyfeiriad a bydd dewislen Screenshots yn ymddangos ar frig ffenestr eich porwr.
 homePageCaptureRegion = Cipio Ardal
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Cliciwch a llusgo i ddewis ardal i'w gipio. Neu hofran a chlicio - bydd Screenshots yn dewis yr ardal i chi. Hoffi beth welwch chi? Dewiswch Cadw i gael mynediad i'ch llun ar-lein neu'r saeth i lawr i'w lwytho i lawr i'ch cyfrifiadur.

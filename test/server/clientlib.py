@@ -1,5 +1,6 @@
 import os
 import re
+import contextlib
 import requests
 from urlparse import urljoin
 import json
@@ -60,11 +61,13 @@ class ScreenshotsClient(object):
         resp.raise_for_status()
         page = resp.text
         clip_match = re.search(r'<img id="clipImage"[^>]*src="([^"]+)"', page)
-        clip_url = clip_content = None
+        clip_url = clip_content = clip_content_type = None
         if clip_match:
             clip_url = clip_match.group(1)
             if clip_url:
-                clip_content = self.session.get(clip_url).content
+                resp = self.session.get(clip_url)
+                clip_content = resp.content
+                clip_content_type = resp.headers['content-type']
         csrf_match = re.search(r'"csrfToken":"([^"]*)"', page)
         csrf = None
         if csrf_match:
@@ -73,7 +76,14 @@ class ScreenshotsClient(object):
         title = None
         if title_match:
             title = title_match.group(1)
-        return {"page": page, "clip_url": clip_url, "clip_content": clip_content, "csrf": csrf, "title": title}
+        return {
+            "page": page,
+            "clip_url": clip_url,
+            "clip_content": clip_content,
+            "clip_content_type": clip_content_type,
+            "csrf": csrf,
+            "title": title,
+        }
 
     def set_expiration(self, url, seconds):
         shot_id = self._get_id_from_url(url)
@@ -82,6 +92,26 @@ class ScreenshotsClient(object):
         resp = self.session.post(
             self.backend + '/api/set-expiration',
             {"id": shot_id, "expiration": str(seconds), "_csrf": csrf})
+        resp.raise_for_status()
+
+    def set_title(self, url, new_title):
+        shot_id = self._get_id_from_url(url)
+        csrf = self.read_shot(url)["csrf"]
+        assert csrf, "No CSRF found"
+        resp = self.session.post(
+            urljoin(urljoin(self.backend, '/api/set-title/'), shot_id),
+            {"id": shot_id, "title": new_title, "_csrf": csrf})
+        resp.raise_for_status()
+
+    def edit_shot(self, url, edits):
+        shot_id = self._get_id_from_url(url)
+        csrf = self.read_shot(url)["csrf"]
+        assert csrf, "No CSRF found"
+        body = {"shotId": shot_id, "_csrf": csrf}
+        body.update(edits)
+        resp = self.session.post(
+            urljoin(self.backend, '/api/save-edit'),
+            body)
         resp.raise_for_status()
 
     def delete_shot(self, url):
@@ -102,17 +132,29 @@ class ScreenshotsClient(object):
     def read_my_shots(self):
         resp = self.session.get(urljoin(self.backend, "/shots"))
         resp.raise_for_status()
+        return resp
 
     def search_shots(self, q):
         resp = self.session.get(urljoin(self.backend, "/shots"), params={"q": q})
         resp.raise_for_status()
 
+    def get_settings(self):
+        resp = self.session.get(urljoin(self.backend, "/settings/"))
+        resp.raise_for_status()
+        return resp
 
-def make_example_shot(deviceId, pad_image_to_length=None, image_index=None, **overrides):
+    def get_uri(self, uri):
+        return self.session.get(urljoin(self.backend, uri))
+
+
+def make_example_shot(deviceId, pad_image_to_length=None, image_index=None, image_content_type=None, **overrides):
+    pick_from_images = example_images
+    if image_content_type:
+        pick_from_images = [i for i in pick_from_images if ("data:" + image_content_type) in i["url"]]
     if image_index is None:
-        image = random.choice(example_images)
+        image = random.choice(pick_from_images)
     else:
-        image = example_images[image_index]
+        image = pick_from_images[image_index]
     text = []
     for i in range(10):
         text.append(random.choice(text_strings))
@@ -166,8 +208,19 @@ def make_device_info():
 
 
 def make_uuid():
-    return str(uuid.uuid1()).replace("-", "")
+    return str(uuid.uuid1())
 
 
 def make_random_id():
-    return make_uuid()[:16]
+    return make_uuid().replace("-", "")[:16]
+
+
+@contextlib.contextmanager
+def screenshots_session(backend=None):
+    if backend:
+        user = ScreenshotsClient(backend=backend)
+    else:
+        user = ScreenshotsClient()
+    user.login()
+    yield user
+    user.delete_account()

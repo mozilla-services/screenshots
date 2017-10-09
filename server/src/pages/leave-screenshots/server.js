@@ -1,15 +1,16 @@
 const express = require("express");
-const csrf = require('csurf');
 const reactrender = require("../../reactrender");
 const { Shot } = require("../../servershot");
 const mozlog = require("../../logging").mozlog("leave-screenshots");
 
-const csrfProtection = csrf({cookie: true});
 let app = express();
 
 exports.app = app;
 
-app.get("/", csrfProtection, function(req, res) {
+app.get("/", function(req, res) {
+  if (req.query && req.query.complete !== undefined) {
+    res.clearCookie("_csrf");
+  }
   if (!req.deviceId) {
     res.status(403).send(req.getText("leavePageErrorAddonRequired"));
     return;
@@ -18,7 +19,7 @@ app.get("/", csrfProtection, function(req, res) {
   reactrender.render(req, res, page);
 });
 
-app.post("/leave", csrfProtection, function(req, res) {
+app.post("/leave", function(req, res) {
   if (!req.deviceId) {
     res.status(403).send(req.getText("leavePageErrorAddonRequired"));
   }

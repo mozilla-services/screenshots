@@ -10,4 +10,4 @@ print 'exports.timestamp = %i' % int(now * 1000)
 
 import subprocess
 print 'exports.gitrevision = %r' % subprocess.check_output(
-    ["git", "describe", "--always"]).strip()
+    ["git", "describe", "--tags", "--always"]).strip()

@@ -20,6 +20,7 @@ gScreenshotsDescription = Snimite zaslon jednostavno. Snimite, spremite i dijeli
 footerLinkMozilla = Mozilla
 footerLinkTerms = Uvjeti
 footerLinkPrivacy = Politika privatnost
+footerLinkFaqs = ČPP
 footerLinkDMCA = Prijavite kršenje vlasničkih prava
 footerLinkDiscourse = Pošaljite nam povratnu informaciju
 footerLinkRemoveAllData = Uklonite sve podatke
@@ -49,6 +50,8 @@ homePageHowScreenshotsWorks = Kako rade Firefox Screenshots
 homePageGetStartedTitle = Započnite
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Pronađite novu ikonu za snimke zaslona na vašoj alatnoj traci. Odaberite ju i izbornik za snimke zaslona će se pojaviti na vrhu prozora pretraživača.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Odaberite ikonu snimke ekrana iz izbornika radnji stranice u adresnoj traci i izbornik snimke ekrana će se pojaviti povrh prozora vašeg pretraživača.
 homePageCaptureRegion = Uhvatite dio stranice
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Kliknite i vucite kako biste odabrali područje koje želite snimiti. Ili samo pređite mišem i kliknite — snimke zaslona će odabrati područje za vas. Sviđa vam se što vidite? Odaberite Spremi kako biste pristupili svojoj snimci na internetu ili gumb sa strelicom prema dolje kako biste je preuzeli na svoje računalo.

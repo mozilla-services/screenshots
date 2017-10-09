@@ -28,7 +28,7 @@ exports.createModel = function(req) {
       image.url = createProxyUrl(req, image.url);
     }
   }
-  if (shots !== null) {
+  if (shots && shots.length) {
     shots = shots.map((shot) => ({id: shot.id, json: shot.asRecallJson()}));
   }
   let jsonModel = Object.assign(

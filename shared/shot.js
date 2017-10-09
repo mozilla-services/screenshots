@@ -32,6 +32,10 @@ function isUrl(url) {
   return (/^https?:\/\/[a-z0-9.-]{1,8000}[a-z0-9](:[0-9]{1,8000})?\/?/i).test(url);
 }
 
+function isValidClipImageUrl(url) {
+    return isUrl(url) && !(url.indexOf(')') > -1);
+}
+
 function assertUrl(url) {
   if (!url) {
     throw new Error("Empty value is not URL");
@@ -361,7 +365,8 @@ class AbstractShot {
   get filename() {
     let filenameTitle = this.title;
     let date = new Date(this.createdDate);
-    filenameTitle = filenameTitle.replace(/[:\\<>/!@&*.|\n\r\t]/g, " ");
+    // eslint-disable-next-line no-control-regex
+    filenameTitle = filenameTitle.replace(/[:\\<>/!@&?"*.|\x00-\x1F]/g, " ");
     filenameTitle = filenameTitle.replace(/\s{1,4000}/g, " ");
     let clipFilename = `Screenshot-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${filenameTitle}`;
     const clipFilenameBytesSize = clipFilename.length * 2; // JS STrings are UTF-16
@@ -370,7 +375,14 @@ class AbstractShot {
       clipFilename = clipFilename.substring(0, clipFilename.length - excedingchars);
       clipFilename = clipFilename + '[...]';
     }
-    return clipFilename + '.png';
+    let clip = this.getClip(this.clipNames()[0]);
+    let extension = ".png";
+    if (clip && clip.image && clip.image.type) {
+      if (clip.image.type == "jpeg") {
+        extension = ".jpg";
+      }
+    }
+    return clipFilename + extension;
   }
 
   get urlDisplay() {
@@ -694,12 +706,22 @@ class _Clip {
       this._image = undefined;
       return;
     }
-    assert(checkObject(image, ["url"], ["dimensions", "text", "location", "captureType"]), "Bad attrs for Clip Image:", Object.keys(image));
-    assert(isUrl(image.url), "Bad Clip image URL:", image.url);
-    assert(image.captureType == "madeSelection" || image.captureType == "selection" || image.captureType == "visible" || image.captureType == "auto" || image.captureType == "fullPage" || !image.captureType, "Bad image.captureType:", image.captureType);
+    assert(checkObject(image, ["url"], ["dimensions", "text", "location", "captureType", "type"]), "Bad attrs for Clip Image:", Object.keys(image));
+    assert(isValidClipImageUrl(image.url), "Bad Clip image URL:", image.url);
+    assert(
+      image.captureType == "madeSelection" ||
+      image.captureType == "selection" ||
+      image.captureType == "visible" ||
+      image.captureType == "auto" ||
+      image.captureType == "fullPage" ||
+      image.captureType == "fullPageTruncated" ||
+      !image.captureType, "Bad image.captureType:", image.captureType);
     assert(typeof image.text == "string" || !image.text, "Bad Clip image text:", image.text);
     if (image.dimensions) {
       assert(typeof image.dimensions.x == "number" && typeof image.dimensions.y == "number", "Bad Clip image dimensions:", image.dimensions);
+    }
+    if (image.type) {
+      assert(image.type == "png" || image.type == "jpeg", "Unexpected image type:", image.type);
     }
     assert(image.location &&
       typeof image.location.left == "number" &&
@@ -743,4 +765,5 @@ AbstractShot.prototype.Clip = _Clip;
 if (typeof exports != "undefined") {
   exports.AbstractShot = AbstractShot;
   exports.originFromUrl = originFromUrl;
+  exports.isValidClipImageUrl = isValidClipImageUrl;
 }

@@ -20,6 +20,7 @@ gScreenshotsDescription = Ekrano nuotraukos paprastai. Darykite, saugokite ir da
 footerLinkMozilla = Mozilla
 footerLinkTerms = Sąlygos
 footerLinkPrivacy = Privatumo nuostatai
+footerLinkFaqs = Dažni klausimai
 footerLinkDMCA = Pranešti apie intelektinės nuosavybės pažeidimą
 footerLinkDiscourse = Pateikti atsiliepimą
 footerLinkRemoveAllData = Pašalinti visus duomenis
@@ -49,6 +50,8 @@ homePageHowScreenshotsWorks = Kaip veikia „Firefox“ ekrano nuotraukos
 homePageGetStartedTitle = Pradėkite
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Raskite naująją „Firefox“ ekrano nuotraukų piktogramą savo įrankinėje. Pasirinkite ją ir ekrano nuotraukų meniu pasirodys virš jūsų naršyklės lango.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Pasirinkite ekrano nuotraukų piktogramą iš tinklalapio veiksmų meniu, esančio adreso juostoje. Tuomet virš jūsų naršyklės lango pasirodys ekrano nuotraukų meniu.
 homePageCaptureRegion = Fotografuokite sritį
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Spustelėkite ir tempkite norėdami pažymėti norimą nufotografuoti sritį. Arba tiesiog užveskite pelę ir spustelėkite – bus pažymėta toji sritis. Patinka, ką matote? Pasirinkite „Įrašyti“, norėdami pasiekti savo nuotrauką internete, arba rodyklę žemyn, norėdami atsisiųsti ją į savo kompiuterį.

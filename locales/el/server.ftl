@@ -20,6 +20,7 @@ gScreenshotsDescription = Η λήψη στιγμιοτύπων έγινε εύκ
 footerLinkMozilla = Mozilla
 footerLinkTerms = Όροι χρήσης
 footerLinkPrivacy = Πολιτική Απορρήτου
+footerLinkFaqs = Συχνές ερωτήσεις
 footerLinkDMCA = Αναφορά IP παραβίασης πνευματικής ιδιοκτησίας
 footerLinkDiscourse = Γράψτε το σχόλιο σας
 footerLinkRemoveAllData = Διαγραφή όλων των δεδομένων

@@ -18,7 +18,9 @@ gScreenshotsDescription = Skermôfbyldingen wurde maklik. Meitsje, bewarje en di
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Betingsten
 footerLinkPrivacy = Privacyferklearring
+footerLinkFaqs = FAQ's
 footerLinkDMCA = IP-misbrûk rapportearje
 footerLinkDiscourse = Kommentaar jaan
 footerLinkRemoveAllData = Alle gegevens fuortsmite
@@ -31,6 +33,7 @@ footerLinkRemoveAllData = Alle gegevens fuortsmite
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } wurdt makke
 creatingPageTitleDefault = side
+creatingPageWaitMessage = Jo ôfbylding bewarje…
 
 
 [[ Home page ]]
@@ -41,17 +44,19 @@ homePageButtonMyShots = Nei myn ôfbyldingen
 homePageTeaser = Ynkoarten beskikber...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Fergees downloade
-homePageGetStarted = Begjinne
+homePageGetStarted = Oan de slach
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Hoe Firefox Screenshots wurket
 homePageGetStartedTitle = Oan de slach
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Sykje it nije Screenshots-piktogram op jo arkbalke. Selektearje it, en it Screenshots-menu ferskynt boppe yn jo browserfinster.
-homePageCaptureRegion = In gebied fêstlizze
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Klik en sleep om it gebied dat jo fêstlizze wolle te ferslepen. Of wiis oan en klik – Screenshots selektearret it gebied foar jo. Tefreden mei wat jo sjogge? Selektearje Bewarje om jo skermôfbylding online te benaderjen, of it pylkje nei ûnder om dizze nei jo kompjûter te bewarjen.
+homePageGetStartedDescriptionPageAction = Selektearje it Screenshots-piktogram fan it menu Pagina-aksjes yn de adresbalke út, en it Screenshots-menu ferskynt boppe yn jo browserfinster.
+homePageCaptureRegion = In gebiet fêstlizze
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Klik en sleep om it gebiet dat jo fêstlizze wolle te ferslepen. Of wiis oan en klik – Screenshots selektearret it gebiet foar jo. Tefreden mei wat jo sjogge? Selektearje Bewarje om jo skermôfbylding online te benaderjen, of it pylkje nei ûnder om dizze nei jo kompjûter te bewarjen.
 homePageCapturePage = In side fêstlizze
-homePageCapturePageDescription = Brûk de knoppen yn de rjochterboppehoek om folsleine siden fêst te lizzen. De knop Sichtber gebied bewarje leit it gebied fêst dat jo sûnder skowen sjen kinne, en Folsleine side bewarje leit alles op de side fêst.
+homePageCapturePageDescription = Brûk de knoppen yn de rjochter boppehoek om folsleine siden fêst te lizzen. De knop Sichtber gebiet bewarje leit it gebied fêst dat jo sûnder skowen sjen kinne, en Folsleine side bewarje leit alles op de side fêst.
 homePageSaveShare = Bewarje en diele
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = As jo in ôfbylding meitsje, pleatst Firefox jo skermôfbylding nei jo online Screenshots-biblioteek en kopiearret it de keppeling nei jo klamboerd. Jo skermôfbylding bliuwt automatysk twa wiken bewarre, mar jo kinne ôfbyldingen altyd fuortsmite of de ferrindatum wizigje om se langer yn jo biblioteek te behâlden.
@@ -63,7 +68,7 @@ homePageCookiesLink = Cookies
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Fuortsmiten fan account befêstigje
+leavePageRemoveAllData = Alle gegevens fuortsmite
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Jo moatte Firefox Screenshots ynstallearre hawwe om jo account fuort te smiten
 leavePageErrorGeneric = Der is in flater bard

@@ -11,7 +11,7 @@ gMyShots = Móje fota wobrazowki
 gHomeLink = Startowy bok
 gNoShots
     .alt = Žedne fota wobrazowki namakane
-gScreenshotsDescription = Fota wobrazowki jadnorje nagótowane. Gótujśo, składujśo a źělśo fota wobrazowki, mimo až Firefox spušćaśo.
+gScreenshotsDescription = Fota wobrazowki lažko nagótowane. Gótujśo, składujśo a źělśo fota wobrazowki, mimo až Firefox spušćaśo.
 
 
 [[ Footer ]]
@@ -20,6 +20,7 @@ gScreenshotsDescription = Fota wobrazowki jadnorje nagótowane. Gótujśo, skła
 footerLinkMozilla = Mozilla
 footerLinkTerms = Wuměnjenja
 footerLinkPrivacy = Wuzjawjenje priwatnosći
+footerLinkFaqs = Ceste pšašanja
 footerLinkDMCA = Pśekśiwjenje duchnego swójstwa k wěsći daś
 footerLinkDiscourse = Wašo měnjenje groniś
 footerLinkRemoveAllData = Wše daty wótwónoźeś
@@ -49,6 +50,8 @@ homePageHowScreenshotsWorks = Kak Firefox Screenshots funkcioněrujo
 homePageGetStartedTitle = Prědne kšace
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Symbol nowego Screenshots na swójej symbolowej rědce namakajośo.  Wubjeŕśo jen a meni Screenshots se górjejce we woknje wašogo wobglědowaka zjawijo.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Wubjeŕśo symbol Screenshots z menija akcijow boka w adresowem pólu, a meni Screenshots pokažo se górjejce we woknje wobglědowaka.
 homePageCaptureRegion = Wobcerk fotografěrowaś
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klikniśo a śěgniśo, aby wobcerk wubrał, kótaryž cośo fotografěrowaś. Abo stajśo jadnorje kursor nad tym a klikniśo  - Screenshots buźo wobcerk za was wuběraś. Spódoba se wam, což wiźiśo? Wubjeŕśo „Składowaś“ za pśistup na swójo foto wobrazowki online abo tłocašk ze šypku dołoj, aby jo na swójo licadło ześěgnuł.
@@ -123,7 +126,7 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Ześěgnuś
 shotPageDownload = Ześěgnuś
-shotPageScreenshotsDescription = Fota wobrazowki jadnorje nagótowane. Gótujśo, składujśo a źělśo fota wobrazowki, mimo až Firefox spušćaśo.
+shotPageScreenshotsDescription = Fota wobrazowki lažko nagótowane. Gótujśo, składujśo a źělśo fota wobrazowki, mimo až Firefox spušćaśo.
 shotPageUpsellFirefox = Wobstarajśo se Firefox něnto
 shotPageDMCAMessage = Toś to foto wobrazowki wěcej njejo k dispoziciji dla pšawow awtorstwa tśeśich.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -224,7 +227,7 @@ metricsPageTotalsQueryDescription = Pśeglěd Screenshots
 metricsPageTotalsQueryDevices = Zregistrěrowane rědy dogromady
 metricsPageTotalsQueryActiveShots = Aktiwne fota wobrazowki
 metricsPageTotalsQueryExpiredShots = Wótběgnuło (dajo se pak wótnowiś)
-metricsPageTotalsQueryExpiredDeletedShots = 
+metricsPageTotalsQueryExpiredDeletedShots = Wótběgnuło (a wulašowane)
 metricsPageShotsQueryTitle = Fota wobrazowki na źeń
 metricsPageShotsQueryDescription = Licba fotow wobrazowki napóranych kuždy źeń (za zachadne 30 dnjow)
 metricsPageShotsQueryCount = Licba fotow wobrazowki

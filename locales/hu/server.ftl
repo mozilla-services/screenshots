@@ -20,6 +20,7 @@ gScreenshotsDescription = Képernyőképek egyszerűen. Készítsen, mentsen és
 footerLinkMozilla = Mozilla
 footerLinkTerms = Feltételek
 footerLinkPrivacy = Adatvédelmi nyilatkozat
+footerLinkFaqs = GYIK
 footerLinkDMCA = Szellemi tulajdont érintő jogsértés jelentése
 footerLinkDiscourse = Adjon visszajelzést
 footerLinkRemoveAllData = Minden adat törlése
@@ -49,6 +50,8 @@ homePageHowScreenshotsWorks = Hogyan működik a Firefox képernyőképek
 homePageGetStartedTitle = Kezdő lépések
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Keresse az új Screenshots ikont az eszköztáron. Válassza ki, és a Screenshots menü megjelenik a böngészőablak fölött.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Válassza a Screenshots ikont a lapműveletek menüből a címsávban, és megjelenik a Screenshots menü a böngészőablak tetején.
 homePageCaptureRegion = Terület befogása
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Kattintson és húzza a befogandó terület kiválasztásához. Vagy csak vigye fölé és kattintson – a Screenshots kijelöli a területet Ön helyett. Tetszik amit lát? Válassza a Mentést, hogy online is elérje a képernyőképeit, vagy a lefelé mutató nyilat a számítógépre letöltéshez.

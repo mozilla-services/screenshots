@@ -20,6 +20,7 @@ gScreenshotsDescription = Jednoduchá tvorba snímok obrazovky. Vytvorte, uložt
 footerLinkMozilla = Mozilla
 footerLinkTerms = Podmienky
 footerLinkPrivacy = Zásady ochrany súkromia
+footerLinkFaqs = Často kladené otázky
 footerLinkDMCA = Nahlásiť zneužitie IP adresy
 footerLinkDiscourse = Poskytnúť spätnú väzbu
 footerLinkRemoveAllData = Odstrániť všetky údaje
@@ -49,6 +50,8 @@ homePageHowScreenshotsWorks = Ako služba Firefox Screenshots funguje
 homePageGetStartedTitle = Začíname
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Novú ikonu služby Screenshots nájdete na vašom paneli nástrojov. Po kliknutí na ňu sa v hornej časti okna vášho prehliadača zobrazí ponuka.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = V paneli s adresou v ponuke akcii stránky vyberte ikonu služby Screenshos a jej ponuka sa zobrazí v hornej časti okna prehliadača.
 homePageCaptureRegion = Vytvorte snímku oblasti
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Kliknutím a potiahnutím vyberte oblasť stránky, ktorú chcete zachytiť. Alebo na ňu len prejdite myšou - doplnok Screenshots vyberie oblasť za vás. Páči sa vám to? Kliknutím na tlačidlo Uložiť nahráte snímok na internet, kliknutím na šípku ho prevezmete do počítača.

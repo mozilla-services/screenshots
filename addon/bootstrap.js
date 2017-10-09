@@ -5,7 +5,6 @@ const ADDON_ID = "screenshots@mozilla.org";
 const TELEMETRY_ENABLED_PREF = "datareporting.healthreport.uploadEnabled";
 const PREF_BRANCH = "extensions.screenshots.";
 const USER_DISABLE_PREF = "extensions.screenshots.disabled";
-const SYSTEM_DISABLE_PREF = "extensions.screenshots.system-disabled";
 
 const { interfaces: Ci, utils: Cu } = Components;
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
@@ -43,7 +42,7 @@ const prefObserver = {
   observe(aSubject, aTopic, aData) {
     // aSubject is the nsIPrefBranch we're observing (after appropriate QI)
     // aData is the name of the pref that's been changed (relative to aSubject)
-    if (aData == USER_DISABLE_PREF || aData == SYSTEM_DISABLE_PREF) {
+    if (aData == USER_DISABLE_PREF) {
       // eslint-disable-next-line promise/catch-or-return
       appStartupPromise = appStartupPromise.then(handleStartup);
     }
@@ -161,7 +160,7 @@ function getBoolPref(pref) {
 }
 
 function shouldDisable() {
-  return getBoolPref(USER_DISABLE_PREF) || getBoolPref(SYSTEM_DISABLE_PREF);
+  return getBoolPref(USER_DISABLE_PREF);
 }
 
 function handleStartup() {
@@ -234,16 +233,8 @@ let photonPageAction;
 // Does nothing otherwise.  Ideally, in the future, WebExtension page actions
 // and Photon page actions would be one in the same, but they aren't right now.
 function initPhotonPageAction(api, webExtension) {
-  // The MOZ_PHOTON_THEME ifdef got removed, but we need to support 55 and 56 as well,
-  // so check if the property exists *and* is false before bailing.
-  if (typeof AppConstants.MOZ_PHOTON_THEME != "undefined" && !AppConstants.MOZ_PHOTON_THEME) {
-    // Photon not supported.  Use the WebExtension's browser action.
-    return;
-  }
-
   let id = "screenshots";
   let port = null;
-  let baseIconPath = addonResourceURI.spec + "webextension/";
 
   let {tabManager} = webExtension.extension;
 
@@ -251,7 +242,7 @@ function initPhotonPageAction(api, webExtension) {
   photonPageAction = PageActions.actionForID(id) || PageActions.addAction(new PageActions.Action({
     id,
     title: "Take a Screenshot",
-    iconURL: baseIconPath + "icons/icon-32-v2.svg",
+    iconURL: webExtension.extension.getURL("icons/icon-32-v2.svg"),
     _insertBeforeActionID: null,
     onCommand(event, buttonNode) {
       if (port) {
@@ -264,17 +255,6 @@ function initPhotonPageAction(api, webExtension) {
       }
     },
   }));
-
-  // Remove the navbar button of the WebExtension's browser action.
-  let cuiWidgetID = "screenshots_mozilla_org-browser-action";
-  CustomizableUI.addListener({
-    onWidgetAfterCreation(wid, aArea) {
-      if (wid == cuiWidgetID) {
-        CustomizableUI.destroyWidget(cuiWidgetID);
-        CustomizableUI.removeListener(this);
-      }
-    },
-  });
 
   // Establish a port to the WebExtension side.
   api.browser.runtime.onConnect.addListener((listenerPort) => {
@@ -289,21 +269,13 @@ function initPhotonPageAction(api, webExtension) {
           photonPageAction.title = message.title;
         }
         if (message.iconPath) {
-          photonPageAction.iconURL = baseIconPath + message.iconPath;
+          photonPageAction.iconURL = webExtension.extension.getURL(message.iconPath);
         }
         break;
       default:
         console.error("Unrecognized message:", message);
         break;
       }
-    });
-
-    // It's necessary to tell the WebExtension not to use its browser action,
-    // due to the CUI widget's removal.  Otherwise Firefox's WebExtension
-    // machinery throws exceptions.
-    port.postMessage({
-      type: "setUsePhotonPageAction",
-      value: true
     });
   });
 }

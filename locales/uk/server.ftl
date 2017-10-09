@@ -20,6 +20,7 @@ gScreenshotsDescription = Знімки стали простішими. Робі
 footerLinkMozilla = Mozilla
 footerLinkTerms = Умови
 footerLinkPrivacy = Повідомлення про приватність
+footerLinkFaqs = ЧаП
 footerLinkDMCA = Повідомити про порушення прав
 footerLinkDiscourse = Залишити відгук
 footerLinkRemoveAllData = Видалити всі дані
@@ -49,6 +50,8 @@ homePageHowScreenshotsWorks = Як працює Firefox Screenshots
 homePageGetStartedTitle = Початок роботи
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Знайдіть нову піктограму знімків екрану в панелі інструментів. Натисніть на неї і з'явиться меню.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Оберіть піктограму Screenshots в меню дій для сторінки в панелі адреси і перед вами з'явиться меню Screenshots.
 homePageCaptureRegion = Захопити область
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Натисніть і потягніть, щоб вибрати область для знімку. Або просто наведіть і клацніть мишею — буде обрано область. Якщо знімок вам подобається, натисніть Зберегти, щоб отримати доступ до своїх знімків в мережі, або стрілку вниз для завантаження на комп'ютер.

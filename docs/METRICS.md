@@ -1,6 +1,6 @@
 ## Firefox Screenshots Metrics
 
-*Last Update: 2017-03-21*
+*Last Update: 2017-08-17*
 
 This document is a summary of the metrics Firefox Screenshots will record, how we're recording them, and what we're looking for in those metrics.  There are two main areas we'll look at:
 

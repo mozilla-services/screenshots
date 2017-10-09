@@ -19,7 +19,8 @@ gScreenshotsDescription = Скриншоты стали простыми. Дел
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Условия использования
-footerLinkPrivacy = Уведомление о приватности
+footerLinkPrivacy = Уведомление о конфиденциальности
+footerLinkFaqs = ЧаВО
 footerLinkDMCA = Сообщить о нарушении авторских прав
 footerLinkDiscourse = Оставить отзыв
 footerLinkRemoveAllData = Удалить все данные
@@ -43,18 +44,20 @@ homePageButtonMyShots = Перейти к моим снимкам
 homePageTeaser = Скоро…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Бесплатная загрузка
-homePageGetStarted = Начать
+homePageGetStarted = Начало
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Как работает Firefox Screenshots
-homePageGetStartedTitle = Начать
+homePageGetStartedTitle = Начало
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Найдите новый значок скриншотов на вашей панели инструментов. Выберите его, и меню скриншотов появится вверху окна вашего браузера.
-homePageCaptureRegion = Захватить область
+homePageGetStartedDescription = Найдите новый значок «Скриншоты» на вашей панели инструментов. Выберите его, и меню «Скриншоты» появится вверху окна вашего браузера.
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Щёлкните и перетащите, чтобы выбрать область, которую вы хотите захватить. Или просто наведите мышью и щёлкните — Скриншоты выберут область сами. Нравится, что вы видите? Выберите «Сохранить», чтобы получить возможность опубликовать ваш скриншот онлайн или щёлкните по кнопке со стрелкой вниз, чтобы загрузить снимок на ваш компьютер.
-homePageCapturePage = Захватить страницу
+homePageGetStartedDescriptionPageAction = Выберите значок «Скриншоты» в меню действий на странице в адресной строке и меню «Скриншоты» появится вверху окна вашего браузера.
+homePageCaptureRegion = Захватите область
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Щёлкните и перетащите, чтобы выбрать область, которую вы хотите захватить. Или просто наведите мышью и щёлкните — Скриншоты выберут область сами. Нравится, что вы видите? Выберите «Сохранить», чтобы получить возможность опубликовать ваш скриншот онлайн, или щёлкните по кнопке со стрелкой вниз, чтобы загрузить снимок на ваш компьютер.
+homePageCapturePage = Захватите страницу
 homePageCapturePageDescription = С помощью кнопок в верхнем правом углу вы можете захватить страницу целиком. Кнопка «Сохранить видимое» захватит видимое содержимое страницы, которое доступно без прокручивания, а «Сохранить всю страницу» захватит всю страницу целиком.
-homePageSaveShare = Сохранить и поделиться
+homePageSaveShare = Сохраните и поделитесь
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Когда вы делаете снимок, Firefox публикует ваш скриншот в вашу онлайн библиотеку скриншотов и копирует ссылку в ваш буфер обмена. Мы автоматически храним ваши скриншоты две недели, но вы можете удалить снимки в любое время или изменить дату окончания хранения, чтобы хранить их в вашей библиотеке дольше.
 homePageLegalLink = Юридическая информация
@@ -198,7 +201,7 @@ shotIndexPageSearchPlaceholder
 shotIndexPageSearchButton
     .title = Поиск
 shotIndexPageNoShotsMessage = Нет сохранённых снимков.
-shotIndexPageNoShotsInvitation = Давайте, сохраните несколько.
+shotIndexPageNoShotsInvitation = Давайте, сделайте несколько штук.
 shotIndexPageLookingForShots = Ищем ваши снимки...
 shotIndexPageNoSearchResultsIntro = Хмм
 shotIndexPageNoSearchResults = Мы не можем найти каких-либо снимков по вашему поисковому запросу.

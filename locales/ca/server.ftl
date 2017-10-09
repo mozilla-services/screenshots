@@ -20,6 +20,7 @@ gScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures
 footerLinkMozilla = Mozilla
 footerLinkTerms = Condicions d'ús
 footerLinkPrivacy = Avís de privadesa
+footerLinkFaqs = PMF
 footerLinkDMCA = Denuncieu una infracció de propietat intel·lectual
 footerLinkDiscourse = Doneu la vostra opinió
 footerLinkRemoveAllData = Elimina totes les dades
@@ -49,6 +50,8 @@ homePageHowScreenshotsWorks = Com funciona el Firefox Screenshots
 homePageGetStartedTitle = Primers passos
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Cerqueu la icona «Screenshots» a la barra d'eines. Seleccioneu-la i el menú del Firefox Screenshots apareixerà a la part superior de la finestra del navegador.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Seleccioneu la icona de l'Screenshots del menú d'accions de la pàgina a la barra d'adreces i apareixerà el menú de l'Screenshots al capdamunt de la finestra del navegador.
 homePageCaptureRegion = Captureu una àrea
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Feu clic i arrossegueu per seleccionar l'àrea que voleu capturar. O bé, passeu-hi el ratolí per sobre i feu clic: el Firefox Screenshots seleccionarà l'àrea automàticament. Us agrada? Trieu «Desa» per accedir a la captura de pantalla en línia o premeu el botó de fletxa cap avall per baixar-la a l'ordinador.

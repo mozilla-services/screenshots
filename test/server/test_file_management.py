@@ -4,6 +4,7 @@ import clientlib
 import time
 import atexit
 from sarge import Capture, run
+import pytest
 
 SERVER_URL = "http://localhost:10180"
 
@@ -22,6 +23,7 @@ def make_session():
     return session
 
 
+@pytest.mark.skip(reason="Too slow to run")
 def test_s3_upload():
     restart_server()
     session = make_session()
@@ -31,6 +33,7 @@ def test_s3_upload():
     assert read_file(page["clip_url"]) == get_url(page["clip_url"])
 
 
+@pytest.mark.skip(reason="Too slow to run")
 def test_s3_expire():
     restart_server()
     session = make_session()
@@ -46,6 +49,7 @@ def test_s3_expire():
     get_url(shot_url, expect=200)
 
 
+@pytest.mark.skip(reason="Too slow to run")
 def test_s3_delete():
     restart_server()
     session = make_session()
@@ -58,6 +62,7 @@ def test_s3_delete():
     assert read_file(page["clip_url"]) is None
 
 
+@pytest.mark.skip(reason="Too slow to run")
 def test_s3_delete_after_expire():
     restart_server(DEFAULT_EXPIRATION=1)
     session = make_session()
@@ -74,6 +79,7 @@ def test_s3_delete_after_expire():
     assert read_file(page["clip_url"]) is None
 
 
+@pytest.mark.skip(reason="Too slow to run")
 def test_s3_final_expire():
     restart_server(EXPIRED_RETENTION_TIME=1, CHECK_DELETED_INTERVAL="0.1")
     session = make_session()

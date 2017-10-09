@@ -1,0 +1,3 @@
+comment:
+  # Only create a PR comment if code coverage changes:
+  require_changes: yes

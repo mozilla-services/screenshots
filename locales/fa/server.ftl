@@ -20,6 +20,7 @@ gScreenshotsDescription = عکس گرفتن از صفحه آسان شده است
 footerLinkMozilla = موزیلا
 footerLinkTerms = شرایط استفاده
 footerLinkPrivacy = نکات حفظ حریم‌شخصی
+footerLinkFaqs = سوالات متداول
 footerLinkDMCA = گزارش تخلف IP
 footerLinkDiscourse = ارسال بازخورد
 footerLinkRemoveAllData = حذف همه‌ی داده‌ها
@@ -49,6 +50,8 @@ homePageHowScreenshotsWorks = Firefox Screenshots چگونه کار می‌کن�
 homePageGetStartedTitle = شروع کنید
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = شمایل جدید Screenshots را در نوار ابزار خود پیدا کنید. انتخابش کنید، سپس منوی Screenshots در بالای پنجره مرورگر شما نمایان خواهد شد.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = انتخاب شمایل برای تصویر از صفحه از بخش فهرست اقدامات در آدرس بار،‌ و فهرست تصاویر لحظه ای در بالای پنجره مرورگر ظاهر خواهد شد.
 homePageCaptureRegion = گرفتن عکس از یک ناحیه
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = ناحیه که می‌خواهید ثبت کنید را انتخاب کنید و بکشید. یا فقط به روی آن بروید و کلیک کنید — Screenshots برای شما محدوده مورد نظر را انتخاب‌ می‌کند. دقیقا همانند چیزی که می بینید؟ بر روی ذخیره کلیک کنید تا عکس‌های گرفته شده  به صورت آنلاین ذخیره شود یا برای ذخیره بر روی کامپیوتر بر روی دکمه فلش به سمت پایین کلیک کنید.

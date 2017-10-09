@@ -13,6 +13,7 @@
   &:hover {
     background-color: $light-hover;
   }
+
   &:active {
     background-color: $light-active;
   }
@@ -25,8 +26,19 @@
 
 #settings-header {
   margin: 40px auto 15px;
-  width: 960px;
   position: relative;
+
+  @include respond-to("small") {
+    width: 480px;
+  }
+
+  @include respond-to("medium") {
+    width: 720px;
+  }
+
+  @include respond-to("large") {
+    width: 960px;
+  }
 }
 
 .sub-header {
@@ -38,9 +50,21 @@
 }
 
 .preferences {
-  width: 960px;
+
+  @include respond-to("small") {
+    width: 480px;
+  }
+
+  @include respond-to("medium") {
+    width: 720px;
+  }
+
+  @include respond-to("large") {
+    width: 960px;
+  }
+
   margin: auto;
-  padding-top: 40px;
+  padding: 40px 20px 0 20px;
 
   .info-container {
     margin-left: 30px;
@@ -55,8 +79,8 @@
     height: 1px;
     border: 0;
     border-top: 1px solid #e5e5e5;
-    margin: 1em 0;
-    padding: 0; 
+    margin: auto;
+    padding: 0;
   }
 
   .account-info {
@@ -106,6 +130,7 @@
     &:hover {
       background-color: $light-hover;
     }
+
     &:active {
       background-color: $light-active;
     }

@@ -11,7 +11,7 @@ gMyShots = Moje fota wobrazowki
 gHomeLink = Startowa strona
 gNoShots
     .alt = Žane fota wobrazowki namakane
-gScreenshotsDescription = Fota wobrazowki jednorje činjene. Čińće, składujće a dźělće fota wobrazowki bjez toho, zo byšće Firefox wopušćił.
+gScreenshotsDescription = Fota wobrazowki lochko činjene. Čińće, składujće a dźělće fota wobrazowki bjez toho, zo byšće Firefox wopušćił.
 
 
 [[ Footer ]]
@@ -20,6 +20,7 @@ gScreenshotsDescription = Fota wobrazowki jednorje činjene. Čińće, składuj�
 footerLinkMozilla = Mozilla
 footerLinkTerms = Wuměnjenja
 footerLinkPrivacy = Zdźělenka priwatnosće
+footerLinkFaqs = Huste prašenja
 footerLinkDMCA = Zranjenje duchowneho swójstwa zdźělić
 footerLinkDiscourse = Waše měnjenje prajić
 footerLinkRemoveAllData = Wšě daty wotstronić
@@ -49,6 +50,8 @@ homePageHowScreenshotsWorks = Kak Firefox Screenshots funguje
 homePageGetStartedTitle = Prěnje kroki
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Symbol noweho Screenshots na swojej symbolowej lajsće namakaće.  Wubjerće jón a meni Screenshots so horjeka we woknje wašeho wobhladowaka zjewi.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Wubjerće symbol Screenshots z menija akcijow strony w adresowym polu, a meni Screenshots zjewi so horjeka we woknje wobhladowaka.
 homePageCaptureRegion = Wobłuk fotografować
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klikńće a ćehńće, zo byšće wobłuk wubrał, kotryž chceće natočić. Abo stajće prosće kursor nad tym a klikńće  - Screenshots budźe wobłuk za was wuběrać. Spodoba so wam, štož widźiće? Wubjerće „Składować“ za přistup na swoje foto wobrazowki online abo tłóčatko ze šipkom dele, zo byšće jo na swój ličak sćahnył.
@@ -123,7 +126,7 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Sćahnyć
 shotPageDownload = Sćahnyć
-shotPageScreenshotsDescription = Fota wobrazowki jednorje činjene. Čińće, składujće a dźělće fota wobrazowki bjez toho, zo byšće Firefox wopušćił.
+shotPageScreenshotsDescription = Fota wobrazowki lochko činjene. Čińće, składujće a dźělće fota wobrazowki bjez toho, zo byšće Firefox wopušćił.
 shotPageUpsellFirefox = Wobstarajće sej nětko Firefox
 shotPageDMCAMessage = Tute foto wobrazowki dla prawow awtorstwa třećich hižo k dispoziciji njeje.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)

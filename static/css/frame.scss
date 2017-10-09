@@ -232,6 +232,7 @@
   flex: 0 auto;
   margin: 20px auto;
   max-width: 90%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
 .link-button {
@@ -247,9 +248,6 @@
   display: none;
 }
 
-.trash,
-.flag,
-.share,
 .edit,
 .pen-button,
 .highlight-button {
@@ -260,31 +258,11 @@
   transition: background-image 150ms $bezier;
 }
 
-.trash {
-  background-image: url("../img/trash-dark.svg");
-
-  &:hover {
-    background-image: url("../img/trash-hover.svg");
-  }
-
-  &:active {
-    background-image: url("../img/trash-active.svg");
-  }
-}
-
-.edit {
-  background-image: url("../img/annotation-edit-dark.svg");
-
-  &:hover {
-    background-image: url("../img/annotation-edit-hover.svg");
-  }
-}
-
 .highlight-button {
-  background-image: url("../img/annotation-highlight-dark.svg");
+  background-image: url("../img/annotation-highlight.svg");
 
   &:hover {
-    background-image: url("../img/annotation-highlight-hover.svg");
+    background-color: $light-hover;
   }
 
   &:active,
@@ -294,40 +272,15 @@
 }
 
 .pen-button {
-  background-image: url("../img/annotation-pen-dark.svg");
+  background-image: url("../img/annotation-pen.svg");
 
   &:hover {
-    background-image: url("../img/annotation-pen-hover.svg");
+    background-color: $light-hover;
   }
 
   &:active,
   &.active {
     background-image: url("../img/annotation-pen-active.svg");
-  }
-}
-
-.share {
-  background-image: url("../img/share-dark.svg");
-
-  &:hover {
-    background-image: url("../img/share-hover.svg");
-  }
-
-  &:active,
-  &.active {
-    background-image: url("../img/share-active.svg");
-  }
-}
-
-.flag {
-  background-image: url("../img/flag-dark.svg");
-
-  &:hover {
-    background-image: url("../img/flag-hover.svg");
-  }
-
-  &:active {
-    background-image: url("../img/flag-active.svg");
   }
 }
 
@@ -357,9 +310,11 @@ body {
   top: 0;
   left: 0;
   height: $grid-unit * 5;
+  align-items: center;
+  background: #f9f9fa;
 
   .button {
-    margin-left: $grid-unit * 0.5;
+    margin: $grid-unit * 0.25;
   }
 
   .cancel,
@@ -368,8 +323,46 @@ body {
   }
 
   .cancel {
-    background-color: #ebebeb;
+    background-color: $light-default;
     border: 1px solid #9b9b9b;
+
+    &:hover {
+      background-color: $light-hover;
+    }
+
+    &:active {
+      background-color: $light-active;
+    }
+  }
+}
+
+.annotation-actions {
+  justify-content: center;
+  overflow: visible;
+  @include respond-to("small") {
+    background: none;
+    border-bottom: none;
+    border-top: none;
+  }
+}
+
+.annotation-tools {
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 2px 4px;
+  border-radius: $border-radius;
+
+  & .button:first-child{
+    margin-right: 0;
+  }
+}
+
+.annotation-alt-actions {
+  height: 72px;
+  @include respond-to("small") {
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -378,15 +371,21 @@ body {
   position: absolute;
   top: $grid-unit * 5;
   left: 0;
-  background-color: #000;
   height: calc(100% - 100px);
   width: 100%;
-  background-color: #fff;
+  background-color: #f9f9fa;
   text-align: center;
 }
 
 .canvas-container .editor {
   z-index: 2;
+
+  &.pen {
+    cursor: url("../img/cursor-pen.png"), auto;
+  }
+  &.highlighter {
+    cursor: url("../img/cursor-highlight.png"), auto;
+  }
 }
 
 .highlighter {

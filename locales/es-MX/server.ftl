@@ -20,6 +20,7 @@ gScreenshotsDescription = Capturas de pantalla simples. Tomar, guardar y compart
 footerLinkMozilla = Mozilla
 footerLinkTerms = Términos
 footerLinkPrivacy = Aviso de privacidad
+footerLinkFaqs = Preguntas frecuentes
 footerLinkDMCA = Reportar infracción de IP
 footerLinkDiscourse = Enviar comentario
 footerLinkRemoveAllData = Eliminar todos los datos
@@ -49,6 +50,8 @@ homePageHowScreenshotsWorks = Cómo trabaja Firefox Screenshots
 homePageGetStartedTitle = Comenzar
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Encuentra el nuevo ícono de Screenshots en tu barra de herramientas. Selecciónalo y el menú de Screenshots aparecerá en la parte superior de tu ventana de navegación.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Selecciona el ícono Screenshots en el menú de acciones de la página en la barra de direcciones y el menú Screenshots aparecerá en la parte superior de la ventana del navegador.
 homePageCaptureRegion = Captura una región
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Haz clic y arrastra para seleccionar el área que quieras capturar. O pasa el mouse por encima y haz clic - Screenshots lo hará por ti. ¿Te gusta? Selecciona Guardar para acceder a tus capturas en línea o pulsa la tecla de la flecha hacia abajo para descargarlo en tu equipo.

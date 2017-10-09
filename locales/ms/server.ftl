@@ -20,6 +20,7 @@ gScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skri
 footerLinkMozilla = Mozilla
 footerLinkTerms = Terma
 footerLinkPrivacy = Notis Privasi
+footerLinkFaqs = Soalan Lazim
 footerLinkDMCA = Lapor Pencerobohan IP
 footerLinkDiscourse = Beri maklum balas
 footerLinkRemoveAllData = Buang Semua Data
@@ -49,6 +50,8 @@ homePageHowScreenshotsWorks = Bagaimana Firefox Screenshots Berfungsi
 homePageGetStartedTitle = Mulakan
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Cari ikon baru Screenshots pada bar alatan anda. Pilih, dan menu Screenshots akan muncul pada bahagian atas tetingkap pelayar anda.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Pilih ikon Screenshots dalam menu tindakan halaman di dalam bar alamat, tetingkap menu Screenshots akan diserlahkan pada bahagian atas tetingkap pelayar.
 homePageCaptureRegion = Ambil gambar Lingkungan
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klik dan seret untuk memilih kawasan yang mahu ambil gambar. Atau hanya hela dan klik -  Screenshots akan pilihkan kawasan untuk anda. Suka dengan gambar itu? Pilih Simpan untuk mengakses skrinsyot dalam talian atau butang anak panah ke bawah untuk memuatturun ke komputer anda.
@@ -117,7 +120,7 @@ shotPageExpiredMessage = Syot ini sudah tamat tempoh.
 // Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Ini halaman asal yang diambil:
 shotPageDeleteButton
-    .title = Hapus syot ini
+    .title = Buang syot ini
 shotPageAbuseButton
     .title = Laporkan syot ini kerana penyalahgunaan, spam atau masalah lain
 shotPageDownloadShot
@@ -192,7 +195,7 @@ shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Kami tidak menemui syot yang sepadan dengan carian anda.
 shotIndexPageClearSearchButton
     .title = Padam carian
-shotIndexPageConfirmShotDelete = Hapus syot ini?
+shotIndexPageConfirmShotDelete = Buang syot ini?
 
 
 // all metrics strings are optional for translation
@@ -206,7 +209,7 @@ metricsPageTotalsQueryDescription = Tinjauan Screenshots
 metricsPageTotalsQueryDevices = Bilangan peranti didaftar
 metricsPageTotalsQueryActiveShots = Syot aktif
 metricsPageTotalsQueryExpiredShots = Luput (tapi boleh dikembalikan)
-metricsPageTotalsQueryExpiredDeletedShots = Luput (dan dihapuskan)
+metricsPageTotalsQueryExpiredDeletedShots = Luput (dan telah dibuang)
 metricsPageShotsQueryTitle = Syot mengikut Hari
 metricsPageShotsQueryDescription = Bilangan syot diambil setiap hari (sepanjang 30 hari lepas)
 metricsPageShotsQueryCount = Bilangan syot diambil

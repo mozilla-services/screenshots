@@ -2,7 +2,7 @@ const sendEvent = require("../../browser-send-event.js");
 const page = require("./page").page;
 const { AbstractShot } = require("../../../shared/shot");
 
-const TEN_SECONDS = 10 * 1000;
+const FIVE_SECONDS = 5 * 1000;
 
 let model;
 
@@ -27,17 +27,21 @@ exports.launch = function(m) {
     return;
   }
   if (window.wantsauth) {
-    if (window.wantsauth.getAuthData()) {
-      location.reload();
-    } else {
-      let authTimeout = setTimeout(() => {
-        location.pathname = "";
-      }, TEN_SECONDS);
-      window.wantsauth.addAuthDataListener((data) => {
-        clearTimeout(authTimeout);
-        location.reload();
-      });
+    if (window.wantsauth.getAuthData() && location.search.indexOf("reloaded") === -1) {
+      location.search = "reloaded";
+      return;
     }
+    let authTimeout = setTimeout(() => {
+      // eslint-disable-next-line no-global-assign, no-native-reassign
+      location = location.origin + "/#tour";
+    }, FIVE_SECONDS);
+    window.wantsauth.addAuthDataListener((data) => {
+      if (location.search.indexOf("reloaded") > -1) {
+        return;
+      }
+      clearTimeout(authTimeout);
+      location.search = "reloaded";
+    });
   }
 };
 
@@ -68,6 +72,7 @@ exports.deleteShot = function(shot) {
       errorMessage = errorMessage.replace('{status}', req.status);
       errorMessage = errorMessage.replace('{statusText}', req.statusText);
       window.alert(errorMessage);
+      window.Raven.captureException(new Error(`Error calling /api/delete-shot: ${req.status} ${req.statusText}`));
     } else {
       refreshModel();
     }

@@ -1,6 +1,6 @@
 const config = require("./config").getProperties();
 
-exports.cacheTime = 60 * 60 * 24 * 1; // 1 day
+exports.cacheTime = 60 * 60 * 24 * 30; // 30 days
 
 if (!config.setCache) {
   exports.cacheTime = 0;

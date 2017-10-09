@@ -1,4 +1,4 @@
-/* globals selectorLoader, analytics, communication, catcher, log, makeUuid, auth, senderror, startBackground */
+/* globals selectorLoader, analytics, communication, catcher, log, makeUuid, auth, senderror, startBackground, blobConverters */
 
 "use strict";
 
@@ -18,16 +18,10 @@ this.main = (function() {
     if (!hasSeenOnboarding) {
       setIconActive(false, null);
       // Note that the branded name 'Firefox Screenshots' is not localized:
-      if (!startBackground.usePhotonPageAction) {
-        browser.browserAction.setTitle({
-          title: "Firefox Screenshots"
-        });
-      } else {
-        startBackground.photonPageActionPort.postMessage({
-          type: "setProperties",
-          title: "Firefox Screenshots"
-        });
-      }
+      startBackground.photonPageActionPort.postMessage({
+        type: "setProperties",
+        title: "Firefox Screenshots"
+      });
     }
   }).catch((error) => {
     log.error("Error getting hasSeenOnboarding:", error);
@@ -62,21 +56,10 @@ this.main = (function() {
     if ((!hasSeenOnboarding) && !active) {
       path = "icons/icon-starred-32-v2.svg";
     }
-    if (!startBackground.usePhotonPageAction) {
-      browser.browserAction.setIcon({path, tabId}).catch((error) => {
-        // FIXME: use errorCode
-        if (error.message && /Invalid tab ID/.test(error.message)) {
-          // This is a normal exception that we can ignore
-        } else {
-          catcher.unhandled(error);
-        }
-      });
-    } else {
-      startBackground.photonPageActionPort.postMessage({
-        type: "setProperties",
-        iconPath: path
-      });
-    }
+    startBackground.photonPageActionPort.postMessage({
+      type: "setProperties",
+      iconPath: path
+    });
   }
 
   function toggleSelector(tab) {
@@ -111,8 +94,7 @@ this.main = (function() {
     return /^about:(?:newtab|blank|home)/i.test(url) || /^resource:\/\/activity-streams\//i.test(url);
   }
 
-  // This is called by startBackground.js, directly in response to browser.browserAction.onClicked
-  // and clicks on the Photon page action
+  // This is called by startBackground.js, directly in response to clicks on the Photon page action
   exports.onClicked = catcher.watchFunction((tab) => {
     if (tab.incognito) {
       senderror.showError({
@@ -241,9 +223,7 @@ this.main = (function() {
   communication.register("downloadShot", (sender, info) => {
     // 'data:' urls don't work directly, let's use a Blob
     // see http://stackoverflow.com/questions/40269862/save-data-uri-as-file-using-downloads-download-api
-    const binary = atob(info.url.split(',')[1]); // just the base64 data
-    const data = Uint8Array.from(binary, char => char.charCodeAt(0))
-    const blob = new Blob([data], {type: "image/png"})
+    const blob = blobConverters.dataUrlToBlob(info.url);
     let url = URL.createObjectURL(blob);
     let downloadId;
     let onChangedCallback = catcher.watchFunction(function(change) {
@@ -289,16 +269,10 @@ this.main = (function() {
     hasSeenOnboarding = true;
     catcher.watchPromise(browser.storage.local.set({hasSeenOnboarding}));
     setIconActive(false, null);
-    if (!startBackground.usePhotonPageAction) {
-      browser.browserAction.setTitle({
-        title: browser.i18n.getMessage("contextMenuLabel")
-      });
-    } else {
-      startBackground.photonPageActionPort.postMessage({
-        type: "setProperties",
-        title: browser.i18n.getMessage("contextMenuLabel")
-      });
-    }
+    startBackground.photonPageActionPort.postMessage({
+      type: "setProperties",
+      title: browser.i18n.getMessage("contextMenuLabel")
+    });
   });
 
   communication.register("abortFrameset", () => {

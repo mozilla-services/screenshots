@@ -11,7 +11,7 @@ gMyShots = Görüntülerim
 gHomeLink = Ana Sayfa
 gNoShots
     .alt = Görüntü bulunamadı
-gScreenshotsDescription = Ekran görürüntüsü almayı basitleştirdik. Firefox’tan çıkmadan ekran görüntüleri alabilir, kaydedebilir ve paylaşabilirsiniz.
+gScreenshotsDescription = Ekran görüntüsü almayı basitleştirdik. Firefox’tan çıkmadan ekran görüntüleri alabilir, kaydedebilir ve paylaşabilirsiniz.
 
 
 [[ Footer ]]
@@ -20,6 +20,7 @@ gScreenshotsDescription = Ekran görürüntüsü almayı basitleştirdik. Firefo
 footerLinkMozilla = Mozilla
 footerLinkTerms = Koşullar
 footerLinkPrivacy = Gizlilik Bildirimi
+footerLinkFaqs = SSS
 footerLinkDMCA = Telif hakkı ihlali bildir
 footerLinkDiscourse = Görüş bildir
 footerLinkRemoveAllData = Tüm verileri sil
@@ -32,6 +33,7 @@ footerLinkRemoveAllData = Tüm verileri sil
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } oluşturuluyor
 creatingPageTitleDefault = sayfa
+creatingPageWaitMessage = Görüntünüz kaydediliyor…
 
 
 [[ Home page ]]
@@ -48,6 +50,8 @@ homePageHowScreenshotsWorks = Firefox Screenshots nasıl çalışıyor?
 homePageGetStartedTitle = Başlayın
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Araç çubuğunuzdaki yeni Screenshots simgesini bulun. Ona tıkladığınızda tarayıcı pencerenizin üzerinde Screenshots menüsü açılacak.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Adres çubuğundaki sayfa eylemleri menüsünden “Ekran görüntüsü al”a tıklayın. Tarayıcı pencerenizin üzerinde Screenshots menüsü belirecek.
 homePageCaptureRegion = Bir bölgeyi yakalama
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Tıklayıp sürükleyerek yakalamak istediğiniz bölgeyi seçin. İstediğiniz bölgenin üstüne fareyle gidip bir kez tıklarsanız Screenshots bölgeyi sizin için seçer. Seçimden memnunsanız “Kaydet” düğmesine tıklayarak ekrna görüntüsünü internete yükleyebilir veya ok düğmesine tıklayarak bilgisayarınıza indirebilirsiniz.
@@ -122,7 +126,7 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = İndir
 shotPageDownload = İndir
-shotPageScreenshotsDescription = Ekran görürüntüsü almayı basitleştirdik. Firefox’tan çıkmadan ekran görüntüleri alabilir, kaydedebilir ve paylaşabilirsiniz.
+shotPageScreenshotsDescription = Ekran görüntüsü almayı basitleştirdik. Firefox’tan çıkmadan ekran görüntüleri alabilir, kaydedebilir ve paylaşabilirsiniz.
 shotPageUpsellFirefox = Firefox’u hemen indir
 shotPageDMCAMessage = Üçüncü bir şahsın telif hakkı iddiası nedeniyle bu görüntü artık kullanılamaz.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -188,18 +192,36 @@ shotIndexPageConfirmShotDelete = Bu görüntü silinsin mi?
 // Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Firefox Screenshots Ölçümleri
 metricsPageTotalsQueryTitle = Toplam
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Screenshots’a bir bakış
 metricsPageTotalsQueryDevices = Toplam kayıtlı cihaz sayısı
 metricsPageTotalsQueryActiveShots = Aktif görüntü
 metricsPageTotalsQueryExpiredShots = Süresi dolmuş (ama kurtarılabilir)
 metricsPageTotalsQueryExpiredDeletedShots = Süresi dolmuş (ve silinmiş)
+metricsPageShotsQueryTitle = Günlük ekran görüntüleri
+metricsPageShotsQueryDescription = Her bir gün oluşturulan ekran görüntüsü sayısı (son 30 günde)
 metricsPageShotsQueryCount = Görüntü sayısı
 metricsPageShotsQueryDay = Gün
+metricsPageUsersQueryTitle = Günlük kullanıcı
+metricsPageUsersQueryDescription = En az bir görüntü oluşturan kullanıcı sayısı (son 30 günde)
 metricsPageUsersQueryCount = Kullanıcı sayısı
 metricsPageUsersQueryDay = Gün
+metricsPageUserShotsQueryTitle = Kullanıcı başına ekran görüntüsü sayısı
+metricsPageUserShotsQueryDescription = Toplam N ekran görüntüsüne sahip kullanıcı sayısı
 metricsPageUserShotsQueryCount = Kullanıcı sayısı
+metricsPageUserShotsQueryShots = Tahmini etkin (süresi dolmamış) ekran görüntüsü sayısı
+metricsPageRetentionQueryTitle = Haftalık bellek
+metricsPageRetentionQueryDescription = Haftaya göre gruplanmış olarak kullanıcının ilk ve son ekran görüntüsü alma tarihleri arasında geçen süre
 metricsPageRetentionQueryUsers = Kullanıcı sayısı
+metricsPageRetentionQueryDays = Kullanıcının ilk ve son ekran görüntüsü alma tarihleri arasında geçen gün
+metricsPageRetentionQueryFirstWeek = İlk ekran görüntüsü alındıktan bu yana geçen hafta sayısı
+metricsPageTotalRetentionQueryTitle = Toplam bellek
+metricsPageTotalRetentionQueryDescription = Haftaya göre gruplanmış olarak kullanıcıların ekran görüntüsü oluşturma süresinin uzunluğu
 metricsPageTotalRetentionQueryUsers = Kullanıcı sayısı
+metricsPageTotalRetentionQueryDays = Kullanıcının ekran görüntüsü oluşturma gün sayısı
 metricsPageVersionQueryTitle = Eklenti sürümü
+metricsPageVersionQueryDescription = Son 14 günde giriş sırasında kullanılan eklenti sürümü
+metricsPageVersionQueryUsers = Giriş yapan kullanıcı sayısı
 metricsPageVersionQueryVersion = Eklenti sürümü
 metricsPageVersionQueryLastSeen = Gün
 metricsPageHeader = Ölçümler

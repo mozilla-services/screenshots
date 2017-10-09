@@ -17,9 +17,10 @@ gScreenshotsDescription = Skjermbilete gjort enkelt. Ta, lagre og del skjermbild
 [[ Footer ]]
 
 // Note: link text for a link to mozilla.org
-footerLinkMozilla = 
+footerLinkMozilla = Mozilla
 footerLinkTerms = Vilkår
 footerLinkPrivacy = Personvernmerknad
+footerLinkFaqs = FAQ
 footerLinkDMCA = Rapporter brot på åndsverklova
 footerLinkDiscourse = Gje tilbakemelding
 footerLinkRemoveAllData = Slett alle data
@@ -49,6 +50,8 @@ homePageHowScreenshotsWorks = Slik fungerer Firefox Screenshots
 homePageGetStartedTitle = Kom i gang
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Finn det nye Screenshots-ikonet på verktøylinja. Vel det, og Screenshots-menyen blir vist øvst i nettlesarvindauget.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Vel ikonet «Ta eit skjermbilde» frå menyen Sidehandlingar for sida i adresselinja og skjermbilde-menyen vil visast utanpå nettlesarvindauget ditt.
 homePageCaptureRegion = Knips eit områdde
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klikk og dra for å velje området du vil ta skjermbilde av. Eller berre hald musa over og klikk — Screenshots vil velje området for deg. Likar du det du ser? Vel Lagre for å få tilgang til dei knipsa bilda dine på nettet eller pil ned-knappen for å laste dei ned til datamaskina di.

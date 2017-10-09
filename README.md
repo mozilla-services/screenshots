@@ -1,4 +1,4 @@
-## Firefox Screenshots
+## [Firefox Screenshots](https://screenshots.firefox.com/)
 
 [![CircleCI Build Status](https://circleci.com/gh/mozilla-services/screenshots.svg?style=shield)](https://circleci.com/gh/mozilla-services/screenshots)
 
@@ -41,11 +41,11 @@ We apologize but we have no story for development on Windows (though the add-on 
 
 ### Getting to know the code
 
-There is documentation in [addon/](https://github.com/mozilla-services/screenshots/blob/master/addon/), [addon/webextension/](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/), [addon/webextension/background/](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/background/), and [addon/webextension/selector/](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/selector) that talks about the code layout and architecture of the add-on.
+There is documentation in [`addon/`](https://github.com/mozilla-services/screenshots/blob/master/addon/), [`addon/webextension/`](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/), [`addon/webextension/background/`](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/background/), and [`addon/webextension/selector/`](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/selector) that talks about the code layout and architecture of the add-on.
 
-[server/view-docs.md](https://github.com/mozilla-services/screenshots/blob/master/server/views-docs.md) talks about how the server React pages are setup, along with the server-side rendering of pages.
+[`server/view-docs.md`](https://github.com/mozilla-services/screenshots/blob/master/server/views-docs.md) talks about how the server React pages are setup, along with the server-side rendering of pages.
 
-There is also documentation in [docs/](https://github.com/mozilla-services/screenshots/blob/master/docs/).
+There is also documentation in [`docs/`](https://github.com/mozilla-services/screenshots/blob/master/docs/).
 
 ### Participation
 

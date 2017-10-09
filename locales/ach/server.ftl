@@ -14,6 +14,8 @@ gHomeLink = Gang
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Cik
+footerLinkPrivacy = Ngec me mung
 footerLinkDiscourse = Mi Adwogi
 
 
@@ -26,18 +28,23 @@ creatingPageTitleDefault = potbuk
 
 homePageTeaser = Cok Bino
 homePageDownloadFirefoxTitle = Firefox
+homePageDownloadFirefoxSubTitle = Gam me nono
 homePageGetStarted = Caki
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kit ma Firefox Screenshots Tiyo Kede
 homePageGetStartedTitle = Caki
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Nong cal Screenshots manyen i gitic mamegi. Yer, ka jami ayera me Screenshots bi nyute i wii dirica me layeny mamegi.
 homePageSaveShare = Gwokki ki Nywaki
+homePageLegalLink = Cik
 homePagePrivacyLink = Mung
 homePageTermsLink = Cik
+homePageCookiesLink = Angija
 
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Mok kwanyo akaunt
+leavePageRemoveAllData = Kwany Data weng
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Myero ibed ki Firefox Screenshots ma kiketo me kwanyo akaunt mamegi
 leavePageErrorGeneric = Bal otime
@@ -127,6 +134,7 @@ shotIndexPageSearchButton
     .title = Yeny
 shotIndexPageNoShotsInvitation = Mede, cwe mogo.
 shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Pe watwero nongo cal ma rwate ki yeny mamegi.
 shotIndexPageClearSearchButton
     .title = Jwa yeny
 

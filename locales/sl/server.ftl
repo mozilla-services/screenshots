@@ -20,6 +20,7 @@ gScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in
 footerLinkMozilla = Mozilla
 footerLinkTerms = Pogoji
 footerLinkPrivacy = Obvestilo o zasebnosti
+footerLinkFaqs = Pogosta vprašanja
 footerLinkDMCA = Prijavi kršitev intelektualne lastnine
 footerLinkDiscourse = Sporočite nam svoje mnenje
 footerLinkRemoveAllData = Odstrani vse podatke
@@ -45,10 +46,12 @@ homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Brezplačen prenos
 homePageGetStarted = Začnite
 // Note: do not translate 'Firefox Screenshots' when translating this string
-homePageHowScreenshotsWorks = Kako deluje Firefox Screenshots
+homePageHowScreenshotsWorks = Kako Firefox Screenshots deluje
 homePageGetStartedTitle = Začnite
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Poiščite ikono Screenshots v svoji orodni vrstici. Izberite jo in na vrhu okna vašega brskalnika se bo pojavil meni Screenshots.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = V naslovni vrstici v meniju dejanj strani izberite ikono Screenshots in meni orodja se bo prikazal na vrhu okna brskalnika.
 homePageCaptureRegion = Zajemite območje
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Kliknite in povlecite, da izberete območje, ki ga želite zajeti, ali pa samo kliknite in Screenshots bo izbral območje za vas. Vam je všeč, kar vidite? Izberite Shrani za dostop do vašega posnetka na spletu ali puščico navzdol za prenos na računalnik.
@@ -56,7 +59,7 @@ homePageCapturePage = Zajemite stran
 homePageCapturePageDescription = Za zajem celotnih strani uporabite gumbe zgoraj desno. Gumb Shrani vidno bo zajel območje, ki je vidno brez drsenja, gumb Shrani celotno stran pa celotno vsebino strani.
 homePageSaveShare = Shranite in delite
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Ko zajamete posnetek, ga Firefox objavi v spletni knjižnici Screenshots in kopira povezavo v odložišče. Vaše posnetke samodejno shranjujemo dva tedna, lahko pa jih kadarkoli izbrišete sami ali spremenite datum poteka, če jih želite ohraniti v knjižnici dlje časa.
+homePageSaveShareDescription = Ko zajamete posnetek, ga Firefox objavi v spletni knjižnici Screenshots in kopira povezavo v odložišče. Vaše posnetke samodejno hranimo dva tedna, lahko pa jih kadarkoli izbrišete sami ali spremenite datum poteka, če jih želite ohraniti v knjižnici dlje časa.
 homePageLegalLink = Pravno obvestilo
 homePagePrivacyLink = Zasebnost
 homePageTermsLink = Pogoji

@@ -20,6 +20,7 @@ gScreenshotsDescription = Ekrankopioj, simple faritaj. Kopii, konservi kaj divid
 footerLinkMozilla = Mozilla
 footerLinkTerms = Kondiĉoj
 footerLinkPrivacy = Rimarko pri privateco
+footerLinkFaqs = Oftaj demandoj
 footerLinkDMCA = Raporti malobservon de IP
 footerLinkDiscourse = Sendi komentojn
 footerLinkRemoveAllData = Forigi ĉiujn datumojn
@@ -48,7 +49,9 @@ homePageGetStarted = Unuaj paŝoj
 homePageHowScreenshotsWorks = Kiel funkcias Firefox Screenshots
 homePageGetStartedTitle = Unua paŝoj
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Trovu la novan emblemon de ekrankopioj en via ilaro. Elektu ĝin, kaj la ekrankopia menuo aperos ĉe la supra parto de via retumila fenestro.
+homePageGetStartedDescription = Trovu la novan emblemon de Firefox Screenshots en via ilaro. Elektu ĝin, kaj ĝia menuo aperos ĉe la supra parto de via retumila fenestro.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Elektu la emblemon de Firefox Screenshots en la menuo «Retaĝaj agoj» en la adresa strio, kaj la menuo aperos sur la fenestro de via retumilo.
 homePageCaptureRegion = Kapti areon
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Alklaku kaŭ trenu por elekti la areon, kion vi volas kapti. Aŭ simple ŝvebu kaj alklaku — La ekrankopia ilo elektos la areon por vi. Ĉu vi ŝatas kion vi vidas? Elektu 'Konservi' por rete aliri vian ekrankopion aŭ la butonon kun la sageto malsupre por elŝuti al via komputilo.

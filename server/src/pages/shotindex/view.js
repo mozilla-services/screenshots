@@ -6,6 +6,7 @@ const React = require("react");
 const { ShareButton } = require("../../share-buttons");
 const Masonry = require("react-masonry-component");
 const { Localized } = require("fluent-react/compat");
+const { isValidClipImageUrl } = require("../../../shared/shot");
 
 class Head extends React.Component {
 
@@ -52,8 +53,10 @@ class Body extends React.Component {
       return this.renderShotsLoading();
     }
     let children = [];
-    for (let shot of this.props.shots) {
-      children.push(<Card shot={shot} downloadUrl={this.props.downloadUrls[shot.id]} abTests={this.props.abTests} clipUrl={shot.urlDisplay} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} key={shot.id} />);
+    if (this.props.shots && this.props.shots.length) {
+      for (let shot of this.props.shots) {
+        children.push(<Card shot={shot} downloadUrl={this.props.downloadUrls[shot.id]} abTests={this.props.abTests} clipUrl={shot.urlDisplay} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} key={shot.id} />);
+      }
     }
 
     if (children.length === 0) {
@@ -219,6 +222,7 @@ class Card extends React.Component {
   }
 
   render() {
+    const defaultImageUrl = this.props.staticLink("img/question-mark.svg");
     let shot = this.props.shot;
     let downloadUrl = this.props.downloadUrl;
     let imageUrl;
@@ -234,8 +238,14 @@ class Card extends React.Component {
     } else if (shot.fullScreenThumbnail) {
       imageUrl = shot.fullScreenThumbnail;
     } else {
+      imageUrl = defaultImageUrl;
+    }
+
+    // fallback to the question mark if the imageUrl is invalid
+    if (!isValidClipImageUrl(imageUrl)) {
       imageUrl = this.props.staticLink("img/question-mark.svg");
     }
+
     let favicon = null;
     if (shot.favicon) {
       // We use background-image so if the image is broken it just doesn't show:
@@ -246,7 +256,7 @@ class Card extends React.Component {
       <div className={`shot ${this.getClipType(clip._image.dimensions)} ${this.state.panelOpen} ${this.isDeleted()}`} key={shot.id}>
         <a href={shot.viewUrl} onClick={this.onOpen.bind(this, shot.viewUrl)}>
           <div className="shot-image-container" style={{
-            backgroundImage: `url(${imageUrl})`
+            backgroundImage: `url("${imageUrl}")`
           }}>
           </div>
           <div className="shot-info">

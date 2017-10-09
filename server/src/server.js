@@ -24,21 +24,20 @@ const {
   fetchProfileData,
   saveProfileData,
   disconnectDevice,
-  retrieveAccount
+  retrieveAccount,
+  isValidDeviceId
 } = require("./users");
 const dbschema = require("./dbschema");
 const express = require("express");
 const bodyParser = require('body-parser');
 const contentDisposition = require("content-disposition");
-const csrf = require("csurf");
+const { csrfProtection, csrfErrorResponse } = require("./middleware/csrf");
 const morgan = require("morgan");
 const linker = require("./linker");
 const { randomBytes } = require("./helpers");
 const errors = require("./errors");
 const buildTime = require("./build-time").string;
 const ua = require("universal-analytics");
-const urlParse = require("url").parse;
-const urlResolve = require("url").resolve;
 const http = require("http");
 const https = require("https");
 const gaActivation = require("./ga-activation");
@@ -52,19 +51,11 @@ const { errorResponse, simpleResponse, jsResponse } = require("./responses");
 const selfPackage = require("./package.json");
 const { b64EncodeJson, b64DecodeJson } = require("./b64");
 const { l10n } = require("./middleware/l10n");
-
-const PROXY_HEADER_WHITELIST = {
-  "content-type": true,
-  "content-encoding": true,
-  "content-length": true,
-  "last-modified": true,
-  "etag": true,
-  "date": true,
-  "accept-ranges": true,
-  "content-range": true,
-  "retry-after": true,
-  "via": true
-};
+const multer = require("multer");
+const storage = multer.memoryStorage();
+const upload = multer({storage});
+const { isValidClipImageUrl } = require("../shared/shot");
+const urlParse = require("url").parse;
 
 const COOKIE_EXPIRE_TIME = 30 * 24 * 60 * 60 * 1000; // 30 days
 
@@ -107,8 +98,6 @@ function initDatabase() {
 
 initDatabase();
 
-const csrfProtection = csrf({cookie: true});
-
 const app = express();
 
 app.set('trust proxy', true);
@@ -122,6 +111,7 @@ if (config.enableCoverage && istanbulMiddleware) {
 }
 
 const CONTENT_NAME = config.contentOrigin || '';
+const FXA_SERVER = config.fxa.profileServer && require("url").parse(config.fxa.profileServer).host;
 
 function addHSTS(req, res) {
   // Note: HSTS will only produce warning on a localhost self-signed cert
@@ -157,7 +147,7 @@ app.use((req, res, next) => {
       req.cspNonce = uuid;
       res.header(
         "Content-Security-Policy",
-        `default-src 'self'; img-src 'self' www.google-analytics.com ${CONTENT_NAME} data:; script-src 'self' www.google-analytics.com 'nonce-${uuid}'; style-src 'self' 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
+        `default-src 'self'; img-src 'self' ${FXA_SERVER} www.google-analytics.com ${CONTENT_NAME} data:; script-src 'self' www.google-analytics.com 'nonce-${uuid}'; style-src 'self' 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
       res.header("X-Frame-Options", "DENY");
       res.header("X-Content-Type-Options", "nosniff");
       addHSTS(req, res);
@@ -230,13 +220,16 @@ app.use(function(req, res, next) {
     req.accountId = authInfo.accountId;
   }
   req.cookies = cookies;
-  req.cookies._csrf = cookies.get("_csrf"); // csurf expects a property
   req.abTests = authInfo.abTests || {};
   const host = req.headers.host === config.contentOrigin ? config.contentOrigin : config.siteOrigin;
   req.backend = `${req.protocol}://${host}`;
   req.config = config;
   next();
 });
+
+// NOTE - the csrf middleware should come after the middleware that
+// assigns req.cookies.
+app.use(csrfProtection);
 
 function decodeAuthHeader(header) {
   /** Decode a string header in the format {deviceId}:{deviceIdSig};abtests={b64thing}:{sig} */
@@ -467,6 +460,18 @@ app.post("/api/register", function(req, res) {
     simpleResponse(res, "Bad request, no deviceId", 400);
     return;
   }
+  if (!isValidDeviceId(vars.deviceId)) {
+    mozlog.error("bad-api-register", {msg: "Bad register request", vars: JSON.stringify(vars, null, "  ")});
+    sendRavenMessage(req, "Attempted to register with invalid deviceId");
+    simpleResponse(res, "Bad request, invalid deviceId", 400);
+    return;
+  }
+  if (!vars.secret) {
+    mozlog.error("bad-api-register", {msg: "Bad register request", vars: JSON.stringify(vars, null, "  ")});
+    sendRavenMessage(req, "Attempted to register without secret");
+    simpleResponse(res, "Bad request, no secret", 400);
+    return;
+  }
   registerLogin(vars.deviceId, {
     secret: vars.secret,
     nickname: vars.nickname || null,
@@ -495,7 +500,7 @@ function sendAuthInfo(req, res, params) {
   if (deviceId.search(/^[a-zA-Z0-9_-]{1,255}$/) == -1) {
     let exc = new Error("Bad deviceId in login");
     exc.deviceId = deviceId;
-    captureRavenException(exc);
+    captureRavenException(exc, req);
     throw new Error("Bad deviceId");
   }
   let encodedAbTests = b64EncodeJson(userAbTests);
@@ -531,6 +536,12 @@ app.post("/api/login", function(req, res) {
     } else {
       throw e;
     }
+  }
+  if (!vars.secret) {
+    mozlog.error("bad-api-login", {msg: "Bad login request", vars: JSON.stringify(vars, null, "  ")});
+    sendRavenMessage(req, "Attempted to login without secret");
+    simpleResponse(res, "Bad request", 400);
+    return;
   }
   checkLogin(vars.deviceId, vars.secret, deviceInfo.addonVersion).then((userAbTests) => {
     if (userAbTests) {
@@ -576,7 +587,7 @@ app.post("/api/login", function(req, res) {
   });
 });
 
-app.put("/data/:id/:domain", function(req, res) {
+app.put("/data/:id/:domain", upload.single('blob'), function(req, res) {
   let slowResponse = config.testing.slowResponse;
   let failSometimes = config.testing.failSometimes;
   if (failSometimes && Math.floor(Math.random() * failSometimes)) {
@@ -585,7 +596,22 @@ app.put("/data/:id/:domain", function(req, res) {
     res.end();
     return;
   }
-  let bodyObj = req.body;
+  let bodyObj = [];
+  if (req.body.shot && req.file) {
+    bodyObj = JSON.parse(req.body.shot);
+    let clipId = Object.getOwnPropertyNames(bodyObj.clips)[0];
+    let b64 = req.file.buffer.toString("base64");
+    let contentType = req.file.mimetype;
+    if (contentType != "image/png" && contentType != "image/jpeg") {
+      // Force PNG as a fallback
+      mozlog.warn("invalid-upload-content-type", {contentType});
+      contentType = "image/png";
+    }
+    b64 = `data:${contentType};base64,${b64}`;
+    bodyObj.clips[clipId].image.url = b64;
+  } else if (req.body) {
+    bodyObj = req.body;
+  }
   if (typeof bodyObj != "object") {
     throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
   }
@@ -648,7 +674,7 @@ app.get("/data/:id/:domain", function(req, res) {
   });
 });
 
-app.post("/api/delete-shot", csrfProtection, function(req, res) {
+app.post("/api/delete-shot", function(req, res) {
   if (!req.deviceId) {
     sendRavenMessage(req, "Attempt to delete shot without login");
     simpleResponse(res, "Not logged in", 401);
@@ -666,7 +692,7 @@ app.post("/api/delete-shot", csrfProtection, function(req, res) {
   });
 });
 
-app.post("/api/disconnect-device", csrfProtection, function(req, res) {
+app.post("/api/disconnect-device", function(req, res) {
   if (!req.deviceId) {
     sendRavenMessage(req, "Attempt to disconnect without login");
     simpleResponse(res, "Not logged in", 401);
@@ -677,14 +703,15 @@ app.post("/api/disconnect-device", csrfProtection, function(req, res) {
     let cookies = new Cookies(req, res, {keys: keygrip});
     if (result) {
       cookies.set("accountid");
-      res.redirect('/settings');
+      cookies.set("accountid.sig");
+      simpleResponse(res, "ok", 200);
     }
   }).catch((err) => {
     errorResponse(res, "Error: could not disconnect", err);
   });
 });
 
-app.post("/api/set-title/:id/:domain", csrfProtection, function(req, res) {
+app.post("/api/set-title/:id/:domain", function(req, res) {
   let shotId = `${req.params.id}/${req.params.domain}`;
   let userTitle = req.body.title;
   if (userTitle === undefined) {
@@ -710,7 +737,7 @@ app.post("/api/set-title/:id/:domain", csrfProtection, function(req, res) {
   });
 });
 
-app.post("/api/save-edit", csrfProtection, function(req, res) {
+app.post("/api/save-edit", function(req, res) {
   let vars = req.body;
   if (!req.deviceId) {
     sendRavenMessage(req, "Attempt to edit shot without login");
@@ -719,6 +746,11 @@ app.post("/api/save-edit", csrfProtection, function(req, res) {
   }
   let id = vars.shotId;
   let url = vars.url;
+  if (!isValidClipImageUrl(url)) {
+    sendRavenMessage(req, "Attempt to edit shot to set invalid clip url.");
+    simpleResponse(res, "Invalid shot url.", 400);
+    return;
+  }
   Shot.get(req.backend, id, req.deviceId, req.accountId).then((shot) => {
     if (!shot) {
       sendRavenMessage(req, "Attempt to edit shot that does not exist");
@@ -735,7 +767,7 @@ app.post("/api/save-edit", csrfProtection, function(req, res) {
   })
 });
 
-app.post("/api/set-expiration", csrfProtection, function(req, res) {
+app.post("/api/set-expiration", function(req, res) {
   if (!req.deviceId) {
     sendRavenMessage(req, "Attempt to set expiration without login");
     simpleResponse(res, "Not logged in", 401);
@@ -776,8 +808,8 @@ app.get("/images/:imageid", function(req, res) {
       notFound(req, res);
     } else {
       let localReferrer = false;
-      if (req.headers["referer"]) {
-        localReferrer = req.headers["referer"].startsWith(req.backend);
+      if (req.headers.referer) {
+        localReferrer = req.headers.referer.startsWith(req.backend);
       }
       if (!localReferrer) {
         let hasher = require("crypto").createHash("sha1");
@@ -793,10 +825,19 @@ app.get("/images/:imageid", function(req, res) {
         }
         const view = embedded ? "direct-view-embedded" : "direct-view";
         const el = view + (obj.ownerId === req.deviceId ? "-owner" : "-non-owner");
+        let documentReferrer = null;
+        if (req.headers.referer) {
+          try {
+            let parsed = urlParse(req.headers.referer);
+            documentReferrer = `${parsed.protocol}//${parsed.host}`;
+          } catch (e) {
+            // We ignore any errors parsing this header
+          }
+        }
         analytics.pageview({
           dp: analyticsUrl,
           dh: req.backend,
-          documentReferrer: req.headers["referer"],
+          documentReferrer,
           ua: req.headers["user-agent"]
         }).event({
           ec: "web",
@@ -804,7 +845,11 @@ app.get("/images/:imageid", function(req, res) {
           el
         }).send();
       }
-      res.header("Content-Type", "image/png");
+      let contentType = obj.contentType;
+      if (contentType != "image/png" && contentType != "image/jpeg") {
+        contentType = "image/png";
+      }
+      res.header("Content-Type", contentType);
       if (download) {
         if (dbschema.getKeygrip().verify(new Buffer(download, 'utf8'), sig)) {
           res.header("Content-Disposition", contentDisposition(download));
@@ -1011,67 +1056,6 @@ app.use("/", require("./pages/shot/server").app);
 
 app.use("/", require("./pages/homepage/server").app);
 
-app.get("/proxy", function(req, res) {
-  let stringUrl = req.query.url;
-  let sig = req.query.sig;
-  let isValid = dbschema.getKeygrip().verify(new Buffer(stringUrl, 'utf8'), sig);
-  if (!isValid) {
-    sendRavenMessage(req, "Bad signature on proxy", {extra: {proxyUrl: url, sig}});
-    simpleResponse(res, "Bad signature", 403);
-    return;
-  }
-  let url = urlParse(stringUrl);
-  let httpModule = http;
-  if (url.protocol == "https:") {
-    httpModule = https;
-  }
-  let headers = {};
-  for (let passthrough of ["user-agent", "if-modified-since", "if-none-match"]) {
-    if (req.headers[passthrough]) {
-      headers[passthrough] = req.headers[passthrough];
-    }
-  }
-  let host = url.host.split(":")[0];
-  let subreq = httpModule.request({
-    protocol: url.protocol,
-    host,
-    port: url.port,
-    method: "GET",
-    path: url.path,
-    headers
-  });
-  subreq.on("response", function(subres) {
-    let headers = {};
-    for (let h in subres.headers) {
-      if (PROXY_HEADER_WHITELIST[h]) {
-        headers[h] = subres.headers[h];
-      }
-    }
-    if (subres.headers.location) {
-      let location = urlResolve(stringUrl, subres.headers.location);
-      headers.location = require("./proxy-url").createProxyUrl(req, location);
-    }
-    // Cache for 30 days
-    headers["cache-control"] = "public, max-age=2592000";
-    headers["expires"] = new Date(Date.now() + 2592000000).toUTCString();
-    res.writeHead(subres.statusCode, subres.statusMessage, headers);
-
-    subres.on("data", function(chunk) {
-      res.write(chunk);
-    });
-    subres.on("end", function() {
-      res.end();
-    });
-    subres.on("error", function(err) {
-      errorResponse(res, "Error getting response:", err);
-    });
-  });
-  subreq.on("error", function(err) {
-    errorResponse(res, "Error fetching:", err);
-  });
-  subreq.end();
-});
-
 let httpsCredentials;
 if (config.localhostSsl) {
   // To generate trusted keys on Mac, see: https://certsimple.com/blog/localhost-ssl-fix
@@ -1136,10 +1120,7 @@ app.use(function(err, req, res, next) {
     return;
   }
   if (err.code === "EBADCSRFTOKEN") {
-    mozlog.info("bad-csrf", {ip: req.ip, url: req.url});
-    res.status(403);
-    res.type("text");
-    res.send("Bad CSRF Token")
+    csrfErrorResponse(err, req, res);
     return;
   }
   errorResponse(res, "General error:", err);
