@@ -13,7 +13,7 @@ exports.init = function() {
   if (initPromise) {
     return initPromise;
   }
-  const localesGlob = path.join(__dirname, "..", "..", "locales") + path.normalize("/*/server.ftl");
+  const localesGlob = path.join(__dirname, "static", "locales", "*.js");
 
   initPromise = globby(localesGlob).then(paths => {
     if (!paths.length) {
@@ -23,11 +23,11 @@ exports.init = function() {
     }
     return Promise.all(paths.map(path => {
       return new Promise((resolve, reject) => {
-        // path is of the form "/path/to/screenshots/locales/en-US/server.ftl".
-        // To get the locale, get the next-to-last piece of the path.
-        let locale = path.split("/").slice(-2, -1);
+        // path is of the form "static/locales/en-US.js".
+        // To get the locale, get the filename without the extension.
+        let locale = path.split("/").slice(-1).toString().split(".")[0];
         if (!locale) {
-          let err = `Unable to parse locale from ftl path ${path}`;
+          let err = `Unable to parse locale from path ${path}`;
           mozlog.error("l10n-locale-parsing-error", {err});
           reject(err);
           return;
