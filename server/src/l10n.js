@@ -9,10 +9,16 @@ const rawStrings = {};
 const messagesContexts = {};
 
 let initPromise;
-exports.init = function() {
+exports.init = function(localeStringMap) {
   if (initPromise) {
     return initPromise;
   }
+
+  // this is mainly for passing in test data
+  if (localeStringMap) {
+    return useLocaleData(localeStringMap)
+  }
+
   const localesGlob = path.join(__dirname, "static", "locales", "*.js");
 
   initPromise = globby(localesGlob).then(paths => {
@@ -77,6 +83,14 @@ exports.getStrings = function(locales) {
   });
   return strings;
 };
+
+function useLocaleData(localeStringMap) {
+  Object.keys(localeStringMap).forEach(x => {
+    rawStrings[x] = localeStringMap[x];
+  });
+  initPromise = Promise.resolve();
+  return initPromise;
+}
 
 function getMessageContext(locale) {
   if (!messagesContexts[locale]) {
