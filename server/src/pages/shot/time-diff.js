@@ -14,7 +14,7 @@ exports.TimeDiff = class TimeDiff extends React.Component {
     } else {
       timeDiff = this.dateString(this.props.date);
     }
-    return <Localized id={timeDiff.l10nID} $number={timeDiff.diff}><span title={this.dateString(this.props.date)}></span></Localized>
+    return <Localized id={timeDiff.l10nID} $number={this.state.useLocalTime ? parseInt(timeDiff.diff, 10) : timeDiff.diff}><span title={this.dateString(this.props.date)}></span></Localized>
   }
 
   componentDidMount() {
