@@ -86,6 +86,12 @@ notFoundPageDescription = 페이지를 찿을수 없습니다.
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = 스크린샷: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = 만료일 저장 중 오류
+shotPageAlertErrorDeletingShot = 스크린샷 삭제 중 오류
+shotPageAlertErrorUpdatingTitle = 제목 저장 중 오류
+shotPageConfirmDelete = 이 스크린샷을 영구적으로 삭제하시겠습니까?
 shotPageShareButton
     .title = 공유
 shotPageCopy = 복사
@@ -98,12 +104,96 @@ shotPageSharePinterest
     .title = 핀터레스트에 공유
 shotPageShareEmail
     .title = 이메일로 공유
+shotPageShareLink = 이 스크린샷의 공유 링크:
+shotPagePrivacyMessage = 이 링크가 있는 사람은 이 스크린샷을 볼 수있습니다.
+shotPageCopyImageText
+    .label = 이미지 텍스트 복사
+shotPageConfirmDeletion = 이 스크린샷을 영구적으로 삭제하시겠습니까?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = 아무것도 하지 않으신다면, 이 스크린샷은 { $timediff } 내로 삭제됩니다.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = { $date }까지 복구
+shotPageExpiredMessage = 이 스크린샷은 만료되었습니다.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = 이 스크린샷의 원본 페이지: 
+shotPageDeleteButton
+    .title = 이 스크린샷 삭제
+shotPageAbuseButton
+    .title = 오용, 스팸 등의 이유로 이 스크린샷 신고
+shotPageDownloadShot
+    .title = 다운로드
+shotPageDownload = 다운로드
+shotPageScreenshotsDescription = 스크린샷을 간편하게. Firefox 내에서 찍고, 저장하고, 공유하세요.
+shotPageUpsellFirefox = Firefox 다운로드
+shotPageDMCAMessage = 저작권상의 문제로 이 스크린샷을 더 이상 표시할 수 없습니다.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = 자세한 사항은 { $dmca }으로 문의하시기 바랍니다.
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = 시간 선택
+shotPageKeepIndefinitely = 무기한
+shotPageKeepTenMinutes = 10분
+shotPageKeepOneHour = 1시간
+shotPageKeepOneDay = 1일
+shotPageKeepOneWeek = 1주
+shotPageKeepTwoWeeks = 2주
+shotPageKeepOneMonth = 1개월
+shotPageSaveExpiration = 저장
+shotPageCancelExpiration = 취소
+shotPageDoesNotExpire = 만료되지 않음
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = { $timediff }에 만료
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = { $timediff }에 만료됨
+timeDiffJustNow = 방금 전
+timeDiffMinutesAgo = { $number }분 전
+timeDiffHoursAgo = { $number }시간 전
+timeDiffDaysAgo = { $number }일 전
+timeDiffFutureSeconds = 몇 초 전
+timeDiffFutureMinutes = { $number }분 내
+timeDiffFutureHours = { $number }시간 내
+timeDiffFutureDays = { $number }일 내
 
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = 스크린샷 삭제 중 오류: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = 내 스크린샷: { $searchTerm }으로 검색
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = 페이지 렌더링 중 오류: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = 내 스크린샷 검색
+shotIndexPageSearchButton
+    .title = 검색
+shotIndexPageNoShotsMessage = 저장된 스크린샷이 없습니다.
+shotIndexPageNoShotsInvitation = 하나 만들어 보세요.
+shotIndexPageLookingForShots = 스크린샷 찾아보는 중..
+shotIndexPageNoSearchResultsIntro = 흐음
+shotIndexPageNoSearchResults = 검색하신 스크린샷을 찾지 못했습니다.
+shotIndexPageConfirmShotDelete = 이 스크린샷을 삭제하시겠어요?
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Firefox 스크린샷 통계
+metricsPageTotalsQueryTitle = 전체
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = 스크린샷 개요
+metricsPageTotalsQueryDevices = 등록된 모든 기기
+metricsPageTotalsQueryActiveShots = 활성화된 스크린샷
+metricsPageTotalsQueryExpiredShots = 만료됨 (복구 가능)
+metricsPageTotalsQueryExpiredDeletedShots = 만료됨 (복구 불가능)
+metricsPageShotsQueryTitle = 일별 스크린샷
+metricsPageShotsQueryDescription = 하루에 만들어진 스크린샷 수 (최근 30일 내)
+metricsPageShotsQueryCount = 스크린샷 수
+metricsPageShotsQueryDay = 일
+metricsPageUsersQueryTitle = 일별 사용자
+metricsPageUsersQueryCount = 사용자 수
+metricsPageUsersQueryDay = 일
+metricsPageUserShotsQueryTitle = 사용자 당 스크린샷 수
