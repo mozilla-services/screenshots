@@ -30,6 +30,10 @@
 
     > a {
       padding-right: $grid-unit;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
