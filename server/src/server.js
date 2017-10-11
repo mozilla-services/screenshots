@@ -44,7 +44,7 @@ const gaActivation = require("./ga-activation");
 const genUuid = require("nodify-uuid");
 const statsd = require("./statsd");
 const { notFound } = require("./pages/not-found/server");
-const { cacheTime, setCache } = require("./caching");
+const { cacheTime, setMonthlyCache, setDailyCache } = require("./caching");
 const { captureRavenException, sendRavenMessage,
         addRavenRequestHandler, addRavenErrorHandler } = require("./ravenclient");
 const { errorResponse, simpleResponse, jsResponse } = require("./responses");
@@ -307,7 +307,7 @@ app.get("/ga-activation-hashed.js", function(req, res) {
 
 function sendGaActivation(req, res, hashPage) {
   let promise;
-  setCache(res, {private: true});
+  setMonthlyCache(res, {private: true});
   if (req.deviceId) {
     promise = hashUserId(req.deviceId).then((uuid) => {
       return uuid.toString();
@@ -326,7 +326,7 @@ function sendGaActivation(req, res, hashPage) {
 const parentHelperJs = readFileSync(path.join(__dirname, "/static/js/parent-helper.js"), {encoding: "UTF-8"});
 
 app.get("/parent-helper.js", function(req, res) {
-  setCache(res);
+  setMonthlyCache(res);
   let postMessageOrigin = `${req.protocol}://${req.config.contentOrigin}`;
   let script = `${parentHelperJs}\nvar CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`
   jsResponse(res, script);
@@ -335,7 +335,7 @@ app.get("/parent-helper.js", function(req, res) {
 const ravenClientJs = readFileSync(require.resolve("raven-js/dist/raven.min"), {encoding: "UTF-8"});
 
 app.get("/install-raven.js", function(req, res) {
-  setCache(res);
+  setMonthlyCache(res);
   if (!req.config.sentryPublicDSN) {
     jsResponse(res, "");
     return;
@@ -855,6 +855,7 @@ app.get("/images/:imageid", function(req, res) {
           res.header("Content-Disposition", contentDisposition(download));
         }
       }
+      setDailyCache(res);
       res.status(200);
       res.send(obj.data);
     }
