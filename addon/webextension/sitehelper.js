@@ -57,8 +57,10 @@ this.sitehelper = (function() {
   document.addEventListener("request-login", catcher.watchFunction((event) => {
     let shotId = event.detail;
     catcher.watchPromise(callBackground("getAuthInfo", shotId || null).then((info) => {
-      sendBackupCookieRequest(info.authHeaders);
-      sendCustomEvent("login-successful", {deviceId: info.deviceId, isOwner: info.isOwner});
+      console.log("FIXME: put back sendBackupCookieRequest");
+      // sendBackupCookieRequest(info.authHeaders);
+      console.log("FIXME: set backupCookieRequest to true")
+      sendCustomEvent("login-successful", {deviceId: info.deviceId, isOwner: info.isOwner, backupCookieRequest: undefined});
     }));
   }));
 

@@ -1,3 +1,4 @@
+/* globals Raven */
 /** This allows for early communication with the add-on to ask for authentication information
     Including this script on a page indicates that the page would like to be authenticated
     (and that it isn't currently authenticated)
@@ -32,15 +33,40 @@ window.wantsauth = (function() {
 
   // These events are used to communicate with sitehelper.js:
   document.addEventListener("login-successful", (event) => {
-    let {deviceId, isOwner} = JSON.parse(event.detail);
+    let {deviceId, isOwner, backupCookieRequest} = JSON.parse(event.detail);
     savedAuthData = {
       deviceId,
-      isOwner
+      isOwner,
+      loginFailed: false
     };
-    for (let callback of authDataCallbacks) {
-      callback(savedAuthData);
+    let promise = Promise.resolve(true);
+    if (!backupCookieRequest) {
+      // The client may not support login with third party cookies turned off.
+      // We will do a request to confirm authentication really worked.
+      promise = checkLogin();
     }
+    promise.then((loginWorked) => {
+      if (!loginWorked) {
+        savedAuthData.loginFailed = true;
+      }
+      for (let callback of authDataCallbacks) {
+        callback(savedAuthData);
+      }
+    }).catch((e) => {
+      console.warn("Error checking login:", e);
+      savedAuthData.loginFailed = true;
+      if (typeof Raven !== "undefined") {
+        Raven.captureException(e);
+      }
+    });
   });
+
+  function checkLogin() {
+    return fetch('/api/set-login-cookie?check=1').then((resp) => {
+      // The server only returns 200 if the user is logged in
+      return resp.ok;
+    });
+  }
 
   document.addEventListener("addon-present", () => {
     document.dispatchEvent(new CustomEvent("request-login", {detail: maybeShotId}));

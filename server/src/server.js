@@ -600,6 +600,19 @@ app.post("/api/set-login-cookie", function(req, res) {
   });
 });
 
+/** This endpoint is used by the site to confirm if the cookie was set */
+app.get("/api/set-login-cookie", function(req, res) {
+  if (!('check' in req.query)) {
+    simpleResponse(res, "GET /api/set-login-cookie only supports ?check", 400);
+    return;
+  }
+  if (req.deviceId) {
+    simpleResponse(res, "Login OK", 200);
+  } else {
+    simpleResponse(res, "No credentials available", 401);
+  }
+});
+
 app.put("/data/:id/:domain", upload.single('blob'), function(req, res) {
   let slowResponse = config.testing.slowResponse;
   let failSometimes = config.testing.failSometimes;

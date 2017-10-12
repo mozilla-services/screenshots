@@ -418,6 +418,7 @@ class Body extends React.Component {
             </Localized>
           </div>
         </div>
+        { this.props.isOwner && this.props.loginFailed ? <LoginFailedWarning /> : null }
         { clips }
         { errorMessages }
         <Footer forUrl={ shot.viewUrl } {...this.props} />
@@ -652,6 +653,14 @@ class EditableTitle extends React.Component {
     }
   }
 
+}
+
+class LoginFailedWarning extends React.Component {
+  render() {
+    return <div style={{backgroundColor: "#f00", color: "#fff"}}>
+      THE LOGIN FAILED! PANIC!
+    </div>;
+  }
 }
 
 exports.BodyFactory = React.createFactory(Body);
