@@ -632,11 +632,16 @@ Shot.deleteEverythingForDevice = function(backend, deviceId) {
     }
   ).then(() => {
     return db.select(
-      `SELECT DISTINCT devices.id
-       FROM devices, devices AS devices2
+      `SELECT devices.id
+       FROM devices
        WHERE devices.id = $1
-             OR (devices.accountid = devices2.accountid
-                 AND devices2.id = $1)
+
+       UNION ALL
+
+       SELECT devices.id
+       FROM devices, devices AS devices2
+       WHERE devices.accountid = devices2.accountid
+                AND devices2.id = $1
       `,
       [deviceId]);
     }
