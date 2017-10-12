@@ -72,6 +72,7 @@ ALTER TABLE ONLY states
     ADD CONSTRAINT states_pkey PRIMARY KEY (state);
 CREATE INDEX data_deviceid_idx ON data USING btree (deviceid);
 CREATE INDEX devices_accountid_idx ON devices USING btree (accountid);
+CREATE INDEX images_shotid_idx ON images USING btree (shotid);
 CREATE INDEX searchable_text_idx ON data USING gin (searchable_text);
 CREATE INDEX states_deviceid_idx ON states USING btree (deviceid);
 ALTER TABLE ONLY data
