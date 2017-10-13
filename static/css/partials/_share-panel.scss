@@ -30,6 +30,10 @@
 
     > a {
       padding-right: $grid-unit;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
@@ -90,6 +94,12 @@
       background: $light-active;
       border-color: $light-border-active;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  #toggle-share {
+    display: none;
   }
 }
 

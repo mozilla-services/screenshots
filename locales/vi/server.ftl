@@ -7,6 +7,7 @@
 // Global phrases shared across pages, prefixed with 'g'
 [[ global ]]
 
+gMyShots = Các ảnh chụp của tôi
 gHomeLink = Trang chủ
 
 
@@ -48,6 +49,8 @@ notFoundPageDescription = Không tìm thấy trang.
 
 [[ Shot page ]]
 
+shotPageAlertErrorDeletingShot = Lỗi khi xóa ảnh chụp
+shotPageAlertErrorUpdatingTitle = Lỗi khi lưu tiêu đề
 shotPageConfirmDelete = Bạn có chắc chắn muốn xóa vĩnh viễn ảnh này?
 shotPageShareButton
     .title = Chia sẻ
@@ -61,10 +64,20 @@ shotPageSharePinterest
     .title = Chia sẻ trên Pinterest
 shotPageShareEmail
     .title = Chia sẻ liên kết bằng email
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = khôi phục đến { $date }
+shotPageExpiredMessage = Ảnh này đã quá hạn.
+shotPageDeleteButton
+    .title = Xóa ảnh này
 shotPageDownloadShot
     .title = Tải về
 shotPageDownload = Tải xuống
 shotPageUpsellFirefox = Tải ngay Firefox
+shotPageKeepFor = Ảnh chụp này được giữ lại trong bao lâu?
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Chọn thời gian
+shotPageKeepIndefinitely = Vô thời hạn
 shotPageKeepTenMinutes = 10 phút
 shotPageKeepOneHour = 1 giờ
 shotPageKeepOneDay = 1 ngày
@@ -73,6 +86,12 @@ shotPageKeepTwoWeeks = 2 tuần
 shotPageKeepOneMonth = 1 tháng
 shotPageSaveExpiration = lưu
 shotPageCancelExpiration = huỷ bỏ
+shotPageDoesNotExpire = Không có thời hạn
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = Hết hạn vào { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = Đã hết hạn vào { $timediff }
+timeDiffJustNow = Mới đây
 timeDiffDaysAgo = { $num ->
        *[other] hôm qua
     }

@@ -40,7 +40,7 @@ class Clip extends React.Component {
     if (!isValidClipImageUrl(clip.image.url)) {
       return null;
     }
-    let node = <img id="clipImage" style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%" }} ref={clipImage => this.clipImage = clipImage} src={ clip.image.url } alt={ clip.image.text } />;
+    let node = <img id="clipImage" style={{height: "auto", width: Math.floor(clip.image.dimensions.x) + "px", maxWidth: "100%" }} ref={clipImage => this.clipImage = clipImage} src={ clip.image.url } alt={ clip.image.text } />;
     return <div ref={clipContainer => this.clipContainer = clipContainer} className="clip-container">
       { this.copyTextContextMenu() }
       <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) } contextMenu="clip-image-context">

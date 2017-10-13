@@ -587,6 +587,19 @@ app.post("/api/login", function(req, res) {
   });
 });
 
+app.post("/api/set-login-cookie", function(req, res) {
+  if (!req.deviceId) {
+    sendRavenMessage(req, "Attempt to set login cookie without authentication");
+    simpleResponse(res, "Not logged in", 401);
+    return;
+  }
+  sendAuthInfo(req, res, {
+    deviceId: req.deviceId,
+    accountId: req.accountId,
+    userAbTests: req.abTests
+  });
+});
+
 app.put("/data/:id/:domain", upload.single('blob'), function(req, res) {
   let slowResponse = config.testing.slowResponse;
   let failSometimes = config.testing.failSometimes;
