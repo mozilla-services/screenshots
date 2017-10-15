@@ -20,6 +20,7 @@ gScreenshotsDescription = Skærmbilleder helt enkelt. Tag, gem og del skærmbill
 footerLinkMozilla = Mozilla
 footerLinkTerms = Betingelser
 footerLinkPrivacy = Privatlivspolitik
+footerLinkFaqs = Ofte stillede spørgsmål
 footerLinkDMCA = Indberet overtrædelse af ophavsrettigheder
 footerLinkDiscourse = Giv feedback
 footerLinkRemoveAllData = Fjern alle data
