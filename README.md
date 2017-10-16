@@ -18,7 +18,7 @@ You can find more information about Firefox Screenshots at the Mozilla Wiki page
 
 Install [Postgres](http://www.postgresql.org/).
 
-Install [Node.js](https://nodejs.org/). Version 6.x is required.
+Install [Node.js](https://nodejs.org/). Version 8.x is required.
 
 Clone the [repository](https://github.com/mozilla-services/screenshots/).
 
