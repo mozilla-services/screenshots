@@ -82,6 +82,14 @@ timeDiffDaysAgo = { $num ->
         [one] گزشتہ روز
        *[other] { $number }  د ن پہلے
     }
+timeDiffFutureHours = { $num ->
+        [one] ۱ گھنٹے میں
+       *[other] { $number }  گھنٹوں میں
+    }
+timeDiffFutureDays = { $num ->
+        [one] کل
+       *[other] { $number }  دنوں میں
+    }
 
 
 [[ Shotindex page ]]
@@ -97,6 +105,7 @@ shotIndexPageConfirmShotDelete = اس شاٹ کو حذف کریں؟
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageTotalsQueryTitle = کل
 metricsPageTotalsQueryActiveShots = متحرک شاٹس
 metricsPageShotsQueryDay = دن
 metricsPageUsersQueryDay = دن
