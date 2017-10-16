@@ -236,12 +236,16 @@ this.main = (function() {
       }
     });
     browser.downloads.onChanged.addListener(onChangedCallback)
-    return browser.downloads.download({
-      url,
-      filename: info.filename
-    }).then((id) => {
-      downloadId = id;
-    });
+    return browser.windows.getLastFocused().then(windowInfo => {
+      return windowInfo.incognito;
+    }).then((incognito) => {
+      return browser.downloads.download({
+        url,
+        incognito,
+        filename: info.filename
+      }).then((id) => {
+        downloadId = id;
+      });
   });
 
   communication.register("closeSelector", (sender) => {
