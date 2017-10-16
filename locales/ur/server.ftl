@@ -16,6 +16,8 @@ gScreenshotsDescription =
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = شرائط
+footerLinkPrivacy = رازداری کا نوٹس
 footerLinkRemoveAllData = تمام کوائف ہٹائیں
 
 
@@ -43,6 +45,7 @@ homePageCookiesLink = کوکیاں
 
 leavePageRemoveAllData = تمام کوائف ہٹائیں
 leavePageErrorGeneric = ایک غلطی ہوئی ہے:
+leavePageButtonProceed = آگے بڑھیں
 leavePageButtonCancel = منسوخ کریں
 
 
@@ -55,10 +58,12 @@ notFoundPageDescription = صفہہ نہیں ملا۔
 
 [[ Shot page ]]
 
+shotPageConfirmDelete = کیا آپ واقعی اس شا ٹ کو مکمل طور پر حذف کرنا چاہتے ہیں؟
 shotPageShareButton
     .title = شیئر
 shotPageCopy = نقل کریں
 shotPageCopied = نقل شدہ
+shotPagePrivacyMessage = جس کسی کہ پاس بھی یہ ربط موجود ہو وہ یہ شاٹ دیکھ سکتا ہے۔
 shotPageCopyImageText
     .label = نقش کا متن نقل کریں
 shotPageDeleteButton
@@ -94,9 +99,12 @@ timeDiffFutureDays = { $num ->
 
 [[ Shotindex page ]]
 
+shotIndexPageSearchPlaceholder
+    .placeholder = میری شاٹس تلاش کریں
 shotIndexPageSearchButton
     .title = تلاش
 shotIndexPageLookingForShots = اپنی شاٹٹس تلاش کر رہے ہیں…
+shotIndexPageNoSearchResultsIntro = ہمم
 shotIndexPageClearSearchButton
     .title = تلاش حزف کریں
 shotIndexPageConfirmShotDelete = اس شاٹ کو حذف کریں؟
@@ -108,5 +116,11 @@ shotIndexPageConfirmShotDelete = اس شاٹ کو حذف کریں؟
 metricsPageTotalsQueryTitle = کل
 metricsPageTotalsQueryActiveShots = متحرک شاٹس
 metricsPageShotsQueryDay = دن
+metricsPageUsersQueryCount = صارفین کی تعداد
 metricsPageUsersQueryDay = دن
+metricsPageUserShotsQueryTitle = فی صارف شاٹس کی تعداد
+metricsPageUserShotsQueryCount = صارفین کی تعداد
+metricsPageRetentionQueryUsers = صارفین کی تعداد
+metricsPageTotalRetentionQueryUsers = صارفین کی تعداد
+metricsPageVersionQueryUsers = لاگ ان شدہ صارفین کی تعداد
 metricsPageVersionQueryLastSeen = دن
