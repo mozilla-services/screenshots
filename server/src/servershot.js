@@ -621,31 +621,21 @@ Shot.deleteShot = function(backend, shotId, deviceId, accountId) {
 };
 
 Shot.deleteEverythingForDevice = function(backend, deviceId, accountId) {
-  let deviceIdsSelect, deviceIds = [];
+  let deviceIds;
 
-  if (accountId) {
-    deviceIdsSelect = db.select(
-      `SELECT devices.id
+  const getDeviceIds = () => {
+    if (accountId) {
+      return db.select(
+        `SELECT devices.id
        FROM devices
        WHERE devices.accountid = $1`,
-      [accountId]);
-  } else {
-    deviceIdsSelect = db.select(
-      `SELECT devices.id
-       FROM devices
-       WHERE devices.id = $1
-
-       UNION ALL
-
-       SELECT devices.id
-       FROM devices, devices AS devices2
-       WHERE devices.accountid = devices2.accountid
-                AND devices2.id = $1`,
-      [deviceId]);
-  }
+        [accountId]);
+    }
+    return Promise.resolve([{id: deviceId}]);
+  };
 
   const imageIdsSelect = (deviceIdRows) => {
-    deviceIdRows.forEach(row => deviceIds.push(row.id));
+    deviceIds = deviceIdRows.map(row => row.id);
     if (!deviceIds.length) {
       deviceIds = [deviceId];
     }
@@ -670,7 +660,7 @@ Shot.deleteEverythingForDevice = function(backend, deviceId, accountId) {
     );
   }
 
-  return deviceIdsSelect
+  return getDeviceIds()
     .then(imageIdsSelect)
     .then(deleteImageData)
     .then(deleteShotRecords);
