@@ -41,9 +41,9 @@ build() {
     exit 2
   fi
   echo -n "bundle... "
-  NODE_ENV=production browserify -o "$dest" \
-    -g [ envify --NODE_ENV production ] \
-    -g uglifyify \
+  NODE_ENV="${NODE_ENV:-production}" browserify -o "$dest" \
+    -g [ envify --NODE_ENV $NODE_ENV ] \
+    $( [[ -z $NO_UGLIFY ]] && printf %s '-g uglifyify' ) \
     -e "$@"
   if [[ -z "$NO_UGLIFY" ]] ; then
     echo -n "minimizing... "
