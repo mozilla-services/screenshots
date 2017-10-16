@@ -114,6 +114,42 @@ function promiseFinally(promise, finallyCallback) {
   });
 }
 
+/** Retry some promise-generating code several times.
+    promiseGenerator: Like () => {return somethingThatMakesAPromise();}
+    times: number of times to try
+    wait: milliseconds to wait between runs (default 1000ms)
+    catchExceptions: optional, a function that indicates if this exception should
+        be caught. Like (exc) => {return exc instanceof Error;}
+*/
+function retryPromise(promiseGenerator, times, wait, catchExceptions) {
+  if (wait === undefined) {
+    wait = 1000;
+  }
+  if (!catchExceptions) {
+    catchExceptions = exc => true;
+  }
+  let tried = 0;
+  function start() {
+    let promise = promiseGenerator();
+    tried++;
+    return promise.catch((exc) => {
+      if (tried <= times && catchExceptions(exc, tried)) {
+        return setTimeoutPromise(wait).then(() => {
+          return start();
+        });
+      }
+      throw exc;
+    });
+  }
+  return start();
+}
+
+function setTimeoutPromise(time) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, time);
+  });
+}
+
 /** This will start Screenshots, and return a promise that
     will be true if the onboarding slides are active, or false
     if not.  An error will be returned if it does not start
@@ -264,7 +300,12 @@ describe("Test Screenshots", function() {
       );
     }).then((saveButton) => {
       return expectCreatedShot(driver, () => {
-        saveButton.click();
+        return retryPromise(() => {
+          return saveButton.click();
+        }, 3, 1000, (exc, times) => {
+          console.log("Retry", times, "of saveButton.click() because of error:", exc);
+          return true;
+        });
       });
     }).then((shotUrl) => {
       assert(shotUrl.startsWith(backend), `Got url ${shotUrl} that doesn't start with ${backend}`);
