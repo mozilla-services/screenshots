@@ -14,18 +14,18 @@ app.get("/", function(req, res) {
   }
   let pageNumber = req.query.p || 1;
   let query = req.query.q || null;
-  let getShots = Promise.resolve(null);
+  let getShotsPage = Promise.resolve(Shot.emptyShotsPage);
   if (req.deviceId && req.query.withdata) {
-    getShots = Shot.getShotsForDevice(req.backend, req.deviceId, req.accountId, query, pageNumber);
+    getShotsPage = Shot.getShotsForDevice(req.backend, req.deviceId, req.accountId, query, pageNumber);
   }
-  getShots.then(_render)
+  getShotsPage.then(_render)
     .catch((err) => {
       res.type("txt").status(500).send(req.getText("shotIndexPageErrorRendering", {error: err}));
       mozlog.error("error-rendering", {msg: "Error rendering page", error: err, stack: err.stack});
     });
 
-  function _render(shots) {
-    req.shots = shots;
+  function _render(shotsPage) {
+    Object.assign(req, shotsPage);
     const page = require("./page").page;
     reactrender.render(req, res, page);
   }
