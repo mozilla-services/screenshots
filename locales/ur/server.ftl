@@ -18,6 +18,8 @@ gScreenshotsDescription =
 footerLinkMozilla = Mozilla
 footerLinkTerms = شرائط
 footerLinkPrivacy = رازداری کا نوٹس
+footerLinkFaqs = عمومی سوالات
+footerLinkDiscourse = رائے دیں
 footerLinkRemoveAllData = تمام کوائف ہٹائیں
 
 
@@ -63,6 +65,10 @@ shotPageShareButton
     .title = شیئر
 shotPageCopy = نقل کریں
 shotPageCopied = نقل شدہ
+shotPageShareFacebook
+    .title = Facebook پر شیئر کریں
+shotPageSharePinterest
+    .title = Pinterest پر شیئر کریں
 shotPagePrivacyMessage = جس کسی کہ پاس بھی یہ ربط موجود ہو وہ یہ شاٹ دیکھ سکتا ہے۔
 shotPageCopyImageText
     .label = نقش کا متن نقل کریں
