@@ -224,23 +224,14 @@ $very-light-grey: #ededed;
 
 .highlight-buttons {
   @include flex-container(row, center, center);
-  bottom: -55px;
-  position: absolute;
+  z-index: $overlay-z-index + 1;
+  position: fixed;
+  top: 10px;
   html[dir="rtl"] & {
     left: 5px;
   }
   html[dir="ltr"] & {
     right: 5px;
-  }
-  z-index: 6;
-
-  .bottom-selection & {
-    bottom: 5px;
-  }
-
-  .left-selection & {
-    right: auto;
-    left: 5px;
   }
 }
 
@@ -493,6 +484,26 @@ $very-light-grey: #ededed;
 
   .visible {
     background-image: url("MOZ_EXTENSION/icons/menu-visible.svg");
+  }
+
+  .cancel {
+    background-image: url("MOZ_EXTENSION/icons/cancel.svg");
+    background-size: 35px 35px;
+    background-position: center 8px;
+  }
+
+  .download {
+    background-image: url("MOZ_EXTENSION/icons/download.svg");
+    background-size: 35px 35px;
+    background-position: center 10px;
+  }
+
+  .save {
+    background-image: url("MOZ_EXTENSION/icons/cloud.svg");
+    background-size: 35px 35px;
+    background-position: center 10px;
+    background-color: #009ec0;
+    &:hover { background-color: #00819c; }
   }
 }
 

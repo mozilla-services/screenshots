@@ -504,6 +504,16 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       } else {
         this.download.style.display = "none";
       }
+      // Now that the button container has a spacer and some margins, it needs
+      // to be separately hidden when the callbacks are unset.
+      // TODO: Seems like either all callbacks are present, or none are.
+      // Would it be simpler to just display:none the whole button container,
+      // rather than individual buttons?
+      if (!callbacks) {
+        this.buttons.style.display = "none";
+      } else {
+        this.buttons.style.display = "";
+      }
       let bodyRect = getBodyRect();
       // Note, document.documentElement.scrollHeight is zero on some strange pages (such as the page created when you load an image):
       let docHeight = Math.max(document.documentElement.scrollHeight || 0, document.body.scrollHeight);
@@ -550,22 +560,14 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       this.bgRight.style.height = pos.bottom - pos.top + "px";
       this.bgRight.style.left = (pos.right - bodyRect.left) + "px";
       this.bgRight.style.width = "100%";
-
-      if (!(this.isElementInViewport(this.buttons))) {
-        this.cancel.style.position = this.download.style.position = this.save.style.position = "fixed";
-        this.cancel.style.left = (pos.left - bodyRect.left - 50) + "px";
-        this.download.style.left = ((pos.left - bodyRect.left - 100)) + "px";
-        this.save.style.left = ((pos.left - bodyRect.left) - 190) + "px";
-        this.cancel.style.top = this.download.style.top = this.save.style.top = (pos.top - bodyRect.top) + "px";
-      } else {
-        this.cancel.style.position = this.download.style.position = this.save.style.position = "initial";
-        this.cancel.style.top = this.download.style.top = this.save.style.top = 0;
-        this.cancel.style.left = this.download.style.left = this.save.style.left = 0;
-      }
+      // TODO: duplicated inside onScroll()
+      this.buttons.style.top = (document.documentElement.scrollTop || 0) + 5 + "px";
+      exports.Box.buttons = this.buttons;
     },
 
     remove() {
-      for (let name of ["el", "bgTop", "bgLeft", "bgRight", "bgBottom"]) {
+      window.removeEventListener("scroll", watchFunction(assertIsTrusted(this.onScroll)));
+      for (let name of ["el", "buttons", "bgTop", "bgLeft", "bgRight", "bgBottom"]) {
         if (name in this) {
           util.removeNode(this[name]);
           this[name] = null;
@@ -573,28 +575,22 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       }
     },
 
+    onScroll() {
+      if (!exports.Box.buttons) {
+        return;
+      }
+      // TODO: duplicated inside display()
+      exports.Box.buttons.style.top = (document.documentElement.scrollTop || 0) + 5 + "px";
+    },
+
     _createEl() {
       let boxEl = this.el;
       if (boxEl) {
         return;
       }
+      window.addEventListener("scroll", watchFunction(assertIsTrusted(this.onScroll)));
+      this._createButtons();
       boxEl = makeEl("div", "highlight");
-      let buttons = makeEl("div", "highlight-buttons");
-      let cancel = makeEl("button", "highlight-button-cancel");
-      cancel.title = browser.i18n.getMessage("cancelScreenshot");
-      buttons.appendChild(cancel);
-      let download = makeEl("button", "highlight-button-download");
-      download.title = browser.i18n.getMessage("downloadScreenshot");
-      buttons.appendChild(download);
-      let save = makeEl("button", "highlight-button-save");
-      save.textContent = browser.i18n.getMessage("saveScreenshotSelectedArea");
-      save.title = browser.i18n.getMessage("saveScreenshotSelectedArea");
-      buttons.appendChild(save);
-      this.buttons = buttons;
-      this.cancel = cancel;
-      this.download = download;
-      this.save = save;
-      boxEl.appendChild(buttons);
       for (let name of movements) {
         let elTarget = makeEl("div", "mover-target direction-" + name);
         let elMover = makeEl("div", "mover");
@@ -610,7 +606,32 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       this.bgBottom = makeEl("div", "bghighlight");
       iframe.document().body.appendChild(this.bgBottom);
       iframe.document().body.appendChild(boxEl);
+      iframe.document().body.appendChild(this.buttons);
       this.el = boxEl;
+    },
+
+    _createButtons() {
+      let buttons = makeEl("div", "highlight-buttons myshots-all-buttons-container");
+      let save = makeEl("button", "save");
+      // TODO figure out how to get the new 'saveScreenshotSelectedAreaToCloud' key to show up
+      save.textContent = browser.i18n.getMessage("saveScreenshotSelectedArea");
+      save.title = browser.i18n.getMessage("saveScreenshotSelectedArea");
+      buttons.appendChild(save);
+      let spacer = makeEl("div", "spacer");
+      spacer.style.top = 0;
+      buttons.appendChild(spacer);
+      let download = makeEl("button", "download");
+      download.title = browser.i18n.getMessage("downloadScreenshot");
+      download.textContent = browser.i18n.getMessage("downloadScreenshot");
+      buttons.appendChild(download);
+      let cancel = makeEl("button", "cancel");
+      cancel.title = browser.i18n.getMessage("cancelScreenshot");
+      cancel.textContent = browser.i18n.getMessage("cancelScreenshot");
+      buttons.appendChild(cancel);
+      this.buttons = buttons;
+      this.cancel = cancel;
+      this.download = download;
+      this.save = save;
     },
 
     draggerDirection(target) {
