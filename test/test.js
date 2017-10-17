@@ -114,6 +114,12 @@ function promiseFinally(promise, finallyCallback) {
   });
 }
 
+function setTimeoutPromise(time) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, time);
+  });
+}
+
 /** This will start Screenshots, and return a promise that
     will be true if the onboarding slides are active, or false
     if not.  An error will be returned if it does not start
@@ -245,6 +251,11 @@ describe("Test Screenshots", function() {
       return skipOnboarding(driver);
     }).then(() => {
       return focusIframe(driver, PRESELECTION_IFRAME_ID);
+    }).then(() => {
+      // This avoids a problem where the UI has been instantiated, and handlers
+      // added, but not everything is fully setup yet; by waiting we give it
+      // time to set everything up
+      return setTimeoutPromise(500);
     }).then(() => {
       return driver.wait(
         until.elementLocated(By.css(".visible"))
