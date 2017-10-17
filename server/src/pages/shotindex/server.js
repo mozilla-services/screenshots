@@ -12,10 +12,11 @@ app.get("/", function(req, res) {
     _render();
     return;
   }
+  let pageNumber = req.query.p || 1;
   let query = req.query.q || null;
   let getShots = Promise.resolve(null);
   if (req.deviceId && req.query.withdata) {
-    getShots = Shot.getShotsForDevice(req.backend, req.deviceId, req.accountId, query);
+    getShots = Shot.getShotsForDevice(req.backend, req.deviceId, req.accountId, query, pageNumber);
   }
   getShots.then(_render)
     .catch((err) => {

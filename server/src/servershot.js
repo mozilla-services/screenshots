@@ -475,7 +475,7 @@ Shot.checkOwnership = function(shotId, deviceId, accountId) {
   })
 };
 
-Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery) {
+Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pageNumber) {
   if (!deviceId) {
     throw new Error("Empty deviceId: " + deviceId);
   }
@@ -492,12 +492,14 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery) {
     let idNums = [];
     for (let i = 0; i < rows.length; i++) {
       ids.push(rows[i].id);
-      idNums.push("$" + (i + (searchQuery ? 3 : 1)));
+      idNums.push("$" + (i + (searchQuery ? 5 : 3)));
     }
     if (!ids.length) {
       // This happens if the id doesn't exist in the database
       return [];
     }
+    const SHOTS_PER_PAGE = 10;
+    let offset = (pageNumber - 1) * SHOTS_PER_PAGE;
     let sql;
     let args;
     if (searchQuery) {
@@ -511,9 +513,10 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery) {
                    OR url ILIKE $2
                    OR title ILIKE $2)
         ORDER BY rank DESC, data.created DESC
+        LIMIT $3 OFFSET $4
         `;
       let likeQuery = "%" + searchQuery.replace(/%/g, "%%") + "%";
-      args = [searchQuery, likeQuery].concat(ids);
+      args = [searchQuery, likeQuery, SHOTS_PER_PAGE, offset].concat(ids);
     } else {
       sql = `
       SELECT data.id, data.value, data.deviceid
@@ -522,8 +525,9 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery) {
             AND NOT data.deleted
             AND (expire_time IS NULL OR expire_time > NOW())
       ORDER BY data.created DESC
+      LIMIT $1 OFFSET $2
       `;
-      args = ids;
+      args = [SHOTS_PER_PAGE, offset].concat(ids);
     }
     return db.select(sql, args);
   }).then((rows) => {
