@@ -1,6 +1,7 @@
 const sendEvent = require("../../browser-send-event.js");
 const page = require("./page").page;
 const { AbstractShot } = require("../../../shared/shot");
+const queryString = require("query-string");
 
 const FIVE_SECONDS = 5 * 1000;
 
@@ -51,13 +52,36 @@ function render() {
 
 exports.onChangeSearch = function(query) {
   model.defaultSearch = query;
-  let url = `/shots?q=${encodeURIComponent(query)}`;
-  if (!query) {
-    url = "/shots";
-  }
-  window.history.pushState(null, "", url);
+  updateHistory({q: query})
   refreshModel();
 };
+
+exports.onChangePage = function(pageNumber) {
+  pageNumber = (pageNumber && parseInt(pageNumber)) || 1;
+  model.pageNumber = pageNumber;
+  updateHistory({p: pageNumber});
+  refreshModel();
+}
+
+function updateHistory(queryParam) {
+  let qs = queryString.parse(window.location.search)
+
+  Object.keys(queryParam).forEach(x => {
+    if (queryParam[x]) {
+      qs[x] = queryParam[x];
+    } else if (!queryParam[x] && qs[x]) {
+      delete qs[x];
+    }
+  });
+
+  let url = "/shots";
+  if (Object.keys(qs).length) {
+    let newQueryString = Object.keys(qs).map(x => `${x}=${qs[x]}`).join('&');
+    url = `/shots?${newQueryString}`;
+  }
+
+  window.history.pushState(null, "", url);
+}
 
 // FIXME: copied from shot/controller.js
 exports.deleteShot = function(shot) {
