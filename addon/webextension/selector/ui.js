@@ -91,6 +91,31 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     return result;
   }
 
+  function isDownloadOnly() {
+    return window.incognito;
+  }
+
+  function renderDownloadNotice() {
+    let notice = makeEl("div", "download-only");
+    notice.textContent = browser.i18n.getMessage("downloadOnlyNotice");
+    let questionMark = makeEl("span", "circle");
+    questionMark.textContent = "?";
+    notice.appendChild(questionMark);
+
+    let tooltip = makeEl("div", "download-only-details");
+    let details = makeEl("p");
+    details.textContent = browser.i18n.getMessage("downloadOnlyDetails");
+    let detailsList = makeEl("ul");
+    let detailsPrivate = makeEl("li");
+    detailsPrivate.textContent = browser.i18n.getMessage("downloadOnlyDetailsPrivate");
+
+    detailsList.appendChild(detailsPrivate);
+    details.appendChild(detailsList);
+    tooltip.appendChild(details);
+    notice.appendChild(tooltip);
+    return notice;
+  }
+
   function initializeIframe() {
     let el = document.createElement("iframe");
     el.src = browser.extension.getURL("blank.html");
@@ -264,8 +289,10 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
                      </div>
                      <div class="preview-instructions" data-l10n-id="screenshotInstructions"></div>
                      <div class="myshots-all-buttons-container">
-                       <button class="myshots-button myshots-link" tabindex="1" data-l10n-id="myShotsLink"></button>
-                       <div class="spacer"></div>
+                       ${isDownloadOnly() ? '' : `
+                         <button class="myshots-button myshots-link" tabindex="1" data-l10n-id="myShotsLink"></button>
+                         <div class="spacer"></div>
+                       `}
                        <button class="myshots-button visible" tabindex="2" data-l10n-id="saveScreenshotVisibleArea"></button>
                        <button class="myshots-button full-page" tabindex="3" data-l10n-id="saveScreenshotFullPage"></button>
                      </div>
@@ -280,8 +307,10 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
             this.document.documentElement.lang = browser.i18n.getMessage("@@ui_locale");
             const overlay = this.document.querySelector(".preview-overlay");
             localizeText(this.document);
-            overlay.querySelector(".myshots-button").addEventListener(
-              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onOpenMyShots)));
+            if (!(isDownloadOnly())) {
+              overlay.querySelector(".myshots-button").addEventListener(
+                "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onOpenMyShots)));
+            }
             overlay.querySelector(".visible").addEventListener(
               "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickVisible)));
             overlay.querySelector(".full-page").addEventListener(
@@ -362,8 +391,13 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
                   <div class="preview-image">
                     <div class="preview-buttons">
                       <button class="highlight-button-cancel"></button>
-                      <button class="highlight-button-download"></button>
-                      <button class="preview-button-save" data-l10n-id="saveScreenshotSelectedArea"></button>
+                      ${isDownloadOnly() ?
+                        `<button class="highlight-button-download download-only-button"
+                                 data-l10n-id="downloadScreenshot"></button>` :
+                        `<button class="highlight-button-download"></button>
+                         <button class="preview-button-save"
+                                 data-l10n-id="saveScreenshotSelectedArea"></button>`
+                      }
                     </div>
                   </div>
                 </div>
@@ -373,10 +407,14 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
             this.document.documentElement.lang = browser.i18n.getMessage("@@ui_locale");
             localizeText(this.document);
             const overlay = this.document.querySelector(".preview-overlay");
+            if (isDownloadOnly()) {
+              overlay.appendChild(renderDownloadNotice());
+            } else {
+              overlay.querySelector(".preview-button-save").addEventListener(
+                "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onSavePreview)));
+            }
             overlay.querySelector(".highlight-button-download").addEventListener(
               "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onDownloadPreview)));
-            overlay.querySelector(".preview-button-save").addEventListener(
-              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onSavePreview)));
             overlay.querySelector(".highlight-button-cancel").addEventListener(
               "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.cancel)));
             resolve();
@@ -479,7 +517,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       } else {
         this.cancel.style.display = "none";
       }
-      if (callbacks !== undefined && callbacks.save) {
+      if (callbacks !== undefined && callbacks.save && this.save) {
         // We use onclick here because we don't want addEventListener
         // to add multiple event handlers to the same button
         this.save.removeAttribute("disabled");
@@ -488,7 +526,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           callbacks.save(e);
         }));
         this.save.style.display = "";
-      } else {
+      } else if (this.save) {
         this.save.style.display = "none";
       }
       if (callbacks !== undefined && callbacks.download) {
@@ -551,21 +589,34 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       this.bgRight.style.left = (pos.right - bodyRect.left) + "px";
       this.bgRight.style.width = "100%";
 
+      if (this.downloadNotice) {
+        this.downloadNotice.style.bottom = (docHeight - pageYOffset - winBottom + 10) + "px";
+      }
+
       if (!(this.isElementInViewport(this.buttons))) {
-        this.cancel.style.position = this.download.style.position = this.save.style.position = "fixed";
+        this.cancel.style.position = this.download.style.position = "fixed";
         this.cancel.style.left = (pos.left - bodyRect.left - 50) + "px";
         this.download.style.left = ((pos.left - bodyRect.left - 100)) + "px";
-        this.save.style.left = ((pos.left - bodyRect.left) - 190) + "px";
-        this.cancel.style.top = this.download.style.top = this.save.style.top = (pos.top - bodyRect.top) + "px";
+        this.cancel.style.top = this.download.style.top = (pos.top - bodyRect.top) + "px";
+        if (this.save) {
+          this.save.style.position = "fixed";
+          this.save.style.left = ((pos.left - bodyRect.left) - 190) + "px";
+          this.save.style.top = (pos.top - bodyRect.top) + "px";
+        }
       } else {
-        this.cancel.style.position = this.download.style.position = this.save.style.position = "initial";
-        this.cancel.style.top = this.download.style.top = this.save.style.top = 0;
-        this.cancel.style.left = this.download.style.left = this.save.style.left = 0;
+        this.cancel.style.position = this.download.style.position = "initial";
+        this.cancel.style.top = this.download.style.top = 0;
+        this.cancel.style.left = this.download.style.left = 0;
+        if (this.save) {
+          this.save.style.position = "initial";
+          this.save.style.top = 0;
+          this.save.style.left = 0;
+        }
       }
     },
 
     remove() {
-      for (let name of ["el", "bgTop", "bgLeft", "bgRight", "bgBottom"]) {
+      for (let name of ["el", "bgTop", "bgLeft", "bgRight", "bgBottom", "downloadNotice"]) {
         if (name in this) {
           util.removeNode(this[name]);
           this[name] = null;
@@ -583,13 +634,23 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       let cancel = makeEl("button", "highlight-button-cancel");
       cancel.title = browser.i18n.getMessage("cancelScreenshot");
       buttons.appendChild(cancel);
-      let download = makeEl("button", "highlight-button-download");
-      download.title = browser.i18n.getMessage("downloadScreenshot");
+      let download;
+      let save;
+      if (isDownloadOnly()) {
+        download = makeEl("button", "highlight-button-download download-only-button");
+        download.title = browser.i18n.getMessage("downloadScreenshot");
+        download.textContent = browser.i18n.getMessage("downloadScreenshot");
+      } else {
+        download = makeEl("button", "highlight-button-download");
+        download.title = browser.i18n.getMessage("downloadScreenshot");
+        save = makeEl("button", "highlight-button-save");
+        save.textContent = browser.i18n.getMessage("saveScreenshotSelectedArea");
+        save.title = browser.i18n.getMessage("saveScreenshotSelectedArea");
+      }
       buttons.appendChild(download);
-      let save = makeEl("button", "highlight-button-save");
-      save.textContent = browser.i18n.getMessage("saveScreenshotSelectedArea");
-      save.title = browser.i18n.getMessage("saveScreenshotSelectedArea");
-      buttons.appendChild(save);
+      if (save) {
+        buttons.appendChild(save);
+      }
       this.buttons = buttons;
       this.cancel = cancel;
       this.download = download;
@@ -610,6 +671,10 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       this.bgBottom = makeEl("div", "bghighlight");
       iframe.document().body.appendChild(this.bgBottom);
       iframe.document().body.appendChild(boxEl);
+      if (isDownloadOnly()) {
+        this.downloadNotice = renderDownloadNotice();
+        iframe.document().body.appendChild(this.downloadNotice);
+      }
       this.el = boxEl;
     },
 
@@ -694,6 +759,9 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     hide() {
       if (this.el) {
         this.el.style.display = "none";
+      }
+      if (this.downloadNotice) {
+        this.downloadNotice.display = "none";
       }
     },
 

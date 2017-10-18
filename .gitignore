@@ -1,5 +1,7 @@
 /Profile
 .DS_Store
+*.swp
+*.swo
 screenshots.xpi
 *.pyc
 dist

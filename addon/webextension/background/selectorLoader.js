@@ -65,12 +65,12 @@ this.selectorLoader = (function() {
   let loadingTabs = new Set();
 
   exports.loadModules = function(tabId, hasSeenOnboarding) {
-    let promise;
     loadingTabs.add(tabId);
+    let promise = incognitoCheck(tabId);
     if (hasSeenOnboarding) {
-      promise = executeModules(tabId, standardScripts.concat(selectorScripts));
+      promise = promise.then(executeModules(tabId, standardScripts.concat(selectorScripts)));
     } else {
-      promise = executeModules(tabId, standardScripts.concat(onboardingScripts).concat(selectorScripts));
+      promise = promise.then(executeModules(tabId, standardScripts.concat(onboardingScripts).concat(selectorScripts)));
     }
     return promise.then((result) => {
       loadingTabs.delete(tabId);
@@ -80,6 +80,15 @@ this.selectorLoader = (function() {
       throw error;
     });
   };
+
+  function incognitoCheck(tabId) {
+    return browser.tabs.get(tabId).then(tab => {
+      return browser.tabs.executeScript(tabId, {
+        code: `window.incognito = ${tab.incognito};`,
+        runAt: "document_start"
+      });
+    });
+  }
 
   function executeModules(tabId, scripts) {
     let lastPromise = Promise.resolve(null);
