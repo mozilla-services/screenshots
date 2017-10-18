@@ -63,7 +63,13 @@ exports.onChangePage = function(pageNumber) {
   refreshModel();
 }
 
-function updateHistory(queryParam) {
+exports.getNewUrl = function(queryParam) {
+  let url = "/shots";
+
+  if (!queryParam) {
+    return url;
+  }
+
   let qs = queryString.parse(window.location.search)
 
   Object.keys(queryParam).forEach(x => {
@@ -74,12 +80,16 @@ function updateHistory(queryParam) {
     }
   });
 
-  let url = "/shots";
   if (Object.keys(qs).length) {
     let newQueryString = Object.keys(qs).map(x => `${x}=${qs[x]}`).join('&');
     url = `/shots?${newQueryString}`;
   }
 
+  return url;
+}
+
+function updateHistory(queryParam) {
+  let url = exports.getNewUrl(queryParam);
   window.history.pushState(null, "", url);
 }
 

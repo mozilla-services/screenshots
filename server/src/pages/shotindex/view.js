@@ -41,6 +41,7 @@ class Body extends React.Component {
           <div id="shot-index" className="flex-1">
             { this.renderShots() }
           </div>
+          { this.renderPageNavigation() }
           { this.renderErrorMessages() }
           <Footer forUrl="shots" {...this.props} />
         </div>
@@ -85,6 +86,33 @@ class Body extends React.Component {
         <div className="loader-inner" />
       </div>
     </div>;
+  }
+
+  renderPageNavigation() {
+    let totalPages = Math.ceil(this.props.totalShots / this.props.shotsPerPage);
+    let prevLink = () => {
+      if (this.props.pageNumber > 1) {
+        return (
+          <span><a href={ controller.getNewUrl({p: this.props.pageNumber - 1 })}>&lt;</a></span>
+        )
+      }
+      return <span>&lt;</span>;
+    }
+    let nextLink = () => {
+      if (this.props.pageNumber < totalPages) {
+        return (
+          <span><a href={ controller.getNewUrl({p: this.props.pageNumber + 1}) }>&gt;</a></span>
+        )
+      }
+      return <span>&gt;</span>;
+    };
+    return (
+      <div id="myShotsPageNavigation">
+        { prevLink() }
+        {this.props.pageNumber} / {totalPages}
+        { nextLink() }
+      </div>
+    );
   }
 
   renderErrorMessages() {
