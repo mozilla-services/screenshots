@@ -69,7 +69,7 @@ function buildQueryStringFromModel(searchKeys, model) {
   const queryParams = {};
 
   Object.keys(searchKeys).forEach(x => {
-    if (typeof model[searchKeys[x]] !== "undefined") {
+    if (typeof model[searchKeys[x]] !== "undefined" && model[searchKeys[x]] !== null) {
       queryParams[x] = model[searchKeys[x]];
     }
   })

@@ -92,22 +92,24 @@ class Body extends React.Component {
     let totalPages = Math.ceil(this.props.totalShots / this.props.shotsPerPage);
     let prevLink = () => {
       if (this.props.pageNumber > 1) {
+        let prevPageNumber = this.props.pageNumber - 1;
         return (
-          <span><a href={ controller.getNewUrl({p: this.props.pageNumber - 1 })}>&lt;</a></span>
+          <span><a href={ controller.getNewUrl({p: prevPageNumber})} title="next page" data-page-number={prevPageNumber}>&lt;</a></span>
         )
       }
       return <span>&lt;</span>;
     }
     let nextLink = () => {
       if (this.props.pageNumber < totalPages) {
+        let nextPageNumber = this.props.pageNumber - 0 + 1;
         return (
-          <span><a href={ controller.getNewUrl({p: this.props.pageNumber - 0 + 1}) }>&gt;</a></span>
+          <span><a href={ controller.getNewUrl({p: nextPageNumber}) } title="previous page" data-page-number={nextPageNumber}>&gt;</a></span>
         )
       }
       return <span>&gt;</span>;
     };
     return (
-      <div id="myShotsPageNavigation">
+      <div id="myShotsPageNavigation" hidden={!totalPages}>
         { prevLink() }
         {this.props.pageNumber} / {totalPages}
         { nextLink() }
