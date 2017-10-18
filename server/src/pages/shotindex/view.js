@@ -101,7 +101,7 @@ class Body extends React.Component {
     let nextLink = () => {
       if (this.props.pageNumber < totalPages) {
         return (
-          <span><a href={ controller.getNewUrl({p: this.props.pageNumber + 1}) }>&gt;</a></span>
+          <span><a href={ controller.getNewUrl({p: this.props.pageNumber - 0 + 1}) }>&gt;</a></span>
         )
       }
       return <span>&gt;</span>;
