@@ -114,36 +114,6 @@ function promiseFinally(promise, finallyCallback) {
   });
 }
 
-/** Retry some promise-generating code several times.
-    promiseGenerator: Like () => {return somethingThatMakesAPromise();}
-    times: number of times to try
-    wait: milliseconds to wait between runs (default 1000ms)
-    catchExceptions: optional, a function that indicates if this exception should
-        be caught. Like (exc) => {return exc instanceof Error;}
-*/
-function retryPromise(promiseGenerator, times, wait, catchExceptions) {
-  if (wait === undefined) {
-    wait = 1000;
-  }
-  if (!catchExceptions) {
-    catchExceptions = exc => true;
-  }
-  let tried = 0;
-  function start() {
-    let promise = promiseGenerator();
-    tried++;
-    return promise.catch((exc) => {
-      if (tried <= times && catchExceptions(exc, tried)) {
-        return setTimeoutPromise(wait).then(() => {
-          return start();
-        });
-      }
-      throw exc;
-    });
-  }
-  return start();
-}
-
 function setTimeoutPromise(time) {
   return new Promise((resolve, reject) => {
     setTimeout(resolve, time);
@@ -282,6 +252,11 @@ describe("Test Screenshots", function() {
     }).then(() => {
       return focusIframe(driver, PRESELECTION_IFRAME_ID);
     }).then(() => {
+      // This avoids a problem where the UI has been instantiated, and handlers
+      // added, but not everything is fully setup yet; by waiting we give it
+      // time to set everything up
+      return setTimeoutPromise(500);
+    }).then(() => {
       return driver.wait(
         until.elementLocated(By.css(".visible"))
       );
@@ -300,12 +275,7 @@ describe("Test Screenshots", function() {
       );
     }).then((saveButton) => {
       return expectCreatedShot(driver, () => {
-        return retryPromise(() => {
-          return saveButton.click();
-        }, 3, 1000, (exc, times) => {
-          console.log("Retry", times, "of saveButton.click() because of error:", exc);
-          return true;
-        });
+        saveButton.click();
       });
     }).then((shotUrl) => {
       assert(shotUrl.startsWith(backend), `Got url ${shotUrl} that doesn't start with ${backend}`);
