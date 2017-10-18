@@ -116,7 +116,7 @@ const FXA_SERVER = config.fxa.profileServer && require("url").parse(config.fxa.p
 function addHSTS(req, res) {
   // Note: HSTS will only produce warning on a localhost self-signed cert
   if (req.protocol === "https" && !config.localhostSsl) {
-    let time = 24 * 60 * 60 * 1000; // 24 hours
+    let time = 24 * 60 * 60; // 24 hours
     res.header(
       "Strict-Transport-Security",
       `max-age=${time}`);
