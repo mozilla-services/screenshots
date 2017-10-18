@@ -89,12 +89,20 @@ class Body extends React.Component {
   }
 
   renderPageNavigation() {
+    if (parseInt(this.props.totalShots) === 0) {
+      return null;
+    }
+
     let totalPages = Math.ceil(this.props.totalShots / this.props.shotsPerPage);
     let prevLink = () => {
       if (this.props.pageNumber > 1) {
         let prevPageNumber = this.props.pageNumber - 1;
         return (
-          <span><a href={ controller.getNewUrl({p: prevPageNumber})} title="next page" data-page-number={prevPageNumber}>&lt;</a></span>
+          <span>
+            <a href={ controller.getNewUrl({p: prevPageNumber})}
+              onClick={ this.onChangePage.bind(this, prevPageNumber) }
+              title="previous page">&lt;</a>
+          </span>
         )
       }
       return <span>&lt;</span>;
@@ -103,18 +111,27 @@ class Body extends React.Component {
       if (this.props.pageNumber < totalPages) {
         let nextPageNumber = this.props.pageNumber - 0 + 1;
         return (
-          <span><a href={ controller.getNewUrl({p: nextPageNumber}) } title="previous page" data-page-number={nextPageNumber}>&gt;</a></span>
+          <span>
+            <a href={ controller.getNewUrl({p: nextPageNumber}) }
+              onClick={ this.onChangePage.bind(this, nextPageNumber) }
+              title="next page">&gt;</a>
+          </span>
         )
       }
       return <span>&gt;</span>;
     };
     return (
-      <div id="myShotsPageNavigation" hidden={!totalPages}>
+      <div id="myShotsPageNavigation">
         { prevLink() }
         {this.props.pageNumber} / {totalPages}
         { nextLink() }
       </div>
     );
+  }
+
+  onChangePage(pageNumber, e) {
+    controller.onChangePage(pageNumber);
+    e.preventDefault();
   }
 
   renderErrorMessages() {
