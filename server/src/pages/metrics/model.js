@@ -118,7 +118,6 @@ const queries = {
       {title: "Days the user has been creating shots", name: "days_plus_1"}
     ]
   },
-  
 };
 
 function executeQuery(query) {
