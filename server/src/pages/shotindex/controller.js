@@ -79,7 +79,8 @@ function buildQueryStringFromModel(searchKeys, model) {
 
 exports.onChangeSearch = function(query) {
   model.defaultSearch = query;
-  updateHistory({q: query})
+  model.pageNumber = 1;
+  updateHistory({q: query, p: null});
   refreshModel();
 };
 
