@@ -74,7 +74,7 @@ function buildQueryStringFromModel(searchKeys, model) {
     }
   })
 
-  return Object.keys(queryParams).map(x => `${x}=${encodeURIComponent(queryParams[x])}`).join('&');
+  return queryString.stringify(queryParams);
 }
 
 exports.onChangeSearch = function(query) {
