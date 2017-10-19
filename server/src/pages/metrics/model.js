@@ -117,6 +117,8 @@ const queries = {
       {title: "Number of users", name: "user_count"},
       {title: "Days the user has been creating shots", name: "days_plus_1"}
     ]
+  },
+  
 };
 
 function executeQuery(query) {
