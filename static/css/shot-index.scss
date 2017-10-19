@@ -250,3 +250,49 @@ h1 {
     text-align: center;
   }
 }
+
+#shot-index-page-navigation {
+  font-size: 20px;
+  text-align: center;
+
+  #shots-page-number {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+    width: 40px;
+
+    &.shots-page-nav {
+      line-height: 0;
+
+      &.disabled {
+        opacity: 0.3;
+      }
+
+      a {
+        display: block;
+        border-radius: 3px;
+        height: 40px;
+        padding: 10px;
+
+        &:hover {
+          background-color: #d7d7db;
+        }
+        &:active {
+          background-color: #b1b1b3;
+        }
+      }
+
+    }
+
+    img {
+      display: inline-block;
+      height: 20px;
+      width: 20px;
+      vertical-align: middle;
+    }
+  }
+}

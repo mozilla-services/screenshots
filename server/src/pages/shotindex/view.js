@@ -98,32 +98,36 @@ class Body extends React.Component {
       if (this.props.pageNumber > 1) {
         let prevPageNumber = this.props.pageNumber - 1;
         return (
-          <span>
+          <span className="shots-page-nav">
             <a href={ controller.getNewUrl({p: prevPageNumber})}
               onClick={ this.onChangePage.bind(this, prevPageNumber) }
-              title="previous page">&lt;</a>
+              title="previous page"
+              ><img src={ this.props.staticLink("/static/img/arrowhead-left-16.svg") } /></a>
           </span>
         )
       }
-      return <span>&lt;</span>;
+      return (
+        <span className="shots-page-nav disabled"><img src={ this.props.staticLink("/static/img/arrowhead-left-16.svg") } /></span>);
     }
     let nextLink = () => {
       if (this.props.pageNumber < totalPages) {
         let nextPageNumber = this.props.pageNumber - 0 + 1;
         return (
-          <span>
+          <span className="shots-page-nav">
             <a href={ controller.getNewUrl({p: nextPageNumber}) }
               onClick={ this.onChangePage.bind(this, nextPageNumber) }
-              title="next page">&gt;</a>
+              title="next page"
+              ><img src={ this.props.staticLink("/static/img/arrowhead-right-16.svg") } /></a>
           </span>
         )
       }
-      return <span>&gt;</span>;
+      return (
+        <span className="shots-page-nav disabled"><img src={ this.props.staticLink("/static/img/arrowhead-right-16.svg") } /></span>);
     };
     return (
-      <div id="myShotsPageNavigation">
+      <div id="shot-index-page-navigation">
         { prevLink() }
-        {this.props.pageNumber} / {totalPages}
+        <span id="shots-page-number">{this.props.pageNumber} / {totalPages}</span>
         { nextLink() }
       </div>
     );
@@ -132,6 +136,7 @@ class Body extends React.Component {
   onChangePage(pageNumber, e) {
     controller.onChangePage(pageNumber);
     e.preventDefault();
+    window.scrollTo(0, 0);
   }
 
   renderErrorMessages() {
