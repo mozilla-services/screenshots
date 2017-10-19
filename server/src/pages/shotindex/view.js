@@ -99,10 +99,13 @@ class Body extends React.Component {
         let prevPageNumber = this.props.pageNumber - 1;
         return (
           <span className="shots-page-nav">
-            <a href={ controller.getNewUrl({p: prevPageNumber})}
-              onClick={ this.onChangePage.bind(this, prevPageNumber) }
-              title="previous page"
-              ><img src={ this.props.staticLink("/static/img/arrowhead-left-16.svg") } /></a>
+
+            <Localized id="shotIndexPagePreviousPage">
+              <a href={ controller.getNewUrl({p: prevPageNumber})}
+                onClick={ this.onChangePage.bind(this, prevPageNumber) }
+                title="previous page"
+                ><img src={ this.props.staticLink("/static/img/arrowhead-left-16.svg") } /></a>
+            </Localized>
           </span>
         )
       }
@@ -114,10 +117,12 @@ class Body extends React.Component {
         let nextPageNumber = this.props.pageNumber - 0 + 1;
         return (
           <span className="shots-page-nav">
-            <a href={ controller.getNewUrl({p: nextPageNumber}) }
-              onClick={ this.onChangePage.bind(this, nextPageNumber) }
-              title="next page"
-              ><img src={ this.props.staticLink("/static/img/arrowhead-right-16.svg") } /></a>
+            <Localized id="shotIndexPageNextPage">
+              <a href={ controller.getNewUrl({p: nextPageNumber}) }
+                onClick={ this.onChangePage.bind(this, nextPageNumber) }
+                title="next page"
+                ><img src={ this.props.staticLink("/static/img/arrowhead-right-16.svg") } /></a>
+            </Localized>
           </span>
         )
       }
