@@ -35,9 +35,17 @@ test:
     - ./bin/load_test_exercise.py http://localhost:10080
     - npm run test:server
     # run zap baseline against the server
+    # Only fail on error code 1, which indicates at least one FAIL was found.
+    # error codes 2 & 3 indicate WARN or other, and should not break the run
     - docker pull owasp/zap2docker-weekly
-    # || true to temporarily disable this from making the tests fail:
-    - docker run -t owasp/zap2docker-weekly zap-baseline.py -t http://localhost:10080 || true
+    - >
+        (
+        ip="$(ip -f inet -o addr show docker0 | awk '{print $4}' | cut -d '/' -f 1)" &&
+        docker run -t owasp/zap2docker-weekly zap-baseline.py \
+            -t http://${ip}:10080 \
+            -u https://raw.githubusercontent.com/mozilla-services/screenshots/master/.zap-baseline.conf;
+        if [ $? -ne 1 ]; then exit 0; else exit 1; fi;
+        )
 
   post:
     - bash <(curl -s https://codecov.io/bash)

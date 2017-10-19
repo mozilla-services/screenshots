@@ -16,6 +16,10 @@ gScreenshotsDescription =
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = شرائط
+footerLinkPrivacy = رازداری کا نوٹس
+footerLinkFaqs = عمومی سوالات
+footerLinkDiscourse = رائے دیں
 footerLinkRemoveAllData = تمام کوائف ہٹائیں
 
 
@@ -43,6 +47,7 @@ homePageCookiesLink = کوکیاں
 
 leavePageRemoveAllData = تمام کوائف ہٹائیں
 leavePageErrorGeneric = ایک غلطی ہوئی ہے:
+leavePageButtonProceed = آگے بڑھیں
 leavePageButtonCancel = منسوخ کریں
 
 
@@ -55,10 +60,16 @@ notFoundPageDescription = صفہہ نہیں ملا۔
 
 [[ Shot page ]]
 
+shotPageConfirmDelete = کیا آپ واقعی اس شا ٹ کو مکمل طور پر حذف کرنا چاہتے ہیں؟
 shotPageShareButton
     .title = شیئر
 shotPageCopy = نقل کریں
 shotPageCopied = نقل شدہ
+shotPageShareFacebook
+    .title = Facebook پر شیئر کریں
+shotPageSharePinterest
+    .title = Pinterest پر شیئر کریں
+shotPagePrivacyMessage = جس کسی کہ پاس بھی یہ ربط موجود ہو وہ یہ شاٹ دیکھ سکتا ہے۔
 shotPageCopyImageText
     .label = نقش کا متن نقل کریں
 shotPageDeleteButton
@@ -82,13 +93,24 @@ timeDiffDaysAgo = { $num ->
         [one] گزشتہ روز
        *[other] { $number }  د ن پہلے
     }
+timeDiffFutureHours = { $num ->
+        [one] ۱ گھنٹے میں
+       *[other] { $number }  گھنٹوں میں
+    }
+timeDiffFutureDays = { $num ->
+        [one] کل
+       *[other] { $number }  دنوں میں
+    }
 
 
 [[ Shotindex page ]]
 
+shotIndexPageSearchPlaceholder
+    .placeholder = میری شاٹس تلاش کریں
 shotIndexPageSearchButton
     .title = تلاش
 shotIndexPageLookingForShots = اپنی شاٹٹس تلاش کر رہے ہیں…
+shotIndexPageNoSearchResultsIntro = ہمم
 shotIndexPageClearSearchButton
     .title = تلاش حزف کریں
 shotIndexPageConfirmShotDelete = اس شاٹ کو حذف کریں؟
@@ -97,7 +119,14 @@ shotIndexPageConfirmShotDelete = اس شاٹ کو حذف کریں؟
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageTotalsQueryTitle = کل
 metricsPageTotalsQueryActiveShots = متحرک شاٹس
 metricsPageShotsQueryDay = دن
+metricsPageUsersQueryCount = صارفین کی تعداد
 metricsPageUsersQueryDay = دن
+metricsPageUserShotsQueryTitle = فی صارف شاٹس کی تعداد
+metricsPageUserShotsQueryCount = صارفین کی تعداد
+metricsPageRetentionQueryUsers = صارفین کی تعداد
+metricsPageTotalRetentionQueryUsers = صارفین کی تعداد
+metricsPageVersionQueryUsers = لاگ ان شدہ صارفین کی تعداد
 metricsPageVersionQueryLastSeen = دن

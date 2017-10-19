@@ -682,42 +682,50 @@ Shot.deleteShot = function(backend, shotId, deviceId, accountId) {
   })
 };
 
-Shot.deleteEverythingForDevice = function(backend, deviceId) {
-  return db.select(
-    `SELECT images.id
-     FROM images JOIN data
-     ON images.shotid = data.id
-     WHERE data.deviceid = $1`,
-    [deviceId]
-  ).then((rows) => {
-      rows.forEach((row) => del(row.id))
+Shot.deleteEverythingForDevice = function(backend, deviceId, accountId) {
+  let deviceIds;
+
+  const getDeviceIds = () => {
+    if (accountId) {
+      return db.select(
+        `SELECT devices.id
+       FROM devices
+       WHERE devices.accountid = $1`,
+        [accountId]);
     }
-  ).then(() => {
+    return Promise.resolve([{id: deviceId}]);
+  };
+
+  const imageIdsSelect = (deviceIdRows) => {
+    deviceIds = deviceIdRows.map(row => row.id);
+    if (!deviceIds.length) {
+      deviceIds = [deviceId];
+    }
     return db.select(
-      `SELECT DISTINCT devices.id
-       FROM devices, devices AS devices2
-       WHERE devices.id = $1
-             OR (devices.accountid = devices2.accountid
-                 AND devices2.id = $1)
-      `,
-      [deviceId]);
-    }
-  ).then((rows) => {
-    let ids = [];
-    for (let i = 0; i < rows.length; i++) {
-      ids.push(rows[i].id);
-    }
-    if (!ids.length) {
-      ids = [deviceId];
-    }
+      `SELECT images.id
+       FROM images JOIN data
+       ON images.shotid = data.id
+       WHERE data.deviceid IN (${db.markersForArgs(1, deviceIds.length)})`,
+      deviceIds);
+  };
+
+  const deleteImageData = (imageIdRows) => {
+    imageIdRows.forEach(row => del(row.id));
+  };
+
+  const deleteShotRecords = () => {
     let deleteSql = `DELETE FROM data WHERE
-     deviceid IN (${db.markersForArgs(1, ids.length)})`;
+     deviceid IN (${db.markersForArgs(1, deviceIds.length)})`;
     return db.update(
       deleteSql,
-      ids
+      deviceIds
     );
+  }
 
-  });
+  return getDeviceIds()
+    .then(imageIdsSelect)
+    .then(deleteImageData)
+    .then(deleteShotRecords);
 };
 
 ClipRewrites = class ClipRewrites {

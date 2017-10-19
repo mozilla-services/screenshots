@@ -461,6 +461,11 @@ this.uicontrol = (function() {
           rect = lastRect;
           break;
         }
+        if (rect.width < MIN_DETECT_WIDTH || rect.height < MIN_DETECT_HEIGHT) {
+          // Avoid infinite loop for elements with zero or nearly zero height,
+          // like non-clearfixed float parents with or without borders.
+          break;
+        }
         if (rect.width > MAX_DETECT_WIDTH || rect.height > MAX_DETECT_HEIGHT) {
           // Then the last rectangle is better
           rect = lastRect;
