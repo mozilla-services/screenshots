@@ -489,7 +489,9 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
   if (!deviceId) {
     throw new Error("Empty deviceId: " + deviceId);
   }
-
+  if (pageNumber < 1) {
+    pageNumber = 1;
+  }
   let shotsPage = {
     pageNumber,
     shotsPerPage: SHOTS_PER_PAGE
