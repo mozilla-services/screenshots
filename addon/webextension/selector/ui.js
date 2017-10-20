@@ -1,4 +1,4 @@
-/* globals log, util, catcher, inlineSelectionCss, callBackground, assertIsTrusted, assertIsBlankDocument */
+/* globals log, util, catcher, inlineSelectionCss, callBackground, assertIsTrusted, assertIsBlankDocument, buildSettings */
 
 "use strict";
 
@@ -76,6 +76,21 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     }
   }
 
+  function highContrastCheck(win) {
+    let result, doc, el;
+    doc = win.document;
+    el = doc.createElement("div");
+    el.style.backgroundImage = "url('#')";
+    el.style.display = "none";
+    doc.body.appendChild(el);
+    let computed = win.getComputedStyle(el);
+    // When Windows is in High Contrast mode, Firefox replaces background
+    // image URLs with the string "none".
+    result = computed && computed.backgroundImage === "none";
+    doc.body.removeChild(el);
+    return result;
+  }
+
   function initializeIframe() {
     let el = document.createElement("iframe");
     el.src = browser.extension.getURL("blank.html");
@@ -140,6 +155,9 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     unhide() {
       this.updateElementSize();
       this.element.style.display = "";
+      if (highContrastCheck(this.element.contentWindow)) {
+        this.element.contentDocument.body.classList.add("hcm");
+      }
       this.initSizeWatch();
       this.element.focus();
     },
@@ -290,6 +308,9 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       window.addEventListener("scroll", watchFunction(assertIsTrusted(this.onScroll)));
       window.addEventListener("resize", this.onResize, true);
       this.element.style.display = "";
+      if (highContrastCheck(this.element.contentWindow)) {
+        this.element.contentDocument.body.classList.add("hcm");
+      }
       this.element.focus();
     },
 
@@ -707,19 +728,24 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
   };
 
   exports.Preview = {
-    display(dataUrlOrBlob) {
+    display(dataUrlOrBlob, showCropWarning) {
       let img = makeEl("IMG");
       let win = iframe.document().defaultView;
-      console.log("displaying", typeof dataUrlOrBlob, dataUrlOrBlob + "");
+
       if (typeof dataUrlOrBlob == "string") {
         img.src = dataUrlOrBlob;
       } else {
         let srcUrl = win.URL.createObjectURL(dataUrlOrBlob);
-        console.log("window window", win.URL + "", srcUrl);
         img.src = srcUrl;
       }
       iframe.document().querySelector(".preview-image").appendChild(img);
-      console.log("created", img.outerHTML);
+
+      if (showCropWarning) {
+        let imageCroppedEl = makeEl("DIV");
+        imageCroppedEl.id = "imageCroppedWarning";
+        imageCroppedEl.textContent = browser.i18n.getMessage("imageCroppedWarning", buildSettings.maxImageHeight);
+        iframe.document().querySelector(".preview-overlay").appendChild(imageCroppedEl);
+      }
     }
   };
 

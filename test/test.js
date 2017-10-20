@@ -35,7 +35,6 @@ const { Services } = Components.utils.import("resource://gre/modules/Services.js
 const callback = arguments[arguments.length - 1];
 const { prefs } = Services;
 
-prefs.setBoolPref("extensions.screenshots.system-disabled", true);
 prefs.setBoolPref("extensions.legacy.enabled", true);
 
 class AddonListener {
@@ -67,7 +66,6 @@ AddonManager.installTemporaryAddon(new FileUtils.File(arguments[0]))
     return driver.executeAsyncScript(`
 const { Services } = Components.utils.import("resource://gre/modules/Services.jsm");
 const { prefs } = Services;
-prefs.setBoolPref("extensions.screenshots.system-disabled", false);
 const callback = arguments[arguments.length - 1];
 callback();
 `);
@@ -113,6 +111,12 @@ function promiseFinally(promise, finallyCallback) {
   }, (error) => {
     finallyCallback();
     throw error;
+  });
+}
+
+function setTimeoutPromise(time) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, time);
   });
 }
 
@@ -247,6 +251,11 @@ describe("Test Screenshots", function() {
       return skipOnboarding(driver);
     }).then(() => {
       return focusIframe(driver, PRESELECTION_IFRAME_ID);
+    }).then(() => {
+      // This avoids a problem where the UI has been instantiated, and handlers
+      // added, but not everything is fully setup yet; by waiting we give it
+      // time to set everything up
+      return setTimeoutPromise(500);
     }).then(() => {
       return driver.wait(
         until.elementLocated(By.css(".visible"))

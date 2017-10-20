@@ -44,7 +44,7 @@ const gaActivation = require("./ga-activation");
 const genUuid = require("nodify-uuid");
 const statsd = require("./statsd");
 const { notFound } = require("./pages/not-found/server");
-const { cacheTime, setCache } = require("./caching");
+const { cacheTime, setMonthlyCache, setDailyCache } = require("./caching");
 const { captureRavenException, sendRavenMessage,
         addRavenRequestHandler, addRavenErrorHandler } = require("./ravenclient");
 const { errorResponse, simpleResponse, jsResponse } = require("./responses");
@@ -55,6 +55,7 @@ const multer = require("multer");
 const storage = multer.memoryStorage();
 const upload = multer({storage});
 const { isValidClipImageUrl } = require("../shared/shot");
+const urlParse = require("url").parse;
 
 const COOKIE_EXPIRE_TIME = 30 * 24 * 60 * 60 * 1000; // 30 days
 
@@ -115,7 +116,7 @@ const FXA_SERVER = config.fxa.profileServer && require("url").parse(config.fxa.p
 function addHSTS(req, res) {
   // Note: HSTS will only produce warning on a localhost self-signed cert
   if (req.protocol === "https" && !config.localhostSsl) {
-    let time = 24 * 60 * 60 * 1000; // 24 hours
+    let time = 24 * 60 * 60; // 24 hours
     res.header(
       "Strict-Transport-Security",
       `max-age=${time}`);
@@ -306,7 +307,7 @@ app.get("/ga-activation-hashed.js", function(req, res) {
 
 function sendGaActivation(req, res, hashPage) {
   let promise;
-  setCache(res, {private: true});
+  setMonthlyCache(res, {private: true});
   if (req.deviceId) {
     promise = hashUserId(req.deviceId).then((uuid) => {
       return uuid.toString();
@@ -325,7 +326,7 @@ function sendGaActivation(req, res, hashPage) {
 const parentHelperJs = readFileSync(path.join(__dirname, "/static/js/parent-helper.js"), {encoding: "UTF-8"});
 
 app.get("/parent-helper.js", function(req, res) {
-  setCache(res);
+  setMonthlyCache(res);
   let postMessageOrigin = `${req.protocol}://${req.config.contentOrigin}`;
   let script = `${parentHelperJs}\nvar CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`
   jsResponse(res, script);
@@ -334,7 +335,7 @@ app.get("/parent-helper.js", function(req, res) {
 const ravenClientJs = readFileSync(require.resolve("raven-js/dist/raven.min"), {encoding: "UTF-8"});
 
 app.get("/install-raven.js", function(req, res) {
-  setCache(res);
+  setMonthlyCache(res);
   if (!req.config.sentryPublicDSN) {
     jsResponse(res, "");
     return;
@@ -499,7 +500,7 @@ function sendAuthInfo(req, res, params) {
   if (deviceId.search(/^[a-zA-Z0-9_-]{1,255}$/) == -1) {
     let exc = new Error("Bad deviceId in login");
     exc.deviceId = deviceId;
-    captureRavenException(exc);
+    captureRavenException(exc, req);
     throw new Error("Bad deviceId");
   }
   let encodedAbTests = b64EncodeJson(userAbTests);
@@ -583,6 +584,19 @@ app.post("/api/login", function(req, res) {
     }
   }).catch(function(err) {
     errorResponse(res, JSON.stringify({"error": `Error in login: ${err}`}), err);
+  });
+});
+
+app.post("/api/set-login-cookie", function(req, res) {
+  if (!req.deviceId) {
+    sendRavenMessage(req, "Attempt to set login cookie without authentication");
+    simpleResponse(res, "Not logged in", 401);
+    return;
+  }
+  sendAuthInfo(req, res, {
+    deviceId: req.deviceId,
+    accountId: req.accountId,
+    userAbTests: req.abTests
   });
 });
 
@@ -824,10 +838,19 @@ app.get("/images/:imageid", function(req, res) {
         }
         const view = embedded ? "direct-view-embedded" : "direct-view";
         const el = view + (obj.ownerId === req.deviceId ? "-owner" : "-non-owner");
+        let documentReferrer = null;
+        if (req.headers.referer) {
+          try {
+            let parsed = urlParse(req.headers.referer);
+            documentReferrer = `${parsed.protocol}//${parsed.host}`;
+          } catch (e) {
+            // We ignore any errors parsing this header
+          }
+        }
         analytics.pageview({
           dp: analyticsUrl,
           dh: req.backend,
-          documentReferrer: req.headers.referer,
+          documentReferrer,
           ua: req.headers["user-agent"]
         }).event({
           ec: "web",
@@ -845,6 +868,7 @@ app.get("/images/:imageid", function(req, res) {
           res.header("Content-Disposition", contentDisposition(download));
         }
       }
+      setDailyCache(res);
       res.status(200);
       res.send(obj.data);
     }

@@ -49,14 +49,14 @@ homePageGetStarted = Começar
 homePageHowScreenshotsWorks = Como é que o Firefox Screenshots funciona
 homePageGetStartedTitle = Começar
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Encontre o novo ícone do Screenshots na sua barra de ferramentas. Selecione-o, e o menu do Screenshots irá aparecer no topo da janela do seu navegador.
+homePageGetStartedDescription = Encontre o novo ícone do Screenshots na sua barra de ferramentas. Selecione-o e o menu do Screenshots irá aparecer no topo da janela do seu navegador.
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescriptionPageAction = Selecione o ícone do Screenshots a partir do menu de ações da página na barra de endereço, e o menu do Screenshots irá aparecer por cima da janela do seu navegador.
+homePageGetStartedDescriptionPageAction = Selecione o ícone do Screenshots a partir do menu de ações da página na barra de endereço e o menu do Screenshots irá aparecer por cima da janela do seu navegador.
 homePageCaptureRegion = Capturar uma região
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar ou paire e clique — O Screenshots irá selecionar a área por si. Gosta do que está a ver? Selecione Guardar para aceder à sua captura de ecrã na Internet ou no botão de seta para baixo para a descarregar para o seu computador.
 homePageCapturePage = Capturar uma página
-homePageCapturePageDescription = Utilize os botões no canto superior direito para capturar páginas inteiras. O botão Guardar visível irá capturar a área que pode ver sem deslocar, e Guardar página inteira irá capturar tudo na página.
+homePageCapturePageDescription = Utilize os botões no canto superior direito para capturar páginas inteiras. O botão Guardar visível irá capturar a área que pode ver sem deslocar e Guardar página inteira irá capturar tudo na página.
 homePageSaveShare = Guardar e partilhar
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Ao tirar uma captura, o Firefox coloca a sua captura de ecrã na sua biblioteca do Screenshots na Internet e copia a ligação para a sua área de transferência. Nós armazenamos a sua captura de ecrã automaticamente por duas semanas, mas pode eliminar as suas capturas a qualquer altura ou alterar a data de expiração para as manter na sua biblioteca por mais tempo.

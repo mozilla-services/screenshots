@@ -6,6 +6,9 @@ const { Footer } = require("../../footer-view.js");
 const { Localized } = require("fluent-react/compat");
 
 class Head extends React.Component {
+  generateFullLink(link) {
+    return this.props.backend + link;
+  }
 
   render() {
     return (
@@ -26,9 +29,10 @@ class Head extends React.Component {
         <Localized id="homePageDescription">
           <meta name="twitter:description" content="Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox." />
         </Localized>
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta property="og:image" content={ this.props.staticLink("/static/img/onboarding-1.png") } />
-        <meta name="twitter:image" content={ this.props.staticLink("/static/img/onboarding-1.png") } />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@firefox" />
+        <meta property="og:image" content={ this.props.staticLink("/static/img/og-image.png") } />
+        <meta name="twitter:image" content={this.generateFullLink("/static/img/twitter-image.png")} />
       </reactruntime.HeadTemplate>
     );
   }

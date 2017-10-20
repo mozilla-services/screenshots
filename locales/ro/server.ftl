@@ -27,6 +27,10 @@ footerLinkRemoveAllData = Elimină toate datele
 
 [[ Creating page ]]
 
+// Note: { $title } is a placeholder for the title of the web page
+// captured in the screenshot. The default, for pages without titles, is
+// creatingPageTitleDefault.
+creatingPageTitle = Se creează { $title }
 creatingPageTitleDefault = pagină
 creatingPageWaitMessage = Se salvează captura…
 

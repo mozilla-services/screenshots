@@ -50,12 +50,16 @@ homePageHowScreenshotsWorks = Firefox скриншоттары қалай жұм
 homePageGetStartedTitle = Бастау
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Саймандар панеліңізден жаңа скриншоттар таңбашасын табыңыз. Оны таңдаңыз, және скриншоттар мәзірі браузер терезеңіздің үстінен шығады.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Адрестік жолақтың бет әрекеттері мәзірінен Скриншоттар таңбашасын таңдаңыз, одан кейін Скриншоттар терезесі браузер терезесінің жоғарғы жағынан шығады.
 homePageCaptureRegion = Аймақты түсіру
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Түсіргіңіз келетін аймақты таңдау үшін шертіп, тартып апарыңыз. Немесе тек үстіне апарып, шертіңіз — Скриншоттар сайманы аймақты сіз үшін таңдайды. Көргенді ұнаттыңыз ба? Скриншотыңызды желіде сақтау үшін Сақтау, ал, оны компьютеріңізге жүктеп алу үшін, төменге қарап тұрған бағдарша батырмасын басыңыз.
 homePageCapturePage = Парақты түсіру
 homePageCapturePageDescription = Толық парақтарды түсіру үшін, жоғары оң жақтағы батырмаларды қолданыңыз. Көрінетінді сақтау батырмасы айналдырусыз көрініп тұрған аймақты түсіреді, ал, Толық парақты түсіру парақтағы барлық нәрсені скриншотқа түсіреді.
 homePageSaveShare = Сақтау және бөлісу
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Скриншот жасалған кезде, Firefox оны сіздің желідегі Скриншоттар жинағыңызға орналастырып, оның сілтемесін сіздің алмасу буферіңізге көшіреді. Сіздің скриншоттарыңыз автоматты түрде екі апта бойы сақаталады, бірақ, сіз оны кез келген уақытта не қолмен өшіріп, не сақтау мерзімін ұзақтау қыла аласыз.
 homePageLegalLink = Құқықтық ақпарат
 homePagePrivacyLink = Жекелік
 homePageTermsLink = Қолдану шарттары
@@ -127,6 +131,10 @@ shotPageUpsellFirefox = Firefox-ты қазір алу
 shotPageDMCAMessage = Бұл скриншот үшінші жақтың зияткерлік меншігі арызы салдарынан енді қолжетерсіз.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Көбірек білу үшін, { $dmca } адресіне жазыңыз.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Сіздің скриншоттарыңыз көптеген арыздарға тап болса, Firefox скриншоттарына қатынау құқығыңызды өшіруіміз мүмкін.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Эл. пошта хатына бұл скриншоттың URL адресін қосыңыз: { $url }
 shotPageKeepFor = Бұл скриншот қанша уақыт бойы сақталуы тиіс?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Уақытты таңдау
@@ -202,13 +210,30 @@ metricsPageTotalsQueryDevices = Барлығы тіркелген құрылғы
 metricsPageTotalsQueryActiveShots = Белсенді скриншоттар
 metricsPageTotalsQueryExpiredShots = Мерзімі аяқталған (бірақ, қалпына келтіруге болатын)
 metricsPageTotalsQueryExpiredDeletedShots = Мерзімі аяқталған (және өшірілген)
+metricsPageShotsQueryTitle = Күндер бойынша скриншоттар
+metricsPageShotsQueryDescription = Әр күнде жасалған скриншоттар саны (соңғы 30 күн үшін)
+metricsPageShotsQueryCount = Скриншоттар саны
 metricsPageShotsQueryDay = Күн
+metricsPageUsersQueryTitle = Күн бойынша пайдаланушылар
+metricsPageUsersQueryDescription = Кем дегенде бір скриншотты жасаған пайдаланушылар саны, күн бойынша (соңғы 30 күнде)
 metricsPageUsersQueryCount = Пайданушылар саны
 metricsPageUsersQueryDay = Күн
+metricsPageUserShotsQueryTitle = Пайдаланушы бойынша скриншоттар саны
+metricsPageUserShotsQueryDescription = Жалпы N скриншотты жасаған пайдаланушылар саны
 metricsPageUserShotsQueryCount = Пайдаланушылар саны
+metricsPageUserShotsQueryShots = Белсенді (мерзімі бітпеген) скриншоттардың болжалды саны
+metricsPageRetentionQueryTitle = Апта бойынша сақталу
+metricsPageRetentionQueryDescription = Пайдаланушының алғашқы скриншотынан ең соңғысына дейінгі күндер саны, апта басы бойынша топталған
 metricsPageRetentionQueryUsers = Пайдаланушылар саны
+metricsPageRetentionQueryDays = Пайдаланушының алғашқы скриншотынан ең соңғысына дейінгі күндер саны
+metricsPageRetentionQueryFirstWeek = Пайдаланушы алғашқы скриншотты жасаған апта
+metricsPageTotalRetentionQueryTitle = Жалпы саны
+metricsPageTotalRetentionQueryDescription = Пайдаланушы скриншоттарды жасап жүрген уақыт өлшемі, апта бойынша топталған
 metricsPageTotalRetentionQueryUsers = Пайданушылар саны
+metricsPageTotalRetentionQueryDays = Пайдаланушы скриншоттарды жасаған күндер
 metricsPageVersionQueryTitle = Қосымша нұсқасы
+metricsPageVersionQueryDescription = Жүйеге кіру кезінде қолданылған қосымша нұсқасы, соңғы 14 күнде
+metricsPageVersionQueryUsers = Жүйеге кірген пайдаланушылар саны
 metricsPageVersionQueryVersion = Қосымша нұсқасы
 metricsPageVersionQueryLastSeen = Күн
 metricsPageHeader = Метрикалар

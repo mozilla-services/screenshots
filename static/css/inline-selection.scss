@@ -60,6 +60,11 @@ $very-light-grey: #ededed;
     right: 0;
     top: 0;
   }
+
+  body.hcm & {
+    background-color: rgb(255, 255, 255);
+    opacity: 0.2;
+  }
 }
 
 .mover-target.direction-topLeft {
@@ -179,6 +184,10 @@ $very-light-grey: #ededed;
   background-color: $modal-color;
   position: absolute;
   z-index: $overlay-z-index;
+  body.hcm & {
+    background-color: rgb(0, 0, 0);
+    opacity: 0.7;
+  }
 }
 
 .preview-overlay {
@@ -194,6 +203,10 @@ $very-light-grey: #ededed;
   top: 0;
   width: 100%;
   z-index: $overlay-z-index;
+  body.hcm & {
+    background-color: rgb(0, 0, 0);
+    opacity: 0.7;
+  }
 }
 
 .highlight {
@@ -203,6 +216,10 @@ $very-light-grey: #ededed;
   cursor: move;
   position: absolute;
   z-index: $overlay-z-index;
+  body.hcm & {
+    border: 2px dashed rgb(255, 255, 255);
+    opacity: 1.0;
+  }
 }
 
 .highlight-buttons {
@@ -245,10 +262,10 @@ $very-light-grey: #ededed;
   background-image: url("MOZ_EXTENSION/icons/cloud.svg");
   html[dir="ltr"] & {
     background-position: 8px center;
-  } 
+  }
   html[dir="rtl"] & {
     background-position: 65px center;
-  }  
+  }
   background-repeat: no-repeat;
   background-size: 20px 18px;
   font-size: 18px;
@@ -400,6 +417,19 @@ $very-light-grey: #ededed;
   text-align: center;
   padding-top: 20px;
   width: 400px;
+}
+
+#imageCroppedWarning {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  bottom: 0;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: 12px;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  z-index: 2;
 }
 
 .myshots-all-buttons-container {

@@ -20,6 +20,7 @@ gScreenshotsDescription = כעת קל יותר ללכוד צילומי מסך. �
 footerLinkMozilla = Mozilla
 footerLinkTerms = תנאים
 footerLinkPrivacy = הצהרת פרטיות
+footerLinkFaqs = שאלות נפוצות
 footerLinkDMCA = דיווח על הפרת קניית רוחני
 footerLinkDiscourse = מתן משוב
 footerLinkRemoveAllData = הסרת כל הנתונים
@@ -49,6 +50,8 @@ homePageHowScreenshotsWorks = איך Firefox Screenshots עובד
 homePageGetStartedTitle = תחילת עבודה
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = לפניך סמל חדש ל־Screenshots בסרגל הכלים שלך. עם בחירתו יופיע תפריט על גבי חלון הדפדפן שלך.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = ניתן לבחור בסמל Screenshots מתפריט פעולות הדף שבשורת הכתובת, ותפריט ה־Screenshots יופיע מעל חלון הדפדפן שלך.
 homePageCaptureRegion = לכידת אזור
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = יש ללחוץ ולגרור כדי לבחור את האזור לצילום. או לעבור מעל ואז ללחוץ - Screenshots יבחר את האזור בשבילך. אהבת את התוצאה? יש לבחור בשמירה כדי לגשת לצילומי המסך המקוונים שלך או בחץ כלפי מטה כדי להוריד אותו למחשב שלך.

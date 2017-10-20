@@ -169,6 +169,21 @@ def test_login():
         assert resp.status_code == 200
 
 
+def test_set_login_cookie():
+    sess1 = ScreenshotsClient()
+    login_resp = sess1.login()
+    headers = {'x-screenshots-auth': login_resp.json()['authHeader']}
+    assert sess1.session.cookies['user'] and sess1.session.cookies['user.sig']
+    sess2 = ScreenshotsClient()
+    # Trying to login without any authentication won't work:
+    resp = sess2.session.post(sess2.backend + "/api/set-login-cookie")
+    assert resp.status_code == 401
+    assert not sess2.session.cookies.get('user')
+    resp = sess2.session.post(sess2.backend + "/api/set-login-cookie", headers=headers)
+    assert resp.status_code == 200
+    assert sess2.session.cookies['user'] and sess2.session.cookies['user.sig']
+
+
 if __name__ == "__main__":
     test_register_without_deviceid_fails()
     test_register_without_secret_fails()
@@ -181,3 +196,4 @@ if __name__ == "__main__":
     test_login_invalid_json_deviceinfo()
     test_login_ownership_check()
     test_login()
+    test_set_login_cookie()

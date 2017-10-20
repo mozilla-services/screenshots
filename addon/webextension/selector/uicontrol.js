@@ -1,5 +1,5 @@
 /* globals log, catcher, util, ui, slides */
-/* globals shooter, callBackground, selectorLoader, assertIsTrusted */
+/* globals shooter, callBackground, selectorLoader, assertIsTrusted, buildSettings */
 
 "use strict";
 
@@ -45,9 +45,8 @@ this.uicontrol = (function() {
 
   const { watchFunction, watchPromise } = catcher;
 
-  // In Firefox, a single canvas image cannot exceed 32767 px in either direction:
-  const MAX_PAGE_HEIGHT = 32767;
-  const MAX_PAGE_WIDTH = 32767;
+  const MAX_PAGE_HEIGHT = buildSettings.maxImageHeight;
+  const MAX_PAGE_WIDTH = buildSettings.maxImageWidth;
   // An autoselection smaller than these will be ignored entirely:
   const MIN_DETECT_ABSOLUTE_HEIGHT = 10;
   const MIN_DETECT_ABSOLUTE_WIDTH = 30;
@@ -161,22 +160,28 @@ this.uicontrol = (function() {
     },
     onClickFullPage: () => {
       sendEvent("capture-full-page", "selection-button");
+      captureType = "fullPage";
       let width = Math.max(
         document.body.clientWidth,
         document.documentElement.clientWidth,
         document.body.scrollWidth,
         document.documentElement.scrollWidth);
+      if (width > MAX_PAGE_WIDTH) {
+        captureType = "fullPageTruncated";
+      }
       width = Math.min(width, MAX_PAGE_WIDTH);
       let height = Math.max(
         document.body.clientHeight,
         document.documentElement.clientHeight,
         document.body.scrollHeight,
         document.documentElement.scrollHeight);
+      if (height > MAX_PAGE_HEIGHT) {
+        captureType = "fullPageTruncated";
+      }
       height = Math.min(height, MAX_PAGE_HEIGHT);
       selectedPos = new Selection(
         0, 0,
         width, height);
-      captureType = 'fullPage';
       setState("previewing");
     },
     onSavePreview: () => {
@@ -370,7 +375,7 @@ this.uicontrol = (function() {
       catcher.watchPromise(shooter.screenshotPage(selectedPos, captureType).then((captureBlob) => {
         blob = captureBlob;
         ui.iframe.usePreview();
-        ui.Preview.display(blob);
+        ui.Preview.display(blob, captureType == "fullPageTruncated");
       }));
     }
   };
@@ -456,6 +461,11 @@ this.uicontrol = (function() {
         rect = Selection.getBoundingClientRect(node);
         if (!rect) {
           rect = lastRect;
+          break;
+        }
+        if (rect.width < MIN_DETECT_WIDTH || rect.height < MIN_DETECT_HEIGHT) {
+          // Avoid infinite loop for elements with zero or nearly zero height,
+          // like non-clearfixed float parents with or without borders.
           break;
         }
         if (rect.width > MAX_DETECT_WIDTH || rect.height > MAX_DETECT_HEIGHT) {

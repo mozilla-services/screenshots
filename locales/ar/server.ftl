@@ -18,7 +18,10 @@ gScreenshotsDescription = لقطات الشاشة صارت أسهل. خذ لقط
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = موزيلا
+footerLinkTerms = الشروط
 footerLinkPrivacy = تنويه الخصوصية
+footerLinkFaqs = الأسئلة الشائعة
+footerLinkDMCA = أبلغ عن انتهاك للملكية الفكرية
 footerLinkDiscourse = أخبرنا بانطباعك
 footerLinkRemoveAllData = أزِل كل البيانات
 
@@ -30,6 +33,7 @@ footerLinkRemoveAllData = أزِل كل البيانات
 // creatingPageTitleDefault.
 creatingPageTitle = يُنشئ { $title }
 creatingPageTitleDefault = صفحة
+creatingPageWaitMessage = يحفظ لقطتك…
 
 
 [[ Home page ]]
@@ -44,8 +48,19 @@ homePageGetStarted = ابدأ
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = كيف تعمل لقطات فَيرفُكس
 homePageGetStartedTitle = ابدأ
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = ابحث عن أيقونة اللقطات في شريط الأدوات. انقرها وستظهر قائمة اللقطات على نافذة المتصفّح.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = انقر أيقونة اللقطات من قائمة إجراءات الصفحة في شريط العنوان وستظهر قائمة اللقطات أعلى نافذة المتصفح.
+homePageCaptureRegion = التقط منطقة
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = انقر واسحب لتحديد المنطقة التي تريد التقاطها. أو حتى مجرد التحويم و النقر؛ ستحدد لقطات الشاشة المنطقة نيابة عنك. أيعجبك ما ترى؟ اختر احفظ للوصول لقطتك للشاشة على الإنترنت، أو زِر السهم لأسفل لتنزيلها إلى حاسوبك.
 homePageCapturePage = التقط صفحة
+homePageCapturePageDescription = استخدم الأزرار أعلى اليسار لالتقاط صفحات كاملة. زر ”التقط الجزء المرئي“ سيلتقط المنطقة التي تراها دون تمرير الصفحة، وزر ”احفظ الصفحة كاملة“ سيلتقط كل شيء في الصفحة.
 homePageSaveShare = احفظ وشارِك
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = يضع فَيرفُكس لقطاتك التي تأخذها في مكتبة اللقطات على الشبكة وينسخ الرابط إلى الحافظة. نخزّن لقطاتك تلقائيا لمدة أسبوعين، ولكنك تستطيع حذفها في أي وقت أو تغيير وقت انتهائها لتبقيها في المكتبة لديك لفترة أطول.
+homePageLegalLink = قانونيّات
 homePagePrivacyLink = الخصوصية
 homePageTermsLink = الشروط
 homePageCookiesLink = الكعكات
@@ -53,6 +68,7 @@ homePageCookiesLink = الكعكات
 
 [[ Leave Screenshots page ]]
 
+leavePageRemoveAllData = أزِل كل البيانات
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = يجب أن تكون «لقطات فَيَرفُكس» مثبّتة لتحذف حسابك
 leavePageErrorGeneric = حدث خطأ ما
@@ -74,33 +90,128 @@ notFoundPageDescription = لم يُعثر على الصفحة.
 
 // This is the HTML title tag of the page
 shotPageTitle = اللقطة: { $originalTitle }
-shotPageConfirmDelete = أمتأكد من حذف هذه اللقطة إلى الأبد؟
+shotPageAlertErrorUpdatingExpirationTime = خطأ أثناء حفظ انتهاء الصلاحية
+shotPageAlertErrorDeletingShot = خطأ أثناء حذف اللقطة
+shotPageAlertErrorUpdatingTitle = خطأ أثناء حفظ العنوان
+shotPageConfirmDelete = أمتأكد أنك تريد حذف هذه اللقطة إلى الأبد؟
 shotPageShareButton
     .title = شارِك
 shotPageCopy = انسخ
+shotPageCopied = نُسخت
 shotPageShareFacebook
     .title = شارِك على فيسبوك
 shotPageShareTwitter
     .title = شارِك على تويتر
+shotPageSharePinterest
+    .title = شارك على بنترست
 shotPageShareEmail
     .title = شارك الرابط عبر البريد الإلكتروني
+shotPageShareLink = احصل على رابط لهذا اللقطة يمكن مشاركته:
+shotPagePrivacyMessage = أي شخص لديه الرابط يمكنه رؤية اللقطة.
 shotPageCopyImageText
     .label = انسخ نص الصورة
-shotPageConfirmDeletion = أمتأكد من حذف هذه اللقطة إلى الأبد؟
+shotPageConfirmDeletion = أمتأكد أنك تريد حذف هذه اللقطة إلى الأبد؟
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = إذا لم تفعل أي شيء، ستُحذف هذه اللقطة دون رجعة { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = استعدها حتى { $date }
+shotPageExpiredMessage = انتهت صلاحية هذه اللقطة.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = ها هي الصفحة التي أخذت اللقطة منها:
 shotPageDeleteButton
     .title = احذف هذه اللقطة
+shotPageAbuseButton
+    .title = أبلغ عن هذه اللقطة لإسائة الاستخدام أو السخام أو أي مشاكل أخرى
 shotPageDownloadShot
     .title = نزّل
 shotPageDownload = نزّل
+shotPageScreenshotsDescription = لقطات الشاشة صارت أسهل. خذ لقطات الشاشة و احفظها و شاركها دون مغادرة فَيرفُكس.
+shotPageUpsellFirefox = نزّل فَيَرفُكس الآن
+shotPageDMCAMessage = لم تعد هذه اللقطة متاحة نظرًا لادعاء الملكية الفكرية لطرف آخر.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = رجاء أرسل بريدا إلكترونيا إلى { $dmca } لطلب المزيد من المعلومات.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = إذا خضعت لقطاتك لادعاءات متعددة، فقد نلغي وصولك إلى لقطات فَيرفُكس.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = رجاء إدراج مسار هذه اللقطة في بريدك: { $url }
+shotPageKeepFor = إلى متى يتعين إبقاء هذه اللقطة؟
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = اختر وقتًا
+shotPageKeepIndefinitely = إلى الأبد
+shotPageKeepTenMinutes = ١٠ دقائق
+shotPageKeepOneHour = ساعة واحدة
+shotPageKeepOneDay = يوم واحد
+shotPageKeepOneWeek = أسبوع واحد
+shotPageKeepTwoWeeks = أسبوعان
+shotPageKeepOneMonth = شهر واحد
 shotPageSaveExpiration = احفظ
 shotPageCancelExpiration = ألغِ
+shotPageDoesNotExpire = لا تنتهي صلاحيتها
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = تنتهي { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = انتهت { $timediff }
+timeDiffJustNow = للتو
+timeDiffMinutesAgo = { $num ->
+        [zero] منذ أقل من دقيقة
+        [one] منذ دقيقة
+        [two] منذ دقيقتين
+        [few] منذ { $number } دقائق
+        [many] منذ { $number } دقيقة
+       *[other] منذ { $number } دقيقة
+    }
+timeDiffHoursAgo = { $num ->
+        [zero] منذ أقل من ساعة
+        [one] منذ ساعة
+        [two] منذ ساعتين
+        [few] منذ { $number } ساعات
+        [many] منذ { $number } ساعة
+       *[other] منذ { $number } ساعة
+    }
+timeDiffDaysAgo = { $num ->
+        [one] بالأمس
+        [two] قبل أمس
+        [few] منذ { $number } أيام
+        [many] منذ { $number } يومًا
+       *[other] منذ { $number } يوم
+    }
+timeDiffFutureSeconds = بعد بضع ثوان
+timeDiffFutureMinutes = { $num ->
+        [zero] بعد بضع ثوان
+        [one] بعد دقيقة
+        [two] بعد دقيقتين
+        [few] بعد { $number } دقائق
+        [many] بعد { $number } دقيقة
+       *[other] بعد { $number } دقيقة
+    }
+timeDiffFutureHours = { $num ->
+        [zero] بعد أقل من ساعة
+        [one] بعد ساعة
+        [two] بعد ساعتين
+        [few] بعد { $number } ساعات
+        [many] بعد { $number } ساعة
+       *[other] بعد { $number } ساعة
+    }
+timeDiffFutureDays = { $num ->
+        [one] غدا
+        [two] بعد غد
+        [few] بعد { $number } أيام
+        [many] بعد { $number } يومًا
+       *[other] بعد { $number } يوم
+    }
 
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = خطأ أثناء حذف اللقطة: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = لقطاتي: ابحث عن { $searchTerm }
 // { $error } is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
-shotIndexPageErrorRendering = خطأ في تصيير الصفحة: { $error }
+shotIndexPageErrorRendering = خطأ أثناء تصيير الصفحة: { $error }
 shotIndexPageSearchPlaceholder
     .placeholder = ابحث في لقطاتي
 shotIndexPageSearchButton
@@ -108,6 +219,7 @@ shotIndexPageSearchButton
 shotIndexPageNoShotsMessage = لا لقطات محفوظة.
 shotIndexPageNoShotsInvitation = حرّك نفسك والتقط شيئا.
 shotIndexPageLookingForShots = يبحث عن لقطاتك…
+shotIndexPageNoSearchResultsIntro = إم
 shotIndexPageNoSearchResults = تعذّر العثور على أي لقطة تطابق معايير البحث.
 shotIndexPageClearSearchButton
     .title = امسح البحث
@@ -117,15 +229,46 @@ shotIndexPageConfirmShotDelete = أنحذف هذه اللقطة؟
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = إحصائيات «لقطات فَيرفُكس»
+metricsPageTotalsQueryTitle = المجموع
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = نظرة عامة على «اللقطات»
+metricsPageTotalsQueryDevices = مجموع الأجهزة المسجلة
+metricsPageTotalsQueryActiveShots = اللقطات النشطة
+metricsPageTotalsQueryExpiredShots = منتهية الصلاحية (و لكن يمكن استعادتها)
+metricsPageTotalsQueryExpiredDeletedShots = منتهية الصلاحية (و محذوفة)
+metricsPageShotsQueryTitle = اللقطات في اليوم
 metricsPageShotsQueryDescription = عدد اللقطات المُنشأة يوميا (خلال الثلاثين يوما الماضية)
 metricsPageShotsQueryCount = عدد اللقطات
 metricsPageShotsQueryDay = اليوم
+metricsPageUsersQueryTitle = المستخدمين في اليوم
+metricsPageUsersQueryDescription = عدد المستخدمين الذين أنشئوا لقطة واحدة على الأقل في اليوم (آخر ٣٠ يوم)
 metricsPageUsersQueryCount = عدد المستخدمين
 metricsPageUsersQueryDay = اليوم
 metricsPageUserShotsQueryTitle = عدد اللقطات لكل مستخدم
+metricsPageUserShotsQueryDescription = عدد المستخدمين اللذين لديهم ما مجموعه ن من اللقطات
 metricsPageUserShotsQueryCount = عدد المستخدمين
+metricsPageUserShotsQueryShots = العدد التقريبي للقطات النشطة (غير المنتهية)
+metricsPageRetentionQueryTitle = الاحتفاظ بالأسبوع
+metricsPageRetentionQueryDescription = عدد الأيام من لقطة المستخدم الأولى إلى اللقطة الأخيرة، مجمعة حسب أسبوع البداية
 metricsPageRetentionQueryUsers = عدد المستخدمين
+metricsPageRetentionQueryDays = عدد الأيام من لقطة المستخدم الأولى إلى اللقطة الأخيرة
 metricsPageRetentionQueryFirstWeek = الأسبوع الذي أنشأ فيه المستخدم أول لقطة
+metricsPageTotalRetentionQueryTitle = الاحتفاظ الكلي
+metricsPageTotalRetentionQueryDescription = طول الوقت الذي ينشئ فيه المستخدمين لقطات، مجمعة حسب الأسبوع
 metricsPageTotalRetentionQueryUsers = عدد المستخدمين
+metricsPageTotalRetentionQueryDays = الأيام التي ينشئ فيها المستخدمين اللقطات
 metricsPageVersionQueryTitle = إصدارة الإضافة
+metricsPageVersionQueryDescription = إصدارة لإضافة المستخدمة أثناء الولوج، في آخر ١٤ يوم
+metricsPageVersionQueryUsers = عدد المستخدمين الوالجين
 metricsPageVersionQueryVersion = إصدارة الإضافة
+metricsPageVersionQueryLastSeen = اليوم
+metricsPageHeader = الإحصائيات
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime =
+    أنشئت في: { $created }
+    
+
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (وقت قاعدة البيانات: { $created } مللي ثانية)

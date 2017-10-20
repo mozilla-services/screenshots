@@ -1,3 +1,58 @@
+## Version 22.0.0
+
+This is primarily a server release. Some changes in the add-on have been ported to the 19.x.0 line.
+
+### Server changes
+
+* Update packages for nsp/regex checks [e761c7a](https://github.com/mozilla-services/screenshots/commit/e761c7a)
+* Update express dependency ([#3553](https://github.com/mozilla-services/screenshots/issues/3553)) [719bf05](https://github.com/mozilla-services/screenshots/commit/719bf05)
+* Add new clip type: fullPageTruncated. For [#2129](https://github.com/mozilla-services/screenshots/issues/2129) [aa97577](https://github.com/mozilla-services/screenshots/commit/aa97577)
+* Bug fix for [#3513](https://github.com/mozilla-services/screenshots/issues/3513), create proper extension for downloads ([#3543](https://github.com/mozilla-services/screenshots/issues/3543)). The clip object is used to inform the download filename, so we need to add a clip before generating the filename [966bc6c](https://github.com/mozilla-services/screenshots/commit/966bc6c)
+
+### Add-on changes
+
+Note: this is a server-only release, but many of these changes have been put into the 19.x.0 series.
+
+* Remove code that checks for system-disabled pref ([#3554](https://github.com/mozilla-services/screenshots/issues/3554))
+  Leave the branch/leaf checking code in place, both to minimize the size
+  of the patch, and to make it easy to observe a self-hosting pref I'd
+  like to add soon. Fixes [#3549](https://github.com/mozilla-services/screenshots/issues/3549) [1a6a619](https://github.com/mozilla-services/screenshots/commit/1a6a619)
+* Notify user when full page is cut offAdds a new captureType, fullPageTruncated. Fixes [#2129](https://github.com/mozilla-services/screenshots/issues/2129) [aa97577](https://github.com/mozilla-services/screenshots/commit/aa97577)
+* Put limits on uses of string.splitThis only covers cases in the JPEG commits, to keep the resulting diff minimal [e9763fc](https://github.com/mozilla-services/screenshots/commit/e9763fc)
+* Bug fix for [#3513](https://github.com/mozilla-services/screenshots/issues/3513), create proper extension for downloads ([#3543](https://github.com/mozilla-services/screenshots/issues/3543)). The clip object is used to inform the download filename, so we need to add a clip before generating the filename [966bc6c](https://github.com/mozilla-services/screenshots/commit/966bc6c)
+* Stop Screenshots in Private Browsing ([#3544](https://github.com/mozilla-services/screenshots/issues/3544))bootstrap.js sends the tab ID with the Photon page action, but it doesn't have the complete set of information that the WebExtension tab object has. Fixes [#3491](https://github.com/mozilla-services/screenshots/issues/3491) [5b13917](https://github.com/mozilla-services/screenshots/commit/5b13917)
+* Make selector view usable on high contrast themes. Fixes [#3174](https://github.com/mozilla-services/screenshots/issues/3174) [c46d7dd](https://github.com/mozilla-services/screenshots/commit/c46d7dd)
+
+## Version 21.0.0
+
+This is a server-only release.
+
+### Server changes
+
+* Fix twitter card image [2988649](https://github.com/mozilla-services/screenshots/commit/2988649)
+* Update Opengraph / Twitter cards [dc10d75](https://github.com/mozilla-services/screenshots/commit/dc10d75)
+* Use correct latest commit in `__version__` endpoint [2b7a703](https://github.com/mozilla-services/screenshots/commit/2b7a703)
+* Ignore the tough-cookie (https://nodesecurity.io/advisories/525) warning for now ([#3533](https://github.com/mozilla-services/screenshots/issues/3533)). Followup to undo this in [#3532](https://github.com/mozilla-services/screenshots/issues/3532) [c21f3d3](https://github.com/mozilla-services/screenshots/commit/c21f3d3)
+* separate banner image [b5a939e](https://github.com/mozilla-services/screenshots/commit/b5a939e)
+* Csrf refactor ([#3516](https://github.com/mozilla-services/screenshots/issues/3516))* server: default to using csrf protection middleware
+  * server: combine csrf and csrfProtection middleware [6aafff2](https://github.com/mozilla-services/screenshots/commit/6aafff2)
+* Re-enable eslint-plugin-mozilla now that it is fixed. Fixes [#3450](https://github.com/mozilla-services/screenshots/issues/3450) [73d4077](https://github.com/mozilla-services/screenshots/commit/73d4077)
+
+### Add-on changes
+
+Note: not released
+
+* Remove `"` and `?` from filenames ([#3524](https://github.com/mozilla-services/screenshots/issues/3524))* remove " and ? from filenames
+* Upload jpeg ([#3513](https://github.com/mozilla-services/screenshots/issues/3513))* Start [#220](https://github.com/mozilla-services/screenshots/issues/220), allow JPEG uploads, and respect content-type for JPEG or PNG
+  - use JPEG for large shots
+  - Allows JPEGs on the server, both to pass content checks, and to make use of stored content-types (instead of assuming image/png).
+  - Puts an clip.image.type into shot objects
+  - Uses .jpg for filenames when appropriate
+  - Adds a new buildSetting for controlling the cutoff when we use JPEG
+  - If a PNG image is too large, tries to make a JPEG and substitutes if the JPEG is actually smaller
+  - Refactor some data:-URL and blob conversion functions into their own module. Fixes [#220](https://github.com/mozilla-services/screenshots/issues/220) [82139ed](https://github.com/mozilla-services/screenshots/commit/82139ed)
+* Fix an undefined variable (bad rename) in the Mochitest [25aeaa1](https://github.com/mozilla-services/screenshots/commit/25aeaa1)
+
 ## Version 20.0.0
 
 Note: this is a server release

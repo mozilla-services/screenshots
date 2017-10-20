@@ -16,11 +16,16 @@ gMyShots = ภาพของฉัน
 footerLinkMozilla = Mozilla
 footerLinkTerms = ข้อกำหนด
 footerLinkPrivacy = ประกาศความเป็นส่วนตัว
+footerLinkDiscourse = ส่งผลตอบรับ
 footerLinkRemoveAllData = เอาข้อมูลทั้งหมดออก
 
 
 [[ Creating page ]]
 
+// Note: { $title } is a placeholder for the title of the web page
+// captured in the screenshot. The default, for pages without titles, is
+// creatingPageTitleDefault.
+creatingPageTitle = กำลังสร้าง { $title }
 creatingPageTitleDefault = หน้า
 creatingPageWaitMessage = กำลังบันทึกภาพของคุณ…
 
@@ -59,6 +64,12 @@ shotPageAlertErrorUpdatingTitle = เกิดข้อผิดพลาดใ�
 shotPageShareButton
     .title = แบ่งปัน
 shotPageCopy = คัดลอก
+shotPageShareFacebook
+    .title = แบ่งปันบน Facebook
+shotPageShareTwitter
+    .title = แบ่งปันบน Twitter
+shotPageSharePinterest
+    .title = แบ่งปันบน Pinterest
 shotPageShareEmail
     .title = แบ่งปันลิงก์ทางอีเมล
 shotPageDownloadShot
@@ -78,6 +89,8 @@ shotPageKeepTwoWeeks = 2 สัปดาห์
 shotPageKeepOneMonth = 1 เดือน
 shotPageSaveExpiration = บันทึก
 shotPageCancelExpiration = ยกเลิก
+shotPageDoesNotExpire = ไม่หมดเวลา
+timeDiffFutureSeconds = ในไม่กี่วินาที
 
 
 [[ Shotindex page ]]
@@ -96,7 +109,11 @@ shotIndexPageConfirmShotDelete = ลบภาพนี้?
 metricsPageTotalsQueryDevices = อุปกรณ์ลงทะเบียนทั้งหมด
 metricsPageTotalsQueryExpiredShots = หมดอายุ (แต่สามารถกู้คืนได้)
 metricsPageTotalsQueryExpiredDeletedShots = หมดอายุ (และถูกลบแล้ว)
+metricsPageShotsQueryDay = วัน
 metricsPageUsersQueryTitle = ผู้ใช้ตามวัน
 metricsPageUsersQueryCount = จำนวนผู้ใช้
 metricsPageUsersQueryDay = วัน
 metricsPageUserShotsQueryCount = จำนวนผู้ใช้
+metricsPageRetentionQueryUsers = จำนวนของผู้ใช้
+metricsPageTotalRetentionQueryUsers = จำนวนของผู้ใช้
+metricsPageVersionQueryLastSeen = วัน

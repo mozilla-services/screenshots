@@ -39,7 +39,7 @@ creatingPageWaitMessage = 正在保存您的截图…
 [[ Home page ]]
 
 homePageDescription
-    .content = 直接在浏览器内截图。浏览网页时截图、保存与分享，只需 Firefox。
+    .content = 直接在浏览器内截图。使用 Firefox 浏览网页时可以截取、保存和分享网页截图。
 homePageButtonMyShots = 转至我的截图
 homePageTeaser = 即将推出…
 homePageDownloadFirefoxTitle = Firefox
@@ -49,12 +49,14 @@ homePageGetStarted = 操作入门
 homePageHowScreenshotsWorks = 如何使用 Firefox Screenshots
 homePageGetStartedTitle = 开始使用
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = 在工具栏上找到新增的屏幕截图（Screenshots）图标，点击它，截图菜单将出现在浏览器窗口的顶部。
-homePageCaptureRegion = 截取页面
+homePageGetStartedDescription = 在工具栏上找到新增的“屏幕截图”图标，点击它，截图菜单将出现在浏览器窗口的顶部。
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = 单击并拖动以选择要截图的区域。或者悬停并单击，让屏幕截图为您选中区域。一切所见即所得，您可以将截图在线保存或点击“向下箭头”按钮下载到您的计算机。
-homePageCapturePage = 截取区域
-homePageCapturePageDescription = 使用右上角的按钮来截图整个页面。保存可见将截取当前显示的区域（不滚动），保存完整页面则截取整个页面的可见内容。
+homePageGetStartedDescriptionPageAction = 点击地址栏中的“页面动作”菜单，选择“截图”按钮，截图菜单会显示在您的浏览器窗口的顶部。
+homePageCaptureRegion = 截取选定区域
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = 单击并拖动以选择要截图的区域。或者悬停并单击，让屏幕截图为您选中区域。您可以选择“保存”进入您的在线截图库或点击“向下箭头”按钮下载截图到您的计算机。
+homePageCapturePage = 截取整个网页
+homePageCapturePageDescription = 使用右上角的按钮来截图整个页面。保存可视区域将截取当前可见区域的内容，保存完整页面将截取整个网页的内容。
 homePageSaveShare = 保存并分享
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = 在您截图时，Firefox 会将截图保存到您的在线截图库，并将链接复制到剪贴板。我们会为您自动存储两周内的截图，您也可以随时删除截图或更改到期时间以长期保留截图。
@@ -87,7 +89,7 @@ notFoundPageDescription = 找不到网页。
 [[ Shot page ]]
 
 // This is the HTML title tag of the page
-shotPageTitle = 截图: { $originalTitle }
+shotPageTitle = 截图：{ $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = 保存到期时间时出错
 shotPageAlertErrorDeletingShot = 删除截图时出错
 shotPageAlertErrorUpdatingTitle = 保存标题时出错
@@ -115,6 +117,8 @@ shotPageExpirationMessage = 如果您不做操作，此截图将在 { $timediff 
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = 在 { $date } 前可恢复
 shotPageExpiredMessage = 此截图已过期。
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = 这是最初创建的页面：
 shotPageDeleteButton
     .title = 删除此截图
 shotPageAbuseButton
@@ -207,9 +211,18 @@ metricsPageUsersQueryDescription = 至少创建一张截图的用户数，最近
 metricsPageUsersQueryCount = 用户数
 metricsPageUsersQueryDay = 日
 metricsPageUserShotsQueryTitle = 每用户截图数
+metricsPageUserShotsQueryDescription = 有总共 N 个截图的用户数量
 metricsPageUserShotsQueryCount = 用户数
+metricsPageUserShotsQueryShots = 大致的活跃（未过期）截图数
+metricsPageRetentionQueryTitle = 按周保留
+metricsPageRetentionQueryDescription = 用户第一张截图到最近一张截图的天数，按周分组
 metricsPageRetentionQueryUsers = 用户数
+metricsPageRetentionQueryDays = 用户从第一张到最近一张截图的天数
+metricsPageRetentionQueryFirstWeek = 用户第一次创建截图的周数
+metricsPageTotalRetentionQueryTitle = 所有保留
+metricsPageTotalRetentionQueryDescription = 用户已创建截图的时间长度，按周分组
 metricsPageTotalRetentionQueryUsers = 用户数
+metricsPageTotalRetentionQueryDays = 用户创建截图的天数
 metricsPageVersionQueryTitle = 附加组件版本
 metricsPageVersionQueryDescription = 过去 14 天内进行登录的附加组件版本
 metricsPageVersionQueryUsers = 用户登录数

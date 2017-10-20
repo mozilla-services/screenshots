@@ -23,7 +23,7 @@ app.post("/leave", function(req, res) {
   if (!req.deviceId) {
     res.status(403).send(req.getText("leavePageErrorAddonRequired"));
   }
-  Shot.deleteEverythingForDevice(req.backend, req.deviceId).then(() => {
+  Shot.deleteEverythingForDevice(req.backend, req.deviceId, req.accountId).then(() => {
     res.redirect("/leave-screenshots/?complete");
   }).catch((e) => {
     mozlog.error("delete-account-error", {msg: "An error occurred trying to delete account", error: e});
