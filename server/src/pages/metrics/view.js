@@ -38,8 +38,6 @@ class Body extends React.Component {
         <GenericTable data={this.props.data.retention} />
 
         <GenericTable data={this.props.data.retentionTotal} />
-
-        <GenericTable data={this.props.data.addonVersion} />
       </reactruntime.BodyTemplate>
     );
   }
