@@ -19,15 +19,22 @@ footerLinkTerms = ನಿಯಮಗಳು
 footerLinkPrivacy = ಗೌಪ್ಯತಾ ಸೂಚನೆ
 footerLinkFaqs = ಸಾಮಾನ್ಯವಾಗಿ ಕೇಳಲಾಗುವ ಪ್ರಶ್ನೆಗಳು
 footerLinkDiscourse = ಪ್ರತಿಕ್ರಿಯೆ ನೀಡು
+footerLinkRemoveAllData = ಎಲ್ಲಾ ದತ್ತಾಂಶವನ್ನು ತೆಗೆದು ಹಾಕು
 
 
 [[ Creating page ]]
 
+// Note: { $title } is a placeholder for the title of the web page
+// captured in the screenshot. The default, for pages without titles, is
+// creatingPageTitleDefault.
+creatingPageTitle = { $title } ಸೃಷ್ಠಿಸಲಾಗುತ್ತಿದೆ
 creatingPageTitleDefault = ಪುಟ
+creatingPageWaitMessage = ತೆರೆಚಿತ್ರವನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ…
 
 
 [[ Home page ]]
 
+homePageButtonMyShots = ನನ್ನ ತೆರೆಚಿತ್ರಗಳಿಗೆ ಹೋಗು
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ಉಚಿತ ಡೌನ್‌ಲೋಡು
 homePageGetStarted = ಪ್ರಾರಂಭಿಸಿರಿ
