@@ -35,6 +35,7 @@ creatingPageWaitMessage = ತೆರೆಚಿತ್ರವನ್ನು ಉಳಿ�
 [[ Home page ]]
 
 homePageButtonMyShots = ನನ್ನ ತೆರೆಚಿತ್ರಗಳಿಗೆ ಹೋಗು
+homePageTeaser = ಸದ್ಯದಲ್ಲೇ ಬರುತ್ತಿದೆ...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ಉಚಿತ ಡೌನ್‌ಲೋಡು
 homePageGetStarted = ಪ್ರಾರಂಭಿಸಿರಿ
