@@ -47,6 +47,9 @@ shotPageCancelExpiration = Haaytu
 
 [[ Shotindex page ]]
 
+shotIndexPageSearchButton
+    .title = Yiylo
+shotIndexPageNoSearchResultsIntro = Hmm
 
 
 // all metrics strings are optional for translation
