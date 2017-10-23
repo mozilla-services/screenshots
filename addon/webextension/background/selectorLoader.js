@@ -84,7 +84,10 @@ this.selectorLoader = (function() {
   function incognitoCheck(tabId) {
     return browser.tabs.get(tabId).then(tab => {
       return browser.tabs.executeScript(tabId, {
-        code: `window.incognito = ${tab.incognito};`,
+        // Note: `window` here refers to a global accessible to content
+        // scripts, but not the scripts in the underlying page. For more
+        // details, see https://mdn.io/WebExtensions/Content_scripts#Content_script_environment
+        code: `window.downloadOnly = ${tab.incognito}`,
         runAt: "document_start"
       });
     });

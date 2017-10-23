@@ -92,27 +92,17 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
   }
 
   function isDownloadOnly() {
-    return window.incognito;
+    return window.downloadOnly;
   }
 
   function renderDownloadNotice() {
     let notice = makeEl("div", "download-only");
-    notice.textContent = browser.i18n.getMessage("downloadOnlyNotice");
-    let questionMark = makeEl("span", "circle");
-    questionMark.textContent = "?";
-    notice.appendChild(questionMark);
-
-    let tooltip = makeEl("div", "download-only-details");
-    let details = makeEl("p");
-    details.textContent = browser.i18n.getMessage("downloadOnlyDetails");
-    let detailsList = makeEl("ul");
-    let detailsPrivate = makeEl("li");
-    detailsPrivate.textContent = browser.i18n.getMessage("downloadOnlyDetailsPrivate");
-
-    detailsList.appendChild(detailsPrivate);
-    details.appendChild(detailsList);
-    tooltip.appendChild(details);
-    notice.appendChild(tooltip);
+    notice.innerHTML = `
+      <span data-l10n-id="downloadOnlyNotice"></span><span class="circle">?</span>
+      <div class="download-only-details">
+        <p data-l10n-id="downloadOnlyDetails">
+          <ul><li data-l10n-id="downloadOnlyDetailsPrivate">`;
+    localizeText(notice);
     return notice;
   }
 
