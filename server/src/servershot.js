@@ -16,7 +16,7 @@ const JPEG_HEADER_BASE64 = "/9g=";
 const JPEG_HEADER = Buffer.from(JPEG_HEADER_BASE64, "base64").slice(0, 2);
 
 
-const SHOTS_PER_PAGE = 10;
+const SHOTS_PER_PAGE = 24;
 
 function assertPngOrJpeg(dataUrl) {
   const pngHeader = "data:image/png;base64,";

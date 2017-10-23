@@ -25,7 +25,13 @@ app.get("/", function(req, res) {
     });
 
   function _render(shotsPage) {
-    Object.assign(req, shotsPage);
+    if (shotsPage) {
+      ['shots', 'totalShots', 'pageNumber', 'shotsPerPage'].forEach(x => {
+        if (shotsPage[x] !== undefined) {
+          req[x] = shotsPage[x];
+        }
+      });
+    }
     const page = require("./page").page;
     reactrender.render(req, res, page);
   }

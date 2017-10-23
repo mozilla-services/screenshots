@@ -57,7 +57,7 @@ function extractQueryParamValues(searchKeys) {
   let qs = queryString.parse(window.location.search)
 
   Object.keys(searchKeys).forEach(x => {
-    if (typeof qs[x] !== "undefined") {
+    if (qs[x] !== undefined) {
       o[searchKeys[x]] = qs[x];
     }
   });
@@ -69,7 +69,7 @@ function buildQueryStringFromModel(searchKeys, model) {
   const queryParams = {};
 
   Object.keys(searchKeys).forEach(x => {
-    if (typeof model[searchKeys[x]] !== "undefined" && model[searchKeys[x]] !== null) {
+    if (model[searchKeys[x]] !== undefined && model[searchKeys[x]] !== null) {
       queryParams[x] = model[searchKeys[x]];
     }
   })
@@ -85,7 +85,7 @@ exports.onChangeSearch = function(query) {
 };
 
 exports.onChangePage = function(pageNumber) {
-  pageNumber = (pageNumber && parseInt(pageNumber)) || 1;
+  pageNumber = pageNumber || 1;
   model.pageNumber = pageNumber;
   updateHistory({p: pageNumber});
   refreshModel();
@@ -109,8 +109,7 @@ exports.getNewUrl = function(queryParam) {
   });
 
   if (Object.keys(qs).length) {
-    let newQueryString = Object.keys(qs).map(x => `${x}=${encodeURIComponent(qs[x])}`).join('&');
-    url = `/shots?${newQueryString}`;
+    url = `/shots?${queryString.stringify(qs)}`;
   }
 
   return url;

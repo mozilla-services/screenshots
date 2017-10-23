@@ -89,51 +89,45 @@ class Body extends React.Component {
   }
 
   renderPageNavigation() {
-    if (parseInt(this.props.totalShots) === 0) {
+    if (parseInt(this.props.totalShots, 10) === 0) {
       return null;
     }
 
     let totalPages = Math.ceil(this.props.totalShots / this.props.shotsPerPage);
-    let prevLink = () => {
-      if (this.props.pageNumber > 1) {
-        let prevPageNumber = this.props.pageNumber - 1;
-        return (
-          <span className="shots-page-nav">
+    let hasPrev = this.props.pageNumber > 1;
+    let prevPageNumber = this.props.pageNumber - 1;
+    let prevClasses = ["shots-page-nav"].concat(!hasPrev && "disabled").join(' ');
+    let hasNext = this.props.pageNumber < totalPages;
+    let nextPageNumber = this.props.pageNumber - 0 + 1;
+    let nextClasses = ["shots-page-nav"].concat(!hasNext && "disabled").join(' ');
 
-            <Localized id="shotIndexPagePreviousPage">
-              <a href={ controller.getNewUrl({p: prevPageNumber})}
+    return (
+      <div id="shot-index-page-navigation">
+        <span className={prevClasses}>
+          <Localized id="shotIndexPagePreviousPage">
+            {
+              hasPrev
+              ? <a href={ controller.getNewUrl({p: prevPageNumber})}
                 onClick={ this.onChangePage.bind(this, prevPageNumber) }
                 title="previous page"
                 ><img src={ this.props.staticLink("/static/img/arrowhead-left-16.svg") } /></a>
-            </Localized>
-          </span>
-        )
-      }
-      return (
-        <span className="shots-page-nav disabled"><img src={ this.props.staticLink("/static/img/arrowhead-left-16.svg") } /></span>);
-    }
-    let nextLink = () => {
-      if (this.props.pageNumber < totalPages) {
-        let nextPageNumber = this.props.pageNumber - 0 + 1;
-        return (
-          <span className="shots-page-nav">
-            <Localized id="shotIndexPageNextPage">
-              <a href={ controller.getNewUrl({p: nextPageNumber}) }
+              : <img src={ this.props.staticLink("/static/img/arrowhead-left-16.svg") } />
+            }
+          </Localized>
+        </span>
+        <span id="shots-page-number">{this.props.pageNumber} / {totalPages}</span>
+        <span className={nextClasses}>
+          <Localized id="shotIndexPageNextPage">
+            {
+              hasNext
+              ? <a href={ controller.getNewUrl({p: nextPageNumber}) }
                 onClick={ this.onChangePage.bind(this, nextPageNumber) }
                 title="next page"
                 ><img src={ this.props.staticLink("/static/img/arrowhead-right-16.svg") } /></a>
-            </Localized>
-          </span>
-        )
-      }
-      return (
-        <span className="shots-page-nav disabled"><img src={ this.props.staticLink("/static/img/arrowhead-right-16.svg") } /></span>);
-    };
-    return (
-      <div id="shot-index-page-navigation">
-        { prevLink() }
-        <span id="shots-page-number">{this.props.pageNumber} / {totalPages}</span>
-        { nextLink() }
+              : <img src={ this.props.staticLink("/static/img/arrowhead-right-16.svg") } />
+            }
+          </Localized>
+        </span>
       </div>
     );
   }
