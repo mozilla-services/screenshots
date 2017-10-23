@@ -241,6 +241,14 @@ body {
   }
 }
 
+[dir='rtl'] #next {
+  transform: rotate(0deg);
+}
+
+[dir='rtl'] #prev {
+  transform: rotate(180deg);
+}
+
 #skip {
   background: none;
   border: 0;
