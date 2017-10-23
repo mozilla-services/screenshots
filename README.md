@@ -25,6 +25,7 @@ Clone the [repository](https://github.com/mozilla-services/screenshots/).
 There are two scripts to run the server locally and develop the add-on:
 
 - `./bin/run-server` will run the server on `http://localhost:10080` and automatically restart if there are changes.
+    - If nodemon crashes you can try to start the server with `./bin/run-server --restart`
 - `./bin/run-addon` will build a few parts of the addon (into `addon/webextension/build/`) and start Firefox with the add-on installed.  The add-on will be refreshed automatically as you change files.  We recommend you open `about:debugging` to help debug the extension.
 - - `./bin/run-addon --bootstrap` will run the add-on using the [bootstrap](https://github.com/mozilla-services/screenshots/blob/master/addon/bootstrap.js) wrapper.  This is how the add-on is run in Firefox, and provides some additional services, like Telemetry and migration.  This does not support reloading, so if you aren't developing things involving the wrapper then you can run without `--bootstrap`.
 - `./bin/run-addon --setup-profile` will setup a Firefox profile for your development; this way you can make persistent changes to the profile that you will use just for Screenshots development. (note: this will only look for the `firefox` commmand or Nightly, Developer Edition, Aurora editions on OSX)
