@@ -91,19 +91,21 @@ exports.onChangePage = function(pageNumber) {
   refreshModel();
 }
 
-exports.getNewUrl = function(queryParam) {
+// queryParamsToUpdate is a dictionary of query param(s) to insert/update/delete
+// in the query string; it does not represent all the params going into the query string.
+exports.getNewUrl = function(queryParamsToUpdate) {
   let url = "/shots";
 
-  if (!queryParam) {
+  if (!queryParamsToUpdate) {
     return url;
   }
 
   let qs = queryString.parse(window.location.search)
 
-  Object.keys(queryParam).forEach(x => {
-    if (queryParam[x]) {
-      qs[x] = queryParam[x];
-    } else if (!queryParam[x] && qs[x]) {
+  Object.keys(queryParamsToUpdate).forEach(x => {
+    if (queryParamsToUpdate[x]) {
+      qs[x] = queryParamsToUpdate[x];
+    } else if (!queryParamsToUpdate[x] && qs[x]) {
       delete qs[x];
     }
   });
@@ -115,8 +117,8 @@ exports.getNewUrl = function(queryParam) {
   return url;
 }
 
-function updateHistory(queryParam) {
-  let url = exports.getNewUrl(queryParam);
+function updateHistory(queryParamsToUpdate) {
+  let url = exports.getNewUrl(queryParamsToUpdate);
   window.history.pushState(null, "", url);
 }
 
