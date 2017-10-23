@@ -128,6 +128,29 @@ var conf = convict({
       default: 50,
       env: "LOG_QUERY_LIMIT",
       arg: "log-query-limit"
+    },
+    pool: {
+      connectionTimeoutMillis: {
+        doc: "Number of milliseconds to wait before timing out when connecting a new db client",
+        format: "int",
+        default: 5000,
+        env: "PG_POOL_CLIENT_TIMEOUT",
+        arg: "pg-pool-client-timeout"
+      },
+      idleTimeoutMillis: {
+        doc: "Number of milliseconds of idle before a db client is disconnected",
+        format: "int",
+        default: 10000,
+        env: "PG_POOL_CLIENT_IDLE",
+        arg: "pg-pool-client-idle"
+      },
+      max: {
+        doc: "Maximum number of clients in the connection pool",
+        format: "int",
+        default: 10,
+        env: "PG_POOL_CLIENT_LIMTI",
+        arg: "pg-pool-client-limit"
+      }
     }
   },
   gaId: {
