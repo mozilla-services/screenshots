@@ -9,7 +9,9 @@ let dbname = encodeURIComponent(config.db.dbname || config.db.user);
 let credentials = config.db.password ? `${user}:${encodeURIComponent(config.db.password)}` : user;
 let constr = `postgres://${credentials}@${config.db.host}/${dbname}`;
 
-pg.on("error", function(error) {
+const pool = new pg.Pool(Object.assign({connectionString: constr}, config.db.pool));
+
+pool.on("error", function(error) {
   mozlog.error("db-error", {
     msg: "Error in database:",
     err: error
@@ -18,7 +20,7 @@ pg.on("error", function(error) {
 
 function getConnection() {
   return new Promise(function(resolve, reject) {
-    pg.connect(constr, function(err, client, done) {
+    pool.connect(function(err, client, done) {
       if (err) {
         reject(err);
       } else {

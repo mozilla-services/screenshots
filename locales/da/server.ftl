@@ -50,6 +50,8 @@ homePageHowScreenshotsWorks = Sådan virker Firefox Screenshots
 homePageGetStartedTitle = Kom i gang
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Find det nye Screenshots-ikon på din værktøjslinje. Vælg det, og Screenshots-menuen vises øverst i browservinduet.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Klik på Screenshots-ikonet i menuen Sidehandlinger i adressefeltet for at få vist Screenshots-menuen øverst i browser-vinduet.
 homePageCaptureRegion = Gem et område
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klik og træk for at vælge det område, du vil tage et skærmbillede af. Eller hold musen over et element på siden og klik. Vælg "Gem" for at kunne tilgå dit skærmbillede på nettet eller knappen med pil nedad for at hente billedet ned på din computer.
