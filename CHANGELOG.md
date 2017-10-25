@@ -1,3 +1,65 @@
+## Not released
+
+Note: these commits have not been released. This section should be merged with whatever comes next once we do a release.
+
+* Added instruction to fix nodemon crash [1524e3f](https://github.com/mozilla-services/screenshots/commit/1524e3f)
+* Remove Add-on Version from /metrics (thanks [Apply55gx](https://github.com/Apply55gx)!). [#3609](https://github.com/mozilla-services/screenshots/issues/3609) ([#3656](https://github.com/mozilla-services/screenshots/issues/3656))
+  * remove version metrics query
+  * remove version table
+  * bug fix (Unexpected token)
+  * Update model.js [e702b22](https://github.com/mozilla-services/screenshots/commit/e702b22)
+* Use pg connection pooling. ([#3371](https://github.com/mozilla-services/screenshots/issues/3371)) [98f9496](https://github.com/mozilla-services/screenshots/commit/98f9496)
+* Add an index and revise a select related to deleting all shots ([#3629](https://github.com/mozilla-services/screenshots/issues/3629))
+  * Remove two seq scans and a sort from a select query. ([#3568](https://github.com/mozilla-services/screenshots/issues/3568))
+  * Add index to column that's used in a WHERE.
+  * Update db schema.
+  * Up the DB level.
+  * Use account id to get device ids; delete image data for all device ids.
+  * Use device id when there's no account id to delete shots. [f183b3c](https://github.com/mozilla-services/screenshots/commit/f183b3c)
+* Set HSTS max-age to 24 hours. Fixes [#3622](https://github.com/mozilla-services/screenshots/issues/3622) [ffaf9cd](https://github.com/mozilla-services/screenshots/commit/ffaf9cd)
+* Fix Selenium test ([#3647](https://github.com/mozilla-services/screenshots/issues/3647))
+  * This adds a timeout after the UI is first displayed. The UI is displayed, and handlers are added, but for EVERYTHING to get setup and working takes slightly longer. Fixes [#3616](https://github.com/mozilla-services/screenshots/issues/3616) Fixes [#3616](https://github.com/mozilla-services/screenshots/issues/3616) [be2284a](https://github.com/mozilla-services/screenshots/commit/be2284a)
+* Create empty robots.txt (thanks again Apply55gx!). Closes [#3635](https://github.com/mozilla-services/screenshots/issues/3635) ([#3639](https://github.com/mozilla-services/screenshots/issues/3639))
+  * Update Server.js add /robots.txt case [c51912b](https://github.com/mozilla-services/screenshots/commit/c51912b)
+* Update `circle.yml` change baseline conf to zap master [69529dc](https://github.com/mozilla-services/screenshots/commit/69529dc)
+* Update ZAP command in circleci ([#3321](https://github.com/mozilla-services/screenshots/issues/3321))
+  * Only fail baseline tests when FAILs are found [8032330](https://github.com/mozilla-services/screenshots/commit/8032330)
+* Export NODE_ENV and NO_UGLIFY for make. ([#3643](https://github.com/mozilla-services/screenshots/issues/3643)) [4835366](https://github.com/mozilla-services/screenshots/commit/4835366)
+* Load scripts at document_start. ([#3633](https://github.com/mozilla-services/screenshots/issues/3633)) [6e4f27d](https://github.com/mozilla-services/screenshots/commit/6e4f27d)
+* Avoid infinite selection loop by checking minimum size
+  Source code files on dxr.mozilla.org are rendered as floats inside a
+  non-clearfixed parent element, which has a calculated height of 0. This
+  condition isn't handled in the current loop logic, leading to an infinite
+  while loop that locks up the UI. Fixes [#3314](https://github.com/mozilla-services/screenshots/issues/3314) [7c0be97](https://github.com/mozilla-services/screenshots/commit/7c0be97)
+* Set s-maxage for shared cache on shot images. ([#3591](https://github.com/mozilla-services/screenshots/issues/3591)) [76fe5b0](https://github.com/mozilla-services/screenshots/commit/76fe5b0)
+* Floor a potentially fractional image width. ([#3541](https://github.com/mozilla-services/screenshots/issues/3541)) [b58ccb7](https://github.com/mozilla-services/screenshots/commit/b58ccb7)
+* make Screenshots work with third party cookies disabled. This adds a second attempt to login to wantsauth logins, one that runs in sitehelper.js, and tries to get the cookie set on a request that appears to come from the content page itself. Note this does not firmly protect from the content page overwriting window.XMLHttpRequest and having the add-on use that object. Fixes [#3581](https://github.com/mozilla-services/screenshots/issues/3581) [ac75a0b](https://github.com/mozilla-services/screenshots/commit/ac75a0b)
+* Update many but not all npm packages to latest. ([#3588](https://github.com/mozilla-services/screenshots/issues/3588)) [18fc984](https://github.com/mozilla-services/screenshots/commit/18fc984)
+* Set cache expiration for shot images. ([#3591](https://github.com/mozilla-services/screenshots/issues/3591)) [380bcd1](https://github.com/mozilla-services/screenshots/commit/380bcd1)
+* Hide share button on mobile with media query. ([#3589](https://github.com/mozilla-services/screenshots/issues/3589)) [32d85be](https://github.com/mozilla-services/screenshots/commit/32d85be)
+* Handle share url opens in onClick. ([#3357](https://github.com/mozilla-services/screenshots/issues/3357)) [5d23902](https://github.com/mozilla-services/screenshots/commit/5d23902)
+* Fix pluralization by passing integer time diffs as numbers, not strings.
+  The Localized fluent-react component doesn't coerce strings to numbers,
+  so strings like "1" are mistakenly rendered using the default
+  pluralization. Bug [#3495](https://github.com/mozilla-services/screenshots/issues/3495) is due to our use of the plural as the default (for example, see the 'timeDiffMinutesAgo' l10n key). Fixes [#3495](https://github.com/mozilla-services/screenshots/issues/3495) [3b0a99e](https://github.com/mozilla-services/screenshots/commit/3b0a99e)
+* Try to work around [bug 1406571](https://bugzilla.mozilla.org/show_bug.cgi?id=1406571) [27084fe](https://github.com/mozilla-services/screenshots/commit/27084fe)
+* remove `.nsprc` file now that tough-cookie has been updated
+  As seen in [#3561](https://circleci.com/gh/mozilla-services/screenshots/3561), we had to temporarily disable nsp checks due to a
+  potential vulnerability in tough-cookie. The request library has been
+  updated to use the updated tough-cookie, and, thanks to loose version
+  tracking, looks like the fix percolates up to all our deps. Fixes [#3532](https://github.com/mozilla-services/screenshots/issues/3532) [0b09f21](https://github.com/mozilla-services/screenshots/commit/0b09f21)
+* Run server unit tests with npm run test ([#3582](https://github.com/mozilla-services/screenshots/issues/3582)) (Note tests have broken when they weren't being run)
+  * Fix l10n fallback tests. Fixes [#3372](https://github.com/mozilla-services/screenshots/issues/3372) Fixes [#3372](https://github.com/mozilla-services/screenshots/issues/3372) [3079086](https://github.com/mozilla-services/screenshots/commit/3079086)
+* Extend default resource expiration time to 30 days ([#3592](https://github.com/mozilla-services/screenshots/issues/3592)). This is relatively safe since we use commit-hash-based cache busters on URLs.. This fixes one of the last issues from [#3202](https://github.com/mozilla-services/screenshots/issues/3202) [fdff27d](https://github.com/mozilla-services/screenshots/commit/fdff27d)
+* Raven cleanups ([#3594](https://github.com/mozilla-services/screenshots/issues/3594))
+  * When sending pageview events for direct image views, only send the referrer origin. This matches similar logic in ga-activation.js that also scrubs the referrer down to only the origin.
+  * remove shot URLs from Sentry reports. This scrubs both shot URLs in referrers, as well as shot URLs from errors on the shot pages themselves. The paths are translated to /a-shot/redacted in this case. This also adds a req argument to captureRavenException, which adds request-specific information to error reports (something that sendRavenMessage already did). Fixes [#3483](https://github.com/mozilla-services/screenshots/issues/3483) [5d70330](https://github.com/mozilla-services/screenshots/commit/5d70330)
+* Use JS to detect and apply high contrast mode styles. Fixes [#3174](https://github.com/mozilla-services/screenshots/issues/3174) Fixes [#3565](https://github.com/mozilla-services/screenshots/issues/3565) [8bcf729](https://github.com/mozilla-services/screenshots/commit/8bcf729)
+* Revert "make selector view usable on high contrast themes"
+  This reverts commit c46d7ddd554f62da763d74c8ad6ab331ea3e2c29. Fixes [#3174](https://github.com/mozilla-services/screenshots/issues/3174) [e354366](https://github.com/mozilla-services/screenshots/commit/e354366)
+* Fix: remove control characters from filenames (thanks [Rimas Misevičius](https://github.com/rmisev)!). This patch removes all control characters (0x00...0x1F) from filenames, not only `"\n\r\t"`. They are not allowed in Microsoft Windows file names, see:
+  [this](https://msdn.microsoft.com/en-us/library/aa365247(VS.85).aspx#naming_conventions). And possibly in other systems: https://en.wikipedia.org/wiki/Filename#Reserved_characters_and_words [489ae41](https://github.com/mozilla-services/screenshots/commit/489ae41)
+
 ## Version 22.0.0
 
 This is primarily a server release. Some changes in the add-on have been ported to the 19.x.0 line.
@@ -13,14 +75,8 @@ This is primarily a server release. Some changes in the add-on have been ported 
 
 Note: this is a server-only release, but many of these changes have been put into the 19.x.0 series.
 
-* Remove code that checks for system-disabled pref ([#3554](https://github.com/mozilla-services/screenshots/issues/3554))
-  Leave the branch/leaf checking code in place, both to minimize the size
-  of the patch, and to make it easy to observe a self-hosting pref I'd
-  like to add soon. Fixes [#3549](https://github.com/mozilla-services/screenshots/issues/3549) [1a6a619](https://github.com/mozilla-services/screenshots/commit/1a6a619)
-* Notify user when full page is cut offAdds a new captureType, fullPageTruncated. Fixes [#2129](https://github.com/mozilla-services/screenshots/issues/2129) [aa97577](https://github.com/mozilla-services/screenshots/commit/aa97577)
-* Put limits on uses of string.splitThis only covers cases in the JPEG commits, to keep the resulting diff minimal [e9763fc](https://github.com/mozilla-services/screenshots/commit/e9763fc)
-* Bug fix for [#3513](https://github.com/mozilla-services/screenshots/issues/3513), create proper extension for downloads ([#3543](https://github.com/mozilla-services/screenshots/issues/3543)). The clip object is used to inform the download filename, so we need to add a clip before generating the filename [966bc6c](https://github.com/mozilla-services/screenshots/commit/966bc6c)
-* Stop Screenshots in Private Browsing ([#3544](https://github.com/mozilla-services/screenshots/issues/3544))bootstrap.js sends the tab ID with the Photon page action, but it doesn't have the complete set of information that the WebExtension tab object has. Fixes [#3491](https://github.com/mozilla-services/screenshots/issues/3491) [5b13917](https://github.com/mozilla-services/screenshots/commit/5b13917)
+* Notify user when full page is cut off. Adds a new captureType, fullPageTruncated. Fixes [#2129](https://github.com/mozilla-services/screenshots/issues/2129) [aa97577](https://github.com/mozilla-services/screenshots/commit/aa97577)
+* Put limits on uses of string.split. This only covers cases in the JPEG commits, to keep the resulting diff minimal [e9763fc](https://github.com/mozilla-services/screenshots/commit/e9763fc)
 * Make selector view usable on high contrast themes. Fixes [#3174](https://github.com/mozilla-services/screenshots/issues/3174) [c46d7dd](https://github.com/mozilla-services/screenshots/commit/c46d7dd)
 
 ## Version 21.0.0
@@ -42,15 +98,6 @@ This is a server-only release.
 
 Note: not released
 
-* Remove `"` and `?` from filenames ([#3524](https://github.com/mozilla-services/screenshots/issues/3524))* remove " and ? from filenames
-* Upload jpeg ([#3513](https://github.com/mozilla-services/screenshots/issues/3513))* Start [#220](https://github.com/mozilla-services/screenshots/issues/220), allow JPEG uploads, and respect content-type for JPEG or PNG
-  - use JPEG for large shots
-  - Allows JPEGs on the server, both to pass content checks, and to make use of stored content-types (instead of assuming image/png).
-  - Puts an clip.image.type into shot objects
-  - Uses .jpg for filenames when appropriate
-  - Adds a new buildSetting for controlling the cutoff when we use JPEG
-  - If a PNG image is too large, tries to make a JPEG and substitutes if the JPEG is actually smaller
-  - Refactor some data:-URL and blob conversion functions into their own module. Fixes [#220](https://github.com/mozilla-services/screenshots/issues/220) [82139ed](https://github.com/mozilla-services/screenshots/commit/82139ed)
 * Fix an undefined variable (bad rename) in the Mochitest [25aeaa1](https://github.com/mozilla-services/screenshots/commit/25aeaa1)
 
 ## Version 20.0.0
@@ -59,6 +106,34 @@ Note: this is a server release
 
 * Update favicon. Fixes [#3492](https://github.com/mozilla-services/screenshots/issues/3492) [7544e9f](https://github.com/mozilla-services/screenshots/commit/7544e9f)
 * Send unauth'd /shots to /#tourThis lets a user who accesses Screenshots from the Library, but has never authenticated or used Screenshots, get redirected to an onboarding tour. Fixes [#3493](https://github.com/mozilla-services/screenshots/issues/3493) [af473c3](https://github.com/mozilla-services/screenshots/commit/af473c3)
+
+## Version 19.2.0
+
+Note: this is a Firefox export (not a server release). This is what is shipping in Firefox 57.
+
+* Update translations (see [Bug 1406526](https://bugzilla.mozilla.org/show_bug.cgi?id=1406526)).
+* Remove code that checks for system-disabled pref ([#3554](https://github.com/mozilla-services/screenshots/issues/3554))
+  Leave the branch/leaf checking code in place, both to minimize the size
+  of the patch, and to make it easy to observe a self-hosting pref I'd
+  like to add soon. Fixes [#3549](https://github.com/mozilla-services/screenshots/issues/3549) [1a6a619](https://github.com/mozilla-services/screenshots/commit/1a6a619)
+* Stop Screenshots in Private Browsing ([#3544](https://github.com/mozilla-services/screenshots/issues/3544)). bootstrap.js sends the tab ID with the Photon page action, but it doesn't have the complete set of information that the WebExtension tab object has. Fixes [#3491](https://github.com/mozilla-services/screenshots/issues/3491) [5b13917](https://github.com/mozilla-services/screenshots/commit/5b13917)
+* Remove `"` and `?` from filenames ([#3524](https://github.com/mozilla-services/screenshots/issues/3524))* remove " and ? from filenames
+
+
+## Version 19.1.0
+
+Note: this is a Firefox export (not a server release)
+
+* Upload jpeg ([#3513](https://github.com/mozilla-services/screenshots/issues/3513))* Start [#220](https://github.com/mozilla-services/screenshots/issues/220), allow JPEG uploads, and respect content-type for JPEG or PNG
+  - use JPEG for large shots
+  - Allows JPEGs on the server, both to pass content checks, and to make use of stored content-types (instead of assuming image/png).
+  - Puts an clip.image.type into shot objects
+  - Uses .jpg for filenames when appropriate
+  - Adds a new buildSetting for controlling the cutoff when we use JPEG
+  - If a PNG image is too large, tries to make a JPEG and substitutes if the JPEG is actually smaller
+  - Refactor some data:-URL and blob conversion functions into their own module. Fixes [#220](https://github.com/mozilla-services/screenshots/issues/220) [82139ed](https://github.com/mozilla-services/screenshots/commit/82139ed)
+* Bug fix for [#3513](https://github.com/mozilla-services/screenshots/issues/3513), create proper extension for downloads ([#3543](https://github.com/mozilla-services/screenshots/issues/3543)). The clip object is used to inform the download filename, so we need to add a clip before generating the filename [966bc6c](https://github.com/mozilla-services/screenshots/commit/966bc6c)
+
 
 ## Version 19.0.0
 
