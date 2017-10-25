@@ -161,20 +161,12 @@ this.uicontrol = (function() {
     onClickFullPage: () => {
       sendEvent("capture-full-page", "selection-button");
       captureType = "fullPage";
-      let width = Math.max(
-        document.body.clientWidth,
-        document.documentElement.clientWidth,
-        document.body.scrollWidth,
-        document.documentElement.scrollWidth);
+      let width = documentWidth
       if (width > MAX_PAGE_WIDTH) {
         captureType = "fullPageTruncated";
       }
       width = Math.min(width, MAX_PAGE_WIDTH);
-      let height = Math.max(
-        document.body.clientHeight,
-        document.documentElement.clientHeight,
-        document.body.scrollHeight,
-        document.documentElement.scrollHeight);
+      let height = documentHeight;
       if (height > MAX_PAGE_HEIGHT) {
         captureType = "fullPageTruncated";
       }
@@ -190,6 +182,14 @@ this.uicontrol = (function() {
     },
     onDownloadPreview: () => {
       sendEvent(`download-${captureType.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}`, "download-preview-button");
+
+      // Downloaded shots don't have dimension limits
+      if (captureType === "fullPageTruncated") {
+        selectedPos = new Selection(
+          0, 0,
+          documentWidth, documentHeight);
+      }
+
       shooter.downloadShot(selectedPos);
     }
   };
