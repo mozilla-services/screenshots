@@ -13,6 +13,14 @@ This is both a server and add-on release. The add-on will be exported to Firefox
 * Avoid infinite selection loop by checking minimum sizd. Source code files on dxr.mozilla.org are rendered as floats inside a non-clearfixed parent element, which has a calculated height of 0. This condition isn't handled in the current loop logic, leading to an infinite while loop that locks up the UI. Fixes [#3314](https://github.com/mozilla-services/screenshots/issues/3314) [7c0be97](https://github.com/mozilla-services/screenshots/commit/7c0be97)
 * Use JS to detect and apply high contrast mode styles. Fixes [#3174](https://github.com/mozilla-services/screenshots/issues/3174) Fixes [#3565](https://github.com/mozilla-services/screenshots/issues/3565) [8bcf729](https://github.com/mozilla-services/screenshots/commit/8bcf729)
 
+#### Items from 22.0.0/21.0.0
+
+22.0.0 and 21.0.0 were server-only release, so these changes first appear in the 23.0.0 export (20.0.0 had no add-on changes):
+
+* Notify user when full page is cut off. Adds a new captureType, fullPageTruncated. Fixes [#2129](https://github.com/mozilla-services/screenshots/issues/2129) [aa97577](https://github.com/mozilla-services/screenshots/commit/aa97577)
+* Put limits on uses of string.split. This only covers cases in the JPEG commits, to keep the resulting diff minimal [e9763fc](https://github.com/mozilla-services/screenshots/commit/e9763fc)
+* Fix an undefined variable (bad rename) in the Mochitest [25aeaa1](https://github.com/mozilla-services/screenshots/commit/25aeaa1)
+
 ### Server changes
 
 * Update domain name regex to allow `-` and `_`. ([#3667](https://github.com/mozilla-services/screenshots/issues/3667)) [617b0c8](https://github.com/mozilla-services/screenshots/commit/617b0c8)
@@ -66,14 +74,6 @@ This is primarily a server release. Some changes in the add-on have been ported 
 * Add new clip type: fullPageTruncated. For [#2129](https://github.com/mozilla-services/screenshots/issues/2129) [aa97577](https://github.com/mozilla-services/screenshots/commit/aa97577)
 * Bug fix for [#3513](https://github.com/mozilla-services/screenshots/issues/3513), create proper extension for downloads ([#3543](https://github.com/mozilla-services/screenshots/issues/3543)). The clip object is used to inform the download filename, so we need to add a clip before generating the filename [966bc6c](https://github.com/mozilla-services/screenshots/commit/966bc6c)
 
-### Add-on changes
-
-Note: this is a server-only release, but many of these changes have been put into the 19.x.0 series.
-
-* Notify user when full page is cut off. Adds a new captureType, fullPageTruncated. Fixes [#2129](https://github.com/mozilla-services/screenshots/issues/2129) [aa97577](https://github.com/mozilla-services/screenshots/commit/aa97577)
-* Put limits on uses of string.split. This only covers cases in the JPEG commits, to keep the resulting diff minimal [e9763fc](https://github.com/mozilla-services/screenshots/commit/e9763fc)
-* Make selector view usable on high contrast themes. Fixes [#3174](https://github.com/mozilla-services/screenshots/issues/3174) [c46d7dd](https://github.com/mozilla-services/screenshots/commit/c46d7dd)
-
 ## Version 21.0.0
 
 This is a server-only release.
@@ -88,12 +88,6 @@ This is a server-only release.
 * Csrf refactor ([#3516](https://github.com/mozilla-services/screenshots/issues/3516))* server: default to using csrf protection middleware
   * server: combine csrf and csrfProtection middleware [6aafff2](https://github.com/mozilla-services/screenshots/commit/6aafff2)
 * Re-enable eslint-plugin-mozilla now that it is fixed. Fixes [#3450](https://github.com/mozilla-services/screenshots/issues/3450) [73d4077](https://github.com/mozilla-services/screenshots/commit/73d4077)
-
-### Add-on changes
-
-Note: not released
-
-* Fix an undefined variable (bad rename) in the Mochitest [25aeaa1](https://github.com/mozilla-services/screenshots/commit/25aeaa1)
 
 ## Version 20.0.0
 
