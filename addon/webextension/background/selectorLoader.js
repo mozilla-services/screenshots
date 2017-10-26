@@ -68,9 +68,13 @@ this.selectorLoader = (function() {
     loadingTabs.add(tabId);
     let promise = incognitoCheck(tabId);
     if (hasSeenOnboarding) {
-      promise = promise.then(executeModules(tabId, standardScripts.concat(selectorScripts)));
+      promise = promise.then(() => {
+        return executeModules(tabId, standardScripts.concat(selectorScripts));
+      });
     } else {
-      promise = promise.then(executeModules(tabId, standardScripts.concat(onboardingScripts).concat(selectorScripts)));
+      promise = promise.then(() => {
+        return executeModules(tabId, standardScripts.concat(onboardingScripts).concat(selectorScripts));
+      });
     }
     return promise.then((result) => {
       loadingTabs.delete(tabId);
