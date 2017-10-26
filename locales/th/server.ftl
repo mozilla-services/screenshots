@@ -8,6 +8,9 @@
 [[ global ]]
 
 gMyShots = ภาพของฉัน
+gHomeLink = หน้าแรก
+gNoShots
+    .alt = ไม่พบภาพ
 
 
 [[ Footer ]]
@@ -16,7 +19,9 @@ gMyShots = ภาพของฉัน
 footerLinkMozilla = Mozilla
 footerLinkTerms = ข้อกำหนด
 footerLinkPrivacy = ประกาศความเป็นส่วนตัว
-footerLinkDiscourse = ส่งผลตอบรับ
+footerLinkFaqs = คำถามที่พบบ่อย
+footerLinkDMCA = รายงานการละเมิดทรัพย์สินทางปัญญา
+footerLinkDiscourse = ให้ข้อคิดเห็น
 footerLinkRemoveAllData = เอาข้อมูลทั้งหมดออก
 
 
@@ -35,7 +40,10 @@ creatingPageWaitMessage = กำลังบันทึกภาพของค
 homePageButtonMyShots = ไปยังภาพของฉัน
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ดาวน์โหลดฟรี
+homePageGetStarted = เริ่มต้นใช้งาน
 homePageGetStartedTitle = เริ่มต้น
+homePageCaptureRegion = จับภาพเป็นบริเวณ
+homePageCapturePage = จับภาพหน้า
 homePageSaveShare = บันทึกและแบ่งปัน
 homePageLegalLink = ข้อกฎหมาย
 homePagePrivacyLink = ความเป็นส่วนตัว
@@ -60,10 +68,13 @@ notFoundPageDescription = ไม่พบหน้า
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = ภาพหน้าจอ: { $originalTitle }
 shotPageAlertErrorUpdatingTitle = เกิดข้อผิดพลาดในการบันทึกชื่อเรื่อง
 shotPageShareButton
     .title = แบ่งปัน
 shotPageCopy = คัดลอก
+shotPageCopied = คัดลอกแล้ว
 shotPageShareFacebook
     .title = แบ่งปันบน Facebook
 shotPageShareTwitter
@@ -95,8 +106,12 @@ timeDiffFutureSeconds = ในไม่กี่วินาที
 
 [[ Shotindex page ]]
 
+shotIndexPageSearchPlaceholder
+    .placeholder = ค้นหาภาพของฉัน
 shotIndexPageSearchButton
     .title = ค้นหา
+shotIndexPageNoShotsMessage = ไม่มีภาพที่บันทึกไว้
+shotIndexPageLookingForShots = กำลังมองหาภาพของคุณ…
 shotIndexPageNoSearchResultsIntro = หืมม
 shotIndexPageClearSearchButton
     .title = ล้างการค้นหา
@@ -114,6 +129,7 @@ metricsPageUsersQueryTitle = ผู้ใช้ตามวัน
 metricsPageUsersQueryCount = จำนวนผู้ใช้
 metricsPageUsersQueryDay = วัน
 metricsPageUserShotsQueryCount = จำนวนผู้ใช้
-metricsPageRetentionQueryUsers = จำนวนของผู้ใช้
-metricsPageTotalRetentionQueryUsers = จำนวนของผู้ใช้
+metricsPageRetentionQueryUsers = จำนวนผู้ใช้
+metricsPageTotalRetentionQueryUsers = จำนวนผู้ใช้
+metricsPageVersionQueryVersion = รุ่นส่วนเสริม
 metricsPageVersionQueryLastSeen = วัน

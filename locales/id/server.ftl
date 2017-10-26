@@ -21,7 +21,7 @@ footerLinkMozilla = Mozilla
 footerLinkTerms = Ketentuan
 footerLinkPrivacy = Kebijakan Privasi
 footerLinkFaqs = Pertanyaan Umum
-footerLinkDMCA = Laporkan Pelanggaran IP
+footerLinkDMCA = Laporkan Pelanggaran Hak Cipta
 footerLinkDiscourse = Kirim Saran
 footerLinkRemoveAllData = Hapus Semua Data
 
@@ -33,20 +33,20 @@ footerLinkRemoveAllData = Hapus Semua Data
 // creatingPageTitleDefault.
 creatingPageTitle = Membuat { $title }
 creatingPageTitleDefault = laman
-creatingPageWaitMessage = Menyimpan gambar Anda...
+creatingPageWaitMessage = Menyimpan gambar Anda…
 
 
 [[ Home page ]]
 
 homePageDescription
-    .content = Tangkapan layar intuitif dirancang langsung ke browser. Tangkap, simpan dan bagikan tangkapan layar saat Anda menjelajahi Web menggunakan Firefox.
+    .content = Tangkapan layar intuitif dirancang langsung ke peramban. Tangkap, simpan, dan bagikan tangkapan layar saat Anda menjelajahi Web menggunakan Firefox.
 homePageButtonMyShots = Buka Tangkapan Saya
-homePageTeaser = Segera Hadir...
+homePageTeaser = Segera Hadir…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Unduh Gratis
 homePageGetStarted = Memulai
 // Note: do not translate 'Firefox Screenshots' when translating this string
-homePageHowScreenshotsWorks = Bagaimana Firefox Screenshots Bekerja
+homePageHowScreenshotsWorks = Cara Kerja Firefox Screenshots
 homePageGetStartedTitle = Memulai
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Temukan ikon Screenshots baru di bilah alat Anda. Pilih, kemudian menu Screenshots akan muncul di bagian atas jendela peramban Anda.
@@ -54,7 +54,7 @@ homePageGetStartedDescription = Temukan ikon Screenshots baru di bilah alat Anda
 homePageGetStartedDescriptionPageAction = Pilih ikon Screenshot dari menu tindakan laman di bilah alamat, dan menu Screenshots akan muncul di atas jendela peramban Anda.
 homePageCaptureRegion = Tangkap Bagian
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Klik dan seret untuk memilih area yang ingin Anda tangkap. Atau arahkan dan klik  — Screenshots akan memilih area untuk Anda. Sudah merasa pas? Pilih Simpan untuk mengakses tangkapan layar secara daring atau tombol panah ke bawah untuk mengunduhnya ke komputer Anda.
+homePageCaptureRegionDescription = Klik dan seret untuk memilih area yang ingin Anda tangkap. Atau arahkan dan klik  — Screenshots akan memilih area untuk Anda. Sudah pas? Pilih Simpan untuk mengakses tangkapan layar secara daring atau tombol panah ke bawah untuk mengunduhnya ke komputer Anda.
 homePageCapturePage = Tangkap Laman
 homePageCapturePageDescription = Gunakan tombol di kanan atas untuk merekam seluruh laman. Tombol Simpan yang Terlihat akan menangkap area yang Anda lihat tanpa menggulir, dan Simpan Laman Sepenuhnya akan menangkap semua yang ada di laman.
 homePageSaveShare = Simpan dan Bagikan
@@ -74,7 +74,7 @@ leavePageErrorAddonRequired = Firefox Screenshots harus terpasang untuk menghapu
 leavePageErrorGeneric = Terjadi galat
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ini akan menghapus semua data Firefox Screenshots Anda secara permanen.
-leavePageButtonProceed = Memproses
+leavePageButtonProceed = Lanjutkan
 leavePageButtonCancel = Batal
 leavePageDeleted = Semua tangkapan layar Anda telah dihapus!
 
@@ -107,7 +107,7 @@ shotPageSharePinterest
 shotPageShareEmail
     .title = Bagikan tautan via surel
 shotPageShareLink = Dapatkan tautan ke tangkapan ini:
-shotPagePrivacyMessage = Siapapun yang memiliki tautan dapat melihat tangkapan ini.
+shotPagePrivacyMessage = Siapa pun yang memiliki tautan dapat melihat tangkapan ini.
 shotPageCopyImageText
     .label = Salin teks gambar
 shotPageConfirmDeletion = Yakin ingin menghapus tangkapan ini secara permanen?
@@ -126,9 +126,9 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Unduh
 shotPageDownload = Unduh
-shotPageScreenshotsDescription = Screenshots mempermudah. Tangkap, simpan, dan bagikan tangkapan layar tanpa meninggalkan Firefox.
+shotPageScreenshotsDescription = Screenshots sangat mudah. Tangkap, simpan, dan bagikan tangkapan layar tanpa meninggalkan Firefox.
 shotPageUpsellFirefox = Dapatkan Firefox sekarang
-shotPageDMCAMessage = Tangkapan ini tidak lagi tersedia karena klaim kekayaan intelektual pihak ketiga.
+shotPageDMCAMessage = Tangkapan ini tidak lagi tersedia karena klaim hak kekayaan intelektual pihak ketiga.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Kirimkan surel ke { $dmca } untuk meminta informasi lebih lanjut.
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -147,7 +147,7 @@ shotPageKeepTwoWeeks = 2 Minggu
 shotPageKeepOneMonth = 1 Bulan
 shotPageSaveExpiration = simpan
 shotPageCancelExpiration = batal
-shotPageDoesNotExpire = tidak kedaluwarsa
+shotPageDoesNotExpire = tidak pernah kedaluwarsa
 // Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = kedaluwarsa { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
@@ -178,7 +178,7 @@ shotIndexPageSearchButton
     .title = Cari
 shotIndexPageNoShotsMessage = Tidak ada tangkapan tersimpan.
 shotIndexPageNoShotsInvitation = Lanjutkan, buat tangkapan.
-shotIndexPageLookingForShots = Memuat tangkapan Anda...
+shotIndexPageLookingForShots = Memuat tangkapan Anda…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Kami tidak menemukan tangkapan yang cocok dengan pencarian Anda.
 shotIndexPageClearSearchButton
@@ -202,16 +202,16 @@ metricsPageShotsQueryTitle = Tangkapan per Hari
 metricsPageShotsQueryDescription = Jumlah tangkapan yang dibuat setiap hari (dalam 30 hari terakhir)
 metricsPageShotsQueryCount = Jumlah tangkapan
 metricsPageShotsQueryDay = Hari
-metricsPageUsersQueryTitle = Pengguna dalam Sehari
+metricsPageUsersQueryTitle = Pengguna Harian
 metricsPageUsersQueryDescription = Jumlah pengguna yang membuat setidaknya satu tangkapan, dalam sehari (30 hari terakhir)
 metricsPageUsersQueryCount = Jumlah pengguna
 metricsPageUsersQueryDay = Hari
 metricsPageUserShotsQueryTitle = Jumlah Tangkapan per Pengguna
-metricsPageUserShotsQueryDescription = Jumlah pengguna yang membuat total sekitar N tangakapan
+metricsPageUserShotsQueryDescription = Jumlah pengguna yang membuat sekitar N tangkapan total
 metricsPageUserShotsQueryCount = Jumlah pengguna
 metricsPageUserShotsQueryShots = Perkiraan jumlah tangkapan aktif (tidak kedaluwarsa)
 metricsPageRetentionQueryTitle = Retensi Mingguan
-metricsPageRetentionQueryDescription = Jumlah hari dari tangkapan pertama sampai tangkapan terbaru, dikelompokkan berdasar minggu awal
+metricsPageRetentionQueryDescription = Jumlah hari dari tangkapan pertama sampai tangkapan terbaru, dikelompokkan berdasar awal pekan
 metricsPageRetentionQueryUsers = Jumlah pengguna
 metricsPageRetentionQueryDays = Jumlah hari dari tangkapan pertama sampai yang terbaru
 metricsPageRetentionQueryFirstWeek = Jumlah minggu pengguna membuat tangkapan pertama

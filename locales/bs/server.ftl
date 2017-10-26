@@ -166,11 +166,17 @@ shotIndexPageSearchResultsTitle = Moji snimci: traži { $searchTerm }
 // { $error } is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
 shotIndexPageErrorRendering = Greška pri crtanju stranice: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Pretraži moje snimke
+shotIndexPageSearchButton
+    .title = Traži
 shotIndexPageNoShotsMessage = Nema sačuvanih snimki.
 shotIndexPageNoShotsInvitation = Samo naprijed, napravite nekoliko.
 shotIndexPageLookingForShots = Traženje vaših snimki…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Ne možemo pronaći ni jedan snimak koji odgovara vašem upitu.
+shotIndexPageClearSearchButton
+    .title = Očisti pretragu
 shotIndexPageConfirmShotDelete = Izbrisati ovaj snimak?
 
 
