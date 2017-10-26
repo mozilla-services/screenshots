@@ -56,10 +56,17 @@ homePageGetStartedTitle = Comenciar
 
 [[ Not Found page ]]
 
+notFoundPageDescription = Pagina non trovate.
 
 
 [[ Shot page ]]
 
+shotPageCopy = Copiar
+shotPageCopied = Copiate
+shotPageShareFacebook
+    .title = Compartir in Facebook
+shotPageShareTwitter
+    .title = Compartir in Twitter
 
 
 [[ Shotindex page ]]
