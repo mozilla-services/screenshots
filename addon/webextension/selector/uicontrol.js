@@ -161,12 +161,12 @@ this.uicontrol = (function() {
     onClickFullPage: () => {
       sendEvent("capture-full-page", "selection-button");
       captureType = "fullPage";
-      let width = documentWidth
+      let width = getDocumentWidth();
       if (width > MAX_PAGE_WIDTH) {
         captureType = "fullPageTruncated";
       }
       width = Math.min(width, MAX_PAGE_WIDTH);
-      let height = documentHeight;
+      let height = getDocumentHeight();
       if (height > MAX_PAGE_HEIGHT) {
         captureType = "fullPageTruncated";
       }
@@ -185,9 +185,10 @@ this.uicontrol = (function() {
 
       // Downloaded shots don't have dimension limits
       if (captureType === "fullPageTruncated") {
+        captureType = "fullPage";
         selectedPos = new Selection(
           0, 0,
-          documentWidth, documentHeight);
+          getDocumentWidth(), getDocumentHeight());
       }
 
       shooter.downloadShot(selectedPos);
@@ -821,28 +822,32 @@ this.uicontrol = (function() {
     }
   };
 
-  let documentWidth = Math.max(
-    document.body && document.body.clientWidth,
-    document.documentElement.clientWidth,
-    document.body && document.body.scrollWidth,
-    document.documentElement.scrollWidth);
-  let documentHeight = Math.max(
-    document.body && document.body.clientHeight,
-    document.documentElement.clientHeight,
-    document.body && document.body.scrollHeight,
-    document.documentElement.scrollHeight);
+  function getDocumentWidth() {
+    return Math.max(
+      document.body && document.body.clientWidth,
+      document.documentElement.clientWidth,
+      document.body && document.body.scrollWidth,
+      document.documentElement.scrollWidth);
+  }
+  function getDocumentHeight() {
+    return Math.max(
+      document.body && document.body.clientHeight,
+      document.documentElement.clientHeight,
+      document.body && document.body.scrollHeight,
+      document.documentElement.scrollHeight);
+  }
 
   function scrollIfByEdge(pageX, pageY) {
     let top = window.scrollY;
     let bottom = top + window.innerHeight;
     let left = window.scrollX;
     let right = left + window.innerWidth;
-    if (pageY + SCROLL_BY_EDGE >= bottom && bottom < documentHeight) {
+    if (pageY + SCROLL_BY_EDGE >= bottom && bottom < getDocumentHeight()) {
       window.scrollBy(0, SCROLL_BY_EDGE);
     } else if (pageY - SCROLL_BY_EDGE <= top) {
       window.scrollBy(0, -SCROLL_BY_EDGE);
     }
-    if (pageX + SCROLL_BY_EDGE >= right && right < documentWidth) {
+    if (pageX + SCROLL_BY_EDGE >= right && right < getDocumentWidth()) {
       window.scrollBy(SCROLL_BY_EDGE, 0);
     } else if (pageX - SCROLL_BY_EDGE <= left) {
       window.scrollBy(-SCROLL_BY_EDGE, 0);
