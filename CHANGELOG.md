@@ -1,7 +1,21 @@
-## Not released
+## Version 23.0.0
 
-Note: these commits have not been released. This section should be merged with whatever comes next once we do a release.
+This is both a server and add-on release. The add-on will be exported to Firefox 58.
 
+### Add-on changes
+
+* Get doc width and height from function in case of resize. ([#3506](https://github.com/mozilla-services/screenshots/issues/3506)) [cd4e777](https://github.com/mozilla-services/screenshots/commit/cd4e777)
+* Allow full size downloaded shots. ([#3506](https://github.com/mozilla-services/screenshots/issues/3506)) [4c6f9d5](https://github.com/mozilla-services/screenshots/commit/4c6f9d5)
+* Fix direction of rtl-language arrows in onboarding [ef0508c](https://github.com/mozilla-services/screenshots/commit/ef0508c)
+* Fix Selenium test ([#3647](https://github.com/mozilla-services/screenshots/issues/3647))
+  * This adds a timeout after the UI is first displayed. The UI is displayed, and handlers are added, but for EVERYTHING to get setup and working takes slightly longer. Fixes [#3616](https://github.com/mozilla-services/screenshots/issues/3616) Fixes [#3616](https://github.com/mozilla-services/screenshots/issues/3616) [be2284a](https://github.com/mozilla-services/screenshots/commit/be2284a)
+* Load scripts at document_start. ([#3633](https://github.com/mozilla-services/screenshots/issues/3633)) [6e4f27d](https://github.com/mozilla-services/screenshots/commit/6e4f27d)
+* Avoid infinite selection loop by checking minimum sizd. Source code files on dxr.mozilla.org are rendered as floats inside a non-clearfixed parent element, which has a calculated height of 0. This condition isn't handled in the current loop logic, leading to an infinite while loop that locks up the UI. Fixes [#3314](https://github.com/mozilla-services/screenshots/issues/3314) [7c0be97](https://github.com/mozilla-services/screenshots/commit/7c0be97)
+* Use JS to detect and apply high contrast mode styles. Fixes [#3174](https://github.com/mozilla-services/screenshots/issues/3174) Fixes [#3565](https://github.com/mozilla-services/screenshots/issues/3565) [8bcf729](https://github.com/mozilla-services/screenshots/commit/8bcf729)
+
+### Server changes
+
+* Update domain name regex to allow `-` and `_`. ([#3667](https://github.com/mozilla-services/screenshots/issues/3667)) [617b0c8](https://github.com/mozilla-services/screenshots/commit/617b0c8)
 * Added instruction to fix nodemon crash [1524e3f](https://github.com/mozilla-services/screenshots/commit/1524e3f)
 * Remove Add-on Version from /metrics (thanks [Apply55gx](https://github.com/Apply55gx)!). [#3609](https://github.com/mozilla-services/screenshots/issues/3609) ([#3656](https://github.com/mozilla-services/screenshots/issues/3656))
   * remove version metrics query
@@ -17,20 +31,12 @@ Note: these commits have not been released. This section should be merged with w
   * Use account id to get device ids; delete image data for all device ids.
   * Use device id when there's no account id to delete shots. [f183b3c](https://github.com/mozilla-services/screenshots/commit/f183b3c)
 * Set HSTS max-age to 24 hours. Fixes [#3622](https://github.com/mozilla-services/screenshots/issues/3622) [ffaf9cd](https://github.com/mozilla-services/screenshots/commit/ffaf9cd)
-* Fix Selenium test ([#3647](https://github.com/mozilla-services/screenshots/issues/3647))
-  * This adds a timeout after the UI is first displayed. The UI is displayed, and handlers are added, but for EVERYTHING to get setup and working takes slightly longer. Fixes [#3616](https://github.com/mozilla-services/screenshots/issues/3616) Fixes [#3616](https://github.com/mozilla-services/screenshots/issues/3616) [be2284a](https://github.com/mozilla-services/screenshots/commit/be2284a)
 * Create empty robots.txt (thanks again Apply55gx!). Closes [#3635](https://github.com/mozilla-services/screenshots/issues/3635) ([#3639](https://github.com/mozilla-services/screenshots/issues/3639))
   * Update Server.js add /robots.txt case [c51912b](https://github.com/mozilla-services/screenshots/commit/c51912b)
 * Update `circle.yml` change baseline conf to zap master [69529dc](https://github.com/mozilla-services/screenshots/commit/69529dc)
 * Update ZAP command in circleci ([#3321](https://github.com/mozilla-services/screenshots/issues/3321))
   * Only fail baseline tests when FAILs are found [8032330](https://github.com/mozilla-services/screenshots/commit/8032330)
 * Export NODE_ENV and NO_UGLIFY for make. ([#3643](https://github.com/mozilla-services/screenshots/issues/3643)) [4835366](https://github.com/mozilla-services/screenshots/commit/4835366)
-* Load scripts at document_start. ([#3633](https://github.com/mozilla-services/screenshots/issues/3633)) [6e4f27d](https://github.com/mozilla-services/screenshots/commit/6e4f27d)
-* Avoid infinite selection loop by checking minimum size
-  Source code files on dxr.mozilla.org are rendered as floats inside a
-  non-clearfixed parent element, which has a calculated height of 0. This
-  condition isn't handled in the current loop logic, leading to an infinite
-  while loop that locks up the UI. Fixes [#3314](https://github.com/mozilla-services/screenshots/issues/3314) [7c0be97](https://github.com/mozilla-services/screenshots/commit/7c0be97)
 * Set s-maxage for shared cache on shot images. ([#3591](https://github.com/mozilla-services/screenshots/issues/3591)) [76fe5b0](https://github.com/mozilla-services/screenshots/commit/76fe5b0)
 * Floor a potentially fractional image width. ([#3541](https://github.com/mozilla-services/screenshots/issues/3541)) [b58ccb7](https://github.com/mozilla-services/screenshots/commit/b58ccb7)
 * make Screenshots work with third party cookies disabled. This adds a second attempt to login to wantsauth logins, one that runs in sitehelper.js, and tries to get the cookie set on a request that appears to come from the content page itself. Note this does not firmly protect from the content page overwriting window.XMLHttpRequest and having the add-on use that object. Fixes [#3581](https://github.com/mozilla-services/screenshots/issues/3581) [ac75a0b](https://github.com/mozilla-services/screenshots/commit/ac75a0b)
@@ -38,27 +44,16 @@ Note: these commits have not been released. This section should be merged with w
 * Set cache expiration for shot images. ([#3591](https://github.com/mozilla-services/screenshots/issues/3591)) [380bcd1](https://github.com/mozilla-services/screenshots/commit/380bcd1)
 * Hide share button on mobile with media query. ([#3589](https://github.com/mozilla-services/screenshots/issues/3589)) [32d85be](https://github.com/mozilla-services/screenshots/commit/32d85be)
 * Handle share url opens in onClick. ([#3357](https://github.com/mozilla-services/screenshots/issues/3357)) [5d23902](https://github.com/mozilla-services/screenshots/commit/5d23902)
-* Fix pluralization by passing integer time diffs as numbers, not strings.
-  The Localized fluent-react component doesn't coerce strings to numbers,
-  so strings like "1" are mistakenly rendered using the default
-  pluralization. Bug [#3495](https://github.com/mozilla-services/screenshots/issues/3495) is due to our use of the plural as the default (for example, see the 'timeDiffMinutesAgo' l10n key). Fixes [#3495](https://github.com/mozilla-services/screenshots/issues/3495) [3b0a99e](https://github.com/mozilla-services/screenshots/commit/3b0a99e)
+* Fix pluralization by passing integer time diffs as numbers, not strings. The Localized fluent-react component doesn't coerce strings to numbers, so strings like "1" are mistakenly rendered using the default pluralization. Bug [#3495](https://github.com/mozilla-services/screenshots/issues/3495) is due to our use of the plural as the default (for example, see the 'timeDiffMinutesAgo' l10n key). Fixes [#3495](https://github.com/mozilla-services/screenshots/issues/3495) [3b0a99e](https://github.com/mozilla-services/screenshots/commit/3b0a99e)
 * Try to work around [bug 1406571](https://bugzilla.mozilla.org/show_bug.cgi?id=1406571) [27084fe](https://github.com/mozilla-services/screenshots/commit/27084fe)
-* remove `.nsprc` file now that tough-cookie has been updated
-  As seen in [#3561](https://circleci.com/gh/mozilla-services/screenshots/3561), we had to temporarily disable nsp checks due to a
-  potential vulnerability in tough-cookie. The request library has been
-  updated to use the updated tough-cookie, and, thanks to loose version
-  tracking, looks like the fix percolates up to all our deps. Fixes [#3532](https://github.com/mozilla-services/screenshots/issues/3532) [0b09f21](https://github.com/mozilla-services/screenshots/commit/0b09f21)
+* remove `.nsprc` file now that tough-cookie has been updated. As seen in [#3561](https://circleci.com/gh/mozilla-services/screenshots/3561), we had to temporarily disable nsp checks due to a potential vulnerability in tough-cookie. The request library has been updated to use the updated tough-cookie, and, thanks to loose version tracking, looks like the fix percolates up to all our deps. Fixes [#3532](https://github.com/mozilla-services/screenshots/issues/3532) [0b09f21](https://github.com/mozilla-services/screenshots/commit/0b09f21)
 * Run server unit tests with npm run test ([#3582](https://github.com/mozilla-services/screenshots/issues/3582)) (Note tests have broken when they weren't being run)
   * Fix l10n fallback tests. Fixes [#3372](https://github.com/mozilla-services/screenshots/issues/3372) Fixes [#3372](https://github.com/mozilla-services/screenshots/issues/3372) [3079086](https://github.com/mozilla-services/screenshots/commit/3079086)
 * Extend default resource expiration time to 30 days ([#3592](https://github.com/mozilla-services/screenshots/issues/3592)). This is relatively safe since we use commit-hash-based cache busters on URLs.. This fixes one of the last issues from [#3202](https://github.com/mozilla-services/screenshots/issues/3202) [fdff27d](https://github.com/mozilla-services/screenshots/commit/fdff27d)
 * Raven cleanups ([#3594](https://github.com/mozilla-services/screenshots/issues/3594))
   * When sending pageview events for direct image views, only send the referrer origin. This matches similar logic in ga-activation.js that also scrubs the referrer down to only the origin.
   * remove shot URLs from Sentry reports. This scrubs both shot URLs in referrers, as well as shot URLs from errors on the shot pages themselves. The paths are translated to /a-shot/redacted in this case. This also adds a req argument to captureRavenException, which adds request-specific information to error reports (something that sendRavenMessage already did). Fixes [#3483](https://github.com/mozilla-services/screenshots/issues/3483) [5d70330](https://github.com/mozilla-services/screenshots/commit/5d70330)
-* Use JS to detect and apply high contrast mode styles. Fixes [#3174](https://github.com/mozilla-services/screenshots/issues/3174) Fixes [#3565](https://github.com/mozilla-services/screenshots/issues/3565) [8bcf729](https://github.com/mozilla-services/screenshots/commit/8bcf729)
-* Revert "make selector view usable on high contrast themes"
-  This reverts commit c46d7ddd554f62da763d74c8ad6ab331ea3e2c29. Fixes [#3174](https://github.com/mozilla-services/screenshots/issues/3174) [e354366](https://github.com/mozilla-services/screenshots/commit/e354366)
-* Fix: remove control characters from filenames (thanks [Rimas Misevičius](https://github.com/rmisev)!). This patch removes all control characters (0x00...0x1F) from filenames, not only `"\n\r\t"`. They are not allowed in Microsoft Windows file names, see:
-  [this](https://msdn.microsoft.com/en-us/library/aa365247(VS.85).aspx#naming_conventions). And possibly in other systems: https://en.wikipedia.org/wiki/Filename#Reserved_characters_and_words [489ae41](https://github.com/mozilla-services/screenshots/commit/489ae41)
+* Fix: remove control characters from filenames (thanks [Rimas Misevičius](https://github.com/rmisev)!). This patch removes all control characters (0x00...0x1F) from filenames, not only `"\n\r\t"`. They are not allowed in Microsoft Windows file names, see: [this](https://msdn.microsoft.com/en-us/library/aa365247(VS.85).aspx#naming_conventions). And possibly in other systems: https://en.wikipedia.org/wiki/Filename#Reserved_characters_and_words [489ae41](https://github.com/mozilla-services/screenshots/commit/489ae41)
 
 ## Version 22.0.0
 
