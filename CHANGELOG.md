@@ -12,6 +12,7 @@ This is both a server and add-on release. The add-on will be exported to Firefox
 * Load scripts at document_start. ([#3633](https://github.com/mozilla-services/screenshots/issues/3633)) [6e4f27d](https://github.com/mozilla-services/screenshots/commit/6e4f27d)
 * Avoid infinite selection loop by checking minimum sizd. Source code files on dxr.mozilla.org are rendered as floats inside a non-clearfixed parent element, which has a calculated height of 0. This condition isn't handled in the current loop logic, leading to an infinite while loop that locks up the UI. Fixes [#3314](https://github.com/mozilla-services/screenshots/issues/3314) [7c0be97](https://github.com/mozilla-services/screenshots/commit/7c0be97)
 * Use JS to detect and apply high contrast mode styles. Fixes [#3174](https://github.com/mozilla-services/screenshots/issues/3174) Fixes [#3565](https://github.com/mozilla-services/screenshots/issues/3565) [8bcf729](https://github.com/mozilla-services/screenshots/commit/8bcf729)
+* Remove system-disabled pref from addon testLanded in m-c as https://hg.mozilla.org/mozilla-central/rev/d15f945998db but didn't backport this change to github master. [57c0eac](https://github.com/mozilla-services/screenshots/commit/57c0eac)
 
 #### Items from 22.0.0/21.0.0
 
