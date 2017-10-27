@@ -96,12 +96,6 @@ this.main = (function() {
 
   // This is called by startBackground.js, directly in response to clicks on the Photon page action
   exports.onClicked = catcher.watchFunction((tab) => {
-    if (tab.incognito) {
-      senderror.showError({
-        popupMessage: "PRIVATE_WINDOW"
-      });
-      return;
-    }
     if (shouldOpenMyShots(tab.url)) {
       if (!hasSeenOnboarding) {
         catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
@@ -139,12 +133,6 @@ this.main = (function() {
   exports.onClickedContextMenu = catcher.watchFunction((info, tab) => {
     if (!tab) {
       // Not in a page/tab context, ignore
-      return;
-    }
-    if (tab.incognito) {
-      senderror.showError({
-        popupMessage: "PRIVATE_WINDOW"
-      });
       return;
     }
     if (!urlEnabled(tab.url)) {
@@ -236,11 +224,16 @@ this.main = (function() {
       }
     });
     browser.downloads.onChanged.addListener(onChangedCallback)
-    return browser.downloads.download({
-      url,
-      filename: info.filename
-    }).then((id) => {
-      downloadId = id;
+    return browser.windows.getLastFocused().then(windowInfo => {
+      return windowInfo.incognito;
+    }).then((incognito) => {
+      return browser.downloads.download({
+        url,
+        incognito,
+        filename: info.filename
+      }).then((id) => {
+        downloadId = id;
+      });
     });
   });
 
