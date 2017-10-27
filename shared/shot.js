@@ -237,7 +237,7 @@ class AbstractShot {
     this.openGraph = attrs.openGraph || null;
     this.twitterCard = attrs.twitterCard || null;
     this.documentSize = attrs.documentSize || null;
-    this.fullScreenThumbnail = attrs.fullScreenThumbnail || null;
+    this.thumbnail = attrs.thumbnail || null;
     this.abTests = attrs.abTests || null;
     this._clips = {};
     if (attrs.clips) {
@@ -569,16 +569,16 @@ class AbstractShot {
     }
   }
 
-  get fullScreenThumbnail() {
-    return this._fullScreenThumbnail;
+  get thumbnail() {
+    return this._thumbnail;
   }
-  set fullScreenThumbnail(val) {
+  set thumbnail(val) {
     assert(typeof val == "string" || !val);
     if (val) {
       assert(isUrl(val));
-      this._fullScreenThumbnail = val;
+      this._thumbnail = val;
     } else {
-      this._fullScreenThumbnail = null;
+      this._thumbnail = null;
     }
   }
 
@@ -603,18 +603,19 @@ class AbstractShot {
 AbstractShot.prototype.REGULAR_ATTRS = (`
 origin fullUrl docTitle userTitle createdDate favicon images
 siteName openGraph twitterCard documentSize
-fullScreenThumbnail abTests
+thumbnail abTests
 `).split(/\s+/g);
 
 // Attributes that will be accepted in the constructor, but ignored/dropped
 AbstractShot.prototype.DEPRECATED_ATTRS = (`
 microdata history ogTitle createdDevice head body htmlAttrs bodyAttrs headAttrs
 readable hashtags comments showPage isPublic resources deviceId url
+fullScreenThumbnail
 `).split(/\s+/g);
 
 AbstractShot.prototype.RECALL_ATTRS = (`
 url docTitle userTitle createdDate favicon
-openGraph twitterCard images fullScreenThumbnail
+openGraph twitterCard images thumbnail
 `).split(/\s+/g);
 
 AbstractShot.prototype._OPENGRAPH_PROPERTIES = (`
