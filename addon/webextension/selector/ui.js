@@ -101,7 +101,9 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       <span data-l10n-id="downloadOnlyNotice"></span><span class="circle">?</span>
       <div class="download-only-details">
         <p data-l10n-id="downloadOnlyDetails">
-          <ul><li data-l10n-id="downloadOnlyDetailsPrivate">`;
+          <ul>
+            <li data-l10n-id="downloadOnlyDetailsPrivate"></li>
+            <li data-l10n-id="downloadOnlyDetailsNeverRemember"></li>`;
     localizeText(notice);
     return notice;
   }

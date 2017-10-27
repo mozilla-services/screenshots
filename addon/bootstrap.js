@@ -5,6 +5,7 @@ const ADDON_ID = "screenshots@mozilla.org";
 const TELEMETRY_ENABLED_PREF = "datareporting.healthreport.uploadEnabled";
 const PREF_BRANCH = "extensions.screenshots.";
 const USER_DISABLE_PREF = "extensions.screenshots.disabled";
+const HISTORY_ENABLED_PREF = "places.history.enabled";
 
 const { interfaces: Ci, utils: Cu } = Components;
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
@@ -46,6 +47,21 @@ const prefObserver = {
       // eslint-disable-next-line promise/catch-or-return
       appStartupPromise = appStartupPromise.then(handleStartup);
     }
+  }
+};
+
+let historyEnabled = prefs.getBoolPref(HISTORY_ENABLED_PREF);
+// TODO: since checking "never remember history" requires a restart,
+// is it necessary to observe the places.history.enabled pref?
+const historyEnabledObserver = {
+  register() {
+    prefs.addObserver(HISTORY_ENABLED_PREF, this, false); // eslint-disable-line mozilla/no-useless-parameters
+  },
+  unregister() {
+    prefs.removeObserver(HISTORY_ENABLED_PREF, this, false); // eslint-disable-line mozilla/no-useless-parameters
+  },
+  observe(aSubject, aTopic, aData) {
+    historyEnabled = prefs.getBoolPref(HISTORY_ENABLED_PREF);
   }
 };
 
@@ -131,6 +147,7 @@ function startup(data, reason) { // eslint-disable-line no-unused-vars
     appStartupDone();
   }
   prefObserver.register();
+  historyEnabledObserver.register();
   addonResourceURI = data.resourceURI;
   // eslint-disable-next-line promise/catch-or-return
   appStartupPromise = appStartupPromise.then(handleStartup);
@@ -138,6 +155,7 @@ function startup(data, reason) { // eslint-disable-line no-unused-vars
 
 function shutdown(data, reason) { // eslint-disable-line no-unused-vars
   prefObserver.unregister();
+  historyEnabledObserver.unregister();
   const webExtension = LegacyExtensionsUtils.getEmbeddedExtensionFor({
     id: ADDON_ID,
     resourceURI: addonResourceURI
@@ -223,6 +241,9 @@ function handleMessage(msg, sender, sendReply) {
       sendReply({type: "success", value: !!addon});
     });
     return true;
+  } else if (msg.funcName === "getHistoryPref") {
+    let historyEnabled = getBoolPref(HISTORY_ENABLED_PREF);
+    sendReply({type: "success", value: historyEnabled});
   }
 }
 
