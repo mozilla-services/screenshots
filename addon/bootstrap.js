@@ -50,20 +50,6 @@ const prefObserver = {
   }
 };
 
-let historyEnabled = prefs.getBoolPref(HISTORY_ENABLED_PREF);
-// TODO: since checking "never remember history" requires a restart,
-// is it necessary to observe the places.history.enabled pref?
-const historyEnabledObserver = {
-  register() {
-    prefs.addObserver(HISTORY_ENABLED_PREF, this, false); // eslint-disable-line mozilla/no-useless-parameters
-  },
-  unregister() {
-    prefs.removeObserver(HISTORY_ENABLED_PREF, this, false); // eslint-disable-line mozilla/no-useless-parameters
-  },
-  observe(aSubject, aTopic, aData) {
-    historyEnabled = prefs.getBoolPref(HISTORY_ENABLED_PREF);
-  }
-};
 
 const appStartupObserver = {
   register() {
@@ -147,7 +133,6 @@ function startup(data, reason) { // eslint-disable-line no-unused-vars
     appStartupDone();
   }
   prefObserver.register();
-  historyEnabledObserver.register();
   addonResourceURI = data.resourceURI;
   // eslint-disable-next-line promise/catch-or-return
   appStartupPromise = appStartupPromise.then(handleStartup);
@@ -155,7 +140,6 @@ function startup(data, reason) { // eslint-disable-line no-unused-vars
 
 function shutdown(data, reason) { // eslint-disable-line no-unused-vars
   prefObserver.unregister();
-  historyEnabledObserver.unregister();
   const webExtension = LegacyExtensionsUtils.getEmbeddedExtensionFor({
     id: ADDON_ID,
     resourceURI: addonResourceURI
