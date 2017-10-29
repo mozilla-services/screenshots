@@ -8,6 +8,7 @@
 [[ global ]]
 
 gMyShots = Capturile mele
+gHomeLink = Start
 gNoShots
     .alt = Nicio captură găsită
 gScreenshotsDescription = Capturile de ecran simplificate. Realizează, salvează și partajează capturile de ecran fără să părăsești Firefox.
@@ -104,6 +105,7 @@ shotPageShareLink = Obține un link partajabil către această captură:
 shotPagePrivacyMessage = Oricine are linkul poate vedea această captură.
 shotPageCopyImageText
     .label = Copiază textul imaginii
+shotPageExpiredMessage = Această captură a expirat.
 shotPageDeleteButton
     .title = Șterge această captură
 shotPageAbuseButton
