@@ -105,6 +105,10 @@ shotPageExpiredMessage = Iste instantaneo expirava
 shotPageExpiredMessageDetails = Ecce le pagina ex le qual illo esseva originalmente create:
 shotPageDeleteButton
     .title = Dele iste instantaneo
+shotPageDownloadShot
+    .title = Discargar
+shotPageDownload = Discargar
+shotPageUpsellFirefox = Discarga subito Firefox
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Eliger le tempore
 shotPageKeepIndefinitely = Per sempre
@@ -125,9 +129,16 @@ shotPageExpired = expirate de { $timediff }
 
 [[ Shotindex page ]]
 
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Error a generar un pagina: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Recercar mi instantaneos
 shotIndexPageSearchButton
     .title = Recercar
 shotIndexPageNoShotsMessage = Instantaneos non salvate
+shotIndexPageNoShotsInvitation = Va, crea los.
+shotIndexPageLookingForShots = Recerca de tu instantaneos...
 shotIndexPageNoSearchResultsIntro = Hum…
 shotIndexPageClearSearchButton
     .title = Clarar le recerca
@@ -137,3 +148,10 @@ shotIndexPageConfirmShotDelete = Deler iste instantaneo?
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageTotalsQueryActiveShots = Instantaneos active
+metricsPageTotalsQueryExpiredShots = Expirate (ma recovrabile)
+metricsPageTotalsQueryExpiredDeletedShots = Expirate (e delite)
+metricsPageShotsQueryTitle = Instantaneos per die
+metricsPageShotsQueryCount = Numero de instantaneos
+metricsPageShotsQueryDay = Die
+metricsPageUserShotsQueryCount = Numero de usatores
