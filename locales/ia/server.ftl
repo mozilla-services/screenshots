@@ -48,6 +48,10 @@ homePageGetStarted = Comenciar
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Como Firefox Screenshots functiona
 homePageGetStartedTitle = Comenciar
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Trova le nove instantaneos sur tu barra de instrumentos. Elige lo, e le menu del instantaneos apparera al culmine de tu fenestra del navigator. 
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Elige le icone de instantaneos ex le menu de actiones de pagina in le barra de adresses e le menu del instantaneos apparera al culmine de tu fenestra del navigator. 
 homePageCaptureRegion = Capturar un area de schermo
 homePageCapturePage = Capturar un pagina
 homePageLegalLink = Notas legal
@@ -76,8 +80,9 @@ notFoundPageDescription = Pagina non trovate.
 
 // This is the HTML title tag of the page
 shotPageTitle = Instantaneo de schermo: { $originalTitle }
-shotPageAlertErrorDeletingShot = Error a deler le photo
+shotPageAlertErrorDeletingShot = Error a deler le instantaneo
 shotPageAlertErrorUpdatingTitle = Error a salvar le titulo
+shotPageConfirmDelete = Desira tu vermente deler permanentemente iste instantaneo?
 shotPageShareButton
     .title = Compartir
 shotPageCopy = Copiar
@@ -90,16 +95,43 @@ shotPageSharePinterest
     .title = Compartir sur Pinterest
 shotPageShareEmail
     .title = Comparti un ligamine via e-posta
-shotPageShareLink = Obtene un ligamine compartibile a iste captura:
-shotPagePrivacyMessage = Totes pote vider iste captura per iste ligamine.
+shotPageShareLink = Obtene un ligamine compartibile a iste instantaneo:
+shotPagePrivacyMessage = Totes pote vider iste instantaneo per iste ligamine.
 shotPageCopyImageText
     .label = Copiar le texto del imagine
 shotPageConfirmDeletion = Desira tu vermente deler iste captura permanentemente?
-shotPageExpiredMessage = Iste captura expirava
+shotPageExpiredMessage = Iste instantaneo expirava
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Ecce le pagina ex le qual illo esseva originalmente create:
+shotPageDeleteButton
+    .title = Dele iste instantaneo
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Eliger le tempore
+shotPageKeepIndefinitely = Per sempre
+shotPageKeepTenMinutes = 10 minutas
+shotPageKeepOneHour = 1 hora
+shotPageKeepOneDay = 1 die
+shotPageKeepOneWeek = 1 septimana
+shotPageKeepTwoWeeks = 2 septimanas
+shotPageKeepOneMonth = 1 mense
+shotPageSaveExpiration = Salvar
+shotPageCancelExpiration = Cancellar
+shotPageDoesNotExpire = non expira
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = expira a { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = expirate de { $timediff }
 
 
 [[ Shotindex page ]]
 
+shotIndexPageSearchButton
+    .title = Recercar
+shotIndexPageNoShotsMessage = Instantaneos non salvate
+shotIndexPageNoSearchResultsIntro = Hum…
+shotIndexPageClearSearchButton
+    .title = Clarar le recerca
+shotIndexPageConfirmShotDelete = Deler iste instantaneo?
 
 
 // all metrics strings are optional for translation
