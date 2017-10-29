@@ -48,25 +48,54 @@ homePageGetStarted = Comenciar
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Como Firefox Screenshots functiona
 homePageGetStartedTitle = Comenciar
+homePageCaptureRegion = Capturar un area de schermo
+homePageCapturePage = Capturar un pagina
+homePageLegalLink = Notas legal
+homePagePrivacyLink = Confidentialitate
+homePageTermsLink = Terminos
+homePageCookiesLink = Cookies
 
 
 [[ Leave Screenshots page ]]
 
+leavePageRemoveAllData = Remover tote le datos
+leavePageErrorGeneric = Un error occurreva
+leavePageButtonProceed = Proceder
+leavePageButtonCancel = 
+leavePageDeleted = Tote tu instantaneos de schermo cancellate!
 
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Pagina non trovate
+notFoundPageIntro = Oops.
 notFoundPageDescription = Pagina non trovate.
 
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Instantaneo de schermo: { $originalTitle }
+shotPageAlertErrorDeletingShot = Error a deler le photo
+shotPageAlertErrorUpdatingTitle = Error a salvar le titulo
+shotPageShareButton
+    .title = Compartir
 shotPageCopy = Copiar
 shotPageCopied = Copiate
 shotPageShareFacebook
     .title = Compartir in Facebook
 shotPageShareTwitter
     .title = Compartir in Twitter
+shotPageSharePinterest
+    .title = Compartir sur Pinterest
+shotPageShareEmail
+    .title = Comparti un ligamine via e-posta
+shotPageShareLink = Obtene un ligamine compartibile a iste captura:
+shotPagePrivacyMessage = Totes pote vider iste captura per iste ligamine.
+shotPageCopyImageText
+    .label = Copiar le texto del imagine
+shotPageConfirmDeletion = Desira tu vermente deler iste captura permanentemente?
+shotPageExpiredMessage = Iste captura expirava
 
 
 [[ Shotindex page ]]
