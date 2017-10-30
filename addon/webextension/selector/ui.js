@@ -184,6 +184,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     unhide() {
       this.updateElementSize();
       this.element.style.display = "";
+      catcher.watchPromise(callBackground("sendEvent", "internal", "unhide-selection-frame"));
       if (highContrastCheck(this.element.contentWindow)) {
         this.element.contentDocument.body.classList.add("hcm");
       }
@@ -341,6 +342,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       window.addEventListener("scroll", watchFunction(assertIsTrusted(this.onScroll)));
       window.addEventListener("resize", this.onResize, true);
       this.element.style.display = "";
+      catcher.watchPromise(callBackground("sendEvent", "internal", "unhide-preselection-frame"));
       if (highContrastCheck(this.element.contentWindow)) {
         this.element.contentDocument.body.classList.add("hcm");
       }
@@ -438,6 +440,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
 
     unhide() {
       this.element.style.display = "";
+      catcher.watchPromise(callBackground("sendEvent", "internal", "unhide-preview-frame"));
       this.element.focus();
     },
 

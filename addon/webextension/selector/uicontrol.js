@@ -155,7 +155,7 @@ this.uicontrol = (function() {
       selectedPos = new Selection(
         window.scrollX, window.scrollY,
         window.scrollX + window.innerWidth, window.scrollY + window.innerHeight);
-      captureType = 'visible';
+      captureType = "visible";
       setState("previewing");
     },
     onClickFullPage: () => {
@@ -886,6 +886,7 @@ this.uicontrol = (function() {
 
   exports.deactivate = function() {
     try {
+      sendEvent("internal", "deactivate");
       setState("cancel");
       callBackground('closeSelector');
       selectorLoader.unloadModules();

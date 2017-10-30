@@ -1,6 +1,6 @@
 ## Firefox Screenshots Metrics
 
-*Last Update: 2017-08-17*
+*Last Update: 2017-11-06*
 
 This document is a summary of the metrics Firefox Screenshots will record, how we're recording them, and what we're looking for in those metrics.  There are two main areas we'll look at:
 
@@ -61,7 +61,9 @@ The add-on does not communicate directly with GA, instead it POSTs an event to t
 Each item in these events requires:
 
 Event category: maps to the "source": `addon` or `web`
+
 Event action: what the event "does", such as `start-shot` (note that Save actually "takes" the shot, the focus should be on what happens as a result of interacting with the control)
+
 Event label: exactly what control invoked the action, such as toolbar-button.  These are the "locations":
 
 * `toolbar`: the browser toolbar
@@ -177,6 +179,75 @@ The onboarding slides have some events:
 4. [x] Finish upload successfully `addon/upload/success`
 5. [ ] After failure, re-attempt the upload `addon/upload-retry/times-{N}` (up to version 1.0.1 was `addon/upload/upload-retry` with eventValue: times (1-2)) (FIXME: we have no retry)
 sendEvent("click-install-firefox-home", {useBeacon: true});
+
+#### Add-on performance measurements
+
+
+##### Internal-only events
+
+Internal-only events are used to measure the time from user input to user-visible UI response.
+
+*NOTE: Internal-only events are not submitted to GA.*
+
+1. [x] New tab opened for newly-created shot page `addon/internal/open-shot-tab`
+1. [x] Screenshots UI hidden by uicontrol `addon/internal/deactivate`
+1. [x] Pre-selection iframe shown `addon/internal/unhide-preselection-frame`
+1. [x] Selection iframe shown `addon/internal/unhide-selection-frame`
+1. [x] Preview iframe shown `addon/internal/unhide-preview-frame`
+
+##### First step: starting the shot
+
+1. [x] Time from clicking the page action (or toolbar button) to displaying the preselection iframe, `addon/perf-response-time/page-action` with `cd1: {ms response time}`
+  - Start: `addon/start-shot/toolbar-button`
+  - End: `addon/internal/unhide-preselection-frame`
+1. [x] Time from clicking the context menu item to displaying the preselection iframe, `addon/perf-response-time/context-menu` with `cd1: {ms response time}`
+  - Start: `addon/start-shot/context-menu`
+  - End: `addon/internal/unhide-preselection-frame`
+
+##### Second step: choosing the shot contents
+
+1. [x] Time from initiating a selection on screen to seeing the selection, `addon/perf-response-time/make-selection` with `cd1: {ms response time}`
+  - Start: `addon/make-selection`
+  - End: `addon/internal/unhide-selection-frame`
+1. [x] Time from clicking the 'full page' button to displaying the preview iframe, `addon/perf-response-time/capture-full-page` with `cd1: {ms response time}`
+  - Start: `addon/capture-full-page`
+  - End: `addon/internal/unhide-preview-frame`
+1. [x] Time from clicking the 'save visible' button to displaying the preview iframe, `addon/perf-response-time/capture-visible` with `cd1: {ms response time}`
+  - Start: `addon/capture-visible`
+  - End: `addon/internal/unhide-preview-frame`
+
+##### Third step: upload or download
+
+For uploads, the measurement is from clicking the save button to a new tab being opened:
+
+1. [x] Save a selection shot (Enter key or button click), `addon/perf-response-time/save-shot` with `cd1: {ms response time}`
+  - Start: `addon/save-shot`
+  - End: `addon/internal/open-shot-tab`
+1. [x] Save a full page shot, `addon/perf-response-time/save-full-page` with `cd1: {ms response time}`
+  - Start: `addon/save-full-page`
+  - End: `addon/internal/open-shot-tab`
+1. [x] Save a truncated full page shot, `addon/perf-response-time/save-full-page-truncated` with `cd1: {ms response time}`
+  - Start: `addon/save-full-page-truncated`
+  - End: `addon/internal/open-shot-tab`
+1. [x] Save a visible selection shot, `addon/perf-response-time/save-visible` with `cd1: {ms response time}`
+  - Start: `addon/save-visible`
+  - End: `addon/internal/open-shot-tab`
+
+For downloads, because Firefox doesn't always show download UI, the measurement is from clicking the download button to the screenshots UI being hidden:
+
+1. [x] Download a selection shot, `addon/perf-response-time/download-shot` with `cd1: {ms response time}`
+  - Start: `addon/download-shot`
+  - End: `addon/internal/deactivate`
+1. [x] Download a full page shot, `addon/perf-response-time/download-full-page` with `cd1: {ms response time}`
+  - Start: `addon/download-full-page`
+  - End: `addon/internal/deactivate`
+1. [x] Download a truncated full page shot, `addon/perf-response-time/download-full-page-truncated` with `cd1: {ms response time}`
+  - Start: `addon/download-full-page-truncated`
+  - End: `addon/internal/deactivate`
+1. [x] Download a visible selection shot, `addon/perf-response-time/download-visible` with `cd1: {ms response time}`
+  - Start: `addon/download-visible`
+  - End: `addon/internal/deactivate`
+
 #### Owner web visit
 
 These are events that an add-on user can encounter on a shot they own
