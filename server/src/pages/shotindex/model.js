@@ -11,6 +11,9 @@ exports.createModel = function(req) {
     hasDeviceId: req.deviceId || null,
     defaultSearch: query || null
   };
+  serverModel.shotsPerPage = req.shotsPerPage;
+  serverModel.pageNumber = req.pageNumber;
+  serverModel.totalShots = req.totalShots;
   serverModel.shots = req.shots;
   serverModel.downloadUrls = {};
   serverModel.disableSearch = req.config.disableSearch;
