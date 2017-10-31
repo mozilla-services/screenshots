@@ -10,6 +10,12 @@
 gHomeLink = मुख्य
 
 
+[[ Footer ]]
+
+footerLinkFaqs = अक्सर पूछे जाने वाले प्रश्न
+footerLinkDiscourse = प्रतिक्रिया दें
+
+
 [[ Creating page ]]
 
 creatingPageTitleDefault = पृष्ठ
@@ -35,7 +41,6 @@ homePageCookiesLink = कुकीज़
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = खाता हटाने की पुष्टि करें
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = आपको अपने खाते को नष्ट करने के लिए firefox स्क्रीनशॉट स्थापित होना आवश्यक हैं
 leavePageErrorGeneric = एक त्रुटि उत्पन्न हुई
@@ -111,6 +116,8 @@ timeDiffFutureHours = { $num ->
 
 shotIndexPageSearchButton
     .title = खोजे
+shotIndexPageNoShotsInvitation = चलें, कुछ बनाएँ
+shotIndexPageNoSearchResultsIntro = अच्छा
 
 
 // all metrics strings are optional for translation
@@ -122,8 +129,11 @@ metricsPageTotalsQueryTitle = कुल
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = स्क्रीनशॉट का अवलोकन
 metricsPageTotalsQueryDevices = कुल पंजीकृत डिवाइस
+metricsPageShotsQueryTitle = दिन के शॉट्स
 metricsPageShotsQueryDay = दिन
+metricsPageUsersQueryTitle = दिन के अनुसार उपयोगकर्ता
 metricsPageUsersQueryCount = उपयोगकर्ता
 metricsPageUsersQueryDay = दिन
+metricsPageVersionQueryVersion = एड-ऑन संस्करण
 metricsPageVersionQueryLastSeen = दिन
 metricsPageHeader = मैट्रिक्स
