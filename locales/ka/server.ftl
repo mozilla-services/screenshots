@@ -194,6 +194,10 @@ shotIndexPageNoSearchResults = მითითებული ფრაზით
 shotIndexPageClearSearchButton
     .title = ძიების გასუფთავება
 shotIndexPageConfirmShotDelete = გსურთ სურათის წაშლა?
+shotIndexPagePreviousPage
+    .title = წინა გვერდი
+shotIndexPageNextPage
+    .title = მომდევნო გვერდი
 
 
 // all metrics strings are optional for translation
