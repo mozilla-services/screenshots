@@ -113,9 +113,7 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Discargar
 shotPageDownload = Discargar
-shotPageScreenshotsDescription =
-    Le instantaneos de schermo a un maniera simple. Captura, salva e comparti le instantaneos de tu schermo sin exir de Firefox.
-
+shotPageScreenshotsDescription = Le instantaneos de schermo a un maniera simple. Captura, salva e comparti le instantaneos de tu schermo sin exir de Firefox.
 shotPageUpsellFirefox = Discarga subito Firefox
 shotPageDMCAMessage = Iste instantaneo non es plus disponibile per un reclamation de proprietate intellectual de tertie parte.
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
@@ -135,6 +133,31 @@ shotPageExpiresIn = expira a { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = expirate de { $timediff }
 timeDiffJustNow = justo ora
+timeDiffMinutesAgo = { $num ->
+        [one] 1 minuta retro
+       *[other] { $number } minutas retro
+    }
+timeDiffHoursAgo = { $num ->
+        [one] 1 hora retro
+       *[other] { $number } horas retro
+    }
+timeDiffDaysAgo = { $num ->
+        [one] heri
+       *[other] { $number } dies retro
+    }
+timeDiffFutureSeconds = in poc secundas
+timeDiffFutureMinutes = { $num ->
+        [one] in 1 minuta
+       *[other] in { $number } minutas
+    }
+timeDiffFutureHours = { $num ->
+        [one] in 1 hora
+       *[other] in { $number } horas
+    }
+timeDiffFutureDays = { $num ->
+        [one] deman
+       *[other] in { $number } dies
+    }
 
 
 [[ Shotindex page ]]
@@ -153,15 +176,39 @@ shotIndexPageNoSearchResultsIntro = Hum…
 shotIndexPageClearSearchButton
     .title = Clarar le recerca
 shotIndexPageConfirmShotDelete = Deler iste instantaneo?
+shotIndexPagePreviousPage
+    .title = Pagina previe
+shotIndexPageNextPage
+    .title = Pagina sequente
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Metrica del instantaneos de schermo de Firefox
+metricsPageTotalsQueryTitle = Totales
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Un panoramica de Screenshots
+metricsPageTotalsQueryDevices = Total de apparatos registrate
 metricsPageTotalsQueryActiveShots = Instantaneos active
 metricsPageTotalsQueryExpiredShots = Expirate (ma recovrabile)
 metricsPageTotalsQueryExpiredDeletedShots = Expirate (e delite)
 metricsPageShotsQueryTitle = Instantaneos per die
 metricsPageShotsQueryCount = Numero de instantaneos
 metricsPageShotsQueryDay = Die
+metricsPageUsersQueryCount = Numero de usatores
+metricsPageUsersQueryDay = Die
+metricsPageUserShotsQueryTitle = Numero de instantaneos per usator
 metricsPageUserShotsQueryCount = Numero de usatores
+metricsPageRetentionQueryUsers = Numero de usatores
+metricsPageTotalRetentionQueryUsers = Numero de usatores
+metricsPageVersionQueryTitle = Version del additivo
+metricsPageVersionQueryUsers = Numero de usatores connexe
+metricsPageVersionQueryVersion = Version del additivo
+metricsPageVersionQueryLastSeen = Die
+metricsPageHeader = Metrica
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Create le: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (tempore del base de datos: { $time }ms)
