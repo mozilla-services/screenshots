@@ -202,6 +202,10 @@ shotIndexPageNoSearchResults = Wir finden keine zu Deiner Suche passenden Bildsc
 shotIndexPageClearSearchButton
     .title = Suche löschen
 shotIndexPageConfirmShotDelete = Dieses Bildschirmfoto löschen?
+shotIndexPagePreviousPage
+    .title = Vorherige Seite
+shotIndexPageNextPage
+    .title = Nächste Seite
 
 
 // all metrics strings are optional for translation
