@@ -100,15 +100,24 @@ shotPagePrivacyMessage = Totes pote vider iste instantaneo per iste ligamine.
 shotPageCopyImageText
     .label = Copiar le texto del imagine
 shotPageConfirmDeletion = Desira tu vermente deler iste captura permanentemente?
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = restabilir usque { $date }
 shotPageExpiredMessage = Iste instantaneo expirava
 // Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Ecce le pagina ex le qual illo esseva originalmente create:
 shotPageDeleteButton
     .title = Dele iste instantaneo
+shotPageAbuseButton
+    .title = Reporta iste instantaneo pro abuso, spam, o altere problemas
 shotPageDownloadShot
     .title = Discargar
 shotPageDownload = Discargar
+shotPageScreenshotsDescription =
+    Le instantaneos de schermo a un maniera simple. Captura, salva e comparti le instantaneos de tu schermo sin exir de Firefox.
+
 shotPageUpsellFirefox = Discarga subito Firefox
+shotPageDMCAMessage = Iste instantaneo non es plus disponibile per un reclamation de proprietate intellectual de tertie parte.
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Eliger le tempore
 shotPageKeepIndefinitely = Per sempre
@@ -125,6 +134,7 @@ shotPageDoesNotExpire = non expira
 shotPageExpiresIn = expira a { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = expirate de { $timediff }
+timeDiffJustNow = justo ora
 
 
 [[ Shotindex page ]]
