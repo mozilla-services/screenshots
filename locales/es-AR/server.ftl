@@ -202,6 +202,10 @@ shotIndexPageNoSearchResults = No podemos encontrar capturas que coincidan con l
 shotIndexPageClearSearchButton
     .title = Borrar búsqueda
 shotIndexPageConfirmShotDelete = ¿Borrar esta captura?
+shotIndexPagePreviousPage
+    .title = Página anterior
+shotIndexPageNextPage
+    .title = Página siguiente
 
 
 // all metrics strings are optional for translation
