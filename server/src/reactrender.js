@@ -41,6 +41,9 @@ exports.render = function(req, res, page) {
     }
     let head = ReactDOMServer.renderToStaticMarkup(viewModule.HeadFactory(serverModel));
     let body;
+    // These messages no longer need to be sent along with the page body. (#3228)
+    // Deleting it here because jsonModel is used in the json repsonses above.
+    delete jsonModel.messages;
     if (page.noBrowserJavascript) {
       body = ReactDOMServer.renderToStaticMarkup(viewModule.BodyFactory(serverModel));
     } else {

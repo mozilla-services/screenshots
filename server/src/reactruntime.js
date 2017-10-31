@@ -6,6 +6,7 @@ const linker = require("./linker");
 require("fluent-intl-polyfill/compat");
 const { MessageContext } = require("fluent/compat");
 const { LocalizationProvider } = require("fluent-react/compat");
+const { getLocaleMessages } = require("./locale-messages");
 
 function generateMessages(messages, locales) {
   const contexts = [];
@@ -32,6 +33,11 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
       }
     }
 
+    let localeScripts = [];
+    for (let locale of this.props.userLocales) {
+      localeScripts.push(<script key={`l10n-${locale}`} src={this.props.staticLink(`/static/locales/${locale}.js`)} />);
+    }
+
     return (
     <LocalizationProvider messages={generateMessages(this.props.messages, this.props.userLocales)}>
       <head>
@@ -42,6 +48,7 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
         <link rel="icon" type="image/png" href={this.props.staticLink("/static/img/favicon-32.png")} sizes="32x32"/>
         { analyticsScript }
         { activationScript }
+        { localeScripts }
         { this.props.sentryPublicDSN ? <script src={this.props.staticLink("/install-raven.js")} async /> : null }
         {this.props.children}
       </head>
@@ -88,20 +95,50 @@ exports.Page = class Page {
   }
 
   render(model) {
+    let renderBody = () => {
+      let body = this.BodyFactory(model);
+      let curTitle = document.title;
+      if (model.title && model.title != curTitle) {
+        document.title = model.title;
+      }
+      ReactDOM.render(
+        body,
+        document.getElementById("react-body-container"));
+    };
+
+    let tryGetL10nMessages = (locales) => {
+      let successHandler = localeMessages => {
+        model.messages = Object.assign({}, ...localeMessages);
+        renderBody();
+      };
+      let failureHandler = failedLocale => {
+        if (locales.length === 1) {
+          // everything failed at this point. what can we do here?
+          renderBody();
+          return;
+        }
+        let remainingLocales = locales.slice();
+        let failedLocaleIndex = locales.indexOf(failedLocale);
+        remainingLocales.splice(failedLocaleIndex, 1);
+        tryGetL10nMessages(remainingLocales);
+      }
+      getLocaleMessages(locales)
+        .then(successHandler)
+        .catch(failureHandler);
+    };
+
     if (!model.staticLink) {
       linker.setGitRevision(model.gitRevision);
       model.staticLink = linker.staticLink.bind(null, {
         cdn: model.cdn
       });
     }
-    let body = this.BodyFactory(model);
-    let curTitle = document.title;
-    if (model.title && model.title != curTitle) {
-      document.title = model.title;
+
+    if (model.userLocales && model.userLocales.length && !model.messages) {
+      return tryGetL10nMessages(model.userLocales);
     }
-    ReactDOM.render(
-      body,
-      document.getElementById("react-body-container"));
+
+    renderBody();
   }
 
   get dir() {
