@@ -202,6 +202,10 @@ shotIndexPageNoSearchResults = Vi kan ikke finne noen bilder som passer med søk
 shotIndexPageClearSearchButton
     .title = Tøm søk
 shotIndexPageConfirmShotDelete = Slett dette skjermbildet
+shotIndexPagePreviousPage
+    .title = Forrige side
+shotIndexPageNextPage
+    .title = Neste side
 
 
 // all metrics strings are optional for translation
