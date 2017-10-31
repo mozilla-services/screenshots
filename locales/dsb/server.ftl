@@ -214,6 +214,10 @@ shotIndexPageNoSearchResults = Njamóžomy fota wobrazowki namakaś, kótarež w
 shotIndexPageClearSearchButton
     .title = Pytanje lašowaś
 shotIndexPageConfirmShotDelete = Toś to foto wobrazowki lašowaś?
+shotIndexPagePreviousPage
+    .title = Pjerwjejšny bok
+shotIndexPageNextPage
+    .title = Pśiducy bok
 
 
 // all metrics strings are optional for translation
