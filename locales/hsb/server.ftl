@@ -214,6 +214,10 @@ shotIndexPageNoSearchResults = Njemóžemy fota wobrazowki namakać, kotrež wa�
 shotIndexPageClearSearchButton
     .title = Pytanje zhašeć
 shotIndexPageConfirmShotDelete = Tute foto wobrazowki zhašeć?
+shotIndexPagePreviousPage
+    .title = Předchadna strona
+shotIndexPageNextPage
+    .title = Přichodna strona
 
 
 // all metrics strings are optional for translation
