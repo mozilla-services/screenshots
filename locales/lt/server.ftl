@@ -208,6 +208,10 @@ shotIndexPageNoSearchResults = Negalime rasti jokių kadrų, atitinkančių jūs
 shotIndexPageClearSearchButton
     .title = Išvalyti paiešką
 shotIndexPageConfirmShotDelete = Ištrinti šį kadrą?
+shotIndexPagePreviousPage
+    .title = Ankstesnis puslapis
+shotIndexPageNextPage
+    .title = Kitas puslapis
 
 
 // all metrics strings are optional for translation
