@@ -786,10 +786,18 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
   };
 
   exports.Preview = {
-    display(dataUrl, showCropWarning) {
+    display(dataUrlOrBlob, showCropWarning) {
       let img = makeEl("IMG");
-      img.src = dataUrl;
+      let win = iframe.document().defaultView;
+
+      if (typeof dataUrlOrBlob == "string") {
+        img.src = dataUrlOrBlob;
+      } else {
+        let srcUrl = win.URL.createObjectURL(dataUrlOrBlob);
+        img.src = srcUrl;
+      }
       iframe.document().querySelector(".preview-image").appendChild(img);
+
       if (showCropWarning) {
         let imageCroppedEl = makeEl("DIV");
         imageCroppedEl.id = "imageCroppedWarning";
@@ -812,8 +820,8 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     exports.iframe.remove();
   };
 
-  exports.triggerDownload = function(url, filename) {
-    return catcher.watchPromise(callBackground("downloadShot", {url, filename}));
+  exports.triggerDownload = function(blob, filename) {
+    return catcher.watchPromise(callBackground("downloadShot", {blob, filename}));
   };
 
   exports.unload = exports.remove;
