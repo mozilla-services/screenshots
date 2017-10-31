@@ -302,5 +302,11 @@ this.main = (function() {
     return startSelectionWithOnboarding(sender.tab);
   });
 
+  communication.register("isHistoryEnabled", () => {
+    return catcher.watchPromise(communication.sendToBootstrap("getHistoryPref").then(historyEnabled => {
+      return historyEnabled;
+    }));
+  });
+
   return exports;
 })();

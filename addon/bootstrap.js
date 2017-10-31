@@ -5,6 +5,7 @@ const ADDON_ID = "screenshots@mozilla.org";
 const TELEMETRY_ENABLED_PREF = "datareporting.healthreport.uploadEnabled";
 const PREF_BRANCH = "extensions.screenshots.";
 const USER_DISABLE_PREF = "extensions.screenshots.disabled";
+const HISTORY_ENABLED_PREF = "places.history.enabled";
 
 const { interfaces: Ci, utils: Cu } = Components;
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
@@ -48,6 +49,7 @@ const prefObserver = {
     }
   }
 };
+
 
 const appStartupObserver = {
   register() {
@@ -223,6 +225,9 @@ function handleMessage(msg, sender, sendReply) {
       sendReply({type: "success", value: !!addon});
     });
     return true;
+  } else if (msg.funcName === "getHistoryPref") {
+    let historyEnabled = getBoolPref(HISTORY_ENABLED_PREF);
+    sendReply({type: "success", value: historyEnabled});
   }
 }
 
