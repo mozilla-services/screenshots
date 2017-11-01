@@ -184,6 +184,10 @@ shotIndexPageNoSearchResults = 我們找不到符合您的搜尋條件的擷圖�
 shotIndexPageClearSearchButton
     .title = 清除搜尋
 shotIndexPageConfirmShotDelete = 要刪除這張擷圖嗎？
+shotIndexPagePreviousPage
+    .title = 上一頁
+shotIndexPageNextPage
+    .title = 下一頁
 
 
 // all metrics strings are optional for translation
