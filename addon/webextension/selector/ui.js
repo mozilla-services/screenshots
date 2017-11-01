@@ -792,7 +792,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       let img = makeEl("IMG");
       img.src = dataUrl;
       iframe.document().querySelector(".preview-image").appendChild(img);
-      if (showCropWarning) {
+      if (showCropWarning && !(isDownloadOnly())) {
         let imageCroppedEl = makeEl("DIV");
         imageCroppedEl.id = "imageCroppedWarning";
         imageCroppedEl.textContent = browser.i18n.getMessage("imageCroppedWarning", buildSettings.maxImageHeight);
