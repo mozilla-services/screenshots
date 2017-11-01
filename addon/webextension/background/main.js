@@ -224,6 +224,7 @@ this.main = (function() {
       }
     });
     browser.downloads.onChanged.addListener(onChangedCallback)
+    catcher.watchPromise(communication.sendToBootstrap("incrementDownloadCount"));
     return browser.windows.getLastFocused().then(windowInfo => {
       return windowInfo.incognito;
     }).then((incognito) => {
