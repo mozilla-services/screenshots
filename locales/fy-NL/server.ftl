@@ -202,6 +202,10 @@ shotIndexPageNoSearchResults = Wy kinne gjin ôfbyldingen finen dy't oan jo syko
 shotIndexPageClearSearchButton
     .title = Sykopdracht wiskje
 shotIndexPageConfirmShotDelete = Dizze ôfbylding fuortsmite?
+shotIndexPagePreviousPage
+    .title = Foarige side
+shotIndexPageNextPage
+    .title = Folgjende side
 
 
 // all metrics strings are optional for translation
