@@ -196,6 +196,10 @@ shotIndexPageNoSearchResults = Іздеуіңізге сай скриншотт�
 shotIndexPageClearSearchButton
     .title = Іздеуді тазарту
 shotIndexPageConfirmShotDelete = Бұл скриншотты өшіру керек пе?
+shotIndexPagePreviousPage
+    .title = Алдыңғы бет
+shotIndexPageNextPage
+    .title = Келесі бет
 
 
 // all metrics strings are optional for translation
