@@ -196,6 +196,10 @@ shotIndexPageNoSearchResults = Kami tidak menemui syot yang sepadan dengan caria
 shotIndexPageClearSearchButton
     .title = Padam carian
 shotIndexPageConfirmShotDelete = Buang syot ini?
+shotIndexPagePreviousPage
+    .title = Halaman dahulu
+shotIndexPageNextPage
+    .title = Halaman berikut
 
 
 // all metrics strings are optional for translation
