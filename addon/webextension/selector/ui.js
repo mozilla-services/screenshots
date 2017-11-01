@@ -95,16 +95,28 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     return window.downloadOnly;
   }
 
-  function renderDownloadNotice() {
-    let notice = makeEl("div", "download-only");
+  // the download notice is rendered in iframes that match the document height
+  // or the window height. If parent iframe matches window height, pass in true
+  function renderDownloadNotice(initAtBottom = false) {
+    let notice = makeEl("table", "download-only");
     notice.innerHTML = `
-      <span data-l10n-id="downloadOnlyNotice"></span><span class="circle">?</span>
       <div class="download-only-details">
-        <p data-l10n-id="downloadOnlyDetails">
-          <ul>
-            <li data-l10n-id="downloadOnlyDetailsPrivate"></li>
-            <li data-l10n-id="downloadOnlyDetailsNeverRemember"></li>`;
+        <p data-l10n-id="downloadOnlyDetails"></p>
+        <ul>
+          <li data-l10n-id="downloadOnlyDetailsPrivate"></li>
+          <li data-l10n-id="downloadOnlyDetailsNeverRemember"></li>
+        </ul>
+      </div>
+      <tbody>
+        <tr class="download-only-wrapper">
+          <td class="download-only-content" data-l10n-id="downloadOnlyNotice"></td>
+          <td class="download-only-help"></td>
+        </tr>
+      <tbody>`;
     localizeText(notice);
+    if (initAtBottom) {
+      notice.style.bottom = '10px';
+    }
     return notice;
   }
 
@@ -400,7 +412,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
             localizeText(this.document);
             const overlay = this.document.querySelector(".preview-overlay");
             if (isDownloadOnly()) {
-              overlay.appendChild(renderDownloadNotice());
+              overlay.appendChild(renderDownloadNotice(true));
             } else {
               overlay.querySelector(".preview-button-save").addEventListener(
                 "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onSavePreview)));
@@ -535,8 +547,6 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
         this.download.style.display = "none";
       }
       let bodyRect = getBodyRect();
-      // Note, document.documentElement.scrollHeight is zero on some strange pages (such as the page created when you load an image):
-      let docHeight = Math.max(document.documentElement.scrollHeight || 0, document.body.scrollHeight);
 
       let winBottom = window.innerHeight;
       let pageYOffset = window.pageYOffset;
@@ -569,7 +579,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       this.bgTop.style.left = "0px";
       this.bgTop.style.width = "100%";
       this.bgBottom.style.top = (pos.bottom - bodyRect.top) + "px";
-      this.bgBottom.style.height = docHeight - (pos.bottom - bodyRect.top) + "px";
+      this.bgBottom.style.height = "100vh";
       this.bgBottom.style.left = "0px";
       this.bgBottom.style.width = "100%";
       this.bgLeft.style.top = (pos.top - bodyRect.top) + "px";
@@ -580,9 +590,23 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       this.bgRight.style.height = pos.bottom - pos.top + "px";
       this.bgRight.style.left = (pos.right - bodyRect.left) + "px";
       this.bgRight.style.width = "100%";
+      // the download notice is injected into an iframe that matches the document size
+      // in order to reposition it on scroll we need to bind an updated positioning
+      // function to some window events.
+      this.repositionDownloadNotice = () => {
+        if (this.downloadNotice) {
+          const currentYOffset = window.pageYOffset;
+          const currentWinBottom = window.innerHeight;
+          this.downloadNotice.style.top = (currentYOffset + currentWinBottom - 60) + "px";
+        }
+      };
 
       if (this.downloadNotice) {
-        this.downloadNotice.style.bottom = (docHeight - pageYOffset - winBottom + 10) + "px";
+        this.downloadNotice.style.top = (pageYOffset + winBottom - 60) + "px";
+        // event callbacks are delayed 100ms each to keep from overloading things
+        this.windowChangeStop = this.delayExecution(100, this.repositionDownloadNotice);
+        window.addEventListener('scroll', watchFunction(assertIsTrusted(this.windowChangeStop)));
+        window.addEventListener('resize', watchFunction(assertIsTrusted(this.windowChangeStop)));
       }
 
       if (!(this.isElementInViewport(this.buttons))) {
@@ -607,7 +631,23 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       }
     },
 
+    // used to eventually move the download-only warning
+    // when a user ends scrolling or ends resizing a window
+    delayExecution(delay, cb) {
+      let timer;
+      return function() {
+        if (typeof timer !== 'undefined') {
+          clearTimeout(timer);
+        }
+        timer = setTimeout(cb, delay);
+      }
+    },
+
     remove() {
+      if (this.downloadNotice) {
+        window.removeEventListener('scroll', this.windowChangeStop, true);
+        window.removeEventListener('resize', this.windowChangeStop, true);
+      }
       for (let name of ["el", "bgTop", "bgLeft", "bgRight", "bgBottom", "downloadNotice"]) {
         if (name in this) {
           util.removeNode(this[name]);
