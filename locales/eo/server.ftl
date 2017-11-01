@@ -202,6 +202,10 @@ shotIndexPageNoSearchResults = Ni ne povis trovi iun ajn ekrankopion kiu kongruu
 shotIndexPageClearSearchButton
     .title = Viŝi serĉon
 shotIndexPageConfirmShotDelete = Ĉu forigi tiun ĉi ekrankopion?
+shotIndexPagePreviousPage
+    .title = Antaŭa paĝo
+shotIndexPageNextPage
+    .title = Venonta paĝo
 
 
 // all metrics strings are optional for translation
