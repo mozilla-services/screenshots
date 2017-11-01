@@ -202,6 +202,10 @@ shotIndexPageNoSearchResults = Vi kan ikkje finne bilde som passar med søket di
 shotIndexPageClearSearchButton
     .title = Tøm søk
 shotIndexPageConfirmShotDelete = Slette dette bildet?
+shotIndexPagePreviousPage
+    .title = Føregåande side
+shotIndexPageNextPage
+    .title = Neste side
 
 
 // all metrics strings are optional for translation
