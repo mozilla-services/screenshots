@@ -208,6 +208,10 @@ shotIndexPageNoSearchResults = Не можемо наћи ниједан сни�
 shotIndexPageClearSearchButton
     .title = Очисти претрагу
 shotIndexPageConfirmShotDelete = Обрисати овај снимак?
+shotIndexPagePreviousPage
+    .title = Претходна страница
+shotIndexPageNextPage
+    .title = Следећа страница
 
 
 // all metrics strings are optional for translation
