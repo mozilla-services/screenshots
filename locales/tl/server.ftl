@@ -111,6 +111,20 @@ shotPagePrivacyMessage = Maaaring tingnan ng sinumang may link ang pagbaril na i
 shotPageCopyImageText
     .label = Kopyahin ang teksto ng larawan
 shotPageConfirmDeletion = Sigurado ka bang gusto mong permanenteng tanggalin ang shot na ito?
+shotPageDownloadShot
+    .title = I-download
+shotPageDownload = I-download
+shotPageUpsellFirefox = Kumuha ng Firefox ngayun
+shotPageKeepTenMinutes = 10 Minuto
+shotPageKeepOneHour = 1 Oras
+shotPageKeepOneDay = 1 Araw
+shotPageKeepOneWeek = 1 Linggo
+shotPageKeepTwoWeeks = 2 Linggo
+shotPageKeepOneMonth = 1 Buwan
+timeDiffFutureDays = { $num ->
+        [one] Bukas
+       *[other] sa { $number } na mga araw
+    }
 
 
 [[ Shotindex page ]]
@@ -121,3 +135,8 @@ shotIndexPageNoSearchResultsIntro = Hmm
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageShotsQueryDay = Araw
+metricsPageUsersQueryDay = Araw
+metricsPageVersionQueryLastSeen = Araw
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (database time: { $time }ms)
