@@ -184,6 +184,10 @@ shotIndexPageNoSearchResults = Kami tidak menemukan tangkapan yang cocok dengan 
 shotIndexPageClearSearchButton
     .title = Bersihkan pencarian
 shotIndexPageConfirmShotDelete = Hapus tangkapan ini?
+shotIndexPagePreviousPage
+    .title = Laman sebelumnya
+shotIndexPageNextPage
+    .title = Laman selanjutnya
 
 
 // all metrics strings are optional for translation
