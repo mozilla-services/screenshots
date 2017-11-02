@@ -72,6 +72,7 @@ this.takeshot = (function() {
         }
       );
     }).then(() => {
+      catcher.watchPromise(communication.sendToBootstrap('incrementUploadCount'));
       return shot.viewUrl;
     }).catch((error) => {
       browser.tabs.remove(openedTab.id);

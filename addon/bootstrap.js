@@ -228,6 +228,10 @@ function handleMessage(msg, sender, sendReply) {
   } else if (msg.funcName === "getHistoryPref") {
     let historyEnabled = getBoolPref(HISTORY_ENABLED_PREF);
     sendReply({type: "success", value: historyEnabled});
+  } else if (msg.funcName === "incrementDownloadCount") {
+    Services.telemetry.scalarAdd('screenshots.download', 1);
+  } else if (msg.funcName === "incrementUploadCount") {
+    Services.telemetry.scalarAdd('screenshots.upload', 1);
   }
 }
 
