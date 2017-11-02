@@ -389,7 +389,7 @@ class AbstractShot {
     if (!this.url) {
       return null;
     }
-    if (this.url.search(/^https?/i) != -1) {
+    if (/^https?:\/\//i.test(this.url)) {
       let txt = this.url;
       txt = txt.replace(/^[a-z]{1,4000}:\/\//i, "");
       txt = txt.replace(/\/.{0,4000}/, "");
