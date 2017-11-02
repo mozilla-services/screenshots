@@ -71,18 +71,51 @@ homePageCookiesLink = Mga cookie
 leavePageRemoveAllData = Alisin ang Lahat na Data
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Kailangang naka-install ang mga screenshot ng Firefox upang tanggalin ang iyong account
+leavePageErrorGeneric = May pagkakamaling naganap
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Ito ay permanenteng burahin ang lahat ng iyong data sa Mga screenshot ng Firefox.
+leavePageButtonProceed = Magpatuloy
+leavePageButtonCancel = Kanselahin
+leavePageDeleted = Ang lahat ng iyong mga screenshot ay nabura!
 
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Hindi Makita ang Pahina
+notFoundPageIntro = Oops.
+notFoundPageDescription = Hindi Makita ang Pahina
 
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Screenshot: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = Error sa pag-save ng pag-expire
+shotPageAlertErrorDeletingShot = Error sa pagtanggal ng pagbaril
+shotPageAlertErrorUpdatingTitle = Error sa pag-save ng pamagat
+shotPageConfirmDelete = Sigurado ka bang gusto mong permanenteng tanggalin ang shot na ito?
+shotPageShareButton
+    .title = Ibahagi
+shotPageCopy = Kopyahin
+shotPageCopied = Kinopya
+shotPageShareFacebook
+    .title = Ibahagi sa Facebook
+shotPageShareTwitter
+    .title = Ibahagi sa Twitter
+shotPageSharePinterest
+    .title = Ibahagi sa Pinterest
+shotPageShareEmail
+    .title = Ibahagi ang link sa email
+shotPageShareLink = Kumuha ng isang naibahaging link sa pagbaril na ito:
+shotPagePrivacyMessage = Maaaring tingnan ng sinumang may link ang pagbaril na ito.
+shotPageCopyImageText
+    .label = Kopyahin ang teksto ng larawan
+shotPageConfirmDeletion = Sigurado ka bang gusto mong permanenteng tanggalin ang shot na ito?
 
 
 [[ Shotindex page ]]
 
+shotIndexPageNoSearchResultsIntro = Hmm
 
 
 // all metrics strings are optional for translation
