@@ -418,7 +418,7 @@ class Body extends React.Component {
             </Localized>
           </div>
         </div>
-        { this.props.isOwner && this.props.loginFailed ? <LoginFailedWarning /> : null }
+        { true || this.props.isOwner && this.props.loginFailed ? <LoginFailedWarning /> : null }
         { clips }
         { errorMessages }
         <Footer forUrl={ shot.viewUrl } {...this.props} />
