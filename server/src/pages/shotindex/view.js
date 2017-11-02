@@ -93,7 +93,7 @@ class Body extends React.Component {
       return null;
     }
 
-    let totalPages = Math.ceil(this.props.totalShots / this.props.shotsPerPage);
+    let totalPages = Math.ceil(this.props.totalShots / this.props.shotsPerPage) || 1;
     let hasPrev = this.props.pageNumber > 1;
     let prevPageNumber = this.props.pageNumber - 1;
     let prevClasses = ["shots-page-nav"].concat(!hasPrev && "disabled").join(' ');
