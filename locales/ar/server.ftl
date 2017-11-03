@@ -224,6 +224,10 @@ shotIndexPageNoSearchResults = تعذّر العثور على أي لقطة تط
 shotIndexPageClearSearchButton
     .title = امسح البحث
 shotIndexPageConfirmShotDelete = أنحذف هذه اللقطة؟
+shotIndexPagePreviousPage
+    .title = الصفحة السابقة
+shotIndexPageNextPage
+    .title = الصفحة التالية
 
 
 // all metrics strings are optional for translation
@@ -266,9 +270,6 @@ metricsPageVersionQueryVersion = إصدارة الإضافة
 metricsPageVersionQueryLastSeen = اليوم
 metricsPageHeader = الإحصائيات
 // Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
-metricsPageGeneratedDateTime =
-    أنشئت في: { $created }
-    
-
+metricsPageGeneratedDateTime = أنشئت في: { $created }
 // Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (وقت قاعدة البيانات: { $created } مللي ثانية)
