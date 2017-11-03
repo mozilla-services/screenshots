@@ -137,7 +137,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element = initializeIframe();
           this.element.id = "firefox-screenshots-selection-iframe";
           this.element.style.display = "none";
-          this.element.style.setProperty('position', 'absolute', 'important');
+          this.element.style.setProperty('position', 'fixed', 'important');
           this.updateElementSize();
           this.element.addEventListener("load", watchFunction(() => {
             this.document = this.element.contentDocument;
