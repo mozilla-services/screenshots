@@ -54,6 +54,7 @@ homePageGetStartedDescription = Trova le nove instantaneos sur tu barra de instr
 homePageGetStartedDescriptionPageAction = Elige le icone de instantaneos ex le menu de actiones de pagina in le barra de adresses e le menu del instantaneos apparera al culmine de tu fenestra del navigator. 
 homePageCaptureRegion = Capturar un area de schermo
 homePageCapturePage = Capturar un pagina
+homePageSaveShare = Salvar e compartir
 homePageLegalLink = Notas legal
 homePagePrivacyLink = Confidentialitate
 homePageTermsLink = Terminos
