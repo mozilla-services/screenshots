@@ -208,6 +208,10 @@ shotIndexPageNoSearchResults = Ми не можемо знайти знімки 
 shotIndexPageClearSearchButton
     .title = Очистити пошук
 shotIndexPageConfirmShotDelete = Видалити цей знімок?
+shotIndexPagePreviousPage
+    .title = Попередня сторінка
+shotIndexPageNextPage
+    .title = Наступна сторінка
 
 
 // all metrics strings are optional for translation
