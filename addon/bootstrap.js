@@ -230,8 +230,10 @@ function handleMessage(msg, sender, sendReply) {
     sendReply({type: "success", value: historyEnabled});
   } else if (msg.funcName === "incrementDownloadCount") {
     Services.telemetry.scalarAdd('screenshots.download', 1);
+    sendReply({type: "success", value: true});
   } else if (msg.funcName === "incrementUploadCount") {
     Services.telemetry.scalarAdd('screenshots.upload', 1);
+    sendReply({type: "success", value: true});
   }
 }
 
