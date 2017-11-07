@@ -191,70 +191,87 @@ $very-light-grey: #ededed;
 }
 
 .download-only {
-  position:absolute;
-  z-index: $overlay-z-index + 1;
-  bottom: 10px;
-
-  /* horizontal centering */
+  display: flex;
+  height: 41px;
   left: 50%;
+  position: fixed;
   transform: translate(-50%, 0);
-
-  padding: 10px 15px;
-  border-radius: 100px;
-  background: #737373;
-  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
-  font-weight: bold;
-  color: #fff;
-  font-size: 14px;
-  line-height: 26px;
-  white-space: nowrap;
+  transition: top 125ms ease-out, translate 125ms ease-out;
   user-select: none;
-}
+  will-change: top, translate;
+  z-index: $overlay-z-index + 1;
 
-.circle {
-  display: inline-table;
-  border: 1px solid #f9f9fa;
-  border-radius: 50%;
-  padding: 1px 9px;
-  margin-left: 10px;
-  margin-right: -10px;
-  cursor: default;
+  .download-only-wrapper {
+    align-items: center;
+    background: #737373;
+    border-radius: 100px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 10px 15px;
+  }
+
+  .download-only-content {
+    color: #fff;
+    flex: 1;
+    font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .download-only-help {
+    background-image: url("MOZ_EXTENSION/icons/help-16.svg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 16px;
+  }
 }
 
 .download-only-details {
-  z-index: $overlay-z-index + 1;
-  display: none;
-  width: 400px;
-  position: absolute;
-  bottom: 72px;
-  right: -50px;
   background: #fff;
-  border: 1px solid #9d9d9e;
   border-radius: 3px;
-  padding: 0 20px;
-  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 24px;
-  white-space: normal;
+  border: 1px solid #9d9d9e;
+  bottom: 60px;
   color: #000;
   cursor: default;
+  display: none;
+  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 22px;
+  overflow-wrap: break-word;
+  padding: 15px;
+  position: absolute;
+  right: -14px;
+  white-space: normal;
+  width: 300px;
+  z-index: $overlay-z-index + 1;
 
   .download-only:hover & {
     display: block;
   }
 
+  p {
+    margin: 0;
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
+
   /* down-arrow for the tooltip */
   &::after {
-    content: "";
-    position: absolute;
-    height: 0;
-    width: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     border-top: 10px solid #f9f9fa;
+    content: "";
+    height: 0;
+    left: 86%;
+    position: absolute;
     top: 100%;
-    left: 80%;
+    width: 0;
   }
 }
 
@@ -491,6 +508,7 @@ $very-light-grey: #ededed;
   text-align: center;
   padding-top: 20px;
   width: 400px;
+  user-select: none;
 }
 
 #imageCroppedWarning {
