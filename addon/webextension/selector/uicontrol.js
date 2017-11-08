@@ -966,8 +966,11 @@ this.uicontrol = (function() {
       sendEvent("cancel-shot", "keyboard-escape");
       exports.deactivate();
     }
-    if ((event.key || event.code) === "Enter") {
-      if (getState.state === "selected") {
+    if ((event.key || event.code) === "Enter" && getState.state === "selected") {
+      if (ui.isDownloadOnly()) {
+        sendEvent("download-shot", "keyboard-enter");
+        shooter.downloadShot(selectedPos);
+      } else {
         sendEvent("save-shot", "keyboard-enter");
         shooter.takeShot("selection", selectedPos);
       }
