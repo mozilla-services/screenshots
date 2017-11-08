@@ -322,7 +322,6 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
             resolve();
           }), {once: true});
           document.body.appendChild(this.element);
-          this.unhide();
         } else {
           resolve();
         }
