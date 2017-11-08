@@ -218,6 +218,15 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       if (width !== this.sizeTracking.lastWidth) {
         this.sizeTracking.lastWidth = width;
         this.element.style.width = width + "px";
+        // Since this frame has an absolute position relative to the parent
+        // document, if the parent document has a max-width that is narrower
+        // than the viewport, then the x of the parent document is not at 0 of
+        // the viewport. That makes the frame shifted to the right. This left
+        // margin negates that.
+        let boundingRect = document.body.getBoundingClientRect();
+        if (boundingRect.x) {
+          this.element.style.marginLeft = `-${boundingRect.x}px`;
+        }
       }
       if (force && visible) {
         this.element.style.display = "";
