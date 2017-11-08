@@ -35,6 +35,7 @@ homePageHowScreenshotsWorks = Kit ma Firefox Screenshots Tiyo Kede
 homePageGetStartedTitle = Caki
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Nong cal Screenshots manyen i gitic mamegi. Yer, ka jami ayera me Screenshots bi nyute i wii dirica me layeny mamegi.
+homePageCapturePage = mak potbuk
 homePageSaveShare = Gwokki ki Nywaki
 homePageLegalLink = Cik
 homePagePrivacyLink = Mung
@@ -137,6 +138,10 @@ shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Pe watwero nongo cal ma rwate ki yeny mamegi.
 shotIndexPageClearSearchButton
     .title = Jwa yeny
+shotIndexPagePreviousPage
+    .title = potbuk mukato
+shotIndexPageNextPage
+    .title = potbuk malubu
 
 
 // all metrics strings are optional for translation
@@ -151,4 +156,6 @@ metricsPageUsersQueryTitle = Lutic kudiceng
 metricsPageUsersQueryCount = Wel Lutic
 metricsPageUsersQueryDay = Diceng
 metricsPageUserShotsQueryCount = Wel lutic
+metricsPageRetentionQueryUsers = Wel lutic
+metricsPageTotalRetentionQueryUsers = Wel lutic
 metricsPageVersionQueryLastSeen = Nino

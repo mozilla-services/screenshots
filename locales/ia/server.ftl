@@ -163,6 +163,9 @@ timeDiffFutureDays = { $num ->
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Error delente le instantaneo: { $status } { $statusText }
 // { $error } is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
 shotIndexPageErrorRendering = Error a generar un pagina: { $error }
@@ -198,11 +201,13 @@ metricsPageTotalsQueryExpiredDeletedShots = Expirate (e delite)
 metricsPageShotsQueryTitle = Instantaneos per die
 metricsPageShotsQueryCount = Numero de instantaneos
 metricsPageShotsQueryDay = Die
+metricsPageUsersQueryTitle = Usatores pro die
 metricsPageUsersQueryCount = Numero de usatores
 metricsPageUsersQueryDay = Die
 metricsPageUserShotsQueryTitle = Numero de instantaneos per usator
 metricsPageUserShotsQueryCount = Numero de usatores
 metricsPageRetentionQueryUsers = Numero de usatores
+metricsPageTotalRetentionQueryTitle = Retention total
 metricsPageTotalRetentionQueryUsers = Numero de usatores
 metricsPageVersionQueryTitle = Version del additivo
 metricsPageVersionQueryUsers = Numero de usatores connexe
