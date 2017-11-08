@@ -159,7 +159,7 @@ app.use((req, res, next) => {
 });
 
 function isApiUrl(url) {
-  return url.startsWith("/api") || url === "/event";
+  return url.startsWith("/api") || url === "/event" || url === "/timing";
 }
 
 app.use((req, res, next) => {
@@ -445,6 +445,29 @@ app.post("/event", function(req, res) {
       params.ua = req.headers["user-agent"];
     }
     userAnalytics.event(params).send();
+    simpleResponse(res, "OK", 200);
+  }).catch((e) => {
+    errorResponse(res, "Error creating user UUID:", e);
+  });
+});
+
+app.post("/timing", function(req, res) {
+  let bodyObj = req.body;
+  if (typeof bodyObj !== "object") {
+    throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
+  }
+  hashUserId(req.deviceId).then((userUuid) => {
+    let userAnalytics = ua(config.gaId, userUuid.toString(), {strictCidFormat: false});
+    if (config.debugGoogleAnalytics) {
+      userAnalytics = userAnalytics.debug();
+    }
+    let params = {
+      userTimingCategory: bodyObj.timingCategory,
+      userTimingVariableName: bodyObj.timingVar,
+      userTimingTime: bodyObj.timingValue,
+      userTimingLabel: bodyObj.timingLabel
+    };
+    userAnalytics.timing(params).send();
     simpleResponse(res, "OK", 200);
   }).catch((e) => {
     errorResponse(res, "Error creating user UUID:", e);
