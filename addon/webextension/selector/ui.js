@@ -91,7 +91,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     return result;
   }
 
-  function isDownloadOnly() {
+  let isDownloadOnly = exports.isDownloadOnly = function() {
     return window.downloadOnly;
   }
 
