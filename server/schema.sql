@@ -11,7 +11,7 @@ CREATE TABLE accounts (
     email text
 );
 CREATE TABLE data (
-    id character varying(120) NOT NULL,
+    id character varying(270) NOT NULL,
     deviceid character varying(200),
     created timestamp without time zone DEFAULT now(),
     value text NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE devices (
 );
 CREATE TABLE images (
     id character varying(200) NOT NULL,
-    shotid character varying(200) NOT NULL,
+    shotid character varying(270) NOT NULL,
     clipid character varying(200) NOT NULL,
     contenttype text NOT NULL,
     url text,

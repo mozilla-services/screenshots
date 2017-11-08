@@ -290,7 +290,7 @@ app.param("id", function(req, res, next, id) {
 });
 
 app.param("domain", function(req, res, next, domain) {
-  if (/^[^\s/]{1,100}$/.test(domain)) {
+  if (/^[^\s/]{1,252}$/.test(domain)) {
     next();
     return;
   }
