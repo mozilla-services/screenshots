@@ -223,7 +223,10 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
         // than the viewport, then the x of the parent document is not at 0 of
         // the viewport. That makes the frame shifted to the right. This left
         // margin negates that.
-        this.element.style.marginLeft = `-${document.body.getBoundingClientRect().x}px`;
+        let boundingRect = document.body.getBoundingClientRect();
+        if (boundingRect.x) {
+          this.element.style.marginLeft = `-${boundingRect.x}px`;
+        }
       }
       if (force && visible) {
         this.element.style.display = "";
