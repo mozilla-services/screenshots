@@ -8,6 +8,33 @@ this.analytics = (function() {
   let telemetryPrefKnown = false;
   let telemetryPref;
 
+  function sendTiming(timingLabel, timingVar, timingValue) {
+    // sendTiming is only called in response to sendEvent, so no need to check
+    // the telemetry pref again here.
+    let timingCategory = "addon";
+    let url = main.getBackend() + "/timing";
+    let req = new XMLHttpRequest();
+    req.open("POST", url);
+    req.setRequestHeader("content-type", "application/json");
+    req.onload = catcher.watchFunction(() => {
+      if (req.status >= 300) {
+        let exc = new Error("Bad response from POST /timing");
+        exc.status = req.status;
+        exc.statusText = req.statusText;
+        console.error(exc);
+        // TODO: send the error to sentry, maybe?
+      }
+    });
+    log.info(`sendTiming ${timingCategory}/${timingLabel}/${timingVar}: ${timingValue}`);
+    req.send(JSON.stringify({
+      deviceId: auth.getDeviceId(),
+      timingCategory,
+      timingLabel,
+      timingVar,
+      timingValue
+    }));
+  }
+
   exports.sendEvent = function(action, label, options) {
     let eventCategory = "addon";
     if (!telemetryPrefKnown) {
@@ -183,7 +210,7 @@ this.analytics = (function() {
       } else if (timingData[r.name] && match(r.end, action, label)) {
         let endTime = Date.now();
         let elapsed = endTime - timingData[r.name];
-        exports.sendEvent('perf-response-time', r.name, {cd1: elapsed});
+        sendTiming("perf-response-time", r.name, elapsed);
         delete timingData[r.name];
       }
     });
