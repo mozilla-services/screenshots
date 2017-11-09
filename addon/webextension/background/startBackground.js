@@ -6,9 +6,10 @@
    and loads the rest of the background page in response to those events, forwarding
    the events to main.onClicked, main.onClickedContextMenu, or communication.onMessage
 */
+const startTime = Date.now();
 
 this.startBackground = (function() {
-  let exports = {};
+  let exports = {startTime};
 
   const backgroundScripts = [
     "log.js",
