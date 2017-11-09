@@ -194,11 +194,7 @@ this.analytics = (function() {
   }
 
   function anyMatches(filters, action, label) {
-    let matched = false;
-    filters.forEach(filter => {
-      matched = matched || match(filter, action, label);
-    });
-    return matched;
+    return !!filters.find(filter => match(filter, action, label));
   }
 
   function measureTiming(action, label) {
