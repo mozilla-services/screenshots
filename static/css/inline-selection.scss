@@ -190,6 +190,7 @@ $very-light-grey: #ededed;
   }
 }
 
+.image-cropped-warning,
 .download-only {
   display: flex;
   height: 41px;
@@ -201,7 +202,7 @@ $very-light-grey: #ededed;
   will-change: top, translate;
   z-index: $overlay-z-index + 1;
 
-  .download-only-wrapper {
+  .notice-wrapper {
     align-items: center;
     background: #737373;
     border-radius: 100px;
@@ -211,7 +212,7 @@ $very-light-grey: #ededed;
     padding: 10px 15px;
   }
 
-  .download-only-content {
+  .notice-content {
     color: #fff;
     flex: 1;
     font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
@@ -509,19 +510,6 @@ $very-light-grey: #ededed;
   padding-top: 20px;
   width: 400px;
   user-select: none;
-}
-
-#imageCroppedWarning {
-  position: absolute;
-  background: rgba(0, 0, 0, 0.8);
-  bottom: 0;
-  color: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
-  font-size: 12px;
-  padding: 10px;
-  text-align: center;
-  width: 100%;
-  z-index: 2;
 }
 
 .myshots-all-buttons-container {
