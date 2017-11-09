@@ -277,10 +277,10 @@ function initPhotonPageAction(api, webExtension) {
       switch (message.type) {
       case "setProperties":
         if (message.title) {
-          photonPageAction.title = message.title;
+          photonPageAction.setTitle(message.title);
         }
         if (message.iconPath) {
-          photonPageAction.iconURL = webExtension.extension.getURL(message.iconPath);
+          photonPageAction.setIconURL(webExtension.extension.getURL(message.iconPath));
         }
         break;
       default:
