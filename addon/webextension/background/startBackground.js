@@ -45,24 +45,6 @@ this.startBackground = (function() {
     });
   });
 
-  // Note this duplicates functionality in main.js, but we need to change
-  // the onboarding icon before main.js loads up
-  let iconPath = null;
-  browser.storage.local.get(["hasSeenOnboarding"]).then((result) => {
-    let hasSeenOnboarding = !!result.hasSeenOnboarding;
-    if (!hasSeenOnboarding) {
-      iconPath = "icons/icon-starred-32-v2.svg";
-      if (photonPageActionPort) {
-        photonPageActionPort.postMessage({
-          type: "setProperties",
-          iconPath
-        });
-      }
-    }
-  }).catch((error) => {
-    console.error("Error loading Screenshots onboarding flag:", error);
-  });
-
   browser.runtime.onMessage.addListener((req, sender, sendResponse) => {
     loadIfNecessary().then(() => {
       return communication.onMessage(req, sender, sendResponse);
@@ -150,7 +132,7 @@ this.startBackground = (function() {
     photonPageActionPort.postMessage({
       type: "setProperties",
       title: browser.i18n.getMessage("contextMenuLabel"),
-      iconPath
+      iconPath: "icons/icon-starred-32-v2.svg"
     });
 
     // Export these so that main.js can use them.
