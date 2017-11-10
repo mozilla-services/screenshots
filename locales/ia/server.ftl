@@ -53,6 +53,8 @@ homePageGetStartedDescription = Trova le nove instantaneos sur tu barra de instr
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Elige le icone de instantaneos ex le menu de actiones de pagina in le barra de adresses e le menu del instantaneos apparera al culmine de tu fenestra del navigator. 
 homePageCaptureRegion = Capturar un area de schermo
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Clicca e trahe pro seliger le area que tu vole capturar. O solo sur-vola e clicca - Screenshots eligera le area pro te. TU ama lo que tu vide? Elige Salvar pro acceder a tu instantaneos online o le flecha-a-basso pro lo discargar sur tu computator.
 homePageCapturePage = Capturar un pagina
 homePageSaveShare = Salvar e compartir
 homePageLegalLink = Notas legal
