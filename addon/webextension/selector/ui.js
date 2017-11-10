@@ -203,18 +203,18 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
         document.documentElement.clientHeight,
         document.body.clientHeight,
         document.documentElement.scrollHeight,
-        document.body.scrollHeight,
-        window.innerHeight);
+        document.body.scrollHeight);
       if (height !== this.sizeTracking.lastHeight) {
         this.sizeTracking.lastHeight = height;
         this.element.style.height = height + "px";
       }
+      // Do not use window.innerWidth since that includes the width of the
+      // scroll bar.
       let width = Math.max(
         document.documentElement.clientWidth,
         document.body.clientWidth,
         document.documentElement.scrollWidth,
-        document.body.scrollWidth,
-        window.innerWidth);
+        document.body.scrollWidth);
       if (width !== this.sizeTracking.lastWidth) {
         this.sizeTracking.lastWidth = width;
         this.element.style.width = width + "px";
