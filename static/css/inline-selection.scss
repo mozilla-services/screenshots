@@ -384,6 +384,20 @@ $very-light-grey: #ededed;
   }
 }
 
+.highlight-button-copy {
+  @extend .button;
+  @extend .secondary;
+  background-image: url("MOZ_EXTENSION/icons/copy.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  border: 1px solid $light-active;
+  // Overrides display: flex from .button, which causes hover problems
+  display: block;
+  margin: 5px;
+  width: 40px;
+}
+
 .pixel-dimensions {
   position: absolute;
   pointer-events: none;
