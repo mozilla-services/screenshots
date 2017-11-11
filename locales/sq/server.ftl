@@ -122,10 +122,74 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Shkarkoje
 shotPageDownload = Shkarkoje
+shotPageScreenshotsDescription =
+    Screenshots-i i thjeshtuar. Bëni, ruani dhe ndani foto ekrani pa dalë nga Firefox-i.
+
+shotPageUpsellFirefox = Merreni Firefox-in që tani
+shotPageDMCAMessage = Kjo foto s’mund të kihet më, për shkak pretendimesh pronësie intelektuale nga palë e tretë.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Që të kërkoni informacione të mëtejshme, ju lutemi, dërgoni një email te { $dmca }.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Nëse fotot tuaja janë subjekt pretendimesh të shumta, mund të shfuqizojmë hyrjen tuaj te Firefox Screenshots.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Ju lutemi, përfshijeni URL-në e kësaj fotoje te email-i juaj: { $url }
+shotPageKeepFor = Për sa kohë duhet mbajtur kjo foto?
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Përzgjidhni kohë
+shotPageKeepIndefinitely = Pambarimisht
+shotPageKeepTenMinutes = 10 Minuta
+shotPageKeepOneHour = 1 Orë
+shotPageKeepOneDay = 1 Ditë
+shotPageKeepOneWeek = 1 Javë
+shotPageKeepTwoWeeks = 2 Javë
+shotPageKeepOneMonth = 1 Muaj
+shotPageSaveExpiration = ruaje
+shotPageCancelExpiration = anuloje
+shotPageDoesNotExpire = nuk skadon
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = skadon më { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = ka skaduar më { $timediff }
+timeDiffJustNow = mu tani
+timeDiffMinutesAgo = { $num ->
+        [one] 1 minutë më parë
+       *[other] { $number } minuta më parë
+    }
+timeDiffHoursAgo = { $num ->
+        [one] 1 orë më parë
+       *[other] { $number } orë më parë
+    }
+timeDiffFutureSeconds = në pak sekonda
+timeDiffFutureMinutes = { $num ->
+        [one] në 1 minutë
+       *[other] në { $number } minuta
+    }
+timeDiffFutureHours = { $num ->
+        [one] në 1 orë
+       *[other] në { $number } orë
+    }
+timeDiffFutureDays = { $num ->
+       *[one] nesër
+    }
 
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Gabim në fshirjen e fotos: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Fotot e Mia: kërkoni për { $searchTerm }
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Gabim në vizatimin e faqes: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Kërko te fotot e mira
+shotIndexPageSearchButton
+    .title = Kërko
+shotIndexPageNoShotsMessage = S’ka foto të ruajtura.
+shotIndexPageNoShotsInvitation = Jepini, krijoni ndonjë.
+shotIndexPageLookingForShots = Po shihet për foto tuajat…
 
 
 // all metrics strings are optional for translation
