@@ -59,18 +59,69 @@ homePageSaveShareDescription = Kur bëni një shkrepje, Firefox-i e poston foton
 homePageLegalLink = Ligjore
 homePagePrivacyLink = Privatësi
 homePageTermsLink = Kushte
+homePageCookiesLink = Cookies
 
 
 [[ Leave Screenshots page ]]
 
+leavePageRemoveAllData = Hiqni Krejt të Dhënat
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Që të mund të fshini llogarinë tuaj, duhet të keni Firefox Screenshots të instaluar
+leavePageErrorGeneric = Ndodhi një gabim
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Kështu do të fshihen përgjithmonë krejt të dhënat tuaja për Firefox Screenshots.
+leavePageButtonProceed = Vazhdo
+leavePageButtonCancel = Anuloje
+leavePageDeleted = U fshinë krejt fotot tuaja të ekranit!
 
 
 [[ Not Found page ]]
 
+notFoundPageTitle = Nuk u Gjet Faqe
+notFoundPageIntro = Hëm.
+notFoundPageDescription = S’u gjet faqe.
 
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Fot ekrani: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = Gabim në ruajtjen e skadimit
+shotPageAlertErrorDeletingShot = Gabim në fshirjen e fotos
+shotPageAlertErrorUpdatingTitle = Gabim në ruajtjen e titullit
+shotPageConfirmDelete = Jeni i sigurt se doni të fshihet përgjithnjë kjo foto?
+shotPageShareButton
+    .title = Ndajeni me të tjerë
+shotPageCopy = Kopjoje
+shotPageCopied = U kopjua
+shotPageShareFacebook
+    .title = Ndajeni në Facebook
+shotPageShareTwitter
+    .title = Ndajeni në Twitter
+shotPageSharePinterest
+    .title = Ndajeni në Pinterest
+shotPageShareEmail
+    .title = Ndajeni lidhjen me email
+shotPageShareLink = Merrni një lidhje për te kjo foto:
+shotPagePrivacyMessage = Cilido që ka lidhjen mund të shohë këtë foto.
+shotPageCopyImageText
+    .label = Kopjo tekstin e figurës
+shotPageConfirmDeletion = Jeni i sigurt se doni të fshihet përgjithmonë kjo foto?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Po nuk bëtë ndonjë veprim, kjo foto do të fshihet përgjithmonë më { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = riktheje deri më { $date }
+shotPageExpiredMessage = Kjo foto ka skaduar.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Ja faqja prej të cilës qe krijuar fillimisht:
+shotPageDeleteButton
+    .title = Fshije këtë foto
+shotPageAbuseButton
+    .title = Raportojeni këtë foto për abuzim, spam apo probleme të tjera
+shotPageDownloadShot
+    .title = Shkarkoje
+shotPageDownload = Shkarkoje
 
 
 [[ Shotindex page ]]
