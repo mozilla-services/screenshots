@@ -157,6 +157,12 @@ timeDiffHoursAgo = { $num ->
         [one] 1 orë më parë
        *[other] { $number } orë më parë
     }
+timeDiffDaysAgo =
+    timeDiffDaysAgo = { $number ->
+        [one] dje
+       *[other] { $number } ditë më parë
+    }
+
 timeDiffFutureSeconds = në pak sekonda
 timeDiffFutureMinutes = { $num ->
         [one] në 1 minutë
@@ -193,8 +199,39 @@ shotIndexPageNoSearchResults = S’gjejmë dot ndonjë foto që përputhet me k�
 shotIndexPageClearSearchButton
     .title = Pastroje kërkimin
 shotIndexPageConfirmShotDelete = Të fshihet kjo foto?
+shotIndexPagePreviousPage
+    .title = Faqja e mëparshme
+shotIndexPageNextPage
+    .title = Faqja pasuese
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Statistika nga Firefox Screenshots
+metricsPageTotalsQueryTitle = Gjithsej
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Një përmbledhje mbi Screenshots
+metricsPageTotalsQueryDevices = Pajisje të regjistruara gjithsej
+metricsPageTotalsQueryActiveShots = Foto aktive
+metricsPageTotalsQueryExpiredShots = Të skaduara (por të rikthyeshme)
+metricsPageTotalsQueryExpiredDeletedShots = Të skaduara (dhe të fshira)
+metricsPageShotsQueryTitle = Foto sipas Ditësh
+metricsPageShotsQueryDescription = Numër fotosh krijuar çdo ditë (për 30 ditët e fundit)
+metricsPageShotsQueryCount = Numër fotosh
+metricsPageShotsQueryDay = Ditë
+metricsPageUsersQueryTitle = Përdorues sipas Ditësh
+metricsPageUsersQueryDescription = Numër përdoruesish që kanë krijuar të paktën një foto, sipas ditësh (30 ditët e fundit)
+metricsPageUsersQueryCount = Numër përdoruesish
+metricsPageUsersQueryDay = Ditë
+metricsPageUserShotsQueryTitle = Numër Fotosh për Përdorues
+metricsPageUserShotsQueryDescription = Numri i përdoruesve që kanë të paktën N foto gjithsej
+metricsPageUserShotsQueryCount = Numër përdoruesish
+metricsPageUserShotsQueryShots = Numër afërsisht i fotove aktive (jo të skaduara)
+metricsPageRetentionQueryTitle = Mbajtje sipas Javësh
+metricsPageRetentionQueryDescription = Numër ditësh nga fotoja e parë e përdoruesit te ajo më e reja, grupuar sipas javës së fillimit
+metricsPageRetentionQueryUsers = Numër përdouesish
+metricsPageRetentionQueryDays = Ditë që nga fotoja e parë e përdoruesit te më e reja
+metricsPageVersionQueryLastSeen = Ditë
+metricsPageHeader = Statistika
