@@ -28,6 +28,10 @@ footerLinkRemoveAllData = Hiqi Krejt të Dhënat
 
 [[ Creating page ]]
 
+// Note: { $title } is a placeholder for the title of the web page
+// captured in the screenshot. The default, for pages without titles, is
+// creatingPageTitleDefault.
+creatingPageTitle = Krijiim i { $title }
 creatingPageTitleDefault = faqe
 creatingPageWaitMessage = Po ruhet shkrepja juaj…
 
@@ -188,7 +192,7 @@ shotIndexPageSearchResultsTitle = Fotot e Mia: kërkoni për { $searchTerm }
 // with developers when debugging an error.
 shotIndexPageErrorRendering = Gabim në vizatimin e faqes: { $error }
 shotIndexPageSearchPlaceholder
-    .placeholder = Kërko te fotot e mira
+    .placeholder = Kërko te fotot e mia
 shotIndexPageSearchButton
     .title = Kërko
 shotIndexPageNoShotsMessage = S’ka foto të ruajtura.
@@ -233,5 +237,18 @@ metricsPageRetentionQueryTitle = Mbajtje sipas Javësh
 metricsPageRetentionQueryDescription = Numër ditësh nga fotoja e parë e përdoruesit te ajo më e reja, grupuar sipas javës së fillimit
 metricsPageRetentionQueryUsers = Numër përdouesish
 metricsPageRetentionQueryDays = Ditë që nga fotoja e parë e përdoruesit te më e reja
+metricsPageRetentionQueryFirstWeek = Java kur përdoruesi krijoi së pari një foto
+metricsPageTotalRetentionQueryTitle = Mbajtje Gjithsej
+metricsPageTotalRetentionQueryDescription = Madhësi e kohës gjatë së cilës përdoruesit kanë bërë foto, grupuar sipas javësh
+metricsPageTotalRetentionQueryUsers = Numër përdoruesish
+metricsPageTotalRetentionQueryDays = Ditë kur përdoruesi ka krijuar foto
+metricsPageVersionQueryTitle = Version Shtese
+metricsPageVersionQueryDescription = Versioni i shtesës së përdorur në kohën e hyrjes, për 14 ditët e fundit
+metricsPageVersionQueryUsers = Numër përdorues të futur në llogaritë e tyre
+metricsPageVersionQueryVersion = Version shtese
 metricsPageVersionQueryLastSeen = Ditë
 metricsPageHeader = Statistika
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Prodhuar më: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (kohë baze të dhënash: { $time }ms)
