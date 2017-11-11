@@ -122,9 +122,7 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Shkarkoje
 shotPageDownload = Shkarkoje
-shotPageScreenshotsDescription =
-    Screenshots-i i thjeshtuar. Bëni, ruani dhe ndani foto ekrani pa dalë nga Firefox-i.
-
+shotPageScreenshotsDescription = Screenshots-i i thjeshtuar. Bëni, ruani dhe ndani foto ekrani pa dalë nga Firefox-i.
 shotPageUpsellFirefox = Merreni Firefox-in që tani
 shotPageDMCAMessage = Kjo foto s’mund të kihet më, për shkak pretendimesh pronësie intelektuale nga palë e tretë.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -190,6 +188,11 @@ shotIndexPageSearchButton
 shotIndexPageNoShotsMessage = S’ka foto të ruajtura.
 shotIndexPageNoShotsInvitation = Jepini, krijoni ndonjë.
 shotIndexPageLookingForShots = Po shihet për foto tuajat…
+shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = S’gjejmë dot ndonjë foto që përputhet me kërkimet tuaja.
+shotIndexPageClearSearchButton
+    .title = Pastroje kërkimin
+shotIndexPageConfirmShotDelete = Të fshihet kjo foto?
 
 
 // all metrics strings are optional for translation
