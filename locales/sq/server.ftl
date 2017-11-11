@@ -41,6 +41,16 @@ homePageTeaser = Së Afërmi…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Shkarkim Falas
 homePageGetStarted = Fillojani
+// Note: do not translate 'Firefox Screenshots' when translating this string
+homePageHowScreenshotsWorks = Si Funksionon Firefox Screenshots
+homePageGetStartedTitle = Fillojani
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Gjeni te paneli juaj ikonën e re për Screenshots. Përzgjidheni, dhe menuja Shkrepje do të shfaqet në krye të dritares së shfletuesit tuaj.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Përzgjidhni ikonën Shkrepje prej menusë së veprimeve mbi faqe te shtylla e adresave, dhe menuja Shkrepje do të shfaqet në krye të dritares së shfletuesit tuaj.
+homePageCaptureRegion = Fotografoni një Zonë
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Klikoni dhe tërhiqeni që të përzgjidhni fushën që doni të fotografohet. Ose thjesht kaloni kursorin dhe klikoni — Screenshots do të bëjë përzgjedhjen për ju. Ju pëlqen çka shihni? Përzgjidhni Ruaje që ta përdorni foton tuaj <em>online</em> ose butonin shigjetë për poshtë që ta shkarkoni në kompjuterin tuaj.
 
 
 [[ Leave Screenshots page ]]
