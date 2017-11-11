@@ -51,6 +51,12 @@ homePageGetStartedDescriptionPageAction = Përzgjidhni ikonën Shkrepje prej men
 homePageCaptureRegion = Fotografoni një Zonë
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klikoni dhe tërhiqeni që të përzgjidhni fushën që doni të fotografohet. Ose thjesht kaloni kursorin dhe klikoni — Screenshots do të bëjë përzgjedhjen për ju. Ju pëlqen çka shihni? Përzgjidhni Ruaje që ta përdorni foton tuaj <em>online</em> ose butonin shigjetë për poshtë që ta shkarkoni në kompjuterin tuaj.
+homePageCapturePage = Fotografoni një Faqe
+homePageCapturePageDescription = Përdorni butonat në cepin e sipërm djathtas që të fotografoni faqe të plota. Përmes butonit Ruaj Sa Duket do të fotografohet fusha që mund të shihni pa bërë rrëshqitje në faqe, dhe Ruaj Faqen e Plotë do të fotografojë gjithçka në faqe.
+homePageSaveShare = Ruajeni dhe Ndajeni me të Tjerët
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Kur bëni një shkrepje, Firefox-i e poston foton tuaj te fototeka juaj <em>online</em> Screenshots dhe e kopjon lidhjen te e papastra juaj. E depozitojmë vetvetiu foton e ekrani për dy javë, por mund t’i fshini kurdo apo të ndryshoni kohën e skadimit  për t’i mbajtur më gjatë në fototekën tuaj.
+homePageLegalLink = Ligjore
 
 
 [[ Leave Screenshots page ]]
