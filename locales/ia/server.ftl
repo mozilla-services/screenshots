@@ -56,7 +56,10 @@ homePageCaptureRegion = Capturar un area de schermo
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Clicca e trahe pro seliger le area que tu vole capturar. O solo sur-vola e clicca - Screenshots eligera le area pro te. TU ama lo que tu vide? Elige Salvar pro acceder a tu instantaneos online o le flecha-a-basso pro lo discargar sur tu computator.
 homePageCapturePage = Capturar un pagina
+homePageCapturePageDescription = Usar le buttones in alto a dextra pro capturar le paginas integre. Le button Salvar lo visibile, capturara le area que tu pote vider sin rolar, e Salvar pagina integre, capturara tote le pagina. 
 homePageSaveShare = Salvar e compartir
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Quando tu prende un instantaneo, Firefox posta tu instantaneo de schermo in tu bibliotheca online de instantaneos de schermo e copia le ligamine in tu area de transferentia. Nos automaticamente salva tu instantaneo de schermo pro duo septimanas, ma tu pote sempre cancellar instantaneos o cambiar le data de expiration pro los mantener in tu bibliotheca pro plus de tempore.
 homePageLegalLink = Notas legal
 homePagePrivacyLink = Confidentialitate
 homePageTermsLink = Terminos
@@ -66,7 +69,11 @@ homePageCookiesLink = Cookies
 [[ Leave Screenshots page ]]
 
 leavePageRemoveAllData = Remover tote le datos
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Tu debe haber Firefox Screenshots installate pro cancellar tu conto.
 leavePageErrorGeneric = Un error occurreva
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Isto cancellara permanentemente tote le datos de tu Firefox Screenshots.
 leavePageButtonProceed = Proceder
 leavePageButtonCancel = 
 leavePageDeleted = Tote tu instantaneos de schermo cancellate!
@@ -83,6 +90,7 @@ notFoundPageDescription = Pagina non trovate.
 
 // This is the HTML title tag of the page
 shotPageTitle = Instantaneo de schermo: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = Error al salvamento del expiration
 shotPageAlertErrorDeletingShot = Error a deler le instantaneo
 shotPageAlertErrorUpdatingTitle = Error a salvar le titulo
 shotPageConfirmDelete = Desira tu vermente deler permanentemente iste instantaneo?
