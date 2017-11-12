@@ -111,6 +111,8 @@ shotPagePrivacyMessage = Totes pote vider iste instantaneo per iste ligamine.
 shotPageCopyImageText
     .label = Copiar le texto del imagine
 shotPageConfirmDeletion = Desira tu vermente deler iste captura permanentemente?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Si tu face nihil, iste instantaneo essera permanentemente delite { $timediff }.
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = restabilir usque { $date }
@@ -127,6 +129,13 @@ shotPageDownload = Discargar
 shotPageScreenshotsDescription = Le instantaneos de schermo a un maniera simple. Captura, salva e comparti le instantaneos de tu schermo sin exir de Firefox.
 shotPageUpsellFirefox = Discarga subito Firefox
 shotPageDMCAMessage = Iste instantaneo non es plus disponibile per un reclamation de proprietate intellectual de tertie parte.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Per favor e-posta { $dmca } pro querer altere informationes.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Si tu Instantaneos es subjecte a trop reclamationes, nos pote revocar tu accesso a Firefox Screenshots.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Per favor include le URL del iste instantaneo in tu email: { $url }
+shotPageKeepFor = Quante tempore debe ser reservate iste instantaneo?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Eliger le tempore
 shotPageKeepIndefinitely = Per sempre
@@ -176,6 +185,8 @@ timeDiffFutureDays = { $num ->
 // { $status } is a placeholder for an HTTP status code, like '500'.
 // { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Error delente le instantaneo: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Mi Instantaneos: recerca { $searchTerm }
 // { $error } is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
 shotIndexPageErrorRendering = Error a generar un pagina: { $error }
@@ -187,6 +198,7 @@ shotIndexPageNoShotsMessage = Instantaneos non salvate
 shotIndexPageNoShotsInvitation = Va, crea los.
 shotIndexPageLookingForShots = Recerca de tu instantaneos...
 shotIndexPageNoSearchResultsIntro = Hum…
+shotIndexPageNoSearchResults = Nos non pote trovar ulle instantaneos que concorda con tu recerca.
 shotIndexPageClearSearchButton
     .title = Clarar le recerca
 shotIndexPageConfirmShotDelete = Deler iste instantaneo?
@@ -209,6 +221,7 @@ metricsPageTotalsQueryActiveShots = Instantaneos active
 metricsPageTotalsQueryExpiredShots = Expirate (ma recovrabile)
 metricsPageTotalsQueryExpiredDeletedShots = Expirate (e delite)
 metricsPageShotsQueryTitle = Instantaneos per die
+metricsPageShotsQueryDescription = Numero del instantaneos create cata die (pro le ultime 30 dies)
 metricsPageShotsQueryCount = Numero de instantaneos
 metricsPageShotsQueryDay = Die
 metricsPageUsersQueryTitle = Usatores pro die
