@@ -53,9 +53,6 @@ this.main = (function() {
 
   function setIconActive(active, tabId) {
     let path = active ? "icons/icon-highlight-32-v2.svg" : "icons/icon-32-v2.svg";
-    if ((!hasSeenOnboarding) && !active) {
-      path = "icons/icon-starred-32-v2.svg";
-    }
     startBackground.photonPageActionPort.postMessage({
       type: "setProperties",
       iconPath: path
