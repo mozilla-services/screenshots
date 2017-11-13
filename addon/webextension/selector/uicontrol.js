@@ -130,6 +130,13 @@ this.uicontrol = (function() {
       exports.deactivate();
     }, save: () => {
       sendEvent("save-shot", "overlay-save-button");
+      let width = selectedPos.x2 - selectedPos.x1;
+      width = Math.min(width, MAX_PAGE_WIDTH);
+      let height = selectedPos.y2 - selectedPos.y1;
+      height = Math.min(height, MAX_PAGE_HEIGHT);
+      selectedPos = new Selection(
+        selectedPos.x1, selectedPos.y1,
+        selectedPos.x1 + width, selectedPos.y1 + height);
       shooter.takeShot("selection", selectedPos);
     }, download: () => {
       sendEvent("download-shot", "overlay-download-button");
@@ -972,6 +979,13 @@ this.uicontrol = (function() {
         shooter.downloadShot(selectedPos);
       } else {
         sendEvent("save-shot", "keyboard-enter");
+        let width = selectedPos.x2 - selectedPos.x1;
+        width = Math.min(width, MAX_PAGE_WIDTH);
+        let height = selectedPos.y2 - selectedPos.y1;
+        height = Math.min(height, MAX_PAGE_HEIGHT);
+        selectedPos = new Selection(
+          selectedPos.x1, selectedPos.y1,
+          selectedPos.x1 + width, selectedPos.y1 + height);
         shooter.takeShot("selection", selectedPos);
       }
     }
