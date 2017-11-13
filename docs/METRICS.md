@@ -26,6 +26,14 @@ The deviceId does not change for the life of a browser profile.
 
 Key metrics of Firefox Screenshots are fairly simple:
 
+#### Do Screenshots users tend to use Firefox more?
+
+Unlike the rest of the metrics, answering this question requires using Mozilla's Telemetry system, which tracks usage for Firefox as a whole. In order to compare engagement between Firefox sessions that do and don't have Screenshots usage, three scalars were added to the main Telemetry ping:
+
+- `screenshots.download` - incremented each time a shot is created & downloaded during a session
+- `screenshots.upload` - incremented each time a shot is created & uploaded to the screenshots server during a session
+- `screenshots.copy` - incremented each time a shot is created & copied straight to the clipboard without downloading or uploading (this feature is planned, but not yet implemented; see #2582)
+
 #### Do people continue to create shots?
 
 This will be tracked in a cohort graph.
