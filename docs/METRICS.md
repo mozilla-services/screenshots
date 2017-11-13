@@ -182,10 +182,23 @@ sendEvent("click-install-firefox-home", {useBeacon: true});
 
 #### Add-on performance measurements
 
+Performance measurements use the GA User Timings API, instead of the regular Event API.
+
+##### User Timings schema
+
+Each item in these events requires:
+
+Timing category: maps to the "source": `addon` or `web`
+
+Timing action: what kind of performance measure, currently just `perf-response-time`, which measures the "response" in the RAIL performance model: the time from a user interaction (like a button click) to a user-visible change in the UI.
+
+Timing variable: which event's performance is being measured. This generally is the same as the name of the event used to start the measurement, such as `start-shot`.
+
+Timing value: the number of milliseconds associated with the variable. For `perf-response-time`, the response time in milliseconds.
 
 ##### Internal-only events
 
-Internal-only events are used to measure the time from user input to user-visible UI response.
+Internal-only events are used to help measure user timings, but aren't useful to record on their own.
 
 *NOTE: Internal-only events are not submitted to GA.*
 
@@ -197,22 +210,22 @@ Internal-only events are used to measure the time from user input to user-visibl
 
 ##### First step: starting the shot
 
-1. [x] Time from clicking the page action (or toolbar button) to displaying the preselection iframe, `addon/perf-response-time/page-action` with `cd1: {ms response time}`
+1. [x] Time from clicking the page action (or toolbar button) to displaying the preselection iframe, `addon/perf-response-time/page-action`
   - Start: `addon/start-shot/toolbar-button`
   - End: `addon/internal/unhide-preselection-frame`
-1. [x] Time from clicking the context menu item to displaying the preselection iframe, `addon/perf-response-time/context-menu` with `cd1: {ms response time}`
+1. [x] Time from clicking the context menu item to displaying the preselection iframe, `addon/perf-response-time/context-menu`
   - Start: `addon/start-shot/context-menu`
   - End: `addon/internal/unhide-preselection-frame`
 
 ##### Second step: choosing the shot contents
 
-1. [x] Time from initiating a selection on screen to seeing the selection, `addon/perf-response-time/make-selection` with `cd1: {ms response time}`
+1. [x] Time from initiating a selection on screen to seeing the selection, `addon/perf-response-time/make-selection`
   - Start: `addon/make-selection`
   - End: `addon/internal/unhide-selection-frame`
-1. [x] Time from clicking the 'full page' button to displaying the preview iframe, `addon/perf-response-time/capture-full-page` with `cd1: {ms response time}`
+1. [x] Time from clicking the 'full page' button to displaying the preview iframe, `addon/perf-response-time/capture-full-page`
   - Start: `addon/capture-full-page`
   - End: `addon/internal/unhide-preview-frame`
-1. [x] Time from clicking the 'save visible' button to displaying the preview iframe, `addon/perf-response-time/capture-visible` with `cd1: {ms response time}`
+1. [x] Time from clicking the 'save visible' button to displaying the preview iframe, `addon/perf-response-time/capture-visible`
   - Start: `addon/capture-visible`
   - End: `addon/internal/unhide-preview-frame`
 
@@ -220,31 +233,31 @@ Internal-only events are used to measure the time from user input to user-visibl
 
 For uploads, the measurement is from clicking the save button to a new tab being opened:
 
-1. [x] Save a selection shot (Enter key or button click), `addon/perf-response-time/save-shot` with `cd1: {ms response time}`
+1. [x] Save a selection shot (Enter key or button click), `addon/perf-response-time/save-shot`
   - Start: `addon/save-shot`
   - End: `addon/internal/open-shot-tab`
-1. [x] Save a full page shot, `addon/perf-response-time/save-full-page` with `cd1: {ms response time}`
+1. [x] Save a full page shot, `addon/perf-response-time/save-full-page`
   - Start: `addon/save-full-page`
   - End: `addon/internal/open-shot-tab`
-1. [x] Save a truncated full page shot, `addon/perf-response-time/save-full-page-truncated` with `cd1: {ms response time}`
+1. [x] Save a truncated full page shot, `addon/perf-response-time/save-full-page-truncated`
   - Start: `addon/save-full-page-truncated`
   - End: `addon/internal/open-shot-tab`
-1. [x] Save a visible selection shot, `addon/perf-response-time/save-visible` with `cd1: {ms response time}`
+1. [x] Save a visible selection shot, `addon/perf-response-time/save-visible`
   - Start: `addon/save-visible`
   - End: `addon/internal/open-shot-tab`
 
 For downloads, because Firefox doesn't always show download UI, the measurement is from clicking the download button to the screenshots UI being hidden:
 
-1. [x] Download a selection shot, `addon/perf-response-time/download-shot` with `cd1: {ms response time}`
+1. [x] Download a selection shot, `addon/perf-response-time/download-shot`
   - Start: `addon/download-shot`
   - End: `addon/internal/deactivate`
-1. [x] Download a full page shot, `addon/perf-response-time/download-full-page` with `cd1: {ms response time}`
+1. [x] Download a full page shot, `addon/perf-response-time/download-full-page`
   - Start: `addon/download-full-page`
   - End: `addon/internal/deactivate`
-1. [x] Download a truncated full page shot, `addon/perf-response-time/download-full-page-truncated` with `cd1: {ms response time}`
+1. [x] Download a truncated full page shot, `addon/perf-response-time/download-full-page-truncated`
   - Start: `addon/download-full-page-truncated`
   - End: `addon/internal/deactivate`
-1. [x] Download a visible selection shot, `addon/perf-response-time/download-visible` with `cd1: {ms response time}`
+1. [x] Download a visible selection shot, `addon/perf-response-time/download-visible`
   - Start: `addon/download-visible`
   - End: `addon/internal/deactivate`
 
