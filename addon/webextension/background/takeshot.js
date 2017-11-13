@@ -173,10 +173,10 @@ this.takeshot = (function() {
           "blob", "screenshot.png", blob
         );
       }
-        return {
-          "content-type": "application/json",
-          body: JSON.stringify(shot.asJson())
-        };
+      return {
+        "content-type": "application/json",
+        body: JSON.stringify(shot.asJson())
+      };
 
     }).then((submission) => {
       headers["content-type"] = submission["content-type"];
