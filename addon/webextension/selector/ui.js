@@ -98,7 +98,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
   // the download notice is rendered in iframes that match the document height
   // or the window height. If parent iframe matches window height, pass in true
   function renderDownloadNotice(initAtBottom = false) {
-    let notice = makeEl("table", "download-only");
+    let notice = makeEl("table", "notice");
     notice.innerHTML = `
       <div class="download-only-details">
         <p data-l10n-id="downloadOnlyDetails"></p>
@@ -108,8 +108,8 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
         </ul>
       </div>
       <tbody>
-        <tr class="download-only-wrapper">
-          <td class="download-only-content" data-l10n-id="downloadOnlyNotice"></td>
+        <tr class="notice-wrapper">
+          <td class="notice-content" data-l10n-id="downloadOnlyNotice"></td>
           <td class="download-only-help"></td>
         </tr>
       <tbody>`;
@@ -841,9 +841,15 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       img.src = dataUrl;
       iframe.document().querySelector(".preview-image").appendChild(img);
       if (showCropWarning && !(isDownloadOnly())) {
-        let imageCroppedEl = makeEl("DIV");
-        imageCroppedEl.id = "imageCroppedWarning";
-        imageCroppedEl.textContent = browser.i18n.getMessage("imageCroppedWarning", buildSettings.maxImageHeight);
+        let imageCroppedEl = makeEl("table", "notice");
+        imageCroppedEl.style.bottom = "10px";
+        imageCroppedEl.innerHTML = `<tbody>
+          <tr class="notice-wrapper">
+            <td class="notice-content"></td>
+          </tr>
+        </tbody>`;
+        let contentCell = imageCroppedEl.getElementsByTagName("td");
+        contentCell[0].textContent = browser.i18n.getMessage("imageCroppedWarning", buildSettings.maxImageHeight);
         iframe.document().querySelector(".preview-overlay").appendChild(imageCroppedEl);
       }
     }
