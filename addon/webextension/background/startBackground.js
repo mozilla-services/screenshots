@@ -132,8 +132,7 @@ this.startBackground = (function() {
     });
     photonPageActionPort.postMessage({
       type: "setProperties",
-      title: browser.i18n.getMessage("contextMenuLabel"),
-      iconPath: "icons/icon-starred-32-v2.svg"
+      title: browser.i18n.getMessage("contextMenuLabel")
     });
 
     // Export these so that main.js can use them.
