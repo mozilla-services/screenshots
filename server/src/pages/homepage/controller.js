@@ -29,6 +29,7 @@ document.addEventListener("addon-present", () => {
             }
             return;
           }
+          clearTimeout(interval);
           Mozilla.UITour.showHighlight("screenshots");
         }, 100);
       } else {
