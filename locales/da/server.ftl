@@ -202,6 +202,10 @@ shotIndexPageNoSearchResults = Vi kan ikke finde nogle skærmbilleder, der match
 shotIndexPageClearSearchButton
     .title = Ryd søgning
 shotIndexPageConfirmShotDelete = Slet dette skærmbillede?
+shotIndexPagePreviousPage
+    .title = Forrige side
+shotIndexPageNextPage
+    .title = Næste side
 
 
 // all metrics strings are optional for translation
