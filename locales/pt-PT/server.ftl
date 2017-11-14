@@ -137,7 +137,7 @@ shotPageDMCAWarning = Se as suas capturas estão sujeitas a múltiplas reivindic
 shotPageDMCAIncludeLink = Por favor inclua o URL desta captura no seu email: { $url }
 shotPageKeepFor = Por quanto tempo deve esta captura ser retida?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
-shotPageSelectTime = Selecione o tempo
+shotPageSelectTime = Selecionar tempo
 shotPageKeepIndefinitely = Indefinidamente
 shotPageKeepTenMinutes = 10 minutos
 shotPageKeepOneHour = 1 hora
