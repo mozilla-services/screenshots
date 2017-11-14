@@ -209,7 +209,7 @@ class AbstractShot {
 
   constructor(backend, id, attrs) {
     attrs = attrs || {};
-    assert((/^[a-zA-Z0-9]{1,4000}\/[a-z0-9.-_]{1,4000}$/).test(id), "Bad ID (should be alphanumeric):", JSON.stringify(id));
+    assert((/^[a-zA-Z0-9]{1,4000}\/[a-z0-9._-]{1,4000}$/).test(id), "Bad ID (should be alphanumeric):", JSON.stringify(id));
     this._backend = backend;
     this._id = id;
     this.origin = attrs.origin || null;
