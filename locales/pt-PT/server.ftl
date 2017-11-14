@@ -240,7 +240,7 @@ metricsPageRetentionQueryFirstWeek = Semana em que o utilizador primeiro criou u
 metricsPageTotalRetentionQueryTitle = Retenção total
 metricsPageTotalRetentionQueryDescription = Período de tempo em que os utilizadores têm criado capturas, agrupado por semana
 metricsPageTotalRetentionQueryUsers = Número de utilizadores
-metricsPageTotalRetentionQueryDays = Dias que o utilizador têm criado capturas
+metricsPageTotalRetentionQueryDays = Dias que o utilizador tem criado capturas
 metricsPageVersionQueryTitle = Versão do extra
 metricsPageVersionQueryDescription = A versão do extra utilizada durante o início de sessão, nos últimos 14 dias
 metricsPageVersionQueryUsers = Número de utilizadores com sessão iniciada
@@ -248,6 +248,6 @@ metricsPageVersionQueryVersion = Versão do extra
 metricsPageVersionQueryLastSeen = Dia
 metricsPageHeader = Métricas
 // Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
-metricsPageGeneratedDateTime = Geradas a: { $created }
+metricsPageGeneratedDateTime = Geradas em: { $created }
 // Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (tempo da base de dados: { $time }ms)
