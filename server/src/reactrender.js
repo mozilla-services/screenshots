@@ -61,7 +61,7 @@ exports.render = function(req, res, page) {
     if (!page.noBrowserJavascript) {
       // FIXME: we should just inline the addReactScripts functionality in this function:
       let script = `\
-      let jsonData = document.getElementById('json-data').textContent;
+      var jsonData = document.getElementById('json-data').textContent;
 window.initialModel = JSON.parse(jsonData);
 window.initialModelLaunched = false;
 if (window.controller) {
