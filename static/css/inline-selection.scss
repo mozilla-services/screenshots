@@ -220,7 +220,7 @@ $very-light-grey: #ededed;
     white-space: nowrap;
   }
 
-  .download-only-help {
+  .notice-help {
     background-image: url("MOZ_EXTENSION/icons/help-16.svg");
     background-position: center center;
     background-repeat: no-repeat;
@@ -229,7 +229,7 @@ $very-light-grey: #ededed;
   }
 }
 
-.download-only-details {
+.notice-tooltip {
   background: #fff;
   border-radius: 3px;
   border: 1px solid #9d9d9e;
@@ -249,7 +249,7 @@ $very-light-grey: #ededed;
   width: 300px;
   z-index: $overlay-z-index + 1;
 
-  .download-only:hover & {
+  .notice:hover & {
     display: block;
   }
 
