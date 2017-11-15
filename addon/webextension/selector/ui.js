@@ -405,6 +405,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
                   <div class="preview-image">
                     <div class="preview-buttons">
                       <button class="highlight-button-cancel"></button>
+                      <button class="highlight-button-copy"></button>
                       ${isDownloadOnly() ?
                         `<button class="highlight-button-download download-only-button"
                                  data-l10n-id="downloadScreenshot"></button>` :
@@ -427,6 +428,8 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
               overlay.querySelector(".preview-button-save").addEventListener(
                 "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onSavePreview)));
             }
+            overlay.querySelector(".highlight-button-copy").addEventListener(
+              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onCopyPreview)));
             overlay.querySelector(".highlight-button-download").addEventListener(
               "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onDownloadPreview)));
             overlay.querySelector(".highlight-button-cancel").addEventListener(
@@ -557,6 +560,18 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       } else {
         this.download.style.display = "none";
       }
+      if (callbacks !== undefined && callbacks.copy) {
+        this.copy.removeAttribute("disabled");
+        this.copy.onclick = watchFunction(assertIsTrusted((e) => {
+          this.copy.setAttribute("disabled", true);
+          callbacks.copy(e);
+          e.preventDefault();
+          e.stopPropagation();
+        }));
+        this.copy.style.display = "";
+      } else {
+        this.copy.style.display = "none";
+      }
       let bodyRect = getBodyRect();
 
       let winBottom = window.innerHeight;
@@ -677,8 +692,13 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       let cancel = makeEl("button", "highlight-button-cancel");
       cancel.title = browser.i18n.getMessage("cancelScreenshot");
       buttons.appendChild(cancel);
-      let download;
-      let save;
+
+      let copy = makeEl("button", "highlight-button-copy");
+      copy.title = browser.i18n.getMessage("copyScreenshot");
+      buttons.appendChild(copy);
+
+      let download, save;
+
       if (isDownloadOnly()) {
         download = makeEl("button", "highlight-button-download download-only-button");
         download.title = browser.i18n.getMessage("downloadScreenshot");
@@ -697,6 +717,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       this.buttons = buttons;
       this.cancel = cancel;
       this.download = download;
+      this.copy = copy;
       this.save = save;
       boxEl.appendChild(buttons);
       for (let name of movements) {
