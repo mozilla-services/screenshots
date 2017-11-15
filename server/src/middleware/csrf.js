@@ -26,6 +26,7 @@ function isCsrfExemptPath(path) {
   return isAuthPath(path)
     || path.startsWith("/data")
     || path === "/event"
+    || path === "/timing"
     || path === "/error"
     || path === "/api/set-login-cookie";
 }
