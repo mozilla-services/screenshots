@@ -29,7 +29,7 @@ function isUrl(url) {
   if ((/^view-source:/i).test(url)) {
     return isUrl(url.substr("view-source:".length));
   }
-  return (/^https?:\/\/[a-z0-9.-_]{1,8000}[a-z0-9](:[0-9]{1,8000})?\/?/i).test(url);
+  return (/^https?:\/\/[a-z0-9._-]{1,8000}[a-z0-9](:[0-9]{1,8000})?\/?/i).test(url);
 }
 
 function isValidClipImageUrl(url) {
@@ -48,7 +48,7 @@ function assertUrl(url) {
 }
 
 function isSecureWebUri(url) {
-  return (/^https?:\/\/[a-z0-9.-_]{1,8000}[a-z0-9](:[0-9]{1,8000})?\/?/i).test(url);
+  return (/^https?:\/\/[a-z0-9._-]{1,8000}[a-z0-9](:[0-9]{1,8000})?\/?/i).test(url);
 }
 
 function assertOrigin(url) {
@@ -129,7 +129,7 @@ function resolveUrl(base, url) {
   }
   if (url.indexOf("/") === 0) {
     // Domain-relative URL
-    return (/^https?:\/\/[a-z0-9.-_]{1,4000}/i).exec(base)[0] + url;
+    return (/^https?:\/\/[a-z0-9._-]{1,4000}/i).exec(base)[0] + url;
   }
   // Otherwise, a full relative URL
   while (url.indexOf("./") === 0) {
