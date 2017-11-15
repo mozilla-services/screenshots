@@ -25,7 +25,7 @@ window.wantsauth = (function() {
   // authentication.  As a result we have to parse the URL on our own:
   let maybeShotId = location.href.replace(/^https?:\/\/[^/]{1,4000}\//i, "");
   maybeShotId = maybeShotId.replace(/\?.*/, "").replace(/#.{0,4000}/, "");
-  if (maybeShotId.search(/[a-z0-9]+\/[a-z0-9.-_]{1,4000}$/i) === -1) {
+  if (maybeShotId.search(/[a-z0-9]+\/[a-z0-9._-]{1,4000}$/i) === -1) {
     // Not a shot ID, which should look like {stuff}/{stuff}
     maybeShotId = null;
   }
