@@ -100,7 +100,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
   function renderDownloadNotice(initAtBottom = false) {
     let notice = makeEl("table", "notice");
     notice.innerHTML = `
-      <div class="download-only-details">
+      <div class="notice-tooltip">
         <p data-l10n-id="downloadOnlyDetails"></p>
         <ul>
           <li data-l10n-id="downloadOnlyDetailsPrivate"></li>
@@ -110,7 +110,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       <tbody>
         <tr class="notice-wrapper">
           <td class="notice-content" data-l10n-id="downloadOnlyNotice"></td>
-          <td class="download-only-help"></td>
+          <td class="notice-help"></td>
         </tr>
       <tbody>`;
     localizeText(notice);
