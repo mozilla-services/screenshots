@@ -213,7 +213,7 @@ this.main = (function() {
             type: "basic",
             iconUrl: "../icons/copy.png",
             title: browser.i18n.getMessage("notificationImageCopiedTitle"),
-            message: browser.i18n.getMessage("notificationImageCopiedDetails")
+            message: browser.i18n.getMessage("notificationImageCopiedDetails", pasteSymbol)
           });
         });
     })
