@@ -145,6 +145,12 @@ this.uicontrol = (function() {
       sendEvent("cancel-shot", "cancel-preview-button");
       exports.deactivate();
     },
+    onClickCancel: e => {
+      sendEvent("cancel-shot", "cancel-selection-button");
+      e.preventDefault();
+      e.stopPropagation();
+      exports.deactivate();
+    },
     onOpenMyShots: () => {
       sendEvent("goto-myshots", "selection-button");
       callBackground("openMyShots")
