@@ -315,9 +315,9 @@ class Body extends React.Component {
     }
 
     let errorMessages = [
-      <Localized id="shotPageAlertErrorUpdatingExpirationTime" key="error-1"><div id="shotPageAlertErrorUpdatingExpirationTime" hidden></div></Localized>,
-      <Localized id="shotPageAlertErrorDeletingShot" key="error-2"><div id="shotPageAlertErrorDeletingShot" hidden></div></Localized>,
-      <Localized id="shotPageAlertErrorUpdatingTitle" key="error-3"><div id="shotPageAlertErrorUpdatingTitle" hidden></div></Localized>,
+      <Localized id="shotPageAlertErrorUpdatingExpirationTime" key="error-1"><div id="shotPageAlertErrorUpdatingExpirationTime" className="clips-warning" hidden></div></Localized>,
+      <Localized id="shotPageAlertErrorDeletingShot" key="error-2"><div id="shotPageAlertErrorDeletingShot" className="clips-warning" hidden></div></Localized>,
+      <Localized id="shotPageAlertErrorUpdatingTitle" key="error-3"><div id="shotPageAlertErrorUpdatingTitle" className="clips-warning" hidden></div></Localized>,
       <Localized id="shotPageConfirmDelete" key="error-4"><div id="shotPageConfirmDelete" hidden></div></Localized>
     ];
 
@@ -418,9 +418,11 @@ class Body extends React.Component {
             </Localized>
           </div>
         </div>
-        { true || this.props.isOwner && this.props.loginFailed ? <LoginFailedWarning /> : null }
-        { clips }
-        { errorMessages }
+        <section className="clips">
+          { true || this.props.isOwner && this.props.loginFailed ? <LoginFailedWarning /> : null }
+          { errorMessages }
+          { clips }
+        </section>
         <Footer forUrl={ shot.viewUrl } {...this.props} />
       </div>
     </reactruntime.BodyTemplate>);
@@ -657,8 +659,8 @@ class EditableTitle extends React.Component {
 
 class LoginFailedWarning extends React.Component {
   render() {
-    return <div style={{backgroundColor: "#f00", color: "#fff"}}>
-      THE LOGIN FAILED! PANIC!
+    return <div className="clips-warning">
+      If you took this shot and cannot delete it, you may need to temporarily enable third party cookies from your browser's preferences.
     </div>;
   }
 }

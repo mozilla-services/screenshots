@@ -227,6 +227,26 @@
   font-size: 15px;
 }
 
+.clips {
+  @include flex-container(column, center, center);
+  position: relative;
+  flex: 1;
+}
+
+.clips-warning {
+  background: #ffe900;
+  padding: 5px;
+  border-bottom: 1px solid #d7b600;
+  border-top: 1px solid #d7b600;
+  position: absolute;
+  text-align: center;
+  top: 0px;
+  width: 100%;
+  color: $black;
+  font-size: 12px;
+}
+
+
 .clip-container {
   @include flex-container(row, center, center);
   flex: 0 auto;
