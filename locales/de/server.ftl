@@ -56,7 +56,7 @@ homePageCaptureRegion = Einen Bereich aufnehmen
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Lege Deine Auswahl fest, indem Du die Maus über den aufzunehmenden Bereich ziehst. Oder nur mit der Maus drübergehen und Screenshots wählt den Bereich für Dich aus. Damit zufrieden? Dann bitte klicken und auf „Speichern“ gehen, um Dein Bildschirmfoto online zu speichern. Oder direkt auf den Downloadpfeil, um den Screenshot auf Deinem Rechner herunterzuladen.
 homePageCapturePage = Eine ganze Seite aufnehmen
-homePageCapturePageDescription = Für die Aufnahme ganzer Seiten bitte oben auf die Schaltfläche "Gesamte Seite speichern" klicken. Während die Schaltfläche „Sichtbaren Bereich aufnehmen“ den Bereich erfasst, der ohne Scrollen sichtbar ist.
+homePageCapturePageDescription = Für die Aufnahme ganzer Seiten bitte oben auf die Schaltfläche “Gesamte Seite speichern” klicken. Während die Schaltfläche „Sichtbaren Bereich speichern“ den Bereich erfasst, der ohne Scrollen sichtbar ist, fertigt die Schaltfläche “Ganze Seite speichern” einen Screenshot an, der auch den Bereich erfasst, der erst durch Scrollen sichtbar wird.
 homePageSaveShare = Speichern und Weitergeben
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Wenn Du ein Bildschirmfoto machst, speichert Firefox den Screenshot in Deiner Online-Bibliothek für Bildschirmfotos und kopiert Dir den Link in die Zwischenablage. Deine Bildschirmfotos werden automatisch zwei Wochen in der Bibliothek gespeichert.  Dort kannst Du sie jederzeit löschen oder das Ablaufdatum ändern, um sie länger in der Bibliothek zu behalten.
