@@ -234,6 +234,9 @@ function handleMessage(msg, sender, sendReply) {
   } else if (msg.funcName === "incrementUploadCount") {
     Services.telemetry.scalarAdd('screenshots.upload', 1);
     sendReply({type: "success", value: true});
+  } else if (msg.funcName === "incrementCopyCount") {
+    Services.telemetry.scalarAdd('screenshots.copy', 1);
+    sendReply({type: "success", value: true});
   }
 }
 
