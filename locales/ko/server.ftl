@@ -50,6 +50,8 @@ homePageHowScreenshotsWorks = Firefox Screenshots 사용법
 homePageGetStartedTitle = 시작하기
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = 툴바에 추가된 스크린샷 아이콘을 찾으세요. 선택하면 브라우저 창에 스크린샷 메뉴가 나타납니다.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = 검색 주소창의 페이지 작업 메뉴에서 스크린샷 아이콘을 선택하면 브라우저 창의 상단에 스크린샷 메뉴가 나타납니다.
 homePageCaptureRegion = 영역 캡춰
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = 캡춰할 영역을 드래그해서 선택하세요. 아니면 그냥 마우스를 올리고 클릭하세요 — 스크린샷이 자동으로 영역을 선택해줍니다. 마음에 드세요? 저장을 누르면 온라인에서 스크린샷에 접근할 수 있고 아래 방향 화살표를 누르면 컴퓨터에 다운 받을 수 있습니다.
