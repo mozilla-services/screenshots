@@ -404,13 +404,18 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
                 <div class="preview-overlay">
                   <div class="preview-image">
                     <div class="preview-buttons">
-                      <button class="highlight-button-cancel"></button>
-                      <button class="highlight-button-copy"></button>
+                      <button class="highlight-button-cancel"
+                        title="${browser.i18n.getMessage("cancelScreenshot")}"></button>
+                      <button class="highlight-button-copy"
+                        title="${browser.i18n.getMessage("copyScreenshot")}"></button>
                       ${isDownloadOnly() ?
                         `<button class="highlight-button-download download-only-button"
+                                 title="${browser.i18n.getMessage("downloadScreenshot")}"
                                  data-l10n-id="downloadScreenshot"></button>` :
-                        `<button class="highlight-button-download"></button>
+                        `<button class="highlight-button-download"
+                                 title="${browser.i18n.getMessage("downloadScreenshot")}"></button>
                          <button class="preview-button-save"
+                                 title="${browser.i18n.getMessage("saveScreenshotSelectedArea")}"
                                  data-l10n-id="saveScreenshotSelectedArea"></button>`
                       }
                     </div>
