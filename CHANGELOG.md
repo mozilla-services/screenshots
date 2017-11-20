@@ -1,3 +1,14 @@
+## Version 25.0.0
+
+* Track the number of copied shots in Telemetry ([#3812](https://github.com/mozilla-services/screenshots/issues/3812)) [336f147](https://github.com/mozilla-services/screenshots/commit/336f147)
+* Add titles to preview overlay buttons. ([#3793](https://github.com/mozilla-services/screenshots/issues/3793)) [d46985c](https://github.com/mozilla-services/screenshots/commit/d46985c)
+* Add paste symbol for image copy notification. ([#3790](https://github.com/mozilla-services/screenshots/issues/3790)) [5441349](https://github.com/mozilla-services/screenshots/commit/5441349)
+* Add copy.svg path to manifest template ([#3786](https://github.com/mozilla-services/screenshots/issues/3786)) [a6fa8c6](https://github.com/mozilla-services/screenshots/commit/a6fa8c6)
+* Copy shot to clipboard. ([#2582](https://github.com/mozilla-services/screenshots/issues/2582)) [58237e2](https://github.com/mozilla-services/screenshots/commit/58237e2)
+* Fix remaining domain regexes ([#3783](https://github.com/mozilla-services/screenshots/issues/3783))This is a followup to 2bd42beed9f18f626e328fa73f2dd6fd8be57e6f that applies the same fix to other regular expressions [5089187](https://github.com/mozilla-services/screenshots/commit/5089187)
+* Update CSS to fix notice tooltip. ([#3780](https://github.com/mozilla-services/screenshots/issues/3780)) [78e5853](https://github.com/mozilla-services/screenshots/commit/78e5853)
+* instrument response times in shot creation flow ([#3727](https://github.com/mozilla-services/screenshots/issues/3727)). Fixes [#3673](https://github.com/mozilla-services/screenshots/issues/3673) [82cb4b7](https://github.com/mozilla-services/screenshots/commit/82cb4b7)
+
 ## Version 24.0.0
 
 Note: this is a server-only release.
