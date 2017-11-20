@@ -209,6 +209,7 @@ this.main = (function() {
     return blobConverters.blobToArray(blob).then(buffer => {
       return browser.clipboard.setImageData(
         buffer, blob.type.split("/", 2)[1]).then(() => {
+          catcher.watchPromise(communication.sendToBootstrap('incrementCopyCount'));
           return browser.notifications.create({
             type: "basic",
             iconUrl: "../icons/copy.png",
