@@ -380,6 +380,11 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     }
   };
 
+  function getAttributeText(l10nID) {
+    let text = browser.i18n.getMessage(l10nID);
+    return text && text.replace('"', "&quot;");
+  }
+
   let iframePreview = exports.iframePreview = {
     element: null,
     document: null,
@@ -405,17 +410,17 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
                   <div class="preview-image">
                     <div class="preview-buttons">
                       <button class="highlight-button-cancel"
-                        title="${browser.i18n.getMessage("cancelScreenshot")}"></button>
+                        title="${getAttributeText("cancelScreenshot")}"></button>
                       <button class="highlight-button-copy"
-                        title="${browser.i18n.getMessage("copyScreenshot")}"></button>
+                        title="${getAttributeText("copyScreenshot")}"></button>
                       ${isDownloadOnly() ?
                         `<button class="highlight-button-download download-only-button"
-                                 title="${browser.i18n.getMessage("downloadScreenshot")}"
+                                 title="${getAttributeText("downloadScreenshot")}"
                                  data-l10n-id="downloadScreenshot"></button>` :
                         `<button class="highlight-button-download"
-                                 title="${browser.i18n.getMessage("downloadScreenshot")}"></button>
+                                 title="${getAttributeText("downloadScreenshot")}"></button>
                          <button class="preview-button-save"
-                                 title="${browser.i18n.getMessage("saveScreenshotSelectedArea")}"
+                                 title="${getAttributeText("saveScreenshotSelectedArea")}"
                                  data-l10n-id="saveScreenshotSelectedArea"></button>`
                       }
                     </div>
