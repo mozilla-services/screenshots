@@ -209,7 +209,7 @@ this.analytics = (function() {
       } else if (timingData[r.name] && match(r.end, action, label)) {
         let endTime = Date.now();
         let elapsed = endTime - timingData[r.name];
-        catcher.watchPromise(sendTiming("perf-response-time", r.name, elapsed));
+        catcher.watchPromise(sendTiming("perf-response-time", r.name, elapsed), true);
         delete timingData[r.name];
       }
     });
