@@ -303,6 +303,7 @@ body {
 
   @include respond-to("small") {
     @include flex-container(row, space-between, stretch, wrap);
+    height: $grid-unit * 7;
   }
   z-index: 9999;
   width: 100%;
@@ -311,7 +312,6 @@ body {
   left: 0;
   height: $grid-unit * 5;
   align-items: center;
-  background: #f9f9fa;
 
   .button {
     margin: $grid-unit * 0.25;
@@ -337,9 +337,9 @@ body {
 }
 
 .annotation-actions {
-  justify-content: center;
   overflow: visible;
   @include respond-to("small") {
+    justify-content: center;
     background: none;
     border-bottom: none;
     border-top: none;
@@ -347,6 +347,7 @@ body {
 }
 
 .annotation-tools {
+  margin-left: $grid-unit;
   display: flex;
   flex-direction: row;
   background: #fff;
@@ -369,12 +370,16 @@ body {
 .main-container {
   z-index: 9990;
   position: absolute;
-  top: $grid-unit * 5;
+  top: $grid-unit * 2;
+  overflow: auto;
   left: 0;
-  height: calc(100% - 100px);
+  height: 100%;
   width: 100%;
-  background-color: #f9f9fa;
   text-align: center;
+
+  @include respond-to("small") {
+    top: $grid-unit * 4;
+  }
 }
 
 .canvas-container .editor {
