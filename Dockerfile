@@ -1,7 +1,6 @@
 FROM node:7
 
 COPY package.json /app/
-COPY locales /app/locales
 COPY build/server /app/build/server
 COPY build/static /app/build/static
 COPY build/shared /app/build/shared

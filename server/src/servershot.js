@@ -15,6 +15,9 @@ const PNG_HEADER = Buffer.from(PNG_HEADER_BASE64, "base64");
 const JPEG_HEADER_BASE64 = "/9g=";
 const JPEG_HEADER = Buffer.from(JPEG_HEADER_BASE64, "base64").slice(0, 2);
 
+
+const SHOTS_PER_PAGE = 24;
+
 function assertPngOrJpeg(dataUrl) {
   const pngHeader = "data:image/png;base64,";
   const jpegHeader = "data:image/jpeg;base64,";
@@ -475,10 +478,33 @@ Shot.checkOwnership = function(shotId, deviceId, accountId) {
   })
 };
 
-Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery) {
+Shot.emptyShotsPage = {
+  pageNumber: 1,
+  totalShots: 0,
+  shotsPerPage: SHOTS_PER_PAGE,
+  shots: null
+};
+
+Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pageNumber) {
   if (!deviceId) {
     throw new Error("Empty deviceId: " + deviceId);
   }
+  if (pageNumber < 1) {
+    pageNumber = 1;
+  }
+  let shotsPage = {
+    pageNumber,
+    shotsPerPage: SHOTS_PER_PAGE
+  };
+  let deviceIds = [];
+  let likeQuery = "";
+
+  let idParamPositions = (offset, ids) => {
+    return ids.map((_, idx) => {
+      return `$${offset + idx + 1}`;
+    });
+  }
+
   // accountId is null if not set, treated as NULL in the SQL query
   return db.select(
     `SELECT DISTINCT devices.id
@@ -486,21 +512,54 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery) {
      WHERE devices.id = $1 OR devices.accountid = $2
     `,
     [deviceId, accountId]
-  ).then((rows) => {
-    searchQuery = searchQuery || null;
-    let ids = [];
-    let idNums = [];
-    for (let i = 0; i < rows.length; i++) {
-      ids.push(rows[i].id);
-      idNums.push("$" + (i + (searchQuery ? 3 : 1)));
+  ).then(rows => {
+    deviceIds = rows.map(x => x.id);
+  }).then(() => {
+    if (!deviceIds.length) {
+      shotsPage.totalShots = 0;
+      return [{totalShots: 0}];
     }
-    if (!ids.length) {
-      // This happens if the id doesn't exist in the database
-      return [];
-    }
-    let sql;
-    let args;
+
+    let idNums, sql, args;
+
     if (searchQuery) {
+      idNums = idParamPositions(2, deviceIds);
+      sql = `
+        SELECT COUNT(data.id) AS totalShots
+        FROM data, plainto_tsquery($1) AS query
+        WHERE data.deviceid IN (${idNums.join(", ")})
+              AND NOT data.deleted
+              AND (expire_time IS NULL OR expire_time > NOW())
+              AND (data.searchable_text @@ query
+                   OR url ILIKE $2
+                   OR title ILIKE $2)
+        `;
+      likeQuery = "%" + searchQuery.replace(/%/g, "%%") + "%";
+      args = [searchQuery, likeQuery].concat(deviceIds);
+    } else {
+      idNums = idParamPositions(0, deviceIds);
+      sql = `
+      SELECT COUNT(data.id) AS totalShots
+      FROM data
+      WHERE data.deviceid IN (${idNums.join(", ")})
+            AND NOT data.deleted
+            AND (expire_time IS NULL OR expire_time > NOW())
+      `;
+      args = deviceIds;
+    }
+    return db.select(sql, args);
+  }).then(rows => {
+    if (!rows.length) {
+      shotsPage.totalShots = 0;
+    } else {
+      shotsPage.totalShots = rows[0].totalshots;
+    }
+  }).then(() => {
+    let offset = (pageNumber - 1) * SHOTS_PER_PAGE;
+    let sql, args, idNums;
+
+    if (searchQuery) {
+      idNums = idParamPositions(4, deviceIds);
       sql = `
         SELECT data.id, data.value, data.deviceid, ts_rank_cd(data.searchable_text, query) AS rank
         FROM data, plainto_tsquery($1) AS query
@@ -511,10 +570,11 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery) {
                    OR url ILIKE $2
                    OR title ILIKE $2)
         ORDER BY rank DESC, data.created DESC
+        LIMIT $3 OFFSET $4
         `;
-      let likeQuery = "%" + searchQuery.replace(/%/g, "%%") + "%";
-      args = [searchQuery, likeQuery].concat(ids);
+      args = [searchQuery, likeQuery, SHOTS_PER_PAGE, offset].concat(deviceIds);
     } else {
+      idNums = idParamPositions(2, deviceIds);
       sql = `
       SELECT data.id, data.value, data.deviceid
       FROM data
@@ -522,8 +582,9 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery) {
             AND NOT data.deleted
             AND (expire_time IS NULL OR expire_time > NOW())
       ORDER BY data.created DESC
+      LIMIT $1 OFFSET $2
       `;
-      args = ids;
+      args = [SHOTS_PER_PAGE, offset].concat(deviceIds);
     }
     return db.select(sql, args);
   }).then((rows) => {
@@ -548,7 +609,8 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery) {
         result.push(shot);
       }
     }
-    return result;
+    shotsPage.shots = result;
+    return shotsPage;
   });
 };
 

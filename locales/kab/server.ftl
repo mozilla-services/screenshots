@@ -199,6 +199,10 @@ shotIndexPageNoSearchResults = Ulac tuṭfiwin i γef tettnadiḍ.
 shotIndexPageClearSearchButton
     .title = Sfeḍ anadi
 shotIndexPageConfirmShotDelete = Kkes tuṭfa-agi?
+shotIndexPagePreviousPage
+    .title = Asebter iεeddan
+shotIndexPageNextPage
+    .title = Asebter i d-iteddun
 
 
 // all metrics strings are optional for translation

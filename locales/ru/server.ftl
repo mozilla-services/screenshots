@@ -20,7 +20,7 @@ gScreenshotsDescription = Скриншоты стали простыми. Дел
 footerLinkMozilla = Mozilla
 footerLinkTerms = Условия использования
 footerLinkPrivacy = Уведомление о конфиденциальности
-footerLinkFaqs = ЧаВО
+footerLinkFaqs = ЧЗВ
 footerLinkDMCA = Сообщить о нарушении авторских прав
 footerLinkDiscourse = Оставить отзыв
 footerLinkRemoveAllData = Удалить все данные
@@ -208,6 +208,10 @@ shotIndexPageNoSearchResults = Мы не можем найти каких-либ
 shotIndexPageClearSearchButton
     .title = Очистить поиск
 shotIndexPageConfirmShotDelete = Удалить этот снимок?
+shotIndexPagePreviousPage
+    .title = Предыдущая страница
+shotIndexPageNextPage
+    .title = Следующая страница
 
 
 // all metrics strings are optional for translation

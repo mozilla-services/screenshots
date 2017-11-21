@@ -149,7 +149,7 @@ shotPageSaveExpiration = konservi
 shotPageCancelExpiration = nuligi
 shotPageDoesNotExpire = ĉiam valida
 // Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = sevalidiĝas post { $timediff }
+shotPageExpiresIn = senvalidiĝas post { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = senvalidiĝis antaŭ { $timediff }
 timeDiffJustNow = ĵus
@@ -202,6 +202,10 @@ shotIndexPageNoSearchResults = Ni ne povis trovi iun ajn ekrankopion kiu kongruu
 shotIndexPageClearSearchButton
     .title = Viŝi serĉon
 shotIndexPageConfirmShotDelete = Ĉu forigi tiun ĉi ekrankopion?
+shotIndexPagePreviousPage
+    .title = Antaŭa paĝo
+shotIndexPageNextPage
+    .title = Venonta paĝo
 
 
 // all metrics strings are optional for translation

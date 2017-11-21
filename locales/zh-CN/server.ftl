@@ -188,6 +188,10 @@ shotIndexPageNoSearchResults = 我们没找到匹配您的搜索条件的截图�
 shotIndexPageClearSearchButton
     .title = 清空搜索
 shotIndexPageConfirmShotDelete = 删除此截图？
+shotIndexPagePreviousPage
+    .title = 上一页
+shotIndexPageNextPage
+    .title = 下一页
 
 
 // all metrics strings are optional for translation

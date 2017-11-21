@@ -200,6 +200,10 @@ shotIndexPageNoSearchResults = We canʼt find any shots that match your search.
 shotIndexPageClearSearchButton
     .title = Clear search
 shotIndexPageConfirmShotDelete = Delete this shot?
+shotIndexPagePreviousPage
+    .title = Previous page
+shotIndexPageNextPage
+    .title = Next page
 
 
 // all metrics strings are optional for translation

@@ -7,10 +7,10 @@
 // Global phrases shared across pages, prefixed with 'g'
 [[ global ]]
 
-gMyShots = Mano kadrai
+gMyShots = Mano nuotraukos
 gHomeLink = Pradžia
 gNoShots
-    .alt = Kadrų nerasta
+    .alt = Nuotraukų nerasta
 gScreenshotsDescription = Ekrano nuotraukos paprastai. Darykite, saugokite ir dalinkitės ekrano nuotraukomis nepalikdami „Firefox“.
 
 
@@ -33,14 +33,14 @@ footerLinkRemoveAllData = Pašalinti visus duomenis
 // creatingPageTitleDefault.
 creatingPageTitle = Kuriamas { $title }
 creatingPageTitleDefault = tinklalapis
-creatingPageWaitMessage = Jūsų kadras įrašomas…
+creatingPageWaitMessage = Jūsų nuotrauka įrašoma…
 
 
 [[ Home page ]]
 
 homePageDescription
     .content = Intuityvios ekrano nuotraukos tiesiai naršyklėje. Darykite, saugokite ir dalinkitės ekrano nuotraukomis naršydami saityne su „Firefox“.
-homePageButtonMyShots = Eiti į mano kadrus
+homePageButtonMyShots = Eiti į mano nuotraukas
 homePageTeaser = Bus jau netrukus…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Nemokamas atsisiuntimas
@@ -59,7 +59,7 @@ homePageCapturePage = Fotografuokite tinklalapį
 homePageCapturePageDescription = Naudokitės mygtukais viršuje dešinėje, norėdami nufotografuoti visą tinklalapį. Mygtukas „Įrašyti matomą“ nufotografuos sritį, kurią matote neslinkdami pelės, o „Įrašyti visą tinklalapį“ nufotografuos viską, kas jame yra.
 homePageSaveShare = Įrašykite ir dalinkitės
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Kai padarote nuotrauką, „Firefox“ patalpina ją jūsų internetinėje kadrų bibliotekoje ir nukopijuoja saitą į jūsų iškarpinę. Mes automatiškai saugome jūsų kadrus dvi savaites, tačiau jūs galite juos ištrinti bet kada, arba pakeisti galiojimo laiką, kad jie liktų ilgiau.
+homePageSaveShareDescription = Kai padarote nuotrauką, „Firefox“ patalpina ją jūsų internetinėje nuotraukų bibliotekoje ir nukopijuoja saitą į jūsų iškarpinę. Mes automatiškai saugome jūsų nuotraukas dvi savaites, tačiau galite jas ištrinti bet kada, arba pakeisti galiojimo laiką, kad jos liktų ilgiau.
 homePageLegalLink = Teisinė informacija
 homePagePrivacyLink = Privatumas
 homePageTermsLink = Nuostatai
@@ -76,7 +76,7 @@ leavePageErrorGeneric = Įvyko klaida
 leavePageWarning = Tai visam laikai ištrins visus jūsų „Firefox“ nuotraukų duomenis.
 leavePageButtonProceed = Vykdyti
 leavePageButtonCancel = Atsisakyti
-leavePageDeleted = Visi jūsų kadrai buvo ištrinti!
+leavePageDeleted = Visos jūsų nuotraukos buvo ištrintos!
 
 
 [[ Not Found page ]]
@@ -91,9 +91,9 @@ notFoundPageDescription = Tinklalapis nerastas.
 // This is the HTML title tag of the page
 shotPageTitle = Ekrano nuotrauka: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Klaida įrašant galiojimą
-shotPageAlertErrorDeletingShot = Klaida trinant kadrą
+shotPageAlertErrorDeletingShot = Klaida trinant nuotrauką
 shotPageAlertErrorUpdatingTitle = Klaida įrašant pavadinimą
-shotPageConfirmDelete = Ar tikrai norite visam laikui ištrinti šį kadrą?
+shotPageConfirmDelete = Ar tikrai norite visam laikui ištrinti šią nuotrauką?
 shotPageShareButton
     .title = Dalintis
 shotPageCopy = Kopijuoti
@@ -106,36 +106,36 @@ shotPageSharePinterest
     .title = Dalintis per „Pinterest“
 shotPageShareEmail
     .title = Dalintis saitu per el. paštą
-shotPageShareLink = Gaukite saitą šiam kadrui:
-shotPagePrivacyMessage = Bet kas su saitu galės peržiūrėti šį kadrą.
+shotPageShareLink = Gaukite saitą šiai nuotraukai:
+shotPagePrivacyMessage = Bet kas, turintis saitą, galės peržiūrėti šią nuotrauką.
 shotPageCopyImageText
     .label = Kopijuoti paveikslo tekstą
-shotPageConfirmDeletion = Ar tikrai norite visam laikui ištrinti šį kadrą?
+shotPageConfirmDeletion = Ar tikrai norite visam laikui ištrinti šią nuotrauką?
 // Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
-shotPageExpirationMessage = Jei nieko nedarysite, šis kadras bus ištrintas visam laikui { $timediff }.
+shotPageExpirationMessage = Jei nieko nedarysite, ši nuotrauka bus ištrinta visam laikui { $timediff }.
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = atkurti iki { $date }
-shotPageExpiredMessage = Šis kadras baigė galioti.
+shotPageExpiredMessage = Ši nuotrauka baigė galioti.
 // Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Štai tinklalapis, iš kurio jis buvo sukurtas:
 shotPageDeleteButton
-    .title = Ištrinti šį kadrą
+    .title = Ištrinti šią nuotrauką
 shotPageAbuseButton
-    .title = Pranešti apie išnaudojimą, nepageidajumą informaciją arba kitas šio kadro problemas
+    .title = Pranešti apie išnaudojimą, nepageidaujamą informaciją arba kitas šios nuotraukos problemas
 shotPageDownloadShot
     .title = Atsisiųsti
 shotPageDownload = Atsisiųsti
 shotPageScreenshotsDescription = Ekrano nuotraukos paprastai. Darykite, saugokite ir dalinkitės ekrano nuotraukomis nepalikdami „Firefox“.
 shotPageUpsellFirefox = Gauti „Firefox“ dabar
-shotPageDMCAMessage = Šis kadras nepasiekiamas dėl trečiųjų šalių intelektinės nuosavybės teisių.
+shotPageDMCAMessage = Ši nuotrauka nepasiekiama dėl trečiųjų šalių intelektinės nuosavybės teisių.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Prašome susisiekti su { $dmca } dėl daugiau informacijos.
 // Note: do not translate 'Firefox Screenshots' when translating this string
-shotPageDMCAWarning = Jeigu jūsų kadrai sulauks daug pretenzijų, mes galime apriboti jūsų naudojimąsi „Firefox“ ekrano nuotraukomis.
+shotPageDMCAWarning = Jeigu jūsų nuotraukos sulauks daug pretenzijų, mes galime apriboti jūsų naudojimąsi „Firefox“ ekrano nuotraukomis.
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Prašome įtraukti šio karo URL savo el. laiške: { $url }
-shotPageKeepFor = Kiek ilgai šis kadras turėtų būti laikomas?
+shotPageKeepFor = Kiek ilgai šis nuotrauka turėtų būti laikoma?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Pasirinkite laiką
 shotPageKeepIndefinitely = Neribotai
@@ -190,24 +190,28 @@ timeDiffFutureDays = { $num ->
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
 // { $statusText } is a text description of the status code, like 'Internal server error'.
-shotIndexPageErrorDeletingShot = Klaida trinant kadrą: { $status } { $statusText }
+shotIndexPageErrorDeletingShot = Klaida trinant nuotrauką: { $status } { $statusText }
 // { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Mano kardai: ieškoti { $searchTerm }
 // { $error } is a placeholder for a non-translated error message that could be shared
 // with developers when debugging an error.
 shotIndexPageErrorRendering = Klaida atvaizduojant tinklalapį: { $error }
 shotIndexPageSearchPlaceholder
-    .placeholder = Ieškoti mano kadrų
+    .placeholder = Ieškoti mano nuotraukų
 shotIndexPageSearchButton
     .title = Ieškoti
-shotIndexPageNoShotsMessage = Nėra įrašytų kadrų.
+shotIndexPageNoShotsMessage = Nėra įrašytų nuotraukų.
 shotIndexPageNoShotsInvitation = Nagi, sukurkite keletą.
-shotIndexPageLookingForShots = Ieškome jūsų kadrų…
+shotIndexPageLookingForShots = Ieškome jūsų nuotraukų…
 shotIndexPageNoSearchResultsIntro = Hmm
-shotIndexPageNoSearchResults = Negalime rasti jokių kadrų, atitinkančių jūsų paiešką.
+shotIndexPageNoSearchResults = Negalime rasti jokių nuotraukų, atitinkančių jūsų paiešką.
 shotIndexPageClearSearchButton
     .title = Išvalyti paiešką
-shotIndexPageConfirmShotDelete = Ištrinti šį kadrą?
+shotIndexPageConfirmShotDelete = Ištrinti šią nuotrauką?
+shotIndexPagePreviousPage
+    .title = Ankstesnis puslapis
+shotIndexPageNextPage
+    .title = Kitas puslapis
 
 
 // all metrics strings are optional for translation
@@ -219,30 +223,30 @@ metricsPageTotalsQueryTitle = Viso
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Ekrano nuotraukų apžvalga
 metricsPageTotalsQueryDevices = Viso registruotų įrenginių
-metricsPageTotalsQueryActiveShots = Aktyvių kadrų
+metricsPageTotalsQueryActiveShots = Aktyvių nuotraukų
 metricsPageTotalsQueryExpiredShots = Baigusių galioti (bet atkuriamų)
 metricsPageTotalsQueryExpiredDeletedShots = Baigusių galioti (iš ištrintų)
-metricsPageShotsQueryTitle = Kadrai dienomis
-metricsPageShotsQueryDescription = Kadrai, padaryti per dieną (per paskutines 30 dienų)
-metricsPageShotsQueryCount = Kadrų skaičius
+metricsPageShotsQueryTitle = Nuotraukos dienomis
+metricsPageShotsQueryDescription = Nuotraukos, padarytos per dieną (per paskutines 30 dienų)
+metricsPageShotsQueryCount = Nuotraukų skaičius
 metricsPageShotsQueryDay = Diena
 metricsPageUsersQueryTitle = Naudotojai dienomis
-metricsPageUsersQueryDescription = Naudotojai, padarę bent vieną kadrą, dienomis (per paskutines 30 dienų)
+metricsPageUsersQueryDescription = Naudotojai, padarę bent vieną nuotrauką, dienomis (per paskutines 30 dienų)
 metricsPageUsersQueryCount = Naudotojų skaičius
 metricsPageUsersQueryDay = Diena
-metricsPageUserShotsQueryTitle = Kadrai vienam naudotojui
-metricsPageUserShotsQueryDescription = Naudotojų skaičius, kurie viso turi apie N kadrų
+metricsPageUserShotsQueryTitle = Nuotraukos vienam naudotojui
+metricsPageUserShotsQueryDescription = Naudotojų skaičius, kurie viso turi apie N nuotraukų
 metricsPageUserShotsQueryCount = Naudotojų skaičius
-metricsPageUserShotsQueryShots = Apytikslis skaičius aktyvių (nebaigusių galioti) kadrų
+metricsPageUserShotsQueryShots = Apytikslis skaičius aktyvių (nebaigusių galioti) nuotraukų
 metricsPageRetentionQueryTitle = Išlaikymas savaitėmis
-metricsPageRetentionQueryDescription = Dienų skaičius tarp naudotojo pirmo ir paskiausio kadro, sugrupuota pagal pradinę savaitę
+metricsPageRetentionQueryDescription = Dienų skaičius tarp naudotojo pirmos ir paskiausios nuotraukos, sugrupuota pagal pradinę savaitę
 metricsPageRetentionQueryUsers = Naudotojų skaičius
-metricsPageRetentionQueryDays = Dienos nuo naudotojo pirmo iki paskiausio kadro
-metricsPageRetentionQueryFirstWeek = Savaitė, kurią naudotojas padarė pirmą kadrą
+metricsPageRetentionQueryDays = Dienos nuo naudotojo pirmos iki paskiausios nuotraukos
+metricsPageRetentionQueryFirstWeek = Savaitė, kurią naudotojas padarė pirmą nuotrauką
 metricsPageTotalRetentionQueryTitle = Viso išlaikymas
-metricsPageTotalRetentionQueryDescription = Laiko trukmė, kai naudotojai darė kadrus, sugrupuota pagal savaitę
+metricsPageTotalRetentionQueryDescription = Laiko trukmė, kai naudotojai darė nuotraukas, sugrupuota pagal savaitę
 metricsPageTotalRetentionQueryUsers = Naudotojų skaičius
-metricsPageTotalRetentionQueryDays = Dienos, kai naudotojas darė kadrus
+metricsPageTotalRetentionQueryDays = Dienos, kai naudotojas darė nuotraukas
 metricsPageVersionQueryTitle = Priedo versija
 metricsPageVersionQueryDescription = Priedo versija prisijungimo metu, per paskutines 14 dienų
 metricsPageVersionQueryUsers = Prisijungusių naudotojų skaičius

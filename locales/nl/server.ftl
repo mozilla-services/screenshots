@@ -202,6 +202,10 @@ shotIndexPageNoSearchResults = We kunnen geen afbeeldingen vinden die aan uw zoe
 shotIndexPageClearSearchButton
     .title = Zoekopdracht wissen
 shotIndexPageConfirmShotDelete = Deze afbeelding verwijderen?
+shotIndexPagePreviousPage
+    .title = Vorige pagina
+shotIndexPageNextPage
+    .title = Volgende pagina
 
 
 // all metrics strings are optional for translation

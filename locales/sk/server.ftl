@@ -208,6 +208,10 @@ shotIndexPageNoSearchResults = Nenašli sme žiadnu snímku, ktorá by bola zhod
 shotIndexPageClearSearchButton
     .title = Vyčistiť vyhľadávacie pole
 shotIndexPageConfirmShotDelete = Odstrániť túto snímku?
+shotIndexPagePreviousPage
+    .title = Predchádzajúca stránka
+shotIndexPageNextPage
+    .title = Nasledujúca stránka
 
 
 // all metrics strings are optional for translation

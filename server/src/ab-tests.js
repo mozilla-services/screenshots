@@ -1,8 +1,15 @@
+/** A/B test assignment support
+
+This assigns users to tests using the `abTests.updateAbTests(obj)` function
+
+Tests are defined directly in this file, in the `allTests` variable.  A comment
+below shows what these test objects look like.
+*/
 // Note: these get turned into Test objects:
 let allTests = {
 };
 
-/* Example of how this could be set (until we have real tests to serve as docs): */
+/* Example of how this could be set: */
 /*
 let allTests = {
   autoOpenSharePanel: {
@@ -13,14 +20,17 @@ let allTests = {
     // this field will be set in the viewers events:
     shotField: "cd4",
     // If you make updates (like add an option) and increment this, then users
-    // who were previously in the control group may get put into a new group:
+    // who were previously excluded may get put into a new group:
     version: 1,
-    // Keep the user in control if they aren't in control in any of these tests:
+    // Exclude the user if they are in any of these tests:
     exclude: ["highlightButtonOnInstall", "myShotsDisplay"],
+    // Or exclude them if they are in any test:
+    // exclude: ["*"],
     // These are the actual allowed A/B options (control is never specified):
     options: [
       // The name of the option, and its probabilty (e.g., 10% chance of getting
-      // into this group)
+      // into this group). This will cause 5% of people to be in autoopen, 5% of
+      // people to be in control, and 90% to be in exclude:
       {name: "autoopen", probability: 0.1}
     ]
   },
@@ -39,7 +49,8 @@ let allTests = {
     version: 1,
     exclude: ["highlightButtonOnInstall", "autoOpenSharePanel"],
     options: [
-      // Note no one will end up in control in this example:
+      // Note no one will end up in exclude in this example (but 50% will still
+      // be control):
       {name: "intropopup", probability: 0.9},
       {name: "blink", probability: 0.1}
     ]
@@ -76,20 +87,25 @@ class Test {
       return;
     }
     if (this.shouldExclude(tests)) {
-      tests[this.name] = this.testWithValue("control");
+      tests[this.name] = this.testWithValue("exclude");
     } else {
       let prob = getRandom();
       let setAny = false;
       for (let option of this.options) {
         if (prob < option.probability) {
-          tests[this.name] = this.testWithValue(option.name)
+          let controlProb = getRandom();
+          if (controlProb < 0.5) {
+            tests[this.name] = this.testWithValue("control");
+          } else {
+            tests[this.name] = this.testWithValue(option.name)
+          }
           setAny = true;
           break;
         }
         prob -= option.probability;
       }
       if (!setAny) {
-        tests[this.name] = this.testWithValue("control");
+        tests[this.name] = this.testWithValue("exclude");
       }
     }
   }
@@ -104,8 +120,15 @@ class Test {
 
   shouldExclude(tests) {
     for (let testName of this.exclude) {
-      if (tests[testName] && tests[testName].value !== "control") {
+      if (tests[testName] && tests[testName].value !== "exclude") {
         return true;
+      }
+    }
+    if (this.exclude.includes("*")) {
+      for (let testName in tests) {
+        if (testName != this.name && tests[testName].value !== "exclude") {
+          return true;
+        }
       }
     }
     return false;

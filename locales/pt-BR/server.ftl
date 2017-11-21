@@ -149,7 +149,7 @@ shotPageSaveExpiration = salvar
 shotPageCancelExpiration = cancelar
 shotPageDoesNotExpire = não expira
 // Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = expira em { $timediff }
+shotPageExpiresIn = expira { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = expirou há { $timediff }
 timeDiffJustNow = agora
@@ -202,6 +202,10 @@ shotIndexPageNoSearchResults = Não encontramos capturas que correspondam com su
 shotIndexPageClearSearchButton
     .title = Limpar pesquisa
 shotIndexPageConfirmShotDelete = Excluir esta captura?
+shotIndexPagePreviousPage
+    .title = Página anterior
+shotIndexPageNextPage
+    .title = Próxima página
 
 
 // all metrics strings are optional for translation

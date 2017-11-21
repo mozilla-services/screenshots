@@ -202,6 +202,10 @@ shotIndexPageNoSearchResults = Man yeqïl ta taq wachib'äl, achi'el ri nakanoj.
 shotIndexPageClearSearchButton
     .title = Tijosq'ïx kanoxïk
 shotIndexPageConfirmShotDelete = ¿La niyuj re wachib'äl re'?
+shotIndexPagePreviousPage
+    .title = Chuwäch ruxaq
+shotIndexPageNextPage
+    .title = Jun chik ruxaq
 
 
 // all metrics strings are optional for translation

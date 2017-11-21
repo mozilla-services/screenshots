@@ -1,6 +1,7 @@
 const sendEvent = require("../../browser-send-event.js");
 const page = require("./page").page;
 const { AbstractShot } = require("../../../shared/shot");
+const queryString = require("query-string");
 
 const FIVE_SECONDS = 5 * 1000;
 
@@ -8,15 +9,17 @@ let model;
 
 let firstRun = true;
 
+const queryParamModelPropertyMap = {
+  q: "defaultSearch",
+  p: "pageNumber"
+}
+
 exports.launch = function(m) {
   if (m.hasDeviceId) {
     if (m.shots) {
       m.shots = m.shots.map((shot) => new AbstractShot(m.backend, shot.id, shot.json));
     }
-    let match = /[?&]q=([^&]{1,4000})/.exec(location.href);
-    if (match) {
-      m.defaultSearch = decodeURIComponent(match[1]);
-    }
+    Object.assign(m, extractQueryParamValues(queryParamModelPropertyMap));
     model = m;
     render();
     if (firstRun && m.shots === null) {
@@ -49,15 +52,75 @@ function render() {
   page.render(model);
 }
 
+function extractQueryParamValues(searchKeys) {
+  const o = {};
+  let qs = queryString.parse(window.location.search)
+
+  Object.keys(searchKeys).forEach(x => {
+    if (qs[x] !== undefined) {
+      o[searchKeys[x]] = qs[x];
+    }
+  });
+
+  return o;
+}
+
+function buildQueryStringFromModel(searchKeys, model) {
+  const queryParams = {};
+
+  Object.keys(searchKeys).forEach(x => {
+    if (model[searchKeys[x]] !== undefined && model[searchKeys[x]] !== null) {
+      queryParams[x] = model[searchKeys[x]];
+    }
+  })
+
+  return queryString.stringify(queryParams);
+}
+
 exports.onChangeSearch = function(query) {
   model.defaultSearch = query;
-  let url = `/shots?q=${encodeURIComponent(query)}`;
-  if (!query) {
-    url = "/shots";
-  }
-  window.history.pushState(null, "", url);
+  model.pageNumber = 1;
+  updateHistory({q: query, p: null});
   refreshModel();
 };
+
+exports.onChangePage = function(pageNumber) {
+  pageNumber = pageNumber || 1;
+  model.pageNumber = pageNumber;
+  updateHistory({p: pageNumber});
+  refreshModel();
+}
+
+// queryParamsToUpdate is a dictionary of query param(s) to insert/update/delete
+// in the query string; it does not represent all the params going into the query string.
+exports.getNewUrl = function(queryParamsToUpdate) {
+  let url = "/shots";
+
+  if (!queryParamsToUpdate) {
+    return url;
+  }
+
+  let qs = queryString.parse(window.location.search)
+
+  Object.keys(queryParamsToUpdate).forEach(x => {
+    if (queryParamsToUpdate[x]) {
+      qs[x] = queryParamsToUpdate[x];
+    } else if (!queryParamsToUpdate[x] && qs[x]) {
+      delete qs[x];
+    }
+  });
+
+  if (Object.keys(qs).length) {
+    url = `/shots?${queryString.stringify(qs)}`;
+  }
+
+  return url;
+}
+
+function updateHistory(queryParamsToUpdate) {
+  let url = exports.getNewUrl(queryParamsToUpdate);
+  window.history.pushState(null, "", url);
+}
 
 // FIXME: copied from shot/controller.js
 exports.deleteShot = function(shot) {
@@ -99,8 +162,9 @@ window.addEventListener("popstate", () => {
 function refreshModel() {
   let req = new XMLHttpRequest();
   let url = "/shots?withdata=true&data=json";
-  if (model.defaultSearch) {
-    url += "&q=" + encodeURIComponent(model.defaultSearch);
+  let extraQueryParams = buildQueryStringFromModel(queryParamModelPropertyMap, model);
+  if (extraQueryParams) {
+    url += "&" + extraQueryParams;
   }
   req.open("GET", url);
   req.onload = function() {

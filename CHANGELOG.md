@@ -1,3 +1,87 @@
+## Version 25.0.0
+
+* Track the number of copied shots in Telemetry ([#3812](https://github.com/mozilla-services/screenshots/issues/3812)) [336f147](https://github.com/mozilla-services/screenshots/commit/336f147)
+* Add titles to preview overlay buttons. ([#3793](https://github.com/mozilla-services/screenshots/issues/3793)) [d46985c](https://github.com/mozilla-services/screenshots/commit/d46985c)
+* Add paste symbol for image copy notification. ([#3790](https://github.com/mozilla-services/screenshots/issues/3790)) [5441349](https://github.com/mozilla-services/screenshots/commit/5441349)
+* Add copy.svg path to manifest template ([#3786](https://github.com/mozilla-services/screenshots/issues/3786)) [a6fa8c6](https://github.com/mozilla-services/screenshots/commit/a6fa8c6)
+* Copy shot to clipboard. ([#2582](https://github.com/mozilla-services/screenshots/issues/2582)) [58237e2](https://github.com/mozilla-services/screenshots/commit/58237e2)
+* Fix remaining domain regexes ([#3783](https://github.com/mozilla-services/screenshots/issues/3783))This is a followup to 2bd42beed9f18f626e328fa73f2dd6fd8be57e6f that applies the same fix to other regular expressions [5089187](https://github.com/mozilla-services/screenshots/commit/5089187)
+* Update CSS to fix notice tooltip. ([#3780](https://github.com/mozilla-services/screenshots/issues/3780)) [78e5853](https://github.com/mozilla-services/screenshots/commit/78e5853)
+* instrument response times in shot creation flow ([#3727](https://github.com/mozilla-services/screenshots/issues/3727)). Fixes [#3673](https://github.com/mozilla-services/screenshots/issues/3673) [82cb4b7](https://github.com/mozilla-services/screenshots/commit/82cb4b7)
+
+## Version 24.0.0
+
+Note: this is a server-only release.
+
+### Server changes
+
+* Stop retrying the Mozilla library once it has loaded [4e9701c](https://github.com/mozilla-services/screenshots/commit/4e9701c)
+* Use var instead of let in reactrender. This code is run literally without any babel translation, and shouldn't use fancy JavaScript [58d1617](https://github.com/mozilla-services/screenshots/commit/58d1617)
+* Fix bug in shot id regular expression. The regex was meant to match '-', but the dash was treated as a range [2bd42be](https://github.com/mozilla-services/screenshots/commit/2bd42be)
+* Fix a bug where `this.props.setPanelState` is not defined. This gets fired from the Shot page (the property is defined on the Shot Index page) [2c20056](https://github.com/mozilla-services/screenshots/commit/2c20056)
+* and remove oversampling of canvas. Fixes [#3709](https://github.com/mozilla-services/screenshots/issues/3709) Fixes [#3669](https://github.com/mozilla-services/screenshots/issues/3669) [5dc6f22](https://github.com/mozilla-services/screenshots/commit/5dc6f22)
+* Fix (and simplify) pagination related css. ([#3715](https://github.com/mozilla-services/screenshots/issues/3715)) ([#3731](https://github.com/mozilla-services/screenshots/issues/3731)) [64f5f9b](https://github.com/mozilla-services/screenshots/commit/64f5f9b)
+* support domains up to 253 characters long. Fixes [#3530](https://github.com/mozilla-services/screenshots/issues/3530) [b12582b](https://github.com/mozilla-services/screenshots/commit/b12582b)
+* put 50% of people into control ([#3723](https://github.com/mozilla-services/screenshots/issues/3723))This separates out people who are excluded from a test, from those who are in the control for the test. 50% of people always go to control, and 50% go into some experiment branch. People who aren't in either go into the 'exclude' category. Fixes [#3674](https://github.com/mozilla-services/screenshots/issues/3674) [a583d99](https://github.com/mozilla-services/screenshots/commit/a583d99)
+* Fix page num style (and add guard against NaN). ([#3715](https://github.com/mozilla-services/screenshots/issues/3715)) [0e39d3e](https://github.com/mozilla-services/screenshots/commit/0e39d3e) [e06257d](https://github.com/mozilla-services/screenshots/commit/e06257d)
+* Paginate My Shots ([#3657](https://github.com/mozilla-services/screenshots/issues/3657))* Handle multiple query params and add page number.
+  * Add limit and offset to my shots query.
+  * Get a page of shots instead of all.
+  * Display page numbers and links.
+  * Load initial shots w/ page number in query string.
+  * Don't show pagination if 0 pages. No null for search.
+  * Use arrow imgs and add styles.
+  * Localize title attributes.
+  * Reset page number on search. [5bd4583](https://github.com/mozilla-services/screenshots/commit/5bd4583)
+* Generate l10n Messages from ftl ([#3415](https://github.com/mozilla-services/screenshots/issues/3415))* Add a make target to generate l10n message js files.
+  * Add js script tags based on req locales.
+  * Add exports support on generated locale js.
+  * Use generated locale js instead of ftl.
+  * Stop newing up MessageContexts on every l10n.getText().
+  * Render only after getting l10n messages.
+  * Handle get l10n messages failures.
+  * Remove l10n messages from page body.
+  * Stop using ES6 in generated locale js.
+  * Add window.notifyL10nLoaded to reduce/elminate polling.
+  * Do not init l10n to test default locale; no need.
+  * Glob on generated locale js files.
+  * Stop copying the locales dir to Docker img.
+  * Add tests for l10n. [2709ca9](https://github.com/mozilla-services/screenshots/commit/2709ca9)
+* Added New Twitter Icon [951dada](https://github.com/mozilla-services/screenshots/commit/951dada)
+  * Delete btn-twitter.svg [026cc02](https://github.com/mozilla-services/screenshots/commit/026cc02)
+
+### Add-on changes
+
+* Remove unnecessary icon path for page action. ([#3760](https://github.com/mozilla-services/screenshots/issues/3760)) [bc29b56](https://github.com/mozilla-services/screenshots/commit/bc29b56)
+* use content.XMLHttpRequest instead of wrappedJSObject.XMLHttpRequest ([#3755](https://github.com/mozilla-services/screenshots/issues/3755)). Fixes [#3626](https://github.com/mozilla-services/screenshots/issues/3626) [6cb98f6](https://github.com/mozilla-services/screenshots/commit/6cb98f6)
+* Use generic notice css class. ([#3701](https://github.com/mozilla-services/screenshots/issues/3701)) [927f39a](https://github.com/mozilla-services/screenshots/commit/927f39a)
+* Stop using window.inner[Width|Height] b/c scroll bars. ([#3641](https://github.com/mozilla-services/screenshots/issues/3641)) [647819e](https://github.com/mozilla-services/screenshots/commit/647819e)
+* Remove onboarding icon. ([#3542](https://github.com/mozilla-services/screenshots/issues/3542)) [00f0409](https://github.com/mozilla-services/screenshots/commit/00f0409)
+* Use dl-only notice style for cropped img warning. ([#3701](https://github.com/mozilla-services/screenshots/issues/3701)) [60a5b2f](https://github.com/mozilla-services/screenshots/commit/60a5b2f)
+* Move start time for error timer into startBackground. ([#3707](https://github.com/mozilla-services/screenshots/issues/3707)) [5a3e01c](https://github.com/mozilla-services/screenshots/commit/5a3e01c)
+* Properly set the Photon page action's title and icon. Bug 1395387 changed the Photon page action API so that `title` and `iconURL` are no longer properties but methods, setTitle() and setIconURL().  We need to update our consumer.  Right now, setting these properties isn't doing anything at all. [2e15e64](https://github.com/mozilla-services/screenshots/commit/2e15e64)
+* Add left margin to selection frame to handle doc width < viewport width ([#3735](https://github.com/mozilla-services/screenshots/issues/3735))
+  * Add left margin to selection frame to handle viewport x vs. parent doc x. ([#3256](https://github.com/mozilla-services/screenshots/issues/3256))
+  * Don't set left margin of -0px. [49bafca](https://github.com/mozilla-services/screenshots/commit/49bafca)
+* Download shot when Enter is pressed in download only mode. ([#3714](https://github.com/mozilla-services/screenshots/issues/3714)) [df973cd](https://github.com/mozilla-services/screenshots/commit/df973cd)
+* Opt out of webdriver click in Selenium tests. ([#3734](https://github.com/mozilla-services/screenshots/issues/3734)) [c2ea6b3](https://github.com/mozilla-services/screenshots/commit/c2ea6b3)
+* Bump pixel limit to 10000. ([#3538](https://github.com/mozilla-services/screenshots/issues/3538)) ([#3668](https://github.com/mozilla-services/screenshots/issues/3668)) [328696f](https://github.com/mozilla-services/screenshots/commit/328696f)
+* Remove extra preselection frame unhide() (that's before frame's loaded). ([#3692](https://github.com/mozilla-services/screenshots/issues/3692)) ([#3729](https://github.com/mozilla-services/screenshots/issues/3729)) [263c990](https://github.com/mozilla-services/screenshots/commit/263c990)
+* send a response after incrementing counts ([#3726](https://github.com/mozilla-services/screenshots/issues/3726)). Fixes [#3718](https://github.com/mozilla-services/screenshots/issues/3718) [b40f1dd](https://github.com/mozilla-services/screenshots/commit/b40f1dd)
+* style tweaks for download only UI ([#3705](https://github.com/mozilla-services/screenshots/issues/3705)) [b40841d](https://github.com/mozilla-services/screenshots/commit/b40841d)
+* Bug 366192 [bugzilla.mozilla.org] - Fixed http/https regex checks. [96f5fc4](https://github.com/mozilla-services/screenshots/commit/96f5fc4)
+* add Telemetry scalars to track shot creation per session.  For related, Gecko-only changes to the telemetry Scalars.yaml file, see https://bugzilla.mozilla.org/show_bug.cgi?id=1412411. Fixes [#2218](https://github.com/mozilla-services/screenshots/issues/2218) [80ecdd0](https://github.com/mozilla-services/screenshots/commit/80ecdd0)
+* disable full-page truncation warning if download-only warning will be shown. Fixes [#3700](https://github.com/mozilla-services/screenshots/issues/3700) [e3ee5af](https://github.com/mozilla-services/screenshots/commit/e3ee5af)
+* fix rtl save icon alignment [d37a4ff](https://github.com/mozilla-services/screenshots/commit/d37a4ff)
+* Use download only mode if 'never remember history' is checked. Fixes [#3574](https://github.com/mozilla-services/screenshots/issues/3574) [d0d4db3](https://github.com/mozilla-services/screenshots/commit/d0d4db3) [1c28bbf](https://github.com/mozilla-services/screenshots/commit/1c28bbf)
+* Download only mode ([#3655](https://github.com/mozilla-services/screenshots/issues/3655))* use the private browsing download manager in private browsing mode
+  Thanks to https://bugzil.la/1362448, webextensions will use the correct
+  download manager, depending on the `incognito` state of the window.
+  * Enable Screenshots in private browsing mode
+  Leave the l10n string in place, in case this decision is reversed
+  * Partial fix for [#3574](https://github.com/mozilla-services/screenshots/issues/3574), create download only mode for private browsing. Fixes [#2818](https://github.com/mozilla-services/screenshots/issues/2818) Fixes [#3274](https://github.com/mozilla-services/screenshots/issues/3274) [1223743](https://github.com/mozilla-services/screenshots/commit/1223743)
+
+
 ## Version 23.0.0
 
 This is both a server and add-on release. The add-on will be exported to Firefox 58.

@@ -49,9 +49,9 @@ homePageGetStarted = დაწყება
 homePageHowScreenshotsWorks = როგორ მუშაობს Firefox Screenshots
 homePageGetStartedTitle = დაიწყეთ
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = მონახეთ Screenshots-ის ახალი ხატულა ხელსაწყოთა ზოლზე. დააჭირეთ და Screenshots-ის მენიუ გამოჩნდება ფანჯრის თავზე.
+homePageGetStartedDescription = მონახეთ Screenshots-ის ახალი ხატულა ხელსაწყოთა ზოლზე. დააჭირეთ და Screenshots-ის მენიუ გამოჩნდება ბრაუზერის ფანჯრის ზედა მხარეს.
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescriptionPageAction = აირჩიეთ Screenshots-ის ხატულა მისამართების ველში არსებულ, მოქმედებების მენიუში და Screenshots-ის მენიუ გამოჩნდება ბრაუზერის ფანჯრის თავზე.
+homePageGetStartedDescriptionPageAction = აირჩიეთ Screenshots-ის ხატულა მისამართების ველში არსებულ, მოქმედებების მენიუში და Screenshots-ის ღილაკები გამოჩნდება ბრაუზერის ფანჯრის ზედა მხარეს.
 homePageCaptureRegion = სივრცისთვის სურათის გადაღება
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = დააწკაპეთ და გადაადგილეთ კურსორი გადასაღები სივრცის მოსანიშნად. ან უბრალოდ ზემოდან გადაატარეთ და დააწკაპეთ - Screenshots თავად მონიშნავს საჭირო სივრცეს. გაკმაყოფილებთ შედეგი? დააჭირეთ 'შენახვას", თქვენს სურათებთან ინტერნეტით წვდომის მისაღებად, ან დააჭირეთ ჩამოტვირთვის ღილაკს, კომპიუტერში შესანახად.
@@ -194,6 +194,10 @@ shotIndexPageNoSearchResults = მითითებული ფრაზით
 shotIndexPageClearSearchButton
     .title = ძიების გასუფთავება
 shotIndexPageConfirmShotDelete = გსურთ სურათის წაშლა?
+shotIndexPagePreviousPage
+    .title = წინა გვერდი
+shotIndexPageNextPage
+    .title = მომდევნო გვერდი
 
 
 // all metrics strings are optional for translation

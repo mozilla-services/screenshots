@@ -196,6 +196,10 @@ shotIndexPageNoSearchResults = نمی‌توانیم هیچ عکسی مطابق 
 shotIndexPageClearSearchButton
     .title = پاک کردن جستجو
 shotIndexPageConfirmShotDelete = حذف این عکس؟
+shotIndexPagePreviousPage
+    .title = صفحه قبل
+shotIndexPageNextPage
+    .title = صفحه بعد
 
 
 // all metrics strings are optional for translation

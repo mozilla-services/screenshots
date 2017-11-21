@@ -250,3 +250,45 @@ h1 {
     text-align: center;
   }
 }
+
+#shot-index-page-navigation {
+  font-size: 20px;
+  text-align: center;
+
+  #shots-page-number {
+    margin-left: 40px;
+    margin-right: 40px;
+    padding: 0;
+  }
+
+  span {
+    padding: 10px;
+    width: 40px;
+
+    &.shots-page-nav {
+      line-height: 0;
+
+      &.disabled {
+        opacity: 0.3;
+      }
+
+      a {
+        border-radius: 3px;
+        height: 40px;
+
+        &:hover {
+          background-color: #d7d7db;
+        }
+        &:active {
+          background-color: #b1b1b3;
+        }
+      }
+
+    }
+
+    img {
+      width: 20px;
+      vertical-align: middle;
+    }
+  }
+}

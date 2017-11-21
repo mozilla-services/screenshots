@@ -202,6 +202,10 @@ shotIndexPageNoSearchResults = Vi kan inte hitta några bilder som matchar din s
 shotIndexPageClearSearchButton
     .title = Rensa sökning
 shotIndexPageConfirmShotDelete = Ta bort denna bild?
+shotIndexPagePreviousPage
+    .title = Föregående sida
+shotIndexPageNextPage
+    .title = Nästa sida
 
 
 // all metrics strings are optional for translation

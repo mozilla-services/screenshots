@@ -199,6 +199,10 @@ shotIndexPageNoSearchResults = No encontramos ninguna captura que coincida con t
 shotIndexPageClearSearchButton
     .title = Limpiar búsqueda
 shotIndexPageConfirmShotDelete = ¿Eliminar esta captura?
+shotIndexPagePreviousPage
+    .title = Página anterior
+shotIndexPageNextPage
+    .title = Página siguiente
 
 
 // all metrics strings are optional for translation

@@ -34,12 +34,16 @@ exports.ShareButton = class ShareButton extends React.Component {
     let show = !this.state.display;
     this.setState({display: show});
     if (show) {
-      this.props.setPanelState("panel-open");
+      if (this.props.setPanelState) {
+        this.props.setPanelState("panel-open");
+      }
       sendEvent(
         this.props.isOwner ? "start-share-owner" : "start-share-non-owner",
         "navbar");
     } else {
-      this.props.setPanelState("panel-closed");
+      if (this.props.setPanelState) {
+        this.props.setPanelState("panel-closed");
+      }
       this.shareDiv.blur();
       sendEvent("cancel-share");
     }
@@ -47,7 +51,9 @@ exports.ShareButton = class ShareButton extends React.Component {
 
   onPanelClose() {
     this.setState({display: false});
-    this.props.setPanelState("panel-closed");
+    if (this.props.setPanelState) {
+      this.props.setPanelState("panel-closed");
+    }
   }
 };
 

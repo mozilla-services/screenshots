@@ -50,6 +50,8 @@ homePageHowScreenshotsWorks = Как работи Firefox Screenshots
 homePageGetStartedTitle = Първи стъпки
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Новата пиктограма на Screenshots се намира на лентата с инструменти. Като я изберете от нея се отваря менюто най-горе във вашия четец.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Изберете „Снимка на екрана“ от менюто с действия със страницата в адресната лента и менюто на „Screenshots“ ще се появи върху текущата страница.
 homePageCaptureRegion = Улавяне на част от екрана
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Натиснете и влачете, за да изберете областта която желаете да уловите. Или просто поставете курсора отгоре и натиснете – Screenshots сама ще избере площта вместо вас. Харесва ли ви? Изберете „Запазване“, за да имате снимката онлайн или бутона със стрелка надолу, за да я изтеглите на вашия компютър.
@@ -200,6 +202,8 @@ shotIndexPageNoSearchResults = Не намираме снимки, които о
 shotIndexPageClearSearchButton
     .title = Изчистване на търсенето
 shotIndexPageConfirmShotDelete = Сигурни ли сте, че желаете това изображение да бъде премахнато?
+shotIndexPagePreviousPage
+    .title = Предишна страница
 
 
 // all metrics strings are optional for translation

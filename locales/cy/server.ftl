@@ -213,6 +213,10 @@ shotIndexPageNoSearchResults = Methu canfod lluniau sy'n cyd-fynd â'ch chwilio.
 shotIndexPageClearSearchButton
     .title = Clirio'r chwilio
 shotIndexPageConfirmShotDelete = Dileu'r llun?
+shotIndexPagePreviousPage
+    .title = Tudalen flaenorol
+shotIndexPageNextPage
+    .title = Tudalen nesaf
 
 
 // all metrics strings are optional for translation

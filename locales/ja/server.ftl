@@ -184,6 +184,10 @@ shotIndexPageNoSearchResults = 検索語に一致するショットが見つか�
 shotIndexPageClearSearchButton
     .title = 検索語を消去
 shotIndexPageConfirmShotDelete = このショットを削除しますか？
+shotIndexPagePreviousPage
+    .title = 前のページ
+shotIndexPageNextPage
+    .title = 次のページ
 
 
 // all metrics strings are optional for translation

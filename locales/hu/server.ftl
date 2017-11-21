@@ -202,6 +202,10 @@ shotIndexPageNoSearchResults = Nem található a keresésnek megfelelő kép.
 shotIndexPageClearSearchButton
     .title = Keresés törlése
 shotIndexPageConfirmShotDelete = Törli ezt a képet?
+shotIndexPagePreviousPage
+    .title = Előző oldal
+shotIndexPageNextPage
+    .title = Következő oldal
 
 
 // all metrics strings are optional for translation

@@ -202,6 +202,10 @@ shotIndexPageNoSearchResults = અમે તમારી શોધ સાથે 
 shotIndexPageClearSearchButton
     .title = શોધ સાફ કરો
 shotIndexPageConfirmShotDelete = આ શોટ કાઢી નાખીએ?
+shotIndexPagePreviousPage
+    .title = પાછળનું પાનું
+shotIndexPageNextPage
+    .title = પછીનું પાનું
 
 
 // all metrics strings are optional for translation

@@ -190,6 +190,91 @@ $very-light-grey: #ededed;
   }
 }
 
+.notice {
+  display: flex;
+  height: 41px;
+  left: 50%;
+  position: fixed;
+  transform: translate(-50%, 0);
+  transition: top 125ms ease-out, translate 125ms ease-out;
+  user-select: none;
+  will-change: top, translate;
+  z-index: $overlay-z-index + 1;
+
+  .notice-wrapper {
+    align-items: center;
+    background: #737373;
+    border-radius: 100px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 10px 15px;
+  }
+
+  .notice-content {
+    color: #fff;
+    flex: 1;
+    font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .notice-help {
+    background-image: url("MOZ_EXTENSION/icons/help-16.svg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 16px;
+  }
+}
+
+.notice-tooltip {
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid #9d9d9e;
+  bottom: 60px;
+  color: #000;
+  cursor: default;
+  display: none;
+  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 22px;
+  overflow-wrap: break-word;
+  padding: 15px;
+  position: absolute;
+  right: -14px;
+  white-space: normal;
+  width: 300px;
+  z-index: $overlay-z-index + 1;
+
+  .notice:hover & {
+    display: block;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
+
+  /* down-arrow for the tooltip */
+  &::after {
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #f9f9fa;
+    content: "";
+    height: 0;
+    left: 86%;
+    position: absolute;
+    top: 100%;
+    width: 0;
+  }
+}
+
 .preview-overlay {
   align-items: center;
   background-color: $modal-color;
@@ -264,7 +349,7 @@ $very-light-grey: #ededed;
     background-position: 8px center;
   }
   html[dir="rtl"] & {
-    background-position: 65px center;
+    background-position: right 10px center;
   }
   background-repeat: no-repeat;
   background-size: 20px 18px;
@@ -283,6 +368,26 @@ $very-light-grey: #ededed;
   @extend .button;
   @extend .secondary;
   background-image: url("MOZ_EXTENSION/icons/download.svg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  border: 1px solid $light-active;
+  // Overrides display: flex from .button, which causes hover problems
+  display: block;
+  margin: 5px;
+  width: 40px;
+
+  &.download-only-button {
+    width: auto;
+    background-position: 7px;
+    padding-left: 32px;
+  }
+}
+
+.highlight-button-copy {
+  @extend .button;
+  @extend .secondary;
+  background-image: url("MOZ_EXTENSION/icons/copy.svg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 18px 18px;
@@ -417,19 +522,7 @@ $very-light-grey: #ededed;
   text-align: center;
   padding-top: 20px;
   width: 400px;
-}
-
-#imageCroppedWarning {
-  position: absolute;
-  background: rgba(0, 0, 0, 0.8);
-  bottom: 0;
-  color: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
-  font-size: 12px;
-  padding: 10px;
-  text-align: center;
-  width: 100%;
-  z-index: 2;
+  user-select: none;
 }
 
 .myshots-all-buttons-container {

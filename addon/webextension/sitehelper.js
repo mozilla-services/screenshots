@@ -1,4 +1,4 @@
-/* globals catcher, callBackground */
+/* globals catcher, callBackground, content */
 /** This is a content script added to all screenshots.firefox.com pages, and allows the site to
     communicate with the add-on */
 
@@ -8,7 +8,7 @@ this.sitehelper = (function() {
 
   // This gives us the content's copy of XMLHttpRequest, instead of the wrapped
   // copy that this content script gets:
-  let ContentXMLHttpRequest = window.wrappedJSObject.XMLHttpRequest;
+  let ContentXMLHttpRequest = content.XMLHttpRequest;
 
   catcher.registerHandler((errorObj) => {
     callBackground("reportError", errorObj);

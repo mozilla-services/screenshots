@@ -184,6 +184,10 @@ shotIndexPageNoSearchResults = Aramanızla eşleşen bir görüntü bulamadık.
 shotIndexPageClearSearchButton
     .title = Aramayı temizle
 shotIndexPageConfirmShotDelete = Bu görüntü silinsin mi?
+shotIndexPagePreviousPage
+    .title = Önceki sayfa
+shotIndexPageNextPage
+    .title = Sonraki sayfa
 
 
 // all metrics strings are optional for translation

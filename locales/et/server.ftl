@@ -202,6 +202,10 @@ shotIndexPageNoSearchResults = Me ei leidnud su otsingule sobivaid pilte.
 shotIndexPageClearSearchButton
     .title = Tühjenda otsing
 shotIndexPageConfirmShotDelete = Kas tõesti kustutada see pilt?
+shotIndexPagePreviousPage
+    .title = Eelmine leht
+shotIndexPageNextPage
+    .title = Järgmine leht
 
 
 // all metrics strings are optional for translation

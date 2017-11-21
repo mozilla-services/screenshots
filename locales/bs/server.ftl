@@ -153,7 +153,36 @@ shotPageExpiresIn = ističe { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = isteklo { $timediff }
 timeDiffJustNow = upravo sada
+timeDiffMinutesAgo = { $num ->
+        [one] prije 1 minutu
+        [few] prije { $number } minute
+       *[other] prije { $number } minuta
+    }
+timeDiffHoursAgo = { $num ->
+        [one] prije 1 sat
+        [few] prije { $number } sata
+       *[other] prije { $number } sati
+    }
+timeDiffDaysAgo = { $num ->
+        [one] prije 1 dan
+       *[few] prije { $number } dana
+    }
 timeDiffFutureSeconds = za nekolio sekundi
+timeDiffFutureMinutes = { $num ->
+        [one] za 1 minutu
+        [few] za { $number } minute
+       *[other] za { $number } minuta
+    }
+timeDiffFutureHours = { $num ->
+        [one] za 1 sat
+        [few] za { $number } sata
+       *[other] za { $number } sati
+    }
+timeDiffFutureDays = { $num ->
+        [one] sutra
+        [few] za { $number } dana
+       *[other] za { $number } dana
+    }
 
 
 [[ Shotindex page ]]
@@ -178,6 +207,10 @@ shotIndexPageNoSearchResults = Ne možemo pronaći ni jedan snimak koji odgovara
 shotIndexPageClearSearchButton
     .title = Očisti pretragu
 shotIndexPageConfirmShotDelete = Izbrisati ovaj snimak?
+shotIndexPagePreviousPage
+    .title = Prethodna stranica
+shotIndexPageNextPage
+    .title = Sljedeća stranica
 
 
 // all metrics strings are optional for translation

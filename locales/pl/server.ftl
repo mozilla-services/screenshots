@@ -208,6 +208,10 @@ shotIndexPageNoSearchResults = Nie możemy znaleźć zrzutów pasujących do wys
 shotIndexPageClearSearchButton
     .title = Wyczyść wyszukiwanie
 shotIndexPageConfirmShotDelete = Usunąć ten zrzut?
+shotIndexPagePreviousPage
+    .title = Poprzednia strona
+shotIndexPageNextPage
+    .title = Następna strona
 
 
 // all metrics strings are optional for translation

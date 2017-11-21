@@ -214,6 +214,10 @@ shotIndexPageNoSearchResults = Ne najdemo posnetkov, ki ustrezajo vašemu iskanj
 shotIndexPageClearSearchButton
     .title = Počisti iskanje
 shotIndexPageConfirmShotDelete = Izbrišem ta posnetek?
+shotIndexPagePreviousPage
+    .title = Prejšnja stran
+shotIndexPageNextPage
+    .title = Naslednja stran
 
 
 // all metrics strings are optional for translation

@@ -1,7 +1,7 @@
 {
   "name": "firefox-screenshots",
   "description": "An experiment in creating better shareable versions of content.",
-  "version": "23.0.0",
+  "version": "25.0.0",
   "author": "Mozilla (https://mozilla.org/)",
   "bugs": {
     "url": "https://github.com/mozilla-services/screenshots/issues"
@@ -35,6 +35,7 @@
     "nodify-uuid": "0.0.1",
     "pg": "6.2.5",
     "pg-patcher": "0.4.0",
+    "query-string": "5.0.0",
     "raven": "2.2.1",
     "raven-js": "3.18.1",
     "react": "15.6.1",
