@@ -48,10 +48,15 @@ homePageGetStartedTitle = Sōkums
 homePageCaptureRegion = Saglobōt ekrana apgobolu
 homePageCapturePage = Saglobōt lopu
 homePageSaveShare = Saglobōt un pazadalēt
+homePageLegalLink = Juridiska informaceja
+homePagePrivacyLink = Privātums
+homePageTermsLink = Lītōšonys nūteikumi
+homePageCookiesLink = Seikdatnes
 
 
 [[ Leave Screenshots page ]]
 
+leavePageRemoveAllData = Dzēst vysus datus
 
 
 [[ Not Found page ]]
