@@ -304,7 +304,7 @@ class Card extends React.Component {
     }
 
     return (
-      <div className={`shot ${this.state.panelOpen} ${this.isDeleted()}`} key={shot.id}>
+      <div className={`shot ${this.getClipType(clip._image.dimensions)} ${this.state.panelOpen} ${this.isDeleted()}`} key={shot.id}>
         <a href={shot.viewUrl} onClick={this.onOpen.bind(this, shot.viewUrl)}>
           <div className="shot-image-container">
             <img src={imageUrl} />
@@ -333,6 +333,13 @@ class Card extends React.Component {
         </div>
       </div>
     );
+  }
+
+  getClipType(dimensions) {
+    if ((dimensions.x / dimensions.y) > (4 / 3)) {
+      return "landscape";
+    }
+    return "portrait";
   }
 
   setPanelState(state) {
