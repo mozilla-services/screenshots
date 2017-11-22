@@ -336,7 +336,7 @@ class Card extends React.Component {
   }
 
   getClipType(dimensions) {
-    if ((dimensions.x / dimensions.y) > (4 / 3)) {
+    if ((dimensions.x / dimensions.y) > (3 / 4)) {
       return "landscape";
     }
     return "portrait";
