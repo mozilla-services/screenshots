@@ -16,10 +16,9 @@ const webdriver = require("selenium-webdriver");
 const { By, until } = webdriver;
 const path = require("path");
 
-const SHOOTER_BUTTON_ID = "pageAction-panel-screenshots";
-// Applies to the old-style toolbar button:
-const TOOLBAR_SHOOTER_BUTTON_ID = "screenshots_mozilla_org-browser-action";
-const shooterSelector = By.css(`#${SHOOTER_BUTTON_ID}, #${TOOLBAR_SHOOTER_BUTTON_ID}`);
+// ID of WebExtension page action button
+const SHOOTER_BUTTON_ID = "pageAction-panel-screenshots_mozilla_org";
+const shooterSelector = By.css(`#${SHOOTER_BUTTON_ID}`);
 const SLIDE_IFRAME_ID = "firefox-screenshots-onboarding-iframe";
 const PRESELECTION_IFRAME_ID = "firefox-screenshots-preselection-iframe";
 const PREVIEW_IFRAME_ID = "firefox-screenshots-preview-iframe";
