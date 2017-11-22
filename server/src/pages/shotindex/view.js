@@ -336,10 +336,10 @@ class Card extends React.Component {
   }
 
   getClipType(dimensions) {
-    if ((dimensions.x / dimensions.y) > (3 / 4)) {
-      return "landscape";
+    if ((dimensions.x / dimensions.y) <= (3 / 4) || dimensions.x <= 210) {
+      return "portrait";
     }
-    return "portrait";
+    return "landscape";
   }
 
   setPanelState(state) {
