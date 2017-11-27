@@ -228,15 +228,15 @@ function handleMessage(msg, sender, sendReply) {
   } else if (msg.funcName === "getHistoryPref") {
     let historyEnabled = getBoolPref(HISTORY_ENABLED_PREF);
     sendReply({type: "success", value: historyEnabled});
-  } else if (msg.funcName === "incrementDownloadCount") {
-    Services.telemetry.scalarAdd('screenshots.download', 1);
-    sendReply({type: "success", value: true});
-  } else if (msg.funcName === "incrementUploadCount") {
-    Services.telemetry.scalarAdd('screenshots.upload', 1);
-    sendReply({type: "success", value: true});
-  } else if (msg.funcName === "incrementCopyCount") {
-    Services.telemetry.scalarAdd('screenshots.copy', 1);
-    sendReply({type: "success", value: true});
+  } else if (msg.funcName === "incrementCount") {
+    let allowedScalars = ["download", "upload", "copy"];
+    let scalar = msg.args && msg.args[0] && msg.args[0].scalar;
+    if (!allowedScalars.includes(scalar)) {
+      sendReply({type: "error", name: `incrementCount passed an unrecognized scalar ${scalar}`});
+    } else {
+      Services.telemetry.scalarAdd(`screenshots.${scalar}`, 1);
+      sendReply({type: "success", value: true});
+    }
   }
 }
 

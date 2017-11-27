@@ -382,7 +382,11 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
 
   function getAttributeText(l10nID) {
     let text = browser.i18n.getMessage(l10nID);
-    return text && text.replace('"', "&quot;");
+    return text &&
+      text.replace("&", "&amp;")
+        .replace('"', "&quot;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;");
   }
 
   let iframePreview = exports.iframePreview = {

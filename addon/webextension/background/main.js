@@ -209,7 +209,7 @@ this.main = (function() {
     return blobConverters.blobToArray(blob).then(buffer => {
       return browser.clipboard.setImageData(
         buffer, blob.type.split("/", 2)[1]).then(() => {
-          catcher.watchPromise(communication.sendToBootstrap('incrementCopyCount'));
+          catcher.watchPromise(communication.sendToBootstrap("incrementCount", {scalar: "copy"}));
           return browser.notifications.create({
             type: "basic",
             iconUrl: "../icons/copy.png",
@@ -236,13 +236,11 @@ this.main = (function() {
       }
     });
     browser.downloads.onChanged.addListener(onChangedCallback)
-    catcher.watchPromise(communication.sendToBootstrap("incrementDownloadCount"));
+    catcher.watchPromise(communication.sendToBootstrap("incrementCount", {scalar: "download"}));
     return browser.windows.getLastFocused().then(windowInfo => {
-      return windowInfo.incognito;
-    }).then((incognito) => {
       return browser.downloads.download({
         url,
-        incognito,
+        incognito: windowInfo.incognito,
         filename: info.filename
       }).then((id) => {
         downloadId = id;
