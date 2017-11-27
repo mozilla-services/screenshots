@@ -42,7 +42,7 @@ def rewriteMozBuild(outputLoc, fileList):
             insertion_text += \
                 "FINAL_TARGET_FILES.features['screenshots@mozilla.org']%s += [\n" % mozBuildPathName + \
                 "  '" + \
-                "',\n  '".join(fileList[dir]) + "'\n]\n\n"
+                "',\n  '".join(sorted(fileList[dir])) + "'\n]\n\n"
 
         new_contents = re.sub(
             '# AUTOMATIC INSERTION START(.*)# AUTOMATIC INSERTION END',
