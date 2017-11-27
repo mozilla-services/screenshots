@@ -284,6 +284,16 @@
   }
 }
 
+.clear-button {
+  background-image: url("../img/reset.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &:hover {
+    background-color: $light-hover;
+  }
+}
+
 html {
   min-height: 100%;
   position: relative;
