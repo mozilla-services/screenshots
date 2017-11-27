@@ -39,11 +39,11 @@ creatingPageWaitMessage = A guardar a sua captura...
 [[ Home page ]]
 
 homePageDescription
-    .content = Capturas de ecrã intuitivas embutidas no navegador. Capture, guarde e partilhe capturas de ecrã enquanto navega a Web utilizando o Firefox.
+    .content = Capturas de ecrã intuitivas embutidas no navegador. Capture, guarde e partilhe capturas de ecrã enquanto navega na Web utilizando o Firefox.
 homePageButtonMyShots = Ir para as minhas capturas
 homePageTeaser = Brevemente...
 homePageDownloadFirefoxTitle = Firefox
-homePageDownloadFirefoxSubTitle = Descarregamento gratuito
+homePageDownloadFirefoxSubTitle = Transferência gratuita
 homePageGetStarted = Começar
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Como é que o Firefox Screenshots funciona
@@ -54,7 +54,7 @@ homePageGetStartedDescription = Encontre o novo ícone do Screenshots na sua bar
 homePageGetStartedDescriptionPageAction = Selecione o ícone do Screenshots a partir do menu de ações da página na barra de endereço e o menu do Screenshots irá aparecer por cima da janela do seu navegador.
 homePageCaptureRegion = Capturar uma região
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar ou paire e clique — O Screenshots irá selecionar a área por si. Gosta do que está a ver? Selecione Guardar para aceder à sua captura de ecrã na Internet ou no botão de seta para baixo para a descarregar para o seu computador.
+homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar ou paire e clique — O Screenshots irá selecionar a área por si. Gosta do que está a ver? Selecione Guardar para aceder à sua captura de ecrã na Internet ou no botão de seta para baixo para a transferir para o seu computador.
 homePageCapturePage = Capturar uma página
 homePageCapturePageDescription = Utilize os botões no canto superior direito para capturar páginas inteiras. O botão Guardar visível irá capturar a área que pode ver sem deslocar e Guardar página inteira irá capturar tudo na página.
 homePageSaveShare = Guardar e partilhar
@@ -124,8 +124,8 @@ shotPageDeleteButton
 shotPageAbuseButton
     .title = Reportar esta captura por abuso, spam, ou outros problemas
 shotPageDownloadShot
-    .title = Descarregar
-shotPageDownload = Descarregar
+    .title = Transferir
+shotPageDownload = Transferir
 shotPageScreenshotsDescription = As capturas de ecrã tornadas simples. Tire, guarde e partilhe capturas de ecrã sem sair do Firefox.
 shotPageUpsellFirefox = Obter o Firefox agora
 shotPageDMCAMessage = Esta captura já não está disponível devido a uma reivindicação de propriedade intelectual de terceiros.
