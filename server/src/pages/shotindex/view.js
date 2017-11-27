@@ -306,9 +306,8 @@ class Card extends React.Component {
     return (
       <div className={`shot ${this.getClipType(clip._image.dimensions)} ${this.state.panelOpen} ${this.isDeleted()}`} key={shot.id}>
         <a href={shot.viewUrl} onClick={this.onOpen.bind(this, shot.viewUrl)}>
-          <div className="shot-image-container" style={{
-            backgroundImage: `url("${imageUrl}")`
-          }}>
+          <div className="shot-image-container">
+            <img src={imageUrl} />
           </div>
           <div className="shot-info">
           <div className="title-container">
@@ -337,15 +336,10 @@ class Card extends React.Component {
   }
 
   getClipType(dimensions) {
-    // an image is considered a square if it is within
-    // a squareBuffer pixels of being one
-    const squareBuffer = 50;
-    if (dimensions.x - squareBuffer > dimensions.y) {
-      return "landscape";
-    } else if (dimensions.x < dimensions.y - squareBuffer ) {
+    if ((dimensions.x / dimensions.y) <= (3 / 4) || dimensions.x <= 210) {
       return "portrait";
     }
-    return "square";
+    return "landscape";
   }
 
   setPanelState(state) {

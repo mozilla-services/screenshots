@@ -332,10 +332,6 @@ $very-light-grey: #ededed;
 .highlight-button-cancel {
   @extend .button;
   @extend .secondary;
-  background-image: url("MOZ_EXTENSION/icons/cancel.svg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 18px 18px;
   border: 1px solid $light-active;
   margin: 5px;
   width: 40px;
@@ -344,33 +340,23 @@ $very-light-grey: #ededed;
 .highlight-button-save {
   @extend .button;
   @extend .primary;
-  background-image: url("MOZ_EXTENSION/icons/cloud.svg");
-  html[dir="ltr"] & {
-    background-position: 8px center;
-  }
-  html[dir="rtl"] & {
-    background-position: right 10px center;
-  }
-  background-repeat: no-repeat;
-  background-size: 20px 18px;
   font-size: 18px;
   margin: 5px;
   min-width: 80px;
-  html[dir="ltr"] & {
-    padding-left: 34px;
-  }
-  html[dir="rtl"] & {
-    padding-right: 40px;
+
+  img {
+    html[dir="ltr"] & {
+      padding-right: 8px;
+    }
+    html[dir="rtl"] & {
+      padding-left: 8px;
+    }
   }
 }
 
 .highlight-button-download {
   @extend .button;
   @extend .secondary;
-  background-image: url("MOZ_EXTENSION/icons/download.svg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 18px 18px;
   border: 1px solid $light-active;
   // Overrides display: flex from .button, which causes hover problems
   display: block;
@@ -378,19 +364,26 @@ $very-light-grey: #ededed;
   width: 40px;
 
   &.download-only-button {
+    font-size: 18px;
     width: auto;
-    background-position: 7px;
-    padding-left: 32px;
+
+    img {
+      height: 16px;
+      width: 16px;
+
+      html[dir="ltr"] & {
+        padding-right: 8px;
+      }
+      html[dir="rtl"] & {
+        padding-left: 8px;
+      }
+    }
   }
 }
 
 .highlight-button-copy {
   @extend .button;
   @extend .secondary;
-  background-image: url("MOZ_EXTENSION/icons/copy.svg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 18px 18px;
   border: 1px solid $light-active;
   // Overrides display: flex from .button, which causes hover problems
   display: block;
@@ -429,7 +422,7 @@ $very-light-grey: #ededed;
   animation: bounce-in 300ms forwards ease-in-out;
 }
 
-.preview-image img {
+.preview-image > img {
   display: block;
   width: auto;
   height: auto;
@@ -442,14 +435,18 @@ $very-light-grey: #ededed;
 .preview-button-save {
   @extend .button;
   @extend .primary;
-  background-image: url("MOZ_EXTENSION/icons/cloud.svg");
-  background-position: 8px center;
-  background-repeat: no-repeat;
-  background-size: 20px 18px;
   font-size: 18px;
   margin: 5px;
   min-width: 80px;
-  padding-left: 34px;
+
+  img {
+    html[dir="ltr"] & {
+      padding-right: 8px;
+    }
+    html[dir="rtl"] & {
+      padding-left: 8px;
+    }
+  }
 }
 
 // FIXME: some of the styles in .fixed-container were copied from
