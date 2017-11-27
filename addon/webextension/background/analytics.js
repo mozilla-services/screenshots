@@ -113,7 +113,7 @@ this.analytics = (function() {
     return !!telemetryPref;
   };
 
-  let timingData = {};
+  let timingData = new Map();
 
   // Configuration for filtering the sendEvent stream on start/end events.
   // When start or end events occur, the time is recorded.
@@ -197,7 +197,7 @@ this.analytics = (function() {
   }
 
   function anyMatches(filters, action, label) {
-    return !!filters.find(filter => match(filter, action, label));
+    return filters.some(filter => match(filter, action, label));
   }
 
   function measureTiming(action, label) {
@@ -209,7 +209,7 @@ this.analytics = (function() {
       } else if (timingData[r.name] && match(r.end, action, label)) {
         let endTime = Date.now();
         let elapsed = endTime - timingData[r.name];
-        catcher.watchPromise(sendTiming("perf-response-time", r.name, elapsed));
+        catcher.watchPromise(sendTiming("perf-response-time", r.name, elapsed), true);
         delete timingData[r.name];
       }
     });
