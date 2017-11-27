@@ -77,12 +77,15 @@ exports.Editor = class Editor extends React.Component {
     this.context = this.editor.getContext('2d');
     this.highlightContext = this.highlighter.getContext('2d');
     let imageContext = this.imageCanvas.getContext('2d');
-    this.imageContext = imageContext;
     let img = new Image();
-    img.src = this.props.clip.image.url;
+    img.crossOrigin = 'Anonymous';
     let width = this.props.clip.image.dimensions.x;
     let height = this.props.clip.image.dimensions.y;
-    this.imageContext.drawImage(img, 0, 0, width, height);
+    img.onload = () => {
+      imageContext.drawImage(img, 0, 0, width, height);
+    }
+    this.imageContext = imageContext;
+    img.src = this.props.clip.image.url;
     this.edit();
   }
 
