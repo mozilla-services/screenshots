@@ -200,6 +200,10 @@ shotIndexPageNoSearchResults = Haulla ei löytynyt yhtään kaappausta.
 shotIndexPageClearSearchButton
     .title = Tyhjennä haku
 shotIndexPageConfirmShotDelete = Poistetaanko tämä kaappaus?
+shotIndexPagePreviousPage
+    .title = Edellinen sivu
+shotIndexPageNextPage
+    .title = Seuraava sivu
 
 
 // all metrics strings are optional for translation
