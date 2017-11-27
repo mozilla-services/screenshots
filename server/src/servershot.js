@@ -756,19 +756,18 @@ ClipRewrites = class ClipRewrites {
       }
     }
     this.toInsertThumbnail = null;
-    this.oldFullScreenThumbnail = this.shot.fullScreenThumbnail;
+    this.oldThumbnail = this.shot.thumbnail;
     if (!validUrl.isWebUri(this.shot.url)) {
       this.shot.fullUrl = "";
       this.shot.origin = "";
     }
-    let url = this.shot.fullScreenThumbnail;
-    let match = (/^data:([^;]*);base64,/).exec(url);
-    if (match) {
-      let imageData = url.substr(match[0].length);
+    const pngDataUrlMediaType = "data:image/png;base64,"
+    if (this.shot.thumbnail && this.shot.thumbnail.startsWith(pngDataUrlMediaType)) {
+      let imageData = this.shot.thumbnail.substr(pngDataUrlMediaType.length);
       imageData = new Buffer(imageData, 'base64');
-      let imageId = uuid.v4();
+      let imageId = `${uuid.v4()}.png`;
       this.toInsertThumbnail = {
-        contentType: match[1],
+        contentType: "image/png",
         binary: imageData,
         uuid: imageId,
         url: linker.imageLinkWithHost(imageId)
@@ -783,7 +782,7 @@ ClipRewrites = class ClipRewrites {
       clip.image.url = url;
     }
     if (this.toInsertThumbnail !== null) {
-      this.shot.fullScreenThumbnail = this.toInsertThumbnail.url;
+      this.shot.thumbnail = this.toInsertThumbnail.url;
     }
   }
 
@@ -793,7 +792,7 @@ ClipRewrites = class ClipRewrites {
       let clip = this.shot.getClip(clipId);
       clip.setUrlFromBinary(data.binary);
     }
-    this.shot.fullScreenThumbnail = this.oldFullScreenThumbnail;
+    this.shot.thumbnail = this.oldThumbnail;
   }
 
   clear() {
@@ -876,7 +875,7 @@ ClipRewrites = class ClipRewrites {
         // Use the thumbnail uuid as the clipid. This allows figuring out which
         // images are thumbnails, too.
         [this.toInsertThumbnail.uuid, this.shot.id, this.toInsertThumbnail.uuid,
-        this.toInsertThumbnail.url, this.toInsertThumbnail.contentType, this.toInsertThumbnail.binary.data.length]);
+        this.toInsertThumbnail.url, this.toInsertThumbnail.contentType, this.toInsertThumbnail.binary.length]);
     }).then(() => {
       this.committed = true;
     });

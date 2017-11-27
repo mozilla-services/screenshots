@@ -3,6 +3,7 @@
 const sendEvent = require("../../browser-send-event.js");
 const page = require("./page").page;
 const { AbstractShot } = require("../../../shared/shot");
+const { createThumbnailUrl } = require("../../../shared/thumbnailGenerator");
 const { shotGaFieldForValue } = require("../../ab-tests.js");
 
 // This represents the model we are rendering:
@@ -119,33 +120,45 @@ exports.deleteShot = function(shot) {
 };
 
 exports.saveEdit = function(shot, shotUrl) {
-  var url = model.backend + "/api/save-edit";
-  var body = JSON.stringify({
+  let url = model.backend + "/api/save-edit";
+  let payload = {
     shotId: shot.id,
     _csrf: model.csrfToken,
     url: shotUrl
-  });
-  var req = new Request(url, {
-    method: 'POST',
-    credentials: 'include',
-    headers: new Headers({
-      'content-type': 'application/json'
-    }),
-    body
-  });
-  return fetch(req).then((resp) => {
-    if (!resp.ok) {
-      var errorMessage = "Error saving edited shot";
+  };
+
+  let postWith = body => {
+    let req = new Request(url, {
+      method: 'POST',
+      credentials: 'include',
+      headers: new Headers({
+        'content-type': 'application/json'
+      }),
+      body
+    });
+    return fetch(req).then((resp) => {
+      if (!resp.ok) {
+        let errorMessage = "Error saving edited shot";
+        window.alert(errorMessage);
+        window.Raven.captureException(new Error(`Error calling /api/save-edit: ${req.status} ${req.statusText}`));
+      } else {
+        location.reload();
+      }
+    }).catch((error) => {
+      let errorMessage = "Connection error";
       window.alert(errorMessage);
-      window.Raven.captureException(new Error(`Error calling /api/save-edit: ${req.status} ${req.statusText}`));
-    } else {
-      location.reload();
-    }
-  }).catch((error) => {
-    var errorMessage = "Connection error";
-    window.alert(errorMessage);
-    window.Raven.captureException(error);
-    throw error;
+      window.Raven.captureException(error);
+      throw error;
+    });
+  }
+
+  shot.getClip(shot.clipNames()[0]).image.url = shotUrl;
+
+  createThumbnailUrl(shot).then(thumbnail => {
+    payload.thumbnail = thumbnail;
+    return postWith(JSON.stringify(payload));
+  }).catch(() => {
+    return postWith(JSON.stringify(payload));
   });
 }
 

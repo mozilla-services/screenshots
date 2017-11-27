@@ -282,12 +282,12 @@ class Card extends React.Component {
       // Some corrupted shot, we'll have to ignore it
       return null;
     }
-    if (clip && clip.image && clip.image.url) {
+    if (shot.thumbnail) {
+      imageUrl = shot.thumbnail;
+    } else if (clip && clip.image && clip.image.url) {
       imageUrl = clip.image.url;
     } else if (shot.images.length) {
       imageUrl = shot.images[0].url;
-    } else if (shot.fullScreenThumbnail) {
-      imageUrl = shot.fullScreenThumbnail;
     } else {
       imageUrl = defaultImageUrl;
     }

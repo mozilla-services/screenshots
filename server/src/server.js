@@ -623,66 +623,73 @@ app.post("/api/set-login-cookie", function(req, res) {
   });
 });
 
-app.put("/data/:id/:domain", upload.single('blob'), function(req, res) {
-  let slowResponse = config.testing.slowResponse;
-  let failSometimes = config.testing.failSometimes;
-  if (failSometimes && Math.floor(Math.random() * failSometimes)) {
-    console.log("Artificially making request fail"); // eslint-disable-line no-console
-    res.status(500);
-    res.end();
-    return;
-  }
-  let bodyObj = [];
-  if (req.body.shot && req.file) {
-    bodyObj = JSON.parse(req.body.shot);
-    let clipId = Object.getOwnPropertyNames(bodyObj.clips)[0];
-    let b64 = req.file.buffer.toString("base64");
-    let contentType = req.file.mimetype;
-    if (contentType != "image/png" && contentType != "image/jpeg") {
-      // Force PNG as a fallback
-      mozlog.warn("invalid-upload-content-type", {contentType});
-      contentType = "image/png";
-    }
-    b64 = `data:${contentType};base64,${b64}`;
-    bodyObj.clips[clipId].image.url = b64;
-  } else if (req.body) {
-    bodyObj = req.body;
-  }
-  if (typeof bodyObj != "object") {
-    throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
-  }
-  let shotId = `${req.params.id}/${req.params.domain}`;
-  if (!req.deviceId) {
-    mozlog.warn("put-without-auth", {msg: "Attempted to PUT without logging in", url: req.url});
-    sendRavenMessage(req, "Attempt PUT without authentication");
-    simpleResponse(res, "Not logged in", 401);
-    return;
-  }
-  let shot = new Shot(req.deviceId, req.backend, shotId, bodyObj);
-  let responseDelay = Promise.resolve()
-  if (slowResponse) {
-    responseDelay = new Promise((resolve) => {
-      setTimeout(resolve, slowResponse);
-    });
-  }
-  responseDelay.then(() => {
-    return shot.insert();
-  }).then((inserted) => {
-    if (!inserted) {
-      return shot.update();
-    }
-    return inserted;
-  }).then((commands) => {
-    if (!commands) {
-      mozlog.warn("invalid-put-update", {msg: "Attempt to PUT to existing shot by non-owner", ip: req.ip});
-      simpleResponse(res, 'No shot updated', 403);
+app.put("/data/:id/:domain",
+  upload.fields([{name: "blob", maxCount: 1}, {name: "thumbnail", maxCount: 1}]),
+  function(req, res) {
+    let slowResponse = config.testing.slowResponse;
+    let failSometimes = config.testing.failSometimes;
+    if (failSometimes && Math.floor(Math.random() * failSometimes)) {
+      console.log("Artificially making request fail"); // eslint-disable-line no-console
+      res.status(500);
+      res.end();
       return;
     }
-    commands = commands || [];
-    simpleResponse(res, JSON.stringify({updates: commands.filter((x) => !!x)}), 200);
-  }).catch((err) => {
-    errorResponse(res, "Error saving Object:", err);
-  });
+    let bodyObj = [];
+    if (req.body.shot && req.files) {
+      bodyObj = JSON.parse(req.body.shot);
+      let clipId = Object.getOwnPropertyNames(bodyObj.clips)[0];
+      let b64 = req.files.blob[0].buffer.toString("base64");
+      let contentType = req.files.blob[0].mimetype;
+      if (contentType != "image/png" && contentType != "image/jpeg") {
+        // Force PNG as a fallback
+        mozlog.warn("invalid-upload-content-type", {contentType});
+        contentType = "image/png";
+      }
+      b64 = `data:${contentType};base64,${b64}`;
+      bodyObj.clips[clipId].image.url = b64;
+
+      if (req.files.thumbnail) {
+        let encodedThumbnail = req.files.thumbnail[0].buffer.toString("base64");
+        bodyObj.thumbnail = `data:image/png;base64,${encodedThumbnail}`
+      }
+    } else if (req.body) {
+      bodyObj = req.body;
+    }
+    if (typeof bodyObj != "object") {
+      throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
+    }
+    let shotId = `${req.params.id}/${req.params.domain}`;
+    if (!req.deviceId) {
+      mozlog.warn("put-without-auth", {msg: "Attempted to PUT without logging in", url: req.url});
+      sendRavenMessage(req, "Attempt PUT without authentication");
+      simpleResponse(res, "Not logged in", 401);
+      return;
+    }
+    let shot = new Shot(req.deviceId, req.backend, shotId, bodyObj);
+    let responseDelay = Promise.resolve()
+    if (slowResponse) {
+      responseDelay = new Promise((resolve) => {
+        setTimeout(resolve, slowResponse);
+      });
+    }
+    responseDelay.then(() => {
+      return shot.insert();
+    }).then((inserted) => {
+      if (!inserted) {
+        return shot.update();
+      }
+      return inserted;
+    }).then((commands) => {
+      if (!commands) {
+        mozlog.warn("invalid-put-update", {msg: "Attempt to PUT to existing shot by non-owner", ip: req.ip});
+        simpleResponse(res, 'No shot updated', 403);
+        return;
+      }
+      commands = commands || [];
+      simpleResponse(res, JSON.stringify({updates: commands.filter((x) => !!x)}), 200);
+    }).catch((err) => {
+      errorResponse(res, "Error saving Object:", err);
+    });
 });
 
 app.get("/data/:id/:domain", function(req, res) {
@@ -782,10 +789,14 @@ app.post("/api/save-edit", function(req, res) {
   }
   let id = vars.shotId;
   let url = vars.url;
+  let thumbnail = vars.thumbnail || null;
   if (!isValidClipImageUrl(url)) {
     sendRavenMessage(req, "Attempt to edit shot to set invalid clip url.");
     simpleResponse(res, "Invalid shot url.", 400);
     return;
+  }
+  if (thumbnail && !isValidClipImageUrl(thumbnail)) {
+    thumbnail = null;
   }
   Shot.get(req.backend, id, req.deviceId, req.accountId).then((shot) => {
     if (!shot) {
@@ -795,6 +806,7 @@ app.post("/api/save-edit", function(req, res) {
     }
     let name = shot.clipNames()[0];
     shot.getClip(name).image.url = url;
+    shot.thumbnail = thumbnail;
     return shot.update();
   }).then((updated) => {
     simpleResponse(res, "Updated", 200);
