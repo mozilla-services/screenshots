@@ -26,7 +26,7 @@ this.analytics = (function() {
         } else {
           resolve();
         }
-      });
+      }, true);
       log.info(`sendTiming ${timingCategory}/${timingLabel}/${timingVar}: ${timingValue}`);
       req.send(JSON.stringify({
         deviceId: auth.getDeviceId(),
@@ -74,7 +74,7 @@ this.analytics = (function() {
         } else {
           resolve();
         }
-      });
+      }, true);
       options.applicationName = di.appName;
       options.applicationVersion = di.addonVersion;
       let abTests = auth.getAbTests();
