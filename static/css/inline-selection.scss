@@ -522,6 +522,21 @@ $very-light-grey: #ededed;
   user-select: none;
 }
 
+.cancel-shot {
+  background-color: transparent;
+  cursor:pointer;
+  outline:none;
+  border-radius: 3px;
+  border: 1px #9b9b9b solid;
+  color: #fff;
+  cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: 16px;
+  margin-top: 40px;
+  padding: 10px 25px;
+  pointer-events: all;
+}
+
 .myshots-all-buttons-container {
   @include flex-container(row-reverse, flex-start, stretch);
   background: #f5f5f5;

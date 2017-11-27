@@ -35,7 +35,8 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       if (el.classList &&
           (el.classList.contains("myshots-button") ||
            el.classList.contains("visible") ||
-           el.classList.contains("full-page"))) {
+           el.classList.contains("full-page") ||
+           el.classList.contains("cancel-shot"))) {
         return true;
       }
       el = el.parentNode;
@@ -302,13 +303,14 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
                        <div class="face"></div>
                      </div>
                      <div class="preview-instructions" data-l10n-id="screenshotInstructions"></div>
+                     <button class="cancel-shot">${browser.i18n.getMessage("cancelScreenshot")}</button>
                      <div class="myshots-all-buttons-container">
                        ${isDownloadOnly() ? '' : `
-                         <button class="myshots-button myshots-link" tabindex="1" data-l10n-id="myShotsLink"></button>
+                         <button class="myshots-button" tabindex="1" data-l10n-id="myShotsLink"></button>
                          <div class="spacer"></div>
                        `}
-                       <button class="myshots-button visible" tabindex="2" data-l10n-id="saveScreenshotVisibleArea"></button>
-                       <button class="myshots-button full-page" tabindex="3" data-l10n-id="saveScreenshotFullPage"></button>
+                       <button class="visible" tabindex="2" data-l10n-id="saveScreenshotVisibleArea"></button>
+                       <button class="full-page" tabindex="3" data-l10n-id="saveScreenshotFullPage"></button>
                      </div>
                    </div>
                  </div>
@@ -329,6 +331,8 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
               "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickVisible)));
             overlay.querySelector(".full-page").addEventListener(
               "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickFullPage)));
+            overlay.querySelector(".cancel-shot").addEventListener(
+              "click", watchFunction(assertIsTrusted(standardOverlayCallbacks.onClickCancel)));
             resolve();
           }), {once: true});
           document.body.appendChild(this.element);
