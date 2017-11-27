@@ -50,7 +50,7 @@ There is also documentation in [`docs/`](https://github.com/mozilla-services/scr
 
 ### Participation
 
-There is an IRC channel `#screenshots` on irc.mozilla.org (you can use [this link](https://kiwiirc.com/client/irc.mozilla.org/pageshot) for chat access via the web if you do not otherwise use IRC).  There are [IRC logs available](http://logs.glob.uno/?c=pageshot).
+There is an IRC channel `#screenshots` on irc.mozilla.org (you can use [this link](https://kiwiirc.com/nextclient/irc.mozilla.org/pageshot) for chat access via the web if you do not otherwise use IRC).  There are [IRC logs available](http://logs.glob.uno/?c=pageshot).
 
 Planning and ideation is happening in the [issue tracker](https://github.com/mozilla-services/screenshots/issues).  We have several [milestones](https://github.com/mozilla-services/screenshots/milestones):
 
