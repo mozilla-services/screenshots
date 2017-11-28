@@ -24,6 +24,7 @@ exports.Editor = class Editor extends React.Component {
           <div className="annotation-tools">
             <button className={`button transparent pen-button ${penState}`} id="pen" onClick={this.onClickPen.bind(this)} title="pen"></button>
             <button className={`button transparent highlight-button ${highlighterState}`} id="highlight" onClick={this.onClickHighlight.bind(this)} title="highlighter"></button>
+            <button className={`button transparent clear-button`} id="clear" onClick={this.onClickClear.bind(this)} title="clear"></button>
           </div>
         </div>
         <div className="shot-alt-actions annotation-alt-actions">
@@ -43,6 +44,13 @@ exports.Editor = class Editor extends React.Component {
 
   componentDidUpdate() {
     this.edit();
+  }
+
+  onClickClear() {
+    this.setState({tool: this.state.tool});
+    sendEvent("clear-select", "annotation-toolbar");
+    this.drawContext.clearRect(0, 0, this.editor.width, this.editor.height);
+    this.highlightContext.clearRect(0, 0, this.editor.width, this.editor.height);
   }
 
   onClickCancel() {
