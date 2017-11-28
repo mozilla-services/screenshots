@@ -426,25 +426,37 @@ app.post("/event", function(req, res) {
   // We allow clients to signal events with a deviceId even if they haven't logged in yet,
   // by putting deviceId into the request body:
   let deviceId = req.deviceId || bodyObj.deviceId;
+  let events;
+
+  if (bodyObj.events) {
+    events = bodyObj.events;
+  } else {
+    events = [bodyObj];
+  }
+
   hashUserId(deviceId).then((userUuid) => {
     let userAnalytics = ua(config.gaId, userUuid.toString(), {strictCidFormat: false});
     if (config.debugGoogleAnalytics) {
       userAnalytics = userAnalytics.debug();
     }
-    let params = Object.assign(
-      {},
-      bodyObj.options,
-      {
-        ec: bodyObj.event,
-        ea: bodyObj.action,
-        el: bodyObj.label,
-        ev: bodyObj.eventValue
+    events.forEach(event => {
+      let params = Object.assign(
+        {},
+        event.options,
+        {
+          ec: event.event,
+          ea: event.action,
+          el: event.label,
+          ev: event.eventValue,
+          qt: (event.queueTime || 0)
+        }
+      );
+      if (req.headers["user-agent"]) {
+        params.ua = req.headers["user-agent"];
       }
-    );
-    if (req.headers["user-agent"]) {
-      params.ua = req.headers["user-agent"];
-    }
-    userAnalytics.event(params).send();
+      userAnalytics.event(params);
+    });
+    userAnalytics.send();
     simpleResponse(res, "OK", 200);
   }).catch((e) => {
     errorResponse(res, "Error creating user UUID:", e);
@@ -456,18 +468,31 @@ app.post("/timing", function(req, res) {
   if (typeof bodyObj !== "object") {
     throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
   }
-  hashUserId(req.deviceId).then((userUuid) => {
+
+  let deviceId = req.deviceId || bodyObj.deviceId;
+  let timings;
+
+  if (bodyObj.timings) {
+    timings = bodyObj.timings;
+  } else {
+    timings = [bodyObj];
+  }
+
+  hashUserId(deviceId).then((userUuid) => {
     let userAnalytics = ua(config.gaId, userUuid.toString(), {strictCidFormat: false});
     if (config.debugGoogleAnalytics) {
       userAnalytics = userAnalytics.debug();
     }
-    let params = {
-      userTimingCategory: bodyObj.timingCategory,
-      userTimingVariableName: bodyObj.timingVar,
-      userTimingTime: bodyObj.timingValue,
-      userTimingLabel: bodyObj.timingLabel
-    };
-    userAnalytics.timing(params).send();
+    timings.forEach(timing => {
+      let params = {
+        userTimingCategory: timing.timingCategory,
+        userTimingVariableName: timing.timingVar,
+        userTimingTime: timing.timingValue,
+        userTimingLabel: timing.timingLabel
+      };
+      userAnalytics.timing(params);
+    });
+    userAnalytics.send();
     simpleResponse(res, "OK", 200);
   }).catch((e) => {
     errorResponse(res, "Error creating user UUID:", e);
