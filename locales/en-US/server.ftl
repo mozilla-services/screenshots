@@ -177,6 +177,8 @@ timeDiffFutureDays = { $number ->
        *[other] in { $number } days
     }
 
+errorThirdPartyCookiesEnabled = If you took this shot and cannot delete it, you may need to temporarily enable third party cookies from your browser’s preferences.
+
 
 [[ Shotindex page ]]
 
