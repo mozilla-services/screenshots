@@ -44,6 +44,8 @@ homePageGetStarted = ഉപയോഗിച്ചു് തൂടങ്ങൂ
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = ഫയർഫോക്സ് സ്കീൻഷോട്ടുകൾ എങ്ങനെ പ്രവര്‍ത്തിക്കുന്നു
 homePageGetStartedTitle = ഉപയോഗിച്ചു് തൂടങ്ങൂ
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = നിങ്ങളുടെ ടൂള്‍ബാറില്‍ സ്ക്രീന്‍ഷോട്ട് ഐക്കണ്‍ ഉണ്ട്. അത് തെരഞ്ഞെടുക്കുമ്പോള്‍ ബ്രൌസര്‍ വിന്റോയുടെ മുകളില്‍ സ്ക്രീന്‍ഷോട്ട് മെനു വരും.
 homePageSaveShare = സൂക്ഷിച്ച ശേഷം പങ്കുവെക്കൂ
 homePageLegalLink = നിയമപരം
 homePagePrivacyLink = സ്വകാര്യത
