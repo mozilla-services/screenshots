@@ -69,10 +69,7 @@ notFoundPageDescription = താള്‍ കണ്ടെത്തിയില�
 [[ Shot page ]]
 
 // This is the HTML title tag of the page
-shotPageTitle =
-    സ്ക്രീൻഷോട്ട്: { $originalTitle }
-    
-
+shotPageTitle = സ്ക്രീൻഷോട്ട്: { $originalTitle }
 shotPageAlertErrorDeletingShot = ഷോട്ട് മായ്കല്‍ നടന്നില്ല
 shotPageAlertErrorUpdatingTitle = തലക്കെട്ട് സൂക്ഷിക്കുന്നതില്‍ തകരാര്‍
 shotPageConfirmDelete = ഷോട്ട് എന്നേക്കുമായി ഒഴിവാക്കണം എന്ന് ഉറപ്പാണോ?
@@ -101,12 +98,71 @@ shotPageDownload = ഡൗണ്‍ലോഡ്
 shotPageUpsellFirefox = ഫയർഫോക്സ് ഇപ്പോൾ നേടൂ
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = ഈ ഷോട്ടിന്റെ യുആ‍ർഎൽ നിങ്ങളുടെ ഇമെയിലിൽ ഉൾക്കൊള്ളിക്കുക: { $url }
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = സമയം തെരഞ്ഞെടുക്കുക
+shotPageKeepIndefinitely = അനിശ്ചിതമായി
+shotPageKeepTenMinutes = 10 മിനുട്ട്
+shotPageKeepOneHour = ഒരു മണിക്കൂർ
+shotPageKeepOneDay = ഒരു ദിവസം
+shotPageKeepOneWeek = ഒരാഴ്ച
+shotPageKeepTwoWeeks = രണ്ട് ആഴ്ചകള്‍
+shotPageKeepOneMonth = ഒരു മാസം
+shotPageSaveExpiration = സംരക്ഷിക്കുക
+shotPageCancelExpiration = റദ്ദാക്കുക
+shotPageDoesNotExpire = കാലാവധി കഴിയുന്നില്ല
+timeDiffJustNow = ഇപ്പോള്‍
+timeDiffMinutesAgo = { $num ->
+        [one] 1 മിനിറ്റ് മുൻപ്
+       *[other] { $number } മിനിറ്റുകൾ മുൻപ്
+    }
+timeDiffHoursAgo = { $num ->
+        [one] 1 മണിക്കൂർ മുൻപ്
+       *[other] { $number } മണിക്കൂറുകൾ മുൻപ്
+    }
+timeDiffDaysAgo = { $num ->
+        [one] ഇന്നലെ
+       *[other] { $number } ദിവസങ്ങൾക്ക് മുൻപ്
+    }
+timeDiffFutureSeconds = നിമിഷങ്ങൾക്കകം
+timeDiffFutureMinutes = { $num ->
+        [one] 1 മിനിറ്റിനകം
+       *[other] { $number } മിനിറ്റുകൾക്കകം
+    }
+timeDiffFutureHours = { $num ->
+        [one] 1 മണിക്കൂറിനകം
+       *[other] { $number } മണിക്കൂറുകൾക്കകം
+    }
+timeDiffFutureDays = { $num ->
+        [one] നാളെ
+       *[other] { $number } ദിവസങ്ങൾക്കുള്ളിൽ
+    }
 
 
 [[ Shotindex page ]]
 
+shotIndexPageSearchPlaceholder
+    .placeholder = എന്റെ ഷോട്ടുകൾ തിരയുക
+shotIndexPageSearchButton
+    .title = തിരയുക
+shotIndexPagePreviousPage
+    .title = മുൻപത്തെ താൾ
+shotIndexPageNextPage
+    .title = അടുത്ത താൾ
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageShotsQueryCount = ഷോട്ടുകളുടെ എണ്ണം
+metricsPageShotsQueryDay = ദിവസം
+metricsPageUsersQueryCount = ഉപയോക്താക്കളുടെ എണ്ണം
+metricsPageUsersQueryDay = ദിവസം
+metricsPageUserShotsQueryTitle = ഓരോ ഉപയോക്താവിനുള്ള ഷോട്ടുകളുടെ എണ്ണം
+metricsPageUserShotsQueryCount = ഉപയോക്താക്കളുടെ എണ്ണം
+metricsPageRetentionQueryUsers = ഉപയോക്താക്കളുടെ എണ്ണം
+metricsPageTotalRetentionQueryUsers = ഉപയോക്താക്കളുടെ എണ്ണം
+metricsPageVersionQueryTitle = ആഡ്-ഓൺ പതിപ്പ്
+metricsPageVersionQueryUsers = പ്രവേശിക്കുന്ന ഉപയോക്താക്കളുടെ എണ്ണം
+metricsPageVersionQueryVersion = ആഡ്-ഓൺ പതിപ്പ്
+metricsPageVersionQueryLastSeen = ദിവസം
+metricsPageHeader = മെട്രിക്ക്
