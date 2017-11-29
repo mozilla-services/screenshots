@@ -50,6 +50,8 @@ homePageHowScreenshotsWorks = Miten Firefox Screenshots toimii
 homePageGetStartedTitle = Aloitetaan
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Huomaa uusi Screenshots-kuvake työkalupalkissa. Valitse se, niin Screenshots-valikko avautuu selainikkunan päälle.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Valitse Screenshots-kuvake osoitepalkissa olevasta Sivun toiminnot -valikosta, niin Screenshots-valikko avautuu selainikkunan päälle.
 homePageCaptureRegion = Kaappaa alue
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Valitse kaapattava alue napsauttamalla ja vetämällä. Tai pidä hiirtä sen päällä ja napsauta – Screenshots valitsee alueen puolestasi. PIdätkö näkemästäsi? Valitse Tallenna, niin voit katsella kuvakaappaustasi verkossa, tai alas osoittava nuoli, niin voit ladata sen tietokoneellesi.
