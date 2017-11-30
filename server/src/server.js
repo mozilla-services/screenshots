@@ -4,6 +4,7 @@ const mozlog = require("./logging").mozlog("server");
 const path = require('path');
 const { readFileSync, existsSync } = require('fs');
 const Cookies = require("cookies");
+const { URL } = require('url');
 
 let istanbulMiddleware = null;
 if (config.enableCoverage && process.env.NODE_ENV === "dev") {
@@ -110,7 +111,9 @@ if (config.enableCoverage && istanbulMiddleware) {
     app.use('/coverage', istanbulMiddleware.createHandler());
 }
 
+const SITE_CDN = (config.siteCdn && (new URL(config.siteCdn)).host) || '';
 const CONTENT_NAME = config.contentOrigin || '';
+const CONTENT_CDN = (config.contentCdn && (new URL(config.contentCdn)).host) || '';
 const FXA_SERVER = config.fxa.profileServer && require("url").parse(config.fxa.profileServer).host;
 
 function addHSTS(req, res) {
@@ -147,7 +150,7 @@ app.use((req, res, next) => {
       req.cspNonce = uuid;
       res.header(
         "Content-Security-Policy",
-        `default-src 'self'; img-src 'self' ${FXA_SERVER} www.google-analytics.com ${CONTENT_NAME} data:; script-src 'self' www.google-analytics.com 'nonce-${uuid}'; style-src 'self' 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
+        `default-src 'self'; img-src 'self' ${FXA_SERVER} www.google-analytics.com ${SITE_CDN} ${CONTENT_CDN} ${CONTENT_NAME} data:; script-src 'self' ${SITE_CDN} www.google-analytics.com 'nonce-${uuid}'; style-src 'self' ${SITE_CDN} 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' ${SITE_CDN} www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
       res.header("X-Frame-Options", "DENY");
       res.header("X-Content-Type-Options", "nosniff");
       addHSTS(req, res);
@@ -266,9 +269,10 @@ function decodeAuthHeader(header) {
 
 app.use(function(req, res, next) {
   req.staticLink = linker.staticLink.bind(null, {
-    cdn: req.config.cdn
+    cdn: req.config.siteCdn
   });
-  let base = `${req.protocol}://${config.contentOrigin}`;
+  // The contentCdn config does not have a default value but contentOrigin does.
+  let base = config.contentCdn || `${req.protocol}://${config.contentOrigin}`;
   linker.imageLinkWithHost = linker.imageLink.bind(null, base);
   next();
 });
