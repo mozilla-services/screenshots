@@ -7,6 +7,15 @@ below shows what these test objects look like.
 */
 // Note: these get turned into Test objects:
 let allTests = {
+  shotShareIcon: {
+    description: "Use a different share icon",
+    gaField: "cd7",
+    version: 1,
+    options: [
+      {name: "newicon", probability: 0.1}
+    ],
+    exclude: ["*"]
+  }
 };
 
 /* Example of how this could be set: */
