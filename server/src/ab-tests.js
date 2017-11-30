@@ -119,12 +119,13 @@ class Test {
   }
 
   shouldExclude(tests) {
-    for (let testName of this.exclude) {
+    const excludes = this.exclude || [];
+    for (let testName of excludes) {
       if (tests[testName] && tests[testName].value !== "exclude") {
         return true;
       }
     }
-    if (this.exclude.includes("*")) {
+    if (excludes.includes("*")) {
       for (let testName in tests) {
         if (testName != this.name && tests[testName].value !== "exclude") {
           return true;
