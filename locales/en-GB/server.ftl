@@ -172,10 +172,32 @@ timeDiffFutureMinutes =
        *[other] in { $number } minutes
     }
 
+timeDiffFutureHours =
+    timeDiffFutureHours = { $number ->
+        [one] in 1 hour
+       *[other] in { $number } hours
+    }
+
+timeDiffFutureDays = { $num ->
+        [one] tomorrow
+       *[other] in { $number } days
+    }
 
 
 [[ Shotindex page ]]
 
+// { $status } is a placeholder for an HTTP status code, like '500'.
+// { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Error deleting shot: { $status } { $statusText }
+// { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = My Shots: search for { $searchTerm }
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Error rendering page: { $error }
+shotIndexPageSearchPlaceholder
+    .placeholder = Search my shots
+shotIndexPageSearchButton
+    .title = Search
 
 
 // all metrics strings are optional for translation
