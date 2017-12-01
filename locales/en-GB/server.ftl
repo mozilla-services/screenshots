@@ -1,0 +1,183 @@
+// Localization for Server-side strings of Firefox Screenshots
+// 
+// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+
+
+
+// Global phrases shared across pages, prefixed with 'g'
+[[ global ]]
+
+gMyShots = My Shots
+gHomeLink = Home
+gNoShots
+    .alt = No shots found
+gScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
+
+
+[[ Footer ]]
+
+// Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
+footerLinkTerms = Terms
+footerLinkPrivacy = Privacy Notice
+footerLinkFaqs = FAQs
+footerLinkDMCA = Report IP Infringement
+footerLinkDiscourse = Give Feedback
+footerLinkRemoveAllData = Remove All Data
+
+
+[[ Creating page ]]
+
+// Note: { $title } is a placeholder for the title of the web page
+// captured in the screenshot. The default, for pages without titles, is
+// creatingPageTitleDefault.
+creatingPageTitle = Creating { $title }
+creatingPageTitleDefault = page
+creatingPageWaitMessage = Saving your shot
+
+
+[[ Home page ]]
+
+homePageDescription
+    .content = Intuitive screenshots baked right into the browser. Capture, save and share screenshots as you browse the Web using Firefox.
+homePageButtonMyShots = Go To My Shots
+homePageTeaser = Coming Soon…
+homePageDownloadFirefoxTitle = Firefox
+homePageDownloadFirefoxSubTitle = Free Download
+homePageGetStarted = Get Started
+// Note: do not translate 'Firefox Screenshots' when translating this string
+homePageHowScreenshotsWorks = How Firefox Screenshots Works
+homePageGetStartedTitle = Get Started
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Find the new Screenshots icon on your toolbar. Select it, and the Screenshots menu will appear on top of your browser window.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Select the Screenshots icon from the page actions menu in the address bar, and the Screenshots menu will appear on top of your browser window.
+homePageCaptureRegion = Capture a Region
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Click and drag to select the area you want to capture. Or just hover and click — Screenshots will select the area for you. Like what you see? Select Save to access your screenshot online or the down arrow button to download it to your computer.
+homePageCapturePage = Capture a Page
+homePageCapturePageDescription = Use the buttons in the upper right to capture full pages. The Save Visible button will capture the area you can view without scrolling, and Save Full Page will capture everything on the page.
+homePageSaveShare = Save and Share
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = When you take a shot, Firefox posts your screenshot to your online Screenshots library and copies the link to your clipboard. We automatically store your screenshot for two weeks, but you can delete shots at any time or change the expiration date to keep them in your library for longer.
+homePageLegalLink = Legal
+homePagePrivacyLink = Privacy
+homePageTermsLink = Terms
+homePageCookiesLink = Cookies
+
+
+[[ Leave Screenshots page ]]
+
+leavePageRemoveAllData = Remove All Data
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = You must have Firefox Screenshots installed to delete your account
+leavePageErrorGeneric = An error occurred
+// Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = This will permanently erase all of your Firefox Screenshots data.
+leavePageButtonProceed = Proceed
+leavePageButtonCancel = Cancel
+leavePageDeleted = All of your screenshots have been erased!
+
+
+[[ Not Found page ]]
+
+notFoundPageTitle = Page Not Found
+notFoundPageIntro = Oops.
+notFoundPageDescription = Page not found.
+
+
+[[ Shot page ]]
+
+// This is the HTML title tag of the page
+shotPageTitle = Screenshot: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = Error saving expiration
+shotPageAlertErrorDeletingShot = Error deleting shot
+shotPageAlertErrorUpdatingTitle = Error saving title
+shotPageConfirmDelete = Are you sure you want to delete this shot permanently?
+shotPageShareButton
+    .title = Share
+shotPageCopy = Copy
+shotPageCopied = Copied
+shotPageShareFacebook
+    .title = Share on Facebook
+shotPageShareTwitter
+    .title = Share on Twitter
+shotPageSharePinterest
+    .title = Share on Pinterest
+shotPageShareEmail
+    .title = Share link via email
+shotPageShareLink = Get a shareable link to this shot:
+shotPagePrivacyMessage = Anyone with the link can view this shot.
+shotPageCopyImageText
+    .label = Copy image text
+shotPageConfirmDeletion = Are you sure you want to delete this shot permanently?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = If you do nothing, this shot will be permanently deleted { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = restore until { $date }
+shotPageExpiredMessage = This shot has expired.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Here is the page it was originally created from:
+shotPageDeleteButton
+    .title = Delete this shot
+shotPageAbuseButton
+    .title = Report this shot for abuse, spam, or other problems
+shotPageDownloadShot
+    .title = Download
+shotPageDownload = Download
+shotPageScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
+shotPageUpsellFirefox = Get Firefox now
+shotPageDMCAMessage = This shot is no longer available due to a third party intellectual property claim.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Please email { $dmca } to request further information.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = If your Shots are subject to multiple claims, we may revoke your access to Firefox Screenshots.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Please include the URL of this shot in your email: { $url }
+shotPageKeepFor = How long should this shot be retained?
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Select time
+shotPageKeepIndefinitely = Indefinitely
+shotPageKeepTenMinutes = 10 Minutes
+shotPageKeepOneHour = 1 Hour
+shotPageKeepOneDay = 1 Day
+shotPageKeepOneWeek = 1 Week
+shotPageKeepTwoWeeks = 2 Weeks
+shotPageKeepOneMonth = 1 Month
+shotPageSaveExpiration = save
+shotPageCancelExpiration = cancel
+shotPageDoesNotExpire = does not expire
+// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = expires { $timediff }
+// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = expired { $timediff }
+timeDiffJustNow = just now
+timeDiffMinutesAgo = { $num ->
+        [one] 1 minute ago
+       *[other] { $number } minutes ago
+    }
+timeDiffHoursAgo = { $num ->
+        [one] 1 hour ago
+       *[other] { $number } hours ago
+    }
+timeDiffDaysAgo = { $num ->
+        [one] yesterday
+       *[other] { $number } days ago
+    }
+timeDiffFutureSeconds = in a few seconds
+timeDiffFutureMinutes =
+    timeDiffFutureMinutes = { $number ->
+        [one] in 1 minute
+       *[other] in { $number } minutes
+    }
+
+
+
+[[ Shotindex page ]]
+
+
+
+// all metrics strings are optional for translation
+[[ Metrics page ]]
+
