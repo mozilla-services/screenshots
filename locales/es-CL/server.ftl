@@ -23,7 +23,7 @@ footerLinkPrivacy = Aviso de privacidad
 footerLinkFaqs = Preguntas frecuentes
 footerLinkDMCA = Reportar infracción de PI
 footerLinkDiscourse = Enviar comentario
-footerLinkRemoveAllData = Remover todos los datos
+footerLinkRemoveAllData = Eliminar todos los datos
 
 
 [[ Creating page ]]
