@@ -160,6 +160,7 @@ timeDiffFutureSeconds = 数秒以内
 timeDiffFutureMinutes = { $number } 分以内
 timeDiffFutureHours = { $number } 時間以内
 timeDiffFutureDays = { $number } 日以内
+errorThirdPartyCookiesEnabled = このショットを撮って削除できない場合、ブラウザーの設定画面でサードパーティ Cookie を一時的に有効化する必要があるかもしれません。
 
 
 [[ Shotindex page ]]
