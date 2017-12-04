@@ -190,6 +190,7 @@ timeDiffFutureDays = { $num ->
         [few] za { $number } dny
        *[other] za { $number } dnjow
     }
+errorThirdPartyCookiesEnabled = Jolic sćo toś to foto wobrazowki gótował a njamóžośo jo wulašowaś, musyśo nachylu cookieje tśeśich póbitowarjow w nastajenjach swójogo wobglědowaka zmóžniś.
 
 
 [[ Shotindex page ]]
