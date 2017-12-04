@@ -20,6 +20,7 @@ gScreenshotsDescription = La via simpla per far maletgs dal visur: Far, memorisa
 footerLinkMozilla = Mozilla
 footerLinkTerms = Cundiziuns d'utilisaziun
 footerLinkPrivacy = Infurmaziuns davart la protecziun da datas
+footerLinkFaqs = Dumondas frequentas
 footerLinkDMCA = Rapportar ina violaziun da proprietad intellectuala
 footerLinkDiscourse = Dar in resun
 footerLinkRemoveAllData = Allontanar tut las datas
