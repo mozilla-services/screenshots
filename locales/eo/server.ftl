@@ -178,6 +178,7 @@ timeDiffFutureDays = { $num ->
         [one] morgaŭ
        *[other] post { $number } tagoj
     }
+errorThirdPartyCookiesEnabled = Se vi faris tiun ĉi ekrankopion kaj ne povas ĝin forigi, vi eble bezonos provizore aktivigi nerektajn kuketojn en la preferoj de via retumilo.
 
 
 [[ Shotindex page ]]
