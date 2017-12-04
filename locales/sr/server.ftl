@@ -184,6 +184,7 @@ timeDiffFutureDays = { $num ->
         [few] за { $number } дана
        *[other] за { $number } дана
     }
+errorThirdPartyCookiesEnabled = Ако сте усликали овај снимак и не можете да га обришете, можда морате привремено да омогућите колачиће трећих лица у вашим поставкама.
 
 
 [[ Shotindex page ]]
