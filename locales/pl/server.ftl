@@ -184,6 +184,7 @@ timeDiffFutureDays = { $num ->
         [few] za { $number } dni
        *[other] za { $number } dni
     }
+errorThirdPartyCookiesEnabled = Jeśli to Twój zrzut i nie możesz go usunąć, to musisz tymczasowo włączyć ciasteczka witryn zewnętrznych podmiotów w preferencjach przeglądarki.
 
 
 [[ Shotindex page ]]
