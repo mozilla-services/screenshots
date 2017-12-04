@@ -196,12 +196,30 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     }));
   };
 
+  let copyInProgress = null;
   exports.copyShot = function(selectedPos) {
+    // This is pretty slow. We'll ignore additional user triggered copy events
+    // while it is in progress.
+    if (copyInProgress) {
+      return;
+    }
+    // A max of five seconds in case some error occurs.
+    copyInProgress = setTimeout(() => {
+      copyInProgress = null;
+    }, 5000);
+
+    let unsetCopyInProgress = () => {
+      if (copyInProgress) {
+        clearTimeout(copyInProgress);
+        copyInProgress = null;
+      }
+    }
     let dataUrl = screenshotPage(selectedPos);
     let blob = blobConverters.dataUrlToBlob(dataUrl);
     catcher.watchPromise(callBackground("copyShotToClipboard", blob).then(() => {
       uicontrol.deactivate();
-    }));
+      unsetCopyInProgress();
+    }, unsetCopyInProgress));
   };
 
   exports.sendEvent = function(...args) {
