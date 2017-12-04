@@ -380,10 +380,10 @@ body {
 .main-container {
   z-index: 9990;
   position: absolute;
-  top: $grid-unit * 2;
+  top: $grid-unit * 5; // match editor-header's height
   overflow: auto;
   left: 0;
-  height: 100%;
+  height: calc(100% - #{$grid-unit * 5}); // subtract the `top` so there's no vertical scrollbar
   width: 100%;
   text-align: center;
 
@@ -414,7 +414,7 @@ body {
 
 .centered {
   position: absolute;
-  top: $grid-unit * 4;
+  top: $grid-unit;
   left: 0;
   right: 0;
   margin: auto;
