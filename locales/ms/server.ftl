@@ -172,6 +172,7 @@ timeDiffFutureHours = { $num ->
 timeDiffFutureDays = { $num ->
        *[other] esok
     }
+errorThirdPartyCookiesEnabled = Jika anda ambil syot ini dan tidak boleh dibuang, anda mungkin perlu dayakan sementara kuki pihak ketiga dalam keutamaan pelayar anda.
 
 
 [[ Shotindex page ]]
