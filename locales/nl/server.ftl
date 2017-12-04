@@ -178,6 +178,7 @@ timeDiffFutureDays = { $num ->
         [one] morgen
        *[other] over { $number } dagen
     }
+errorThirdPartyCookiesEnabled = Als u deze afbeelding hebt gemaakt en niet kunt verwijderen, dient u wellicht tijdelijk cookies van derden in te schakelen vanuit de voorkeuren van uw browser.
 
 
 [[ Shotindex page ]]
