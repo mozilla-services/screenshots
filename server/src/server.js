@@ -648,6 +648,15 @@ app.post("/api/set-login-cookie", function(req, res) {
   });
 });
 
+/** This endpoint is used by the site to confirm if the cookie was set */
+app.get("/api/check-login-cookie", function(req, res) {
+  if (req.deviceId) {
+    simpleResponse(res, "Login OK", 200);
+  } else {
+    simpleResponse(res, "No credentials available", 401);
+  }
+});
+
 app.put("/data/:id/:domain",
   upload.fields([{name: "blob", maxCount: 1}, {name: "thumbnail", maxCount: 1}]),
   function(req, res) {
