@@ -170,6 +170,7 @@ timeDiffFutureHours = { $num ->
 timeDiffFutureDays = { $num ->
        *[other] ხვალ
     }
+errorThirdPartyCookiesEnabled = თუ გადაიღეთ სურათი, მაგრამ ვერ ახერხებთ მის წაშლას, სავარაუდოდ, დაგჭირდებათ მესამე მხარის ფუნთუშების დროებით დაშვება, ბრაუზერის პარამეტრებიდან.
 
 
 [[ Shotindex page ]]
