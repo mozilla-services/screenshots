@@ -160,6 +160,7 @@ timeDiffFutureSeconds = dalam beberapa detik
 timeDiffFutureMinutes = dalam 1 menit
 timeDiffFutureHours = dalam 1 jam
 timeDiffFutureDays = besok
+errorThirdPartyCookiesEnabled = Jika Anda mengambil tangkapan ini dan tidak bisa menghapusnya, Anda mungkin perlu mengaktifkan kuki pihak ketiga untuk sementara dari pengaturan peramban Anda.
 
 
 [[ Shotindex page ]]
