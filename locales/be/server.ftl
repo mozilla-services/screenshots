@@ -184,6 +184,7 @@ timeDiffFutureDays = { $num ->
         [few] за { $number } дні
        *[other] за { $number } дзён
     }
+errorThirdPartyCookiesEnabled = Калі вы зрабілі гэты здымак і не можаце яго выдаліць, вам можа спатрэбіцца часова ўключыць прыём кукі з пабочных сайтаў у наладах вашага браўзера.
 
 
 [[ Shotindex page ]]
