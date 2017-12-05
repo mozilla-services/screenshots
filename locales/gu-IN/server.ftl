@@ -178,6 +178,7 @@ timeDiffFutureDays = { $num ->
         [one] કાલે
        *[other] { $number } દિવસમાં
     }
+errorThirdPartyCookiesEnabled = જો તમે આ શોટ લીધો છે અને તેને કાઢી શકતા નથી, તો તમારે અસ્થાયી રૂપે તમારા બ્રાઉઝરની પસંદગીઓમાંથી તૃતીય પક્ષ કૂકીઝને સક્ષમ કરવાની જરૂર પડી શકે છે.
 
 
 [[ Shotindex page ]]
