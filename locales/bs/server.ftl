@@ -183,6 +183,7 @@ timeDiffFutureDays = { $num ->
         [few] za { $number } dana
        *[other] za { $number } dana
     }
+errorThirdPartyCookiesEnabled = Ako ste napravili snimak ekrana i ne možete ga izbrisati, možda trebate privremeno omogućiti kolačiće trećih strana u postavkama browsera.
 
 
 [[ Shotindex page ]]
