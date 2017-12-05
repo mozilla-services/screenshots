@@ -184,6 +184,7 @@ timeDiffFutureDays = { $num ->
         [few] za { $number } dny
        *[other] za { $number } dní
     }
+errorThirdPartyCookiesEnabled = Pokud jste pořídili tento snímek a nyní ho nemůžete smazat, dočasně v předvolbách svého prohlížeče povolte používání cookies třetích stran.
 
 
 [[ Shotindex page ]]
