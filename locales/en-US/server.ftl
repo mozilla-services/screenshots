@@ -179,6 +179,17 @@ timeDiffFutureDays = { $number ->
 
 errorThirdPartyCookiesEnabled = If you took this shot and cannot delete it, you may need to temporarily enable third party cookies from your browser’s preferences.
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pen
+annotationHighlighterButton
+    .title = Highlighter
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Clear
+annotationSaveButton = Save
+annotationCancelButton = Cancel
 
 [[ Shotindex page ]]
 
