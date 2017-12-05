@@ -160,6 +160,7 @@ timeDiffFutureSeconds = 幾秒內
 timeDiffFutureMinutes = { $number } 分鐘內
 timeDiffFutureHours = { $number } 小時內
 timeDiffFutureDays = { $number } 天內
+errorThirdPartyCookiesEnabled = 若您拍了這張圖卻無法山圖，可能需要到瀏覽器的偏好設定中暫時允許第三方 Cookie。
 
 
 [[ Shotindex page ]]
