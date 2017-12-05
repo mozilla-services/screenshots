@@ -178,6 +178,7 @@ timeDiffFutureDays = { $num ->
         [one] huomenna
        *[other] { $number } päivän kuluttua
     }
+errorThirdPartyCookiesEnabled = Jos otit tämän kaappauksen etkä pysty poistamaan sitä, voit joutua sallimaan kolmannen osapuolen evästeet väliaikaisesti selaimen asetuksista.
 
 
 [[ Shotindex page ]]
