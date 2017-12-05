@@ -178,6 +178,7 @@ timeDiffFutureDays = { $num ->
         [one] утре
        *[other] след { $number } дни
     }
+errorThirdPartyCookiesEnabled = Ако сте направили тази снимка и не можете да я изтриете може да пробвате временно да включите бисквитките от трети страни в настройките на четеца.
 
 
 [[ Shotindex page ]]
