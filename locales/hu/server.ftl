@@ -178,6 +178,7 @@ timeDiffFutureDays = { $num ->
         [one] holnap
        *[other] { $number } nap múlva
     }
+errorThirdPartyCookiesEnabled = Ha Ön készítette ezt a képet, és nem tudja törölni, akkor lehet hogy ideiglenesen engedélyeznie kell a harmadik féltől származó sütiket a böngésző beállításaiban.
 
 
 [[ Shotindex page ]]
