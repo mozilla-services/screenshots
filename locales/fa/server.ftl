@@ -172,6 +172,7 @@ timeDiffFutureHours = { $num ->
 timeDiffFutureDays = { $num ->
        *[other] فردا
     }
+errorThirdPartyCookiesEnabled = اگر شما این عکس را گرفته‌اید و نمی‌تواند آن را حذف کنید، ممکن است لازم باشد به طور موقت کوکی‌های شخص ثالث را از تنظیمات مرورگر خود فعال کنید.
 
 
 [[ Shotindex page ]]
