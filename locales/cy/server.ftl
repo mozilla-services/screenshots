@@ -189,6 +189,7 @@ timeDiffFutureDays = { $num ->
         [few] ymhen { $number } diwrnod
        *[other] ymhen { $number } diwrnod
     }
+errorThirdPartyCookiesEnabled = Os wnaethoch chi gymryd y llun hwn, ac yn methu ei dileu, efallai y bydd angen i chi alluogi, dros dro, cwcis trydydd parti o fewn dewisiadau eich porwr.
 
 
 [[ Shotindex page ]]
