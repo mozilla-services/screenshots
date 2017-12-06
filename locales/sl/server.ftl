@@ -190,6 +190,7 @@ timeDiffFutureDays = { $num ->
         [few] čez { $number } dni
        *[other] čez { $number } dni
     }
+errorThirdPartyCookiesEnabled = Če ste ta posnetek zaslona zajeli vi in ga ne morete izbrisati, morate morda v nastavitvah brskalnika začasno omogočiti piškotke tretjih strani.
 
 
 [[ Shotindex page ]]
