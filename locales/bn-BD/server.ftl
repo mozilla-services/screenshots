@@ -178,6 +178,7 @@ timeDiffFutureDays = { $num ->
         [one] আগামীকাল
        *[other] { $number } দিনের মধ্যে
     }
+errorThirdPartyCookiesEnabled = আপনি যদি শট নেন, কিন্তু মুছে ফেলতে না পারেন, তাহলে আপনার ব্রাউজারের অপশন থেকে তৃতীয় পক্ষের কুকিজ অস্থায়ীভাবে সক্রিয় করতে হতে পারে।
 
 
 [[ Shotindex page ]]
