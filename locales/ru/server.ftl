@@ -8,7 +8,7 @@
 [[ global ]]
 
 gMyShots = Мои снимки
-gHomeLink = Дом
+gHomeLink = Главная
 gNoShots
     .alt = снимков не найдено
 gScreenshotsDescription = Скриншоты стали простыми. Делайте, сохраняйте и делитесь скриншотами, не покидая Firefox.
