@@ -418,11 +418,23 @@ class Body extends React.Component {
             </Localized>
           </div>
         </div>
-        { clips }
-        { errorMessages }
+        <section className="clips">
+          { errorMessages }
+          { this.props.showSurveyLink ? this.renderSurveyLink() : null }
+          { clips }
+        </section>
         <Footer forUrl={ shot.viewUrl } {...this.props} />
       </div>
     </reactruntime.BodyTemplate>);
+  }
+
+  renderSurveyLink() {
+    return <div className="clips-message">
+      <div className="clip-message-content">Help us pick what features to build next by taking this <a href="https://qsurvey.mozilla.com/s3/ss-max-diff-q4-2017" target="_blank" rel="noopener noreferrer">short survey</a>.</div>
+      <div className="clip-message-dismiss-wrapper" onClick={controller.closeSurveyLink}>
+        <div className="clip-message-dismiss" />
+      </div>
+    </div>
   }
 
   renderFirefoxRequired() {
