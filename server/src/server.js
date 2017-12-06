@@ -57,6 +57,7 @@ const storage = multer.memoryStorage();
 const upload = multer({storage});
 const { isValidClipImageUrl } = require("../shared/shot");
 const urlParse = require("url").parse;
+const { updateAbTests } = require("./ab-tests");
 
 const COOKIE_EXPIRE_TIME = 30 * 24 * 60 * 60 * 1000; // 30 days
 
@@ -206,11 +207,30 @@ app.use(function(req, res, next) {
   } else {
     authInfo.deviceId = cookies.get("user", {signed: true});
     authInfo.accountId = cookies.get("accountid", {signed: true});
-    let abTests = cookies.get("abtests", {signed: true});
-    if (abTests) {
-      abTests = b64DecodeJson(abTests);
-      authInfo.abTests = abTests;
+    let encodedAbTests = cookies.get("abtests", {signed: true});
+    let abTests;
+    if (encodedAbTests) {
+      abTests = b64DecodeJson(encodedAbTests);
     }
+    if (!authInfo.deviceId) {
+      // Authenticated users get A/B tests when they register/login, but unauthenticated
+      // users have to get it lazily
+      let origAbTests = Object.assign({}, abTests);
+      abTests = updateAbTests(abTests || {}, null, true);
+      if (Object.keys(abTests).length) {
+        // Only send if there's some test
+        let newEncodedAbTests = b64EncodeJson(abTests);
+        if (encodedAbTests != newEncodedAbTests) {
+          cookies.set("abtests", newEncodedAbTests, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
+        }
+      } else if (Object.keys(origAbTests).length) {
+        // All the A/B tests were removed (probably because the tests have been
+        // deprecated), but the user has an old A/B test. Therefore we should
+        // delete the cookie
+        cookies.set("abtests", "", {signed: true, sameSite: 'lax', maxAge: 0});
+      }
+    }
+    authInfo.abTests = abTests;
   }
   if (authInfo.deviceId) {
     req.deviceId = authInfo.deviceId;

@@ -26,6 +26,8 @@ let allTests = {
     exclude: ["highlightButtonOnInstall", "myShotsDisplay"],
     // Or exclude them if they are in any test:
     // exclude: ["*"],
+    // If you want this A/B test to apply to unauthenticated users:
+    appliesToPublic: true,
     // These are the actual allowed A/B options (control is never specified):
     options: [
       // The name of the option, and its probabilty (e.g., 10% chance of getting
@@ -65,7 +67,7 @@ let deprecatedTests = ['highlightButtonOnInstall', 'styleMyShotsButton', 'autoOp
 class Test {
   constructor(options) {
     let requiredFields = ['name', 'gaField', 'description', 'version', 'options'];
-    let allowedFields = requiredFields.concat(['shotField', 'exclude']);
+    let allowedFields = requiredFields.concat(['shotField', 'exclude', 'appliesToPublic']);
     for (let required of requiredFields) {
       if (!(required in options)) {
         throw new Error(`Missing constructor field: ${required}`);
@@ -79,7 +81,10 @@ class Test {
     Object.assign(this, options);
   }
 
-  updateTest(tests, forceValue) {
+  updateTest(tests, forceValue, unauthed) {
+    if (unauthed && !this.appliesToPublic) {
+      return;
+    }
     if (forceValue) {
       tests[this.name] = this.testWithValue(forceValue);
     }
@@ -138,9 +143,9 @@ class Test {
 
 /** Update a user's abTests values.
     The optional forceTests looks like {aTests: "forceValue"} */
-exports.updateAbTests = function(tests, forceTests) {
+exports.updateAbTests = function(tests, forceTests, unauthed) {
   for (let testName in allTests) {
-    allTests[testName].updateTest(tests, forceTests && forceTests[testName]);
+    allTests[testName].updateTest(tests, forceTests && forceTests[testName], unauthed);
   }
   for (let testName of deprecatedTests) {
     if (testName in tests) {
