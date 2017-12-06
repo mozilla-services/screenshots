@@ -172,6 +172,7 @@ timeDiffFutureHours = { $num ->
 timeDiffFutureDays = { $num ->
        *[other] { $number } күннен кейін
     }
+errorThirdPartyCookiesEnabled = Егер сіз бұл скриншотты түсіріп, оны өшіре алмасаңыз, онда сізге браузерде уақытша үшінші жақты cookies файлдарына рұқсат беру керек болуы мүмкін.
 
 
 [[ Shotindex page ]]
