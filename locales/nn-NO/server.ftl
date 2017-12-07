@@ -178,6 +178,7 @@ timeDiffFutureDays = { $num ->
         [one] i morgon
        *[other] om { $number } dagar
     }
+errorThirdPartyCookiesEnabled = Viss du tok dette skjermbildet og ikkje kan slette det, må du kanskje kortvarig aktivere tredjeparts infokapslar frå innstillingane i nettlesaren.
 
 
 [[ Shotindex page ]]
