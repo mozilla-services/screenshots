@@ -193,6 +193,19 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Jolic sćo toś to foto wobrazowki gótował a njamóžośo jo wulašowaś, musyśo nachylu cookieje tśeśich póbitowarjow w nastajenjach swójogo wobglědowaka zmóžniś.
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pisak
+annotationHighlighterButton
+    .title = Tekstowy marker
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Slědk stajiś
+annotationSaveButton = Składowaś
+annotationCancelButton = Pśetergnuś
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
