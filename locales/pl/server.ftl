@@ -187,6 +187,19 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Jeśli to Twój zrzut i nie możesz go usunąć, to musisz tymczasowo włączyć ciasteczka witryn zewnętrznych podmiotów w preferencjach przeglądarki.
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Długopis
+annotationHighlighterButton
+    .title = Zakreślacz
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Wyczyść
+annotationSaveButton = Zapisz
+annotationCancelButton = Anuluj
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
