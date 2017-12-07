@@ -181,6 +181,19 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Wenn Sie dieses Bildschirmfoto aufgenommen haben, es aber nicht löschen können, müssen Sie möglicherweise kurzzeitig Cookies von Drittanbietern in den Einstellungen Ihres Browsers zulassen.
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Stift
+annotationHighlighterButton
+    .title = Textmarker
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Zurücksetzen
+annotationSaveButton = Speichern
+annotationCancelButton = Abbrechen
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
