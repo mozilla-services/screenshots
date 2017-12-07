@@ -181,6 +181,19 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = As jo dizze ôfbylding makke hawwe en net fuortsmite kinne, moatte jo miskien tydlik cookies fan tredden ynskeakelje fan de foarkarren fan jo browser út.
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pen
+annotationHighlighterButton
+    .title = Markearstift
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Wiskje
+annotationSaveButton = Bewarje
+annotationCancelButton = Annulearje
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
