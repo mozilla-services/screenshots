@@ -163,6 +163,19 @@ timeDiffFutureDays = { $number } 日以内
 errorThirdPartyCookiesEnabled = このショットを撮って削除できない場合、ブラウザーの設定画面でサードパーティ Cookie を一時的に有効化する必要があるかもしれません。
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = ペン
+annotationHighlighterButton
+    .title = ハイライト
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = クリア
+annotationSaveButton = 保存
+annotationCancelButton = キャンセル
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
