@@ -181,6 +181,19 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Viss du tok dette skjermbildet og ikkje kan slette det, må du kanskje kortvarig aktivere tredjeparts infokapslar frå innstillingane i nettlesaren.
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Penn
+annotationHighlighterButton
+    .title = Merkepenn
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Tøm
+annotationSaveButton = Lagre
+annotationCancelButton = Avbryt
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
