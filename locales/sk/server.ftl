@@ -186,6 +186,16 @@ timeDiffFutureDays = { $num ->
     }
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pero
+annotationHighlighterButton
+    .title = Zvýrazňovač
+annotationSaveButton = Uložiť
+annotationCancelButton = Zrušiť
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
