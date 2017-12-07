@@ -187,6 +187,19 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Pokud jste pořídili tento snímek a nyní ho nemůžete smazat, dočasně v předvolbách svého prohlížeče povolte používání cookies třetích stran.
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pero
+annotationHighlighterButton
+    .title = Zvýrazňovač
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Smazat úpravy
+annotationSaveButton = Uložit
+annotationCancelButton = Zrušit
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
