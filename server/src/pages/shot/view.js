@@ -386,8 +386,13 @@ class Body extends React.Component {
       favicon = <div style={{backgroundImage: `url("${shot.favicon}")`}} className="favicon" />;
     }
 
-    const shotPageDownload = <Localized id="shotPageDownload"><span className="download-text">Download</span></Localized>;
-
+    const noText = this.props.abTests && this.props.abTests.downloadText
+                           && this.props.abTests.downloadText.value === "no-download-text";
+    const downloadText = [<img src={ this.props.staticLink("/static/img/download-white.svg") } width="20" height="20"/>,
+                         '\u00a0',
+                          <Localized id="shotPageDownload"><span className="download-text">Download</span></Localized>];
+    const downloadNoText = [<img src={ this.props.staticLink("/static/img/download-white.svg") } width="20" height="20"/>,
+                    <span className="download-text"></span>];
     return (
       <reactruntime.BodyTemplate {...this.props}>
         { renderGetFirefox ? this.renderFirefoxRequired() : null }
@@ -412,8 +417,7 @@ class Body extends React.Component {
             <Localized id="shotPageDownloadShot">
               <a className="button primary" href={ this.props.downloadUrl } onClick={ this.onClickDownload.bind(this) }
                 title="Download the shot image">
-                <img src={ this.props.staticLink("/static/img/download-white.svg") } width="20" height="20"/>&nbsp;
-                {shotPageDownload}
+                { (noText) ? downloadNoText : downloadText }
               </a>
             </Localized>
           </div>
