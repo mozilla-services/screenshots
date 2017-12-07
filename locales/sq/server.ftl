@@ -161,12 +161,10 @@ timeDiffHoursAgo = { $num ->
         [one] 1 orë më parë
        *[other] { $number } orë më parë
     }
-timeDiffDaysAgo =
-    timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo = timeDiffDaysAgo = { $number ->
         [one] dje
        *[other] { $number } ditë më parë
     }
-
 timeDiffFutureSeconds = në pak sekonda
 timeDiffFutureMinutes = { $num ->
         [one] në 1 minutë
@@ -179,6 +177,7 @@ timeDiffFutureHours = { $num ->
 timeDiffFutureDays = { $num ->
        *[one] nesër
     }
+errorThirdPartyCookiesEnabled = Nëse bëtë këtë foto dhe s’e fshini dot, mund t’ju duhet të aktivizoni përkohësisht cookie prej palësh të treta, që nga parapëlqimet tuaja për shfletuesin.
 
 
 [[ Shotindex page ]]
