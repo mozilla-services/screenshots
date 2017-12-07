@@ -962,6 +962,7 @@ app.get("/images/:imageid", function(req, res) {
         }
       }
       setDailyCache(res);
+      res.header("Access-Control-Allow-Origin", `${req.protocol}://${config.siteOrigin}`);
       res.status(200);
       res.send(obj.data);
     }
