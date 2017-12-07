@@ -175,6 +175,19 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Jika anda ambil syot ini dan tidak boleh dibuang, anda mungkin perlu dayakan sementara kuki pihak ketiga dalam keutamaan pelayar anda.
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pen
+annotationHighlighterButton
+    .title = Penyerlah
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Buang
+annotationSaveButton = Simpan
+annotationCancelButton = Batal
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
