@@ -167,6 +167,19 @@ timeDiffFutureDays = { $number } 天
 errorThirdPartyCookiesEnabled = 如果您无法删除截图，可能需要暂时在浏览器的设置中启用第三方 Cookie。
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = 钢笔
+annotationHighlighterButton
+    .title = 荧光笔
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = 清除
+annotationSaveButton = 保存
+annotationCancelButton = 取消
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
