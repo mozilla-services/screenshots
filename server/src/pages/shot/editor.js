@@ -24,22 +24,22 @@ exports.Editor = class Editor extends React.Component {
         <div className="shot-main-actions annotation-actions">
           <div className="annotation-tools">
             <Localized id="annotationPenButton">
-            <button className={`button transparent pen-button ${penState}`} id="pen" onClick={this.onClickPen.bind(this)} title="pen"></button>
+              <button className={`button transparent pen-button ${penState}`} id="pen" onClick={this.onClickPen.bind(this)} title="pen"></button>
             </Localized>
             <Localized id="annotationHighlighterButton">
-            <button className={`button transparent highlight-button ${highlighterState}`} id="highlight" onClick={this.onClickHighlight.bind(this)} title="highlighter"></button>
+              <button className={`button transparent highlight-button ${highlighterState}`} id="highlight" onClick={this.onClickHighlight.bind(this)} title="highlighter"></button>
             </Localized>
             <Localized id="annotationClearButton">
-            <button className={`button transparent clear-button`} id="clear" onClick={this.onClickClear.bind(this)} title="clear"></button>
+              <button className={`button transparent clear-button`} id="clear" onClick={this.onClickClear.bind(this)} title="clear"></button>
             </Localized>
           </div>
         </div>
         <div className="shot-alt-actions annotation-alt-actions">
           <Localized id="annotationSaveButton">
-          <button className="button primary save" id="save" onClick={ this.onClickSave.bind(this) }>Save</button>
+            <button className="button primary save" id="save" onClick={ this.onClickSave.bind(this) }>Save</button>
           </Localized>
           <Localized id="annotationCancelButton">
-          <button className="button secondary cancel" id="cancel" onClick={this.onClickCancel.bind(this)}>Cancel</button>
+            <button className="button secondary cancel" id="cancel" onClick={this.onClickCancel.bind(this)}>Cancel</button>
           </Localized>
         </div>
       </div>
