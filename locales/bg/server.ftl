@@ -181,6 +181,19 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Ако сте направили тази снимка и не можете да я изтриете може да пробвате временно да включите бисквитките от трети страни в настройките на четеца.
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Писалка
+annotationHighlighterButton
+    .title = Маркер
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Изчистване
+annotationSaveButton = Запазване
+annotationCancelButton = Отказ
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
@@ -202,9 +215,11 @@ shotIndexPageNoSearchResultsIntro = Хмм
 shotIndexPageNoSearchResults = Не намираме снимки, които отговарят на търсенето ви.
 shotIndexPageClearSearchButton
     .title = Изчистване на търсенето
-shotIndexPageConfirmShotDelete = Сигурни ли сте, че желаете това изображение да бъде премахнато?
+shotIndexPageConfirmShotDelete = Сигурни ли сте, че желаете снимката да бъде премахната?
 shotIndexPagePreviousPage
     .title = Предишна страница
+shotIndexPageNextPage
+    .title = Следваща страница
 
 
 // all metrics strings are optional for translation
