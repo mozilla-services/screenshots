@@ -181,6 +181,19 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Om du tog den här bilden och inte kan ta bort den, kan du behöva aktivera tredjepartskakor tillfälligt från din webbläsares inställningar.
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Penna
+annotationHighlighterButton
+    .title = Markeringspenna
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Rensa
+annotationSaveButton = Spara
+annotationCancelButton = Avbryt
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
