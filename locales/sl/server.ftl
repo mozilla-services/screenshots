@@ -195,6 +195,13 @@ errorThirdPartyCookiesEnabled = Če ste ta posnetek zaslona zajeli vi in ga ne m
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = Pero
+annotationHighlighterButton
+    .title = Označevalnik
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Počisti
 annotationSaveButton = Shrani
 annotationCancelButton = Prekliči
 
