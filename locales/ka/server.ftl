@@ -173,6 +173,19 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = თუ გადაიღეთ სურათი, მაგრამ ვერ ახერხებთ მის წაშლას, სავარაუდოდ, დაგჭირდებათ მესამე მხარის ფუნთუშების დროებით დაშვება, ბრაუზერის პარამეტრებიდან.
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = კალამი
+annotationHighlighterButton
+    .title = მოსანიშნი
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = გასუფთავება
+annotationSaveButton = შენახვა
+annotationCancelButton = გაუქმება
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
