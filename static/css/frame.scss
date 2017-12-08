@@ -47,11 +47,19 @@
 }
 
 .shot-alt-actions {
+  #downloadIcon {
+    margin-right: 4px;
+  }
+
   @include respond-to("small") {
     padding-right: $grid-unit * 0.5;
 
     .download-text {
       display: none;
+    }
+
+    #downloadIcon {
+      margin-right: 0;
     }
   }
 

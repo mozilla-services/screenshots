@@ -387,12 +387,7 @@ class Body extends React.Component {
     }
 
     const noText = this.props.abTests && this.props.abTests.downloadText
-                           && this.props.abTests.downloadText.value === "no-download-text";
-    const downloadText = [<img src={ this.props.staticLink("/static/img/download-white.svg") } width="20" height="20"/>,
-                         '\u00a0',
-                          <Localized id="shotPageDownload"><span className="download-text">Download</span></Localized>];
-    const downloadNoText = [<img src={ this.props.staticLink("/static/img/download-white.svg") } width="20" height="20"/>,
-                    <span className="download-text"></span>];
+                   && this.props.abTests.downloadText.value === "no-download-text";
     return (
       <reactruntime.BodyTemplate {...this.props}>
         { renderGetFirefox ? this.renderFirefoxRequired() : null }
@@ -417,7 +412,9 @@ class Body extends React.Component {
             <Localized id="shotPageDownloadShot">
               <a className="button primary" href={ this.props.downloadUrl } onClick={ this.onClickDownload.bind(this) }
                 title="Download the shot image">
-                { (noText) ? downloadNoText : downloadText }
+                <img id="downloadIcon" src={ this.props.staticLink("/static/img/download-white.svg") } width="20" height="20"/>
+                { (noText) ? <span className="download-text"></span>
+                    : <Localized id="shotPageDownload"><span className="download-text">Download</span></Localized> }
               </a>
             </Localized>
           </div>
