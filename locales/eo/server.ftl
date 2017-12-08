@@ -181,6 +181,19 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Se vi faris tiun ĉi ekrankopion kaj ne povas ĝin forigi, vi eble bezonos provizore aktivigi nerektajn kuketojn en la preferoj de via retumilo.
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Skribilo
+annotationHighlighterButton
+    .title = Elstarigilo
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Viŝi
+annotationSaveButton = Konservi
+annotationCancelButton = Nuligi
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
