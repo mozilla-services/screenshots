@@ -187,6 +187,19 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Калі вы зрабілі гэты здымак і не можаце яго выдаліць, вам можа спатрэбіцца часова ўключыць прыём кукі з пабочных сайтаў у наладах вашага браўзера.
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Асадка
+annotationHighlighterButton
+    .title = Маркер
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Ачысціць
+annotationSaveButton = Захаваць
+annotationCancelButton = Скасаваць
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
