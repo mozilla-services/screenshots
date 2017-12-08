@@ -175,6 +175,19 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = اگر شما این عکس را گرفته‌اید و نمی‌تواند آن را حذف کنید، ممکن است لازم باشد به طور موقت کوکی‌های شخص ثالث را از تنظیمات مرورگر خود فعال کنید.
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = خودکار
+annotationHighlighterButton
+    .title = برجسته‌ساز
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = پاک کردن
+annotationSaveButton = ذخیره
+annotationCancelButton = انصراف
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
