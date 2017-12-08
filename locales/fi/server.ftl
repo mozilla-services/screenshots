@@ -181,6 +181,19 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Jos otit tämän kaappauksen etkä pysty poistamaan sitä, voit joutua sallimaan kolmannen osapuolen evästeet väliaikaisesti selaimen asetuksista.
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Kynä
+annotationHighlighterButton
+    .title = Korostus
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Pyyhi
+annotationSaveButton = Tallenna
+annotationCancelButton = Peruuta
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
