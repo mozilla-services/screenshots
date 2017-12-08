@@ -163,6 +163,19 @@ timeDiffFutureDays = { $number } 天內
 errorThirdPartyCookiesEnabled = 若您拍了這張圖卻無法山圖，可能需要到瀏覽器的偏好設定中暫時允許第三方 Cookie。
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = 筆
+annotationHighlighterButton
+    .title = 螢光筆
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = 清除
+annotationSaveButton = 儲存
+annotationCancelButton = 取消
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
