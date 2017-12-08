@@ -187,6 +187,19 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Ако сте усликали овај снимак и не можете да га обришете, можда морате привремено да омогућите колачиће трећих лица у вашим поставкама.
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Оловка
+annotationHighlighterButton
+    .title = Маркер
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Очисти
+annotationSaveButton = Сачувај
+annotationCancelButton = Откажи
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
