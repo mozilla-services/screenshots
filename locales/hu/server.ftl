@@ -181,6 +181,19 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Ha Ön készítette ezt a képet, és nem tudja törölni, akkor lehet hogy ideiglenesen engedélyeznie kell a harmadik féltől származó sütiket a böngésző beállításaiban.
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Toll
+annotationHighlighterButton
+    .title = Kiemelő
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Törlés
+annotationSaveButton = Mentés
+annotationCancelButton = Mégse
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
