@@ -15,6 +15,20 @@ let allTests = {
       {name: "newicon", probability: 0.1}
     ],
     exclude: ["*"]
+  },
+  firefoxAd: {
+    description: "Vary the styling of the 'Download Firefox' notification bar UI shown to non-Firefox users",
+    gaField: "cd8",
+    version: 1,
+    options: [
+      {name: "teal-test", probability: 0.1},
+      {name: "dk-grey-test", probability: 0.1},
+      {name: "blue-test", probability: 0.1},
+      {name: "yellow-test", probability: 0.1},
+      {name: "lt-grey-test", probability: 0.1}
+    ],
+    exclude: ["*"],
+    appliesToPublic: true
   }
 };
 

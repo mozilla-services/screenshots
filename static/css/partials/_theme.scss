@@ -27,6 +27,90 @@
   }
 }
 
+// Styles for notification bar A/B test (#3694)
+// TODO: use photon colors or existing site style colors instead?
+$test-teal: #00a0c0;
+$test-link-blue: #0297f8;
+$test-yellow: #ffe900; // photon design system: yellow 50
+$test-blue: #0099f6;
+$test-lt-grey: #efeff1;
+$test-dk-grey: #37383d;
+
+.teal-test {
+  background: $test-teal;
+  color: $white;
+
+  a {
+    color: $white;
+    font-weight: bold !important;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.dk-grey-test {
+  background: $test-dk-grey;
+  color: $white;
+
+  a {
+    color: $test-link-blue;
+    font-weight: bold !important;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.lt-grey-test {
+  background: $test-lt-grey;
+  color: $black;
+
+  a {
+    color: $test-link-blue;
+    font-weight: bold !important;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.blue-test {
+  background: $test-blue;
+  color: $white;
+
+  a {
+    color: $white;
+    font-weight: bold !important;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.yellow-test {
+  background: $test-yellow;
+  color: $black;
+
+  a {
+    color: $test-link-blue;
+    font-weight: bold !important;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
 .alt-color-scheme {
   background: $alt-dark;
   color: $light-default;

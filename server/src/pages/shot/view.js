@@ -429,8 +429,11 @@ class Body extends React.Component {
   }
 
   renderFirefoxRequired() {
-    return <div className="highlight-color-scheme alt-notification">
-      <div>
+    const testStyle = this.props.abTests.firefoxAd && this.props.abTests.firefoxAd.value || "";
+    return <div className={`${testStyle} highlight-color-scheme alt-notification`}>
+      <div style={{marginLeft: "auto", marginRight: "auto", fontSize: "14px"}}>
+        <img style={{verticalAlign: "middle"}} src={ this.props.staticLink("/static/img/firefox-logo.svg") } alt="Firefox logo" width="24" height="24"/>
+        &nbsp;&nbsp;
         <Localized id="gScreenshotsDescription">
           <span>Screenshots made simple. Take, save and share screenshots without leaving Firefox.</span>
         </Localized>
