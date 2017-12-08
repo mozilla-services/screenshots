@@ -187,6 +187,12 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Если вы сделали этот снимок и не можете удалить его, то вам нужно временно включить сторонние куки в настройках вашего браузера.
 
 
+[[ Annotations ]]
+
+annotationSaveButton = Сохранить
+annotationCancelButton = Отмена
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
