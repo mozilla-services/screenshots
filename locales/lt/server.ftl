@@ -184,6 +184,20 @@ timeDiffFutureDays = { $num ->
         [few] po { $number } dienų
        *[other] po { $number } dienų
     }
+errorThirdPartyCookiesEnabled = Jei padarėte šią nuotrauką ir negalite jos pašalinti, gali tekti laikinai įjungti trečiųjų šalių slapukus per naršyklės nuostatas.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Rašiklis
+annotationHighlighterButton
+    .title = Žymeklis
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Išvalyti
+annotationSaveButton = Įrašyti
+annotationCancelButton = Atsisakyti
 
 
 [[ Shotindex page ]]
