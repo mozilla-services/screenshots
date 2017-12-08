@@ -180,6 +180,10 @@ errorThirdPartyCookiesEnabled = Si hiciste una captura y no puedes borrarla, pue
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = Bolígrafo.
+annotationHighlighterButton
+    .title = Subrayador
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Limpiar
