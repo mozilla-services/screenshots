@@ -180,6 +180,19 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Nëse bëtë këtë foto dhe s’e fshini dot, mund t’ju duhet të aktivizoni përkohësisht cookie prej palësh të treta, që nga parapëlqimet tuaja për shfletuesin.
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Penë
+annotationHighlighterButton
+    .title = Theksues
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Pastroje
+annotationSaveButton = Ruaje
+annotationCancelButton = Anuloje
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
