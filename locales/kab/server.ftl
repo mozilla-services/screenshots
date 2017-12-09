@@ -175,6 +175,7 @@ timeDiffFutureDays = { $num ->
         [one] azekka
        *[other] di { $number } n wussan
     }
+errorThirdPartyCookiesEnabled = Ma txeḍmeḍ tuṭṭfa-a sakin ur tezmireḍ ara ad tt-tekseḍ, iwwi-d ahat ad tremdeḍ s wudem askudan inagan n tuqna n wis kraḍ seg Ismenyifen n iminig inek.
 
 
 [[ Annotations ]]
