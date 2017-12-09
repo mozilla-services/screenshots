@@ -177,6 +177,19 @@ timeDiffFutureDays = { $num ->
     }
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Imru
+annotationHighlighterButton
+    .title = Aqerru
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Sfeḍ
+annotationSaveButton = Sekles
+annotationCancelButton = Sefsex
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
