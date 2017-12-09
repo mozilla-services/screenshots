@@ -181,6 +181,15 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Si tomas esta captura y no la puedes eliminar, puedes necesitar temporalmente habilitar cookies de terceros desde las preferencias de tu navegador.
 
 
+[[ Annotations ]]
+
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Limpiar
+annotationSaveButton = Guardar
+annotationCancelButton = Cancelar
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
