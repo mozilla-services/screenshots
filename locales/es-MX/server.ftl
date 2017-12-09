@@ -183,6 +183,10 @@ errorThirdPartyCookiesEnabled = Si tomas esta captura y no la puedes eliminar, p
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = Pluma
+annotationHighlighterButton
+    .title = Marcador
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Limpiar
