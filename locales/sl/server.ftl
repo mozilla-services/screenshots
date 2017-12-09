@@ -176,7 +176,7 @@ timeDiffFutureMinutes = { $num ->
         [one] čez { $number } minuto
         [two] čez { $number } minuti
         [few] čez { $number } minute
-       *[other] čez { $number } minute
+       *[other] čez { $number } minut
     }
 timeDiffFutureHours = { $num ->
         [one] čez { $number } uro
