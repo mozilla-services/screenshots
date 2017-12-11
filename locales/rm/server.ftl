@@ -181,6 +181,10 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Sche ti has fatg quest maletg dal visur e na pos betg al stizzar, stos ti eventualmain activar temporarmain cookies da terzs en las preferenzas da tes navigatur.
 
 
+[[ Annotations ]]
+
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
