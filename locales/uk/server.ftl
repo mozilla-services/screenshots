@@ -153,33 +153,33 @@ shotPageExpiresIn = спливає { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = сплив { $timediff }
 timeDiffJustNow = щойно
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] хвилину тому
         [few] { $number } хвилини тому
        *[other] { $number } хвилин тому
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] годину тому
         [few] { $number } години тому
        *[other] { $number } годин тому
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] вчора
         [few] { $number } дні тому
        *[other] { $number } днів тому
     }
 timeDiffFutureSeconds = за кілька секунд
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] за хвилину
         [few] за { $number } хвилини
        *[other] за { $number } хвилин
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] за годину
         [few] за { $number } години
        *[other] за { $number } годин
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] завтра
         [few] за { $number } дні
        *[other] за { $number } днів
