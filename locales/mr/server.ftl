@@ -138,28 +138,28 @@ shotPageExpiresIn = कालबाह्य { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = कालबाह्य झाले { $timediff }
 timeDiffJustNow = आत्ताच
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 मिनिटापूर्वी
        *[other] { $number } मिनिटांपूर्वी
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 तासापूर्वी
        *[other] { $number } तासांपूर्वी
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] काल
        *[other] { $number } दिवसांपूर्वी
     }
 timeDiffFutureSeconds = काही सेकंदात
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] 1 मिनिटात
        *[other] { $number }मिनिटे मध्ये
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] 1 तासात
        *[other] { $number } तासांमध्ये
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] उद्या
        *[other] { $number } दिवसात
     }
