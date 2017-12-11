@@ -186,6 +186,10 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Ako ste napravili snimak ekrana i ne možete ga izbrisati, možda trebate privremeno omogućiti kolačiće trećih strana u postavkama browsera.
 
 
+[[ Annotations ]]
+
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
