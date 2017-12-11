@@ -152,38 +152,38 @@ shotPageExpiresIn = daw i ben { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = wedi dod i ben { $timediff }
 timeDiffJustNow = nawr
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 munud yn ôl
         [two] { $number } munud yn ôl
         [few] { $number } munud yn ôl
        *[other] { $number } munud yn ôl
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] awr yn ôl
         [two] { $number } awr yn ôl
         [few] { $number }  awr yn ôl
        *[other] { $number }  awr yn ôl
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] ddoe
         [two] { $number } diwrnod yn ôl
         [few] { $number } diwrnod yn ôl
        *[other] { $number } diwrnod yn ôl
     }
 timeDiffFutureSeconds = ymhen ychydig eiliadau
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] ymhen munud
         [two] ymhen { $number } funud
         [few] ymhen { $number } munud
        *[other] ymhen { $number } munud
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] ymhen awr
         [two] ymhen { $number } awr
         [few] ymhen { $number } awr
        *[other] ymhen { $number } awr
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] yfory
         [two] ymhen { $number } ddiwrnod
         [few] ymhen { $number } diwrnod
