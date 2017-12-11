@@ -67,6 +67,10 @@ leavePageRemoveAllData = Dzēst vysus datus
 
 
 
+[[ Annotations ]]
+
+
+
 [[ Shotindex page ]]
 
 
