@@ -153,20 +153,20 @@ shotPageExpiresIn = ferrint { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } ferrûn
 timeDiffJustNow = sa krekt
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 minút lyn
        *[other] { $number } minuten lyn
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 oer lyn
        *[other] { $number } oeren lyn
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] juster
        *[other] { $number } dagen lyn
     }
 timeDiffFutureSeconds = oer inkelde sekonden
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] oer 1 minút
        *[other] oer { $number } minuten
     }
@@ -174,7 +174,7 @@ timeDiffFutureHours = timeDiffFutureHours = { $number ->
         [one] oer 1 oer
        *[other] oer { $number } oeren
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] moarn
        *[other] oer { $number } dagen
     }
