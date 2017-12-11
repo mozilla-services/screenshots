@@ -151,13 +151,13 @@ shotPageExpired = Đã hết hạn vào { $timediff }
 timeDiffJustNow = Mới đây
 timeDiffMinutesAgo = { $number } phút trước
 timeDiffHoursAgo = { $number } giờ trước
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
        *[other] hôm qua
     }
 timeDiffFutureSeconds = trong một vài giây
 timeDiffFutureMinutes = trong { $number } phút
 timeDiffFutureHours = trong { $number } giờ
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
        *[other] ngày mai
     }
 errorThirdPartyCookiesEnabled = Nếu bạn đã chụp và không thể xóa ảnh đó, bạn có thể phải tạm thời bật cookie của bên thứ ba từ tùy chọn của trình duyệt của mình.
