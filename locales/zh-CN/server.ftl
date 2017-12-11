@@ -153,10 +153,10 @@ shotPageExpiresIn = { $timediff } 后过期
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } 前已过期
 timeDiffJustNow = 刚刚
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
        *[other] { $number } 分钟前
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
        *[other] { $number } 小时前
     }
 timeDiffDaysAgo = { $number } 天前
