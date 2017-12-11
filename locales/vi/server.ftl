@@ -163,6 +163,10 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Nếu bạn đã chụp và không thể xóa ảnh đó, bạn có thể phải tạm thời bật cookie của bên thứ ba từ tùy chọn của trình duyệt của mình.
 
 
+[[ Annotations ]]
+
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
