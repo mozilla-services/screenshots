@@ -113,28 +113,28 @@ shotPageSaveExpiration = സംരക്ഷിക്കുക
 shotPageCancelExpiration = റദ്ദാക്കുക
 shotPageDoesNotExpire = കാലാവധി കഴിയുന്നില്ല
 timeDiffJustNow = ഇപ്പോള്‍
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 മിനിറ്റ് മുൻപ്
        *[other] { $number } മിനിറ്റുകൾ മുൻപ്
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 മണിക്കൂർ മുൻപ്
        *[other] { $number } മണിക്കൂറുകൾ മുൻപ്
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] ഇന്നലെ
        *[other] { $number } ദിവസങ്ങൾക്ക് മുൻപ്
     }
 timeDiffFutureSeconds = നിമിഷങ്ങൾക്കകം
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] 1 മിനിറ്റിനകം
        *[other] { $number } മിനിറ്റുകൾക്കകം
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] 1 മണിക്കൂറിനകം
        *[other] { $number } മണിക്കൂറുകൾക്കകം
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] നാളെ
        *[other] { $number } ദിവസങ്ങൾക്കുള്ളിൽ
     }
