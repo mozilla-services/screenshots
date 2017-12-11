@@ -153,33 +153,33 @@ shotPageExpiresIn = истиче { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = истекло { $timediff }
 timeDiffJustNow = управо
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] пре једног минута
         [few] пре { $number } минута
        *[other] пре { $number } минута
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] пре једног сата
         [few] пре { $number } сата
        *[other] пре { $number } сати
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] јуче
         [few] пре { $number } дана
        *[other] пре { $number } дана
     }
 timeDiffFutureSeconds = за пар секунди
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] за један минут
         [few] за { $number } минута
        *[other] за { $number } минута
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] за један сат
         [few] за { $number } сата
        *[other] за { $number } сати
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] сутра
         [few] за { $number } дана
        *[other] за { $number } дана
