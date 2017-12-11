@@ -154,24 +154,24 @@ shotPageExpiresIn = diamzer a-benn { $timediff }
 shotPageExpired = diamzeret abaoe { $timediff }
 timeDiffJustNow = diouzhtu
 timeDiffMinutesAgo = 
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 vunutenn 'zo
        *[other] { $number } a vunutennoù 'zo
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] dec'h
        *[other] { $number } a zevezhioù 'zo
     }
 timeDiffFutureSeconds = a-benn un nebeud eilennoù
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] a-benn 1 vunutenn
        *[other] a-benn { $number } a vunutennoù
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] a-benn 1 eur
        *[other] a-benn { $number } a eurioù
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] warc'hoazh
        *[other] a-benn { $number } a zevezhioù
     }
