@@ -110,6 +110,10 @@ shotPageCancelExpiration = ரத்து
 timeDiffJustNow = சற்று முன்
 
 
+[[ Annotations ]]
+
+
+
 [[ Shotindex page ]]
 
 
