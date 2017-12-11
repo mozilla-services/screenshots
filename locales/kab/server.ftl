@@ -154,24 +154,24 @@ shotPageExpiresIn = ad yemmet { $timediff }
 shotPageExpired = immut  { $timediff }
 timeDiffJustNow = tura yakan
 timeDiffMinutesAgo = { $number } n tesdatin aya
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 usrag aya
        *[other] { $number } isragen aya
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] iḍelli
        *[other] { $number }  n wussan aya
     }
 timeDiffFutureSeconds = deg kra n tesnatin
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] di 1 n tsedat
        *[other] di { $number } tsedatin
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] di 1 usrag
        *[other] di { $number } isragen
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] azekka
        *[other] di { $number } n wussan
     }
