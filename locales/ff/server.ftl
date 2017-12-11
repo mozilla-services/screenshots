@@ -45,6 +45,10 @@ shotPageKeepOneMonth = Lewru 1
 shotPageCancelExpiration = Haaytu
 
 
+[[ Annotations ]]
+
+
+
 [[ Shotindex page ]]
 
 shotIndexPageSearchButton
