@@ -133,33 +133,33 @@ shotPageExpiresIn = expiră { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = a expirat { $timediff }
 timeDiffJustNow = chiar acum
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] în urmă cu 1 minut
         [few] în urmă cu { $number } minute
        *[other] în urmă cu { $number } de minute
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] în urmă cu 1 oră
         [few] în urmă cu { $number } ore
        *[other] în urmă cu { $number } de ore
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] ieri
         [few] în urmă cu { $number } zile
        *[other] în urmă cu { $number } de zile
     }
 timeDiffFutureSeconds = în câteva secunde
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] într-un minut
         [few] în { $number } minute
        *[other] în { $number } de minute
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] într-o oră
         [few] în { $number } ore
        *[other] în { $number } de ore
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] mâine
         [few] în { $number } zile
        *[other] în { $number } de zile
