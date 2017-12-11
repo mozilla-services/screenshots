@@ -55,7 +55,6 @@ homePageCookiesLink = Çərəzlər
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = Hesab silməni təsdiqlə
 leavePageErrorGeneric = Xəta baş verdi
 leavePageButtonProceed = Davam et
 leavePageButtonCancel = Ləğv et
@@ -91,6 +90,10 @@ shotPageDownload = Endir
 shotPageSaveExpiration = saxla
 shotPageCancelExpiration = ləğv et
 timeDiffJustNow = indicə
+
+
+[[ Annotations ]]
+
 
 
 [[ Shotindex page ]]
