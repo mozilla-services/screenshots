@@ -157,6 +157,10 @@ timeDiffFutureHours = { $number }시간 내
 timeDiffFutureDays = { $number }일 내
 
 
+[[ Annotations ]]
+
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
