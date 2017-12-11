@@ -153,28 +153,28 @@ shotPageExpiresIn = k'isel { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = xk'is { $timediff }
 timeDiffJustNow = wakami
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] k'o kan 1 ch'utiramaj
        *[other] { $number } kan ch'utiramaj
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] k'o kan 1 ramaj
        *[other] { $number } kan ramaj
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] iwir
        *[other] { $number } kan taq q'ij
     }
 timeDiffFutureSeconds = pa jujun nich'ramaj
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] pa 1 ch'utiramaj
        *[other] pa { $number } taq ramaj 
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] pa 1 ramaj
        *[other] pa { $number } taq ramaj
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] chwa'q
        *[other] pa { $number } taq q'ij
     }
