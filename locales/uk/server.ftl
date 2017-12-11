@@ -197,6 +197,7 @@ annotationHighlighterButton
 annotationClearButton
     .title = Очистити
 annotationSaveButton = Зберегти
+annotationCancelButton = Скасувати
 
 
 [[ Shotindex page ]]
