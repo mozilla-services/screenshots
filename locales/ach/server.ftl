@@ -115,28 +115,28 @@ shotPageExpiresIn = kare ne okato { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = kare ne okato { $timediff }
 timeDiffJustNow = Pud kombedi
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] tekika 1 mukato angec
        *[other] tekika { $number } mukato angec
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] Cawa 1 mukato angec
        *[other] cawa { $number } mukato angec
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] Lawo
        *[other] nino { $number }  mukato angec
     }
 timeDiffFutureSeconds = i secon manok
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] i tekika 1
        *[other] i  tekika { $number }
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] i cawa 1
        *[other] i cawa { $number }
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] diki
        *[other] i nino { $number } 
     }
