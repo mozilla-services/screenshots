@@ -153,28 +153,28 @@ shotPageExpiresIn = aegub { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = aegunud { $timediff }
 timeDiffJustNow = just praegu
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] minut tagasi
        *[other] { $number } minutit tagasi
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] tund tagasi
        *[other] { $number } tundi tagasi
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] eile
        *[other] { $number } päeva tagasi
     }
 timeDiffFutureSeconds = paari sekundi jooksul
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] minuti jooksul
        *[other] { $number } minuti jooksul
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] tunni jooksul
        *[other] { $number } tunni jooksul
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] homme
        *[other] { $number } päeva jooksul
     }
