@@ -153,11 +153,11 @@ shotPageExpiresIn = skadon më { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = ka skaduar më { $timediff }
 timeDiffJustNow = mu tani
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 minutë më parë
        *[other] { $number } minuta më parë
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 orë më parë
        *[other] { $number } orë më parë
     }
@@ -166,15 +166,15 @@ timeDiffDaysAgo = timeDiffDaysAgo = { $number ->
        *[other] { $number } ditë më parë
     }
 timeDiffFutureSeconds = në pak sekonda
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] në 1 minutë
        *[other] në { $number } minuta
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] në 1 orë
        *[other] në { $number } orë
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
        *[one] nesër
     }
 errorThirdPartyCookiesEnabled = Nëse bëtë këtë foto dhe s’e fshini dot, mund t’ju duhet të aktivizoni përkohësisht cookie prej palësh të treta, që nga parapëlqimet tuaja për shfletuesin.
