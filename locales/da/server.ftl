@@ -178,6 +178,20 @@ timeDiffFutureDays = { $num ->
         [one] i morgen
        *[other] om { $number } dage
     }
+errorThirdPartyCookiesEnabled = Hvis du tog dette skærmbillede og ikke kan slette det, kan det være nødvendigt at acceptere tredjeparts cookies midlertidigt i din browsers indstillinger.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pen
+annotationHighlighterButton
+    .title = Overstregningspen
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Ryd
+annotationSaveButton = Gem
+annotationCancelButton = Annuller
 
 
 [[ Shotindex page ]]
