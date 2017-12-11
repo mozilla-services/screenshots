@@ -127,6 +127,10 @@ timeDiffFutureDays = { $num ->
     }
 
 
+[[ Annotations ]]
+
+
+
 [[ Shotindex page ]]
 
 shotIndexPageNoSearchResultsIntro = Hmm
