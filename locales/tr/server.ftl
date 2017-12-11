@@ -162,6 +162,10 @@ timeDiffFutureHours = { $number } saat sonra
 timeDiffFutureDays = yarın
 
 
+[[ Annotations ]]
+
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
