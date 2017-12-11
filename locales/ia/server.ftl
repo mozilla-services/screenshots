@@ -181,6 +181,10 @@ timeDiffFutureDays = { $num ->
 errorThirdPartyCookiesEnabled = Si tu ha prendite iste instantaneo e non pote lo deler, tu pote besoniar de activar temporarimente le cookies de tertie partes in le preferentias de tu navigator.
 
 
+[[ Annotations ]]
+
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
