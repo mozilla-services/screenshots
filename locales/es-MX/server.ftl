@@ -153,28 +153,28 @@ shotPageExpiresIn = expira en { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = expiró hace { $timediff }
 timeDiffJustNow = justo ahora
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] hace 1 minuto
        *[other] hace { $number } minutos
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] hace 1 hora
        *[other] hace { $number } horas
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] ayer
        *[other] hace { $number } días
     }
 timeDiffFutureSeconds = en unos segundos
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] en 1 minuto
        *[other] en { $number } minutos
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] en 1 hora
        *[other] en { $number } horas
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] mañana
        *[other] en { $number } días
     }
