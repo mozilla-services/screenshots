@@ -151,28 +151,28 @@ shotPageExpiresIn = λήγει { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = έληξε { $timediff }
 timeDiffJustNow = μόλις τώρα
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 λεπτό πριν
        *[other] { $number } λεπτά πριν
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 ώρα πριν
        *[other] { $number } ώρες πριν
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] χθες
        *[other] { $number } ημέρες πριν
     }
 timeDiffFutureSeconds = σε λίγα δευτερόλεπτα
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] σε 1 λεπτό
        *[other] σε { $number } λεπτά
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] σε 1 ώρα
        *[other] σε { $number } ώρες
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] αύριο
        *[other] σε { $number } ημέρες
     }
