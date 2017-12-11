@@ -153,28 +153,28 @@ shotPageExpiresIn = senvalidiĝas post { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = senvalidiĝis antaŭ { $timediff }
 timeDiffJustNow = ĵus
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] antaŭ minuto
        *[other] antaŭ { $number } minutoj
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] antaŭ horo
        *[other] antaŭ { $number } horoj
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] hieraŭ
        *[other] antaŭ { $number } tagoj
     }
 timeDiffFutureSeconds = post kelkaj sekundoj
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] post minuto
        *[other] post { $number } minutoj
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] post horo
        *[other] post { $number } horoj
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] morgaŭ
        *[other] post { $number } tagoj
     }
