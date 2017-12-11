@@ -71,6 +71,10 @@ shotPageDownloadShot
 shotPageDownload = Luchdaich a-nuas
 
 
+[[ Annotations ]]
+
+
+
 [[ Shotindex page ]]
 
 
