@@ -125,6 +125,10 @@ timeDiffFutureHours = { $num ->
     }
 
 
+[[ Annotations ]]
+
+
+
 [[ Shotindex page ]]
 
 shotIndexPageSearchButton
