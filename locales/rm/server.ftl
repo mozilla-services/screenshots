@@ -153,28 +153,28 @@ shotPageExpiresIn = scroda { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = scrudà { $timediff }
 timeDiffJustNow = gist ussa
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] avant 1 minuta
        *[other] avant { $number } minutas
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] avant 1 ura
        *[other] avant { $number } uras
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] ier
        *[other] avant { $number } dis
     }
 timeDiffFutureSeconds = en in pèr secundas
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] en 1 minuta
        *[other] en { $number } minutas
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] en 1 ura
        *[other] en { $number } uras
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] damaun
        *[other] en { $number } dis
     }
