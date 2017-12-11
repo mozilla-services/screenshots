@@ -153,33 +153,33 @@ shotPageExpiresIn = platnosť vyprší { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = platnosť vypršala { $timediff }
 timeDiffJustNow = práve teraz
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] pred 1 minútou
         [few] pred { $number } minútami
        *[other] pred { $number } minútami
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] pred hodinou
         [few] pred { $number } hodinami
        *[other] pred { $number } hodinami
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] včera
         [few] pred { $number } dňami
        *[other] pred { $number } dňami
     }
 timeDiffFutureSeconds = za pár sekúnd
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] za minútu
         [few] za { $number } minúty
        *[other] za { $number } minút
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] za hodinu
         [few] za { $number } hodiny
        *[other] za { $number } hodín
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] zajtra
         [few] za { $number } dni
        *[other] za { $number } dní
