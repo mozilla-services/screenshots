@@ -163,6 +163,10 @@ timeDiffFutureDays = besok
 errorThirdPartyCookiesEnabled = Jika Anda mengambil tangkapan ini dan tidak bisa menghapusnya, Anda mungkin perlu mengaktifkan kuki pihak ketiga untuk sementara dari pengaturan peramban Anda.
 
 
+[[ Annotations ]]
+
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
