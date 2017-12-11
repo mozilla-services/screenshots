@@ -153,23 +153,23 @@ shotPageExpiresIn = { $timediff } منقضی می‌شود
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = منقضی شده { $timediff }
 timeDiffJustNow = هم‌اکنون
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
        *[other] ۱ دقیقه پیش
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
        *[other] ۱ ساعت پیش
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
        *[other] دیروز
     }
 timeDiffFutureSeconds = چند ثانیه پیش
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
        *[other] در یک دقیقه
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
        *[other] در یک ساعت
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
        *[other] فردا
     }
 errorThirdPartyCookiesEnabled = اگر شما این عکس را گرفته‌اید و نمی‌تواند آن را حذف کنید، ممکن است لازم باشد به طور موقت کوکی‌های شخص ثالث را از تنظیمات مرورگر خود فعال کنید.
