@@ -55,7 +55,6 @@ homePageCookiesLink = कुकीज
 
 [[ Leave Screenshots page ]]
 
-leavePageConfirmDelete = खाते हटविण्याची पुष्टी करा
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = आपले खाते काढण्यासाठी आपल्याकडे Firefox स्क्रीनशॉट्स स्थापित असणे आवश्यक आहे
 leavePageErrorGeneric = एक त्रुटी आली.
@@ -164,6 +163,10 @@ timeDiffFutureDays = { $num ->
         [one] उद्या
        *[other] { $number } दिवसात
     }
+
+
+[[ Annotations ]]
+
 
 
 [[ Shotindex page ]]
