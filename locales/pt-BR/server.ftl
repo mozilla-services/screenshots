@@ -134,7 +134,7 @@ shotPageDMCAContact = Por favor, envie um e-mail para { $dmca } para obter mais 
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Se suas capturas estiverem associadas a múltiplas reclamações, poderemos revogar seu acesso ao Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
-shotPageDMCAIncludeLink = Por favor, inclua a URL dessa captura no seu e-mail: { $url }
+shotPageDMCAIncludeLink = Por favor, inclua o URL desta captura no seu e-mail: { $url }
 shotPageKeepFor = Quanto tempo essa captura deve ficar armazenada?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Selecionar tempo
