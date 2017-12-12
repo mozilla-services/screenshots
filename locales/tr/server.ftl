@@ -160,10 +160,20 @@ timeDiffFutureSeconds = birkaç saniye sonra
 timeDiffFutureMinutes = { $number } dakika sonra
 timeDiffFutureHours = { $number } saat sonra
 timeDiffFutureDays = yarın
+errorThirdPartyCookiesEnabled = Bu görüntüyü siz kaydettiyseniz ve silemiyorsanız tarayıcınızın tercihlerinden üçüncü taraf çerezlerini geçici olarak etkinleştirmeniz gerekebilir.
 
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = Kalem
+annotationHighlighterButton
+    .title = Fosforlu kalem
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Temizle
+annotationSaveButton = Kaydet
+annotationCancelButton = İptal
 
 
 [[ Shotindex page ]]
