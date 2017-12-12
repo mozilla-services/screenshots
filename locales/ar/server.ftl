@@ -200,10 +200,20 @@ timeDiffFutureDays = { $number ->
         [many] بعد { $number } يومًا
        *[other] بعد { $number } يوم
     }
+errorThirdPartyCookiesEnabled = إذا أخذت هذه اللقطة و لا تستطيع حذفها، فقد تحتاج إلى تمكين كعكات الأطراف الخارجية مؤقتًا من تفضيلات المتصفح.
 
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = قلم
+annotationHighlighterButton
+    .title = قلم تحديد
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = امسح
+annotationSaveButton = احفظ
+annotationCancelButton = ألغِ
 
 
 [[ Shotindex page ]]
