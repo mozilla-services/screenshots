@@ -188,6 +188,8 @@ errorThirdPartyCookiesEnabled = Ako ste napravili snimak ekrana i ne možete ga 
 
 [[ Annotations ]]
 
+annotationSaveButton = Sačuvaj
+annotationCancelButton = Otkaži
 
 
 [[ Shotindex page ]]
