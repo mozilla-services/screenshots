@@ -430,7 +430,7 @@ class Body extends React.Component {
 
   renderSurveyLink() {
     return <div className="clips-message">
-      <div className="clip-message-content">Help us pick what features to build next by taking this <a href="https://qsurvey.mozilla.com/s3/ss-max-diff-q4-2017" target="_blank" rel="noopener noreferrer">short survey</a>.</div>
+      <div className="clip-message-content">Help us choose which features to add next by taking this <a href="https://qsurvey.mozilla.com/s3/ss-max-diff-q4-2017" target="_blank" rel="noopener noreferrer">quick survey</a>.</div>
       <div className="clip-message-dismiss-wrapper" onClick={controller.closeSurveyLink}>
         <div className="clip-message-dismiss" />
       </div>
