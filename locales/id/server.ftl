@@ -165,6 +165,13 @@ errorThirdPartyCookiesEnabled = Jika Anda mengambil tangkapan ini dan tidak bisa
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = Pena
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Bersihkan
+annotationSaveButton = Simpan
+annotationCancelButton = Batal
 
 
 [[ Shotindex page ]]
