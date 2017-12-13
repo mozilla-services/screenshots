@@ -183,6 +183,15 @@ errorThirdPartyCookiesEnabled = Sche ti has fatg quest maletg dal visur e na pos
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = Culli
+annotationHighlighterButton
+    .title = Marcader luminus
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Reinizialisar
+annotationSaveButton = Memorisar
+annotationCancelButton = Interrumper
 
 
 [[ Shotindex page ]]
