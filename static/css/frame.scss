@@ -246,6 +246,74 @@
   font-size: 12px;
 }
 
+.clips-message {
+  @include flex-container(row, space-around, center);
+  animation: clip-message-appear 6s ease-in-out forwards;
+  animation-delay: 750ms;
+  background: linear-gradient($white 0%, #f9f9fa 100%);
+  border-radius: 3px;
+  box-shadow: 0 5px 11px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  padding: 10px 10px 10px 20px;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  height: 72px;
+  width: 310px;
+  opacity: 0;
+}
+
+.clip-message-content {
+  color: $black;
+  font-size: 15px;
+  line-height: 1.3rem;
+  padding-right: 5px;
+
+  a {
+    color: $link-blue;
+    font-weight: bold;
+  }
+}
+
+.clip-message-dismiss-wrapper {
+  @include flex-container(row, flex-start, flex-start);
+  flex: 0 0 16px;
+  height: 100%;
+}
+
+.clip-message-dismiss {
+  background-image: url("/static/img/close-16.svg");
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+}
+
+@keyframes clip-message-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  5% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  10% {
+    transform: translateY(-2px);
+    opacity: 1;
+  }
+
+  15% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 
 .clip-container {
   @include flex-container(row, center, center);
