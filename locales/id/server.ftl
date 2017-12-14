@@ -167,6 +167,8 @@ errorThirdPartyCookiesEnabled = Jika Anda mengambil tangkapan ini dan tidak bisa
 
 annotationPenButton
     .title = Pena
+annotationHighlighterButton
+    .title = Penyorot
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Bersihkan
