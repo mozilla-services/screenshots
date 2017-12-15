@@ -50,6 +50,8 @@ homePageHowScreenshotsWorks = Cum funcționează Firefox Screenshots
 homePageGetStartedTitle = Începe
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Găsește noua pictogramă Screenshots de pe bara de unelte. Selecteaz-o și meniul Screenshots va apărea în partea de sus a ferestrei browserului.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Alege pictograma Screenshots din meniul de acțiuni pe pagină din bara de adrese și meniul Screenshots va apărea peste fereastra de navigare.
 homePageCaptureRegion = Capturează o regiune
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Clic și trage pentru a selecta zona pe care dorești să o capturezi. Sau pur și simplu poziționează cursorul peste zonă și dă clic — Screenshots va selecta zona pentru tine. Îți place ceea ce vezi? Selectează Salvează pentru a-ți accesa online captura de ecran sau butonul săgeată în jos pentru a o descărca pe calculator.
