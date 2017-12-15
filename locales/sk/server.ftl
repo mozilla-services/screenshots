@@ -184,6 +184,7 @@ timeDiffFutureDays = { $number ->
         [few] za { $number } dni
        *[other] za { $number } dní
     }
+errorThirdPartyCookiesEnabled = Ak ste túto snímku vytvorili, no nemôžete ju odstrániť, dočasne povoľte v možnostiach svojho prehliadača používanie cookies tretích strán.
 
 
 [[ Annotations ]]
@@ -192,6 +193,9 @@ annotationPenButton
     .title = Pero
 annotationHighlighterButton
     .title = Zvýrazňovač
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Odstrániť zmeny
 annotationSaveButton = Uložiť
 annotationCancelButton = Zrušiť
 
