@@ -175,10 +175,20 @@ timeDiffFutureDays = { $number ->
         [one] warc'hoazh
        *[other] a-benn { $number } a zevezhioù
     }
+errorThirdPartyCookiesEnabled = M'ho peus kemeret an dapadenn-mañ ha n'hallit ket he dilemel ho peus ezhomm da weredekaat toupinoù an tredeoù e gwellvezioù ho merdeer. 
 
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = Kreion
+annotationHighlighterButton
+    .title = Usskeder
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Skarzhañ
+annotationSaveButton = Enrollañ
+annotationCancelButton = Nullañ
 
 
 [[ Shotindex page ]]
@@ -203,6 +213,10 @@ shotIndexPageNoSearchResults = N'haller ket kavout tapadennoù a glot gant hoc'h
 shotIndexPageClearSearchButton
     .title = Skarzhañ ar c'hlask
 shotIndexPageConfirmShotDelete = Dilemel an dapadenn-mañ?
+shotIndexPagePreviousPage
+    .title = Pajenn gent
+shotIndexPageNextPage
+    .title = Pajenn da-heul
 
 
 // all metrics strings are optional for translation
@@ -230,3 +244,5 @@ metricsPageUserShotsQueryDescription = An niver a arveriaded gant N tapadenn gan
 metricsPageUserShotsQueryCount = Niver a arveriaded
 metricsPageUserShotsQueryShots = Niver brasjedet a dapadennoù gweredekaet
 metricsPageRetentionQueryTitle = Miradurioù dre sizhun
+metricsPageRetentionQueryDescription = Niver a zevezhioù etre tapadenn gentañ un arveriad betek e dapadenn ziwezhañ, strollet dre ar sizhunvezh deraouiñ
+metricsPageRetentionQueryUsers = Niver a arveriaded
