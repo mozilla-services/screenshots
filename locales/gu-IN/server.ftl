@@ -183,6 +183,15 @@ errorThirdPartyCookiesEnabled = જો તમે આ શોટ લીધો છ�
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = કલમ
+annotationHighlighterButton
+    .title = પ્રકાશિત કરનાર
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = સાફ
+annotationSaveButton = સાચવો
+annotationCancelButton = રદ કરો
 
 
 [[ Shotindex page ]]
