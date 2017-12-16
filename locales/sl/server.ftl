@@ -134,7 +134,7 @@ shotPageDMCAContact = Za več informacij pošljite e-pošto na { $dmca }
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Če bodo vaši posnetki predmet več pritožb, vam bomo morda onemogočili dostop do storitve Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
-shotPageDMCAIncludeLink = Vključite URL tega posnetka v e-pošto: { $url }
+shotPageDMCAIncludeLink = Vključite spletni naslov tega posnetka v e-poštno sporočilo: { $url }
 shotPageKeepFor = Kako dolgo želite ohraniti ta posnetek?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Izberite čas
