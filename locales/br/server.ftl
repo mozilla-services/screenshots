@@ -246,3 +246,18 @@ metricsPageUserShotsQueryShots = Niver brasjedet a dapadennoù gweredekaet
 metricsPageRetentionQueryTitle = Miradurioù dre sizhun
 metricsPageRetentionQueryDescription = Niver a zevezhioù etre tapadenn gentañ un arveriad betek e dapadenn ziwezhañ, strollet dre ar sizhunvezh deraouiñ
 metricsPageRetentionQueryUsers = Niver a arveriaded
+metricsPageRetentionQueryDays = Devezhioù etre tapadenn gentañ an arveriad betek e hini ziwezhañ
+metricsPageRetentionQueryFirstWeek = Sizhunvezh tapadenn gentañ an arveriad
+metricsPageTotalRetentionQueryTitle = Amdroadur klok
+metricsPageTotalRetentionQueryUsers = Niver a arveriaded
+metricsPageTotalRetentionQueryDays = Niver a zevezhioù lec'h m'en deus an arveriad krouet tapadennoù
+metricsPageVersionQueryTitle = Handelv an askouezh
+metricsPageVersionQueryDescription = Handelv an askouezh implijet e-pad ar c'hennask, e-pad ar 14 devezh diwezhañ
+metricsPageVersionQueryUsers = Niver a arveriaded o kennaskañ
+metricsPageVersionQueryVersion = Handelv an askouezh
+metricsPageVersionQueryLastSeen = Devezh
+metricsPageHeader = Stadegoù
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Krouet d'ar/al: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (amzer implij ar stlennvon: { $time }ms)
