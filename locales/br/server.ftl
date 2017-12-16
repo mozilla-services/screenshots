@@ -249,6 +249,7 @@ metricsPageRetentionQueryUsers = Niver a arveriaded
 metricsPageRetentionQueryDays = Devezhioù etre tapadenn gentañ an arveriad betek e hini ziwezhañ
 metricsPageRetentionQueryFirstWeek = Sizhunvezh tapadenn gentañ an arveriad
 metricsPageTotalRetentionQueryTitle = Amdroadur klok
+metricsPageTotalRetentionQueryDescription = Padelezh lec'h m'eo bet krouet tapadennoù gant arveriaded, strollet dre sizhun
 metricsPageTotalRetentionQueryUsers = Niver a arveriaded
 metricsPageTotalRetentionQueryDays = Niver a zevezhioù lec'h m'en deus an arveriad krouet tapadennoù
 metricsPageVersionQueryTitle = Handelv an askouezh
