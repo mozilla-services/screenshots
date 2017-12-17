@@ -9,7 +9,7 @@ const { shotGaFieldForValue } = require("../../ab-tests.js");
 // This represents the model we are rendering:
 let model;
 
-const SURVEY_EXPIRATION = new Date("2017-12-21");
+const SURVEY_EXPIRATION = new Date("2017-12-25");
 
 function shouldShowSurveyLink(model) {
   if ((new Date()) > SURVEY_EXPIRATION) {
