@@ -1,3 +1,11 @@
+## Version 26.0.0
+
+Note this is a server-only release. It cherry-picks one change into the 25.0.0 version.
+
+* Change survey expiration from December 21 to 25 [8b01117](https://github.com/mozilla-services/screenshots/commit/8b01117)
+* Update survey text per jgruen's comment [845d5a2](https://github.com/mozilla-services/screenshots/commit/845d5a2)
+* Add a temporary show-once survey link to shot pagesOnly shows to the owner. Uses localStorage so it only shows once. Will not display to anyone who doesn't have English in their language list. Will not show after midnight, December 21 (now 25), 2017. This should be reverted in the future. [78266dd](https://github.com/mozilla-services/screenshots/commit/78266dd)
+
 ## Version 25.0.0
 
 * Track the number of copied shots in Telemetry ([#3812](https://github.com/mozilla-services/screenshots/issues/3812)) [336f147](https://github.com/mozilla-services/screenshots/commit/336f147)
