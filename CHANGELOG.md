@@ -1,3 +1,7 @@
+## Version 27.1.0
+
+* Change survey expiration to December 25th, 2017
+
 ## Version 27.0.0
 
 Note: this is a server-only release
