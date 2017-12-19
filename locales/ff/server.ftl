@@ -13,10 +13,15 @@
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkRemoveAllData = Momtu Keɓe Fof
 
 
 [[ Creating page ]]
 
+// Note: { $title } is a placeholder for the title of the web page
+// captured in the screenshot. The default, for pages without titles, is
+// creatingPageTitleDefault.
+creatingPageTitle = Cosgol  { $tiitoonde }
 creatingPageTitleDefault = hello
 
 
