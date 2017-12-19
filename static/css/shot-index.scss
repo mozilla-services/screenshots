@@ -160,20 +160,34 @@ h1 {
   .shot-image-container {
     background-size: cover;
     box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05) inset;
-    max-height: 280px;
-    max-width: 210px;
+    width: 210px;
     overflow: hidden;
   }
 
   &.landscape .shot-image-container {
+    height: 140px;
     img {
-      max-height: 280px;
+      height: 140px;
     }
   }
 
   &.portrait .shot-image-container {
+    height: 280px;
     img {
       width: 210px;
+    }
+  }
+
+  &.square-x .shot-image-container {
+    height: 210px;
+    img {
+      width: 210px;
+    }
+  }
+  &.square-y .shot-image-container {
+    height: 210px;
+    img {
+      height: 210px;
     }
   }
 

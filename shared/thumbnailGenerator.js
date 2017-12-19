@@ -1,5 +1,6 @@
-// This is used in addon/webextension/background/takeshot.js and
-// server/src/pages/shot/controller.js . It is used in a browser
+// This is used in addon/webextension/background/takeshot.js,
+// server/src/pages/shot/controller.js, and
+// server/scr/pages/shotindex/view.js. It is used in a browser
 // environment.
 
 // Resize down 1/2 at a time produces better image quality.
@@ -7,33 +8,19 @@
 // slower), but good enough.
 const maxResizeScaleFactor = 0.5
 
+// The shot will be scaled or cropped down to 210px on x, and cropped or
+// scaled down to a maximum of 280px on y.
+// x: 210
+// y: <= 280
+const maxThumbnailWidth = 210;
+const maxThumbnailHeight = 280;
+
 /**
- * @param {dataUrl} String Data URL of the original image.
  * @param {int} imageHeight Height in pixels of the original image.
  * @param {int} imageWidth Width in pixels of the original image.
- * @param {String} urlOrBlob 'blob' for a blob, otherwise data url.
- * @returns A promise that resolves to the data URL or blob of the thumbnail image, or null.
+ * @returns {width, height, scaledX, scaledY}
  */
-function createThumbnail(dataUrl, imageWidth, imageHeight, urlOrBlob) {
-  // The shot will be scaled or cropped down to 210px on x, and cropped or
-  // scaled down to a maximum of 280px on y.
-  // x: 210
-  // y: <= 280
-  const maxThumbnailWidth = 210;
-  const maxThumbnailHeight = 280;
-
-  // There's cost associated with generating, transmitting, and storing
-  // thumbnails, so we'll opt out if the image size is below a certain threshold
-  const thumbnailThresholdFactor = 1.20;
-  const thumbnailWidthThreshold = maxThumbnailWidth * thumbnailThresholdFactor;
-  const thumbnailHeightThreshold = maxThumbnailHeight * thumbnailThresholdFactor;
-
-  if (imageWidth <= thumbnailWidthThreshold &&
-      imageHeight <= thumbnailHeightThreshold) {
-    // Do not create a thumbnail.
-    return Promise.resolve(null);
-  }
-
+function getThumbnailDimensions(imageWidth, imageHeight) {
   const displayAspectRatio = 3 / 4;
   let imageAspectRatio = imageWidth / imageHeight;
   let thumbnailImageWidth, thumbnailImageHeight;
@@ -57,6 +44,36 @@ function createThumbnail(dataUrl, imageWidth, imageHeight, urlOrBlob) {
                                     maxThumbnailHeight / (maxThumbnailWidth / imageWidth));
   }
 
+  return {
+    width: thumbnailImageWidth,
+    height: thumbnailImageHeight,
+    scaledX,
+    scaledY
+  }
+}
+
+/**
+ * @param {dataUrl} String Data URL of the original image.
+ * @param {int} imageHeight Height in pixels of the original image.
+ * @param {int} imageWidth Width in pixels of the original image.
+ * @param {String} urlOrBlob 'blob' for a blob, otherwise data url.
+ * @returns A promise that resolves to the data URL or blob of the thumbnail image, or null.
+ */
+function createThumbnail(dataUrl, imageWidth, imageHeight, urlOrBlob) {
+  // There's cost associated with generating, transmitting, and storing
+  // thumbnails, so we'll opt out if the image size is below a certain threshold
+  const thumbnailThresholdFactor = 1.20;
+  const thumbnailWidthThreshold = maxThumbnailWidth * thumbnailThresholdFactor;
+  const thumbnailHeightThreshold = maxThumbnailHeight * thumbnailThresholdFactor;
+
+  if (imageWidth <= thumbnailWidthThreshold &&
+      imageHeight <= thumbnailHeightThreshold) {
+    // Do not create a thumbnail.
+    return Promise.resolve(null);
+  }
+
+  let thumbnailDimensions = getThumbnailDimensions(imageWidth, imageHeight);
+
   return new Promise((resolve, reject) => {
     let thumbnailImage = new Image();
     let srcWidth = imageWidth;
@@ -66,11 +83,11 @@ function createThumbnail(dataUrl, imageWidth, imageHeight, urlOrBlob) {
     thumbnailImage.onload = function() {
       destWidth = Math.round(srcWidth * maxResizeScaleFactor);
       destHeight = Math.round(srcHeight * maxResizeScaleFactor);
-      if (destWidth <= scaledX || destHeight <= scaledY) {
-        srcWidth = Math.round(srcWidth * (thumbnailImageWidth / scaledX));
-        srcHeight = Math.round(srcHeight * (thumbnailImageHeight / scaledY));
-        destWidth = thumbnailImageWidth;
-        destHeight = thumbnailImageHeight;
+      if (destWidth <= thumbnailDimensions.scaledX || destHeight <= thumbnailDimensions.scaledY) {
+        srcWidth = Math.round(srcWidth * (thumbnailDimensions.width / thumbnailDimensions.scaledX));
+        srcHeight = Math.round(srcHeight * (thumbnailDimensions.height / thumbnailDimensions.scaledY));
+        destWidth = thumbnailDimensions.width;
+        destHeight = thumbnailDimensions.height;
       }
 
       const thumbnailCanvas = document.createElement('canvas');
@@ -84,8 +101,8 @@ function createThumbnail(dataUrl, imageWidth, imageHeight, urlOrBlob) {
         0, 0, srcWidth, srcHeight,
         0, 0, destWidth, destHeight);
 
-      if (thumbnailCanvas.width <= thumbnailImageWidth ||
-        thumbnailCanvas.height <= thumbnailImageHeight) {
+      if (thumbnailCanvas.width <= thumbnailDimensions.width ||
+        thumbnailCanvas.height <= thumbnailDimensions.height) {
         if (urlOrBlob === "blob") {
           thumbnailCanvas.toBlob((blob) => {
             resolve(blob);
@@ -122,6 +139,7 @@ function createThumbnailBlobFromPromise(shot, blobToUrlPromise) {
 }
 
 if (typeof exports != "undefined") {
+  exports.getThumbnailDimensions = getThumbnailDimensions;
   exports.createThumbnailUrl = createThumbnailUrl;
   exports.createThumbnailBlobFromPromise = createThumbnailBlobFromPromise;
 }
