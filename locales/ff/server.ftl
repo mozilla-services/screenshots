@@ -127,9 +127,26 @@ annotationCancelButton = Haaytu
 
 shotIndexPageSearchButton
     .title = Yiylo
+shotIndexPageNoShotsInvitation = Jokku, sos won heen.
 shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageClearSearchButton
+    .title = Momtu njiilaw
+shotIndexPagePreviousPage
+    .title = Hello ɓennungo
+shotIndexPageNextPage
+    .title = Hello aroowo
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+metricsPageTotalsQueryTitle = Kuuɓe
+metricsPageShotsQueryDay = Ñalawma
+metricsPageUsersQueryCount = Limoore huutorɓe
+metricsPageUsersQueryDay = Ñalawma
+metricsPageRetentionQueryUsers = Limoore huutorɓe
+metricsPageTotalRetentionQueryUsers = Limoore huutorɓe
+metricsPageVersionQueryTitle = Yamre jokkel 
+metricsPageVersionQueryDescription = Yamre jokkel kuutorongel saanga ceŋogol, e balɗe 14 jawtuɗe ɗee.
+metricsPageVersionQueryVersion = Yamre jokkel
+metricsPageVersionQueryLastSeen = Ñalawma
