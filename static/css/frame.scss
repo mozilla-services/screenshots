@@ -392,20 +392,23 @@ body {
   }
 }
 
-.canvas-container .editor {
-  z-index: 2;
-
+.canvas-container {
   &.pen {
     cursor: url("../img/cursor-pen.png"), auto;
   }
+
   &.highlighter {
     cursor: url("../img/cursor-highlight.png"), auto;
   }
 }
 
-.highlighter {
+.canvas-container .image-holder {
+  z-index: 2;
+}
+
+.temp-highlighter {
   mix-blend-mode: multiply;
-  z-index: 1;
+  z-index: 4;
 }
 
 .image-holder {
