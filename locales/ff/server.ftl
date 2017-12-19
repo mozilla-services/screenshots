@@ -70,15 +70,57 @@ notFoundPageDescription = Hello ngoo yiytaaka
 
 [[ Shot page ]]
 
+// This is the HTML title tag of the page
+shotPageTitle = Leƴƴannde kuurgal: { $Tiitoondeiwdiire }
+shotPageAlertErrorUpdatingExpirationTime = Juumre danndugol buntugol
+shotPageAlertErrorDeletingShot = Juumre momtugol nattal
+shotPageAlertErrorUpdatingTitle = Juumre danndugol tiitoonde
+shotPageConfirmDelete = Aɗa yananaa tiɗde momtude ngal nattal daañaa?
+shotPageShareButton
+    .title = Lollin
+shotPageCopy = Natto
+shotPageCopied = Nattaama
+shotPageShareFacebook
+    .title = Lollin e Facebook
+shotPageShareTwitter
+    .title = Lollin e Twitter
+shotPageSharePinterest
+    .title = Lollin e Pinterest
+shotPageShareEmail
+    .title = Lollin jokkol rewrude e iimeel
+shotPageShareLink = Heɓ jokkol baawngol lollineede e ngal nattal:
+shotPagePrivacyMessage = Kala gonnduɗo e jokkol ngol ina waawi yiyde ngal nattal.
+shotPageCopyImageText
+    .label = Natto binndol natal ngal
+shotPageConfirmDeletion = Aɗa yananaa tiɗde momtude ngal nattal daañaa?
+shotPageDownloadShot
+    .title = Aawto
+shotPageDownload = Aawto
+// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Suɓo sahaa
+shotPageKeepIndefinitely = Alaa ɗo haaɗi
 shotPageKeepTenMinutes = Hojomaaji 10
 shotPageKeepOneHour = Waktu 1
+shotPageKeepOneDay = Ñalawma 1
 shotPageKeepOneWeek = Yontere 1
 shotPageKeepOneMonth = Lewru 1
+shotPageSaveExpiration = Danndu
 shotPageCancelExpiration = Haaytu
+shotPageDoesNotExpire = buntaani
+timeDiffJustNow = Jooni
 
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = Kuɗol
+annotationHighlighterButton
+    .title = Jalbinoowo
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Momtu
+annotationSaveButton = Danndu
+annotationCancelButton = Haaytu
 
 
 [[ Shotindex page ]]
