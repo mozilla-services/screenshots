@@ -89,18 +89,22 @@ shotPageKeepOneMonth = ۱ ماہ
 shotPageSaveExpiration = محفوظ کریں
 shotPageCancelExpiration = منسوخ کریں
 timeDiffJustNow = ابھی
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] گزشتہ روز
        *[other] { $number }  د ن پہلے
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] ۱ گھنٹے میں
        *[other] { $number }  گھنٹوں میں
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] کل
        *[other] { $number }  دنوں میں
     }
+
+
+[[ Annotations ]]
+
 
 
 [[ Shotindex page ]]

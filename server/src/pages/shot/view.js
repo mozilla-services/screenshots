@@ -315,9 +315,9 @@ class Body extends React.Component {
     }
 
     let errorMessages = [
-      <Localized id="shotPageAlertErrorUpdatingExpirationTime" key="error-1"><div id="shotPageAlertErrorUpdatingExpirationTime" hidden></div></Localized>,
-      <Localized id="shotPageAlertErrorDeletingShot" key="error-2"><div id="shotPageAlertErrorDeletingShot" hidden></div></Localized>,
-      <Localized id="shotPageAlertErrorUpdatingTitle" key="error-3"><div id="shotPageAlertErrorUpdatingTitle" hidden></div></Localized>,
+      <Localized id="shotPageAlertErrorUpdatingExpirationTime" key="error-1"><div id="shotPageAlertErrorUpdatingExpirationTime" className="clips-warning" hidden></div></Localized>,
+      <Localized id="shotPageAlertErrorDeletingShot" key="error-2"><div id="shotPageAlertErrorDeletingShot" className="clips-warning" hidden></div></Localized>,
+      <Localized id="shotPageAlertErrorUpdatingTitle" key="error-3"><div id="shotPageAlertErrorUpdatingTitle" className="clips-warning" hidden></div></Localized>,
       <Localized id="shotPageConfirmDelete" key="error-4"><div id="shotPageConfirmDelete" hidden></div></Localized>
     ];
 
@@ -418,11 +418,24 @@ class Body extends React.Component {
             </Localized>
           </div>
         </div>
-        { clips }
-        { errorMessages }
+        <section className="clips">
+          { this.props.isOwner && this.props.loginFailed ? <LoginFailedWarning /> : null }
+          { errorMessages }
+          { this.props.showSurveyLink ? this.renderSurveyLink() : null }
+          { clips }
+        </section>
         <Footer forUrl={ shot.viewUrl } {...this.props} />
       </div>
     </reactruntime.BodyTemplate>);
+  }
+
+  renderSurveyLink() {
+    return <div className="clips-message">
+      <div className="clip-message-content">Help us choose which features to add next by taking this <a href="https://qsurvey.mozilla.com/s3/ss-max-diff-q4-2017" target="_blank" rel="noopener noreferrer">quick survey</a>.</div>
+      <div className="clip-message-dismiss-wrapper" onClick={controller.closeSurveyLink}>
+        <div className="clip-message-dismiss" />
+      </div>
+    </div>
   }
 
   renderFirefoxRequired() {
@@ -652,6 +665,16 @@ class EditableTitle extends React.Component {
     }
   }
 
+}
+
+class LoginFailedWarning extends React.Component {
+  render() {
+    return <Localized id="errorThirdPartyCookiesEnabled">
+      <div className="clips-warning">
+        If you took this shot and cannot delete it, you may need to temporarily enable third party cookies from your browser’s preferences!!
+      </div>
+    </Localized>;
+  }
 }
 
 exports.BodyFactory = React.createFactory(Body);

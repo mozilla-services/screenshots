@@ -1,3 +1,53 @@
+## Version 27.0.0
+
+Note: this is a server-only release
+
+### Server changes
+
+* Add a temporary show-once survey link to shot pagesOnly shows to the owner. Uses localStorage so it only shows once. Will not
+  display to anyone who doesn't have English in their language list. Will not
+  show after midnight, December 21, 2017.
+  This should be reverted in the future. [78266dd](https://github.com/mozilla-services/screenshots/commit/78266dd)
+* Share icon A/B test ([#3868](https://github.com/mozilla-services/screenshots/issues/3868))* Actually make excludes an optional key in ab tests
+  * add A/B test for share icon. Fixes [#3620](https://github.com/mozilla-services/screenshots/issues/3620) [dd54b7e](https://github.com/mozilla-services/screenshots/commit/dd54b7e)
+* Apply A/B tests to unauthenticated users ([#3895](https://github.com/mozilla-services/screenshots/issues/3895))A/B tests that are for unauthenticated users must be set on any request, since for authenticated users the A/B tests are sent and recorded on register/login.
+  A/B tests that are for unauthenticated users must be marked as appliesToPublic. Fixes [#3893](https://github.com/mozilla-services/screenshots/issues/3893) [b218d68](https://github.com/mozilla-services/screenshots/commit/b218d68)
+* Replace CDN with SITE_CDN and CONTENT_CDN. ([#3590](https://github.com/mozilla-services/screenshots/issues/3590)) ([#3866](https://github.com/mozilla-services/screenshots/issues/3866)) [f06c289](https://github.com/mozilla-services/screenshots/commit/f06c289)
+* Warn about failed login due to third party cookies ([#3632](https://github.com/mozilla-services/screenshots/issues/3632)). This adds backupCookieRequest to the sitehelper login process, to tell the site if third party cookies SHOULD work. If the site sees that third party cookies might not be enabled, then it does a second check to GET /api/set-login-cookie?check=1. If that request shows the cookie isn't set, then it changes the model to warn the user. Fixes [#3600](https://github.com/mozilla-services/screenshots/issues/3600) [cccc48a](https://github.com/mozilla-services/screenshots/commit/cccc48a)
+* Drop xlink:href. use href instead. Fixes [#3063](https://github.com/mozilla-services/screenshots/issues/3063) [a22fc09](https://github.com/mozilla-services/screenshots/commit/a22fc09)
+* Fix pagination content when there's no shot count. ([#3857](https://github.com/mozilla-services/screenshots/issues/3857)) [5a9fca8](https://github.com/mozilla-services/screenshots/commit/5a9fca8)
+* Handle last shot of page being deleted. ([#3779](https://github.com/mozilla-services/screenshots/issues/3779)) [f25e035](https://github.com/mozilla-services/screenshots/commit/f25e035)
+* Annotation changes:
+  * Localize annotation page. ([#3418](https://github.com/mozilla-services/screenshots/issues/3418)) [26a1e98](https://github.com/mozilla-services/screenshots/commit/26a1e98)
+  * Add clear button to Annotations [b7cdd41](https://github.com/mozilla-services/screenshots/commit/b7cdd41)
+  * Set img CORS access for site origin. ([#3848](https://github.com/mozilla-services/screenshots/issues/3848)) [7eb9c9a](https://github.com/mozilla-services/screenshots/commit/7eb9c9a)
+    * change img crossOrigin [44b1396](https://github.com/mozilla-services/screenshots/commit/44b1396)
+  * Scale image on x if img x <= 210. ([#3728](https://github.com/mozilla-services/screenshots/issues/3728)) [72d0637](https://github.com/mozilla-services/screenshots/commit/72d0637)
+  * Fix apsect ratio calculation. ([#3728](https://github.com/mozilla-services/screenshots/issues/3728)) [2a3c0a5](https://github.com/mozilla-services/screenshots/commit/2a3c0a5)
+  * Take aspect ratio into consideration. ([#3728](https://github.com/mozilla-services/screenshots/issues/3728)) [d7d2bbe](https://github.com/mozilla-services/screenshots/commit/d7d2bbe)
+  * Fix save button [7f637eb](https://github.com/mozilla-services/screenshots/commit/7f637eb)
+  * Use <img> instead of bg img for My Shots and overlay buttons. ([#3728](https://github.com/mozilla-services/screenshots/issues/3728)) [ea021a9](https://github.com/mozilla-services/screenshots/commit/ea021a9)
+  * annotation ui update [7103da5](https://github.com/mozilla-services/screenshots/commit/7103da5)
+
+### Add-on changes
+
+Note: these have not been released to Nightly.
+
+* Remove browser vertical scrollbar in edit view. ([#3863](https://github.com/mozilla-services/screenshots/issues/3863)) [5b4cc6e](https://github.com/mozilla-services/screenshots/commit/5b4cc6e)
+* Batch event and timing analytics data. ([#3757](https://github.com/mozilla-services/screenshots/issues/3757)) [d322ae9](https://github.com/mozilla-services/screenshots/commit/d322ae9)
+* Fix rtl preview buttons. ([#3710](https://github.com/mozilla-services/screenshots/issues/3710)) [130b8d5](https://github.com/mozilla-services/screenshots/commit/130b8d5)
+* Firefox peer feedback for 25.0.0 release. Changes:
+  * use 1 message to send telemetry scalars
+  * escape all reserved chars, not just quotes
+  * remove needless thenable
+  * simplify anyMatches
+  * prefer Map to obj literal
+  See also https://bugzilla.mozilla.org/show_bug.cgi?id=1419148#c13 [fc7c3ef](https://github.com/mozilla-services/screenshots/commit/fc7c3ef)
+* Add thumbnail generation. ([#3282](https://github.com/mozilla-services/screenshots/issues/3282)) [c0496ab](https://github.com/mozilla-services/screenshots/commit/c0496ab)
+* sort all file lists in moz.build ([#3827](https://github.com/mozilla-services/screenshots/issues/3827))This seems to be a new ./mach build requirement. Fixes [#3826](https://github.com/mozilla-services/screenshots/issues/3826) [e4442eb](https://github.com/mozilla-services/screenshots/commit/e4442eb)
+* Suppress analytics server errors in addon. ([#3820](https://github.com/mozilla-services/screenshots/issues/3820)) [3ccd937](https://github.com/mozilla-services/screenshots/commit/3ccd937)
+* Add cancel button to deactivate Screenshots. ([#3467](https://github.com/mozilla-services/screenshots/issues/3467)) [3031de5](https://github.com/mozilla-services/screenshots/commit/3031de5)
+
 ## Version 25.0.0
 
 Note: this is both a server and add-on release.

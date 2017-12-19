@@ -153,31 +153,45 @@ shotPageExpiresIn = изтича { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = изтекло { $timediff }
 timeDiffJustNow = току-що
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] преди минута
        *[other] преди { $number } минути
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] преди час
        *[other] преди { $number } часа
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] вчера
        *[other] преди { $number } дена
     }
 timeDiffFutureSeconds = след секунди
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] след минута
        *[other] след { $number } минути
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] след час
        *[other] след { $number } часа
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] утре
        *[other] след { $number } дни
     }
+errorThirdPartyCookiesEnabled = Ако сте направили тази снимка и не можете да я изтриете може да пробвате временно да включите бисквитките от трети страни в настройките на четеца.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Писалка
+annotationHighlighterButton
+    .title = Маркер
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Изчистване
+annotationSaveButton = Запазване
+annotationCancelButton = Отказ
 
 
 [[ Shotindex page ]]
@@ -201,9 +215,11 @@ shotIndexPageNoSearchResultsIntro = Хмм
 shotIndexPageNoSearchResults = Не намираме снимки, които отговарят на търсенето ви.
 shotIndexPageClearSearchButton
     .title = Изчистване на търсенето
-shotIndexPageConfirmShotDelete = Сигурни ли сте, че желаете това изображение да бъде премахнато?
+shotIndexPageConfirmShotDelete = Сигурни ли сте, че желаете снимката да бъде премахната?
 shotIndexPagePreviousPage
     .title = Предишна страница
+shotIndexPageNextPage
+    .title = Следваща страница
 
 
 // all metrics strings are optional for translation

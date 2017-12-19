@@ -153,25 +153,39 @@ shotPageExpiresIn = tamat tempoh { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = tamat tempoh { $timediff }
 timeDiffJustNow = sebentar tadi
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
        *[other] 1 minit lepas
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
        *[other] 1 jam lepas
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
        *[other] semalam
     }
 timeDiffFutureSeconds = dalam beberapa saat
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
        *[other] dalam 1 minit
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
        *[other] dalam 1 jam
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
        *[other] esok
     }
+errorThirdPartyCookiesEnabled = Jika anda ambil syot ini dan tidak boleh dibuang, anda mungkin perlu dayakan sementara kuki pihak ketiga dalam keutamaan pelayar anda.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pen
+annotationHighlighterButton
+    .title = Penyerlah
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Buang
+annotationSaveButton = Simpan
+annotationCancelButton = Batal
 
 
 [[ Shotindex page ]]

@@ -134,7 +134,7 @@ shotPageDMCAContact = Za več informacij pošljite e-pošto na { $dmca }
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Če bodo vaši posnetki predmet več pritožb, vam bomo morda onemogočili dostop do storitve Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
-shotPageDMCAIncludeLink = Vključite URL tega posnetka v e-pošto: { $url }
+shotPageDMCAIncludeLink = Vključite spletni naslov tega posnetka v e-poštno sporočilo: { $url }
 shotPageKeepFor = Kako dolgo želite ohraniti ta posnetek?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Izberite čas
@@ -153,43 +153,57 @@ shotPageExpiresIn = poteče { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = poteklo { $timediff }
 timeDiffJustNow = zdaj
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] pred { $number } minuto
         [two] pred { $number } minutama
         [few] pred { $number } minutami
        *[other] pred { $number } minutami
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] pred { $number } uro
         [two] pred { $number } urama
         [few] pred { $number } urami
        *[other] pred { $number } urami
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] pred { $number } dnevom
         [two] pred { $number } dnevoma
         [few] pred { $number } dnevi
        *[other] pred { $number } dnevi
     }
 timeDiffFutureSeconds = čez nekaj sekund
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] čez { $number } minuto
         [two] čez { $number } minuti
         [few] čez { $number } minute
-       *[other] čez { $number } minute
+       *[other] čez { $number } minut
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] čez { $number } uro
         [two] čez { $number } uri
         [few] čez { $number } ure
        *[other] čez { $number } ur
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] čez { $number } dan
         [two] čez { $number } dni
         [few] čez { $number } dni
        *[other] čez { $number } dni
     }
+errorThirdPartyCookiesEnabled = Če ste ta posnetek zaslona zajeli vi in ga ne morete izbrisati, morate morda v nastavitvah brskalnika začasno omogočiti piškotke tretjih strani.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pero
+annotationHighlighterButton
+    .title = Označevalnik
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Počisti
+annotationSaveButton = Shrani
+annotationCancelButton = Prekliči
 
 
 [[ Shotindex page ]]

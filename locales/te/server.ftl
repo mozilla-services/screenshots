@@ -138,31 +138,35 @@ shotPageExpiresIn = { $timediff } గడువు ముగుస్తుంద
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } గడువు ముగిసింది 
 timeDiffJustNow = ఇప్పుడే
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 నిమిషం క్రితం
        *[other] { $number } నిమిషాల ముందు
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 గంట క్రితం
        *[other] { $number } గంటల క్రితం
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] నిన్న
        *[other] { $number } రోజుల క్రితం
     }
 timeDiffFutureSeconds = కొన్ని క్షాణాలలో
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] 1 నిమిషం
        *[other] { $number } నిమిషాల్లో
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] 1 గంటలో
        *[other] { $number } గంటలలో
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] రేపు
        *[other] { $number } రోజులలో
     }
+
+
+[[ Annotations ]]
+
 
 
 [[ Shotindex page ]]

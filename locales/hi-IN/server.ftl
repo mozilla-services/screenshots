@@ -106,23 +106,27 @@ shotPageExpiresIn = { $timediff } समय सीमा समाप्त
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } समाप्त
 timeDiffJustNow = बस अभी
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 मिनट पहले 
        *[other] { $number } मिनट पहले
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 घंटे पहले 
        *[other] { $number } घंटे पहले
     }
 timeDiffFutureSeconds = कुछ ही समय में
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] 1 मिनट में
        *[other] { $number } मिनट में
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] 1 घंटे में
        *[other] { $number } घंटे में
     }
+
+
+[[ Annotations ]]
+
 
 
 [[ Shotindex page ]]

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 20.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 	 viewBox="0 0 216 216" style="enable-background:new 0 0 216 216;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#FFFFFF;}
@@ -262,9 +262,9 @@
 	<defs>
 		<path id="XMLID_40_" d="M131,118.7l-0.8,2.5c-0.7,2.1,0.5,4.4,2.6,5s4.4-0.5,5-2.6l2-6.3L131,118.7z"/>
 	</defs>
-	<use xlink:href="#XMLID_40_"  style="overflow:visible;fill:#FF99F8;"/>
+	<use href="#XMLID_40_"  style="overflow:visible;fill:#FF99F8;"/>
 	<clipPath id="XMLID_2_">
-		<use xlink:href="#XMLID_40_"  style="overflow:visible;"/>
+		<use href="#XMLID_40_"  style="overflow:visible;"/>
 	</clipPath>
 	<polygon class="st12" points="128.8,120.7 141.1,118.6 141.9,115.3 133.7,114.1 	"/>
 </g>

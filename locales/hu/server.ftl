@@ -153,31 +153,45 @@ shotPageExpiresIn = { $timediff } jár le
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } lejárt
 timeDiffJustNow = épp most
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 perce
        *[other] { $number } perce
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 órája
        *[other] { $number } órája
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] tegnap
        *[other] { $number } napja
     }
 timeDiffFutureSeconds = néhány másodperc múlva
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] 1 percen belül
        *[other] { $number } percen belül
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] 1 órán belül
        *[other] { $number } órán belül
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] holnap
        *[other] { $number } nap múlva
     }
+errorThirdPartyCookiesEnabled = Ha Ön készítette ezt a képet, és nem tudja törölni, akkor lehet hogy ideiglenesen engedélyeznie kell a harmadik féltől származó sütiket a böngésző beállításaiban.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Toll
+annotationHighlighterButton
+    .title = Kiemelő
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Törlés
+annotationSaveButton = Mentés
+annotationCancelButton = Mégse
 
 
 [[ Shotindex page ]]

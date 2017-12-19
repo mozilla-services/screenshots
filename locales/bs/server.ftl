@@ -153,36 +153,43 @@ shotPageExpiresIn = ističe { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = isteklo { $timediff }
 timeDiffJustNow = upravo sada
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] prije 1 minutu
         [few] prije { $number } minute
        *[other] prije { $number } minuta
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] prije 1 sat
         [few] prije { $number } sata
        *[other] prije { $number } sati
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] prije 1 dan
        *[few] prije { $number } dana
     }
 timeDiffFutureSeconds = za nekolio sekundi
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] za 1 minutu
         [few] za { $number } minute
        *[other] za { $number } minuta
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] za 1 sat
         [few] za { $number } sata
        *[other] za { $number } sati
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] sutra
         [few] za { $number } dana
        *[other] za { $number } dana
     }
+errorThirdPartyCookiesEnabled = Ako ste napravili snimak ekrana i ne možete ga izbrisati, možda trebate privremeno omogućiti kolačiće trećih strana u postavkama browsera.
+
+
+[[ Annotations ]]
+
+annotationSaveButton = Sačuvaj
+annotationCancelButton = Otkaži
 
 
 [[ Shotindex page ]]

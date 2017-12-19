@@ -153,31 +153,35 @@ shotPageExpiresIn = важи { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = рокот измина { $timediff }
 timeDiffJustNow = сега
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] пред 1 минута
        *[other] пред { $number } минути
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] пред 1 час
        *[other] пред { $number } часа
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] вчера
        *[other] пред { $number } дена
     }
 timeDiffFutureSeconds = за неколку секунди
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] за 1 минута
        *[other] за { $number } минути
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] за 1 час
        *[other] за { $number } часа
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] утре
        *[other] за { $number } дена
     }
+
+
+[[ Annotations ]]
+
 
 
 [[ Shotindex page ]]

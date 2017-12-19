@@ -134,7 +134,7 @@ shotPageDMCAContact = Por favor, envie um e-mail para { $dmca } para obter mais 
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Se suas capturas estiverem associadas a múltiplas reclamações, poderemos revogar seu acesso ao Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
-shotPageDMCAIncludeLink = Por favor, inclua a URL dessa captura no seu e-mail: { $url }
+shotPageDMCAIncludeLink = Por favor, inclua o URL desta captura no seu e-mail: { $url }
 shotPageKeepFor = Quanto tempo essa captura deve ficar armazenada?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Selecionar tempo
@@ -153,31 +153,45 @@ shotPageExpiresIn = expira { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = expirou há { $timediff }
 timeDiffJustNow = agora
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 minuto atrás
        *[other] { $number } minutos atrás
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 hora atrás
        *[other] { $number } horas atrás
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] ontem
        *[other] { $number } dias atrás
     }
 timeDiffFutureSeconds = em poucos minutos
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] em 1 minuto
        *[other] em { $number } minutos
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] em 1 hora
        *[other] em { $number } horas
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] amanhã
        *[other] em { $number } dias
     }
+errorThirdPartyCookiesEnabled = Se tirou esta captura e não consegue excluí-la, talvez seja necessário habilitar temporariamente os cookies de terceiros nas preferências do seu navegador.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Caneta
+annotationHighlighterButton
+    .title = Marcador
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Limpar
+annotationSaveButton = Salvar
+annotationCancelButton = Cancelar
 
 
 [[ Shotindex page ]]

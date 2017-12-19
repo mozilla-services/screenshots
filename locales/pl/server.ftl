@@ -153,37 +153,51 @@ shotPageExpiresIn = ulega przeterminowaniu { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = uległ przeterminowaniu { $timediff }
 timeDiffJustNow = przed chwilą
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] minutę temu
         [few] { $number } minuty temu
        *[other] { $number } minut temu
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] godzinę temu
         [few] { $number } godziny temu
        *[other] { $number } godzin temu
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] wczoraj
         [few] { $number } dni temu
        *[other] { $number } dni temu
     }
 timeDiffFutureSeconds = za kilka sekund
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] za minutę
         [few] za { $number } minuty
        *[other] za { $number } minut
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] za godzinę
         [few] za { $number } godziny
        *[other] za { $number } godzin
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] jutro
         [few] za { $number } dni
        *[other] za { $number } dni
     }
+errorThirdPartyCookiesEnabled = Jeśli to Twój zrzut i nie możesz go usunąć, to musisz tymczasowo włączyć ciasteczka witryn zewnętrznych podmiotów w preferencjach przeglądarki.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Długopis
+annotationHighlighterButton
+    .title = Zakreślacz
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Wyczyść
+annotationSaveButton = Zapisz
+annotationCancelButton = Anuluj
 
 
 [[ Shotindex page ]]

@@ -89,7 +89,7 @@ class Body extends React.Component {
   }
 
   renderPageNavigation() {
-    if (parseInt(this.props.totalShots, 10) === 0) {
+    if (!this.props.totalShots || parseInt(this.props.totalShots, 10) === 0) {
       return null;
     }
 

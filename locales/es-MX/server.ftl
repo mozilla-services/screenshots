@@ -153,31 +153,45 @@ shotPageExpiresIn = expira en { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = expiró hace { $timediff }
 timeDiffJustNow = justo ahora
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] hace 1 minuto
        *[other] hace { $number } minutos
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] hace 1 hora
        *[other] hace { $number } horas
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] ayer
        *[other] hace { $number } días
     }
 timeDiffFutureSeconds = en unos segundos
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] en 1 minuto
        *[other] en { $number } minutos
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] en 1 hora
        *[other] en { $number } horas
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] mañana
        *[other] en { $number } días
     }
+errorThirdPartyCookiesEnabled = Si tomas esta captura y no la puedes eliminar, puedes necesitar temporalmente habilitar cookies de terceros desde las preferencias de tu navegador.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pluma
+annotationHighlighterButton
+    .title = Marcador
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Limpiar
+annotationSaveButton = Guardar
+annotationCancelButton = Cancelar
 
 
 [[ Shotindex page ]]

@@ -8,7 +8,7 @@
 [[ global ]]
 
 gMyShots = Мои снимки
-gHomeLink = Дом
+gHomeLink = Главная
 gNoShots
     .alt = снимков не найдено
 gScreenshotsDescription = Скриншоты стали простыми. Делайте, сохраняйте и делитесь скриншотами, не покидая Firefox.
@@ -153,37 +153,44 @@ shotPageExpiresIn = срок хранения истечёт { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = срок хранения истёк { $timediff }
 timeDiffJustNow = прямо сейчас
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] { $number } минуту назад
         [few] { $number } минуты назад
        *[other] { $number } минут назад
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] { $number } час назад
         [few] { $number } часа назад
        *[other] { $number } часов назад
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] { $number } день назад
         [few] { $number } дня назад
        *[other] { $number } дней назад
     }
 timeDiffFutureSeconds = через несколько секунд
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] через { $number } минуту
         [few] через { $number } минуты
        *[other] через { $number } минут
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] через { $number } час
         [few] через { $number } часа
        *[other] через { $number } часов
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] через { $number } день
         [few] через { $number } дня
        *[other] через { $number } дней
     }
+errorThirdPartyCookiesEnabled = Если вы сделали этот снимок и не можете удалить его, то вам нужно временно включить сторонние куки в настройках вашего браузера.
+
+
+[[ Annotations ]]
+
+annotationSaveButton = Сохранить
+annotationCancelButton = Отмена
 
 
 [[ Shotindex page ]]

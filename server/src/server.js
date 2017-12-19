@@ -4,6 +4,7 @@ const mozlog = require("./logging").mozlog("server");
 const path = require('path');
 const { readFileSync, existsSync } = require('fs');
 const Cookies = require("cookies");
+const { URL } = require('url');
 
 let istanbulMiddleware = null;
 if (config.enableCoverage && process.env.NODE_ENV === "dev") {
@@ -56,6 +57,7 @@ const storage = multer.memoryStorage();
 const upload = multer({storage});
 const { isValidClipImageUrl } = require("../shared/shot");
 const urlParse = require("url").parse;
+const { updateAbTests } = require("./ab-tests");
 
 const COOKIE_EXPIRE_TIME = 30 * 24 * 60 * 60 * 1000; // 30 days
 
@@ -110,7 +112,9 @@ if (config.enableCoverage && istanbulMiddleware) {
     app.use('/coverage', istanbulMiddleware.createHandler());
 }
 
+const SITE_CDN = (config.siteCdn && (new URL(config.siteCdn)).host) || '';
 const CONTENT_NAME = config.contentOrigin || '';
+const CONTENT_CDN = (config.contentCdn && (new URL(config.contentCdn)).host) || '';
 const FXA_SERVER = config.fxa.profileServer && require("url").parse(config.fxa.profileServer).host;
 
 function addHSTS(req, res) {
@@ -147,7 +151,7 @@ app.use((req, res, next) => {
       req.cspNonce = uuid;
       res.header(
         "Content-Security-Policy",
-        `default-src 'self'; img-src 'self' ${FXA_SERVER} www.google-analytics.com ${CONTENT_NAME} data:; script-src 'self' www.google-analytics.com 'nonce-${uuid}'; style-src 'self' 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
+        `default-src 'self'; img-src 'self' ${FXA_SERVER} www.google-analytics.com ${SITE_CDN} ${CONTENT_CDN} ${CONTENT_NAME} data:; script-src 'self' ${SITE_CDN} www.google-analytics.com 'nonce-${uuid}'; style-src 'self' ${SITE_CDN} 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' ${SITE_CDN} www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
       res.header("X-Frame-Options", "DENY");
       res.header("X-Content-Type-Options", "nosniff");
       addHSTS(req, res);
@@ -203,11 +207,30 @@ app.use(function(req, res, next) {
   } else {
     authInfo.deviceId = cookies.get("user", {signed: true});
     authInfo.accountId = cookies.get("accountid", {signed: true});
-    let abTests = cookies.get("abtests", {signed: true});
-    if (abTests) {
-      abTests = b64DecodeJson(abTests);
-      authInfo.abTests = abTests;
+    let encodedAbTests = cookies.get("abtests", {signed: true});
+    let abTests;
+    if (encodedAbTests) {
+      abTests = b64DecodeJson(encodedAbTests);
     }
+    if (!authInfo.deviceId) {
+      // Authenticated users get A/B tests when they register/login, but unauthenticated
+      // users have to get it lazily
+      let origAbTests = Object.assign({}, abTests);
+      abTests = updateAbTests(abTests || {}, null, true);
+      if (Object.keys(abTests).length) {
+        // Only send if there's some test
+        let newEncodedAbTests = b64EncodeJson(abTests);
+        if (encodedAbTests != newEncodedAbTests) {
+          cookies.set("abtests", newEncodedAbTests, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
+        }
+      } else if (Object.keys(origAbTests).length) {
+        // All the A/B tests were removed (probably because the tests have been
+        // deprecated), but the user has an old A/B test. Therefore we should
+        // delete the cookie
+        cookies.set("abtests", "", {signed: true, sameSite: 'lax', maxAge: 0});
+      }
+    }
+    authInfo.abTests = abTests;
   }
   if (authInfo.deviceId) {
     req.deviceId = authInfo.deviceId;
@@ -266,9 +289,10 @@ function decodeAuthHeader(header) {
 
 app.use(function(req, res, next) {
   req.staticLink = linker.staticLink.bind(null, {
-    cdn: req.config.cdn
+    cdn: req.config.siteCdn
   });
-  let base = `${req.protocol}://${config.contentOrigin}`;
+  // The contentCdn config does not have a default value but contentOrigin does.
+  let base = config.contentCdn || `${req.protocol}://${config.contentOrigin}`;
   linker.imageLinkWithHost = linker.imageLink.bind(null, base);
   next();
 });
@@ -648,6 +672,15 @@ app.post("/api/set-login-cookie", function(req, res) {
   });
 });
 
+/** This endpoint is used by the site to confirm if the cookie was set */
+app.get("/api/check-login-cookie", function(req, res) {
+  if (req.deviceId) {
+    simpleResponse(res, "Login OK", 200);
+  } else {
+    simpleResponse(res, "No credentials available", 401);
+  }
+});
+
 app.put("/data/:id/:domain",
   upload.fields([{name: "blob", maxCount: 1}, {name: "thumbnail", maxCount: 1}]),
   function(req, res) {
@@ -929,6 +962,7 @@ app.get("/images/:imageid", function(req, res) {
         }
       }
       setDailyCache(res);
+      res.header("Access-Control-Allow-Origin", `${req.protocol}://${config.siteOrigin}`);
       res.status(200);
       res.send(obj.data);
     }

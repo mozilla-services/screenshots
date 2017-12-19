@@ -154,27 +154,41 @@ shotPageExpiresIn = ad yemmet { $timediff }
 shotPageExpired = immut  { $timediff }
 timeDiffJustNow = tura yakan
 timeDiffMinutesAgo = { $number } n tesdatin aya
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 usrag aya
        *[other] { $number } isragen aya
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] iḍelli
        *[other] { $number }  n wussan aya
     }
 timeDiffFutureSeconds = deg kra n tesnatin
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] di 1 n tsedat
        *[other] di { $number } tsedatin
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] di 1 usrag
        *[other] di { $number } isragen
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] azekka
        *[other] di { $number } n wussan
     }
+errorThirdPartyCookiesEnabled = Ma txeḍmeḍ tuṭṭfa-a sakin ur tezmireḍ ara ad tt-tekseḍ, iwwi-d ahat ad tremdeḍ s wudem askudan inagan n tuqna n wis kraḍ seg Ismenyifen n iminig inek.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Imru
+annotationHighlighterButton
+    .title = Aqerru
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Sfeḍ
+annotationSaveButton = Sekles
+annotationCancelButton = Sefsex
 
 
 [[ Shotindex page ]]

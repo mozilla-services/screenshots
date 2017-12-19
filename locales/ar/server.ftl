@@ -153,7 +153,7 @@ shotPageExpiresIn = تنتهي { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = انتهت { $timediff }
 timeDiffJustNow = للتو
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [zero] منذ أقل من دقيقة
         [one] منذ دقيقة
         [two] منذ دقيقتين
@@ -161,7 +161,7 @@ timeDiffMinutesAgo = { $num ->
         [many] منذ { $number } دقيقة
        *[other] منذ { $number } دقيقة
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [zero] منذ أقل من ساعة
         [one] منذ ساعة
         [two] منذ ساعتين
@@ -169,7 +169,7 @@ timeDiffHoursAgo = { $num ->
         [many] منذ { $number } ساعة
        *[other] منذ { $number } ساعة
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] بالأمس
         [two] قبل أمس
         [few] منذ { $number } أيام
@@ -177,7 +177,7 @@ timeDiffDaysAgo = { $num ->
        *[other] منذ { $number } يوم
     }
 timeDiffFutureSeconds = بعد بضع ثوان
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [zero] بعد بضع ثوان
         [one] بعد دقيقة
         [two] بعد دقيقتين
@@ -185,7 +185,7 @@ timeDiffFutureMinutes = { $num ->
         [many] بعد { $number } دقيقة
        *[other] بعد { $number } دقيقة
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [zero] بعد أقل من ساعة
         [one] بعد ساعة
         [two] بعد ساعتين
@@ -193,13 +193,27 @@ timeDiffFutureHours = { $num ->
         [many] بعد { $number } ساعة
        *[other] بعد { $number } ساعة
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] غدا
         [two] بعد غد
         [few] بعد { $number } أيام
         [many] بعد { $number } يومًا
        *[other] بعد { $number } يوم
     }
+errorThirdPartyCookiesEnabled = إذا أخذت هذه اللقطة و لا تستطيع حذفها، فقد تحتاج إلى تمكين كعكات الأطراف الخارجية مؤقتًا من تفضيلات المتصفح.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = قلم
+annotationHighlighterButton
+    .title = قلم تحديد
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = امسح
+annotationSaveButton = احفظ
+annotationCancelButton = ألغِ
 
 
 [[ Shotindex page ]]

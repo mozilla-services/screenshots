@@ -153,31 +153,45 @@ shotPageExpiresIn = udløber { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = udløb { $timediff }
 timeDiffJustNow = netop nu
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 minut siden
        *[other] { $number } minutter siden
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 time siden
        *[other] { $number } timer siden
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] i går
        *[other] { $number } dage siden
     }
 timeDiffFutureSeconds = om et par sekunder
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] om 1 minut
        *[other] om { $number } minutter
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] om 1 time
        *[other] om { $number } timer
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] i morgen
        *[other] om { $number } dage
     }
+errorThirdPartyCookiesEnabled = Hvis du tog dette skærmbillede og ikke kan slette det, kan det være nødvendigt at acceptere tredjeparts cookies midlertidigt i din browsers indstillinger.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pen
+annotationHighlighterButton
+    .title = Overstregningspen
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Ryd
+annotationSaveButton = Gem
+annotationCancelButton = Annuller
 
 
 [[ Shotindex page ]]

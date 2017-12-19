@@ -58,6 +58,10 @@ homePageGetStartedTitle = Boshlash
 
 
 
+[[ Annotations ]]
+
+
+
 [[ Shotindex page ]]
 
 

@@ -153,37 +153,41 @@ shotPageExpiresIn = ističe { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = isteklo { $timediff }
 timeDiffJustNow = upravo sada
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] prije { $number } minutu
         [few] prije { $number } minute
        *[other] prije { $number } minuta
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] prije { $number } sat
         [few] prije { $number } sata
        *[other] prije { $number } sati
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] prije { $number } dan
         [few] prije { $number } dana
        *[other] prije { $number } dana
     }
 timeDiffFutureSeconds = za nekolio sekundi
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] za { $number } minutu
         [few] za { $number } minute
        *[other] za { $number } minuta
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] za { $number } sat
         [few] za { $number } sata
        *[other] za { $number } sati
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] za { $number } dan
         [few] za { $number } dana
        *[other] za { $number } dana
     }
+
+
+[[ Annotations ]]
+
 
 
 [[ Shotindex page ]]

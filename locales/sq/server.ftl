@@ -51,7 +51,7 @@ homePageGetStartedTitle = Fillojani
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Gjeni te paneli juaj ikonën e re për Screenshots. Përzgjidheni, dhe menuja Shkrepje do të shfaqet në krye të dritares së shfletuesit tuaj.
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescriptionPageAction = Përzgjidhni ikonën Shkrepje prej menusë së veprimeve mbi faqe te shtylla e adresave, dhe menuja Shkrepje do të shfaqet në krye të dritares së shfletuesit tuaj.
+homePageGetStartedDescriptionPageAction = Përzgjidhni ikonën Shkrepje, prej menusë së veprimeve mbi faqe, te shtylla e adresave, dhe menuja Shkrepje do të shfaqet në krye të dritares së shfletuesit tuaj.
 homePageCaptureRegion = Fotografoni një Zonë
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klikoni dhe tërhiqeni që të përzgjidhni fushën që doni të fotografohet. Ose thjesht kaloni kursorin dhe klikoni — Screenshots do të bëjë përzgjedhjen për ju. Ju pëlqen çka shihni? Përzgjidhni Ruaje që ta përdorni foton tuaj <em>online</em> ose butonin shigjetë për poshtë që ta shkarkoni në kompjuterin tuaj.
@@ -153,32 +153,44 @@ shotPageExpiresIn = skadon më { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = ka skaduar më { $timediff }
 timeDiffJustNow = mu tani
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 minutë më parë
        *[other] { $number } minuta më parë
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 orë më parë
        *[other] { $number } orë më parë
     }
-timeDiffDaysAgo =
-    timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo = timeDiffDaysAgo = { $number ->
         [one] dje
        *[other] { $number } ditë më parë
     }
-
 timeDiffFutureSeconds = në pak sekonda
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] në 1 minutë
        *[other] në { $number } minuta
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] në 1 orë
        *[other] në { $number } orë
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
        *[one] nesër
     }
+errorThirdPartyCookiesEnabled = Nëse bëtë këtë foto dhe s’e fshini dot, mund t’ju duhet të aktivizoni përkohësisht cookie prej palësh të treta, që nga parapëlqimet tuaja për shfletuesin.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Penë
+annotationHighlighterButton
+    .title = Theksues
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Pastroje
+annotationSaveButton = Ruaje
+annotationCancelButton = Anuloje
 
 
 [[ Shotindex page ]]

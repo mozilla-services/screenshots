@@ -153,25 +153,30 @@ shotPageExpiresIn = мерзімі { $timediff } аяқталады
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = мерзімі { $timediff } аяқталды
 timeDiffJustNow = жаңа ғана
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
        *[other] 1 минут бұрын
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
        *[other] 1 сағат бұрын
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
        *[other] кеше
     }
 timeDiffFutureSeconds = бірнеше секундтан кейін
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
        *[other] { $number } минуттан кейін
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
        *[other] { $number } сағаттан кейін
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
        *[other] { $number } күннен кейін
     }
+errorThirdPartyCookiesEnabled = Егер сіз бұл скриншотты түсіріп, оны өшіре алмасаңыз, онда сізге браузерде уақытша үшінші жақты cookies файлдарына рұқсат беру керек болуы мүмкін.
+
+
+[[ Annotations ]]
+
 
 
 [[ Shotindex page ]]

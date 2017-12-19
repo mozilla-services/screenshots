@@ -23,7 +23,8 @@ Start the system addon release process by copying the following checklist into a
   - Ensure your commit message follows the [Firefox bug conventions](https://mdn.io/Committing_Rules_and_Responsibilities), for example: "Bug 1362550 - Export Screenshots 6.6.0 to Firefox; r?kmag"
 - [ ] Push the changes to the Try server
   - Suggested incantation: `./mach try -b o -p linux64,macosx64,win32,win64 -u all -t all --rebuild-talos 5 --no-artifact`
-- [ ] For reliable Talos comparison, also push the mozilla-central base commit to Try using the same try syntax (see comments in [bug 2822](https://github.com/mozilla-services/screenshots/issues/2822) for Talos and Treeherder basics)
+  - When running tests against mozilla-beta, run the above incantation for regular unit tests and Talos testing against osx, then also run this separate build to test Talos against pgo builds for windows and linux: `./mach try fuzzy -q 'pgo talos-'`
+  - See [#2822](https://github.com/mozilla-services/screenshots/issues/2822) for Talos and Treeherder basics
 - [ ] Add the Try links to the release bug
 - [ ] Push the review request to reviewboard using mozreview, also known as [Mozilla VCS tools](https://mozilla-version-control-tools.readthedocs.io/en/latest/)
   - `git mozreview push` will work if you are using git-cinnabar and have mozreview configured

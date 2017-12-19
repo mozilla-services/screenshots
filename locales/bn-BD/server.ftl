@@ -153,31 +153,36 @@ shotPageExpiresIn = { $timediff } দিনে মেয়াদোত্তীর
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } মেয়াদোত্তীর্ণ
 timeDiffJustNow = এখনই
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] ১ মিনিট আগে 
        *[other] { $number } মিনিট আগে
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] ১ ঘন্টা আগে
        *[other] { $number } ঘন্টা আগে
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] গতকাল 
        *[other] { $number } দিন আগে
     }
 timeDiffFutureSeconds = কিছুক্ষণের মধ্যেই
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] ১ মিনিটের মধ্যে
        *[other] { $number } মিনিটের মধ্যে
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] ১ ঘন্টার মধ্যে
        *[other] { $number } ঘন্টার মধ্যে
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] আগামীকাল
        *[other] { $number } দিনের মধ্যে
     }
+errorThirdPartyCookiesEnabled = আপনি যদি শট নেন, কিন্তু মুছে ফেলতে না পারেন, তাহলে আপনার ব্রাউজারের অপশন থেকে তৃতীয় পক্ষের কুকিজ অস্থায়ীভাবে সক্রিয় করতে হতে পারে।
+
+
+[[ Annotations ]]
+
 
 
 [[ Shotindex page ]]

@@ -153,31 +153,35 @@ shotPageExpiresIn = caduca { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = ha caducat { $timediff }
 timeDiffJustNow = ara mateix
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] fa 1 minut
        *[other] fa { $number } minuts
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] fa 1 hora
        *[other] fa { $number } hores
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] ahir
        *[other] fa { $number } dies
     }
 timeDiffFutureSeconds = d'aquí pocs segons
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] d'aquí 1 minut
        *[other] d'aquí { $number } minuts
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] d'aquí 1 hora
        *[other] d'aquí { $number } hores
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] demà
        *[other] d'aquí { $number } dies
     }
+
+
+[[ Annotations ]]
+
 
 
 [[ Shotindex page ]]

@@ -153,10 +153,10 @@ shotPageExpiresIn = { $timediff } 后过期
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } 前已过期
 timeDiffJustNow = 刚刚
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
        *[other] { $number } 分钟前
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
        *[other] { $number } 小时前
     }
 timeDiffDaysAgo = { $number } 天前
@@ -164,6 +164,20 @@ timeDiffFutureSeconds = 几秒
 timeDiffFutureMinutes = { $number } 分钟
 timeDiffFutureHours = { $number } 小时
 timeDiffFutureDays = { $number } 天
+errorThirdPartyCookiesEnabled = 如果您无法删除截图，可能需要暂时在浏览器的设置中启用第三方 Cookie。
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = 钢笔
+annotationHighlighterButton
+    .title = 荧光笔
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = 清除
+annotationSaveButton = 保存
+annotationCancelButton = 取消
 
 
 [[ Shotindex page ]]

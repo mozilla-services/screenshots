@@ -153,31 +153,45 @@ shotPageExpiresIn = સમાપ્ત થાય છે { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = સમાપ્ત થઈ { $timediff }
 timeDiffJustNow = હમણાજ
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 મિનિટ પહેલા
        *[other] { $number } મિનિટ પહેલા
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 કલાક પહેલા
        *[other] { $number } કલાક પહેલા
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] ગઇકાલે
        *[other] { $number } દિવસ પહેલા
     }
 timeDiffFutureSeconds = થોડીવારમાં
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] 1 મિનિટમાં
        *[other] { $number } મિનિટમાં
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] 1 કલાકમાં
        *[other] { $number } કલાકમાં
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] કાલે
        *[other] { $number } દિવસમાં
     }
+errorThirdPartyCookiesEnabled = જો તમે આ શોટ લીધો છે અને તેને કાઢી શકતા નથી, તો તમારે અસ્થાયી રૂપે તમારા બ્રાઉઝરની પસંદગીઓમાંથી તૃતીય પક્ષ કૂકીઝને સક્ષમ કરવાની જરૂર પડી શકે છે.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = કલમ
+annotationHighlighterButton
+    .title = પ્રકાશિત કરનાર
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = સાફ
+annotationSaveButton = સાચવો
+annotationCancelButton = રદ કરો
 
 
 [[ Shotindex page ]]

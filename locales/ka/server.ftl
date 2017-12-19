@@ -154,22 +154,36 @@ shotPageExpiresIn = ვადის გასვლის დრო { $timediff 
 shotPageExpired = ვადა გაუვიდა { $timediff }
 timeDiffJustNow = ახლახანს
 timeDiffMinutesAgo = 1 წუთის წინ
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
        *[other] 1 საათის წინ
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
        *[other] გუშინ
     }
 timeDiffFutureSeconds = რამდენიმე წუთში
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
        *[other] 1 წუთში
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
        *[other] 1 საათში
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
        *[other] ხვალ
     }
+errorThirdPartyCookiesEnabled = თუ გადაიღეთ სურათი, მაგრამ ვერ ახერხებთ მის წაშლას, სავარაუდოდ, დაგჭირდებათ მესამე მხარის ფუნთუშების დროებით დაშვება, ბრაუზერის პარამეტრებიდან.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = კალამი
+annotationHighlighterButton
+    .title = მოსანიშნი
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = გასუფთავება
+annotationSaveButton = შენახვა
+annotationCancelButton = გაუქმება
 
 
 [[ Shotindex page ]]

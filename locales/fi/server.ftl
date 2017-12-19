@@ -50,6 +50,8 @@ homePageHowScreenshotsWorks = Miten Firefox Screenshots toimii
 homePageGetStartedTitle = Aloitetaan
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Huomaa uusi Screenshots-kuvake työkalupalkissa. Valitse se, niin Screenshots-valikko avautuu selainikkunan päälle.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Valitse Screenshots-kuvake osoitepalkissa olevasta Sivun toiminnot -valikosta, niin Screenshots-valikko avautuu selainikkunan päälle.
 homePageCaptureRegion = Kaappaa alue
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Valitse kaapattava alue napsauttamalla ja vetämällä. Tai pidä hiirtä sen päällä ja napsauta – Screenshots valitsee alueen puolestasi. PIdätkö näkemästäsi? Valitse Tallenna, niin voit katsella kuvakaappaustasi verkossa, tai alas osoittava nuoli, niin voit ladata sen tietokoneellesi.
@@ -151,31 +153,45 @@ shotPageExpiresIn = vanhenee { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = vanheni { $timediff }
 timeDiffJustNow = juuri nyt
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 minuutti sitten
        *[other] { $number } minuuttia sitten
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 tunti sitten
        *[other] { $number } tuntia sitten
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] eilen
        *[other] { $number } päivää sitten
     }
 timeDiffFutureSeconds = muutaman sekunnin kuluttua
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] 1 minuutin kuluttua
        *[other] { $number } minuutin kuluttua
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] 1 tunnin kuluttua
        *[other] { $number } tunnin kuluttua
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] huomenna
        *[other] { $number } päivän kuluttua
     }
+errorThirdPartyCookiesEnabled = Jos otit tämän kaappauksen etkä pysty poistamaan sitä, voit joutua sallimaan kolmannen osapuolen evästeet väliaikaisesti selaimen asetuksista.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Kynä
+annotationHighlighterButton
+    .title = Korostus
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Pyyhi
+annotationSaveButton = Tallenna
+annotationCancelButton = Peruuta
 
 
 [[ Shotindex page ]]

@@ -160,6 +160,20 @@ timeDiffFutureSeconds = dalam beberapa detik
 timeDiffFutureMinutes = dalam 1 menit
 timeDiffFutureHours = dalam 1 jam
 timeDiffFutureDays = besok
+errorThirdPartyCookiesEnabled = Jika Anda mengambil tangkapan ini dan tidak bisa menghapusnya, Anda mungkin perlu mengaktifkan kuki pihak ketiga untuk sementara dari pengaturan peramban Anda.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pena
+annotationHighlighterButton
+    .title = Penyorot
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Bersihkan
+annotationSaveButton = Simpan
+annotationCancelButton = Batal
 
 
 [[ Shotindex page ]]

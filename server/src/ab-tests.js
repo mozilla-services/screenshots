@@ -7,6 +7,15 @@ below shows what these test objects look like.
 */
 // Note: these get turned into Test objects:
 let allTests = {
+  shotShareIcon: {
+    description: "Use a different share icon",
+    gaField: "cd7",
+    version: 1,
+    options: [
+      {name: "newicon", probability: 0.1}
+    ],
+    exclude: ["*"]
+  }
 };
 
 /* Example of how this could be set: */
@@ -26,6 +35,8 @@ let allTests = {
     exclude: ["highlightButtonOnInstall", "myShotsDisplay"],
     // Or exclude them if they are in any test:
     // exclude: ["*"],
+    // If you want this A/B test to apply to unauthenticated users:
+    appliesToPublic: true,
     // These are the actual allowed A/B options (control is never specified):
     options: [
       // The name of the option, and its probabilty (e.g., 10% chance of getting
@@ -65,7 +76,7 @@ let deprecatedTests = ['highlightButtonOnInstall', 'styleMyShotsButton', 'autoOp
 class Test {
   constructor(options) {
     let requiredFields = ['name', 'gaField', 'description', 'version', 'options'];
-    let allowedFields = requiredFields.concat(['shotField', 'exclude']);
+    let allowedFields = requiredFields.concat(['shotField', 'exclude', 'appliesToPublic']);
     for (let required of requiredFields) {
       if (!(required in options)) {
         throw new Error(`Missing constructor field: ${required}`);
@@ -79,7 +90,10 @@ class Test {
     Object.assign(this, options);
   }
 
-  updateTest(tests, forceValue) {
+  updateTest(tests, forceValue, unauthed) {
+    if (unauthed && !this.appliesToPublic) {
+      return;
+    }
     if (forceValue) {
       tests[this.name] = this.testWithValue(forceValue);
     }
@@ -119,12 +133,13 @@ class Test {
   }
 
   shouldExclude(tests) {
-    for (let testName of this.exclude) {
+    const excludes = this.exclude || [];
+    for (let testName of excludes) {
       if (tests[testName] && tests[testName].value !== "exclude") {
         return true;
       }
     }
-    if (this.exclude.includes("*")) {
+    if (excludes.includes("*")) {
       for (let testName in tests) {
         if (testName != this.name && tests[testName].value !== "exclude") {
           return true;
@@ -138,9 +153,9 @@ class Test {
 
 /** Update a user's abTests values.
     The optional forceTests looks like {aTests: "forceValue"} */
-exports.updateAbTests = function(tests, forceTests) {
+exports.updateAbTests = function(tests, forceTests, unauthed) {
   for (let testName in allTests) {
-    allTests[testName].updateTest(tests, forceTests && forceTests[testName]);
+    allTests[testName].updateTest(tests, forceTests && forceTests[testName], unauthed);
   }
   for (let testName of deprecatedTests) {
     if (testName in tests) {

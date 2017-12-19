@@ -37,6 +37,10 @@ footerLinkMozilla = Mozilla
 
 
 
+[[ Annotations ]]
+
+
+
 [[ Shotindex page ]]
 
 

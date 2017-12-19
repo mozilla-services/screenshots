@@ -83,6 +83,10 @@ shotPageCancelExpiration = ರದ್ದುಮಾಡಿ
 timeDiffJustNow = ಈಗಷ್ಟೆ
 
 
+[[ Annotations ]]
+
+
+
 [[ Shotindex page ]]
 
 

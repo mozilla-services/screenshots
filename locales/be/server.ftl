@@ -153,37 +153,51 @@ shotPageExpiresIn = тэрмін захоўвання мінае { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = тэрмін захоўвання скончыўся { $timediff }
 timeDiffJustNow = толькі што
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] хвіліну таму
         [few] { $number } хвіліны таму
        *[other] { $number } хвілін таму
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] гадзіну таму
         [few] { $number } гадзіны таму
        *[other] { $number } гадзін таму
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] учора
         [few] { $number } дні таму
        *[other] { $number } дзён таму
     }
 timeDiffFutureSeconds = праз некалькі секунд
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] за хвіліну
         [few] за { $number } хвіліны
        *[other] за { $number } хвілін
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] за гадзіну
         [few] за { $number } гадзіны
        *[other] за { $number } гадзін
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] заўтра
         [few] за { $number } дні
        *[other] за { $number } дзён
     }
+errorThirdPartyCookiesEnabled = Калі вы зрабілі гэты здымак і не можаце яго выдаліць, вам можа спатрэбіцца часова ўключыць прыём кукі з пабочных сайтаў у наладах вашага браўзера.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Асадка
+annotationHighlighterButton
+    .title = Маркер
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Ачысціць
+annotationSaveButton = Захаваць
+annotationCancelButton = Скасаваць
 
 
 [[ Shotindex page ]]

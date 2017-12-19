@@ -153,43 +153,57 @@ shotPageExpiresIn = spadnjo { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = spadnjony { $timediff }
 timeDiffJustNow = rowno
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] pśed 1 minutu
         [two] pśed { $number } minutoma
         [few] pśed { $number } minutami
        *[other] pśed { $number } minutami
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] pśed 1 góźinu
         [two] pśed { $number } góźinoma
         [few] pśed { $number } góźinami
        *[other] pśed { $number } góźinami
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] cora
         [two] pśed { $number } dnjoma
         [few] pśed { $number } dnjami
        *[other] pśed { $number } dnjami
     }
 timeDiffFutureSeconds = za mało sekundow
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] za 1 minutu
         [two] za { $number } minuśe
         [few] za { $number } minuty
        *[other] za { $number } minutow
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] za 1 góźinu
         [two] za { $number } góźinje
         [few] za { $number } góźiny
        *[other] za { $number } góźin
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] witśe
         [two] za { $number } dnja
         [few] za { $number } dny
        *[other] za { $number } dnjow
     }
+errorThirdPartyCookiesEnabled = Jolic sćo toś to foto wobrazowki gótował a njamóžośo jo wulašowaś, musyśo nachylu cookieje tśeśich póbitowarjow w nastajenjach swójogo wobglědowaka zmóžniś.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pisak
+annotationHighlighterButton
+    .title = Tekstowy marker
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Slědk stajiś
+annotationSaveButton = Składowaś
+annotationCancelButton = Pśetergnuś
 
 
 [[ Shotindex page ]]

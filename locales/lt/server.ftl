@@ -153,37 +153,51 @@ shotPageExpiresIn = baigs galioti { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = baigė galioti { $timediff }
 timeDiffJustNow = ką tik
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] prieš 1 minutę
         [few] prieš { $number } minutes
        *[other] prieš { $number } minučių
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] prieš 1 valandą
         [few] prieš { $number } valandas
        *[other] prieš { $number } valandų
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] vakar
         [few] prieš { $number } dienas
        *[other] prieš { $number } dienų
     }
 timeDiffFutureSeconds = po keleto sekundžių
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] po 1 minutės
         [few] po { $number } minučių
        *[other] po { $number } minučių
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] po 1 valandos
         [few] po { $number } valandų
        *[other] po { $number } valandų
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] rytoj
         [few] po { $number } dienų
        *[other] po { $number } dienų
     }
+errorThirdPartyCookiesEnabled = Jei padarėte šią nuotrauką ir negalite jos pašalinti, gali tekti laikinai įjungti trečiųjų šalių slapukus per naršyklės nuostatas.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Rašiklis
+annotationHighlighterButton
+    .title = Žymeklis
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Išvalyti
+annotationSaveButton = Įrašyti
+annotationCancelButton = Atsisakyti
 
 
 [[ Shotindex page ]]
