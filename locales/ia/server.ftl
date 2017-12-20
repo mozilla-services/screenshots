@@ -183,6 +183,15 @@ errorThirdPartyCookiesEnabled = Si tu ha prendite iste instantaneo e non pote lo
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = Penna
+annotationHighlighterButton
+    .title = Evidentiator
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Clarar
+annotationSaveButton = Salvar
+annotationCancelButton = Cancellar
 
 
 [[ Shotindex page ]]
