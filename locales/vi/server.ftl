@@ -58,6 +58,8 @@ homePageCaptureRegionDescription = Nhấp và kéo để chọn khu vực bạn 
 homePageCapturePage = Chụp một trang
 homePageCapturePageDescription = Sử dụng các nút ở phía trên bên phải để chụp toàn bộ trang. Nút Lưu Ghi nhớ sẽ chụp khu vực bạn có thể xem mà không cần di chuyển, và Lưu toàn bộ Trang sẽ chụp mọi thứ trên trang.
 homePageSaveShare = Lưu và chia sẻ
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Khi bạn chụp, Firefox đăng ảnh chụp màn hình của bạn lên thư viện Ảnh chụp màn hình trực tuyến của bạn và sao chép liên kết tới khay nhớ tạm của bạn. Chúng tôi tự động lưu ảnh chụp màn hình của bạn trong hai tuần, nhưng bạn có thể xóa ảnh chụp bất kỳ lúc nào hoặc thay đổi ngày hết hạn để giữ chúng trong thư viện của bạn lâu hơn.
 homePageLegalLink = Thông tin pháp lý
 homePagePrivacyLink = Chính sách riêng tư
 homePageTermsLink = Điều khoản
@@ -115,6 +117,8 @@ shotPageExpirationMessage = Nếu bạn không làm gì, ảnh này sẽ bị x�
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = khôi phục đến { $date }
 shotPageExpiredMessage = Ảnh này đã quá hạn.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Đây là trang nó ban đầu được tạo ra từ:
 shotPageDeleteButton
     .title = Xóa ảnh này
 shotPageAbuseButton
@@ -165,6 +169,15 @@ errorThirdPartyCookiesEnabled = Nếu bạn đã chụp và không thể xóa �
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = Pen
+annotationHighlighterButton
+    .title = Đánh dấu
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Làm sạch
+annotationSaveButton = Lưu
+annotationCancelButton = Hủy bỏ
 
 
 [[ Shotindex page ]]
@@ -174,6 +187,9 @@ errorThirdPartyCookiesEnabled = Nếu bạn đã chụp và không thể xóa �
 shotIndexPageErrorDeletingShot = Lỗi khi xóa ảnh chụp: { $status } { $statusText }
 // { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Ảnh chụp của tôi: tìm kiếm { $searchTerm }
+// { $error } is a placeholder for a non-translated error message that could be shared
+// with developers when debugging an error.
+shotIndexPageErrorRendering = Đã xảy ra lỗi khi tạo trang: { $error }
 shotIndexPageSearchPlaceholder
     .placeholder = Tìm kiếm ảnh chụp của tôi
 shotIndexPageSearchButton
@@ -186,6 +202,10 @@ shotIndexPageNoSearchResults = Chúng tôi không thể tìm thấy ảnh chụp
 shotIndexPageClearSearchButton
     .title = Xóa lịch sử tìm kiếm
 shotIndexPageConfirmShotDelete = Xóa ảnh chụp này?
+shotIndexPagePreviousPage
+    .title = Trang trước
+shotIndexPageNextPage
+    .title = Trang kế tiếp
 
 
 // all metrics strings are optional for translation
@@ -197,6 +217,7 @@ metricsPageTotalsQueryTitle = Tổng cộng
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Tổng quan về Ảnh chụp màn hình
 metricsPageTotalsQueryDevices = Tổng thiết bị đăng kí
+metricsPageTotalsQueryActiveShots = Ảnh chụp hoạt động
 metricsPageTotalsQueryExpiredShots = Đã hết hạn (nhưng có thể khôi phục)
 metricsPageTotalsQueryExpiredDeletedShots = Đã hết hạn (và đã xóa)
 metricsPageShotsQueryTitle = Ảnh chụp theo Ngày
@@ -204,12 +225,22 @@ metricsPageShotsQueryDescription = Số lượng ảnh chụp được tạo ra 
 metricsPageShotsQueryCount = Số ảnh chụp
 metricsPageShotsQueryDay = Ngày
 metricsPageUsersQueryTitle = Người dùng theo Ngày
+metricsPageUsersQueryDescription = Số lượng người dùng tạo ít nhất một lần, theo ngày (30 ngày qua)
 metricsPageUsersQueryCount = Số người dùng
 metricsPageUsersQueryDay = Ngày
+metricsPageUserShotsQueryTitle = Số lượng ảnh chụp trên mỗi người dùng
+metricsPageUserShotsQueryDescription = Số lượng người dùng có tổng số N ảnh chụp
 metricsPageUserShotsQueryCount = Số người dùng
+metricsPageUserShotsQueryShots = Số lượng tương tác của các bức ảnh chụp đang hoạt động (chưa hết hạn)
 metricsPageRetentionQueryTitle = Tỷ lệ duy trì hàng tuần
+metricsPageRetentionQueryDescription = Số ngày từ lần sử dụng đầu tiên của người dùng cho lần chụp gần đây nhất, được nhóm lại theo tuần bắt đầu
 metricsPageRetentionQueryUsers = Số người dùng
+metricsPageRetentionQueryDays = Ngày từ người dùng đầu tiên đến ảnh gần đây nhất
+metricsPageRetentionQueryFirstWeek = Tuần người dùng đầu tiên tạo ra một ảnh chụp
+metricsPageTotalRetentionQueryTitle = Tổng tỉ lệ duy trì
+metricsPageTotalRetentionQueryDescription = Khoảng thời gian người dùng đã tạo ảnh chụp, được nhóm theo tuần
 metricsPageTotalRetentionQueryUsers = Số người dùng
+metricsPageTotalRetentionQueryDays = Ngày người dùng đã tạo ảnh chụp
 metricsPageVersionQueryTitle = Phiên bản tiện ích
 metricsPageVersionQueryDescription = Phiên bản tiện ích được sử dụng trong quá trình đăng nhập, trong 14 ngày qua
 metricsPageVersionQueryUsers = Số lượng người dùng đăng nhập
