@@ -43,6 +43,8 @@ homePageGetStarted = Fuɗɗo
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = No Leƴƴanɗe Kuurgal Firefox Gollortoo
 homePageGetStartedTitle = Fuɗɗo
+homePageCaptureRegion = Nokkito Diiwaan
+homePageCapturePage = Nokkito Hello
 homePageSaveShare = Danndu etee Lollin
 homePageLegalLink = Laawol
 homePagePrivacyLink = Suturo
