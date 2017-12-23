@@ -177,6 +177,15 @@ errorThirdPartyCookiesEnabled = Егер сіз бұл скриншотты тү
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = Қалам
+annotationHighlighterButton
+    .title = Маркер
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Тазарту
+annotationSaveButton = Сақтау
+annotationCancelButton = Бас тарту
 
 
 [[ Shotindex page ]]
