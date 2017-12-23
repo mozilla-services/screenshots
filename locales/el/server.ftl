@@ -176,10 +176,20 @@ timeDiffFutureDays = { $number ->
         [one] αύριο
        *[other] σε { $number } ημέρες
     }
+errorThirdPartyCookiesEnabled = Αν "τραβήξατε" αυτό το στιγμιότυπο και δεν μπορείτε να το διαγράψετε, ίσως χρειαστεί να ενεργοποιήσετε προσωρινά τα cookies τρίτων από τις προτιμήσεις του προγράμματος περιήγησής σας.
 
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = Στυλό
+annotationHighlighterButton
+    .title = Μαρκαδόρος
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Εκκαθάριση
+annotationSaveButton = Αποθήκευση
+annotationCancelButton = Ακύρωση
 
 
 [[ Shotindex page ]]
