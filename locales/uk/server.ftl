@@ -95,7 +95,7 @@ shotPageAlertErrorDeletingShot = Помилка при видаленні зні
 shotPageAlertErrorUpdatingTitle = Помилка при збереженні назви
 shotPageConfirmDelete = Ви впевнені, що хочете назавжди видалити цей знімок?
 shotPageShareButton
-    .title = Поділітися
+    .title = Поділитися
 shotPageCopy = Копіювати
 shotPageCopied = Скопійовано
 shotPageShareFacebook
