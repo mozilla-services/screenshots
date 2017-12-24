@@ -39,7 +39,7 @@ creatingPageWaitMessage = Зберігаємо ваш знімок…
 [[ Home page ]]
 
 homePageDescription
-    .content = Прості знімки рпямо в браузері. Робіть, зберігайте й діліться знімками екрану під час роботи в Інтернеті з Firefox.
+    .content = Прості знімки прямо в браузері. Робіть, зберігайте й діліться знімками екрану під час роботи в Інтернеті з Firefox.
 homePageButtonMyShots = Перейти до моїх знімків
 homePageTeaser = Скоро...
 homePageDownloadFirefoxTitle = Firefox
