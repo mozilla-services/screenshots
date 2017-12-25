@@ -103,7 +103,7 @@ shotPageKeepTwoWeeks = 2 สัปดาห์
 shotPageKeepOneMonth = 1 เดือน
 shotPageSaveExpiration = บันทึก
 shotPageCancelExpiration = ยกเลิก
-shotPageDoesNotExpire = ไม่หมดเวลา
+shotPageDoesNotExpire = ไม่หมดอายุ
 timeDiffFutureSeconds = ในไม่กี่วินาที
 
 
