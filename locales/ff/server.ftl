@@ -20,6 +20,7 @@ footerLinkMozilla = Mozilla
 footerLinkTerms = Sarɗiiji
 footerLinkPrivacy = Tintinol Suturo
 footerLinkFaqs = FAQs
+footerLinkDMCA = Siimtu nguyka IP
 footerLinkDiscourse = Hokku duttinal
 footerLinkRemoveAllData = Momtu Keɓe Fof
 
@@ -229,5 +230,6 @@ metricsPageRetentionQueryUsers = Limoore huutorɓe
 metricsPageTotalRetentionQueryUsers = Limoore huutorɓe
 metricsPageVersionQueryTitle = Yamre jokkel 
 metricsPageVersionQueryDescription = Yamre jokkel kuutorongel saanga ceŋogol, e balɗe 14 jawtuɗe ɗee.
+metricsPageVersionQueryUsers = Limoore huutorɓe seŋotooɓe
 metricsPageVersionQueryVersion = Yamre jokkel
 metricsPageVersionQueryLastSeen = Ñalawma
