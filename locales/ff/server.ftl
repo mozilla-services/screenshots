@@ -19,6 +19,7 @@ gNoShots
 footerLinkMozilla = Mozilla
 footerLinkTerms = Sarɗiiji
 footerLinkPrivacy = Tintinol Suturo
+footerLinkFaqs = FAQs
 footerLinkDiscourse = Hokku duttinal
 footerLinkRemoveAllData = Momtu Keɓe Fof
 
@@ -62,11 +63,13 @@ leavePageErrorGeneric = Juumre waɗii
 leavePageWarning = Ɗum ɗoo maa jokku momtude keɓe leƴƴanɗe kuurgal Firefox maa.
 leavePageButtonProceed = Fuɗɗo
 leavePageButtonCancel = Haaytu
+leavePageDeleted = Leƴƴanɗe kuurgal ma fof momtaama!
 
 
 [[ Not Found page ]]
 
 notFoundPageTitle = Hello ngoo yiytaaka
+notFoundPageIntro = Oops.
 notFoundPageDescription = Hello ngoo yiytaaka
 
 
@@ -95,6 +98,16 @@ shotPagePrivacyMessage = Kala gonnduɗo e jokkol ngol ina waawi yiyde ngal natta
 shotPageCopyImageText
     .label = Natto binndol natal ngal
 shotPageConfirmDeletion = Aɗa yananaa tiɗde momtude ngal nattal daañaa?
+// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = So tawii a waɗaani hay dara, ndee nattannde momtoyte haa abadaa { $timediff }.
+// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = Artir haa { $date }
+shotPageExpiredMessage = Ndee nattannde buntii.
+// Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Hello ngo ɗum sosaa e iwdi mum ngoo nani:
+shotPageDeleteButton
+    .title = Momtu ndee nattannde
 shotPageDownloadShot
     .title = Aawto
 shotPageDownload = Aawto
