@@ -108,9 +108,19 @@ shotPageExpiredMessage = Ndee nattannde buntii.
 shotPageExpiredMessageDetails = Hello ngo ɗum sosaa e iwdi mum ngoo nani:
 shotPageDeleteButton
     .title = Momtu ndee nattannde
+shotPageAbuseButton
+    .title = Siimto ndee nattannde sabu bonannde, spam, wall caɗeele goɗɗe
 shotPageDownloadShot
     .title = Aawto
 shotPageDownload = Aawto
+shotPageUpsellFirefox = Heɓ Firefox jooni
+shotPageDMCAMessage = Ndee nattannde nattii heɓaade sabu won naamniiɗo ganndal mum keeringal.
+// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Tiiɗno neldu iimeel { $dmca } ngam ɗaɓɓude humpito ɓurngo heewde.
+// Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = So tawii natte maa ina naamnitee ko heewi, ina gasa min riiwtude keɓgol maa Leƴƴanɗe kuurgal Firefox.
+// Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Tiiɗno naatnu URL nattannde ndee e iimeel maa: { $url }
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Suɓo sahaa
 shotPageKeepIndefinitely = Alaa ɗo haaɗi
