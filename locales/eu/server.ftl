@@ -11,6 +11,7 @@
 
 [[ Footer ]]
 
+footerLinkFaqs = Ohiko galderak
 
 
 [[ Creating page ]]
@@ -19,10 +20,12 @@
 
 [[ Home page ]]
 
+homePageCookiesLink = Cookieak
 
 
 [[ Leave Screenshots page ]]
 
+leavePageButtonCancel = Utzi
 
 
 [[ Not Found page ]]
@@ -31,6 +34,9 @@
 
 [[ Shot page ]]
 
+shotPageCopy = Kopiatu
+shotPageCopied = Kopiatuta
+shotPageDownload = Deskargatu
 
 
 [[ Annotations ]]
