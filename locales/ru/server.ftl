@@ -189,6 +189,9 @@ errorThirdPartyCookiesEnabled = Если вы сделали этот снимо
 
 [[ Annotations ]]
 
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Очистить
 annotationSaveButton = Сохранить
 annotationCancelButton = Отмена
 
