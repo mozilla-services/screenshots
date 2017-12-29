@@ -189,6 +189,10 @@ errorThirdPartyCookiesEnabled = Если вы сделали этот снимо
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = Ручка
+annotationHighlighterButton
+    .title = Маркер
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Очистить
