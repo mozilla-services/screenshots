@@ -178,10 +178,20 @@ timeDiffFutureDays = { $number ->
         [one] chwa'q
        *[other] pa { $number } taq q'ij
     }
+errorThirdPartyCookiesEnabled = We xawelesaj re chapoj re' chuqa' man yatikïr ta nayüj el, rik'in jub'a' k'o chi ye'achüp jub'a' ri taq kikaxlanwey aj rox winäq pa ri rajowab'al okik'amaya'l.
 
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = Tz'ib'ab'äl
+annotationHighlighterButton
+    .title = Tz'etöy
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Tijosq'ïx
+annotationSaveButton = Tiyak
+annotationCancelButton = Tiq'at
 
 
 [[ Shotindex page ]]
