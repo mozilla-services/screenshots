@@ -17,6 +17,10 @@ project_base = os.path.abspath(os.path.join(__file__, "../../.."))
 data_path = os.path.join(project_base, "data")
 
 
+def teardown_function(func):
+    show_server_output()
+
+
 def make_session():
     session = clientlib.ScreenshotsClient(SERVER_URL)
     session.login()
@@ -64,7 +68,7 @@ def test_s3_delete():
 
 @pytest.mark.skip(reason="Too slow to run")
 def test_s3_delete_after_expire():
-    restart_server(DEFAULT_EXPIRATION=1)
+    restart_server()
     session = make_session()
     shot_url = session.create_shot()
     page = session.read_shot(shot_url)
@@ -93,22 +97,36 @@ def test_s3_final_expire():
     assert read_file(page["clip_url"]) is None
 
 
+def test_s3_failed_delete():
+    restart_server(EXPIRED_RETENTION_TIME=1, CHECK_DELETED_INTERVAL="0.1")
+    session = make_session()
+    shot_url = session.create_shot()
+    page = session.read_shot(shot_url)
+    assert read_file(page["clip_url"]) is not None
+    # By deleting the file, we will cause the expiring delete to fail:
+    delete_file(page["clip_url"])
+    get_url(SERVER_URL + "/now-we-have-deleted-the-image")
+    assert read_file(page["clip_url"]) is None
+    session.set_expiration(shot_url, 1)
+    time.sleep(10)
+    get_url(page["clip_url"], expect=404)
+    get_url(shot_url, expect=404)
+    assert read_file(page["clip_url"]) is None
+    # Now we put the file back so that the next delete can succeed:
+    write_file(page["clip_url"], page["clip_content"])
+    get_url(SERVER_URL + "/now-we-have-put-the-image-back")
+    time.sleep(10)
+    get_url(page["clip_url"], expect=404)
+    get_url(shot_url, expect=404)
+    assert read_file(page["clip_url"]) is None
+
+
 # TODO: implement configurable periodic failure of the fake S3, and make sure
 # things are resilient
 
 server = None
 server_out = None
 server_options = None
-
-
-def make_server():
-    with Capture() as out:
-        print("Running make server:")
-        run('make server', cwd=project_base, stdout=out).wait()
-        for line in out:
-            print('  %s' % line.rstrip())
-        print('make server completed')
-
 
 def restart_server(**extra_env):
     global server, server_out, server_options
@@ -126,6 +144,7 @@ def restart_server(**extra_env):
     env['GA_ID'] = ''
     env['DEBUG_GOOGLE_ANALYTICS'] = ''
     env['NODE_ENV'] = 'production'
+    env['LOG_QUERY_LIMIT'] = '0'
     server_out = Capture()
     env_print = ['%s=%s' % (name, value) for name, value in sorted(extra_env.items())]
     if env_print:
@@ -190,31 +209,35 @@ def get_url(url, expect=None):
     return result.read()
 
 
-def read_file(clip_url):
+def filename_for_clip_url(clip_url):
     name = clip_url.split("/")[-1]
-    filename = os.path.join(data_path, name)
+    return os.path.join(data_path, name)
+
+
+def read_file(clip_url):
+    filename = filename_for_clip_url(clip_url)
     if not os.path.exists(filename):
         return None
     with open(filename, "rb") as fp:
         return fp.read()
 
 
-if __name__ == "__main__":
-    import sys
-    make_server()
-    funcs = [test_s3_upload, test_s3_expire, test_s3_delete, test_s3_delete_after_expire, test_s3_final_expire]
-    args = sys.argv[1:]
-    if args:
-        funcs = [
-            func for func in funcs
-            if args[0] in func.func_name]
-        print("Selecting %s tests" % len(funcs))
-    for func in funcs:
-        print("Testing {}".format(func.func_name))
+def delete_file(clip_url):
+    filename = filename_for_clip_url(clip_url)
+    os.unlink(filename)
+
+
+def write_file(clip_url, content):
+    filename = filename_for_clip_url(clip_url)
+    with open(filename, "wb") as fp:
+        fp.write(content)
+
+
+def show_server_output_on_failure(func):
+    def replacement(*args, **kw):
         try:
-            func()
+            return func(*args, **kw)
         except:
             show_server_output()
             raise
-        print("Finished test {}".format(func.func_name))
-        print("")
+    return replacement
