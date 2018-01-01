@@ -166,26 +166,32 @@ timeDiffDaysAgo = { $number ->
        *[other] { $number } days ago
     }
 timeDiffFutureSeconds = in a few seconds
-timeDiffFutureMinutes =
-    timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes = timeDiffFutureMinutes = { $number ->
         [one] in 1 minute
        *[other] in { $number } minutes
     }
-
-timeDiffFutureHours =
-    timeDiffFutureHours = { $number ->
+timeDiffFutureHours = timeDiffFutureHours = { $number ->
         [one] in 1 hour
        *[other] in { $number } hours
     }
-
 timeDiffFutureDays = { $number ->
         [one] tomorrow
        *[other] in { $number } days
     }
+errorThirdPartyCookiesEnabled = If you took this shot and cannot delete it, you may need to temporarily enable third party cookies from your browser’s preferences.
 
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = Pen
+annotationHighlighterButton
+    .title = Highlighter
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Clear
+annotationSaveButton = Save
+annotationCancelButton = Cancel
 
 
 [[ Shotindex page ]]
@@ -202,8 +208,60 @@ shotIndexPageSearchPlaceholder
     .placeholder = Search my shots
 shotIndexPageSearchButton
     .title = Search
+shotIndexPageNoShotsMessage = No saved shots.
+shotIndexPageNoShotsInvitation = Go on, create some.
+shotIndexPageLookingForShots = Looking for your shots…
+shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = We canʼt find any shots that match your search.
+shotIndexPageClearSearchButton
+    .title = Clear search
+shotIndexPageConfirmShotDelete = Delete this shot?
+shotIndexPagePreviousPage
+    .title = Previous page
+shotIndexPageNextPage
+    .title = Next page
 
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]
 
+// Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Firefox Screenshots Metrics
+metricsPageTotalsQueryTitle = Totals
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = An overview of Screenshots
+metricsPageTotalsQueryDevices = Total devices registered
+metricsPageTotalsQueryActiveShots = Active shots
+metricsPageTotalsQueryExpiredShots = Expired (but recoverable)
+metricsPageTotalsQueryExpiredDeletedShots = Expired (and deleted)
+metricsPageShotsQueryTitle = Shots by Day
+metricsPageShotsQueryDescription = Number of shots created each day (for the last 30 days)
+metricsPageShotsQueryCount = Number of shots
+metricsPageShotsQueryDay = Day
+metricsPageUsersQueryTitle = Users by Day
+metricsPageUsersQueryDescription = Number of users who created at least one shot, by day (last 30 days)
+metricsPageUsersQueryCount = Number of users
+metricsPageUsersQueryDay = Day
+metricsPageUserShotsQueryTitle = Number of Shots per User
+metricsPageUserShotsQueryDescription = The number of users who have about N total shots
+metricsPageUserShotsQueryCount = Number of users
+metricsPageUserShotsQueryShots = Approximate number of active (unexpired) shots
+metricsPageRetentionQueryTitle = Retention by Week
+metricsPageRetentionQueryDescription = Number of days from a userʼs first shot to most recent shot, grouped by starting week
+metricsPageRetentionQueryUsers = Number of users
+metricsPageRetentionQueryDays = Days from the userʼs first to most recent shot
+metricsPageRetentionQueryFirstWeek = Week the user first created a shot
+metricsPageTotalRetentionQueryTitle = Total Retention
+metricsPageTotalRetentionQueryDescription = Length of time users have been creating shots, grouped by week
+metricsPageTotalRetentionQueryUsers = Number of users
+metricsPageTotalRetentionQueryDays = Days the user has been creating shots
+metricsPageVersionQueryTitle = Add-on Version
+metricsPageVersionQueryDescription = The version of the add-on used during login, in the last 14 days
+metricsPageVersionQueryUsers = Number of users logging in
+metricsPageVersionQueryVersion = Add-on version
+metricsPageVersionQueryLastSeen = Day
+metricsPageHeader = Metrics
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Generated at: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (database time: { $time }ms)
