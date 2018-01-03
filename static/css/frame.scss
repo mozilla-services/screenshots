@@ -480,20 +480,23 @@ body {
   }
 }
 
-.canvas-container .editor {
-  z-index: 2;
-
+.canvas-container {
   &.pen {
     cursor: url("../img/cursor-pen.png"), auto;
   }
+
   &.highlighter {
     cursor: url("../img/cursor-highlight.png"), auto;
   }
 }
 
-.highlighter {
+.canvas-container .image-holder {
+  z-index: 2;
+}
+
+.temp-highlighter {
   mix-blend-mode: multiply;
-  z-index: 1;
+  z-index: 4;
 }
 
 .image-holder {
@@ -508,4 +511,39 @@ body {
   margin: auto;
   overflow: hidden;
   margin-bottom: 20px;
+}
+
+.color-button {
+  height: 25px;
+  width: 25px;
+  border-radius: 12.5px;
+  margin: 12px 5px 0 5px;
+}
+
+.color-board {
+  margin-top: $grid-unit/2;
+  width: 160px;
+  height: 160px;
+  position: absolute;
+  background: $light-default;
+  border: 1px solid $light-border;
+  padding: 20px;
+}
+
+.color-board .row {
+  display: flex;
+}
+
+.swatch {
+  margin: 5px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+
+  &:hover
+    {
+      border: 2px solid $light-border-active !important;
+    }
 }

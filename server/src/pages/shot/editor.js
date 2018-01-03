@@ -29,6 +29,7 @@ exports.Editor = class Editor extends React.Component {
             <Localized id="annotationHighlighterButton">
               <button className={`button transparent highlight-button ${highlighterState}`} id="highlight" onClick={this.onClickHighlight.bind(this)} title="highlighter"></button>
             </Localized>
+            <ColorPicker setColor={this.setColor.bind(this)} />
             <Localized id="annotationClearButton">
               <button className={`button transparent clear-button`} id="clear" onClick={this.onClickClear.bind(this)} title="clear"></button>
             </Localized>
@@ -44,13 +45,16 @@ exports.Editor = class Editor extends React.Component {
         </div>
       </div>
       <div className="main-container inverse-color-scheme">
-        <div className="canvas-container" id="canvas-container" ref={(canvasContainer) => this.canvasContainer = canvasContainer}>
+        <div className={`canvas-container ${this.state.tool}`} id="canvas-container" ref={(canvasContainer) => this.canvasContainer = canvasContainer}>
           <canvas className="image-holder centered" id="image-holder" ref={(image) => { this.imageCanvas = image }} height={ canvasHeight } width={ canvasWidth } style={{height: canvasHeight, width: canvasWidth}}></canvas>
-          <canvas className="highlighter centered" id="highlighter" ref={(highlighter) => { this.highlighter = highlighter }} height={canvasHeight} width={canvasWidth}></canvas>
-          <canvas className={"editor centered " + this.state.tool} id="editor" ref={(editor) => { this.editor = editor }} height={canvasHeight} width={canvasWidth}></canvas>
+          <canvas className="temp-highlighter centered" id="highlighter" ref={(highlighter) => { this.highlighter = highlighter }} height={ canvasHeight } width={ canvasWidth }></canvas>
         </div>
       </div>
     </div>
+  }
+
+  setColor(color) {
+    this.setState({color});
   }
 
   componentDidUpdate() {
@@ -59,9 +63,10 @@ exports.Editor = class Editor extends React.Component {
 
   onClickClear() {
     this.setState({tool: this.state.tool});
+    this.imageContext.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
+    this.highlightContext.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
+    this.renderImage();
     sendEvent("clear-select", "annotation-toolbar");
-    this.drawContext.clearRect(0, 0, this.editor.width, this.editor.height);
-    this.highlightContext.clearRect(0, 0, this.editor.width, this.editor.height);
   }
 
   onClickCancel() {
@@ -71,9 +76,9 @@ exports.Editor = class Editor extends React.Component {
 
   onClickSave() {
     sendEvent("save", "annotation-toolbar");
-    this.imageContext.drawImage(this.editor, 0, 0);
     this.imageContext.globalCompositeOperation = 'multiply';
     this.imageContext.drawImage(this.highlighter, 0, 0);
+    this.highlightContext.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
     let dataUrl = this.imageCanvas.toDataURL();
     this.props.onClickSave(dataUrl);
   }
@@ -92,9 +97,7 @@ exports.Editor = class Editor extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.context = this.editor.getContext('2d');
-    this.highlightContext = this.highlighter.getContext('2d');
+  renderImage() {
     let imageContext = this.imageCanvas.getContext('2d');
     let img = new Image();
     img.crossOrigin = 'use-credentials';
@@ -105,31 +108,40 @@ exports.Editor = class Editor extends React.Component {
     }
     this.imageContext = imageContext;
     img.src = this.props.clip.image.url;
+  }
+
+  componentDidMount() {
+    this.highlightContext = this.highlighter.getContext('2d');
+    this.renderImage();
     this.edit();
   }
 
   edit() {
+    this.imageContext.drawImage(this.highlighter, 0, 0);
+    this.imageContext.globalCompositeOperation = 'multiply';
+    this.highlightContext.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
     this.pos = { x: 0, y: 0 };
     if (this.state.tool == 'highlighter') {
+      this.drawContext = this.highlightContext;
       this.highlightContext.lineWidth = 20;
-      this.highlightContext.strokeStyle = '#ff0';
+      this.highlightContext.strokeStyle = this.state.color;
     } else if (this.state.tool == 'pen') {
-      this.context.strokeStyle = this.state.color;
+      this.drawContext = this.imageContext;
+      this.imageContext.globalCompositeOperation = 'source-over';
+      this.imageContext.strokeStyle = this.state.color;
+      this.imageContext.lineWidth = this.state.size;
     }
-    this.context.lineWidth = this.state.size;
     if (this.state.tool == 'none') {
       this.canvasContainer.removeEventListener("mousemove", this.draw);
       this.canvasContainer.removeEventListener("mousedown", this.setPosition);
-      this.canvasContainer.removeEventListener("mouseenter", this.setPosition);
     } else {
       this.canvasContainer.addEventListener("mousemove", this.draw);
       this.canvasContainer.addEventListener("mousedown", this.setPosition);
-      this.canvasContainer.addEventListener("mouseenter", this.setPosition);
     }
   }
 
   setPosition(e) {
-    var rect = this.editor.getBoundingClientRect();
+    var rect = this.imageCanvas.getBoundingClientRect();
     this.pos.x = e.clientX - rect.left,
     this.pos.y = e.clientY - rect.top
   }
@@ -138,16 +150,64 @@ exports.Editor = class Editor extends React.Component {
     if (e.buttons !== 1) {
       return null;
     }
-    this.drawContext = this.state.tool == 'highlighter' ? this.highlightContext : this.context;
     this.drawContext.beginPath();
 
     this.drawContext.lineCap = this.state.tool == 'highlighter' ? 'square' : 'round';
     this.drawContext.moveTo(this.pos.x, this.pos.y);
-    let rect = this.editor.getBoundingClientRect();
+    let rect = this.imageCanvas.getBoundingClientRect();
     this.pos.x = e.clientX - rect.left,
     this.pos.y = e.clientY - rect.top
     this.drawContext.lineTo(this.pos.x, this.pos.y);
 
     this.drawContext.stroke();
+  }
+}
+
+class ColorPicker extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      pickerActive: false,
+      color: '#000'
+    };
+  }
+
+  render() {
+    let border = this.state.color == 'rgb(255, 255, 255)' ? '#000' : this.state.color;
+    return <div><button className="color-button" id="color-picker" onClick={this.onClickColorPicker.bind(this)} title="Color Picker" style={{"backgroundColor": this.state.color, "border": `1px solid ${border}`}}></button>
+      {this.state.pickerActive ? this.renderColorBoard() : null}
+    </div>
+  }
+
+  renderColorBoard() {
+    return <div className="color-board">
+      <div className="row">
+        <div className="swatch" title="White" style={{backgroundColor: "#FFF", border: "1px solid #000"}} onClick={this.onClickSwatch.bind(this)}></div>
+        <div className="swatch" title="Black" style={{backgroundColor: "#000"}} onClick={this.onClickSwatch.bind(this)}></div>
+        <div className="swatch" title="Red" style={{backgroundColor: "#E74C3C"}} onClick={this.onClickSwatch.bind(this)}></div>
+      </div>
+        <div className="row">
+        <div className="swatch" title="Green" style={{backgroundColor: "#2ECC71"}} onClick={this.onClickSwatch.bind(this)}></div>
+        <div className="swatch" title="Blue" style={{backgroundColor: "#3498DB"}} onClick={this.onClickSwatch.bind(this)}></div>
+        <div className="swatch" title="Yellow" style={{backgroundColor: "#FF0"}} onClick={this.onClickSwatch.bind(this)}></div>
+      </div>
+      <div className="row">
+        <div className="swatch" title="Purple" style={{backgroundColor: "#8E44AD"}} onClick={this.onClickSwatch.bind(this)}></div>
+        <div className="swatch" title="Sea Green" style={{backgroundColor: "#1ABC9C"}} onClick={this.onClickSwatch.bind(this)}></div>
+        <div className="swatch" title="Grey" style={{backgroundColor: "#34495E"}} onClick={this.onClickSwatch.bind(this)}></div>
+      </div>
+    </div>
+  }
+
+  onClickSwatch(e) {
+    let color = e.target.style.backgroundColor
+    this.setState({color, pickerActive: false});
+    this.props.setColor(color);
+  }
+
+  onClickColorPicker() {
+    let pickerActive = !this.state.pickerActive;
+    this.setState({pickerActive});
   }
 }
