@@ -47,11 +47,19 @@
 }
 
 .shot-alt-actions {
+  #downloadIcon {
+    margin-right: 4px;
+  }
+
   @include respond-to("small") {
     padding-right: $grid-unit * 0.5;
 
     .download-text {
       display: none;
+    }
+
+    #downloadIcon {
+      margin-right: 0;
     }
   }
 
@@ -439,8 +447,8 @@ body {
   @include respond-to("small") {
     justify-content: center;
     background: none;
-    border-bottom: none;
-    border-top: none;
+    border-bottom: 0;
+    border-top: 0;
   }
 }
 
@@ -452,7 +460,7 @@ body {
   box-shadow: rgba(0, 0, 0, 0.15) 0 2px 4px;
   border-radius: $border-radius;
 
-  & .button:first-child{
+  & .button:first-child {
     margin-right: 0;
   }
 }
