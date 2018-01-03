@@ -100,7 +100,7 @@ exports.Editor = class Editor extends React.Component {
   renderImage() {
     let imageContext = this.imageCanvas.getContext('2d');
     let img = new Image();
-    img.crossOrigin = 'use-credentials';
+    img.crossOrigin = 'Anonymous';
     let width = this.props.clip.image.dimensions.x;
     let height = this.props.clip.image.dimensions.y;
     img.onload = () => {
