@@ -783,6 +783,11 @@ ClipRewrites = class ClipRewrites {
     }
     if (this.toInsertThumbnail !== null) {
       this.shot.thumbnail = this.toInsertThumbnail.url;
+    } else if (this.toInsertClipIds.length === 0 && this.oldThumbnail) {
+      // When there is no thumbnail to insert or update, but there is a
+      // thumbnail previously, use the old one. This happens when other
+      // properties of the shot are being updated.
+      this.shot.thumbnail = this.oldThumbnail;
     }
   }
 
