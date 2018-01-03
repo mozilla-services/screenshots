@@ -422,9 +422,12 @@ this.uicontrol = (function() {
       watchPromise(ui.iframe.display(installHandlersOnDocument, standardOverlayCallbacks).then(() => {
         ui.iframe.usePreSelection();
         ui.Box.remove();
-        const handler = watchFunction(assertIsTrusted(keyupHandler));
-        document.addEventListener("keyup", handler);
-        registeredDocumentHandlers.push({name: "keyup", doc: document, handler, useCapture: false});
+        const upHandler = watchFunction(assertIsTrusted(keyupHandler));
+        document.addEventListener("keyup", upHandler);
+        registeredDocumentHandlers.push({name: "keyup", doc: document, upHandler, useCapture: false});
+        const downHandler = watchFunction(assertIsTrusted(keydownHandler));
+        document.addEventListener("keydown", downHandler);
+        registeredDocumentHandlers.push({name: "keydown", doc: document, downHandler, useCapture: false});
       }));
     },
 
@@ -946,6 +949,7 @@ this.uicontrol = (function() {
       primedDocumentHandlers.set(eventName, fn);
     });
     primedDocumentHandlers.set("keyup", watchFunction(assertIsTrusted(keyupHandler)));
+    primedDocumentHandlers.set("keydown", watchFunction(assertIsTrusted(keydownHandler)));
     window.addEventListener('beforeunload', beforeunloadHandler);
   }
 
@@ -971,11 +975,8 @@ this.uicontrol = (function() {
     exports.deactivate();
   }
 
-  function keyupHandler(event) {
-    if (event.shiftKey || event.altKey) {
-      // unused modifier keys
-      return;
-    }
+  function keydownHandler(event) {
+    // In MacOS, the keyup event for 'c' is not fired when performing cmd+c.
     if (event.code === "KeyC" && (event.ctrlKey || event.metaKey)) {
       callBackground("getPlatformOs").then(os => {
         if ((event.ctrlKey && os !== "mac") ||
@@ -986,6 +987,13 @@ this.uicontrol = (function() {
       }).catch(() => {
         // handled by catcher.watchPromise
       });
+    }
+  }
+
+  function keyupHandler(event) {
+    if (event.shiftKey || event.altKey || event.ctrlKey || event.metaKey) {
+      // unused modifier keys
+      return;
     }
     if ((event.key || event.code) === "Escape") {
       sendEvent("cancel-shot", "keyboard-escape");
