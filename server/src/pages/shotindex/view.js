@@ -7,6 +7,7 @@ const { ShareButton } = require("../../share-buttons");
 const Masonry = require("react-masonry-component");
 const { Localized } = require("fluent-react/compat");
 const { isValidClipImageUrl } = require("../../../shared/shot");
+const { getThumbnailDimensions } = require("../../../shared/thumbnailGenerator");
 
 class Head extends React.Component {
 
@@ -304,7 +305,7 @@ class Card extends React.Component {
     }
 
     return (
-      <div className={`shot ${this.getClipType(clip._image.dimensions)} ${this.state.panelOpen} ${this.isDeleted()}`} key={shot.id}>
+      <div className={`shot ${this.getClipType(shot.thumbnail, clip._image.dimensions)} ${this.state.panelOpen} ${this.isDeleted()}`} key={shot.id}>
         <a href={shot.viewUrl} onClick={this.onOpen.bind(this, shot.viewUrl)}>
           <div className="shot-image-container">
             <img src={imageUrl} />
@@ -335,11 +336,39 @@ class Card extends React.Component {
     );
   }
 
-  getClipType(dimensions) {
-    if ((dimensions.x / dimensions.y) <= (3 / 4) || dimensions.x <= 210) {
+  getClipType(thumbnailUrl, dimensions) {
+    // "portrait": 210 x 280, image scaled on X
+    // "landscape": 210 x 140, image scaled on Y
+    // "square": 210 x 210, image scaled on X or Y
+
+    const containerWidth = 210;
+    const landscapeHeight = 140;
+    const portraitHeight = 280;
+    const landscapeAspectRatio = containerWidth / landscapeHeight;
+    const portraitAspectRatio = containerWidth / portraitHeight;
+    let thumbnailWidth, thumbnailHeight, thumbnailAspectRatio;
+
+    if (!thumbnailUrl) {
+      thumbnailWidth = dimensions.x;
+      thumbnailHeight = dimensions.y;
+    } else {
+      let thumbnailDimensions = getThumbnailDimensions(dimensions.x, dimensions.y);
+      thumbnailWidth = thumbnailDimensions.width;
+      thumbnailHeight = thumbnailDimensions.height;
+    }
+
+    thumbnailAspectRatio = thumbnailWidth / thumbnailHeight;
+
+    if (thumbnailAspectRatio <= portraitAspectRatio) {
       return "portrait";
     }
-    return "landscape";
+    if (thumbnailAspectRatio >= landscapeAspectRatio) {
+      return "landscape";
+    }
+    if (thumbnailHeight > thumbnailWidth) {
+      return "square-x";
+    }
+    return "square-y";
   }
 
   setPanelState(state) {
