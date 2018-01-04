@@ -99,6 +99,7 @@ class Head extends React.Component {
       <reactruntime.HeadTemplate {...this.props}>
         <script src={ this.props.staticLink("/static/js/wantsauth.js") } />
         <script src={ this.props.staticLink("/static/js/shot-bundle.js") } async />
+        <link rel="stylesheet" href={ this.props.staticLink("/static/css/inline-selection.css") } />
         <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />
@@ -461,8 +462,8 @@ class Body extends React.Component {
     }
   }
 
-  onClickSave(dataUrl) {
-    this.props.controller.saveEdit(this.props.shot, dataUrl);
+  onClickSave(dataUrl, dimensions) {
+    this.props.controller.saveEdit(this.props.shot, dataUrl, dimensions);
   }
 
   onCancelEdit(imageEditing) {

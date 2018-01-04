@@ -156,12 +156,14 @@ exports.deleteShot = function(shot) {
   req.send(`id=${encodeURIComponent(shot.id)}&_csrf=${encodeURIComponent(model.csrfToken)}`);
 };
 
-exports.saveEdit = function(shot, shotUrl) {
+exports.saveEdit = function(shot, shotUrl, dimensions) {
   let url = model.backend + "/api/save-edit";
   let payload = {
     shotId: shot.id,
     _csrf: model.csrfToken,
-    url: shotUrl
+    url: shotUrl,
+    x: dimensions.x,
+    y: dimensions.y
   };
 
   let postWith = body => {
@@ -189,7 +191,11 @@ exports.saveEdit = function(shot, shotUrl) {
     });
   }
 
-  shot.getClip(shot.clipNames()[0]).image.url = shotUrl;
+  let image = shot.getClip(shot.clipNames()[0]).image;
+
+  image.url = shotUrl;
+  image.dimensions.x = dimensions.x;
+  image.dimensions.y = dimensions.y;
 
   createThumbnailUrl(shot).then(thumbnail => {
     payload.thumbnail = thumbnail;
