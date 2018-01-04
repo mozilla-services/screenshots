@@ -1,6 +1,39 @@
+## Version 28.0.0
+
+Note this is a server-only release
+
+### Server changes
+
+* Change survey expiration from December 25, 2017, to January 15, 2018
+* Add thumbnail to unedited list to stop removal. ([#3913](https://github.com/mozilla-services/screenshots/issues/3913)) [3439272](https://github.com/mozilla-services/screenshots/commit/3439272)
+* Use fixed height for thumbnail container. ([#3905](https://github.com/mozilla-services/screenshots/issues/3905)) [e13ba92](https://github.com/mozilla-services/screenshots/commit/e13ba92)
+* Use old thumbnail when applicable. ([#3913](https://github.com/mozilla-services/screenshots/issues/3913)) [d6e9106](https://github.com/mozilla-services/screenshots/commit/d6e9106)
+* Annotation improvements (pref'd off):
+  * add color picker [81a8c7f](https://github.com/mozilla-services/screenshots/commit/81a8c7f)
+  * annotation updates [63a251f](https://github.com/mozilla-services/screenshots/commit/63a251f)
+  * Revert canvas img crossOrigin attr to Anonymous. ([#3848](https://github.com/mozilla-services/screenshots/issues/3848)) [3ca96cc](https://github.com/mozilla-services/screenshots/commit/3ca96cc)
+* Build prod React bundles. ([#3777](https://github.com/mozilla-services/screenshots/issues/3777)) [2a60336](https://github.com/mozilla-services/screenshots/commit/2a60336)
+* implement A/B test for text-free Download button on shot page. Fixes [#3894](https://github.com/mozilla-services/screenshots/issues/3894) [f5759b4](https://github.com/mozilla-services/screenshots/commit/f5759b4)
+
+### Development changes
+
+* Skip test_file_managemnt tests by default [c6fca41](https://github.com/mozilla-services/screenshots/commit/c6fca41)
+* Remove empty server.ftl files [18b734d](https://github.com/mozilla-services/screenshots/commit/18b734d)
+* Update svgo to latest. ([#3897](https://github.com/mozilla-services/screenshots/issues/3897)) [1e70fe5](https://github.com/mozilla-services/screenshots/commit/1e70fe5)
+* Fix a few sass-lint warnings while we're at it [0399926](https://github.com/mozilla-services/screenshots/commit/0399926)
+* Replace nbsp with css; simplify jsx [5929efc](https://github.com/mozilla-services/screenshots/commit/5929efc)
+
+### Add-on changes
+
+Note: this add-on version is not being released
+
+* Use keydown for copy to clipboard b/c MacOS. ([#3879](https://github.com/mozilla-services/screenshots/issues/3879)) [9f1da5a](https://github.com/mozilla-services/screenshots/commit/9f1da5a)
+* Do not copy while copying. ([#3878](https://github.com/mozilla-services/screenshots/issues/3878)) [b64c417](https://github.com/mozilla-services/screenshots/commit/b64c417)
+
 ## Version 27.0.0
 
-Note: this is a server-only release
+Note: this is a server-only release. This release did not make it to
+production.
 
 ### Server changes
 
