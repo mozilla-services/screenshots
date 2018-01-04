@@ -50,7 +50,9 @@ exports.ShareButton = class ShareButton extends React.Component {
       if (this.props.setPanelState) {
         this.props.setPanelState("panel-closed");
       }
-      this.shareDiv.blur();
+      if (this.shareDiv) {
+        this.shareDiv.blur();
+      }
       sendEvent("cancel-share");
     }
   }
