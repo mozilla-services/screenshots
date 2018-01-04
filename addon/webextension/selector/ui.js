@@ -1,4 +1,4 @@
-/* globals log, util, catcher, inlineSelectionCss, callBackground, assertIsTrusted, assertIsBlankDocument, buildSettings */
+/* globals log, util, catcher, inlineSelectionCss, callBackground, assertIsTrusted, assertIsBlankDocument, buildSettings blobConverters */
 
 "use strict";
 
@@ -900,7 +900,8 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
   exports.Preview = {
     display(dataUrl, showCropWarning) {
       let img = makeEl("IMG");
-      img.src = dataUrl;
+      let imgBlob = blobConverters.dataUrlToBlob(dataUrl);
+      img.src = URL.createObjectURL(imgBlob);
       iframe.document().querySelector(".preview-image").appendChild(img);
       if (showCropWarning && !(isDownloadOnly())) {
         let imageCroppedEl = makeEl("table", "notice");
