@@ -60,11 +60,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
       ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     }
     ui.iframe.hide();
-    try {
-      ctx.drawWindow(window, selectedPos.left, selectedPos.top, width, height, "#fff");
-    } finally {
-      ui.iframe.unhide();
-    }
+    ctx.drawWindow(window, selectedPos.left, selectedPos.top, width, height, "#fff");
     let limit = buildSettings.pngToJpegCutoff;
     let dataUrl = canvas.toDataURL();
     if (limit && dataUrl.length > limit) {
@@ -152,6 +148,8 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
         // The error has been signaled to the user, but unlike other errors (or
         // success) we should not abort the selection
         deactivateAfterFinish = false;
+        // We need to unhide the UI since screenshotPage() hides it.
+        ui.iframe.unhide();
         return;
       }
       if (error.name != "BackgroundError") {
