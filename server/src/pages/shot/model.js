@@ -45,7 +45,7 @@ exports.createModel = function(req) {
     enableAnnotations
   };
   let clientPayload = {
-    title: req.shot.title,
+    title,
     gitRevision: getGitRevision(),
     backend: req.backend,
     shot: req.shot.asJson(),
