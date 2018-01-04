@@ -772,6 +772,14 @@ ClipRewrites = class ClipRewrites {
         uuid: imageId,
         url: linker.imageLinkWithHost(imageId)
       };
+    } else if (this.shot.thumbnail && validUrl.isWebUri(this.shot.thumbnail)) {
+      // When there is no thumbnail to insert or update, but there is a
+      // thumbnail previously, use the old one. This happens when other
+      // properties of the shot are being updated.
+      //
+      // The clip id of a thumbnail is its filename, so we add that to the
+      // unedited list to prevent it from being deleted in commit().
+      this.unedited.push(this.shot.thumbnail.split("/").pop());
     }
   }
 
@@ -783,11 +791,6 @@ ClipRewrites = class ClipRewrites {
     }
     if (this.toInsertThumbnail !== null) {
       this.shot.thumbnail = this.toInsertThumbnail.url;
-    } else if (this.toInsertClipIds.length === 0 && this.oldThumbnail) {
-      // When there is no thumbnail to insert or update, but there is a
-      // thumbnail previously, use the old one. This happens when other
-      // properties of the shot are being updated.
-      this.shot.thumbnail = this.oldThumbnail;
     }
   }
 
