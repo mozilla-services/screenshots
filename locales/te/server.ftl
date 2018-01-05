@@ -167,6 +167,7 @@ timeDiffFutureDays = { $number ->
 
 [[ Annotations ]]
 
+annotationSaveButton = భద్రపరచు
 
 
 [[ Shotindex page ]]
