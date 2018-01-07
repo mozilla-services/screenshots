@@ -56,6 +56,7 @@ homePageCaptureRegion = Capturează o regiune
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Clic și trage pentru a selecta zona pe care dorești să o capturezi. Sau pur și simplu poziționează cursorul peste zonă și dă clic — Screenshots va selecta zona pentru tine. Îți place ceea ce vezi? Selectează Salvează pentru a-ți accesa online captura de ecran sau butonul săgeată în jos pentru a o descărca pe calculator.
 homePageCapturePage = Capturează o pagină
+homePageCapturePageDescription = Folosește butoanele din dreapta sus pentru a captura pagini întregi. Butonul Save Visible (Salvează ce se vede) va captura zona ce se vede fără a derula și butonul Save Full Page (Salvează toată pagina) va captura toată pagina.
 homePageSaveShare = Salvează și partajează
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Când realizezi o captură, Firefox postează captura de ecran în colecția ta online Screenshots și copiază linkul în clipboard. Stocăm automat captura de ecran timp de două săptămâni, însă poți să ștergi capturile oricând sau să modifici data expirării ca să le păstrezi în colecție pentru o durată mai lungă.
@@ -103,6 +104,8 @@ shotPageShareTwitter
     .title = Partajează pe Twitter
 shotPageSharePinterest
     .title = Partajează pe Pinterest
+shotPageShareEmail
+    .title = Trimite linkul pe e-mail
 shotPageShareLink = Obține un link partajabil către această captură:
 shotPagePrivacyMessage = Oricine are linkul poate vedea această captură.
 shotPageCopyImageText
