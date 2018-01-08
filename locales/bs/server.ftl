@@ -188,6 +188,13 @@ errorThirdPartyCookiesEnabled = Ako ste napravili snimak ekrana i ne možete ga 
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = Olovka
+annotationHighlighterButton
+    .title = Marker
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Očisti
 annotationSaveButton = Sačuvaj
 annotationCancelButton = Otkaži
 
