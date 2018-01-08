@@ -412,9 +412,11 @@ class Body extends React.Component {
             <Localized id="shotPageDownloadShot">
               <a className="button primary" href={ this.props.downloadUrl } onClick={ this.onClickDownload.bind(this) }
                 title="Download the shot image">
-                <img id="downloadIcon" src={ this.props.staticLink("/static/img/download-white.svg") } width="20" height="20"/>
-                { (noText) ? <span className="download-text"></span>
-                    : <Localized id="shotPageDownload"><span className="download-text">Download</span></Localized> }
+                <img id="downloadIcon" style={noText ? {marginRight: "0"} : {}}
+                    src={this.props.staticLink("/static/img/download-white.svg")}
+                    width="20" height="20" />
+                { !noText &&
+                    <Localized id="shotPageDownload"><span className="download-text">Download</span></Localized> }
               </a>
             </Localized>
           </div>
