@@ -182,6 +182,13 @@ timeDiffFutureDays = { $number ->
 
 [[ Annotations ]]
 
+annotationHighlighterButton
+    .title = Marcador
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Esborra
+annotationSaveButton = Desa
+annotationCancelButton = Cancel·la
 
 
 [[ Shotindex page ]]
