@@ -47,7 +47,7 @@ homePageDownloadFirefoxSubTitle = Senpaga elŝuto
 homePageGetStarted = Unuaj paŝoj
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kiel funkcias Firefox Screenshots
-homePageGetStartedTitle = Unua paŝoj
+homePageGetStartedTitle = Unuaj paŝoj
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Trovu la novan emblemon de Firefox Screenshots en via ilaro. Elektu ĝin, kaj ĝia menuo aperos ĉe la supra parto de via retumila fenestro.
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
