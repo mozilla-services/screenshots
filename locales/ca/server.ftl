@@ -178,10 +178,13 @@ timeDiffFutureDays = { $number ->
         [one] demà
        *[other] d'aquí { $number } dies
     }
+errorThirdPartyCookiesEnabled = Si heu fet aquesta captura i no la podeu suprimir, és possible que hàgiu d'activar temporalment les galetes de tercers a les preferències del navegador.
 
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = Llapis
 annotationHighlighterButton
     .title = Marcador
 // Note: This button reverts all the changes on the image since the start of the editing session.
@@ -213,6 +216,10 @@ shotIndexPageNoSearchResults = No s'ha trobat cap captura que coincideixi amb la
 shotIndexPageClearSearchButton
     .title = Esborra la cerca
 shotIndexPageConfirmShotDelete = Voleu suprimir aquesta captura?
+shotIndexPagePreviousPage
+    .title = Pàgina anterior
+shotIndexPageNextPage
+    .title = Pàgina següent
 
 
 // all metrics strings are optional for translation
