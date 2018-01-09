@@ -178,10 +178,13 @@ timeDiffFutureDays = { $number ->
         [one] mañana
        *[other] en { $number } días
     }
+errorThirdPartyCookiesEnabled = Si hizo esta captura y no puede eliminarla, puede ser necesario que habilite temporalmente cookies de terceros en las preferencias del navegador.
 
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = Lapicera
 annotationHighlighterButton
     .title = Resaltador
 // Note: This button reverts all the changes on the image since the start of the editing session.
