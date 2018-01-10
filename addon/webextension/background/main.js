@@ -80,7 +80,7 @@ this.main = (function() {
       return selectorLoader.testIfLoaded(tab.id);
     }).then((isLoaded) => {
       if (!isLoaded) {
-        sendEvent("start-shot", "site-request");
+        sendEvent("start-shot", "site-request", {incognito: tab.incognito});
         setIconActive(true, tab.id);
         selectorLoader.toggle(tab.id, false);
       }
@@ -96,13 +96,13 @@ this.main = (function() {
     if (shouldOpenMyShots(tab.url)) {
       if (!hasSeenOnboarding) {
         catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
-          sendEvent("goto-onboarding", "selection-button");
+          sendEvent("goto-onboarding", "selection-button", {incognito: tab.incognito});
           return forceOnboarding();
         }));
         return;
       }
       catcher.watchPromise(analytics.refreshTelemetryPref().then(() => {
-        sendEvent("goto-myshots", "about-newtab");
+        sendEvent("goto-myshots", "about-newtab", {incognito: tab.incognito});
       }));
       catcher.watchPromise(
         auth.authHeaders()
@@ -112,10 +112,10 @@ this.main = (function() {
         toggleSelector(tab)
           .then(active => {
             const event = active ? "start-shot" : "cancel-shot";
-            sendEvent(event, "toolbar-button");
+            sendEvent(event, "toolbar-button", {incognito: tab.incognito});
           }, (error) => {
             if ((!hasSeenOnboarding) && error.popupMessage == "UNSHOOTABLE_PAGE") {
-              sendEvent("goto-onboarding", "selection-button");
+              sendEvent("goto-onboarding", "selection-button", {incognito: tab.incognito});
               return forceOnboarding();
             }
             throw error;
@@ -140,7 +140,7 @@ this.main = (function() {
     }
     catcher.watchPromise(
       toggleSelector(tab)
-        .then(() => sendEvent("start-shot", "context-menu")));
+        .then(() => sendEvent("start-shot", "context-menu", {incognito: tab.incognito})));
   });
 
   function urlEnabled(url) {
@@ -279,18 +279,7 @@ this.main = (function() {
     });
   });
 
-  communication.register("abortFrameset", () => {
-    sendEvent("abort-start-shot", "frame-page");
-    // Note, we only show the error but don't report it, as we know that we can't
-    // take shots of these pages:
-    senderror.showError({
-      popupMessage: "UNSHOOTABLE_PAGE"
-    });
-  });
-
-  communication.register("abortNoDocumentBody", (sender, tagName) => {
-    tagName = String(tagName || "").replace(/[^a-z0-9]/ig, "");
-    sendEvent("abort-start-shot", `document-is-${tagName}`);
+  communication.register("abortStartShot", () => {
     // Note, we only show the error but don't report it, as we know that we can't
     // take shots of these pages:
     senderror.showError({
