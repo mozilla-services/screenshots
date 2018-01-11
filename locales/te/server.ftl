@@ -167,7 +167,11 @@ timeDiffFutureDays = { $number ->
 
 [[ Annotations ]]
 
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = తుడిచివేయి
 annotationSaveButton = భద్రపరచు
+annotationCancelButton = రద్దుచేయి
 
 
 [[ Shotindex page ]]
@@ -189,6 +193,10 @@ shotIndexPageNoSearchResults = మీ శోధనకు సరిపోలే �
 shotIndexPageClearSearchButton
     .title = స్పష్టమైన శోధన
 shotIndexPageConfirmShotDelete = ఈ తెరపట్టును తొలగించాలా?
+shotIndexPagePreviousPage
+    .title = మునుపటి పేజీ
+shotIndexPageNextPage
+    .title = తదుపరి పేజీ
 
 
 // all metrics strings are optional for translation
