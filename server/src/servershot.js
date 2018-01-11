@@ -561,7 +561,7 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
     if (searchQuery) {
       idNums = idParamPositions(4, deviceIds);
       sql = `
-        SELECT data.id, data.value, data.deviceid, ts_rank_cd(data.searchable_text, query) AS rank
+        SELECT data.id, data.value, data.deviceid, data.expire_time, ts_rank_cd(data.searchable_text, query) AS rank
         FROM data, plainto_tsquery($1) AS query
         WHERE data.deviceid IN (${idNums.join(", ")})
               AND NOT data.deleted
@@ -576,7 +576,7 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
     } else {
       idNums = idParamPositions(2, deviceIds);
       sql = `
-      SELECT data.id, data.value, data.deviceid
+      SELECT data.id, data.value, data.deviceid, data.expire_time
       FROM data
       WHERE data.deviceid IN (${idNums.join(", ")})
             AND NOT data.deleted
@@ -602,6 +602,7 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
         let shot;
         try {
           shot = new Shot(row.deviceid, backend, row.id, json);
+          shot.expireTime = row.expire_time;
         } catch (e) {
           mozlog.warn("error-instantiating-shot", {err: e});
           continue;

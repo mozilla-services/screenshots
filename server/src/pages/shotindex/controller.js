@@ -17,7 +17,11 @@ const queryParamModelPropertyMap = {
 exports.launch = function(m) {
   if (m.hasDeviceId) {
     if (m.shots) {
-      m.shots = m.shots.map((shot) => new AbstractShot(m.backend, shot.id, shot.json));
+      m.shots = m.shots.map((shot) => {
+        let s = new AbstractShot(m.backend, shot.id, shot.json);
+        s.expireTime = shot.expireTime;
+        return s;
+      });
     }
     Object.assign(m, extractQueryParamValues(queryParamModelPropertyMap));
     model = m;
