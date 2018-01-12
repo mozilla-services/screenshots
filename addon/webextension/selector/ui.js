@@ -8,28 +8,6 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
 
   const { watchFunction } = catcher;
 
-  // The <body> tag itself can have margins and offsets, which need to be used when
-  // setting the position of the boxEl.
-  function getBodyRect() {
-    if (getBodyRect.cached) {
-      return getBodyRect.cached;
-    }
-    let rect = document.body.getBoundingClientRect();
-    let cached = {
-      top: rect.top + window.scrollY,
-      bottom: rect.bottom + window.scrollY,
-      left: rect.left + window.scrollX,
-      right: rect.right + window.scrollX
-    };
-    // FIXME: I can't decide when this is necessary
-    // *not* necessary on http://patriciogonzalezvivo.com/2015/thebookofshaders/
-    // (actually causes mis-selection there)
-    // *is* necessary on http://atirip.com/2015/03/17/sorry-sad-state-of-matrix-transforms-in-browsers/
-    cached = {top: 0, bottom: 0, left: 0, right: 0};
-    getBodyRect.cached = cached;
-    return cached;
-  }
-
   exports.isHeader = function(el) {
     while (el) {
       if (el.classList &&
@@ -221,13 +199,18 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
         this.sizeTracking.lastWidth = width;
         this.element.style.width = width + "px";
         // Since this frame has an absolute position relative to the parent
-        // document, if the parent document has a max-width that is narrower
-        // than the viewport, then the x of the parent document is not at 0 of
-        // the viewport. That makes the frame shifted to the right. This left
-        // margin negates that.
-        let boundingRect = document.body.getBoundingClientRect();
-        if (boundingRect.x) {
-          this.element.style.marginLeft = `-${boundingRect.x}px`;
+        // document, if the parent document's body has a relative position and
+        // left and/or top not at 0, then the left and/or top of the parent
+        // document's body is not at (0, 0) of the viewport. That makes the
+        // frame shifted relative to the viewport. These margins negates that.
+        if (window.getComputedStyle(document.body).position === "relative") {
+          let boundingRect = document.body.getBoundingClientRect();
+          if (boundingRect.x) {
+            this.element.style.marginLeft = `-${boundingRect.x}px`;
+          }
+          if (boundingRect.y) {
+            this.element.style.marginTop = `-${boundingRect.y}px`;
+          }
         }
       }
       if (force && visible) {
@@ -595,7 +578,6 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       } else {
         this.copy.style.display = "none";
       }
-      let bodyRect = getBodyRect();
 
       let winBottom = window.innerHeight;
       let pageYOffset = window.pageYOffset;
@@ -619,25 +601,25 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       } else {
         this.el.classList.remove("left-selection");
       }
-      this.el.style.top = (pos.top - bodyRect.top) + "px";
-      this.el.style.left = (pos.left - bodyRect.left) + "px";
-      this.el.style.height = (pos.bottom - pos.top - bodyRect.top) + "px";
-      this.el.style.width = (pos.right - pos.left - bodyRect.left) + "px";
+      this.el.style.top = `${pos.top}px`;
+      this.el.style.left = `${pos.left}px`;
+      this.el.style.height = `${pos.bottom - pos.top}px`;
+      this.el.style.width = `${pos.right - pos.left}px`;
       this.bgTop.style.top = "0px";
-      this.bgTop.style.height = (pos.top - bodyRect.top) + "px";
+      this.bgTop.style.height = `${pos.top}px`;
       this.bgTop.style.left = "0px";
       this.bgTop.style.width = "100%";
-      this.bgBottom.style.top = (pos.bottom - bodyRect.top) + "px";
+      this.bgBottom.style.top = `${pos.bottom}px`;
       this.bgBottom.style.height = "100vh";
       this.bgBottom.style.left = "0px";
       this.bgBottom.style.width = "100%";
-      this.bgLeft.style.top = (pos.top - bodyRect.top) + "px";
-      this.bgLeft.style.height = pos.bottom - pos.top + "px";
+      this.bgLeft.style.top = `${pos.top}px`;
+      this.bgLeft.style.height = `${pos.bottom - pos.top}px`;
       this.bgLeft.style.left = "0px";
-      this.bgLeft.style.width = (pos.left - bodyRect.left) + "px";
-      this.bgRight.style.top = (pos.top - bodyRect.top) + "px";
-      this.bgRight.style.height = pos.bottom - pos.top + "px";
-      this.bgRight.style.left = (pos.right - bodyRect.left) + "px";
+      this.bgLeft.style.width = `${pos.left}px`;
+      this.bgRight.style.top = `${pos.top}px`;
+      this.bgRight.style.height = `${pos.bottom - pos.top}px`;
+      this.bgRight.style.left = `${pos.right}px`;
       this.bgRight.style.width = "100%";
       // the download notice is injected into an iframe that matches the document size
       // in order to reposition it on scroll we need to bind an updated positioning
@@ -660,13 +642,13 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
 
       if (!(this.isElementInViewport(this.buttons))) {
         this.cancel.style.position = this.download.style.position = "fixed";
-        this.cancel.style.left = (pos.left - bodyRect.left - 50) + "px";
-        this.download.style.left = ((pos.left - bodyRect.left - 100)) + "px";
-        this.cancel.style.top = this.download.style.top = (pos.top - bodyRect.top) + "px";
+        this.cancel.style.left = (pos.left - 50) + "px";
+        this.download.style.left = ((pos.left - 100)) + "px";
+        this.cancel.style.top = this.download.style.top = `${pos.top}px`;
         if (this.save) {
           this.save.style.position = "fixed";
-          this.save.style.left = ((pos.left - bodyRect.left) - 190) + "px";
-          this.save.style.top = (pos.top - bodyRect.top) + "px";
+          this.save.style.left = (pos.left - 190) + "px";
+          this.save.style.top = `${pos.top}px`;
         }
       } else {
         this.cancel.style.position = this.download.style.position = "initial";
