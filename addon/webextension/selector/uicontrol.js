@@ -879,12 +879,15 @@ this.uicontrol = (function() {
 
   exports.activate = function() {
     if (!document.body) {
-      callBackground("abortNoDocumentBody", document.documentElement.tagName);
+      callBackground("abortStartShot");
+      let tagName = String(document.documentElement.tagName || "").replace(/[^a-z0-9]/ig, "");
+      sendEvent("abort-start-shot", `document-is-${tagName}`);
       selectorLoader.unloadModules();
       return;
     }
     if (isFrameset()) {
-      callBackground("abortFrameset");
+      callBackground("abortStartShot");
+      sendEvent("abort-start-shot", "frame-page");
       selectorLoader.unloadModules();
       return;
     }

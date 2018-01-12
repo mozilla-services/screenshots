@@ -94,6 +94,15 @@ this.analytics = (function() {
       label = undefined;
     }
     options = options || {};
+
+    // Don't send events if in private browsing.
+    if (options.incognito) {
+      return Promise.resolve();
+    }
+
+    // Don't include in event data.
+    delete options.incognito;
+
     let di = deviceInfo();
     options.applicationName = di.appName;
     options.applicationVersion = di.addonVersion;

@@ -221,6 +221,14 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
   };
 
   exports.sendEvent = function(...args) {
+    let maybeOptions = args[args.length - 1];
+
+    if (typeof maybeOptions === "object") {
+      maybeOptions.incognito = browser.extension.inIncognitoContext;
+    } else {
+      args.push({incognito: browser.extension.inIncognitoContext});
+    }
+
     callBackground("sendEvent", ...args);
   };
 
