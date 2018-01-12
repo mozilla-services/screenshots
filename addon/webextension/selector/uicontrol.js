@@ -374,7 +374,7 @@ this.uicontrol = (function() {
     }
 
     distanceTo(x, y) {
-      return Math.sqrt(Math.pow(this.x - x, 2), Math.pow(this.y - y));
+      return Math.sqrt(Math.pow(this.x - x, 2) + Math.pow(this.y - y, 2));
     }
   }
 
