@@ -154,7 +154,7 @@ shotPageExpired = wedi dod i ben { $timediff }
 timeDiffJustNow = nawr
 timeDiffMinutesAgo = { $number ->
         [one] 1 munud yn ôl
-        [two] { $number } munud yn ôl
+        [two] { $number } funud yn ôl
         [few] { $number } munud yn ôl
        *[other] { $number } munud yn ôl
     }
