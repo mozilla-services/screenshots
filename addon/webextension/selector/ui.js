@@ -204,13 +204,10 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
         // document's body is not at (0, 0) of the viewport. That makes the
         // frame shifted relative to the viewport. These margins negates that.
         if (window.getComputedStyle(document.body).position === "relative") {
-          let boundingRect = document.body.getBoundingClientRect();
-          if (boundingRect.x) {
-            this.element.style.marginLeft = `-${boundingRect.x}px`;
-          }
-          if (boundingRect.y) {
-            this.element.style.marginTop = `-${boundingRect.y}px`;
-          }
+          let docBoundingRect = document.documentElement.getBoundingClientRect();
+          let bodyBoundingRect = document.body.getBoundingClientRect();
+          this.element.style.marginLeft = `-${bodyBoundingRect.right - docBoundingRect.right}px`;
+          this.element.style.marginTop = `-${bodyBoundingRect.bottom - docBoundingRect.bottom}px`;
         }
       }
       if (force && visible) {
