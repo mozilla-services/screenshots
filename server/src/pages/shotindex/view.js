@@ -304,6 +304,11 @@ class Card extends React.Component {
       favicon = <div style={{backgroundImage: `url("${shot.favicon}")`}} className="favicon" />;
     }
 
+    let neverExpireIndicator = null;
+    if (!shot.expireTime) {
+      neverExpireIndicator = <Localized id="shotIndexNoExpirationSymbol"><div className="never-expires" title=""></div></Localized>
+    }
+
     return (
       <div className={`shot ${this.getClipType(shot.thumbnail, clip._image.dimensions)} ${this.state.panelOpen} ${this.isDeleted()}`} key={shot.id}>
         <a href={shot.viewUrl} onClick={this.onOpen.bind(this, shot.viewUrl)}>
@@ -332,6 +337,7 @@ class Card extends React.Component {
             <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this, shot) } ref={trashButton => this.trashButton = trashButton} />
           </Localized>
         </div>
+        {neverExpireIndicator}
       </div>
     );
   }
