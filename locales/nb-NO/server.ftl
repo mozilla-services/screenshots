@@ -59,7 +59,7 @@ homePageCapturePage = Ta skjermbilde av en side
 homePageCapturePageDescription = Bruk knappene øverst til høyre for å ta skjermbilde av hele sider. Knappen «Lagre synlig område» tar skjermbilde av området du kan se uten å rulle, og «Lagre hele siden» vil ta skjermbilde av alt på siden.
 homePageSaveShare = Lagre og del
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Når du tar et bilde, laster Firefox opp skjermbildet ditt i din nettbaserte Screenshots-bibliotek og kopierer lenken til utklippstavlen. Vi lagrer skjermbildet automatisk i to uker, men du kan når som helst slette bilder eller endre utløpsdatoen for å beholde dem i biblioteket ditt lenger.
+homePageSaveShareDescription = Når du tar et skjermbilde, laster Firefox opp skjermbildet ditt i din nettbaserte Screenshots-bibliotek og kopierer lenken til utklippstavlen. Vi lagrer skjermbildet automatisk i to uker, men du kan når som helst slette bilder eller endre utløpsdatoen for å beholde dem i biblioteket ditt lenger.
 homePageLegalLink = Juridisk
 homePagePrivacyLink = Personvern
 homePageTermsLink = Vilkår
@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Ta med nettadressen til dette bildet i e-posten din: {
 shotPageKeepFor = Hvor lenge skal dette skjermbildet beholdes?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Velg tid
-shotPageKeepIndefinitely = Uendelig
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitely = Uendelig ∞
 shotPageKeepTenMinutes = 10 minutter
 shotPageKeepOneHour = 1 time
 shotPageKeepOneDay = 1 dag
@@ -220,6 +223,12 @@ shotIndexPagePreviousPage
     .title = Forrige side
 shotIndexPageNextPage
     .title = Neste side
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Dette skjermbildet utløper ikke
 
 
 // all metrics strings are optional for translation
