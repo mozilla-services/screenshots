@@ -138,7 +138,6 @@ shotPageDMCAIncludeLink = Includi l'indirizzo di questa immagine nell’email: {
 shotPageKeepFor = Per quanto tempo vuoi conservare questa immagine?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Seleziona durata
-shotPageKeepIndefinitely = Per sempre
 shotPageKeepTenMinutes = 10 minuti
 shotPageKeepOneHour = 1 ora
 shotPageKeepOneDay = 1 giorno
