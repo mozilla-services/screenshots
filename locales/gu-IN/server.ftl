@@ -138,6 +138,9 @@ shotPageDMCAIncludeLink = કૃપા કરીને તમારા ઇમે
 shotPageKeepFor = આ શૉટને કેટલા સમય સુધી જાળવી રાખવો જોઈએ?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = સમય પસંદ કરો
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitely = અનિશ્ચિતપણે
 shotPageKeepTenMinutes = 10 મિનીટ
 shotPageKeepOneHour = 1 કલાક
@@ -220,6 +223,12 @@ shotIndexPagePreviousPage
     .title = પાછળનું પાનું
 shotIndexPageNextPage
     .title = પછીનું પાનું
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = આ શોટ સમાપ્ત થતો નથી
 
 
 // all metrics strings are optional for translation
