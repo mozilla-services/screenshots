@@ -116,7 +116,7 @@ shotPageExpirationMessage = Als u niets doet, wordt deze afbeelding { $timediff 
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = terugzetten tot { $date }
-shotPageExpiredMessage = Deze afbeelding is vervallen.
+shotPageExpiredMessage = Deze afbeelding is verlopen.
 // Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Dit is de pagina van waaraf deze oorspronkelijk is gemaakt:
 shotPageDeleteButton
@@ -138,6 +138,9 @@ shotPageDMCAIncludeLink = Voeg de URL van deze afbeelding bij in uw e-mail: { $u
 shotPageKeepFor = Hoe lang moet deze afbeelding worden behouden?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Tijd selecteren
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitely = Onbepaald
 shotPageKeepTenMinutes = 10 minuten
 shotPageKeepOneHour = 1 uur
@@ -220,6 +223,12 @@ shotIndexPagePreviousPage
     .title = Vorige pagina
 shotIndexPageNextPage
     .title = Volgende pagina
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Deze afbeelding verloopt niet
 
 
 // all metrics strings are optional for translation
