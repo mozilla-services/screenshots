@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Załącz odnośnik do tego zrzutu w wiadomości: { $u
 shotPageKeepFor = Jak długo mamy zachować ten zrzut?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Wybierz czas
-shotPageKeepIndefinitely = Bezterminowo
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitely = Bezterminowo ∞
 shotPageKeepTenMinutes = 10 minut
 shotPageKeepOneHour = 1 godzina
 shotPageKeepOneDay = 1 dzień
@@ -226,6 +229,12 @@ shotIndexPagePreviousPage
     .title = Poprzednia strona
 shotIndexPageNextPage
     .title = Następna strona
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Ten zrzut nie ulega przeterminowaniu
 
 
 // all metrics strings are optional for translation
