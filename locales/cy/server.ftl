@@ -137,6 +137,9 @@ shotPageDMCAIncludeLink = Cofiwch gynnwys URL y llun un eich e-bost: { $url }
 shotPageKeepFor = Pa mor hir dylwn ni gadw'r llun
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Dewis cyfnod
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitely = Amhenodol
 shotPageKeepTenMinutes = 10 Munud
 shotPageKeepOneHour = Awr
@@ -231,6 +234,12 @@ shotIndexPagePreviousPage
     .title = Tudalen flaenorol
 shotIndexPageNextPage
     .title = Tudalen nesaf
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Nid yw'r llun yma'n dod i ben
 
 
 // all metrics strings are optional for translation
