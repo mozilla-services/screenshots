@@ -138,6 +138,10 @@ shotPageDMCAIncludeLink = Includi l'indirizzo di questa immagine nell’email: {
 shotPageKeepFor = Per quanto tempo vuoi conservare questa immagine?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Seleziona durata
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitely = Per sempre ∞
 shotPageKeepTenMinutes = 10 minuti
 shotPageKeepOneHour = 1 ora
 shotPageKeepOneDay = 1 giorno
@@ -219,6 +223,12 @@ shotIndexPagePreviousPage
     .title = Pagina precedente
 shotIndexPageNextPage
     .title = Pagina successiva
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Questa immagine non ha scadenza
 
 
 // all metrics strings are optional for translation
