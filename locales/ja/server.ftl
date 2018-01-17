@@ -138,6 +138,9 @@ shotPageDMCAIncludeLink = このショットの URL をメールに記載して�
 shotPageKeepFor = このショットの保存期間
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = 時間を選択
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitely = 無期限
 shotPageKeepTenMinutes = 10 分
 shotPageKeepOneHour = 1 時間
@@ -202,6 +205,12 @@ shotIndexPagePreviousPage
     .title = 前のページ
 shotIndexPageNextPage
     .title = 次のページ
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = このショットの期限はありません
 
 
 // all metrics strings are optional for translation
