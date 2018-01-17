@@ -138,6 +138,9 @@ shotPageDMCAIncludeLink = Do e-mailu zahrňte, prosím, URL adresu tejto snímky
 shotPageKeepFor = Na ako dlho má byť táto snímka uložená?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Vyberte čas
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitely = na neurčito
 shotPageKeepTenMinutes = 10 minút
 shotPageKeepOneHour = 1 hodinu
@@ -226,6 +229,12 @@ shotIndexPagePreviousPage
     .title = Predchádzajúca stránka
 shotIndexPageNextPage
     .title = Nasledujúca stránka
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Platnosť tejto snímky nevyprší
 
 
 // all metrics strings are optional for translation
