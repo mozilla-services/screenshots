@@ -138,6 +138,9 @@ shotPageDMCAIncludeLink = Foegje de URL fan dizze ôfbylding ta oan jo e-mail: {
 shotPageKeepFor = Hoe lang moat dizze ôfbylding bewarre wurde?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Tiid selektearje
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitely = Unbepaald
 shotPageKeepTenMinutes = 10 minuten
 shotPageKeepOneHour = 1 oer
@@ -220,6 +223,12 @@ shotIndexPagePreviousPage
     .title = Foarige side
 shotIndexPageNextPage
     .title = Folgjende side
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Dizze skermôfdruk ferrint nea
 
 
 // all metrics strings are optional for translation
