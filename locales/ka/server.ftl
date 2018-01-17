@@ -138,6 +138,9 @@ shotPageDMCAIncludeLink = გთხოვთ შეტყობინება�
 shotPageKeepFor = რამდენი ხნის განმავლობაში გსურთ სურათის დატოვება?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = დროის მითითება
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitely = განუსაზღვრელი დროით
 shotPageKeepTenMinutes = 10 წუთით
 shotPageKeepOneHour = 1 საათით
@@ -212,6 +215,12 @@ shotIndexPagePreviousPage
     .title = წინა გვერდი
 shotIndexPageNextPage
     .title = მომდევნო გვერდი
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = ეს სურათი უვადოა
 
 
 // all metrics strings are optional for translation
