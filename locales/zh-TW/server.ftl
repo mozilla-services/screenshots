@@ -138,6 +138,9 @@ shotPageDMCAIncludeLink = 請在郵件中包含此擷圖的網址: { $url }
 shotPageKeepFor = 這張擷圖應該保存多久？
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = 選擇時間
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitely = 無限久
 shotPageKeepTenMinutes = 10 分鐘
 shotPageKeepOneHour = 1 小時
@@ -202,6 +205,12 @@ shotIndexPagePreviousPage
     .title = 上一頁
 shotIndexPageNextPage
     .title = 下一頁
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = 這張擷圖不會過期
 
 
 // all metrics strings are optional for translation
