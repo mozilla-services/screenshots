@@ -37,6 +37,7 @@ leavePageButtonCancel = Utzi
 shotPageCopy = Kopiatu
 shotPageCopied = Kopiatuta
 shotPageDownload = Deskargatu
+shotPageKeepOneDay = Egun bat
 
 
 [[ Annotations ]]
