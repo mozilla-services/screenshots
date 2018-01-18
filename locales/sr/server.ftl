@@ -199,8 +199,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Очисти
+annotationCropButton
+    .title = Одрежи
 annotationSaveButton = Сачувај
 annotationCancelButton = Откажи
+annotationConfirmCropButton = Потврди
+annotationCancelCropButton = Откажи
 
 
 [[ Shotindex page ]]
