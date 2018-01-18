@@ -138,6 +138,9 @@ shotPageDMCAIncludeLink = অনুগ্রহ করে এই সটটির
 shotPageKeepFor = এই সটটি কতদিন পর্যন্ত রাখতে চান?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = সময় নির্বাচন করুন
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitely = অনির্দিষ্টভাবে
 shotPageKeepTenMinutes = ১০ মিনিট
 shotPageKeepOneHour = ১ ঘন্টা
@@ -183,6 +186,15 @@ errorThirdPartyCookiesEnabled = আপনি যদি শট নেন, কি�
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = কলম
+annotationHighlighterButton
+    .title = হাইলাইটার
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = পরিষ্কার করুন
+annotationSaveButton = সংরক্ষণ করুন
+annotationCancelButton = বাতিল করুন
 
 
 [[ Shotindex page ]]
@@ -211,6 +223,12 @@ shotIndexPagePreviousPage
     .title = আগের পাতা
 shotIndexPageNextPage
     .title = পরের পাতা
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = শটটি এখনও শেষ হয়নি
 
 
 // all metrics strings are optional for translation
