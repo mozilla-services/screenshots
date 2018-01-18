@@ -190,8 +190,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Sfeḍ
+annotationCropButton
+    .title = Flali
 annotationSaveButton = Sekles
 annotationCancelButton = Sefsex
+annotationConfirmCropButton = Sentem
+annotationCancelCropButton = Sefsex
 
 
 [[ Shotindex page ]]
