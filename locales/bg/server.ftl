@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Моля, включете препратка към �
 shotPageKeepFor = Колко дълго снимката да бъде пазена?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = продължителност
-shotPageKeepIndefinitely = неограничено
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitely = Неограничено ∞
 shotPageKeepTenMinutes = 10 минути
 shotPageKeepOneHour = 1 час
 shotPageKeepOneDay = 1 ден
@@ -220,6 +223,12 @@ shotIndexPagePreviousPage
     .title = Предишна страница
 shotIndexPageNextPage
     .title = Следваща страница
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Давността на тази снимка не изтича.
 
 
 // all metrics strings are optional for translation
