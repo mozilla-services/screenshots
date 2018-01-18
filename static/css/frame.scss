@@ -555,3 +555,17 @@ body {
       border: 2px solid $light-border-active !important;
     }
 }
+
+.crop-tool {
+  z-index: 3;
+}
+
+.crop-container {
+  z-index: 4;
+}
+
+.crop-button {
+  background-image: url("../img/crop.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
