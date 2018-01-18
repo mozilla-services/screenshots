@@ -138,6 +138,9 @@ shotPageDMCAIncludeLink = Bonvolu aldoni la retadreson de tiu ĉi ekrankopio en 
 shotPageKeepFor = Kiel longe tiu ĉi ekrankopio devus esti gardita?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Elekti horon
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitely = Ĉiame
 shotPageKeepTenMinutes = 10 minutojn
 shotPageKeepOneHour = horon
@@ -220,6 +223,12 @@ shotIndexPagePreviousPage
     .title = Antaŭa paĝo
 shotIndexPageNextPage
     .title = Venonta paĝo
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Tiu ĉi ekrankopio ne senvalidiĝas
 
 
 // all metrics strings are optional for translation
