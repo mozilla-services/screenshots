@@ -193,8 +193,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = পরিষ্কার করুন
+annotationCropButton
+    .title = ছাঁটুন
 annotationSaveButton = সংরক্ষণ করুন
 annotationCancelButton = বাতিল করুন
+annotationConfirmCropButton = নিশ্চিত করুন
+annotationCancelCropButton = বাতিল করুন
 
 
 [[ Shotindex page ]]
