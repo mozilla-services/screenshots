@@ -155,6 +155,9 @@ h1 {
     .alt-actions-container {
       opacity: 1;
     }
+    .never-expires {
+      display: none;
+    }
   }
 
   .shot-image-container {
@@ -228,6 +231,7 @@ h1 {
     .shot-url {
       color: $link-medium;
       font-size: 12px;
+      max-width: 165px;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -241,6 +245,7 @@ h1 {
 
   .never-expires {
     bottom: 0;
+    color: #9e9e9e;
     font-size: 1.2em;
     position: absolute;
     right: 8px;
