@@ -463,19 +463,18 @@ exports.Editor = class Editor extends React.Component {
       this.drawContext = this.highlightContext;
       this.highlightContext.lineWidth = 20;
       this.highlightContext.strokeStyle = this.state.color;
-      this.canvasContainer.addEventListener("mousemove", this.draw);
-      this.canvasContainer.addEventListener("mousedown", this.setPosition);
+      document.addEventListener("mousemove", this.draw);
+      document.addEventListener("mousedown", this.setPosition);
     } else if (this.state.tool == 'pen') {
       this.drawContext = this.imageContext;
       this.imageContext.globalCompositeOperation = 'source-over';
       this.imageContext.strokeStyle = this.state.color;
       this.imageContext.lineWidth = this.state.size;
-      this.canvasContainer.addEventListener("mousemove", this.draw);
-      this.canvasContainer.addEventListener("mousedown", this.setPosition);
+      document.addEventListener("mousemove", this.draw);
+      document.addEventListener("mousedown", this.setPosition);
     } else if (this.state.tool == 'crop') {
-      this.canvasContainer.removeEventListener("mousemove", this.draw);
-      this.canvasContainer.removeEventListener("mousedown", this.setPosition);
-      this.canvasContainer.removeEventListener("mouseenter", this.setPosition);
+      document.removeEventListener("mousemove", this.draw);
+      document.removeEventListener("mousedown", this.setPosition);
       document.addEventListener("mousemove", this.mousemove);
       document.addEventListener("mousedown", this.mousedown);
       document.addEventListener("mouseup", this.mouseup);
@@ -543,7 +542,7 @@ class ColorPicker extends React.Component {
   }
 
   onClickSwatch(e) {
-    let color = e.target.style.backgroundColor
+    let color = e.target.style.backgroundColor;
     this.setState({color, pickerActive: false});
     this.props.setColor(color);
   }
