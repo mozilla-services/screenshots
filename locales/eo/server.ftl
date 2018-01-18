@@ -193,8 +193,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Viŝi
+annotationCropButton
+    .title = Eltondi
 annotationSaveButton = Konservi
 annotationCancelButton = Nuligi
+annotationConfirmCropButton = Konfirmi
+annotationCancelCropButton = Nuligi
 
 
 [[ Shotindex page ]]
