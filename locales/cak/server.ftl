@@ -138,6 +138,9 @@ shotPageDMCAIncludeLink = Tatz'aqatisaj ri URL richin re wachib'äl re' pan ataq
 shotPageKeepFor = ¿Janipe q'ij nik'oje' re wachib'äl re'?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Ticha' q'ijul
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitely = Mek'isel
 shotPageKeepTenMinutes = 10 Ch'utiramaj
 shotPageKeepOneHour = 1 Ramaj
@@ -190,8 +193,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Tijosq'ïx
+annotationCropButton
+    .title = Tiqupïx
 annotationSaveButton = Tiyak
 annotationCancelButton = Tiq'at
+annotationConfirmCropButton = Tijikib'äx
+annotationCancelCropButton = Tiq'at
 
 
 [[ Shotindex page ]]
@@ -220,6 +227,12 @@ shotIndexPagePreviousPage
     .title = Chuwäch ruxaq
 shotIndexPageNextPage
     .title = Jun chik ruxaq
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Ri chapoj re' man nik'o taq ruq'ijul
 
 
 // all metrics strings are optional for translation
