@@ -31,6 +31,7 @@ footerLinkRemoveAllData = మొత్తం డేటాను తీసివ�
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } సృష్టిస్తోంది
 creatingPageTitleDefault = పేజీ
+creatingPageWaitMessage = మీ పట్టు భద్రమవుతోంది…
 
 
 [[ Home page ]]
@@ -56,6 +57,7 @@ homePageCookiesLink = కుకీలు
 
 [[ Leave Screenshots page ]]
 
+leavePageRemoveAllData = డేటా అంతా తీసివేయి
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = మీ ఖాతాను తొలగించడానికి Firefox Screenshots స్థాపించి ఉండాలి
 leavePageErrorGeneric = ఒక దోషం ఏర్పడింది.
@@ -123,6 +125,9 @@ shotPageDMCAIncludeLink = దయచేసి ఈ తెరపట్టు యొ
 shotPageKeepFor = ఎంతకాలం ఈ తెరపట్టును నిలబెట్టుకోవాలి?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = సమయాన్ని ఎంచుకోండి
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitely = నిరంతరంగా
 shotPageKeepTenMinutes = 10 నిమిషాలు
 shotPageKeepOneHour = 1 గంట
@@ -167,6 +172,8 @@ timeDiffFutureDays = { $number ->
 
 [[ Annotations ]]
 
+annotationPenButton
+    .title = పెన్ను
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = తుడిచివేయి
@@ -197,6 +204,12 @@ shotIndexPagePreviousPage
     .title = మునుపటి పేజీ
 shotIndexPageNextPage
     .title = తదుపరి పేజీ
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = ఈ పట్టు ఎప్పటికీ కాలంచెల్లదు
 
 
 // all metrics strings are optional for translation
