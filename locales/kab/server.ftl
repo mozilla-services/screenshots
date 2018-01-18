@@ -138,6 +138,9 @@ shotPageDMCAIncludeLink = Ttxilek sedu URL n tuṭfa-agi deg imayl inek: { $url 
 shotPageKeepFor = Ceḥal n wakud tuṭṭfa-agi ad tettwasekles?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Fren akud
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitely = war tilas
 shotPageKeepTenMinutes = 10 n tesdatin
 shotPageKeepOneHour = 1 n usrag
@@ -217,6 +220,12 @@ shotIndexPagePreviousPage
     .title = Asebter iεeddan
 shotIndexPageNextPage
     .title = Asebter i d-iteddun
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Tuṭṭfa-agi ur tettmettat ara
 
 
 // all metrics strings are optional for translation
