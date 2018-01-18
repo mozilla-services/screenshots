@@ -124,6 +124,15 @@ this.uicontrol = (function() {
 
   let captureType;
 
+  function removeDimensionLimitsOnFullPageShot() {
+    if (captureType === "fullPageTruncated") {
+      captureType = "fullPage";
+      selectedPos = new Selection(
+        0, 0,
+        getDocumentWidth(), getDocumentHeight());
+    }
+  }
+
   let standardDisplayCallbacks = {
     cancel: () => {
       sendEvent("cancel-shot", "overlay-cancel-button");
@@ -191,19 +200,14 @@ this.uicontrol = (function() {
     },
     onDownloadPreview: () => {
       sendEvent(`download-${captureType.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}`, "download-preview-button");
-
       // Downloaded shots don't have dimension limits
-      if (captureType === "fullPageTruncated") {
-        captureType = "fullPage";
-        selectedPos = new Selection(
-          0, 0,
-          getDocumentWidth(), getDocumentHeight());
-      }
-
+      removeDimensionLimitsOnFullPageShot();
       shooter.downloadShot(selectedPos);
     },
     onCopyPreview: () => {
       sendEvent(`copy-${captureType.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}`, "copy-preview-button");
+      // Copied shots don't have dimension limits
+      removeDimensionLimitsOnFullPageShot();
       shooter.copyShot(selectedPos);
     }
   };
