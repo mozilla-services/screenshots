@@ -437,6 +437,9 @@ this.uicontrol = (function() {
           (!event.target.classList.contains("preview-overlay"))) {
         // User is hovering over a toolbar button or control
         autoDetectRect = null;
+        if (this.cachedEl) {
+          this.cachedEl = null;
+        }
         ui.HoverBox.hide();
         return;
       }
