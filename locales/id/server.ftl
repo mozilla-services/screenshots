@@ -138,7 +138,6 @@ shotPageDMCAIncludeLink = Sertakan URL dari tangkapan ini dalam surel Anda: { $u
 shotPageKeepFor = Berapa lama tangkapan ini disimpan?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Pilih waktu
-shotPageKeepIndefinitely = Selamanya
 shotPageKeepTenMinutes = 10 Menit
 shotPageKeepOneHour = 1 Jam
 shotPageKeepOneDay = 1 Hari
@@ -172,8 +171,11 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Bersihkan
+annotationCropButton
+    .title = Pangkas
 annotationSaveButton = Simpan
 annotationCancelButton = Batal
+annotationCancelCropButton = Batal
 
 
 [[ Shotindex page ]]
