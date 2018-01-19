@@ -187,8 +187,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Buang
+annotationCropButton
+    .title = Potong
 annotationSaveButton = Simpan
 annotationCancelButton = Batal
+annotationConfirmCropButton = Sahkan
+annotationCancelCropButton = Batal
 
 
 [[ Shotindex page ]]
