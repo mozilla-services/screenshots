@@ -193,8 +193,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Pyyhi
+annotationCropButton
+    .title = Rajaa
 annotationSaveButton = Tallenna
 annotationCancelButton = Peruuta
+annotationConfirmCropButton = Vahvista
+annotationCancelCropButton = Peruuta
 
 
 [[ Shotindex page ]]
