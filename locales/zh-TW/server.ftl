@@ -175,8 +175,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = 清除
+annotationCropButton
+    .title = 裁切
 annotationSaveButton = 儲存
 annotationCancelButton = 取消
+annotationConfirmCropButton = 確認
+annotationCancelCropButton = 取消
 
 
 [[ Shotindex page ]]
