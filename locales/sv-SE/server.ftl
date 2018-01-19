@@ -141,7 +141,7 @@ shotPageSelectTime = Välj tid
 // The ∞ is used to indicate that the shot won't expire. It is also used in
 // shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
 // if no such symbol is available for a language/culture, simply leave it out.
-shotPageKeepIndefinitely = På obestämd tid
+shotPageKeepIndefinitelyWithSymbol = Oändligt ∞
 shotPageKeepTenMinutes = 10 minuter
 shotPageKeepOneHour = 1 timme
 shotPageKeepOneDay = 1 dag
