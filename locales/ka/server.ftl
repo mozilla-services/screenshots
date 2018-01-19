@@ -185,8 +185,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = გასუფთავება
+annotationCropButton
+    .title = ამოჭრა
 annotationSaveButton = შენახვა
 annotationCancelButton = გაუქმება
+annotationConfirmCropButton = დადასტურება
+annotationCancelCropButton = გაუქმება
 
 
 [[ Shotindex page ]]
