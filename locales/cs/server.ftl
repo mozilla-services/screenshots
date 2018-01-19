@@ -199,8 +199,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Smazat úpravy
+annotationCropButton
+    .title = Oříznout
 annotationSaveButton = Uložit
 annotationCancelButton = Zrušit
+annotationConfirmCropButton = Potvrdit
+annotationCancelCropButton = Zrušit
 
 
 [[ Shotindex page ]]
