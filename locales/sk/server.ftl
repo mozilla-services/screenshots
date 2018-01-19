@@ -141,7 +141,7 @@ shotPageSelectTime = Vyberte čas
 // The ∞ is used to indicate that the shot won't expire. It is also used in
 // shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
 // if no such symbol is available for a language/culture, simply leave it out.
-shotPageKeepIndefinitely = na neurčito
+shotPageKeepIndefinitelyWithSymbol = Navždy ∞
 shotPageKeepTenMinutes = 10 minút
 shotPageKeepOneHour = 1 hodinu
 shotPageKeepOneDay = 1 deň
@@ -199,8 +199,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Odstrániť zmeny
+annotationCropButton
+    .title = Orezať
 annotationSaveButton = Uložiť
 annotationCancelButton = Zrušiť
+annotationConfirmCropButton = Potvrdiť
+annotationCancelCropButton = Zrušiť
 
 
 [[ Shotindex page ]]
