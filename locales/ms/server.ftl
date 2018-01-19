@@ -141,7 +141,7 @@ shotPageSelectTime = Pilih masa
 // The ∞ is used to indicate that the shot won't expire. It is also used in
 // shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
 // if no such symbol is available for a language/culture, simply leave it out.
-shotPageKeepIndefinitely = Infiniti
+shotPageKeepIndefinitelyWithSymbol = ∞ selama-lamanya
 shotPageKeepTenMinutes = 10 minit
 shotPageKeepOneHour = 1 Jam
 shotPageKeepOneDay = I Hari
