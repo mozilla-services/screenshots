@@ -141,7 +141,7 @@ shotPageSelectTime = Cas wubraś
 // The ∞ is used to indicate that the shot won't expire. It is also used in
 // shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
 // if no such symbol is available for a language/culture, simply leave it out.
-shotPageKeepIndefinitely = Njepóstajony
+shotPageKeepIndefinitelyWithSymbol = Na pśecej ∞
 shotPageKeepTenMinutes = 10 minutow
 shotPageKeepOneHour = 1 góźina
 shotPageKeepOneDay = 1 źeń
