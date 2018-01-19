@@ -7,7 +7,7 @@
 // Global phrases shared across pages, prefixed with 'g'
 [[ global ]]
 
-gMyShots = Mine skjermbilder
+gMyShots = Uendelig ∞
 gHomeLink = Hjem
 gNoShots
     .alt = Ingen skjermbilder funnet
@@ -141,7 +141,7 @@ shotPageSelectTime = Velg tid
 // The ∞ is used to indicate that the shot won't expire. It is also used in
 // shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
 // if no such symbol is available for a language/culture, simply leave it out.
-shotPageKeepIndefinitely = Uendelig ∞
+shotPageKeepIndefinitelyWithSymbol = Uendelig ∞
 shotPageKeepTenMinutes = 10 minutter
 shotPageKeepOneHour = 1 time
 shotPageKeepOneDay = 1 dag
