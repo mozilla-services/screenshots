@@ -193,8 +193,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Limpiar
+annotationCropButton
+    .title = Recortar
 annotationSaveButton = Guardar
 annotationCancelButton = Cancelar
+annotationConfirmCropButton = Confirmar
+annotationCancelCropButton = Cancelar
 
 
 [[ Shotindex page ]]
