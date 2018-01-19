@@ -137,11 +137,11 @@ shotPageDMCAWarning = Pokud budou na více vašich snímku uplatňovány nároky
 shotPageDMCAIncludeLink = Uveďte prosím v e-mailu URL adresu tohoto snímku: { $url }
 shotPageKeepFor = Jak dlouho má být tento snímek uložen?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
-shotPageSelectTime = Volba času
+shotPageSelectTime = Vyberte čas
 // The ∞ is used to indicate that the shot won't expire. It is also used in
 // shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
 // if no such symbol is available for a language/culture, simply leave it out.
-shotPageKeepIndefinitely = navždy
+shotPageKeepIndefinitelyWithSymbol = Navždy ∞
 shotPageKeepTenMinutes = 10 minut
 shotPageKeepOneHour = 1 hodinu
 shotPageKeepOneDay = 1 den
