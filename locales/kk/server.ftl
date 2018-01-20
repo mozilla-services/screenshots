@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Эл. пошта хатына бұл скриншот�
 shotPageKeepFor = Бұл скриншот қанша уақыт бойы сақталуы тиіс?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Уақытты таңдау
-shotPageKeepIndefinitely = Шексіз
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Шексіз ∞
 shotPageKeepTenMinutes = 10 минут
 shotPageKeepOneHour = 1 сағат
 shotPageKeepOneDay = 1 күн
@@ -184,8 +187,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Тазарту
+annotationCropButton
+    .title = Қию
 annotationSaveButton = Сақтау
 annotationCancelButton = Бас тарту
+annotationConfirmCropButton = Растау
+annotationCancelCropButton = Бас тарту
 
 
 [[ Shotindex page ]]
@@ -214,6 +221,12 @@ shotIndexPagePreviousPage
     .title = Алдыңғы бет
 shotIndexPageNextPage
     .title = Келесі бет
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Бұл скриншот мерзімі аяқталмайды
 
 
 // all metrics strings are optional for translation
