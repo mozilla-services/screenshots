@@ -138,7 +138,6 @@ shotPageDMCAIncludeLink = Lütfen e-potanızda bu görüntünün adresini de bel
 shotPageKeepFor = Bu görüntü ne kadar süreyle saklansın?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Süre seçin
-shotPageKeepIndefinitely = Sonsuz
 shotPageKeepTenMinutes = 10 dakika
 shotPageKeepOneHour = 1 saat
 shotPageKeepOneDay = 1 gün
@@ -172,8 +171,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Temizle
+annotationCropButton
+    .title = Kırp
 annotationSaveButton = Kaydet
 annotationCancelButton = İptal
+annotationConfirmCropButton = Onayla
+annotationCancelCropButton = İptal
 
 
 [[ Shotindex page ]]
