@@ -141,7 +141,7 @@ shotPageSelectTime = Выберыце час
 // The ∞ is used to indicate that the shot won't expire. It is also used in
 // shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
 // if no such symbol is available for a language/culture, simply leave it out.
-shotPageKeepIndefinitely = Бясконца
+shotPageKeepIndefinitelyWithSymbol = Бясконца ∞
 shotPageKeepTenMinutes = 10 хвілін
 shotPageKeepOneHour = 1гадзіну
 shotPageKeepOneDay = 1 дзень
@@ -199,8 +199,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Ачысціць
+annotationCropButton
+    .title = Абрэзаць
 annotationSaveButton = Захаваць
 annotationCancelButton = Скасаваць
+annotationConfirmCropButton = Пацвердзіць
+annotationCancelCropButton = Скасаваць
 
 
 [[ Shotindex page ]]
