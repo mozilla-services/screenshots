@@ -141,7 +141,7 @@ shotPageSelectTime = Izberite čas
 // The ∞ is used to indicate that the shot won't expire. It is also used in
 // shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
 // if no such symbol is available for a language/culture, simply leave it out.
-shotPageKeepIndefinitely = Za nedoločen čas
+shotPageKeepIndefinitelyWithSymbol = Neskončno ∞
 shotPageKeepTenMinutes = 10 minut
 shotPageKeepOneHour = 1 uro
 shotPageKeepOneDay = 1 dan
