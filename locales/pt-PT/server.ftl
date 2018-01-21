@@ -97,7 +97,7 @@ shotPageConfirmDelete = Tem a certeza de que deseja apagar esta captura permanen
 shotPageShareButton
     .title = Partilhar
 shotPageCopy = Copiar
-shotPageCopied = Copiado
+shotPageCopied = Copiada
 shotPageShareFacebook
     .title = Partilhar no Facebook
 shotPageShareTwitter
