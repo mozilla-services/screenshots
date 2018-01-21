@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Prašome įtraukti šio karo URL savo el. laiške: { $
 shotPageKeepFor = Kiek ilgai šis nuotrauka turėtų būti laikoma?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Pasirinkite laiką
-shotPageKeepIndefinitely = Neribotai
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Neribotai ∞
 shotPageKeepTenMinutes = 10 minučių
 shotPageKeepOneHour = 1 valandą
 shotPageKeepOneDay = 1 dieną
@@ -196,8 +199,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Išvalyti
+annotationCropButton
+    .title = Apkirpti
 annotationSaveButton = Įrašyti
 annotationCancelButton = Atsisakyti
+annotationConfirmCropButton = Tinka
+annotationCancelCropButton = Atsisakyti
 
 
 [[ Shotindex page ]]
@@ -226,6 +233,12 @@ shotIndexPagePreviousPage
     .title = Ankstesnis puslapis
 shotIndexPageNextPage
     .title = Kitas puslapis
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Ši nuotrauka galioja neribotą laiką
 
 
 // all metrics strings are optional for translation
