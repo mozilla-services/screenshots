@@ -141,7 +141,7 @@ shotPageSelectTime = Seleziona durata
 // The ∞ is used to indicate that the shot won't expire. It is also used in
 // shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
 // if no such symbol is available for a language/culture, simply leave it out.
-shotPageKeepIndefinitely = Per sempre ∞
+shotPageKeepIndefinitelyWithSymbol = nessuna scadenza ∞
 shotPageKeepTenMinutes = 10 minuti
 shotPageKeepOneHour = 1 ora
 shotPageKeepOneDay = 1 giorno
@@ -193,8 +193,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Cancella
+annotationCropButton
+    .title = Ritaglia
 annotationSaveButton = Salva
 annotationCancelButton = Annulla
+annotationConfirmCropButton = Conferma
+annotationCancelCropButton = Annulla
 
 
 [[ Shotindex page ]]
