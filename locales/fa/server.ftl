@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = لطفا نشانی این عکس را در ایمیل
 shotPageKeepFor = چه مدت این عکس باید حفظ شود؟
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = انتخاب زمان
-shotPageKeepIndefinitely = نامحدود
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = نامحدود ∞
 shotPageKeepTenMinutes = ‏‏۱۰ دقیقه
 shotPageKeepOneHour = ۱ ساعت
 shotPageKeepOneDay = ‏‏۱ روز
@@ -184,8 +187,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = پاک کردن
+annotationCropButton
+    .title = بُرش
 annotationSaveButton = ذخیره
 annotationCancelButton = انصراف
+annotationConfirmCropButton = تایید
+annotationCancelCropButton = لغو
 
 
 [[ Shotindex page ]]
@@ -214,6 +221,12 @@ shotIndexPagePreviousPage
     .title = صفحه قبل
 shotIndexPageNextPage
     .title = صفحه بعد
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = این عکس منقضی نخواد شد
 
 
 // all metrics strings are optional for translation
