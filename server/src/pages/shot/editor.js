@@ -142,7 +142,7 @@ exports.Editor = class Editor extends React.Component {
       </div>
       <div className="shot-alt-actions annotation-alt-actions">
         <Localized id="annotationSaveButton">
-          <button className="button primary save" id="save" onClick={ this.onClickSave.bind(this) }>Save</button>
+          <button className="button primary save" id="save" onClick={ this.onClickSave.bind(this) } disabled = { this.state.saveDisabled }>Save</button>
         </Localized>
         <Localized id="annotationCancelButton">
           <button className="button secondary cancel" id="cancel" onClick={this.onClickCancel.bind(this)}>Cancel</button>
@@ -407,6 +407,8 @@ exports.Editor = class Editor extends React.Component {
 
   onClickSave() {
     sendEvent("save", "annotation-toolbar");
+    let saveDisabled = true;
+    this.setState({saveDisabled});
     this.imageContext.globalCompositeOperation = 'multiply';
     this.imageContext.drawImage(this.highlighter, 0, 0);
     this.highlightContext.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);

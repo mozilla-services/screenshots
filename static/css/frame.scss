@@ -428,6 +428,12 @@ body {
     min-width: 100px;
   }
 
+  .save {
+    &:disabled {
+      opacity: 0.4;
+    }
+  }
+
   .cancel {
     background-color: $light-default;
     border: 1px solid #9b9b9b;
