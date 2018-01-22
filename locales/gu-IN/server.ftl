@@ -141,7 +141,7 @@ shotPageSelectTime = સમય પસંદ કરો
 // The ∞ is used to indicate that the shot won't expire. It is also used in
 // shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
 // if no such symbol is available for a language/culture, simply leave it out.
-shotPageKeepIndefinitely = અનિશ્ચિતપણે
+shotPageKeepIndefinitelyWithSymbol = અનિશ્ચિત ∞
 shotPageKeepTenMinutes = 10 મિનીટ
 shotPageKeepOneHour = 1 કલાક
 shotPageKeepOneDay = 1 દિવસ
@@ -193,8 +193,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = સાફ
+annotationCropButton
+    .title = કાપો
 annotationSaveButton = સાચવો
 annotationCancelButton = રદ કરો
+annotationConfirmCropButton = ખાતરી કરો
+annotationCancelCropButton = રદ કરો
 
 
 [[ Shotindex page ]]
