@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Будь ласка, додайте до вашого 
 shotPageKeepFor = Як довго буде зберігатися цей знімок?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Виберіть час
-shotPageKeepIndefinitely = Нескінченно
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Необмежено ∞
 shotPageKeepTenMinutes = 10 хвилин
 shotPageKeepOneHour = 1 година
 shotPageKeepOneDay = 1 день
@@ -196,8 +199,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Очистити
+annotationCropButton
+    .title = Обрізати
 annotationSaveButton = Зберегти
 annotationCancelButton = Скасувати
+annotationConfirmCropButton = Підтвердити
+annotationCancelCropButton = Скасувати
 
 
 [[ Shotindex page ]]
@@ -226,6 +233,12 @@ shotIndexPagePreviousPage
     .title = Попередня сторінка
 shotIndexPageNextPage
     .title = Наступна сторінка
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Цей знімок зберігається необмежено
 
 
 // all metrics strings are optional for translation
