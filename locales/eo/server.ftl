@@ -137,11 +137,11 @@ shotPageDMCAWarning = Se viaj ekrankopioj ricevas plurajn plendojn, ni povus nul
 shotPageDMCAIncludeLink = Bonvolu aldoni la retadreson de tiu ĉi ekrankopio en via retpoŝto: { $url }
 shotPageKeepFor = Kiel longe tiu ĉi ekrankopio devus esti gardita?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
-shotPageSelectTime = Elekti horon
+shotPageSelectTime = Elekti daŭron
 // The ∞ is used to indicate that the shot won't expire. It is also used in
 // shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
 // if no such symbol is available for a language/culture, simply leave it out.
-shotPageKeepIndefinitely = Ĉiame
+shotPageKeepIndefinitelyWithSymbol = senlime ∞
 shotPageKeepTenMinutes = 10 minutojn
 shotPageKeepOneHour = horon
 shotPageKeepOneDay = tagon
