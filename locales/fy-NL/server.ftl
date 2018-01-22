@@ -141,7 +141,7 @@ shotPageSelectTime = Tiid selektearje
 // The ∞ is used to indicate that the shot won't expire. It is also used in
 // shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
 // if no such symbol is available for a language/culture, simply leave it out.
-shotPageKeepIndefinitely = Unbepaald
+shotPageKeepIndefinitelyWithSymbol = Uneinich ∞
 shotPageKeepTenMinutes = 10 minuten
 shotPageKeepOneHour = 1 oer
 shotPageKeepOneDay = 1 dei
@@ -193,8 +193,12 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Wiskje
+annotationCropButton
+    .title = Bysnije
 annotationSaveButton = Bewarje
 annotationCancelButton = Annulearje
+annotationConfirmCropButton = Befêstigje
+annotationCancelCropButton = Annulearje
 
 
 [[ Shotindex page ]]
