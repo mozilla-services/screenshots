@@ -42,6 +42,20 @@ var conf = convict({
     env: "LOCALHOST_SSL",
     arg: "localhost-ssl"
   },
+  pngToJpegCutoff: {
+    doc: "The limit at which a PNG is converted to a JPEG during an edit save, in bytes.  It should match the setting in the addon",
+    format: "int",
+    default: 2500000,
+    env: "PNG_TO_JPEG_CUTOFF",
+    arg: "pngToJpegCutoff"
+  },
+  requestBodySizeLimit: {
+    doc: "The maximum allowed body size of a request.  It needs to be a format that the 'bytes' node module accepts",
+    format: String,
+    default: "25mb",
+    env: "REQUEST_BODY_SIZE_LIMIT",
+    arg: "requestBodySizeLimit"
+  },
   useS3: {
     doc: "If true, store files in s3. If false, store them locally",
     format: Boolean,

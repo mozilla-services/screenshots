@@ -66,6 +66,7 @@ exports.createModel = function(req) {
     simple: false,
     retentionTime: req.config.expiredRetentionTime * 1000,
     defaultExpiration: req.config.defaultExpiration * 1000,
+    pngToJpegCutoff: req.config.pngToJpegCutoff,
     hashAnalytics: true,
     userAgent: req.headers['user-agent'],
     blockType: req.shot.blockType,
