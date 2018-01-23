@@ -89,14 +89,16 @@ this.selectorLoader = (function() {
   // make more sense inside background/main?
   function downloadOnlyCheck(tabId) {
     return communication.sendToBootstrap("getHistoryPref").then((historyEnabled) => {
-      return browser.tabs.get(tabId).then(tab => {
-        let downloadOnly = !historyEnabled || tab.incognito;
-        return browser.tabs.executeScript(tabId, {
-          // Note: `window` here refers to a global accessible to content
-          // scripts, but not the scripts in the underlying page. For more
-          // details, see https://mdn.io/WebExtensions/Content_scripts#Content_script_environment
-          code: `window.downloadOnly = ${downloadOnly}`,
-          runAt: "document_start"
+      return communication.sendToBootstrap("isUploadDisabled").then((uploadDisabled) => {
+        return browser.tabs.get(tabId).then(tab => {
+          let downloadOnly = !historyEnabled || uploadDisabled || tab.incognito;
+          return browser.tabs.executeScript(tabId, {
+            // Note: `window` here refers to a global accessible to content
+            // scripts, but not the scripts in the underlying page. For more
+            // details, see https://mdn.io/WebExtensions/Content_scripts#Content_script_environment
+            code: `window.downloadOnly = ${downloadOnly}`,
+            runAt: "document_start"
+          });
         });
       });
     });
