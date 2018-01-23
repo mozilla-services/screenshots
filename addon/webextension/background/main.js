@@ -302,12 +302,6 @@ this.main = (function() {
     return startSelectionWithOnboarding(sender.tab);
   });
 
-  communication.register("isHistoryEnabled", () => {
-    return catcher.watchPromise(communication.sendToBootstrap("getHistoryPref").then(historyEnabled => {
-      return historyEnabled;
-    }));
-  });
-
   communication.register("getPlatformOs", () => {
     return catcher.watchPromise(browser.runtime.getPlatformInfo().then(platformInfo => {
       return platformInfo.os;
