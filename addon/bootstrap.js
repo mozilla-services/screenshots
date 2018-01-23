@@ -5,6 +5,7 @@ const ADDON_ID = "screenshots@mozilla.org";
 const TELEMETRY_ENABLED_PREF = "datareporting.healthreport.uploadEnabled";
 const PREF_BRANCH = "extensions.screenshots.";
 const USER_DISABLE_PREF = "extensions.screenshots.disabled";
+const UPLOAD_DISABLED_PREF = "extensions.screenshots.upload-disabled";
 const HISTORY_ENABLED_PREF = "places.history.enabled";
 
 const { interfaces: Ci, utils: Cu } = Components;
@@ -213,6 +214,9 @@ function handleMessage(msg, sender, sendReply) {
   if (msg.funcName === "getTelemetryPref") {
     let telemetryEnabled = getBoolPref(TELEMETRY_ENABLED_PREF);
     sendReply({type: "success", value: telemetryEnabled});
+  } else if (msg.funcName === "isUploadDisabled") {
+    let uploadDisabled = getBoolPref(UPLOAD_DISABLED_PREF);
+    sendReply({type: "success", value: uploadDisabled});
   } else if (msg.funcName === "getOldDeviceInfo") {
     let oldDeviceInfo = prefs.prefHasUserValue(OLD_ADDON_PREF_NAME) && prefs.getCharPref(OLD_ADDON_PREF_NAME);
     sendReply({type: "success", value: oldDeviceInfo || null});
