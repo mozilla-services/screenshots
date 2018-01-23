@@ -211,6 +211,7 @@ exports.Editor = class Editor extends React.Component {
   }
 
   mouseup(e) {
+    e.preventDefault();
     if (!selectedPos.width || !selectedPos.height) {
       this.removeCropBox();
     }
@@ -219,6 +220,7 @@ exports.Editor = class Editor extends React.Component {
   }
 
   mousedown(e) {
+    e.preventDefault();
     mousedown = true;
     let rect = this.cropContainer.getBoundingClientRect();
     if (!this.cropBox) {
@@ -239,6 +241,7 @@ exports.Editor = class Editor extends React.Component {
   }
 
   mousemove(e) {
+    e.preventDefault();
     let rect = this.cropContainer.getBoundingClientRect();
     if (mousedown && selectionState == "creating") {
       selectedPos = new Selection(
