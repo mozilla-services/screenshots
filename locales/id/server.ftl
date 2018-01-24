@@ -175,6 +175,7 @@ annotationCropButton
     .title = Pangkas
 annotationSaveButton = Simpan
 annotationCancelButton = Batal
+annotationConfirmCropButton = Konfirmasi
 annotationCancelCropButton = Batal
 
 
