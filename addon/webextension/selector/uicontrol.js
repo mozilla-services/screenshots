@@ -1009,7 +1009,11 @@ this.uicontrol = (function() {
       sendEvent("cancel-shot", "keyboard-escape");
       exports.deactivate();
     }
-    if ((event.key || event.code) === "Enter" && getState.state === "selected") {
+    // Enter to trigger Save or Download by default. But if the user tabbed to
+    // select another button, then we do not want this.
+    if ((event.key || event.code) === "Enter"
+        && getState.state === "selected"
+        && ui.iframe.document().activeElement.tagName === "BODY") {
       if (ui.isDownloadOnly()) {
         sendEvent("download-shot", "keyboard-enter");
         shooter.downloadShot(selectedPos);
