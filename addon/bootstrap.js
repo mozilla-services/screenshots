@@ -211,7 +211,7 @@ function handleMessage(msg, sender, sendReply) {
     return;
   }
 
-  if (msg.funcName === "getTelemetryPref") {
+  if (msg.funcName === "isTelemetryEnabled") {
     let telemetryEnabled = getBoolPref(TELEMETRY_ENABLED_PREF);
     sendReply({type: "success", value: telemetryEnabled});
   } else if (msg.funcName === "isUploadDisabled") {

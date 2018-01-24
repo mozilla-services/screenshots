@@ -6,7 +6,7 @@ this.analytics = (function() {
   let exports = {};
 
   let telemetryPrefKnown = false;
-  let telemetryPref;
+  let telemetryEnabled;
 
   const EVENT_BATCH_DURATION = 1000; // ms for setTimeout
   let pendingEvents = [];
@@ -79,7 +79,7 @@ this.analytics = (function() {
       log.warn("sendEvent called before we were able to refresh");
       return Promise.resolve();
     }
-    if (!telemetryPref) {
+    if (!telemetryEnabled) {
       log.info(`Cancelled sendEvent ${eventCategory}/${action}/${label || 'none'} ${JSON.stringify(options)}`);
       return Promise.resolve();
     }
@@ -129,24 +129,24 @@ this.analytics = (function() {
   };
 
   exports.refreshTelemetryPref = function() {
-    return communication.sendToBootstrap("getTelemetryPref").then((result) => {
+    return communication.sendToBootstrap("isTelemetryEnabled").then((result) => {
       telemetryPrefKnown = true;
       if (result === communication.NO_BOOTSTRAP) {
-        telemetryPref = true;
+        telemetryEnabled = true;
       } else {
-        telemetryPref = result;
+        telemetryEnabled = result;
       }
     }, (error) => {
       // If there's an error reading the pref, we should assume that we shouldn't send data
       telemetryPrefKnown = true;
-      telemetryPref = false;
+      telemetryEnabled = false;
       throw error;
     });
   };
 
-  exports.getTelemetryPrefSync = function() {
+  exports.isTelemetryEnabled = function() {
     catcher.watchPromise(exports.refreshTelemetryPref());
-    return !!telemetryPref;
+    return telemetryEnabled;
   };
 
   let timingData = new Map();
