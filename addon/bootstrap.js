@@ -215,8 +215,9 @@ function handleMessage(msg, sender, sendReply) {
     let telemetryEnabled = getBoolPref(TELEMETRY_ENABLED_PREF);
     sendReply({type: "success", value: telemetryEnabled});
   } else if (msg.funcName === "isUploadDisabled") {
+    let isESR = AppConstants.MOZ_UPDATE_CHANNEL === 'esr';
     let uploadDisabled = getBoolPref(UPLOAD_DISABLED_PREF);
-    sendReply({type: "success", value: uploadDisabled});
+    sendReply({type: "success", value: uploadDisabled || isESR});
   } else if (msg.funcName === "getOldDeviceInfo") {
     let oldDeviceInfo = prefs.prefHasUserValue(OLD_ADDON_PREF_NAME) && prefs.getCharPref(OLD_ADDON_PREF_NAME);
     sendReply({type: "success", value: oldDeviceInfo || null});
