@@ -84,6 +84,8 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
         <ul>
           <li data-l10n-id="downloadOnlyDetailsPrivate"></li>
           <li data-l10n-id="downloadOnlyDetailsNeverRemember"></li>
+          <li data-l10n-id="downloadOnlyDetailsESR"></li>
+          <li data-l10n-id="downloadOnlyDetailsNoUploadPref"></li>
         </ul>
       </div>
       <tbody>
