@@ -230,7 +230,7 @@ function handleMessage(msg, sender, sendReply) {
       sendReply({type: "success", value: !!addon});
     });
     return true;
-  } else if (msg.funcName === "getHistoryPref") {
+  } else if (msg.funcName === "isHistoryEnabled") {
     let historyEnabled = getBoolPref(HISTORY_ENABLED_PREF);
     sendReply({type: "success", value: historyEnabled});
   } else if (msg.funcName === "incrementCount") {
