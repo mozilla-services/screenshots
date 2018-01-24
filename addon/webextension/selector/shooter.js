@@ -163,8 +163,8 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     }));
   };
 
-  exports.downloadShot = function(selectedPos) {
-    let dataUrl = screenshotPage(selectedPos);
+  exports.downloadShot = function(selectedPos, previewDataUrl) {
+    let dataUrl = previewDataUrl || screenshotPage(selectedPos);
     let promise = Promise.resolve(dataUrl);
     if (!dataUrl) {
       promise = callBackground(
@@ -195,7 +195,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
   };
 
   let copyInProgress = null;
-  exports.copyShot = function(selectedPos) {
+  exports.copyShot = function(selectedPos, previewDataUrl) {
     // This is pretty slow. We'll ignore additional user triggered copy events
     // while it is in progress.
     if (copyInProgress) {
@@ -212,7 +212,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
         copyInProgress = null;
       }
     }
-    let dataUrl = screenshotPage(selectedPos);
+    let dataUrl = previewDataUrl || screenshotPage(selectedPos);
     let blob = blobConverters.dataUrlToBlob(dataUrl);
     catcher.watchPromise(callBackground("copyShotToClipboard", blob).then(() => {
       uicontrol.deactivate();
