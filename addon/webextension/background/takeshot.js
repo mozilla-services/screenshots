@@ -74,7 +74,7 @@ this.takeshot = (function() {
       sendEvent('internal', 'open-shot-tab');
       return uploadShot(shot, imageBlob, thumbnailBlob);
     }).then(() => {
-      return browser.tabs.update(openedTab.id, {url: shot.viewUrl}).then(
+      return browser.tabs.update(openedTab.id, {url: shot.viewUrl, loadReplace: true}).then(
         null,
         (error) => {
           // FIXME: If https://bugzilla.mozilla.org/show_bug.cgi?id=1365718 is resolved,
