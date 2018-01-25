@@ -209,7 +209,7 @@ class Body extends React.Component {
     let clipNames = shot.clipNames();
     let clip = shot.getClip(clipNames[0]);
     return <reactruntime.BodyTemplate {...this.props}>
-        <Editor clip={clip} onCancelEdit={this.onCancelEdit.bind(this)} onClickSave={this.onClickSave.bind(this)}></Editor>
+        <Editor clip={clip} pngToJpegCutoff={this.props.pngToJpegCutoff} onCancelEdit={this.onCancelEdit.bind(this)} onClickSave={this.onClickSave.bind(this)}></Editor>
     </reactruntime.BodyTemplate>;
   }
 

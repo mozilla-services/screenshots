@@ -416,6 +416,14 @@ exports.Editor = class Editor extends React.Component {
     this.imageContext.drawImage(this.highlighter, 0, 0);
     this.highlightContext.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
     let dataUrl = this.imageCanvas.toDataURL();
+
+    if (this.props.pngToJpegCutoff && dataUrl.length > this.props.pngToJpegCutoff) {
+      let jpegDataUrl = this.imageCanvas.toDataURL("image/jpeg");
+      if (jpegDataUrl.length < dataUrl.length) {
+        dataUrl = jpegDataUrl;
+      }
+    }
+
     let dimensions = {x: this.canvasWidth, y: this.canvasHeight};
     this.props.onClickSave(dataUrl, dimensions);
   }
