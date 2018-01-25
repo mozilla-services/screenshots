@@ -163,10 +163,10 @@ exports.Editor = class Editor extends React.Component {
     this.setState({tool: 'crop'});
     this.cropToolBar = <div className="editor-header default-color-scheme"><div className="annotation-tools">
       <Localized id="annotationConfirmCropButton">
-        <button className={`button transparent confirm-crop`} id="confirm-crop" onClick={this.onClickConfirmCrop.bind(this)}>Crop</button>
+        <button className={`button transparent confirm-crop`} id="confirm-crop" onClick={this.onClickConfirmCrop.bind(this)} title="Confirm selection">Crop</button>
       </Localized>
       <Localized id="annotationCancelCropButton">
-        <button className={`button transparent cancel-crop`} id="cancel-crop" onClick={this.onClickCancelCrop.bind(this)}>Cancel</button>
+        <button className={`button transparent cancel-crop`} id="cancel-crop" onClick={this.onClickCancelCrop.bind(this)} title="Cancel selection">Cancel</button>
       </Localized>
     </div></div>;
   }
