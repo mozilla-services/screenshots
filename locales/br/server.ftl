@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Enkorfit URL an tapadenn-mañ en ho postel: { $url }
 shotPageKeepFor = E-pad pegen amzer eo ret derc'hel an tapadenn enlinenn?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Diuzañ an amzer
-shotPageKeepIndefinitely = Peurbadus
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Da viken ∞
 shotPageKeepTenMinutes = 10 munut
 shotPageKeepOneHour = 1 eur
 shotPageKeepOneDay = 1 devezh
@@ -187,8 +190,14 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Skarzhañ
+annotationCropButton
+    .title = Troc'hañ
 annotationSaveButton = Enrollañ
 annotationCancelButton = Nullañ
+annotationConfirmCropButton = Kadarnaat
+    .title = Kadarnaat an diuzañ
+annotationCancelCropButton = Nullañ
+    .title = Nullañ an diuzañ
 
 
 [[ Shotindex page ]]
@@ -217,6 +226,12 @@ shotIndexPagePreviousPage
     .title = Pajenn gent
 shotIndexPageNextPage
     .title = Pajenn da-heul
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = An dapadenn n'hall ket diamzeriñ
 
 
 // all metrics strings are optional for translation
