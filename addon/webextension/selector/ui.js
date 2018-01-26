@@ -420,6 +420,9 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
                       }
                     </div>
                   </div>
+                  <div class="loader" style="display:none">
+                    <div class="loader-inner"></div>
+                  </div>
                 </div>
               </body>`;
             installHandlerOnDocument(this.document);
@@ -460,6 +463,12 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       this.element.focus();
     },
 
+    showLoader() {
+      this.document.body.querySelector(".preview-image").style.display = "none";
+      this.document.body.querySelector(".notice").style.display = "none";
+      this.document.body.querySelector(".loader").style.display = "";
+    },
+
     remove() {
       this.hide();
       util.removeNode(this.element);
@@ -484,6 +493,13 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
 
     unhide() {
       this.currentIframe.unhide();
+    },
+
+    showLoader() {
+      if (this.currentIframe.showLoader) {
+        this.currentIframe.showLoader();
+        this.currentIframe.unhide();
+      }
     },
 
     getElementFromPoint(x, y) {

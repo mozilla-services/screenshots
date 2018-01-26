@@ -18,10 +18,11 @@ this.takeshot = (function() {
     if (!shot.clipNames().length) {
       // canvas.drawWindow isn't available, so we fall back to captureVisibleTab
       capturePromise = screenshotPage(selectedPos, scroll).then((dataUrl) => {
+        imageBlob = buildSettings.uploadBinary ? blobConverters.dataUrlToBlob(dataUrl) : null;
         shot.addClip({
           createdDate: Date.now(),
           image: {
-            url: "data:",
+            url: buildSettings.uploadBinary ? "" : dataUrl,
             captureType,
             text: captureText,
             location: selectedPos,
@@ -32,17 +33,6 @@ this.takeshot = (function() {
           }
         });
       });
-    }
-    let convertBlobPromise = Promise.resolve();
-    if (buildSettings.uploadBinary && !imageBlob) {
-      const clipImage = shot.getClip(shot.clipNames()[0]).image;
-      imageBlob = blobConverters.dataUrlToBlob(clipImage.url);
-      clipImage.url = "";
-    } else if (!buildSettings.uploadBinary && imageBlob) {
-      convertBlobPromise = blobConverters.blobToDataUrl(imageBlob).then((dataUrl) => {
-        shot.getClip(shot.clipNames()[0]).image.url = dataUrl;
-      });
-      imageBlob = null;
     }
     const shotAbTests = {};
     const abTests = auth.getAbTests();
@@ -55,8 +45,6 @@ this.takeshot = (function() {
       shot.abTests = shotAbTests;
     }
     return catcher.watchPromise(capturePromise.then(() => {
-      return convertBlobPromise;
-    }).then(() => {
       if (buildSettings.uploadBinary) {
         const blobToUrlPromise = blobConverters.blobToDataUrl(imageBlob);
         return thumbnailGenerator.createThumbnailBlobFromPromise(shot, blobToUrlPromise);

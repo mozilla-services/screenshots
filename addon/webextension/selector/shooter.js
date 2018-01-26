@@ -39,10 +39,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     supportsDrawWindow = !!ctx.drawWindow;
   })();
 
-  const screenshotPage = exports.screenshotPage = function(selectedPos, captureType) {
-    if (!supportsDrawWindow) {
-      return null;
-    }
+  function captureToCanvas(selectedPos, captureType) {
     const height = selectedPos.bottom - selectedPos.top;
     const width = selectedPos.right - selectedPos.left;
     const canvas = document.createElementNS("http://www.w3.org/1999/xhtml", "canvas");
@@ -61,6 +58,14 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     }
     ui.iframe.hide();
     ctx.drawWindow(window, selectedPos.left, selectedPos.top, width, height, "#fff");
+    return canvas;
+  }
+
+  const screenshotPage = exports.screenshotPage = function(selectedPos, captureType) {
+    if (!supportsDrawWindow) {
+      return null;
+    }
+    const canvas = captureToCanvas(selectedPos, captureType);
     const limit = buildSettings.pngToJpegCutoff;
     let dataUrl = canvas.toDataURL();
     if (limit && dataUrl.length > limit) {
@@ -72,6 +77,18 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     }
     return dataUrl;
   };
+
+  function screenshotPageAsync(selectedPos, captureType) {
+    if (!supportsDrawWindow) {
+      return Promise.resolve(null);
+    }
+    const canvas = captureToCanvas(selectedPos, captureType);
+    ui.iframe.showLoader();
+    const width = selectedPos.right - selectedPos.left;
+    const height = selectedPos.bottom - selectedPos.top;
+    const imageData = canvas.getContext("2d").getImageData(0, 0, width, height);
+    return callBackground("canvasToDataURL", imageData);
+  }
 
   let isSaving = null;
 
@@ -109,12 +126,12 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     let type = blobConverters.getTypeFromDataUrl(dataUrl);
     type = type ? type.split("/", 2)[1] : null;
     if (dataUrl) {
-      imageBlob = blobConverters.dataUrlToBlob(dataUrl);
+      imageBlob = buildSettings.uploadBinary ? blobConverters.dataUrlToBlob(dataUrl) : null;
       shotObject.delAllClips();
       shotObject.addClip({
         createdDate: Date.now(),
         image: {
-          url: "data:",
+          url: buildSettings.uploadBinary ? "" : dataUrl,
           type,
           captureType,
           text: captureText,
@@ -164,34 +181,36 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
   };
 
   exports.downloadShot = function(selectedPos, previewDataUrl) {
-    const dataUrl = previewDataUrl || screenshotPage(selectedPos);
-    let promise = Promise.resolve(dataUrl);
-    if (!dataUrl) {
-      promise = callBackground(
-        "screenshotPage",
-        selectedPos.asJson(),
-        {
-          scrollX: window.scrollX,
-          scrollY: window.scrollY,
-          innerHeight: window.innerHeight,
-          innerWidth: window.innerWidth
+    const shotPromise = previewDataUrl ? Promise.resolve(previewDataUrl) : screenshotPageAsync(selectedPos, "fullPage");
+    catcher.watchPromise(shotPromise.then(dataUrl => {
+      let promise = Promise.resolve(dataUrl);
+      if (!dataUrl) {
+        promise = callBackground(
+          "screenshotPage",
+          selectedPos.asJson(),
+          {
+            scrollX: window.scrollX,
+            scrollY: window.scrollY,
+            innerHeight: window.innerHeight,
+            innerWidth: window.innerWidth
+          });
+      }
+      catcher.watchPromise(promise.then((dataUrl) => {
+        let type = blobConverters.getTypeFromDataUrl(dataUrl);
+        type = type ? type.split("/", 2)[1] : null;
+        shotObject.delAllClips();
+        shotObject.addClip({
+          createdDate: Date.now(),
+          image: {
+            url: dataUrl,
+            type,
+            location: selectedPos
+          }
         });
-    }
-    catcher.watchPromise(promise.then((dataUrl) => {
-      let type = blobConverters.getTypeFromDataUrl(dataUrl);
-      type = type ? type.split("/", 2)[1] : null;
-      shotObject.delAllClips();
-      shotObject.addClip({
-        createdDate: Date.now(),
-        image: {
-          url: dataUrl,
-          type,
-          location: selectedPos
-        }
-      });
-      ui.triggerDownload(dataUrl, shotObject.filename);
-      uicontrol.deactivate();
-    }));
+        ui.triggerDownload(dataUrl, shotObject.filename);
+        uicontrol.deactivate();
+      }));
+    }))
   };
 
   let copyInProgress = null;
@@ -212,12 +231,14 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
         copyInProgress = null;
       }
     }
-    const dataUrl = previewDataUrl || screenshotPage(selectedPos);
-    const blob = blobConverters.dataUrlToBlob(dataUrl);
-    catcher.watchPromise(callBackground("copyShotToClipboard", blob).then(() => {
-      uicontrol.deactivate();
-      unsetCopyInProgress();
-    }, unsetCopyInProgress));
+    const shotPromise = previewDataUrl ? Promise.resolve(previewDataUrl) : screenshotPageAsync(selectedPos, "fullPage");
+    catcher.watchPromise(shotPromise.then(dataUrl => {
+      const blob = blobConverters.dataUrlToBlob(dataUrl);
+      catcher.watchPromise(callBackground("copyShotToClipboard", blob).then(() => {
+        uicontrol.deactivate();
+        unsetCopyInProgress();
+      }, unsetCopyInProgress));
+    }));
   };
 
   exports.sendEvent = function(...args) {

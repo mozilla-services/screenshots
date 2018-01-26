@@ -1,4 +1,4 @@
-/* globals selectorLoader, analytics, communication, catcher, log, makeUuid, auth, senderror, startBackground, blobConverters */
+/* globals selectorLoader, analytics, communication, catcher, log, makeUuid, auth, senderror, startBackground, blobConverters buildSettings */
 
 "use strict";
 
@@ -204,6 +204,25 @@ this.main = (function() {
       });
     }
     return null;
+  });
+
+  // This is used for truncated full page downloads and copy to clipboards.
+  // Those longer operations need to display an animated spinner/loader, so
+  // it's preferable to perform toDataURL() in the background.
+  communication.register("canvasToDataURL", (sender, imageData) => {
+    const canvas = document.createElement("canvas");
+    canvas.width = imageData.width;
+    canvas.height = imageData.height;
+    canvas.getContext("2d").putImageData(imageData, 0, 0);
+    let dataUrl = canvas.toDataURL();
+    if (buildSettings.pngToJpegCutoff && dataUrl.length > buildSettings.pngToJpegCutoff) {
+      const jpegDataUrl = canvas.toDataURL("image/jpeg");
+      if (jpegDataUrl.length < dataUrl.length) {
+        // Only use the JPEG if it is actually smaller
+        dataUrl = jpegDataUrl;
+      }
+    }
+    return dataUrl;
   });
 
   communication.register("copyShotToClipboard", (sender, blob) => {
