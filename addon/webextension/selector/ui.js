@@ -638,27 +638,6 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
         window.addEventListener('scroll', watchFunction(assertIsTrusted(this.windowChangeStop)));
         window.addEventListener('resize', watchFunction(assertIsTrusted(this.windowChangeStop)));
       }
-
-      if (!(this.isElementInViewport(this.buttons))) {
-        this.cancel.style.position = this.download.style.position = "fixed";
-        this.cancel.style.left = (pos.left - 50) + "px";
-        this.download.style.left = ((pos.left - 100)) + "px";
-        this.cancel.style.top = this.download.style.top = `${pos.top}px`;
-        if (this.save) {
-          this.save.style.position = "fixed";
-          this.save.style.left = (pos.left - 190) + "px";
-          this.save.style.top = `${pos.top}px`;
-        }
-      } else {
-        this.cancel.style.position = this.download.style.position = "initial";
-        this.cancel.style.top = this.download.style.top = 0;
-        this.cancel.style.left = this.download.style.left = 0;
-        if (this.save) {
-          this.save.style.position = "initial";
-          this.save.style.top = 0;
-          this.save.style.left = 0;
-        }
-      }
     },
 
     // used to eventually move the download-only warning
@@ -733,7 +712,6 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       if (save) {
         buttons.appendChild(save);
       }
-      this.buttons = buttons;
       this.cancel = cancel;
       this.download = download;
       this.copy = copy;
@@ -800,11 +778,6 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
         target = target.parentNode;
       }
       return false;
-    },
-
-    isElementInViewport(el) {
-      let rect = el.getBoundingClientRect();
-      return (rect.right <= window.innerWidth);
     },
 
     clearSaveDisabled() {
