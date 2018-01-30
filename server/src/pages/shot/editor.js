@@ -262,25 +262,51 @@ exports.Editor = class Editor extends React.Component {
   }
 
   resizeCropBox(event, direction) {
+    let width = selectedPos.width;
+    let height = selectedPos.height;
     let rect = this.cropContainer.getBoundingClientRect();
     let diffX = event.clientX - rect.left - resizeStartPos.x;
     let diffY = event.clientY - rect.top - resizeStartPos.y;
     let movement = movementPositions[resizeDirection];
-    if (movement[0]) {
-        let moveX = movement[0];
-        moveX = moveX == "*" ? ["x1", "x2"] : [moveX];
-        for (let moveDir of moveX) {
-          selectedPos[moveDir] = this.truncateX(resizeStartSelected[moveDir] + diffX);
-        }
+    let isLeftBorder = selectedPos.left == 0 && resizeStartSelected.left + diffX <= 0;
+    let isRightBorder = selectedPos.right == this.canvasWidth && resizeStartSelected.right + diffX >= this.canvasWidth;
+    let isTopBorder = selectedPos.top == 0 && resizeStartSelected.top + diffY <= 0;
+    let isBottomBorder = selectedPos.bottom == this.canvasHeight && resizeStartSelected.bottom + diffY >= this.canvasHeight;
+    let isMove = resizeDirection == "move";
+    if (movement[0] && !(isMove && (isLeftBorder || isRightBorder))) {
+      let moveX = movement[0];
+      moveX = moveX == "*" ? ["x1", "x2"] : [moveX];
+      for (let moveDir of moveX) {
+        selectedPos[moveDir] = this.truncateX(resizeStartSelected[moveDir] + diffX);
       }
-      if (movement[1]) {
-        let moveY = movement[1];
-        moveY = moveY == "*" ? ["y1", "y2"] : [moveY];
-        for (let moveDir of moveY) {
-          selectedPos[moveDir] = this.truncateY(resizeStartSelected[moveDir] + diffY);
-        }
+    }
+    if (movement[1] && !(isMove && (isTopBorder || isBottomBorder))) {
+      let moveY = movement[1];
+      moveY = moveY == "*" ? ["y1", "y2"] : [moveY];
+      for (let moveDir of moveY) {
+        selectedPos[moveDir] = this.truncateY(resizeStartSelected[moveDir] + diffY);
       }
+    }
+    this.preserveDimensions(width, height);
     this.displayCropBox(selectedPos);
+  }
+
+  // Preserves correct dimensions of crop box if the user hits borders
+  preserveDimensions(width, height) {
+    if (resizeDirection == "move") {
+      if (selectedPos.left == 0) {
+        selectedPos.right = width;
+      }
+      if (selectedPos.top == 0) {
+        selectedPos.bottom = height;
+      }
+      if (selectedPos.right == this.canvasWidth) {
+        selectedPos.left = this.canvasWidth - width;
+      }
+      if (selectedPos.bottom == this.canvasHeight) {
+        selectedPos.top = this.canvasHeight - height;
+      }
+    }
   }
 
   truncateX(x) {
