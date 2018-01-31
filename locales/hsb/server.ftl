@@ -209,8 +209,10 @@ annotationCropButton
     .title = Wutřihać
 annotationSaveButton = Składować
 annotationCancelButton = Přetorhnyć
-annotationConfirmCropButton = Wobkrućić
-annotationCancelCropButton = Přetorhnyć
+annotationCropConfirmButton = Wobkrućić
+    .title = Wuběr wobkrućić
+annotationCropCancelButton = Přetorhnyć
+    .title = Wuběr přetorhnyć
 
 
 [[ Shotindex page ]]
