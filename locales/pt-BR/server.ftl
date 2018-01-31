@@ -59,7 +59,7 @@ homePageCapturePage = Capturar uma página
 homePageCapturePageDescription = Utilize os botões no canto superior direito para capturar telas inteiras. O botão Salvar Área Visível irá capturar a área que você vê sem rolar a página, e Salvar Página Inteira irá capturar toda a página.
 homePageSaveShare = Salvar e compartilhar
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Quando você captura uma tela, Firefox armazena suas capturas na sua biblioteca on-line do Screenshots e copia o link para sua área de transferência. Nós armazenamos suas capturas automaticamente por duas semanas, mas você pode excluir capturas a qualquer momento ou mudar a data de validade para mantê-las em sua biblioteca por mais tempo.
+homePageSaveShareDescription = Quando você captura uma tela, o Firefox envia a captura para a sua biblioteca on-line no Screenshots e copia o link para sua área de transferência. Armazenamos automaticamente suas capturas por duas semanas, mas você pode excluir capturas a qualquer momento ou mudar a data de validade para mantê-las em sua biblioteca por mais tempo.
 homePageLegalLink = Jurídico
 homePagePrivacyLink = Privacidade
 homePageTermsLink = Termos
