@@ -179,8 +179,10 @@ annotationCropButton
     .title = トリミング
 annotationSaveButton = 保存
 annotationCancelButton = キャンセル
-annotationConfirmCropButton = 確認
-annotationCancelCropButton = キャンセル
+annotationCropConfirmButton = 確認
+    .title = 確認選択
+annotationCropCancelButton = キャンセル
+    .title = キャンセル選択
 
 
 [[ Shotindex page ]]
