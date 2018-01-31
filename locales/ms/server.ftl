@@ -191,8 +191,10 @@ annotationCropButton
     .title = Potong
 annotationSaveButton = Simpan
 annotationCancelButton = Batal
-annotationConfirmCropButton = Sahkan
-annotationCancelCropButton = Batal
+annotationCropConfirmButton = Sahkan
+    .title = Sahkan pemilihan
+annotationCropCancelButton = Batal
+    .title = Batalkan pemilihan
 
 
 [[ Shotindex page ]]
