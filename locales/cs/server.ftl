@@ -203,8 +203,10 @@ annotationCropButton
     .title = Oříznout
 annotationSaveButton = Uložit
 annotationCancelButton = Zrušit
-annotationConfirmCropButton = Potvrdit
-annotationCancelCropButton = Zrušit
+annotationCropConfirmButton = Potvrdit
+    .title = Potvrdit výběr
+annotationCropCancelButton = Zrušit
+    .title = Zrušit výběr
 
 
 [[ Shotindex page ]]
