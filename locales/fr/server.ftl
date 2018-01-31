@@ -197,8 +197,10 @@ annotationCropButton
     .title = Rogner
 annotationSaveButton = Enregistrer
 annotationCancelButton = Annuler
-annotationConfirmCropButton = Confirmer
-annotationCancelCropButton = Annuler
+annotationCropConfirmButton = Confirmer
+    .title = Confirmer la sélection
+annotationCropCancelButton = Annuler
+    .title = Annuler la sélection
 
 
 [[ Shotindex page ]]
