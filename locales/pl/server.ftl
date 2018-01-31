@@ -203,9 +203,9 @@ annotationCropButton
     .title = Przytnij
 annotationSaveButton = Zapisz
 annotationCancelButton = Anuluj
-annotationConfirmCropButton = Potwierdź
+annotationCropConfirmButton = Potwierdź
     .title = Potwierdź zaznaczenie
-annotationCancelCropButton = Anuluj
+annotationCropCancelButton = Anuluj
     .title = Anuluj zaznaczenie
 
 
