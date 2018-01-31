@@ -130,7 +130,7 @@ shotPageScreenshotsDescription = Capturas de tela de forma simples. Capture, sal
 shotPageUpsellFirefox = Baixe o Firefox agora
 shotPageDMCAMessage = Essa captura não está mais disponível devido a reclamação de Direitos Autorais de terceiros.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
-shotPageDMCAContact = Por favor, envie um e-mail para { $dmca } para obter mais informações.
+shotPageDMCAContact = Envie um e-mail para { $dmca } para pedir mais informações.
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Se suas capturas estiverem associadas a múltiplas reclamações, poderemos revogar seu acesso ao Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
@@ -168,7 +168,7 @@ timeDiffDaysAgo = { $number ->
         [one] ontem
        *[other] { $number } dias atrás
     }
-timeDiffFutureSeconds = em poucos minutos
+timeDiffFutureSeconds = em poucos segundos
 timeDiffFutureMinutes = { $number ->
         [one] em 1 minuto
        *[other] em { $number } minutos
@@ -218,7 +218,7 @@ shotIndexPageSearchPlaceholder
 shotIndexPageSearchButton
     .title = Pesquisar
 shotIndexPageNoShotsMessage = Não há capturas salvas.
-shotIndexPageNoShotsInvitation = Vai lá, crie algum.
+shotIndexPageNoShotsInvitation = Vamos, crie algumas.
 shotIndexPageLookingForShots = Procurando por suas capturas...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Não encontramos capturas que correspondam com sua busca.
@@ -247,18 +247,18 @@ metricsPageTotalsQueryTitle = Totais
 metricsPageTotalsQueryDescription = Visão geral do Screenshots
 metricsPageTotalsQueryDevices = Total de dispositivos registrados
 metricsPageTotalsQueryActiveShots = Capturas ativas
-metricsPageTotalsQueryExpiredShots = Expirou (mas é recuperável)
-metricsPageTotalsQueryExpiredDeletedShots = Expirou (e deletou)
+metricsPageTotalsQueryExpiredShots = Expirado (mas é recuperável)
+metricsPageTotalsQueryExpiredDeletedShots = Expirado (e excluído)
 metricsPageShotsQueryTitle = Capturas por dia
 metricsPageShotsQueryDescription = Número de capturas criados por dia (nos últimos 30 dias)
 metricsPageShotsQueryCount = Número de capturas
 metricsPageShotsQueryDay = Dia
 metricsPageUsersQueryTitle = Usuários por dia
-metricsPageUsersQueryDescription = Número de usuário que criaram pelo menos uma captura, por dia (últimos 30 dias)
+metricsPageUsersQueryDescription = Número de usuários que criaram pelo menos uma captura, por dia (últimos 30 dias)
 metricsPageUsersQueryCount = Número de usuários
 metricsPageUsersQueryDay = Dia
 metricsPageUserShotsQueryTitle = Número de capturas por usuário
-metricsPageUserShotsQueryDescription = Número de usuário que tem cerca de N capturas no total
+metricsPageUserShotsQueryDescription = Número de usuários que têm cerca de N capturas no total
 metricsPageUserShotsQueryCount = Número de usuários
 metricsPageUserShotsQueryShots = Número aproximado de capturas ativas (não expiradas)
 metricsPageRetentionQueryTitle = Retenção por semana
@@ -267,7 +267,7 @@ metricsPageRetentionQueryUsers = Número de usuários
 metricsPageRetentionQueryDays = Dias da primeira captura do usuário até a mais recente
 metricsPageRetentionQueryFirstWeek = Semana da criação da primeira captura do usuário
 metricsPageTotalRetentionQueryTitle = Retenção total
-metricsPageTotalRetentionQueryDescription = Período de tempo que usuários criaram capturas, agrupadas por semana
+metricsPageTotalRetentionQueryDescription = Período de tempo em que usuários criaram capturas, agrupadas por semana
 metricsPageTotalRetentionQueryUsers = Número de usuários
 metricsPageTotalRetentionQueryDays = Dias que o usuário tem criado capturas
 metricsPageVersionQueryTitle = Versão da extensão
@@ -279,4 +279,4 @@ metricsPageHeader = Métricas
 // Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Gerado em: { $created }
 // Note { $time } is a placeholder for a number of milliseconds, like '100'
-metricsPageDatabaseQueryTime = (hora do banco: { $time }ms)
+metricsPageDatabaseQueryTime = (hora no banco de dados: { $time }ms)
