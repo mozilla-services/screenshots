@@ -209,8 +209,10 @@ annotationCropButton
     .title = Wurězaś
 annotationSaveButton = Składowaś
 annotationCancelButton = Pśetergnuś
-annotationConfirmCropButton = Wobkšuśiś
-annotationCancelCropButton = Pśetergnuś
+annotationCropConfirmButton = Wobkšuśiś
+    .title = Wuběrk wobkšuśiś
+annotationCropCancelButton = Pśetergnuś
+    .title = Wuběrk pśetergnuś
 
 
 [[ Shotindex page ]]
