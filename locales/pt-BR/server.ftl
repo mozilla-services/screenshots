@@ -49,12 +49,12 @@ homePageGetStarted = Iniciar
 homePageHowScreenshotsWorks = Como o Firefox Screenshots funciona
 homePageGetStartedTitle = Iniciar
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Encontre o novo ícone do Screenshots na barra de ferramenta. Selecione, e o menu do Screenshots irá aparecer no topo de janela do seu navegador.
+homePageGetStartedDescription = Encontre o novo ícone do Screenshots na barra de ferramentas. Selecione, e o menu do Screenshots aparecerá no topo da janela do seu navegador.
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescriptionPageAction = Selecione o ícone do Screenshots no menu de ações de página na barra de endereços e o menu do Screenshots aparecerá no topo da janela do seu navegador.
+homePageGetStartedDescriptionPageAction = Selecione o ícone do Screenshots no menu de ações da página, na barra de endereços, e o menu do Screenshots aparecerá no topo da janela do seu navegador.
 homePageCaptureRegion = Capturar uma região
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar. Ou simplesmente clique — o Screenshots irá selecionar a área automaticamente pra você. Gostou do que viu? Clique em Salvar para acessar sua captura on-line ou no botão com a seta para baixo para baixar para seu computador.
+homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar. Ou simplesmente passe o mouse e clique — o Screenshots irá selecionar a área automaticamente pra você. Gostou do que viu? Clique em Salvar para acessar sua captura on-line ou no botão com a seta para baixo para baixar para seu computador.
 homePageCapturePage = Capturar uma página
 homePageCapturePageDescription = Utilize os botões no canto superior direito para capturar telas inteiras. O botão Salvar Área Visível irá capturar a área que você vê sem rolar a página, e Salvar Página Inteira irá capturar toda a página.
 homePageSaveShare = Salvar e compartilhar
@@ -76,7 +76,7 @@ leavePageErrorGeneric = Ocorreu um erro
 leavePageWarning = Isso irá apagar permanentemente todos os seus dados do Firefox Screenshots.
 leavePageButtonProceed = Prosseguir
 leavePageButtonCancel = Cancelar
-leavePageDeleted = Todas as suas capturas serão apagadas!
+leavePageDeleted = Todas as suas capturas foram apagadas!
 
 
 [[ Not Found page ]]
@@ -118,7 +118,7 @@ shotPageExpirationMessage = Se você não fizer nada, esta captura será excluí
 shotPageRestoreButton = restaurar até { $date }
 shotPageExpiredMessage = Essa captura expirou.
 // Note: This phrase is followed by an empty line, then the URL of the source page
-shotPageExpiredMessageDetails = Essa página foi criada originalmente de:
+shotPageExpiredMessageDetails = Esta é a página onde a captura foi criada originalmente:
 shotPageDeleteButton
     .title = Excluir esta captura
 shotPageAbuseButton
@@ -128,7 +128,7 @@ shotPageDownloadShot
 shotPageDownload = Baixar
 shotPageScreenshotsDescription = Capturas de tela de forma simples. Capture, salve e compartilhe telas sem sair do Firefox.
 shotPageUpsellFirefox = Baixe o Firefox agora
-shotPageDMCAMessage = Essa captura não está mais disponível devido reclamação de Direito Autoral de terceiros.
+shotPageDMCAMessage = Essa captura não está mais disponível devido a reclamação de Direitos Autorais de terceiros.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Por favor, envie um e-mail para { $dmca } para obter mais informações.
 // Note: do not translate 'Firefox Screenshots' when translating this string
@@ -197,8 +197,10 @@ annotationCropButton
     .title = Recortar
 annotationSaveButton = Salvar
 annotationCancelButton = Cancelar
-annotationConfirmCropButton = Confirmar
-annotationCancelCropButton = Cancelar
+annotationCropConfirmButton = Confirmar
+    .title = Confirmar seleção
+annotationCropCancelButton = Cancelar
+    .title = Cancelar seleção
 
 
 [[ Shotindex page ]]
