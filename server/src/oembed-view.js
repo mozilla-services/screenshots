@@ -1,5 +1,6 @@
 const React = require("react");
 const ReactDOMServer = require("react-dom/server");
+const PropTypes = require("prop-types");
 
 class OEmbed extends React.Component {
   render() {
@@ -16,4 +17,8 @@ let OEmbedFactory = React.createFactory(OEmbed);
 exports.renderString = function(args) {
   let oembed = OEmbedFactory(args);
   return ReactDOMServer.renderToStaticMarkup(oembed);
+};
+
+OEmbed.propTypes = {
+  shot: PropTypes.object
 };

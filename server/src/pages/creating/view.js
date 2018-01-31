@@ -1,5 +1,6 @@
 const reactruntime = require("../../reactruntime");
 const React = require("react");
+const PropTypes = require("prop-types");
 const { Localized } = require("fluent-react/compat");
 
 class Head extends React.Component {
@@ -14,6 +15,10 @@ class Head extends React.Component {
   }
 
 }
+
+Head.propTypes = {
+  staticLink: PropTypes.func
+};
 
 class Body extends React.Component {
   render() {

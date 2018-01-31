@@ -1,4 +1,5 @@
 const React = require("react");
+const PropTypes = require("prop-types");
 const classnames = require("classnames");
 const { Localized } = require("fluent-react/compat");
 const sendEvent = require("./browser-send-event.js");
@@ -63,6 +64,17 @@ exports.ShareButton = class ShareButton extends React.Component {
       this.props.setPanelState("panel-closed");
     }
   }
+};
+
+exports.ShareButton.propTypes = {
+  abTests: PropTypes.object,
+  clipUrl: PropTypes.string,
+  isExtInstalled: PropTypes.bool,
+  isOwner: PropTypes.bool,
+  renderExtensionNotification: PropTypes.bool,
+  setPanelState: PropTypes.func,
+  shot: PropTypes.object,
+  staticLink: PropTypes.func
 };
 
 class ShareButtonPanel extends React.Component {
@@ -203,3 +215,12 @@ class ShareButtonPanel extends React.Component {
   }
 
 }
+
+ShareButtonPanel.propTypes = {
+  clipUrl: PropTypes.string,
+  closePanel: PropTypes.func,
+  isOwner: PropTypes.bool,
+  renderExtensionNotification: PropTypes.bool,
+  shot: PropTypes.object,
+  staticLink: PropTypes.func
+};

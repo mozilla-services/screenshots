@@ -1,5 +1,6 @@
 /* globals controller */
 const React = require("react");
+const PropTypes = require("prop-types");
 const { Localized } = require("fluent-react/compat");
 const { Footer } = require("../../footer-view");
 const sendEvent = require("../../browser-send-event.js");
@@ -79,6 +80,9 @@ class Clip extends React.Component {
   }
 }
 
+Clip.propTypes = {
+  clip: PropTypes.object
+};
 
 class Head extends React.Component {
   render() {
@@ -159,6 +163,12 @@ class Head extends React.Component {
     return url;
   }
 }
+
+Head.propTypes = {
+  expireTime: PropTypes.number,
+  shot: PropTypes.object,
+  staticLink: PropTypes.func
+};
 
 class Body extends React.Component {
   constructor(props) {
@@ -527,6 +537,28 @@ class Body extends React.Component {
 
 }
 
+Body.propTypes = {
+  abTests: PropTypes.object,
+  backend: PropTypes.string,
+  blockType: PropTypes.string,
+  controller: PropTypes.object,
+  defaultExpiration: PropTypes.number,
+  downloadUrl: PropTypes.string,
+  enableAnnotations: PropTypes.bool,
+  expireTime: PropTypes.number,
+  id: PropTypes.string,
+  isExtInstalled: PropTypes.bool,
+  isMobile: PropTypes.bool,
+  isOwner: PropTypes.bool,
+  loginFailed: PropTypes.bool,
+  pngToJpegCutoff: PropTypes.number,
+  retentionTime: PropTypes.number,
+  showSurveyLink: PropTypes.bool,
+  shot: PropTypes.object,
+  staticLink: PropTypes.func,
+  userAgent: PropTypes.string
+};
+
 class ExpireWidget extends React.Component {
 
   constructor(props) {
@@ -610,6 +642,13 @@ class ExpireWidget extends React.Component {
   }
 }
 
+ExpireWidget.propTypes = {
+  expireTime: PropTypes.number,
+  onChanging: PropTypes.func,
+  onSaveExpire: PropTypes.func,
+  simple: PropTypes.bool
+};
+
 class EditableTitle extends React.Component {
 
   constructor(props) {
@@ -670,6 +709,11 @@ class EditableTitle extends React.Component {
   }
 
 }
+
+EditableTitle.propTypes = {
+  isOwner: PropTypes.bool,
+  title: PropTypes.string
+};
 
 class LoginFailedWarning extends React.Component {
   render() {

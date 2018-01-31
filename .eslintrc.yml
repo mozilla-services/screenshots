@@ -21,7 +21,6 @@ plugins:
 root: true
 
 rules:
-  react/prop-types: off # TODO: change to "error"
   consistent-return: off # TODO: remove, and default to mozilla/recommended of "error"
   no-console: [error, {allow: [debug, error, info, trace, warn]}]
   no-var: off # TODO: change to "error"

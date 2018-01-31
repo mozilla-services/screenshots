@@ -1,5 +1,6 @@
 const React = require("react");
 const { Localized } = require("fluent-react/compat");
+const PropTypes = require("prop-types");
 
 exports.TimeDiff = class TimeDiff extends React.Component {
   constructor(props) {
@@ -66,3 +67,7 @@ exports.TimeDiff = class TimeDiff extends React.Component {
     return d.toLocaleString();
   }
 };
+
+exports.TimeDiff.propTypes = {
+  date: PropTypes.number
+}

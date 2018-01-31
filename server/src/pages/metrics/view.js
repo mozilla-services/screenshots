@@ -1,5 +1,6 @@
 const reactruntime = require("../../reactruntime");
 const React = require("react");
+const PropTypes = require("prop-types");
 const { Localized } = require("fluent-react/compat");
 
 class Head extends React.Component {
@@ -14,6 +15,10 @@ class Head extends React.Component {
   }
 
 }
+
+Head.propTypes = {
+  staticLink: PropTypes.func
+};
 
 class Body extends React.Component {
   render() {
@@ -43,6 +48,10 @@ class Body extends React.Component {
   }
 
 }
+
+Body.propTypes = {
+  data: PropTypes.object
+};
 
 class GenericTable extends React.Component {
   render() {
@@ -101,6 +110,10 @@ class GenericTable extends React.Component {
   }
 
 }
+
+GenericTable.propTypes = {
+  data: PropTypes.object
+};
 
 exports.HeadFactory = React.createFactory(Head);
 exports.BodyFactory = React.createFactory(Body);

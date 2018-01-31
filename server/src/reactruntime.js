@@ -2,6 +2,7 @@ require("core-js");
 
 const React = require("react");
 const ReactDOM = require("react-dom");
+const PropTypes = require("prop-types");
 const linker = require("./linker");
 require("fluent-intl-polyfill/compat");
 const { MessageContext } = require("fluent/compat");
@@ -58,6 +59,17 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
 
 };
 
+exports.HeadTemplate.propTypes = {
+  children: PropTypes.node,
+  hashAnalytics: PropTypes.bool,
+  messages: PropTypes.object,
+  noAnalytics: PropTypes.bool,
+  sentryPublicDSN: PropTypes.string,
+  staticLink: PropTypes.func,
+  title: PropTypes.string,
+  userLocales: PropTypes.array
+};
+
 exports.BodyTemplate = class Body extends React.Component {
 
   render() {
@@ -70,6 +82,12 @@ exports.BodyTemplate = class Body extends React.Component {
     );
   }
 
+};
+
+exports.BodyTemplate.propTypes = {
+  children: PropTypes.node,
+  messages: PropTypes.object,
+  userLocales: PropTypes.array
 };
 
 exports.Page = class Page {

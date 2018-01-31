@@ -3,6 +3,7 @@ const sendEvent = require("../../browser-send-event.js");
 const reactruntime = require("../../reactruntime");
 const { Footer } = require("../../footer-view.js");
 const React = require("react");
+const PropTypes = require("prop-types");
 const { ShareButton } = require("../../share-buttons");
 const Masonry = require("react-masonry-component");
 const { Localized } = require("fluent-react/compat");
@@ -23,6 +24,10 @@ class Head extends React.Component {
 
 }
 
+Head.propTypes = {
+  deviceId: PropTypes.string,
+  staticLink: PropTypes.func
+};
 
 class Body extends React.Component {
   constructor(props) {
@@ -267,6 +272,22 @@ class Body extends React.Component {
 
 }
 
+Body.propTypes = {
+  abTests: PropTypes.object,
+  defaultSearch: PropTypes.string,
+  disableSearch: PropTypes.bool,
+  downloadUrls: PropTypes.object,
+  enableUserSettings: PropTypes.bool,
+  hasDeviceId: PropTypes.bool,
+  isExtInstalled: PropTypes.bool,
+  isOwner: PropTypes.bool,
+  pageNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  shots: PropTypes.array,
+  shotsPerPage: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  staticLink: PropTypes.func,
+  totalShots: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+};
+
 class Card extends React.Component {
   constructor(props) {
     super(props)
@@ -425,6 +446,15 @@ class Card extends React.Component {
     sendEvent("download", "myshots-tile");
   }
 }
+
+Card.propTypes = {
+  abTests: PropTypes.object,
+  downloadUrl: PropTypes.string,
+  isExtInstalled: PropTypes.bool,
+  isOwner: PropTypes.bool,
+  shot: PropTypes.object,
+  staticLink: PropTypes.func
+};
 
 exports.HeadFactory = React.createFactory(Head);
 exports.BodyFactory = React.createFactory(Body);

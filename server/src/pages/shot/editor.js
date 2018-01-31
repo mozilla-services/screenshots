@@ -1,4 +1,5 @@
 const React = require("react");
+const PropTypes = require("prop-types");
 const { Localized } = require("fluent-react/compat");
 const sendEvent = require("../../browser-send-event.js");
 
@@ -543,6 +544,13 @@ exports.Editor = class Editor extends React.Component {
   }
 }
 
+exports.Editor.propTypes = {
+  clip: PropTypes.object,
+  onCancelEdit: PropTypes.func,
+  onClickSave: PropTypes.func,
+  pngToJpegCutoff: PropTypes.number
+};
+
 class ColorPicker extends React.Component {
 
   constructor(props) {
@@ -591,3 +599,7 @@ class ColorPicker extends React.Component {
     this.setState({pickerActive});
   }
 }
+
+ColorPicker.propTypes = {
+  setColor: PropTypes.func
+};
