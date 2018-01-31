@@ -827,7 +827,7 @@ app.post("/api/set-title/:id/:domain", function(req, res) {
   Shot.get(req.backend, shotId, req.deviceId, req.accountId).then((shot) => {
     if (!shot) {
       simpleResponse(res, "No such shot", 404);
-      return;
+      return null;
     }
     shot.userTitle = userTitle;
     return shot.update();
@@ -862,7 +862,7 @@ app.post("/api/save-edit", function(req, res) {
     if (!shot) {
       sendRavenMessage(req, "Attempt to edit shot that does not exist");
       simpleResponse(res, "No such shot", 404);
-      return;
+      return null;
     }
     let name = shot.clipNames()[0];
     shot.getClip(name).image.url = url;

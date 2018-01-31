@@ -153,10 +153,10 @@ exports.Page = class Page {
     }
 
     if (model.userLocales && model.userLocales.length && !model.messages) {
-      return tryGetL10nMessages(model.userLocales);
+      tryGetL10nMessages(model.userLocales);
+    } else {
+      renderBody();
     }
-
-    renderBody();
   }
 
   get dir() {

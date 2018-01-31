@@ -245,5 +245,6 @@ exports.retrieveAccount = function(deviceId) {
     if (rows[0].accountid) {
       return rows[0].accountid;
     }
+    return null;
   });
 }

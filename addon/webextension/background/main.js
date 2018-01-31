@@ -203,6 +203,7 @@ this.main = (function() {
         message: browser.i18n.getMessage("notificationLinkCopiedDetails", pasteSymbol)
       });
     }
+    return null;
   });
 
   communication.register("copyShotToClipboard", (sender, blob) => {

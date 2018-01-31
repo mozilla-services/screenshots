@@ -171,9 +171,9 @@ function handleStartup() {
   });
 
   if (!shouldDisable() && !webExtension.started) {
-    return start(webExtension);
+    start(webExtension);
   } else if (shouldDisable()) {
-    return stop(webExtension, ADDON_DISABLE);
+    stop(webExtension, ADDON_DISABLE);
   }
 }
 

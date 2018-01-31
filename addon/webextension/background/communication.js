@@ -36,7 +36,7 @@ this.communication = (function() {
         log.error(`Promise error in ${req.funcName}:`, errorResult, errorResult && errorResult.stack);
         sendResponse({type: "error", message: errorResult + "", errorCode: errorResult.errorCode, popupMessage: errorResult.popupMessage});
       });
-      return true;
+      return;
     }
     sendResponse({type: "success", value: result});
   });

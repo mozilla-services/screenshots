@@ -529,7 +529,7 @@ exports.Editor = class Editor extends React.Component {
 
   draw(e) {
     if (e.buttons !== 1) {
-      return null;
+      return;
     }
     this.drawContext.beginPath();
 

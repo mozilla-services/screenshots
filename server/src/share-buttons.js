@@ -99,6 +99,7 @@ class ShareButtonPanel extends React.Component {
     }
 
     this.props.closePanel();
+    return null;
   }
 
   onClickCopyButton(e) {

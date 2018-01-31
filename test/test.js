@@ -223,6 +223,7 @@ describe("Test Screenshots", function() {
       return driver.quit();
     }
     console.info("Note: leaving browser open");
+    return null;
   });
 
   it("should find the add-on button", function() {

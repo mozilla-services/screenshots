@@ -949,7 +949,7 @@ Shot.upgradeSearch = function() {
     `,
     [SEARCHABLE_VERSION, batchSize]).then((rows) => {
       if (!rows.length) {
-        return;
+        return null;
       }
       let index = 0;
       return new Promise((resolve, reject) => {
@@ -960,13 +960,14 @@ Shot.upgradeSearch = function() {
           Shot.get("upgrade_search_only", rows[index].id).then((shot) => {
             // This shouldn't really happen, but apparently can...
             if (!shot) {
-              return;
+              return null;
             }
             return shot.upgradeSearch();
           }).then(() => {
             index++;
             run();
           }).catch(reject);
+          return null;
         }
         run();
       }).then(() => {

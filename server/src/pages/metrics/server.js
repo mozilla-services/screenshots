@@ -24,6 +24,7 @@ function safeStoreQueries() {
         mozlog.info("updated-metrics", {msg: "Updated metrics"});
       });
     }
+    return null;
   }).catch((error) => {
     mozlog.error("metrics-update-error", {msg: "Error running metrics queries", error});
     captureRavenException(error);

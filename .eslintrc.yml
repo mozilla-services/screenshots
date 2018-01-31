@@ -21,7 +21,6 @@ plugins:
 root: true
 
 rules:
-  consistent-return: off # TODO: remove, and default to mozilla/recommended of "error"
   no-console: [error, {allow: [debug, error, info, trace, warn]}]
   no-var: off # TODO: change to "error"
   prefer-const: off # TODO: change to "error"

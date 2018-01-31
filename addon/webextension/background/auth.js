@@ -21,7 +21,7 @@ this.auth = (function() {
     } else {
       registrationInfo = generateRegistrationInfo();
       log.info("Generating new device authentication ID", registrationInfo);
-      return browser.storage.local.set({registrationInfo});
+      browser.storage.local.set({registrationInfo});
     }
   }));
 
