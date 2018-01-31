@@ -22,7 +22,7 @@ root: true
 
 rules:
   no-console: [error, {allow: [debug, error, info, trace, warn]}]
-  no-var: off # TODO: change to "error"
+  no-var: error
   prefer-const: off # TODO: change to "error"
   quotes: [off, double] # TODO: change to "error"
 

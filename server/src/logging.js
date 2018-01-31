@@ -16,7 +16,7 @@ exports.installConsoleHandler = function() {
     return function() {
       let msg = "";
       let stack = undefined;
-      for (var i = 0; i < arguments.length; i++) {
+      for (let i = 0; i < arguments.length; i++) {
         let arg = arguments[i];
         if (msg) {
           msg += " ";

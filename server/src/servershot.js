@@ -115,7 +115,7 @@ if (!config.useS3) {
   get = (uid, contentType) => {
     return new Promise((resolve, reject) => {
       s3bucket.createBucket(() => {
-        var params = {Key: uid};
+        const params = {Key: uid};
         s3bucket.getObject(params, function(err, data) {
           if (err) {
             mozlog.error("error-downloading-data", {err});
@@ -131,7 +131,7 @@ if (!config.useS3) {
   put = (uid, body, comment) => {
     return new Promise((resolve, reject) => {
       s3bucket.createBucket(() => {
-        var params = {Key: uid, Body: body, ContentType: "image/png"};
+        const params = {Key: uid, Body: body, ContentType: "image/png"};
         s3bucket.upload(params, function(err, result) {
           if (err) {
             reject(err);
@@ -147,7 +147,7 @@ if (!config.useS3) {
   del = (uid) => {
     return new Promise((resolve, reject) => {
       s3bucket.createBucket(() => {
-        var params = {Key: uid};
+        const params = {Key: uid};
         s3bucket.deleteObject(params, function(err, result) {
           if (err) {
             reject(err);

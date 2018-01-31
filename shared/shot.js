@@ -304,7 +304,7 @@ class AbstractShot {
   asJson() {
     let result = {};
     for (let attr of this.REGULAR_ATTRS) {
-      var val = this[attr];
+      let val = this[attr];
       if (val && val.asJson) {
         val = val.asJson();
       }
@@ -321,7 +321,7 @@ class AbstractShot {
   asRecallJson() {
     let result = {clips: {}};
     for (let attr of this.RECALL_ATTRS) {
-      var val = this[attr];
+      let val = this[attr];
       if (val && val.asJson) {
         val = val.asJson();
       }

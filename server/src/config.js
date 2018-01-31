@@ -6,7 +6,7 @@ const envc = require("envc");
 // files as a side effect. See `https://npmjs.org/envc` for more info.
 envc({booleans: true});
 
-var conf = convict({
+const conf = convict({
   port: {
     doc: "The Screenshots server port",
     format: "port",

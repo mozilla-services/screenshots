@@ -9,9 +9,7 @@ https://raw.githubusercontent.com/mozilla/gecko-dev/f2a1911ad310bf8651f342d719e4
 /* eslint valid-jsdoc: ["error", { "requireReturn": false }] */
 
 // create namespace
-if (typeof Mozilla == "undefined") {
-  var Mozilla = {};
-}
+let Mozilla = Mozilla || {};
 
 (function($) {
   "use strict";
@@ -34,7 +32,7 @@ if (typeof Mozilla == "undefined") {
     Mozilla.UITour = {};
   }
 
-  var themeIntervalId = null;
+  let themeIntervalId = null;
   function _stopCyclingThemes() {
     if (themeIntervalId) {
       clearInterval(themeIntervalId);
@@ -43,7 +41,7 @@ if (typeof Mozilla == "undefined") {
   }
 
   function _sendEvent(action, data) {
-    var event = new CustomEvent("mozUITour", {
+    let event = new CustomEvent("mozUITour", {
       bubbles: true,
       detail: {
         action,
@@ -59,7 +57,7 @@ if (typeof Mozilla == "undefined") {
   }
 
   function _waitForCallback(callback) {
-    var id = _generateCallbackID();
+    let id = _generateCallbackID();
 
     function listener(event) {
       if (typeof event.detail != "object")
@@ -75,7 +73,7 @@ if (typeof Mozilla == "undefined") {
     return id;
   }
 
-  var notificationListener = null;
+  let notificationListener = null;
   function _notificationListener(event) {
     if (typeof event.detail != "object")
       return;
@@ -144,7 +142,7 @@ if (typeof Mozilla == "undefined") {
    * @since 35
    */
   Mozilla.UITour.ping = function(callback) {
-    var data = {};
+    let data = {};
     if (callback) {
       data.callbackID = _waitForCallback(callback);
     }
@@ -272,9 +270,9 @@ if (typeof Mozilla == "undefined") {
    * Mozilla.UITour.showInfo('appMenu', 'my title', 'my text', icon, buttons, options);
    */
   Mozilla.UITour.showInfo = function(target, title, text, icon, buttons, options) {
-    var buttonData = [];
+    let buttonData = [];
     if (Array.isArray(buttons)) {
-      for (var i = 0; i < buttons.length; i++) {
+      for (let i = 0; i < buttons.length; i++) {
         buttonData.push({
           label: buttons[i].label,
           icon: buttons[i].icon,
@@ -284,7 +282,7 @@ if (typeof Mozilla == "undefined") {
       }
     }
 
-    var closeButtonCallbackID, targetCallbackID;
+    let closeButtonCallbackID, targetCallbackID;
     if (options && options.closeButtonCallback)
       closeButtonCallbackID = _waitForCallback(options.closeButtonCallback);
     if (options && options.targetCallback)
@@ -376,7 +374,7 @@ if (typeof Mozilla == "undefined") {
     }
 
     function nextTheme() {
-      var theme = themes.shift();
+      let theme = themes.shift();
       themes.push(theme);
 
       _sendEvent("previewTheme", {
@@ -420,7 +418,7 @@ if (typeof Mozilla == "undefined") {
    * });
    */
   Mozilla.UITour.showMenu = function(name, callback) {
-    var showCallbackID;
+    let showCallbackID;
     if (callback)
       showCallbackID = _waitForCallback(callback);
 

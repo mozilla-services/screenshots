@@ -459,7 +459,7 @@ this.uicontrol = (function() {
         let xpos = Math.floor(10 * (event.pageX - window.innerWidth / 2) / window.innerWidth);
         let ypos = Math.floor(10 * (event.pageY - window.innerHeight / 2) / window.innerHeight)
 
-        for (var i = 0; i < 2; i++) {
+        for (let i = 0; i < 2; i++) {
           let move = `translate(${xpos}px, ${ypos}px)`;
           event.target.getElementsByClassName('eyeball')[i].style.transform = move;
         }
