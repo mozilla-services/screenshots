@@ -141,7 +141,7 @@ shotPageSelectTime = продължителност
 // The ∞ is used to indicate that the shot won't expire. It is also used in
 // shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
 // if no such symbol is available for a language/culture, simply leave it out.
-shotPageKeepIndefinitely = Неограничено ∞
+shotPageKeepIndefinitelyWithSymbol = Безкрайно ∞
 shotPageKeepTenMinutes = 10 минути
 shotPageKeepOneHour = 1 час
 shotPageKeepOneDay = 1 ден
@@ -193,8 +193,14 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Изчистване
+annotationCropButton
+    .title = Изрязване
 annotationSaveButton = Запазване
 annotationCancelButton = Отказ
+annotationConfirmCropButton = Потвърждение
+    .title = Потвърждение на избора
+annotationCancelCropButton = Отказ
+    .title = Отказ от избора
 
 
 [[ Shotindex page ]]
