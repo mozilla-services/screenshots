@@ -209,8 +209,10 @@ annotationCropButton
     .title = Obreži
 annotationSaveButton = Shrani
 annotationCancelButton = Prekliči
-annotationConfirmCropButton = Potrdi
-annotationCancelCropButton = Prekliči
+annotationCropConfirmButton = Potrdi
+    .title = Potrdi izbor
+annotationCropCancelButton = Prekliči
+    .title = Prekliči izbor
 
 
 [[ Shotindex page ]]
