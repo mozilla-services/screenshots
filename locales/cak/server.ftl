@@ -197,8 +197,10 @@ annotationCropButton
     .title = Tiqupïx
 annotationSaveButton = Tiyak
 annotationCancelButton = Tiq'at
-annotationConfirmCropButton = Tijikib'äx
-annotationCancelCropButton = Tiq'at
+annotationCropConfirmButton = Tijikib'äx
+    .title = Tijikib'äx cha'oj
+annotationCropCancelButton = Tiq'at
+    .title = Tiq'at cha'oj
 
 
 [[ Shotindex page ]]
