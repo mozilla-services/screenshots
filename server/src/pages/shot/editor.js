@@ -105,13 +105,14 @@ exports.Editor = class Editor extends React.Component {
   }
 
   render() {
+    let color = this.isColorWhite(this.state.color);
     let toolBar = this.cropToolBar || this.renderToolBar();
     return <div>
       { toolBar }
       <div className="main-container inverse-color-scheme">
         <div className={`canvas-container ${this.state.tool}`} id="canvas-container" ref={(canvasContainer) => this.canvasContainer = canvasContainer}>
           <canvas className="image-holder centered" id="image-holder" ref={(image) => { this.imageCanvas = image }} height={ this.canvasHeight } width={ this.canvasWidth } style={{height: this.canvasHeight, width: this.canvasWidth}}></canvas>
-          <canvas className="temp-highlighter centered" id="highlighter" ref={(highlighter) => { this.highlighter = highlighter }} height={ this.canvasHeight } width={ this.canvasWidth }></canvas>
+          <canvas className={`temp-highlighter centered ${color}`} id="highlighter" ref={(highlighter) => { this.highlighter = highlighter }} height={ this.canvasHeight } width={ this.canvasWidth }></canvas>
           <canvas className="crop-tool centered" id="crop-tool" ref={(cropper) => { this.cropper = cropper }} height={this.canvasHeight} width={this.canvasWidth}></canvas>
           <div className="crop-container centered" ref={(cropContainer) => this.cropContainer = cropContainer} style={{height: this.canvasHeight, width: this.canvasWidth}}></div>
         </div>
@@ -157,6 +158,13 @@ exports.Editor = class Editor extends React.Component {
 
   componentDidUpdate() {
     this.edit();
+  }
+
+  isColorWhite(color) {
+    if (color == "rgb(255, 255, 255)" || color == "#FFF") {
+      return "white"
+    }
+    return null;
   }
 
   onClickCrop() {
@@ -438,7 +446,11 @@ exports.Editor = class Editor extends React.Component {
     sendEvent("save", "annotation-toolbar");
     let saveDisabled = true;
     this.setState({saveDisabled});
-    this.imageContext.globalCompositeOperation = 'multiply';
+    if (this.isColorWhite(this.state.color)) {
+      this.imageContext.globalCompositeOperation = "soft-light";
+    } else {
+      this.imageContext.globalCompositeOperation = "multiply";
+    }
     this.imageContext.drawImage(this.highlighter, 0, 0);
     this.highlightContext.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
     let dataUrl = this.imageCanvas.toDataURL();
@@ -487,10 +499,17 @@ exports.Editor = class Editor extends React.Component {
     this.edit();
   }
 
-  edit() {
+  componentWillUpdate() {
+    if (this.isColorWhite(this.state.color)) {
+      this.imageContext.globalCompositeOperation = "soft-light";
+    } else {
+      this.imageContext.globalCompositeOperation = "multiply";
+    }
     this.imageContext.drawImage(this.highlighter, 0, 0);
-    this.imageContext.globalCompositeOperation = 'multiply';
     this.highlightContext.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
+  }
+
+  edit() {
     if (this.state.tool != 'crop') {
       this.cropToolBar = null;
       document.removeEventListener("mousemove", this.mousemove);
