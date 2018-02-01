@@ -1,6 +1,6 @@
 exports.create = function create(status, errno, message, data) {
-  let err = message ? new Error(message) : new Error();
-  let statusCode = +status;
+  const err = message ? new Error(message) : new Error();
+  const statusCode = +status;
   if (!isFinite(statusCode)) {
     throw new Error('Invalid error status code');
   }
@@ -54,7 +54,7 @@ exports.unsupported = function unsupported() {
 };
 
 exports.extTimeout = function extTimeout(cause) {
-  let err = exports.create(503, 1101, 'Timed out waiting for extension');
+  const err = exports.create(503, 1101, 'Timed out waiting for extension');
   if (cause) {
     err.output.payload.cause = cause;
   }
@@ -66,7 +66,7 @@ exports.extAlreadySignedIn = function extAlreadySignedIn() {
 };
 
 exports.extBadUpdate = function extBadUpdate(response) {
-  let err = exports.create(500, 1103, 'Error updating device info');
+  const err = exports.create(500, 1103, 'Error updating device info');
   if (response) {
     err.output.payload.response = response;
   }

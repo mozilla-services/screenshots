@@ -18,7 +18,7 @@ exports.launch = function(m) {
   if (m.hasDeviceId) {
     if (m.shots) {
       m.shots = m.shots.map((shot) => {
-        let s = new AbstractShot(m.backend, shot.id, shot.json);
+        const s = new AbstractShot(m.backend, shot.id, shot.json);
         s.expireTime = shot.expireTime;
         return s;
       });
@@ -38,7 +38,7 @@ exports.launch = function(m) {
       location.search = "reloaded";
       return;
     }
-    let authTimeout = setTimeout(() => {
+    const authTimeout = setTimeout(() => {
       // eslint-disable-next-line no-global-assign, no-native-reassign
       location = location.origin + "/#tour";
     }, FIVE_SECONDS);
@@ -58,7 +58,7 @@ function render() {
 
 function extractQueryParamValues(searchKeys) {
   const o = {};
-  let qs = queryString.parse(window.location.search)
+  const qs = queryString.parse(window.location.search)
 
   Object.keys(searchKeys).forEach(x => {
     if (qs[x] !== undefined) {
@@ -104,7 +104,7 @@ exports.getNewUrl = function(queryParamsToUpdate) {
     return url;
   }
 
-  let qs = queryString.parse(window.location.search)
+  const qs = queryString.parse(window.location.search)
 
   Object.keys(queryParamsToUpdate).forEach(x => {
     if (queryParamsToUpdate[x]) {
@@ -122,14 +122,14 @@ exports.getNewUrl = function(queryParamsToUpdate) {
 }
 
 function updateHistory(queryParamsToUpdate) {
-  let url = exports.getNewUrl(queryParamsToUpdate);
+  const url = exports.getNewUrl(queryParamsToUpdate);
   window.history.pushState(null, "", url);
 }
 
 // FIXME: copied from shot/controller.js
 exports.deleteShot = function(shot) {
-  let url = model.backend + "/api/delete-shot";
-  let req = new XMLHttpRequest();
+  const url = model.backend + "/api/delete-shot";
+  const req = new XMLHttpRequest();
   req.open("POST", url);
   req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
   req.onload = function() {
@@ -152,7 +152,7 @@ exports.deleteShot = function(shot) {
 };
 
 window.addEventListener("popstate", () => {
-  let match = /[?&]q=([^&]{0,4000})/.exec(location.search);
+  const match = /[?&]q=([^&]{0,4000})/.exec(location.search);
   if (!match) {
     model.defaultSearch = "";
   } else {
@@ -160,7 +160,7 @@ window.addEventListener("popstate", () => {
   }
   // FIXME: this isn't the "right" way to research the search box, but given that
   // it's an uncontrolled field it doesn't seem to be reset in this case otherwise:
-  let el = document.getElementById("search");
+  const el = document.getElementById("search");
   if (el) {
     el.value = model.defaultSearch;
   }
@@ -168,9 +168,9 @@ window.addEventListener("popstate", () => {
 });
 
 function refreshModel() {
-  let req = new XMLHttpRequest();
+  const req = new XMLHttpRequest();
   let url = "/shots?withdata=true&data=json";
-  let extraQueryParams = buildQueryStringFromModel(queryParamModelPropertyMap, model);
+  const extraQueryParams = buildQueryStringFromModel(queryParamModelPropertyMap, model);
   if (extraQueryParams) {
     url += "&" + extraQueryParams;
   }
@@ -181,7 +181,7 @@ function refreshModel() {
       console.warn("Error refreshing:", req.status, req);
       return;
     }
-    let data = JSON.parse(req.responseText);
+    const data = JSON.parse(req.responseText);
     if (data.shots && !data.shots.length) {
       sendEvent("no-search-results");
     }

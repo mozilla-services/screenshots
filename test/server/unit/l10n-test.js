@@ -16,36 +16,36 @@ describe('l10n', () => {
   });
   describe('getUserLocales', () => {
     it('should fall back to en-US if requested language has no localization', () => {
-      let locales = l10n.getUserLocales(['yo-LO']);
+      const locales = l10n.getUserLocales(['yo-LO']);
       assert.ok(locales.includes('en-US'));
     });
     it('should fall back to en-US if requested language is missing', () => {
-      let locales = l10n.getUserLocales([]);
+      const locales = l10n.getUserLocales([]);
       assert.ok(locales.includes('en-US'));
     });
     it('should include default en-US locale if requested locales exist', () => {
-      let locales = l10n.getUserLocales(['al-GO', 'bb-MO']);
+      const locales = l10n.getUserLocales(['al-GO', 'bb-MO']);
       assert.ok(locales.includes('en-US'));
     });
   });
   describe('getText', () => {
     it('should return the first available formatted message for the given L10n ID', () => {
-      let getText = l10n.getText(['al-GO', 'bb-MO']);
+      const getText = l10n.getText(['al-GO', 'bb-MO']);
       assert.equal(getText('abc'), '123');
       assert.equal(getText('soccer'), 'football');
     })
     it('should return an empty string when a L10n ID is not found', () => {
-      let getText = l10n.getText(['al-GO', 'bb-MO']);
+      const getText = l10n.getText(['al-GO', 'bb-MO']);
       assert.equal(getText('xyz'), '');
     })
   });
   describe('getString', () => {
     it('should return the L10n strings of available locales', () => {
-      let given = l10n.getStrings(['no-PE', 'bb-MO']);
+      const given = l10n.getStrings(['no-PE', 'bb-MO']);
       assert.equal(given['bb-MO'], localeData['bb-MO']);
     })
     it('should always return the default en-US L10n string', () => {
-      let given = l10n.getStrings(['no-PE', 'go-TO']);
+      const given = l10n.getStrings(['no-PE', 'go-TO']);
       assert.deepEqual(given, {'en-US': localeData['en-US']});
     })
   });

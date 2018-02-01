@@ -9,7 +9,7 @@ let resizeDirection;
 let resizeStartPos;
 let resizeStartSelected;
 let selectedPos = {};
-let mousedownPos = {};
+const mousedownPos = {};
 const minWidth = 10;
 const minHeight = 10;
 
@@ -106,7 +106,7 @@ exports.Editor = class Editor extends React.Component {
   }
 
   render() {
-    let toolBar = this.cropToolBar || this.renderToolBar();
+    const toolBar = this.cropToolBar || this.renderToolBar();
     return <div>
       { toolBar }
       <div className="main-container inverse-color-scheme">
@@ -121,8 +121,8 @@ exports.Editor = class Editor extends React.Component {
   }
 
   renderToolBar() {
-    let penState = this.state.tool == "pen" ? 'active' : 'inactive';
-    let highlighterState = this.state.tool == "highlighter" ? 'active' : 'inactive';
+    const penState = this.state.tool == "pen" ? 'active' : 'inactive';
+    const highlighterState = this.state.tool == "highlighter" ? 'active' : 'inactive';
     return <div className="editor-header default-color-scheme">
       <div className="shot-main-actions annotation-actions">
         <div className="annotation-tools">
@@ -177,24 +177,24 @@ exports.Editor = class Editor extends React.Component {
       this.onClickCancelCrop();
       return;
     }
-    let x1 = Math.max(selectedPos.left, 0);
-    let x2 = Math.min(selectedPos.right, this.canvasWidth);
-    let y1 = Math.max(selectedPos.top, 0);
-    let y2 = Math.min(selectedPos.bottom, this.canvasHeight);
-    let cropWidth = Math.floor(x2 - x1);
-    let cropHeight = Math.floor(y2 - y1);
-    let croppedImage = document.createElement('canvas');
+    const x1 = Math.max(selectedPos.left, 0);
+    const x2 = Math.min(selectedPos.right, this.canvasWidth);
+    const y1 = Math.max(selectedPos.top, 0);
+    const y2 = Math.min(selectedPos.bottom, this.canvasHeight);
+    const cropWidth = Math.floor(x2 - x1);
+    const cropHeight = Math.floor(y2 - y1);
+    const croppedImage = document.createElement('canvas');
     croppedImage.width = cropWidth
     croppedImage.height = cropHeight
-    let croppedContext = croppedImage.getContext("2d");
+    const croppedContext = croppedImage.getContext("2d");
     croppedContext.drawImage(this.imageCanvas, x1, y1, croppedImage.width, croppedImage.height, 0, 0, croppedImage.width, croppedImage.height);
     croppedContext.globalCompositeOperation = 'multiply';
     croppedContext.drawImage(this.highlighter, x1, y1, croppedImage.width, croppedImage.height, 0, 0, croppedImage.width, croppedImage.height);
-    let img = new Image();
-    let imageContext = this.imageCanvas.getContext('2d');
+    const img = new Image();
+    const imageContext = this.imageCanvas.getContext('2d');
     img.crossOrigin = 'Anonymous';
-    let width = cropWidth;
-    let height = cropHeight;
+    const width = cropWidth;
+    const height = cropHeight;
     img.onload = () => {
       imageContext.drawImage(img, 0, 0, width, height);
     }
@@ -223,14 +223,14 @@ exports.Editor = class Editor extends React.Component {
   mousedown(e) {
     e.preventDefault();
     mousedown = true;
-    let rect = this.cropContainer.getBoundingClientRect();
+    const rect = this.cropContainer.getBoundingClientRect();
     if (!this.cropBox) {
       selectionState = "creating";
       mousedownPos.top = e.clientY - rect.top;
       mousedownPos.left = e.clientX - rect.left;
     } else {
       selectedPos.sortCoords();
-      let direction = this.findClickedArea(e);
+      const direction = this.findClickedArea(e);
       if (direction) {
         selectionState = "resizing";
         resizeDirection = direction;
@@ -243,7 +243,7 @@ exports.Editor = class Editor extends React.Component {
 
   mousemove(e) {
     e.preventDefault();
-    let rect = this.cropContainer.getBoundingClientRect();
+    const rect = this.cropContainer.getBoundingClientRect();
     if (mousedown && selectionState == "creating") {
       selectedPos = new Selection(
         this.truncateX(mousedownPos.left),
@@ -263,28 +263,28 @@ exports.Editor = class Editor extends React.Component {
   }
 
   resizeCropBox(event, direction) {
-    let width = selectedPos.width;
-    let height = selectedPos.height;
-    let rect = this.cropContainer.getBoundingClientRect();
-    let diffX = event.clientX - rect.left - resizeStartPos.x;
-    let diffY = event.clientY - rect.top - resizeStartPos.y;
-    let movement = movementPositions[resizeDirection];
-    let isLeftBorder = selectedPos.left == 0 && resizeStartSelected.left + diffX <= 0;
-    let isRightBorder = selectedPos.right == this.canvasWidth && resizeStartSelected.right + diffX >= this.canvasWidth;
-    let isTopBorder = selectedPos.top == 0 && resizeStartSelected.top + diffY <= 0;
-    let isBottomBorder = selectedPos.bottom == this.canvasHeight && resizeStartSelected.bottom + diffY >= this.canvasHeight;
-    let isMove = resizeDirection == "move";
+    const width = selectedPos.width;
+    const height = selectedPos.height;
+    const rect = this.cropContainer.getBoundingClientRect();
+    const diffX = event.clientX - rect.left - resizeStartPos.x;
+    const diffY = event.clientY - rect.top - resizeStartPos.y;
+    const movement = movementPositions[resizeDirection];
+    const isLeftBorder = selectedPos.left == 0 && resizeStartSelected.left + diffX <= 0;
+    const isRightBorder = selectedPos.right == this.canvasWidth && resizeStartSelected.right + diffX >= this.canvasWidth;
+    const isTopBorder = selectedPos.top == 0 && resizeStartSelected.top + diffY <= 0;
+    const isBottomBorder = selectedPos.bottom == this.canvasHeight && resizeStartSelected.bottom + diffY >= this.canvasHeight;
+    const isMove = resizeDirection == "move";
     if (movement[0] && !(isMove && (isLeftBorder || isRightBorder))) {
       let moveX = movement[0];
       moveX = moveX == "*" ? ["x1", "x2"] : [moveX];
-      for (let moveDir of moveX) {
+      for (const moveDir of moveX) {
         selectedPos[moveDir] = this.truncateX(resizeStartSelected[moveDir] + diffX);
       }
     }
     if (movement[1] && !(isMove && (isTopBorder || isBottomBorder))) {
       let moveY = movement[1];
       moveY = moveY == "*" ? ["y1", "y2"] : [moveY];
-      for (let moveDir of moveY) {
+      for (const moveDir of moveY) {
         selectedPos[moveDir] = this.truncateY(resizeStartSelected[moveDir] + diffY);
       }
     }
@@ -311,7 +311,7 @@ exports.Editor = class Editor extends React.Component {
   }
 
   truncateX(x) {
-    let max = this.canvasWidth;
+    const max = this.canvasWidth;
     if (x < 0) {
       return 0;
     } else if (x > max) {
@@ -321,7 +321,7 @@ exports.Editor = class Editor extends React.Component {
   }
 
   truncateY(y) {
-    let max = this.canvasHeight;
+    const max = this.canvasHeight;
     if (y < 0) {
       return 0;
     } else if (y > max) {
@@ -331,9 +331,9 @@ exports.Editor = class Editor extends React.Component {
   }
 
   findClickedArea(e) {
-    let target = e.target;
+    const target = e.target;
     if (target.classList.contains("mover-target") || target.classList.contains("mover")) {
-      for (let name of movements) {
+      for (const name of movements) {
         if (target.classList.contains("direction-" + name) || target.parentNode.classList.contains("direction-" + name)) {
           return name;
         }
@@ -393,12 +393,12 @@ exports.Editor = class Editor extends React.Component {
     if (this.cropBox) {
       return;
     }
-    let cropBox = document.createElement('div')
+    const cropBox = document.createElement('div')
     cropBox.className = 'highlight';
-    for (let name of movements) {
-      let elTarget = document.createElement("div");
+    for (const name of movements) {
+      const elTarget = document.createElement("div");
       elTarget.className = "mover-target direction-" + name;
-      let elMover = document.createElement("div");
+      const elMover = document.createElement("div");
       elMover.className = "mover";
       elTarget.appendChild(elMover);
       cropBox.appendChild(elTarget);
@@ -437,7 +437,7 @@ exports.Editor = class Editor extends React.Component {
 
   onClickSave() {
     sendEvent("save", "annotation-toolbar");
-    let saveDisabled = true;
+    const saveDisabled = true;
     this.setState({saveDisabled});
     this.imageContext.globalCompositeOperation = 'multiply';
     this.imageContext.drawImage(this.highlighter, 0, 0);
@@ -445,13 +445,13 @@ exports.Editor = class Editor extends React.Component {
     let dataUrl = this.imageCanvas.toDataURL();
 
     if (this.props.pngToJpegCutoff && dataUrl.length > this.props.pngToJpegCutoff) {
-      let jpegDataUrl = this.imageCanvas.toDataURL("image/jpeg");
+      const jpegDataUrl = this.imageCanvas.toDataURL("image/jpeg");
       if (jpegDataUrl.length < dataUrl.length) {
         dataUrl = jpegDataUrl;
       }
     }
 
-    let dimensions = {x: this.canvasWidth, y: this.canvasHeight};
+    const dimensions = {x: this.canvasWidth, y: this.canvasHeight};
     this.props.onClickSave(dataUrl, dimensions);
   }
 
@@ -470,11 +470,11 @@ exports.Editor = class Editor extends React.Component {
   }
 
   renderImage() {
-    let imageContext = this.imageCanvas.getContext('2d');
-    let img = new Image();
+    const imageContext = this.imageCanvas.getContext('2d');
+    const img = new Image();
     img.crossOrigin = 'Anonymous';
-    let width = this.props.clip.image.dimensions.x;
-    let height = this.props.clip.image.dimensions.y;
+    const width = this.props.clip.image.dimensions.x;
+    const height = this.props.clip.image.dimensions.y;
     img.onload = () => {
       imageContext.drawImage(img, 0, 0, width, height);
     }
@@ -522,7 +522,7 @@ exports.Editor = class Editor extends React.Component {
   }
 
   setPosition(e) {
-    let rect = this.imageCanvas.getBoundingClientRect();
+    const rect = this.imageCanvas.getBoundingClientRect();
     this.pos.x = e.clientX - rect.left,
     this.pos.y = e.clientY - rect.top
   }
@@ -535,7 +535,7 @@ exports.Editor = class Editor extends React.Component {
 
     this.drawContext.lineCap = this.state.tool == 'highlighter' ? 'square' : 'round';
     this.drawContext.moveTo(this.pos.x, this.pos.y);
-    let rect = this.imageCanvas.getBoundingClientRect();
+    const rect = this.imageCanvas.getBoundingClientRect();
     this.pos.x = e.clientX - rect.left,
     this.pos.y = e.clientY - rect.top
     this.drawContext.lineTo(this.pos.x, this.pos.y);
@@ -562,7 +562,7 @@ class ColorPicker extends React.Component {
   }
 
   render() {
-    let border = this.state.color == 'rgb(255, 255, 255)' ? '#000' : this.state.color;
+    const border = this.state.color == 'rgb(255, 255, 255)' ? '#000' : this.state.color;
     return <div><button className="color-button" id="color-picker" onClick={this.onClickColorPicker.bind(this)} title="Color Picker" style={{"backgroundColor": this.state.color, "border": `1px solid ${border}`}}></button>
       {this.state.pickerActive ? this.renderColorBoard() : null}
     </div>
@@ -589,13 +589,13 @@ class ColorPicker extends React.Component {
   }
 
   onClickSwatch(e) {
-    let color = e.target.style.backgroundColor;
+    const color = e.target.style.backgroundColor;
     this.setState({color, pickerActive: false});
     this.props.setColor(color);
   }
 
   onClickColorPicker() {
-    let pickerActive = !this.state.pickerActive;
+    const pickerActive = !this.state.pickerActive;
     this.setState({pickerActive});
   }
 }

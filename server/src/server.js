@@ -62,7 +62,7 @@ const { updateAbTests } = require("./ab-tests");
 const COOKIE_EXPIRE_TIME = 30 * 24 * 60 * 60 * 1000; // 30 days
 
 function initDatabase() {
-  let forceDbVersion = config.db.forceDbVersion;
+  const forceDbVersion = config.db.forceDbVersion;
   if (forceDbVersion) {
     let hadError = false;
     // eslint-disable-next-line promise/catch-or-return
@@ -120,7 +120,7 @@ const FXA_SERVER = config.fxa.profileServer && require("url").parse(config.fxa.p
 function addHSTS(req, res) {
   // Note: HSTS will only produce warning on a localhost self-signed cert
   if (req.protocol === "https" && !config.localhostSsl) {
-    let time = 24 * 60 * 60; // 24 hours
+    const time = 24 * 60 * 60; // 24 hours
     res.header(
       "Strict-Transport-Security",
       `max-age=${time}`);
@@ -189,7 +189,7 @@ app.use("/static", express.static(path.join(__dirname, "static"), {
   maxAge: cacheTime ? cacheTime * 1000 : null
 }));
 
-let xpidir = path.join(__dirname, "..", "xpi");
+const xpidir = path.join(__dirname, "..", "xpi");
 app.use("/xpi", express.static(xpidir, {index: false}));
 
 app.use("/homepage", express.static(path.join(__dirname, "static/homepage"), {
@@ -199,15 +199,15 @@ app.use("/homepage", express.static(path.join(__dirname, "static/homepage"), {
 app.use(morgan("combined"));
 
 app.use(function(req, res, next) {
-  let authHeader = req.headers['x-screenshots-auth'];
+  const authHeader = req.headers['x-screenshots-auth'];
   let authInfo = {};
-  let cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
+  const cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
   if (authHeader) {
     authInfo = decodeAuthHeader(authHeader);
   } else {
     authInfo.deviceId = cookies.get("user", {signed: true});
     authInfo.accountId = cookies.get("accountid", {signed: true});
-    let encodedAbTests = cookies.get("abtests", {signed: true});
+    const encodedAbTests = cookies.get("abtests", {signed: true});
     let abTests;
     if (encodedAbTests) {
       abTests = b64DecodeJson(encodedAbTests);
@@ -215,11 +215,11 @@ app.use(function(req, res, next) {
     if (!authInfo.deviceId) {
       // Authenticated users get A/B tests when they register/login, but unauthenticated
       // users have to get it lazily
-      let origAbTests = Object.assign({}, abTests);
+      const origAbTests = Object.assign({}, abTests);
       abTests = updateAbTests(abTests || {}, null, true);
       if (Object.keys(abTests).length) {
         // Only send if there's some test
-        let newEncodedAbTests = b64EncodeJson(abTests);
+        const newEncodedAbTests = b64EncodeJson(abTests);
         if (encodedAbTests != newEncodedAbTests) {
           cookies.set("abtests", newEncodedAbTests, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
         }
@@ -257,33 +257,33 @@ app.use(csrfProtection);
 function decodeAuthHeader(header) {
   /** Decode a string header in the format {deviceId}:{deviceIdSig};abtests={b64thing}:{sig} */
   // Since it's treated as opaque, we'll use a fragile regex
-  let keygrip = dbschema.getKeygrip();
-  let match = /^([^:]{1,255}):([^;]{1,255});abTests=([^:]{1,1500}):(.{0,255})$/.exec(header);
+  const keygrip = dbschema.getKeygrip();
+  const match = /^([^:]{1,255}):([^;]{1,255});abTests=([^:]{1,1500}):(.{0,255})$/.exec(header);
   if (!match) {
-    let exc = new Error("Invalid auth header");
+    const exc = new Error("Invalid auth header");
     exc.headerValue = header;
     captureRavenException(exc);
     return {};
   }
-  let deviceId = match[1];
-  let deviceIdSig = match[2];
-  let abTestsEncoded = match[3];
-  let abTestsEncodedSig = match[4];
+  const deviceId = match[1];
+  const deviceIdSig = match[2];
+  const abTestsEncoded = match[3];
+  const abTestsEncodedSig = match[4];
   if (!keygrip.verify(deviceId, deviceIdSig)) {
-    let exc = new Error("deviceId signature incorrect");
+    const exc = new Error("deviceId signature incorrect");
     exc.deviceIdLength = typeof deviceId == "string" ? deviceId.length : String(deviceId);
     exc.deviceIdSigLength = typeof deviceIdSig == "string" ? deviceIdSig.length : String(deviceIdSig);
     captureRavenException(exc);
     return {};
   }
   if (!keygrip.verify(abTestsEncoded, abTestsEncodedSig)) {
-    let exc = new Error("abTests signature incorrect");
+    const exc = new Error("abTests signature incorrect");
     exc.abTestsEncodedLength = typeof abTestsEncoded == "string" ? abTestsEncoded.length : String(abTestsEncoded);
     exc.abTestsEncodedSigLength = typeof abTestsEncodedSig == "string" ? abTestsEncodedSig.length : String(abTestsEncodedSig);
     captureRavenException(exc);
     return {};
   }
-  let abTests = b64DecodeJson(abTestsEncoded);
+  const abTests = b64DecodeJson(abTestsEncoded);
   return {deviceId, abTests};
 }
 
@@ -292,7 +292,7 @@ app.use(function(req, res, next) {
     cdn: req.config.siteCdn
   });
   // The contentCdn config does not have a default value but contentOrigin does.
-  let base = config.contentCdn || `${req.protocol}://${config.contentOrigin}`;
+  const base = config.contentCdn || `${req.protocol}://${config.contentOrigin}`;
   linker.imageLinkWithHost = linker.imageLink.bind(null, base);
   next();
 });
@@ -304,7 +304,7 @@ app.param("id", function(req, res, next, id) {
     next();
     return;
   }
-  let exc = new Error("invalid id")
+  const exc = new Error("invalid id")
   exc.isAppError = true;
   exc.output = {
     statusCode: 400,
@@ -340,7 +340,7 @@ function sendGaActivation(req, res, hashPage) {
     promise = Promise.resolve("");
   }
   promise.then((userUuid) => {
-    let script = gaActivation.makeGaActivationString(config.gaId, userUuid, req.abTests, hashPage);
+    const script = gaActivation.makeGaActivationString(config.gaId, userUuid, req.abTests, hashPage);
     jsResponse(res, script);
   }).catch((e) => {
     errorResponse(res, "Error creating user UUID:", e);
@@ -351,8 +351,8 @@ const parentHelperJs = readFileSync(path.join(__dirname, "/static/js/parent-help
 
 app.get("/parent-helper.js", function(req, res) {
   setMonthlyCache(res);
-  let postMessageOrigin = `${req.protocol}://${req.config.contentOrigin}`;
-  let script = `${parentHelperJs}\nvar CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`
+  const postMessageOrigin = `${req.protocol}://${req.config.contentOrigin}`;
+  const script = `${parentHelperJs}\nvar CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`
   jsResponse(res, script);
 });
 
@@ -364,14 +364,14 @@ app.get("/install-raven.js", function(req, res) {
     jsResponse(res, "");
     return;
   }
-  let options = {
+  const options = {
     environment: process.env.NODE_ENV || "dev",
     release: linker.getGitRevision(),
     serverName: req.backend
   };
   // FIXME: this monkeypatch is because our version of Raven (6.2) doesn't really work
   // with our version of Sentry (8.3.3)
-  let script = `
+  const script = `
   ${ravenClientJs}
 
   (function () {
@@ -392,14 +392,14 @@ app.get("/favicon.ico", function(req, res) {
 });
 
 app.post("/error", function(req, res) {
-  let bodyObj = req.body;
+  const bodyObj = req.body;
   if (typeof bodyObj !== "object") {
     throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
   }
-  let userAnalytics = ua(config.gaId);
+  const userAnalytics = ua(config.gaId);
   let desc = bodyObj.name;
-  let attrs = [];
-  for (let attr in bodyObj) {
+  const attrs = [];
+  for (const attr in bodyObj) {
     if (attr == "name" || attr == "help" || attr == "version") {
       continue;
     }
@@ -431,7 +431,7 @@ function hashUserId(deviceId) {
     if (!dbschema.getTextKeys()) {
       throw new Error("Server keys not initialized");
     }
-    let userKey = dbschema.getTextKeys()[0] + deviceId;
+    const userKey = dbschema.getTextKeys()[0] + deviceId;
     genUuid.generate(genUuid.V_SHA1, genUuid.nil, userKey, function(err, userUuid) {
       if (err) {
         reject(err);
@@ -443,13 +443,13 @@ function hashUserId(deviceId) {
 }
 
 app.post("/event", function(req, res) {
-  let bodyObj = req.body;
+  const bodyObj = req.body;
   if (typeof bodyObj !== "object") {
     throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
   }
   // We allow clients to signal events with a deviceId even if they haven't logged in yet,
   // by putting deviceId into the request body:
-  let deviceId = req.deviceId || bodyObj.deviceId;
+  const deviceId = req.deviceId || bodyObj.deviceId;
   let events;
 
   if (bodyObj.events) {
@@ -464,7 +464,7 @@ app.post("/event", function(req, res) {
       userAnalytics = userAnalytics.debug();
     }
     events.forEach(event => {
-      let params = Object.assign(
+      const params = Object.assign(
         {},
         event.options,
         {
@@ -488,12 +488,12 @@ app.post("/event", function(req, res) {
 });
 
 app.post("/timing", function(req, res) {
-  let bodyObj = req.body;
+  const bodyObj = req.body;
   if (typeof bodyObj !== "object") {
     throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
   }
 
-  let deviceId = req.deviceId || bodyObj.deviceId;
+  const deviceId = req.deviceId || bodyObj.deviceId;
   let timings;
 
   if (bodyObj.timings) {
@@ -508,7 +508,7 @@ app.post("/timing", function(req, res) {
       userAnalytics = userAnalytics.debug();
     }
     timings.forEach(timing => {
-      let params = {
+      const params = {
         userTimingCategory: timing.timingCategory,
         userTimingVariableName: timing.timingVar,
         userTimingTime: timing.timingValue,
@@ -524,8 +524,8 @@ app.post("/timing", function(req, res) {
 });
 
 app.post("/api/register", function(req, res) {
-  let vars = req.body;
-  let canUpdate = vars.deviceId === req.deviceId;
+  const vars = req.body;
+  const canUpdate = vars.deviceId === req.deviceId;
   if (!vars.deviceId) {
     mozlog.error("bad-api-register", {msg: "Bad register request", vars: JSON.stringify(vars, null, "  ")});
     sendRavenMessage(req, "Attempted to register without deviceId");
@@ -568,23 +568,23 @@ app.post("/api/register", function(req, res) {
 });
 
 function sendAuthInfo(req, res, params) {
-  let { deviceId, accountId, userAbTests } = params;
+  const { deviceId, accountId, userAbTests } = params;
   if (deviceId.search(/^[a-zA-Z0-9_-]{1,255}$/) == -1) {
-    let exc = new Error("Bad deviceId in login");
+    const exc = new Error("Bad deviceId in login");
     exc.deviceId = deviceId;
     captureRavenException(exc, req);
     throw new Error("Bad deviceId");
   }
-  let encodedAbTests = b64EncodeJson(userAbTests);
-  let keygrip = dbschema.getKeygrip();
-  let cookies = new Cookies(req, res, {keys: keygrip});
+  const encodedAbTests = b64EncodeJson(userAbTests);
+  const keygrip = dbschema.getKeygrip();
+  const cookies = new Cookies(req, res, {keys: keygrip});
   cookies.set("user", deviceId, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
   if (accountId) {
     cookies.set("accountid", accountId, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
   }
   cookies.set("abtests", encodedAbTests, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
-  let authHeader = `${deviceId}:${keygrip.sign(deviceId)};abTests=${encodedAbTests}:${keygrip.sign(encodedAbTests)}`;
-  let responseJson = {
+  const authHeader = `${deviceId}:${keygrip.sign(deviceId)};abTests=${encodedAbTests}:${keygrip.sign(encodedAbTests)}`;
+  const responseJson = {
     ok: "User created",
     sentryPublicDSN: config.sentryPublicDSN,
     abTests: userAbTests,
@@ -597,7 +597,7 @@ function sendAuthInfo(req, res, params) {
 
 
 app.post("/api/login", function(req, res) {
-  let vars = req.body;
+  const vars = req.body;
   let deviceInfo = {};
   try {
     deviceInfo = JSON.parse(vars.deviceInfo);
@@ -617,7 +617,7 @@ app.post("/api/login", function(req, res) {
   }
   checkLogin(vars.deviceId, vars.secret, deviceInfo.addonVersion).then((userAbTests) => {
     if (userAbTests) {
-      let sendParams = {
+      const sendParams = {
         deviceId: vars.deviceId,
         userAbTests
       };
@@ -640,7 +640,7 @@ app.post("/api/login", function(req, res) {
         errorResponse(res, "Error retrieving account", error);
       });
       if (config.gaId) {
-        let userAnalytics = ua(config.gaId, vars.deviceId, {strictCidFormat: false});
+        const userAnalytics = ua(config.gaId, vars.deviceId, {strictCidFormat: false});
         userAnalytics.event({
           ec: "server",
           ea: "api-login",
@@ -684,8 +684,8 @@ app.get("/api/check-login-cookie", function(req, res) {
 app.put("/data/:id/:domain",
   upload.fields([{name: "blob", maxCount: 1}, {name: "thumbnail", maxCount: 1}]),
   function(req, res) {
-    let slowResponse = config.testing.slowResponse;
-    let failSometimes = config.testing.failSometimes;
+    const slowResponse = config.testing.slowResponse;
+    const failSometimes = config.testing.failSometimes;
     if (failSometimes && Math.floor(Math.random() * failSometimes)) {
       console.log("Artificially making request fail"); // eslint-disable-line no-console
       res.status(500);
@@ -695,7 +695,7 @@ app.put("/data/:id/:domain",
     let bodyObj = [];
     if (req.body.shot && req.files) {
       bodyObj = JSON.parse(req.body.shot);
-      let clipId = Object.getOwnPropertyNames(bodyObj.clips)[0];
+      const clipId = Object.getOwnPropertyNames(bodyObj.clips)[0];
       let b64 = req.files.blob[0].buffer.toString("base64");
       let contentType = req.files.blob[0].mimetype;
       if (contentType != "image/png" && contentType != "image/jpeg") {
@@ -707,7 +707,7 @@ app.put("/data/:id/:domain",
       bodyObj.clips[clipId].image.url = b64;
 
       if (req.files.thumbnail) {
-        let encodedThumbnail = req.files.thumbnail[0].buffer.toString("base64");
+        const encodedThumbnail = req.files.thumbnail[0].buffer.toString("base64");
         bodyObj.thumbnail = `data:image/png;base64,${encodedThumbnail}`
       }
     } else if (req.body) {
@@ -716,14 +716,14 @@ app.put("/data/:id/:domain",
     if (typeof bodyObj != "object") {
       throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
     }
-    let shotId = `${req.params.id}/${req.params.domain}`;
+    const shotId = `${req.params.id}/${req.params.domain}`;
     if (!req.deviceId) {
       mozlog.warn("put-without-auth", {msg: "Attempted to PUT without logging in", url: req.url});
       sendRavenMessage(req, "Attempt PUT without authentication");
       simpleResponse(res, "Not logged in", 401);
       return;
     }
-    let shot = new Shot(req.deviceId, req.backend, shotId, bodyObj);
+    const shot = new Shot(req.deviceId, req.backend, shotId, bodyObj);
     let responseDelay = Promise.resolve()
     if (slowResponse) {
       responseDelay = new Promise((resolve) => {
@@ -755,7 +755,7 @@ app.get("/data/:id/:domain", function(req, res) {
     res.status(404).send("Not found");
     return;
   }
-  let shotId = `${req.params.id}/${req.params.domain}`;
+  const shotId = `${req.params.id}/${req.params.domain}`;
   // FIXME: maybe we should allow for accountId here too:
   Shot.getRawValue(shotId, req.deviceId).then((data) => {
     if (!data) {
@@ -800,8 +800,8 @@ app.post("/api/disconnect-device", function(req, res) {
     return;
   }
   disconnectDevice(req.deviceId).then((result) => {
-    let keygrip = dbschema.getKeygrip();
-    let cookies = new Cookies(req, res, {keys: keygrip});
+    const keygrip = dbschema.getKeygrip();
+    const cookies = new Cookies(req, res, {keys: keygrip});
     if (result) {
       cookies.set("accountid");
       cookies.set("accountid.sig");
@@ -813,8 +813,8 @@ app.post("/api/disconnect-device", function(req, res) {
 });
 
 app.post("/api/set-title/:id/:domain", function(req, res) {
-  let shotId = `${req.params.id}/${req.params.domain}`;
-  let userTitle = req.body.title;
+  const shotId = `${req.params.id}/${req.params.domain}`;
+  const userTitle = req.body.title;
   if (userTitle === undefined) {
     simpleResponse(res, "No title given", 400);
     return;
@@ -839,16 +839,16 @@ app.post("/api/set-title/:id/:domain", function(req, res) {
 });
 
 app.post("/api/save-edit", function(req, res) {
-  let vars = req.body;
+  const vars = req.body;
   if (!req.deviceId) {
     sendRavenMessage(req, "Attempt to edit shot without login");
     simpleResponse(res, "Not logged in", 401);
     return;
   }
-  let id = vars.shotId;
-  let url = vars.url;
-  let width = vars.x;
-  let height = vars.y;
+  const id = vars.shotId;
+  const url = vars.url;
+  const width = vars.x;
+  const height = vars.y;
   let thumbnail = vars.thumbnail || null;
   if (!isValidClipImageUrl(url)) {
     sendRavenMessage(req, "Attempt to edit shot to set invalid clip url.");
@@ -864,7 +864,7 @@ app.post("/api/save-edit", function(req, res) {
       simpleResponse(res, "No such shot", 404);
       return null;
     }
-    let name = shot.clipNames()[0];
+    const name = shot.clipNames()[0];
     shot.getClip(name).image.url = url;
     shot.getClip(name).image.dimensions.x = width;
     shot.getClip(name).image.dimensions.y = height;
@@ -883,8 +883,8 @@ app.post("/api/set-expiration", function(req, res) {
     simpleResponse(res, "Not logged in", 401);
     return;
   }
-  let shotId = req.body.id;
-  let expiration = parseInt(req.body.expiration, 10);
+  const shotId = req.body.id;
+  const expiration = parseInt(req.body.expiration, 10);
   if (expiration < 0) {
     sendRavenMessage(req, "Attempt negative expiration", {extra: {expiration}});
     simpleResponse(res, "Error: negative expiration", 400);
@@ -908,9 +908,9 @@ app.post("/api/set-expiration", function(req, res) {
 });
 
 app.get("/images/:imageid", function(req, res) {
-  let embedded = req.query.embedded;
-  let download = req.query.download;
-  let sig = req.query.sig;
+  const embedded = req.query.embedded;
+  const download = req.query.download;
+  const sig = req.query.sig;
   Shot.getRawBytesForClip(
     req.params.imageid
   ).then((obj) => {
@@ -922,10 +922,10 @@ app.get("/images/:imageid", function(req, res) {
         localReferrer = req.headers.referer.startsWith(req.backend);
       }
       if (!localReferrer) {
-        let hasher = require("crypto").createHash("sha1");
+        const hasher = require("crypto").createHash("sha1");
         hasher.update(req.params.imageid);
-        let hashedId = hasher.digest("hex").substr(0, 15);
-        let analyticsUrl = `/images/${embedded ? 'embedded/' : ''}hash${encodeURIComponent(hashedId)}`;
+        const hashedId = hasher.digest("hex").substr(0, 15);
+        const analyticsUrl = `/images/${embedded ? 'embedded/' : ''}hash${encodeURIComponent(hashedId)}`;
         let analytics = req.userAnalytics;
         if (!analytics) {
           analytics = ua(config.gaId);
@@ -938,7 +938,7 @@ app.get("/images/:imageid", function(req, res) {
         let documentReferrer = null;
         if (req.headers.referer) {
           try {
-            let parsed = urlParse(req.headers.referer);
+            const parsed = urlParse(req.headers.referer);
             documentReferrer = `${parsed.protocol}//${parsed.host}`;
           } catch (e) {
             // We ignore any errors parsing this header
@@ -976,7 +976,7 @@ app.get("/images/:imageid", function(req, res) {
 });
 
 app.get("/__version__", function(req, res) {
-  let response = {
+  const response = {
     source: "https://github.com/mozilla-services/screenshots/",
     description: "Firefox Screenshots application server",
     version: selfPackage.version,
@@ -1013,7 +1013,7 @@ app.get("/__heartbeat__", function(req, res) {
 });
 
 app.get("/contribute.json", function(req, res) {
-  let data = {
+  const data = {
     name: "Firefox Screenshots",
     description: "Firefox Screenshots is an add-on for Firefox and a service for screenshots",
     repository: {
@@ -1055,7 +1055,7 @@ app.get("/oembed", function(req, res) {
     simpleResponse(req, "No ?url given", 400);
     return;
   }
-  let format = req.query.format || "json";
+  const format = req.query.format || "json";
   if (format !== "json") {
     simpleResponse(res, "Only JSON OEmbed is supported", 501);
     return;
@@ -1069,24 +1069,24 @@ app.get("/oembed", function(req, res) {
     maxheight = parseInt(maxheight, 10);
   }
   url = url.replace(/^http:\/\//i, "https://");
-  let backend = req.backend.replace(/^http:\/\//i, "https://");
+  const backend = req.backend.replace(/^http:\/\//i, "https://");
   if (!url.startsWith(backend)) {
     simpleResponse(res, `Error: URL is not hosted here (${req.backend})`, 501);
     return;
   }
   url = url.substr(backend.length);
-  let match = /^\/{0,255}([^/]{1,255})\/([^/]{1,255})/.exec(url);
+  const match = /^\/{0,255}([^/]{1,255})\/([^/]{1,255})/.exec(url);
   if (!match) {
     simpleResponse(res, "Error: not a Shot url", 404);
     return;
   }
-  let shotId = match[1] + "/" + match[2];
+  const shotId = match[1] + "/" + match[2];
   Shot.get(req.backend, shotId).then((shot) => {
     if (!shot) {
       notFound(req, res);
       return;
     }
-    let body = shot.oembedJson({maxheight, maxwidth});
+    const body = shot.oembedJson({maxheight, maxwidth});
     res.header("Content-Type", "application/json");
     res.send(body);
   }).catch((e) => {
@@ -1102,7 +1102,7 @@ app.get('/api/fxa-oauth/login', function(req, res, next) {
     return;
   }
   randomBytes(32).then(stateBytes => {
-    let state = stateBytes.toString('hex');
+    const state = stateBytes.toString('hex');
     return setState(req.deviceId, state).then(inserted => {
       if (!inserted) {
         throw errors.dupeLogin();
@@ -1110,8 +1110,8 @@ app.get('/api/fxa-oauth/login', function(req, res, next) {
       return state;
     });
   }).then(state => {
-    let redirectUri = `${req.backend}/api/fxa-oauth/confirm-login`;
-    let profile = "profile profile:displayName profile:email profile:avatar profile:uid";
+    const redirectUri = `${req.backend}/api/fxa-oauth/confirm-login`;
+    const profile = "profile profile:displayName profile:email profile:avatar profile:uid";
     res.redirect(`${config.fxa.oAuthServer}/authorization?client_id=${encodeURIComponent(config.fxa.clientId)}&redirect_uri=${encodeURIComponent(redirectUri)}&state=${encodeURIComponent(state)}&scope=${encodeURIComponent(profile)}`);
   }).catch(next);
 });
@@ -1125,7 +1125,7 @@ app.get('/api/fxa-oauth/confirm-login', function(req, res, next) {
     next(errors.missingParams());
     return;
   }
-  let { code, state } = req.query;
+  const { code, state } = req.query;
   checkState(req.deviceId, state).then(isValid => {
     if (!isValid) {
       throw errors.badState();
@@ -1138,7 +1138,7 @@ app.get('/api/fxa-oauth/confirm-login', function(req, res, next) {
           return saveProfileData(accountId, avatar, displayName, email);
         }).then(() => {
           if (config.gaId) {
-            let analytics = ua(config.gaId);
+            const analytics = ua(config.gaId);
             analytics.event({
               ec: "server",
               ea: "fxa-login",
@@ -1171,8 +1171,8 @@ app.use("/", require("./pages/homepage/server").app);
 let httpsCredentials;
 if (config.localhostSsl) {
   // To generate trusted keys on Mac, see: https://certsimple.com/blog/localhost-ssl-fix
-  let key = `${process.env.HOME}/.localhost-ssl/key.pem`;
-  let cert = `${process.env.HOME}/.localhost-ssl/cert.pem`;
+  const key = `${process.env.HOME}/.localhost-ssl/key.pem`;
+  const cert = `${process.env.HOME}/.localhost-ssl/cert.pem`;
   if (!(existsSync(key) && existsSync(cert))) {
     /* eslint-disable no-console */
     console.log("Error: to use localhost SSL/HTTPS you must create a key.pem and cert.pem file");
@@ -1212,7 +1212,7 @@ addRavenErrorHandler(app);
 
 app.use(function(err, req, res, next) {
   if (err.isAppError) {
-    let { statusCode, headers, payload } = err.output;
+    const { statusCode, headers, payload } = err.output;
     res.status(statusCode);
     if (headers) {
       res.header(headers);

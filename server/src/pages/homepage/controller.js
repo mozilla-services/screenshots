@@ -20,7 +20,7 @@ document.addEventListener("addon-present", () => {
       if (typeof Mozilla == "undefined") {
         // The UITour-lib.js library hasn't loaded yet
         let count = 10;
-        let interval = setInterval(() => {
+        const interval = setInterval(() => {
           if (typeof Mozilla == "undefined") {
             count--;
             if (count <= 0) {

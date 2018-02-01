@@ -18,9 +18,9 @@ function getPromise(locale) {
 function getPollingPromise(locale) {
   return new Promise((resolve, reject) => {
     let wait = 5000; // maybe make configurable?
-    let checkForMessages = () => {
+    const checkForMessages = () => {
       if (window && window.l10nMessages && window.l10nMessages[locale]) {
-        let messages = {};
+        const messages = {};
         messages[locale] = window.l10nMessages[locale];
         resolve(messages);
         return;

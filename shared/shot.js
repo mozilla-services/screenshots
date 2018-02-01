@@ -41,7 +41,7 @@ function assertUrl(url) {
     throw new Error("Empty value is not URL");
   }
   if (!isUrl(url)) {
-    let exc = new Error("Not a URL");
+    const exc = new Error("Not a URL");
     exc.scheme = url.split(":")[0];
     throw exc;
   }
@@ -54,7 +54,7 @@ function isSecureWebUri(url) {
 function assertOrigin(url) {
   assertUrl(url);
   if (url.search(/^https?:/i) != -1) {
-    let match = (/^https?:\/\/[^/:]{1,4000}\/?$/i).exec(url);
+    const match = (/^https?:\/\/[^/:]{1,4000}\/?$/i).exec(url);
     if (!match) {
       throw new Error("Bad origin, might include path");
     }
@@ -69,7 +69,7 @@ function originFromUrl(url) {
     // Non-HTTP URLs don't have an origin
     return null;
   }
-  let match = (/^https?:\/\/[^/:]{1,4000}/i).exec(url);
+  const match = (/^https?:\/\/[^/:]{1,4000}/i).exec(url);
   if (match) {
     return match[0];
   }
@@ -83,13 +83,13 @@ function checkObject(obj, required, optional) {
     throw new Error("Cannot check non-object: " + (typeof obj) + " that is " + JSON.stringify(obj));
   }
   required = required || [];
-  for (let attr of required) {
+  for (const attr of required) {
     if (!(attr in obj)) {
       return false;
     }
   }
   optional = optional || [];
-  for (let attr in obj) {
+  for (const attr in obj) {
     if (required.indexOf(attr) == -1 && optional.indexOf(attr) == -1) {
       return false;
     }
@@ -102,12 +102,12 @@ function checkObject(obj, required, optional) {
     only kept when they are truthy. */
 function jsonify(obj, required, optional) {
   required = required || [];
-  let result = {};
-  for (let attr of required) {
+  const result = {};
+  for (const attr of required) {
     result[attr] = obj[attr];
   }
   optional = optional || [];
-  for (let attr of optional) {
+  for (const attr of optional) {
     if (obj[attr]) {
       result[attr] = obj[attr];
     }
@@ -173,14 +173,14 @@ function deepEqual(a, b) {
   if (Array.isArray(b)) {
     return false;
   }
-  let seen = new Set();
-  for (let attr of Object.keys(a)) {
+  const seen = new Set();
+  for (const attr of Object.keys(a)) {
     if (!deepEqual(a[attr], b[attr])) {
       return false;
     }
     seen.add(attr);
   }
-  for (let attr of Object.keys(b)) {
+  for (const attr of Object.keys(b)) {
     if (!seen.has(attr)) {
       if (!deepEqual(a[attr], b[attr])) {
         return false;
@@ -241,15 +241,15 @@ class AbstractShot {
     this.abTests = attrs.abTests || null;
     this._clips = {};
     if (attrs.clips) {
-      for (let clipId in attrs.clips) {
-        let clip = attrs.clips[clipId];
+      for (const clipId in attrs.clips) {
+        const clip = attrs.clips[clipId];
         this._clips[clipId] = new this.Clip(this, clipId, clip);
       }
     }
 
-    let isProd = typeof process !== "undefined" && process.env.NODE_ENV === "production";
+    const isProd = typeof process !== "undefined" && process.env.NODE_ENV === "production";
 
-    for (let attr in attrs) {
+    for (const attr in attrs) {
       if (attr !== "clips" && attr !== "id" && this.REGULAR_ATTRS.indexOf(attr) === -1 && this.DEPRECATED_ATTRS.indexOf(attr) === -1) {
         if (isProd) {
           console.warn("Unexpected attribute: " + attr);
@@ -267,9 +267,9 @@ class AbstractShot {
   /** Update any and all attributes in the json object, with deep updating
       of `json.clips` */
   update(json) {
-    let ALL_ATTRS = ["clips"].concat(this.REGULAR_ATTRS);
+    const ALL_ATTRS = ["clips"].concat(this.REGULAR_ATTRS);
     assert(checkObject(json, [], ALL_ATTRS), "Bad attr to new Shot():", Object.keys(json));
-    for (let attr in json) {
+    for (const attr in json) {
       if (attr == "clips") {
         continue;
       }
@@ -287,7 +287,7 @@ class AbstractShot {
       }
     }
     if (json.clips) {
-      for (let clipId in json.clips) {
+      for (const clipId in json.clips) {
         if (!json.clips[clipId]) {
           this.delClip(clipId);
         } else if (!this.getClip(clipId)) {
@@ -302,8 +302,8 @@ class AbstractShot {
 
   /** Returns a JSON version of this shot */
   asJson() {
-    let result = {};
-    for (let attr of this.REGULAR_ATTRS) {
+    const result = {};
+    for (const attr of this.REGULAR_ATTRS) {
       let val = this[attr];
       if (val && val.asJson) {
         val = val.asJson();
@@ -311,7 +311,7 @@ class AbstractShot {
       result[attr] = val;
     }
     result.clips = {};
-    for (let attr in this._clips) {
+    for (const attr in this._clips) {
       result.clips[attr] = this._clips[attr].asJson();
     }
     return result;
@@ -319,15 +319,15 @@ class AbstractShot {
 
   /** A more minimal JSON representation for creating indexes of shots */
   asRecallJson() {
-    let result = {clips: {}};
-    for (let attr of this.RECALL_ATTRS) {
+    const result = {clips: {}};
+    for (const attr of this.RECALL_ATTRS) {
       let val = this[attr];
       if (val && val.asJson) {
         val = val.asJson();
       }
       result[attr] = val;
     }
-    for (let name of this.clipNames()) {
+    for (const name of this.clipNames()) {
       result.clips[name] = this.getClip(name).asJson();
     }
     return result;
@@ -370,7 +370,7 @@ class AbstractShot {
 
   get filename() {
     let filenameTitle = this.title;
-    let date = new Date(this.createdDate);
+    const date = new Date(this.createdDate);
     // eslint-disable-next-line no-control-regex
     filenameTitle = filenameTitle.replace(/[:\\<>/!@&?"*.|\x00-\x1F]/g, " ");
     filenameTitle = filenameTitle.replace(/\s{1,4000}/g, " ");
@@ -381,7 +381,7 @@ class AbstractShot {
       clipFilename = clipFilename.substring(0, clipFilename.length - excedingchars);
       clipFilename = clipFilename + '[...]';
     }
-    let clip = this.getClip(this.clipNames()[0]);
+    const clip = this.getClip(this.clipNames()[0]);
     let extension = ".png";
     if (clip && clip.image && clip.image.type) {
       if (clip.image.type == "jpeg") {
@@ -410,7 +410,7 @@ class AbstractShot {
   }
 
   get viewUrl() {
-    let url = this.backend + "/" + this.id;
+    const url = this.backend + "/" + this.id;
     return url;
   }
 
@@ -473,8 +473,8 @@ class AbstractShot {
 
   get title() {
     // FIXME: we shouldn't support both openGraph.title and ogTitle
-    let ogTitle = this.openGraph && this.openGraph.title;
-    let twitterTitle = this.twitterCard && this.twitterCard.title;
+    const ogTitle = this.openGraph && this.openGraph.title;
+    const twitterTitle = this.twitterCard && this.twitterCard.title;
     let title = this.userTitle || ogTitle || twitterTitle || this.docTitle || this.url;
     if (Array.isArray(title)) {
       title = title[0];
@@ -509,7 +509,7 @@ class AbstractShot {
   }
 
   clipNames() {
-    let names = Object.getOwnPropertyNames(this._clips);
+    const names = Object.getOwnPropertyNames(this._clips);
     names.sort(function(a, b) {
       return a.sortOrder < b.sortOrder ? 1 : 0;
     });
@@ -519,12 +519,12 @@ class AbstractShot {
     return this._clips[name];
   }
   addClip(val) {
-    let name = makeRandomId();
+    const name = makeRandomId();
     this.setClip(name, val);
     return name;
   }
   setClip(name, val) {
-    let clip = new this.Clip(this, name, val);
+    const clip = new this.Clip(this, name, val);
     this._clips[name] = clip;
   }
   delClip(name) {
@@ -538,13 +538,13 @@ class AbstractShot {
   }
   biggestClipSortOrder() {
     let biggest = 0;
-    for (let clipId in this._clips) {
+    for (const clipId in this._clips) {
       biggest = Math.max(biggest, this._clips[clipId].sortOrder);
     }
     return biggest;
   }
   updateClipUrl(clipId, clipUrl) {
-    let clip = this.getClip(clipId);
+    const clip = this.getClip(clipId);
     if ( clip && clip.image ) {
       clip.image.url = clipUrl;
     } else {
@@ -598,7 +598,7 @@ class AbstractShot {
     }
     assert(typeof val == "object", "abTests should be an object, not:", typeof val);
     assert(!Array.isArray(val), "abTests should not be an Array");
-    for (let name in val) {
+    for (const name in val) {
       assert(val[name] && typeof val[name] == "string", `abTests.${name} should be a string:`, typeof val[name]);
     }
     this._abTests = val;
@@ -679,7 +679,7 @@ class _Clip {
     if ('sortOrder' in json) {
       this.sortOrder = json.sortOrder;
     } else {
-      let biggestOrder = shot.biggestClipSortOrder();
+      const biggestOrder = shot.biggestClipSortOrder();
       this.sortOrder = biggestOrder + 100;
     }
     this.image = json.image;

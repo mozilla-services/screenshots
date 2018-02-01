@@ -34,8 +34,8 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
       }
     }
 
-    let localeScripts = [];
-    for (let locale of this.props.userLocales) {
+    const localeScripts = [];
+    for (const locale of this.props.userLocales) {
       localeScripts.push(<script key={`l10n-${locale}`} src={this.props.staticLink(`/static/locales/${locale}.js`)} />);
     }
 
@@ -92,11 +92,11 @@ exports.BodyTemplate.propTypes = {
 
 exports.Page = class Page {
   constructor(options) {
-    for (let name in options) {
+    for (const name in options) {
       if (!this.ATTRS.includes(name)) {
         throw new Error("Invalid attribute to Page: " + name);
       }
-      let value = options[name];
+      const value = options[name];
       this[name] = value;
     }
   }
@@ -113,9 +113,9 @@ exports.Page = class Page {
   }
 
   render(model) {
-    let renderBody = () => {
-      let body = this.BodyFactory(model);
-      let curTitle = document.title;
+    const renderBody = () => {
+      const body = this.BodyFactory(model);
+      const curTitle = document.title;
       if (model.title && model.title != curTitle) {
         document.title = model.title;
       }
@@ -124,19 +124,19 @@ exports.Page = class Page {
         document.getElementById("react-body-container"));
     };
 
-    let tryGetL10nMessages = (locales) => {
-      let successHandler = localeMessages => {
+    const tryGetL10nMessages = (locales) => {
+      const successHandler = localeMessages => {
         model.messages = Object.assign({}, ...localeMessages);
         renderBody();
       };
-      let failureHandler = failedLocale => {
+      const failureHandler = failedLocale => {
         if (locales.length === 1) {
           // everything failed at this point. what can we do here?
           renderBody();
           return;
         }
-        let remainingLocales = locales.slice();
-        let failedLocaleIndex = locales.indexOf(failedLocale);
+        const remainingLocales = locales.slice();
+        const failedLocaleIndex = locales.indexOf(failedLocale);
         remainingLocales.splice(failedLocaleIndex, 1);
         tryGetL10nMessages(remainingLocales);
       }

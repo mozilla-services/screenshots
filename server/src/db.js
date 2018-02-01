@@ -4,10 +4,10 @@ const pg = require("pg");
 const mozlog = require("./logging").mozlog("db");
 const logQueryLimit = config.db.logQueryLimit;
 
-let user = encodeURIComponent(config.db.user);
-let dbname = encodeURIComponent(config.db.dbname || config.db.user);
-let credentials = config.db.password ? `${user}:${encodeURIComponent(config.db.password)}` : user;
-let constr = `postgres://${credentials}@${config.db.host}/${dbname}`;
+const user = encodeURIComponent(config.db.user);
+const dbname = encodeURIComponent(config.db.dbname || config.db.user);
+const credentials = config.db.password ? `${user}:${encodeURIComponent(config.db.password)}` : user;
+const constr = `postgres://${credentials}@${config.db.host}/${dbname}`;
 
 const pool = new pg.Pool(Object.assign({connectionString: constr}, config.db.pool));
 
@@ -31,7 +31,7 @@ function getConnection() {
 }
 
 exports.queryWithClient = function(client, ...params) {
-  let timer = initTiming();
+  const timer = initTiming();
   return new Promise((resolve, reject) => {
     // Babel only supports spreads as the final element of a list; i.e.,
     // `[...params, value]` is invalid.
@@ -52,7 +52,7 @@ exports.getConnection = getConnection;
 exports.constr = constr;
 
 exports.select = function(sql, args) {
-  let timer = initTiming();
+  const timer = initTiming();
   return getConnection().then(function([client, done]) {
     return exports.queryWithClient(client, sql, args).then(({rows}) => {
       done();
@@ -66,7 +66,7 @@ exports.select = function(sql, args) {
 };
 
 exports.insert = function(sql, args) {
-  let timer = initTiming();
+  const timer = initTiming();
   return getConnection().then(function([client, done]) {
     return exports.queryWithClient(client, sql, args).then(() => {
       done();
@@ -84,7 +84,7 @@ exports.insert = function(sql, args) {
 };
 
 exports.update = function(sql, args) {
-  let timer = initTiming();
+  const timer = initTiming();
   return exports.exec(sql, args).then((result) => {
     timer();
     return result.rowCount;
@@ -126,7 +126,7 @@ exports.transaction = function(func) {
 exports.del = exports.update;
 
 exports.exec = function(sql, args) {
-  let timer = initTiming();
+  const timer = initTiming();
   return getConnection().then(function([client, done]) {
     return exports.queryWithClient(client, sql, args).then(result => {
       done();
@@ -140,7 +140,7 @@ exports.exec = function(sql, args) {
 };
 
 exports.markersForArgs = function(starting, numberOfArgs) {
-  let result = [];
+  const result = [];
   for (let i = starting; i < starting + numberOfArgs; i++) {
     result.push("$" + i);
   }
@@ -154,14 +154,14 @@ function initTiming() {
   if (!logQueryLimit) {
     return doNothing;
   }
-  let caller = getCallerPosition(2);
+  const caller = getCallerPosition(2);
   if (caller == "skip") {
     // This happens when getCallerPosition detects we shouldn't time this function call
     return doNothing;
   }
-  let start = Date.now();
+  const start = Date.now();
   return function() {
-    let time = Date.now() - start;
+    const time = Date.now() - start;
     if (time >= logQueryLimit) {
       mozlog.info("db-timing", {caller, time});
     }
@@ -174,8 +174,8 @@ const abortTiming = /\/server\/db.js:/;
 function getCallerPosition(stacklevel) {
   // Obviously the caller knows its position, so we really
   // want the caller of the caller of this function
-  let exc = new Error();
-  let lines = exc.stack.split("\n");
+  const exc = new Error();
+  const lines = exc.stack.split("\n");
   let index = stacklevel + 2;
   while (lines[index] && skipCaller.test(lines[index])) {
     if (abortTiming.test(lines[index])) {
@@ -186,7 +186,7 @@ function getCallerPosition(stacklevel) {
     }
     index++;
   }
-  let caller = lines[index];
+  const caller = lines[index];
   if (!caller) {
     return "unknown";
   }

@@ -4,14 +4,14 @@ const { notFound } = require("../../pages/not-found/server");
 const reactrender = require("../../reactrender");
 const mozlog = require("../../logging").mozlog("shot");
 
-let app = express();
+const app = express();
 
 exports.app = app;
 
 app.get("/:id/:domain", function(req, res) {
-  let shotId = `${req.params.id}/${req.params.domain}`;
+  const shotId = `${req.params.id}/${req.params.domain}`;
   Shot.get(req.backend, shotId).then((shot) => {
-    let noSuchShot = !shot;
+    const noSuchShot = !shot;
     const nonOwnerAndBlocked = shot && shot.blockType !== 'none' && req.deviceId != shot.ownerId;
     if (noSuchShot || nonOwnerAndBlocked || shot.deleted) {
       mozlog.info("shot-404", {shotId, ip: req.ip});

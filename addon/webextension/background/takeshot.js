@@ -3,14 +3,15 @@
 "use strict";
 
 this.takeshot = (function() {
-  let exports = {};
+  const exports = {};
   const Shot = shot.AbstractShot;
   const { sendEvent } = analytics;
 
   communication.register("takeShot", catcher.watchFunction((sender, options) => {
-    let { captureType, captureText, scroll, selectedPos, shotId, shot, imageBlob } = options;
-    shot = new Shot(main.getBackend(), shotId, shot);
+    const { captureType, captureText, scroll, selectedPos, shotId } = options;
+    const shot = new Shot(main.getBackend(), shotId, options.shot);
     shot.favicon = sender.tab.favIconUrl;
+    let imageBlob = options.imageBlob;
     let capturePromise = Promise.resolve();
     let openedTab;
     let thumbnailBlob;
@@ -34,7 +35,7 @@ this.takeshot = (function() {
     }
     let convertBlobPromise = Promise.resolve();
     if (buildSettings.uploadBinary && !imageBlob) {
-      let clipImage = shot.getClip(shot.clipNames()[0]).image;
+      const clipImage = shot.getClip(shot.clipNames()[0]).image;
       imageBlob = blobConverters.dataUrlToBlob(clipImage.url);
       clipImage.url = "";
     } else if (!buildSettings.uploadBinary && imageBlob) {
@@ -43,9 +44,9 @@ this.takeshot = (function() {
       });
       imageBlob = null;
     }
-    let shotAbTests = {};
-    let abTests = auth.getAbTests();
-    for (let testName of Object.keys(abTests)) {
+    const shotAbTests = {};
+    const abTests = auth.getAbTests();
+    for (const testName of Object.keys(abTests)) {
       if (abTests[testName].shotField) {
         shotAbTests[testName] = abTests[testName].value;
       }
@@ -57,7 +58,7 @@ this.takeshot = (function() {
       return convertBlobPromise;
     }).then(() => {
       if (buildSettings.uploadBinary) {
-        let blobToUrlPromise = blobConverters.blobToDataUrl(imageBlob);
+        const blobToUrlPromise = blobConverters.blobToDataUrl(imageBlob);
         return thumbnailGenerator.createThumbnailBlobFromPromise(shot, blobToUrlPromise);
       }
       return thumbnailGenerator.createThumbnailUrl(shot);
@@ -112,16 +113,16 @@ this.takeshot = (function() {
       null,
       {format: "png"}
     ).then((dataUrl) => {
-      let image = new Image();
+      const image = new Image();
       image.src = dataUrl;
       return new Promise((resolve, reject) => {
         image.onload = catcher.watchFunction(() => {
-          let xScale = image.width / scroll.innerWidth;
-          let yScale = image.height / scroll.innerHeight;
-          let canvas = document.createElement("canvas");
+          const xScale = image.width / scroll.innerWidth;
+          const yScale = image.height / scroll.innerHeight;
+          const canvas = document.createElement("canvas");
           canvas.height = pos.height * yScale;
           canvas.width = pos.width * xScale;
-          let context = canvas.getContext("2d");
+          const context = canvas.getContext("2d");
           context.drawImage(
             image,
             pos.left * xScale, pos.top * yScale,
@@ -129,7 +130,7 @@ this.takeshot = (function() {
             0, 0,
             pos.width * xScale, pos.height * yScale
           );
-          let result = canvas.toDataURL();
+          const result = canvas.toDataURL();
           resolve(result);
         });
       });
@@ -151,9 +152,9 @@ this.takeshot = (function() {
       Returns {body, "content-type"}
       */
   function createMultipart(fields, files) {
-    let boundary = "---------------------------ScreenshotBoundary" + Date.now();
+    const boundary = "---------------------------ScreenshotBoundary" + Date.now();
     let body = [];
-    for (let name in fields) {
+    for (const name in fields) {
       body.push("--" + boundary);
       body.push(`Content-Disposition: form-data; name="${name}"`);
       body.push("");
@@ -161,10 +162,10 @@ this.takeshot = (function() {
     }
     body.push("");
     body = body.join("\r\n");
-    let enc = new TextEncoder("utf-8");
+    const enc = new TextEncoder("utf-8");
     body = enc.encode(body).buffer;
 
-    let blobToArrayPromises = files.map(f => {
+    const blobToArrayPromises = files.map(f => {
       return blobConverters.blobToArray(f.blob);
     });
 
@@ -197,7 +198,7 @@ this.takeshot = (function() {
     return auth.authHeaders().then((_headers) => {
       headers = _headers;
       if (blob) {
-        let files = [ {fieldName: "blob", filename: "screenshot.png", blob} ];
+        const files = [ {fieldName: "blob", filename: "screenshot.png", blob} ];
         if (thumbnail) {
           files.push({fieldName: "thumbnail", filename: "thumbnail.png", blob: thumbnail});
         }
@@ -223,7 +224,7 @@ this.takeshot = (function() {
     }).then((resp) => {
       if (!resp.ok) {
         sendEvent("upload-failed", `status-${resp.status}`);
-        let exc = new Error(`Response failed with status ${resp.status}`);
+        const exc = new Error(`Response failed with status ${resp.status}`);
         exc.popupMessage = "REQUEST_ERROR";
         throw exc;
       } else {

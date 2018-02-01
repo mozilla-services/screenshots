@@ -21,7 +21,7 @@ function makeOptionsFromRequest(req, options) {
   if (req.headers.referer) {
     referrer = req.headers.referer;
     if (referrer.startsWith(req.backend)) {
-      let parsed = urlParse(referrer);
+      const parsed = urlParse(referrer);
       let pathname = parsed.pathname;
       if (isShotLikePath(pathname)) {
         pathname = "/a-shot/redacted";

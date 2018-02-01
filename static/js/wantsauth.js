@@ -16,10 +16,10 @@
     }
 */
 window.wantsauth = (function() {
-  let exports = {};
+  const exports = {};
 
   let savedAuthData = null;
-  let authDataCallbacks = [];
+  const authDataCallbacks = [];
 
   // Note that this module is only loosely bound to any controller, but there
   // is special logic for view pages where ownership is interesting in addition to
@@ -33,7 +33,7 @@ window.wantsauth = (function() {
 
   // These events are used to communicate with sitehelper.js:
   document.addEventListener("login-successful", (event) => {
-    let {deviceId, isOwner, backupCookieRequest} = JSON.parse(event.detail);
+    const {deviceId, isOwner, backupCookieRequest} = JSON.parse(event.detail);
     savedAuthData = {
       deviceId,
       isOwner,
@@ -56,7 +56,7 @@ window.wantsauth = (function() {
         Raven.captureException(e);
       }
     }).then(() => {
-      for (let callback of authDataCallbacks) {
+      for (const callback of authDataCallbacks) {
         callback(savedAuthData);
       }
     }).catch((e) => {

@@ -23,7 +23,7 @@ root: true
 rules:
   no-console: [error, {allow: [debug, error, info, trace, warn]}]
   no-var: error
-  prefer-const: off # TODO: change to "error"
+  prefer-const: error
   quotes: [off, double] # TODO: change to "error"
 
   promise/always-return: off

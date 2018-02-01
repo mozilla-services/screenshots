@@ -77,7 +77,7 @@ callback();
 
 function getDriver() {
   const profile = new firefox.Profile();
-  let channel = process.env.FIREFOX_CHANNEL || "NIGHTLY";
+  const channel = process.env.FIREFOX_CHANNEL || "NIGHTLY";
   if (!(channel in firefox.Channel)) {
     throw new Error(`Unknown channel: "${channel}"`);
   }
@@ -93,7 +93,7 @@ function getDriver() {
 
   const driver = builder.build();
 
-  let fileLocation = path.join(process.cwd(), "build", "screenshots-bootstrap.zip");
+  const fileLocation = path.join(process.cwd(), "build", "screenshots-bootstrap.zip");
   return addAddonToDriver(driver, fileLocation);
 }
 
@@ -281,7 +281,7 @@ describe("Test Screenshots", function() {
       });
     }).then((shotUrl) => {
       assert(shotUrl.startsWith(backend), `Got url ${shotUrl} that doesn't start with ${backend}`);
-      let restUrl = shotUrl.substr(backend.length);
+      const restUrl = shotUrl.substr(backend.length);
       if (!/^\/[^/]+\/localhost$/.test(restUrl)) {
         throw new Error(`Unexpected URL: ${shotUrl}`);
       }

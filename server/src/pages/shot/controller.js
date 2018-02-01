@@ -25,7 +25,7 @@ function shouldShowSurveyLink(model) {
   if (model.userLocales[0].startsWith("en")) {
     foundEnglish = true;
   }
-  for (let locale of navigator.languages) {
+  for (const locale of navigator.languages) {
     if (locale.startsWith("en")) {
       foundEnglish = true;
     }
@@ -33,7 +33,7 @@ function shouldShowSurveyLink(model) {
   if (!foundEnglish) {
     return false;
   }
-  let hasSeen = localStorage.hasSeenSurveyLink;
+  const hasSeen = localStorage.hasSeenSurveyLink;
   if (!hasSeen) {
     localStorage.hasSeenSurveyLink = "1";
   }
@@ -46,7 +46,7 @@ exports.closeSurveyLink = function() {
 };
 
 exports.launch = function(data) {
-  let firstSet = !model;
+  const firstSet = !model;
   model = data;
   if (window.wantsauth) {
     if (window.wantsauth.getAuthData()) {
@@ -68,10 +68,10 @@ exports.launch = function(data) {
   model.shot.deleted = model.deleted;
   model.controller = exports;
   if (model.shot.abTests) {
-    for (let testName in model.shot.abTests) {
-      let testValue = model.shot.abTests[testName];
+    for (const testName in model.shot.abTests) {
+      const testValue = model.shot.abTests[testName];
       if (testValue) {
-        let shotFieldName = shotGaFieldForValue(testName, testValue);
+        const shotFieldName = shotGaFieldForValue(testName, testValue);
         if (shotFieldName && window.abTests) {
           window.abTests[testName + "_shot"] = {
             gaField: shotFieldName,
@@ -92,7 +92,7 @@ exports.launch = function(data) {
     throw e;
   }
   // FIXME: copied from frame.js
-  let isExpired = model.expireTime !== null && Date.now() > model.expireTime;
+  const isExpired = model.expireTime !== null && Date.now() > model.expireTime;
   if (model.isOwner) {
     if (isExpired) {
       sendEvent("view-expired", "owner");
@@ -111,14 +111,14 @@ exports.launch = function(data) {
 };
 
 exports.changeShotExpiration = function(shot, expiration) {
-  let wasExpired = model.expireTime !== null && model.expireTime < Date.now();
-  let url = model.backend + "/api/set-expiration";
-  let req = new XMLHttpRequest();
+  const wasExpired = model.expireTime !== null && model.expireTime < Date.now();
+  const url = model.backend + "/api/set-expiration";
+  const req = new XMLHttpRequest();
   req.open("POST", url);
   req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
   req.onload = function() {
     if (req.status >= 300) {
-      let errorMessage = document.getElementById("shotPageAlertErrorUpdatingExpirationTime").textContent;
+      const errorMessage = document.getElementById("shotPageAlertErrorUpdatingExpirationTime").textContent;
       window.alert(errorMessage);
       window.Raven.captureException(new Error(`Error calling /api/set-expiration: ${req.status} ${req.statusText}`));
     } else {
@@ -139,14 +139,14 @@ exports.changeShotExpiration = function(shot, expiration) {
 };
 
 exports.deleteShot = function(shot) {
-  let url = model.backend + "/api/delete-shot";
-  let req = new XMLHttpRequest();
+  const url = model.backend + "/api/delete-shot";
+  const req = new XMLHttpRequest();
   req.open("POST", url);
   req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
   req.onload = function() {
     if (req.status >= 300) {
       // FIXME: a lame way to do an error message
-      let errorMessage = document.getElementById("shotPageAlertErrorDeletingShot").textContent;
+      const errorMessage = document.getElementById("shotPageAlertErrorDeletingShot").textContent;
       window.alert(errorMessage);
       window.Raven.captureException(new Error(`Error calling /api/delete-shot: ${req.status} ${req.statusText}`));
     } else {
@@ -157,8 +157,8 @@ exports.deleteShot = function(shot) {
 };
 
 exports.saveEdit = function(shot, shotUrl, dimensions) {
-  let url = model.backend + "/api/save-edit";
-  let payload = {
+  const url = model.backend + "/api/save-edit";
+  const payload = {
     shotId: shot.id,
     _csrf: model.csrfToken,
     url: shotUrl,
@@ -166,8 +166,8 @@ exports.saveEdit = function(shot, shotUrl, dimensions) {
     y: dimensions.y
   };
 
-  let postWith = body => {
-    let req = new Request(url, {
+  const postWith = body => {
+    const req = new Request(url, {
       method: 'POST',
       credentials: 'include',
       headers: new Headers({
@@ -177,21 +177,21 @@ exports.saveEdit = function(shot, shotUrl, dimensions) {
     });
     return fetch(req).then((resp) => {
       if (!resp.ok) {
-        let errorMessage = "Error saving edited shot";
+        const errorMessage = "Error saving edited shot";
         window.alert(errorMessage);
         window.Raven.captureException(new Error(`Error calling /api/save-edit: ${req.status} ${req.statusText}`));
       } else {
         location.reload();
       }
     }).catch((error) => {
-      let errorMessage = "Connection error";
+      const errorMessage = "Connection error";
       window.alert(errorMessage);
       window.Raven.captureException(error);
       throw error;
     });
   }
 
-  let image = shot.getClip(shot.clipNames()[0]).image;
+  const image = shot.getClip(shot.clipNames()[0]).image;
 
   image.url = shotUrl;
   image.dimensions.x = dimensions.x;
@@ -207,9 +207,9 @@ exports.saveEdit = function(shot, shotUrl, dimensions) {
 
 function refreshHash() {
   if (location.hash === "#fullpage") {
-    let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
-    let toolbarHeight = document.getElementById("toolbar").clientHeight;
-    let frameTop = frameOffset - (toolbarHeight * 2);
+    const frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
+    const toolbarHeight = document.getElementById("toolbar").clientHeight;
+    const frameTop = frameOffset - (toolbarHeight * 2);
     window.scroll(0, frameTop);
     return;
   }
@@ -233,13 +233,13 @@ function refreshHash() {
 }
 
 function sendShowElement(clipId) {
-  let frame = document.getElementById("frame");
+  const frame = document.getElementById("frame");
   if (!frame) {
     return;
   }
   let postMessage;
   if (clipId) {
-    let clip = model.shot.getClip(clipId);
+    const clip = model.shot.getClip(clipId);
     if (!clip) {
       throw new Error("Could not find clip with id " + clipId);
     }
@@ -264,11 +264,11 @@ function sendShowElement(clipId) {
 
 exports.setTitle = function(title) {
   title = title || null;
-  let url = model.backend + "/api/set-title/" + model.shot.id;
-  let req = new XMLHttpRequest();
+  const url = model.backend + "/api/set-title/" + model.shot.id;
+  const req = new XMLHttpRequest();
   req.onload = function() {
     if (req.status >= 300) {
-      let errorMessage = document.getElementById("shotPageAlertErrorUpdatingTitle").textContent;
+      const errorMessage = document.getElementById("shotPageAlertErrorUpdatingTitle").textContent;
       window.alert(errorMessage);
       window.Raven.captureException(new Error(`Error calling /api/set-title: ${req.status} ${req.statusText}`));
       return;

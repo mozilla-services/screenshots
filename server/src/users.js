@@ -7,14 +7,14 @@ const mozlog = require("./logging").mozlog("users");
 const abTests = require("./ab-tests");
 
 function hashMatches(hash, secret) {
-  let parts = hash.split(/:/g);
+  const parts = hash.split(/:/g);
   if (parts[0] !== "shaHmac") {
     throw new Error("Unknown type of hash");
   }
   if (parts.length != 3) {
     throw new Error("Bad hash format, should be type:nonce:data");
   }
-  let expected = createHash(secret, parts[1]);
+  const expected = createHash(secret, parts[1]);
   return expected == hash;
 }
 
@@ -25,9 +25,9 @@ function createHash(secret, nonce) {
   if (nonce.search(/^[0-9a-zA-Z]+$/) == -1) {
     throw new Error("Bad nonce");
   }
-  let hmac = crypto.createHmac("sha256", nonce);
+  const hmac = crypto.createHmac("sha256", nonce);
   hmac.update(secret);
-  let digest = hmac.digest("hex");
+  const digest = hmac.digest("hex");
   return `shaHmac:${nonce}:${digest}`;
 }
 
@@ -37,14 +37,14 @@ function createNonce() {
 
 /** Parses the FORCE_AB_TESTS config */
 function getForceAbTests() {
-  let val = config.forceAbTests || "";
+  const val = config.forceAbTests || "";
   if (!val) {
     return null;
   }
-  let parts = val.split(/\s/g);
-  let result = {};
-  for (let part of parts) {
-    let equals = part.split("=");
+  const parts = val.split(/\s/g);
+  const result = {};
+  for (const part of parts) {
+    const equals = part.split("=");
     result[equals[0]] = equals[1];
   }
   return result;
@@ -100,13 +100,13 @@ exports.registerLogin = function(deviceId, data, canUpdate) {
   if (!(data && data.secret)) {
     throw new Error("No data or data.secret given");
   }
-  let secretHashed = createHash(data.secret);
+  const secretHashed = createHash(data.secret);
   return db.insert(
     `INSERT INTO devices (id, secret_hashed)
      VALUES ($1, $2)`,
     [deviceId, secretHashed || null]
   ).then((inserted) => {
-    let userAbTests = abTests.updateAbTests({}, getForceAbTests());
+    const userAbTests = abTests.updateAbTests({}, getForceAbTests());
     if (inserted) {
       return userAbTests;
     }
@@ -149,7 +149,7 @@ exports.checkState = function(deviceId, state) {
 };
 
 exports.tradeCode = function(code) {
-  let oAuthURI = `${config.fxa.oAuthServer}/token`;
+  const oAuthURI = `${config.fxa.oAuthServer}/token`;
   return request('POST', oAuthURI, {
     payload: JSON.stringify({
       code,
@@ -179,7 +179,7 @@ exports.disconnectDevice = function(deviceId) {
 };
 
 exports.fetchProfileData = function(accessToken) {
-  let userInfoEndpoint = `${config.fxa.profileServer}/profile`;
+  const userInfoEndpoint = `${config.fxa.profileServer}/profile`;
   return request('GET', userInfoEndpoint, {
     headers: {
       authorization: `Bearer ${accessToken}`
@@ -203,7 +203,7 @@ exports.saveProfileData = function(accountId, avatarUrl, nickname, email) {
 }
 
 exports.getAccountId = function(accessToken) {
-  let profileURI = `${config.fxa.profileServer}/uid`;
+  const profileURI = `${config.fxa.profileServer}/uid`;
   return request('GET', profileURI, {
     headers: {
       authorization: `Bearer ${accessToken}`

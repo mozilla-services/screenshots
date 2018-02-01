@@ -3,19 +3,19 @@ const { getGitRevision } = require("../../linker");
 const MobileDetect = require('mobile-detect');
 
 exports.createModel = function(req) {
-  let buildTime = require("../../build-time").string;
-  let isMobile = !!(new MobileDetect(req.headers['user-agent'])).mobile();
+  const buildTime = require("../../build-time").string;
+  const isMobile = !!(new MobileDetect(req.headers['user-agent'])).mobile();
   let downloadUrl = null;
-  let clip = req.shot.getClip(req.shot.clipNames()[0]);
+  const clip = req.shot.getClip(req.shot.clipNames()[0]);
   if (clip) {
     downloadUrl = createDownloadUrl(clip.image.url, req.shot.filename);
   }
   if (req.shot.favicon) {
     req.shot.favicon = createProxyUrl(req, req.shot.favicon);
   }
-  let title = req.getText("shotPageTitle", {originalTitle: req.shot.title});
-  let enableAnnotations = req.config.enableAnnotations;
-  let serverPayload = {
+  const title = req.getText("shotPageTitle", {originalTitle: req.shot.title});
+  const enableAnnotations = req.config.enableAnnotations;
+  const serverPayload = {
     title,
     staticLink: req.staticLink,
     backend: req.backend,
@@ -44,7 +44,7 @@ exports.createModel = function(req) {
     isMobile,
     enableAnnotations
   };
-  let clientPayload = {
+  const clientPayload = {
     title,
     gitRevision: getGitRevision(),
     backend: req.backend,

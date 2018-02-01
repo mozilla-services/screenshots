@@ -14,7 +14,7 @@ function createCacheSetter(maxAge, flags) {
       let vals = [];
       options = options || {};
 
-      let pub = options.private ? "private" : "public";
+      const pub = options.private ? "private" : "public";
       vals.push(pub);
       vals.push(`max-age=${maxAge}`)
 

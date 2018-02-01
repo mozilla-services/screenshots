@@ -1,5 +1,5 @@
 this.blobConverters = (function() {
-  let exports = {};
+  const exports = {};
 
   exports.dataUrlToBlob = function(url) {
     const binary = atob(url.split(',', 2)[1]);
@@ -21,7 +21,7 @@ this.blobConverters = (function() {
 
   exports.blobToArray = function(blob) {
     return new Promise((resolve, reject) => {
-      let reader = new FileReader();
+      const reader = new FileReader();
       reader.addEventListener("loadend", function() {
         resolve(reader.result);
       });
@@ -31,7 +31,7 @@ this.blobConverters = (function() {
 
   exports.blobToDataUrl = function(blob) {
     return new Promise((resolve, reject) => {
-      let reader = new FileReader();
+      const reader = new FileReader();
       reader.addEventListener("loadend", function() {
         resolve(reader.result);
       });

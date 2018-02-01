@@ -17,9 +17,9 @@ class Clip extends React.Component {
 
   componentDidMount() {
     // TODO: how can we resize nicely if JS is disabled? maybe CSS?
-    let image = this.clipImage;
-    let onResize = () => {
-      let windowHeight = window.innerHeight;
+    const image = this.clipImage;
+    const onResize = () => {
+      const windowHeight = window.innerHeight;
       let paddingTop = Math.floor((windowHeight - image.height - 35) / 2);
       if (paddingTop < 66) {
         paddingTop = 66;
@@ -33,7 +33,7 @@ class Clip extends React.Component {
   }
 
   render() {
-    let clip = this.props.clip;
+    const clip = this.props.clip;
     if (!clip.image) {
       console.warn("Somehow there's a shot without an image");
       return null;
@@ -41,7 +41,7 @@ class Clip extends React.Component {
     if (!isValidClipImageUrl(clip.image.url)) {
       return null;
     }
-    let node = <img id="clipImage" style={{height: "auto", width: Math.floor(clip.image.dimensions.x) + "px", maxWidth: "100%" }} ref={clipImage => this.clipImage = clipImage} src={ clip.image.url } alt={ clip.image.text } />;
+    const node = <img id="clipImage" style={{height: "auto", width: Math.floor(clip.image.dimensions.x) + "px", maxWidth: "100%" }} ref={clipImage => this.clipImage = clipImage} src={ clip.image.url } alt={ clip.image.text } />;
     return <div ref={clipContainer => this.clipContainer = clipContainer} className="clip-container">
       { this.copyTextContextMenu() }
       <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) } contextMenu="clip-image-context">
@@ -70,8 +70,8 @@ class Clip extends React.Component {
 
   copyImageText() {
     sendEvent("copy-image-text", "context-menu");
-    let text = this.props.clip.image.text;
-    let el = document.createElement("textarea");
+    const text = this.props.clip.image.text;
+    const el = document.createElement("textarea");
     el.value = text;
     document.body.appendChild(el);
     el.select();
@@ -86,7 +86,7 @@ Clip.propTypes = {
 
 class Head extends React.Component {
   render() {
-    let expired = this.props.expireTime !== null && Date.now() > this.props.expireTime;
+    const expired = this.props.expireTime !== null && Date.now() > this.props.expireTime;
     if (expired) {
       return (
         <reactruntime.HeadTemplate {...this.props}>
@@ -116,24 +116,24 @@ class Head extends React.Component {
     if (!this.props.shot) {
       return null;
     }
-    let title = (this.props.shot.openGraph && this.props.shot.openGraph.title) ||
+    const title = (this.props.shot.openGraph && this.props.shot.openGraph.title) ||
       (this.props.shot.twitterCard && this.props.shot.twitterCard.title) ||
       this.props.shot.title;
-    let og = [
+    const og = [
       <meta property="og:type" content="website" key="ogtype" />,
       <meta property="og:title" content={title} key="ogtitle" />
     ];
-    let twitter = [
+    const twitter = [
       <meta name="twitter:card" content="summary_large_image" key="twittercard" />,
       <meta name="twitter:title" content={title} key="twitterTitle" />
     ];
 
-    for (let clipId of this.props.shot.clipNames()) {
-      let clip = this.props.shot.getClip(clipId);
+    for (const clipId of this.props.shot.clipNames()) {
+      const clip = this.props.shot.getClip(clipId);
       if (!clip.image) {
         continue;
       }
-      let text = `From ${this.props.shot.urlDisplay}`;
+      const text = `From ${this.props.shot.urlDisplay}`;
       og.push(<meta key={ `ogimage${clipId}` } property="og:image" content={this.makeEmbeddedImageUrl(clip.image.url, "og")} />);
       og.push(<meta key={ `ogdescription${clipId}` } property="og:description" content={text} />);
       twitter.push(<meta key={ `twitterimage${clipId}` } name="twitter:image" content={this.makeEmbeddedImageUrl(clip.image.url, "twitter")} />);
@@ -215,9 +215,9 @@ class Body extends React.Component {
   }
 
   renderEditor() {
-    let shot = this.props.shot;
-    let clipNames = shot.clipNames();
-    let clip = shot.getClip(clipNames[0]);
+    const shot = this.props.shot;
+    const clipNames = shot.clipNames();
+    const clip = shot.getClip(clipNames[0]);
     return <reactruntime.BodyTemplate {...this.props}>
         <Editor clip={clip} pngToJpegCutoff={this.props.pngToJpegCutoff} onCancelEdit={this.onCancelEdit.bind(this)} onClickSave={this.onClickSave.bind(this)}></Editor>
     </reactruntime.BodyTemplate>;
@@ -270,7 +270,7 @@ class Body extends React.Component {
     if (typeof expireTime != "number") {
       expireTime = expireTime.getTime();
     }
-    let deleteTime = new Date(expireTime + this.props.retentionTime);
+    const deleteTime = new Date(expireTime + this.props.retentionTime);
     let restoreWidget;
     const expirationTimeDiff = <TimeDiff date={deleteTime} />;
     const restoreDate = new Date(Date.now() + this.props.defaultExpiration).toLocaleString();
@@ -309,14 +309,14 @@ class Body extends React.Component {
   }
 
   renderBody() {
-    let shot = this.props.shot;
-    let shotId = this.props.shot.id;
+    const shot = this.props.shot;
+    const shotId = this.props.shot.id;
 
-    let clips = [];
-    let clipNames = shot.clipNames();
+    const clips = [];
+    const clipNames = shot.clipNames();
     if (clipNames.length && !this.state.hidden) {
-      let clipId = clipNames[0];
-      let clip = shot.getClip(clipId);
+      const clipId = clipNames[0];
+      const clip = shot.getClip(clipId);
 
       clips.push(<Clip
         staticLink={this.props.staticLink}
@@ -325,16 +325,16 @@ class Body extends React.Component {
         shotId={ shotId } />);
     }
 
-    let errorMessages = [
+    const errorMessages = [
       <Localized id="shotPageAlertErrorUpdatingExpirationTime" key="error-1"><div id="shotPageAlertErrorUpdatingExpirationTime" className="clips-warning" hidden></div></Localized>,
       <Localized id="shotPageAlertErrorDeletingShot" key="error-2"><div id="shotPageAlertErrorDeletingShot" className="clips-warning" hidden></div></Localized>,
       <Localized id="shotPageAlertErrorUpdatingTitle" key="error-3"><div id="shotPageAlertErrorUpdatingTitle" className="clips-warning" hidden></div></Localized>,
       <Localized id="shotPageConfirmDelete" key="error-4"><div id="shotPageConfirmDelete" hidden></div></Localized>
     ];
 
-    let linkTextShort = shot.urlDisplay;
+    const linkTextShort = shot.urlDisplay;
 
-    let timeDiff = <TimeDiff date={shot.createdDate} />;
+    const timeDiff = <TimeDiff date={shot.createdDate} />;
     let expiresDiff = null;
     if (this.props.isOwner) {
       expiresDiff = <span className="expire-widget">
@@ -377,7 +377,7 @@ class Body extends React.Component {
     let clip;
     let clipUrl = null;
     if (clipNames.length) {
-      let clipId = clipNames[0];
+      const clipId = clipNames[0];
       clip = this.props.shot.getClip(clipId);
       clipUrl = clip.image.url;
       if (!isValidClipImageUrl(clipUrl)) {
@@ -574,9 +574,9 @@ class ExpireWidget extends React.Component {
   }
 
   renderChanging() {
-    let minute = 60 * 1000;
-    let hour = minute * 60;
-    let day = hour * 24;
+    const minute = 60 * 1000;
+    const hour = minute * 60;
+    const day = hour * 24;
     return (
       <span className="keep-for-form">
         <Localized id="shotPageKeepFor"><span>How long should this shot be retained?</span></Localized>
@@ -668,7 +668,7 @@ class EditableTitle extends React.Component {
       return this.renderEditing();
     }
     let className = "shot-title";
-    let handlers = {};
+    const handlers = {};
     if (this.props.isOwner) {
       className += " editable";
       handlers.onClick = this.onClick.bind(this);
@@ -697,7 +697,7 @@ class EditableTitle extends React.Component {
   }
 
   onExit() {
-    let val = this.textInput.value;
+    const val = this.textInput.value;
     controller.setTitle(val);
     this.setState({isEditing: false, isSaving: val});
   }

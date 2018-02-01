@@ -9,11 +9,11 @@ const fs = require('fs');
 const destDir = process.argv[2];
 const ftlPaths = process.argv.slice(3);
 
-for (let ftl of ftlPaths) {
-  let locale = ftl.split('/')[1];
-  let destFilePath = `${destDir}/${locale}.js`;
-  let ftlFileContent = fs.readFileSync(ftl, 'utf8');
-  let jsFileContent = `
+for (const ftl of ftlPaths) {
+  const locale = ftl.split('/')[1];
+  const destFilePath = `${destDir}/${locale}.js`;
+  const ftlFileContent = fs.readFileSync(ftl, 'utf8');
+  const jsFileContent = `
     (function(context) {
       var messages=${JSON.stringify(ftlFileContent)};
       if (typeof exports === 'object' && context === exports) {

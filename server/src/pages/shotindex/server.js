@@ -3,7 +3,7 @@ const reactrender = require("../../reactrender");
 const { Shot } = require("../../servershot");
 const mozlog = require("../../logging").mozlog("shotindex");
 
-let app = express();
+const app = express();
 
 exports.app = app;
 
@@ -12,8 +12,8 @@ app.get("/", function(req, res) {
     _render();
     return;
   }
-  let pageNumber = req.query.p || 1;
-  let query = req.query.q || null;
+  const pageNumber = req.query.p || 1;
+  const query = req.query.q || null;
   let getShotsPage = Promise.resolve(Shot.emptyShotsPage);
   if (req.deviceId && req.query.withdata) {
     getShotsPage = Shot.getShotsForDevice(req.backend, req.deviceId, req.accountId, query, pageNumber);

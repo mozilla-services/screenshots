@@ -3,7 +3,7 @@ const reactrender = require("../../reactrender");
 const { Shot } = require("../../servershot");
 const mozlog = require("../../logging").mozlog("leave-screenshots");
 
-let app = express();
+const app = express();
 
 exports.app = app;
 

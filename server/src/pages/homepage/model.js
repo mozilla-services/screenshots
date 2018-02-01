@@ -1,7 +1,7 @@
 exports.createModel = function(req) {
-  let isMobile = exports.isMobile(req.headers['user-agent']);
-  let firefoxVersion = exports.getFirefoxVersion(req.headers['user-agent']);
-  let model = {
+  const isMobile = exports.isMobile(req.headers['user-agent']);
+  const firefoxVersion = exports.getFirefoxVersion(req.headers['user-agent']);
+  const model = {
     title: "Firefox Screenshots",
     showMyShots: !!req.deviceId,
     isFirefox: !!firefoxVersion && !isMobile,
@@ -15,7 +15,7 @@ exports.createModel = function(req) {
 exports.getFirefoxVersion = (userAgent) => {
   // https://mdn.io/UserAgent/Firefox suggests filtering on "rv:" and "Gecko".
   // Return null or the major part of the Firefox version (for 57+ check, #3444).
-  let results = /rv:.*Gecko.*Firefox\/([0-9]+)/.exec(userAgent);
+  const results = /rv:.*Gecko.*Firefox\/([0-9]+)/.exec(userAgent);
   return results && results[1];
 };
 

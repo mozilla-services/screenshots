@@ -9,7 +9,7 @@ https://raw.githubusercontent.com/mozilla/gecko-dev/f2a1911ad310bf8651f342d719e4
 /* eslint valid-jsdoc: ["error", { "requireReturn": false }] */
 
 // create namespace
-let Mozilla = Mozilla || {};
+const Mozilla = Mozilla || {};
 
 (function($) {
   "use strict";
@@ -41,7 +41,7 @@ let Mozilla = Mozilla || {};
   }
 
   function _sendEvent(action, data) {
-    let event = new CustomEvent("mozUITour", {
+    const event = new CustomEvent("mozUITour", {
       bubbles: true,
       detail: {
         action,
@@ -57,7 +57,7 @@ let Mozilla = Mozilla || {};
   }
 
   function _waitForCallback(callback) {
-    let id = _generateCallbackID();
+    const id = _generateCallbackID();
 
     function listener(event) {
       if (typeof event.detail != "object")
@@ -142,7 +142,7 @@ let Mozilla = Mozilla || {};
    * @since 35
    */
   Mozilla.UITour.ping = function(callback) {
-    let data = {};
+    const data = {};
     if (callback) {
       data.callbackID = _waitForCallback(callback);
     }
@@ -270,7 +270,7 @@ let Mozilla = Mozilla || {};
    * Mozilla.UITour.showInfo('appMenu', 'my title', 'my text', icon, buttons, options);
    */
   Mozilla.UITour.showInfo = function(target, title, text, icon, buttons, options) {
-    let buttonData = [];
+    const buttonData = [];
     if (Array.isArray(buttons)) {
       for (let i = 0; i < buttons.length; i++) {
         buttonData.push({
@@ -374,7 +374,7 @@ let Mozilla = Mozilla || {};
     }
 
     function nextTheme() {
-      let theme = themes.shift();
+      const theme = themes.shift();
       themes.push(theme);
 
       _sendEvent("previewTheme", {

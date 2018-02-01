@@ -1,7 +1,7 @@
 const express = require("express");
 const reactrender = require("../../reactrender");
 
-let app = express();
+const app = express();
 
 exports.app = app;
 

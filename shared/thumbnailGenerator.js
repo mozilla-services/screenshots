@@ -22,21 +22,21 @@ const maxThumbnailHeight = 280;
  */
 function getThumbnailDimensions(imageWidth, imageHeight) {
   const displayAspectRatio = 3 / 4;
-  let imageAspectRatio = imageWidth / imageHeight;
+  const imageAspectRatio = imageWidth / imageHeight;
   let thumbnailImageWidth, thumbnailImageHeight;
   let scaledX, scaledY;
 
   if (imageAspectRatio > displayAspectRatio) {
     // "Landscape" mode
     // Scale on y, crop on x
-    let yScaleFactor = (imageHeight > maxThumbnailHeight) ? (maxThumbnailHeight / imageHeight) : 1.0;
+    const yScaleFactor = (imageHeight > maxThumbnailHeight) ? (maxThumbnailHeight / imageHeight) : 1.0;
     thumbnailImageHeight = scaledY = Math.round(imageHeight * yScaleFactor);
     scaledX = Math.round(imageWidth * yScaleFactor);
     thumbnailImageWidth = Math.min(scaledX, maxThumbnailWidth);
   } else {
     // "Portrait" mode
     // Scale on x, crop on y
-    let xScaleFactor = (imageWidth > maxThumbnailWidth) ? (maxThumbnailWidth / imageWidth) : 1.0;
+    const xScaleFactor = (imageWidth > maxThumbnailWidth) ? (maxThumbnailWidth / imageWidth) : 1.0;
     thumbnailImageWidth = scaledX = Math.round(imageWidth * xScaleFactor);
     scaledY = Math.round(imageHeight * xScaleFactor);
     // The CSS could widen the image, in which case we crop more off of y.
@@ -72,10 +72,10 @@ function createThumbnail(dataUrl, imageWidth, imageHeight, urlOrBlob) {
     return Promise.resolve(null);
   }
 
-  let thumbnailDimensions = getThumbnailDimensions(imageWidth, imageHeight);
+  const thumbnailDimensions = getThumbnailDimensions(imageWidth, imageHeight);
 
   return new Promise((resolve, reject) => {
-    let thumbnailImage = new Image();
+    const thumbnailImage = new Image();
     let srcWidth = imageWidth;
     let srcHeight = imageHeight;
     let destWidth, destHeight;

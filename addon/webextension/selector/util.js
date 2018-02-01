@@ -1,7 +1,7 @@
 "use strict";
 
 this.util = (function() { // eslint-disable-line no-unused-vars
-  let exports = {};
+  const exports = {};
 
   /** Removes a node from its document, if it's a node and the node is attached to a parent */
   exports.removeNode = function(el) {
@@ -12,7 +12,7 @@ this.util = (function() { // eslint-disable-line no-unused-vars
 
   /** Truncates the X coordinate to the document size */
   exports.truncateX = function(x) {
-    let max = Math.max(document.documentElement.clientWidth, document.body.clientWidth, document.documentElement.scrollWidth, document.body.scrollWidth);
+    const max = Math.max(document.documentElement.clientWidth, document.body.clientWidth, document.documentElement.scrollWidth, document.body.scrollWidth);
     if (x < 0) {
       return 0;
     } else if (x > max) {
@@ -23,7 +23,7 @@ this.util = (function() { // eslint-disable-line no-unused-vars
 
   /** Truncates the Y coordinate to the document size */
   exports.truncateY = function(y) {
-    let max = Math.max(document.documentElement.clientHeight, document.body.clientHeight, document.documentElement.scrollHeight, document.body.scrollHeight);
+    const max = Math.max(document.documentElement.clientHeight, document.body.clientHeight, document.documentElement.scrollHeight, document.body.scrollHeight);
     if (y < 0) {
       return 0;
     } else if (y > max) {
@@ -61,7 +61,7 @@ this.util = (function() { // eslint-disable-line no-unused-vars
           elBox.left < box.left - CAPTURE_WIGGLE) {
         // Partially outside the box
         for (let i = 0; i < el.childNodes.length; i++) {
-          let child = el.childNodes[i];
+          const child = el.childNodes[i];
           if (child.nodeType == ELEMENT_NODE) {
             traverse(child);
           }

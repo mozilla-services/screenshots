@@ -1,12 +1,12 @@
 const { createProxyUrl, createDownloadUrl } = require("../../proxy-url");
 
 exports.createModel = function(req) {
-  let query = req.query.q;
+  const query = req.query.q;
   let title = req.getText("gMyShots");
   if (query) {
     title = req.getText("shotIndexPageSearchResultsTitle", {searchTerm: query});
   }
-  let serverModel = {
+  const serverModel = {
     title,
     hasDeviceId: req.deviceId !== undefined,
     defaultSearch: query || null
@@ -19,15 +19,15 @@ exports.createModel = function(req) {
   serverModel.disableSearch = req.config.disableSearch;
   serverModel.enableUserSettings = req.config.enableUserSettings;
   let shots = req.shots;
-  for (let shot of shots || []) {
+  for (const shot of shots || []) {
     if (shot.favicon) {
       shot.favicon = createProxyUrl(req, shot.favicon);
     }
-    let clip = shot.getClip(shot.clipNames()[0]);
+    const clip = shot.getClip(shot.clipNames()[0]);
     if (clip) {
       serverModel.downloadUrls[shot.id] = createDownloadUrl(clip.image.url, shot.filename);
     }
-    for (let image of (shot.images || [])) {
+    for (const image of (shot.images || [])) {
       image.url = createProxyUrl(req, image.url);
     }
   }
@@ -39,7 +39,7 @@ exports.createModel = function(req) {
         expireTime: shot.expireTime
       }));
   }
-  let jsonModel = Object.assign(
+  const jsonModel = Object.assign(
     {},
     serverModel,
     {

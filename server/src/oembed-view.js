@@ -12,10 +12,10 @@ class OEmbed extends React.Component {
   }
 }
 
-let OEmbedFactory = React.createFactory(OEmbed);
+const OEmbedFactory = React.createFactory(OEmbed);
 
 exports.renderString = function(args) {
-  let oembed = OEmbedFactory(args);
+  const oembed = OEmbedFactory(args);
   return ReactDOMServer.renderToStaticMarkup(oembed);
 };
 

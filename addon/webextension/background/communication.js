@@ -3,9 +3,9 @@
 "use strict";
 
 this.communication = (function() {
-  let exports = {};
+  const exports = {};
 
-  let registeredFunctions = {};
+  const registeredFunctions = {};
 
   exports.onMessage = catcher.watchFunction((req, sender, sendResponse) => {
     if (!(req.funcName in registeredFunctions)) {
@@ -18,7 +18,7 @@ this.communication = (function() {
       sendResponse({type: "error", name: "No .args"});
       return;
     }
-    let func = registeredFunctions[req.funcName];
+    const func = registeredFunctions[req.funcName];
     let result;
     try {
       req.args.unshift(sender);

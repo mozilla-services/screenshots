@@ -7,7 +7,7 @@ const sendEvent = require("./browser-send-event.js");
 exports.ShareButton = class ShareButton extends React.Component {
   constructor(props) {
     super(props);
-    let display = false;
+    const display = false;
     this.state = {display};
   }
 
@@ -38,7 +38,7 @@ exports.ShareButton = class ShareButton extends React.Component {
   }
 
   onClick() {
-    let show = !this.state.display;
+    const show = !this.state.display;
     this.setState({display: show});
     if (show) {
       if (this.props.setPanelState) {
@@ -103,7 +103,7 @@ class ShareButtonPanel extends React.Component {
   }
 
   onClickCopyButton(e) {
-    let target = e.target;
+    const target = e.target;
     target.previousSibling.select();
     document.execCommand("copy");
     this.setState({copy: "copied"});
@@ -171,8 +171,8 @@ class ShareButtonPanel extends React.Component {
   }
 
   changePanelPosition() {
-    let el = this.shareDiv;
-    let rect = el.getBoundingClientRect();
+    const el = this.shareDiv;
+    const rect = el.getBoundingClientRect();
     if (!(rect.right <= (window.innerWidth || document.documentElement.clientWidth))) {
       this.setState({left: -140});
     }

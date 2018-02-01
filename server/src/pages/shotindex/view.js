@@ -59,9 +59,9 @@ class Body extends React.Component {
     if (this.props.shots === null) {
       return this.renderShotsLoading();
     }
-    let children = [];
+    const children = [];
     if (this.props.shots && this.props.shots.length) {
-      for (let shot of this.props.shots) {
+      for (const shot of this.props.shots) {
         children.push(<Card shot={shot} downloadUrl={this.props.downloadUrls[shot.id]} abTests={this.props.abTests} clipUrl={shot.urlDisplay} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} key={shot.id} />);
       }
     }
@@ -99,13 +99,13 @@ class Body extends React.Component {
       return null;
     }
 
-    let totalPages = Math.ceil(this.props.totalShots / this.props.shotsPerPage) || 1;
-    let hasPrev = this.props.pageNumber > 1;
-    let prevPageNumber = this.props.pageNumber - 1;
-    let prevClasses = ["shots-page-nav"].concat(!hasPrev && "disabled").join(' ');
-    let hasNext = this.props.pageNumber < totalPages;
-    let nextPageNumber = this.props.pageNumber - 0 + 1;
-    let nextClasses = ["shots-page-nav"].concat(!hasNext && "disabled").join(' ');
+    const totalPages = Math.ceil(this.props.totalShots / this.props.shotsPerPage) || 1;
+    const hasPrev = this.props.pageNumber > 1;
+    const prevPageNumber = this.props.pageNumber - 1;
+    const prevClasses = ["shots-page-nav"].concat(!hasPrev && "disabled").join(' ');
+    const hasNext = this.props.pageNumber < totalPages;
+    const nextPageNumber = this.props.pageNumber - 0 + 1;
+    const nextClasses = ["shots-page-nav"].concat(!hasNext && "disabled").join(' ');
 
     return (
       <div id="shot-index-page-navigation">
@@ -224,7 +224,7 @@ class Body extends React.Component {
 
   onSubmitForm(e) {
     e.preventDefault();
-    let val = this.searchInput.value;
+    const val = this.searchInput.value;
     if (val) {
       sendEvent("search", "submit");
     } else {
@@ -234,7 +234,7 @@ class Body extends React.Component {
   }
 
   onChangeSearch() {
-    let val = this.searchInput.value;
+    const val = this.searchInput.value;
     this.setState({defaultSearch: val});
     if (!val) {
       sendEvent("clear-search", "keyboard");
@@ -296,10 +296,10 @@ class Card extends React.Component {
 
   render() {
     const defaultImageUrl = this.props.staticLink("img/question-mark.svg");
-    let shot = this.props.shot;
-    let downloadUrl = this.props.downloadUrl;
+    const shot = this.props.shot;
+    const downloadUrl = this.props.downloadUrl;
     let imageUrl;
-    let clip = shot.clipNames().length ? shot.getClip(shot.clipNames()[0]) : null;
+    const clip = shot.clipNames().length ? shot.getClip(shot.clipNames()[0]) : null;
     if (!clip) {
       // Some corrupted shot, we'll have to ignore it
       return null;
@@ -373,18 +373,18 @@ class Card extends React.Component {
     const portraitHeight = 280;
     const landscapeAspectRatio = containerWidth / landscapeHeight;
     const portraitAspectRatio = containerWidth / portraitHeight;
-    let thumbnailWidth, thumbnailHeight, thumbnailAspectRatio;
+    let thumbnailWidth, thumbnailHeight;
 
     if (!thumbnailUrl) {
       thumbnailWidth = dimensions.x;
       thumbnailHeight = dimensions.y;
     } else {
-      let thumbnailDimensions = getThumbnailDimensions(dimensions.x, dimensions.y);
+      const thumbnailDimensions = getThumbnailDimensions(dimensions.x, dimensions.y);
       thumbnailWidth = thumbnailDimensions.width;
       thumbnailHeight = thumbnailDimensions.height;
     }
 
-    thumbnailAspectRatio = thumbnailWidth / thumbnailHeight;
+    const thumbnailAspectRatio = thumbnailWidth / thumbnailHeight;
 
     if (thumbnailAspectRatio <= portraitAspectRatio) {
       return "portrait";
@@ -429,7 +429,7 @@ class Card extends React.Component {
     event.stopPropagation();
     event.preventDefault();
     sendEvent("start-delete", "my-shots", {useBeacon: true});
-    let confirmMessage = document.getElementById("shotIndexPageConfirmShotDelete").textContent;
+    const confirmMessage = document.getElementById("shotIndexPageConfirmShotDelete").textContent;
     if (window.confirm(confirmMessage)) {
       sendEvent("delete", "my-shots-popup-confirm", {useBeacon: true});
       this.setState({deleted: true});
