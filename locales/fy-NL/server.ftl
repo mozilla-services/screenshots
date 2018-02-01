@@ -197,8 +197,10 @@ annotationCropButton
     .title = Bysnije
 annotationSaveButton = Bewarje
 annotationCancelButton = Annulearje
-annotationConfirmCropButton = Befêstigje
-annotationCancelCropButton = Annulearje
+annotationCropConfirmButton = Befêstiging
+    .title = Seleksje befêstigje
+annotationCropCancelButton = Annulearje
+    .title = Seleksje annulearje
 
 
 [[ Shotindex page ]]
