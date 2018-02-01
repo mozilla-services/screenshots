@@ -47,11 +47,22 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
   }
 
   function localizeText(doc) {
-    let els = doc.querySelectorAll("[data-l10n-id]");
+    let els = doc.querySelectorAll("[data-l10n-id], [data-l10n-title]");
     for (let el of els) {
       let id = el.getAttribute("data-l10n-id");
-      let text = browser.i18n.getMessage(id);
-      el.textContent = text;
+      if (id) {
+        let text = browser.i18n.getMessage(id);
+        el.textContent = text;
+      }
+      let title = el.getAttribute("data-l10n-title");
+      if (title) {
+        let titleText = browser.i18n.getMessage(title);
+        let sanitized = titleText && titleText.replace("&", "&amp;")
+                                              .replace('"', "&quot;")
+                                              .replace("<", "&lt;")
+                                              .replace(">", "&gt;");
+        el.setAttribute("title", sanitized);
+      }
     }
   }
 
@@ -366,15 +377,6 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     }
   };
 
-  function getAttributeText(l10nID) {
-    let text = browser.i18n.getMessage(l10nID);
-    return text &&
-      text.replace("&", "&amp;")
-        .replace('"', "&quot;")
-        .replace("<", "&lt;")
-        .replace(">", "&gt;");
-  }
-
   let iframePreview = exports.iframePreview = {
     element: null,
     document: null,
@@ -400,21 +402,21 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
                   <div class="preview-image">
                     <div class="preview-buttons">
                       <button class="highlight-button-cancel"
-                        title="${getAttributeText("cancelScreenshot")}"><img
+                        data-l10n-title="cancelScreenshot"><img
                         src="${browser.extension.getURL("icons/cancel.svg")}" /></button>
                       <button class="highlight-button-copy"
-                        title="${getAttributeText("copyScreenshot")}"><img
+                        data-l10n-title="copyScreenshot"><img
                         src="${browser.extension.getURL("icons/copy.svg")}" /></button>
                       ${isDownloadOnly() ?
                         `<button class="highlight-button-download download-only-button"
-                          title="${getAttributeText("downloadScreenshot")}"><img
+                          data-l10n-title="downloadScreenshot"><img
                           src="${browser.extension.getURL("icons/download.svg")}"
                           />${browser.i18n.getMessage("downloadScreenshot")}</button>` :
                         `<button class="highlight-button-download"
-                          title="${getAttributeText("downloadScreenshot")}"><img
+                          data-l10n-title="downloadScreenshot"><img
                           src="${browser.extension.getURL("icons/download.svg")}" /></button>
                          <button class="preview-button-save"
-                          title="${getAttributeText("saveScreenshotSelectedArea")}"><img
+                          data-l10n-title="saveScreenshotSelectedArea"><img
                           src="${browser.extension.getURL("icons/cloud.svg")}"
                           />${browser.i18n.getMessage("saveScreenshotSelectedArea")}</button>`
                       }
