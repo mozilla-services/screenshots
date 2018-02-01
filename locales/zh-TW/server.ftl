@@ -179,8 +179,10 @@ annotationCropButton
     .title = 裁切
 annotationSaveButton = 儲存
 annotationCancelButton = 取消
-annotationConfirmCropButton = 確認
-annotationCancelCropButton = 取消
+annotationCropConfirmButton = 確認
+    .title = 確認選擇
+annotationCropCancelButton = 取消
+    .title = 取消選擇
 
 
 [[ Shotindex page ]]
