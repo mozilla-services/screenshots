@@ -30,7 +30,7 @@ exports.render = function(req, res, page) {
       userLocales: req.userLocales,
       messages: req.messages
     }, serverModel);
-    if (req.query.data == "json") {
+    if (req.query.data === "json") {
       if (req.query.pretty !== undefined) {
         res.type("json").send(JSON.stringify(jsonModel, null, '  '));
       } else {

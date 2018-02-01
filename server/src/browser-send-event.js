@@ -2,7 +2,7 @@
 
 let sentEvent = false;
 
-if (typeof window != "undefined" && window.sendEvent) {
+if (typeof window !== "undefined" && window.sendEvent) {
   module.exports = window.sendEvent;
 } else {
   module.exports = function() {

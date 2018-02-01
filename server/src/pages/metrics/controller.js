@@ -21,7 +21,7 @@ exports.onChangeLastShotTime = function(days) {
   const req = new XMLHttpRequest();
   req.open("GET", `./api/recent/lastShotCount?lastShotTimeDays=${encodeURIComponent(days)}`);
   req.onload = function() {
-    if (req.status == 200) {
+    if (req.status === 200) {
       const data = JSON.parse(req.responseText);
       model.lastShotTimeDays = days;
       model.lastShotCount = data.count;
@@ -43,7 +43,7 @@ exports.onChangeNumberOfShotsTime = function(days) {
   const req = new XMLHttpRequest();
   req.open("GET", `./api/recent/numberOfShots?lastShotTimeDays=${encodeURIComponent(days)}`);
   req.onload = function() {
-    if (req.status == 200) {
+    if (req.status === 200) {
       const data = JSON.parse(req.responseText);
       model.numberOfShotsBuckets = data.buckets;
       render();

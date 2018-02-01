@@ -16,7 +16,7 @@ this.sitehelper = (function() {
 
 
   function sendCustomEvent(name, detail) {
-    if (typeof detail == "object") {
+    if (typeof detail === "object") {
       // Note sending an object can lead to security problems, while a string
       // is safe to transfer:
       detail = JSON.stringify(detail);
@@ -33,7 +33,7 @@ this.sitehelper = (function() {
 
     // This is a very minimal attempt to verify that the XMLHttpRequest object we got
     // is legitimate. It is not a good test.
-    if (Object.toString.apply(ContentXMLHttpRequest) != "function XMLHttpRequest() {\n    [native code]\n}") {
+    if (Object.toString.apply(ContentXMLHttpRequest) !== "function XMLHttpRequest() {\n    [native code]\n}") {
       console.warn("Insecure copy of XMLHttpRequest");
       return;
     }
@@ -44,7 +44,7 @@ this.sitehelper = (function() {
     }
     req.send("");
     req.onload = () => {
-      if (req.status != 200) {
+      if (req.status !== 200) {
         console.warn("Attempt to set Screenshots cookie via /api/set-login-cookie failed:", req.status, req.statusText, req.responseText);
       }
     };

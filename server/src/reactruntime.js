@@ -116,7 +116,7 @@ exports.Page = class Page {
     const renderBody = () => {
       const body = this.BodyFactory(model);
       const curTitle = document.title;
-      if (model.title && model.title != curTitle) {
+      if (model.title && model.title !== curTitle) {
         document.title = model.title;
       }
       ReactDOM.render(

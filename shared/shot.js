@@ -53,7 +53,7 @@ function isSecureWebUri(url) {
 
 function assertOrigin(url) {
   assertUrl(url);
-  if (url.search(/^https?:/i) != -1) {
+  if (url.search(/^https?:/i) !== -1) {
     const match = (/^https?:\/\/[^/:]{1,4000}\/?$/i).exec(url);
     if (!match) {
       throw new Error("Bad origin, might include path");
@@ -65,7 +65,7 @@ function originFromUrl(url) {
   if (!url) {
     return null;
   }
-  if (url.search(/^https?:/i) == -1) {
+  if (url.search(/^https?:/i) === -1) {
     // Non-HTTP URLs don't have an origin
     return null;
   }
@@ -79,7 +79,7 @@ function originFromUrl(url) {
 /** Check if the given object has all of the required attributes, and no extra
     attributes exception those in optional */
 function checkObject(obj, required, optional) {
-  if (typeof obj != "object" || obj === null) {
+  if (typeof obj !== "object" || obj === null) {
     throw new Error("Cannot check non-object: " + (typeof obj) + " that is " + JSON.stringify(obj));
   }
   required = required || [];
@@ -90,7 +90,7 @@ function checkObject(obj, required, optional) {
   }
   optional = optional || [];
   for (const attr in obj) {
-    if (required.indexOf(attr) == -1 && optional.indexOf(attr) == -1) {
+    if (required.indexOf(attr) === -1 && optional.indexOf(attr) === -1) {
       return false;
     }
   }
@@ -119,7 +119,7 @@ function jsonify(obj, required, optional) {
 function resolveUrl(base, url) {
   // FIXME: totally ad hoc and probably incorrect, but we can't
   // use any libraries in this file
-  if (url.search(/^https?:/) != -1) {
+  if (url.search(/^https?:/) !== -1) {
     // Absolute url
     return url;
   }
@@ -154,14 +154,14 @@ function deepEqual(a, b) {
   if ((a === null || a === undefined) && (b === null || b === undefined)) {
     return true;
   }
-  if (typeof a != "object" || typeof b != "object") {
+  if (typeof a !== "object" || typeof b !== "object") {
     return a === b;
   }
   if (Array.isArray(a)) {
     if (!Array.isArray(b)) {
       return false;
     }
-    if (a.length != b.length) {
+    if (a.length !== b.length) {
       return false;
     }
     for (let i = 0; i < a.length; i++) {
@@ -270,10 +270,10 @@ class AbstractShot {
     const ALL_ATTRS = ["clips"].concat(this.REGULAR_ATTRS);
     assert(checkObject(json, [], ALL_ATTRS), "Bad attr to new Shot():", Object.keys(json));
     for (const attr in json) {
-      if (attr == "clips") {
+      if (attr === "clips") {
         continue;
       }
-      if (typeof json[attr] == "object" && typeof this[attr] == "object" && this[attr] !== null) {
+      if (typeof json[attr] === "object" && typeof this[attr] === "object" && this[attr] !== null) {
         let val = this[attr];
         if (val.asJson) {
           val = val.asJson();
@@ -384,7 +384,7 @@ class AbstractShot {
     const clip = this.getClip(this.clipNames()[0]);
     let extension = ".png";
     if (clip && clip.image && clip.image.type) {
-      if (clip.image.type == "jpeg") {
+      if (clip.image.type === "jpeg") {
         extension = ".jpg";
       }
     }
@@ -433,7 +433,7 @@ class AbstractShot {
     return this._title;
   }
   set docTitle(val) {
-    assert(val === null || typeof val == "string", "Bad docTitle:", val);
+    assert(val === null || typeof val === "string", "Bad docTitle:", val);
     this._title = val;
   }
 
@@ -441,7 +441,7 @@ class AbstractShot {
     return this._openGraph || null;
   }
   set openGraph(val) {
-    assert(val === null || typeof val == "object", "Bad openGraph:", val);
+    assert(val === null || typeof val === "object", "Bad openGraph:", val);
     if (val) {
       assert(checkObject(val, [], this._OPENGRAPH_PROPERTIES), "Bad attr to openGraph:", Object.keys(val));
       this._openGraph = val;
@@ -454,7 +454,7 @@ class AbstractShot {
     return this._twitterCard || null;
   }
   set twitterCard(val) {
-    assert(val === null || typeof val == "object", "Bad twitterCard:", val);
+    assert(val === null || typeof val === "object", "Bad twitterCard:", val);
     if (val) {
       assert(checkObject(val, [], this._TWITTERCARD_PROPERTIES), "Bad attr to twitterCard:", Object.keys(val));
       this._twitterCard = val;
@@ -467,7 +467,7 @@ class AbstractShot {
     return this._userTitle;
   }
   set userTitle(val) {
-    assert(val === null || typeof val == "string", "Bad userTitle:", val);
+    assert(val === null || typeof val === "string", "Bad userTitle:", val);
     this._userTitle = val;
   }
 
@@ -489,7 +489,7 @@ class AbstractShot {
     return this._createdDate;
   }
   set createdDate(val) {
-    assert(val === null || typeof val == "number", "Bad createdDate:", val);
+    assert(val === null || typeof val === "number", "Bad createdDate:", val);
     this._createdDate = val;
   }
 
@@ -556,7 +556,7 @@ class AbstractShot {
     return this._siteName || null;
   }
   set siteName(val) {
-    assert(typeof val == "string" || !val);
+    assert(typeof val === "string" || !val);
     this._siteName = val;
   }
 
@@ -564,11 +564,11 @@ class AbstractShot {
     return this._documentSize;
   }
   set documentSize(val) {
-    assert(typeof val == "object" || !val);
+    assert(typeof val === "object" || !val);
     if (val) {
       assert(checkObject(val, ["height", "width"], "Bad attr to documentSize:", Object.keys(val)));
-      assert(typeof val.height == "number");
-      assert(typeof val.width == "number");
+      assert(typeof val.height === "number");
+      assert(typeof val.width === "number");
       this._documentSize = val;
     } else {
       this._documentSize = null;
@@ -579,7 +579,7 @@ class AbstractShot {
     return this._thumbnail;
   }
   set thumbnail(val) {
-    assert(typeof val == "string" || !val);
+    assert(typeof val === "string" || !val);
     if (val) {
       assert(isUrl(val));
       this._thumbnail = val;
@@ -596,10 +596,10 @@ class AbstractShot {
       this._abTests = null;
       return;
     }
-    assert(typeof val == "object", "abTests should be an object, not:", typeof val);
+    assert(typeof val === "object", "abTests should be an object, not:", typeof val);
     assert(!Array.isArray(val), "abTests should not be an Array");
     for (const name in val) {
-      assert(val[name] && typeof val[name] == "string", `abTests.${name} should be a string:`, typeof val[name]);
+      assert(val[name] && typeof val[name] === "string", `abTests.${name} should be a string:`, typeof val[name]);
     }
     this._abTests = val;
   }
@@ -649,12 +649,12 @@ class _Image {
     assert(isUrl(json.url), "Bad Image url:", json.url);
     this.url = json.url;
     assert((!json.dimensions) ||
-           (typeof json.dimensions.x == "number" && typeof json.dimensions.y == "number"),
+           (typeof json.dimensions.x === "number" && typeof json.dimensions.y === "number"),
            "Bad Image dimensions:", json.dimensions);
     this.dimensions = json.dimensions;
-    assert(typeof json.title == "string" || !json.title, "Bad Image title:", json.title);
+    assert(typeof json.title === "string" || !json.title, "Bad Image title:", json.title);
     this.title = json.title;
-    assert(typeof json.alt == "string" || !json.alt, "Bad Image alt:", json.alt);
+    assert(typeof json.alt === "string" || !json.alt, "Bad Image alt:", json.alt);
     this.alt = json.alt;
   }
 
@@ -670,11 +670,11 @@ class _Clip {
   constructor(shot, id, json) {
     this._shot = shot;
     assert(checkObject(json, ["createdDate", "image"], ["sortOrder"]), "Bad attrs for Clip:", Object.keys(json));
-    assert(typeof id == "string" && id, "Bad Clip id:", id);
+    assert(typeof id === "string" && id, "Bad Clip id:", id);
     this._id = id;
     this.createdDate = json.createdDate;
     if ('sortOrder' in json) {
-      assert(typeof json.sortOrder == "number" || !json.sortOrder, "Bad Clip sortOrder:", json.sortOrder);
+      assert(typeof json.sortOrder === "number" || !json.sortOrder, "Bad Clip sortOrder:", json.sortOrder);
     }
     if ('sortOrder' in json) {
       this.sortOrder = json.sortOrder;
@@ -701,7 +701,7 @@ class _Clip {
     return this._createdDate;
   }
   set createdDate(val) {
-    assert(typeof val == "number" || !val, "Bad Clip createdDate:", val);
+    assert(typeof val === "number" || !val, "Bad Clip createdDate:", val);
     this._createdDate = val;
   }
 
@@ -716,35 +716,35 @@ class _Clip {
     assert(checkObject(image, ["url"], ["dimensions", "text", "location", "captureType", "type"]), "Bad attrs for Clip Image:", Object.keys(image));
     assert(isValidClipImageUrl(image.url), "Bad Clip image URL:", image.url);
     assert(
-      image.captureType == "madeSelection" ||
-      image.captureType == "selection" ||
-      image.captureType == "visible" ||
-      image.captureType == "auto" ||
-      image.captureType == "fullPage" ||
-      image.captureType == "fullPageTruncated" ||
+      image.captureType === "madeSelection" ||
+      image.captureType === "selection" ||
+      image.captureType === "visible" ||
+      image.captureType === "auto" ||
+      image.captureType === "fullPage" ||
+      image.captureType === "fullPageTruncated" ||
       !image.captureType, "Bad image.captureType:", image.captureType);
-    assert(typeof image.text == "string" || !image.text, "Bad Clip image text:", image.text);
+    assert(typeof image.text === "string" || !image.text, "Bad Clip image text:", image.text);
     if (image.dimensions) {
-      assert(typeof image.dimensions.x == "number" && typeof image.dimensions.y == "number", "Bad Clip image dimensions:", image.dimensions);
+      assert(typeof image.dimensions.x === "number" && typeof image.dimensions.y === "number", "Bad Clip image dimensions:", image.dimensions);
     }
     if (image.type) {
-      assert(image.type == "png" || image.type == "jpeg", "Unexpected image type:", image.type);
+      assert(image.type === "png" || image.type === "jpeg", "Unexpected image type:", image.type);
     }
     assert(image.location &&
-      typeof image.location.left == "number" &&
-      typeof image.location.right == "number" &&
-      typeof image.location.top == "number" &&
-      typeof image.location.bottom == "number", "Bad Clip image pixel location:", image.location);
+      typeof image.location.left === "number" &&
+      typeof image.location.right === "number" &&
+      typeof image.location.top === "number" &&
+      typeof image.location.bottom === "number", "Bad Clip image pixel location:", image.location);
     if (image.location.topLeftElement || image.location.topLeftOffset ||
         image.location.bottomRightElement || image.location.bottomRightOffset) {
-      assert(typeof image.location.topLeftElement == "string" &&
+      assert(typeof image.location.topLeftElement === "string" &&
         image.location.topLeftOffset &&
-        typeof image.location.topLeftOffset.x == "number" &&
-        typeof image.location.topLeftOffset.y == "number" &&
-        typeof image.location.bottomRightElement == "string" &&
+        typeof image.location.topLeftOffset.x === "number" &&
+        typeof image.location.topLeftOffset.y === "number" &&
+        typeof image.location.bottomRightElement === "string" &&
         image.location.bottomRightOffset &&
-        typeof image.location.bottomRightOffset.x == "number" &&
-        typeof image.location.bottomRightOffset.y == "number",
+        typeof image.location.bottomRightOffset.x === "number" &&
+        typeof image.location.bottomRightOffset.y === "number",
         "Bad Clip image element location:", image.location);
     }
     this._image = image;
@@ -761,7 +761,7 @@ class _Clip {
     return this._sortOrder || null;
   }
   set sortOrder(val) {
-    assert(typeof val == "number" || !val, "Bad Clip sortOrder:", val);
+    assert(typeof val === "number" || !val, "Bad Clip sortOrder:", val);
     this._sortOrder = val;
   }
 
@@ -769,7 +769,7 @@ class _Clip {
 
 AbstractShot.prototype.Clip = _Clip;
 
-if (typeof exports != "undefined") {
+if (typeof exports !== "undefined") {
   exports.AbstractShot = AbstractShot;
   exports.originFromUrl = originFromUrl;
   exports.isValidClipImageUrl = isValidClipImageUrl;

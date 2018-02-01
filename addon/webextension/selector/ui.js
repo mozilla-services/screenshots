@@ -741,7 +741,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
 
     draggerDirection(target) {
       while (target) {
-        if (target.nodeType == document.ELEMENT_NODE) {
+        if (target.nodeType === document.ELEMENT_NODE) {
           if (target.classList.contains("mover-target")) {
             for (const name of movements) {
               if (target.classList.contains("direction-" + name)) {
@@ -762,7 +762,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
         if (target.tagName === "BUTTON") {
           return false;
         }
-        if (target.nodeType == document.ELEMENT_NODE && target.classList.contains("highlight")) {
+        if (target.nodeType === document.ELEMENT_NODE && target.classList.contains("highlight")) {
           return true;
         }
         target = target.parentNode;
@@ -878,7 +878,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       if (name.startsWith("iframe")) {
         continue;
       }
-      if (typeof exports[name] == "object" && exports[name].remove) {
+      if (typeof exports[name] === "object" && exports[name].remove) {
         exports[name].remove();
       }
     }

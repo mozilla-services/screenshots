@@ -89,7 +89,7 @@ this.analytics = (function() {
     if (action === 'internal') {
       return Promise.resolve();
     }
-    if (typeof label == "object" && (!options)) {
+    if (typeof label === "object" && (!options)) {
       options = label;
       label = undefined;
     }

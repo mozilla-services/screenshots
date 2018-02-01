@@ -15,7 +15,7 @@ const Mozilla = Mozilla || {};
   "use strict";
 
   // create namespace
-  if (typeof Mozilla.UITour == "undefined") {
+  if (typeof Mozilla.UITour === "undefined") {
     /**
      * Library that exposes an event-based Web API for communicating with the
      * desktop browser chrome. It can be used for tasks such as opening menu
@@ -60,9 +60,9 @@ const Mozilla = Mozilla || {};
     const id = _generateCallbackID();
 
     function listener(event) {
-      if (typeof event.detail != "object")
+      if (typeof event.detail !== "object")
         return;
-      if (event.detail.callbackID != id)
+      if (event.detail.callbackID !== id)
         return;
 
       document.removeEventListener("mozUITourResponse", listener);
@@ -75,9 +75,9 @@ const Mozilla = Mozilla || {};
 
   let notificationListener = null;
   function _notificationListener(event) {
-    if (typeof event.detail != "object")
+    if (typeof event.detail !== "object")
       return;
-    if (typeof notificationListener != "function")
+    if (typeof notificationListener !== "function")
       return;
 
     notificationListener(event.detail.event, event.detail.params);

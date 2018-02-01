@@ -23,7 +23,7 @@ exports.ShareButton = class ShareButton extends React.Component {
         isExtInstalled={this.props.isExtInstalled}
       />;
     }
-    const useNewIcon = this.props.abTests.shotShareIcon && this.props.abTests.shotShareIcon.value == "newicon";
+    const useNewIcon = this.props.abTests.shotShareIcon && this.props.abTests.shotShareIcon.value === "newicon";
     const shareClasses = classnames("button", "transparent", "share", {
       "active": this.state.display,
       "inactive": !this.state.display,
@@ -199,7 +199,7 @@ class ShareButtonPanel extends React.Component {
   }
 
   keyMaybeClose(event) {
-    if ((event.key || event.code) == "Escape") {
+    if ((event.key || event.code) === "Escape") {
       this.props.closePanel();
     }
   }
@@ -207,7 +207,7 @@ class ShareButtonPanel extends React.Component {
   /* Returns true if the element is part of the share panel */
   isPanel(el) {
     while (el) {
-      if (el.id == "share-buttons-panel") {
+      if (el.id === "share-buttons-panel") {
         return true;
       }
       el = el.parentNode;

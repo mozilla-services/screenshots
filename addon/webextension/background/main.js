@@ -114,7 +114,7 @@ this.main = (function() {
             const event = active ? "start-shot" : "cancel-shot";
             sendEvent(event, "toolbar-button", {incognito: tab.incognito});
           }, (error) => {
-            if ((!hasSeenOnboarding) && error.popupMessage == "UNSHOOTABLE_PAGE") {
+            if ((!hasSeenOnboarding) && error.popupMessage === "UNSHOOTABLE_PAGE") {
               sendEvent("goto-onboarding", "selection-button", {incognito: tab.incognito});
               return forceOnboarding();
             }
@@ -159,7 +159,7 @@ this.main = (function() {
       return false;
     }
     const path = url.substr(backend.length).replace(/^\/*/, "").replace(/[?#].*/, "");
-    if (path == "shots") {
+    if (path === "shots") {
       return true;
     }
     if (/^[^/]{1,4000}\/[^/]{1,4000}$/.test(path)) {
@@ -228,10 +228,10 @@ this.main = (function() {
     const url = URL.createObjectURL(blob);
     let downloadId;
     const onChangedCallback = catcher.watchFunction(function(change) {
-      if (!downloadId || downloadId != change.id) {
+      if (!downloadId || downloadId !== change.id) {
         return;
       }
-      if (change.state && change.state.current != "in_progress") {
+      if (change.state && change.state.current !== "in_progress") {
         URL.revokeObjectURL(url);
         browser.downloads.onChanged.removeListener(onChangedCallback);
       }

@@ -11,18 +11,18 @@ function hashMatches(hash, secret) {
   if (parts[0] !== "shaHmac") {
     throw new Error("Unknown type of hash");
   }
-  if (parts.length != 3) {
+  if (parts.length !== 3) {
     throw new Error("Bad hash format, should be type:nonce:data");
   }
   const expected = createHash(secret, parts[1]);
-  return expected == hash;
+  return expected === hash;
 }
 
 function createHash(secret, nonce) {
   if (!nonce) {
     nonce = createNonce();
   }
-  if (nonce.search(/^[0-9a-zA-Z]+$/) == -1) {
+  if (nonce.search(/^[0-9a-zA-Z]+$/) === -1) {
     throw new Error("Bad nonce");
   }
   const hmac = crypto.createHmac("sha256", nonce);

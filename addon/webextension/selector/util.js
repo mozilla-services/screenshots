@@ -62,7 +62,7 @@ this.util = (function() { // eslint-disable-line no-unused-vars
         // Partially outside the box
         for (let i = 0; i < el.childNodes.length; i++) {
           const child = el.childNodes[i];
-          if (child.nodeType == ELEMENT_NODE) {
+          if (child.nodeType === ELEMENT_NODE) {
             traverse(child);
           }
         }
@@ -72,9 +72,9 @@ this.util = (function() { // eslint-disable-line no-unused-vars
     }
     function addText(el) {
       let t;
-      if (el.tagName == "IMG") {
+      if (el.tagName === "IMG") {
         t = el.getAttribute("alt") || el.getAttribute("title");
-      } else if (el.tagName == "A") {
+      } else if (el.tagName === "A") {
         t = el.innerText;
         if (el.getAttribute("href") && !el.getAttribute("href").startsWith("#")) {
           t += " (" + el.href + ")";

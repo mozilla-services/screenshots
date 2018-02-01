@@ -4,7 +4,7 @@ this.blobConverters = (function() {
   exports.dataUrlToBlob = function(url) {
     const binary = atob(url.split(',', 2)[1]);
     let contentType = exports.getTypeFromDataUrl(url);
-    if (contentType != "image/png" && contentType != "image/jpeg") {
+    if (contentType !== "image/png" && contentType !== "image/jpeg") {
       contentType = "image/png";
     }
     const data = Uint8Array.from(binary, char => char.charCodeAt(0));

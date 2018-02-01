@@ -220,7 +220,7 @@ class Shot extends AbstractShot {
         }).then(() => {
           return oks;
         }).catch((err) => {
-          if (err.code == '23505') {
+          if (err.code === '23505') {
             // This is a duplicate key error, means the insert failed
             clipRewrites.revertShotUrls();
             return false;
@@ -632,7 +632,7 @@ Shot.setExpiration = function(backend, shotId, deviceId, expiration, accountId) 
         [shotId, id]
       );
     }
-    if (typeof expiration != "number") {
+    if (typeof expiration !== "number") {
       throw new Error("Bad expiration type");
     } else if (expiration < 0) {
       throw new Error("Expiration less than zero");
@@ -740,7 +740,7 @@ const ClipRewrites = class ClipRewrites {
         this.toInsertClipIds.push(clip.id);
         let extension = ".png";
         const type = clip.image.type || "png";
-        if (type == "jpeg") {
+        if (type === "jpeg") {
           extension = ".jpg";
         }
         const imageId = uuid.v4() + extension;

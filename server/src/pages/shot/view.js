@@ -154,7 +154,7 @@ class Head extends React.Component {
     if (!url.startsWith("http")) {
       return url;
     }
-    if (url.indexOf("?") == -1) {
+    if (url.indexOf("?") === -1) {
       url += "?";
     } else {
       url += "&";
@@ -267,7 +267,7 @@ class Body extends React.Component {
 
   renderExpired() {
     let expireTime = this.props.expireTime;
-    if (typeof expireTime != "number") {
+    if (typeof expireTime !== "number") {
       expireTime = expireTime.getTime();
     }
     const deleteTime = new Date(expireTime + this.props.retentionTime);
@@ -703,7 +703,7 @@ class EditableTitle extends React.Component {
   }
 
   onKeyUp(event) {
-    if ((event.key || event.code) == "Escape") {
+    if ((event.key || event.code) === "Escape") {
       this.setState({isEditing: false});
     }
   }

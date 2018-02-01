@@ -151,7 +151,7 @@ class Test {
     }
     if (excludes.includes("*")) {
       for (const testName in tests) {
-        if (testName != this.name && tests[testName].value !== "exclude") {
+        if (testName !== this.name && tests[testName].value !== "exclude") {
           return true;
         }
       }

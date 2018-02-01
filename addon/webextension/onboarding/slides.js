@@ -145,7 +145,7 @@ this.slides = (function() {
       callbacks.onEnd();
     })));
     doc.querySelector("#slide-overlay").addEventListener("click", watchFunction(assertIsTrusted((event) => {
-      if (event.target == doc.querySelector("#slide-overlay")) {
+      if (event.target === doc.querySelector("#slide-overlay")) {
         shooter.sendEvent("cancel-slides", "background-click");
         callbacks.onEnd();
       }
@@ -201,7 +201,7 @@ this.slides = (function() {
     const slideEl = doc.querySelector("#slide-container");
     for (let i = 1; i <= numberOfSlides; i++) {
       const className = `active-slide-${i}`;
-      if (i == currentSlide) {
+      if (i === currentSlide) {
         slideEl.classList.add(className);
       } else {
         slideEl.classList.remove(className);

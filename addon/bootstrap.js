@@ -42,7 +42,7 @@ const prefObserver = {
   observe(aSubject, aTopic, aData) {
     // aSubject is the nsIPrefBranch we're observing (after appropriate QI)
     // aData is the name of the pref that's been changed (relative to aSubject)
-    if (aData == USER_DISABLE_PREF) {
+    if (aData === USER_DISABLE_PREF) {
       // eslint-disable-next-line promise/catch-or-return
       appStartupPromise = appStartupPromise.then(handleStartup);
     }
@@ -74,7 +74,7 @@ const LibraryButton = {
     if (permissionPages.length > 1) {
       Cu.reportError(new Error("Should not have more than 1 permission page, but got: " + JSON.stringify(permissionPages)));
     }
-    this.PAGE_TO_OPEN = permissionPages.length == 1 ? permissionPages[0].replace(/\*$/, "") : "https://screenshots.firefox.com/";
+    this.PAGE_TO_OPEN = permissionPages.length === 1 ? permissionPages[0].replace(/\*$/, "") : "https://screenshots.firefox.com/";
     this.PAGE_TO_OPEN += "shots";
     this.ICON_URL = webExtension.extension.getURL("icons/icon-16-v2.svg");
     this.ICON_URL_2X = webExtension.extension.getURL("icons/icon-32-v2.svg");
@@ -194,7 +194,7 @@ function start(webExtension) {
 }
 
 function stop(webExtension, reason) {
-  if (reason != APP_SHUTDOWN) {
+  if (reason !== APP_SHUTDOWN) {
     LibraryButton.uninit();
     if (photonPageAction) {
       photonPageAction.remove();
@@ -263,7 +263,7 @@ function initPhotonPageAction(api, webExtension) {
 
   // Establish a port to the WebExtension side.
   api.browser.runtime.onConnect.addListener((listenerPort) => {
-    if (listenerPort.name != "photonPageActionPort") {
+    if (listenerPort.name !== "photonPageActionPort") {
       return;
     }
     port = listenerPort;

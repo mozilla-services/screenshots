@@ -10,7 +10,7 @@ app.get("/", function(req, res) {
     res.status(403).send("You must have Screenshots installed");
     return;
   }
-  if (req.originalUrl == "/settings/") {
+  if (req.originalUrl === "/settings/") {
     // We don't want a trailing /
     res.redirect("/settings");
     return;

@@ -74,7 +74,7 @@ exports.insert = function(sql, args) {
       return true;
     }).catch(err => {
       done();
-      if (err.code == '23505') {
+      if (err.code === '23505') {
         // constraint error, duplicate key
         return false;
       }
@@ -155,7 +155,7 @@ function initTiming() {
     return doNothing;
   }
   const caller = getCallerPosition(2);
-  if (caller == "skip") {
+  if (caller === "skip") {
     // This happens when getCallerPosition detects we shouldn't time this function call
     return doNothing;
   }

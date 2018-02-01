@@ -67,7 +67,7 @@ exports.createTables = function() {
          WHERE id = $1`,
         [newId]
       ).then((count) => {
-        if (count != 1) {
+        if (count !== 1) {
           throw new Error("Should have deleted one row");
         }
       });
@@ -156,6 +156,6 @@ exports.connectionOK = function() {
     return Promise.resolve(false);
   }
   return db.select(`SELECT value FROM property WHERE key = 'patch'`).then((rows) => {
-    return rows[0].value == MAX_DB_LEVEL;
+    return parseInt(rows[0].value, 10) === MAX_DB_LEVEL;
   });
 };

@@ -185,14 +185,14 @@ function expectCreatedShot(driver, creator) {
       return driver.getAllWindowHandles().then((tabs) => {
         // On CircleCI there is consistently one weird tab with the id "22"
         // It's not a normal tab, so we ignore it:
-        tabs = tabs.filter((t) => t != "22");
+        tabs = tabs.filter((t) => t !== "22");
         return tabs.length > startingTabCount;
       });
     });
   }).then(() => {
     return driver.getAllWindowHandles();
   }).then((tabs) => {
-    tabs = tabs.filter((t) => t != "22");
+    tabs = tabs.filter((t) => t !== "22");
     if (tabs.length < startingTabCount) {
       throw new Error("New tab did not open");
     }
@@ -200,7 +200,7 @@ function expectCreatedShot(driver, creator) {
   }).then(() => {
     return driver.wait(() => {
       return driver.getCurrentUrl().then((url) => {
-        return url != "about:blank" && !url.includes("/creating/")
+        return url !== "about:blank" && !url.includes("/creating/")
       });
     });
   }).then(() => {
@@ -232,7 +232,7 @@ describe("Test Screenshots", function() {
       getChromeElement(driver, shooterSelector)
       .then((button) => button.getAttribute("label"))
       .then((label) => {
-        if (label == "Take a Screenshot") {
+        if (label === "Take a Screenshot") {
           assert.equal(label, "Take a Screenshot");
         } else {
           assert.equal(label, "Firefox Screenshots");

@@ -48,7 +48,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     const canvas = document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
     const ctx = canvas.getContext('2d');
     let expand = window.devicePixelRatio !== 1;
-    if (captureType == 'fullPage' || captureType == 'fullPageTruncated') {
+    if (captureType === 'fullPage' || captureType === 'fullPageTruncated') {
       expand = false;
       canvas.width = width;
       canvas.height = height;
@@ -79,8 +79,8 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     // isSaving indicates we're aleady in the middle of saving
     // we use a timeout so in the case of a failure the button will
     // still start working again
-    if (Math.floor(selectedPos.left) == Math.floor(selectedPos.right) ||
-        Math.floor(selectedPos.top) == Math.floor(selectedPos.bottom)) {
+    if (Math.floor(selectedPos.left) === Math.floor(selectedPos.right) ||
+        Math.floor(selectedPos.top) === Math.floor(selectedPos.bottom)) {
         const exc = new Error("Empty selection");
         exc.popupMessage = "EMPTY_SELECTION";
         exc.noReport = true;
@@ -144,7 +144,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
         return callBackground("openShot", { url, copied });
       });
     }, (error) => {
-      if ('popupMessage' in error && (error.popupMessage == "REQUEST_ERROR" || error.popupMessage == 'CONNECTION_ERROR')) {
+      if ('popupMessage' in error && (error.popupMessage === "REQUEST_ERROR" || error.popupMessage === 'CONNECTION_ERROR')) {
         // The error has been signaled to the user, but unlike other errors (or
         // success) we should not abort the selection
         deactivateAfterFinish = false;
@@ -152,7 +152,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
         ui.iframe.unhide();
         return;
       }
-      if (error.name != "BackgroundError") {
+      if (error.name !== "BackgroundError") {
         // BackgroundError errors are reported in the Background page
         throw error;
       }

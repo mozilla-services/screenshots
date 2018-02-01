@@ -8,7 +8,7 @@ const mozlog = require("../../logging").mozlog("metrics");
 const app = exports.app = express();
 
 app.get("/", function(req, res) {
-  if (req.originalUrl == "/metrics") {
+  if (req.originalUrl === "/metrics") {
     // We want a trailing slash
     res.redirect("/metrics/");
     return;

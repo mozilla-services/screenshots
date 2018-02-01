@@ -46,7 +46,7 @@ this.auth = (function() {
       req.open("POST", registerUrl);
       req.setRequestHeader("content-type", "application/json");
       req.onload = catcher.watchFunction(() => {
-        if (req.status == 200) {
+        if (req.status === 200) {
           log.info("Registered login");
           initialized = true;
           saveAuthInfo(JSON.parse(req.responseText));
@@ -82,7 +82,7 @@ this.auth = (function() {
       const req = new XMLHttpRequest();
       req.open("POST", loginUrl);
       req.onload = catcher.watchFunction(() => {
-        if (req.status == 404) {
+        if (req.status === 404) {
           if (noRegister) {
             resolve(false);
           } else {

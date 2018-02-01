@@ -220,7 +220,7 @@ app.use(function(req, res, next) {
       if (Object.keys(abTests).length) {
         // Only send if there's some test
         const newEncodedAbTests = b64EncodeJson(abTests);
-        if (encodedAbTests != newEncodedAbTests) {
+        if (encodedAbTests !== newEncodedAbTests) {
           cookies.set("abtests", newEncodedAbTests, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
         }
       } else if (Object.keys(origAbTests).length) {
@@ -271,15 +271,15 @@ function decodeAuthHeader(header) {
   const abTestsEncodedSig = match[4];
   if (!keygrip.verify(deviceId, deviceIdSig)) {
     const exc = new Error("deviceId signature incorrect");
-    exc.deviceIdLength = typeof deviceId == "string" ? deviceId.length : String(deviceId);
-    exc.deviceIdSigLength = typeof deviceIdSig == "string" ? deviceIdSig.length : String(deviceIdSig);
+    exc.deviceIdLength = typeof deviceId === "string" ? deviceId.length : String(deviceId);
+    exc.deviceIdSigLength = typeof deviceIdSig === "string" ? deviceIdSig.length : String(deviceIdSig);
     captureRavenException(exc);
     return {};
   }
   if (!keygrip.verify(abTestsEncoded, abTestsEncodedSig)) {
     const exc = new Error("abTests signature incorrect");
-    exc.abTestsEncodedLength = typeof abTestsEncoded == "string" ? abTestsEncoded.length : String(abTestsEncoded);
-    exc.abTestsEncodedSigLength = typeof abTestsEncodedSig == "string" ? abTestsEncodedSig.length : String(abTestsEncodedSig);
+    exc.abTestsEncodedLength = typeof abTestsEncoded === "string" ? abTestsEncoded.length : String(abTestsEncoded);
+    exc.abTestsEncodedSigLength = typeof abTestsEncodedSig === "string" ? abTestsEncodedSig.length : String(abTestsEncodedSig);
     captureRavenException(exc);
     return {};
   }
@@ -400,7 +400,7 @@ app.post("/error", function(req, res) {
   let desc = bodyObj.name;
   const attrs = [];
   for (const attr in bodyObj) {
-    if (attr == "name" || attr == "help" || attr == "version") {
+    if (attr === "name" || attr === "help" || attr === "version") {
       continue;
     }
     let value = "" + bodyObj[attr];
@@ -569,7 +569,7 @@ app.post("/api/register", function(req, res) {
 
 function sendAuthInfo(req, res, params) {
   const { deviceId, accountId, userAbTests } = params;
-  if (deviceId.search(/^[a-zA-Z0-9_-]{1,255}$/) == -1) {
+  if (deviceId.search(/^[a-zA-Z0-9_-]{1,255}$/) === -1) {
     const exc = new Error("Bad deviceId in login");
     exc.deviceId = deviceId;
     captureRavenException(exc, req);
@@ -698,7 +698,7 @@ app.put("/data/:id/:domain",
       const clipId = Object.getOwnPropertyNames(bodyObj.clips)[0];
       let b64 = req.files.blob[0].buffer.toString("base64");
       let contentType = req.files.blob[0].mimetype;
-      if (contentType != "image/png" && contentType != "image/jpeg") {
+      if (contentType !== "image/png" && contentType !== "image/jpeg") {
         // Force PNG as a fallback
         mozlog.warn("invalid-upload-content-type", {contentType});
         contentType = "image/png";
@@ -713,7 +713,7 @@ app.put("/data/:id/:domain",
     } else if (req.body) {
       bodyObj = req.body;
     }
-    if (typeof bodyObj != "object") {
+    if (typeof bodyObj !== "object") {
       throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
     }
     const shotId = `${req.params.id}/${req.params.domain}`;
@@ -956,7 +956,7 @@ app.get("/images/:imageid", function(req, res) {
         }).send();
       }
       let contentType = obj.contentType;
-      if (contentType != "image/png" && contentType != "image/jpeg") {
+      if (contentType !== "image/png" && contentType !== "image/jpeg") {
         contentType = "image/png";
       }
       res.header("Content-Type", contentType);

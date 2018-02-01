@@ -21,6 +21,7 @@ plugins:
 root: true
 
 rules:
+  eqeqeq: error
   no-console: [error, {allow: [debug, error, info, trace, warn]}]
   no-var: error
   prefer-const: error

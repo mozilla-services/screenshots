@@ -138,7 +138,7 @@ function createThumbnailBlobFromPromise(shot, blobToUrlPromise) {
   });
 }
 
-if (typeof exports != "undefined") {
+if (typeof exports !== "undefined") {
   exports.getThumbnailDimensions = getThumbnailDimensions;
   exports.createThumbnailUrl = createThumbnailUrl;
   exports.createThumbnailBlobFromPromise = createThumbnailBlobFromPromise;

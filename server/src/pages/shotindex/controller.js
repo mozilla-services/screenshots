@@ -177,7 +177,7 @@ function refreshModel() {
   req.open("GET", url);
   req.onload = function() {
     document.body.classList.remove("search-results-loading");
-    if (req.status != 200) {
+    if (req.status !== 200) {
       console.warn("Error refreshing:", req.status, req);
       return;
     }
@@ -194,7 +194,7 @@ document.addEventListener("contextmenu", (event) => {
   let place = "background";
   let node = event.target;
   while (node) {
-    if (node.nodeType != document.ELEMENT_NODE) {
+    if (node.nodeType !== document.ELEMENT_NODE) {
       node = node.parentNode;
       continue;
     }
@@ -202,7 +202,7 @@ document.addEventListener("contextmenu", (event) => {
       place = "shot-tile";
       break;
     }
-    if (node.tagName == "FORM") {
+    if (node.tagName === "FORM") {
       place = "search";
       break;
     }

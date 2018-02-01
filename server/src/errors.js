@@ -10,7 +10,7 @@ exports.create = function create(status, errno, message, data) {
     payload: {
       statusCode,
       errno,
-      message: statusCode == 500 ? 'Internal server error' : err.message
+      message: statusCode === 500 ? 'Internal server error' : err.message
     },
     headers: {}
   };

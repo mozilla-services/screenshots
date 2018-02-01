@@ -394,13 +394,13 @@ this.uicontrol = (function() {
     start() {
       dataUrl = shooter.screenshotPage(selectedPos, captureType);
       ui.iframe.usePreview();
-      ui.Preview.display(dataUrl, captureType == "fullPageTruncated");
+      ui.Preview.display(dataUrl, captureType === "fullPageTruncated");
     }
   };
 
   stateHandlers.onboarding = {
     start() {
-      if (typeof slides == "undefined") {
+      if (typeof slides === "undefined") {
         throw new Error("Attempted to set state to onboarding without loading slides");
       }
       catcher.watchPromise(slides.display({
@@ -555,12 +555,12 @@ this.uicontrol = (function() {
     evenBetterElement(node, origRect) {
       let el = node.parentNode;
       const ELEMENT_NODE = document.ELEMENT_NODE;
-      while (el && el.nodeType == ELEMENT_NODE) {
+      while (el && el.nodeType === ELEMENT_NODE) {
         if (!el.getAttribute) {
           return null;
         }
         const role = el.getAttribute("role");
-        if (role === "article" || (el.className && typeof el.className == "string" && el.className.search("tweet ") !== -1)) {
+        if (role === "article" || (el.className && typeof el.className === "string" && el.className.search("tweet ") !== -1)) {
           const rect = Selection.getBoundingClientRect(el);
           if (!rect) {
             return null;
@@ -672,15 +672,15 @@ this.uicontrol = (function() {
         return null;
       }
       const isGoodEl = (el) => {
-        if (el.nodeType != document.ELEMENT_NODE) {
+        if (el.nodeType !== document.ELEMENT_NODE) {
           return false;
         }
-        if (el.tagName == "IMG") {
+        if (el.tagName === "IMG") {
           const rect = el.getBoundingClientRect();
           return rect.width >= this.minAutoImageWidth && rect.height >= this.minAutoImageHeight;
         }
         const display = window.getComputedStyle(el).display;
-        if (['block', 'inline-block', 'table'].indexOf(display) != -1) {
+        if (['block', 'inline-block', 'table'].indexOf(display) !== -1) {
           return true;
           // FIXME: not sure if this is useful:
           // let rect = el.getBoundingClientRect();
@@ -745,7 +745,7 @@ this.uicontrol = (function() {
 
     mousedown(event) {
       const target = event.target;
-      if (target.tagName == "HTML") {
+      if (target.tagName === "HTML") {
         // This happens when you click on the scrollbar
         return undefined;
       }
@@ -790,7 +790,7 @@ this.uicontrol = (function() {
       sendEvent("selection-resized");
       ui.Box.display(selectedPos, standardDisplayCallbacks);
       if (resizeHasMoved) {
-        if (resizeDirection == "move") {
+        if (resizeDirection === "move") {
           const startPos = new Pos(resizeStartSelected.left, resizeStartSelected.top);
           const endPos = new Pos(selectedPos.left, selectedPos.top);
           sendEvent(
@@ -801,7 +801,7 @@ this.uicontrol = (function() {
             "resize-selection", "mouseup",
             eventOptionsForResize(resizeStartSelected, selectedPos));
         }
-      } else if (resizeDirection == "move") {
+      } else if (resizeDirection === "move") {
         sendEvent("keep-resize-selection", "mouseup");
       } else {
         sendEvent("keep-move-selection", "mouseup");
@@ -815,14 +815,14 @@ this.uicontrol = (function() {
       const movement = movements[resizeDirection];
       if (movement[0]) {
         let moveX = movement[0];
-        moveX = moveX == "*" ? ["x1", "x2"] : [moveX];
+        moveX = moveX === "*" ? ["x1", "x2"] : [moveX];
         for (const moveDir of moveX) {
           selectedPos[moveDir] =  util.truncateX(resizeStartSelected[moveDir] + diffX);
         }
       }
       if (movement[1]) {
         let moveY = movement[1];
-        moveY = moveY == "*" ? ["y1", "y2"] : [moveY];
+        moveY = moveY === "*" ? ["y1", "y2"] : [moveY];
         for (const moveDir of moveY) {
           selectedPos[moveDir] = util.truncateY(resizeStartSelected[moveDir] + diffY);
         }
@@ -909,7 +909,7 @@ this.uicontrol = (function() {
   }
 
   function isFrameset() {
-    return document.body.tagName == "FRAMESET";
+    return document.body.tagName === "FRAMESET";
   }
 
   exports.deactivate = function() {
@@ -943,7 +943,7 @@ this.uicontrol = (function() {
   function addHandlers() {
     ["mouseup", "mousedown", "mousemove", "click"].forEach((eventName) => {
       const fn = watchFunction(assertIsTrusted((function(eventName, event) {
-        if (typeof event.button == "number" && event.button !== 0) {
+        if (typeof event.button === "number" && event.button !== 0) {
           // Not a left click
           return undefined;
         }
