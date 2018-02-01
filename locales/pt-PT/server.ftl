@@ -197,8 +197,10 @@ annotationCropButton
     .title = Recortar
 annotationSaveButton = Guardar
 annotationCancelButton = Cancelar
-annotationConfirmCropButton = Confirmar
-annotationCancelCropButton = Cancelar
+annotationCropConfirmButton = Confirmar
+    .title = Confirmar seleção
+annotationCropCancelButton = Cancelar
+    .title = Cancelar seleção
 
 
 [[ Shotindex page ]]
