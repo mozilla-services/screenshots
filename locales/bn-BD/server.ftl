@@ -197,8 +197,10 @@ annotationCropButton
     .title = ছাঁটুন
 annotationSaveButton = সংরক্ষণ করুন
 annotationCancelButton = বাতিল করুন
-annotationConfirmCropButton = নিশ্চিত করুন
-annotationCancelCropButton = বাতিল করুন
+annotationCropConfirmButton = নিশ্চিতকরণ
+    .title = নির্বাচন নিশ্চিতকরণ
+annotationCropCancelButton = বাতিল
+    .title = নির্বাচন বাতিল
 
 
 [[ Shotindex page ]]
