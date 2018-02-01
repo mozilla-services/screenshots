@@ -197,8 +197,10 @@ annotationCropButton
     .title = Körülvágás
 annotationSaveButton = Mentés
 annotationCancelButton = Mégse
-annotationConfirmCropButton = Megerősítés
-annotationCancelCropButton = Mégse
+annotationCropConfirmButton = Megerősítés
+    .title = Kiválasztás megerősítése
+annotationCropCancelButton = Mégse
+    .title = Kiválasztás megszakítása
 
 
 [[ Shotindex page ]]
