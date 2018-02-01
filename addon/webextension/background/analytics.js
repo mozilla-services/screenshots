@@ -30,7 +30,7 @@ this.analytics = (function() {
 
     pendingEvents.forEach(event => {
       event.queueTime = sendTime - event.eventTime
-      log.info(`sendEvent ${event.event}/${event.action}/${event.label || 'none'} ${JSON.stringify(event.options)}`);
+      log.info(`sendEvent ${event.event}/${event.action}/${event.label || "none"} ${JSON.stringify(event.options)}`);
     });
 
     const body = JSON.stringify({deviceId, events: pendingEvents});
@@ -80,13 +80,13 @@ this.analytics = (function() {
       return Promise.resolve();
     }
     if (!telemetryEnabled) {
-      log.info(`Cancelled sendEvent ${eventCategory}/${action}/${label || 'none'} ${JSON.stringify(options)}`);
+      log.info(`Cancelled sendEvent ${eventCategory}/${action}/${label || "none"} ${JSON.stringify(options)}`);
       return Promise.resolve();
     }
     measureTiming(action, label);
     // Internal-only events are used for measuring time between events,
     // but aren't submitted to GA.
-    if (action === 'internal') {
+    if (action === "internal") {
       return Promise.resolve();
     }
     if (typeof label === "object" && (!options)) {
@@ -159,70 +159,70 @@ this.analytics = (function() {
   // If a cancel event happens between the start and end events, the start time
   // is deleted.
   const rules = [{
-    name: 'page-action',
-    start: { action: 'start-shot', label: 'toolbar-button' },
-    end: { action: 'internal', label: 'unhide-preselection-frame' },
-    cancel: [{ action: 'cancel-shot' }]
+    name: "page-action",
+    start: { action: "start-shot", label: "toolbar-button" },
+    end: { action: "internal", label: "unhide-preselection-frame" },
+    cancel: [{ action: "cancel-shot" }]
   }, {
-    name: 'context-menu',
-    start: { action: 'start-shot', label: 'context-menu' },
-    end: { action: 'internal', label: 'unhide-preselection-frame' },
-    cancel: [{ action: 'cancel-shot' }]
+    name: "context-menu",
+    start: { action: "start-shot", label: "context-menu" },
+    end: { action: "internal", label: "unhide-preselection-frame" },
+    cancel: [{ action: "cancel-shot" }]
   }, {
-    name: 'capture-full-page',
-    start: { action: 'capture-full-page' },
-    end: { action: 'internal', label: 'unhide-preview-frame' },
-    cancel: [{ action: 'cancel-shot' }]
+    name: "capture-full-page",
+    start: { action: "capture-full-page" },
+    end: { action: "internal", label: "unhide-preview-frame" },
+    cancel: [{ action: "cancel-shot" }]
   }, {
-    name: 'capture-visible',
-    start: { action: 'capture-visible' },
-    end: { action: 'internal', label: 'unhide-preview-frame' },
-    cancel: [{ action: 'cancel-shot' }]
+    name: "capture-visible",
+    start: { action: "capture-visible" },
+    end: { action: "internal", label: "unhide-preview-frame" },
+    cancel: [{ action: "cancel-shot" }]
   }, {
-    name: 'make-selection',
-    start: { action: 'make-selection' },
-    end: { action: 'internal', label: 'unhide-selection-frame' },
-    cancel: [{ action: 'cancel-shot' }]
+    name: "make-selection",
+    start: { action: "make-selection" },
+    end: { action: "internal", label: "unhide-selection-frame" },
+    cancel: [{ action: "cancel-shot" }]
   }, {
-    name: 'save-shot',
-    start: { action: 'save-shot' },
-    end: { action: 'internal', label: 'open-shot-tab' },
-    cancel: [{ action: 'cancel-shot' }, { action: 'upload-failed' }]
+    name: "save-shot",
+    start: { action: "save-shot" },
+    end: { action: "internal", label: "open-shot-tab" },
+    cancel: [{ action: "cancel-shot" }, { action: "upload-failed" }]
   }, {
-    name: 'save-visible',
-    start: { action: 'save-visible' },
-    end: { action: 'internal', label: 'open-shot-tab' },
-    cancel: [{ action: 'cancel-shot' }, { action: 'upload-failed' }]
+    name: "save-visible",
+    start: { action: "save-visible" },
+    end: { action: "internal", label: "open-shot-tab" },
+    cancel: [{ action: "cancel-shot" }, { action: "upload-failed" }]
   }, {
-    name: 'save-full-page',
-    start: { action: 'save-full-page' },
-    end: { action: 'internal', label: 'open-shot-tab' },
-    cancel: [{ action: 'cancel-shot' }, { action: 'upload-failed' }]
+    name: "save-full-page",
+    start: { action: "save-full-page" },
+    end: { action: "internal", label: "open-shot-tab" },
+    cancel: [{ action: "cancel-shot" }, { action: "upload-failed" }]
   }, {
-    name: 'save-full-page-truncated',
-    start: { action: 'save-full-page-truncated' },
-    end: { action: 'internal', label: 'open-shot-tab' },
-    cancel: [{ action: 'cancel-shot' }, { action: 'upload-failed' }]
+    name: "save-full-page-truncated",
+    start: { action: "save-full-page-truncated" },
+    end: { action: "internal", label: "open-shot-tab" },
+    cancel: [{ action: "cancel-shot" }, { action: "upload-failed" }]
   }, {
-    name: 'download-shot',
-    start: { action: 'download-shot' },
-    end: { action: 'internal', label: 'deactivate' },
-    cancel: [{ action: 'cancel-shot' }]
+    name: "download-shot",
+    start: { action: "download-shot" },
+    end: { action: "internal", label: "deactivate" },
+    cancel: [{ action: "cancel-shot" }]
   }, {
-    name: 'download-full-page',
-    start: { action: 'download-full-page' },
-    end: { action: 'internal', label: 'deactivate' },
-    cancel: [{ action: 'cancel-shot' }]
+    name: "download-full-page",
+    start: { action: "download-full-page" },
+    end: { action: "internal", label: "deactivate" },
+    cancel: [{ action: "cancel-shot" }]
   }, {
-    name: 'download-full-page-truncated',
-    start: { action: 'download-full-page-truncated' },
-    end: { action: 'internal', label: 'deactivate' },
-    cancel: [{ action: 'cancel-shot' }]
+    name: "download-full-page-truncated",
+    start: { action: "download-full-page-truncated" },
+    end: { action: "internal", label: "deactivate" },
+    cancel: [{ action: "cancel-shot" }]
   }, {
-    name: 'download-visible',
-    start: { action: 'download-visible' },
-    end: { action: 'internal', label: 'deactivate' },
-    cancel: [{ action: 'cancel-shot' }]
+    name: "download-visible",
+    start: { action: "download-visible" },
+    end: { action: "internal", label: "deactivate" },
+    cancel: [{ action: "cancel-shot" }]
   }];
 
   // Match a filter (action and optional label) against an action and label.

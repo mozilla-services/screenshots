@@ -74,7 +74,7 @@ exports.insert = function(sql, args) {
       return true;
     }).catch(err => {
       done();
-      if (err.code === '23505') {
+      if (err.code === "23505") {
         // constraint error, duplicate key
         return false;
       }

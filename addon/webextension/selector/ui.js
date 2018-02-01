@@ -105,7 +105,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       <tbody>`;
     localizeText(notice);
     if (initAtBottom) {
-      notice.style.bottom = '10px';
+      notice.style.bottom = "10px";
     }
     return notice;
   }
@@ -139,7 +139,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element = initializeIframe();
           this.element.id = "firefox-screenshots-selection-iframe";
           this.element.style.display = "none";
-          this.element.style.setProperty('position', 'absolute', 'important');
+          this.element.style.setProperty("position", "absolute", "important");
           this.updateElementSize();
           this.element.addEventListener("load", watchFunction(() => {
             this.document = this.element.contentDocument;
@@ -273,7 +273,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
         if (!this.element) {
           this.element = initializeIframe();
           this.element.id = "firefox-screenshots-preselection-iframe";
-          this.element.style.setProperty('position', 'fixed', 'important');
+          this.element.style.setProperty("position", "fixed", "important");
           this.element.style.width = "100%";
           this.element.style.height = "100%";
           this.element.addEventListener("load", watchFunction(() => {
@@ -296,7 +296,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
                      <div class="preview-instructions" data-l10n-id="screenshotInstructions"></div>
                      <button class="cancel-shot">${browser.i18n.getMessage("cancelScreenshot")}</button>
                      <div class="myshots-all-buttons-container">
-                       ${isDownloadOnly() ? '' : `
+                       ${isDownloadOnly() ? "" : `
                          <button class="myshots-button" tabindex="1" data-l10n-id="myShotsLink"></button>
                          <div class="spacer"></div>
                        `}
@@ -384,7 +384,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element = initializeIframe();
           this.element.id = "firefox-screenshots-preview-iframe";
           this.element.style.display = "none";
-          this.element.style.setProperty('position', 'fixed', 'important');
+          this.element.style.setProperty("position", "fixed", "important");
           this.element.style.height = "100%";
           this.element.style.width = "100%";
           this.element.onload = watchFunction(() => {
@@ -635,8 +635,8 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
         this.downloadNotice.style.top = (pageYOffset + winBottom - 60) + "px";
         // event callbacks are delayed 100ms each to keep from overloading things
         this.windowChangeStop = this.delayExecution(100, this.repositionDownloadNotice);
-        window.addEventListener('scroll', watchFunction(assertIsTrusted(this.windowChangeStop)));
-        window.addEventListener('resize', watchFunction(assertIsTrusted(this.windowChangeStop)));
+        window.addEventListener("scroll", watchFunction(assertIsTrusted(this.windowChangeStop)));
+        window.addEventListener("resize", watchFunction(assertIsTrusted(this.windowChangeStop)));
       }
     },
 
@@ -645,7 +645,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
     delayExecution(delay, cb) {
       let timer;
       return function() {
-        if (typeof timer !== 'undefined') {
+        if (typeof timer !== "undefined") {
           clearTimeout(timer);
         }
         timer = setTimeout(cb, delay);
@@ -654,8 +654,8 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
 
     remove() {
       if (this.downloadNotice) {
-        window.removeEventListener('scroll', this.windowChangeStop, true);
-        window.removeEventListener('resize', this.windowChangeStop, true);
+        window.removeEventListener("scroll", this.windowChangeStop, true);
+        window.removeEventListener("resize", this.windowChangeStop, true);
       }
       for (const name of ["el", "bgTop", "bgLeft", "bgRight", "bgBottom", "downloadNotice"]) {
         if (name in this) {

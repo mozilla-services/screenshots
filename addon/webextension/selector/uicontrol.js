@@ -195,18 +195,18 @@ this.uicontrol = (function() {
       setState("previewing");
     },
     onSavePreview: () => {
-      sendEvent(`save-${captureType.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}`, "save-preview-button");
+      sendEvent(`save-${captureType.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()}`, "save-preview-button");
       shooter.takeShot(captureType, selectedPos, dataUrl);
     },
     onDownloadPreview: () => {
-      sendEvent(`download-${captureType.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}`, "download-preview-button");
+      sendEvent(`download-${captureType.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()}`, "download-preview-button");
       // Downloaded shots don't have dimension limits
       const previewDataUrl = (captureType === "fullPageTruncated") ? null : dataUrl;
       removeDimensionLimitsOnFullPageShot();
       shooter.downloadShot(selectedPos, previewDataUrl);
     },
     onCopyPreview: () => {
-      sendEvent(`copy-${captureType.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}`, "copy-preview-button");
+      sendEvent(`copy-${captureType.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()}`, "copy-preview-button");
       // Copied shots don't have dimension limits
       const previewDataUrl = (captureType === "fullPageTruncated") ? null : dataUrl;
       removeDimensionLimitsOnFullPageShot();
@@ -461,7 +461,7 @@ this.uicontrol = (function() {
 
         for (let i = 0; i < 2; i++) {
           const move = `translate(${xpos}px, ${ypos}px)`;
-          event.target.getElementsByClassName('eyeball')[i].style.transform = move;
+          event.target.getElementsByClassName("eyeball")[i].style.transform = move;
         }
       } else {
         // The hover is on the element we care about, so we use that
@@ -680,7 +680,7 @@ this.uicontrol = (function() {
           return rect.width >= this.minAutoImageWidth && rect.height >= this.minAutoImageHeight;
         }
         const display = window.getComputedStyle(el).display;
-        if (['block', 'inline-block', 'table'].indexOf(display) !== -1) {
+        if (["block", "inline-block", "table"].indexOf(display) !== -1) {
           return true;
           // FIXME: not sure if this is useful:
           // let rect = el.getBoundingClientRect();
@@ -916,10 +916,10 @@ this.uicontrol = (function() {
     try {
       sendEvent("internal", "deactivate");
       setState("cancel");
-      callBackground('closeSelector');
+      callBackground("closeSelector");
       selectorLoader.unloadModules();
     } catch (e) {
-      log.error('Error in deactivate', e)
+      log.error("Error in deactivate", e)
       // Sometimes this fires so late that the document isn't available
       // We don't care about the exception, so we swallow it here
     }
@@ -962,7 +962,7 @@ this.uicontrol = (function() {
     });
     primedDocumentHandlers.set("keyup", watchFunction(assertIsTrusted(keyupHandler)));
     primedDocumentHandlers.set("keydown", watchFunction(assertIsTrusted(keydownHandler)));
-    window.addEventListener('beforeunload', beforeunloadHandler);
+    window.addEventListener("beforeunload", beforeunloadHandler);
   }
 
   let mousedownSetOnDocument = false;

@@ -1,5 +1,5 @@
-const crypto = require('crypto');
-const wreck = require('wreck');
+const crypto = require("crypto");
+const wreck = require("wreck");
 
 exports.request = function request(method, uri, options) {
   return new Promise((resolve, reject) => {

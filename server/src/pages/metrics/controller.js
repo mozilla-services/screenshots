@@ -16,7 +16,7 @@ exports.onChangeLastShotTime = function(days) {
     return;
   }
   model.lastShotTimeDays = days;
-  model.lastShotCount = '\u2B6E';
+  model.lastShotCount = "\u2B6E";
   render();
   const req = new XMLHttpRequest();
   req.open("GET", `./api/recent/lastShotCount?lastShotTimeDays=${encodeURIComponent(days)}`);

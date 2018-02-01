@@ -1,5 +1,5 @@
 const db = require("./db");
-const Keygrip = require('keygrip');
+const Keygrip = require("keygrip");
 const pgpatcher = require("pg-patcher");
 const path = require("path");
 const mozlog = require("./logging").mozlog("dbschema");
@@ -141,12 +141,12 @@ exports.createKeygrip = function() {
 /** Returns a promise that generates a new largish ASCII random key */
 function makeKey() {
   return new Promise(function(resolve, reject) {
-    require('crypto').randomBytes(48, function(err, buf) {
+    require("crypto").randomBytes(48, function(err, buf) {
       if (err) {
         reject(err);
         return;
       }
-      resolve(buf.toString('base64'));
+      resolve(buf.toString("base64"));
     });
   });
 }

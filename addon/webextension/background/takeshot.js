@@ -72,7 +72,7 @@ this.takeshot = (function() {
       return browser.tabs.create({url: shot.creatingUrl})
     }).then((tab) => {
       openedTab = tab;
-      sendEvent('internal', 'open-shot-tab');
+      sendEvent("internal", "open-shot-tab");
       return uploadShot(shot, imageBlob, thumbnailBlob);
     }).then(() => {
       return browser.tabs.update(openedTab.id, {url: shot.viewUrl, loadReplace: true}).then(

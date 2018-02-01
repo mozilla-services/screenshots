@@ -12,7 +12,7 @@ app.get("/:id/:domain", function(req, res) {
   const shotId = `${req.params.id}/${req.params.domain}`;
   Shot.get(req.backend, shotId).then((shot) => {
     const noSuchShot = !shot;
-    const nonOwnerAndBlocked = shot && shot.blockType !== 'none' && req.deviceId !== shot.ownerId;
+    const nonOwnerAndBlocked = shot && shot.blockType !== "none" && req.deviceId !== shot.ownerId;
     if (noSuchShot || nonOwnerAndBlocked || shot.deleted) {
       mozlog.info("shot-404", {shotId, ip: req.ip});
       notFound(req, res);

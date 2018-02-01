@@ -9,10 +9,10 @@ this.callBackground = function callBackground(funcName, ...args) {
     } else if (result && result.type === "error") {
       const exc = new Error(result.message || "Unknown error");
       exc.name = "BackgroundError";
-      if ('errorCode' in result) {
+      if ("errorCode" in result) {
         exc.errorCode = result.errorCode;
       }
-      if ('popupMessage' in result) {
+      if ("popupMessage" in result) {
         exc.popupMessage = result.popupMessage;
       }
       throw exc;

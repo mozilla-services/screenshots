@@ -97,7 +97,7 @@ class GenericTable extends React.Component {
           if (meta.type === "date") {
             value = (new Date(value));
             value = value.toLocaleString(
-              "en-US", {year: 'numeric', month: 'short', day: 'numeric'});
+              "en-US", {year: "numeric", month: "short", day: "numeric"});
           } else {
             console.warn("Unknown type:", meta.type);
           }

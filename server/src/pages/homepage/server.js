@@ -6,7 +6,7 @@ const app = express();
 exports.app = app;
 
 app.get("/robots.txt", function(req, res) {
-  res.send('');
+  res.send("");
 });
 
 app.get("/", function(req, res) {

@@ -23,7 +23,7 @@ function assertPngOrJpeg(dataUrl) {
   const jpegHeader = "data:image/jpeg;base64,";
   if (!(dataUrl.startsWith(pngHeader) || dataUrl.startsWith(jpegHeader))) {
     mozlog.warn("invalid-data-url", {msg: "Invalid data: URL submitted", prefix: dataUrl.substr(0, jpegHeader.length + 10)});
-    throw new Error('invalid data url');
+    throw new Error("invalid data url");
   }
   // only decode enough to get the header
   // we're lucky that 9 bytes is exactly 12 base64 characters
@@ -31,23 +31,23 @@ function assertPngOrJpeg(dataUrl) {
     const base64Header = dataUrl.substr(pngHeader.length, PNG_HEADER_BASE64.length);
     if (base64Header.length < PNG_HEADER_BASE64.length) {
       mozlog.warn("invalid-data-image", {msg: "Invalid PNG image submitted", prefix: dataUrl.substr(0, pngHeader.length + PNG_HEADER_BASE64.length)});
-      throw new Error('invalid image');
+      throw new Error("invalid image");
     }
     const header = Buffer.from(base64Header, "base64"); // 9 bytes
     if (!PNG_HEADER.equals(header.slice(0, PNG_HEADER.length))) {
       mozlog.warn("invalid-data-image-decoded", {msg: "Invalid PNG image (after base64 decoding)"});
-      throw new Error('invalid png');
+      throw new Error("invalid png");
     }
   } else {
     const base64Header = dataUrl.substr(jpegHeader.length, JPEG_HEADER_BASE64.length);
     if (base64Header.length < JPEG_HEADER_BASE64.length) {
       mozlog.warn("invalid-data-image", {msg: "Invalid JPEG image submitted", prefix: dataUrl.substr(0, jpegHeader.length + JPEG_HEADER_BASE64.length)});
-      throw new Error('invalid image');
+      throw new Error("invalid image");
     }
     const header = Buffer.from(base64Header, "base64"); // 9 bytes
     if (!JPEG_HEADER.equals(header.slice(0, JPEG_HEADER.length))) {
       mozlog.warn("invalid-data-image-decoded", {msg: "Invalid JPEG image (after base64 decoding)"});
-      throw new Error('invalid jpeg');
+      throw new Error("invalid jpeg");
     }
   }
 }
@@ -106,7 +106,7 @@ if (!config.useS3) {
     });
   };
 } else {
-  const AWS = require('aws-sdk');
+  const AWS = require("aws-sdk");
 
   s3bucket = new AWS.S3({params: {Bucket: config.s3BucketName}});
 
@@ -220,7 +220,7 @@ class Shot extends AbstractShot {
         }).then(() => {
           return oks;
         }).catch((err) => {
-          if (err.code === '23505') {
+          if (err.code === "23505") {
             // This is a duplicate key error, means the insert failed
             clipRewrites.revertShotUrls();
             return false;
@@ -284,16 +284,16 @@ class Shot extends AbstractShot {
       if (!t) {
         return;
       }
-      if (!['A', 'B', 'C', 'D'].includes(weight)) {
+      if (!["A", "B", "C", "D"].includes(weight)) {
         throw new Error("Bad weight, should be A, B, C, or D");
       }
       queryParts.push(`setweight(to_tsvector(${addText(t)}), '${weight}') /* ${name} */`);
     }
     if (this.url) {
       const domain = this.url.replace(/^.{0,4000}:/, "").replace(/\/.{0,4000}$/, "");
-      addWeight(domain, 'B', 'domain');
+      addWeight(domain, "B", "domain");
     }
-    addWeight(this.title, 'A', 'title');
+    addWeight(this.title, "A", "title");
     if (this.openGraph) {
       const openGraphProps = `
         site_name description
@@ -301,20 +301,20 @@ class Shot extends AbstractShot {
         book:author book:tag
         profile:first_name profile:back_name profile:username
       `.split(/\s+/g);
-      addWeight(openGraphProps.map((n) => this.openGraph[n]), 'B', 'openGraph');
+      addWeight(openGraphProps.map((n) => this.openGraph[n]), "B", "openGraph");
     }
     if (this.twitterCard) {
       const twitterProps = `
         site title description
       `.split(/\s+/g);
-      addWeight(twitterProps.map((n) => this.twitterCard[n]), 'A', 'twitterCard');
+      addWeight(twitterProps.map((n) => this.twitterCard[n]), "A", "twitterCard");
       for (const clipId of this.clipNames()) {
         const clip = this.getClip(clipId);
-        addWeight(clip.image && clip.image.text, 'A', 'clip text');
+        addWeight(clip.image && clip.image.text, "A", "clip text");
       }
     }
     return {
-      query: queryParts.join(' || '),
+      query: queryParts.join(" || "),
       args: texts,
       // Update this version if you update the algorithm:
       version: SEARCHABLE_VERSION
@@ -370,7 +370,7 @@ class ServerClip extends AbstractShot.prototype.Clip {
       }
     }
     let imageData = url.substr(match[0].length);
-    imageData = new Buffer(imageData, 'base64');
+    imageData = new Buffer(imageData, "base64");
     return {
       contentType: match[1],
       data: imageData
@@ -762,7 +762,7 @@ const ClipRewrites = class ClipRewrites {
     const pngDataUrlMediaType = "data:image/png;base64,"
     if (this.shot.thumbnail && this.shot.thumbnail.startsWith(pngDataUrlMediaType)) {
       let imageData = this.shot.thumbnail.substr(pngDataUrlMediaType.length);
-      imageData = new Buffer(imageData, 'base64');
+      imageData = new Buffer(imageData, "base64");
       const imageId = `${uuid.v4()}.png`;
       this.toInsertThumbnail = {
         contentType: "image/png",

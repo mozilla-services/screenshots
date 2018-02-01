@@ -102,10 +102,10 @@ class Body extends React.Component {
     const totalPages = Math.ceil(this.props.totalShots / this.props.shotsPerPage) || 1;
     const hasPrev = this.props.pageNumber > 1;
     const prevPageNumber = this.props.pageNumber - 1;
-    const prevClasses = ["shots-page-nav"].concat(!hasPrev && "disabled").join(' ');
+    const prevClasses = ["shots-page-nav"].concat(!hasPrev && "disabled").join(" ");
     const hasNext = this.props.pageNumber < totalPages;
     const nextPageNumber = this.props.pageNumber - 0 + 1;
-    const nextClasses = ["shots-page-nav"].concat(!hasNext && "disabled").join(' ');
+    const nextClasses = ["shots-page-nav"].concat(!hasNext && "disabled").join(" ");
 
     return (
       <div id="shot-index-page-navigation">
@@ -254,7 +254,7 @@ class Body extends React.Component {
   }
 
   onClearSearch(e) {
-    const val = '';
+    const val = "";
     this.searchInput.value = val;
     this.setState({defaultSearch: val});
     controller.onChangeSearch(val);

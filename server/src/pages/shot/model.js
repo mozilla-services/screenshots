@@ -1,10 +1,10 @@
 const { createProxyUrl, createDownloadUrl } = require("../../proxy-url");
 const { getGitRevision } = require("../../linker");
-const MobileDetect = require('mobile-detect');
+const MobileDetect = require("mobile-detect");
 
 exports.createModel = function(req) {
   const buildTime = require("../../build-time").string;
-  const isMobile = !!(new MobileDetect(req.headers['user-agent'])).mobile();
+  const isMobile = !!(new MobileDetect(req.headers["user-agent"])).mobile();
   let downloadUrl = null;
   const clip = req.shot.getClip(req.shot.clipNames()[0]);
   if (clip) {
@@ -38,7 +38,7 @@ exports.createModel = function(req) {
     sentryPublicDSN: req.config.sentryPublicDSN,
     cspNonce: req.cspNonce,
     hashAnalytics: true,
-    userAgent: req.headers['user-agent'],
+    userAgent: req.headers["user-agent"],
     blockType: req.shot.blockType,
     downloadUrl,
     isMobile,
@@ -68,7 +68,7 @@ exports.createModel = function(req) {
     defaultExpiration: req.config.defaultExpiration * 1000,
     pngToJpegCutoff: req.config.pngToJpegCutoff,
     hashAnalytics: true,
-    userAgent: req.headers['user-agent'],
+    userAgent: req.headers["user-agent"],
     blockType: req.shot.blockType,
     downloadUrl,
     isMobile,

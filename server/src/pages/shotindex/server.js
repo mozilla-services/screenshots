@@ -26,7 +26,7 @@ app.get("/", function(req, res) {
 
   function _render(shotsPage) {
     if (shotsPage) {
-      ['shots', 'totalShots', 'pageNumber', 'shotsPerPage'].forEach(x => {
+      ["shots", "totalShots", "pageNumber", "shotsPerPage"].forEach(x => {
         if (shotsPage[x] !== undefined) {
           req[x] = shotsPage[x];
         }

@@ -68,7 +68,7 @@ this.senderror = (function() {
       popupMessage = "generic";
     }
     const title = messages[popupMessage].title;
-    let message = messages[popupMessage].info || '';
+    let message = messages[popupMessage].info || "";
     const showMessage = messages[popupMessage].showMessage;
     if (error.message && showMessage) {
       if (message) {
@@ -119,7 +119,7 @@ this.senderror = (function() {
     }
     rest.stack = exception.stack;
     Raven.captureException(exception, {
-      logger: 'addon',
+      logger: "addon",
       tags: {category: e.popupMessage},
       release: manifest.version,
       message: exception.message,

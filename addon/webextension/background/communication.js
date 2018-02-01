@@ -53,7 +53,7 @@ this.communication = (function() {
       if (result.type === "success") {
         return result.value;
       }
-      throw new Error(`Error in ${funcName}: ${result.name || 'unknown'}`);
+      throw new Error(`Error in ${funcName}: ${result.name || "unknown"}`);
     }, (error) => {
       if (isBootstrapMissingError(error)) {
         return exports.NO_BOOTSTRAP;
@@ -66,7 +66,7 @@ this.communication = (function() {
     if (!error) {
       return false;
     }
-    return ('errorCode' in error && error.errorCode === "NO_RECEIVING_END") ||
+    return ("errorCode" in error && error.errorCode === "NO_RECEIVING_END") ||
       (!error.errorCode && error.message === "Could not establish connection. Receiving end does not exist.");
   }
 

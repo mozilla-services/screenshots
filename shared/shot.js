@@ -33,7 +33,7 @@ function isUrl(url) {
 }
 
 function isValidClipImageUrl(url) {
-    return isUrl(url) && !(url.indexOf(')') > -1);
+    return isUrl(url) && !(url.indexOf(")") > -1);
 }
 
 function assertUrl(url) {
@@ -379,7 +379,7 @@ class AbstractShot {
     if (clipFilenameBytesSize > 251) { // 255 bytes (Usual filesystems max) - 4 for the ".png" file extension string
       const excedingchars = (clipFilenameBytesSize - 246) / 2; // 251 - 5 for ellipsis "[...]"
       clipFilename = clipFilename.substring(0, clipFilename.length - excedingchars);
-      clipFilename = clipFilename + '[...]';
+      clipFilename = clipFilename + "[...]";
     }
     const clip = this.getClip(this.clipNames()[0]);
     let extension = ".png";
@@ -673,10 +673,10 @@ class _Clip {
     assert(typeof id === "string" && id, "Bad Clip id:", id);
     this._id = id;
     this.createdDate = json.createdDate;
-    if ('sortOrder' in json) {
+    if ("sortOrder" in json) {
       assert(typeof json.sortOrder === "number" || !json.sortOrder, "Bad Clip sortOrder:", json.sortOrder);
     }
-    if ('sortOrder' in json) {
+    if ("sortOrder" in json) {
       this.sortOrder = json.sortOrder;
     } else {
       const biggestOrder = shot.biggestClipSortOrder();

@@ -5,14 +5,14 @@
 //
 // The destination directory has been created at this point.
 
-const fs = require('fs');
+const fs = require("fs");
 const destDir = process.argv[2];
 const ftlPaths = process.argv.slice(3);
 
 for (const ftl of ftlPaths) {
-  const locale = ftl.split('/')[1];
+  const locale = ftl.split("/")[1];
   const destFilePath = `${destDir}/${locale}.js`;
-  const ftlFileContent = fs.readFileSync(ftl, 'utf8');
+  const ftlFileContent = fs.readFileSync(ftl, "utf8");
   const jsFileContent = `
     (function(context) {
       var messages=${JSON.stringify(ftlFileContent)};
@@ -27,5 +27,5 @@ for (const ftl of ftlPaths) {
       }
     })(this);
   `;
-  fs.writeFileSync(destFilePath, jsFileContent, 'utf8');
+  fs.writeFileSync(destFilePath, jsFileContent, "utf8");
 }

@@ -22,7 +22,7 @@ function createCacheSetter(maxAge, flags) {
         vals = vals.concat(flags);
       }
 
-      res.set("Cache-Control", vals.join(', '));
+      res.set("Cache-Control", vals.join(", "));
     } else {
       res.set("Cache-Control", "no-cache");
     }

@@ -38,7 +38,7 @@ class Body extends React.Component {
   }
 
   renderAccountInfo() {
-    const defaultAvatar = this.props.staticLink('/static/img/default-profile.svg');
+    const defaultAvatar = this.props.staticLink("/static/img/default-profile.svg");
     let info;
     let subInfo;
     if (this.props.accountInfo) {

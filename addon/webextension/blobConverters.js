@@ -2,7 +2,7 @@ this.blobConverters = (function() {
   const exports = {};
 
   exports.dataUrlToBlob = function(url) {
-    const binary = atob(url.split(',', 2)[1]);
+    const binary = atob(url.split(",", 2)[1]);
     let contentType = exports.getTypeFromDataUrl(url);
     if (contentType !== "image/png" && contentType !== "image/jpeg") {
       contentType = "image/png";
@@ -13,9 +13,9 @@ this.blobConverters = (function() {
   };
 
   exports.getTypeFromDataUrl = function(url) {
-    let contentType = url.split(',', 1)[0];
-    contentType = contentType.split(';', 1)[0];
-    contentType = contentType.split(':', 2)[1];
+    let contentType = url.split(",", 1)[0];
+    contentType = contentType.split(";", 1)[0];
+    contentType = contentType.split(":", 2)[1];
     return contentType;
   };
 

@@ -25,7 +25,6 @@ rules:
   no-console: [error, {allow: [debug, error, info, trace, warn]}]
   no-var: error
   prefer-const: error
-  quotes: [off, double] # TODO: change to "error"
 
   promise/always-return: off
   promise/avoid-new: off

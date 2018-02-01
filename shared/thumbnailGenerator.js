@@ -90,7 +90,7 @@ function createThumbnail(dataUrl, imageWidth, imageHeight, urlOrBlob) {
         destHeight = thumbnailDimensions.height;
       }
 
-      const thumbnailCanvas = document.createElement('canvas');
+      const thumbnailCanvas = document.createElement("canvas");
       thumbnailCanvas.width = destWidth;
       thumbnailCanvas.height = destHeight;
       const ctx = thumbnailCanvas.getContext("2d");

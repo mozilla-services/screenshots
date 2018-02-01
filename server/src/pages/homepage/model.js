@@ -1,6 +1,6 @@
 exports.createModel = function(req) {
-  const isMobile = exports.isMobile(req.headers['user-agent']);
-  const firefoxVersion = exports.getFirefoxVersion(req.headers['user-agent']);
+  const isMobile = exports.isMobile(req.headers["user-agent"]);
+  const firefoxVersion = exports.getFirefoxVersion(req.headers["user-agent"]);
   const model = {
     title: "Firefox Screenshots",
     showMyShots: !!req.deviceId,

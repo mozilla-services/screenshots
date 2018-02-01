@@ -8,8 +8,8 @@ exports.getLanguages = function(req) {
   let languages = accepts(req).languages();
   // 'accepts' returns '*' if no Accept-Language header was passed. Use English
   // as a default instead. #3231
-  if (languages[0] === '*') {
-    languages = ['en-US'];
+  if (languages[0] === "*") {
+    languages = ["en-US"];
   }
   return languages;
 };

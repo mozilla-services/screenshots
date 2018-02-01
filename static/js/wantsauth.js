@@ -67,7 +67,7 @@ window.wantsauth = (function() {
   });
 
   function checkLogin() {
-    return fetch('/api/check-login-cookie', {credentials: "include"}).then((resp) => {
+    return fetch("/api/check-login-cookie", {credentials: "include"}).then((resp) => {
       // The server only returns 200 if the user is logged in
       return resp.ok;
     });

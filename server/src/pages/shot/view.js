@@ -202,7 +202,7 @@ class Body extends React.Component {
   }
 
   render() {
-    if (this.props.blockType !== 'none') {
+    if (this.props.blockType !== "none") {
       return this.renderBlock();
     }
     if (this.props.expireTime !== null && Date.now() > this.props.expireTime) {
@@ -228,7 +228,7 @@ class Body extends React.Component {
     let moreInfo = null;
     const dmca = <a href="mailto:dmcanotice@mozilla.com">dmcanotice@mozilla.com</a>;
     const url = `${this.props.backend}/${this.props.id}`;
-    if (this.props.blockType === 'dmca') {
+    if (this.props.blockType === "dmca") {
       if (this.props.isOwner) {
         message = (
           <Localized id="shotPageDMCAMessage">

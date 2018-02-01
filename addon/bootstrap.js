@@ -213,7 +213,7 @@ function handleMessage(msg, sender, sendReply) {
     const telemetryEnabled = getBoolPref(TELEMETRY_ENABLED_PREF);
     sendReply({type: "success", value: telemetryEnabled});
   } else if (msg.funcName === "isUploadDisabled") {
-    const isESR = AppConstants.MOZ_UPDATE_CHANNEL === 'esr';
+    const isESR = AppConstants.MOZ_UPDATE_CHANNEL === "esr";
     const uploadDisabled = getBoolPref(UPLOAD_DISABLED_PREF);
     sendReply({type: "success", value: uploadDisabled || isESR});
   } else if (msg.funcName === "isHistoryEnabled") {

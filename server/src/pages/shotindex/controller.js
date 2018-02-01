@@ -136,8 +136,8 @@ exports.deleteShot = function(shot) {
     if (req.status >= 300) {
       // FIXME: a lame way to do an error message
       let errorMessage = document.getElementById("shotIndexPageErrorDeletingShot").textContent;
-      errorMessage = errorMessage.replace('{status}', req.status);
-      errorMessage = errorMessage.replace('{statusText}', req.statusText);
+      errorMessage = errorMessage.replace("{status}", req.status);
+      errorMessage = errorMessage.replace("{statusText}", req.statusText);
       window.alert(errorMessage);
       window.Raven.captureException(new Error(`Error calling /api/delete-shot: ${req.status} ${req.statusText}`));
     } else if ((model.totalShots % model.shotsPerPage) === 1 && model.pageNumber > 1) {

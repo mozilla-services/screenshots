@@ -20,11 +20,11 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
   }
 
   function sanitizeError(data) {
-    const href = new RegExp(regexpEscape(window.location.href), 'g');
-    const origin = new RegExp(`${regexpEscape(window.location.origin)}[^ \t\n\r",>]*`, 'g');
+    const href = new RegExp(regexpEscape(window.location.href), "g");
+    const origin = new RegExp(`${regexpEscape(window.location.origin)}[^ \t\n\r",>]*`, "g");
     const json = JSON.stringify(data)
-      .replace(href, 'REDACTED_HREF')
-      .replace(origin, 'REDACTED_URL');
+      .replace(href, "REDACTED_HREF")
+      .replace(origin, "REDACTED_URL");
     const result = JSON.parse(json);
     return result;
   }
@@ -34,8 +34,8 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
   });
 
   catcher.watchFunction(() => {
-    const canvas = document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
-    const ctx = canvas.getContext('2d');
+    const canvas = document.createElementNS("http://www.w3.org/1999/xhtml", "canvas");
+    const ctx = canvas.getContext("2d");
     supportsDrawWindow = !!ctx.drawWindow;
   })();
 
@@ -45,10 +45,10 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     }
     const height = selectedPos.bottom - selectedPos.top;
     const width = selectedPos.right - selectedPos.left;
-    const canvas = document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
-    const ctx = canvas.getContext('2d');
+    const canvas = document.createElementNS("http://www.w3.org/1999/xhtml", "canvas");
+    const ctx = canvas.getContext("2d");
     let expand = window.devicePixelRatio !== 1;
-    if (captureType === 'fullPage' || captureType === 'fullPageTruncated') {
+    if (captureType === "fullPage" || captureType === "fullPageTruncated") {
       expand = false;
       canvas.width = width;
       canvas.height = height;
@@ -144,7 +144,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
         return callBackground("openShot", { url, copied });
       });
     }, (error) => {
-      if ('popupMessage' in error && (error.popupMessage === "REQUEST_ERROR" || error.popupMessage === 'CONNECTION_ERROR')) {
+      if ("popupMessage" in error && (error.popupMessage === "REQUEST_ERROR" || error.popupMessage === "CONNECTION_ERROR")) {
         // The error has been signaled to the user, but unlike other errors (or
         // success) we should not abort the selection
         deactivateAfterFinish = false;

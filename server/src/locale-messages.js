@@ -44,7 +44,7 @@ function setLocaleMessages(locale, messages) {
   }
 }
 
-if (typeof window !== 'undefined' && !window.notifyL10nLoaded) {
+if (typeof window !== "undefined" && !window.notifyL10nLoaded) {
   window.notifyL10nLoaded = setLocaleMessages;
 }
 

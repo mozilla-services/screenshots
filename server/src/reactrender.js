@@ -32,7 +32,7 @@ exports.render = function(req, res, page) {
     }, serverModel);
     if (req.query.data === "json") {
       if (req.query.pretty !== undefined) {
-        res.type("json").send(JSON.stringify(jsonModel, null, '  '));
+        res.type("json").send(JSON.stringify(jsonModel, null, "  "));
       } else {
         res.type("json").send(jsonModel);
       }
@@ -45,7 +45,7 @@ exports.render = function(req, res, page) {
     } else {
       body = ReactDOMServer.renderToString(viewModule.BodyFactory(serverModel));
     }
-    const jsonString = JSON.stringify(jsonModel).replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029').replace(/<script/ig, "\\x3cscript").replace(/<\/script/ig, "\\x3c/script");
+    const jsonString = JSON.stringify(jsonModel).replace(/\u2028/g, "\\u2028").replace(/\u2029/g, "\\u2029").replace(/<script/ig, "\\x3cscript").replace(/<\/script/ig, "\\x3c/script");
     let doc = `
     <html>
       ${head}

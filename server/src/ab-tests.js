@@ -81,12 +81,12 @@ let allTests = {
 
 // Any test names listed here will get removed from the A/B tests.  Tests should
 // be moved here once we are uninterested in any future data from the test:
-const deprecatedTests = ['highlightButtonOnInstall', 'styleMyShotsButton', 'autoOpenSharePanel'];
+const deprecatedTests = ["highlightButtonOnInstall", "styleMyShotsButton", "autoOpenSharePanel"];
 
 class Test {
   constructor(options) {
-    const requiredFields = ['name', 'gaField', 'description', 'version', 'options'];
-    const allowedFields = requiredFields.concat(['shotField', 'exclude', 'appliesToPublic']);
+    const requiredFields = ["name", "gaField", "description", "version", "options"];
+    const allowedFields = requiredFields.concat(["shotField", "exclude", "appliesToPublic"]);
     for (const required of requiredFields) {
       if (!(required in options)) {
         throw new Error(`Missing constructor field: ${required}`);

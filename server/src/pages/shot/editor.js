@@ -99,9 +99,9 @@ exports.Editor = class Editor extends React.Component {
     this.canvasWidth = this.props.clip.image.dimensions.x;
     this.canvasHeight = this.props.clip.image.dimensions.y;
     this.state = {
-      tool: 'pen',
-      color: '#000',
-      size: '5'
+      tool: "pen",
+      color: "#000",
+      size: "5"
     };
   }
 
@@ -121,8 +121,8 @@ exports.Editor = class Editor extends React.Component {
   }
 
   renderToolBar() {
-    const penState = this.state.tool === "pen" ? 'active' : 'inactive';
-    const highlighterState = this.state.tool === "highlighter" ? 'active' : 'inactive';
+    const penState = this.state.tool === "pen" ? "active" : "inactive";
+    const highlighterState = this.state.tool === "highlighter" ? "active" : "inactive";
     return <div className="editor-header default-color-scheme">
       <div className="shot-main-actions annotation-actions">
         <div className="annotation-tools">
@@ -161,7 +161,7 @@ exports.Editor = class Editor extends React.Component {
   }
 
   onClickCrop() {
-    this.setState({tool: 'crop'});
+    this.setState({tool: "crop"});
     this.cropToolBar = <div className="editor-header default-color-scheme"><div className="annotation-tools">
       <Localized id="annotationCropConfirmButton">
         <button className={`button transparent confirm-crop`} id="confirm-crop" onClick={this.onClickConfirmCrop.bind(this)} title="Confirm selection">Crop</button>
@@ -183,16 +183,16 @@ exports.Editor = class Editor extends React.Component {
     const y2 = Math.min(selectedPos.bottom, this.canvasHeight);
     const cropWidth = Math.floor(x2 - x1);
     const cropHeight = Math.floor(y2 - y1);
-    const croppedImage = document.createElement('canvas');
+    const croppedImage = document.createElement("canvas");
     croppedImage.width = cropWidth
     croppedImage.height = cropHeight
     const croppedContext = croppedImage.getContext("2d");
     croppedContext.drawImage(this.imageCanvas, x1, y1, croppedImage.width, croppedImage.height, 0, 0, croppedImage.width, croppedImage.height);
-    croppedContext.globalCompositeOperation = 'multiply';
+    croppedContext.globalCompositeOperation = "multiply";
     croppedContext.drawImage(this.highlighter, x1, y1, croppedImage.width, croppedImage.height, 0, 0, croppedImage.width, croppedImage.height);
     const img = new Image();
-    const imageContext = this.imageCanvas.getContext('2d');
-    img.crossOrigin = 'Anonymous';
+    const imageContext = this.imageCanvas.getContext("2d");
+    img.crossOrigin = "Anonymous";
     const width = cropWidth;
     const height = cropHeight;
     img.onload = () => {
@@ -208,7 +208,7 @@ exports.Editor = class Editor extends React.Component {
   onClickCancelCrop() {
     this.removeCropBox();
     this.cropToolBar = null;
-    this.setState({tool: 'pen'});
+    this.setState({tool: "pen"});
   }
 
   mouseup(e) {
@@ -356,7 +356,7 @@ exports.Editor = class Editor extends React.Component {
     resizeStartSelected = null;
     resizeStartPos = {};
     resizeDirection = null;
-    selectionState = 'none';
+    selectionState = "none";
   }
 
   displayCropBox(pos) {
@@ -393,8 +393,8 @@ exports.Editor = class Editor extends React.Component {
     if (this.cropBox) {
       return;
     }
-    const cropBox = document.createElement('div')
-    cropBox.className = 'highlight';
+    const cropBox = document.createElement("div")
+    cropBox.className = "highlight";
     for (const name of movements) {
       const elTarget = document.createElement("div");
       elTarget.className = "mover-target direction-" + name;
@@ -439,7 +439,7 @@ exports.Editor = class Editor extends React.Component {
     sendEvent("save", "annotation-toolbar");
     const saveDisabled = true;
     this.setState({saveDisabled});
-    this.imageContext.globalCompositeOperation = 'multiply';
+    this.imageContext.globalCompositeOperation = "multiply";
     this.imageContext.drawImage(this.highlighter, 0, 0);
     this.highlightContext.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
     let dataUrl = this.imageCanvas.toDataURL();
@@ -456,23 +456,23 @@ exports.Editor = class Editor extends React.Component {
   }
 
   onClickHighlight() {
-    if (this.state.tool !== 'highlighter') {
-      this.setState({tool: 'highlighter'});
+    if (this.state.tool !== "highlighter") {
+      this.setState({tool: "highlighter"});
       sendEvent("highlighter-select", "annotation-toolbar");
     }
   }
 
   onClickPen() {
-    if (this.state.tool !== 'pen') {
-      this.setState({tool: 'pen'});
+    if (this.state.tool !== "pen") {
+      this.setState({tool: "pen"});
       sendEvent("pen-select", "annotation-toolbar");
     }
   }
 
   renderImage() {
-    const imageContext = this.imageCanvas.getContext('2d');
+    const imageContext = this.imageCanvas.getContext("2d");
     const img = new Image();
-    img.crossOrigin = 'Anonymous';
+    img.crossOrigin = "Anonymous";
     const width = this.props.clip.image.dimensions.x;
     const height = this.props.clip.image.dimensions.y;
     img.onload = () => {
@@ -483,36 +483,36 @@ exports.Editor = class Editor extends React.Component {
   }
 
   componentDidMount() {
-    this.highlightContext = this.highlighter.getContext('2d');
+    this.highlightContext = this.highlighter.getContext("2d");
     this.renderImage();
     this.edit();
   }
 
   edit() {
     this.imageContext.drawImage(this.highlighter, 0, 0);
-    this.imageContext.globalCompositeOperation = 'multiply';
+    this.imageContext.globalCompositeOperation = "multiply";
     this.highlightContext.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
-    if (this.state.tool !== 'crop') {
+    if (this.state.tool !== "crop") {
       this.cropToolBar = null;
       document.removeEventListener("mousemove", this.mousemove);
       document.removeEventListener("mousedown", this.mousedown);
       document.removeEventListener("mouseup", this.mouseup);
     }
     this.pos = { x: 0, y: 0 };
-    if (this.state.tool === 'highlighter') {
+    if (this.state.tool === "highlighter") {
       this.drawContext = this.highlightContext;
       this.highlightContext.lineWidth = 20;
       this.highlightContext.strokeStyle = this.state.color;
       document.addEventListener("mousemove", this.draw);
       document.addEventListener("mousedown", this.setPosition);
-    } else if (this.state.tool === 'pen') {
+    } else if (this.state.tool === "pen") {
       this.drawContext = this.imageContext;
-      this.imageContext.globalCompositeOperation = 'source-over';
+      this.imageContext.globalCompositeOperation = "source-over";
       this.imageContext.strokeStyle = this.state.color;
       this.imageContext.lineWidth = this.state.size;
       document.addEventListener("mousemove", this.draw);
       document.addEventListener("mousedown", this.setPosition);
-    } else if (this.state.tool === 'crop') {
+    } else if (this.state.tool === "crop") {
       document.removeEventListener("mousemove", this.draw);
       document.removeEventListener("mousedown", this.setPosition);
       document.addEventListener("mousemove", this.mousemove);
@@ -533,7 +533,7 @@ exports.Editor = class Editor extends React.Component {
     }
     this.drawContext.beginPath();
 
-    this.drawContext.lineCap = this.state.tool === 'highlighter' ? 'square' : 'round';
+    this.drawContext.lineCap = this.state.tool === "highlighter" ? "square" : "round";
     this.drawContext.moveTo(this.pos.x, this.pos.y);
     const rect = this.imageCanvas.getBoundingClientRect();
     this.pos.x = e.clientX - rect.left,
@@ -557,12 +557,12 @@ class ColorPicker extends React.Component {
     super(props);
     this.state = {
       pickerActive: false,
-      color: '#000'
+      color: "#000"
     };
   }
 
   render() {
-    const border = this.state.color === 'rgb(255, 255, 255)' ? '#000' : this.state.color;
+    const border = this.state.color === "rgb(255, 255, 255)" ? "#000" : this.state.color;
     return <div><button className="color-button" id="color-picker" onClick={this.onClickColorPicker.bind(this)} title="Color Picker" style={{"backgroundColor": this.state.color, "border": `1px solid ${border}`}}></button>
       {this.state.pickerActive ? this.renderColorBoard() : null}
     </div>

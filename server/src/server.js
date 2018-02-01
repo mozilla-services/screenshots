@@ -1,15 +1,15 @@
 const config = require("./config").getProperties();
 require("./logging").installConsoleHandler();
 const mozlog = require("./logging").mozlog("server");
-const path = require('path');
-const { readFileSync, existsSync } = require('fs');
+const path = require("path");
+const { readFileSync, existsSync } = require("fs");
 const Cookies = require("cookies");
-const { URL } = require('url');
+const { URL } = require("url");
 
 let istanbulMiddleware = null;
 if (config.enableCoverage && process.env.NODE_ENV === "dev") {
-    istanbulMiddleware = require('istanbul-middleware');
-    mozlog.info('coverage-hook-enabled', {msg: 'Hook loader for coverage - ensure this is not production!'});
+    istanbulMiddleware = require("istanbul-middleware");
+    mozlog.info("coverage-hook-enabled", {msg: "Hook loader for coverage - ensure this is not production!"});
     istanbulMiddleware.hookLoader(__dirname); // cover all files except under node_modules
 }
 
@@ -30,7 +30,7 @@ const {
 } = require("./users");
 const dbschema = require("./dbschema");
 const express = require("express");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 const contentDisposition = require("content-disposition");
 const { csrfProtection, csrfErrorResponse } = require("./middleware/csrf");
 const morgan = require("morgan");
@@ -102,19 +102,19 @@ initDatabase();
 
 const app = express();
 
-app.set('trust proxy', true);
+app.set("trust proxy", true);
 
 // Disable x-powered-by header
 app.disable("x-powered-by");
 
 if (config.enableCoverage && istanbulMiddleware) {
     // enable coverage endpoints under /coverage
-    app.use('/coverage', istanbulMiddleware.createHandler());
+    app.use("/coverage", istanbulMiddleware.createHandler());
 }
 
-const SITE_CDN = (config.siteCdn && (new URL(config.siteCdn)).host) || '';
-const CONTENT_NAME = config.contentOrigin || '';
-const CONTENT_CDN = (config.contentCdn && (new URL(config.contentCdn)).host) || '';
+const SITE_CDN = (config.siteCdn && (new URL(config.siteCdn)).host) || "";
+const CONTENT_NAME = config.contentOrigin || "";
+const CONTENT_CDN = (config.contentCdn && (new URL(config.contentCdn)).host) || "";
 const FXA_SERVER = config.fxa.profileServer && require("url").parse(config.fxa.profileServer).host;
 
 function addHSTS(req, res) {
@@ -199,7 +199,7 @@ app.use("/homepage", express.static(path.join(__dirname, "static/homepage"), {
 app.use(morgan("combined"));
 
 app.use(function(req, res, next) {
-  const authHeader = req.headers['x-screenshots-auth'];
+  const authHeader = req.headers["x-screenshots-auth"];
   let authInfo = {};
   const cookies = new Cookies(req, res, {keys: dbschema.getKeygrip()});
   if (authHeader) {
@@ -221,13 +221,13 @@ app.use(function(req, res, next) {
         // Only send if there's some test
         const newEncodedAbTests = b64EncodeJson(abTests);
         if (encodedAbTests !== newEncodedAbTests) {
-          cookies.set("abtests", newEncodedAbTests, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
+          cookies.set("abtests", newEncodedAbTests, {signed: true, sameSite: "lax", maxAge: COOKIE_EXPIRE_TIME});
         }
       } else if (Object.keys(origAbTests).length) {
         // All the A/B tests were removed (probably because the tests have been
         // deprecated), but the user has an old A/B test. Therefore we should
         // delete the cookie
-        cookies.set("abtests", "", {signed: true, sameSite: 'lax', maxAge: 0});
+        cookies.set("abtests", "", {signed: true, sameSite: "lax", maxAge: 0});
       }
     }
     authInfo.abTests = abTests;
@@ -417,7 +417,7 @@ app.post("/error", function(req, res) {
   }
   userAnalytics.exception({
     hitType: "exception",
-    userAgentOverride: req.headers['user-agent'],
+    userAgentOverride: req.headers["user-agent"],
     applicationName: "firefox",
     applicationVersion: bodyObj.version,
     exceptionDescription: desc
@@ -578,11 +578,11 @@ function sendAuthInfo(req, res, params) {
   const encodedAbTests = b64EncodeJson(userAbTests);
   const keygrip = dbschema.getKeygrip();
   const cookies = new Cookies(req, res, {keys: keygrip});
-  cookies.set("user", deviceId, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
+  cookies.set("user", deviceId, {signed: true, sameSite: "lax", maxAge: COOKIE_EXPIRE_TIME});
   if (accountId) {
-    cookies.set("accountid", accountId, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
+    cookies.set("accountid", accountId, {signed: true, sameSite: "lax", maxAge: COOKIE_EXPIRE_TIME});
   }
-  cookies.set("abtests", encodedAbTests, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
+  cookies.set("abtests", encodedAbTests, {signed: true, sameSite: "lax", maxAge: COOKIE_EXPIRE_TIME});
   const authHeader = `${deviceId}:${keygrip.sign(deviceId)};abTests=${encodedAbTests}:${keygrip.sign(encodedAbTests)}`;
   const responseJson = {
     ok: "User created",
@@ -740,7 +740,7 @@ app.put("/data/:id/:domain",
     }).then((commands) => {
       if (!commands) {
         mozlog.warn("invalid-put-update", {msg: "Attempt to PUT to existing shot by non-owner", ip: req.ip});
-        simpleResponse(res, 'No shot updated', 403);
+        simpleResponse(res, "No shot updated", 403);
         return;
       }
       commands = commands || [];
@@ -764,8 +764,8 @@ app.get("/data/:id/:domain", function(req, res) {
       let value = data.value;
       value = JSON.parse(value);
       value = JSON.stringify(value);
-      if ('format' in req.query) {
-        value = JSON.stringify(JSON.parse(value), null, '  ');
+      if ("format" in req.query) {
+        value = JSON.stringify(JSON.parse(value), null, "  ");
       }
       res.header("Content-Type", "application/json");
       res.send(value);
@@ -925,7 +925,7 @@ app.get("/images/:imageid", function(req, res) {
         const hasher = require("crypto").createHash("sha1");
         hasher.update(req.params.imageid);
         const hashedId = hasher.digest("hex").substr(0, 15);
-        const analyticsUrl = `/images/${embedded ? 'embedded/' : ''}hash${encodeURIComponent(hashedId)}`;
+        const analyticsUrl = `/images/${embedded ? "embedded/" : ""}hash${encodeURIComponent(hashedId)}`;
         let analytics = req.userAnalytics;
         if (!analytics) {
           analytics = ua(config.gaId);
@@ -961,7 +961,7 @@ app.get("/images/:imageid", function(req, res) {
       }
       res.header("Content-Type", contentType);
       if (download) {
-        if (dbschema.getKeygrip().verify(new Buffer(download, 'utf8'), sig)) {
+        if (dbschema.getKeygrip().verify(new Buffer(download, "utf8"), sig)) {
           res.header("Content-Disposition", contentDisposition(download));
         }
       }
@@ -988,7 +988,7 @@ app.get("/__version__", function(req, res) {
     dbSchemaVersion: dbschema.MAX_DB_LEVEL
   };
   res.header("Content-Type", "application/json; charset=utf-8");
-  res.send(JSON.stringify(response, null, '  '));
+  res.send(JSON.stringify(response, null, "  "));
 });
 
 // This is a minimal heartbeat that only indicates the server process is up and responding
@@ -1046,7 +1046,7 @@ app.get("/contribute.json", function(req, res) {
     ]
   };
   res.header("Content-Type", "application/json; charset=utf-8");
-  res.send(JSON.stringify(data, null, '  '));
+  res.send(JSON.stringify(data, null, "  "));
 });
 
 app.get("/oembed", function(req, res) {
@@ -1096,13 +1096,13 @@ app.get("/oembed", function(req, res) {
 
 // Get OAuth client params for the client-side authorization flow.
 
-app.get('/api/fxa-oauth/login', function(req, res, next) {
+app.get("/api/fxa-oauth/login", function(req, res, next) {
   if (!req.deviceId) {
     next(errors.missingSession());
     return;
   }
   randomBytes(32).then(stateBytes => {
-    const state = stateBytes.toString('hex');
+    const state = stateBytes.toString("hex");
     return setState(req.deviceId, state).then(inserted => {
       if (!inserted) {
         throw errors.dupeLogin();
@@ -1116,7 +1116,7 @@ app.get('/api/fxa-oauth/login', function(req, res, next) {
   }).catch(next);
 });
 
-app.get('/api/fxa-oauth/confirm-login', function(req, res, next) {
+app.get("/api/fxa-oauth/confirm-login", function(req, res, next) {
   if (!req.deviceId) {
     next(errors.missingSession());
     return;
@@ -1145,7 +1145,7 @@ app.get('/api/fxa-oauth/confirm-login', function(req, res, next) {
               ua: req.headers["user-agent"],
             }).send();
           }
-          res.redirect('/settings');
+          res.redirect("/settings");
         });
       }).catch(next);
     }).catch(next);

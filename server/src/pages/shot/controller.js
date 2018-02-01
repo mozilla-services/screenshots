@@ -168,10 +168,10 @@ exports.saveEdit = function(shot, shotUrl, dimensions) {
 
   const postWith = body => {
     const req = new Request(url, {
-      method: 'POST',
-      credentials: 'include',
+      method: "POST",
+      credentials: "include",
       headers: new Headers({
-        'content-type': 'application/json'
+        "content-type": "application/json"
       }),
       body
     });

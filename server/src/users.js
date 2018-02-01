@@ -150,21 +150,21 @@ exports.checkState = function(deviceId, state) {
 
 exports.tradeCode = function(code) {
   const oAuthURI = `${config.fxa.oAuthServer}/token`;
-  return request('POST', oAuthURI, {
+  return request("POST", oAuthURI, {
     payload: JSON.stringify({
       code,
       client_id: config.fxa.clientId,
       client_secret: config.fxa.clientSecret
     }),
     headers: {
-      'content-type': 'application/json'
+      "content-type": "application/json"
     },
     json: true
   }).then(([res, body]) => {
     if (res.statusCode >= 200 && res.statusCode < 300) {
       return body;
     }
-    mozlog.warn('fxa-tradecode-failed', {status: res.statusCode});
+    mozlog.warn("fxa-tradecode-failed", {status: res.statusCode});
     throw errors.badToken();
   });
 };
@@ -180,7 +180,7 @@ exports.disconnectDevice = function(deviceId) {
 
 exports.fetchProfileData = function(accessToken) {
   const userInfoEndpoint = `${config.fxa.profileServer}/profile`;
-  return request('GET', userInfoEndpoint, {
+  return request("GET", userInfoEndpoint, {
     headers: {
       authorization: `Bearer ${accessToken}`
     },
@@ -204,7 +204,7 @@ exports.saveProfileData = function(accountId, avatarUrl, nickname, email) {
 
 exports.getAccountId = function(accessToken) {
   const profileURI = `${config.fxa.profileServer}/uid`;
-  return request('GET', profileURI, {
+  return request("GET", profileURI, {
     headers: {
       authorization: `Bearer ${accessToken}`
     },

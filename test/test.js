@@ -87,7 +87,7 @@ function getDriver() {
   options.setProfile(profile);
 
   const builder = new webdriver.Builder()
-    .withCapabilities({'moz:webdriverClick': false})
+    .withCapabilities({"moz:webdriverClick": false})
     .forBrowser("firefox")
     .setFirefoxOptions(options);
 
