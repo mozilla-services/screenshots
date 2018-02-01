@@ -252,23 +252,6 @@ this.main = (function() {
     setIconActive(false, sender.tab.id);
   });
 
-  catcher.watchPromise(communication.sendToBootstrap("getOldDeviceInfo").then((deviceInfo) => {
-    if (deviceInfo === communication.NO_BOOTSTRAP || !deviceInfo) {
-      return;
-    }
-    deviceInfo = JSON.parse(deviceInfo);
-    if (deviceInfo && typeof deviceInfo == "object") {
-      return auth.setDeviceInfoFromOldAddon(deviceInfo).then((updated) => {
-        if (updated === communication.NO_BOOTSTRAP) {
-          throw new Error("bootstrap.js disappeared unexpectedly");
-        }
-        if (updated) {
-          return communication.sendToBootstrap("removeOldAddon");
-        }
-      });
-    }
-  }));
-
   communication.register("hasSeenOnboarding", () => {
     hasSeenOnboarding = true;
     catcher.watchPromise(browser.storage.local.set({hasSeenOnboarding}));

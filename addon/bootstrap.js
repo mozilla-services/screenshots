@@ -1,6 +1,4 @@
 /* globals ADDON_DISABLE */
-const OLD_ADDON_PREF_NAME = "extensions.jid1-NeEaf3sAHdKHPA@jetpack.deviceIdInfo";
-const OLD_ADDON_ID = "jid1-NeEaf3sAHdKHPA@jetpack";
 const ADDON_ID = "screenshots@mozilla.org";
 const TELEMETRY_ENABLED_PREF = "datareporting.healthreport.uploadEnabled";
 const PREF_BRANCH = "extensions.screenshots.";
@@ -218,18 +216,6 @@ function handleMessage(msg, sender, sendReply) {
     let isESR = AppConstants.MOZ_UPDATE_CHANNEL === 'esr';
     let uploadDisabled = getBoolPref(UPLOAD_DISABLED_PREF);
     sendReply({type: "success", value: uploadDisabled || isESR});
-  } else if (msg.funcName === "getOldDeviceInfo") {
-    let oldDeviceInfo = prefs.prefHasUserValue(OLD_ADDON_PREF_NAME) && prefs.getCharPref(OLD_ADDON_PREF_NAME);
-    sendReply({type: "success", value: oldDeviceInfo || null});
-  } else if (msg.funcName === "removeOldAddon") {
-    AddonManager.getAddonByID(OLD_ADDON_ID, (addon) => {
-      prefs.clearUserPref(OLD_ADDON_PREF_NAME);
-      if (addon) {
-        addon.uninstall();
-      }
-      sendReply({type: "success", value: !!addon});
-    });
-    return true;
   } else if (msg.funcName === "isHistoryEnabled") {
     let historyEnabled = getBoolPref(HISTORY_ENABLED_PREF);
     sendReply({type: "success", value: historyEnabled});
