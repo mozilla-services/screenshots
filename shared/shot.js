@@ -247,9 +247,15 @@ class AbstractShot {
       }
     }
 
+    let isProd = typeof process !== "undefined" && process.env.NODE_ENV === "production";
+
     for (let attr in attrs) {
       if (attr !== "clips" && attr !== "id" && this.REGULAR_ATTRS.indexOf(attr) === -1 && this.DEPRECATED_ATTRS.indexOf(attr) === -1) {
-        throw new Error("Unexpected attribute: " + attr);
+        if (isProd) {
+          console.warn("Unexpected attribute: " + attr);
+        } else {
+          throw new Error("Unexpected attribute: " + attr);
+        }
       } else if (attr === "id") {
         console.warn("passing id in attrs in AbstractShot constructor");
         console.trace();
