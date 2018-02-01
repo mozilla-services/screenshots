@@ -135,7 +135,7 @@ exports.Editor = class Editor extends React.Component {
           <Localized id="annotationHighlighterButton">
             <button className={`button transparent highlight-button ${highlighterState}`} id="highlight" onClick={this.onClickHighlight.bind(this)} title="highlighter"></button>
           </Localized>
-          <ColorPicker setColor={this.setColor.bind(this)} />
+          <ColorPicker activeTool={this.state.tool} setColor={this.setColor.bind(this)} />
           <Localized id="annotationClearButton">
             <button className={`button transparent clear-button`} id="clear" onClick={this.onClickClear.bind(this)} title="clear"></button>
           </Localized>
@@ -577,6 +577,10 @@ class ColorPicker extends React.Component {
     return <div><button className="color-button" id="color-picker" onClick={this.onClickColorPicker.bind(this)} title="Color Picker" style={{"backgroundColor": this.state.color, "border": `1px solid ${border}`}}></button>
       {this.state.pickerActive ? this.renderColorBoard() : null}
     </div>
+  }
+
+  componentWillReceiveProps() {
+    this.setState({pickerActive: false});
   }
 
   renderColorBoard() {
