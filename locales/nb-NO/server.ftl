@@ -197,8 +197,10 @@ annotationCropButton
     .title = Beskjær
 annotationSaveButton = Lagre
 annotationCancelButton = Avbryt
-annotationConfirmCropButton = Bekreft
-annotationCancelCropButton = Avbryt
+annotationCropConfirmButton = Bekreft
+    .title = Bekreft merket område
+annotationCropCancelButton = Avbryt
+    .title = Avbryt valg
 
 
 [[ Shotindex page ]]
