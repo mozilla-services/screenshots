@@ -100,7 +100,8 @@ exports.Editor = class Editor extends React.Component {
     this.state = {
       tool: 'pen',
       color: '#000',
-      size: '5'
+      size: '5',
+      saveDisabled: true
     };
   }
 
@@ -488,6 +489,7 @@ exports.Editor = class Editor extends React.Component {
     let height = this.props.clip.image.dimensions.y;
     img.onload = () => {
       imageContext.drawImage(img, 0, 0, width, height);
+      this.setState({saveDisabled: false});
     }
     this.imageContext = imageContext;
     img.src = this.props.clip.image.url;
