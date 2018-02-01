@@ -198,7 +198,7 @@ annotationCropButton
 annotationSaveButton = Lagre
 annotationCancelButton = Avbryt
 annotationCropConfirmButton = Bekreft
-    .title = Bekreft merket område
+    .title = Bekreft valg
 annotationCropCancelButton = Avbryt
     .title = Avbryt valg
 
