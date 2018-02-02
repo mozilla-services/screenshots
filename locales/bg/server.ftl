@@ -197,10 +197,10 @@ annotationCropButton
     .title = Изрязване
 annotationSaveButton = Запазване
 annotationCancelButton = Отказ
-annotationConfirmCropButton = Потвърждение
-    .title = Потвърждение на избора
-annotationCancelCropButton = Отказ
-    .title = Отказ от избора
+annotationCropConfirmButton = Потвърждение
+    .title = Потвърждаване на избора
+annotationCropCancelButton = Отказ
+    .title = Отказване от избора
 
 
 [[ Shotindex page ]]
