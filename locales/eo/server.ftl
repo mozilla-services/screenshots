@@ -197,8 +197,10 @@ annotationCropButton
     .title = Eltondi
 annotationSaveButton = Konservi
 annotationCancelButton = Nuligi
-annotationConfirmCropButton = Konfirmi
-annotationCancelCropButton = Nuligi
+annotationCropConfirmButton = Konfirmi
+    .title = Konfirmi elekton
+annotationCropCancelButton = Nuligi
+    .title = Nuligi elekton
 
 
 [[ Shotindex page ]]
