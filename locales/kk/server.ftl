@@ -191,8 +191,10 @@ annotationCropButton
     .title = Қию
 annotationSaveButton = Сақтау
 annotationCancelButton = Бас тарту
-annotationConfirmCropButton = Растау
-annotationCancelCropButton = Бас тарту
+annotationCropConfirmButton = Растау
+    .title = Таңдауды растау
+annotationCropCancelButton = Бас тарту
+    .title = Таңдаудан бас тарту
 
 
 [[ Shotindex page ]]
