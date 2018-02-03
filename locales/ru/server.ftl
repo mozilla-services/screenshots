@@ -203,8 +203,10 @@ annotationCropButton
     .title = Обрезать
 annotationSaveButton = Сохранить
 annotationCancelButton = Отмена
-annotationConfirmCropButton = Подтвердить
-annotationCancelCropButton = Отмена
+annotationCropConfirmButton = Подтвердить
+    .title = Подтвердить выделение области
+annotationCropCancelButton = Отмена
+    .title = Отменить выделение
 
 
 [[ Shotindex page ]]
