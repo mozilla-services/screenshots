@@ -194,8 +194,10 @@ annotationCropButton
     .title = Flali
 annotationSaveButton = Sekles
 annotationCancelButton = Sefsex
-annotationConfirmCropButton = Sentem
-annotationCancelCropButton = Sefsex
+annotationCropConfirmButton = Sentem
+    .title = SSentem tafrant
+annotationCropCancelButton = Sefsex
+    .title = Sefsex tafrant
 
 
 [[ Shotindex page ]]
