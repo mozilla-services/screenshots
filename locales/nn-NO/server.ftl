@@ -197,8 +197,10 @@ annotationCropButton
     .title = Sker til
 annotationSaveButton = Lagre
 annotationCancelButton = Avbryt
-annotationConfirmCropButton = Stadfest
-annotationCancelCropButton = Avbryt
+annotationCropConfirmButton = Stadfest
+    .title = Stadfest val
+annotationCropCancelButton = Avbryt
+    .title = Avbryt val
 
 
 [[ Shotindex page ]]
