@@ -21,6 +21,12 @@ Start the system addon release process by copying the following checklist into a
   - Export changes: `EXPORT_MC_LOCATION=path/to/gecko ./bin/export_mc.py --no-commit --no-switch-branch`
 - [ ] In your copy of Gecko, double-check the diff, and commit the changes
   - Ensure your commit message follows the [Firefox bug conventions](https://mdn.io/Committing_Rules_and_Responsibilities), for example: "Bug 1362550 - Export Screenshots 6.6.0 to Firefox; r?kmag"
+  - Choosing reviewers:
+    - For all exports, r? a [Screenshots owner or peer](https://wiki.mozilla.org/Modules/All#Screenshots) (currently ianb or 6a68)
+    - For translation-only changes, r? the [l10n driver for Firefox](https://wiki.mozilla.org/L10n:Mozilla_Team) (currently flod)
+    - For changes to chrome-privileged code or security-sensitive content script code, r? a [Firefox peer](https://wiki.mozilla.org/Modules/All#Firefox) (suggested: kmag or mossop)
+    - For changes to screenshots UI code not inside a content script, optionally r? a Firefox peer
+    - This guidance may change in the future. Last communication on this topic: [bug 1412091 comment 6](https://bugzilla.mozilla.org/show_bug.cgi?id=1412091#c6)
 - [ ] Push the changes to the Try server
   - Suggested incantation: `./mach try -b o -p linux64,macosx64,win32,win64 -u all -t all --rebuild-talos 5 --no-artifact`
   - When running tests against mozilla-beta, run the above incantation for regular unit tests and Talos testing against osx, then also run this separate build to test Talos against pgo builds for windows and linux: `./mach try fuzzy -q 'pgo talos-'`
