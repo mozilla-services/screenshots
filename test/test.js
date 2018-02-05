@@ -26,6 +26,11 @@ const PREVIEW_IFRAME_ID = "firefox-screenshots-preview-iframe";
 const backend = "http://localhost:10080";
 
 function addAddonToDriver(driver, location) {
+  require("child_process").exec("ps", (e, stderr, stdout) => {
+    console.log("PS output:");
+    console.log(stderr, stdout);
+    console.log("---------------------------------------------");
+  });
   driver.setContext(firefox.Context.CHROME);
   return driver.executeAsyncScript(`
 const FileUtils = Components.utils.import('resource://gre/modules/FileUtils.jsm').FileUtils;
