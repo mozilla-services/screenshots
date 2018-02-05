@@ -13,7 +13,7 @@ NO_CLOSE = if not empty then when the test is finished, the browser will not be 
 const assert = require("assert");
 const firefox = require("selenium-webdriver/firefox");
 const webdriver = require("selenium-webdriver");
-const { By, until } = webdriver;
+const { By, until, logging } = webdriver;
 const path = require("path");
 
 const SHOOTER_BUTTON_ID = "pageAction-panel-screenshots";
@@ -77,7 +77,6 @@ callback();
 
 function getDriver() {
   const profile = new firefox.Profile();
-  profile.setPreference("webdriver.log.file", "selenium.log");
   let channel = process.env.FIREFOX_CHANNEL || "NIGHTLY";
   if (!(channel in firefox.Channel)) {
     throw new Error(`Unknown channel: "${channel}"`);
@@ -91,6 +90,11 @@ function getDriver() {
     .withCapabilities({'moz:webdriverClick': false})
     .forBrowser("firefox")
     .setFirefoxOptions(options);
+  logging.installConsoleHandler();
+  let prefs = new logging.Preferences();
+  prefs.setLevel(logging.Type., logging.Level.DEBUG);
+  builder.setLoggingPrefs(prefs);
+  logging.installConsoleHandler();
 
   const driver = builder.build();
 
