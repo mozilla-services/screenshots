@@ -77,6 +77,7 @@ callback();
 
 function getDriver() {
   const profile = new firefox.Profile();
+  profile.setPreference("webdriver.log.file", "selenium.log");
   let channel = process.env.FIREFOX_CHANNEL || "NIGHTLY";
   if (!(channel in firefox.Channel)) {
     throw new Error(`Unknown channel: "${channel}"`);
