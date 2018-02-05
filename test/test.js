@@ -97,6 +97,9 @@ function getDriver() {
   logging.installConsoleHandler();
 
   const driver = builder.build();
+  builder.firefoxOptions_.binary_.found_.then((path) => {
+    console.log("Using Firefox executable:", path);
+  });
 
   let fileLocation = path.join(process.cwd(), "build", "screenshots-bootstrap.zip");
   return addAddonToDriver(driver, fileLocation);
