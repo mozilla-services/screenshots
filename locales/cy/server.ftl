@@ -208,8 +208,10 @@ annotationCropButton
     .title = Tocio
 annotationSaveButton = Cadw
 annotationCancelButton = Diddymu
-annotationConfirmCropButton = Cadarnhau
-annotationCancelCropButton = Diddymu
+annotationCropConfirmButton = Cadarnhau
+    .title = Cadarnhau'r dewis
+annotationCropCancelButton = Diddymu
+    .title = Diddymu'r dewis
 
 
 [[ Shotindex page ]]
