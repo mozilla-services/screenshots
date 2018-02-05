@@ -92,7 +92,7 @@ function getDriver() {
     .setFirefoxOptions(options);
   logging.installConsoleHandler();
   let prefs = new logging.Preferences();
-  prefs.setLevel(logging.Type., logging.Level.DEBUG);
+  prefs.setLevel(logging.Type.DRIVER, logging.Level.DEBUG);
   builder.setLoggingPrefs(prefs);
   logging.installConsoleHandler();
 
