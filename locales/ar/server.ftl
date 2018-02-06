@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = رجاء إدراج مسار هذه اللقطة في 
 shotPageKeepFor = إلى متى يتعين إبقاء هذه اللقطة؟
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = اختر وقتًا
-shotPageKeepIndefinitely = إلى الأبد
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = إلى الأبد ∞
 shotPageKeepTenMinutes = ١٠ دقائق
 shotPageKeepOneHour = ساعة واحدة
 shotPageKeepOneDay = يوم واحد
@@ -153,7 +156,7 @@ shotPageExpiresIn = تنتهي { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = انتهت { $timediff }
 timeDiffJustNow = للتو
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [zero] منذ أقل من دقيقة
         [one] منذ دقيقة
         [two] منذ دقيقتين
@@ -161,7 +164,7 @@ timeDiffMinutesAgo = { $num ->
         [many] منذ { $number } دقيقة
        *[other] منذ { $number } دقيقة
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [zero] منذ أقل من ساعة
         [one] منذ ساعة
         [two] منذ ساعتين
@@ -169,7 +172,7 @@ timeDiffHoursAgo = { $num ->
         [many] منذ { $number } ساعة
        *[other] منذ { $number } ساعة
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] بالأمس
         [two] قبل أمس
         [few] منذ { $number } أيام
@@ -177,7 +180,7 @@ timeDiffDaysAgo = { $num ->
        *[other] منذ { $number } يوم
     }
 timeDiffFutureSeconds = بعد بضع ثوان
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [zero] بعد بضع ثوان
         [one] بعد دقيقة
         [two] بعد دقيقتين
@@ -185,7 +188,7 @@ timeDiffFutureMinutes = { $num ->
         [many] بعد { $number } دقيقة
        *[other] بعد { $number } دقيقة
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [zero] بعد أقل من ساعة
         [one] بعد ساعة
         [two] بعد ساعتين
@@ -193,13 +196,33 @@ timeDiffFutureHours = { $num ->
         [many] بعد { $number } ساعة
        *[other] بعد { $number } ساعة
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] غدا
         [two] بعد غد
         [few] بعد { $number } أيام
         [many] بعد { $number } يومًا
        *[other] بعد { $number } يوم
     }
+errorThirdPartyCookiesEnabled = إذا أخذت هذه اللقطة و لا تستطيع حذفها، فقد تحتاج إلى تمكين كعكات الأطراف الخارجية مؤقتًا من تفضيلات المتصفح.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = قلم
+annotationHighlighterButton
+    .title = قلم تحديد
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = امسح
+annotationCropButton
+    .title = اقتص
+annotationSaveButton = احفظ
+annotationCancelButton = ألغِ
+annotationCropConfirmButton = أكّد
+    .title = أكّد التحديد
+annotationCropCancelButton = ألغِ
+    .title = ألغِ التحديد
 
 
 [[ Shotindex page ]]
@@ -228,6 +251,12 @@ shotIndexPagePreviousPage
     .title = الصفحة السابقة
 shotIndexPageNextPage
     .title = الصفحة التالية
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = لا تنتهي صلاحية اللقطة
 
 
 // all metrics strings are optional for translation

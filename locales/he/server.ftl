@@ -153,31 +153,35 @@ shotPageExpiresIn = תפוגה { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = פג תוקפו { $timediff }
 timeDiffJustNow = ממש עכשיו
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] לפני דקה
        *[other] לפני { $number } דקות
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] לפני שעה
        *[other] לפני { $number } שעות
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] אתמול
        *[other] לפני { $number } ימים
     }
 timeDiffFutureSeconds = תוך מספר שניות
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] בעוד דקה
        *[other] בעוד { $number } דקות
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] בעוד שעה
        *[other] בעוד { $number } שעות
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] מחר
        *[other] בעוד { $number } ימים
     }
+
+
+[[ Annotations ]]
+
 
 
 [[ Shotindex page ]]

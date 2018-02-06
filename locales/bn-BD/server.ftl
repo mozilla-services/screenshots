@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = অনুগ্রহ করে এই সটটির
 shotPageKeepFor = এই সটটি কতদিন পর্যন্ত রাখতে চান?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = সময় নির্বাচন করুন
-shotPageKeepIndefinitely = অনির্দিষ্টভাবে
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = অনিশ্চিতভাবে ∞
 shotPageKeepTenMinutes = ১০ মিনিট
 shotPageKeepOneHour = ১ ঘন্টা
 shotPageKeepOneDay = ১ দিন
@@ -153,31 +156,51 @@ shotPageExpiresIn = { $timediff } দিনে মেয়াদোত্তীর
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } মেয়াদোত্তীর্ণ
 timeDiffJustNow = এখনই
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] ১ মিনিট আগে 
        *[other] { $number } মিনিট আগে
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] ১ ঘন্টা আগে
        *[other] { $number } ঘন্টা আগে
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] গতকাল 
        *[other] { $number } দিন আগে
     }
 timeDiffFutureSeconds = কিছুক্ষণের মধ্যেই
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] ১ মিনিটের মধ্যে
        *[other] { $number } মিনিটের মধ্যে
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] ১ ঘন্টার মধ্যে
        *[other] { $number } ঘন্টার মধ্যে
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] আগামীকাল
        *[other] { $number } দিনের মধ্যে
     }
+errorThirdPartyCookiesEnabled = আপনি যদি শট নেন, কিন্তু মুছে ফেলতে না পারেন, তাহলে আপনার ব্রাউজারের অপশন থেকে তৃতীয় পক্ষের কুকিজ অস্থায়ীভাবে সক্রিয় করতে হতে পারে।
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = কলম
+annotationHighlighterButton
+    .title = হাইলাইটার
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = পরিষ্কার করুন
+annotationCropButton
+    .title = ছাঁটুন
+annotationSaveButton = সংরক্ষণ করুন
+annotationCancelButton = বাতিল করুন
+annotationCropConfirmButton = নিশ্চিতকরণ
+    .title = নির্বাচন নিশ্চিতকরণ
+annotationCropCancelButton = বাতিল
+    .title = নির্বাচন বাতিল
 
 
 [[ Shotindex page ]]
@@ -202,6 +225,16 @@ shotIndexPageNoSearchResults = আমরা আপনার খোঁজার �
 shotIndexPageClearSearchButton
     .title = সার্চ পরিষ্কার করুন
 shotIndexPageConfirmShotDelete = এই শটটি মুছবেন?
+shotIndexPagePreviousPage
+    .title = আগের পাতা
+shotIndexPageNextPage
+    .title = পরের পাতা
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = শটটি এখনও শেষ হয়নি
 
 
 // all metrics strings are optional for translation

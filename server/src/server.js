@@ -4,6 +4,7 @@ const mozlog = require("./logging").mozlog("server");
 const path = require('path');
 const { readFileSync, existsSync } = require('fs');
 const Cookies = require("cookies");
+const { URL } = require('url');
 
 let istanbulMiddleware = null;
 if (config.enableCoverage && process.env.NODE_ENV === "dev") {
@@ -56,6 +57,7 @@ const storage = multer.memoryStorage();
 const upload = multer({storage});
 const { isValidClipImageUrl } = require("../shared/shot");
 const urlParse = require("url").parse;
+const { updateAbTests } = require("./ab-tests");
 
 const COOKIE_EXPIRE_TIME = 30 * 24 * 60 * 60 * 1000; // 30 days
 
@@ -110,7 +112,9 @@ if (config.enableCoverage && istanbulMiddleware) {
     app.use('/coverage', istanbulMiddleware.createHandler());
 }
 
+const SITE_CDN = (config.siteCdn && (new URL(config.siteCdn)).host) || '';
 const CONTENT_NAME = config.contentOrigin || '';
+const CONTENT_CDN = (config.contentCdn && (new URL(config.contentCdn)).host) || '';
 const FXA_SERVER = config.fxa.profileServer && require("url").parse(config.fxa.profileServer).host;
 
 function addHSTS(req, res) {
@@ -147,7 +151,7 @@ app.use((req, res, next) => {
       req.cspNonce = uuid;
       res.header(
         "Content-Security-Policy",
-        `default-src 'self'; img-src 'self' ${FXA_SERVER} www.google-analytics.com ${CONTENT_NAME} data:; script-src 'self' www.google-analytics.com 'nonce-${uuid}'; style-src 'self' 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
+        `default-src 'self'; img-src 'self' ${FXA_SERVER} www.google-analytics.com ${SITE_CDN} ${CONTENT_CDN} ${CONTENT_NAME} data:; script-src 'self' ${SITE_CDN} www.google-analytics.com 'nonce-${uuid}'; style-src 'self' ${SITE_CDN} 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' ${SITE_CDN} www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
       res.header("X-Frame-Options", "DENY");
       res.header("X-Content-Type-Options", "nosniff");
       addHSTS(req, res);
@@ -178,7 +182,7 @@ app.use((req, res, next) => {
 });
 
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json({limit: '25mb'}));
+app.use(bodyParser.json({limit: config.requestBodySizeLimit}));
 
 app.use("/static", express.static(path.join(__dirname, "static"), {
   index: false,
@@ -203,11 +207,30 @@ app.use(function(req, res, next) {
   } else {
     authInfo.deviceId = cookies.get("user", {signed: true});
     authInfo.accountId = cookies.get("accountid", {signed: true});
-    let abTests = cookies.get("abtests", {signed: true});
-    if (abTests) {
-      abTests = b64DecodeJson(abTests);
-      authInfo.abTests = abTests;
+    let encodedAbTests = cookies.get("abtests", {signed: true});
+    let abTests;
+    if (encodedAbTests) {
+      abTests = b64DecodeJson(encodedAbTests);
     }
+    if (!authInfo.deviceId) {
+      // Authenticated users get A/B tests when they register/login, but unauthenticated
+      // users have to get it lazily
+      let origAbTests = Object.assign({}, abTests);
+      abTests = updateAbTests(abTests || {}, null, true);
+      if (Object.keys(abTests).length) {
+        // Only send if there's some test
+        let newEncodedAbTests = b64EncodeJson(abTests);
+        if (encodedAbTests != newEncodedAbTests) {
+          cookies.set("abtests", newEncodedAbTests, {signed: true, sameSite: 'lax', maxAge: COOKIE_EXPIRE_TIME});
+        }
+      } else if (Object.keys(origAbTests).length) {
+        // All the A/B tests were removed (probably because the tests have been
+        // deprecated), but the user has an old A/B test. Therefore we should
+        // delete the cookie
+        cookies.set("abtests", "", {signed: true, sameSite: 'lax', maxAge: 0});
+      }
+    }
+    authInfo.abTests = abTests;
   }
   if (authInfo.deviceId) {
     req.deviceId = authInfo.deviceId;
@@ -266,9 +289,10 @@ function decodeAuthHeader(header) {
 
 app.use(function(req, res, next) {
   req.staticLink = linker.staticLink.bind(null, {
-    cdn: req.config.cdn
+    cdn: req.config.siteCdn
   });
-  let base = `${req.protocol}://${config.contentOrigin}`;
+  // The contentCdn config does not have a default value but contentOrigin does.
+  let base = config.contentCdn || `${req.protocol}://${config.contentOrigin}`;
   linker.imageLinkWithHost = linker.imageLink.bind(null, base);
   next();
 });
@@ -426,25 +450,37 @@ app.post("/event", function(req, res) {
   // We allow clients to signal events with a deviceId even if they haven't logged in yet,
   // by putting deviceId into the request body:
   let deviceId = req.deviceId || bodyObj.deviceId;
+  let events;
+
+  if (bodyObj.events) {
+    events = bodyObj.events;
+  } else {
+    events = [bodyObj];
+  }
+
   hashUserId(deviceId).then((userUuid) => {
     let userAnalytics = ua(config.gaId, userUuid.toString(), {strictCidFormat: false});
     if (config.debugGoogleAnalytics) {
       userAnalytics = userAnalytics.debug();
     }
-    let params = Object.assign(
-      {},
-      bodyObj.options,
-      {
-        ec: bodyObj.event,
-        ea: bodyObj.action,
-        el: bodyObj.label,
-        ev: bodyObj.eventValue
+    events.forEach(event => {
+      let params = Object.assign(
+        {},
+        event.options,
+        {
+          ec: event.event,
+          ea: event.action,
+          el: event.label,
+          ev: event.eventValue,
+          qt: (event.queueTime || 0)
+        }
+      );
+      if (req.headers["user-agent"]) {
+        params.ua = req.headers["user-agent"];
       }
-    );
-    if (req.headers["user-agent"]) {
-      params.ua = req.headers["user-agent"];
-    }
-    userAnalytics.event(params).send();
+      userAnalytics.event(params);
+    });
+    userAnalytics.send();
     simpleResponse(res, "OK", 200);
   }).catch((e) => {
     errorResponse(res, "Error creating user UUID:", e);
@@ -456,18 +492,31 @@ app.post("/timing", function(req, res) {
   if (typeof bodyObj !== "object") {
     throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
   }
-  hashUserId(req.deviceId).then((userUuid) => {
+
+  let deviceId = req.deviceId || bodyObj.deviceId;
+  let timings;
+
+  if (bodyObj.timings) {
+    timings = bodyObj.timings;
+  } else {
+    timings = [bodyObj];
+  }
+
+  hashUserId(deviceId).then((userUuid) => {
     let userAnalytics = ua(config.gaId, userUuid.toString(), {strictCidFormat: false});
     if (config.debugGoogleAnalytics) {
       userAnalytics = userAnalytics.debug();
     }
-    let params = {
-      userTimingCategory: bodyObj.timingCategory,
-      userTimingVariableName: bodyObj.timingVar,
-      userTimingTime: bodyObj.timingValue,
-      userTimingLabel: bodyObj.timingLabel
-    };
-    userAnalytics.timing(params).send();
+    timings.forEach(timing => {
+      let params = {
+        userTimingCategory: timing.timingCategory,
+        userTimingVariableName: timing.timingVar,
+        userTimingTime: timing.timingValue,
+        userTimingLabel: timing.timingLabel
+      };
+      userAnalytics.timing(params);
+    });
+    userAnalytics.send();
     simpleResponse(res, "OK", 200);
   }).catch((e) => {
     errorResponse(res, "Error creating user UUID:", e);
@@ -623,66 +672,82 @@ app.post("/api/set-login-cookie", function(req, res) {
   });
 });
 
-app.put("/data/:id/:domain", upload.single('blob'), function(req, res) {
-  let slowResponse = config.testing.slowResponse;
-  let failSometimes = config.testing.failSometimes;
-  if (failSometimes && Math.floor(Math.random() * failSometimes)) {
-    console.log("Artificially making request fail"); // eslint-disable-line no-console
-    res.status(500);
-    res.end();
-    return;
+/** This endpoint is used by the site to confirm if the cookie was set */
+app.get("/api/check-login-cookie", function(req, res) {
+  if (req.deviceId) {
+    simpleResponse(res, "Login OK", 200);
+  } else {
+    simpleResponse(res, "No credentials available", 401);
   }
-  let bodyObj = [];
-  if (req.body.shot && req.file) {
-    bodyObj = JSON.parse(req.body.shot);
-    let clipId = Object.getOwnPropertyNames(bodyObj.clips)[0];
-    let b64 = req.file.buffer.toString("base64");
-    let contentType = req.file.mimetype;
-    if (contentType != "image/png" && contentType != "image/jpeg") {
-      // Force PNG as a fallback
-      mozlog.warn("invalid-upload-content-type", {contentType});
-      contentType = "image/png";
-    }
-    b64 = `data:${contentType};base64,${b64}`;
-    bodyObj.clips[clipId].image.url = b64;
-  } else if (req.body) {
-    bodyObj = req.body;
-  }
-  if (typeof bodyObj != "object") {
-    throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
-  }
-  let shotId = `${req.params.id}/${req.params.domain}`;
-  if (!req.deviceId) {
-    mozlog.warn("put-without-auth", {msg: "Attempted to PUT without logging in", url: req.url});
-    sendRavenMessage(req, "Attempt PUT without authentication");
-    simpleResponse(res, "Not logged in", 401);
-    return;
-  }
-  let shot = new Shot(req.deviceId, req.backend, shotId, bodyObj);
-  let responseDelay = Promise.resolve()
-  if (slowResponse) {
-    responseDelay = new Promise((resolve) => {
-      setTimeout(resolve, slowResponse);
-    });
-  }
-  responseDelay.then(() => {
-    return shot.insert();
-  }).then((inserted) => {
-    if (!inserted) {
-      return shot.update();
-    }
-    return inserted;
-  }).then((commands) => {
-    if (!commands) {
-      mozlog.warn("invalid-put-update", {msg: "Attempt to PUT to existing shot by non-owner", ip: req.ip});
-      simpleResponse(res, 'No shot updated', 403);
+});
+
+app.put("/data/:id/:domain",
+  upload.fields([{name: "blob", maxCount: 1}, {name: "thumbnail", maxCount: 1}]),
+  function(req, res) {
+    let slowResponse = config.testing.slowResponse;
+    let failSometimes = config.testing.failSometimes;
+    if (failSometimes && Math.floor(Math.random() * failSometimes)) {
+      console.log("Artificially making request fail"); // eslint-disable-line no-console
+      res.status(500);
+      res.end();
       return;
     }
-    commands = commands || [];
-    simpleResponse(res, JSON.stringify({updates: commands.filter((x) => !!x)}), 200);
-  }).catch((err) => {
-    errorResponse(res, "Error saving Object:", err);
-  });
+    let bodyObj = [];
+    if (req.body.shot && req.files) {
+      bodyObj = JSON.parse(req.body.shot);
+      let clipId = Object.getOwnPropertyNames(bodyObj.clips)[0];
+      let b64 = req.files.blob[0].buffer.toString("base64");
+      let contentType = req.files.blob[0].mimetype;
+      if (contentType != "image/png" && contentType != "image/jpeg") {
+        // Force PNG as a fallback
+        mozlog.warn("invalid-upload-content-type", {contentType});
+        contentType = "image/png";
+      }
+      b64 = `data:${contentType};base64,${b64}`;
+      bodyObj.clips[clipId].image.url = b64;
+
+      if (req.files.thumbnail) {
+        let encodedThumbnail = req.files.thumbnail[0].buffer.toString("base64");
+        bodyObj.thumbnail = `data:image/png;base64,${encodedThumbnail}`
+      }
+    } else if (req.body) {
+      bodyObj = req.body;
+    }
+    if (typeof bodyObj != "object") {
+      throw new Error(`Got unexpected req.body type: ${typeof bodyObj}`);
+    }
+    let shotId = `${req.params.id}/${req.params.domain}`;
+    if (!req.deviceId) {
+      mozlog.warn("put-without-auth", {msg: "Attempted to PUT without logging in", url: req.url});
+      sendRavenMessage(req, "Attempt PUT without authentication");
+      simpleResponse(res, "Not logged in", 401);
+      return;
+    }
+    let shot = new Shot(req.deviceId, req.backend, shotId, bodyObj);
+    let responseDelay = Promise.resolve()
+    if (slowResponse) {
+      responseDelay = new Promise((resolve) => {
+        setTimeout(resolve, slowResponse);
+      });
+    }
+    responseDelay.then(() => {
+      return shot.insert();
+    }).then((inserted) => {
+      if (!inserted) {
+        return shot.update();
+      }
+      return inserted;
+    }).then((commands) => {
+      if (!commands) {
+        mozlog.warn("invalid-put-update", {msg: "Attempt to PUT to existing shot by non-owner", ip: req.ip});
+        simpleResponse(res, 'No shot updated', 403);
+        return;
+      }
+      commands = commands || [];
+      simpleResponse(res, JSON.stringify({updates: commands.filter((x) => !!x)}), 200);
+    }).catch((err) => {
+      errorResponse(res, "Error saving Object:", err);
+    });
 });
 
 app.get("/data/:id/:domain", function(req, res) {
@@ -782,10 +847,16 @@ app.post("/api/save-edit", function(req, res) {
   }
   let id = vars.shotId;
   let url = vars.url;
+  let width = vars.x;
+  let height = vars.y;
+  let thumbnail = vars.thumbnail || null;
   if (!isValidClipImageUrl(url)) {
     sendRavenMessage(req, "Attempt to edit shot to set invalid clip url.");
     simpleResponse(res, "Invalid shot url.", 400);
     return;
+  }
+  if (thumbnail && !isValidClipImageUrl(thumbnail)) {
+    thumbnail = null;
   }
   Shot.get(req.backend, id, req.deviceId, req.accountId).then((shot) => {
     if (!shot) {
@@ -795,6 +866,9 @@ app.post("/api/save-edit", function(req, res) {
     }
     let name = shot.clipNames()[0];
     shot.getClip(name).image.url = url;
+    shot.getClip(name).image.dimensions.x = width;
+    shot.getClip(name).image.dimensions.y = height;
+    shot.thumbnail = thumbnail;
     return shot.update();
   }).then((updated) => {
     simpleResponse(res, "Updated", 200);
@@ -892,6 +966,7 @@ app.get("/images/:imageid", function(req, res) {
         }
       }
       setDailyCache(res);
+      res.header("Access-Control-Allow-Origin", `${req.protocol}://${config.siteOrigin}`);
       res.status(200);
       res.send(obj.data);
     }

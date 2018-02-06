@@ -57,6 +57,7 @@ leavePageRemoveAllData = เอาข้อมูลทั้งหมดออ�
 leavePageErrorGeneric = เกิดข้อผิดพลาด
 leavePageButtonProceed = ดำเนินการต่อ
 leavePageButtonCancel = ยกเลิก
+leavePageDeleted = ภาพถ่ายหน้าจอของคุณทั้งหมดถูกลบแล้ว!
 
 
 [[ Not Found page ]]
@@ -83,6 +84,8 @@ shotPageSharePinterest
     .title = แบ่งปันบน Pinterest
 shotPageShareEmail
     .title = แบ่งปันลิงก์ทางอีเมล
+shotPageCopyImageText
+    .label = คัดลอกข้อความภาพ
 shotPageDownloadShot
     .title = ดาวน์โหลด
 shotPageDownload = ดาวน์โหลด
@@ -100,8 +103,12 @@ shotPageKeepTwoWeeks = 2 สัปดาห์
 shotPageKeepOneMonth = 1 เดือน
 shotPageSaveExpiration = บันทึก
 shotPageCancelExpiration = ยกเลิก
-shotPageDoesNotExpire = ไม่หมดเวลา
+shotPageDoesNotExpire = ไม่หมดอายุ
 timeDiffFutureSeconds = ในไม่กี่วินาที
+
+
+[[ Annotations ]]
+
 
 
 [[ Shotindex page ]]

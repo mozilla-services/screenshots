@@ -49,17 +49,17 @@ homePageGetStarted = Iniciar
 homePageHowScreenshotsWorks = Como o Firefox Screenshots funciona
 homePageGetStartedTitle = Iniciar
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Encontre o novo ícone do Screenshots na barra de ferramenta. Selecione, e o menu do Screenshots irá aparecer no topo de janela do seu navegador.
+homePageGetStartedDescription = Encontre o novo ícone do Screenshots na barra de ferramentas. Selecione, e o menu do Screenshots aparecerá no topo da janela do seu navegador.
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescriptionPageAction = Selecione o ícone do Screenshots no menu de ações de página na barra de endereços e o menu do Screenshots aparecerá no topo da janela do seu navegador.
+homePageGetStartedDescriptionPageAction = Selecione o ícone do Screenshots no menu de ações da página, na barra de endereços, e o menu do Screenshots aparecerá no topo da janela do seu navegador.
 homePageCaptureRegion = Capturar uma região
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar. Ou simplesmente clique — o Screenshots irá selecionar a área automaticamente pra você. Gostou do que viu? Clique em Salvar para acessar sua captura on-line ou no botão com a seta para baixo para baixar para seu computador.
+homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar. Ou simplesmente passe o mouse e clique — o Screenshots irá selecionar a área automaticamente pra você. Gostou do que viu? Clique em Salvar para acessar sua captura on-line ou no botão com a seta para baixo para baixar para seu computador.
 homePageCapturePage = Capturar uma página
 homePageCapturePageDescription = Utilize os botões no canto superior direito para capturar telas inteiras. O botão Salvar Área Visível irá capturar a área que você vê sem rolar a página, e Salvar Página Inteira irá capturar toda a página.
 homePageSaveShare = Salvar e compartilhar
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Quando você captura uma tela, Firefox armazena suas capturas na sua biblioteca on-line do Screenshots e copia o link para sua área de transferência. Nós armazenamos suas capturas automaticamente por duas semanas, mas você pode excluir capturas a qualquer momento ou mudar a data de validade para mantê-las em sua biblioteca por mais tempo.
+homePageSaveShareDescription = Quando você captura uma tela, o Firefox envia a captura para a sua biblioteca on-line no Screenshots e copia o link para sua área de transferência. Armazenamos automaticamente suas capturas por duas semanas, mas você pode excluir capturas a qualquer momento ou mudar a data de validade para mantê-las em sua biblioteca por mais tempo.
 homePageLegalLink = Jurídico
 homePagePrivacyLink = Privacidade
 homePageTermsLink = Termos
@@ -76,7 +76,7 @@ leavePageErrorGeneric = Ocorreu um erro
 leavePageWarning = Isso irá apagar permanentemente todos os seus dados do Firefox Screenshots.
 leavePageButtonProceed = Prosseguir
 leavePageButtonCancel = Cancelar
-leavePageDeleted = Todas as suas capturas serão apagadas!
+leavePageDeleted = Todas as suas capturas foram apagadas!
 
 
 [[ Not Found page ]]
@@ -118,7 +118,7 @@ shotPageExpirationMessage = Se você não fizer nada, esta captura será excluí
 shotPageRestoreButton = restaurar até { $date }
 shotPageExpiredMessage = Essa captura expirou.
 // Note: This phrase is followed by an empty line, then the URL of the source page
-shotPageExpiredMessageDetails = Essa página foi criada originalmente de:
+shotPageExpiredMessageDetails = Esta é a página onde a captura foi criada originalmente:
 shotPageDeleteButton
     .title = Excluir esta captura
 shotPageAbuseButton
@@ -128,17 +128,20 @@ shotPageDownloadShot
 shotPageDownload = Baixar
 shotPageScreenshotsDescription = Capturas de tela de forma simples. Capture, salve e compartilhe telas sem sair do Firefox.
 shotPageUpsellFirefox = Baixe o Firefox agora
-shotPageDMCAMessage = Essa captura não está mais disponível devido reclamação de Direito Autoral de terceiros.
+shotPageDMCAMessage = Essa captura não está mais disponível devido a reclamação de Direitos Autorais de terceiros.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
-shotPageDMCAContact = Por favor, envie um e-mail para { $dmca } para obter mais informações.
+shotPageDMCAContact = Envie um e-mail para { $dmca } para pedir mais informações.
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Se suas capturas estiverem associadas a múltiplas reclamações, poderemos revogar seu acesso ao Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
-shotPageDMCAIncludeLink = Por favor, inclua a URL dessa captura no seu e-mail: { $url }
+shotPageDMCAIncludeLink = Por favor, inclua o URL desta captura no seu e-mail: { $url }
 shotPageKeepFor = Quanto tempo essa captura deve ficar armazenada?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Selecionar tempo
-shotPageKeepIndefinitely = Indefinidamente
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Indefinidamente ∞
 shotPageKeepTenMinutes = 10 minutos
 shotPageKeepOneHour = 1 hora
 shotPageKeepOneDay = 1 dia
@@ -153,31 +156,51 @@ shotPageExpiresIn = expira { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = expirou há { $timediff }
 timeDiffJustNow = agora
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 minuto atrás
        *[other] { $number } minutos atrás
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 hora atrás
        *[other] { $number } horas atrás
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] ontem
        *[other] { $number } dias atrás
     }
-timeDiffFutureSeconds = em poucos minutos
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureSeconds = em poucos segundos
+timeDiffFutureMinutes = { $number ->
         [one] em 1 minuto
        *[other] em { $number } minutos
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] em 1 hora
        *[other] em { $number } horas
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] amanhã
        *[other] em { $number } dias
     }
+errorThirdPartyCookiesEnabled = Se tirou esta captura e não consegue excluí-la, talvez seja necessário habilitar temporariamente os cookies de terceiros nas preferências do seu navegador.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Caneta
+annotationHighlighterButton
+    .title = Marcador
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Limpar
+annotationCropButton
+    .title = Recortar
+annotationSaveButton = Salvar
+annotationCancelButton = Cancelar
+annotationCropConfirmButton = Confirmar
+    .title = Confirmar seleção
+annotationCropCancelButton = Cancelar
+    .title = Cancelar seleção
 
 
 [[ Shotindex page ]]
@@ -195,7 +218,7 @@ shotIndexPageSearchPlaceholder
 shotIndexPageSearchButton
     .title = Pesquisar
 shotIndexPageNoShotsMessage = Não há capturas salvas.
-shotIndexPageNoShotsInvitation = Vai lá, crie algum.
+shotIndexPageNoShotsInvitation = Vamos, crie algumas.
 shotIndexPageLookingForShots = Procurando por suas capturas...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Não encontramos capturas que correspondam com sua busca.
@@ -206,6 +229,12 @@ shotIndexPagePreviousPage
     .title = Página anterior
 shotIndexPageNextPage
     .title = Próxima página
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Esta captura não expira
 
 
 // all metrics strings are optional for translation
@@ -218,18 +247,18 @@ metricsPageTotalsQueryTitle = Totais
 metricsPageTotalsQueryDescription = Visão geral do Screenshots
 metricsPageTotalsQueryDevices = Total de dispositivos registrados
 metricsPageTotalsQueryActiveShots = Capturas ativas
-metricsPageTotalsQueryExpiredShots = Expirou (mas é recuperável)
-metricsPageTotalsQueryExpiredDeletedShots = Expirou (e deletou)
+metricsPageTotalsQueryExpiredShots = Expirado (mas é recuperável)
+metricsPageTotalsQueryExpiredDeletedShots = Expirado (e excluído)
 metricsPageShotsQueryTitle = Capturas por dia
 metricsPageShotsQueryDescription = Número de capturas criados por dia (nos últimos 30 dias)
 metricsPageShotsQueryCount = Número de capturas
 metricsPageShotsQueryDay = Dia
 metricsPageUsersQueryTitle = Usuários por dia
-metricsPageUsersQueryDescription = Número de usuário que criaram pelo menos uma captura, por dia (últimos 30 dias)
+metricsPageUsersQueryDescription = Número de usuários que criaram pelo menos uma captura, por dia (últimos 30 dias)
 metricsPageUsersQueryCount = Número de usuários
 metricsPageUsersQueryDay = Dia
 metricsPageUserShotsQueryTitle = Número de capturas por usuário
-metricsPageUserShotsQueryDescription = Número de usuário que tem cerca de N capturas no total
+metricsPageUserShotsQueryDescription = Número de usuários que têm cerca de N capturas no total
 metricsPageUserShotsQueryCount = Número de usuários
 metricsPageUserShotsQueryShots = Número aproximado de capturas ativas (não expiradas)
 metricsPageRetentionQueryTitle = Retenção por semana
@@ -238,7 +267,7 @@ metricsPageRetentionQueryUsers = Número de usuários
 metricsPageRetentionQueryDays = Dias da primeira captura do usuário até a mais recente
 metricsPageRetentionQueryFirstWeek = Semana da criação da primeira captura do usuário
 metricsPageTotalRetentionQueryTitle = Retenção total
-metricsPageTotalRetentionQueryDescription = Período de tempo que usuários criaram capturas, agrupadas por semana
+metricsPageTotalRetentionQueryDescription = Período de tempo em que usuários criaram capturas, agrupadas por semana
 metricsPageTotalRetentionQueryUsers = Número de usuários
 metricsPageTotalRetentionQueryDays = Dias que o usuário tem criado capturas
 metricsPageVersionQueryTitle = Versão da extensão
@@ -250,4 +279,4 @@ metricsPageHeader = Métricas
 // Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Gerado em: { $created }
 // Note { $time } is a placeholder for a number of milliseconds, like '100'
-metricsPageDatabaseQueryTime = (hora do banco: { $time }ms)
+metricsPageDatabaseQueryTime = (hora no banco de dados: { $time }ms)

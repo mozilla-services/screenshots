@@ -42,6 +42,20 @@ var conf = convict({
     env: "LOCALHOST_SSL",
     arg: "localhost-ssl"
   },
+  pngToJpegCutoff: {
+    doc: "The limit at which a PNG is converted to a JPEG during an edit save, in bytes.  It should match the setting in the addon",
+    format: "int",
+    default: 2500000,
+    env: "PNG_TO_JPEG_CUTOFF",
+    arg: "pngToJpegCutoff"
+  },
+  requestBodySizeLimit: {
+    doc: "The maximum allowed body size of a request.  It needs to be a format that the 'bytes' node module accepts",
+    format: String,
+    default: "25mb",
+    env: "REQUEST_BODY_SIZE_LIMIT",
+    arg: "requestBodySizeLimit"
+  },
   useS3: {
     doc: "If true, store files in s3. If false, store them locally",
     format: Boolean,
@@ -298,12 +312,19 @@ var conf = convict({
     env: "DISABLE_SEARCH",
     arg: "disable-search"
   },
-  cdn: {
-    doc: "CDN URL prefix, e.g. 'https://somecdn.com/mysite'; links will be rewritten as https://somecdn.com/mysite/static/style.css",
+  siteCdn: {
+    doc: "CDN URL prefix for site assets, e.g. 'https://somecdn.com/mysite'; links will be rewritten as 'https://somecdn.com/mysite/static/style.css'",
     format: String,
     default: "",
-    env: "CDN",
-    arg: "cdn"
+    env: "SITE_CDN",
+    arg: "siteCdn"
+  },
+  contentCdn: {
+    doc: "CDN URL prefix for content, e.g. 'https://contentz.fast.io'; links will be rewritten as 'https://contentz.fast.io/allthebytes.png",
+    format: String,
+    default: "",
+    env: "CONTENT_CDN",
+    arg: "contentCdn"
   },
   enableUserSettings: {
     doc: "If true, the user can see the settings page and connect their device to their firefox account",

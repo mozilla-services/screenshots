@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Укључите адресу до овог снимк
 shotPageKeepFor = Колико дуго треба задржати овај снимак?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Изаберите време
-shotPageKeepIndefinitely = Бесконачно
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Бесконачно ∞
 shotPageKeepTenMinutes = 10 минута
 shotPageKeepOneHour = 1 сат
 shotPageKeepOneDay = 1 дан
@@ -153,37 +156,57 @@ shotPageExpiresIn = истиче { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = истекло { $timediff }
 timeDiffJustNow = управо
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] пре једног минута
         [few] пре { $number } минута
        *[other] пре { $number } минута
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] пре једног сата
         [few] пре { $number } сата
        *[other] пре { $number } сати
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] јуче
         [few] пре { $number } дана
        *[other] пре { $number } дана
     }
 timeDiffFutureSeconds = за пар секунди
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] за један минут
         [few] за { $number } минута
        *[other] за { $number } минута
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] за један сат
         [few] за { $number } сата
        *[other] за { $number } сати
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] сутра
         [few] за { $number } дана
        *[other] за { $number } дана
     }
+errorThirdPartyCookiesEnabled = Ако сте усликали овај снимак и не можете да га обришете, можда морате привремено да омогућите колачиће трећих лица у вашим поставкама.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Оловка
+annotationHighlighterButton
+    .title = Маркер
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Очисти
+annotationCropButton
+    .title = Одрежи
+annotationSaveButton = Сачувај
+annotationCancelButton = Откажи
+annotationCropConfirmButton = Потврди
+    .title = Потврди избор
+annotationCropCancelButton = Откажи
+    .title = Откажи избор
 
 
 [[ Shotindex page ]]
@@ -212,6 +235,12 @@ shotIndexPagePreviousPage
     .title = Претходна страница
 shotIndexPageNextPage
     .title = Следећа страница
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Овај снимак нема рок трајања
 
 
 // all metrics strings are optional for translation

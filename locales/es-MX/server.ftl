@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Por favor, incluye la URL de esta captura en tu correo
 shotPageKeepFor = ¿Qué tanto esta captura debe ser mantenida?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Selecciona tiempo
-shotPageKeepIndefinitely = Indefinidamente
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Indefinidamente ∞
 shotPageKeepTenMinutes = 10 minutos
 shotPageKeepOneHour = 1 hora
 shotPageKeepOneDay = 1 día
@@ -153,31 +156,51 @@ shotPageExpiresIn = expira en { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = expiró hace { $timediff }
 timeDiffJustNow = justo ahora
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] hace 1 minuto
        *[other] hace { $number } minutos
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] hace 1 hora
        *[other] hace { $number } horas
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] ayer
        *[other] hace { $number } días
     }
 timeDiffFutureSeconds = en unos segundos
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] en 1 minuto
        *[other] en { $number } minutos
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] en 1 hora
        *[other] en { $number } horas
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] mañana
        *[other] en { $number } días
     }
+errorThirdPartyCookiesEnabled = Si tomas esta captura y no la puedes eliminar, puedes necesitar temporalmente habilitar cookies de terceros desde las preferencias de tu navegador.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pluma
+annotationHighlighterButton
+    .title = Marcador
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Limpiar
+annotationCropButton
+    .title = Recortar
+annotationSaveButton = Guardar
+annotationCancelButton = Cancelar
+annotationCropConfirmButton = Confirmar
+    .title = Confirmar selección
+annotationCropCancelButton = Cancelar
+    .title = Cancelar selección
 
 
 [[ Shotindex page ]]
@@ -206,6 +229,12 @@ shotIndexPagePreviousPage
     .title = Página anterior
 shotIndexPageNextPage
     .title = Página siguiente
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Esta captura no expira
 
 
 // all metrics strings are optional for translation

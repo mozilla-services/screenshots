@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Ta med nettadressa til dette bildet i e-posten din: { 
 shotPageKeepFor = Kor lenge skal dette skjermbildet behaldast?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Vel tid
-shotPageKeepIndefinitely = Uendeleg
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Uendeleg ∞
 shotPageKeepTenMinutes = 10 minutt
 shotPageKeepOneHour = 1 time
 shotPageKeepOneDay = 1 dag
@@ -153,31 +156,51 @@ shotPageExpiresIn = går ut { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = gått ut { $timediff }
 timeDiffJustNow = akkurat no
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 minutt sidan
        *[other] { $number } minutt sidan
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 time sidan
        *[other] { $number } timar sidan
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] i går
        *[other] { $number } dagar sidan
     }
 timeDiffFutureSeconds = om nokre få sekund
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] om 1 minutt
        *[other] om { $number } minutt
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] om 1 time
        *[other] om { $number } timar
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] i morgon
        *[other] om { $number } dagar
     }
+errorThirdPartyCookiesEnabled = Viss du tok dette skjermbildet og ikkje kan slette det, må du kanskje kortvarig aktivere tredjeparts infokapslar frå innstillingane i nettlesaren.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Penn
+annotationHighlighterButton
+    .title = Merkepenn
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Tøm
+annotationCropButton
+    .title = Sker til
+annotationSaveButton = Lagre
+annotationCancelButton = Avbryt
+annotationCropConfirmButton = Stadfest
+    .title = Stadfest val
+annotationCropCancelButton = Avbryt
+    .title = Avbryt val
 
 
 [[ Shotindex page ]]
@@ -206,6 +229,12 @@ shotIndexPagePreviousPage
     .title = Føregåande side
 shotIndexPageNextPage
     .title = Neste side
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Dette skjermbildet går ikkje ut
 
 
 // all metrics strings are optional for translation

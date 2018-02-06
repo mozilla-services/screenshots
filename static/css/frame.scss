@@ -47,11 +47,19 @@
 }
 
 .shot-alt-actions {
+  #downloadIcon {
+    margin-right: 4px;
+  }
+
   @include respond-to("small") {
     padding-right: $grid-unit * 0.5;
 
     .download-text {
       display: none;
+    }
+
+    #downloadIcon {
+      margin-right: 0;
     }
   }
 
@@ -227,6 +235,94 @@
   font-size: 15px;
 }
 
+.clips {
+  @include flex-container(column, center, center);
+  position: relative;
+  flex: 1;
+}
+
+.clips-warning {
+  background: #ffe900;
+  padding: 5px;
+  border-bottom: 1px solid #d7b600;
+  border-top: 1px solid #d7b600;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  color: $black;
+  font-size: 12px;
+}
+
+.clips-message {
+  @include flex-container(row, space-around, center);
+  animation: clip-message-appear 6s ease-in-out forwards;
+  animation-delay: 750ms;
+  background: linear-gradient($white 0%, #f9f9fa 100%);
+  border-radius: 3px;
+  box-shadow: 0 5px 11px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  padding: 10px 10px 10px 20px;
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  height: 72px;
+  width: 310px;
+  opacity: 0;
+}
+
+.clip-message-content {
+  color: $black;
+  font-size: 15px;
+  line-height: 1.3rem;
+  padding-right: 5px;
+
+  a {
+    color: $link-blue;
+    font-weight: bold;
+  }
+}
+
+.clip-message-dismiss-wrapper {
+  @include flex-container(row, flex-start, flex-start);
+  flex: 0 0 16px;
+  height: 100%;
+}
+
+.clip-message-dismiss {
+  background-image: url("/static/img/close-16.svg");
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+}
+
+@keyframes clip-message-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  5% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  10% {
+    transform: translateY(-2px);
+    opacity: 1;
+  }
+
+  15% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .clip-container {
   @include flex-container(row, center, center);
   flex: 0 auto;
@@ -284,6 +380,16 @@
   }
 }
 
+.clear-button {
+  background-image: url("../img/reset.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &:hover {
+    background-color: $light-hover;
+  }
+}
+
 html {
   min-height: 100%;
   position: relative;
@@ -303,6 +409,7 @@ body {
 
   @include respond-to("small") {
     @include flex-container(row, space-between, stretch, wrap);
+    height: $grid-unit * 7;
   }
   z-index: 9999;
   width: 100%;
@@ -311,7 +418,6 @@ body {
   left: 0;
   height: $grid-unit * 5;
   align-items: center;
-  background: #f9f9fa;
 
   .button {
     margin: $grid-unit * 0.25;
@@ -320,6 +426,12 @@ body {
   .cancel,
   .save {
     min-width: 100px;
+  }
+
+  .save {
+    &:disabled {
+      opacity: 0.4;
+    }
   }
 
   .cancel {
@@ -337,23 +449,24 @@ body {
 }
 
 .annotation-actions {
-  justify-content: center;
   overflow: visible;
   @include respond-to("small") {
+    justify-content: center;
     background: none;
-    border-bottom: none;
-    border-top: none;
+    border-bottom: 0;
+    border-top: 0;
   }
 }
 
 .annotation-tools {
+  margin-left: $grid-unit;
   display: flex;
   flex-direction: row;
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.15) 0 2px 4px;
   border-radius: $border-radius;
 
-  & .button:first-child{
+  & .button:first-child {
     margin-right: 0;
   }
 }
@@ -369,28 +482,35 @@ body {
 .main-container {
   z-index: 9990;
   position: absolute;
-  top: $grid-unit * 5;
+  top: $grid-unit * 5; // match editor-header's height
+  overflow: auto;
   left: 0;
-  height: calc(100% - 100px);
+  height: calc(100% - #{$grid-unit * 5}); // subtract the `top` so there's no vertical scrollbar
   width: 100%;
-  background-color: #f9f9fa;
   text-align: center;
+
+  @include respond-to("small") {
+    top: $grid-unit * 4;
+  }
 }
 
-.canvas-container .editor {
-  z-index: 2;
-
+.canvas-container {
   &.pen {
     cursor: url("../img/cursor-pen.png"), auto;
   }
+
   &.highlighter {
     cursor: url("../img/cursor-highlight.png"), auto;
   }
 }
 
-.highlighter {
+.canvas-container .image-holder {
+  z-index: 2;
+}
+
+.temp-highlighter {
   mix-blend-mode: multiply;
-  z-index: 1;
+  z-index: 4;
 }
 
 .image-holder {
@@ -399,10 +519,63 @@ body {
 
 .centered {
   position: absolute;
-  top: $grid-unit * 4;
+  top: $grid-unit;
   left: 0;
   right: 0;
   margin: auto;
   overflow: hidden;
   margin-bottom: 20px;
+}
+
+.color-button {
+  height: 25px;
+  width: 25px;
+  border-radius: 12.5px;
+  margin: 12px 5px 0 5px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.color-board {
+  margin-top: $grid-unit/2;
+  width: 160px;
+  height: 160px;
+  position: absolute;
+  background: $light-default;
+  border: 1px solid $light-border;
+  padding: 20px;
+}
+
+.color-board .row {
+  display: flex;
+}
+
+.swatch {
+  margin: 5px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+
+  &:hover
+    {
+      border: 2px solid $light-border-active !important;
+    }
+}
+
+.crop-tool {
+  z-index: 3;
+}
+
+.crop-container {
+  z-index: 4;
+}
+
+.crop-button {
+  background-image: url("../img/crop.svg");
+  background-repeat: no-repeat;
+  background-position: center;
 }

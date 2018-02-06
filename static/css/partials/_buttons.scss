@@ -105,6 +105,10 @@
     }
   }
 
+  &.share.newicon {
+    background-image: url("../img/icon-share-alternate.svg");
+  }
+
   &.trash {
     background-image: url("../img/icon-trash.svg");
     &:hover {

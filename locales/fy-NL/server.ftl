@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Foegje de URL fan dizze ôfbylding ta oan jo e-mail: {
 shotPageKeepFor = Hoe lang moat dizze ôfbylding bewarre wurde?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Tiid selektearje
-shotPageKeepIndefinitely = Unbepaald
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Uneinich ∞
 shotPageKeepTenMinutes = 10 minuten
 shotPageKeepOneHour = 1 oer
 shotPageKeepOneDay = 1 dei
@@ -153,20 +156,20 @@ shotPageExpiresIn = ferrint { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } ferrûn
 timeDiffJustNow = sa krekt
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 minút lyn
        *[other] { $number } minuten lyn
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 oer lyn
        *[other] { $number } oeren lyn
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] juster
        *[other] { $number } dagen lyn
     }
 timeDiffFutureSeconds = oer inkelde sekonden
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] oer 1 minút
        *[other] oer { $number } minuten
     }
@@ -174,10 +177,30 @@ timeDiffFutureHours = timeDiffFutureHours = { $number ->
         [one] oer 1 oer
        *[other] oer { $number } oeren
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] moarn
        *[other] oer { $number } dagen
     }
+errorThirdPartyCookiesEnabled = As jo dizze ôfbylding makke hawwe en net fuortsmite kinne, moatte jo miskien tydlik cookies fan tredden ynskeakelje fan de foarkarren fan jo browser út.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pen
+annotationHighlighterButton
+    .title = Markearstift
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Wiskje
+annotationCropButton
+    .title = Bysnije
+annotationSaveButton = Bewarje
+annotationCancelButton = Annulearje
+annotationCropConfirmButton = Befêstiging
+    .title = Seleksje befêstigje
+annotationCropCancelButton = Annulearje
+    .title = Seleksje annulearje
 
 
 [[ Shotindex page ]]
@@ -206,6 +229,12 @@ shotIndexPagePreviousPage
     .title = Foarige side
 shotIndexPageNextPage
     .title = Folgjende side
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Dizze skermôfdruk ferrint nea
 
 
 // all metrics strings are optional for translation

@@ -82,7 +82,7 @@ Authenticated.  Creates or updates a shot.  Takes a JSON body.  Looks like:
     "width": 1127,
     "height": 2086
   },
-  "fullScreenThumbnail": "data:...",
+  "thumbnail": "data:...",
   "clips": {
     "cplocgk9m1nc": {
       "createdDate": 1468983771992,

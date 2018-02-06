@@ -1,4 +1,5 @@
 const React = require("react");
+const classnames = require("classnames");
 const { Localized } = require("fluent-react/compat");
 const sendEvent = require("./browser-send-event.js");
 
@@ -21,10 +22,15 @@ exports.ShareButton = class ShareButton extends React.Component {
         isExtInstalled={this.props.isExtInstalled}
       />;
     }
-    const active = this.state.display ? "active" : "inactive";
+    const useNewIcon = this.props.abTests.shotShareIcon && this.props.abTests.shotShareIcon.value == "newicon";
+    const shareClasses = classnames("button", "transparent", "share", {
+      "active": this.state.display,
+      "inactive": !this.state.display,
+      "newicon": useNewIcon
+    });
     return <div>
       <Localized id="shotPageShareButton">
-        <button className={`button transparent share ${active}`} id="toggle-share" onClick={ this.onClick.bind(this) } title="Share" />
+        <button className={shareClasses} id="toggle-share" onClick={ this.onClick.bind(this) } title="Share" />
       </Localized>
       {panel}
     </div>;
@@ -44,7 +50,9 @@ exports.ShareButton = class ShareButton extends React.Component {
       if (this.props.setPanelState) {
         this.props.setPanelState("panel-closed");
       }
-      this.shareDiv.blur();
+      if (this.shareDiv) {
+        this.shareDiv.blur();
+      }
       sendEvent("cancel-share");
     }
   }

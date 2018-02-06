@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = કૃપા કરીને તમારા ઇમે
 shotPageKeepFor = આ શૉટને કેટલા સમય સુધી જાળવી રાખવો જોઈએ?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = સમય પસંદ કરો
-shotPageKeepIndefinitely = અનિશ્ચિતપણે
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = અનિશ્ચિત ∞
 shotPageKeepTenMinutes = 10 મિનીટ
 shotPageKeepOneHour = 1 કલાક
 shotPageKeepOneDay = 1 દિવસ
@@ -153,31 +156,49 @@ shotPageExpiresIn = સમાપ્ત થાય છે { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = સમાપ્ત થઈ { $timediff }
 timeDiffJustNow = હમણાજ
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 મિનિટ પહેલા
        *[other] { $number } મિનિટ પહેલા
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 કલાક પહેલા
        *[other] { $number } કલાક પહેલા
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] ગઇકાલે
        *[other] { $number } દિવસ પહેલા
     }
 timeDiffFutureSeconds = થોડીવારમાં
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] 1 મિનિટમાં
        *[other] { $number } મિનિટમાં
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] 1 કલાકમાં
        *[other] { $number } કલાકમાં
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] કાલે
        *[other] { $number } દિવસમાં
     }
+errorThirdPartyCookiesEnabled = જો તમે આ શોટ લીધો છે અને તેને કાઢી શકતા નથી, તો તમારે અસ્થાયી રૂપે તમારા બ્રાઉઝરની પસંદગીઓમાંથી તૃતીય પક્ષ કૂકીઝને સક્ષમ કરવાની જરૂર પડી શકે છે.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = કલમ
+annotationHighlighterButton
+    .title = પ્રકાશિત કરનાર
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = સાફ
+annotationCropButton
+    .title = કાપો
+annotationSaveButton = સાચવો
+annotationCancelButton = રદ કરો
+annotationConfirmCropButton = ખાતરી કરો
+annotationCancelCropButton = રદ કરો
 
 
 [[ Shotindex page ]]
@@ -206,6 +227,12 @@ shotIndexPagePreviousPage
     .title = પાછળનું પાનું
 shotIndexPageNextPage
     .title = પછીનું પાનું
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = આ શોટ સમાપ્ત થતો નથી
 
 
 // all metrics strings are optional for translation

@@ -47,7 +47,7 @@ homePageDownloadFirefoxSubTitle = Senpaga elŝuto
 homePageGetStarted = Unuaj paŝoj
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kiel funkcias Firefox Screenshots
-homePageGetStartedTitle = Unua paŝoj
+homePageGetStartedTitle = Unuaj paŝoj
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Trovu la novan emblemon de Firefox Screenshots en via ilaro. Elektu ĝin, kaj ĝia menuo aperos ĉe la supra parto de via retumila fenestro.
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
@@ -137,8 +137,11 @@ shotPageDMCAWarning = Se viaj ekrankopioj ricevas plurajn plendojn, ni povus nul
 shotPageDMCAIncludeLink = Bonvolu aldoni la retadreson de tiu ĉi ekrankopio en via retpoŝto: { $url }
 shotPageKeepFor = Kiel longe tiu ĉi ekrankopio devus esti gardita?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
-shotPageSelectTime = Elekti horon
-shotPageKeepIndefinitely = Ĉiame
+shotPageSelectTime = Elekti daŭron
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = senlime ∞
 shotPageKeepTenMinutes = 10 minutojn
 shotPageKeepOneHour = horon
 shotPageKeepOneDay = tagon
@@ -153,31 +156,51 @@ shotPageExpiresIn = senvalidiĝas post { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = senvalidiĝis antaŭ { $timediff }
 timeDiffJustNow = ĵus
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] antaŭ minuto
        *[other] antaŭ { $number } minutoj
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] antaŭ horo
        *[other] antaŭ { $number } horoj
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] hieraŭ
        *[other] antaŭ { $number } tagoj
     }
 timeDiffFutureSeconds = post kelkaj sekundoj
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] post minuto
        *[other] post { $number } minutoj
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] post horo
        *[other] post { $number } horoj
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] morgaŭ
        *[other] post { $number } tagoj
     }
+errorThirdPartyCookiesEnabled = Se vi faris tiun ĉi ekrankopion kaj ne povas ĝin forigi, vi eble bezonos provizore aktivigi nerektajn kuketojn en la preferoj de via retumilo.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Skribilo
+annotationHighlighterButton
+    .title = Elstarigilo
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Viŝi
+annotationCropButton
+    .title = Eltondi
+annotationSaveButton = Konservi
+annotationCancelButton = Nuligi
+annotationCropConfirmButton = Konfirmi
+    .title = Konfirmi elekton
+annotationCropCancelButton = Nuligi
+    .title = Nuligi elekton
 
 
 [[ Shotindex page ]]
@@ -206,6 +229,12 @@ shotIndexPagePreviousPage
     .title = Antaŭa paĝo
 shotIndexPageNextPage
     .title = Venonta paĝo
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Tiu ĉi ekrankopio ne senvalidiĝas
 
 
 // all metrics strings are optional for translation

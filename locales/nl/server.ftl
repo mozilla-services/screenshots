@@ -116,7 +116,7 @@ shotPageExpirationMessage = Als u niets doet, wordt deze afbeelding { $timediff 
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 // For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = terugzetten tot { $date }
-shotPageExpiredMessage = Deze afbeelding is vervallen.
+shotPageExpiredMessage = Deze afbeelding is verlopen.
 // Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Dit is de pagina van waaraf deze oorspronkelijk is gemaakt:
 shotPageDeleteButton
@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Voeg de URL van deze afbeelding bij in uw e-mail: { $u
 shotPageKeepFor = Hoe lang moet deze afbeelding worden behouden?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Tijd selecteren
-shotPageKeepIndefinitely = Onbepaald
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Oneindig ∞
 shotPageKeepTenMinutes = 10 minuten
 shotPageKeepOneHour = 1 uur
 shotPageKeepOneDay = 1 dag
@@ -153,31 +156,51 @@ shotPageExpiresIn = verloopt { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } verlopen
 timeDiffJustNow = zojuist
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 minuut geleden
        *[other] { $number } minuten geleden
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 uur geleden
        *[other] { $number } uur geleden
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] gisteren
        *[other] { $number } dagen geleden
     }
 timeDiffFutureSeconds = over enkele seconden
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] over 1 minuut
        *[other] over { $number } minuten
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] over 1 uur
        *[other] over { $number } uur
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] morgen
        *[other] over { $number } dagen
     }
+errorThirdPartyCookiesEnabled = Als u deze afbeelding hebt gemaakt en niet kunt verwijderen, dient u wellicht tijdelijk cookies van derden in te schakelen vanuit de voorkeuren van uw browser.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pen
+annotationHighlighterButton
+    .title = Markeerder
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Wissen
+annotationCropButton
+    .title = Bijsnijden
+annotationSaveButton = Opslaan
+annotationCancelButton = Annuleren
+annotationCropConfirmButton = Bevestigen
+    .title = Selectie bevestigen
+annotationCropCancelButton = Annuleren
+    .title = Selectie annuleren
 
 
 [[ Shotindex page ]]
@@ -206,6 +229,12 @@ shotIndexPagePreviousPage
     .title = Vorige pagina
 shotIndexPageNextPage
     .title = Volgende pagina
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Deze afbeelding verloopt niet
 
 
 // all metrics strings are optional for translation

@@ -5,7 +5,7 @@ const { getGitRevision } = require("./linker");
 exports.render = function(req, res, page) {
   let modelModule = require("./" + page.modelModuleName);
   let viewModule = page.viewModule;
-  let cdn = req.config.cdn.replace(/\/*$/, "");
+  let cdn = req.config.siteCdn.replace(/\/*$/, "");
   Promise.resolve(modelModule.createModel(req)).then((model) => {
     model.backend = req.backend;
     let jsonModel = model.jsonModel || model;
@@ -19,8 +19,7 @@ exports.render = function(req, res, page) {
       cdn,
       csrfToken,
       abTests: req.abTests,
-      userLocales: req.userLocales,
-      messages: req.messages
+      userLocales: req.userLocales
     }, jsonModel);
     serverModel = Object.assign({
       authenticated: !!req.deviceId,
@@ -41,9 +40,6 @@ exports.render = function(req, res, page) {
     }
     let head = ReactDOMServer.renderToStaticMarkup(viewModule.HeadFactory(serverModel));
     let body;
-    // These messages no longer need to be sent along with the page body. (#3228)
-    // Deleting it here because jsonModel is used in the json repsonses above.
-    delete jsonModel.messages;
     if (page.noBrowserJavascript) {
       body = ReactDOMServer.renderToStaticMarkup(viewModule.BodyFactory(serverModel));
     } else {

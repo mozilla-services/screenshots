@@ -7,6 +7,7 @@ const { ShareButton } = require("../../share-buttons");
 const Masonry = require("react-masonry-component");
 const { Localized } = require("fluent-react/compat");
 const { isValidClipImageUrl } = require("../../../shared/shot");
+const { getThumbnailDimensions } = require("../../../shared/thumbnailGenerator");
 
 class Head extends React.Component {
 
@@ -89,7 +90,7 @@ class Body extends React.Component {
   }
 
   renderPageNavigation() {
-    if (parseInt(this.props.totalShots, 10) === 0) {
+    if (!this.props.totalShots || parseInt(this.props.totalShots, 10) === 0) {
       return null;
     }
 
@@ -282,12 +283,12 @@ class Card extends React.Component {
       // Some corrupted shot, we'll have to ignore it
       return null;
     }
-    if (clip && clip.image && clip.image.url) {
+    if (shot.thumbnail) {
+      imageUrl = shot.thumbnail;
+    } else if (clip && clip.image && clip.image.url) {
       imageUrl = clip.image.url;
     } else if (shot.images.length) {
       imageUrl = shot.images[0].url;
-    } else if (shot.fullScreenThumbnail) {
-      imageUrl = shot.fullScreenThumbnail;
     } else {
       imageUrl = defaultImageUrl;
     }
@@ -303,12 +304,16 @@ class Card extends React.Component {
       favicon = <div style={{backgroundImage: `url("${shot.favicon}")`}} className="favicon" />;
     }
 
+    let neverExpireIndicator = null;
+    if (!shot.expireTime) {
+      neverExpireIndicator = <Localized id="shotIndexNoExpirationSymbol"><div className="never-expires" title=""></div></Localized>
+    }
+
     return (
-      <div className={`shot ${this.getClipType(clip._image.dimensions)} ${this.state.panelOpen} ${this.isDeleted()}`} key={shot.id}>
+      <div className={`shot ${this.getClipType(shot.thumbnail, clip._image.dimensions)} ${this.state.panelOpen} ${this.isDeleted()}`} key={shot.id}>
         <a href={shot.viewUrl} onClick={this.onOpen.bind(this, shot.viewUrl)}>
-          <div className="shot-image-container" style={{
-            backgroundImage: `url("${imageUrl}")`
-          }}>
+          <div className="shot-image-container">
+            <img src={imageUrl} />
           </div>
           <div className="shot-info">
           <div className="title-container">
@@ -332,20 +337,44 @@ class Card extends React.Component {
             <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this, shot) } ref={trashButton => this.trashButton = trashButton} />
           </Localized>
         </div>
+        {neverExpireIndicator}
       </div>
     );
   }
 
-  getClipType(dimensions) {
-    // an image is considered a square if it is within
-    // a squareBuffer pixels of being one
-    const squareBuffer = 50;
-    if (dimensions.x - squareBuffer > dimensions.y) {
-      return "landscape";
-    } else if (dimensions.x < dimensions.y - squareBuffer ) {
+  getClipType(thumbnailUrl, dimensions) {
+    // "portrait": 210 x 280, image scaled on X
+    // "landscape": 210 x 140, image scaled on Y
+    // "square": 210 x 210, image scaled on X or Y
+
+    const containerWidth = 210;
+    const landscapeHeight = 140;
+    const portraitHeight = 280;
+    const landscapeAspectRatio = containerWidth / landscapeHeight;
+    const portraitAspectRatio = containerWidth / portraitHeight;
+    let thumbnailWidth, thumbnailHeight, thumbnailAspectRatio;
+
+    if (!thumbnailUrl) {
+      thumbnailWidth = dimensions.x;
+      thumbnailHeight = dimensions.y;
+    } else {
+      let thumbnailDimensions = getThumbnailDimensions(dimensions.x, dimensions.y);
+      thumbnailWidth = thumbnailDimensions.width;
+      thumbnailHeight = thumbnailDimensions.height;
+    }
+
+    thumbnailAspectRatio = thumbnailWidth / thumbnailHeight;
+
+    if (thumbnailAspectRatio <= portraitAspectRatio) {
       return "portrait";
     }
-    return "square";
+    if (thumbnailAspectRatio >= landscapeAspectRatio) {
+      return "landscape";
+    }
+    if (thumbnailHeight > thumbnailWidth) {
+      return "square-x";
+    }
+    return "square-y";
   }
 
   setPanelState(state) {

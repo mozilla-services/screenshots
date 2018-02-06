@@ -39,7 +39,7 @@ creatingPageWaitMessage = Зберігаємо ваш знімок…
 [[ Home page ]]
 
 homePageDescription
-    .content = Прості знімки рпямо в браузері. Робіть, зберігайте й діліться знімками екрану під час роботи в Інтернеті з Firefox.
+    .content = Прості знімки прямо в браузері. Робіть, зберігайте й діліться знімками екрану під час роботи в Інтернеті з Firefox.
 homePageButtonMyShots = Перейти до моїх знімків
 homePageTeaser = Скоро...
 homePageDownloadFirefoxTitle = Firefox
@@ -95,7 +95,7 @@ shotPageAlertErrorDeletingShot = Помилка при видаленні зні
 shotPageAlertErrorUpdatingTitle = Помилка при збереженні назви
 shotPageConfirmDelete = Ви впевнені, що хочете назавжди видалити цей знімок?
 shotPageShareButton
-    .title = Поділітися
+    .title = Поділитися
 shotPageCopy = Копіювати
 shotPageCopied = Скопійовано
 shotPageShareFacebook
@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Будь ласка, додайте до вашого 
 shotPageKeepFor = Як довго буде зберігатися цей знімок?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Виберіть час
-shotPageKeepIndefinitely = Нескінченно
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Необмежено ∞
 shotPageKeepTenMinutes = 10 хвилин
 shotPageKeepOneHour = 1 година
 shotPageKeepOneDay = 1 день
@@ -153,37 +156,57 @@ shotPageExpiresIn = спливає { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = сплив { $timediff }
 timeDiffJustNow = щойно
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] хвилину тому
         [few] { $number } хвилини тому
        *[other] { $number } хвилин тому
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] годину тому
         [few] { $number } години тому
        *[other] { $number } годин тому
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] вчора
         [few] { $number } дні тому
        *[other] { $number } днів тому
     }
 timeDiffFutureSeconds = за кілька секунд
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] за хвилину
         [few] за { $number } хвилини
        *[other] за { $number } хвилин
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] за годину
         [few] за { $number } години
        *[other] за { $number } годин
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] завтра
         [few] за { $number } дні
        *[other] за { $number } днів
     }
+errorThirdPartyCookiesEnabled = Якщо ви зробили цей знімок і не можете його видалити, можливо, вам слід тимчасово увімкнути сторонні куки в налаштуваннях браузера.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Олівець
+annotationHighlighterButton
+    .title = Маркер
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Очистити
+annotationCropButton
+    .title = Обрізати
+annotationSaveButton = Зберегти
+annotationCancelButton = Скасувати
+annotationCropConfirmButton = Підтвердити
+    .title = Підтвердити вибір
+annotationCropCancelButton = Скасувати
+    .title = Скасувати вибір
 
 
 [[ Shotindex page ]]
@@ -212,6 +235,12 @@ shotIndexPagePreviousPage
     .title = Попередня сторінка
 shotIndexPageNextPage
     .title = Наступна сторінка
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Цей знімок зберігається необмежено
 
 
 // all metrics strings are optional for translation

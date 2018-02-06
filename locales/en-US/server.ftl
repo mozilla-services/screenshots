@@ -136,7 +136,10 @@ shotPageDMCAIncludeLink = Please include the URL of this shot in your email: { $
 shotPageKeepFor = How long should this shot be retained?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Select time
-shotPageKeepIndefinitely = Indefinitely
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Indefinitely ∞
 shotPageKeepTenMinutes = 10 Minutes
 shotPageKeepOneHour = 1 Hour
 shotPageKeepOneDay = 1 Day
@@ -177,6 +180,25 @@ timeDiffFutureDays = { $number ->
        *[other] in { $number } days
     }
 
+errorThirdPartyCookiesEnabled = If you took this shot and cannot delete it, you may need to temporarily enable third party cookies from your browser’s preferences.
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pen
+annotationHighlighterButton
+    .title = Highlighter
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Clear
+annotationCropButton
+    .title = Crop
+annotationSaveButton = Save
+annotationCancelButton = Cancel
+annotationCropConfirmButton = Confirm
+    .title = Confirm selection
+annotationCropCancelButton = Cancel
+    .title = Cancel selection
 
 [[ Shotindex page ]]
 
@@ -204,7 +226,12 @@ shotIndexPagePreviousPage
     .title = Previous page
 shotIndexPageNextPage
     .title = Next page
-
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = This shot does not expire
 
 // all metrics strings are optional for translation
 [[ Metrics page ]]

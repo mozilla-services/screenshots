@@ -134,11 +134,14 @@ shotPageDMCAContact = Za več informacij pošljite e-pošto na { $dmca }
 // Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Če bodo vaši posnetki predmet več pritožb, vam bomo morda onemogočili dostop do storitve Firefox Screenshots.
 // Note: { $url } is a placeholder for a shot page URL
-shotPageDMCAIncludeLink = Vključite URL tega posnetka v e-pošto: { $url }
+shotPageDMCAIncludeLink = Vključite spletni naslov tega posnetka v e-poštno sporočilo: { $url }
 shotPageKeepFor = Kako dolgo želite ohraniti ta posnetek?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Izberite čas
-shotPageKeepIndefinitely = Za nedoločen čas
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Neskončno ∞
 shotPageKeepTenMinutes = 10 minut
 shotPageKeepOneHour = 1 uro
 shotPageKeepOneDay = 1 dan
@@ -153,43 +156,63 @@ shotPageExpiresIn = poteče { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = poteklo { $timediff }
 timeDiffJustNow = zdaj
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] pred { $number } minuto
         [two] pred { $number } minutama
         [few] pred { $number } minutami
        *[other] pred { $number } minutami
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] pred { $number } uro
         [two] pred { $number } urama
         [few] pred { $number } urami
        *[other] pred { $number } urami
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] pred { $number } dnevom
         [two] pred { $number } dnevoma
         [few] pred { $number } dnevi
        *[other] pred { $number } dnevi
     }
 timeDiffFutureSeconds = čez nekaj sekund
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] čez { $number } minuto
         [two] čez { $number } minuti
         [few] čez { $number } minute
-       *[other] čez { $number } minute
+       *[other] čez { $number } minut
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] čez { $number } uro
         [two] čez { $number } uri
         [few] čez { $number } ure
        *[other] čez { $number } ur
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] čez { $number } dan
         [two] čez { $number } dni
         [few] čez { $number } dni
        *[other] čez { $number } dni
     }
+errorThirdPartyCookiesEnabled = Če ste ta posnetek zaslona zajeli vi in ga ne morete izbrisati, morate morda v nastavitvah brskalnika začasno omogočiti piškotke tretjih strani.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pero
+annotationHighlighterButton
+    .title = Označevalnik
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Počisti
+annotationCropButton
+    .title = Obreži
+annotationSaveButton = Shrani
+annotationCancelButton = Prekliči
+annotationCropConfirmButton = Potrdi
+    .title = Potrdi izbor
+annotationCropCancelButton = Prekliči
+    .title = Prekliči izbor
 
 
 [[ Shotindex page ]]
@@ -218,6 +241,12 @@ shotIndexPagePreviousPage
     .title = Prejšnja stran
 shotIndexPageNextPage
     .title = Naslednja stran
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Ta posnetek ne poteče
 
 
 // all metrics strings are optional for translation

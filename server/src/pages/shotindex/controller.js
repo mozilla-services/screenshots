@@ -17,7 +17,11 @@ const queryParamModelPropertyMap = {
 exports.launch = function(m) {
   if (m.hasDeviceId) {
     if (m.shots) {
-      m.shots = m.shots.map((shot) => new AbstractShot(m.backend, shot.id, shot.json));
+      m.shots = m.shots.map((shot) => {
+        let s = new AbstractShot(m.backend, shot.id, shot.json);
+        s.expireTime = shot.expireTime;
+        return s;
+      });
     }
     Object.assign(m, extractQueryParamValues(queryParamModelPropertyMap));
     model = m;
@@ -136,6 +140,10 @@ exports.deleteShot = function(shot) {
       errorMessage = errorMessage.replace('{statusText}', req.statusText);
       window.alert(errorMessage);
       window.Raven.captureException(new Error(`Error calling /api/delete-shot: ${req.status} ${req.statusText}`));
+    } else if ((model.totalShots % model.shotsPerPage) === 1 && model.pageNumber > 1) {
+      // On the boundary case where the user deletes the last image on a page
+      // (where page number > 1), we need to decrement the page number.
+      exports.onChangePage(model.pageNumber - 1);
     } else {
       refreshModel();
     }

@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Эл. пошта хатына бұл скриншот�
 shotPageKeepFor = Бұл скриншот қанша уақыт бойы сақталуы тиіс?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Уақытты таңдау
-shotPageKeepIndefinitely = Шексіз
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Шексіз ∞
 shotPageKeepTenMinutes = 10 минут
 shotPageKeepOneHour = 1 сағат
 shotPageKeepOneDay = 1 күн
@@ -153,25 +156,45 @@ shotPageExpiresIn = мерзімі { $timediff } аяқталады
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = мерзімі { $timediff } аяқталды
 timeDiffJustNow = жаңа ғана
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
        *[other] 1 минут бұрын
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
        *[other] 1 сағат бұрын
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
        *[other] кеше
     }
 timeDiffFutureSeconds = бірнеше секундтан кейін
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
        *[other] { $number } минуттан кейін
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
        *[other] { $number } сағаттан кейін
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
        *[other] { $number } күннен кейін
     }
+errorThirdPartyCookiesEnabled = Егер сіз бұл скриншотты түсіріп, оны өшіре алмасаңыз, онда сізге браузерде уақытша үшінші жақты cookies файлдарына рұқсат беру керек болуы мүмкін.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Қалам
+annotationHighlighterButton
+    .title = Маркер
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Тазарту
+annotationCropButton
+    .title = Қию
+annotationSaveButton = Сақтау
+annotationCancelButton = Бас тарту
+annotationCropConfirmButton = Растау
+    .title = Таңдауды растау
+annotationCropCancelButton = Бас тарту
+    .title = Таңдаудан бас тарту
 
 
 [[ Shotindex page ]]
@@ -200,6 +223,12 @@ shotIndexPagePreviousPage
     .title = Алдыңғы бет
 shotIndexPageNextPage
     .title = Келесі бет
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Бұл скриншот мерзімі аяқталмайды
 
 
 // all metrics strings are optional for translation

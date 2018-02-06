@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Vänligen ange URL-adressen till denna bild i ditt e-p
 shotPageKeepFor = Hur länge ska denna skärmbild behållas?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Välj tid
-shotPageKeepIndefinitely = På obestämd tid
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Oändligt ∞
 shotPageKeepTenMinutes = 10 minuter
 shotPageKeepOneHour = 1 timme
 shotPageKeepOneDay = 1 dag
@@ -153,31 +156,51 @@ shotPageExpiresIn = upphör { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = upphörde { $timediff }
 timeDiffJustNow = just nu
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] en minut sedan
        *[other] { $number } minuter sedan
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] en timme sedan
        *[other] { $number } timmar sedan
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] igår
        *[other] { $number } dagar sedan
     }
 timeDiffFutureSeconds = inom ett par sekunder
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] inom en minut
        *[other] inom { $number } minuter
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] inom en timme
        *[other] inom { $number } timmar
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] imorgon
        *[other] inom { $number } dagar
     }
+errorThirdPartyCookiesEnabled = Om du tog den här bilden och inte kan ta bort den, kan du behöva aktivera tredjepartskakor tillfälligt från din webbläsares inställningar.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Penna
+annotationHighlighterButton
+    .title = Markeringspenna
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Rensa
+annotationCropButton
+    .title = Beskär
+annotationSaveButton = Spara
+annotationCancelButton = Avbryt
+annotationCropConfirmButton = Bekräfta
+    .title = Bekräfta val
+annotationCropCancelButton = Avbryt
+    .title = Avbryt val
 
 
 [[ Shotindex page ]]
@@ -206,6 +229,12 @@ shotIndexPagePreviousPage
     .title = Föregående sida
 shotIndexPageNextPage
     .title = Nästa sida
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Denna bild upphör inte
 
 
 // all metrics strings are optional for translation

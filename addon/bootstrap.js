@@ -1,27 +1,26 @@
 /* globals ADDON_DISABLE */
-const OLD_ADDON_PREF_NAME = "extensions.jid1-NeEaf3sAHdKHPA@jetpack.deviceIdInfo";
-const OLD_ADDON_ID = "jid1-NeEaf3sAHdKHPA@jetpack";
 const ADDON_ID = "screenshots@mozilla.org";
 const TELEMETRY_ENABLED_PREF = "datareporting.healthreport.uploadEnabled";
 const PREF_BRANCH = "extensions.screenshots.";
 const USER_DISABLE_PREF = "extensions.screenshots.disabled";
+const UPLOAD_DISABLED_PREF = "extensions.screenshots.upload-disabled";
 const HISTORY_ENABLED_PREF = "places.history.enabled";
 
 const { interfaces: Ci, utils: Cu } = Components;
-Cu.import("resource://gre/modules/XPCOMUtils.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "AddonManager",
+ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
+ChromeUtils.defineModuleGetter(this, "AddonManager",
                                   "resource://gre/modules/AddonManager.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "AppConstants",
+ChromeUtils.defineModuleGetter(this, "AppConstants",
                                   "resource://gre/modules/AppConstants.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "Console",
+ChromeUtils.defineModuleGetter(this, "Console",
                                   "resource://gre/modules/Console.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "CustomizableUI",
+ChromeUtils.defineModuleGetter(this, "CustomizableUI",
                                   "resource:///modules/CustomizableUI.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "LegacyExtensionsUtils",
+ChromeUtils.defineModuleGetter(this, "LegacyExtensionsUtils",
                                   "resource://gre/modules/LegacyExtensionsUtils.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "PageActions",
+ChromeUtils.defineModuleGetter(this, "PageActions",
                                   "resource:///modules/PageActions.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "Services",
+ChromeUtils.defineModuleGetter(this, "Services",
                                   "resource://gre/modules/Services.jsm");
 
 let addonResourceURI;
@@ -210,22 +209,14 @@ function handleMessage(msg, sender, sendReply) {
     return;
   }
 
-  if (msg.funcName === "getTelemetryPref") {
+  if (msg.funcName === "isTelemetryEnabled") {
     let telemetryEnabled = getBoolPref(TELEMETRY_ENABLED_PREF);
     sendReply({type: "success", value: telemetryEnabled});
-  } else if (msg.funcName === "getOldDeviceInfo") {
-    let oldDeviceInfo = prefs.prefHasUserValue(OLD_ADDON_PREF_NAME) && prefs.getCharPref(OLD_ADDON_PREF_NAME);
-    sendReply({type: "success", value: oldDeviceInfo || null});
-  } else if (msg.funcName === "removeOldAddon") {
-    AddonManager.getAddonByID(OLD_ADDON_ID, (addon) => {
-      prefs.clearUserPref(OLD_ADDON_PREF_NAME);
-      if (addon) {
-        addon.uninstall();
-      }
-      sendReply({type: "success", value: !!addon});
-    });
-    return true;
-  } else if (msg.funcName === "getHistoryPref") {
+  } else if (msg.funcName === "isUploadDisabled") {
+    let isESR = AppConstants.MOZ_UPDATE_CHANNEL === 'esr';
+    let uploadDisabled = getBoolPref(UPLOAD_DISABLED_PREF);
+    sendReply({type: "success", value: uploadDisabled || isESR});
+  } else if (msg.funcName === "isHistoryEnabled") {
     let historyEnabled = getBoolPref(HISTORY_ENABLED_PREF);
     sendReply({type: "success", value: historyEnabled});
   } else if (msg.funcName === "incrementCount") {

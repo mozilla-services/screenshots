@@ -65,6 +65,10 @@ shotPageSaveExpiration = සුරකින්න
 shotPageCancelExpiration = අවලංගු කරන්න
 
 
+[[ Annotations ]]
+
+
+
 [[ Shotindex page ]]
 
 
