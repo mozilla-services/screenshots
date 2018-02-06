@@ -162,27 +162,42 @@ this.analytics = (function() {
     name: 'page-action',
     start: { action: 'start-shot', label: 'toolbar-button' },
     end: { action: 'internal', label: 'unhide-preselection-frame' },
-    cancel: [{ action: 'cancel-shot' }]
+    cancel: [
+      { action: 'cancel-shot' },
+      { action: 'internal', label: 'document-hidden' }
+    ]
   }, {
     name: 'context-menu',
     start: { action: 'start-shot', label: 'context-menu' },
     end: { action: 'internal', label: 'unhide-preselection-frame' },
-    cancel: [{ action: 'cancel-shot' }]
+    cancel: [
+      { action: 'cancel-shot' },
+      { action: 'internal', label: 'document-hidden' }
+    ]
   }, {
     name: 'capture-full-page',
     start: { action: 'capture-full-page' },
     end: { action: 'internal', label: 'unhide-preview-frame' },
-    cancel: [{ action: 'cancel-shot' }]
+    cancel: [
+      { action: 'cancel-shot' },
+      { action: 'internal', label: 'document-hidden' }
+    ]
   }, {
     name: 'capture-visible',
     start: { action: 'capture-visible' },
     end: { action: 'internal', label: 'unhide-preview-frame' },
-    cancel: [{ action: 'cancel-shot' }]
+    cancel: [
+      { action: 'cancel-shot' },
+      { action: 'internal', label: 'document-hidden' }
+    ]
   }, {
     name: 'make-selection',
     start: { action: 'make-selection' },
     end: { action: 'internal', label: 'unhide-selection-frame' },
-    cancel: [{ action: 'cancel-shot' }]
+    cancel: [
+      { action: 'cancel-shot' },
+      { action: 'internal', label: 'document-hidden' }
+    ]
   }, {
     name: 'save-shot',
     start: { action: 'save-shot' },
@@ -207,22 +222,34 @@ this.analytics = (function() {
     name: 'download-shot',
     start: { action: 'download-shot' },
     end: { action: 'internal', label: 'deactivate' },
-    cancel: [{ action: 'cancel-shot' }]
+    cancel: [
+      { action: 'cancel-shot' },
+      { action: 'internal', label: 'document-hidden' }
+    ]
   }, {
     name: 'download-full-page',
     start: { action: 'download-full-page' },
     end: { action: 'internal', label: 'deactivate' },
-    cancel: [{ action: 'cancel-shot' }]
+    cancel: [
+      { action: 'cancel-shot' },
+      { action: 'internal', label: 'document-hidden' }
+    ]
   }, {
     name: 'download-full-page-truncated',
     start: { action: 'download-full-page-truncated' },
     end: { action: 'internal', label: 'deactivate' },
-    cancel: [{ action: 'cancel-shot' }]
+    cancel: [
+      { action: 'cancel-shot' },
+      { action: 'internal', label: 'document-hidden' }
+    ]
   }, {
     name: 'download-visible',
     start: { action: 'download-visible' },
     end: { action: 'internal', label: 'deactivate' },
-    cancel: [{ action: 'cancel-shot' }]
+    cancel: [
+      { action: 'cancel-shot' },
+      { action: 'internal', label: 'document-hidden' }
+    ]
   }];
 
   // Match a filter (action and optional label) against an action and label.
