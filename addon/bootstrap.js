@@ -7,20 +7,20 @@ const UPLOAD_DISABLED_PREF = "extensions.screenshots.upload-disabled";
 const HISTORY_ENABLED_PREF = "places.history.enabled";
 
 const { interfaces: Ci, utils: Cu } = Components;
-Cu.import("resource://gre/modules/XPCOMUtils.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "AddonManager",
+ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
+ChromeUtils.defineModuleGetter(this, "AddonManager",
                                   "resource://gre/modules/AddonManager.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "AppConstants",
+ChromeUtils.defineModuleGetter(this, "AppConstants",
                                   "resource://gre/modules/AppConstants.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "Console",
+ChromeUtils.defineModuleGetter(this, "Console",
                                   "resource://gre/modules/Console.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "CustomizableUI",
+ChromeUtils.defineModuleGetter(this, "CustomizableUI",
                                   "resource:///modules/CustomizableUI.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "LegacyExtensionsUtils",
+ChromeUtils.defineModuleGetter(this, "LegacyExtensionsUtils",
                                   "resource://gre/modules/LegacyExtensionsUtils.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "PageActions",
+ChromeUtils.defineModuleGetter(this, "PageActions",
                                   "resource:///modules/PageActions.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "Services",
+ChromeUtils.defineModuleGetter(this, "Services",
                                   "resource://gre/modules/Services.jsm");
 
 let addonResourceURI;
