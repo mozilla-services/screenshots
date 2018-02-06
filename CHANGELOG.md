@@ -1,3 +1,62 @@
+## Version 29.0.0
+
+Note this is an add-on only release. The add-on will be exported into Firefox 60.
+
+### Addon changes
+
+* Suppress errors encountered when sending timing or events pings
+  Analytics network errors should never be user-visible. [73c1340](https://github.com/mozilla-services/screenshots/commit/73c1340)
+* Remove special click handlers for onboarding legal and terms links
+  Bug 1357589 has been fixed, so the links should now behave normally.
+  Refs [#2699](https://github.com/mozilla-services/screenshots/issues/2699). [80a58e4](https://github.com/mozilla-services/screenshots/commit/80a58e4)
+* remove pageshot migration code. Fixes [#3844](https://github.com/mozilla-services/screenshots/issues/3844) [102724c](https://github.com/mozilla-services/screenshots/commit/102724c)
+* use data-l10n-title to localize title attributes. Fixes [#3840](https://github.com/mozilla-services/screenshots/issues/3840) [c962142](https://github.com/mozilla-services/screenshots/commit/c962142)
+* Do not throw error on unexpected attr in prod. ([#3959](https://github.com/mozilla-services/screenshots/issues/3959)) [2575e38](https://github.com/mozilla-services/screenshots/commit/2575e38)
+* Remove a button position fix that's no longer needed. ([#4008](https://github.com/mozilla-services/screenshots/issues/4008)) [b956bf7](https://github.com/mozilla-services/screenshots/commit/b956bf7)
+* Check capture type before it's potentially changed. ([#3968](https://github.com/mozilla-services/screenshots/issues/3968)) [b9ce266](https://github.com/mozilla-services/screenshots/commit/b9ce266)
+* Replace shot creating url w/ view url from addon. ([#3995](https://github.com/mozilla-services/screenshots/issues/3995)) ([#4009](https://github.com/mozilla-services/screenshots/issues/4009)) [43ad2df](https://github.com/mozilla-services/screenshots/commit/43ad2df)
+* Download or copy preview img when possible. ([#3968](https://github.com/mozilla-services/screenshots/issues/3968)) ([#4004](https://github.com/mozilla-services/screenshots/issues/4004)) [6aa2deb](https://github.com/mozilla-services/screenshots/commit/6aa2deb)
+* Prevent Enter from performing two actions. ([#3981](https://github.com/mozilla-services/screenshots/issues/3981)) [be59362](https://github.com/mozilla-services/screenshots/commit/be59362)
+* Refactor 'History enabled' checking code to clarify the expected boolean result [bc7b20a](https://github.com/mozilla-services/screenshots/commit/bc7b20a)
+* Refactor 'Telemetry enabled' checking code to clarify the expected boolean result [c8b1747](https://github.com/mozilla-services/screenshots/commit/c8b1747)
+* Update the download-only notice to mention ESR and upload-disabled prefs [90fbe9a](https://github.com/mozilla-services/screenshots/commit/90fbe9a)
+* disable uploads for ESR. Fixes [#3996](https://github.com/mozilla-services/screenshots/issues/3996) [f99e449](https://github.com/mozilla-services/screenshots/commit/f99e449)
+* Add 'Upload disabled' check to the selector code [a0c6626](https://github.com/mozilla-services/screenshots/commit/a0c6626)
+* Add upload-disabled pref and bootstrap message to send its value to webextension [022096d](https://github.com/mozilla-services/screenshots/commit/022096d)
+* Remove unused signal [5867cfd](https://github.com/mozilla-services/screenshots/commit/5867cfd)
+* Remove dimension limits when copying full page shots. ([#3855](https://github.com/mozilla-services/screenshots/issues/3855)) ([#3990](https://github.com/mozilla-services/screenshots/issues/3990)) [798d6dd](https://github.com/mozilla-services/screenshots/commit/798d6dd)
+* Clear cached highlighted el when hiding hover box. ([#3970](https://github.com/mozilla-services/screenshots/issues/3970)). [342e204](https://github.com/mozilla-services/screenshots/commit/342e204)
+* Negate body shift in scroll-proof fashion. ([#3907](https://github.com/mozilla-services/screenshots/issues/3907)) [8fd35ef](https://github.com/mozilla-services/screenshots/commit/8fd35ef)
+* Stop sending events when in incognito. ([#3900](https://github.com/mozilla-services/screenshots/issues/3900)) [de5e6a0](https://github.com/mozilla-services/screenshots/commit/de5e6a0)
+* Fix math on distance calc. ([#3922](https://github.com/mozilla-services/screenshots/issues/3922)) [6b7fafe](https://github.com/mozilla-services/screenshots/commit/6b7fafe)
+* Use an object url for the preview image. ([#3940](https://github.com/mozilla-services/screenshots/issues/3940)) [9e56cf2](https://github.com/mozilla-services/screenshots/commit/9e56cf2)
+* Fix selection frame when body's (left, top) is not (0, 0). ([#3907](https://github.com/mozilla-services/screenshots/issues/3907)) [f41db05](https://github.com/mozilla-services/screenshots/commit/f41db05)
+* Hide UI frame unless server error. ([#3901](https://github.com/mozilla-services/screenshots/issues/3901)) [7d9e51f](https://github.com/mozilla-services/screenshots/commit/7d9e51f)
+
+### Server changes
+
+* Update l10n ids of annotataion crop buttons. ([#4041](https://github.com/mozilla-services/screenshots/issues/4041)) [a4d3ed0](https://github.com/mozilla-services/screenshots/commit/a4d3ed0)
+* prevent crop-box resizing against borders [f2b12d6](https://github.com/mozilla-services/screenshots/commit/f2b12d6)
+* Save as jpeg on edit if > limit. ([#3943](https://github.com/mozilla-services/screenshots/issues/3943)) ([#3999](https://github.com/mozilla-services/screenshots/issues/3999)) [4fae01f](https://github.com/mozilla-services/screenshots/commit/4fae01f)
+* Add tooltips to crop buttons ([#4016](https://github.com/mozilla-services/screenshots/issues/4016)) [31bbfb4](https://github.com/mozilla-services/screenshots/commit/31bbfb4)
+* Disable save button on click [d80f9db](https://github.com/mozilla-services/screenshots/commit/d80f9db)
+* cancel default action on click events [354f155](https://github.com/mozilla-services/screenshots/commit/354f155)
+* change cursor style [1291430](https://github.com/mozilla-services/screenshots/commit/1291430)
+* Change l10n string id. ([#3500](https://github.com/mozilla-services/screenshots/issues/3500)) [de195ff](https://github.com/mozilla-services/screenshots/commit/de195ff)
+* Fix pen position tracking [b0ea374](https://github.com/mozilla-services/screenshots/commit/b0ea374)
+* add cropping to annotation tools [4d22580](https://github.com/mozilla-services/screenshots/commit/4d22580)
+* Update style for indefinitely saved symbol. ([#3500](https://github.com/mozilla-services/screenshots/issues/3500)) [240e3a2](https://github.com/mozilla-services/screenshots/commit/240e3a2)
+* Add never expire indicator to My Shots. ([#3500](https://github.com/mozilla-services/screenshots/issues/3500)) [ddb8640](https://github.com/mozilla-services/screenshots/commit/ddb8640)
+* Remove l10n messages from JSON response. ([#3843](https://github.com/mozilla-services/screenshots/issues/3843)) [ee837f0](https://github.com/mozilla-services/screenshots/commit/ee837f0)
+* Remove right margin on img only download icon. ([#3947](https://github.com/mozilla-services/screenshots/issues/3947)) [b576350](https://github.com/mozilla-services/screenshots/commit/b576350)
+* close share panel properly when clicking twice on the share button. Fixes [#3785](https://github.com/mozilla-services/screenshots/issues/3785) [72ae4b7](https://github.com/mozilla-services/screenshots/commit/72ae4b7)
+* use a prefixed titleWe were setting the title properly on the server, but it would be overwritten later as we were sending a different title to be rendered in the browser. This meant that titles lost their 'Screenshots:' prefix. Fixes [#3898](https://github.com/mozilla-services/screenshots/issues/3898) [318c32e](https://github.com/mozilla-services/screenshots/commit/318c32e)
+
+### Documentation changes
+
+* Document copy to clipboard metrics. ([#4037](https://github.com/mozilla-services/screenshots/issues/4037)) [dfe627d](https://github.com/mozilla-services/screenshots/commit/dfe627d)
+* add instructions for taking down a shot given an image URL. Fixes [#3923](https://github.com/mozilla-services/screenshots/issues/3923) [924eda8](https://github.com/mozilla-services/screenshots/commit/924eda8)
+
 ## Version 28.0.0
 
 Note this is a server-only release
