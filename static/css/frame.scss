@@ -354,6 +354,15 @@
   transition: background-image 150ms $bezier;
 }
 
+.edit-highlight {
+  background-image: url("../img/edit-highlight.svg");
+  height: 17px;
+  width: 17px;
+  position: relative;
+  left: -31px;
+  top: -5px;
+}
+
 .highlight-button {
   background-image: url("../img/annotation-highlight.svg");
 
