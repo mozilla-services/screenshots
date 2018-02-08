@@ -97,6 +97,7 @@
     "test:server": "make .venv && cd test/server && ../../.venv/bin/pytest -m 'not slow'",
     "make_versions_exact": "node bin/build-scripts/make_versions_exact.js",
     "update_outdated": "david update && npm run make_versions_exact && npm update && npm outdated",
-    "fill_database": "make .venv && ./.venv/bin/python  ./bin/load_test_exercise.py -q --little-image --create=50 --read-shot=0 --read-my-shots=0 --search=0 --new-account http://localhost:10080"
+    "fill_database": "make .venv && ./.venv/bin/python  ./bin/load_test_exercise.py -q --little-image --create=50 --read-shot=0 --read-my-shots=0 --search=0 --new-account http://localhost:10080",
+    "svgo": "svgo --folder=addon/webextension/icons && svgo --folder=static/img"
   }
 }
