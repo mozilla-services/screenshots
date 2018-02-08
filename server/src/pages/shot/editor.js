@@ -555,8 +555,8 @@ exports.Editor = class Editor extends React.Component {
     let rect = this.imageCanvas.getBoundingClientRect();
     this.pos.x = e.clientX - rect.left,
     this.pos.y = e.clientY - rect.top
-    points.push({x: this.pos.x, y: this.pos.y});
     drawMousedown = true;
+    this.draw(e);
   }
 
   draw(e) {
@@ -575,7 +575,6 @@ exports.Editor = class Editor extends React.Component {
     this.drawContext.lineCap = 'round';
     this.drawContext.beginPath();
 
-    this.drawContext.lineCap = this.state.tool == 'highlighter' ? 'square' : 'round';
     this.drawContext.moveTo(this.pos.x, this.pos.y);
     let rect = this.imageCanvas.getBoundingClientRect();
     this.pos.x = e.clientX - rect.left,
@@ -589,6 +588,7 @@ exports.Editor = class Editor extends React.Component {
     points.push({x: this.pos.x, y: this.pos.y});
     if (points.length < 3) {
       this.drawContext.beginPath();
+      this.drawContext.moveTo(this.pos.x, this.pos.y);
       let rect = this.imageCanvas.getBoundingClientRect();
       this.pos.x = e.clientX - rect.left,
       this.pos.y = e.clientY - rect.top
