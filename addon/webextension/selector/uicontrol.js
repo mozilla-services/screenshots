@@ -680,7 +680,7 @@ this.uicontrol = (function() {
           return rect.width >= this.minAutoImageWidth && rect.height >= this.minAutoImageHeight;
         }
         const display = window.getComputedStyle(el).display;
-        if (["block", "inline-block", "table"].indexOf(display) !== -1) {
+        if (["block", "inline-block", "table"].includes(display)) {
           return true;
           // FIXME: not sure if this is useful:
           // let rect = el.getBoundingClientRect();
@@ -962,6 +962,7 @@ this.uicontrol = (function() {
     });
     primedDocumentHandlers.set("keyup", watchFunction(assertIsTrusted(keyupHandler)));
     primedDocumentHandlers.set("keydown", watchFunction(assertIsTrusted(keydownHandler)));
+    window.document.addEventListener("visibilitychange", visibilityChangeHandler);
     window.addEventListener("beforeunload", beforeunloadHandler);
   }
 
@@ -1026,8 +1027,16 @@ this.uicontrol = (function() {
     }
   }
 
+  function visibilityChangeHandler(event) {
+    // The document is the event target
+    if (event.target.hidden) {
+      sendEvent("internal", "document-hidden");
+    }
+  }
+
   function removeHandlers() {
     window.removeEventListener("beforeunload", beforeunloadHandler);
+    window.document.removeEventListener("visibilitychange", visibilityChangeHandler);
     for (const {name, doc, handler, useCapture} of registeredDocumentHandlers) {
       doc.removeEventListener(name, handler, !!useCapture);
     }

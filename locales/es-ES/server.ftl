@@ -173,7 +173,6 @@ timeDiffFutureMinutes = { $number ->
         [one] en un minuto
        *[other] en { $number } minutos
     }
-timeDiffFutureHours = 
 timeDiffFutureDays = { $number ->
         [one] mañana
        *[other] en { $number } días
@@ -194,8 +193,10 @@ annotationCropButton
     .title = Recortar
 annotationSaveButton = Guardar
 annotationCancelButton = Cancelar
-annotationConfirmCropButton = Confirmar
-annotationCancelCropButton = Cancelar
+annotationCropConfirmButton = Confirmar
+    .title = Confirmar selección
+annotationCropCancelButton = Cancelar
+    .title = Cancelar selección
 
 
 [[ Shotindex page ]]

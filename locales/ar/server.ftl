@@ -219,9 +219,9 @@ annotationCropButton
     .title = اقتص
 annotationSaveButton = احفظ
 annotationCancelButton = ألغِ
-annotationConfirmCropButton = أكّد
+annotationCropConfirmButton = أكّد
     .title = أكّد التحديد
-annotationCancelCropButton = ألغِ
+annotationCropCancelButton = ألغِ
     .title = ألغِ التحديد
 
 
