@@ -2,7 +2,7 @@ const config = require("./config").getProperties();
 
 let StatsD = null;
 let client = null;
-let prefix = config.statsdPrefix;
+const prefix = config.statsdPrefix;
 
 if (prefix) {
   StatsD = require("node-statsd");

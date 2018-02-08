@@ -3,12 +3,12 @@
 "use strict";
 
 this.main = (function() {
-  let exports = {};
+  const exports = {};
 
   const pasteSymbol = (window.navigator.platform.match(/Mac/i)) ? "\u2318" : "Ctrl";
   const { sendEvent } = analytics;
 
-  let manifest = browser.runtime.getManifest();
+  const manifest = browser.runtime.getManifest();
   let backend;
 
   let hasSeenOnboarding;
@@ -44,7 +44,7 @@ this.main = (function() {
     return backend + "/#hello";
   }
 
-  for (let permission of manifest.permissions) {
+  for (const permission of manifest.permissions) {
     if (/^https?:\/\//.test(permission)) {
       exports.setBackend(permission);
       break;
@@ -52,7 +52,7 @@ this.main = (function() {
   }
 
   function setIconActive(active, tabId) {
-    let path = active ? "icons/icon-highlight-32-v2.svg" : "icons/icon-32-v2.svg";
+    const path = active ? "icons/icon-highlight-32-v2.svg" : "icons/icon-32-v2.svg";
     startBackground.photonPageActionPort.postMessage({
       type: "setProperties",
       iconPath: path
@@ -114,7 +114,7 @@ this.main = (function() {
             const event = active ? "start-shot" : "cancel-shot";
             sendEvent(event, "toolbar-button", {incognito: tab.incognito});
           }, (error) => {
-            if ((!hasSeenOnboarding) && error.popupMessage == "UNSHOOTABLE_PAGE") {
+            if ((!hasSeenOnboarding) && error.popupMessage === "UNSHOOTABLE_PAGE") {
               sendEvent("goto-onboarding", "selection-button", {incognito: tab.incognito});
               return forceOnboarding();
             }
@@ -158,8 +158,8 @@ this.main = (function() {
     if (!url.startsWith(backend)) {
       return false;
     }
-    let path = url.substr(backend.length).replace(/^\/*/, "").replace(/[?#].*/, "");
-    if (path == "shots") {
+    const path = url.substr(backend.length).replace(/^\/*/, "").replace(/[?#].*/, "");
+    if (path === "shots") {
       return true;
     }
     if (/^[^/]{1,4000}\/[^/]{1,4000}$/.test(path)) {
@@ -203,6 +203,7 @@ this.main = (function() {
         message: browser.i18n.getMessage("notificationLinkCopiedDetails", pasteSymbol)
       });
     }
+    return null;
   });
 
   communication.register("copyShotToClipboard", (sender, blob) => {
@@ -224,13 +225,13 @@ this.main = (function() {
     // 'data:' urls don't work directly, let's use a Blob
     // see http://stackoverflow.com/questions/40269862/save-data-uri-as-file-using-downloads-download-api
     const blob = blobConverters.dataUrlToBlob(info.url);
-    let url = URL.createObjectURL(blob);
+    const url = URL.createObjectURL(blob);
     let downloadId;
-    let onChangedCallback = catcher.watchFunction(function(change) {
-      if (!downloadId || downloadId != change.id) {
+    const onChangedCallback = catcher.watchFunction(function(change) {
+      if (!downloadId || downloadId !== change.id) {
         return;
       }
-      if (change.state && change.state.current != "in_progress") {
+      if (change.state && change.state.current !== "in_progress") {
         URL.revokeObjectURL(url);
         browser.downloads.onChanged.removeListener(onChangedCallback);
       }

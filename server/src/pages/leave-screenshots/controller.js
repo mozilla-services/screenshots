@@ -2,7 +2,7 @@
 
 const sendEvent = require("../../browser-send-event.js");
 let helperReadyResolve;
-let helperReadyPromise = new Promise((resolve, reject) => {
+const helperReadyPromise = new Promise((resolve, reject) => {
   helperReadyResolve = resolve;
 });
 
@@ -17,7 +17,7 @@ exports.launch = function(m) {
     sendEvent("leave-service-completed");
     // eslint-disable-next-line promise/catch-or-return
     helperReadyPromise.then(() => {
-      let event = new CustomEvent("delete-everything");
+      const event = new CustomEvent("delete-everything");
       document.dispatchEvent(event);
     });
   } else {

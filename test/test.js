@@ -77,7 +77,7 @@ callback();
 
 function getDriver() {
   const profile = new firefox.Profile();
-  let channel = process.env.FIREFOX_CHANNEL || "NIGHTLY";
+  const channel = process.env.FIREFOX_CHANNEL || "NIGHTLY";
   if (!(channel in firefox.Channel)) {
     throw new Error(`Unknown channel: "${channel}"`);
   }
@@ -87,13 +87,13 @@ function getDriver() {
   options.setProfile(profile);
 
   const builder = new webdriver.Builder()
-    .withCapabilities({'moz:webdriverClick': false})
+    .withCapabilities({"moz:webdriverClick": false})
     .forBrowser("firefox")
     .setFirefoxOptions(options);
 
   const driver = builder.build();
 
-  let fileLocation = path.join(process.cwd(), "build", "screenshots-bootstrap.zip");
+  const fileLocation = path.join(process.cwd(), "build", "screenshots-bootstrap.zip");
   return addAddonToDriver(driver, fileLocation);
 }
 
@@ -185,14 +185,14 @@ function expectCreatedShot(driver, creator) {
       return driver.getAllWindowHandles().then((tabs) => {
         // On CircleCI there is consistently one weird tab with the id "22"
         // It's not a normal tab, so we ignore it:
-        tabs = tabs.filter((t) => t != "22");
+        tabs = tabs.filter((t) => t !== "22");
         return tabs.length > startingTabCount;
       });
     });
   }).then(() => {
     return driver.getAllWindowHandles();
   }).then((tabs) => {
-    tabs = tabs.filter((t) => t != "22");
+    tabs = tabs.filter((t) => t !== "22");
     if (tabs.length < startingTabCount) {
       throw new Error("New tab did not open");
     }
@@ -200,7 +200,7 @@ function expectCreatedShot(driver, creator) {
   }).then(() => {
     return driver.wait(() => {
       return driver.getCurrentUrl().then((url) => {
-        return url != "about:blank" && !url.includes("/creating/")
+        return url !== "about:blank" && !url.includes("/creating/")
       });
     });
   }).then(() => {
@@ -223,6 +223,7 @@ describe("Test Screenshots", function() {
       return driver.quit();
     }
     console.info("Note: leaving browser open");
+    return null;
   });
 
   it("should find the add-on button", function() {
@@ -231,7 +232,7 @@ describe("Test Screenshots", function() {
       getChromeElement(driver, shooterSelector)
       .then((button) => button.getAttribute("label"))
       .then((label) => {
-        if (label == "Take a Screenshot") {
+        if (label === "Take a Screenshot") {
           assert.equal(label, "Take a Screenshot");
         } else {
           assert.equal(label, "Firefox Screenshots");
@@ -280,7 +281,7 @@ describe("Test Screenshots", function() {
       });
     }).then((shotUrl) => {
       assert(shotUrl.startsWith(backend), `Got url ${shotUrl} that doesn't start with ${backend}`);
-      let restUrl = shotUrl.substr(backend.length);
+      const restUrl = shotUrl.substr(backend.length);
       if (!/^\/[^/]+\/localhost$/.test(restUrl)) {
         throw new Error(`Unexpected URL: ${shotUrl}`);
       }

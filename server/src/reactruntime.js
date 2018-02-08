@@ -2,6 +2,7 @@ require("core-js");
 
 const React = require("react");
 const ReactDOM = require("react-dom");
+const PropTypes = require("prop-types");
 const linker = require("./linker");
 require("fluent-intl-polyfill/compat");
 const { MessageContext } = require("fluent/compat");
@@ -33,8 +34,8 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
       }
     }
 
-    let localeScripts = [];
-    for (let locale of this.props.userLocales) {
+    const localeScripts = [];
+    for (const locale of this.props.userLocales) {
       localeScripts.push(<script key={`l10n-${locale}`} src={this.props.staticLink(`/static/locales/${locale}.js`)} />);
     }
 
@@ -58,6 +59,17 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
 
 };
 
+exports.HeadTemplate.propTypes = {
+  children: PropTypes.node,
+  hashAnalytics: PropTypes.bool,
+  messages: PropTypes.object,
+  noAnalytics: PropTypes.bool,
+  sentryPublicDSN: PropTypes.string,
+  staticLink: PropTypes.func,
+  title: PropTypes.string,
+  userLocales: PropTypes.array
+};
+
 exports.BodyTemplate = class Body extends React.Component {
 
   render() {
@@ -72,13 +84,19 @@ exports.BodyTemplate = class Body extends React.Component {
 
 };
 
+exports.BodyTemplate.propTypes = {
+  children: PropTypes.node,
+  messages: PropTypes.object,
+  userLocales: PropTypes.array
+};
+
 exports.Page = class Page {
   constructor(options) {
-    for (let name in options) {
+    for (const name in options) {
       if (!this.ATTRS.includes(name)) {
         throw new Error("Invalid attribute to Page: " + name);
       }
-      let value = options[name];
+      const value = options[name];
       this[name] = value;
     }
   }
@@ -95,10 +113,10 @@ exports.Page = class Page {
   }
 
   render(model) {
-    let renderBody = () => {
-      let body = this.BodyFactory(model);
-      let curTitle = document.title;
-      if (model.title && model.title != curTitle) {
+    const renderBody = () => {
+      const body = this.BodyFactory(model);
+      const curTitle = document.title;
+      if (model.title && model.title !== curTitle) {
         document.title = model.title;
       }
       ReactDOM.render(
@@ -106,19 +124,19 @@ exports.Page = class Page {
         document.getElementById("react-body-container"));
     };
 
-    let tryGetL10nMessages = (locales) => {
-      let successHandler = localeMessages => {
+    const tryGetL10nMessages = (locales) => {
+      const successHandler = localeMessages => {
         model.messages = Object.assign({}, ...localeMessages);
         renderBody();
       };
-      let failureHandler = failedLocale => {
+      const failureHandler = failedLocale => {
         if (locales.length === 1) {
           // everything failed at this point. what can we do here?
           renderBody();
           return;
         }
-        let remainingLocales = locales.slice();
-        let failedLocaleIndex = locales.indexOf(failedLocale);
+        const remainingLocales = locales.slice();
+        const failedLocaleIndex = locales.indexOf(failedLocale);
         remainingLocales.splice(failedLocaleIndex, 1);
         tryGetL10nMessages(remainingLocales);
       }
@@ -135,10 +153,10 @@ exports.Page = class Page {
     }
 
     if (model.userLocales && model.userLocales.length && !model.messages) {
-      return tryGetL10nMessages(model.userLocales);
+      tryGetL10nMessages(model.userLocales);
+    } else {
+      renderBody();
     }
-
-    renderBody();
   }
 
   get dir() {

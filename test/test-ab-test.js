@@ -49,7 +49,7 @@ describe("Test Screenshots", function() {
 
   it("should set all to exclude when low probability", () => {
     abTests.setRandomSequenceForTesting([0.9, 0.9]);
-    let tests = abTests.updateAbTests({});
+    const tests = abTests.updateAbTests({});
     assert.deepEqual(tests, {
       simpleTest: {value: "exclude", gaField: "cd3", version: 1},
       breakEverythingTest: {value: "exclude", gaField: "cd4", shotField: "cd5", version: 2}
@@ -58,7 +58,7 @@ describe("Test Screenshots", function() {
 
   it("should set some to control instead of a test", () => {
     abTests.setRandomSequenceForTesting([0.1, 0.1]);
-    let tests = abTests.updateAbTests({});
+    const tests = abTests.updateAbTests({});
     assert.deepEqual(tests, {
       simpleTest: {value: "control", gaField: "cd3", version: 1},
       breakEverythingTest: {value: "exclude", gaField: "cd4", shotField: "cd5", version: 2}
@@ -67,7 +67,7 @@ describe("Test Screenshots", function() {
 
 
   it("should not overwrite existing values", () => {
-    let tests = abTests.updateAbTests({
+    const tests = abTests.updateAbTests({
       simpleTest: {value: "control", gaField: "cd3", version: 1},
       breakEverythingTest: {value: "control", gaField: "cd4", shotField: "cd5", version: 2}
     });
@@ -95,7 +95,7 @@ describe("Test Screenshots", function() {
 
   it("should try to take someone out of exclude when version is bumped", () => {
     abTests.setRandomSequenceForTesting([0.15, 0.75]);
-    let tests = abTests.updateAbTests({
+    const tests = abTests.updateAbTests({
       simpleTest: {value: "exclude", gaField: "cd3", version: 1},
       breakEverythingTest: {value: "exclude", gaField: "cd4", shotField: "cd5", version: 1}
     });
