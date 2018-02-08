@@ -347,7 +347,7 @@ class Body extends React.Component {
 
     let trashOrFlagButton;
     let editButton;
-    let highlight = this.props.highlightEditButton ? <div className="edit-highlight"></div> : null;
+    const highlight = this.props.highlightEditButton ? <div className="edit-highlight"></div> : null;
     if (this.props.isOwner) {
       trashOrFlagButton = <Localized id="shotPageDeleteButton">
         <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }></button>
@@ -548,6 +548,7 @@ Body.propTypes = {
   downloadUrl: PropTypes.string,
   enableAnnotations: PropTypes.bool,
   expireTime: PropTypes.number,
+  highlightEditButton: PropTypes.bool,
   id: PropTypes.string,
   isExtInstalled: PropTypes.bool,
   isMobile: PropTypes.bool,

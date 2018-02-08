@@ -15,7 +15,7 @@ function shouldHighlightEditIcon(model) {
   if (!model.isOwner) {
     return false;
   }
-  let hasSeen = localStorage.hasSeenEditButton;
+  const hasSeen = localStorage.hasSeenEditButton;
   if (!hasSeen && model.enableAnnotations) {
     localStorage.hasSeenEditButton = "1";
   }
