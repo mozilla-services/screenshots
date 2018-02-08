@@ -196,9 +196,9 @@ annotationCropButton
     .title = Recortar
 annotationSaveButton = Guardar
 annotationCancelButton = Cancelar
-annotationConfirmCropButton = Confirmar
+annotationCropConfirmButton = Confirmar
     .title = Confirmar selección
-annotationCancelCropButton = Cancelar
+annotationCropCancelButton = Cancelar
     .title = Cancelar selección
 
 

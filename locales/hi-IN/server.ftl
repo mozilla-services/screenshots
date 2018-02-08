@@ -92,6 +92,10 @@ shotPageDownload = डाउनलोड करें
 shotPageUpsellFirefox = अभी firefox पाएँ
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = समय चुने
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = अनिश्चितकाल ∞
 shotPageKeepTenMinutes = 10 मिनट
 shotPageKeepOneHour = 1 घंटा
 shotPageKeepOneDay = 1 दिन
@@ -127,6 +131,12 @@ timeDiffFutureHours = { $number ->
 
 [[ Annotations ]]
 
+annotationCropButton
+    .title = काट-छाँट करें
+annotationCropConfirmButton = पुष्टि करें
+    .title = चयन की पुष्टि करें
+annotationCropCancelButton = रद्द करें
+    .title = चयन रद्द करें
 
 
 [[ Shotindex page ]]
@@ -135,6 +145,12 @@ shotIndexPageSearchButton
     .title = खोजे
 shotIndexPageNoShotsInvitation = चलें, कुछ बनाएँ
 shotIndexPageNoSearchResultsIntro = अच्छा
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = यह शॉट समाप्त नहीं होता है
 
 
 // all metrics strings are optional for translation

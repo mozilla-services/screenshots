@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Ju lutemi, përfshijeni URL-në e kësaj fotoje te ema
 shotPageKeepFor = Për sa kohë duhet mbajtur kjo foto?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Përzgjidhni kohë
-shotPageKeepIndefinitely = Pambarimisht
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Pambarimisht ∞
 shotPageKeepTenMinutes = 10 Minuta
 shotPageKeepOneHour = 1 Orë
 shotPageKeepOneDay = 1 Ditë
@@ -189,8 +192,14 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Pastroje
+annotationCropButton
+    .title = Qethe
 annotationSaveButton = Ruaje
 annotationCancelButton = Anuloje
+annotationCropConfirmButton = Ripohojeni
+    .title = Ripohoni përzgjedhjen
+annotationCropCancelButton = Anuloje
+    .title = Anulojeni përzgjedhjen
 
 
 [[ Shotindex page ]]
@@ -219,6 +228,12 @@ shotIndexPagePreviousPage
     .title = Faqja e mëparshme
 shotIndexPageNextPage
     .title = Faqja pasuese
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Kjo foto nuk skadon kurrë
 
 
 // all metrics strings are optional for translation

@@ -189,8 +189,10 @@ annotationCropButton
     .title = ამოჭრა
 annotationSaveButton = შენახვა
 annotationCancelButton = გაუქმება
-annotationConfirmCropButton = დადასტურება
-annotationCancelCropButton = გაუქმება
+annotationCropConfirmButton = დამოწმება
+    .title = შერჩევის დამოწმება
+annotationCropCancelButton = გაუქმება
+    .title = შერჩევის გაუქმება
 
 
 [[ Shotindex page ]]

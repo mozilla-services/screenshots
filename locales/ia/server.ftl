@@ -75,7 +75,6 @@ leavePageErrorGeneric = Un error occurreva
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Isto cancellara permanentemente tote le datos de tu Firefox Screenshots.
 leavePageButtonProceed = Proceder
-leavePageButtonCancel = 
 leavePageDeleted = Tote tu instantaneos de schermo cancellate!
 
 
@@ -197,8 +196,10 @@ annotationCropButton
     .title = Reducer
 annotationSaveButton = Salvar
 annotationCancelButton = Cancellar
-annotationConfirmCropButton = Confirmar
-annotationCancelCropButton = Cancellar
+annotationCropConfirmButton = Confirmar
+    .title = Confirmar le selection
+annotationCropCancelButton = Cancellar
+    .title = Cancellar le selection
 
 
 [[ Shotindex page ]]

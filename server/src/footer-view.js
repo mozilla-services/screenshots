@@ -1,5 +1,6 @@
 const React = require("react");
 const { Localized } = require("fluent-react/compat");
+const PropTypes = require("prop-types");
 
 exports.Footer = class Footer extends React.Component {
   render() {
@@ -28,4 +29,8 @@ exports.Footer = class Footer extends React.Component {
       </div>
     );
   }
+};
+
+exports.Footer.propTypes = {
+  authenticated: PropTypes.bool
 };

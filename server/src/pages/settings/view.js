@@ -2,6 +2,7 @@
 const reactruntime = require("../../reactruntime");
 const sendEvent = require("../../browser-send-event.js");
 const React = require("react");
+const PropTypes = require("prop-types");
 
 class Head extends React.Component {
 
@@ -15,6 +16,10 @@ class Head extends React.Component {
   }
 
 }
+
+Head.propTypes = {
+  staticLink: PropTypes.func
+};
 
 class Body extends React.Component {
   render() {
@@ -33,7 +38,7 @@ class Body extends React.Component {
   }
 
   renderAccountInfo() {
-    let defaultAvatar = this.props.staticLink('/static/img/default-profile.svg');
+    const defaultAvatar = this.props.staticLink("/static/img/default-profile.svg");
     let info;
     let subInfo;
     if (this.props.accountInfo) {
@@ -85,6 +90,11 @@ class Body extends React.Component {
     sendEvent("start-connect", "settings", { useBeacon: true });
   }
 }
+
+Body.propTypes = {
+  accountInfo: PropTypes.object,
+  staticLink: PropTypes.func
+};
 
 exports.HeadFactory = React.createFactory(Head);
 exports.BodyFactory = React.createFactory(Body);

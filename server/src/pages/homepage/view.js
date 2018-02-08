@@ -1,4 +1,5 @@
 const React = require("react");
+const PropTypes = require("prop-types");
 const reactruntime = require("../../reactruntime");
 const classnames = require("classnames");
 const sendEvent = require("../../browser-send-event.js");
@@ -38,6 +39,12 @@ class Head extends React.Component {
   }
 
 }
+
+Head.propTypes = {
+  backend: PropTypes.string,
+  staticLink: PropTypes.func,
+  title: PropTypes.string
+};
 
 class Body extends React.Component {
   onClickMyShots() {
@@ -187,6 +194,12 @@ class Body extends React.Component {
   }
 
 }
+
+Body.propTypes = {
+  firefoxVersion: PropTypes.string,
+  isFirefox: PropTypes.bool,
+  showMyShots: PropTypes.bool
+};
 
 exports.HeadFactory = React.createFactory(Head);
 exports.BodyFactory = React.createFactory(Body);

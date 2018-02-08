@@ -197,8 +197,10 @@ annotationCropButton
     .title = Beskær
 annotationSaveButton = Gem
 annotationCancelButton = Annuller
-annotationConfirmCropButton = Bekræft
-annotationCancelCropButton = Annuller
+annotationCropConfirmButton = Bekræft
+    .title = Bekræft markering
+annotationCropCancelButton = Annuller
+    .title = Annuller markering
 
 
 [[ Shotindex page ]]

@@ -203,8 +203,10 @@ annotationCropButton
     .title = Apkirpti
 annotationSaveButton = Įrašyti
 annotationCancelButton = Atsisakyti
-annotationConfirmCropButton = Tinka
-annotationCancelCropButton = Atsisakyti
+annotationCropConfirmButton = Tinka
+    .title = Patvirtinkite pasirinkimą
+annotationCropCancelButton = Atsisakyti
+    .title = Atsisakyti pasirinkimo
 
 
 [[ Shotindex page ]]

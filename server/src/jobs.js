@@ -5,7 +5,7 @@ const mozlog = require("./logging").mozlog("jobs");
 const ua = require("universal-analytics");
 
 // Convert to milliseconds:
-let checkDeletedInterval = config.checkDeletedInterval * 1000;
+const checkDeletedInterval = config.checkDeletedInterval * 1000;
 
 exports.start = function() {
   if (config.disableControllerTasks) {
@@ -20,7 +20,7 @@ exports.start = function() {
           mozlog.info("cleaning-expired-shots", {rowCount});
         }
         if (config.gaId) {
-          let analytics = ua(config.gaId);
+          const analytics = ua(config.gaId);
           analytics.event({
             ec: "server",
             ea: "clean-deleted-shot",

@@ -197,8 +197,10 @@ annotationCropButton
     .title = Bijsnijden
 annotationSaveButton = Opslaan
 annotationCancelButton = Annuleren
-annotationConfirmCropButton = Bevestigen
-annotationCancelCropButton = Annuleren
+annotationCropConfirmButton = Bevestigen
+    .title = Selectie bevestigen
+annotationCropCancelButton = Annuleren
+    .title = Selectie annuleren
 
 
 [[ Shotindex page ]]

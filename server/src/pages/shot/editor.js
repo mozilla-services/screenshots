@@ -1,4 +1,5 @@
 const React = require("react");
+const PropTypes = require("prop-types");
 const { Localized } = require("fluent-react/compat");
 const sendEvent = require("../../browser-send-event.js");
 
@@ -8,7 +9,7 @@ let resizeDirection;
 let resizeStartPos;
 let resizeStartSelected;
 let selectedPos = {};
-let mousedownPos = {};
+const mousedownPos = {};
 const minWidth = 10;
 const minHeight = 10;
 let points = [];
@@ -101,16 +102,16 @@ exports.Editor = class Editor extends React.Component {
     this.canvasWidth = this.props.clip.image.dimensions.x;
     this.canvasHeight = this.props.clip.image.dimensions.y;
     this.state = {
-      tool: 'pen',
-      color: '#000',
-      size: '5',
+      tool: "pen",
+      color: "#000",
+      size: "5",
       saveDisabled: true
     };
   }
 
   render() {
-    let color = this.isColorWhite(this.state.color);
-    let toolBar = this.cropToolBar || this.renderToolBar();
+    const color = this.isColorWhite(this.state.color);
+    const toolBar = this.cropToolBar || this.renderToolBar();
     return <div>
       { toolBar }
       <div className="main-container inverse-color-scheme">
@@ -125,8 +126,8 @@ exports.Editor = class Editor extends React.Component {
   }
 
   renderToolBar() {
-    let penState = this.state.tool == "pen" ? 'active' : 'inactive';
-    let highlighterState = this.state.tool == "highlighter" ? 'active' : 'inactive';
+    const penState = this.state.tool === "pen" ? "active" : "inactive";
+    const highlighterState = this.state.tool === "highlighter" ? "active" : "inactive";
     return <div className="editor-header default-color-scheme">
       <div className="shot-main-actions annotation-actions">
         <div className="annotation-tools">
@@ -172,7 +173,7 @@ exports.Editor = class Editor extends React.Component {
   }
 
   onClickCrop() {
-    this.setState({tool: 'crop'});
+    this.setState({tool: "crop"});
     this.cropToolBar = <div className="editor-header default-color-scheme"><div className="annotation-tools">
       <Localized id="annotationCropConfirmButton">
         <button className={`button transparent confirm-crop`} id="confirm-crop" onClick={this.onClickConfirmCrop.bind(this)} title="Confirm selection">Crop</button>
@@ -191,22 +192,22 @@ exports.Editor = class Editor extends React.Component {
       this.setState({tool: 'pen'});
       return;
     }
-    let x1 = Math.max(selectedPos.left, 0);
-    let x2 = Math.min(selectedPos.right, this.canvasWidth);
-    let y1 = Math.max(selectedPos.top, 0);
-    let y2 = Math.min(selectedPos.bottom, this.canvasHeight);
-    let cropWidth = Math.floor(x2 - x1);
-    let cropHeight = Math.floor(y2 - y1);
-    let croppedImage = document.createElement('canvas');
+    const x1 = Math.max(selectedPos.left, 0);
+    const x2 = Math.min(selectedPos.right, this.canvasWidth);
+    const y1 = Math.max(selectedPos.top, 0);
+    const y2 = Math.min(selectedPos.bottom, this.canvasHeight);
+    const cropWidth = Math.floor(x2 - x1);
+    const cropHeight = Math.floor(y2 - y1);
+    const croppedImage = document.createElement("canvas");
     croppedImage.width = cropWidth
     croppedImage.height = cropHeight
-    let croppedContext = croppedImage.getContext("2d");
+    const croppedContext = croppedImage.getContext("2d");
     croppedContext.drawImage(this.imageCanvas, x1, y1, croppedImage.width, croppedImage.height, 0, 0, croppedImage.width, croppedImage.height);
-    let img = new Image();
-    let imageContext = this.imageCanvas.getContext('2d');
+    const img = new Image();
+    const imageContext = this.imageCanvas.getContext("2d");
     img.crossOrigin = 'Anonymous';
-    let width = cropWidth;
-    let height = cropHeight;
+    const width = cropWidth;
+    const height = cropHeight;
     img.onload = () => {
       imageContext.drawImage(img, 0, 0, width, height);
     }
@@ -223,7 +224,7 @@ exports.Editor = class Editor extends React.Component {
   onClickCancelCrop() {
     this.removeCropBox();
     this.cropToolBar = null;
-    this.setState({tool: 'pen'});
+    this.setState({tool: "pen"});
     sendEvent("cancel-crop", "crop-toolbar");
   }
 
@@ -239,14 +240,14 @@ exports.Editor = class Editor extends React.Component {
   mousedown(e) {
     e.preventDefault();
     mousedown = true;
-    let rect = this.cropContainer.getBoundingClientRect();
+    const rect = this.cropContainer.getBoundingClientRect();
     if (!this.cropBox) {
       selectionState = "creating";
       mousedownPos.top = e.clientY - rect.top;
       mousedownPos.left = e.clientX - rect.left;
     } else {
       selectedPos.sortCoords();
-      let direction = this.findClickedArea(e);
+      const direction = this.findClickedArea(e);
       if (direction) {
         selectionState = "resizing";
         resizeDirection = direction;
@@ -259,8 +260,8 @@ exports.Editor = class Editor extends React.Component {
 
   mousemove(e) {
     e.preventDefault();
-    let rect = this.cropContainer.getBoundingClientRect();
-    if (mousedown && selectionState == "creating") {
+    const rect = this.cropContainer.getBoundingClientRect();
+    if (mousedown && selectionState === "creating") {
       selectedPos = new Selection(
         this.truncateX(mousedownPos.left),
         this.truncateY(mousedownPos.top),
@@ -273,34 +274,34 @@ exports.Editor = class Editor extends React.Component {
         this.displayCropBox(selectedPos);
       }
     }
-    if (mousedown && selectionState == "resizing") {
+    if (mousedown && selectionState === "resizing") {
       this.resizeCropBox(e);
     }
   }
 
   resizeCropBox(event, direction) {
-    let width = selectedPos.width;
-    let height = selectedPos.height;
-    let rect = this.cropContainer.getBoundingClientRect();
-    let diffX = event.clientX - rect.left - resizeStartPos.x;
-    let diffY = event.clientY - rect.top - resizeStartPos.y;
-    let movement = movementPositions[resizeDirection];
-    let isLeftBorder = selectedPos.left == 0 && resizeStartSelected.left + diffX <= 0;
-    let isRightBorder = selectedPos.right == this.canvasWidth && resizeStartSelected.right + diffX >= this.canvasWidth;
-    let isTopBorder = selectedPos.top == 0 && resizeStartSelected.top + diffY <= 0;
-    let isBottomBorder = selectedPos.bottom == this.canvasHeight && resizeStartSelected.bottom + diffY >= this.canvasHeight;
-    let isMove = resizeDirection == "move";
+    const width = selectedPos.width;
+    const height = selectedPos.height;
+    const rect = this.cropContainer.getBoundingClientRect();
+    const diffX = event.clientX - rect.left - resizeStartPos.x;
+    const diffY = event.clientY - rect.top - resizeStartPos.y;
+    const movement = movementPositions[resizeDirection];
+    const isLeftBorder = selectedPos.left === 0 && resizeStartSelected.left + diffX <= 0;
+    const isRightBorder = selectedPos.right === this.canvasWidth && resizeStartSelected.right + diffX >= this.canvasWidth;
+    const isTopBorder = selectedPos.top === 0 && resizeStartSelected.top + diffY <= 0;
+    const isBottomBorder = selectedPos.bottom === this.canvasHeight && resizeStartSelected.bottom + diffY >= this.canvasHeight;
+    const isMove = resizeDirection === "move";
     if (movement[0] && !(isMove && (isLeftBorder || isRightBorder))) {
       let moveX = movement[0];
-      moveX = moveX == "*" ? ["x1", "x2"] : [moveX];
-      for (let moveDir of moveX) {
+      moveX = moveX === "*" ? ["x1", "x2"] : [moveX];
+      for (const moveDir of moveX) {
         selectedPos[moveDir] = this.truncateX(resizeStartSelected[moveDir] + diffX);
       }
     }
     if (movement[1] && !(isMove && (isTopBorder || isBottomBorder))) {
       let moveY = movement[1];
-      moveY = moveY == "*" ? ["y1", "y2"] : [moveY];
-      for (let moveDir of moveY) {
+      moveY = moveY === "*" ? ["y1", "y2"] : [moveY];
+      for (const moveDir of moveY) {
         selectedPos[moveDir] = this.truncateY(resizeStartSelected[moveDir] + diffY);
       }
     }
@@ -310,24 +311,24 @@ exports.Editor = class Editor extends React.Component {
 
   // Preserves correct dimensions of crop box if the user hits borders
   preserveDimensions(width, height) {
-    if (resizeDirection == "move") {
-      if (selectedPos.left == 0) {
+    if (resizeDirection === "move") {
+      if (selectedPos.left === 0) {
         selectedPos.right = width;
       }
-      if (selectedPos.top == 0) {
+      if (selectedPos.top === 0) {
         selectedPos.bottom = height;
       }
-      if (selectedPos.right == this.canvasWidth) {
+      if (selectedPos.right === this.canvasWidth) {
         selectedPos.left = this.canvasWidth - width;
       }
-      if (selectedPos.bottom == this.canvasHeight) {
+      if (selectedPos.bottom === this.canvasHeight) {
         selectedPos.top = this.canvasHeight - height;
       }
     }
   }
 
   truncateX(x) {
-    let max = this.canvasWidth;
+    const max = this.canvasWidth;
     if (x < 0) {
       return 0;
     } else if (x > max) {
@@ -337,7 +338,7 @@ exports.Editor = class Editor extends React.Component {
   }
 
   truncateY(y) {
-    let max = this.canvasHeight;
+    const max = this.canvasHeight;
     if (y < 0) {
       return 0;
     } else if (y > max) {
@@ -347,9 +348,9 @@ exports.Editor = class Editor extends React.Component {
   }
 
   findClickedArea(e) {
-    let target = e.target;
+    const target = e.target;
     if (target.classList.contains("mover-target") || target.classList.contains("mover")) {
-      for (let name of movements) {
+      for (const name of movements) {
         if (target.classList.contains("direction-" + name) || target.parentNode.classList.contains("direction-" + name)) {
           return name;
         }
@@ -372,7 +373,7 @@ exports.Editor = class Editor extends React.Component {
     resizeStartSelected = null;
     resizeStartPos = {};
     resizeDirection = null;
-    selectionState = 'none';
+    selectionState = "none";
   }
 
   displayCropBox(pos) {
@@ -409,12 +410,12 @@ exports.Editor = class Editor extends React.Component {
     if (this.cropBox) {
       return;
     }
-    let cropBox = document.createElement('div')
-    cropBox.className = 'highlight';
-    for (let name of movements) {
-      let elTarget = document.createElement("div");
+    const cropBox = document.createElement("div")
+    cropBox.className = "highlight";
+    for (const name of movements) {
+      const elTarget = document.createElement("div");
       elTarget.className = "mover-target direction-" + name;
-      let elMover = document.createElement("div");
+      const elMover = document.createElement("div");
       elMover.className = "mover";
       elTarget.appendChild(elMover);
       cropBox.appendChild(elTarget);
@@ -453,41 +454,41 @@ exports.Editor = class Editor extends React.Component {
 
   onClickSave() {
     sendEvent("save", "annotation-toolbar");
-    let saveDisabled = true;
+    const saveDisabled = true;
     this.setState({saveDisabled});
     let dataUrl = this.imageCanvas.toDataURL();
 
     if (this.props.pngToJpegCutoff && dataUrl.length > this.props.pngToJpegCutoff) {
-      let jpegDataUrl = this.imageCanvas.toDataURL("image/jpeg");
+      const jpegDataUrl = this.imageCanvas.toDataURL("image/jpeg");
       if (jpegDataUrl.length < dataUrl.length) {
         dataUrl = jpegDataUrl;
       }
     }
 
-    let dimensions = {x: this.canvasWidth, y: this.canvasHeight};
+    const dimensions = {x: this.canvasWidth, y: this.canvasHeight};
     this.props.onClickSave(dataUrl, dimensions);
   }
 
   onClickHighlight() {
-    if (this.state.tool != 'highlighter') {
-      this.setState({tool: 'highlighter'});
+    if (this.state.tool !== "highlighter") {
+      this.setState({tool: "highlighter"});
       sendEvent("highlighter-select", "annotation-toolbar");
     }
   }
 
   onClickPen() {
-    if (this.state.tool != 'pen') {
-      this.setState({tool: 'pen'});
+    if (this.state.tool !== "pen") {
+      this.setState({tool: "pen"});
       sendEvent("pen-select", "annotation-toolbar");
     }
   }
 
   renderImage() {
-    let imageContext = this.imageCanvas.getContext('2d');
-    let img = new Image();
-    img.crossOrigin = 'Anonymous';
-    let width = this.props.clip.image.dimensions.x;
-    let height = this.props.clip.image.dimensions.y;
+    const imageContext = this.imageCanvas.getContext("2d");
+    const img = new Image();
+    img.crossOrigin = "Anonymous";
+    const width = this.props.clip.image.dimensions.x;
+    const height = this.props.clip.image.dimensions.y;
     img.onload = () => {
       imageContext.drawImage(img, 0, 0, width, height);
       this.setState({saveDisabled: false});
@@ -497,35 +498,35 @@ exports.Editor = class Editor extends React.Component {
   }
 
   componentDidMount() {
-    this.imageContext = this.imageCanvas.getContext('2d');
-    this.highlightContext = this.highlighter.getContext('2d');
+    this.imageContext = this.imageCanvas.getContext("2d");
+    this.highlightContext = this.highlighter.getContext("2d");
     this.renderImage();
     this.edit();
   }
 
   edit() {
-    if (this.state.tool != 'crop') {
+    if (this.state.tool !== "crop") {
       this.cropToolBar = null;
       document.removeEventListener("mousemove", this.mousemove);
       document.removeEventListener("mousedown", this.mousedown);
       document.removeEventListener("mouseup", this.mouseup);
     }
     this.pos = { x: 0, y: 0 };
-    if (this.state.tool == 'highlighter') {
+    if (this.state.tool === "highlighter") {
       this.drawContext = this.highlightContext;
       this.highlightContext.lineWidth = 20;
       this.highlightContext.strokeStyle = this.state.color;
       document.addEventListener("mousemove", this.draw);
       document.addEventListener("mousedown", this.setPosition);
-    } else if (this.state.tool == 'pen') {
+    } else if (this.state.tool === "pen") {
       this.drawContext = this.imageContext;
-      this.imageContext.globalCompositeOperation = 'source-over';
+      this.imageContext.globalCompositeOperation = "source-over";
       this.imageContext.strokeStyle = this.state.color;
       this.imageContext.lineWidth = this.state.size;
       document.addEventListener("mousemove", this.draw);
       document.addEventListener("mousedown", this.setPosition);
       document.addEventListener("mouseup", this.drawMouseup);
-    } else if (this.state.tool == 'crop') {
+    } else if (this.state.tool == "crop") {
       document.removeEventListener("mouseup", this.drawMouseup);
       document.removeEventListener("mousemove", this.draw);
       document.removeEventListener("mousedown", this.setPosition);
@@ -552,7 +553,7 @@ exports.Editor = class Editor extends React.Component {
 
   setPosition(e) {
     e.preventDefault();
-    let rect = this.imageCanvas.getBoundingClientRect();
+    const rect = this.imageCanvas.getBoundingClientRect();
     this.pos.x = e.clientX - rect.left,
     this.pos.y = e.clientY - rect.top
     drawMousedown = true;
@@ -572,11 +573,10 @@ exports.Editor = class Editor extends React.Component {
   }
 
   drawPen(e) {
-    this.drawContext.lineCap = 'round';
+    this.drawContext.lineCap = "round";
     this.drawContext.beginPath();
-
     this.drawContext.moveTo(this.pos.x, this.pos.y);
-    let rect = this.imageCanvas.getBoundingClientRect();
+    const rect = this.imageCanvas.getBoundingClientRect();
     this.pos.x = e.clientX - rect.left,
     this.pos.y = e.clientY - rect.top
     this.drawContext.lineTo(this.pos.x, this.pos.y);
@@ -619,6 +619,12 @@ exports.Editor = class Editor extends React.Component {
   }
 }
 
+exports.Editor.propTypes = {
+  clip: PropTypes.object,
+  onCancelEdit: PropTypes.func,
+  onClickSave: PropTypes.func,
+  pngToJpegCutoff: PropTypes.number
+};
 
 class ColorPicker extends React.Component {
 
@@ -626,12 +632,12 @@ class ColorPicker extends React.Component {
     super(props);
     this.state = {
       pickerActive: false,
-      color: '#000'
+      color: "#000"
     };
   }
 
   render() {
-    let border = this.state.color == 'rgb(255, 255, 255)' ? '#000' : this.state.color;
+    const border = this.state.color === "rgb(255, 255, 255)" ? "#000" : this.state.color;
     return <div><button className="color-button" id="color-picker" onClick={this.onClickColorPicker.bind(this)} title="Color Picker" style={{"backgroundColor": this.state.color, "border": `1px solid ${border}`}}></button>
       {this.state.pickerActive ? this.renderColorBoard() : null}
     </div>
@@ -662,15 +668,19 @@ class ColorPicker extends React.Component {
   }
 
   onClickSwatch(e) {
-    let color = e.target.style.backgroundColor;
+    const color = e.target.style.backgroundColor;
     this.setState({color, pickerActive: false});
     this.props.setColor(color);
     sendEvent("color-change", "annotation-color-board");
   }
 
   onClickColorPicker() {
-    let pickerActive = !this.state.pickerActive;
+    const pickerActive = !this.state.pickerActive;
     this.setState({pickerActive});
     sendEvent("color-picker-select", "annotation-toolbar");
   }
 }
+
+ColorPicker.propTypes = {
+  setColor: PropTypes.func
+};

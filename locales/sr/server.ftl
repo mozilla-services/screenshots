@@ -203,8 +203,10 @@ annotationCropButton
     .title = Одрежи
 annotationSaveButton = Сачувај
 annotationCancelButton = Откажи
-annotationConfirmCropButton = Потврди
-annotationCancelCropButton = Откажи
+annotationCropConfirmButton = Потврди
+    .title = Потврди избор
+annotationCropCancelButton = Откажи
+    .title = Откажи избор
 
 
 [[ Shotindex page ]]

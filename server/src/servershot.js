@@ -23,7 +23,7 @@ function assertPngOrJpeg(dataUrl) {
   const jpegHeader = "data:image/jpeg;base64,";
   if (!(dataUrl.startsWith(pngHeader) || dataUrl.startsWith(jpegHeader))) {
     mozlog.warn("invalid-data-url", {msg: "Invalid data: URL submitted", prefix: dataUrl.substr(0, jpegHeader.length + 10)});
-    throw new Error('invalid data url');
+    throw new Error("invalid data url");
   }
   // only decode enough to get the header
   // we're lucky that 9 bytes is exactly 12 base64 characters
@@ -31,28 +31,26 @@ function assertPngOrJpeg(dataUrl) {
     const base64Header = dataUrl.substr(pngHeader.length, PNG_HEADER_BASE64.length);
     if (base64Header.length < PNG_HEADER_BASE64.length) {
       mozlog.warn("invalid-data-image", {msg: "Invalid PNG image submitted", prefix: dataUrl.substr(0, pngHeader.length + PNG_HEADER_BASE64.length)});
-      throw new Error('invalid image');
+      throw new Error("invalid image");
     }
     const header = Buffer.from(base64Header, "base64"); // 9 bytes
     if (!PNG_HEADER.equals(header.slice(0, PNG_HEADER.length))) {
       mozlog.warn("invalid-data-image-decoded", {msg: "Invalid PNG image (after base64 decoding)"});
-      throw new Error('invalid png');
+      throw new Error("invalid png");
     }
   } else {
     const base64Header = dataUrl.substr(jpegHeader.length, JPEG_HEADER_BASE64.length);
     if (base64Header.length < JPEG_HEADER_BASE64.length) {
       mozlog.warn("invalid-data-image", {msg: "Invalid JPEG image submitted", prefix: dataUrl.substr(0, jpegHeader.length + JPEG_HEADER_BASE64.length)});
-      throw new Error('invalid image');
+      throw new Error("invalid image");
     }
     const header = Buffer.from(base64Header, "base64"); // 9 bytes
     if (!JPEG_HEADER.equals(header.slice(0, JPEG_HEADER.length))) {
       mozlog.warn("invalid-data-image-decoded", {msg: "Invalid JPEG image (after base64 decoding)"});
-      throw new Error('invalid jpeg');
+      throw new Error("invalid jpeg");
     }
   }
 }
-
-let ClipRewrites;
 
 let s3bucket;
 let put;
@@ -108,14 +106,14 @@ if (!config.useS3) {
     });
   };
 } else {
-  const AWS = require('aws-sdk');
+  const AWS = require("aws-sdk");
 
   s3bucket = new AWS.S3({params: {Bucket: config.s3BucketName}});
 
   get = (uid, contentType) => {
     return new Promise((resolve, reject) => {
       s3bucket.createBucket(() => {
-        var params = {Key: uid};
+        const params = {Key: uid};
         s3bucket.getObject(params, function(err, data) {
           if (err) {
             mozlog.error("error-downloading-data", {err});
@@ -131,7 +129,7 @@ if (!config.useS3) {
   put = (uid, body, comment) => {
     return new Promise((resolve, reject) => {
       s3bucket.createBucket(() => {
-        var params = {Key: uid, Body: body, ContentType: "image/png"};
+        const params = {Key: uid, Body: body, ContentType: "image/png"};
         s3bucket.upload(params, function(err, result) {
           if (err) {
             reject(err);
@@ -147,7 +145,7 @@ if (!config.useS3) {
   del = (uid) => {
     return new Promise((resolve, reject) => {
       s3bucket.createBucket(() => {
-        var params = {Key: uid};
+        const params = {Key: uid};
         s3bucket.deleteObject(params, function(err, result) {
           if (err) {
             reject(err);
@@ -168,7 +166,7 @@ class Shot extends AbstractShot {
   }
 
   oembedJson({maxheight, maxwidth}) {
-    let body = renderOembedString({shot: this, maxheight, maxwidth, backend: this.backend});
+    const body = renderOembedString({shot: this, maxheight, maxwidth, backend: this.backend});
     return {
       // Attributes we could set, but don't (yet):
       // author_name: "",
@@ -203,15 +201,15 @@ class Shot extends AbstractShot {
           return false;
         }
 
-        let clipRewrites = new ClipRewrites(this);
+        const clipRewrites = new ClipRewrites(this);
         clipRewrites.rewriteShotUrls();
-        let oks = clipRewrites.commands();
-        let json = this.asJson();
-        let title = this.title;
+        const oks = clipRewrites.commands();
+        const json = this.asJson();
+        const title = this.title;
         oks.push({setHead: null});
         oks.push({setBody: null});
-        let searchable = this._makeSearchableText(7);
-        let url = json.fullUrl || json.url || json.origin;
+        const searchable = this._makeSearchableText(7);
+        const url = json.fullUrl || json.url || json.origin;
         return db.queryWithClient(
           client,
           `INSERT INTO data (id, deviceid, value, url, title, searchable_version, searchable_text)
@@ -222,7 +220,7 @@ class Shot extends AbstractShot {
         }).then(() => {
           return oks;
         }).catch((err) => {
-          if (err.code == '23505') {
+          if (err.code === "23505") {
             // This is a duplicate key error, means the insert failed
             clipRewrites.revertShotUrls();
             return false;
@@ -234,14 +232,13 @@ class Shot extends AbstractShot {
   }
 
   update() {
-    let clipRewrites = new ClipRewrites(this);
+    const clipRewrites = new ClipRewrites(this);
     clipRewrites.rewriteShotUrls();
-    let oks = clipRewrites.commands();
-    let json = this.asJson();
+    const oks = clipRewrites.commands();
+    const json = this.asJson();
     return db.transaction((client) => {
-      let promise;
-      let searchable = this._makeSearchableText(7);
-      promise = db.queryWithClient(
+      const searchable = this._makeSearchableText(7);
+      const promise = db.queryWithClient(
         client,
         `UPDATE data SET value = $1, url = $2, title=$3, searchable_version = $4, searchable_text = ${searchable.query}
         WHERE id = $5 AND deviceid = $6`,
@@ -262,7 +259,7 @@ class Shot extends AbstractShot {
   }
 
   upgradeSearch() {
-    let searchable = this._makeSearchableText(3);
+    const searchable = this._makeSearchableText(3);
     return db.transaction((client) => {
       return db.queryWithClient(
         client,
@@ -274,8 +271,8 @@ class Shot extends AbstractShot {
   }
 
   _makeSearchableText(argStart) {
-    let queryParts = [];
-    let texts = [];
+    const queryParts = [];
+    const texts = [];
     function addText(t) {
       texts.push(t);
       return "$" + (texts.length + argStart - 1);
@@ -287,37 +284,37 @@ class Shot extends AbstractShot {
       if (!t) {
         return;
       }
-      if (!['A', 'B', 'C', 'D'].includes(weight)) {
+      if (!["A", "B", "C", "D"].includes(weight)) {
         throw new Error("Bad weight, should be A, B, C, or D");
       }
       queryParts.push(`setweight(to_tsvector(${addText(t)}), '${weight}') /* ${name} */`);
     }
     if (this.url) {
-      let domain = this.url.replace(/^.{0,4000}:/, "").replace(/\/.{0,4000}$/, "");
-      addWeight(domain, 'B', 'domain');
+      const domain = this.url.replace(/^.{0,4000}:/, "").replace(/\/.{0,4000}$/, "");
+      addWeight(domain, "B", "domain");
     }
-    addWeight(this.title, 'A', 'title');
+    addWeight(this.title, "A", "title");
     if (this.openGraph) {
-      let openGraphProps = `
+      const openGraphProps = `
         site_name description
         article:author article:section article:tag
         book:author book:tag
         profile:first_name profile:back_name profile:username
       `.split(/\s+/g);
-      addWeight(openGraphProps.map((n) => this.openGraph[n]), 'B', 'openGraph');
+      addWeight(openGraphProps.map((n) => this.openGraph[n]), "B", "openGraph");
     }
     if (this.twitterCard) {
-      let twitterProps = `
+      const twitterProps = `
         site title description
       `.split(/\s+/g);
-      addWeight(twitterProps.map((n) => this.twitterCard[n]), 'A', 'twitterCard');
-      for (let clipId of this.clipNames()) {
-        let clip = this.getClip(clipId);
-        addWeight(clip.image && clip.image.text, 'A', 'clip text');
+      addWeight(twitterProps.map((n) => this.twitterCard[n]), "A", "twitterCard");
+      for (const clipId of this.clipNames()) {
+        const clip = this.getClip(clipId);
+        addWeight(clip.image && clip.image.text, "A", "clip text");
       }
     }
     return {
-      query: queryParts.join(' || '),
+      query: queryParts.join(" || "),
       args: texts,
       // Update this version if you update the algorithm:
       version: SEARCHABLE_VERSION
@@ -361,8 +358,8 @@ class ServerClip extends AbstractShot.prototype.Clip {
     if (!(this.image && this.image.url)) {
       throw new Error("Not an image clip");
     }
-    let url = this.image.url;
-    let match = (/^data:([^;]*);base64,/).exec(url);
+    const url = this.image.url;
+    const match = (/^data:([^;]*);base64,/).exec(url);
     if (!match) {
       if (!url) {
         mozlog.warn("empty-clip-url", {msg: "Submitted with empty clip URL"});
@@ -373,7 +370,7 @@ class ServerClip extends AbstractShot.prototype.Clip {
       }
     }
     let imageData = url.substr(match[0].length);
-    imageData = new Buffer(imageData, 'base64');
+    imageData = new Buffer(imageData, "base64");
     return {
       contentType: match[1],
       data: imageData
@@ -394,13 +391,13 @@ Shot.get = function(backend, id, deviceId, accountId) {
     if (!rawValue) {
       return null;
     }
-    let json = JSON.parse(rawValue.value);
-    let jsonTitle = json.userTitle || (json.openGraph && json.openGraph.title) || json.docTitle;
+    const json = JSON.parse(rawValue.value);
+    const jsonTitle = json.userTitle || (json.openGraph && json.openGraph.title) || json.docTitle;
     json.docTitle = jsonTitle || rawValue.title;
     if (!json.url && rawValue.url) {
       json.url = rawValue.url;
     }
-    let shot = new Shot(rawValue.userid, backend, id, json);
+    const shot = new Shot(rawValue.userid, backend, id, json);
     shot.urlIfDeleted = rawValue.url;
     shot.accountId = rawValue.accountId;
     shot.expireTime = rawValue.expireTime;
@@ -423,9 +420,9 @@ Shot.getFullShot = function(backend, id) {
     if (!rows.length) {
       return null;
     }
-    let row = rows[0];
-    let json = JSON.parse(row.value);
-    let shot = new Shot(row.userid, backend, id, json);
+    const row = rows[0];
+    const json = JSON.parse(row.value);
+    const shot = new Shot(row.userid, backend, id, json);
     return shot;
   });
 };
@@ -436,7 +433,7 @@ Shot.getRawValue = function(id, deviceId, accountId) {
   }
   let query = `SELECT value, deviceid, url, title, expire_time, deleted, block_type, devices.accountid
   FROM data, devices WHERE data.deviceid = devices.id AND data.id = $1`;
-  let params = [id];
+  const params = [id];
   if (accountId) {
     query += ` AND devices.accountid = $2`;
     params.push(accountId);
@@ -451,7 +448,7 @@ Shot.getRawValue = function(id, deviceId, accountId) {
     if (!rows.length) {
       return null;
     }
-    let row = rows[0];
+    const row = rows[0];
     return {
       userid: row.deviceid,
       value: row.value,
@@ -492,14 +489,14 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
   if (pageNumber < 1) {
     pageNumber = 1;
   }
-  let shotsPage = {
+  const shotsPage = {
     pageNumber,
     shotsPerPage: SHOTS_PER_PAGE
   };
   let deviceIds = [];
   let likeQuery = "";
 
-  let idParamPositions = (offset, ids) => {
+  const idParamPositions = (offset, ids) => {
     return ids.map((_, idx) => {
       return `$${offset + idx + 1}`;
     });
@@ -555,7 +552,7 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
       shotsPage.totalShots = rows[0].totalshots;
     }
   }).then(() => {
-    let offset = (pageNumber - 1) * SHOTS_PER_PAGE;
+    const offset = (pageNumber - 1) * SHOTS_PER_PAGE;
     let sql, args, idNums;
 
     if (searchQuery) {
@@ -588,10 +585,10 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
     }
     return db.select(sql, args);
   }).then((rows) => {
-    let result = [];
+    const result = [];
     for (let i = 0; i < rows.length; i++) {
-      let row = rows[i];
-      let json = JSON.parse(row.value);
+      const row = rows[i];
+      const json = JSON.parse(row.value);
       if (json === null) {
         mozlog.warn("error-parsing-json", {
           deviceid: row.deviceid,
@@ -624,7 +621,7 @@ Shot.setExpiration = function(backend, shotId, deviceId, expiration, accountId) 
     `,
     [shotId, deviceId, accountId]
   ).then((rows) => {
-    let id = rows[0].id;
+    const id = rows[0].id;
     if (expiration === 0) {
       return db.update(
         `UPDATE data
@@ -635,7 +632,7 @@ Shot.setExpiration = function(backend, shotId, deviceId, expiration, accountId) 
         [shotId, id]
       );
     }
-    if (typeof expiration != "number") {
+    if (typeof expiration !== "number") {
       throw new Error("Bad expiration type");
     } else if (expiration < 0) {
       throw new Error("Expiration less than zero");
@@ -715,7 +712,7 @@ Shot.deleteEverythingForDevice = function(backend, deviceId, accountId) {
   };
 
   const deleteShotRecords = () => {
-    let deleteSql = `DELETE FROM data WHERE
+    const deleteSql = `DELETE FROM data WHERE
      deviceid IN (${db.markersForArgs(1, deviceIds.length)})`;
     return db.update(
       deleteSql,
@@ -729,7 +726,7 @@ Shot.deleteEverythingForDevice = function(backend, deviceId, accountId) {
     .then(deleteShotRecords);
 };
 
-ClipRewrites = class ClipRewrites {
+const ClipRewrites = class ClipRewrites {
 
   constructor(shot) {
     this.shot = shot;
@@ -737,16 +734,16 @@ ClipRewrites = class ClipRewrites {
     this.unedited = [];
     this.toInsertClipIds = [];
     this.toInsert = {};
-    for (let name of this.shot.clipNames()) {
-      let clip = this.shot.getClip(name);
+    for (const name of this.shot.clipNames()) {
+      const clip = this.shot.getClip(name);
       if (clip.image && clip.isDataUrl()) {
         this.toInsertClipIds.push(clip.id);
         let extension = ".png";
-        let type = clip.image.type || "png";
-        if (type == "jpeg") {
+        const type = clip.image.type || "png";
+        if (type === "jpeg") {
           extension = ".jpg";
         }
-        let imageId = uuid.v4() + extension;
+        const imageId = uuid.v4() + extension;
         this.toInsert[clip.id] = {
           uuid: imageId,
           url: linker.imageLinkWithHost(imageId),
@@ -765,8 +762,8 @@ ClipRewrites = class ClipRewrites {
     const pngDataUrlMediaType = "data:image/png;base64,"
     if (this.shot.thumbnail && this.shot.thumbnail.startsWith(pngDataUrlMediaType)) {
       let imageData = this.shot.thumbnail.substr(pngDataUrlMediaType.length);
-      imageData = new Buffer(imageData, 'base64');
-      let imageId = `${uuid.v4()}.png`;
+      imageData = new Buffer(imageData, "base64");
+      const imageId = `${uuid.v4()}.png`;
       this.toInsertThumbnail = {
         contentType: "image/png",
         binary: imageData,
@@ -785,9 +782,9 @@ ClipRewrites = class ClipRewrites {
   }
 
   rewriteShotUrls() {
-    for (let clipId of this.toInsertClipIds) {
-      let url = this.toInsert[clipId].url;
-      let clip = this.shot.getClip(clipId);
+    for (const clipId of this.toInsertClipIds) {
+      const url = this.toInsert[clipId].url;
+      const clip = this.shot.getClip(clipId);
       clip.image.url = url;
     }
     if (this.toInsertThumbnail !== null) {
@@ -796,9 +793,9 @@ ClipRewrites = class ClipRewrites {
   }
 
   revertShotUrls() {
-    for (let clipId of this.toInsertClipIds) {
-      let data = this.toInsert[clipId];
-      let clip = this.shot.getClip(clipId);
+    for (const clipId of this.toInsertClipIds) {
+      const data = this.toInsert[clipId];
+      const clip = this.shot.getClip(clipId);
       clip.setUrlFromBinary(data.binary);
     }
     this.shot.thumbnail = this.oldThumbnail;
@@ -812,12 +809,12 @@ ClipRewrites = class ClipRewrites {
   }
 
   commands() {
-    let commands = [];
+    const commands = [];
     if (this.toInsertThumbnail !== null) {
       commands.push({updateThumbnailUrl: this.toInsertThumbnail.url});
     }
-    for (let clipId of this.toInsertClipIds) {
-      let url = this.toInsert[clipId].url;
+    for (const clipId of this.toInsertClipIds) {
+      const url = this.toInsert[clipId].url;
       commands.push({updateClipUrl: {clipId, url}});
     }
     return commands;
@@ -825,14 +822,14 @@ ClipRewrites = class ClipRewrites {
 
   commit(client) {
     let query;
-    let unedited = this.unedited;
+    const unedited = this.unedited;
     if (unedited.length) {
       query = `SELECT id FROM images WHERE shotid = $1
         AND clipid NOT IN (${db.markersForArgs(2, this.unedited.length)})`;
     } else {
       query = `SELECT id FROM images WHERE shotid = $1`;
     }
-    let promise = db.queryWithClient(
+    const promise = db.queryWithClient(
       client,
       query,
       [this.shot.id].concat(this.unedited)
@@ -856,7 +853,7 @@ ClipRewrites = class ClipRewrites {
     return promise.then(() => {
       return Promise.all(
         this.toInsertClipIds.map((clipId) => {
-          let data = this.toInsert[clipId];
+          const data = this.toInsert[clipId];
 
           put(data.uuid, data.binary.data, "image");
 
@@ -893,7 +890,7 @@ ClipRewrites = class ClipRewrites {
 };
 
 Shot.cleanDeletedShots = function() {
-  let retention = config.expiredRetentionTime;
+  const retention = config.expiredRetentionTime;
   return db.transaction((client) => {
     return Promise.resolve().then(() => {
       return db.queryWithClient(
@@ -908,7 +905,7 @@ Shot.cleanDeletedShots = function() {
         [retention]
       );
     }).then((result) => {
-      for (let row of result.rows) {
+      for (const row of result.rows) {
         del(row.id);
       }
       return db.queryWithClient(
@@ -940,7 +937,7 @@ Shot.cleanDeletedShots = function() {
 };
 
 Shot.upgradeSearch = function() {
-  let batchSize = config.upgradeSearchBatchSize;
+  const batchSize = config.upgradeSearchBatchSize;
   return db.select(
     `SELECT id FROM data
      WHERE searchable_version IS NULL OR searchable_version < $1
@@ -949,7 +946,7 @@ Shot.upgradeSearch = function() {
     `,
     [SEARCHABLE_VERSION, batchSize]).then((rows) => {
       if (!rows.length) {
-        return;
+        return null;
       }
       let index = 0;
       return new Promise((resolve, reject) => {
@@ -960,13 +957,14 @@ Shot.upgradeSearch = function() {
           Shot.get("upgrade_search_only", rows[index].id).then((shot) => {
             // This shouldn't really happen, but apparently can...
             if (!shot) {
-              return;
+              return null;
             }
             return shot.upgradeSearch();
           }).then(() => {
             index++;
             run();
           }).catch(reject);
+          return null;
         }
         run();
       }).then(() => {

@@ -203,8 +203,10 @@ annotationCropButton
     .title = Обрізати
 annotationSaveButton = Зберегти
 annotationCancelButton = Скасувати
-annotationConfirmCropButton = Підтвердити
-annotationCancelCropButton = Скасувати
+annotationCropConfirmButton = Підтвердити
+    .title = Підтвердити вибір
+annotationCropCancelButton = Скасувати
+    .title = Скасувати вибір
 
 
 [[ Shotindex page ]]

@@ -1,4 +1,5 @@
 const React = require("react");
+const PropTypes = require("prop-types");
 const classnames = require("classnames");
 const { Localized } = require("fluent-react/compat");
 const sendEvent = require("./browser-send-event.js");
@@ -6,7 +7,7 @@ const sendEvent = require("./browser-send-event.js");
 exports.ShareButton = class ShareButton extends React.Component {
   constructor(props) {
     super(props);
-    let display = false;
+    const display = false;
     this.state = {display};
   }
 
@@ -22,7 +23,7 @@ exports.ShareButton = class ShareButton extends React.Component {
         isExtInstalled={this.props.isExtInstalled}
       />;
     }
-    const useNewIcon = this.props.abTests.shotShareIcon && this.props.abTests.shotShareIcon.value == "newicon";
+    const useNewIcon = this.props.abTests.shotShareIcon && this.props.abTests.shotShareIcon.value === "newicon";
     const shareClasses = classnames("button", "transparent", "share", {
       "active": this.state.display,
       "inactive": !this.state.display,
@@ -37,7 +38,7 @@ exports.ShareButton = class ShareButton extends React.Component {
   }
 
   onClick() {
-    let show = !this.state.display;
+    const show = !this.state.display;
     this.setState({display: show});
     if (show) {
       if (this.props.setPanelState) {
@@ -65,6 +66,17 @@ exports.ShareButton = class ShareButton extends React.Component {
   }
 };
 
+exports.ShareButton.propTypes = {
+  abTests: PropTypes.object,
+  clipUrl: PropTypes.string,
+  isExtInstalled: PropTypes.bool,
+  isOwner: PropTypes.bool,
+  renderExtensionNotification: PropTypes.bool,
+  setPanelState: PropTypes.func,
+  shot: PropTypes.object,
+  staticLink: PropTypes.func
+};
+
 class ShareButtonPanel extends React.Component {
   constructor(props) {
     super(props);
@@ -87,10 +99,11 @@ class ShareButtonPanel extends React.Component {
     }
 
     this.props.closePanel();
+    return null;
   }
 
   onClickCopyButton(e) {
-    let target = e.target;
+    const target = e.target;
     target.previousSibling.select();
     document.execCommand("copy");
     this.setState({copy: "copied"});
@@ -158,8 +171,8 @@ class ShareButtonPanel extends React.Component {
   }
 
   changePanelPosition() {
-    let el = this.shareDiv;
-    let rect = el.getBoundingClientRect();
+    const el = this.shareDiv;
+    const rect = el.getBoundingClientRect();
     if (!(rect.right <= (window.innerWidth || document.documentElement.clientWidth))) {
       this.setState({left: -140});
     }
@@ -186,7 +199,7 @@ class ShareButtonPanel extends React.Component {
   }
 
   keyMaybeClose(event) {
-    if ((event.key || event.code) == "Escape") {
+    if ((event.key || event.code) === "Escape") {
       this.props.closePanel();
     }
   }
@@ -194,7 +207,7 @@ class ShareButtonPanel extends React.Component {
   /* Returns true if the element is part of the share panel */
   isPanel(el) {
     while (el) {
-      if (el.id == "share-buttons-panel") {
+      if (el.id === "share-buttons-panel") {
         return true;
       }
       el = el.parentNode;
@@ -203,3 +216,12 @@ class ShareButtonPanel extends React.Component {
   }
 
 }
+
+ShareButtonPanel.propTypes = {
+  clipUrl: PropTypes.string,
+  closePanel: PropTypes.func,
+  isOwner: PropTypes.bool,
+  renderExtensionNotification: PropTypes.bool,
+  shot: PropTypes.object,
+  staticLink: PropTypes.func
+};

@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Vui lòng thêm URL của ảnh này trong email của
 shotPageKeepFor = Ảnh chụp này được giữ lại trong bao lâu?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Chọn thời gian
-shotPageKeepIndefinitely = Vô thời hạn
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Vô hạn ∞
 shotPageKeepTenMinutes = 10 phút
 shotPageKeepOneHour = 1 giờ
 shotPageKeepOneDay = 1 ngày
@@ -176,8 +179,14 @@ annotationHighlighterButton
 // Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton
     .title = Làm sạch
+annotationCropButton
+    .title = Crop
 annotationSaveButton = Lưu
 annotationCancelButton = Hủy bỏ
+annotationCropConfirmButton = Xác nhận
+    .title = Lựa chọn xác nhận
+annotationCropCancelButton = Hủy
+    .title = Lựa chọn hủy bỏ
 
 
 [[ Shotindex page ]]
@@ -206,6 +215,12 @@ shotIndexPagePreviousPage
     .title = Trang trước
 shotIndexPageNextPage
     .title = Trang kế tiếp
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Ảnh chụp này không bao giờ hết hạn
 
 
 // all metrics strings are optional for translation

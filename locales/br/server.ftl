@@ -156,7 +156,6 @@ shotPageExpiresIn = diamzer a-benn { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = diamzeret abaoe { $timediff }
 timeDiffJustNow = diouzhtu
-timeDiffMinutesAgo = 
 timeDiffHoursAgo = { $number ->
         [one] 1 vunutenn 'zo
        *[other] { $number } a vunutennoù 'zo
@@ -194,10 +193,6 @@ annotationCropButton
     .title = Troc'hañ
 annotationSaveButton = Enrollañ
 annotationCancelButton = Nullañ
-annotationConfirmCropButton = Kadarnaat
-    .title = Kadarnaat an diuzañ
-annotationCancelCropButton = Nullañ
-    .title = Nullañ an diuzañ
 
 
 [[ Shotindex page ]]

@@ -179,8 +179,10 @@ annotationCropButton
     .title = Kırp
 annotationSaveButton = Kaydet
 annotationCancelButton = İptal
-annotationConfirmCropButton = Onayla
-annotationCancelCropButton = İptal
+annotationCropConfirmButton = Onayla
+    .title = Seçimi onayla
+annotationCropCancelButton = İptal
+    .title = Seçimi iptal et
 
 
 [[ Shotindex page ]]

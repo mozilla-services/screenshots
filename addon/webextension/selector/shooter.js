@@ -4,7 +4,7 @@
 "use strict";
 
 this.shooter = (function() { // eslint-disable-line no-unused-vars
-  let exports = {};
+  const exports = {};
   const { AbstractShot } = shot;
 
   const RANDOM_STRING_LENGTH = 16;
@@ -20,11 +20,11 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
   }
 
   function sanitizeError(data) {
-    const href = new RegExp(regexpEscape(window.location.href), 'g');
-    const origin = new RegExp(`${regexpEscape(window.location.origin)}[^ \t\n\r",>]*`, 'g');
+    const href = new RegExp(regexpEscape(window.location.href), "g");
+    const origin = new RegExp(`${regexpEscape(window.location.origin)}[^ \t\n\r",>]*`, "g");
     const json = JSON.stringify(data)
-      .replace(href, 'REDACTED_HREF')
-      .replace(origin, 'REDACTED_URL');
+      .replace(href, "REDACTED_HREF")
+      .replace(origin, "REDACTED_URL");
     const result = JSON.parse(json);
     return result;
   }
@@ -34,21 +34,21 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
   });
 
   catcher.watchFunction(() => {
-    let canvas = document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
-    let ctx = canvas.getContext('2d');
+    const canvas = document.createElementNS("http://www.w3.org/1999/xhtml", "canvas");
+    const ctx = canvas.getContext("2d");
     supportsDrawWindow = !!ctx.drawWindow;
   })();
 
-  let screenshotPage = exports.screenshotPage = function(selectedPos, captureType) {
+  const screenshotPage = exports.screenshotPage = function(selectedPos, captureType) {
     if (!supportsDrawWindow) {
       return null;
     }
-    let height = selectedPos.bottom - selectedPos.top;
-    let width = selectedPos.right - selectedPos.left;
-    let canvas = document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
-    let ctx = canvas.getContext('2d');
+    const height = selectedPos.bottom - selectedPos.top;
+    const width = selectedPos.right - selectedPos.left;
+    const canvas = document.createElementNS("http://www.w3.org/1999/xhtml", "canvas");
+    const ctx = canvas.getContext("2d");
     let expand = window.devicePixelRatio !== 1;
-    if (captureType == 'fullPage' || captureType == 'fullPageTruncated') {
+    if (captureType === "fullPage" || captureType === "fullPageTruncated") {
       expand = false;
       canvas.width = width;
       canvas.height = height;
@@ -61,10 +61,10 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     }
     ui.iframe.hide();
     ctx.drawWindow(window, selectedPos.left, selectedPos.top, width, height, "#fff");
-    let limit = buildSettings.pngToJpegCutoff;
+    const limit = buildSettings.pngToJpegCutoff;
     let dataUrl = canvas.toDataURL();
     if (limit && dataUrl.length > limit) {
-      let jpegDataUrl = canvas.toDataURL("image/jpeg");
+      const jpegDataUrl = canvas.toDataURL("image/jpeg");
       if (jpegDataUrl.length < dataUrl.length) {
         // Only use the JPEG if it is actually smaller
         dataUrl = jpegDataUrl;
@@ -79,9 +79,9 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     // isSaving indicates we're aleady in the middle of saving
     // we use a timeout so in the case of a failure the button will
     // still start working again
-    if (Math.floor(selectedPos.left) == Math.floor(selectedPos.right) ||
-        Math.floor(selectedPos.top) == Math.floor(selectedPos.bottom)) {
-        let exc = new Error("Empty selection");
+    if (Math.floor(selectedPos.left) === Math.floor(selectedPos.right) ||
+        Math.floor(selectedPos.top) === Math.floor(selectedPos.bottom)) {
+        const exc = new Error("Empty selection");
         exc.popupMessage = "EMPTY_SELECTION";
         exc.noReport = true;
         catcher.unhandled(exc);
@@ -105,7 +105,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     if (buildSettings.captureText) {
       captureText = util.captureEnclosedText(selectedPos);
     }
-    let dataUrl = url || screenshotPage(selectedPos, captureType);
+    const dataUrl = url || screenshotPage(selectedPos, captureType);
     let type = blobConverters.getTypeFromDataUrl(dataUrl);
     type = type ? type.split("/", 2)[1] : null;
     if (dataUrl) {
@@ -144,7 +144,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
         return callBackground("openShot", { url, copied });
       });
     }, (error) => {
-      if ('popupMessage' in error && (error.popupMessage == "REQUEST_ERROR" || error.popupMessage == 'CONNECTION_ERROR')) {
+      if ("popupMessage" in error && (error.popupMessage === "REQUEST_ERROR" || error.popupMessage === "CONNECTION_ERROR")) {
         // The error has been signaled to the user, but unlike other errors (or
         // success) we should not abort the selection
         deactivateAfterFinish = false;
@@ -152,7 +152,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
         ui.iframe.unhide();
         return;
       }
-      if (error.name != "BackgroundError") {
+      if (error.name !== "BackgroundError") {
         // BackgroundError errors are reported in the Background page
         throw error;
       }
@@ -164,7 +164,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
   };
 
   exports.downloadShot = function(selectedPos, previewDataUrl) {
-    let dataUrl = previewDataUrl || screenshotPage(selectedPos);
+    const dataUrl = previewDataUrl || screenshotPage(selectedPos);
     let promise = Promise.resolve(dataUrl);
     if (!dataUrl) {
       promise = callBackground(
@@ -206,14 +206,14 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
       copyInProgress = null;
     }, 5000);
 
-    let unsetCopyInProgress = () => {
+    const unsetCopyInProgress = () => {
       if (copyInProgress) {
         clearTimeout(copyInProgress);
         copyInProgress = null;
       }
     }
-    let dataUrl = previewDataUrl || screenshotPage(selectedPos);
-    let blob = blobConverters.dataUrlToBlob(dataUrl);
+    const dataUrl = previewDataUrl || screenshotPage(selectedPos);
+    const blob = blobConverters.dataUrlToBlob(dataUrl);
     catcher.watchPromise(callBackground("copyShotToClipboard", blob).then(() => {
       uicontrol.deactivate();
       unsetCopyInProgress();
@@ -221,7 +221,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
   };
 
   exports.sendEvent = function(...args) {
-    let maybeOptions = args[args.length - 1];
+    const maybeOptions = args[args.length - 1];
 
     if (typeof maybeOptions === "object") {
       maybeOptions.incognito = browser.extension.inIncognitoContext;
