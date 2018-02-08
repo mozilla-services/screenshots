@@ -126,7 +126,6 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Sider
 shotPageDownload = Sider
-shotPageScreenshotsDescription = 
 shotPageUpsellFirefox = Awi-d Firefox tura
 shotPageDMCAMessage = Tuṭṭfa-agi ur tezgi tella imi yella ucetki ɣef wayla agzayan i d-yekkan seg wis kraḍ.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
