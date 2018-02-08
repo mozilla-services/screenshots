@@ -166,7 +166,7 @@ exports.Editor = class Editor extends React.Component {
   }
 
   isColorWhite(color) {
-    if (color == "rgb(255, 255, 255)" || color == "#FFF") {
+    if (color === "rgb(255, 255, 255)" || color === "#FFF") {
       return "white"
     }
     return null;
@@ -189,7 +189,7 @@ exports.Editor = class Editor extends React.Component {
     if (!selectedPos.width || !selectedPos.height) {
       this.removeCropBox();
       this.cropToolBar = null;
-      this.setState({tool: 'pen'});
+      this.setState({tool: "pen"});
       return;
     }
     const x1 = Math.max(selectedPos.left, 0);
@@ -205,7 +205,7 @@ exports.Editor = class Editor extends React.Component {
     croppedContext.drawImage(this.imageCanvas, x1, y1, croppedImage.width, croppedImage.height, 0, 0, croppedImage.width, croppedImage.height);
     const img = new Image();
     const imageContext = this.imageCanvas.getContext("2d");
-    img.crossOrigin = 'Anonymous';
+    img.crossOrigin = "Anonymous";
     const width = cropWidth;
     const height = cropHeight;
     img.onload = () => {
@@ -217,7 +217,7 @@ exports.Editor = class Editor extends React.Component {
     this.canvasHeight = cropHeight;
     this.removeCropBox();
     this.cropToolBar = null;
-    this.setState({tool: 'pen'});
+    this.setState({tool: "pen"});
     sendEvent("confirm-crop", "crop-toolbar");
   }
 
@@ -526,7 +526,7 @@ exports.Editor = class Editor extends React.Component {
       document.addEventListener("mousemove", this.draw);
       document.addEventListener("mousedown", this.setPosition);
       document.addEventListener("mouseup", this.drawMouseup);
-    } else if (this.state.tool == "crop") {
+    } else if (this.state.tool === "crop") {
       document.removeEventListener("mouseup", this.drawMouseup);
       document.removeEventListener("mousemove", this.draw);
       document.removeEventListener("mousedown", this.setPosition);
@@ -540,7 +540,7 @@ exports.Editor = class Editor extends React.Component {
     e.preventDefault();
     drawMousedown = false;
     points = [];
-    if (this.state.tool == "highlighter") {
+    if (this.state.tool === "highlighter") {
       if (this.isColorWhite(this.state.color)) {
         this.imageContext.globalCompositeOperation = "soft-light";
       } else {
@@ -563,9 +563,9 @@ exports.Editor = class Editor extends React.Component {
   draw(e) {
     e.preventDefault();
     if (!drawMousedown) {
-      return null;
+      return;
     }
-    if (this.state.tool == 'highlighter') {
+    if (this.state.tool === "highlighter") {
       this.drawHighlight(e);
     } else {
       this.drawPen(e);
@@ -584,12 +584,12 @@ exports.Editor = class Editor extends React.Component {
   }
 
   drawHighlight(e) {
-    this.drawContext.lineCap = 'square';
+    this.drawContext.lineCap = "square";
     points.push({x: this.pos.x, y: this.pos.y});
     if (points.length < 3) {
       this.drawContext.beginPath();
       this.drawContext.moveTo(this.pos.x, this.pos.y);
-      let rect = this.imageCanvas.getBoundingClientRect();
+      const rect = this.imageCanvas.getBoundingClientRect();
       this.pos.x = e.clientX - rect.left,
       this.pos.y = e.clientY - rect.top
       this.drawContext.lineTo(this.pos.x, this.pos.y);
@@ -597,16 +597,17 @@ exports.Editor = class Editor extends React.Component {
       return;
     }
     this.drawContext.moveTo(this.pos.x, this.pos.y);
-    let rect = this.imageCanvas.getBoundingClientRect();
+    const rect = this.imageCanvas.getBoundingClientRect();
     this.pos.x = e.clientX - rect.left,
     this.pos.y = e.clientY - rect.top
     this.drawContext.lineTo(this.pos.x, this.pos.y);
     this.drawContext.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
     this.drawContext.beginPath();
     this.drawContext.moveTo(points[0].x, points[0].y);
-    for (var i = 1; i < points.length - 2; i++) {
-      let endX = (points[i].x + points[i + 1].x) / 2;
-      let endY = (points[i].y + points[i + 1].y) / 2;
+    let i;
+    for (i = 1; i < points.length - 2; i++) {
+      const endX = (points[i].x + points[i + 1].x) / 2;
+      const endY = (points[i].y + points[i + 1].y) / 2;
       this.drawContext.quadraticCurveTo(points[i].x, points[i].y, endX, endY);
     }
     this.drawContext.quadraticCurveTo(

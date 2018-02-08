@@ -1,4 +1,4 @@
-/* globals ADDON_DISABLE */
+/* globals ADDON_DISABLE Services CustomizableUI LegacyExtensionsUtils AppConstants PageActions */
 const ADDON_ID = "screenshots@mozilla.org";
 const TELEMETRY_ENABLED_PREF = "datareporting.healthreport.uploadEnabled";
 const PREF_BRANCH = "extensions.screenshots.";
