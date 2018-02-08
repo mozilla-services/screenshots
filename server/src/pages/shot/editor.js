@@ -12,6 +12,8 @@ let selectedPos = {};
 const mousedownPos = {};
 const minWidth = 10;
 const minHeight = 10;
+let points = [];
+let drawMousedown = false;
 
 const movements = ["topLeft", "top", "topRight", "left", "right", "bottomLeft", "bottom", "bottomRight"];
 const movementPositions = {
@@ -96,23 +98,26 @@ exports.Editor = class Editor extends React.Component {
     this.mousemove = this.mousemove.bind(this);
     this.draw = this.draw.bind(this);
     this.setPosition = this.setPosition.bind(this);
+    this.drawMouseup = this.drawMouseup.bind(this);
     this.canvasWidth = this.props.clip.image.dimensions.x;
     this.canvasHeight = this.props.clip.image.dimensions.y;
     this.state = {
       tool: "pen",
       color: "#000",
-      size: "5"
+      size: "5",
+      saveDisabled: true
     };
   }
 
   render() {
+    const color = this.isColorWhite(this.state.color);
     const toolBar = this.cropToolBar || this.renderToolBar();
     return <div>
       { toolBar }
       <div className="main-container inverse-color-scheme">
         <div className={`canvas-container ${this.state.tool}`} id="canvas-container" ref={(canvasContainer) => this.canvasContainer = canvasContainer}>
           <canvas className="image-holder centered" id="image-holder" ref={(image) => { this.imageCanvas = image }} height={ this.canvasHeight } width={ this.canvasWidth } style={{height: this.canvasHeight, width: this.canvasWidth}}></canvas>
-          <canvas className="temp-highlighter centered" id="highlighter" ref={(highlighter) => { this.highlighter = highlighter }} height={ this.canvasHeight } width={ this.canvasWidth }></canvas>
+          <canvas className={`temp-highlighter centered ${color}`} id="highlighter" ref={(highlighter) => { this.highlighter = highlighter }} height={ this.canvasHeight } width={ this.canvasWidth }></canvas>
           <canvas className="crop-tool centered" id="crop-tool" ref={(cropper) => { this.cropper = cropper }} height={this.canvasHeight} width={this.canvasWidth}></canvas>
           <div className="crop-container centered" ref={(cropContainer) => this.cropContainer = cropContainer} style={{height: this.canvasHeight, width: this.canvasWidth}}></div>
         </div>
@@ -135,7 +140,7 @@ exports.Editor = class Editor extends React.Component {
           <Localized id="annotationHighlighterButton">
             <button className={`button transparent highlight-button ${highlighterState}`} id="highlight" onClick={this.onClickHighlight.bind(this)} title="highlighter"></button>
           </Localized>
-          <ColorPicker setColor={this.setColor.bind(this)} />
+          <ColorPicker activeTool={this.state.tool} setColor={this.setColor.bind(this)} />
           <Localized id="annotationClearButton">
             <button className={`button transparent clear-button`} id="clear" onClick={this.onClickClear.bind(this)} title="clear"></button>
           </Localized>
@@ -160,6 +165,13 @@ exports.Editor = class Editor extends React.Component {
     this.edit();
   }
 
+  isColorWhite(color) {
+    if (color == "rgb(255, 255, 255)" || color == "#FFF") {
+      return "white"
+    }
+    return null;
+  }
+
   onClickCrop() {
     this.setState({tool: "crop"});
     this.cropToolBar = <div className="editor-header default-color-scheme"><div className="annotation-tools">
@@ -170,11 +182,14 @@ exports.Editor = class Editor extends React.Component {
         <button className={`button transparent cancel-crop`} id="cancel-crop" onClick={this.onClickCancelCrop.bind(this)} title="Cancel selection">Cancel</button>
       </Localized>
     </div></div>;
+    sendEvent("crop-select", "annotation-toolbar");
   }
 
   onClickConfirmCrop() {
     if (!selectedPos.width || !selectedPos.height) {
-      this.onClickCancelCrop();
+      this.removeCropBox();
+      this.cropToolBar = null;
+      this.setState({tool: 'pen'});
       return;
     }
     const x1 = Math.max(selectedPos.left, 0);
@@ -188,11 +203,9 @@ exports.Editor = class Editor extends React.Component {
     croppedImage.height = cropHeight
     const croppedContext = croppedImage.getContext("2d");
     croppedContext.drawImage(this.imageCanvas, x1, y1, croppedImage.width, croppedImage.height, 0, 0, croppedImage.width, croppedImage.height);
-    croppedContext.globalCompositeOperation = "multiply";
-    croppedContext.drawImage(this.highlighter, x1, y1, croppedImage.width, croppedImage.height, 0, 0, croppedImage.width, croppedImage.height);
     const img = new Image();
     const imageContext = this.imageCanvas.getContext("2d");
-    img.crossOrigin = "Anonymous";
+    img.crossOrigin = 'Anonymous';
     const width = cropWidth;
     const height = cropHeight;
     img.onload = () => {
@@ -202,13 +215,17 @@ exports.Editor = class Editor extends React.Component {
     img.src = croppedImage.toDataURL("image/png");
     this.canvasWidth = cropWidth;
     this.canvasHeight = cropHeight;
-    this.onClickCancelCrop();
+    this.removeCropBox();
+    this.cropToolBar = null;
+    this.setState({tool: 'pen'});
+    sendEvent("confirm-crop", "crop-toolbar");
   }
 
   onClickCancelCrop() {
     this.removeCropBox();
     this.cropToolBar = null;
     this.setState({tool: "pen"});
+    sendEvent("cancel-crop", "crop-toolbar");
   }
 
   mouseup(e) {
@@ -439,9 +456,6 @@ exports.Editor = class Editor extends React.Component {
     sendEvent("save", "annotation-toolbar");
     const saveDisabled = true;
     this.setState({saveDisabled});
-    this.imageContext.globalCompositeOperation = "multiply";
-    this.imageContext.drawImage(this.highlighter, 0, 0);
-    this.highlightContext.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
     let dataUrl = this.imageCanvas.toDataURL();
 
     if (this.props.pngToJpegCutoff && dataUrl.length > this.props.pngToJpegCutoff) {
@@ -477,21 +491,20 @@ exports.Editor = class Editor extends React.Component {
     const height = this.props.clip.image.dimensions.y;
     img.onload = () => {
       imageContext.drawImage(img, 0, 0, width, height);
+      this.setState({saveDisabled: false});
     }
     this.imageContext = imageContext;
     img.src = this.props.clip.image.url;
   }
 
   componentDidMount() {
+    this.imageContext = this.imageCanvas.getContext("2d");
     this.highlightContext = this.highlighter.getContext("2d");
     this.renderImage();
     this.edit();
   }
 
   edit() {
-    this.imageContext.drawImage(this.highlighter, 0, 0);
-    this.imageContext.globalCompositeOperation = "multiply";
-    this.highlightContext.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
     if (this.state.tool !== "crop") {
       this.cropToolBar = null;
       document.removeEventListener("mousemove", this.mousemove);
@@ -512,7 +525,9 @@ exports.Editor = class Editor extends React.Component {
       this.imageContext.lineWidth = this.state.size;
       document.addEventListener("mousemove", this.draw);
       document.addEventListener("mousedown", this.setPosition);
-    } else if (this.state.tool === "crop") {
+      document.addEventListener("mouseup", this.drawMouseup);
+    } else if (this.state.tool == "crop") {
+      document.removeEventListener("mouseup", this.drawMouseup);
       document.removeEventListener("mousemove", this.draw);
       document.removeEventListener("mousedown", this.setPosition);
       document.addEventListener("mousemove", this.mousemove);
@@ -521,25 +536,85 @@ exports.Editor = class Editor extends React.Component {
     }
   }
 
+  drawMouseup(e) {
+    e.preventDefault();
+    drawMousedown = false;
+    points = [];
+    if (this.state.tool == "highlighter") {
+      if (this.isColorWhite(this.state.color)) {
+        this.imageContext.globalCompositeOperation = "soft-light";
+      } else {
+        this.imageContext.globalCompositeOperation = "multiply";
+      }
+      this.imageContext.drawImage(this.highlighter, 0, 0);
+      this.highlightContext.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
+    }
+  }
+
   setPosition(e) {
+    e.preventDefault();
     const rect = this.imageCanvas.getBoundingClientRect();
     this.pos.x = e.clientX - rect.left,
     this.pos.y = e.clientY - rect.top
+    drawMousedown = true;
+    this.draw(e);
   }
 
   draw(e) {
-    if (e.buttons !== 1) {
-      return;
+    e.preventDefault();
+    if (!drawMousedown) {
+      return null;
     }
-    this.drawContext.beginPath();
+    if (this.state.tool == 'highlighter') {
+      this.drawHighlight(e);
+    } else {
+      this.drawPen(e);
+    }
+  }
 
-    this.drawContext.lineCap = this.state.tool === "highlighter" ? "square" : "round";
+  drawPen(e) {
+    this.drawContext.lineCap = "round";
+    this.drawContext.beginPath();
     this.drawContext.moveTo(this.pos.x, this.pos.y);
     const rect = this.imageCanvas.getBoundingClientRect();
     this.pos.x = e.clientX - rect.left,
     this.pos.y = e.clientY - rect.top
     this.drawContext.lineTo(this.pos.x, this.pos.y);
+    this.drawContext.stroke();
+  }
 
+  drawHighlight(e) {
+    this.drawContext.lineCap = 'square';
+    points.push({x: this.pos.x, y: this.pos.y});
+    if (points.length < 3) {
+      this.drawContext.beginPath();
+      this.drawContext.moveTo(this.pos.x, this.pos.y);
+      let rect = this.imageCanvas.getBoundingClientRect();
+      this.pos.x = e.clientX - rect.left,
+      this.pos.y = e.clientY - rect.top
+      this.drawContext.lineTo(this.pos.x, this.pos.y);
+      this.drawContext.stroke();
+      return;
+    }
+    this.drawContext.moveTo(this.pos.x, this.pos.y);
+    let rect = this.imageCanvas.getBoundingClientRect();
+    this.pos.x = e.clientX - rect.left,
+    this.pos.y = e.clientY - rect.top
+    this.drawContext.lineTo(this.pos.x, this.pos.y);
+    this.drawContext.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+    this.drawContext.beginPath();
+    this.drawContext.moveTo(points[0].x, points[0].y);
+    for (var i = 1; i < points.length - 2; i++) {
+      let endX = (points[i].x + points[i + 1].x) / 2;
+      let endY = (points[i].y + points[i + 1].y) / 2;
+      this.drawContext.quadraticCurveTo(points[i].x, points[i].y, endX, endY);
+    }
+    this.drawContext.quadraticCurveTo(
+      points[i].x,
+      points[i].y,
+      points[i + 1].x,
+      points[i + 1].y
+    );
     this.drawContext.stroke();
   }
 }
@@ -568,6 +643,10 @@ class ColorPicker extends React.Component {
     </div>
   }
 
+  componentWillReceiveProps() {
+    this.setState({pickerActive: false});
+  }
+
   renderColorBoard() {
     return <div className="color-board">
       <div className="row">
@@ -592,11 +671,13 @@ class ColorPicker extends React.Component {
     const color = e.target.style.backgroundColor;
     this.setState({color, pickerActive: false});
     this.props.setColor(color);
+    sendEvent("color-change", "annotation-color-board");
   }
 
   onClickColorPicker() {
     const pickerActive = !this.state.pickerActive;
     this.setState({pickerActive});
+    sendEvent("color-picker-select", "annotation-toolbar");
   }
 }
 

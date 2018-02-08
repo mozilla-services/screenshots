@@ -511,6 +511,10 @@ body {
 .temp-highlighter {
   mix-blend-mode: multiply;
   z-index: 4;
+
+  &.white {
+    mix-blend-mode: soft-light !important;
+  }
 }
 
 .image-holder {
