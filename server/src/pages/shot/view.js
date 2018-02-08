@@ -337,6 +337,7 @@ class Body extends React.Component {
 
     let trashOrFlagButton;
     let editButton;
+    let highlight = this.props.highlightEditButton ? <div className="edit-highlight"></div> : null;
     if (this.props.isOwner) {
       trashOrFlagButton = <Localized id="shotPageDeleteButton">
         <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }></button>
@@ -409,6 +410,7 @@ class Body extends React.Component {
           <div className="shot-alt-actions">
             { trashOrFlagButton }
             { this.props.enableAnnotations ? editButton : null }
+            { highlight }
             <ShareButton abTests={this.props.abTests} clipUrl={clipUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} renderExtensionNotification={renderExtensionNotification} isExtInstalled={this.props.isExtInstalled} />
             <Localized id="shotPageDownloadShot">
               <a className="button primary" href={ this.props.downloadUrl } onClick={ this.onClickDownload.bind(this) }

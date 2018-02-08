@@ -11,6 +11,17 @@ let model;
 
 const SURVEY_EXPIRATION = new Date("2018-01-15");
 
+function shouldHighlightEditIcon(model) {
+  if (!model.isOwner) {
+    return false;
+  }
+  let hasSeen = localStorage.hasSeenEditButton;
+  if (!hasSeen && model.enableAnnotations) {
+    localStorage.hasSeenEditButton = "1";
+  }
+  return !hasSeen;
+}
+
 function shouldShowSurveyLink(model) {
   if ((new Date()) > SURVEY_EXPIRATION) {
     return false;
@@ -82,6 +93,7 @@ exports.launch = function(data) {
     }
   }
   model.showSurveyLink = shouldShowSurveyLink(model);
+  model.highlightEditButton = shouldHighlightEditIcon(model);
   if (firstSet) {
     refreshHash();
   }
