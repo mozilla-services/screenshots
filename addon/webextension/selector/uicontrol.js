@@ -962,6 +962,7 @@ this.uicontrol = (function() {
     });
     primedDocumentHandlers.set("keyup", watchFunction(assertIsTrusted(keyupHandler)));
     primedDocumentHandlers.set("keydown", watchFunction(assertIsTrusted(keydownHandler)));
+    window.document.addEventListener("visibilitychange", visibilityChangeHandler);
     window.addEventListener('beforeunload', beforeunloadHandler);
   }
 
@@ -1026,8 +1027,16 @@ this.uicontrol = (function() {
     }
   }
 
+  function visibilityChangeHandler(event) {
+    // The document is the event target
+    if (event.target.hidden) {
+      sendEvent("internal", "document-hidden");
+    }
+  }
+
   function removeHandlers() {
     window.removeEventListener("beforeunload", beforeunloadHandler);
+    window.document.removeEventListener("visibilitychange", visibilityChangeHandler);
     for (let {name, doc, handler, useCapture} of registeredDocumentHandlers) {
       doc.removeEventListener(name, handler, !!useCapture);
     }
