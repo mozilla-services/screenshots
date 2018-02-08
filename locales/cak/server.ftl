@@ -93,7 +93,6 @@ shotPageTitle = Chapoj Wachib'äl: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Xsach toq nuyäk ruq'ijul
 shotPageAlertErrorDeletingShot = Xsach toq nuyüj wachib'äl
 shotPageAlertErrorUpdatingTitle = Xsach toq nuyäk b'i'aj
-shotPageConfirmDelete = 
 shotPageShareButton
     .title = Tikomonïx
 shotPageCopy = Tiwachib'ëx
