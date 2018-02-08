@@ -9,7 +9,6 @@
 
 gMyShots = میری شاٹس
 gHomeLink = ابتدائی صفحہ
-gScreenshotsDescription = 
 
 
 [[ Footer ]]
