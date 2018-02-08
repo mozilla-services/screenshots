@@ -380,9 +380,14 @@ The hashed page ID (`{hash}`) is a simple SHA1(path), with no additional randomn
 1. [x] Save Edited shot: `web/save/annotation-toolbar`
 2. [x] Cancel Annotations: `web/cancel/annotation-toolbar`
 3. [x] Select pen from annotation toolbar: `web/pen-select/annotation-toolbar`
-4. [x] Deselect pen from annotation toolbar: `web/pen-deselect/annotation-toolbar`
 5. [x] Select highlighter from annotation toolbar: `web/highlighter-select/annotation-toolbar`
-6. [x] Deselect highlighter from annotation toolbar: `web/highlighter-deselect/annotation-toolbar`
+6. [x] Select crop tool from annotation toolbar: `web/crop-select/annotation-toolbar`
+7. [x] Confirm crop after selection: `web/confirm-crop/crop-toolbar`
+8. [x] Cancel crop after selection: `web/cancel-crop/crop-toolbar`
+9. [x] Click on clear tool: `web/clear-select/annotation-toolbar`
+8. [x] Open color picker: `web/color-picker-select/annotation-toolbar`
+9. [x] Select a color from the color board: `web/color-change/annotation-color-board`
+
 
 #### General Google Analytics information
 

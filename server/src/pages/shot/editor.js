@@ -181,11 +181,14 @@ exports.Editor = class Editor extends React.Component {
         <button className={`button transparent cancel-crop`} id="cancel-crop" onClick={this.onClickCancelCrop.bind(this)} title="Cancel selection">Cancel</button>
       </Localized>
     </div></div>;
+    sendEvent("crop-select", "annotation-toolbar");
   }
 
   onClickConfirmCrop() {
     if (!selectedPos.width || !selectedPos.height) {
-      this.onClickCancelCrop();
+      this.removeCropBox();
+      this.cropToolBar = null;
+      this.setState({tool: 'pen'});
       return;
     }
     let x1 = Math.max(selectedPos.left, 0);
@@ -199,8 +202,6 @@ exports.Editor = class Editor extends React.Component {
     croppedImage.height = cropHeight
     let croppedContext = croppedImage.getContext("2d");
     croppedContext.drawImage(this.imageCanvas, x1, y1, croppedImage.width, croppedImage.height, 0, 0, croppedImage.width, croppedImage.height);
-    croppedContext.globalCompositeOperation = 'multiply';
-    croppedContext.drawImage(this.highlighter, x1, y1, croppedImage.width, croppedImage.height, 0, 0, croppedImage.width, croppedImage.height);
     let img = new Image();
     let imageContext = this.imageCanvas.getContext('2d');
     img.crossOrigin = 'Anonymous';
@@ -213,13 +214,17 @@ exports.Editor = class Editor extends React.Component {
     img.src = croppedImage.toDataURL("image/png");
     this.canvasWidth = cropWidth;
     this.canvasHeight = cropHeight;
-    this.onClickCancelCrop();
+    this.removeCropBox();
+    this.cropToolBar = null;
+    this.setState({tool: 'pen'});
+    sendEvent("confirm-crop", "crop-toolbar");
   }
 
   onClickCancelCrop() {
     this.removeCropBox();
     this.cropToolBar = null;
     this.setState({tool: 'pen'});
+    sendEvent("cancel-crop", "crop-toolbar");
   }
 
   mouseup(e) {
@@ -660,10 +665,12 @@ class ColorPicker extends React.Component {
     let color = e.target.style.backgroundColor;
     this.setState({color, pickerActive: false});
     this.props.setColor(color);
+    sendEvent("color-change", "annotation-color-board");
   }
 
   onClickColorPicker() {
     let pickerActive = !this.state.pickerActive;
     this.setState({pickerActive});
+    sendEvent("color-picker-select", "annotation-toolbar");
   }
 }
