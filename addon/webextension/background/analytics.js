@@ -285,7 +285,8 @@ this.analytics = (function() {
           throw new Error(`Bad response from ${request.url}: ${response.status} ${response.statusText}`);
         }
         return response;
-      })
+      }),
+      true
     );
   }
 
