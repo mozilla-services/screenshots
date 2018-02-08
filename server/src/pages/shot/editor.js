@@ -11,6 +11,8 @@ let selectedPos = {};
 let mousedownPos = {};
 const minWidth = 10;
 const minHeight = 10;
+let points = [];
+let drawMousedown = false;
 
 const movements = ["topLeft", "top", "topRight", "left", "right", "bottomLeft", "bottom", "bottomRight"];
 const movementPositions = {
@@ -95,6 +97,7 @@ exports.Editor = class Editor extends React.Component {
     this.mousemove = this.mousemove.bind(this);
     this.draw = this.draw.bind(this);
     this.setPosition = this.setPosition.bind(this);
+    this.drawMouseup = this.drawMouseup.bind(this);
     this.canvasWidth = this.props.clip.image.dimensions.x;
     this.canvasHeight = this.props.clip.image.dimensions.y;
     this.state = {
@@ -447,13 +450,6 @@ exports.Editor = class Editor extends React.Component {
     sendEvent("save", "annotation-toolbar");
     let saveDisabled = true;
     this.setState({saveDisabled});
-    if (this.isColorWhite(this.state.color)) {
-      this.imageContext.globalCompositeOperation = "soft-light";
-    } else {
-      this.imageContext.globalCompositeOperation = "multiply";
-    }
-    this.imageContext.drawImage(this.highlighter, 0, 0);
-    this.highlightContext.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
     let dataUrl = this.imageCanvas.toDataURL();
 
     if (this.props.pngToJpegCutoff && dataUrl.length > this.props.pngToJpegCutoff) {
@@ -496,19 +492,10 @@ exports.Editor = class Editor extends React.Component {
   }
 
   componentDidMount() {
+    this.imageContext = this.imageCanvas.getContext('2d');
     this.highlightContext = this.highlighter.getContext('2d');
     this.renderImage();
     this.edit();
-  }
-
-  componentWillUpdate() {
-    if (this.isColorWhite(this.state.color)) {
-      this.imageContext.globalCompositeOperation = "soft-light";
-    } else {
-      this.imageContext.globalCompositeOperation = "multiply";
-    }
-    this.imageContext.drawImage(this.highlighter, 0, 0);
-    this.highlightContext.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
   }
 
   edit() {
@@ -532,7 +519,9 @@ exports.Editor = class Editor extends React.Component {
       this.imageContext.lineWidth = this.state.size;
       document.addEventListener("mousemove", this.draw);
       document.addEventListener("mousedown", this.setPosition);
+      document.addEventListener("mouseup", this.drawMouseup);
     } else if (this.state.tool == 'crop') {
+      document.removeEventListener("mouseup", this.drawMouseup);
       document.removeEventListener("mousemove", this.draw);
       document.removeEventListener("mousedown", this.setPosition);
       document.addEventListener("mousemove", this.mousemove);
@@ -541,16 +530,44 @@ exports.Editor = class Editor extends React.Component {
     }
   }
 
+  drawMouseup(e) {
+    e.preventDefault();
+    drawMousedown = false;
+    points = [];
+    if (this.state.tool == "highlighter") {
+      if (this.isColorWhite(this.state.color)) {
+        this.imageContext.globalCompositeOperation = "soft-light";
+      } else {
+        this.imageContext.globalCompositeOperation = "multiply";
+      }
+      this.imageContext.drawImage(this.highlighter, 0, 0);
+      this.highlightContext.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
+    }
+  }
+
   setPosition(e) {
+    e.preventDefault();
     let rect = this.imageCanvas.getBoundingClientRect();
     this.pos.x = e.clientX - rect.left,
     this.pos.y = e.clientY - rect.top
+    points.push({x: this.pos.x, y: this.pos.y});
+    drawMousedown = true;
   }
 
   draw(e) {
-    if (e.buttons !== 1) {
+    e.preventDefault();
+    if (!drawMousedown) {
       return null;
     }
+    if (this.state.tool == 'highlighter') {
+      this.drawHighlight(e);
+    } else {
+      this.drawPen(e);
+    }
+  }
+
+  drawPen(e) {
+    this.drawContext.lineCap = 'round';
     this.drawContext.beginPath();
 
     this.drawContext.lineCap = this.state.tool == 'highlighter' ? 'square' : 'round';
@@ -559,10 +576,44 @@ exports.Editor = class Editor extends React.Component {
     this.pos.x = e.clientX - rect.left,
     this.pos.y = e.clientY - rect.top
     this.drawContext.lineTo(this.pos.x, this.pos.y);
+    this.drawContext.stroke();
+  }
 
+  drawHighlight(e) {
+    this.drawContext.lineCap = 'square';
+    points.push({x: this.pos.x, y: this.pos.y});
+    if (points.length < 3) {
+      this.drawContext.beginPath();
+      let rect = this.imageCanvas.getBoundingClientRect();
+      this.pos.x = e.clientX - rect.left,
+      this.pos.y = e.clientY - rect.top
+      this.drawContext.lineTo(this.pos.x, this.pos.y);
+      this.drawContext.stroke();
+      return;
+    }
+    this.drawContext.moveTo(this.pos.x, this.pos.y);
+    let rect = this.imageCanvas.getBoundingClientRect();
+    this.pos.x = e.clientX - rect.left,
+    this.pos.y = e.clientY - rect.top
+    this.drawContext.lineTo(this.pos.x, this.pos.y);
+    this.drawContext.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+    this.drawContext.beginPath();
+    this.drawContext.moveTo(points[0].x, points[0].y);
+    for (var i = 1; i < points.length - 2; i++) {
+      let endX = (points[i].x + points[i + 1].x) / 2;
+      let endY = (points[i].y + points[i + 1].y) / 2;
+      this.drawContext.quadraticCurveTo(points[i].x, points[i].y, endX, endY);
+    }
+    this.drawContext.quadraticCurveTo(
+      points[i].x,
+      points[i].y,
+      points[i + 1].x,
+      points[i + 1].y
+    );
     this.drawContext.stroke();
   }
 }
+
 
 class ColorPicker extends React.Component {
 
