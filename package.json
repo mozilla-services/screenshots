@@ -1,7 +1,7 @@
 {
   "name": "firefox-screenshots",
   "description": "An experiment in creating better shareable versions of content.",
-  "version": "25.0.0",
+  "version": "29.0.0",
   "author": "Mozilla (https://mozilla.org/)",
   "bugs": {
     "url": "https://github.com/mozilla-services/screenshots/issues"
@@ -72,7 +72,7 @@
     "pontoon-to-webext": "1.0.2",
     "sass-lint": "1.12.0",
     "selenium-webdriver": "3.6.0",
-    "svgo": "0.7.2",
+    "svgo": "1.0.3",
     "uglify-js": "3.1.3",
     "uglifyify": "4.0.4",
     "web-ext": "2.1.0"
@@ -94,7 +94,7 @@
     "posttest": "npm run lint",
     "test": "make bootstrap_zip && mocha test/ test/server/unit/*",
     "test:selenium": "make bootstrap_zip && mocha test/test.js",
-    "test:server": "make .venv && cd test/server && ../../.venv/bin/pytest",
+    "test:server": "make .venv && cd test/server && ../../.venv/bin/pytest -m 'not slow'",
     "make_versions_exact": "node bin/build-scripts/make_versions_exact.js",
     "update_outdated": "david update && npm run make_versions_exact && npm update && npm outdated",
     "fill_database": "make .venv && ./.venv/bin/python  ./bin/load_test_exercise.py -q --little-image --create=50 --read-shot=0 --read-my-shots=0 --search=0 --new-account http://localhost:10080"

@@ -153,31 +153,45 @@ shotPageExpiresIn = caduca { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = ha caducat { $timediff }
 timeDiffJustNow = ara mateix
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] fa 1 minut
        *[other] fa { $number } minuts
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] fa 1 hora
        *[other] fa { $number } hores
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] ahir
        *[other] fa { $number } dies
     }
 timeDiffFutureSeconds = d'aquí pocs segons
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] d'aquí 1 minut
        *[other] d'aquí { $number } minuts
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] d'aquí 1 hora
        *[other] d'aquí { $number } hores
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] demà
        *[other] d'aquí { $number } dies
     }
+errorThirdPartyCookiesEnabled = Si heu fet aquesta captura i no la podeu suprimir, és possible que hàgiu d'activar temporalment les galetes de tercers a les preferències del navegador.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Llapis
+annotationHighlighterButton
+    .title = Marcador
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Esborra
+annotationSaveButton = Desa
+annotationCancelButton = Cancel·la
 
 
 [[ Shotindex page ]]
@@ -202,6 +216,10 @@ shotIndexPageNoSearchResults = No s'ha trobat cap captura que coincideixi amb la
 shotIndexPageClearSearchButton
     .title = Esborra la cerca
 shotIndexPageConfirmShotDelete = Voleu suprimir aquesta captura?
+shotIndexPagePreviousPage
+    .title = Pàgina anterior
+shotIndexPageNextPage
+    .title = Pàgina següent
 
 
 // all metrics strings are optional for translation

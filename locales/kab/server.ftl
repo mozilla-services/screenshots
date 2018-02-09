@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Ttxilek sedu URL n tuṭfa-agi deg imayl inek: { $url 
 shotPageKeepFor = Ceḥal n wakud tuṭṭfa-agi ad tettwasekles?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Fren akud
-shotPageKeepIndefinitely = war tilas
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = war tilas ∞
 shotPageKeepTenMinutes = 10 n tesdatin
 shotPageKeepOneHour = 1 n usrag
 shotPageKeepOneDay = 1 n wass
@@ -154,27 +157,47 @@ shotPageExpiresIn = ad yemmet { $timediff }
 shotPageExpired = immut  { $timediff }
 timeDiffJustNow = tura yakan
 timeDiffMinutesAgo = { $number } n tesdatin aya
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 usrag aya
        *[other] { $number } isragen aya
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] iḍelli
        *[other] { $number }  n wussan aya
     }
 timeDiffFutureSeconds = deg kra n tesnatin
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] di 1 n tsedat
        *[other] di { $number } tsedatin
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] di 1 usrag
        *[other] di { $number } isragen
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] azekka
        *[other] di { $number } n wussan
     }
+errorThirdPartyCookiesEnabled = Ma txeḍmeḍ tuṭṭfa-a sakin ur tezmireḍ ara ad tt-tekseḍ, iwwi-d ahat ad tremdeḍ s wudem askudan inagan n tuqna n wis kraḍ seg Ismenyifen n iminig inek.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Imru
+annotationHighlighterButton
+    .title = Aqerru
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Sfeḍ
+annotationCropButton
+    .title = Flali
+annotationSaveButton = Sekles
+annotationCancelButton = Sefsex
+annotationCropConfirmButton = Sentem
+    .title = SSentem tafrant
+annotationCropCancelButton = Sefsex
+    .title = Sefsex tafrant
 
 
 [[ Shotindex page ]]
@@ -203,6 +226,12 @@ shotIndexPagePreviousPage
     .title = Asebter iεeddan
 shotIndexPageNextPage
     .title = Asebter i d-iteddun
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Tuṭṭfa-agi ur tettmettat ara
 
 
 // all metrics strings are optional for translation

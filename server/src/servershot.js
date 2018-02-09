@@ -561,7 +561,7 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
     if (searchQuery) {
       idNums = idParamPositions(4, deviceIds);
       sql = `
-        SELECT data.id, data.value, data.deviceid, ts_rank_cd(data.searchable_text, query) AS rank
+        SELECT data.id, data.value, data.deviceid, data.expire_time, ts_rank_cd(data.searchable_text, query) AS rank
         FROM data, plainto_tsquery($1) AS query
         WHERE data.deviceid IN (${idNums.join(", ")})
               AND NOT data.deleted
@@ -576,7 +576,7 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
     } else {
       idNums = idParamPositions(2, deviceIds);
       sql = `
-      SELECT data.id, data.value, data.deviceid
+      SELECT data.id, data.value, data.deviceid, data.expire_time
       FROM data
       WHERE data.deviceid IN (${idNums.join(", ")})
             AND NOT data.deleted
@@ -602,6 +602,7 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
         let shot;
         try {
           shot = new Shot(row.deviceid, backend, row.id, json);
+          shot.expireTime = row.expire_time;
         } catch (e) {
           mozlog.warn("error-instantiating-shot", {err: e});
           continue;
@@ -756,23 +757,30 @@ ClipRewrites = class ClipRewrites {
       }
     }
     this.toInsertThumbnail = null;
-    this.oldFullScreenThumbnail = this.shot.fullScreenThumbnail;
+    this.oldThumbnail = this.shot.thumbnail;
     if (!validUrl.isWebUri(this.shot.url)) {
       this.shot.fullUrl = "";
       this.shot.origin = "";
     }
-    let url = this.shot.fullScreenThumbnail;
-    let match = (/^data:([^;]*);base64,/).exec(url);
-    if (match) {
-      let imageData = url.substr(match[0].length);
+    const pngDataUrlMediaType = "data:image/png;base64,"
+    if (this.shot.thumbnail && this.shot.thumbnail.startsWith(pngDataUrlMediaType)) {
+      let imageData = this.shot.thumbnail.substr(pngDataUrlMediaType.length);
       imageData = new Buffer(imageData, 'base64');
-      let imageId = uuid.v4();
+      let imageId = `${uuid.v4()}.png`;
       this.toInsertThumbnail = {
-        contentType: match[1],
+        contentType: "image/png",
         binary: imageData,
         uuid: imageId,
         url: linker.imageLinkWithHost(imageId)
       };
+    } else if (this.shot.thumbnail && validUrl.isWebUri(this.shot.thumbnail)) {
+      // When there is no thumbnail to insert or update, but there is a
+      // thumbnail previously, use the old one. This happens when other
+      // properties of the shot are being updated.
+      //
+      // The clip id of a thumbnail is its filename, so we add that to the
+      // unedited list to prevent it from being deleted in commit().
+      this.unedited.push(this.shot.thumbnail.split("/").pop());
     }
   }
 
@@ -783,7 +791,7 @@ ClipRewrites = class ClipRewrites {
       clip.image.url = url;
     }
     if (this.toInsertThumbnail !== null) {
-      this.shot.fullScreenThumbnail = this.toInsertThumbnail.url;
+      this.shot.thumbnail = this.toInsertThumbnail.url;
     }
   }
 
@@ -793,7 +801,7 @@ ClipRewrites = class ClipRewrites {
       let clip = this.shot.getClip(clipId);
       clip.setUrlFromBinary(data.binary);
     }
-    this.shot.fullScreenThumbnail = this.oldFullScreenThumbnail;
+    this.shot.thumbnail = this.oldThumbnail;
   }
 
   clear() {
@@ -876,7 +884,7 @@ ClipRewrites = class ClipRewrites {
         // Use the thumbnail uuid as the clipid. This allows figuring out which
         // images are thumbnails, too.
         [this.toInsertThumbnail.uuid, this.shot.id, this.toInsertThumbnail.uuid,
-        this.toInsertThumbnail.url, this.toInsertThumbnail.contentType, this.toInsertThumbnail.binary.data.length]);
+        this.toInsertThumbnail.url, this.toInsertThumbnail.contentType, this.toInsertThumbnail.binary.length]);
     }).then(() => {
       this.committed = true;
     });

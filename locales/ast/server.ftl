@@ -81,18 +81,22 @@ shotPageSaveExpiration = guardar
 shotPageCancelExpiration = encaboxar
 shotPageDoesNotExpire = nun caduca
 timeDiffJustNow = xusto agora
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] ayeri
        *[other] hai { $number } díes
     }
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] en 1 minutu
        *[other] en { $number } minutos
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] mañana
        *[other] en { $number } díes
     }
+
+
+[[ Annotations ]]
+
 
 
 [[ Shotindex page ]]

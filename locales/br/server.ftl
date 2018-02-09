@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Enkorfit URL an tapadenn-mañ en ho postel: { $url }
 shotPageKeepFor = E-pad pegen amzer eo ret derc'hel an tapadenn enlinenn?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Diuzañ an amzer
-shotPageKeepIndefinitely = Peurbadus
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Da viken ∞
 shotPageKeepTenMinutes = 10 munut
 shotPageKeepOneHour = 1 eur
 shotPageKeepOneDay = 1 devezh
@@ -154,27 +157,47 @@ shotPageExpiresIn = diamzer a-benn { $timediff }
 shotPageExpired = diamzeret abaoe { $timediff }
 timeDiffJustNow = diouzhtu
 timeDiffMinutesAgo = 
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 vunutenn 'zo
        *[other] { $number } a vunutennoù 'zo
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] dec'h
        *[other] { $number } a zevezhioù 'zo
     }
 timeDiffFutureSeconds = a-benn un nebeud eilennoù
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] a-benn 1 vunutenn
        *[other] a-benn { $number } a vunutennoù
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] a-benn 1 eur
        *[other] a-benn { $number } a eurioù
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] warc'hoazh
        *[other] a-benn { $number } a zevezhioù
     }
+errorThirdPartyCookiesEnabled = M'ho peus kemeret an dapadenn-mañ ha n'hallit ket he dilemel ho peus ezhomm da weredekaat toupinoù an tredeoù e gwellvezioù ho merdeer. 
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Kreion
+annotationHighlighterButton
+    .title = Usskeder
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Skarzhañ
+annotationCropButton
+    .title = Troc'hañ
+annotationSaveButton = Enrollañ
+annotationCancelButton = Nullañ
+annotationConfirmCropButton = Kadarnaat
+    .title = Kadarnaat an diuzañ
+annotationCancelCropButton = Nullañ
+    .title = Nullañ an diuzañ
 
 
 [[ Shotindex page ]]
@@ -199,6 +222,16 @@ shotIndexPageNoSearchResults = N'haller ket kavout tapadennoù a glot gant hoc'h
 shotIndexPageClearSearchButton
     .title = Skarzhañ ar c'hlask
 shotIndexPageConfirmShotDelete = Dilemel an dapadenn-mañ?
+shotIndexPagePreviousPage
+    .title = Pajenn gent
+shotIndexPageNextPage
+    .title = Pajenn da-heul
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = An dapadenn n'hall ket diamzeriñ
 
 
 // all metrics strings are optional for translation
@@ -226,3 +259,21 @@ metricsPageUserShotsQueryDescription = An niver a arveriaded gant N tapadenn gan
 metricsPageUserShotsQueryCount = Niver a arveriaded
 metricsPageUserShotsQueryShots = Niver brasjedet a dapadennoù gweredekaet
 metricsPageRetentionQueryTitle = Miradurioù dre sizhun
+metricsPageRetentionQueryDescription = Niver a zevezhioù etre tapadenn gentañ un arveriad betek e dapadenn ziwezhañ, strollet dre ar sizhunvezh deraouiñ
+metricsPageRetentionQueryUsers = Niver a arveriaded
+metricsPageRetentionQueryDays = Devezhioù etre tapadenn gentañ an arveriad betek e hini ziwezhañ
+metricsPageRetentionQueryFirstWeek = Sizhunvezh tapadenn gentañ an arveriad
+metricsPageTotalRetentionQueryTitle = Amdroadur klok
+metricsPageTotalRetentionQueryDescription = Padelezh lec'h m'eo bet krouet tapadennoù gant arveriaded, strollet dre sizhun
+metricsPageTotalRetentionQueryUsers = Niver a arveriaded
+metricsPageTotalRetentionQueryDays = Niver a zevezhioù lec'h m'en deus an arveriad krouet tapadennoù
+metricsPageVersionQueryTitle = Handelv an askouezh
+metricsPageVersionQueryDescription = Handelv an askouezh implijet e-pad ar c'hennask, e-pad ar 14 devezh diwezhañ
+metricsPageVersionQueryUsers = Niver a arveriaded o kennaskañ
+metricsPageVersionQueryVersion = Handelv an askouezh
+metricsPageVersionQueryLastSeen = Devezh
+metricsPageHeader = Stadegoù
+// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Krouet d'ar/al: { $created }
+// Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (amzer implij ar stlennvon: { $time }ms)

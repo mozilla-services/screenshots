@@ -121,10 +121,14 @@ shotPageKeepOneDay = 1 Araw
 shotPageKeepOneWeek = 1 Linggo
 shotPageKeepTwoWeeks = 2 Linggo
 shotPageKeepOneMonth = 1 Buwan
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] Bukas
        *[other] sa { $number } na mga araw
     }
+
+
+[[ Annotations ]]
+
 
 
 [[ Shotindex page ]]

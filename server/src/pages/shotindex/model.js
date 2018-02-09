@@ -32,7 +32,12 @@ exports.createModel = function(req) {
     }
   }
   if (shots && shots.length) {
-    shots = shots.map((shot) => ({id: shot.id, json: shot.asRecallJson()}));
+    shots = shots.map(
+      shot => ({
+        id: shot.id,
+        json: shot.asRecallJson(),
+        expireTime: shot.expireTime
+      }));
   }
   let jsonModel = Object.assign(
     {},

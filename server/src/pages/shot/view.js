@@ -99,6 +99,7 @@ class Head extends React.Component {
       <reactruntime.HeadTemplate {...this.props}>
         <script src={ this.props.staticLink("/static/js/wantsauth.js") } />
         <script src={ this.props.staticLink("/static/js/shot-bundle.js") } async />
+        <link rel="stylesheet" href={ this.props.staticLink("/static/css/inline-selection.css") } />
         <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />
@@ -208,7 +209,7 @@ class Body extends React.Component {
     let clipNames = shot.clipNames();
     let clip = shot.getClip(clipNames[0]);
     return <reactruntime.BodyTemplate {...this.props}>
-        <Editor clip={clip} onCancelEdit={this.onCancelEdit.bind(this)} onClickSave={this.onClickSave.bind(this)}></Editor>
+        <Editor clip={clip} pngToJpegCutoff={this.props.pngToJpegCutoff} onCancelEdit={this.onCancelEdit.bind(this)} onClickSave={this.onClickSave.bind(this)}></Editor>
     </reactruntime.BodyTemplate>;
   }
 
@@ -315,9 +316,9 @@ class Body extends React.Component {
     }
 
     let errorMessages = [
-      <Localized id="shotPageAlertErrorUpdatingExpirationTime" key="error-1"><div id="shotPageAlertErrorUpdatingExpirationTime" hidden></div></Localized>,
-      <Localized id="shotPageAlertErrorDeletingShot" key="error-2"><div id="shotPageAlertErrorDeletingShot" hidden></div></Localized>,
-      <Localized id="shotPageAlertErrorUpdatingTitle" key="error-3"><div id="shotPageAlertErrorUpdatingTitle" hidden></div></Localized>,
+      <Localized id="shotPageAlertErrorUpdatingExpirationTime" key="error-1"><div id="shotPageAlertErrorUpdatingExpirationTime" className="clips-warning" hidden></div></Localized>,
+      <Localized id="shotPageAlertErrorDeletingShot" key="error-2"><div id="shotPageAlertErrorDeletingShot" className="clips-warning" hidden></div></Localized>,
+      <Localized id="shotPageAlertErrorUpdatingTitle" key="error-3"><div id="shotPageAlertErrorUpdatingTitle" className="clips-warning" hidden></div></Localized>,
       <Localized id="shotPageConfirmDelete" key="error-4"><div id="shotPageConfirmDelete" hidden></div></Localized>
     ];
 
@@ -386,8 +387,8 @@ class Body extends React.Component {
       favicon = <div style={{backgroundImage: `url("${shot.favicon}")`}} className="favicon" />;
     }
 
-    const shotPageDownload = <Localized id="shotPageDownload"><span className="download-text">Download</span></Localized>;
-
+    const noText = this.props.abTests && this.props.abTests.downloadText
+                   && this.props.abTests.downloadText.value === "no-download-text";
     return (
       <reactruntime.BodyTemplate {...this.props}>
         { renderGetFirefox ? this.renderFirefoxRequired() : null }
@@ -412,17 +413,33 @@ class Body extends React.Component {
             <Localized id="shotPageDownloadShot">
               <a className="button primary" href={ this.props.downloadUrl } onClick={ this.onClickDownload.bind(this) }
                 title="Download the shot image">
-                <img src={ this.props.staticLink("/static/img/download-white.svg") } width="20" height="20"/>&nbsp;
-                {shotPageDownload}
+                <img id="downloadIcon" style={noText ? {marginRight: "0"} : {}}
+                    src={this.props.staticLink("/static/img/download-white.svg")}
+                    width="20" height="20" />
+                { !noText &&
+                    <Localized id="shotPageDownload"><span className="download-text">Download</span></Localized> }
               </a>
             </Localized>
           </div>
         </div>
-        { clips }
-        { errorMessages }
+        <section className="clips">
+          { this.props.isOwner && this.props.loginFailed ? <LoginFailedWarning /> : null }
+          { errorMessages }
+          { this.props.showSurveyLink ? this.renderSurveyLink() : null }
+          { clips }
+        </section>
         <Footer forUrl={ shot.viewUrl } {...this.props} />
       </div>
     </reactruntime.BodyTemplate>);
+  }
+
+  renderSurveyLink() {
+    return <div className="clips-message">
+      <div className="clip-message-content">Help us choose which features to add next by taking this <a href="https://qsurvey.mozilla.com/s3/ss-max-diff-q4-2017" target="_blank" rel="noopener noreferrer">quick survey</a>.</div>
+      <div className="clip-message-dismiss-wrapper" onClick={controller.closeSurveyLink}>
+        <div className="clip-message-dismiss" />
+      </div>
+    </div>
   }
 
   renderFirefoxRequired() {
@@ -447,8 +464,8 @@ class Body extends React.Component {
     }
   }
 
-  onClickSave(dataUrl) {
-    this.props.controller.saveEdit(this.props.shot, dataUrl);
+  onClickSave(dataUrl, dimensions) {
+    this.props.controller.saveEdit(this.props.shot, dataUrl, dimensions);
   }
 
   onCancelEdit(imageEditing) {
@@ -533,7 +550,7 @@ class ExpireWidget extends React.Component {
         <Localized id="shotPageKeepFor"><span>How long should this shot be retained?</span></Localized>
         <select ref={expireTime => this.expireTime = expireTime}>
           <Localized id="shotPageSelectTime"><option value="cancel">Select time</option></Localized>
-          <Localized id="shotPageKeepIndefinitely"><option value="0">Indefinitely</option></Localized>
+          <Localized id="shotPageKeepIndefinitelyWithSymbol"><option value="0">Indefinitely &infin;</option></Localized>
           <Localized id="shotPageKeepTenMinutes"><option value={ 10 * minute }>10 Minutes</option></Localized>
           <Localized id="shotPageKeepOneHour"><option value={ hour }>1 Hour</option></Localized>
           <Localized id="shotPageKeepOneDay"><option value={ day }>1 Day</option></Localized>
@@ -652,6 +669,16 @@ class EditableTitle extends React.Component {
     }
   }
 
+}
+
+class LoginFailedWarning extends React.Component {
+  render() {
+    return <Localized id="errorThirdPartyCookiesEnabled">
+      <div className="clips-warning">
+        If you took this shot and cannot delete it, you may need to temporarily enable third party cookies from your browser’s preferences!!
+      </div>
+    </Localized>;
+  }
 }
 
 exports.BodyFactory = React.createFactory(Body);

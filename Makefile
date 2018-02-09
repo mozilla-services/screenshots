@@ -88,7 +88,7 @@ build/%.html: %.html
 	cp $< $@
 
 .PHONY: addon
-addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/shot.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/onboardingCss.js addon/webextension/build/onboardingHtml.js addon/webextension/build/buildSettings.js
+addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/shot.js addon/webextension/build/thumbnailGenerator.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/onboardingCss.js addon/webextension/build/onboardingHtml.js addon/webextension/build/buildSettings.js
 
 $(VENV): bin/require.pip
 	virtualenv -p python2.7 $(VENV)
@@ -134,6 +134,10 @@ addon/webextension/manifest.json: addon/webextension/manifest.json.template buil
 addon/webextension/build/shot.js: shared/shot.js
 	@mkdir -p $(@D)
 	./bin/build-scripts/modularize shot $< > $@
+
+addon/webextension/build/thumbnailGenerator.js: shared/thumbnailGenerator.js
+	@mkdir -p $(@D)
+	./bin/build-scripts/modularize thumbnailGenerator $< > $@
 
 addon/webextension/build/inlineSelectionCss.js: build/server/static/css/inline-selection.css
 	@mkdir -p $(@D)

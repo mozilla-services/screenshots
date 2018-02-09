@@ -8,7 +8,7 @@
 [[ global ]]
 
 gMyShots = Мои снимки
-gHomeLink = Дом
+gHomeLink = Главная
 gNoShots
     .alt = снимков не найдено
 gScreenshotsDescription = Скриншоты стали простыми. Делайте, сохраняйте и делитесь скриншотами, не покидая Firefox.
@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Пожалуйста, включите в ваше п�
 shotPageKeepFor = Как долго этот снимок будет храниться?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Выберите время
-shotPageKeepIndefinitely = Бесконечно
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Бесконечно ∞
 shotPageKeepTenMinutes = 10 минут
 shotPageKeepOneHour = 1 час
 shotPageKeepOneDay = 1 день
@@ -153,37 +156,57 @@ shotPageExpiresIn = срок хранения истечёт { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = срок хранения истёк { $timediff }
 timeDiffJustNow = прямо сейчас
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] { $number } минуту назад
         [few] { $number } минуты назад
        *[other] { $number } минут назад
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] { $number } час назад
         [few] { $number } часа назад
        *[other] { $number } часов назад
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] { $number } день назад
         [few] { $number } дня назад
        *[other] { $number } дней назад
     }
 timeDiffFutureSeconds = через несколько секунд
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] через { $number } минуту
         [few] через { $number } минуты
        *[other] через { $number } минут
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] через { $number } час
         [few] через { $number } часа
        *[other] через { $number } часов
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] через { $number } день
         [few] через { $number } дня
        *[other] через { $number } дней
     }
+errorThirdPartyCookiesEnabled = Если вы сделали этот снимок и не можете удалить его, то вам нужно временно включить сторонние куки в настройках вашего браузера.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Ручка
+annotationHighlighterButton
+    .title = Маркер
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Очистить
+annotationCropButton
+    .title = Обрезать
+annotationSaveButton = Сохранить
+annotationCancelButton = Отмена
+annotationCropConfirmButton = Подтвердить
+    .title = Подтвердить выделение области
+annotationCropCancelButton = Отмена
+    .title = Отменить выделение
 
 
 [[ Shotindex page ]]
@@ -212,6 +235,12 @@ shotIndexPagePreviousPage
     .title = Предыдущая страница
 shotIndexPageNextPage
     .title = Следующая страница
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Срок хранения этого снимка неограничен
 
 
 // all metrics strings are optional for translation

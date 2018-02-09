@@ -3,10 +3,47 @@
 const sendEvent = require("../../browser-send-event.js");
 const page = require("./page").page;
 const { AbstractShot } = require("../../../shared/shot");
+const { createThumbnailUrl } = require("../../../shared/thumbnailGenerator");
 const { shotGaFieldForValue } = require("../../ab-tests.js");
 
 // This represents the model we are rendering:
 let model;
+
+const SURVEY_EXPIRATION = new Date("2018-01-15");
+
+function shouldShowSurveyLink(model) {
+  if ((new Date()) > SURVEY_EXPIRATION) {
+    return false;
+  }
+  if (!model.isOwner) {
+    return false;
+  }
+  let foundEnglish = false;
+  // model.userLocales always contains some form of English because it's a server
+  // fallback. But navigator.languages does not have a fallback (except what the
+  // user indicates in their browser preferences)
+  if (model.userLocales[0].startsWith("en")) {
+    foundEnglish = true;
+  }
+  for (let locale of navigator.languages) {
+    if (locale.startsWith("en")) {
+      foundEnglish = true;
+    }
+  }
+  if (!foundEnglish) {
+    return false;
+  }
+  let hasSeen = localStorage.hasSeenSurveyLink;
+  if (!hasSeen) {
+    localStorage.hasSeenSurveyLink = "1";
+  }
+  return !hasSeen;
+}
+
+exports.closeSurveyLink = function() {
+  model.showSurveyLink = false;
+  render();
+};
 
 exports.launch = function(data) {
   let firstSet = !model;
@@ -44,6 +81,7 @@ exports.launch = function(data) {
       }
     }
   }
+  model.showSurveyLink = shouldShowSurveyLink(model);
   if (firstSet) {
     refreshHash();
   }
@@ -118,34 +156,52 @@ exports.deleteShot = function(shot) {
   req.send(`id=${encodeURIComponent(shot.id)}&_csrf=${encodeURIComponent(model.csrfToken)}`);
 };
 
-exports.saveEdit = function(shot, shotUrl) {
-  var url = model.backend + "/api/save-edit";
-  var body = JSON.stringify({
+exports.saveEdit = function(shot, shotUrl, dimensions) {
+  let url = model.backend + "/api/save-edit";
+  let payload = {
     shotId: shot.id,
     _csrf: model.csrfToken,
-    url: shotUrl
-  });
-  var req = new Request(url, {
-    method: 'POST',
-    credentials: 'include',
-    headers: new Headers({
-      'content-type': 'application/json'
-    }),
-    body
-  });
-  return fetch(req).then((resp) => {
-    if (!resp.ok) {
-      var errorMessage = "Error saving edited shot";
+    url: shotUrl,
+    x: dimensions.x,
+    y: dimensions.y
+  };
+
+  let postWith = body => {
+    let req = new Request(url, {
+      method: 'POST',
+      credentials: 'include',
+      headers: new Headers({
+        'content-type': 'application/json'
+      }),
+      body
+    });
+    return fetch(req).then((resp) => {
+      if (!resp.ok) {
+        let errorMessage = "Error saving edited shot";
+        window.alert(errorMessage);
+        window.Raven.captureException(new Error(`Error calling /api/save-edit: ${req.status} ${req.statusText}`));
+      } else {
+        location.reload();
+      }
+    }).catch((error) => {
+      let errorMessage = "Connection error";
       window.alert(errorMessage);
-      window.Raven.captureException(new Error(`Error calling /api/save-edit: ${req.status} ${req.statusText}`));
-    } else {
-      location.reload();
-    }
-  }).catch((error) => {
-    var errorMessage = "Connection error";
-    window.alert(errorMessage);
-    window.Raven.captureException(error);
-    throw error;
+      window.Raven.captureException(error);
+      throw error;
+    });
+  }
+
+  let image = shot.getClip(shot.clipNames()[0]).image;
+
+  image.url = shotUrl;
+  image.dimensions.x = dimensions.x;
+  image.dimensions.y = dimensions.y;
+
+  createThumbnailUrl(shot).then(thumbnail => {
+    payload.thumbnail = thumbnail;
+    return postWith(JSON.stringify(payload));
+  }).catch(() => {
+    return postWith(JSON.stringify(payload));
   });
 }
 

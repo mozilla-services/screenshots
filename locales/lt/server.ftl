@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Prašome įtraukti šio karo URL savo el. laiške: { $
 shotPageKeepFor = Kiek ilgai šis nuotrauka turėtų būti laikoma?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Pasirinkite laiką
-shotPageKeepIndefinitely = Neribotai
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Neribotai ∞
 shotPageKeepTenMinutes = 10 minučių
 shotPageKeepOneHour = 1 valandą
 shotPageKeepOneDay = 1 dieną
@@ -153,37 +156,57 @@ shotPageExpiresIn = baigs galioti { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = baigė galioti { $timediff }
 timeDiffJustNow = ką tik
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] prieš 1 minutę
         [few] prieš { $number } minutes
        *[other] prieš { $number } minučių
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] prieš 1 valandą
         [few] prieš { $number } valandas
        *[other] prieš { $number } valandų
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] vakar
         [few] prieš { $number } dienas
        *[other] prieš { $number } dienų
     }
 timeDiffFutureSeconds = po keleto sekundžių
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] po 1 minutės
         [few] po { $number } minučių
        *[other] po { $number } minučių
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] po 1 valandos
         [few] po { $number } valandų
        *[other] po { $number } valandų
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] rytoj
         [few] po { $number } dienų
        *[other] po { $number } dienų
     }
+errorThirdPartyCookiesEnabled = Jei padarėte šią nuotrauką ir negalite jos pašalinti, gali tekti laikinai įjungti trečiųjų šalių slapukus per naršyklės nuostatas.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Rašiklis
+annotationHighlighterButton
+    .title = Žymeklis
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Išvalyti
+annotationCropButton
+    .title = Apkirpti
+annotationSaveButton = Įrašyti
+annotationCancelButton = Atsisakyti
+annotationCropConfirmButton = Tinka
+    .title = Patvirtinkite pasirinkimą
+annotationCropCancelButton = Atsisakyti
+    .title = Atsisakyti pasirinkimo
 
 
 [[ Shotindex page ]]
@@ -212,6 +235,12 @@ shotIndexPagePreviousPage
     .title = Ankstesnis puslapis
 shotIndexPageNextPage
     .title = Kitas puslapis
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Ši nuotrauka galioja neribotą laiką
 
 
 // all metrics strings are optional for translation

@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Do e-mailu zahrňte, prosím, URL adresu tejto snímky
 shotPageKeepFor = Na ako dlho má byť táto snímka uložená?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Vyberte čas
-shotPageKeepIndefinitely = na neurčito
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Navždy ∞
 shotPageKeepTenMinutes = 10 minút
 shotPageKeepOneHour = 1 hodinu
 shotPageKeepOneDay = 1 deň
@@ -153,37 +156,55 @@ shotPageExpiresIn = platnosť vyprší { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = platnosť vypršala { $timediff }
 timeDiffJustNow = práve teraz
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] pred 1 minútou
         [few] pred { $number } minútami
        *[other] pred { $number } minútami
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] pred hodinou
         [few] pred { $number } hodinami
        *[other] pred { $number } hodinami
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] včera
         [few] pred { $number } dňami
        *[other] pred { $number } dňami
     }
 timeDiffFutureSeconds = za pár sekúnd
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] za minútu
         [few] za { $number } minúty
        *[other] za { $number } minút
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] za hodinu
         [few] za { $number } hodiny
        *[other] za { $number } hodín
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] zajtra
         [few] za { $number } dni
        *[other] za { $number } dní
     }
+errorThirdPartyCookiesEnabled = Ak ste túto snímku vytvorili, no nemôžete ju odstrániť, dočasne povoľte v možnostiach svojho prehliadača používanie cookies tretích strán.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pero
+annotationHighlighterButton
+    .title = Zvýrazňovač
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Odstrániť zmeny
+annotationCropButton
+    .title = Orezať
+annotationSaveButton = Uložiť
+annotationCancelButton = Zrušiť
+annotationConfirmCropButton = Potvrdiť
+annotationCancelCropButton = Zrušiť
 
 
 [[ Shotindex page ]]
@@ -212,6 +233,12 @@ shotIndexPagePreviousPage
     .title = Predchádzajúca stránka
 shotIndexPageNextPage
     .title = Nasledujúca stránka
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Platnosť tejto snímky nevyprší
 
 
 // all metrics strings are optional for translation

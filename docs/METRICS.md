@@ -32,7 +32,7 @@ Unlike the rest of the metrics, answering this question requires using Mozilla's
 
 - `screenshots.download` - incremented each time a shot is created & downloaded during a session
 - `screenshots.upload` - incremented each time a shot is created & uploaded to the screenshots server during a session
-- `screenshots.copy` - incremented each time a shot is created & copied straight to the clipboard without downloading or uploading (this feature is planned, but not yet implemented; see #2582)
+- `screenshots.copy` - incremented each time a shot is created & copied straight to the clipboard without downloading or uploading
 
 #### Do people continue to create shots?
 
@@ -126,6 +126,8 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 3. [x] Click Save `addon/save-shot/overlay-save-button`
 4. [x] Click Cancel `addon/cancel-shot/overlay-cancel-button`
 5. [x] Click Download `addon/download-shot/overlay-download-button`
+5. [x] Click Copy `addon/copy-shot/overlay-copy-button`
+5. [x] Copy to clipboard keyboard shortcut `addon/copy-shot/keyboard-copy`
 5. [x] Cancel because URL changed `addon/cancel-shot/url-changed` (when something that uses window.history "navigates" spontaneously away)
 7. [ ] Cancel because the tab is navigated (such as entering something in the URL bar), **or** the tab was closed, **or** the tab was reloaded `addon/cancel-shot/tab-load` (previously closing would emit `addon/cancel-shot/tab-close` and `addon/cancel-shot/tab-reload` for those cases)
 5. [x] Click My Shots `addon/goto-myshots/selection-button`

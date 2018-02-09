@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Lütfen e-potanızda bu görüntünün adresini de bel
 shotPageKeepFor = Bu görüntü ne kadar süreyle saklansın?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Süre seçin
-shotPageKeepIndefinitely = Sonsuz
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Sonsuza dek ∞
 shotPageKeepTenMinutes = 10 dakika
 shotPageKeepOneHour = 1 saat
 shotPageKeepOneDay = 1 gün
@@ -160,6 +163,26 @@ timeDiffFutureSeconds = birkaç saniye sonra
 timeDiffFutureMinutes = { $number } dakika sonra
 timeDiffFutureHours = { $number } saat sonra
 timeDiffFutureDays = yarın
+errorThirdPartyCookiesEnabled = Bu görüntüyü siz kaydettiyseniz ve silemiyorsanız tarayıcınızın tercihlerinden üçüncü taraf çerezlerini geçici olarak etkinleştirmeniz gerekebilir.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Kalem
+annotationHighlighterButton
+    .title = Fosforlu kalem
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Temizle
+annotationCropButton
+    .title = Kırp
+annotationSaveButton = Kaydet
+annotationCancelButton = İptal
+annotationCropConfirmButton = Onayla
+    .title = Seçimi onayla
+annotationCropCancelButton = İptal
+    .title = Seçimi iptal et
 
 
 [[ Shotindex page ]]
@@ -188,6 +211,12 @@ shotIndexPagePreviousPage
     .title = Önceki sayfa
 shotIndexPageNextPage
     .title = Sonraki sayfa
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Bu görüntü zaman aşımına uğramaz
 
 
 // all metrics strings are optional for translation

@@ -138,7 +138,6 @@ shotPageDMCAIncludeLink = Sertakan URL dari tangkapan ini dalam surel Anda: { $u
 shotPageKeepFor = Berapa lama tangkapan ini disimpan?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Pilih waktu
-shotPageKeepIndefinitely = Selamanya
 shotPageKeepTenMinutes = 10 Menit
 shotPageKeepOneHour = 1 Jam
 shotPageKeepOneDay = 1 Hari
@@ -160,6 +159,26 @@ timeDiffFutureSeconds = dalam beberapa detik
 timeDiffFutureMinutes = dalam 1 menit
 timeDiffFutureHours = dalam 1 jam
 timeDiffFutureDays = besok
+errorThirdPartyCookiesEnabled = Jika Anda mengambil tangkapan ini dan tidak bisa menghapusnya, Anda mungkin perlu mengaktifkan kuki pihak ketiga untuk sementara dari pengaturan peramban Anda.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pena
+annotationHighlighterButton
+    .title = Penyorot
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Bersihkan
+annotationCropButton
+    .title = Pangkas
+annotationSaveButton = Simpan
+annotationCancelButton = Batal
+annotationCropConfirmButton = Konfirmasi
+    .title = Konfirmasi pilihan
+annotationCropCancelButton = Batal
+    .title = Batalkan pilihan
 
 
 [[ Shotindex page ]]

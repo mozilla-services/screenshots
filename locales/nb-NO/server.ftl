@@ -7,7 +7,7 @@
 // Global phrases shared across pages, prefixed with 'g'
 [[ global ]]
 
-gMyShots = Mine skjermbilder
+gMyShots = Uendelig ∞
 gHomeLink = Hjem
 gNoShots
     .alt = Ingen skjermbilder funnet
@@ -59,7 +59,7 @@ homePageCapturePage = Ta skjermbilde av en side
 homePageCapturePageDescription = Bruk knappene øverst til høyre for å ta skjermbilde av hele sider. Knappen «Lagre synlig område» tar skjermbilde av området du kan se uten å rulle, og «Lagre hele siden» vil ta skjermbilde av alt på siden.
 homePageSaveShare = Lagre og del
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Når du tar et bilde, laster Firefox opp skjermbildet ditt i din nettbaserte Screenshots-bibliotek og kopierer lenken til utklippstavlen. Vi lagrer skjermbildet automatisk i to uker, men du kan når som helst slette bilder eller endre utløpsdatoen for å beholde dem i biblioteket ditt lenger.
+homePageSaveShareDescription = Når du tar et skjermbilde, laster Firefox opp skjermbildet ditt i din nettbaserte Screenshots-bibliotek og kopierer lenken til utklippstavlen. Vi lagrer skjermbildet automatisk i to uker, men du kan når som helst slette bilder eller endre utløpsdatoen for å beholde dem i biblioteket ditt lenger.
 homePageLegalLink = Juridisk
 homePagePrivacyLink = Personvern
 homePageTermsLink = Vilkår
@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Ta med nettadressen til dette bildet i e-posten din: {
 shotPageKeepFor = Hvor lenge skal dette skjermbildet beholdes?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Velg tid
-shotPageKeepIndefinitely = Uendelig
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Uendelig ∞
 shotPageKeepTenMinutes = 10 minutter
 shotPageKeepOneHour = 1 time
 shotPageKeepOneDay = 1 dag
@@ -153,31 +156,51 @@ shotPageExpiresIn = utløper { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = utløpt { $timediff }
 timeDiffJustNow = akkurat nå
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 minutt siden
        *[other] { $number } minutter siden
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 time siden
        *[other] { $number } timer siden
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] i går
        *[other] { $number } dager siden
     }
 timeDiffFutureSeconds = om noen få sekunder
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] om 1 minutt
        *[other] om { $number } minutter
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] om 1 time
        *[other] om { $number } timer
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] i morgen
        *[other] om { $number } dager
     }
+errorThirdPartyCookiesEnabled = Hvis du tok dette skjermbildet og ikke kan slette det, må du kanskje midlertidig aktivere tredjeparts infokapsler fra nettleserens innstillinger.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Penn
+annotationHighlighterButton
+    .title = Merkepenn
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Tøm
+annotationCropButton
+    .title = Beskjær
+annotationSaveButton = Lagre
+annotationCancelButton = Avbryt
+annotationCropConfirmButton = Bekreft
+    .title = Bekreft valg
+annotationCropCancelButton = Avbryt
+    .title = Avbryt valg
 
 
 [[ Shotindex page ]]
@@ -206,6 +229,12 @@ shotIndexPagePreviousPage
     .title = Forrige side
 shotIndexPageNextPage
     .title = Neste side
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Dette skjermbildet utløper ikke
 
 
 // all metrics strings are optional for translation

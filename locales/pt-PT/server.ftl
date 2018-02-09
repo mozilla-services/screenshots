@@ -39,11 +39,11 @@ creatingPageWaitMessage = A guardar a sua captura...
 [[ Home page ]]
 
 homePageDescription
-    .content = Capturas de ecrã intuitivas embutidas no navegador. Capture, guarde e partilhe capturas de ecrã enquanto navega a Web utilizando o Firefox.
+    .content = Capturas de ecrã intuitivas embutidas no navegador. Capture, guarde e partilhe capturas de ecrã enquanto navega na Web utilizando o Firefox.
 homePageButtonMyShots = Ir para as minhas capturas
 homePageTeaser = Brevemente...
 homePageDownloadFirefoxTitle = Firefox
-homePageDownloadFirefoxSubTitle = Descarga gratuita
+homePageDownloadFirefoxSubTitle = Transferência gratuita
 homePageGetStarted = Começar
 // Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Como é que o Firefox Screenshots funciona
@@ -54,7 +54,7 @@ homePageGetStartedDescription = Encontre o novo ícone do Screenshots na sua bar
 homePageGetStartedDescriptionPageAction = Selecione o ícone do Screenshots a partir do menu de ações da página na barra de endereço e o menu do Screenshots irá aparecer por cima da janela do seu navegador.
 homePageCaptureRegion = Capturar uma região
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar ou paire e clique — O Screenshots irá selecionar a área por si. Gosta do que está a ver? Selecione Guardar para aceder à sua captura de ecrã na Internet ou no botão de seta para baixo para a descarregar para o seu computador.
+homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar ou paire e clique — O Screenshots irá selecionar a área por si. Gosta do que está a ver? Selecione Guardar para aceder à sua captura de ecrã na Internet ou no botão de seta para baixo para a transferir para o seu computador.
 homePageCapturePage = Capturar uma página
 homePageCapturePageDescription = Utilize os botões no canto superior direito para capturar páginas inteiras. O botão Guardar visível irá capturar a área que pode ver sem deslocar e Guardar página inteira irá capturar tudo na página.
 homePageSaveShare = Guardar e partilhar
@@ -97,7 +97,7 @@ shotPageConfirmDelete = Tem a certeza de que deseja apagar esta captura permanen
 shotPageShareButton
     .title = Partilhar
 shotPageCopy = Copiar
-shotPageCopied = Copiado
+shotPageCopied = Copiada
 shotPageShareFacebook
     .title = Partilhar no Facebook
 shotPageShareTwitter
@@ -124,8 +124,8 @@ shotPageDeleteButton
 shotPageAbuseButton
     .title = Reportar esta captura por abuso, spam, ou outros problemas
 shotPageDownloadShot
-    .title = Descarregar
-shotPageDownload = Descarregar
+    .title = Transferir
+shotPageDownload = Transferir
 shotPageScreenshotsDescription = As capturas de ecrã tornadas simples. Tire, guarde e partilhe capturas de ecrã sem sair do Firefox.
 shotPageUpsellFirefox = Obter o Firefox agora
 shotPageDMCAMessage = Esta captura já não está disponível devido a uma reivindicação de propriedade intelectual de terceiros.
@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Por favor inclua o URL desta captura no seu email: { $
 shotPageKeepFor = Por quanto tempo deve esta captura ser retida?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Selecionar tempo
-shotPageKeepIndefinitely = Indefinidamente
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Indefinidamente ∞
 shotPageKeepTenMinutes = 10 minutos
 shotPageKeepOneHour = 1 hora
 shotPageKeepOneDay = 1 dia
@@ -153,31 +156,51 @@ shotPageExpiresIn = expira { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = expirou { $timediff }
 timeDiffJustNow = agora mesmo
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 minuto atrás
        *[other] { $number } minutos atrás
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 hora atrás
        *[other] { $number } horas atrás
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] ontem
        *[other] { $number } dias atrás
     }
 timeDiffFutureSeconds = em alguns segundos
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] num minuto
        *[other] em { $number } minutos
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] numa hora
        *[other] em { $number } horas
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] amanhã
        *[other] em { $number } dias
     }
+errorThirdPartyCookiesEnabled = Se tirou esta captura e não consegue apagá-la, poderá ter de ativar temporariamente os cookies de terceiros a partir das preferências do seu navegador.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Caneta
+annotationHighlighterButton
+    .title = Marcador
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Limpar
+annotationCropButton
+    .title = Recortar
+annotationSaveButton = Guardar
+annotationCancelButton = Cancelar
+annotationCropConfirmButton = Confirmar
+    .title = Confirmar seleção
+annotationCropCancelButton = Cancelar
+    .title = Cancelar seleção
 
 
 [[ Shotindex page ]]
@@ -206,6 +229,12 @@ shotIndexPagePreviousPage
     .title = Página anterior
 shotIndexPageNextPage
     .title = Página seguinte
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Esta captura não expira
 
 
 // all metrics strings are optional for translation

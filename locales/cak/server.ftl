@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Tatz'aqatisaj ri URL richin re wachib'äl re' pan ataq
 shotPageKeepFor = ¿Janipe q'ij nik'oje' re wachib'äl re'?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Ticha' q'ijul
-shotPageKeepIndefinitely = Mek'isel
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Mek'isel ∞
 shotPageKeepTenMinutes = 10 Ch'utiramaj
 shotPageKeepOneHour = 1 Ramaj
 shotPageKeepOneDay = 1 Q'ij
@@ -153,31 +156,51 @@ shotPageExpiresIn = k'isel { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = xk'is { $timediff }
 timeDiffJustNow = wakami
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] k'o kan 1 ch'utiramaj
        *[other] { $number } kan ch'utiramaj
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] k'o kan 1 ramaj
        *[other] { $number } kan ramaj
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] iwir
        *[other] { $number } kan taq q'ij
     }
 timeDiffFutureSeconds = pa jujun nich'ramaj
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] pa 1 ch'utiramaj
        *[other] pa { $number } taq ramaj 
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] pa 1 ramaj
        *[other] pa { $number } taq ramaj
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] chwa'q
        *[other] pa { $number } taq q'ij
     }
+errorThirdPartyCookiesEnabled = We xawelesaj re chapoj re' chuqa' man yatikïr ta nayüj el, rik'in jub'a' k'o chi ye'achüp jub'a' ri taq kikaxlanwey aj rox winäq pa ri rajowab'al okik'amaya'l.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Tz'ib'ab'äl
+annotationHighlighterButton
+    .title = Tz'etöy
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Tijosq'ïx
+annotationCropButton
+    .title = Tiqupïx
+annotationSaveButton = Tiyak
+annotationCancelButton = Tiq'at
+annotationCropConfirmButton = Tijikib'äx
+    .title = Tijikib'äx cha'oj
+annotationCropCancelButton = Tiq'at
+    .title = Tiq'at cha'oj
 
 
 [[ Shotindex page ]]
@@ -206,6 +229,12 @@ shotIndexPagePreviousPage
     .title = Chuwäch ruxaq
 shotIndexPageNextPage
     .title = Jun chik ruxaq
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Ri chapoj re' man nik'o taq ruq'ijul
 
 
 // all metrics strings are optional for translation

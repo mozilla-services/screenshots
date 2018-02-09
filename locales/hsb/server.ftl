@@ -138,7 +138,10 @@ shotPageDMCAIncludeLink = Prošu podajće URL tutoho fota wobrazowki w swojej e-
 shotPageKeepFor = Kak dołho ma so tute foto wobrazowki chować?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Čas wubrać
-shotPageKeepIndefinitely = Njepostajeny
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Na přeco ∞
 shotPageKeepTenMinutes = 10 mjeńšin
 shotPageKeepOneHour = 1 hodźina
 shotPageKeepOneDay = 1 dźeń
@@ -153,43 +156,63 @@ shotPageExpiresIn = spadnje { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = spadnjeny { $timediff }
 timeDiffJustNow = runje
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] před 1 mjeńšinu
         [two] před { $number } mjeńšinomaj
         [few] před { $number } mjeńšinami
        *[other] před { $number } mjeńšinami
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] před 1 hodźinu
         [two] před { $number } hodźinomaj
         [few] před { $number } hodźinami
        *[other] před { $number } hodźinami
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] wčera
         [two] před { $number } dnjomaj
         [few] před { $number } dnjemi
        *[other] před { $number } dnjemi
     }
 timeDiffFutureSeconds = za mało sekundow
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] za 1 mjeńšinu
         [two] za { $number } mjeńšinje
         [few] za { $number } mjeńšiny
        *[other] za { $number } mjeńšin
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] za 1 hodźinu
         [two] za { $number } hodźinje
         [few] za { $number } hodźiny
        *[other] za { $number } hodźin
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] jutře
         [two] za { $number } dnjej
         [few] za { $number } dny
        *[other] za { $number } dnjow
     }
+errorThirdPartyCookiesEnabled = Jeli sće tute foto wobrazowki činił a njemóžeće jo zhašeć, dyrbiće nachwilu placki třećich poskićowarjow w nastajenjach swojeho wobhladowaka zmóžnić.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Pisak
+annotationHighlighterButton
+    .title = Tekstowy marker
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Wróćo stajić
+annotationCropButton
+    .title = Wutřihać
+annotationSaveButton = Składować
+annotationCancelButton = Přetorhnyć
+annotationCropConfirmButton = Wobkrućić
+    .title = Wuběr wobkrućić
+annotationCropCancelButton = Přetorhnyć
+    .title = Wuběr přetorhnyć
 
 
 [[ Shotindex page ]]
@@ -218,6 +241,12 @@ shotIndexPagePreviousPage
     .title = Předchadna strona
 shotIndexPageNextPage
     .title = Přichodna strona
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Tute foto wobrazowki njespadnje
 
 
 // all metrics strings are optional for translation

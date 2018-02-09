@@ -157,6 +157,19 @@ timeDiffFutureHours = { $number }시간 내
 timeDiffFutureDays = { $number }일 내
 
 
+[[ Annotations ]]
+
+annotationPenButton
+    .title = 펜
+annotationHighlighterButton
+    .title = 하이라이터
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = 지우기
+annotationSaveButton = 저장
+annotationCancelButton = 취소
+
+
 [[ Shotindex page ]]
 
 // { $status } is a placeholder for an HTTP status code, like '500'.
@@ -176,7 +189,13 @@ shotIndexPageNoShotsInvitation = 하나 만들어 보세요.
 shotIndexPageLookingForShots = 스크린샷 찾아보는 중..
 shotIndexPageNoSearchResultsIntro = 흐음
 shotIndexPageNoSearchResults = 검색하신 스크린샷을 찾지 못했습니다.
+shotIndexPageClearSearchButton
+    .title = 검색 지우기
 shotIndexPageConfirmShotDelete = 이 스크린샷을 삭제하시겠어요?
+shotIndexPagePreviousPage
+    .title = 이전 페이지
+shotIndexPageNextPage
+    .title = 다음 페이지
 
 
 // all metrics strings are optional for translation
@@ -199,3 +218,4 @@ metricsPageUsersQueryTitle = 일별 사용자
 metricsPageUsersQueryCount = 사용자 수
 metricsPageUsersQueryDay = 일
 metricsPageUserShotsQueryTitle = 사용자 당 스크린샷 수
+metricsPageVersionQueryVersion = 부가 기능 버전
