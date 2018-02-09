@@ -16,7 +16,7 @@ dependencies:
     - pip install requests
     - npm i -g get-firefox
     - get-firefox --branch nightly --platform linux --extract --target /home/ubuntu/screenshots
-    - "nohup /usr/bin/Xvfb :88 -ac -screen 0 1280x1024x16 -extension RANDR &"
+    - "nohup /usr/bin/Xvfb :88 -ac -screen 0 1280x1024x16 -extension RANDR > $CIRCLE_ARTIFACTS/xvfb.out 2>&1 &"
 
 compile:
   override:
