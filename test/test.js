@@ -24,6 +24,7 @@ const TOOLBAR_SHOOTER_BUTTON_ID = "screenshots_mozilla_org-browser-action";
 const shooterSelector = By.css(`#${SHOOTER_BUTTON_ID}, #${TOOLBAR_SHOOTER_BUTTON_ID}`);
 const SLIDE_IFRAME_ID = "firefox-screenshots-onboarding-iframe";
 const PRESELECTION_IFRAME_ID = "firefox-screenshots-preselection-iframe";
+const SELECTION_IFRAME_ID = "firefox-screenshots-selection-iframe";
 const PREVIEW_IFRAME_ID = "firefox-screenshots-preview-iframe";
 const backend = "http://localhost:10080";
 
@@ -220,7 +221,7 @@ describe("Test Screenshots", function() {
     }).then((visibleButton) => {
       visibleButton.click();
       // We'll get a stale element error (!?) if the next line is removed
-      return setTimeoutPromise(500);
+      return setTimeoutPromise(750);
     }).then(() => {
       return driver.switchTo().defaultContent();
     }).then(() => {
@@ -230,6 +231,42 @@ describe("Test Screenshots", function() {
     }).then(() => {
       return driver.wait(
         until.elementLocated(By.css(".preview-button-save"))
+      );
+    }).then((saveButton) => {
+      return expectCreatedShot(driver, () => {
+        saveButton.click();
+      });
+    }).then((shotUrl) => {
+      assert(shotUrl.startsWith(backend), `Got url ${shotUrl} that doesn't start with ${backend}`);
+      const restUrl = shotUrl.substr(backend.length);
+      if (!/^\/[^/]+\/localhost$/.test(restUrl)) {
+        throw new Error(`Unexpected URL: ${shotUrl}`);
+      }
+    });
+  });
+
+  it("should take an auto selection shot", function() {
+    return driver.get(backend).then(() => {
+      return startScreenshots(driver);
+    }).then(() => {
+      return driver.wait(
+        until.ableToSwitchToFrame(By.id(PRESELECTION_IFRAME_ID))
+      );
+    }).then(() => {
+      return driver.wait(
+        until.elementLocated(By.css(".visible"))
+      );
+    }).then(() => {
+      return driver.actions().move({x: 100, y: 100}).click().perform();
+    }).then(() => {
+      return driver.switchTo().defaultContent();
+    }).then(() => {
+      return driver.wait(
+        until.ableToSwitchToFrame(By.id(SELECTION_IFRAME_ID))
+      );
+    }).then(() => {
+      return driver.wait(
+        until.elementLocated(By.css(".highlight-button-save"))
       );
     }).then((saveButton) => {
       return expectCreatedShot(driver, () => {
