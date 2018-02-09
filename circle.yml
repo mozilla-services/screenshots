@@ -24,7 +24,7 @@ compile:
 
 test:
   override:
-    - firefox -v
+    - which firefox && firefox -v
     # Start the server before all tests:
     - node -e 'require("babel-polyfill"); require("./build/server/server");':
         background: true

@@ -13,7 +13,7 @@ NO_CLOSE = if not empty then when the test is finished, the browser will not be 
 const assert = require("assert");
 const firefox = require("selenium-webdriver/firefox");
 const webdriver = require("selenium-webdriver");
-const { By, until } = webdriver;
+const { By, until, logging } = webdriver;
 const path = require("path");
 
 const SHOOTER_BUTTON_ID = "pageAction-panel-screenshots";
@@ -26,6 +26,11 @@ const PREVIEW_IFRAME_ID = "firefox-screenshots-preview-iframe";
 const backend = "http://localhost:10080";
 
 function addAddonToDriver(driver, location) {
+  require("child_process").exec("ps", (e, stderr, stdout) => {
+    console.log("PS output:");
+    console.log(stderr, stdout);
+    console.log("---------------------------------------------");
+  });
   driver.setContext(firefox.Context.CHROME);
   return driver.executeAsyncScript(`
 const FileUtils = Components.utils.import('resource://gre/modules/FileUtils.jsm').FileUtils;
@@ -90,8 +95,16 @@ function getDriver() {
     .withCapabilities({"moz:webdriverClick": false})
     .forBrowser("firefox")
     .setFirefoxOptions(options);
+  logging.installConsoleHandler();
+  let prefs = new logging.Preferences();
+  prefs.setLevel(logging.Type.DRIVER, logging.Level.DEBUG);
+  builder.setLoggingPrefs(prefs);
+  logging.installConsoleHandler();
 
   const driver = builder.build();
+  builder.firefoxOptions_.binary_.found_.then((path) => {
+    console.log("Using Firefox executable:", path);
+  });
 
   const fileLocation = path.join(process.cwd(), "build", "screenshots-bootstrap.zip");
   return addAddonToDriver(driver, fileLocation);
