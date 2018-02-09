@@ -54,7 +54,7 @@ homePageGetStartedDescription = Găsește noua pictogramă Screenshots de pe bar
 homePageGetStartedDescriptionPageAction = Alege pictograma Screenshots din meniul de acțiuni pe pagină din bara de adrese și meniul Screenshots va apărea peste fereastra de navigare.
 homePageCaptureRegion = Capturează o regiune
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Clic și trage pentru a selecta zona pe care dorești să o capturezi. Sau pur și simplu poziționează cursorul peste zonă și dă clic — Screenshots va selecta zona pentru tine. Îți place ceea ce vezi? Selectează Salvează pentru a-ți accesa online captura de ecran sau butonul săgeată în jos pentru a o descărca pe calculator.
+homePageCaptureRegionDescription = Clic și trage pentru a selecta zona pe care vrei să o capturezi. Sau pur și simplu poziționează cursorul peste zonă și dă clic — Screenshots va selecta zona pentru tine. Îți place ceea ce vezi? Selectează Salvează pentru a-ți accesa online captura de ecran sau butonul săgeată în jos pentru a o descărca pe calculator.
 homePageCapturePage = Capturează o pagină
 homePageCapturePageDescription = Folosește butoanele din dreapta sus pentru a captura pagini întregi. Butonul Save Visible (Salvează ce se vede) va captura zona ce se vede fără a derula și butonul Save Full Page (Salvează toată pagina) va captura toată pagina.
 homePageSaveShare = Salvează și partajează
@@ -93,7 +93,7 @@ shotPageTitle = Captură de ecran: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Eroare la salvarea expirării
 shotPageAlertErrorDeletingShot = Eroare la ștergerea capturii
 shotPageAlertErrorUpdatingTitle = Eroare la salvarea titlului
-shotPageConfirmDelete = Sigur dorești să ștergi această captură definitiv?
+shotPageConfirmDelete = Sigur vrei să ștergi definitiv această captură?
 shotPageShareButton
     .title = Partajează
 shotPageCopy = Copiază
@@ -110,7 +110,7 @@ shotPageShareLink = Obține un link partajabil către această captură:
 shotPagePrivacyMessage = Oricine are linkul poate vedea această captură.
 shotPageCopyImageText
     .label = Copiază textul imaginii
-shotPageConfirmDeletion = Sigur dorești să ștergi această captură permanent?
+shotPageConfirmDeletion = Sigur vrei să ștergi definitiv această captură?
 // Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Dacă nu faci nimic, această captură va fi ștersă permanent { $timediff }.
 // Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
@@ -203,10 +203,6 @@ annotationCropButton
     .title = Decupează
 annotationSaveButton = Salvează
 annotationCancelButton = Renunță
-annotationConfirmCropButton = Confirmă
-    .title = Confirmă selecția
-annotationCancelCropButton = Anulează
-    .title = Anulează selecția
 
 
 [[ Shotindex page ]]
