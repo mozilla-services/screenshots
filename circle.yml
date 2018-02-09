@@ -28,6 +28,7 @@ test:
     - node -e 'require("babel-polyfill"); require("./build/server/server");':
         background: true
     # addon tests
+    - "nohup /usr/bin/Xvfb :88 -ac -screen 0 1280x1024x16 -extension RANDR > $CIRCLE_ARTIFACTS/xvfb.out 2>&1 &"
     - FIREFOX_CHANNEL=NIGHTLY npm test
     # server tests
     - ./bin/test-request put '{}'
