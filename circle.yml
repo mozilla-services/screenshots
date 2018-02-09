@@ -16,7 +16,7 @@ dependencies:
     - pip install requests
     - npm i -g get-firefox
     - get-firefox --branch nightly --platform linux --extract --target /home/ubuntu/screenshots
-    - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_88.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :88 -ac -screen 0 1280x1024x16 -extension RANDR"
+    - "nohup /usr/bin/Xvfb :88 -ac -screen 0 1280x1024x16 -extension RANDR &"
 
 compile:
   override:
