@@ -126,6 +126,12 @@ annotationPenButton
 
 shotIndexPageSearchButton
     .title = தேடு
+shotIndexPageClearSearchButton
+    .title = தேடலை அழிக்கவும்
+shotIndexPagePreviousPage
+    .title = முந்தைய பக்கம்
+shotIndexPageNextPage
+    .title = அடுத்த பக்கம்
 
 
 // all metrics strings are optional for translation
