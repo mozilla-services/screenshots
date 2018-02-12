@@ -14,6 +14,7 @@ const minWidth = 10;
 const minHeight = 10;
 let points = [];
 let drawMousedown = false;
+let activeColor;
 
 const movements = ["topLeft", "top", "topRight", "left", "right", "bottomLeft", "bottom", "bottomRight"];
 const movementPositions = {
@@ -99,8 +100,8 @@ exports.Editor = class Editor extends React.Component {
     this.draw = this.draw.bind(this);
     this.setPosition = this.setPosition.bind(this);
     this.drawMouseup = this.drawMouseup.bind(this);
-    this.canvasWidth = this.props.clip.image.dimensions.x;
-    this.canvasHeight = this.props.clip.image.dimensions.y;
+    this.canvasWidth = Math.floor(this.props.clip.image.dimensions.x);
+    this.canvasHeight = Math.floor(this.props.clip.image.dimensions.y);
     this.state = {
       tool: "pen",
       color: "#000",
@@ -112,10 +113,10 @@ exports.Editor = class Editor extends React.Component {
   render() {
     const color = this.isColorWhite(this.state.color);
     const toolBar = this.cropToolBar || this.renderToolBar();
-    return <div>
+    return <div className="inverse-color-scheme full-height column-space">
       { toolBar }
-      <div className="main-container inverse-color-scheme">
-        <div className={`canvas-container ${this.state.tool}`} id="canvas-container" ref={(canvasContainer) => this.canvasContainer = canvasContainer}>
+      <div className="main-container">
+        <div className={`inverse-color-scheme canvas-container ${this.state.tool}`} id="canvas-container" ref={(canvasContainer) => this.canvasContainer = canvasContainer} style={{height: this.canvasHeight}}>
           <canvas className="image-holder centered" id="image-holder" ref={(image) => { this.imageCanvas = image }} height={ this.canvasHeight } width={ this.canvasWidth } style={{height: this.canvasHeight, width: this.canvasWidth}}></canvas>
           <canvas className={`temp-highlighter centered ${color}`} id="highlighter" ref={(highlighter) => { this.highlighter = highlighter }} height={ this.canvasHeight } width={ this.canvasWidth }></canvas>
           <canvas className="crop-tool centered" id="crop-tool" ref={(cropper) => { this.cropper = cropper }} height={this.canvasHeight} width={this.canvasWidth}></canvas>
@@ -129,7 +130,7 @@ exports.Editor = class Editor extends React.Component {
     const penState = this.state.tool === "pen" ? "active" : "inactive";
     const highlighterState = this.state.tool === "highlighter" ? "active" : "inactive";
     return <div className="editor-header default-color-scheme">
-      <div className="shot-main-actions annotation-actions">
+      <div className="shot-main-actions">
         <div className="annotation-tools">
           <Localized id="annotationCropButton">
             <button className={`button transparent crop-button`} id="crop" onClick={this.onClickCrop.bind(this)} title="Crop"></button>
@@ -146,7 +147,7 @@ exports.Editor = class Editor extends React.Component {
           </Localized>
         </div>
       </div>
-      <div className="shot-alt-actions annotation-alt-actions">
+      <div className="shot-alt-actions">
         <Localized id="annotationSaveButton">
           <button className="button primary save" id="save" onClick={ this.onClickSave.bind(this) } disabled = { this.state.saveDisabled }>Save</button>
         </Localized>
@@ -332,9 +333,9 @@ exports.Editor = class Editor extends React.Component {
     if (x < 0) {
       return 0;
     } else if (x > max) {
-      return max;
+      return Math.floor(max);
     }
-    return x;
+    return Math.floor(x);
   }
 
   truncateY(y) {
@@ -342,9 +343,9 @@ exports.Editor = class Editor extends React.Component {
     if (y < 0) {
       return 0;
     } else if (y > max) {
-      return max;
+      return Math.floor(max);
     }
-    return y;
+    return Math.floor(y);
   }
 
   findClickedArea(e) {
@@ -633,7 +634,7 @@ class ColorPicker extends React.Component {
     super(props);
     this.state = {
       pickerActive: false,
-      color: "#000"
+      color: activeColor || "#000"
     };
   }
 
@@ -646,6 +647,10 @@ class ColorPicker extends React.Component {
 
   componentWillReceiveProps() {
     this.setState({pickerActive: false});
+  }
+
+  componentWillUnmount() {
+    activeColor = this.state.color;
   }
 
   renderColorBoard() {
