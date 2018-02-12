@@ -164,7 +164,8 @@ this.analytics = (function() {
     end: { action: "internal", label: "unhide-preselection-frame" },
     cancel: [
       { action: "cancel-shot" },
-      { action: "internal", label: "document-hidden" }
+      { action: "internal", label: "document-hidden" },
+      { action: "internal", label: "unhide-onboarding-frame" }
     ]
   }, {
     name: "context-menu",
@@ -172,7 +173,26 @@ this.analytics = (function() {
     end: { action: "internal", label: "unhide-preselection-frame" },
     cancel: [
       { action: "cancel-shot" },
-      { action: "internal", label: "document-hidden" }
+      { action: "internal", label: "document-hidden" },
+      { action: "internal", label: "unhide-onboarding-frame" }
+    ]
+  }, {
+    name: "page-action-onboarding",
+    start: { action: "start-shot", label: "toolbar-button" },
+    end: { action: "internal", label: "unhide-onboarding-frame" },
+    cancel: [
+      { action: "cancel-shot" },
+      { action: "internal", label: "document-hidden" },
+      { action: "internal", label: "unhide-preselection-frame" }
+    ]
+  }, {
+    name: "context-menu-onboarding",
+    start: { action: "start-shot", label: "context-menu" },
+    end: { action: "internal", label: "unhide-onboarding-frame" },
+    cancel: [
+      { action: "cancel-shot" },
+      { action: "internal", label: "document-hidden" },
+      { action: "internal", label: "unhide-preselection-frame" }
     ]
   }, {
     name: "capture-full-page",

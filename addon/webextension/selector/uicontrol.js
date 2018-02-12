@@ -403,6 +403,7 @@ this.uicontrol = (function() {
       if (typeof slides === "undefined") {
         throw new Error("Attempted to set state to onboarding without loading slides");
       }
+      sendEvent("internal", "unhide-onboarding-frame");
       catcher.watchPromise(slides.display({
         onEnd: this.slidesOnEnd.bind(this)
       }));
