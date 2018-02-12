@@ -14,6 +14,7 @@ const minWidth = 10;
 const minHeight = 10;
 let points = [];
 let drawMousedown = false;
+let activeColor;
 
 const movements = ["topLeft", "top", "topRight", "left", "right", "bottomLeft", "bottom", "bottomRight"];
 const movementPositions = {
@@ -633,7 +634,7 @@ class ColorPicker extends React.Component {
     super(props);
     this.state = {
       pickerActive: false,
-      color: "#000"
+      color: activeColor || "#000"
     };
   }
 
@@ -646,6 +647,10 @@ class ColorPicker extends React.Component {
 
   componentWillReceiveProps() {
     this.setState({pickerActive: false});
+  }
+
+  componentWillUnmount() {
+    activeColor = this.state.color;
   }
 
   renderColorBoard() {
