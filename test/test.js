@@ -221,7 +221,7 @@ describe("Test Screenshots", function() {
     }).then((visibleButton) => {
       visibleButton.click();
       // We'll get a stale element error (!?) if the next line is removed
-      return setTimeoutPromise(750);
+      return setTimeoutPromise(1000);
     }).then(() => {
       return driver.switchTo().defaultContent();
     }).then(() => {
