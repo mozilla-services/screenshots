@@ -333,9 +333,9 @@ exports.Editor = class Editor extends React.Component {
     if (x < 0) {
       return 0;
     } else if (x > max) {
-      return max;
+      return Math.floor(max);
     }
-    return x;
+    return Math.floor(x);
   }
 
   truncateY(y) {
@@ -343,9 +343,9 @@ exports.Editor = class Editor extends React.Component {
     if (y < 0) {
       return 0;
     } else if (y > max) {
-      return max;
+      return Math.floor(max);
     }
-    return y;
+    return Math.floor(y);
   }
 
   findClickedArea(e) {
