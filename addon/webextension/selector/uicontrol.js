@@ -200,15 +200,15 @@ this.uicontrol = (function() {
     },
     onDownloadPreview: () => {
       sendEvent(`download-${captureType.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()}`, "download-preview-button");
-      // Downloaded shots don't have dimension limits
       const previewDataUrl = (captureType === "fullPageTruncated") ? null : dataUrl;
+      // Downloaded shots don't have dimension limits
       removeDimensionLimitsOnFullPageShot();
       shooter.downloadShot(selectedPos, previewDataUrl);
     },
     onCopyPreview: () => {
       sendEvent(`copy-${captureType.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()}`, "copy-preview-button");
-      // Copied shots don't have dimension limits
       const previewDataUrl = (captureType === "fullPageTruncated") ? null : dataUrl;
+      // Copied shots don't have dimension limits
       removeDimensionLimitsOnFullPageShot();
       shooter.copyShot(selectedPos, previewDataUrl);
     }
