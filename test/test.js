@@ -74,12 +74,6 @@ function promiseFinally(promise, finallyCallback) {
   });
 }
 
-function setTimeoutPromise(time) {
-  return new Promise((resolve, reject) => {
-    setTimeout(resolve, time);
-  });
-}
-
 /** This will start Screenshots, and return a promise that
     will be true if the onboarding slides are active, or false
     if not.  An error will be returned if it does not start
@@ -219,9 +213,7 @@ describe("Test Screenshots", function() {
         until.elementLocated(By.css(".visible"))
       );
     }).then((visibleButton) => {
-      visibleButton.click();
-      // We'll get a stale element error (!?) if the next line is removed
-      return setTimeoutPromise(1000);
+      return visibleButton.click();
     }).then(() => {
       return driver.switchTo().defaultContent();
     }).then(() => {
@@ -278,6 +270,46 @@ describe("Test Screenshots", function() {
       if (!/^\/[^/]+\/localhost$/.test(restUrl)) {
         throw new Error(`Unexpected URL: ${shotUrl}`);
       }
+    });
+  });
+
+  it("should navigate to My Shots", function() {
+    let currentTabs, startingTabCount;
+    return driver.getAllWindowHandles().then(tabs => {
+      startingTabCount = tabs.length;
+    }).then(() => {
+      return driver.get(backend);
+    }).then(() => {
+      return startScreenshots(driver);
+    }).then(() => {
+      return driver.wait(
+        until.ableToSwitchToFrame(By.id(PRESELECTION_IFRAME_ID))
+      );
+    }).then(() => {
+      return driver.wait(
+        until.elementLocated(By.css(".myshots-button"))
+      );
+    }).then(myShotsButton => {
+      return myShotsButton.click();
+    }).then(() => {
+      return driver.wait(
+        () => {
+          return driver.getAllWindowHandles().then(tabs => {
+            currentTabs = tabs;
+            return currentTabs.length > startingTabCount;
+          });
+        }
+      );
+    }).then(() => {
+      return driver.switchTo().window(currentTabs[currentTabs.length - 1]);
+    }).then(() => {
+      return driver.wait(
+        until.elementLocated(By.css("#shot-index-page"))
+      );
+    }).then(() => {
+      return driver.getCurrentUrl();
+    }).then(url => {
+      assert.equal(url, `${backend}/shots`, `Navigated to ${url} instead of My Shots at ${backend}/shots`);
     });
   });
 
