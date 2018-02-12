@@ -268,9 +268,9 @@ this.analytics = (function() {
       if (anyMatches(r.cancel, action, label)) {
         delete timingData[r.name];
       } else if (match(r.start, action, label)) {
-        timingData[r.name] = Date.now();
+        timingData[r.name] = Math.round(performance.now());
       } else if (timingData[r.name] && match(r.end, action, label)) {
-        const endTime = Date.now();
+        const endTime = Math.round(performance.now());
         const elapsed = endTime - timingData[r.name];
         sendTiming("perf-response-time", r.name, elapsed);
         delete timingData[r.name];
