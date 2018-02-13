@@ -125,6 +125,10 @@ shotPageDMCAIncludeLink = దయచేసి ఈ తెరపట్టు యొ
 shotPageKeepFor = ఎంతకాలం ఈ తెరపట్టును నిలబెట్టుకోవాలి?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = సమయాన్ని ఎంచుకోండి
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = నిరవధికంగా ∞
 shotPageKeepTenMinutes = 10 నిమిషాలు
 shotPageKeepOneHour = 1 గంట
 shotPageKeepOneDay = 1 రోజు
