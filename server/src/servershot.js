@@ -621,6 +621,9 @@ Shot.setExpiration = function(backend, shotId, deviceId, expiration, accountId) 
     `,
     [shotId, deviceId, accountId]
   ).then((rows) => {
+    if (!rows.length) {
+      return null;
+    }
     const id = rows[0].id;
     if (expiration === 0) {
       return db.update(
@@ -659,6 +662,9 @@ Shot.deleteShot = function(backend, shotId, deviceId, accountId) {
       `,
       [shotId, deviceId, accountId]
   ).then((rows) => {
+    if (!rows.length) {
+      return null;
+    }
     id = rows[0].id;
     return Shot.get(backend, shotId, id)
     .then((shot) => {
