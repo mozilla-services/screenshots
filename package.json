@@ -77,6 +77,9 @@
     "uglifyify": "4.0.4",
     "web-ext": "2.1.0"
   },
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "homepage": "https://screenshots.firefox.com",
   "license": "MPL-2.0",
   "repository": {
