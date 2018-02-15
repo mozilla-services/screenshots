@@ -1,4 +1,7 @@
 {
-  // See https://github.com/mozilla-services/screenshots/issues/3841
-  "exceptions": ["https://nodesecurity.io/advisories/532"]
+  // See
+  // 532: https://github.com/mozilla-services/screenshots/issues/3841
+  // 566: https://github.com/mozilla-services/screenshots/issues/4118
+  "exceptions": ["https://nodesecurity.io/advisories/532",
+                 "https://nodesecurity.io/advisories/566"]
 }
