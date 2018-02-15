@@ -423,6 +423,7 @@ body {
   display: flex;
   justify-content: space-between;
   height: 100px;
+  z-index: 2;
 
   .button {
     margin: $grid-unit * 0.25;
@@ -467,6 +468,10 @@ body {
   }
 }
 
+.annotation-main-actions {
+  overflow: visible;
+}
+
 .annotation-alt-actions {
   height: 72px;
   @include respond-to("small") {
@@ -482,6 +487,7 @@ body {
   justify-content: center;
   position: relative;
   flex: 1;
+  z-index: 1;
 
   @include respond-to("small") {
     top: $grid-unit * 4;

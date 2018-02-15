@@ -130,7 +130,7 @@ exports.Editor = class Editor extends React.Component {
     const penState = this.state.tool === "pen" ? "active" : "inactive";
     const highlighterState = this.state.tool === "highlighter" ? "active" : "inactive";
     return <div className="editor-header default-color-scheme">
-      <div className="shot-main-actions">
+      <div className="shot-main-actions annotation-main-actions">
         <div className="annotation-tools">
           <Localized id="annotationCropButton">
             <button className={`button transparent crop-button`} id="crop" onClick={this.onClickCrop.bind(this)} title="Crop"></button>
