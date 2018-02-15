@@ -13,7 +13,7 @@
     "btoa": "1.1.2",
     "classnames": "2.2.5",
     "content-disposition": "0.5.2",
-    "convict": "4.0.0",
+    "convict": "4.0.2",
     "cookies": "0.7.1",
     "core-js": "2.5.1",
     "csurf": "1.9.0",
