@@ -563,7 +563,7 @@ exports.Editor = class Editor extends React.Component {
 
   draw(e) {
     e.preventDefault();
-    if (!drawMousedown) {
+    if (!drawMousedown || e.button !== 0) {
       return;
     }
     if (this.state.tool === "highlighter") {
