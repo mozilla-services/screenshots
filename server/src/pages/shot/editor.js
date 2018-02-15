@@ -639,8 +639,7 @@ class ColorPicker extends React.Component {
   }
 
   render() {
-    const border = this.state.color === "rgb(255, 255, 255)" ? "#000" : this.state.color;
-    return <div><button className="color-button" id="color-picker" onClick={this.onClickColorPicker.bind(this)} title="Color Picker" style={{"backgroundColor": this.state.color, "border": `1px solid ${border}`}}></button>
+    return <div><button className="color-button" id="color-picker" onClick={this.onClickColorPicker.bind(this)} title="Color Picker" style={{"backgroundColor": this.state.color, "border": "3px solid #D4D4D4"}}></button>
       {this.state.pickerActive ? this.renderColorBoard() : null}
     </div>
   }
@@ -655,6 +654,9 @@ class ColorPicker extends React.Component {
 
   renderColorBoard() {
     return <div className="color-board">
+      <div className="triangle">
+        <div className="triangle-inner"></div>
+      </div>
       <div className="row">
         <div className="swatch" title="White" style={{backgroundColor: "#FFF", border: "1px solid #000"}} onClick={this.onClickSwatch.bind(this)}></div>
         <div className="swatch" title="Black" style={{backgroundColor: "#000"}} onClick={this.onClickSwatch.bind(this)}></div>
