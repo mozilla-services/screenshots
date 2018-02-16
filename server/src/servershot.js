@@ -112,7 +112,11 @@ if (!config.useS3) {
 
   get = (uid, contentType) => {
     return new Promise((resolve, reject) => {
-      s3bucket.createBucket(() => {
+      s3bucket.createBucket((err) => {
+        if (err) {
+          mozlog.error("error-getting-bucket", {err});
+          reject(err);
+        }
         const params = {Key: uid};
         s3bucket.getObject(params, function(err, data) {
           if (err) {
