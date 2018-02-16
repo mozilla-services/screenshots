@@ -45,7 +45,7 @@ function getDriver() {
 
   const driver = new webdriver.Builder()
     // .setFirefoxService(servicebuilder)
-    .withCapabilities({"moz:webdriverClick": false})
+    .withCapabilities({"moz:webdriverClick": true})
     .forBrowser("firefox")
     .setFirefoxOptions(options)
     .build();
@@ -224,6 +224,10 @@ describe("Test Screenshots", function() {
     }).then(() => {
       return driver.wait(
         until.elementLocated(By.css(".preview-button-save"))
+      );
+    }).then((saveButton) => {
+      return driver.wait(
+        until.elementIsVisible(saveButton)
       );
     }).then((saveButton) => {
       return expectCreatedShot(driver, () => {
