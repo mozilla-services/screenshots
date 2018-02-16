@@ -179,9 +179,9 @@ describe("Test Screenshots", function() {
     return null;
   });
 
-  it("should find the add-on button", function() {
+  it("should find the add-on button", function(done) {
     this.timeout(15000);
-    return promiseFinally(
+    promiseFinally(
       getChromeElement(driver, shooterSelector)
       .then((button) => button.getAttribute("label"))
       .then((label) => {
@@ -190,14 +190,15 @@ describe("Test Screenshots", function() {
         } else {
           assert.equal(label, "Firefox Screenshots");
         }
+        done();
       }),
       () => {
         driver.setContext(firefox.Context.CONTENT);
-      });
+      }).catch(done);
   });
 
-  it("should take a shot", function() {
-    return driver.get(backend).then(() => {
+  it("should take a shot", function(done) {
+    driver.get(backend).then(() => {
       return startScreenshots(driver);
     }).then((onboarding) => {
       if (!onboarding) {
@@ -234,11 +235,12 @@ describe("Test Screenshots", function() {
       if (!/^\/[^/]+\/localhost$/.test(restUrl)) {
         throw new Error(`Unexpected URL: ${shotUrl}`);
       }
-    });
+      done();
+    }).catch(done);
   });
 
-  it("should take an auto selection shot", function() {
-    return driver.get(backend).then(() => {
+  it("should take an auto selection shot", function(done) {
+    driver.get(backend).then(() => {
       return startScreenshots(driver);
     }).then(() => {
       return driver.wait(
@@ -270,12 +272,13 @@ describe("Test Screenshots", function() {
       if (!/^\/[^/]+\/localhost$/.test(restUrl)) {
         throw new Error(`Unexpected URL: ${shotUrl}`);
       }
-    });
+      done();
+    }).catch(done);
   });
 
-  it("should navigate to My Shots", function() {
+  it("should navigate to My Shots", function(done) {
     let currentTabs, startingTabCount;
-    return driver.getAllWindowHandles().then(tabs => {
+    driver.getAllWindowHandles().then(tabs => {
       startingTabCount = tabs.length;
     }).then(() => {
       return driver.get(backend);
@@ -310,7 +313,8 @@ describe("Test Screenshots", function() {
       return driver.getCurrentUrl();
     }).then(url => {
       assert.equal(url, `${backend}/shots`, `Navigated to ${url} instead of My Shots at ${backend}/shots`);
-    });
+      done();
+    }).catch(done);
   });
 
 });
