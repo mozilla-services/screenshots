@@ -31,7 +31,8 @@ const fs = require("fs");
 const util = require("util");
 
 const PAGE_ACTION_BUTTON_ID = "pageActionButton"
-const SHOOTER_BUTTON_ID = "pageAction-panel-screenshots";
+// ID of WebExtension page action button
+const SHOOTER_BUTTON_ID = "pageAction-panel-screenshots_mozilla_org";
 // Applies to the old-style toolbar button:
 const TOOLBAR_SHOOTER_BUTTON_ID = "screenshots_mozilla_org-browser-action";
 const pageActionButtonSelector = By.id(PAGE_ACTION_BUTTON_ID);
