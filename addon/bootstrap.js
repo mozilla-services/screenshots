@@ -249,6 +249,12 @@ function initPhotonPageAction(api, webExtension) {
     title: "Take a Screenshot",
     iconURL: webExtension.extension.getURL("icons/icon-32-v2.svg"),
     _insertBeforeActionID: null,
+    onLocationChange: (window) => {
+      let action = PageActions.actionForID(id);
+      let scheme = window.gBrowser.currentURI.scheme;
+      let isValid = ["http", "https"].includes(scheme);
+      action.setDisabled(!isValid, window);
+    },
     onCommand(event, buttonNode) {
       if (port) {
         const browserWin = buttonNode.ownerGlobal;
