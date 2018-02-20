@@ -113,15 +113,20 @@ exports.Editor = class Editor extends React.Component {
   render() {
     const color = this.isColorWhite(this.state.color);
     const toolBar = this.cropToolBar || this.renderToolBar();
+    const display = this.loader || this.renderCanvas(color, toolBar);
     return <div className="inverse-color-scheme full-height column-space">
       { toolBar }
-      <div className="main-container">
-        <div className={`inverse-color-scheme canvas-container ${this.state.tool}`} id="canvas-container" ref={(canvasContainer) => this.canvasContainer = canvasContainer} style={{height: this.canvasHeight}}>
-          <canvas className="image-holder centered" id="image-holder" ref={(image) => { this.imageCanvas = image }} height={ this.canvasHeight } width={ this.canvasWidth } style={{height: this.canvasHeight, width: this.canvasWidth}}></canvas>
-          <canvas className={`temp-highlighter centered ${color}`} id="highlighter" ref={(highlighter) => { this.highlighter = highlighter }} height={ this.canvasHeight } width={ this.canvasWidth }></canvas>
-          <canvas className="crop-tool centered" id="crop-tool" ref={(cropper) => { this.cropper = cropper }} height={this.canvasHeight} width={this.canvasWidth}></canvas>
-          <div className="crop-container centered" ref={(cropContainer) => this.cropContainer = cropContainer} style={{height: this.canvasHeight, width: this.canvasWidth}}></div>
-        </div>
+      { display }
+    </div>
+  }
+
+  renderCanvas(color, toolBar) {
+    return <div className="main-container">
+      <div className={`inverse-color-scheme canvas-container ${this.state.tool}`} id="canvas-container" ref={(canvasContainer) => this.canvasContainer = canvasContainer} style={{height: this.canvasHeight}}>
+        <canvas className="image-holder centered" id="image-holder" ref={(image) => { this.imageCanvas = image }} height={ this.canvasHeight } width={ this.canvasWidth } style={{height: this.canvasHeight, width: this.canvasWidth}}></canvas>
+        <canvas className={`temp-highlighter centered ${color}`} id="highlighter" ref={(highlighter) => { this.highlighter = highlighter }} height={ this.canvasHeight } width={ this.canvasWidth }></canvas>
+        <canvas className="crop-tool centered" id="crop-tool" ref={(cropper) => { this.cropper = cropper }} height={this.canvasHeight} width={this.canvasWidth}></canvas>
+        <div className="crop-container centered" ref={(cropContainer) => this.cropContainer = cropContainer} style={{height: this.canvasHeight, width: this.canvasWidth}}></div>
       </div>
     </div>
   }
@@ -171,6 +176,14 @@ exports.Editor = class Editor extends React.Component {
       return "white"
     }
     return null;
+  }
+
+  renderShotsLoading() {
+    return <div className="column-center flex-1">
+      <div className="loader">
+        <div className="loader-inner" />
+      </div>
+    </div>;
   }
 
   onClickCrop() {
@@ -454,7 +467,7 @@ exports.Editor = class Editor extends React.Component {
   }
 
   onClickSave() {
-    sendEvent("save", "annotation-toolbar");
+    this.loader = this.renderShotsLoading();
     const saveDisabled = true;
     this.setState({saveDisabled});
     let dataUrl = this.imageCanvas.toDataURL();
@@ -468,6 +481,7 @@ exports.Editor = class Editor extends React.Component {
 
     const dimensions = {x: this.canvasWidth, y: this.canvasHeight};
     this.props.onClickSave(dataUrl, dimensions);
+    sendEvent("save", "annotation-toolbar");
   }
 
   onClickHighlight() {
