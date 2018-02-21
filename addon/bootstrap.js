@@ -76,8 +76,7 @@ const LibraryButton = {
     }
     this.PAGE_TO_OPEN = permissionPages.length === 1 ? permissionPages[0].replace(/\*$/, "") : "https://screenshots.firefox.com/";
     this.PAGE_TO_OPEN += "shots";
-    this.ICON_URL = webExtension.extension.getURL("icons/icon-16-v2.svg");
-    this.ICON_URL_2X = webExtension.extension.getURL("icons/icon-32-v2.svg");
+    this.ICON_URL = webExtension.extension.getURL("icons/icon-v2.svg");
     this.LABEL = webExtension.extension.localizeMessage("libraryLabel");
     CustomizableUI.addListener(this);
     for (const win of CustomizableUI.windows) {
@@ -112,7 +111,7 @@ const LibraryButton = {
     item.className = "subviewbutton subviewbutton-iconic";
     item.addEventListener("command", () => win.openUILinkIn(this.PAGE_TO_OPEN, "tab"));
     item.id = this.ITEM_ID;
-    const iconURL = win.devicePixelRatio >= 1.1 ? this.ICON_URL_2X : this.ICON_URL;
+    const iconURL = this.ICON_URL;
     item.setAttribute("image", iconURL);
     item.setAttribute("label", this.LABEL);
 
@@ -247,7 +246,7 @@ function initPhotonPageAction(api, webExtension) {
   photonPageAction = PageActions.actionForID(id) || PageActions.addAction(new PageActions.Action({
     id,
     title: "Take a Screenshot",
-    iconURL: webExtension.extension.getURL("icons/icon-32-v2.svg"),
+    iconURL: webExtension.extension.getURL("icons/icon-v2.svg"),
     _insertBeforeActionID: null,
     onCommand(event, buttonNode) {
       if (port) {
