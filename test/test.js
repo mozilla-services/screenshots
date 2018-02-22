@@ -27,6 +27,7 @@ const PRESELECTION_IFRAME_ID = "firefox-screenshots-preselection-iframe";
 const SELECTION_IFRAME_ID = "firefox-screenshots-selection-iframe";
 const PREVIEW_IFRAME_ID = "firefox-screenshots-preview-iframe";
 const backend = "http://localhost:10080";
+const addonFileLocation = path.join(process.cwd(), "build", "screenshots-bootstrap.zip");
 
 function getDriver() {
   const channel = process.env.FIREFOX_CHANNEL || "NIGHTLY";
@@ -50,16 +51,14 @@ function getDriver() {
     .setFirefoxOptions(options)
     .build();
 
-  const fileLocation = path.join(process.cwd(), "build", "screenshots-bootstrap.zip");
-  driver.installAddon(fileLocation);
+  driver.installAddon(addonFileLocation);
 
   return driver;
 }
 
 function getChromeElement(driver, selector) {
-  driver.setContext(firefox.Context.CHROME);
-  return driver.wait(
-    webdriver.until.elementLocated(selector), 1000);
+  return driver.setContext(firefox.Context.CHROME)
+    .then(() => driver.wait(until.elementLocated(selector)));
 }
 
 /** Calls finallyCallback() after the promise completes, successfully or not,
@@ -120,6 +119,16 @@ function skipOnboarding(driver) {
   }).then(() => {
     return driver.wait(until.elementLocated(By.id(PRESELECTION_IFRAME_ID)));
   });
+}
+
+function startAutoSelectionShot(driver) {
+  return driver.get(backend)
+  .then(() => startScreenshots(driver))
+  .then(() => driver.wait(until.ableToSwitchToFrame(By.id(PRESELECTION_IFRAME_ID))))
+  .then(() => driver.wait(until.elementLocated(By.css(".visible"))))
+  .then(() => driver.actions().move({x: 100, y: 100}).click().perform())
+  .then(() => driver.switchTo().defaultContent())
+  .then(() => driver.wait(until.ableToSwitchToFrame(By.id(SELECTION_IFRAME_ID))));
 }
 
 /** Waits when ready, calls creator to create the shot, waits for the resulting
@@ -244,28 +253,8 @@ describe("Test Screenshots", function() {
   });
 
   it("should take an auto selection shot", function(done) {
-    driver.get(backend).then(() => {
-      return startScreenshots(driver);
-    }).then(() => {
-      return driver.wait(
-        until.ableToSwitchToFrame(By.id(PRESELECTION_IFRAME_ID))
-      );
-    }).then(() => {
-      return driver.wait(
-        until.elementLocated(By.css(".visible"))
-      );
-    }).then(() => {
-      return driver.actions().move({x: 100, y: 100}).click().perform();
-    }).then(() => {
-      return driver.switchTo().defaultContent();
-    }).then(() => {
-      return driver.wait(
-        until.ableToSwitchToFrame(By.id(SELECTION_IFRAME_ID))
-      );
-    }).then(() => {
-      return driver.wait(
-        until.elementLocated(By.css(".highlight-button-save"))
-      );
+    startAutoSelectionShot(driver).then(() => {
+      return driver.wait(until.elementLocated(By.css(".highlight-button-save")));
     }).then((saveButton) => {
       return expectCreatedShot(driver, () => {
         saveButton.click();
@@ -321,4 +310,23 @@ describe("Test Screenshots", function() {
     }).catch(done);
   });
 
+  it("should remain on original tab with UI overlay on save failure", function(done) {
+    const badAddon = path.join(process.cwd(), "build", "screenshots-bootstrap-server-down.zip");
+    driver.installAddon(badAddon)
+    .then(() => startAutoSelectionShot(driver))
+    .then(() => driver.wait(until.elementLocated(By.css(".highlight-button-save"))))
+    .then((saveButton) => saveButton.click())
+    .then(() => driver.getAllWindowHandles())
+    .then((tabs) => driver.switchTo().window(tabs[tabs.length - 1]))
+    .then(() => driver.switchTo().defaultContent())
+    .then(() => driver.findElement(By.id(PRESELECTION_IFRAME_ID)))
+    .then(selectionFrame => assert(selectionFrame.isDisplayed()))
+    .then(() => driver.getCurrentUrl())
+    .then((url) => {
+      assert.equal(url, `${backend}/`, `Navigated away from ${backend}`);
+
+      // Doing this in case there are tests after this one.
+      driver.installAddon(addonFileLocation).then(() => done()).catch(done);
+    }).catch(done);
+  });
 });
