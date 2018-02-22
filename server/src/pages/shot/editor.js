@@ -104,7 +104,7 @@ exports.Editor = class Editor extends React.Component {
     this.canvasHeight = Math.floor(this.props.clip.image.dimensions.y);
     this.state = {
       tool: "pen",
-      color: "#000",
+      color: activeColor || "#000",
       size: "5",
       saveDisabled: true
     };
