@@ -347,12 +347,12 @@ class Body extends React.Component {
 
     let trashOrFlagButton;
     let editButton;
-    const highlight = this.props.highlightEditButton ? <div className="edit-highlight"></div> : null;
+    const highlight = this.props.highlightEditButton ? <div className="edit-highlight" onClick={ this.onClickEdit.bind(this) } onMouseOver={ this.onMouseOverHighlight.bind(this) } onMouseOut={ this.onMouseOutHighlight.bind(this) }></div> : null;
     if (this.props.isOwner) {
       trashOrFlagButton = <Localized id="shotPageDeleteButton">
         <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }></button>
       </Localized>;
-      editButton = <button className="button transparent edit" title="Edit this image" onClick={ this.onClickEdit.bind(this) }></button>
+      editButton = <button className="button transparent edit" title="Edit this image" onClick={ this.onClickEdit.bind(this) } ref={(edit) => { this.editButton = edit }}></button>
     } else {
       trashOrFlagButton = <Localized id="shotPageAbuseButton">
         <button className="button transparent flag" title="Report this shot for abuse, spam, or other problems" onClick={ this.onClickFlag.bind(this) }></button>
@@ -443,6 +443,14 @@ class Body extends React.Component {
         <Footer forUrl={ shot.viewUrl } {...this.props} />
       </div>
     </reactruntime.BodyTemplate>);
+  }
+
+  onMouseOverHighlight() {
+    this.editButton.style.backgroundColor = "#ededf0";
+  }
+
+  onMouseOutHighlight() {
+    this.editButton.style.backgroundColor = "transparent";
   }
 
   renderSurveyLink() {
