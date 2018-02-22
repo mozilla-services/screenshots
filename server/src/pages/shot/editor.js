@@ -600,6 +600,7 @@ exports.Editor = class Editor extends React.Component {
 
   drawHighlight(e) {
     this.drawContext.lineCap = "square";
+    this.drawContext.lineJoin = "round";
     points.push({x: this.pos.x, y: this.pos.y});
     if (points.length < 3) {
       this.drawContext.beginPath();
