@@ -95,6 +95,20 @@ this.uicontrol = (function() {
     };
   }
 
+  function downloadShot() {
+    const previewDataUrl = (captureType === "fullPageTruncated") ? null : dataUrl;
+    // Downloaded shots don't have dimension limits
+    removeDimensionLimitsOnFullPageShot();
+    shooter.downloadShot(selectedPos, previewDataUrl);
+  }
+
+  function copyShot() {
+    const previewDataUrl = (captureType === "fullPageTruncated") ? null : dataUrl;
+    // Copied shots don't have dimension limits
+    removeDimensionLimitsOnFullPageShot();
+    shooter.copyShot(selectedPos, previewDataUrl);
+  }
+
   /** *********************************************
    * State and stateHandlers infrastructure
    */
@@ -142,10 +156,10 @@ this.uicontrol = (function() {
       shooter.takeShot("selection", selectedPos);
     }, download: () => {
       sendEvent("download-shot", "overlay-download-button");
-      shooter.downloadShot(selectedPos);
+      downloadShot();
     }, copy: () => {
       sendEvent("copy-shot", "overlay-copy-button");
-      shooter.copyShot(selectedPos);
+      copyShot();
     }
   };
 
@@ -200,17 +214,11 @@ this.uicontrol = (function() {
     },
     onDownloadPreview: () => {
       sendEvent(`download-${captureType.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()}`, "download-preview-button");
-      const previewDataUrl = (captureType === "fullPageTruncated") ? null : dataUrl;
-      // Downloaded shots don't have dimension limits
-      removeDimensionLimitsOnFullPageShot();
-      shooter.downloadShot(selectedPos, previewDataUrl);
+      downloadShot();
     },
     onCopyPreview: () => {
       sendEvent(`copy-${captureType.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase()}`, "copy-preview-button");
-      const previewDataUrl = (captureType === "fullPageTruncated") ? null : dataUrl;
-      // Copied shots don't have dimension limits
-      removeDimensionLimitsOnFullPageShot();
-      shooter.copyShot(selectedPos, previewDataUrl);
+      copyShot();
     }
   };
 
@@ -429,12 +437,6 @@ this.uicontrol = (function() {
       watchPromise(ui.iframe.display(installHandlersOnDocument, standardOverlayCallbacks).then(() => {
         ui.iframe.usePreSelection();
         ui.Box.remove();
-        const upHandler = watchFunction(assertIsTrusted(keyupHandler));
-        document.addEventListener("keyup", upHandler);
-        registeredDocumentHandlers.push({name: "keyup", doc: document, upHandler, useCapture: false});
-        const downHandler = watchFunction(assertIsTrusted(keydownHandler));
-        document.addEventListener("keydown", downHandler);
-        registeredDocumentHandlers.push({name: "keydown", doc: document, downHandler, useCapture: false});
       }));
     },
 
@@ -991,16 +993,15 @@ this.uicontrol = (function() {
 
   function keydownHandler(event) {
     // In MacOS, the keyup event for 'c' is not fired when performing cmd+c.
-    if (event.code === "KeyC" && (event.ctrlKey || event.metaKey)) {
-      callBackground("getPlatformOs").then(os => {
+    if (event.code === "KeyC" && (event.ctrlKey || event.metaKey)
+        && ["previewing", "selected"].includes(getState.state)) {
+      catcher.watchPromise(callBackground("getPlatformOs").then(os => {
         if ((event.ctrlKey && os !== "mac") ||
             (event.metaKey && os === "mac")) {
           sendEvent("copy-shot", "keyboard-copy");
-          shooter.copyShot(selectedPos);
+          copyShot();
         }
-      }).catch(() => {
-        // handled by catcher.watchPromise
-      });
+      }));
     }
   }
 
@@ -1020,7 +1021,7 @@ this.uicontrol = (function() {
         && ui.iframe.document().activeElement.tagName === "BODY") {
       if (ui.isDownloadOnly()) {
         sendEvent("download-shot", "keyboard-enter");
-        shooter.downloadShot(selectedPos);
+        downloadShot();
       } else {
         sendEvent("save-shot", "keyboard-enter");
         shooter.takeShot("selection", selectedPos);
