@@ -16,13 +16,13 @@ exports.onChangeLastShotTime = function(days) {
     return;
   }
   model.lastShotTimeDays = days;
-  model.lastShotCount = '\u2B6E';
+  model.lastShotCount = "\u2B6E";
   render();
-  let req = new XMLHttpRequest();
+  const req = new XMLHttpRequest();
   req.open("GET", `./api/recent/lastShotCount?lastShotTimeDays=${encodeURIComponent(days)}`);
   req.onload = function() {
-    if (req.status == 200) {
-      let data = JSON.parse(req.responseText);
+    if (req.status === 200) {
+      const data = JSON.parse(req.responseText);
       model.lastShotTimeDays = days;
       model.lastShotCount = data.count;
       render();
@@ -40,11 +40,11 @@ exports.onChangeNumberOfShotsTime = function(days) {
   model.numberOfShotsTime = days;
   model.numberOfShotsBuckets = {1: 0};
   render();
-  let req = new XMLHttpRequest();
+  const req = new XMLHttpRequest();
   req.open("GET", `./api/recent/numberOfShots?lastShotTimeDays=${encodeURIComponent(days)}`);
   req.onload = function() {
-    if (req.status == 200) {
-      let data = JSON.parse(req.responseText);
+    if (req.status === 200) {
+      const data = JSON.parse(req.responseText);
       model.numberOfShotsBuckets = data.buckets;
       render();
     } else {

@@ -1,22 +1,19 @@
-// Localization for Server-side strings of Firefox Screenshots
-// 
-// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+### Localization for Server-side strings of Firefox Screenshots
+###
+### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
-
-// Global phrases shared across pages, prefixed with 'g'
-[[ global ]]
+## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = મારા શોટ્સ
 gHomeLink = મુખ પૃષ્ઠ
-gNoShots
+gNoShots =
     .alt = કોઈ શૉટ્સ મળ્યાં નથી
 gScreenshotsDescription = સ્ક્રીનશોટ સરળ બનાવી. Firefox છોડ્યાં વગર સ્ક્રીનશોટ લો, સાચવો અને વહેંચો.
 
 
-[[ Footer ]]
 
-// Note: link text for a link to mozilla.org
+# Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = શરતો
 footerLinkPrivacy = ગોપનીયતા સૂચના
@@ -26,39 +23,37 @@ footerLinkDiscourse = અભીપ્રાય આપો
 footerLinkRemoveAllData = તમામ ડેટાને દૂર કરો
 
 
-[[ Creating page ]]
 
-// Note: { $title } is a placeholder for the title of the web page
-// captured in the screenshot. The default, for pages without titles, is
-// creatingPageTitleDefault.
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
 creatingPageTitle = બનાવી રહ્યા છે { $title }
 creatingPageTitleDefault = પાનું
 creatingPageWaitMessage = શોટ સચવાય છે...
 
 
-[[ Home page ]]
 
-homePageDescription
+homePageDescription =
     .content = બ્રાઉઝરમાં શેકવામાં આવેલ સાહજિક સ્ક્રીનશૉટ્સ. પકડો, તમે Firefox નો ઉપયોગ કરીને વેબ બ્રાઉઝ કરો ત્યારે સ્ક્રીનશૉટ્સને સાચવો અને વહેંચો.
 homePageButtonMyShots = મારા શોટ્સ પર જાઓ
 homePageTeaser = ટૂક સમયમાં આવી રહ્યું છે…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = મફત ડાઉનલોડ
 homePageGetStarted = શરૂ કરો
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots કેવી રીતે કામ કરે છે
 homePageGetStartedTitle = શરૂ કરો
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = તમારા ટૂલબાર પરના નવા સ્ક્રીનશોટ ચિહ્નને શોધો. તેને પસંદ કરો, અને સ્ક્રીનશોટ મેનૂ તમારી બ્રાઉઝર વિંડોની ટોચ પર દેખાશે.
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = સરનામાં બારમાં પૃષ્ઠ ક્રિયાઓ મેનૂમાંથી સ્ક્રીનશોટ્સ ચિહ્ન પસંદ કરો, અને સ્ક્રીનશોટ મેનૂ તમારા બ્રાઉઝર વિંડોની ટોચ પર દેખાશે.
 homePageCaptureRegion = પ્રદેશને પકડો
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = તમે પકડવા માંગો છો તે ક્ષેત્રને પસંદ કરવા માટે ક્લિક કરો અને ખેંચો. અથવા માત્ર હૉવર કરો અને ક્લિક કરો - સ્ક્રીનશોટ તમારા માટે વિસ્તાર પસંદ કરશે. તમે શું જુઓ છો? તમારા કમ્પ્યુટર પર તેને ડાઉનલોડ કરવા માટે તમારા સ્ક્રીનશૉટ અથવા નીચે તીર બટનને ઍક્સેસ કરવા માટે સાચવો પસંદ કરો.
 homePageCapturePage = પૃષ્ઠને પકડો
 homePageCapturePageDescription = સંપૂર્ણ પૃષ્ઠોને પકડવા માટે ઉપલા જમણા બટન્સનો ઉપયોગ કરો. સાચવો દૃશ્યમાન બટન તે વિસ્તારને પકડવા કરશે જે તમે સ્ક્રોલિંગ વગર જોઈ શકો છો, અને પૂર્ણ પેજમાં સાચવો પૃષ્ઠ પર બધું પકડશે.
 homePageSaveShare = સાચવો અને વહેચો
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = જ્યારે તમે શોટ લો છો, Firefox તમારા સ્ક્રીનશૉટ્સને તમારી ઑનલાઇન સ્ક્રિનશોટ લાઇબ્રેરી પર પોસ્ટ કરે છે અને તમારા ક્લિપબોર્ડની લિંકને નકલ કરે છે. અમે આપના સ્ક્રીનશૉટને બે અઠવાડિયા માટે આપમેળે સંગ્રહિત કરીએ છીએ, પરંતુ તમે કોઈપણ સમયે શોટને કાઢી શકો છો અથવા તમારી લાઇબ્રેરીમાં લાંબા સમય સુધી રાખવા માટે સમાપ્તિ તારીખને બદલી શકો છો.
 homePageLegalLink = કાયદાકીય
 homePagePrivacyLink = ખાનગીપણું
@@ -66,81 +61,78 @@ homePageTermsLink = શરતો
 homePageCookiesLink = કુકીઓ
 
 
-[[ Leave Screenshots page ]]
 
 leavePageRemoveAllData = તમામ ડેટાને દૂર કરો
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = તમારા એકાઉન્ટને કાઢી નાખવા માટે તમારી પાસે Firefox સ્ક્રીનશોટ ઇન્સ્ટોલ છે
 leavePageErrorGeneric = એક ભૂલ આવી
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = આ તમારા બધા Firefox સ્ક્રિનશોટ્સ ડેટાને કાયમી ધોરણે કાઢી નાખશે.
 leavePageButtonProceed = આગળ વધો
 leavePageButtonCancel = રદ કરો
 leavePageDeleted = તમારા બધા સ્ક્રીનશૉટ્સ દૂર થઈ ગયા છે!
 
 
-[[ Not Found page ]]
 
 notFoundPageTitle = પૃષ્ઠ મળ્યું નથી
 notFoundPageIntro = અરર.
 notFoundPageDescription = પૃષ્ઠ મળ્યું નથી.
 
 
-[[ Shot page ]]
 
-// This is the HTML title tag of the page
+# This is the HTML title tag of the page
 shotPageTitle = સ્ક્રીનશૉટ: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = સમાપ્તિ બચત કરવામાં ભૂલ
 shotPageAlertErrorDeletingShot = શોટ કાઢવામાં ભૂલ
 shotPageAlertErrorUpdatingTitle = શીર્ષક સાચવવામાં ભૂલ
 shotPageConfirmDelete = શું તમે ખરેખર આ શોટને કાયમ માટે કાઢી નાખવા માંગો છો?
-shotPageShareButton
+shotPageShareButton =
     .title = વહેચો
 shotPageCopy = નકલ કરો
 shotPageCopied = નકલ કરેલું
-shotPageShareFacebook
+shotPageShareFacebook =
     .title = Facebook પર વહેચો
-shotPageShareTwitter
+shotPageShareTwitter =
     .title = Twitter પર વહેચો
-shotPageSharePinterest
+shotPageSharePinterest =
     .title = Pinterest પર વહેચો
-shotPageShareEmail
+shotPageShareEmail =
     .title = ઇમેઇલ દ્વારા લિંક વહેંચો
 shotPageShareLink = આ શૉટ પર વહેંચવા કરવા યોગ્ય લિંક મેળવો:
 shotPagePrivacyMessage = લિંક ધરાવનાર કોઈપણ આ શોટને જોઈ શકે છે.
-shotPageCopyImageText
+shotPageCopyImageText =
     .label = છબી ટેક્સ્ટ નકલ કરો
 shotPageConfirmDeletion = શું તમે ખરેખર આ શોટને કાયમ માટે કાઢી નાખવા માંગો છો?
-// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = જો તમે કશું કરશો નહીં, આ શોટ કાયમી રૂપે કાઢી નાખવામાં આવશે { $timediff }.
-// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = જ્યાં સુધી પુનઃસ્થાપિત કરો { $date }
 shotPageExpiredMessage = આ શોટની સમયસીમા સમાપ્ત થઈ ગઈ છે.
-// Note: This phrase is followed by an empty line, then the URL of the source page
+# Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = અહીં તે પૃષ્ઠ છે જે મૂળથી બનાવવામાં આવ્યું હતું:
-shotPageDeleteButton
+shotPageDeleteButton =
     .title = આ શોટ કાઢી નાખો
-shotPageAbuseButton
+shotPageAbuseButton =
     .title = દુરુપયોગ, સ્પામ અથવા અન્ય સમસ્યાઓ માટે આ શોટની જાણ કરો
-shotPageDownloadShot
+shotPageDownloadShot =
     .title = ડાઉનલોડ કરો
 shotPageDownload = ડાઉનલોડ કરો
 shotPageScreenshotsDescription = સ્ક્રીનશોટને સરળ બનાવી. Firefox છોડ્યાં વગર સ્ક્રીનશોટ લો, સાચવો અને વહેંચો.
 shotPageUpsellFirefox = હમણાં Firefox મેળવો
 shotPageDMCAMessage = તૃતીય પક્ષ બૌદ્ધિક સંપદા દાવાને કારણે આ શોટ હવે ઉપલબ્ધ નથી.
-// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = વધુ માહિતી માટે વિનંતી કરવા માટે { $dmca } ઇમેઇલ કરો.
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = જો તમારા શોટ્સ બહુવિધ દાવાઓને આધીન છે, તો અમે Firefox સ્ક્રિનશોટ પર તમારી ઍક્સેસ રદ કરી શકીએ છીએ.
-// Note: { $url } is a placeholder for a shot page URL
+# Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = કૃપા કરીને તમારા ઇમેઇલમાં આ શોટનાં URL શામેલ કરો: { $url }
 shotPageKeepFor = આ શૉટને કેટલા સમય સુધી જાળવી રાખવો જોઈએ?
-// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = સમય પસંદ કરો
-// The ∞ is used to indicate that the shot won't expire. It is also used in
-// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
-// if no such symbol is available for a language/culture, simply leave it out.
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitelyWithSymbol = અનિશ્ચિત ∞
 shotPageKeepTenMinutes = 10 મિનીટ
 shotPageKeepOneHour = 1 કલાક
@@ -151,9 +143,9 @@ shotPageKeepOneMonth = 1 મહિનો
 shotPageSaveExpiration = સંગ્રહો
 shotPageCancelExpiration = રદ કરો
 shotPageDoesNotExpire = સમાપ્ત થતું નથી
-// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = સમાપ્ત થાય છે { $timediff }
-// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = સમાપ્ત થઈ { $timediff }
 timeDiffJustNow = હમણાજ
 timeDiffMinutesAgo = { $number ->
@@ -184,64 +176,62 @@ timeDiffFutureDays = { $number ->
 errorThirdPartyCookiesEnabled = જો તમે આ શોટ લીધો છે અને તેને કાઢી શકતા નથી, તો તમારે અસ્થાયી રૂપે તમારા બ્રાઉઝરની પસંદગીઓમાંથી તૃતીય પક્ષ કૂકીઝને સક્ષમ કરવાની જરૂર પડી શકે છે.
 
 
-[[ Annotations ]]
 
-annotationPenButton
+annotationPenButton =
     .title = કલમ
-annotationHighlighterButton
+annotationHighlighterButton =
     .title = પ્રકાશિત કરનાર
-// Note: This button reverts all the changes on the image since the start of the editing session.
-annotationClearButton
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
     .title = સાફ
-annotationCropButton
+annotationCropButton =
     .title = કાપો
 annotationSaveButton = સાચવો
 annotationCancelButton = રદ કરો
-annotationConfirmCropButton = ખાતરી કરો
-annotationCancelCropButton = રદ કરો
+annotationCropConfirmButton = ખાતરી
+    .title = પસંદગીની ખાતરી કરો
+annotationCropCancelButton = રદ કરો
+    .title = પસંદગી રદ કરો
 
 
-[[ Shotindex page ]]
 
-// { $status } is a placeholder for an HTTP status code, like '500'.
-// { $statusText } is a text description of the status code, like 'Internal server error'.
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = શોટ કાઢી નાખવામાં ભૂલ: { $status } { $statusText }
-// { $searchTerm } is a placeholder for text the user typed into the search box
+# { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = મારા શોટ્સ: માટે શોધો { $searchTerm }
-// { $error } is a placeholder for a non-translated error message that could be shared
-// with developers when debugging an error.
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
 shotIndexPageErrorRendering = પૃષ્ઠ પ્રસ્તુતિમાં ભૂલ: { $error }
-shotIndexPageSearchPlaceholder
+shotIndexPageSearchPlaceholder =
     .placeholder = મારા શોટ શોધો
-shotIndexPageSearchButton
+shotIndexPageSearchButton =
     .title = શોધો
 shotIndexPageNoShotsMessage = કોઈ સાચવેલા શોટ નથી
 shotIndexPageNoShotsInvitation = જાઓ, કેટલાક બનાવો
 shotIndexPageLookingForShots = તમારા શૉટ્સ શોધી રહ્યાં છે…
 shotIndexPageNoSearchResultsIntro = હમમ
 shotIndexPageNoSearchResults = અમે તમારી શોધ સાથે મેળ ખાતા કોઈપણ શોટ શોધી શકતા નથી.
-shotIndexPageClearSearchButton
+shotIndexPageClearSearchButton =
     .title = શોધ સાફ કરો
 shotIndexPageConfirmShotDelete = આ શોટ કાઢી નાખીએ?
-shotIndexPagePreviousPage
+shotIndexPagePreviousPage =
     .title = પાછળનું પાનું
-shotIndexPageNextPage
+shotIndexPageNextPage =
     .title = પછીનું પાનું
-// This symbol is used in the lower right corner of the card for a shot on the
-// My Shots page to indicate that the shot does not expire. It should be a
-// single character (or simply nothing if no such symbol is available for a
-// language/culture).
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = આ શોટ સમાપ્ત થતો નથી
 
+## all metrics strings are optional for translation
 
-// all metrics strings are optional for translation
-[[ Metrics page ]]
-
-// Note: 'Firefox Screenshots' should not be translated
+# Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Firefox સ્ક્રીનશૉટ્સ માપદંડ
 metricsPageTotalsQueryTitle = કુલ
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = સ્ક્રીનશોટનું ઝાંખી
 metricsPageTotalsQueryDevices = રજીસ્ટર થયેલ કુલ ઉપકરણો
 metricsPageTotalsQueryActiveShots = સક્રિય શોટ્સ
@@ -274,7 +264,7 @@ metricsPageVersionQueryUsers = લૉગિન વપરાશકર્તાઓ
 metricsPageVersionQueryVersion = એડ-ઑન સંસ્કરણ
 metricsPageVersionQueryLastSeen = દિવસ
 metricsPageHeader = માપદંડ
-// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = આના પર ઉત્પન્ન કર્યું: { $created }
-// Note { $time } is a placeholder for a number of milliseconds, like '100'
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (ડેટાબેઝ સમય: { $time }ms)

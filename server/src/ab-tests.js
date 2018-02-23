@@ -81,18 +81,18 @@ let allTests = {
 
 // Any test names listed here will get removed from the A/B tests.  Tests should
 // be moved here once we are uninterested in any future data from the test:
-let deprecatedTests = ['highlightButtonOnInstall', 'styleMyShotsButton', 'autoOpenSharePanel'];
+const deprecatedTests = ["highlightButtonOnInstall", "styleMyShotsButton", "autoOpenSharePanel"];
 
 class Test {
   constructor(options) {
-    let requiredFields = ['name', 'gaField', 'description', 'version', 'options'];
-    let allowedFields = requiredFields.concat(['shotField', 'exclude', 'appliesToPublic']);
-    for (let required of requiredFields) {
+    const requiredFields = ["name", "gaField", "description", "version", "options"];
+    const allowedFields = requiredFields.concat(["shotField", "exclude", "appliesToPublic"]);
+    for (const required of requiredFields) {
       if (!(required in options)) {
         throw new Error(`Missing constructor field: ${required}`);
       }
     }
-    for (let found in options) {
+    for (const found in options) {
       if (!allowedFields.includes(found)) {
         throw new Error(`Unexpected constructor field: ${found}`);
       }
@@ -115,9 +115,9 @@ class Test {
     } else {
       let prob = getRandom();
       let setAny = false;
-      for (let option of this.options) {
+      for (const option of this.options) {
         if (prob < option.probability) {
-          let controlProb = getRandom();
+          const controlProb = getRandom();
           if (controlProb < 0.5) {
             tests[this.name] = this.testWithValue("control");
           } else {
@@ -135,7 +135,7 @@ class Test {
   }
 
   testWithValue(value) {
-    let result = {value, gaField: this.gaField, version: this.version};
+    const result = {value, gaField: this.gaField, version: this.version};
     if (this.shotField) {
       result.shotField = this.shotField;
     }
@@ -144,14 +144,14 @@ class Test {
 
   shouldExclude(tests) {
     const excludes = this.exclude || [];
-    for (let testName of excludes) {
+    for (const testName of excludes) {
       if (tests[testName] && tests[testName].value !== "exclude") {
         return true;
       }
     }
     if (excludes.includes("*")) {
-      for (let testName in tests) {
-        if (testName != this.name && tests[testName].value !== "exclude") {
+      for (const testName in tests) {
+        if (testName !== this.name && tests[testName].value !== "exclude") {
           return true;
         }
       }
@@ -164,10 +164,10 @@ class Test {
 /** Update a user's abTests values.
     The optional forceTests looks like {aTests: "forceValue"} */
 exports.updateAbTests = function(tests, forceTests, unauthed) {
-  for (let testName in allTests) {
+  for (const testName in allTests) {
     allTests[testName].updateTest(tests, forceTests && forceTests[testName], unauthed);
   }
-  for (let testName of deprecatedTests) {
+  for (const testName of deprecatedTests) {
     if (testName in tests) {
       delete tests[testName];
     }
@@ -183,7 +183,7 @@ exports.setRandomSequenceForTesting = function(seq) {
     if (!Array.isArray(seq)) {
       throw new Error("setRandomSequenceForTesting([]) can only take an Array");
     }
-    for (let i of seq) {
+    for (const i of seq) {
       if (typeof i !== "number" || i < 0 || i >= 1) {
         throw new Error(`Bad item in array: ${JSON.stringify(i)}`);
       }
@@ -201,10 +201,10 @@ exports.setAllTestsForTesting = function(x) {
 };
 
 function setTests(tests) {
-  let seenFields = {};
+  const seenFields = {};
   allTests = {};
-  for (let testName in tests) {
-    let test = new Test(Object.assign({name: testName}, tests[testName]));
+  for (const testName in tests) {
+    const test = new Test(Object.assign({name: testName}, tests[testName]));
     allTests[testName] = test;
     if (seenFields[test.gaField]) {
       throw new Error(`Two tests with field ${test.gaField}`);
@@ -220,14 +220,14 @@ function setTests(tests) {
 }
 
 setTests(allTests);
-let origAllTests = allTests;
+const origAllTests = allTests;
 
 function getRandom() {
   if (randomSeq) {
     if (!randomSeq.length) {
       throw new Error("Ran out of testing random numbers");
     }
-    let next = randomSeq.shift();
+    const next = randomSeq.shift();
     return next;
   }
   return Math.random();
@@ -241,7 +241,7 @@ exports.shotGaFieldForValue = function(testName, testValue) {
     // Silently ignore deprecated tests
     return null;
   }
-  let test = allTests[testName];
+  const test = allTests[testName];
   if (!test) {
     console.error("Test name", testName, "is not known");
     return null;

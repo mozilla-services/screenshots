@@ -1,15 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-	 viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#FFAA00;}
-	.st1{fill:#FFFFFF;}
-</style>
-<path id="path-1_1_" class="st0" d="M0,21C0,9.4,9.4,0,21,0c11.6,0,21,9.4,21,21c0,11.6-9.4,21-21,21C9.4,42,0,32.6,0,21z"/>
-<g>
-	<path class="st1" d="M23.1,25.3c-0.9,0.8-2.3,0.8-3.1,0l-12.8-12v17.3c0,0.4,0.3,0.7,0.7,0.7h27.2c0.4,0,0.7-0.3,0.7-0.7V13.3
-		L23.1,25.3z"/>
-	<path class="st1" d="M22.1,24.3l13.1-12.3c0,0,0,0,0,0H7.9c0,0,0,0,0,0l13.1,12.3C21.2,24.5,21.8,24.5,22.1,24.3z"/>
-</g>
-</svg>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42"><style>.st1{fill:#fff}</style><path id="path-1_1_" d="M0 21C0 9.4 9.4 0 21 0s21 9.4 21 21-9.4 21-21 21S0 32.6 0 21z" fill="#fa0"/><path class="st1" d="M23.1 25.3c-.9.8-2.3.8-3.1 0l-12.8-12v17.3c0 .4.3.7.7.7h27.2c.4 0 .7-.3.7-.7V13.3l-12.7 12z"/><path class="st1" d="M22.1 24.3L35.2 12H7.9L21 24.3c.2.2.8.2 1.1 0z"/></svg>

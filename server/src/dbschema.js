@@ -1,5 +1,5 @@
 const db = require("./db");
-const Keygrip = require('keygrip');
+const Keygrip = require("keygrip");
 const pgpatcher = require("pg-patcher");
 const path = require("path");
 const mozlog = require("./logging").mozlog("dbschema");
@@ -11,7 +11,7 @@ const MAX_DB_LEVEL = exports.MAX_DB_LEVEL = 22;
 exports.forceDbVersion = function(version) {
   mozlog.info("forcing-db-version", {db: db.constr, version});
   return db.getConnection().then(([conn, done]) => {
-    let dirname = path.join(__dirname, "db-patches");
+    const dirname = path.join(__dirname, "db-patches");
     mozlog.info("loading-patches-from", {dirname});
     return new Promise((resolve, reject) => {
       pgpatcher(conn, version, {dir: dirname}, function(err) {
@@ -35,7 +35,7 @@ exports.forceDbVersion = function(version) {
 exports.createTables = function() {
   mozlog.info("setting-up-tables-on", {db: db.constr});
   return db.getConnection().then(([conn, done]) => {
-    let dirname = path.join(__dirname, "db-patches");
+    const dirname = path.join(__dirname, "db-patches");
     mozlog.info("loading-patches-from", {dirname});
     return new Promise((resolve, reject) => {
       pgpatcher(conn, MAX_DB_LEVEL, {dir: dirname}, function(err) {
@@ -53,7 +53,7 @@ exports.createTables = function() {
       });
     });
   }).then(() => {
-    let newId = "tmp" + Date.now();
+    const newId = "tmp" + Date.now();
     return db.insert(
       `INSERT INTO data (id, deviceid, value, url)
        VALUES ($1, NULL, $2, $3)`,
@@ -67,7 +67,7 @@ exports.createTables = function() {
          WHERE id = $1`,
         [newId]
       ).then((count) => {
-        if (count != 1) {
+        if (count !== 1) {
           throw new Error("Should have deleted one row");
         }
       });
@@ -102,7 +102,7 @@ function loadKeys() {
     []
   ).then((rows) => {
     if (rows.length) {
-      let textKeys = [];
+      const textKeys = [];
       for (let i = 0; i < rows.length; i++) {
         textKeys.push(rows[i].key);
       }
@@ -141,12 +141,12 @@ exports.createKeygrip = function() {
 /** Returns a promise that generates a new largish ASCII random key */
 function makeKey() {
   return new Promise(function(resolve, reject) {
-    require('crypto').randomBytes(48, function(err, buf) {
+    require("crypto").randomBytes(48, function(err, buf) {
       if (err) {
         reject(err);
         return;
       }
-      resolve(buf.toString('base64'));
+      resolve(buf.toString("base64"));
     });
   });
 }
@@ -156,6 +156,6 @@ exports.connectionOK = function() {
     return Promise.resolve(false);
   }
   return db.select(`SELECT value FROM property WHERE key = 'patch'`).then((rows) => {
-    return rows[0].value == MAX_DB_LEVEL;
+    return parseInt(rows[0].value, 10) === MAX_DB_LEVEL;
   });
 };
