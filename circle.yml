@@ -7,8 +7,8 @@ machine:
     RDS_NAME: circle_test
     RDS_USERNAME: ubuntu
     LOCALHOST_SSL: false
-    DISPLAY: ":99.0"
     PATH: "/home/ubuntu/screenshots/firefox:$PATH"
+    MOZ_HEADLESS: 1
 
 dependencies:
   pre:
@@ -16,7 +16,6 @@ dependencies:
     - pip install requests
     - npm i -g get-firefox
     - get-firefox --branch nightly --platform linux --extract --target /home/ubuntu/screenshots
-    - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16 -extension RANDR"
 
 compile:
   override:

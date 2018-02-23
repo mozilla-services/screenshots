@@ -75,7 +75,7 @@ leavePageErrorGeneric = Un error occurreva
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Isto cancellara permanentemente tote le datos de tu Firefox Screenshots.
 leavePageButtonProceed = Proceder
-leavePageButtonCancel = 
+leavePageButtonCancel = Cancellar
 leavePageDeleted = Tote tu instantaneos de schermo cancellate!
 
 

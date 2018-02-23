@@ -1,21 +1,21 @@
 const { createProxyUrl, createDownloadUrl } = require("../../proxy-url");
 const { getGitRevision } = require("../../linker");
-const MobileDetect = require('mobile-detect');
+const MobileDetect = require("mobile-detect");
 
 exports.createModel = function(req) {
-  let buildTime = require("../../build-time").string;
-  let isMobile = !!(new MobileDetect(req.headers['user-agent'])).mobile();
+  const buildTime = require("../../build-time").string;
+  const isMobile = !!(new MobileDetect(req.headers["user-agent"])).mobile();
   let downloadUrl = null;
-  let clip = req.shot.getClip(req.shot.clipNames()[0]);
+  const clip = req.shot.getClip(req.shot.clipNames()[0]);
   if (clip) {
     downloadUrl = createDownloadUrl(clip.image.url, req.shot.filename);
   }
   if (req.shot.favicon) {
     req.shot.favicon = createProxyUrl(req, req.shot.favicon);
   }
-  let title = req.getText("shotPageTitle", {originalTitle: req.shot.title});
-  let enableAnnotations = req.config.enableAnnotations;
-  let serverPayload = {
+  const title = req.getText("shotPageTitle", {originalTitle: req.shot.title});
+  const enableAnnotations = req.config.enableAnnotations;
+  const serverPayload = {
     title,
     staticLink: req.staticLink,
     backend: req.backend,
@@ -25,7 +25,7 @@ exports.createModel = function(req) {
     id: req.shot.id,
     productName: req.config.productName,
     isExtInstalled: !!req.deviceId,
-    isOwner: req.deviceId == req.shot.ownerId || (req.accountId && req.accountId == req.shot.accountId),
+    isOwner: req.deviceId === req.shot.ownerId || (req.accountId && req.accountId === req.shot.accountId),
     gaId: req.config.gaId,
     deviceId: req.deviceId,
     authenticated: !!req.deviceId,
@@ -38,13 +38,13 @@ exports.createModel = function(req) {
     sentryPublicDSN: req.config.sentryPublicDSN,
     cspNonce: req.cspNonce,
     hashAnalytics: true,
-    userAgent: req.headers['user-agent'],
+    userAgent: req.headers["user-agent"],
     blockType: req.shot.blockType,
     downloadUrl,
     isMobile,
     enableAnnotations
   };
-  let clientPayload = {
+  const clientPayload = {
     title,
     gitRevision: getGitRevision(),
     backend: req.backend,
@@ -54,7 +54,7 @@ exports.createModel = function(req) {
     id: req.shot.id,
     productName: req.config.productName,
     isExtInstalled: !!req.deviceId,
-    isOwner: req.deviceId == req.shot.ownerId || (req.accountId && req.accountId == req.shot.accountId),
+    isOwner: req.deviceId === req.shot.ownerId || (req.accountId && req.accountId === req.shot.accountId),
     gaId: req.config.gaId,
     deviceId: req.deviceId,
     authenticated: !!req.deviceId,
@@ -68,7 +68,7 @@ exports.createModel = function(req) {
     defaultExpiration: req.config.defaultExpiration * 1000,
     pngToJpegCutoff: req.config.pngToJpegCutoff,
     hashAnalytics: true,
-    userAgent: req.headers['user-agent'],
+    userAgent: req.headers["user-agent"],
     blockType: req.shot.blockType,
     downloadUrl,
     isMobile,

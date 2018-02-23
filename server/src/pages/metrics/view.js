@@ -1,5 +1,6 @@
 const reactruntime = require("../../reactruntime");
 const React = require("react");
+const PropTypes = require("prop-types");
 const { Localized } = require("fluent-react/compat");
 
 class Head extends React.Component {
@@ -14,6 +15,10 @@ class Head extends React.Component {
   }
 
 }
+
+Head.propTypes = {
+  staticLink: PropTypes.func
+};
 
 class Body extends React.Component {
   render() {
@@ -44,9 +49,13 @@ class Body extends React.Component {
 
 }
 
+Body.propTypes = {
+  data: PropTypes.object
+};
+
 class GenericTable extends React.Component {
   render() {
-    let time = this.props.data.timeToExecute;
+    const time = this.props.data.timeToExecute;
     return <div className="generic-table-section">
       <h2>{this.props.data.title}</h2>
       <p>{this.props.data.description}
@@ -66,8 +75,8 @@ class GenericTable extends React.Component {
   }
 
   renderTableHeader() {
-    let headers = [];
-    for (let column of this.props.data.columns) {
+    const headers = [];
+    for (const column of this.props.data.columns) {
       headers.push(<th key={column.title}>{column.title}</th>);
     }
     return <tr>
@@ -76,19 +85,19 @@ class GenericTable extends React.Component {
   }
 
   renderTableRows() {
-    let rows = [];
+    const rows = [];
     let n = 0;
-    for (let row of this.props.data.rows) {
+    for (const row of this.props.data.rows) {
       n++;
-      let columns = [];
+      const columns = [];
       for (let i = 0; i < row.length; i++) {
         let value = row[i];
-        let meta = this.props.data.columns[i];
+        const meta = this.props.data.columns[i];
         if (meta.type) {
           if (meta.type === "date") {
             value = (new Date(value));
             value = value.toLocaleString(
-              "en-US", {year: 'numeric', month: 'short', day: 'numeric'});
+              "en-US", {year: "numeric", month: "short", day: "numeric"});
           } else {
             console.warn("Unknown type:", meta.type);
           }
@@ -101,6 +110,10 @@ class GenericTable extends React.Component {
   }
 
 }
+
+GenericTable.propTypes = {
+  data: PropTypes.object
+};
 
 exports.HeadFactory = React.createFactory(Head);
 exports.BodyFactory = React.createFactory(Body);

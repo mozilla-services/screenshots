@@ -1,8 +1,8 @@
 const db = require("../../db");
 
 exports.createModel = function(req) {
-  let title = "Settings";
-  let model = {
+  const title = "Settings";
+  const model = {
     title,
     docTitle: title,
   };
