@@ -1,12 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="46px" height="46px" viewBox="0 0 46 46" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
-    <title>Page shot / Menu / My shot</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Page-shot-/-Menu-/-My-shot" fill="#3E3D40">
-            <path d="M11,11.995457 C11,11.4456813 11.4552629,11 11.995457,11 L35.004543,11 C35.5543187,11 36,11.4552629 36,11.995457 L36,35.004543 C36,35.5543187 35.5447371,36 35.004543,36 L11.995457,36 C11.4456813,36 11,35.5447371 11,35.004543 L11,11.995457 Z M11,25 L11,23 L18,23 L18,25 L11,25 Z M20,20 L27,20 L27,18 L20,18 L20,20 Z M29,25 L36,25 L36,23 L29,23 L29,25 Z M20,29 L27,29 L27,27 L20,27 L20,29 Z M18,11 L20,11 L20,36 L18,36 L18,11 Z M27,11 L29,11 L29,36 L27,36 L27,11 Z" id="Combined-Shape"></path>
-        </g>
-    </g>
-</svg>
+<svg width="46" height="46" xmlns="http://www.w3.org/2000/svg"><path d="M11 11.995c0-.55.455-.995.995-.995h23.01c.55 0 .995.455.995.995v23.01c0 .55-.455.995-.995.995h-23.01c-.55 0-.995-.455-.995-.995v-23.01zM11 25v-2h7v2h-7zm9-5h7v-2h-7v2zm9 5h7v-2h-7v2zm-9 4h7v-2h-7v2zm-2-18h2v25h-2V11zm9 0h2v25h-2V11z" fill="#3E3D40" fill-rule="evenodd"/></svg>

@@ -12,12 +12,12 @@ exports.installConsoleHandler = function() {
   // We can't prevent any third party libraries from writing to the console,
   // so monkey patch it so they play nice with mozlog.
   function logFactory(level) {
-    let logger = console_mozlog[level].bind(console_mozlog);
+    const logger = console_mozlog[level].bind(console_mozlog);
     return function() {
       let msg = "";
       let stack = undefined;
-      for (var i = 0; i < arguments.length; i++) {
-        let arg = arguments[i];
+      for (let i = 0; i < arguments.length; i++) {
+        const arg = arguments[i];
         if (msg) {
           msg += " ";
         }

@@ -1,3 +1,89 @@
+## Version 30.0.0
+
+Note this is an add-on only release. The add-on will be exported into Firefox 60.
+
+### Addon changes
+
+* Remove one of the addon icon svgs. ([#4132](https://github.com/mozilla-services/screenshots/issues/4132)) [b456233](https://github.com/mozilla-services/screenshots/commit/b456233)
+* Include onboarding slides in user timing measurements. Fixes [#4097](https://github.com/mozilla-services/screenshots/issues/4097) [69b58f7](https://github.com/mozilla-services/screenshots/commit/69b58f7)
+* Use Performance.now for interaction timings. Fixes [#4054](https://github.com/mozilla-services/screenshots/issues/4054) [3119bb4](https://github.com/mozilla-services/screenshots/commit/3119bb4)
+* Show loader animation on truncated full page download/copy. ([#3861](https://github.com/mozilla-services/screenshots/issues/3861)) [6fa7f3a](https://github.com/mozilla-services/screenshots/commit/6fa7f3a)
+* Fix lint issues. ([#4076](https://github.com/mozilla-services/screenshots/issues/4076)) [51dff4c](https://github.com/mozilla-services/screenshots/commit/51dff4c)
+* Use double quotes. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [2764e9d](https://github.com/mozilla-services/screenshots/commit/2764e9d)
+* Use eqeqeq. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [35f01a4](https://github.com/mozilla-services/screenshots/commit/35f01a4)
+* Use prefer-const. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [eefee3d](https://github.com/mozilla-services/screenshots/commit/eefee3d)
+* Replace var with let or const. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [6824d8b](https://github.com/mozilla-services/screenshots/commit/6824d8b)
+* Enable consistent-return. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [ed632d6](https://github.com/mozilla-services/screenshots/commit/ed632d6)
+* apply svgo to all svgs. Fixes [#3853](https://github.com/mozilla-services/screenshots/issues/3853) [28ef28c](https://github.com/mozilla-services/screenshots/commit/28ef28c)
+* Suppress errors encountered when sending timing or events pings
+  Analytics network errors should never be user-visible. [73c1340](https://github.com/mozilla-services/screenshots/commit/73c1340)
+* Cancel some user timing measurements when page visibility changes to 'hidden'
+  JS background budgeting in Firefox 58 might cause Screenshots execution
+  to slow down if the user switches tabs while waiting for the UI to
+  update.
+  Exclude cases where the user timing event ends with an upload, since the
+  result of a successful upload is to switch tabs (to the shot page of the
+  uploaded shot).
+. Fixes [#4055](https://github.com/mozilla-services/screenshots/issues/4055) [588d2e7](https://github.com/mozilla-services/screenshots/commit/588d2e7)
+* Fire an internal-only event if Screenshots is in a document that is backgrounded
+  Use the Page Visibility API to detect when a given window loses focus. [2aed29b](https://github.com/mozilla-services/screenshots/commit/2aed29b)
+* Upstream changes to loader calls in bootstrap.js context
+  Cu.import has been replaced with ChromeUtils.import, and
+  XPCOM.defineLazyModuleGetter has been replaced with
+  ChromeUtils.defineModuleGetter. Adjust our code accordingly.
+  See bugzilla bug 1431533 for details. [07b3b39](https://github.com/mozilla-services/screenshots/commit/07b3b39)
+
+### Server changes
+
+* Set LOCALHOST_SSL to false in .evn.dev. ([#4125](https://github.com/mozilla-services/screenshots/issues/4125)) [37b4544](https://github.com/mozilla-services/screenshots/commit/37b4544)
+* add loader for annotation saves [b39ac1e](https://github.com/mozilla-services/screenshots/commit/b39ac1e)
+* Wait until save btn is visible. ([#4108](https://github.com/mozilla-services/screenshots/issues/4108)) ([#4114](https://github.com/mozilla-services/screenshots/issues/4114)) [b7c64b0](https://github.com/mozilla-services/screenshots/commit/b7c64b0)
+* Switch en-US FTL file to new syntax ([#4115](https://github.com/mozilla-services/screenshots/issues/4115)) [983a0fb](https://github.com/mozilla-services/screenshots/commit/983a0fb)
+* Use done cb in Selenium tests. ([#4109](https://github.com/mozilla-services/screenshots/issues/4109)) ([#4123](https://github.com/mozilla-services/screenshots/issues/4123)) [ec53f04](https://github.com/mozilla-services/screenshots/commit/ec53f04)
+* Upgrade convict. ([#3841](https://github.com/mozilla-services/screenshots/issues/3841)) ([#4122](https://github.com/mozilla-services/screenshots/issues/4122)) [da60008](https://github.com/mozilla-services/screenshots/commit/da60008)
+* Ignore nsp[#566](https://github.com/mozilla-services/screenshots/issues/566) with .nsprc. ([#4118](https://github.com/mozilla-services/screenshots/issues/4118)) [0e719bf](https://github.com/mozilla-services/screenshots/commit/0e719bf)
+* color picker UI update [b07ff25](https://github.com/mozilla-services/screenshots/commit/b07ff25)
+* remove extra space between edit and share [2404360](https://github.com/mozilla-services/screenshots/commit/2404360)
+* prevent drawing on right click [9b095e8](https://github.com/mozilla-services/screenshots/commit/9b095e8)
+* Make color picker visible [cf3aa76](https://github.com/mozilla-services/screenshots/commit/cf3aa76)
+* Require node 8 for docker and in package.json. Fixes [#3642](https://github.com/mozilla-services/screenshots/issues/3642) [2423408](https://github.com/mozilla-services/screenshots/commit/2423408)
+* - Ensure DB returned rows before trying to access them. Fixes [#3776](https://github.com/mozilla-services/screenshots/issues/3776) [4604edb](https://github.com/mozilla-services/screenshots/commit/4604edb)
+* Add nav to My Shots test. ([#4030](https://github.com/mozilla-services/screenshots/issues/4030)) ([#4096](https://github.com/mozilla-services/screenshots/issues/4096)) [0bebc27](https://github.com/mozilla-services/screenshots/commit/0bebc27)
+* Wait a whole second in visible shot test. [a5cdac3](https://github.com/mozilla-services/screenshots/commit/a5cdac3)
+* vertically align image [88b58f8](https://github.com/mozilla-services/screenshots/commit/88b58f8)
+* use whole numbers to draw image on canvas [f3eed28](https://github.com/mozilla-services/screenshots/commit/f3eed28)
+* preserve active color [e574585](https://github.com/mozilla-services/screenshots/commit/e574585)
+* Add auto selection shot Selenium test. ([#4024](https://github.com/mozilla-services/screenshots/issues/4024)) [7cabb73](https://github.com/mozilla-services/screenshots/commit/7cabb73)
+* Upgrade selenium-webdriver + geckodriver and fix test. [3c9db71](https://github.com/mozilla-services/screenshots/commit/3c9db71)
+* Update Postgres info in README. [ff66687](https://github.com/mozilla-services/screenshots/commit/ff66687)
+* Run Nightly in headless mode. [9d56a4d](https://github.com/mozilla-services/screenshots/commit/9d56a4d)
+* Give nohup a try. [1e735ec](https://github.com/mozilla-services/screenshots/commit/1e735ec)
+* Update to fluent 0.4.3 [e9d65be](https://github.com/mozilla-services/screenshots/commit/e9d65be)
+* Clarify l10n export process [6391525](https://github.com/mozilla-services/screenshots/commit/6391525)
+* Update an arg for xvfb cmd in CircleCI. [3199912](https://github.com/mozilla-services/screenshots/commit/3199912)
+* Fix lint issues. ([#4076](https://github.com/mozilla-services/screenshots/issues/4076)) [51dff4c](https://github.com/mozilla-services/screenshots/commit/51dff4c)
+* Change Xvfb display number. [e9856e7](https://github.com/mozilla-services/screenshots/commit/e9856e7)
+* add drawing on single click [e5b81ff](https://github.com/mozilla-services/screenshots/commit/e5b81ff)
+* update annotation metrics [6afe10c](https://github.com/mozilla-services/screenshots/commit/6afe10c)
+* highlight annotations button [283860b](https://github.com/mozilla-services/screenshots/commit/283860b)
+* smoothen highlight drawings [79eaf88](https://github.com/mozilla-services/screenshots/commit/79eaf88)
+* Upstream change to disable Screenshots browser test on windows debug for frequent failures
+  See bug 1394967 for more details. [679f026](https://github.com/mozilla-services/screenshots/commit/679f026)
+* Enable save after image load [3a23438](https://github.com/mozilla-services/screenshots/commit/3a23438)
+* close color picker on tool change [074bab9](https://github.com/mozilla-services/screenshots/commit/074bab9)
+* Make white highlight translucent [35f85c1](https://github.com/mozilla-services/screenshots/commit/35f85c1)
+* Add reviewer selection guidelines to fx export doc [2535aea](https://github.com/mozilla-services/screenshots/commit/2535aea)
+* Use double quotes. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [2764e9d](https://github.com/mozilla-services/screenshots/commit/2764e9d)
+* Use eqeqeq. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [35f01a4](https://github.com/mozilla-services/screenshots/commit/35f01a4)
+* Use prefer-const. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [eefee3d](https://github.com/mozilla-services/screenshots/commit/eefee3d)
+* Replace var with let or const. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [6824d8b](https://github.com/mozilla-services/screenshots/commit/6824d8b)
+* Enable consistent-return. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [ed632d6](https://github.com/mozilla-services/screenshots/commit/ed632d6)
+* Enable react/prop-types. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [2c96506](https://github.com/mozilla-services/screenshots/commit/2c96506)
+* Remove eslint rules with no effects. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [40b380b](https://github.com/mozilla-services/screenshots/commit/40b380b)
+* Use the svgo --folder option to speed up npm run svgo [a91b08e](https://github.com/mozilla-services/screenshots/commit/a91b08e)
+* apply svgo to all svgs. Fixes [#3853](https://github.com/mozilla-services/screenshots/issues/3853) [28ef28c](https://github.com/mozilla-services/screenshots/commit/28ef28c)
+* Add an npm run svgo command [b8fe1a6](https://github.com/mozilla-services/screenshots/commit/b8fe1a6)
+
 ## Version 29.0.0
 
 Note this is an add-on only release. The add-on will be exported into Firefox 60.

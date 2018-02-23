@@ -17,11 +17,11 @@ document.addEventListener("addon-present", () => {
     document.dispatchEvent(new CustomEvent("request-onboarding"));
   } else if (location.hash === "#tour") {
     try {
-      if (typeof Mozilla == "undefined") {
+      if (typeof Mozilla === "undefined") {
         // The UITour-lib.js library hasn't loaded yet
         let count = 10;
-        let interval = setInterval(() => {
-          if (typeof Mozilla == "undefined") {
+        const interval = setInterval(() => {
+          if (typeof Mozilla === "undefined") {
             count--;
             if (count <= 0) {
               clearTimeout(interval);

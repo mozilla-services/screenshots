@@ -21,7 +21,7 @@ function makeOptionsFromRequest(req, options) {
   if (req.headers.referer) {
     referrer = req.headers.referer;
     if (referrer.startsWith(req.backend)) {
-      let parsed = urlParse(referrer);
+      const parsed = urlParse(referrer);
       let pathname = parsed.pathname;
       if (isShotLikePath(pathname)) {
         pathname = "/a-shot/redacted";
@@ -36,7 +36,7 @@ function makeOptionsFromRequest(req, options) {
   options.extra = options.extra || {};
   options.extra.path = path;
   options.extra.method = req.method;
-  options.extra.userAgent = req.headers['user-agent'];
+  options.extra.userAgent = req.headers["user-agent"];
   options.extra.referrer = referrer;
   options.extra.authenticated = !!req.deviceId;
   return options;

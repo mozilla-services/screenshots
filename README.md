@@ -16,7 +16,9 @@ You can find more information about Firefox Screenshots at the Mozilla Wiki page
 
 ### Installation and Setup
 
-Install [Postgres](http://www.postgresql.org/).
+Install [Postgres](http://www.postgresql.org/).  And do _one_ of the following:
+- Ensure the locale for your Postgres messages is US English ([Here's why](https://github.com/chilts/pg-patcher/blob/master/pg-patcher.js#L101))
+- Run the [first migration](https://github.com/mozilla-services/screenshots/blob/master/server/db-patches/patch-0-1.sql) manually
 
 Install [Node.js](https://nodejs.org/). Version 8.x is required.
 

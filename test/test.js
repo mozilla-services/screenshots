@@ -14,6 +14,8 @@ const assert = require("assert");
 const firefox = require("selenium-webdriver/firefox");
 const webdriver = require("selenium-webdriver");
 const { By, until } = webdriver;
+// Uncomment the next line and others with `ServiceBuilder` to enable trace logs from Firefox and Geckodriver
+// const { ServiceBuilder } = firefox;
 const path = require("path");
 
 const SHOOTER_BUTTON_ID = "pageAction-panel-screenshots";
@@ -22,79 +24,36 @@ const TOOLBAR_SHOOTER_BUTTON_ID = "screenshots_mozilla_org-browser-action";
 const shooterSelector = By.css(`#${SHOOTER_BUTTON_ID}, #${TOOLBAR_SHOOTER_BUTTON_ID}`);
 const SLIDE_IFRAME_ID = "firefox-screenshots-onboarding-iframe";
 const PRESELECTION_IFRAME_ID = "firefox-screenshots-preselection-iframe";
+const SELECTION_IFRAME_ID = "firefox-screenshots-selection-iframe";
 const PREVIEW_IFRAME_ID = "firefox-screenshots-preview-iframe";
 const backend = "http://localhost:10080";
 
-function addAddonToDriver(driver, location) {
-  driver.setContext(firefox.Context.CHROME);
-  return driver.executeAsyncScript(`
-const FileUtils = Components.utils.import('resource://gre/modules/FileUtils.jsm').FileUtils;
-const { console } = Components.utils.import("resource://gre/modules/Console.jsm", {});
-const { AddonManager } = Components.utils.import("resource://gre/modules/AddonManager.jsm", {});
-const { Services } = Components.utils.import("resource://gre/modules/Services.jsm");
-const callback = arguments[arguments.length - 1];
-const { prefs } = Services;
-
-prefs.setBoolPref("extensions.legacy.enabled", true);
-
-class AddonListener {
-  onInstallEnded(install, addon) {
-    callback([addon.version, 0]);
-  }
-
-  onInstallFailed(install) {
-    callback([null, install.error.toString()]);
-  }
-
-  onInstalled(addon) {
-    AddonManager.removeAddonListener(this);
-    callback([addon.version, 0]);
-  }
-}
-
-AddonManager.addAddonListener(new AddonListener());
-AddonManager.installTemporaryAddon(new FileUtils.File(arguments[0]))
-  .catch((error) => {
-    callback([null, error.toString()]);
-  });
-`, location).then(([result, err]) => {
-    if (!result && err) {
-      throw new Error(`Failed to install add-on: ${err}`);
-    }
-    console.info("    Installed add-on version:", result);
-  }).then(() => {
-    return driver.executeAsyncScript(`
-const { Services } = Components.utils.import("resource://gre/modules/Services.jsm");
-const { prefs } = Services;
-const callback = arguments[arguments.length - 1];
-callback();
-`);
-  }).then(() => {
-    driver.setContext(firefox.Context.CONTENT);
-    return driver;
-  });
-}
-
 function getDriver() {
-  const profile = new firefox.Profile();
-  let channel = process.env.FIREFOX_CHANNEL || "NIGHTLY";
+  const channel = process.env.FIREFOX_CHANNEL || "NIGHTLY";
   if (!(channel in firefox.Channel)) {
     throw new Error(`Unknown channel: "${channel}"`);
   }
+
+  // const servicebuilder = new ServiceBuilder().enableVerboseLogging(true).setStdio("inherit");
+
   const options = new firefox.Options()
-    .setBinary(firefox.Channel[channel]);
+    .setBinary(firefox.Channel[channel])
+    .setPreference("extensions.legacy.enabled", true)
+    .setPreference("xpinstall.signatures.required", false);
+
   // FIXME: should assert somehow that we have Firefox 54+
-  options.setProfile(profile);
 
-  const builder = new webdriver.Builder()
-    .withCapabilities({'moz:webdriverClick': false})
+  const driver = new webdriver.Builder()
+    // .setFirefoxService(servicebuilder)
+    .withCapabilities({"moz:webdriverClick": true})
     .forBrowser("firefox")
-    .setFirefoxOptions(options);
+    .setFirefoxOptions(options)
+    .build();
 
-  const driver = builder.build();
+  const fileLocation = path.join(process.cwd(), "build", "screenshots-bootstrap.zip");
+  driver.installAddon(fileLocation);
 
-  let fileLocation = path.join(process.cwd(), "build", "screenshots-bootstrap.zip");
-  return addAddonToDriver(driver, fileLocation);
+  return driver;
 }
 
 function getChromeElement(driver, selector) {
@@ -112,12 +71,6 @@ function promiseFinally(promise, finallyCallback) {
   }, (error) => {
     finallyCallback();
     throw error;
-  });
-}
-
-function setTimeoutPromise(time) {
-  return new Promise((resolve, reject) => {
-    setTimeout(resolve, time);
   });
 }
 
@@ -185,14 +138,14 @@ function expectCreatedShot(driver, creator) {
       return driver.getAllWindowHandles().then((tabs) => {
         // On CircleCI there is consistently one weird tab with the id "22"
         // It's not a normal tab, so we ignore it:
-        tabs = tabs.filter((t) => t != "22");
+        tabs = tabs.filter((t) => t !== "22");
         return tabs.length > startingTabCount;
       });
     });
   }).then(() => {
     return driver.getAllWindowHandles();
   }).then((tabs) => {
-    tabs = tabs.filter((t) => t != "22");
+    tabs = tabs.filter((t) => t !== "22");
     if (tabs.length < startingTabCount) {
       throw new Error("New tab did not open");
     }
@@ -200,7 +153,7 @@ function expectCreatedShot(driver, creator) {
   }).then(() => {
     return driver.wait(() => {
       return driver.getCurrentUrl().then((url) => {
-        return url != "about:blank" && !url.includes("/creating/")
+        return url !== "about:blank" && !url.includes("/creating/")
       });
     });
   }).then(() => {
@@ -223,27 +176,29 @@ describe("Test Screenshots", function() {
       return driver.quit();
     }
     console.info("Note: leaving browser open");
+    return null;
   });
 
-  it("should find the add-on button", function() {
+  it("should find the add-on button", function(done) {
     this.timeout(15000);
-    return promiseFinally(
+    promiseFinally(
       getChromeElement(driver, shooterSelector)
       .then((button) => button.getAttribute("label"))
       .then((label) => {
-        if (label == "Take a Screenshot") {
+        if (label === "Take a Screenshot") {
           assert.equal(label, "Take a Screenshot");
         } else {
           assert.equal(label, "Firefox Screenshots");
         }
+        done();
       }),
       () => {
         driver.setContext(firefox.Context.CONTENT);
-      });
+      }).catch(done);
   });
 
-  it("should take a shot", function() {
-    return driver.get(backend).then(() => {
+  it("should take a shot", function(done) {
+    driver.get(backend).then(() => {
       return startScreenshots(driver);
     }).then((onboarding) => {
       if (!onboarding) {
@@ -251,28 +206,28 @@ describe("Test Screenshots", function() {
       }
       return skipOnboarding(driver);
     }).then(() => {
-      return focusIframe(driver, PRESELECTION_IFRAME_ID);
-    }).then(() => {
-      // This avoids a problem where the UI has been instantiated, and handlers
-      // added, but not everything is fully setup yet; by waiting we give it
-      // time to set everything up
-      return setTimeoutPromise(500);
+      return driver.wait(
+        until.ableToSwitchToFrame(By.id(PRESELECTION_IFRAME_ID))
+      );
     }).then(() => {
       return driver.wait(
         until.elementLocated(By.css(".visible"))
       );
     }).then((visibleButton) => {
-      visibleButton.click();
+      return visibleButton.click();
+    }).then(() => {
       return driver.switchTo().defaultContent();
     }).then(() => {
       return driver.wait(
-        until.elementLocated(By.id(PREVIEW_IFRAME_ID))
+        until.ableToSwitchToFrame(By.id(PREVIEW_IFRAME_ID))
       );
-    }).then(() => {
-      return focusIframe(driver, PREVIEW_IFRAME_ID);
     }).then(() => {
       return driver.wait(
         until.elementLocated(By.css(".preview-button-save"))
+      );
+    }).then((saveButton) => {
+      return driver.wait(
+        until.elementIsVisible(saveButton)
       );
     }).then((saveButton) => {
       return expectCreatedShot(driver, () => {
@@ -280,11 +235,90 @@ describe("Test Screenshots", function() {
       });
     }).then((shotUrl) => {
       assert(shotUrl.startsWith(backend), `Got url ${shotUrl} that doesn't start with ${backend}`);
-      let restUrl = shotUrl.substr(backend.length);
+      const restUrl = shotUrl.substr(backend.length);
       if (!/^\/[^/]+\/localhost$/.test(restUrl)) {
         throw new Error(`Unexpected URL: ${shotUrl}`);
       }
-    });
+      done();
+    }).catch(done);
+  });
+
+  it("should take an auto selection shot", function(done) {
+    driver.get(backend).then(() => {
+      return startScreenshots(driver);
+    }).then(() => {
+      return driver.wait(
+        until.ableToSwitchToFrame(By.id(PRESELECTION_IFRAME_ID))
+      );
+    }).then(() => {
+      return driver.wait(
+        until.elementLocated(By.css(".visible"))
+      );
+    }).then(() => {
+      return driver.actions().move({x: 100, y: 100}).click().perform();
+    }).then(() => {
+      return driver.switchTo().defaultContent();
+    }).then(() => {
+      return driver.wait(
+        until.ableToSwitchToFrame(By.id(SELECTION_IFRAME_ID))
+      );
+    }).then(() => {
+      return driver.wait(
+        until.elementLocated(By.css(".highlight-button-save"))
+      );
+    }).then((saveButton) => {
+      return expectCreatedShot(driver, () => {
+        saveButton.click();
+      });
+    }).then((shotUrl) => {
+      assert(shotUrl.startsWith(backend), `Got url ${shotUrl} that doesn't start with ${backend}`);
+      const restUrl = shotUrl.substr(backend.length);
+      if (!/^\/[^/]+\/localhost$/.test(restUrl)) {
+        throw new Error(`Unexpected URL: ${shotUrl}`);
+      }
+      done();
+    }).catch(done);
+  });
+
+  it("should navigate to My Shots", function(done) {
+    let currentTabs, startingTabCount;
+    driver.getAllWindowHandles().then(tabs => {
+      startingTabCount = tabs.length;
+    }).then(() => {
+      return driver.get(backend);
+    }).then(() => {
+      return startScreenshots(driver);
+    }).then(() => {
+      return driver.wait(
+        until.ableToSwitchToFrame(By.id(PRESELECTION_IFRAME_ID))
+      );
+    }).then(() => {
+      return driver.wait(
+        until.elementLocated(By.css(".myshots-button"))
+      );
+    }).then(myShotsButton => {
+      return myShotsButton.click();
+    }).then(() => {
+      return driver.wait(
+        () => {
+          return driver.getAllWindowHandles().then(tabs => {
+            currentTabs = tabs;
+            return currentTabs.length > startingTabCount;
+          });
+        }
+      );
+    }).then(() => {
+      return driver.switchTo().window(currentTabs[currentTabs.length - 1]);
+    }).then(() => {
+      return driver.wait(
+        until.elementLocated(By.css("#shot-index-page"))
+      );
+    }).then(() => {
+      return driver.getCurrentUrl();
+    }).then(url => {
+      assert.equal(url, `${backend}/shots`, `Navigated to ${url} instead of My Shots at ${backend}/shots`);
+      done();
+    }).catch(done);
   });
 
 });
