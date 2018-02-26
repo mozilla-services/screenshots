@@ -2,7 +2,7 @@
 
 let sentEvent = false;
 
-if (typeof window != "undefined" && window.sendEvent) {
+if (typeof window !== "undefined" && window.sendEvent) {
   module.exports = window.sendEvent;
 } else {
   module.exports = function() {
@@ -14,7 +14,7 @@ if (typeof window != "undefined" && window.sendEvent) {
       if (!sentEvent) {
         // Initialization to send events can take a while:
         setTimeout(() => {
-          let event = new CustomEvent("error-no-sendEvent");
+          const event = new CustomEvent("error-no-sendEvent");
           document.dispatchEvent(event);
         }, 3000);
         sentEvent = true;

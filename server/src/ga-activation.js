@@ -154,7 +154,7 @@ exports.makeGaActivationString = function(gaId, userId, abTests, hashLocation) {
     return stubGaJs.replace(/__ABTESTS__/g, JSON.stringify(abTests));
   }
   userId = userId || "";
-  if (typeof userId != "string") {
+  if (typeof userId !== "string") {
     throw new Error("Invalid user ID type: " + typeof userId);
   }
   if (gaId.search(idRegex) === -1) {

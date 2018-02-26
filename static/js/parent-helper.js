@@ -25,12 +25,12 @@ window.onmessage = function(m) {
   if (!sendToChild.childReference) {
     sendToChild.childReference = m.source;
     while (sendToChild.queue.length) {
-      let msg = sendToChild.queue.shift();
+      const msg = sendToChild.queue.shift();
       sendToChild(msg);
     }
   }
-  let message = m.data;
-  let type = message.type;
+  const message = m.data;
+  const type = message.type;
   if (!type) {
     console.warn("Parent iframe received message with no type:", message);
     return;
@@ -52,11 +52,11 @@ function setHeight(h) {
 }
 
 function scrollPageToMiddle(pos) {
-  let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
-  let toolbarHeight = document.getElementById("toolbar").clientHeight;
-  let visibleHeight = window.innerHeight - toolbarHeight;
-  let frameTop = frameOffset - toolbarHeight;
-  let scrollY = frameTop + (pos.top + pos.bottom) / 2 - (visibleHeight / 2);
+  const frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
+  const toolbarHeight = document.getElementById("toolbar").clientHeight;
+  const visibleHeight = window.innerHeight - toolbarHeight;
+  const frameTop = frameOffset - toolbarHeight;
+  const scrollY = frameTop + (pos.top + pos.bottom) / 2 - (visibleHeight / 2);
   window.scroll(0, scrollY);
 }
 

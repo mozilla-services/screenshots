@@ -9,10 +9,10 @@ if (process.argv.length <= 2 || process.argv.includes("-h") || process.argv.incl
   process.exit()
 }
 
-let content = fs.readFileSync(process.argv[2], "UTF-8");
+const content = fs.readFileSync(process.argv[2], "UTF-8");
 
-let newContent = content.replace(/process\.env\.([a-zA-Z0-9_]+)/g, (match, variable) => {
-  let value = process.env[variable] || "";
+const newContent = content.replace(/process\.env\.([a-zA-Z0-9_]+)/g, (match, variable) => {
+  const value = process.env[variable] || "";
   return JSON.stringify(value);
 });
 

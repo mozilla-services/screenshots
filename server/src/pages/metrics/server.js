@@ -5,10 +5,10 @@ const config = require("../../config").getProperties();
 const { captureRavenException } = require("../../ravenclient");
 const mozlog = require("../../logging").mozlog("metrics");
 
-let app = exports.app = express();
+const app = exports.app = express();
 
 app.get("/", function(req, res) {
-  if (req.originalUrl == "/metrics") {
+  if (req.originalUrl === "/metrics") {
     // We want a trailing slash
     res.redirect("/metrics/");
     return;
@@ -24,6 +24,7 @@ function safeStoreQueries() {
         mozlog.info("updated-metrics", {msg: "Updated metrics"});
       });
     }
+    return null;
   }).catch((error) => {
     mozlog.error("metrics-update-error", {msg: "Error running metrics queries", error});
     captureRavenException(error);

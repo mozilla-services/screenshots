@@ -122,9 +122,13 @@ shotPageDMCAMessage = మూడవ పార్టీ మేధో సంపత�
 shotPageDMCAContact = దయచేసి మరింత సమాచారం అభ్యర్థించడానికి { $dmca }కి ఇమెయిల్ చేయండి.
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = దయచేసి ఈ తెరపట్టు యొక్క URLను మీ ఇమెయిల్లో చేర్చండి: { $url }
-shotPageKeepFor = ఎంతకాలం ఈ తెరపట్టును నిలబెట్టుకోవాలి?
+shotPageKeepFor = ఈ తెరపట్టును ఎంతకాలం భద్రపరచివుంచాలి?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = సమయాన్ని ఎంచుకోండి
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = నిరవధికంగా ∞
 shotPageKeepTenMinutes = 10 నిమిషాలు
 shotPageKeepOneHour = 1 గంట
 shotPageKeepOneDay = 1 రోజు
@@ -193,7 +197,7 @@ shotIndexPageSearchPlaceholder
 shotIndexPageSearchButton
     .title = వెతకండి
 shotIndexPageNoShotsMessage = భద్రపరచిన తెరపట్లు లేవు.
-shotIndexPageNoShotsInvitation = కొనసాగి, కొన్నింటిని సృష్టించండి.
+shotIndexPageNoShotsInvitation = వెళ్ళండి, కొన్ని తెరపట్లు తీయండి.
 shotIndexPageLookingForShots = తెరపట్ల కొరకు చూస్తున్నాం…
 shotIndexPageNoSearchResultsIntro = హ్మ్మ్
 shotIndexPageNoSearchResults = మీ శోధనకు సరిపోలే ఏ తెరపట్టును కనుగొనలేకపోయాము.

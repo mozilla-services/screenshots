@@ -1,6 +1,7 @@
 const sendEvent = require("../../browser-send-event.js");
 const reactruntime = require("../../reactruntime");
 const React = require("react");
+const PropTypes = require("prop-types");
 const { Localized } = require("fluent-react/compat");
 
 class Head extends React.Component {
@@ -15,6 +16,10 @@ class Head extends React.Component {
   }
 
 }
+
+Head.propTypes = {
+  staticLink: PropTypes.func
+};
 
 class Body extends React.Component {
 
@@ -82,6 +87,13 @@ class Body extends React.Component {
   }
 
 }
+
+Body.propTypes = {
+  complete: PropTypes.bool,
+  csrfToken: PropTypes.string,
+  staticLink: PropTypes.func
+};
+
 
 exports.HeadFactory = React.createFactory(Head);
 exports.BodyFactory = React.createFactory(Body);

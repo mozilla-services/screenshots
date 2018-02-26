@@ -52,11 +52,11 @@ homePageGetStartedTitle = 시작하기
 homePageGetStartedDescription = 툴바에 추가된 스크린샷 아이콘을 찾으세요. 선택하면 브라우저 창에 스크린샷 메뉴가 나타납니다.
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = 검색 주소창의 페이지 작업 메뉴에서 스크린샷 아이콘을 선택하면 브라우저 창의 상단에 스크린샷 메뉴가 나타납니다.
-homePageCaptureRegion = 영역 캡춰
+homePageCaptureRegion = 영역 캡처
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = 캡춰할 영역을 드래그해서 선택하세요. 아니면 그냥 마우스를 올리고 클릭하세요 — 스크린샷이 자동으로 영역을 선택해줍니다. 마음에 드세요? 저장을 누르면 온라인에서 스크린샷에 접근할 수 있고 아래 방향 화살표를 누르면 컴퓨터에 다운 받을 수 있습니다.
-homePageCapturePage = 페이지 캡춰
-homePageCapturePageDescription = 전체 페이지를 캡춰하기 위해서 오른쪽 상단에 있는 버튼을 사용하세요. 보이는 영역 저장 버튼은 스크롤 하지 않은 현재 보고 있는 영역을 캡춰하고 전체 페이지 저장은 페이지의 모든 내용을 캡춰합니다.
+homePageCaptureRegionDescription = 캡처할 영역을 드래그해서 선택하세요. 아니면 그냥 마우스를 올리고 클릭하세요 — 스크린샷이 자동으로 영역을 선택해줍니다. 마음에 드세요? 저장을 누르면 온라인에서 스크린샷에 접근할 수 있고 아래 방향 화살표를 누르면 컴퓨터에 다운 받을 수 있습니다.
+homePageCapturePage = 페이지 캡처
+homePageCapturePageDescription = 전체 페이지를 캡처하기 위해서 오른쪽 상단에 있는 버튼을 사용하세요. 보이는 영역 저장 버튼은 스크롤 하지 않은 현재 보고 있는 영역을 캡처하고 전체 페이지 저장은 페이지의 모든 내용을 캡처합니다.
 homePageSaveShare = 저장하고 공유
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = 스크린샷을 찍으면 Firefox가 스크린 샷을 온라인 스크린샷 라이브러이에 올리고 링크를 클립보드에 복사합니다. 스크린샷은 2주동안 보관되지만 언제든지 삭제할 수 있고 더 오래 보관할 수 있게 만료 날짜를 변경할 수 있습니다.
@@ -133,7 +133,6 @@ shotPageDMCAMessage = 저작권상의 문제로 이 스크린샷을 더 이상 �
 shotPageDMCAContact = 자세한 사항은 { $dmca }으로 문의하시기 바랍니다.
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = 시간 선택
-shotPageKeepIndefinitely = 무기한
 shotPageKeepTenMinutes = 10분
 shotPageKeepOneHour = 1시간
 shotPageKeepOneDay = 1일

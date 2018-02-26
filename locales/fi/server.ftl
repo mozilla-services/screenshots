@@ -197,8 +197,10 @@ annotationCropButton
     .title = Rajaa
 annotationSaveButton = Tallenna
 annotationCancelButton = Peruuta
-annotationConfirmCropButton = Vahvista
-annotationCancelCropButton = Peruuta
+annotationCropConfirmButton = Vahvista
+    .title = Vahvista valinta
+annotationCropCancelButton = Peruuta
+    .title = Peruuta valinta
 
 
 [[ Shotindex page ]]
