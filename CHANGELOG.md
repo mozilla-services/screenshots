@@ -1,40 +1,13 @@
-## Version 30.0.0
+## Version 31.0.0
 
-Note this is an add-on only release. The add-on will be exported into Firefox 60.
+Note: this is a server release. The previous server release was 28.1.0
 
-### Addon changes
+* Annotation: remove event listeners after cancelling edit mode [3cc5043](https://github.com/mozilla-services/screenshots/commit/3cc5043)
+* Add save to unavailable server test. ([#4027](https://github.com/mozilla-services/screenshots/issues/4027)) [e44cbc5](https://github.com/mozilla-services/screenshots/commit/e44cbc5)
 
-* Remove two extra handlers and add more conditions around ctrl+c. ([#4113](https://github.com/mozilla-services/screenshots/issues/4113)) ([#4149](https://github.com/mozilla-services/screenshots/issues/4149)) [e82ef8e](https://github.com/mozilla-services/screenshots/commit/e82ef8e)
-* Remove one of the addon icon svgs. ([#4132](https://github.com/mozilla-services/screenshots/issues/4132)) [b456233](https://github.com/mozilla-services/screenshots/commit/b456233)
-* Include onboarding slides in user timing measurements. Fixes [#4097](https://github.com/mozilla-services/screenshots/issues/4097) [69b58f7](https://github.com/mozilla-services/screenshots/commit/69b58f7)
-* Use Performance.now for interaction timings. Fixes [#4054](https://github.com/mozilla-services/screenshots/issues/4054) [3119bb4](https://github.com/mozilla-services/screenshots/commit/3119bb4)
-* Show loader animation on truncated full page download/copy. ([#3861](https://github.com/mozilla-services/screenshots/issues/3861)) [6fa7f3a](https://github.com/mozilla-services/screenshots/commit/6fa7f3a)
-* Fix lint issues. ([#4076](https://github.com/mozilla-services/screenshots/issues/4076)) [51dff4c](https://github.com/mozilla-services/screenshots/commit/51dff4c)
-* Use double quotes. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [2764e9d](https://github.com/mozilla-services/screenshots/commit/2764e9d)
-* Use eqeqeq. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [35f01a4](https://github.com/mozilla-services/screenshots/commit/35f01a4)
-* Use prefer-const. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [eefee3d](https://github.com/mozilla-services/screenshots/commit/eefee3d)
-* Replace var with let or const. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [6824d8b](https://github.com/mozilla-services/screenshots/commit/6824d8b)
-* Enable consistent-return. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [ed632d6](https://github.com/mozilla-services/screenshots/commit/ed632d6)
-* apply svgo to all svgs. Fixes [#3853](https://github.com/mozilla-services/screenshots/issues/3853) [28ef28c](https://github.com/mozilla-services/screenshots/commit/28ef28c)
-* Suppress errors encountered when sending timing or events pings
-  Analytics network errors should never be user-visible. [73c1340](https://github.com/mozilla-services/screenshots/commit/73c1340)
-* Cancel some user timing measurements when page visibility changes to 'hidden'
-  JS background budgeting in Firefox 58 might cause Screenshots execution
-  to slow down if the user switches tabs while waiting for the UI to
-  update.
-  Exclude cases where the user timing event ends with an upload, since the
-  result of a successful upload is to switch tabs (to the shot page of the
-  uploaded shot).
-. Fixes [#4055](https://github.com/mozilla-services/screenshots/issues/4055) [588d2e7](https://github.com/mozilla-services/screenshots/commit/588d2e7)
-* Fire an internal-only event if Screenshots is in a document that is backgrounded
-  Use the Page Visibility API to detect when a given window loses focus. [2aed29b](https://github.com/mozilla-services/screenshots/commit/2aed29b)
-* Upstream changes to loader calls in bootstrap.js context
-  Cu.import has been replaced with ChromeUtils.import, and
-  XPCOM.defineLazyModuleGetter has been replaced with
-  ChromeUtils.defineModuleGetter. Adjust our code accordingly.
-  See bugzilla bug 1431533 for details. [07b3b39](https://github.com/mozilla-services/screenshots/commit/07b3b39)
+### Server changes from 30.0.0
 
-### Server changes
+Because 30.0.0 was an add-on release, this is the release of these changes:
 
 * smoothen highlighter edges [fda984b](https://github.com/mozilla-services/screenshots/commit/fda984b)
 * preserve custom color on edit cancel [517580c](https://github.com/mozilla-services/screenshots/commit/517580c)
@@ -87,6 +60,64 @@ Note this is an add-on only release. The add-on will be exported into Firefox 60
 * apply svgo to all svgs. Fixes [#3853](https://github.com/mozilla-services/screenshots/issues/3853) [28ef28c](https://github.com/mozilla-services/screenshots/commit/28ef28c)
 * Add an npm run svgo command [b8fe1a6](https://github.com/mozilla-services/screenshots/commit/b8fe1a6)
 
+### Server changes from 29.0.0
+
+Because 29.0.0 was an add-on release, this is the release of these changes:
+
+* Update l10n ids of annotataion crop buttons. ([#4041](https://github.com/mozilla-services/screenshots/issues/4041)) [a4d3ed0](https://github.com/mozilla-services/screenshots/commit/a4d3ed0)
+* prevent crop-box resizing against borders [f2b12d6](https://github.com/mozilla-services/screenshots/commit/f2b12d6)
+* Save as jpeg on edit if > limit. ([#3943](https://github.com/mozilla-services/screenshots/issues/3943)) ([#3999](https://github.com/mozilla-services/screenshots/issues/3999)) [4fae01f](https://github.com/mozilla-services/screenshots/commit/4fae01f)
+* Add tooltips to crop buttons ([#4016](https://github.com/mozilla-services/screenshots/issues/4016)) [31bbfb4](https://github.com/mozilla-services/screenshots/commit/31bbfb4)
+* Disable save button on click [d80f9db](https://github.com/mozilla-services/screenshots/commit/d80f9db)
+* cancel default action on click events [354f155](https://github.com/mozilla-services/screenshots/commit/354f155)
+* change cursor style [1291430](https://github.com/mozilla-services/screenshots/commit/1291430)
+* Change l10n string id. ([#3500](https://github.com/mozilla-services/screenshots/issues/3500)) [de195ff](https://github.com/mozilla-services/screenshots/commit/de195ff)
+* Fix pen position tracking [b0ea374](https://github.com/mozilla-services/screenshots/commit/b0ea374)
+* add cropping to annotation tools [4d22580](https://github.com/mozilla-services/screenshots/commit/4d22580)
+* Update style for indefinitely saved symbol. ([#3500](https://github.com/mozilla-services/screenshots/issues/3500)) [240e3a2](https://github.com/mozilla-services/screenshots/commit/240e3a2)
+* Add never expire indicator to My Shots. ([#3500](https://github.com/mozilla-services/screenshots/issues/3500)) [ddb8640](https://github.com/mozilla-services/screenshots/commit/ddb8640)
+* Remove l10n messages from JSON response. ([#3843](https://github.com/mozilla-services/screenshots/issues/3843)) [ee837f0](https://github.com/mozilla-services/screenshots/commit/ee837f0)
+* Remove right margin on img only download icon. ([#3947](https://github.com/mozilla-services/screenshots/issues/3947)) [b576350](https://github.com/mozilla-services/screenshots/commit/b576350)
+* close share panel properly when clicking twice on the share button. Fixes [#3785](https://github.com/mozilla-services/screenshots/issues/3785) [72ae4b7](https://github.com/mozilla-services/screenshots/commit/72ae4b7)
+* use a prefixed titleWe were setting the title properly on the server, but it would be overwritten later as we were sending a different title to be rendered in the browser. This meant that titles lost their 'Screenshots:' prefix. Fixes [#3898](https://github.com/mozilla-services/screenshots/issues/3898) [318c32e](https://github.com/mozilla-services/screenshots/commit/318c32e)
+
+
+## Version 30.0.0
+
+Note this is an add-on only release. The add-on will be exported into Firefox 60.
+
+### Addon changes
+
+* Remove two extra handlers and add more conditions around ctrl+c. ([#4113](https://github.com/mozilla-services/screenshots/issues/4113)) ([#4149](https://github.com/mozilla-services/screenshots/issues/4149)) [e82ef8e](https://github.com/mozilla-services/screenshots/commit/e82ef8e)
+* Remove one of the addon icon svgs. ([#4132](https://github.com/mozilla-services/screenshots/issues/4132)) [b456233](https://github.com/mozilla-services/screenshots/commit/b456233)
+* Include onboarding slides in user timing measurements. Fixes [#4097](https://github.com/mozilla-services/screenshots/issues/4097) [69b58f7](https://github.com/mozilla-services/screenshots/commit/69b58f7)
+* Use Performance.now for interaction timings. Fixes [#4054](https://github.com/mozilla-services/screenshots/issues/4054) [3119bb4](https://github.com/mozilla-services/screenshots/commit/3119bb4)
+* Show loader animation on truncated full page download/copy. ([#3861](https://github.com/mozilla-services/screenshots/issues/3861)) [6fa7f3a](https://github.com/mozilla-services/screenshots/commit/6fa7f3a)
+* Fix lint issues. ([#4076](https://github.com/mozilla-services/screenshots/issues/4076)) [51dff4c](https://github.com/mozilla-services/screenshots/commit/51dff4c)
+* Use double quotes. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [2764e9d](https://github.com/mozilla-services/screenshots/commit/2764e9d)
+* Use eqeqeq. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [35f01a4](https://github.com/mozilla-services/screenshots/commit/35f01a4)
+* Use prefer-const. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [eefee3d](https://github.com/mozilla-services/screenshots/commit/eefee3d)
+* Replace var with let or const. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [6824d8b](https://github.com/mozilla-services/screenshots/commit/6824d8b)
+* Enable consistent-return. ([#3977](https://github.com/mozilla-services/screenshots/issues/3977)) [ed632d6](https://github.com/mozilla-services/screenshots/commit/ed632d6)
+* apply svgo to all svgs. Fixes [#3853](https://github.com/mozilla-services/screenshots/issues/3853) [28ef28c](https://github.com/mozilla-services/screenshots/commit/28ef28c)
+* Suppress errors encountered when sending timing or events pings
+  Analytics network errors should never be user-visible. [73c1340](https://github.com/mozilla-services/screenshots/commit/73c1340)
+* Cancel some user timing measurements when page visibility changes to 'hidden'
+  JS background budgeting in Firefox 58 might cause Screenshots execution
+  to slow down if the user switches tabs while waiting for the UI to
+  update.
+  Exclude cases where the user timing event ends with an upload, since the
+  result of a successful upload is to switch tabs (to the shot page of the
+  uploaded shot).
+. Fixes [#4055](https://github.com/mozilla-services/screenshots/issues/4055) [588d2e7](https://github.com/mozilla-services/screenshots/commit/588d2e7)
+* Fire an internal-only event if Screenshots is in a document that is backgrounded
+  Use the Page Visibility API to detect when a given window loses focus. [2aed29b](https://github.com/mozilla-services/screenshots/commit/2aed29b)
+* Upstream changes to loader calls in bootstrap.js context
+  Cu.import has been replaced with ChromeUtils.import, and
+  XPCOM.defineLazyModuleGetter has been replaced with
+  ChromeUtils.defineModuleGetter. Adjust our code accordingly.
+  See bugzilla bug 1431533 for details. [07b3b39](https://github.com/mozilla-services/screenshots/commit/07b3b39)
+
 ### Documentation changes
 
 * Update export-to-firefox.md [c2b5019](https://github.com/mozilla-services/screenshots/commit/c2b5019)
@@ -127,25 +158,6 @@ Note this is an add-on only release. The add-on will be exported into Firefox 60
 * Use an object url for the preview image. ([#3940](https://github.com/mozilla-services/screenshots/issues/3940)) [9e56cf2](https://github.com/mozilla-services/screenshots/commit/9e56cf2)
 * Fix selection frame when body's (left, top) is not (0, 0). ([#3907](https://github.com/mozilla-services/screenshots/issues/3907)) [f41db05](https://github.com/mozilla-services/screenshots/commit/f41db05)
 * Hide UI frame unless server error. ([#3901](https://github.com/mozilla-services/screenshots/issues/3901)) [7d9e51f](https://github.com/mozilla-services/screenshots/commit/7d9e51f)
-
-### Server changes
-
-* Update l10n ids of annotataion crop buttons. ([#4041](https://github.com/mozilla-services/screenshots/issues/4041)) [a4d3ed0](https://github.com/mozilla-services/screenshots/commit/a4d3ed0)
-* prevent crop-box resizing against borders [f2b12d6](https://github.com/mozilla-services/screenshots/commit/f2b12d6)
-* Save as jpeg on edit if > limit. ([#3943](https://github.com/mozilla-services/screenshots/issues/3943)) ([#3999](https://github.com/mozilla-services/screenshots/issues/3999)) [4fae01f](https://github.com/mozilla-services/screenshots/commit/4fae01f)
-* Add tooltips to crop buttons ([#4016](https://github.com/mozilla-services/screenshots/issues/4016)) [31bbfb4](https://github.com/mozilla-services/screenshots/commit/31bbfb4)
-* Disable save button on click [d80f9db](https://github.com/mozilla-services/screenshots/commit/d80f9db)
-* cancel default action on click events [354f155](https://github.com/mozilla-services/screenshots/commit/354f155)
-* change cursor style [1291430](https://github.com/mozilla-services/screenshots/commit/1291430)
-* Change l10n string id. ([#3500](https://github.com/mozilla-services/screenshots/issues/3500)) [de195ff](https://github.com/mozilla-services/screenshots/commit/de195ff)
-* Fix pen position tracking [b0ea374](https://github.com/mozilla-services/screenshots/commit/b0ea374)
-* add cropping to annotation tools [4d22580](https://github.com/mozilla-services/screenshots/commit/4d22580)
-* Update style for indefinitely saved symbol. ([#3500](https://github.com/mozilla-services/screenshots/issues/3500)) [240e3a2](https://github.com/mozilla-services/screenshots/commit/240e3a2)
-* Add never expire indicator to My Shots. ([#3500](https://github.com/mozilla-services/screenshots/issues/3500)) [ddb8640](https://github.com/mozilla-services/screenshots/commit/ddb8640)
-* Remove l10n messages from JSON response. ([#3843](https://github.com/mozilla-services/screenshots/issues/3843)) [ee837f0](https://github.com/mozilla-services/screenshots/commit/ee837f0)
-* Remove right margin on img only download icon. ([#3947](https://github.com/mozilla-services/screenshots/issues/3947)) [b576350](https://github.com/mozilla-services/screenshots/commit/b576350)
-* close share panel properly when clicking twice on the share button. Fixes [#3785](https://github.com/mozilla-services/screenshots/issues/3785) [72ae4b7](https://github.com/mozilla-services/screenshots/commit/72ae4b7)
-* use a prefixed titleWe were setting the title properly on the server, but it would be overwritten later as we were sending a different title to be rendered in the browser. This meant that titles lost their 'Screenshots:' prefix. Fixes [#3898](https://github.com/mozilla-services/screenshots/issues/3898) [318c32e](https://github.com/mozilla-services/screenshots/commit/318c32e)
 
 ### Documentation changes
 
