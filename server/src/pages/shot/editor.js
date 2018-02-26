@@ -462,6 +462,9 @@ exports.Editor = class Editor extends React.Component {
   }
 
   onClickCancel() {
+    document.removeEventListener("mouseup", this.drawMouseup);
+    document.removeEventListener("mousemove", this.draw);
+    document.removeEventListener("mousedown", this.setPosition);
     this.props.onCancelEdit(false);
     sendEvent("cancel", "annotation-toolbar");
   }
