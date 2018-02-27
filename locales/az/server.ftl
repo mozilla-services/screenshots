@@ -1,47 +1,43 @@
-// Localization for Server-side strings of Firefox Screenshots
-// 
-// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+### Localization for Server-side strings of Firefox Screenshots
+### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
-
-// Global phrases shared across pages, prefixed with 'g'
-[[ global ]]
+## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = Ekran Görüntülərim
 gHomeLink = Ev
-gNoShots
+gNoShots =
     .alt = Ekran görüntüsü tapılmadı
 
+## Footer
 
-[[ Footer ]]
-
-// Note: link text for a link to mozilla.org
+# Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Şərtlər
 footerLinkPrivacy = Məxfilik Bildirişi
+footerLinkFaqs = ÇSS
 footerLinkDMCA = Müəllif hüquqlarının pozuntusu haqqında xəbər ver
 footerLinkDiscourse = Əks-əlaqə ver
 footerLinkRemoveAllData = Bütün məlumatları sil
 
+## Creating page
 
-[[ Creating page ]]
-
-// Note: { $title } is a placeholder for the title of the web page
-// captured in the screenshot. The default, for pages without titles, is
-// creatingPageTitleDefault.
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
 creatingPageTitle = { $title } yaradılır
 creatingPageTitleDefault = səhifə
 
+## Home page
 
-[[ Home page ]]
-
-homePageDescription
+homePageDescription =
     .content = İntuitiv ekran görüntüləri səyyaha bağlıdırlar. İnterneti Firefox ilə gəzərkən ekran görüntülərini çəkin, saxlayın və paylaşın.
 homePageButtonMyShots = Ekran görüntülərimə get
 homePageTeaser = Tezliklə…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Pulsuz Endir
 homePageGetStarted = Başla
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Ekran Görüntüləri necə işləyir
 homePageGetStartedTitle = Başla
 homePageCaptureRegion = Bölgəni çək
@@ -52,56 +48,68 @@ homePagePrivacyLink = Məxfilik
 homePageTermsLink = Şərtlər
 homePageCookiesLink = Çərəzlər
 
+## Leave Screenshots page
 
-[[ Leave Screenshots page ]]
-
+leavePageRemoveAllData = Bütün məlumatlar silindi
 leavePageErrorGeneric = Xəta baş verdi
 leavePageButtonProceed = Davam et
 leavePageButtonCancel = Ləğv et
 leavePageDeleted = Bütün ekran görüntüləriniz silindi!
 
-
-[[ Not Found page ]]
+## Not Found page
 
 notFoundPageTitle = Səhifə tapılmadı
 notFoundPageIntro = Uups.
 notFoundPageDescription = Səhifə tapılmadı.
 
+## Shot page
 
-[[ Shot page ]]
-
-// This is the HTML title tag of the page
+# This is the HTML title tag of the page
 shotPageTitle = Ekran görüntüsü: { $originalTitle }
-shotPageShareButton
+shotPageShareButton =
     .title = Paylaş
 shotPageCopy = Köçür
 shotPageCopied = Köçürüldü
-shotPageShareFacebook
+shotPageShareFacebook =
     .title = Facebook-da paylaş
-shotPageShareTwitter
+shotPageShareTwitter =
     .title = Twitter-də paylaş
-shotPageSharePinterest
+shotPageSharePinterest =
     .title = Pinterest-də paylaş
-shotPageShareEmail
+shotPageShareEmail =
     .title = Keçidi e-poçt ilə paylaş
-shotPageDownloadShot
+shotPageDownloadShot =
     .title = Endir
 shotPageDownload = Endir
 shotPageSaveExpiration = saxla
 shotPageCancelExpiration = ləğv et
 timeDiffJustNow = indicə
 
+## Annotations
 
-[[ Annotations ]]
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
+    .title = Təmizlə
+annotationCropButton =
+    .title = Kəs
+annotationSaveButton = Saxla
+annotationCancelButton = Ləğv et
+annotationCropConfirmButton = Təsdiqlə
+    .title = Seçilənləri təsdiqlə
+annotationCropCancelButton = Ləğv et
+    .title = Seçilənləri ləğv et
 
+## Shotindex page
 
+shotIndexPageSearchButton =
+    .title = Axtar
+shotIndexPagePreviousPage =
+    .title = Əvvəlki səhifə
+shotIndexPageNextPage =
+    .title = Sonrakı səhifə
 
-[[ Shotindex page ]]
-
-
-
-// all metrics strings are optional for translation
-[[ Metrics page ]]
+## Metrics page
+## All metrics strings are optional for translation
 
 metricsPageShotsQueryDay = Gün
 metricsPageUsersQueryDay = Gün
