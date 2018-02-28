@@ -127,6 +127,12 @@ function addHSTS(req, res) {
   }
 }
 
+app.use((req, res, next) => {
+  res.header("X-Content-Type-Options", "nosniff");
+  addHSTS(req, res);
+  next();
+});
+
 addRavenRequestHandler(app);
 
 if (config.expectProtocol) {
@@ -138,29 +144,6 @@ if (config.expectProtocol) {
     next();
   });
 }
-
-app.use((req, res, next) => {
-  genUuid.generate(genUuid.V_RANDOM, function(err, uuid) {
-    if (!err) {
-      let dsn = config.sentryPublicDSN;
-      if (dsn) {
-        dsn = dsn.replace(/^https?:\/\/[^@]*@/, "").replace(/\/.*/, "");
-      } else {
-        dsn = "";
-      }
-      req.cspNonce = uuid;
-      res.header(
-        "Content-Security-Policy",
-        `default-src 'self'; img-src 'self' ${FXA_SERVER} www.google-analytics.com ${SITE_CDN} ${CONTENT_CDN} ${CONTENT_NAME} data:; script-src 'self' ${SITE_CDN} www.google-analytics.com 'nonce-${uuid}'; style-src 'self' ${SITE_CDN} 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' ${SITE_CDN} www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
-      res.header("X-Frame-Options", "DENY");
-      res.header("X-Content-Type-Options", "nosniff");
-      addHSTS(req, res);
-      next();
-    } else {
-      errorResponse(res, "Error creating nonce:", err);
-    }
-  });
-});
 
 function isApiUrl(url) {
   return url.startsWith("/api") || url === "/event" || url === "/timing";
@@ -191,10 +174,6 @@ app.use("/static", express.static(path.join(__dirname, "static"), {
 
 const xpidir = path.join(__dirname, "..", "xpi");
 app.use("/xpi", express.static(xpidir, {index: false}));
-
-app.use("/homepage", express.static(path.join(__dirname, "static/homepage"), {
-  index: false
-}));
 
 app.use(morgan("combined"));
 
@@ -991,27 +970,6 @@ app.get("/__version__", function(req, res) {
   res.send(JSON.stringify(response, null, "  "));
 });
 
-// This is a minimal heartbeat that only indicates the server process is up and responding
-app.get("/__lbheartbeat__", function(req, res) {
-  res.send("OK");
-});
-
-// This tests if the server is really working
-app.get("/__heartbeat__", function(req, res) {
-  dbschema.connectionOK().then((ok) => {
-    if (!ok) {
-      statsd.increment("heartbeat.fail");
-      res.status(500).send("schema fail");
-    } else {
-      statsd.increment("heartbeat.pass");
-      res.send("OK");
-    }
-  }).catch((error) => {
-    statsd.increment("heartbeat.fail");
-    res.status(500).send("database fail");
-  });
-});
-
 app.get("/contribute.json", function(req, res) {
   const data = {
     name: "Firefox Screenshots",
@@ -1150,6 +1108,52 @@ app.get("/api/fxa-oauth/confirm-login", function(req, res, next) {
       }).catch(next);
     }).catch(next);
   }).catch(next);
+});
+
+app.use((req, res, next) => {
+  genUuid.generate(genUuid.V_RANDOM, function(err, uuid) {
+    if (!err) {
+      let dsn = config.sentryPublicDSN;
+      if (dsn) {
+        dsn = dsn.replace(/^https?:\/\/[^@]*@/, "").replace(/\/.*/, "");
+      } else {
+        dsn = "";
+      }
+      req.cspNonce = uuid;
+      res.header(
+        "Content-Security-Policy",
+        `default-src 'self'; img-src 'self' ${FXA_SERVER} www.google-analytics.com ${SITE_CDN} ${CONTENT_CDN} ${CONTENT_NAME} data:; script-src 'self' ${SITE_CDN} www.google-analytics.com 'nonce-${uuid}'; style-src 'self' ${SITE_CDN} 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' ${SITE_CDN} www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
+      res.header("X-Frame-Options", "DENY");
+      next();
+    } else {
+      errorResponse(res, "Error creating nonce:", err);
+    }
+  });
+});
+
+app.use("/homepage", express.static(path.join(__dirname, "static/homepage"), {
+  index: false
+}));
+
+// This is a minimal heartbeat that only indicates the server process is up and responding
+app.get("/__lbheartbeat__", function(req, res) {
+  res.send("OK");
+});
+
+// This tests if the server is really working
+app.get("/__heartbeat__", function(req, res) {
+  dbschema.connectionOK().then((ok) => {
+    if (!ok) {
+      statsd.increment("heartbeat.fail");
+      res.status(500).send("schema fail");
+    } else {
+      statsd.increment("heartbeat.pass");
+      res.send("OK");
+    }
+  }).catch((error) => {
+    statsd.increment("heartbeat.fail");
+    res.status(500).send("database fail");
+  });
 });
 
 if (!config.disableMetrics) {
