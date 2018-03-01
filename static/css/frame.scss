@@ -404,12 +404,14 @@
 html {
   min-height: 100%;
   position: relative;
+  background-color: #38383d;
 }
 
 body {
   width: 100%;
   margin: 0;
   height: 100%;
+  background-color: #38383d;
 }
 
 .editor-header {
@@ -423,9 +425,10 @@ body {
     height: $grid-unit * 7;
   }
   display: flex;
-  justify-content: space-between;
   height: 100px;
   z-index: 2;
+  position: fixed;
+  width: 100%;
 
   .button {
     margin: $grid-unit * 0.25;
@@ -490,6 +493,7 @@ body {
   position: relative;
   flex: 1;
   z-index: 1;
+  margin-top: $grid-unit * 5;
 
   @include respond-to("small") {
     top: $grid-unit * 4;
@@ -585,7 +589,7 @@ body {
   }
 }
 
-.color-board .row {
+.color-board .color-row {
   display: flex;
 }
 
