@@ -141,23 +141,23 @@ exports.Editor = class Editor extends React.Component {
             <button className={`button transparent crop-button`} id="crop" onClick={this.onClickCrop.bind(this)} title="Crop"></button>
           </Localized>
           <Localized id="annotationPenButton">
-            <button className={`button transparent pen-button ${penState}`} id="pen" onClick={this.onClickPen.bind(this)} title="pen"></button>
+            <button className={`button transparent pen-button ${penState}`} id="pen" onClick={this.onClickPen.bind(this)} title="Pen"></button>
           </Localized>
           <Localized id="annotationHighlighterButton">
-            <button className={`button transparent highlight-button ${highlighterState}`} id="highlight" onClick={this.onClickHighlight.bind(this)} title="highlighter"></button>
+            <button className={`button transparent highlight-button ${highlighterState}`} id="highlight" onClick={this.onClickHighlight.bind(this)} title="Highlighter"></button>
           </Localized>
           <ColorPicker activeTool={this.state.tool} setColor={this.setColor.bind(this)} />
           <Localized id="annotationClearButton">
-            <button className={`button transparent clear-button`} id="clear" onClick={this.onClickClear.bind(this)} title="clear"></button>
+            <button className={`button transparent clear-button`} id="clear" onClick={this.onClickClear.bind(this)} title="Clear"></button>
           </Localized>
         </div>
       </div>
       <div className="shot-alt-actions">
-        <Localized id="annotationSaveButton">
-          <button className="button primary save" id="save" onClick={ this.onClickSave.bind(this) } disabled = { this.state.saveDisabled }>Save</button>
+        <Localized id="annotationSaveEditButton">
+          <button className="button primary save" id="save" onClick={ this.onClickSave.bind(this) } disabled = { this.state.saveDisabled } title="Save edit">Save</button>
         </Localized>
-        <Localized id="annotationCancelButton">
-          <button className="button secondary cancel" id="cancel" onClick={this.onClickCancel.bind(this)}>Cancel</button>
+        <Localized id="annotationCancelEditButton">
+          <button className="button secondary cancel" id="cancel" onClick={this.onClickCancel.bind(this)} title="Cancel editing">Cancel</button>
         </Localized>
       </div>
     </div>
