@@ -1,22 +1,18 @@
-// Localization for Server-side strings of Firefox Screenshots
-// 
-// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+### Localization for Server-side strings of Firefox Screenshots
+### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
-
-// Global phrases shared across pages, prefixed with 'g'
-[[ global ]]
+## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = Görüntülerim
 gHomeLink = Ana Sayfa
-gNoShots
+gNoShots =
     .alt = Görüntü bulunamadı
 gScreenshotsDescription = Ekran görüntüsü almayı basitleştirdik. Firefox’tan çıkmadan ekran görüntüleri alabilir, kaydedebilir ve paylaşabilirsiniz.
 
+## Footer
 
-[[ Footer ]]
-
-// Note: link text for a link to mozilla.org
+# Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Koşullar
 footerLinkPrivacy = Gizlilik Bildirimi
@@ -25,122 +21,117 @@ footerLinkDMCA = Telif hakkı ihlali bildir
 footerLinkDiscourse = Görüş bildir
 footerLinkRemoveAllData = Tüm verileri sil
 
+## Creating page
 
-[[ Creating page ]]
-
-// Note: { $title } is a placeholder for the title of the web page
-// captured in the screenshot. The default, for pages without titles, is
-// creatingPageTitleDefault.
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
 creatingPageTitle = { $title } oluşturuluyor
 creatingPageTitleDefault = sayfa
 creatingPageWaitMessage = Görüntünüz kaydediliyor…
 
+## Home page
 
-[[ Home page ]]
-
-homePageDescription
+homePageDescription =
     .content = Tarayıcıyla bütünleşik ekran görüntüsü aracı. Firefox’la internette gezinirken ekran görüntüleri alabilir, kaydedebilir ve paylaşabilirsiniz.
 homePageButtonMyShots = Görüntülerime git
 homePageTeaser = Çok Yakında...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Ücretsiz indir
 homePageGetStarted = Başlayın
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots nasıl çalışıyor?
 homePageGetStartedTitle = Başlayın
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Araç çubuğunuzdaki yeni Screenshots simgesini bulun. Ona tıkladığınızda tarayıcı pencerenizin üzerinde Screenshots menüsü açılacak.
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Adres çubuğundaki sayfa eylemleri menüsünden “Ekran görüntüsü al”a tıklayın. Tarayıcı pencerenizin üzerinde Screenshots menüsü belirecek.
 homePageCaptureRegion = Bir bölgeyi yakalama
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Tıklayıp sürükleyerek yakalamak istediğiniz bölgeyi seçin. İstediğiniz bölgenin üstüne fareyle gidip bir kez tıklarsanız Screenshots bölgeyi sizin için seçer. Seçimden memnunsanız “Kaydet” düğmesine tıklayarak ekrna görüntüsünü internete yükleyebilir veya ok düğmesine tıklayarak bilgisayarınıza indirebilirsiniz.
 homePageCapturePage = Tüm sayfayı yakalama
 homePageCapturePageDescription = Sayfanın tamamını kaydetmek isterseniz sağ üst köşedeki düğmeleri kullanın. “Görünür alanı kaydet” düğmesi, sayfayı kaydırmadan pencerede gördüğünüz kısmı yakalar. “Tüm sayfayı kaydet” ise sayfadaki her şeyi yakalar.
 homePageSaveShare = Kaydetme ve paylaşma
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Bir ekran görüntüsünü kaydettiğinizde Firefox o görüntüyü internetteki Screenshots arşivinize yükler ve linkini kopyalar. Ekran görüntüleriniz otomatik olarak iki hafta saklanır ama görüntüleri istediğiniz zaman silebilir veya arşivinizde daha uzun süre tutmak isterseniz silinme tarihlerini değiştirebilirsiniz.
 homePageLegalLink = Yasal Notlar
 homePagePrivacyLink = Gizlilik
 homePageTermsLink = Koşullar
 homePageCookiesLink = Çerezler
 
-
-[[ Leave Screenshots page ]]
+## Leave Screenshots page
 
 leavePageRemoveAllData = Tüm verileri sil
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Hesabınızı silebilmek için Firefox Screenshots yüklü olmalıdır
 leavePageErrorGeneric = Bir hata oluştu
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Bu işlem, tüm Firefox Screenshots verilerinizi kalıcı olarak silecektir.
 leavePageButtonProceed = Devam et
 leavePageButtonCancel = iptal
 leavePageDeleted = Tüm ekran görüntüleriniz silindi!
 
-
-[[ Not Found page ]]
+## Not Found page
 
 notFoundPageTitle = Sayfa bulunamadı
 notFoundPageIntro = Hay aksi!
 notFoundPageDescription = Sayfa bulunamadı.
 
+## Shot page
 
-[[ Shot page ]]
-
-// This is the HTML title tag of the page
+# This is the HTML title tag of the page
 shotPageTitle = Ekran görüntüsü: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Silme tarihi kaydedilemedi
 shotPageAlertErrorDeletingShot = Görüntü silinemedi
 shotPageAlertErrorUpdatingTitle = Başlık kaydetme hatası
 shotPageConfirmDelete = Bu görüntüyü kalıcı olarak silmek istediğinizden emin misiniz?
-shotPageShareButton
+shotPageShareButton =
     .title = Paylaş
 shotPageCopy = Kopyala
 shotPageCopied = Kopyalandı
-shotPageShareFacebook
+shotPageShareFacebook =
     .title = Facebook'ta paylaş
-shotPageShareTwitter
+shotPageShareTwitter =
     .title = Twitter'da paylaş
-shotPageSharePinterest
+shotPageSharePinterest =
     .title = Pinterest'te paylaş
-shotPageShareEmail
+shotPageShareEmail =
     .title = Bağlantıyı e-posta ile paylaş
 shotPageShareLink = Bu görüntünün paylaşabileceğiniz linki:
 shotPagePrivacyMessage = Linke sahip olan herkes bu görüntüyü görebilir.
-shotPageCopyImageText
+shotPageCopyImageText =
     .label = Resim metnini kopyala
 shotPageConfirmDeletion = Bu görüntüyü kalıcı olarak silmek istediğinizden emin misiniz?
-// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Hiçbir şey yapmazsanız bu görüntü { $timediff } kalıcı olarak silinecektir.
-// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = { $date } tarihine kadar geri yükle
 shotPageExpiredMessage = Bu görüntünün süresi dolmuştur.
-// Note: This phrase is followed by an empty line, then the URL of the source page
+# Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Görüntünün alındığı sayfanın orijinali:
-shotPageDeleteButton
+shotPageDeleteButton =
     .title = Bu görüntüyü sil
-shotPageAbuseButton
+shotPageAbuseButton =
     .title = Bu görüntüyü suistimal, spam ve diğer sorunlar nedeniyle rapor et
-shotPageDownloadShot
+shotPageDownloadShot =
     .title = İndir
 shotPageDownload = İndir
 shotPageScreenshotsDescription = Ekran görüntüsü almayı basitleştirdik. Firefox’tan çıkmadan ekran görüntüleri alabilir, kaydedebilir ve paylaşabilirsiniz.
 shotPageUpsellFirefox = Firefox’u hemen indir
 shotPageDMCAMessage = Üçüncü bir şahsın telif hakkı iddiası nedeniyle bu görüntü artık kullanılamaz.
-// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Daha fazla bilgi almak isterseniz { $dmca } adresine e-posta gönderebilirsiniz.
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Ekran görüntüleriniz çok sayıda şikayet alırsa Firefox Screenshots hesabınızı kapatabiliriz.
-// Note: { $url } is a placeholder for a shot page URL
+# Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Lütfen e-potanızda bu görüntünün adresini de belirtin: { $url }
 shotPageKeepFor = Bu görüntü ne kadar süreyle saklansın?
-// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Süre seçin
-// The ∞ is used to indicate that the shot won't expire. It is also used in
-// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
-// if no such symbol is available for a language/culture, simply leave it out.
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitelyWithSymbol = Sonsuza dek ∞
 shotPageKeepTenMinutes = 10 dakika
 shotPageKeepOneHour = 1 saat
@@ -151,9 +142,9 @@ shotPageKeepOneMonth = 1 ay
 shotPageSaveExpiration = kaydet
 shotPageCancelExpiration = iptal et
 shotPageDoesNotExpire = silinmeyecek
-// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = { $timediff } silinecek
-// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } silindi
 timeDiffJustNow = az önce
 timeDiffMinutesAgo = 1 dakika önce
@@ -165,67 +156,66 @@ timeDiffFutureHours = { $number } saat sonra
 timeDiffFutureDays = yarın
 errorThirdPartyCookiesEnabled = Bu görüntüyü siz kaydettiyseniz ve silemiyorsanız tarayıcınızın tercihlerinden üçüncü taraf çerezlerini geçici olarak etkinleştirmeniz gerekebilir.
 
+## Annotations
 
-[[ Annotations ]]
-
-annotationPenButton
+annotationPenButton =
     .title = Kalem
-annotationHighlighterButton
+annotationHighlighterButton =
     .title = Fosforlu kalem
-// Note: This button reverts all the changes on the image since the start of the editing session.
-annotationClearButton
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
     .title = Temizle
-annotationCropButton
+annotationCropButton =
     .title = Kırp
-annotationSaveButton = Kaydet
-annotationCancelButton = İptal
+annotationSaveEditButton = Kaydet
+    .title = Düzenlemeyi kaydet
+annotationCancelEditButton = İptal
+    .title = Düzenlemeyi iptal et
 annotationCropConfirmButton = Onayla
     .title = Seçimi onayla
 annotationCropCancelButton = İptal
     .title = Seçimi iptal et
 
+## Shotindex page
 
-[[ Shotindex page ]]
-
-// { $status } is a placeholder for an HTTP status code, like '500'.
-// { $statusText } is a text description of the status code, like 'Internal server error'.
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Görüntü silme hatası: { $status } { $statusText }
-// { $searchTerm } is a placeholder for text the user typed into the search box
+# { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Ekran görüntülerim: { $searchTerm } araması
-// { $error } is a placeholder for a non-translated error message that could be shared
-// with developers when debugging an error.
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
 shotIndexPageErrorRendering = Sayfa oluşturma hatası: { $error }
-shotIndexPageSearchPlaceholder
+shotIndexPageSearchPlaceholder =
     .placeholder = Görüntülerimde ara
-shotIndexPageSearchButton
+shotIndexPageSearchButton =
     .title = Ara
 shotIndexPageNoShotsMessage = Kayıtlı görüntünüz yok.
 shotIndexPageNoShotsInvitation = Hadi, bir şeyler kaydedin.
 shotIndexPageLookingForShots = Görüntüleriniz aranıyor…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Aramanızla eşleşen bir görüntü bulamadık.
-shotIndexPageClearSearchButton
+shotIndexPageClearSearchButton =
     .title = Aramayı temizle
 shotIndexPageConfirmShotDelete = Bu görüntü silinsin mi?
-shotIndexPagePreviousPage
+shotIndexPagePreviousPage =
     .title = Önceki sayfa
-shotIndexPageNextPage
+shotIndexPageNextPage =
     .title = Sonraki sayfa
-// This symbol is used in the lower right corner of the card for a shot on the
-// My Shots page to indicate that the shot does not expire. It should be a
-// single character (or simply nothing if no such symbol is available for a
-// language/culture).
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Bu görüntü zaman aşımına uğramaz
 
+## Metrics page
+## All metrics strings are optional for translation
 
-// all metrics strings are optional for translation
-[[ Metrics page ]]
-
-// Note: 'Firefox Screenshots' should not be translated
+# Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Firefox Screenshots Ölçümleri
 metricsPageTotalsQueryTitle = Toplam
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Screenshots’a bir bakış
 metricsPageTotalsQueryDevices = Toplam kayıtlı cihaz sayısı
 metricsPageTotalsQueryActiveShots = Aktif görüntü
@@ -258,7 +248,7 @@ metricsPageVersionQueryUsers = Giriş yapan kullanıcı sayısı
 metricsPageVersionQueryVersion = Eklenti sürümü
 metricsPageVersionQueryLastSeen = Gün
 metricsPageHeader = Ölçümler
-// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Oluşturma: { $created }
-// Note { $time } is a placeholder for a number of milliseconds, like '100'
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (veritabanı süresi: { $time } ms)
