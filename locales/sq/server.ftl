@@ -1,5 +1,4 @@
 ### Localization for Server-side strings of Firefox Screenshots
-###
 ### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
@@ -11,7 +10,7 @@ gNoShots =
     .alt = S’u gjetën shkrepje
 gScreenshotsDescription = Screenshots-i i thjeshtuar. Bëni, ruani dhe ndani foto ekrani pa dalë nga Firefox-i.
 
-
+## Footer
 
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
@@ -22,7 +21,7 @@ footerLinkDMCA = Njoftoni Cenim IP-je
 footerLinkDiscourse = Jepni Përshtypjet
 footerLinkRemoveAllData = Hiqi Krejt të Dhënat
 
-
+## Creating page
 
 # Note: { $title } is a placeholder for the title of the web page
 # captured in the screenshot. The default, for pages without titles, is
@@ -31,7 +30,7 @@ creatingPageTitle = Krijiim i { $title }
 creatingPageTitleDefault = faqe
 creatingPageWaitMessage = Po ruhet shkrepja juaj…
 
-
+## Home page
 
 homePageDescription =
     .content = Foto intuitive ekrani drejt e nga shfletuesi. Bëni, ruani dhe ndani foto ekrani me të tjerët teksa shfletoni në Foto intuitive ekrani drejt e nga shfletuesi. Bëni, ruani dhe ndani foto ekrani me të tjerët teksa shfletoni në Foto intuitive ekrani drejt e nga shfletuesi. Bëni, ruani dhe ndani foto ekrani me të tjerët përmes përdorimit të Firefox-it, teksa shfletoni në Web.
@@ -60,7 +59,7 @@ homePagePrivacyLink = Privatësi
 homePageTermsLink = Kushte
 homePageCookiesLink = Cookies
 
-
+## Leave Screenshots page
 
 leavePageRemoveAllData = Hiqni Krejt të Dhënat
 # Note: do not translate 'Firefox Screenshots' when translating this string
@@ -72,13 +71,13 @@ leavePageButtonProceed = Vazhdo
 leavePageButtonCancel = Anuloje
 leavePageDeleted = U fshinë krejt fotot tuaja të ekranit!
 
-
+## Not Found page
 
 notFoundPageTitle = Nuk u Gjet Faqe
 notFoundPageIntro = Hëm.
 notFoundPageDescription = S’u gjet faqe.
 
-
+## Shot page
 
 # This is the HTML title tag of the page
 shotPageTitle = Fot ekrani: { $originalTitle }
@@ -174,7 +173,7 @@ timeDiffFutureDays = { $number ->
     }
 errorThirdPartyCookiesEnabled = Nëse bëtë këtë foto dhe s’e fshini dot, mund t’ju duhet të aktivizoni përkohësisht cookie prej palësh të treta, që nga parapëlqimet tuaja për shfletuesin.
 
-
+## Annotations
 
 annotationPenButton =
     .title = Penë
@@ -185,14 +184,16 @@ annotationClearButton =
     .title = Pastroje
 annotationCropButton =
     .title = Qethe
-annotationSaveButton = Ruaje
-annotationCancelButton = Anuloje
+annotationSaveEditButton = Ruaje
+    .title = Ruajeni përpunimin
+annotationCancelEditButton = Anuloje
+    .title = Anulojeni përpunimin
 annotationCropConfirmButton = Ripohojeni
     .title = Ripohoni përzgjedhjen
 annotationCropCancelButton = Anuloje
     .title = Anulojeni përzgjedhjen
 
-
+## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
 # { $statusText } is a text description of the status code, like 'Internal server error'.
@@ -225,7 +226,8 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Kjo foto nuk skadon kurrë
 
-## all metrics strings are optional for translation
+## Metrics page
+## All metrics strings are optional for translation
 
 # Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Statistika nga Firefox Screenshots
