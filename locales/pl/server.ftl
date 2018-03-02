@@ -26,8 +26,8 @@ footerLinkRemoveAllData = Usuń wszystkie dane
 # Note: { $title } is a placeholder for the title of the web page
 # captured in the screenshot. The default, for pages without titles, is
 # creatingPageTitleDefault.
-creatingPageTitle = Tworzenie „{ $title }”
-creatingPageTitleDefault = strona
+creatingPageTitle = Tworzenie { $title }
+creatingPageTitleDefault = strony
 creatingPageWaitMessage = Zapisywanie zrzutu…
 
 ## Home page
