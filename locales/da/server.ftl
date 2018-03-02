@@ -187,10 +187,12 @@ annotationCropButton =
     .title = Beskær
 annotationSaveEditButton = Gem
     .title = Gem redigering
+annotationCancelEditButton = Fortryd
+    .title = Fortryd redigering
 annotationCropConfirmButton = Bekræft
     .title = Bekræft markering
-annotationCropCancelButton = Annuller
-    .title = Annuller markering
+annotationCropCancelButton = Fortryd
+    .title = Fortryd markering
 
 ## Shotindex page
 
