@@ -575,7 +575,7 @@ exports.Editor = class Editor extends React.Component {
     this.pos.x = e.clientX - rect.left,
     this.pos.y = e.clientY - rect.top
     drawMousedown = true;
-    if (this.isClickOnPicker(e)) {
+    if (this.isOnUndrawableArea(e)) {
       drawMousedown = false;
     }
     this.draw(e);
@@ -593,9 +593,9 @@ exports.Editor = class Editor extends React.Component {
     }
   }
 
-  isClickOnPicker(e) {
-    const targetClass = e.target.className;
-    return (targetClass === "swatch" || targetClass === "color-board" || targetClass === "color-row");
+  isOnUndrawableArea(e) {
+    const header = document.querySelector(".editor-header");
+    return (header.contains(e.target) || header === e.target);
   }
 
   drawPen(e) {
