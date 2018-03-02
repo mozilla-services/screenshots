@@ -45,7 +45,7 @@ const gaActivation = require("./ga-activation");
 const genUuid = require("nodify-uuid");
 const statsd = require("./statsd");
 const { notFound } = require("./pages/not-found/server");
-const { cacheTime, setMonthlyCache, setDailyCache } = require("./caching");
+const { setMonthlyCache, setDailyCache, doNotCache } = require("./caching");
 const { captureRavenException, sendRavenMessage,
         addRavenRequestHandler, addRavenErrorHandler } = require("./ravenclient");
 const { errorResponse, simpleResponse, jsResponse } = require("./responses");
@@ -184,10 +184,18 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json({limit: config.requestBodySizeLimit}));
 
-app.use("/static", express.static(path.join(__dirname, "static"), {
-  index: false,
-  maxAge: cacheTime ? cacheTime * 1000 : null
-}));
+app.use(
+  "/static",
+  function(req, res, next) {
+    if (req.query.rev && req.query.rev === linker.getGitRevision()) {
+      setMonthlyCache(res);
+    } else {
+      doNotCache(res);
+    }
+    next();
+  },
+  express.static(path.join(__dirname, "static"), {index: false})
+);
 
 const xpidir = path.join(__dirname, "..", "xpi");
 app.use("/xpi", express.static(xpidir, {index: false}));

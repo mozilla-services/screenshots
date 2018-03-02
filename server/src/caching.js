@@ -29,5 +29,6 @@ function createCacheSetter(maxAge, flags) {
   }
 }
 
+exports.doNotCache = createCacheSetter(0);
 exports.setMonthlyCache = createCacheSetter(exports.cacheTime);
 exports.setDailyCache = createCacheSetter(aDayInSeconds, `s-maxage=${tenMinutesInSeconds}`);
