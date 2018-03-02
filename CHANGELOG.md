@@ -1,3 +1,13 @@
+## Version 31.1.0
+
+Note: this is a server release (31.0.0 did not go to production).
+
+* Disallow drawing on header. ([#4170](https://github.com/mozilla-services/screenshots/issues/4170)) [eda69b6](https://github.com/mozilla-services/screenshots/commit/eda69b6)
+* Do not cache static files if revs mismatch. ([#3962](https://github.com/mozilla-services/screenshots/issues/3962)) [dc1bc84](https://github.com/mozilla-services/screenshots/commit/dc1bc84)
+* detect click on color picker [5834a9e](https://github.com/mozilla-services/screenshots/commit/5834a9e)
+* annotations - add tooltips [63445d6](https://github.com/mozilla-services/screenshots/commit/63445d6)
+* fix annotation header [61d2412](https://github.com/mozilla-services/screenshots/commit/61d2412)
+
 ## Version 31.0.0
 
 Note: this is a server release. The previous server release was 28.1.0
