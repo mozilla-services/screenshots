@@ -172,6 +172,7 @@ timeDiffFutureDays = { $number ->
         [one] מחר
        *[other] בעוד { $number } ימים
     }
+errorThirdPartyCookiesEnabled = אם צילמת את התמונה הזאת ולא הצלחת למחוק אותה, כנראה שעליך להפעיל באופן זמני עוגיות צד־שלישי בהעדפות הדפדפן שלך.
 
 ## Annotations
 
