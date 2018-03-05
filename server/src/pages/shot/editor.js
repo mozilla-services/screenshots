@@ -106,7 +106,7 @@ exports.Editor = class Editor extends React.Component {
       tool: "pen",
       color: activeColor || "#000",
       size: "5",
-      saveDisabled: true
+      actionsDisabled: true
     };
   }
 
@@ -154,10 +154,10 @@ exports.Editor = class Editor extends React.Component {
       </div>
       <div className="shot-alt-actions">
         <Localized id="annotationSaveEditButton">
-          <button className="button primary save" id="save" onClick={ this.onClickSave.bind(this) } disabled = { this.state.saveDisabled } title="Save edit">Save</button>
+          <button className="button primary save" id="save" onClick={ this.onClickSave.bind(this) } disabled = { this.state.actionsDisabled } title="Save edit">Save</button>
         </Localized>
         <Localized id="annotationCancelEditButton">
-          <button className="button secondary cancel" id="cancel" onClick={this.onClickCancel.bind(this)} title="Cancel editing">Cancel</button>
+          <button className="button secondary cancel" id="cancel" onClick={this.onClickCancel.bind(this)} title="Cancel editing" disabled = { this.state.actionsDisabled }>Cancel</button>
         </Localized>
       </div>
     </div>
@@ -471,8 +471,8 @@ exports.Editor = class Editor extends React.Component {
 
   onClickSave() {
     this.loader = this.renderShotsLoading();
-    const saveDisabled = true;
-    this.setState({saveDisabled});
+    const actionsDisabled = true;
+    this.setState({actionsDisabled});
     let dataUrl = this.imageCanvas.toDataURL();
 
     if (this.props.pngToJpegCutoff && dataUrl.length > this.props.pngToJpegCutoff) {
@@ -509,7 +509,7 @@ exports.Editor = class Editor extends React.Component {
     const height = this.props.clip.image.dimensions.y;
     img.onload = () => {
       imageContext.drawImage(img, 0, 0, width, height);
-      this.setState({saveDisabled: false});
+      this.setState({actionsDisabled: false});
     }
     this.imageContext = imageContext;
     img.src = this.props.clip.image.url;

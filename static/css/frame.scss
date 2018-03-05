@@ -437,11 +437,9 @@ body {
   .cancel,
   .save {
     min-width: 100px;
-  }
-
-  .save {
     &:disabled {
       opacity: 0.4;
+      cursor: wait;
     }
   }
 
