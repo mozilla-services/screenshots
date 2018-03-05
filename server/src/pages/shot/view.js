@@ -470,7 +470,7 @@ class Body extends React.Component {
         </Localized>
         &nbsp;
         <Localized id="shotPageUpsellFirefox">
-          <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition&utm-content=from-shot" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a>
+          <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition&utm_content=from-shot" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a>
         </Localized>
       </div>
       <a className="close" onClick={ this.doCloseBanner.bind(this) }></a>
