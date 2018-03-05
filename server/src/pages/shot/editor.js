@@ -106,7 +106,7 @@ exports.Editor = class Editor extends React.Component {
       tool: "pen",
       color: activeColor || "#000",
       size: "5",
-      saveDisabled: true
+      actionsDisabled: true
     };
   }
 
@@ -154,10 +154,10 @@ exports.Editor = class Editor extends React.Component {
       </div>
       <div className="shot-alt-actions">
         <Localized id="annotationSaveEditButton">
-          <button className="button primary save" id="save" onClick={ this.onClickSave.bind(this) } disabled = { this.state.saveDisabled } title="Save edit">Save</button>
+          <button className="button primary save" id="save" onClick={ this.onClickSave.bind(this) } disabled = { this.state.actionsDisabled } title="Save edit">Save</button>
         </Localized>
         <Localized id="annotationCancelEditButton">
-          <button className="button secondary cancel" id="cancel" onClick={this.onClickCancel.bind(this)} title="Cancel editing">Cancel</button>
+          <button className="button secondary cancel" id="cancel" onClick={this.onClickCancel.bind(this)} title="Cancel editing" disabled = { this.state.actionsDisabled }>Cancel</button>
         </Localized>
       </div>
     </div>
@@ -187,6 +187,7 @@ exports.Editor = class Editor extends React.Component {
   }
 
   onClickCrop() {
+    this.previousTool = this.state.tool;
     this.setState({tool: "crop"});
     this.cropToolBar = <div className="editor-header default-color-scheme"><div className="annotation-tools">
       <Localized id="annotationCropConfirmButton">
@@ -231,14 +232,14 @@ exports.Editor = class Editor extends React.Component {
     this.canvasHeight = cropHeight;
     this.removeCropBox();
     this.cropToolBar = null;
-    this.setState({tool: "pen"});
+    this.setState({tool: this.previousTool});
     sendEvent("confirm-crop", "crop-toolbar");
   }
 
   onClickCancelCrop() {
     this.removeCropBox();
     this.cropToolBar = null;
-    this.setState({tool: "pen"});
+    this.setState({tool: this.previousTool});
     sendEvent("cancel-crop", "crop-toolbar");
   }
 
@@ -253,6 +254,9 @@ exports.Editor = class Editor extends React.Component {
 
   mousedown(e) {
     e.preventDefault();
+    if (e.button !== 0) {
+      return;
+    }
     mousedown = true;
     const rect = this.cropContainer.getBoundingClientRect();
     if (!this.cropBox) {
@@ -274,6 +278,9 @@ exports.Editor = class Editor extends React.Component {
 
   mousemove(e) {
     e.preventDefault();
+    if (e.button !== 0) {
+      return;
+    }
     const rect = this.cropContainer.getBoundingClientRect();
     if (mousedown && selectionState === "creating") {
       selectedPos = new Selection(
@@ -471,8 +478,8 @@ exports.Editor = class Editor extends React.Component {
 
   onClickSave() {
     this.loader = this.renderShotsLoading();
-    const saveDisabled = true;
-    this.setState({saveDisabled});
+    const actionsDisabled = true;
+    this.setState({actionsDisabled});
     let dataUrl = this.imageCanvas.toDataURL();
 
     if (this.props.pngToJpegCutoff && dataUrl.length > this.props.pngToJpegCutoff) {
@@ -509,7 +516,7 @@ exports.Editor = class Editor extends React.Component {
     const height = this.props.clip.image.dimensions.y;
     img.onload = () => {
       imageContext.drawImage(img, 0, 0, width, height);
-      this.setState({saveDisabled: false});
+      this.setState({actionsDisabled: false});
     }
     this.imageContext = imageContext;
     img.src = this.props.clip.image.url;
@@ -536,6 +543,7 @@ exports.Editor = class Editor extends React.Component {
       this.highlightContext.strokeStyle = this.state.color;
       document.addEventListener("mousemove", this.draw);
       document.addEventListener("mousedown", this.setPosition);
+      document.addEventListener("mouseup", this.drawMouseup);
     } else if (this.state.tool === "pen") {
       this.drawContext = this.imageContext;
       this.imageContext.globalCompositeOperation = "source-over";
