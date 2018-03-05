@@ -187,6 +187,7 @@ exports.Editor = class Editor extends React.Component {
   }
 
   onClickCrop() {
+    this.previousTool = this.state.tool;
     this.setState({tool: "crop"});
     this.cropToolBar = <div className="editor-header default-color-scheme"><div className="annotation-tools">
       <Localized id="annotationCropConfirmButton">
@@ -231,14 +232,14 @@ exports.Editor = class Editor extends React.Component {
     this.canvasHeight = cropHeight;
     this.removeCropBox();
     this.cropToolBar = null;
-    this.setState({tool: "pen"});
+    this.setState({tool: this.previousTool});
     sendEvent("confirm-crop", "crop-toolbar");
   }
 
   onClickCancelCrop() {
     this.removeCropBox();
     this.cropToolBar = null;
-    this.setState({tool: "pen"});
+    this.setState({tool: this.previousTool});
     sendEvent("cancel-crop", "crop-toolbar");
   }
 
@@ -536,6 +537,7 @@ exports.Editor = class Editor extends React.Component {
       this.highlightContext.strokeStyle = this.state.color;
       document.addEventListener("mousemove", this.draw);
       document.addEventListener("mousedown", this.setPosition);
+      document.addEventListener("mouseup", this.drawMouseup);
     } else if (this.state.tool === "pen") {
       this.drawContext = this.imageContext;
       this.imageContext.globalCompositeOperation = "source-over";
