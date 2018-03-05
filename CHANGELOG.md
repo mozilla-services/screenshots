@@ -1,4 +1,14 @@
-## Version 31.1.0
+## Version 31.2.0
+
+Note: this is a server release (31.0.0 and 31.1.0 did not go into
+production)
+
+* prevent cropping on right click [10dbff2](https://github.com/mozilla-services/screenshots/commit/10dbff2)
+* preserve highlighter state [ca5cec7](https://github.com/mozilla-services/screenshots/commit/ca5cec7)
+* disable cancel button on save [4783508](https://github.com/mozilla-services/screenshots/commit/4783508)
+* fix utm error preventing campaign segmentation [c7184aa](https://github.com/mozilla-services/screenshots/commit/c7184aa)
+
+### Version 31.1.0
 
 Note: this is a server release (31.0.0 did not go to production).
 
