@@ -1,22 +1,18 @@
-// Localization for Server-side strings of Firefox Screenshots
-// 
-// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+### Localization for Server-side strings of Firefox Screenshots
+### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
-
-// Global phrases shared across pages, prefixed with 'g'
-[[ global ]]
+## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = Uendelig ∞
 gHomeLink = Hjem
-gNoShots
+gNoShots =
     .alt = Ingen skjermbilder funnet
 gScreenshotsDescription = Skjermbilder gjort enkelt. Ta, lagre og del skjermbilder uten å forlate Firefox.
 
+## Footer
 
-[[ Footer ]]
-
-// Note: link text for a link to mozilla.org
+# Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Vilkår
 footerLinkPrivacy = Personvernbestemmelser
@@ -25,122 +21,117 @@ footerLinkDMCA = Rapporter åndsverkovertredelse
 footerLinkDiscourse = Gi tilbakemelding
 footerLinkRemoveAllData = Slett alle data
 
+## Creating page
 
-[[ Creating page ]]
-
-// Note: { $title } is a placeholder for the title of the web page
-// captured in the screenshot. The default, for pages without titles, is
-// creatingPageTitleDefault.
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
 creatingPageTitle = Lager { $title }
 creatingPageTitleDefault = side
 creatingPageWaitMessage = Lagrer ditt skjermbilde...
 
+## Home page
 
-[[ Home page ]]
-
-homePageDescription
+homePageDescription =
     .content = Intuitive skjermbilder bakt rett inn i nettleseren. Ta, lagre og del skjermbilder mens du surfer på nettet ved hjelp av Firefox.
 homePageButtonMyShots = Gå til mine skjermbilder
 homePageTeaser = Kommer snart…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Gratis nedlasting
 homePageGetStarted = Kom i gang
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Slik fungerer Firefox Screenshots
 homePageGetStartedTitle = Kom i gang
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Finn det nye Screenshots-ikonet på verktøylinjen. Velg det, og Screenshots-menyen vises øverst i nettleservinduet.
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Velg ikonet Screenshots fra sidehandlingsmenyen i adressefeltet og menyen Screenshots vil vises oppå ditt nettleservindu.
 homePageCaptureRegion = Ta skjermbilde av et område
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Klikk og dra for å velge området du vil ta skjermbilde av. Eller bare holde musen over og klikk — Screenshots vil velge området for deg. Liker du hva du ser? Velg Lagre for å få tilgang til skjermdumpet ditt på nettet eller pil ned-knappen for å laste den ned til datamaskinen.
 homePageCapturePage = Ta skjermbilde av en side
 homePageCapturePageDescription = Bruk knappene øverst til høyre for å ta skjermbilde av hele sider. Knappen «Lagre synlig område» tar skjermbilde av området du kan se uten å rulle, og «Lagre hele siden» vil ta skjermbilde av alt på siden.
 homePageSaveShare = Lagre og del
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Når du tar et skjermbilde, laster Firefox opp skjermbildet ditt i din nettbaserte Screenshots-bibliotek og kopierer lenken til utklippstavlen. Vi lagrer skjermbildet automatisk i to uker, men du kan når som helst slette bilder eller endre utløpsdatoen for å beholde dem i biblioteket ditt lenger.
 homePageLegalLink = Juridisk
 homePagePrivacyLink = Personvern
 homePageTermsLink = Vilkår
 homePageCookiesLink = Infokapsler
 
-
-[[ Leave Screenshots page ]]
+## Leave Screenshots page
 
 leavePageRemoveAllData = Fjern alle data
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Du må ha Firefox Screenshots installert for å slette kontoen din
 leavePageErrorGeneric = Det oppstod en feil
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Dette vil permanent slette alle dine data for Firefox Screenshots.
 leavePageButtonProceed = Fortsett
 leavePageButtonCancel = Avbryt
 leavePageDeleted = Alle skjermbildene dine er slettet!
 
-
-[[ Not Found page ]]
+## Not Found page
 
 notFoundPageTitle = Siden ikke funnet
 notFoundPageIntro = Ups.
 notFoundPageDescription = Fant ikke siden.
 
+## Shot page
 
-[[ Shot page ]]
-
-// This is the HTML title tag of the page
+# This is the HTML title tag of the page
 shotPageTitle = Skjermbilde: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Feil ved lagring av utløpsdato
 shotPageAlertErrorDeletingShot = Feil ved sletting av skjermbilde
 shotPageAlertErrorUpdatingTitle = Feil ved lagring av tittel
 shotPageConfirmDelete = Er du sikker på at du vil slette dette skjermbildet permanent?
-shotPageShareButton
+shotPageShareButton =
     .title = del
 shotPageCopy = Kopier
 shotPageCopied = Kopiert
-shotPageShareFacebook
+shotPageShareFacebook =
     .title = Del på Facebook
-shotPageShareTwitter
+shotPageShareTwitter =
     .title = Del på Twitter
-shotPageSharePinterest
+shotPageSharePinterest =
     .title = Del på Pinterest
-shotPageShareEmail
+shotPageShareEmail =
     .title = Del lenke via e-post
 shotPageShareLink = Få en delbar lenke til dette skjermbildet:
 shotPagePrivacyMessage = Alle som har denne lenken kan se dette skjermbildet.
-shotPageCopyImageText
+shotPageCopyImageText =
     .label = Kopier bildetekst
 shotPageConfirmDeletion = Er du sikker på at du vil slette dette skjermbildet permanent?
-// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Hvis du ikke gjør noe, vil dette bildet bli slettet permanent { $timediff }.
-// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = gjenopprett til
 shotPageExpiredMessage = Dette skjermbildet har utløpt.
-// Note: This phrase is followed by an empty line, then the URL of the source page
+# Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Her er siden den ble opprinnelig generert fra:
-shotPageDeleteButton
+shotPageDeleteButton =
     .title = Slett dette skjermbildet
-shotPageAbuseButton
+shotPageAbuseButton =
     .title = Rapporter dette bildet for brudd, spam eller andre problemer
-shotPageDownloadShot
+shotPageDownloadShot =
     .title = Last ned
 shotPageDownload = Last ned
 shotPageScreenshotsDescription = Skjermbilder gjort enkelt. Ta, lagre og del skjermbilder uten å forlate Firefox.
 shotPageUpsellFirefox = Last ned Firefox nå
 shotPageDMCAMessage = Dette bildet er ikke lenger tilgjengelig på grunn av en tredjeparts immaterielle krav.
-// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Send en e-post til { $dmca } for å be om ytterligere informasjon.
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Hvis bildene dine er gjenstand for flere krav, kan vi trekke tilbake din tilgang til Firefox Screenshots.
-// Note: { $url } is a placeholder for a shot page URL
+# Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Ta med nettadressen til dette bildet i e-posten din: { $url }
 shotPageKeepFor = Hvor lenge skal dette skjermbildet beholdes?
-// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Velg tid
-// The ∞ is used to indicate that the shot won't expire. It is also used in
-// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
-// if no such symbol is available for a language/culture, simply leave it out.
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitelyWithSymbol = Uendelig ∞
 shotPageKeepTenMinutes = 10 minutter
 shotPageKeepOneHour = 1 time
@@ -151,9 +142,9 @@ shotPageKeepOneMonth = 1 måned
 shotPageSaveExpiration = lagre
 shotPageCancelExpiration = avbryt
 shotPageDoesNotExpire = utløper ikke
-// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = utløper { $timediff }
-// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = utløpt { $timediff }
 timeDiffJustNow = akkurat nå
 timeDiffMinutesAgo = { $number ->
@@ -183,67 +174,66 @@ timeDiffFutureDays = { $number ->
     }
 errorThirdPartyCookiesEnabled = Hvis du tok dette skjermbildet og ikke kan slette det, må du kanskje midlertidig aktivere tredjeparts infokapsler fra nettleserens innstillinger.
 
+## Annotations
 
-[[ Annotations ]]
-
-annotationPenButton
+annotationPenButton =
     .title = Penn
-annotationHighlighterButton
+annotationHighlighterButton =
     .title = Merkepenn
-// Note: This button reverts all the changes on the image since the start of the editing session.
-annotationClearButton
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
     .title = Tøm
-annotationCropButton
+annotationCropButton =
     .title = Beskjær
-annotationSaveButton = Lagre
-annotationCancelButton = Avbryt
+annotationSaveEditButton = Lagre
+    .title = Lagre redigering
+annotationCancelEditButton = Avbryt
+    .title = Avbryt redigering
 annotationCropConfirmButton = Bekreft
     .title = Bekreft valg
 annotationCropCancelButton = Avbryt
     .title = Avbryt valg
 
+## Shotindex page
 
-[[ Shotindex page ]]
-
-// { $status } is a placeholder for an HTTP status code, like '500'.
-// { $statusText } is a text description of the status code, like 'Internal server error'.
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Feil ved sletting av bilde: { $status } { $statusText }
-// { $searchTerm } is a placeholder for text the user typed into the search box
+# { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Mine skjermbilder: søk etter { $searchTerm }
-// { $error } is a placeholder for a non-translated error message that could be shared
-// with developers when debugging an error.
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
 shotIndexPageErrorRendering = Feil ved opptegning av siden: { $error }
-shotIndexPageSearchPlaceholder
+shotIndexPageSearchPlaceholder =
     .placeholder = Søk mine skjermbilder
-shotIndexPageSearchButton
+shotIndexPageSearchButton =
     .title = Søk
 shotIndexPageNoShotsMessage = Ingen lagrede bilder.
 shotIndexPageNoShotsInvitation = Kom igjen, lag noen.
 shotIndexPageLookingForShots = Leter etter bildene dine…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Vi kan ikke finne noen bilder som passer med søket ditt.
-shotIndexPageClearSearchButton
+shotIndexPageClearSearchButton =
     .title = Tøm søk
 shotIndexPageConfirmShotDelete = Slett dette skjermbildet
-shotIndexPagePreviousPage
+shotIndexPagePreviousPage =
     .title = Forrige side
-shotIndexPageNextPage
+shotIndexPageNextPage =
     .title = Neste side
-// This symbol is used in the lower right corner of the card for a shot on the
-// My Shots page to indicate that the shot does not expire. It should be a
-// single character (or simply nothing if no such symbol is available for a
-// language/culture).
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Dette skjermbildet utløper ikke
 
+## Metrics page
+## All metrics strings are optional for translation
 
-// all metrics strings are optional for translation
-[[ Metrics page ]]
-
-// Note: 'Firefox Screenshots' should not be translated
+# Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Firefox Screenshots Metrics
 metricsPageTotalsQueryTitle = Totals
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = An overview of Screenshots
 metricsPageTotalsQueryDevices = Total devices registered
 metricsPageTotalsQueryActiveShots = Active shots
@@ -276,7 +266,7 @@ metricsPageVersionQueryUsers = Number of users logging in
 metricsPageVersionQueryVersion = Add-on version
 metricsPageVersionQueryLastSeen = Day
 metricsPageHeader = Metrics
-// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Generated at: { $created }
-// Note { $time } is a placeholder for a number of milliseconds, like '100'
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (database time: { $time }ms)
