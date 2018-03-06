@@ -128,23 +128,23 @@ exports.Editor = class Editor extends React.Component {
         ref={(canvasContainer) => this.canvasContainer = canvasContainer}
         style={{ height: this.canvasHeight, width: this.canvasWidth }}>
         <canvas
-          className="image-holder"
+          className="image-holder centered"
           id="image-holder"
           ref={(image) => { this.imageCanvas = image }}
           height={this.canvasHeight} width={this.canvasWidth}
           style={{ height: this.canvasHeight, width: this.canvasWidth }}></canvas>
         <canvas
-          className={`temp-highlighter ${color}`}
+          className={`temp-highlighter centered ${color}`}
           id="highlighter"
           ref={(highlighter) => { this.highlighter = highlighter }}
           height={this.canvasHeight} width={this.canvasWidth}></canvas>
         <canvas
-          className="crop-tool"
+          className="crop-tool centered"
           id="crop-tool"
           ref={(cropper) => { this.cropper = cropper }}
           height={this.canvasHeight} width={this.canvasWidth}></canvas>
         <div
-          className="crop-container"
+          className="crop-container centered"
           ref={(cropContainer) => this.cropContainer = cropContainer}
           style={{ height: this.canvasHeight, width: this.canvasWidth }}></div>
       </div>
