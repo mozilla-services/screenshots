@@ -1,7 +1,19 @@
-## Version 31.2.0
+## Version 31.3.0
 
-Note: this is a server release (31.0.0 and 31.1.0 did not go into
+Note: this is a server release (31.{0,1,2}.0 did not go into
 production)
+
+* Restore a CSS class b/c crop tool needs it. [894a0f8](https://github.com/mozilla-services/screenshots/commit/894a0f8)
+* Delete some CSS. ([#4191](https://github.com/mozilla-services/screenshots/issues/4191)) [2146ffc](https://github.com/mozilla-services/screenshots/commit/2146ffc)
+
+### Add-on change in 31.3.0
+
+(Note: this one change has been uplifted to Firefox 60)
+
+* don't overwrite correctly-scaled canvas dimensions; pass the shot type to downloadShot and copyShot. Fixes [#4174](https://github.com/mozilla-services/screenshots/issues/4174) [9a8b11b](https://github.com/mozilla-services/screenshots/commit/9a8b11b)
+
+### Version 31.2.0
+
 
 * prevent cropping on right click [10dbff2](https://github.com/mozilla-services/screenshots/commit/10dbff2)
 * preserve highlighter state [ca5cec7](https://github.com/mozilla-services/screenshots/commit/ca5cec7)
