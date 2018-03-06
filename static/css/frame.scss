@@ -484,14 +484,9 @@ body {
 }
 
 .main-container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  flex: 1;
-  z-index: 1;
   margin-top: $grid-unit * 5;
+  position: relative;
+  z-index: 1;
 
   @include respond-to("small") {
     top: $grid-unit * 4;
@@ -499,14 +494,9 @@ body {
 }
 
 .canvas-container {
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 auto;
-  margin: 20px auto;
-  max-width: 90%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  margin: 20px auto;
+  z-index: 9999;
 
   &.pen {
     cursor: url("../img/cursor-pen.png"), auto;

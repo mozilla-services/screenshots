@@ -122,11 +122,31 @@ exports.Editor = class Editor extends React.Component {
 
   renderCanvas(color, toolBar) {
     return <div className="main-container">
-      <div className={`inverse-color-scheme canvas-container ${this.state.tool}`} id="canvas-container" ref={(canvasContainer) => this.canvasContainer = canvasContainer} style={{height: this.canvasHeight}}>
-        <canvas className="image-holder centered" id="image-holder" ref={(image) => { this.imageCanvas = image }} height={ this.canvasHeight } width={ this.canvasWidth } style={{height: this.canvasHeight, width: this.canvasWidth}}></canvas>
-        <canvas className={`temp-highlighter centered ${color}`} id="highlighter" ref={(highlighter) => { this.highlighter = highlighter }} height={ this.canvasHeight } width={ this.canvasWidth }></canvas>
-        <canvas className="crop-tool centered" id="crop-tool" ref={(cropper) => { this.cropper = cropper }} height={this.canvasHeight} width={this.canvasWidth}></canvas>
-        <div className="crop-container centered" ref={(cropContainer) => this.cropContainer = cropContainer} style={{height: this.canvasHeight, width: this.canvasWidth}}></div>
+      <div
+        className={`inverse-color-scheme canvas-container ${this.state.tool}`}
+        id="canvas-container"
+        ref={(canvasContainer) => this.canvasContainer = canvasContainer}
+        style={{ height: this.canvasHeight, width: this.canvasWidth }}>
+        <canvas
+          className="image-holder"
+          id="image-holder"
+          ref={(image) => { this.imageCanvas = image }}
+          height={this.canvasHeight} width={this.canvasWidth}
+          style={{ height: this.canvasHeight, width: this.canvasWidth }}></canvas>
+        <canvas
+          className={`temp-highlighter ${color}`}
+          id="highlighter"
+          ref={(highlighter) => { this.highlighter = highlighter }}
+          height={this.canvasHeight} width={this.canvasWidth}></canvas>
+        <canvas
+          className="crop-tool"
+          id="crop-tool"
+          ref={(cropper) => { this.cropper = cropper }}
+          height={this.canvasHeight} width={this.canvasWidth}></canvas>
+        <div
+          className="crop-container"
+          ref={(cropContainer) => this.cropContainer = cropContainer}
+          style={{ height: this.canvasHeight, width: this.canvasWidth }}></div>
       </div>
     </div>
   }
