@@ -374,7 +374,7 @@ class AbstractShot {
     // eslint-disable-next-line no-control-regex
     filenameTitle = filenameTitle.replace(/[:\\<>/!@&?"*.|\x00-\x1F]/g, " ");
     filenameTitle = filenameTitle.replace(/\s{1,4000}/g, " ");
-    let filenameDate = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000).toISOString().substring(0,10);
+    const filenameDate = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000).toISOString().substring(0, 10);
     let clipFilename = `Screenshot_${filenameDate} ${filenameTitle}`;
     const clipFilenameBytesSize = clipFilename.length * 2; // JS STrings are UTF-16
     if (clipFilenameBytesSize > 251) { // 255 bytes (Usual filesystems max) - 4 for the ".png" file extension string
