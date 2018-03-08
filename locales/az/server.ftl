@@ -81,9 +81,51 @@ shotPageShareEmail =
 shotPageDownloadShot =
     .title = Endir
 shotPageDownload = Endir
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Vaxtı seçin
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Sonsuz ∞
+shotPageKeepTenMinutes = 10 dəqiqə
+shotPageKeepOneHour = 1 saat
+shotPageKeepOneDay = 1 gün
+shotPageKeepOneWeek = 1 həftə
+shotPageKeepTwoWeeks = 2 həftə
+shotPageKeepOneMonth = 1 ay
 shotPageSaveExpiration = saxla
 shotPageCancelExpiration = ləğv et
+shotPageDoesNotExpire = vaxtı çıxmasın
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = { $timediff } silinəcək
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = { $timediff } silindi
 timeDiffJustNow = indicə
+timeDiffMinutesAgo = { $number ->
+        [one] 1 dəqiqə əvvəl
+       *[other] { $number } dəqiqə əvvəl
+    }
+timeDiffHoursAgo = { $number ->
+        [one] 1 saat əvvəl
+       *[other] { $number } saat əvvəl
+    }
+timeDiffDaysAgo = { $number ->
+        [one] dünən
+       *[other] { $number } gün əvvəl
+    }
+timeDiffFutureSeconds = bir neçə saniyə sonra
+timeDiffFutureMinutes = { $number ->
+        [one] 1 dəqiqə sonra
+       *[other] { $number } dəqiqə sonra
+    }
+timeDiffFutureHours = { $number ->
+        [one] 1 saat sonra
+       *[other] { $number } saat sonra
+    }
+timeDiffFutureDays = { $number ->
+        [one] sabah
+       *[other] { $number } gün sonra
+    }
 
 ## Annotations
 
@@ -92,8 +134,6 @@ annotationClearButton =
     .title = Təmizlə
 annotationCropButton =
     .title = Kəs
-annotationSaveButton = Saxla
-annotationCancelButton = Ləğv et
 annotationCropConfirmButton = Təsdiqlə
     .title = Seçilənləri təsdiqlə
 annotationCropCancelButton = Ləğv et
@@ -103,10 +143,19 @@ annotationCropCancelButton = Ləğv et
 
 shotIndexPageSearchButton =
     .title = Axtar
+shotIndexPageClearSearchButton =
+    .title = Axtarışı təmizlə
+shotIndexPageConfirmShotDelete = Bu görüntü silinsin?
 shotIndexPagePreviousPage =
     .title = Əvvəlki səhifə
 shotIndexPageNextPage =
     .title = Sonrakı səhifə
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Bu görüntünün vaxtı çıxmır
 
 ## Metrics page
 ## All metrics strings are optional for translation
