@@ -208,7 +208,40 @@ annotationCropCancelButton = Sguir dheth
 
 ## Shotindex page
 
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Mearachd a’ sguabadh às a’ ghlacaidh: { $status } { $statusText }
+# { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Na glacaidhean agam: lorg airson { $searchTerm }
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
+shotIndexPageErrorRendering = Mearachd a’ reandaradh na duilleige: { $error }
+shotIndexPageSearchPlaceholder =
+    .placeholder = Lorg sna glacaidhean agam
+shotIndexPageSearchButton =
+    .title = Lorg
+shotIndexPageNoShotsMessage = Cha deach glacadh sam bith a shàbhaladh.
+shotIndexPageNoShotsInvitation = Siuthad, tog feadhainn.
+shotIndexPageLookingForShots = A’ lorg nan glacaidhean agad...
+shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Chan urrainn dhuinn glacadh sam bith a lorg a fhreagras ris na dh’iarr thu.
+shotIndexPageClearSearchButton =
+    .title = Falamhaich an lorg
+shotIndexPageConfirmShotDelete = A bheil thu airson an glacadh seo a sguabadh às?
+shotIndexPagePreviousPage =
+    .title = An duilleag roimhe
+shotIndexPageNextPage =
+    .title = An ath-dhuilleag
 
 ## Metrics page
 ## All metrics strings are optional for translation
 
+# Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Stats glacaidhean-sgrìn Firefox
+metricsPageTotalsQueryTitle = Iomlain
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Foir-shealladh nan glacaidhean-sgrìn
+metricsPageTotalsQueryDevices = Uidheaman air an clàradh gu h-iomlan
+metricsPageTotalsQueryActiveShots = Glacaidhean gnìomhach
+metricsPageTotalsQueryExpiredShots = Na dh’fhalbh an ùine air (ach gabhaidh an aiseag)
+metricsPageTotalsQueryExpiredDeletedShots = Na dh’fhalbh an ùine air (is a chaidh a sguabadh às)
