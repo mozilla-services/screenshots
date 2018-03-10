@@ -184,9 +184,27 @@ timeDiffFutureDays = { $number ->
         [few] ann an { $number } làithean
        *[other] ann an { $number } latha
     }
+errorThirdPartyCookiesEnabled = Ma thog thusa an glacadh seo ’s mur urrainn dhut a sguabadh às, dh’fhaoidte gum bi agad ri briosgaidean threas-phàrtaidhean a chur an comas gu sealach ann an roghainnean a’ bhrabhsair agad.
 
 ## Annotations
 
+annotationPenButton =
+    .title = Peann
+annotationHighlighterButton =
+    .title = Soillsichear
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
+    .title = Falamhaich
+annotationCropButton =
+    .title = Bearr
+annotationSaveEditButton = Sàbhail
+    .title = Sàbhail an deasachadh
+annotationCancelEditButton = Sguir dheth
+    .title = Sguir dhen deasachadh
+annotationCropConfirmButton = Dearbh
+    .title = Dearbh an taghadh
+annotationCropCancelButton = Sguir dheth
+    .title = Sguir dhen taghadh
 
 ## Shotindex page
 
