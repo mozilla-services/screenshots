@@ -47,6 +47,13 @@ homePageGetStartedDescription = Thoir sùil airson ìomhaigheag ùr nan glacaidh
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Tagh ìomhaigheag nan glacaidhean-sgrìn ann an clàr-taice gnìomhan na duilleige ann am bàr an t-seòlaidh is nochdaidh clàr-taice nan glacaidhean-sgrìn aig barr uinneag a’ bhrabhsair agad.
 homePageCaptureRegion = Glac raon
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Dèan briogadh is slaodadh airson an raon a tha ri ghlacadh a thaghadh. No fan os a chionn is dèan briogadh agus taghaidh an gleus againn an raon dhut. Dìreach na bha a dhìth ort? Tagh “Sàbhail” airson cothrom fhaighinn air air loidhne no an t-saighead sìos airson a luchdadh a-nuas dhan choimpiutair agad.
+homePageCapturePage = Glac duilleag
+homePageCapturePageDescription = Cleachd na putanan air an taobh deas gu h-àrd airson duilleag shlàn a ghlacadh. Glacaidh am putan “Sàbhail na tha ri fhaicinn” gach rud a chì thu gun a bhith a’ sgroladh agus glacaidh “Sàbhail an duilleag shlàn” gach rud air an duilleag.
+homePageSaveShare = Sàbhail is co-roinn
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Nuair a thogas tu glacadh-sgrìn, cuiridh Firefox e dhan leabhar-lann air loidhne agad agus cuiridh e ceangal ris air an stòr-bhòrd agad. Cumaidh sinn glacadh-sgrìn fad cola-deug gu fèin-obrachail ach is urrainn dhut glacadh a sguabadh às uair sam bith no an ceann-là a thèid a sguabadh às atharrachadh ma tha thu airson a chumail nas fhaide.
 homePageLegalLink = Nòtaichean laghail
 homePagePrivacyLink = Prìobhaideachd
 homePageTermsLink = Na teirmichean
@@ -55,9 +62,14 @@ homePageCookiesLink = Briosgaidean
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Thoir air falbh an dàta air fad
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Feumaidh gleus glacaidhean-sgrìn Firefox a bhith stàlaichte agad mus urrainn dhut an cunntas agad a sguabadh às
 leavePageErrorGeneric = Thachair mearachd
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Sguabaidh seo an dàta air fad agad ann an gleus glacaidhean-sgrìn Firefox agad gu buan.
 leavePageButtonProceed = Lean air adhart
 leavePageButtonCancel = Sguir dheth
+leavePageDeleted = Chaidh na glacaidhean-sgrìn air fad agad a sguabadh às!
 
 ## Not Found page
 
@@ -69,6 +81,8 @@ notFoundPageDescription = Cha deach an duilleag a lorg.
 
 # This is the HTML title tag of the page
 shotPageTitle = Glacadh-sgrìn: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = Mearachd a’ sàbhaladh a’ chinn-là
+shotPageAlertErrorDeletingShot = Mearachd a’ sguabadh às a’ ghlacaidh
 shotPageCopy = Dèan lethbhreac
 shotPageCopied = Lethbhreac air a dhèanamh
 shotPageShareFacebook =
