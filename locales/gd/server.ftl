@@ -102,9 +102,88 @@ shotPagePrivacyMessage = Chì duine sam bith aig a bheil an ceangal an glacadh s
 shotPageCopyImageText =
     .label = Dèan lethbhreac de theacsa an deilbh
 shotPageConfirmDeletion = A bheil thu cinnteach gu bheil thu airson an glacadh seo a sguabadh às gu buan?
+# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Mur an dèan thu dad, thèid an glacadh seo a sguabadh às gu buan { $timediff }.
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = aisig gu ruige { $date }
+shotPageExpiredMessage = Dh’fhalbh an ùine air a’ ghlacadh seo.
+# Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Seo an duilleag air an deach a thogail ann:
+shotPageDeleteButton =
+    .title = Sguab an glacadh seo às
+shotPageAbuseButton =
+    .title = Dèan aithris air a’ ghlacadh seo a thaobh mì-ghnàthachaidh, spama no adhbhair eile
 shotPageDownloadShot =
     .title = Luchdaich a-nuas
 shotPageDownload = Luchdaich a-nuas
+shotPageScreenshotsDescription = Glacaidhean-sgrìn gun duilgheadas sam bith. Tog, sàbhail is co-roinn iad gun Firefox fhàgail idir.
+shotPageUpsellFirefox = Faigh Firefox an-dràsta
+shotPageDMCAMessage = Chan eil an glacadh seo ri fhaighinn tuilleadh air sgàth tagradh an aghaidh briseadh IP a rinn cuideigin.
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Cuir post-d gu { $dmca } airson barrachd fiosrachaidh.
+# Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Ma thèid iomadh tagradh a thogail an aghaidh nan glacaidhean agad, dh’fhaoidte gun doir sinn air falbh do chothrom air gleus glacaidhean-sgrìn Firefox.
+# Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Gabh a-staigh URL a’ ghlacaidh sa phost-d agad: { $url }
+shotPageKeepFor = Dè cho fad ’s a chumas sinn an glacadh seo dhut?
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Tagh àm
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Gu buan ∞
+shotPageKeepTenMinutes = 10 mionaidean
+shotPageKeepOneHour = Uair a thìde
+shotPageKeepOneDay = Latha
+shotPageKeepOneWeek = Seachdain
+shotPageKeepTwoWeeks = 2 sheachdain
+shotPageKeepOneMonth = Mìos
+shotPageSaveExpiration = sàbhail
+shotPageCancelExpiration = sguir dheth
+shotPageDoesNotExpire = chan fhalbh an ùine air
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = falbhaidh an ùine air { $timediff }
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = dh’fhalbh an ùine air { $timediff }
+timeDiffJustNow = an-dràsta fhèin
+timeDiffMinutesAgo = { $number ->
+        [one] { $number } mhionaid air ais
+        [two] { $number } mhionaid air ais
+        [few] { $number } mionaidean air ais
+       *[other] { $number } mionaid air ais
+    }
+timeDiffHoursAgo = { $number ->
+        [one] { $number } uair a thìde ais ais
+        [two] { $number } uair a thìde ais ais
+        [few] { $number } uairean a thìde ais ais
+       *[other] { $number } uair a thìde ais ais
+    }
+timeDiffDaysAgo = { $number ->
+        [one] { $number } latha air ais
+        [two] { $number } latha air ais
+        [few] { $number } làithean air ais
+       *[other] { $number } latha air ais
+    }
+timeDiffFutureSeconds = ann an diog no dhà
+timeDiffFutureMinutes = { $number ->
+        [one] ann an { $number } mhionaid
+        [two] ann an { $number } mhionaid
+        [few] ann an { $number } mionaidean
+       *[other] ann an { $number } mionaid
+    }
+timeDiffFutureHours = { $number ->
+        [one] ann an { $number } uair a thìde
+        [two] ann an { $number } uair a thìde
+        [few] ann an { $number } uairean a thìde
+       *[other] ann an { $number } uair a thìde
+    }
+timeDiffFutureDays = { $number ->
+        [one] ann an { $number } latha
+        [two] ann an { $number } latha
+        [few] ann an { $number } làithean
+       *[other] ann an { $number } latha
+    }
 
 ## Annotations
 
