@@ -17,6 +17,8 @@ const { By, until } = webdriver;
 // Uncomment the next line and others with `ServiceBuilder` to enable trace logs from Firefox and Geckodriver
 // const { ServiceBuilder } = firefox;
 const path = require("path");
+const fs = require("fs");
+const util = require("util");
 
 const SHOOTER_BUTTON_ID = "pageAction-panel-screenshots";
 // Applies to the old-style toolbar button:
@@ -28,6 +30,7 @@ const SELECTION_IFRAME_ID = "firefox-screenshots-selection-iframe";
 const PREVIEW_IFRAME_ID = "firefox-screenshots-preview-iframe";
 const backend = "http://localhost:10080";
 const addonFileLocation = path.join(process.cwd(), "build", "screenshots-bootstrap.zip");
+const downloadDir = path.join(process.cwd(), "test", "addon", ".artifacts");
 
 function getDriver() {
   const channel = process.env.FIREFOX_CHANNEL || "NIGHTLY";
@@ -40,7 +43,9 @@ function getDriver() {
   const options = new firefox.Options()
     .setBinary(firefox.Channel[channel])
     .setPreference("extensions.legacy.enabled", true)
-    .setPreference("xpinstall.signatures.required", false);
+    .setPreference("xpinstall.signatures.required", false)
+    .setPreference("browser.download.folderList", 2)
+    .setPreference("browser.download.dir", downloadDir);
 
   // FIXME: should assert somehow that we have Firefox 54+
 
@@ -107,6 +112,13 @@ function focusIframe(driver, iframeId) {
   }).then((iframe) => {
     return driver.switchTo().frame(iframe);
   });
+}
+
+function closeTab(driver) {
+  return driver.close()
+  .then(() => driver.getAllWindowHandles())
+  .then((tabs) => driver.switchTo().window(tabs[tabs.length - 1]))
+  .then(() => driver.switchTo().defaultContent())
 }
 
 function skipOnboarding(driver) {
@@ -308,6 +320,43 @@ describe("Test Screenshots", function() {
       assert.equal(url, `${backend}/shots`, `Navigated to ${url} instead of My Shots at ${backend}/shots`);
       done();
     }).catch(done);
+  });
+
+  it("should download a shot", function(done) {
+    const startingFileCount = fs.readdirSync(downloadDir).length;
+    const filenameRegex = /^Screenshot.+ Firefox Screenshots\.png$/;
+    let files;
+    startAutoSelectionShot(driver)
+    .then(() => driver.wait(until.elementLocated(By.css(".highlight-button-download"))))
+    .then(downloadButton => downloadButton.click())
+    .then(() => driver.wait(() => {
+      return util.promisify(fs.readdir)(downloadDir).then(foundFiles => {
+        files = foundFiles;
+        return (files.length > startingFileCount);
+      });
+    }, 2000))
+    .then(() => {
+      // check for a file created within a couple seconds
+      // @TODO maybe check the dimensions of the image if we wanna get fancy
+      const matches = files.filter(filename => {
+        if (!filenameRegex.test(filename)) {
+          return false;
+        }
+        const stat = fs.statSync(path.join(downloadDir, filename));
+        return ((stat.mtime.getTime() - Date.now()) < 2000);
+      });
+      assert(matches.length, `Shot was not downloaded to ${downloadDir}`);
+      // clean up the dir
+      const unlinkPromise = util.promisify(fs.unlink);
+      files.forEach(filename => {
+        filename !== ".gitignore" && unlinkPromise(path.join(downloadDir, filename));
+      });
+    })
+    // Downloading seems to put the browser in a weird state that we can't reset
+    // unless the tab is closed
+    .then(() => closeTab(driver))
+    .then(() => done())
+    .catch(done);
   });
 
   it("should remain on original tab with UI overlay on save failure", function(done) {
