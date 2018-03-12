@@ -1,22 +1,18 @@
-// Localization for Server-side strings of Firefox Screenshots
-// 
-// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+### Localization for Server-side strings of Firefox Screenshots
+### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
-
-// Global phrases shared across pages, prefixed with 'g'
-[[ global ]]
+## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = Miaj ekrankopioj
 gHomeLink = Eka paĝo
-gNoShots
+gNoShots =
     .alt = Neniu ekrankopio trovita
 gScreenshotsDescription = Ekrankopioj, simple faritaj. Kopii, konservi kaj dividi ekrankopiojn sen forlasi Firefox.
 
+## Footer
 
-[[ Footer ]]
-
-// Note: link text for a link to mozilla.org
+# Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Kondiĉoj
 footerLinkPrivacy = Rimarko pri privateco
@@ -25,122 +21,117 @@ footerLinkDMCA = Raporti malobservon de IP
 footerLinkDiscourse = Sendi komentojn
 footerLinkRemoveAllData = Forigi ĉiujn datumojn
 
+## Creating page
 
-[[ Creating page ]]
-
-// Note: { $title } is a placeholder for the title of the web page
-// captured in the screenshot. The default, for pages without titles, is
-// creatingPageTitleDefault.
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
 creatingPageTitle = { $title } kreata
 creatingPageTitleDefault = paĝo
 creatingPageWaitMessage = Ekrankopio konservata…
 
+## Home page
 
-[[ Home page ]]
-
-homePageDescription
+homePageDescription =
     .content = Ekrankopioj intuiciaj, rekte en la retumilo. Faru, konservu kaj dividu ekrankopiojn dum vi retumas per Firefox.
 homePageButtonMyShots = Iri al 'Miaj ekrankopioj'
 homePageTeaser = Baldaŭ aperonta…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Senpaga elŝuto
 homePageGetStarted = Unuaj paŝoj
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Kiel funkcias Firefox Screenshots
 homePageGetStartedTitle = Unuaj paŝoj
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Trovu la novan emblemon de Firefox Screenshots en via ilaro. Elektu ĝin, kaj ĝia menuo aperos ĉe la supra parto de via retumila fenestro.
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Elektu la emblemon de Firefox Screenshots en la menuo «Retaĝaj agoj» en la adresa strio, kaj la menuo aperos sur la fenestro de via retumilo.
 homePageCaptureRegion = Kapti areon
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Alklaku kaŭ trenu por elekti la areon, kion vi volas kapti. Aŭ simple ŝvebu kaj alklaku — La ekrankopia ilo elektos la areon por vi. Ĉu vi ŝatas kion vi vidas? Elektu 'Konservi' por rete aliri vian ekrankopion aŭ la butonon kun la sageto malsupre por elŝuti al via komputilo.
 homePageCapturePage = Kapti paĝon
 homePageCapturePageDescription = Uzu la butonojn supre kaj dekstre por kapti tutajn paĝojn. La butono 'Konservi tion, kio videblas' kaptos la areon, kiun vi vidas se vi ne ŝovas. La butono 'Konservi tutan paĝon'  kaptos ĉion en la paĝo.
 homePageSaveShare = Konservi kaj dividi
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Kiam vi faras ekrankopion, FIrefox sendas ĝin al via reta deponejo de ekrankopioj kaj kopias la ligilon en via tondujo. Ni aŭtomate konservas vian ekrankopion dum du semajnoj, sed vi povas forigi ilin iam ajn aŭ ŝanĝi la daton de senvalidiĝo por teni ilin pli longe.
 homePageLegalLink = Leĝaĵoj
 homePagePrivacyLink = Privateco
 homePageTermsLink = Kondiĉoj
 homePageCookiesLink = Kuketoj
 
-
-[[ Leave Screenshots page ]]
+## Leave Screenshots page
 
 leavePageRemoveAllData = Forigi ĉiujn datumojn
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Por povi forigi vian konton vi devas havi Firefox Screenshots instalita
 leavePageErrorGeneric = Eraro okazis
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Tio ĉi definitive forigos ĉiujn viajn datumojn de Firefox Screenshots.
 leavePageButtonProceed = Fari
 leavePageButtonCancel = Nuligi
 leavePageDeleted = Ĉiuj viaj ekrankopioj estis forigitaj!
 
-
-[[ Not Found page ]]
+## Not Found page
 
 notFoundPageTitle = Paĝo ne trovita
 notFoundPageIntro = Fuŝ'.
 notFoundPageDescription = Paĝo ne trovita
 
+## Shot page
 
-[[ Shot page ]]
-
-// This is the HTML title tag of the page
+# This is the HTML title tag of the page
 shotPageTitle = Ekrankopio: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Eraro dum konservo de senvalidiĝo
 shotPageAlertErrorDeletingShot = Eraro dum forigo de ekrankopio
 shotPageAlertErrorUpdatingTitle = Eraro dum konservo de titolo
 shotPageConfirmDelete = Ĉu vi certe volas definitive forigi tiun ĉi ekrankopion?
-shotPageShareButton
+shotPageShareButton =
     .title = Dividi
 shotPageCopy = Kopii
 shotPageCopied = Kopiita
-shotPageShareFacebook
+shotPageShareFacebook =
     .title = Dividi en Facebook
-shotPageShareTwitter
+shotPageShareTwitter =
     .title = Dividi en Twitter
-shotPageSharePinterest
+shotPageSharePinterest =
     .title = Dividi en Pinterest
-shotPageShareEmail
+shotPageShareEmail =
     .title = Dividi ligilon retpoŝte
 shotPageShareLink = Ricevi divideblan ligilon al tiu ĉi ekrankopio
 shotPagePrivacyMessage = Ricevinte tiun ligilon, iu ajn povos vidi tiun ĉi ekrankopion.
-shotPageCopyImageText
+shotPageCopyImageText =
     .label = Kopii tekston de bildo
 shotPageConfirmDeletion = Ĉu vi certe volas definitive forigi tiun ĉi ekrankopion?
-// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Se vi faras nenion, tiu ĉi ekrankopio estos definitive forigita { $timediff }.
-// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = restarigi ĝis { $date }
 shotPageExpiredMessage = Tiu ĉi ekrankopio senvalidiĝis.
-// Note: This phrase is followed by an empty line, then the URL of the source page
+# Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Jen la paĝo el kiu ĝi estis origine kreita:
-shotPageDeleteButton
+shotPageDeleteButton =
     .title = Forigi tiun ĉi ekrankopion
-shotPageAbuseButton
+shotPageAbuseButton =
     .title = Raporti tiun ĉi ekrankopion pro misuzo, trudemon aŭ aliaj problemoj
-shotPageDownloadShot
+shotPageDownloadShot =
     .title = Elŝuti
 shotPageDownload = Elŝuti
 shotPageScreenshotsDescription = Ekrankopioj, simple faritaj. Kopii, konservi kaj dividi ekrankopiojn sen forlasi Firefox.
 shotPageUpsellFirefox = Ricevi Firefox nun
 shotPageDMCAMessage = Tiu ĉi ekrankopio ne plu estas havebla pro plendo pri intelekta kopirajto.
-// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Bonvolu skribi retpoŝte al { $dmca } por peti pli da informo.
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Se viaj ekrankopioj ricevas plurajn plendojn, ni povus nuligi vian aliron al Ekrankopioj de Firefox. 
-// Note: { $url } is a placeholder for a shot page URL
+# Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Bonvolu aldoni la retadreson de tiu ĉi ekrankopio en via retpoŝto: { $url }
 shotPageKeepFor = Kiel longe tiu ĉi ekrankopio devus esti gardita?
-// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Elekti daŭron
-// The ∞ is used to indicate that the shot won't expire. It is also used in
-// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
-// if no such symbol is available for a language/culture, simply leave it out.
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitelyWithSymbol = senlime ∞
 shotPageKeepTenMinutes = 10 minutojn
 shotPageKeepOneHour = horon
@@ -151,99 +142,104 @@ shotPageKeepOneMonth = monaton
 shotPageSaveExpiration = konservi
 shotPageCancelExpiration = nuligi
 shotPageDoesNotExpire = ĉiam valida
-// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = senvalidiĝas post { $timediff }
-// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = senvalidiĝis antaŭ { $timediff }
 timeDiffJustNow = ĵus
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] antaŭ minuto
        *[other] antaŭ { $number } minutoj
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] antaŭ horo
        *[other] antaŭ { $number } horoj
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] hieraŭ
        *[other] antaŭ { $number } tagoj
     }
 timeDiffFutureSeconds = post kelkaj sekundoj
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] post minuto
        *[other] post { $number } minutoj
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] post horo
        *[other] post { $number } horoj
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] morgaŭ
        *[other] post { $number } tagoj
     }
 errorThirdPartyCookiesEnabled = Se vi faris tiun ĉi ekrankopion kaj ne povas ĝin forigi, vi eble bezonos provizore aktivigi nerektajn kuketojn en la preferoj de via retumilo.
 
+## Annotations
 
-[[ Annotations ]]
-
-annotationPenButton
+annotationPenButton =
     .title = Skribilo
-annotationHighlighterButton
+annotationHighlighterButton =
     .title = Elstarigilo
-// Note: This button reverts all the changes on the image since the start of the editing session.
-annotationClearButton
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
     .title = Viŝi
-annotationCropButton
+annotationCropButton =
     .title = Eltondi
-annotationSaveButton = Konservi
-annotationCancelButton = Nuligi
+annotationSaveEditButton = Konservi
+    .title = Konservi redaktojn
+annotationCancelEditButton = Nuligi
+    .title = Nuligi redaktojn
 annotationCropConfirmButton = Konfirmi
     .title = Konfirmi elekton
 annotationCropCancelButton = Nuligi
     .title = Nuligi elekton
 
+## Shotindex page
 
-[[ Shotindex page ]]
-
-// { $status } is a placeholder for an HTTP status code, like '500'.
-// { $statusText } is a text description of the status code, like 'Internal server error'.
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Eraro dum forigo de ekrankopio: { $status } { $statusText }
-// { $searchTerm } is a placeholder for text the user typed into the search box
+# { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Miaj ekrankopioj: serĉi { $searchTerm }
-// { $error } is a placeholder for a non-translated error message that could be shared
-// with developers when debugging an error.
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
 shotIndexPageErrorRendering = Eraro dum montro de ekrano: { $error }
-shotIndexPageSearchPlaceholder
+shotIndexPageSearchPlaceholder =
     .placeholder = Serĉi miajn ekrankopiojn
-shotIndexPageSearchButton
+shotIndexPageSearchButton =
     .title = Serĉi
 shotIndexPageNoShotsMessage = Neniu konservita ekrankopio.
 shotIndexPageNoShotsInvitation = Ek, kreu kelkajn.
 shotIndexPageLookingForShots = Ekrankopioj serĉataj…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Ni ne povis trovi iun ajn ekrankopion kiu kongruu kun via serĉo.
-shotIndexPageClearSearchButton
+shotIndexPageClearSearchButton =
     .title = Viŝi serĉon
 shotIndexPageConfirmShotDelete = Ĉu forigi tiun ĉi ekrankopion?
-shotIndexPagePreviousPage
+shotIndexPagePreviousPage =
     .title = Antaŭa paĝo
-shotIndexPageNextPage
+shotIndexPageNextPage =
     .title = Venonta paĝo
-// This symbol is used in the lower right corner of the card for a shot on the
-// My Shots page to indicate that the shot does not expire. It should be a
-// single character (or simply nothing if no such symbol is available for a
-// language/culture).
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Tiu ĉi ekrankopio ne senvalidiĝas
 
+## Metrics page
+## All metrics strings are optional for translation
 
-// all metrics strings are optional for translation
-[[ Metrics page ]]
-
-// Note: 'Firefox Screenshots' should not be translated
+# Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Statistikoj de Firefox Screenshots
 metricsPageTotalsQueryTitle = Sumoj
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Superrigardo pri Screenshots
 metricsPageTotalsQueryDevices = Kvanto de registritaj aparatoj
 metricsPageTotalsQueryActiveShots = Aktivaj ekrankopioj
@@ -276,7 +272,7 @@ metricsPageVersionQueryUsers = Nombro de uzantoj kun seancoj komencitaj
 metricsPageVersionQueryVersion = Versio de aldonaĵo
 metricsPageVersionQueryLastSeen = Tago
 metricsPageHeader = Statistikoj
-// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Kreitaj je: { $created }
-// Note { $time } is a placeholder for a number of milliseconds, like '100'
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (datumbaza tempo: { $time }ms)
