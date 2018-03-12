@@ -198,7 +198,7 @@ class Body extends React.Component {
 
   onClickFlag(e) {
     sendEvent("start-flag", "navbar", {useBeacon: true});
-    window.open(`mailto:screenshots-report@mozilla.com?subject=Flagging%20shot%20for%20abuse&body=Flagging%20shot%20for%20abuse:%20${encodeURIComponent(this.props.shot.viewUrl)}`);
+    window.open(`https://qsurvey.mozilla.com/s3/screenshots-flagged-shots?ref=${this.props.id}`);
   }
 
   render() {
