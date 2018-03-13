@@ -1,6 +1,9 @@
 // Note: in this library we can't use any "system" dependencies because this can be used from multiple
 // environments
 
+const isNode = typeof process !== "undefined" && Object.prototype.toString.call(process) === "[object process]";
+const URL = (isNode && require("url").URL) || window.URL;
+
 /** Throws an error if the condition isn't true.  Any extra arguments after the condition
     are used as console.error() arguments. */
 function assert(condition, ...args) {
@@ -13,23 +16,17 @@ function assert(condition, ...args) {
 
 /** True if `url` is a valid URL */
 function isUrl(url) {
-  // FIXME: this is rather naive, obviously
-  if ((/^about:.{1,8000}$/i).test(url)) {
+  try {
+    const parsed = new URL(url);
+
+    if (parsed.protocol === "view-source:") {
+      return isUrl(url.substr("view-source:".length));
+    }
+
     return true;
+  } catch (e) {
+    return false;
   }
-  if ((/^file:\/.{0,8000}$/i).test(url)) {
-    return true;
-  }
-  if ((/^data:.*$/i).test(url)) {
-    return true;
-  }
-  if ((/^chrome:.{0,8000}/i).test(url)) {
-    return true;
-  }
-  if ((/^view-source:/i).test(url)) {
-    return isUrl(url.substr("view-source:".length));
-  }
-  return (/^https?:\/\/[a-z0-9._-]{1,8000}[a-z0-9](:[0-9]{1,8000})?\/?/i).test(url);
 }
 
 function isValidClipImageUrl(url) {
@@ -48,7 +45,7 @@ function assertUrl(url) {
 }
 
 function isSecureWebUri(url) {
-  return (/^https?:\/\/[a-z0-9._-]{1,8000}[a-z0-9](:[0-9]{1,8000})?\/?/i).test(url);
+  return isUrl(url) && url.toLowerCase().startsWith("https");
 }
 
 function assertOrigin(url) {
