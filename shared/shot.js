@@ -115,39 +115,6 @@ function jsonify(obj, required, optional) {
   return result;
 }
 
-/** Resolve url relative to base */
-function resolveUrl(base, url) {
-  // FIXME: totally ad hoc and probably incorrect, but we can't
-  // use any libraries in this file
-  if (url.search(/^https?:/) !== -1) {
-    // Absolute url
-    return url;
-  }
-  if (url.indexOf("//") === 0) {
-    // Protocol-relative URL
-    return (/^https?:/i).exec(base)[0] + url;
-  }
-  if (url.indexOf("/") === 0) {
-    // Domain-relative URL
-    return (/^https?:\/\/[a-z0-9._-]{1,4000}/i).exec(base)[0] + url;
-  }
-  // Otherwise, a full relative URL
-  while (url.indexOf("./") === 0) {
-    url = url.substr(2);
-  }
-  if (!base) {
-    // It's not an absolute URL, and we don't have a base URL, so we have
-    // to throw away the URL
-    return null;
-  }
-  let match = (/.*\//).exec(base)[0];
-  if (match.search(/^https?:\/$/i) === 0) {
-    // Domain without path
-    match = match + "/";
-  }
-  return match + url;
-}
-
 /** True if the two objects look alike.  Null, undefined, and absent properties
     are all treated as equivalent.  Traverses objects and arrays */
 function deepEqual(a, b) {
@@ -498,14 +465,8 @@ class AbstractShot {
     return this._favicon;
   }
   set favicon(val) {
-    // We allow but ignore bad favicon URLs, as they seem somewhat common
+    // We set the favicon with tabs.Tab.faviConUrl, which is a full URL.
     val = val || null;
-    if (!isUrl(val)) {
-      val = null;
-    }
-    if (val) {
-      val = resolveUrl(this.url, val);
-    }
     this._favicon = val;
   }
 
