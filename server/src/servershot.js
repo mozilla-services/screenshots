@@ -204,7 +204,7 @@ class Shot extends AbstractShot {
         const clipRewrites = new ClipRewrites(this);
         clipRewrites.rewriteShotUrls();
         const oks = clipRewrites.commands();
-        const json = this.asJson();
+        const json = this.toJSON();
         const title = this.title;
         oks.push({setHead: null});
         oks.push({setBody: null});
@@ -235,7 +235,7 @@ class Shot extends AbstractShot {
     const clipRewrites = new ClipRewrites(this);
     clipRewrites.rewriteShotUrls();
     const oks = clipRewrites.commands();
-    const json = this.asJson();
+    const json = this.toJSON();
     return db.transaction((client) => {
       const searchable = this._makeSearchableText(7);
       const promise = db.queryWithClient(
