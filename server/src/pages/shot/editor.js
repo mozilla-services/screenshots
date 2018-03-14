@@ -686,6 +686,8 @@ class ColorPicker extends React.Component {
 
   constructor(props) {
     super(props);
+    this.clickMaybeClose = this.clickMaybeClose.bind(this);
+    this.keyMaybeClose = this.keyMaybeClose.bind(this);
     this.state = {
       pickerActive: false,
       color: activeColor || "#000"
@@ -698,12 +700,46 @@ class ColorPicker extends React.Component {
     </div>
   }
 
+  componentDidUpdate() {
+    if (this.state.pickerActive) {
+      document.addEventListener("mousedown", this.clickMaybeClose);
+      document.addEventListener("keyup", this.keyMaybeClose);
+    } else {
+      document.removeEventListener("mousedown", this.clickMaybeClose);
+      document.removeEventListener("keyup", this.keyMaybeClose);
+    }
+  }
+
   componentWillReceiveProps() {
     this.setState({pickerActive: false});
   }
 
   componentWillUnmount() {
     activeColor = this.state.color;
+    document.removeEventListener("mousedown", this.clickMaybeClose);
+    document.removeEventListener("keyup", this.keyMaybeClose);
+  }
+
+  clickMaybeClose(event) {
+    if (!this.isColorBoard(event.target)) {
+      this.setState({pickerActive: false});
+    }
+  }
+
+  keyMaybeClose(event) {
+    if ((event.key || event.code) === "Escape") {
+      this.setState({pickerActive: false});
+    }
+  }
+
+  isColorBoard(el) {
+    while (el) {
+      if (el.className === "color-board") {
+        return true;
+      }
+      el = el.parentNode;
+    }
+    return false;
   }
 
   renderColorBoard() {
