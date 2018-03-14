@@ -15,7 +15,7 @@ function hashMatches(hash, secret) {
     throw new Error("Bad hash format, should be type:nonce:data");
   }
   const expected = createHash(secret, parts[1]);
-  return expected === hash;
+  return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(hash));
 }
 
 function createHash(secret, nonce) {
