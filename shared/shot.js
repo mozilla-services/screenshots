@@ -239,8 +239,8 @@ class AbstractShot {
       }
       if (typeof json[attr] === "object" && typeof this[attr] === "object" && this[attr] !== null) {
         let val = this[attr];
-        if (val.asJson) {
-          val = val.asJson();
+        if (val.toJSON) {
+          val = val.toJSON();
         }
         if (!deepEqual(json[attr], val)) {
           this[attr] = json[attr];
@@ -256,7 +256,7 @@ class AbstractShot {
           this.delClip(clipId);
         } else if (!this.getClip(clipId)) {
           this.setClip(clipId, json.clips[clipId]);
-        } else if (!deepEqual(this.getClip(clipId).asJson(), json.clips[clipId])) {
+        } else if (!deepEqual(this.getClip(clipId).toJSON(), json.clips[clipId])) {
           this.setClip(clipId, json.clips[clipId]);
         }
       }
@@ -265,18 +265,18 @@ class AbstractShot {
   }
 
   /** Returns a JSON version of this shot */
-  asJson() {
+  toJSON() {
     const result = {};
     for (const attr of this.REGULAR_ATTRS) {
       let val = this[attr];
-      if (val && val.asJson) {
-        val = val.asJson();
+      if (val && val.toJSON) {
+        val = val.toJSON();
       }
       result[attr] = val;
     }
     result.clips = {};
     for (const attr in this._clips) {
-      result.clips[attr] = this._clips[attr].asJson();
+      result.clips[attr] = this._clips[attr].toJSON();
     }
     return result;
   }
@@ -286,13 +286,13 @@ class AbstractShot {
     const result = {clips: {}};
     for (const attr of this.RECALL_ATTRS) {
       let val = this[attr];
-      if (val && val.asJson) {
-        val = val.asJson();
+      if (val && val.toJSON) {
+        val = val.toJSON();
       }
       result[attr] = val;
     }
     for (const name of this.clipNames()) {
-      result.clips[name] = this.getClip(name).asJson();
+      result.clips[name] = this.getClip(name).toJSON();
     }
     return result;
   }
@@ -617,7 +617,7 @@ class _Image {
     this.alt = json.alt;
   }
 
-  asJson() {
+  toJSON() {
     return jsonify(this, ["url"], ["dimensions"]);
   }
 }
@@ -648,7 +648,7 @@ class _Clip {
     return `[Shot Clip id=${this.id} sortOrder=${this.sortOrder} image ${this.image.dimensions.x}x${this.image.dimensions.y}]`;
   }
 
-  asJson() {
+  toJSON() {
     return jsonify(this, ["createdDate"], ["sortOrder", "image"]);
   }
 

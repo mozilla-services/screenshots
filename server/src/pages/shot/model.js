@@ -48,7 +48,7 @@ exports.createModel = function(req) {
     title,
     gitRevision: getGitRevision(),
     backend: req.backend,
-    shot: req.shot.asJson(),
+    shot: req.shot.toJSON(),
     contentOrigin: req.config.contentOrigin,
     contentProtocol: req.protocol,
     id: req.shot.id,

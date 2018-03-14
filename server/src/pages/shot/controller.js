@@ -257,7 +257,7 @@ function sendShowElement(clipId) {
     }
     postMessage = {
       type: "displayClip",
-      clip: clip.asJson()
+      clip: clip.toJSON()
     };
   } else {
     postMessage = {
