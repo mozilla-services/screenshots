@@ -147,38 +147,44 @@ shotPageExpiresIn = falbhaidh an ùine air { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = dh’fhalbh an ùine air { $timediff }
 timeDiffJustNow = an-dràsta fhèin
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] { $number } mhionaid air ais
         [two] { $number } mhionaid air ais
         [few] { $number } mionaidean air ais
        *[other] { $number } mionaid air ais
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] { $number } uair a thìde ais ais
         [two] { $number } uair a thìde ais ais
         [few] { $number } uairean a thìde ais ais
        *[other] { $number } uair a thìde ais ais
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] { $number } latha air ais
         [two] { $number } latha air ais
         [few] { $number } làithean air ais
        *[other] { $number } latha air ais
     }
 timeDiffFutureSeconds = ann an diog no dhà
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] ann an { $number } mhionaid
         [two] ann an { $number } mhionaid
         [few] ann an { $number } mionaidean
        *[other] ann an { $number } mionaid
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] ann an { $number } uair a thìde
         [two] ann an { $number } uair a thìde
         [few] ann an { $number } uairean a thìde
        *[other] ann an { $number } uair a thìde
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] ann an { $number } latha
         [two] ann an { $number } latha
         [few] ann an { $number } làithean
@@ -232,6 +238,12 @@ shotIndexPagePreviousPage =
     .title = An duilleag roimhe
 shotIndexPageNextPage =
     .title = An ath-dhuilleag
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Chan fhalbh an ùine air a’ ghlacadh seo
 
 ## Metrics page
 ## All metrics strings are optional for translation
