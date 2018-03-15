@@ -603,7 +603,7 @@ exports.Editor = class Editor extends React.Component {
     this.pos.x = e.clientX - rect.left,
     this.pos.y = e.clientY - rect.top
     drawMousedown = true;
-    if (this.isOnUndrawableArea(e)) {
+    if (this.isOnUndrawableArea(e) || e.button !== 0) {
       drawMousedown = false;
     }
     this.draw(e);
@@ -611,7 +611,7 @@ exports.Editor = class Editor extends React.Component {
 
   draw(e) {
     e.preventDefault();
-    if (!drawMousedown || e.button !== 0) {
+    if (!drawMousedown) {
       return;
     }
     if (this.state.tool === "highlighter") {
