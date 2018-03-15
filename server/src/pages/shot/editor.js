@@ -10,8 +10,12 @@ let resizeStartPos;
 let resizeStartSelected;
 let selectedPos = {};
 const mousedownPos = {};
+// These are the minimum width and height of the crop selection Tool
 const minWidth = 10;
 const minHeight = 10;
+// This is how close (in pixels) you can get to the edge of the window and then
+// it will scroll:
+const scrollByEdge = 20;
 let points = [];
 let drawMousedown = false;
 let activeColor;
@@ -313,10 +317,29 @@ exports.Editor = class Editor extends React.Component {
       selectedPos.y2 = this.truncateY(selectedPos.y2);
       if (selectedPos.width > minWidth && selectedPos.height > minHeight) {
         this.displayCropBox(selectedPos);
+        this.scrollIfByEdge(e.pageX, e.pageY);
       }
     }
     if (mousedown && selectionState === "resizing") {
       this.resizeCropBox(e);
+      this.scrollIfByEdge(e.pageX, e.pageY);
+    }
+  }
+
+  scrollIfByEdge(pageX, pageY) {
+    const top = window.scrollY;
+    const bottom = top + window.innerHeight;
+    const left = window.scrollX;
+    const right = left + window.innerWidth;
+    if (pageY + scrollByEdge >= bottom && bottom < document.body.scrollHeight) {
+      window.scrollBy(0, scrollByEdge);
+    } else if (pageY - scrollByEdge <= top) {
+      window.scrollBy(0, -scrollByEdge);
+    }
+    if (pageX + scrollByEdge >= right && right < document.body.scrollWidth) {
+      window.scrollBy(scrollByEdge, 0);
+    } else if (pageX - scrollByEdge <= left) {
+      window.scrollBy(-scrollByEdge, 0);
     }
   }
 
