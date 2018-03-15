@@ -1,141 +1,138 @@
-// Localization for Server-side strings of Firefox Screenshots
-// 
-// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+### Localization for Server-side strings of Firefox Screenshots
+### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
-
-// Global phrases shared across pages, prefixed with 'g'
-[[ global ]]
+## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = ჩემი გადაღებულები
 gHomeLink = მთავარი
-gNoShots
+gNoShots =
     .alt = ვერ მოიძებნა
 gScreenshotsDescription = ეკრანისთვის სურათის გადაღება უმარტივესია. გადაუღეთ, შეინახეთ და გააზიარეთ სურათები Firefox-ის დატოვების გარეშე.
 
+## Footer
 
-[[ Footer ]]
-
-// Note: link text for a link to mozilla.org
+# Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = პირობები
-footerLinkPrivacy = განცხადება პირადი მონაცემები დაცვის შესახებ
+footerLinkPrivacy = განცხადება პირადი მონაცემების დაცვის შესახებ
+footerLinkFaqs = ხ.დ.კ.
 footerLinkDMCA = მოხსენება IP დარღვევაზე
 footerLinkDiscourse = გამოხმაურება
 footerLinkRemoveAllData = ყველა მონაცემის წაშლა
 
+## Creating page
 
-[[ Creating page ]]
-
-// Note: { $title } is a placeholder for the title of the web page
-// captured in the screenshot. The default, for pages without titles, is
-// creatingPageTitleDefault.
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
 creatingPageTitle = იქმნება { $title }
 creatingPageTitleDefault = გვერდი
 creatingPageWaitMessage = სურათი ინახება...
 
+## Home page
 
-[[ Home page ]]
-
-homePageDescription
+homePageDescription =
     .content = გვერდისთვის სურათის გადაღება პირდაპირ ბრაუზერში. გადაუღეთ, შეინახეთ და გააზიარეთ Firefox-ით თვალიერებისას.
 homePageButtonMyShots = გადაღებულ სურათებზე გადასვლა
 homePageTeaser = მალე იქნება...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = უფასო ჩამოტვირთვა
 homePageGetStarted = დაწყება
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = როგორ მუშაობს Firefox Screenshots
 homePageGetStartedTitle = დაიწყეთ
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = მონახეთ Screenshots-ის ახალი ხატულა ხელსაწყოთა ზოლზე. დააჭირეთ და Screenshots-ის მენიუ გამოჩნდება ფანჯრის თავზე.
-homePageCaptureRegion = არეალის გადაღება
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = დააწკაპეთ და გადაადგილეთ კურსორი გადასაღები არის მოსანიშნად. ან უბრალოდ გადაატარეთ და დააწკაპეთ - Screenshots თავად მონიშნავს გადასაღებ არეს. მოგეწონათ? დააჭირეთ 'შენახვას" თქვენს სურათებთან წვდომის მისაღებად ინტერნეტის საშუალებით, ან ჩამოტვირთვის ღილაკს კომპიუტერში შესანახად.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = მონახეთ Screenshots-ის ახალი ხატულა ხელსაწყოთა ზოლზე. დააჭირეთ და Screenshots-ის მენიუ გამოჩნდება ბრაუზერის ფანჯრის ზედა მხარეს.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = აირჩიეთ Screenshots-ის ხატულა მისამართების ველში არსებულ, მოქმედებების მენიუში და Screenshots-ის ღილაკები გამოჩნდება ბრაუზერის ფანჯრის ზედა მხარეს.
+homePageCaptureRegion = სივრცისთვის სურათის გადაღება
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = დააწკაპეთ და გადაადგილეთ მაჩვენებელი ისარი, გადასაღები სივრცის მოსანიშნად. ან უბრალოდ ზემოდან გადაატარეთ სასურველ არეს და დააწკაპეთ - Screenshots თავად მონიშნავს საჭირო სივრცეს. გაკმაყოფილებთ შედეგი? დააჭირეთ „შენახვას“, თქვენი სურათის ინტერნეტში განსათავსებლად, ან დააჭირეთ ჩამოტვირთვის ღილაკს, კომპიუტერში შესანახად.
 homePageCapturePage = გვერდისთვის სურათის გადაღება
-homePageCapturePageDescription = მთლიანი გვერდისთვის სურათის გადასაღებად ისარგებლეთ ზედა მარჯვენა კუთხეში განთავსებული ღილაკებით. ხილული ნაწილის შენახვის ღილაკი მხოლოდ იმ ნაწილს გადაიღებს, რასაც ეკრანზე ხედავთ, ხოლო მთლიანი გვერდის შენახვის ღილაკი გადაიღებს სრულ გვერდს.
+homePageCapturePageDescription = მთლიანი გვერდისთვის სურათის გადასაღებად ისარგებლეთ ზედა მარჯვენა კუთხეში განთავსებული ღილაკებით. ხილული ნაწილის შენახვის ღილაკით, მხოლოდ იმ ნაწილს გადაიღებთ, რასაც ეკრანზე ხედავთ, ხოლო მთლიანი გვერდის შენახვის ღილაკით, ვებგვერდის სრულ სურათს მიიღებთ.
 homePageSaveShare = შენახვა და გაზიარება
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = სურათის გადაღებისას, Firefox განათავსებს მას თქვენს ინტერნეტ ბიბლიოთეკაში, ხოლო ბმულს დააკოპირებს. სურათები ავტომატურად ინახება ორი კვირით, თუმცა მათი წაშლა ან შენახვის ხანგრძლივობის გაზრდა, ნებისმიერ დროსაა შესაძლებელი.
 homePageLegalLink = იურიდიული ინფორმაცია
 homePagePrivacyLink = პირადულობა
 homePageTermsLink = პირობები
 homePageCookiesLink = ფუნთუშები
 
-
-[[ Leave Screenshots page ]]
+## Leave Screenshots page
 
 leavePageRemoveAllData = ყველა მონაცემის წაშლა
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = ანგარიშის წასაშლელად აუცილებელია გეყენოთ Firefox Screenshots
 leavePageErrorGeneric = მოხდა შეცდომა
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = ამის შედეგად, Firefox Screenshots-ის მონაცემები სამუდამოდ წაიშლება.
 leavePageButtonProceed = გაგრძელება
 leavePageButtonCancel = გაუქმება
 leavePageDeleted = თქვენი ყველა სურათი წაიშლება!
 
-
-[[ Not Found page ]]
+## Not Found page
 
 notFoundPageTitle = გვერდი ვერ მოიძებნა
 notFoundPageIntro = ვაი.
 notFoundPageDescription = გვერდი ვერ მოიძებნა.
 
+## Shot page
 
-[[ Shot page ]]
-
-// This is the HTML title tag of the page
+# This is the HTML title tag of the page
 shotPageTitle = სურათი: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = შეცდომა შენახვის ვადის განსაზღვრისას
 shotPageAlertErrorDeletingShot = შედცომა სურათის წაშლისას
 shotPageAlertErrorUpdatingTitle = შეცდომა სახელის დარქმევისას
 shotPageConfirmDelete = ნამდვილად გსურთ ამ სურათის სამუდამოდ წაშლა?
-shotPageShareButton
+shotPageShareButton =
     .title = გაზიარება
 shotPageCopy = დაკოპირება
 shotPageCopied = დაკოპირებულია
-shotPageShareFacebook
+shotPageShareFacebook =
     .title = გაზიარება Facebook-ით
-shotPageShareTwitter
+shotPageShareTwitter =
     .title = გაზიარება Twitter-ით
-shotPageSharePinterest
+shotPageSharePinterest =
     .title = გაზიარება Pinterest-ით
-shotPageShareEmail
+shotPageShareEmail =
     .title = ბმულის გაზიარება ელ-ფოსტით
 shotPageShareLink = გასაზიარებელი ბმულის მიღება
 shotPagePrivacyMessage = ამ ბმულის საშუალებით, ნებისმიერს შეეძლება სურათის ნახვა.
-shotPageCopyImageText
+shotPageCopyImageText =
     .label = სურათის ტექსტის დაკოპირება
 shotPageConfirmDeletion = ნამდვილად გსურთ ამ სურათის სამუდამოდ წაშლა?
-// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = თუ არაფერს მოიმოქმედებთ, ეს სურათი სამუდამოდ წაიშლება { $timediff }.
-// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = აღდგენა { $date }-მდე
 shotPageExpiredMessage = სურათი ვადაგასულია.
-// Note: This phrase is followed by an empty line, then the URL of the source page
+# Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = გვერდის შემქმნელი:
-shotPageDeleteButton
+shotPageDeleteButton =
     .title = სურათის წაშლა
-shotPageAbuseButton
+shotPageAbuseButton =
     .title = მოხსენება შეურაცხმყოფელი, სარეკლამო სურათების ან სხვა ხარვეზების შესახებ
-shotPageDownloadShot
+shotPageDownloadShot =
     .title = ჩამოტვირთვა
 shotPageDownload = ჩამოტვირთვა
 shotPageScreenshotsDescription = ეკრანისთვის სურათის გადაღება უმარტივესია. გადაუღეთ, შეინახეთ და გააზიარეთ სურათები Firefox-ის დატოვების გარეშე.
 shotPageUpsellFirefox = გადმოწერეთ Firefox ახლავე
 shotPageDMCAMessage = სურათი წაიშალა მესამე მხარის მოთხოვნით, საავტორო უფლების დარღვევის საფუძველზე.
-// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
-shotPageDMCAContact = გთხოვთ, მოგვწეროთ მისამართზე { $dmca } დამატებითი ინფორმაციისთვის.
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = გთხოვთ მოგვწეროთ მისამართზე { $dmca } დამატებითი ინფორმაციისთვის.
+# Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = თუ თქვენი სურათები მიიღებს დიდი რაოდენობით საჩივრებს, Firefox Screenshots-თან წვდომა შესაძლოა გაგიუქმდეთ.
-// Note: { $url } is a placeholder for a shot page URL
-shotPageDMCAIncludeLink = გთხოვთ, შეტყობინებაში მიუთითოთ სურათის ბმული: { $url }
+# Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = გთხოვთ შეტყობინებაში მიუთითოთ სურათის ბმული: { $url }
 shotPageKeepFor = რამდენი ხნის განმავლობაში გსურთ სურათის დატოვება?
-// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = დროის მითითება
-shotPageKeepIndefinitely = განუსაზღვრელი დროით
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = განუსაზღვრელად ∞
 shotPageKeepTenMinutes = 10 წუთით
 shotPageKeepOneHour = 1 საათით
 shotPageKeepOneDay = 1 დღით
@@ -145,61 +142,90 @@ shotPageKeepOneMonth = 1 თვით
 shotPageSaveExpiration = შენახვა
 shotPageCancelExpiration = გაუქმება
 shotPageDoesNotExpire = უვადოა
-// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = ვადის გასვლის დრო { $timediff }
-// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = ვადა გაუვიდა { $timediff }
 timeDiffJustNow = ახლახანს
 timeDiffMinutesAgo = 1 წუთის წინ
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
        *[other] 1 საათის წინ
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
        *[other] გუშინ
     }
 timeDiffFutureSeconds = რამდენიმე წუთში
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
        *[other] 1 წუთში
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
        *[other] 1 საათში
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
        *[other] ხვალ
     }
+errorThirdPartyCookiesEnabled = თუ გადაიღეთ სურათი, მაგრამ ვერ ახერხებთ მის წაშლას, სავარაუდოდ, დაგჭირდებათ მესამე მხარის ფუნთუშების დროებით დაშვება, ბრაუზერის პარამეტრებიდან.
 
+## Annotations
 
-[[ Shotindex page ]]
+annotationPenButton =
+    .title = კალამი
+annotationHighlighterButton =
+    .title = მოსანიშნი
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
+    .title = გასუფთავება
+annotationCropButton =
+    .title = ამოჭრა
+annotationSaveEditButton = შენახვა
+    .title = ჩასწორების დამახსოვრება
+annotationCancelEditButton = გაუქმება
+    .title = ჩასწორების გაუქმება
+annotationCropConfirmButton = დამოწმება
+    .title = შერჩევის დამოწმება
+annotationCropCancelButton = გაუქმება
+    .title = შერჩევის გაუქმება
 
-// { $status } is a placeholder for an HTTP status code, like '500'.
-// { $statusText } is a text description of the status code, like 'Internal server error'.
+## Shotindex page
+
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = შეცდომა სურათის წაშლისას: { $status } { $statusText }
-// { $searchTerm } is a placeholder for text the user typed into the search box
+# { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = ჩემი გადაღებულები: { $searchTerm }-ის მონახვა
-// { $error } is a placeholder for a non-translated error message that could be shared
-// with developers when debugging an error.
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
 shotIndexPageErrorRendering = შეცდომა გვერდის დამუშავებისას: { $error }
-shotIndexPageSearchPlaceholder
+shotIndexPageSearchPlaceholder =
     .placeholder = ჩემი გადაღებულების მონახვა
-shotIndexPageSearchButton
+shotIndexPageSearchButton =
     .title = ძიება
 shotIndexPageNoShotsMessage = გადაღებული სურათები არ არის
 shotIndexPageNoShotsInvitation = მიდით, შექმენით რამდენიმე.
 shotIndexPageLookingForShots = სურათების მოძიება...
 shotIndexPageNoSearchResultsIntro = ჰმ
 shotIndexPageNoSearchResults = მითითებული ფრაზით, სურათები ვერ მოიძებნა.
-shotIndexPageClearSearchButton
+shotIndexPageClearSearchButton =
     .title = ძიების გასუფთავება
 shotIndexPageConfirmShotDelete = გსურთ სურათის წაშლა?
+shotIndexPagePreviousPage =
+    .title = წინა გვერდი
+shotIndexPageNextPage =
+    .title = მომდევნო გვერდი
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = ეს სურათი უვადოა
 
+## Metrics page
+## All metrics strings are optional for translation
 
-// all metrics strings are optional for translation
-[[ Metrics page ]]
-
-// Note: 'Firefox Screenshots' should not be translated
+# Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Firefox Screenshots ზომები
 metricsPageTotalsQueryTitle = სულ
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = სურათების გადახედვა
 metricsPageTotalsQueryDevices = სულ დარეგისტრებული მოწყობილობები
 metricsPageTotalsQueryActiveShots = არსებული სურათები
@@ -232,7 +258,7 @@ metricsPageVersionQueryUsers = ანგარიშზე შესული �
 metricsPageVersionQueryVersion = დამატების ვერსია
 metricsPageVersionQueryLastSeen = დღე
 metricsPageHeader = გაზომვები
-// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = შექმნის დრო: { $created }
-// Note { $time } is a placeholder for a number of milliseconds, like '100'
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (მონაცემთა ბაზის დრო: { $time }ms)

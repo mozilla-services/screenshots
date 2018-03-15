@@ -20,6 +20,7 @@ gScreenshotsDescription = Snimite zaslon jednostavno. Snimite, spremite i dijeli
 footerLinkMozilla = Mozilla
 footerLinkTerms = Uvjeti
 footerLinkPrivacy = Politika privatnost
+footerLinkFaqs = ČPP
 footerLinkDMCA = Prijavite kršenje vlasničkih prava
 footerLinkDiscourse = Pošaljite nam povratnu informaciju
 footerLinkRemoveAllData = Uklonite sve podatke
@@ -49,6 +50,8 @@ homePageHowScreenshotsWorks = Kako rade Firefox Screenshots
 homePageGetStartedTitle = Započnite
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Pronađite novu ikonu za snimke zaslona na vašoj alatnoj traci. Odaberite ju i izbornik za snimke zaslona će se pojaviti na vrhu prozora pretraživača.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Odaberite ikonu snimke ekrana iz izbornika radnji stranice u adresnoj traci i izbornik snimke ekrana će se pojaviti povrh prozora vašeg pretraživača.
 homePageCaptureRegion = Uhvatite dio stranice
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Kliknite i vucite kako biste odabrali područje koje želite snimiti. Ili samo pređite mišem i kliknite — snimke zaslona će odabrati područje za vas. Sviđa vam se što vidite? Odaberite Spremi kako biste pristupili svojoj snimci na internetu ili gumb sa strelicom prema dolje kako biste je preuzeli na svoje računalo.
@@ -150,37 +153,41 @@ shotPageExpiresIn = ističe { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = isteklo { $timediff }
 timeDiffJustNow = upravo sada
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] prije { $number } minutu
         [few] prije { $number } minute
        *[other] prije { $number } minuta
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] prije { $number } sat
         [few] prije { $number } sata
        *[other] prije { $number } sati
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] prije { $number } dan
         [few] prije { $number } dana
        *[other] prije { $number } dana
     }
 timeDiffFutureSeconds = za nekolio sekundi
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] za { $number } minutu
         [few] za { $number } minute
        *[other] za { $number } minuta
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] za { $number } sat
         [few] za { $number } sata
        *[other] za { $number } sati
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] za { $number } dan
         [few] za { $number } dana
        *[other] za { $number } dana
     }
+
+
+[[ Annotations ]]
+
 
 
 [[ Shotindex page ]]

@@ -1,6 +1,6 @@
 ## Firefox Screenshots Metrics
 
-*Last Update: 2017-03-21*
+*Last Update: 2017-11-06*
 
 This document is a summary of the metrics Firefox Screenshots will record, how we're recording them, and what we're looking for in those metrics.  There are two main areas we'll look at:
 
@@ -25,6 +25,14 @@ The deviceId does not change for the life of a browser profile.
 ### Key Metrics
 
 Key metrics of Firefox Screenshots are fairly simple:
+
+#### Do Screenshots users tend to use Firefox more?
+
+Unlike the rest of the metrics, answering this question requires using Mozilla's Telemetry system, which tracks usage for Firefox as a whole. In order to compare engagement between Firefox sessions that do and don't have Screenshots usage, three scalars were added to the main Telemetry ping:
+
+- `screenshots.download` - incremented each time a shot is created & downloaded during a session
+- `screenshots.upload` - incremented each time a shot is created & uploaded to the screenshots server during a session
+- `screenshots.copy` - incremented each time a shot is created & copied straight to the clipboard without downloading or uploading
 
 #### Do people continue to create shots?
 
@@ -61,7 +69,9 @@ The add-on does not communicate directly with GA, instead it POSTs an event to t
 Each item in these events requires:
 
 Event category: maps to the "source": `addon` or `web`
+
 Event action: what the event "does", such as `start-shot` (note that Save actually "takes" the shot, the focus should be on what happens as a result of interacting with the control)
+
 Event label: exactly what control invoked the action, such as toolbar-button.  These are the "locations":
 
 * `toolbar`: the browser toolbar
@@ -116,6 +126,8 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 3. [x] Click Save `addon/save-shot/overlay-save-button`
 4. [x] Click Cancel `addon/cancel-shot/overlay-cancel-button`
 5. [x] Click Download `addon/download-shot/overlay-download-button`
+5. [x] Click Copy `addon/copy-shot/overlay-copy-button`
+5. [x] Copy to clipboard keyboard shortcut `addon/copy-shot/keyboard-copy`
 5. [x] Cancel because URL changed `addon/cancel-shot/url-changed` (when something that uses window.history "navigates" spontaneously away)
 7. [ ] Cancel because the tab is navigated (such as entering something in the URL bar), **or** the tab was closed, **or** the tab was reloaded `addon/cancel-shot/tab-load` (previously closing would emit `addon/cancel-shot/tab-close` and `addon/cancel-shot/tab-reload` for those cases)
 5. [x] Click My Shots `addon/goto-myshots/selection-button`
@@ -177,6 +189,88 @@ The onboarding slides have some events:
 4. [x] Finish upload successfully `addon/upload/success`
 5. [ ] After failure, re-attempt the upload `addon/upload-retry/times-{N}` (up to version 1.0.1 was `addon/upload/upload-retry` with eventValue: times (1-2)) (FIXME: we have no retry)
 sendEvent("click-install-firefox-home", {useBeacon: true});
+
+#### Add-on performance measurements
+
+Performance measurements use the GA User Timings API, instead of the regular Event API.
+
+##### User Timings schema
+
+Each item in these events requires:
+
+Timing category: maps to the "source": `addon` or `web`
+
+Timing action: what kind of performance measure, currently just `perf-response-time`, which measures the "response" in the RAIL performance model: the time from a user interaction (like a button click) to a user-visible change in the UI.
+
+Timing variable: which event's performance is being measured. This generally is the same as the name of the event used to start the measurement, such as `start-shot`.
+
+Timing value: the number of milliseconds associated with the variable. For `perf-response-time`, the response time in milliseconds.
+
+##### Internal-only events
+
+Internal-only events are used to help measure user timings, but aren't useful to record on their own.
+
+*NOTE: Internal-only events are not submitted to GA.*
+
+1. [x] New tab opened for newly-created shot page `addon/internal/open-shot-tab`
+1. [x] Screenshots UI hidden by uicontrol `addon/internal/deactivate`
+1. [x] Pre-selection iframe shown `addon/internal/unhide-preselection-frame`
+1. [x] Selection iframe shown `addon/internal/unhide-selection-frame`
+1. [x] Preview iframe shown `addon/internal/unhide-preview-frame`
+
+##### First step: starting the shot
+
+1. [x] Time from clicking the page action (or toolbar button) to displaying the preselection iframe, `addon/perf-response-time/page-action`
+  - Start: `addon/start-shot/toolbar-button`
+  - End: `addon/internal/unhide-preselection-frame`
+1. [x] Time from clicking the context menu item to displaying the preselection iframe, `addon/perf-response-time/context-menu`
+  - Start: `addon/start-shot/context-menu`
+  - End: `addon/internal/unhide-preselection-frame`
+
+##### Second step: choosing the shot contents
+
+1. [x] Time from initiating a selection on screen to seeing the selection, `addon/perf-response-time/make-selection`
+  - Start: `addon/make-selection`
+  - End: `addon/internal/unhide-selection-frame`
+1. [x] Time from clicking the 'full page' button to displaying the preview iframe, `addon/perf-response-time/capture-full-page`
+  - Start: `addon/capture-full-page`
+  - End: `addon/internal/unhide-preview-frame`
+1. [x] Time from clicking the 'save visible' button to displaying the preview iframe, `addon/perf-response-time/capture-visible`
+  - Start: `addon/capture-visible`
+  - End: `addon/internal/unhide-preview-frame`
+
+##### Third step: upload or download
+
+For uploads, the measurement is from clicking the save button to a new tab being opened:
+
+1. [x] Save a selection shot (Enter key or button click), `addon/perf-response-time/save-shot`
+  - Start: `addon/save-shot`
+  - End: `addon/internal/open-shot-tab`
+1. [x] Save a full page shot, `addon/perf-response-time/save-full-page`
+  - Start: `addon/save-full-page`
+  - End: `addon/internal/open-shot-tab`
+1. [x] Save a truncated full page shot, `addon/perf-response-time/save-full-page-truncated`
+  - Start: `addon/save-full-page-truncated`
+  - End: `addon/internal/open-shot-tab`
+1. [x] Save a visible selection shot, `addon/perf-response-time/save-visible`
+  - Start: `addon/save-visible`
+  - End: `addon/internal/open-shot-tab`
+
+For downloads, because Firefox doesn't always show download UI, the measurement is from clicking the download button to the screenshots UI being hidden:
+
+1. [x] Download a selection shot, `addon/perf-response-time/download-shot`
+  - Start: `addon/download-shot`
+  - End: `addon/internal/deactivate`
+1. [x] Download a full page shot, `addon/perf-response-time/download-full-page`
+  - Start: `addon/download-full-page`
+  - End: `addon/internal/deactivate`
+1. [x] Download a truncated full page shot, `addon/perf-response-time/download-full-page-truncated`
+  - Start: `addon/download-full-page-truncated`
+  - End: `addon/internal/deactivate`
+1. [x] Download a visible selection shot, `addon/perf-response-time/download-visible`
+  - Start: `addon/download-visible`
+  - End: `addon/internal/deactivate`
+
 #### Owner web visit
 
 These are events that an add-on user can encounter on a shot they own
@@ -288,9 +382,14 @@ The hashed page ID (`{hash}`) is a simple SHA1(path), with no additional randomn
 1. [x] Save Edited shot: `web/save/annotation-toolbar`
 2. [x] Cancel Annotations: `web/cancel/annotation-toolbar`
 3. [x] Select pen from annotation toolbar: `web/pen-select/annotation-toolbar`
-4. [x] Deselect pen from annotation toolbar: `web/pen-deselect/annotation-toolbar`
 5. [x] Select highlighter from annotation toolbar: `web/highlighter-select/annotation-toolbar`
-6. [x] Deselect highlighter from annotation toolbar: `web/highlighter-deselect/annotation-toolbar`
+6. [x] Select crop tool from annotation toolbar: `web/crop-select/annotation-toolbar`
+7. [x] Confirm crop after selection: `web/confirm-crop/crop-toolbar`
+8. [x] Cancel crop after selection: `web/cancel-crop/crop-toolbar`
+9. [x] Click on clear tool: `web/clear-select/annotation-toolbar`
+8. [x] Open color picker: `web/color-picker-select/annotation-toolbar`
+9. [x] Select a color from the color board: `web/color-change/annotation-color-board`
+
 
 #### General Google Analytics information
 

@@ -17,7 +17,9 @@ gNoShots
 
 // Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = నిబంధనలు
 footerLinkPrivacy = గోప్యతా విధానం
+footerLinkFaqs = ప్రశ్నలు
 footerLinkDiscourse = అభిప్రాయం తెలియజేయండి
 footerLinkRemoveAllData = మొత్తం డేటాను తీసివేయండి
 
@@ -29,6 +31,7 @@ footerLinkRemoveAllData = మొత్తం డేటాను తీసివ�
 // creatingPageTitleDefault.
 creatingPageTitle = { $title } సృష్టిస్తోంది
 creatingPageTitleDefault = పేజీ
+creatingPageWaitMessage = మీ పట్టు భద్రమవుతోంది…
 
 
 [[ Home page ]]
@@ -54,6 +57,7 @@ homePageCookiesLink = కుకీలు
 
 [[ Leave Screenshots page ]]
 
+leavePageRemoveAllData = డేటా అంతా తీసివేయి
 // Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = మీ ఖాతాను తొలగించడానికి Firefox Screenshots స్థాపించి ఉండాలి
 leavePageErrorGeneric = ఒక దోషం ఏర్పడింది.
@@ -118,10 +122,13 @@ shotPageDMCAMessage = మూడవ పార్టీ మేధో సంపత�
 shotPageDMCAContact = దయచేసి మరింత సమాచారం అభ్యర్థించడానికి { $dmca }కి ఇమెయిల్ చేయండి.
 // Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = దయచేసి ఈ తెరపట్టు యొక్క URLను మీ ఇమెయిల్లో చేర్చండి: { $url }
-shotPageKeepFor = ఎంతకాలం ఈ తెరపట్టును నిలబెట్టుకోవాలి?
+shotPageKeepFor = ఈ తెరపట్టును ఎంతకాలం భద్రపరచివుంచాలి?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = సమయాన్ని ఎంచుకోండి
-shotPageKeepIndefinitely = నిరంతరంగా
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = నిరవధికంగా ∞
 shotPageKeepTenMinutes = 10 నిమిషాలు
 shotPageKeepOneHour = 1 గంట
 shotPageKeepOneDay = 1 రోజు
@@ -136,31 +143,46 @@ shotPageExpiresIn = { $timediff } గడువు ముగుస్తుంద
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } గడువు ముగిసింది 
 timeDiffJustNow = ఇప్పుడే
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 నిమిషం క్రితం
        *[other] { $number } నిమిషాల ముందు
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 గంట క్రితం
        *[other] { $number } గంటల క్రితం
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] నిన్న
        *[other] { $number } రోజుల క్రితం
     }
 timeDiffFutureSeconds = కొన్ని క్షాణాలలో
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] 1 నిమిషం
        *[other] { $number } నిమిషాల్లో
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] 1 గంటలో
        *[other] { $number } గంటలలో
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] రేపు
        *[other] { $number } రోజులలో
     }
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = పెన్ను
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = తుడిచివేయి
+annotationSaveButton = భద్రపరచు
+annotationCancelButton = రద్దుచేయి
+annotationCropConfirmButton = నిర్ధారించు
+    .title = ఎంపికను నిర్ధారించు
+annotationCropCancelButton = రద్దుచేయి
+    .title = ఎంపికను రద్దుచేయి
 
 
 [[ Shotindex page ]]
@@ -175,13 +197,23 @@ shotIndexPageSearchPlaceholder
 shotIndexPageSearchButton
     .title = వెతకండి
 shotIndexPageNoShotsMessage = భద్రపరచిన తెరపట్లు లేవు.
-shotIndexPageNoShotsInvitation = కొనసాగి, కొన్నింటిని సృష్టించండి.
+shotIndexPageNoShotsInvitation = వెళ్ళండి, కొన్ని తెరపట్లు తీయండి.
 shotIndexPageLookingForShots = తెరపట్ల కొరకు చూస్తున్నాం…
 shotIndexPageNoSearchResultsIntro = హ్మ్మ్
 shotIndexPageNoSearchResults = మీ శోధనకు సరిపోలే ఏ తెరపట్టును కనుగొనలేకపోయాము.
 shotIndexPageClearSearchButton
     .title = స్పష్టమైన శోధన
 shotIndexPageConfirmShotDelete = ఈ తెరపట్టును తొలగించాలా?
+shotIndexPagePreviousPage
+    .title = మునుపటి పేజీ
+shotIndexPageNextPage
+    .title = తదుపరి పేజీ
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = ఈ పట్టు ఎప్పటికీ కాలంచెల్లదు
 
 
 // all metrics strings are optional for translation

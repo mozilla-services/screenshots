@@ -1,8 +1,12 @@
-## Firefox Screenshots
+## [Firefox Screenshots](https://screenshots.firefox.com/)
 
 [![CircleCI Build Status](https://circleci.com/gh/mozilla-services/screenshots.svg?style=shield)](https://circleci.com/gh/mozilla-services/screenshots)
 
-This is a screenshot tool for Firefox. It will be shipped in Firefox 55 and later versions, as part of the default Firefox distribution.
+[Screenshots server status page](https://status.services.mozilla.com/)
+
+----
+
+This is a screenshot tool for Firefox. It is available in Firefox 56 and later versions, as part of the default Firefox distribution.
 
 The project was initially launched through [Test Pilot](https://testpilot.firefox.com/) as [Page Shot](https://testpilot.firefox.com/experiments/page-shot).
 
@@ -16,17 +20,20 @@ You can find more information about Firefox Screenshots at the Mozilla Wiki page
 
 ### Installation and Setup
 
-Install [Postgres](http://www.postgresql.org/).
+Install [Postgres](http://www.postgresql.org/).  And do _one_ of the following:
+- Ensure the locale for your Postgres messages is US English ([Here's why](https://github.com/chilts/pg-patcher/blob/master/pg-patcher.js#L101))
+- Run the [first migration](https://github.com/mozilla-services/screenshots/blob/master/server/db-patches/patch-0-1.sql) manually
 
-Install [Node.js](https://nodejs.org/). Version 6.x is required.
+Install [Node.js](https://nodejs.org/). Version 8.x is required.
 
 Clone the [repository](https://github.com/mozilla-services/screenshots/).
 
 There are two scripts to run the server locally and develop the add-on:
 
 - `./bin/run-server` will run the server on `http://localhost:10080` and automatically restart if there are changes.
+    - If nodemon crashes you can try to start the server with `./bin/run-server --restart`
+    - Take a look at and/or source [`.env.dev`](https://github.com/mozilla-services/screenshots/blob/master/.env.dev) for some of the options available through environment variables.
 - `./bin/run-addon` will build a few parts of the addon (into `addon/webextension/build/`) and start Firefox with the add-on installed.  The add-on will be refreshed automatically as you change files.  We recommend you open `about:debugging` to help debug the extension.
-- - `./bin/run-addon --bootstrap` will run the add-on using the [bootstrap](https://github.com/mozilla-services/screenshots/blob/master/addon/bootstrap.js) wrapper.  This is how the add-on is run in Firefox, and provides some additional services, like Telemetry and migration.  This does not support reloading, so if you aren't developing things involving the wrapper then you can run without `--bootstrap`.
 - `./bin/run-addon --setup-profile` will setup a Firefox profile for your development; this way you can make persistent changes to the profile that you will use just for Screenshots development. (note: this will only look for the `firefox` commmand or Nightly, Developer Edition, Aurora editions on OSX)
 
 **If you want to develop the add-on but not the server** you can run `./bin/run-addon -s https://screenshots.dev.mozaws.net`
@@ -41,15 +48,15 @@ We apologize but we have no story for development on Windows (though the add-on 
 
 ### Getting to know the code
 
-There is documentation in [addon/](https://github.com/mozilla-services/screenshots/blob/master/addon/), [addon/webextension/](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/), [addon/webextension/background/](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/background/), and [addon/webextension/selector/](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/selector) that talks about the code layout and architecture of the add-on.
+There is documentation in [`addon/`](https://github.com/mozilla-services/screenshots/blob/master/addon/), [`addon/webextension/`](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/), [`addon/webextension/background/`](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/background/), and [`addon/webextension/selector/`](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/selector) that talks about the code layout and architecture of the add-on.
 
-[server/view-docs.md](https://github.com/mozilla-services/screenshots/blob/master/server/views-docs.md) talks about how the server React pages are setup, along with the server-side rendering of pages.
+[`server/view-docs.md`](https://github.com/mozilla-services/screenshots/blob/master/server/views-docs.md) talks about how the server React pages are setup, along with the server-side rendering of pages.
 
-There is also documentation in [docs/](https://github.com/mozilla-services/screenshots/blob/master/docs/).
+There is also documentation in [`docs/`](https://github.com/mozilla-services/screenshots/blob/master/docs/).
 
 ### Participation
 
-There is an IRC channel `#screenshots` on irc.mozilla.org (you can use [this link](https://kiwiirc.com/client/irc.mozilla.org/pageshot) for chat access via the web if you do not otherwise use IRC).  There are [IRC logs available](http://logs.glob.uno/?c=pageshot).
+There is an IRC channel `#screenshots` on irc.mozilla.org (you can use [this link](https://kiwiirc.com/nextclient/irc.mozilla.org/pageshot) for chat access via the web if you do not otherwise use IRC).  There are [IRC logs available](http://logs.glob.uno/?c=pageshot).
 
 Planning and ideation is happening in the [issue tracker](https://github.com/mozilla-services/screenshots/issues).  We have several [milestones](https://github.com/mozilla-services/screenshots/milestones):
 

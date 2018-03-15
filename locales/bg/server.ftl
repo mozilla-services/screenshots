@@ -11,7 +11,7 @@ gMyShots = Моите снимки
 gHomeLink = Начална страница
 gNoShots
     .alt = Няма снимки на екрана
-gScreenshotsDescription = Лесни снимки на екрана. Правите, запазвате и споделяте снимки на екрана без да напускате Firefox.
+gScreenshotsDescription = Лесни снимки на екрана. Създавате, запазвате и споделяте снимки на екрана без да напускате Firefox.
 
 
 [[ Footer ]]
@@ -20,6 +20,7 @@ gScreenshotsDescription = Лесни снимки на екрана. Прави�
 footerLinkMozilla = Mozilla
 footerLinkTerms = Условия
 footerLinkPrivacy = Политика на поверителност
+footerLinkFaqs = Въпроси и отговори
 footerLinkDMCA = Доклад за нарушение на авторско право
 footerLinkDiscourse = Обратна връзка
 footerLinkRemoveAllData = Премахване на всички данни
@@ -49,6 +50,8 @@ homePageHowScreenshotsWorks = Как работи Firefox Screenshots
 homePageGetStartedTitle = Първи стъпки
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Новата пиктограма на Screenshots се намира на лентата с инструменти. Като я изберете от нея се отваря менюто най-горе във вашия четец.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Изберете „Снимка на екрана“ от менюто с действия със страницата в адресната лента и менюто на „Screenshots“ ще се появи върху текущата страница.
 homePageCaptureRegion = Улавяне на част от екрана
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Натиснете и влачете, за да изберете областта която желаете да уловите. Или просто поставете курсора отгоре и натиснете – Screenshots сама ще избере площта вместо вас. Харесва ли ви? Изберете „Запазване“, за да имате снимката онлайн или бутона със стрелка надолу, за да я изтеглите на вашия компютър.
@@ -123,7 +126,7 @@ shotPageAbuseButton
 shotPageDownloadShot
     .title = Изтегляне
 shotPageDownload = Изтегляне
-shotPageScreenshotsDescription = Лесни снимки на екрана. Правите, запазвате и споделяте снимки на екрана без да напускате Firefox.
+shotPageScreenshotsDescription = Лесни снимки на екрана. Създавате, запазвате и споделяте снимки на екрана без да напускате Firefox.
 shotPageUpsellFirefox = Вземете Firefox сега
 shotPageDMCAMessage = Това изображение вече не е налично, защото е докладвано като обект на авторско право.
 // Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -135,7 +138,10 @@ shotPageDMCAIncludeLink = Моля, включете препратка към �
 shotPageKeepFor = Колко дълго снимката да бъде пазена?
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = продължителност
-shotPageKeepIndefinitely = неограничено
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Безкрайно ∞
 shotPageKeepTenMinutes = 10 минути
 shotPageKeepOneHour = 1 час
 shotPageKeepOneDay = 1 ден
@@ -150,31 +156,51 @@ shotPageExpiresIn = изтича { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = изтекло { $timediff }
 timeDiffJustNow = току-що
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] преди минута
        *[other] преди { $number } минути
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] преди час
        *[other] преди { $number } часа
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] вчера
        *[other] преди { $number } дена
     }
 timeDiffFutureSeconds = след секунди
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] след минута
        *[other] след { $number } минути
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] след час
        *[other] след { $number } часа
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] утре
        *[other] след { $number } дни
     }
+errorThirdPartyCookiesEnabled = Ако сте направили тази снимка и не можете да я изтриете може да пробвате временно да включите бисквитките от трети страни в настройките на четеца.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Писалка
+annotationHighlighterButton
+    .title = Маркер
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Изчистване
+annotationCropButton
+    .title = Изрязване
+annotationSaveButton = Запазване
+annotationCancelButton = Отказ
+annotationCropConfirmButton = Потвърждение
+    .title = Потвърждаване на избора
+annotationCropCancelButton = Отказ
+    .title = Отказване от избора
 
 
 [[ Shotindex page ]]
@@ -198,7 +224,17 @@ shotIndexPageNoSearchResultsIntro = Хмм
 shotIndexPageNoSearchResults = Не намираме снимки, които отговарят на търсенето ви.
 shotIndexPageClearSearchButton
     .title = Изчистване на търсенето
-shotIndexPageConfirmShotDelete = Сигурни ли сте, че желаете това изображение да бъде премахнато?
+shotIndexPageConfirmShotDelete = Сигурни ли сте, че желаете снимката да бъде премахната?
+shotIndexPagePreviousPage
+    .title = Предишна страница
+shotIndexPageNextPage
+    .title = Следваща страница
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Давността на тази снимка не изтича.
 
 
 // all metrics strings are optional for translation

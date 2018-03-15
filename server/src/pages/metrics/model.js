@@ -118,33 +118,15 @@ const queries = {
       {title: "Days the user has been creating shots", name: "days_plus_1"}
     ]
   },
-
-  addonVersion: {
-    title: "Add-on Version",
-    description: "The version of the add-on used during login, in the last 14 days",
-    sql: `
-    SELECT COUNT(DISTINCT devices.id) AS count, devices.last_addon_version, last_login_day
-    FROM devices, date_trunc('day', last_login) AS last_login_day
-    WHERE CURRENT_TIMESTAMP - devices.last_login < INTERVAL '14 days'
-    GROUP BY devices.last_addon_version, last_login_day
-    ORDER BY devices.last_addon_version DESC, last_login_day DESC;
-    `,
-    columns: [
-      {title: "Number of users logging in", name: "count"},
-      {title: "Add-on version", name: "last_addon_version"},
-      {title: "Day", type: "date", name: "last_login_day"}
-    ]
-  }
-
 };
 
 function executeQuery(query) {
-  let start = Date.now();
+  const start = Date.now();
   return db.select(query.sql).then((rows) => {
-    let result = Object.assign({rows: [], created: Date.now()}, query);
-    for (let row of rows) {
-      let l = [];
-      for (let meta of query.columns) {
+    const result = Object.assign({rows: [], created: Date.now()}, query);
+    for (const row of rows) {
+      const l = [];
+      for (const meta of query.columns) {
         let value = row[meta.name];
         if (value instanceof Date) {
           value = value.getTime();
@@ -159,15 +141,15 @@ function executeQuery(query) {
 }
 
 exports.storeQueries = function() {
-  let allQueries = {};
-  let promises = [];
-  for (let name in queries) {
+  const allQueries = {};
+  const promises = [];
+  for (const name in queries) {
     promises.push(executeQuery(queries[name]).then((result) => {
       allQueries[name] = result;
     }));
   }
   return Promise.all(promises).then(() => {
-    let body = JSON.stringify(allQueries);
+    const body = JSON.stringify(allQueries);
     return db.transaction((client) => {
       return db.queryWithClient(client, `
         DELETE FROM metrics_cache
@@ -202,7 +184,7 @@ function getQueries() {
 exports.createModel = function(req) {
   return getQueries().then((data) => {
     data = JSON.parse(data);
-    let model = {
+    const model = {
       title: "Firefox Screenshots Metrics",
       data
     };

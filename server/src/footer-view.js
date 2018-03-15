@@ -1,5 +1,6 @@
 const React = require("react");
 const { Localized } = require("fluent-react/compat");
+const PropTypes = require("prop-types");
 
 exports.Footer = class Footer extends React.Component {
   render() {
@@ -13,6 +14,9 @@ exports.Footer = class Footer extends React.Component {
           <Localized id="footerLinkPrivacy">
             <a href="https://www.mozilla.org/privacy/firefox/" target="_blank" rel="noopener noreferrer">Privacy Notice</a>
           </Localized>
+          <Localized id="footerLinkFaqs">
+            <a href="https://support.mozilla.org/kb/firefox-screenshots" target="_blank" rel="noopener noreferrer">FAQs</a>
+          </Localized>
           <Localized id="footerLinkDMCA">
             <a href="https://www.mozilla.org/about/legal/report-infringement/" target="_blank" rel="noopener noreferrer">Report IP Infringement</a>
           </Localized>
@@ -25,4 +29,8 @@ exports.Footer = class Footer extends React.Component {
       </div>
     );
   }
+};
+
+exports.Footer.propTypes = {
+  authenticated: PropTypes.bool
 };

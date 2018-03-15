@@ -1,18 +1,16 @@
-/* globals analytics, communication, makeUuid, Raven, catcher, auth, log */
+/* globals startBackground, analytics, communication, makeUuid, Raven, catcher, auth, log */
 
 "use strict";
 
-const startTime = Date.now();
-
 this.senderror = (function() {
-  let exports = {};
+  const exports = {};
 
-  let manifest = browser.runtime.getManifest();
+  const manifest = browser.runtime.getManifest();
 
   // Do not show an error more than every ERROR_TIME_LIMIT milliseconds:
   const ERROR_TIME_LIMIT = 3000;
 
-  let messages = {
+  const messages = {
     REQUEST_ERROR: {
       title: browser.i18n.getMessage("requestErrorTitle"),
       info: browser.i18n.getMessage("requestErrorDetails")
@@ -64,14 +62,14 @@ this.senderror = (function() {
       return;
     }
     lastErrorTime = Date.now();
-    let id = makeUuid();
+    const id = makeUuid();
     let popupMessage = error.popupMessage || "generic";
     if (!messages[popupMessage]) {
       popupMessage = "generic";
     }
-    let title = messages[popupMessage].title;
-    let message = messages[popupMessage].info || '';
-    let showMessage = messages[popupMessage].showMessage;
+    const title = messages[popupMessage].title;
+    let message = messages[popupMessage].info || "";
+    const showMessage = messages[popupMessage].showMessage;
     if (error.message && showMessage) {
       if (message) {
         message += "\n" + error.message;
@@ -79,7 +77,7 @@ this.senderror = (function() {
         message = error.message;
       }
     }
-    if (Date.now() - startTime > 5 * 1000) {
+    if (Date.now() - startBackground.startTime > 5 * 1000) {
       browser.notifications.create(id, {
         type: "basic",
         // FIXME: need iconUrl for an image, see #2239
@@ -90,11 +88,11 @@ this.senderror = (function() {
   };
 
   exports.reportError = function(e) {
-    if (!analytics.getTelemetryPrefSync()) {
+    if (!analytics.isTelemetryEnabled()) {
       log.error("Telemetry disabled. Not sending critical error:", e);
       return;
     }
-    let dsn = auth.getSentryPublicDSN();
+    const dsn = auth.getSentryPublicDSN();
     if (!dsn) {
       log.warn("Screenshots error:", e);
       return;
@@ -102,24 +100,26 @@ this.senderror = (function() {
     if (!Raven.isSetup()) {
       Raven.config(dsn, {allowSecretKey: true}).install();
     }
-    let exception = new Error(e.message);
+    const exception = new Error(e.message);
     exception.stack = e.multilineStack || e.stack || undefined;
 
     // To improve Sentry reporting & grouping, replace the
     // moz-extension://$uuid base URL with a generic resource:// URL.
-    exception.stack = exception.stack.replace(
-      /moz-extension:\/\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/g,
-      "resource://screenshots-addon"
-    );
-    let rest = {};
-    for (let attr in e) {
+    if (exception.stack) {
+      exception.stack = exception.stack.replace(
+        /moz-extension:\/\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/g,
+        "resource://screenshots-addon"
+      );
+    }
+    const rest = {};
+    for (const attr in e) {
       if (!["name", "message", "stack", "multilineStack", "popupMessage", "version", "sentryPublicDSN", "help", "fromMakeError"].includes(attr)) {
         rest[attr] = e[attr];
       }
     }
     rest.stack = exception.stack;
     Raven.captureException(exception, {
-      logger: 'addon',
+      logger: "addon",
       tags: {category: e.popupMessage},
       release: manifest.version,
       message: exception.message,

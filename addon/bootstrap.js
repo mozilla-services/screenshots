@@ -1,28 +1,27 @@
-/* globals ADDON_DISABLE */
-const OLD_ADDON_PREF_NAME = "extensions.jid1-NeEaf3sAHdKHPA@jetpack.deviceIdInfo";
-const OLD_ADDON_ID = "jid1-NeEaf3sAHdKHPA@jetpack";
+/* globals ADDON_DISABLE Services CustomizableUI LegacyExtensionsUtils AppConstants PageActions */
 const ADDON_ID = "screenshots@mozilla.org";
 const TELEMETRY_ENABLED_PREF = "datareporting.healthreport.uploadEnabled";
 const PREF_BRANCH = "extensions.screenshots.";
 const USER_DISABLE_PREF = "extensions.screenshots.disabled";
-const SYSTEM_DISABLE_PREF = "extensions.screenshots.system-disabled";
+const UPLOAD_DISABLED_PREF = "extensions.screenshots.upload-disabled";
+const HISTORY_ENABLED_PREF = "places.history.enabled";
 
 const { interfaces: Ci, utils: Cu } = Components;
-Cu.import("resource://gre/modules/XPCOMUtils.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "AddonManager",
-                                  "resource://gre/modules/AddonManager.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "AppConstants",
-                                  "resource://gre/modules/AppConstants.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "Console",
-                                  "resource://gre/modules/Console.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "CustomizableUI",
-                                  "resource:///modules/CustomizableUI.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "LegacyExtensionsUtils",
-                                  "resource://gre/modules/LegacyExtensionsUtils.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "PageActions",
-                                  "resource:///modules/PageActions.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "Services",
-                                  "resource://gre/modules/Services.jsm");
+ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
+ChromeUtils.defineModuleGetter(this, "AddonManager",
+                               "resource://gre/modules/AddonManager.jsm");
+ChromeUtils.defineModuleGetter(this, "AppConstants",
+                               "resource://gre/modules/AppConstants.jsm");
+ChromeUtils.defineModuleGetter(this, "Console",
+                               "resource://gre/modules/Console.jsm");
+ChromeUtils.defineModuleGetter(this, "CustomizableUI",
+                               "resource:///modules/CustomizableUI.jsm");
+ChromeUtils.defineModuleGetter(this, "LegacyExtensionsUtils",
+                               "resource://gre/modules/LegacyExtensionsUtils.jsm");
+ChromeUtils.defineModuleGetter(this, "PageActions",
+                               "resource:///modules/PageActions.jsm");
+ChromeUtils.defineModuleGetter(this, "Services",
+                               "resource://gre/modules/Services.jsm");
 
 let addonResourceURI;
 let appStartupDone;
@@ -43,12 +42,13 @@ const prefObserver = {
   observe(aSubject, aTopic, aData) {
     // aSubject is the nsIPrefBranch we're observing (after appropriate QI)
     // aData is the name of the pref that's been changed (relative to aSubject)
-    if (aData == USER_DISABLE_PREF || aData == SYSTEM_DISABLE_PREF) {
+    if (aData === USER_DISABLE_PREF) {
       // eslint-disable-next-line promise/catch-or-return
       appStartupPromise = appStartupPromise.then(handleStartup);
     }
   }
 };
+
 
 const appStartupObserver = {
   register() {
@@ -70,14 +70,16 @@ const LibraryButton = {
 
   init(webExtension) {
     this._initialized = true;
-    let permissionPages = [...webExtension.extension.permissions].filter(p => (/^https?:\/\//i).test(p));
-    this.PAGE_TO_OPEN = permissionPages.length ? permissionPages[0].replace(/\*$/, "") : "https://screenshots.firefox.com/";
+    const permissionPages = [...webExtension.extension.permissions].filter(p => (/^https?:\/\//i).test(p));
+    if (permissionPages.length > 1) {
+      Cu.reportError(new Error("Should not have more than 1 permission page, but got: " + JSON.stringify(permissionPages)));
+    }
+    this.PAGE_TO_OPEN = permissionPages.length === 1 ? permissionPages[0].replace(/\*$/, "") : "https://screenshots.firefox.com/";
     this.PAGE_TO_OPEN += "shots";
-    this.ICON_URL = webExtension.extension.getURL("icons/icon-16-v2.svg");
-    this.ICON_URL_2X = webExtension.extension.getURL("icons/icon-32-v2.svg");
+    this.ICON_URL = webExtension.extension.getURL("icons/icon-v2.svg");
     this.LABEL = webExtension.extension.localizeMessage("libraryLabel");
     CustomizableUI.addListener(this);
-    for (let win of CustomizableUI.windows) {
+    for (const win of CustomizableUI.windows) {
       this.onWindowOpened(win);
     }
   },
@@ -86,29 +88,30 @@ const LibraryButton = {
     if (!this._initialized) {
       return;
     }
-    for (let win of CustomizableUI.windows) {
-      let item = win.document.getElementById(this.ITEM_ID);
+    for (const win of CustomizableUI.windows) {
+      const item = win.document.getElementById(this.ITEM_ID);
       if (item) {
         item.remove();
       }
     }
     CustomizableUI.removeListener(this);
+    this._initialized = false;
   },
 
   onWindowOpened(win) {
-    let libraryViewInsertionPoint = win.document.getElementById("appMenu-library-remotetabs-button");
+    const libraryViewInsertionPoint = win.document.getElementById("appMenu-library-remotetabs-button");
     // If the library view doesn't exist (on non-photon builds, for instance),
     // this will be null, and we bail out early.
     if (!libraryViewInsertionPoint) {
       return;
     }
-    let parent = libraryViewInsertionPoint.parentNode;
-    let {nextSibling} = libraryViewInsertionPoint;
-    let item = win.document.createElement("toolbarbutton");
+    const parent = libraryViewInsertionPoint.parentNode;
+    const {nextSibling} = libraryViewInsertionPoint;
+    const item = win.document.createElement("toolbarbutton");
     item.className = "subviewbutton subviewbutton-iconic";
     item.addEventListener("command", () => win.openUILinkIn(this.PAGE_TO_OPEN, "tab"));
     item.id = this.ITEM_ID;
-    let iconURL = win.devicePixelRatio >= 1.1 ? this.ICON_URL_2X : this.ICON_URL;
+    const iconURL = this.ICON_URL;
     item.setAttribute("image", iconURL);
     item.setAttribute("label", this.LABEL);
 
@@ -157,7 +160,7 @@ function getBoolPref(pref) {
 }
 
 function shouldDisable() {
-  return getBoolPref(USER_DISABLE_PREF) || getBoolPref(SYSTEM_DISABLE_PREF);
+  return getBoolPref(USER_DISABLE_PREF);
 }
 
 function handleStartup() {
@@ -167,9 +170,9 @@ function handleStartup() {
   });
 
   if (!shouldDisable() && !webExtension.started) {
-    return start(webExtension);
+    start(webExtension);
   } else if (shouldDisable()) {
-    return stop(webExtension, ADDON_DISABLE);
+    stop(webExtension, ADDON_DISABLE);
   }
 }
 
@@ -177,7 +180,7 @@ function start(webExtension) {
   return webExtension.startup(startupReason).then((api) => {
     api.browser.runtime.onMessage.addListener(handleMessage);
     LibraryButton.init(webExtension);
-    initPhotonPageAction(api);
+    initPhotonPageAction(api, webExtension);
   }).catch((err) => {
     // The startup() promise will be rejected if the webExtension was
     // already started (a harmless error), or if initializing the
@@ -190,7 +193,7 @@ function start(webExtension) {
 }
 
 function stop(webExtension, reason) {
-  if (reason != APP_SHUTDOWN) {
+  if (reason !== APP_SHUTDOWN) {
     LibraryButton.uninit();
     if (photonPageAction) {
       photonPageAction.remove();
@@ -205,21 +208,25 @@ function handleMessage(msg, sender, sendReply) {
     return;
   }
 
-  if (msg.funcName === "getTelemetryPref") {
-    let telemetryEnabled = getBoolPref(TELEMETRY_ENABLED_PREF);
+  if (msg.funcName === "isTelemetryEnabled") {
+    const telemetryEnabled = getBoolPref(TELEMETRY_ENABLED_PREF);
     sendReply({type: "success", value: telemetryEnabled});
-  } else if (msg.funcName === "getOldDeviceInfo") {
-    let oldDeviceInfo = prefs.prefHasUserValue(OLD_ADDON_PREF_NAME) && prefs.getCharPref(OLD_ADDON_PREF_NAME);
-    sendReply({type: "success", value: oldDeviceInfo || null});
-  } else if (msg.funcName === "removeOldAddon") {
-    AddonManager.getAddonByID(OLD_ADDON_ID, (addon) => {
-      prefs.clearUserPref(OLD_ADDON_PREF_NAME);
-      if (addon) {
-        addon.uninstall();
-      }
-      sendReply({type: "success", value: !!addon});
-    });
-    return true;
+  } else if (msg.funcName === "isUploadDisabled") {
+    const isESR = AppConstants.MOZ_UPDATE_CHANNEL === "esr";
+    const uploadDisabled = getBoolPref(UPLOAD_DISABLED_PREF);
+    sendReply({type: "success", value: uploadDisabled || isESR});
+  } else if (msg.funcName === "isHistoryEnabled") {
+    const historyEnabled = getBoolPref(HISTORY_ENABLED_PREF);
+    sendReply({type: "success", value: historyEnabled});
+  } else if (msg.funcName === "incrementCount") {
+    const allowedScalars = ["download", "upload", "copy"];
+    const scalar = msg.args && msg.args[0] && msg.args[0].scalar;
+    if (!allowedScalars.includes(scalar)) {
+      sendReply({type: "error", name: `incrementCount passed an unrecognized scalar ${scalar}`});
+    } else {
+      Services.telemetry.scalarAdd(`screenshots.${scalar}`, 1);
+      sendReply({type: "success", value: true});
+    }
   }
 }
 
@@ -229,54 +236,33 @@ let photonPageAction;
 // a Photon page action and removes the UI for the WebExtension browser action.
 // Does nothing otherwise.  Ideally, in the future, WebExtension page actions
 // and Photon page actions would be one in the same, but they aren't right now.
-function initPhotonPageAction(api) {
-  // The MOZ_PHOTON_THEME ifdef got removed, but we need to support 55 and 56 as well,
-  // so check if the property exists *and* is false before bailing.
-  if (typeof AppConstants.MOZ_PHOTON_THEME != "undefined" && !AppConstants.MOZ_PHOTON_THEME) {
-    // Photon not supported.  Use the WebExtension's browser action.
-    return;
-  }
-
-  let id = "screenshots";
+function initPhotonPageAction(api, webExtension) {
+  const id = "screenshots";
   let port = null;
-  let baseIconPath = addonResourceURI.spec + "webextension/";
 
-  let {Management: {global: {tabTracker}}} = Cu.import("resource://gre/modules/Extension.jsm", {});
+  const {tabManager} = webExtension.extension;
 
   // Make the page action.
   photonPageAction = PageActions.actionForID(id) || PageActions.addAction(new PageActions.Action({
     id,
     title: "Take a Screenshot",
-    iconURL: baseIconPath + "icons/icon-32-v2.svg",
+    iconURL: webExtension.extension.getURL("icons/icon-v2.svg"),
     _insertBeforeActionID: null,
     onCommand(event, buttonNode) {
       if (port) {
-        let browserWin = buttonNode.ownerGlobal;
+        const browserWin = buttonNode.ownerGlobal;
+        const tab = tabManager.getWrapper(browserWin.gBrowser.selectedTab);
         port.postMessage({
           type: "click",
-          tab: {
-            url: browserWin.gBrowser.selectedBrowser.currentURI.spec,
-            id: tabTracker.getId(browserWin.gBrowser.selectedTab),
-          },
+          tab: {id: tab.id, url: tab.url}
         });
       }
     },
   }));
 
-  // Remove the navbar button of the WebExtension's browser action.
-  let cuiWidgetID = "screenshots_mozilla_org-browser-action";
-  CustomizableUI.addListener({
-    onWidgetAfterCreation(wid, aArea) {
-      if (wid == cuiWidgetID) {
-        CustomizableUI.destroyWidget(cuiWidgetID);
-        CustomizableUI.removeListener(this);
-      }
-    },
-  });
-
   // Establish a port to the WebExtension side.
   api.browser.runtime.onConnect.addListener((listenerPort) => {
-    if (listenerPort.name != "photonPageActionPort") {
+    if (listenerPort.name !== "photonPageActionPort") {
       return;
     }
     port = listenerPort;
@@ -284,24 +270,16 @@ function initPhotonPageAction(api) {
       switch (message.type) {
       case "setProperties":
         if (message.title) {
-          photonPageAction.title = message.title;
+          photonPageAction.setTitle(message.title);
         }
         if (message.iconPath) {
-          photonPageAction.iconURL = baseIconPath + message.iconPath;
+          photonPageAction.setIconURL(webExtension.extension.getURL(message.iconPath));
         }
         break;
       default:
         console.error("Unrecognized message:", message);
         break;
       }
-    });
-
-    // It's necessary to tell the WebExtension not to use its browser action,
-    // due to the CUI widget's removal.  Otherwise Firefox's WebExtension
-    // machinery throws exceptions.
-    port.postMessage({
-      type: "setUsePhotonPageAction",
-      value: true
     });
   });
 }

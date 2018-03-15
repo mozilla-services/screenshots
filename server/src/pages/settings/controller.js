@@ -10,16 +10,17 @@ exports.launch = function(m) {
 }
 
 exports.disconnectDevice = function() {
-  let url = model.backend + "/api/disconnect-device";
-  let req = new XMLHttpRequest();
+  const url = model.backend + "/api/disconnect-device";
+  const req = new XMLHttpRequest();
   req.open("POST", url);
   req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
   req.onload = function() {
     if (req.status >= 300) {
       // FIXME: a lame way to do an error message
       window.alert("Error disconnecting: " + req.status + " " + req.statusText);
+      window.Raven.captureException(new Error(`Error disconnecting: ${req.status} ${req.statusText}`));
     } else {
-      location.href = model.backend + "/settings";
+      location.reload();
     }
   };
   req.send(`_csrf=${encodeURIComponent(model.csrfToken)}`);

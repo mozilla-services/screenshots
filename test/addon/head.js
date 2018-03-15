@@ -8,68 +8,42 @@ let enabledOnStartup = false;
 // ScreenshotsEnabled/Disabled promises return true if it was already
 // Enabled/Disabled, and false if it need to Enable/Disable.
 function promiseScreenshotsEnabled() {
-  if (!Services.prefs.getBoolPref("extensions.screenshots.system-disabled", false)) {
+  if (!Services.prefs.getBoolPref("extensions.screenshots.disabled", false)) {
     info("Screenshots was already enabled, assuming enabled by default for tests");
     enabledOnStartup = true;
     return Promise.resolve(true);
   }
   info("Screenshots is not enabled");
   return new Promise((resolve, reject) => {
-    if (AppConstants.hasOwnProperty("MOZ_PHOTON_THEME") && !AppConstants.MOZ_PHOTON_THEME) {
-      let listener = {
-        onWidgetAfterCreation(widgetid) {
-          if (widgetid == "screenshots_mozilla_org-browser-action") {
-            info("screenshots_mozilla_org-browser-action button created");
-            CustomizableUI.removeListener(listener);
-            resolve(false);
-          }
-        }
+    const interval = setInterval(() => {
+      const action = PageActions.actionForID("screenshots");
+      if (action) {
+        info("screenshots page action created");
+        clearInterval(interval);
+        resolve(false);
       }
-      CustomizableUI.addListener(listener);
-    } else {
-      let interval = setInterval(() => {
-        let action = PageActions.actionForID("screenshots");
-        if (action) {
-          info("screenshots page action created");
-          clearInterval(interval);
-          resolve(false);
-        }
-      }, 100);
-    }
+    }, 100);
     info("Set Screenshots disabled pref to false.");
-    Services.prefs.setBoolPref("extensions.screenshots.system-disabled", false);
+    Services.prefs.setBoolPref("extensions.screenshots.disabled", false);
   });
 }
 
 function promiseScreenshotsDisabled() {
-  if (Services.prefs.getBoolPref("extensions.screenshots.system-disabled", false)) {
+  if (Services.prefs.getBoolPref("extensions.screenshots.disabled", false)) {
     info("Screenshots already disabled");
     return Promise.resolve(true);
   }
   return new Promise((resolve, reject) => {
-    if (AppConstants.hasOwnProperty("MOZ_PHOTON_THEME") && !AppConstants.MOZ_PHOTON_THEME) {
-      let listener = {
-        onWidgetDestroyed(widgetid) {
-          if (widgetid == "screenshots_mozilla_org-browser-action") {
-            CustomizableUI.removeListener(listener);
-            info("screenshots_mozilla_org-browser-action destroyed");
-            resolve(false);
-          }
-        }
+    const interval = setInterval(() => {
+      const action = PageActions.actionForID("screenshots");
+      if (!action) {
+        info("screenshots page action removed");
+        clearInterval(interval);
+        resolve(false);
       }
-      CustomizableUI.addListener(listener);
-    } else {
-      let interval = setInterval(() => {
-        let action = PageActions.actionForID("screenshots");
-        if (!action) {
-          info("screenshots page action removed");
-          clearInterval(interval);
-          resolve(false);
-        }
-      }, 100);
-    }
+    }, 100);
     info("Set Screenshots disabled pref to true.");
-    Services.prefs.setBoolPref("extensions.screenshots.system-disabled", true);
+    Services.prefs.setBoolPref("extensions.screenshots.disabled", true);
   });
 }
 

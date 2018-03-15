@@ -11,7 +11,7 @@ CREATE TABLE accounts (
     email text
 );
 CREATE TABLE data (
-    id character varying(120) NOT NULL,
+    id character varying(270) NOT NULL,
     deviceid character varying(200),
     created timestamp without time zone DEFAULT now(),
     value text NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE devices (
 );
 CREATE TABLE images (
     id character varying(200) NOT NULL,
-    shotid character varying(200) NOT NULL,
+    shotid character varying(270) NOT NULL,
     clipid character varying(200) NOT NULL,
     contenttype text NOT NULL,
     url text,
@@ -72,6 +72,7 @@ ALTER TABLE ONLY states
     ADD CONSTRAINT states_pkey PRIMARY KEY (state);
 CREATE INDEX data_deviceid_idx ON data USING btree (deviceid);
 CREATE INDEX devices_accountid_idx ON devices USING btree (accountid);
+CREATE INDEX images_shotid_idx ON images USING btree (shotid);
 CREATE INDEX searchable_text_idx ON data USING gin (searchable_text);
 CREATE INDEX states_deviceid_idx ON states USING btree (deviceid);
 ALTER TABLE ONLY data

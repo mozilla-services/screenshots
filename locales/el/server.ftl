@@ -20,6 +20,7 @@ gScreenshotsDescription = Η λήψη στιγμιοτύπων έγινε εύκ
 footerLinkMozilla = Mozilla
 footerLinkTerms = Όροι χρήσης
 footerLinkPrivacy = Πολιτική Απορρήτου
+footerLinkFaqs = Συχνές ερωτήσεις
 footerLinkDMCA = Αναφορά IP παραβίασης πνευματικής ιδιοκτησίας
 footerLinkDiscourse = Γράψτε το σχόλιο σας
 footerLinkRemoveAllData = Διαγραφή όλων των δεδομένων
@@ -135,7 +136,10 @@ shotPageDMCAIncludeLink = Παρακαλώ συμπεριλάβετε το URL �
 shotPageKeepFor = Πόσο θα διατηρηθεί αυτό το στιγμιότυπο;
 // Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Επιλέξτε χρόνο
-shotPageKeepIndefinitely = Επ' αόριστον
+// The ∞ is used to indicate that the shot won't expire. It is also used in
+// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+// if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Επ' αόριστον ∞
 shotPageKeepTenMinutes = 10 λεπτά
 shotPageKeepOneHour = 1 ώρα
 shotPageKeepOneDay = 1 ημέρα
@@ -150,31 +154,51 @@ shotPageExpiresIn = λήγει { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = έληξε { $timediff }
 timeDiffJustNow = μόλις τώρα
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] 1 λεπτό πριν
        *[other] { $number } λεπτά πριν
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] 1 ώρα πριν
        *[other] { $number } ώρες πριν
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] χθες
        *[other] { $number } ημέρες πριν
     }
 timeDiffFutureSeconds = σε λίγα δευτερόλεπτα
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] σε 1 λεπτό
        *[other] σε { $number } λεπτά
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] σε 1 ώρα
        *[other] σε { $number } ώρες
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] αύριο
        *[other] σε { $number } ημέρες
     }
+errorThirdPartyCookiesEnabled = Αν "τραβήξατε" αυτό το στιγμιότυπο και δεν μπορείτε να το διαγράψετε, ίσως χρειαστεί να ενεργοποιήσετε προσωρινά τα cookies τρίτων από τις προτιμήσεις του προγράμματος περιήγησής σας.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Στυλό
+annotationHighlighterButton
+    .title = Μαρκαδόρος
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Εκκαθάριση
+annotationCropButton
+    .title = Περικοπή
+annotationSaveButton = Αποθήκευση
+annotationCancelButton = Ακύρωση
+annotationCropConfirmButton = Επιβεβαίωση
+    .title = Επιβεβαίωση επιλογής
+annotationCropCancelButton = Ακύρωση
+    .title = Ακύρωση επιλογής
 
 
 [[ Shotindex page ]]
@@ -199,6 +223,16 @@ shotIndexPageNoSearchResults = Δεν μπορούμε να βρούμε καν�
 shotIndexPageClearSearchButton
     .title = Εκκαθάριση αναζήτησης
 shotIndexPageConfirmShotDelete = Διαγραφή στιγμιότυπου;
+shotIndexPagePreviousPage
+    .title = Προηγούμενη σελίδα
+shotIndexPageNextPage
+    .title = Επόμενη σελίδα
+// This symbol is used in the lower right corner of the card for a shot on the
+// My Shots page to indicate that the shot does not expire. It should be a
+// single character (or simply nothing if no such symbol is available for a
+// language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Αυτό το στιγμιότυπο δεν λήγει
 
 
 // all metrics strings are optional for translation

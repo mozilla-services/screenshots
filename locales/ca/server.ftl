@@ -20,6 +20,7 @@ gScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures
 footerLinkMozilla = Mozilla
 footerLinkTerms = Condicions d'ús
 footerLinkPrivacy = Avís de privadesa
+footerLinkFaqs = PMF
 footerLinkDMCA = Denuncieu una infracció de propietat intel·lectual
 footerLinkDiscourse = Doneu la vostra opinió
 footerLinkRemoveAllData = Elimina totes les dades
@@ -49,6 +50,8 @@ homePageHowScreenshotsWorks = Com funciona el Firefox Screenshots
 homePageGetStartedTitle = Primers passos
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Cerqueu la icona «Screenshots» a la barra d'eines. Seleccioneu-la i el menú del Firefox Screenshots apareixerà a la part superior de la finestra del navegador.
+// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Seleccioneu la icona de l'Screenshots del menú d'accions de la pàgina a la barra d'adreces i apareixerà el menú de l'Screenshots al capdamunt de la finestra del navegador.
 homePageCaptureRegion = Captureu una àrea
 // Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Feu clic i arrossegueu per seleccionar l'àrea que voleu capturar. O bé, passeu-hi el ratolí per sobre i feu clic: el Firefox Screenshots seleccionarà l'àrea automàticament. Us agrada? Trieu «Desa» per accedir a la captura de pantalla en línia o premeu el botó de fletxa cap avall per baixar-la a l'ordinador.
@@ -150,31 +153,45 @@ shotPageExpiresIn = caduca { $timediff }
 // Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = ha caducat { $timediff }
 timeDiffJustNow = ara mateix
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
         [one] fa 1 minut
        *[other] fa { $number } minuts
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
         [one] fa 1 hora
        *[other] fa { $number } hores
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
         [one] ahir
        *[other] fa { $number } dies
     }
 timeDiffFutureSeconds = d'aquí pocs segons
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
         [one] d'aquí 1 minut
        *[other] d'aquí { $number } minuts
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
         [one] d'aquí 1 hora
        *[other] d'aquí { $number } hores
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
         [one] demà
        *[other] d'aquí { $number } dies
     }
+errorThirdPartyCookiesEnabled = Si heu fet aquesta captura i no la podeu suprimir, és possible que hàgiu d'activar temporalment les galetes de tercers a les preferències del navegador.
+
+
+[[ Annotations ]]
+
+annotationPenButton
+    .title = Llapis
+annotationHighlighterButton
+    .title = Marcador
+// Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton
+    .title = Esborra
+annotationSaveButton = Desa
+annotationCancelButton = Cancel·la
 
 
 [[ Shotindex page ]]
@@ -199,6 +216,10 @@ shotIndexPageNoSearchResults = No s'ha trobat cap captura que coincideixi amb la
 shotIndexPageClearSearchButton
     .title = Esborra la cerca
 shotIndexPageConfirmShotDelete = Voleu suprimir aquesta captura?
+shotIndexPagePreviousPage
+    .title = Pàgina anterior
+shotIndexPageNextPage
+    .title = Pàgina següent
 
 
 // all metrics strings are optional for translation

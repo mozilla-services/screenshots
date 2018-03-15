@@ -2,6 +2,7 @@
 const reactruntime = require("../../reactruntime");
 const sendEvent = require("../../browser-send-event.js");
 const React = require("react");
+const PropTypes = require("prop-types");
 
 class Head extends React.Component {
 
@@ -16,12 +17,18 @@ class Head extends React.Component {
 
 }
 
+Head.propTypes = {
+  staticLink: PropTypes.func
+};
+
 class Body extends React.Component {
   render() {
     return (
       <reactruntime.BodyTemplate {...this.props}>
-        <div className="column-space full-height">
-          <a className="button close-preferences" href="/shots"></a>
+        <div className="full-height">
+          <div id="settings-header">
+            <a className="button close-preferences" href="/shots"></a>
+          </div>
           <div>
             { this.renderAccountInfo() }
           </div>
@@ -31,28 +38,33 @@ class Body extends React.Component {
   }
 
   renderAccountInfo() {
-    let defaultAvatar = this.props.staticLink('/static/img/default-profile.svg');
+    const defaultAvatar = this.props.staticLink("/static/img/default-profile.svg");
     let info;
+    let subInfo;
     if (this.props.accountInfo) {
       info = (
         <div className="account-info">
-          <img src={this.props.accountInfo.avatar || defaultAvatar } height="100" width="100" />
-            <div className="info-container">
-              <p className="username">{this.props.accountInfo.nickname || this.props.accountInfo.email}</p>
-              { this.props.accountInfo.nickname ? <p className="email">{this.props.accountInfo.email}</p> : null }
-              <a className="account-buttons disconnect" href="" onClick={ this.onClickDisconnect.bind(this) }>Disconnect</a>
-            </div>
+          <img src={this.props.accountInfo.avatarUrl || defaultAvatar } height="100" width="100" />
+          <div className="info-container">
+            <p className="username title">{this.props.accountInfo.nickname || this.props.accountInfo.email}</p>
+            { this.props.accountInfo.nickname ? <p className="email info">{this.props.accountInfo.email}</p> : null }
+            <button className="account-buttons disconnect" onClick={ this.onClickDisconnect.bind(this) }>Disconnect</button>
+          </div>
         </div>
       );
     } else {
       info = (
         <div className="account-info">
           <img src={ defaultAvatar } height="100" width="100" />
-            <div className="info-container">
-              <p>Guest Account</p>
-              <a className="account-buttons connect" href="/api/fxa-oauth/login" onClick={ this.onClickConnect.bind(this) }>Connect</a>
-            </div>
+          <div className="info-container">
+            <p className="title">Guest Account</p>
+            <p className="info">Sign in to sync across devices</p>
+            <a className="account-buttons" href="/api/fxa-oauth/login" onClick={ this.onClickConnect.bind(this) }>Sign In</a>
+          </div>
         </div>
+      );
+      subInfo = (
+        <p className="sub-info">You can sign in with Firefox Account to sync all your screenshots across devices and access them privately.</p>
       );
     }
     return <div className="preferences">
@@ -60,6 +72,7 @@ class Body extends React.Component {
       <hr />
       <p className="sub-header">Sync & Accounts</p>
       { info }
+      { subInfo}
     </div>;
   }
 
@@ -77,6 +90,11 @@ class Body extends React.Component {
     sendEvent("start-connect", "settings", { useBeacon: true });
   }
 }
+
+Body.propTypes = {
+  accountInfo: PropTypes.object,
+  staticLink: PropTypes.func
+};
 
 exports.HeadFactory = React.createFactory(Head);
 exports.BodyFactory = React.createFactory(Body);

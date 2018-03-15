@@ -30,6 +30,10 @@
 
     > a {
       padding-right: $grid-unit;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
@@ -53,7 +57,6 @@
   }
 
   .copy-shot-link-input {
-    border-radius: $border-radius;
     border: 1px solid $light-border;
     border-right: 0;
     font-size: 16px;
@@ -79,6 +82,7 @@
     max-width: 120px;
     padding: 0 10px;
     margin: 0;
+    border-radius: 0;
     border: 1px solid $light-border;
 
     &:hover {
@@ -90,6 +94,12 @@
       background: $light-active;
       border-color: $light-border-active;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  #toggle-share {
+    display: none;
   }
 }
 

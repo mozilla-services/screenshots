@@ -3,9 +3,12 @@ const sendEvent = require("../../browser-send-event.js");
 const reactruntime = require("../../reactruntime");
 const { Footer } = require("../../footer-view.js");
 const React = require("react");
+const PropTypes = require("prop-types");
 const { ShareButton } = require("../../share-buttons");
 const Masonry = require("react-masonry-component");
 const { Localized } = require("fluent-react/compat");
+const { isValidClipImageUrl } = require("../../../shared/shot");
+const { getThumbnailDimensions } = require("../../../shared/thumbnailGenerator");
 
 class Head extends React.Component {
 
@@ -21,6 +24,10 @@ class Head extends React.Component {
 
 }
 
+Head.propTypes = {
+  deviceId: PropTypes.string,
+  staticLink: PropTypes.func
+};
 
 class Body extends React.Component {
   constructor(props) {
@@ -40,6 +47,7 @@ class Body extends React.Component {
           <div id="shot-index" className="flex-1">
             { this.renderShots() }
           </div>
+          { this.renderPageNavigation() }
           { this.renderErrorMessages() }
           <Footer forUrl="shots" {...this.props} />
         </div>
@@ -51,9 +59,11 @@ class Body extends React.Component {
     if (this.props.shots === null) {
       return this.renderShotsLoading();
     }
-    let children = [];
-    for (let shot of this.props.shots) {
-      children.push(<Card shot={shot} downloadUrl={this.props.downloadUrls[shot.id]} abTests={this.props.abTests} clipUrl={shot.urlDisplay} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} key={shot.id} />);
+    const children = [];
+    if (this.props.shots && this.props.shots.length) {
+      for (const shot of this.props.shots) {
+        children.push(<Card shot={shot} downloadUrl={this.props.downloadUrls[shot.id]} abTests={this.props.abTests} clipUrl={shot.urlDisplay} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} key={shot.id} />);
+      }
     }
 
     if (children.length === 0) {
@@ -82,6 +92,56 @@ class Body extends React.Component {
         <div className="loader-inner" />
       </div>
     </div>;
+  }
+
+  renderPageNavigation() {
+    if (!this.props.totalShots || parseInt(this.props.totalShots, 10) === 0) {
+      return null;
+    }
+
+    const totalPages = Math.ceil(this.props.totalShots / this.props.shotsPerPage) || 1;
+    const hasPrev = this.props.pageNumber > 1;
+    const prevPageNumber = this.props.pageNumber - 1;
+    const prevClasses = ["shots-page-nav"].concat(!hasPrev && "disabled").join(" ");
+    const hasNext = this.props.pageNumber < totalPages;
+    const nextPageNumber = this.props.pageNumber - 0 + 1;
+    const nextClasses = ["shots-page-nav"].concat(!hasNext && "disabled").join(" ");
+
+    return (
+      <div id="shot-index-page-navigation">
+        <span className={prevClasses}>
+          <Localized id="shotIndexPagePreviousPage">
+            {
+              hasPrev
+              ? <a href={ controller.getNewUrl({p: prevPageNumber})}
+                onClick={ this.onChangePage.bind(this, prevPageNumber) }
+                title="previous page"
+                ><img src={ this.props.staticLink("/static/img/arrowhead-left-16.svg") } /></a>
+              : <img src={ this.props.staticLink("/static/img/arrowhead-left-16.svg") } />
+            }
+          </Localized>
+        </span>
+        <span id="shots-page-number">{this.props.pageNumber} / {totalPages}</span>
+        <span className={nextClasses}>
+          <Localized id="shotIndexPageNextPage">
+            {
+              hasNext
+              ? <a href={ controller.getNewUrl({p: nextPageNumber}) }
+                onClick={ this.onChangePage.bind(this, nextPageNumber) }
+                title="next page"
+                ><img src={ this.props.staticLink("/static/img/arrowhead-right-16.svg") } /></a>
+              : <img src={ this.props.staticLink("/static/img/arrowhead-right-16.svg") } />
+            }
+          </Localized>
+        </span>
+      </div>
+    );
+  }
+
+  onChangePage(pageNumber, e) {
+    controller.onChangePage(pageNumber);
+    e.preventDefault();
+    window.scrollTo(0, 0);
   }
 
   renderErrorMessages() {
@@ -164,7 +224,7 @@ class Body extends React.Component {
 
   onSubmitForm(e) {
     e.preventDefault();
-    let val = this.searchInput.value;
+    const val = this.searchInput.value;
     if (val) {
       sendEvent("search", "submit");
     } else {
@@ -174,7 +234,7 @@ class Body extends React.Component {
   }
 
   onChangeSearch() {
-    let val = this.searchInput.value;
+    const val = this.searchInput.value;
     this.setState({defaultSearch: val});
     if (!val) {
       sendEvent("clear-search", "keyboard");
@@ -194,7 +254,7 @@ class Body extends React.Component {
   }
 
   onClearSearch(e) {
-    const val = '';
+    const val = "";
     this.searchInput.value = val;
     this.setState({defaultSearch: val});
     controller.onChangeSearch(val);
@@ -212,6 +272,22 @@ class Body extends React.Component {
 
 }
 
+Body.propTypes = {
+  abTests: PropTypes.object,
+  defaultSearch: PropTypes.string,
+  disableSearch: PropTypes.bool,
+  downloadUrls: PropTypes.object,
+  enableUserSettings: PropTypes.bool,
+  hasDeviceId: PropTypes.bool,
+  isExtInstalled: PropTypes.bool,
+  isOwner: PropTypes.bool,
+  pageNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  shots: PropTypes.array,
+  shotsPerPage: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  staticLink: PropTypes.func,
+  totalShots: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+};
+
 class Card extends React.Component {
   constructor(props) {
     super(props)
@@ -219,35 +295,46 @@ class Card extends React.Component {
   }
 
   render() {
-    let shot = this.props.shot;
-    let downloadUrl = this.props.downloadUrl;
+    const defaultImageUrl = this.props.staticLink("img/question-mark.svg");
+    const shot = this.props.shot;
+    const downloadUrl = this.props.downloadUrl;
     let imageUrl;
-    let clip = shot.clipNames().length ? shot.getClip(shot.clipNames()[0]) : null;
+    const clip = shot.clipNames().length ? shot.getClip(shot.clipNames()[0]) : null;
     if (!clip) {
       // Some corrupted shot, we'll have to ignore it
       return null;
     }
-    if (clip && clip.image && clip.image.url) {
+    if (shot.thumbnail) {
+      imageUrl = shot.thumbnail;
+    } else if (clip && clip.image && clip.image.url) {
       imageUrl = clip.image.url;
     } else if (shot.images.length) {
       imageUrl = shot.images[0].url;
-    } else if (shot.fullScreenThumbnail) {
-      imageUrl = shot.fullScreenThumbnail;
     } else {
+      imageUrl = defaultImageUrl;
+    }
+
+    // fallback to the question mark if the imageUrl is invalid
+    if (!isValidClipImageUrl(imageUrl)) {
       imageUrl = this.props.staticLink("img/question-mark.svg");
     }
+
     let favicon = null;
     if (shot.favicon) {
       // We use background-image so if the image is broken it just doesn't show:
       favicon = <div style={{backgroundImage: `url("${shot.favicon}")`}} className="favicon" />;
     }
 
+    let neverExpireIndicator = null;
+    if (!shot.expireTime) {
+      neverExpireIndicator = <Localized id="shotIndexNoExpirationSymbol"><div className="never-expires" title=""></div></Localized>
+    }
+
     return (
-      <div className={`shot ${this.getClipType(clip._image.dimensions)} ${this.state.panelOpen} ${this.isDeleted()}`} key={shot.id}>
+      <div className={`shot ${this.getClipType(shot.thumbnail, clip._image.dimensions)} ${this.state.panelOpen} ${this.isDeleted()}`} key={shot.id}>
         <a href={shot.viewUrl} onClick={this.onOpen.bind(this, shot.viewUrl)}>
-          <div className="shot-image-container" style={{
-            backgroundImage: `url(${imageUrl})`
-          }}>
+          <div className="shot-image-container">
+            <img src={imageUrl} />
           </div>
           <div className="shot-info">
           <div className="title-container">
@@ -271,20 +358,44 @@ class Card extends React.Component {
             <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this, shot) } ref={trashButton => this.trashButton = trashButton} />
           </Localized>
         </div>
+        {neverExpireIndicator}
       </div>
     );
   }
 
-  getClipType(dimensions) {
-    // an image is considered a square if it is within
-    // a squareBuffer pixels of being one
-    const squareBuffer = 50;
-    if (dimensions.x - squareBuffer > dimensions.y) {
-      return "landscape";
-    } else if (dimensions.x < dimensions.y - squareBuffer ) {
+  getClipType(thumbnailUrl, dimensions) {
+    // "portrait": 210 x 280, image scaled on X
+    // "landscape": 210 x 140, image scaled on Y
+    // "square": 210 x 210, image scaled on X or Y
+
+    const containerWidth = 210;
+    const landscapeHeight = 140;
+    const portraitHeight = 280;
+    const landscapeAspectRatio = containerWidth / landscapeHeight;
+    const portraitAspectRatio = containerWidth / portraitHeight;
+    let thumbnailWidth, thumbnailHeight;
+
+    if (!thumbnailUrl) {
+      thumbnailWidth = dimensions.x;
+      thumbnailHeight = dimensions.y;
+    } else {
+      const thumbnailDimensions = getThumbnailDimensions(dimensions.x, dimensions.y);
+      thumbnailWidth = thumbnailDimensions.width;
+      thumbnailHeight = thumbnailDimensions.height;
+    }
+
+    const thumbnailAspectRatio = thumbnailWidth / thumbnailHeight;
+
+    if (thumbnailAspectRatio <= portraitAspectRatio) {
       return "portrait";
     }
-    return "square";
+    if (thumbnailAspectRatio >= landscapeAspectRatio) {
+      return "landscape";
+    }
+    if (thumbnailHeight > thumbnailWidth) {
+      return "square-x";
+    }
+    return "square-y";
   }
 
   setPanelState(state) {
@@ -318,7 +429,7 @@ class Card extends React.Component {
     event.stopPropagation();
     event.preventDefault();
     sendEvent("start-delete", "my-shots", {useBeacon: true});
-    let confirmMessage = document.getElementById("shotIndexPageConfirmShotDelete").textContent;
+    const confirmMessage = document.getElementById("shotIndexPageConfirmShotDelete").textContent;
     if (window.confirm(confirmMessage)) {
       sendEvent("delete", "my-shots-popup-confirm", {useBeacon: true});
       this.setState({deleted: true});
@@ -335,6 +446,15 @@ class Card extends React.Component {
     sendEvent("download", "myshots-tile");
   }
 }
+
+Card.propTypes = {
+  abTests: PropTypes.object,
+  downloadUrl: PropTypes.string,
+  isExtInstalled: PropTypes.bool,
+  isOwner: PropTypes.bool,
+  shot: PropTypes.object,
+  staticLink: PropTypes.func
+};
 
 exports.HeadFactory = React.createFactory(Head);
 exports.BodyFactory = React.createFactory(Body);

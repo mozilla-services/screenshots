@@ -8,62 +8,131 @@
   background-position: center center;
   position: absolute;
   right: 0;
-  margin: 40px 80px auto;
+  top: 0;
+
+  &:hover {
+    background-color: $light-hover;
+  }
+
+  &:active {
+    background-color: $light-active;
+  }
 }
 
 .header {
-  color: #383e49;
-  font-size: 28px;
+  color: #0c0c0d;
+  font-size: 22px;
+}
+
+#settings-header {
+  margin: 40px auto 15px;
+  position: relative;
+
+  @include respond-to("small") {
+    width: 480px;
+  }
+
+  @include respond-to("medium") {
+    width: 720px;
+  }
+
+  @include respond-to("large") {
+    width: 960px;
+  }
 }
 
 .sub-header {
-  color: #222;
-  font-size: 16.8px;
+  color: #0c0c0d;
+  font-size: 17px;
+  opacity: 0.86;
   font-weight: bold;
   letter-spacing: -0.31px;
 }
 
 .preferences {
-  margin: 80px;
+
+  @include respond-to("small") {
+    width: 480px;
+  }
+
+  @include respond-to("medium") {
+    width: 720px;
+  }
+
+  @include respond-to("large") {
+    width: 960px;
+  }
+
+  margin: auto;
+  padding: 40px 20px 0 20px;
 
   .info-container {
-    margin-left: 10px;
+    margin-left: 30px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
 
   hr {
-    opacity: 0.5;
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #e5e5e5;
+    margin: auto;
+    padding: 0;
   }
 
   .account-info {
     @include flex-container(row, left, center);
   }
 
-  .username {
+  .title {
     font-weight: 500;
-    font-size: 19.2px;
-    color: #383e49;
-    margin: 0 0 -20px;
+    font-size: 17px;
+    color: #0c0c0d;
+    margin: 0;
+  }
+
+  .info {
+    font-size: 15px;
+    color: #0c0c0d;
+    margin-top: 5px;
+  }
+
+  .sub-info {
+    color: #737373;
+    font-size: 13px;
+    max-width: 400px;
+    margin-top: 15px;
   }
 
   .email {
+    margin-top: -20px;
     font-size: 14.6px;
     color: #383e49;
   }
 
   .account-buttons {
     box-sizing: border-box;
-    font-size: 12px;
-    color: #000;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0c0c0d;
     text-decoration: none;
-    border: 1.2px solid #808080;
+    border: 1px solid rgba(12, 12, 13, 0.3);
     border-radius: 2px;
     padding: 7px;
-    margin-right: 8px;
-  }
+    width: 150px;
+    height: 30px;
 
-  .connect {
-    color: #fff;
-    background-color: #0093fc;
-    border: 1.2px solid #0675d2;
+    &:hover {
+      background-color: $light-hover;
+    }
+
+    &:active {
+      background-color: $light-active;
+    }
   }
 }

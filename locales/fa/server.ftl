@@ -1,61 +1,59 @@
-// Localization for Server-side strings of Firefox Screenshots
-// 
-// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+### Localization for Server-side strings of Firefox Screenshots
+###
+### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
-
-// Global phrases shared across pages, prefixed with 'g'
-[[ global ]]
+## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = تصاویر من
 gHomeLink = خانه
-gNoShots
+gNoShots =
     .alt = هیچ تصویری پیدا نشد
 gScreenshotsDescription = عکس گرفتن از صفحه آسان شده است. بگیرید، ذخیره‌ کنید و عکس گرفته شده از صفحه را بدون ترک فایرفاکس همرسانی کنید.
 
 
-[[ Footer ]]
 
-// Note: link text for a link to mozilla.org
+# Note: link text for a link to mozilla.org
 footerLinkMozilla = موزیلا
 footerLinkTerms = شرایط استفاده
 footerLinkPrivacy = نکات حفظ حریم‌شخصی
+footerLinkFaqs = سوالات متداول
 footerLinkDMCA = گزارش تخلف IP
 footerLinkDiscourse = ارسال بازخورد
 footerLinkRemoveAllData = حذف همه‌ی داده‌ها
 
 
-[[ Creating page ]]
 
-// Note: { $title } is a placeholder for the title of the web page
-// captured in the screenshot. The default, for pages without titles, is
-// creatingPageTitleDefault.
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
 creatingPageTitle = ایجاد { $title }
 creatingPageTitleDefault = صفحه
 creatingPageWaitMessage = در حال ذخیره کردن عکس شما…
 
 
-[[ Home page ]]
 
-homePageDescription
+homePageDescription =
     .content = عکس‌های بصری گرفته شده مستقیما در مرورگر شما آماده می‌شود. گرفتن،‌ ذخیره و هم‌رسانی تصاویر صفحه در حالی که با فایرفاکس وب را مرور می‌کنید.
 homePageButtonMyShots = برو به عکس‌های من
 homePageTeaser = به زودی…
 homePageDownloadFirefoxTitle = فایرفاکس
 homePageDownloadFirefoxSubTitle = دریافت رایگان
 homePageGetStarted = شروع کنید
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots چگونه کار می‌کند
 homePageGetStartedTitle = شروع کنید
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = شمایل جدید Screenshots را در نوار ابزار خود پیدا کنید. انتخابش کنید، سپس منوی Screenshots در بالای پنجره مرورگر شما نمایان خواهد شد.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = انتخاب شمایل برای تصویر از صفحه از بخش فهرست اقدامات در آدرس بار،‌ و فهرست تصاویر لحظه ای در بالای پنجره مرورگر ظاهر خواهد شد.
 homePageCaptureRegion = گرفتن عکس از یک ناحیه
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = ناحیه که می‌خواهید ثبت کنید را انتخاب کنید و بکشید. یا فقط به روی آن بروید و کلیک کنید — Screenshots برای شما محدوده مورد نظر را انتخاب‌ می‌کند. دقیقا همانند چیزی که می بینید؟ بر روی ذخیره کلیک کنید تا عکس‌های گرفته شده  به صورت آنلاین ذخیره شود یا برای ذخیره بر روی کامپیوتر بر روی دکمه فلش به سمت پایین کلیک کنید.
 homePageCapturePage = گرفتن عکس از صفحه
 homePageCapturePageDescription = از دکمه ظاهر شده در راست برای گرفتن تمام صفحه تصویر استفاده کنید. دکمه ذخیره آشکار این امکان را به شما می‌دهد بدون اسکرول کردن به پایین، قسمت های پایین را ثبت کنید و ذخیره به صورت تمام صفحه هر‌آنچه در صفحه دارید را ذخیره می‌کند.
 homePageSaveShare = ذخیره و اشتراک‌گذاری
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = وقتی یک عکس می‌گیرید،‌ فایرفاکس آن را به کتابخانه آنلاین Screenshots های شما ارسال می‌کند و پیوند آن را در کلیپ بورد شما کپی می‌کند. ما به صورت خودکار تصاویر گرفته شده از صفحه شما را برای دو هفته نگه‌داری می‌کنیم،‌ اما شما می‌توانید عکس‌ها را در هر لحظه که بخواهید حذف کنید یا تاریخ انقضای آن را برای ماندن بیشتر در کتابخانه خود تغییر دهید.
 homePageLegalLink = حقوقی
 homePagePrivacyLink = حریم‌خصوصی
@@ -63,79 +61,79 @@ homePageTermsLink = شرایط
 homePageCookiesLink = کوکی‌ها
 
 
-[[ Leave Screenshots page ]]
 
 leavePageRemoveAllData = حذف تمام داده‌ها
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = برای حذف حساب کاربری خود باید Firefox Screenshots نصب کرده باشید
 leavePageErrorGeneric = خطایی رخ داده است.
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = این تمام اطلاعات Firefox Screenshots شما را به صورت دائمی حذف خواهد کرد.
 leavePageButtonProceed = ادامه
 leavePageButtonCancel = لغو
 leavePageDeleted = تمام عکس‌های صفحه شما حذف شدند!
 
 
-[[ Not Found page ]]
 
 notFoundPageTitle = صفحه پیدا نشد
 notFoundPageIntro = اوه
 notFoundPageDescription = صفحه پیدا نشد.
 
 
-[[ Shot page ]]
 
-// This is the HTML title tag of the page
+# This is the HTML title tag of the page
 shotPageTitle = عکس صفحه: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = خطا در ذخیره‌ی تاریخ انقضا
 shotPageAlertErrorDeletingShot = خطا در حذف تصویر
 shotPageAlertErrorUpdatingTitle = خطا در ذخیره عنوان
 shotPageConfirmDelete = آیا مطمئن هستید که می‌خواهید این عکس را به صورت دائمی حذف کنید؟
-shotPageShareButton
+shotPageShareButton =
     .title = هم‌رسانی
 shotPageCopy = رونوشت
 shotPageCopied = رونوشت شد
-shotPageShareFacebook
+shotPageShareFacebook =
     .title = هم‌رسانی در فیسبوک
-shotPageShareTwitter
+shotPageShareTwitter =
     .title = هم‌رسانی در توییتر
-shotPageSharePinterest
+shotPageSharePinterest =
     .title = هم‌رسانی در پینترست
-shotPageShareEmail
+shotPageShareEmail =
     .title = هم‌رسانی پیوند از طریق ایمیل
 shotPageShareLink = یک پیوند قابل هم‌رسانی برای این عکس دریافت کنید:
 shotPagePrivacyMessage = هر کسی با این پیوند می‌تواند این عکس را ببیند.
-shotPageCopyImageText
+shotPageCopyImageText =
     .label = رونوشت از متنِ عکس
 shotPageConfirmDeletion = آیا مطمئن هستید که می‌خواهید این عکس را به صورت دائمی حذف کنید؟
-// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = اگر کاری انجام ندهید، این عکس { $timediff } به صورت دائمی حذف خواهد شد.
-// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = بازگرداندن تا { $date }
 shotPageExpiredMessage = این عکس منقضی شده است.
-// Note: This phrase is followed by an empty line, then the URL of the source page
+# Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = این صفحه‌ای است که از روی آن ساخته شده بود:
-shotPageDeleteButton
+shotPageDeleteButton =
     .title = حذف این عکس
-shotPageAbuseButton
+shotPageAbuseButton =
     .title = این عکس را برای سوء استفاده، هرزه‌نگاری یا مسائل دیگر گزارش کنید
-shotPageDownloadShot
+shotPageDownloadShot =
     .title = دریافت
 shotPageDownload = دریافت
 shotPageScreenshotsDescription = Screenshots ساده ساخته شده است. بدون خروج از فایرفاکس عکس بگیرید، ذخیره و هم‌رسان کنید.
 shotPageUpsellFirefox = هم اکنون فایرفاکس را دریافت کنید
 shotPageDMCAMessage = این عکس به دلیل درخواست مالکیت معنوی یک شخص ثالث، دیگر در دسترس نیست.
-// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = لطفا برای درخواست اطلاعات بیشتر به { $dmca } ایمیل بزنید.
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = اگر عکس شما موضوع ادعاهای متعدد شود، ممکن است دسترسی شما به Firefox Screenshots را باطل کنیم.
-// Note: { $url } is a placeholder for a shot page URL
+# Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = لطفا نشانی این عکس را در ایمیل خود قید کنید: { $url }
 shotPageKeepFor = چه مدت این عکس باید حفظ شود؟
-// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = انتخاب زمان
-shotPageKeepIndefinitely = نامحدود
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = نامحدود ∞
 shotPageKeepTenMinutes = ‏‏۱۰ دقیقه
 shotPageKeepOneHour = ۱ ساعت
 shotPageKeepOneDay = ‏‏۱ روز
@@ -145,63 +143,89 @@ shotPageKeepOneMonth = ‏‏۱ ماه
 shotPageSaveExpiration = ذخیره
 shotPageCancelExpiration = لغو
 shotPageDoesNotExpire = منقضی نمی‌شود
-// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = { $timediff } منقضی می‌شود
-// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = منقضی شده { $timediff }
 timeDiffJustNow = هم‌اکنون
-timeDiffMinutesAgo = { $num ->
+timeDiffMinutesAgo = { $number ->
        *[other] ۱ دقیقه پیش
     }
-timeDiffHoursAgo = { $num ->
+timeDiffHoursAgo = { $number ->
        *[other] ۱ ساعت پیش
     }
-timeDiffDaysAgo = { $num ->
+timeDiffDaysAgo = { $number ->
        *[other] دیروز
     }
 timeDiffFutureSeconds = چند ثانیه پیش
-timeDiffFutureMinutes = { $num ->
+timeDiffFutureMinutes = { $number ->
        *[other] در یک دقیقه
     }
-timeDiffFutureHours = { $num ->
+timeDiffFutureHours = { $number ->
        *[other] در یک ساعت
     }
-timeDiffFutureDays = { $num ->
+timeDiffFutureDays = { $number ->
        *[other] فردا
     }
+errorThirdPartyCookiesEnabled = اگر شما این عکس را گرفته‌اید و نمی‌تواند آن را حذف کنید، ممکن است لازم باشد به طور موقت کوکی‌های شخص ثالث را از تنظیمات مرورگر خود فعال کنید.
 
 
-[[ Shotindex page ]]
 
-// { $status } is a placeholder for an HTTP status code, like '500'.
-// { $statusText } is a text description of the status code, like 'Internal server error'.
+annotationPenButton =
+    .title = خودکار
+annotationHighlighterButton =
+    .title = برجسته‌ساز
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
+    .title = پاک کردن
+annotationCropButton =
+    .title = بُرش
+annotationSaveButton = ذخیره
+annotationCancelButton = انصراف
+annotationCropConfirmButton = تایید
+    .title = تایید موارد انتخابی
+annotationCropCancelButton = لغو
+    .title = لغو موارد انتخابی
+
+
+
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = خطا هنگام پاک کردن عکس: { $status } { $statusText }
-// { $searchTerm } is a placeholder for text the user typed into the search box
+# { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = عکس‌های من : جستجو کن برای { $searchTerm }
-// { $error } is a placeholder for a non-translated error message that could be shared
-// with developers when debugging an error.
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
 shotIndexPageErrorRendering = خطا هنگام پردازش کردن صفحه: { $error }
-shotIndexPageSearchPlaceholder
+shotIndexPageSearchPlaceholder =
     .placeholder = جستجو در عکس‌های من
-shotIndexPageSearchButton
+shotIndexPageSearchButton =
     .title = جستجو
 shotIndexPageNoShotsMessage = عکس ذخیره شده‌ای وجود ندارد.
 shotIndexPageNoShotsInvitation = ادامه بده، چندتا بساز.
 shotIndexPageLookingForShots = در حال گشتن برای عکس‌های شما…
 shotIndexPageNoSearchResultsIntro = همم
 shotIndexPageNoSearchResults = نمی‌توانیم هیچ عکسی مطابق با آنچه جستحو کردید بیابیم.
-shotIndexPageClearSearchButton
+shotIndexPageClearSearchButton =
     .title = پاک کردن جستجو
 shotIndexPageConfirmShotDelete = حذف این عکس؟
+shotIndexPagePreviousPage =
+    .title = صفحه قبل
+shotIndexPageNextPage =
+    .title = صفحه بعد
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = این عکس منقضی نخواد شد
 
+## all metrics strings are optional for translation
 
-// all metrics strings are optional for translation
-[[ Metrics page ]]
-
-// Note: 'Firefox Screenshots' should not be translated
+# Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = معیار‌های Firefox Screenshots
 metricsPageTotalsQueryTitle = مجموع
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = یک نگاه کلی به Screenshots
 metricsPageTotalsQueryDevices = مجموع دستگاه‌های ثبت شده
 metricsPageTotalsQueryActiveShots = عکس‌های فعال
@@ -234,7 +258,7 @@ metricsPageVersionQueryUsers = تعداد کاربران در حال ورود
 metricsPageVersionQueryVersion = نسخه افزونه
 metricsPageVersionQueryLastSeen = روز
 metricsPageHeader = معیارها
-// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = تولید شده در: { $created }
-// Note { $time } is a placeholder for a number of milliseconds, like '100'
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (زمان پایگاه‌داده: { $time }ms)

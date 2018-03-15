@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# This simple script creates an addon with an unavailable backend. At least one
+# of the Selenium tests rely on it. It also (re)creates the addon that might've
+# been replaced during the process.
+
+set -e
+
+SCRIPT_PATH=${0%/*}
+cd "$SCRIPT_PATH/../../"
+
+if [ -n "$SCREENSHOTS_BACKEND" ]
+then
+  PREVIOUS_BACKEND=$SCREENSHOTS_BACKEND
+fi
+
+export SCREENSHOTS_BACKEND=${BAD_SCREENSHOTS_BACKEND:-'http://localhost:49152'}
+echo "Setting backend to ${SCREENSHOTS_BACKEND}"
+
+make bootstrap_zip >/dev/null
+mv build/screenshots-bootstrap.zip build/screenshots-bootstrap-server-down.zip
+echo "Created build/screenshots-bootstrap-server-down.zip"
+
+if [ -n "$PREVIOUS_BACKEND" ]
+then
+  export SCREENSHOTS_BACKEND=$PREVIOUS_BACKEND
+else
+  unset SCREENSHOTS_BACKEND
+fi
+
+make bootstrap_zip
+

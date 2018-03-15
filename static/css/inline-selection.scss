@@ -60,6 +60,11 @@ $very-light-grey: #ededed;
     right: 0;
     top: 0;
   }
+
+  body.hcm & {
+    background-color: rgb(255, 255, 255);
+    opacity: 0.2;
+  }
 }
 
 .mover-target.direction-topLeft {
@@ -179,6 +184,95 @@ $very-light-grey: #ededed;
   background-color: $modal-color;
   position: absolute;
   z-index: $overlay-z-index;
+  body.hcm & {
+    background-color: rgb(0, 0, 0);
+    opacity: 0.7;
+  }
+}
+
+.notice {
+  display: flex;
+  height: 41px;
+  left: 50%;
+  position: fixed;
+  transform: translate(-50%, 0);
+  transition: top 125ms ease-out, translate 125ms ease-out;
+  user-select: none;
+  will-change: top, translate;
+  z-index: $overlay-z-index + 1;
+
+  .notice-wrapper {
+    align-items: center;
+    background: #737373;
+    border-radius: 100px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 10px 15px;
+  }
+
+  .notice-content {
+    color: #fff;
+    flex: 1;
+    font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .notice-help {
+    background-image: url("MOZ_EXTENSION/icons/help-16.svg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 16px;
+  }
+}
+
+.notice-tooltip {
+  background: #fff;
+  border-radius: 3px;
+  border: 1px solid #9d9d9e;
+  bottom: 60px;
+  color: #000;
+  cursor: default;
+  display: none;
+  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 22px;
+  overflow-wrap: break-word;
+  padding: 15px;
+  position: absolute;
+  right: -14px;
+  white-space: normal;
+  width: 300px;
+  z-index: $overlay-z-index + 1;
+
+  .notice:hover & {
+    display: block;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  ul {
+    margin-bottom: 0;
+  }
+
+  /* down-arrow for the tooltip */
+  &::after {
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #f9f9fa;
+    content: "";
+    height: 0;
+    left: 86%;
+    position: absolute;
+    top: 100%;
+    width: 0;
+  }
 }
 
 .preview-overlay {
@@ -194,6 +288,10 @@ $very-light-grey: #ededed;
   top: 0;
   width: 100%;
   z-index: $overlay-z-index;
+  body.hcm & {
+    background-color: rgb(0, 0, 0);
+    opacity: 0.7;
+  }
 }
 
 .highlight {
@@ -203,13 +301,22 @@ $very-light-grey: #ededed;
   cursor: move;
   position: absolute;
   z-index: $overlay-z-index;
+  body.hcm & {
+    border: 2px dashed rgb(255, 255, 255);
+    opacity: 1.0;
+  }
 }
 
 .highlight-buttons {
   @include flex-container(row, center, center);
   bottom: -55px;
   position: absolute;
-  right: 5px;
+  html[dir="rtl"] & {
+    left: 5px;
+  }
+  html[dir="ltr"] & {
+    right: 5px;
+  }
   z-index: 6;
 
   .bottom-selection & {
@@ -225,10 +332,6 @@ $very-light-grey: #ededed;
 .highlight-button-cancel {
   @extend .button;
   @extend .secondary;
-  background-image: url("MOZ_EXTENSION/icons/cancel.svg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 18px 18px;
   border: 1px solid $light-active;
   margin: 5px;
   width: 40px;
@@ -237,23 +340,50 @@ $very-light-grey: #ededed;
 .highlight-button-save {
   @extend .button;
   @extend .primary;
-  background-image: url("MOZ_EXTENSION/icons/cloud.svg");
-  background-position: 8px center;
-  background-repeat: no-repeat;
-  background-size: 20px 18px;
   font-size: 18px;
   margin: 5px;
   min-width: 80px;
-  padding-left: 34px;
+
+  img {
+    html[dir="ltr"] & {
+      padding-right: 8px;
+    }
+    html[dir="rtl"] & {
+      padding-left: 8px;
+    }
+  }
 }
 
 .highlight-button-download {
   @extend .button;
   @extend .secondary;
-  background-image: url("MOZ_EXTENSION/icons/download.svg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: 18px 18px;
+  border: 1px solid $light-active;
+  // Overrides display: flex from .button, which causes hover problems
+  display: block;
+  margin: 5px;
+  width: 40px;
+
+  &.download-only-button {
+    font-size: 18px;
+    width: auto;
+
+    img {
+      height: 16px;
+      width: 16px;
+
+      html[dir="ltr"] & {
+        padding-right: 8px;
+      }
+      html[dir="rtl"] & {
+        padding-left: 8px;
+      }
+    }
+  }
+}
+
+.highlight-button-copy {
+  @extend .button;
+  @extend .secondary;
   border: 1px solid $light-active;
   // Overrides display: flex from .button, which causes hover problems
   display: block;
@@ -278,8 +408,13 @@ $very-light-grey: #ededed;
 .preview-buttons {
   @include flex-container(row, center, center);
   position: absolute;
-  right: 0;
   top: -2px;
+  html[dir="rtl"] & {
+    left: 0;
+  }
+  html[dir="ltr"] & {
+    right: 0;
+  }
 }
 
 .preview-image  {
@@ -292,7 +427,7 @@ $very-light-grey: #ededed;
   animation: bounce-in 300ms forwards ease-in-out;
 }
 
-.preview-image img {
+.preview-image > img {
   display: block;
   width: auto;
   height: auto;
@@ -305,14 +440,18 @@ $very-light-grey: #ededed;
 .preview-button-save {
   @extend .button;
   @extend .primary;
-  background-image: url("MOZ_EXTENSION/icons/cloud.svg");
-  background-position: 8px center;
-  background-repeat: no-repeat;
-  background-size: 20px 18px;
   font-size: 18px;
   margin: 5px;
   min-width: 80px;
-  padding-left: 34px;
+
+  img {
+    html[dir="ltr"] & {
+      padding-right: 8px;
+    }
+    html[dir="rtl"] & {
+      padding-left: 8px;
+    }
+  }
 }
 
 // FIXME: some of the styles in .fixed-container were copied from
@@ -385,6 +524,22 @@ $very-light-grey: #ededed;
   text-align: center;
   padding-top: 20px;
   width: 400px;
+  user-select: none;
+}
+
+.cancel-shot {
+  background-color: transparent;
+  cursor:pointer;
+  outline:none;
+  border-radius: 3px;
+  border: 1px #9b9b9b solid;
+  color: #fff;
+  cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, "segoe ui", "helvetica neue", helvetica, ubuntu, roboto, noto, arial, sans-serif;
+  font-size: 16px;
+  margin-top: 40px;
+  padding: 10px 25px;
+  pointer-events: all;
 }
 
 .myshots-all-buttons-container {

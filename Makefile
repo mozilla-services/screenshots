@@ -88,7 +88,7 @@ build/%.html: %.html
 	cp $< $@
 
 .PHONY: addon
-addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/shot.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/onboardingCss.js addon/webextension/build/onboardingHtml.js addon/webextension/build/buildSettings.js
+addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/shot.js addon/webextension/build/thumbnailGenerator.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/onboardingCss.js addon/webextension/build/onboardingHtml.js addon/webextension/build/buildSettings.js
 
 $(VENV): bin/require.pip
 	virtualenv -p python2.7 $(VENV)
@@ -134,6 +134,10 @@ addon/webextension/manifest.json: addon/webextension/manifest.json.template buil
 addon/webextension/build/shot.js: shared/shot.js
 	@mkdir -p $(@D)
 	./bin/build-scripts/modularize shot $< > $@
+
+addon/webextension/build/thumbnailGenerator.js: shared/thumbnailGenerator.js
+	@mkdir -p $(@D)
+	./bin/build-scripts/modularize thumbnailGenerator $< > $@
 
 addon/webextension/build/inlineSelectionCss.js: build/server/static/css/inline-selection.css
 	@mkdir -p $(@D)
@@ -202,8 +206,13 @@ build/server/build-time.js: homepage $(server_dest) $(shared_server_dest) $(sass
 	@mkdir -p $(@D)
 	./bin/build-scripts/write_build_time.py > build/server/build-time.js
 
+# Convert all the server.ftl files into build/server/static/locales/[locale].js
+build/server/static/locales: $(wildcard locales/**/server.ftl)
+	@mkdir -p $@
+	./bin/build-scripts/ftl-to-js.js $@ $^
+
 .PHONY: server
-server: npm build/server/build-time.js build/server/package.json build/server/static/js/shot-bundle.js build/server/static/js/homepage-bundle.js build/server/static/js/metrics-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/leave-bundle.js build/server/static/js/creating-bundle.js build/server/static/js/settings-bundle.js
+server: npm build/server/build-time.js build/server/package.json build/server/static/js/shot-bundle.js build/server/static/js/homepage-bundle.js build/server/static/js/metrics-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/leave-bundle.js build/server/static/js/creating-bundle.js build/server/static/js/settings-bundle.js build/server/static/locales
 
 ## Homepage related rules:
 

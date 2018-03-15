@@ -1,0 +1,4 @@
+# Files created during tests (temporarily) lives in here.
+# Ignore them.
+*
+!.gitignore

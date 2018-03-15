@@ -12,28 +12,45 @@ const SEARCHABLE_VERSION = 1;
 
 const PNG_HEADER_BASE64 = "iVBORw0KGgo=";
 const PNG_HEADER = Buffer.from(PNG_HEADER_BASE64, "base64");
+const JPEG_HEADER_BASE64 = "/9g=";
+const JPEG_HEADER = Buffer.from(JPEG_HEADER_BASE64, "base64").slice(0, 2);
 
-function assertPng(dataUrl) {
-  const urlHeader = "data:image/png;base64,";
-  if (!dataUrl.startsWith(urlHeader)) {
-    mozlog.warn("invalid-data-url", {msg: "Invalid data: URL submitted", prefix: dataUrl.substr(0, urlHeader.length + 10)});
-    throw new Error('invalid data url');
+
+const SHOTS_PER_PAGE = 24;
+
+function assertPngOrJpeg(dataUrl) {
+  const pngHeader = "data:image/png;base64,";
+  const jpegHeader = "data:image/jpeg;base64,";
+  if (!(dataUrl.startsWith(pngHeader) || dataUrl.startsWith(jpegHeader))) {
+    mozlog.warn("invalid-data-url", {msg: "Invalid data: URL submitted", prefix: dataUrl.substr(0, jpegHeader.length + 10)});
+    throw new Error("invalid data url");
   }
   // only decode enough to get the header
   // we're lucky that 9 bytes is exactly 12 base64 characters
-  const base64Header = dataUrl.substr(urlHeader.length, PNG_HEADER_BASE64.length);
-  if (base64Header.length < PNG_HEADER_BASE64.length) {
-    mozlog.warn("invalid-data-image", {msg: "Invalid PNG image submitted", prefix: dataUrl.substr(0, urlHeader.length + PNG_HEADER_BASE64.length)});
-    throw new Error('invalid image');
-  }
-  const header = Buffer.from(base64Header, "base64"); // 9 bytes
-  if (!PNG_HEADER.equals(header.slice(0, 8))) {
-    mozlog.warn("invalid-data-image-decoded", {msg: "Invalid PNG image (after base64 decoding)"});
-    throw new Error('invalid png');
+  if (dataUrl.startsWith(pngHeader)) {
+    const base64Header = dataUrl.substr(pngHeader.length, PNG_HEADER_BASE64.length);
+    if (base64Header.length < PNG_HEADER_BASE64.length) {
+      mozlog.warn("invalid-data-image", {msg: "Invalid PNG image submitted", prefix: dataUrl.substr(0, pngHeader.length + PNG_HEADER_BASE64.length)});
+      throw new Error("invalid image");
+    }
+    const header = Buffer.from(base64Header, "base64"); // 9 bytes
+    if (!PNG_HEADER.equals(header.slice(0, PNG_HEADER.length))) {
+      mozlog.warn("invalid-data-image-decoded", {msg: "Invalid PNG image (after base64 decoding)"});
+      throw new Error("invalid png");
+    }
+  } else {
+    const base64Header = dataUrl.substr(jpegHeader.length, JPEG_HEADER_BASE64.length);
+    if (base64Header.length < JPEG_HEADER_BASE64.length) {
+      mozlog.warn("invalid-data-image", {msg: "Invalid JPEG image submitted", prefix: dataUrl.substr(0, jpegHeader.length + JPEG_HEADER_BASE64.length)});
+      throw new Error("invalid image");
+    }
+    const header = Buffer.from(base64Header, "base64"); // 9 bytes
+    if (!JPEG_HEADER.equals(header.slice(0, JPEG_HEADER.length))) {
+      mozlog.warn("invalid-data-image-decoded", {msg: "Invalid JPEG image (after base64 decoding)"});
+      throw new Error("invalid jpeg");
+    }
   }
 }
-
-let ClipRewrites;
 
 let s3bucket;
 let put;
@@ -89,14 +106,14 @@ if (!config.useS3) {
     });
   };
 } else {
-  const AWS = require('aws-sdk');
+  const AWS = require("aws-sdk");
 
   s3bucket = new AWS.S3({params: {Bucket: config.s3BucketName}});
 
   get = (uid, contentType) => {
     return new Promise((resolve, reject) => {
       s3bucket.createBucket(() => {
-        var params = {Key: uid};
+        const params = {Key: uid};
         s3bucket.getObject(params, function(err, data) {
           if (err) {
             mozlog.error("error-downloading-data", {err});
@@ -112,7 +129,7 @@ if (!config.useS3) {
   put = (uid, body, comment) => {
     return new Promise((resolve, reject) => {
       s3bucket.createBucket(() => {
-        var params = {Key: uid, Body: body, ContentType: "image/png"};
+        const params = {Key: uid, Body: body, ContentType: "image/png"};
         s3bucket.upload(params, function(err, result) {
           if (err) {
             reject(err);
@@ -128,7 +145,7 @@ if (!config.useS3) {
   del = (uid) => {
     return new Promise((resolve, reject) => {
       s3bucket.createBucket(() => {
-        var params = {Key: uid};
+        const params = {Key: uid};
         s3bucket.deleteObject(params, function(err, result) {
           if (err) {
             reject(err);
@@ -149,7 +166,7 @@ class Shot extends AbstractShot {
   }
 
   oembedJson({maxheight, maxwidth}) {
-    let body = renderOembedString({shot: this, maxheight, maxwidth, backend: this.backend});
+    const body = renderOembedString({shot: this, maxheight, maxwidth, backend: this.backend});
     return {
       // Attributes we could set, but don't (yet):
       // author_name: "",
@@ -184,15 +201,15 @@ class Shot extends AbstractShot {
           return false;
         }
 
-        let clipRewrites = new ClipRewrites(this);
+        const clipRewrites = new ClipRewrites(this);
         clipRewrites.rewriteShotUrls();
-        let oks = clipRewrites.commands();
-        let json = this.asJson();
-        let title = this.title;
+        const oks = clipRewrites.commands();
+        const json = this.toJSON();
+        const title = this.title;
         oks.push({setHead: null});
         oks.push({setBody: null});
-        let searchable = this._makeSearchableText(7);
-        let url = json.fullUrl || json.url || json.origin;
+        const searchable = this._makeSearchableText(7);
+        const url = json.fullUrl || json.url || json.origin;
         return db.queryWithClient(
           client,
           `INSERT INTO data (id, deviceid, value, url, title, searchable_version, searchable_text)
@@ -203,7 +220,7 @@ class Shot extends AbstractShot {
         }).then(() => {
           return oks;
         }).catch((err) => {
-          if (err.code == '23505') {
+          if (err.code === "23505") {
             // This is a duplicate key error, means the insert failed
             clipRewrites.revertShotUrls();
             return false;
@@ -215,14 +232,13 @@ class Shot extends AbstractShot {
   }
 
   update() {
-    let clipRewrites = new ClipRewrites(this);
+    const clipRewrites = new ClipRewrites(this);
     clipRewrites.rewriteShotUrls();
-    let oks = clipRewrites.commands();
-    let json = this.asJson();
+    const oks = clipRewrites.commands();
+    const json = this.toJSON();
     return db.transaction((client) => {
-      let promise;
-      let searchable = this._makeSearchableText(7);
-      promise = db.queryWithClient(
+      const searchable = this._makeSearchableText(7);
+      const promise = db.queryWithClient(
         client,
         `UPDATE data SET value = $1, url = $2, title=$3, searchable_version = $4, searchable_text = ${searchable.query}
         WHERE id = $5 AND deviceid = $6`,
@@ -243,7 +259,7 @@ class Shot extends AbstractShot {
   }
 
   upgradeSearch() {
-    let searchable = this._makeSearchableText(3);
+    const searchable = this._makeSearchableText(3);
     return db.transaction((client) => {
       return db.queryWithClient(
         client,
@@ -255,8 +271,8 @@ class Shot extends AbstractShot {
   }
 
   _makeSearchableText(argStart) {
-    let queryParts = [];
-    let texts = [];
+    const queryParts = [];
+    const texts = [];
     function addText(t) {
       texts.push(t);
       return "$" + (texts.length + argStart - 1);
@@ -268,37 +284,37 @@ class Shot extends AbstractShot {
       if (!t) {
         return;
       }
-      if (!['A', 'B', 'C', 'D'].includes(weight)) {
+      if (!["A", "B", "C", "D"].includes(weight)) {
         throw new Error("Bad weight, should be A, B, C, or D");
       }
       queryParts.push(`setweight(to_tsvector(${addText(t)}), '${weight}') /* ${name} */`);
     }
     if (this.url) {
-      let domain = this.url.replace(/^.{0,4000}:/, "").replace(/\/.{0,4000}$/, "");
-      addWeight(domain, 'B', 'domain');
+      const domain = this.url.replace(/^.{0,4000}:/, "").replace(/\/.{0,4000}$/, "");
+      addWeight(domain, "B", "domain");
     }
-    addWeight(this.title, 'A', 'title');
+    addWeight(this.title, "A", "title");
     if (this.openGraph) {
-      let openGraphProps = `
+      const openGraphProps = `
         site_name description
         article:author article:section article:tag
         book:author book:tag
         profile:first_name profile:back_name profile:username
       `.split(/\s+/g);
-      addWeight(openGraphProps.map((n) => this.openGraph[n]), 'B', 'openGraph');
+      addWeight(openGraphProps.map((n) => this.openGraph[n]), "B", "openGraph");
     }
     if (this.twitterCard) {
-      let twitterProps = `
+      const twitterProps = `
         site title description
       `.split(/\s+/g);
-      addWeight(twitterProps.map((n) => this.twitterCard[n]), 'A', 'twitterCard');
-      for (let clipId of this.clipNames()) {
-        let clip = this.getClip(clipId);
-        addWeight(clip.image && clip.image.text, 'A', 'clip text');
+      addWeight(twitterProps.map((n) => this.twitterCard[n]), "A", "twitterCard");
+      for (const clipId of this.clipNames()) {
+        const clip = this.getClip(clipId);
+        addWeight(clip.image && clip.image.text, "A", "clip text");
       }
     }
     return {
-      query: queryParts.join(' || '),
+      query: queryParts.join(" || "),
       args: texts,
       // Update this version if you update the algorithm:
       version: SEARCHABLE_VERSION
@@ -334,7 +350,7 @@ class ServerClip extends AbstractShot.prototype.Clip {
   constructor(shot, id, json) {
     super(shot, id, json);
     if (this.isDataUrl()) {
-      assertPng(json.image.url);
+      assertPngOrJpeg(json.image.url);
     }
   }
 
@@ -342,8 +358,8 @@ class ServerClip extends AbstractShot.prototype.Clip {
     if (!(this.image && this.image.url)) {
       throw new Error("Not an image clip");
     }
-    let url = this.image.url;
-    let match = (/^data:([^;]*);base64,/).exec(url);
+    const url = this.image.url;
+    const match = (/^data:([^;]*);base64,/).exec(url);
     if (!match) {
       if (!url) {
         mozlog.warn("empty-clip-url", {msg: "Submitted with empty clip URL"});
@@ -354,7 +370,7 @@ class ServerClip extends AbstractShot.prototype.Clip {
       }
     }
     let imageData = url.substr(match[0].length);
-    imageData = new Buffer(imageData, 'base64');
+    imageData = new Buffer(imageData, "base64");
     return {
       contentType: match[1],
       data: imageData
@@ -375,13 +391,13 @@ Shot.get = function(backend, id, deviceId, accountId) {
     if (!rawValue) {
       return null;
     }
-    let json = JSON.parse(rawValue.value);
-    let jsonTitle = json.userTitle || (json.openGraph && json.openGraph.title) || json.docTitle;
+    const json = JSON.parse(rawValue.value);
+    const jsonTitle = json.userTitle || (json.openGraph && json.openGraph.title) || json.docTitle;
     json.docTitle = jsonTitle || rawValue.title;
     if (!json.url && rawValue.url) {
       json.url = rawValue.url;
     }
-    let shot = new Shot(rawValue.userid, backend, id, json);
+    const shot = new Shot(rawValue.userid, backend, id, json);
     shot.urlIfDeleted = rawValue.url;
     shot.accountId = rawValue.accountId;
     shot.expireTime = rawValue.expireTime;
@@ -404,9 +420,9 @@ Shot.getFullShot = function(backend, id) {
     if (!rows.length) {
       return null;
     }
-    let row = rows[0];
-    let json = JSON.parse(row.value);
-    let shot = new Shot(row.userid, backend, id, json);
+    const row = rows[0];
+    const json = JSON.parse(row.value);
+    const shot = new Shot(row.userid, backend, id, json);
     return shot;
   });
 };
@@ -417,7 +433,7 @@ Shot.getRawValue = function(id, deviceId, accountId) {
   }
   let query = `SELECT value, deviceid, url, title, expire_time, deleted, block_type, devices.accountid
   FROM data, devices WHERE data.deviceid = devices.id AND data.id = $1`;
-  let params = [id];
+  const params = [id];
   if (accountId) {
     query += ` AND devices.accountid = $2`;
     params.push(accountId);
@@ -432,7 +448,7 @@ Shot.getRawValue = function(id, deviceId, accountId) {
     if (!rows.length) {
       return null;
     }
-    let row = rows[0];
+    const row = rows[0];
     return {
       userid: row.deviceid,
       value: row.value,
@@ -459,10 +475,33 @@ Shot.checkOwnership = function(shotId, deviceId, accountId) {
   })
 };
 
-Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery) {
+Shot.emptyShotsPage = {
+  pageNumber: 1,
+  totalShots: 0,
+  shotsPerPage: SHOTS_PER_PAGE,
+  shots: null
+};
+
+Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pageNumber) {
   if (!deviceId) {
     throw new Error("Empty deviceId: " + deviceId);
   }
+  if (pageNumber < 1) {
+    pageNumber = 1;
+  }
+  const shotsPage = {
+    pageNumber,
+    shotsPerPage: SHOTS_PER_PAGE
+  };
+  let deviceIds = [];
+  let likeQuery = "";
+
+  const idParamPositions = (offset, ids) => {
+    return ids.map((_, idx) => {
+      return `$${offset + idx + 1}`;
+    });
+  }
+
   // accountId is null if not set, treated as NULL in the SQL query
   return db.select(
     `SELECT DISTINCT devices.id
@@ -470,23 +509,56 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery) {
      WHERE devices.id = $1 OR devices.accountid = $2
     `,
     [deviceId, accountId]
-  ).then((rows) => {
-    searchQuery = searchQuery || null;
-    let ids = [];
-    let idNums = [];
-    for (let i = 0; i < rows.length; i++) {
-      ids.push(rows[i].id);
-      idNums.push("$" + (i + (searchQuery ? 3 : 1)));
+  ).then(rows => {
+    deviceIds = rows.map(x => x.id);
+  }).then(() => {
+    if (!deviceIds.length) {
+      shotsPage.totalShots = 0;
+      return [{totalShots: 0}];
     }
-    if (!ids.length) {
-      // This happens if the id doesn't exist in the database
-      return [];
-    }
-    let sql;
-    let args;
+
+    let idNums, sql, args;
+
     if (searchQuery) {
+      idNums = idParamPositions(2, deviceIds);
       sql = `
-        SELECT data.id, data.value, data.deviceid, ts_rank_cd(data.searchable_text, query) AS rank
+        SELECT COUNT(data.id) AS totalShots
+        FROM data, plainto_tsquery($1) AS query
+        WHERE data.deviceid IN (${idNums.join(", ")})
+              AND NOT data.deleted
+              AND (expire_time IS NULL OR expire_time > NOW())
+              AND (data.searchable_text @@ query
+                   OR url ILIKE $2
+                   OR title ILIKE $2)
+        `;
+      likeQuery = "%" + searchQuery.replace(/%/g, "%%") + "%";
+      args = [searchQuery, likeQuery].concat(deviceIds);
+    } else {
+      idNums = idParamPositions(0, deviceIds);
+      sql = `
+      SELECT COUNT(data.id) AS totalShots
+      FROM data
+      WHERE data.deviceid IN (${idNums.join(", ")})
+            AND NOT data.deleted
+            AND (expire_time IS NULL OR expire_time > NOW())
+      `;
+      args = deviceIds;
+    }
+    return db.select(sql, args);
+  }).then(rows => {
+    if (!rows.length) {
+      shotsPage.totalShots = 0;
+    } else {
+      shotsPage.totalShots = rows[0].totalshots;
+    }
+  }).then(() => {
+    const offset = (pageNumber - 1) * SHOTS_PER_PAGE;
+    let sql, args, idNums;
+
+    if (searchQuery) {
+      idNums = idParamPositions(4, deviceIds);
+      sql = `
+        SELECT data.id, data.value, data.deviceid, data.expire_time, ts_rank_cd(data.searchable_text, query) AS rank
         FROM data, plainto_tsquery($1) AS query
         WHERE data.deviceid IN (${idNums.join(", ")})
               AND NOT data.deleted
@@ -495,26 +567,28 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery) {
                    OR url ILIKE $2
                    OR title ILIKE $2)
         ORDER BY rank DESC, data.created DESC
+        LIMIT $3 OFFSET $4
         `;
-      let likeQuery = "%" + searchQuery.replace(/%/g, "%%") + "%";
-      args = [searchQuery, likeQuery].concat(ids);
+      args = [searchQuery, likeQuery, SHOTS_PER_PAGE, offset].concat(deviceIds);
     } else {
+      idNums = idParamPositions(2, deviceIds);
       sql = `
-      SELECT data.id, data.value, data.deviceid
+      SELECT data.id, data.value, data.deviceid, data.expire_time
       FROM data
       WHERE data.deviceid IN (${idNums.join(", ")})
             AND NOT data.deleted
             AND (expire_time IS NULL OR expire_time > NOW())
       ORDER BY data.created DESC
+      LIMIT $1 OFFSET $2
       `;
-      args = ids;
+      args = [SHOTS_PER_PAGE, offset].concat(deviceIds);
     }
     return db.select(sql, args);
   }).then((rows) => {
-    let result = [];
+    const result = [];
     for (let i = 0; i < rows.length; i++) {
-      let row = rows[i];
-      let json = JSON.parse(row.value);
+      const row = rows[i];
+      const json = JSON.parse(row.value);
       if (json === null) {
         mozlog.warn("error-parsing-json", {
           deviceid: row.deviceid,
@@ -525,6 +599,7 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery) {
         let shot;
         try {
           shot = new Shot(row.deviceid, backend, row.id, json);
+          shot.expireTime = row.expire_time;
         } catch (e) {
           mozlog.warn("error-instantiating-shot", {err: e});
           continue;
@@ -532,7 +607,8 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery) {
         result.push(shot);
       }
     }
-    return result;
+    shotsPage.shots = result;
+    return shotsPage;
   });
 };
 
@@ -545,7 +621,10 @@ Shot.setExpiration = function(backend, shotId, deviceId, expiration, accountId) 
     `,
     [shotId, deviceId, accountId]
   ).then((rows) => {
-    let id = rows[0].id;
+    if (!rows.length) {
+      return null;
+    }
+    const id = rows[0].id;
     if (expiration === 0) {
       return db.update(
         `UPDATE data
@@ -556,7 +635,7 @@ Shot.setExpiration = function(backend, shotId, deviceId, expiration, accountId) 
         [shotId, id]
       );
     }
-    if (typeof expiration != "number") {
+    if (typeof expiration !== "number") {
       throw new Error("Bad expiration type");
     } else if (expiration < 0) {
       throw new Error("Expiration less than zero");
@@ -583,6 +662,9 @@ Shot.deleteShot = function(backend, shotId, deviceId, accountId) {
       `,
       [shotId, deviceId, accountId]
   ).then((rows) => {
+    if (!rows.length) {
+      return null;
+    }
     id = rows[0].id;
     return Shot.get(backend, shotId, id)
     .then((shot) => {
@@ -604,45 +686,53 @@ Shot.deleteShot = function(backend, shotId, deviceId, accountId) {
   })
 };
 
-Shot.deleteEverythingForDevice = function(backend, deviceId) {
-  return db.select(
-    `SELECT images.id
-     FROM images JOIN data
-     ON images.shotid = data.id
-     WHERE data.deviceid = $1`,
-    [deviceId]
-  ).then((rows) => {
-      rows.forEach((row) => del(row.id))
+Shot.deleteEverythingForDevice = function(backend, deviceId, accountId) {
+  let deviceIds;
+
+  const getDeviceIds = () => {
+    if (accountId) {
+      return db.select(
+        `SELECT devices.id
+       FROM devices
+       WHERE devices.accountid = $1`,
+        [accountId]);
     }
-  ).then(() => {
+    return Promise.resolve([{id: deviceId}]);
+  };
+
+  const imageIdsSelect = (deviceIdRows) => {
+    deviceIds = deviceIdRows.map(row => row.id);
+    if (!deviceIds.length) {
+      deviceIds = [deviceId];
+    }
     return db.select(
-      `SELECT DISTINCT devices.id
-       FROM devices, devices AS devices2
-       WHERE devices.id = $1
-             OR (devices.accountid = devices2.accountid
-                 AND devices2.id = $1)
-      `,
-      [deviceId]);
-    }
-  ).then((rows) => {
-    let ids = [];
-    for (let i = 0; i < rows.length; i++) {
-      ids.push(rows[i].id);
-    }
-    if (!ids.length) {
-      ids = [deviceId];
-    }
-    let deleteSql = `DELETE FROM data WHERE
-     deviceid IN (${db.markersForArgs(1, ids.length)})`;
+      `SELECT images.id
+       FROM images JOIN data
+       ON images.shotid = data.id
+       WHERE data.deviceid IN (${db.markersForArgs(1, deviceIds.length)})`,
+      deviceIds);
+  };
+
+  const deleteImageData = (imageIdRows) => {
+    imageIdRows.forEach(row => del(row.id));
+  };
+
+  const deleteShotRecords = () => {
+    const deleteSql = `DELETE FROM data WHERE
+     deviceid IN (${db.markersForArgs(1, deviceIds.length)})`;
     return db.update(
       deleteSql,
-      ids
+      deviceIds
     );
+  }
 
-  });
+  return getDeviceIds()
+    .then(imageIdsSelect)
+    .then(deleteImageData)
+    .then(deleteShotRecords);
 };
 
-ClipRewrites = class ClipRewrites {
+const ClipRewrites = class ClipRewrites {
 
   constructor(shot) {
     this.shot = shot;
@@ -650,11 +740,16 @@ ClipRewrites = class ClipRewrites {
     this.unedited = [];
     this.toInsertClipIds = [];
     this.toInsert = {};
-    for (let name of this.shot.clipNames()) {
-      let clip = this.shot.getClip(name);
+    for (const name of this.shot.clipNames()) {
+      const clip = this.shot.getClip(name);
       if (clip.image && clip.isDataUrl()) {
         this.toInsertClipIds.push(clip.id);
-        let imageId = uuid.v4() + ".png";
+        let extension = ".png";
+        const type = clip.image.type || "png";
+        if (type === "jpeg") {
+          extension = ".jpg";
+        }
+        const imageId = uuid.v4() + extension;
         this.toInsert[clip.id] = {
           uuid: imageId,
           url: linker.imageLinkWithHost(imageId),
@@ -665,44 +760,51 @@ ClipRewrites = class ClipRewrites {
       }
     }
     this.toInsertThumbnail = null;
-    this.oldFullScreenThumbnail = this.shot.fullScreenThumbnail;
+    this.oldThumbnail = this.shot.thumbnail;
     if (!validUrl.isWebUri(this.shot.url)) {
       this.shot.fullUrl = "";
       this.shot.origin = "";
     }
-    let url = this.shot.fullScreenThumbnail;
-    let match = (/^data:([^;]*);base64,/).exec(url);
-    if (match) {
-      let imageData = url.substr(match[0].length);
-      imageData = new Buffer(imageData, 'base64');
-      let imageId = uuid.v4();
+    const pngDataUrlMediaType = "data:image/png;base64,"
+    if (this.shot.thumbnail && this.shot.thumbnail.startsWith(pngDataUrlMediaType)) {
+      let imageData = this.shot.thumbnail.substr(pngDataUrlMediaType.length);
+      imageData = new Buffer(imageData, "base64");
+      const imageId = `${uuid.v4()}.png`;
       this.toInsertThumbnail = {
-        contentType: match[1],
+        contentType: "image/png",
         binary: imageData,
         uuid: imageId,
         url: linker.imageLinkWithHost(imageId)
       };
+    } else if (this.shot.thumbnail && validUrl.isWebUri(this.shot.thumbnail)) {
+      // When there is no thumbnail to insert or update, but there is a
+      // thumbnail previously, use the old one. This happens when other
+      // properties of the shot are being updated.
+      //
+      // The clip id of a thumbnail is its filename, so we add that to the
+      // unedited list to prevent it from being deleted in commit().
+      this.unedited.push(this.shot.thumbnail.split("/").pop());
     }
   }
 
   rewriteShotUrls() {
-    for (let clipId of this.toInsertClipIds) {
-      let url = this.toInsert[clipId].url;
-      let clip = this.shot.getClip(clipId);
+    for (const clipId of this.toInsertClipIds) {
+      const url = this.toInsert[clipId].url;
+      const clip = this.shot.getClip(clipId);
       clip.image.url = url;
     }
     if (this.toInsertThumbnail !== null) {
-      this.shot.fullScreenThumbnail = this.toInsertThumbnail.url;
+      this.shot.thumbnail = this.toInsertThumbnail.url;
     }
   }
 
   revertShotUrls() {
-    for (let clipId of this.toInsertClipIds) {
-      let data = this.toInsert[clipId];
-      let clip = this.shot.getClip(clipId);
+    for (const clipId of this.toInsertClipIds) {
+      const data = this.toInsert[clipId];
+      const clip = this.shot.getClip(clipId);
       clip.setUrlFromBinary(data.binary);
     }
-    this.shot.fullScreenThumbnail = this.oldFullScreenThumbnail;
+    this.shot.thumbnail = this.oldThumbnail;
   }
 
   clear() {
@@ -713,12 +815,12 @@ ClipRewrites = class ClipRewrites {
   }
 
   commands() {
-    let commands = [];
+    const commands = [];
     if (this.toInsertThumbnail !== null) {
       commands.push({updateThumbnailUrl: this.toInsertThumbnail.url});
     }
-    for (let clipId of this.toInsertClipIds) {
-      let url = this.toInsert[clipId].url;
+    for (const clipId of this.toInsertClipIds) {
+      const url = this.toInsert[clipId].url;
       commands.push({updateClipUrl: {clipId, url}});
     }
     return commands;
@@ -726,14 +828,14 @@ ClipRewrites = class ClipRewrites {
 
   commit(client) {
     let query;
-    let unedited = this.unedited;
+    const unedited = this.unedited;
     if (unedited.length) {
       query = `SELECT id FROM images WHERE shotid = $1
         AND clipid NOT IN (${db.markersForArgs(2, this.unedited.length)})`;
     } else {
       query = `SELECT id FROM images WHERE shotid = $1`;
     }
-    let promise = db.queryWithClient(
+    const promise = db.queryWithClient(
       client,
       query,
       [this.shot.id].concat(this.unedited)
@@ -757,7 +859,7 @@ ClipRewrites = class ClipRewrites {
     return promise.then(() => {
       return Promise.all(
         this.toInsertClipIds.map((clipId) => {
-          let data = this.toInsert[clipId];
+          const data = this.toInsert[clipId];
 
           put(data.uuid, data.binary.data, "image");
 
@@ -785,7 +887,7 @@ ClipRewrites = class ClipRewrites {
         // Use the thumbnail uuid as the clipid. This allows figuring out which
         // images are thumbnails, too.
         [this.toInsertThumbnail.uuid, this.shot.id, this.toInsertThumbnail.uuid,
-        this.toInsertThumbnail.url, this.toInsertThumbnail.contentType, this.toInsertThumbnail.binary.data.length]);
+        this.toInsertThumbnail.url, this.toInsertThumbnail.contentType, this.toInsertThumbnail.binary.length]);
     }).then(() => {
       this.committed = true;
     });
@@ -794,7 +896,7 @@ ClipRewrites = class ClipRewrites {
 };
 
 Shot.cleanDeletedShots = function() {
-  let retention = config.expiredRetentionTime;
+  const retention = config.expiredRetentionTime;
   let imagesDeleted = -1;
   let imagesFailed = 0;
   return db.transaction((client) => {
@@ -812,8 +914,8 @@ Shot.cleanDeletedShots = function() {
       );
     }).then((result) => {
       imagesDeleted = result.rowCount;
-      let promiseMap = {};
-      for (let row of result.rows) {
+      const promiseMap = {};
+      for (const row of result.rows) {
         promiseMap[row.id] = del(row.id);
       }
       return resolveAllPromises(promiseMap);
@@ -837,8 +939,8 @@ Shot.cleanDeletedShots = function() {
           [retention]
         );
       }
-      let idMarkersFrom1 = [];
-      let idMarkersFrom2 = [];
+      const idMarkersFrom1 = [];
+      const idMarkersFrom2 = [];
       for (let i = 0; i < failedIds.length; i++) {
         idMarkersFrom1.push("$" + String(i + 1));
         idMarkersFrom2.push("$" + String(i + 2));
@@ -886,7 +988,7 @@ Shot.cleanDeletedShots = function() {
 };
 
 Shot.upgradeSearch = function() {
-  let batchSize = config.upgradeSearchBatchSize;
+  const batchSize = config.upgradeSearchBatchSize;
   return db.select(
     `SELECT id FROM data
      WHERE searchable_version IS NULL OR searchable_version < $1
@@ -895,7 +997,7 @@ Shot.upgradeSearch = function() {
     `,
     [SEARCHABLE_VERSION, batchSize]).then((rows) => {
       if (!rows.length) {
-        return;
+        return null;
       }
       let index = 0;
       return new Promise((resolve, reject) => {
@@ -906,13 +1008,14 @@ Shot.upgradeSearch = function() {
           Shot.get("upgrade_search_only", rows[index].id).then((shot) => {
             // This shouldn't really happen, but apparently can...
             if (!shot) {
-              return;
+              return null;
             }
             return shot.upgradeSearch();
           }).then(() => {
             index++;
             run();
           }).catch(reject);
+          return null;
         }
         run();
       }).then(() => {
@@ -927,8 +1030,8 @@ Shot.upgradeSearch = function() {
 /** Waits for all the values of mapping to resolve or reject, resolving if everything
     succeeds, or rejecting with a mapping of keys to errors */
 function resolveAllPromises(mapping) {
-  let promises = [];
-  let result = {};
+  const promises = [];
+  const result = {};
   Object.keys(mapping).forEach((key) => {
     promises.push(mapping[key]);
     mapping[key].catch((error) => {

@@ -21,19 +21,10 @@ plugins:
 root: true
 
 rules:
-  react/jsx-uses-react: warn
-  react/jsx-uses-vars: warn
-  react/no-deprecated: warn # TODO: change to "error"
-  react/no-direct-mutation-state: warn # TODO: change to "error"
-  react/no-find-dom-node: warn # TODO: change to "error"
-  react/prop-types: off # TODO: change to "error"
-
-  consistent-return: off # TODO: remove, and default to mozilla/recommended of "error"
-  eqeqeq: off # TODO: change to "error"
+  eqeqeq: error
   no-console: [error, {allow: [debug, error, info, trace, warn]}]
-  no-var: off # TODO: change to "error"
-  prefer-const: off # TODO: change to "error"
-  quotes: [off, double] # TODO: change to "error"
+  no-var: error
+  prefer-const: error
 
   promise/always-return: off
   promise/avoid-new: off

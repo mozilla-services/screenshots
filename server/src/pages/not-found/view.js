@@ -2,6 +2,7 @@ const reactruntime = require("../../reactruntime");
 const { Footer } = require("../../footer-view.js");
 const { Localized } = require("fluent-react/compat");
 const React = require("react");
+const PropTypes = require("prop-types");
 
 class Head extends React.Component {
   render() {
@@ -12,6 +13,10 @@ class Head extends React.Component {
     );
   }
 }
+
+Head.propTypes = {
+  staticLink: PropTypes.func
+};
 
 class Body extends React.Component {
   constructor(props) {
@@ -45,6 +50,11 @@ class Body extends React.Component {
     );
   }
 }
+
+Body.propTypes = {
+  defaultSearch: PropTypes.string,
+  staticLink: PropTypes.func
+};
 
 exports.HeadFactory = React.createFactory(Head);
 exports.BodyFactory = React.createFactory(Body);

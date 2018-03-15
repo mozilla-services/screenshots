@@ -1,9 +1,13 @@
 const express = require("express");
 const reactrender = require("../../reactrender");
 
-let app = express();
+const app = express();
 
 exports.app = app;
+
+app.get("/robots.txt", function(req, res) {
+  res.send("");
+});
 
 app.get("/", function(req, res) {
   const page = require("./page").page;

@@ -2,10 +2,12 @@ require("core-js");
 
 const React = require("react");
 const ReactDOM = require("react-dom");
+const PropTypes = require("prop-types");
 const linker = require("./linker");
 require("fluent-intl-polyfill/compat");
 const { MessageContext } = require("fluent/compat");
 const { LocalizationProvider } = require("fluent-react/compat");
+const { getLocaleMessages } = require("./locale-messages");
 
 function generateMessages(messages, locales) {
   const contexts = [];
@@ -32,6 +34,11 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
       }
     }
 
+    const localeScripts = [];
+    for (const locale of this.props.userLocales) {
+      localeScripts.push(<script key={`l10n-${locale}`} src={this.props.staticLink(`/static/locales/${locale}.js`)} />);
+    }
+
     return (
     <LocalizationProvider messages={generateMessages(this.props.messages, this.props.userLocales)}>
       <head>
@@ -40,9 +47,9 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
         <link rel="shortcut icon" href={this.props.staticLink("/static/img/favicon-32.png")} />
         <link rel="icon" type="image/png" href={this.props.staticLink("/static/img/favicon-16.png")} sizes="16x16"/>
         <link rel="icon" type="image/png" href={this.props.staticLink("/static/img/favicon-32.png")} sizes="32x32"/>
-        <link rel="icon" type="image/png" href={this.props.staticLink("/static/img/favicon-96.png")} sizes="96x96"/>
         { analyticsScript }
         { activationScript }
+        { localeScripts }
         { this.props.sentryPublicDSN ? <script src={this.props.staticLink("/install-raven.js")} async /> : null }
         {this.props.children}
       </head>
@@ -50,6 +57,17 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
     );
   }
 
+};
+
+exports.HeadTemplate.propTypes = {
+  children: PropTypes.node,
+  hashAnalytics: PropTypes.bool,
+  messages: PropTypes.object,
+  noAnalytics: PropTypes.bool,
+  sentryPublicDSN: PropTypes.string,
+  staticLink: PropTypes.func,
+  title: PropTypes.string,
+  userLocales: PropTypes.array
 };
 
 exports.BodyTemplate = class Body extends React.Component {
@@ -66,13 +84,19 @@ exports.BodyTemplate = class Body extends React.Component {
 
 };
 
+exports.BodyTemplate.propTypes = {
+  children: PropTypes.node,
+  messages: PropTypes.object,
+  userLocales: PropTypes.array
+};
+
 exports.Page = class Page {
   constructor(options) {
-    for (let name in options) {
+    for (const name in options) {
       if (!this.ATTRS.includes(name)) {
         throw new Error("Invalid attribute to Page: " + name);
       }
-      let value = options[name];
+      const value = options[name];
       this[name] = value;
     }
   }
@@ -89,20 +113,50 @@ exports.Page = class Page {
   }
 
   render(model) {
+    const renderBody = () => {
+      const body = this.BodyFactory(model);
+      const curTitle = document.title;
+      if (model.title && model.title !== curTitle) {
+        document.title = model.title;
+      }
+      ReactDOM.render(
+        body,
+        document.getElementById("react-body-container"));
+    };
+
+    const tryGetL10nMessages = (locales) => {
+      const successHandler = localeMessages => {
+        model.messages = Object.assign({}, ...localeMessages);
+        renderBody();
+      };
+      const failureHandler = failedLocale => {
+        if (locales.length === 1) {
+          // everything failed at this point. what can we do here?
+          renderBody();
+          return;
+        }
+        const remainingLocales = locales.slice();
+        const failedLocaleIndex = locales.indexOf(failedLocale);
+        remainingLocales.splice(failedLocaleIndex, 1);
+        tryGetL10nMessages(remainingLocales);
+      }
+      getLocaleMessages(locales)
+        .then(successHandler)
+        .catch(failureHandler);
+    };
+
     if (!model.staticLink) {
       linker.setGitRevision(model.gitRevision);
       model.staticLink = linker.staticLink.bind(null, {
         cdn: model.cdn
       });
     }
-    let body = this.BodyFactory(model);
-    let curTitle = document.title;
-    if (model.title && model.title != curTitle) {
-      document.title = model.title;
+
+    if (model.userLocales && model.userLocales.length && !model.messages) {
+      tryGetL10nMessages(model.userLocales);
+    } else {
+      renderBody();
     }
-    ReactDOM.render(
-      body,
-      document.getElementById("react-body-container"));
   }
 
   get dir() {

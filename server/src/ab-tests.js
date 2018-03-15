@@ -1,8 +1,34 @@
+/** A/B test assignment support
+
+This assigns users to tests using the `abTests.updateAbTests(obj)` function
+
+Tests are defined directly in this file, in the `allTests` variable.  A comment
+below shows what these test objects look like.
+*/
 // Note: these get turned into Test objects:
 let allTests = {
+  shotShareIcon: {
+    description: "Use a different share icon",
+    gaField: "cd7",
+    version: 1,
+    options: [
+      {name: "newicon", probability: 0.1}
+    ],
+    exclude: ["*"]
+  },
+  downloadText: {
+    description: "Test the effect of removing the word 'Download' from the download button on the shot page",
+    gaField: "cd9",
+    version: 1,
+    options: [
+      {name: "no-download-text", probability: 0.1}
+    ],
+    exclude: ["*"],
+    appliesToPublic: true
+  }
 };
 
-/* Example of how this could be set (until we have real tests to serve as docs): */
+/* Example of how this could be set: */
 /*
 let allTests = {
   autoOpenSharePanel: {
@@ -13,14 +39,19 @@ let allTests = {
     // this field will be set in the viewers events:
     shotField: "cd4",
     // If you make updates (like add an option) and increment this, then users
-    // who were previously in the control group may get put into a new group:
+    // who were previously excluded may get put into a new group:
     version: 1,
-    // Keep the user in control if they aren't in control in any of these tests:
+    // Exclude the user if they are in any of these tests:
     exclude: ["highlightButtonOnInstall", "myShotsDisplay"],
+    // Or exclude them if they are in any test:
+    // exclude: ["*"],
+    // If you want this A/B test to apply to unauthenticated users:
+    appliesToPublic: true,
     // These are the actual allowed A/B options (control is never specified):
     options: [
       // The name of the option, and its probabilty (e.g., 10% chance of getting
-      // into this group)
+      // into this group). This will cause 5% of people to be in autoopen, 5% of
+      // people to be in control, and 90% to be in exclude:
       {name: "autoopen", probability: 0.1}
     ]
   },
@@ -39,7 +70,8 @@ let allTests = {
     version: 1,
     exclude: ["highlightButtonOnInstall", "autoOpenSharePanel"],
     options: [
-      // Note no one will end up in control in this example:
+      // Note no one will end up in exclude in this example (but 50% will still
+      // be control):
       {name: "intropopup", probability: 0.9},
       {name: "blink", probability: 0.1}
     ]
@@ -49,18 +81,18 @@ let allTests = {
 
 // Any test names listed here will get removed from the A/B tests.  Tests should
 // be moved here once we are uninterested in any future data from the test:
-let deprecatedTests = ['highlightButtonOnInstall', 'styleMyShotsButton', 'autoOpenSharePanel'];
+const deprecatedTests = ["highlightButtonOnInstall", "styleMyShotsButton", "autoOpenSharePanel"];
 
 class Test {
   constructor(options) {
-    let requiredFields = ['name', 'gaField', 'description', 'version', 'options'];
-    let allowedFields = requiredFields.concat(['shotField', 'exclude']);
-    for (let required of requiredFields) {
+    const requiredFields = ["name", "gaField", "description", "version", "options"];
+    const allowedFields = requiredFields.concat(["shotField", "exclude", "appliesToPublic"]);
+    for (const required of requiredFields) {
       if (!(required in options)) {
         throw new Error(`Missing constructor field: ${required}`);
       }
     }
-    for (let found in options) {
+    for (const found in options) {
       if (!allowedFields.includes(found)) {
         throw new Error(`Unexpected constructor field: ${found}`);
       }
@@ -68,7 +100,10 @@ class Test {
     Object.assign(this, options);
   }
 
-  updateTest(tests, forceValue) {
+  updateTest(tests, forceValue, unauthed) {
+    if (unauthed && !this.appliesToPublic) {
+      return;
+    }
     if (forceValue) {
       tests[this.name] = this.testWithValue(forceValue);
     }
@@ -76,26 +111,31 @@ class Test {
       return;
     }
     if (this.shouldExclude(tests)) {
-      tests[this.name] = this.testWithValue("control");
+      tests[this.name] = this.testWithValue("exclude");
     } else {
       let prob = getRandom();
       let setAny = false;
-      for (let option of this.options) {
+      for (const option of this.options) {
         if (prob < option.probability) {
-          tests[this.name] = this.testWithValue(option.name)
+          const controlProb = getRandom();
+          if (controlProb < 0.5) {
+            tests[this.name] = this.testWithValue("control");
+          } else {
+            tests[this.name] = this.testWithValue(option.name)
+          }
           setAny = true;
           break;
         }
         prob -= option.probability;
       }
       if (!setAny) {
-        tests[this.name] = this.testWithValue("control");
+        tests[this.name] = this.testWithValue("exclude");
       }
     }
   }
 
   testWithValue(value) {
-    let result = {value, gaField: this.gaField, version: this.version};
+    const result = {value, gaField: this.gaField, version: this.version};
     if (this.shotField) {
       result.shotField = this.shotField;
     }
@@ -103,9 +143,17 @@ class Test {
   }
 
   shouldExclude(tests) {
-    for (let testName of this.exclude) {
-      if (tests[testName] && tests[testName].value !== "control") {
+    const excludes = this.exclude || [];
+    for (const testName of excludes) {
+      if (tests[testName] && tests[testName].value !== "exclude") {
         return true;
+      }
+    }
+    if (excludes.includes("*")) {
+      for (const testName in tests) {
+        if (testName !== this.name && tests[testName].value !== "exclude") {
+          return true;
+        }
       }
     }
     return false;
@@ -115,11 +163,11 @@ class Test {
 
 /** Update a user's abTests values.
     The optional forceTests looks like {aTests: "forceValue"} */
-exports.updateAbTests = function(tests, forceTests) {
-  for (let testName in allTests) {
-    allTests[testName].updateTest(tests, forceTests && forceTests[testName]);
+exports.updateAbTests = function(tests, forceTests, unauthed) {
+  for (const testName in allTests) {
+    allTests[testName].updateTest(tests, forceTests && forceTests[testName], unauthed);
   }
-  for (let testName of deprecatedTests) {
+  for (const testName of deprecatedTests) {
     if (testName in tests) {
       delete tests[testName];
     }
@@ -135,7 +183,7 @@ exports.setRandomSequenceForTesting = function(seq) {
     if (!Array.isArray(seq)) {
       throw new Error("setRandomSequenceForTesting([]) can only take an Array");
     }
-    for (let i of seq) {
+    for (const i of seq) {
       if (typeof i !== "number" || i < 0 || i >= 1) {
         throw new Error(`Bad item in array: ${JSON.stringify(i)}`);
       }
@@ -153,10 +201,10 @@ exports.setAllTestsForTesting = function(x) {
 };
 
 function setTests(tests) {
-  let seenFields = {};
+  const seenFields = {};
   allTests = {};
-  for (let testName in tests) {
-    let test = new Test(Object.assign({name: testName}, tests[testName]));
+  for (const testName in tests) {
+    const test = new Test(Object.assign({name: testName}, tests[testName]));
     allTests[testName] = test;
     if (seenFields[test.gaField]) {
       throw new Error(`Two tests with field ${test.gaField}`);
@@ -172,14 +220,14 @@ function setTests(tests) {
 }
 
 setTests(allTests);
-let origAllTests = allTests;
+const origAllTests = allTests;
 
 function getRandom() {
   if (randomSeq) {
     if (!randomSeq.length) {
       throw new Error("Ran out of testing random numbers");
     }
-    let next = randomSeq.shift();
+    const next = randomSeq.shift();
     return next;
   }
   return Math.random();
@@ -193,7 +241,7 @@ exports.shotGaFieldForValue = function(testName, testValue) {
     // Silently ignore deprecated tests
     return null;
   }
-  let test = allTests[testName];
+  const test = allTests[testName];
   if (!test) {
     console.error("Test name", testName, "is not known");
     return null;

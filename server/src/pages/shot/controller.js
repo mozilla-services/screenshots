@@ -3,13 +3,61 @@
 const sendEvent = require("../../browser-send-event.js");
 const page = require("./page").page;
 const { AbstractShot } = require("../../../shared/shot");
+const { createThumbnailUrl } = require("../../../shared/thumbnailGenerator");
 const { shotGaFieldForValue } = require("../../ab-tests.js");
 
 // This represents the model we are rendering:
 let model;
 
+const SURVEY_EXPIRATION = new Date("2018-01-15");
+
+function shouldHighlightEditIcon(model) {
+  if (!model.isOwner) {
+    return false;
+  }
+  const hasSeen = localStorage.hasSeenEditButton;
+  if (!hasSeen && model.enableAnnotations) {
+    localStorage.hasSeenEditButton = "1";
+  }
+  return !hasSeen;
+}
+
+function shouldShowSurveyLink(model) {
+  if ((new Date()) > SURVEY_EXPIRATION) {
+    return false;
+  }
+  if (!model.isOwner) {
+    return false;
+  }
+  let foundEnglish = false;
+  // model.userLocales always contains some form of English because it's a server
+  // fallback. But navigator.languages does not have a fallback (except what the
+  // user indicates in their browser preferences)
+  if (model.userLocales[0].startsWith("en")) {
+    foundEnglish = true;
+  }
+  for (const locale of navigator.languages) {
+    if (locale.startsWith("en")) {
+      foundEnglish = true;
+    }
+  }
+  if (!foundEnglish) {
+    return false;
+  }
+  const hasSeen = localStorage.hasSeenSurveyLink;
+  if (!hasSeen) {
+    localStorage.hasSeenSurveyLink = "1";
+  }
+  return !hasSeen;
+}
+
+exports.closeSurveyLink = function() {
+  model.showSurveyLink = false;
+  render();
+};
+
 exports.launch = function(data) {
-  let firstSet = !model;
+  const firstSet = !model;
   model = data;
   if (window.wantsauth) {
     if (window.wantsauth.getAuthData()) {
@@ -31,10 +79,10 @@ exports.launch = function(data) {
   model.shot.deleted = model.deleted;
   model.controller = exports;
   if (model.shot.abTests) {
-    for (let testName in model.shot.abTests) {
-      let testValue = model.shot.abTests[testName];
+    for (const testName in model.shot.abTests) {
+      const testValue = model.shot.abTests[testName];
       if (testValue) {
-        let shotFieldName = shotGaFieldForValue(testName, testValue);
+        const shotFieldName = shotGaFieldForValue(testName, testValue);
         if (shotFieldName && window.abTests) {
           window.abTests[testName + "_shot"] = {
             gaField: shotFieldName,
@@ -44,6 +92,8 @@ exports.launch = function(data) {
       }
     }
   }
+  model.showSurveyLink = shouldShowSurveyLink(model);
+  model.highlightEditButton = shouldHighlightEditIcon(model);
   if (firstSet) {
     refreshHash();
   }
@@ -54,7 +104,7 @@ exports.launch = function(data) {
     throw e;
   }
   // FIXME: copied from frame.js
-  let isExpired = model.expireTime !== null && Date.now() > model.expireTime;
+  const isExpired = model.expireTime !== null && Date.now() > model.expireTime;
   if (model.isOwner) {
     if (isExpired) {
       sendEvent("view-expired", "owner");
@@ -73,15 +123,16 @@ exports.launch = function(data) {
 };
 
 exports.changeShotExpiration = function(shot, expiration) {
-  let wasExpired = model.expireTime !== null && model.expireTime < Date.now();
-  let url = model.backend + "/api/set-expiration";
-  let req = new XMLHttpRequest();
+  const wasExpired = model.expireTime !== null && model.expireTime < Date.now();
+  const url = model.backend + "/api/set-expiration";
+  const req = new XMLHttpRequest();
   req.open("POST", url);
   req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
   req.onload = function() {
     if (req.status >= 300) {
-      let errorMessage = document.getElementById("shotPageAlertErrorUpdatingExpirationTime").textContent;
+      const errorMessage = document.getElementById("shotPageAlertErrorUpdatingExpirationTime").textContent;
       window.alert(errorMessage);
+      window.Raven.captureException(new Error(`Error calling /api/set-expiration: ${req.status} ${req.statusText}`));
     } else {
       if (expiration === 0) {
         model.shot.expireTime = model.expireTime = null;
@@ -100,15 +151,16 @@ exports.changeShotExpiration = function(shot, expiration) {
 };
 
 exports.deleteShot = function(shot) {
-  let url = model.backend + "/api/delete-shot";
-  let req = new XMLHttpRequest();
+  const url = model.backend + "/api/delete-shot";
+  const req = new XMLHttpRequest();
   req.open("POST", url);
   req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
   req.onload = function() {
     if (req.status >= 300) {
       // FIXME: a lame way to do an error message
-      let errorMessage = document.getElementById("shotPageAlertErrorDeletingShot").textContent;
+      const errorMessage = document.getElementById("shotPageAlertErrorDeletingShot").textContent;
       window.alert(errorMessage);
+      window.Raven.captureException(new Error(`Error calling /api/delete-shot: ${req.status} ${req.statusText}`));
     } else {
       location.href = model.backend + "/shots";
     }
@@ -116,39 +168,60 @@ exports.deleteShot = function(shot) {
   req.send(`id=${encodeURIComponent(shot.id)}&_csrf=${encodeURIComponent(model.csrfToken)}`);
 };
 
-exports.saveEdit = function(shot, shotUrl) {
-  var url = model.backend + "/api/save-edit";
-  var body = JSON.stringify({
+exports.saveEdit = function(shot, shotUrl, dimensions) {
+  const url = model.backend + "/api/save-edit";
+  const payload = {
     shotId: shot.id,
     _csrf: model.csrfToken,
-    url: shotUrl
-  });
-  var req = new Request(url, {
-    method: 'POST',
-    credentials: 'include',
-    headers: new Headers({
-      'content-type': 'application/json'
-    }),
-    body
-  });
-  return fetch(req).then((resp) => {
-    if (!resp.ok) {
-      var errorMessage = "Error saving edited shot";
+    url: shotUrl,
+    x: dimensions.x,
+    y: dimensions.y
+  };
+
+  const postWith = body => {
+    const req = new Request(url, {
+      method: "POST",
+      credentials: "include",
+      headers: new Headers({
+        "content-type": "application/json"
+      }),
+      body
+    });
+    return fetch(req).then((resp) => {
+      if (!resp.ok) {
+        const errorMessage = "Error saving edited shot";
+        window.alert(errorMessage);
+        window.Raven.captureException(new Error(`Error calling /api/save-edit: ${req.status} ${req.statusText}`));
+      } else {
+        location.reload();
+      }
+    }).catch((error) => {
+      const errorMessage = "Connection error";
       window.alert(errorMessage);
-    } else {
-      location.reload();
-    }
-  }).catch((error) => {
-    window.alert("Connection error");
-    throw error;
+      window.Raven.captureException(error);
+      throw error;
+    });
+  }
+
+  const image = shot.getClip(shot.clipNames()[0]).image;
+
+  image.url = shotUrl;
+  image.dimensions.x = dimensions.x;
+  image.dimensions.y = dimensions.y;
+
+  createThumbnailUrl(shot).then(thumbnail => {
+    payload.thumbnail = thumbnail;
+    return postWith(JSON.stringify(payload));
+  }).catch(() => {
+    return postWith(JSON.stringify(payload));
   });
 }
 
 function refreshHash() {
   if (location.hash === "#fullpage") {
-    let frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
-    let toolbarHeight = document.getElementById("toolbar").clientHeight;
-    let frameTop = frameOffset - (toolbarHeight * 2);
+    const frameOffset = document.getElementById("frame").getBoundingClientRect().top + window.scrollY;
+    const toolbarHeight = document.getElementById("toolbar").clientHeight;
+    const frameTop = frameOffset - (toolbarHeight * 2);
     window.scroll(0, frameTop);
     return;
   }
@@ -172,19 +245,19 @@ function refreshHash() {
 }
 
 function sendShowElement(clipId) {
-  let frame = document.getElementById("frame");
+  const frame = document.getElementById("frame");
   if (!frame) {
     return;
   }
   let postMessage;
   if (clipId) {
-    let clip = model.shot.getClip(clipId);
+    const clip = model.shot.getClip(clipId);
     if (!clip) {
       throw new Error("Could not find clip with id " + clipId);
     }
     postMessage = {
       type: "displayClip",
-      clip: clip.asJson()
+      clip: clip.toJSON()
     };
   } else {
     postMessage = {
@@ -203,12 +276,13 @@ function sendShowElement(clipId) {
 
 exports.setTitle = function(title) {
   title = title || null;
-  let url = model.backend + "/api/set-title/" + model.shot.id;
-  let req = new XMLHttpRequest();
+  const url = model.backend + "/api/set-title/" + model.shot.id;
+  const req = new XMLHttpRequest();
   req.onload = function() {
     if (req.status >= 300) {
-      let errorMessage = document.getElementById("shotPageAlertErrorUpdatingTitle").textContent;
+      const errorMessage = document.getElementById("shotPageAlertErrorUpdatingTitle").textContent;
       window.alert(errorMessage);
+      window.Raven.captureException(new Error(`Error calling /api/set-title: ${req.status} ${req.statusText}`));
       return;
     }
     model.shot.userTitle = title;

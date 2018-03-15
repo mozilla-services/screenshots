@@ -6,7 +6,7 @@ const envc = require("envc");
 // files as a side effect. See `https://npmjs.org/envc` for more info.
 envc({booleans: true});
 
-var conf = convict({
+const conf = convict({
   port: {
     doc: "The Screenshots server port",
     format: "port",
@@ -41,6 +41,20 @@ var conf = convict({
     default: false,
     env: "LOCALHOST_SSL",
     arg: "localhost-ssl"
+  },
+  pngToJpegCutoff: {
+    doc: "The limit at which a PNG is converted to a JPEG during an edit save, in bytes.  It should match the setting in the addon",
+    format: "int",
+    default: 2500000,
+    env: "PNG_TO_JPEG_CUTOFF",
+    arg: "pngToJpegCutoff"
+  },
+  requestBodySizeLimit: {
+    doc: "The maximum allowed body size of a request.  It needs to be a format that the 'bytes' node module accepts",
+    format: String,
+    default: "25mb",
+    env: "REQUEST_BODY_SIZE_LIMIT",
+    arg: "requestBodySizeLimit"
   },
   useS3: {
     doc: "If true, store files in s3. If false, store them locally",
@@ -128,6 +142,29 @@ var conf = convict({
       default: 50,
       env: "LOG_QUERY_LIMIT",
       arg: "log-query-limit"
+    },
+    pool: {
+      connectionTimeoutMillis: {
+        doc: "Number of milliseconds to wait before timing out when connecting a new db client",
+        format: "int",
+        default: 5000,
+        env: "PG_POOL_CLIENT_TIMEOUT",
+        arg: "pg-pool-client-timeout"
+      },
+      idleTimeoutMillis: {
+        doc: "Number of milliseconds of idle before a db client is disconnected",
+        format: "int",
+        default: 10000,
+        env: "PG_POOL_CLIENT_IDLE",
+        arg: "pg-pool-client-idle"
+      },
+      max: {
+        doc: "Maximum number of clients in the connection pool",
+        format: "int",
+        default: 10,
+        env: "PG_POOL_CLIENT_LIMTI",
+        arg: "pg-pool-client-limit"
+      }
     }
   },
   gaId: {
@@ -275,12 +312,19 @@ var conf = convict({
     env: "DISABLE_SEARCH",
     arg: "disable-search"
   },
-  cdn: {
-    doc: "CDN URL prefix, e.g. 'https://somecdn.com/mysite'; links will be rewritten as https://somecdn.com/mysite/static/style.css",
+  siteCdn: {
+    doc: "CDN URL prefix for site assets, e.g. 'https://somecdn.com/mysite'; links will be rewritten as 'https://somecdn.com/mysite/static/style.css'",
     format: String,
     default: "",
-    env: "CDN",
-    arg: "cdn"
+    env: "SITE_CDN",
+    arg: "siteCdn"
+  },
+  contentCdn: {
+    doc: "CDN URL prefix for content, e.g. 'https://contentz.fast.io'; links will be rewritten as 'https://contentz.fast.io/allthebytes.png",
+    format: String,
+    default: "",
+    env: "CONTENT_CDN",
+    arg: "contentCdn"
   },
   enableUserSettings: {
     doc: "If true, the user can see the settings page and connect their device to their firefox account",
@@ -293,8 +337,15 @@ var conf = convict({
     doc: "If true, then disable shot annotations",
     format: Boolean,
     default: false,
-    env: "ENBALE_ANNOTATIONS",
+    env: "ENABLE_ANNOTATIONS",
     arg: "enable-annotations"
+  },
+  enableCoverage: {
+    doc: "If true, then enable istanbul coverage middleware.",
+    format: Boolean,
+    default: false,
+    env: "ENABLE_COVERAGE",
+    arg: "enable-coverage"
   }
 });
 

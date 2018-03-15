@@ -1,5 +1,6 @@
 /* globals controller */
 const React = require("react");
+const PropTypes = require("prop-types");
 const { Localized } = require("fluent-react/compat");
 const { Footer } = require("../../footer-view");
 const sendEvent = require("../../browser-send-event.js");
@@ -7,6 +8,7 @@ const { ShareButton } = require("../../share-buttons");
 const { TimeDiff } = require("./time-diff");
 const reactruntime = require("../../reactruntime");
 const { Editor } = require("./editor");
+const { isValidClipImageUrl } = require("../../../shared/shot");
 
 class Clip extends React.Component {
   constructor(props) {
@@ -15,9 +17,9 @@ class Clip extends React.Component {
 
   componentDidMount() {
     // TODO: how can we resize nicely if JS is disabled? maybe CSS?
-    let image = this.clipImage;
-    let onResize = () => {
-      let windowHeight = window.innerHeight;
+    const image = this.clipImage;
+    const onResize = () => {
+      const windowHeight = window.innerHeight;
       let paddingTop = Math.floor((windowHeight - image.height - 35) / 2);
       if (paddingTop < 66) {
         paddingTop = 66;
@@ -31,12 +33,15 @@ class Clip extends React.Component {
   }
 
   render() {
-    let clip = this.props.clip;
+    const clip = this.props.clip;
     if (!clip.image) {
       console.warn("Somehow there's a shot without an image");
       return null;
     }
-    let node = <img id="clipImage" style={{height: "auto", width: clip.image.dimensions.x + "px", maxWidth: "100%" }} ref={clipImage => this.clipImage = clipImage} src={ clip.image.url } alt={ clip.image.text } />;
+    if (!isValidClipImageUrl(clip.image.url)) {
+      return null;
+    }
+    const node = <img id="clipImage" style={{height: "auto", width: Math.floor(clip.image.dimensions.x) + "px", maxWidth: "100%" }} ref={clipImage => this.clipImage = clipImage} src={ clip.image.url } alt={ clip.image.text } />;
     return <div ref={clipContainer => this.clipContainer = clipContainer} className="clip-container">
       { this.copyTextContextMenu() }
       <a href={ clip.image.url } onClick={ this.onClickClip.bind(this) } contextMenu="clip-image-context">
@@ -65,8 +70,8 @@ class Clip extends React.Component {
 
   copyImageText() {
     sendEvent("copy-image-text", "context-menu");
-    let text = this.props.clip.image.text;
-    let el = document.createElement("textarea");
+    const text = this.props.clip.image.text;
+    const el = document.createElement("textarea");
     el.value = text;
     document.body.appendChild(el);
     el.select();
@@ -75,10 +80,13 @@ class Clip extends React.Component {
   }
 }
 
+Clip.propTypes = {
+  clip: PropTypes.object
+};
 
 class Head extends React.Component {
   render() {
-    let expired = this.props.expireTime !== null && Date.now() > this.props.expireTime;
+    const expired = this.props.expireTime !== null && Date.now() > this.props.expireTime;
     if (expired) {
       return (
         <reactruntime.HeadTemplate {...this.props}>
@@ -95,6 +103,7 @@ class Head extends React.Component {
       <reactruntime.HeadTemplate {...this.props}>
         <script src={ this.props.staticLink("/static/js/wantsauth.js") } />
         <script src={ this.props.staticLink("/static/js/shot-bundle.js") } async />
+        <link rel="stylesheet" href={ this.props.staticLink("/static/css/inline-selection.css") } />
         <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="alternate" type="application/json+oembed" href={this.props.shot.oembedUrl} title={`${this.props.shot.title} oEmbed`} />
@@ -107,24 +116,24 @@ class Head extends React.Component {
     if (!this.props.shot) {
       return null;
     }
-    let title = (this.props.shot.openGraph && this.props.shot.openGraph.title) ||
+    const title = (this.props.shot.openGraph && this.props.shot.openGraph.title) ||
       (this.props.shot.twitterCard && this.props.shot.twitterCard.title) ||
       this.props.shot.title;
-    let og = [
+    const og = [
       <meta property="og:type" content="website" key="ogtype" />,
       <meta property="og:title" content={title} key="ogtitle" />
     ];
-    let twitter = [
+    const twitter = [
       <meta name="twitter:card" content="summary_large_image" key="twittercard" />,
       <meta name="twitter:title" content={title} key="twitterTitle" />
     ];
 
-    for (let clipId of this.props.shot.clipNames()) {
-      let clip = this.props.shot.getClip(clipId);
+    for (const clipId of this.props.shot.clipNames()) {
+      const clip = this.props.shot.getClip(clipId);
       if (!clip.image) {
         continue;
       }
-      let text = `From ${this.props.shot.urlDisplay}`;
+      const text = `From ${this.props.shot.urlDisplay}`;
       og.push(<meta key={ `ogimage${clipId}` } property="og:image" content={this.makeEmbeddedImageUrl(clip.image.url, "og")} />);
       og.push(<meta key={ `ogdescription${clipId}` } property="og:description" content={text} />);
       twitter.push(<meta key={ `twitterimage${clipId}` } name="twitter:image" content={this.makeEmbeddedImageUrl(clip.image.url, "twitter")} />);
@@ -139,10 +148,13 @@ class Head extends React.Component {
   }
 
   makeEmbeddedImageUrl(url, type) {
+    if (!isValidClipImageUrl(url)) {
+      return "";
+    }
     if (!url.startsWith("http")) {
       return url;
     }
-    if (url.indexOf("?") == -1) {
+    if (url.indexOf("?") === -1) {
       url += "?";
     } else {
       url += "&";
@@ -151,6 +163,12 @@ class Head extends React.Component {
     return url;
   }
 }
+
+Head.propTypes = {
+  expireTime: PropTypes.number,
+  shot: PropTypes.object,
+  staticLink: PropTypes.func
+};
 
 class Body extends React.Component {
   constructor(props) {
@@ -180,11 +198,11 @@ class Body extends React.Component {
 
   onClickFlag(e) {
     sendEvent("start-flag", "navbar", {useBeacon: true});
-    window.open(`mailto:screenshots-report@mozilla.com?subject=Flagging%20shot%20for%20abuse&body=Flagging%20shot%20for%20abuse:%20${encodeURIComponent(this.props.shot.viewUrl)}`);
+    window.open(`https://qsurvey.mozilla.com/s3/screenshots-flagged-shots?ref=${this.props.id}`);
   }
 
   render() {
-    if (this.props.blockType !== 'none') {
+    if (this.props.blockType !== "none") {
       return this.renderBlock();
     }
     if (this.props.expireTime !== null && Date.now() > this.props.expireTime) {
@@ -197,11 +215,11 @@ class Body extends React.Component {
   }
 
   renderEditor() {
-    let shot = this.props.shot;
-    let clipNames = shot.clipNames();
-    let clip = shot.getClip(clipNames[0]);
+    const shot = this.props.shot;
+    const clipNames = shot.clipNames();
+    const clip = shot.getClip(clipNames[0]);
     return <reactruntime.BodyTemplate {...this.props}>
-        <Editor clip={clip} onCancelEdit={this.onCancelEdit.bind(this)} onClickSave={this.onClickSave.bind(this)}></Editor>
+        <Editor clip={clip} pngToJpegCutoff={this.props.pngToJpegCutoff} onCancelEdit={this.onCancelEdit.bind(this)} onClickSave={this.onClickSave.bind(this)}></Editor>
     </reactruntime.BodyTemplate>;
   }
 
@@ -210,7 +228,7 @@ class Body extends React.Component {
     let moreInfo = null;
     const dmca = <a href="mailto:dmcanotice@mozilla.com">dmcanotice@mozilla.com</a>;
     const url = `${this.props.backend}/${this.props.id}`;
-    if (this.props.blockType === 'dmca') {
+    if (this.props.blockType === "dmca") {
       if (this.props.isOwner) {
         message = (
           <Localized id="shotPageDMCAMessage">
@@ -249,10 +267,10 @@ class Body extends React.Component {
 
   renderExpired() {
     let expireTime = this.props.expireTime;
-    if (typeof expireTime != "number") {
+    if (typeof expireTime !== "number") {
       expireTime = expireTime.getTime();
     }
-    let deleteTime = new Date(expireTime + this.props.retentionTime);
+    const deleteTime = new Date(expireTime + this.props.retentionTime);
     let restoreWidget;
     const expirationTimeDiff = <TimeDiff date={deleteTime} />;
     const restoreDate = new Date(Date.now() + this.props.defaultExpiration).toLocaleString();
@@ -291,14 +309,14 @@ class Body extends React.Component {
   }
 
   renderBody() {
-    let shot = this.props.shot;
-    let shotId = this.props.shot.id;
+    const shot = this.props.shot;
+    const shotId = this.props.shot.id;
 
-    let clips = [];
-    let clipNames = shot.clipNames();
+    const clips = [];
+    const clipNames = shot.clipNames();
     if (clipNames.length && !this.state.hidden) {
-      let clipId = clipNames[0];
-      let clip = shot.getClip(clipId);
+      const clipId = clipNames[0];
+      const clip = shot.getClip(clipId);
 
       clips.push(<Clip
         staticLink={this.props.staticLink}
@@ -307,16 +325,16 @@ class Body extends React.Component {
         shotId={ shotId } />);
     }
 
-    let errorMessages = [
-      <Localized id="shotPageAlertErrorUpdatingExpirationTime" key="error-1"><div id="shotPageAlertErrorUpdatingExpirationTime" hidden></div></Localized>,
-      <Localized id="shotPageAlertErrorDeletingShot" key="error-2"><div id="shotPageAlertErrorDeletingShot" hidden></div></Localized>,
-      <Localized id="shotPageAlertErrorUpdatingTitle" key="error-3"><div id="shotPageAlertErrorUpdatingTitle" hidden></div></Localized>,
+    const errorMessages = [
+      <Localized id="shotPageAlertErrorUpdatingExpirationTime" key="error-1"><div id="shotPageAlertErrorUpdatingExpirationTime" className="clips-warning" hidden></div></Localized>,
+      <Localized id="shotPageAlertErrorDeletingShot" key="error-2"><div id="shotPageAlertErrorDeletingShot" className="clips-warning" hidden></div></Localized>,
+      <Localized id="shotPageAlertErrorUpdatingTitle" key="error-3"><div id="shotPageAlertErrorUpdatingTitle" className="clips-warning" hidden></div></Localized>,
       <Localized id="shotPageConfirmDelete" key="error-4"><div id="shotPageConfirmDelete" hidden></div></Localized>
     ];
 
-    let linkTextShort = shot.urlDisplay;
+    const linkTextShort = shot.urlDisplay;
 
-    let timeDiff = <TimeDiff date={shot.createdDate} />;
+    const timeDiff = <TimeDiff date={shot.createdDate} userLocales={this.props.userLocales} />;
     let expiresDiff = null;
     if (this.props.isOwner) {
       expiresDiff = <span className="expire-widget">
@@ -329,11 +347,12 @@ class Body extends React.Component {
 
     let trashOrFlagButton;
     let editButton;
+    const highlight = this.props.highlightEditButton ? <div className="edit-highlight" onClick={ this.onClickEdit.bind(this) } onMouseOver={ this.onMouseOverHighlight.bind(this) } onMouseOut={ this.onMouseOutHighlight.bind(this) }></div> : null;
     if (this.props.isOwner) {
       trashOrFlagButton = <Localized id="shotPageDeleteButton">
         <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }></button>
       </Localized>;
-      editButton = <button className="button transparent edit" title="Edit this image" onClick={ this.onClickEdit.bind(this) }></button>
+      editButton = <button className="button transparent edit" title="Edit this image" onClick={ this.onClickEdit.bind(this) } ref={(edit) => { this.editButton = edit }}></button>
     } else {
       trashOrFlagButton = <Localized id="shotPageAbuseButton">
         <button className="button transparent flag" title="Report this shot for abuse, spam, or other problems" onClick={ this.onClickFlag.bind(this) }></button>
@@ -359,9 +378,12 @@ class Body extends React.Component {
     let clip;
     let clipUrl = null;
     if (clipNames.length) {
-      let clipId = clipNames[0];
+      const clipId = clipNames[0];
       clip = this.props.shot.getClip(clipId);
       clipUrl = clip.image.url;
+      if (!isValidClipImageUrl(clipUrl)) {
+        clipUrl = "";
+      }
     }
 
     let renderGetFirefox = this.props.userAgent && (this.props.userAgent + "").search(/firefox\/\d{1,255}/i) === -1;
@@ -376,8 +398,8 @@ class Body extends React.Component {
       favicon = <div style={{backgroundImage: `url("${shot.favicon}")`}} className="favicon" />;
     }
 
-    const shotPageDownload = <Localized id="shotPageDownload"><span className="download-text">Download</span></Localized>;
-
+    const noText = this.props.abTests && this.props.abTests.downloadText
+                   && this.props.abTests.downloadText.value === "no-download-text";
     return (
       <reactruntime.BodyTemplate {...this.props}>
         { renderGetFirefox ? this.renderFirefoxRequired() : null }
@@ -396,23 +418,48 @@ class Body extends React.Component {
             </div>
           </div>
           <div className="shot-alt-actions">
-            { this.props.enableAnnotations ? editButton : null }
             { trashOrFlagButton }
+            { this.props.enableAnnotations ? editButton : null }
+            { highlight }
             <ShareButton abTests={this.props.abTests} clipUrl={clipUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} renderExtensionNotification={renderExtensionNotification} isExtInstalled={this.props.isExtInstalled} />
             <Localized id="shotPageDownloadShot">
               <a className="button primary" href={ this.props.downloadUrl } onClick={ this.onClickDownload.bind(this) }
                 title="Download the shot image">
-                <img src={ this.props.staticLink("/static/img/download-white.svg") } width="20" height="20"/>&nbsp;
-                {shotPageDownload}
+                <img id="downloadIcon" style={noText ? {marginRight: "0"} : {}}
+                    src={this.props.staticLink("/static/img/download-white.svg")}
+                    width="20" height="20" />
+                { !noText &&
+                    <Localized id="shotPageDownload"><span className="download-text">Download</span></Localized> }
               </a>
             </Localized>
           </div>
         </div>
-        { clips }
-        { errorMessages }
+        <section className="clips">
+          { this.props.isOwner && this.props.loginFailed ? <LoginFailedWarning /> : null }
+          { errorMessages }
+          { this.props.showSurveyLink ? this.renderSurveyLink() : null }
+          { clips }
+        </section>
         <Footer forUrl={ shot.viewUrl } {...this.props} />
       </div>
     </reactruntime.BodyTemplate>);
+  }
+
+  onMouseOverHighlight() {
+    this.editButton.style.backgroundColor = "#ededf0";
+  }
+
+  onMouseOutHighlight() {
+    this.editButton.style.backgroundColor = "transparent";
+  }
+
+  renderSurveyLink() {
+    return <div className="clips-message">
+      <div className="clip-message-content">Help us choose which features to add next by taking this <a href="https://qsurvey.mozilla.com/s3/ss-max-diff-q4-2017" target="_blank" rel="noopener noreferrer">quick survey</a>.</div>
+      <div className="clip-message-dismiss-wrapper" onClick={controller.closeSurveyLink}>
+        <div className="clip-message-dismiss" />
+      </div>
+    </div>
   }
 
   renderFirefoxRequired() {
@@ -423,7 +470,7 @@ class Body extends React.Component {
         </Localized>
         &nbsp;
         <Localized id="shotPageUpsellFirefox">
-          <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition&utm-content=from-shot" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a>
+          <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition&utm_content=from-shot" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a>
         </Localized>
       </div>
       <a className="close" onClick={ this.doCloseBanner.bind(this) }></a>
@@ -437,8 +484,8 @@ class Body extends React.Component {
     }
   }
 
-  onClickSave(dataUrl) {
-    this.props.controller.saveEdit(this.props.shot, dataUrl);
+  onClickSave(dataUrl, dimensions) {
+    this.props.controller.saveEdit(this.props.shot, dataUrl, dimensions);
   }
 
   onCancelEdit(imageEditing) {
@@ -500,6 +547,30 @@ class Body extends React.Component {
 
 }
 
+Body.propTypes = {
+  abTests: PropTypes.object,
+  backend: PropTypes.string,
+  blockType: PropTypes.string,
+  controller: PropTypes.object,
+  defaultExpiration: PropTypes.number,
+  downloadUrl: PropTypes.string,
+  enableAnnotations: PropTypes.bool,
+  expireTime: PropTypes.number,
+  highlightEditButton: PropTypes.bool,
+  id: PropTypes.string,
+  isExtInstalled: PropTypes.bool,
+  isMobile: PropTypes.bool,
+  isOwner: PropTypes.bool,
+  loginFailed: PropTypes.bool,
+  pngToJpegCutoff: PropTypes.number,
+  retentionTime: PropTypes.number,
+  showSurveyLink: PropTypes.bool,
+  shot: PropTypes.object,
+  staticLink: PropTypes.func,
+  userAgent: PropTypes.string,
+  userLocales: PropTypes.array
+};
+
 class ExpireWidget extends React.Component {
 
   constructor(props) {
@@ -515,15 +586,15 @@ class ExpireWidget extends React.Component {
   }
 
   renderChanging() {
-    let minute = 60 * 1000;
-    let hour = minute * 60;
-    let day = hour * 24;
+    const minute = 60 * 1000;
+    const hour = minute * 60;
+    const day = hour * 24;
     return (
       <span className="keep-for-form">
         <Localized id="shotPageKeepFor"><span>How long should this shot be retained?</span></Localized>
         <select ref={expireTime => this.expireTime = expireTime}>
           <Localized id="shotPageSelectTime"><option value="cancel">Select time</option></Localized>
-          <Localized id="shotPageKeepIndefinitely"><option value="0">Indefinitely</option></Localized>
+          <Localized id="shotPageKeepIndefinitelyWithSymbol"><option value="0">Indefinitely &infin;</option></Localized>
           <Localized id="shotPageKeepTenMinutes"><option value={ 10 * minute }>10 Minutes</option></Localized>
           <Localized id="shotPageKeepOneHour"><option value={ hour }>1 Hour</option></Localized>
           <Localized id="shotPageKeepOneDay"><option value={ day }>1 Day</option></Localized>
@@ -583,6 +654,13 @@ class ExpireWidget extends React.Component {
   }
 }
 
+ExpireWidget.propTypes = {
+  expireTime: PropTypes.number,
+  onChanging: PropTypes.func,
+  onSaveExpire: PropTypes.func,
+  simple: PropTypes.bool
+};
+
 class EditableTitle extends React.Component {
 
   constructor(props) {
@@ -602,7 +680,7 @@ class EditableTitle extends React.Component {
       return this.renderEditing();
     }
     let className = "shot-title";
-    let handlers = {};
+    const handlers = {};
     if (this.props.isOwner) {
       className += " editable";
       handlers.onClick = this.onClick.bind(this);
@@ -631,17 +709,32 @@ class EditableTitle extends React.Component {
   }
 
   onExit() {
-    let val = this.textInput.value;
+    const val = this.textInput.value;
     controller.setTitle(val);
     this.setState({isEditing: false, isSaving: val});
   }
 
   onKeyUp(event) {
-    if ((event.key || event.code) == "Escape") {
+    if ((event.key || event.code) === "Escape") {
       this.setState({isEditing: false});
     }
   }
 
+}
+
+EditableTitle.propTypes = {
+  isOwner: PropTypes.bool,
+  title: PropTypes.string
+};
+
+class LoginFailedWarning extends React.Component {
+  render() {
+    return <Localized id="errorThirdPartyCookiesEnabled">
+      <div className="clips-warning">
+        If you took this shot and cannot delete it, you may need to temporarily enable third party cookies from your browser’s preferences!!
+      </div>
+    </Localized>;
+  }
 }
 
 exports.BodyFactory = React.createFactory(Body);

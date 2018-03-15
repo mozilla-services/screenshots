@@ -1,0 +1,3 @@
+# flod as main contact for string changes - TODO: find more to spread the effort
+locales/en-US/*.ftl @flodolo
+locales/en-US/*.properties @flodolo

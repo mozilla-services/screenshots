@@ -4,6 +4,8 @@ import clientlib
 import time
 import atexit
 from sarge import Capture, run
+import pytest
+pytestmark = pytest.mark.slow
 
 SERVER_URL = "http://localhost:10180"
 
