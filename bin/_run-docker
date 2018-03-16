@@ -2,6 +2,7 @@
 
 export USE_S3=true
 export USE_VIRTUAL_HOSTS=true
+export NODE_ICU_DATA="/app/node_modules/full-icu"
 
 export PATH="/app/node_modules/.bin:$PATH"
 
