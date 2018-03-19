@@ -15,7 +15,7 @@ const firefox = require("selenium-webdriver/firefox");
 const webdriver = require("selenium-webdriver");
 const { By, until } = webdriver;
 // Uncomment the next line and others with `ServiceBuilder` to enable trace logs from Firefox and Geckodriver
-// const { ServiceBuilder } = firefox;
+const { ServiceBuilder } = firefox;
 const path = require("path");
 const fs = require("fs");
 const util = require("util");
@@ -38,7 +38,7 @@ function getDriver() {
     throw new Error(`Unknown channel: "${channel}"`);
   }
 
-  // const servicebuilder = new ServiceBuilder().enableVerboseLogging(true).setStdio("inherit");
+  const servicebuilder = new ServiceBuilder().enableVerboseLogging(true).setStdio("inherit");
 
   const options = new firefox.Options()
     .setBinary(firefox.Channel[channel])
@@ -50,7 +50,7 @@ function getDriver() {
   // FIXME: should assert somehow that we have Firefox 54+
 
   const driver = new webdriver.Builder()
-    // .setFirefoxService(servicebuilder)
+    .setFirefoxService(servicebuilder)
     .withCapabilities({"moz:webdriverClick": true})
     .forBrowser("firefox")
     .setFirefoxOptions(options)
