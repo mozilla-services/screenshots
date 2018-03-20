@@ -610,6 +610,7 @@ exports.Editor = class Editor extends React.Component {
     drawMousedown = false;
     points = [];
     if (this.state.tool === "highlighter") {
+      sendEvent("draw", "highlight");
       if (this.isColorWhite(this.state.color)) {
         this.imageContext.globalCompositeOperation = "soft-light";
       } else {
@@ -617,6 +618,8 @@ exports.Editor = class Editor extends React.Component {
       }
       this.imageContext.drawImage(this.highlighter, 0, 0);
       this.highlightContext.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
+    } else {
+      sendEvent("draw", "pen");
     }
   }
 
