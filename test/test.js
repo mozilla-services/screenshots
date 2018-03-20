@@ -10,6 +10,16 @@ NO_CLOSE = if not empty then when the test is finished, the browser will not be 
 
 */
 
+const backend = process.env.SCREENSHOTS_BACKEND || "http://localhost:10080";
+const { URL } = require("url");
+let backendUrl;
+
+try {
+  backendUrl = new URL(backend);
+} catch (e) {
+  throw new Error(`SCREENSHOTS_BACKEND is not a valid URL: ${e.message}`);
+}
+
 const assert = require("assert");
 const firefox = require("selenium-webdriver/firefox");
 const webdriver = require("selenium-webdriver");
@@ -28,7 +38,6 @@ const SLIDE_IFRAME_ID = "firefox-screenshots-onboarding-iframe";
 const PRESELECTION_IFRAME_ID = "firefox-screenshots-preselection-iframe";
 const SELECTION_IFRAME_ID = "firefox-screenshots-selection-iframe";
 const PREVIEW_IFRAME_ID = "firefox-screenshots-preview-iframe";
-const backend = "http://localhost:10080";
 const addonFileLocation = path.join(process.cwd(), "build", "screenshots-bootstrap.zip");
 const downloadDir = path.join(process.cwd(), "test", "addon", ".artifacts");
 
@@ -182,6 +191,14 @@ function expectCreatedShot(driver, creator) {
   });
 }
 
+function verifyShotUrl(shotUrl) {
+  assert(shotUrl.startsWith(backend), `Got url ${shotUrl} that doesn't start with ${backend}`);
+  const url = new URL(shotUrl);
+  if (!url.pathname.endsWith(backendUrl.hostname)) {
+    throw new Error(`Unexpected URL: ${shotUrl}`);
+  }
+}
+
 describe("Test Screenshots", function() {
   this.timeout(120000);
   let driver;
@@ -258,11 +275,7 @@ describe("Test Screenshots", function() {
         saveButton.click();
       });
     }).then((shotUrl) => {
-      assert(shotUrl.startsWith(backend), `Got url ${shotUrl} that doesn't start with ${backend}`);
-      const restUrl = shotUrl.substr(backend.length);
-      if (!/^\/[^/]+\/localhost$/.test(restUrl)) {
-        throw new Error(`Unexpected URL: ${shotUrl}`);
-      }
+      verifyShotUrl(shotUrl);
       done();
     }).catch(done);
   });
@@ -276,11 +289,7 @@ describe("Test Screenshots", function() {
         saveButton.click();
       });
     }).then((shotUrl) => {
-      assert(shotUrl.startsWith(backend), `Got url ${shotUrl} that doesn't start with ${backend}`);
-      const restUrl = shotUrl.substr(backend.length);
-      if (!/^\/[^/]+\/localhost$/.test(restUrl)) {
-        throw new Error(`Unexpected URL: ${shotUrl}`);
-      }
+      verifyShotUrl(shotUrl);
       done();
     }).catch(done);
   });
