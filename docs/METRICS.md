@@ -389,6 +389,8 @@ The hashed page ID (`{hash}`) is a simple SHA1(path), with no additional randomn
 9. [x] Click on clear tool: `web/clear-select/annotation-toolbar`
 8. [x] Open color picker: `web/color-picker-select/annotation-toolbar`
 9. [x] Select a color from the color board: `web/color-change/annotation-color-board`
+7. [x] Use pen tool: `web/draw/pen`
+8. [x] Use highlight tool: `web/draw/highlight`
 
 
 #### General Google Analytics information
