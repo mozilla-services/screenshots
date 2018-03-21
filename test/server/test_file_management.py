@@ -124,6 +124,7 @@ server = None
 server_out = None
 server_options = None
 
+
 def restart_server(**extra_env):
     global server, server_out, server_options
     for key in extra_env:
@@ -150,7 +151,7 @@ def restart_server(**extra_env):
     print('  Starting server%s' % env_print)
     server = run('./bin/run-server --no-auto', cwd=project_base, env=env, stdout=server_out, async=True)
     server_options = extra_env
-    time.sleep(1)
+    time.sleep(3)
     text = []
     while True:
         if server.commands[0].process and server.commands[0].poll():
@@ -163,7 +164,7 @@ def restart_server(**extra_env):
         line = server_out.readline()
         if line:
             text.append(line)
-        if 'updated-metrics' in line:
+        if 'Database is now at level' in line:
             # Last log message before the server is running
             break
     print("  Server started")

@@ -926,6 +926,7 @@ Shot.cleanDeletedShots = function() {
       return Object.keys(delFailed);
     }).then((failedIds) => {
       imagesFailed = failedIds.length;
+      imagesDeleted -= imagesFailed;
       if (!failedIds.length) {
         return db.queryWithClient(
           client,
