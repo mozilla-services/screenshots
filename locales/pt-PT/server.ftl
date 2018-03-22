@@ -48,7 +48,7 @@ homePageGetStartedDescription = Encontre o novo ícone do Screenshots na sua bar
 homePageGetStartedDescriptionPageAction = Selecione o ícone do Screenshots a partir do menu de ações da página na barra de endereço e o menu do Screenshots irá aparecer por cima da janela do seu navegador.
 homePageCaptureRegion = Capturar uma região
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar ou paire e clique — O Screenshots irá selecionar a área por si. Gosta do que está a ver? Selecione Guardar para aceder à sua captura de ecrã na Internet ou no botão de seta para baixo para a transferir para o seu computador.
+homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar ou paire e clique — O Screenshots irá selecionar a área por si. Gosta do que está a ver? Selecione Guardar para aceder à sua captura de ecrã na Internet ou no botão de seta para baixo para a descarregar para o seu computador.
 homePageCapturePage = Capturar uma página
 homePageCapturePageDescription = Utilize os botões no canto superior direito para capturar páginas inteiras. O botão Guardar visível irá capturar a área que pode ver sem deslocar e Guardar página inteira irá capturar tudo na página.
 homePageSaveShare = Guardar e partilhar
@@ -115,8 +115,8 @@ shotPageDeleteButton =
 shotPageAbuseButton =
     .title = Reportar esta captura por abuso, spam, ou outros problemas
 shotPageDownloadShot =
-    .title = Transferir
-shotPageDownload = Transferir
+    .title = Descarregar
+shotPageDownload = Descarregar
 shotPageScreenshotsDescription = As capturas de ecrã tornadas simples. Tire, guarde e partilhe capturas de ecrã sem sair do Firefox.
 shotPageUpsellFirefox = Obter o Firefox agora
 shotPageDMCAMessage = Esta captura já não está disponível devido a uma reivindicação de propriedade intelectual de terceiros.
@@ -147,28 +147,34 @@ shotPageExpiresIn = expira { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = expirou { $timediff }
 timeDiffJustNow = agora mesmo
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] 1 minuto atrás
        *[other] { $number } minutos atrás
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] 1 hora atrás
        *[other] { $number } horas atrás
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] ontem
        *[other] { $number } dias atrás
     }
 timeDiffFutureSeconds = em alguns segundos
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] num minuto
        *[other] em { $number } minutos
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] numa hora
        *[other] em { $number } horas
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] amanhã
        *[other] em { $number } dias
     }
