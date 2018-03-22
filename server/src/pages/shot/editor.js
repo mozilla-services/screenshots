@@ -18,6 +18,7 @@ const minHeight = 10;
 const scrollByEdge = 20;
 let points = [];
 let drawMousedown = false;
+let imageIsCropped = false;
 let activeColor;
 
 const movements = ["topLeft", "top", "topRight", "left", "right", "bottomLeft", "bottom", "bottomRight"];
@@ -98,6 +99,7 @@ class Selection {
 exports.Editor = class Editor extends React.Component {
   constructor(props) {
     super(props);
+    this.devicePixelRatio = window.devicePixelRatio || 1;
     this.mousedown = this.mousedown.bind(this);
     this.mouseup = this.mouseup.bind(this);
     this.mousemove = this.mousemove.bind(this);
@@ -135,17 +137,12 @@ exports.Editor = class Editor extends React.Component {
           className="image-holder centered"
           id="image-holder"
           ref={(image) => { this.imageCanvas = image }}
-          height={this.canvasHeight} width={this.canvasWidth}
+          height={this.canvasHeight * this.devicePixelRatio} width={this.canvasWidth * this.devicePixelRatio}
           style={{ height: this.canvasHeight, width: this.canvasWidth }}></canvas>
         <canvas
           className={`temp-highlighter centered ${color}`}
           id="highlighter"
           ref={(highlighter) => { this.highlighter = highlighter }}
-          height={this.canvasHeight} width={this.canvasWidth}></canvas>
-        <canvas
-          className="crop-tool centered"
-          id="crop-tool"
-          ref={(cropper) => { this.cropper = cropper }}
           height={this.canvasHeight} width={this.canvasWidth}></canvas>
         <div
           className="crop-container centered"
@@ -225,38 +222,40 @@ exports.Editor = class Editor extends React.Component {
   }
 
   onClickConfirmCrop() {
-    if (!selectedPos.width || !selectedPos.height) {
-      this.removeCropBox();
-      this.cropToolBar = null;
-      this.setState({tool: "pen"});
-      return;
-    }
     const x1 = Math.max(selectedPos.left, 0);
     const x2 = Math.min(selectedPos.right, this.canvasWidth);
     const y1 = Math.max(selectedPos.top, 0);
     const y2 = Math.min(selectedPos.bottom, this.canvasHeight);
     const cropWidth = Math.floor(x2 - x1);
     const cropHeight = Math.floor(y2 - y1);
+    if (!selectedPos.width || !selectedPos.height || (this.canvasHeight === cropHeight) && (this.canvasWidth === cropWidth)) {
+      this.removeCropBox();
+      this.cropToolBar = null;
+      this.setState({tool: this.previousTool});
+      return;
+    }
     const croppedImage = document.createElement("canvas");
-    croppedImage.width = cropWidth
-    croppedImage.height = cropHeight
+    croppedImage.width = cropWidth * this.devicePixelRatio;
+    croppedImage.height = cropHeight * this.devicePixelRatio;
     const croppedContext = croppedImage.getContext("2d");
-    croppedContext.drawImage(this.imageCanvas, x1, y1, croppedImage.width, croppedImage.height, 0, 0, croppedImage.width, croppedImage.height);
+    croppedContext.drawImage(this.imageCanvas, x1 * this.devicePixelRatio, y1 * this.devicePixelRatio, croppedImage.width, croppedImage.height, 0, 0, croppedImage.width, croppedImage.height);
     const img = new Image();
-    const imageContext = this.imageCanvas.getContext("2d");
     img.crossOrigin = "Anonymous";
     const width = cropWidth;
     const height = cropHeight;
     img.onload = () => {
+      imageContext.scale(this.devicePixelRatio, this.devicePixelRatio);
       imageContext.drawImage(img, 0, 0, width, height);
     }
-    this.imageContext = imageContext;
-    img.src = croppedImage.toDataURL("image/png");
     this.canvasWidth = cropWidth;
     this.canvasHeight = cropHeight;
+    const imageContext = this.imageCanvas.getContext("2d");
+    this.imageContext = imageContext;
+    img.src = croppedImage.toDataURL("image/png");
     this.removeCropBox();
     this.cropToolBar = null;
     this.setState({tool: this.previousTool});
+    imageIsCropped = true;
     sendEvent("confirm-crop", "crop-toolbar");
   }
 
@@ -558,6 +557,10 @@ exports.Editor = class Editor extends React.Component {
     const width = this.props.clip.image.dimensions.x;
     const height = this.props.clip.image.dimensions.y;
     img.onload = () => {
+      if (imageIsCropped) {
+        imageContext.scale(this.devicePixelRatio, this.devicePixelRatio);
+        imageIsCropped = false;
+      }
       imageContext.drawImage(img, 0, 0, width, height);
       this.setState({actionsDisabled: false});
     }
@@ -567,6 +570,7 @@ exports.Editor = class Editor extends React.Component {
 
   componentDidMount() {
     this.imageContext = this.imageCanvas.getContext("2d");
+    this.imageContext.scale(this.devicePixelRatio, this.devicePixelRatio);
     this.highlightContext = this.highlighter.getContext("2d");
     this.renderImage();
     this.edit();
