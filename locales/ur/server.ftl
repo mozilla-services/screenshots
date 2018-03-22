@@ -126,11 +126,16 @@ shotIndexPageNoSearchResultsIntro = ہمم
 shotIndexPageClearSearchButton =
     .title = تلاش حزف کریں
 shotIndexPageConfirmShotDelete = اس شاٹ کو حذف کریں؟
+shotIndexPagePreviousPage =
+    .title = پچھلا صفحہ
+shotIndexPageNextPage =
+    .title = اگلا صفحہ
 
 ## Metrics page
 ## All metrics strings are optional for translation
 
 metricsPageTotalsQueryTitle = کل
+metricsPageTotalsQueryDevices = کل اندراج شدہ آلات
 metricsPageTotalsQueryActiveShots = متحرک شاٹس
 metricsPageShotsQueryDay = دن
 metricsPageUsersQueryCount = صارفین کی تعداد
