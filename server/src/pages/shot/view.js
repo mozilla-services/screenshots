@@ -697,7 +697,7 @@ class EditableTitle extends React.Component {
         className="shot-title-input"
         style={{minWidth: this.state.minWidth}}
         type="text" defaultValue={this.props.title} autoFocus="true"
-        onBlur={this.onExit.bind(this)} onKeyUp={this.onKeyUp.bind(this)} />
+        onBlur={this.onExit.bind(this)} onKeyUp={this.onKeyUp.bind(this)} onFocus={this.onFocus} />
     </form>;
   }
 
@@ -712,6 +712,10 @@ class EditableTitle extends React.Component {
     const val = this.textInput.value;
     controller.setTitle(val);
     this.setState({isEditing: false, isSaving: val});
+  }
+
+  onFocus(event) {
+    event.target.select();
   }
 
   onKeyUp(event) {
