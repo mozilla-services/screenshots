@@ -710,8 +710,13 @@ class EditableTitle extends React.Component {
 
   onExit() {
     const val = this.textInput.value;
-    controller.setTitle(val);
-    this.setState({isEditing: false, isSaving: val});
+
+    if (!val) {
+      this.setState({isEditing: false, isSaving: false});
+    } else {
+      controller.setTitle(val);
+      this.setState({isEditing: false, isSaving: val});
+    }
   }
 
   onFocus(event) {
