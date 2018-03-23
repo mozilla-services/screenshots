@@ -114,6 +114,8 @@ shotPageAbuseButton =
     .title = Report this shot for abuse, spam, or other problems
 shotPageDownloadShot =
     .title = Download
+shotPageEditButton =
+    .title = Edit this image
 shotPageDownload = Download
 shotPageScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
 shotPageUpsellFirefox = Get Firefox now
@@ -192,6 +194,24 @@ annotationCropConfirmButton = Confirm
     .title = Confirm selection
 annotationCropCancelButton = Cancel
     .title = Cancel selection
+annotationColorWhite =
+    .title = White
+annotationColorBlack =
+    .title = Black
+annotationColorRed =
+    .title = Red
+annotationColorGreen =
+    .title = Green
+annotationColorBlue =
+    .title = Blue
+annotationColorYellow =
+    .title = Yellow
+annotationColorPurple =
+    .title = Purple
+annotationColorSeaGreen =
+    .title = Sea Green
+annotationColorGrey =
+    .title = Grey
 
 ## Shotindex page
 
