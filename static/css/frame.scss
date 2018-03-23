@@ -553,8 +553,33 @@ body {
   }
 }
 
+#color-button-container {
+  min-width: 40px;
+}
+
+#color-button-highlight {
+  display:none;
+  margin-top: $grid-unit/4;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  position: absolute;
+  background-color: #ededf0;
+}
+
+#color-picker {
+  position: absolute;
+  z-index: 2;
+}
+
+#color-picker:hover + #color-button-highlight {
+  display: block;
+  z-index: 1;
+}
+
 .color-board {
-  margin-top: $grid-unit/2;
+  margin-top: $grid-unit * 2.5;
+  z-index: 2;
   width: 160px;
   height: 160px;
   position: absolute;
