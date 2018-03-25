@@ -87,6 +87,7 @@ shotPageConfirmDeletion = Confirma que quere eliminar esta captura de forma perm
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = restaurar ata o { $date }
+shotPageExpiredMessage = Esta captura caducou.
 shotPageDeleteButton =
     .title = Eliminar esta captura
 shotPageDownloadShot =
