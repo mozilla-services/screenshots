@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Reportar esta captura por abuso, spam, ou outros problemas
 shotPageDownloadShot =
     .title = Transferir
+shotPageEditButton =
+    .title = Editar esta imagem
 shotPageDownload = Transferir
 shotPageScreenshotsDescription = As capturas de ecrã tornadas simples. Tire, guarde e partilhe capturas de ecrã sem sair do Firefox.
 shotPageUpsellFirefox = Obter o Firefox agora
@@ -199,6 +201,24 @@ annotationCropConfirmButton = Confirmar
     .title = Confirmar seleção
 annotationCropCancelButton = Cancelar
     .title = Cancelar seleção
+annotationColorWhite =
+    .title = Branco
+annotationColorBlack =
+    .title = Preto
+annotationColorRed =
+    .title = Vermelho
+annotationColorGreen =
+    .title = Verde
+annotationColorBlue =
+    .title = Azul
+annotationColorYellow =
+    .title = Amarelo
+annotationColorPurple =
+    .title = Roxo
+annotationColorSeaGreen =
+    .title = Verde Mar
+annotationColorGrey =
+    .title = Cinzento
 
 ## Shotindex page
 
