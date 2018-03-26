@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Zgłoś naruszenie zasad lub inne problemy z tym zrzutem
 shotPageDownloadShot =
     .title = Pobierz
+shotPageEditButton =
+    .title = Edytuj ten obraz
 shotPageDownload = Pobierz
 shotPageScreenshotsDescription = Zrzuty ekranu dla każdego. Twórz, zapisuj i udostępniaj zrzuty ekranu bez opuszczania Firefoksa.
 shotPageUpsellFirefox = Pobierz Firefoksa
@@ -147,33 +149,39 @@ shotPageExpiresIn = ulega przeterminowaniu { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = uległ przeterminowaniu { $timediff }
 timeDiffJustNow = przed chwilą
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] minutę temu
         [few] { $number } minuty temu
        *[other] { $number } minut temu
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] godzinę temu
         [few] { $number } godziny temu
        *[other] { $number } godzin temu
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] wczoraj
         [few] { $number } dni temu
        *[other] { $number } dni temu
     }
 timeDiffFutureSeconds = za kilka sekund
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] za minutę
         [few] za { $number } minuty
        *[other] za { $number } minut
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] za godzinę
         [few] za { $number } godziny
        *[other] za { $number } godzin
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] jutro
         [few] za { $number } dni
        *[other] za { $number } dni
@@ -199,6 +207,24 @@ annotationCropConfirmButton = Potwierdź
     .title = Potwierdź zaznaczenie
 annotationCropCancelButton = Anuluj
     .title = Anuluj zaznaczenie
+annotationColorWhite =
+    .title = Biały
+annotationColorBlack =
+    .title = Czarny
+annotationColorRed =
+    .title = Czerwony
+annotationColorGreen =
+    .title = Zielony
+annotationColorBlue =
+    .title = Niebieski
+annotationColorYellow =
+    .title = Żółty
+annotationColorPurple =
+    .title = Fioletowy
+annotationColorSeaGreen =
+    .title = Morski
+annotationColorGrey =
+    .title = Szary
 
 ## Shotindex page
 
