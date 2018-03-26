@@ -780,19 +780,37 @@ class ColorPicker extends React.Component {
         <div className="triangle-inner"></div>
       </div>
       <div className="color-row">
-        <div className="swatch" title="White" style={{backgroundColor: "#FFF", border: "1px solid #000"}} onClick={this.onClickSwatch.bind(this)}></div>
-        <div className="swatch" title="Black" style={{backgroundColor: "#000"}} onClick={this.onClickSwatch.bind(this)}></div>
-        <div className="swatch" title="Red" style={{backgroundColor: "#E74C3C"}} onClick={this.onClickSwatch.bind(this)}></div>
-      </div>
-        <div className="color-row">
-        <div className="swatch" title="Green" style={{backgroundColor: "#2ECC71"}} onClick={this.onClickSwatch.bind(this)}></div>
-        <div className="swatch" title="Blue" style={{backgroundColor: "#3498DB"}} onClick={this.onClickSwatch.bind(this)}></div>
-        <div className="swatch" title="Yellow" style={{backgroundColor: "#FF0"}} onClick={this.onClickSwatch.bind(this)}></div>
+        <Localized id="annotationColorWhite"><div className="swatch" title="White"
+          style={{ backgroundColor: "#FFF", border: "1px solid #000" }}
+          onClick={this.onClickSwatch.bind(this)}></div></Localized>
+        <Localized id="annotationColorBlack"><div className="swatch" title="Black"
+          style={{ backgroundColor: "#000" }}
+          onClick={this.onClickSwatch.bind(this)}></div></Localized>
+        <Localized id="annotationColorRed"><div className="swatch" title="Red"
+          style={{ backgroundColor: "#E74C3C" }}
+          onClick={this.onClickSwatch.bind(this)}></div></Localized>
       </div>
       <div className="color-row">
-        <div className="swatch" title="Purple" style={{backgroundColor: "#8E44AD"}} onClick={this.onClickSwatch.bind(this)}></div>
-        <div className="swatch" title="Sea Green" style={{backgroundColor: "#1ABC9C"}} onClick={this.onClickSwatch.bind(this)}></div>
-        <div className="swatch" title="Grey" style={{backgroundColor: "#34495E"}} onClick={this.onClickSwatch.bind(this)}></div>
+        <Localized id="annotationColorGreen"><div className="swatch" title="Green"
+          style={{ backgroundColor: "#2ECC71" }}
+          onClick={this.onClickSwatch.bind(this)}></div></Localized>
+        <Localized id="annotationColorBlue"><div className="swatch" title="Blue"
+          style={{ backgroundColor: "#3498DB" }}
+          onClick={this.onClickSwatch.bind(this)}></div></Localized>
+        <Localized id="annotationColorYellow"><div className="swatch" title="Yellow"
+          style={{ backgroundColor: "#FF0" }}
+          onClick={this.onClickSwatch.bind(this)}></div></Localized>
+      </div>
+      <div className="color-row">
+        <Localized id="annotationColorPurple"><div className="swatch" title="Purple"
+          style={{ backgroundColor: "#8E44AD" }}
+          onClick={this.onClickSwatch.bind(this)}></div></Localized>
+        <Localized id="annotationColorSeaGreen"><div className="swatch" title="Sea Green"
+          style={{ backgroundColor: "#1ABC9C" }}
+          onClick={this.onClickSwatch.bind(this)}></div></Localized>
+        <Localized id="annotationColorGrey"><div className="swatch" title="Grey"
+          style={{ backgroundColor: "#34495E" }}
+          onClick={this.onClickSwatch.bind(this)}></div></Localized>
       </div>
     </div>
   }
