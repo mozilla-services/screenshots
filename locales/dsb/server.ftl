@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Toś to foto wobrazowki dla znjewužywanja, spama abo drugich problemow k wěsći daś
 shotPageDownloadShot =
     .title = Ześěgnuś
+shotPageEditButton =
+    .title = Toś ten wobraz wobźěłaś
 shotPageDownload = Ześěgnuś
 shotPageScreenshotsDescription = Fota wobrazowki lažko nagótowane. Gótujśo, składujśo a źělśo fota wobrazowki, mimo až Firefox spušćaśo.
 shotPageUpsellFirefox = Wobstarajśo se Firefox něnto
@@ -147,38 +149,44 @@ shotPageExpiresIn = spadnjo { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = spadnjony { $timediff }
 timeDiffJustNow = rowno
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] pśed 1 minutu
         [two] pśed { $number } minutoma
         [few] pśed { $number } minutami
        *[other] pśed { $number } minutami
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] pśed 1 góźinu
         [two] pśed { $number } góźinoma
         [few] pśed { $number } góźinami
        *[other] pśed { $number } góźinami
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] cora
         [two] pśed { $number } dnjoma
         [few] pśed { $number } dnjami
        *[other] pśed { $number } dnjami
     }
 timeDiffFutureSeconds = za mało sekundow
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] za 1 minutu
         [two] za { $number } minuśe
         [few] za { $number } minuty
        *[other] za { $number } minutow
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] za 1 góźinu
         [two] za { $number } góźinje
         [few] za { $number } góźiny
        *[other] za { $number } góźin
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] witśe
         [two] za { $number } dnja
         [few] za { $number } dny
@@ -205,6 +213,24 @@ annotationCropConfirmButton = Wobkšuśiś
     .title = Wuběrk wobkšuśiś
 annotationCropCancelButton = Pśetergnuś
     .title = Wuběrk pśetergnuś
+annotationColorWhite =
+    .title = Běły
+annotationColorBlack =
+    .title = Carny
+annotationColorRed =
+    .title = Cerwjeny
+annotationColorGreen =
+    .title = Zeleny
+annotationColorBlue =
+    .title = Módry
+annotationColorYellow =
+    .title = Žołty
+annotationColorPurple =
+    .title = Purpurowy
+annotationColorSeaGreen =
+    .title = Mórskozeleny
+annotationColorGrey =
+    .title = Šery
 
 ## Shotindex page
 
