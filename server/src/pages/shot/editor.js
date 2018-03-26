@@ -726,7 +726,7 @@ class ColorPicker extends React.Component {
 
   render() {
     return <div id="color-button-container">
-      <button className="color-button" id="color-picker" onClick={this.onClickColorPicker.bind(this)} title="Color Picker" style={{"backgroundColor": this.state.color, "border": "3px solid #D4D4D4"}}></button>
+      <button className="color-button" id="color-picker" onClick={this.onClickColorPicker.bind(this)} title="Color Picker" style={{"backgroundColor": this.state.color, "border": "2px solid #D4D4D4"}}></button>
       <div id="color-button-highlight" />
       {this.state.pickerActive ? this.renderColorBoard() : null}
     </div>
