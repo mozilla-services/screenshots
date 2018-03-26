@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Laporkan syot ini kerana penyalahgunaan, spam atau masalah lain
 shotPageDownloadShot =
     .title = Muat turun
+shotPageEditButton =
+    .title = Edit imej ini
 shotPageDownload = Muat turun
 shotPageScreenshotsDescription = Skrinsyot menjadi mudah. Ambil, simpan dan kongsi skrinsyot tanpa keluar daripada Firefox.
 shotPageUpsellFirefox = Dapatkan Firefox sekarang
@@ -147,23 +149,29 @@ shotPageExpiresIn = tamat tempoh { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = tamat tempoh { $timediff }
 timeDiffJustNow = sebentar tadi
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
        *[other] 1 minit lepas
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
        *[other] 1 jam lepas
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
        *[other] semalam
     }
 timeDiffFutureSeconds = dalam beberapa saat
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
        *[other] dalam 1 minit
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
        *[other] dalam 1 jam
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
        *[other] esok
     }
 errorThirdPartyCookiesEnabled = Jika anda ambil syot ini dan tidak boleh dibuang, anda mungkin perlu dayakan sementara kuki pihak ketiga dalam keutamaan pelayar anda.
@@ -187,6 +195,24 @@ annotationCropConfirmButton = Sahkan
     .title = Sahkan pemilihan
 annotationCropCancelButton = Batal
     .title = Batalkan pemilihan
+annotationColorWhite =
+    .title = Putih
+annotationColorBlack =
+    .title = Hitam
+annotationColorRed =
+    .title = Merah
+annotationColorGreen =
+    .title = Hijau
+annotationColorBlue =
+    .title = Biru
+annotationColorYellow =
+    .title = Kuning
+annotationColorPurple =
+    .title = Ungu
+annotationColorSeaGreen =
+    .title = Hijau Laut
+annotationColorGrey =
+    .title = Kelabu
 
 ## Shotindex page
 
