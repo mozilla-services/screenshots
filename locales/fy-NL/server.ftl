@@ -215,6 +215,8 @@ annotationColorYellow =
     .title = Giel
 annotationColorPurple =
     .title = Pears
+annotationColorSeaGreen =
+    .title = Seegrien
 annotationColorGrey =
     .title = Griis
 
