@@ -766,7 +766,7 @@ class ColorPicker extends React.Component {
 
   isColorBoard(el) {
     while (el) {
-      if (el.className === "color-board") {
+      if (el.className === "color-board" || el.className === "color-button") {
         return true;
       }
       el = el.parentNode;
