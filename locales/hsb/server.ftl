@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Tute foto wobrazowki dla znjewužiwanja, spama abo druhich problemow zdźělić
 shotPageDownloadShot =
     .title = Sćahnyć
+shotPageEditButton =
+    .title = Tutón wobraz wobdźěłać
 shotPageDownload = Sćahnyć
 shotPageScreenshotsDescription = Fota wobrazowki lochko činjene. Čińće, składujće a dźělće fota wobrazowki bjez toho, zo byšće Firefox wopušćił.
 shotPageUpsellFirefox = Wobstarajće sej nětko Firefox
@@ -147,38 +149,44 @@ shotPageExpiresIn = spadnje { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = spadnjeny { $timediff }
 timeDiffJustNow = runje
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] před 1 mjeńšinu
         [two] před { $number } mjeńšinomaj
         [few] před { $number } mjeńšinami
        *[other] před { $number } mjeńšinami
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] před 1 hodźinu
         [two] před { $number } hodźinomaj
         [few] před { $number } hodźinami
        *[other] před { $number } hodźinami
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] wčera
         [two] před { $number } dnjomaj
         [few] před { $number } dnjemi
        *[other] před { $number } dnjemi
     }
 timeDiffFutureSeconds = za mało sekundow
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] za 1 mjeńšinu
         [two] za { $number } mjeńšinje
         [few] za { $number } mjeńšiny
        *[other] za { $number } mjeńšin
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] za 1 hodźinu
         [two] za { $number } hodźinje
         [few] za { $number } hodźiny
        *[other] za { $number } hodźin
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] jutře
         [two] za { $number } dnjej
         [few] za { $number } dny
@@ -205,6 +213,24 @@ annotationCropConfirmButton = Wobkrućić
     .title = Wuběr wobkrućić
 annotationCropCancelButton = Přetorhnyć
     .title = Wuběr přetorhnyć
+annotationColorWhite =
+    .title = Běły
+annotationColorBlack =
+    .title = Čorny
+annotationColorRed =
+    .title = Čerwjeny
+annotationColorGreen =
+    .title = Zeleny
+annotationColorBlue =
+    .title = Módry
+annotationColorYellow =
+    .title = Žołty
+annotationColorPurple =
+    .title = Purpurny
+annotationColorSeaGreen =
+    .title = Mórskozeleny
+annotationColorGrey =
+    .title = Šěry
 
 ## Shotindex page
 
