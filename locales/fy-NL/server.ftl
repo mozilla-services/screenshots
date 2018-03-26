@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Dizze ôfbylding rapportearje fanwege misbrûk, spam of oare problemen
 shotPageDownloadShot =
     .title = Downloade
+shotPageEditButton =
+    .title = Dizze ôfbylding bewurkje
 shotPageDownload = Downloade
 shotPageScreenshotsDescription = Skermôfbyldingen wurde maklik. Meitsje, bewarje en diel skermôfbyldingen sûnder Firefox te ferlitten.
 shotPageUpsellFirefox = Download Firefox no
@@ -147,28 +149,34 @@ shotPageExpiresIn = ferrint { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } ferrûn
 timeDiffJustNow = sa krekt
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] 1 minút lyn
        *[other] { $number } minuten lyn
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] 1 oer lyn
        *[other] { $number } oeren lyn
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] juster
        *[other] { $number } dagen lyn
     }
 timeDiffFutureSeconds = oer inkelde sekonden
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] oer 1 minút
        *[other] oer { $number } minuten
     }
-timeDiffFutureHours = timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    timeDiffFutureHours = { $number ->
         [one] oer 1 oer
        *[other] oer { $number } oeren
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] moarn
        *[other] oer { $number } dagen
     }
@@ -193,6 +201,22 @@ annotationCropConfirmButton = Befêstiging
     .title = Seleksje befêstigje
 annotationCropCancelButton = Annulearje
     .title = Seleksje annulearje
+annotationColorWhite =
+    .title = Wyt
+annotationColorBlack =
+    .title = Swart
+annotationColorRed =
+    .title = Read
+annotationColorGreen =
+    .title = Grien
+annotationColorBlue =
+    .title = Blau
+annotationColorYellow =
+    .title = Giel
+annotationColorPurple =
+    .title = Pears
+annotationColorGrey =
+    .title = Griis
 
 ## Shotindex page
 
