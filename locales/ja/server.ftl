@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = 悪用、スパム、その他の問題についてこのショットを報告
 shotPageDownloadShot =
     .title = ダウンロード
+shotPageEditButton =
+    .title = この画像を編集
 shotPageDownload = ダウンロード
 shotPageScreenshotsDescription = スクリーンショットをもっと手軽に。Firefox を離れることなくスクリーンショットを撮影、保存、共有。
 shotPageUpsellFirefox = 今すぐ Firefox をダウンロード
@@ -175,6 +177,24 @@ annotationCropConfirmButton = 確認
     .title = 確認選択
 annotationCropCancelButton = キャンセル
     .title = キャンセル選択
+annotationColorWhite =
+    .title = 白
+annotationColorBlack =
+    .title = 黒
+annotationColorRed =
+    .title = 赤
+annotationColorGreen =
+    .title = 緑
+annotationColorBlue =
+    .title = 青
+annotationColorYellow =
+    .title = 黄
+annotationColorPurple =
+    .title = 紫
+annotationColorSeaGreen =
+    .title = 海緑
+annotationColorGrey =
+    .title = 灰
 
 ## Shotindex page
 
