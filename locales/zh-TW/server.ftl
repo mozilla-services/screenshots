@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = 回報這張圖片是濫用、垃圾信，或有其他問題
 shotPageDownloadShot =
     .title = 下載
+shotPageEditButton =
+    .title = 編輯此圖片
 shotPageDownload = 下載
 shotPageScreenshotsDescription = 拍攝擷圖變得簡單。不必離開 Firefox 就能拍攝、儲存、分享畫面擷圖。
 shotPageUpsellFirefox = 立即下載 Firefox
@@ -175,6 +177,24 @@ annotationCropConfirmButton = 確認
     .title = 確認選擇
 annotationCropCancelButton = 取消
     .title = 取消選擇
+annotationColorWhite =
+    .title = 白色
+annotationColorBlack =
+    .title = 黑色
+annotationColorRed =
+    .title = 紅色
+annotationColorGreen =
+    .title = 綠色
+annotationColorBlue =
+    .title = 藍色
+annotationColorYellow =
+    .title = 黃色
+annotationColorPurple =
+    .title = 紫色
+annotationColorSeaGreen =
+    .title = 海綠色
+annotationColorGrey =
+    .title = 灰色
 
 ## Shotindex page
 
