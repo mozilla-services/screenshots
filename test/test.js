@@ -41,24 +41,35 @@ const PREVIEW_IFRAME_ID = "firefox-screenshots-preview-iframe";
 const addonFileLocation = path.join(process.cwd(), "build", "screenshots-bootstrap.zip");
 const downloadDir = path.join(process.cwd(), "test", "addon", ".artifacts");
 
-function getDriver() {
-  const channel = process.env.FIREFOX_CHANNEL || "NIGHTLY";
-  if (!(channel in firefox.Channel)) {
-    throw new Error(`Unknown channel: "${channel}"`);
+const channel = process.env.FIREFOX_CHANNEL || "NIGHTLY";
+if (!(channel in firefox.Channel)) {
+  throw new Error(`Unknown channel: "${channel}"`);
+}
+
+let driver;
+
+async function getDriver(preferences) {
+  if (driver) {
+    await driver.quit();
   }
 
   // const servicebuilder = new ServiceBuilder().enableVerboseLogging(true).setStdio("inherit");
-
-  const options = new firefox.Options()
+  let options = new firefox.Options()
     .setBinary(firefox.Channel[channel])
     .setPreference("extensions.legacy.enabled", true)
     .setPreference("xpinstall.signatures.required", false)
     .setPreference("browser.download.folderList", 2)
     .setPreference("browser.download.dir", downloadDir);
 
+  if (preferences) {
+    for (const k of Object.keys(preferences)) {
+      options = options.setPreference(k, preferences[k]);
+    }
+  }
+
   // FIXME: should assert somehow that we have Firefox 54+
 
-  const driver = new webdriver.Builder()
+  driver = new webdriver.Builder()
     // .setFirefoxService(servicebuilder)
     .withCapabilities({"moz:webdriverClick": true})
     .forBrowser("firefox")
@@ -142,14 +153,26 @@ function skipOnboarding(driver) {
   });
 }
 
+async function startScreenshotsWithUrl(driver, url) {
+  const req = await driver.get(url);
+  const onboarding = await startScreenshots(driver);
+  if (onboarding) {
+    return skipOnboarding(driver);
+  }
+
+  return req;
+}
+
+function performAutoSelection(driver) {
+  return driver.actions().move({x: 100, y: 100}).click().perform()
+  .then(() => driver.switchTo().defaultContent())
+  .then(() => driver.wait(until.ableToSwitchToFrame(By.id(SELECTION_IFRAME_ID))));
+}
+
 function startAutoSelectionShot(driver) {
   return driver.get(backend)
   .then(() => startScreenshots(driver))
-  .then(() => driver.wait(until.ableToSwitchToFrame(By.id(PRESELECTION_IFRAME_ID))))
-  .then(() => driver.wait(until.elementLocated(By.css(".visible"))))
-  .then(() => driver.actions().move({x: 100, y: 100}).click().perform())
-  .then(() => driver.switchTo().defaultContent())
-  .then(() => driver.wait(until.ableToSwitchToFrame(By.id(SELECTION_IFRAME_ID))));
+  .then(() => performAutoSelection(driver));
 }
 
 /** Waits when ready, calls creator to create the shot, waits for the resulting
@@ -201,12 +224,9 @@ function verifyShotUrl(shotUrl) {
 
 describe("Test Screenshots", function() {
   this.timeout(120000);
-  let driver;
 
-  before(function() {
-    return getDriver().then((aDriver) => {
-      driver = aDriver;
-    });
+  before(async function() {
+    driver = await getDriver();
   });
 
   after(function() {
@@ -389,5 +409,15 @@ describe("Test Screenshots", function() {
       // Doing this in case there are tests after this one.
       driver.installAddon(addonFileLocation).then(() => done()).catch(done);
     }).catch(done);
+  });
+
+  it("should not display the Save button", async function() {
+    const driver = await getDriver({"extensions.screenshots.upload-disabled": true});
+    await startScreenshotsWithUrl(driver, backend);
+    await performAutoSelection(driver);
+    // There is a download-only button when there's no Save as the primary button.
+    // No assert is necessary; if the element is found, then then the test
+    // passed. A NoSuchElementError will be thrown if it's not found.
+    await driver.findElement({className: "download-only-button"});
   });
 });
