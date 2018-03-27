@@ -185,6 +185,7 @@ metricsPageUsersQueryCount = उपयोगकर्ता
 metricsPageUsersQueryDay = दिन
 metricsPageUserShotsQueryCount = उपयोगकर्ताओं की संख्या
 metricsPageRetentionQueryTitle = सप्ताह से प्रतिधारण
+metricsPageRetentionQueryDescription = प्रारंभिक सप्ताह द्वारा समूहीकृत, उपयोगकर्ता के पहले शॉट से सबसे हाल के शॉट पर दिनों की संख्या
 metricsPageRetentionQueryUsers = उपयोगकर्ताओं की संख्या
 metricsPageTotalRetentionQueryTitle = कुल प्रतिधारण
 metricsPageTotalRetentionQueryUsers = उपयोगकर्ताओं की संख्या
