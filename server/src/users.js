@@ -1,7 +1,7 @@
 const config = require("./config").getProperties();
 const db = require("./db");
 const errors = require("./errors");
-const { request } = require("./helpers");
+const { request, read } = require("wreck");
 const crypto = require("crypto");
 const mozlog = require("./logging").mozlog("users");
 const abTests = require("./ab-tests");
@@ -158,13 +158,16 @@ exports.tradeCode = function(code) {
     }),
     headers: {
       "content-type": "application/json"
-    },
-    json: true
-  }).then(([res, body]) => {
-    if (res.statusCode >= 200 && res.statusCode < 300) {
-      return body;
     }
-    mozlog.warn("fxa-tradecode-failed", {status: res.statusCode});
+  }).catch(err => {
+    // error with the /token endpoint
+    mozlog.warn("fxa-tradecode-failed", {status: err.output.statusCode});
+    throw errors.badToken();
+  }).then(res => {
+    return read(res, {json: true});
+  }).catch(err => {
+    // error reading the response
+    mozlog.warn("fxa-tradecode-read-failed", {status: err.code});
     throw errors.badToken();
   });
 };
