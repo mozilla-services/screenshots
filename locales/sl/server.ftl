@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Prijavi ta posnetek zaradi zlorabe, neželene vsebine ali drugih težav
 shotPageDownloadShot =
     .title = Prenesi
+shotPageEditButton =
+    .title = Uredi to sliko
 shotPageDownload = Prenesi
 shotPageScreenshotsDescription = Poenostavljeni posnetki zaslona. Zajemite, shranite in delite zaslonske posnetke, ne da bi zapustili Firefox.
 shotPageUpsellFirefox = Prenesite Firefox zdaj
@@ -147,38 +149,44 @@ shotPageExpiresIn = poteče { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = poteklo { $timediff }
 timeDiffJustNow = zdaj
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] pred { $number } minuto
         [two] pred { $number } minutama
         [few] pred { $number } minutami
        *[other] pred { $number } minutami
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] pred { $number } uro
         [two] pred { $number } urama
         [few] pred { $number } urami
        *[other] pred { $number } urami
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] pred { $number } dnevom
         [two] pred { $number } dnevoma
         [few] pred { $number } dnevi
        *[other] pred { $number } dnevi
     }
 timeDiffFutureSeconds = čez nekaj sekund
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] čez { $number } minuto
         [two] čez { $number } minuti
         [few] čez { $number } minute
        *[other] čez { $number } minut
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] čez { $number } uro
         [two] čez { $number } uri
         [few] čez { $number } ure
        *[other] čez { $number } ur
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] čez { $number } dan
         [two] čez { $number } dni
         [few] čez { $number } dni
