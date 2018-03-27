@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Бұл скриншот туралы бұзу, спам немесе басқа да мәселелер жөнінде хабарлау
 shotPageDownloadShot =
     .title = Жүктеп алу
+shotPageEditButton =
+    .title = Бұл суретті түзету
 shotPageDownload = Жүктеп алу
 shotPageScreenshotsDescription = Скриншоттар қарапайым түрде. Тура Firefox ішінен скриншоттарды түсіру, сақтау және олармен бөлісу.
 shotPageUpsellFirefox = Firefox-ты қазір алу
@@ -147,23 +149,29 @@ shotPageExpiresIn = мерзімі { $timediff } аяқталады
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = мерзімі { $timediff } аяқталды
 timeDiffJustNow = жаңа ғана
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
        *[other] 1 минут бұрын
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
        *[other] 1 сағат бұрын
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
        *[other] кеше
     }
 timeDiffFutureSeconds = бірнеше секундтан кейін
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
        *[other] { $number } минуттан кейін
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
        *[other] { $number } сағаттан кейін
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
        *[other] { $number } күннен кейін
     }
 errorThirdPartyCookiesEnabled = Егер сіз бұл скриншотты түсіріп, оны өшіре алмасаңыз, онда сізге браузерде уақытша үшінші жақты cookies файлдарына рұқсат беру керек болуы мүмкін.
@@ -187,6 +195,24 @@ annotationCropConfirmButton = Растау
     .title = Таңдауды растау
 annotationCropCancelButton = Бас тарту
     .title = Таңдаудан бас тарту
+annotationColorWhite =
+    .title = Ақ
+annotationColorBlack =
+    .title = Қара
+annotationColorRed =
+    .title = Қызыл
+annotationColorGreen =
+    .title = Жасыл
+annotationColorBlue =
+    .title = Көк
+annotationColorYellow =
+    .title = Сары
+annotationColorPurple =
+    .title = Қызыл көк
+annotationColorSeaGreen =
+    .title = Теңіз жасыл
+annotationColorGrey =
+    .title = Сұр
 
 ## Shotindex page
 
