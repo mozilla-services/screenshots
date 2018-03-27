@@ -201,6 +201,24 @@ annotationCropConfirmButton = Megerősítés
     .title = Kiválasztás megerősítése
 annotationCropCancelButton = Mégse
     .title = Kiválasztás megszakítása
+annotationColorWhite =
+    .title = Fehér
+annotationColorBlack =
+    .title = Fekete
+annotationColorRed =
+    .title = Vörös
+annotationColorGreen =
+    .title = Zöld
+annotationColorBlue =
+    .title = Kék
+annotationColorYellow =
+    .title = Sárga
+annotationColorPurple =
+    .title = Lila
+annotationColorSeaGreen =
+    .title = Tengerzöld
+annotationColorGrey =
+    .title = Szürke
 
 ## Shotindex page
 
