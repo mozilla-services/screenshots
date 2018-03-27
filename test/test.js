@@ -280,7 +280,6 @@ describe("Test Screenshots", function() {
     }).catch(done);
   });
 
-  // Temporarily disabled.  See https://github.com/mozilla-services/screenshots/issues/4240
   it("should take an auto selection shot", function(done) {
     startAutoSelectionShot(driver).then(() => {
       return driver.wait(until.elementLocated(By.css(".highlight-button-save")));
@@ -335,7 +334,6 @@ describe("Test Screenshots", function() {
     }).catch(done);
   });
 
-  // Temporarily disabled.  See https://github.com/mozilla-services/screenshots/issues/4240
   it("should download a shot", function(done) {
     const startingFileCount = fs.readdirSync(downloadDir).length;
     const filenameRegex = /^Screenshot.+ Firefox Screenshots\.png$/;
@@ -373,7 +371,6 @@ describe("Test Screenshots", function() {
     .catch(done);
   });
 
-  // Temporarily disabled.  See https://github.com/mozilla-services/screenshots/issues/4240
   it("should remain on original tab with UI overlay on save failure", function(done) {
     const badAddon = path.join(process.cwd(), "build", "screenshots-bootstrap-server-down.zip");
     driver.installAddon(badAddon)
