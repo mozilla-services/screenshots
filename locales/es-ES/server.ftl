@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Denunciar esta captura por abuso, spam u otro problema
 shotPageDownloadShot =
     .title = Descargar
+shotPageEditButton =
+    .title = Editar esta imagen
 shotPageDownload = Descargar
 shotPageScreenshotsDescription = Hemos simplificado las capturas de pantalla. Haz, guarda y comparte capturas de pantalla sin salir de Firefox.
 shotPageUpsellFirefox = Obtén Firefox ahora
@@ -147,28 +149,34 @@ shotPageExpiresIn = expira en { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = expiró el { $timediff }
 timeDiffJustNow = ahora mismo
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] hace un minuto
        *[other] hace { $number } minutos
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] hace una hora 
        *[other] hace { $number } horas
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] ayer
        *[other] hace { $number } días
     }
 timeDiffFutureSeconds = en unos segundos
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] en un minuto
        *[other] en { $number } minutos
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] en 1 hora
        *[other] en { $number } horas
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] mañana
        *[other] en { $number } días
     }
@@ -193,6 +201,24 @@ annotationCropConfirmButton = Confirmar
     .title = Confirmar selección
 annotationCropCancelButton = Cancelar
     .title = Cancelar selección
+annotationColorWhite =
+    .title = Blanco
+annotationColorBlack =
+    .title = Negro
+annotationColorRed =
+    .title = Rojo
+annotationColorGreen =
+    .title = Verde
+annotationColorBlue =
+    .title = Azul
+annotationColorYellow =
+    .title = Amarillo
+annotationColorPurple =
+    .title = Púrpura
+annotationColorSeaGreen =
+    .title = Verde marino
+annotationColorGrey =
+    .title = Gris
 
 ## Shotindex page
 
