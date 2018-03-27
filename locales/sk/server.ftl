@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Nahlásiť túto snímku z dôvodu porušenia práv, spamu alebo pre iný problém
 shotPageDownloadShot =
     .title = Prevziať
+shotPageEditButton =
+    .title = Upraviť tento obrázok
 shotPageDownload = Prevziať
 shotPageScreenshotsDescription = Jednoduchá tvorba snímok obrazovky. Vytvorte, uložte a zdieľajte snímky obrazovky bez toho, aby ste museli opustiť Firefox.
 shotPageUpsellFirefox = Získajte Firefox teraz
@@ -147,33 +149,39 @@ shotPageExpiresIn = platnosť vyprší { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = platnosť vypršala { $timediff }
 timeDiffJustNow = práve teraz
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] pred 1 minútou
         [few] pred { $number } minútami
        *[other] pred { $number } minútami
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] pred hodinou
         [few] pred { $number } hodinami
        *[other] pred { $number } hodinami
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] včera
         [few] pred { $number } dňami
        *[other] pred { $number } dňami
     }
 timeDiffFutureSeconds = za pár sekúnd
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] za minútu
         [few] za { $number } minúty
        *[other] za { $number } minút
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] za hodinu
         [few] za { $number } hodiny
        *[other] za { $number } hodín
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] zajtra
         [few] za { $number } dni
        *[other] za { $number } dní
@@ -199,6 +207,24 @@ annotationCropConfirmButton = Potvrdiť
     .title = Potvrdiť výber
 annotationCropCancelButton = Zrušiť
     .title = Zrušiť výber
+annotationColorWhite =
+    .title = Biela
+annotationColorBlack =
+    .title = Čierna
+annotationColorRed =
+    .title = Červená
+annotationColorGreen =
+    .title = Zelená
+annotationColorBlue =
+    .title = Modrá
+annotationColorYellow =
+    .title = Žltá
+annotationColorPurple =
+    .title = Fialová
+annotationColorSeaGreen =
+    .title = Morská zelená
+annotationColorGrey =
+    .title = Sivá
 
 ## Shotindex page
 
