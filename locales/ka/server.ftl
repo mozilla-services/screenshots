@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = მოხსენება შეურაცხმყოფელი, სარეკლამო სურათების ან სხვა ხარვეზების შესახებ
 shotPageDownloadShot =
     .title = ჩამოტვირთვა
+shotPageEditButton =
+    .title = სურათის ჩასწორება
 shotPageDownload = ჩამოტვირთვა
 shotPageScreenshotsDescription = ეკრანისთვის სურათის გადაღება უმარტივესია. გადაუღეთ, შეინახეთ და გააზიარეთ სურათები Firefox-ის დატოვების გარეშე.
 shotPageUpsellFirefox = გადმოწერეთ Firefox ახლავე
@@ -148,20 +150,25 @@ shotPageExpiresIn = ვადის გასვლის დრო { $timediff 
 shotPageExpired = ვადა გაუვიდა { $timediff }
 timeDiffJustNow = ახლახანს
 timeDiffMinutesAgo = 1 წუთის წინ
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
        *[other] 1 საათის წინ
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
        *[other] გუშინ
     }
 timeDiffFutureSeconds = რამდენიმე წუთში
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
        *[other] 1 წუთში
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
        *[other] 1 საათში
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
        *[other] ხვალ
     }
 errorThirdPartyCookiesEnabled = თუ გადაიღეთ სურათი, მაგრამ ვერ ახერხებთ მის წაშლას, სავარაუდოდ, დაგჭირდებათ მესამე მხარის ფუნთუშების დროებით დაშვება, ბრაუზერის პარამეტრებიდან.
@@ -185,6 +192,24 @@ annotationCropConfirmButton = დამოწმება
     .title = შერჩევის დამოწმება
 annotationCropCancelButton = გაუქმება
     .title = შერჩევის გაუქმება
+annotationColorWhite =
+    .title = თეთრი
+annotationColorBlack =
+    .title = შავი
+annotationColorRed =
+    .title = წითელი
+annotationColorGreen =
+    .title = მწვანე
+annotationColorBlue =
+    .title = ლურჯი
+annotationColorYellow =
+    .title = ყვითელი
+annotationColorPurple =
+    .title = იისფერი
+annotationColorSeaGreen =
+    .title = ზღვის მწვანე
+annotationColorGrey =
+    .title = ნაცრისფერი
 
 ## Shotindex page
 
