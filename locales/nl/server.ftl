@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Deze afbeelding rapporteren vanwege misbruik, spam of andere problemen
 shotPageDownloadShot =
     .title = Downloaden
+shotPageEditButton =
+    .title = Deze afbeelding bewerken
 shotPageDownload = Downloaden
 shotPageScreenshotsDescription = Schermafbeeldingen worden makkelijk. Maak, bewaar en deel schermafbeeldingen zonder Firefox te verlaten.
 shotPageUpsellFirefox = Download Firefox nu
@@ -147,28 +149,34 @@ shotPageExpiresIn = verloopt { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } verlopen
 timeDiffJustNow = zojuist
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] 1 minuut geleden
        *[other] { $number } minuten geleden
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] 1 uur geleden
        *[other] { $number } uur geleden
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] gisteren
        *[other] { $number } dagen geleden
     }
 timeDiffFutureSeconds = over enkele seconden
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] over 1 minuut
        *[other] over { $number } minuten
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] over 1 uur
        *[other] over { $number } uur
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] morgen
        *[other] over { $number } dagen
     }
@@ -193,6 +201,24 @@ annotationCropConfirmButton = Bevestigen
     .title = Selectie bevestigen
 annotationCropCancelButton = Annuleren
     .title = Selectie annuleren
+annotationColorWhite =
+    .title = Wit
+annotationColorBlack =
+    .title = Zwart
+annotationColorRed =
+    .title = Rood
+annotationColorGreen =
+    .title = Groen
+annotationColorBlue =
+    .title = Blauw
+annotationColorYellow =
+    .title = Geel
+annotationColorPurple =
+    .title = Paars
+annotationColorSeaGreen =
+    .title = Zeegroen
+annotationColorGrey =
+    .title = Grijs
 
 ## Shotindex page
 
