@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Rapporter dette bildet for brudd, spam eller andre problemer
 shotPageDownloadShot =
     .title = Last ned
+shotPageEditButton =
+    .title = Rediger dette bildet
 shotPageDownload = Last ned
 shotPageScreenshotsDescription = Skjermbilder gjort enkelt. Ta, lagre og del skjermbilder uten å forlate Firefox.
 shotPageUpsellFirefox = Last ned Firefox nå
@@ -147,28 +149,34 @@ shotPageExpiresIn = utløper { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = utløpt { $timediff }
 timeDiffJustNow = akkurat nå
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] 1 minutt siden
        *[other] { $number } minutter siden
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] 1 time siden
        *[other] { $number } timer siden
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] i går
        *[other] { $number } dager siden
     }
 timeDiffFutureSeconds = om noen få sekunder
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] om 1 minutt
        *[other] om { $number } minutter
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] om 1 time
        *[other] om { $number } timer
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] i morgen
        *[other] om { $number } dager
     }
@@ -193,6 +201,24 @@ annotationCropConfirmButton = Bekreft
     .title = Bekreft valg
 annotationCropCancelButton = Avbryt
     .title = Avbryt valg
+annotationColorWhite =
+    .title = Hvit
+annotationColorBlack =
+    .title = Svart
+annotationColorRed =
+    .title = Rød
+annotationColorGreen =
+    .title = Grønn
+annotationColorBlue =
+    .title = Blå
+annotationColorYellow =
+    .title = Gul
+annotationColorPurple =
+    .title = Lilla
+annotationColorSeaGreen =
+    .title = Havgrønn
+annotationColorGrey =
+    .title = Grå
 
 ## Shotindex page
 
