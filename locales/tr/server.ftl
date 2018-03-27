@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Bu görüntüyü suistimal, spam ve diğer sorunlar nedeniyle rapor et
 shotPageDownloadShot =
     .title = İndir
+shotPageEditButton =
+    .title = Bu resmi düzenle
 shotPageDownload = İndir
 shotPageScreenshotsDescription = Ekran görüntüsü almayı basitleştirdik. Firefox’tan çıkmadan ekran görüntüleri alabilir, kaydedebilir ve paylaşabilirsiniz.
 shotPageUpsellFirefox = Firefox’u hemen indir
@@ -175,6 +177,24 @@ annotationCropConfirmButton = Onayla
     .title = Seçimi onayla
 annotationCropCancelButton = İptal
     .title = Seçimi iptal et
+annotationColorWhite =
+    .title = Beyaz
+annotationColorBlack =
+    .title = Siyah
+annotationColorRed =
+    .title = Kırmızı
+annotationColorGreen =
+    .title = Yeşil
+annotationColorBlue =
+    .title = Mavi
+annotationColorYellow =
+    .title = Sarı
+annotationColorPurple =
+    .title = Mor
+annotationColorSeaGreen =
+    .title = Deniz yeşili
+annotationColorGrey =
+    .title = Gri
 
 ## Shotindex page
 
