@@ -213,6 +213,24 @@ annotationCropConfirmButton = Potrdi
     .title = Potrdi izbor
 annotationCropCancelButton = Prekliči
     .title = Prekliči izbor
+annotationColorWhite =
+    .title = Bela
+annotationColorBlack =
+    .title = Črna
+annotationColorRed =
+    .title = Rdeča
+annotationColorGreen =
+    .title = Zelena
+annotationColorBlue =
+    .title = Modra
+annotationColorYellow =
+    .title = Rumena
+annotationColorPurple =
+    .title = Vijolična
+annotationColorSeaGreen =
+    .title = Morsko zelena
+annotationColorGrey =
+    .title = Siva
 
 ## Shotindex page
 
