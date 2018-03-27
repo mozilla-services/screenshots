@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Dieses Bildschirmfoto wegen Missbrauchs, Spam oder anderer Probleme melden
 shotPageDownloadShot =
     .title = Herunterladen
+shotPageEditButton =
+    .title = Diese Grafik bearbeiten
 shotPageDownload = Herunterladen
 shotPageScreenshotsDescription = Bildschirmfotos einfach machen, speichern und teilen – ohne Firefox zu verlassen.
 shotPageUpsellFirefox = Hole Dir jetzt Firefox
@@ -147,28 +149,34 @@ shotPageExpiresIn = Läuft ab { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = Lief ab { $timediff }
 timeDiffJustNow = gerade eben
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] vor einer Minute
        *[other] vor { $number } Minuten
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] vor einer Stunde
        *[other] vor { $number } Stunden
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] gestern
        *[other] vor { $number } Tagen
     }
 timeDiffFutureSeconds = in wenigen Sekunden
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] in einer Minute
        *[other] in { $number } Minuten
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] in einer Stunde
        *[other] in { $number } Stunden
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] morgen
        *[other] in { $number } Tagen
     }
@@ -193,6 +201,24 @@ annotationCropConfirmButton = Bestätigen
     .title = Auswahl bestätigen
 annotationCropCancelButton = Abbrechen
     .title = Auswahl abbrechen
+annotationColorWhite =
+    .title = Weiß
+annotationColorBlack =
+    .title = Schwarz
+annotationColorRed =
+    .title = Rot
+annotationColorGreen =
+    .title = Grün
+annotationColorBlue =
+    .title = Blau
+annotationColorYellow =
+    .title = Gelb
+annotationColorPurple =
+    .title = Violett
+annotationColorSeaGreen =
+    .title = Meergrün
+annotationColorGrey =
+    .title = Grau
 
 ## Shotindex page
 
