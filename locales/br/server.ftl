@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Danevelliñ an dapadenn-mañ evit ur gammarver, lastez pe kudennoù all
 shotPageDownloadShot =
     .title = Pellgargañ
+shotPageEditButton =
+    .title = Embann ar skeudenn-mañ
 shotPageDownload = Pellgargañ
 shotPageScreenshotsDescription = Tapadennoù-skramm en un doare aes. Skeudennit, enrollit ha rannit tapadennoù-skramm hep kuitaat Firefox.
 shotPageUpsellFirefox = Kaout Firefox bremañ
@@ -147,24 +149,29 @@ shotPageExpiresIn = diamzer a-benn { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = diamzeret abaoe { $timediff }
 timeDiffJustNow = diouzhtu
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] 1 vunutenn 'zo
        *[other] { $number } a vunutennoù 'zo
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] dec'h
        *[other] { $number } a zevezhioù 'zo
     }
 timeDiffFutureSeconds = a-benn un nebeud eilennoù
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] a-benn 1 vunutenn
        *[other] a-benn { $number } a vunutennoù
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] a-benn 1 eur
        *[other] a-benn { $number } a eurioù
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] warc'hoazh
        *[other] a-benn { $number } a zevezhioù
     }
@@ -189,6 +196,24 @@ annotationCropConfirmButton = Kadarnat
     .title = Kadarnat an diuzadenn
 annotationCropCancelButton = Nullañ
     .title = Nullañ an diuzadenn
+annotationColorWhite =
+    .title = Gwenn
+annotationColorBlack =
+    .title = Du
+annotationColorRed =
+    .title = Ruz
+annotationColorGreen =
+    .title = Gwer
+annotationColorBlue =
+    .title = Glas
+annotationColorYellow =
+    .title = Melen
+annotationColorPurple =
+    .title = Mouk
+annotationColorSeaGreen =
+    .title = Glas mor
+annotationColorGrey =
+    .title = Loued
 
 ## Shotindex page
 
