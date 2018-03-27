@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Raportează această captură pentru abuz, spam sau alte probleme
 shotPageDownloadShot =
     .title = Descarcă
+shotPageEditButton =
+    .title = Editează imaginea
 shotPageDownload = Descarcă
 shotPageScreenshotsDescription = Capturile de ecran simplificate. Realizează, salvează și partajează capturile de ecran fără să părăsești Firefox.
 shotPageUpsellFirefox = Obține Firefox acum
@@ -147,33 +149,39 @@ shotPageExpiresIn = expiră { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = a expirat { $timediff }
 timeDiffJustNow = chiar acum
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] în urmă cu 1 minut
         [few] în urmă cu { $number } minute
        *[other] în urmă cu { $number } de minute
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] în urmă cu 1 oră
         [few] în urmă cu { $number } ore
        *[other] în urmă cu { $number } de ore
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] ieri
         [few] în urmă cu { $number } zile
        *[other] în urmă cu { $number } de zile
     }
 timeDiffFutureSeconds = în câteva secunde
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] într-un minut
         [few] în { $number } minute
        *[other] în { $number } de minute
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] într-o oră
         [few] în { $number } ore
        *[other] în { $number } de ore
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] mâine
         [few] în { $number } zile
        *[other] în { $number } de zile
@@ -199,6 +207,24 @@ annotationCropConfirmButton = Confirmă
     .title = Confirmă selecția
 annotationCropCancelButton = Anulează
     .title = Anulează selecția
+annotationColorWhite =
+    .title = Alb
+annotationColorBlack =
+    .title = Negru
+annotationColorRed =
+    .title = Roșu
+annotationColorGreen =
+    .title = Verde
+annotationColorBlue =
+    .title = Albastru
+annotationColorYellow =
+    .title = Galben
+annotationColorPurple =
+    .title = Purpuriu
+annotationColorSeaGreen =
+    .title = Verde marin
+annotationColorGrey =
+    .title = Gri
 
 ## Shotindex page
 
