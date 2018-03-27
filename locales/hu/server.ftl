@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Kép jelentése visszaélés, spam vagy más problémák miatt
 shotPageDownloadShot =
     .title = Letöltés
+shotPageEditButton =
+    .title = Kép szerkesztése
 shotPageDownload = Letöltés
 shotPageScreenshotsDescription = Képernyőképek egyszerűen. Készítsen, mentsen és ossza meg a képernyőképeit a Firefox elhagyása nélkül.
 shotPageUpsellFirefox = Szerezze be most a Firefoxot
@@ -147,28 +149,34 @@ shotPageExpiresIn = { $timediff } jár le
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } lejárt
 timeDiffJustNow = épp most
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] 1 perce
        *[other] { $number } perce
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] 1 órája
        *[other] { $number } órája
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] tegnap
        *[other] { $number } napja
     }
 timeDiffFutureSeconds = néhány másodperc múlva
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] 1 percen belül
        *[other] { $number } percen belül
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] 1 órán belül
        *[other] { $number } órán belül
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] holnap
        *[other] { $number } nap múlva
     }
