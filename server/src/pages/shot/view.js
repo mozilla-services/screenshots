@@ -652,6 +652,7 @@ class ExpireWidget extends React.Component {
     value = parseInt(value, 10);
     // Note: sendEvent done in onSaveExpire
     this.props.onSaveExpire(value);
+    this.props.onChanging(false);
     this.setState({isChangingExpire: false});
   }
 }
