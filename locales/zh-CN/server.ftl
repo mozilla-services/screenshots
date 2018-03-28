@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = 举报此截图为滥用、垃圾信息或有其他问题
 shotPageDownloadShot =
     .title = 下载
+shotPageEditButton =
+    .title = 编辑此图像
 shotPageDownload = 下载
 shotPageScreenshotsDescription = 使截图更简单。截取、保存以及分享截图，一切都在 Firefox。
 shotPageUpsellFirefox = 立即获取 Firefox
@@ -147,10 +149,12 @@ shotPageExpiresIn = { $timediff } 后过期
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } 前已过期
 timeDiffJustNow = 刚刚
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
        *[other] { $number } 分钟前
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
        *[other] { $number } 小时前
     }
 timeDiffDaysAgo = { $number } 天前
@@ -179,6 +183,24 @@ annotationCropConfirmButton = 确认
     .title = 确认选择
 annotationCropCancelButton = 取消
     .title = 取消选择
+annotationColorWhite =
+    .title = 白色
+annotationColorBlack =
+    .title = 黑色
+annotationColorRed =
+    .title = 红色
+annotationColorGreen =
+    .title = 绿色
+annotationColorBlue =
+    .title = 蓝色
+annotationColorYellow =
+    .title = 黄色
+annotationColorPurple =
+    .title = 紫色
+annotationColorSeaGreen =
+    .title = 海绿色
+annotationColorGrey =
+    .title = 灰色
 
 ## Shotindex page
 
