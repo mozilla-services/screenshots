@@ -116,16 +116,13 @@ class Head extends React.Component {
     if (!this.props.shot) {
       return null;
     }
-    const title = (this.props.shot.openGraph && this.props.shot.openGraph.title) ||
-      (this.props.shot.twitterCard && this.props.shot.twitterCard.title) ||
-      this.props.shot.title;
     const og = [
       <meta property="og:type" content="website" key="ogtype" />,
-      <meta property="og:title" content={title} key="ogtitle" />
+      <meta property="og:title" content={this.props.shot.title} key="ogtitle" />
     ];
     const twitter = [
       <meta name="twitter:card" content="summary_large_image" key="twittercard" />,
-      <meta name="twitter:title" content={title} key="twitterTitle" />
+      <meta name="twitter:title" content={this.props.shot.title} key="twitterTitle" />
     ];
 
     for (const clipId of this.props.shot.clipNames()) {
