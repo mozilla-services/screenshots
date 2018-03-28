@@ -1,7 +1,7 @@
 const config = require("./config").getProperties();
 const db = require("./db");
 const errors = require("./errors");
-const { request, read } = require("wreck");
+const fetch = require("node-fetch");
 const crypto = require("crypto");
 const mozlog = require("./logging").mozlog("users");
 const abTests = require("./ab-tests");
@@ -148,10 +148,12 @@ exports.checkState = function(deviceId, state) {
   ).then(rowCount => !!rowCount);
 };
 
+
 exports.tradeCode = function(code) {
   const oAuthURI = `${config.fxa.oAuthServer}/token`;
-  return request("POST", oAuthURI, {
-    payload: JSON.stringify({
+  return fetch(oAuthURI, {
+    method: "POST",
+    body: JSON.stringify({
       code,
       client_id: config.fxa.clientId,
       client_secret: config.fxa.clientSecret
@@ -161,14 +163,12 @@ exports.tradeCode = function(code) {
     }
   }).catch(err => {
     // error with the /token endpoint
-    mozlog.warn("fxa-tradecode-failed", {status: err.output.statusCode});
+    mozlog.warn("fxa-tradecode-failed", {err});
     throw errors.badToken();
   }).then(res => {
-    return read(res, {json: true});
-  }).catch(err => {
-    // error reading the response
-    mozlog.warn("fxa-tradecode-read-failed", {status: err.code});
-    throw errors.badToken();
+    return res.json()
+  }).then(res => {
+    return res;
   });
 };
 
@@ -183,17 +183,18 @@ exports.disconnectDevice = function(deviceId) {
 
 exports.fetchProfileData = function(accessToken) {
   const userInfoEndpoint = `${config.fxa.profileServer}/profile`;
-  return request("GET", userInfoEndpoint, {
+  return fetch(userInfoEndpoint, {
+    method: "GET",
     headers: {
       authorization: `Bearer ${accessToken}`
     },
-    json: true
-  }).then(([res, body]) => {
-    if (res.statusCode >= 200 && res.statusCode < 300) {
-      return body;
-    }
+  }).then(res => {
+    return res.json()
+  }).then(res => {
+    return res;
+  }).catch(err => {
     throw errors.badProfile();
-  });
+  })
 };
 
 exports.saveProfileData = function(accountId, avatarUrl, nickname, email) {
@@ -207,17 +208,18 @@ exports.saveProfileData = function(accountId, avatarUrl, nickname, email) {
 
 exports.getAccountId = function(accessToken) {
   const profileURI = `${config.fxa.profileServer}/uid`;
-  return request("GET", profileURI, {
+  return fetch(profileURI, {
+    method: "GET",
     headers: {
       authorization: `Bearer ${accessToken}`
     },
-    json: true
-  }).then(([res, body]) => {
-    if (res.statusCode >= 200 && res.statusCode < 300) {
-      return body;
-    }
+  }).then(res => {
+    return res.json()
+  }).then(res => {
+    return res;
+  }).catch(err => {
     throw errors.badProfile();
-  });
+  })
 };
 
 exports.registerAccount = function(deviceId, accountId, accessToken) {
