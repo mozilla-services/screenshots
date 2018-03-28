@@ -30,6 +30,9 @@
       ]
     }
   ],
+  "icons": {
+    "32": "icons/icon-v2.svg"
+  },
   "web_accessible_resources": [
     "blank.html",
     "icons/cancel.svg",
