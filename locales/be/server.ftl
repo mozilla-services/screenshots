@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Гэты здымак з'яўляецца абразлівым, спамам або мае іншыя праблемы
 shotPageDownloadShot =
     .title = Сцягнуць
+shotPageEditButton =
+    .title = Рэдагаваць гэту выяву
 shotPageDownload = Сцягнуць
 shotPageScreenshotsDescription = Рабіць скрыншоты стала прасцей. Рабіце, захоўвайце і дзяліцеся скрыншотамі, не пакідаючы Firefox.
 shotPageUpsellFirefox = Атрымаць Firefox зараз
@@ -147,33 +149,39 @@ shotPageExpiresIn = тэрмін захоўвання мінае { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = тэрмін захоўвання скончыўся { $timediff }
 timeDiffJustNow = толькі што
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] хвіліну таму
         [few] { $number } хвіліны таму
        *[other] { $number } хвілін таму
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] гадзіну таму
         [few] { $number } гадзіны таму
        *[other] { $number } гадзін таму
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] учора
         [few] { $number } дні таму
        *[other] { $number } дзён таму
     }
 timeDiffFutureSeconds = праз некалькі секунд
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] за хвіліну
         [few] за { $number } хвіліны
        *[other] за { $number } хвілін
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] за гадзіну
         [few] за { $number } гадзіны
        *[other] за { $number } гадзін
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] заўтра
         [few] за { $number } дні
        *[other] за { $number } дзён
@@ -199,6 +207,24 @@ annotationCropConfirmButton = Пацвердзіць
     .title = Пацвердзіць вылучэнне
 annotationCropCancelButton = Скасаваць
     .title = Скасаваць вылучэнне
+annotationColorWhite =
+    .title = Белы
+annotationColorBlack =
+    .title = Чорны
+annotationColorRed =
+    .title = Чырвоны
+annotationColorGreen =
+    .title = Зялёны
+annotationColorBlue =
+    .title = Сіні
+annotationColorYellow =
+    .title = Жоўты
+annotationColorPurple =
+    .title = Фіялетавы
+annotationColorSeaGreen =
+    .title = Сіня-зялёны
+annotationColorGrey =
+    .title = Шэры
 
 ## Shotindex page
 
