@@ -148,6 +148,16 @@ timeDiffFutureDays =
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Jwa
+annotationCropButton =
+    .title = Ngol
+annotationSaveEditButton = Gwoki
+    .title = Gwok ma iyubo
+annotationCancelEditButton = Juki
+    .title = Juk yubo
+annotationCropConfirmButton = Moki
+    .title = Mok yer
+annotationCropCancelButton = Juki
+    .title = Juk yer
 
 ## Shotindex page
 
