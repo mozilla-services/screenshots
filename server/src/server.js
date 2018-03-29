@@ -260,7 +260,8 @@ app.use(function(req, res, next) {
 
 // NOTE - the csrf middleware should come after the middleware that
 // assigns req.cookies.
-app.use(csrfProtection);
+// TODO: turn this back on!
+//app.use(csrfProtection);
 
 function decodeAuthHeader(header) {
   /** Decode a string header in the format {deviceId}:{deviceIdSig};abtests={b64thing}:{sig} */
