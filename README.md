@@ -42,6 +42,12 @@ If you have growl and growlnotify installed on Mac OS X, you will get growl noti
 
 We apologize but we have no story for development on Windows (though the add-on runs on Windows).  We welcome feedback.
 
+#### Building the Chrome version of the addon
+
+Build the development version of the Chrome-compatible webextension: `SCREENSHOTS_CHROME_BUILD = "true" make chrome`
+
+Build a zipped version of the Chrome-compatible webextension: `SCREENSHOTS_CHROME_BUILD = "true" make chrome_zip`
+
 ### Getting to know the code
 
 There is documentation in [`addon/`](https://github.com/mozilla-services/screenshots/blob/master/addon/), [`addon/webextension/`](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/), [`addon/webextension/background/`](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/background/), and [`addon/webextension/selector/`](https://github.com/mozilla-services/screenshots/blob/master/addon/webextension/selector) that talks about the code layout and architecture of the add-on.

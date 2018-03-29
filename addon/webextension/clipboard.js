@@ -1,4 +1,4 @@
-/* globals catcher, assertIsBlankDocument */
+/* globals isChrome, catcher, assertIsBlankDocument */
 
 "use strict";
 
@@ -8,7 +8,11 @@ this.clipboard = (function() {
   exports.copy = function(text) {
     return new Promise((resolve, reject) => {
       const element = document.createElement("iframe");
-      element.src = browser.extension.getURL("blank.html");
+      // TODO: le sigh, another spot where we gotta avoid setting the url
+      if (!isChrome) {
+        element.src = browser.extension.getURL("blank.html");
+      }
+
       // We can't actually hide the iframe while copying, but we can make
       // it close to invisible:
       element.style.opacity = "0";
@@ -34,12 +38,17 @@ this.clipboard = (function() {
             exc.noPopup = true;
             catcher.unhandled(exc);
           }
+          if (!doc.queryCommandSupported("copy")) {
+            catcher.unhandled(new Error("Clipboard copy not supported"));
+          }
           const copied = doc.execCommand("copy");
+          el.remove();
           if (!copied) {
             catcher.unhandled(new Error("Clipboard copy failed"));
+            reject("Clipboard copy failed");
+          } else {
+            resolve(copied);
           }
-          el.remove();
-          resolve(copied);
         } finally {
           element.remove();
         }

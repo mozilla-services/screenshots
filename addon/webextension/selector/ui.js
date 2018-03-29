@@ -1,4 +1,4 @@
-/* globals log, util, catcher, inlineSelectionCss, callBackground, assertIsTrusted, assertIsBlankDocument, buildSettings blobConverters */
+/* globals isChrome, log, util, catcher, inlineSelectionCss, callBackground, assertIsTrusted, assertIsBlankDocument, buildSettings blobConverters */
 
 "use strict";
 
@@ -112,7 +112,10 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
 
   function initializeIframe() {
     const el = document.createElement("iframe");
-    el.src = browser.extension.getURL("blank.html");
+    // TODO: figure out this permissions issue
+    if (!isChrome) {
+      el.src = browser.extension.getURL("blank.html");
+    }
     el.style.zIndex = "99999999999";
     el.style.border = "none";
     el.style.top = "0";

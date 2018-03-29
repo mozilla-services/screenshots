@@ -1,4 +1,4 @@
-/* globals selectorLoader, analytics, communication, catcher, log, makeUuid, auth, senderror, startBackground, blobConverters buildSettings */
+/* globals isChrome, selectorLoader, analytics, communication, catcher, log, makeUuid, auth, senderror, startBackground, blobConverters buildSettings */
 
 "use strict";
 
@@ -15,7 +15,7 @@ this.main = (function() {
 
   browser.storage.local.get(["hasSeenOnboarding"]).then((result) => {
     hasSeenOnboarding = !!result.hasSeenOnboarding;
-    if (!hasSeenOnboarding) {
+    if (!hasSeenOnboarding && !isChrome) {
       setIconActive(false, null);
       // Note that the branded name 'Firefox Screenshots' is not localized:
       startBackground.photonPageActionPort.postMessage({
@@ -52,6 +52,7 @@ this.main = (function() {
   }
 
   function setIconActive(active, tabId) {
+    if (isChrome) { return; }
     const path = active ? "icons/icon-highlight-32-v2.svg" : "icons/icon-v2.svg";
     startBackground.photonPageActionPort.postMessage({
       type: "setProperties",
@@ -225,6 +226,16 @@ this.main = (function() {
     return dataUrl;
   });
 
+  communication.register("copyShotToClipboardChrome", () => {
+    // just notify the user that the copying is done. it happened on the content side.
+    return browser.notifications.create({
+      type: "basic",
+      iconUrl: "../icons/copy.png",
+      title: browser.i18n.getMessage("notificationImageCopiedTitle"),
+      message: browser.i18n.getMessage("notificationImageCopiedDetails", pasteSymbol)
+    });
+  });
+
   communication.register("copyShotToClipboard", (sender, blob) => {
     return blobConverters.blobToArray(blob).then(buffer => {
       return browser.clipboard.setImageData(
@@ -237,7 +248,7 @@ this.main = (function() {
             message: browser.i18n.getMessage("notificationImageCopiedDetails", pasteSymbol)
           });
         });
-    })
+    });
   });
 
   communication.register("downloadShot", (sender, info) => {
@@ -258,11 +269,11 @@ this.main = (function() {
     browser.downloads.onChanged.addListener(onChangedCallback)
     catcher.watchPromise(communication.sendToBootstrap("incrementCount", {scalar: "download"}));
     return browser.windows.getLastFocused().then(windowInfo => {
-      return browser.downloads.download({
-        url,
-        incognito: windowInfo.incognito,
-        filename: info.filename
-      }).then((id) => {
+      let downloadParams = { url, filename: info.filename };
+      if (!isChrome) {
+        downloadParams.incognito = windowInfo.incognito;
+      }
+      return browser.downloads.download(downloadParams).then((id) => {
         downloadId = id;
       });
     });
@@ -276,10 +287,12 @@ this.main = (function() {
     hasSeenOnboarding = true;
     catcher.watchPromise(browser.storage.local.set({hasSeenOnboarding}));
     setIconActive(false, null);
-    startBackground.photonPageActionPort.postMessage({
-      type: "setProperties",
-      title: browser.i18n.getMessage("contextMenuLabel")
-    });
+    if (!isChrome) {
+      startBackground.photonPageActionPort.postMessage({
+        type: "setProperties",
+        title: browser.i18n.getMessage("contextMenuLabel")
+      });
+    }
   });
 
   communication.register("abortStartShot", () => {

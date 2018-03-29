@@ -3,8 +3,11 @@
 
 "use strict";
 
+this.isChrome = buildSettings.targetBrowser === "chrome";
+
 this.uicontrol = (function() {
   const exports = {};
+
 
   /** ********************************************************
    * selection
@@ -152,7 +155,8 @@ this.uicontrol = (function() {
       sendEvent("cancel-shot", "overlay-cancel-button");
       exports.deactivate();
     }, save: () => {
-      sendEvent("save-shot", "overlay-save-button");
+      // TODO: why is this breaking?
+      // sendEvent("save-shot", "overlay-save-button");
       shooter.takeShot("selection", selectedPos);
     }, download: () => {
       sendEvent("download-shot", "overlay-download-button");
@@ -400,9 +404,36 @@ this.uicontrol = (function() {
 
   stateHandlers.previewing = {
     start() {
-      dataUrl = shooter.screenshotPage(selectedPos, captureType);
-      ui.iframe.usePreview();
-      ui.Preview.display(dataUrl, captureType === "fullPageTruncated");
+      let shotPromise;
+      if (!this.isChrome) {
+        shotPromise = Promise.resolve(shooter.screenshotPage(selectedPos, captureType));
+      } else {
+          // TODO: sometimes the iframe is not hidden in time, like on giphy.
+          // maybe if we use a promise to implicitly setTimeout, we can ensure
+          // the iframe is hidden before the shot is taken?
+        shotPromise = Promise.resolve().then(() => {
+            ui.iframe.document().documentElement.style.visibility = "hidden";
+            return new Promise((resolve, reject) => {
+              requestAnimationFrame(() => {
+                resolve();
+              });
+            });
+          }).then(() => {
+            return callBackground("screenshotPage", selectedPos.asJson(), {
+              scrollX: window.scrollX,
+              scrollY: window.scrollY,
+              innerHeight: window.innerHeight,
+              innerWidth: window.innerWidth
+            });
+          }).then((dataUrl) => {
+              ui.iframe.document().documentElement.style.visibility = "visible";
+              return dataUrl;
+          });
+      }
+      shotPromise.then((dataUrl) => {
+        ui.iframe.usePreview();
+        ui.Preview.display(dataUrl, captureType === "fullPageTruncated");
+      });
     }
   };
 

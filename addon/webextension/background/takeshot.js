@@ -63,7 +63,12 @@ this.takeshot = (function() {
       sendEvent("internal", "open-shot-tab");
       return uploadShot(shot, imageBlob, thumbnailBlob);
     }).then(() => {
-      return browser.tabs.update(openedTab.id, {url: shot.viewUrl, loadReplace: true}).then(
+      let opts = {url: shot.viewUrl};
+      // loadReplace isn't supported in Chrome...
+      if (!isChrome) {
+        updateOpts.loadReplace = true;
+      }
+      return browser.tabs.update(openedTab.id, opts).then(
         null,
         (error) => {
           // FIXME: If https://bugzilla.mozilla.org/show_bug.cgi?id=1365718 is resolved,

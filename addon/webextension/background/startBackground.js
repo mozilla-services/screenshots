@@ -1,4 +1,4 @@
-/* globals browser, main, communication */
+/* globals browser, buildSettings, main, communication */
 /* This file handles:
      clicks on the Photon page action
      browser.contextMenus.onClicked
@@ -7,6 +7,9 @@
    the events to main.onClicked, main.onClickedContextMenu, or communication.onMessage
 */
 const startTime = Date.now();
+
+// Note: setting this const here makes it global in the background page
+const isChrome = buildSettings.targetBrowser === "chrome";
 
 this.startBackground = (function() {
   const exports = {startTime};
@@ -54,7 +57,9 @@ this.startBackground = (function() {
   });
 
   let photonPageActionPort = null;
-  initPhotonPageAction();
+  if (!isChrome) {
+    initPhotonPageAction();
+  }
 
   let loadedPromise;
 

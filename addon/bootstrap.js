@@ -203,6 +203,9 @@ function stop(webExtension, reason) {
   return Promise.resolve(webExtension.shutdown(reason));
 }
 
+// NOTE: if you add a new message, be sure to add a corresponding stubbed-out
+// message and response inside webextension/background/communication.js for
+// the Chrome version.
 function handleMessage(msg, sender, sendReply) {
   if (!msg) {
     return;

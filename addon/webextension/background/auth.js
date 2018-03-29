@@ -153,7 +153,7 @@ this.auth = (function() {
   exports.authHeaders = function() {
     let initPromise = Promise.resolve();
     if (!initialized) {
-      initPromise = login();
+      initPromise = exports.isRegistered() ? login() : register();
     }
     return initPromise.then(() => {
       if (authHeader) {

@@ -90,6 +90,22 @@ build/%.html: %.html
 .PHONY: addon
 addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/shot.js addon/webextension/build/thumbnailGenerator.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/onboardingCss.js addon/webextension/build/onboardingHtml.js addon/webextension/build/buildSettings.js
 
+.PHONY: chrome
+chrome: addon
+	./bin/build-scripts/build-chrome-manifest.js
+	cp addon/webextension/manifest.json.chrome addon/webextension/manifest.json
+
+.PHONY: chrome_zip
+chrome_zip: addon
+	@rm -f build/screenshots-chrome.zip
+	./bin/build-scripts/build-chrome-manifest.js
+	cp addon/webextension/manifest.json addon/webextension/manifest.json_
+	cp addon/webextension/manifest.json.chrome addon/webextension/manifest.json
+	cd addon/webextension && zip -rq ../../build/screenshots-chrome.zip .
+	# build/screenshots-chrome.zip created
+	cp addon/webextension/manifest.json_ addon/webextension/manifest.json
+	rm addon/webextension/manifest.json_
+
 $(VENV): bin/require.pip
 	virtualenv -p python2.7 $(VENV)
 	. $(VENV)/bin/activate && pip install -r bin/require.pip
@@ -285,6 +301,10 @@ help:
 	@echo "    make an unsigned xpi of addon/ in build/screenshots.xpi"
 	@echo "  make signed_xpi"
 	@echo "    make a signed xpi in build/screenshots.xpi"
+	@echo "  make chrome"
+	@echo "    make/update an unpacked Chrome-compatible webextension directly in addon/webextension/"
+	@echo "  make chrome_zip"
+	@echo "    make an unsigned, Chrome-compatible zip of addon/webextension/ in build/screenshots-chrome.zip"
 	@echo "See also:"
 	@echo "  bin/run-addon"
 	@echo "  bin/run-server"

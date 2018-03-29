@@ -1,4 +1,4 @@
-/* globals catcher, log */
+/* globals catcher, log, isChrome */
 
 "use strict";
 
@@ -46,10 +46,14 @@ this.communication = (function() {
   };
 
   /** Send a message to bootstrap.js
-      Technically any worker can listen to this.  If the bootstrap wrapper is not in place, then this
-      will *not* fail, and will return a value of exports.NO_BOOTSTRAP  */
+      Technically any worker can listen to this.  If the bootstrap wrapper
+      is not in place, then this will *not* fail, and will return a value
+      of exports.NO_BOOTSTRAP. On Chrome, the bootstrap wrapper is not
+      supported, so hard-coded responses will be returned from the
+      sendMessageStub function in this file. */
   exports.sendToBootstrap = function(funcName, ...args) {
-    return browser.runtime.sendMessage({funcName, args}).then((result) => {
+    let fn = isChrome ? sendMessageStub : browser.runtime.sendMessage;
+    return fn({funcName, args}).then((result) => {
       if (result.type === "success") {
         return result.value;
       }
@@ -61,6 +65,30 @@ this.communication = (function() {
       throw error;
     });
   };
+
+  function sendMessageStub(msg, sender, sendReply) {
+    if (!msg) {
+      return;
+    }
+
+    // TODO: revisit these provisional decisions
+    if (msg.funcName === "isTelemetryEnabled") {
+      return Promise.resolve({type: "success", value: true});
+    } else if (msg.funcName === "isUploadDisabled") {
+      return Promise.resolve({type: "success", value: false});
+    } else if (msg.funcName === "isHistoryEnabled") {
+      return Promise.resolve({type: "success", value: true});
+    } else if (msg.funcName === "incrementCount") {
+      const allowedScalars = ["download", "upload", "copy"];
+      const scalar = msg.args && msg.args[0] && msg.args[0].scalar;
+      if (!allowedScalars.includes(scalar)) {
+        return Promise.resolve({type: "error", name: `incrementCount passed an unrecognized scalar ${scalar}`});
+      } else {
+        // TODO: load analytics.js and call sendEvent() here
+        return Promise.resolve({type: "success", value: true});
+      }
+    }
+  }
 
   function isBootstrapMissingError(error) {
     if (!error) {

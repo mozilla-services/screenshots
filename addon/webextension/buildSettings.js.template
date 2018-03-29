@@ -5,6 +5,7 @@ window.buildSettings = {
   uploadBinary: (process.env.SCREENSHOTS_UPLOAD_BINARY === "true"),
   pngToJpegCutoff: parseInt(process.env.SCREENSHOTS_PNG_TO_JPEG_CUTOFF || 2500000, 10),
   maxImageHeight: parseInt(process.env.SCREENSHOTS_MAX_IMAGE_HEIGHT || 10000, 10),
-  maxImageWidth: parseInt(process.env.SCREENSHOTS_MAX_IMAGE_WIDTH || 10000, 10)
+  maxImageWidth: parseInt(process.env.SCREENSHOTS_MAX_IMAGE_WIDTH || 10000, 10),
+  targetBrowser: process.env.SCREENSHOTS_CHROME_BUILD === "true" ? "chrome" : "firefox"
 };
 null;
