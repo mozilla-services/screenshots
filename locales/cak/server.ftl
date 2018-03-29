@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Tasujuj re wachib'äl re' ruma tz'ilanem, seq'tzijol, o jun chik k'ayewal
 shotPageDownloadShot =
     .title = Tiqasäx
+shotPageEditButton =
+    .title = Tinuk' re wachib'äl re'
 shotPageDownload = Tiqasäx
 shotPageScreenshotsDescription = Relik b'anon chi re ri chapoj wachib'äl. Man k'atzinel ta yatel el pa Firefox richin nachap, nayak, chuqa' nakomonij ri chapoj wachib'äl.
 shotPageUpsellFirefox = Tak'ulu' Firefox wakami
@@ -147,28 +149,34 @@ shotPageExpiresIn = k'isel { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = xk'is { $timediff }
 timeDiffJustNow = wakami
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] k'o kan 1 ch'utiramaj
        *[other] { $number } kan ch'utiramaj
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] k'o kan 1 ramaj
        *[other] { $number } kan ramaj
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] iwir
        *[other] { $number } kan taq q'ij
     }
 timeDiffFutureSeconds = pa jujun nich'ramaj
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] pa 1 ch'utiramaj
        *[other] pa { $number } taq ramaj 
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] pa 1 ramaj
        *[other] pa { $number } taq ramaj
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] chwa'q
        *[other] pa { $number } taq q'ij
     }
@@ -193,6 +201,24 @@ annotationCropConfirmButton = Tijikib'äx
     .title = Tijikib'äx cha'oj
 annotationCropCancelButton = Tiq'at
     .title = Tiq'at cha'oj
+annotationColorWhite =
+    .title = Säq
+annotationColorBlack =
+    .title = Q'ëq
+annotationColorRed =
+    .title = Käq
+annotationColorGreen =
+    .title = Räx
+annotationColorBlue =
+    .title = Xar
+annotationColorYellow =
+    .title = Q'än
+annotationColorPurple =
+    .title = Purpura'
+annotationColorSeaGreen =
+    .title = Ruraxal Palow
+annotationColorGrey =
+    .title = Chaj
 
 ## Shotindex page
 
