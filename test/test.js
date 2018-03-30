@@ -30,9 +30,11 @@ const path = require("path");
 const fs = require("fs");
 const util = require("util");
 
+const PAGE_ACTION_BUTTON_ID = "pageActionButton"
 const SHOOTER_BUTTON_ID = "pageAction-panel-screenshots";
 // Applies to the old-style toolbar button:
 const TOOLBAR_SHOOTER_BUTTON_ID = "screenshots_mozilla_org-browser-action";
+const pageActionButtonSelector = By.id(PAGE_ACTION_BUTTON_ID);
 const shooterSelector = By.css(`#${SHOOTER_BUTTON_ID}, #${TOOLBAR_SHOOTER_BUTTON_ID}`);
 const SLIDE_IFRAME_ID = "firefox-screenshots-onboarding-iframe";
 const PRESELECTION_IFRAME_ID = "firefox-screenshots-preselection-iframe";
@@ -104,9 +106,11 @@ function promiseFinally(promise, finallyCallback) {
     successfully. */
 function startScreenshots(driver) {
   return promiseFinally(
-    getChromeElement(driver, shooterSelector).then((button) => {
-      return button.click();
-    }),
+    getChromeElement(driver, pageActionButtonSelector)
+    .then(pageActionButton => pageActionButton.click())
+    .then(() => getChromeElement(driver, shooterSelector))
+    .then(screenshotsButton => screenshotsButton.click())
+    ,
     () => {
       driver.setContext(firefox.Context.CONTENT);
     }
@@ -240,8 +244,11 @@ describe("Test Screenshots", function() {
   it("should find the add-on button", function(done) {
     this.timeout(15000);
     promiseFinally(
-      getChromeElement(driver, shooterSelector)
-      .then((button) => button.getAttribute("label"))
+      driver.get(backend)
+      .then(() => getChromeElement(driver, pageActionButtonSelector))
+      .then(pageActionButton => pageActionButton.click())
+      .then(() => getChromeElement(driver, shooterSelector))
+      .then(screenshotsButton => screenshotsButton.getAttribute("label"))
       .then((label) => {
         if (label === "Take a Screenshot") {
           assert.equal(label, "Take a Screenshot");
