@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Ilmoita tästä kaappauksesta väärinkäytön, roskapostin tai muun ongelman vuoksi
 shotPageDownloadShot =
     .title = Lataa
+shotPageEditButton =
+    .title = Muokkaa tätä kuvaa
 shotPageDownload = Lataa
 shotPageScreenshotsDescription = Kuvakaappaukset helposti. Ota, tallenna ja jaa kuvakaappauksia poistumatta Firefoxista.
 shotPageUpsellFirefox = Lataa Firefox nyt
@@ -147,28 +149,34 @@ shotPageExpiresIn = vanhenee { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = vanheni { $timediff }
 timeDiffJustNow = juuri nyt
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] 1 minuutti sitten
        *[other] { $number } minuuttia sitten
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] 1 tunti sitten
        *[other] { $number } tuntia sitten
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] eilen
        *[other] { $number } päivää sitten
     }
 timeDiffFutureSeconds = muutaman sekunnin kuluttua
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] 1 minuutin kuluttua
        *[other] { $number } minuutin kuluttua
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] 1 tunnin kuluttua
        *[other] { $number } tunnin kuluttua
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] huomenna
        *[other] { $number } päivän kuluttua
     }
@@ -193,6 +201,24 @@ annotationCropConfirmButton = Vahvista
     .title = Vahvista valinta
 annotationCropCancelButton = Peruuta
     .title = Peruuta valinta
+annotationColorWhite =
+    .title = Valkoinen
+annotationColorBlack =
+    .title = Musta
+annotationColorRed =
+    .title = Punainen
+annotationColorGreen =
+    .title = Vihreä
+annotationColorBlue =
+    .title = Sininen
+annotationColorYellow =
+    .title = Keltainen
+annotationColorPurple =
+    .title = Violetti
+annotationColorSeaGreen =
+    .title = Merenvihreä
+annotationColorGrey =
+    .title = Harmaa
 
 ## Shotindex page
 
