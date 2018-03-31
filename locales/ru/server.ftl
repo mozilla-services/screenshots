@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Этот снимок является оскорбительным, спамом или имеет другие проблемы
 shotPageDownloadShot =
     .title = Загрузить
+shotPageEditButton =
+    .title = Изменить это изображение
 shotPageDownload = Загрузить
 shotPageScreenshotsDescription = Скриншоты стали простыми. Делайте, сохраняйте и делитесь скриншотами, не покидая Firefox.
 shotPageUpsellFirefox = Загрузить Firefox сейчас
@@ -147,33 +149,39 @@ shotPageExpiresIn = срок хранения истечёт { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = срок хранения истёк { $timediff }
 timeDiffJustNow = прямо сейчас
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] { $number } минуту назад
         [few] { $number } минуты назад
        *[other] { $number } минут назад
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] { $number } час назад
         [few] { $number } часа назад
        *[other] { $number } часов назад
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] { $number } день назад
         [few] { $number } дня назад
        *[other] { $number } дней назад
     }
 timeDiffFutureSeconds = через несколько секунд
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] через { $number } минуту
         [few] через { $number } минуты
        *[other] через { $number } минут
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] через { $number } час
         [few] через { $number } часа
        *[other] через { $number } часов
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] через { $number } день
         [few] через { $number } дня
        *[other] через { $number } дней
@@ -199,6 +207,24 @@ annotationCropConfirmButton = Подтвердить
     .title = Подтвердить выделение области
 annotationCropCancelButton = Отмена
     .title = Отменить выделение
+annotationColorWhite =
+    .title = Белый
+annotationColorBlack =
+    .title = Чёрный
+annotationColorRed =
+    .title = Красный
+annotationColorGreen =
+    .title = Зелёный
+annotationColorBlue =
+    .title = Синий
+annotationColorYellow =
+    .title = Жёлтый
+annotationColorPurple =
+    .title = Фиолетовый
+annotationColorSeaGreen =
+    .title = Морская зелень
+annotationColorGrey =
+    .title = Серый
 
 ## Shotindex page
 
