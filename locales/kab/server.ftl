@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Azen tuṭṭfa-agi d asexseṛ, d aspam, neɣ uguren-nniḍen
 shotPageDownloadShot =
     .title = Sider
+shotPageEditButton =
+    .title = Ẓreg tugna-agi
 shotPageDownload = Sider
 shotPageScreenshotsDescription = Tuṭṭfa fessusen. Ṭṭef, sekles, sakin bḍu tuṭṭfa war ma tefγeḍ seg Firefox.
 shotPageUpsellFirefox = Awi-d Firefox tura
@@ -148,24 +150,29 @@ shotPageExpiresIn = ad yemmet { $timediff }
 shotPageExpired = immut  { $timediff }
 timeDiffJustNow = tura yakan
 timeDiffMinutesAgo = { $number } n tesdatin aya
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] 1 usrag aya
        *[other] { $number } isragen aya
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] iḍelli
        *[other] { $number }  n wussan aya
     }
 timeDiffFutureSeconds = deg kra n tesnatin
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] di 1 n tsedat
        *[other] di { $number } tsedatin
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] di 1 usrag
        *[other] di { $number } isragen
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] azekka
        *[other] di { $number } n wussan
     }
@@ -190,6 +197,20 @@ annotationCropConfirmButton = Sentem
     .title = SSentem tafrant
 annotationCropCancelButton = Sefsex
     .title = Sefsex tafrant
+annotationColorWhite =
+    .title = Amellal
+annotationColorBlack =
+    .title = Aberkan
+annotationColorRed =
+    .title = Azggaɣ
+annotationColorGreen =
+    .title = Azegzaw
+annotationColorBlue =
+    .title = Amidadi
+annotationColorYellow =
+    .title = Awraɣ
+annotationColorPurple =
+    .title = Avyuli
 
 ## Shotindex page
 
