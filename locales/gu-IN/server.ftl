@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = દુરુપયોગ, સ્પામ અથવા અન્ય સમસ્યાઓ માટે આ શોટની જાણ કરો
 shotPageDownloadShot =
     .title = ડાઉનલોડ કરો
+shotPageEditButton =
+    .title = આ છબી સંપાદિત કરો
 shotPageDownload = ડાઉનલોડ કરો
 shotPageScreenshotsDescription = સ્ક્રીનશોટને સરળ બનાવી. Firefox છોડ્યાં વગર સ્ક્રીનશોટ લો, સાચવો અને વહેંચો.
 shotPageUpsellFirefox = હમણાં Firefox મેળવો
@@ -199,6 +201,24 @@ annotationCropConfirmButton = ખાતરી
     .title = પસંદગીની ખાતરી કરો
 annotationCropCancelButton = રદ કરો
     .title = પસંદગી રદ કરો
+annotationColorWhite =
+    .title = સફેદ
+annotationColorBlack =
+    .title = કાળો
+annotationColorRed =
+    .title = લાલ
+annotationColorGreen =
+    .title = લીલો
+annotationColorBlue =
+    .title = વાદળી
+annotationColorYellow =
+    .title = પીળો
+annotationColorPurple =
+    .title = જાંબલી
+annotationColorSeaGreen =
+    .title = સમુદ્ર લીલો
+annotationColorGrey =
+    .title = રાખોડી
 
 ## Shotindex page
 
