@@ -211,6 +211,10 @@ annotationColorYellow =
     .title = Awraɣ
 annotationColorPurple =
     .title = Avyuli
+annotationColorSeaGreen =
+    .title = Azegzaw n yil
+annotationColorGrey =
+    .title = Amumad
 
 ## Shotindex page
 
