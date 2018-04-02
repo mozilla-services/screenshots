@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Pranešti apie išnaudojimą, nepageidaujamą informaciją arba kitas šios nuotraukos problemas
 shotPageDownloadShot =
     .title = Atsisiųsti
+shotPageEditButton =
+    .title = Redaguoti paveikslą
 shotPageDownload = Atsisiųsti
 shotPageScreenshotsDescription = Ekrano nuotraukos paprastai. Darykite, saugokite ir dalinkitės ekrano nuotraukomis nepalikdami „Firefox“.
 shotPageUpsellFirefox = Gauti „Firefox“ dabar
@@ -147,33 +149,39 @@ shotPageExpiresIn = baigs galioti { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = baigė galioti { $timediff }
 timeDiffJustNow = ką tik
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] prieš 1 minutę
         [few] prieš { $number } minutes
        *[other] prieš { $number } minučių
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] prieš 1 valandą
         [few] prieš { $number } valandas
        *[other] prieš { $number } valandų
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] vakar
         [few] prieš { $number } dienas
        *[other] prieš { $number } dienų
     }
 timeDiffFutureSeconds = po keleto sekundžių
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] po 1 minutės
         [few] po { $number } minučių
        *[other] po { $number } minučių
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] po 1 valandos
         [few] po { $number } valandų
        *[other] po { $number } valandų
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] rytoj
         [few] po { $number } dienų
        *[other] po { $number } dienų
@@ -199,6 +207,24 @@ annotationCropConfirmButton = Tinka
     .title = Patvirtinkite pasirinkimą
 annotationCropCancelButton = Atsisakyti
     .title = Atsisakyti pasirinkimo
+annotationColorWhite =
+    .title = Balta
+annotationColorBlack =
+    .title = Juoda
+annotationColorRed =
+    .title = Raudona
+annotationColorGreen =
+    .title = Žalia
+annotationColorBlue =
+    .title = Mėlyna
+annotationColorYellow =
+    .title = Geltona
+annotationColorPurple =
+    .title = Violetinė
+annotationColorSeaGreen =
+    .title = Jūros mėlio
+annotationColorGrey =
+    .title = Pilka
 
 ## Shotindex page
 
