@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = এই শটটি কোনপ্রকার অপব্যবহার, স্প্যাম, অথবা অন্য কোন সমস্যার জন্যে রিপোর্ট করুন
 shotPageDownloadShot =
     .title = ডাউনলোড
+shotPageEditButton =
+    .title = ছবি সম্পাদনা করুন
 shotPageDownload = ডাউনলোড
 shotPageScreenshotsDescription = স্ক্রিনশট নেওয়া অনেক সহজ করে দেওয়া হয়েছে। ফায়ারফক্স থেকে বের না হয়েই স্ক্রিনশট নিন, সংরক্ষণ করুন এবং অন্যদের সাথে শেয়ারও করুন।
 shotPageUpsellFirefox = এখন Firefox নিন
@@ -147,28 +149,34 @@ shotPageExpiresIn = { $timediff } দিনে মেয়াদোত্তীর
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } মেয়াদোত্তীর্ণ
 timeDiffJustNow = এখনই
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] ১ মিনিট আগে 
        *[other] { $number } মিনিট আগে
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] ১ ঘন্টা আগে
        *[other] { $number } ঘন্টা আগে
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] গতকাল 
        *[other] { $number } দিন আগে
     }
 timeDiffFutureSeconds = কিছুক্ষণের মধ্যেই
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] ১ মিনিটের মধ্যে
        *[other] { $number } মিনিটের মধ্যে
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] ১ ঘন্টার মধ্যে
        *[other] { $number } ঘন্টার মধ্যে
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] আগামীকাল
        *[other] { $number } দিনের মধ্যে
     }
@@ -193,6 +201,24 @@ annotationCropConfirmButton = নিশ্চিতকরণ
     .title = নির্বাচন নিশ্চিতকরণ
 annotationCropCancelButton = বাতিল
     .title = নির্বাচন বাতিল
+annotationColorWhite =
+    .title = সাদা
+annotationColorBlack =
+    .title = কালো
+annotationColorRed =
+    .title = লাল
+annotationColorGreen =
+    .title = সবুজ
+annotationColorBlue =
+    .title = নীল
+annotationColorYellow =
+    .title = হলুদ
+annotationColorPurple =
+    .title = বেগুনি
+annotationColorSeaGreen =
+    .title = গাঢ় সবুজ
+annotationColorGrey =
+    .title = ধূসর
 
 ## Shotindex page
 
