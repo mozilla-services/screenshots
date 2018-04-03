@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Laporkan tangkapan sebagai penyalahgunaan, spam, atau masalah lainnya
 shotPageDownloadShot =
     .title = Unduh
+shotPageEditButton =
+    .title = Edit gambar ini
 shotPageDownload = Unduh
 shotPageScreenshotsDescription = Screenshots sangat mudah. Tangkap, simpan, dan bagikan tangkapan layar tanpa meninggalkan Firefox.
 shotPageUpsellFirefox = Dapatkan Firefox sekarang
@@ -129,6 +131,10 @@ shotPageDMCAIncludeLink = Sertakan URL dari tangkapan ini dalam surel Anda: { $u
 shotPageKeepFor = Berapa lama tangkapan ini disimpan?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Pilih waktu
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Selamanya ∞
 shotPageKeepTenMinutes = 10 Menit
 shotPageKeepOneHour = 1 Jam
 shotPageKeepOneDay = 1 Hari
@@ -171,6 +177,24 @@ annotationCropConfirmButton = Konfirmasi
     .title = Konfirmasi pilihan
 annotationCropCancelButton = Batal
     .title = Batalkan pilihan
+annotationColorWhite =
+    .title = Putih
+annotationColorBlack =
+    .title = Hitam
+annotationColorRed =
+    .title = Merah
+annotationColorGreen =
+    .title = Hijau
+annotationColorBlue =
+    .title = Biru
+annotationColorYellow =
+    .title = Kuning
+annotationColorPurple =
+    .title = Ungu
+annotationColorSeaGreen =
+    .title = Hijau Laut
+annotationColorGrey =
+    .title = Abu-abu
 
 ## Shotindex page
 
