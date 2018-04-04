@@ -74,7 +74,7 @@ leavePageDeleted = Alle skjermbilda dine er sletta!
 ## Not Found page
 
 notFoundPageTitle = Fann ikkje sida
-notFoundPageIntro = Ups.
+notFoundPageIntro = Ops.
 notFoundPageDescription = Fann ikkje sida.
 
 ## Shot page
