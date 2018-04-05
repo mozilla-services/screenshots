@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Пријави злоупотребу, непожељно или друге проблеме на овом снимку
 shotPageDownloadShot =
     .title = Преузми
+shotPageEditButton =
+    .title = Уреди ову слику
 shotPageDownload = Преузми
 shotPageScreenshotsDescription = Снимци екрана, поједностављени. Ухватите, сачувајте и делите снимке екрана без напуштања Firefox-а.
 shotPageUpsellFirefox = Преузмите Firefox сада
@@ -147,33 +149,39 @@ shotPageExpiresIn = истиче { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = истекло { $timediff }
 timeDiffJustNow = управо
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] пре једног минута
         [few] пре { $number } минута
        *[other] пре { $number } минута
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] пре једног сата
         [few] пре { $number } сата
        *[other] пре { $number } сати
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] јуче
         [few] пре { $number } дана
        *[other] пре { $number } дана
     }
 timeDiffFutureSeconds = за пар секунди
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] за један минут
         [few] за { $number } минута
        *[other] за { $number } минута
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] за један сат
         [few] за { $number } сата
        *[other] за { $number } сати
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] сутра
         [few] за { $number } дана
        *[other] за { $number } дана
@@ -199,6 +207,24 @@ annotationCropConfirmButton = Потврди
     .title = Потврди избор
 annotationCropCancelButton = Откажи
     .title = Откажи избор
+annotationColorWhite =
+    .title = Бела
+annotationColorBlack =
+    .title = Црна
+annotationColorRed =
+    .title = Црвена
+annotationColorGreen =
+    .title = Зелена
+annotationColorBlue =
+    .title = Плава
+annotationColorYellow =
+    .title = Жута
+annotationColorPurple =
+    .title = Љубичаста
+annotationColorSeaGreen =
+    .title = Морска зелена
+annotationColorGrey =
+    .title = Сива
 
 ## Shotindex page
 
