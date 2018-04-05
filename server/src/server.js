@@ -1128,9 +1128,16 @@ app.use((req, res, next) => {
         dsn = "";
       }
       req.cspNonce = uuid;
-      res.header(
-        "Content-Security-Policy",
-        `default-src 'self'; img-src 'self' ${FXA_SERVER} www.google-analytics.com ${SITE_CDN} ${CONTENT_CDN} ${CONTENT_NAME} data:; script-src 'self' ${SITE_CDN} www.google-analytics.com 'nonce-${uuid}'; style-src 'self' ${SITE_CDN} 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' ${SITE_CDN} www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
+      // This should be a temporary workaround for
+      // https://github.com/mozilla-services/screenshots/issues/4281
+      // (https://bugzilla.mozilla.org/show_bug.cgi?id=1267027).
+      // TODO: remove this when bug 1267027 is resolved.
+      const DO_NOT_SEND_CSP = process.env.NODE_ENV === "dev" && process.env.DO_NOT_SEND_CSP && process.env.DO_NOT_SEND_CSP === "true";
+      if (!DO_NOT_SEND_CSP) {
+        res.header(
+          "Content-Security-Policy",
+          `default-src 'self'; img-src 'self' ${FXA_SERVER} www.google-analytics.com ${SITE_CDN} ${CONTENT_CDN} ${CONTENT_NAME} data:; script-src 'self' ${SITE_CDN} www.google-analytics.com 'nonce-${uuid}'; style-src 'self' ${SITE_CDN} 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' ${SITE_CDN} www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
+      }
       res.header("X-Frame-Options", "DENY");
       next();
     } else {
