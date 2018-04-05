@@ -123,9 +123,9 @@
     text-decoration: none;
     border: 1px solid rgba(12, 12, 13, 0.3);
     border-radius: 2px;
-    padding: 7px;
     width: 150px;
     height: 30px;
+    cursor: pointer;
 
     &:hover {
       background-color: $light-hover;
