@@ -62,6 +62,7 @@ notFoundPageDescription = ไม่พบหน้า
 
 # This is the HTML title tag of the page
 shotPageTitle = ภาพหน้าจอ: { $originalTitle }
+shotPageAlertErrorDeletingShot = เกิดข้อผิดพลาดในการลบภาพ
 shotPageAlertErrorUpdatingTitle = เกิดข้อผิดพลาดในการบันทึกชื่อเรื่อง
 shotPageShareButton =
     .title = แบ่งปัน
