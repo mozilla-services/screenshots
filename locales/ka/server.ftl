@@ -66,7 +66,7 @@ leavePageRemoveAllData = ყველა მონაცემის წაშ�
 leavePageErrorAddonRequired = ანგარიშის წასაშლელად აუცილებელია გეყენოთ Firefox Screenshots
 leavePageErrorGeneric = მოხდა შეცდომა
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageWarning = ამის შედეგად, Firefox Screenshots-ის მონაცემები სამუდამოდ წაიშლება.
+leavePageWarning = შედეგად, Firefox Screenshots-ის მონაცემები სამუდამოდ წაიშლება.
 leavePageButtonProceed = გაგრძელება
 leavePageButtonCancel = გაუქმება
 leavePageDeleted = თქვენი ყველა სურათი წაიშლება!
