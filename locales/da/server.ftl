@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Indberet dette skærmbillede for misbrug, spam eller andre problemer
 shotPageDownloadShot =
     .title = Hent
+shotPageEditButton =
+    .title = Rediger dette billede
 shotPageDownload = Hent
 shotPageScreenshotsDescription = Skærmbilleder helt enkelt. Tag, gem og del skærmbilleder uden af forlade Firefox.
 shotPageUpsellFirefox = Hent Firefox nu
@@ -147,28 +149,34 @@ shotPageExpiresIn = udløber { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = udløb { $timediff }
 timeDiffJustNow = netop nu
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] 1 minut siden
        *[other] { $number } minutter siden
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] 1 time siden
        *[other] { $number } timer siden
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] i går
        *[other] { $number } dage siden
     }
 timeDiffFutureSeconds = om et par sekunder
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] om 1 minut
        *[other] om { $number } minutter
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] om 1 time
        *[other] om { $number } timer
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] i morgen
        *[other] om { $number } dage
     }
@@ -193,6 +201,24 @@ annotationCropConfirmButton = Bekræft
     .title = Bekræft markering
 annotationCropCancelButton = Fortryd
     .title = Fortryd markering
+annotationColorWhite =
+    .title = Hvid
+annotationColorBlack =
+    .title = Sort
+annotationColorRed =
+    .title = Rød
+annotationColorGreen =
+    .title = Grøn
+annotationColorBlue =
+    .title = Blå
+annotationColorYellow =
+    .title = Gul
+annotationColorPurple =
+    .title = Lilla
+annotationColorSeaGreen =
+    .title = Havgrøn
+annotationColorGrey =
+    .title = Grå
 
 ## Shotindex page
 
