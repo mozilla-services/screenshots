@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Denuncieu aquesta captura per abús, brossa o altres problemes
 shotPageDownloadShot =
     .title = Baixa
+shotPageEditButton =
+    .title = Edita aquesta imatge
 shotPageDownload = Baixa
 shotPageScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures, deseu-les i compartiu-les sense sortir del Firefox.
 shotPageUpsellFirefox = Baixeu el Firefox ara
@@ -129,6 +131,10 @@ shotPageDMCAIncludeLink = Incloeu l'URL d'aquesta captura en el missatge de corr
 shotPageKeepFor = Quant temps voleu conservar aquesta captura?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Seleccioneu el temps
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Indefinidament ∞
 shotPageKeepTenMinutes = 10 minuts
 shotPageKeepOneHour = 1 hora
 shotPageKeepOneDay = 1 dia
@@ -185,6 +191,10 @@ annotationHighlighterButton =
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Esborra
+annotationCropButton =
+    .title = Retalla
+annotationSaveEditButton = Desa
+    .title = Desa l'edició
 annotationCancelEditButton = Cancel·la
     .title = Cancel·la l'edició
 annotationCropConfirmButton = Confirma
@@ -236,6 +246,12 @@ shotIndexPagePreviousPage =
     .title = Pàgina anterior
 shotIndexPageNextPage =
     .title = Pàgina següent
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Aquesta captura no caduca
 
 ## Metrics page
 ## All metrics strings are optional for translation
