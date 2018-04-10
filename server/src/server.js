@@ -354,6 +354,7 @@ app.get("/install-raven.js", function(req, res) {
   const options = {
     environment: process.env.NODE_ENV || "dev",
     release: linker.getGitRevision(),
+    sanitizeKeys: ["url"],
     serverName: req.backend
   };
   // FIXME: this monkeypatch is because our version of Raven (6.2) doesn't really work
