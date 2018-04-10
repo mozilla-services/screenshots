@@ -105,6 +105,8 @@ shotPageAbuseButton =
     .title = దుర్వినియోగం, స్పామ్ లేదా ఇతర సమస్యలకు ఈ తెరపట్టును నివేదించండి
 shotPageDownloadShot =
     .title = దింపుకోండి
+shotPageEditButton =
+    .title = ఈ చిత్రం సవరించు
 shotPageDownload = దింపుకోండి
 shotPageScreenshotsDescription = తెరపట్లు సులభతరమైనాయి. Firefoxను వదలకుండా తెరపట్లను తీసుకోండి,  భద్రపరచండి మరియు పంచుకోండి.
 shotPageUpsellFirefox = ఇప్పుడు Firefoxను పొందండి
@@ -170,6 +172,8 @@ timeDiffFutureDays =
 
 annotationPenButton =
     .title = పెన్ను
+annotationHighlighterButton =
+    .title = హైలైటర్
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = తుడిచివేయి
@@ -183,6 +187,24 @@ annotationCropConfirmButton = నిర్ధారించు
     .title = ఎంపికను నిర్ధారించు
 annotationCropCancelButton = రద్దుచేయి
     .title = ఎంపికను రద్దుచేయి
+annotationColorWhite =
+    .title = తెలుపు
+annotationColorBlack =
+    .title = నలుపు
+annotationColorRed =
+    .title = ఎరుపు
+annotationColorGreen =
+    .title = పచ్చ
+annotationColorBlue =
+    .title = నీలం
+annotationColorYellow =
+    .title = పసుపు
+annotationColorPurple =
+    .title = ఊదా
+annotationColorSeaGreen =
+    .title = నీలం కలిసిన ఆకుపచ్చ
+annotationColorGrey =
+    .title = బూడిద 
 
 ## Shotindex page
 
