@@ -331,7 +331,7 @@ class Body extends React.Component {
 
     const linkTextShort = shot.urlDisplay;
 
-    const timeDiff = <TimeDiff date={shot.createdDate} userLocales={this.props.userLocales} />;
+    const timeDiff = <TimeDiff date={shot.createdDate} />;
     let expiresDiff = null;
     if (this.props.isOwner) {
       expiresDiff = <span className="expire-widget">
