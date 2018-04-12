@@ -241,6 +241,10 @@ settingsSignInInvite = Přizjewće so, zo byšće přez graty synchronizował
 settingsSignInButton = Přizjewić
     .title = Přizjewić
 SettingsPageHeader = Nastajenja Firefox Screenshots
+settingsDescription = Móžeće so z Firefox Accounts přizjewić, zo byšće wšě swoje fota wobrazowki přez graty synchronizował a priwatny přistup na nje měł.
+settingsPageSubHeader = Synchronizacija a konta
+settingsClosePreferences =
+    .title = Nastajenja začinić
 
 ## Shotindex page
 
