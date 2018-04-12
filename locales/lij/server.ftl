@@ -23,12 +23,15 @@ creatingPageWaitMessage = Registraçion föto…
 
 ## Home page
 
+homePageDownloadFirefoxTitle = Firefox
 
 ## Leave Screenshots page
 
+leavePageButtonCancel = Anulla
 
 ## Not Found page
 
+notFoundPageTitle = Pagina no atrovâ
 notFoundPageIntro = Ahime mi!
 notFoundPageDescription = Pagina no atrovâ.
 
