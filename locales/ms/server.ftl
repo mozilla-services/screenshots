@@ -214,6 +214,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Kelabu
 
+## Settings Page
+
+settingsDisconnectButton = Memutuskan
+    .title = Memutuskan
+settingsGuestAccountMessage = Akaun Tetamu
+settingsSignInInvite = Daftar masuk untuk sync semua peranti
+settingsSignInButton = Daftar masuk
+    .title = Daftar masuk
+SettingsPageHeader = Tetapan Firefox Screenshots
+settingsDescription = Anda boleh daftar masuk dengan Akaun Firefox untuk sync skrinsyot semua peranti dan akses secara peribadi.
+settingsPageSubHeader = Sync & Akaun
+settingsClosePreferences =
+    .title = Tutup keutamaan
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
