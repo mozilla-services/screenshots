@@ -232,6 +232,16 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Šěry
 
+## Settings Page
+
+settingsDisconnectButton = Zwisk dźělić
+    .title = Zwisk dźělić
+settingsGuestAccountMessage = Hóstne konto
+settingsSignInInvite = Přizjewće so, zo byšće přez graty synchronizował
+settingsSignInButton = Přizjewić
+    .title = Přizjewić
+SettingsPageHeader = Nastajenja Firefox Screenshots
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
