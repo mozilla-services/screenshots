@@ -224,6 +224,8 @@ annotationColorGrey =
 
 settingsSignInButton = Authenticar se
     .title = Authenticar se
+settingsClosePreferences =
+    .title = Clauder le preferentias
 
 ## Shotindex page
 
