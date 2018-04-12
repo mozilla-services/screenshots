@@ -1,8 +1,6 @@
 version: 2
 jobs:
   build:
-    environment:
-      - NODE_ENV: production
     docker:
       - image: circleci/node:8.10.0
     working_directory: ~/screenshots
