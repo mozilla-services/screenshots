@@ -817,9 +817,10 @@ class ColorPicker extends React.Component {
 
   onClickSwatch(e) {
     const color = e.target.style.backgroundColor;
+    const title = e.target.title.toLowerCase().replace(/\s/g, "-");
     this.setState({color, pickerActive: false});
     this.props.setColor(color);
-    sendEvent("color-change", "annotation-color-board");
+    sendEvent(`${title}-select`, "annotation-color-board");
   }
 
   onClickColorPicker() {
