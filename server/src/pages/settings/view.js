@@ -3,6 +3,7 @@ const reactruntime = require("../../reactruntime");
 const sendEvent = require("../../browser-send-event.js");
 const React = require("react");
 const PropTypes = require("prop-types");
+const { Localized } = require("fluent-react/compat");
 
 class Head extends React.Component {
 
@@ -27,7 +28,9 @@ class Body extends React.Component {
       <reactruntime.BodyTemplate {...this.props}>
         <div className="full-height">
           <div id="settings-header">
-            <a className="button close-preferences" href="/shots"></a>
+            <Localized id="settingsClosePreferences">
+              <a className="button close-preferences" href="/shots" title="Close preferences"></a>
+            </Localized>
           </div>
           <div>
             { this.renderAccountInfo() }
@@ -48,7 +51,9 @@ class Body extends React.Component {
           <div className="info-container">
             <p className="username title">{this.props.accountInfo.nickname || this.props.accountInfo.email}</p>
             { this.props.accountInfo.nickname ? <p className="email info">{this.props.accountInfo.email}</p> : null }
-            <button className="account-buttons disconnect" onClick={ this.onClickDisconnect.bind(this) }>Disconnect</button>
+            <Localized id="settingsDisconnectButton">
+              <button className="account-buttons disconnect" onClick={ this.onClickDisconnect.bind(this) } title="Disconnect">Disconnect</button>
+            </Localized>
           </div>
         </div>
       );
@@ -57,20 +62,32 @@ class Body extends React.Component {
         <div className="account-info">
           <img src={ defaultAvatar } height="100" width="100" />
           <div className="info-container">
-            <p className="title">Guest Account</p>
-            <p className="info">Sign in to sync across devices</p>
-            <a className="account-buttons" href="/api/fxa-oauth/login" onClick={ this.onClickConnect.bind(this) }>Sign In</a>
+            <Localized id="settingsGuestAccountMessage">
+              <p className="title">Guest Account</p>
+            </Localized>
+            <Localized id="settingsSignInInvite">
+              <p className="info">Sign in to sync across devices</p>
+            </Localized>
+            <Localized id="settingsSignInButton">
+              <a className="account-buttons" href="/api/fxa-oauth/login" onClick={ this.onClickConnect.bind(this)} title="Sign in">Sign In</a>
+            </Localized>
           </div>
         </div>
       );
       subInfo = (
-        <p className="sub-info">You can sign in with Firefox Account to sync all your screenshots across devices and access them privately.</p>
+        <Localized id="settingsDescription">
+          <p className="sub-info">You can sign in with Firefox Accounts to sync all your screenshots across devices and access them privately.</p>
+        </Localized>
       );
     }
     return <div className="preferences">
-      <p className="header">Firefox Screenshots Settings</p>
+      <Localized id="SettingsPageHeader">
+        <p className="header">Firefox Screenshots Settings</p>
+      </Localized>
       <hr />
-      <p className="sub-header">Sync & Accounts</p>
+      <Localized id="settingsPageSubHeader">
+        <p className="sub-header">Sync & Accounts</p>
+      </Localized>
       { info }
       { subInfo}
     </div>;
