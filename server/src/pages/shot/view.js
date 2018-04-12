@@ -5,6 +5,7 @@ const { Localized } = require("fluent-react/compat");
 const { Footer } = require("../../footer-view");
 const sendEvent = require("../../browser-send-event.js");
 const { ShareButton } = require("../../share-buttons");
+const { DeleteShotButton } = require("../../delete-shot-button");
 const { TimeDiff } = require("./time-diff");
 const reactruntime = require("../../reactruntime");
 const { Editor } = require("./editor");
@@ -182,15 +183,17 @@ class Body extends React.Component {
     this.setState({closeBanner: true});
   }
 
-  onClickDelete(e) {
+  clickDeleteHandler() {
     sendEvent("start-delete", "navbar", {useBeacon: true});
-    const confirmMessage = document.getElementById("shotPageConfirmDelete").textContent;
-    if (window.confirm(confirmMessage)) {
-      sendEvent("delete", "popup-confirm", {useBeacon: true});
-      this.props.controller.deleteShot(this.props.shot);
-    } else {
-      sendEvent("cancel-delete", "popup-confirm");
-    }
+  }
+
+  confirmDeleteHandler() {
+    sendEvent("delete", "popup-confirm", {useBeacon: true});
+    this.props.controller.deleteShot(this.props.shot);
+  }
+
+  cancelDeleteHandler() {
+    sendEvent("cancel-delete", "popup-confirm");
   }
 
   onClickFlag(e) {
@@ -346,9 +349,10 @@ class Body extends React.Component {
     let editButton;
     const highlight = this.props.highlightEditButton ? <div className="edit-highlight" onClick={ this.onClickEdit.bind(this) } onMouseOver={ this.onMouseOverHighlight.bind(this) } onMouseOut={ this.onMouseOutHighlight.bind(this) }></div> : null;
     if (this.props.isOwner) {
-      trashOrFlagButton = <Localized id="shotPageDeleteButton">
-        <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }></button>
-      </Localized>;
+      trashOrFlagButton = <DeleteShotButton
+        clickDeleteHandler={ this.clickDeleteHandler.bind(this) }
+        confirmDeleteHandler={ this.confirmDeleteHandler.bind(this) }
+        cancelDeleteHandler={ this.cancelDeleteHandler.bind(this) } />;
       editButton = <Localized id="shotPageEditButton">
         <button className="button transparent edit" title="Edit this image" onClick={ this.onClickEdit.bind(this) } ref={(edit) => { this.editButton = edit }}></button>
       </Localized>;
