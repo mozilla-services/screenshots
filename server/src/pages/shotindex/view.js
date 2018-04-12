@@ -106,9 +106,10 @@ class Body extends React.Component {
     const hasNext = this.props.pageNumber < totalPages;
     const nextPageNumber = this.props.pageNumber - 0 + 1;
     const nextClasses = ["shots-page-nav"].concat(!hasNext && "disabled").join(" ");
+    const hidden = totalPages < 2;
 
     return (
-      <div id="shot-index-page-navigation">
+      <div id="shot-index-page-navigation" hidden={hidden} >
         <span className={prevClasses}>
           <Localized id="shotIndexPagePreviousPage">
             {
