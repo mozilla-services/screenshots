@@ -546,7 +546,7 @@ body {
   height: 22px;
   width: 22px;
   border-radius: 11px;
-  margin: 13.5px 10px 0 10px;
+  margin: 13.5px 10px 0 9.5px;
 
   &:hover {
     cursor: pointer;
@@ -597,7 +597,7 @@ body {
     border-right: 10px solid transparent;
     border-bottom: 15px solid $light-border;
     top: -15px;
-    left: 8px;
+    left: 9.5px;
 
     .triangle-inner {
       position: absolute;
