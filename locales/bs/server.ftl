@@ -221,6 +221,16 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Siva
 
+## Settings Page
+
+settingsGuestAccountMessage = Račun za gosta
+settingsSignInInvite = Prijavite se za sinhronizaciju kroz uređaje
+SettingsPageHeader = Firefox Screenshots postavke
+settingsDescription = Možete se prijaviti sa Firefox računima za sinhronizaciju svih vaših snimaka na svim uređajima i pristupiti im privatno.
+settingsPageSubHeader = Sync i računi
+settingsClosePreferences =
+    .title = Zatvori postavke
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
