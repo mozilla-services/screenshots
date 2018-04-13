@@ -220,6 +220,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Griis
 
+## Settings Page
+
+settingsDisconnectButton = Ferbrekke
+    .title = Ferbrekke
+settingsGuestAccountMessage = Gastaccount
+settingsSignInInvite = Meld jo oan om tusken apparaten te syngronisearjen
+settingsSignInButton = Oanmelde
+    .title = Oanmelde
+SettingsPageHeader = Ynstellingen fan Firefox Screenshots
+settingsDescription = Jo kinne jo oanmelde mei Firefox Accounts om al jo skermôfbyldingen tusken apparaten te syngronisearjen en dizze privee te benaderjen.
+settingsPageSubHeader = Sync en accounts
+settingsClosePreferences =
+    .title = Foarkarren slute
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
