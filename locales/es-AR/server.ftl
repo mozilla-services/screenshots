@@ -220,6 +220,11 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Gris
 
+## Settings Page
+
+settingsDisconnectButton = Desconectar
+    .title = Desconectar
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
