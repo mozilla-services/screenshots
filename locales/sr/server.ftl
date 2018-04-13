@@ -230,6 +230,15 @@ annotationColorGrey =
 
 settingsDisconnectButton = Прекини везу
     .title = Прекини везу
+settingsGuestAccountMessage = Налог госта
+settingsSignInInvite = Пријавите се да синхронизујете уређаје
+settingsSignInButton = Пријави се
+    .title = Пријави се
+SettingsPageHeader = Firefox Screenshots поставке
+settingsDescription = Можете се пријавити са Firefox налогом да синхронизујете све ваше снимке екрана са другим уређајима и да приступате са њих.
+settingsPageSubHeader = Sync и налози
+settingsClosePreferences =
+    .title = Затвори поставке
 
 ## Shotindex page
 
