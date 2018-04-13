@@ -206,6 +206,13 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = బూడిద 
 
+## Settings Page
+
+settingsGuestAccountMessage = అతిథి ఖాతా
+settingsPageSubHeader = సింక్ & ఖాతాలు
+settingsClosePreferences =
+    .title = అభిరుచులను మూసివేయి
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
