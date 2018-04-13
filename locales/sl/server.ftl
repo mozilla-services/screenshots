@@ -232,6 +232,11 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Siva
 
+## Settings Page
+
+settingsClosePreferences =
+    .title = Zapri nastavitve
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
