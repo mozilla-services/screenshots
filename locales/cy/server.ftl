@@ -231,6 +231,17 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Llwyd
 
+## Settings Page
+
+settingsDisconnectButton = Datgysylltu
+    .title = Datgysylltu
+settingsGuestAccountMessage = Cyfrif Gwestai
+settingsSignInInvite = Mewngofnodi i gydweddu ar draws dyfeisiau
+settingsSignInButton = Mewngofnodi
+    .title = Mewngofnodi
+SettingsPageHeader = Gosodiadau Firefox Screenshots
+settingsDescription = Gallwch fewngofnodi gyda Chyfrifon Firefox i gydweddu eich holl luniau sgrin ar draws dyfeisiau a chael mynediad atyn nhw'n breifat.
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
