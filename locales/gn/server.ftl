@@ -4,6 +4,10 @@
 
 ## Global phrases shared across pages, prefixed with 'g'
 
+gMyShots = Che japyhypy
+gHomeLink = Ñepyrũ
+gNoShots =
+    .alt = Ndojejuhúi japyhypy
 
 ## Footer
 
