@@ -196,6 +196,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = 灰色
 
+## Settings Page
+
+settingsDisconnectButton = 取消連線
+    .title = 取消連線
+settingsGuestAccountMessage = 訪客帳號
+settingsSignInInvite = 登入後即可同步不同裝置
+settingsSignInButton = 登入
+    .title = 登入
+SettingsPageHeader = Firefox Screenshots 設定
+settingsDescription = 使用 Firefox 帳號登入後，您就可以在不同裝置間同步拍攝的擷圖，並以私人的方式使用。
+settingsPageSubHeader = 同步與帳號
+settingsClosePreferences =
+    .title = 關閉偏好設定
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
