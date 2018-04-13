@@ -226,6 +226,11 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Сива
 
+## Settings Page
+
+settingsDisconnectButton = Прекини везу
+    .title = Прекини везу
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
