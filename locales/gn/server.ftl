@@ -13,6 +13,8 @@ gNoShots =
 
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkTerms = Jejapopy.
+footerLinkPrivacy = Mombe'u ñeñomipy
 footerLinkFaqs = Porandu py'ỹi
 
 ## Creating page
