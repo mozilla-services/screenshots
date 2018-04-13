@@ -226,6 +226,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Шэры
 
+## Settings Page
+
+settingsDisconnectButton = Адлучыцца
+    .title = Адлучыцца
+settingsGuestAccountMessage = Гасцявы уліковы запіс
+settingsSignInInvite = Увайдзіце для сінхранізацыі паміж прыладамі
+settingsSignInButton = Увайсці
+    .title = Увайсці
+SettingsPageHeader = Налады Firefox Screenshots
+settingsDescription = Вы можаце ўвайсці з уліковым запісам Firefox, каб сінхранізаваць усе свае здымкі экрана паміж прыладамі і мець да іх прыватны доступ.
+settingsPageSubHeader = Сінхранізацыя і ўліковыя запісы
+settingsClosePreferences =
+    .title = Закрыць налады
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
