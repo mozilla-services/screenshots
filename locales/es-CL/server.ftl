@@ -219,6 +219,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Gris
 
+## Settings Page
+
+settingsDisconnectButton = Desconectarse
+    .title = Desconectarse
+settingsGuestAccountMessage = Cuenta de invitado
+settingsSignInInvite = Conéctate para sincronizar entre dispositivos
+settingsSignInButton = Conectarse
+    .title = Conectarse
+SettingsPageHeader = Ajustes de Firefox Screenshots
+settingsDescription = Puedes conectarte con tu cuenta de Firefox para sincronizar todas tus capturas entre todos tus dispositivos y acceder a ellas de forma privada.
+settingsPageSubHeader = Sincronización y cuentas
+settingsClosePreferences =
+    .title = Cerrar preferencias
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
