@@ -224,6 +224,7 @@ annotationColorGrey =
 
 settingsDisconnectButton = Disconnecter
     .title = Disconnecter
+settingsGuestAccountMessage = Conto hospite
 settingsSignInButton = Authenticar se
     .title = Authenticar se
 settingsPageSubHeader = Sync & contos
