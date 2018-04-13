@@ -220,6 +220,19 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Szürke
 
+## Settings Page
+
+settingsDisconnectButton = Kapcsolat bontása
+    .title = Kapcsolat bontása
+settingsGuestAccountMessage = Vendégfiók
+settingsSignInInvite = Jelentkezzen be az eszközök közti szinkronizációhoz
+settingsSignInButton = Bejelentkezés
+    .title = Bejelentkezés
+SettingsPageHeader = A Firefox Screenshots beállításai
+settingsPageSubHeader = Szinkronizálás és fiókok
+settingsClosePreferences =
+    .title = Beállítások bezárása
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
