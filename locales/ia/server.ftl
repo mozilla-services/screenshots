@@ -222,8 +222,11 @@ annotationColorGrey =
 
 ## Settings Page
 
+settingsDisconnectButton = Disconnecter
+    .title = Disconnecter
 settingsSignInButton = Authenticar se
     .title = Authenticar se
+settingsPageSubHeader = Sync & contos
 settingsClosePreferences =
     .title = Clauder le preferentias
 
