@@ -1,22 +1,18 @@
-// Localization for Server-side strings of Firefox Screenshots
-// 
-// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+### Localization for Server-side strings of Firefox Screenshots
+### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
-
-// Global phrases shared across pages, prefixed with 'g'
-[[ global ]]
+## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = Fy Lluniau
 gHomeLink = Cartrefi
-gNoShots
+gNoShots =
     .alt = Heb ganfod lluniau
 gScreenshotsDescription = Lluniau sgrin wedi ei wneud yn syml. Cipio, cadw a rhannu lluniau sgrin heb adael Firefox.
 
+## Footer
 
-[[ Footer ]]
-
-// Note: link text for a link to mozilla.org
+# Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Amodau
 footerLinkPrivacy = Hysbysiad Preifatrwydd
@@ -25,121 +21,118 @@ footerLinkDMCA = Adrodd ar Torri'r IP
 footerLinkDiscourse = Rhoi Adborth
 footerLinkRemoveAllData = Tynnu'r Holl Ddata
 
+## Creating page
 
-[[ Creating page ]]
-
-// Note: { $title } is a placeholder for the title of the web page
-// captured in the screenshot. The default, for pages without titles, is
-// creatingPageTitleDefault.
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
 creatingPageTitle = Creu { $title }
 creatingPageTitleDefault = tudalen
 creatingPageWaitMessage = Cadw eich llun…
 
+## Home page
 
-[[ Home page ]]
-
-homePageDescription
+homePageDescription =
     .content = Lluniau sgrin hawdd y syth o ganol y porwr. Cipio, cadw a rhannu lluniau sgrin wrth i chi bori'r We gyda Firefox.
 homePageButtonMyShots = Mynd i Fy Lluniau
 homePageTeaser = Yn dod cyn bo hir...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Ar Gael am Ddim
 homePageGetStarted = Cychwyn Arni
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Sut mae Firefox Screenshots yn gweithio
 homePageGetStartedTitle = Cychwyn Arni
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Chwiliwch am eicon newydd Screenshots ar eich bar offer. Cliciwch arno a bydd dewislen Screenshots yn ymddangos ar frig ffenestr eich porwr.
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Dewiswch eicon Screenshots o'r ddewislen gweithredoedd tudalen tyn y bar cyfeiriad a bydd dewislen Screenshots yn ymddangos ar frig ffenestr eich porwr.
 homePageCaptureRegion = Cipio Ardal
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Cliciwch a llusgo i ddewis ardal i'w gipio. Neu hofran a chlicio - bydd Screenshots yn dewis yr ardal i chi. Hoffi beth welwch chi? Dewiswch Cadw i gael mynediad i'ch llun ar-lein neu'r saeth i lawr i'w lwytho i lawr i'ch cyfrifiadur.
 homePageCapturePage = Cipio Tudalen
 homePageCapturePageDescription = Defnyddiwch y botymau ar y brig de i gipio tudalennau cyfan. Bydd y botwm Cadw'r Gweledol y cipio'r ardal rydych y gallu ei weld heb sgrolio ac mae Cadw'r Dudalen Gyfan yn cipio popeth sydd ar y dudalen.
 homePageSaveShare = Cadw a Rhannu
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Pan fyddwch y tynnu llun, bydd Firefox yn gadw'r lluniau i'ch llyfrgell Screenshots ac yn copio'r ddolen i'ch clipfwrdd. Rydym yn cadw eich lluniau'n awtomatig am bythefnos, ond gallwch ddileu  lluniau ar unrhyw bryd newid y dyddiad dod i ben i'w cadw yn eich llyfrgell am fwy o amser.
 homePageLegalLink = Cyfreithiol
 homePagePrivacyLink = Preifatrwydd
 homePageTermsLink = Amodau
 homePageCookiesLink = Cwcis
 
-
-[[ Leave Screenshots page ]]
+## Leave Screenshots page
 
 leavePageRemoveAllData = Tynnu'r Holl Ddata
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Rhaid bod Firefox Screenshots wedi ei osod cyn dileu eich cyfrif
 leavePageErrorGeneric = Digwyddodd gwall
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Bydd hyn yn dileu'n barhaol eich holl data Firefox Screenshots.
 leavePageButtonProceed = Parhau
 leavePageButtonCancel = Diddymu
 leavePageDeleted = Mae eich holl luniau wedi eu dileu!
 
-
-[[ Not Found page ]]
+## Not Found page
 
 notFoundPageTitle = Heb Ganfod y Dudalen
 notFoundPageIntro = Wps.
 notFoundPageDescription = Heb ganfod y dudalen
 
+## Shot page
 
-[[ Shot page ]]
-
-// This is the HTML title tag of the page
+# This is the HTML title tag of the page
 shotPageTitle = Llun Sgrin: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Gwall cofio'r cyfnod dod i ben
 shotPageAlertErrorDeletingShot = Gwall dileu'r llun
 shotPageAlertErrorUpdatingTitle = Gwall cadw teitl
 shotPageConfirmDelete = Ydych chi'n siŵr eich bod eisiau dileu'r llun yn barhaol?
-shotPageShareButton
+shotPageShareButton =
     .title = Cadw
 shotPageCopy = Copïo
 shotPageCopied = Copiwyd
-shotPageShareFacebook
+shotPageShareFacebook =
     .title = Rhannu ar Facebook
-shotPageShareTwitter
+shotPageShareTwitter =
     .title = Rhannu ar Twitter
 shotPageSharePinterest = Rhannu ar Pininterest
-shotPageShareEmail
+shotPageShareEmail =
     .title = Rhannu dolen drwy e-bost
 shotPageShareLink = Estyn dolen i'w rannu ar gyfer y llun:
 shotPagePrivacyMessage = Mae unrhyw un sydd â'r ddolen yn gallu gweld y llun.
-shotPageCopyImageText
+shotPageCopyImageText =
     .label = Copïo testun y ddelwedd
 shotPageConfirmDeletion = Ydych chi'n siŵr eich bod am ddileu'r llun yn barhaol?
-// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Os wnewch chi ddim byd, bydd y llun yn cael ei ddileu'n barhaol { $timediff }.
-// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = adfer tan { $date }
 shotPageExpiredMessage = Mae'r llun wedi dod i ben.
-// Note: This phrase is followed by an empty line, then the URL of the source page
+# Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Dyma'r dudalen lle gafodd ei greu'n wreiddiol:
-shotPageDeleteButton
+shotPageDeleteButton =
     .title = Dileu'r llun
-shotPageAbuseButton
+shotPageAbuseButton =
     .title = Adrodd ar y llun am gamddefnydd, sbam neu broblem arall
-shotPageDownloadShot
+shotPageDownloadShot =
     .title = Llwytho i Lawr
+shotPageEditButton =
+    .title = Golygu'r ddelwedd hon
 shotPageDownload = Llwytho i Lawr
 shotPageScreenshotsDescription = Lluniau sgrin hawdd. Cipio, cadw a rhannu lluniau sgrin heb adael Firefox.
 shotPageUpsellFirefox = Estyn Firefox nawr
 shotPageDMCAMessage = Nid yw'r llun ar gael bellach oherwydd cais eiddo deallusol trydydd parti.
-// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = E-bostiwch { $dmca } i ofyn am rhagor o wybodaeth.
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Os yw eich lluniau'n destun ceisiadau lluosog, mae'n bosibl i ni atal eich mynediad i Firefox Screenshots.
-// Note: { $url } is a placeholder for a shot page URL
+# Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Cofiwch gynnwys URL y llun un eich e-bost: { $url }
 shotPageKeepFor = Pa mor hir dylwn ni gadw'r llun
-// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Dewis cyfnod
-// The ∞ is used to indicate that the shot won't expire. It is also used in
-// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
-// if no such symbol is available for a language/culture, simply leave it out.
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitelyWithSymbol = Am byth ∞
 shotPageKeepTenMinutes = 10 Munud
 shotPageKeepOneHour = Awr
@@ -150,43 +143,49 @@ shotPageKeepOneMonth = Mis
 shotPageSaveExpiration = cadw
 shotPageCancelExpiration = diddymu
 shotPageDoesNotExpire = nid yw'n dod i ben
-// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = daw i ben { $timediff }
-// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = wedi dod i ben { $timediff }
 timeDiffJustNow = nawr
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] 1 munud yn ôl
         [two] { $number } funud yn ôl
         [few] { $number } munud yn ôl
        *[other] { $number } munud yn ôl
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] awr yn ôl
         [two] { $number } awr yn ôl
         [few] { $number }  awr yn ôl
        *[other] { $number }  awr yn ôl
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] ddoe
         [two] { $number } diwrnod yn ôl
         [few] { $number } diwrnod yn ôl
        *[other] { $number } diwrnod yn ôl
     }
 timeDiffFutureSeconds = ymhen ychydig eiliadau
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] ymhen munud
         [two] ymhen { $number } funud
         [few] ymhen { $number } munud
        *[other] ymhen { $number } munud
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] ymhen awr
         [two] ymhen { $number } awr
         [few] ymhen { $number } awr
        *[other] ymhen { $number } awr
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] yfory
         [two] ymhen { $number } ddiwrnod
         [few] ymhen { $number } diwrnod
@@ -194,67 +193,98 @@ timeDiffFutureDays = { $number ->
     }
 errorThirdPartyCookiesEnabled = Os wnaethoch chi gymryd y llun hwn, ac yn methu ei dileu, efallai y bydd angen i chi alluogi, dros dro, cwcis trydydd parti o fewn dewisiadau eich porwr.
 
+## Annotations
 
-[[ Annotations ]]
-
-annotationPenButton
+annotationPenButton =
     .title = Pin
-annotationHighlighterButton
+annotationHighlighterButton =
     .title = Amlygwr
-// Note: This button reverts all the changes on the image since the start of the editing session.
-annotationClearButton
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
     .title = Clir
-annotationCropButton
+annotationCropButton =
     .title = Tocio
-annotationSaveButton = Cadw
-annotationCancelButton = Diddymu
+annotationSaveEditButton = Cadw
+    .title = Cadw'r golygu
+annotationCancelEditButton = Diddymu
+    .title = Diddymu'r golygu
 annotationCropConfirmButton = Cadarnhau
     .title = Cadarnhau'r dewis
 annotationCropCancelButton = Diddymu
     .title = Diddymu'r dewis
+annotationColorWhite =
+    .title = Gwyn
+annotationColorBlack =
+    .title = Du
+annotationColorRed =
+    .title = Coch
+annotationColorGreen =
+    .title = Gwyrdd
+annotationColorBlue =
+    .title = Glas
+annotationColorYellow =
+    .title = Melyn
+annotationColorPurple =
+    .title = Porffor
+annotationColorSeaGreen =
+    .title = Gwyrdd y Môr
+annotationColorGrey =
+    .title = Llwyd
 
+## Settings Page
 
-[[ Shotindex page ]]
+settingsDisconnectButton = Datgysylltu
+    .title = Datgysylltu
+settingsGuestAccountMessage = Cyfrif Gwestai
+settingsSignInInvite = Mewngofnodi i gydweddu ar draws dyfeisiau
+settingsSignInButton = Mewngofnodi
+    .title = Mewngofnodi
+SettingsPageHeader = Gosodiadau Firefox Screenshots
+settingsDescription = Gallwch fewngofnodi gyda Chyfrifon Firefox i gydweddu eich holl luniau sgrin ar draws dyfeisiau a chael mynediad atyn nhw'n breifat.
+settingsPageSubHeader = Cydweddu a Chyfrifon
+settingsClosePreferences =
+    .title = Cau'r dewisiadau
 
-// { $status } is a placeholder for an HTTP status code, like '500'.
-// { $statusText } is a text description of the status code, like 'Internal server error'.
+## Shotindex page
+
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Gwall wrth ddileu llun: { $status } { $statusText }
-// { $searchTerm } is a placeholder for text the user typed into the search box
+# { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Fy Lluniau: chwilio am { $searchTerm }
-// { $error } is a placeholder for a non-translated error message that could be shared
-// with developers when debugging an error.
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
 shotIndexPageErrorRendering = Gwall wrth gyflwyno'r dudalen: { $error }
-shotIndexPageSearchPlaceholder
+shotIndexPageSearchPlaceholder =
     .placeholder = Chwilio fy lluniau
-shotIndexPageSearchButton
+shotIndexPageSearchButton =
     .title = Chwilio
 shotIndexPageNoShotsMessage = Dim lluniau wedi eu cadw
 shotIndexPageNoShotsInvitation = Croeso i chi greu lluniau.
 shotIndexPageLookingForShots = Chwilio am eich lluniau...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Methu canfod lluniau sy'n cyd-fynd â'ch chwilio.
-shotIndexPageClearSearchButton
+shotIndexPageClearSearchButton =
     .title = Clirio'r chwilio
 shotIndexPageConfirmShotDelete = Dileu'r llun?
-shotIndexPagePreviousPage
+shotIndexPagePreviousPage =
     .title = Tudalen flaenorol
-shotIndexPageNextPage
+shotIndexPageNextPage =
     .title = Tudalen nesaf
-// This symbol is used in the lower right corner of the card for a shot on the
-// My Shots page to indicate that the shot does not expire. It should be a
-// single character (or simply nothing if no such symbol is available for a
-// language/culture).
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Nid yw'r llun yma'n dod i ben
 
+## Metrics page
+## All metrics strings are optional for translation
 
-// all metrics strings are optional for translation
-[[ Metrics page ]]
-
-// Note: 'Firefox Screenshots' should not be translated
+# Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Metrics Firefox Screenshot
 metricsPageTotalsQueryTitle = Cyfanswm
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Trosolwg o'r Lluniau Sgrin
 metricsPageTotalsQueryDevices = Cyfanswm y dyfeisiau wedi eu cofrestru
 metricsPageTotalsQueryActiveShots = Lluniau gweithredol
@@ -287,7 +317,7 @@ metricsPageVersionQueryUsers = Y nifer o ddefnyddwyr sydd wedi eu mewngofnodi
 metricsPageVersionQueryVersion = Fersiwn yr Ychwanegyn
 metricsPageVersionQueryLastSeen = Diwrnod
 metricsPageHeader = Metric
-// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Cynhyrchwyd: { $created }
-// Note { $time } is a placeholder for a number of milliseconds, like '100'
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (amser y gronfa ddata: { $time }ms)

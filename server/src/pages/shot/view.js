@@ -116,16 +116,13 @@ class Head extends React.Component {
     if (!this.props.shot) {
       return null;
     }
-    const title = (this.props.shot.openGraph && this.props.shot.openGraph.title) ||
-      (this.props.shot.twitterCard && this.props.shot.twitterCard.title) ||
-      this.props.shot.title;
     const og = [
       <meta property="og:type" content="website" key="ogtype" />,
-      <meta property="og:title" content={title} key="ogtitle" />
+      <meta property="og:title" content={this.props.shot.title} key="ogtitle" />
     ];
     const twitter = [
       <meta name="twitter:card" content="summary_large_image" key="twittercard" />,
-      <meta name="twitter:title" content={title} key="twitterTitle" />
+      <meta name="twitter:title" content={this.props.shot.title} key="twitterTitle" />
     ];
 
     for (const clipId of this.props.shot.clipNames()) {
@@ -198,7 +195,7 @@ class Body extends React.Component {
 
   onClickFlag(e) {
     sendEvent("start-flag", "navbar", {useBeacon: true});
-    window.open(`mailto:screenshots-report@mozilla.com?subject=Flagging%20shot%20for%20abuse&body=Flagging%20shot%20for%20abuse:%20${encodeURIComponent(this.props.shot.viewUrl)}`);
+    window.open(`https://qsurvey.mozilla.com/s3/screenshots-flagged-shots?ref=${this.props.id}`);
   }
 
   render() {
@@ -352,7 +349,9 @@ class Body extends React.Component {
       trashOrFlagButton = <Localized id="shotPageDeleteButton">
         <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }></button>
       </Localized>;
-      editButton = <button className="button transparent edit" title="Edit this image" onClick={ this.onClickEdit.bind(this) } ref={(edit) => { this.editButton = edit }}></button>
+      editButton = <Localized id="shotPageEditButton">
+        <button className="button transparent edit" title="Edit this image" onClick={ this.onClickEdit.bind(this) } ref={(edit) => { this.editButton = edit }}></button>
+      </Localized>;
     } else {
       trashOrFlagButton = <Localized id="shotPageAbuseButton">
         <button className="button transparent flag" title="Report this shot for abuse, spam, or other problems" onClick={ this.onClickFlag.bind(this) }></button>
@@ -470,7 +469,7 @@ class Body extends React.Component {
         </Localized>
         &nbsp;
         <Localized id="shotPageUpsellFirefox">
-          <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition&utm-content=from-shot" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a>
+          <a href="https://www.mozilla.org/firefox/new/?utm_source=screenshots.firefox.com&utm_medium=referral&utm_campaign=screenshots-acquisition&utm_content=from-shot" onClick={ this.clickedInstallFirefox.bind(this) }>Get Firefox now</a>
         </Localized>
       </div>
       <a className="close" onClick={ this.doCloseBanner.bind(this) }></a>
@@ -567,7 +566,8 @@ Body.propTypes = {
   showSurveyLink: PropTypes.bool,
   shot: PropTypes.object,
   staticLink: PropTypes.func,
-  userAgent: PropTypes.string
+  userAgent: PropTypes.string,
+  userLocales: PropTypes.array
 };
 
 class ExpireWidget extends React.Component {
@@ -649,6 +649,7 @@ class ExpireWidget extends React.Component {
     value = parseInt(value, 10);
     // Note: sendEvent done in onSaveExpire
     this.props.onSaveExpire(value);
+    this.props.onChanging(false);
     this.setState({isChangingExpire: false});
   }
 }
@@ -696,7 +697,7 @@ class EditableTitle extends React.Component {
         className="shot-title-input"
         style={{minWidth: this.state.minWidth}}
         type="text" defaultValue={this.props.title} autoFocus="true"
-        onBlur={this.onExit.bind(this)} onKeyUp={this.onKeyUp.bind(this)} />
+        onBlur={this.onExit.bind(this)} onKeyUp={this.onKeyUp.bind(this)} onFocus={this.onFocus} />
     </form>;
   }
 
@@ -709,8 +710,17 @@ class EditableTitle extends React.Component {
 
   onExit() {
     const val = this.textInput.value;
-    controller.setTitle(val);
-    this.setState({isEditing: false, isSaving: val});
+
+    if (val.trim() === "") {
+      this.setState({isEditing: false, isSaving: false});
+    } else {
+      controller.setTitle(val);
+      this.setState({isEditing: false, isSaving: val});
+    }
+  }
+
+  onFocus(event) {
+    event.target.select();
   }
 
   onKeyUp(event) {

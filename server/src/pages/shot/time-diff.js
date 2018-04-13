@@ -61,6 +61,9 @@ exports.TimeDiff = class TimeDiff extends React.Component {
   }
 
   dateString(d) {
+    if (!this.state.useLocalTime) {
+      return "";
+    }
     if (!(d instanceof Date)) {
       d = new Date(d);
     }

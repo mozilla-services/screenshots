@@ -1,22 +1,18 @@
-// Localization for Server-side strings of Firefox Screenshots
-// 
-// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+### Localization for Server-side strings of Firefox Screenshots
+### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
-
-// Global phrases shared across pages, prefixed with 'g'
-[[ global ]]
+## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = Minhas capturas
 gHomeLink = Início
-gNoShots
+gNoShots =
     .alt = Capturas não encontradas
 gScreenshotsDescription = Capturas de tela de forma simples. Capture, salve e compartilhe telas sem sair do Firefox.
 
+## Footer
 
-[[ Footer ]]
-
-// Note: link text for a link to mozilla.org
+# Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Termos
 footerLinkPrivacy = Política de Privacidade
@@ -25,122 +21,119 @@ footerLinkDMCA = Reportar infrações de IP
 footerLinkDiscourse = Enviar opinião
 footerLinkRemoveAllData = Remover todos os dados
 
+## Creating page
 
-[[ Creating page ]]
-
-// Note: { $title } is a placeholder for the title of the web page
-// captured in the screenshot. The default, for pages without titles, is
-// creatingPageTitleDefault.
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
 creatingPageTitle = Criando { $title }
 creatingPageTitleDefault = página
 creatingPageWaitMessage = Salvando captura…
 
+## Home page
 
-[[ Home page ]]
-
-homePageDescription
+homePageDescription =
     .content = Capturas de tela intuitivas diretamente no navegador. Capture, salve e compartilhe telas enquanto navega na Web utilizando Firefox.
 homePageButtonMyShots = Ir para minhas capturas
 homePageTeaser = Em breve…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Download grátis
 homePageGetStarted = Iniciar
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Como o Firefox Screenshots funciona
 homePageGetStartedTitle = Iniciar
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Encontre o novo ícone do Screenshots na barra de ferramentas. Selecione, e o menu do Screenshots aparecerá no topo da janela do seu navegador.
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Selecione o ícone do Screenshots no menu de ações da página, na barra de endereços, e o menu do Screenshots aparecerá no topo da janela do seu navegador.
 homePageCaptureRegion = Capturar uma região
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Clique e arraste para selecionar a área que deseja capturar. Ou simplesmente passe o mouse e clique — o Screenshots irá selecionar a área automaticamente pra você. Gostou do que viu? Clique em Salvar para acessar sua captura on-line ou no botão com a seta para baixo para baixar para seu computador.
 homePageCapturePage = Capturar uma página
 homePageCapturePageDescription = Utilize os botões no canto superior direito para capturar telas inteiras. O botão Salvar Área Visível irá capturar a área que você vê sem rolar a página, e Salvar Página Inteira irá capturar toda a página.
 homePageSaveShare = Salvar e compartilhar
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Quando você captura uma tela, o Firefox envia a captura para a sua biblioteca on-line no Screenshots e copia o link para sua área de transferência. Armazenamos automaticamente suas capturas por duas semanas, mas você pode excluir capturas a qualquer momento ou mudar a data de validade para mantê-las em sua biblioteca por mais tempo.
 homePageLegalLink = Jurídico
 homePagePrivacyLink = Privacidade
 homePageTermsLink = Termos
 homePageCookiesLink = Cookies
 
-
-[[ Leave Screenshots page ]]
+## Leave Screenshots page
 
 leavePageRemoveAllData = Remover todos os dados
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Você deve ter o Firefox Screenshots instalado para remover sua conta
 leavePageErrorGeneric = Ocorreu um erro
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Isso irá apagar permanentemente todos os seus dados do Firefox Screenshots.
 leavePageButtonProceed = Prosseguir
 leavePageButtonCancel = Cancelar
 leavePageDeleted = Todas as suas capturas foram apagadas!
 
-
-[[ Not Found page ]]
+## Not Found page
 
 notFoundPageTitle = Página não encontrada
 notFoundPageIntro = Oops.
 notFoundPageDescription = Página não encontrada.
 
+## Shot page
 
-[[ Shot page ]]
-
-// This is the HTML title tag of the page
+# This is the HTML title tag of the page
 shotPageTitle = Captura de tela: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Erro ao salvar tempo limite
 shotPageAlertErrorDeletingShot = Erro ao excluir captura
 shotPageAlertErrorUpdatingTitle = Erro ao salvar título
 shotPageConfirmDelete = Tem certeza que deseja excluir essa captura permanentemente?
-shotPageShareButton
+shotPageShareButton =
     .title = Compartilhar
 shotPageCopy = Copiar
 shotPageCopied = Copiado
-shotPageShareFacebook
+shotPageShareFacebook =
     .title = Compartilhar no Facebook
-shotPageShareTwitter
+shotPageShareTwitter =
     .title = Compartilhar no Twitter
-shotPageSharePinterest
+shotPageSharePinterest =
     .title = Compartilhar no Pinterest
-shotPageShareEmail
+shotPageShareEmail =
     .title = Compartilhar link via e-mail
 shotPageShareLink = Obter um link para compartilhar essa captura:
 shotPagePrivacyMessage = Qualquer pessoa com o link pode ver essa captura.
-shotPageCopyImageText
+shotPageCopyImageText =
     .label = Copiar texto da imagem
 shotPageConfirmDeletion = Tem certeza que deseja excluir essa captura permanentemente?
-// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Se você não fizer nada, esta captura será excluída em { $timediff }.
-// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = restaurar até { $date }
 shotPageExpiredMessage = Essa captura expirou.
-// Note: This phrase is followed by an empty line, then the URL of the source page
+# Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Esta é a página onde a captura foi criada originalmente:
-shotPageDeleteButton
+shotPageDeleteButton =
     .title = Excluir esta captura
-shotPageAbuseButton
+shotPageAbuseButton =
     .title = Reportar essa captura por abuso, spam ou outros problemas
-shotPageDownloadShot
+shotPageDownloadShot =
     .title = Baixar
+shotPageEditButton =
+    .title = Editar esta imagem
 shotPageDownload = Baixar
 shotPageScreenshotsDescription = Capturas de tela de forma simples. Capture, salve e compartilhe telas sem sair do Firefox.
 shotPageUpsellFirefox = Baixe o Firefox agora
 shotPageDMCAMessage = Essa captura não está mais disponível devido a reclamação de Direitos Autorais de terceiros.
-// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Envie um e-mail para { $dmca } para pedir mais informações.
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Se suas capturas estiverem associadas a múltiplas reclamações, poderemos revogar seu acesso ao Firefox Screenshots.
-// Note: { $url } is a placeholder for a shot page URL
-shotPageDMCAIncludeLink = Por favor, inclua o URL desta captura no seu e-mail: { $url }
+# Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Por favor, inclua a URL desta captura no seu e-mail: { $url }
 shotPageKeepFor = Quanto tempo essa captura deve ficar armazenada?
-// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Selecionar tempo
-// The ∞ is used to indicate that the shot won't expire. It is also used in
-// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
-// if no such symbol is available for a language/culture, simply leave it out.
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitelyWithSymbol = Indefinidamente ∞
 shotPageKeepTenMinutes = 10 minutos
 shotPageKeepOneHour = 1 hora
@@ -151,99 +144,122 @@ shotPageKeepOneMonth = 1 mês
 shotPageSaveExpiration = salvar
 shotPageCancelExpiration = cancelar
 shotPageDoesNotExpire = não expira
-// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = expira { $timediff }
-// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = expirou há { $timediff }
 timeDiffJustNow = agora
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] 1 minuto atrás
        *[other] { $number } minutos atrás
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] 1 hora atrás
        *[other] { $number } horas atrás
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] ontem
        *[other] { $number } dias atrás
     }
 timeDiffFutureSeconds = em poucos segundos
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] em 1 minuto
        *[other] em { $number } minutos
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] em 1 hora
        *[other] em { $number } horas
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] amanhã
        *[other] em { $number } dias
     }
 errorThirdPartyCookiesEnabled = Se tirou esta captura e não consegue excluí-la, talvez seja necessário habilitar temporariamente os cookies de terceiros nas preferências do seu navegador.
 
+## Annotations
 
-[[ Annotations ]]
-
-annotationPenButton
+annotationPenButton =
     .title = Caneta
-annotationHighlighterButton
+annotationHighlighterButton =
     .title = Marcador
-// Note: This button reverts all the changes on the image since the start of the editing session.
-annotationClearButton
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
     .title = Limpar
-annotationCropButton
+annotationCropButton =
     .title = Recortar
-annotationSaveButton = Salvar
-annotationCancelButton = Cancelar
+annotationSaveEditButton = Salvar
+    .title = Salvar edição
+annotationCancelEditButton = Cancelar
+    .title = Cancelar edição
 annotationCropConfirmButton = Confirmar
     .title = Confirmar seleção
 annotationCropCancelButton = Cancelar
     .title = Cancelar seleção
+annotationColorWhite =
+    .title = Branco
+annotationColorBlack =
+    .title = Preto
+annotationColorRed =
+    .title = Vermelho
+annotationColorGreen =
+    .title = Verde
+annotationColorBlue =
+    .title = Azul
+annotationColorYellow =
+    .title = Amarelo
+annotationColorPurple =
+    .title = Roxo
+annotationColorSeaGreen =
+    .title = Verde mar
+annotationColorGrey =
+    .title = Cinza
 
+## Shotindex page
 
-[[ Shotindex page ]]
-
-// { $status } is a placeholder for an HTTP status code, like '500'.
-// { $statusText } is a text description of the status code, like 'Internal server error'.
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Erro ao excluir captura: { $status } { $statusText }
-// { $searchTerm } is a placeholder for text the user typed into the search box
+# { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Minhas capturas: procurar por { $searchTerm }
-// { $error } is a placeholder for a non-translated error message that could be shared
-// with developers when debugging an error.
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
 shotIndexPageErrorRendering = Erro ao renderizar página: { $error }
-shotIndexPageSearchPlaceholder
+shotIndexPageSearchPlaceholder =
     .placeholder = Procurar minhas capturas
-shotIndexPageSearchButton
+shotIndexPageSearchButton =
     .title = Pesquisar
 shotIndexPageNoShotsMessage = Não há capturas salvas.
 shotIndexPageNoShotsInvitation = Vamos, crie algumas.
 shotIndexPageLookingForShots = Procurando por suas capturas...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Não encontramos capturas que correspondam com sua busca.
-shotIndexPageClearSearchButton
+shotIndexPageClearSearchButton =
     .title = Limpar pesquisa
 shotIndexPageConfirmShotDelete = Excluir esta captura?
-shotIndexPagePreviousPage
+shotIndexPagePreviousPage =
     .title = Página anterior
-shotIndexPageNextPage
+shotIndexPageNextPage =
     .title = Próxima página
-// This symbol is used in the lower right corner of the card for a shot on the
-// My Shots page to indicate that the shot does not expire. It should be a
-// single character (or simply nothing if no such symbol is available for a
-// language/culture).
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Esta captura não expira
 
+## Metrics page
+## All metrics strings are optional for translation
 
-// all metrics strings are optional for translation
-[[ Metrics page ]]
-
-// Note: 'Firefox Screenshots' should not be translated
+# Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Métricas do Firefox Screenshots
 metricsPageTotalsQueryTitle = Totais
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Visão geral do Screenshots
 metricsPageTotalsQueryDevices = Total de dispositivos registrados
 metricsPageTotalsQueryActiveShots = Capturas ativas
@@ -276,7 +292,7 @@ metricsPageVersionQueryUsers = Número de usuários autenticados
 metricsPageVersionQueryVersion = Versão da Extensão
 metricsPageVersionQueryLastSeen = Dia
 metricsPageHeader = Métricas
-// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Gerado em: { $created }
-// Note { $time } is a placeholder for a number of milliseconds, like '100'
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (hora no banco de dados: { $time }ms)

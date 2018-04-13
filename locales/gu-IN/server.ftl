@@ -1,5 +1,4 @@
 ### Localization for Server-side strings of Firefox Screenshots
-###
 ### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
@@ -11,7 +10,7 @@ gNoShots =
     .alt = કોઈ શૉટ્સ મળ્યાં નથી
 gScreenshotsDescription = સ્ક્રીનશોટ સરળ બનાવી. Firefox છોડ્યાં વગર સ્ક્રીનશોટ લો, સાચવો અને વહેંચો.
 
-
+## Footer
 
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
@@ -22,7 +21,7 @@ footerLinkDMCA = IP ઉલ્લંઘનની જાણ કરો
 footerLinkDiscourse = અભીપ્રાય આપો
 footerLinkRemoveAllData = તમામ ડેટાને દૂર કરો
 
-
+## Creating page
 
 # Note: { $title } is a placeholder for the title of the web page
 # captured in the screenshot. The default, for pages without titles, is
@@ -31,7 +30,7 @@ creatingPageTitle = બનાવી રહ્યા છે { $title }
 creatingPageTitleDefault = પાનું
 creatingPageWaitMessage = શોટ સચવાય છે...
 
-
+## Home page
 
 homePageDescription =
     .content = બ્રાઉઝરમાં શેકવામાં આવેલ સાહજિક સ્ક્રીનશૉટ્સ. પકડો, તમે Firefox નો ઉપયોગ કરીને વેબ બ્રાઉઝ કરો ત્યારે સ્ક્રીનશૉટ્સને સાચવો અને વહેંચો.
@@ -60,7 +59,7 @@ homePagePrivacyLink = ખાનગીપણું
 homePageTermsLink = શરતો
 homePageCookiesLink = કુકીઓ
 
-
+## Leave Screenshots page
 
 leavePageRemoveAllData = તમામ ડેટાને દૂર કરો
 # Note: do not translate 'Firefox Screenshots' when translating this string
@@ -72,13 +71,13 @@ leavePageButtonProceed = આગળ વધો
 leavePageButtonCancel = રદ કરો
 leavePageDeleted = તમારા બધા સ્ક્રીનશૉટ્સ દૂર થઈ ગયા છે!
 
-
+## Not Found page
 
 notFoundPageTitle = પૃષ્ઠ મળ્યું નથી
 notFoundPageIntro = અરર.
 notFoundPageDescription = પૃષ્ઠ મળ્યું નથી.
 
-
+## Shot page
 
 # This is the HTML title tag of the page
 shotPageTitle = સ્ક્રીનશૉટ: { $originalTitle }
@@ -117,6 +116,8 @@ shotPageAbuseButton =
     .title = દુરુપયોગ, સ્પામ અથવા અન્ય સમસ્યાઓ માટે આ શોટની જાણ કરો
 shotPageDownloadShot =
     .title = ડાઉનલોડ કરો
+shotPageEditButton =
+    .title = આ છબી સંપાદિત કરો
 shotPageDownload = ડાઉનલોડ કરો
 shotPageScreenshotsDescription = સ્ક્રીનશોટને સરળ બનાવી. Firefox છોડ્યાં વગર સ્ક્રીનશોટ લો, સાચવો અને વહેંચો.
 shotPageUpsellFirefox = હમણાં Firefox મેળવો
@@ -148,34 +149,40 @@ shotPageExpiresIn = સમાપ્ત થાય છે { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = સમાપ્ત થઈ { $timediff }
 timeDiffJustNow = હમણાજ
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] 1 મિનિટ પહેલા
        *[other] { $number } મિનિટ પહેલા
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] 1 કલાક પહેલા
        *[other] { $number } કલાક પહેલા
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] ગઇકાલે
        *[other] { $number } દિવસ પહેલા
     }
 timeDiffFutureSeconds = થોડીવારમાં
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] 1 મિનિટમાં
        *[other] { $number } મિનિટમાં
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] 1 કલાકમાં
        *[other] { $number } કલાકમાં
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] કાલે
        *[other] { $number } દિવસમાં
     }
 errorThirdPartyCookiesEnabled = જો તમે આ શોટ લીધો છે અને તેને કાઢી શકતા નથી, તો તમારે અસ્થાયી રૂપે તમારા બ્રાઉઝરની પસંદગીઓમાંથી તૃતીય પક્ષ કૂકીઝને સક્ષમ કરવાની જરૂર પડી શકે છે.
 
-
+## Annotations
 
 annotationPenButton =
     .title = કલમ
@@ -186,14 +193,34 @@ annotationClearButton =
     .title = સાફ
 annotationCropButton =
     .title = કાપો
-annotationSaveButton = સાચવો
-annotationCancelButton = રદ કરો
+annotationSaveEditButton = સાચવો
+    .title = સંપાદન સાચવો
+annotationCancelEditButton = રદ કરો
+    .title = સંપાદન રદ કરો
 annotationCropConfirmButton = ખાતરી
     .title = પસંદગીની ખાતરી કરો
 annotationCropCancelButton = રદ કરો
     .title = પસંદગી રદ કરો
+annotationColorWhite =
+    .title = સફેદ
+annotationColorBlack =
+    .title = કાળો
+annotationColorRed =
+    .title = લાલ
+annotationColorGreen =
+    .title = લીલો
+annotationColorBlue =
+    .title = વાદળી
+annotationColorYellow =
+    .title = પીળો
+annotationColorPurple =
+    .title = જાંબલી
+annotationColorSeaGreen =
+    .title = સમુદ્ર લીલો
+annotationColorGrey =
+    .title = રાખોડી
 
-
+## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
 # { $statusText } is a text description of the status code, like 'Internal server error'.
@@ -226,7 +253,8 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = આ શોટ સમાપ્ત થતો નથી
 
-## all metrics strings are optional for translation
+## Metrics page
+## All metrics strings are optional for translation
 
 # Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Firefox સ્ક્રીનશૉટ્સ માપદંડ

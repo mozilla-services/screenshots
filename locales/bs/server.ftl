@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Prijavi ovaj snimak za zloupotrebu, spam i druge probleme
 shotPageDownloadShot =
     .title = Preuzimanje
+shotPageEditButton =
+    .title = Uredi ovu sliku
 shotPageDownload = Preuzimanje
 shotPageScreenshotsDescription = Snimite zaslon jednostavno. Snimite, sačuvajte i dijelite snimke zaslona bez da napustite Firefox.
 shotPageUpsellFirefox = Preuzmite Firefox sada
@@ -147,32 +149,38 @@ shotPageExpiresIn = ističe { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = isteklo { $timediff }
 timeDiffJustNow = upravo sada
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] prije 1 minutu
         [few] prije { $number } minute
        *[other] prije { $number } minuta
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] prije 1 sat
         [few] prije { $number } sata
        *[other] prije { $number } sati
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] prije 1 dan
        *[few] prije { $number } dana
     }
 timeDiffFutureSeconds = za nekolio sekundi
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] za 1 minutu
         [few] za { $number } minute
        *[other] za { $number } minuta
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] za 1 sat
         [few] za { $number } sata
        *[other] za { $number } sati
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] sutra
         [few] za { $number } dana
        *[other] za { $number } dana
@@ -190,12 +198,38 @@ annotationClearButton =
     .title = Očisti
 annotationCropButton =
     .title = Izreži
-annotationSaveButton = Sačuvaj
-annotationCancelButton = Otkaži
 annotationCropConfirmButton = Potvrdi
     .title = Potvrdi izbor
 annotationCropCancelButton = Otkaži
     .title = Otkaži izbor
+annotationColorWhite =
+    .title = Bijela
+annotationColorBlack =
+    .title = Crna
+annotationColorRed =
+    .title = Crvena
+annotationColorGreen =
+    .title = Zelena
+annotationColorBlue =
+    .title = Plava
+annotationColorYellow =
+    .title = Žuta
+annotationColorPurple =
+    .title = Ljubičasta
+annotationColorSeaGreen =
+    .title = Plavo-zelena
+annotationColorGrey =
+    .title = Siva
+
+## Settings Page
+
+settingsGuestAccountMessage = Račun za gosta
+settingsSignInInvite = Prijavite se za sinhronizaciju kroz uređaje
+SettingsPageHeader = Firefox Screenshots postavke
+settingsDescription = Možete se prijaviti sa Firefox računima za sinhronizaciju svih vaših snimaka na svim uređajima i pristupiti im privatno.
+settingsPageSubHeader = Sync i računi
+settingsClosePreferences =
+    .title = Zatvori postavke
 
 ## Shotindex page
 

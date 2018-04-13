@@ -204,7 +204,7 @@ class Shot extends AbstractShot {
         const clipRewrites = new ClipRewrites(this);
         clipRewrites.rewriteShotUrls();
         const oks = clipRewrites.commands();
-        const json = this.asJson();
+        const json = this.toJSON();
         const title = this.title;
         oks.push({setHead: null});
         oks.push({setBody: null});
@@ -235,7 +235,7 @@ class Shot extends AbstractShot {
     const clipRewrites = new ClipRewrites(this);
     clipRewrites.rewriteShotUrls();
     const oks = clipRewrites.commands();
-    const json = this.asJson();
+    const json = this.toJSON();
     return db.transaction((client) => {
       const searchable = this._makeSearchableText(7);
       const promise = db.queryWithClient(
@@ -897,6 +897,8 @@ const ClipRewrites = class ClipRewrites {
 
 Shot.cleanDeletedShots = function() {
   const retention = config.expiredRetentionTime;
+  let imagesDeleted = -1;
+  let imagesFailed = 0;
   return db.transaction((client) => {
     return Promise.resolve().then(() => {
       return db.queryWithClient(
@@ -906,25 +908,65 @@ Shot.cleanDeletedShots = function() {
           FROM images, data
           WHERE images.shotid = data.id
                 AND data.expire_time + ($1 || ' SECONDS')::INTERVAL < CURRENT_TIMESTAMP
-                AND NOT data.deleted
+                AND (NOT data.deleted OR images.failed_delete)
         `,
         [retention]
       );
     }).then((result) => {
+      imagesDeleted = result.rowCount;
+      const promiseMap = {};
       for (const row of result.rows) {
-        del(row.id);
+        promiseMap[row.id] = del(row.id);
+      }
+      return resolveAllPromises(promiseMap);
+    }).then(() => {
+      return [];
+    }, (delFailed) => {
+      mozlog.error("del-image-failed", {errors: delFailed});
+      return Object.keys(delFailed);
+    }).then((failedIds) => {
+      imagesFailed = failedIds.length;
+      imagesDeleted -= imagesFailed;
+      if (!failedIds.length) {
+        return db.queryWithClient(
+          client,
+          `
+            DELETE FROM images
+            USING data
+            WHERE images.shotid = data.id
+                  AND data.expire_time + ($1 || ' SECONDS')::INTERVAL < CURRENT_TIMESTAMP
+                  AND (NOT data.deleted OR images.failed_delete)
+          `,
+          [retention]
+        );
+      }
+      const idMarkersFrom1 = [];
+      const idMarkersFrom2 = [];
+      for (let i = 0; i < failedIds.length; i++) {
+        idMarkersFrom1.push("$" + String(i + 1));
+        idMarkersFrom2.push("$" + String(i + 2));
       }
       return db.queryWithClient(
         client,
         `
-          DELETE FROM images
-          USING data
-          WHERE images.shotid = data.id
-                AND data.expire_time + ($1 || ' SECONDS')::INTERVAL < CURRENT_TIMESTAMP
-                AND NOT data.deleted
+          UPDATE images
+          SET failed_delete = TRUE
+          WHERE images.id IN (${idMarkersFrom1})
         `,
-        [retention]
-      );
+        failedIds
+      ).then(() => {
+        return db.queryWithClient(
+          client,
+          `
+            DELETE FROM images
+            USING data
+            WHERE images.shotid = data.id
+                  AND data.expire_time + ($1 || ' SECONDS')::INTERVAL < CURRENT_TIMESTAMP
+                  AND images.id NOT IN (${idMarkersFrom2})
+          `,
+          [retention].concat(failedIds)
+        );
+      });
     }).then((result) => {
       return db.queryWithClient(
         client,
@@ -937,7 +979,11 @@ Shot.cleanDeletedShots = function() {
         [retention]
       );
     }).then((result) => {
-      return result.rowCount;
+      return {
+        shotsDeleted: result.rowCount,
+        imagesDeleted,
+        imagesFailed
+      };
     });
   });
 };
@@ -981,6 +1027,25 @@ Shot.upgradeSearch = function() {
       });
     });
 };
+
+/** Waits for all the values of mapping to resolve or reject, resolving if everything
+    succeeds, or rejecting with a mapping of keys to errors */
+function resolveAllPromises(mapping) {
+  const promises = [];
+  const result = {};
+  Object.keys(mapping).forEach((key) => {
+    promises.push(mapping[key]);
+    mapping[key].catch((error) => {
+      result[key] = error;
+    });
+  });
+  return Promise.all(promises).then(
+    null,
+    (error) => {
+      throw result;
+    }
+  );
+}
 
 Shot.prototype.atob = require("atob");
 Shot.prototype.btoa = require("btoa");

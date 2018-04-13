@@ -15,17 +15,18 @@ exports.start = function() {
 
   setInterval(function() {
     require("./servershot").Shot.cleanDeletedShots()
-      .then((rowCount) => {
-        if (rowCount) {
-          mozlog.info("cleaning-expired-shots", {rowCount});
-        }
-        if (config.gaId) {
-          const analytics = ua(config.gaId);
-          analytics.event({
-            ec: "server",
-            ea: "clean-deleted-shot",
-            ev: rowCount
-          }).send();
+      .then((status) => {
+        if (status.shotsDeleted || status.imagesDeleted || status.imagesFailed) {
+          mozlog.info("cleaning-expired-shots", status);
+          if (status.shotsDeleted && config.gaId) {
+            const analytics = ua(config.gaId);
+            analytics.event({
+              ec: "server",
+              ea: "clean-deleted-shot",
+              ev: status.shotsDeleted,
+              ni: true
+            }).send();
+          }
         }
       })
       .catch((e) => {

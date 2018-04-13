@@ -114,6 +114,8 @@ shotPageAbuseButton =
     .title = Report this shot for abuse, spam, or other problems
 shotPageDownloadShot =
     .title = Download
+shotPageEditButton =
+    .title = Edit this image
 shotPageDownload = Download
 shotPageScreenshotsDescription = Screenshots made simple. Take, save, and share screenshots without leaving Firefox.
 shotPageUpsellFirefox = Get Firefox now
@@ -184,12 +186,47 @@ annotationClearButton =
     .title = Clear
 annotationCropButton =
     .title = Crop
-annotationSaveButton = Save
-annotationCancelButton = Cancel
+annotationSaveEditButton = Save
+    .title = Save edit
+annotationCancelEditButton = Cancel
+    .title = Cancel editing
 annotationCropConfirmButton = Confirm
     .title = Confirm selection
 annotationCropCancelButton = Cancel
     .title = Cancel selection
+annotationColorWhite =
+    .title = White
+annotationColorBlack =
+    .title = Black
+annotationColorRed =
+    .title = Red
+annotationColorGreen =
+    .title = Green
+annotationColorBlue =
+    .title = Blue
+annotationColorYellow =
+    .title = Yellow
+annotationColorPurple =
+    .title = Purple
+annotationColorSeaGreen =
+    .title = Sea Green
+annotationColorGrey =
+    .title = Grey
+
+
+## Settings Page
+
+settingsDisconnectButton = Disconnect
+    .title = Disconnect
+settingsGuestAccountMessage = Guest Account
+settingsSignInInvite = Sign in to sync across devices
+settingsSignInButton = Sign In
+    .title = Sign in
+SettingsPageHeader = Firefox Screenshots Settings
+settingsDescription = You can sign in with Firefox Accounts to sync all your screenshots across devices and access them privately.
+settingsPageSubHeader = Sync & Accounts
+settingsClosePreferences =
+    .title = Close preferences
 
 ## Shotindex page
 

@@ -1,4 +1,4 @@
-FROM node:8
+FROM node:8.10.0
 
 COPY package.json /app/
 COPY build/server /app/build/server

@@ -137,7 +137,7 @@ exports.changeShotExpiration = function(shot, expiration) {
       if (expiration === 0) {
         model.shot.expireTime = model.expireTime = null;
       } else {
-        model.shot.expireTime = model.expireTime = new Date(Date.now() + expiration);
+        model.shot.expireTime = model.expireTime = Date.now() + expiration;
       }
       render();
     }
@@ -257,7 +257,7 @@ function sendShowElement(clipId) {
     }
     postMessage = {
       type: "displayClip",
-      clip: clip.asJson()
+      clip: clip.toJSON()
     };
   } else {
     postMessage = {

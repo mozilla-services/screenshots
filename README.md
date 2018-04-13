@@ -2,7 +2,11 @@
 
 [![CircleCI Build Status](https://circleci.com/gh/mozilla-services/screenshots.svg?style=shield)](https://circleci.com/gh/mozilla-services/screenshots)
 
-This is a screenshot tool for Firefox. It will be shipped in Firefox 55 and later versions, as part of the default Firefox distribution.
+[Screenshots server status page](https://status.services.mozilla.com/)
+
+----
+
+This is a screenshot tool for Firefox. It is available in Firefox 56 and later versions, as part of the default Firefox distribution.
 
 The project was initially launched through [Test Pilot](https://testpilot.firefox.com/) as [Page Shot](https://testpilot.firefox.com/experiments/page-shot).
 

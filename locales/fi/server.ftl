@@ -1,22 +1,18 @@
-// Localization for Server-side strings of Firefox Screenshots
-// 
-// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+### Localization for Server-side strings of Firefox Screenshots
+### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
-
-// Global phrases shared across pages, prefixed with 'g'
-[[ global ]]
+## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = Omat kaappaukset
 gHomeLink = Etusivu
-gNoShots
+gNoShots =
     .alt = Kaappauksia ei löytynyt
 gScreenshotsDescription = Kuvakaappaukset helposti. Ota, tallenna ja jaa kuvakaappauksia poistumatta Firefoxista.
 
+## Footer
 
-[[ Footer ]]
-
-// Note: link text for a link to mozilla.org
+# Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Käyttöehdot
 footerLinkPrivacy = Tietosuojakäytäntö
@@ -25,122 +21,119 @@ footerLinkDMCA = Ilmoita immateriaalioikeuksien loukkauksesta
 footerLinkDiscourse = Anna palautetta
 footerLinkRemoveAllData = Poista kaikki tiedot
 
+## Creating page
 
-[[ Creating page ]]
-
-// Note: { $title } is a placeholder for the title of the web page
-// captured in the screenshot. The default, for pages without titles, is
-// creatingPageTitleDefault.
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
 creatingPageTitle = Luodaan: { $title }
 creatingPageTitleDefault = sivu
 creatingPageWaitMessage = Tallennetaan kaappausta…
 
+## Home page
 
-[[ Home page ]]
-
-homePageDescription
+homePageDescription =
     .content = Kuvien kaappaminen intuitiivisesti, suoraan selaimessasi. Kaappaa, tallenna ja jaa kuvakaappauksia selatessasi verkkoa Firefoxilla.
 homePageButtonMyShots = Siirry omiin kaappauksiini
 homePageTeaser = Tulossa pian…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Lataa ilmaiseksi
 homePageGetStarted = Aloitetaan
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Miten Firefox Screenshots toimii
 homePageGetStartedTitle = Aloitetaan
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Huomaa uusi Screenshots-kuvake työkalupalkissa. Valitse se, niin Screenshots-valikko avautuu selainikkunan päälle.
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Valitse Screenshots-kuvake osoitepalkissa olevasta Sivun toiminnot -valikosta, niin Screenshots-valikko avautuu selainikkunan päälle.
 homePageCaptureRegion = Kaappaa alue
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Valitse kaapattava alue napsauttamalla ja vetämällä. Tai pidä hiirtä sen päällä ja napsauta – Screenshots valitsee alueen puolestasi. PIdätkö näkemästäsi? Valitse Tallenna, niin voit katsella kuvakaappaustasi verkossa, tai alas osoittava nuoli, niin voit ladata sen tietokoneellesi.
 homePageCapturePage = Kaappaa sivu
 homePageCapturePageDescription = Kaappaa kokonaisia sivuja käyttämällä yläoikean kulman painikkeita. Tallenna näkyvä alue -painike kaappaa alueen, jonka voit nähdä vierittämättä sivua, ja Tallenna koko sivu -painike tallentaa kaiken sivulla olevan.
 homePageSaveShare = Tallenna ja jaa
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Kun otat kaappauksen, Firefox lähettää kuvakaappauksen verkkoon Screenshots-kirjastoon ja kopioi linkin leikepöydälle. Säilytämme kuvakaappausta automaattisesti kaksi viikkoa, mutta voit poistaa kaappauksen milloin vain tai muuttaa vanhenemisaikaa säilyttääksesi sen kirjastossa pidempään.
 homePageLegalLink = Lakiteksti
 homePagePrivacyLink = Tietosuoja
 homePageTermsLink = Käyttöehdot
 homePageCookiesLink = Evästeet
 
-
-[[ Leave Screenshots page ]]
+## Leave Screenshots page
 
 leavePageRemoveAllData = Poista kaikki tiedot
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Tilin poistamiseksi Firefox Screenshots pitää olla asennettuna
 leavePageErrorGeneric = Tapahtui virhe
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Tämä poistaa kaikki Firefox Screenshots -palvelun tietosi pysyvästi.
 leavePageButtonProceed = Jatka
 leavePageButtonCancel = Peruuta
 leavePageDeleted = Kaikki kuvakaappauksesi on poistettu!
 
-
-[[ Not Found page ]]
+## Not Found page
 
 notFoundPageTitle = Sivua ei löydy
 notFoundPageIntro = Oho.
 notFoundPageDescription = Sivua ei löydy.
 
+## Shot page
 
-[[ Shot page ]]
-
-// This is the HTML title tag of the page
+# This is the HTML title tag of the page
 shotPageTitle = Kuvakaappaus: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Vanhentumisen tallennus epäonnistui
 shotPageAlertErrorDeletingShot = Kaappauksen poisto epäonnistui
 shotPageAlertErrorUpdatingTitle = Nimen tallennus epäonnistui
 shotPageConfirmDelete = Haluatko varmasti poistaa tämän kaappauksen pysyvästi?
-shotPageShareButton
+shotPageShareButton =
     .title = Jaa
 shotPageCopy = Kopioi
 shotPageCopied = Kopioitu
-shotPageShareFacebook
+shotPageShareFacebook =
     .title = Jaa Facebookissa
-shotPageShareTwitter
+shotPageShareTwitter =
     .title = Jaa Twitterissä
-shotPageSharePinterest
+shotPageSharePinterest =
     .title = Jaa Pinterestissä
-shotPageShareEmail
+shotPageShareEmail =
     .title = Jaa linkki sähköpostitse
 shotPageShareLink = Saa jaettava linkki tähän kaappaukseen:
 shotPagePrivacyMessage = Kaikki linkin haltijat voivat katsoa tätä kaappausta.
-shotPageCopyImageText
+shotPageCopyImageText =
     .label = Kopioi kuvateksti
 shotPageConfirmDeletion = Haluatko varmasti poistaa tämän kaappauksen pysyvästi?
-// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Jos et tee mitään, kaappaus poistetaan pysyvästi { $timediff }.
-// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = palauta { $date } saakka
 shotPageExpiredMessage = Tämä kaappaus on vanhentunut.
-// Note: This phrase is followed by an empty line, then the URL of the source page
+# Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Tässä on sivu, josta kaappaus alun perin luotiin:
-shotPageDeleteButton
+shotPageDeleteButton =
     .title = Poista tämä kaappaus
-shotPageAbuseButton
+shotPageAbuseButton =
     .title = Ilmoita tästä kaappauksesta väärinkäytön, roskapostin tai muun ongelman vuoksi
-shotPageDownloadShot
+shotPageDownloadShot =
     .title = Lataa
+shotPageEditButton =
+    .title = Muokkaa tätä kuvaa
 shotPageDownload = Lataa
 shotPageScreenshotsDescription = Kuvakaappaukset helposti. Ota, tallenna ja jaa kuvakaappauksia poistumatta Firefoxista.
 shotPageUpsellFirefox = Lataa Firefox nyt
 shotPageDMCAMessage = Tämä kaappaus ei ole enää saatavissa, koska kolmas osapuoli teki immateriaalioikeusvaatimuksen.
-// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Pyydä lisätietoja lähettämällä sähköpostia osoitteeseen { $dmca }.
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Jos kaappauksiisi kohdistuu useita vaatimuksia, voimme perua käyttöoikeutesi Firefox Screenshots -palveluun.
-// Note: { $url } is a placeholder for a shot page URL
+# Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Liitä sähköpostiisi tämän kaappauksen verkko-osoite: { $url }
 shotPageKeepFor = Kuinka kauan tämä kaappaus tulisi säilyttää?
-// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Valitse aika
-// The ∞ is used to indicate that the shot won't expire. It is also used in
-// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
-// if no such symbol is available for a language/culture, simply leave it out.
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitelyWithSymbol = Toistaiseksi ∞
 shotPageKeepTenMinutes = 10 minuuttia
 shotPageKeepOneHour = 1 tunti
@@ -151,99 +144,122 @@ shotPageKeepOneMonth = 1 kuukausi
 shotPageSaveExpiration = tallenna
 shotPageCancelExpiration = peruuta
 shotPageDoesNotExpire = ei vanhene
-// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = vanhenee { $timediff }
-// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = vanheni { $timediff }
 timeDiffJustNow = juuri nyt
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] 1 minuutti sitten
        *[other] { $number } minuuttia sitten
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] 1 tunti sitten
        *[other] { $number } tuntia sitten
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] eilen
        *[other] { $number } päivää sitten
     }
 timeDiffFutureSeconds = muutaman sekunnin kuluttua
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] 1 minuutin kuluttua
        *[other] { $number } minuutin kuluttua
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] 1 tunnin kuluttua
        *[other] { $number } tunnin kuluttua
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] huomenna
        *[other] { $number } päivän kuluttua
     }
 errorThirdPartyCookiesEnabled = Jos otit tämän kaappauksen etkä pysty poistamaan sitä, voit joutua sallimaan kolmannen osapuolen evästeet väliaikaisesti selaimen asetuksista.
 
+## Annotations
 
-[[ Annotations ]]
-
-annotationPenButton
+annotationPenButton =
     .title = Kynä
-annotationHighlighterButton
+annotationHighlighterButton =
     .title = Korostus
-// Note: This button reverts all the changes on the image since the start of the editing session.
-annotationClearButton
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
     .title = Pyyhi
-annotationCropButton
+annotationCropButton =
     .title = Rajaa
-annotationSaveButton = Tallenna
-annotationCancelButton = Peruuta
+annotationSaveEditButton = Tallenna
+    .title = Tallenna muokkaus
+annotationCancelEditButton = Peruuta
+    .title = Peruuta muokkaus
 annotationCropConfirmButton = Vahvista
     .title = Vahvista valinta
 annotationCropCancelButton = Peruuta
     .title = Peruuta valinta
+annotationColorWhite =
+    .title = Valkoinen
+annotationColorBlack =
+    .title = Musta
+annotationColorRed =
+    .title = Punainen
+annotationColorGreen =
+    .title = Vihreä
+annotationColorBlue =
+    .title = Sininen
+annotationColorYellow =
+    .title = Keltainen
+annotationColorPurple =
+    .title = Violetti
+annotationColorSeaGreen =
+    .title = Merenvihreä
+annotationColorGrey =
+    .title = Harmaa
 
+## Shotindex page
 
-[[ Shotindex page ]]
-
-// { $status } is a placeholder for an HTTP status code, like '500'.
-// { $statusText } is a text description of the status code, like 'Internal server error'.
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Kaappauksen poisto epäonnistui: { $status } { $statusText }
-// { $searchTerm } is a placeholder for text the user typed into the search box
+# { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Omat kaappaukset: haku sanoilla { $searchTerm }
-// { $error } is a placeholder for a non-translated error message that could be shared
-// with developers when debugging an error.
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
 shotIndexPageErrorRendering = Sivun näyttäminen epäonnistui: { $error }
-shotIndexPageSearchPlaceholder
+shotIndexPageSearchPlaceholder =
     .placeholder = Hae kaappauksista
-shotIndexPageSearchButton
+shotIndexPageSearchButton =
     .title = Hae
 shotIndexPageNoShotsMessage = Ei tallennettuja kaappauksia.
 shotIndexPageNoShotsInvitation = Ryhdytäänpä luomaan sellaisia.
 shotIndexPageLookingForShots = Etsitään kaappauksia…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Haulla ei löytynyt yhtään kaappausta.
-shotIndexPageClearSearchButton
+shotIndexPageClearSearchButton =
     .title = Tyhjennä haku
 shotIndexPageConfirmShotDelete = Poistetaanko tämä kaappaus?
-shotIndexPagePreviousPage
+shotIndexPagePreviousPage =
     .title = Edellinen sivu
-shotIndexPageNextPage
+shotIndexPageNextPage =
     .title = Seuraava sivu
-// This symbol is used in the lower right corner of the card for a shot on the
-// My Shots page to indicate that the shot does not expire. It should be a
-// single character (or simply nothing if no such symbol is available for a
-// language/culture).
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Tämä kaappaus ei vanhene
 
+## Metrics page
+## All metrics strings are optional for translation
 
-// all metrics strings are optional for translation
-[[ Metrics page ]]
-
-// Note: 'Firefox Screenshots' should not be translated
+# Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Firefox Screenshots Metrics
 metricsPageTotalsQueryTitle = Totals
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = An overview of Screenshots
 metricsPageTotalsQueryDevices = Total devices registered
 metricsPageTotalsQueryActiveShots = Active shots
@@ -276,7 +292,7 @@ metricsPageVersionQueryUsers = Number of users logging in
 metricsPageVersionQueryVersion = Add-on version
 metricsPageVersionQueryLastSeen = Day
 metricsPageHeader = Metrics
-// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Generated at: { $created }
-// Note { $time } is a placeholder for a number of milliseconds, like '100'
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (database time: { $time }ms)

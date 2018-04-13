@@ -10,6 +10,16 @@ NO_CLOSE = if not empty then when the test is finished, the browser will not be 
 
 */
 
+const backend = process.env.SCREENSHOTS_BACKEND || "http://localhost:10080";
+const { URL } = require("url");
+let backendUrl;
+
+try {
+  backendUrl = new URL(backend);
+} catch (e) {
+  throw new Error(`SCREENSHOTS_BACKEND is not a valid URL: ${e.message}`);
+}
+
 const assert = require("assert");
 const firefox = require("selenium-webdriver/firefox");
 const webdriver = require("selenium-webdriver");
@@ -17,49 +27,65 @@ const { By, until } = webdriver;
 // Uncomment the next line and others with `ServiceBuilder` to enable trace logs from Firefox and Geckodriver
 // const { ServiceBuilder } = firefox;
 const path = require("path");
+const fs = require("fs");
+const util = require("util");
 
+const PAGE_ACTION_BUTTON_ID = "pageActionButton"
 const SHOOTER_BUTTON_ID = "pageAction-panel-screenshots";
 // Applies to the old-style toolbar button:
 const TOOLBAR_SHOOTER_BUTTON_ID = "screenshots_mozilla_org-browser-action";
+const pageActionButtonSelector = By.id(PAGE_ACTION_BUTTON_ID);
 const shooterSelector = By.css(`#${SHOOTER_BUTTON_ID}, #${TOOLBAR_SHOOTER_BUTTON_ID}`);
 const SLIDE_IFRAME_ID = "firefox-screenshots-onboarding-iframe";
 const PRESELECTION_IFRAME_ID = "firefox-screenshots-preselection-iframe";
 const SELECTION_IFRAME_ID = "firefox-screenshots-selection-iframe";
 const PREVIEW_IFRAME_ID = "firefox-screenshots-preview-iframe";
-const backend = "http://localhost:10080";
+const addonFileLocation = path.join(process.cwd(), "build", "screenshots-bootstrap.zip");
+const downloadDir = path.join(process.cwd(), "test", "addon", ".artifacts");
 
-function getDriver() {
-  const channel = process.env.FIREFOX_CHANNEL || "NIGHTLY";
-  if (!(channel in firefox.Channel)) {
-    throw new Error(`Unknown channel: "${channel}"`);
+const channel = process.env.FIREFOX_CHANNEL || "NIGHTLY";
+if (!(channel in firefox.Channel)) {
+  throw new Error(`Unknown channel: "${channel}"`);
+}
+
+let driver;
+
+async function getDriver(preferences) {
+  if (driver) {
+    await driver.quit();
   }
 
   // const servicebuilder = new ServiceBuilder().enableVerboseLogging(true).setStdio("inherit");
-
-  const options = new firefox.Options()
+  let options = new firefox.Options()
     .setBinary(firefox.Channel[channel])
     .setPreference("extensions.legacy.enabled", true)
-    .setPreference("xpinstall.signatures.required", false);
+    .setPreference("xpinstall.signatures.required", false)
+    .setPreference("browser.download.folderList", 2)
+    .setPreference("browser.download.dir", downloadDir);
+
+  if (preferences) {
+    for (const k of Object.keys(preferences)) {
+      options = options.setPreference(k, preferences[k]);
+    }
+  }
 
   // FIXME: should assert somehow that we have Firefox 54+
 
-  const driver = new webdriver.Builder()
+  driver = new webdriver.Builder()
     // .setFirefoxService(servicebuilder)
     .withCapabilities({"moz:webdriverClick": true})
     .forBrowser("firefox")
     .setFirefoxOptions(options)
     .build();
 
-  const fileLocation = path.join(process.cwd(), "build", "screenshots-bootstrap.zip");
-  driver.installAddon(fileLocation);
+  driver.installAddon(addonFileLocation);
 
   return driver;
 }
 
 function getChromeElement(driver, selector) {
-  driver.setContext(firefox.Context.CHROME);
-  return driver.wait(
-    webdriver.until.elementLocated(selector), 1000);
+  return driver.setContext(firefox.Context.CHROME)
+    .then(() => driver.wait(until.elementLocated(selector)));
 }
 
 /** Calls finallyCallback() after the promise completes, successfully or not,
@@ -80,9 +106,11 @@ function promiseFinally(promise, finallyCallback) {
     successfully. */
 function startScreenshots(driver) {
   return promiseFinally(
-    getChromeElement(driver, shooterSelector).then((button) => {
-      return button.click();
-    }),
+    getChromeElement(driver, pageActionButtonSelector)
+    .then(pageActionButton => pageActionButton.click())
+    .then(() => getChromeElement(driver, shooterSelector))
+    .then(screenshotsButton => screenshotsButton.click())
+    ,
     () => {
       driver.setContext(firefox.Context.CONTENT);
     }
@@ -110,6 +138,13 @@ function focusIframe(driver, iframeId) {
   });
 }
 
+function closeTab(driver) {
+  return driver.close()
+  .then(() => driver.getAllWindowHandles())
+  .then((tabs) => driver.switchTo().window(tabs[tabs.length - 1]))
+  .then(() => driver.switchTo().defaultContent())
+}
+
 function skipOnboarding(driver) {
   return focusIframe(driver, SLIDE_IFRAME_ID).then(() => {
     return driver.findElement(By.id("skip"));
@@ -120,6 +155,28 @@ function skipOnboarding(driver) {
   }).then(() => {
     return driver.wait(until.elementLocated(By.id(PRESELECTION_IFRAME_ID)));
   });
+}
+
+async function startScreenshotsWithUrl(driver, url) {
+  const req = await driver.get(url);
+  const onboarding = await startScreenshots(driver);
+  if (onboarding) {
+    return skipOnboarding(driver);
+  }
+
+  return req;
+}
+
+function performAutoSelection(driver) {
+  return driver.actions().move({x: 100, y: 100}).click().perform()
+  .then(() => driver.switchTo().defaultContent())
+  .then(() => driver.wait(until.ableToSwitchToFrame(By.id(SELECTION_IFRAME_ID))));
+}
+
+function startAutoSelectionShot(driver) {
+  return driver.get(backend)
+  .then(() => startScreenshots(driver))
+  .then(() => performAutoSelection(driver));
 }
 
 /** Waits when ready, calls creator to create the shot, waits for the resulting
@@ -161,14 +218,19 @@ function expectCreatedShot(driver, creator) {
   });
 }
 
+function verifyShotUrl(shotUrl) {
+  assert(shotUrl.startsWith(backend), `Got url ${shotUrl} that doesn't start with ${backend}`);
+  const url = new URL(shotUrl);
+  if (!url.pathname.endsWith(backendUrl.hostname)) {
+    throw new Error(`Unexpected URL: ${shotUrl}`);
+  }
+}
+
 describe("Test Screenshots", function() {
   this.timeout(120000);
-  let driver;
 
-  before(function() {
-    return getDriver().then((aDriver) => {
-      driver = aDriver;
-    });
+  before(async function() {
+    driver = await getDriver();
   });
 
   after(function() {
@@ -182,8 +244,11 @@ describe("Test Screenshots", function() {
   it("should find the add-on button", function(done) {
     this.timeout(15000);
     promiseFinally(
-      getChromeElement(driver, shooterSelector)
-      .then((button) => button.getAttribute("label"))
+      driver.get(backend)
+      .then(() => getChromeElement(driver, pageActionButtonSelector))
+      .then(pageActionButton => pageActionButton.click())
+      .then(() => getChromeElement(driver, shooterSelector))
+      .then(screenshotsButton => screenshotsButton.getAttribute("label"))
       .then((label) => {
         if (label === "Take a Screenshot") {
           assert.equal(label, "Take a Screenshot");
@@ -193,7 +258,10 @@ describe("Test Screenshots", function() {
         done();
       }),
       () => {
-        driver.setContext(firefox.Context.CONTENT);
+        return driver.setContext(firefox.Context.CONTENT)
+          .then(() => driver.getAllWindowHandles())
+          .then((tabs) => driver.switchTo().window(tabs[tabs.length - 1]))
+          .then(() => driver.switchTo().defaultContent());
       }).catch(done);
   });
 
@@ -234,48 +302,20 @@ describe("Test Screenshots", function() {
         saveButton.click();
       });
     }).then((shotUrl) => {
-      assert(shotUrl.startsWith(backend), `Got url ${shotUrl} that doesn't start with ${backend}`);
-      const restUrl = shotUrl.substr(backend.length);
-      if (!/^\/[^/]+\/localhost$/.test(restUrl)) {
-        throw new Error(`Unexpected URL: ${shotUrl}`);
-      }
+      verifyShotUrl(shotUrl);
       done();
     }).catch(done);
   });
 
   it("should take an auto selection shot", function(done) {
-    driver.get(backend).then(() => {
-      return startScreenshots(driver);
-    }).then(() => {
-      return driver.wait(
-        until.ableToSwitchToFrame(By.id(PRESELECTION_IFRAME_ID))
-      );
-    }).then(() => {
-      return driver.wait(
-        until.elementLocated(By.css(".visible"))
-      );
-    }).then(() => {
-      return driver.actions().move({x: 100, y: 100}).click().perform();
-    }).then(() => {
-      return driver.switchTo().defaultContent();
-    }).then(() => {
-      return driver.wait(
-        until.ableToSwitchToFrame(By.id(SELECTION_IFRAME_ID))
-      );
-    }).then(() => {
-      return driver.wait(
-        until.elementLocated(By.css(".highlight-button-save"))
-      );
+    startAutoSelectionShot(driver).then(() => {
+      return driver.wait(until.elementLocated(By.css(".highlight-button-save")));
     }).then((saveButton) => {
       return expectCreatedShot(driver, () => {
         saveButton.click();
       });
     }).then((shotUrl) => {
-      assert(shotUrl.startsWith(backend), `Got url ${shotUrl} that doesn't start with ${backend}`);
-      const restUrl = shotUrl.substr(backend.length);
-      if (!/^\/[^/]+\/localhost$/.test(restUrl)) {
-        throw new Error(`Unexpected URL: ${shotUrl}`);
-      }
+      verifyShotUrl(shotUrl);
       done();
     }).catch(done);
   });
@@ -321,4 +361,70 @@ describe("Test Screenshots", function() {
     }).catch(done);
   });
 
+  it("should download a shot", function(done) {
+    const startingFileCount = fs.readdirSync(downloadDir).length;
+    const filenameRegex = /^Screenshot.+ Firefox Screenshots\.png$/;
+    let files;
+    startAutoSelectionShot(driver)
+    .then(() => driver.wait(until.elementLocated(By.css(".highlight-button-download"))))
+    .then(downloadButton => downloadButton.click())
+    .then(() => driver.wait(() => {
+      return util.promisify(fs.readdir)(downloadDir).then(foundFiles => {
+        files = foundFiles;
+        return (files.length > startingFileCount);
+      });
+    }, 2000))
+    .then(() => {
+      // check for a file created within a couple seconds
+      // @TODO maybe check the dimensions of the image if we wanna get fancy
+      const matches = files.filter(filename => {
+        if (!filenameRegex.test(filename)) {
+          return false;
+        }
+        const stat = fs.statSync(path.join(downloadDir, filename));
+        return ((stat.mtime.getTime() - Date.now()) < 2000);
+      });
+      assert(matches.length, `Shot was not downloaded to ${downloadDir}`);
+      // clean up the dir
+      const unlinkPromise = util.promisify(fs.unlink);
+      files.forEach(filename => {
+        filename !== ".gitignore" && unlinkPromise(path.join(downloadDir, filename));
+      });
+    })
+    // Downloading seems to put the browser in a weird state that we can't reset
+    // unless the tab is closed
+    .then(() => closeTab(driver))
+    .then(() => done())
+    .catch(done);
+  });
+
+  it("should remain on original tab with UI overlay on save failure", function(done) {
+    const badAddon = path.join(process.cwd(), "build", "screenshots-bootstrap-server-down.zip");
+    driver.installAddon(badAddon)
+    .then(() => startAutoSelectionShot(driver))
+    .then(() => driver.wait(until.elementLocated(By.css(".highlight-button-save"))))
+    .then((saveButton) => saveButton.click())
+    .then(() => driver.getAllWindowHandles())
+    .then((tabs) => driver.switchTo().window(tabs[tabs.length - 1]))
+    .then(() => driver.switchTo().defaultContent())
+    .then(() => driver.findElement(By.id(PRESELECTION_IFRAME_ID)))
+    .then(selectionFrame => assert(selectionFrame.isDisplayed()))
+    .then(() => driver.getCurrentUrl())
+    .then((url) => {
+      assert.equal(url, `${backend}/`, `Navigated away from ${backend}`);
+
+      // Doing this in case there are tests after this one.
+      driver.installAddon(addonFileLocation).then(() => done()).catch(done);
+    }).catch(done);
+  });
+
+  it("should not display the Save button", async function() {
+    const driver = await getDriver({"extensions.screenshots.upload-disabled": true});
+    await startScreenshotsWithUrl(driver, backend);
+    await performAutoSelection(driver);
+    // There is a download-only button when there's no Save as the primary button.
+    // No assert is necessary; if the element is found, then then the test
+    // passed. A NoSuchElementError will be thrown if it's not found.
+    await driver.findElement({className: "download-only-button"});
+  });
 });

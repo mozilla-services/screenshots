@@ -99,14 +99,14 @@ this.uicontrol = (function() {
     const previewDataUrl = (captureType === "fullPageTruncated") ? null : dataUrl;
     // Downloaded shots don't have dimension limits
     removeDimensionLimitsOnFullPageShot();
-    shooter.downloadShot(selectedPos, previewDataUrl);
+    shooter.downloadShot(selectedPos, previewDataUrl, captureType);
   }
 
   function copyShot() {
     const previewDataUrl = (captureType === "fullPageTruncated") ? null : dataUrl;
     // Copied shots don't have dimension limits
     removeDimensionLimitsOnFullPageShot();
-    shooter.copyShot(selectedPos, previewDataUrl);
+    shooter.copyShot(selectedPos, previewDataUrl, captureType);
   }
 
   /** *********************************************
@@ -351,7 +351,7 @@ this.uicontrol = (function() {
       return new Selection(this.x1, this.y1, this.x2, this.y2);
     }
 
-    asJson() {
+    toJSON() {
       return {
         left: this.left,
         right: this.right,

@@ -1,21 +1,17 @@
-// Localization for Server-side strings of Firefox Screenshots
-// 
-// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+### Localization for Server-side strings of Firefox Screenshots
+### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
-
-// Global phrases shared across pages, prefixed with 'g'
-[[ global ]]
+## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = నా తెరపట్లు
 gHomeLink = ముంగిలి
-gNoShots
+gNoShots =
     .alt = తెరపట్లు కనుగొనబడలేదు
 
+## Footer
 
-[[ Footer ]]
-
-// Note: link text for a link to mozilla.org
+# Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = నిబంధనలు
 footerLinkPrivacy = గోప్యతా విధానం
@@ -23,111 +19,108 @@ footerLinkFaqs = ప్రశ్నలు
 footerLinkDiscourse = అభిప్రాయం తెలియజేయండి
 footerLinkRemoveAllData = మొత్తం డేటాను తీసివేయండి
 
+## Creating page
 
-[[ Creating page ]]
-
-// Note: { $title } is a placeholder for the title of the web page
-// captured in the screenshot. The default, for pages without titles, is
-// creatingPageTitleDefault.
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
 creatingPageTitle = { $title } సృష్టిస్తోంది
 creatingPageTitleDefault = పేజీ
 creatingPageWaitMessage = మీ పట్టు భద్రమవుతోంది…
 
-
-[[ Home page ]]
+## Home page
 
 homePageButtonMyShots = నా తెరపట్లకు వెళ్ళండి
 homePageTeaser = త్వరలో వస్తుంది...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ఉచిత దింపుకోలు
 homePageGetStarted = మొదలుపెట్టండి
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots ఎలాపని చేస్తాయి
 homePageGetStartedTitle = మొదలుపెట్టండి
 homePageCaptureRegion = ఒక ప్రాంతాన్ని క్యాప్చర్ చేయండి
 homePageCapturePage = ఒక పేజీని క్యాప్చర్ చేయండి
 homePageSaveShare = భద్రపరుచు మరియు పంచుకో
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = మీరు ఒక తెరపట్టుని తీసినప్పుడు,Firefox మీ ఆన్లైన్ తెరపట్ల లైబ్రరీకి మీ తెరపట్లను పోస్ట్ చేస్తుంది మరియు మీ క్లిప్బోర్డ్కు లంకెను నాకలు చేస్తుంది. మేము రెండు వారాలపాటు మీ తెరపట్లను స్వయంచాలకంగా నిల్వ చేస్తాము, కానీ మీరు ఎప్పుడైనా తెరపట్టుని తొలగించవచ్చు లేదా మీ లైబ్రరీలో ఎక్కువ కలం ఉంచడానికి గడువు తేదీని మార్చవచ్చు.
 homePageLegalLink = చట్టపరమైన
 homePagePrivacyLink = గోప్యం
 homePageTermsLink = నియమాలు
 homePageCookiesLink = కుకీలు
 
-
-[[ Leave Screenshots page ]]
+## Leave Screenshots page
 
 leavePageRemoveAllData = డేటా అంతా తీసివేయి
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = మీ ఖాతాను తొలగించడానికి Firefox Screenshots స్థాపించి ఉండాలి
 leavePageErrorGeneric = ఒక దోషం ఏర్పడింది.
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = ఇది మీ Firefox స్క్రీన్షాట్ల డేటాను శాశ్వతంగా తుడిచి వేస్తుంది.
 leavePageButtonProceed = కొనసాగండి
 leavePageButtonCancel = రద్దుచేయి
 leavePageDeleted = మీ అన్ని తెరపట్లు తొలగించబడ్డాయి!
 
-
-[[ Not Found page ]]
+## Not Found page
 
 notFoundPageTitle = పేజీ కనుగొనబడలేదు
 notFoundPageIntro = అయ్యో.
 notFoundPageDescription = పేజీ కనుగొనబడలేదు
 
+## Shot page
 
-[[ Shot page ]]
-
-// This is the HTML title tag of the page
+# This is the HTML title tag of the page
 shotPageTitle = తెరపట్టు: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = గడువు పొదుపు చేయడంలో లోపం
 shotPageAlertErrorDeletingShot = తెరపట్లు తొలగించడంలో లోపం
 shotPageAlertErrorUpdatingTitle = శీర్షిక బద్రపరచడంలో లోపం
 shotPageConfirmDelete = మీరు ఖచ్చితంగా ఈ తెరపట్టును శాశ్వతంగా తొలగించాలనుకుంటున్నారా?
-shotPageShareButton
+shotPageShareButton =
     .title = పంచుకోండి
 shotPageCopy = నకలుతీయి
 shotPageCopied = నకలు చేయబడింది
-shotPageShareFacebook
+shotPageShareFacebook =
     .title = Facebookలో పంచుకోండి
-shotPageShareTwitter
+shotPageShareTwitter =
     .title = Twitterలో పంచుకోండి
-shotPageSharePinterest
+shotPageSharePinterest =
     .title = Pinterestలో పంచుకోండి
-shotPageShareEmail
+shotPageShareEmail =
     .title = ఇమెయిల్ ద్వారా లింక్ను పంచుకోండి
 shotPageShareLink = ఈ తెరపట్టు పంచుకునేందుకు లంకెను పొందండి:
 shotPagePrivacyMessage = లంకె ఉన్న ఎవరైనా ఈ తెరపట్టును వీక్షించగలరు.
-shotPageCopyImageText
+shotPageCopyImageText =
     .label = చిత్రం వచనాన్ని నకలు చేయండి
 shotPageConfirmDeletion = మీరు ఖచ్చితంగా ఈ తెరపట్టును శాశ్వతంగా తొలగించాలనుకుంటున్నారా?
-// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = మీరు ఏమీ చేయకపోతే, ఈ తెరపట్టు శాశ్వతంగా తొలగించబడుతుంది { $timediff }.
-// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = { $date } వరకు పునరుద్ధరించండి
 shotPageExpiredMessage = ఈ తెరపట్టు గడువు ముగిసింది.
-// Note: This phrase is followed by an empty line, then the URL of the source page
+# Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = ఇది మొదట సృష్టించబడిన పేజీ:
-shotPageDeleteButton
+shotPageDeleteButton =
     .title = ఈ తెరపట్టును తొలగించండి
-shotPageAbuseButton
+shotPageAbuseButton =
     .title = దుర్వినియోగం, స్పామ్ లేదా ఇతర సమస్యలకు ఈ తెరపట్టును నివేదించండి
-shotPageDownloadShot
+shotPageDownloadShot =
     .title = దింపుకోండి
+shotPageEditButton =
+    .title = ఈ చిత్రం సవరించు
 shotPageDownload = దింపుకోండి
 shotPageScreenshotsDescription = తెరపట్లు సులభతరమైనాయి. Firefoxను వదలకుండా తెరపట్లను తీసుకోండి,  భద్రపరచండి మరియు పంచుకోండి.
 shotPageUpsellFirefox = ఇప్పుడు Firefoxను పొందండి
 shotPageDMCAMessage = మూడవ పార్టీ మేధో సంపత్తి హక్కు కారణంగా ఈ తెరపట్టు అందుబాటులో లేదు.
-// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = దయచేసి మరింత సమాచారం అభ్యర్థించడానికి { $dmca }కి ఇమెయిల్ చేయండి.
-// Note: { $url } is a placeholder for a shot page URL
+# Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = దయచేసి ఈ తెరపట్టు యొక్క URLను మీ ఇమెయిల్లో చేర్చండి: { $url }
 shotPageKeepFor = ఈ తెరపట్టును ఎంతకాలం భద్రపరచివుంచాలి?
-// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = సమయాన్ని ఎంచుకోండి
-// The ∞ is used to indicate that the shot won't expire. It is also used in
-// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
-// if no such symbol is available for a language/culture, simply leave it out.
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitelyWithSymbol = నిరవధికంగా ∞
 shotPageKeepTenMinutes = 10 నిమిషాలు
 shotPageKeepOneHour = 1 గంట
@@ -138,91 +131,118 @@ shotPageKeepOneMonth = 1 నెల
 shotPageSaveExpiration = బద్రపరుచు
 shotPageCancelExpiration = రద్దుచేయు
 shotPageDoesNotExpire = గడువు లేదు
-// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = { $timediff } గడువు ముగుస్తుంది
-// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } గడువు ముగిసింది 
 timeDiffJustNow = ఇప్పుడే
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] 1 నిమిషం క్రితం
        *[other] { $number } నిమిషాల ముందు
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] 1 గంట క్రితం
        *[other] { $number } గంటల క్రితం
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] నిన్న
        *[other] { $number } రోజుల క్రితం
     }
 timeDiffFutureSeconds = కొన్ని క్షాణాలలో
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] 1 నిమిషం
        *[other] { $number } నిమిషాల్లో
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] 1 గంటలో
        *[other] { $number } గంటలలో
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] రేపు
        *[other] { $number } రోజులలో
     }
 
+## Annotations
 
-[[ Annotations ]]
-
-annotationPenButton
+annotationPenButton =
     .title = పెన్ను
-// Note: This button reverts all the changes on the image since the start of the editing session.
-annotationClearButton
+annotationHighlighterButton =
+    .title = హైలైటర్
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
     .title = తుడిచివేయి
-annotationSaveButton = భద్రపరచు
-annotationCancelButton = రద్దుచేయి
+annotationCropButton =
+    .title = కత్తిరించు
+annotationSaveEditButton = భద్రపరచు
+    .title = మార్పును భద్రపరచు
+annotationCancelEditButton = రద్దుచేయి
+    .title = మార్పుని రద్దుచేయి
 annotationCropConfirmButton = నిర్ధారించు
     .title = ఎంపికను నిర్ధారించు
 annotationCropCancelButton = రద్దుచేయి
     .title = ఎంపికను రద్దుచేయి
+annotationColorWhite =
+    .title = తెలుపు
+annotationColorBlack =
+    .title = నలుపు
+annotationColorRed =
+    .title = ఎరుపు
+annotationColorGreen =
+    .title = పచ్చ
+annotationColorBlue =
+    .title = నీలం
+annotationColorYellow =
+    .title = పసుపు
+annotationColorPurple =
+    .title = ఊదా
+annotationColorSeaGreen =
+    .title = నీలం కలిసిన ఆకుపచ్చ
+annotationColorGrey =
+    .title = బూడిద 
 
+## Shotindex page
 
-[[ Shotindex page ]]
-
-// { $status } is a placeholder for an HTTP status code, like '500'.
-// { $statusText } is a text description of the status code, like 'Internal server error'.
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = షాట్ను తొలగించడంలో లోపం: { $status } { $statusText }
-// { $searchTerm } is a placeholder for text the user typed into the search box
+# { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = నా తెరపట్ల: { $searchTerm } కోసం శోధన 
-shotIndexPageSearchPlaceholder
+shotIndexPageSearchPlaceholder =
     .placeholder = నా తెరపట్లను వెతకండి
-shotIndexPageSearchButton
+shotIndexPageSearchButton =
     .title = వెతకండి
 shotIndexPageNoShotsMessage = భద్రపరచిన తెరపట్లు లేవు.
 shotIndexPageNoShotsInvitation = వెళ్ళండి, కొన్ని తెరపట్లు తీయండి.
 shotIndexPageLookingForShots = తెరపట్ల కొరకు చూస్తున్నాం…
 shotIndexPageNoSearchResultsIntro = హ్మ్మ్
 shotIndexPageNoSearchResults = మీ శోధనకు సరిపోలే ఏ తెరపట్టును కనుగొనలేకపోయాము.
-shotIndexPageClearSearchButton
+shotIndexPageClearSearchButton =
     .title = స్పష్టమైన శోధన
 shotIndexPageConfirmShotDelete = ఈ తెరపట్టును తొలగించాలా?
-shotIndexPagePreviousPage
+shotIndexPagePreviousPage =
     .title = మునుపటి పేజీ
-shotIndexPageNextPage
+shotIndexPageNextPage =
     .title = తదుపరి పేజీ
-// This symbol is used in the lower right corner of the card for a shot on the
-// My Shots page to indicate that the shot does not expire. It should be a
-// single character (or simply nothing if no such symbol is available for a
-// language/culture).
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = ఈ పట్టు ఎప్పటికీ కాలంచెల్లదు
 
+## Metrics page
+## All metrics strings are optional for translation
 
-// all metrics strings are optional for translation
-[[ Metrics page ]]
-
-// Note: 'Firefox Screenshots' should not be translated
+# Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Firefox Screenshots మెట్రిక్స్
 metricsPageTotalsQueryTitle = మొత్తాలు
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = తెరపట్ల యొక్క అవలోకనం
 metricsPageTotalsQueryDevices = నమోదు చేయబడిన మొత్తం పరికరాలు
 metricsPageTotalsQueryActiveShots = సక్రియ తెరపట్లు
@@ -247,7 +267,7 @@ metricsPageVersionQueryUsers = లాగిన్ చేసిన వాడు�
 metricsPageVersionQueryVersion = పొడిగింత వెర్షన్
 metricsPageVersionQueryLastSeen = రోజు
 metricsPageHeader = కొలమానములు
-// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = రూపొందించబడినది: { $created }
-// Note { $time } is a placeholder for a number of milliseconds, like '100'
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (డేటాబేస్ సమయం:  { $time }ms)

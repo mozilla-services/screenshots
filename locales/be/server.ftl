@@ -1,22 +1,18 @@
-// Localization for Server-side strings of Firefox Screenshots
-// 
-// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+### Localization for Server-side strings of Firefox Screenshots
+### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
-
-// Global phrases shared across pages, prefixed with 'g'
-[[ global ]]
+## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = Мае здымкі
 gHomeLink = Хатняя старонка
-gNoShots
+gNoShots =
     .alt = здымкі не знойдзены
 gScreenshotsDescription = Рабіць скрыншоты стала прасцей. Рабіце, захоўвайце і дзяліцеся скрыншотамі, не пакідаючы Firefox.
 
+## Footer
 
-[[ Footer ]]
-
-// Note: link text for a link to mozilla.org
+# Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Умовамі выкарыстання
 footerLinkPrivacy = Паведамленне аб прыватнасці
@@ -25,122 +21,119 @@ footerLinkDMCA = Паведаміць аб парушэнні аўтарскіх
 footerLinkDiscourse = Даць водгук
 footerLinkRemoveAllData = Выдаліць усе дадзеныя
 
+## Creating page
 
-[[ Creating page ]]
-
-// Note: { $title } is a placeholder for the title of the web page
-// captured in the screenshot. The default, for pages without titles, is
-// creatingPageTitleDefault.
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
 creatingPageTitle = Стварэнне { $title }
 creatingPageTitleDefault = старонка
 creatingPageWaitMessage = Захаванне здымка…
 
+## Home page
 
-[[ Home page ]]
-
-homePageDescription
+homePageDescription =
     .content = Інтуітыўныя скрыншоты наўпрост у браўзеры. Захоплівайце, захоўвайце і дзяліцеся скрыншотамі пры праглядзе вэб-старонак з дапамогай Firefox.
 homePageButtonMyShots = Перайсці да маіх здымкаў
 homePageTeaser = Хутка...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Сцягнуць бясплатна
 homePageGetStarted = Пачаць
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Як працуе Firefox Screenshots
 homePageGetStartedTitle = Пачаць
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Знайдзіце новы значок Screenshots на паліцы прылад. Націсніце на яго і з'явіцца меню.
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Выберыце значок Screenshots з меню Дзеянні старонкі ў адрасным радку і меню Screenshots з'явіцца ў верхняй частцы акна браўзера.
 homePageCaptureRegion = Захоп вобласці
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Пстрыкніце і перацягніце, каб выбраць вобласць, якую вы хочаце захапіць. Ці проста навядзіце мышшу і пстрыкніце - Screenshots абярэ вобласць самі. Падабаецца, што вы бачыце? Выберыце «Захаваць», каб атрымаць магчымасць апублікаваць ваш скрыншот анлайн або пстрыкніце па кнопцы са стрэлкай ўніз, каб загрузіць здымак на ваш камп'ютар.
 homePageCapturePage = Захоп старонкі
 homePageCapturePageDescription = З дапамогай кнопак у верхнім правым куце вы можаце захапіць старонку цалкам. Кнопка «Захаваць бачнае» захопіць бачнае змесціва старонкі, якое даступна без пракручвання, а «Захаваць ўсю старонку» захопіць ўсю старонку цалкам.
 homePageSaveShare = Захаваць і падзяліцца
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Калі вы робіце здымак, Firefox публікуе ваш скрыншот у вашу анлайн бібліятэку Screenshots і капіюе ссылку ў ваш буфер абмену. Мы аўтаматычна захоўваем вашы скрыншоты два тыдні, але вы можаце выдаліць здымкі ў любы час або змяніць дату заканчэння захоўвання, каб захоўваць іх у вашай бібліятэцы даўжэй.
 homePageLegalLink = Юрыдычная інфармацыя
 homePagePrivacyLink = Прыватнасць
 homePageTermsLink = Умовамі выкарыстання
 homePageCookiesLink = Кукі
 
-
-[[ Leave Screenshots page ]]
+## Leave Screenshots page
 
 leavePageRemoveAllData = Выдаліць усе дадзеныя
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Каб выдаліць уліковы запіс, у вас павінен быць усталяваны Firefox Screenshots
 leavePageErrorGeneric = Здарылася памылка
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Гэта дзеянне назаўжды выдаліць усе вашы дадзеныя Firefox Screenshots.
 leavePageButtonProceed = Працягнуць
 leavePageButtonCancel = Адмяніць
 leavePageDeleted = Усе вашыя здымкі былі сцёртыя!
 
-
-[[ Not Found page ]]
+## Not Found page
 
 notFoundPageTitle = Старонка не знойдзена
 notFoundPageIntro = Вой!
 notFoundPageDescription = Старонка не знойдзена.
 
+## Shot page
 
-[[ Shot page ]]
-
-// This is the HTML title tag of the page
+# This is the HTML title tag of the page
 shotPageTitle = Скрыншот: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Памылка пры захаванні часу заканчэння
 shotPageAlertErrorDeletingShot = Памылка пры выдаленні здымка
 shotPageAlertErrorUpdatingTitle = Памылка захавання назвы
 shotPageConfirmDelete = Вы сапраўды хочаце назаўсёды выдаліць гэты здымак?
-shotPageShareButton
+shotPageShareButton =
     .title = Падзяліцца
 shotPageCopy = Капіяваць
 shotPageCopied = Скапіявана
-shotPageShareFacebook
+shotPageShareFacebook =
     .title = Падзяліцца на Фэйсбуку
-shotPageShareTwitter
+shotPageShareTwitter =
     .title = Падзяліцца ў Твітары
-shotPageSharePinterest
+shotPageSharePinterest =
     .title = Падзяліцца ў Pinterest
-shotPageShareEmail
+shotPageShareEmail =
     .title = Падзяліцца спасылкай па э-пошце
 shotPageShareLink = Атрымаць публічную спасылку на гэты здымак:
 shotPagePrivacyMessage = Любы, хто мае гэту спасылку, можа праглядаць гэты здымак.
-shotPageCopyImageText
+shotPageCopyImageText =
     .label = Капіяваць тэкст выявы
 shotPageConfirmDeletion = Вы сапраўды хочаце назаўсёды выдаліць гэты здымак?
-// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Калі вы нічога не будзеце рабіць, здымак будзе выдалены назаўсёды { $timediff }.
-// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = працягнуты да { $date }
 shotPageExpiredMessage = Гэты здымак пратэрмінаваны.
-// Note: This phrase is followed by an empty line, then the URL of the source page
+# Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Старонка, з якой створаны гэты здымак:
-shotPageDeleteButton
+shotPageDeleteButton =
     .title = Выдаліць гэты здымак
-shotPageAbuseButton
+shotPageAbuseButton =
     .title = Гэты здымак з'яўляецца абразлівым, спамам або мае іншыя праблемы
-shotPageDownloadShot
+shotPageDownloadShot =
     .title = Сцягнуць
+shotPageEditButton =
+    .title = Рэдагаваць гэту выяву
 shotPageDownload = Сцягнуць
 shotPageScreenshotsDescription = Рабіць скрыншоты стала прасцей. Рабіце, захоўвайце і дзяліцеся скрыншотамі, не пакідаючы Firefox.
 shotPageUpsellFirefox = Атрымаць Firefox зараз
 shotPageDMCAMessage = Гэты здымак больш недаступны з-за парушэння аўтарскіх правоў трэцяга боку.
-// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Калі ласка, напішыце на { $dmca }, каб запытаць дадатковую інфармацыю.
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Калі на вашы здымкі паскардзіліся некалькі разоў, мы можам заблакаваць вам доступ да Firefox Screenshots.
-// Note: { $url } is a placeholder for a shot page URL
+# Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Калі ласка, дадайце да вашага ліста спасылку на гэты здымак: { $url }
 shotPageKeepFor = Як доўга будзе захоўвацца гэты здымак?
-// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Выберыце час
-// The ∞ is used to indicate that the shot won't expire. It is also used in
-// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
-// if no such symbol is available for a language/culture, simply leave it out.
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitelyWithSymbol = Бясконца ∞
 shotPageKeepTenMinutes = 10 хвілін
 shotPageKeepOneHour = 1гадзіну
@@ -151,105 +144,142 @@ shotPageKeepOneMonth = 1 месяц
 shotPageSaveExpiration = захаваць
 shotPageCancelExpiration = адмяніць
 shotPageDoesNotExpire = неабмежаваны тэрмін
-// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = тэрмін захоўвання мінае { $timediff }
-// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = тэрмін захоўвання скончыўся { $timediff }
 timeDiffJustNow = толькі што
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] хвіліну таму
         [few] { $number } хвіліны таму
        *[other] { $number } хвілін таму
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] гадзіну таму
         [few] { $number } гадзіны таму
        *[other] { $number } гадзін таму
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] учора
         [few] { $number } дні таму
        *[other] { $number } дзён таму
     }
 timeDiffFutureSeconds = праз некалькі секунд
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] за хвіліну
         [few] за { $number } хвіліны
        *[other] за { $number } хвілін
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] за гадзіну
         [few] за { $number } гадзіны
        *[other] за { $number } гадзін
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] заўтра
         [few] за { $number } дні
        *[other] за { $number } дзён
     }
 errorThirdPartyCookiesEnabled = Калі вы зрабілі гэты здымак і не можаце яго выдаліць, вам можа спатрэбіцца часова ўключыць прыём кукі з пабочных сайтаў у наладах вашага браўзера.
 
+## Annotations
 
-[[ Annotations ]]
-
-annotationPenButton
+annotationPenButton =
     .title = Асадка
-annotationHighlighterButton
+annotationHighlighterButton =
     .title = Маркер
-// Note: This button reverts all the changes on the image since the start of the editing session.
-annotationClearButton
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
     .title = Ачысціць
-annotationCropButton
+annotationCropButton =
     .title = Абрэзаць
-annotationSaveButton = Захаваць
-annotationCancelButton = Скасаваць
+annotationSaveEditButton = Захаваць
+    .title = Захаваць змены
+annotationCancelEditButton = Скасаваць
+    .title = Скасаваць змены
 annotationCropConfirmButton = Пацвердзіць
     .title = Пацвердзіць вылучэнне
 annotationCropCancelButton = Скасаваць
     .title = Скасаваць вылучэнне
+annotationColorWhite =
+    .title = Белы
+annotationColorBlack =
+    .title = Чорны
+annotationColorRed =
+    .title = Чырвоны
+annotationColorGreen =
+    .title = Зялёны
+annotationColorBlue =
+    .title = Сіні
+annotationColorYellow =
+    .title = Жоўты
+annotationColorPurple =
+    .title = Фіялетавы
+annotationColorSeaGreen =
+    .title = Сіня-зялёны
+annotationColorGrey =
+    .title = Шэры
 
+## Settings Page
 
-[[ Shotindex page ]]
+settingsDisconnectButton = Адлучыцца
+    .title = Адлучыцца
+settingsGuestAccountMessage = Гасцявы уліковы запіс
+settingsSignInInvite = Увайдзіце для сінхранізацыі паміж прыладамі
+settingsSignInButton = Увайсці
+    .title = Увайсці
+SettingsPageHeader = Налады Firefox Screenshots
+settingsDescription = Вы можаце ўвайсці з уліковым запісам Firefox, каб сінхранізаваць усе свае здымкі экрана паміж прыладамі і мець да іх прыватны доступ.
+settingsPageSubHeader = Сінхранізацыя і ўліковыя запісы
+settingsClosePreferences =
+    .title = Закрыць налады
 
-// { $status } is a placeholder for an HTTP status code, like '500'.
-// { $statusText } is a text description of the status code, like 'Internal server error'.
+## Shotindex page
+
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Памылка выдалення здымку: { $status } { $statusText }
-// { $searchTerm } is a placeholder for text the user typed into the search box
+# { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Мае здымкі: пошук { $searchTerm }
-// { $error } is a placeholder for a non-translated error message that could be shared
-// with developers when debugging an error.
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
 shotIndexPageErrorRendering = Памылка рэндэрынгу старонкі: { $error }
-shotIndexPageSearchPlaceholder
+shotIndexPageSearchPlaceholder =
     .placeholder = Пошук маіх здымкаў
-shotIndexPageSearchButton
+shotIndexPageSearchButton =
     .title = Пошук
 shotIndexPageNoShotsMessage = Няма захаваных здымкаў.
 shotIndexPageNoShotsInvitation = Давайце, стварыце некалькі.
 shotIndexPageLookingForShots = Пошук вашых здымкаў…
 shotIndexPageNoSearchResultsIntro = Хмм
 shotIndexPageNoSearchResults = Мы не можам знайсці здымкі па вашаму запыту.
-shotIndexPageClearSearchButton
+shotIndexPageClearSearchButton =
     .title = Ачысціць пошук
 shotIndexPageConfirmShotDelete = Выдаліць гэты здымак?
-shotIndexPagePreviousPage
+shotIndexPagePreviousPage =
     .title = Папярэдняя старонка
-shotIndexPageNextPage
+shotIndexPageNextPage =
     .title = Наступная старонка
-// This symbol is used in the lower right corner of the card for a shot on the
-// My Shots page to indicate that the shot does not expire. It should be a
-// single character (or simply nothing if no such symbol is available for a
-// language/culture).
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Гэты здымак не пратэрмінаваны
 
+## Metrics page
+## All metrics strings are optional for translation
 
-// all metrics strings are optional for translation
-[[ Metrics page ]]
-
-// Note: 'Firefox Screenshots' should not be translated
+# Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Метрыкі Firefox Screenshots
 metricsPageTotalsQueryTitle = Вынікі
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Агляд Screenshots
 metricsPageTotalsQueryDevices = Усяго зарэгістраваных прылад
 metricsPageTotalsQueryActiveShots = Актыўныя здымкі
@@ -282,7 +312,7 @@ metricsPageVersionQueryUsers = Колькасць карыстальнікаў, 
 metricsPageVersionQueryVersion = Версія дадатка
 metricsPageVersionQueryLastSeen = Дзень
 metricsPageHeader = Метрыкі
-// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Створана: { $created }
-// Note { $time } is a placeholder for a number of milliseconds, like '100'
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (час базы дадзеных: { $time }ms)

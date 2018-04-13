@@ -1,0 +1,145 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.10.0
+    working_directory: ~/screenshots
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - node-modules-{{ checksum "package.json" }}
+      - run:
+          name: Install Node Modules
+          command: npm install
+      - run:
+          name: Make
+          command: make all
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./*
+      - save_cache:
+          key: node-modules-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+  test:
+    environment:
+      - RDS_NAME: circle_test
+      - RDS_USERNAME: ubuntu
+      - LOCALHOST_SSL: false
+      - ENABLE_COVERAGE: 1
+      - NODE_ENV: dev
+      - CIRCLE_TEST_REPORTS: /home/circleci/test-reports
+    # A machine executor is used here because of the OWASP ZAP step. When using
+    # a docker executor, all the run steps are executed in the primary
+    # container, so we cannot run zap-baseline.py. A CircleCI employee
+    # mentioned in a support forum thread that running a command in a specific
+    # container is on their roadmap.
+    machine: true
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Install Postgres
+          command: sudo circleci-install postgres
+      - run:
+          name: Start Server
+          command: |
+            . "$NVM_DIR/nvm.sh"
+            nvm install 8.10.0
+            node -e 'require("babel-polyfill"); require("./build/server/server");'
+          background: true
+      - run:
+          name: Wait for Server
+          command: while ! nc -z localhost 10080; do sleep 0.1; done
+      - run:
+          name: Install Python Dependencies
+          command: pip install requests
+      - run: ./bin/test-request put '{}'
+      - run: ./bin/load_test_exercise.py http://localhost:10080
+      - run:
+          Name: Run Server Tests
+          command: |
+            . "$NVM_DIR/nvm.sh"
+            nvm use 8.10.0
+            npm run test:server
+            mkdir -p $CIRCLE_TEST_REPORTS/server-coverage
+            cd "$CIRCLE_TEST_REPORTS/server-coverage" &&
+              wget http://localhost:10080/coverage/download &&
+              unzip download && rm download
+      - run:
+          name: Install Firefox
+          command: |
+            . "$NVM_DIR/nvm.sh"
+            nvm use 8.10.0
+            npm i -g get-firefox
+            get-firefox --branch nightly --platform linux --extract --target ~/
+            ~/firefox/firefox -v
+      - run:
+          name: Run npm test
+          command: |
+            . "$NVM_DIR/nvm.sh"
+            nvm use 8.10.0
+            export PATH=~/firefox:$PATH
+            FIREFOX_CHANNEL=NIGHTLY MOZ_HEADLESS=1 npm test
+      - run:
+          # run zap baseline against the server
+          # Only fail on error code 1, which indicates at least one FAIL was found.
+          # error codes 2 & 3 indicate WARN or other, and should not break the run
+          name: Run OWASP ZAP Baseline
+          shell: /bin/bash
+          command: |
+            docker pull owasp/zap2docker-weekly
+            (
+              ip="$(ip -f inet -o addr show docker0 | awk '{print $4}' | cut -d '/' -f 1)" &&
+              docker run -t owasp/zap2docker-weekly zap-baseline.py \
+                  -t http://${ip}:10080 \
+                  -u https://raw.githubusercontent.com/mozilla-services/screenshots/master/.zap-baseline.conf;
+              if [ $? -ne 1 ]; then exit 0; else exit 1; fi;
+            )
+      - run: bash <(curl -s https://codecov.io/bash)
+  deploy_dev:
+    docker:
+      - image: circleci/node:8.10.0
+    steps:
+      - setup_remote_docker
+      - attach_workspace:
+          at: .
+      - run:
+          name: Deploy to Dev
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            ./bin/release-version dev
+  deploy_stage:
+    docker:
+      - image: circleci/node:8.10.0
+    steps:
+      - setup_remote_docker
+      - attach_workspace:
+          at: .
+      - run:
+          name: Deploy to Stage
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            ./bin/release-version stage
+workflows:
+  version: 2
+  build_test_deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - deploy_dev:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+      - deploy_stage:
+          requires:
+            - test
+          filters:
+            branches:
+              only: server-prod

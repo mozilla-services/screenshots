@@ -1,22 +1,18 @@
-// Localization for Server-side strings of Firefox Screenshots
-// 
-// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+### Localization for Server-side strings of Firefox Screenshots
+### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
-
-// Global phrases shared across pages, prefixed with 'g'
-[[ global ]]
+## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = Moje snímky
 gHomeLink = Domov
-gNoShots
+gNoShots =
     .alt = Neboli nájdené žiadne snímky
 gScreenshotsDescription = Jednoduchá tvorba snímok obrazovky. Vytvorte, uložte a zdieľajte snímky obrazovky bez toho, aby ste museli opustiť Firefox.
 
+## Footer
 
-[[ Footer ]]
-
-// Note: link text for a link to mozilla.org
+# Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Podmienky
 footerLinkPrivacy = Zásady ochrany súkromia
@@ -25,122 +21,119 @@ footerLinkDMCA = Nahlásiť zneužitie IP adresy
 footerLinkDiscourse = Poskytnúť spätnú väzbu
 footerLinkRemoveAllData = Odstrániť všetky údaje
 
+## Creating page
 
-[[ Creating page ]]
-
-// Note: { $title } is a placeholder for the title of the web page
-// captured in the screenshot. The default, for pages without titles, is
-// creatingPageTitleDefault.
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
 creatingPageTitle = Vytváram snímku { $title }
 creatingPageTitleDefault = stránky
 creatingPageWaitMessage = Ukladanie vašej snímky…
 
+## Home page
 
-[[ Home page ]]
-
-homePageDescription
+homePageDescription =
     .content = Intuitívne snímky obrazovky priamo v prehliadači. Zachyťte, uložte a zdieľajte snímky obrazovky priamo pri prehliadaní pomocou Firefoxu.
 homePageButtonMyShots = Prejsť na moje snímky
 homePageTeaser = Už čoskoro...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Prevziať zadarmo
 homePageGetStarted = Začíname
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Ako služba Firefox Screenshots funguje
 homePageGetStartedTitle = Začíname
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Novú ikonu služby Screenshots nájdete na vašom paneli nástrojov. Po kliknutí na ňu sa v hornej časti okna vášho prehliadača zobrazí ponuka.
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = V paneli s adresou v ponuke akcii stránky vyberte ikonu služby Screenshos a jej ponuka sa zobrazí v hornej časti okna prehliadača.
 homePageCaptureRegion = Vytvorte snímku oblasti
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Kliknutím a potiahnutím vyberte oblasť stránky, ktorú chcete zachytiť. Alebo na ňu len prejdite myšou - doplnok Screenshots vyberie oblasť za vás. Páči sa vám to? Kliknutím na tlačidlo Uložiť nahráte snímok na internet, kliknutím na šípku ho prevezmete do počítača.
 homePageCapturePage = Vytvorte snímku celej stránky
 homePageCapturePageDescription = Pre zachytenie celej stránky použite tlačidlo v pravom hornom rohu. Tlačidlom Uložiť viditeľnú časť vyberiete a uložíte časť stránky, ktorú práve vidíte a tlačidlom Uložiť celú stránku zachytíte všetko, čo na stránke je.
 homePageSaveShare = Uložte a zdieľajte
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Po vytvorení snímky ju Firefox nahrá do vašej knižnice snímok v službe Screenshots a odkaz na ňu vám skopíruje do vašej schránky. Snímky automaticky ukladáme na dva týždne, vy ich však môžete kedykoľvek odstrániť či upraviť ich dobu platnosti.
 homePageLegalLink = Právne informácie
 homePagePrivacyLink = Súkromie
 homePageTermsLink = Podmienky používania
 homePageCookiesLink = Cookies
 
-
-[[ Leave Screenshots page ]]
+## Leave Screenshots page
 
 leavePageRemoveAllData = Odstrániť všetky údaje
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Na vymazanie svojho účtu musíte mať nainštalovanú službu Firefox Screenshots
 leavePageErrorGeneric = Vyskytla sa chyba
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Toto natrvalo vymaže zo služby Firefox Screenshots všetky vaše údaje.
 leavePageButtonProceed = Pokračovať
 leavePageButtonCancel = Zrušiť
 leavePageDeleted = Všetky vaše snímky boli odstránené!
 
-
-[[ Not Found page ]]
+## Not Found page
 
 notFoundPageTitle = Stránka nebola nájdená
 notFoundPageIntro = Hups.
 notFoundPageDescription = Stránka nebola nájdená.
 
+## Shot page
 
-[[ Shot page ]]
-
-// This is the HTML title tag of the page
+# This is the HTML title tag of the page
 shotPageTitle = Snímka obrazovky: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Pri ukladaní doby platnosti snímky nastala chyba
 shotPageAlertErrorDeletingShot = Pri odstraňovaní snímky sa vyskytla chyba
 shotPageAlertErrorUpdatingTitle = Pri ukladaní názvu sa vyskytla chyba
 shotPageConfirmDelete = Naozaj chcete natrvalo odstrániť túto snímku?
-shotPageShareButton
+shotPageShareButton =
     .title = Zdieľať
 shotPageCopy = Kopírovať
 shotPageCopied = Skopírované
-shotPageShareFacebook
+shotPageShareFacebook =
     .title = Zdieľať na Facebooku
-shotPageShareTwitter
+shotPageShareTwitter =
     .title = Zdieľať na Twitteri
-shotPageSharePinterest
+shotPageSharePinterest =
     .title = Zdieľať na Pintereste
-shotPageShareEmail
+shotPageShareEmail =
     .title = Zdieľať odkaze e-mailom
 shotPageShareLink = Odkaz na zdieľanie tejto snímky:
 shotPagePrivacyMessage = Na túto snímku sa bude môcť pozrieť každý, kto bude mať tento odkaz.
-shotPageCopyImageText
+shotPageCopyImageText =
     .label = Kopírovať text z obrázka
 shotPageConfirmDeletion = Naozaj chcete natrvalo odstrániť túto snímku?
-// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Ak nič neurobíte, táto snímka bude navždy odstránená { $timediff }.
-// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = obnoviť do { $date }
 shotPageExpiredMessage = Platnosť tejto snímky vypršala.
-// Note: This phrase is followed by an empty line, then the URL of the source page
+# Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Stránka, z ktorej bola snímka vytvorená:
-shotPageDeleteButton
+shotPageDeleteButton =
     .title = Odstrániť túto snímku
-shotPageAbuseButton
+shotPageAbuseButton =
     .title = Nahlásiť túto snímku z dôvodu porušenia práv, spamu alebo pre iný problém
-shotPageDownloadShot
+shotPageDownloadShot =
     .title = Prevziať
+shotPageEditButton =
+    .title = Upraviť tento obrázok
 shotPageDownload = Prevziať
 shotPageScreenshotsDescription = Jednoduchá tvorba snímok obrazovky. Vytvorte, uložte a zdieľajte snímky obrazovky bez toho, aby ste museli opustiť Firefox.
 shotPageUpsellFirefox = Získajte Firefox teraz
 shotPageDMCAMessage = Táto snímka naďalej nie je dostupná z dôvodu uplatnenia si nároku na duševné vlastníctvo treťou stranou.
-// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Ďalšie informácie si môžete vyžiadať e-mailom na adrese { $dmca }.
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Ak sú vaše snímky predmetom mnohých nárokov, môže dôjsť k zablokovaniu vášho prístupu k službe Firefox Screenshots.
-// Note: { $url } is a placeholder for a shot page URL
+# Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Do e-mailu zahrňte, prosím, URL adresu tejto snímky: { $url }
 shotPageKeepFor = Na ako dlho má byť táto snímka uložená?
-// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Vyberte čas
-// The ∞ is used to indicate that the shot won't expire. It is also used in
-// shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
-// if no such symbol is available for a language/culture, simply leave it out.
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
 shotPageKeepIndefinitelyWithSymbol = Navždy ∞
 shotPageKeepTenMinutes = 10 minút
 shotPageKeepOneHour = 1 hodinu
@@ -151,105 +144,128 @@ shotPageKeepOneMonth = 1 mesiac
 shotPageSaveExpiration = uložiť
 shotPageCancelExpiration = zrušiť
 shotPageDoesNotExpire = bez obmedzenej platnosti
-// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = platnosť vyprší { $timediff }
-// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = platnosť vypršala { $timediff }
 timeDiffJustNow = práve teraz
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] pred 1 minútou
         [few] pred { $number } minútami
        *[other] pred { $number } minútami
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] pred hodinou
         [few] pred { $number } hodinami
        *[other] pred { $number } hodinami
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] včera
         [few] pred { $number } dňami
        *[other] pred { $number } dňami
     }
 timeDiffFutureSeconds = za pár sekúnd
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] za minútu
         [few] za { $number } minúty
        *[other] za { $number } minút
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] za hodinu
         [few] za { $number } hodiny
        *[other] za { $number } hodín
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] zajtra
         [few] za { $number } dni
        *[other] za { $number } dní
     }
 errorThirdPartyCookiesEnabled = Ak ste túto snímku vytvorili, no nemôžete ju odstrániť, dočasne povoľte v možnostiach svojho prehliadača používanie cookies tretích strán.
 
+## Annotations
 
-[[ Annotations ]]
-
-annotationPenButton
+annotationPenButton =
     .title = Pero
-annotationHighlighterButton
+annotationHighlighterButton =
     .title = Zvýrazňovač
-// Note: This button reverts all the changes on the image since the start of the editing session.
-annotationClearButton
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
     .title = Odstrániť zmeny
-annotationCropButton
+annotationCropButton =
     .title = Orezať
-annotationSaveButton = Uložiť
-annotationCancelButton = Zrušiť
+annotationSaveEditButton = Uložiť
+    .title = Uložiť úpravu
+annotationCancelEditButton = Zrušiť
+    .title = Zrušiť úpravu
 annotationCropConfirmButton = Potvrdiť
     .title = Potvrdiť výber
 annotationCropCancelButton = Zrušiť
     .title = Zrušiť výber
+annotationColorWhite =
+    .title = Biela
+annotationColorBlack =
+    .title = Čierna
+annotationColorRed =
+    .title = Červená
+annotationColorGreen =
+    .title = Zelená
+annotationColorBlue =
+    .title = Modrá
+annotationColorYellow =
+    .title = Žltá
+annotationColorPurple =
+    .title = Fialová
+annotationColorSeaGreen =
+    .title = Morská zelená
+annotationColorGrey =
+    .title = Sivá
 
+## Shotindex page
 
-[[ Shotindex page ]]
-
-// { $status } is a placeholder for an HTTP status code, like '500'.
-// { $statusText } is a text description of the status code, like 'Internal server error'.
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Pri odstraňovaní snímky nastala chyba: { $status } { $statusText }
-// { $searchTerm } is a placeholder for text the user typed into the search box
+# { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Moje snímky: vyhľadávanie { $searchTerm }
-// { $error } is a placeholder for a non-translated error message that could be shared
-// with developers when debugging an error.
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
 shotIndexPageErrorRendering = Pri zobrazovaní stránky nastala chyba: { $error }
-shotIndexPageSearchPlaceholder
+shotIndexPageSearchPlaceholder =
     .placeholder = Hľadať medzi snímkami
-shotIndexPageSearchButton
+shotIndexPageSearchButton =
     .title = Hľadať
 shotIndexPageNoShotsMessage = Žiadne uložené snímky
 shotIndexPageNoShotsInvitation = Nebojte sa ich pár vytvoriť.
 shotIndexPageLookingForShots = Vyhľadávanie vašich snímkov...
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Nenašli sme žiadnu snímku, ktorá by bola zhodná s vaším výrazom vyhľadávania.
-shotIndexPageClearSearchButton
+shotIndexPageClearSearchButton =
     .title = Vyčistiť vyhľadávacie pole
 shotIndexPageConfirmShotDelete = Odstrániť túto snímku?
-shotIndexPagePreviousPage
+shotIndexPagePreviousPage =
     .title = Predchádzajúca stránka
-shotIndexPageNextPage
+shotIndexPageNextPage =
     .title = Nasledujúca stránka
-// This symbol is used in the lower right corner of the card for a shot on the
-// My Shots page to indicate that the shot does not expire. It should be a
-// single character (or simply nothing if no such symbol is available for a
-// language/culture).
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Platnosť tejto snímky nevyprší
 
+## Metrics page
+## All metrics strings are optional for translation
 
-// all metrics strings are optional for translation
-[[ Metrics page ]]
-
-// Note: 'Firefox Screenshots' should not be translated
+# Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Metriky Firefox Screenshots
 metricsPageTotalsQueryTitle = Celkom
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Prehľad služby Screenshots
 metricsPageTotalsQueryDevices = Celkový počet zaregistrovaných zariadení
 metricsPageTotalsQueryActiveShots = Aktívne snímky
@@ -282,7 +298,7 @@ metricsPageVersionQueryUsers = Počet prihlásení používateľov
 metricsPageVersionQueryVersion = Verzia doplnku
 metricsPageVersionQueryLastSeen = Deň
 metricsPageHeader = Metriky
-// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Vygenerované: { $created }
-// Note { $time } is a placeholder for a number of milliseconds, like '100'
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (čas databázy: { $time } ms)

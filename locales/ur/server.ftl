@@ -42,6 +42,7 @@ leavePageRemoveAllData = تمام کوائف ہٹائیں
 leavePageErrorGeneric = ایک غلطی ہوئی ہے:
 leavePageButtonProceed = آگے بڑھیں
 leavePageButtonCancel = منسوخ کریں
+leavePageDeleted = آپ کی تمام اسکرین شاٹ مٹا دی گئی ہیں!
 
 ## Not Found page
 
@@ -58,8 +59,12 @@ shotPageCopy = نقل کریں
 shotPageCopied = نقل شدہ
 shotPageShareFacebook =
     .title = Facebook پر شیئر کریں
+shotPageShareTwitter =
+    .title = Twitter پر شیئر کریں
 shotPageSharePinterest =
     .title = Pinterest پر شیئر کریں
+shotPageShareEmail =
+    .title = ایک ربط بزریعہ ای میل شیئر کریں
 shotPagePrivacyMessage = جس کسی کہ پاس بھی یہ ربط موجود ہو وہ یہ شاٹ دیکھ سکتا ہے۔
 shotPageCopyImageText =
     .label = نقش کا متن نقل کریں
@@ -84,21 +89,31 @@ shotPageKeepOneMonth = ۱ ماہ
 shotPageSaveExpiration = محفوظ کریں
 shotPageCancelExpiration = منسوخ کریں
 timeDiffJustNow = ابھی
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] گزشتہ روز
        *[other] { $number }  د ن پہلے
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] ۱ گھنٹے میں
        *[other] { $number }  گھنٹوں میں
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] کل
        *[other] { $number }  دنوں میں
     }
 
 ## Annotations
 
+annotationHighlighterButton =
+    .title = روشن گر قلم
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
+    .title = صاف کریں
+annotationSaveEditButton = محفوظ کریں
+    .title = تدوین محفوظ کریں
 
 ## Shotindex page
 
@@ -111,11 +126,16 @@ shotIndexPageNoSearchResultsIntro = ہمم
 shotIndexPageClearSearchButton =
     .title = تلاش حزف کریں
 shotIndexPageConfirmShotDelete = اس شاٹ کو حذف کریں؟
+shotIndexPagePreviousPage =
+    .title = پچھلا صفحہ
+shotIndexPageNextPage =
+    .title = اگلا صفحہ
 
 ## Metrics page
 ## All metrics strings are optional for translation
 
 metricsPageTotalsQueryTitle = کل
+metricsPageTotalsQueryDevices = کل اندراج شدہ آلات
 metricsPageTotalsQueryActiveShots = متحرک شاٹس
 metricsPageShotsQueryDay = دن
 metricsPageUsersQueryCount = صارفین کی تعداد

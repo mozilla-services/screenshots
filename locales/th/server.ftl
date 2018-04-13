@@ -1,21 +1,17 @@
-// Localization for Server-side strings of Firefox Screenshots
-// 
-// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+### Localization for Server-side strings of Firefox Screenshots
+### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
-
-// Global phrases shared across pages, prefixed with 'g'
-[[ global ]]
+## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = ภาพของฉัน
 gHomeLink = หน้าแรก
-gNoShots
+gNoShots =
     .alt = ไม่พบภาพ
 
+## Footer
 
-[[ Footer ]]
-
-// Note: link text for a link to mozilla.org
+# Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = ข้อกำหนด
 footerLinkPrivacy = ประกาศความเป็นส่วนตัว
@@ -24,18 +20,16 @@ footerLinkDMCA = รายงานการละเมิดทรัพย์
 footerLinkDiscourse = ให้ข้อคิดเห็น
 footerLinkRemoveAllData = เอาข้อมูลทั้งหมดออก
 
+## Creating page
 
-[[ Creating page ]]
-
-// Note: { $title } is a placeholder for the title of the web page
-// captured in the screenshot. The default, for pages without titles, is
-// creatingPageTitleDefault.
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
 creatingPageTitle = กำลังสร้าง { $title }
 creatingPageTitleDefault = หน้า
 creatingPageWaitMessage = กำลังบันทึกภาพของคุณ…
 
-
-[[ Home page ]]
+## Home page
 
 homePageButtonMyShots = ไปยังภาพของฉัน
 homePageDownloadFirefoxTitle = Firefox
@@ -50,8 +44,7 @@ homePagePrivacyLink = ความเป็นส่วนตัว
 homePageTermsLink = ข้อกำหนด
 homePageCookiesLink = คุกกี้
 
-
-[[ Leave Screenshots page ]]
+## Leave Screenshots page
 
 leavePageRemoveAllData = เอาข้อมูลทั้งหมดออก
 leavePageErrorGeneric = เกิดข้อผิดพลาด
@@ -59,42 +52,44 @@ leavePageButtonProceed = ดำเนินการต่อ
 leavePageButtonCancel = ยกเลิก
 leavePageDeleted = ภาพถ่ายหน้าจอของคุณทั้งหมดถูกลบแล้ว!
 
-
-[[ Not Found page ]]
+## Not Found page
 
 notFoundPageTitle = ไม่พบหน้า
 notFoundPageIntro = อุปส์
 notFoundPageDescription = ไม่พบหน้า
 
+## Shot page
 
-[[ Shot page ]]
-
-// This is the HTML title tag of the page
+# This is the HTML title tag of the page
 shotPageTitle = ภาพหน้าจอ: { $originalTitle }
+shotPageAlertErrorDeletingShot = เกิดข้อผิดพลาดในการลบภาพ
 shotPageAlertErrorUpdatingTitle = เกิดข้อผิดพลาดในการบันทึกชื่อเรื่อง
-shotPageShareButton
+shotPageShareButton =
     .title = แบ่งปัน
 shotPageCopy = คัดลอก
 shotPageCopied = คัดลอกแล้ว
-shotPageShareFacebook
+shotPageShareFacebook =
     .title = แบ่งปันบน Facebook
-shotPageShareTwitter
+shotPageShareTwitter =
     .title = แบ่งปันบน Twitter
-shotPageSharePinterest
+shotPageSharePinterest =
     .title = แบ่งปันบน Pinterest
-shotPageShareEmail
+shotPageShareEmail =
     .title = แบ่งปันลิงก์ทางอีเมล
-shotPageCopyImageText
+shotPageCopyImageText =
     .label = คัดลอกข้อความภาพ
-shotPageDownloadShot
+shotPageDeleteButton =
+    .title = ลบภาพนี้
+shotPageDownloadShot =
     .title = ดาวน์โหลด
+shotPageEditButton =
+    .title = แก้ไขภาพนี้
 shotPageDownload = ดาวน์โหลด
 shotPageUpsellFirefox = รับ Firefox ตอนนี้
-// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = โปรดอีเมลมายัง { $dmca } เพื่อขอข้อมูลเพิ่มเติม
-// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = เลือกเวลา
-shotPageKeepIndefinitely = ไม่จำกัด
 shotPageKeepTenMinutes = 10 นาที
 shotPageKeepOneHour = 1 ชั่วโมง
 shotPageKeepOneDay = 1 วัน
@@ -104,29 +99,88 @@ shotPageKeepOneMonth = 1 เดือน
 shotPageSaveExpiration = บันทึก
 shotPageCancelExpiration = ยกเลิก
 shotPageDoesNotExpire = ไม่หมดอายุ
+timeDiffJustNow = เมื่อกี้นี้
+timeDiffMinutesAgo =
+    { $number ->
+       *[other] { $number } นาทีที่แล้ว
+    }
+timeDiffHoursAgo =
+    { $number ->
+       *[other] { $number } ชั่วโมงที่แล้ว
+    }
+timeDiffDaysAgo =
+    { $number ->
+       *[other] { $number } วันที่แล้ว
+    }
 timeDiffFutureSeconds = ในไม่กี่วินาที
+timeDiffFutureMinutes =
+    { $number ->
+       *[other] ใน { $number } นาที
+    }
+timeDiffFutureHours =
+    { $number ->
+       *[other] ใน { $number } ชั่วโมง
+    }
+timeDiffFutureDays =
+    { $number ->
+       *[other] ใน { $number } วัน
+    }
 
+## Annotations
 
-[[ Annotations ]]
+annotationPenButton =
+    .title = ปากกา
+annotationHighlighterButton =
+    .title = ปากกาเน้นข้อความ
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
+    .title = ล้าง
+annotationCropButton =
+    .title = ครอบตัด
+annotationSaveEditButton = บันทึก
+    .title = Save edit
+annotationCancelEditButton = ยกเลิก
+    .title = Cancel editing
+annotationCropConfirmButton = ยืนยัน
+    .title = Confirm selection
+annotationColorWhite =
+    .title = ขาว
+annotationColorBlack =
+    .title = ดำ
+annotationColorRed =
+    .title = แดง
+annotationColorGreen =
+    .title = เขียว
+annotationColorBlue =
+    .title = น้ำเงิน
+annotationColorYellow =
+    .title = เหลือง
+annotationColorPurple =
+    .title = ม่วง
+annotationColorSeaGreen =
+    .title = เขียวน้ำทะเล
+annotationColorGrey =
+    .title = เทา
 
+## Shotindex page
 
-
-[[ Shotindex page ]]
-
-shotIndexPageSearchPlaceholder
+shotIndexPageSearchPlaceholder =
     .placeholder = ค้นหาภาพของฉัน
-shotIndexPageSearchButton
+shotIndexPageSearchButton =
     .title = ค้นหา
 shotIndexPageNoShotsMessage = ไม่มีภาพที่บันทึกไว้
 shotIndexPageLookingForShots = กำลังมองหาภาพของคุณ…
 shotIndexPageNoSearchResultsIntro = หืมม
-shotIndexPageClearSearchButton
+shotIndexPageClearSearchButton =
     .title = ล้างการค้นหา
 shotIndexPageConfirmShotDelete = ลบภาพนี้?
+shotIndexPagePreviousPage =
+    .title = หน้าก่อนหน้า
+shotIndexPageNextPage =
+    .title = หน้าถัดไป
 
-
-// all metrics strings are optional for translation
-[[ Metrics page ]]
+## Metrics page
+## All metrics strings are optional for translation
 
 metricsPageTotalsQueryDevices = อุปกรณ์ลงทะเบียนทั้งหมด
 metricsPageTotalsQueryExpiredShots = หมดอายุ (แต่สามารถกู้คืนได้)
@@ -138,5 +192,6 @@ metricsPageUsersQueryDay = วัน
 metricsPageUserShotsQueryCount = จำนวนผู้ใช้
 metricsPageRetentionQueryUsers = จำนวนผู้ใช้
 metricsPageTotalRetentionQueryUsers = จำนวนผู้ใช้
+metricsPageVersionQueryTitle = รุ่นส่วนเสริม
 metricsPageVersionQueryVersion = รุ่นส่วนเสริม
 metricsPageVersionQueryLastSeen = วัน

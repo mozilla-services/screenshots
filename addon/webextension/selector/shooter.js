@@ -84,9 +84,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     }
     const canvas = captureToCanvas(selectedPos, captureType);
     ui.iframe.showLoader();
-    const width = selectedPos.right - selectedPos.left;
-    const height = selectedPos.bottom - selectedPos.top;
-    const imageData = canvas.getContext("2d").getImageData(0, 0, width, height);
+    const imageData = canvas.getContext("2d").getImageData(0, 0, canvas.width, canvas.height);
     return callBackground("canvasToDataURL", imageData);
   }
 
@@ -117,7 +115,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
       }
       isSaving = null;
     }, 1000);
-    selectedPos = selectedPos.asJson();
+    selectedPos = selectedPos.toJSON();
     let captureText = "";
     if (buildSettings.captureText) {
       captureText = util.captureEnclosedText(selectedPos);
@@ -154,7 +152,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
       },
       selectedPos,
       shotId: shotObject.id,
-      shot: shotObject.asJson(),
+      shot: shotObject.toJSON(),
       imageBlob
     }).then((url) => {
       return clipboard.copy(url).then((copied) => {
@@ -180,14 +178,14 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     }));
   };
 
-  exports.downloadShot = function(selectedPos, previewDataUrl) {
-    const shotPromise = previewDataUrl ? Promise.resolve(previewDataUrl) : screenshotPageAsync(selectedPos, "fullPage");
+  exports.downloadShot = function(selectedPos, previewDataUrl, type) {
+    const shotPromise = previewDataUrl ? Promise.resolve(previewDataUrl) : screenshotPageAsync(selectedPos, type);
     catcher.watchPromise(shotPromise.then(dataUrl => {
       let promise = Promise.resolve(dataUrl);
       if (!dataUrl) {
         promise = callBackground(
           "screenshotPage",
-          selectedPos.asJson(),
+          selectedPos.toJSON(),
           {
             scrollX: window.scrollX,
             scrollY: window.scrollY,
@@ -214,7 +212,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
   };
 
   let copyInProgress = null;
-  exports.copyShot = function(selectedPos, previewDataUrl) {
+  exports.copyShot = function(selectedPos, previewDataUrl, type) {
     // This is pretty slow. We'll ignore additional user triggered copy events
     // while it is in progress.
     if (copyInProgress) {
@@ -231,7 +229,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
         copyInProgress = null;
       }
     }
-    const shotPromise = previewDataUrl ? Promise.resolve(previewDataUrl) : screenshotPageAsync(selectedPos, "fullPage");
+    const shotPromise = previewDataUrl ? Promise.resolve(previewDataUrl) : screenshotPageAsync(selectedPos, type);
     catcher.watchPromise(shotPromise.then(dataUrl => {
       const blob = blobConverters.dataUrlToBlob(dataUrl);
       catcher.watchPromise(callBackground("copyShotToClipboard", blob).then(() => {
