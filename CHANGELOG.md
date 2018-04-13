@@ -1,3 +1,90 @@
+## Version 32.0.0
+
+Note: by coincidence, this is both a server and add-on release.
+
+### Add-on changes
+
+* Fix URL clipboard copy for certain sites. ([#4269](https://github.com/mozilla-services/screenshots/issues/4269)) [69683f6](https://github.com/mozilla-services/screenshots/commit/69683f6)
+* Enable context menu icon. ([#3858](https://github.com/mozilla-services/screenshots/issues/3858)) ([#4264](https://github.com/mozilla-services/screenshots/issues/4264)) [55e2475](https://github.com/mozilla-services/screenshots/commit/55e2475)
+* Wait for onboarding status. ([#3954](https://github.com/mozilla-services/screenshots/issues/3954)) ([#4263](https://github.com/mozilla-services/screenshots/issues/4263)) [abc8109](https://github.com/mozilla-services/screenshots/commit/abc8109)
+* Fix a width so users cannot x scroll on selection frame. ([#3955](https://github.com/mozilla-services/screenshots/issues/3955)) ([#4258](https://github.com/mozilla-services/screenshots/issues/4258)) [77fa083](https://github.com/mozilla-services/screenshots/commit/77fa083)
+* Set display CSS property on iframes. ([#4148](https://github.com/mozilla-services/screenshots/issues/4148)) ([#4256](https://github.com/mozilla-services/screenshots/issues/4256)) [ba4073f](https://github.com/mozilla-services/screenshots/commit/ba4073f)
+* Calculate left and top margin with left and top. ([#4217](https://github.com/mozilla-services/screenshots/issues/4217)) [cd36b7c](https://github.com/mozilla-services/screenshots/commit/cd36b7c)
+* Standard ISO 8601 date for filename, ([#4199](https://github.com/mozilla-services/screenshots/issues/4199))
+  * Use date variable instead of newly created today variable
+  * const instead of let, forgot space. Fixes [#4197](https://github.com/mozilla-services/screenshots/issues/4197) Fixes [#4197](https://github.com/mozilla-services/screenshots/issues/4197) [eee880f](https://github.com/mozilla-services/screenshots/commit/eee880f)
+
+#### Testing changes
+* Open page action panel before clicking screenshots in tests. ([#4296](https://github.com/mozilla-services/screenshots/issues/4296)) [15d5e92](https://github.com/mozilla-services/screenshots/commit/15d5e92)
+* Add test for upload-disabled pref. ([#4277](https://github.com/mozilla-services/screenshots/issues/4277)) ([#4283](https://github.com/mozilla-services/screenshots/issues/4283)) [27731ed](https://github.com/mozilla-services/screenshots/commit/27731ed)
+* Add download shot Selenium test. ([#4026](https://github.com/mozilla-services/screenshots/issues/4026)) [06ab4ee](https://github.com/mozilla-services/screenshots/commit/06ab4ee)
+* Add more post-test reset code for addon button test. [c83cccc](https://github.com/mozilla-services/screenshots/commit/c83cccc)
+* Use `SCREENSHOTS_BACKEND` in Selenium tests. ([#4247](https://github.com/mozilla-services/screenshots/issues/4247)) ([#4248](https://github.com/mozilla-services/screenshots/issues/4248)) [606b4e3](https://github.com/mozilla-services/screenshots/commit/606b4e3)
+* Use the test setup functions from pytest [eedcb0c](https://github.com/mozilla-services/screenshots/commit/eedcb0c)
+
+#### Clean-up
+
+* zopflipng PNGs. ([#4059](https://github.com/mozilla-services/screenshots/issues/4059)) ([#4257](https://github.com/mozilla-services/screenshots/issues/4257)) [9a5699b](https://github.com/mozilla-services/screenshots/commit/9a5699b)
+* Rename asJson to toJSON. ([#2593](https://github.com/mozilla-services/screenshots/issues/2593)) [a2ecd83](https://github.com/mozilla-services/screenshots/commit/a2ecd83)
+* Remove some code around favicon url. ([#2659](https://github.com/mozilla-services/screenshots/issues/2659)) [1300069](https://github.com/mozilla-services/screenshots/commit/1300069)
+* Use URL() to validate URLs. ([#2660](https://github.com/mozilla-services/screenshots/issues/2660)) [c2b02ac](https://github.com/mozilla-services/screenshots/commit/c2b02ac)
+
+### Server change
+
+* Issue [#4180](https://github.com/mozilla-services/screenshots/issues/4180) - Display pagination if more than one page [d5c6fa1](https://github.com/mozilla-services/screenshots/commit/d5c6fa1)
+* Localize Settings Page [f1d2a42](https://github.com/mozilla-services/screenshots/commit/f1d2a42)
+* Mask the shot url in the Raven payload. ([#3769](https://github.com/mozilla-services/screenshots/issues/3769)) [78ce81c](https://github.com/mozilla-services/screenshots/commit/78ce81c)
+* Render shot capture time only when in browser. ([#4288](https://github.com/mozilla-services/screenshots/issues/4288)) [e0eb1d7](https://github.com/mozilla-services/screenshots/commit/e0eb1d7)
+* Fix FxA UI [be767c0](https://github.com/mozilla-services/screenshots/commit/be767c0)
+* Update og:title when shot title changes. ([#4188](https://github.com/mozilla-services/screenshots/issues/4188)) [1919853](https://github.com/mozilla-services/screenshots/commit/1919853)
+* Display created time and title after expire save. ([#3255](https://github.com/mozilla-services/screenshots/issues/3255)) ([#4285](https://github.com/mozilla-services/screenshots/issues/4285)) [cf11f34](https://github.com/mozilla-services/screenshots/commit/cf11f34)
+* Handle empty shot title on edit save. ([#4266](https://github.com/mozilla-services/screenshots/issues/4266))* Handle empty shot title. ([#4204](https://github.com/mozilla-services/screenshots/issues/4204))
+  * trimming whitespaces [8305858](https://github.com/mozilla-services/screenshots/commit/8305858)
+* - Highlight entire word when editing title. Fixes [#4182](https://github.com/mozilla-services/screenshots/issues/4182) [86b0fd6](https://github.com/mozilla-services/screenshots/commit/86b0fd6)
+* fix extra shadow [d246a29](https://github.com/mozilla-services/screenshots/commit/d246a29)
+* Pass in locale for date.toLocaleString. ([#2216](https://github.com/mozilla-services/screenshots/issues/2216)) [eeb794c](https://github.com/mozilla-services/screenshots/commit/eeb794c)
+* Use crypto.timingSafeEqual. ([#2470](https://github.com/mozilla-services/screenshots/issues/2470)) [f781ef5](https://github.com/mozilla-services/screenshots/commit/f781ef5)
+* Added new Firefox logo in download button [49b5be5](https://github.com/mozilla-services/screenshots/commit/49b5be5)
+* Stop sending CSP and frame options headers on non-documents. ([#3980](https://github.com/mozilla-services/screenshots/issues/3980)) [2ef9247](https://github.com/mozilla-services/screenshots/commit/2ef9247)
+* change flag to survey [cb0fe45](https://github.com/mozilla-services/screenshots/commit/cb0fe45)
+* track image deletes that fail. Fixes [#3275](https://github.com/mozilla-services/screenshots/issues/3275) [b53cd0a](https://github.com/mozilla-services/screenshots/commit/b53cd0a)
+* Make a schema change to prepare for [#3275](https://github.com/mozilla-services/screenshots/issues/3275) [8ede101](https://github.com/mozilla-services/screenshots/commit/8ede101)
+
+#### Annotation changes
+
+* Center color picker [7ed12bf](https://github.com/mozilla-services/screenshots/commit/7ed12bf)
+* Include color in color picker event [709c0d3](https://github.com/mozilla-services/screenshots/commit/709c0d3)
+* Add l10n title messages for edit btn and colors. ([#4206](https://github.com/mozilla-services/screenshots/issues/4206)) ([#4265](https://github.com/mozilla-services/screenshots/issues/4265)) [81ab9ce](https://github.com/mozilla-services/screenshots/commit/81ab9ce)
+* annotations icon adjustment [09e4049](https://github.com/mozilla-services/screenshots/commit/09e4049)
+* dismiss color picker on click [17aa111](https://github.com/mozilla-services/screenshots/commit/17aa111)
+* - Highlight color picker button on hover. Fixes [#4165](https://github.com/mozilla-services/screenshots/issues/4165) [29607e0](https://github.com/mozilla-services/screenshots/commit/29607e0)
+* Oversample annotation canvas on HiDPI screens [2184414](https://github.com/mozilla-services/screenshots/commit/2184414)
+* Add per-drawing events [00a92b1](https://github.com/mozilla-services/screenshots/commit/00a92b1)
+* scroll shot in crop mode [c9d86f1](https://github.com/mozilla-services/screenshots/commit/c9d86f1)
+* Move middle button click check. ([#4100](https://github.com/mozilla-services/screenshots/issues/4100)) [10b9075](https://github.com/mozilla-services/screenshots/commit/10b9075)
+* dismiss color picker on click [2e5e842](https://github.com/mozilla-services/screenshots/commit/2e5e842)
+* Center the image in the editor. ([#3994](https://github.com/mozilla-services/screenshots/issues/3994)) [77e9cf4](https://github.com/mozilla-services/screenshots/commit/77e9cf4)
+
+#### Development and dependency changes
+
+* Upgrade to latest query-string 5.x.x. ([#4335](https://github.com/mozilla-services/screenshots/issues/4335)) [2633d35](https://github.com/mozilla-services/screenshots/commit/2633d35)
+* Remove NODE_ENV from CircleCI build job. ([#4332](https://github.com/mozilla-services/screenshots/issues/4332)) [1b0c5f7](https://github.com/mozilla-services/screenshots/commit/1b0c5f7)
+* Upgrade npm modules w/o code or config changes. ([#4280](https://github.com/mozilla-services/screenshots/issues/4280)) [8207f1f](https://github.com/mozilla-services/screenshots/commit/8207f1f)
+* correct env var names in config.js. Fixes [#4255](https://github.com/mozilla-services/screenshots/issues/4255) [cbd9a0e](https://github.com/mozilla-services/screenshots/commit/cbd9a0e)
+* Allow CSP to be disabled in dev env. ([#4281](https://github.com/mozilla-services/screenshots/issues/4281)) [1c2341e](https://github.com/mozilla-services/screenshots/commit/1c2341e)
+* Use CircleCI 2. [a7934ed](https://github.com/mozilla-services/screenshots/commit/a7934ed)
+* Update package.json [931da37](https://github.com/mozilla-services/screenshots/commit/931da37)
+* Optimise svgs [4b8b5a6](https://github.com/mozilla-services/screenshots/commit/4b8b5a6)
+* Replace wreck requests with fetch [87b80d9](https://github.com/mozilla-services/screenshots/commit/87b80d9)
+* Do not uglify when NO_UGLIFY is set. ([#4271](https://github.com/mozilla-services/screenshots/issues/4271)) ([#4272](https://github.com/mozilla-services/screenshots/issues/4272)) [bb339f4](https://github.com/mozilla-services/screenshots/commit/bb339f4)
+* Remove comments. ([#4240](https://github.com/mozilla-services/screenshots/issues/4240)) [0c21bb5](https://github.com/mozilla-services/screenshots/commit/0c21bb5)
+* Use wreck read and request methods directlyPartial fix for [#3681](https://github.com/mozilla-services/screenshots/issues/3681) [4b25b75](https://github.com/mozilla-services/screenshots/commit/4b25b75)
+* Match CircleCI node version to Docker image's. ([#2216](https://github.com/mozilla-services/screenshots/issues/2216)) ([#4250](https://github.com/mozilla-services/screenshots/issues/4250)) [1d25aaf](https://github.com/mozilla-services/screenshots/commit/1d25aaf)
+* Undo run-docker change for `NODE_ICU_DATA`. [a60220b](https://github.com/mozilla-services/screenshots/commit/a60220b)
+* Move `NODE_ICU_DATA` env into run-docker. [79536bc](https://github.com/mozilla-services/screenshots/commit/79536bc)
+* Set SET_CACHE to false in .env.dev. ([#4208](https://github.com/mozilla-services/screenshots/issues/4208)) [3db55a6](https://github.com/mozilla-services/screenshots/commit/3db55a6)
+* Add status info to readme. Refs [#4198](https://github.com/mozilla-services/screenshots/issues/4198) [c99bdaa](https://github.com/mozilla-services/screenshots/commit/c99bdaa)
+
 ## Version 31.3.0
 
 Note: this is a server release (31.{0,1,2}.0 did not go into
