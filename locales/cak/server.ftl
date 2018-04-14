@@ -229,6 +229,10 @@ settingsSignInInvite = Titikirisäx molojri'ïl richin nib'an ximoj chi kikojol 
 settingsSignInButton = Titikirisäx molojri'ïl
     .title = Titikirisäx molojri'ïl
 SettingsPageHeader = Taq Runuk'ulem Firefox Screenshots
+settingsDescription = Yatikïr natikirisaj molojri'ïl pa ri Rub'i' Taqoya'l richin Firefox richin ye'axïm konojel ri chapoj kiwäch taq awokisaxel chuqa' richin ichinan rub'eyal yatok chi kipam.
+settingsPageSubHeader = Sync & Rub'i' Taqoya'l
+settingsClosePreferences =
+    .title = Ketz'apïx taq ajowanïk
 
 ## Shotindex page
 
