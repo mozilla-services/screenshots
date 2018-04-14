@@ -220,6 +220,16 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Chaj
 
+## Settings Page
+
+settingsDisconnectButton = Tichup
+    .title = Tichup
+settingsGuestAccountMessage = Rub'i' Rutaqoya'l Peyon
+settingsSignInInvite = Titikirisäx molojri'ïl richin nib'an ximoj chi kikojol okisaxel
+settingsSignInButton = Titikirisäx molojri'ïl
+    .title = Titikirisäx molojri'ïl
+SettingsPageHeader = Taq Runuk'ulem Firefox Screenshots
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
