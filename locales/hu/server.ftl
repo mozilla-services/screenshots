@@ -229,6 +229,7 @@ settingsSignInInvite = Jelentkezzen be az eszközök közti szinkronizációhoz
 settingsSignInButton = Bejelentkezés
     .title = Bejelentkezés
 SettingsPageHeader = A Firefox Screenshots beállításai
+settingsDescription = Bejelentkezhet a Firefox fiókjával, hogy szinkronizálja a képernyőképeit az összes eszköze között, és privát módon érje el őket.
 settingsPageSubHeader = Szinkronizálás és fiókok
 settingsClosePreferences =
     .title = Beállítások bezárása
