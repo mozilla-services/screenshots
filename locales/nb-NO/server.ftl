@@ -229,6 +229,8 @@ settingsSignInInvite = Logg inn for å synkronisere på tvers av enheter
 settingsSignInButton = Logg inn
     .title = Logg inn
 SettingsPageHeader = Innstillinger for Firefox Screenshots
+settingsDescription = Du kan logge inn med Firefox-kontoer for å synkronisere alle skjermbildene dine på tvers av enheter og få tilgang til dem privat.
+settingsPageSubHeader = Synkronisering og kontoer
 settingsClosePreferences =
     .title = Lukk innstillinger
 
