@@ -220,6 +220,18 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Grå
 
+## Settings Page
+
+settingsDisconnectButton = Koble fra
+    .title = Koble fra
+settingsGuestAccountMessage = Gjestekonto
+settingsSignInInvite = Logg inn for å synkronisere på tvers av enheter
+settingsSignInButton = Logg inn
+    .title = Logg inn
+SettingsPageHeader = Innstillinger for Firefox Screenshots
+settingsClosePreferences =
+    .title = Lukk innstillinger
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
