@@ -234,6 +234,14 @@ annotationColorGrey =
 
 ## Settings Page
 
+settingsDisconnectButton = Prekini povezavo
+    .title = Prekini povezavo
+settingsGuestAccountMessage = Račun za goste
+settingsSignInInvite = Prijavite se za sinhronizacijo med napravami
+settingsSignInButton = Prijava
+    .title = Prijava
+SettingsPageHeader = Nastavitve za Firefox Screenshots
+settingsPageSubHeader = Sinhronizacija in računi
 settingsClosePreferences =
     .title = Zapri nastavitve
 
