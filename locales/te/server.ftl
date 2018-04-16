@@ -208,7 +208,12 @@ annotationColorGrey =
 
 ## Settings Page
 
+settingsDisconnectButton = అనుసంధానం తెంచు
+    .title = అనుసంధానం తెంచు
 settingsGuestAccountMessage = అతిథి ఖాతా
+settingsSignInButton = ప్రవేశించండి
+    .title = ప్రవేశించండి
+SettingsPageHeader = Firefox తెరపట్ల అమరికలు
 settingsPageSubHeader = సింక్ & ఖాతాలు
 settingsClosePreferences =
     .title = అభిరుచులను మూసివేయి
