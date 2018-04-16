@@ -226,6 +226,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Sivá
 
+## Settings Page
+
+settingsDisconnectButton = Odpojiť sa
+    .title = Odpojiť sa
+settingsGuestAccountMessage = Účet hosťa
+settingsSignInInvite = Prihláste sa pre synchronizáciu medzi zariadeniami
+settingsSignInButton = Prihlásiť sa
+    .title = Prihlásiť sa
+SettingsPageHeader = Nastavenia Firefox Screenshots
+settingsDescription = Môžete sa prihlásiť pomocou svojho účtu Firefox a bezpečne synchronizovať svoje snímky obrazovky medzi zariadeniami.
+settingsPageSubHeader = Synchronizácia a účty
+settingsClosePreferences =
+    .title = Zavrieť nastavenia
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
