@@ -216,6 +216,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Amumad
 
+## Settings Page
+
+settingsDisconnectButton = Ffeɣ
+    .title = Ffeɣ
+settingsGuestAccountMessage = AmiƐdan n inebgi
+settingsSignInInvite = Kcem i umtawi deg ibenkan
+settingsSignInButton = Kcem
+    .title = Kcem
+SettingsPageHeader = Iγewwaṛen n tuṭṭfa Firefox
+settingsDescription = Tzemreḍ ad tkecmeḍ s imiḍanen n Firefox i umtawi n tuṭṭfiwin-inek deg akk ibenkan u ad tesεuḍ anekcum uslig γer-sent.
+settingsPageSubHeader = Amtawi & imiḍanen
+settingsClosePreferences =
+    .title = Mdel ismenyifen
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
