@@ -211,6 +211,17 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = ნაცრისფერი
 
+## Settings Page
+
+settingsGuestAccountMessage = სტუმრის ანგარიში
+settingsSignInInvite = შესვლა, მოწყობილობებზე დასინქრონებისთვის
+settingsSignInButton = შესვლა
+    .title = შესვლა
+SettingsPageHeader = Firefox Screenshots-ის პარამეტრები
+settingsPageSubHeader = სინქრონიზაცია და ანგარიშები
+settingsClosePreferences =
+    .title = პარამეტრების დახურვა
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
