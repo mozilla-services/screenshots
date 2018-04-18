@@ -230,6 +230,7 @@ settingsSignInButton = Iniciar sessão
     .title = Iniciar sessão
 SettingsPageHeader = Definições do Firefox Screenshots
 settingsDescription = Pode iniciar sessão com Contas Firefox para sincronizar todas as suas capturas de ecrã entre dispositivos e aceder-las privadamente.
+settingsPageSubHeader = Sync e contas
 settingsClosePreferences =
     .title = Fechar preferências
 

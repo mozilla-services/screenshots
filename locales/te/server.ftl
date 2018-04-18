@@ -206,6 +206,18 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = బూడిద 
 
+## Settings Page
+
+settingsDisconnectButton = అనుసంధానం తెంచు
+    .title = అనుసంధానం తెంచు
+settingsGuestAccountMessage = అతిథి ఖాతా
+settingsSignInButton = ప్రవేశించండి
+    .title = ప్రవేశించండి
+SettingsPageHeader = Firefox తెరపట్ల అమరికలు
+settingsPageSubHeader = సింక్ & ఖాతాలు
+settingsClosePreferences =
+    .title = అభిరుచులను మూసివేయి
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.

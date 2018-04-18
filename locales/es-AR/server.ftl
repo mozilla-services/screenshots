@@ -224,6 +224,15 @@ annotationColorGrey =
 
 settingsDisconnectButton = Desconectar
     .title = Desconectar
+settingsGuestAccountMessage = Cuenta de invitado
+settingsSignInInvite = Regístrese para sincronizar entre dispositivos
+settingsSignInButton = Iniciar sesión
+    .title = Iniciar sesión
+SettingsPageHeader = Configuración de Firefox Screenshots
+settingsDescription = Puede iniciar sesión con su cuenta de Firefox para sincronizar todas las capturas de pantalla de sus dispositivos y acceder a ellas de forma privada.
+settingsPageSubHeader = Sincronización y cuentas
+settingsClosePreferences =
+    .title = Cerrar preferencias
 
 ## Shotindex page
 

@@ -224,8 +224,12 @@ annotationColorGrey =
 
 settingsDisconnectButton = Disconnecter
     .title = Disconnecter
+settingsGuestAccountMessage = Conto hospite
+settingsSignInInvite = Authentica te pro synchronisar te trans apparatos differente
 settingsSignInButton = Authenticar se
     .title = Authenticar se
+SettingsPageHeader = Configurationes de Firefox Screenshots
+settingsDescription = Tu pote authenticar te con Firefox Accounts pro synchronisar tote tu instantaneos de schermo trans tu apparatos e acceder los privatemente.
 settingsPageSubHeader = Sync & contos
 settingsClosePreferences =
     .title = Clauder le preferentias
