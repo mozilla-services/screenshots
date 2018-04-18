@@ -213,11 +213,14 @@ annotationColorGrey =
 
 ## Settings Page
 
+settingsDisconnectButton = კავშირის შეწყვეტა
+    .title = კავშირის შეწყვეტა
 settingsGuestAccountMessage = სტუმრის ანგარიში
 settingsSignInInvite = შესვლა, მოწყობილობებზე დასინქრონებისთვის
 settingsSignInButton = შესვლა
     .title = შესვლა
 SettingsPageHeader = Firefox Screenshots-ის პარამეტრები
+settingsDescription = შეგიძლიათ Firefox ანგარიშზე შესვლა, გადაღებული სურათების ყველა მოწყობილობაზე უსაფრთხოდ დასინქრონებისთვის.
 settingsPageSubHeader = სინქრონიზაცია და ანგარიშები
 settingsClosePreferences =
     .title = პარამეტრების დახურვა
