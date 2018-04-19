@@ -35,6 +35,7 @@ FILES_TO_SKIP_COPY = [
     '.eslintrc.js',
     '.web-extension-id',
     '.DS_Store',
+    '.gitignore',
 ]
 
 
@@ -135,6 +136,8 @@ def exportFilesToMC(repoDir, mcRepoLoc):
 
     for root, dirs, files in os.walk(testDir):
         for file in files:
+            if file in FILES_TO_SKIP_COPY:
+                continue
             copyfile(os.path.join(root, file),
                      os.path.join(mc_test_loc, os.path.relpath(root, testDir), file))
 
