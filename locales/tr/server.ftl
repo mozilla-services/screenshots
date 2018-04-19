@@ -205,6 +205,7 @@ settingsSignInInvite = Cihazlar arasında eşitlemek için giriş yapın
 settingsSignInButton = Giriş yap
     .title = Giriş yap
 SettingsPageHeader = Firefox Screenshots Ayarları
+settingsDescription = Ekran görüntülerinizi tüm cihazlarınız arasında eşitlemek ve onlara gizliliğinizi koruyarak ulaşmak için Firefox Hesabınıza giriş yapabilirsiniz.
 settingsPageSubHeader = Sync ve Hesaplar
 settingsClosePreferences =
     .title = Tercihleri kapat
