@@ -304,7 +304,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
                          <div class="spacer"></div>
                        `}
                        <button class="visible" tabindex="2" data-l10n-id="saveScreenshotVisibleArea"></button>
-                       <button class="full-page" tabindex="3" data-l10n-id="saveScreenshotFullPage"></button>
+                       ${isChrome ? "" : `<button class="full-page" tabindex="3" data-l10n-id="saveScreenshotFullPage"></button>`}
                      </div>
                    </div>
                  </div>
