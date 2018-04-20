@@ -3,8 +3,10 @@
      clicks on the Photon page action
      browser.contextMenus.onClicked
      browser.runtime.onMessage
+     browser.commands.onCommand
    and loads the rest of the background page in response to those events, forwarding
-   the events to main.onClicked, main.onClickedContextMenu, or communication.onMessage
+   the events to main.onClicked, main.onClickedContextMenu, main.onKeyboardShortcut,
+   or communication.onMessage.
 */
 const startTime = Date.now();
 
@@ -41,6 +43,24 @@ this.startBackground = (function() {
       main.onClickedContextMenu(info, tab);
     }).catch((error) => {
       console.error("Error loading Screenshots:", error);
+    });
+  });
+
+  browser.commands.onCommand.addListener((command) => {
+    if (command !== "take-shot") {
+      return;
+    }
+    loadIfNecessary().then(() => {
+      catcher.watchPromise(browser.tabs.query({currentWindow: true, active: true})
+        .then(tabs => {
+          if (!tabs.length) {
+            return;
+          }
+          return browser.tabs.get(tabs[0].id).then((currentTab) => {
+            main.onKeyboardShortcut(currentTab);
+          });
+        })
+      );
     });
   });
 

@@ -18,6 +18,14 @@
       "background/startBackground.js"
     ]
   },
+  "commands": {
+    "take-shot": {
+      "suggested_key": {
+        "default": "Alt+Shift+S",
+        "mac": "Command+Shift+S"
+      }
+    }
+  },
   "content_scripts": [
     {
       "matches": ["http://localhost/*"],
