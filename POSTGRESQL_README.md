@@ -18,6 +18,7 @@ If you get "error: password authentication failed for user \"{you username}\", y
 
 ### Create a user and database
 Switch to the default superuser 'postgres' `sudo su postgres`
+
 Open PostgreSql terminal `psql`
 ```
 CREATE USER {your username} superuser;
