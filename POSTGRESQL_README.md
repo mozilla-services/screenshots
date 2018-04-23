@@ -27,8 +27,10 @@ CREATE DATABASE {your username};
 \q
 ```
 
-Modify pg_hba.conf to authenticate the user you just created
+Modify `pg_hba.conf` to authenticate the user you just created
+
 Navigate to `/etc/postgresql/10/main/`
+
 Open `pg_hba.conf`
 
 Edit Ipv4 connections to 
@@ -38,6 +40,7 @@ host    all             all             127.0.0.1/32            trust
 ```
 
 Restart the server
+
 You should now be able to run `./bin/run-server`
 
 
