@@ -99,7 +99,11 @@ class Selection {
 exports.Editor = class Editor extends React.Component {
   constructor(props) {
     super(props);
-    this.devicePixelRatio = window.devicePixelRatio || 1;
+    this.devicePixelRatio = window.devicePixelRatio;
+    if (props.clip.image.captureType === "fullPage"
+        || props.clip.image.captureType === "fullPageTruncated") {
+      this.devicePixelRatio = 1;
+    }
     this.mousedown = this.mousedown.bind(this);
     this.mouseup = this.mouseup.bind(this);
     this.mousemove = this.mousemove.bind(this);
