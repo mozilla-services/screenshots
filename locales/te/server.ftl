@@ -16,6 +16,7 @@ footerLinkMozilla = Mozilla
 footerLinkTerms = నిబంధనలు
 footerLinkPrivacy = గోప్యతా విధానం
 footerLinkFaqs = ప్రశ్నలు
+footerLinkDMCA = IP ఉల్లంఘనను నివేదించండి
 footerLinkDiscourse = అభిప్రాయం తెలియజేయండి
 footerLinkRemoveAllData = మొత్తం డేటాను తీసివేయండి
 
