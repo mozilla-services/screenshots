@@ -16,7 +16,7 @@ You should be able to run `./bin/run-server` now.
 
 If you get "error: password authentication failed for user \"{you username}\", you can fix this by creating a username on postgresql.
 
-###Create a user and database
+### Create a user and database
 Switch to the default superuser 'postgres' `sudo su postgres`
 Open PostgreSql terminal `psql`
 ```
