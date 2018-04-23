@@ -1,6 +1,26 @@
+## Version 32.1.0
+
+This includes small changes for the server and add-on release.
+
+### Add-on changes
+
+* fix regression in Library link ([#4343](https://github.com/mozilla-services/screenshots/issues/4343))The commit https://hg.mozilla.org/mozilla-central/diff/3182593eb59a/browser/base/content/utilityOverlay.js regressed this, requiring a principal for calls to openUILinkIn(). This changes that to the function openWebLinkIn() that provides a null principal. Fixes [#4338](https://github.com/mozilla-services/screenshots/issues/4338) [c823b10](https://github.com/mozilla-services/screenshots/commit/c823b10)
+
+#### Add-on upstream changes
+
+* Update upstream test changes for eslint rules [ebb7fc0](https://github.com/mozilla-services/screenshots/commit/ebb7fc0)
+* Import upstream commit that fixes pageAction-related testThis imports commit 9e1691779afd5943e4a12ff95e69722b41f5c185 from mozilla-central
+  Bug 1221539 - Add search engine discovery to the page action menu. Part 1: Page action changes. [7e245df](https://github.com/mozilla-services/screenshots/commit/7e245df)
+* Ignore test/.artifacts when exporting to Firefox [b3e4a95](https://github.com/mozilla-services/screenshots/commit/b3e4a95)
+
+### Server changes
+
+* Downgrade react to latest 15.x.x. ([#4337](https://github.com/mozilla-services/screenshots/issues/4337)) [b9104f1](https://github.com/mozilla-services/screenshots/commit/b9104f1)
+
 ## Version 32.0.0
 
-Note: by coincidence, this is both a server and add-on release.
+Note: by coincidence, this is both a server and add-on release. The add-on
+release was however delayed.
 
 ### Add-on changes
 
