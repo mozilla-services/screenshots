@@ -267,6 +267,7 @@ metricsPageShotsQueryDay = రోజు
 metricsPageUsersQueryTitle = రొజు వారి వాడుకరులు
 metricsPageUsersQueryCount = వాడుకరుల సంఖ్య
 metricsPageUsersQueryDay = రోజు
+metricsPageUserShotsQueryTitle = వాడుకరికి పట్ల సంఖ్య
 metricsPageUserShotsQueryCount = వాడుకరులు సంఖ్య
 metricsPageRetentionQueryTitle = వారానికి నిలుపుదల
 metricsPageRetentionQueryUsers = వాడుకరుల సంఖ్య
