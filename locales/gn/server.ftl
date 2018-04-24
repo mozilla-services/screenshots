@@ -70,12 +70,31 @@ notFoundPageDescription = Kuatiarogue ojejuhu’ỹva.
 
 ## Shot page
 
+# This is the HTML title tag of the page
+shotPageTitle = Japyhypy { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = Jejavy eñongatúvo arange opaha
+shotPageAlertErrorDeletingShot = Jejavy emboguetévo japyhypy
+shotPageAlertErrorUpdatingTitle = Jejavy eñongatukuévo teratee
+shotPageConfirmDelete = ¿Emboguesetépa ko japyhypy opa árape g̃uarã?
 shotPageShareButton =
     .title = Moherakuã
 shotPageCopy = Monguatia
 shotPageCopied = Monguatiapyre
 shotPageShareFacebook =
     .title = Emoherakuã Facebook-pe
+shotPageShareTwitter =
+    .title = Emoherakuã Twitter-pe
+shotPageSharePinterest =
+    .title = Emoherakuã Pinterest-pe
+shotPageShareEmail =
+    .title = Emoherakuã juajuha ñanduti veve rupive
+shotPageShareLink = Egueru juajuha emoherakuã hag̃ua ko japyhypy:
+shotPageCopyImageText =
+    .label = Emonguatia ta’anga moñe’ẽrã
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = embojevy { $date } peve
+shotPageExpiredMessage = Ko japyhypy ndoikovéima.
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = opáma { $timediff }
 timeDiffJustNow = ko'ag̃aite
