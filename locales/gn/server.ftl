@@ -8,14 +8,16 @@ gMyShots = Che japyhypy
 gHomeLink = Ñepyrũ
 gNoShots =
     .alt = Ndojejuhúi japyhypy
+gScreenshotsDescription = Mba’erechaha japyhypy pererĩva. Japyhy, ñongatu ha moherakuã mba’erechaha japyhypy eheja’ỹre Firefox.
 
 ## Footer
 
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
-footerLinkTerms = Jejapopy.
+footerLinkTerms = Jejapopy
 footerLinkPrivacy = Mombe'u ñeñomipy
 footerLinkFaqs = Porandu py'ỹi
+footerLinkDMCA = Emombe’u IP-pe oĩvaíva
 
 ## Creating page
 
