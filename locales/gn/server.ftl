@@ -56,10 +56,15 @@ leavePageRemoveAllData = Emboguete opaite mba’ekuaarã
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Emohendava’erã Firefox Screenshots embogue hag̃ua ne mba’ete
 leavePageErrorGeneric = Oiko peteĩ jejavy
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Póva omboguéta tapiaiterã opaite ne mba’ekuaarã Firefox Screenshots-gui.
+leavePageButtonProceed = Ku’ejey
 leavePageButtonCancel = Heja
+leavePageDeleted = Opaite nde japyhypy oñemboguepáma
 
 ## Not Found page
 
+notFoundPageTitle = Kuatiarogue ojejuhu’ỹva
 notFoundPageIntro = Oops.
 notFoundPageDescription = Kuatiarogue ojejuhu’ỹva.
 
@@ -71,15 +76,43 @@ shotPageCopy = Monguatia
 shotPageCopied = Monguatiapyre
 shotPageShareFacebook =
     .title = Emoherakuã Facebook-pe
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = opáma { $timediff }
+timeDiffJustNow = ko'ag̃aite
 
 ## Annotations
 
+annotationPenButton =
+    .title = Haiha
+annotationHighlighterButton =
+    .title = Hechaukaveha
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
+    .title = Mopotĩ
+annotationCropButton =
+    .title = Ñekytĩ
+annotationColorGreen =
+    .title = Hovyũ
+annotationColorBlue =
+    .title = Hovy
+annotationColorYellow =
+    .title = Sa’yju
+annotationColorPurple =
+    .title = Pytaũ
+annotationColorSeaGreen =
+    .title = Hovyũ para
+annotationColorGrey =
+    .title = Hũngy
 
 ## Settings Page
 
 
 ## Shotindex page
 
+shotIndexPageSearchButton =
+    .title = Heka
+shotIndexPageNoShotsMessage = Ndaipóri japyhypy ñongatupyre.
+shotIndexPageNoShotsInvitation = Eku’éna, emoheñóina peteĩ jepe.
 
 ## Metrics page
 ## All metrics strings are optional for translation
