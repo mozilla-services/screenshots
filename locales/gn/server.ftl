@@ -28,17 +28,34 @@ footerLinkRemoveAllData = Emboguete opaite mba’ekuaarã
 # creatingPageTitleDefault.
 creatingPageTitle = Omoheñoihína { $title }
 creatingPageTitleDefault = kuatiarogue
+creatingPageWaitMessage = Oñongatuhína japyhypy...
 
 ## Home page
 
+homePageDescription =
+    .content = Mba’erechaha japyhypy oñandúva kundaha ryepýpe. Ejapyhy, eñongatu ha emoherakuã mba’erechaha japyhypy eikundahakuévo ñandutípe eipurúvo Firefox.
 homePageButtonMyShots = Eho che japyhypýpe
+homePageTeaser = Namombyryvéima…
 homePageDownloadFirefoxTitle = Firefox
+homePageDownloadFirefoxSubTitle = Emboguejy reiete
 homePageGetStarted = Jeguata ñepyrũ
+# Note: do not translate 'Firefox Screenshots' when translating this string
+homePageHowScreenshotsWorks = Mba’éicha omba’apo Firefox Screenshots
+homePageGetStartedTitle = Jeguata ñepyrũ
+homePageCaptureRegion = Ejapyhy peteĩ tendaguasu
+homePageCapturePage = Ejapyhy peteĩ kuatiarogue
+homePageSaveShare = Eñongatu ha emoherakuã
 homePageLegalLink = Añetegua
+homePagePrivacyLink = Ñemigua
+homePageTermsLink = Jejapopy
 homePageCookiesLink = Kookie
 
 ## Leave Screenshots page
 
+leavePageRemoveAllData = Emboguete opaite mba’ekuaarã
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Emohendava’erã Firefox Screenshots embogue hag̃ua ne mba’ete
+leavePageErrorGeneric = Oiko peteĩ jejavy
 leavePageButtonCancel = Heja
 
 ## Not Found page
