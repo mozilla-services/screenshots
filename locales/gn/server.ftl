@@ -126,6 +126,11 @@ shotPageExpiresIn = opáma { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = opáma { $timediff }
 timeDiffJustNow = ko'ag̃aite
+timeDiffMinutesAgo =
+    { $number ->
+        [one] ojapo 1 aravo’i
+       *[other] { $number } aravo'i tapykuegua
+    }
 
 ## Annotations
 
@@ -138,6 +143,20 @@ annotationClearButton =
     .title = Mopotĩ
 annotationCropButton =
     .title = Ñekytĩ
+annotationSaveEditButton = Ñongatu
+    .title = Ñongatu
+annotationCancelEditButton = Heja
+    .title = Heja
+annotationCropConfirmButton = Moneĩ
+    .title = Moneĩ
+annotationCropCancelButton = Heja
+    .title = Heja
+annotationColorWhite =
+    .title = Morotĩ
+annotationColorBlack =
+    .title = Hũ
+annotationColorRed =
+    .title = Pytã
 annotationColorGreen =
     .title = Hovyũ
 annotationColorBlue =
@@ -160,6 +179,12 @@ shotIndexPageSearchButton =
     .title = Heka
 shotIndexPageNoShotsMessage = Ndaipóri japyhypy ñongatupyre.
 shotIndexPageNoShotsInvitation = Eku’éna, emoheñóina peteĩ jepe.
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = ∞
 
 ## Metrics page
 ## All metrics strings are optional for translation
