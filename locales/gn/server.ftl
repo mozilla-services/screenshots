@@ -18,21 +18,42 @@ footerLinkTerms = Jejapopy
 footerLinkPrivacy = Mombe'u ñeñomipy
 footerLinkFaqs = Porandu py'ỹi
 footerLinkDMCA = Emombe’u IP-pe oĩvaíva
+footerLinkDiscourse = Ñe'ẽte ñemondo
+footerLinkRemoveAllData = Emboguete opaite mba’ekuaarã
 
 ## Creating page
 
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
+creatingPageTitle = Omoheñoihína { $title }
+creatingPageTitleDefault = kuatiarogue
 
 ## Home page
 
+homePageButtonMyShots = Eho che japyhypýpe
+homePageDownloadFirefoxTitle = Firefox
+homePageGetStarted = Jeguata ñepyrũ
+homePageLegalLink = Añetegua
+homePageCookiesLink = Kookie
 
 ## Leave Screenshots page
 
+leavePageButtonCancel = Heja
 
 ## Not Found page
 
+notFoundPageIntro = Oops.
+notFoundPageDescription = Kuatiarogue ojejuhu’ỹva.
 
 ## Shot page
 
+shotPageShareButton =
+    .title = Moherakuã
+shotPageCopy = Monguatia
+shotPageCopied = Monguatiapyre
+shotPageShareFacebook =
+    .title = Emoherakuã Facebook-pe
 
 ## Annotations
 
