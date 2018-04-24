@@ -89,12 +89,40 @@ shotPageSharePinterest =
 shotPageShareEmail =
     .title = Emoherakuã juajuha ñanduti veve rupive
 shotPageShareLink = Egueru juajuha emoherakuã hag̃ua ko japyhypy:
+shotPagePrivacyMessage = Oimeraẽva juajuha ndive ikatukuaa ohecha ko japyhypy.
 shotPageCopyImageText =
     .label = Emonguatia ta’anga moñe’ẽrã
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = embojevy { $date } peve
 shotPageExpiredMessage = Ko japyhypy ndoikovéima.
+# Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Kóva ha’e kuatiarogue oñemoheñói hague:
+shotPageDeleteButton =
+    .title = Embogue ko japyhypy
+shotPageDownloadShot =
+    .title = Mboguejy
+shotPageEditButton =
+    .title = Embosako’i ko ta’anga
+shotPageDownload = Mboguejy
+shotPageUpsellFirefox = Eguereko Firefox ko'ág̃a
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Eiporavo aravo
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Opa’ỹva ∞
+shotPageKeepTenMinutes = 10 aravo’i
+shotPageKeepOneHour = 1 aravo
+shotPageKeepOneDay = 1 ára
+shotPageKeepOneWeek = 1 arapokõindy
+shotPageKeepTwoWeeks = 2 arapokõindy
+shotPageKeepOneMonth = 1 jasy
+shotPageSaveExpiration = ñongatu
+shotPageCancelExpiration = heja
+shotPageDoesNotExpire = ndopái gueteri
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = opáma { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = opáma { $timediff }
 timeDiffJustNow = ko'ag̃aite
