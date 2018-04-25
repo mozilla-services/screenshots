@@ -106,6 +106,7 @@ shotPageEditButton =
     .title = Embosako’i ko ta’anga
 shotPageDownload = Mboguejy
 shotPageUpsellFirefox = Eguereko Firefox ko'ág̃a
+shotPageKeepFor = ¿Mboy aravópa opytaveva’erã ko japyhypy?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Eiporavo aravo
 # The ∞ is used to indicate that the shot won't expire. It is also used in
@@ -130,6 +131,32 @@ timeDiffMinutesAgo =
     { $number ->
         [one] ojapo 1 aravo’i
        *[other] { $number } aravo'i tapykuegua
+    }
+timeDiffHoursAgo =
+    { $number ->
+        [one] 1 aravo ojapo
+       *[other] { $number } aravo ojapo
+    }
+timeDiffDaysAgo =
+    { $number ->
+        [one] kuyhe
+       *[other] { $number } heta ára
+    }
+timeDiffFutureSeconds = opa’íntema
+timeDiffFutureMinutes =
+    { $number ->
+        [one] 1 aravo'ípe
+       *[other] { $number } aravo'ípe
+    }
+timeDiffFutureHours =
+    { $number ->
+        [one] 1 aravópe
+       *[other] { $number } aravópe
+    }
+timeDiffFutureDays =
+    { $number ->
+        [one] ko'ẽrõ
+       *[other] { $number } oĩyama
     }
 
 ## Annotations
