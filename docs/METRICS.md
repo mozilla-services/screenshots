@@ -110,7 +110,7 @@ The primary change was in `server/src/pages/shot/share-buttons.js`
 #### Add-on metrics
 
 1. [x] Toggle shot button on `addon/start-shot/toolbar-button` (previous to 54 launch the label was `toolbar-pageshot-button`)
-2. [ ] Use keyboard shortcut to start shot `addon/start-shot/keyboard-shortcut` (accel-alt-control-c) (FIXME: not yet implemented)
+2. [x] Use keyboard shortcut to start shot `addon/start-shot/keyboard-shortcut` (Alt + Shift + S, except Command + Shift + S on Mac)
 3. [x] Use the right-click context menu to start a shot `addon/start-shot/context-menu`
 3. [x] Start shot with onboarding because the site requested it (typically a visit to `/#hello`) `addon/start-shot/site-request`
 2. [x] Make a selection `addon/make-selection/selection-drag` with `cd2: {px width}, cd1: {px height}`

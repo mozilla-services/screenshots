@@ -130,6 +130,16 @@ this.main = (function() {
   }
 
   exports.onClickedContextMenu = catcher.watchFunction((info, tab) => {
+    onUserInput("context-menu", tab);
+  });
+
+  exports.onKeyboardShortcut = catcher.watchFunction((tab) => {
+    onUserInput("keyboard-shortcut", tab);
+  });
+
+  // command = "context-menu" or "keyboard-shortcut"
+  // Note: new commands should be documented in METRICS.md.
+  function onUserInput (command, tab) {
     if (!tab) {
       // Not in a page/tab context, ignore
       return;
@@ -142,8 +152,8 @@ this.main = (function() {
     }
     catcher.watchPromise(
       toggleSelector(tab)
-        .then(() => sendEvent("start-shot", "context-menu", {incognito: tab.incognito})));
-  });
+        .then(() => sendEvent("start-shot", command, {incognito: tab.incognito})));
+  }
 
   function urlEnabled(url) {
     if (shouldOpenMyShots(url)) {
