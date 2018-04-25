@@ -178,6 +178,10 @@ class Body extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({highlightEditButton: this.props.highlightEditButton});
+  }
+
   doCloseBanner() {
     this.setState({closeBanner: true});
   }
@@ -344,7 +348,7 @@ class Body extends React.Component {
 
     let trashOrFlagButton;
     let editButton;
-    const highlight = this.props.highlightEditButton ? <div className="edit-highlight" onClick={ this.onClickEdit.bind(this) } onMouseOver={ this.onMouseOverHighlight.bind(this) } onMouseOut={ this.onMouseOutHighlight.bind(this) }></div> : null;
+    const highlight = this.state.highlightEditButton ? <div className="edit-highlight" onClick={ this.onClickEdit.bind(this) } onMouseOver={ this.onMouseOverHighlight.bind(this) } onMouseOut={ this.onMouseOutHighlight.bind(this) }></div> : null;
     if (this.props.isOwner) {
       trashOrFlagButton = <Localized id="shotPageDeleteButton">
         <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }></button>
