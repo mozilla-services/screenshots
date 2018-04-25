@@ -1,4 +1,5 @@
 @import "partials/partials";
+@import "partials/delete-confirmation";
 
 .frame-header {
   @include respond-to("medium") {
@@ -76,6 +77,13 @@
     white-space: nowrap;
   }
 }
+
+.delete-confirmation-dialog {
+  &.right-align {
+    top: 48px;
+  }
+}
+
 
 .back-to-index {
   @include respond-to("small") {

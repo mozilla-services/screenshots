@@ -261,6 +261,15 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = This shot does not expire
 
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Are you sure you want to delete this shot?
+shotDeleteCancel = Cancel
+    .title = Cancel
+shotDeleteConfirm = Delete
+    .title = Delete
+
 ## Metrics page
 ## All metrics strings are optional for translation
 

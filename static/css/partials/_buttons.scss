@@ -22,6 +22,10 @@
     padding: 0 8px;
   }
 
+  &.active {
+    background-color: $light-active;
+  }
+
   &.tiny {
     font-size: 14px;
     height: 26px;
