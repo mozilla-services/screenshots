@@ -261,6 +261,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Syot ini tidak luput
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Adakah anda pasti mahu menghapuskan syot ini?
+shotDeleteCancel = Batal
+    .title = Batal
+shotDeleteConfirm = Buang
+    .title = Buang
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
