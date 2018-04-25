@@ -158,6 +158,7 @@ timeDiffFutureDays =
         [one] ko'ẽrõ
        *[other] { $number } oĩyama
     }
+errorThirdPartyCookiesEnabled = Ojejap ko japyhypy ha ndaikatúi oñembogue, ikatu hína oĩ tekotevẽ ijurujávo sapy’aitemi kookie mbohapyháva kundaha oguerohoryvévape.
 
 ## Annotations
 
@@ -199,13 +200,36 @@ annotationColorGrey =
 
 ## Settings Page
 
+settingsDisconnectButton = Ñesẽte
+    .title = Ñesẽte
+settingsGuestAccountMessage = Pepirũva mba’ete
+settingsSignInInvite = Eñemboheraguapy embojuehe hag̃ua mba’e’oka pa’ũme
+settingsSignInButton = Eñepyrũ tembiapo
+    .title = Eñepyrũ tembiapo
+SettingsPageHeader = Firefox Screenshots ñemboheko
+settingsPageSubHeader = Ñembojuehe ha mba’ete
+settingsClosePreferences =
+    .title = Jeguerohoryvéva moheñói
 
 ## Shotindex page
 
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Jejavy oguekuévo japyhypy: { $status } { $statusText }
+# { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Che japyhypy: eheka { $searchTerm }
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
+shotIndexPageErrorRendering = Jejavy emoha’angávo kuatiarogue: { $error }
+shotIndexPageSearchPlaceholder =
+    .placeholder = Ahekáta che japyhypy
 shotIndexPageSearchButton =
     .title = Heka
 shotIndexPageNoShotsMessage = Ndaipóri japyhypy ñongatupyre.
 shotIndexPageNoShotsInvitation = Eku’éna, emoheñóina peteĩ jepe.
+shotIndexPageLookingForShots = Ohekahína nde japyhypy…
+shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Ndaikatúi rojuhu japyhypy ojojoguáva rehekáva ndive.
 # This symbol is used in the lower right corner of the card for a shot on the
 # My Shots page to indicate that the shot does not expire. It should be a
 # single character (or simply nothing if no such symbol is available for a
