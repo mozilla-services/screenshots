@@ -267,6 +267,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Denna bild upphör inte
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Är du säker på att du vill ta bort denna bild?
+shotDeleteCancel = Avbryt
+    .title = Avbryt
+shotDeleteConfirm = Ta bort
+    .title = Ta bort
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
