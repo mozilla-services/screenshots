@@ -230,6 +230,13 @@ shotIndexPageNoShotsInvitation = Eku’éna, emoheñóina peteĩ jepe.
 shotIndexPageLookingForShots = Ohekahína nde japyhypy…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Ndaikatúi rojuhu japyhypy ojojoguáva rehekáva ndive.
+shotIndexPageClearSearchButton =
+    .title = Embogue jehekakue
+shotIndexPageConfirmShotDelete = Embogue ko japyhypy
+shotIndexPagePreviousPage =
+    .title = Kuatiarogue mboyveguáva
+shotIndexPageNextPage =
+    .title = Kuatiarogue upeiguáva
 # This symbol is used in the lower right corner of the card for a shot on the
 # My Shots page to indicate that the shot does not expire. It should be a
 # single character (or simply nothing if no such symbol is available for a
@@ -240,3 +247,9 @@ shotIndexNoExpirationSymbol = ∞
 ## Metrics page
 ## All metrics strings are optional for translation
 
+# Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Firefox Screenshots ra’ãha
+metricsPageTotalsQueryTitle = Opavavete
+metricsPageShotsQueryDay = Ára
+metricsPageUsersQueryDay = Ára
+metricsPageVersionQueryLastSeen = Ára
