@@ -250,6 +250,9 @@ shotIndexNoExpirationSymbol = ∞
 # Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Firefox Screenshots ra’ãha
 metricsPageTotalsQueryTitle = Opavavete
+metricsPageTotalsQueryActiveShots = Japyhypy hendýva
+metricsPageTotalsQueryExpiredShots = Opámava (jeguerukuaa jeýva)
+metricsPageTotalsQueryExpiredDeletedShots = Opámava (ha oguémava)
 metricsPageShotsQueryDay = Ára
 metricsPageUsersQueryDay = Ára
 metricsPageVersionQueryLastSeen = Ára
