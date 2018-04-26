@@ -273,6 +273,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Platnosť tejto snímky nevyprší
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Naozaj chcete odstrániť túto snímku?
+shotDeleteCancel = Zrušiť
+    .title = Zrušiť
+shotDeleteConfirm = Odstrániť
+    .title = Odstrániť
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
