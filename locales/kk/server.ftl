@@ -261,6 +261,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Бұл скриншот мерзімі аяқталмайды
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Бұл скриншотты өшіруді шынымен қалайсыз ба?
+shotDeleteCancel = Бас тарту
+    .title = Бас тарту
+shotDeleteConfirm = Өшіру
+    .title = Өшіру
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
