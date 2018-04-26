@@ -273,6 +273,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Ten zrzut nie ulega przeterminowaniu
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Czy na pewno usunąć ten zrzut?
+shotDeleteCancel = Anuluj
+    .title = Anuluj
+shotDeleteConfirm = Usuń
+    .title = Usuń
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
