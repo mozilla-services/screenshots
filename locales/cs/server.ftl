@@ -273,6 +273,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Tento snímek je uložen navždy
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Opravdu chcete tento snímek smazat?
+shotDeleteCancel = Zrušit
+    .title = Zrušit
+shotDeleteConfirm = Smazat
+    .title = Smazat
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
