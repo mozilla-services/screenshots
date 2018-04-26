@@ -246,6 +246,8 @@ shotIndexNoExpirationSymbol = ∞
 
 ## Delete Confirmation Dialog
 
+shotDeleteCancel = Heja
+    .title = Heja
 
 ## Metrics page
 ## All metrics strings are optional for translation
@@ -279,3 +281,5 @@ metricsPageVersionQueryLastSeen = Ára
 metricsPageHeader = Ta’ãha
 # Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Oikóva pe: { $created }
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (aravo mba’ekuarã renda: { $time }ms)
