@@ -64,6 +64,11 @@ shotPageDownloadShot =
 shotPageEditButton =
     .title = ແກ້ໄຂຮູບພາບນີ້
 shotPageDownload = ດາວໂຫລດ
+shotPageUpsellFirefox = ດາວໂຫລດ Firefox ຕອນນີ້
+shotPageSaveExpiration = ບັນທຶກ
+shotPageCancelExpiration = ຍົກເລີກ
+shotPageDoesNotExpire = ບໍ່ຫມົດອາຍຸ
+timeDiffJustNow = ມື້ກີ້ນີ້
 
 ## Annotations
 
