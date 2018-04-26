@@ -7,7 +7,7 @@ let model;
 exports.launch = function(m) {
   model = m;
   render();
-}
+};
 
 exports.disconnectDevice = function() {
   const url = model.backend + "/api/disconnect-device";
@@ -24,7 +24,7 @@ exports.disconnectDevice = function() {
     }
   };
   req.send(`_csrf=${encodeURIComponent(model.csrfToken)}`);
-}
+};
 
 function render() {
   page.render(model);

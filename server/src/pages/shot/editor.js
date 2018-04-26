@@ -127,7 +127,7 @@ exports.Editor = class Editor extends React.Component {
     return <div className="inverse-color-scheme full-height column-space">
       { toolBar }
       { display }
-    </div>
+    </div>;
   }
 
   renderCanvas(color, toolBar) {
@@ -140,20 +140,20 @@ exports.Editor = class Editor extends React.Component {
         <canvas
           className="image-holder centered"
           id="image-holder"
-          ref={(image) => { this.imageCanvas = image }}
+          ref={(image) => { this.imageCanvas = image; }}
           height={this.canvasHeight * this.devicePixelRatio} width={this.canvasWidth * this.devicePixelRatio}
           style={{ height: this.canvasHeight, width: this.canvasWidth }}></canvas>
         <canvas
           className={`temp-highlighter centered ${color}`}
           id="highlighter"
-          ref={(highlighter) => { this.highlighter = highlighter }}
+          ref={(highlighter) => { this.highlighter = highlighter; }}
           height={this.canvasHeight} width={this.canvasWidth}></canvas>
         <div
           className="crop-container centered"
           ref={(cropContainer) => this.cropContainer = cropContainer}
           style={{ height: this.canvasHeight, width: this.canvasWidth }}></div>
       </div>
-    </div>
+    </div>;
   }
 
   renderToolBar() {
@@ -185,7 +185,7 @@ exports.Editor = class Editor extends React.Component {
           <button className="button secondary cancel" id="cancel" onClick={this.onClickCancel.bind(this)} title="Cancel editing" disabled = { this.state.actionsDisabled }>Cancel</button>
         </Localized>
       </div>
-    </div>
+    </div>;
   }
 
   setColor(color) {
@@ -198,7 +198,7 @@ exports.Editor = class Editor extends React.Component {
 
   isColorWhite(color) {
     if (color === "rgb(255, 255, 255)" || color === "#FFF") {
-      return "white"
+      return "white";
     }
     return null;
   }
@@ -250,7 +250,7 @@ exports.Editor = class Editor extends React.Component {
     img.onload = () => {
       imageContext.scale(this.devicePixelRatio, this.devicePixelRatio);
       imageContext.drawImage(img, 0, 0, width, height);
-    }
+    };
     this.canvasWidth = cropWidth;
     this.canvasHeight = cropHeight;
     const imageContext = this.imageCanvas.getContext("2d");
@@ -296,8 +296,8 @@ exports.Editor = class Editor extends React.Component {
       if (direction) {
         selectionState = "resizing";
         resizeDirection = direction;
-        resizeStartPos = {y: e.clientY - rect.top, x: e.clientX - rect.left}
-        resizeStartSelected = selectedPos.clone()
+        resizeStartPos = {y: e.clientY - rect.top, x: e.clientX - rect.left};
+        resizeStartSelected = selectedPos.clone();
         this.resizeCropBox(e);
       }
     }
@@ -315,7 +315,7 @@ exports.Editor = class Editor extends React.Component {
         this.truncateY(mousedownPos.top),
         this.truncateX(e.clientX - rect.left),
         this.truncateY(e.clientY - rect.top)
-      )
+      );
       selectedPos.x2 = this.truncateX(selectedPos.x2);
       selectedPos.y2 = this.truncateY(selectedPos.y2);
       if (selectedPos.width > minWidth && selectedPos.height > minHeight) {
@@ -477,7 +477,7 @@ exports.Editor = class Editor extends React.Component {
     if (this.cropBox) {
       return;
     }
-    const cropBox = document.createElement("div")
+    const cropBox = document.createElement("div");
     cropBox.className = "highlight";
     for (const name of movements) {
       const elTarget = document.createElement("div");
@@ -567,7 +567,7 @@ exports.Editor = class Editor extends React.Component {
       }
       imageContext.drawImage(img, 0, 0, width, height);
       this.setState({actionsDisabled: false});
-    }
+    };
     this.imageContext = imageContext;
     img.src = this.props.clip.image.url;
   }
@@ -635,7 +635,7 @@ exports.Editor = class Editor extends React.Component {
     e.preventDefault();
     const rect = this.imageCanvas.getBoundingClientRect();
     this.pos.x = e.clientX - rect.left,
-    this.pos.y = e.clientY - rect.top
+    this.pos.y = e.clientY - rect.top;
     drawMousedown = true;
     if (this.isOnUndrawableArea(e) || e.button !== 0) {
       drawMousedown = false;
@@ -666,7 +666,7 @@ exports.Editor = class Editor extends React.Component {
     this.drawContext.moveTo(this.pos.x, this.pos.y);
     const rect = this.imageCanvas.getBoundingClientRect();
     this.pos.x = e.clientX - rect.left,
-    this.pos.y = e.clientY - rect.top
+    this.pos.y = e.clientY - rect.top;
     this.drawContext.lineTo(this.pos.x, this.pos.y);
     this.drawContext.stroke();
   }
@@ -680,7 +680,7 @@ exports.Editor = class Editor extends React.Component {
       this.drawContext.moveTo(this.pos.x, this.pos.y);
       const rect = this.imageCanvas.getBoundingClientRect();
       this.pos.x = e.clientX - rect.left,
-      this.pos.y = e.clientY - rect.top
+      this.pos.y = e.clientY - rect.top;
       this.drawContext.lineTo(this.pos.x, this.pos.y);
       this.drawContext.stroke();
       return;
@@ -688,7 +688,7 @@ exports.Editor = class Editor extends React.Component {
     this.drawContext.moveTo(this.pos.x, this.pos.y);
     const rect = this.imageCanvas.getBoundingClientRect();
     this.pos.x = e.clientX - rect.left,
-    this.pos.y = e.clientY - rect.top
+    this.pos.y = e.clientY - rect.top;
     this.drawContext.lineTo(this.pos.x, this.pos.y);
     this.drawContext.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
     this.drawContext.beginPath();
@@ -707,7 +707,7 @@ exports.Editor = class Editor extends React.Component {
     );
     this.drawContext.stroke();
   }
-}
+};
 
 exports.Editor.propTypes = {
   clip: PropTypes.object,
@@ -733,7 +733,7 @@ class ColorPicker extends React.Component {
       <button className="color-button" id="color-picker" onClick={this.onClickColorPicker.bind(this)} title="Color Picker" style={{"backgroundColor": this.state.color, "border": "2px solid #D4D4D4"}}></button>
       <div id="color-button-highlight" />
       {this.state.pickerActive ? this.renderColorBoard() : null}
-    </div>
+    </div>;
   }
 
   componentDidUpdate() {
@@ -816,7 +816,7 @@ class ColorPicker extends React.Component {
           style={{ backgroundColor: "#34495E" }}
           onClick={this.onClickSwatch.bind(this)}></div></Localized>
       </div>
-    </div>
+    </div>;
   }
 
   onClickSwatch(e) {

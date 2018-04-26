@@ -460,7 +460,7 @@ this.uicontrol = (function() {
           event.pageY + window.scrollY - window.pageYOffset
         );
         const xpos = Math.floor(10 * (event.pageX - window.innerWidth / 2) / window.innerWidth);
-        const ypos = Math.floor(10 * (event.pageY - window.innerHeight / 2) / window.innerHeight)
+        const ypos = Math.floor(10 * (event.pageY - window.innerHeight / 2) / window.innerHeight);
 
         for (let i = 0; i < 2; i++) {
           const move = `translate(${xpos}px, ${ypos}px)`;
@@ -909,7 +909,7 @@ this.uicontrol = (function() {
     } else {
       setState("crosshairs");
     }
-  }
+  };
 
   function isFrameset() {
     return document.body.tagName === "FRAMESET";
@@ -922,7 +922,7 @@ this.uicontrol = (function() {
       callBackground("closeSelector");
       selectorLoader.unloadModules();
     } catch (e) {
-      log.error("Error in deactivate", e)
+      log.error("Error in deactivate", e);
       // Sometimes this fires so late that the document isn't available
       // We don't care about the exception, so we swallow it here
     }
@@ -941,7 +941,7 @@ this.uicontrol = (function() {
    */
 
   const primedDocumentHandlers = new Map();
-  let registeredDocumentHandlers = []
+  let registeredDocumentHandlers = [];
 
   function addHandlers() {
     ["mouseup", "mousedown", "mousemove", "click"].forEach((eventName) => {

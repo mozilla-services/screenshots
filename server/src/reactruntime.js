@@ -139,7 +139,7 @@ exports.Page = class Page {
         const failedLocaleIndex = locales.indexOf(failedLocale);
         remainingLocales.splice(failedLocaleIndex, 1);
         tryGetL10nMessages(remainingLocales);
-      }
+      };
       getLocaleMessages(locales)
         .then(successHandler)
         .catch(failureHandler);

@@ -16,7 +16,7 @@ exports.init = function(localeStringMap) {
 
   // this is mainly for passing in test data
   if (localeStringMap) {
-    return useLocaleData(localeStringMap)
+    return useLocaleData(localeStringMap);
   }
 
   const localesGlob = path.join(__dirname, "static", "locales", "*.js");
@@ -62,7 +62,7 @@ exports.getText = function(locales) {
       }
     }
     return "";
-  }
+  };
 };
 
 exports.getUserLocales = function(requestedLocales) {

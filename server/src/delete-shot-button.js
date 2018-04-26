@@ -7,7 +7,7 @@ exports.DeleteShotButton = class DeleteShotButton extends React.Component {
     super(props);
     this.elRef = React.createRef();
     this.trashButtonRef = React.createRef();
-    this.state = {confirmationPanelOpen: false}
+    this.state = {confirmationPanelOpen: false};
     this.maybeCloseDeleteConfirmation = this.maybeCloseDeleteConfirmation.bind(this);
   }
 
@@ -87,10 +87,10 @@ exports.DeleteShotButton = class DeleteShotButton extends React.Component {
       </div>
     );
   }
-}
+};
 
 exports.DeleteShotButton.propTypes = {
   clickDeleteHandler: PropTypes.func,
   confirmDeleteHandler: PropTypes.func,
   cancelDeleteHandler: PropTypes.func
-}
+};
