@@ -267,6 +267,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Ez a kép nem évül el
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Biztos, hogy törölni szeretné ezt a képet?
+shotDeleteCancel = Mégse
+    .title = Mégse
+shotDeleteConfirm = Törlés
+    .title = Törlés
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
