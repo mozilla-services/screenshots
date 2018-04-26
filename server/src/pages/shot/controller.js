@@ -201,7 +201,7 @@ exports.saveEdit = function(shot, shotUrl, dimensions) {
       window.Raven.captureException(error);
       throw error;
     });
-  }
+  };
 
   const image = shot.getClip(shot.clipNames()[0]).image;
 
@@ -215,7 +215,7 @@ exports.saveEdit = function(shot, shotUrl, dimensions) {
   }).catch(() => {
     return postWith(JSON.stringify(payload));
   });
-}
+};
 
 function refreshHash() {
   if (location.hash === "#fullpage") {

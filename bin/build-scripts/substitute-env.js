@@ -6,7 +6,7 @@ if (process.argv.length <= 2 || process.argv.includes("-h") || process.argv.incl
   console.log("Usage:");
   console.log("  substitute-env.js FILENAME");
   console.log("Prints out the contents of FILENAME with process.env.NAME substituted for the equivalent string, or for the empty string");
-  process.exit()
+  process.exit();
 }
 
 const content = fs.readFileSync(process.argv[2], "UTF-8");

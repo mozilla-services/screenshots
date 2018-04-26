@@ -158,7 +158,7 @@ this.selectorLoader = (function() {
           exports.loadModules(tabId, hasSeenOnboarding);
         }
         return !wasLoaded;
-      })
+      });
   };
 
   return exports;

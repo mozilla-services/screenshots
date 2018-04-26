@@ -82,7 +82,7 @@ class Body extends React.Component {
             {children}
           </Masonry>
         </div>
-      )
+      );
     }
     return children;
   }
@@ -292,7 +292,7 @@ Body.propTypes = {
 
 class Card extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {panelOpen: "panel-closed", deleted: false};
   }
 
@@ -329,7 +329,7 @@ class Card extends React.Component {
 
     let neverExpireIndicator = null;
     if (!shot.expireTime) {
-      neverExpireIndicator = <Localized id="shotIndexNoExpirationSymbol"><div className="never-expires" title=""></div></Localized>
+      neverExpireIndicator = <Localized id="shotIndexNoExpirationSymbol"><div className="never-expires" title=""></div></Localized>;
     }
 
     const deleteConfirmationClass = this.state.deletePanelOpen ? "panel-open" : "";

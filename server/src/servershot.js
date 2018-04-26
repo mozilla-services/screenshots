@@ -63,7 +63,7 @@ if (!config.useS3) {
   }
 
   get = (uid, contentType) => {
-    if (uid.indexOf("/") !== -1 && uid.indexOf(".") !== -1) {
+    if (uid.includes("/") && uid.includes(".")) {
       return Promise.reject("Invalid uid");
     }
     return new Promise((resolve, reject) => {
@@ -77,7 +77,7 @@ if (!config.useS3) {
     });
   };
   put = (uid, body, comment) => {
-    if (uid.indexOf("/") !== -1 && uid.indexOf(".") !== -1) {
+    if (uid.includes("/") && uid.includes(".")) {
       return Promise.reject("Invalid uid");
     }
     return new Promise((resolve, reject) => {
@@ -92,7 +92,7 @@ if (!config.useS3) {
   };
 
   del = (uid) => {
-    if (uid.indexOf("/") !== -1 && uid.indexOf(".") !== -1) {
+    if (uid.includes("/") && uid.includes(".")) {
       return Promise.reject("Invalid uid");
     }
     return new Promise((resolve, reject) => {
@@ -472,7 +472,7 @@ Shot.checkOwnership = function(shotId, deviceId, accountId) {
       [shotId, deviceId, accountId]
   ).then((rows) => {
       return !!rows.length;
-  })
+  });
 };
 
 Shot.emptyShotsPage = {
@@ -500,7 +500,7 @@ Shot.getShotsForDevice = function(backend, deviceId, accountId, searchQuery, pag
     return ids.map((_, idx) => {
       return `$${offset + idx + 1}`;
     });
-  }
+  };
 
   // accountId is null if not set, treated as NULL in the SQL query
   return db.select(
@@ -649,7 +649,7 @@ Shot.setExpiration = function(backend, shotId, deviceId, expiration, accountId) 
       `,
       [expiration, shotId, id]
     );
-  })
+  });
 };
 
 Shot.deleteShot = function(backend, shotId, deviceId, accountId) {
@@ -683,7 +683,7 @@ Shot.deleteShot = function(backend, shotId, deviceId, accountId) {
         [shotId, id]
       );
     });
-  })
+  });
 };
 
 Shot.deleteEverythingForDevice = function(backend, deviceId, accountId) {
@@ -724,7 +724,7 @@ Shot.deleteEverythingForDevice = function(backend, deviceId, accountId) {
       deleteSql,
       deviceIds
     );
-  }
+  };
 
   return getDeviceIds()
     .then(imageIdsSelect)
@@ -765,7 +765,7 @@ const ClipRewrites = class ClipRewrites {
       this.shot.fullUrl = "";
       this.shot.origin = "";
     }
-    const pngDataUrlMediaType = "data:image/png;base64,"
+    const pngDataUrlMediaType = "data:image/png;base64,";
     if (this.shot.thumbnail && this.shot.thumbnail.startsWith(pngDataUrlMediaType)) {
       let imageData = this.shot.thumbnail.substr(pngDataUrlMediaType.length);
       imageData = new Buffer(imageData, "base64");

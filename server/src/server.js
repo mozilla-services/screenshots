@@ -291,7 +291,7 @@ app.param("id", function(req, res, next, id) {
     next();
     return;
   }
-  const exc = new Error("invalid id")
+  const exc = new Error("invalid id");
   exc.isAppError = true;
   exc.output = {
     statusCode: 400,
@@ -339,7 +339,7 @@ const parentHelperJs = readFileSync(path.join(__dirname, "/static/js/parent-help
 app.get("/parent-helper.js", function(req, res) {
   setMonthlyCache(res);
   const postMessageOrigin = `${req.protocol}://${req.config.contentOrigin}`;
-  const script = `${parentHelperJs}\nvar CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`
+  const script = `${parentHelperJs}\nvar CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`;
   jsResponse(res, script);
 });
 
@@ -696,7 +696,7 @@ app.put("/data/:id/:domain",
 
       if (req.files.thumbnail) {
         const encodedThumbnail = req.files.thumbnail[0].buffer.toString("base64");
-        bodyObj.thumbnail = `data:image/png;base64,${encodedThumbnail}`
+        bodyObj.thumbnail = `data:image/png;base64,${encodedThumbnail}`;
       }
     } else if (req.body) {
       bodyObj = req.body;
@@ -712,7 +712,7 @@ app.put("/data/:id/:domain",
       return;
     }
     const shot = new Shot(req.deviceId, req.backend, shotId, bodyObj);
-    let responseDelay = Promise.resolve()
+    let responseDelay = Promise.resolve();
     if (slowResponse) {
       responseDelay = new Promise((resolve) => {
         setTimeout(resolve, slowResponse);
@@ -862,7 +862,7 @@ app.post("/api/save-edit", function(req, res) {
     simpleResponse(res, "Updated", 200);
   }).catch((err) => {
     errorResponse(res, "Error updating image", err);
-  })
+  });
 });
 
 app.post("/api/set-expiration", function(req, res) {

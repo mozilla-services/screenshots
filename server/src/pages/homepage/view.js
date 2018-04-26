@@ -88,7 +88,7 @@ class Body extends React.Component {
         <Localized id="gMyShots">
           <span className="myshots-text">My Shots</span>
         </Localized>
-      </a>
+      </a>;
     }
     const is57 = this.props.isFirefox && this.props.firefoxVersion >= 57;
     return (

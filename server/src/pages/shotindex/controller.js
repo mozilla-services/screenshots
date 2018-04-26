@@ -12,7 +12,7 @@ let firstRun = true;
 const queryParamModelPropertyMap = {
   q: "defaultSearch",
   p: "pageNumber"
-}
+};
 
 exports.launch = function(m) {
   if (m.hasDeviceId) {
@@ -34,7 +34,7 @@ exports.launch = function(m) {
     return;
   }
   if (window.wantsauth) {
-    if (window.wantsauth.getAuthData() && location.search.indexOf("reloaded") === -1) {
+    if (window.wantsauth.getAuthData() && !location.search.includes("reloaded")) {
       location.search = "reloaded";
       return;
     }
@@ -58,7 +58,7 @@ function render() {
 
 function extractQueryParamValues(searchKeys) {
   const o = {};
-  const qs = queryString.parse(window.location.search)
+  const qs = queryString.parse(window.location.search);
 
   Object.keys(searchKeys).forEach(x => {
     if (qs[x] !== undefined) {
@@ -76,7 +76,7 @@ function buildQueryStringFromModel(searchKeys, model) {
     if (model[searchKeys[x]] !== undefined && model[searchKeys[x]] !== null) {
       queryParams[x] = model[searchKeys[x]];
     }
-  })
+  });
 
   return queryString.stringify(queryParams);
 }
@@ -93,7 +93,7 @@ exports.onChangePage = function(pageNumber) {
   model.pageNumber = pageNumber;
   updateHistory({p: pageNumber});
   refreshModel();
-}
+};
 
 // queryParamsToUpdate is a dictionary of query param(s) to insert/update/delete
 // in the query string; it does not represent all the params going into the query string.
@@ -104,7 +104,7 @@ exports.getNewUrl = function(queryParamsToUpdate) {
     return url;
   }
 
-  const qs = queryString.parse(window.location.search)
+  const qs = queryString.parse(window.location.search);
 
   Object.keys(queryParamsToUpdate).forEach(x => {
     if (queryParamsToUpdate[x]) {
@@ -119,7 +119,7 @@ exports.getNewUrl = function(queryParamsToUpdate) {
   }
 
   return url;
-}
+};
 
 function updateHistory(queryParamsToUpdate) {
   const url = exports.getNewUrl(queryParamsToUpdate);

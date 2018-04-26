@@ -152,7 +152,7 @@ class Head extends React.Component {
     if (!url.startsWith("http")) {
       return url;
     }
-    if (url.indexOf("?") === -1) {
+    if (!url.includes("?")) {
       url += "?";
     } else {
       url += "&";
@@ -358,7 +358,7 @@ class Body extends React.Component {
         confirmDeleteHandler={ this.confirmDeleteHandler.bind(this) }
         cancelDeleteHandler={ this.cancelDeleteHandler.bind(this) } />;
       editButton = <Localized id="shotPageEditButton">
-        <button className="button transparent edit" title="Edit this image" onClick={ this.onClickEdit.bind(this) } ref={(edit) => { this.editButton = edit }}></button>
+        <button className="button transparent edit" title="Edit this image" onClick={ this.onClickEdit.bind(this) } ref={(edit) => { this.editButton = edit; }}></button>
       </Localized>;
     } else {
       trashOrFlagButton = <Localized id="shotPageAbuseButton">
@@ -466,7 +466,7 @@ class Body extends React.Component {
       <div className="clip-message-dismiss-wrapper" onClick={controller.closeSurveyLink}>
         <div className="clip-message-dismiss" />
       </div>
-    </div>
+    </div>;
   }
 
   renderFirefoxRequired() {
@@ -623,9 +623,9 @@ class ExpireWidget extends React.Component {
       const expired = this.props.expireTime < Date.now();
       const timediff = <TimeDiff date={this.props.expireTime} simple={this.props.simple} />;
       if (expired) {
-        button = <Localized id="shotPageExpired" $timediff={timediff}><span>expired {timediff}</span></Localized>
+        button = <Localized id="shotPageExpired" $timediff={timediff}><span>expired {timediff}</span></Localized>;
       } else {
-        button = <Localized id="shotPageExpiresIn" $timediff={timediff}><span>expires {timediff}</span></Localized>
+        button = <Localized id="shotPageExpiresIn" $timediff={timediff}><span>expires {timediff}</span></Localized>;
       }
     }
     return (

@@ -239,7 +239,7 @@ this.main = (function() {
             message: browser.i18n.getMessage("notificationImageCopiedDetails", pasteSymbol)
           });
         });
-    })
+    });
   });
 
   communication.register("downloadShot", (sender, info) => {
@@ -257,7 +257,7 @@ this.main = (function() {
         browser.downloads.onChanged.removeListener(onChangedCallback);
       }
     });
-    browser.downloads.onChanged.addListener(onChangedCallback)
+    browser.downloads.onChanged.addListener(onChangedCallback);
     catcher.watchPromise(communication.sendToBootstrap("incrementCount", {scalar: "download"}));
     return browser.windows.getLastFocused().then(windowInfo => {
       return browser.downloads.download({
