@@ -267,6 +267,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Dette skjermbildet går ikkje ut
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Er du sikker på at du vil slette dette skjermbildet?
+shotDeleteCancel = Avbryt
+    .title = Avbryt
+shotDeleteConfirm = Slett
+    .title = Slett
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
