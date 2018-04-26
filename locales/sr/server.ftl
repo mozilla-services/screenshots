@@ -273,6 +273,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Овај снимак нема рок трајања
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Да ли сте сигурни да желите да обришете овај снимак?
+shotDeleteCancel = Откажи
+    .title = Откажи
+shotDeleteConfirm = Обриши
+    .title = Обриши
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
