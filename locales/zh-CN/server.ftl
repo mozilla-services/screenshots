@@ -249,6 +249,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = 这张截图不会过期
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = 您确定要删除这张截图吗？
+shotDeleteCancel = 取消
+    .title = 取消
+shotDeleteConfirm = 删除
+    .title = 删除
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
