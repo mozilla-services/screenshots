@@ -243,6 +243,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = このショットの期限はありません
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = 本当にこのショットを削除しますか？
+shotDeleteCancel = キャンセル
+    .title = キャンセル
+shotDeleteConfirm = 削除
+    .title = 削除
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
