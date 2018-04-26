@@ -243,6 +243,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Bu görüntü zaman aşımına uğramaz
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Bu görüntüyü silmek istediğinizden emin misiniz?
+shotDeleteCancel = Vazgeç
+    .title = Vazgeç
+shotDeleteConfirm = Sil
+    .title = Sil
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
