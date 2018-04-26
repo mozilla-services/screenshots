@@ -267,6 +267,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Dieses Bildschirmfoto läuft nicht ab
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Soll dieses Bildschirmfoto wirklich gelöscht werden?
+shotDeleteCancel = Abbrechen
+    .title = Abbrechen
+shotDeleteConfirm = Löschen
+    .title = Löschen
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
