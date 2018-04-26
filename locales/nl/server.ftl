@@ -267,6 +267,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Deze afbeelding verloopt niet
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Weet u zeker dat u deze afbeelding wilt verwijderen?
+shotDeleteCancel = Annuleren
+    .title = Annuleren
+shotDeleteConfirm = Verwijderen
+    .title = Verwijderen
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
