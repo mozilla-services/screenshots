@@ -267,6 +267,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Questa immagine non ha scadenza
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Eliminare questa immagine?
+shotDeleteCancel = Annulla
+    .title = Annulla
+shotDeleteConfirm = Elimina
+    .title = Elimina
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
