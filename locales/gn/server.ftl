@@ -267,4 +267,15 @@ metricsPageUserShotsQueryCount = Puruhára papapy
 metricsPageRetentionQueryTitle = Arapokõindýpe jejoko
 metricsPageRetentionQueryDescription = Ára papapy pe puruhára japyhypy peteĩha pe ramovéva rõguáicha, oñembyatýva arapokõindy oñepyrũvo.
 metricsPageRetentionQueryUsers = Puruhára papapy
+metricsPageRetentionQueryDays = Ohasa ára pe puruhára japyhypy peteĩha pe ramovéva rõguáicha.
+metricsPageRetentionQueryFirstWeek = Arapokõindy puruhára omoheñói hague japyhypy peteĩha
+metricsPageTotalRetentionQueryTitle = Jejokopaite
+metricsPageTotalRetentionQueryUsers = Puruhára papapy
+metricsPageTotalRetentionQueryDays = Arakuéra puruhára omoheñói hague japyhypy
+metricsPageVersionQueryTitle = Moimbaha peteĩchagua
+metricsPageVersionQueryUsers = Puruhára papapy moingepyre
+metricsPageVersionQueryVersion = Moimbaha peteĩchagua
 metricsPageVersionQueryLastSeen = Ára
+metricsPageHeader = Ta’ãha
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Oikóva pe: { $created }
