@@ -258,6 +258,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = ეს სურათი უვადოა
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = ნამდვილად გსურთ ამ გადაღებული სურათის წაშლა?
+shotDeleteCancel = გაუქმება
+    .title = გაუქმება
+shotDeleteConfirm = წაშლა
+    .title = წაშლა
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
