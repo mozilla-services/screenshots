@@ -1,50 +1,51 @@
-// Localization for Server-side strings of Firefox Screenshots
-// 
-// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+### Localization for Server-side strings of Firefox Screenshots
+### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
-
-// Global phrases shared across pages, prefixed with 'g'
-[[ global ]]
+## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = ພາບຂອງຂ້ອຍ
 gHomeLink = ໜ້າຫຼັກ
 
+## Footer
 
-[[ Footer ]]
-
-// Note: link text for a link to mozilla.org
+# Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
+footerLinkDMCA = ລາຍງານການລະເມິດຊັບສີນທາງປັນຍາ
+footerLinkRemoveAllData = ນຳຂໍ້ມູນທັງຫມົດອອກ
+
+## Creating page
+
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
+creatingPageTitle = ກຳລັງສ້າງ { $title }
+
+## Home page
+
+homePageTeaser = ໄວໆນີ້…
+
+## Leave Screenshots page
 
 
-[[ Creating page ]]
+## Not Found page
 
 
-
-[[ Home page ]]
-
+## Shot page
 
 
-[[ Leave Screenshots page ]]
+## Annotations
 
 
-
-[[ Not Found page ]]
-
+## Settings Page
 
 
-[[ Shot page ]]
+## Shotindex page
 
 
-
-[[ Annotations ]]
-
+## Delete Confirmation Dialog
 
 
-[[ Shotindex page ]]
-
-
-
-// all metrics strings are optional for translation
-[[ Metrics page ]]
+## Metrics page
+## All metrics strings are optional for translation
 
