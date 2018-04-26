@@ -243,6 +243,11 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Tangkapan ini tidak kedaluwarsa
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirm = Hapus
+    .title = Hapus
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
