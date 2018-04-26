@@ -279,6 +279,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Tute foto wobrazowki njespadnje
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Chceće tute foto wobrazowki woprawdźe zhašeć?
+shotDeleteCancel = Přetorhnyć
+    .title = Přetorhnyć
+shotDeleteConfirm = Zhašeć
+    .title = Zhašeć
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
