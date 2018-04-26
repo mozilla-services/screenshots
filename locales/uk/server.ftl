@@ -273,6 +273,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Цей знімок зберігається необмежено
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Ви дійсно хочете видалити цей знімок?
+shotDeleteCancel = Скасувати
+    .title = Скасувати
+shotDeleteConfirm = Видалити
+    .title = Видалити
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
