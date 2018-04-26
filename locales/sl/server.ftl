@@ -279,6 +279,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Ta posnetek ne poteče
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Ste prepričani, da želite izbrisati ta posnetek?
+shotDeleteCancel = Prekliči
+    .title = Prekliči
+shotDeleteConfirm = Izbriši
+    .title = Izbriši
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
