@@ -248,6 +248,8 @@ shotIndexNoExpirationSymbol = ∞
 
 shotDeleteCancel = Heja
     .title = Heja
+shotDeleteConfirm = Mbogue
+    .title = Mbogue
 
 ## Metrics page
 ## All metrics strings are optional for translation
@@ -255,6 +257,8 @@ shotDeleteCancel = Heja
 # Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Firefox Screenshots ra’ãha
 metricsPageTotalsQueryTitle = Opavavete
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Screenshots ohecháva tuichaháicha
 metricsPageTotalsQueryActiveShots = Japyhypy hendýva
 metricsPageTotalsQueryExpiredShots = Opámava (jeguerukuaa jeýva)
 metricsPageTotalsQueryExpiredDeletedShots = Opámava (ha oguémava)
