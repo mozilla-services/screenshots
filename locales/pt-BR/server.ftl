@@ -267,6 +267,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Esta captura não expira
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Tem certeza de que deseja excluir esta captura?
+shotDeleteCancel = Cancelar
+    .title = Cancelar
+shotDeleteConfirm = Excluir
+    .title = Excluir
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
