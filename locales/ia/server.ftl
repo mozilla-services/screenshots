@@ -267,6 +267,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = iste instantaneo non expira
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Desira tu vermente deler iste instantaneo?
+shotDeleteCancel = Cancellar
+    .title = Cancellar
+shotDeleteConfirm = Deler
+    .title = Deler
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
