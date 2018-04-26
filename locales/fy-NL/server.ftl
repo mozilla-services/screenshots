@@ -33,7 +33,7 @@ creatingPageWaitMessage = Jo ôfbylding bewarje…
 ## Home page
 
 homePageDescription =
-    .content = Intuïtive skermôfbyldingen, streekrjocht yn de browser. Wylst jo mei Firefox op it web surfe, kinne jo skermôfbyldingen meitsje, bewarje en diele.
+    .content = Yntuïtive skermôfbyldingen, streekrjocht yn de browser. Wylst jo mei Firefox op it web surfe, kinne jo skermôfbyldingen meitsje, bewarje en diele.
 homePageButtonMyShots = Nei myn ôfbyldingen
 homePageTeaser = Ynkoarten beskikber...
 homePageDownloadFirefoxTitle = Firefox
@@ -266,6 +266,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Dizze skermôfdruk ferrint nea
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Binne jo wis dat jo dizze skermôfdruk fuortsmite wolle?
+shotDeleteCancel = Annulearje
+    .title = Annulearje
+shotDeleteConfirm = Fuortsmite
+    .title = Fuortsmite
 
 ## Metrics page
 ## All metrics strings are optional for translation
