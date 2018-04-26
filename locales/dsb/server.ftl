@@ -279,6 +279,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Toś to foto wobrazowki njespadnjo
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Cośo toś to foto wobrazowki napšawdu lašowaś?
+shotDeleteCancel = Pśetergnuś
+    .title = Pśetergnuś
+shotDeleteConfirm = Lašowaś
+    .title = Lašowaś
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
