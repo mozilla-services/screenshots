@@ -4,7 +4,7 @@
 
 ## Global phrases shared across pages, prefixed with 'g'
 
-gMyShots = Uendelig ∞
+gMyShots = Mine skjermbilder
 gHomeLink = Hjem
 gNoShots =
     .alt = Ingen skjermbilder funnet
@@ -266,6 +266,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Dette skjermbildet utløper ikke
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Er du sikker på at du vil slette dette skjermbildet?
+shotDeleteCancel = Avbryt
+    .title = Avbryt
+shotDeleteConfirm = Slett
+    .title = Slett
 
 ## Metrics page
 ## All metrics strings are optional for translation
