@@ -273,6 +273,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Срок хранения этого снимка неограничен
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Вы уверены, что хотите удалить этот снимок?
+shotDeleteCancel = Отмена
+    .title = Отмена
+shotDeleteConfirm = Удалить
+    .title = Удалить
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
