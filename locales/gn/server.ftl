@@ -244,6 +244,9 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = ∞
 
+## Delete Confirmation Dialog
+
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
@@ -261,4 +264,7 @@ metricsPageUsersQueryCount = Puruhára papapy
 metricsPageUsersQueryDay = Ára
 metricsPageUserShotsQueryTitle = Puruhára japyhypy papapy
 metricsPageUserShotsQueryCount = Puruhára papapy
+metricsPageRetentionQueryTitle = Arapokõindýpe jejoko
+metricsPageRetentionQueryDescription = Ára papapy pe puruhára japyhypy peteĩha pe ramovéva rõguáicha, oñembyatýva arapokõindy oñepyrũvo.
+metricsPageRetentionQueryUsers = Puruhára papapy
 metricsPageVersionQueryLastSeen = Ára
