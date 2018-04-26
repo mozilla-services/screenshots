@@ -278,6 +278,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Nid yw'r llun yma'n dod i ben
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Ydych chi'n siŵr eich bod eisiau dileu'r llun yma?
+shotDeleteCancel = Diddymu
+    .title = Diddymu
+shotDeleteConfirm = Dileu
+    .title = Dileu
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
