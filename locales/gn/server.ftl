@@ -113,6 +113,8 @@ shotPageEditButton =
     .title = Embosako’i ko ta’anga
 shotPageDownload = Mboguejy
 shotPageUpsellFirefox = Eguereko Firefox ko'ág̃a
+# Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Emoinge pe URL ko  japyhypy pegua nde ñanduti vevépe: { $url }
 shotPageKeepFor = ¿Mboy aravópa opytaveva’erã ko japyhypy?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Eiporavo aravo
