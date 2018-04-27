@@ -253,6 +253,7 @@ shotIndexNoExpirationSymbol = ∞
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = ¿Emboguesépa ko japyhypy?
 shotDeleteCancel = Heja
     .title = Heja
 shotDeleteConfirm = Mbogue
@@ -266,6 +267,7 @@ metricsPageTitle = Firefox Screenshots ra’ãha
 metricsPageTotalsQueryTitle = Opavavete
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Screenshots ohecháva tuichaháicha
+metricsPageTotalsQueryDevices = Mba'e'oka heraguapypaitéma
 metricsPageTotalsQueryActiveShots = Japyhypy hendýva
 metricsPageTotalsQueryExpiredShots = Opámava (jeguerukuaa jeýva)
 metricsPageTotalsQueryExpiredDeletedShots = Opámava (ha oguémava)
