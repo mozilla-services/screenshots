@@ -114,7 +114,13 @@ shotPageDownloadShot =
 shotPageEditButton =
     .title = Embosako’i ko ta’anga
 shotPageDownload = Mboguejy
+shotPageScreenshotsDescription = Japyhypy mba'erechaha jejapónteva. Eñohẽ, eñongatu ha emoherakuã mba'erechaha japyhypy eheja'ỹre Firefox.
 shotPageUpsellFirefox = Eguereko Firefox ko'ág̃a
+shotPageDMCAMessage = Ko japyhypy ndojepurukuaái peteĩ tapicha akaguai rupi ha'eha ijára.
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Eguerahauka peteĩ ñanduti veve { $dmca }-pe ejerure hag̃ua maranduve.
+# Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Umi nde japyhypy orekóramö jerurepy, ikatu ojepe'a ndehegui Firefox Screenshots-pe jeike.
 # Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Emoinge pe URL ko  japyhypy pegua nde ñanduti vevépe: { $url }
 shotPageKeepFor = ¿Mboy aravópa opytaveva’erã ko japyhypy?
