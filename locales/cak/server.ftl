@@ -267,6 +267,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Ri chapoj re' man nik'o taq ruq'ijul
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = ¿La kan nawajo' chi niyuj el re chapoj re'?
+shotDeleteCancel = Tiq'at
+    .title = Tiq'at
+shotDeleteConfirm = Tiyuj
+    .title = Tiyuj
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
