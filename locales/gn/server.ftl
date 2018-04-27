@@ -42,6 +42,10 @@ homePageGetStarted = Jeguata ñepyrũ
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Mba’éicha omba’apo Firefox Screenshots
 homePageGetStartedTitle = Jeguata ñepyrũ
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Eheka Screenshots ra’anga’i pyahu tembipuru rendápe. Embosa’y ha Screenshots poravorã ehecháta pe kundaha rovetã ári.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Embosa’y Screenshots ra’anga’i poravorã oku’éva tembipuru rendápe ha ehecháta pe poravorã kundaha rovetã yvate gotyo.
 homePageCaptureRegion = Ejapyhy peteĩ tendaguasu
 homePageCapturePage = Ejapyhy peteĩ kuatiarogue
 homePageSaveShare = Eñongatu ha emoherakuã
@@ -92,6 +96,9 @@ shotPageShareLink = Egueru juajuha emoherakuã hag̃ua ko japyhypy:
 shotPagePrivacyMessage = Oimeraẽva juajuha ndive ikatukuaa ohecha ko japyhypy.
 shotPageCopyImageText =
     .label = Emonguatia ta’anga moñe’ẽrã
+shotPageConfirmDeletion = ¿Emboguesépa ko japyhypy opa árape g̃uarã?
+# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Nderejapóiramo mba’eve, pe japyhypy oguéta opa árape g̃uarã { $timediff } pe.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = embojevy { $date } peve
