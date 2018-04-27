@@ -273,6 +273,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Гэты здымак не пратэрмінаваны
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Вы ўпэўненыя, што жадаеце выдаліць гэты здымак?
+shotDeleteCancel = Адмяніць
+    .title = Адмяніць
+shotDeleteConfirm = Выдаліць
+    .title = Выдаліць
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
