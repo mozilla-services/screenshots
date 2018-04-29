@@ -273,6 +273,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Ši nuotrauka galioja neribotą laiką
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Ar tikrai norite pašalinti šią nuotrauką?
+shotDeleteCancel = Atsisakyti
+    .title = Atsisakyti
+shotDeleteConfirm = Pašalinti
+    .title = Pašalinti
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
