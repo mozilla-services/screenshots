@@ -50,7 +50,10 @@ homePageCaptureRegion = Ejapyhy peteĩ tendaguasu
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Ehesakutu ha embosyryry eiporavo hag̃ua umi rejapyhyséva. Térã ehasánte hi’ári ha eikutu — Screenshots oiporavóta pe korá ndéve g̃uarã. ¿Emoneĩpa pe ehecháva? Eiporavo Ñongatu eike hag̃ua nde japyhypy ñandutiguáva térã pe votõ hu’y yvy gotyogua eñongatu hag̃ua ne mohendahápe.
 homePageCapturePage = Ejapyhy peteĩ kuatiarogue
+homePageCapturePageDescription = Eipuru umi votõ yvategua akatúvape oĩva ejapyhy hag̃ua kuatiarogue tuichaháicha. Pe votõ Ñongatu Jehecháva ojapyhýta pe kora ikatúva rehecha eku’e’ỹre ha Kuatiarogue Tuichaháicha Ñongatu ojapyhypáta kuatiaroguépe.
 homePageSaveShare = Eñongatu ha emoherakuã
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = Rejapóvo peteĩ japyhypy, Firefox oikuaauka ne Screenshots arandukaróga ñandutiguápe ha ombohasa juajuha kuatiajokohápe. Roñongatu orejehegui nde japyhypy mokõi arapokõindy pukukue, hákatu emboguekuaa ejapose vove térã emoambue arange opataha ñeñongatu arandukarógape.
 homePageLegalLink = Añetegua
 homePagePrivacyLink = Ñemigua
 homePageTermsLink = Jejapopy
