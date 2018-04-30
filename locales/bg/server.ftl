@@ -259,6 +259,11 @@ shotIndexNoExpirationSymbol = ∞
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = Сигурни ли сте, че желаете да изтриете тази снимка?
+shotDeleteCancel = Отказ
+    .title = Отказ
+shotDeleteConfirm = Изтриване
+    .title = Изтриване
 
 ## Metrics page
 ## All metrics strings are optional for translation
