@@ -8,5 +8,6 @@ COPY node_modules /app/node_modules
 COPY bin/_run-docker /app/bin/
 COPY build/screenshots.xpi /app/build/xpi/screenshots.xpi
 RUN cd app && npm install
+ENV NODE_ENV ${NODE_ENV:-production}
 
 CMD /app/bin/_run-docker
