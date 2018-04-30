@@ -220,6 +220,10 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Сиво
 
+## Settings Page
+
+SettingsPageHeader = Настройки на Firefox Screenshots
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -252,6 +256,9 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Давността на тази снимка не изтича.
+
+## Delete Confirmation Dialog
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
