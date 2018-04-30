@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Báo cáo ảnh chụp này vì lạm dụng, spam hoặc các vấn đề khác
 shotPageDownloadShot =
     .title = Tải về
+shotPageEditButton =
+    .title = Chỉnh sửa hình ảnh
 shotPageDownload = Tải xuống
 shotPageScreenshotsDescription = Ảnh chụp màn hình được thực hiện đơn giản. Thực hiện, lưu và chia sẻ ảnh chụp màn hình mà không rời khỏi Firefox.
 shotPageUpsellFirefox = Tải ngay Firefox
@@ -173,13 +175,42 @@ annotationClearButton =
     .title = Làm sạch
 annotationCropButton =
     .title = Crop
+annotationSaveEditButton = Lưu
+    .title = Lưu thay đổi
+annotationCancelEditButton = Hủy
+    .title = Hủy thay đổi
 annotationCropConfirmButton = Xác nhận
     .title = Lựa chọn xác nhận
 annotationCropCancelButton = Hủy
     .title = Lựa chọn hủy bỏ
+annotationColorWhite =
+    .title = Trắng
+annotationColorBlack =
+    .title = Đen
+annotationColorRed =
+    .title = Đỏ
+annotationColorGreen =
+    .title = Xanh lá cây
+annotationColorBlue =
+    .title = Xanh dương
+annotationColorYellow =
+    .title = Vàng
+annotationColorPurple =
+    .title = Tím
+annotationColorSeaGreen =
+    .title = Xanh nước biển
+annotationColorGrey =
+    .title = Xám
 
 ## Settings Page
 
+settingsDisconnectButton = Ngắt kết nối
+    .title = Ngắt kết nối
+settingsGuestAccountMessage = Tài khoản khách
+settingsSignInInvite = Đăng nhập để đồng bộ trên các thiết bị
+settingsSignInButton = Đăng nhập
+    .title = Đăng nhập
+settingsPageSubHeader = Đồng bộ & Tài khoản
 
 ## Shotindex page
 
@@ -217,6 +248,8 @@ shotIndexNoExpirationSymbol = ∞
 ## Delete Confirmation Dialog
 
 shotDeleteConfirmationMessage = Bạn có muốn xóa ảnh chụp này?
+shotDeleteCancel = Hủy bỏ
+    .title = Hủy bỏ
 shotDeleteConfirm = Xóa
     .title = Xóa
 
