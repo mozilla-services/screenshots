@@ -149,32 +149,7 @@ shotPageExpiresIn = diamzer a-benn { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = diamzeret abaoe { $timediff }
 timeDiffJustNow = diouzhtu
-timeDiffHoursAgo =
-    { $number ->
-        [one] 1 vunutenn 'zo
-       *[other] { $number } a vunutennoù 'zo
-    }
-timeDiffDaysAgo =
-    { $number ->
-        [one] dec'h
-       *[other] { $number } a zevezhioù 'zo
-    }
 timeDiffFutureSeconds = a-benn un nebeud eilennoù
-timeDiffFutureMinutes =
-    { $number ->
-        [one] a-benn 1 vunutenn
-       *[other] a-benn { $number } a vunutennoù
-    }
-timeDiffFutureHours =
-    { $number ->
-        [one] a-benn 1 eur
-       *[other] a-benn { $number } a eurioù
-    }
-timeDiffFutureDays =
-    { $number ->
-        [one] warc'hoazh
-       *[other] a-benn { $number } a zevezhioù
-    }
 errorThirdPartyCookiesEnabled = M'ho peus kemeret an dapadenn-mañ ha n'hallit ket he dilemel ho peus ezhomm da weredekaat toupinoù an tredeoù e gwellvezioù ho merdeer. 
 
 ## Annotations
@@ -215,6 +190,9 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Loued
 
+## Settings Page
+
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -247,6 +225,9 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = An dapadenn n'hall ket diamzeriñ
+
+## Delete Confirmation Dialog
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
