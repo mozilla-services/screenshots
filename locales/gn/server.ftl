@@ -229,6 +229,7 @@ settingsSignInInvite = Eñemboheraguapy embojuehe hag̃ua mba’e’oka pa’ũm
 settingsSignInButton = Eñepyrũ tembiapo
     .title = Eñepyrũ tembiapo
 SettingsPageHeader = Firefox Screenshots ñemboheko
+settingsDescription = Ikatu emoñepyrũ tembiapo ne mba’ete Firefox pegua emoñondive hag̃ua opaite mba’erechaha japyhypy ne mba’e’okápe ha eike pype ñemigua rupive.
 settingsPageSubHeader = Ñembojuehe ha mba’ete
 settingsClosePreferences =
     .title = Jeguerohoryvéva moheñói
