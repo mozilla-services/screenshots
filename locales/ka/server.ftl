@@ -150,7 +150,32 @@ shotPageExpiresIn = ვადის გასვლის დრო { $timediff 
 shotPageExpired = ვადა გაუვიდა { $timediff }
 timeDiffJustNow = ახლახანს
 timeDiffMinutesAgo = 1 წუთის წინ
+timeDiffHoursAgo =
+    { $number ->
+        [one] 1 საათის წინ
+       *[other] { $number } საათის წინ
+    }
+timeDiffDaysAgo =
+    { $number ->
+        [one] გუშინ
+       *[other] { $number } დღის წინ
+    }
 timeDiffFutureSeconds = რამდენიმე წუთში
+timeDiffFutureMinutes =
+    { $number ->
+        [one] 1 წუთში
+       *[other] { $number } წუთში
+    }
+timeDiffFutureHours =
+    { $number ->
+        [one] 1 საათში
+       *[other] { $number } საათში
+    }
+timeDiffFutureDays =
+    { $number ->
+        [one] ხვალ
+       *[other] { $number } დღეში
+    }
 errorThirdPartyCookiesEnabled = თუ გადაიღეთ სურათი, მაგრამ ვერ ახერხებთ მის წაშლას, სავარაუდოდ, დაგჭირდებათ მესამე მხარის ფუნთუშების დროებით დაშვება, ბრაუზერის პარამეტრებიდან.
 
 ## Annotations
