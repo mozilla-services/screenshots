@@ -214,6 +214,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Сұр
 
+## Settings Page
+
+settingsDisconnectButton = Байланысты үзу
+    .title = Байланысты үзу
+settingsGuestAccountMessage = Қонақ тіркелгісі
+settingsSignInInvite = Құрылғылар арасында синхрондау үшін кіріңіз
+settingsSignInButton = Кіру
+    .title = Кіру
+SettingsPageHeader = Firefox Screenshots баптаулары
+settingsDescription = Құрылғыларыңыз арасында скриншоттарды синхрондау және оларға жеке қатынау үшін Firefox тіркелгісі көмегімен кіре аласыз.
+settingsPageSubHeader = Синхрондау және тіркелгілер
+settingsClosePreferences =
+    .title = Баптауларды жабу
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -246,6 +260,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Бұл скриншот мерзімі аяқталмайды
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Бұл скриншотты өшіруді шынымен қалайсыз ба?
+shotDeleteCancel = Бас тарту
+    .title = Бас тарту
+shotDeleteConfirm = Өшіру
+    .title = Өшіру
 
 ## Metrics page
 ## All metrics strings are optional for translation

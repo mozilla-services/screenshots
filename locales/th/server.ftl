@@ -62,6 +62,7 @@ notFoundPageDescription = ไม่พบหน้า
 
 # This is the HTML title tag of the page
 shotPageTitle = ภาพหน้าจอ: { $originalTitle }
+shotPageAlertErrorDeletingShot = เกิดข้อผิดพลาดในการลบภาพ
 shotPageAlertErrorUpdatingTitle = เกิดข้อผิดพลาดในการบันทึกชื่อเรื่อง
 shotPageShareButton =
     .title = แบ่งปัน
@@ -77,8 +78,12 @@ shotPageShareEmail =
     .title = แบ่งปันลิงก์ทางอีเมล
 shotPageCopyImageText =
     .label = คัดลอกข้อความภาพ
+shotPageDeleteButton =
+    .title = ลบภาพนี้
 shotPageDownloadShot =
     .title = ดาวน์โหลด
+shotPageEditButton =
+    .title = แก้ไขภาพนี้
 shotPageDownload = ดาวน์โหลด
 shotPageUpsellFirefox = รับ Firefox ตอนนี้
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -94,6 +99,15 @@ shotPageKeepOneMonth = 1 เดือน
 shotPageSaveExpiration = บันทึก
 shotPageCancelExpiration = ยกเลิก
 shotPageDoesNotExpire = ไม่หมดอายุ
+timeDiffJustNow = เมื่อกี้นี้
+timeDiffMinutesAgo =
+    { $number ->
+       *[other] { $number } นาทีที่แล้ว
+    }
+timeDiffHoursAgo =
+    { $number ->
+       *[other] { $number } ชั่วโมงที่แล้ว
+    }
 timeDiffDaysAgo =
     { $number ->
        *[other] { $number } วันที่แล้ว
@@ -129,6 +143,24 @@ annotationCancelEditButton = ยกเลิก
     .title = Cancel editing
 annotationCropConfirmButton = ยืนยัน
     .title = Confirm selection
+annotationColorWhite =
+    .title = ขาว
+annotationColorBlack =
+    .title = ดำ
+annotationColorRed =
+    .title = แดง
+annotationColorGreen =
+    .title = เขียว
+annotationColorBlue =
+    .title = น้ำเงิน
+annotationColorYellow =
+    .title = เหลือง
+annotationColorPurple =
+    .title = ม่วง
+annotationColorSeaGreen =
+    .title = เขียวน้ำทะเล
+annotationColorGrey =
+    .title = เทา
 
 ## Shotindex page
 
@@ -160,5 +192,6 @@ metricsPageUsersQueryDay = วัน
 metricsPageUserShotsQueryCount = จำนวนผู้ใช้
 metricsPageRetentionQueryUsers = จำนวนผู้ใช้
 metricsPageTotalRetentionQueryUsers = จำนวนผู้ใช้
+metricsPageVersionQueryTitle = รุ่นส่วนเสริม
 metricsPageVersionQueryVersion = รุ่นส่วนเสริม
 metricsPageVersionQueryLastSeen = วัน

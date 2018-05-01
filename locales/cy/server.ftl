@@ -115,6 +115,8 @@ shotPageAbuseButton =
     .title = Adrodd ar y llun am gamddefnydd, sbam neu broblem arall
 shotPageDownloadShot =
     .title = Llwytho i Lawr
+shotPageEditButton =
+    .title = Golygu'r ddelwedd hon
 shotPageDownload = Llwytho i Lawr
 shotPageScreenshotsDescription = Lluniau sgrin hawdd. Cipio, cadw a rhannu lluniau sgrin heb adael Firefox.
 shotPageUpsellFirefox = Estyn Firefox nawr
@@ -146,41 +148,59 @@ shotPageExpiresIn = daw i ben { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = wedi dod i ben { $timediff }
 timeDiffJustNow = nawr
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
+        [zero] { $number } munud yn ôl
         [one] 1 munud yn ôl
         [two] { $number } funud yn ôl
         [few] { $number } munud yn ôl
+        [many] { $number } munud yn ôl
        *[other] { $number } munud yn ôl
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
+        [zero] { $number }  awr yn ôl
         [one] awr yn ôl
         [two] { $number } awr yn ôl
         [few] { $number }  awr yn ôl
+        [many] { $number }  awr yn ôl
        *[other] { $number }  awr yn ôl
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
+        [zero] { $number } diwrnod yn ôl
         [one] ddoe
         [two] { $number } diwrnod yn ôl
         [few] { $number } diwrnod yn ôl
+        [many] { $number } diwrnod yn ôl
        *[other] { $number } diwrnod yn ôl
     }
 timeDiffFutureSeconds = ymhen ychydig eiliadau
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
+        [zero] ymhen { $number } munud
         [one] ymhen munud
         [two] ymhen { $number } funud
         [few] ymhen { $number } munud
+        [many] ymhen { $number } munud
        *[other] ymhen { $number } munud
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
+        [zero] ymhen { $number } awr
         [one] ymhen awr
         [two] ymhen { $number } awr
         [few] ymhen { $number } awr
+        [many] ymhen { $number } awr
        *[other] ymhen { $number } awr
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
+        [zero] ymhen { $number } diwrnod
         [one] yfory
         [two] ymhen { $number } ddiwrnod
         [few] ymhen { $number } diwrnod
+        [many] ymhen { $number } diwrnod
        *[other] ymhen { $number } diwrnod
     }
 errorThirdPartyCookiesEnabled = Os wnaethoch chi gymryd y llun hwn, ac yn methu ei dileu, efallai y bydd angen i chi alluogi, dros dro, cwcis trydydd parti o fewn dewisiadau eich porwr.
@@ -204,6 +224,38 @@ annotationCropConfirmButton = Cadarnhau
     .title = Cadarnhau'r dewis
 annotationCropCancelButton = Diddymu
     .title = Diddymu'r dewis
+annotationColorWhite =
+    .title = Gwyn
+annotationColorBlack =
+    .title = Du
+annotationColorRed =
+    .title = Coch
+annotationColorGreen =
+    .title = Gwyrdd
+annotationColorBlue =
+    .title = Glas
+annotationColorYellow =
+    .title = Melyn
+annotationColorPurple =
+    .title = Porffor
+annotationColorSeaGreen =
+    .title = Gwyrdd y Môr
+annotationColorGrey =
+    .title = Llwyd
+
+## Settings Page
+
+settingsDisconnectButton = Datgysylltu
+    .title = Datgysylltu
+settingsGuestAccountMessage = Cyfrif Gwestai
+settingsSignInInvite = Mewngofnodi i gydweddu ar draws dyfeisiau
+settingsSignInButton = Mewngofnodi
+    .title = Mewngofnodi
+SettingsPageHeader = Gosodiadau Firefox Screenshots
+settingsDescription = Gallwch fewngofnodi gyda Chyfrifon Firefox i gydweddu eich holl luniau sgrin ar draws dyfeisiau a chael mynediad atyn nhw'n breifat.
+settingsPageSubHeader = Cydweddu a Chyfrifon
+settingsClosePreferences =
+    .title = Cau'r dewisiadau
 
 ## Shotindex page
 
@@ -237,6 +289,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Nid yw'r llun yma'n dod i ben
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Ydych chi'n siŵr eich bod eisiau dileu'r llun yma?
+shotDeleteCancel = Diddymu
+    .title = Diddymu
+shotDeleteConfirm = Dileu
+    .title = Dileu
 
 ## Metrics page
 ## All metrics strings are optional for translation

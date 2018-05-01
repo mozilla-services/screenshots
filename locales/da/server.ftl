@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Indberet dette skærmbillede for misbrug, spam eller andre problemer
 shotPageDownloadShot =
     .title = Hent
+shotPageEditButton =
+    .title = Rediger dette billede
 shotPageDownload = Hent
 shotPageScreenshotsDescription = Skærmbilleder helt enkelt. Tag, gem og del skærmbilleder uden af forlade Firefox.
 shotPageUpsellFirefox = Hent Firefox nu
@@ -147,28 +149,34 @@ shotPageExpiresIn = udløber { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = udløb { $timediff }
 timeDiffJustNow = netop nu
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] 1 minut siden
        *[other] { $number } minutter siden
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] 1 time siden
        *[other] { $number } timer siden
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] i går
        *[other] { $number } dage siden
     }
 timeDiffFutureSeconds = om et par sekunder
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] om 1 minut
        *[other] om { $number } minutter
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] om 1 time
        *[other] om { $number } timer
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] i morgen
        *[other] om { $number } dage
     }
@@ -193,6 +201,38 @@ annotationCropConfirmButton = Bekræft
     .title = Bekræft markering
 annotationCropCancelButton = Fortryd
     .title = Fortryd markering
+annotationColorWhite =
+    .title = Hvid
+annotationColorBlack =
+    .title = Sort
+annotationColorRed =
+    .title = Rød
+annotationColorGreen =
+    .title = Grøn
+annotationColorBlue =
+    .title = Blå
+annotationColorYellow =
+    .title = Gul
+annotationColorPurple =
+    .title = Lilla
+annotationColorSeaGreen =
+    .title = Havgrøn
+annotationColorGrey =
+    .title = Grå
+
+## Settings Page
+
+settingsDisconnectButton = Afbryd forbindelsen
+    .title = Afbryd forbindelsen
+settingsGuestAccountMessage = Gæstekonto
+settingsSignInInvite = Log ind for at synkronisere alle dine enheder
+settingsSignInButton = Log ind
+    .title = Log ind
+SettingsPageHeader = Indstillinger for Firefox Screenshots
+settingsDescription = Du kan logge ind med Firefox-konti for at synkronisere alle dine skærmbilleder på tværs af enheder og få adgang til dem privat.
+settingsPageSubHeader = Synkronisering & konti
+settingsClosePreferences =
+    .title = Luk indstillinger
 
 ## Shotindex page
 
@@ -226,6 +266,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Dette skærmbillede udløber ikke
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Er du sikker på, at du vil slette dette skærmbillede?
+shotDeleteCancel = Fortryd
+    .title = Fortryd
+shotDeleteConfirm = Slet
+    .title = Slet
 
 ## Metrics page
 ## All metrics strings are optional for translation

@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = 오용, 스팸 등의 이유로 이 스크린샷 신고
 shotPageDownloadShot =
     .title = 다운로드
+shotPageEditButton =
+    .title = 현재 이미지 편집
 shotPageDownload = 다운로드
 shotPageScreenshotsDescription = 스크린샷을 간편하게. Firefox 내에서 찍고, 저장하고, 공유하세요.
 shotPageUpsellFirefox = Firefox 다운로드
@@ -126,8 +128,13 @@ shotPageDMCAContact = 자세한 사항은 { $dmca }으로 문의하시기 바랍
 shotPageDMCAWarning = 스크린샷 신고 횟수가 많아지면, Firefox 스크린샷 사용 권한을 회수할 수도 있습니다.
 # Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = 이 스크린샷의 URL을 이메일에 첨부해 주세요. URL: { $url }
+shotPageKeepFor = 이 스크린샷을 얼마나 오래 유지하시겠습니까?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = 시간 선택
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = 무제한 ∞
 shotPageKeepTenMinutes = 10분
 shotPageKeepOneHour = 1시간
 shotPageKeepOneDay = 1일
@@ -161,6 +168,43 @@ annotationClearButton =
     .title = 지우기
 annotationCropButton =
     .title = 자르기
+annotationSaveEditButton = 저장
+    .title = 편집 저장
+annotationCancelEditButton = 취소
+    .title = 편집 취소
+annotationCropConfirmButton = 확인
+    .title = 선택 확인
+annotationCropCancelButton = 취소
+    .title = 선택 취소
+annotationColorWhite =
+    .title = 흰색
+annotationColorBlack =
+    .title = 검정
+annotationColorRed =
+    .title = 빨강
+annotationColorGreen =
+    .title = 초록
+annotationColorBlue =
+    .title = 파랑
+annotationColorYellow =
+    .title = 노랑
+annotationColorPurple =
+    .title = 보라
+annotationColorSeaGreen =
+    .title = 해록색
+annotationColorGrey =
+    .title = 회색
+
+## Settings Page
+
+settingsDisconnectButton = 연결 끊기
+    .title = 연결 끊기
+settingsGuestAccountMessage = 게스트 계정
+settingsSignInButton = 로그인
+    .title = 로그인
+SettingsPageHeader = Firefox Screenshots 설정
+settingsClosePreferences =
+    .title = 환경 설정 닫기
 
 ## Shotindex page
 
@@ -188,6 +232,20 @@ shotIndexPagePreviousPage =
     .title = 이전 페이지
 shotIndexPageNextPage =
     .title = 다음 페이지
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = 이 스크린샷은 만료되지 않습니다
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = 이 스크린샷을 삭제하시겠습니까?
+shotDeleteCancel = 취소
+    .title = 취소
+shotDeleteConfirm = 삭제
+    .title = 삭제
 
 ## Metrics page
 ## All metrics strings are optional for translation
@@ -206,9 +264,17 @@ metricsPageShotsQueryDescription = 하루에 만들어진 스크린샷 수 (최�
 metricsPageShotsQueryCount = 스크린샷 수
 metricsPageShotsQueryDay = 일
 metricsPageUsersQueryTitle = 일별 사용자
+metricsPageUsersQueryDescription = 하루에 최소 한 번 스크린샷을 찍은 사용자의 수 (지난 30일간)
 metricsPageUsersQueryCount = 사용자 수
 metricsPageUsersQueryDay = 일
 metricsPageUserShotsQueryTitle = 사용자 당 스크린샷 수
+metricsPageUserShotsQueryCount = 사용자 수
+metricsPageRetentionQueryUsers = 사용자 수
+metricsPageRetentionQueryFirstWeek = 사용자가 처음으로 스크린샷을 찍었던 주
+metricsPageTotalRetentionQueryUsers = 사용자 수
 metricsPageVersionQueryTitle = 부가 기능 버전
+metricsPageVersionQueryDescription = 지난 14일간 로그인하는동안 사용된 부가 기능의 버전
+metricsPageVersionQueryUsers = 로그인한 사용자 수
 metricsPageVersionQueryVersion = 부가 기능 버전
 metricsPageVersionQueryLastSeen = 일
+metricsPageHeader = 수치

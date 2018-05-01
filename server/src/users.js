@@ -166,7 +166,7 @@ exports.tradeCode = function(code) {
     mozlog.warn("fxa-tradecode-failed", {err});
     throw errors.badToken();
   }).then(res => {
-    return res.json()
+    return res.json();
   }).then(res => {
     return res;
   });
@@ -178,7 +178,7 @@ exports.disconnectDevice = function(deviceId) {
      SET accountId = null
      WHERE id = $1`,
     [deviceId]
-  )
+  );
 };
 
 exports.fetchProfileData = function(accessToken) {
@@ -189,12 +189,12 @@ exports.fetchProfileData = function(accessToken) {
       authorization: `Bearer ${accessToken}`
     },
   }).then(res => {
-    return res.json()
+    return res.json();
   }).then(res => {
     return res;
   }).catch(err => {
     throw errors.badProfile();
-  })
+  });
 };
 
 exports.saveProfileData = function(accountId, avatarUrl, nickname, email) {
@@ -204,7 +204,7 @@ exports.saveProfileData = function(accountId, avatarUrl, nickname, email) {
      WHERE id = $4`,
     [nickname || null, avatarUrl || null, email, accountId]
   );
-}
+};
 
 exports.getAccountId = function(accessToken) {
   const profileURI = `${config.fxa.profileServer}/uid`;
@@ -214,12 +214,12 @@ exports.getAccountId = function(accessToken) {
       authorization: `Bearer ${accessToken}`
     },
   }).then(res => {
-    return res.json()
+    return res.json();
   }).then(res => {
     return res;
   }).catch(err => {
     throw errors.badProfile();
-  })
+  });
 };
 
 exports.registerAccount = function(deviceId, accountId, accessToken) {
@@ -252,4 +252,4 @@ exports.retrieveAccount = function(deviceId) {
     }
     return null;
   });
-}
+};

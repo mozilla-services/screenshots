@@ -226,6 +226,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Шэры
 
+## Settings Page
+
+settingsDisconnectButton = Адлучыцца
+    .title = Адлучыцца
+settingsGuestAccountMessage = Гасцявы уліковы запіс
+settingsSignInInvite = Увайдзіце для сінхранізацыі паміж прыладамі
+settingsSignInButton = Увайсці
+    .title = Увайсці
+SettingsPageHeader = Налады Firefox Screenshots
+settingsDescription = Вы можаце ўвайсці з уліковым запісам Firefox, каб сінхранізаваць усе свае здымкі экрана паміж прыладамі і мець да іх прыватны доступ.
+settingsPageSubHeader = Сінхранізацыя і ўліковыя запісы
+settingsClosePreferences =
+    .title = Закрыць налады
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -258,6 +272,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Гэты здымак не пратэрмінаваны
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Вы ўпэўненыя, што жадаеце выдаліць гэты здымак?
+shotDeleteCancel = Адмяніць
+    .title = Адмяніць
+shotDeleteConfirm = Выдаліць
+    .title = Выдаліць
 
 ## Metrics page
 ## All metrics strings are optional for translation

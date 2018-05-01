@@ -1,5 +1,4 @@
 ### Localization for Server-side strings of Firefox Screenshots
-###
 ### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
@@ -11,7 +10,7 @@ gNoShots =
     .alt = هیچ تصویری پیدا نشد
 gScreenshotsDescription = عکس گرفتن از صفحه آسان شده است. بگیرید، ذخیره‌ کنید و عکس گرفته شده از صفحه را بدون ترک فایرفاکس همرسانی کنید.
 
-
+## Footer
 
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = موزیلا
@@ -22,7 +21,7 @@ footerLinkDMCA = گزارش تخلف IP
 footerLinkDiscourse = ارسال بازخورد
 footerLinkRemoveAllData = حذف همه‌ی داده‌ها
 
-
+## Creating page
 
 # Note: { $title } is a placeholder for the title of the web page
 # captured in the screenshot. The default, for pages without titles, is
@@ -31,7 +30,7 @@ creatingPageTitle = ایجاد { $title }
 creatingPageTitleDefault = صفحه
 creatingPageWaitMessage = در حال ذخیره کردن عکس شما…
 
-
+## Home page
 
 homePageDescription =
     .content = عکس‌های بصری گرفته شده مستقیما در مرورگر شما آماده می‌شود. گرفتن،‌ ذخیره و هم‌رسانی تصاویر صفحه در حالی که با فایرفاکس وب را مرور می‌کنید.
@@ -60,7 +59,7 @@ homePagePrivacyLink = حریم‌خصوصی
 homePageTermsLink = شرایط
 homePageCookiesLink = کوکی‌ها
 
-
+## Leave Screenshots page
 
 leavePageRemoveAllData = حذف تمام داده‌ها
 # Note: do not translate 'Firefox Screenshots' when translating this string
@@ -72,13 +71,13 @@ leavePageButtonProceed = ادامه
 leavePageButtonCancel = لغو
 leavePageDeleted = تمام عکس‌های صفحه شما حذف شدند!
 
-
+## Not Found page
 
 notFoundPageTitle = صفحه پیدا نشد
 notFoundPageIntro = اوه
 notFoundPageDescription = صفحه پیدا نشد.
 
-
+## Shot page
 
 # This is the HTML title tag of the page
 shotPageTitle = عکس صفحه: { $originalTitle }
@@ -148,28 +147,10 @@ shotPageExpiresIn = { $timediff } منقضی می‌شود
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = منقضی شده { $timediff }
 timeDiffJustNow = هم‌اکنون
-timeDiffMinutesAgo = { $number ->
-       *[other] ۱ دقیقه پیش
-    }
-timeDiffHoursAgo = { $number ->
-       *[other] ۱ ساعت پیش
-    }
-timeDiffDaysAgo = { $number ->
-       *[other] دیروز
-    }
 timeDiffFutureSeconds = چند ثانیه پیش
-timeDiffFutureMinutes = { $number ->
-       *[other] در یک دقیقه
-    }
-timeDiffFutureHours = { $number ->
-       *[other] در یک ساعت
-    }
-timeDiffFutureDays = { $number ->
-       *[other] فردا
-    }
 errorThirdPartyCookiesEnabled = اگر شما این عکس را گرفته‌اید و نمی‌تواند آن را حذف کنید، ممکن است لازم باشد به طور موقت کوکی‌های شخص ثالث را از تنظیمات مرورگر خود فعال کنید.
 
-
+## Annotations
 
 annotationPenButton =
     .title = خودکار
@@ -180,14 +161,15 @@ annotationClearButton =
     .title = پاک کردن
 annotationCropButton =
     .title = بُرش
-annotationSaveButton = ذخیره
-annotationCancelButton = انصراف
 annotationCropConfirmButton = تایید
     .title = تایید موارد انتخابی
 annotationCropCancelButton = لغو
     .title = لغو موارد انتخابی
 
+## Settings Page
 
+
+## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
 # { $statusText } is a text description of the status code, like 'Internal server error'.
@@ -220,7 +202,11 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = این عکس منقضی نخواد شد
 
-## all metrics strings are optional for translation
+## Delete Confirmation Dialog
+
+
+## Metrics page
+## All metrics strings are optional for translation
 
 # Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = معیار‌های Firefox Screenshots

@@ -291,7 +291,7 @@ app.param("id", function(req, res, next, id) {
     next();
     return;
   }
-  const exc = new Error("invalid id")
+  const exc = new Error("invalid id");
   exc.isAppError = true;
   exc.output = {
     statusCode: 400,
@@ -339,7 +339,7 @@ const parentHelperJs = readFileSync(path.join(__dirname, "/static/js/parent-help
 app.get("/parent-helper.js", function(req, res) {
   setMonthlyCache(res);
   const postMessageOrigin = `${req.protocol}://${req.config.contentOrigin}`;
-  const script = `${parentHelperJs}\nvar CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`
+  const script = `${parentHelperJs}\nvar CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`;
   jsResponse(res, script);
 });
 
@@ -354,6 +354,7 @@ app.get("/install-raven.js", function(req, res) {
   const options = {
     environment: process.env.NODE_ENV || "dev",
     release: linker.getGitRevision(),
+    sanitizeKeys: ["url"],
     serverName: req.backend
   };
   // FIXME: this monkeypatch is because our version of Raven (6.2) doesn't really work
@@ -695,7 +696,7 @@ app.put("/data/:id/:domain",
 
       if (req.files.thumbnail) {
         const encodedThumbnail = req.files.thumbnail[0].buffer.toString("base64");
-        bodyObj.thumbnail = `data:image/png;base64,${encodedThumbnail}`
+        bodyObj.thumbnail = `data:image/png;base64,${encodedThumbnail}`;
       }
     } else if (req.body) {
       bodyObj = req.body;
@@ -711,7 +712,7 @@ app.put("/data/:id/:domain",
       return;
     }
     const shot = new Shot(req.deviceId, req.backend, shotId, bodyObj);
-    let responseDelay = Promise.resolve()
+    let responseDelay = Promise.resolve();
     if (slowResponse) {
       responseDelay = new Promise((resolve) => {
         setTimeout(resolve, slowResponse);
@@ -861,7 +862,7 @@ app.post("/api/save-edit", function(req, res) {
     simpleResponse(res, "Updated", 200);
   }).catch((err) => {
     errorResponse(res, "Error updating image", err);
-  })
+  });
 });
 
 app.post("/api/set-expiration", function(req, res) {
@@ -1128,9 +1129,16 @@ app.use((req, res, next) => {
         dsn = "";
       }
       req.cspNonce = uuid;
-      res.header(
-        "Content-Security-Policy",
-        `default-src 'self'; img-src 'self' ${FXA_SERVER} www.google-analytics.com ${SITE_CDN} ${CONTENT_CDN} ${CONTENT_NAME} data:; script-src 'self' ${SITE_CDN} www.google-analytics.com 'nonce-${uuid}'; style-src 'self' ${SITE_CDN} 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' ${SITE_CDN} www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
+      // This should be a temporary workaround for
+      // https://github.com/mozilla-services/screenshots/issues/4281
+      // (https://bugzilla.mozilla.org/show_bug.cgi?id=1267027).
+      // TODO: remove this when bug 1267027 is resolved.
+      const DO_NOT_SEND_CSP = process.env.NODE_ENV === "dev" && process.env.DO_NOT_SEND_CSP && process.env.DO_NOT_SEND_CSP === "true";
+      if (!DO_NOT_SEND_CSP) {
+        res.header(
+          "Content-Security-Policy",
+          `default-src 'self'; img-src 'self' ${FXA_SERVER} www.google-analytics.com ${SITE_CDN} ${CONTENT_CDN} ${CONTENT_NAME} data:; script-src 'self' ${SITE_CDN} www.google-analytics.com 'nonce-${uuid}'; style-src 'self' ${SITE_CDN} 'unsafe-inline' https://code.cdn.mozilla.net; connect-src 'self' ${SITE_CDN} www.google-analytics.com ${dsn}; font-src https://code.cdn.mozilla.net; frame-ancestors 'none'; object-src 'none';`);
+      }
       res.header("X-Frame-Options", "DENY");
       next();
     } else {

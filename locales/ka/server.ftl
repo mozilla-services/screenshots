@@ -66,7 +66,7 @@ leavePageRemoveAllData = ყველა მონაცემის წაშ�
 leavePageErrorAddonRequired = ანგარიშის წასაშლელად აუცილებელია გეყენოთ Firefox Screenshots
 leavePageErrorGeneric = მოხდა შეცდომა
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageWarning = ამის შედეგად, Firefox Screenshots-ის მონაცემები სამუდამოდ წაიშლება.
+leavePageWarning = შედეგად, Firefox Screenshots-ის მონაცემები სამუდამოდ წაიშლება.
 leavePageButtonProceed = გაგრძელება
 leavePageButtonCancel = გაუქმება
 leavePageDeleted = თქვენი ყველა სურათი წაიშლება!
@@ -152,24 +152,29 @@ timeDiffJustNow = ახლახანს
 timeDiffMinutesAgo = 1 წუთის წინ
 timeDiffHoursAgo =
     { $number ->
-       *[other] 1 საათის წინ
+        [one] 1 საათის წინ
+       *[other] { $number } საათის წინ
     }
 timeDiffDaysAgo =
     { $number ->
-       *[other] გუშინ
+        [one] გუშინ
+       *[other] { $number } დღის წინ
     }
 timeDiffFutureSeconds = რამდენიმე წუთში
 timeDiffFutureMinutes =
     { $number ->
-       *[other] 1 წუთში
+        [one] 1 წუთში
+       *[other] { $number } წუთში
     }
 timeDiffFutureHours =
     { $number ->
-       *[other] 1 საათში
+        [one] 1 საათში
+       *[other] { $number } საათში
     }
 timeDiffFutureDays =
     { $number ->
-       *[other] ხვალ
+        [one] ხვალ
+       *[other] { $number } დღეში
     }
 errorThirdPartyCookiesEnabled = თუ გადაიღეთ სურათი, მაგრამ ვერ ახერხებთ მის წაშლას, სავარაუდოდ, დაგჭირდებათ მესამე მხარის ფუნთუშების დროებით დაშვება, ბრაუზერის პარამეტრებიდან.
 
@@ -211,6 +216,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = ნაცრისფერი
 
+## Settings Page
+
+settingsDisconnectButton = კავშირის შეწყვეტა
+    .title = კავშირის შეწყვეტა
+settingsGuestAccountMessage = სტუმრის ანგარიში
+settingsSignInInvite = შესვლა, მოწყობილობებზე დასინქრონებისთვის
+settingsSignInButton = შესვლა
+    .title = შესვლა
+SettingsPageHeader = Firefox Screenshots-ის პარამეტრები
+settingsDescription = შეგიძლიათ Firefox ანგარიშზე შესვლა, გადაღებული სურათების ყველა მოწყობილობაზე უსაფრთხოდ დასინქრონებისთვის.
+settingsPageSubHeader = სინქრონიზაცია და ანგარიშები
+settingsClosePreferences =
+    .title = პარამეტრების დახურვა
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -243,6 +262,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = ეს სურათი უვადოა
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = ნამდვილად გსურთ ამ გადაღებული სურათის წაშლა?
+shotDeleteCancel = გაუქმება
+    .title = გაუქმება
+shotDeleteConfirm = წაშლა
+    .title = წაშლა
 
 ## Metrics page
 ## All metrics strings are optional for translation

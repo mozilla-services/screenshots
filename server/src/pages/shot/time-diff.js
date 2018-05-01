@@ -15,7 +15,7 @@ exports.TimeDiff = class TimeDiff extends React.Component {
     } else {
       timeDiff = this.dateString(this.props.date);
     }
-    return <Localized id={timeDiff.l10nID} $number={this.state.useLocalTime ? parseInt(timeDiff.diff, 10) : timeDiff.diff}><span title={this.dateString(this.props.date)}></span></Localized>
+    return <Localized id={timeDiff.l10nID} $number={this.state.useLocalTime ? parseInt(timeDiff.diff, 10) : timeDiff.diff}><span title={this.dateString(this.props.date)}></span></Localized>;
   }
 
   componentDidMount() {
@@ -61,17 +61,16 @@ exports.TimeDiff = class TimeDiff extends React.Component {
   }
 
   dateString(d) {
+    if (!this.state.useLocalTime) {
+      return "";
+    }
     if (!(d instanceof Date)) {
       d = new Date(d);
-    }
-    if (this.props.userLocales && this.props.userLocales.length) {
-      return d.toLocaleString(this.props.userLocales[0]);
     }
     return d.toLocaleString();
   }
 };
 
 exports.TimeDiff.propTypes = {
-  date: PropTypes.number,
-  userLocales: PropTypes.array
-}
+  date: PropTypes.number
+};

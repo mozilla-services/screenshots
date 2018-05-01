@@ -7,7 +7,7 @@ COPY build/shared /app/build/shared
 COPY node_modules /app/node_modules
 COPY bin/_run-docker /app/bin/
 COPY build/screenshots.xpi /app/build/xpi/screenshots.xpi
-ENV NODE_ICU_DATA="/app/node_modules/full-icu"
 RUN cd app && npm install
+ENV NODE_ENV ${NODE_ENV:-production}
 
 CMD /app/bin/_run-docker

@@ -220,6 +220,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Grå
 
+## Settings Page
+
+settingsDisconnectButton = Koppla från
+    .title = Koppla från
+settingsGuestAccountMessage = Gästkonto
+settingsSignInInvite = Logga in för att synkronisera alla enheter
+settingsSignInButton = Logga in
+    .title = Logga in
+SettingsPageHeader = Inställningar Firefox Screenshots
+settingsDescription = Du kan logga in med Firefox-konton för att synkronisera alla dina skärmbilder på olika enheter och få tillgång till dem privat.
+settingsPageSubHeader = Synkronisera & Konton
+settingsClosePreferences =
+    .title = Stäng inställningar
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -252,6 +266,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Denna bild upphör inte
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Är du säker på att du vill ta bort denna bild?
+shotDeleteCancel = Avbryt
+    .title = Avbryt
+shotDeleteConfirm = Ta bort
+    .title = Ta bort
 
 ## Metrics page
 ## All metrics strings are optional for translation

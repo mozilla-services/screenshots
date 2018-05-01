@@ -121,7 +121,7 @@ class Test {
           if (controlProb < 0.5) {
             tests[this.name] = this.testWithValue("control");
           } else {
-            tests[this.name] = this.testWithValue(option.name)
+            tests[this.name] = this.testWithValue(option.name);
           }
           setAny = true;
           break;

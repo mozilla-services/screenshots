@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Dèan aithris air a’ ghlacadh seo a thaobh mì-ghnàthachaidh, spama no adhbhair eile
 shotPageDownloadShot =
     .title = Luchdaich a-nuas
+shotPageEditButton =
+    .title = Deasaich an dealbh seo
 shotPageDownload = Luchdaich a-nuas
 shotPageScreenshotsDescription = Glacaidhean-sgrìn gun duilgheadas sam bith. Tog, sàbhail is co-roinn iad gun Firefox fhàgail idir.
 shotPageUpsellFirefox = Faigh Firefox an-dràsta
@@ -211,6 +213,38 @@ annotationCropConfirmButton = Dearbh
     .title = Dearbh an taghadh
 annotationCropCancelButton = Sguir dheth
     .title = Sguir dhen taghadh
+annotationColorWhite =
+    .title = Geal
+annotationColorBlack =
+    .title = Dubh
+annotationColorRed =
+    .title = Dearg
+annotationColorGreen =
+    .title = Uaine
+annotationColorBlue =
+    .title = Gorm
+annotationColorYellow =
+    .title = Buidhe
+annotationColorPurple =
+    .title = Purpaidh
+annotationColorSeaGreen =
+    .title = Glas
+annotationColorGrey =
+    .title = Liath
+
+## Settings Page
+
+settingsDisconnectButton = Dì-cheangail
+    .title = Dì-cheangail
+settingsGuestAccountMessage = Cunntas aoigh
+settingsSignInInvite = Clàraich a-steach airson sioncronachadh air feadh uidheaman a dhèanamh
+settingsSignInButton = Clàraich a-steach
+    .title = Clàraich a-steach
+SettingsPageHeader = Roghainnean ghlacaidhean-sgrìn Firefox
+settingsDescription = ’S urrainn dhut clàradh a-steach gu cunntasan Firefox airson na glacaidhean-sgrìn agad a shioncronachadh air feadh nan uidheaman agad is cothrom fhaighinn orra gu prìobhaideach.
+settingsPageSubHeader = Sioncronachadh ⁊ cunntasan
+settingsClosePreferences =
+    .title = Dùin na roghainnean
 
 ## Shotindex page
 
@@ -244,6 +278,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Chan fhalbh an ùine air a’ ghlacadh seo
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = A bheil thu cinnteach gu bheil thu airson an glacadh seo a sguabadh às?
+shotDeleteCancel = Sguir dheth
+    .title = Sguir dheth
+shotDeleteConfirm = Sguab às
+    .title = Sguab às
 
 ## Metrics page
 ## All metrics strings are optional for translation

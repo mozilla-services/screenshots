@@ -220,6 +220,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Cinzento
 
+## Settings Page
+
+settingsDisconnectButton = Desligar
+    .title = Desligar
+settingsGuestAccountMessage = Conta de convidado
+settingsSignInInvite = Iniciar sessão para sincronizar entre dispositivos
+settingsSignInButton = Iniciar sessão
+    .title = Iniciar sessão
+SettingsPageHeader = Definições do Firefox Screenshots
+settingsDescription = Pode iniciar sessão com Contas Firefox para sincronizar todas as suas capturas de ecrã entre dispositivos e aceder-las privadamente.
+settingsPageSubHeader = Sync e contas
+settingsClosePreferences =
+    .title = Fechar preferências
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -252,6 +266,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Esta captura não expira
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Tem a certeza de que pretende apagar esta captura?
+shotDeleteCancel = Cancelar
+    .title = Cancelar
+shotDeleteConfirm = Apagar
+    .title = Apagar
 
 ## Metrics page
 ## All metrics strings are optional for translation

@@ -15,7 +15,7 @@ gScreenshotsDescription = Jednoduchá tvorba snímků webových stránek. Vytvá
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Podmínky
-footerLinkPrivacy = Zásady ochrany soukromí
+footerLinkPrivacy = Zásady ochrany osobních údajů
 footerLinkFaqs = Časté dotazy
 footerLinkDMCA = Nahlásit zneužití IP adresy
 footerLinkDiscourse = Váš názor
@@ -226,6 +226,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Šedá
 
+## Settings Page
+
+settingsDisconnectButton = Odpojit
+    .title = Odpojit
+settingsGuestAccountMessage = Účet pro hosta
+settingsSignInInvite = Přihlaste se pro synchronizaci napříč zařízeními
+settingsSignInButton = Přihlásit
+    .title = Přihlášení
+SettingsPageHeader = Nastavení Firefox Screenshots
+settingsDescription = Můžete se přihlásit pomocí svého účtu Firefoxu a bezpečně synchronizovat všechny své snímky napříč všemi zařízeními.
+settingsPageSubHeader = Synchronizace a účty
+settingsClosePreferences =
+    .title = Zavřít předvolby
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -258,6 +272,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Tento snímek je uložen navždy
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Opravdu chcete tento snímek smazat?
+shotDeleteCancel = Zrušit
+    .title = Zrušit
+shotDeleteConfirm = Smazat
+    .title = Smazat
 
 ## Metrics page
 ## All metrics strings are optional for translation

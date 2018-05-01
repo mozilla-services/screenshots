@@ -33,7 +33,7 @@ creatingPageWaitMessage = Jo ôfbylding bewarje…
 ## Home page
 
 homePageDescription =
-    .content = Intuïtive skermôfbyldingen, streekrjocht yn de browser. Wylst jo mei Firefox op it web surfe, kinne jo skermôfbyldingen meitsje, bewarje en diele.
+    .content = Yntuïtive skermôfbyldingen, streekrjocht yn de browser. Wylst jo mei Firefox op it web surfe, kinne jo skermôfbyldingen meitsje, bewarje en diele.
 homePageButtonMyShots = Nei myn ôfbyldingen
 homePageTeaser = Ynkoarten beskikber...
 homePageDownloadFirefoxTitle = Firefox
@@ -220,6 +220,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Griis
 
+## Settings Page
+
+settingsDisconnectButton = Ferbrekke
+    .title = Ferbrekke
+settingsGuestAccountMessage = Gastaccount
+settingsSignInInvite = Meld jo oan om tusken apparaten te syngronisearjen
+settingsSignInButton = Oanmelde
+    .title = Oanmelde
+SettingsPageHeader = Ynstellingen fan Firefox Screenshots
+settingsDescription = Jo kinne jo oanmelde mei Firefox Accounts om al jo skermôfbyldingen tusken apparaten te syngronisearjen en dizze privee te benaderjen.
+settingsPageSubHeader = Sync en accounts
+settingsClosePreferences =
+    .title = Foarkarren slute
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -252,6 +266,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Dizze skermôfdruk ferrint nea
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Binne jo wis dat jo dizze skermôfdruk fuortsmite wolle?
+shotDeleteCancel = Annulearje
+    .title = Annulearje
+shotDeleteConfirm = Fuortsmite
+    .title = Fuortsmite
 
 ## Metrics page
 ## All metrics strings are optional for translation

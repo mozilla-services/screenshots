@@ -226,6 +226,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Серый
 
+## Settings Page
+
+settingsDisconnectButton = Отсоединить
+    .title = Отсоединить
+settingsGuestAccountMessage = Гостевой аккаунт
+settingsSignInInvite = Войдите, чтобы синхронизироваться между устройствами
+settingsSignInButton = Войти
+    .title = Войти
+SettingsPageHeader = Параметры Firefox Screenshots
+settingsDescription = Вы можете войти в Аккаунт Firefox, чтобы синхронизировать все снимки экрана между устройствами и приватно получить к ним доступ.
+settingsPageSubHeader = Синхронизация и Аккаунты
+settingsClosePreferences =
+    .title = Закрыть настройки
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -258,6 +272,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Срок хранения этого снимка неограничен
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Вы уверены, что хотите удалить этот снимок?
+shotDeleteCancel = Отмена
+    .title = Отмена
+shotDeleteConfirm = Удалить
+    .title = Удалить
 
 ## Metrics page
 ## All metrics strings are optional for translation

@@ -276,6 +276,7 @@ $very-light-grey: #ededed;
 }
 
 .preview-overlay {
+  cursor: crosshair;
   align-items: center;
   background-color: $modal-color;
   display: flex;

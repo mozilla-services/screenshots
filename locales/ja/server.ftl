@@ -196,6 +196,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = 灰
 
+## Settings Page
+
+settingsDisconnectButton = 接続を解除
+    .title = 接続を解除
+settingsGuestAccountMessage = ゲストアカウント
+settingsSignInInvite = ログインして端末間で同期
+settingsSignInButton = ログイン
+    .title = ログイン
+SettingsPageHeader = Firefox Screenshots の設定
+settingsDescription = Firefox Accounts でログインすれば、端末間ですべてのスクリーンショットを同期し、非公開のままアクセスできます。
+settingsPageSubHeader = 同期 & アカウント
+settingsClosePreferences =
+    .title = 設定を閉じる
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -228,6 +242,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = このショットの期限はありません
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = 本当にこのショットを削除しますか？
+shotDeleteCancel = キャンセル
+    .title = キャンセル
+shotDeleteConfirm = 削除
+    .title = 削除
 
 ## Metrics page
 ## All metrics strings are optional for translation

@@ -113,7 +113,7 @@ shotPageExpiredMessageDetails = Her er sida det vart generert frå:
 shotPageDeleteButton =
     .title = Slett dette skjermbildet
 shotPageAbuseButton =
-    .title = Rapporter dette bildet for brot, spam eller andre problem
+    .title = Rapporter dette bildet for brot, spam (søppel) eller andre problem
 shotPageDownloadShot =
     .title = Last ned
 shotPageEditButton =
@@ -220,6 +220,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Grå
 
+## Settings Page
+
+settingsDisconnectButton = Kople frå
+    .title = Kople frå
+settingsGuestAccountMessage = Gjestekonto
+settingsSignInInvite = Logg inn for å synkronisere på tvers av einingar
+settingsSignInButton = Logg inn
+    .title = Logg inn
+SettingsPageHeader = Innstillingar for Firefox Screenshots
+settingsDescription = Du kan logge inn med Firefox-kontoar for å synkronisere alle skjermbilda dine på tvers av einingar og få tilgang til dei privat.
+settingsPageSubHeader = Synkronisering og kontoar
+settingsClosePreferences =
+    .title = Lat att innstillingar
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -252,6 +266,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Dette skjermbildet går ikkje ut
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Er du sikker på at du vil slette dette skjermbildet?
+shotDeleteCancel = Avbryt
+    .title = Avbryt
+shotDeleteConfirm = Slett
+    .title = Slett
 
 ## Metrics page
 ## All metrics strings are optional for translation

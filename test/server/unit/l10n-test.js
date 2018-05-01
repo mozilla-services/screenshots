@@ -33,20 +33,20 @@ describe("l10n", () => {
       const getText = l10n.getText(["al-GO", "bb-MO"]);
       assert.equal(getText("abc"), "123");
       assert.equal(getText("soccer"), "football");
-    })
+    });
     it("should return an empty string when a L10n ID is not found", () => {
       const getText = l10n.getText(["al-GO", "bb-MO"]);
       assert.equal(getText("xyz"), "");
-    })
+    });
   });
   describe("getString", () => {
     it("should return the L10n strings of available locales", () => {
       const given = l10n.getStrings(["no-PE", "bb-MO"]);
       assert.equal(given["bb-MO"], localeData["bb-MO"]);
-    })
+    });
     it("should always return the default en-US L10n string", () => {
       const given = l10n.getStrings(["no-PE", "go-TO"]);
       assert.deepEqual(given, {"en-US": localeData["en-US"]});
-    })
+    });
   });
 });

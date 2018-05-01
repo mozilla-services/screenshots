@@ -226,6 +226,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Szary
 
+## Settings Page
+
+settingsDisconnectButton = Rozłącz
+    .title = Rozłącz
+settingsGuestAccountMessage = Konto gościa
+settingsSignInInvite = Zaloguj się, aby synchronizować między urządzeniami
+settingsSignInButton = Zaloguj się
+    .title = Zaloguj się
+SettingsPageHeader = Ustawienia Firefox Screenshots
+settingsDescription = Można zalogować się za pomocą konta Firefoksa, aby synchronizować wszystkie zrzuty ekranu między urządzeniami i mieć do nich dostęp.
+settingsPageSubHeader = Synchronizacja i konta
+settingsClosePreferences =
+    .title = Zamknij preferencje
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -258,6 +272,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Ten zrzut nie ulega przeterminowaniu
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Czy na pewno usunąć ten zrzut?
+shotDeleteCancel = Anuluj
+    .title = Anuluj
+shotDeleteConfirm = Usuń
+    .title = Usuń
 
 ## Metrics page
 ## All metrics strings are optional for translation

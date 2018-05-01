@@ -75,14 +75,14 @@ const conf = convict({
       doc: "The FxA OAuth server base URL",
       format: String,
       default: "https://oauth-stable.dev.lcip.org/v1",
-      env: "FXA_OAUTH_SERVER",
+      env: "FXA_OAUTH_URI",
       arg: "oauth-server",
     },
     profileServer: {
       doc: "The FxA profile server base URL",
       format: String,
       default: "https://stable.dev.lcip.org/profile/v1",
-      env: "PROFILE_SERVER",
+      env: "FXA_PROFILE_URI",
       arg: "profile-server",
     },
     clientId: {

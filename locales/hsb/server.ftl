@@ -232,6 +232,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Šěry
 
+## Settings Page
+
+settingsDisconnectButton = Zwisk dźělić
+    .title = Zwisk dźělić
+settingsGuestAccountMessage = Hóstne konto
+settingsSignInInvite = Přizjewće so, zo byšće přez graty synchronizował
+settingsSignInButton = Přizjewić
+    .title = Přizjewić
+SettingsPageHeader = Nastajenja Firefox Screenshots
+settingsDescription = Móžeće so z Firefox Accounts přizjewić, zo byšće wšě swoje fota wobrazowki přez graty synchronizował a priwatny přistup na nje měł.
+settingsPageSubHeader = Synchronizacija a konta
+settingsClosePreferences =
+    .title = Nastajenja začinić
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -264,6 +278,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Tute foto wobrazowki njespadnje
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Chceće tute foto wobrazowki woprawdźe zhašeć?
+shotDeleteCancel = Přetorhnyć
+    .title = Přetorhnyć
+shotDeleteConfirm = Zhašeć
+    .title = Zhašeć
 
 ## Metrics page
 ## All metrics strings are optional for translation

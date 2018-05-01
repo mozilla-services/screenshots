@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Raporteeri see pilt kuritarvituse, rämpspostituse või teiste probleemide tõttu
 shotPageDownloadShot =
     .title = Laadi alla
+shotPageEditButton =
+    .title = Muuda seda pilti
 shotPageDownload = Laadi alla
 shotPageScreenshotsDescription = Ekraanipildid lihtsalt. Tee, salvesta ja jaga ekraanipilte Firefoxist lahkumata.
 shotPageUpsellFirefox = Hangi Firefox
@@ -199,6 +201,38 @@ annotationCropConfirmButton = Kinnita
     .title = Kinnita valik
 annotationCropCancelButton = Loobu
     .title = Loobu valikust
+annotationColorWhite =
+    .title = Valge
+annotationColorBlack =
+    .title = Must
+annotationColorRed =
+    .title = Punane
+annotationColorGreen =
+    .title = Roheline
+annotationColorBlue =
+    .title = Sinine
+annotationColorYellow =
+    .title = Kollane
+annotationColorPurple =
+    .title = Lilla
+annotationColorSeaGreen =
+    .title = Mereroheline
+annotationColorGrey =
+    .title = Hall
+
+## Settings Page
+
+settingsDisconnectButton = Ühenda lahti
+    .title = Ühenda lahti
+settingsGuestAccountMessage = Külaliskonto
+settingsSignInInvite = Seadmete vahel sünkimiseks logi sisse
+settingsSignInButton = Logi sisse
+    .title = Logi sisse
+SettingsPageHeader = Firefox Screenshots'i seaded
+settingsDescription = Saad Firefoxi kontoga sisse logida ning vaadata ja sünkida pilte privaatselt seadmete vahel.
+settingsPageSubHeader = Sünkimine ja kontod
+settingsClosePreferences =
+    .title = Sulge seaded
 
 ## Shotindex page
 
@@ -232,6 +266,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = See pilt ei aegu
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Kas oled kindel, et soovid selle pildi kustutada?
+shotDeleteCancel = Loobu
+    .title = Loobu
+shotDeleteConfirm = Kustuta
+    .title = Kustuta
 
 ## Metrics page
 ## All metrics strings are optional for translation

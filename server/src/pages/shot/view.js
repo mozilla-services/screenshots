@@ -5,6 +5,7 @@ const { Localized } = require("fluent-react/compat");
 const { Footer } = require("../../footer-view");
 const sendEvent = require("../../browser-send-event.js");
 const { ShareButton } = require("../../share-buttons");
+const { DeleteShotButton } = require("../../delete-shot-button");
 const { TimeDiff } = require("./time-diff");
 const reactruntime = require("../../reactruntime");
 const { Editor } = require("./editor");
@@ -151,7 +152,7 @@ class Head extends React.Component {
     if (!url.startsWith("http")) {
       return url;
     }
-    if (url.indexOf("?") === -1) {
+    if (!url.includes("?")) {
       url += "?";
     } else {
       url += "&";
@@ -178,19 +179,25 @@ class Body extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({highlightEditButton: this.props.highlightEditButton});
+  }
+
   doCloseBanner() {
     this.setState({closeBanner: true});
   }
 
-  onClickDelete(e) {
+  clickDeleteHandler() {
     sendEvent("start-delete", "navbar", {useBeacon: true});
-    const confirmMessage = document.getElementById("shotPageConfirmDelete").textContent;
-    if (window.confirm(confirmMessage)) {
-      sendEvent("delete", "popup-confirm", {useBeacon: true});
-      this.props.controller.deleteShot(this.props.shot);
-    } else {
-      sendEvent("cancel-delete", "popup-confirm");
-    }
+  }
+
+  confirmDeleteHandler() {
+    sendEvent("delete", "popup-confirm", {useBeacon: true});
+    this.props.controller.deleteShot(this.props.shot);
+  }
+
+  cancelDeleteHandler() {
+    sendEvent("cancel-delete", "popup-confirm");
   }
 
   onClickFlag(e) {
@@ -331,7 +338,7 @@ class Body extends React.Component {
 
     const linkTextShort = shot.urlDisplay;
 
-    const timeDiff = <TimeDiff date={shot.createdDate} userLocales={this.props.userLocales} />;
+    const timeDiff = <TimeDiff date={shot.createdDate} />;
     let expiresDiff = null;
     if (this.props.isOwner) {
       expiresDiff = <span className="expire-widget">
@@ -344,13 +351,14 @@ class Body extends React.Component {
 
     let trashOrFlagButton;
     let editButton;
-    const highlight = this.props.highlightEditButton ? <div className="edit-highlight" onClick={ this.onClickEdit.bind(this) } onMouseOver={ this.onMouseOverHighlight.bind(this) } onMouseOut={ this.onMouseOutHighlight.bind(this) }></div> : null;
+    const highlight = this.state.highlightEditButton ? <div className="edit-highlight" onClick={ this.onClickEdit.bind(this) } onMouseOver={ this.onMouseOverHighlight.bind(this) } onMouseOut={ this.onMouseOutHighlight.bind(this) }></div> : null;
     if (this.props.isOwner) {
-      trashOrFlagButton = <Localized id="shotPageDeleteButton">
-        <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this) }></button>
-      </Localized>;
+      trashOrFlagButton = <DeleteShotButton
+        clickDeleteHandler={ this.clickDeleteHandler.bind(this) }
+        confirmDeleteHandler={ this.confirmDeleteHandler.bind(this) }
+        cancelDeleteHandler={ this.cancelDeleteHandler.bind(this) } />;
       editButton = <Localized id="shotPageEditButton">
-        <button className="button transparent edit" title="Edit this image" onClick={ this.onClickEdit.bind(this) } ref={(edit) => { this.editButton = edit }}></button>
+        <button className="button transparent edit" title="Edit this image" onClick={ this.onClickEdit.bind(this) } ref={(edit) => { this.editButton = edit; }}></button>
       </Localized>;
     } else {
       trashOrFlagButton = <Localized id="shotPageAbuseButton">
@@ -436,7 +444,6 @@ class Body extends React.Component {
         <section className="clips">
           { this.props.isOwner && this.props.loginFailed ? <LoginFailedWarning /> : null }
           { errorMessages }
-          { this.props.showSurveyLink ? this.renderSurveyLink() : null }
           { clips }
         </section>
         <Footer forUrl={ shot.viewUrl } {...this.props} />
@@ -450,15 +457,6 @@ class Body extends React.Component {
 
   onMouseOutHighlight() {
     this.editButton.style.backgroundColor = "transparent";
-  }
-
-  renderSurveyLink() {
-    return <div className="clips-message">
-      <div className="clip-message-content">Help us choose which features to add next by taking this <a href="https://qsurvey.mozilla.com/s3/ss-max-diff-q4-2017" target="_blank" rel="noopener noreferrer">quick survey</a>.</div>
-      <div className="clip-message-dismiss-wrapper" onClick={controller.closeSurveyLink}>
-        <div className="clip-message-dismiss" />
-      </div>
-    </div>
   }
 
   renderFirefoxRequired() {
@@ -615,9 +613,9 @@ class ExpireWidget extends React.Component {
       const expired = this.props.expireTime < Date.now();
       const timediff = <TimeDiff date={this.props.expireTime} simple={this.props.simple} />;
       if (expired) {
-        button = <Localized id="shotPageExpired" $timediff={timediff}><span>expired {timediff}</span></Localized>
+        button = <Localized id="shotPageExpired" $timediff={timediff}><span>expired {timediff}</span></Localized>;
       } else {
-        button = <Localized id="shotPageExpiresIn" $timediff={timediff}><span>expires {timediff}</span></Localized>
+        button = <Localized id="shotPageExpiresIn" $timediff={timediff}><span>expires {timediff}</span></Localized>;
       }
     }
     return (

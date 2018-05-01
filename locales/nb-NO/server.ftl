@@ -4,7 +4,7 @@
 
 ## Global phrases shared across pages, prefixed with 'g'
 
-gMyShots = Uendelig ∞
+gMyShots = Mine skjermbilder
 gHomeLink = Hjem
 gNoShots =
     .alt = Ingen skjermbilder funnet
@@ -220,6 +220,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Grå
 
+## Settings Page
+
+settingsDisconnectButton = Koble fra
+    .title = Koble fra
+settingsGuestAccountMessage = Gjestekonto
+settingsSignInInvite = Logg inn for å synkronisere på tvers av enheter
+settingsSignInButton = Logg inn
+    .title = Logg inn
+SettingsPageHeader = Innstillinger for Firefox Screenshots
+settingsDescription = Du kan logge inn med Firefox-kontoer for å synkronisere alle skjermbildene dine på tvers av enheter og få tilgang til dem privat.
+settingsPageSubHeader = Synkronisering og kontoer
+settingsClosePreferences =
+    .title = Lukk innstillinger
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -252,6 +266,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Dette skjermbildet utløper ikke
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Er du sikker på at du vil slette dette skjermbildet?
+shotDeleteCancel = Avbryt
+    .title = Avbryt
+shotDeleteConfirm = Slett
+    .title = Slett
 
 ## Metrics page
 ## All metrics strings are optional for translation

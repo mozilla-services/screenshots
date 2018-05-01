@@ -220,6 +220,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Chaj
 
+## Settings Page
+
+settingsDisconnectButton = Tichup
+    .title = Tichup
+settingsGuestAccountMessage = Rub'i' Rutaqoya'l Peyon
+settingsSignInInvite = Titikirisäx molojri'ïl richin nib'an ximoj chi kikojol okisaxel
+settingsSignInButton = Titikirisäx molojri'ïl
+    .title = Titikirisäx molojri'ïl
+SettingsPageHeader = Taq Runuk'ulem Firefox Screenshots
+settingsDescription = Yatikïr natikirisaj molojri'ïl pa ri Rub'i' Taqoya'l richin Firefox richin ye'axïm konojel ri chapoj kiwäch taq awokisaxel chuqa' richin ichinan rub'eyal yatok chi kipam.
+settingsPageSubHeader = Sync & Rub'i' Taqoya'l
+settingsClosePreferences =
+    .title = Ketz'apïx taq ajowanïk
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -252,6 +266,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Ri chapoj re' man nik'o taq ruq'ijul
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = ¿La kan nawajo' chi niyuj el re chapoj re'?
+shotDeleteCancel = Tiq'at
+    .title = Tiq'at
+shotDeleteConfirm = Tiyuj
+    .title = Tiyuj
 
 ## Metrics page
 ## All metrics strings are optional for translation

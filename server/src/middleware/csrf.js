@@ -66,7 +66,7 @@ exports.csrfProtection = function(req, res, next) {
     exc.headerValue = rawCookies;
     captureRavenException(exc, req);
     simpleResponse(res, "Bad request", 400);
-    return
+    return;
   }
   req.cookies._csrf = req.cookies.get("_csrf"); // csurf expects a property
 

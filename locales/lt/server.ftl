@@ -226,6 +226,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Pilka
 
+## Settings Page
+
+settingsDisconnectButton = Atsijungti
+    .title = Atsijungti
+settingsGuestAccountMessage = Svečio paskyra
+settingsSignInInvite = Prisijunkite, norėdami sinchronizuoti visuose įrenginiuose
+settingsSignInButton = Prisijungti
+    .title = Prisijungti
+SettingsPageHeader = „Firefox“ ekrano nuotraukų nuostatos
+settingsDescription = Galite prisijungti su „Firefox“ paskyra, norėdami sinchronizuoti savo ekrano nuotraukas visuose įrenginiuose, ir saugiai jas pasiekti.
+settingsPageSubHeader = Sinchronizavimas ir paskyros
+settingsClosePreferences =
+    .title = Užverti nuostatas
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -258,6 +272,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Ši nuotrauka galioja neribotą laiką
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Ar tikrai norite pašalinti šią nuotrauką?
+shotDeleteCancel = Atsisakyti
+    .title = Atsisakyti
+shotDeleteConfirm = Pašalinti
+    .title = Pašalinti
 
 ## Metrics page
 ## All metrics strings are optional for translation

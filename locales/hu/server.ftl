@@ -220,6 +220,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Szürke
 
+## Settings Page
+
+settingsDisconnectButton = Kapcsolat bontása
+    .title = Kapcsolat bontása
+settingsGuestAccountMessage = Vendégfiók
+settingsSignInInvite = Jelentkezzen be az eszközök közti szinkronizációhoz
+settingsSignInButton = Bejelentkezés
+    .title = Bejelentkezés
+SettingsPageHeader = A Firefox Screenshots beállításai
+settingsDescription = Bejelentkezhet a Firefox fiókjával, hogy szinkronizálja a képernyőképeit az összes eszköze között, és privát módon érje el őket.
+settingsPageSubHeader = Szinkronizálás és fiókok
+settingsClosePreferences =
+    .title = Beállítások bezárása
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -252,6 +266,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Ez a kép nem évül el
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Biztos, hogy törölni szeretné ezt a képet?
+shotDeleteCancel = Mégse
+    .title = Mégse
+shotDeleteConfirm = Törlés
+    .title = Törlés
 
 ## Metrics page
 ## All metrics strings are optional for translation

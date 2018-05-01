@@ -6,14 +6,11 @@ const USER_DISABLE_PREF = "extensions.screenshots.disabled";
 const UPLOAD_DISABLED_PREF = "extensions.screenshots.upload-disabled";
 const HISTORY_ENABLED_PREF = "places.history.enabled";
 
-const { interfaces: Ci, utils: Cu } = Components;
 ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 ChromeUtils.defineModuleGetter(this, "AddonManager",
                                "resource://gre/modules/AddonManager.jsm");
 ChromeUtils.defineModuleGetter(this, "AppConstants",
                                "resource://gre/modules/AppConstants.jsm");
-ChromeUtils.defineModuleGetter(this, "Console",
-                               "resource://gre/modules/Console.jsm");
 ChromeUtils.defineModuleGetter(this, "CustomizableUI",
                                "resource:///modules/CustomizableUI.jsm");
 ChromeUtils.defineModuleGetter(this, "LegacyExtensionsUtils",
@@ -61,7 +58,7 @@ const appStartupObserver = {
     appStartupDone();
     this.unregister();
   }
-}
+};
 
 const LibraryButton = {
   ITEM_ID: "appMenu-library-screenshots",
@@ -107,7 +104,7 @@ const LibraryButton = {
     const {nextSibling} = libraryViewInsertionPoint;
     const item = win.document.createElement("toolbarbutton");
     item.className = "subviewbutton subviewbutton-iconic";
-    item.addEventListener("command", () => win.openUILinkIn(this.PAGE_TO_OPEN, "tab"));
+    item.addEventListener("command", () => win.openWebLinkIn(this.PAGE_TO_OPEN, "tab"));
     item.id = this.ITEM_ID;
     const iconURL = this.ICON_URL;
     item.setAttribute("image", iconURL);

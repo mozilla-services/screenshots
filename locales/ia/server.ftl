@@ -220,6 +220,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Gris
 
+## Settings Page
+
+settingsDisconnectButton = Disconnecter
+    .title = Disconnecter
+settingsGuestAccountMessage = Conto hospite
+settingsSignInInvite = Authentica te pro synchronisar te trans apparatos differente
+settingsSignInButton = Authenticar se
+    .title = Authenticar se
+SettingsPageHeader = Configurationes de Firefox Screenshots
+settingsDescription = Tu pote authenticar te con Firefox Accounts pro synchronisar tote tu instantaneos de schermo trans tu apparatos e acceder los privatemente.
+settingsPageSubHeader = Sync & contos
+settingsClosePreferences =
+    .title = Clauder le preferentias
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -252,6 +266,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = iste instantaneo non expira
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Desira tu vermente deler iste instantaneo?
+shotDeleteCancel = Cancellar
+    .title = Cancellar
+shotDeleteConfirm = Deler
+    .title = Deler
 
 ## Metrics page
 ## All metrics strings are optional for translation

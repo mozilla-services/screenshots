@@ -232,6 +232,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Siva
 
+## Settings Page
+
+settingsDisconnectButton = Prekini povezavo
+    .title = Prekini povezavo
+settingsGuestAccountMessage = Račun za goste
+settingsSignInInvite = Prijavite se za sinhronizacijo med napravami
+settingsSignInButton = Prijava
+    .title = Prijava
+SettingsPageHeader = Nastavitve za Firefox Screenshots
+settingsDescription = Lahko se prijavite s Firefox Accounts in sinhronizirate posnetke zaslona na različnih napravah ter jih uporabljate v zasebnosti.
+settingsPageSubHeader = Sinhronizacija in računi
+settingsClosePreferences =
+    .title = Zapri nastavitve
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -264,6 +278,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Ta posnetek ne poteče
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Ste prepričani, da želite izbrisati ta posnetek?
+shotDeleteCancel = Prekliči
+    .title = Prekliči
+shotDeleteConfirm = Izbriši
+    .title = Izbriši
 
 ## Metrics page
 ## All metrics strings are optional for translation

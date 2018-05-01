@@ -16,6 +16,7 @@ footerLinkMozilla = Mozilla
 footerLinkTerms = నిబంధనలు
 footerLinkPrivacy = గోప్యతా విధానం
 footerLinkFaqs = ప్రశ్నలు
+footerLinkDMCA = IP ఉల్లంఘనను నివేదించండి
 footerLinkDiscourse = అభిప్రాయం తెలియజేయండి
 footerLinkRemoveAllData = మొత్తం డేటాను తీసివేయండి
 
@@ -105,6 +106,8 @@ shotPageAbuseButton =
     .title = దుర్వినియోగం, స్పామ్ లేదా ఇతర సమస్యలకు ఈ తెరపట్టును నివేదించండి
 shotPageDownloadShot =
     .title = దింపుకోండి
+shotPageEditButton =
+    .title = ఈ చిత్రం సవరించు
 shotPageDownload = దింపుకోండి
 shotPageScreenshotsDescription = తెరపట్లు సులభతరమైనాయి. Firefoxను వదలకుండా తెరపట్లను తీసుకోండి,  భద్రపరచండి మరియు పంచుకోండి.
 shotPageUpsellFirefox = ఇప్పుడు Firefoxను పొందండి
@@ -170,6 +173,8 @@ timeDiffFutureDays =
 
 annotationPenButton =
     .title = పెన్ను
+annotationHighlighterButton =
+    .title = హైలైటర్
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = తుడిచివేయి
@@ -183,6 +188,36 @@ annotationCropConfirmButton = నిర్ధారించు
     .title = ఎంపికను నిర్ధారించు
 annotationCropCancelButton = రద్దుచేయి
     .title = ఎంపికను రద్దుచేయి
+annotationColorWhite =
+    .title = తెలుపు
+annotationColorBlack =
+    .title = నలుపు
+annotationColorRed =
+    .title = ఎరుపు
+annotationColorGreen =
+    .title = పచ్చ
+annotationColorBlue =
+    .title = నీలం
+annotationColorYellow =
+    .title = పసుపు
+annotationColorPurple =
+    .title = ఊదా
+annotationColorSeaGreen =
+    .title = నీలం కలిసిన ఆకుపచ్చ
+annotationColorGrey =
+    .title = బూడిద 
+
+## Settings Page
+
+settingsDisconnectButton = అనుసంధానం తెంచు
+    .title = అనుసంధానం తెంచు
+settingsGuestAccountMessage = అతిథి ఖాతా
+settingsSignInButton = ప్రవేశించండి
+    .title = ప్రవేశించండి
+SettingsPageHeader = Firefox తెరపట్ల అమరికలు
+settingsPageSubHeader = సింక్ & ఖాతాలు
+settingsClosePreferences =
+    .title = అభిరుచులను మూసివేయి
 
 ## Shotindex page
 
@@ -233,6 +268,7 @@ metricsPageShotsQueryDay = రోజు
 metricsPageUsersQueryTitle = రొజు వారి వాడుకరులు
 metricsPageUsersQueryCount = వాడుకరుల సంఖ్య
 metricsPageUsersQueryDay = రోజు
+metricsPageUserShotsQueryTitle = వాడుకరికి పట్ల సంఖ్య
 metricsPageUserShotsQueryCount = వాడుకరులు సంఖ్య
 metricsPageRetentionQueryTitle = వారానికి నిలుపుదల
 metricsPageRetentionQueryUsers = వాడుకరుల సంఖ్య

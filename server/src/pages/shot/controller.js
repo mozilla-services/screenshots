@@ -9,8 +9,6 @@ const { shotGaFieldForValue } = require("../../ab-tests.js");
 // This represents the model we are rendering:
 let model;
 
-const SURVEY_EXPIRATION = new Date("2018-01-15");
-
 function shouldHighlightEditIcon(model) {
   if (!model.isOwner) {
     return false;
@@ -21,40 +19,6 @@ function shouldHighlightEditIcon(model) {
   }
   return !hasSeen;
 }
-
-function shouldShowSurveyLink(model) {
-  if ((new Date()) > SURVEY_EXPIRATION) {
-    return false;
-  }
-  if (!model.isOwner) {
-    return false;
-  }
-  let foundEnglish = false;
-  // model.userLocales always contains some form of English because it's a server
-  // fallback. But navigator.languages does not have a fallback (except what the
-  // user indicates in their browser preferences)
-  if (model.userLocales[0].startsWith("en")) {
-    foundEnglish = true;
-  }
-  for (const locale of navigator.languages) {
-    if (locale.startsWith("en")) {
-      foundEnglish = true;
-    }
-  }
-  if (!foundEnglish) {
-    return false;
-  }
-  const hasSeen = localStorage.hasSeenSurveyLink;
-  if (!hasSeen) {
-    localStorage.hasSeenSurveyLink = "1";
-  }
-  return !hasSeen;
-}
-
-exports.closeSurveyLink = function() {
-  model.showSurveyLink = false;
-  render();
-};
 
 exports.launch = function(data) {
   const firstSet = !model;
@@ -92,7 +56,6 @@ exports.launch = function(data) {
       }
     }
   }
-  model.showSurveyLink = shouldShowSurveyLink(model);
   model.highlightEditButton = shouldHighlightEditIcon(model);
   if (firstSet) {
     refreshHash();
@@ -201,7 +164,7 @@ exports.saveEdit = function(shot, shotUrl, dimensions) {
       window.Raven.captureException(error);
       throw error;
     });
-  }
+  };
 
   const image = shot.getClip(shot.clipNames()[0]).image;
 
@@ -215,7 +178,7 @@ exports.saveEdit = function(shot, shotUrl, dimensions) {
   }).catch(() => {
     return postWith(JSON.stringify(payload));
   });
-}
+};
 
 function refreshHash() {
   if (location.hash === "#fullpage") {

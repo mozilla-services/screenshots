@@ -196,6 +196,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Abu-abu
 
+## Settings Page
+
+settingsDisconnectButton = Putuskan
+    .title = Putuskan
+settingsGuestAccountMessage = Akun Tamu
+settingsSignInInvite = Masuk untuk sinkronisasi antar perangkat
+settingsSignInButton = Masuk
+    .title = Masuk
+SettingsPageHeader = Setelan Firefox Screenshots
+settingsDescription = Anda dapat masuk dengan Firefox Accounts untuk sinkronisasi semua tangkapan layar Anda antar perangkat dan mengaksesnya secara privat.
+settingsPageSubHeader = Sync & Akun
+settingsClosePreferences =
+    .title = Tutup pengaturan
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -228,6 +242,11 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Tangkapan ini tidak kedaluwarsa
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirm = Hapus
+    .title = Hapus
 
 ## Metrics page
 ## All metrics strings are optional for translation

@@ -220,6 +220,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = રાખોડી
 
+## Settings Page
+
+settingsDisconnectButton = જોડાણ તોડો
+    .title = જોડાણ તોડો
+settingsGuestAccountMessage = મહેમાન ખાતું
+settingsSignInInvite = સમગ્ર ઉપકરણો પર સમન્વયન કરવા માટે સાઇન ઇન કરો
+settingsSignInButton = સાઇન ઇન
+    .title = સાઇન ઇન
+SettingsPageHeader = Firefox સ્ક્રીનશોટ સેટિંગ્સ
+settingsDescription = તમે બધા ઉપકરણો પર તમારા બધા સ્ક્રીનશૉટ્સને સમન્વયિત કરવા અને તેમને ખાનગીમાં ઍક્સેસ કરવા માટે FIrefox ખાતા સાથે સાઇન ઇન કરી શકો છો.
+settingsPageSubHeader = સમન્વયન અને ખાતા
+settingsClosePreferences =
+    .title = પસંદગીઓ બંધ કરો
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.

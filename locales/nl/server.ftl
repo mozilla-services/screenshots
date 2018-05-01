@@ -220,6 +220,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Grijs
 
+## Settings Page
+
+settingsDisconnectButton = Verbinding verbreken
+    .title = Verbinding verbreken
+settingsGuestAccountMessage = Gastaccount
+settingsSignInInvite = Meld u aan om tussen apparaten te synchroniseren
+settingsSignInButton = Aanmelden
+    .title = Aanmelden
+SettingsPageHeader = Instellingen van Firefox Screenshots
+settingsDescription = U kunt zich aanmelden met Firefox Accounts om al uw schermafbeeldingen tussen apparaten te synchroniseren en deze privé te benaderen.
+settingsPageSubHeader = Sync en accounts
+settingsClosePreferences =
+    .title = Voorkeuren sluiten
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -252,6 +266,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Deze afbeelding verloopt niet
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Weet u zeker dat u deze afbeelding wilt verwijderen?
+shotDeleteCancel = Annuleren
+    .title = Annuleren
+shotDeleteConfirm = Verwijderen
+    .title = Verwijderen
 
 ## Metrics page
 ## All metrics strings are optional for translation

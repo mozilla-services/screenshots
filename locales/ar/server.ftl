@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = أبلغ عن هذه اللقطة لإسائة الاستخدام أو السخام أو أي مشاكل أخرى
 shotPageDownloadShot =
     .title = نزّل
+shotPageEditButton =
+    .title = حرّر هذه الصورة
 shotPageDownload = نزّل
 shotPageScreenshotsDescription = لقطات الشاشة صارت أسهل. خذ لقطات الشاشة و احفظها و شاركها دون مغادرة فَيرفُكس.
 shotPageUpsellFirefox = نزّل فَيَرفُكس الآن
@@ -147,7 +149,8 @@ shotPageExpiresIn = تنتهي { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = انتهت { $timediff }
 timeDiffJustNow = للتو
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [zero] منذ أقل من دقيقة
         [one] منذ دقيقة
         [two] منذ دقيقتين
@@ -155,7 +158,8 @@ timeDiffMinutesAgo = { $number ->
         [many] منذ { $number } دقيقة
        *[other] منذ { $number } دقيقة
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [zero] منذ أقل من ساعة
         [one] منذ ساعة
         [two] منذ ساعتين
@@ -163,7 +167,8 @@ timeDiffHoursAgo = { $number ->
         [many] منذ { $number } ساعة
        *[other] منذ { $number } ساعة
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] بالأمس
         [two] قبل أمس
         [few] منذ { $number } أيام
@@ -171,7 +176,8 @@ timeDiffDaysAgo = { $number ->
        *[other] منذ { $number } يوم
     }
 timeDiffFutureSeconds = بعد بضع ثوان
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [zero] بعد بضع ثوان
         [one] بعد دقيقة
         [two] بعد دقيقتين
@@ -179,7 +185,8 @@ timeDiffFutureMinutes = { $number ->
         [many] بعد { $number } دقيقة
        *[other] بعد { $number } دقيقة
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [zero] بعد أقل من ساعة
         [one] بعد ساعة
         [two] بعد ساعتين
@@ -187,7 +194,8 @@ timeDiffFutureHours = { $number ->
         [many] بعد { $number } ساعة
        *[other] بعد { $number } ساعة
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] غدا
         [two] بعد غد
         [few] بعد { $number } أيام
@@ -215,6 +223,32 @@ annotationCropConfirmButton = أكّد
     .title = أكّد التحديد
 annotationCropCancelButton = ألغِ
     .title = ألغِ التحديد
+annotationColorWhite =
+    .title = الأبيض
+annotationColorBlack =
+    .title = الأسود
+annotationColorRed =
+    .title = الأحمر
+annotationColorGreen =
+    .title = الأخضر
+annotationColorBlue =
+    .title = الأزرق
+annotationColorYellow =
+    .title = الأصفر
+annotationColorPurple =
+    .title = الأرجواني
+annotationColorSeaGreen =
+    .title = الأخضر البحري
+annotationColorGrey =
+    .title = الرمادي
+
+## Settings Page
+
+settingsGuestAccountMessage = حساب ضيف
+settingsSignInInvite = لِج للمزامنة بين الأجهزة
+settingsSignInButton = لِج
+    .title = لِج
+SettingsPageHeader = إعدادات لقطات شاشة فَيَرفُكس
 
 ## Shotindex page
 
