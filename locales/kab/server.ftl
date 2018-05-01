@@ -263,6 +263,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = Tuṭṭfa-agi ur tettmettat ara
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Tebɣiḍ ad tekseḍ tuṭṭfa-yagi?
+shotDeleteCancel = Sefsex
+    .title = Sefsex
+shotDeleteConfirm = Kkes
+    .title = Kkes
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
