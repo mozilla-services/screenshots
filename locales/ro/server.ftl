@@ -226,6 +226,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Gri
 
+## Settings Page
+
+settingsDisconnectButton = Deconectează-te
+    .title = Deconectează-te
+settingsGuestAccountMessage = Cont ca vizitator
+settingsSignInInvite = Autentifică-te pentru a sincroniza toate dispozitivele
+settingsSignInButton = Autentifică-te
+    .title = Autentifică-te
+SettingsPageHeader = Setări Firefox Screenshots
+settingsDescription = Te poți autentifica cu conturi Firefox pentru a sincroniza toate capturile de ecran de pe toate dispozitivele și pentru a le accesa în mod privat.
+settingsPageSubHeader = Sincronizare și conturi
+settingsClosePreferences =
+    .title = Închide preferințele
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -258,6 +272,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Această captură nu expiră
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Sigur vrei să ștergi această captură?
+shotDeleteCancel = Renunță
+    .title = Renunță
+shotDeleteConfirm = Șterge
+    .title = Șterge
 
 ## Metrics page
 ## All metrics strings are optional for translation
