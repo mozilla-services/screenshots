@@ -5,8 +5,8 @@ from clientlib import (
     screenshots_session,
     example_images
 )
-import random, string
-
+import random
+import string
 
 # Hack to make this predictable:
 random.seed(0)
@@ -34,9 +34,11 @@ def test_invalid_data_image():
         shot_id = make_random_id() + "/test.com"
         shot_data = urljoin(user.backend, "data/" + shot_id)
         shot_json = make_example_shot(user.deviceId)
-        valid_data_image = example_images['url']
+        for valid_data_image in example_images:
         if "iVBORw0KGgo" in valid_data_image:
-            print(valid_data_image)
+            print(png_image)
+        elif "/9" in valid_data_image:
+            print(jpg_image)
 
 def test_invalid_data_image_decoded():
     pass
