@@ -215,9 +215,24 @@ annotationColorYellow =
     .title = Yellow
 annotationColorPurple =
     .title = Purple
+annotationColorSeaGreen =
+    .title = Sea Green
+annotationColorGrey =
+    .title = Grey
 
 ## Settings Page
 
+settingsDisconnectButton = Disconnect
+    .title = Disconnect
+settingsGuestAccountMessage = Guest Account
+settingsSignInInvite = Sign in to sync across devices
+settingsSignInButton = Sign In
+    .title = Sign in
+SettingsPageHeader = Firefox Screenshots Settings
+settingsDescription = You can sign in with Firefox Accounts to sync all your screenshots across devices and access them privately.
+settingsPageSubHeader = Sync & Accounts
+settingsClosePreferences =
+    .title = Close preferences
 
 ## Shotindex page
 
@@ -245,9 +260,20 @@ shotIndexPagePreviousPage =
     .title = Previous page
 shotIndexPageNextPage =
     .title = Next page
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = This shot does not expire
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = Are you sure you want to delete this shot?
+shotDeleteCancel = Cancel
+    .title = Cancel
+shotDeleteConfirm = Delete
+    .title = Delete
 
 ## Metrics page
 ## All metrics strings are optional for translation
