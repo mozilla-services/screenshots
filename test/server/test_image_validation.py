@@ -5,7 +5,7 @@ from clientlib import (
     screenshots_session,
     example_images
 )
-import random
+import random, string
 
 
 # Hack to make this predictable:
@@ -31,10 +31,12 @@ def test_invalid_image_url():
 
 def test_invalid_data_image():
     with screenshots_session() as user:
-        shot_url = user.create_shot(docTitle="TEST_JPEG", image_content_type="application/pdf", image_index=0)
-        shot_page = user.read_shot(shot_url)
-        assert shot_page["clip_content_type"] != "image/jpeg"
-
+        shot_id = make_random_id() + "/test.com"
+        shot_data = urljoin(user.backend, "data/" + shot_id)
+        shot_json = make_example_shot(user.deviceId)
+        valid_data_image = example_images['url']
+        if "iVBORw0KGgo" in valid_data_image:
+            print(valid_data_image)
 
 def test_invalid_data_image_decoded():
     pass
