@@ -31,9 +31,12 @@
     height: 26px;
     border: 1px solid $light-border;
 
-    &:hover,
-    &:focus {
+    &:hover{
       background: $light-hover;
+      border-color: $light-border-active;
+    }
+    
+    &:focus {
       border-color: $light-border-active;
     }
 
