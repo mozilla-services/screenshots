@@ -35,10 +35,10 @@ def test_invalid_data_image():
         shot_data = urljoin(user.backend, "data/" + shot_id)
         shot_json = make_example_shot(user.deviceId)
         for valid_data_image in example_images:
-        if "iVBORw0KGgo" in valid_data_image:
-            print(png_image)
-        elif "/9" in valid_data_image:
-            print(jpg_image)
+            if "iVBORw0KGgo" in valid_data_image:
+                print(png_image)
+            elif "/9" in valid_data_image:
+                print(jpg_image)
 
 def test_invalid_data_image_decoded():
     pass
