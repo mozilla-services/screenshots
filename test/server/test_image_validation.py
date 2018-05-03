@@ -11,6 +11,7 @@ import string
 # Hack to make this predictable:
 random.seed(0)
 
+
 def test_invalid_image_url():
     with screenshots_session() as user:
         shot_id = make_random_id() + "/test.com"
@@ -28,6 +29,7 @@ def test_invalid_image_url():
         )
         print(resp.text)
         assert resp.status_code == 500  # assertion failure on clip image url
+
 
 def test_invalid_data_image():
     with screenshots_session() as user:
@@ -49,11 +51,14 @@ def test_invalid_data_image():
         print(resp.text)
         assert resp.status_code == 500
 
+
 def test_invalid_data_image_decoded():
     pass
 
+
 def test_invalid_data_url():
     pass
+
 
 if __name__ == "__main__":
     test_invalid_data_image()
