@@ -6,7 +6,7 @@ from clientlib import (
     example_images
 )
 import random
-import string
+# import string
 
 # Hack to make this predictable:
 random.seed(0)
