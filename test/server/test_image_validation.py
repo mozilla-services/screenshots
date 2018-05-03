@@ -42,7 +42,7 @@ def test_invalid_data_image_decoded():
             if "iVBORw0KGgo" in valid_data_image:
                 invalid_data_image = valid_data_image.replace('iVBORw0KGgo', 'someIM4gEgo')
                 for clip_id in shot_json['clips']:
-                    shot_json['clips'][clip_id]['image'] = invalid_data_image
+                    shot_json['clips'][clip_id]['image']['url'] = invalid_data_image
                     break
 
         resp = user.session.put(
@@ -63,7 +63,7 @@ def test_invalid_data_url():
             if "data:image/png;base64" in valid_data_image:
                 invalid_data_url = valid_data_image.replace('data:image/png', 'data:image/foo')
                 for clip_id in shot_json['clips']:
-                    shot_json['clips'][clip_id]['image'] = invalid_data_url
+                    shot_json['clips'][clip_id]['image']['url'] = invalid_data_url
                     break
 
         resp = user.session.put(
