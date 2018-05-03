@@ -6,7 +6,6 @@ from clientlib import (
     example_images
 )
 import random
-# import string
 
 # Hack to make this predictable:
 random.seed(0)
@@ -53,7 +52,24 @@ def test_invalid_data_image():
 
 
 def test_invalid_data_image_decoded():
-    pass
+    with screenshots_session() as user:
+        shot_id = make_random_id() + "/test.com"
+        shot_data = urljoin(user.backend, "data/" + shot_id)
+        shot_json = make_example_shot(user.deviceId)
+        for image in example_images:
+            valid_data_image = image['url']
+            if "iVBORw0KGgo" in valid_data_image:
+                invalid_data_image = valid_data_image.replace('iVBORw0KGgo', 'someIM4gEgo')
+                for clip_id in shot_json['clips']:
+                    shot_json['clips'][clip_id]['image'] = invalid_data_image
+                    break
+
+        resp = user.session.put(
+            shot_data,
+            json=shot_json,
+        )
+        print(resp.text)
+        assert resp.status_code == 500
 
 
 def test_invalid_data_url():
