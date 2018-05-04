@@ -162,6 +162,13 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = เทา
 
+## Settings Page
+
+settingsDisconnectButton = ตัดการเชื่อมต่อ
+    .title = ตัดการเชื่อมต่อ
+settingsSignInButton = ลงชื่อเข้า
+    .title = ลงชื่อเข้า
+
 ## Shotindex page
 
 shotIndexPageSearchPlaceholder =
@@ -178,6 +185,13 @@ shotIndexPagePreviousPage =
     .title = หน้าก่อนหน้า
 shotIndexPageNextPage =
     .title = หน้าถัดไป
+
+## Delete Confirmation Dialog
+
+shotDeleteCancel = ยกเลิก
+    .title = ยกเลิก
+shotDeleteConfirm = ลบ
+    .title = ลบ
 
 ## Metrics page
 ## All metrics strings are optional for translation
