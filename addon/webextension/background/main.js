@@ -123,19 +123,25 @@ this.main = (function() {
   }
 
   exports.onClickedContextMenu = catcher.watchFunction((info, tab) => {
-    if (!tab) {
-      // Not in a page/tab context, ignore
-      return;
-    }
-    if (!urlEnabled(tab.url)) {
-      senderror.showError({
-        popupMessage: "UNSHOOTABLE_PAGE"
-      });
-      return;
-    }
-    catcher.watchPromise(
-      toggleSelector(tab)
-        .then(() => sendEvent("start-shot", "context-menu", {incognito: tab.incognito})));
+    catcher.watchPromise(hasSeenOnboarding.then(onboarded => {
+      if (!tab) {
+        // Not in a page/tab context, ignore
+        return;
+      }
+      if (!urlEnabled(tab.url)) {
+        if (!onboarded) {
+          sendEvent("goto-onboarding", "selection-button", {incognito: tab.incognito});
+          forceOnboarding();
+          return;
+        }
+        senderror.showError({
+          popupMessage: "UNSHOOTABLE_PAGE"
+        });
+        return;
+      }
+      return toggleSelector(tab)
+        .then(() => sendEvent("start-shot", "context-menu", {incognito: tab.incognito}));
+    }));
   });
 
   function urlEnabled(url) {
