@@ -267,6 +267,14 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = આ શોટ સમાપ્ત થતો નથી
 
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = શું તમે ખરેખર આ શોટને કાઢવા માંગો છો?
+shotDeleteCancel = રદ કરો
+    .title = રદ કરો
+shotDeleteConfirm = કાઢો
+    .title = કાઢો
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
