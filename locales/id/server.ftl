@@ -245,6 +245,9 @@ shotIndexNoExpirationSymbol = ∞
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = Apakah Anda yakin ingin menghapus tangkapan ini?
+shotDeleteCancel = Batal
+    .title = Batal
 shotDeleteConfirm = Hapus
     .title = Hapus
 
