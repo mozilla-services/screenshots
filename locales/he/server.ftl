@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = דיווח על צילום זה כפוגעני, מטריד או כל בעיה אחרת
 shotPageDownloadShot =
     .title = הורדה
+shotPageEditButton =
+    .title = עריכת תמונה זו
 shotPageDownload = הורדה
 shotPageScreenshotsDescription = כעת קל יותר ללכוד צילומי מסך. ניתן לצלם, לשמור ולשתף צילומי מסך מבלי לעזוב את Firefox.
 shotPageUpsellFirefox = קבלת Firefox כעת
@@ -147,28 +149,34 @@ shotPageExpiresIn = תפוגה { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = פג תוקפו { $timediff }
 timeDiffJustNow = ממש עכשיו
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] לפני דקה
        *[other] לפני { $number } דקות
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] לפני שעה
        *[other] לפני { $number } שעות
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] אתמול
        *[other] לפני { $number } ימים
     }
 timeDiffFutureSeconds = תוך מספר שניות
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] בעוד דקה
        *[other] בעוד { $number } דקות
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] בעוד שעה
        *[other] בעוד { $number } שעות
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] מחר
        *[other] בעוד { $number } ימים
     }
@@ -193,6 +201,38 @@ annotationCropConfirmButton = אישור
     .title = אישור הבחירה
 annotationCropCancelButton = ביטול
     .title = ביטול הבחירה
+annotationColorWhite =
+    .title = לבן
+annotationColorBlack =
+    .title = שחור
+annotationColorRed =
+    .title = אדום
+annotationColorGreen =
+    .title = ירוק
+annotationColorBlue =
+    .title = כחול
+annotationColorYellow =
+    .title = צהוב
+annotationColorPurple =
+    .title = סגול
+annotationColorSeaGreen =
+    .title = ירוק־ים
+annotationColorGrey =
+    .title = אפור
+
+## Settings Page
+
+settingsDisconnectButton = ניתוק
+    .title = ניתוק
+settingsGuestAccountMessage = חשבון אורח
+settingsSignInInvite = יש להיכנס כדי לסנכרן בין התקנים
+settingsSignInButton = כניסה
+    .title = כניסה
+SettingsPageHeader = הגדרות צילומי המסך של Firefox
+settingsDescription = ניתן להיכנס עם חשבון Firefox כדי לסנכרן את כל צילומי המסך שלך ולגשת אליהם בפרטיות.
+settingsPageSubHeader = סנכרון וחשבונות
+settingsClosePreferences =
+    .title = סגירת העדפות
 
 ## Shotindex page
 
@@ -226,6 +266,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = צילום זה אינו פג
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = למחוק את הצילום הזה?
+shotDeleteCancel = ביטול
+    .title = ביטול
+shotDeleteConfirm = מחיקה
+    .title = מחיקה
 
 ## Metrics page
 ## All metrics strings are optional for translation
