@@ -78,6 +78,7 @@ shotPageShareEmail =
     .title = แบ่งปันลิงก์ทางอีเมล
 shotPageCopyImageText =
     .label = คัดลอกข้อความภาพ
+shotPageExpiredMessage = ภาพนี้หมดอายุแล้ว
 shotPageDeleteButton =
     .title = ลบภาพนี้
 shotPageDownloadShot =
@@ -90,6 +91,10 @@ shotPageUpsellFirefox = รับ Firefox ตอนนี้
 shotPageDMCAContact = โปรดอีเมลมายัง { $dmca } เพื่อขอข้อมูลเพิ่มเติม
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = เลือกเวลา
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = ไม่มีกำหนด ∞
 shotPageKeepTenMinutes = 10 นาที
 shotPageKeepOneHour = 1 ชั่วโมง
 shotPageKeepOneDay = 1 วัน
@@ -168,6 +173,8 @@ settingsDisconnectButton = ตัดการเชื่อมต่อ
     .title = ตัดการเชื่อมต่อ
 settingsSignInButton = ลงชื่อเข้า
     .title = ลงชื่อเข้า
+settingsClosePreferences =
+    .title = ปิดค่ากำหนด
 
 ## Shotindex page
 
@@ -209,3 +216,7 @@ metricsPageTotalRetentionQueryUsers = จำนวนผู้ใช้
 metricsPageVersionQueryTitle = รุ่นส่วนเสริม
 metricsPageVersionQueryVersion = รุ่นส่วนเสริม
 metricsPageVersionQueryLastSeen = วัน
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = สร้างขึ้นเมื่อ: { $created }
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (เวลาฐานข้อมูล: { $time }ms)
