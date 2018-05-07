@@ -139,7 +139,9 @@ this.main = (function() {
         });
         return;
       }
-      return toggleSelector(tab)
+      // No need to catch() here because of watchPromise().
+      // eslint-disable-next-line promise/catch-or-return
+      toggleSelector(tab)
         .then(() => sendEvent("start-shot", "context-menu", {incognito: tab.incognito}));
     }));
   });
