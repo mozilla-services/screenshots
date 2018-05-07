@@ -357,19 +357,8 @@ app.get("/install-raven.js", function(req, res) {
     sanitizeKeys: ["url"],
     serverName: req.backend
   };
-  // FIXME: this monkeypatch is because our version of Raven (6.2) doesn't really work
-  // with our version of Sentry (8.3.3)
   const script = `
   ${ravenClientJs}
-
-  (function () {
-    var old_captureException = Raven.captureException.bind(Raven);
-    Raven.captureException = function (ex, options) {
-      options = options || {};
-      options.message = options.message || ex.message;
-      return old_captureException(ex, options);
-    };
-  })();
   Raven.config("${req.config.sentryPublicDSN}", ${JSON.stringify(options)}).install();
   window.Raven = Raven;`;
   jsResponse(res, script);
