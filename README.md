@@ -44,9 +44,9 @@ We apologize but we have no story for development on Windows (though the add-on 
 
 #### Building the Chrome version of the addon
 
-Build the development version of the Chrome-compatible webextension: `SCREENSHOTS_CHROME_BUILD = "true" make chrome`
+Build the development version of the Chrome-compatible webextension: `make chrome`
 
-Build a zipped version of the Chrome-compatible webextension: `SCREENSHOTS_CHROME_BUILD = "true" make chrome_zip`
+Build a zipped version of the Chrome-compatible webextension: `make chrome_zip`
 
 ### Getting to know the code
 
