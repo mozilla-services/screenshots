@@ -145,7 +145,7 @@ shotPageSaveExpiration = guardar
 shotPageCancelExpiration = cancelar
 shotPageDoesNotExpire = no expirará
 # Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = expira en { $timediff }
+shotPageExpiresIn = caduca { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = expiró el { $timediff }
 timeDiffJustNow = ahora mismo
