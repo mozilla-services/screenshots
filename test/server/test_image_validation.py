@@ -11,24 +11,21 @@ import random
 random.seed(0)
 
 def image_setup():
+    for image in example_images:
+        valid_data_image = image['url']
+        return valid_data_image
+
+def user_setup():
     with screenshots_session() as user:
         shot_id = make_random_id() + "/test.com"
         shot_data = urljoin(user.backend, "data/" + shot_id)
         shot_json = make_example_shot(user.deviceId)
-        for image in example_images:
-            valid_data_image = image['url']
-            return valid_data_image
+        return shot_data, shot_json
 
 
 def test_invalid_data_image():
-    # with screenshots_session() as user:
-    #     shot_id = make_random_id() + "/test.com"
-    #     shot_data = urljoin(user.backend, "data/" + shot_id)
-    #     shot_json = make_example_shot(user.deviceId)
-    #     for image in example_images:
-    #         valid_data_image = image['url']
-    shot_json = make_example_shot(user.deviceId)
     image = image_setup()
+    (shot_data, shot_json) = user_setup()
     if "iVBORw0KGgo" in image:
         invalid_data_image = image.replace('iVBORw0KGgo', 'R0k')
         for clip_id in shot_json['clips']:
