@@ -43,17 +43,13 @@ def test_invalid_data_image():
 
 
 def test_invalid_data_image_decoded():
-    with screenshots_session() as user:
-        shot_id = make_random_id() + "/test.com"
-        shot_data = urljoin(user.backend, "data/" + shot_id)
-        shot_json = make_example_shot(user.deviceId)
-        for image in example_images:
-            valid_data_image = image['url']
-            if "iVBORw0KGgo" in valid_data_image:
-                invalid_data_image = valid_data_image.replace('iVBORw0KGgo', 'someIM4gEgo')
-                for clip_id in shot_json['clips']:
-                    shot_json['clips'][clip_id]['image']['url'] = invalid_data_image
-                    break
+    image = image_setup()
+    (shot_data, shot_json, user) = user_setup()
+    if "iVBORw0KGgo" in image:
+        invalid_data_image = image.replace('iVBORw0KGgo', 'someIM4gEgo')
+        for clip_id in shot_json['clips']:
+            shot_json['clips'][clip_id]['image']['url'] = invalid_data_image
+            break
 
         resp = user.session.put(
             shot_data,
@@ -64,17 +60,13 @@ def test_invalid_data_image_decoded():
 
 
 def test_invalid_data_url():
-    with screenshots_session() as user:
-        shot_id = make_random_id() + "/test.com"
-        shot_data = urljoin(user.backend, "data/" + shot_id)
-        shot_json = make_example_shot(user.deviceId)
-        for image in example_images:
-            valid_data_image = image['url']
-            if "data:image/png;base64" in valid_data_image:
-                invalid_data_url = valid_data_image.replace('data:image/png', 'data:image/foo')
-                for clip_id in shot_json['clips']:
-                    shot_json['clips'][clip_id]['image']['url'] = invalid_data_url
-                    break
+    image = image_setup()
+    (shot_data, shot_json, user) = user_setup()
+    if "data:image/png;base64" in image:
+        invalid_data_url = image.replace('data:image/png', 'data:image/foo')
+        for clip_id in shot_json['clips']:
+            shot_json['clips'][clip_id]['image']['url'] = invalid_data_url
+            break
 
         resp = user.session.put(
             shot_data,
