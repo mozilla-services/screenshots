@@ -10,19 +10,29 @@ import random
 # Hack to make this predictable:
 random.seed(0)
 
-
-def test_invalid_data_image():
+def image_setup():
     with screenshots_session() as user:
         shot_id = make_random_id() + "/test.com"
         shot_data = urljoin(user.backend, "data/" + shot_id)
         shot_json = make_example_shot(user.deviceId)
         for image in example_images:
             valid_data_image = image['url']
-            if "iVBORw0KGgo" in valid_data_image:
-                invalid_data_image = valid_data_image.replace('iVBORw0KGgo', 'R0k')
-                for clip_id in shot_json['clips']:
-                    shot_json['clips'][clip_id]['image']['url'] = invalid_data_image
-                    break
+            return valid_data_image
+
+
+def test_invalid_data_image():
+    # with screenshots_session() as user:
+    #     shot_id = make_random_id() + "/test.com"
+    #     shot_data = urljoin(user.backend, "data/" + shot_id)
+    #     shot_json = make_example_shot(user.deviceId)
+    #     for image in example_images:
+    #         valid_data_image = image['url']
+    image = image_setup()
+    if "iVBORw0KGgo" in image:
+        invalid_data_image = image.replace('iVBORw0KGgo', 'R0k')
+        for clip_id in shot_json['clips']:
+            shot_json['clips'][clip_id]['image']['url'] = invalid_data_image
+            break
 
         resp = user.session.put(
             shot_data,
