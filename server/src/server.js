@@ -1067,7 +1067,7 @@ app.get("/api/fxa-oauth/login", function(req, res, next) {
     });
   }).then(state => {
     const redirectUri = `${req.backend}/api/fxa-oauth/confirm-login`;
-    const profile = "profile profile:displayName profile:email profile:avatar profile:uid";
+    const profile = "profile";
     res.redirect(`${config.fxa.oAuthServer}/authorization?client_id=${encodeURIComponent(config.fxa.clientId)}&redirect_uri=${encodeURIComponent(redirectUri)}&state=${encodeURIComponent(state)}&scope=${encodeURIComponent(profile)}`);
   }).catch(next);
 });
