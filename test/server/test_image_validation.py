@@ -10,22 +10,24 @@ import random
 # Hack to make this predictable:
 random.seed(0)
 
+
 def image_setup():
     for image in example_images:
         valid_data_image = image['url']
         return valid_data_image
+
 
 def user_setup():
     with screenshots_session() as user:
         shot_id = make_random_id() + "/test.com"
         shot_data = urljoin(user.backend, "data/" + shot_id)
         shot_json = make_example_shot(user.deviceId)
-        return shot_data, shot_json
+        return (shot_data, shot_json, user)
 
 
 def test_invalid_data_image():
     image = image_setup()
-    (shot_data, shot_json) = user_setup()
+    (shot_data, shot_json, user) = user_setup()
     if "iVBORw0KGgo" in image:
         invalid_data_image = image.replace('iVBORw0KGgo', 'R0k')
         for clip_id in shot_json['clips']:
