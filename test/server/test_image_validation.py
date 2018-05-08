@@ -27,6 +27,7 @@ def test_invalid_data_image():
     #     shot_json = make_example_shot(user.deviceId)
     #     for image in example_images:
     #         valid_data_image = image['url']
+    shot_json = make_example_shot(user.deviceId)
     image = image_setup()
     if "iVBORw0KGgo" in image:
         invalid_data_image = image.replace('iVBORw0KGgo', 'R0k')
