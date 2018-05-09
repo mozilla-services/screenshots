@@ -186,7 +186,7 @@ this.uicontrol = (function() {
       sendEvent("capture-visible", "selection-button");
       selectedPos = new Selection(
         window.scrollX, window.scrollY,
-        window.scrollX + window.innerWidth, window.scrollY + window.innerHeight);
+        window.scrollX + document.documentElement.clientWidth, window.scrollY + window.innerHeight);
       captureType = "visible";
       setState("previewing");
     },
