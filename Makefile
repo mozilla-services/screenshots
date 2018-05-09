@@ -95,6 +95,14 @@ chrome: addon
 	./bin/build-scripts/build-chrome-manifest.js
 	cp addon/webextension/manifest.json.chrome addon/webextension/manifest.json
 
+chrome: SCREENSHOTS_CHROME_BUILD := true
+
+build/.is_chrome.txt: set_chrome
+
+.PHONY: set_chrome
+set_chrome:
+	./bin/build-scripts/set_file build/.is_chrome.txt $(SCREENSHOTS_CHROME_BUILD)
+
 .PHONY: chrome_zip
 chrome_zip: addon
 	@rm -f build/screenshots-chrome.zip
@@ -251,13 +259,13 @@ set_backend:
 	@echo "Setting backend to ${SCREENSHOTS_BACKEND}"
 	./bin/build-scripts/set_file build/.backend.txt $(SCREENSHOTS_BACKEND)
 
-addon/webextension/build/buildSettings.js: set_build_settings
+addon/webextension/build/buildSettings.js: build/.is_chrome.txt set_sentry
 
-.PHONY: set_build_settings
+.PHONY: set_sentry
 set_sentry:
 	@if [[ -z "$(SCREENSHOTS_SENTRY)" ]] ; then echo "No default Sentry" ; fi
 	@if [[ -n "$(SCREENSHOTS_SENTRY)" ]] ; then echo "Setting default Sentry ${SCREENSHOTS_SENTRY}" ; fi
-	./bin/build-scripts/substitute-env.js addon/webextension/buildSettings.js.template | ./bin/build-scripts/set_file addon/webextension/build/buildSettings.js -
+	SCREENSHOTS_CHROME_BUILD=$(SCREENSHOTS_CHROME_BUILD) ./bin/build-scripts/substitute-env.js addon/webextension/buildSettings.js.template | ./bin/build-scripts/set_file addon/webextension/build/buildSettings.js -
 
 build/.npm-install.log: package.json
 	# Essentially .npm-install.log is just a timestamp showing the last time we ran

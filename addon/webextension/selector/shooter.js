@@ -88,6 +88,38 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     return callBackground("canvasToDataURL", imageData);
   }
 
+  async function screenshotInBackground(selectedPos) {
+    ui.iframe.hide();
+    await waitAnimationFrame();
+    let result;
+    try {
+      result = await callBackground(
+        "screenshotPage",
+        // TODO: why isn't selectedPos.asJson defined here?
+        selectedPos,
+        {
+          scrollX: window.scrollX,
+          scrollY: window.scrollY,
+          innerHeight: window.innerHeight,
+          innerWidth: window.innerWidth
+        }
+      );
+    } finally {
+      if (ui.iframe.element) {
+        // It's possible the iframe has been torn down before this is called
+        ui.iframe.unhide();
+      }
+    }
+    return result;
+  }
+
+  function waitAnimationFrame() {
+    return new Promise((resolve, reject) => {
+      console.log("using timeout");
+      window.requestAnimationFrame(resolve);
+    });
+  }
+
   let isSaving = null;
 
   exports.takeShot = function(captureType, selectedPos, url) {
@@ -129,19 +161,10 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     // 2. serializing and sending shot back
     // 3. turning dataUrl into a blob
     // 4. sending to background again inside takeShot
-    //  
+    //
     // would it make more sense to just take and send the shot at once?
     if (!dataUrl) {
-      prom = callBackground(
-        "screenshotPage",
-        // TODO: why isn't selectedPos.asJson defined here?
-        selectedPos,
-        {
-          scrollX: window.scrollX,
-          scrollY: window.scrollY,
-          innerHeight: window.innerHeight,
-          innerWidth: window.innerWidth
-        });
+      prom = screenshotInBackground(selectedPos);
     }
     prom.then((dataUrl) => {
       let type = blobConverters.getTypeFromDataUrl(dataUrl);
@@ -207,16 +230,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
     catcher.watchPromise(shotPromise.then(dataUrl => {
       let promise = Promise.resolve(dataUrl);
       if (!dataUrl) {
-        // debugger;
-        promise = callBackground(
-          "screenshotPage",
-          selectedPos.asJson(),
-          {
-            scrollX: window.scrollX,
-            scrollY: window.scrollY,
-            innerHeight: window.innerHeight,
-            innerWidth: window.innerWidth
-          });
+        promise = screenshotInBackground(selectedPos.asJson());
       }
       catcher.watchPromise(promise.then((dataUrl) => {
         let type = blobConverters.getTypeFromDataUrl(dataUrl);
@@ -260,15 +274,7 @@ this.shooter = (function() { // eslint-disable-line no-unused-vars
       // dataUrl is falsy in chrome, where we fall back to `captureVisibleTab`,
       // available in the background page
       if (!dataUrl) {
-        promise = callBackground(
-          "screenshotPage",
-          selectedPos.asJson(),
-          {
-            scrollX: window.scrollX,
-            scrollY: window.scrollY,
-            innerHeight: window.innerHeight,
-            innerWidth: window.innerWidth
-          });
+        promise = screenshotInBackground(selectedPos.asJson());
       }
       promise.then((dataUrl) => {
         // in chrome, we just use clipboard.copy from here, then ask the
