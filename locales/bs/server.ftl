@@ -198,6 +198,10 @@ annotationClearButton =
     .title = Očisti
 annotationCropButton =
     .title = Izreži
+annotationSaveEditButton = Sačuvaj
+    .title = Sačuvaj izmjene
+annotationCancelEditButton = Otkaži
+    .title = Odbaci izmjene
 annotationCropConfirmButton = Potvrdi
     .title = Potvrdi izbor
 annotationCropCancelButton = Otkaži
@@ -223,8 +227,12 @@ annotationColorGrey =
 
 ## Settings Page
 
+settingsDisconnectButton = Prekini vezu
+    .title = Prekini vezu
 settingsGuestAccountMessage = Račun za gosta
 settingsSignInInvite = Prijavite se za sinhronizaciju kroz uređaje
+settingsSignInButton = Prijavi se
+    .title = Prijavi se
 SettingsPageHeader = Firefox Screenshots postavke
 settingsDescription = Možete se prijaviti sa Firefox računima za sinhronizaciju svih vaših snimaka na svim uređajima i pristupiti im privatno.
 settingsPageSubHeader = Sync i računi
