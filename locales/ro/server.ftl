@@ -323,4 +323,4 @@ metricsPageHeader = Indicatori metrici
 # Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Generat la: { $created }
 # Note { $time } is a placeholder for a number of milliseconds, like '100'
-metricsPageDatabaseQueryTime = (timp bază de date: { $time } ms)
+metricsPageDatabaseQueryTime = (durata bazei de date: { $time }ms)
