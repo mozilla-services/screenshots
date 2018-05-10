@@ -276,7 +276,6 @@ $very-light-grey: #ededed;
 }
 
 .preview-overlay {
-  cursor: crosshair;
   align-items: center;
   background-color: $modal-color;
   display: flex;
@@ -293,6 +292,10 @@ $very-light-grey: #ededed;
     background-color: rgb(0, 0, 0);
     opacity: 0.7;
   }
+}
+
+.precision-cursor {
+  cursor: crosshair;
 }
 
 .highlight {
