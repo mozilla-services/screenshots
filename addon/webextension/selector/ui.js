@@ -286,7 +286,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
                 <title></title>
                </head>
                <body>
-                 <div class="preview-overlay">
+                 <div class="preview-overlay precision-cursor">
                    <div class="fixed-container">
                      <div class="face-container">
                        <div class="eye left"><div class="eyeball"></div></div>
