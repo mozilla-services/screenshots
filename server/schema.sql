@@ -1,8 +1,10 @@
 CREATE TYPE shot_block_type AS ENUM (
     'none',
-    'dmca'
+    'dmca',
+    'abuse',
+    'usererror',
+    'watchdog'
 );
-ALTER TYPE shot_block_type OWNER TO ianbicking;
 CREATE TABLE accounts (
     id character varying(200) NOT NULL,
     token text,
@@ -58,6 +60,21 @@ CREATE TABLE states (
     state character varying(64) NOT NULL,
     deviceid character varying(200)
 );
+CREATE TABLE watchdog_submissions (
+    id integer NOT NULL,
+    shot_id character varying(270) NOT NULL,
+    request_id character(36) NOT NULL,
+    nonce character(36) NOT NULL,
+    positive_result boolean
+);
+CREATE SEQUENCE watchdog_submissions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ALTER SEQUENCE watchdog_submissions_id_seq OWNED BY watchdog_submissions.id;
+ALTER TABLE ONLY watchdog_submissions ALTER COLUMN id SET DEFAULT nextval('watchdog_submissions_id_seq'::regclass);
 ALTER TABLE ONLY accounts
     ADD CONSTRAINT accounts_pkey PRIMARY KEY (id);
 ALTER TABLE ONLY data
@@ -70,6 +87,8 @@ ALTER TABLE ONLY property
     ADD CONSTRAINT property_pkey PRIMARY KEY (key);
 ALTER TABLE ONLY states
     ADD CONSTRAINT states_pkey PRIMARY KEY (state);
+ALTER TABLE ONLY watchdog_submissions
+    ADD CONSTRAINT watchdog_pkey PRIMARY KEY (id);
 CREATE INDEX data_deviceid_idx ON data USING btree (deviceid);
 CREATE INDEX devices_accountid_idx ON devices USING btree (accountid);
 CREATE INDEX images_shotid_idx ON images USING btree (shotid);
@@ -83,4 +102,6 @@ ALTER TABLE ONLY images
     ADD CONSTRAINT images_shotid_fkey FOREIGN KEY (shotid) REFERENCES data(id) ON DELETE CASCADE;
 ALTER TABLE ONLY states
     ADD CONSTRAINT states_deviceid_fkey FOREIGN KEY (deviceid) REFERENCES devices(id) ON DELETE CASCADE;
--- pg-patch version: 20
+ALTER TABLE ONLY watchdog_submissions
+    ADD CONSTRAINT watchdog_shot_id_fkey FOREIGN KEY (shot_id) REFERENCES data(id) ON DELETE CASCADE;
+-- pg-patch version: 24
