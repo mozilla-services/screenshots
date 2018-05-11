@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Raportojeni këtë foto për abuzim, spam apo probleme të tjera
 shotPageDownloadShot =
     .title = Shkarkoje
+shotPageEditButton =
+    .title = Përpunoni këtë figurë
 shotPageDownload = Shkarkoje
 shotPageScreenshotsDescription = Screenshots-i i thjeshtuar. Bëni, ruani dhe ndani foto ekrani pa dalë nga Firefox-i.
 shotPageUpsellFirefox = Merreni Firefox-in që tani
@@ -147,28 +149,34 @@ shotPageExpiresIn = skadon më { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = ka skaduar më { $timediff }
 timeDiffJustNow = mu tani
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] 1 minutë më parë
        *[other] { $number } minuta më parë
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] 1 orë më parë
        *[other] { $number } orë më parë
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] dje
        *[other] { $number } ditë më parë
     }
 timeDiffFutureSeconds = në pak sekonda
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] në 1 minutë
        *[other] në { $number } minuta
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] në 1 orë
        *[other] në { $number } orë
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
        *[one] nesër
     }
 errorThirdPartyCookiesEnabled = Nëse bëtë këtë foto dhe s’e fshini dot, mund t’ju duhet të aktivizoni përkohësisht cookie prej palësh të treta, që nga parapëlqimet tuaja për shfletuesin.
@@ -192,6 +200,30 @@ annotationCropConfirmButton = Ripohojeni
     .title = Ripohoni përzgjedhjen
 annotationCropCancelButton = Anuloje
     .title = Anulojeni përzgjedhjen
+annotationColorWhite =
+    .title = E bardhë
+annotationColorBlack =
+    .title = E zezë
+annotationColorRed =
+    .title = E kuqe
+annotationColorGreen =
+    .title = E gjelbër
+annotationColorBlue =
+    .title = Blu
+annotationColorYellow =
+    .title = E verdhë
+annotationColorPurple =
+    .title = E purpur
+annotationColorSeaGreen =
+    .title = Blu e gjelbër
+annotationColorGrey =
+    .title = Gri
+
+## Settings Page
+
+settingsGuestAccountMessage = Llogari vizitori
+settingsClosePreferences =
+    .title = Mbylli parapëlqimet
 
 ## Shotindex page
 
@@ -225,6 +257,9 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Kjo foto nuk skadon kurrë
+
+## Delete Confirmation Dialog
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
