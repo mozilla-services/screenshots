@@ -6,6 +6,7 @@ let model;
 
 exports.launch = function(m) {
   model = m;
+  window.history.pushState({}, m.title, m.finishedUrl);
   render();
 };
 
