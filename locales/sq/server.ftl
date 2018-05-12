@@ -221,7 +221,15 @@ annotationColorGrey =
 
 ## Settings Page
 
+settingsDisconnectButton = Shkëputu
+    .title = Shkëputu
 settingsGuestAccountMessage = Llogari vizitori
+settingsSignInInvite = Që të bëhet njëkohësim nëpër pajisje, bëni hyrjen
+settingsSignInButton = Hyni
+    .title = Hyni
+SettingsPageHeader = Rregullime për Firefox Screenshots
+settingsDescription = Mund të bëni hyrjen me Llogari Firefox, që të bëni njëkohësimin e krejt fotove tuaja të ekranit nëpër pajisje dhe për t’i përdorur ato privatisht.
+settingsPageSubHeader = Njëkohësim & Llogari
 settingsClosePreferences =
     .title = Mbylli parapëlqimet
 
@@ -260,6 +268,11 @@ shotIndexNoExpirationSymbol = ∞
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = Jeni i sigurt se doni të fshihet kjo foto?
+shotDeleteCancel = Anuloje
+    .title = Anuloje
+shotDeleteConfirm = Fshije
+    .title = Fshije
 
 ## Metrics page
 ## All metrics strings are optional for translation
