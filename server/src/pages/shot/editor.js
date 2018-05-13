@@ -6,6 +6,8 @@ const { PenTool } = require("./pen-tool");
 const { HighlighterTool } = require("./highlighter-tool");
 const { CropTool } = require("./crop-tool");
 const { ColorPicker } = require("./color-picker");
+const { EditorHistory, RecordType } = require("./editor-history");
+const { Selection } = require("../../../shared/selection");
 
 exports.Editor = class Editor extends React.Component {
   constructor(props) {
@@ -15,17 +17,20 @@ exports.Editor = class Editor extends React.Component {
         || props.clip.image.captureType === "fullPageTruncated") {
       this.devicePixelRatio = 1;
     }
-    this.canvasWidth = Math.floor(this.props.clip.image.dimensions.x);
-    this.canvasHeight = Math.floor(this.props.clip.image.dimensions.y);
     this.state = {
+      canvasWidth: Math.floor(this.props.clip.image.dimensions.x),
+      canvasHeight: Math.floor(this.props.clip.image.dimensions.y),
       tool: "",
       color: "",
       lineWidth: "",
-      actionsDisabled: true
+      actionsDisabled: true,
+      canUndo: false,
+      canRedo: false
     };
     this.onMouseUp = this.onMouseUp.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
     this.selectedTool = React.createRef();
+    this.history = new EditorHistory(this.devicePixelRatio);
   }
 
   render() {
@@ -44,13 +49,13 @@ exports.Editor = class Editor extends React.Component {
       <div
         className={`inverse-color-scheme canvas-container ${this.state.tool}`}
         id="canvas-container"
-        style={{ height: this.canvasHeight, width: this.canvasWidth }}>
+        style={{ height: this.state.canvasHeight, width: this.state.canvasWidth }}>
         <canvas
           className="image-holder centered"
           id="image-holder"
           ref={(image) => { this.imageCanvas = image; }}
-          height={this.canvasHeight * this.devicePixelRatio} width={this.canvasWidth * this.devicePixelRatio}
-          style={{ height: this.canvasHeight, width: this.canvasWidth }}></canvas>
+          height={this.state.canvasHeight * this.devicePixelRatio} width={this.state.canvasWidth * this.devicePixelRatio}
+          style={{ height: this.state.canvasHeight, width: this.state.canvasWidth }}></canvas>
         {toolContent}
       </div>
     </div>;
@@ -91,6 +96,13 @@ exports.Editor = class Editor extends React.Component {
     this.setState({overrideToolbar: this.state.tool});
   }
 
+  deriveButtonStates() {
+    this.setState({
+      canUndo: this.history.canUndo(),
+      canRedo: this.history.canRedo()
+    });
+  }
+
   isToolActive(tool) {
     return this.state.tool === tool;
   }
@@ -99,14 +111,19 @@ exports.Editor = class Editor extends React.Component {
     if (this.selectedTool.current && this.selectedTool.current.renderToolbar) {
       return this.selectedTool.current.renderToolbar();
     }
+
     const penState = this.isToolActive("pen") ? "active" : "inactive";
     const highlighterState = this.isToolActive("highlighter") ? "active" : "inactive";
+    const undoButtonState = this.state.canUndo ? "active" : "inactive";
+    const redoButtonState = this.state.canRedo ? "active" : "inactive";
+
     return <div className="editor-header default-color-scheme">
       <div className="shot-main-actions annotation-main-actions">
         <div className="annotation-tools">
           <Localized id="annotationCropButton">
             <button className={`button transparent crop-button`} id="crop" onClick={this.onClickCrop.bind(this)} title="Crop"></button>
           </Localized>
+          <span className="annotation-divider"></span>
           <Localized id="annotationPenButton">
             <button className={`button transparent pen-button ${penState}`} id="pen" onClick={this.onClickPen.bind(this)} title="Pen"></button>
           </Localized>
@@ -116,8 +133,17 @@ exports.Editor = class Editor extends React.Component {
           <ColorPicker activeTool={this.state.tool}
             setColorCallback={this.setColor.bind(this)}
             color={this.state.color} />
+          <span className="annotation-divider"></span>
+          <Localized id="annotationUndoButton">
+            <button className={`button transparent undo-button ${undoButtonState}`} id="undo"
+              disabled={!this.state.canUndo} onClick={this.onUndo.bind(this)} title="Undo"></button>
+          </Localized>
+          <Localized id="annotationRedoButton">
+            <button className={`button transparent redo-button ${redoButtonState}`} id="redo"
+              disabled={!this.state.canRedo} onClick={this.onRedo.bind(this)} title="Redo"></button>
+          </Localized>
           <Localized id="annotationClearButton">
-            <button className={`button transparent clear-button`} id="clear" onClick={this.onClickClear.bind(this)} title="Clear"></button>
+            <button className={`button transparent clear-button ${undoButtonState}`} id="clear" onClick={this.onClickClear.bind(this)} title="Clear"></button>
           </Localized>
         </div>
       </div>
@@ -155,6 +181,8 @@ exports.Editor = class Editor extends React.Component {
       return;
     }
 
+    this.history.pushDiff(this.imageCanvas, affectedArea);
+
     this.imageContext.globalCompositeOperation = (compositeOp || "source-over");
     this.imageContext.drawImage(incomingCanvas,
       affectedArea.left * this.devicePixelRatio,
@@ -162,6 +190,15 @@ exports.Editor = class Editor extends React.Component {
       affectedArea.width * this.devicePixelRatio,
       affectedArea.height * this.devicePixelRatio,
       affectedArea.left, affectedArea.top, affectedArea.width, affectedArea.height);
+
+    this.deriveButtonStates();
+  }
+
+  applyDiff(area, diffCanvas) {
+    this.imageContext.globalCompositeOperation = "source-over";
+    this.imageContext.drawImage(diffCanvas,
+      0, 0, diffCanvas.width, diffCanvas.height,
+      area.left, area.top, area.width, area.height);
   }
 
   onCropUpdate(affectedArea, incomingCanvas) {
@@ -170,29 +207,73 @@ exports.Editor = class Editor extends React.Component {
       return;
     }
 
+    this.history.pushFrame(this.imageCanvas, new Selection(
+      0, 0, this.state.canvasWidth, this.state.canvasHeight
+    ));
+    this.applyFrame(affectedArea, incomingCanvas);
+    this.setState({tool: this.previousTool});
+    this.deriveButtonStates();
+  }
+
+  applyFrame(area, frameCanvas) {
     const img = new Image();
     img.crossOrigin = "Anonymous";
     img.onload = () => {
       imageContext.scale(this.devicePixelRatio, this.devicePixelRatio);
-      imageContext.drawImage(img, 0, 0, affectedArea.width, affectedArea.height);
+      imageContext.drawImage(img, 0, 0, area.width, area.height);
     };
-    this.canvasWidth = affectedArea.width;
-    this.canvasHeight = affectedArea.height;
     const imageContext = this.imageCanvas.getContext("2d");
     this.imageContext = imageContext;
-    img.src = incomingCanvas.toDataURL("image/png");
-    this.setState({tool: this.previousTool});
+    img.src = frameCanvas.toDataURL("image/png");
+    this.setState({canvasWidth: area.width, canvasHeight: area.height});
   }
 
   onClickCancelCrop() {
     this.setState({tool: this.previousTool});
   }
 
+  onUndo() {
+    if (!this.history.canUndo()) {
+      return;
+    }
+
+    this.applyHistory(this.history.undo(this.imageCanvas));
+    this.deriveButtonStates();
+  }
+
+  onRedo() {
+    if (!this.history.canRedo()) {
+      return;
+    }
+
+    this.applyHistory(this.history.redo(this.imageCanvas));
+    this.deriveButtonStates();
+  }
+
+  applyHistory(record) {
+    if (!record) {
+      return;
+    }
+    switch (record.recordType) {
+      case RecordType.DIFF:
+        this.applyDiff(record.area, record.canvas);
+        break;
+      case RecordType.FRAME:
+        this.applyFrame(record.area, record.canvas);
+        break;
+      default:
+        break;
+    }
+  }
+
   onClickClear() {
-    this.setState({tool: this.state.tool});
+    this.setState({
+      canvasWidth: Math.floor(this.props.clip.image.dimensions.x),
+      canvasHeight: Math.floor(this.props.clip.image.dimensions.y)
+    });
+    this.history = new EditorHistory(this.devicePixelRatio);
+    this.deriveButtonStates();
     this.imageContext.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
-    this.canvasHeight = this.props.clip.image.dimensions.y;
-    this.canvasWidth = this.props.clip.image.dimensions.x;
     this.renderImage();
     sendEvent("clear-select", "annotation-toolbar");
   }
@@ -214,7 +295,7 @@ exports.Editor = class Editor extends React.Component {
       }
     }
 
-    const dimensions = {x: this.canvasWidth, y: this.canvasHeight};
+    const dimensions = {x: this.state.canvasWidth, y: this.state.canvasHeight};
     this.props.onClickSave(dataUrl, dimensions);
     sendEvent("save", "annotation-toolbar");
   }

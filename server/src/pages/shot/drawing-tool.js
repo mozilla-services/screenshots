@@ -88,14 +88,14 @@ exports.DrawingTool = class DrawingTool extends React.Component {
       return;
     }
 
-    this.drawnArea.left = Math.max(this.drawnArea.left - this.state.lineWidth, 0);
-    this.drawnArea.top = Math.max(this.drawnArea.top - this.state.lineWidth, 0);
-    this.drawnArea.right = Math.min(
+    this.drawnArea.left = Math.ceil(Math.max(this.drawnArea.left - this.state.lineWidth, 0));
+    this.drawnArea.top = Math.ceil(Math.max(this.drawnArea.top - this.state.lineWidth, 0));
+    this.drawnArea.right = Math.ceil(Math.min(
       this.drawnArea.right + this.state.lineWidth,
-      this.canvasWidth);
-    this.drawnArea.bottom = Math.min(
+      this.canvasWidth));
+    this.drawnArea.bottom = Math.ceil(Math.min(
       this.drawnArea.bottom + this.state.lineWidth,
-      this.canvasHeight);
+      this.canvasHeight));
 
     this.finalize();
 
