@@ -2,5 +2,5 @@
   "extends": [
     "config:base"
   ],
-  "schedule": ["every Sunday"]
+  "schedule": ["on Sunday"]
 }
