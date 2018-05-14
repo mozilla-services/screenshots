@@ -88,7 +88,7 @@ build/%.html: %.html
 	cp $< $@
 
 .PHONY: addon
-addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/shot.js addon/webextension/build/thumbnailGenerator.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/onboardingCss.js addon/webextension/build/onboardingHtml.js addon/webextension/build/buildSettings.js
+addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/selection.js addon/webextension/build/shot.js addon/webextension/build/thumbnailGenerator.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/onboardingCss.js addon/webextension/build/onboardingHtml.js addon/webextension/build/buildSettings.js
 
 $(VENV): bin/require.pip
 	virtualenv -p python2.7 $(VENV)
@@ -130,6 +130,10 @@ addon/install.rdf: addon/install.rdf.template package.json
 
 addon/webextension/manifest.json: addon/webextension/manifest.json.template build/.backend.txt package.json
 	./bin/build-scripts/update_manifest.py $< $@
+
+addon/webextension/build/selection.js: shared/selection.js
+	@mkdir -p $(@D)
+	./bin/build-scripts/modularize selection $< > $@
 
 addon/webextension/build/shot.js: shared/shot.js
 	@mkdir -p $(@D)

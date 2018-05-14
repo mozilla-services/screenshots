@@ -446,6 +446,10 @@ body {
   justify-content: center;
   margin: 20px auto;
   z-index: 9999;
+}
+
+.canvas-container .image-holder {
+  z-index: 2;
 
   &.pen {
     cursor: url("../img/cursor-pen.png"), auto;
@@ -456,11 +460,7 @@ body {
   }
 }
 
-.canvas-container .image-holder {
-  z-index: 2;
-}
-
-.temp-highlighter {
+.highlighter {
   mix-blend-mode: multiply;
   z-index: 4;
 
@@ -481,17 +481,6 @@ body {
   bottom: 0;
 }
 
-.color-button {
-  height: 22px;
-  width: 22px;
-  border-radius: 11px;
-  margin: 13.5px 10px 0 9.5px;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
 #color-button-container {
   min-width: 40px;
 }
@@ -507,8 +496,16 @@ body {
 }
 
 #color-picker {
+  border-radius: 11px;
   position: absolute;
+  height: 22px;
+  width: 22px;
+  margin: 13.5px 10px 0 9.5px;
   z-index: 2;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 #color-picker:hover + #color-button-highlight {
