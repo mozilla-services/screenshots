@@ -35,7 +35,7 @@ exports.ColorPicker = class ColorPicker extends React.Component {
     }
   }
 
-  componentWillReceiveProps() {
+  UNSAFE_componentWillReceiveProps() {
     this.setState({pickerActive: false});
   }
 

@@ -666,7 +666,7 @@ class EditableTitle extends React.Component {
     this.state = {isEditing: false, isSaving: false, minWidth: 200};
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     // When the save completes, this component just gets updated with the new title
     if (this.state.isSaving && this.state.isSaving === nextProps.title) {
       this.setState({isSaving: false});
