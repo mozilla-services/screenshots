@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8.11.1@sha256:038040743b742c720e2d6e3ec10e67612de1ad21b709b2c292c8d8cc93bc1b26
+      - image: circleci/node:8.11.1@sha256:ce7a867d08f5da1c193afad04ec8a44d20606f2619e3a02d6420dd530eb9cd3c
     working_directory: ~/screenshots
     steps:
       - checkout
@@ -101,7 +101,7 @@ jobs:
       - run: bash <(curl -s https://codecov.io/bash)
   deploy_dev:
     docker:
-      - image: circleci/node:8.11.1@sha256:038040743b742c720e2d6e3ec10e67612de1ad21b709b2c292c8d8cc93bc1b26
+      - image: circleci/node:8.11.1@sha256:ce7a867d08f5da1c193afad04ec8a44d20606f2619e3a02d6420dd530eb9cd3c
     steps:
       - setup_remote_docker
       - attach_workspace:
@@ -113,7 +113,7 @@ jobs:
             ./bin/release-version dev
   deploy_stage:
     docker:
-      - image: circleci/node:8.11.1@sha256:038040743b742c720e2d6e3ec10e67612de1ad21b709b2c292c8d8cc93bc1b26
+      - image: circleci/node:8.11.1@sha256:ce7a867d08f5da1c193afad04ec8a44d20606f2619e3a02d6420dd530eb9cd3c
     steps:
       - setup_remote_docker
       - attach_workspace:
