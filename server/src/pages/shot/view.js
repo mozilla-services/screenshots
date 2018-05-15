@@ -90,7 +90,7 @@ class Head extends React.Component {
     if (expired) {
       return (
         <reactruntime.HeadTemplate {...this.props}>
-          <meta name="robots" content="noindex" />
+          <meta name="robots" content="noindex, nofollow, noimageindex" />
           <script src={ this.props.staticLink("/static/js/wantsauth.js") } />
           <script src={ this.props.staticLink("/static/js/shot-bundle.js") } async />
           <link rel="stylesheet" href={ this.props.staticLink("/static/css/frame.css") } />
@@ -101,6 +101,7 @@ class Head extends React.Component {
     // FIXME: we need to review if the oembed form actually works and is valuable (#585)
     return (
       <reactruntime.HeadTemplate {...this.props}>
+        <meta name="robots" content="noindex, nofollow, noimageindex" />
         <script src={ this.props.staticLink("/static/js/wantsauth.js") } />
         <script src={ this.props.staticLink("/static/js/shot-bundle.js") } async />
         <link rel="stylesheet" href={ this.props.staticLink("/static/css/inline-selection.css") } />
