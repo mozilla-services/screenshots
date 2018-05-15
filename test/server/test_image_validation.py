@@ -28,8 +28,10 @@ def user_setup():
 def test_invalid_data_image():
     image = image_setup()
     (shot_data, shot_json, user) = user_setup()
-    if "iVBORw0KGgo" in image:
-        invalid_data_image = image.replace('iVBORw0KGgo', 'R0k')
+    valid_header = "data:image/png;base64,iVBORw0KGgo"
+    invalid_header = "data:image/png;base64,R0k"
+    if valid_header in image:
+        invalid_data_image = image.replace(valid_header, invalid_header)
         for clip_id in shot_json['clips']:
             shot_json['clips'][clip_id]['image']['url'] = invalid_data_image
             break
