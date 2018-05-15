@@ -65,6 +65,7 @@ exports.CropTool = class CropTool extends React.Component {
     const selectionBottomPx = `${this.state.cropSelection.bottom}px`;
     const selectionHeightPx = `${this.state.cropSelection.height}px`;
     const selectionWidthPx = `${this.state.cropSelection.width}px`;
+    const remainingRightSideWidthPx = `${this.canvasWidth - this.state.cropSelection.right}px`;
     const oneHundredPercent = "100%";
 
     const bgTopStyles = {
@@ -83,7 +84,7 @@ exports.CropTool = class CropTool extends React.Component {
       top: selectionTopPx,
       height: selectionHeightPx,
       left: selectionRightPx,
-      width: oneHundredPercent
+      width: remainingRightSideWidthPx
     };
     const bgBottomStyles = {
       top: selectionBottomPx,
@@ -187,6 +188,7 @@ exports.CropTool = class CropTool extends React.Component {
 
     isMousedown = true;
     mousedownPosition = this.captureMousePosition(e);
+    e.preventDefault();
 
     if (!this.state.cropSelection) {
       this.setState({selectionState: SelectionState.CREATING});
