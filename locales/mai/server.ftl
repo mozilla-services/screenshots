@@ -88,6 +88,18 @@ shotPagePrivacyMessage = लिंक द्वारा केओ भी ई �
 shotPageCopyImageText =
     .label = फोटो टेक्स्ट कॉपी करू
 shotPageConfirmDeletion = की अहाँ वाकई ई शॉट केँ हमेशा लेल मेटाबै चाहैत छी?
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = { $Date } तक पुनर्स्थापित करू
+shotPageExpiredMessage = ई शॉट क समय सीमा समाप्त भ गेल अछि.
+shotPageDeleteButton =
+    .title = ई शॉट मेटाबू
+shotPageDownloadShot =
+    .title = डाउनलोड करू
+shotPageEditButton =
+    .title = ई फोटो केँ संपादित करू
+shotPageDownload = डाउनलोड करू
+shotPageUpsellFirefox = एखन firefox पाबू
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = समय चुनू
 # The ∞ is used to indicate that the shot won't expire. It is also used in
@@ -201,10 +213,68 @@ shotIndexPageSearchResultsTitle = हमर शॉट: कलेल खोज �
 # { $error } is a placeholder for a non-translated error message that could be shared
 # with developers when debugging an error.
 shotIndexPageErrorRendering = रेंडरिंग पेज त्रुटि: { $error }
+shotIndexPageSearchPlaceholder =
+    .placeholder = हमर शॉट्स खोजू
+shotIndexPageSearchButton =
+    .title = खोजू
+shotIndexPageNoShotsMessage = कोनो सहेजल गेल शॉट नहि.
+shotIndexPageNoShotsInvitation = चलू, किछु बनाबू.
+shotIndexPageLookingForShots = अपन शॉट्स क खोज...
+shotIndexPageNoSearchResultsIntro = अच्छा
+shotIndexPageNoSearchResults = हम अहाँक खोज सँ मैच करै बला कोनो भी शॉट केँ नहि ढूंढ सकब.
+shotIndexPageClearSearchButton =
+    .title = खोज साफ करू
+shotIndexPageConfirmShotDelete = ई शॉट केँ मेटाबू?
+shotIndexPagePreviousPage =
+    .title = पिछला पृष्ठ
+shotIndexPageNextPage =
+    .title = अगिला पृष्ठ
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = ई शॉट समाप्त नहि हाएत अछि
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = की अहाँ वाकई मे ई शॉट केँ मेटाबै चाहैत छी?
+shotDeleteCancel = कैंसिल करू
+    .title = कैंसिल करू
+shotDeleteConfirm = मेटाउ
+    .title = मेटाउ
 
 ## Metrics page
 ## All metrics strings are optional for translation
 
+# Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Firefox Screenshots मेट्रिक्स
+metricsPageTotalsQueryTitle = कुल
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = स्क्रीनशॉट क अवलोकन
+metricsPageTotalsQueryDevices = कुल पंजीकृत डिवाइस
+metricsPageTotalsQueryActiveShots = सक्रिय शॉट्स
+metricsPageTotalsQueryExpiredShots = समय सीमा समाप्त (मुदा वापस भेटि सकब योग्य)
+metricsPageTotalsQueryExpiredDeletedShots = समाप्त (आओर हटाए देल गेल)
+metricsPageShotsQueryTitle = दिन क शॉट्स
+metricsPageShotsQueryCount = शॉट्स क संख्या
+metricsPageShotsQueryDay = दिन
+metricsPageUsersQueryTitle = दिन क अनुसार उपयोगकर्ता
+metricsPageUsersQueryCount = उपयोगकर्ता क संख्या
+metricsPageUsersQueryDay = दिन
+metricsPageUserShotsQueryTitle = शॉट्स क सँख्या प्रति उपयोगकर्ता
+metricsPageUserShotsQueryCount = उपयोगकर्ता क संख्या
+metricsPageUserShotsQueryShots = लगभग सक्रिय शॉट्स (समाप्त नहि) क संख्या 
+metricsPageRetentionQueryTitle = सप्ताह सँ प्रतिधारण
+metricsPageRetentionQueryUsers = उपयोगकर्ता क संख्या
+metricsPageTotalRetentionQueryTitle = कुल प्रतिधारण
+metricsPageTotalRetentionQueryUsers = उपयोगकर्ता क संख्या
+metricsPageVersionQueryTitle = ऐड-ऑन संस्करण
+metricsPageVersionQueryUsers = लॉगिन करए बला उपयोगकर्ता क संख्या
+metricsPageVersionQueryVersion = एड-ऑन संस्करण
+metricsPageVersionQueryLastSeen = दिन
+metricsPageHeader = मैट्रिक्स
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = एतय उत्पन्न: { $created }
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (डेटाबेस समय: { $time }ms)
