@@ -54,8 +54,11 @@ homePageCookiesLink = कुकीज़
 
 leavePageRemoveAllData = सभ डेटा मेटाबू
 leavePageErrorGeneric = एकटा त्रुटि उत्पन्न भेल
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = ई अहाँक सभ Firefox Screenshots डेटा केँ हमेशा कलेल मेटाए देत.
 leavePageButtonProceed = आगाँ जाउ
 leavePageButtonCancel = रद्द करू
+leavePageDeleted = अहाँक सभ Screenshots मेटाए देल गेल!
 
 ## Not Found page
 
@@ -88,6 +91,8 @@ shotPagePrivacyMessage = लिंक द्वारा केओ भी ई �
 shotPageCopyImageText =
     .label = फोटो टेक्स्ट कॉपी करू
 shotPageConfirmDeletion = की अहाँ वाकई ई शॉट केँ हमेशा लेल मेटाबै चाहैत छी?
+# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = जँ अहाँ किछु नए करैत छी, ई शॉट { $timediff } हमेशा कलेल मेटाए देल जाएत.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = { $Date } तक पुनर्स्थापित करू
@@ -100,6 +105,8 @@ shotPageEditButton =
     .title = ई फोटो केँ संपादित करू
 shotPageDownload = डाउनलोड करू
 shotPageUpsellFirefox = एखन firefox पाबू
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = आगाँ जानकारी पाबै लेल कृपया { $dmca } पर ईमेल करू.
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = समय चुनू
 # The ∞ is used to indicate that the shot won't expire. It is also used in
@@ -267,8 +274,10 @@ metricsPageUserShotsQueryCount = उपयोगकर्ता क संख्
 metricsPageUserShotsQueryShots = लगभग सक्रिय शॉट्स (समाप्त नहि) क संख्या 
 metricsPageRetentionQueryTitle = सप्ताह सँ प्रतिधारण
 metricsPageRetentionQueryUsers = उपयोगकर्ता क संख्या
+metricsPageRetentionQueryFirstWeek = सप्ताह, जाहि मे उपयोगकर्ता पहिल बेर शॉट्स बनाएलक
 metricsPageTotalRetentionQueryTitle = कुल प्रतिधारण
 metricsPageTotalRetentionQueryUsers = उपयोगकर्ता क संख्या
+metricsPageTotalRetentionQueryDays = दिवस, जकरा मे उपयोगकर्ता शॉट्स बनाए रहल अछि 
 metricsPageVersionQueryTitle = ऐड-ऑन संस्करण
 metricsPageVersionQueryUsers = लॉगिन करए बला उपयोगकर्ता क संख्या
 metricsPageVersionQueryVersion = एड-ऑन संस्करण
