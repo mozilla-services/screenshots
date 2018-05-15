@@ -101,15 +101,106 @@ shotPageKeepOneWeek = 1 सप्ताह
 shotPageKeepTwoWeeks = 2 सप्ताह
 shotPageKeepOneMonth = 1 महिना
 shotPageSaveExpiration = सहेजू
+shotPageCancelExpiration = कैंसिल करू
+shotPageDoesNotExpire = समाप्त नहि हए अछि
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = { $timediff } समय सीमा समाप्त
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = { $timediff } समाप्त
+timeDiffJustNow = एखन एखन
+timeDiffMinutesAgo =
+    { $number ->
+        [one] 1 मिनट पहले 
+       *[other] { $number } मिनट पहले
+    }
+timeDiffHoursAgo =
+    { $number ->
+        [one] 1 घंटा पहले 
+       *[other] { $number } घंटा पहले
+    }
+timeDiffDaysAgo =
+    { $number ->
+        [one] काल्हि
+       *[other] { $number }  दिन पहले
+    }
+timeDiffFutureSeconds = कनिके काल मे
+timeDiffFutureMinutes =
+    { $number ->
+        [one] 1 मिनट मे
+       *[other] { $number } मिनट मे
+    }
+timeDiffFutureHours =
+    { $number ->
+        [one] 1 घंटा मे
+       *[other] { $number } घंटा मे
+    }
+timeDiffFutureDays =
+    { $number ->
+        [one] काल्हि
+       *[other] { $number } दिन मे
+    }
+errorThirdPartyCookiesEnabled = जँ अहा ई शॉट लेने छथि आओर एकरा मेटाए नहि पाबि रहल छी, तँ अहाँ केँ अपन ब्रॉउज़र प्रेफरेंश मे जाए क अस्थायी रूप सँ तेसर पार्टी कुकीज़ सक्रिय करै हाएत.
 
 ## Annotations
 
+annotationPenButton =
+    .title = पेन
+annotationHighlighterButton =
+    .title = हाइलाइटर
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
+    .title = साफ करू
+annotationCropButton =
+    .title = क्रॉप करू
+annotationSaveEditButton = सहेजू
+    .title = संपादन सहेजू
+annotationCancelEditButton = कैंसिल करू
+    .title = संपादन कैंसिल करू
+annotationCropConfirmButton = पुष्टि करू
+    .title = चयन क पुष्टि करू
+annotationCropCancelButton = कैंसिल करू
+    .title = चयन कैंसिल करू
+annotationColorWhite =
+    .title = उज्जर
+annotationColorBlack =
+    .title = करिया
+annotationColorRed =
+    .title = लाल
+annotationColorGreen =
+    .title = हरिअर
+annotationColorBlue =
+    .title = नीला
+annotationColorYellow =
+    .title = पिअर
+annotationColorPurple =
+    .title = बैंगनी
+annotationColorSeaGreen =
+    .title = समुद्री हरिअर
+annotationColorGrey =
+    .title = भूरा
 
 ## Settings Page
 
+settingsDisconnectButton = कनेक्शन हटाबू
+    .title = कनेक्शन हटाबू
+settingsGuestAccountMessage = अतिथि क खाता
+settingsSignInButton = साइन इन करू
+    .title = साइन इन करू
+SettingsPageHeader = Firefox Screenshots सेटिंग्स
+settingsPageSubHeader = सिंक & खाता 
+settingsClosePreferences =
+    .title = वरीयता बन्न करू
 
 ## Shotindex page
 
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = शॉट हटाबै मे त्रुटि: { $status } { $statusText }
+# { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = हमर शॉट: कलेल खोज करू { $searchTerm }
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
+shotIndexPageErrorRendering = रेंडरिंग पेज त्रुटि: { $error }
 
 ## Delete Confirmation Dialog
 
