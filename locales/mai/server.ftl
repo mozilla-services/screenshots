@@ -42,6 +42,10 @@ homePageGetStarted = प्रारंभ करू
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox स्क्रीनशॉट कओन तरहें काज करैत अछि
 homePageGetStartedTitle = प्रारंभ करू
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = अपन टूलबार मे नव Screenshots खोजू. एकरा चुनू, आओर Screenshots मेनू अहाँक ब्राउजर विंडो मे उप्पर मे देखाइ पड़त.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = एड्रैस बार मे पेज एक्शन मेनू सँ Screenshots आइकन केँ चुनू, आओर Screenshots मेनू अहाँक ब्राउजर विंडो क उप्पर मे देखाइ पड़त.
 homePageCaptureRegion = एकटा क्षेत्र कैप्चर करू
 homePageCapturePage = एकटा पेज कैप्चर करू
 homePageSaveShare = सहेजू आओर साझा करू
@@ -110,9 +114,13 @@ shotPageDownloadShot =
 shotPageEditButton =
     .title = ई फोटो केँ संपादित करू
 shotPageDownload = डाउनलोड करू
+shotPageScreenshotsDescription = Screenshots आसान बनाएल गेल. Screenshots लिअ, सहेजू आओर शेयर करू बिना Firefox सँ निकलने.
 shotPageUpsellFirefox = एखन firefox पाबू
+shotPageDMCAMessage = तेसर पक्ष के इंटेलेक्चुअल प्रोपर्टी दावा के कारण ई शॉट आब मोजुद नहि अछि.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = आगाँ जानकारी पाबै लेल कृपया { $dmca } पर ईमेल करू.
+# Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = कृपया अपन ईमेल मे ई शॉट क URL जोड़ू: { $url } 
 shotPageKeepFor = कतेक काल धरि ई शॉट बनाएल रहल चाही?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = समय चुनू
@@ -210,6 +218,7 @@ annotationColorGrey =
 settingsDisconnectButton = कनेक्शन हटाबू
     .title = कनेक्शन हटाबू
 settingsGuestAccountMessage = अतिथि क खाता
+settingsSignInInvite = आन डिवाइस सँ सिंक करए लेल सिंक करू
 settingsSignInButton = साइन इन करू
     .title = साइन इन करू
 SettingsPageHeader = Firefox Screenshots सेटिंग्स
@@ -271,12 +280,14 @@ metricsPageTotalsQueryActiveShots = सक्रिय शॉट्स
 metricsPageTotalsQueryExpiredShots = समय सीमा समाप्त (मुदा वापस भेटि सकब योग्य)
 metricsPageTotalsQueryExpiredDeletedShots = समाप्त (आओर हटाए देल गेल)
 metricsPageShotsQueryTitle = दिन क शॉट्स
+metricsPageShotsQueryDescription = प्रत्येक दिन बनाएल गेल शॉट्स क संख्या (पछिला 30 दिन खातिर)
 metricsPageShotsQueryCount = शॉट्स क संख्या
 metricsPageShotsQueryDay = दिन
 metricsPageUsersQueryTitle = दिन क अनुसार उपयोगकर्ता
 metricsPageUsersQueryCount = उपयोगकर्ता क संख्या
 metricsPageUsersQueryDay = दिन
 metricsPageUserShotsQueryTitle = शॉट्स क सँख्या प्रति उपयोगकर्ता
+metricsPageUserShotsQueryDescription = N कुल शॉट्स क संबंध मे उपयोगकर्ता क संख्या
 metricsPageUserShotsQueryCount = उपयोगकर्ता क संख्या
 metricsPageUserShotsQueryShots = लगभग सक्रिय शॉट्स (समाप्त नहि) क संख्या 
 metricsPageRetentionQueryTitle = सप्ताह सँ प्रतिधारण
