@@ -15,7 +15,6 @@ exports.DrawingTool = class DrawingTool extends React.Component {
       ref={this.canvas}
       className={`image-holder centered ${this.state.classNames}`}
       onMouseDown={this.onMouseDown.bind(this)}
-      onMouseMove={this.onMouseMove.bind(this)}
       width={this.props.baseCanvas.width}
       height={this.props.baseCanvas.height}
       style={{width: this.props.baseCanvas.style.width,
@@ -60,12 +59,13 @@ exports.DrawingTool = class DrawingTool extends React.Component {
 
   onMouseMove(e) {
     if (!this.isMousedown) {
-      return;
+      return false;
     }
     e.preventDefault();
     const position = this.captureMousePosition(e);
     this.draw(position);
     this.updateDrawnArea(position);
+    return true;
   }
 
   draw(position) {

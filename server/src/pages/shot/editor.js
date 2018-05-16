@@ -24,6 +24,7 @@ exports.Editor = class Editor extends React.Component {
       actionsDisabled: true
     };
     this.onMouseUp = this.onMouseUp.bind(this);
+    this.onMouseMove = this.onMouseMove.bind(this);
     this.selectedTool = React.createRef();
   }
 
@@ -31,7 +32,8 @@ exports.Editor = class Editor extends React.Component {
     const toolContent = this.renderSelectedTool();
     const toolBar = this.renderToolBar();
     const display = this.loader || this.renderCanvas(toolContent);
-    return <div className="inverse-color-scheme full-height column-space">
+    return <div className="inverse-color-scheme full-height column-space"
+      onMouseMove={this.onMouseMove.bind(this)}>
       { toolBar }
       { display }
     </div>;
@@ -238,6 +240,17 @@ exports.Editor = class Editor extends React.Component {
         && this.selectedTool.current.onMouseUp) {
       e.stopPropagation();
       this.selectedTool.current.onMouseUp(e);
+    }
+  }
+
+  onMouseMove(e) {
+    // This is here because we don't want whatever the tool action is to stop
+    // completely as soon as the mouse cursor exits the canvas/tool area (it's
+    // rather jarring).
+    if (this.selectedTool.current
+        && this.selectedTool.current.onMouseMove
+        && this.selectedTool.current.onMouseMove(e)) {
+      e.stopPropagation();
     }
   }
 
