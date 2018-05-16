@@ -265,8 +265,11 @@ this.main = (function() {
         url,
         incognito: windowInfo.incognito,
         filename: info.filename
-      }).catch(function(error) {
-        log.error(error.message);
+      }).catch((error) => {
+        // We are not logging error message when user cancels download
+        if (error && error.message && !error.message.includes("canceled")) {
+          log.error(error.message);
+        }
       }).then((id) => {
         downloadId = id;
       });
