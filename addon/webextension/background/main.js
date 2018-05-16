@@ -265,6 +265,8 @@ this.main = (function() {
         url,
         incognito: windowInfo.incognito,
         filename: info.filename
+      }).catch(function(error) {
+        log.error(error.message);
       }).then((id) => {
         downloadId = id;
       });
