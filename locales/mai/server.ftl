@@ -53,6 +53,8 @@ homePageCookiesLink = कुकीज़
 ## Leave Screenshots page
 
 leavePageRemoveAllData = सभ डेटा मेटाबू
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = अपन खाता कें मेटाबै लेल अहाँक जरूर Firefox Screenshots इंस्टॉल हएबाक चाही
 leavePageErrorGeneric = एकटा त्रुटि उत्पन्न भेल
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = ई अहाँक सभ Firefox Screenshots डेटा केँ हमेशा कलेल मेटाए देत.
@@ -97,8 +99,12 @@ shotPageExpirationMessage = जँ अहाँ किछु नए करैत
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = { $Date } तक पुनर्स्थापित करू
 shotPageExpiredMessage = ई शॉट क समय सीमा समाप्त भ गेल अछि.
+# Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = एतय ई पेज अछि, ई मूल रूप सँ बनाएल गेल छला:
 shotPageDeleteButton =
     .title = ई शॉट मेटाबू
+shotPageAbuseButton =
+    .title = ई शॉट केँ दुरूपयोग, स्पैम, अथवा आन समस्या लेल रिपोट करू
 shotPageDownloadShot =
     .title = डाउनलोड करू
 shotPageEditButton =
@@ -107,6 +113,7 @@ shotPageDownload = डाउनलोड करू
 shotPageUpsellFirefox = एखन firefox पाबू
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = आगाँ जानकारी पाबै लेल कृपया { $dmca } पर ईमेल करू.
+shotPageKeepFor = कतेक काल धरि ई शॉट बनाएल रहल चाही?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = समय चुनू
 # The ∞ is used to indicate that the shot won't expire. It is also used in
