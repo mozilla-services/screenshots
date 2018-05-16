@@ -47,8 +47,13 @@ homePageGetStartedDescription = अपन टूलबार मे नव Scree
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = एड्रैस बार मे पेज एक्शन मेनू सँ Screenshots आइकन केँ चुनू, आओर Screenshots मेनू अहाँक ब्राउजर विंडो क उप्पर मे देखाइ पड़त.
 homePageCaptureRegion = एकटा क्षेत्र कैप्चर करू
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = ओ क्षेत्र केँ क्लिक आ ड्रैग करू जकरा अहाँ कैप्चर करए चाहैत छी. अथवा केवल क्लिक करू — Screenshots अहाँक लेल क्षेत्र चुनि लेत. जेहन कि अहाँ देखि सकैत छी? अपन स्क्रीनशॉट क ऑनलाइन देखए लेली सहेजनाय चुनू अथवा अपन कंप्यूटर पर डाउनलोड करए खातिर डाउन एरौ बटन दाबू .
 homePageCapturePage = एकटा पेज कैप्चर करू
+homePageCapturePageDescription = पूरा पेज कैप्चर करए लेल उप्पर क दहिन्ना बटन उपयोग करू. देखाइ पड़ैत सहेजू बटन क्षेत्र ते कैप्चर क लेत, अहाँ बिनु स्क्रॉल कएनए देखि सकैत छी, आओर सहेजू पूरा पेज पृष्ठ क पूरा हिस्सा कैप्चर कए लेत.
 homePageSaveShare = सहेजू आओर साझा करू
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageSaveShareDescription = जँ अहाँ एकटा शॉट लए छी, Firefox अहाँक आनलाइन स्क्रीनशॉट लाइब्रेरी सँ स्क्रीनशॉट पठाएत आओर अहाँक लिंक क्लिपबोर्ड मे कॉपी करत. हम अपना सँ अहाँक स्क्रीनशॉट दुइ सप्ताह लेल संग्रह करै छी, मुदा अहाँ कखनो शॉट मेटाए सकैत छी अथवा समाप्ति तिथि बदैल कए अपना लाइब्रेरी मे नमहर काल धरि शॉट सहेजि सकैत छी.
 homePageLegalLink = वैध
 homePagePrivacyLink = गोपनीयता
 homePageTermsLink = शर्त
@@ -119,6 +124,8 @@ shotPageUpsellFirefox = एखन firefox पाबू
 shotPageDMCAMessage = तेसर पक्ष के इंटेलेक्चुअल प्रोपर्टी दावा के कारण ई शॉट आब मोजुद नहि अछि.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = आगाँ जानकारी पाबै लेल कृपया { $dmca } पर ईमेल करू.
+# Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = जँ अहाँक शॉट अनेक दावा के तहत आबैत अछि, हम अहाँक पहुँच Firefox Screenshots मे बन्न क सकैत छी.
 # Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = कृपया अपन ईमेल मे ई शॉट क URL जोड़ू: { $url } 
 shotPageKeepFor = कतेक काल धरि ई शॉट बनाएल रहल चाही?
