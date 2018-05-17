@@ -156,6 +156,7 @@ timeDiffFutureSeconds = 몇 초 전
 timeDiffFutureMinutes = { $number }분 내
 timeDiffFutureHours = { $number }시간 내
 timeDiffFutureDays = { $number }일 내
+errorThirdPartyCookiesEnabled = 이 스크린샷을 삭제할 수 없다면 브라우저의 설정에서 제3자 쿠키를 일시적으로 활성화해야 할 수도 있습니다.
 
 ## Annotations
 
@@ -272,6 +273,7 @@ metricsPageUserShotsQueryCount = 사용자 수
 metricsPageRetentionQueryUsers = 사용자 수
 metricsPageRetentionQueryFirstWeek = 사용자가 처음으로 스크린샷을 찍었던 주
 metricsPageTotalRetentionQueryUsers = 사용자 수
+metricsPageTotalRetentionQueryDays = 사용자가 스크린샷을 찍은 후 날수
 metricsPageVersionQueryTitle = 부가 기능 버전
 metricsPageVersionQueryDescription = 지난 14일간 로그인하는동안 사용된 부가 기능의 버전
 metricsPageVersionQueryUsers = 로그인한 사용자 수
