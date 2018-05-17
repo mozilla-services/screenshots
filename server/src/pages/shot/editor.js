@@ -148,13 +148,15 @@ exports.Editor = class Editor extends React.Component {
     sendEvent("crop-select", "annotation-toolbar");
   }
 
-  onDrawingUpdate(affectedArea, incomingCanvas) {
+  onDrawingUpdate(affectedArea, incomingCanvas, compositeOp) {
     if (!affectedArea || !incomingCanvas) {
       return;
     }
 
+    this.imageCanvas.globalCompositeOperation = (compositeOp || "source-over");
     this.imageContext.drawImage(incomingCanvas,
-      0, 0,
+      affectedArea.left * this.devicePixelRatio,
+      affectedArea.top * this.devicePixelRatio,
       affectedArea.width * this.devicePixelRatio,
       affectedArea.height * this.devicePixelRatio,
       affectedArea.left, affectedArea.top, affectedArea.width, affectedArea.height);

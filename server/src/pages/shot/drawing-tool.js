@@ -100,19 +100,10 @@ exports.DrawingTool = class DrawingTool extends React.Component {
     this.finalize();
 
     if (this.props.updateImageCallback) {
-      const patch = document.createElement("canvas");
-      patch.width = this.drawnArea.width;
-      patch.height = this.drawnArea.height;
-      const patchContext = patch.getContext("2d");
-      patchContext.scale(this.devicePixelRatio, this.devicePixelRatio);
-      patchContext.drawImage(this.canvas.current,
-        this.drawnArea.left * this.props.devicePixelRatio,
-        this.drawnArea.top * this.props.devicePixelRatio,
-        this.drawnArea.width * this.props.devicePixelRatio,
-        this.drawnArea.height * this.props.devicePixelRatio,
-        0, 0, this.drawnArea.width, this.drawnArea.height
-      );
-      this.props.updateImageCallback(this.drawnArea, patch);
+      this.props.updateImageCallback(
+        this.drawnArea,
+        this.canvas.current,
+        this.globalCompositeOperation || "source-over");
     }
 
     this.isMousedown = false;
