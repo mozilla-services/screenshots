@@ -37,7 +37,7 @@
     "pg": "6.2.5",
     "pg-patcher": "0.4.0",
     "query-string": "5.1.1",
-    "raven": "2.5.0",
+    "raven": "2.6.2",
     "raven-js": "3.25.2",
     "react": "16.3.2",
     "react-dom": "16.3.2",

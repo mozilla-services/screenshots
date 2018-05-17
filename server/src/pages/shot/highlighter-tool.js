@@ -66,29 +66,11 @@ exports.HighlighterTool = class HighlighterTool extends DrawingTool {
   }
 
   finalize() {
-    const coordsAndSizes = [
-      this.drawnArea.left * this.props.devicePixelRatio,
-      this.drawnArea.top * this.props.devicePixelRatio,
-      this.drawnArea.width * this.props.devicePixelRatio,
-      this.drawnArea.height * this.props.devicePixelRatio,
-      this.drawnArea.left, this.drawnArea.top,
-      this.drawnArea.width, this.drawnArea.height
-    ];
-    const composite = document.createElement("canvas");
-    composite.width = this.props.baseCanvas.width;
-    composite.height = this.props.baseCanvas.height;
-    const compositeContext = composite.getContext("2d");
-    compositeContext.scale(this.props.devicePixelRatio, this.props.devicePixelRatio);
-    compositeContext.drawImage(this.props.baseCanvas, ...coordsAndSizes);
-
     if (isWhite(this.state.strokeStyle)) {
-      compositeContext.globalCompositeOperation = "soft-light";
+      this.globalCompositeOperation = "soft-light";
     } else {
-      compositeContext.globalCompositeOperation = "multiply";
+      this.globalCompositeOperation = "multiply";
     }
-
-    compositeContext.drawImage(this.canvas.current, ...coordsAndSizes);
-    this.drawingContext.drawImage(composite, ...coordsAndSizes);
   }
 
   sendMetrics() {
