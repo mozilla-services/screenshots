@@ -153,7 +153,7 @@ exports.Editor = class Editor extends React.Component {
       return;
     }
 
-    this.imageCanvas.globalCompositeOperation = (compositeOp || "source-over");
+    this.imageContext.globalCompositeOperation = (compositeOp || "source-over");
     this.imageContext.drawImage(incomingCanvas,
       affectedArea.left * this.devicePixelRatio,
       affectedArea.top * this.devicePixelRatio,
