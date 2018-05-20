@@ -192,6 +192,8 @@ annotationColorGrey =
 
 ## Settings Page
 
+settingsDisconnectButton = Digennaskañ
+    .title = Digennaskañ
 
 ## Shotindex page
 
