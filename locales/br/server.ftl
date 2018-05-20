@@ -149,7 +149,47 @@ shotPageExpiresIn = diamzer a-benn { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = diamzeret abaoe { $timediff }
 timeDiffJustNow = diouzhtu
+timeDiffHoursAgo =
+    { $number ->
+        [one] 1 vunutenn 'zo
+        [two] { $number } vunutenn 'zo
+        [few] { $number } munutenn 'zo
+        [many] { $number } a vunutennoù 'zo
+       *[other] { $number } munutenn 'zo
+    }
+timeDiffDaysAgo =
+    { $number ->
+        [one] dec'h
+        [two] { $number } zevezh 'zo
+        [few] { $number } devezh 'zo
+        [many] { $number } a zevezhioù 'zo
+       *[other] { $number } devezh 'zo
+    }
 timeDiffFutureSeconds = a-benn un nebeud eilennoù
+timeDiffFutureMinutes =
+    { $number ->
+        [one] a-benn 1 vunutenn
+        [two] a-benn { $number } vunutenn
+        [few] a-benn { $number } munutenn
+        [many] a-benn { $number } a vunutennoù
+       *[other] a-benn { $number } munutenn
+    }
+timeDiffFutureHours =
+    { $number ->
+        [one] a-benn 1 eur
+        [two] a-benn { $number } eur
+        [few] a-benn { $number } eur
+        [many] a-benn { $number } a eurioù
+       *[other] a-benn { $number } eur
+    }
+timeDiffFutureDays =
+    { $number ->
+        [one] warc'hoazh
+        [two] a-benn { $number } zevezh
+        [few] a-benn { $number } devezh
+        [many] a-benn { $number } a zevezhioù
+       *[other] a-benn { $number } devezh
+    }
 errorThirdPartyCookiesEnabled = M'ho peus kemeret an dapadenn-mañ ha n'hallit ket he dilemel ho peus ezhomm da weredekaat toupinoù an tredeoù e gwellvezioù ho merdeer. 
 
 ## Annotations
@@ -194,6 +234,15 @@ annotationColorGrey =
 
 settingsDisconnectButton = Digennaskañ
     .title = Digennaskañ
+settingsGuestAccountMessage = Kont kouviad
+settingsSignInInvite = Kennaskit evit goubredañ etre ho trevnadoù
+settingsSignInButton = Kennaskañ
+    .title = Kennaskañ
+SettingsPageHeader = Arventennoù Firefox Screenshots
+settingsDescription = Gallout a rit kennaskañ gant Firefox Accounts evit goubredañ holl ho tapadennoù skramm etre ho trevnadoù hag haeziñ anezho ent prevez.
+settingsPageSubHeader = Goubredañ & Kontoù
+settingsClosePreferences =
+    .title = Serriñ ar gwellvezioù
 
 ## Shotindex page
 
@@ -230,6 +279,11 @@ shotIndexNoExpirationSymbol = ∞
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = Sur oc'h e fell deoc'h dilemel an dapadenn-mañ?
+shotDeleteCancel = Nullañ
+    .title = Nullañ
+shotDeleteConfirm = Dilemel
+    .title = Dilemel
 
 ## Metrics page
 ## All metrics strings are optional for translation
