@@ -8,7 +8,6 @@ class Head extends React.Component {
   render() {
     return (
       <reactruntime.HeadTemplate {...this.props}>
-        <script src={this.props.staticLink("/static/js/metrics-bundle.js")} async></script>
         <link rel="stylesheet" href={this.props.staticLink("/static/css/metrics.css")} />
       </reactruntime.HeadTemplate>
     );
@@ -39,10 +38,6 @@ class Body extends React.Component {
         <GenericTable data={this.props.data.usersByDay} />
 
         <GenericTable data={this.props.data.shotsByUserHistogram} />
-
-        <GenericTable data={this.props.data.retention} />
-
-        <GenericTable data={this.props.data.retentionTotal} />
       </reactruntime.BodyTemplate>
     );
   }
