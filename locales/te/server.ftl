@@ -249,6 +249,13 @@ shotIndexPageNextPage =
 shotIndexNoExpirationSymbol = ∞
     .title = ఈ పట్టు ఎప్పటికీ కాలంచెల్లదు
 
+## Delete Confirmation Dialog
+
+shotDeleteCancel = రద్దుచేయి
+    .title = రద్దుచేయి
+shotDeleteConfirm = తొలగించు
+    .title = తొలగించు
+
 ## Metrics page
 ## All metrics strings are optional for translation
 
