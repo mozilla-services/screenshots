@@ -47,7 +47,6 @@ exports.CropTool = class CropTool extends React.Component {
       ref={this.el}
       className="crop-container centered"
       onMouseDown={this.onMouseDown.bind(this)}
-      onMouseMove={this.onMouseMove.bind(this)}
       style={{height: this.props.baseCanvas.style.height, width: this.props.baseCanvas.style.width}}>
       {cropSelectionBox}
     </div>;
@@ -227,10 +226,10 @@ exports.CropTool = class CropTool extends React.Component {
   getDraggedSelection(e) {
     const currentMousePosition = this.captureMousePosition(e);
     return new Selection(
-      mousedownPosition.x,
-      mousedownPosition.y,
-      currentMousePosition.x,
-      currentMousePosition.y
+      clamp(mousedownPosition.x, 0, this.canvasWidth),
+      clamp(mousedownPosition.y, 0, this.canvasHeight),
+      clamp(currentMousePosition.x, 0, this.canvasWidth),
+      clamp(currentMousePosition.y, 0, this.canvasHeight)
     );
   }
 
@@ -244,7 +243,7 @@ exports.CropTool = class CropTool extends React.Component {
 
   onMouseMove(e) {
     if (!isMousedown) {
-      return;
+      return false;
     }
 
     if (this.state.selectionState === SelectionState.CREATING) {
@@ -253,7 +252,7 @@ exports.CropTool = class CropTool extends React.Component {
       if (cropSelection.width > MIN_WIDTH && cropSelection.height > MIN_HEIGHT) {
         this.setState({cropSelection});
       }
-      return;
+      return true;
     }
 
     let updatedSelection;
@@ -311,6 +310,7 @@ exports.CropTool = class CropTool extends React.Component {
 
     this.setState({cropSelection: updatedSelection});
     this.scrollIfByEdge(e);
+    return true;
   }
 
   scrollIfByEdge(e) {
