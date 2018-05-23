@@ -1,3 +1,4 @@
+const config = require("./config").getProperties();
 const db = require("./db");
 const Keygrip = require("keygrip");
 const pgpatcher = require("pg-patcher");
@@ -35,21 +36,30 @@ exports.forceDbVersion = function(version) {
 exports.createTables = function() {
   mozlog.info("setting-up-tables-on", {db: db.constr});
   return db.getConnection().then(([conn, done]) => {
-    const dirname = path.join(__dirname, "db-patches");
-    mozlog.info("loading-patches-from", {dirname});
-    return new Promise((resolve, reject) => {
-      pgpatcher(conn, MAX_DB_LEVEL, {dir: dirname}, function(err) {
-        if (err) {
-          mozlog.error("error-patching", {
-            msg: `Error patching database to level ${MAX_DB_LEVEL}!`,
-            err
-          });
-          done();
-          reject(err);
-        } else {
-          mozlog.info("db-level", {msg: `Database is now at level ${MAX_DB_LEVEL}`});
-          resolve();
-        }
+    return getCurrentDbPatchLevel().then(currentDbPatchLevel => {
+      if (currentDbPatchLevel >= MAX_DB_LEVEL
+          && (process.env.NODE_ENV === "production" || config.db.disableDownPatches)) {
+        mozlog.info("skip-db-down-patches",
+          { msg: `Database patch level of ${currentDbPatchLevel} is greater than or equal to the hard coded level of ${MAX_DB_LEVEL}.` });
+        return Promise.resolve();
+      }
+
+      const dirname = path.join(__dirname, "db-patches");
+      mozlog.info("loading-patches-from", {dirname});
+      return new Promise((resolve, reject) => {
+        pgpatcher(conn, MAX_DB_LEVEL, {dir: dirname}, function(err) {
+          if (err) {
+            mozlog.error("error-patching", {
+              msg: `Error patching database to level ${MAX_DB_LEVEL}!`,
+              err
+            });
+            done();
+            reject(err);
+          } else {
+            mozlog.info("db-level", {msg: `Database is now at level ${MAX_DB_LEVEL}`});
+            resolve();
+          }
+        });
       });
     });
   }).then(() => {
@@ -136,8 +146,6 @@ exports.createKeygrip = function() {
   });
 };
 
-
-
 /** Returns a promise that generates a new largish ASCII random key */
 function makeKey() {
   return new Promise(function(resolve, reject) {
@@ -151,11 +159,19 @@ function makeKey() {
   });
 }
 
+function getCurrentDbPatchLevel() {
+  return db.select(`SELECT value FROM property WHERE key = 'patch'`).then(rows => {
+    return parseInt(rows[0].value, 10);
+  }).catch(e => {
+    return 0;
+  });
+}
+
 exports.connectionOK = function() {
   if (!keys) {
     return Promise.resolve(false);
   }
-  return db.select(`SELECT value FROM property WHERE key = 'patch'`).then((rows) => {
-    return parseInt(rows[0].value, 10) === MAX_DB_LEVEL;
+  return getCurrentDbPatchLevel().then(currentLevel => {
+    return currentLevel >= MAX_DB_LEVEL;
   });
 };
