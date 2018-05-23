@@ -877,16 +877,15 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       img.src = URL.createObjectURL(imgBlob);
       iframe.document().querySelector(".preview-image").appendChild(img);
       if (showCropWarning && !(isDownloadOnly())) {
-        const imageCroppedEl = makeEl("table", "notice");
-        imageCroppedEl.style.bottom = "10px";
+        const imageCroppedEl = makeEl("table", "notice middle");
         imageCroppedEl.innerHTML = `<tbody>
           <tr class="notice-wrapper">
             <td class="notice-content"></td>
           </tr>
         </tbody>`;
         const contentCell = imageCroppedEl.getElementsByTagName("td");
-        contentCell[0].textContent = browser.i18n.getMessage("imageCroppedWarning", buildSettings.maxImageHeight);
-        iframe.document().querySelector(".preview-overlay").appendChild(imageCroppedEl);
+        contentCell[0].textContent = browser.i18n.getMessage("imageCropPopupWarning", buildSettings.maxImageHeight);
+        iframe.document().querySelector(".preview-buttons").appendChild(imageCroppedEl);
       }
     }
   };

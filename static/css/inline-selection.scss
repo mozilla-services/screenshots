@@ -227,6 +227,19 @@ $very-light-grey: #ededed;
     height: 16px;
     width: 16px;
   }
+
+  &.middle {
+    display: none;
+    top: calc(50% - 21px);
+  }
+}
+
+.preview-button-save:active,
+.preview-button-save:focus,
+.preview-button-save:hover {
+  ~ .notice.middle {
+    display: block;
+  }
 }
 
 .notice-tooltip {
