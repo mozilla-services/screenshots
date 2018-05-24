@@ -69,6 +69,7 @@
     "notifications",
     "clipboardWrite",
     "contextMenus",
+    "mozillaAddons",
     "<all_urls>",
     "http://localhost:10080/"
   ]
