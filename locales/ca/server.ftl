@@ -220,6 +220,20 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Gris
 
+## Settings Page
+
+settingsDisconnectButton = Desconnecta
+    .title = Desconnecta
+settingsGuestAccountMessage = Compte de convidat
+settingsSignInInvite = Inicieu la sessió per sincronitzar entre dispositius
+settingsSignInButton = Inicia la sessió
+    .title = Inicia la sessió
+SettingsPageHeader = Paràmetres del Firefox Screenshots
+settingsDescription = Podeu iniciar la sessió amb un compte del Firefox per sincronitzar les vostres captures de pantalla en tots els dispositius i accedir-hi de forma privada.
+settingsPageSubHeader = Sincronització i comptes
+settingsClosePreferences =
+    .title = Tanca les preferències
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -252,6 +266,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Aquesta captura no caduca
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Segur que voleu suprimir aquesta captura?
+shotDeleteCancel = Cancel·la
+    .title = Cancel·la
+shotDeleteConfirm = Suprimeix
+    .title = Suprimeix
 
 ## Metrics page
 ## All metrics strings are optional for translation
