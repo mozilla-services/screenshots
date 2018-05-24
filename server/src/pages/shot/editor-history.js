@@ -89,13 +89,18 @@ class EditRecord {
       copy.width = canvas.width;
       copy.height = canvas.height;
       const copyContext = copy.getContext("2d");
-      copyContext.drawImage(canvas, 0, 0);
+      copyContext.scale(devicePixelRatio, devicePixelRatio);
+      copyContext.drawImage(
+        canvas,
+        0, 0, canvas.width, canvas.height,
+        0, 0, area.width, area.height);
       return copy;
     }
 
-    copy.width = area.width;
-    copy.height = area.height;
+    copy.width = area.width * devicePixelRatio;
+    copy.height = area.height * devicePixelRatio;
     const copyContext = copy.getContext("2d");
+    copyContext.scale(devicePixelRatio, devicePixelRatio);
     copyContext.drawImage(
       canvas,
       area.left * devicePixelRatio,
