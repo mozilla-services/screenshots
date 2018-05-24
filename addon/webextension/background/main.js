@@ -201,7 +201,7 @@ this.main = (function() {
       const id = makeUuid();
       return browser.notifications.create(id, {
         type: "basic",
-        iconUrl: "../icons/copy.png",
+        iconUrl: "../icons/copied-notification.svg",
         title: browser.i18n.getMessage("notificationLinkCopiedTitle"),
         message: browser.i18n.getMessage("notificationLinkCopiedDetails", pasteSymbol)
       });
@@ -235,7 +235,7 @@ this.main = (function() {
           catcher.watchPromise(communication.sendToBootstrap("incrementCount", {scalar: "copy"}));
           return browser.notifications.create({
             type: "basic",
-            iconUrl: "../icons/copy.png",
+            iconUrl: "../icons/copied-notification.svg",
             title: browser.i18n.getMessage("notificationImageCopiedTitle"),
             message: browser.i18n.getMessage("notificationImageCopiedDetails", pasteSymbol)
           });
