@@ -255,15 +255,10 @@ exports.Editor = class Editor extends React.Component {
     if (!record) {
       return;
     }
-    switch (record.recordType) {
-      case RecordType.DIFF:
-        this.applyDiff(record.area, record.canvas);
-        break;
-      case RecordType.FRAME:
-        this.applyFrame(record.area, record.canvas);
-        break;
-      default:
-        break;
+    if (record.recordType === RecordType.DIFF) {
+      this.applyDiff(record.area, record.canvas);
+    } else {
+      this.applyFrame(record.area, record.canvas);
     }
   }
 
