@@ -143,7 +143,8 @@ exports.Editor = class Editor extends React.Component {
               disabled={!this.state.canRedo} onClick={this.onRedo.bind(this)} title="Redo"></button>
           </Localized>
           <Localized id="annotationClearButton">
-            <button className={`button transparent clear-button ${undoButtonState}`} id="clear" onClick={this.onClickClear.bind(this)} title="Clear"></button>
+            <button className={`button transparent clear-button ${undoButtonState}`} id="clear"
+              disabled={!this.state.canUndo} onClick={this.onClickClear.bind(this)} title="Clear"></button>
           </Localized>
         </div>
       </div>
@@ -336,12 +337,11 @@ exports.Editor = class Editor extends React.Component {
   }
 
   renderImage() {
-    const imageContext = this.imageCanvas.getContext("2d");
-    imageContext.scale(this.devicePixelRatio, this.devicePixelRatio);
     const img = new Image();
     img.crossOrigin = "Anonymous";
     const width = this.props.clip.image.dimensions.x;
     const height = this.props.clip.image.dimensions.y;
+    const imageContext = this.imageCanvas.getContext("2d");
     img.onload = () => {
       imageContext.drawImage(img, 0, 0, width, height);
       this.setState({actionsDisabled: false});
@@ -352,6 +352,8 @@ exports.Editor = class Editor extends React.Component {
 
   componentDidMount() {
     document.addEventListener("mouseup", this.onMouseUp);
+    const imageContext = this.imageCanvas.getContext("2d");
+    imageContext.scale(this.devicePixelRatio, this.devicePixelRatio);
     this.renderImage();
     this.setState({
       tool: "pen",
