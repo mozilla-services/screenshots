@@ -335,28 +335,16 @@
 }
 
 .undo-button {
-  background: url("../img/annotation-undo.svg");
+  background: url("../img/annotation-redo.svg");
   transform: scale(-1, 1);
-
-  &.inactive {
-    background: url("../img/annotation-undo-inactive.svg") center no-repeat;
-  }
 }
 
 .redo-button {
   background-image: url("../img/annotation-redo.svg");
-
-  &.inactive {
-    background: url("../img/annotation-redo-inactive.svg") center no-repeat;
-  }
 }
 
 .clear-button {
   background-image: url("../img/reset.svg");
-
-  &.inactive {
-    background: url("../img/reset-inactive.svg") center no-repeat;
-  }
 }
 
 .undo-button,
@@ -369,8 +357,12 @@
     background-color: $light-hover;
   }
   &.inactive {
-    &:hover {
-      background-color: #fff;
+    filter: brightness(2.4);
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: transparent;
       cursor: default;
     }
   }
