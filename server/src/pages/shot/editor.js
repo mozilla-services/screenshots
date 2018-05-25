@@ -45,6 +45,8 @@ exports.Editor = class Editor extends React.Component {
   }
 
   renderCanvas(toolContent) {
+    const canvasWidth = Math.floor(this.state.canvasWidth * this.devicePixelRatio);
+    const canvasHeight = Math.floor(this.state.canvasHeight * this.devicePixelRatio);
     return <div className="main-container">
       <div
         className={`inverse-color-scheme canvas-container ${this.state.tool}`}
@@ -54,7 +56,7 @@ exports.Editor = class Editor extends React.Component {
           className="image-holder centered"
           id="image-holder"
           ref={(image) => { this.imageCanvas = image; }}
-          height={this.state.canvasHeight * this.devicePixelRatio} width={this.state.canvasWidth * this.devicePixelRatio}
+          height={canvasHeight} width={canvasWidth}
           style={{ height: this.state.canvasHeight, width: this.state.canvasWidth }}></canvas>
         {toolContent}
       </div>
