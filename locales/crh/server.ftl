@@ -25,6 +25,7 @@ homePageTermsLink = Şartlar
 ## Leave Screenshots page
 
 leavePageButtonProceed = Devam Et
+leavePageButtonCancel = Vazgeç
 
 ## Not Found page
 
@@ -47,3 +48,5 @@ leavePageButtonProceed = Devam Et
 ## Metrics page
 ## All metrics strings are optional for translation
 
+metricsPageVersionQueryTitle = Eklenti Sürümi
+metricsPageVersionQueryVersion = Eklenti sürümi
