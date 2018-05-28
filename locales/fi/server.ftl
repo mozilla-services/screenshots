@@ -220,6 +220,13 @@ annotationColorSeaGreen =
 annotationColorGrey =
     .title = Harmaa
 
+## Settings Page
+
+settingsGuestAccountMessage = Vierastili
+SettingsPageHeader = Firefox Screenshots -asetukset
+settingsClosePreferences =
+    .title = Sulje asetukset
+
 ## Shotindex page
 
 # { $status } is a placeholder for an HTTP status code, like '500'.
@@ -252,6 +259,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Tämä kaappaus ei vanhene
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Haluatko varmasti poistaa tämän kaappauksen?
+shotDeleteCancel = Peruuta
+    .title = Peruuta
+shotDeleteConfirm = Poista
+    .title = Poista
 
 ## Metrics page
 ## All metrics strings are optional for translation
