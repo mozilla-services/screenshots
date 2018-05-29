@@ -222,8 +222,15 @@ annotationColorGrey =
 
 ## Settings Page
 
+settingsDisconnectButton = Katkaise yhteys
+    .title = Katkaise yhteys
 settingsGuestAccountMessage = Vierastili
+settingsSignInInvite = Voit synkronoida tiedot laitteiden välillä kirjautumalla sisään
+settingsSignInButton = Kirjaudu sisään
+    .title = Kirjaudu sisään
 SettingsPageHeader = Firefox Screenshots -asetukset
+settingsDescription = Voit kirjautua sisään Firefox-tilille ja synkronoida kaikki kaappauksesi laitteiden välillä ja katsella niitä yksityisesti.
+settingsPageSubHeader = Synkronointi ja tilit
 settingsClosePreferences =
     .title = Sulje asetukset
 
