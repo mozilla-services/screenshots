@@ -330,14 +330,45 @@
   }
 }
 
+.undo-button {
+  background: url("../img/annotation-redo.svg");
+  transform: scale(-1, 1);
+}
+
+.redo-button {
+  background-image: url("../img/annotation-redo.svg");
+}
+
 .clear-button {
   background-image: url("../img/reset.svg");
+}
+
+.undo-button,
+.redo-button,
+.clear-button {
   background-repeat: no-repeat;
   background-position: center;
 
   &:hover {
     background-color: $light-hover;
   }
+  &.inactive {
+    filter: brightness(2.4);
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: transparent;
+      cursor: default;
+    }
+  }
+}
+
+.annotation-divider {
+  border-right: 1px solid #989a9c;
+  margin: auto auto;
+  width: 1px;
+  height: 28px;
 }
 
 html {
@@ -404,10 +435,6 @@ body {
   box-shadow: rgba(0, 0, 0, 0.15) 0 2px 4px;
   border-radius: $border-radius;
   height: 50px;
-
-  & .button:first-child {
-    margin-right: 0;
-  }
 }
 
 .annotation-main-actions {
@@ -479,6 +506,7 @@ body {
 
 #color-button-container {
   min-width: 40px;
+  margin-left: 5px;
 }
 
 #color-button-highlight {
@@ -488,6 +516,7 @@ body {
   height: 40px;
   border-radius: 3px;
   position: absolute;
+  left: 170.5px;
   background-color: #ededf0;
 }
 
@@ -496,7 +525,7 @@ body {
   position: absolute;
   height: 22px;
   width: 22px;
-  margin: 13.5px 10px 0 9.5px;
+  margin: 13.5px 10px 0 4.5px;
   z-index: 2;
 
   &:hover {
@@ -515,6 +544,7 @@ body {
   width: 160px;
   height: 160px;
   position: absolute;
+  left: 170.5px;
   background: $light-default;
   border: 1px solid $light-border;
   border-radius: 10px;
