@@ -15,7 +15,7 @@ gScreenshotsDescription = Le instantaneos a un maniera simple. Captura, salva e 
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Terminos
-footerLinkPrivacy = Advertentia de confidentialitate
+footerLinkPrivacy = Notification de confidentialitate
 footerLinkFaqs = Questiones frequente
 footerLinkDMCA = Denunciar un violation de proprietate intellectual
 footerLinkDiscourse = Da tu opinion
