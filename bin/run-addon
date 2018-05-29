@@ -9,20 +9,20 @@ jpm="$base/node_modules/.bin/jpm"
 nodemon_pid=
 
 binary=
-firefoxes="
-/Applications/FirefoxNightly.app
-/Applications/Firefox\ Nightly.app
-/Applications/FirefoxDeveloperEdition.app
-/Applications/Firefox\ Developer\ Edition.app
-/Applications/FirefoxAurora.app
-$(which firefox || true)
-"
+firefoxes=(
+"/Applications/FirefoxNightly.app"
+"/Applications/Firefox Nightly.app"
+"/Applications/FirefoxDeveloperEdition.app"
+"/Applications/Firefox Developer Edition.app"
+"/Applications/FirefoxAurora.app"
+"$(which firefox || true)"
+)
 setup_profile=
 server=
 webextension=
 
-for firefox in $firefoxes ; do
-  if [[ -e "$firefox" ]] ; then
+for firefox in "${firefoxes[@]}" ; do
+  if [[ -e "${firefox}" ]] ; then
     binary="$firefox"
     break
   fi
