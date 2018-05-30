@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Stift
 annotationHighlighterButton =
     .title = Textmarker
+annotationUndoButton =
+    .title = Rückgängig
+annotationRedoButton =
+    .title = Widerholen
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Zurücksetzen
