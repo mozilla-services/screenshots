@@ -211,6 +211,10 @@ annotationPenButton =
     .title = Pin
 annotationHighlighterButton =
     .title = Amlygwr
+annotationUndoButton =
+    .title = Dad-wneud
+annotationRedoButton =
+    .title = Ailwneud
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Clir
