@@ -1,3 +1,27 @@
+## 32.2.0
+
+This is an add-on release.
+
+### Add-on changes
+
+* Add 'mozillaAddons' to addon permissions. ([#4495](https://github.com/mozilla-services/screenshots/issues/4495)) ([#4496](https://github.com/mozilla-services/screenshots/issues/4496)) [0b135eb](https://github.com/mozilla-services/screenshots/commit/0b135eb)
+* Update copy icon in notifications. ([#4485](https://github.com/mozilla-services/screenshots/issues/4485)) [7eecffc](https://github.com/mozilla-services/screenshots/commit/7eecffc)
+* Update dependency raven-js to v3.25.2 ([#4428](https://github.com/mozilla-services/screenshots/issues/4428)) [e71b139](https://github.com/mozilla-services/screenshots/commit/e71b139)
+* Ignore download canceled by user errors. Fixes [#3964](https://github.com/mozilla-services/screenshots/issues/3964) [9eb7f6c](https://github.com/mozilla-services/screenshots/commit/9eb7f6c)
+* Avoid including blank scrollbar area in save-visible shots. Fixes [#4147](https://github.com/mozilla-services/screenshots/issues/4147) [e081c42](https://github.com/mozilla-services/screenshots/commit/e081c42)
+* Make onboarding behaviour consistent ([#4342](https://github.com/mozilla-services/screenshots/issues/4342)). Fixes [#4183](https://github.com/mozilla-services/screenshots/issues/4183) [236e16d](https://github.com/mozilla-services/screenshots/commit/236e16d)
+* Use WebExtension page action instead of Photon. ([#3756](https://github.com/mozilla-services/screenshots/issues/3756)) ([#3967](https://github.com/mozilla-services/screenshots/issues/3967)) [02b4c6e](https://github.com/mozilla-services/screenshots/commit/02b4c6e)
+* Use precision select cursor ([#4361](https://github.com/mozilla-services/screenshots/issues/4361)). Fixes [#4187](https://github.com/mozilla-services/screenshots/issues/4187) [8208c0b](https://github.com/mozilla-services/screenshots/commit/8208c0b)
+
+### Clean-up and Lint
+
+* Clean up log.js [17341d4](https://github.com/mozilla-services/screenshots/commit/17341d4)
+* Upgrade eslint-plugin-mozilla along with code fixes. ([#4322](https://github.com/mozilla-services/screenshots/issues/4322)) [ff9aa53](https://github.com/mozilla-services/screenshots/commit/ff9aa53)
+
+### Localization
+
+* Initialize en-CA content, copying over en-GB ([#4388](https://github.com/mozilla-services/screenshots/issues/4388)) [d818d86](https://github.com/mozilla-services/screenshots/commit/d818d86)
+
 ## Version 32.1.0
 
 This includes small changes for the server and add-on release.
