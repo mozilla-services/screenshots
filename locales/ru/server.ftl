@@ -194,6 +194,10 @@ annotationPenButton =
     .title = Ручка
 annotationHighlighterButton =
     .title = Маркер
+annotationUndoButton =
+    .title = Отменить
+annotationRedoButton =
+    .title = Повторить
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Очистить
