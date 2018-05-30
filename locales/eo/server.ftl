@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Skribilo
 annotationHighlighterButton =
     .title = Elstarigilo
+annotationUndoButton =
+    .title = Malfari
+annotationRedoButton =
+    .title = Refari
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Viŝi
