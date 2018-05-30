@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Kynä
 annotationHighlighterButton =
     .title = Korostus
+annotationUndoButton =
+    .title = Kumoa
+annotationRedoButton =
+    .title = Tee uudelleen
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Pyyhi
