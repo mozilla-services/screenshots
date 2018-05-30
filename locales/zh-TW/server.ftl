@@ -164,6 +164,10 @@ annotationPenButton =
     .title = 筆
 annotationHighlighterButton =
     .title = 螢光筆
+annotationUndoButton =
+    .title = 復原
+annotationRedoButton =
+    .title = 重做
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = 清除
