@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Caneta
 annotationHighlighterButton =
     .title = Marcador
+annotationUndoButton =
+    .title = Desfazer
+annotationRedoButton =
+    .title = Refazer
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Limpar
