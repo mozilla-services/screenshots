@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Pen
 annotationHighlighterButton =
     .title = Markearstift
+annotationUndoButton =
+    .title = Ungedien meitsje
+annotationRedoButton =
+    .title = Opnij útfiere
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Wiskje
