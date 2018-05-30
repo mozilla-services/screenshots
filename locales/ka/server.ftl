@@ -184,6 +184,10 @@ annotationPenButton =
     .title = კალამი
 annotationHighlighterButton =
     .title = მოსანიშნი
+annotationUndoButton =
+    .title = დაბრუნება
+annotationRedoButton =
+    .title = კვლავ შესრულება
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = გასუფთავება
