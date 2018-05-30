@@ -182,6 +182,10 @@ annotationPenButton =
     .title = Pen
 annotationHighlighterButton =
     .title = Penyerlah
+annotationUndoButton =
+    .title = Batal
+annotationRedoButton =
+    .title = Ulang
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Buang
