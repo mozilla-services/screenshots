@@ -190,6 +190,8 @@ annotationHighlighterButton =
     .title = Markeringspenna
 annotationUndoButton =
     .title = Ångra
+annotationRedoButton =
+    .title = Gör om
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Rensa
