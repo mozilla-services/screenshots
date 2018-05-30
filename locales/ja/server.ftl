@@ -164,6 +164,10 @@ annotationPenButton =
     .title = ペン
 annotationHighlighterButton =
     .title = ハイライト
+annotationUndoButton =
+    .title = 元に戻す
+annotationRedoButton =
+    .title = やり直し
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = クリア
