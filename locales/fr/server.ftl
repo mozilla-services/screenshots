@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Stylo
 annotationHighlighterButton =
     .title = Surligneur
+annotationUndoButton =
+    .title = Annuler
+annotationRedoButton =
+    .title = Rétablir
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Réinitialiser
