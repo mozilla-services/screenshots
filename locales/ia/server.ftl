@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Penna
 annotationHighlighterButton =
     .title = Evidentiator
+annotationUndoButton =
+    .title = Disfacer
+annotationRedoButton =
+    .title = Refacer
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Clarar
