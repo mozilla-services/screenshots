@@ -13,6 +13,7 @@ footerLinkMozilla = Mozilla
 footerLinkTerms = Үйлчилгээний нөхцөл
 footerLinkPrivacy = Нууцлал мэдэгдэл
 footerLinkFaqs = ТТА хуудас
+footerLinkDMCA = Оюуны өмчийг зөрчлийг мэдээлэх
 footerLinkDiscourse = Санал хүсэлт илгээх
 footerLinkRemoveAllData = Өгөгдлийг хамаг арилгах
 
@@ -31,6 +32,7 @@ homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Үнэ төлбөргүй татж авах
 homePageGetStarted = Эхлэх
 homePageGetStartedTitle = Эхэлцгээе
+homePageCapturePage = Хуудасын зурагыг авах
 homePageSaveShare = Хадгалаад хуваалцах
 homePageLegalLink = Эрхзүй
 homePagePrivacyLink = Нууцлал
@@ -39,6 +41,7 @@ homePageCookiesLink = Күүкий
 
 ## Leave Screenshots page
 
+leavePageRemoveAllData = Өгөгдлийг хамаг арилгах
 leavePageErrorGeneric = Алдаа гарлаа
 leavePageButtonProceed = Үргэлжлүүлэх
 leavePageButtonCancel = Болих
@@ -53,6 +56,8 @@ notFoundPageDescription = Хуудас олдоогүй.
 
 # This is the HTML title tag of the page
 shotPageTitle = Дэлгэцийн зураг: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = Дуусах хугацаагийг хадгалсанд алдаа гарлаа
+shotPageAlertErrorUpdatingTitle = Гарчгийг хадгалсанд алдаа гарлаа
 shotPageShareButton =
     .title = Хуваалцах
 shotPageCopy = Хуулах
@@ -124,6 +129,10 @@ annotationColorGrey =
 # { $error } is a placeholder for a non-translated error message that could be shared
 # with developers when debugging an error.
 shotIndexPageErrorRendering = Хуудасыг дүрслэн харуулахт алдаа гарлаа: { $error }
+shotIndexPagePreviousPage =
+    .title = Өмнөх хуудас
+shotIndexPageNextPage =
+    .title = Дараагийн хуудас
 
 ## Delete Confirmation Dialog
 
@@ -138,3 +147,8 @@ shotDeleteConfirm = Устгах
 metricsPageShotsQueryDay = Өдөр
 metricsPageUsersQueryDay = Өдөр
 metricsPageVersionQueryLastSeen = Өдөр
+metricsPageHeader = Хэмжүүр
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Үүсгэгдсэн хугацааны тамга: { $created }
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = Өгөгдлийн сангийн хугацааны тамга: ({ $time } мс)
