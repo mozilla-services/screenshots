@@ -12,6 +12,7 @@ footerLinkTerms = Үйлчилгээний нөхцөл
 footerLinkPrivacy = Нууцлал бодлого
 footerLinkFaqs = ТТА хуудас
 footerLinkDiscourse = Санал хүсэлт илгээх
+footerLinkRemoveAllData = Өгөгдлийг хамаг арилгах
 
 ## Creating page
 
