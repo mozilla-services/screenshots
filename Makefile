@@ -124,6 +124,9 @@ signed_xpi: addon
 .PHONY: addon_locales
 addon_locales:
 	./node_modules/.bin/pontoon-to-webext --dest addon/webextension/_locales > /dev/null
+	# Firefox doesn't want us to include duplicate files, and some locales don't have any
+	# unique strings compared to en_US:
+	./bin/build-scripts/delete-us-dup-locales.sh
 
 addon/install.rdf: addon/install.rdf.template package.json
 	./bin/build-scripts/update_manifest.py $< $@
