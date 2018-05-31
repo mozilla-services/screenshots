@@ -184,6 +184,10 @@ annotationPenButton =
     .title = Imru
 annotationHighlighterButton =
     .title = Aqerru
+annotationUndoButton =
+    .title = Sefsex
+annotationRedoButton =
+    .title = Kkes afsax
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Sfeḍ
