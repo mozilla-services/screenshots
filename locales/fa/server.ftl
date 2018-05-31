@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = این عکس را برای سوء استفاده، هرزه‌نگاری یا مسائل دیگر گزارش کنید
 shotPageDownloadShot =
     .title = دریافت
+shotPageEditButton =
+    .title = ویرایش این تصویر
 shotPageDownload = دریافت
 shotPageScreenshotsDescription = Screenshots ساده ساخته شده است. بدون خروج از فایرفاکس عکس بگیرید، ذخیره و هم‌رسان کنید.
 shotPageUpsellFirefox = هم اکنون فایرفاکس را دریافت کنید
@@ -147,7 +149,37 @@ shotPageExpiresIn = { $timediff } منقضی می‌شود
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = منقضی شده { $timediff }
 timeDiffJustNow = هم‌اکنون
+timeDiffMinutesAgo =
+    { $number ->
+        [one] ۱ دقیقه پیش
+       *[other] { $number } دقیقه پیش
+    }
+timeDiffHoursAgo =
+    { $number ->
+        [one] ۱ ساعت پیش
+       *[other] { $number } ساعت پیش
+    }
+timeDiffDaysAgo =
+    { $number ->
+        [one] دیروز
+       *[other] { $number } روز پیش
+    }
 timeDiffFutureSeconds = چند ثانیه پیش
+timeDiffFutureMinutes =
+    { $number ->
+        [one] در یک دقیقه
+       *[other] در { $number } دقیقه
+    }
+timeDiffFutureHours =
+    { $number ->
+        [one] در یک ساعت
+       *[other] در { $number } ساعت
+    }
+timeDiffFutureDays =
+    { $number ->
+        [one] فردا
+       *[other] در { $number } روز
+    }
 errorThirdPartyCookiesEnabled = اگر شما این عکس را گرفته‌اید و نمی‌تواند آن را حذف کنید، ممکن است لازم باشد به طور موقت کوکی‌های شخص ثالث را از تنظیمات مرورگر خود فعال کنید.
 
 ## Annotations
@@ -156,18 +188,55 @@ annotationPenButton =
     .title = خودکار
 annotationHighlighterButton =
     .title = برجسته‌ساز
+annotationUndoButton =
+    .title = برگردان
+annotationRedoButton =
+    .title = بازآوری
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = پاک کردن
 annotationCropButton =
     .title = بُرش
+annotationSaveEditButton = ذخیره
+    .title = ذخیره ویرایش
+annotationCancelEditButton = لغو
+    .title = لغو ویرایش
 annotationCropConfirmButton = تایید
     .title = تایید موارد انتخابی
 annotationCropCancelButton = لغو
     .title = لغو موارد انتخابی
+annotationColorWhite =
+    .title = سفید
+annotationColorBlack =
+    .title = سیاه
+annotationColorRed =
+    .title = قرمز
+annotationColorGreen =
+    .title = سبز
+annotationColorBlue =
+    .title = آبی
+annotationColorYellow =
+    .title = زرد
+annotationColorPurple =
+    .title = بنفش
+annotationColorSeaGreen =
+    .title = سبز دریایی
+annotationColorGrey =
+    .title = خاکستری
 
 ## Settings Page
 
+settingsDisconnectButton = قطع اتصال
+    .title = قطع اتصال
+settingsGuestAccountMessage = حساب مهمان
+settingsSignInInvite = برای همگام‌سازی با سایر دستگاه‌ها وارد شوید
+settingsSignInButton = ورود
+    .title = ورود
+SettingsPageHeader = تنظیمات نماگرفتِ فایرفاکس
+settingsDescription = شما می‌توانید برای همگام‌سازی نماهای خود در سایر دستگاه و دسترسی خصوصی به آنها، وارد حساب فایرفاکس خود شوید.
+settingsPageSubHeader = همگام‌سازی و حساب‌ها
+settingsClosePreferences =
+    .title = بستن ترجیحات
 
 ## Shotindex page
 
@@ -204,6 +273,11 @@ shotIndexNoExpirationSymbol = ∞
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = آیا مطمئنید که می‌خواهید این نما را حذف کنید؟
+shotDeleteCancel = لغو
+    .title = لغو
+shotDeleteConfirm = حذف
+    .title = حذف
 
 ## Metrics page
 ## All metrics strings are optional for translation
