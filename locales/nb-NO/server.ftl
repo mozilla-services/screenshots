@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Penn
 annotationHighlighterButton =
     .title = Merkepenn
+annotationUndoButton =
+    .title = Angre
+annotationRedoButton =
+    .title = Gjør om
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Tøm
