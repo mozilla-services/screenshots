@@ -11,6 +11,7 @@ gHomeLink = Эхлэл хуудас
 footerLinkTerms = Үйлчилгээний нөхцөл
 footerLinkPrivacy = Нууцлал бодлого
 footerLinkFaqs = ТТА хуудас
+footerLinkDiscourse = Санал хүсэлт илгээх
 
 ## Creating page
 
@@ -49,6 +50,8 @@ shotPageShareTwitter =
     .title = Twitter–д хуваалцах
 shotPageSharePinterest =
     .title = Pinterest–эд хуваалцах
+shotPageCopyImageText =
+    .label = Зургын бичвэрийг хуулах
 shotPageDownloadShot =
     .title = Татаж авах
 shotPageDownload = Татаж авах
