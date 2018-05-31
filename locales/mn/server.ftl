@@ -69,10 +69,21 @@ shotPageShareTwitter =
 shotPageSharePinterest =
     .title = Pinterest–эд хуваалцах
 shotPageCopyImageText =
-    .label = Зургын бичвэрийг хуулах
+    .label = Дүрсийнн бичвэрийг хуулах
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = { $date } хүртэл сэргээх
 shotPageDownloadShot =
     .title = Татаж авах
+shotPageEditButton =
+    .title = Энэ дүрсийг засварлах
 shotPageDownload = Татаж авах
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Үргэлжлэх хугацаагыг сонгох
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Тодорхойгүй үргэлжлэх хугацаа ∞
 shotPageKeepTenMinutes = 10 минут
 shotPageKeepOneHour = 1 цаг
 shotPageKeepOneDay = 1 өдөр
@@ -81,8 +92,22 @@ shotPageKeepTwoWeeks = 2 долоо хоног
 shotPageKeepOneMonth = 1 сар
 shotPageSaveExpiration = хадгалах
 shotPageCancelExpiration = болих
+shotPageDoesNotExpire = хугацаа дуусахгүй
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = { $timediff } хугацаа дуусана
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } хугацаа дууссан
+timeDiffJustNow = мөнөөхөн
+timeDiffMinutesAgo =
+    { $number ->
+        [one] 1 минутын өмнө
+       *[other] { $number } минутын өмнө
+    }
+timeDiffHoursAgo =
+    { $number ->
+        [one] 1 цагын өмнө
+       *[other] { $number } цагын өмнө
+    }
 timeDiffDaysAgo =
     { $number ->
         [one] өчигдөр
@@ -96,6 +121,9 @@ timeDiffFutureDays =
 
 ## Annotations
 
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
+    .title = Арилгах
 annotationSaveEditButton = Хадгалах
     .title = Засварыг хадгалах
 annotationCancelEditButton = Болих
