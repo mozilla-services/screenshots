@@ -113,6 +113,17 @@ timeDiffDaysAgo =
         [one] өчигдөр
        *[other] { $number } өдрийн өмнө
     }
+timeDiffFutureSeconds = хэдэн сэкундын дотор
+timeDiffFutureMinutes =
+    { $number ->
+        [one] 1 минутын дотор
+       *[other] { $number } минутын дотор
+    }
+timeDiffFutureHours =
+    { $number ->
+        [one] 1 цагын дотор
+       *[other] { $number } цагыг дотор
+    }
 timeDiffFutureDays =
     { $number ->
         [one] маргааш
@@ -121,13 +132,25 @@ timeDiffFutureDays =
 
 ## Annotations
 
+annotationPenButton =
+    .title = Үзэг
+annotationHighlighterButton =
+    .title = Тодруулагч
+annotationUndoButton =
+    .title = Үйлдэл буцаах
+annotationRedoButton =
+    .title = Үйлдэл давтах
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Арилгах
+annotationCropButton =
+    .title = Хайчлах
 annotationSaveEditButton = Хадгалах
     .title = Засварыг хадгалах
 annotationCancelEditButton = Болих
     .title = Засварыг болих
+annotationCropConfirmButton = Бататгах
+    .title = Сонгосон хэсгийг бататгах
 annotationCropCancelButton = Болих
     .title = Сонголтыг болих
 annotationColorWhite =
@@ -151,12 +174,23 @@ annotationColorGrey =
 
 ## Settings Page
 
+settingsDisconnectButton = Холболт салгах
+    .title = Холболт салгах
+settingsGuestAccountMessage = Зочин хэрэглэгч
+settingsSignInButton = Нэвтрэх
+    .title = Нэвтрэх
+settingsClosePreferences =
+    .title = Сонголтуудыг хаах
 
 ## Shotindex page
 
 # { $error } is a placeholder for a non-translated error message that could be shared
 # with developers when debugging an error.
 shotIndexPageErrorRendering = Хуудасыг дүрслэн харуулахт алдаа гарлаа: { $error }
+shotIndexPageSearchButton =
+    .title = Хайлт
+shotIndexPageClearSearchButton =
+    .title = Хайлтыг арилгах
 shotIndexPagePreviousPage =
     .title = Өмнөх хуудас
 shotIndexPageNextPage =
@@ -172,8 +206,14 @@ shotDeleteConfirm = Устгах
 ## Metrics page
 ## All metrics strings are optional for translation
 
+metricsPageTotalsQueryTitle = Нийт дүн
 metricsPageShotsQueryDay = Өдөр
+metricsPageUsersQueryCount = Хэрэглэгчийн тоо
 metricsPageUsersQueryDay = Өдөр
+metricsPageUserShotsQueryCount = Хэрэглэгчийн тоо
+metricsPageRetentionQueryUsers = Хэрэглэгчийн тоо
+metricsPageTotalRetentionQueryUsers = Хэрэглэгчийн тоо
+metricsPageVersionQueryUsers = Хэвтрэж баих хэрэглэгчийн тоо
 metricsPageVersionQueryLastSeen = Өдөр
 metricsPageHeader = Хэмжүүр
 # Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
