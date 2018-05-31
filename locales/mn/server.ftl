@@ -99,6 +99,8 @@ annotationColorGrey =
 
 shotDeleteCancel = Болих
     .title = Болих
+shotDeleteConfirm = Устгах
+    .title = Устгах
 
 ## Metrics page
 ## All metrics strings are optional for translation
