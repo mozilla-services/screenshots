@@ -22,11 +22,13 @@ homePageTeaser = Тун удахгүй…
 homePageDownloadFirefoxSubTitle = Үнэ төлбөргүй татж авах
 homePageGetStarted = Эхлэх
 homePageGetStartedTitle = Эхэлцгээе
+homePageSaveShare = Хадгалаад хуваалцах
 homePagePrivacyLink = Нууцлал бодлого
 homePageTermsLink = Үйлчилгээний нөхцөл
 
 ## Leave Screenshots page
 
+leavePageErrorGeneric = Алдаа гарлаа
 leavePageButtonProceed = Үргэлжлүүлэх
 leavePageButtonCancel = Болих
 
@@ -38,6 +40,15 @@ notFoundPageDescription = Хуудас олдоогүй.
 
 ## Shot page
 
+shotPageShareButton =
+    .title = Хуваалцах
+shotPageCopy = Хуулах
+shotPageShareFacebook =
+    .title = Facebook–т хуваалцах
+shotPageShareTwitter =
+    .title = Twitter–д хуваалцах
+shotPageSharePinterest =
+    .title = Pinterest–эд хуваалцах
 shotPageDownloadShot =
     .title = Татаж авах
 shotPageDownload = Татаж авах
@@ -94,6 +105,9 @@ annotationColorGrey =
 
 ## Shotindex page
 
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
+shotIndexPageErrorRendering = Хуудасыг дүрслэн харуулахт алдаа гарлаа: { $error }
 
 ## Delete Confirmation Dialog
 
