@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Toll
 annotationHighlighterButton =
     .title = Kiemelő
+annotationUndoButton =
+    .title = Visszavonás
+annotationRedoButton =
+    .title = Mégis
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Törlés
