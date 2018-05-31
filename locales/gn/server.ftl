@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Haiha
 annotationHighlighterButton =
     .title = Hechaukaveha
+annotationUndoButton =
+    .title = Mboguevi
+annotationRedoButton =
+    .title = Motenonde
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Mopotĩ
