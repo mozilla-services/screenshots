@@ -191,7 +191,7 @@ annotationHighlighterButton =
 annotationUndoButton =
     .title = Angre
 annotationRedoButton =
-    .title = Gjenta
+    .title = Gjer om
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Tøm
