@@ -2,7 +2,8 @@
 
 set -eu
 
-export NODE_ENV=production
+export NODE_ENV=${NODE_ENV:-production}
+
 cd "$(dirname ${BASH_SOURCE[0]})/.."
 
 if [[ $# = 0 ]] ; then
