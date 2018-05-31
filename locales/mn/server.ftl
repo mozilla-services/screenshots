@@ -14,14 +14,20 @@ footerLinkFaqs = ТТА хуудас
 
 ## Creating page
 
+creatingPageTitleDefault = хуудас
 
 ## Home page
 
+homePageTeaser = Тун удахгүй…
+homePageGetStarted = Эхлэх
+homePageGetStartedTitle = Эхэлцгээе
 homePagePrivacyLink = Нууцлал бодлого
 homePageTermsLink = Үйлчилгээний нөхцөл
 
 ## Leave Screenshots page
 
+leavePageButtonProceed = Үргэлжлүүлэх
+leavePageButtonCancel = Болих
 
 ## Not Found page
 
@@ -34,9 +40,14 @@ notFoundPageDescription = Хуудас олдоогүй.
 shotPageDownloadShot =
     .title = Татаж авах
 shotPageDownload = Татаж авах
+shotPageCancelExpiration = болих
 
 ## Annotations
 
+annotationCancelEditButton = Болих
+    .title = Засварыг болих
+annotationCropCancelButton = Болих
+    .title = Сонголтыг болих
 
 ## Settings Page
 
@@ -46,6 +57,8 @@ shotPageDownload = Татаж авах
 
 ## Delete Confirmation Dialog
 
+shotDeleteCancel = Болих
+    .title = Болих
 
 ## Metrics page
 ## All metrics strings are optional for translation
