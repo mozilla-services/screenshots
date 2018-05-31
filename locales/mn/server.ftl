@@ -8,25 +8,34 @@ gHomeLink = Эхлэл хуудас
 
 ## Footer
 
+# Note: link text for a link to mozilla.org
+footerLinkMozilla = Mozilla
 footerLinkTerms = Үйлчилгээний нөхцөл
-footerLinkPrivacy = Нууцлал бодлого
+footerLinkPrivacy = Нууцлал мэдэгдэл
 footerLinkFaqs = ТТА хуудас
 footerLinkDiscourse = Санал хүсэлт илгээх
 footerLinkRemoveAllData = Өгөгдлийг хамаг арилгах
 
 ## Creating page
 
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
+creatingPageTitle = { $title } үүсгэж байна
 creatingPageTitleDefault = хуудас
 
 ## Home page
 
 homePageTeaser = Тун удахгүй…
+homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Үнэ төлбөргүй татж авах
 homePageGetStarted = Эхлэх
 homePageGetStartedTitle = Эхэлцгээе
 homePageSaveShare = Хадгалаад хуваалцах
-homePagePrivacyLink = Нууцлал бодлого
+homePageLegalLink = Эрхзүй
+homePagePrivacyLink = Нууцлал
 homePageTermsLink = Үйлчилгээний нөхцөл
+homePageCookiesLink = Күүкий
 
 ## Leave Screenshots page
 
@@ -42,9 +51,12 @@ notFoundPageDescription = Хуудас олдоогүй.
 
 ## Shot page
 
+# This is the HTML title tag of the page
+shotPageTitle = Дэлгэцийн зураг: { $originalTitle }
 shotPageShareButton =
     .title = Хуваалцах
 shotPageCopy = Хуулах
+shotPageCopied = Хуулбарласан
 shotPageShareFacebook =
     .title = Facebook–т хуваалцах
 shotPageShareTwitter =
