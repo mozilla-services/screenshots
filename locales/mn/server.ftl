@@ -213,7 +213,9 @@ metricsPageUsersQueryDay = Өдөр
 metricsPageUserShotsQueryCount = Хэрэглэгчийн тоо
 metricsPageRetentionQueryUsers = Хэрэглэгчийн тоо
 metricsPageTotalRetentionQueryUsers = Хэрэглэгчийн тоо
+metricsPageVersionQueryTitle = Нэмэлт хэрэглүүрийн хувилбар
 metricsPageVersionQueryUsers = Хэвтрэж баих хэрэглэгчийн тоо
+metricsPageVersionQueryVersion = Нэмэлт хэрэглүүрийн хувилбар
 metricsPageVersionQueryLastSeen = Өдөр
 metricsPageHeader = Хэмжүүр
 # Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
