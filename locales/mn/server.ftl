@@ -44,7 +44,7 @@ homePageCookiesLink = Күүкий
 leavePageRemoveAllData = Өгөгдлийг хамаг арилгах
 leavePageErrorGeneric = Алдаа гарлаа
 leavePageButtonProceed = Үргэлжлүүлэх
-leavePageButtonCancel = Болих
+leavePageButtonCancel = Цуцлах
 
 ## Not Found page
 
@@ -91,7 +91,7 @@ shotPageKeepOneWeek = 1 долоо хоног
 shotPageKeepTwoWeeks = 2 долоо хоног
 shotPageKeepOneMonth = 1 сар
 shotPageSaveExpiration = хадгалах
-shotPageCancelExpiration = болих
+shotPageCancelExpiration = цуцлах
 shotPageDoesNotExpire = хугацаа дуусахгүй
 # Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = { $timediff } хугацаа дуусана
@@ -147,12 +147,12 @@ annotationCropButton =
     .title = Хайчлах
 annotationSaveEditButton = Хадгалах
     .title = Засварыг хадгалах
-annotationCancelEditButton = Болих
-    .title = Засварыг болих
+annotationCancelEditButton = Цуцлах
+    .title = Засварыг цуцлах
 annotationCropConfirmButton = Бататгах
     .title = Сонгосон хэсгийг бататгах
-annotationCropCancelButton = Болих
-    .title = Сонголтыг болих
+annotationCropCancelButton = Цуцлах
+    .title = Сонголтыг цуцлах
 annotationColorWhite =
     .title = цагаан
 annotationColorBlack =
@@ -198,8 +198,8 @@ shotIndexPageNextPage =
 
 ## Delete Confirmation Dialog
 
-shotDeleteCancel = Болих
-    .title = Болих
+shotDeleteCancel = Цуцлах
+    .title = Цуцлах
 shotDeleteConfirm = Устгах
     .title = Устгах
 
