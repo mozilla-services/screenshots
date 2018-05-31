@@ -194,6 +194,10 @@ annotationPenButton =
     .title = Pero
 annotationHighlighterButton =
     .title = Zvýrazňovač
+annotationUndoButton =
+    .title = Späť
+annotationRedoButton =
+    .title = Znova
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Odstrániť zmeny
