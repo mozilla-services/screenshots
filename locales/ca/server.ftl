@@ -8,7 +8,7 @@ gMyShots = Les meves captures
 gHomeLink = Inici
 gNoShots =
     .alt = No s'ha trobat cap captura
-gScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures, deseu-les i compartiu-les sense sortir del Firefox.
+gScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures de pantalla, deseu-les i compartiu-les sense sortir del %S.
 
 ## Footer
 
@@ -119,7 +119,7 @@ shotPageDownloadShot =
 shotPageEditButton =
     .title = Edita aquesta imatge
 shotPageDownload = Baixa
-shotPageScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures, deseu-les i compartiu-les sense sortir del Firefox.
+shotPageScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures de pantalla, deseu-les i compartiu-les sense sortir del %S.
 shotPageUpsellFirefox = Baixeu el Firefox ara
 shotPageDMCAMessage = Aquesta captura ja no està disponible a causa d'una reclamació de propietat intel·lectual d'un tercer.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
