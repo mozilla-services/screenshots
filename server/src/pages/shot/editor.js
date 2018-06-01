@@ -235,20 +235,20 @@ exports.Editor = class Editor extends React.Component {
     this.setState({tool: this.previousTool});
   }
 
-  onUndo() {
+  onUndo(e) {
     if (!this.history.canUndo()) {
       return;
     }
-
+    e.target.blur();
     this.applyHistory(this.history.undo(this.imageCanvas));
     this.deriveButtonStates();
   }
 
-  onRedo() {
+  onRedo(e) {
     if (!this.history.canRedo()) {
       return;
     }
-
+    e.target.blur();
     this.applyHistory(this.history.redo(this.imageCanvas));
     this.deriveButtonStates();
   }
