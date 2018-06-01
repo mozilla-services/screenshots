@@ -164,6 +164,10 @@ annotationPenButton =
     .title = Kalem
 annotationHighlighterButton =
     .title = Fosforlu kalem
+annotationUndoButton =
+    .title = Geri al
+annotationRedoButton =
+    .title = Yinele
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Temizle
