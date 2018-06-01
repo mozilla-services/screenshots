@@ -1,17 +1,17 @@
 const { Selection } = require("../../../shared/selection");
 
 exports.EditorHistory = class {
-  constructor(devicePixelRatio) {
+  constructor(canvasPixelRatio) {
     this.beforeEdits = [];
     this.afterEdits = [];
-    this.devicePixelRatio = devicePixelRatio;
+    this.canvasPixelRatio = canvasPixelRatio;
   }
 
   push(canvas, area, recordType) {
     const record = new EditRecord(
       canvas,
       area,
-      this.devicePixelRatio,
+      this.canvasPixelRatio,
       recordType
     );
     this.beforeEdits.push(record);
@@ -65,7 +65,7 @@ exports.EditorHistory = class {
     const toRecord = new EditRecord(
       canvasBeforeChange,
       area,
-      this.devicePixelRatio,
+      this.canvasPixelRatio,
       fromRecord.recordType
     );
 
@@ -76,20 +76,20 @@ exports.EditorHistory = class {
 };
 
 class EditRecord {
-  constructor(canvas, area, devicePixelRatio, recordType) {
+  constructor(canvas, area, canvasPixelRatio, recordType) {
     this.area = area;
     this.recordType = recordType;
-    this.canvas = this.captureCanvas(canvas, area, devicePixelRatio, recordType);
+    this.canvas = this.captureCanvas(canvas, area, canvasPixelRatio, recordType);
   }
 
-  captureCanvas(canvas, area, devicePixelRatio, recordType) {
+  captureCanvas(canvas, area, canvasPixelRatio, recordType) {
     const copy = document.createElement("canvas");
 
     if (recordType === RecordType.FRAME) {
       copy.width = canvas.width;
       copy.height = canvas.height;
       const copyContext = copy.getContext("2d");
-      copyContext.scale(devicePixelRatio, devicePixelRatio);
+      copyContext.scale(canvasPixelRatio, canvasPixelRatio);
       copyContext.drawImage(
         canvas,
         0, 0, canvas.width, canvas.height,
@@ -97,16 +97,16 @@ class EditRecord {
       return copy;
     }
 
-    copy.width = area.width * devicePixelRatio;
-    copy.height = area.height * devicePixelRatio;
+    copy.width = area.width * canvasPixelRatio;
+    copy.height = area.height * canvasPixelRatio;
     const copyContext = copy.getContext("2d");
-    copyContext.scale(devicePixelRatio, devicePixelRatio);
+    copyContext.scale(canvasPixelRatio, canvasPixelRatio);
     copyContext.drawImage(
       canvas,
-      area.left * devicePixelRatio,
-      area.top * devicePixelRatio,
-      area.width * devicePixelRatio,
-      area.height * devicePixelRatio,
+      area.left * canvasPixelRatio,
+      area.top * canvasPixelRatio,
+      area.width * canvasPixelRatio,
+      area.height * canvasPixelRatio,
       0, 0, area.width, area.height
     );
 

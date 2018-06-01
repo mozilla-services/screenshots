@@ -6,8 +6,6 @@ exports.DrawingTool = class DrawingTool extends React.Component {
   constructor(props) {
     super(props);
     this.canvas = React.createRef();
-    this.canvasWidth = parseInt(props.baseCanvas.style.width, 10);
-    this.canvasHeight = parseInt(props.baseCanvas.style.height, 10);
   }
 
   render() {
@@ -15,19 +13,27 @@ exports.DrawingTool = class DrawingTool extends React.Component {
       ref={this.canvas}
       className={`image-holder centered ${this.state.classNames}`}
       onMouseDown={this.onMouseDown.bind(this)}
-      width={this.props.baseCanvas.width}
-      height={this.props.baseCanvas.height}
-      style={{width: this.props.baseCanvas.style.width,
-              height: this.props.baseCanvas.style.height}}></canvas>;
+      width={this.state.baseCanvasWidth}
+      height={this.state.baseCanvasHeight}
+      style={{width: this.state.canvasCssWidth,
+              height: this.state.canvasCssHeight}}></canvas>;
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    return {strokeStyle: nextProps.color, lineWidth: nextProps.lineWidth};
+    const newState = {
+      strokeStyle: nextProps.color,
+      lineWidth: nextProps.lineWidth,
+      baseCanvasWidth: nextProps.canvasCssWidth * nextProps.canvasPixelRatio,
+      baseCanvasHeight: nextProps.canvasCssHeight * nextProps.canvasPixelRatio,
+      canvasCssWidth: nextProps.canvasCssWidth,
+      canvasCssHeight: nextProps.canvasCssHeight
+    };
+    return newState;
   }
 
   componentDidMount() {
     this.drawingContext = this.canvas.current.getContext("2d");
-    this.drawingContext.scale(this.props.devicePixelRatio, this.props.devicePixelRatio);
+    this.drawingContext.scale(this.props.canvasPixelRatio, this.props.canvasPixelRatio);
     this.setDrawingProperties();
   }
 
@@ -35,7 +41,11 @@ exports.DrawingTool = class DrawingTool extends React.Component {
     console.warn("Please override setDrawingProperties in your component.");
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(oldProps, oldState) {
+    if (oldState.baseCanvasWidth !== this.state.baseCanvasWidth
+        || oldState.baseCanvasHeight !== this.state.baseCanvasHeight) {
+      this.drawingContext.scale(this.props.canvasPixelRatio, this.props.canvasPixelRatio);
+    }
     this.setDrawingProperties();
   }
 
@@ -92,10 +102,10 @@ exports.DrawingTool = class DrawingTool extends React.Component {
     this.drawnArea.top = Math.ceil(Math.max(this.drawnArea.top - this.state.lineWidth, 0));
     this.drawnArea.right = Math.ceil(Math.min(
       this.drawnArea.right + this.state.lineWidth,
-      this.canvasWidth));
+      this.state.canvasCssWidth));
     this.drawnArea.bottom = Math.ceil(Math.min(
       this.drawnArea.bottom + this.state.lineWidth,
-      this.canvasHeight));
+      this.state.canvasCssHeight));
 
     this.finalize();
 
@@ -124,7 +134,9 @@ exports.DrawingTool = class DrawingTool extends React.Component {
 
 exports.DrawingTool.propTypes = {
   baseCanvas: PropTypes.object,
-  devicePixelRatio: PropTypes.number,
+  canvasPixelRatio: PropTypes.number,
+  canvasCssWidth: PropTypes.number,
+  canvasCssHeight: PropTypes.number,
   updateImageCallback: PropTypes.func,
   color: PropTypes.string,
   lineWidth: PropTypes.number,

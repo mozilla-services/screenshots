@@ -12,14 +12,9 @@ const { Selection } = require("../../../shared/selection");
 exports.Editor = class Editor extends React.Component {
   constructor(props) {
     super(props);
-    this.devicePixelRatio = window.devicePixelRatio;
-    if (props.clip.image.captureType === "fullPage"
-        || props.clip.image.captureType === "fullPageTruncated") {
-      this.devicePixelRatio = 1;
-    }
     this.state = {
-      canvasWidth: Math.floor(this.props.clip.image.dimensions.x),
-      canvasHeight: Math.floor(this.props.clip.image.dimensions.y),
+      canvasCssWidth: Math.floor(this.props.clip.image.dimensions.x),
+      canvasCssHeight: Math.floor(this.props.clip.image.dimensions.y),
       tool: "",
       color: "",
       lineWidth: "",
@@ -30,12 +25,63 @@ exports.Editor = class Editor extends React.Component {
     this.onMouseUp = this.onMouseUp.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
     this.selectedTool = React.createRef();
-    this.history = new EditorHistory(this.devicePixelRatio);
+  }
+
+  calculateCanvasPixelRatio() {
+    this.originalImage = new Image();
+    this.originalImage.crossOrigin = "Anonymous";
+    this.originalImage.onload = () => {
+      let canvasPixelRatio = 1;
+
+      if (this.props.clip.image.captureType !== "fullPage"
+          && this.props.clip.image.captureType !== "fullPageTruncated") {
+        canvasPixelRatio = this.originalImage.naturalWidth / this.props.clip.image.dimensions.x;
+      }
+
+      this.setState({canvasPixelRatio});
+      this.history = new EditorHistory(canvasPixelRatio);
+    };
+    this.originalImage.src = this.props.clip.image.url;
+  }
+
+  componentDidMount() {
+    this.calculateCanvasPixelRatio();
+    document.addEventListener("mouseup", this.onMouseUp);
+    this.setState({
+      tool: "pen",
+      color: "#000",
+      lineWidth: 5,
+      actionsDisabled: true
+    });
+  }
+
+  componentDidUpdate(oldProps, oldState) {
+    if ((!oldState.canvasPixelRatio && this.state.canvasPixelRatio) ||
+        (oldState.canvasCssWidth !== this.state.canvasCssWidth
+         || oldState.canvasCssHeight !== this.state.canvasCssHeight)) {
+      const imageContext = this.imageCanvas.getContext("2d");
+      imageContext.scale(this.state.canvasPixelRatio, this.state.canvasPixelRatio);
+    }
+    if ((!oldState.canvasPixelRatio && this.state.canvasPixelRatio) ||
+        oldState.resetCanvas !== this.state.resetCanvas) {
+      this.drawOriginalImage();
+    }
+  }
+
+  drawOriginalImage() {
+    this.imageContext = this.imageCanvas.getContext("2d");
+    this.imageContext.drawImage(
+      this.originalImage,
+      0, 0, this.state.canvasCssWidth, this.state.canvasCssHeight);
+    this.setState({isCanvasRendered: true, actionsDisabled: false});
   }
 
   render() {
-    const toolContent = this.renderSelectedTool();
-    const toolBar = this.renderToolBar();
+    if (!this.state.canvasPixelRatio) {
+      return null;
+    }
+    const toolContent = this.state.isCanvasRendered ? this.renderSelectedTool() : null;
+    const toolBar = this.state.isCanvasRendered ? this.renderToolBar() : null;
     const display = this.loader || this.renderCanvas(toolContent);
     return <div className="inverse-color-scheme full-height column-space"
       onMouseMove={this.onMouseMove.bind(this)}>
@@ -45,19 +91,18 @@ exports.Editor = class Editor extends React.Component {
   }
 
   renderCanvas(toolContent) {
-    const canvasWidth = Math.floor(this.state.canvasWidth * this.devicePixelRatio);
-    const canvasHeight = Math.floor(this.state.canvasHeight * this.devicePixelRatio);
     return <div className="main-container">
       <div
         className={`inverse-color-scheme canvas-container ${this.state.tool}`}
         id="canvas-container"
-        style={{ height: this.state.canvasHeight, width: this.state.canvasWidth }}>
+        style={{ height: this.state.canvasCssHeight, width: this.state.canvasCssWidth }}>
         <canvas
           className="image-holder centered"
           id="image-holder"
           ref={(image) => { this.imageCanvas = image; }}
-          height={canvasHeight} width={canvasWidth}
-          style={{ height: this.state.canvasHeight, width: this.state.canvasWidth }}></canvas>
+          width={this.state.canvasCssWidth * this.state.canvasPixelRatio}
+          height={this.state.canvasCssHeight * this.state.canvasPixelRatio}
+          style={{ width: this.state.canvasCssWidth, height: this.state.canvasCssHeight }}></canvas>
         {toolContent}
       </div>
     </div>;
@@ -70,22 +115,26 @@ exports.Editor = class Editor extends React.Component {
           ref={this.selectedTool}
           color={this.state.color}
           lineWidth={this.state.lineWidth}
-          baseCanvas={this.imageCanvas}
-          devicePixelRatio={this.devicePixelRatio}
+          canvasPixelRatio={this.state.canvasPixelRatio}
+          canvasCssWidth={this.state.canvasCssWidth}
+          canvasCssHeight={this.state.canvasCssHeight}
           updateImageCallback={this.onDrawingUpdate.bind(this)} />;
       case "highlighter":
         return <HighlighterTool
           ref={this.selectedTool}
           color={this.state.color}
           lineWidth={this.state.lineWidth}
-          baseCanvas={this.imageCanvas}
-          devicePixelRatio={this.devicePixelRatio}
+          canvasPixelRatio={this.state.canvasPixelRatio}
+          canvasCssWidth={this.state.canvasCssWidth}
+          canvasCssHeight={this.state.canvasCssHeight}
           updateImageCallback={this.onDrawingUpdate.bind(this)} />;
       case "cropTool":
         return <CropTool
           ref={this.selectedTool}
           baseCanvas={this.imageCanvas}
-          devicePixelRatio={this.devicePixelRatio}
+          canvasPixelRatio={this.state.canvasPixelRatio}
+          canvasCssWidth={this.state.canvasCssWidth}
+          canvasCssHeight={this.state.canvasCssHeight}
           cancelCropHandler={this.onClickCancelCrop.bind(this)}
           confirmCropHandler={this.onCropUpdate.bind(this)}
           toolbarOverrideCallback={this.overrideToolbar.bind(this)} />;
@@ -188,10 +237,10 @@ exports.Editor = class Editor extends React.Component {
 
     this.imageContext.globalCompositeOperation = (compositeOp || "source-over");
     this.imageContext.drawImage(incomingCanvas,
-      affectedArea.left * this.devicePixelRatio,
-      affectedArea.top * this.devicePixelRatio,
-      affectedArea.width * this.devicePixelRatio,
-      affectedArea.height * this.devicePixelRatio,
+      affectedArea.left * this.state.canvasPixelRatio,
+      affectedArea.top * this.state.canvasPixelRatio,
+      affectedArea.width * this.state.canvasPixelRatio,
+      affectedArea.height * this.state.canvasPixelRatio,
       affectedArea.left, affectedArea.top, affectedArea.width, affectedArea.height);
 
     this.deriveButtonStates();
@@ -211,7 +260,7 @@ exports.Editor = class Editor extends React.Component {
     }
 
     this.history.pushFrame(this.imageCanvas, new Selection(
-      0, 0, this.state.canvasWidth, this.state.canvasHeight
+      0, 0, this.state.canvasCssWidth, this.state.canvasCssHeight
     ));
     this.applyFrame(affectedArea, incomingCanvas);
     this.setState({tool: this.previousTool});
@@ -222,13 +271,12 @@ exports.Editor = class Editor extends React.Component {
     const img = new Image();
     img.crossOrigin = "Anonymous";
     img.onload = () => {
-      imageContext.scale(this.devicePixelRatio, this.devicePixelRatio);
       imageContext.drawImage(img, 0, 0, area.width, area.height);
     };
     const imageContext = this.imageCanvas.getContext("2d");
     this.imageContext = imageContext;
     img.src = frameCanvas.toDataURL("image/png");
-    this.setState({canvasWidth: area.width, canvasHeight: area.height});
+    this.setState({canvasCssWidth: area.width, canvasCssHeight: area.height});
   }
 
   onClickCancelCrop() {
@@ -266,13 +314,13 @@ exports.Editor = class Editor extends React.Component {
 
   onClickClear() {
     this.setState({
-      canvasWidth: Math.floor(this.props.clip.image.dimensions.x),
-      canvasHeight: Math.floor(this.props.clip.image.dimensions.y)
+      canvasCssWidth: Math.floor(this.props.clip.image.dimensions.x),
+      canvasCssHeight: Math.floor(this.props.clip.image.dimensions.y),
+      resetCanvas: !this.state.resetCanvas
     });
-    this.history = new EditorHistory(this.devicePixelRatio);
+    this.history = new EditorHistory(this.state.canvasPixelRatio);
     this.deriveButtonStates();
     this.imageContext.clearRect(0, 0, this.imageCanvas.width, this.imageCanvas.height);
-    this.renderImage();
     sendEvent("clear-select", "annotation-toolbar");
   }
 
@@ -293,7 +341,7 @@ exports.Editor = class Editor extends React.Component {
       }
     }
 
-    const dimensions = {x: this.state.canvasWidth, y: this.state.canvasHeight};
+    const dimensions = {x: this.state.canvasCssWidth, y: this.state.canvasCssHeight};
     this.props.onClickSave(dataUrl, dimensions);
     sendEvent("save", "annotation-toolbar");
   }
@@ -331,33 +379,6 @@ exports.Editor = class Editor extends React.Component {
         && this.selectedTool.current.onMouseMove(e)) {
       e.stopPropagation();
     }
-  }
-
-  renderImage() {
-    const img = new Image();
-    img.crossOrigin = "Anonymous";
-    const width = this.props.clip.image.dimensions.x;
-    const height = this.props.clip.image.dimensions.y;
-    const imageContext = this.imageCanvas.getContext("2d");
-    img.onload = () => {
-      imageContext.drawImage(img, 0, 0, width, height);
-      this.setState({actionsDisabled: false});
-    };
-    this.imageContext = imageContext;
-    img.src = this.props.clip.image.url;
-  }
-
-  componentDidMount() {
-    document.addEventListener("mouseup", this.onMouseUp);
-    const imageContext = this.imageCanvas.getContext("2d");
-    imageContext.scale(this.devicePixelRatio, this.devicePixelRatio);
-    this.renderImage();
-    this.setState({
-      tool: "pen",
-      color: "#000",
-      lineWidth: 5,
-      actionsDisabled: true
-    });
   }
 
   componentWillUnmount() {

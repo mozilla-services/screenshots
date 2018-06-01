@@ -24,8 +24,8 @@ exports.CropTool = class CropTool extends React.Component {
       selectionState: SelectionState.NONE,
       cropSelection: null
     };
-    this.canvasWidth = parseInt(props.baseCanvas.style.width, 10);
-    this.canvasHeight = parseInt(props.baseCanvas.style.height, 10);
+    this.canvasCssWidth = props.canvasCssWidth;
+    this.canvasCssHeight = props.canvasCssHeight;
   }
 
   componentDidMount() {
@@ -64,7 +64,7 @@ exports.CropTool = class CropTool extends React.Component {
     const selectionBottomPx = `${this.state.cropSelection.bottom}px`;
     const selectionHeightPx = `${this.state.cropSelection.height}px`;
     const selectionWidthPx = `${this.state.cropSelection.width}px`;
-    const remainingRightSideWidthPx = `${this.canvasWidth - this.state.cropSelection.right}px`;
+    const remainingRightSideWidthPx = `${this.canvasCssWidth - this.state.cropSelection.right}px`;
     const oneHundredPercent = "100%";
 
     const bgTopStyles = {
@@ -143,8 +143,8 @@ exports.CropTool = class CropTool extends React.Component {
   onClickConfirm(e) {
     if (!this.state.cropSelection
         || !this.state.cropSelection.width || !this.state.cropSelection.height
-        || (this.canvasWidth === this.state.cropSelection.width
-            && this.canvasHeight === this.state.cropSelection.height)) {
+        || (this.canvasCssWidth === this.state.cropSelection.width
+            && this.canvasCssHeight === this.state.cropSelection.height)) {
       if (this.props.confirmCropHandler) {
         this.props.confirmCropHandler(null, null);
       }
@@ -154,13 +154,13 @@ exports.CropTool = class CropTool extends React.Component {
     }
 
     const croppedImage = document.createElement("canvas");
-    croppedImage.width = this.state.cropSelection.width * this.props.devicePixelRatio;
-    croppedImage.height = this.state.cropSelection.height * this.props.devicePixelRatio;
+    croppedImage.width = this.state.cropSelection.width * this.props.canvasPixelRatio;
+    croppedImage.height = this.state.cropSelection.height * this.props.canvasPixelRatio;
     const croppedContext = croppedImage.getContext("2d");
     croppedContext.drawImage(
       this.props.baseCanvas,
-      this.state.cropSelection.left * this.props.devicePixelRatio,
-      this.state.cropSelection.top * this.props.devicePixelRatio,
+      this.state.cropSelection.left * this.props.canvasPixelRatio,
+      this.state.cropSelection.top * this.props.canvasPixelRatio,
       croppedImage.width, croppedImage.height,
       0, 0, croppedImage.width, croppedImage.height);
 
@@ -227,12 +227,12 @@ exports.CropTool = class CropTool extends React.Component {
 
   getDraggedSelection(e) {
     const currentMousePosition = this.captureMousePosition(e);
-    return new Selection(
-      clamp(mousedownPosition.x, 0, this.canvasWidth),
-      clamp(mousedownPosition.y, 0, this.canvasHeight),
-      clamp(currentMousePosition.x, 0, this.canvasWidth),
-      clamp(currentMousePosition.y, 0, this.canvasHeight)
-    );
+    return floorSelection(new Selection(
+      clamp(mousedownPosition.x, 0, this.canvasCssWidth),
+      clamp(mousedownPosition.y, 0, this.canvasCssHeight),
+      clamp(currentMousePosition.x, 0, this.canvasCssWidth),
+      clamp(currentMousePosition.y, 0, this.canvasCssHeight)
+    ));
   }
 
   onMouseUp(e) {
@@ -266,39 +266,39 @@ exports.CropTool = class CropTool extends React.Component {
       updatedSelection = mousedownSelection.clone();
       switch (dragHandleLocation) {
         case "topLeft":
-          updatedSelection.top = clamp(mousedownSelection.top + yDelta, 0, this.canvasHeight);
-          updatedSelection.left = clamp(mousedownSelection.left + xDelta, 0, this.canvasWidth);
+          updatedSelection.top = clamp(mousedownSelection.top + yDelta, 0, this.canvasCssHeight);
+          updatedSelection.left = clamp(mousedownSelection.left + xDelta, 0, this.canvasCssWidth);
           break;
         case "top":
-          updatedSelection.top = clamp(mousedownSelection.top + yDelta, 0, this.canvasHeight);
+          updatedSelection.top = clamp(mousedownSelection.top + yDelta, 0, this.canvasCssHeight);
           break;
         case "topRight":
-          updatedSelection.right = clamp(mousedownSelection.right + xDelta, 0, this.canvasWidth);
-          updatedSelection.top = clamp(mousedownSelection.top + yDelta, 0, this.canvasHeight);
+          updatedSelection.right = clamp(mousedownSelection.right + xDelta, 0, this.canvasCssWidth);
+          updatedSelection.top = clamp(mousedownSelection.top + yDelta, 0, this.canvasCssHeight);
           break;
         case "left":
-          updatedSelection.left = clamp(mousedownSelection.left + xDelta, 0, this.canvasWidth);
+          updatedSelection.left = clamp(mousedownSelection.left + xDelta, 0, this.canvasCssWidth);
           break;
         case "right":
-          updatedSelection.right = clamp(mousedownSelection.right + xDelta, 0, this.canvasWidth);
+          updatedSelection.right = clamp(mousedownSelection.right + xDelta, 0, this.canvasCssWidth);
           break;
         case "bottomLeft":
-          updatedSelection.left = clamp(mousedownSelection.left + xDelta, 0, this.canvasWidth);
-          updatedSelection.bottom = clamp(mousedownSelection.bottom + yDelta, 0, this.canvasHeight);
+          updatedSelection.left = clamp(mousedownSelection.left + xDelta, 0, this.canvasCssWidth);
+          updatedSelection.bottom = clamp(mousedownSelection.bottom + yDelta, 0, this.canvasCssHeight);
           break;
         case "bottom":
-          updatedSelection.bottom = clamp(mousedownSelection.bottom + yDelta, 0, this.canvasHeight);
+          updatedSelection.bottom = clamp(mousedownSelection.bottom + yDelta, 0, this.canvasCssHeight);
           break;
         case "bottomRight":
-          updatedSelection.right = clamp(mousedownSelection.right + xDelta, 0, this.canvasWidth);
-          updatedSelection.bottom = clamp(mousedownSelection.bottom + yDelta, 0, this.canvasHeight);
+          updatedSelection.right = clamp(mousedownSelection.right + xDelta, 0, this.canvasCssWidth);
+          updatedSelection.bottom = clamp(mousedownSelection.bottom + yDelta, 0, this.canvasCssHeight);
           break;
       }
     }
 
     if (this.state.selectionState === SelectionState.MOVING) {
-      const maxLeft = this.canvasWidth - mousedownSelection.width;
-      const maxTop = this.canvasHeight - mousedownSelection.height;
+      const maxLeft = this.canvasCssWidth - mousedownSelection.width;
+      const maxTop = this.canvasCssHeight - mousedownSelection.height;
       const newLeft = clamp(mousedownSelection.left + xDelta, 0, maxLeft);
       const newTop = clamp(mousedownSelection.top + yDelta, 0, maxTop);
 
@@ -310,7 +310,7 @@ exports.CropTool = class CropTool extends React.Component {
       );
     }
 
-    this.setState({cropSelection: updatedSelection});
+    this.setState({cropSelection: floorSelection(updatedSelection)});
     this.scrollIfByEdge(e);
     return true;
   }
@@ -338,9 +338,21 @@ exports.CropTool.propTypes = {
   confirmCropHandler: PropTypes.func,
   cancelCropHandler: PropTypes.func,
   baseCanvas: PropTypes.object,
-  devicePixelRatio: PropTypes.number,
+  canvasPixelRatio: PropTypes.number,
+  canvasCssWidth: PropTypes.number,
+  canvasCssHeight: PropTypes.number
 };
 
 function clamp(val, min, max) {
   return Math.min(Math.max(val, min), max);
+}
+
+// Decimals make for blurry images. This is a simple function to ensure whole
+// numbers in a selection. It mutates and returns.
+function floorSelection(selection) {
+  selection.left = Math.floor(selection.left);
+  selection.top = Math.floor(selection.top);
+  selection.right = Math.floor(selection.right);
+  selection.bottom = Math.floor(selection.bottom);
+  return selection;
 }
