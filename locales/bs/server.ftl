@@ -193,6 +193,10 @@ annotationPenButton =
     .title = Olovka
 annotationHighlighterButton =
     .title = Marker
+annotationUndoButton =
+    .title = Poništi
+annotationRedoButton =
+    .title = Uradi ponovo
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Očisti
