@@ -190,6 +190,8 @@ annotationHighlighterButton =
     .title = Tz'etöy
 annotationUndoButton =
     .title = Titzolïx
+annotationRedoButton =
+    .title = Tikamulüx
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Tijosq'ïx
