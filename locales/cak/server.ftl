@@ -188,6 +188,8 @@ annotationPenButton =
     .title = Tz'ib'ab'äl
 annotationHighlighterButton =
     .title = Tz'etöy
+annotationUndoButton =
+    .title = Titzolïx
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Tijosq'ïx
