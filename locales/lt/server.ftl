@@ -194,6 +194,10 @@ annotationPenButton =
     .title = Rašiklis
 annotationHighlighterButton =
     .title = Žymeklis
+annotationUndoButton =
+    .title = Atšaukti
+annotationRedoButton =
+    .title = Pakartoti
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Išvalyti
