@@ -9,20 +9,20 @@ jpm="$base/node_modules/.bin/jpm"
 nodemon_pid=
 
 binary=
-firefoxes="
-/Applications/FirefoxNightly.app
-/Applications/Firefox\ Nightly.app
-/Applications/FirefoxDeveloperEdition.app
-/Applications/Firefox\ Developer\ Edition.app
-/Applications/FirefoxAurora.app
-$(which firefox || true)
-"
+firefoxes=(
+"$(which firefox || true)"
+"/Applications/FirefoxNightly.app"
+"/Applications/Firefox Nightly.app"
+"/Applications/FirefoxDeveloperEdition.app"
+"/Applications/Firefox Developer Edition.app"
+"/Applications/FirefoxAurora.app"
+)
 setup_profile=
 server=
 webextension=
 
-for firefox in $firefoxes ; do
-  if [[ -e "$firefox" ]] ; then
+for firefox in "${firefoxes[@]}" ; do
+  if [[ -e "${firefox}" ]] ; then
     binary="$firefox"
     break
   fi
@@ -94,7 +94,7 @@ done
 open=$binary # assumes Linux
 unamestr=$(uname)
 if [[ "$unamestr" = "Darwin" ]]; then
-  open="open $binary"
+  open=(open "${binary}")
 fi
 
 if [[ ! -d ./Profile ]] ; then
@@ -110,15 +110,15 @@ if [[ -n "$setup_profile" ]] ; then
   profile_dir="$(pwd)/Profile"
   if [[ -d "$profile_dir" ]] ; then
     echo "Using existing profile in $profile_dir running:"
-    echo " " $open -n --args -new-instance -no-remote -profile "$profile_dir"
-    $open -n --args -new-instance -no-remote -profile "$profile_dir"
+    echo " " "${open[@]}" -n --args -new-instance -no-remote -profile "$profile_dir"
+    "${open[@]}" -n --args -new-instance -no-remote -profile "$profile_dir"
   else
     echo "Creating profile in $profile_dir running:"
-    echo " " $open -n --args -new-instance -no-remote -CreateProfile "ScreenshotsTestProfile $profile_dir"
-    $open -n --args -new-instance -no-remote -CreateProfile "ScreenshotsTestProfile $profile_dir"
+    echo " " "${open[@]}" -n --args -new-instance -no-remote -CreateProfile "ScreenshotsTestProfile $profile_dir"
+    "${open[@]}" -n --args -new-instance -no-remote -CreateProfile "ScreenshotsTestProfile $profile_dir"
     echo "Opening profile running:"
-    echo " " $open -n --args -new-instance -no-remote -profile "$profile_dir" -url http://localhost:10080
-    $open -n --args -new-instance -no-remote -profile "$profile_dir" -url http://localhost:10080
+    echo " " "${open[@]}" -n --args -new-instance -no-remote -profile "$profile_dir" -url http://localhost:10080
+    "${open[@]}" -n --args -new-instance -no-remote -profile "$profile_dir" -url http://localhost:10080
   fi
   exit
 fi
