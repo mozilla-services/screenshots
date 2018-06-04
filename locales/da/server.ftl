@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Pen
 annotationHighlighterButton =
     .title = Overstregningspen
+annotationUndoButton =
+    .title = Fortryd
+annotationRedoButton =
+    .title = Gendan
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Ryd
