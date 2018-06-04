@@ -73,7 +73,7 @@
     "sass-lint": "1.12.1",
     "selenium-webdriver": "4.0.0-alpha.1",
     "svgo": "1.0.5",
-    "uglify-js": "3.3.25",
+    "uglify-es": "3.3.9",
     "uglifyify": "5.0.0",
     "web-ext": "2.6.0"
   },
