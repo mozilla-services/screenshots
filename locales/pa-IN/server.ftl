@@ -27,6 +27,7 @@ footerLinkRemoveAllData = ਸਾਰਾ ਡਾਟਾ ਹਟਾਓ
 # creatingPageTitleDefault.
 creatingPageTitle = { $title } ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ
 creatingPageTitleDefault = ਸਫ਼ਾ
+creatingPageWaitMessage = ਤੁਹਾਡੇ ਸ਼ਾਟ ਨੂੰ ਸੰਭਾਲਿਆ ਜਾ ਰਿਹਾ ਹੈ ...
 
 ## Home page
 
@@ -63,7 +64,13 @@ shotPageSelectTime = ਸਮਾਂ ਚੁਣੋ
 ## Annotations
 
 
+## Settings Page
+
+
 ## Shotindex page
+
+
+## Delete Confirmation Dialog
 
 
 ## Metrics page
