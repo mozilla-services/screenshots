@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Pluma
 annotationHighlighterButton =
     .title = Marcador
+annotationUndoButton =
+    .title = Deshacer
+annotationRedoButton =
+    .title = Rehacer
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Limpiar
