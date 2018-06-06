@@ -182,6 +182,10 @@ annotationPenButton =
     .title = Қалам
 annotationHighlighterButton =
     .title = Маркер
+annotationUndoButton =
+    .title = Болдырмау
+annotationRedoButton =
+    .title = Қайталау
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Тазарту
