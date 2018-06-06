@@ -200,6 +200,10 @@ annotationPenButton =
     .title = Pisak
 annotationHighlighterButton =
     .title = Tekstowy marker
+annotationUndoButton =
+    .title = Anulěrowaś
+annotationRedoButton =
+    .title = Wóspjetowaś
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Slědk stajiś
