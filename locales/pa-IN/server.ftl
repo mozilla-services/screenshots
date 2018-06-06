@@ -31,9 +31,12 @@ creatingPageWaitMessage = ਤੁਹਾਡੇ ਸ਼ਾਟ ਨੂੰ ਸੰਭਾ
 
 ## Home page
 
-homePageDownloadFirefoxTitle = ਫਾਇਰਫਾਕਸ
+homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ਮੁਫ਼ਤ ਡਾਊਨਲੋਡ ਕਰੋ
 homePageGetStarted = ਸ਼ੁਰੂ ਕਰੋ
+# Note: do not translate 'Firefox Screenshots' when translating this string
+homePageHowScreenshotsWorks = Firefox ਸਕਰੀਨਸ਼ਾਟ ਵਰਕਸ ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ
+homePageGetStartedTitle = ਸ਼ੁਰੂਆਤ ਕਰੋ
 homePageSaveShare = ਸੰਭਾਲੋ ਅਤੇ ਸਾਂਝਾ ਕਰੋ
 homePageLegalLink = ਕਨੂੰਨੀ
 homePagePrivacyLink = ਪਰਦੇਦਾਰੀ
