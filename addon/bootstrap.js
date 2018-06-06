@@ -44,22 +44,6 @@ const prefObserver = {
   }
 };
 
-
-const appStartupObserver = {
-  register() {
-    Services.obs.addObserver(this, "sessionstore-windows-restored", false); // eslint-disable-line mozilla/no-useless-parameters
-  },
-
-  unregister() {
-    Services.obs.removeObserver(this, "sessionstore-windows-restored", false); // eslint-disable-line mozilla/no-useless-parameters
-  },
-
-  observe() {
-    appStartupDone();
-    this.unregister();
-  }
-};
-
 const LibraryButton = {
   ITEM_ID: "appMenu-library-screenshots",
 
@@ -114,17 +98,12 @@ const LibraryButton = {
   },
 };
 
-const APP_STARTUP = 1;
 const APP_SHUTDOWN = 2;
 let startupReason;
 
 function startup(data, reason) { // eslint-disable-line no-unused-vars
   startupReason = reason;
-  if (reason === APP_STARTUP) {
-    appStartupObserver.register();
-  } else {
-    appStartupDone();
-  }
+  appStartupDone();
   prefObserver.register();
   addonResourceURI = data.resourceURI;
   // eslint-disable-next-line promise/catch-or-return
