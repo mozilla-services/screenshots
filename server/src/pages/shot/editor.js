@@ -5,6 +5,7 @@ const sendEvent = require("../../browser-send-event.js");
 const { PenTool } = require("./pen-tool");
 const { HighlighterTool } = require("./highlighter-tool");
 const { CropTool } = require("./crop-tool");
+const { TextTool } = require("./text-tool");
 const { ColorPicker } = require("./color-picker");
 const { EditorHistory, RecordType } = require("./editor-history");
 const { Selection } = require("../../../shared/selection");
@@ -17,6 +18,7 @@ exports.Editor = class Editor extends React.Component {
       canvasCssHeight: Math.floor(this.props.clip.image.dimensions.y),
       tool: "",
       color: "",
+      colorName: "",
       lineWidth: "",
       actionsDisabled: true,
       canUndo: false,
@@ -50,6 +52,7 @@ exports.Editor = class Editor extends React.Component {
     this.setState({
       tool: "pen",
       color: "#000",
+      colorName: "black",
       lineWidth: 5,
       actionsDisabled: true
     });
@@ -138,6 +141,18 @@ exports.Editor = class Editor extends React.Component {
           cancelCropHandler={this.onClickCancelCrop.bind(this)}
           confirmCropHandler={this.onCropUpdate.bind(this)}
           toolbarOverrideCallback={this.overrideToolbar.bind(this)} />;
+      case "textTool":
+        return <TextTool
+          ref={this.selectedTool}
+          color={this.state.color}
+          colorName={this.state.colorName}
+          baseCanvas={this.imageCanvas}
+          canvasPixelRatio={this.state.canvasPixelRatio}
+          canvasCssWidth={this.state.canvasCssWidth}
+          canvasCssHeight={this.state.canvasCssHeight}
+          cancelTextHandler={this.onClickCancelText.bind(this)}
+          confirmTextHandler={this.onClickUpdateText.bind(this)}
+          toolbarOverrideCallback={this.overrideToolbar.bind(this)} />;
       default:
         return null;
     }
@@ -181,9 +196,12 @@ exports.Editor = class Editor extends React.Component {
           <Localized id="annotationHighlighterButton">
             <button className={`button transparent highlight-button ${highlighterState}`} id="highlight" onClick={this.onClickHighlight.bind(this)} title="Highlighter"></button>
           </Localized>
+          <Localized id="annotationTextButton">
+            <button className={`button transparent text-button`} id="text" onClick={this.onClickText.bind(this)} title="Text"></button>
+          </Localized>
           <ColorPicker activeTool={this.state.tool}
             setColorCallback={this.setColor.bind(this)}
-            color={this.state.color} />
+            color={this.state.color} colorName = {this.state.colorName}/>
           <span className="annotation-divider"></span>
           <Localized id="annotationUndoButton">
             <button className={`button transparent undo-button ${undoButtonState}`} id="undo"
@@ -210,8 +228,8 @@ exports.Editor = class Editor extends React.Component {
     </div>;
   }
 
-  setColor(color) {
-    this.setState({color});
+  setColor(color, colorName) {
+    this.setState({color, colorName});
   }
 
   renderShotsLoading() {
@@ -359,6 +377,35 @@ exports.Editor = class Editor extends React.Component {
       sendEvent("pen-select", "annotation-toolbar");
     }
   }
+
+  onClickText() {
+    this.previousTool = this.state.tool;
+    this.setState({tool: "textTool"});
+    sendEvent("text-select", "annotation-toolbar");
+  }
+
+  onClickUpdateText(affectedArea, incomingCanvas) {
+    if (!affectedArea || !incomingCanvas) {
+      this.setState({tool: this.previousTool});
+      return;
+    }
+    this.history.pushDiff(this.imageCanvas, affectedArea);
+
+    this.imageContext.globalCompositeOperation = "source-over";
+    this.imageContext.drawImage(incomingCanvas,
+      affectedArea.left * this.state.canvasPixelRatio,
+      affectedArea.top * this.state.canvasPixelRatio,
+      affectedArea.width * this.state.canvasPixelRatio,
+      affectedArea.height * this.state.canvasPixelRatio,
+      affectedArea.left, affectedArea.top, affectedArea.width, affectedArea.height);
+    this.setState({tool: this.previousTool});
+    this.deriveButtonStates();
+  }
+
+  onClickCancelText() {
+    this.setState({tool: this.previousTool});
+  }
+
 
   onMouseUp(e) {
     // This is here so that when the user releases the mouse button outside of
