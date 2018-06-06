@@ -200,6 +200,10 @@ annotationPenButton =
     .title = Peann
 annotationHighlighterButton =
     .title = Soillsichear
+annotationUndoButton =
+    .title = Neo-dhèan
+annotationRedoButton =
+    .title = Ath-dhèan
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Falamhaich
