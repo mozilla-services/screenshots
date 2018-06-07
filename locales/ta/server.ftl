@@ -1,22 +1,18 @@
-// Localization for Server-side strings of Firefox Screenshots
-// 
-// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+### Localization for Server-side strings of Firefox Screenshots
+### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
-
-// Global phrases shared across pages, prefixed with 'g'
-[[ global ]]
+## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = எனது பிடிப்புகள்
 gHomeLink = முகப்பு
-gNoShots
+gNoShots =
     .alt = பிடிப்புகள் ஏதுமில்லை
 gScreenshotsDescription = திரைப்பிடிப்புகள் எளிமையாகியது. பயர்பாஃசை விட்டு விலகாமல் பிடியுங்கள், சேமியுங்கள் பகிருங்கள்.
 
+## Footer
 
-[[ Footer ]]
-
-// Note: link text for a link to mozilla.org
+# Note: link text for a link to mozilla.org
 footerLinkMozilla = மொசில்லா
 footerLinkTerms = விதிமுறைகள்
 footerLinkPrivacy = தனியுரிம அறிக்கை
@@ -25,25 +21,23 @@ footerLinkDMCA = IP வரம்ப மீறுதலை புகார் ச
 footerLinkDiscourse = கருத்து தெரிவிக்கவும்
 footerLinkRemoveAllData = அனைத்து தரவையும் நீக்கு
 
+## Creating page
 
-[[ Creating page ]]
-
-// Note: { $title } is a placeholder for the title of the web page
-// captured in the screenshot. The default, for pages without titles, is
-// creatingPageTitleDefault.
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
 creatingPageTitle = { $title } உருவாக்குகிறது
 creatingPageTitleDefault = பக்கம்
 creatingPageWaitMessage = உங்களது படத்தைச் சேமிக்கிறது...
 
-
-[[ Home page ]]
+## Home page
 
 homePageButtonMyShots = எனது பிடிப்புகளுக்கு செல்க
 homePageTeaser = விரைவில் வருகிறது...
 homePageDownloadFirefoxTitle = பயர்பாஃசு
 homePageDownloadFirefoxSubTitle = இலவச பிதிவிறக்கம்
 homePageGetStarted = தொடங்கவும்
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = பயர்பாஃசு திரைப்பிடிப்புகள் எவ்வாறு வேலைச்செய்கிறது
 homePageGetStartedTitle = தொடங்கவும்
 homePageCaptureRegion = ஒரு மண்டலத்தைக் கைப்பற்று
@@ -54,55 +48,69 @@ homePagePrivacyLink = தனியுரிமை
 homePageTermsLink = விதிமுறைகள்
 homePageCookiesLink = நினைவிகள்
 
-
-[[ Leave Screenshots page ]]
+## Leave Screenshots page
 
 leavePageRemoveAllData = அனைத்து தகவலையும் நீக்கு
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = உங்களின் கணக்கை அழிக்க பயர்பாஃசு திரைபிடிப்புகள் நிறுவப்பட்டிருக்க வேண்டும்
 leavePageErrorGeneric = ஒரு பிழை ஏற்பட்டது:
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = உங்களின் பயர்பாஃசு திரைப்பிடிப்பு தரவுகளை இது நிரந்தரமாக துடைத்துவிடும்.
 leavePageButtonProceed = தொடர்க
 leavePageButtonCancel = ரத்து
 leavePageDeleted = உங்களின் அனைத்து திரைப்பிடிப்புகளும் துடைக்கப்பட்டடன!
 
-
-[[ Not Found page ]]
+## Not Found page
 
 notFoundPageTitle = பக்கம் காணப்படவில்லை
 notFoundPageIntro = ஒஓ.
 notFoundPageDescription = பக்கம் காணப்படவில்லை.
 
+## Shot page
 
-[[ Shot page ]]
-
-// This is the HTML title tag of the page
+# This is the HTML title tag of the page
 shotPageTitle = திரைப்பிடிப்பு: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = காலாவதியைச் சேமிப்பதில் பிழை
 shotPageAlertErrorDeletingShot = திரைபிடிப்பை அழிப்பதில் பிழை
 shotPageAlertErrorUpdatingTitle = தலைப்பைச் சேமிப்பதில் பிழை
 shotPageConfirmDelete = இந்தத் திரைப்பிடிப்பை நிரந்தரமாக அழித்திடவா?
-shotPageShareButton
+shotPageShareButton =
     .title = பகிர்
 shotPageCopy = நகலெடு
 shotPageCopied = நகலெடுக்கப்பட்டது
-shotPageShareFacebook
+shotPageShareFacebook =
     .title = முகநூலுக்கு பகிர்க
-shotPageShareTwitter
+shotPageShareTwitter =
     .title = கீச்சில் பகிர்க
-shotPageSharePinterest
+shotPageSharePinterest =
     .title = பின்டெர்ஸ்டில் பகிர்க
-shotPageShareEmail
+shotPageShareEmail =
     .title = தொடுப்பை மின்னஞ்சல் வழி பகிர்க
-shotPageDeleteButton
+shotPageShareLink = இந்த பிடிப்பிற்கு பகிரக்கூடிய இணைப்பைப் பெறுக:
+shotPagePrivacyMessage = அந்த இணைப்பைக் கொண்ட எவரும் இந்த பிடிப்பைப் பார்க்க முடியும்.
+shotPageCopyImageText =
+    .label = பட உரையை நகலெடு
+shotPageConfirmDeletion = இந்த பிடிப்பை நிரந்தரமாக அழிக்கவா?
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = { $date } வரையில் மீட்டமை
+shotPageExpiredMessage = இந்த பிடிப்பு காலாவதியானது.
+# Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = இது உண்மையில் உருவாக்கப்பட்ட பக்கம் இதோ:
+shotPageDeleteButton =
     .title = இந்த பிடிப்பை அழித்திடு
-shotPageDownloadShot
+shotPageAbuseButton =
+    .title = துன்புறுத்தல், எரிதம், அல்லது பிற பிரச்சினைகளுக்காக இந்த பிடிப்பைப் புகார்செய்
+shotPageDownloadShot =
     .title = பதிவிறக்கம்
+shotPageEditButton =
+    .title = இந்தப் படத்தைத் திருத்து
 shotPageDownload = பதிவிறக்கம்
 shotPageScreenshotsDescription = திரைப்பிடிப்புகள் எளிமையாகியது. பயர்பாஃசை விட்டு விலகாமல் பிடியுங்கள், சேமியுங்கள் பகிருங்கள்.
 shotPageUpsellFirefox = இப்போதே பயர்பாஃசைப் பெறுக
-// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = கூடுதல் விவரங்களைக் கோர { $dmca } என்பதற்கு மின்னஞ்சல் செய்யுங்கள்.
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = நேரத்தைத் தேர்
 shotPageKeepTenMinutes = 10 நிமிடங்கள்
 shotPageKeepOneHour = 1 ம.நே
@@ -115,27 +123,30 @@ shotPageCancelExpiration = ரத்து
 shotPageDoesNotExpire = காலாவதியாகாது
 timeDiffJustNow = சற்று முன்
 
+## Annotations
 
-[[ Annotations ]]
-
-annotationPenButton
+annotationPenButton =
     .title = பேனா
 
+## Settings Page
 
-[[ Shotindex page ]]
 
-shotIndexPageSearchButton
+## Shotindex page
+
+shotIndexPageSearchButton =
     .title = தேடு
-shotIndexPageClearSearchButton
+shotIndexPageClearSearchButton =
     .title = தேடலை அழிக்கவும்
-shotIndexPagePreviousPage
+shotIndexPagePreviousPage =
     .title = முந்தைய பக்கம்
-shotIndexPageNextPage
+shotIndexPageNextPage =
     .title = அடுத்த பக்கம்
 
+## Delete Confirmation Dialog
 
-// all metrics strings are optional for translation
-[[ Metrics page ]]
+
+## Metrics page
+## All metrics strings are optional for translation
 
 metricsPageTotalsQueryTitle = மொத்தங்கள்
 metricsPageShotsQueryDay = நாள்
