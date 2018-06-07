@@ -108,10 +108,20 @@ shotPageEditButton =
 shotPageDownload = பதிவிறக்கம்
 shotPageScreenshotsDescription = திரைப்பிடிப்புகள் எளிமையாகியது. பயர்பாஃசை விட்டு விலகாமல் பிடியுங்கள், சேமியுங்கள் பகிருங்கள்.
 shotPageUpsellFirefox = இப்போதே பயர்பாஃசைப் பெறுக
+shotPageDMCAMessage = மூன்றாம் தரப்பு அறிவுசார் சொத்துரிமை கோரலால் இந்த பிடிப்பு நீக்கப்பட்டது.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = கூடுதல் விவரங்களைக் கோர { $dmca } என்பதற்கு மின்னஞ்சல் செய்யுங்கள்.
+# Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = உங்கள் பிடிப்புகள் பல்வேறு உரிமைகோரல்களுக்கு உள்ளானால், நாங்கள் உங்களின் பயர்பாக்சு திரைப்பிடிப்புகள் அணுகலை திரும்பப்பெறலாம்.
+# Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = இந்த பிடிப்பின் URL முகவரியை உங்கள் மின்னஞ்சலில் சேருங்கள்: { $url }
+shotPageKeepFor = இந்த பிடிப்பு எவ்வளவு காலம் தக்கவைக்கப்படும்?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = நேரத்தைத் தேர்
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = காலவரையின்றி ∞
 shotPageKeepTenMinutes = 10 நிமிடங்கள்
 shotPageKeepOneHour = 1 ம.நே
 shotPageKeepOneDay = 1 நாள்
@@ -121,7 +131,36 @@ shotPageKeepOneMonth = 1 மாதம்
 shotPageSaveExpiration = சேமி
 shotPageCancelExpiration = ரத்து
 shotPageDoesNotExpire = காலாவதியாகாது
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = காலாவதியாகிறது { $timediff }
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = காலாவதியானது { $timediff } 
 timeDiffJustNow = சற்று முன்
+timeDiffMinutesAgo =
+    { $number ->
+        [one] 1 நிமிடம் முன்பு
+       *[other] { $number } நிமிடங்கள் முன்பு
+    }
+timeDiffHoursAgo =
+    { $number ->
+        [one] 1 ம.நே முன்பு
+       *[other] { $number } ம.நேரங்கள் முன்பு
+    }
+timeDiffDaysAgo =
+    { $number ->
+        [one] நேற்று
+       *[other] { $number } நாட்களுக்கு முன்பு
+    }
+timeDiffFutureSeconds = சில விநாடிகளில்
+timeDiffFutureMinutes =
+    { $number ->
+        [one] 1 நிமிடத்தில்
+       *[other] { $number } நிமிடங்களில்
+    }
+timeDiffFutureDays =
+    { $number ->
+       *[one] நாளை
+    }
 
 ## Annotations
 
@@ -133,10 +172,15 @@ annotationPenButton =
 
 ## Shotindex page
 
+shotIndexPageSearchPlaceholder =
+    .placeholder = எனது பிடிப்பைத் தேடு
 shotIndexPageSearchButton =
     .title = தேடு
+shotIndexPageNoShotsMessage = சேமித்த பிடிப்புகள் இல்லை.
+shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageClearSearchButton =
     .title = தேடலை அழிக்கவும்
+shotIndexPageConfirmShotDelete = இந்த பிடிப்பை நீக்கவா?
 shotIndexPagePreviousPage =
     .title = முந்தைய பக்கம்
 shotIndexPageNextPage =
