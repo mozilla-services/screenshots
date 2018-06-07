@@ -99,9 +99,10 @@ const LibraryButton = {
 };
 
 const APP_SHUTDOWN = 2;
-let startupReason;
+let addonData, startupReason;
 
 function startup(data, reason) { // eslint-disable-line no-unused-vars
+  addonData = data;
   startupReason = reason;
   appStartupDone();
   prefObserver.register();
@@ -151,7 +152,7 @@ function handleStartup() {
 }
 
 function start(webExtension) {
-  return webExtension.startup(startupReason).then((api) => {
+  return webExtension.startup(startupReason, addonData).then((api) => {
     api.browser.runtime.onMessage.addListener(handleMessage);
     LibraryButton.init(webExtension);
   }).catch((err) => {
