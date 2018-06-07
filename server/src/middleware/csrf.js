@@ -25,6 +25,7 @@ function isAuthPath(path) {
 function isCsrfExemptPath(path) {
   return isAuthPath(path)
     || path.startsWith("/data")
+    || path.startsWith("/watchdog")
     || path === "/event"
     || path === "/timing"
     || path === "/error"

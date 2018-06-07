@@ -78,6 +78,19 @@ function getSubmissionId() {
   });
 }
 
+function getSubmission(id) {
+  return db.select(
+    "SELECT * FROM watchdog_submissions WHERE id = $1", [id]
+  ).then(rows => {
+    if (rows.length) {
+      return rows[0];
+    }
+    const err =  new Error("Unable to find a Watchdog submission.");
+    err.watchdogSubmissionId = String(id);
+    throw err;
+  });
+}
+
 const credentials = {
   id: config.watchdog.id,
   key: config.watchdog.key,
@@ -97,7 +110,9 @@ exports.submit = function(shot) {
     imageId
   ).then((obj) => {
     if (obj === null) {
-      throw new Error(`Unable to fetch ${imageId} for Watchdog submission.`);
+      const err = new Error("Unable to fetch image for Watchdog submission.");
+      err.imageId = String(imageId);
+      throw err;
     }
     form.append("image", obj.data, {
       filename: imageId,
@@ -138,3 +153,52 @@ exports.submit = function(shot) {
     mozlog.error("watchdog-failed-submission", {err: e});
   });
 };
+
+exports.handleResult = function(req) {
+  getSubmission(req.params.submissionId).then(record => {
+    if (record.request_id !== req.body.watchdog_id) {
+      const err = new Error("Received mismatching Watchdog ID in callback.");
+      err.watchdogSubmissionId = String(record.id);
+      throw err;
+    }
+    if (req.query.nonce !== record.nonce) {
+      const err = new Error("Received mismatching nonce in a Watchdog callback.");
+      err.watchdogSubmissionId = String(record.id);
+      throw err;
+    }
+    if (record.positive_result !== null) {
+      const err = new Error("Watchdog submission already has a result.");
+      err.watchdogSubmissionId = String(record.id);
+      throw err;
+    }
+
+    if (req.body.positive) {
+      handlePositive(record);
+    } else {
+      handleNegative(record);
+    }
+  }).catch(e => {
+    captureRavenException(e);
+    mozlog.error("watchdog-failed-callback", {err: e});
+  });
+};
+
+function handleNegative(record) {
+  return db.update("UPDATE watchdog_submissions SET positive_result = FALSE WHERE id = $1", [record.id]);
+}
+
+function handlePositive(record) {
+  return db.transaction(client => {
+    return db.queryWithClient(
+      client,
+      `UPDATE data
+       SET expire_time = NULL, deleted = FALSE, block_type = 'watchdog'
+       WHERE id = $1`,
+      [record.shot_id]
+    ).then(() => db.queryWithClient(
+      client,
+      "UPDATE watchdog_submissions SET positive_result = TRUE WHERE id = $1",
+      [record.id]
+    ));
+  });
+}
