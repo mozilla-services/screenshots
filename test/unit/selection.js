@@ -74,6 +74,18 @@ describe("Selection", () => {
       selection.top = 128;
       assert.strictEqual(selection.height, 64);
     });
+
+    it("should return the correct width even when bypassing setters and getters", () => {
+      selection.x1 = 1000;
+      selection.x2 = 100;
+      assert.strictEqual(selection.width, 900);
+    });
+
+    it("should return the correct height even when bypassing setters and getters", () => {
+      selection.y1 = 1000;
+      selection.y2 = 100;
+      assert.strictEqual(selection.height, 900);
+    });
   });
 
   describe("rect", () => {

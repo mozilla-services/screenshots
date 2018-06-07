@@ -39,10 +39,10 @@ class Selection {
   }
 
   get width() {
-    return this.x2 - this.x1;
+    return Math.abs(this.x2 - this.x1);
   }
   get height() {
-    return this.y2 - this.y1;
+    return Math.abs(this.y2 - this.y1);
   }
 
   rect() {
