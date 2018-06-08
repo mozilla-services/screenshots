@@ -198,6 +198,10 @@ annotationPenButton =
     .title = Kreion
 annotationHighlighterButton =
     .title = Usskeder
+annotationUndoButton =
+    .title = Dizober
+annotationRedoButton =
+    .title = Adober
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Skarzhañ
