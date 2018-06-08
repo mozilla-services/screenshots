@@ -17,6 +17,14 @@ describe("Selection", () => {
       assert.strictEqual(selection.top, 0);
       assert.strictEqual(selection.left, 0);
     });
+    it("should not sort the coordinates", () => {
+      const x1 = 100, y1 = 100, x2 = 0, y2 = 0;
+      const selection = new Selection(x1, y1, x2, y2);
+      assert.strictEqual(selection.x1, 100);
+      assert.strictEqual(selection.y1, 100);
+      assert.strictEqual(selection.x2, 0);
+      assert.strictEqual(selection.y2, 0);
+    });
   });
 
   describe("setters and getters", () => {
