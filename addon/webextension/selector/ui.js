@@ -638,7 +638,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       this.bgRight.style.top = `${pos.top}px`;
       this.bgRight.style.height = `${pos.bottom - pos.top}px`;
       this.bgRight.style.left = `${pos.right}px`;
-      this.bgRight.style.width = `${document.body.scrollWidth - pos.right}px`;
+      this.bgRight.style.width = `calc(100% - ${pos.right}px`;
       // the download notice is injected into an iframe that matches the document size
       // in order to reposition it on scroll we need to bind an updated positioning
       // function to some window events.
