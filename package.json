@@ -61,7 +61,7 @@
     "eslint-plugin-mozilla": "0.13.0",
     "eslint-plugin-no-unsanitized": "3.0.2",
     "eslint-plugin-promise": "3.8.0",
-    "eslint-plugin-react": "7.8.2",
+    "eslint-plugin-react": "7.9.1",
     "fx-runner": "1.0.9",
     "geckodriver": "1.11.0",
     "istanbul-middleware": "0.2.2",
