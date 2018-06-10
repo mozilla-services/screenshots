@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Llapis
 annotationHighlighterButton =
     .title = Marcador
+annotationUndoButton =
+    .title = Desfés
+annotationRedoButton =
+    .title = Refés
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Esborra
