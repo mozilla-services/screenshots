@@ -62,6 +62,7 @@ notFoundPageDescription = ไม่พบหน้า
 
 # This is the HTML title tag of the page
 shotPageTitle = ภาพหน้าจอ: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = เกิดข้อผิดพลาดในการบันทึกการหมดอายุ
 shotPageAlertErrorDeletingShot = เกิดข้อผิดพลาดในการลบภาพ
 shotPageAlertErrorUpdatingTitle = เกิดข้อผิดพลาดในการบันทึกชื่อเรื่อง
 shotPageShareButton =
@@ -76,6 +77,7 @@ shotPageSharePinterest =
     .title = แบ่งปันบน Pinterest
 shotPageShareEmail =
     .title = แบ่งปันลิงก์ทางอีเมล
+shotPageShareLink = รับลิงก์ที่แบ่งปันได้ไปยังภาพนี้:
 shotPageCopyImageText =
     .label = คัดลอกข้อความภาพ
 shotPageExpiredMessage = ภาพนี้หมดอายุแล้ว
@@ -137,6 +139,10 @@ annotationPenButton =
     .title = ปากกา
 annotationHighlighterButton =
     .title = ปากกาเน้นข้อความ
+annotationUndoButton =
+    .title = เลิกทำ
+annotationRedoButton =
+    .title = ทําซ้ำ
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = ล้าง
@@ -148,6 +154,8 @@ annotationCancelEditButton = ยกเลิก
     .title = Cancel editing
 annotationCropConfirmButton = ยืนยัน
     .title = Confirm selection
+annotationCropCancelButton = ยกเลิก
+    .title = ยกเลิกการเลือก
 annotationColorWhite =
     .title = ขาว
 annotationColorBlack =
@@ -178,6 +186,11 @@ settingsClosePreferences =
 
 ## Shotindex page
 
+# { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = ภาพของฉัน: ค้นหา { $searchTerm }
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
+shotIndexPageErrorRendering = เกิดข้อผิดพลาดในการเรนเดอร์หน้า: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = ค้นหาภาพของฉัน
 shotIndexPageSearchButton =
@@ -206,6 +219,7 @@ shotDeleteConfirm = ลบ
 metricsPageTotalsQueryDevices = อุปกรณ์ลงทะเบียนทั้งหมด
 metricsPageTotalsQueryExpiredShots = หมดอายุ (แต่สามารถกู้คืนได้)
 metricsPageTotalsQueryExpiredDeletedShots = หมดอายุ (และถูกลบแล้ว)
+metricsPageShotsQueryCount = จำนวนภาพ
 metricsPageShotsQueryDay = วัน
 metricsPageUsersQueryTitle = ผู้ใช้ตามวัน
 metricsPageUsersQueryCount = จำนวนผู้ใช้
