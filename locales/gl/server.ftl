@@ -202,9 +202,29 @@ settingsSignInInvite = Identifíquese para sincronizar os dispositivos
 settingsSignInButton = Identificarse
     .title = Identificarse
 SettingsPageHeader = Configuración de Firefox Screenshots
+settingsPageSubHeader = Sync e contas
+settingsClosePreferences =
+    .title = Pechar preferencias
 
 ## Shotindex page
 
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Produciuse un erro ao eliminar a captura: { $status } { $statusText }
+# { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = As miñas capturas: buscar { $searchTerm }
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
+shotIndexPageErrorRendering = Produciuse un erro ao representar a páxina: { $error }
+shotIndexPageSearchPlaceholder =
+    .placeholder = Buscar nas capturas
+shotIndexPageSearchButton =
+    .title = Buscar
+shotIndexPageNoShotsMessage = Ningunha captura gardada.
+shotIndexPageNoShotsInvitation = Continúe, cree algunha.
+shotIndexPageLookingForShots = Buscando nas súas capturas...
+shotIndexPageClearSearchButton =
+    .title = Borrar busca
 shotIndexPageConfirmShotDelete = Eliminar esta captura?
 shotIndexPagePreviousPage =
     .title = Páxina anterior
@@ -219,6 +239,11 @@ shotIndexNoExpirationSymbol = ∞
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = Confirma que quere eliminar esta captura?
+shotDeleteCancel = Cancelar
+    .title = Cancelar
+shotDeleteConfirm = Eliminar
+    .title = Eliminar
 
 ## Metrics page
 ## All metrics strings are optional for translation
