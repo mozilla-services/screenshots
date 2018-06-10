@@ -17,7 +17,7 @@ footerLinkTerms = ข้อกำหนด
 footerLinkPrivacy = ประกาศความเป็นส่วนตัว
 footerLinkFaqs = คำถามที่พบบ่อย
 footerLinkDMCA = รายงานการละเมิดทรัพย์สินทางปัญญา
-footerLinkDiscourse = ให้ข้อคิดเห็น
+footerLinkDiscourse = เสนอข้อคิดเห็น
 footerLinkRemoveAllData = เอาข้อมูลทั้งหมดออก
 
 ## Creating page
