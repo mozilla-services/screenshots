@@ -194,6 +194,10 @@ annotationPenButton =
     .title = Асадка
 annotationHighlighterButton =
     .title = Маркер
+annotationUndoButton =
+    .title = Адкаціць
+annotationRedoButton =
+    .title = Паўтарыць
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Ачысціць
