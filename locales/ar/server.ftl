@@ -210,6 +210,10 @@ annotationPenButton =
     .title = قلم
 annotationHighlighterButton =
     .title = قلم تحديد
+annotationUndoButton =
+    .title = تراجَع
+annotationRedoButton =
+    .title = أعِد
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = امسح
