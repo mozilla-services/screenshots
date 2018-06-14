@@ -600,8 +600,8 @@ class ExpireWidget extends React.Component {
           <Localized id="shotPageKeepTwoWeeks"><option value={ 14 * day }>2 Weeks</option></Localized>
           <Localized id="shotPageKeepOneMonth"><option value={ 31 * day }>1 Month</option></Localized>
         </select>
-        <Localized id="shotPageSaveExpiration"><span className="button tiny secondary" onClick={this.clickSaveExpire.bind(this)}>save</span></Localized>
-        <Localized id="shotPageCancelExpiration"><span className="button tiny secondary" onClick={this.clickCancelExpire.bind(this)}>cancel</span></Localized>
+        <Localized id="shotPageSaveExpiration"><span className="button tiny secondary" tabIndex="0" onClick={this.clickSaveExpire.bind(this)}>save</span></Localized>
+        <Localized id="shotPageCancelExpiration"><span className="button tiny secondary" tabIndex="0" onClick={this.clickCancelExpire.bind(this)}>cancel</span></Localized>
       </span>
     );
   }
