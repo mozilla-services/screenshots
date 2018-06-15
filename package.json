@@ -11,7 +11,7 @@
     "atob": "2.1.1",
     "aws-sdk": "2.258.1",
     "btoa": "1.2.1",
-    "classnames": "2.2.5",
+    "classnames": "2.2.6",
     "content-disposition": "0.5.2",
     "convict": "4.2.0",
     "cookies": "0.7.1",
