@@ -807,6 +807,9 @@ app.post("/api/set-title/:id/:domain", function(req, res) {
       return null;
     }
     shot.userTitle = userTitle;
+    if (shot.openGraph && shot.openGraph.title) {
+        shot.openGraph.title = userTitle;
+    }
     return shot.update();
   }).then((updated) => {
     simpleResponse(res, "Updated", 200);
