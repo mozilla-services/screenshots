@@ -1,22 +1,18 @@
-// Localization for Server-side strings of Firefox Screenshots
-// 
-// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+### Localization for Server-side strings of Firefox Screenshots
+### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
-
-// Global phrases shared across pages, prefixed with 'g'
-[[ global ]]
+## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = Mes maletgs dal visur
 gHomeLink = Pagina da partenza
-gNoShots
+gNoShots =
     .alt = Chattà nagins maletgs dal visur
 gScreenshotsDescription = La via simpla per far maletgs dal visur: Far, memorisar e cundivider ils maletgs dal visur senza bandunar Firefox.
 
+## Footer
 
-[[ Footer ]]
-
-// Note: link text for a link to mozilla.org
+# Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Cundiziuns d'utilisaziun
 footerLinkPrivacy = Infurmaziuns davart la protecziun da datas
@@ -25,120 +21,120 @@ footerLinkDMCA = Rapportar ina violaziun da proprietad intellectuala
 footerLinkDiscourse = Dar in resun
 footerLinkRemoveAllData = Allontanar tut las datas
 
+## Creating page
 
-[[ Creating page ]]
-
-// Note: { $title } is a placeholder for the title of the web page
-// captured in the screenshot. The default, for pages without titles, is
-// creatingPageTitleDefault.
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
 creatingPageTitle = Crear { $title }
 creatingPageTitleDefault = pagina
 creatingPageWaitMessage = Memorisar tia foto…
 
+## Home page
 
-[[ Home page ]]
-
-homePageDescription
+homePageDescription =
     .content = Maletgs dal visur directamain en tes navigatur. Prender, memorisar e cundivider maletgs dal visur durant la navigaziun en il web cun Firefox.
 homePageButtonMyShots = Mussar mes maletgs dal visur
 homePageTeaser = Bainprest disponibel…
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Telechargia gratuita
 homePageGetStarted = Cumenzar
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Co Firefox Screenshots funcziuna
 homePageGetStartedTitle = Cumenzar
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Il nov simbol da Screenshots chattas ti en la trav d'utensils. Cun cliccar sisur s'avra il menu da Screenshots sisum tia fanestra dal navigatur.
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Tscherna l'icona da Screenshots en il menu d'acziuns da la pagina en la trav d'adressas. Lura cumpara il menu Screenshots sisum la fanestra dal navigatur.
 homePageCaptureRegion = Fotografar ina zona
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Clicca e tira per tscherner la zona che ti vuls fotografar. U clicca simplamain insanua sin il cuntegn da la pagina — Screenshots tscherna la zona per tai. Sche quai che ti vesas ta cunvegna, tscherna «Memorisar» per avair access online a tes maletg dal visur u tscherna la frizza che mussa engiu per al telechargiar sin tes computer.
 homePageCapturePage = Fotografar ina pagina
 homePageCapturePageDescription = Utilisescha ils buttuns sisum a dretga per fotografar paginas entiras. Il buttun «Memorisar la regiun visibla» fotografescha la zona che ti vesas senza defilar e «Memorisar la pagina cumpletta» fotografescha l'entira pagina.
 homePageSaveShare = Memorisar e cundivider
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Sche ti fas in maletg dal visur, memorisescha Firefox tes maletg en tia biblioteca online da Screenshots e copiescha la colliaziun en l'archiv provisoric. Nus memorisain automaticamain tes maletg dal visur durant duas emnas, ma ti pos stizzar ils maletgs da tut temp u midar il temp da scadenza per als preservar pli ditg.
 homePageLegalLink = Infurmaziuns giuridicas
 homePagePrivacyLink = Protecziun da datas
 homePageTermsLink = Cundiziuns d'utilisaziun
 homePageCookiesLink = Cookies
 
-
-[[ Leave Screenshots page ]]
+## Leave Screenshots page
 
 leavePageRemoveAllData = Stizzar tut las datas
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Firefox Screenshots sto esser installà per pudair stizzar il conto
 leavePageErrorGeneric = Ina errur è succedida
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Questa operaziun stizza definitivamain tut tias datas da Firefox Screenshots.
 leavePageButtonProceed = Cuntinuar
 leavePageButtonCancel = Interrumper
 leavePageDeleted = Stizzà tut tes maletgs dal visur!
 
-
-[[ Not Found page ]]
+## Not Found page
 
 notFoundPageTitle = Betg chattà la pagina
 notFoundPageIntro = Segner char!
 notFoundPageDescription = Betg chattà la pagina.
 
+## Shot page
 
-[[ Shot page ]]
-
-// This is the HTML title tag of the page
+# This is the HTML title tag of the page
 shotPageTitle = Maletg dal visur: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Errur durant memorisar la data da scadenza
 shotPageAlertErrorDeletingShot = Errur durant stizzar il maletg
 shotPageAlertErrorUpdatingTitle = Errur durant memorisar il titel
 shotPageConfirmDelete = Vuls ti propi stizzar definitivamain quest maletg dal visur?
-shotPageShareButton
+shotPageShareButton =
     .title = Cundivider
 shotPageCopy = Copiar
 shotPageCopied = Copià
-shotPageShareFacebook
+shotPageShareFacebook =
     .title = Cundivider sin Facebook
-shotPageShareTwitter
+shotPageShareTwitter =
     .title = Cundivider sin Twitter
-shotPageSharePinterest
+shotPageSharePinterest =
     .title = Cundivider sin Pinterest
-shotPageShareEmail
+shotPageShareEmail =
     .title = Cundivider la colliaziun via e-mail
 shotPageShareLink = Retschaiver ina colliaziun per cundivider quest maletg:
 shotPagePrivacyMessage = Mintgin che ha la colliaziun po vesair quest maletg.
-shotPageCopyImageText
+shotPageCopyImageText =
     .label = Copiar il text dal maletg
 shotPageConfirmDeletion = Vuls ti propi stizzar definitivamain quest maletg dal visur?
-// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = Sche ti na fas nagut vegn quest maletg stizzà definitivamain { $timediff }.
-// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = restaurar enfin { $date }
 shotPageExpiredMessage = Quest maletg è scrudà.
-// Note: This phrase is followed by an empty line, then the URL of the source page
+# Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Quai è la pagina da la quala il maletg deriva oriundamain:
-shotPageDeleteButton
+shotPageDeleteButton =
     .title = Stizzar quest maletg
-shotPageAbuseButton
+shotPageAbuseButton =
     .title = Annunziar quest maletg pervia dad abus, spam u auters problems
-shotPageDownloadShot
+shotPageDownloadShot =
     .title = Telechargiar
+shotPageEditButton =
+    .title = Modifitgar quest maletg
 shotPageDownload = Telechargiar
 shotPageScreenshotsDescription = Maletgs dal visur en in batterdegl. Prender, memorisar e cundivider maletgs dal visur senza bandunar Firefox.
 shotPageUpsellFirefox = Ussa ir per Firefox
 shotPageDMCAMessage = Quest maletg n'è betg pli disponibel perquai che terzas persunas ha fatg valair ina violaziun dals dretgs d'autur.
-// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Scriva p.pl. a { $dmca } per retschaiver ulteriuras infurmaziuns.
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = Sche tes maletgs provocheschan pliras reclamaziuns vegn tes access a Firefox Screenshots eventualmain bloccà. 
-// Note: { $url } is a placeholder for a shot page URL
+# Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Includa per plaschair l'URL da quest maletg en tes e-mail: { $url }
 shotPageKeepFor = Quant ditg duai quest maletg vegnir preservà?
-// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Tscherner ina durada
-shotPageKeepIndefinitely = Per adina
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = Infinit ∞
 shotPageKeepTenMinutes = 10 minutas
 shotPageKeepOneHour = 1 ura
 shotPageKeepOneDay = 1 di
@@ -148,87 +144,148 @@ shotPageKeepOneMonth = 1 mais
 shotPageSaveExpiration = memorisar
 shotPageCancelExpiration = interrumper
 shotPageDoesNotExpire = na scroda betg
-// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = scroda { $timediff }
-// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = scrudà { $timediff }
 timeDiffJustNow = gist ussa
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] avant 1 minuta
        *[other] avant { $number } minutas
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] avant 1 ura
        *[other] avant { $number } uras
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] ier
        *[other] avant { $number } dis
     }
 timeDiffFutureSeconds = en in pèr secundas
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] en 1 minuta
        *[other] en { $number } minutas
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] en 1 ura
        *[other] en { $number } uras
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] damaun
        *[other] en { $number } dis
     }
 errorThirdPartyCookiesEnabled = Sche ti has fatg quest maletg dal visur e na pos betg al stizzar, stos ti eventualmain activar temporarmain cookies da terzs en las preferenzas da tes navigatur.
 
+## Annotations
 
-[[ Annotations ]]
-
-annotationPenButton
+annotationPenButton =
     .title = Culli
-annotationHighlighterButton
+annotationHighlighterButton =
     .title = Marcader luminus
-// Note: This button reverts all the changes on the image since the start of the editing session.
-annotationClearButton
+annotationUndoButton =
+    .title = Restituir
+annotationRedoButton =
+    .title = Repeter
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
     .title = Reinizialisar
-annotationSaveButton = Memorisar
-annotationCancelButton = Interrumper
+annotationCropButton =
+    .title = Retagliar
+annotationSaveEditButton = Memorisar
+    .title = Memorisar las modificaziuns
+annotationCancelEditButton = Annullar
+    .title = Annullar las modificaziuns
+annotationCropConfirmButton = Confermar
+    .title = Confermar la selecziun
+annotationCropCancelButton = Annullar
+    .title = Annullar la selecziun
+annotationColorWhite =
+    .title = Alv
+annotationColorBlack =
+    .title = Nair
+annotationColorRed =
+    .title = Cotschen
+annotationColorGreen =
+    .title = Verd
+annotationColorBlue =
+    .title = Blau
+annotationColorYellow =
+    .title = Mellen
+annotationColorPurple =
+    .title = Violet
+annotationColorSeaGreen =
+    .title = Verd da la mar
+annotationColorGrey =
+    .title = Grisch
 
+## Settings Page
 
-[[ Shotindex page ]]
+settingsDisconnectButton = Deconnectar
+    .title = Deconnectar
+settingsGuestAccountMessage = Conto da giast
+settingsSignInInvite = S'annunziar per sincronisar las datas tranter tut tes apparats
+settingsSignInButton = S'annunziar
+    .title = S'annunziar
+SettingsPageHeader = Preferenzas da Firefox Screenshots
+settingsDescription = Ti pos t'annunziar cun tes conto da Firefox per sincronisar tut tes maletgs dal visur tranter tut tes apparats – cun access privat.
+settingsPageSubHeader = Sincronisaziun & contos
+settingsClosePreferences =
+    .title = Serrar las preferenzas
 
-// { $status } is a placeholder for an HTTP status code, like '500'.
-// { $statusText } is a text description of the status code, like 'Internal server error'.
+## Shotindex page
+
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Errur durant stizzar il maletg: { $status } { $statusText }
-// { $searchTerm } is a placeholder for text the user typed into the search box
+# { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Mes maletgs: tschertgar { $searchTerm }
-// { $error } is a placeholder for a non-translated error message that could be shared
-// with developers when debugging an error.
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
 shotIndexPageErrorRendering = Errur durant generar la pagina: { $error }
-shotIndexPageSearchPlaceholder
+shotIndexPageSearchPlaceholder =
     .placeholder = Tschertgar en mes maletgs
-shotIndexPageSearchButton
+shotIndexPageSearchButton =
     .title = Tschertgar
 shotIndexPageNoShotsMessage = Nagins maletgs memorisads.
 shotIndexPageNoShotsInvitation = Dai! Creescha insaquants.
 shotIndexPageLookingForShots = Nus tschertgain tes maletgs…
 shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageNoSearchResults = Nus n'avain chattà nagin maletg che correspunda a tia tschertga.
-shotIndexPageClearSearchButton
+shotIndexPageClearSearchButton =
     .title = Stizzar la tschertga
 shotIndexPageConfirmShotDelete = Stizzar quest maletg?
-shotIndexPagePreviousPage
+shotIndexPagePreviousPage =
     .title = Pagina precedenta
-shotIndexPageNextPage
+shotIndexPageNextPage =
     .title = Proxima pagina
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = Quest maletg dal visur na scroda betg
 
+## Delete Confirmation Dialog
 
-// all metrics strings are optional for translation
-[[ Metrics page ]]
+shotDeleteConfirmationMessage = Vuls ti propi stizzar quest maletg dal visur?
+shotDeleteCancel = Interrumper
+    .title = Interrumper
+shotDeleteConfirm = Stizzar
+    .title = Stizzar
 
-// Note: 'Firefox Screenshots' should not be translated
+## Metrics page
+## All metrics strings are optional for translation
+
+# Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = Statisticas da Firefox Screenshots
 metricsPageTotalsQueryTitle = Totalmain
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Ina survista da Screenshots
 metricsPageTotalsQueryDevices = Total dals apparats registrads
 metricsPageTotalsQueryActiveShots = Maletgs activs
@@ -261,7 +318,7 @@ metricsPageVersionQueryUsers = Dumber d'utilisaders annunziads
 metricsPageVersionQueryVersion = Versiun dal supplement
 metricsPageVersionQueryLastSeen = Di
 metricsPageHeader = Statisticas
-// Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = Generà ils: { $created }
-// Note { $time } is a placeholder for a number of milliseconds, like '100'
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (durada d'utilisaziun da la banca da datas: { $time }ms)
