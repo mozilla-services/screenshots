@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Pliiats
 annotationHighlighterButton =
     .title = Marker
+annotationUndoButton =
+    .title = Võta tagasi
+annotationRedoButton =
+    .title = Tee uuesti
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Puhasta
