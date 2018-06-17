@@ -1,41 +1,53 @@
 class Selection {
   constructor(x1, y1, x2, y2) {
-    this.left = x1;
-    this.top = y1;
-    this.right = x2;
-    this.bottom = y2;
+    this.x1 = x1;
+    this.y1 = y1;
+    this.x2 = x2;
+    this.y2 = y2;
   }
 
   get top() {
     return Math.min(this.y1, this.y2);
   }
   set top(val) {
-    this.y1 = val;
-    this.sortCoords();
+    if (this.y1 < this.y2) {
+      this.y1 = val;
+    } else {
+      this.y2 = val;
+    }
   }
 
   get bottom() {
     return Math.max(this.y1, this.y2);
   }
   set bottom(val) {
-    this.y2 = val;
-    this.sortCoords();
+    if (this.y1 > this.y2) {
+      this.y1 = val;
+    } else {
+      this.y2 = val;
+    }
   }
 
   get left() {
     return Math.min(this.x1, this.x2);
   }
   set left(val) {
-    this.x1 = val;
-    this.sortCoords();
+    if (this.x1 < this.x2) {
+      this.x1 = val;
+    } else {
+      this.x2 = val;
+    }
   }
 
   get right() {
     return Math.max(this.x1, this.x2);
   }
   set right(val) {
-    this.x2 = val;
-    this.sortCoords();
+    if (this.x1 > this.x2) {
+      this.x1 = val;
+    } else {
+      this.x2 = val;
+    }
   }
 
   get width() {
