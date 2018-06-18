@@ -75,7 +75,7 @@
     "svgo": "1.0.5",
     "uglify-es": "3.3.9",
     "uglifyify": "5.0.0",
-    "web-ext": "2.6.0"
+    "web-ext": "2.7.0"
   },
   "engines": {
     "node": ">=8.0.0"
