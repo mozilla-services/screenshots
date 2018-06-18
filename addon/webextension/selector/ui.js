@@ -140,6 +140,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element.id = "firefox-screenshots-selection-iframe";
           this.element.style.display = "none";
           this.element.style.setProperty("position", "absolute", "important");
+          this.element.style.setProperty("background-color", "transparent");
           this.updateElementSize();
           this.element.addEventListener("load", watchFunction(() => {
             this.document = this.element.contentDocument;
@@ -274,6 +275,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element = initializeIframe();
           this.element.id = "firefox-screenshots-preselection-iframe";
           this.element.style.setProperty("position", "fixed", "important");
+          this.element.style.setProperty("background-color", "transparent");
           this.element.style.width = "100%";
           this.element.style.height = "100%";
           this.element.addEventListener("load", watchFunction(() => {
@@ -385,6 +387,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element.id = "firefox-screenshots-preview-iframe";
           this.element.style.display = "none";
           this.element.style.setProperty("position", "fixed", "important");
+          this.element.style.setProperty("background-color", "transparent");
           this.element.style.height = "100%";
           this.element.style.width = "100%";
           this.element.onload = watchFunction(() => {
