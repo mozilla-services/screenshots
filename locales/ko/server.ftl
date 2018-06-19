@@ -285,6 +285,7 @@ metricsPageRetentionQueryUsers = 사용자 수
 metricsPageRetentionQueryDays = 사용자의 가장 최근에 찍은 스크린샷으로 부터의 날수
 metricsPageRetentionQueryFirstWeek = 사용자가 처음으로 스크린샷을 찍었던 주
 metricsPageTotalRetentionQueryTitle = 전체 보유
+metricsPageTotalRetentionQueryDescription = 사용자가 스크린샷을 만든 시간의 길이를 주별로 묶음
 metricsPageTotalRetentionQueryUsers = 사용자 수
 metricsPageTotalRetentionQueryDays = 사용자가 스크린샷을 찍은 후 날수
 metricsPageVersionQueryTitle = 부가 기능 버전
