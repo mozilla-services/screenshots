@@ -164,6 +164,10 @@ annotationPenButton =
     .title = 펜
 annotationHighlighterButton =
     .title = 하이라이터
+annotationUndoButton =
+    .title = 실행 취소
+annotationRedoButton =
+    .title = 다시 실행
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = 지우기
@@ -201,9 +205,12 @@ annotationColorGrey =
 settingsDisconnectButton = 연결 끊기
     .title = 연결 끊기
 settingsGuestAccountMessage = 게스트 계정
+settingsSignInInvite = 기기별 동기화를 위해 로그인
 settingsSignInButton = 로그인
     .title = 로그인
 SettingsPageHeader = Firefox Screenshots 설정
+settingsDescription = Firefox 계정에 로그인하면 다양한 기기에서 안전하게 스크린 샷에 접근할 수 있습니다.
+settingsPageSubHeader = 동기화 및 계정
 settingsClosePreferences =
     .title = 환경 설정 닫기
 
@@ -269,9 +276,15 @@ metricsPageUsersQueryDescription = 하루에 최소 한 번 스크린샷을 찍�
 metricsPageUsersQueryCount = 사용자 수
 metricsPageUsersQueryDay = 일
 metricsPageUserShotsQueryTitle = 사용자 당 스크린샷 수
+metricsPageUserShotsQueryDescription = 대략 N개의 스크린샷을 가지고 있는 사용자 수
 metricsPageUserShotsQueryCount = 사용자 수
+metricsPageUserShotsQueryShots = 유효한(만료되지 않은) 스크린샷의 대략적인 수
+metricsPageRetentionQueryTitle = 주별 보유
+metricsPageRetentionQueryDescription = 사용자의 첫번째 스크린 샷에서 최근 스크린샷까지의 날짜를 시작 주로 묶음
 metricsPageRetentionQueryUsers = 사용자 수
+metricsPageRetentionQueryDays = 사용자의 가장 최근에 찍은 스크린샷으로 부터의 날수
 metricsPageRetentionQueryFirstWeek = 사용자가 처음으로 스크린샷을 찍었던 주
+metricsPageTotalRetentionQueryTitle = 전체 보유
 metricsPageTotalRetentionQueryUsers = 사용자 수
 metricsPageTotalRetentionQueryDays = 사용자가 스크린샷을 찍은 후 날수
 metricsPageVersionQueryTitle = 부가 기능 버전
@@ -280,3 +293,7 @@ metricsPageVersionQueryUsers = 로그인한 사용자 수
 metricsPageVersionQueryVersion = 부가 기능 버전
 metricsPageVersionQueryLastSeen = 일
 metricsPageHeader = 수치
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = 생성: { $created }
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (데이터베이스 시간 : { $time }ms)
