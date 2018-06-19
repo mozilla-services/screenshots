@@ -149,6 +149,10 @@ shotPageExpiresIn = diamzer a-benn { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = diamzeret abaoe { $timediff }
 timeDiffJustNow = diouzhtu
+timeDiffMinutesAgo =
+    { $number ->
+       *[one] 1 vunutenn 'zo
+    }
 timeDiffHoursAgo =
     { $number ->
         [one] 1 vunutenn 'zo
