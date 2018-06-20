@@ -101,28 +101,34 @@ shotPageExpiresIn = { $timediff } silinəcək
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = { $timediff } silindi
 timeDiffJustNow = indicə
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] 1 dəqiqə əvvəl
        *[other] { $number } dəqiqə əvvəl
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] 1 saat əvvəl
        *[other] { $number } saat əvvəl
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] dünən
        *[other] { $number } gün əvvəl
     }
 timeDiffFutureSeconds = bir neçə saniyə sonra
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] 1 dəqiqə sonra
        *[other] { $number } dəqiqə sonra
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] 1 saat sonra
        *[other] { $number } saat sonra
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] sabah
        *[other] { $number } gün sonra
     }
@@ -138,6 +144,9 @@ annotationCropConfirmButton = Təsdiqlə
     .title = Seçilənləri təsdiqlə
 annotationCropCancelButton = Ləğv et
     .title = Seçilənləri ləğv et
+
+## Settings Page
+
 
 ## Shotindex page
 
@@ -156,6 +165,9 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Bu görüntünün vaxtı çıxmır
+
+## Delete Confirmation Dialog
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
