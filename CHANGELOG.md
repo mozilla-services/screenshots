@@ -1,3 +1,9 @@
+## Version 31.5.0
+
+Note: this is a server release.  There are no user facing features or bug fixes in this release.  The changes are for reducing the risk of running a manual database migration.  (See comments in https://github.com/mozilla-services/screenshots/pull/4417 for details on the migration.)
+
+* Skip DB downgrades. ([#4484](https://github.com/mozilla-services/screenshots/issues/4484)) ([#4490](https://github.com/mozilla-services/screenshots/issues/4490)) [47cf0ed](https://github.com/mozilla-services/screenshots/commit/47cf0ed)
+
 ## Version 31.3.0
 
 Note: this is a server release (31.{0,1,2}.0 did not go into
