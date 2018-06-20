@@ -167,6 +167,8 @@ def restart_server(**extra_env):
         if 'Database is now at level' in line:
             # Last log message before the server is running
             break
+        if 'skip-db-down-patches' in line:
+            break
     print("  Server started")
 
 

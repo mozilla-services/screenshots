@@ -129,6 +129,13 @@ const conf = convict({
       env: "RDS_NAME",
       arg: "db-name"
     },
+    disableDownPatches: {
+      doc: "Skip database downgrade patches",
+      format: Boolean,
+      default: false,
+      env: "NO_PG_DOWNGRADES",
+      arg: "no-pg-downgrades"
+    },
     forceDbVersion: {
       doc: "Force database version (for use in downgrades)",
       format: "int",
