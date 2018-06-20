@@ -147,28 +147,34 @@ shotPageExpiresIn = важи { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = рокот измина { $timediff }
 timeDiffJustNow = сега
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
         [one] пред 1 минута
        *[other] пред { $number } минути
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
         [one] пред 1 час
        *[other] пред { $number } часа
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] вчера
        *[other] пред { $number } дена
     }
 timeDiffFutureSeconds = за неколку секунди
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] за 1 минута
        *[other] за { $number } минути
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
         [one] за 1 час
        *[other] за { $number } часа
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] утре
        *[other] за { $number } дена
     }
@@ -193,6 +199,9 @@ annotationCropConfirmButton = Потврди
     .title = Потврди го изборот
 annotationCropCancelButton = Откажи
     .title = Откажи го изборот
+
+## Settings Page
+
 
 ## Shotindex page
 
@@ -226,6 +235,9 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Оваа слика нема рок на траење
+
+## Delete Confirmation Dialog
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
