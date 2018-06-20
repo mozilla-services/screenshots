@@ -115,6 +115,9 @@ annotationClearButton =
 annotationSaveEditButton = محفوظ کریں
     .title = تدوین محفوظ کریں
 
+## Settings Page
+
+
 ## Shotindex page
 
 shotIndexPageSearchPlaceholder =
@@ -130,6 +133,9 @@ shotIndexPagePreviousPage =
     .title = پچھلا صفحہ
 shotIndexPageNextPage =
     .title = اگلا صفحہ
+
+## Delete Confirmation Dialog
+
 
 ## Metrics page
 ## All metrics strings are optional for translation
