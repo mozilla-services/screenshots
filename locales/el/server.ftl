@@ -114,6 +114,8 @@ shotPageAbuseButton =
     .title = Αναφορά στιγμιότυπου για κατάχρηση, spam ή άλλα προβλήματα
 shotPageDownloadShot =
     .title = Λήψη
+shotPageEditButton =
+    .title = Επεξεργασία εικόνας
 shotPageDownload = Λήψη
 shotPageScreenshotsDescription = Η λήψη στιγμιοτύπων έγινε εύκολη. Λήψη, αποθήκευση και κοινή χρήση στιγμιοτύπων χωρίς να φύγετε από το Firefox.
 shotPageUpsellFirefox = Λήψη του Firefox τώρα
@@ -184,6 +186,10 @@ annotationPenButton =
     .title = Στυλό
 annotationHighlighterButton =
     .title = Μαρκαδόρος
+annotationUndoButton =
+    .title = Αναίρεση
+annotationRedoButton =
+    .title = Επανάληψη
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Εκκαθάριση
@@ -197,9 +203,34 @@ annotationCropConfirmButton = Επιβεβαίωση
     .title = Επιβεβαίωση επιλογής
 annotationCropCancelButton = Ακύρωση
     .title = Ακύρωση επιλογής
+annotationColorWhite =
+    .title = Λευκό
+annotationColorBlack =
+    .title = Μαύρο
+annotationColorRed =
+    .title = Κόκκινο
+annotationColorGreen =
+    .title = Πράσινο
+annotationColorBlue =
+    .title = Μπλε
+annotationColorYellow =
+    .title = Κίτρινο
+annotationColorPurple =
+    .title = Μοβ
+annotationColorGrey =
+    .title = Γκρι
 
 ## Settings Page
 
+settingsDisconnectButton = Αποσύνδεση
+    .title = Αποσύνδεση
+settingsGuestAccountMessage = Λογαριασμός επισκέπτη
+settingsSignInButton = Είσοδος
+    .title = Είσοδος
+SettingsPageHeader = Ρυθμίσεις Firefox Screenshots
+settingsPageSubHeader = Συγχρονισμός & λογαριασμοί
+settingsClosePreferences =
+    .title = Κλείσιμο προτιμήσεων
 
 ## Shotindex page
 
@@ -236,6 +267,10 @@ shotIndexNoExpirationSymbol = ∞
 
 ## Delete Confirmation Dialog
 
+shotDeleteCancel = Ακύρωση
+    .title = Ακύρωση
+shotDeleteConfirm = Διαγραφή
+    .title = Διαγραφή
 
 ## Metrics page
 ## All metrics strings are optional for translation
