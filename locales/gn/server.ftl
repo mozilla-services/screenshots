@@ -49,7 +49,7 @@ homePageGetStartedDescriptionPageAction = Embosa’y Screenshots ra’anga’i p
 homePageCaptureRegion = Ejapyhy peteĩ tendaguasu
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Ehesakutu ha embosyryry eiporavo hag̃ua umi rejapyhyséva. Térã ehasánte hi’ári ha eikutu — Screenshots oiporavóta pe korá ndéve g̃uarã. ¿Emoneĩpa pe ehecháva? Eiporavo Ñongatu eike hag̃ua nde japyhypy ñandutiguáva térã pe votõ hu’y yvy gotyogua eñongatu hag̃ua ne mohendahápe.
-homePageCapturePage = Ejapyhy peteĩ kuatiarogue
+homePageCapturePage = Peteĩ kuatiarogue jejapyhy
 homePageCapturePageDescription = Eipuru umi votõ yvategua akatúvape oĩva ejapyhy hag̃ua kuatiarogue tuichaháicha. Pe votõ Ñongatu Jehecháva ojapyhýta pe kora ikatúva rehecha eku’e’ỹre ha Kuatiarogue Tuichaháicha Ñongatu ojapyhypáta kuatiaroguépe.
 homePageSaveShare = Eñongatu ha emoherakuã
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
