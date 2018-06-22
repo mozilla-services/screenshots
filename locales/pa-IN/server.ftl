@@ -61,6 +61,7 @@ shotPageDownloadShot =
 shotPageEditButton =
     .title = ਇਹ ਚਿੱਤਰ ਨੂੰ ਸੋਧੋ
 shotPageDownload = ਡਾਊਨਲੋਡ ਕਰੋ
+shotPageUpsellFirefox = Firefox ਹੁਣੇ ਪ੍ਰਾਪਤ ਕਰੋ
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = ਸਮਾਂ ਚੁਣੋ
 
