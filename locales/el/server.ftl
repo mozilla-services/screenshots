@@ -44,6 +44,8 @@ homePageHowScreenshotsWorks = Πώς λειτουργεί το Firefox Screensho
 homePageGetStartedTitle = Ξεκινήστε
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescription = Βρείτε το νέο εικονίδιο του Screenshots στη γραμμή εργαλείων σας. Επιλέξτε το και το μενού του Screenshots θα εμφανιστεί στο πάνω μέρος του παραθύρου του προγράμματος περιήγησής σας.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Επιλέξτε το εικονίδιο του Screenshots από το μενού ενεργειών σελίδας στη γραμμή διευθύνσεων και το μενού του Screenshots θα εμφανιστεί στο πάνω μέρος του παραθύρου του προγράμματος περιήγησής σας.
 homePageCaptureRegion = Καταγραφή περιοχής
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Κάντε κλικ και σύρετε για να επιλέξετε την περιοχή που θέλετε να καταγράψετε σε στιγμιότυπο. Ή απλά μετακινήστε τον κέρσορα και κάντε κλικ — το Screenshots θα επιλέξει για εσάς την περιοχή. Σάς αρέσει αυτό που βλέπετε; Επιλέξτε "Αποθήκευση" για να αποκτήσετε πρόσβαση στο στιγμιότυπό σας διαδικτυακά ή το κάτω βέλος για να κάνετε λήψη της εικόνας στον υπολογιστή σας.
@@ -217,6 +219,8 @@ annotationColorYellow =
     .title = Κίτρινο
 annotationColorPurple =
     .title = Μοβ
+annotationColorSeaGreen =
+    .title = Θαλασσόχρους
 annotationColorGrey =
     .title = Γκρι
 
@@ -225,9 +229,11 @@ annotationColorGrey =
 settingsDisconnectButton = Αποσύνδεση
     .title = Αποσύνδεση
 settingsGuestAccountMessage = Λογαριασμός επισκέπτη
+settingsSignInInvite = Συνδεθείτε για συγχρονισμό των συσκευών σας
 settingsSignInButton = Είσοδος
     .title = Είσοδος
 SettingsPageHeader = Ρυθμίσεις Firefox Screenshots
+settingsDescription = Μπορείτε να συνδεθείτε στους Λογαριασμούς Firefox για να συγχρονίσετε όλα τα στιγμιότυπα οθόνης σας με τις συσκευές και να έχετε πρόσβαση σε αυτές με ασφάλεια.
 settingsPageSubHeader = Συγχρονισμός & λογαριασμοί
 settingsClosePreferences =
     .title = Κλείσιμο προτιμήσεων
@@ -267,6 +273,7 @@ shotIndexNoExpirationSymbol = ∞
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = Θέλετε σίγουρα να διαγράψετε αυτό το στιγμιότυπο;
 shotDeleteCancel = Ακύρωση
     .title = Ακύρωση
 shotDeleteConfirm = Διαγραφή
