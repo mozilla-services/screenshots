@@ -31,12 +31,16 @@ creatingPageWaitMessage = ਤੁਹਾਡੇ ਸ਼ਾਟ ਨੂੰ ਸੰਭਾ
 
 ## Home page
 
+homePageButtonMyShots = ਮੇਰੇ ਸ਼ੌਟਸ ਤੇ ਜਾਓ
+homePageTeaser = ਜਲਦੀ ਆ ਰਿਹਾ....
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ਮੁਫ਼ਤ ਡਾਊਨਲੋਡ ਕਰੋ
 homePageGetStarted = ਸ਼ੁਰੂ ਕਰੋ
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox ਸਕਰੀਨਸ਼ਾਟ ਵਰਕਸ ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ
 homePageGetStartedTitle = ਸ਼ੁਰੂਆਤ ਕਰੋ
+homePageCaptureRegion = ਕਿਸੇ ਖੇਤਰ ਨੂੰ ਕੈਪਚਰ ਕਰੋ
+homePageCapturePage = ਕੋਈ ਕੈਪਚਰ ਕਰੋ
 homePageSaveShare = ਸੰਭਾਲੋ ਅਤੇ ਸਾਂਝਾ ਕਰੋ
 homePageLegalLink = ਕਨੂੰਨੀ
 homePagePrivacyLink = ਪਰਦੇਦਾਰੀ
@@ -46,6 +50,8 @@ homePageCookiesLink = ਕੂਕੀਜ਼
 ## Leave Screenshots page
 
 leavePageRemoveAllData = ਸਾਰਾ ਡਾਟਾ ਹਟਾਓ
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = ਤੁਹਾਡੇ ਖਾਤੇ ਨੂੰ ਮਿਟਾਉਣ ਲਈ ਤੁਹਾਡੇ ਕੋਲ Firefox ਸਕਰੀਨਸ਼ਾਟ ਸਥਾਪਤ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ
 
 ## Not Found page
 
