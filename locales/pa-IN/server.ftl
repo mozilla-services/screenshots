@@ -52,6 +52,7 @@ homePageCookiesLink = ਕੂਕੀਜ਼
 leavePageRemoveAllData = ਸਾਰਾ ਡਾਟਾ ਹਟਾਓ
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = ਤੁਹਾਡੇ ਖਾਤੇ ਨੂੰ ਮਿਟਾਉਣ ਲਈ ਤੁਹਾਡੇ ਕੋਲ Firefox ਸਕਰੀਨਸ਼ਾਟ ਸਥਾਪਤ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ
+leavePageErrorGeneric = ਇੱਕ ਗਲਤੀ ਆਈ ਹੈ
 
 ## Not Found page
 
