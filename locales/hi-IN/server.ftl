@@ -184,6 +184,10 @@ annotationPenButton =
     .title = पेन
 annotationHighlighterButton =
     .title = प्रमुखताएँ
+annotationUndoButton =
+    .title = पूर्ववत् करें
+annotationRedoButton =
+    .title = फिर से करें
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = साफ करें
