@@ -251,6 +251,7 @@ shotIndexNoExpirationSymbol = ∞
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = మీరు ఈ తెరపట్టును ఖచ్చితంగా తొలగించాలనుకుంటున్నారా?
 shotDeleteCancel = రద్దుచేయి
     .title = రద్దుచేయి
 shotDeleteConfirm = తొలగించు
