@@ -28,7 +28,7 @@ footerLinkRemoveAllData = 모든 데이타 삭제
 # creatingPageTitleDefault.
 creatingPageTitle = { $title } 만들기
 creatingPageTitleDefault = 페이지
-creatingPageWaitMessage = 스크린 샷 저장중…
+creatingPageWaitMessage = 스크린샷 저장중…
 
 ## Home page
 
@@ -53,7 +53,7 @@ homePageCapturePage = 페이지 캡처
 homePageCapturePageDescription = 전체 페이지를 캡처하기 위해서 오른쪽 상단에 있는 버튼을 사용하세요. 보이는 영역 저장 버튼은 스크롤 하지 않은 현재 보고 있는 영역을 캡처하고 전체 페이지 저장은 페이지의 모든 내용을 캡처합니다.
 homePageSaveShare = 저장하고 공유
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = 스크린샷을 찍으면 Firefox가 스크린 샷을 온라인 스크린샷 라이브러이에 올리고 링크를 클립보드에 복사합니다. 스크린샷은 2주동안 보관되지만 언제든지 삭제할 수 있고 더 오래 보관할 수 있게 만료 날짜를 변경할 수 있습니다.
+homePageSaveShareDescription = 스크린샷을 찍으면 Firefox가 스크린샷을 온라인 스크린샷 라이브러리에 올리고 링크를 클립보드에 복사합니다. 스크린샷은 2주 동안 보관되지만 언제든지 삭제할 수 있고 더 오래 보관할 수 있게 만료 날짜를 변경할 수 있습니다.
 homePageLegalLink = 법률
 homePagePrivacyLink = 개인정보
 homePageTermsLink = 이용약관
