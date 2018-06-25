@@ -48,7 +48,7 @@
     "valid-url": "1.0.9"
   },
   "devDependencies": {
-    "addons-linter": "0.41.0",
+    "addons-linter": "1.2.2",
     "babel-cli": "6.26.0",
     "babel-polyfill": "6.26.0",
     "babel-preset-es2015": "6.24.1",
