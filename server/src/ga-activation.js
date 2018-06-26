@@ -68,6 +68,11 @@ const gaJs = `
     ${stubGaJs}
     return;
   }
+
+  var gaScript = document.createElement('script');
+  gaScript.src = "//www.google-analytics.com/analytics.js";
+  document.head.appendChild(gaScript);
+
   window.abTests = __ABTESTS__;
   window.GoogleAnalyticsObject = "ga";
   window.ga = window.ga || function () {
