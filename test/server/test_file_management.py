@@ -142,6 +142,7 @@ def restart_server(**extra_env):
     env['DEBUG_GOOGLE_ANALYTICS'] = ''
     env['NODE_ENV'] = 'production'
     env['LOG_QUERY_LIMIT'] = '0'
+    env['ENABLE_WATCHDOG'] = 'false'
     server_out = Capture()
     env_print = ['%s=%s' % (name, value) for name, value in sorted(extra_env.items())]
     if env_print:

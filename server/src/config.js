@@ -353,6 +353,57 @@ const conf = convict({
     default: false,
     env: "ENABLE_COVERAGE",
     arg: "enable-coverage"
+  },
+  watchdog: {
+    enable: {
+      doc: "If true, submit shots to Watchdog.",
+      format: Boolean,
+      default: true,
+      env: "ENABLE_WATCHDOG",
+      arg: "enable-watchdog"
+    },
+    id: {
+      doc: "Screenshots' user id at Watchdog",
+      format: String,
+      default: "",
+      env: "WATCHDOG_ID",
+      arg: "watchdog-id"
+    },
+    key: {
+      doc: "Screenshots' key from Watchdog.",
+      format: String,
+      default: "",
+      env: "WATCHDOG_KEY",
+      arg: "watchdog-key"
+    },
+    algorithm: {
+      doc: "The hash algorithm used in authenticating requests.",
+      format: String,
+      default: "sha256",
+      env: "WATCHDOG_AUTH_HASH_ALGORITHM",
+      arg: "watchdog-auth-hash-algorithm"
+    },
+    submissionUrl: {
+      doc: "The URL where Watchdog is accepting submissions.",
+      format: String,
+      default: "",
+      env: "WATCHDOG_SUBMISSION_URL",
+      arg: "watchdog-SUBMISSION_url"
+    },
+    positiveEmail: {
+      doc: "An optional, semicolon delimited, list of email addresses to receive notifications on positive matches.",
+      format: String,
+      default: "",
+      env: "WATCHDOG_POSITIVE_EMAIL",
+      arg: "watchdog-positive-email"
+    },
+    submissionInterval: {
+      doc: "Temporary(?) config to throttle the rate of submission to Watchdog. A positive integer. One out of this many shots will be submitted to Watchdog.  One or less will result in all shots being submitted.",
+      format: "int",
+      default: 1,
+      env: "WATCHDOG_SUBMISSION_INTERVAL",
+      arg: "watchdog-submission-interval"
+    }
   }
 });
 

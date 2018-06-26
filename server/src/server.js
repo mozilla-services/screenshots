@@ -5,6 +5,7 @@ const path = require("path");
 const { readFileSync, existsSync } = require("fs");
 const Cookies = require("cookies");
 const { URL } = require("url");
+const Watchdog = require("./watchdog");
 
 let istanbulMiddleware = null;
 if (config.enableCoverage && process.env.NODE_ENV === "dev") {
@@ -720,6 +721,7 @@ app.put("/data/:id/:domain",
         simpleResponse(res, "No shot updated", 403);
         return;
       }
+      Watchdog.submit(shot);
       commands = commands || [];
       simpleResponse(res, JSON.stringify({updates: commands.filter((x) => !!x)}), 200);
     }).catch((err) => {
@@ -849,8 +851,9 @@ app.post("/api/save-edit", function(req, res) {
     shot.getClip(name).image.dimensions.x = width;
     shot.getClip(name).image.dimensions.y = height;
     shot.thumbnail = thumbnail;
-    return shot.update();
-  }).then((updated) => {
+    return shot.update().then(updated => ({updated, shot}));
+  }).then(({updated, shot}) => {
+    Watchdog.submit(shot);
     simpleResponse(res, "Updated", 200);
   }).catch((err) => {
     errorResponse(res, "Error updating image", err);
