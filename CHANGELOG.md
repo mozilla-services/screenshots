@@ -81,6 +81,13 @@ This is an add-on release.
 
 * Initialize en-CA content, copying over en-GB ([#4388](https://github.com/mozilla-services/screenshots/issues/4388)) [d818d86](https://github.com/mozilla-services/screenshots/commit/d818d86)
 
+## Version 32.2.0
+
+This is a server release that cherry-picks the changes released in 31.4.0 and 31.5.0.
+
+* Skip DB downgrades. ([#4484](https://github.com/mozilla-services/screenshots/issues/4484)) ([#4490](https://github.com/mozilla-services/screenshots/issues/4490))
+* include meta robots noindex in all shot pagesThis was intended to be fixed in [#2806](https://github.com/mozilla-services/screenshots/issues/2806), but was only put in place for expired pages instead of all pages as intended. Fixes [#4459](https://github.com/mozilla-services/screenshots/issues/4459) [1ee7c86](https://github.com/mozilla-services/screenshots/commit/1ee7c86)
+
 ## Version 32.1.0
 
 This includes small changes for the server and add-on release.
