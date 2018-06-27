@@ -1114,6 +1114,11 @@ app.get("/api/fxa-oauth/confirm-login", function(req, res, next) {
   }).catch(next);
 });
 
+app.post("/watchdog/:submissionId", function(req, res) {
+  Watchdog.handleResult(req);
+  res.end();
+});
+
 app.use((req, res, next) => {
   genUuid.generate(genUuid.V_RANDOM, function(err, uuid) {
     if (!err) {
