@@ -145,7 +145,7 @@ shotPageSaveExpiration = შენახვა
 shotPageCancelExpiration = გაუქმება
 shotPageDoesNotExpire = უვადოა
 # Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = ვადის გასვლის დრო { $timediff }
+shotPageExpiresIn = ვადა გაუვა { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = ვადა გაუვიდა { $timediff }
 timeDiffJustNow = ახლახანს
