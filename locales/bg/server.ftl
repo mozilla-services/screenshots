@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Писалка
 annotationHighlighterButton =
     .title = Маркер
+annotationUndoButton =
+    .title = Отменяне
+annotationRedoButton =
+    .title = Повтаряне
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Изчистване
@@ -222,7 +226,17 @@ annotationColorGrey =
 
 ## Settings Page
 
+settingsDisconnectButton = Изключване
+    .title = Изключване
+settingsGuestAccountMessage = Сметка за гости
+settingsSignInInvite = Вписване в Sync за синхронизиране между устрайствата
+settingsSignInButton = Вписване
+    .title = Вписване
 SettingsPageHeader = Настройки на Firefox Screenshots
+settingsDescription = Ако се впишете с Firefox Accounts всички снимки на екрана ще бъдат синхронизирани между устройствата ви и ще ги имате поверителен достъп до тях.
+settingsPageSubHeader = Синхронизиране и сметки
+settingsClosePreferences =
+    .title = Затваряне
 
 ## Shotindex page
 
