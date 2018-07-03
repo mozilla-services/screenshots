@@ -94,6 +94,7 @@ timeDiffDaysAgo =
         [one] گزشتہ روز
        *[other] { $number }  د ن پہلے
     }
+timeDiffFutureSeconds = چند سیکنڈ میں
 timeDiffFutureHours =
     { $number ->
         [one] ۱ گھنٹے میں
