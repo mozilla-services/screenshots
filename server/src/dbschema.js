@@ -166,6 +166,7 @@ function getCurrentDbPatchLevel() {
     return 0;
   });
 }
+exports.getCurrentDbPatchLevel = getCurrentDbPatchLevel;
 
 exports.connectionOK = function() {
   if (!keys) {

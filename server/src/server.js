@@ -959,19 +959,24 @@ app.get("/images/:imageid", function(req, res) {
 });
 
 app.get("/__version__", function(req, res) {
-  const response = {
-    source: "https://github.com/mozilla-services/screenshots/",
-    description: "Firefox Screenshots application server",
-    version: selfPackage.version,
-    buildDate: buildTime,
-    commit: linker.getGitRevision(),
-    contentOrigin: config.contentOrigin,
-    commitLog: `https://github.com/mozilla-services/screenshots/commits/${linker.getGitRevision()}`,
-    unincludedCommits: `https://github.com/mozilla-services/screenshots/compare/${linker.getGitRevision()}...master`,
-    dbSchemaVersion: dbschema.MAX_DB_LEVEL
-  };
-  res.header("Content-Type", "application/json; charset=utf-8");
-  res.send(JSON.stringify(response, null, "  "));
+  dbschema.getCurrentDbPatchLevel().then(level => {
+    const response = {
+      source: "https://github.com/mozilla-services/screenshots/",
+      description: "Firefox Screenshots application server",
+      version: selfPackage.version,
+      buildDate: buildTime,
+      commit: linker.getGitRevision(),
+      contentOrigin: config.contentOrigin,
+      commitLog: `https://github.com/mozilla-services/screenshots/commits/${linker.getGitRevision()}`,
+      unincludedCommits: `https://github.com/mozilla-services/screenshots/compare/${linker.getGitRevision()}...master`,
+      dbSchemaVersion: level,
+      dbSchemaVersionJS: dbschema.MAX_DB_LEVEL
+    };
+    res.header("Content-Type", "application/json; charset=utf-8");
+    res.send(JSON.stringify(response, null, "  "));
+  }).catch((e) => {
+    errorResponse(res, "Error fetching version data: ", e);
+  });
 });
 
 app.get("/contribute.json", function(req, res) {
