@@ -13,9 +13,6 @@ this.main = (function() {
 
   let hasSeenOnboarding = browser.storage.local.get(["hasSeenOnboarding"]).then((result) => {
     const onboarded = !!result.hasSeenOnboarding;
-    if (!onboarded) {
-      setIconActive(false, null);
-    }
     hasSeenOnboarding = Promise.resolve(onboarded);
     return hasSeenOnboarding;
   }).catch((error) => {
@@ -283,7 +280,6 @@ this.main = (function() {
   communication.register("hasSeenOnboarding", () => {
     hasSeenOnboarding = Promise.resolve(true);
     catcher.watchPromise(browser.storage.local.set({hasSeenOnboarding: true}));
-    setIconActive(false, null);
   });
 
   communication.register("abortStartShot", () => {
