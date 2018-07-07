@@ -210,7 +210,7 @@ annotationColorGrey =
 
 settingsDisconnectButton = 断开连接
     .title = 断开连接
-settingsGuestAccountMessage = 游客帐户
+settingsGuestAccountMessage = 游客账户
 settingsSignInInvite = 登录以在设备间同步
 settingsSignInButton = 登录
     .title = 登录
