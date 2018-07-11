@@ -10,7 +10,8 @@ exports.ColorPicker = class ColorPicker extends React.Component {
     this.keyMaybeClose = this.keyMaybeClose.bind(this);
     this.state = {
       pickerActive: false,
-      color: props.color || "#000"
+      color: props.color || "#000",
+      colorName: props.colorName || "black"
     };
     this.elRef = React.createRef();
   }
@@ -108,8 +109,8 @@ exports.ColorPicker = class ColorPicker extends React.Component {
   onClickSwatch(e) {
     const color = e.target.style.backgroundColor;
     const title = e.target.title.toLowerCase().replace(/\s/g, "-");
-    this.setState({color, pickerActive: false});
-    this.props.setColorCallback && this.props.setColorCallback(color);
+    this.setState({color, colorName: title, pickerActive: false});
+    this.props.setColorCallback && this.props.setColorCallback(color, title);
     sendEvent(`${title}-select`, "annotation-color-board");
   }
 
@@ -122,5 +123,6 @@ exports.ColorPicker = class ColorPicker extends React.Component {
 
 exports.ColorPicker.propTypes = {
   color: PropTypes.string,
+  colorName: PropTypes.string,
   setColorCallback: PropTypes.func
 };

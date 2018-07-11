@@ -285,6 +285,7 @@
 
 .edit,
 .pen-button,
+.text-button,
 .highlight-button {
   background-size: $grid-unit $grid-unit;
   background-repeat: no-repeat;
@@ -506,7 +507,7 @@ body {
 
 #color-button-container {
   min-width: 40px;
-  margin-left: 5px;
+  margin: 0 5px;
 }
 
 #color-button-highlight {
@@ -516,7 +517,6 @@ body {
   height: 40px;
   border-radius: 3px;
   position: absolute;
-  left: 170.5px;
   background-color: #ededf0;
 }
 
@@ -525,7 +525,7 @@ body {
   position: absolute;
   height: 22px;
   width: 22px;
-  margin: 13.5px 10px 0 4.5px;
+  margin: 13.5px 10px 0 9px;
   z-index: 2;
 
   &:hover {
@@ -544,7 +544,6 @@ body {
   width: 160px;
   height: 160px;
   position: absolute;
-  left: 170.5px;
   background: $light-default;
   border: 1px solid $light-border;
   border-radius: 10px;
@@ -604,4 +603,147 @@ body {
   background-image: url("../img/crop.svg");
   background-repeat: no-repeat;
   background-position: center;
+}
+
+// CSS used for Annotation Text Tool
+.text-select {
+  -moz-appearance: none; //sass-lint:disable-line no-vendor-prefixes
+  appearance: none;
+  background-color: $light-default;
+  background-image: url("../img/icon-dropdown.svg");
+  background-position: right 8px top 8px;
+  background-repeat: no-repeat;
+  background-size: 10px auto;
+  border-radius: $border-radius;
+  border: 1px solid $light-border;
+  color: $dark-default;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  height: 26px;
+  margin: 12px 5px 12px 15px;
+  outline: none;
+  padding: 0 24px 0 4px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: background 150ms $bezier, border 150ms $bezier;
+  user-select: none;
+  white-space: nowrap;
+  vertical-align: middle;
+
+  &:hover,
+  &:focus {
+    background-color: $light-hover;
+    border-color: $light-border-active;
+  }
+
+  &:active {
+    background-color: $light-active;
+    border-color: $light-border-active;
+  }
+
+  option {
+    padding: 0 40px 0 4px;
+  }
+}
+
+.text-button {
+  background-image: url("../img/annotation-text.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &:hover {
+    background-color: $light-hover;
+  }
+}
+
+.text-tool-container {
+  z-index: 4;
+}
+
+// Text Sizes used in the text tool
+$large: 36px;
+$medium: 24px;
+$small: 16px;
+
+// Colors used in the text tool
+$red: rgb(231, 76, 60);
+$green: rgb(46, 204, 113);
+$blue: rgb(52, 152, 219);
+$yellow: rgb(255, 255, 0);
+$purple: rgb(142, 68, 173);
+$sea-green: rgb(26, 188, 156);
+$grey: rgb(52, 73, 94);
+
+$bg-black: rgba(0, 0, 0, 0.6);
+$bg-white: rgba(255, 255, 255, 0.7);
+
+@mixin type-box($size) {
+  padding: 4px $size * 0.5;
+  font-size: $size;
+}
+
+@mixin type-color($b, $f) {
+  background: $b;
+  color: $f;
+}
+
+.text {
+  cursor: text;
+  font-weight: 900;
+  font-family: sans-serif;
+  text-align: center;
+  white-space: nowrap;
+  outline: 0;
+  border: none;
+  white-space : pre;
+}
+
+.large-text {
+  @include type-box($large);
+}
+
+.medium-text {
+  @include type-box($medium);
+}
+
+.small-text {
+  @include type-box($small);
+}
+
+.black {
+  @include type-color($bg-white, black);
+}
+
+.white {
+  @include type-color($bg-black, white);
+}
+
+.red {
+  @include type-color($bg-black, $red);
+}
+
+.green {
+  @include type-color($bg-black, $green);
+}
+
+.blue {
+  @include type-color($bg-white, $blue);
+}
+
+.yellow {
+  @include type-color($bg-black, $yellow);
+}
+
+.purple {
+  @include type-color($bg-white, $purple);
+}
+
+.sea-green {
+  @include type-color($bg-black, $sea-green);
+}
+
+.grey {
+  @include type-color($bg-white, $grey);
 }
