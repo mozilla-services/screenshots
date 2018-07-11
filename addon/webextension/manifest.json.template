@@ -71,6 +71,8 @@
     "contextMenus",
     "mozillaAddons",
     "<all_urls>",
-    "http://localhost:10080/"
+    "http://localhost:10080/",
+    "resource://pdf.js/",
+    "about:reader*"
   ]
 }
