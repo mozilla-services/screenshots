@@ -192,6 +192,8 @@ annotationUndoButton =
     .title = Ongedaan maken
 annotationRedoButton =
     .title = Opnieuw uitvoeren
+annotationTextButton =
+    .title = Tekst toevoegen
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Wissen
@@ -223,6 +225,18 @@ annotationColorSeaGreen =
     .title = Zeegroen
 annotationColorGrey =
     .title = Grijs
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Tekengrootte
+# Values shown in text size selection dropdown
+textSizeSmall = Klein
+textSizeMedium = Normaal
+textSizeLarge = Groot
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Bevestigen
+annotationTextCancelButton =
+    .title = Annuleren
 
 ## Settings Page
 
