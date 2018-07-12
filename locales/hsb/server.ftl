@@ -204,6 +204,8 @@ annotationUndoButton =
     .title = Cofnyć
 annotationRedoButton =
     .title = Wospjetować
+annotationTextButton =
+    .title = Tekst přidać
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Wróćo stajić
@@ -235,6 +237,18 @@ annotationColorSeaGreen =
     .title = Mórskozeleny
 annotationColorGrey =
     .title = Šěry
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Tekstowa wulkosć
+# Values shown in text size selection dropdown
+textSizeSmall = Mały
+textSizeMedium = Srjedźny
+textSizeLarge = Wulki
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Wobkrućić
+annotationTextCancelButton =
+    .title = Přetorhnyć
 
 ## Settings Page
 
