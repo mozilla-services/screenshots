@@ -240,6 +240,10 @@ annotationColorGrey =
 # Note: annotationTextSize is a title for text size selection dropdown.
 annotationTextSize =
     .title = Velikost besedila
+# Values shown in text size selection dropdown
+textSizeSmall = Majhna
+textSizeMedium = Srednja
+textSizeLarge = Velika
 # Confirm and Cancel button title shown when using text tool
 annotationTextConfirmButton =
     .title = Potrdi
