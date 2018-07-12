@@ -168,6 +168,8 @@ annotationUndoButton =
     .title = 元に戻す
 annotationRedoButton =
     .title = やり直し
+annotationTextButton =
+    .title = テキストを追加
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = クリア
@@ -199,6 +201,18 @@ annotationColorSeaGreen =
     .title = 海緑
 annotationColorGrey =
     .title = 灰
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = 文字サイズ
+# Values shown in text size selection dropdown
+textSizeSmall = 小
+textSizeMedium = 中
+textSizeLarge = 大
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = 確認
+annotationTextCancelButton =
+    .title = キャンセル
 
 ## Settings Page
 
