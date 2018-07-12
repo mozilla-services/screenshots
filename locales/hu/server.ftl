@@ -192,6 +192,8 @@ annotationUndoButton =
     .title = Visszavonás
 annotationRedoButton =
     .title = Mégis
+annotationTextButton =
+    .title = Szöveg hozzáadása
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Törlés
@@ -223,6 +225,18 @@ annotationColorSeaGreen =
     .title = Tengerzöld
 annotationColorGrey =
     .title = Szürke
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Betűméret
+# Values shown in text size selection dropdown
+textSizeSmall = Kicsi
+textSizeMedium = Közepes
+textSizeLarge = Nagy
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Megerősítés
+annotationTextCancelButton =
+    .title = Mégse
 
 ## Settings Page
 
