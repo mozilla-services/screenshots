@@ -33,8 +33,8 @@ exports.TextTool = class TextTool extends React.Component {
     const VISIBLE_HEIGHT = this.canvasCssHeight > window.innerHeight ? window.innerHeight - EDITOR_HEADER_HEIGHT :
                                                                        this.canvasCssHeight;
 
-    const INIT_LEFT = (this.canvasCssWidth / 2) - (INIT_FONT_SIZE / 2);
-    const INIT_TOP = window.scrollY + (VISIBLE_HEIGHT / 2) - ((INIT_FONT_SIZE) / 2) - TEXT_INPUT_PADDING;
+    const INIT_LEFT = Math.floor((this.canvasCssWidth / 2) - (INIT_FONT_SIZE / 2));
+    const INIT_TOP = window.scrollY + Math.floor((VISIBLE_HEIGHT / 2) - ((INIT_FONT_SIZE) / 2) - TEXT_INPUT_PADDING);
 
     this.state = {
       left: INIT_LEFT,
@@ -69,7 +69,7 @@ exports.TextTool = class TextTool extends React.Component {
 
   adjustHeight() {
     const styles = window.getComputedStyle(this.textInput.current);
-    const height = parseFloat(styles.lineHeight) + parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom);
+    const height = Math.ceil(parseFloat(styles.lineHeight) + parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom));
     this.textInput.current.style.minHeight = `${height}px`;
   }
 
@@ -211,7 +211,7 @@ exports.TextTool = class TextTool extends React.Component {
     const rectInput = e.target.getBoundingClientRect();
     const rectCanvas = this.props.baseCanvas.getBoundingClientRect();
     const WIDTH_DIFF = this.textInput.current.clientWidth - previousTextInputWidth;
-    this.setState({left: rectInput.left - rectCanvas.left - WIDTH_DIFF / 2});
+    this.setState({left: Math.floor(rectInput.left - rectCanvas.left - WIDTH_DIFF / 2)});
     previousTextInputWidth = this.textInput.current.clientWidth;
     previousInputText = this.textInput.current.textContent;
   }
