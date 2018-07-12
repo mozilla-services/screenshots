@@ -76,14 +76,29 @@ def test_invalid_data_url():
         print(resp.text)
         assert resp.status_code == 500
 
+
 def test_invalid_data_jpeg_image():
     pass
 
+
 def invalid_data_jpeg_image_decoded():
-    pass
+    image = image_setup()
+    (shot_data, shot_json, user) = user_setup()
+    if "2wBDAAQDAwQDAw" in image:
+        invalid_data_image = image.replace('2wBDAAQDAwQDAw', 'someIM4gEt0Try')
+        for clip_id in shot_json['clips']:
+            shot_json['clips'][clip_id]['image']['url'] = invalid_data_image
+            break
+
+        resp = user.session.put(
+            shot_data,
+            json=shot_json,
+        )
+        print(resp.text)
+        assert resp.status_code == 500
+
 
 def test_invalid_jpeg_data_url():
-    def test_invalid_data_url():
     image = image_setup()
     (shot_data, shot_json, user) = user_setup()
     if "data:image/jpeg;base64" in image:
@@ -99,7 +114,10 @@ def test_invalid_jpeg_data_url():
         print(resp.text)
         assert resp.status_code == 500
 
+
 if __name__ == "__main__":
     test_invalid_data_image()
     test_invalid_data_image_decoded()
+    invalid_data_jpeg_image_decoded()
     test_invalid_data_url()
+    test_invalid_jpeg_data_url()
