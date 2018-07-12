@@ -194,6 +194,9 @@ exports.TextTool = class TextTool extends React.Component {
 
   onKeyDown(e) {
     this.adjustX(e);
+    if (e.key === "Enter") {
+      e.preventDefault();
+    }
   }
 
   onKeyUp(e) {
