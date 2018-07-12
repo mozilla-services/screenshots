@@ -205,6 +205,11 @@ annotationColorSeaGreen =
     .title = 海绿色
 annotationColorGrey =
     .title = 灰色
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = 确认
+annotationTextCancelButton =
+    .title = 取消
 
 ## Settings Page
 
