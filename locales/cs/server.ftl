@@ -198,6 +198,8 @@ annotationUndoButton =
     .title = Vrátit zpět
 annotationRedoButton =
     .title = Znovu provést
+annotationTextButton =
+    .title = Přidat text
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Smazat úpravy
@@ -229,6 +231,18 @@ annotationColorSeaGreen =
     .title = Mořská zeleň
 annotationColorGrey =
     .title = Šedá
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Velikost textu
+# Values shown in text size selection dropdown
+textSizeSmall = Malý
+textSizeMedium = Střední
+textSizeLarge = Velký
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Potvrdit
+annotationTextCancelButton =
+    .title = Zrušit
 
 ## Settings Page
 
