@@ -42,7 +42,6 @@ function validateConfiguration() {
     process.exit(2);
   }
 
-  mozlog.info("watchdog-debug", {msg: `Watchdog is enabled and using the ${config.watchdog.id} account.`});
 }
 
 let positiveEmailList;
@@ -141,7 +140,6 @@ exports.submit = function(shot) {
     req.headers = Object.assign(
       {Accept: "application/json", Authorization: authHeader.header},
       form.getHeaders());
-    mozlog.info("watchdog-debug", {msg: `POSTing Watchdog submission ${submissionId} to ${config.watchdog.submissionUrl}.`});
     return fetch(config.watchdog.submissionUrl, req)
       .then(res => {
         if (res.ok) {
@@ -155,7 +153,6 @@ exports.submit = function(shot) {
         throw err;
       }).then(respJson => ({submissionId, nonce, request_id: respJson.id}));
   }).then(({submissionId, nonce, request_id}) => {
-    mozlog.info("watchdog-debug", {msg: `Watchdog submission ${submissionId} received tracking id ${request_id}.`});
     return db.insert(
       `INSERT INTO watchdog_submissions (id, shot_id, request_id, nonce)
        VALUES ($1, $2, $3, $4)`,
