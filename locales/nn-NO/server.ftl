@@ -192,6 +192,8 @@ annotationUndoButton =
     .title = Angre
 annotationRedoButton =
     .title = Gjer om
+annotationTextButton =
+    .title = Legg til tekst
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Tøm
@@ -223,6 +225,18 @@ annotationColorSeaGreen =
     .title = Havgrøn
 annotationColorGrey =
     .title = Grå
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Tekststorleik
+# Values shown in text size selection dropdown
+textSizeSmall = Liten
+textSizeMedium = Mellomstor
+textSizeLarge = Stor
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Stadfest
+annotationTextCancelButton =
+    .title = Avbryt
 
 ## Settings Page
 
