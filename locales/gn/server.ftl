@@ -192,6 +192,8 @@ annotationUndoButton =
     .title = Mboguevi
 annotationRedoButton =
     .title = Motenonde
+annotationTextButton =
+    .title = Embojuapy moñe’ẽrã
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Mopotĩ
@@ -223,6 +225,18 @@ annotationColorSeaGreen =
     .title = Hovyũ para
 annotationColorGrey =
     .title = Hũngy
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Moñe’ẽrã tuichakue
+# Values shown in text size selection dropdown
+textSizeSmall = Michĩva
+textSizeMedium = Mbyteguáva
+textSizeLarge = Tuicháva
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Moneĩ
+annotationTextCancelButton =
+    .title = Heja
 
 ## Settings Page
 
