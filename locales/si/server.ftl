@@ -4,7 +4,10 @@
 
 ## Global phrases shared across pages, prefixed with 'g'
 
+gMyShots = මගෙ දසුන්
 gHomeLink = නිවස
+gNoShots =
+    .alt = දසුන්මු හමුවූයේ නැත
 
 ## Footer
 
@@ -23,6 +26,7 @@ footerLinkRemoveAllData = සියලු දත්ත මකන්න
 # creatingPageTitleDefault.
 creatingPageTitle = { $title } තනමින්
 creatingPageTitleDefault = පිටුව
+creatingPageWaitMessage = ඔබේ දසුන් සුරකිමින්...
 
 ## Home page
 
