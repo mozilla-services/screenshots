@@ -22,9 +22,13 @@ const INIT_FONT_SIZE = 36;
 let previousTextInputWidth;
 let previousInputText = "";
 
+let dragMouseDown = false;
+let prevDragMousePos = null;
+
 exports.TextTool = class TextTool extends React.Component {
   constructor(props) {
     super(props);
+    this.el = React.createRef();
     this.textInput = React.createRef();
 
     this.canvasCssWidth = props.canvasCssWidth;
@@ -76,9 +80,8 @@ exports.TextTool = class TextTool extends React.Component {
   render() {
     const textToolBox = this.renderTextBox();
     return <div
+      ref={this.el}
       className={`text-tool-container centered`}
-      onDragOver={this.onDragOver.bind(this)}
-      onDrop={this.onDrop.bind(this)}
       style={{height: this.props.baseCanvas.style.height, width: this.props.baseCanvas.style.width}}>
       {textToolBox}
     </div>;
@@ -98,23 +101,49 @@ exports.TextTool = class TextTool extends React.Component {
     };
 
     return [
-      <div draggable="true" key="drag" onDragStart={this.onDragStart.bind(this)} style={dragDivStyles}>
+      <div key="drag" style={dragDivStyles}
+        onMouseDown={this.onDragMouseDown.bind(this)} onMouseUp={this.onMouseUp.bind(this)} onMove={this.onMouseMove.bind(this)}>
         <div id="text-input" ref={this.textInput} contentEditable="true" key="text" onKeyDown={this.onKeyDown.bind(this)}
-          onKeyUp={this.onKeyUp.bind(this)} className={`${this.state.textSize} ${this.state.colorName} text`} onFocus={this.moveCursorToEnd.bind(this)}>
+          onKeyUp={this.onKeyUp.bind(this)} className={`${this.state.textSize} ${this.state.colorName} text`}>
         </div>
       </div>
     ];
   }
 
-  moveCursorToEnd(e) {
-    if (document.createRange) {
-        const range = document.createRange();
-        range.selectNodeContents(e.target); // Select contents of the element with the range
-        range.collapse(false); // false means collapse to end rather than the start
-        const selection = window.getSelection();
-        selection.removeAllRanges();
-        selection.addRange(range);
+  onDragMouseDown(e) {
+    if (e.target === this.textInput.current) {
+      return;
     }
+    dragMouseDown = true;
+    prevDragMousePos = this.captureMousePosition(e);
+  }
+
+  onMouseMove(e) {
+    if (!dragMouseDown) {
+      return;
+    }
+
+    const mousePos = this.captureMousePosition(e);
+
+    this.setState({
+      left: this.state.left + (mousePos.x - prevDragMousePos.x),
+      top: this.state.top + (mousePos.y - prevDragMousePos.y)
+    });
+
+    prevDragMousePos = mousePos;
+  }
+
+  onMouseUp(e) {
+    dragMouseDown = false;
+    prevDragMousePos = null;
+  }
+
+  captureMousePosition(e) {
+    const boundingRect = this.el.current.getBoundingClientRect();
+    return {
+      x: e.clientX - boundingRect.left,
+      y: e.clientY - boundingRect.top
+    };
   }
 
   renderToolbar() {
@@ -141,7 +170,6 @@ exports.TextTool = class TextTool extends React.Component {
 
   setColor(color, colorName) {
     this.setState({color, colorName});
-    this.textInput.current.focus();
   }
 
   onClickConfirm(e) {
@@ -227,28 +255,6 @@ exports.TextTool = class TextTool extends React.Component {
     const size = event.target.value;
     this.setState({textSize: size});
     this.textInput.current.focus();
-  }
-
-  onDragStart(event) {
-    const style = window.getComputedStyle(event.target);
-    event.dataTransfer.setData("text/plain",
-      (parseFloat(style.getPropertyValue("left")) - event.clientX) +
-       "," + (parseFloat(style.getPropertyValue("top")) - event.clientY));
-  }
-
-  onDragOver(event) {
-    event.preventDefault();
-    return false;
-  }
-
-  onDrop(event) {
-    const offset = event.dataTransfer.getData("text/plain").split(",");
-    const dragLeft = event.clientX + parseFloat(offset[0]);
-    const dragTop = event.clientY + parseFloat(offset[1]);
-
-    this.setState({left: dragLeft + DRAG_DIV_PADDING, top: dragTop + DRAG_DIV_PADDING});
-    event.preventDefault();
-    return false;
   }
 };
 
