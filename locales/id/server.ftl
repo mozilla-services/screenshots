@@ -168,6 +168,8 @@ annotationUndoButton =
     .title = Urungkan
 annotationRedoButton =
     .title = Ulangi
+annotationTextButton =
+    .title = Tambahkan teks
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Bersihkan
