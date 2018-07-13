@@ -19,9 +19,6 @@ const FONT_STYLE = "sans-serif";
 const FONT_WEIGHT = 900;
 const INIT_FONT_SIZE = 36;
 
-let previousTextInputWidth;
-let previousInputText = "";
-
 let dragMouseDown = false;
 let prevDragMousePos = null;
 
@@ -51,7 +48,8 @@ exports.TextTool = class TextTool extends React.Component {
 
   componentDidMount() {
     this.textInput.current.focus();
-    previousTextInputWidth = this.textInput.current.clientWidth;
+    this.previousInputText = "";
+    this.previousInputWidth = this.textInput.current.clientWidth;
     this.adjustHeight();
     if (this.props.toolbarOverrideCallback) {
       this.props.toolbarOverrideCallback();
@@ -102,7 +100,7 @@ exports.TextTool = class TextTool extends React.Component {
 
     return [
       <div key="drag" style={dragDivStyles}
-        onMouseDown={this.onDragMouseDown.bind(this)} onMouseUp={this.onMouseUp.bind(this)} onMove={this.onMouseMove.bind(this)}>
+        onMouseDown={this.onDragMouseDown.bind(this)}>
         <div id="text-input" ref={this.textInput} contentEditable="true" key="text" onKeyDown={this.onKeyDown.bind(this)}
           onKeyUp={this.onKeyUp.bind(this)} className={`${this.state.textSize} ${this.state.colorName} text`}>
         </div>
@@ -240,15 +238,48 @@ exports.TextTool = class TextTool extends React.Component {
   }
 
   adjustX(e) {
-    if (previousInputText === this.textInput.current.textContent) {
+    // if the text hasn't chagned, do nothing
+    if (this.previousInputText === this.textInput.current.textContent) {
+      console.log("no change gtfo");
       return;
     }
-    const rectInput = e.target.getBoundingClientRect();
-    const rectCanvas = this.props.baseCanvas.getBoundingClientRect();
-    const WIDTH_DIFF = this.textInput.current.clientWidth - previousTextInputWidth;
-    this.setState({left: Math.floor(rectInput.left - rectCanvas.left - WIDTH_DIFF / 2)});
-    previousTextInputWidth = this.textInput.current.clientWidth;
-    previousInputText = this.textInput.current.textContent;
+
+    this.previousInputText = this.textInput.current.textContent;
+
+    const inputRect = this.textInput.current.getBoundingClientRect();
+    const containerRect = this.el.current.getBoundingClientRect();
+    const x1 = inputRect.left - containerRect.left;
+    const x2 = inputRect.right - containerRect.right;
+    const widthDiff = this.previousInputWidth - inputRect.width;
+    this.previousInputWidth = inputRect.width;
+
+    if (x1 < 0 && x2 > 0) {
+      return;
+    }
+
+    if (x1 > 0 && x2 < 0) {
+      this.setState({left: this.state.left + (widthDiff / 2)});
+      return;
+    }
+
+    if (widthDiff > 0 && x1 < 0 && x2 < 0) {
+      this.setState({left: this.state.left + widthDiff});
+      return;
+    }
+
+    if (widthDiff > 0 && x1 > 0 && x2 > 0) {
+      this.setState({left: this.state.left});
+      return;
+    }
+
+    if (widthDiff < 0 && x1 < 0 && x2 < 0) {
+      this.setState({left: this.state.left});
+      return;
+    }
+
+    if (widthDiff < 0 && x1 > 0 && x2 > 0) {
+      this.setState({left: this.state.left + widthDiff});
+    }
   }
 
   onChangeTextSize(event) {
