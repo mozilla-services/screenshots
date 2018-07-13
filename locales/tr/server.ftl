@@ -168,6 +168,8 @@ annotationUndoButton =
     .title = Geri al
 annotationRedoButton =
     .title = Yinele
+annotationTextButton =
+    .title = Metin ekle
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Temizle
@@ -199,6 +201,18 @@ annotationColorSeaGreen =
     .title = Deniz yeşili
 annotationColorGrey =
     .title = Gri
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Metin boyutu
+# Values shown in text size selection dropdown
+textSizeSmall = Küçük
+textSizeMedium = Orta
+textSizeLarge = Büyük
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Onayla
+annotationTextCancelButton =
+    .title = İptal
 
 ## Settings Page
 
