@@ -215,6 +215,8 @@ annotationUndoButton =
     .title = Dad-wneud
 annotationRedoButton =
     .title = Ailwneud
+annotationTextButton =
+    .title = Ychwanegu testun
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Clir
@@ -246,6 +248,18 @@ annotationColorSeaGreen =
     .title = Gwyrdd y Môr
 annotationColorGrey =
     .title = Llwyd
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Maint testun
+# Values shown in text size selection dropdown
+textSizeSmall = Bach
+textSizeMedium = Canolig
+textSizeLarge = Mawr
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Cadarnhau
+annotationTextCancelButton =
+    .title = Diddymu
 
 ## Settings Page
 
