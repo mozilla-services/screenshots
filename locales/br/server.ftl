@@ -206,6 +206,8 @@ annotationUndoButton =
     .title = Dizober
 annotationRedoButton =
     .title = Adober
+annotationTextButton =
+    .title = Ouzhpennañ testennoù
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Skarzhañ
@@ -237,6 +239,18 @@ annotationColorSeaGreen =
     .title = Glas mor
 annotationColorGrey =
     .title = Loued
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Ment an testennoù
+# Values shown in text size selection dropdown
+textSizeSmall = Bihan
+textSizeMedium = Etre
+textSizeLarge = Ledan
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Kadarnaat
+annotationTextCancelButton =
+    .title = Nullañ
 
 ## Settings Page
 
