@@ -20,7 +20,7 @@ const FONT_WEIGHT = 900;
 const INIT_FONT_SIZE = 36;
 
 let previousTextInputWidth;
-let previousInputText = "";
+let previousInputText;
 
 let dragMouseDown = false;
 let prevDragMousePos = null;
@@ -52,6 +52,7 @@ exports.TextTool = class TextTool extends React.Component {
   componentDidMount() {
     this.textInput.current.focus();
     previousTextInputWidth = this.textInput.current.clientWidth;
+    previousInputText = "";
     this.adjustHeight();
     if (this.props.toolbarOverrideCallback) {
       this.props.toolbarOverrideCallback();
@@ -62,6 +63,7 @@ exports.TextTool = class TextTool extends React.Component {
     if (oldState.textSize !== this.state.textSize) {
       this.props.toolbarOverrideCallback();
       this.adjustHeight();
+      this.adjustX();
     }
   }
 
@@ -101,10 +103,9 @@ exports.TextTool = class TextTool extends React.Component {
     };
 
     return [
-      <div key="drag" style={dragDivStyles}
-        onMouseDown={this.onDragMouseDown.bind(this)} onMouseUp={this.onMouseUp.bind(this)} onMove={this.onMouseMove.bind(this)}>
+      <div key="drag" style={dragDivStyles} onMouseDown={this.onDragMouseDown.bind(this)}>
         <div id="text-input" ref={this.textInput} contentEditable="true" key="text" onKeyDown={this.onKeyDown.bind(this)}
-          onKeyUp={this.onKeyUp.bind(this)} className={`${this.state.textSize} ${this.state.colorName} text`}>
+          onKeyUp={this.onKeyUp.bind(this)} onPaste={this.onPaste.bind(this)} className={`${this.state.textSize} ${this.state.colorName} text`}>
         </div>
       </div>
     ];
@@ -231,6 +232,17 @@ exports.TextTool = class TextTool extends React.Component {
     }
   }
 
+  onPaste(e) {
+    window.setTimeout(() => {
+      // Remove element tags, line breaks and new line seen after pasting text
+      while (this.textInput.current.firstElementChild) {
+        this.textInput.current.removeChild(this.textInput.current.firstElementChild);
+      }
+      this.textInput.current.textContent = this.textInput.current.textContent.replace(/\r?\n|\r/g, "");
+      this.adjustX(e);
+    });
+  }
+
   onKeyUp(e) {
     // Fix to remove <br> element inserted on press of space bar inside contenteditable div
     while (this.textInput.current.firstElementChild) {
@@ -240,10 +252,11 @@ exports.TextTool = class TextTool extends React.Component {
   }
 
   adjustX(e) {
-    if (previousInputText === this.textInput.current.textContent) {
+    // Return if there's no text content change and method is invoked from event handler
+    if (previousInputText === this.textInput.current.textContent && e) {
       return;
     }
-    const rectInput = e.target.getBoundingClientRect();
+    const rectInput = this.textInput.current.getBoundingClientRect();
     const rectCanvas = this.props.baseCanvas.getBoundingClientRect();
     const WIDTH_DIFF = this.textInput.current.clientWidth - previousTextInputWidth;
     this.setState({left: Math.floor(rectInput.left - rectCanvas.left - WIDTH_DIFF / 2)});
