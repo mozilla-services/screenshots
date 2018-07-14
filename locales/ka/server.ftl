@@ -188,6 +188,8 @@ annotationUndoButton =
     .title = დაბრუნება
 annotationRedoButton =
     .title = კვლავ შესრულება
+annotationTextButton =
+    .title = ტექსტის დამატება
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = გასუფთავება
@@ -219,6 +221,18 @@ annotationColorSeaGreen =
     .title = ზღვის მწვანე
 annotationColorGrey =
     .title = ნაცრისფერი
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = ტექსტის ზომა
+# Values shown in text size selection dropdown
+textSizeSmall = მცირე
+textSizeMedium = საშუალო
+textSizeLarge = დიდი
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = დადასტურება
+annotationTextCancelButton =
+    .title = გაუქმება
 
 ## Settings Page
 
