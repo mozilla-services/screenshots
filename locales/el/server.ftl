@@ -192,6 +192,8 @@ annotationUndoButton =
     .title = Αναίρεση
 annotationRedoButton =
     .title = Επανάληψη
+annotationTextButton =
+    .title = Προσθήκη κειμένου
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Εκκαθάριση
@@ -223,6 +225,18 @@ annotationColorSeaGreen =
     .title = Θαλασσόχρους
 annotationColorGrey =
     .title = Γκρι
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Μέγεθος κειμένου
+# Values shown in text size selection dropdown
+textSizeSmall = Μικρό
+textSizeMedium = Μεσαίο
+textSizeLarge = Μεγάλο
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Επιβεβαίωση
+annotationTextCancelButton =
+    .title = Ακύρωση
 
 ## Settings Page
 
