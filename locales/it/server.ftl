@@ -192,6 +192,8 @@ annotationUndoButton =
     .title = Annulla
 annotationRedoButton =
     .title = Ripeti
+annotationTextButton =
+    .title = Aggiungi testo
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Cancella
@@ -223,6 +225,18 @@ annotationColorSeaGreen =
     .title = Verde acqua
 annotationColorGrey =
     .title = Grigio
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Dimensione testo
+# Values shown in text size selection dropdown
+textSizeSmall = Piccolo
+textSizeMedium = Medio
+textSizeLarge = Grande
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Conferma
+annotationTextCancelButton =
+    .title = Annulla
 
 ## Settings Page
 
