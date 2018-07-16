@@ -182,6 +182,12 @@ annotationPenButton =
     .title = Қалам
 annotationHighlighterButton =
     .title = Маркер
+annotationUndoButton =
+    .title = Болдырмау
+annotationRedoButton =
+    .title = Қайталау
+annotationTextButton =
+    .title = Мәтінді қосу
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Тазарту
@@ -213,6 +219,18 @@ annotationColorSeaGreen =
     .title = Теңіз жасыл
 annotationColorGrey =
     .title = Сұр
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Мәтін өлшемі
+# Values shown in text size selection dropdown
+textSizeSmall = Кіші
+textSizeMedium = Орташа
+textSizeLarge = Үлкен
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Растау
+annotationTextCancelButton =
+    .title = Бас тарту
 
 ## Settings Page
 
@@ -260,6 +278,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Бұл скриншот мерзімі аяқталмайды
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Бұл скриншотты өшіруді шынымен қалайсыз ба?
+shotDeleteCancel = Бас тарту
+    .title = Бас тарту
+shotDeleteConfirm = Өшіру
+    .title = Өшіру
 
 ## Metrics page
 ## All metrics strings are optional for translation

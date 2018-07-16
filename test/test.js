@@ -30,8 +30,9 @@ const path = require("path");
 const fs = require("fs");
 const util = require("util");
 
-const PAGE_ACTION_BUTTON_ID = "pageActionButton"
-const SHOOTER_BUTTON_ID = "pageAction-panel-screenshots";
+const PAGE_ACTION_BUTTON_ID = "pageActionButton";
+// ID of WebExtension page action button
+const SHOOTER_BUTTON_ID = "pageAction-panel-screenshots_mozilla_org";
 // Applies to the old-style toolbar button:
 const TOOLBAR_SHOOTER_BUTTON_ID = "screenshots_mozilla_org-browser-action";
 const pageActionButtonSelector = By.id(PAGE_ACTION_BUTTON_ID);
@@ -132,7 +133,7 @@ function startScreenshots(driver) {
 
 function focusIframe(driver, iframeId) {
   return driver.switchTo().defaultContent().then(() => {
-    return driver.findElement(By.id(iframeId))
+    return driver.findElement(By.id(iframeId));
   }).then((iframe) => {
     return driver.switchTo().frame(iframe);
   });
@@ -142,7 +143,7 @@ function closeTab(driver) {
   return driver.close()
   .then(() => driver.getAllWindowHandles())
   .then((tabs) => driver.switchTo().window(tabs[tabs.length - 1]))
-  .then(() => driver.switchTo().defaultContent())
+  .then(() => driver.switchTo().defaultContent());
 }
 
 function skipOnboarding(driver) {
@@ -210,7 +211,7 @@ function expectCreatedShot(driver, creator) {
   }).then(() => {
     return driver.wait(() => {
       return driver.getCurrentUrl().then((url) => {
-        return url !== "about:blank" && !url.includes("/creating/")
+        return url !== "about:blank" && !url.includes("/creating/");
       });
     });
   }).then(() => {

@@ -190,5 +190,5 @@ function getCallerPosition(stacklevel) {
   if (!caller) {
     return "unknown";
   }
-  return caller.replace(/^ */, "")
+  return caller.replace(/^ */, "");
 }

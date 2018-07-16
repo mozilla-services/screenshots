@@ -8,6 +8,7 @@ gMyShots = As miñas capturas
 gHomeLink = Inicio
 gNoShots =
     .alt = Non se atoparon capturas
+gScreenshotsDescription = Capturas de pantalla sinxelas. Faga, garde e comparta capturas de pantalla sen saír do Firefox.
 
 ## Footer
 
@@ -30,6 +31,8 @@ creatingPageWaitMessage = Gardando a súa captura…
 
 ## Home page
 
+homePageDescription =
+    .content = Capturas de pantalla intuitivas directamente desde o navegador. Capture, garde e comparta capturas de pantalla mentres navega pola web co Firefox.
 homePageButtonMyShots = Ir as miñas capturas
 homePageTeaser = Proximamente…
 homePageDownloadFirefoxTitle = Firefox
@@ -64,6 +67,7 @@ notFoundPageDescription = Non se atopou a páxina.
 
 # This is the HTML title tag of the page
 shotPageTitle = Captura de pantalla: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = Produciuse un erro ao gardar a caducidade
 shotPageAlertErrorDeletingShot = Produciuse un erro ao eliminar a captura
 shotPageAlertErrorUpdatingTitle = Produciuse un erro ao gardar o título
 shotPageConfirmDelete = Confirma que quere eliminar esta captura de forma permanente?
@@ -92,8 +96,12 @@ shotPageDeleteButton =
     .title = Eliminar esta captura
 shotPageDownloadShot =
     .title = Descargar
+shotPageEditButton =
+    .title = Editar esta imaxe
 shotPageDownload = Descargar
 shotPageUpsellFirefox = Obteña Firefox agora
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+shotPageSelectTime = Seleccione unha duración
 # The ∞ is used to indicate that the shot won't expire. It is also used in
 # shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
 # if no such symbol is available for a language/culture, simply leave it out.
@@ -143,11 +151,18 @@ timeDiffFutureDays =
         [one] mañá
        *[other] en { $number } días
     }
+errorThirdPartyCookiesEnabled = Se fixo esta captura e non a pode eliminar, quizais deba activar temporalmente as cookies de terceiros nas preferencias do navegador.
 
 ## Annotations
 
+annotationPenButton =
+    .title = Lapis
 annotationHighlighterButton =
     .title = Marcador
+annotationUndoButton =
+    .title = Desfacer
+annotationRedoButton =
+    .title = Refacer
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Borrar
@@ -161,9 +176,55 @@ annotationCropConfirmButton = Confirmar
     .title = Confirmar a selección
 annotationCropCancelButton = Cancelar
     .title = Cancelar a selección
+annotationColorWhite =
+    .title = Branco
+annotationColorBlack =
+    .title = Negro
+annotationColorRed =
+    .title = Vermello
+annotationColorGreen =
+    .title = Verde
+annotationColorBlue =
+    .title = Azul
+annotationColorYellow =
+    .title = Amarelo
+annotationColorPurple =
+    .title = Púrpura
+annotationColorGrey =
+    .title = Gris
+
+## Settings Page
+
+settingsDisconnectButton = Desconectar
+    .title = Desconectar
+settingsGuestAccountMessage = Conta de convidado
+settingsSignInInvite = Identifíquese para sincronizar os dispositivos
+settingsSignInButton = Identificarse
+    .title = Identificarse
+SettingsPageHeader = Configuración de Firefox Screenshots
+settingsPageSubHeader = Sync e contas
+settingsClosePreferences =
+    .title = Pechar preferencias
 
 ## Shotindex page
 
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Produciuse un erro ao eliminar a captura: { $status } { $statusText }
+# { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = As miñas capturas: buscar { $searchTerm }
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
+shotIndexPageErrorRendering = Produciuse un erro ao representar a páxina: { $error }
+shotIndexPageSearchPlaceholder =
+    .placeholder = Buscar nas capturas
+shotIndexPageSearchButton =
+    .title = Buscar
+shotIndexPageNoShotsMessage = Ningunha captura gardada.
+shotIndexPageNoShotsInvitation = Continúe, cree algunha.
+shotIndexPageLookingForShots = Buscando nas súas capturas...
+shotIndexPageClearSearchButton =
+    .title = Borrar busca
 shotIndexPageConfirmShotDelete = Eliminar esta captura?
 shotIndexPagePreviousPage =
     .title = Páxina anterior
@@ -175,6 +236,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Esta captura non caduca
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Confirma que quere eliminar esta captura?
+shotDeleteCancel = Cancelar
+    .title = Cancelar
+shotDeleteConfirm = Eliminar
+    .title = Eliminar
 
 ## Metrics page
 ## All metrics strings are optional for translation

@@ -188,6 +188,12 @@ annotationPenButton =
     .title = Pen
 annotationHighlighterButton =
     .title = Markeerder
+annotationUndoButton =
+    .title = Ongedaan maken
+annotationRedoButton =
+    .title = Opnieuw uitvoeren
+annotationTextButton =
+    .title = Tekst toevoegen
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Wissen
@@ -219,6 +225,18 @@ annotationColorSeaGreen =
     .title = Zeegroen
 annotationColorGrey =
     .title = Grijs
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Tekengrootte
+# Values shown in text size selection dropdown
+textSizeSmall = Klein
+textSizeMedium = Normaal
+textSizeLarge = Groot
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Bevestigen
+annotationTextCancelButton =
+    .title = Annuleren
 
 ## Settings Page
 
@@ -266,6 +284,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Deze afbeelding verloopt niet
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Weet u zeker dat u deze afbeelding wilt verwijderen?
+shotDeleteCancel = Annuleren
+    .title = Annuleren
+shotDeleteConfirm = Verwijderen
+    .title = Verwijderen
 
 ## Metrics page
 ## All metrics strings are optional for translation

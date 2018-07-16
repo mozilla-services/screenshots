@@ -15,7 +15,7 @@ gScreenshotsDescription = Jednoduchá tvorba snímků webových stránek. Vytvá
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Podmínky
-footerLinkPrivacy = Zásady ochrany soukromí
+footerLinkPrivacy = Zásady ochrany osobních údajů
 footerLinkFaqs = Časté dotazy
 footerLinkDMCA = Nahlásit zneužití IP adresy
 footerLinkDiscourse = Váš názor
@@ -194,6 +194,12 @@ annotationPenButton =
     .title = Pero
 annotationHighlighterButton =
     .title = Zvýrazňovač
+annotationUndoButton =
+    .title = Vrátit zpět
+annotationRedoButton =
+    .title = Znovu provést
+annotationTextButton =
+    .title = Přidat text
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Smazat úpravy
@@ -225,6 +231,18 @@ annotationColorSeaGreen =
     .title = Mořská zeleň
 annotationColorGrey =
     .title = Šedá
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Velikost textu
+# Values shown in text size selection dropdown
+textSizeSmall = Malý
+textSizeMedium = Střední
+textSizeLarge = Velký
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Potvrdit
+annotationTextCancelButton =
+    .title = Zrušit
 
 ## Settings Page
 
@@ -272,6 +290,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Tento snímek je uložen navždy
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Opravdu chcete tento snímek smazat?
+shotDeleteCancel = Zrušit
+    .title = Zrušit
+shotDeleteConfirm = Smazat
+    .title = Smazat
 
 ## Metrics page
 ## All metrics strings are optional for translation

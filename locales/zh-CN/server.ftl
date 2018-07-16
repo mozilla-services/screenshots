@@ -170,6 +170,12 @@ annotationPenButton =
     .title = 钢笔
 annotationHighlighterButton =
     .title = 荧光笔
+annotationUndoButton =
+    .title = 撤销
+annotationRedoButton =
+    .title = 重做
+annotationTextButton =
+    .title = 添加文字
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = 清除
@@ -201,12 +207,24 @@ annotationColorSeaGreen =
     .title = 海绿色
 annotationColorGrey =
     .title = 灰色
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = 文字大小
+# Values shown in text size selection dropdown
+textSizeSmall = 小
+textSizeMedium = 中
+textSizeLarge = 大
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = 确认
+annotationTextCancelButton =
+    .title = 取消
 
 ## Settings Page
 
 settingsDisconnectButton = 断开连接
     .title = 断开连接
-settingsGuestAccountMessage = 游客帐户
+settingsGuestAccountMessage = 游客账户
 settingsSignInInvite = 登录以在设备间同步
 settingsSignInButton = 登录
     .title = 登录
@@ -248,6 +266,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = 这张截图不会过期
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = 您确定要删除这张截图吗？
+shotDeleteCancel = 取消
+    .title = 取消
+shotDeleteConfirm = 删除
+    .title = 删除
 
 ## Metrics page
 ## All metrics strings are optional for translation

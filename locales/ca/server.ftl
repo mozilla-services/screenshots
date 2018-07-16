@@ -8,7 +8,7 @@ gMyShots = Les meves captures
 gHomeLink = Inici
 gNoShots =
     .alt = No s'ha trobat cap captura
-gScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures, deseu-les i compartiu-les sense sortir del Firefox.
+gScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures de pantalla, deseu-les i compartiu-les sense sortir del %S.
 
 ## Footer
 
@@ -119,7 +119,7 @@ shotPageDownloadShot =
 shotPageEditButton =
     .title = Edita aquesta imatge
 shotPageDownload = Baixa
-shotPageScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures, deseu-les i compartiu-les sense sortir del Firefox.
+shotPageScreenshotsDescription = Captures de pantalla sense complicacions. Feu captures de pantalla, deseu-les i compartiu-les sense sortir del %S.
 shotPageUpsellFirefox = Baixeu el Firefox ara
 shotPageDMCAMessage = Aquesta captura ja no està disponible a causa d'una reclamació de propietat intel·lectual d'un tercer.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Llapis
 annotationHighlighterButton =
     .title = Marcador
+annotationUndoButton =
+    .title = Desfés
+annotationRedoButton =
+    .title = Refés
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Esborra
@@ -219,6 +223,20 @@ annotationColorSeaGreen =
     .title = Verd oceà
 annotationColorGrey =
     .title = Gris
+
+## Settings Page
+
+settingsDisconnectButton = Desconnecta
+    .title = Desconnecta
+settingsGuestAccountMessage = Compte de convidat
+settingsSignInInvite = Inicieu la sessió per sincronitzar entre dispositius
+settingsSignInButton = Inicia la sessió
+    .title = Inicia la sessió
+SettingsPageHeader = Paràmetres del Firefox Screenshots
+settingsDescription = Podeu iniciar la sessió amb un compte del Firefox per sincronitzar les vostres captures de pantalla en tots els dispositius i accedir-hi de forma privada.
+settingsPageSubHeader = Sincronització i comptes
+settingsClosePreferences =
+    .title = Tanca les preferències
 
 ## Shotindex page
 
@@ -252,6 +270,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Aquesta captura no caduca
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Segur que voleu suprimir aquesta captura?
+shotDeleteCancel = Cancel·la
+    .title = Cancel·la
+shotDeleteConfirm = Suprimeix
+    .title = Suprimeix
 
 ## Metrics page
 ## All metrics strings are optional for translation

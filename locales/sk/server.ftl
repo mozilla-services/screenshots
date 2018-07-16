@@ -194,6 +194,12 @@ annotationPenButton =
     .title = Pero
 annotationHighlighterButton =
     .title = Zvýrazňovač
+annotationUndoButton =
+    .title = Späť
+annotationRedoButton =
+    .title = Znova
+annotationTextButton =
+    .title = Pridať text
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Odstrániť zmeny
@@ -225,6 +231,18 @@ annotationColorSeaGreen =
     .title = Morská zelená
 annotationColorGrey =
     .title = Sivá
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Veľkosť textu
+# Values shown in text size selection dropdown
+textSizeSmall = Malá
+textSizeMedium = Stredná
+textSizeLarge = Veľká
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Potvrdiť
+annotationTextCancelButton =
+    .title = Zrušiť
 
 ## Settings Page
 
@@ -272,6 +290,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Platnosť tejto snímky nevyprší
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Naozaj chcete odstrániť túto snímku?
+shotDeleteCancel = Zrušiť
+    .title = Zrušiť
+shotDeleteConfirm = Odstrániť
+    .title = Odstrániť
 
 ## Metrics page
 ## All metrics strings are optional for translation

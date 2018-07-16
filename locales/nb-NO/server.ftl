@@ -4,7 +4,7 @@
 
 ## Global phrases shared across pages, prefixed with 'g'
 
-gMyShots = Uendelig ∞
+gMyShots = Mine skjermbilder
 gHomeLink = Hjem
 gNoShots =
     .alt = Ingen skjermbilder funnet
@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Penn
 annotationHighlighterButton =
     .title = Merkepenn
+annotationUndoButton =
+    .title = Angre
+annotationRedoButton =
+    .title = Gjør om
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Tøm
@@ -266,6 +270,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Dette skjermbildet utløper ikke
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Er du sikker på at du vil slette dette skjermbildet?
+shotDeleteCancel = Avbryt
+    .title = Avbryt
+shotDeleteConfirm = Slett
+    .title = Slett
 
 ## Metrics page
 ## All metrics strings are optional for translation

@@ -194,6 +194,12 @@ annotationPenButton =
     .title = Асадка
 annotationHighlighterButton =
     .title = Маркер
+annotationUndoButton =
+    .title = Адкаціць
+annotationRedoButton =
+    .title = Паўтарыць
+annotationTextButton =
+    .title = Дадаць тэкст
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Ачысціць
@@ -225,6 +231,18 @@ annotationColorSeaGreen =
     .title = Сіня-зялёны
 annotationColorGrey =
     .title = Шэры
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Памер тэксту
+# Values shown in text size selection dropdown
+textSizeSmall = Дробны
+textSizeMedium = Сярэдні
+textSizeLarge = Вялікі
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Пацвердзіць
+annotationTextCancelButton =
+    .title = Скасаваць
 
 ## Settings Page
 
@@ -272,6 +290,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Гэты здымак не пратэрмінаваны
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Вы ўпэўненыя, што жадаеце выдаліць гэты здымак?
+shotDeleteCancel = Адмяніць
+    .title = Адмяніць
+shotDeleteConfirm = Выдаліць
+    .title = Выдаліць
 
 ## Metrics page
 ## All metrics strings are optional for translation

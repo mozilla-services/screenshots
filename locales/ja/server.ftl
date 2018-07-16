@@ -164,6 +164,12 @@ annotationPenButton =
     .title = ペン
 annotationHighlighterButton =
     .title = ハイライト
+annotationUndoButton =
+    .title = 元に戻す
+annotationRedoButton =
+    .title = やり直し
+annotationTextButton =
+    .title = テキストを追加
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = クリア
@@ -195,6 +201,18 @@ annotationColorSeaGreen =
     .title = 海緑
 annotationColorGrey =
     .title = 灰
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = 文字サイズ
+# Values shown in text size selection dropdown
+textSizeSmall = 小
+textSizeMedium = 中
+textSizeLarge = 大
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = 確認
+annotationTextCancelButton =
+    .title = キャンセル
 
 ## Settings Page
 
@@ -242,6 +260,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = このショットの期限はありません
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = 本当にこのショットを削除しますか？
+shotDeleteCancel = キャンセル
+    .title = キャンセル
+shotDeleteConfirm = 削除
+    .title = 削除
 
 ## Metrics page
 ## All metrics strings are optional for translation

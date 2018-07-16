@@ -200,6 +200,12 @@ annotationPenButton =
     .title = Pero
 annotationHighlighterButton =
     .title = Označevalnik
+annotationUndoButton =
+    .title = Razveljavi
+annotationRedoButton =
+    .title = Uveljavi
+annotationTextButton =
+    .title = Dodaj besedilo
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Počisti
@@ -231,6 +237,18 @@ annotationColorSeaGreen =
     .title = Morsko zelena
 annotationColorGrey =
     .title = Siva
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Velikost besedila
+# Values shown in text size selection dropdown
+textSizeSmall = Majhna
+textSizeMedium = Srednja
+textSizeLarge = Velika
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Potrdi
+annotationTextCancelButton =
+    .title = Prekliči
 
 ## Settings Page
 
@@ -278,6 +296,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Ta posnetek ne poteče
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Ste prepričani, da želite izbrisati ta posnetek?
+shotDeleteCancel = Prekliči
+    .title = Prekliči
+shotDeleteConfirm = Izbriši
+    .title = Izbriši
 
 ## Metrics page
 ## All metrics strings are optional for translation

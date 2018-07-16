@@ -1,0 +1,8 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "labels": ["code quality"],
+  "schedule": ["on Sunday"],
+  "prConcurrentLimit": 10
+}

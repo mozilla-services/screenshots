@@ -182,6 +182,12 @@ annotationPenButton =
     .title = Pen
 annotationHighlighterButton =
     .title = Penyerlah
+annotationUndoButton =
+    .title = Batal
+annotationRedoButton =
+    .title = Ulang
+annotationTextButton =
+    .title = Tambah teks
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Buang
@@ -213,6 +219,18 @@ annotationColorSeaGreen =
     .title = Hijau Laut
 annotationColorGrey =
     .title = Kelabu
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Saiz teks
+# Values shown in text size selection dropdown
+textSizeSmall = Kecil
+textSizeMedium = Sederhana
+textSizeLarge = Besar
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Sahkan
+annotationTextCancelButton =
+    .title = Batal
 
 ## Settings Page
 
@@ -260,6 +278,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Syot ini tidak luput
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Adakah anda pasti mahu menghapuskan syot ini?
+shotDeleteCancel = Batal
+    .title = Batal
+shotDeleteConfirm = Buang
+    .title = Buang
 
 ## Metrics page
 ## All metrics strings are optional for translation

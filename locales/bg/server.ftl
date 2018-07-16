@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Писалка
 annotationHighlighterButton =
     .title = Маркер
+annotationUndoButton =
+    .title = Отменяне
+annotationRedoButton =
+    .title = Повтаряне
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Изчистване
@@ -219,6 +223,20 @@ annotationColorSeaGreen =
     .title = Синьо-зелено
 annotationColorGrey =
     .title = Сиво
+
+## Settings Page
+
+settingsDisconnectButton = Изключване
+    .title = Изключване
+settingsGuestAccountMessage = Сметка за гости
+settingsSignInInvite = Вписване в Sync за синхронизиране между устрайствата
+settingsSignInButton = Вписване
+    .title = Вписване
+SettingsPageHeader = Настройки на Firefox Screenshots
+settingsDescription = Ако се впишете с Firefox Accounts всички снимки на екрана ще бъдат синхронизирани между устройствата ви и ще ги имате поверителен достъп до тях.
+settingsPageSubHeader = Синхронизиране и сметки
+settingsClosePreferences =
+    .title = Затваряне
 
 ## Shotindex page
 
@@ -252,6 +270,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Давността на тази снимка не изтича.
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Сигурни ли сте, че желаете да изтриете тази снимка?
+shotDeleteCancel = Отказ
+    .title = Отказ
+shotDeleteConfirm = Изтриване
+    .title = Изтриване
 
 ## Metrics page
 ## All metrics strings are optional for translation

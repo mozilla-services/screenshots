@@ -27,12 +27,20 @@ footerLinkRemoveAllData = ਸਾਰਾ ਡਾਟਾ ਹਟਾਓ
 # creatingPageTitleDefault.
 creatingPageTitle = { $title } ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ
 creatingPageTitleDefault = ਸਫ਼ਾ
+creatingPageWaitMessage = ਤੁਹਾਡੇ ਸ਼ਾਟ ਨੂੰ ਸੰਭਾਲਿਆ ਜਾ ਰਿਹਾ ਹੈ ...
 
 ## Home page
 
-homePageDownloadFirefoxTitle = ਫਾਇਰਫਾਕਸ
+homePageButtonMyShots = ਮੇਰੇ ਸ਼ੌਟਸ ਤੇ ਜਾਓ
+homePageTeaser = ਜਲਦੀ ਆ ਰਿਹਾ....
+homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ਮੁਫ਼ਤ ਡਾਊਨਲੋਡ ਕਰੋ
 homePageGetStarted = ਸ਼ੁਰੂ ਕਰੋ
+# Note: do not translate 'Firefox Screenshots' when translating this string
+homePageHowScreenshotsWorks = Firefox ਸਕਰੀਨਸ਼ਾਟ ਵਰਕਸ ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ
+homePageGetStartedTitle = ਸ਼ੁਰੂਆਤ ਕਰੋ
+homePageCaptureRegion = ਕਿਸੇ ਖੇਤਰ ਨੂੰ ਕੈਪਚਰ ਕਰੋ
+homePageCapturePage = ਕੋਈ ਕੈਪਚਰ ਕਰੋ
 homePageSaveShare = ਸੰਭਾਲੋ ਅਤੇ ਸਾਂਝਾ ਕਰੋ
 homePageLegalLink = ਕਨੂੰਨੀ
 homePagePrivacyLink = ਪਰਦੇਦਾਰੀ
@@ -42,6 +50,9 @@ homePageCookiesLink = ਕੂਕੀਜ਼
 ## Leave Screenshots page
 
 leavePageRemoveAllData = ਸਾਰਾ ਡਾਟਾ ਹਟਾਓ
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = ਤੁਹਾਡੇ ਖਾਤੇ ਨੂੰ ਮਿਟਾਉਣ ਲਈ ਤੁਹਾਡੇ ਕੋਲ Firefox ਸਕਰੀਨਸ਼ਾਟ ਸਥਾਪਤ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ
+leavePageErrorGeneric = ਇੱਕ ਗਲਤੀ ਆਈ ਹੈ
 
 ## Not Found page
 
@@ -57,13 +68,20 @@ shotPageDownloadShot =
 shotPageEditButton =
     .title = ਇਹ ਚਿੱਤਰ ਨੂੰ ਸੋਧੋ
 shotPageDownload = ਡਾਊਨਲੋਡ ਕਰੋ
+shotPageUpsellFirefox = Firefox ਹੁਣੇ ਪ੍ਰਾਪਤ ਕਰੋ
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = ਸਮਾਂ ਚੁਣੋ
 
 ## Annotations
 
 
+## Settings Page
+
+
 ## Shotindex page
+
+
+## Delete Confirmation Dialog
 
 
 ## Metrics page

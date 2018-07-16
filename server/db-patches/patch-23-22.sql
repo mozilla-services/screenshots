@@ -1,0 +1,4 @@
+-- Records using the new enum values from 22-23 must be updated or deleted in
+-- order to update the enum type. Moreover, the entire `data` table must be
+-- updated to use a new enum type (see 22-23 for what's entailed).
+-- For those reasons, we refrain from removing the enum values in here.

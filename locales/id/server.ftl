@@ -164,6 +164,12 @@ annotationPenButton =
     .title = Pena
 annotationHighlighterButton =
     .title = Penyorot
+annotationUndoButton =
+    .title = Urungkan
+annotationRedoButton =
+    .title = Ulangi
+annotationTextButton =
+    .title = Tambahkan teks
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Bersihkan
@@ -242,6 +248,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Tangkapan ini tidak kedaluwarsa
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Apakah Anda yakin ingin menghapus tangkapan ini?
+shotDeleteCancel = Batal
+    .title = Batal
+shotDeleteConfirm = Hapus
+    .title = Hapus
 
 ## Metrics page
 ## All metrics strings are optional for translation

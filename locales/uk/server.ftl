@@ -194,6 +194,10 @@ annotationPenButton =
     .title = Олівець
 annotationHighlighterButton =
     .title = Маркер
+annotationUndoButton =
+    .title = Скасувати
+annotationRedoButton =
+    .title = Повторити
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Очистити
@@ -272,6 +276,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Цей знімок зберігається необмежено
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Ви дійсно хочете видалити цей знімок?
+shotDeleteCancel = Скасувати
+    .title = Скасувати
+shotDeleteConfirm = Видалити
+    .title = Видалити
 
 ## Metrics page
 ## All metrics strings are optional for translation

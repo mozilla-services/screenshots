@@ -33,7 +33,7 @@ creatingPageWaitMessage = Jo ôfbylding bewarje…
 ## Home page
 
 homePageDescription =
-    .content = Intuïtive skermôfbyldingen, streekrjocht yn de browser. Wylst jo mei Firefox op it web surfe, kinne jo skermôfbyldingen meitsje, bewarje en diele.
+    .content = Yntuïtive skermôfbyldingen, streekrjocht yn de browser. Wylst jo mei Firefox op it web surfe, kinne jo skermôfbyldingen meitsje, bewarje en diele.
 homePageButtonMyShots = Nei myn ôfbyldingen
 homePageTeaser = Ynkoarten beskikber...
 homePageDownloadFirefoxTitle = Firefox
@@ -188,6 +188,12 @@ annotationPenButton =
     .title = Pen
 annotationHighlighterButton =
     .title = Markearstift
+annotationUndoButton =
+    .title = Ungedien meitsje
+annotationRedoButton =
+    .title = Opnij útfiere
+annotationTextButton =
+    .title = Tekst tafoegje
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Wiskje
@@ -219,6 +225,18 @@ annotationColorSeaGreen =
     .title = Seegrien
 annotationColorGrey =
     .title = Griis
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Tekstgrutte
+# Values shown in text size selection dropdown
+textSizeSmall = Lyts
+textSizeMedium = Gemiddeld
+textSizeLarge = Grut
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Befêstigje
+annotationTextCancelButton =
+    .title = Annulearje
 
 ## Settings Page
 
@@ -266,6 +284,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Dizze skermôfdruk ferrint nea
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Binne jo wis dat jo dizze skermôfdruk fuortsmite wolle?
+shotDeleteCancel = Annulearje
+    .title = Annulearje
+shotDeleteConfirm = Fuortsmite
+    .title = Fuortsmite
 
 ## Metrics page
 ## All metrics strings are optional for translation

@@ -194,6 +194,12 @@ annotationPenButton =
     .title = Rašiklis
 annotationHighlighterButton =
     .title = Žymeklis
+annotationUndoButton =
+    .title = Atšaukti
+annotationRedoButton =
+    .title = Pakartoti
+annotationTextButton =
+    .title = Pridėti tekstą
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Išvalyti
@@ -225,6 +231,18 @@ annotationColorSeaGreen =
     .title = Jūros mėlio
 annotationColorGrey =
     .title = Pilka
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Teksto dydis
+# Values shown in text size selection dropdown
+textSizeSmall = Mažas
+textSizeMedium = Vidutinis
+textSizeLarge = Didelis
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Tinka
+annotationTextCancelButton =
+    .title = Atsisakyti
 
 ## Settings Page
 
@@ -272,6 +290,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Ši nuotrauka galioja neribotą laiką
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Ar tikrai norite pašalinti šią nuotrauką?
+shotDeleteCancel = Atsisakyti
+    .title = Atsisakyti
+shotDeleteConfirm = Pašalinti
+    .title = Pašalinti
 
 ## Metrics page
 ## All metrics strings are optional for translation

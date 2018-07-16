@@ -193,11 +193,19 @@ annotationPenButton =
     .title = Olovka
 annotationHighlighterButton =
     .title = Marker
+annotationUndoButton =
+    .title = Poništi
+annotationRedoButton =
+    .title = Uradi ponovo
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Očisti
 annotationCropButton =
     .title = Izreži
+annotationSaveEditButton = Sačuvaj
+    .title = Sačuvaj izmjene
+annotationCancelEditButton = Otkaži
+    .title = Odbaci izmjene
 annotationCropConfirmButton = Potvrdi
     .title = Potvrdi izbor
 annotationCropCancelButton = Otkaži
@@ -223,8 +231,12 @@ annotationColorGrey =
 
 ## Settings Page
 
+settingsDisconnectButton = Prekini vezu
+    .title = Prekini vezu
 settingsGuestAccountMessage = Račun za gosta
 settingsSignInInvite = Prijavite se za sinhronizaciju kroz uređaje
+settingsSignInButton = Prijavi se
+    .title = Prijavi se
 SettingsPageHeader = Firefox Screenshots postavke
 settingsDescription = Možete se prijaviti sa Firefox računima za sinhronizaciju svih vaših snimaka na svim uređajima i pristupiti im privatno.
 settingsPageSubHeader = Sync i računi
@@ -263,6 +275,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Ovaj snimak ne ističe
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Da li ste sigurni da želite izbrisati ovu snimku?
+shotDeleteCancel = Otkaži
+    .title = Otkaži
+shotDeleteConfirm = Izbriši
+    .title = Izbriši
 
 ## Metrics page
 ## All metrics strings are optional for translation

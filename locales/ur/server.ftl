@@ -94,6 +94,7 @@ timeDiffDaysAgo =
         [one] گزشتہ روز
        *[other] { $number }  د ن پہلے
     }
+timeDiffFutureSeconds = چند سیکنڈ میں
 timeDiffFutureHours =
     { $number ->
         [one] ۱ گھنٹے میں
@@ -115,6 +116,9 @@ annotationClearButton =
 annotationSaveEditButton = محفوظ کریں
     .title = تدوین محفوظ کریں
 
+## Settings Page
+
+
 ## Shotindex page
 
 shotIndexPageSearchPlaceholder =
@@ -130,6 +134,9 @@ shotIndexPagePreviousPage =
     .title = پچھلا صفحہ
 shotIndexPageNextPage =
     .title = اگلا صفحہ
+
+## Delete Confirmation Dialog
+
 
 ## Metrics page
 ## All metrics strings are optional for translation

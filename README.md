@@ -20,13 +20,15 @@ You can find more information about Firefox Screenshots at the Mozilla Wiki page
 
 ### Installation and Setup
 
-Install [Postgres](http://www.postgresql.org/).  And do _one_ of the following:
+Install [Nightly or Developer Edition](https://www.mozilla.org/en-US/firefox/channel/desktop/).
+
+(Skip this step if you do not want to run a local server.) Install [Postgres](http://www.postgresql.org/).  And do _one_ of the following:
 - Ensure the locale for your Postgres messages is US English ([Here's why](https://github.com/chilts/pg-patcher/blob/master/pg-patcher.js#L101))
 - Run the [first migration](https://github.com/mozilla-services/screenshots/blob/master/server/db-patches/patch-0-1.sql) manually
 
 Install [Node.js](https://nodejs.org/). Version 8.x is required.
 
-Clone the [repository](https://github.com/mozilla-services/screenshots/).
+Clone the [repository](https://github.com/mozilla-services/screenshots/).  Navigate to the project directory and run `npm install`.
 
 There are two scripts to run the server locally and develop the add-on:
 
@@ -44,7 +46,17 @@ The server will automatically setup the tables in your database, and keep them u
 
 If you have growl and growlnotify installed on Mac OS X, you will get growl notifications when the server build has started and completed.
 
-We apologize but we have no story for development on Windows (though the add-on runs on Windows).  We welcome feedback.
+We apologize but we have no story for development on Windows (though the add-on runs on Windows).  [We welcome feedback](https://github.com/mozilla-services/screenshots/issues/4289).
+
+### Linting and Testing
+
+`npm run test` will run tests as well as eslint and [nsp](https://www.npmjs.com/package/nsp).  You can control the tests with the following shell/environment variables:
+- `MOZ_HEADLESS` - when this variable is set, the Selenium tests will run in [headless mode](https://developer.mozilla.org/en-US/Firefox/Headless_mode).
+- `SCREENSHOTS_BACKEND` - the server where the addon will try to save shots if the default http://localhost:10080 is not available or desirable.
+
+For example, `MOZ_HEADLESS=1 SCREENSHOTS_BACKEND=https://screenshots.dev.mozaws.net npm run test` will run the tests headlessly against https://screenshots.dev.mozaws.net.
+
+`npm run test:server` will run the server tests.  This require Python and the local server running on http://localhost:10080.
 
 ### Getting to know the code
 

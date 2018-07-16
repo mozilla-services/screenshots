@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Kynä
 annotationHighlighterButton =
     .title = Korostus
+annotationUndoButton =
+    .title = Kumoa
+annotationRedoButton =
+    .title = Tee uudelleen
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Pyyhi
@@ -219,6 +223,20 @@ annotationColorSeaGreen =
     .title = Merenvihreä
 annotationColorGrey =
     .title = Harmaa
+
+## Settings Page
+
+settingsDisconnectButton = Katkaise yhteys
+    .title = Katkaise yhteys
+settingsGuestAccountMessage = Vierastili
+settingsSignInInvite = Voit synkronoida tiedot laitteiden välillä kirjautumalla sisään
+settingsSignInButton = Kirjaudu sisään
+    .title = Kirjaudu sisään
+SettingsPageHeader = Firefox Screenshots -asetukset
+settingsDescription = Voit kirjautua sisään Firefox-tilille ja synkronoida kaikki kaappauksesi laitteiden välillä ja katsella niitä yksityisesti.
+settingsPageSubHeader = Synkronointi ja tilit
+settingsClosePreferences =
+    .title = Sulje asetukset
 
 ## Shotindex page
 
@@ -252,6 +270,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Tämä kaappaus ei vanhene
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Haluatko varmasti poistaa tämän kaappauksen?
+shotDeleteCancel = Peruuta
+    .title = Peruuta
+shotDeleteConfirm = Poista
+    .title = Poista
 
 ## Metrics page
 ## All metrics strings are optional for translation

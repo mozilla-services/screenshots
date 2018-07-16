@@ -200,6 +200,12 @@ annotationPenButton =
     .title = Pisak
 annotationHighlighterButton =
     .title = Tekstowy marker
+annotationUndoButton =
+    .title = Cofnyć
+annotationRedoButton =
+    .title = Wospjetować
+annotationTextButton =
+    .title = Tekst přidać
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Wróćo stajić
@@ -231,6 +237,18 @@ annotationColorSeaGreen =
     .title = Mórskozeleny
 annotationColorGrey =
     .title = Šěry
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Tekstowa wulkosć
+# Values shown in text size selection dropdown
+textSizeSmall = Mały
+textSizeMedium = Srjedźny
+textSizeLarge = Wulki
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Wobkrućić
+annotationTextCancelButton =
+    .title = Přetorhnyć
 
 ## Settings Page
 
@@ -278,6 +296,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Tute foto wobrazowki njespadnje
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Chceće tute foto wobrazowki woprawdźe zhašeć?
+shotDeleteCancel = Přetorhnyć
+    .title = Přetorhnyć
+shotDeleteConfirm = Zhašeć
+    .title = Zhašeć
 
 ## Metrics page
 ## All metrics strings are optional for translation

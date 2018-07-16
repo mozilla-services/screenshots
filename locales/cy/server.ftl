@@ -150,45 +150,57 @@ shotPageExpired = wedi dod i ben { $timediff }
 timeDiffJustNow = nawr
 timeDiffMinutesAgo =
     { $number ->
+        [zero] { $number } munud yn ôl
         [one] 1 munud yn ôl
         [two] { $number } funud yn ôl
         [few] { $number } munud yn ôl
+        [many] { $number } munud yn ôl
        *[other] { $number } munud yn ôl
     }
 timeDiffHoursAgo =
     { $number ->
+        [zero] { $number }  awr yn ôl
         [one] awr yn ôl
         [two] { $number } awr yn ôl
         [few] { $number }  awr yn ôl
+        [many] { $number }  awr yn ôl
        *[other] { $number }  awr yn ôl
     }
 timeDiffDaysAgo =
     { $number ->
+        [zero] { $number } diwrnod yn ôl
         [one] ddoe
         [two] { $number } diwrnod yn ôl
         [few] { $number } diwrnod yn ôl
+        [many] { $number } diwrnod yn ôl
        *[other] { $number } diwrnod yn ôl
     }
 timeDiffFutureSeconds = ymhen ychydig eiliadau
 timeDiffFutureMinutes =
     { $number ->
+        [zero] ymhen { $number } munud
         [one] ymhen munud
         [two] ymhen { $number } funud
         [few] ymhen { $number } munud
+        [many] ymhen { $number } munud
        *[other] ymhen { $number } munud
     }
 timeDiffFutureHours =
     { $number ->
+        [zero] ymhen { $number } awr
         [one] ymhen awr
         [two] ymhen { $number } awr
         [few] ymhen { $number } awr
+        [many] ymhen { $number } awr
        *[other] ymhen { $number } awr
     }
 timeDiffFutureDays =
     { $number ->
+        [zero] ymhen { $number } diwrnod
         [one] yfory
         [two] ymhen { $number } ddiwrnod
         [few] ymhen { $number } diwrnod
+        [many] ymhen { $number } diwrnod
        *[other] ymhen { $number } diwrnod
     }
 errorThirdPartyCookiesEnabled = Os wnaethoch chi gymryd y llun hwn, ac yn methu ei dileu, efallai y bydd angen i chi alluogi, dros dro, cwcis trydydd parti o fewn dewisiadau eich porwr.
@@ -199,6 +211,12 @@ annotationPenButton =
     .title = Pin
 annotationHighlighterButton =
     .title = Amlygwr
+annotationUndoButton =
+    .title = Dad-wneud
+annotationRedoButton =
+    .title = Ailwneud
+annotationTextButton =
+    .title = Ychwanegu testun
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Clir
@@ -230,6 +248,18 @@ annotationColorSeaGreen =
     .title = Gwyrdd y Môr
 annotationColorGrey =
     .title = Llwyd
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Maint testun
+# Values shown in text size selection dropdown
+textSizeSmall = Bach
+textSizeMedium = Canolig
+textSizeLarge = Mawr
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Cadarnhau
+annotationTextCancelButton =
+    .title = Diddymu
 
 ## Settings Page
 
@@ -277,6 +307,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Nid yw'r llun yma'n dod i ben
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Ydych chi'n siŵr eich bod eisiau dileu'r llun yma?
+shotDeleteCancel = Diddymu
+    .title = Diddymu
+shotDeleteConfirm = Dileu
+    .title = Dileu
 
 ## Metrics page
 ## All metrics strings are optional for translation

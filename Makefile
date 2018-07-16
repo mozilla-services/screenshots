@@ -88,7 +88,7 @@ build/%.html: %.html
 	cp $< $@
 
 .PHONY: addon
-addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/shot.js addon/webextension/build/thumbnailGenerator.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/onboardingCss.js addon/webextension/build/onboardingHtml.js addon/webextension/build/buildSettings.js
+addon: npm set_backend set_sentry addon/webextension/manifest.json addon/install.rdf addon_locales addon/webextension/build/selection.js addon/webextension/build/shot.js addon/webextension/build/thumbnailGenerator.js addon/webextension/build/inlineSelectionCss.js addon/webextension/build/raven.js addon/webextension/build/onboardingCss.js addon/webextension/build/onboardingHtml.js addon/webextension/build/buildSettings.js
 
 $(VENV): bin/require.pip
 	virtualenv -p python2.7 $(VENV)
@@ -124,12 +124,19 @@ signed_xpi: addon
 .PHONY: addon_locales
 addon_locales:
 	./node_modules/.bin/pontoon-to-webext --dest addon/webextension/_locales > /dev/null
+	# Firefox doesn't want us to include duplicate files, and some locales don't have any
+	# unique strings compared to en_US:
+	./bin/build-scripts/delete-us-dup-locales.sh
 
 addon/install.rdf: addon/install.rdf.template package.json
 	./bin/build-scripts/update_manifest.py $< $@
 
 addon/webextension/manifest.json: addon/webextension/manifest.json.template build/.backend.txt package.json
 	./bin/build-scripts/update_manifest.py $< $@
+
+addon/webextension/build/selection.js: shared/selection.js
+	@mkdir -p $(@D)
+	./bin/build-scripts/modularize selection $< > $@
 
 addon/webextension/build/shot.js: shared/shot.js
 	@mkdir -p $(@D)
@@ -178,10 +185,6 @@ homepage_dependencies := $(shell ./bin/build-scripts/bundle_dependencies homepag
 build/server/static/js/homepage-bundle.js: $(homepage_dependencies)
 	./bin/build-scripts/bundle_dependencies homepage build ./build/server/pages/homepage/controller.js
 
-metrics_dependencies := $(shell ./bin/build-scripts/bundle_dependencies metrics getdeps "$(server_dest)")
-build/server/static/js/metrics-bundle.js: $(metrics_dependencies)
-	./bin/build-scripts/bundle_dependencies metrics build ./build/server/pages/metrics/controller.js
-
 shotindex_dependencies := $(shell ./bin/build-scripts/bundle_dependencies shotindex getdeps "$(server_dest)")
 build/server/static/js/shotindex-bundle.js: $(shotindex_dependencies)
 	./bin/build-scripts/bundle_dependencies shotindex build ./build/server/pages/shotindex/controller.js
@@ -212,7 +215,7 @@ build/server/static/locales: $(wildcard locales/**/server.ftl)
 	./bin/build-scripts/ftl-to-js.js $@ $^
 
 .PHONY: server
-server: npm build/server/build-time.js build/server/package.json build/server/static/js/shot-bundle.js build/server/static/js/homepage-bundle.js build/server/static/js/metrics-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/leave-bundle.js build/server/static/js/creating-bundle.js build/server/static/js/settings-bundle.js build/server/static/locales
+server: npm build/server/build-time.js build/server/package.json build/server/static/js/shot-bundle.js build/server/static/js/homepage-bundle.js build/server/static/js/shotindex-bundle.js build/server/static/js/leave-bundle.js build/server/static/js/creating-bundle.js build/server/static/js/settings-bundle.js build/server/static/locales
 
 ## Homepage related rules:
 

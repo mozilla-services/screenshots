@@ -85,6 +85,12 @@ Event label: exactly what control invoked the action, such as toolbar-button.  T
 
 #### A/B tests
 
+##### Test alternate share panel
+
+As described in [#3620](https://github.com/mozilla-services/screenshots/issues/3620), we are showing some users a different share icon on the My Shots and single shot pages. The test is named `shotShareIcon`.
+
+The dimension `cd7` will be `control` (Photon design system icon) or `newicon` (an Android-style "less than"-style icon, 10% of population).
+
 ##### (finished) Highlight shot button
 
 As described in [#2081](https://github.com/mozilla-services/screenshots/issues/2081) we are putting a badge on the button of some users.  The test is named `highlightButtonOnInstall`.

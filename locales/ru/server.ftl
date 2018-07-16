@@ -194,6 +194,12 @@ annotationPenButton =
     .title = Ручка
 annotationHighlighterButton =
     .title = Маркер
+annotationUndoButton =
+    .title = Отменить
+annotationRedoButton =
+    .title = Повторить
+annotationTextButton =
+    .title = Добавить текст
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Очистить
@@ -225,6 +231,18 @@ annotationColorSeaGreen =
     .title = Морская зелень
 annotationColorGrey =
     .title = Серый
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Размер текста
+# Values shown in text size selection dropdown
+textSizeSmall = Маленький
+textSizeMedium = Средний
+textSizeLarge = Большой
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Подтвердить
+annotationTextCancelButton =
+    .title = Отмена
 
 ## Settings Page
 
@@ -272,6 +290,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Срок хранения этого снимка неограничен
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Вы уверены, что хотите удалить этот снимок?
+shotDeleteCancel = Отмена
+    .title = Отмена
+shotDeleteConfirm = Удалить
+    .title = Удалить
 
 ## Metrics page
 ## All metrics strings are optional for translation

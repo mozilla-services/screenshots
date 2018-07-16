@@ -5,6 +5,7 @@ const path = require("path");
 const { readFileSync, existsSync } = require("fs");
 const Cookies = require("cookies");
 const { URL } = require("url");
+const Watchdog = require("./watchdog");
 
 let istanbulMiddleware = null;
 if (config.enableCoverage && process.env.NODE_ENV === "dev") {
@@ -291,7 +292,7 @@ app.param("id", function(req, res, next, id) {
     next();
     return;
   }
-  const exc = new Error("invalid id")
+  const exc = new Error("invalid id");
   exc.isAppError = true;
   exc.output = {
     statusCode: 400,
@@ -339,7 +340,7 @@ const parentHelperJs = readFileSync(path.join(__dirname, "/static/js/parent-help
 app.get("/parent-helper.js", function(req, res) {
   setMonthlyCache(res);
   const postMessageOrigin = `${req.protocol}://${req.config.contentOrigin}`;
-  const script = `${parentHelperJs}\nvar CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`
+  const script = `${parentHelperJs}\nvar CONTENT_HOSTING_ORIGIN = "${postMessageOrigin}";`;
   jsResponse(res, script);
 });
 
@@ -357,19 +358,8 @@ app.get("/install-raven.js", function(req, res) {
     sanitizeKeys: ["url"],
     serverName: req.backend
   };
-  // FIXME: this monkeypatch is because our version of Raven (6.2) doesn't really work
-  // with our version of Sentry (8.3.3)
   const script = `
   ${ravenClientJs}
-
-  (function () {
-    var old_captureException = Raven.captureException.bind(Raven);
-    Raven.captureException = function (ex, options) {
-      options = options || {};
-      options.message = options.message || ex.message;
-      return old_captureException(ex, options);
-    };
-  })();
   Raven.config("${req.config.sentryPublicDSN}", ${JSON.stringify(options)}).install();
   window.Raven = Raven;`;
   jsResponse(res, script);
@@ -696,7 +686,7 @@ app.put("/data/:id/:domain",
 
       if (req.files.thumbnail) {
         const encodedThumbnail = req.files.thumbnail[0].buffer.toString("base64");
-        bodyObj.thumbnail = `data:image/png;base64,${encodedThumbnail}`
+        bodyObj.thumbnail = `data:image/png;base64,${encodedThumbnail}`;
       }
     } else if (req.body) {
       bodyObj = req.body;
@@ -712,7 +702,7 @@ app.put("/data/:id/:domain",
       return;
     }
     const shot = new Shot(req.deviceId, req.backend, shotId, bodyObj);
-    let responseDelay = Promise.resolve()
+    let responseDelay = Promise.resolve();
     if (slowResponse) {
       responseDelay = new Promise((resolve) => {
         setTimeout(resolve, slowResponse);
@@ -731,6 +721,7 @@ app.put("/data/:id/:domain",
         simpleResponse(res, "No shot updated", 403);
         return;
       }
+      Watchdog.submit(shot);
       commands = commands || [];
       simpleResponse(res, JSON.stringify({updates: commands.filter((x) => !!x)}), 200);
     }).catch((err) => {
@@ -818,6 +809,9 @@ app.post("/api/set-title/:id/:domain", function(req, res) {
       return null;
     }
     shot.userTitle = userTitle;
+    if (shot.openGraph && shot.openGraph.title) {
+        shot.openGraph.title = userTitle;
+    }
     return shot.update();
   }).then((updated) => {
     simpleResponse(res, "Updated", 200);
@@ -857,12 +851,13 @@ app.post("/api/save-edit", function(req, res) {
     shot.getClip(name).image.dimensions.x = width;
     shot.getClip(name).image.dimensions.y = height;
     shot.thumbnail = thumbnail;
-    return shot.update();
-  }).then((updated) => {
+    return shot.update().then(updated => ({updated, shot}));
+  }).then(({updated, shot}) => {
+    Watchdog.submit(shot);
     simpleResponse(res, "Updated", 200);
   }).catch((err) => {
     errorResponse(res, "Error updating image", err);
-  })
+  });
 });
 
 app.post("/api/set-expiration", function(req, res) {
@@ -964,19 +959,24 @@ app.get("/images/:imageid", function(req, res) {
 });
 
 app.get("/__version__", function(req, res) {
-  const response = {
-    source: "https://github.com/mozilla-services/screenshots/",
-    description: "Firefox Screenshots application server",
-    version: selfPackage.version,
-    buildDate: buildTime,
-    commit: linker.getGitRevision(),
-    contentOrigin: config.contentOrigin,
-    commitLog: `https://github.com/mozilla-services/screenshots/commits/${linker.getGitRevision()}`,
-    unincludedCommits: `https://github.com/mozilla-services/screenshots/compare/${linker.getGitRevision()}...master`,
-    dbSchemaVersion: dbschema.MAX_DB_LEVEL
-  };
-  res.header("Content-Type", "application/json; charset=utf-8");
-  res.send(JSON.stringify(response, null, "  "));
+  dbschema.getCurrentDbPatchLevel().then(level => {
+    const response = {
+      source: "https://github.com/mozilla-services/screenshots/",
+      description: "Firefox Screenshots application server",
+      version: selfPackage.version,
+      buildDate: buildTime,
+      commit: linker.getGitRevision(),
+      contentOrigin: config.contentOrigin,
+      commitLog: `https://github.com/mozilla-services/screenshots/commits/${linker.getGitRevision()}`,
+      unincludedCommits: `https://github.com/mozilla-services/screenshots/compare/${linker.getGitRevision()}...master`,
+      dbSchemaVersion: level,
+      dbSchemaVersionJS: dbschema.MAX_DB_LEVEL
+    };
+    res.header("Content-Type", "application/json; charset=utf-8");
+    res.send(JSON.stringify(response, null, "  "));
+  }).catch((e) => {
+    errorResponse(res, "Error fetching version data: ", e);
+  });
 });
 
 app.get("/contribute.json", function(req, res) {
@@ -1078,7 +1078,7 @@ app.get("/api/fxa-oauth/login", function(req, res, next) {
     });
   }).then(state => {
     const redirectUri = `${req.backend}/api/fxa-oauth/confirm-login`;
-    const profile = "profile profile:displayName profile:email profile:avatar profile:uid";
+    const profile = "profile";
     res.redirect(`${config.fxa.oAuthServer}/authorization?client_id=${encodeURIComponent(config.fxa.clientId)}&redirect_uri=${encodeURIComponent(redirectUri)}&state=${encodeURIComponent(state)}&scope=${encodeURIComponent(profile)}`);
   }).catch(next);
 });
@@ -1117,6 +1117,11 @@ app.get("/api/fxa-oauth/confirm-login", function(req, res, next) {
       }).catch(next);
     }).catch(next);
   }).catch(next);
+});
+
+app.post("/watchdog/:submissionId", function(req, res) {
+  Watchdog.handleResult(req);
+  res.end();
 });
 
 app.use((req, res, next) => {

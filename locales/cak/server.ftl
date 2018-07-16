@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Tz'ib'ab'äl
 annotationHighlighterButton =
     .title = Tz'etöy
+annotationUndoButton =
+    .title = Titzolïx
+annotationRedoButton =
+    .title = Tikamulüx
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Tijosq'ïx
@@ -266,6 +270,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Ri chapoj re' man nik'o taq ruq'ijul
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = ¿La kan nawajo' chi niyuj el re chapoj re'?
+shotDeleteCancel = Tiq'at
+    .title = Tiq'at
+shotDeleteConfirm = Tiyuj
+    .title = Tiyuj
 
 ## Metrics page
 ## All metrics strings are optional for translation

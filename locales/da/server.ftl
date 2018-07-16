@@ -188,6 +188,12 @@ annotationPenButton =
     .title = Pen
 annotationHighlighterButton =
     .title = Overstregningspen
+annotationUndoButton =
+    .title = Fortryd
+annotationRedoButton =
+    .title = Gendan
+annotationTextButton =
+    .title = Tilføj tekst
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Ryd
@@ -219,6 +225,32 @@ annotationColorSeaGreen =
     .title = Havgrøn
 annotationColorGrey =
     .title = Grå
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Tekststørrelse
+# Values shown in text size selection dropdown
+textSizeSmall = Lille
+textSizeMedium = Mellem
+textSizeLarge = Stor
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Bekræft
+annotationTextCancelButton =
+    .title = Fortryd
+
+## Settings Page
+
+settingsDisconnectButton = Afbryd forbindelsen
+    .title = Afbryd forbindelsen
+settingsGuestAccountMessage = Gæstekonto
+settingsSignInInvite = Log ind for at synkronisere alle dine enheder
+settingsSignInButton = Log ind
+    .title = Log ind
+SettingsPageHeader = Indstillinger for Firefox Screenshots
+settingsDescription = Du kan logge ind med Firefox-konti for at synkronisere alle dine skærmbilleder på tværs af enheder og få adgang til dem privat.
+settingsPageSubHeader = Synkronisering & konti
+settingsClosePreferences =
+    .title = Luk indstillinger
 
 ## Shotindex page
 
@@ -252,6 +284,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Dette skærmbillede udløber ikke
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Er du sikker på, at du vil slette dette skærmbillede?
+shotDeleteCancel = Fortryd
+    .title = Fortryd
+shotDeleteConfirm = Slet
+    .title = Slet
 
 ## Metrics page
 ## All metrics strings are optional for translation

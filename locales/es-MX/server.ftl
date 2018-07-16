@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Pluma
 annotationHighlighterButton =
     .title = Marcador
+annotationUndoButton =
+    .title = Deshacer
+annotationRedoButton =
+    .title = Rehacer
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Limpiar
@@ -266,6 +270,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Esta captura no expira
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = ¿De verdad quieres eliminar esta captura?
+shotDeleteCancel = Cancelar
+    .title = Cancelar
+shotDeleteConfirm = Eliminar
+    .title = Eliminar
 
 ## Metrics page
 ## All metrics strings are optional for translation

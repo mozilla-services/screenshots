@@ -20,7 +20,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       el = el.parentNode;
     }
     return false;
-  }
+  };
 
   const substitutedCss = inlineSelectionCss.replace(/MOZ_EXTENSION([^"]+)/g, (match, filename) => {
     return browser.extension.getURL(filename);
@@ -81,7 +81,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
 
   const isDownloadOnly = exports.isDownloadOnly = function() {
     return window.downloadOnly;
-  }
+  };
 
   // the download notice is rendered in iframes that match the document height
   // or the window height. If parent iframe matches window height, pass in true
@@ -140,6 +140,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element.id = "firefox-screenshots-selection-iframe";
           this.element.style.display = "none";
           this.element.style.setProperty("position", "absolute", "important");
+          this.element.style.setProperty("background-color", "transparent");
           this.updateElementSize();
           this.element.addEventListener("load", watchFunction(() => {
             this.document = this.element.contentDocument;
@@ -274,11 +275,12 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element = initializeIframe();
           this.element.id = "firefox-screenshots-preselection-iframe";
           this.element.style.setProperty("position", "fixed", "important");
+          this.element.style.setProperty("background-color", "transparent");
           this.element.style.width = "100%";
           this.element.style.height = "100%";
           this.element.addEventListener("load", watchFunction(() => {
             this.document = this.element.contentDocument;
-            assertIsBlankDocument(this.document)
+            assertIsBlankDocument(this.document);
             // eslint-disable-next-line no-unsanitized/property
             this.document.documentElement.innerHTML = `
                <head>
@@ -286,7 +288,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
                 <title></title>
                </head>
                <body>
-                 <div class="preview-overlay">
+                 <div class="preview-overlay precision-cursor">
                    <div class="fixed-container">
                      <div class="face-container">
                        <div class="eye left"><div class="eyeball"></div></div>
@@ -385,6 +387,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           this.element.id = "firefox-screenshots-preview-iframe";
           this.element.style.display = "none";
           this.element.style.setProperty("position", "fixed", "important");
+          this.element.style.setProperty("background-color", "transparent");
           this.element.style.height = "100%";
           this.element.style.width = "100%";
           this.element.onload = watchFunction(() => {
@@ -625,7 +628,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       this.bgTop.style.left = "0px";
       this.bgTop.style.width = "100%";
       this.bgBottom.style.top = `${pos.bottom}px`;
-      this.bgBottom.style.height = "100vh";
+      this.bgBottom.style.height = `calc(100vh - ${pos.bottom}px)`;
       this.bgBottom.style.left = "0px";
       this.bgBottom.style.width = "100%";
       this.bgLeft.style.top = `${pos.top}px`;
@@ -635,7 +638,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       this.bgRight.style.top = `${pos.top}px`;
       this.bgRight.style.height = `${pos.bottom - pos.top}px`;
       this.bgRight.style.left = `${pos.right}px`;
-      this.bgRight.style.width = `${document.body.scrollWidth - pos.right}px`;
+      this.bgRight.style.width = `calc(100% - ${pos.right}px)`;
       // the download notice is injected into an iframe that matches the document size
       // in order to reposition it on scroll we need to bind an updated positioning
       // function to some window events.
@@ -665,7 +668,7 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
           clearTimeout(timer);
         }
         timer = setTimeout(cb, delay);
-      }
+      };
     },
 
     remove() {
@@ -874,16 +877,15 @@ this.ui = (function() { // eslint-disable-line no-unused-vars
       img.src = URL.createObjectURL(imgBlob);
       iframe.document().querySelector(".preview-image").appendChild(img);
       if (showCropWarning && !(isDownloadOnly())) {
-        const imageCroppedEl = makeEl("table", "notice");
-        imageCroppedEl.style.bottom = "10px";
+        const imageCroppedEl = makeEl("table", "notice middle");
         imageCroppedEl.innerHTML = `<tbody>
           <tr class="notice-wrapper">
             <td class="notice-content"></td>
           </tr>
         </tbody>`;
         const contentCell = imageCroppedEl.getElementsByTagName("td");
-        contentCell[0].textContent = browser.i18n.getMessage("imageCroppedWarning", buildSettings.maxImageHeight);
-        iframe.document().querySelector(".preview-overlay").appendChild(imageCroppedEl);
+        contentCell[0].textContent = browser.i18n.getMessage("imageCropPopupWarning", buildSettings.maxImageHeight);
+        iframe.document().querySelector(".preview-buttons").appendChild(imageCroppedEl);
       }
     }
   };

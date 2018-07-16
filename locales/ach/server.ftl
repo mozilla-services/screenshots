@@ -159,6 +159,9 @@ annotationCropConfirmButton = Moki
 annotationCropCancelButton = Juki
     .title = Juk yer
 
+## Settings Page
+
+
 ## Shotindex page
 
 shotIndexPageSearchButton =
@@ -172,6 +175,9 @@ shotIndexPagePreviousPage =
     .title = potbuk mukato
 shotIndexPageNextPage =
     .title = potbuk malubu
+
+## Delete Confirmation Dialog
+
 
 ## Metrics page
 ## All metrics strings are optional for translation

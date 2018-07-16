@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Penna
 annotationHighlighterButton =
     .title = Markeringspenna
+annotationUndoButton =
+    .title = Ångra
+annotationRedoButton =
+    .title = Gör om
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Rensa
@@ -266,6 +270,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Denna bild upphör inte
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Är du säker på att du vill ta bort denna bild?
+shotDeleteCancel = Avbryt
+    .title = Avbryt
+shotDeleteConfirm = Ta bort
+    .title = Ta bort
 
 ## Metrics page
 ## All metrics strings are optional for translation

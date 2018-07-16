@@ -1,45 +1,39 @@
-// Localization for Server-side strings of Firefox Screenshots
-// 
-// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+### Localization for Server-side strings of Firefox Screenshots
+### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
-
-// Global phrases shared across pages, prefixed with 'g'
-[[ global ]]
+## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = Les mios captures
 gHomeLink = Aniciu
-gNoShots
+gNoShots =
     .alt = Nun s'alcontraron captures
 
+## Footer
 
-[[ Footer ]]
-
-// Note: link text for a link to mozilla.org
+# Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Términos
 footerLinkDiscourse = Dar feedback
 footerLinkRemoveAllData = Desaniciar tolos datos
 
+## Creating page
 
-[[ Creating page ]]
-
-// Note: { $title } is a placeholder for the title of the web page
-// captured in the screenshot. The default, for pages without titles, is
-// creatingPageTitleDefault.
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
 creatingPageTitle = Creando { $title }
 creatingPageTitleDefault = páxina
 creatingPageWaitMessage = Guardando la to captura...
 
-
-[[ Home page ]]
+## Home page
 
 homePageButtonMyShots = Dir a Les mios captures
 homePageTeaser = Próximamente...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Descarga de baldre
 homePageGetStarted = Entamar
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Cómo funciona Firefox Screenhoots
 homePageGetStartedTitle = Entamar
 homePageLegalLink = Llegal
@@ -47,28 +41,25 @@ homePagePrivacyLink = Privacidá
 homePageTermsLink = Términos
 homePageCookiesLink = Cookies
 
-
-[[ Leave Screenshots page ]]
+## Leave Screenshots page
 
 leavePageErrorGeneric = Asocedió un fallu
 leavePageButtonProceed = Siguir
 leavePageButtonCancel = Encaboxar
 
-
-[[ Not Found page ]]
+## Not Found page
 
 notFoundPageTitle = Nun s'alcontró la páxina
 notFoundPageIntro = Ups.
 notFoundPageDescription = Nun s'alcontró la páxina.
 
+## Shot page
 
-[[ Shot page ]]
-
-shotPageShareButton
+shotPageShareButton =
     .title = Compartir
 shotPageCopy = Copiar
 shotPageCopied = Copióse
-shotPageDownloadShot
+shotPageDownloadShot =
     .title = Baxar
 shotPageDownload = Baxar
 shotPageKeepTenMinutes = 10 minutos
@@ -81,34 +72,40 @@ shotPageSaveExpiration = guardar
 shotPageCancelExpiration = encaboxar
 shotPageDoesNotExpire = nun caduca
 timeDiffJustNow = xusto agora
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
         [one] ayeri
        *[other] hai { $number } díes
     }
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
         [one] en 1 minutu
        *[other] en { $number } minutos
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
         [one] mañana
        *[other] en { $number } díes
     }
 
-
-[[ Annotations ]]
-
+## Annotations
 
 
-[[ Shotindex page ]]
+## Settings Page
 
-// { $status } is a placeholder for an HTTP status code, like '500'.
-// { $statusText } is a text description of the status code, like 'Internal server error'.
+
+## Shotindex page
+
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Fallu desaniciando la captura: { $status } { $statusText }
 shotIndexPageNoSearchResultsIntro = Umm
 
+## Delete Confirmation Dialog
 
-// all metrics strings are optional for translation
-[[ Metrics page ]]
+
+## Metrics page
+## All metrics strings are optional for translation
 
 metricsPageShotsQueryDay = Día
 metricsPageUsersQueryDay = Día

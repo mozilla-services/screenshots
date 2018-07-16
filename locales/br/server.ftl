@@ -149,31 +149,50 @@ shotPageExpiresIn = diamzer a-benn { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = diamzeret abaoe { $timediff }
 timeDiffJustNow = diouzhtu
+timeDiffMinutesAgo =
+    { $number ->
+       *[one] 1 vunutenn 'zo
+    }
 timeDiffHoursAgo =
     { $number ->
         [one] 1 vunutenn 'zo
-       *[other] { $number } a vunutennoù 'zo
+        [two] { $number } vunutenn 'zo
+        [few] { $number } munutenn 'zo
+        [many] { $number } a vunutennoù 'zo
+       *[other] { $number } munutenn 'zo
     }
 timeDiffDaysAgo =
     { $number ->
         [one] dec'h
-       *[other] { $number } a zevezhioù 'zo
+        [two] { $number } zevezh 'zo
+        [few] { $number } devezh 'zo
+        [many] { $number } a zevezhioù 'zo
+       *[other] { $number } devezh 'zo
     }
 timeDiffFutureSeconds = a-benn un nebeud eilennoù
 timeDiffFutureMinutes =
     { $number ->
         [one] a-benn 1 vunutenn
-       *[other] a-benn { $number } a vunutennoù
+        [two] a-benn { $number } vunutenn
+        [few] a-benn { $number } munutenn
+        [many] a-benn { $number } a vunutennoù
+       *[other] a-benn { $number } munutenn
     }
 timeDiffFutureHours =
     { $number ->
         [one] a-benn 1 eur
-       *[other] a-benn { $number } a eurioù
+        [two] a-benn { $number } eur
+        [few] a-benn { $number } eur
+        [many] a-benn { $number } a eurioù
+       *[other] a-benn { $number } eur
     }
 timeDiffFutureDays =
     { $number ->
         [one] warc'hoazh
-       *[other] a-benn { $number } a zevezhioù
+        [two] a-benn { $number } zevezh
+        [few] a-benn { $number } devezh
+        [many] a-benn { $number } a zevezhioù
+       *[other] a-benn { $number } devezh
     }
 errorThirdPartyCookiesEnabled = M'ho peus kemeret an dapadenn-mañ ha n'hallit ket he dilemel ho peus ezhomm da weredekaat toupinoù an tredeoù e gwellvezioù ho merdeer. 
 
@@ -183,6 +202,12 @@ annotationPenButton =
     .title = Kreion
 annotationHighlighterButton =
     .title = Usskeder
+annotationUndoButton =
+    .title = Dizober
+annotationRedoButton =
+    .title = Adober
+annotationTextButton =
+    .title = Ouzhpennañ testennoù
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Skarzhañ
@@ -214,6 +239,32 @@ annotationColorSeaGreen =
     .title = Glas mor
 annotationColorGrey =
     .title = Loued
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Ment an testennoù
+# Values shown in text size selection dropdown
+textSizeSmall = Bihan
+textSizeMedium = Etre
+textSizeLarge = Ledan
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Kadarnaat
+annotationTextCancelButton =
+    .title = Nullañ
+
+## Settings Page
+
+settingsDisconnectButton = Digennaskañ
+    .title = Digennaskañ
+settingsGuestAccountMessage = Kont kouviad
+settingsSignInInvite = Kennaskit evit goubredañ etre ho trevnadoù
+settingsSignInButton = Kennaskañ
+    .title = Kennaskañ
+SettingsPageHeader = Arventennoù Firefox Screenshots
+settingsDescription = Gallout a rit kennaskañ gant Firefox Accounts evit goubredañ holl ho tapadennoù skramm etre ho trevnadoù hag haeziñ anezho ent prevez.
+settingsPageSubHeader = Goubredañ & Kontoù
+settingsClosePreferences =
+    .title = Serriñ ar gwellvezioù
 
 ## Shotindex page
 
@@ -247,6 +298,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = An dapadenn n'hall ket diamzeriñ
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Sur oc'h e fell deoc'h dilemel an dapadenn-mañ?
+shotDeleteCancel = Nullañ
+    .title = Nullañ
+shotDeleteConfirm = Dilemel
+    .title = Dilemel
 
 ## Metrics page
 ## All metrics strings are optional for translation

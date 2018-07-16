@@ -116,6 +116,8 @@ shotPageAbuseButton =
     .title = Raporti tiun ĉi ekrankopion pro misuzo, trudemon aŭ aliaj problemoj
 shotPageDownloadShot =
     .title = Elŝuti
+shotPageEditButton =
+    .title = Redakti tiun ĉi bildon
 shotPageDownload = Elŝuti
 shotPageScreenshotsDescription = Ekrankopioj, simple faritaj. Kopii, konservi kaj dividi ekrankopiojn sen forlasi Firefox.
 shotPageUpsellFirefox = Ricevi Firefox nun
@@ -186,6 +188,10 @@ annotationPenButton =
     .title = Skribilo
 annotationHighlighterButton =
     .title = Elstarigilo
+annotationUndoButton =
+    .title = Malfari
+annotationRedoButton =
+    .title = Refari
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Viŝi
@@ -199,6 +205,38 @@ annotationCropConfirmButton = Konfirmi
     .title = Konfirmi elekton
 annotationCropCancelButton = Nuligi
     .title = Nuligi elekton
+annotationColorWhite =
+    .title = Blanka
+annotationColorBlack =
+    .title = Nigra
+annotationColorRed =
+    .title = Ruĝa
+annotationColorGreen =
+    .title = Verda
+annotationColorBlue =
+    .title = Blua
+annotationColorYellow =
+    .title = Flava
+annotationColorPurple =
+    .title = Purpura
+annotationColorSeaGreen =
+    .title = Bluverda
+annotationColorGrey =
+    .title = Griza
+
+## Settings Page
+
+settingsDisconnectButton = Malkonekti
+    .title = Malkonekti
+settingsGuestAccountMessage = Gasta konto
+settingsSignInInvite = Komenci seancon por speguli inter aparatoj
+settingsSignInButton = Komenci seancon
+    .title = Komenci seancon
+SettingsPageHeader = Agordoj de Firefox Screenshots
+settingsDescription = Vi povas komenci seancon per konto de Firefox, por speguli vian ekrankopiojn en ĉiuj aparatoj kaj private aliri ilin.
+settingsPageSubHeader = Spegulado kaj kontoj
+settingsClosePreferences =
+    .title = Fermi preferojn
 
 ## Shotindex page
 
@@ -232,6 +270,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Tiu ĉi ekrankopio ne senvalidiĝas
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Ĉu vi certe volas forigi tiun ĉi ekrankopio?
+shotDeleteCancel = Nuligi
+    .title = Nuligi
+shotDeleteConfirm = Forigi
+    .title = Forigi
 
 ## Metrics page
 ## All metrics strings are optional for translation

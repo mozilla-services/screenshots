@@ -66,7 +66,13 @@ shotPageDoesNotExpire = कहिले पनि समाप्त नहु�
 annotationClearButton =
     .title = खाली गर्नुहोस्
 
+## Settings Page
+
+
 ## Shotindex page
+
+
+## Delete Confirmation Dialog
 
 
 ## Metrics page

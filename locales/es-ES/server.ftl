@@ -145,7 +145,7 @@ shotPageSaveExpiration = guardar
 shotPageCancelExpiration = cancelar
 shotPageDoesNotExpire = no expirará
 # Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
-shotPageExpiresIn = expira en { $timediff }
+shotPageExpiresIn = caduca { $timediff }
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = expiró el { $timediff }
 timeDiffJustNow = ahora mismo
@@ -188,6 +188,10 @@ annotationPenButton =
     .title = Bolígrafo.
 annotationHighlighterButton =
     .title = Subrayador
+annotationUndoButton =
+    .title = Deshacer
+annotationRedoButton =
+    .title = Rehacer
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Limpiar
@@ -266,6 +270,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Esta captura no caduca
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = ¿Está seguro de que quiere eliminar esta captura?
+shotDeleteCancel = Cancelar
+    .title = Cancelar
+shotDeleteConfirm = Eliminar
+    .title = Eliminar
 
 ## Metrics page
 ## All metrics strings are optional for translation

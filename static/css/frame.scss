@@ -1,4 +1,5 @@
 @import "partials/partials";
+@import "partials/delete-confirmation";
 
 .frame-header {
   @include respond-to("medium") {
@@ -76,6 +77,13 @@
     white-space: nowrap;
   }
 }
+
+.delete-confirmation-dialog {
+  &.right-align {
+    top: 48px;
+  }
+}
+
 
 .back-to-index {
   @include respond-to("small") {
@@ -254,85 +262,12 @@
   font-size: 12px;
 }
 
-.clips-message {
-  @include flex-container(row, space-around, center);
-  animation: clip-message-appear 6s ease-in-out forwards;
-  animation-delay: 750ms;
-  background: linear-gradient($white 0%, #f9f9fa 100%);
-  border-radius: 3px;
-  box-shadow: 0 5px 11px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  padding: 10px 10px 10px 20px;
-  position: absolute;
-  right: 16px;
-  top: 16px;
-  height: 72px;
-  width: 310px;
-  opacity: 0;
-}
-
-.clip-message-content {
-  color: $black;
-  font-size: 15px;
-  line-height: 1.3rem;
-  padding-right: 5px;
-
-  a {
-    color: $link-blue;
-    font-weight: bold;
-  }
-}
-
-.clip-message-dismiss-wrapper {
-  @include flex-container(row, flex-start, flex-start);
-  flex: 0 0 16px;
-  height: 100%;
-}
-
-.clip-message-dismiss {
-  background-image: url("/static/img/close-16.svg");
-  height: 16px;
-  width: 16px;
-  cursor: pointer;
-}
-
-@keyframes clip-message-appear {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  5% {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-
-  10% {
-    transform: translateY(-2px);
-    opacity: 1;
-  }
-
-  15% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
 .clip-container {
   @include flex-container(row, center, center);
   flex: 0 auto;
   margin: 20px auto;
   max-width: 90%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
-
-  a {
-    display: flex;
-  }
 }
 
 .link-button {
@@ -350,6 +285,7 @@
 
 .edit,
 .pen-button,
+.text-button,
 .highlight-button {
   background-size: $grid-unit $grid-unit;
   background-repeat: no-repeat;
@@ -395,14 +331,45 @@
   }
 }
 
+.undo-button {
+  background: url("../img/annotation-redo.svg");
+  transform: scale(-1, 1);
+}
+
+.redo-button {
+  background-image: url("../img/annotation-redo.svg");
+}
+
 .clear-button {
   background-image: url("../img/reset.svg");
+}
+
+.undo-button,
+.redo-button,
+.clear-button {
   background-repeat: no-repeat;
   background-position: center;
 
   &:hover {
     background-color: $light-hover;
   }
+  &.inactive {
+    filter: brightness(2.4);
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: transparent;
+      cursor: default;
+    }
+  }
+}
+
+.annotation-divider {
+  border-right: 1px solid #989a9c;
+  margin: auto auto;
+  width: 1px;
+  height: 28px;
 }
 
 html {
@@ -469,10 +436,6 @@ body {
   box-shadow: rgba(0, 0, 0, 0.15) 0 2px 4px;
   border-radius: $border-radius;
   height: 50px;
-
-  & .button:first-child {
-    margin-right: 0;
-  }
 }
 
 .annotation-main-actions {
@@ -507,6 +470,10 @@ body {
   justify-content: center;
   margin: 20px auto;
   z-index: 9999;
+}
+
+.canvas-container .image-holder {
+  z-index: 2;
 
   &.pen {
     cursor: url("../img/cursor-pen.png"), auto;
@@ -517,11 +484,7 @@ body {
   }
 }
 
-.canvas-container .image-holder {
-  z-index: 2;
-}
-
-.temp-highlighter {
+.highlighter {
   mix-blend-mode: multiply;
   z-index: 4;
 
@@ -542,19 +505,9 @@ body {
   bottom: 0;
 }
 
-.color-button {
-  height: 22px;
-  width: 22px;
-  border-radius: 11px;
-  margin: 13.5px 10px 0 9.5px;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
 #color-button-container {
   min-width: 40px;
+  margin: 0 5px;
 }
 
 #color-button-highlight {
@@ -568,8 +521,16 @@ body {
 }
 
 #color-picker {
+  border-radius: 11px;
   position: absolute;
+  height: 22px;
+  width: 22px;
+  margin: 13.5px 10px 0 9px;
   z-index: 2;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 #color-picker:hover + #color-button-highlight {
@@ -642,4 +603,147 @@ body {
   background-image: url("../img/crop.svg");
   background-repeat: no-repeat;
   background-position: center;
+}
+
+// CSS used for Annotation Text Tool
+.text-select {
+  -moz-appearance: none; //sass-lint:disable-line no-vendor-prefixes
+  appearance: none;
+  background-color: $light-default;
+  background-image: url("../img/icon-dropdown.svg");
+  background-position: right 8px top 8px;
+  background-repeat: no-repeat;
+  background-size: 10px auto;
+  border-radius: $border-radius;
+  border: 1px solid $light-border;
+  color: $dark-default;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  height: 26px;
+  margin: 12px 5px 12px 15px;
+  outline: none;
+  padding: 0 24px 0 4px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: background 150ms $bezier, border 150ms $bezier;
+  user-select: none;
+  white-space: nowrap;
+  vertical-align: middle;
+
+  &:hover,
+  &:focus {
+    background-color: $light-hover;
+    border-color: $light-border-active;
+  }
+
+  &:active {
+    background-color: $light-active;
+    border-color: $light-border-active;
+  }
+
+  option {
+    padding: 0 40px 0 4px;
+  }
+}
+
+.text-button {
+  background-image: url("../img/annotation-text.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+
+  &:hover {
+    background-color: $light-hover;
+  }
+}
+
+.text-tool-container {
+  z-index: 4;
+}
+
+// Text Sizes used in the text tool
+$large: 36px;
+$medium: 24px;
+$small: 16px;
+
+// Colors used in the text tool
+$red: rgb(231, 76, 60);
+$green: rgb(46, 204, 113);
+$blue: rgb(52, 152, 219);
+$yellow: rgb(255, 255, 0);
+$purple: rgb(142, 68, 173);
+$sea-green: rgb(26, 188, 156);
+$grey: rgb(52, 73, 94);
+
+$bg-black: rgba(0, 0, 0, 0.6);
+$bg-white: rgba(255, 255, 255, 0.7);
+
+@mixin type-box($size) {
+  padding: 4px $size * 0.5;
+  font-size: $size;
+}
+
+@mixin type-color($b, $f) {
+  background: $b;
+  color: $f;
+}
+
+.text {
+  cursor: text;
+  font-weight: 900;
+  font-family: sans-serif;
+  text-align: center;
+  white-space: nowrap;
+  outline: 0;
+  border: none;
+  white-space : pre;
+}
+
+.large-text {
+  @include type-box($large);
+}
+
+.medium-text {
+  @include type-box($medium);
+}
+
+.small-text {
+  @include type-box($small);
+}
+
+.black {
+  @include type-color($bg-white, black);
+}
+
+.white {
+  @include type-color($bg-black, white);
+}
+
+.red {
+  @include type-color($bg-black, $red);
+}
+
+.green {
+  @include type-color($bg-black, $green);
+}
+
+.blue {
+  @include type-color($bg-white, $blue);
+}
+
+.yellow {
+  @include type-color($bg-black, $yellow);
+}
+
+.purple {
+  @include type-color($bg-white, $purple);
+}
+
+.sea-green {
+  @include type-color($bg-black, $sea-green);
+}
+
+.grey {
+  @include type-color($bg-white, $grey);
 }

@@ -15,7 +15,7 @@ gScreenshotsDescription = Le instantaneos a un maniera simple. Captura, salva e 
 # Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Terminos
-footerLinkPrivacy = Advertentia de confidentialitate
+footerLinkPrivacy = Notification de confidentialitate
 footerLinkFaqs = Questiones frequente
 footerLinkDMCA = Denunciar un violation de proprietate intellectual
 footerLinkDiscourse = Da tu opinion
@@ -188,6 +188,12 @@ annotationPenButton =
     .title = Penna
 annotationHighlighterButton =
     .title = Evidentiator
+annotationUndoButton =
+    .title = Disfacer
+annotationRedoButton =
+    .title = Refacer
+annotationTextButton =
+    .title = Adder texto
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Clarar
@@ -219,6 +225,18 @@ annotationColorSeaGreen =
     .title = Verde mar
 annotationColorGrey =
     .title = Gris
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Dimension del texto
+# Values shown in text size selection dropdown
+textSizeSmall = Micre
+textSizeMedium = Medie
+textSizeLarge = Grande
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Confirmar
+annotationTextCancelButton =
+    .title = Cancellar
 
 ## Settings Page
 
@@ -266,6 +284,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = iste instantaneo non expira
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Desira tu vermente deler iste instantaneo?
+shotDeleteCancel = Cancellar
+    .title = Cancellar
+shotDeleteConfirm = Deler
+    .title = Deler
 
 ## Metrics page
 ## All metrics strings are optional for translation

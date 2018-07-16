@@ -210,6 +210,10 @@ annotationPenButton =
     .title = قلم
 annotationHighlighterButton =
     .title = قلم تحديد
+annotationUndoButton =
+    .title = تراجَع
+annotationRedoButton =
+    .title = أعِد
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = امسح
@@ -244,11 +248,17 @@ annotationColorGrey =
 
 ## Settings Page
 
+settingsDisconnectButton = اقطع الاتصال
+    .title = اقطع الاتصال
 settingsGuestAccountMessage = حساب ضيف
 settingsSignInInvite = لِج للمزامنة بين الأجهزة
 settingsSignInButton = لِج
     .title = لِج
 SettingsPageHeader = إعدادات لقطات شاشة فَيَرفُكس
+settingsDescription = يمكنك الولوج مستخدما حسابات فَيَرفُكس لمزامنة كل لقطات الشاشة عبر الأجهزة والوصول إليها بشكل خاص منها.
+settingsPageSubHeader = المزامنة والحسابات
+settingsClosePreferences =
+    .title = أغلِق التفضيلات
 
 ## Shotindex page
 
@@ -282,6 +292,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = لا تنتهي صلاحية اللقطة
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = أمتأكد من حذف هذه اللقطة؟
+shotDeleteCancel = ألغِ
+    .title = ألغِ
+shotDeleteConfirm = احذف
+    .title = احذف
 
 ## Metrics page
 ## All metrics strings are optional for translation

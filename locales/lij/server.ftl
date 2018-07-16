@@ -45,7 +45,13 @@ shotPageCopied = Copiou
 ## Annotations
 
 
+## Settings Page
+
+
 ## Shotindex page
+
+
+## Delete Confirmation Dialog
 
 
 ## Metrics page

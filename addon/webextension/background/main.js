@@ -13,14 +13,6 @@ this.main = (function() {
 
   let hasSeenOnboarding = browser.storage.local.get(["hasSeenOnboarding"]).then((result) => {
     const onboarded = !!result.hasSeenOnboarding;
-    if (!onboarded) {
-      setIconActive(false, null);
-      // Note that the branded name 'Firefox Screenshots' is not localized:
-      startBackground.photonPageActionPort.postMessage({
-        type: "setProperties",
-        title: "Firefox Screenshots"
-      });
-    }
     hasSeenOnboarding = Promise.resolve(onboarded);
     return hasSeenOnboarding;
   }).catch((error) => {
@@ -53,10 +45,7 @@ this.main = (function() {
 
   function setIconActive(active, tabId) {
     const path = active ? "icons/icon-highlight-32-v2.svg" : "icons/icon-v2.svg";
-    startBackground.photonPageActionPort.postMessage({
-      type: "setProperties",
-      iconPath: path
-    });
+    browser.pageAction.setIcon({tabId, path});
   }
 
   function toggleSelector(tab) {
@@ -91,7 +80,8 @@ this.main = (function() {
     return /^about:(?:newtab|blank|home)/i.test(url) || /^resource:\/\/activity-streams\//i.test(url);
   }
 
-  // This is called by startBackground.js, directly in response to clicks on the Photon page action
+  // This is called by startBackground.js, where is registered as a click
+  // handler for the webextension page action.
   exports.onClicked = catcher.watchFunction((tab) => {
     catcher.watchPromise(hasSeenOnboarding.then(onboarded => {
       if (shouldOpenMyShots(tab.url)) {
@@ -130,19 +120,27 @@ this.main = (function() {
   }
 
   exports.onClickedContextMenu = catcher.watchFunction((info, tab) => {
-    if (!tab) {
-      // Not in a page/tab context, ignore
-      return;
-    }
-    if (!urlEnabled(tab.url)) {
-      senderror.showError({
-        popupMessage: "UNSHOOTABLE_PAGE"
-      });
-      return;
-    }
-    catcher.watchPromise(
+    catcher.watchPromise(hasSeenOnboarding.then(onboarded => {
+      if (!tab) {
+        // Not in a page/tab context, ignore
+        return;
+      }
+      if (!urlEnabled(tab.url)) {
+        if (!onboarded) {
+          sendEvent("goto-onboarding", "selection-button", {incognito: tab.incognito});
+          forceOnboarding();
+          return;
+        }
+        senderror.showError({
+          popupMessage: "UNSHOOTABLE_PAGE"
+        });
+        return;
+      }
+      // No need to catch() here because of watchPromise().
+      // eslint-disable-next-line promise/catch-or-return
       toggleSelector(tab)
-        .then(() => sendEvent("start-shot", "context-menu", {incognito: tab.incognito})));
+        .then(() => sendEvent("start-shot", "context-menu", {incognito: tab.incognito}));
+    }));
   });
 
   function urlEnabled(url) {
@@ -200,7 +198,7 @@ this.main = (function() {
       const id = makeUuid();
       return browser.notifications.create(id, {
         type: "basic",
-        iconUrl: "../icons/copy.png",
+        iconUrl: "../icons/copied-notification.svg",
         title: browser.i18n.getMessage("notificationLinkCopiedTitle"),
         message: browser.i18n.getMessage("notificationLinkCopiedDetails", pasteSymbol)
       });
@@ -234,12 +232,12 @@ this.main = (function() {
           catcher.watchPromise(communication.sendToBootstrap("incrementCount", {scalar: "copy"}));
           return browser.notifications.create({
             type: "basic",
-            iconUrl: "../icons/copy.png",
+            iconUrl: "../icons/copied-notification.svg",
             title: browser.i18n.getMessage("notificationImageCopiedTitle"),
             message: browser.i18n.getMessage("notificationImageCopiedDetails", pasteSymbol)
           });
         });
-    })
+    });
   });
 
   communication.register("downloadShot", (sender, info) => {
@@ -257,13 +255,18 @@ this.main = (function() {
         browser.downloads.onChanged.removeListener(onChangedCallback);
       }
     });
-    browser.downloads.onChanged.addListener(onChangedCallback)
+    browser.downloads.onChanged.addListener(onChangedCallback);
     catcher.watchPromise(communication.sendToBootstrap("incrementCount", {scalar: "download"}));
     return browser.windows.getLastFocused().then(windowInfo => {
       return browser.downloads.download({
         url,
         incognito: windowInfo.incognito,
         filename: info.filename
+      }).catch((error) => {
+        // We are not logging error message when user cancels download
+        if (error && error.message && !error.message.includes("canceled")) {
+          log.error(error.message);
+        }
       }).then((id) => {
         downloadId = id;
       });
@@ -277,11 +280,6 @@ this.main = (function() {
   communication.register("hasSeenOnboarding", () => {
     hasSeenOnboarding = Promise.resolve(true);
     catcher.watchPromise(browser.storage.local.set({hasSeenOnboarding: true}));
-    setIconActive(false, null);
-    startBackground.photonPageActionPort.postMessage({
-      type: "setProperties",
-      title: browser.i18n.getMessage("contextMenuLabel")
-    });
   });
 
   communication.register("abortStartShot", () => {

@@ -188,6 +188,10 @@ annotationPenButton =
     .title = કલમ
 annotationHighlighterButton =
     .title = પ્રકાશિત કરનાર
+annotationUndoButton =
+    .title = પૂર્વવત્ કરો
+annotationRedoButton =
+    .title = ફરીથી કરો
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = સાફ
@@ -266,6 +270,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = આ શોટ સમાપ્ત થતો નથી
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = શું તમે ખરેખર આ શોટને કાઢવા માંગો છો?
+shotDeleteCancel = રદ કરો
+    .title = રદ કરો
+shotDeleteConfirm = કાઢો
+    .title = કાઢો
 
 ## Metrics page
 ## All metrics strings are optional for translation

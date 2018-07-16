@@ -6,20 +6,15 @@ const USER_DISABLE_PREF = "extensions.screenshots.disabled";
 const UPLOAD_DISABLED_PREF = "extensions.screenshots.upload-disabled";
 const HISTORY_ENABLED_PREF = "places.history.enabled";
 
-const { interfaces: Ci, utils: Cu } = Components;
 ChromeUtils.import("resource://gre/modules/XPCOMUtils.jsm");
 ChromeUtils.defineModuleGetter(this, "AddonManager",
                                "resource://gre/modules/AddonManager.jsm");
 ChromeUtils.defineModuleGetter(this, "AppConstants",
                                "resource://gre/modules/AppConstants.jsm");
-ChromeUtils.defineModuleGetter(this, "Console",
-                               "resource://gre/modules/Console.jsm");
 ChromeUtils.defineModuleGetter(this, "CustomizableUI",
                                "resource:///modules/CustomizableUI.jsm");
 ChromeUtils.defineModuleGetter(this, "LegacyExtensionsUtils",
                                "resource://gre/modules/LegacyExtensionsUtils.jsm");
-ChromeUtils.defineModuleGetter(this, "PageActions",
-                               "resource:///modules/PageActions.jsm");
 ChromeUtils.defineModuleGetter(this, "Services",
                                "resource://gre/modules/Services.jsm");
 
@@ -48,22 +43,6 @@ const prefObserver = {
     }
   }
 };
-
-
-const appStartupObserver = {
-  register() {
-    Services.obs.addObserver(this, "sessionstore-windows-restored", false); // eslint-disable-line mozilla/no-useless-parameters
-  },
-
-  unregister() {
-    Services.obs.removeObserver(this, "sessionstore-windows-restored", false); // eslint-disable-line mozilla/no-useless-parameters
-  },
-
-  observe() {
-    appStartupDone();
-    this.unregister();
-  }
-}
 
 const LibraryButton = {
   ITEM_ID: "appMenu-library-screenshots",
@@ -119,17 +98,13 @@ const LibraryButton = {
   },
 };
 
-const APP_STARTUP = 1;
 const APP_SHUTDOWN = 2;
-let startupReason;
+let addonData, startupReason;
 
 function startup(data, reason) { // eslint-disable-line no-unused-vars
+  addonData = data;
   startupReason = reason;
-  if (reason === APP_STARTUP) {
-    appStartupObserver.register();
-  } else {
-    appStartupDone();
-  }
+  appStartupDone();
   prefObserver.register();
   addonResourceURI = data.resourceURI;
   // eslint-disable-next-line promise/catch-or-return
@@ -177,10 +152,9 @@ function handleStartup() {
 }
 
 function start(webExtension) {
-  return webExtension.startup(startupReason).then((api) => {
+  return webExtension.startup(startupReason, addonData).then((api) => {
     api.browser.runtime.onMessage.addListener(handleMessage);
     LibraryButton.init(webExtension);
-    initPhotonPageAction(api, webExtension);
   }).catch((err) => {
     // The startup() promise will be rejected if the webExtension was
     // already started (a harmless error), or if initializing the
@@ -195,10 +169,6 @@ function start(webExtension) {
 function stop(webExtension, reason) {
   if (reason !== APP_SHUTDOWN) {
     LibraryButton.uninit();
-    if (photonPageAction) {
-      photonPageAction.remove();
-      photonPageAction = null;
-    }
   }
   return Promise.resolve(webExtension.shutdown(reason));
 }
@@ -228,58 +198,4 @@ function handleMessage(msg, sender, sendReply) {
       sendReply({type: "success", value: true});
     }
   }
-}
-
-let photonPageAction;
-
-// If the current Firefox version supports Photon (57 and later), this sets up
-// a Photon page action and removes the UI for the WebExtension browser action.
-// Does nothing otherwise.  Ideally, in the future, WebExtension page actions
-// and Photon page actions would be one in the same, but they aren't right now.
-function initPhotonPageAction(api, webExtension) {
-  const id = "screenshots";
-  let port = null;
-
-  const {tabManager} = webExtension.extension;
-
-  // Make the page action.
-  photonPageAction = PageActions.actionForID(id) || PageActions.addAction(new PageActions.Action({
-    id,
-    title: "Take a Screenshot",
-    iconURL: webExtension.extension.getURL("icons/icon-v2.svg"),
-    _insertBeforeActionID: null,
-    onCommand(event, buttonNode) {
-      if (port) {
-        const browserWin = buttonNode.ownerGlobal;
-        const tab = tabManager.getWrapper(browserWin.gBrowser.selectedTab);
-        port.postMessage({
-          type: "click",
-          tab: {id: tab.id, url: tab.url}
-        });
-      }
-    },
-  }));
-
-  // Establish a port to the WebExtension side.
-  api.browser.runtime.onConnect.addListener((listenerPort) => {
-    if (listenerPort.name !== "photonPageActionPort") {
-      return;
-    }
-    port = listenerPort;
-    port.onMessage.addListener((message) => {
-      switch (message.type) {
-      case "setProperties":
-        if (message.title) {
-          photonPageAction.setTitle(message.title);
-        }
-        if (message.iconPath) {
-          photonPageAction.setIconURL(webExtension.extension.getURL(message.iconPath));
-        }
-        break;
-      default:
-        console.error("Unrecognized message:", message);
-        break;
-      }
-    });
-  });
 }

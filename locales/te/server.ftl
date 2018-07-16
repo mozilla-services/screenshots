@@ -35,13 +35,13 @@ homePageButtonMyShots = నా తెరపట్లకు వెళ్ళండ
 homePageTeaser = త్వరలో వస్తుంది...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ఉచిత దింపుకోలు
-homePageGetStarted = మొదలుపెట్టండి
+homePageGetStarted = మొదలుపెట్టడం
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots ఎలాపని చేస్తాయి
-homePageGetStartedTitle = మొదలుపెట్టండి
+homePageGetStartedTitle = మొదలుపెట్టడం
 homePageCaptureRegion = ఒక ప్రాంతాన్ని క్యాప్చర్ చేయండి
 homePageCapturePage = ఒక పేజీని క్యాప్చర్ చేయండి
-homePageSaveShare = భద్రపరుచు మరియు పంచుకో
+homePageSaveShare = భద్రపరుచుకొని పంచుకోండి
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = మీరు ఒక తెరపట్టుని తీసినప్పుడు,Firefox మీ ఆన్లైన్ తెరపట్ల లైబ్రరీకి మీ తెరపట్లను పోస్ట్ చేస్తుంది మరియు మీ క్లిప్బోర్డ్కు లంకెను నాకలు చేస్తుంది. మేము రెండు వారాలపాటు మీ తెరపట్లను స్వయంచాలకంగా నిల్వ చేస్తాము, కానీ మీరు ఎప్పుడైనా తెరపట్టుని తొలగించవచ్చు లేదా మీ లైబ్రరీలో ఎక్కువ కలం ఉంచడానికి గడువు తేదీని మార్చవచ్చు.
 homePageLegalLink = చట్టపరమైన
@@ -248,6 +248,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = ఈ పట్టు ఎప్పటికీ కాలంచెల్లదు
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = మీరు ఈ తెరపట్టును ఖచ్చితంగా తొలగించాలనుకుంటున్నారా?
+shotDeleteCancel = రద్దుచేయి
+    .title = రద్దుచేయి
+shotDeleteConfirm = తొలగించు
+    .title = తొలగించు
 
 ## Metrics page
 ## All metrics strings are optional for translation

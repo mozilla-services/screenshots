@@ -10,7 +10,7 @@ exports.simpleResponse = function(res, message, status) {
 };
 
 exports.jsResponse = function(res, jsstring) {
-  res.header("Content-Type", "application/javascript; charset=utf-8")
+  res.header("Content-Type", "application/javascript; charset=utf-8");
   res.send(jsstring);
 };
 

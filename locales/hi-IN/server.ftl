@@ -184,6 +184,10 @@ annotationPenButton =
     .title = पेन
 annotationHighlighterButton =
     .title = प्रमुखताएँ
+annotationUndoButton =
+    .title = पूर्ववत् करें
+annotationRedoButton =
+    .title = फिर से करें
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = साफ करें
@@ -215,6 +219,9 @@ annotationColorSeaGreen =
     .title = श्याम हरित
 annotationColorGrey =
     .title = भूरा
+
+## Settings Page
+
 
 ## Shotindex page
 
@@ -248,6 +255,9 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = यह शॉट समाप्त नहीं होता है
+
+## Delete Confirmation Dialog
+
 
 ## Metrics page
 ## All metrics strings are optional for translation

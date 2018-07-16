@@ -188,6 +188,12 @@ annotationPenButton =
     .title = Penna
 annotationHighlighterButton =
     .title = Evidenziatore
+annotationUndoButton =
+    .title = Annulla
+annotationRedoButton =
+    .title = Ripeti
+annotationTextButton =
+    .title = Aggiungi testo
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Cancella
@@ -219,6 +225,18 @@ annotationColorSeaGreen =
     .title = Verde acqua
 annotationColorGrey =
     .title = Grigio
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Dimensione testo
+# Values shown in text size selection dropdown
+textSizeSmall = Piccolo
+textSizeMedium = Medio
+textSizeLarge = Grande
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Conferma
+annotationTextCancelButton =
+    .title = Annulla
 
 ## Settings Page
 
@@ -266,6 +284,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Questa immagine non ha scadenza
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Eliminare questa immagine?
+shotDeleteCancel = Annulla
+    .title = Annulla
+shotDeleteConfirm = Elimina
+    .title = Elimina
 
 ## Metrics page
 ## All metrics strings are optional for translation

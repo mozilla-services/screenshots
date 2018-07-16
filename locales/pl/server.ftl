@@ -194,6 +194,12 @@ annotationPenButton =
     .title = Długopis
 annotationHighlighterButton =
     .title = Zakreślacz
+annotationUndoButton =
+    .title = Cofnij
+annotationRedoButton =
+    .title = Ponów
+annotationTextButton =
+    .title = Dodaj tekst
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Wyczyść
@@ -225,6 +231,18 @@ annotationColorSeaGreen =
     .title = Morski
 annotationColorGrey =
     .title = Szary
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Rozmiar tekstu
+# Values shown in text size selection dropdown
+textSizeSmall = Mały
+textSizeMedium = Średni
+textSizeLarge = Duży
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Potwierdź
+annotationTextCancelButton =
+    .title = Anuluj
 
 ## Settings Page
 
@@ -272,6 +290,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Ten zrzut nie ulega przeterminowaniu
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Czy na pewno usunąć ten zrzut?
+shotDeleteCancel = Anuluj
+    .title = Anuluj
+shotDeleteConfirm = Usuń
+    .title = Usuń
 
 ## Metrics page
 ## All metrics strings are optional for translation

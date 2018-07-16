@@ -1,21 +1,17 @@
-// Localization for Server-side strings of Firefox Screenshots
-// 
-// Please don't localize Firefox, Firefox Screenshots, or Screenshots
+### Localization for Server-side strings of Firefox Screenshots
+### Please don't localize Firefox, Firefox Screenshots, or Screenshots
 
 
-
-// Global phrases shared across pages, prefixed with 'g'
-[[ global ]]
+## Global phrases shared across pages, prefixed with 'g'
 
 gMyShots = Natte am
 gHomeLink = Jaɓɓorgo
-gNoShots
+gNoShots =
     .alt = Alaa natte njiytaa
 
+## Footer
 
-[[ Footer ]]
-
-// Note: link text for a link to mozilla.org
+# Note: link text for a link to mozilla.org
 footerLinkMozilla = Mozilla
 footerLinkTerms = Sarɗiiji
 footerLinkPrivacy = Tintinol Suturo
@@ -24,25 +20,23 @@ footerLinkDMCA = Siimtu nguyka IP
 footerLinkDiscourse = Hokku duttinal
 footerLinkRemoveAllData = Momtu Keɓe Fof
 
+## Creating page
 
-[[ Creating page ]]
-
-// Note: { $title } is a placeholder for the title of the web page
-// captured in the screenshot. The default, for pages without titles, is
-// creatingPageTitleDefault.
+# Note: { $title } is a placeholder for the title of the web page
+# captured in the screenshot. The default, for pages without titles, is
+# creatingPageTitleDefault.
 creatingPageTitle = Cosgol  { $tiitoonde }
 creatingPageTitleDefault = hello
 creatingPageWaitMessage = Danndugol natte maa...
 
-
-[[ Home page ]]
+## Home page
 
 homePageButtonMyShots = Yah To Natte Am
 homePageTeaser = Ina ara Jooni...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = Gaawtol Alla meho
 homePageGetStarted = Fuɗɗo
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = No Leƴƴanɗe Kuurgal Firefox Gollortoo
 homePageGetStartedTitle = Fuɗɗo
 homePageCaptureRegion = Nokkito Diiwaan
@@ -53,80 +47,76 @@ homePagePrivacyLink = Suturo
 homePageTermsLink = Sarɗiiji
 homePageCookiesLink = Kuukiije
 
-
-[[ Leave Screenshots page ]]
+## Leave Screenshots page
 
 leavePageRemoveAllData = Momtu Keɓe Fof
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Aɗa foti jogaade Leƴƴanɗe Kuurgal loowaaɗe ngam momtude konte maa
 leavePageErrorGeneric = Juumre waɗii
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Ɗum ɗoo maa jokku momtude keɓe leƴƴanɗe kuurgal Firefox maa.
 leavePageButtonProceed = Fuɗɗo
 leavePageButtonCancel = Haaytu
 leavePageDeleted = Leƴƴanɗe kuurgal ma fof momtaama!
 
-
-[[ Not Found page ]]
+## Not Found page
 
 notFoundPageTitle = Hello ngoo yiytaaka
 notFoundPageIntro = Oops.
 notFoundPageDescription = Hello ngoo yiytaaka
 
+## Shot page
 
-[[ Shot page ]]
-
-// This is the HTML title tag of the page
+# This is the HTML title tag of the page
 shotPageTitle = Leƴƴannde kuurgal: { $Tiitoondeiwdiire }
 shotPageAlertErrorUpdatingExpirationTime = Juumre danndugol buntugol
 shotPageAlertErrorDeletingShot = Juumre momtugol nattal
 shotPageAlertErrorUpdatingTitle = Juumre danndugol tiitoonde
 shotPageConfirmDelete = Aɗa yananaa tiɗde momtude ngal nattal daañaa?
-shotPageShareButton
+shotPageShareButton =
     .title = Lollin
 shotPageCopy = Natto
 shotPageCopied = Nattaama
-shotPageShareFacebook
+shotPageShareFacebook =
     .title = Lollin e Facebook
-shotPageShareTwitter
+shotPageShareTwitter =
     .title = Lollin e Twitter
-shotPageSharePinterest
+shotPageSharePinterest =
     .title = Lollin e Pinterest
-shotPageShareEmail
+shotPageShareEmail =
     .title = Lollin jokkol rewrude e iimeel
 shotPageShareLink = Heɓ jokkol baawngol lollineede e ngal nattal:
 shotPagePrivacyMessage = Kala gonnduɗo e jokkol ngol ina waawi yiyde ngal nattal.
-shotPageCopyImageText
+shotPageCopyImageText =
     .label = Natto binndol natal ngal
 shotPageConfirmDeletion = Aɗa yananaa tiɗde momtude ngal nattal daañaa?
-// Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
 shotPageExpirationMessage = So tawii a waɗaani hay dara, ndee nattannde momtoyte haa abadaa { $timediff }.
-// Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
-// For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = Artir haa { $date }
 shotPageExpiredMessage = Ndee nattannde buntii.
-// Note: This phrase is followed by an empty line, then the URL of the source page
+# Note: This phrase is followed by an empty line, then the URL of the source page
 shotPageExpiredMessageDetails = Hello ngo ɗum sosaa e iwdi mum ngoo nani:
-shotPageDeleteButton
+shotPageDeleteButton =
     .title = Momtu ndee nattannde
-shotPageAbuseButton
+shotPageAbuseButton =
     .title = Siimto ndee nattannde sabu bonannde, spam, wall caɗeele goɗɗe
-shotPageDownloadShot
+shotPageDownloadShot =
     .title = Aawto
 shotPageDownload = Aawto
 shotPageScreenshotsDescription = Leƴƴanɗe kuurgal mbeeɓtinaama. Ƴettu, danndu, etee lollin leƴƴanɗe kuurgal tawi a ummaaki e Firefox.
 shotPageUpsellFirefox = Heɓ Firefox jooni
 shotPageDMCAMessage = Ndee nattannde nattii heɓaade sabu won naamniiɗo ganndal mum keeringal.
-// Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Tiiɗno neldu iimeel { $dmca } ngam ɗaɓɓude humpito ɓurngo heewde.
-// Note: do not translate 'Firefox Screenshots' when translating this string
+# Note: do not translate 'Firefox Screenshots' when translating this string
 shotPageDMCAWarning = So tawii natte maa ina naamnitee ko heewi, ina gasa min riiwtude keɓgol maa Leƴƴanɗe kuurgal Firefox.
-// Note: { $url } is a placeholder for a shot page URL
+# Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Tiiɗno naatnu URL nattannde ndee e iimeel maa: { $url }
 shotPageKeepFor = Haa hol ndeen ndee ɗoo nattannde nanngatee?
-// Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
+# Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Suɓo sahaa
-shotPageKeepIndefinitely = Alaa ɗo haaɗi
 shotPageKeepTenMinutes = Hojomaaji 10
 shotPageKeepOneHour = Waktu 1
 shotPageKeepOneDay = Ñalawma 1
@@ -136,78 +126,85 @@ shotPageKeepOneMonth = Lewru 1
 shotPageSaveExpiration = Danndu
 shotPageCancelExpiration = Haaytu
 shotPageDoesNotExpire = buntaani
-// Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = Ina bunta { $timediff }
-// Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
 shotPageExpired = Buntii { $timediff }
 timeDiffJustNow = Jooni
-timeDiffMinutesAgo = { $number ->
+timeDiffMinutesAgo =
+    { $number ->
        *[one] gila hojom 1
     }
-timeDiffHoursAgo = { $number ->
+timeDiffHoursAgo =
+    { $number ->
        *[one] gila waktu 1
     }
-timeDiffDaysAgo = { $number ->
+timeDiffDaysAgo =
+    { $number ->
        *[one] haŋki
     }
 timeDiffFutureSeconds = nder leƴƴanɗe seeɗa
-timeDiffFutureMinutes = { $number ->
+timeDiffFutureMinutes =
+    { $number ->
        *[one] nder hojom 1
     }
-timeDiffFutureHours = { $number ->
+timeDiffFutureHours =
+    { $number ->
        *[one] nder waktu 1
     }
-timeDiffFutureDays = { $number ->
+timeDiffFutureDays =
+    { $number ->
        *[one] janngo
     }
 errorThirdPartyCookiesEnabled = So tawii a ƴettii ndee nattannde kadi a roŋkii momtude nde, aɗa waawi hatojinde e hurminde dumunna seeɗa kuukiije janane e cuɓoraaɗe wanngorde maa.
 
+## Annotations
 
-[[ Annotations ]]
-
-annotationPenButton
+annotationPenButton =
     .title = Kuɗol
-annotationHighlighterButton
+annotationHighlighterButton =
     .title = Jalbinoowo
-// Note: This button reverts all the changes on the image since the start of the editing session.
-annotationClearButton
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
     .title = Momtu
-annotationSaveButton = Danndu
-annotationCancelButton = Haaytu
+
+## Settings Page
 
 
-[[ Shotindex page ]]
+## Shotindex page
 
-// { $status } is a placeholder for an HTTP status code, like '500'.
-// { $statusText } is a text description of the status code, like 'Internal server error'.
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = Juumre e momtugol nattannde: { $status } { $statusText }
-// { $searchTerm } is a placeholder for text the user typed into the search box
+# { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Natte am: yiylo sabu { $searchTerm }
-// { $error } is a placeholder for a non-translated error message that could be shared
-// with developers when debugging an error.
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
 shotIndexPageErrorRendering = Juumre e jaltingol hello: { $error }
-shotIndexPageSearchPlaceholder
+shotIndexPageSearchPlaceholder =
     .placeholder = Yiylo natte am
-shotIndexPageSearchButton
+shotIndexPageSearchButton =
     .title = Yiylo
 shotIndexPageNoShotsMessage = Alaa natte danndaaɗe.
 shotIndexPageNoShotsInvitation = Jokku, sos won heen.
 shotIndexPageLookingForShots = Ngonɗaa ko e yiylaade natte maa...
 shotIndexPageNoSearchResultsIntro = Hmm
-shotIndexPageClearSearchButton
+shotIndexPageClearSearchButton =
     .title = Momtu njiilaw
 shotIndexPageConfirmShotDelete = Momtu ndee nattannde?
-shotIndexPagePreviousPage
+shotIndexPagePreviousPage =
     .title = Hello ɓennungo
-shotIndexPageNextPage
+shotIndexPageNextPage =
     .title = Hello aroowo
 
+## Delete Confirmation Dialog
 
-// all metrics strings are optional for translation
-[[ Metrics page ]]
+
+## Metrics page
+## All metrics strings are optional for translation
 
 metricsPageTotalsQueryTitle = Kuuɓe
-// Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 metricsPageTotalsQueryDescription = Sifannde Leƴƴanɗe kuurgal
 metricsPageTotalsQueryDevices = Kuuɓal kaɓirɗe keftinaaɗe
 metricsPageTotalsQueryActiveShots = Natte caasɗe

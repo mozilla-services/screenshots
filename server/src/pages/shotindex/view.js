@@ -9,6 +9,7 @@ const Masonry = require("react-masonry-component");
 const { Localized } = require("fluent-react/compat");
 const { isValidClipImageUrl } = require("../../../shared/shot");
 const { getThumbnailDimensions } = require("../../../shared/thumbnailGenerator");
+const { DeleteShotButton } = require("../../delete-shot-button");
 
 class Head extends React.Component {
 
@@ -81,7 +82,7 @@ class Body extends React.Component {
             {children}
           </Masonry>
         </div>
-      )
+      );
     }
     return children;
   }
@@ -291,7 +292,7 @@ Body.propTypes = {
 
 class Card extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {panelOpen: "panel-closed", deleted: false};
   }
 
@@ -328,11 +329,20 @@ class Card extends React.Component {
 
     let neverExpireIndicator = null;
     if (!shot.expireTime) {
-      neverExpireIndicator = <Localized id="shotIndexNoExpirationSymbol"><div className="never-expires" title=""></div></Localized>
+      neverExpireIndicator = <Localized id="shotIndexNoExpirationSymbol"><div className="never-expires" title=""></div></Localized>;
     }
 
+    const deleteConfirmationClass = this.state.deletePanelOpen ? "panel-open" : "";
+
     return (
-      <div className={`shot ${this.getClipType(shot.thumbnail, clip._image.dimensions)} ${this.state.panelOpen} ${this.isDeleted()}`} key={shot.id}>
+      <div className={
+        `shot
+         ${this.getClipType(shot.thumbnail, clip._image.dimensions)}
+         ${this.state.panelOpen}
+         ${deleteConfirmationClass}
+         ${this.isDeleted()}`
+        }
+        key={shot.id}>
         <a href={shot.viewUrl} onClick={this.onOpen.bind(this, shot.viewUrl)}>
           <div className="shot-image-container">
             <img src={imageUrl} />
@@ -355,9 +365,10 @@ class Card extends React.Component {
               title="Download the shot image" ref={downloadButton => this.downloadButton = downloadButton} />
           </Localized>
           <ShareButton setPanelState={this.setPanelState.bind(this)} abTests={this.props.abTests} clipUrl={imageUrl} shot={shot} isOwner={this.props.isOwner} staticLink={this.props.staticLink} isExtInstalled={this.props.isExtInstalled} />
-          <Localized id="shotPageDeleteButton">
-            <button className="button transparent trash" title="Delete this shot permanently" onClick={ this.onClickDelete.bind(this, shot) } ref={trashButton => this.trashButton = trashButton} />
-          </Localized>
+          <DeleteShotButton
+            clickDeleteHandler={this.clickDeleteHandler.bind(this)}
+            confirmDeleteHandler={this.confirmDeleteHandler.bind(this, shot)}
+            cancelDeleteHandler={this.cancelDeleteHandler.bind(this)} />
         </div>
         {neverExpireIndicator}
       </div>
@@ -426,20 +437,20 @@ class Card extends React.Component {
     return title;
   }
 
-  onClickDelete(shot, event) {
-    event.stopPropagation();
-    event.preventDefault();
+  clickDeleteHandler(event) {
     sendEvent("start-delete", "my-shots", {useBeacon: true});
-    const confirmMessage = document.getElementById("shotIndexPageConfirmShotDelete").textContent;
-    if (window.confirm(confirmMessage)) {
-      sendEvent("delete", "my-shots-popup-confirm", {useBeacon: true});
-      this.setState({deleted: true});
-      controller.deleteShot(shot);
-    } else {
-      sendEvent("cancel-delete", "my-shots-popup-confirm");
-    }
-    this.trashButton.blur();
-    return false;
+    this.setState({ deletePanelOpen: true });
+  }
+
+  confirmDeleteHandler(shot, event) {
+    sendEvent("delete", "my-shots-popup-confirm", { useBeacon: true });
+    controller.deleteShot(shot);
+    this.setState({ deleted: true, deletePanelOpen: false });
+  }
+
+  cancelDeleteHandler(event) {
+    this.setState({ deletePanelOpen: false });
+    sendEvent("cancel-delete", "my-shots-popup-confirm");
   }
 
   onClickDownload() {

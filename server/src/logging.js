@@ -35,7 +35,7 @@ exports.installConsoleHandler = function() {
         }
       }
       logger(level, {msg, stack});
-    }
+    };
   }
 
   console.debug = logFactory("debug");

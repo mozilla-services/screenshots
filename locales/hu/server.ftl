@@ -53,7 +53,7 @@ homePageCapturePage = Lap befogása
 homePageCapturePageDescription = Használja a jobb felső sarokban lévő gombokat a teljes lapok befogásához. A Láthatóak mentése gomb a görgetés nélkül látható területet fogja be, a Teljes lap mentése pedig mindent, ami a lapon található.
 homePageSaveShare = Mentés és megosztás
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Ha készít egy képet, akkro a Firefox az online Screenshots könyvtárába küldi, a hivatkozást pedig a vágólapra másolja. Automatikusan két hétig tároljuk a képernyőképeket, de bármikor törölheti a képeket, vagy megváltoztathatja a lejárati időt, hogy tovább tartsa őket meg a könyvtárában.
+homePageSaveShareDescription = Ha készít egy képet, akkor a Firefox az online Screenshots könyvtárába küldi, a hivatkozást pedig a vágólapra másolja. Automatikusan két hétig tároljuk a képernyőképeket, de bármikor törölheti a képeket, vagy megváltoztathatja a lejárati időt, hogy tovább tartsa meg őket a könyvtárában.
 homePageLegalLink = Jogi információk
 homePagePrivacyLink = Adatvédelem
 homePageTermsLink = Feltételek
@@ -188,6 +188,12 @@ annotationPenButton =
     .title = Toll
 annotationHighlighterButton =
     .title = Kiemelő
+annotationUndoButton =
+    .title = Visszavonás
+annotationRedoButton =
+    .title = Mégis
+annotationTextButton =
+    .title = Szöveg hozzáadása
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Törlés
@@ -219,6 +225,18 @@ annotationColorSeaGreen =
     .title = Tengerzöld
 annotationColorGrey =
     .title = Szürke
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Betűméret
+# Values shown in text size selection dropdown
+textSizeSmall = Kicsi
+textSizeMedium = Közepes
+textSizeLarge = Nagy
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Megerősítés
+annotationTextCancelButton =
+    .title = Mégse
 
 ## Settings Page
 
@@ -266,6 +284,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Ez a kép nem évül el
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Biztos, hogy törölni szeretné ezt a képet?
+shotDeleteCancel = Mégse
+    .title = Mégse
+shotDeleteConfirm = Törlés
+    .title = Törlés
 
 ## Metrics page
 ## All metrics strings are optional for translation

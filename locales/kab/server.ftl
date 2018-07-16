@@ -184,6 +184,12 @@ annotationPenButton =
     .title = Imru
 annotationHighlighterButton =
     .title = Aqerru
+annotationUndoButton =
+    .title = Sefsex
+annotationRedoButton =
+    .title = Kkes afsax
+annotationTextButton =
+    .title = Ernu aḍris
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Sfeḍ
@@ -215,12 +221,24 @@ annotationColorSeaGreen =
     .title = Azegzaw n yil
 annotationColorGrey =
     .title = Amumad
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Teɣzi n uḍris
+# Values shown in text size selection dropdown
+textSizeSmall = meẓẓi
+textSizeMedium = Alemmas
+textSizeLarge = Meqqar
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Sentem
+annotationTextCancelButton =
+    .title = Sefsex
 
 ## Settings Page
 
 settingsDisconnectButton = Ffeɣ
     .title = Ffeɣ
-settingsGuestAccountMessage = AmiƐdan n inebgi
+settingsGuestAccountMessage = Amiɛdan n inebgi
 settingsSignInInvite = Kcem i umtawi deg ibenkan
 settingsSignInButton = Kcem
     .title = Kcem
@@ -262,6 +280,14 @@ shotIndexPageNextPage =
 # language/culture).
 shotIndexNoExpirationSymbol = ∞
     .title = Tuṭṭfa-agi ur tettmettat ara
+
+## Delete Confirmation Dialog
+
+shotDeleteConfirmationMessage = Tebɣiḍ ad tekseḍ tuṭṭfa-yagi?
+shotDeleteCancel = Sefsex
+    .title = Sefsex
+shotDeleteConfirm = Kkes
+    .title = Kkes
 
 ## Metrics page
 ## All metrics strings are optional for translation
