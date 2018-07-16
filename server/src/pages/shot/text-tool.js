@@ -171,6 +171,7 @@ exports.TextTool = class TextTool extends React.Component {
 
   setColor(color, colorName) {
     this.setState({color, colorName});
+    this.textInput.current.focus();
   }
 
   onClickConfirm(e) {
