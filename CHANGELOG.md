@@ -1,3 +1,86 @@
+## Version 33.1.0
+
+This is a server release with a focus on new annotation tools.  The Watchdog changes are pref'd off on stage and prod.  The previous server release was 32.2.0.
+
+### Server Changes
+
+* Add undo and redo to annotations. ([#4482](https://github.com/mozilla-services/screenshots/issues/4482)) ([#4370](https://github.com/mozilla-services/screenshots/issues/4370), [#4371](https://github.com/mozilla-services/screenshots/issues/4371))
+* Add a TextTool. Fixes [#4373](https://github.com/mozilla-services/screenshots/issues/4373) [f02fac0](https://github.com/mozilla-services/screenshots/commit/f02fac0)
+* Prevent dragging of crop div. ([#4456](https://github.com/mozilla-services/screenshots/issues/4456)) ([#4457](https://github.com/mozilla-services/screenshots/issues/4457))
+  - Also fix the width of right hand side background div. [f7b8c1d](https://github.com/mozilla-services/screenshots/commit/f7b8c1d)
+* Calculate pixel ratio from the image's natural size. ([#4453](https://github.com/mozilla-services/screenshots/issues/4453), [#4509](https://github.com/mozilla-services/screenshots/issues/4509)) ([#4516](https://github.com/mozilla-services/screenshots/issues/4516))
+* Stop oversampling in editor for full page shots. ([#4268](https://github.com/mozilla-services/screenshots/issues/4268)) ([#4360](https://github.com/mozilla-services/screenshots/issues/4360)) [071ce5e](https://github.com/mozilla-services/screenshots/commit/071ce5e)
+* Submit shot image to Watchdog on save. ([#4377](https://github.com/mozilla-services/screenshots/issues/4377)) [bcade0e](https://github.com/mozilla-services/screenshots/commit/bcade0e)
+* Handle Watchdog callback requests. ([#4378](https://github.com/mozilla-services/screenshots/issues/4378), [#4379](https://github.com/mozilla-services/screenshots/issues/4379)) [760d58a](https://github.com/mozilla-services/screenshots/commit/760d58a)
+* Do not request GA script if DNT is enabled. ([#4500](https://github.com/mozilla-services/screenshots/issues/4500)) [990ea25](https://github.com/mozilla-services/screenshots/commit/990ea25)
+* Removing potentially sensitive information on title update. Fixes [#4012](https://github.com/mozilla-services/screenshots/issues/4012) [f4b4c01](https://github.com/mozilla-services/screenshots/commit/f4b4c01)
+* Make expiration date buttons focusable. Fixes [#4411](https://github.com/mozilla-services/screenshots/issues/4411) [f2e55b1](https://github.com/mozilla-services/screenshots/commit/f2e55b1)
+* Allow shot resize correctly in Chrome/Safari. ([#4405](https://github.com/mozilla-services/screenshots/issues/4405)) ([#4491](https://github.com/mozilla-services/screenshots/issues/4491)) [7afd729](https://github.com/mozilla-services/screenshots/commit/7afd729)
+* Update shot delete confirmation dialog. ([#4186](https://github.com/mozilla-services/screenshots/issues/4186)) ([#4341](https://github.com/mozilla-services/screenshots/issues/4341)) [10bc456](https://github.com/mozilla-services/screenshots/commit/10bc456)
+* Use 'xlink:href' for all SVGs used by the website, because plain 'href' is unsupported in Safari. Fixes [#4082](https://github.com/mozilla-services/screenshots/issues/4082) [11ba274](https://github.com/mozilla-services/screenshots/commit/11ba274)
+
+### Development & Project Related Changes
+
+* Skip DB downgrades. ([#4484](https://github.com/mozilla-services/screenshots/issues/4484)) ([#4490](https://github.com/mozilla-services/screenshots/issues/4490)) [236a978](https://github.com/mozilla-services/screenshots/commit/236a978)
+* Return both DB and JS patch levels in __version__. Fixes [#4569](https://github.com/mozilla-services/screenshots/issues/4569) [4b046a8](https://github.com/mozilla-services/screenshots/commit/4b046a8)
+* Switch to uglify-es for ES6+ support. ([#4515](https://github.com/mozilla-services/screenshots/issues/4515)) [3492878](https://github.com/mozilla-services/screenshots/commit/3492878)
+* Delete any locale messages.json that match the en_US/messages.json file ([#4513](https://github.com/mozilla-services/screenshots/issues/4513))
+  This keeps us from adding duplicate files to Firefox. Specifically en_CA has no differences from en_US [bbac768](https://github.com/mozilla-services/screenshots/commit/bbac768)
+* Allow 'firefox' symlink to alter binary chosen by bin/run-addon [ea1516b](https://github.com/mozilla-services/screenshots/commit/ea1516b)
+* Allow bin/run-addon to discover Firefoxes with spaces in the app name
+  Refs bug 1404796. [bdd2167](https://github.com/mozilla-services/screenshots/commit/bdd2167)
+* Fix Profile generation with app name containing spaces on mac [2d1d68c](https://github.com/mozilla-services/screenshots/commit/2d1d68c)
+* Remove uninteresting and long tables from /metrics. Also remove controller.js for /metrics. Fixes [#4278](https://github.com/mozilla-services/screenshots/issues/4278) Fixes [#3069](https://github.com/mozilla-services/screenshots/issues/3069) [8e2c290](https://github.com/mozilla-services/screenshots/commit/8e2c290)
+* Ignore nsp advisories 663 and 664 related to jpm. Fixes [#4470](https://github.com/mozilla-services/screenshots/issues/4470) [08f7a96](https://github.com/mozilla-services/screenshots/commit/08f7a96)
+* Added a truncated data url to the invalid data image test so that the image's data length is tested. [f52b6c3](https://github.com/mozilla-services/screenshots/commit/f52b6c3)
+* Remove pushState() from /creating. ([#4451](https://github.com/mozilla-services/screenshots/issues/4451)) [cf39306](https://github.com/mozilla-services/screenshots/commit/cf39306)
+* Add renovate.json [9bc9337](https://github.com/mozilla-services/screenshots/commit/9bc9337)
+* Add open nsp issues to nsprc ([#4398](https://github.com/mozilla-services/screenshots/issues/4398)). Fixes [#4397](https://github.com/mozilla-services/screenshots/issues/4397) [ce1f828](https://github.com/mozilla-services/screenshots/commit/ce1f828)
+* Added helper functions to all tests and removed unnecessary code i.e. code that does what the helper functions do. [727fb77](https://github.com/mozilla-services/screenshots/commit/727fb77)
+* Returned the user value from the user_setup function. [ee51f99](https://github.com/mozilla-services/screenshots/commit/ee51f99)
+* Add user_setup helper function and use in invalid_data_image test. [44bb193](https://github.com/mozilla-services/screenshots/commit/44bb193)
+* Add shot_json to invalid_data_image testAdded shot_json to invalid_data_image test. [fd57def](https://github.com/mozilla-services/screenshots/commit/fd57def)
+* Create image_setup helper function and implement it in the test_invalid_data_image function. Commented out the code
+  it is replacing. [d5d16a6](https://github.com/mozilla-services/screenshots/commit/d5d16a6)
+* Document share icon A/B test. Fixes [#4282](https://github.com/mozilla-services/screenshots/issues/4282) [b1c8025](https://github.com/mozilla-services/screenshots/commit/b1c8025)
+* Document pref required to install dev Screenshots on some profiles
+   - Also removes reference to extensions.screenshots.system-disabled which we no longer use. Fixes [#4352](https://github.com/mozilla-services/screenshots/issues/4352) [2502a59](https://github.com/mozilla-services/screenshots/commit/2502a59)
+* Remove obsolete monkeypatch for install-raven.js. Fixes [#3593](https://github.com/mozilla-services/screenshots/issues/3593) [c0a43a7](https://github.com/mozilla-services/screenshots/commit/c0a43a7)
+* Added ['url'] reference to tests [d7478ea](https://github.com/mozilla-services/screenshots/commit/d7478ea)
+* Added the test for invalid data url, reorganized the other tests, removing those that were unnecessary. [4ffc2f5](https://github.com/mozilla-services/screenshots/commit/4ffc2f5)
+* Add test for invalid data image decoded. [41bc89f](https://github.com/mozilla-services/screenshots/commit/41bc89f)
+* Correct PEP8 spacing errors. [3efd8af](https://github.com/mozilla-services/screenshots/commit/3efd8af)
+* Add test_invalid_image to test_image_validation module [c92caa1](https://github.com/mozilla-services/screenshots/commit/c92caa1)
+* Set a default NODE_ENV of 'production' in Docker image. ([#4326](https://github.com/mozilla-services/screenshots/issues/4326)) ([#4385](https://github.com/mozilla-services/screenshots/issues/4385)) [62ec921](https://github.com/mozilla-services/screenshots/commit/62ec921)
+* Remove survey link. ([#3902](https://github.com/mozilla-services/screenshots/issues/3902)) ([#4386](https://github.com/mozilla-services/screenshots/issues/4386)) [ff038d2](https://github.com/mozilla-services/screenshots/commit/ff038d2)
+* Initialize en-CA content, copying over en-GB ([#4388](https://github.com/mozilla-services/screenshots/issues/4388)) [d818d86](https://github.com/mozilla-services/screenshots/commit/d818d86)
+* clean up log.js [17341d4](https://github.com/mozilla-services/screenshots/commit/17341d4)
+* Add sample tests for bug [#3482](https://github.com/mozilla-services/screenshots/issues/3482)Added sample tests for bug [#3482](https://github.com/mozilla-services/screenshots/issues/3482). [e69e62b](https://github.com/mozilla-services/screenshots/commit/e69e62b)
+
+## 33.0.0
+
+This is an add-on release.
+
+### Add-on changes
+
+* Add 'mozillaAddons' to addon permissions. ([#4495](https://github.com/mozilla-services/screenshots/issues/4495)) ([#4496](https://github.com/mozilla-services/screenshots/issues/4496)) [0b135eb](https://github.com/mozilla-services/screenshots/commit/0b135eb)
+* Update copy icon in notifications. ([#4485](https://github.com/mozilla-services/screenshots/issues/4485)) [7eecffc](https://github.com/mozilla-services/screenshots/commit/7eecffc)
+* Update dependency raven-js to v3.25.2 ([#4428](https://github.com/mozilla-services/screenshots/issues/4428)) [e71b139](https://github.com/mozilla-services/screenshots/commit/e71b139)
+* Ignore download canceled by user errors. Fixes [#3964](https://github.com/mozilla-services/screenshots/issues/3964) [9eb7f6c](https://github.com/mozilla-services/screenshots/commit/9eb7f6c)
+* Avoid including blank scrollbar area in save-visible shots. Fixes [#4147](https://github.com/mozilla-services/screenshots/issues/4147) [e081c42](https://github.com/mozilla-services/screenshots/commit/e081c42)
+* Make onboarding behaviour consistent ([#4342](https://github.com/mozilla-services/screenshots/issues/4342)). Fixes [#4183](https://github.com/mozilla-services/screenshots/issues/4183) [236e16d](https://github.com/mozilla-services/screenshots/commit/236e16d)
+* Use WebExtension page action instead of Photon. ([#3756](https://github.com/mozilla-services/screenshots/issues/3756)) ([#3967](https://github.com/mozilla-services/screenshots/issues/3967)) [02b4c6e](https://github.com/mozilla-services/screenshots/commit/02b4c6e)
+* Use precision select cursor ([#4361](https://github.com/mozilla-services/screenshots/issues/4361)). Fixes [#4187](https://github.com/mozilla-services/screenshots/issues/4187) [8208c0b](https://github.com/mozilla-services/screenshots/commit/8208c0b)
+
+### Clean-up and Lint
+
+* Clean up log.js [17341d4](https://github.com/mozilla-services/screenshots/commit/17341d4)
+* Upgrade eslint-plugin-mozilla along with code fixes. ([#4322](https://github.com/mozilla-services/screenshots/issues/4322)) [ff9aa53](https://github.com/mozilla-services/screenshots/commit/ff9aa53)
+
+### Localization
+
+* Initialize en-CA content, copying over en-GB ([#4388](https://github.com/mozilla-services/screenshots/issues/4388)) [d818d86](https://github.com/mozilla-services/screenshots/commit/d818d86)
+
 ## Version 32.2.0
 
 This is a server release that cherry-picks the changes released in 31.4.0 and 31.5.0.
