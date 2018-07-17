@@ -192,6 +192,8 @@ annotationUndoButton =
     .title = Kumoa
 annotationRedoButton =
     .title = Tee uudelleen
+annotationTextButton =
+    .title = Lisää tekstiä
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Pyyhi
@@ -223,6 +225,18 @@ annotationColorSeaGreen =
     .title = Merenvihreä
 annotationColorGrey =
     .title = Harmaa
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Tekstin koko
+# Values shown in text size selection dropdown
+textSizeSmall = Pieni
+textSizeMedium = Keskikokoinen
+textSizeLarge = Suuri
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Vahvista
+annotationTextCancelButton =
+    .title = Peruuta
 
 ## Settings Page
 
