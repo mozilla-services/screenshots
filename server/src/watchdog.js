@@ -107,14 +107,53 @@ exports.submit = function(shot) {
   const imageId = imageUrl.split("/").pop();
   const form = new FormData();
 
-  Shot.getRawBytesForClip(
-    imageId
-  ).then((obj) => {
-    if (obj === null) {
-      const err = new Error("Unable to fetch image for Watchdog submission.");
-      err.imageId = String(imageId);
-      throw err;
-    }
+  // When this is called the shot has been successfully saved to the database,
+  // but the image data is not necessarily on S3 as the save to S3 is not
+  // awaited. Awaiting the S3 upload will affect the responsiveness of saving a
+  // shot with the addon.
+  //
+  // We'll give the S3 upload a head start and try a few times to fetch the
+  // image data. This is called for every shot saved, so let's keep it simple
+  // and minimal.
+
+  const getImageRawBytes = function() {
+    const MAX_ATTEMPTS = 3;
+    const DELAY = 1000; // milliseconds
+    let attemptCount = 1;
+
+    const delay = function(waitInMs) {
+      return new Promise((resolve) => {
+        setTimeout(() => resolve(), waitInMs);
+      });
+    };
+    const getRawBytesPromise = function(timeToWait) {
+      return delay(timeToWait).then(() => Shot.getRawBytesForClip(imageId));
+    };
+
+    return new Promise((resolve, reject) => {
+      const tryGetBytes = function() {
+        getRawBytesPromise(DELAY).then(obj => {
+          if (obj === null) {
+            const err = new Error("Shot image expired, blocked, or not found.");
+            err.imageId = String(imageId);
+            reject(err);
+          } else {
+            resolve(obj);
+          }
+        }).catch(e => {
+          if (attemptCount >= MAX_ATTEMPTS) {
+            reject(e);
+          } else {
+            attemptCount++;
+            tryGetBytes();
+          }
+        });
+      };
+      tryGetBytes();
+    });
+  };
+
+  getImageRawBytes().then((obj) => {
     form.append("image", obj.data, {
       filename: imageId,
       contentType: obj.contentType
