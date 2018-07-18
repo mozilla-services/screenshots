@@ -51,7 +51,7 @@ exports.TextTool = class TextTool extends React.Component {
 
   componentDidMount() {
     this.textInput.current.focus();
-    this.adjustHeightAndWidth();
+    this.adjustWidth();
     previousTextInputWidth = this.textInput.current.clientWidth;
     previousInputText = "";
     if (this.props.toolbarOverrideCallback) {
@@ -62,7 +62,6 @@ exports.TextTool = class TextTool extends React.Component {
   componentDidUpdate(oldProps, oldState) {
     if (oldState.textSize !== this.state.textSize) {
       this.props.toolbarOverrideCallback();
-      this.adjustHeightAndWidth();
       this.adjustX();
     }
   }
@@ -73,11 +72,7 @@ exports.TextTool = class TextTool extends React.Component {
     }
   }
 
-  adjustHeightAndWidth() {
-    const styles = window.getComputedStyle(this.textInput.current);
-    const height = Math.ceil(parseFloat(styles.lineHeight) + parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom));
-    this.textInput.current.style.minHeight = `${height}px`;
-
+  adjustWidth() {
     const width = this.textInput.current.nextSibling.clientWidth;
     this.textInput.current.style.width = `${width}px`;
   }
@@ -110,13 +105,12 @@ exports.TextTool = class TextTool extends React.Component {
     const hiddenDivStyles = {
       position: "absolute",
       zIndex: "-999",
-      opacity: "0",
-      top: "-999px"
+      visibility: "hidden"
     };
 
     return [
       <div key="drag" style={dragDivStyles} onMouseDown={this.onDragMouseDown.bind(this)}>
-        <input type="text" id="text-input" ref={this.textInput} key="text" maxLength="1000" onKeyDown={this.onKeyDown.bind(this)}
+        <input type="text" id="text-input" ref={this.textInput} key="text" maxLength="1000"
            onInput={this.onInput.bind(this)} className={`${this.state.textSize} ${this.state.colorName} text`}>
         </input>
         <div id="text-width" style={hiddenDivStyles} className={`${this.state.textSize} text`} key="text-width"></div>
@@ -237,10 +231,6 @@ exports.TextTool = class TextTool extends React.Component {
       this.props.cancelTextHandler();
     }
     sendEvent("cancel-text", "text-toolbar");
-  }
-
-  onKeyDown(e) {
-    this.adjustX(e);
   }
 
   onInput(e) {
