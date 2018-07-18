@@ -116,7 +116,7 @@ exports.Page = class Page {
       if (model.title && model.title !== curTitle) {
         document.title = model.title;
       }
-      ReactDOM.render(
+      ReactDOM.hydrate(
         body,
         document.getElementById("react-body-container"));
     };
