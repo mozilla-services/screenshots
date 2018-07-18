@@ -234,14 +234,17 @@ exports.TextTool = class TextTool extends React.Component {
   }
 
   onPaste(e) {
-    window.setTimeout(() => {
-      // Remove element tags, line breaks and new line seen after pasting text
-      while (this.textInput.current.firstElementChild) {
-        this.textInput.current.removeChild(this.textInput.current.firstElementChild);
-      }
-      this.textInput.current.textContent = this.textInput.current.textContent.replace(/\r?\n|\r/g, "");
-      this.adjustX(e);
-    });
+    e.preventDefault();
+    e.stopPropagation();
+    const paste = e.clipboardData.getData("text");
+    // Find the cursor location or highlighted area and paste the plain
+    // text clipboard content at the cursor location
+    const selection = window.getSelection();
+    // Cancel the paste operation if the cursor or highlighted area isn't found
+    if (!selection.rangeCount) return;
+    selection.getRangeAt(0).insertNode(document.createTextNode(paste));
+    this.textInput.current.textContent = this.textInput.current.textContent.replace(/\r?\n|\r/g, "");
+    this.adjustX(e);
   }
 
   onKeyUp(e) {
