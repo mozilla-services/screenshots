@@ -109,15 +109,15 @@ exports.TextTool = class TextTool extends React.Component {
     // text for respective font-size
     const hiddenDivStyles = {
       position: "absolute",
-      "z-index": "-999",
+      zIndex: "-999",
       opacity: "0",
       top: "-999px"
     };
 
     return [
-      <div key="drag" style={dragDivStyles} onDrop={this.onDrop.bind(this)} onMouseDown={this.onDragMouseDown.bind(this)}>
+      <div key="drag" style={dragDivStyles} onMouseDown={this.onDragMouseDown.bind(this)}>
         <input type="text" id="text-input" ref={this.textInput} key="text" maxLength="1000" onKeyDown={this.onKeyDown.bind(this)}
-          onKeyUp={this.onKeyUp.bind(this)} onPaste={this.onPaste.bind(this)} className={`${this.state.textSize} ${this.state.colorName} text`}>
+           onInput={this.onInput.bind(this)} className={`${this.state.textSize} ${this.state.colorName} text`}>
         </input>
         <div id="text-width" style={hiddenDivStyles} className={`${this.state.textSize} text`} key="text-width"></div>
       </div>
@@ -130,11 +130,6 @@ exports.TextTool = class TextTool extends React.Component {
     }
     dragMouseDown = true;
     prevDragMousePos = this.captureMousePosition(e);
-  }
-
-  onDrop(e) {
-    // Block drop event inside text input
-    e.preventDefault();
   }
 
   onMouseMove(e) {
@@ -248,13 +243,7 @@ exports.TextTool = class TextTool extends React.Component {
     this.adjustX(e);
   }
 
-  onPaste(e) {
-    window.setTimeout(() => {
-      this.adjustX(e);
-    });
-  }
-
-  onKeyUp(e) {
+  onInput(e) {
     this.adjustX(e);
   }
 
