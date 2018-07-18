@@ -32,6 +32,7 @@ creatingPageWaitMessage = กำลังบันทึกภาพของค
 ## Home page
 
 homePageButtonMyShots = ไปยังภาพของฉัน
+homePageTeaser = เร็ว ๆ นี้...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ดาวน์โหลดฟรี
 homePageGetStarted = เริ่มต้นใช้งาน
