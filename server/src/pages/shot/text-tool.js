@@ -51,9 +51,9 @@ exports.TextTool = class TextTool extends React.Component {
 
   componentDidMount() {
     this.textInput.current.focus();
+    this.adjustWidth();
     previousTextInputWidth = this.textInput.current.clientWidth;
     previousInputText = "";
-    this.adjustHeight();
     if (this.props.toolbarOverrideCallback) {
       this.props.toolbarOverrideCallback();
     }
@@ -62,7 +62,6 @@ exports.TextTool = class TextTool extends React.Component {
   componentDidUpdate(oldProps, oldState) {
     if (oldState.textSize !== this.state.textSize) {
       this.props.toolbarOverrideCallback();
-      this.adjustHeight();
       this.adjustX();
     }
   }
@@ -73,10 +72,9 @@ exports.TextTool = class TextTool extends React.Component {
     }
   }
 
-  adjustHeight() {
-    const styles = window.getComputedStyle(this.textInput.current);
-    const height = Math.ceil(parseFloat(styles.lineHeight) + parseFloat(styles.paddingTop) + parseFloat(styles.paddingBottom));
-    this.textInput.current.style.minHeight = `${height}px`;
+  adjustWidth() {
+    const width = this.textInput.current.nextSibling.clientWidth;
+    this.textInput.current.style.width = `${width}px`;
   }
 
   render() {
@@ -102,11 +100,20 @@ exports.TextTool = class TextTool extends React.Component {
       cursor: "move"
     };
 
+    // Styles used by hidden div that is used to compute width of input
+    // text for respective font-size
+    const hiddenDivStyles = {
+      position: "absolute",
+      zIndex: "-999",
+      visibility: "hidden"
+    };
+
     return [
       <div key="drag" style={dragDivStyles} onMouseDown={this.onDragMouseDown.bind(this)}>
-        <div id="text-input" ref={this.textInput} contentEditable="true" key="text" onKeyDown={this.onKeyDown.bind(this)}
-          onKeyUp={this.onKeyUp.bind(this)} onPaste={this.onPaste.bind(this)} className={`${this.state.textSize} ${this.state.colorName} text`}>
-        </div>
+        <input type="text" id="text-input" ref={this.textInput} key="text" maxLength="1000"
+           onInput={this.onInput.bind(this)} className={`${this.state.textSize} ${this.state.colorName} text`}>
+        </input>
+        <div id="text-width" style={hiddenDivStyles} className={`${this.state.textSize} text`} key="text-width"></div>
       </div>
     ];
   }
@@ -176,7 +183,7 @@ exports.TextTool = class TextTool extends React.Component {
 
   onClickConfirm(e) {
     // Exit if user doesn't enter any text
-    if (!this.textInput.current.textContent) {
+    if (!this.textInput.current.value) {
        if (this.props.cancelTextHandler) {
           this.props.cancelTextHandler();
         }
@@ -206,7 +213,7 @@ exports.TextTool = class TextTool extends React.Component {
                             this.textInput.current.clientHeight);
     drawingContext.fillStyle = styles.color;
     drawingContext.font = `${FONT_WEIGHT} ${FONT_SIZE}px ${FONT_STYLE}`;
-    drawingContext.fillText(this.textInput.current.textContent, x, y);
+    drawingContext.fillText(this.textInput.current.value, x, y);
 
     const textSelection = new Selection(this.state.left,
                                         this.state.top,
@@ -226,43 +233,26 @@ exports.TextTool = class TextTool extends React.Component {
     sendEvent("cancel-text", "text-toolbar");
   }
 
-  onKeyDown(e) {
-    this.adjustX(e);
-    if (e.key === "Enter") {
-      e.preventDefault();
-    }
-  }
-
-  onPaste(e) {
-    window.setTimeout(() => {
-      // Remove element tags, line breaks and new line seen after pasting text
-      while (this.textInput.current.firstElementChild) {
-        this.textInput.current.removeChild(this.textInput.current.firstElementChild);
-      }
-      this.textInput.current.textContent = this.textInput.current.textContent.replace(/\r?\n|\r/g, "");
-      this.adjustX(e);
-    });
-  }
-
-  onKeyUp(e) {
-    // Fix to remove <br> element inserted on press of space bar inside contenteditable div
-    while (this.textInput.current.firstElementChild) {
-      this.textInput.current.removeChild(this.textInput.current.firstElementChild);
-    }
+  onInput(e) {
     this.adjustX(e);
   }
 
   adjustX(e) {
     // Return if there's no text content change and method is invoked from event handler
-    if (previousInputText === this.textInput.current.textContent && e) {
+    if (previousInputText === this.textInput.current.value && e) {
       return;
     }
+
+    this.textInput.current.nextSibling.textContent = this.textInput.current.value;
+    const newWidth = this.textInput.current.nextSibling.clientWidth;
+    this.textInput.current.style.width = `${newWidth}px`;
+
     const rectInput = this.textInput.current.getBoundingClientRect();
     const rectCanvas = this.props.baseCanvas.getBoundingClientRect();
     const WIDTH_DIFF = this.textInput.current.clientWidth - previousTextInputWidth;
     this.setState({left: Math.floor(rectInput.left - rectCanvas.left - WIDTH_DIFF / 2)});
     previousTextInputWidth = this.textInput.current.clientWidth;
-    previousInputText = this.textInput.current.textContent;
+    previousInputText = this.textInput.current.value;
   }
 
   onChangeTextSize(event) {
