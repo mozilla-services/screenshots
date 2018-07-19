@@ -18,6 +18,7 @@ const EDITOR_HEADER_HEIGHT = 100;
 const FONT_STYLE = "sans-serif";
 const FONT_WEIGHT = 900;
 const INIT_FONT_SIZE = 36;
+const STATE_SMALL_TEXT = "small-text";
 
 let previousTextInputWidth;
 let previousInputText;
@@ -195,9 +196,13 @@ exports.TextTool = class TextTool extends React.Component {
 
     // Due to line-height differences of how fonts are rendered across platforms
     // adjust text y position to one-third of difference of line-height and font-size
-    const ADJUST_VERTICAL_SHIFT = (parseFloat(styles["line-height"]) - FONT_SIZE) / 3;
+    let ADJUST_VERTICAL_SHIFT = 0;
+    const LINE_HEIGHT = Math.round(parseFloat(styles["line-height"]));
+    if (this.state.textSize !== STATE_SMALL_TEXT) {
+      ADJUST_VERTICAL_SHIFT =  (LINE_HEIGHT - FONT_SIZE) / 3;
+    }
     const x = this.state.left + parseFloat(styles["padding-left"]);
-    const y = this.state.top + TEXT_INPUT_PADDING + parseFloat(styles["line-height"]) / 2 + ADJUST_VERTICAL_SHIFT;
+    const y = Math.round(this.state.top + TEXT_INPUT_PADDING + LINE_HEIGHT / 2 + ADJUST_VERTICAL_SHIFT);
 
     const textCanvas = document.createElement("canvas");
     textCanvas.width = this.props.baseCanvas.width;
