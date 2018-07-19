@@ -201,6 +201,18 @@ annotationColorSeaGreen =
     .title = Hijau Laut
 annotationColorGrey =
     .title = Abu-abu
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Ukuran teks
+# Values shown in text size selection dropdown
+textSizeSmall = Kecil
+textSizeMedium = Sedang
+textSizeLarge = Besar
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Konfirmasi
+annotationTextCancelButton =
+    .title = Batal
 
 ## Settings Page
 
