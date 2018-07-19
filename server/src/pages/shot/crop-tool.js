@@ -217,6 +217,8 @@ exports.CropTool = class CropTool extends React.Component {
     }
   }
 
+// TODO This also exist in drawing-tool.js and text-tool.js. Move it to a shared
+// space.
   captureMousePosition(e) {
     const boundingRect = this.el.current.getBoundingClientRect();
     return {
@@ -343,6 +345,7 @@ exports.CropTool.propTypes = {
   canvasCssHeight: PropTypes.number
 };
 
+// TODO This also exist in text-tool.js.  Move it to a shared space.
 function clamp(val, min, max) {
   return Math.min(Math.max(val, min), max);
 }

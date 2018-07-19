@@ -49,6 +49,7 @@ exports.DrawingTool = class DrawingTool extends React.Component {
     this.setDrawingProperties();
   }
 
+// TODO This also exist in crop-tool.js and text-tool.js.  Move it to a shared space.
   captureMousePosition(e) {
     const boundingRect = this.canvas.current.getBoundingClientRect();
     return {
