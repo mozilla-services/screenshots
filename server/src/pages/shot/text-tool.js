@@ -197,12 +197,12 @@ exports.TextTool = class TextTool extends React.Component {
     // Due to line-height differences of how fonts are rendered across platforms
     // adjust text y position to one-third of difference of line-height and font-size
     let ADJUST_VERTICAL_SHIFT = 0;
-    const LINE_HEIGHT = Math.round(parseFloat(styles["line-height"]));
+    const LINE_HEIGHT = parseFloat(styles["line-height"]);
     if (this.state.textSize !== STATE_SMALL_TEXT) {
       ADJUST_VERTICAL_SHIFT =  (LINE_HEIGHT - FONT_SIZE) / 3;
     }
     const x = this.state.left + parseFloat(styles["padding-left"]);
-    const y = Math.round(this.state.top + TEXT_INPUT_PADDING + LINE_HEIGHT / 2 + ADJUST_VERTICAL_SHIFT);
+    const y = this.state.top + TEXT_INPUT_PADDING + LINE_HEIGHT / 2 + ADJUST_VERTICAL_SHIFT;
 
     const textCanvas = document.createElement("canvas");
     textCanvas.width = this.props.baseCanvas.width;
@@ -214,8 +214,8 @@ exports.TextTool = class TextTool extends React.Component {
     drawingContext.fillStyle = styles.backgroundColor;
     drawingContext.fillRect(this.state.left,
                             this.state.top,
-                            this.textInput.current.clientWidth,
-                            this.textInput.current.clientHeight);
+                            parseFloat(styles.width),
+                            parseFloat(styles.height));
     drawingContext.fillStyle = styles.color;
     drawingContext.font = `${FONT_WEIGHT} ${FONT_SIZE}px ${FONT_STYLE}`;
     drawingContext.fillText(this.textInput.current.value, x, y);
