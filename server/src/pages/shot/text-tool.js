@@ -20,7 +20,6 @@ const FONT_WEIGHT = 900;
 const INIT_FONT_SIZE = 36;
 
 let previousTextInputWidth;
-let previousInputText;
 
 let dragMouseDown = false;
 let prevDragMousePos = null;
@@ -53,7 +52,7 @@ exports.TextTool = class TextTool extends React.Component {
     this.textInput.current.focus();
     this.adjustWidth();
     previousTextInputWidth = this.textInput.current.clientWidth;
-    previousInputText = "";
+    this.center = this.getCenter();
     if (this.props.toolbarOverrideCallback) {
       this.props.toolbarOverrideCallback();
     }
@@ -70,11 +69,6 @@ exports.TextTool = class TextTool extends React.Component {
     if (this.props.toolbarOverrideCallback) {
       this.props.toolbarOverrideCallback();
     }
-  }
-
-  adjustWidth() {
-    const width = this.textInput.current.nextSibling.clientWidth;
-    this.textInput.current.style.width = `${width}px`;
   }
 
   render() {
@@ -118,42 +112,6 @@ exports.TextTool = class TextTool extends React.Component {
     ];
   }
 
-  onDragMouseDown(e) {
-    if (e.target === this.textInput.current) {
-      return;
-    }
-    dragMouseDown = true;
-    prevDragMousePos = this.captureMousePosition(e);
-  }
-
-  onMouseMove(e) {
-    if (!dragMouseDown) {
-      return;
-    }
-
-    const mousePos = this.captureMousePosition(e);
-
-    this.setState({
-      left: this.state.left + (mousePos.x - prevDragMousePos.x),
-      top: this.state.top + (mousePos.y - prevDragMousePos.y)
-    });
-
-    prevDragMousePos = mousePos;
-  }
-
-  onMouseUp(e) {
-    dragMouseDown = false;
-    prevDragMousePos = null;
-  }
-
-  captureMousePosition(e) {
-    const boundingRect = this.el.current.getBoundingClientRect();
-    return {
-      x: e.clientX - boundingRect.left,
-      y: e.clientY - boundingRect.top
-    };
-  }
-
   renderToolbar() {
     return <div className="editor-header default-color-scheme"><div className="annotation-tools">
       <Localized id="annotationTextSize">
@@ -179,6 +137,45 @@ exports.TextTool = class TextTool extends React.Component {
   setColor(color, colorName) {
     this.setState({color, colorName});
     this.textInput.current.focus();
+  }
+
+  onDragMouseDown(e) {
+    if (e.target === this.textInput.current) {
+      return;
+    }
+    dragMouseDown = true;
+    prevDragMousePos = this.captureMousePosition(e);
+  }
+
+  onMouseMove(e) {
+    if (!dragMouseDown) {
+      return;
+    }
+
+    const mousePos = this.captureMousePosition(e);
+
+    this.setState({
+      left: this.state.left + (mousePos.x - prevDragMousePos.x),
+      top: this.state.top + (mousePos.y - prevDragMousePos.y)
+    });
+
+    prevDragMousePos = mousePos;
+  }
+
+  onMouseUp(e) {
+    this.center = this.getCenter();
+    dragMouseDown = false;
+    prevDragMousePos = null;
+  }
+
+// TODO This also exist in drawing-tool.js and crop-tool.js. Move it to a shared
+// space.
+  captureMousePosition(e) {
+    const boundingRect = this.el.current.getBoundingClientRect();
+    return {
+      x: e.clientX - boundingRect.left,
+      y: e.clientY - boundingRect.top
+    };
   }
 
   onClickConfirm(e) {
@@ -233,32 +230,54 @@ exports.TextTool = class TextTool extends React.Component {
     sendEvent("cancel-text", "text-toolbar");
   }
 
-  onInput(e) {
-    this.adjustX(e);
-  }
-
-  adjustX(e) {
-    // Return if there's no text content change and method is invoked from event handler
-    if (previousInputText === this.textInput.current.value && e) {
-      return;
-    }
-
-    this.textInput.current.nextSibling.textContent = this.textInput.current.value;
-    const newWidth = this.textInput.current.nextSibling.clientWidth;
-    this.textInput.current.style.width = `${newWidth}px`;
-
-    const rectInput = this.textInput.current.getBoundingClientRect();
-    const rectCanvas = this.props.baseCanvas.getBoundingClientRect();
-    const WIDTH_DIFF = this.textInput.current.clientWidth - previousTextInputWidth;
-    this.setState({left: Math.floor(rectInput.left - rectCanvas.left - WIDTH_DIFF / 2)});
-    previousTextInputWidth = this.textInput.current.clientWidth;
-    previousInputText = this.textInput.current.value;
-  }
-
   onChangeTextSize(event) {
     const size = event.target.value;
     this.setState({textSize: size});
     this.textInput.current.focus();
+  }
+
+  onInput() {
+    this.adjustX();
+  }
+
+  adjustWidth() {
+    const width = this.textInput.current.nextSibling.clientWidth;
+    this.textInput.current.style.width = `${width}px`;
+  }
+
+  getCenter() {
+    const containerRect = this.el.current.getBoundingClientRect();
+    const inputRect = this.textInput.current.getBoundingClientRect();
+    return clamp(
+      (inputRect.left - containerRect.left + (this.textInput.current.clientWidth / 2)),
+      0,
+      containerRect.width);
+  }
+
+  adjustX() {
+    this.textInput.current.nextSibling.textContent = this.textInput.current.value;
+    this.adjustWidth();
+
+    const containerRect = this.el.current.getBoundingClientRect();
+    const inputRect = this.textInput.current.getBoundingClientRect();
+    const widthDiff = this.textInput.current.clientWidth - previousTextInputWidth;
+    let left;
+
+    if (this.center === 0) {
+      left = Math.floor(inputRect.left - containerRect.left - widthDiff);
+      if (left > 0) {
+        this.center = this.getCenter();
+      }
+    } else if (this.center === containerRect.width) {
+      if ((inputRect.left - containerRect.left + inputRect.width) < containerRect.width) {
+        this.center = this.getCenter();
+      }
+    } else {
+      left = Math.floor(this.center - inputRect.width / 2);
+    }
+
+    this.setState({left});
+    previousTextInputWidth = this.textInput.current.clientWidth;
   }
 };
 
@@ -273,3 +292,8 @@ exports.TextTool.propTypes = {
   canvasCssWidth: PropTypes.number,
   canvasCssHeight: PropTypes.number,
 };
+
+// TODO This also exist in crop-tool.js.  Move it to a shared space.
+function clamp(val, min, max) {
+  return Math.min(Math.max(val, min), max);
+}
