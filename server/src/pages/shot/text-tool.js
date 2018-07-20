@@ -19,6 +19,9 @@ const FONT_STYLE = "sans-serif";
 const FONT_WEIGHT = 900;
 const INIT_FONT_SIZE = 36;
 
+// Text Input drag limit from the edge of the canvas
+const TEXT_DRAG_EDGE_LIMIT = 5;
+
 let previousTextInputWidth;
 
 let dragMouseDown = false;
@@ -153,10 +156,17 @@ exports.TextTool = class TextTool extends React.Component {
     }
 
     const mousePos = this.captureMousePosition(e);
+    const xDelta = mousePos.x - prevDragMousePos.x;
+    const yDelta = mousePos.y - prevDragMousePos.y;
 
+    const maxLeft = this.canvasCssWidth - this.textInput.current.clientWidth - TEXT_DRAG_EDGE_LIMIT;
+    const maxTop =  this.canvasCssHeight - this.textInput.current.clientHeight - TEXT_DRAG_EDGE_LIMIT;
+
+    const newLeft = clamp(this.state.left + xDelta, TEXT_DRAG_EDGE_LIMIT, maxLeft);
+    const newTop = clamp(this.state.top + yDelta, TEXT_DRAG_EDGE_LIMIT, maxTop);
     this.setState({
-      left: this.state.left + (mousePos.x - prevDragMousePos.x),
-      top: this.state.top + (mousePos.y - prevDragMousePos.y)
+      left: newLeft,
+      top: newTop
     });
 
     prevDragMousePos = mousePos;
