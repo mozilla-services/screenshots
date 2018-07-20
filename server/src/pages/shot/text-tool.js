@@ -20,6 +20,7 @@ const FONT_WEIGHT = 900;
 const INIT_FONT_SIZE = 36;
 
 let previousTextInputWidth;
+let hasFirstInput;
 
 let dragMouseDown = false;
 let prevDragMousePos = null;
@@ -49,6 +50,10 @@ exports.TextTool = class TextTool extends React.Component {
   }
 
   componentDidMount() {
+    // Set hidden div to placeholder text and has first edit happened flag to false. hasFirstInput
+    // is used in adjustX to avoid setting hidden div textContent to empty textInput value
+    hasFirstInput = false;
+    this.textInput.current.nextSibling.textContent = this.textInput.current.placeholder;
     this.textInput.current.focus();
     this.adjustWidth();
     previousTextInputWidth = this.textInput.current.clientWidth;
@@ -104,9 +109,11 @@ exports.TextTool = class TextTool extends React.Component {
 
     return [
       <div key="drag" style={dragDivStyles} onMouseDown={this.onDragMouseDown.bind(this)}>
-        <input type="text" id="text-input" ref={this.textInput} key="text" maxLength="1000"
-           onInput={this.onInput.bind(this)} className={`${this.state.textSize} ${this.state.colorName} text`}>
-        </input>
+        <Localized id="textToolInputPlaceholder">
+          <input type="text" id="text-input" ref={this.textInput} key="text" maxLength="1000" placeholder="Hello"
+             onInput={this.onInput.bind(this)} className={`${this.state.textSize} ${this.state.colorName} text`}>
+          </input>
+        </Localized>
         <div id="text-width" style={hiddenDivStyles} className={`${this.state.textSize} text`} key="text-width"></div>
       </div>
     ];
@@ -237,6 +244,7 @@ exports.TextTool = class TextTool extends React.Component {
   }
 
   onInput() {
+    hasFirstInput = true;
     this.adjustX();
   }
 
@@ -255,7 +263,9 @@ exports.TextTool = class TextTool extends React.Component {
   }
 
   adjustX() {
-    this.textInput.current.nextSibling.textContent = this.textInput.current.value;
+    if (hasFirstInput) {
+      this.textInput.current.nextSibling.textContent = this.textInput.current.value;
+    }
     this.adjustWidth();
 
     const containerRect = this.el.current.getBoundingClientRect();
