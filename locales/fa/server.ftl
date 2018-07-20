@@ -192,6 +192,8 @@ annotationUndoButton =
     .title = برگردان
 annotationRedoButton =
     .title = بازآوری
+annotationTextButton =
+    .title = اضافه کردن متن
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = پاک کردن
@@ -223,6 +225,18 @@ annotationColorSeaGreen =
     .title = سبز دریایی
 annotationColorGrey =
     .title = خاکستری
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = اندازه متن
+# Values shown in text size selection dropdown
+textSizeSmall = کوچک
+textSizeMedium = متوسط
+textSizeLarge = بزرگ
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = تایید
+annotationTextCancelButton =
+    .title = لغو
 
 ## Settings Page
 
