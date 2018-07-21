@@ -16,7 +16,7 @@ gScreenshotsDescription = Skjermbilete gjort enkelt. Ta, lagre og del skjermbild
 footerLinkMozilla = Mozilla
 footerLinkTerms = Vilkår
 footerLinkPrivacy = Personvernmerknad
-footerLinkFaqs = FAQ
+footerLinkFaqs = Vanlege spørsmål (FAQ)
 footerLinkDMCA = Rapporter brot på åndsverklova
 footerLinkDiscourse = Gje tilbakemelding
 footerLinkRemoveAllData = Slett alle data
@@ -237,6 +237,9 @@ annotationTextConfirmButton =
     .title = Stadfest
 annotationTextCancelButton =
     .title = Avbryt
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Hallo
 
 ## Settings Page
 
