@@ -237,6 +237,9 @@ annotationTextConfirmButton =
     .title = Conferma
 annotationTextCancelButton =
     .title = Annulla
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Ciao
 
 ## Settings Page
 
