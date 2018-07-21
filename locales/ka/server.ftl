@@ -233,6 +233,9 @@ annotationTextConfirmButton =
     .title = დადასტურება
 annotationTextCancelButton =
     .title = გაუქმება
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = გამარჯობა
 
 ## Settings Page
 
