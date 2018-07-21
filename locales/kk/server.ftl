@@ -231,6 +231,9 @@ annotationTextConfirmButton =
     .title = Растау
 annotationTextCancelButton =
     .title = Бас тарту
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Сәлеметсіз бе
 
 ## Settings Page
 
