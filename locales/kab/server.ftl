@@ -233,6 +233,9 @@ annotationTextConfirmButton =
     .title = Sentem
 annotationTextCancelButton =
     .title = Sefsex
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Azul
 
 ## Settings Page
 
