@@ -237,6 +237,9 @@ annotationTextConfirmButton =
     .title = Επιβεβαίωση
 annotationTextCancelButton =
     .title = Ακύρωση
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Γεια σας
 
 ## Settings Page
 
