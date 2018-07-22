@@ -237,6 +237,9 @@ annotationTextConfirmButton =
     .title = Bekræft
 annotationTextCancelButton =
     .title = Fortryd
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Hallo
 
 ## Settings Page
 
