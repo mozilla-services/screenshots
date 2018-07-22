@@ -259,6 +259,9 @@ annotationTextConfirmButton =
     .title = أكِّد
 annotationTextCancelButton =
     .title = ألغِ
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = مرحبًا
 
 ## Settings Page
 
