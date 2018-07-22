@@ -243,6 +243,9 @@ annotationTextConfirmButton =
     .title = Tinka
 annotationTextCancelButton =
     .title = Atsisakyti
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Labas
 
 ## Settings Page
 
