@@ -243,6 +243,9 @@ annotationTextConfirmButton =
     .title = Пацвердзіць
 annotationTextCancelButton =
     .title = Скасаваць
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Вітаем
 
 ## Settings Page
 
