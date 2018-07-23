@@ -711,38 +711,38 @@ $bg-white: rgba(255, 255, 255, 0.7);
   @include type-box($small);
 }
 
-.black {
+#text-input.black {
   @include type-color($bg-white, black);
 }
 
-.white {
+#text-input.white {
   @include type-color($bg-black, white);
 }
 
-.red {
+#text-input.red {
   @include type-color($bg-black, $red);
 }
 
-.green {
+#text-input.green {
   @include type-color($bg-black, $green);
 }
 
-.blue {
+#text-input.blue {
   @include type-color($bg-white, $blue);
 }
 
-.yellow {
+#text-input.yellow {
   @include type-color($bg-black, $yellow);
 }
 
-.purple {
+#text-input.purple {
   @include type-color($bg-white, $purple);
 }
 
-.sea-green {
+#text-input.sea-green {
   @include type-color($bg-black, $sea-green);
 }
 
-.grey {
+#text-input.grey {
   @include type-color($bg-white, $grey);
 }
