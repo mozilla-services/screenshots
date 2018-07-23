@@ -48,7 +48,7 @@ homePageGetStartedDescription = Symbol nowego Screenshots na swójej symbolowej 
 homePageGetStartedDescriptionPageAction = Wubjeŕśo symbol Screenshots z menija akcijow boka w adresowem pólu, a meni Screenshots pokažo se górjejce we woknje wobglědowaka.
 homePageCaptureRegion = Wobcerk fotografěrowaś
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageCaptureRegionDescription = Klikniśo a śěgniśo, aby wobcerk wubrał, kótaryž cośo fotografěrowaś. Abo stajśo jadnorje kursor nad tym a klikniśo  - Screenshots buźo wobcerk za was wuběraś. Spódoba se wam, což wiźiśo? Wubjeŕśo „Składowaś“ za pśistup na swójo foto wobrazowki online abo tłocašk ze šypku dołoj, aby jo na swójo licadło ześěgnuł.
+homePageCaptureRegionDescription = Klikniśo a śěgniśo, aby wobcerk wubrał, kótaryž cośo fotografěrowaś. Abo stajśo jadnorje kursor nad tym a klikniśo  - Screenshots buźo wobcerk za was wuběraś. Spódoba se wam, což wiźiśo? Wubjeŕśo „Składowaś“ za pśistup k swójomu fotoju wobrazowki online abo tłocašk ze šypku dołoj, aby jo na swójo licadło ześěgnuł.
 homePageCapturePage = Bok fotografěrowaś
 homePageCapturePageDescription = Wužywajśo tłocašk górjejce napšawo, aby cełe boki fotografěrował. Tłocašk "Wobcerk fotografěrowaś" ten wobcerk składujo, kótaryž móžośo bźez kulanje boka wiźeś a tłocašk "Bok fotografěrowaś" składujo ceły bok.
 homePageSaveShare = Składowaś a źěliś
@@ -262,7 +262,7 @@ settingsSignInInvite = Pśizjawśo se, aby pśez rědy synchronizěrował
 settingsSignInButton = Pśizjawiś
     .title = Pśizjawiś
 SettingsPageHeader = Nastajenja Firefox Screenshots
-settingsDescription = Móžośo se z Firefox Accounts pśizjawiś, aby wšykne swóje fota wobrazowki pśez rědy synchronizěrował a priwatny pśistup na nje měł.
+settingsDescription = Móžośo se z Firefox Accounts pśizjawiś, aby wšykne swóje fota wobrazowki pśez rědy synchronizěrował a priwatny pśistup k nim měł.
 settingsPageSubHeader = Synchronizacija a konta
 settingsClosePreferences =
     .title = Nastajenja zacyniś
