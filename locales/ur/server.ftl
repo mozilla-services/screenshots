@@ -33,6 +33,8 @@ homePageGetStarted = شروع کریں
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Screenshots کیسے کام کرتا ہے
 homePageGetStartedTitle = شروع کریں
+homePageCaptureRegion = ایک خطے پر قبضہ کریں
+homePageCapturePage = ایک صفحہ پر قبضہ کریں
 homePageSaveShare = محفوظ کریں اور شیئر کریں
 homePageLegalLink = قانونی
 homePagePrivacyLink = رازداری
@@ -78,6 +80,8 @@ shotPageDeleteButton =
     .title = اس شاٹ کو حزف کریں
 shotPageDownloadShot =
     .title = ڈائونلوڈ
+shotPageEditButton =
+    .title = اس نقش کی تدویین کریں
 shotPageDownload = ڈاؤن لوڈ
 shotPageUpsellFirefox = Firefox ابھی حاصل کریں
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
@@ -95,6 +99,16 @@ shotPageKeepOneMonth = ۱ ماہ
 shotPageSaveExpiration = محفوظ کریں
 shotPageCancelExpiration = منسوخ کریں
 timeDiffJustNow = ابھی
+timeDiffMinutesAgo =
+    { $number ->
+        [one] ۱ منٹ پہلے
+       *[other] { $number } منٹ پہلے
+    }
+timeDiffHoursAgo =
+    { $number ->
+        [one] ۱ گھنٹا پہلے
+       *[other] { $number } گھنٹے پہلے
+    }
 timeDiffDaysAgo =
     { $number ->
         [one] گزشتہ روز
@@ -114,6 +128,8 @@ timeDiffFutureDays =
 
 ## Annotations
 
+annotationPenButton =
+    .title = قلم
 annotationHighlighterButton =
     .title = روشن گر قلم
 # Note: This button reverts all the changes on the image since the start of the editing session.
@@ -123,8 +139,14 @@ annotationSaveEditButton = محفوظ کریں
     .title = تدوین محفوظ کریں
 annotationCancelEditButton = منسوخ کریں
     .title = تدوین کاری منسوخ کریں
+annotationCropConfirmButton = تصدیق کریں
+    .title = انخاب کیتصدیق کریں
+annotationCropCancelButton = منسوخ کریں
+    .title = انتخاب منسوخ کریں
 annotationColorWhite =
     .title = سفيد
+annotationColorBlack =
+    .title = سياہ
 annotationColorRed =
     .title = لال
 annotationColorGreen =
@@ -133,20 +155,33 @@ annotationColorBlue =
     .title = نیلا
 annotationColorYellow =
     .title = پیلا
+annotationColorPurple =
+    .title = جامنی
+annotationColorSeaGreen =
+    .title = کائی 
+annotationColorGrey =
+    .title = سلیٹی
 # Note: annotationTextSize is a title for text size selection dropdown.
 annotationTextSize =
     .title = متن کا ماپ
 # Values shown in text size selection dropdown
 textSizeSmall = چھوٹا
+textSizeMedium = درمیانہ
 textSizeLarge = بڑا
 # Confirm and Cancel button title shown when using text tool
 annotationTextConfirmButton =
     .title = تصدیق کریں
 annotationTextCancelButton =
     .title = منسوخ کریں
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = ہیلو،
 
 ## Settings Page
 
+settingsDisconnectButton = منقطع 
+    .title = منقطع
+settingsGuestAccountMessage = مہمان اکاؤنٹ
 settingsSignInButton = سائن ان
     .title = سائن ان
 
@@ -168,19 +203,30 @@ shotIndexPageNextPage =
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = کیا آپ واقعی اس شاٹ کو حذف کرنا چاہتے ہیں؟
+shotDeleteCancel = منسوخ کریں
+    .title = منسوخ کریں
+shotDeleteConfirm = حزف کریں
+    .title = جزف کریں
 
 ## Metrics page
 ## All metrics strings are optional for translation
 
 metricsPageTotalsQueryTitle = کل
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = اس شاٹ کو حذف کریں
 metricsPageTotalsQueryDevices = کل اندراج شدہ آلات
 metricsPageTotalsQueryActiveShots = متحرک شاٹس
 metricsPageShotsQueryDay = دن
+metricsPageUsersQueryTitle = دن کے جساب سے صارفین
 metricsPageUsersQueryCount = صارفین کی تعداد
 metricsPageUsersQueryDay = دن
 metricsPageUserShotsQueryTitle = فی صارف شاٹس کی تعداد
 metricsPageUserShotsQueryCount = صارفین کی تعداد
 metricsPageRetentionQueryUsers = صارفین کی تعداد
 metricsPageTotalRetentionQueryUsers = صارفین کی تعداد
+metricsPageVersionQueryTitle = اظافہ-جات ورژن
 metricsPageVersionQueryUsers = لاگ ان شدہ صارفین کی تعداد
+metricsPageVersionQueryVersion = اظافہ-جات ورژن
 metricsPageVersionQueryLastSeen = دن
+metricsPageHeader = ۱۰ منٹ
