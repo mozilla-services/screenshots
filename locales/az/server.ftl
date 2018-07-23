@@ -8,6 +8,7 @@ gMyShots = Ekran Görüntülərim
 gHomeLink = Ev
 gNoShots =
     .alt = Ekran görüntüsü tapılmadı
+gScreenshotsDescription = Ekran Görüntüləri asanlaşdırıldı. Firefox-u tərk etmədən ekran görüntülərini çəkin, saxlayın və paylaşın.
 
 ## Footer
 
@@ -27,6 +28,7 @@ footerLinkRemoveAllData = Bütün məlumatları sil
 # creatingPageTitleDefault.
 creatingPageTitle = { $title } yaradılır
 creatingPageTitleDefault = səhifə
+creatingPageWaitMessage = Ekran görüntünüz saxlanılır…
 
 ## Home page
 
@@ -66,6 +68,7 @@ notFoundPageDescription = Səhifə tapılmadı.
 
 # This is the HTML title tag of the page
 shotPageTitle = Ekran görüntüsü: { $originalTitle }
+shotPageAlertErrorUpdatingTitle = Başlıq saxlanılması xətası
 shotPageShareButton =
     .title = Paylaş
 shotPageCopy = Köçür
@@ -78,6 +81,8 @@ shotPageSharePinterest =
     .title = Pinterest-də paylaş
 shotPageShareEmail =
     .title = Keçidi e-poçt ilə paylaş
+shotPageCopyImageText =
+    .label = Şəklin mətnini köçürt
 shotPageDownloadShot =
     .title = Endir
 shotPageDownload = Endir
@@ -135,6 +140,14 @@ timeDiffFutureDays =
 
 ## Annotations
 
+annotationPenButton =
+    .title = Qələm
+annotationHighlighterButton =
+    .title = Marker
+annotationUndoButton =
+    .title = Geri al
+annotationTextButton =
+    .title = Mətn əlavə et
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Təmizlə
@@ -144,6 +157,36 @@ annotationCropConfirmButton = Təsdiqlə
     .title = Seçilənləri təsdiqlə
 annotationCropCancelButton = Ləğv et
     .title = Seçilənləri ləğv et
+annotationColorWhite =
+    .title = Ağ
+annotationColorBlack =
+    .title = Qara
+annotationColorRed =
+    .title = Qırmızı
+annotationColorGreen =
+    .title = Yaşıl
+annotationColorBlue =
+    .title = Göy
+annotationColorYellow =
+    .title = Sarı
+annotationColorPurple =
+    .title = Bənövşəyi
+annotationColorSeaGreen =
+    .title = Dəniz yaşılı
+annotationColorGrey =
+    .title = Boz
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Mətnin ölçüsü
+# Values shown in text size selection dropdown
+textSizeSmall = Balaca
+textSizeMedium = Orta
+textSizeLarge = Böyük
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Təsdiqlə
+annotationTextCancelButton =
+    .title = Ləğv et
 
 ## Settings Page
 
@@ -174,5 +217,9 @@ shotIndexNoExpirationSymbol = ∞
 
 metricsPageShotsQueryDay = Gün
 metricsPageUsersQueryDay = Gün
+metricsPageRetentionQueryUsers = İstifadəçilərin sayı
+metricsPageTotalRetentionQueryUsers = İstifadəçilərin sayı
+metricsPageVersionQueryTitle = Əlavə Versiyası
+metricsPageVersionQueryUsers = Daxil olmuş istifadəçilərin sayı
 metricsPageVersionQueryVersion = Əlavə versiyası
 metricsPageVersionQueryLastSeen = Gün
