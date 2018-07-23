@@ -191,6 +191,7 @@ shotIndexPageSearchPlaceholder =
     .placeholder = میری شاٹس تلاش کریں
 shotIndexPageSearchButton =
     .title = تلاش
+shotIndexPageNoShotsInvitation = جائیں کچھ تخلیق کریں
 shotIndexPageLookingForShots = اپنی شاٹٹس تلاش کر رہے ہیں…
 shotIndexPageNoSearchResultsIntro = ہمم
 shotIndexPageClearSearchButton =
@@ -200,6 +201,12 @@ shotIndexPagePreviousPage =
     .title = پچھلا صفحہ
 shotIndexPageNextPage =
     .title = اگلا صفحہ
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = یہ شاٹ زائدالمیاد
 
 ## Delete Confirmation Dialog
 
@@ -217,6 +224,7 @@ metricsPageTotalsQueryTitle = کل
 metricsPageTotalsQueryDescription = اس شاٹ کو حذف کریں
 metricsPageTotalsQueryDevices = کل اندراج شدہ آلات
 metricsPageTotalsQueryActiveShots = متحرک شاٹس
+metricsPageTotalsQueryExpiredDeletedShots = رائدالمیاد (اور حزف شدہ)
 metricsPageShotsQueryDay = دن
 metricsPageUsersQueryTitle = دن کے جساب سے صارفین
 metricsPageUsersQueryCount = صارفین کی تعداد
