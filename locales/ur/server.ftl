@@ -6,6 +6,8 @@
 
 gMyShots = میری شاٹس
 gHomeLink = ابتدائی صفحہ
+gNoShots =
+    .alt = کوئی شاٹس نہیں ملی
 
 ## Footer
 
@@ -20,6 +22,7 @@ footerLinkRemoveAllData = تمام کوائف ہٹائیں
 ## Creating page
 
 creatingPageTitleDefault = صفحہ
+creatingPageWaitMessage = آپکی شاٹ محفوظ کررہے ہیں
 
 ## Home page
 
