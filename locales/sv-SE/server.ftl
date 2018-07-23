@@ -235,6 +235,11 @@ textSizeLarge = Stor
 # Confirm and Cancel button title shown when using text tool
 annotationTextConfirmButton =
     .title = Bekräfta
+annotationTextCancelButton =
+    .title = Avbryt
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Hallå
 
 ## Settings Page
 
