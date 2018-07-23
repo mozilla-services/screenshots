@@ -237,6 +237,9 @@ annotationTextConfirmButton =
     .title = Megerősítés
 annotationTextCancelButton =
     .title = Mégse
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Helló
 
 ## Settings Page
 
