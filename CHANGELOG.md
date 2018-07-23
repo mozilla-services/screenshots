@@ -1,6 +1,20 @@
+## Version 33.2.0
+
+This release is a collection of server bug fixes for the annotation tools added in 33.1.0.
+
+### Server Changes
+
+* Fix CSS to prevent shot darkening when white highlighter is selected. ([#4645](https://github.com/mozilla-services/screenshots/issues/4645)) 
+* Add placeholder text shown when first opening the text tool. ([#4681](https://github.com/mozilla-services/screenshots/issues/4681)) 
+* Limit text draggable to 5px inside canvas edge ([#4691](https://github.com/mozilla-services/screenshots/issues/4691)) 
+* Shrink text input toward its center and image. ([#4626](https://github.com/mozilla-services/screenshots/issues/4626))
+* Use text input element for text annotations. ([#4658](https://github.com/mozilla-services/screenshots/issues/4658))
+* Switch to ReactDOM.hydrate for React 16+. ([#4354](https://github.com/mozilla-services/screenshots/issues/4354))
+* Focus text input on color change. ([#4643](https://github.com/mozilla-services/screenshots/issues/4643))
+
 ## Version 33.1.0
 
-This is a server release with a focus on new annotation tools.  The Watchdog changes are pref'd off on stage and prod.  The previous server release was 32.2.0.
+This is an unreleased server version with a focus on new annotation tools.  The Watchdog changes are pref'd off on stage and prod.  The previous server release was 32.2.0.
 
 ### Server Changes
 
