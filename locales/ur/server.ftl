@@ -52,6 +52,9 @@ notFoundPageDescription = صفہہ نہیں ملا۔
 
 ## Shot page
 
+# This is the HTML title tag of the page
+shotPageTitle = اسکرین شاٹ:ی { $originalTitle }
+shotPageAlertErrorUpdatingTitle = عنوان محفوظ کرتے میں نقص ہے
 shotPageConfirmDelete = کیا آپ واقعی اس شا ٹ کو مکمل طور پر حذف کرنا چاہتے ہیں؟
 shotPageShareButton =
     .title = شیئر
@@ -115,9 +118,34 @@ annotationClearButton =
     .title = صاف کریں
 annotationSaveEditButton = محفوظ کریں
     .title = تدوین محفوظ کریں
+annotationCancelEditButton = منسوخ کریں
+    .title = تدوین کاری منسوخ کریں
+annotationColorWhite =
+    .title = سفيد
+annotationColorRed =
+    .title = لال
+annotationColorGreen =
+    .title = سبز
+annotationColorBlue =
+    .title = نیلا
+annotationColorYellow =
+    .title = پیلا
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = متن کا ماپ
+# Values shown in text size selection dropdown
+textSizeSmall = چھوٹا
+textSizeLarge = بڑا
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = تصدیق کریں
+annotationTextCancelButton =
+    .title = منسوخ کریں
 
 ## Settings Page
 
+settingsSignInButton = سائن ان
+    .title = سائن ان
 
 ## Shotindex page
 
