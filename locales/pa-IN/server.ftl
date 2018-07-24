@@ -131,16 +131,51 @@ timeDiffMinutesAgo =
 timeDiffHoursAgo =
     { $number ->
         [one] 1 ਘੰਟਾ ਪਹਿਲਾਂ
-       *[other] { $number }ਘੰਟਾ ਪਹਿਲਾਂ
+       *[other] { $number }ਘੰਟੇ ਪਹਿਲਾਂ
     }
 timeDiffDaysAgo =
     { $number ->
         [one] ਕੱਲ੍ਹ
        *[other] { $number }ਦਿਨ ਪਹਿਲਾਂ
     }
+timeDiffFutureSeconds = ਕੁੱਝ ਸਕਿੰਟਾਂ ਵਿੱਚ
+timeDiffFutureMinutes =
+    { $number ->
+        [one] 1 ਮਿੰਟ ਵਿੱਚ
+       *[other] { $number }ਮਿੰਟਾਂ ਵਿੱਚ
+    }
+timeDiffFutureHours =
+    { $number ->
+        [one] 1 ਘੰਟੇ ਵਿੱਚ
+       *[other] { $number }ਘੰਟਿਆਂ ਵਿੱਚ
+    }
+timeDiffFutureDays =
+    { $number ->
+        [one] ਕੱਲ੍ਹ
+       *[other] { $number }ਦਿਨਾਂ ਵਿੱਚ
+    }
 
 ## Annotations
 
+annotationPenButton =
+    .title = ਪੈਨ
+annotationHighlighterButton =
+    .title = ਹਾਇਲਾਈਟਰ
+annotationUndoButton =
+    .title = ਪਹਿਲੇ ਵਰਗਾ ਕਰੋ
+annotationRedoButton =
+    .title = ਦੁਬਾਰਾ ਕਰੋ
+annotationTextButton =
+    .title = ਟੈਕਸਟ ਜੋੜੋ
+# Note: This button reverts all the changes on the image since the start of the editing session.
+annotationClearButton =
+    .title = ਸਾਫ ਕਰੋ
+annotationCropButton =
+    .title = ਕੱਟੋ
+annotationSaveEditButton = ਸੰਭਾਲੋ
+    .title = ਸੰਪਾਦਨ ਨੂੰ ਸੰਭਾਲੋ
+annotationCancelEditButton = ਰੱਦ ਕਰੋ
+    .title = ਸੰਪਾਦਨ ਨੂੰ ਰੱਦ ਕਰੋ
 
 ## Settings Page
 
