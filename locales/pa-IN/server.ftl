@@ -203,9 +203,22 @@ annotationTextSize =
     .title = ਅੱਖਰ ਆਕਾਰ
 # Values shown in text size selection dropdown
 textSizeSmall = ਛੋਟਾ
+textSizeMedium = ਵਿਚਕਾਰਲਾ
+textSizeLarge = ਵੱਡਾ
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = ਪੁਸ਼ਟੀ ਕਰਨਾ
+annotationTextCancelButton =
+    .title = ਰੱਦ ਕਰੋ
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = ਹੈਲੋ
 
 ## Settings Page
 
+settingsDisconnectButton = ਡਿਸਕਨੈਕਟ ਕਰੋ
+    .title = ਡਿਸਕਨੈਕਟ ਕਰੋ
+settingsGuestAccountMessage = ਮਹਿਮਾਨ ਖਾਤੇ
 
 ## Shotindex page
 
