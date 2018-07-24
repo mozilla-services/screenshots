@@ -88,6 +88,10 @@ shotPagePrivacyMessage = ਲਿੰਕ ਵਾਲਾ ਕੋਈ ਵੀ ਵਿਅਕ
 shotPageCopyImageText =
     .label = ਚਿੱਤਰ ਟੈਕਸਟ ਕਾਪੀ ਕਰੋ
 shotPageConfirmDeletion = ਕੀ ਤੁਸੀਂ ਯਕੀਨਨ ਹੀ ਇਸ ਸ਼ਾੱਟ ਨੂੰ ਹਮੇਸ਼ਾ ਲਈ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋਂ?
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = { $date } ਤੱਕ ਮੁੜ ਪ੍ਰਾਪਤ ਕਰੋ
+shotPageExpiredMessage = ਇਹ ਸ਼ਾੱਟ ਖਤਮ ਹੋ ਗਿਆ ਹੈ।
 shotPageDownloadShot =
     .title = ਡਾਊਨਲੋਡ ਕਰੋ
 shotPageEditButton =
