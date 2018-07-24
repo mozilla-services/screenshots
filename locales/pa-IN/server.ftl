@@ -176,6 +176,33 @@ annotationSaveEditButton = ਸੰਭਾਲੋ
     .title = ਸੰਪਾਦਨ ਨੂੰ ਸੰਭਾਲੋ
 annotationCancelEditButton = ਰੱਦ ਕਰੋ
     .title = ਸੰਪਾਦਨ ਨੂੰ ਰੱਦ ਕਰੋ
+annotationCropConfirmButton = ਪੁਸ਼ਟੀ ਕਰੋ
+    .title = ਚੋਣ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ
+annotationCropCancelButton = ਰੱਦ ਕਰੋ 
+    .title = ਚੋਣ ਨੂੰ ਰੱਦ ਕਰੋ
+annotationColorWhite =
+    .title = ਚਿੱਟਾ
+annotationColorBlack =
+    .title = ਕਾਲਾ
+annotationColorRed =
+    .title = ਲਾਲ
+annotationColorGreen =
+    .title = ਹਰਾ
+annotationColorBlue =
+    .title = ਨੀਲਾ
+annotationColorYellow =
+    .title = ਖੱਟਾ
+annotationColorPurple =
+    .title = ਜਾਮਨੀ
+annotationColorSeaGreen =
+    .title = ਸਮੁੰਦਰੀ ਹਰਾ
+annotationColorGrey =
+    .title = ਸਰਮਈ
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = ਅੱਖਰ ਆਕਾਰ
+# Values shown in text size selection dropdown
+textSizeSmall = ਛੋਟਾ
 
 ## Settings Page
 
