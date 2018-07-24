@@ -42,6 +42,10 @@ homePageGetStarted = Başla
 # Note: do not translate 'Firefox Screenshots' when translating this string
 homePageHowScreenshotsWorks = Firefox Ekran Görüntüləri necə işləyir
 homePageGetStartedTitle = Başla
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescription = Alət sətrinizdə yeni Ekran Görüntüləri ikonunu tapın. Onu seçin və Ekran Görüntüləri menyusu səyyahınızın pəncərəsinin üstündə peyda olacaq.
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageGetStartedDescriptionPageAction = Ünvan sətrindəki səhifə əməliyyatları menyusundan Ekran Görüntüləri ikonunu seçin  və Ekran Görüntüləri menyusu səyyahınızın pəncərəsinin üstündə peyda olacaq.
 homePageCaptureRegion = Bölgəni çək
 homePageCapturePage = Səhifəni çək
 homePageSaveShare = Saxla və Paylaş
@@ -53,6 +57,8 @@ homePageCookiesLink = Çərəzlər
 ## Leave Screenshots page
 
 leavePageRemoveAllData = Bütün məlumatlar silindi
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageErrorAddonRequired = Hesabınızı silmək üçün Firefox Screenshots quraşdırılmış olmalıdır
 leavePageErrorGeneric = Xəta baş verdi
 leavePageButtonProceed = Davam et
 leavePageButtonCancel = Ləğv et
@@ -211,11 +217,19 @@ shotIndexNoExpirationSymbol = ∞
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = Bu görüntünü silmək istədiyinizdən əminsiniz?
+shotDeleteCancel = Ləğv et
+    .title = Ləğv et
+shotDeleteConfirm = Sil
+    .title = Sil
 
 ## Metrics page
 ## All metrics strings are optional for translation
 
+metricsPageShotsQueryCount = Görüntülərin sayı
 metricsPageShotsQueryDay = Gün
+metricsPageUsersQueryDescription = Gün ərzində heç olmasa bir ekran görüntüsü yaratmış istifadəçilərin sayı (son 30 gün)
+metricsPageUsersQueryCount = İstifadəçilərin sayı
 metricsPageUsersQueryDay = Gün
 metricsPageRetentionQueryUsers = İstifadəçilərin sayı
 metricsPageTotalRetentionQueryUsers = İstifadəçilərin sayı
@@ -223,3 +237,5 @@ metricsPageVersionQueryTitle = Əlavə Versiyası
 metricsPageVersionQueryUsers = Daxil olmuş istifadəçilərin sayı
 metricsPageVersionQueryVersion = Əlavə versiyası
 metricsPageVersionQueryLastSeen = Gün
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (məlumat bazasının vaxtı: { $time }ms)
