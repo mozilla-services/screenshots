@@ -116,19 +116,20 @@ exports.submit = function(shot) {
   // image data. This is called for every shot saved, so let's keep it simple
   // and minimal.
 
+  const delay = function(waitInMs) {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(), waitInMs);
+    });
+  };
+
+  const getRawBytesPromise = function(timeToWait) {
+    return delay(timeToWait).then(() => Shot.getRawBytesForClip(imageId));
+  };
+
   const getImageRawBytes = function() {
     const MAX_ATTEMPTS = 3;
     const DELAY = 1000; // milliseconds
     let attemptCount = 1;
-
-    const delay = function(waitInMs) {
-      return new Promise((resolve) => {
-        setTimeout(() => resolve(), waitInMs);
-      });
-    };
-    const getRawBytesPromise = function(timeToWait) {
-      return delay(timeToWait).then(() => Shot.getRawBytesForClip(imageId));
-    };
 
     return new Promise((resolve, reject) => {
       const tryGetBytes = function() {
