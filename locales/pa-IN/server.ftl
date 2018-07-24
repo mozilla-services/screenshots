@@ -65,6 +65,8 @@ notFoundPageDescription = ਸਫਾ ਨਹੀਂ ਲੱਭਿਆ।
 
 ## Shot page
 
+# This is the HTML title tag of the page
+shotPageTitle = ਸਕਰੀਨਸ਼ਾੱਟ: { $originalTitle }
 shotPageShareButton =
     .title = ਸਾਂਝਾ ਕਰੋ
 shotPageCopy = ਕਾਪੀ ਕਰੋ
