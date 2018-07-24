@@ -219,6 +219,10 @@ textToolInputPlaceholder =
 settingsDisconnectButton = ਡਿਸਕਨੈਕਟ ਕਰੋ
     .title = ਡਿਸਕਨੈਕਟ ਕਰੋ
 settingsGuestAccountMessage = ਮਹਿਮਾਨ ਖਾਤੇ
+settingsSignInButton = ਸਾਇਨ ਇਨ
+    .title = ਸਾਇਨ ਇਨ
+SettingsPageHeader = ਫਾਇਰਫਾਕਸ ਸਕਰੀਨਸ਼ਾੱਟ ਸੈਟਿੰਗਾਂ
+settingsPageSubHeader = ਸਿੰਕ ਅਤੇ ਖਾਤੇ
 
 ## Shotindex page
 
