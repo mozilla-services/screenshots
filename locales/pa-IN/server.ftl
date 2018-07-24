@@ -53,9 +53,15 @@ leavePageRemoveAllData = ਸਾਰਾ ਡਾਟਾ ਹਟਾਓ
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = ਤੁਹਾਡੇ ਖਾਤੇ ਨੂੰ ਮਿਟਾਉਣ ਲਈ ਤੁਹਾਡੇ ਕੋਲ Firefox ਸਕਰੀਨਸ਼ਾਟ ਸਥਾਪਤ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ
 leavePageErrorGeneric = ਇੱਕ ਗਲਤੀ ਆਈ ਹੈ
+leavePageButtonProceed = ਅੱਤੇ ਵੱਧਣਾ
+leavePageButtonCancel = ਰੱਦ ਕਰੋ
+leavePageDeleted = ਤੁਹਾਡੇ ਸਾਰੇ ਸਕ੍ਰੀਨਸ਼ੋਟਸ ਮਿਟ ਗਏ ਹਨ!
 
 ## Not Found page
 
+notFoundPageTitle = ਸਫਾ ਨਹੀਂ ਲੱਭਿਆ
+notFoundPageIntro = Oops.
+notFoundPageDescription = ਸਫਾ ਨਹੀਂ ਲੱਭਿਆ।
 
 ## Shot page
 
