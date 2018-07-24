@@ -251,6 +251,9 @@ annotationTextConfirmButton =
     .title = Kadarnaat
 annotationTextCancelButton =
     .title = Nullañ
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Demat
 
 ## Settings Page
 
