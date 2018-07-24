@@ -92,14 +92,52 @@ shotPageConfirmDeletion = ਕੀ ਤੁਸੀਂ ਯਕੀਨਨ ਹੀ ਇਸ �
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = { $date } ਤੱਕ ਮੁੜ ਪ੍ਰਾਪਤ ਕਰੋ
 shotPageExpiredMessage = ਇਹ ਸ਼ਾੱਟ ਖਤਮ ਹੋ ਗਿਆ ਹੈ।
+shotPageDeleteButton =
+    .title = ਇਹ ਸ਼ਾੱਟ ਮਿਟਾਓ
+shotPageAbuseButton =
+    .title = ਇਸ ਸ਼ਾਟ ਨੂੰ ਦੁਰਵਿਹਾਰ, ਸਪੈਮ ਜਾਂ ਹੋਰ ਸਮੱਸਿਆਵਾਂ ਲਈ ਰਿਪੋਰਟ ਕਰੋ
 shotPageDownloadShot =
     .title = ਡਾਊਨਲੋਡ ਕਰੋ
 shotPageEditButton =
     .title = ਇਹ ਚਿੱਤਰ ਨੂੰ ਸੋਧੋ
 shotPageDownload = ਡਾਊਨਲੋਡ ਕਰੋ
 shotPageUpsellFirefox = Firefox ਹੁਣੇ ਪ੍ਰਾਪਤ ਕਰੋ
+shotPageKeepFor = ਕਿੰਨੀ ਦੇਰ ਤੱਕ ਇਸ ਸ਼ਾਟ ਨੂੰ ਬਰਕਰਾਰ ਰੱਖਿਆ ਜਾਣਾ ਚਾਹੀਦਾ ਹੈ?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = ਸਮਾਂ ਚੁਣੋ
+# The ∞ is used to indicate that the shot won't expire. It is also used in
+# shotIndexNoExpirationSymbol. Try to use the same symbol in both strings, or
+# if no such symbol is available for a language/culture, simply leave it out.
+shotPageKeepIndefinitelyWithSymbol = ਅਨਿਸ਼ਚਿਤ ਤੌਰ ਤੇ ∞
+shotPageKeepTenMinutes = 10 ਮਿੰਟ
+shotPageKeepOneHour = 1 ਘੰਟਾ
+shotPageKeepOneDay = 1 ਦਿਨ
+shotPageKeepOneWeek = 1 ਹਫਤਾ
+shotPageKeepTwoWeeks = 2 ਹਫਤੇ
+shotPageKeepOneMonth = 1 ਮਹੀਨਾ
+shotPageSaveExpiration = ਸੰਭਾਲੋ
+shotPageCancelExpiration = ਰੱਦ ਕਰੋ
+shotPageDoesNotExpire = ਮਿਆਦ ਖਤਮ ਨਹੀਂ ਹੁੰਦੀ
+# Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
+shotPageExpiresIn = ਮਿਆਦ ਖਤਮ { $timediff }
+# Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
+shotPageExpired = ਮਿਆਦ ਖਤਮ ਹੋਈ{ $timediff }
+timeDiffJustNow = ਸਿਰਫ ਹੁਣ
+timeDiffMinutesAgo =
+    { $number ->
+        [one] 1 ਮਿੰਟ ਪਹਿਲਾਂ
+       *[other] { $number }ਮਿੰਟ ਪਹਿਲਾਂ
+    }
+timeDiffHoursAgo =
+    { $number ->
+        [one] 1 ਘੰਟਾ ਪਹਿਲਾਂ
+       *[other] { $number }ਘੰਟਾ ਪਹਿਲਾਂ
+    }
+timeDiffDaysAgo =
+    { $number ->
+        [one] ਕੱਲ੍ਹ
+       *[other] { $number }ਦਿਨ ਪਹਿਲਾਂ
+    }
 
 ## Annotations
 
