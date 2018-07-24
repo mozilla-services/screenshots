@@ -197,6 +197,8 @@ annotationUndoButton =
     .title = Poništi
 annotationRedoButton =
     .title = Uradi ponovo
+annotationTextButton =
+    .title = Dodaj tekst
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Očisti
@@ -228,6 +230,21 @@ annotationColorSeaGreen =
     .title = Plavo-zelena
 annotationColorGrey =
     .title = Siva
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Veličina teksta
+# Values shown in text size selection dropdown
+textSizeSmall = Mala
+textSizeMedium = Srednja
+textSizeLarge = Velika
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Potvrdi
+annotationTextCancelButton =
+    .title = Otkaži
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Zdravo
 
 ## Settings Page
 
