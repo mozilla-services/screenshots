@@ -67,6 +67,9 @@ notFoundPageDescription = ਸਫਾ ਨਹੀਂ ਲੱਭਿਆ।
 
 # This is the HTML title tag of the page
 shotPageTitle = ਸਕਰੀਨਸ਼ਾੱਟ: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = ਸਮਾਪਤੀ ਦੀ ਸੰਭਾਲ ਕਰਨ ਵਿੱਚ ਗਲਤੀ
+shotPageAlertErrorDeletingShot = ਸ਼ਾੱਟ ਨੂੰ ਮਿਟਾਉਣ ਵਿੱਚ ਗਲਤੀ
+shotPageAlertErrorUpdatingTitle = ਸਿਰਲੇਖ ਸੰਭਾਲ ਵਿੱਚ ਗਲਤੀ
 shotPageShareButton =
     .title = ਸਾਂਝਾ ਕਰੋ
 shotPageCopy = ਕਾਪੀ ਕਰੋ
