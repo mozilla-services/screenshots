@@ -36,7 +36,7 @@ exports.PenTool = class PenTool extends DrawingTool {
   }
 
   reset() {
-    this.drawingContext.clearRect(0, 0, this.state.canvasCssWidth, this.state.canvasCssHeight);
+    this.clearRect();
     previousPosition = null;
   }
 };

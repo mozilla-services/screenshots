@@ -64,8 +64,8 @@ exports.DrawingTool = class DrawingTool extends React.Component {
     }
     this.mousedownPosition = this.captureMousePosition(e);
     this.isMousedown = true;
-    this.draw(this.mousedownPosition);
     this.updateDrawnArea(this.mousedownPosition);
+    this.draw(this.mousedownPosition);
   }
 
   onMouseMove(e) {
@@ -94,6 +94,14 @@ exports.DrawingTool = class DrawingTool extends React.Component {
     this.drawnArea = this.drawnArea.union(newSelection);
   }
 
+  clearRect() {
+    this.drawingContext.clearRect(
+      Math.min(0, this.drawnArea.left - this.state.lineWidth),
+      Math.min(0, this.drawnArea.top - this.state.lineWidth),
+      Math.max(this.state.canvasCssWidth, this.drawnArea.width + this.state.lineWidth),
+      Math.max(this.state.canvasCssHeight, this.drawnArea.width + this.state.lineWidth));
+  }
+
   onMouseUp(e) {
     if (e.button !== 0 || !this.isMousedown) {
       return;
@@ -117,11 +125,11 @@ exports.DrawingTool = class DrawingTool extends React.Component {
         this.globalCompositeOperation || "source-over");
     }
 
+    this.sendMetrics();
+    this.reset();
     this.isMousedown = false;
     this.mousedownPosition = null;
     this.drawnArea = null;
-    this.sendMetrics();
-    this.reset();
   }
 
   finalize() {

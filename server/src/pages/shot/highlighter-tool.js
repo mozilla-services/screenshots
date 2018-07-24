@@ -45,7 +45,7 @@ exports.HighlighterTool = class HighlighterTool extends DrawingTool {
 
     this.drawingContext.moveTo(previousPosition.x, previousPosition.y);
     this.drawingContext.lineTo(position.x, position.y);
-    this.drawingContext.clearRect(0, 0, this.state.canvasCssWidth, this.state.canvasCssHeight);
+    this.clearRect();
     this.drawingContext.beginPath();
     this.drawingContext.moveTo(points[0].x, points[0].y);
     let i;
@@ -77,7 +77,7 @@ exports.HighlighterTool = class HighlighterTool extends DrawingTool {
   }
 
   reset() {
-    this.drawingContext.clearRect(0, 0, this.state.canvasCssWidth, this.state.canvasCssHeight);
+    this.clearRect();
     previousPosition = null;
     points = [];
   }
