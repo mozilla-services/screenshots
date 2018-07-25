@@ -236,10 +236,34 @@ shotIndexPageSearchPlaceholder =
 shotIndexPageSearchButton =
     .title = ਖੋਜਣਾ
 shotIndexPageNoShotsMessage = ਸ਼ਾੱਟ ਸੰਭਾਲੇ ਨਹੀਂ।
+shotIndexPageNoShotsInvitation = ਜਾਓ, ਕੁਝ ਬਣਾਉ।
+shotIndexPageLookingForShots = ਆਪਣੇ ਸ਼ਾਟਾਂ ਦੀ ਖੋਜ ਕਰ ਰਿਹਾ ਹੈ ...
+shotIndexPageNoSearchResults = ਅਸੀਂ ਤੁਹਾਡੀ ਖੋਜ ਨਾਲ ਮੇਲ ਖਾਂਦੇ ਕੋਈ ਵੀ ਸ਼ਾਟ ਨਹੀਂ ਲੱਭ ਸਕਦੇ।
+shotIndexPageClearSearchButton =
+    .title = ਖੋਜ ਸਾਫ ਕਰੋ
+shotIndexPageConfirmShotDelete = ਇਹ ਸ਼ਾੱਟ ਮਿਟਾਓ?
+shotIndexPagePreviousPage =
+    .title = ਪਹਿਲਾ ਸਫਾ
+shotIndexPageNextPage =
+    .title = ਅਗਲਾ ਸਫਾ
+# This symbol is used in the lower right corner of the card for a shot on the
+# My Shots page to indicate that the shot does not expire. It should be a
+# single character (or simply nothing if no such symbol is available for a
+# language/culture).
+shotIndexNoExpirationSymbol = ∞
+    .title = ਇਸ ਸ਼ਾੱਟ ਦੀ ਮਿਆਦ ਖਤਮ ਨਹੀਂ ਹੋਈ
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = ਕੀ ਤੁਸੀਂ ਯਕੀਨਨ ਹੀ ਇਹ ਸ਼ਾੱਟ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋਂ?
+shotDeleteCancel = ਰੱਦ ਕਰੋ
+    .title = ਰੱਦ ਕਰੋ
+shotDeleteConfirm = ਮਿਟਾਓ
+    .title = ਮਿਟਾਓ
 
 ## Metrics page
 ## All metrics strings are optional for translation
 
+# Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = ਫਾਇਰਫਾਕਸ ਸਕਰੀਨਸ਼ਾਟ ਮੈਟ੍ਰਿਕਸ
+metricsPageTotalsQueryTitle = ਕੁੱਲ
