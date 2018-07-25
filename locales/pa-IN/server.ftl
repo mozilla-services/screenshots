@@ -226,6 +226,11 @@ settingsPageSubHeader = ਸਿੰਕ ਅਤੇ ਖਾਤੇ
 
 ## Shotindex page
 
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = ਸ਼ਾੱਟ ਮਿਟਾਉਣ ਵਿੱਚ ਗਲਤੀ:{ $status }{ $statusText }
+# { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = ਮੇਰੇ ਸ਼ਾੱਟ: ਖੋਜ ਲਈ { $searchTerm }
 
 ## Delete Confirmation Dialog
 
