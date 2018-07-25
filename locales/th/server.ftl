@@ -4,10 +4,10 @@
 
 ## Global phrases shared across pages, prefixed with 'g'
 
-gMyShots = ภาพของฉัน
+gMyShots = ภาพหน้าจอของฉัน
 gHomeLink = หน้าแรก
 gNoShots =
-    .alt = ไม่พบภาพ
+    .alt = ไม่พบภาพหน้าจอ
 
 ## Footer
 
@@ -27,11 +27,11 @@ footerLinkRemoveAllData = เอาข้อมูลทั้งหมดออ
 # creatingPageTitleDefault.
 creatingPageTitle = กำลังสร้าง { $title }
 creatingPageTitleDefault = หน้า
-creatingPageWaitMessage = กำลังบันทึกภาพของคุณ…
+creatingPageWaitMessage = กำลังบันทึกภาพหน้าจอของคุณ…
 
 ## Home page
 
-homePageButtonMyShots = ไปยังภาพของฉัน
+homePageButtonMyShots = ไปยังภาพหน้าจอของฉัน
 homePageTeaser = เร็ว ๆ นี้...
 homePageDownloadFirefoxTitle = Firefox
 homePageDownloadFirefoxSubTitle = ดาวน์โหลดฟรี
@@ -64,7 +64,7 @@ notFoundPageDescription = ไม่พบหน้า
 # This is the HTML title tag of the page
 shotPageTitle = ภาพหน้าจอ: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = เกิดข้อผิดพลาดในการบันทึกการหมดอายุ
-shotPageAlertErrorDeletingShot = เกิดข้อผิดพลาดในการลบภาพ
+shotPageAlertErrorDeletingShot = เกิดข้อผิดพลาดในการลบภาพหน้าจอ
 shotPageAlertErrorUpdatingTitle = เกิดข้อผิดพลาดในการบันทึกชื่อเรื่อง
 shotPageShareButton =
     .title = แบ่งปัน
@@ -78,12 +78,12 @@ shotPageSharePinterest =
     .title = แบ่งปันบน Pinterest
 shotPageShareEmail =
     .title = แบ่งปันลิงก์ทางอีเมล
-shotPageShareLink = รับลิงก์ที่แบ่งปันได้ไปยังภาพนี้:
+shotPageShareLink = รับลิงก์ที่แบ่งปันได้ไปยังภาพหน้าจอนี้:
 shotPageCopyImageText =
     .label = คัดลอกข้อความภาพ
-shotPageExpiredMessage = ภาพนี้หมดอายุแล้ว
+shotPageExpiredMessage = ภาพหน้าจอนี้หมดอายุแล้ว
 shotPageDeleteButton =
-    .title = ลบภาพนี้
+    .title = ลบภาพหน้าจอนี้
 shotPageDownloadShot =
     .title = ดาวน์โหลด
 shotPageEditButton =
@@ -188,15 +188,15 @@ settingsClosePreferences =
 ## Shotindex page
 
 # { $searchTerm } is a placeholder for text the user typed into the search box
-shotIndexPageSearchResultsTitle = ภาพของฉัน: ค้นหา { $searchTerm }
+shotIndexPageSearchResultsTitle = ภาพหน้าจอของฉัน: ค้นหา { $searchTerm }
 # { $error } is a placeholder for a non-translated error message that could be shared
 # with developers when debugging an error.
 shotIndexPageErrorRendering = เกิดข้อผิดพลาดในการเรนเดอร์หน้า: { $error }
 shotIndexPageSearchPlaceholder =
-    .placeholder = ค้นหาภาพของฉัน
+    .placeholder = ค้นหาภาพหน้าจอของฉัน
 shotIndexPageSearchButton =
     .title = ค้นหา
-shotIndexPageNoShotsMessage = ไม่มีภาพที่บันทึกไว้
+shotIndexPageNoShotsMessage = ไม่มีภาพหน้าจอที่บันทึกไว้
 shotIndexPageLookingForShots = กำลังมองหาภาพของคุณ…
 shotIndexPageNoSearchResultsIntro = หืมม
 shotIndexPageClearSearchButton =
