@@ -235,6 +235,7 @@ shotIndexPageSearchPlaceholder =
     .placeholder = ਮੇਰੇ ਸ਼ਾੱਟ ਖੋਜੋ
 shotIndexPageSearchButton =
     .title = ਖੋਜਣਾ
+shotIndexPageNoShotsMessage = ਸ਼ਾੱਟ ਸੰਭਾਲੇ ਨਹੀਂ।
 
 ## Delete Confirmation Dialog
 
