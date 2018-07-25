@@ -267,3 +267,8 @@ shotDeleteConfirm = ਮਿਟਾਓ
 # Note: 'Firefox Screenshots' should not be translated
 metricsPageTitle = ਫਾਇਰਫਾਕਸ ਸਕਰੀਨਸ਼ਾਟ ਮੈਟ੍ਰਿਕਸ
 metricsPageTotalsQueryTitle = ਕੁੱਲ
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = ਸਕਰੀਨਸ਼ਾੱਟਸ ਦੀ ਇੱਕ ਸੰਖੇਪ ਜਾਣਕਾਰੀ
+metricsPageTotalsQueryDevices = ਕੁੱਲ ਯੰਤਰ ਰਜਿਸਟਰ ਕੀਤੇ
+metricsPageTotalsQueryActiveShots = ਐਕਟਿਵ ਸ਼ਾਟ
+metricsPageTotalsQueryExpiredShots = ਮਿਆਦ ਖਤਮ (ਪਰ ਮੁੜ ਪ੍ਰਾਪਤੀਯੋਗ)
