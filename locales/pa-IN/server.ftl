@@ -231,6 +231,10 @@ settingsPageSubHeader = ਸਿੰਕ ਅਤੇ ਖਾਤੇ
 shotIndexPageErrorDeletingShot = ਸ਼ਾੱਟ ਮਿਟਾਉਣ ਵਿੱਚ ਗਲਤੀ:{ $status }{ $statusText }
 # { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = ਮੇਰੇ ਸ਼ਾੱਟ: ਖੋਜ ਲਈ { $searchTerm }
+shotIndexPageSearchPlaceholder =
+    .placeholder = ਮੇਰੇ ਸ਼ਾੱਟ ਖੋਜੋ
+shotIndexPageSearchButton =
+    .title = ਖੋਜਣਾ
 
 ## Delete Confirmation Dialog
 
