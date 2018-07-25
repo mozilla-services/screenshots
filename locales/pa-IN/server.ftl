@@ -299,3 +299,5 @@ metricsPageVersionQueryLastSeen = ਦਿਨ
 metricsPageHeader = ਮੈਟ੍ਰਿਕਸ
 # Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
 metricsPageGeneratedDateTime = ਪੈਦਾ ਕੀਤਾ: { $created }
+# Note { $time } is a placeholder for a number of milliseconds, like '100'
+metricsPageDatabaseQueryTime = (ਡਾਟਾਬੇਸ ਟਾਈਮ: { $time }ਐਮਐਸ)
