@@ -288,3 +288,14 @@ metricsPageUserShotsQueryCount = ਯੂਜ਼ਰਾਂ ਦੀ ਗਿਣਤੀ
 metricsPageUserShotsQueryShots = ਐਕਟਿਵ (ਬੇਲੋੜੇ) ਸ਼ਾੱਟਾਂ ਦੀ ਲਗਭਗ ਗਿਣਤੀ
 metricsPageRetentionQueryTitle = ਹਫਤੇ ਤਕ ਰੀਟੇਸ਼ਨ
 metricsPageRetentionQueryUsers = ਯੂਜ਼ਰਾਂ ਦੀ ਗਿਣਤੀ
+metricsPageTotalRetentionQueryTitle = ਕੁੱਲ ਰੀਟੇਸ਼ਨ
+metricsPageTotalRetentionQueryUsers = ਯੂਜ਼ਰਾਂ ਦੀ ਗਿਣਤੀ
+metricsPageTotalRetentionQueryDays = ਦਿਨ, ਯੂਜ਼ਰ ਸ਼ਾੱਟ ਬਣਾ ਰਹੇ ਹਨ
+metricsPageVersionQueryTitle = ਐਡ-ਆਨ ਵਰਜਨ
+metricsPageVersionQueryDescription = ਐਡ-ਆੱਨ ਦਾ ਵਰਜਨ ਲਾਗਇਨ ਦੌਰਾਨ ਵਰਤਿਆ, ਪਿਛਲੇ 14 ਦਿਨ ਵਿਚ
+metricsPageVersionQueryUsers = ਲਾਗਇਨ ਕਰਨ ਵਾਲੇ ਯੂਜ਼ਰਾਂ ਦੀ ਗਿਣਤੀ
+metricsPageVersionQueryVersion = ਐਡ-ਆੱਨ ਵਰਜਨ
+metricsPageVersionQueryLastSeen = ਦਿਨ
+metricsPageHeader = ਮੈਟ੍ਰਿਕਸ
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = ਪੈਦਾ ਕੀਤਾ: { $created }
