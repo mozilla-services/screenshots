@@ -286,3 +286,5 @@ metricsPageUserShotsQueryTitle = ਹਰੇਕ ਯੂਜ਼ਰ ਦੇ ਸ਼ਾੱਟ�
 metricsPageUserShotsQueryDescription = ਉਹਨਾਂ ਯੂਜ਼ਰਾਂ ਦੀ ਗਿਣਤੀ ਜਿਨ੍ਹਾਂ ਕੋਲ ਐਨ ਕੁੱਲ ਸ਼ਾਟ ਹਨ
 metricsPageUserShotsQueryCount = ਯੂਜ਼ਰਾਂ ਦੀ ਗਿਣਤੀ
 metricsPageUserShotsQueryShots = ਐਕਟਿਵ (ਬੇਲੋੜੇ) ਸ਼ਾੱਟਾਂ ਦੀ ਲਗਭਗ ਗਿਣਤੀ
+metricsPageRetentionQueryTitle = ਹਫਤੇ ਤਕ ਰੀਟੇਸ਼ਨ
+metricsPageRetentionQueryUsers = ਯੂਜ਼ਰਾਂ ਦੀ ਗਿਣਤੀ
