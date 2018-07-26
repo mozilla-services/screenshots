@@ -5,12 +5,13 @@ source tree.
 
 Start the system addon release process by copying the following checklist into a new github bug, then work through the list:
 
+- [ ] If any upstream changes were made to screenshots in mozilla-central, add those commits to github master before starting the export.
 - [ ] Bump the minor version number in package.json, following our [version numbering conventions](https://github.com/mozilla-services/screenshots/issues/2647)
 - [ ] If exporting from a branch besides master, review differences in locales between the export: <br> `git diff --shortstat HEAD..master locales/` (`--shortstat` gives a summary, `--numstat` is more detailed, remove to see full diff)
 - [ ] Update changelog: `./bin/generate-commit-log --write recent`
+  - Be sure to exclude renovate (dependency update) PRs
 - [ ] Create tag: `git tag MAJOR.MINOR.0` – the version should be higher than the version currently in `package.json` (e.g., if the in-development version is 10.0.0, then tag 10.1.0)
 - [ ] Push tag: `git push --tags`
-- [ ] Merge master to `firefox-export` branch: `git checkout firefox-export && git merge master && git push`
 - [ ] Create a Bugzilla release bug, [cloning bug 1403661](https://bugzilla.mozilla.org/enter_bug.cgi?format=__default__&product=Firefox&cloned_bug_id=1403661)
   - Use "Show Advanced Fields" and review CC list and dependencies
   - Ensure the bug is filed under the Firefox product, Screenshots component
@@ -38,6 +39,7 @@ Start the system addon release process by copying the following checklist into a
   - `git mozreview push` will work if you are using git-cinnabar and have mozreview configured
   - To configure mozreview for use with git and git-cinnabar, see [this helpful blog post](https://sny.no/2016/03/geckogit)
   - Note that this step should automatically attach the patch to the Bugzilla bug and request review from the reviewer mentioned in the commit message (should be reflected as an r? flag on the Bugzilla attachment)
-- [ ] Bump the major version number in package.json, following our [version numbering conventions](https://github.com/mozilla-services/screenshots/issues/2647) (master only, this is to prepare for the next release)
-- [ ] Open a Github PR with both version number commits and the changelog commit
-- [ ] Relax! :beers:
+- [ ] Check that the Try build works (the decision step and build tasks in treeherder should be green)
+  - If the build looks ok, send an email to the QA email alias (testpilot-qa) and CC the team alias (team-screenshots), asking QA to verify closed bugs are fixed and no new bugs are present.
+- [ ] Open a Github PR with the version number commit and the changelog commit
+- [ ] Relax! :beach_umbrella:
