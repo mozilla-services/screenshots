@@ -237,6 +237,9 @@ annotationTextConfirmButton =
     .title = Moneĩ
 annotationTextCancelButton =
     .title = Heja
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Mba'éichapa
 
 ## Settings Page
 
