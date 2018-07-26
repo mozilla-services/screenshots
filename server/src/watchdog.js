@@ -122,39 +122,32 @@ exports.submit = function(shot) {
     });
   };
 
-  const getRawBytesPromise = function(timeToWait) {
-    return delay(timeToWait).then(() => Shot.getRawBytesForClip(imageId));
-  };
-
-  const getImageRawBytes = function() {
-    const MAX_ATTEMPTS = 3;
-    const DELAY = 1000; // milliseconds
-    let attemptCount = 1;
-
+  const getRawBytesPromise = function(timeToWait, retry) {
     return new Promise((resolve, reject) => {
-      const tryGetBytes = function() {
-        getRawBytesPromise(DELAY).then(obj => {
-          if (obj === null) {
-            const err = new Error("Shot image expired, blocked, or not found.");
-            err.imageId = String(imageId);
-            reject(err);
-          } else {
-            resolve(obj);
-          }
-        }).catch(e => {
-          if (attemptCount >= MAX_ATTEMPTS) {
-            reject(e);
-          } else {
-            attemptCount++;
-            tryGetBytes();
-          }
-        });
-      };
-      tryGetBytes();
+      delay(timeToWait)
+      .then(() => Shot.getRawBytesForClip(imageId))
+      .then(obj => {
+        if (obj === null) {
+          const err = new Error("Shot image expired, blocked, or not found.");
+          err.imageId = String(imageId);
+          reject(err);
+        } else {
+          resolve(obj);
+        }
+      })
+      .catch(e => {
+        if (!retry) {
+          reject(e);
+        }
+        resolve(null);
+      });
     });
   };
 
-  getImageRawBytes().then((obj) => {
+  getRawBytesPromise(1000, true)
+  .then(bytes => bytes || getRawBytesPromise(1000, true))
+  .then(bytes => bytes || getRawBytesPromise(1000))
+  .then((obj) => {
     form.append("image", obj.data, {
       filename: imageId,
       contentType: obj.contentType
