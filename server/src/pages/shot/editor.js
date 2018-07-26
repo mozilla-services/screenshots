@@ -37,7 +37,7 @@ exports.Editor = class Editor extends React.Component {
 
       if (this.props.clip.image.captureType !== "fullPage"
           && this.props.clip.image.captureType !== "fullPageTruncated") {
-        canvasPixelRatio = this.originalImage.naturalWidth / this.props.clip.image.dimensions.x;
+        canvasPixelRatio = this.originalImage.naturalWidth / Math.floor(this.props.clip.image.dimensions.x);
       }
 
       this.setState({canvasPixelRatio});
