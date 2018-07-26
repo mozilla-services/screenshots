@@ -58,9 +58,9 @@ exports.TextTool = class TextTool extends React.Component {
     hasFirstInput = false;
     this.textInput.current.nextSibling.textContent = this.textInput.current.placeholder;
     this.textInput.current.focus();
+    this.textInput.current.nextSibling.style.maxWidth = `${this.canvasCssWidth - 2 * TEXT_DRAG_EDGE_LIMIT}px`;
     this.adjustWidth();
     previousTextInputWidth = this.textInput.current.clientWidth;
-    this.center = this.getCenter();
     if (this.props.toolbarOverrideCallback) {
       this.props.toolbarOverrideCallback();
     }
@@ -180,7 +180,6 @@ exports.TextTool = class TextTool extends React.Component {
   }
 
   onMouseUp(e) {
-    this.center = this.getCenter();
     dragMouseDown = false;
     prevDragMousePos = null;
   }
@@ -263,40 +262,23 @@ exports.TextTool = class TextTool extends React.Component {
     this.textInput.current.style.width = `${width}px`;
   }
 
-  getCenter() {
-    const containerRect = this.el.current.getBoundingClientRect();
-    const inputRect = this.textInput.current.getBoundingClientRect();
-    return clamp(
-      (inputRect.left - containerRect.left + (this.textInput.current.clientWidth / 2)),
-      0,
-      containerRect.width);
-  }
-
   adjustX() {
-    if (hasFirstInput) {
-      this.textInput.current.nextSibling.textContent = this.textInput.current.value;
+    const styles = window.getComputedStyle(this.textInput.current);
+    // Check for text input width not to exceed canvas width, if yes constraint
+    // text input value to hidden div text content to stop additional text in the input box
+    if ((this.textInput.current.value.length > this.textInput.current.nextSibling.textContent.length) &&
+        (this.textInput.current.nextSibling.clientWidth >=
+          this.canvasCssWidth - (2 * parseFloat(styles.paddingLeft)))) {
+      this.textInput.current.value = this.textInput.current.nextSibling.textContent;
+    } else if (hasFirstInput) {
+        this.textInput.current.nextSibling.textContent = this.textInput.current.value;
     }
+
     this.adjustWidth();
-
-    const containerRect = this.el.current.getBoundingClientRect();
-    const inputRect = this.textInput.current.getBoundingClientRect();
     const widthDiff = this.textInput.current.clientWidth - previousTextInputWidth;
-    let left;
-
-    if (this.center === 0) {
-      left = Math.floor(inputRect.left - containerRect.left - widthDiff);
-      if (left > 0) {
-        this.center = this.getCenter();
-      }
-    } else if (this.center === containerRect.width) {
-      if ((inputRect.left - containerRect.left + inputRect.width) < containerRect.width) {
-        this.center = this.getCenter();
-      }
-    } else {
-      left = Math.floor(this.center - inputRect.width / 2);
-    }
-
-    this.setState({left});
+    const maxLeft = this.canvasCssWidth - this.textInput.current.clientWidth + TEXT_DRAG_EDGE_LIMIT;
+    const newLeft = clamp(this.state.left - widthDiff / 2, TEXT_DRAG_EDGE_LIMIT, maxLeft);
+    this.setState({left: newLeft});
     previousTextInputWidth = this.textInput.current.clientWidth;
   }
 };
