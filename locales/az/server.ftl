@@ -152,6 +152,8 @@ annotationHighlighterButton =
     .title = Marker
 annotationUndoButton =
     .title = Geri al
+annotationRedoButton =
+    .title = Təkrarla
 annotationTextButton =
     .title = Mətn əlavə et
 # Note: This button reverts all the changes on the image since the start of the editing session.
@@ -159,6 +161,10 @@ annotationClearButton =
     .title = Təmizlə
 annotationCropButton =
     .title = Kəs
+annotationSaveEditButton = Saxla
+    .title = Dəyişikliyi saxla
+annotationCancelEditButton = Ləğv et
+    .title = Dəyişikliyi ləğv et
 annotationCropConfirmButton = Təsdiqlə
     .title = Seçilənləri təsdiqlə
 annotationCropCancelButton = Ləğv et
@@ -193,9 +199,22 @@ annotationTextConfirmButton =
     .title = Təsdiqlə
 annotationTextCancelButton =
     .title = Ləğv et
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Salam
 
 ## Settings Page
 
+settingsDisconnectButton = Əlaqəni kəs
+    .title = Əlaqəni kəs
+settingsGuestAccountMessage = Qonaq Hesabı
+settingsSignInInvite = Cihazlar arasında sinxronlaşma üçün daxil olun
+settingsSignInButton = Daxil ol
+    .title = Daxil ol
+SettingsPageHeader = Firefox Screenshots Tənzimləmələri
+settingsPageSubHeader = Sync və Hesablar
+settingsClosePreferences =
+    .title = Nizamlamaları qapat
 
 ## Shotindex page
 
@@ -226,16 +245,31 @@ shotDeleteConfirm = Sil
 ## Metrics page
 ## All metrics strings are optional for translation
 
+# Note: 'Firefox Screenshots' should not be translated
+metricsPageTitle = Firefox Screenshots Metrikləri
+metricsPageTotalsQueryTitle = Ümumi
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+metricsPageTotalsQueryDescription = Screenshots-un İcmalı
+metricsPageTotalsQueryDevices = Ümumi qeydiyyatdan keçmiş cihazlar
+metricsPageTotalsQueryActiveShots = Aktiv görüntülər
+metricsPageTotalsQueryExpiredShots = Vaxtı keçib (lakin bərpa oluna bilər)
+metricsPageTotalsQueryExpiredDeletedShots = Vaxtı keçib (və silinib)
+metricsPageShotsQueryTitle = Günlük Görüntülər
+metricsPageShotsQueryDescription = Hər gün yaradılmış görüntülərin sayı (son 30 gün ərzində)
 metricsPageShotsQueryCount = Görüntülərin sayı
 metricsPageShotsQueryDay = Gün
+metricsPageUsersQueryTitle = Günlük İstifadəçilər
 metricsPageUsersQueryDescription = Gün ərzində heç olmasa bir ekran görüntüsü yaratmış istifadəçilərin sayı (son 30 gün)
 metricsPageUsersQueryCount = İstifadəçilərin sayı
 metricsPageUsersQueryDay = Gün
+metricsPageUserShotsQueryTitle = İstifadəçi Başına Görüntü Sayı
+metricsPageUserShotsQueryCount = İstifadəçilərin Sayı
 metricsPageRetentionQueryUsers = İstifadəçilərin sayı
 metricsPageTotalRetentionQueryUsers = İstifadəçilərin sayı
 metricsPageVersionQueryTitle = Əlavə Versiyası
 metricsPageVersionQueryUsers = Daxil olmuş istifadəçilərin sayı
 metricsPageVersionQueryVersion = Əlavə versiyası
 metricsPageVersionQueryLastSeen = Gün
+metricsPageHeader = Metriklər
 # Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (məlumat bazasının vaxtı: { $time }ms)
