@@ -20,7 +20,7 @@
     "envc": "2.5.0",
     "escape-html": "1.0.3",
     "express": "4.16.3",
-    "fluent": "0.4.3",
+    "fluent": "0.7.0",
     "fluent-intl-polyfill": "0.1.0",
     "fluent-langneg": "0.1.0",
     "fluent-react": "0.4.1",
