@@ -40,7 +40,7 @@ exports.TextTool = class TextTool extends React.Component {
     const VISIBLE_HEIGHT = this.canvasCssHeight > window.innerHeight ? window.innerHeight - EDITOR_HEADER_HEIGHT :
                                                                        this.canvasCssHeight;
 
-    const INIT_LEFT = Math.floor((this.canvasCssWidth / 2) - (INIT_FONT_SIZE / 2));
+    const INIT_LEFT = Math.floor(this.canvasCssWidth / 2);
     const INIT_TOP = window.scrollY + Math.floor((VISIBLE_HEIGHT / 2) - ((INIT_FONT_SIZE) / 2) - TEXT_INPUT_PADDING);
 
     this.state = {
@@ -53,13 +53,17 @@ exports.TextTool = class TextTool extends React.Component {
   }
 
   componentDidMount() {
-    // Set hidden div to placeholder text and has first edit happened flag to false. hasFirstInput
+    // Set hidden div to placeholder text and has first input happened flag to false. hasFirstInput
     // is used in adjustX to avoid setting hidden div textContent to empty textInput value
     hasFirstInput = false;
     this.textInput.current.nextSibling.textContent = this.textInput.current.placeholder;
     this.textInput.current.focus();
     this.textInput.current.nextSibling.style.maxWidth = `${this.canvasCssWidth - 2 * TEXT_DRAG_EDGE_LIMIT}px`;
     this.adjustWidth();
+    const maxLeft = this.getInputMaxLeft();
+    const newLeft = clamp(this.state.left - this.textInput.current.clientWidth / 2 + TEXT_DRAG_EDGE_LIMIT, TEXT_DRAG_EDGE_LIMIT, maxLeft);
+    this.setState({left: newLeft});
+
     previousTextInputWidth = this.textInput.current.clientWidth;
     if (this.props.toolbarOverrideCallback) {
       this.props.toolbarOverrideCallback();
@@ -171,7 +175,7 @@ exports.TextTool = class TextTool extends React.Component {
     const xDelta = mousePos.x - prevDragMousePos.x;
     const yDelta = mousePos.y - prevDragMousePos.y;
 
-    const maxLeft = this.canvasCssWidth - this.textInput.current.clientWidth - TEXT_DRAG_EDGE_LIMIT;
+    const maxLeft = this.getInputMaxLeft();
     const maxTop =  this.canvasCssHeight - this.textInput.current.clientHeight - TEXT_DRAG_EDGE_LIMIT;
 
     const newLeft = clamp(this.state.left + xDelta, TEXT_DRAG_EDGE_LIMIT, maxLeft);
@@ -286,7 +290,7 @@ exports.TextTool = class TextTool extends React.Component {
 
     this.adjustWidth();
     const widthDiff = this.textInput.current.clientWidth - previousTextInputWidth;
-    const maxLeft = this.canvasCssWidth - this.textInput.current.clientWidth + TEXT_DRAG_EDGE_LIMIT;
+    const maxLeft = this.getInputMaxLeft();
     const newLeft = clamp(this.state.left - widthDiff / 2, TEXT_DRAG_EDGE_LIMIT, maxLeft);
     this.setState({left: newLeft});
     previousTextInputWidth = this.textInput.current.clientWidth;
@@ -300,6 +304,10 @@ exports.TextTool = class TextTool extends React.Component {
         rect.bottom <= window.innerHeight &&
         rect.right <= window.innerWidth
     );
+  }
+
+  getInputMaxLeft() {
+    return this.canvasCssWidth - this.textInput.current.clientWidth - TEXT_DRAG_EDGE_LIMIT;
   }
 };
 
