@@ -192,6 +192,8 @@ annotationUndoButton =
     .title = Malfari
 annotationRedoButton =
     .title = Refari
+annotationTextButton =
+    .title = Aldoni tekston
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Viŝi
@@ -223,6 +225,21 @@ annotationColorSeaGreen =
     .title = Bluverda
 annotationColorGrey =
     .title = Griza
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Grando de teksto
+# Values shown in text size selection dropdown
+textSizeSmall = Eta
+textSizeMedium = Meza
+textSizeLarge = Granda
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Konfirmi
+annotationTextCancelButton =
+    .title = Nuligi
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Saluton
 
 ## Settings Page
 
