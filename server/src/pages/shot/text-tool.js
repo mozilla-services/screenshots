@@ -146,7 +146,12 @@ exports.TextTool = class TextTool extends React.Component {
 
   setColor(color, colorName) {
     this.setState({color, colorName});
-    this.textInput.current.focus();
+
+    const txtInput = this.textInput.current;
+    txtInput.focus();
+    if (!this.isElementInViewPort(txtInput)) {
+       txtInput.scrollIntoView({block: "center"});
+    }
   }
 
   onDragMouseDown(e) {
@@ -248,8 +253,13 @@ exports.TextTool = class TextTool extends React.Component {
 
   onChangeTextSize(event) {
     const size = event.target.value;
+    const txtInput = this.textInput.current;
+
     this.setState({textSize: size});
-    this.textInput.current.focus();
+    txtInput.focus();
+    if (!this.isElementInViewPort(txtInput)) {
+       txtInput.scrollIntoView({block: "center"});
+    }
   }
 
   onInput() {
@@ -280,6 +290,16 @@ exports.TextTool = class TextTool extends React.Component {
     const newLeft = clamp(this.state.left - widthDiff / 2, TEXT_DRAG_EDGE_LIMIT, maxLeft);
     this.setState({left: newLeft});
     previousTextInputWidth = this.textInput.current.clientWidth;
+  }
+
+  isElementInViewPort(el) {
+    const rect = el.getBoundingClientRect();
+    return (
+        rect.top >= (EDITOR_HEADER_HEIGHT + rect.height) &&
+        rect.left >= 0 &&
+        rect.bottom <= window.innerHeight &&
+        rect.right <= window.innerWidth
+    );
   }
 };
 
