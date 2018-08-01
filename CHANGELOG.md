@@ -1,3 +1,20 @@
+## Version 34.0.0
+
+This release is a collection of server bug fixes for the annotation tools, Watchdog and docs update
+
+* Minor corrections to server release docs [e459d3e](https://github.com/mozilla-services/screenshots/commit/e459d3e)
+* TextInput shows 5px edge limit on max width. Fixes [#4712](https://github.com/mozilla-services/screenshots/issues/4712) [0f3656e](https://github.com/mozilla-services/screenshots/commit/0f3656e)
+* Upgrade geckodriver to 1.12.0. ([#4718](https://github.com/mozilla-services/screenshots/issues/4718)) [29f2863](https://github.com/mozilla-services/screenshots/commit/29f2863)
+* Scroll text input into view. Fixes [#4652](https://github.com/mozilla-services/screenshots/issues/4652) [56c904b](https://github.com/mozilla-services/screenshots/commit/56c904b)
+* Stop using decimal dimensions. ([#4678](https://github.com/mozilla-services/screenshots/issues/4678)) ([#4711](https://github.com/mozilla-services/screenshots/issues/4711)) [c2902ee](https://github.com/mozilla-services/screenshots/commit/c2902ee)
+* Text width should not extend beyond 5px inside canvas. Fixes [#4680](https://github.com/mozilla-services/screenshots/issues/4680) [8089dfa](https://github.com/mozilla-services/screenshots/commit/8089dfa)
+* Wait to fetch image data a few times in Watchdog. ([#4656](https://github.com/mozilla-services/screenshots/issues/4656))
+* Wait to fetch image data a few times in Watchdog. ([#4612](https://github.com/mozilla-services/screenshots/issues/4612))
+  - move functions up in scope
+  - Replace counter with multiple calls. ([#4612](https://github.com/mozilla-services/screenshots/issues/4612)) [dd3ceea](https://github.com/mozilla-services/screenshots/commit/dd3ceea)
+* Update export-to-firefox docs. Fixes [#4507](https://github.com/mozilla-services/screenshots/issues/4507) [a91b1fb](https://github.com/mozilla-services/screenshots/commit/a91b1fb)
+* Clear only dirty areas of a canvas. ([#4463](https://github.com/mozilla-services/screenshots/issues/4463)) ([#4659](https://github.com/mozilla-services/screenshots/issues/4659)) [1f6b07e](https://github.com/mozilla-services/screenshots/commit/1f6b07e)
+
 ## Version 33.2.0
 
 This release is a collection of server bug fixes for the annotation tools added in 33.1.0.
