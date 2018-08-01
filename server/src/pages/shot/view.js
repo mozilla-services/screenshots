@@ -5,6 +5,7 @@ const { Localized } = require("fluent-react/compat");
 const { Footer } = require("../../footer-view");
 const sendEvent = require("../../browser-send-event.js");
 const { ShareButton } = require("../../share-buttons");
+const { PromoDialog } = require("./promo-dialog");
 const { DeleteShotButton } = require("../../delete-shot-button");
 const { TimeDiff } = require("./time-diff");
 const reactruntime = require("../../reactruntime");
@@ -181,7 +182,8 @@ class Body extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({highlightEditButton: this.props.highlightEditButton});
+    this.setState({highlightEditButton: this.props.highlightEditButton || this.props.promoDialog});
+    this.setState({promoDialog: this.props.promoDialog});
   }
 
   doCloseBanner() {
@@ -358,9 +360,13 @@ class Body extends React.Component {
         clickDeleteHandler={ this.clickDeleteHandler.bind(this) }
         confirmDeleteHandler={ this.confirmDeleteHandler.bind(this) }
         cancelDeleteHandler={ this.cancelDeleteHandler.bind(this) } />;
-      editButton = <Localized id="shotPageEditButton">
-        <button className="button transparent edit" title="Edit this image" onClick={ this.onClickEdit.bind(this) } ref={(edit) => { this.editButton = edit; }}></button>
-      </Localized>;
+
+      editButton = <div className="edit-shot-button">
+        <Localized id="shotPageEditButton">
+          <button className="button transparent edit" title="Edit this image" onClick={ this.onClickEdit.bind(this) } ref={(edit) => { this.editButton = edit; }}></button>
+        </Localized>
+        <PromoDialog promoClose={this.promoClose.bind(this)} display={this.state.promoDialog} />
+        </div>;
     } else {
       trashOrFlagButton = <Localized id="shotPageAbuseButton">
         <button className="button transparent flag" title="Report this shot for abuse, spam, or other problems" onClick={ this.onClickFlag.bind(this) }></button>
@@ -408,6 +414,7 @@ class Body extends React.Component {
 
     const noText = this.props.abTests && this.props.abTests.downloadText
                    && this.props.abTests.downloadText.value === "no-download-text";
+
     return (
       <reactruntime.BodyTemplate {...this.props}>
         { renderGetFirefox ? this.renderFirefoxRequired() : null }
@@ -452,6 +459,12 @@ class Body extends React.Component {
     </reactruntime.BodyTemplate>);
   }
 
+  promoClose() {
+    this.setState({promoDialog: false});
+    // set counter to max to stop showing notification again
+    localStorage.hasSeenPromoDialog = 3;
+  }
+
   onMouseOverHighlight() {
     this.editButton.style.backgroundColor = "#ededf0";
   }
@@ -479,6 +492,10 @@ class Body extends React.Component {
     if (!this.state.imageEditing) {
       this.setState({imageEditing: true});
       sendEvent("start-annotations", "navbar");
+    }
+    // Close promo dialog if user clicked edit after seeing new edit tool promo
+    if (this.props.promoDialog) {
+      this.promoClose();
     }
   }
 
@@ -555,6 +572,7 @@ Body.propTypes = {
   enableAnnotations: PropTypes.bool,
   expireTime: PropTypes.number,
   highlightEditButton: PropTypes.bool,
+  promoDialog: PropTypes.bool,
   id: PropTypes.string,
   isExtInstalled: PropTypes.bool,
   isMobile: PropTypes.bool,

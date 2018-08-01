@@ -315,6 +315,7 @@ These are events that an add-on user can encounter on a shot they own
 32. [x] Click the download button `web/download/navbar`
 33. [x] Visit an image directly, when the image isn't embedded directly in a Screenshots shot page, `web/visit/direct-view-owner`
 34. [x] View an image directly, when the image is being shown as part of a Facebook/Twitter style preview (the og:image or twitter:image), `web/visit/direct-view-embedded-owner`
+35. [x] Close new edit tools promotion dialog, `web/promo-closed`
 
 #### Shot Index (My Shots)
 
