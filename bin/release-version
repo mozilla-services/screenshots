@@ -41,7 +41,7 @@ case "$channel" in
     # Forces update of the add-on version:
     mkdir -p build
     touch build/.backend.txt
-    SCREENSHOTS_BACKEND=https://screenshots.dev.mozaws.net SCREENSHOTS_SENTRY="$dev_sentry" make unsigned_bootstrap_xpi
+    SCREENSHOTS_BACKEND=https://screenshots.dev.mozaws.net SCREENSHOTS_SENTRY="$dev_sentry" make dev_signed_bootstrap_xpi
     export NODE_ENV=dev
     ./bin/build-docker-image mozilla latest
     echo
@@ -58,7 +58,7 @@ case "$channel" in
     rm -f build/screenshots.xpi
     # Forces update of the add-on version:
     touch build/.backend.txt
-    SCREENSHOTS_BACKEND=https://screenshots.stage.mozaws.net SCREENSHOTS_SENTRY="$stage_sentry" make unsigned_bootstrap_xpi
+    SCREENSHOTS_BACKEND=https://screenshots.stage.mozaws.net SCREENSHOTS_SENTRY="$stage_sentry" make dev_signed_bootstrap_xpi
     export NODE_ENV=production
     ./bin/build-docker-image mozilla
     echo

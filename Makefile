@@ -115,6 +115,9 @@ bootstrap_zip: addon
 unsigned_bootstrap_xpi: bootstrap_zip
 	cp build/screenshots-bootstrap.zip build/screenshots.xpi
 
+dev_signed_bootstrap_xpi: bootstrap_zip
+	curl -F "input=@build/screenshots-bootstrap.zip" -o build/screenshots.xpi -H "Authorization: ${AUTOGRAPH_EDGE_TOKEN}" https://autograph-edge.stage.mozaws.net/sign
+
 .PHONY: signed_xpi
 signed_xpi: addon
 	rm -f web-ext-artifacts/*.xpi
@@ -286,6 +289,8 @@ help:
 	@echo "    make an unsigned zip of addon/ in build/screenshots.zip"
 	@echo "  make unsigned_bootstrap_xpi"
 	@echo "    make an unsigned xpi of addon/ in build/screenshots.xpi"
+	@echo "  make dev_signed_bootstrap_xpi"
+	@echo "    make a dev-root signed xpi of addon/ in build/screenshots.xpi"
 	@echo "  make signed_xpi"
 	@echo "    make a signed xpi in build/screenshots.xpi"
 	@echo "See also:"
