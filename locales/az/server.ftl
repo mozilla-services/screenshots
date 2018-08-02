@@ -91,6 +91,14 @@ shotPageShareEmail =
     .title = Keçidi e-poçt ilə paylaş
 shotPageCopyImageText =
     .label = Şəklin mətnini köçürt
+# Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
+# For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
+shotPageRestoreButton = { $date } tarixinə qədər bərpa et.
+shotPageExpiredMessage = Bu görüntünün vaxtı keçib.
+# Note: This phrase is followed by an empty line, then the URL of the source page
+shotPageExpiredMessageDetails = Görüntünün çəkildiyi səhifənin ünvanı:
+shotPageDeleteButton =
+    .title = Bu görüntünü sil
 shotPageDownloadShot =
     .title = Endir
 shotPageEditButton =
@@ -223,8 +231,14 @@ settingsClosePreferences =
 
 ## Shotindex page
 
+shotIndexPageSearchPlaceholder =
+    .placeholder = Görüntülərimi axtar
 shotIndexPageSearchButton =
     .title = Axtar
+shotIndexPageNoShotsMessage = Saxlanılmış görüntü yoxdur.
+shotIndexPageNoShotsInvitation = İrəli, bir neçəsini yaradın.
+shotIndexPageLookingForShots = Görüntülərinizi axtarırıq…
+shotIndexPageNoSearchResultsIntro = Hmm
 shotIndexPageClearSearchButton =
     .title = Axtarışı təmizlə
 shotIndexPageConfirmShotDelete = Bu görüntü silinsin?
@@ -276,5 +290,7 @@ metricsPageVersionQueryUsers = Daxil olmuş istifadəçilərin sayı
 metricsPageVersionQueryVersion = Əlavə versiyası
 metricsPageVersionQueryLastSeen = Gün
 metricsPageHeader = Metriklər
+# Note: { $created } is a placeholder for a localized date and time, like '4/21/2017, 3:40:04 AM'
+metricsPageGeneratedDateTime = Törədilib: { $created }
 # Note { $time } is a placeholder for a number of milliseconds, like '100'
 metricsPageDatabaseQueryTime = (məlumat bazasının vaxtı: { $time }ms)
