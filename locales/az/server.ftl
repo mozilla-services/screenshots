@@ -74,6 +74,8 @@ notFoundPageDescription = Səhifə tapılmadı.
 
 # This is the HTML title tag of the page
 shotPageTitle = Ekran görüntüsü: { $originalTitle }
+shotPageAlertErrorUpdatingExpirationTime = Başa çatma tarixini saxlamada xəta
+shotPageAlertErrorDeletingShot = Görüntü silmədə xəta
 shotPageAlertErrorUpdatingTitle = Başlıq saxlanılması xətası
 shotPageShareButton =
     .title = Paylaş
@@ -91,7 +93,10 @@ shotPageCopyImageText =
     .label = Şəklin mətnini köçürt
 shotPageDownloadShot =
     .title = Endir
+shotPageEditButton =
+    .title = Bu şəkli redaktə et
 shotPageDownload = Endir
+shotPageUpsellFirefox = Firefox-u indi əldə et
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Vaxtı seçin
 # The ∞ is used to indicate that the shot won't expire. It is also used in
