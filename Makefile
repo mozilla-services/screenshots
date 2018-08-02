@@ -116,7 +116,9 @@ unsigned_bootstrap_xpi: bootstrap_zip
 	cp build/screenshots-bootstrap.zip build/screenshots.xpi
 
 dev_signed_bootstrap_xpi: bootstrap_zip
-	curl -F "input=@build/screenshots-bootstrap.zip" -o build/screenshots.xpi -H "Authorization: ${AUTOGRAPH_EDGE_TOKEN}" https://autograph-edge.stage.mozaws.net/sign
+	echo "signing the addon via the autograph edge server..."
+	@curl -F "input=@build/screenshots-bootstrap.zip" -o build/screenshots.xpi -H "Authorization: ${AUTOGRAPH_EDGE_TOKEN}" https://autograph-edge.stage.mozaws.net/sign
+	echo "done."
 
 .PHONY: signed_xpi
 signed_xpi: addon
