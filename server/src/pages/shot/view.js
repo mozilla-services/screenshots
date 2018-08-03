@@ -400,12 +400,6 @@ class Body extends React.Component {
       renderGetFirefox = renderExtensionNotification = false;
     }
 
-    let favicon = null;
-    if (shot.favicon) {
-      // We use background-image so if the image is broken it just doesn't show:
-      favicon = <div style={{backgroundImage: `url("${shot.favicon}")`}} className="favicon" />;
-    }
-
     const noText = this.props.abTests && this.props.abTests.downloadText
                    && this.props.abTests.downloadText.value === "no-download-text";
     return (
@@ -418,7 +412,6 @@ class Body extends React.Component {
             <div className="shot-info">
               <EditableTitle title={shot.title} isOwner={this.props.isOwner} />
               <div className="shot-subtitle">
-                { this.state.isChangingExpire ? null : favicon }
                 { linkTextShort && !this.state.isChangingExpire ? <a className="subtitle-link" rel="noopener noreferrer" href={ shot.url } target="_blank" onClick={ this.onClickOrigUrl.bind(this, "navbar") }>{ linkTextShort }</a> : null }
                 { this.state.isChangingExpire ? null : <span className="time-diff">{ timeDiff }</span> }
                 { expiresDiff }
