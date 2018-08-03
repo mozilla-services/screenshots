@@ -175,6 +175,8 @@ annotationPenButton =
     .title = పెన్ను
 annotationHighlighterButton =
     .title = హైలైటర్
+annotationTextButton =
+    .title = పాఠ్యాన్ని చేర్చండి
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = తుడిచివేయి
@@ -206,6 +208,18 @@ annotationColorSeaGreen =
     .title = నీలం కలిసిన ఆకుపచ్చ
 annotationColorGrey =
     .title = బూడిద 
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = పాఠ్య పరిమాణం
+# Values shown in text size selection dropdown
+textSizeSmall = చిన్నది
+textSizeMedium = మధ్యస్థం
+textSizeLarge = పెద్దది
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = నిర్ధారించు
+annotationTextCancelButton =
+    .title = రద్దుచేయి
 
 ## Settings Page
 
