@@ -103,6 +103,19 @@ exports.submit = function(shot) {
     return;
   }
 
+  if (config.watchdog.devOnlyMatchHostname) {
+    try {
+      const url = new URL(shot.origin);
+      if (url.hostname !== config.watchdog.devOnlyMatchHostname) {
+        mozlog.debug("watchdog-debug", { msg: `Shot hostname does not match ${config.watchdog.devOnlyMatchHostname}.` });
+        return;
+      }
+    } catch (e) {
+      mozlog.debug("watchdog-debug", { msg: `The shot's invalid hostname does not match ${config.watchdog.devOnlyMatchHostname}.` });
+      return;
+    }
+  }
+
   const imageUrl = shot.getClip(shot.clipNames()[0]).image.url;
   const imageId = imageUrl.split("/").pop();
   const form = new FormData();

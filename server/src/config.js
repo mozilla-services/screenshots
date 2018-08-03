@@ -388,7 +388,7 @@ const conf = convict({
       format: String,
       default: "",
       env: "WATCHDOG_SUBMISSION_URL",
-      arg: "watchdog-SUBMISSION_url"
+      arg: "watchdog-submission-url"
     },
     positiveEmail: {
       doc: "An optional, semicolon delimited, list of email addresses to receive notifications on positive matches.",
@@ -403,6 +403,13 @@ const conf = convict({
       default: 1,
       env: "WATCHDOG_SUBMISSION_INTERVAL",
       arg: "watchdog-submission-interval"
+    },
+    devOnlyMatchHostname: {
+      doc: "DO NOT SET THIS IN PROD.  When set, this is the _only_ hostname for which shots are submitted to Watchdog.",
+      format: String,
+      default: "",
+      env: "WATCHDOG_DEV_MATCH_HOSTNAME",
+      arg: "watchdog-dev-match-hostname"
     }
   }
 });
