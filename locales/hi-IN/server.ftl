@@ -188,6 +188,8 @@ annotationUndoButton =
     .title = पूर्ववत् करें
 annotationRedoButton =
     .title = फिर से करें
+annotationTextButton =
+    .title = पाठ जोड़ें
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = साफ करें
@@ -219,9 +221,27 @@ annotationColorSeaGreen =
     .title = श्याम हरित
 annotationColorGrey =
     .title = भूरा
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = मूलशब्द आकार
+# Values shown in text size selection dropdown
+textSizeSmall = छोटा
+textSizeMedium = मध्यम
+textSizeLarge = बड़ा
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = पुष्टि करें
+annotationTextCancelButton =
+    .title = रद्द करें
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = नमस्ते
 
 ## Settings Page
 
+settingsDisconnectButton = असम्बद्ध करें
+    .title = असम्बद्ध करें
+settingsGuestAccountMessage = अतिथि खाता
 
 ## Shotindex page
 
