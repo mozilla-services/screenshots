@@ -12,6 +12,7 @@ gHomeLink = Gang
 footerLinkMozilla = Mozilla
 footerLinkTerms = Cik
 footerLinkPrivacy = Ngec me mung
+footerLinkFaqs = Lapeny ma pol kare
 footerLinkDiscourse = Mi Adwogi
 footerLinkRemoveAllData = Kwany data weng
 
@@ -145,6 +146,12 @@ timeDiffFutureDays =
 
 ## Annotations
 
+annotationUndoButton =
+    .title = Gony
+annotationRedoButton =
+    .title = Nwo timo
+annotationTextButton =
+    .title = Med coc
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Jwa
@@ -158,9 +165,23 @@ annotationCropConfirmButton = Moki
     .title = Mok yer
 annotationCropCancelButton = Juki
     .title = Juk yer
+# Values shown in text size selection dropdown
+textSizeSmall = Matidi
+textSizeMedium = Ladyere
+textSizeLarge = Madit
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Moki
+annotationTextCancelButton =
+    .title = Juki
 
 ## Settings Page
 
+settingsDisconnectButton = Wek kube
+    .title = Wek kube
+settingsGuestAccountMessage = Akaunt pa welo
+settingsSignInButton = Dony iyie
+    .title = Dony iyie
 
 ## Shotindex page
 
@@ -178,6 +199,10 @@ shotIndexPageNextPage =
 
 ## Delete Confirmation Dialog
 
+shotDeleteCancel = Juki
+    .title = Juki
+shotDeleteConfirm = Kwany
+    .title = Kwany
 
 ## Metrics page
 ## All metrics strings are optional for translation
