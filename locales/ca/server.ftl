@@ -192,6 +192,8 @@ annotationUndoButton =
     .title = Desfés
 annotationRedoButton =
     .title = Refés
+annotationTextButton =
+    .title = Afegeix text
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Esborra
@@ -223,6 +225,21 @@ annotationColorSeaGreen =
     .title = Verd oceà
 annotationColorGrey =
     .title = Gris
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Mida del text
+# Values shown in text size selection dropdown
+textSizeSmall = Petita
+textSizeMedium = Mitjana
+textSizeLarge = Grossa
+# Confirm and Cancel button title shown when using text tool
+annotationTextConfirmButton =
+    .title = Confirma
+annotationTextCancelButton =
+    .title = Cancel·la
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Hola
 
 ## Settings Page
 
