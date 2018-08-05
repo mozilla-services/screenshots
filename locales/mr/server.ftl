@@ -16,6 +16,7 @@ gScreenshotsDescription = स्क्रीनशॉट्स आता सर�
 footerLinkMozilla = Mozilla
 footerLinkTerms = अटी
 footerLinkPrivacy = गोपनीयता सूचना
+footerLinkFaqs = नेहमी विचारले जाणारे प्रश्न
 footerLinkDMCA = IP भंग केल्याची तक्रार नोंदवा
 footerLinkDiscourse = अभिप्राय द्या
 footerLinkRemoveAllData = सर्व डेटा काढुन टाका
