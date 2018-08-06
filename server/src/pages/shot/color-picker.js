@@ -71,35 +71,35 @@ exports.ColorPicker = class ColorPicker extends React.Component {
         <div className="triangle-inner"></div>
       </div>
       <div className="color-row">
-        <Localized id="annotationColorWhite"><div className="swatch" title="White"
+        <Localized id="annotationColorWhite"><div className="swatch" title="White" data-color-name="white"
           style={{ backgroundColor: "#FFF", border: "1px solid #000" }}
           onClick={this.onClickSwatch.bind(this)}></div></Localized>
-        <Localized id="annotationColorBlack"><div className="swatch" title="Black"
+        <Localized id="annotationColorBlack"><div className="swatch" title="Black" data-color-name="black"
           style={{ backgroundColor: "#000" }}
           onClick={this.onClickSwatch.bind(this)}></div></Localized>
-        <Localized id="annotationColorRed"><div className="swatch" title="Red"
+        <Localized id="annotationColorRed"><div className="swatch" title="Red" data-color-name="red"
           style={{ backgroundColor: "#E74C3C" }}
           onClick={this.onClickSwatch.bind(this)}></div></Localized>
       </div>
       <div className="color-row">
-        <Localized id="annotationColorGreen"><div className="swatch" title="Green"
+        <Localized id="annotationColorGreen"><div className="swatch" title="Green" data-color-name="green"
           style={{ backgroundColor: "#2ECC71" }}
           onClick={this.onClickSwatch.bind(this)}></div></Localized>
-        <Localized id="annotationColorBlue"><div className="swatch" title="Blue"
+        <Localized id="annotationColorBlue"><div className="swatch" title="Blue" data-color-name="blue"
           style={{ backgroundColor: "#3498DB" }}
           onClick={this.onClickSwatch.bind(this)}></div></Localized>
-        <Localized id="annotationColorYellow"><div className="swatch" title="Yellow"
+        <Localized id="annotationColorYellow"><div className="swatch" title="Yellow" data-color-name="yellow"
           style={{ backgroundColor: "#FF0" }}
           onClick={this.onClickSwatch.bind(this)}></div></Localized>
       </div>
       <div className="color-row">
-        <Localized id="annotationColorPurple"><div className="swatch" title="Purple"
+        <Localized id="annotationColorPurple"><div className="swatch" title="Purple" data-color-name="purple"
           style={{ backgroundColor: "#8E44AD" }}
           onClick={this.onClickSwatch.bind(this)}></div></Localized>
-        <Localized id="annotationColorSeaGreen"><div className="swatch" title="Sea Green"
+        <Localized id="annotationColorSeaGreen"><div className="swatch" title="Sea Green" data-color-name="sea-green"
           style={{ backgroundColor: "#1ABC9C" }}
           onClick={this.onClickSwatch.bind(this)}></div></Localized>
-        <Localized id="annotationColorGrey"><div className="swatch" title="Grey"
+        <Localized id="annotationColorGrey"><div className="swatch" title="Grey" data-color-name="grey"
           style={{ backgroundColor: "#34495E" }}
           onClick={this.onClickSwatch.bind(this)}></div></Localized>
       </div>
@@ -108,9 +108,11 @@ exports.ColorPicker = class ColorPicker extends React.Component {
 
   onClickSwatch(e) {
     const color = e.target.style.backgroundColor;
+    const colorName = e.target.dataset.colorName;
+    this.setState({color, colorName, pickerActive: false});
+    this.props.setColorCallback && this.props.setColorCallback(color, colorName);
+
     const title = e.target.title.toLowerCase().replace(/\s/g, "-");
-    this.setState({color, colorName: title, pickerActive: false});
-    this.props.setColorCallback && this.props.setColorCallback(color, title);
     sendEvent(`${title}-select`, "annotation-color-board");
   }
 
