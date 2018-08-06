@@ -242,6 +242,9 @@ textToolInputPlaceholder =
 settingsDisconnectButton = असम्बद्ध करें
     .title = असम्बद्ध करें
 settingsGuestAccountMessage = अतिथि खाता
+SettingsPageHeader = Firefox स्क्रीनशॉट सेटिंग
+settingsClosePreferences =
+    .title = प्राथमिकताएँ बंद करें
 
 ## Shotindex page
 
@@ -278,6 +281,10 @@ shotIndexNoExpirationSymbol = ∞
 
 ## Delete Confirmation Dialog
 
+shotDeleteCancel = रद्द करें
+    .title = रद्द करें
+shotDeleteConfirm = मिटाएँ
+    .title = मिटाएँ
 
 ## Metrics page
 ## All metrics strings are optional for translation
