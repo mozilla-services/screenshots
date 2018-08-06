@@ -231,6 +231,8 @@ settingsClosePreferences =
 
 ## Shotindex page
 
+# { $searchTerm } is a placeholder for text the user typed into the search box
+shotIndexPageSearchResultsTitle = Mənim Görüntülərim: { $searchTerm } üçün axtarış
 shotIndexPageSearchPlaceholder =
     .placeholder = Görüntülərimi axtar
 shotIndexPageSearchButton =
