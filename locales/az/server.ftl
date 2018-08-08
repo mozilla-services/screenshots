@@ -89,6 +89,8 @@ shotPageSharePinterest =
     .title = Pinterest-də paylaş
 shotPageShareEmail =
     .title = Keçidi e-poçt ilə paylaş
+shotPageShareLink = Bu görüntü üçün paylaşıla bilən keçid əldə edin:
+shotPagePrivacyMessage = Keçidi olan hər kəs bu görüntüyə baxa bilər.
 shotPageCopyImageText =
     .label = Şəklin mətnini köçürt
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
@@ -231,8 +233,14 @@ settingsClosePreferences =
 
 ## Shotindex page
 
+# { $status } is a placeholder for an HTTP status code, like '500'.
+# { $statusText } is a text description of the status code, like 'Internal server error'.
+shotIndexPageErrorDeletingShot = Görüntünün silinməsində xəta: { $status } { $statusText }
 # { $searchTerm } is a placeholder for text the user typed into the search box
 shotIndexPageSearchResultsTitle = Mənim Görüntülərim: { $searchTerm } üçün axtarış
+# { $error } is a placeholder for a non-translated error message that could be shared
+# with developers when debugging an error.
+shotIndexPageErrorRendering = Səhifənin renderinqində xəta: { $error }
 shotIndexPageSearchPlaceholder =
     .placeholder = Görüntülərimi axtar
 shotIndexPageSearchButton =
@@ -241,6 +249,7 @@ shotIndexPageNoShotsMessage = Saxlanılmış görüntü yoxdur.
 shotIndexPageNoShotsInvitation = İrəli, bir neçəsini yaradın.
 shotIndexPageLookingForShots = Görüntülərinizi axtarırıq…
 shotIndexPageNoSearchResultsIntro = Hmm
+shotIndexPageNoSearchResults = Axtarışınıza uyğun görüntü tapa bilmədik.
 shotIndexPageClearSearchButton =
     .title = Axtarışı təmizlə
 shotIndexPageConfirmShotDelete = Bu görüntü silinsin?
@@ -285,7 +294,10 @@ metricsPageUsersQueryCount = İstifadəçilərin sayı
 metricsPageUsersQueryDay = Gün
 metricsPageUserShotsQueryTitle = İstifadəçi Başına Görüntü Sayı
 metricsPageUserShotsQueryCount = İstifadəçilərin Sayı
+metricsPageUserShotsQueryShots = Aktiv (vaxtı çıxmamış) görüntülərin təxmini sayısı
+metricsPageRetentionQueryTitle = Həftəlik saxlama yaddaşı
 metricsPageRetentionQueryUsers = İstifadəçilərin sayı
+metricsPageTotalRetentionQueryTitle = Ümumi saxlama yaddaşı
 metricsPageTotalRetentionQueryUsers = İstifadəçilərin sayı
 metricsPageVersionQueryTitle = Əlavə Versiyası
 metricsPageVersionQueryUsers = Daxil olmuş istifadəçilərin sayı
