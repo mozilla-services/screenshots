@@ -37,6 +37,8 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
       localeScripts.push(<script key={`l10n-${locale}`} src={this.props.staticLink(`/static/locales/${locale}.js`)} />);
     }
 
+    const wantsAuth = (!this.props.authenticated) ||
+                      (this.props.authenticated && !this.props.hasFxa && this.props.authFxa);
     return (
     <LocalizationProvider messages={generateMessages(this.props.messages, this.props.userLocales)}>
       <head>
@@ -45,6 +47,7 @@ exports.HeadTemplate = class HeadTemplate extends React.Component {
         <link rel="shortcut icon" href={this.props.staticLink("/static/img/favicon-32.png")} />
         <link rel="icon" type="image/png" href={this.props.staticLink("/static/img/favicon-16.png")} sizes="16x16"/>
         <link rel="icon" type="image/png" href={this.props.staticLink("/static/img/favicon-32.png")} sizes="32x32"/>
+        { wantsAuth ? <script src={ this.props.staticLink("/static/js/wantsauth.js") } /> : null }
         { activationScript }
         { localeScripts }
         { this.props.sentryPublicDSN ? <script src={this.props.staticLink("/install-raven.js")} async /> : null }
@@ -64,7 +67,10 @@ exports.HeadTemplate.propTypes = {
   sentryPublicDSN: PropTypes.string,
   staticLink: PropTypes.func,
   title: PropTypes.string,
-  userLocales: PropTypes.array
+  userLocales: PropTypes.array,
+  authenticated: PropTypes.bool,
+  hasFxa: PropTypes.bool,
+  authFxa: PropTypes.bool
 };
 
 exports.BodyTemplate = class Body extends React.Component {

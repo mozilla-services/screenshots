@@ -60,6 +60,7 @@ exports.createModel = function(req) {
     isFxaAuthenticated,
     gaId: req.config.gaId,
     deviceId: req.deviceId,
+    shotAccountId: req.shot.accountId,
     authenticated: !!req.deviceId,
     shotDomain: req.url,
     urlIfDeleted: req.shot.urlIfDeleted,

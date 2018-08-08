@@ -3,6 +3,7 @@ const PropTypes = require("prop-types");
 const reactruntime = require("../../reactruntime");
 const classnames = require("classnames");
 const sendEvent = require("../../browser-send-event.js");
+const { SignInButton } = require("../../signin-button.js");
 const { Footer } = require("../../footer-view.js");
 const { Localized } = require("fluent-react/compat");
 
@@ -52,10 +53,6 @@ class Body extends React.Component {
     window.location = "/shots";
   }
 
-  onClickGetStarted() {
-    sendEvent("get-started", "homepage", {useBeacon: true});
-  }
-
   onClickInstallFirefox() {
     sendEvent("click-install-firefox-home", {useBeacon: true});
   }
@@ -90,6 +87,7 @@ class Body extends React.Component {
         </Localized>
       </a>;
     }
+    const signin = (this.props.isFirefox && this.props.showMyShots) ? <SignInButton isAuthenticated={this.props.hasFxa} initiatePage="" /> : null;
     const is57 = this.props.isFirefox && this.props.firefoxVersion >= 57;
     return (
       <reactruntime.BodyTemplate {...this.props}>
@@ -101,10 +99,8 @@ class Body extends React.Component {
                   <a href="#" className="screenshots-logo"></a>
                 </div>
                 <div className="nav-links">
-                  <Localized id="homePageGetStarted">
-                    <a href="#how-screenshots-works" onClick={ this.onClickGetStarted.bind(this) }>Get Started</a>
-                  </Localized>
                   { myShots }
+                  { signin }
                 </div>
               </div>
             </nav>
@@ -196,6 +192,7 @@ class Body extends React.Component {
 }
 
 Body.propTypes = {
+  hasFxa: PropTypes.bool,
   firefoxVersion: PropTypes.string,
   isFirefox: PropTypes.bool,
   showMyShots: PropTypes.bool

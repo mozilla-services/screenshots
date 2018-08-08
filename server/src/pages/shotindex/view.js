@@ -5,6 +5,7 @@ const { Footer } = require("../../footer-view.js");
 const React = require("react");
 const PropTypes = require("prop-types");
 const { ShareButton } = require("../../share-buttons");
+const { SignInButton } = require("../../signin-button.js");
 const Masonry = require("react-masonry-component");
 const { Localized } = require("fluent-react/compat");
 const { isValidClipImageUrl } = require("../../../shared/shot");
@@ -16,7 +17,6 @@ class Head extends React.Component {
   render() {
     return (
       <reactruntime.HeadTemplate {...this.props}>
-      { this.props.deviceId ? null : <script src={ this.props.staticLink("/static/js/wantsauth.js") } /> }
         <script src={ this.props.staticLink("/static/js/shotindex-bundle.js") } async></script>
         <link rel="stylesheet" href={ this.props.staticLink("/static/css/shot-index.css") } />
       </reactruntime.HeadTemplate>
@@ -26,7 +26,6 @@ class Head extends React.Component {
 }
 
 Head.propTypes = {
-  deviceId: PropTypes.string,
   staticLink: PropTypes.func
 };
 
@@ -42,7 +41,7 @@ class Body extends React.Component {
         <div className="column-space full-height default-color-scheme" id="shot-index-page">
           <div id="shot-index-header" className="header">
             <h1><a href="/shots">Firefox <strong>Screenshots</strong> <sup>Beta</sup></a></h1>
-            {this.props.enableUserSettings ? this.renderSettingsPage() : null}
+            {this.props.enableUserSettings && this.props.hasDeviceId ? this.renderFxASignIn() : null}
             {this.props.disableSearch ? null : this.renderSearchForm()}
           </div>
           <div id="shot-index" className="flex-1">
@@ -204,9 +203,9 @@ class Body extends React.Component {
     );
   }
 
-  renderSettingsPage() {
+  renderFxASignIn() {
     return (
-      <a className="button preferences" href="/settings" aria-label="Settings" title="Open user settings"></a>
+      <SignInButton isAuthenticated={this.props.hasFxa} initiatePage="shots" />
     );
   }
 

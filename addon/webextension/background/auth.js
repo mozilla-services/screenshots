@@ -11,6 +11,7 @@ this.auth = (function() {
   let authHeader = null;
   let sentryPublicDSN = null;
   let abTests = {};
+  let accountId = null;
 
   const registrationInfoFetched = catcher.watchPromise(browser.storage.local.get(["registrationInfo", "abTests"]).then((result) => {
     if (result.abTests) {
@@ -130,6 +131,7 @@ this.auth = (function() {
   }
 
   function saveAuthInfo(responseJson) {
+    accountId = responseJson.accountId;
     if (responseJson.sentryPublicDSN) {
       sentryPublicDSN = responseJson.sentryPublicDSN;
     }
@@ -186,6 +188,7 @@ this.auth = (function() {
           return {
             isOwner: result && result.isOwner,
             deviceId: registrationInfo.deviceId,
+            accountId,
             authHeaders
           };
         });

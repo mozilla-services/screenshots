@@ -8,7 +8,6 @@ exports.createModel = function(req) {
   }
   const serverModel = {
     title,
-    hasFxa: !!req.accountId,
     hasDeviceId: req.deviceId !== undefined,
     defaultSearch: query || null
   };

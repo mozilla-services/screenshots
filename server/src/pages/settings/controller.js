@@ -20,7 +20,8 @@ exports.disconnectDevice = function() {
       window.alert("Error disconnecting: " + req.status + " " + req.statusText);
       window.Raven.captureException(new Error(`Error disconnecting: ${req.status} ${req.statusText}`));
     } else {
-      location.reload();
+      // Redirect to my shots on disconnect
+      window.location = "/shots";
     }
   };
   req.send(`_csrf=${encodeURIComponent(model.csrfToken)}`);

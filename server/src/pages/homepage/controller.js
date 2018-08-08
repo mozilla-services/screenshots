@@ -5,8 +5,23 @@ let model;
 
 exports.launch = function(m) {
   model = m;
+  if (window.wantsauth) {
+    if (window.wantsauth.getAuthData()) {
+      updateModel(window.wantsauth.getAuthData());
+    } else {
+      window.wantsauth.addAuthDataListener((data) => {
+        updateModel(data);
+        render();
+      });
+    }
+  }
   render();
 };
+
+function updateModel(authData) {
+  Object.assign(model, authData);
+  model.hasFxa = !!model.accountId;
+}
 
 function render() {
   page.render(model);
