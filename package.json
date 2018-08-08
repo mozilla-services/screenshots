@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "accepts": "1.3.5",
-    "ajv": "^6.5.2",
+    "ajv": "6.5.2",
     "atob": "2.1.1",
     "aws-sdk": "2.288.0",
     "btoa": "1.2.1",
@@ -51,7 +51,7 @@
     "valid-url": "1.0.9"
   },
   "devDependencies": {
-    "addons-linter": "^1.2.4",
+    "addons-linter": "1.2.4",
     "babel-cli": "6.26.0",
     "babel-polyfill": "6.26.0",
     "babel-preset-es2015": "6.24.1",
@@ -74,7 +74,7 @@
     "pontoon-to-webext": "1.0.2",
     "sass-lint": "1.12.1",
     "selenium-webdriver": "4.0.0-alpha.1",
-    "svgo": "^1.0.5",
+    "svgo": "1.0.5",
     "uglify-es": "3.3.9",
     "uglifyify": "5.0.1",
     "web-ext": "2.8.0"
