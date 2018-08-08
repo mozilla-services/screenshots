@@ -65,7 +65,7 @@
     "eslint-plugin-promise": "3.8.0",
     "eslint-plugin-react": "7.10.0",
     "fx-runner": "1.0.9",
-    "geckodriver": "1.12.0",
+    "geckodriver": "1.12.1",
     "istanbul-middleware": "0.2.2",
     "mocha": "5.2.0",
     "node-sass": "4.9.2",
