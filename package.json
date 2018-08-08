@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "accepts": "1.3.5",
+    "ajv": "^6.5.2",
     "atob": "2.1.1",
     "aws-sdk": "2.283.1",
     "btoa": "1.2.1",
@@ -50,7 +51,7 @@
     "valid-url": "1.0.9"
   },
   "devDependencies": {
-    "addons-linter": "1.2.2",
+    "addons-linter": "^1.2.4",
     "babel-cli": "6.26.0",
     "babel-polyfill": "6.26.0",
     "babel-preset-es2015": "6.24.1",
@@ -70,11 +71,10 @@
     "mocha": "5.2.0",
     "node-sass": "4.9.2",
     "npm-run-all": "4.1.3",
-    "nsp": "2.8.1",
     "pontoon-to-webext": "1.0.2",
     "sass-lint": "1.12.1",
     "selenium-webdriver": "4.0.0-alpha.1",
-    "svgo": "1.0.5",
+    "svgo": "^1.0.5",
     "uglify-es": "3.3.9",
     "uglifyify": "5.0.1",
     "web-ext": "2.8.0"
@@ -94,8 +94,7 @@
     "lint:flake8": "make flake8",
     "lint:js": "eslint .",
     "lint:sass": "sass-lint -v -q",
-    "postlint": "nsp check -o summary",
-    "nsp": "nsp check",
+    "postlint": "npm audit || true",
     "posttest": "npm run lint",
     "test": "bin/test-helpers/make_addon_with_unavailable_server && mocha test/ test/server/unit/*",
     "test:selenium": "bin/test-helpers/make_addon_with_unavailable_server && mocha test/test.js",
