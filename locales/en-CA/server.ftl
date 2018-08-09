@@ -233,9 +233,9 @@ textSizeSmall = Small
 textSizeMedium = Medium
 textSizeLarge = Large
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Confirm
     .title = Confirm
-annotationTextCancelButton =
+textToolCancelButton = Cancel
     .title = Cancel
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
