@@ -135,7 +135,7 @@ shotPageDoesNotExpire = గడువు లేదు
 # Note: { $timediff } is a placeholder for a future relative time clause, like "in 1 week" or "tomorrow"
 shotPageExpiresIn = { $timediff } గడువు ముగుస్తుంది
 # Note: { $timediff } is a placeholder for a past relative time clause, like "1 week ago" or "yesterday"
-shotPageExpired = { $timediff } గడువు ముగిసింది 
+shotPageExpired = { $timediff } గడువు ముగిసింది
 timeDiffJustNow = ఇప్పుడే
 timeDiffMinutesAgo =
     { $number ->
@@ -207,7 +207,7 @@ annotationColorPurple =
 annotationColorSeaGreen =
     .title = నీలం కలిసిన ఆకుపచ్చ
 annotationColorGrey =
-    .title = బూడిద 
+    .title = బూడిద
 # Note: annotationTextSize is a title for text size selection dropdown.
 annotationTextSize =
     .title = పాఠ్య పరిమాణం
@@ -216,10 +216,13 @@ textSizeSmall = చిన్నది
 textSizeMedium = మధ్యస్థం
 textSizeLarge = పెద్దది
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = నిర్ధారించు
     .title = నిర్ధారించు
-annotationTextCancelButton =
+textToolCancelButton = రద్దుచేయి
     .title = రద్దుచేయి
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = హలో
 
 ## Settings Page
 
@@ -239,7 +242,7 @@ settingsClosePreferences =
 # { $statusText } is a text description of the status code, like 'Internal server error'.
 shotIndexPageErrorDeletingShot = షాట్ను తొలగించడంలో లోపం: { $status } { $statusText }
 # { $searchTerm } is a placeholder for text the user typed into the search box
-shotIndexPageSearchResultsTitle = నా తెరపట్ల: { $searchTerm } కోసం శోధన 
+shotIndexPageSearchResultsTitle = నా తెరపట్ల: { $searchTerm } కోసం శోధన
 shotIndexPageSearchPlaceholder =
     .placeholder = నా తెరపట్లను వెతకండి
 shotIndexPageSearchButton =
