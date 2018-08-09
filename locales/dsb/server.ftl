@@ -245,9 +245,9 @@ textSizeSmall = Mały
 textSizeMedium = Srjejźny
 textSizeLarge = Wjeliki
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Wobkšuśiś
     .title = Wobkšuśiś
-annotationTextCancelButton =
+textToolCancelButton = Pśetergnuś
     .title = Pśetergnuś
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
