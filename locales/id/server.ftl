@@ -209,10 +209,13 @@ textSizeSmall = Kecil
 textSizeMedium = Sedang
 textSizeLarge = Besar
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Konfirmasi
     .title = Konfirmasi
-annotationTextCancelButton =
+textToolCancelButton = Batal
     .title = Batal
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Halo
 
 ## Settings Page
 
