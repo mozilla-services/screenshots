@@ -139,10 +139,10 @@ exports.TextTool = class TextTool extends React.Component {
         setColorCallback={this.setColor.bind(this)}
         color={this.state.color} />
       <span className="annotation-divider"></span>
-      <Localized id="annotationTextConfirmButton">
+      <Localized id="textToolConfirmButton">
         <button className={`button transparent confirm-text`} id="confirm-text" onClick={this.onClickConfirm.bind(this)} title="Confirm Text">Confirm</button>
       </Localized>
-      <Localized id="annotationTextCancelButton">
+      <Localized id="textToolCancelButton">
         <button className={`button transparent cancel-text`} id="cancel-text" onClick={this.onClickCancel.bind(this)} title="Cancel Text">Cancel</button>
       </Localized>
     </div></div>;
