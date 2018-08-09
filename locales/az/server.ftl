@@ -114,6 +114,7 @@ shotPageDownloadShot =
 shotPageEditButton =
     .title = Bu şəkli redaktə et
 shotPageDownload = Endir
+shotPageScreenshotsDescription = Ekran görüntülərini almağı asanlaşdırdıq. Firefox-u tərk etmədən ekran görüntülərini alın, saxlayın və paylaşın.
 shotPageUpsellFirefox = Firefox-u indi əldə et
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Lütfən, əlavə məlumat üçün { $dmca } ilə əlaqə saxlayın.
@@ -310,6 +311,7 @@ metricsPageRetentionQueryTitle = Həftəlik saxlama yaddaşı
 metricsPageRetentionQueryUsers = İstifadəçilərin sayı
 metricsPageTotalRetentionQueryTitle = Ümumi saxlama yaddaşı
 metricsPageTotalRetentionQueryUsers = İstifadəçilərin sayı
+metricsPageTotalRetentionQueryDays = İstifadəçinin görüntü yaratdığı günlər
 metricsPageVersionQueryTitle = Əlavə Versiyası
 metricsPageVersionQueryDescription = Son 14 gün ərzində giriş zamanı istifadə olunmuş əlavənin versiyası
 metricsPageVersionQueryUsers = Daxil olmuş istifadəçilərin sayı
