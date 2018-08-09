@@ -245,9 +245,9 @@ textSizeSmall = Mały
 textSizeMedium = Srjedźny
 textSizeLarge = Wulki
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Wobkrućić
     .title = Wobkrućić
-annotationTextCancelButton =
+textToolCancelButton = Přetorhnyć
     .title = Přetorhnyć
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
