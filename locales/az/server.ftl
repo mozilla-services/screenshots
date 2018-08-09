@@ -97,6 +97,8 @@ shotPagePrivacyMessage = Keçidi olan hər kəs bu görüntüyə baxa bilər.
 shotPageCopyImageText =
     .label = Şəklin mətnini köçürt
 shotPageConfirmDeletion = Bu görüntünü həmişəlik silmək istədiyinizə əminsiniz?
+# Note: { $timediff } is a placeholder for a future relative time clause like 'in 3 days' or 'tomorrow'
+shotPageExpirationMessage = Əgər heç bir şey etməsəniz, bu şəkil həmişəlik silinəcək { $timediff }.
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = { $date } tarixinə qədər bərpa et.
@@ -105,6 +107,8 @@ shotPageExpiredMessage = Bu görüntünün vaxtı keçib.
 shotPageExpiredMessageDetails = Görüntünün çəkildiyi səhifənin ünvanı:
 shotPageDeleteButton =
     .title = Bu görüntünü sil
+shotPageAbuseButton =
+    .title = Bu görüntünü təhqiredici məzmun, spam və ya digər problemlərə görə şikayət et
 shotPageDownloadShot =
     .title = Endir
 shotPageEditButton =
