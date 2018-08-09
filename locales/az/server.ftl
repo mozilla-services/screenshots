@@ -60,6 +60,8 @@ leavePageRemoveAllData = Bütün məlumatlar silindi
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageErrorAddonRequired = Hesabınızı silmək üçün Firefox Screenshots quraşdırılmış olmalıdır
 leavePageErrorGeneric = Xəta baş verdi
+# Note: do not translate 'Firefox Screenshots' when translating this string
+leavePageWarning = Bu bütün Firefox Screenshots məlumatlarınızı həmişəlik siləcək.
 leavePageButtonProceed = Davam et
 leavePageButtonCancel = Ləğv et
 leavePageDeleted = Bütün ekran görüntüləriniz silindi!
@@ -77,6 +79,7 @@ shotPageTitle = Ekran görüntüsü: { $originalTitle }
 shotPageAlertErrorUpdatingExpirationTime = Başa çatma tarixini saxlamada xəta
 shotPageAlertErrorDeletingShot = Görüntü silmədə xəta
 shotPageAlertErrorUpdatingTitle = Başlıq saxlanılması xətası
+shotPageConfirmDelete = Bu görüntünü həmişəlik silmək istədiyinizə əminsiniz?
 shotPageShareButton =
     .title = Paylaş
 shotPageCopy = Köçür
@@ -93,6 +96,7 @@ shotPageShareLink = Bu görüntü üçün paylaşıla bilən keçid əldə edin:
 shotPagePrivacyMessage = Keçidi olan hər kəs bu görüntüyə baxa bilər.
 shotPageCopyImageText =
     .label = Şəklin mətnini köçürt
+shotPageConfirmDeletion = Bu görüntünü həmişəlik silmək istədiyinizə əminsiniz?
 # Note: { $date } is a placeholder for a localized future date as returned by Date.toLocaleString.
 # For example, in en-US, { $date } could be "7/12/2017, 1:52:50 PM".
 shotPageRestoreButton = { $date } tarixinə qədər bərpa et.
@@ -107,6 +111,9 @@ shotPageEditButton =
     .title = Bu şəkli redaktə et
 shotPageDownload = Endir
 shotPageUpsellFirefox = Firefox-u indi əldə et
+# Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
+shotPageDMCAContact = Lütfən, əlavə məlumat üçün { $dmca } ilə əlaqə saxlayın.
+shotPageKeepFor = Bu görüntü nə qədər müddətə saxlanılsın?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Vaxtı seçin
 # The ∞ is used to indicate that the shot won't expire. It is also used in
@@ -300,6 +307,7 @@ metricsPageRetentionQueryUsers = İstifadəçilərin sayı
 metricsPageTotalRetentionQueryTitle = Ümumi saxlama yaddaşı
 metricsPageTotalRetentionQueryUsers = İstifadəçilərin sayı
 metricsPageVersionQueryTitle = Əlavə Versiyası
+metricsPageVersionQueryDescription = Son 14 gün ərzində giriş zamanı istifadə olunmuş əlavənin versiyası
 metricsPageVersionQueryUsers = Daxil olmuş istifadəçilərin sayı
 metricsPageVersionQueryVersion = Əlavə versiyası
 metricsPageVersionQueryLastSeen = Gün
