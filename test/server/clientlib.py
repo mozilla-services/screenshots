@@ -7,6 +7,7 @@ import json
 import uuid
 import random
 import time
+from pglib import attach_device
 
 example_images = {}
 execfile(os.path.normpath(os.path.join(__file__, "../../../bin/load_test_exercise_images.py")), example_images)
@@ -20,6 +21,7 @@ class ScreenshotsClient(object):
         self.deviceInfo = make_device_info()
         self.deviceId = make_uuid()
         self.secret = make_uuid()
+        self.accountId = make_random_id()
         self.session = requests.Session()
         self.session.headers.update({'Accept-Language': 'en-US'})
 
@@ -31,6 +33,8 @@ class ScreenshotsClient(object):
             resp = self.session.post(
                 urljoin(self.backend, "/api/register"),
                 data=dict(deviceId=self.deviceId, secret=self.secret, deviceInfo=json.dumps(self.deviceInfo)))
+            account_info = attach_device(self.deviceId, self.accountId)
+            self.session.cookies.update(account_info)
         resp.raise_for_status()
         return resp
 
