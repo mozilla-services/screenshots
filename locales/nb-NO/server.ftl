@@ -17,7 +17,7 @@ footerLinkMozilla = Mozilla
 footerLinkTerms = Vilkår
 footerLinkPrivacy = Personvernbestemmelser
 footerLinkFaqs = FAQ
-footerLinkDMCA = Rapporter åndsverkovertredelse 
+footerLinkDMCA = Rapporter åndsverkovertredelse
 footerLinkDiscourse = Gi tilbakemelding
 footerLinkRemoveAllData = Slett alle data
 
@@ -233,9 +233,9 @@ textSizeSmall = Liten
 textSizeMedium = Mellomstor
 textSizeLarge = Stor
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Bekreft
     .title = Bekreft
-annotationTextCancelButton =
+textToolCancelButton = Avbryt
     .title = Avbryt
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
