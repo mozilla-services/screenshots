@@ -239,9 +239,9 @@ textSizeSmall = Mažas
 textSizeMedium = Vidutinis
 textSizeLarge = Didelis
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
-    .title = Tinka
-annotationTextCancelButton =
+textToolConfirmButton = Patvirtinti
+    .title = Patvirtinti
+textToolCancelButton = Atsisakyti
     .title = Atsisakyti
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
