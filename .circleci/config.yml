@@ -28,7 +28,7 @@ jobs:
       - RDS_NAME: circle_test
       - RDS_USERNAME: ubuntu
       - LOCALHOST_SSL: false
-      - ENABLE_COVERAGE: 1
+      - ENABLE_COVERAGE: false
       - NODE_ENV: dev
       - CIRCLE_TEST_REPORTS: /home/circleci/test-reports
     # A machine executor is used here because of the OWASP ZAP step. When using
@@ -64,10 +64,11 @@ jobs:
             . "$NVM_DIR/nvm.sh"
             nvm use 8.10.0
             npm run test:server
-            mkdir -p $CIRCLE_TEST_REPORTS/server-coverage
-            cd "$CIRCLE_TEST_REPORTS/server-coverage" &&
-              wget http://localhost:10080/coverage/download &&
-              unzip download && rm download
+            # Disable code coverage (temporarily): https://github.com/mozilla-services/screenshots/issues/4728
+            # mkdir -p $CIRCLE_TEST_REPORTS/server-coverage
+            # cd "$CIRCLE_TEST_REPORTS/server-coverage" &&
+            #   wget http://localhost:10080/coverage/download &&
+            #   unzip download && rm download
       - run:
           name: Install Firefox
           command: |
