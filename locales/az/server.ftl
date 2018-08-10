@@ -222,9 +222,9 @@ textSizeSmall = Balaca
 textSizeMedium = Orta
 textSizeLarge = Böyük
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Təsdiqlə
     .title = Təsdiqlə
-annotationTextCancelButton =
+textToolCancelButton = Ləğv et
     .title = Ləğv et
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
@@ -305,10 +305,13 @@ metricsPageUsersQueryDescription = Gün ərzində heç olmasa bir ekran görünt
 metricsPageUsersQueryCount = İstifadəçilərin sayı
 metricsPageUsersQueryDay = Gün
 metricsPageUserShotsQueryTitle = İstifadəçi Başına Görüntü Sayı
+metricsPageUserShotsQueryDescription = Ümumi olaraq hardasa N görüntü çəkən istifadəçilərin sayı
 metricsPageUserShotsQueryCount = İstifadəçilərin Sayı
 metricsPageUserShotsQueryShots = Aktiv (vaxtı çıxmamış) görüntülərin təxmini sayısı
 metricsPageRetentionQueryTitle = Həftəlik saxlama yaddaşı
 metricsPageRetentionQueryUsers = İstifadəçilərin sayı
+metricsPageRetentionQueryDays = İstifadəçinin ilk görüntüsündən sonuncusuna qədər olan günlər
+metricsPageRetentionQueryFirstWeek = İstifadəçinin ilk görüntü yaratdığı həftə
 metricsPageTotalRetentionQueryTitle = Ümumi saxlama yaddaşı
 metricsPageTotalRetentionQueryUsers = İstifadəçilərin sayı
 metricsPageTotalRetentionQueryDays = İstifadəçinin görüntü yaratdığı günlər
