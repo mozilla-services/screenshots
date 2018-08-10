@@ -33,7 +33,7 @@ creatingPageWaitMessage = S'està desant la captura…
 ## Home page
 
 homePageDescription =
-    .content = Captures de pantalla intuïtives des del navegador mateix. Captureu, deseu i compartiu imatges mentre navegueu amb el Firefox. 
+    .content = Captures de pantalla intuïtives des del navegador mateix. Captureu, deseu i compartiu imatges mentre navegueu amb el Firefox.
 homePageButtonMyShots = Vés a les meves captures
 homePageTeaser = Properament…
 homePageDownloadFirefoxTitle = Firefox
@@ -233,9 +233,9 @@ textSizeSmall = Petita
 textSizeMedium = Mitjana
 textSizeLarge = Grossa
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Confirma
     .title = Confirma
-annotationTextCancelButton =
+textToolCancelButton = Cancel·la
     .title = Cancel·la
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
