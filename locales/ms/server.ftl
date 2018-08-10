@@ -53,7 +53,7 @@ homePageCapturePage = Ambil gambar Halaman
 homePageCapturePageDescription = Gunakan butang yang muncul pada bahagian atas kanan untuk mengambil gambar penuh halaman. Butang Simpan Tampak akan mengambil gambar kawasan yang anda nampak tanpa skrol, dan Simpan Halaman Penuh akan mengambil gambar keseluruhan halaman.
 homePageSaveShare = Simpan dan Kongsi
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageSaveShareDescription = Apabila anda ambil syot, Firefox menghantar skrinsyot ke pustaka Screenshots dalam talian anda dan menyalin pautan ke klipbod anda. Secara automatik, kami simpan skrinsyot anda selama dua minggu, tetapi anda boleh hapus atau tukar tarikh luputnya untuk terus disimpan lebih lama dalam pustaka anda. 
+homePageSaveShareDescription = Apabila anda ambil syot, Firefox menghantar skrinsyot ke pustaka Screenshots dalam talian anda dan menyalin pautan ke klipbod anda. Secara automatik, kami simpan skrinsyot anda selama dua minggu, tetapi anda boleh hapus atau tukar tarikh luputnya untuk terus disimpan lebih lama dalam pustaka anda.
 homePageLegalLink = Perundangan
 homePagePrivacyLink = Privasi
 homePageTermsLink = Terma
@@ -227,9 +227,9 @@ textSizeSmall = Kecil
 textSizeMedium = Sederhana
 textSizeLarge = Besar
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Sahkan
     .title = Sahkan
-annotationTextCancelButton =
+textToolCancelButton = Batal
     .title = Batal
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
