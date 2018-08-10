@@ -113,9 +113,11 @@ shotPageExpiredMessageDetails = Еве ја страницата од којаш
 shotPageDeleteButton =
     .title = Избриши ја оваа слика
 shotPageAbuseButton =
-    .title = Пријави ја оваа слика како злоупотреба, спам или нешто друго 
+    .title = Пријави ја оваа слика како злоупотреба, спам или нешто друго
 shotPageDownloadShot =
     .title = Преземи
+shotPageEditButton =
+    .title = Уреди ја оваа слика
 shotPageDownload = Преземи
 shotPageScreenshotsDescription = Слики од екран поедноставени. Фаќајте, снимајте и споделувајте слики од екран без да го напуштите Firefox.
 shotPageUpsellFirefox = Земете Firefox сега
@@ -136,7 +138,7 @@ shotPageKeepIndefinitelyWithSymbol = Бесконечно ∞
 shotPageKeepTenMinutes = 10 минути
 shotPageKeepOneHour = 1 час
 shotPageKeepOneDay = 1 ден
-shotPageKeepOneWeek = 1 седмица 
+shotPageKeepOneWeek = 1 седмица
 shotPageKeepTwoWeeks = 2 седмици
 shotPageKeepOneMonth = 1 месец
 shotPageSaveExpiration = сними
@@ -186,6 +188,12 @@ annotationPenButton =
     .title = Пенкало
 annotationHighlighterButton =
     .title = Маркер
+annotationUndoButton =
+    .title = Врати
+annotationRedoButton =
+    .title = Повтори
+annotationTextButton =
+    .title = Додај текст
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Исчисти
@@ -199,9 +207,53 @@ annotationCropConfirmButton = Потврди
     .title = Потврди го изборот
 annotationCropCancelButton = Откажи
     .title = Откажи го изборот
+annotationColorWhite =
+    .title = Бела
+annotationColorBlack =
+    .title = Црна
+annotationColorRed =
+    .title = Црвена
+annotationColorGreen =
+    .title = Зелена
+annotationColorBlue =
+    .title = Сина
+annotationColorYellow =
+    .title = Жолта
+annotationColorPurple =
+    .title = Виолетова
+annotationColorSeaGreen =
+    .title = Морска зелена
+annotationColorGrey =
+    .title = Сива
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Големина на текст
+# Values shown in text size selection dropdown
+textSizeSmall = Мала
+textSizeMedium = Среда
+textSizeLarge = Голема
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = Потврди
+    .title = Потврди
+textToolCancelButton = Откажи
+    .title = Откажи
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Здраво
 
 ## Settings Page
 
+settingsDisconnectButton = Исклучи се
+    .title = Исклучи се
+settingsGuestAccountMessage = Гостинска сметка
+settingsSignInInvite = Најавете се за синхронизација помеѓу уреди
+settingsSignInButton = Најавете се
+    .title = Најавете се
+SettingsPageHeader = Поставки на Firefox Screenshots
+settingsDescription = Можете да се најавите со сметка на Firefox за да ги синхронизирате сите ваши слики помеѓу уреди и да им пристапувате приватно.
+settingsPageSubHeader = Синхронизација и сметки
+settingsClosePreferences =
+    .title = Затвори поставки
 
 ## Shotindex page
 
@@ -238,6 +290,11 @@ shotIndexNoExpirationSymbol = ∞
 
 ## Delete Confirmation Dialog
 
+shotDeleteConfirmationMessage = Дали сте сигурни дека сакате да ја избришете оваа слика?
+shotDeleteCancel = Откажи
+    .title = Откажи
+shotDeleteConfirm = Избриши
+    .title = Избриши
 
 ## Metrics page
 ## All metrics strings are optional for translation
