@@ -233,9 +233,9 @@ textSizeSmall = Μικρό
 textSizeMedium = Μεσαίο
 textSizeLarge = Μεγάλο
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Επιβεβαίωση
     .title = Επιβεβαίωση
-annotationTextCancelButton =
+textToolCancelButton = Ακύρωση
     .title = Ακύρωση
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
