@@ -26,7 +26,7 @@ footerLinkRemoveAllData = Fjern alle data
 # Note: { $title } is a placeholder for the title of the web page
 # captured in the screenshot. The default, for pages without titles, is
 # creatingPageTitleDefault.
-creatingPageTitle = Laver { $title } 
+creatingPageTitle = Laver { $title }
 creatingPageTitleDefault = side
 creatingPageWaitMessage = Gemmer dit skærmbillede...
 
@@ -66,7 +66,7 @@ leavePageRemoveAllData = Fjern alle data
 leavePageErrorAddonRequired = Du skal have Firefox Screenshots installeret for at slette din konto
 leavePageErrorGeneric = Der opstod en fejl
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageWarning = Dette vil slette alle dine Firefox Screenshots-data permanent. 
+leavePageWarning = Dette vil slette alle dine Firefox Screenshots-data permanent.
 leavePageButtonProceed = Fortsæt
 leavePageButtonCancel = Annuller
 leavePageDeleted = Alle dine skærmbilleder er blevet slettet!
@@ -233,9 +233,9 @@ textSizeSmall = Lille
 textSizeMedium = Mellem
 textSizeLarge = Stor
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Bekræft
     .title = Bekræft
-annotationTextCancelButton =
+textToolCancelButton = Fortryd
     .title = Fortryd
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
