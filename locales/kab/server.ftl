@@ -229,9 +229,9 @@ textSizeSmall = meẓẓi
 textSizeMedium = Alemmas
 textSizeLarge = Meqqar
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Sentem
     .title = Sentem
-annotationTextCancelButton =
+textToolCancelButton = Sefsex
     .title = Sefsex
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
