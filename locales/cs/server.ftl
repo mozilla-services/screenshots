@@ -239,9 +239,9 @@ textSizeSmall = Malý
 textSizeMedium = Střední
 textSizeLarge = Velký
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Potvrdit
     .title = Potvrdit
-annotationTextCancelButton =
+textToolCancelButton = Zrušit
     .title = Zrušit
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
