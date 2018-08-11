@@ -233,9 +233,9 @@ textSizeSmall = Kicsi
 textSizeMedium = Közepes
 textSizeLarge = Nagy
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Megerősítés
     .title = Megerősítés
-annotationTextCancelButton =
+textToolCancelButton = Mégse
     .title = Mégse
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
