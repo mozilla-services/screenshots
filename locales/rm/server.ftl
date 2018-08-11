@@ -125,7 +125,7 @@ shotPageDMCAMessage = Quest maletg n'è betg pli disponibel perquai che terzas p
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Scriva p.pl. a { $dmca } per retschaiver ulteriuras infurmaziuns.
 # Note: do not translate 'Firefox Screenshots' when translating this string
-shotPageDMCAWarning = Sche tes maletgs provocheschan pliras reclamaziuns vegn tes access a Firefox Screenshots eventualmain bloccà. 
+shotPageDMCAWarning = Sche tes maletgs provocheschan pliras reclamaziuns vegn tes access a Firefox Screenshots eventualmain bloccà.
 # Note: { $url } is a placeholder for a shot page URL
 shotPageDMCAIncludeLink = Includa per plaschair l'URL da quest maletg en tes e-mail: { $url }
 shotPageKeepFor = Quant ditg duai quest maletg vegnir preservà?
@@ -233,9 +233,9 @@ textSizeSmall = Pitschen
 textSizeMedium = Mesaun
 textSizeLarge = Grond
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Confermar
     .title = Confermar
-annotationTextCancelButton =
+textToolCancelButton = Interrumper
     .title = Interrumper
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
