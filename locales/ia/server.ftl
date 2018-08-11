@@ -43,14 +43,14 @@ homePageGetStarted = Comenciar
 homePageHowScreenshotsWorks = Como Firefox Screenshots functiona
 homePageGetStartedTitle = Comenciar
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescription = Trova le nove instantaneos sur tu barra de instrumentos. Elige lo, e le menu del instantaneos apparera al culmine de tu fenestra del navigator. 
+homePageGetStartedDescription = Trova le nove instantaneos sur tu barra de instrumentos. Elige lo, e le menu del instantaneos apparera al culmine de tu fenestra del navigator.
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
-homePageGetStartedDescriptionPageAction = Elige le icone de instantaneos ex le menu de actiones de pagina in le barra de adresses e le menu del instantaneos apparera al culmine de tu fenestra del navigator. 
+homePageGetStartedDescriptionPageAction = Elige le icone de instantaneos ex le menu de actiones de pagina in le barra de adresses e le menu del instantaneos apparera al culmine de tu fenestra del navigator.
 homePageCaptureRegion = Capturar un area de schermo
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Clicca e trahe pro seliger le area que tu vole capturar. O solo sur-vola e clicca - Screenshots eligera le area pro te. TU ama lo que tu vide? Elige Salvar pro acceder a tu instantaneos online o le flecha-a-basso pro lo discargar sur tu computator.
 homePageCapturePage = Capturar un pagina
-homePageCapturePageDescription = Usar le buttones in alto a dextra pro capturar le paginas integre. Le button Salvar lo visibile, capturara le area que tu pote vider sin rolar, e Salvar pagina integre, capturara tote le pagina. 
+homePageCapturePageDescription = Usar le buttones in alto a dextra pro capturar le paginas integre. Le button Salvar lo visibile, capturara le area que tu pote vider sin rolar, e Salvar pagina integre, capturara tote le pagina.
 homePageSaveShare = Salvar e compartir
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageSaveShareDescription = Quando tu prende un instantaneo, Firefox posta tu instantaneo de schermo in tu bibliotheca online de instantaneos de schermo e copia le ligamine in tu area de transferentia. Nos automaticamente salva tu instantaneo de schermo pro duo septimanas, ma tu pote sempre cancellar instantaneos o cambiar le data de expiration pro los mantener in tu bibliotheca pro plus de tempore.
@@ -233,9 +233,9 @@ textSizeSmall = Micre
 textSizeMedium = Medie
 textSizeLarge = Grande
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Confirmar
     .title = Confirmar
-annotationTextCancelButton =
+textToolCancelButton = Cancellar
     .title = Cancellar
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
