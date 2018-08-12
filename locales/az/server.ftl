@@ -47,6 +47,8 @@ homePageGetStartedDescription = Alət sətrinizdə yeni Ekran Görüntüləri ik
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageGetStartedDescriptionPageAction = Ünvan sətrindəki səhifə əməliyyatları menyusundan Ekran Görüntüləri ikonunu seçin  və Ekran Görüntüləri menyusu səyyahınızın pəncərəsinin üstündə peyda olacaq.
 homePageCaptureRegion = Bölgəni çək
+# Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
+homePageCaptureRegionDescription = Çəkmək istədiyiniz sahəni seçmək üçün klikləyin və daşıyın. Ya da sadəcə üzərinə gəlin və klikləyin — Screenshots sahəni sizin üçün seçəcək. Gördüyünüzü bəyəndiniz? Ekran görüntünüzü onlayn saxlamaq üçün Saxla seçin və ya aşağı ox düyməsi ilə kompüterinizə endirin.
 homePageCapturePage = Səhifəni çək
 homePageSaveShare = Saxla və Paylaş
 homePageLegalLink = Hüquqi
