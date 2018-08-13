@@ -50,6 +50,7 @@ homePageCaptureRegion = Bölgəni çək
 # Note: Screenshots is an abbreviation for Firefox Screenshots, and should not be translated.
 homePageCaptureRegionDescription = Çəkmək istədiyiniz sahəni seçmək üçün klikləyin və daşıyın. Ya da sadəcə üzərinə gəlin və klikləyin — Screenshots sahəni sizin üçün seçəcək. Gördüyünüzü bəyəndiniz? Ekran görüntünüzü onlayn saxlamaq üçün Saxla seçin və ya aşağı ox düyməsi ilə kompüterinizə endirin.
 homePageCapturePage = Səhifəni çək
+homePageCapturePageDescription = Bütün səhifəni çəkmək üçün sağ yuxarı küncdəki düymələrdən istifadə edin. Görünəni Saxla düyməsi səhifənin sürüşdürmədən gördüyünüz hissəsini, Bütün Səhifəni Saxla düyməsi isə səhifədə olan hər şeyi çəkəcək.
 homePageSaveShare = Saxla və Paylaş
 homePageLegalLink = Hüquqi
 homePagePrivacyLink = Məxfilik
@@ -118,6 +119,7 @@ shotPageEditButton =
 shotPageDownload = Endir
 shotPageScreenshotsDescription = Ekran görüntülərini almağı asanlaşdırdıq. Firefox-u tərk etmədən ekran görüntülərini alın, saxlayın və paylaşın.
 shotPageUpsellFirefox = Firefox-u indi əldə et
+shotPageDMCAMessage = Bu görüntü üçüncü tərəfin müəllif hüquqlarının pozuntusu tələbinə görə artıq əlçatan deyil.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Lütfən, əlavə məlumat üçün { $dmca } ilə əlaqə saxlayın.
 shotPageKeepFor = Bu görüntü nə qədər müddətə saxlanılsın?
