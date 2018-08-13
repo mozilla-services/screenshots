@@ -122,6 +122,10 @@ shotPageUpsellFirefox = Firefox-u indi əldə et
 shotPageDMCAMessage = Bu görüntü üçüncü tərəfin müəllif hüquqlarının pozuntusu tələbinə görə artıq əlçatan deyil.
 # Note: { $dmca } is a placeholder for a link to send email (a 'mailto' link)
 shotPageDMCAContact = Lütfən, əlavə məlumat üçün { $dmca } ilə əlaqə saxlayın.
+# Note: do not translate 'Firefox Screenshots' when translating this string
+shotPageDMCAWarning = Əgər görüntüləriniz bir neçə dəfə şikayət edilsə, Firefox Screnshots girişinizi bağlaya bilərik.
+# Note: { $url } is a placeholder for a shot page URL
+shotPageDMCAIncludeLink = Lütfən, bu görüntünün keçidini e-poçtunuza əlavə edin: { $url }
 shotPageKeepFor = Bu görüntü nə qədər müddətə saxlanılsın?
 # Note: shotPageSelectTime is a placeholder label for the time selection dropdown.
 shotPageSelectTime = Vaxtı seçin
