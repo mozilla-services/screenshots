@@ -308,6 +308,7 @@ exports.Editor = class Editor extends React.Component {
     e.target.blur();
     this.applyHistory(this.history.undo(this.imageCanvas));
     this.deriveButtonStates();
+    sendEvent("undo", "annotation-toolbar");
   }
 
   onRedo(e) {
@@ -317,6 +318,7 @@ exports.Editor = class Editor extends React.Component {
     e.target.blur();
     this.applyHistory(this.history.redo(this.imageCanvas));
     this.deriveButtonStates();
+    sendEvent("redo", "annotation-toolbar");
   }
 
   applyHistory(record) {
