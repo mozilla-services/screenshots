@@ -227,9 +227,9 @@ textSizeSmall = Кіші
 textSizeMedium = Орташа
 textSizeLarge = Үлкен
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Растау
     .title = Растау
-annotationTextCancelButton =
+textToolCancelButton = Бас тарту
     .title = Бас тарту
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
