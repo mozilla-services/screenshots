@@ -63,7 +63,7 @@ homePageCookiesLink = Taq Kaxlanwey
 
 leavePageRemoveAllData = Ke'elesäx el Konojel ri Taq Tzij
 # Note: do not translate 'Firefox Screenshots' when translating this string
-leavePageErrorAddonRequired = K'o chi e'ayakon ri Chapoj Ruwachib'al Firefox richin nayüj el rub'i' ataqoya'l 
+leavePageErrorAddonRequired = K'o chi e'ayakon ri Chapoj Ruwachib'al Firefox richin nayüj el rub'i' ataqoya'l
 leavePageErrorGeneric = Xk'ulwachitäj jun sachoj
 # Note: do not translate 'Firefox Screenshots' when translating this string
 leavePageWarning = Re re' xkeruyüj el konojel taq rutzij Firefox Chapoj Awachib'al.
@@ -168,7 +168,7 @@ timeDiffFutureSeconds = pa jujun nich'ramaj
 timeDiffFutureMinutes =
     { $number ->
         [one] pa 1 ch'utiramaj
-       *[other] pa { $number } taq ramaj 
+       *[other] pa { $number } taq ramaj
     }
 timeDiffFutureHours =
     { $number ->
@@ -192,6 +192,8 @@ annotationUndoButton =
     .title = Titzolïx
 annotationRedoButton =
     .title = Tikamulüx
+annotationTextButton =
+    .title = Titz'aqatisäx rucholajem tzij
 # Note: This button reverts all the changes on the image since the start of the editing session.
 annotationClearButton =
     .title = Tijosq'ïx
@@ -223,6 +225,21 @@ annotationColorSeaGreen =
     .title = Ruraxal Palow
 annotationColorGrey =
     .title = Chaj
+# Note: annotationTextSize is a title for text size selection dropdown.
+annotationTextSize =
+    .title = Runimilem rucholajem tzij
+# Values shown in text size selection dropdown
+textSizeSmall = Ko'öl
+textSizeMedium = Loman
+textSizeLarge = Nïm
+# Confirm and Cancel button title shown when using text tool
+textToolConfirmButton = Tijikib'äx
+    .title = Tijikib'äx
+textToolCancelButton = Tiq'at
+    .title = Tiq'at
+# Default placeholder used in input field when adding text annotations
+textToolInputPlaceholder =
+    .placeholder = Achike ab'anon
 
 ## Settings Page
 
