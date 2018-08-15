@@ -176,6 +176,11 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = Jika anda ambil syot ini dan tidak boleh dibuang, anda mungkin perlu dayakan sementara kuki pihak ketiga dalam keutamaan pelayar anda.
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = Tome nota!
+
 ## Annotations
 
 annotationPenButton =
