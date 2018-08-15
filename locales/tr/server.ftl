@@ -209,9 +209,9 @@ textSizeSmall = Küçük
 textSizeMedium = Orta
 textSizeLarge = Büyük
 # Confirm and Cancel button title shown when using text tool
-annotationTextConfirmButton =
+textToolConfirmButton = Onayla
     .title = Onayla
-annotationTextCancelButton =
+textToolCancelButton = İptal
     .title = İptal
 # Default placeholder used in input field when adding text annotations
 textToolInputPlaceholder =
