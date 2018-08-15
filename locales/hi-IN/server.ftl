@@ -178,6 +178,14 @@ timeDiffFutureDays =
     }
 errorThirdPartyCookiesEnabled = यदि आप ने शॉट लिया और delete नहीं कर पा रहे हैं, तो आपके बराउजर के preferences से अन्य पारटी cookies को अस्थायी रूप से enable करना होगा।
 
+## Shot Page New Feature Promotion Dialog.
+
+# Note: If possible, choose a short translation to better fit into the card.
+promoTitle = नोट करें!
+promoLink = उन्हें आज़माएँ
+promoCloseButton =
+    .title = अधिसूचना बंद करें
+
 ## Annotations
 
 annotationPenButton =
