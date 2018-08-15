@@ -128,6 +128,18 @@ this.analytics = (function() {
     return Promise.resolve();
   };
 
+  exports.incrementCount = function(scalar) {
+    const allowedScalars = ["download", "upload", "copy"];
+    if (!allowedScalars.includes(scalar)) {
+      const err = `incrementCount passed an unrecognized scalar ${scalar}`;
+      log.warn(err);
+      return Promise.resolve();
+    }
+    return browser.telemetry.scalarAdd(`screenshots.${scalar}`, 1).catch(err => {
+      log.warn(`incrementCount failed with error: ${err}`);
+    });
+  };
+
   exports.refreshTelemetryPref = function() {
     return browser.telemetry.canUpload().then((result) => {
       telemetryPrefKnown = true;

@@ -184,14 +184,5 @@ function handleMessage(msg, sender, sendReply) {
   } else if (msg.funcName === "isHistoryEnabled") {
     const historyEnabled = getBoolPref(HISTORY_ENABLED_PREF);
     sendReply({type: "success", value: historyEnabled});
-  } else if (msg.funcName === "incrementCount") {
-    const allowedScalars = ["download", "upload", "copy"];
-    const scalar = msg.args && msg.args[0] && msg.args[0].scalar;
-    if (!allowedScalars.includes(scalar)) {
-      sendReply({type: "error", name: `incrementCount passed an unrecognized scalar ${scalar}`});
-    } else {
-      Services.telemetry.scalarAdd(`screenshots.${scalar}`, 1);
-      sendReply({type: "success", value: true});
-    }
   }
 }

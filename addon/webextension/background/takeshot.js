@@ -5,7 +5,7 @@
 this.takeshot = (function() {
   const exports = {};
   const Shot = shot.AbstractShot;
-  const { sendEvent } = analytics;
+  const { sendEvent, incrementCount } = analytics;
 
   communication.register("takeShot", catcher.watchFunction((sender, options) => {
     const { captureType, captureText, scroll, selectedPos, shotId } = options;
@@ -76,7 +76,7 @@ this.takeshot = (function() {
         }
       );
     }).then(() => {
-      catcher.watchPromise(communication.sendToBootstrap("incrementCount", {scalar: "upload"}));
+      catcher.watchPromise(incrementCount("upload"));
       return shot.viewUrl;
     }).catch((error) => {
       browser.tabs.remove(openedTab.id);
