@@ -179,7 +179,11 @@ errorThirdPartyCookiesEnabled = Jika anda ambil syot ini dan tidak boleh dibuang
 ## Shot Page New Feature Promotion Dialog.
 
 # Note: If possible, choose a short translation to better fit into the card.
-promoTitle = Tome nota!
+promoTitle = Perhatian!
+promoMessage = Alatan edit yang dikemaskini membolehkan anda memotong, menyerlah dan menambah teks.
+promoLink = Anda perlu cuba
+promoCloseButton =
+    .title = Tutup notifikasi
 
 ## Annotations
 
